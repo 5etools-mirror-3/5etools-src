@@ -1,0 +1,1759 @@
+{
+	"_meta": {
+		"dependencies": {
+			"monster": [
+				"MM",
+				"VGM"
+			]
+		},
+		"internalCopies": [
+			"monster"
+		]
+	},
+	"monster": [
+		{
+			"name": "Aegisaur",
+			"source": "PSX",
+			"page": 28,
+			"_copy": {
+				"name": "Ankylosaurus",
+				"source": "MM"
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Aerosaur (Large)",
+			"source": "PSX",
+			"page": 29,
+			"_copy": {
+				"name": "Quetzalcoatlus",
+				"source": "VGM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "quetzalcoatlus",
+						"with": "aerosaur"
+					}
+				}
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Aerosaur (Small)",
+			"source": "PSX",
+			"page": 29,
+			"_copy": {
+				"name": "Pteranodon",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "pteranodon",
+						"with": "aerosaur"
+					}
+				}
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Air Totem Elemental",
+			"source": "PSX",
+			"page": 38,
+			"_copy": {
+				"name": "Air Elemental",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "elemental",
+						"with": "totem elemental"
+					}
+				}
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Altisaur",
+			"source": "PSX",
+			"page": 27,
+			"_copy": {
+				"name": "Brontosaurus",
+				"source": "VGM"
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Armasaur",
+			"source": "PSX",
+			"page": 28,
+			"_copy": {
+				"name": "Stegosaurus",
+				"source": "VGM"
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Awakened Shrub Totem Elemental",
+			"source": "PSX",
+			"page": 38,
+			"_copy": {
+				"name": "Awakened Shrub",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "shrub",
+						"with": "shrub totem"
+					}
+				}
+			},
+			"hasToken": true,
+			"hasFluff": true
+		},
+		{
+			"name": "Blight Totem Elemental",
+			"source": "PSX",
+			"page": 38,
+			"_copy": {
+				"name": "Vine Blight",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "blight",
+						"with": "blight totem"
+					}
+				}
+			},
+			"hasToken": true,
+			"hasFluff": true
+		},
+		{
+			"name": "Brontodon",
+			"source": "PSX",
+			"page": 27,
+			"_copy": {
+				"name": "Brontosaurus",
+				"source": "VGM"
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Ceratops",
+			"source": "PSX",
+			"page": 28,
+			"_copy": {
+				"name": "Triceratops",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "triceratops",
+						"with": "ceratops"
+					}
+				}
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Chupacabra",
+			"group": [
+				"Dinosaurs"
+			],
+			"source": "PSX",
+			"page": 9,
+			"size": [
+				"M"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 14,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 45,
+				"formula": "6d8 + 18"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 15,
+			"dex": 14,
+			"con": 16,
+			"int": 6,
+			"wis": 13,
+			"cha": 9,
+			"skill": {
+				"perception": "+3",
+				"stealth": "+4"
+			},
+			"senses": [
+				"darkvision 120 ft."
+			],
+			"passive": 13,
+			"resist": [
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "from nonmagical weapons",
+					"cond": true
+				}
+			],
+			"cr": "3",
+			"trait": [
+				{
+					"name": "Sunlight Sensitivity",
+					"entries": [
+						"While in sunlight, the chupacabra has disadvantage on attack rolls, as well as on Wisdom ({@skill Perception}) checks that rely on sight."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}7 ({@damage 2d4 + 2}) piercing damage. If the target is a creature, it must succeed on a {@dc 13} Strength saving throw or be knocked {@condition prone}."
+					]
+				},
+				{
+					"name": "Drain Blood",
+					"entries": [
+						"{@atk mw} {@hit 4} to hit, reach 5 ft., one creature that is {@condition prone}, {@condition incapacitated}, or {@condition restrained}. {@h}5 ({@damage 1d6 + 2}) necrotic damage. The target must succeed on a {@dc 13} Constitution saving throw or its hit point maximum is reduced by an amount equal to the damage taken, and the chupacabra regains hit points equal to that amount. The reduction lasts until the target finishes a long rest. The target dies if this effect reduces its hit point maximum to 0."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Pin",
+					"entries": [
+						"If a creature within 5 feet of the chupacabra stands up, the chupacabra can use its reaction to make a bite attack."
+					]
+				}
+			],
+			"traitTags": [
+				"Sunlight Sensitivity"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"damageTags": [
+				"N",
+				"P"
+			],
+			"miscTags": [
+				"HPR",
+				"MW"
+			],
+			"conditionInflict": [
+				"prone"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"strength"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Coatl",
+			"source": "PSX",
+			"page": 35,
+			"_copy": {
+				"name": "Couatl",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "couatl",
+						"with": "coatl"
+					}
+				}
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Demon",
+			"source": "PSX",
+			"page": 36,
+			"_copy": {
+				"name": "Vrock",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "vrock",
+						"with": "demon"
+					}
+				}
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Dryad",
+			"source": "PSX",
+			"page": 38,
+			"_copy": {
+				"name": "Dryad",
+				"source": "MM"
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Earth Totem Elemental",
+			"source": "PSX",
+			"page": 38,
+			"_copy": {
+				"name": "Earth Elemental",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "elemental",
+						"with": "totem elemental"
+					}
+				}
+			},
+			"hasToken": true,
+			"hasFluff": true
+		},
+		{
+			"name": "Elder Dinosaur",
+			"group": [
+				"Dinosaurs"
+			],
+			"source": "PSX",
+			"page": 33,
+			"size": [
+				"G"
+			],
+			"type": {
+				"type": "monstrosity",
+				"tags": [
+					"titan"
+				]
+			},
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 25,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 676,
+				"formula": "33d20 + 330"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 30,
+			"dex": 11,
+			"con": 30,
+			"int": 3,
+			"wis": 11,
+			"cha": 11,
+			"save": {
+				"int": "+5",
+				"wis": "+9",
+				"cha": "+9"
+			},
+			"senses": [
+				"blindsight 120 ft."
+			],
+			"passive": 10,
+			"immune": [
+				"fire",
+				"poison",
+				{
+					"immune": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "from nonmagical attacks",
+					"cond": true
+				}
+			],
+			"conditionImmune": [
+				"charmed",
+				"frightened",
+				"paralyzed",
+				"poisoned"
+			],
+			"cr": "30",
+			"trait": [
+				{
+					"name": "Legendary Resistance (3/Day)",
+					"entries": [
+						"If the elder dinosaur fails a saving throw, it can choose to succeed instead."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The elder dinosaur has advantage on saving throws against spells and other magical effects."
+					]
+				},
+				{
+					"name": "Siege Monster",
+					"entries": [
+						"The elder dinosaur deals double damage to objects and structures."
+					]
+				},
+				{
+					"name": "Uniqueness",
+					"entries": [
+						"These statistics are shared by all six elder dinosaurs: {@creature Elder Dinosaur (Etali, Primal Storm)|PSX|Etali, Primal Storm}, {@creature Elder Dinosaur (Ghalta, Primal Hunger)|PSX|Ghalta, Primal Hunger}, {@creature Elder Dinosaur (Nezahal, Primal Tide)|PSX|Nezahal, Primal Tide}, {@creature Elder Dinosaur (Tetzimoc, Primal Death)|PSX|Tetzimoc, Primal Death}, {@creature Elder Dinosaur (Zacama, Primal Calamity)|PSX|Zacama, Primal Calamity}, {@creature Elder Dinosaur (Zetalpa, Primal Dawn)|PSX|Zetalpa, Primal Dawn}"
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Frightful Presence",
+					"entries": [
+						"Each creature of the elder dinosaur's choice within 120 feet of it and aware of it must succeed on a {@dc 17} Wisdom saving throw or become {@condition frightened} for 1 minute. A creature can repeat the saving throw at the end of each of its turns, with disadvantage if the elder dinosaur is within line of sight, ending the effect on itself ona success. If a creature's saving throw is successful or the effect ends for it, the creature is immune to the elder dinosaur's Frightful Presence for the next 24 hours."
+					]
+				},
+				{
+					"name": "Swallow",
+					"entries": [
+						"The elder dinosaur makes one bite attack against a Large or smaller creature it is grappling. If the attack hits, that creature takes the bite's damage, the target is swallowed, and the grapple ends. While swallowed, the creature is {@condition blinded} and {@condition restrained}, it has {@quickref Cover||3||total cover} against attacks and other effects outside the elder dinosaur, and it takes 56 ({@damage 16d6}) acid damage at the start of each of the elder dinosaur's turns. If the elder dinosaur takes 60 damage or more on a single turn from a creature inside it, it must succeed on a {@dc 20} Constitution saving throw at the end of that turn or regurgitate all swallowed creatures, which fall {@condition prone} in a space within 10 feet of it. If the elder dinosaur dies, a swallowed creature is no longer {@condition restrained} by it and can escape from the corpse by using 20 feet of movement, exiting {@condition prone}."
+					]
+				}
+			],
+			"legendary": [
+				{
+					"name": "Attack",
+					"entries": [
+						"The elder dinosaur makes one claw attack, tail attack, wing attack, or flipper attack."
+					]
+				},
+				{
+					"name": "Move",
+					"entries": [
+						"The elder dinosaur moves up to half its speed."
+					]
+				},
+				{
+					"name": "Chomp (Costs 2 Actions)",
+					"entries": [
+						"The elder dinosaur makes one bite attack or uses its Swallow."
+					]
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances",
+				"Magic Resistance",
+				"Siege Monster"
+			],
+			"senseTags": [
+				"B"
+			],
+			"actionTags": [
+				"Frightful Presence",
+				"Swallow"
+			],
+			"damageTags": [
+				"A"
+			],
+			"conditionInflict": [
+				"blinded",
+				"frightened",
+				"restrained"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Elder Dinosaur (Etali, Primal Storm)",
+			"source": "PSX",
+			"page": 34,
+			"_copy": {
+				"name": "Elder Dinosaur",
+				"source": "PSX",
+				"_mod": {
+					"trait": {
+						"mode": "appendArr",
+						"items": {
+							"name": "Lightning Storm",
+							"entries": [
+								"The elder dinosaur is always accompanied by a raging thunderstorm similar to the effect of a {@spell call lightning} spell. A storm cloud in the shape of a cylinder that is 10 feet tall with a 60-foot radius instantly forms 100 feet in the air over the elder dinosaur when it is angered or becomes violent, as long as it is outdoors. On each of its turns, as an action, the elder dinosaur can choose a point it can see within 120 feet of it. A bolt of lightning flashes down from the cloud to that point. Each creature within 10 feet of that point must make a {@dc 20} Dexterity saving throw, taking 21 ({@damage 6d6}) lightning damage on a failed save, or half as much damage on a successful one."
+							]
+						}
+					},
+					"action": [
+						{
+							"mode": "appendArr",
+							"items": [
+								{
+									"name": "Multiattack",
+									"entries": [
+										"The elder dinosaur can use its Frightful Presence and call down two lightning strikes from its Lightning Storm. It then makes three attacks: one with its bite and two with its claws."
+									]
+								},
+								{
+									"name": "Bite",
+									"entries": [
+										"{@atk mw} {@hit 19} to hit, reach 10 ft., one target. {@h}36 ({@damage 4d12 + 10}) piercing damage. If the target is a creature, it is {@condition grappled} (escape {@dc 20}). Until this grapple ends, the target is {@condition restrained}, and the elder dinosaur can't bite another target."
+									]
+								},
+								{
+									"name": "Claw",
+									"entries": [
+										"{@atk mw} {@hit 19} to hit, reach 15 ft., one target. {@h}28 ({@damage 4d8 + 10}) slashing damage."
+									]
+								}
+							]
+						}
+					]
+				}
+			},
+			"actionTags": [
+				"Frightful Presence",
+				"Multiattack",
+				"Swallow"
+			],
+			"damageTags": [
+				"A",
+				"L",
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"blinded",
+				"frightened",
+				"grappled",
+				"restrained"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Elder Dinosaur (Ghalta, Primal Hunger)",
+			"source": "PSX",
+			"page": 34,
+			"_copy": {
+				"name": "Elder Dinosaur",
+				"source": "PSX",
+				"_mod": {
+					"action": [
+						{
+							"mode": "appendArr",
+							"items": [
+								{
+									"name": "Multiattack",
+									"entries": [
+										"The elder dinosaur can use its Frightful Presence. It then makes three attacks: one with its bite, one with its stomp, and one with its tail. It can use its Swallow instead of its bite."
+									]
+								},
+								{
+									"name": "Bite",
+									"entries": [
+										"{@atk mw} {@hit 19} to hit, reach 10 ft., one target. {@h}62 ({@damage 8d12 + 10}) piercing damage. If the target is a creature, it is {@condition grappled} (escape {@dc 20}). Until this grapple ends, the target is {@condition restrained}, and the elder dinosaur can't bite another target."
+									]
+								},
+								{
+									"name": "Stomp",
+									"entries": [
+										"{@atk mw} {@hit 19} to hit, reach 5 ft., one target. {@h}46 ({@damage 8d8 + 10}) bludgeoning damage."
+									]
+								},
+								{
+									"name": "Tail",
+									"entries": [
+										"{@atk mw} {@hit 19} to hit, reach 20 ft., one target. {@h}38 ({@damage 8d6 + 10}) bludgeoning damage. If the target is a creature, it must succeed on a {@dc 20} Strength saving throw or be knocked {@condition prone}."
+									]
+								}
+							]
+						}
+					]
+				}
+			},
+			"actionTags": [
+				"Frightful Presence",
+				"Multiattack",
+				"Swallow"
+			],
+			"damageTags": [
+				"A",
+				"B",
+				"P"
+			],
+			"miscTags": [
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"blinded",
+				"frightened",
+				"grappled",
+				"prone",
+				"restrained"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"strength",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Elder Dinosaur (Nezahal, Primal Tide)",
+			"source": "PSX",
+			"page": 34,
+			"_copy": {
+				"name": "Elder Dinosaur",
+				"source": "PSX",
+				"_mod": {
+					"trait": {
+						"mode": "appendArr",
+						"items": {
+							"name": "Hold Breath",
+							"entries": [
+								"The elder dinosaur can hold its breath for 4 hours."
+							]
+						}
+					},
+					"action": [
+						{
+							"mode": "appendArr",
+							"items": [
+								{
+									"name": "Multiattack",
+									"entries": [
+										"The elder dinosaur can use its Frightful Presence. It then makes five attacks: one with its bite and four with its flippers. No two flipper attacks can target the same creature. It can use its Swallow instead of its bite."
+									]
+								},
+								{
+									"name": "Bite",
+									"entries": [
+										"{@atk mw} {@hit 19} to hit, reach 10 ft., one target. {@h}36 ({@damage 4d12 + 10}) piercing damage. If the target is a creature, it is {@condition grappled} (escape {@dc 20}). Until this grapple ends, the target is {@condition restrained}, and the elder dinosaur can't bite another target."
+									]
+								},
+								{
+									"name": "Flipper",
+									"entries": [
+										"{@atk mw} {@hit 19} to hit, reach 5 ft., one target. {@h}28 ({@damage 4d8 + 10}) bludgeoning damage."
+									]
+								}
+							]
+						}
+					]
+				}
+			},
+			"speed": {
+				"walk": 20,
+				"swim": 60
+			},
+			"traitTags": [
+				"Hold Breath",
+				"Legendary Resistances",
+				"Magic Resistance",
+				"Siege Monster"
+			],
+			"actionTags": [
+				"Frightful Presence",
+				"Multiattack",
+				"Swallow"
+			],
+			"damageTags": [
+				"A",
+				"B",
+				"P"
+			],
+			"miscTags": [
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"blinded",
+				"frightened",
+				"grappled",
+				"restrained"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Elder Dinosaur (Tetzimoc, Primal Death)",
+			"source": "PSX",
+			"page": 34,
+			"_copy": {
+				"name": "Elder Dinosaur",
+				"source": "PSX",
+				"_mod": {
+					"trait": {
+						"mode": "appendArr",
+						"items": [
+							{
+								"name": "Spiny Carapace",
+								"entries": [
+									"The elder dinosaur is covered in an armored carapace bristling with thick, sharp spines. Any creature that hits or misses Tetzimoc with a melee attack takes 7 ({@damage 2d6}) piercing damage."
+								]
+							},
+							{
+								"name": "Tail Spike Regrowth",
+								"entries": [
+									"The elder dinosaur has forty tail spikes. Used spikes regrow when the elder dinosaur finishes a long rest."
+								]
+							}
+						]
+					},
+					"action": [
+						{
+							"mode": "appendArr",
+							"items": [
+								{
+									"name": "Multiattack",
+									"entries": [
+										"The elder dinosaur can use its Frightful Presence. It then makes five attacks: one with its bite, two with its claws, one with its horns, and one with its tail. It can use its tail spikes in place of any or all of those attacks, and it can use its Swallow instead of its bite."
+									]
+								},
+								{
+									"name": "Bite",
+									"entries": [
+										"{@atk mw} {@hit 19} to hit, reach 10 ft., one target. {@h}36 ({@damage 4d12 + 10}) piercing damage. If the target is a creature, it is {@condition grappled} (escape {@dc 20}). Until this grapple ends, the target is {@condition restrained}, and the elder dinosaur can't bite another target."
+									]
+								},
+								{
+									"name": "Claw",
+									"entries": [
+										"{@atk mw} {@hit 19} to hit, reach 15 ft., one target. {@h}28 ({@damage 4d8 + 10}) slashing damage."
+									]
+								},
+								{
+									"name": "Horns",
+									"entries": [
+										"{@atk mw} {@hit 19} to hit, reach 10 ft., one target. {@h}32 ({@damage 4d10 + 10}) piercing damage."
+									]
+								},
+								{
+									"name": "Tail",
+									"entries": [
+										"{@atk mw} {@hit 19} to hit, reach 20 ft., one target. {@h}24 ({@damage 4d6 + 10}) piercing damage. If the target is a creature, it must succeed on a {@dc 20} Strength saving throw or be knocked {@condition prone}."
+									]
+								},
+								{
+									"name": "Tail Spikes",
+									"entries": [
+										"{@atk rw} {@hit 9} to hit, range 100/300 ft., two targets. {@h}7 ({@damage 2d6}) piercing damage."
+									]
+								}
+							]
+						}
+					]
+				}
+			},
+			"actionTags": [
+				"Frightful Presence",
+				"Multiattack",
+				"Swallow"
+			],
+			"damageTags": [
+				"A",
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MW",
+				"RCH",
+				"RW"
+			],
+			"conditionInflict": [
+				"blinded",
+				"frightened",
+				"grappled",
+				"prone",
+				"restrained"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"strength",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Elder Dinosaur (Zacama, Primal Calamity)",
+			"source": "PSX",
+			"page": 34,
+			"_copy": {
+				"name": "Elder Dinosaur",
+				"source": "PSX",
+				"_mod": {
+					"action": [
+						{
+							"mode": "appendArr",
+							"items": [
+								{
+									"name": "Multiattack",
+									"entries": [
+										"The elder dinosaur can use its Frightful Presence. It then makes five attacks: three with its bite, {@footnote one with its stomp, and one with its tail|{@note This statblock does not have these actions available.}}. It can use its Swallow instead of a bite."
+									]
+								},
+								{
+									"name": "Bite",
+									"entries": [
+										"{@atk mw} {@hit 19} to hit, reach 10 ft., one target. {@h}36 ({@damage 4d12 + 10}) piercing damage. If the target is a creature, it is {@condition grappled} (escape {@dc 20}). Until this grapple ends, the target is {@condition restrained}. If the elder dinosaur has three targets {@condition restrained} in this way, it can't bite another target."
+									]
+								}
+							]
+						}
+					]
+				}
+			},
+			"actionTags": [
+				"Frightful Presence",
+				"Multiattack",
+				"Swallow"
+			],
+			"damageTags": [
+				"A",
+				"B",
+				"P"
+			],
+			"miscTags": [
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"blinded",
+				"frightened",
+				"grappled",
+				"restrained"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"strength",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Elder Dinosaur (Zetalpa, Primal Dawn)",
+			"source": "PSX",
+			"page": 34,
+			"_copy": {
+				"name": "Elder Dinosaur",
+				"source": "PSX",
+				"_mod": {
+					"action": [
+						{
+							"mode": "appendArr",
+							"items": [
+								{
+									"name": "Multiattack",
+									"entries": [
+										"The elder dinosaur can use its Frightful Presence. It then makes five attacks: one with its bite, two with its claws, and two with its wings. It can use its Swallow instead of its bite."
+									]
+								},
+								{
+									"name": "Bite",
+									"entries": [
+										"{@atk mw} {@hit 19} to hit, reach 10 ft., one target. {@h}36 ({@damage 4d12 + 10}) piercing damage. If the target is a creature, it is {@condition grappled} (escape {@dc 20}). Until this grapple ends, the target is {@condition restrained}, and the elder dinosaur can't bite another target."
+									]
+								},
+								{
+									"name": "Claw",
+									"entries": [
+										"{@atk mw} {@hit 19} to hit, reach 15 ft., one target. {@h}28 ({@damage 4d8 + 10}) slashing damage."
+									]
+								},
+								{
+									"name": "Wing",
+									"entries": [
+										"{@atk mw} {@hit 19} to hit, reach 20 ft., one target. {@h}28 ({@damage 4d8 + 10}) bludgeoning damage."
+									]
+								}
+							]
+						}
+					]
+				}
+			},
+			"speed": {
+				"walk": 20,
+				"fly": 60
+			},
+			"resist": [
+				"radiant"
+			],
+			"actionTags": [
+				"Frightful Presence",
+				"Multiattack",
+				"Swallow"
+			],
+			"damageTags": [
+				"A",
+				"B",
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"blinded",
+				"frightened",
+				"grappled",
+				"restrained"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Ferocidon",
+			"source": "PSX",
+			"page": 30,
+			"_copy": {
+				"name": "Allosaurus",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "allosaurus",
+						"with": "ferocidon"
+					}
+				}
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Fire Guardian",
+			"source": "PSX",
+			"page": 38,
+			"_copy": {
+				"name": "Fire Elemental",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "elemental",
+						"with": "fire guardian"
+					}
+				}
+			},
+			"hasToken": true,
+			"hasFluff": true
+		},
+		{
+			"name": "Frilled Deathspitter",
+			"group": [
+				"Dinosaurs"
+			],
+			"source": "PSX",
+			"page": 30,
+			"size": [
+				"S"
+			],
+			"type": "beast",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 13,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 18,
+				"formula": "4d6 + 4"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 12,
+			"dex": 16,
+			"con": 13,
+			"int": 4,
+			"wis": 12,
+			"cha": 6,
+			"skill": {
+				"perception": "+3"
+			},
+			"passive": 13,
+			"cr": "1/2",
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The deathspitter makes three attacks: one with its bite and two with its claws."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) piercing damage."
+					]
+				},
+				{
+					"name": "Claw",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) slashing damage."
+					]
+				},
+				{
+					"name": "Spit Poison",
+					"entries": [
+						"{@atk rw} {@hit 5} to hit, range 15/30 ft., one creature. {@h}The target must make a {@dc 13} Constitution saving throw, taking 18 ({@damage 4d8}) poison damage on a failed save, or half as much damage on a successful one. In addition, a creature that fails its saving throw is {@condition blinded} until the end of the deathspitter's next turn."
+					]
+				}
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"damageTags": [
+				"I",
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MW",
+				"RW"
+			],
+			"conditionInflict": [
+				"blinded"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Gishath, Sun's Avatar",
+			"group": [
+				"Dinosaurs"
+			],
+			"isNamedCreature": true,
+			"source": "PSX",
+			"page": 32,
+			"size": [
+				"G"
+			],
+			"type": "beast",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 203,
+				"formula": "14d20 + 56"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 24,
+			"dex": 12,
+			"con": 18,
+			"int": 12,
+			"wis": 16,
+			"cha": 6,
+			"save": {
+				"str": "+11",
+				"con": "+8",
+				"wis": "+7",
+				"cha": "+2"
+			},
+			"skill": {
+				"perception": "+7"
+			},
+			"passive": 17,
+			"cr": "10",
+			"trait": [
+				{
+					"name": "Legendary Resistance (3/Day)",
+					"entries": [
+						"If Gishath fails a saving throw, it can choose to succeed instead."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Gishath makes two attacks: one with its bite and one with its stomp or tail. It can't make both attacks against the same target."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 11} to hit, reach 15 ft., one target. {@h}39 ({@damage 5d12 + 7}) piercing damage. If the target is a Large or smaller creature, it must succeed on a {@dc 19} Dexterity saving throw or it is {@condition grappled} (escape {@dc 19}). Until this grapple ends, the target is {@condition restrained}, and Gishath can't bite another target."
+					]
+				},
+				{
+					"name": "Swallow",
+					"entries": [
+						"Gishath makes one bite attack against a Large or smaller creature it is grappling. If the attack hits, that creature takes the bite's damage and is swallowed, and the grapple ends. While swallowed, the creature is {@condition blinded} and {@condition restrained}, it has {@quickref Cover||3||total cover} against attacks and other effects outside Gishath, and it takes 21 ({@damage 6d6}) acid damage at the start of each of Gishath's turns.",
+						"If Gishath takes 30 damage or more on a single turn from a creature inside it, it must succeed on a {@dc 18} Constitution saving throw at the end of that turn or regurgitate all swallowed creatures, which fall {@condition prone} in a space within 10 feet of it. If Gishath dies, a swallowed creature is no longer {@condition restrained} by it and can escape from the corpse by using 20 feet of movement, exiting {@condition prone}."
+					]
+				},
+				{
+					"name": "Stomp",
+					"entries": [
+						"{@atk mw} {@hit 11} to hit, reach 10 ft., one target. {@h}29 ({@damage 5d8 + 7}) bludgeoning damage, and the target must succeed on a {@dc 19} Strength saving throw or be knocked {@condition prone}."
+					]
+				},
+				{
+					"name": "Tail",
+					"entries": [
+						"{@atk mw} {@hit 11} to hit, reach 15 ft., one target. {@h}25 ({@damage 4d8 + 7}) bludgeoning damage."
+					]
+				}
+			],
+			"legendary": [
+				{
+					"name": "Attack",
+					"entries": [
+						"Gishath makes one stomp or tail attack."
+					]
+				},
+				{
+					"name": "Roar (Costs 2 Actions)",
+					"entries": [
+						"Each creature that is within 120 feet of Gishath and can hear it must succeed on a {@dc 19} Wisdom saving throw or become {@condition frightened} for 1 minute. A creature can repeat the saving throw at the end of each of its turns, ending the effect on tself on a success. If a creature's saving throw is successful or the effect ends for it, the creature is immune to Gishath's Roar for the next 24 hours."
+					]
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Swallow"
+			],
+			"damageTags": [
+				"A",
+				"B",
+				"P"
+			],
+			"miscTags": [
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"blinded",
+				"frightened",
+				"grappled",
+				"prone",
+				"restrained"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity",
+				"strength",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Griffin",
+			"source": "PSX",
+			"page": 39,
+			"_copy": {
+				"name": "Griffon",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "griffon",
+						"with": "griffin"
+					}
+				}
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Hadrosaur",
+			"source": "PSX",
+			"page": 29,
+			"_copy": {
+				"name": "Hadrosaurus",
+				"source": "VGM"
+			},
+			"hasToken": true,
+			"hasFluff": true
+		},
+		{
+			"name": "Hammerskull",
+			"group": [
+				"Dinosaurs"
+			],
+			"source": "PSX",
+			"page": 29,
+			"_copy": {
+				"name": "Giant Goat",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "goat",
+						"with": "hammerskull"
+					}
+				}
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Harpy",
+			"source": "PSX",
+			"page": 36,
+			"_copy": {
+				"name": "Harpy",
+				"source": "MM",
+				"_mod": {
+					"action": [
+						{
+							"mode": "replaceArr",
+							"replace": "Club",
+							"items": {
+								"name": "Bite",
+								"entries": [
+									"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d4 + 1}) slashing damage. If the target is a creature, it must succeed on a DC 11 Constitution saving throw or contract a disease. Until the disease is cured, the target can't regain hit points except by magical means, and the target's hit point maximum decreases by 3 ({@dice 1d6}) every 24 hours. If the target's hit point maximum drops to 0 as a result of this disease, the target dies."
+								]
+							}
+						},
+						{
+							"mode": "replaceArr",
+							"replace": "Multiattack",
+							"items": {
+								"name": "Multiattack",
+								"entries": [
+									"The harpy makes two attacks: one with its claws and one with its bite."
+								]
+							}
+						}
+					]
+				}
+			},
+			"miscTags": [
+				"DIS",
+				"MLW",
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Horned Frog",
+			"source": "PSX",
+			"page": 39,
+			"_copy": {
+				"name": "Giant Frog",
+				"source": "MM"
+			},
+			"hasToken": true,
+			"hasFluff": true
+		},
+		{
+			"name": "Macaw",
+			"source": "PSX",
+			"page": 39,
+			"_copy": {
+				"name": "Raven",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "raven",
+						"with": "macaw"
+					}
+				}
+			},
+			"hasToken": true,
+			"hasFluff": true
+		},
+		{
+			"name": "Parrot",
+			"source": "PSX",
+			"page": 39,
+			"_copy": {
+				"name": "Raven",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "raven",
+						"with": "parrot"
+					}
+				}
+			},
+			"hasToken": true,
+			"hasFluff": true
+		},
+		{
+			"name": "Piranha",
+			"source": "PSX",
+			"page": 40,
+			"_copy": {
+				"name": "Quipper",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "quipper",
+						"with": "piranha"
+					}
+				}
+			},
+			"hasToken": true,
+			"hasFluff": true
+		},
+		{
+			"name": "Sailback",
+			"group": [
+				"Dinosaurs"
+			],
+			"source": "PSX",
+			"page": 30,
+			"_copy": {
+				"name": "Giant Crocodile",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "crocodile",
+						"with": "sailback"
+					}
+				}
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Shambling Mound Totem Elemental",
+			"source": "PSX",
+			"page": 38,
+			"_copy": {
+				"name": "Shambling Mound",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "shambling mound",
+						"with": "shambling mound totem"
+					}
+				}
+			},
+			"hasToken": true,
+			"hasFluff": true
+		},
+		{
+			"name": "Stone Guardian (Animated Armor)",
+			"source": "PSX",
+			"page": 40,
+			"_copy": {
+				"name": "Animated Armor",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "armor",
+						"with": "stone guardian"
+					}
+				}
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Stone Guardian (Helmed Horror)",
+			"source": "PSX",
+			"page": 40,
+			"_copy": {
+				"name": "Helmed Horror",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "helmed horror",
+						"with": "stone guardian"
+					}
+				}
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Stone Guardian (Shield Guardian)",
+			"source": "PSX",
+			"page": 40,
+			"_copy": {
+				"name": "Shield Guardian",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "shield guardian",
+						"with": "stone guardian"
+					}
+				}
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Stone Guardian (Stone Golem)",
+			"source": "PSX",
+			"page": 40,
+			"_copy": {
+				"name": "Stone Golem",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "golem",
+						"with": "stone guardian"
+					}
+				}
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Sunbird",
+			"source": "PSX",
+			"page": 32,
+			"size": [
+				"G"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 17,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 279,
+				"formula": "18d20 + 90"
+			},
+			"speed": {
+				"walk": 20,
+				"fly": 120
+			},
+			"str": 28,
+			"dex": 10,
+			"con": 20,
+			"int": 13,
+			"wis": 14,
+			"cha": 15,
+			"save": {
+				"dex": "+5",
+				"con": "+10",
+				"wis": "+7",
+				"cha": "+7"
+			},
+			"skill": {
+				"perception": "+7"
+			},
+			"senses": [
+				"darkvision 120 ft."
+			],
+			"passive": 17,
+			"resist": [
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "from nonmagical attacks",
+					"cond": true
+				}
+			],
+			"immune": [
+				"fire"
+			],
+			"languages": [
+				"Giant Owl",
+				"understands Common but can't speak it"
+			],
+			"cr": "13",
+			"trait": [
+				{
+					"name": "Death Throes",
+					"entries": [
+						"When the sunbird dies, it explodes, and each creature within 30 feet of it must make a {@dc 18} Dexterity saving throw, taking 42 ({@damage 12d6}) fire damage on a failed save, or half as much damage on a successful one. The explosion ignites flammable objects in that area that aren't being worn or carried. The sunbird's body turns to ash, but an egg is left where the sunbird was."
+					]
+				},
+				{
+					"name": "Fire Aura",
+					"entries": [
+						"At the start of each of the sunbird's turns, each creature within 5 feet of it takes 11 ({@damage 2d10}) fire damage, and flammable objects in the area that aren't being worn or carried ignite. A creature that touches the sunbird or hits it with a melee attack while within 5 feet of it takes 11 ({@damage 2d10}) fire damage. The aura also sheds bright light in a 60-foot radius and dim light for an additional 60 feet."
+					]
+				},
+				{
+					"name": "Flyby",
+					"entries": [
+						"The sunbird doesn't provoke opportunity attacks when it flies out of an enemy's reach."
+					]
+				},
+				{
+					"name": "Keen Hearing and Sight",
+					"entries": [
+						"The sunbird has advantage on Wisdom ({@skill Perception}) checks that rely on hearing or sight."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The sunbird makes two talon attacks."
+					]
+				},
+				{
+					"name": "Talon",
+					"entries": [
+						"{@atk mw} {@hit 14} to hit, reach 5 ft., one target. {@h}16 ({@damage 2d6 + 9}) slashing damage plus 14 ({@damage 4d6}) fire damage, and the target is {@condition grappled} (escape {@dc 18}). Until this grapple ends, the target is {@condition restrained}, and the sunbird can't attack another target with that talon. A {@condition grappled} creature takes 11 ({@damage 2d10}) fire damage at the start of each of the sunbird's turns."
+					]
+				}
+			],
+			"traitTags": [
+				"Death Burst",
+				"Flyby",
+				"Keen Senses"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"CS",
+				"GI",
+				"OTH"
+			],
+			"damageTags": [
+				"F",
+				"S"
+			],
+			"miscTags": [
+				"AOE",
+				"MW"
+			],
+			"conditionInflict": [
+				"grappled",
+				"restrained"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Swarm of Piranhas",
+			"source": "PSX",
+			"page": 40,
+			"_copy": {
+				"name": "Swarm of Quippers",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "quipper",
+						"with": "piranha"
+					}
+				}
+			},
+			"hasToken": true,
+			"hasFluff": true
+		},
+		{
+			"name": "Treant Totem Elemental",
+			"source": "PSX",
+			"page": 38,
+			"_copy": {
+				"name": "Treant",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "treant",
+						"with": "treant totem"
+					}
+				}
+			},
+			"hasToken": true,
+			"hasFluff": true
+		},
+		{
+			"name": "Trilobite",
+			"source": "PSX",
+			"page": 40,
+			"_copy": {
+				"name": "Crab",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "crab",
+						"with": "trilobite"
+					}
+				}
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Trilobite (Giant)",
+			"source": "PSX",
+			"page": 40,
+			"_copy": {
+				"name": "Giant Crab",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "crab",
+						"with": "trilobite"
+					}
+				}
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Tyrant",
+			"alias": [
+				"Monstrosaur",
+				"Dreadmaw",
+				"Swordtooth",
+				"Regisaur"
+			],
+			"source": "PSX",
+			"page": 31,
+			"_copy": {
+				"name": "Tyrannosaurus Rex",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "tyrannosaurus",
+						"with": "tyrant"
+					}
+				}
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Water Totem Elemental",
+			"source": "PSX",
+			"page": 38,
+			"_copy": {
+				"name": "Water Elemental",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "elemental",
+						"with": "totem elemental"
+					}
+				}
+			},
+			"hasToken": true,
+			"hasFluff": true
+		}
+	]
+}

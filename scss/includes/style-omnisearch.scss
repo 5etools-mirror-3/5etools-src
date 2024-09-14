@@ -1,0 +1,243 @@
+@use "../vars/vars";
+@use "../vars/vars-night";
+
+.omni__ {
+	&wrp-output {
+		width: 100%;
+		justify-content: flex-end;
+	}
+
+	&output {
+		@include vars.mix-shadow-1;
+
+		position: absolute;
+		z-index: vars.$z-omnisearch;
+		padding: 0.2em 0.7em;
+		border-radius: 0.2em;
+		border: 1px solid rgb(0 0 0 / 15%);
+		background: #fff;
+
+		&--scrolled {
+			position: fixed;
+			top: 42px;
+			right: 10px;
+		}
+
+		@media screen and (width > #{vars.$width-screen-xxs}) {
+			max-width: 300px;
+			min-width: 270px;
+		}
+
+		@media screen and (width > #{vars.$width-screen-xs}) {
+			max-width: 460px;
+			min-width: 430px;
+		}
+
+		@media screen and (width > #{vars.$width-screen-sm}) {
+			max-width: 740px;
+			min-width: 500px;
+		}
+
+		@media screen and (width <= #{vars.$width-screen-sm}) {
+			top: 40px;
+		}
+	}
+
+	&wrp-input {
+		@media screen and (width <= #{vars.$width-screen-sm}) {
+			margin-top: 2px;
+			margin-left: 0;
+		}
+
+		position: relative;
+
+		&--scrolled {
+			position: fixed;
+			z-index: vars.$z-omnisearch;
+			top: 5px;
+			right: 10px;
+			width: 85px;
+			padding: 2px 0;
+			border-left: 40px solid transparent;
+
+			.omni__input {
+				min-width: initial;
+				border-top-left-radius: 4px;
+				border-top-color: vars.$rgb-border-grey;
+			}
+
+			.omni__submit {
+				border-top-right-radius: 4px;
+				border-top-color: vars.$rgb-border-grey;
+			}
+
+			input {
+				padding: 0;
+				color: transparent;
+			}
+
+			&:focus,
+			&:focus-within,
+			&:active,
+			&:hover {
+				width: 250px;
+				border-left: 0;
+
+				input {
+					padding: 6px 12px;
+					color: inherit;
+				}
+			}
+		}
+	}
+
+	&input {
+		height: 32px;
+		min-width: 100px;
+
+		@media screen and (width > #{vars.$width-screen-md}) {
+			border-top-left-radius: 0;
+			border-top-color: transparent;
+		}
+	}
+
+	&btn-clear {
+		top: 9px;
+		right: 37px;
+		opacity: 0.5;
+	}
+
+	&submit {
+		height: 32px;
+		padding: 3px 7px;
+
+		@media screen and (width > #{vars.$width-screen-md}) {
+			border-top-right-radius: 0;
+			border-top-color: transparent;
+		}
+	}
+
+	&wrp-paginate {
+		display: flex;
+		justify-content: space-between;
+
+		> span {
+			display: inline-block;
+			user-select: none;
+			padding: 2px;
+			font-size: 1.1em;
+			min-width: 20px;
+		}
+	}
+
+	&paginate-ctrl {
+		cursor: pointer;
+
+		&:hover {
+			color: vars.$rgb-active-blue;
+		}
+	}
+
+	&paginate-left {
+		margin-right: auto;
+	}
+
+	&paginate-count {
+		margin: 0 auto;
+	}
+
+	&paginate-right {
+		margin-left: auto;
+	}
+
+	&disp-srd {
+		font-size: 8.5px;
+		align-self: start;
+		top: 2px;
+		margin-right: 1px;
+		margin-left: 2px;
+	}
+
+	&disp-source-marker {
+		margin-left: 2px;
+	}
+
+	&wrp-page {
+		margin-left: 4px;
+		font-family: Convergence, Arial, sans-serif;
+		font-weight: 100;
+		font-size: 94%;
+	}
+
+	// region Clear button
+	&input {
+		&:placeholder-shown + .omni__btn-clear {
+			display: none;
+		}
+	}
+
+	&wrp-input--scrolled {
+		.omni__input:not(:focus, :focus-within, &:active, :hover) + .omni__btn-clear {
+			display: none;
+		}
+	}
+	// endregion
+}
+
+.ve-night-mode {
+	.omni__ {
+		&wrp-input {
+			&--scrolled {
+				.omni__input {
+					border-color: vars-night.$rgb-border-grey--night;
+					background-color: vars-night.$rgb-bg--night;
+					color: transparent;
+
+					&:focus,
+					&:focus-within,
+					&:active,
+					&:hover {
+						color: vars-night.$rgb-font--night;
+					}
+				}
+
+				.omni__submit {
+					border-color: vars-night.$rgb-border-grey--night;
+				}
+			}
+		}
+
+		&input {
+			@media screen and (width > #{vars.$width-screen-md}) {
+				border-top-color: transparent;
+			}
+
+			&:focus {
+				border-color: #66afe9;
+			}
+		}
+
+		&submit {
+			border-top-color: vars-night.$rgb-border-grey--night;
+
+			@media screen and (width > #{vars.$width-screen-md}) {
+				border-top-color: transparent;
+			}
+
+			&.btn-default:active:focus,
+			&.btn-default:active:hover,
+			&.btn-default {
+				background-color: vars-night.$rgb-bg--night;
+				color: vars-night.$rgb-font--night;
+			}
+		}
+	}
+
+	.omni__output {
+		background: #303030;
+	}
+
+	.omni__paginate-ctrl:hover {
+		color: #999;
+	}
+}

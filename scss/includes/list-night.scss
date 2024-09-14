@@ -1,0 +1,20 @@
+@use "../vars/vars";
+@use "../vars/vars-night";
+
+.ve-night-mode .lst__ {
+	&row {
+		background: vars-night.$rgb-bg--night;
+
+		&:hover {
+			background: vars.$rgb-off-black;
+		}
+
+		&-inner {
+			color: inherit;
+		}
+
+		&-border {
+			border-color: vars-night.$rgb-border-grey--list-row-night;
+		}
+	}
+}

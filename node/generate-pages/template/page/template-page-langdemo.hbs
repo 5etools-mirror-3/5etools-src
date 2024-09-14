@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{{> "head" }}
+
+<body>
+
+{{> "overlayNoise" }}
+
+{{> "adRhs" }}
+
+<div class="viewport-wrapper">
+	{{> "adLeaderboard" }}
+
+	{{> "navbar" }}
+
+	<div class="view-col-wrapper ve-flex-col px-4">
+		<div class="ve-flex-v-center mb-3">
+			<button class="ve-btn ve-btn-xs ve-btn-default mr-2" id="btn__run">Run</button>
+			<button class="ve-btn ve-btn-xs ve-btn-default mr-2" id="btn__validate">Validate</button>
+			<button class="ve-btn ve-btn-xs ve-btn-default mr-2" id="btn__resolve_dynamics">Resolve Dynamics</button>
+			<button class="ve-btn ve-btn-xs ve-btn-default mr-2" id="btn__validate_dynamics">Validate Dynamics</button>
+			<select class="form-control input-xs rlng__sel-sample" id="sel__sample"><option disabled value="-1">Select sample</option></select>
+		</div>
+
+		<div class="ve-flex w-100 h-100">
+			<div class="ve-flex-col w-33">
+				<div class="mb-2 small-caps">Input</div>
+				<div class="ve-flex-col h-100 w-100 ve-flex-1"><textarea id="ipt" class="w-100 h-100 form-control mb-2 code resize-none"></textarea></div>
+
+				<div class="mb-2 small-caps">Context</div>
+				<div class="ve-flex-col h-100 w-100 ve-flex-1" id="wrp_context"></div>
+			</div>
+
+			<div class="ve-flex-col w-33 px-2">
+				<div class="mb-2 small-caps">Lexed</div>
+				<div class="ve-flex-col h-100 w-100 ve-flex-1"><pre class="w-100 h-100 m-0 mb-2" id="out_lexed"></pre></div>
+
+				<div class="mb-2 small-caps">Parsed</div>
+				<div class="ve-flex-col h-100 w-100 ve-flex-1"><pre class="w-100 h-100 m-0" id="out_parsed"></pre></div>
+			</div>
+
+			<div class="ve-flex-col w-33 h-100 px-2">
+				<div class="mb-2 small-caps">Result</div>
+				<div class="w-100 h-100 ve-flex-vh-center rlng__output" id="out_result"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{{> "adFooter" }}
+
+{{> "scripts" }}
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<script type="text/javascript" defer src="lib/jquery.js"></script>
+{{#each scriptsLibAdditional}}<script type="text/javascript" defer src="lib/{{this}}"></script>
+{{/each}}
+{{#each scriptsLibAdditionalRemote}}<script type="text/javascript" defer src="{{this}}"></script>
+{{/each}}
+<script type="text/javascript" defer src="js/parser.js"></script>
+<script type="text/javascript" defer src="js/utils.js"></script>
+<script type="text/javascript" defer src="js/utils-ui.js"></script>
+<script type="text/javascript" defer src="lib/localforage.js"></script>
+<script type="module" defer src="js/omnidexer.js"></script>
+<script type="module" src="js/omnisearch.js"></script>
+<script type="module" src="js/filter.js"></script>
+<script type="text/javascript" defer src="js/utils-dataloader.js"></script>
+<script type="module" src="js/utils-brew.js"></script>
+<script type="module" src="js/utils-config.js"></script>
+{{#each scriptsUtilsAdditional}}<script type="text/javascript" defer src="js/{{this}}"></script>
+{{/each}}
+<script type="text/javascript" defer src="js/render.js"></script>
+<script type="text/javascript" defer src="js/render-dice.js"></script>
+{{#each scriptsRenderAdditional}}<script type="text/javascript" defer src="js/{{this}}"></script>
+{{/each}}
+<script type="text/javascript" defer src="js/scalecreature.js"></script>
+<script type="text/javascript" defer src="js/hist.js"></script>
+{{#each scripts}}<script type="text/javascript" defer src="js/{{this}}"></script>
+{{/each}}
+{{#each scriptsModules}}<script type="module" src="js/{{this}}"></script>
+{{/each}}
+<script type="text/javascript" defer src="js/list2.js"></script>
+<script type="text/javascript" defer src="lib/elasticlunr.js"></script>

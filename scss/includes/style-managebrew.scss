@@ -1,0 +1,75 @@
+@use "../vars/vars";
+@use "../vars/vars-night";
+
+.manbrew {
+	&__source {
+		overflow: hidden;
+	}
+
+	&__search {
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+
+	&__filtertools {
+		button {
+			border-top: 0;
+			border-top-left-radius: 0;
+			border-top-right-radius: 0;
+		}
+
+		.wrp-cb-all {
+			border-bottom: 1px solid vars.$rgb-border-grey;
+			border-right: 1px solid vars.$rgb-border-grey;
+			line-height: 14px;
+			border-bottom-right-radius: 3px;
+			text-align: center;
+			vertical-align: middle;
+		}
+	}
+
+	&__wrp_btn_del_selected {
+		text-align: right;
+		padding-bottom: 5px;
+	}
+
+	&__current_brew {
+		margin-bottom: 5px;
+	}
+
+	&__row {
+		margin-right: 0;
+		margin-left: 0;
+		padding: 4px 0;
+	}
+
+	&__col--tall {
+		line-height: 30px;
+	}
+
+	&__list {
+		position: absolute;
+		inset: 0;
+		height: initial;
+		overflow-y: initial;
+		width: 100%;
+	}
+
+	&-row__ {
+		&icn-btn {
+			top: 2px;
+
+			&--text {
+				top: -1px;
+			}
+		}
+	}
+}
+
+.ve-night-mode .manbrew {
+	&__filtertools {
+		.wrp-cb-all {
+			border-color: vars-night.$rgb-border-grey--night;
+		}
+	}
+}

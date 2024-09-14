@@ -1,0 +1,224 @@
+/* GENERAL/PAGE STYLES */
+#content_input {
+	width: 100%;
+	height: 100%;
+	padding-right: 3px;
+	display: flex;
+	flex-direction: column;
+	min-height: 0;
+}
+
+#content_input::-webkit-scrollbar {
+	width: 4px;
+}
+
+#content_input_controls {
+	padding: 3px 15px 0;
+	border-top: 1px solid #ccc;
+}
+
+.ve-night-mode #content_input_controls {
+	border-color: #555;
+}
+
+#content_output {
+	overflow: hidden auto;
+}
+
+#content_input input[type="number"] {
+	text-align: right;
+}
+
+label {
+	font-weight: initial;
+	max-width: initial;
+	margin-bottom: initial;
+}
+
+textarea.form-control {
+	height: 100px;
+}
+
+.mkbru__wrp-tab-heads--border {
+	border-bottom: 1px solid #ccc;
+}
+
+.ve-night-mode .mkbru__wrp-tab-heads--border {
+	border-color: #555;
+}
+
+/* Control bar */
+.mkbru__cnt-save {
+	min-width: 48px;
+}
+
+/* Sidebar */
+.mkbru__sidebar-entry {
+	border-bottom: 1px solid #bbbbbb18;
+}
+
+/* Output UI */
+.mkbru__wrp-output-tab-data {
+	box-shadow: none;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+}
+
+.ve-night-mode .mkbru__wrp-output-tab-data {
+	border-color: transparent;
+}
+
+/* Maker UI */
+.mkbru__row {
+	padding: 2px;
+	border-radius: 5px;
+}
+
+.mkbru__wrp-row {
+	margin-bottom: 0;
+	max-width: initial;
+	font-weight: initial;
+}
+
+.mkbru__row-name {
+	min-width: 120px;
+	text-align: right;
+	font-weight: bold;
+}
+
+.mkbru_mon__row-indent {
+	width: 1px;
+	align-self: stretch;
+	flex-shrink: 0;
+	background: #cccccc80;
+	margin: 4px 0.5rem;
+}
+
+.mkbru__row-name--marked {
+	min-width: 114px;
+}
+
+.mkbru__row-mark {
+	width: 1px;
+	background: #ccc;
+	flex-shrink: 0;
+	align-self: stretch;
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+
+.ve-night-mode .mkbru__row-mark {
+	background: #555;
+}
+
+.mkbru__ipt-cb[type="checkbox"] {
+	margin-top: 0;
+	margin-left: 2px;
+}
+
+.mkbru__ipt-cb--small-offset {
+	position: relative;
+	top: 2px;
+}
+
+.mkbru__ipt-cb--plain[type="checkbox"] {
+	margin-top: 0;
+}
+
+.mkbru__sub-name--50 {
+	min-width: calc(50% - 0.25rem);
+	text-align: right;
+	font-weight: bold;
+}
+
+.mkbru__sub-name--33 {
+	min-width: calc(33.3333% - 0.25rem);
+	text-align: right;
+	font-weight: bold;
+}
+
+.mkbru__sub-name--25 {
+	min-width: calc(25% - 0.25rem);
+	text-align: right;
+	font-weight: bold;
+}
+
+.mkbru__wrp-btn-xxs {
+	padding-right: 3px;
+}
+
+/* Row (array) inputs */
+.mkbru__wrp-rows {
+	border-bottom: 1px solid #cccccc80;
+	margin-bottom: 5px;
+}
+
+.mkbru__wrp-rows--removable:only-child .mkbru__btn-rm-row,
+.mkbru__wrp-rows--removable:only-child .mkbru__btn-up-row,
+.mkbru__wrp-rows--removable:only-child .mkbru__btn-down-row,
+.mkbru__wrp-rows--removable:only-child .mkbru__btn-drag-row,
+	/* CSS hacks to support nesting */
+.mkbru__wrp-rows--removable-nested-1:only-child .mkbru__btn-rm-row--nested-1 {
+	display: none;
+}
+
+.mkbru__wrp-rows--removable:first-child .mkbru__btn-up-row,
+.mkbru__wrp-rows--removable:last-child .mkbru__btn-down-row {
+	display: none;
+}
+/* *** */
+
+/* CREATURE STYLES */
+.mkbru_mon__ac-split {
+	max-width: calc(50% - 0.25rem);
+}
+
+.mkbru_mon__btn-add-sense-language {
+	min-width: 91px;
+}
+
+.mkbru_mon__spell-wrp-edit {
+	min-height: 22px;
+}
+
+.mkbru_mon__spell-divider {
+	height: 1px;
+	margin: 0 3rem;
+	background: #cccccc60;
+}
+
+.mkbru_mon__spell-header-wrp {
+	width: 100%;
+	align-items: center;
+}
+
+.mkbru_mon__spell-header-ipt {
+	max-width: 4rem;
+}
+
+.mkbru_mon__spell-header-divider {
+	width: 1px;
+	flex-shrink: 0;
+	height: 16px;
+	background: #ccc;
+}
+
+.ve-night-mode .mkbru_mon__spell-header-divider {
+	background: #555;
+}
+
+.mkbru_mon__cb-environment[type="checkbox"] {
+	margin: 0 2px 0 0;
+}
+
+.mkbru_mon__skill-attrib-label {
+	min-width: 40px;
+	flex-shrink: 0;
+	text-align: center;
+}
+
+.mkbru_mon__ipt-attack-dice {
+	max-width: 40px;
+	text-align: center;
+}
+/* *** */

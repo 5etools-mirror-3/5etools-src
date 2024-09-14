@@ -1,0 +1,189 @@
+@use "../vars/vars";
+@use "../vars/vars-night";
+
+.page__ {
+	&header {
+		padding: 0 15px 1px;
+		box-shadow: 0 1px 4px vars.$rgb-shadow-grey--dark;
+		color: #fff;
+		background-color: rgb(0 107 196);
+		min-height: 0;
+		flex-shrink: 0;
+	}
+
+	&title {
+		margin-right: 10px;
+		display: inline;
+
+		&::after {
+			color: #e0e0e0;
+			content: ".";
+		}
+
+		&--home {
+			span {
+				color: #e0e0e0;
+			}
+		}
+	}
+
+	&subtitle {
+		display: inline;
+		font-style: italic;
+		color: #d0d0d0;
+	}
+
+	&btn-toggle-nav {
+		margin-top: 5px;
+		text-align: center;
+		width: 6em;
+		flex-shrink: 0;
+		height: 32px;
+		line-height: 1;
+		margin-right: 2px;
+
+		@media screen and (width > #{vars.$width-screen-sm}) {
+			display: none;
+		}
+	}
+
+	&nav {
+		position: relative;
+		min-height: 33px;
+		flex-shrink: 0;
+
+		@media screen and (width <= #{vars.$width-screen-sm}) {
+			width: 100%;
+			display: flex;
+		}
+	}
+
+	&nav-inner {
+		@media screen and (width <= #{vars.$width-screen-sm}) {
+			display: flex;
+			margin-top: 3px;
+			flex-direction: column;
+			width: calc(100% - 6em);
+			flex-shrink: 0;
+		}
+	}
+
+	&nav-date {
+		margin-left: -16px;
+		width: 27px;
+		color: vars.$rgb-font--muted;
+	}
+
+	&wrp-download {
+		@include vars.mix-shadow-1;
+
+		position: fixed;
+		z-index: vars.$z-temp-effect;
+		top: 5px;
+		min-height: 40px;
+		min-width: 100px;
+		max-width: 850px;
+		display: flex;
+		width: 90vw;
+		right: 0;
+		left: 0;
+		margin: 0 auto;
+		padding: 5px;
+		justify-content: space-between;
+		align-items: center;
+		border: 1px solid transparent;
+		border-radius: 4px;
+		background: #fff;
+	}
+
+	&wrp-download-bar {
+		border: 1px solid vars.$rgb-active-blue--dark;
+		height: 34px;
+		border-radius: 4px;
+
+		&--error {
+			border-color: vars.$rgb-active-red--dark;
+		}
+	}
+
+	&disp-download-progress-bar {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		background: vars.$rgb-active-blue;
+
+		&--error {
+			background: vars.$rgb-active-red;
+		}
+	}
+
+	&disp-download-progress-text {
+		position: absolute;
+		inset: 0 calc(50% - 30px) 0 calc(50% - 30px);
+		width: 90px;
+		text-shadow:
+			1px 1px 0 #fff,
+			-1px -1px 0 #fff,
+			1px -1px 0 #fff,
+			-1px 1px 0 #fff,
+			3px 3px 5px #000;
+	}
+}
+
+.active > .nav__link > .page__ {
+	&nav-date {
+		color: #fff;
+	}
+}
+
+.ve-night-mode {
+	.page__ {
+		&header {
+			color: vars-night.$rgb-font--night;
+			background: vars.$rgb-off-black;
+		}
+
+		&title--home {
+			span {
+				color: #909090;
+			}
+
+			&::after {
+				color: #909090;
+			}
+		}
+
+		&title {
+			color: #d0d0d0;
+		}
+
+		&wrp-download {
+			background: vars-night.$rgb-bg--night;
+		}
+
+		&disp-download-progress-text {
+			color: vars.$rgb-off-black;
+		}
+
+		&nav-inner {
+			> li.active > a,
+			> li.active > a:focus,
+			> li.active > a:hover {
+				background-color: vars.$rgb-off-black;
+				border-top: 0;
+				border-color: vars-night.$rgb-border-grey--night;
+				border-left-color: transparent;
+				border-right-color: transparent;
+				color: #d0d0d0;
+			}
+		}
+	}
+}
+
+#navigation .page__nav-hidden-mobile {
+	@media screen and (width <= #{vars.$width-screen-sm}) {
+		display: none;
+		margin-left: 0;
+	}
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{{> "head" }}
+
+<body>
+
+{{> "overlayNoise" }}
+
+{{> "adRhs" }}
+
+<div class="viewport-wrapper">
+	{{> "adLeaderboard" }}
+
+	{{> "navbar" }}
+
+	<div class="view-col-wrapper">
+		<div class="view-col no-print" id="wrp-jsoninput">
+			<pre id="jsoninput" class="inputArea ace_editor"></pre>
+			<div class="ve-flex-h-right">
+				<select class="form-control input-sm mr-2" id="demoSelectRenderer">
+					<option value="html">HTML</option>
+					<option value="md">Markdown</option>
+					<option value="cards">RPG Cards</option>
+				</select>
+				<button class="ve-btn ve-btn-default ve-btn-sm mr-2" id="demoRender">Render</button>
+				<button class="ve-btn ve-btn-default ve-btn-sm" id="demoReset">Reset</button>
+				<span id="message"></span>
+			</div>
+		</div>
+
+		<div id="wrp-output" class="view-col">
+			<table id="pagecontent" class="w-100 stats">
+				<!-- populate with JS -->
+			</table>
+		</div>
+	</div>
+</div>
+
+{{> "adFooter" }}
+
+{{> "scripts" }}
+
+</body>
+</html>

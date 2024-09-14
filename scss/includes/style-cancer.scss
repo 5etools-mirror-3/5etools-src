@@ -1,0 +1,104 @@
+@use "sass:color";
+
+@use "../vars/vars";
+@use "../vars/vars-night";
+
+.cancer__ {
+	&wrp-leaderboard {
+		margin: 0 auto;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		flex-shrink: 0;
+		flex-grow: 0;
+		min-height: 0;
+		overflow: hidden;
+
+		&-inner {
+			display: flex;
+			width: 100%;
+			justify-content: center;
+		}
+	}
+
+	&disp-cancer {
+		width: 100%;
+		justify-content: center;
+		font-size: 9px;
+		padding: 2px 0;
+		opacity: 0.6;
+		display: none;
+	}
+
+	&wrp-sidebar-rhs {
+		position: fixed;
+		z-index: 1;
+		top: 160px;
+		right: calc((50vw - (1170px / 2)) - 300px);
+		width: 300px;
+		height: 100%;
+
+		> * {
+			margin-bottom: 10px;
+		}
+
+		&--single {
+			height: calc(100% - 80px);
+		}
+
+		&--scrolling-page {
+			position: absolute;
+			top: 150px;
+		}
+
+		@media screen and (width <= 1800px) {
+			display: none;
+		}
+	}
+
+	&sidebar-rhs-inner {
+		position: sticky;
+
+		&--top {
+			top: 10px;
+		}
+
+		&--bottom {
+			top: 620px;
+		}
+	}
+
+	&footer-pad {
+		height: 100px;
+	}
+
+	&wrp-mobile-1 {
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+.cancer__sidebar-rhs-inner--scrolling-page .cancer__sidebar-rhs-inner {
+	&--top {
+		top: 20px;
+	}
+
+	&--bottom {
+		top: 630px;
+	}
+}
+
+.ve-night-mode {
+	.cancer__ {
+		&wrp-leaderboard {
+			background: vars.$rgb-off-black;
+		}
+	}
+}
+
+@include vars.mix-is-print {
+	.cancer__anchor {
+		display: none !important;
+	}
+}

@@ -1,0 +1,16 @@
+@use "vars/vars";
+
+@import "includes/statgen";
+@import "includes/statgen-night";
+
+@media screen and (width <= #{vars.$width-screen-md}) {
+	.viewport-wrapper {
+		bottom: 0;
+		height: 100vh;
+		min-height: 0;
+	}
+}
+
+.container--main {
+	min-width: 420px;
+}

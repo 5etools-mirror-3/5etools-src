@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{{> "head" }}
+
+<body>
+
+{{> "overlayNoise" }}
+
+{{> "adLeaderboard" }}
+
+{{> "navbar" }}
+
+{{> "adRhsScrollingPage" }}
+
+<div class="container view-col-wrapper">
+	<div class="view-col book-contents view-col--wrp-book-contents" id="listcontainer">
+		<div class="list contents ve-flex-col">
+			<!-- populate with JS -->
+		</div>
+	</div>
+
+	<div class="view-col linked-titles book-view">
+		<table id="pagecontent" class="w-100 stats stats--book stats--book-large">
+			<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+			<tr><td colspan="6" class="initial-message initial-message--med book-loading-message">Loading...</td></tr>
+			<!-- (Placeholder text until page loads) -->
+			<tr><td colspan="6" class="ve-muted">{{advBookPlaceholder}}</td></tr>
+			<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+		</table>
+
+		<div class="bk__overlay-loading">
+			<div class="h-100 w-100 ve-flex-vh-center"><span class="initial-message initial-message--med">Loading...</span></div>
+		</div>
+
+		<div class="cancer__footer-pad w-100"></div>
+	</div>
+</div>
+
+{{> "adFooter" }}
+
+{{> "scripts" }}
+
+</body>
+</html>

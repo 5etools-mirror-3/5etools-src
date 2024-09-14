@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!--5ETOOLS_CMP-->
+	<!--5ETOOLS_ANALYTICS-->
+	<!--5ETOOLS_ADCODE-->
+	<meta charset="utf-8">
+	<meta name="description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+	<meta name="mobile-web-app-capable" content="yes">
+
+	<title>Plutonium Features - 5etools</title>
+
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/plutonium.css">
+
+	<!-- Favicons -->
+	<link rel="icon" type="image/svg+xml" href="favicon.svg">
+	<link rel="icon" type="image/png" sizes="256x256" href="favicon-256x256.png">
+	<link rel="icon" type="image/png" sizes="144x144" href="favicon-144x144.png">
+	<link rel="icon" type="image/png" sizes="128x128" href="favicon-128x128.png">
+	<link rel="icon" type="image/png" sizes="64x64" href="favicon-64x64.png">
+	<link rel="icon" type="image/png" sizes="48x48" href="favicon-48x48.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+
+	<!-- Chrome Web App Icons -->
+	<link rel="manifest" href="manifest.webmanifest">
+	<meta name="application-name" content="5etools">
+	<meta name="theme-color" content="#006bc4">
+
+	<!-- Windows Start Menu tiles -->
+	<meta name="msapplication-config" content="browserconfig.xml"/>
+	<meta name="msapplication-TileColor" content="#006bc4">
+
+	<!-- Apple Touch Icons -->
+	<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180x180.png">
+	<link rel="apple-touch-icon" sizes="360x360" href="apple-touch-icon-360x360.png">
+	<link rel="apple-touch-icon" sizes="167x167" href="apple-touch-icon-167x167.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="apple-touch-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="apple-touch-icon-120x120.png">
+	<meta name="apple-mobile-web-app-title" content="5etools">
+
+	<!-- macOS Safari Pinned Tab and Touch Bar -->
+	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
+
+	<!-- OpenSearch -->
+	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
+
+	<script type="text/javascript" src="sw-injector.js"></script>
+
+	<script type="text/javascript" src="js/styleswitch.js"></script>
+	<script type="text/javascript" src="js/navigation.js"></script>
+	<script type="text/javascript" src="js/browsercheck.js"></script>
+</head>
+
+<body>
+
+<div class="overlay-noise no-print"></div>
+
+<div class="cancer__wrp-leaderboard cancer__anchor"><div class="cancer__disp-cancer"></div><div class="cancer__wrp-leaderboard-inner"><!--5ETOOLS_AD_LEADERBOARD--></div></div>
+
+<header class="hidden-xs hidden-sm page__header">
+	<div class="container ve-flex-v-baseline">
+		<h1 class="page__title no-wrap my-0" id="page__title">Plutonium Features</h1>
+		<p class="page__subtitle no-wrap my-0" id="page__subtitle">An overview of the 5etools integration for Foundry VTT.</p>
+	</div>
+</header>
+
+<nav class="container page__nav" id="navigation">
+	<ul class="nav nav-pills page__nav-inner" id="navbar"></ul>
+</nav>
+
+<div class="cancer__wrp-sidebar-rhs cancer__wrp-sidebar-rhs--scrolling-page cancer__anchor"><div class="cancer__disp-cancer"></div><div class="cancer__sidebar-rhs-inner cancer__sidebar-rhs-inner--top"><!--5ETOOLS_AD_RIGHT_1--></div><div class="cancer__sidebar-rhs-inner cancer__sidebar-rhs-inner--bottom"><!--5ETOOLS_AD_RIGHT_2--></div></div>
+
+<main class="container">
+	<div class="row">
+		<div class="ve-col-12">
+			<p>An overview of the features available in Plutonium can be found below. To those familiar with our now-deprecated Roll20 script &quot;betteR20,&quot; we aim to expand on the feature set it provided, while improving user experience.</p>
+			<p><b>Please note that the videos on this page are updated much less frequently than the module itself.</b> For a (more) complete list of Plutonium's features, see <a href="https://wiki.tercept.net/en/Plutonium" rel="noopener noreferrer">the wiki</a>.</p>
+
+			<hr>
+
+			<h3>Importing</h3>
+			<p>The module can import content to the sidebar, to a compendium, or to a character sheet. It can import most content found in 5etools, including:</p>
+			<ul>
+				<li>Classes and Subclasses, Backgrounds, Races, Feats, and other character options</li>
+				<li>Creatures, Spells and Items</li>
+				<li>Adventures, Books, and Tables</li>
+			</ul>
+			<p>By default, the module imports data provided by 5etools, but also includes the option to import from the <a href="https://github.com/TheGiddyLimit/homebrew" rel="noopener noreferrer">homebrew repository</a>, the <a href="https://github.com/TheGiddyLimit/unearthed-arcana" rel="noopener noreferrer">prerelease repository</a>, URLs, and file uploads.</p>
+
+			<h4>Importing Creatures</h4>
+			<a href="img/plutonium/creatures.gif" target="_blank" id="wrp-img-creatures"></a>
+			<h4>Importing Spells to a Character Sheet</h4>
+			<a href="img/plutonium/sheet-spells.gif" target="_blank" id="wrp-img-sheet-spells"></a>
+			<h4>Importing Tables</h4>
+			<a href="img/plutonium/tables.gif" target="_blank" id="wrp-img-tables"></a>
+
+			<hr>
+
+			<h3 id="rivet-browser-extension">Rivet Browser Extension</h3>
+			<p>With Rivet installed, and provided you have 5etools and Foundry open in the same browser, you can send content and rolls from 5etools straight to your Foundry game with the click of a button.</p>
+			<h4>Send to Foundry</h4>
+			<a href="img/plutonium/rivet.gif" target="_blank" id="wrp-img-rivet"></a>
+
+			<hr>
+
+			<h3>Quality of Life Tools</h3>
+			<p>The module includes a selection of tools to streamline the VTT experience.</p>
+			<h4>Journal Cleaner</h4>
+			<a href="img/plutonium/cleaner.gif" target="_blank" title="Sadly incapable of cleaning crappy GIF encoding." id="wrp-img-cleaner"></a>
+			<h4>Journal Bulk Item Mover</h4>
+			<a href="img/plutonium/mover.gif" target="_blank" id="wrp-img-mover"></a>
+			<h4>Mass &quot;Spell Prepared&quot; Toggler</h4>
+			<a href="img/plutonium/sheet-spell-toggler.gif" target="_blank" id="wrp-img-sheet-spell-toggler"></a>
+
+			<hr>
+
+			<h3>Customization Options</h3>
+			<p>Plutonium is designed to be easily configurable, and contains a wide selection of options enable user customization.</p>
+			<h4>Import Folder Specification</h4>
+			<a href="img/plutonium/folder.gif" target="_blank" id="wrp-img-folder"></a>
+			<h4>Configuration Options</h4>
+			<a href="img/plutonium/config.webp" target="_blank" id="wrp-img-config"></a>
+
+			<hr>
+
+			<h3>Foundry UI Enhancements</h3>
+			<p>While overhauling the Foundry user experience is not one of Plutonium's goals, a handful of optional tweaks have been included. These include:</p>
+			<ul>
+				<li>Red colorization of &quot;Delete&quot; icons, improving glance value</li>
+				<li>Faster animations, removing a layer of artificial delay between input and action</li>
+				<li>Reworked ESC key, to provide an &quot;escape last&quot; function rather than an &quot;escape all&quot; function</li>
+			</ul>
+			<div class="ve-flex">
+				<div class="ve-flex-col px-3">
+					<h4>Compact Directory Styling</h4>
+					<a href="img/plutonium/compact-directory.webp" target="_blank" id="wrp-img-compact-directory"></a>
+				</div>
+				<div class="ve-flex-col px-3">
+					<h4>Compact Chat Styling</h4>
+					<a href="img/plutonium/compact-chat.webp" target="_blank" id="wrp-img-compact-chat"></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+
+<!--5ETOOLS_SCRIPT_ANCHOR-->
+<!--5ETOOLS_AD_ADHESION-->
+
+<script type="text/javascript" defer src="lib/jquery.js"></script>
+<script type="text/javascript" defer src="js/parser.js"></script>
+<script type="text/javascript" defer src="js/utils.js"></script>
+<script type="text/javascript" defer src="js/utils-ui.js"></script>
+<script type="text/javascript" defer src="lib/localforage.js"></script>
+<script type="module" defer src="js/omnidexer.js"></script>
+<script type="module" src="js/omnisearch.js"></script>
+<script type="module" src="js/filter.js"></script>
+<script type="text/javascript" defer src="js/utils-dataloader.js"></script>
+<script type="module" src="js/utils-brew.js"></script>
+<script type="module" src="js/utils-config.js"></script>
+<script type="text/javascript" defer src="js/render.js"></script>
+<script type="text/javascript" defer src="js/render-dice.js"></script>
+<script type="text/javascript" defer src="js/scalecreature.js"></script>
+<script type="text/javascript" defer src="js/hist.js"></script>
+<script type="module" src="js/plutonium.js"></script>
+<script type="text/javascript" defer src="js/list2.js"></script>
+<script type="text/javascript" defer src="lib/elasticlunr.js"></script>
+
+</body>
+</html>

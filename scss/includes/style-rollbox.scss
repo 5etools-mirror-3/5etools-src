@@ -1,0 +1,242 @@
+@use "../vars/vars";
+@use "../vars/vars-night";
+
+.rollbox-min {
+	@include vars.mix-shadow-1;
+
+	position: fixed;
+	z-index: vars.$z-rollerbox-hidden;
+	right: 7px;
+	bottom: 0;
+	color: rgb(255 255 255 / 70%);
+	width: 24px;
+	// TODO(iOS)
+	// Support iOS Webclip corner
+	height: calc(24px + calc(env(safe-area-inset-bottom, 0) / 2));
+	cursor: pointer;
+	user-select: none;
+	border: 0;
+
+	.glyphicon {
+		position: absolute;
+		top: 5px;
+		left: 6px;
+	}
+}
+
+.rollbox {
+	@include vars.mix-shadow-1;
+
+	position: fixed;
+	width: 260px;
+	height: 335px;
+	z-index: vars.$z-rollerbox-active;
+	border: 1px solid rgb(0 0 0 / 15%);
+	right: 1em;
+	bottom: 0;
+	flex-direction: column;
+
+	.ipt-roll {
+		flex-shrink: 0;
+		overflow-x: auto;
+		height: 30px;
+		width: 100%;
+	}
+
+	.out-roll {
+		overflow-y: auto;
+		height: 100%;
+		display: flex;
+		flex-direction: column-reverse;
+		transform: translateZ(0);
+	}
+
+	.head-roll {
+		height: 24px;
+		flex-shrink: 0;
+		width: 100%;
+		box-shadow: 0 0 3px rgb(0 0 0 / 25%);
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		user-select: none;
+		cursor: pointer;
+	}
+
+	.head-roll .hdr-roll {
+		line-height: 24px;
+		padding: 0 6px;
+	}
+
+	.out-roll .out-roll-wrp .out-roll-item:first-child {
+		border-top-left-radius: 6px;
+		border-top-right-radius: 6px;
+	}
+
+	.out-roll .out-roll-wrp .out-roll-item:last-child {
+		border-bottom-left-radius: 6px;
+		border-bottom-right-radius: 6px;
+	}
+
+	.out-roll .out-roll-item {
+		position: relative;
+		margin: 1px 3px;
+		padding: 1px 3px;
+		width: calc(100% - 6px);
+		word-wrap: break-word;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.out-roll .out-roll-item--message {
+		display: block;
+	}
+
+	.out-roll-item-button-wrp {
+		display: none;
+		position: absolute;
+	}
+
+	.out-roll-item:hover .out-roll-item-button-wrp {
+		display: flex;
+		right: 3px;
+	}
+
+	.ve-btn-copy-roll {
+		padding: 0 2px;
+		line-height: 1.4;
+	}
+
+	.out-roll .out-roll-item .roll-label {
+		font-style: italic;
+	}
+
+	.out-roll .out-roll-item .roll {
+		font-weight: bold;
+	}
+
+	.out-roll .out-roll-item .roll-min {
+		color: vars.$rgb-roll-min;
+	}
+
+	.out-roll .out-roll-item .roll-max {
+		color: vars.$rgb-roll-max;
+	}
+
+	.out-roll .out-roll-id {
+		width: 100%;
+		font-size: 70%;
+		padding: 1px 3px;
+	}
+}
+
+// TODO refactor rollbox CSS to here
+.rll__ {
+	&prompt-header {
+		font-size: 32px;
+	}
+
+	&dropped {
+		text-decoration: #f00 line-through;
+	}
+
+	&list {
+		margin-bottom: 0;
+		padding-left: 24px;
+	}
+
+	&exploded {
+		color: #6f99b8;
+	}
+
+	&success {
+		text-decoration: vars.$rgb-roll-max--muted underline;
+	}
+
+	&min--muted {
+		color: vars.$rgb-roll-min--muted;
+	}
+
+	&max--muted {
+		color: vars.$rgb-roll-max--muted;
+	}
+
+	&exploded {
+		color: #6f99b8;
+	}
+
+	&min--muted {
+		color: vars.$rgb-roll-min--muted;
+	}
+
+	&max--muted {
+		color: vars.$rgb-roll-max--muted;
+	}
+}
+
+// FIXME this fixes the missing scrollbar on Firefox, but breaks auto-scrolling when rolling
+// @-moz-document url-prefix() {
+// 	.out-roll .out-roll-wrp {
+// 		max-height: 100%;
+// 	}
+// }
+
+.rollbox {
+	background: #fff;
+}
+
+.rollbox .ipt-roll {
+	background: #fff;
+	border-radius: 0;
+}
+
+.rollbox-min,
+.rollbox .head-roll {
+	background: #d3d3d3;
+}
+
+.rollbox-min:hover,
+.rollbox .head-roll:hover {
+	background: #e3e3e3;
+}
+
+.rollbox .out-roll .out-roll-item {
+	background: #b0b0b035;
+}
+
+.rollbox .out-roll .out-roll-item .out-roll-item-code {
+	font-family: "Courier New", monospace;
+	background: #fff;
+	border-radius: 3px;
+	padding: 0 2px;
+	cursor: pointer;
+}
+
+.ve-night-mode {
+	.rollbox {
+		background: #272727;
+	}
+
+	.rollbox .ipt-roll {
+		background: #272727;
+	}
+
+	.rollbox-min,
+	.rollbox .head-roll {
+		background: #101010;
+	}
+
+	.rollbox-min:hover,
+	.rollbox .head-roll:hover {
+		background: #161616;
+	}
+
+	.rollbox .out-roll .out-roll-item {
+		background: rgb(80 80 80 / 40%);
+	}
+
+	.rollbox .out-roll .out-roll-item .out-roll-item-code {
+		background: #555;
+	}
+}

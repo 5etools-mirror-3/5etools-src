@@ -1,0 +1,4232 @@
+{
+	"magicvariant": [
+		{
+			"name": "+1 Ammunition",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "A"
+				},
+				{
+					"type": "AF|DMG"
+				}
+			],
+			"ammo": true,
+			"inherits": {
+				"namePrefix": "+1 ",
+				"source": "DMG",
+				"page": 150,
+				"srd": true,
+				"tier": "minor",
+				"rarity": "uncommon",
+				"bonusWeapon": "+1",
+				"entries": [
+					"You have a {=bonusWeapon} bonus to attack and damage rolls made with this piece of magic ammunition. Once it hits a target, the ammunition is no longer magical."
+				],
+				"lootTables": [
+					"Magic Item Table B"
+				]
+			}
+		},
+		{
+			"name": "+1 Armor",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"armor": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "+1 ",
+				"source": "DMG",
+				"page": 152,
+				"srd": true,
+				"basicRules": true,
+				"tier": "major",
+				"rarity": "rare",
+				"bonusAc": "+1",
+				"entries": [
+					"You have a {=bonusAc} bonus to AC while wearing this armor."
+				]
+			}
+		},
+		{
+			"name": "+1 Shield (*)",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "S"
+				}
+			],
+			"entries": [
+				"{@note * This generic variant has the same name and source as the item {@item +1 shield}}.",
+				"While holding this shield, you have a +1 bonus to AC. This bonus is in addition to the shield's normal bonus to AC."
+			],
+			"inherits": {
+				"namePrefix": "+1 ",
+				"source": "DMG",
+				"page": 200,
+				"srd": true,
+				"tier": "major",
+				"rarity": "uncommon",
+				"bonusAc": "+1",
+				"entries": [
+					"While holding this shield, you have a {=bonusAc} bonus to AC. This bonus is in addition to the shield's normal bonus to AC."
+				]
+			}
+		},
+		{
+			"name": "+1 Weapon",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"weapon": true
+				}
+			],
+			"excludes": {
+				"net": true
+			},
+			"inherits": {
+				"namePrefix": "+1 ",
+				"source": "DMG",
+				"page": 213,
+				"srd": true,
+				"basicRules": true,
+				"tier": "major",
+				"rarity": "uncommon",
+				"bonusWeapon": "+1",
+				"entries": [
+					"You have a {=bonusWeapon} bonus to attack and damage rolls made with this magic weapon."
+				],
+				"lootTables": [
+					"Magic Item Table F"
+				]
+			}
+		},
+		{
+			"name": "+1 Weapon (no damage)",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"net": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "+1 ",
+				"source": "DMG",
+				"page": 213,
+				"tier": "major",
+				"rarity": "uncommon",
+				"bonusWeaponAttack": "+1",
+				"entries": [
+					"You have a {=bonusWeaponAttack} bonus to attack rolls made with this weapon."
+				]
+			}
+		},
+		{
+			"name": "+2 Ammunition",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "A"
+				},
+				{
+					"type": "AF|DMG"
+				}
+			],
+			"ammo": true,
+			"inherits": {
+				"namePrefix": "+2 ",
+				"source": "DMG",
+				"page": 150,
+				"srd": true,
+				"tier": "minor",
+				"rarity": "rare",
+				"bonusWeapon": "+2",
+				"entries": [
+					"You have a {=bonusWeapon} bonus to attack and damage rolls made with this piece of magic ammunition. Once it hits a target, the ammunition is no longer magical."
+				],
+				"lootTables": [
+					"Magic Item Table C"
+				]
+			}
+		},
+		{
+			"name": "+2 Armor",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"armor": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "+2 ",
+				"source": "DMG",
+				"page": 152,
+				"srd": true,
+				"basicRules": true,
+				"tier": "major",
+				"rarity": "very rare",
+				"bonusAc": "+2",
+				"entries": [
+					"You have a {=bonusAc} bonus to AC while wearing this armor."
+				]
+			}
+		},
+		{
+			"name": "+2 Shield (*)",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "S"
+				}
+			],
+			"entries": [
+				"{@note * This generic variant has the same name and source as the item {@item +2 shield}}.",
+				"While holding this shield, you have a +2 bonus to AC. This bonus is in addition to the shield's normal bonus to AC."
+			],
+			"inherits": {
+				"namePrefix": "+2 ",
+				"source": "DMG",
+				"page": 200,
+				"srd": true,
+				"tier": "major",
+				"rarity": "rare",
+				"bonusAc": "+2",
+				"entries": [
+					"While holding this shield, you have a {=bonusAc} bonus to AC. This bonus is in addition to the shield's normal bonus to AC."
+				]
+			}
+		},
+		{
+			"name": "+2 Weapon",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"weapon": true
+				}
+			],
+			"excludes": {
+				"net": true
+			},
+			"inherits": {
+				"namePrefix": "+2 ",
+				"source": "DMG",
+				"page": 213,
+				"srd": true,
+				"basicRules": true,
+				"tier": "major",
+				"rarity": "rare",
+				"bonusWeapon": "+2",
+				"entries": [
+					"You have a {=bonusWeapon} bonus to attack and damage rolls made with this magic weapon."
+				],
+				"lootTables": [
+					"Magic Item Table G"
+				]
+			}
+		},
+		{
+			"name": "+2 Weapon (no damage)",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"net": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "+2 ",
+				"source": "DMG",
+				"page": 213,
+				"tier": "major",
+				"rarity": "rare",
+				"bonusWeaponAttack": "+2",
+				"entries": [
+					"You have a {=bonusWeaponAttack} bonus to attack rolls made with this weapon."
+				]
+			}
+		},
+		{
+			"name": "+3 Ammunition",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "A"
+				},
+				{
+					"type": "AF|DMG"
+				}
+			],
+			"ammo": true,
+			"inherits": {
+				"namePrefix": "+3 ",
+				"source": "DMG",
+				"page": 150,
+				"srd": true,
+				"tier": "minor",
+				"rarity": "very rare",
+				"bonusWeapon": "+3",
+				"entries": [
+					"You have a {=bonusWeapon} bonus to attack and damage rolls made with this piece of magic ammunition. Once it hits a target, the ammunition is no longer magical."
+				],
+				"lootTables": [
+					"Magic Item Table D"
+				]
+			}
+		},
+		{
+			"name": "+3 Armor",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"armor": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "+3 ",
+				"source": "DMG",
+				"page": 152,
+				"srd": true,
+				"basicRules": true,
+				"tier": "major",
+				"rarity": "legendary",
+				"bonusAc": "+3",
+				"entries": [
+					"You have a {=bonusAc} bonus to AC while wearing this armor."
+				]
+			}
+		},
+		{
+			"name": "+3 Shield (*)",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "S"
+				}
+			],
+			"entries": [
+				"{@note * This generic variant has the same name and source as the item {@item +3 shield}}.",
+				"While holding this shield, you have a +3 bonus to AC. This bonus is in addition to the shield's normal bonus to AC."
+			],
+			"inherits": {
+				"namePrefix": "+3 ",
+				"source": "DMG",
+				"page": 200,
+				"srd": true,
+				"tier": "major",
+				"rarity": "very rare",
+				"bonusAc": "+3",
+				"entries": [
+					"While holding this shield, you have a {=bonusAc} bonus to AC. This bonus is in addition to the shield's normal bonus to AC."
+				]
+			}
+		},
+		{
+			"name": "+3 Weapon",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"weapon": true
+				}
+			],
+			"excludes": {
+				"net": true
+			},
+			"inherits": {
+				"namePrefix": "+3 ",
+				"source": "DMG",
+				"page": 213,
+				"srd": true,
+				"basicRules": true,
+				"tier": "major",
+				"rarity": "very rare",
+				"bonusWeapon": "+3",
+				"entries": [
+					"You have a {=bonusWeapon} bonus to attack and damage rolls made with this magic weapon."
+				],
+				"lootTables": [
+					"Magic Item Table H"
+				]
+			}
+		},
+		{
+			"name": "+3 Weapon (no damage)",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"net": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "+3 ",
+				"source": "DMG",
+				"page": 213,
+				"tier": "major",
+				"rarity": "very rare",
+				"bonusWeaponAttack": "+3",
+				"entries": [
+					"You have a {=bonusWeaponAttack} bonus to attack rolls made with this weapon."
+				]
+			}
+		},
+		{
+			"name": "Acheron Blade",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"sword": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Acheron Blade ",
+				"source": "EGW",
+				"page": 265,
+				"rarity": "rare",
+				"reqAttune": true,
+				"bonusWeapon": "+1",
+				"entries": [
+					"The black blade of this sword is crafted from a mysterious arcane alloy. You gain a {=bonusWeapon} bonus to attack and damage rolls made with this magic weapon. While the sword is on your person, you are immune to effects that turn undead.",
+					{
+						"type": "entries",
+						"name": "Dark Blessing",
+						"entries": [
+							"While holding the sword, you can use an action to give yourself {@dice 1d4 + 4} temporary hit points. This property can't be used again until the next dusk."
+						]
+					},
+					{
+						"type": "entries",
+						"name": "Disheartening Strike",
+						"entries": [
+							"When you hit a creature with an attack using this weapon, you can fill the target with unsettling dread: the target has disadvantage on the next saving throw it makes before the end of your next turn. The creature ignores this effect if it's immune to the {@condition frightened} condition. Once you use this property, you can't do so again until the next dusk."
+						]
+					}
+				]
+			}
+		},
+		{
+			"name": "Adamantine Ammunition",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "A"
+				},
+				{
+					"type": "AF|DMG"
+				}
+			],
+			"excludes": {
+				"name": "Energy Cell"
+			},
+			"ammo": true,
+			"entries": [
+				"Ammunition made of or coated with adamantine is unusually effective when used to break objects. Whenever a piece of adamantine ammunition hits an object, the hit is a critical hit.",
+				"The adamantine version of ten pieces of ammunition costs 500 gp more than the normal version, whether the ammunition is made of the metal or coated with it."
+			],
+			"inherits": {
+				"namePrefix": "Adamantine ",
+				"source": "XGE",
+				"page": 78,
+				"tier": "minor",
+				"rarity": "unknown",
+				"entries": [
+					"Whenever you hit an object using this ammunition, the hit is a critical hit."
+				]
+			}
+		},
+		{
+			"name": "Adamantine Armor",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "HA"
+				},
+				{
+					"type": "MA"
+				}
+			],
+			"excludes": {
+				"name": "Hide Armor"
+			},
+			"inherits": {
+				"namePrefix": "Adamantine ",
+				"source": "DMG",
+				"page": 150,
+				"srd": true,
+				"tier": "major",
+				"rarity": "uncommon",
+				"entries": [
+					"This suit of armor is reinforced with adamantine, one of the hardest substances in existence. While you're wearing it, any critical hit against you becomes a normal hit."
+				]
+			}
+		},
+		{
+			"name": "Adamantine Weapon",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"weapon": true
+				}
+			],
+			"excludes": {
+				"net": true
+			},
+			"entries": [
+				"Melee weapons made of or coated with adamantine are unusually effective when used to break objects. Whenever an adamantine weapon hits an object, the hit is a critical hit.",
+				"The adamantine version of a melee weapon costs 500 gp more than the normal version, whether the weapon is made of the metal or coated with it."
+			],
+			"inherits": {
+				"namePrefix": "Adamantine ",
+				"source": "XGE",
+				"page": 78,
+				"tier": "major",
+				"rarity": "unknown",
+				"valueExpression": "[[baseItem.value]] + 50000",
+				"entries": [
+					"Whenever you hit an object with this weapon, the hit is a critical hit."
+				]
+			}
+		},
+		{
+			"name": "Antimagic Armor",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "LA"
+				},
+				{
+					"type": "MA"
+				},
+				{
+					"type": "HA"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Antimagic ",
+				"source": "BMT",
+				"page": 65,
+				"rarity": "very rare",
+				"reqAttune": true,
+				"entries": [
+					"While wearing this armor, you can use your reaction to give yourself advantage on a saving throw you make against a spell. Once this property is used, it can't be used again until the next dawn.",
+					"In addition, while you wear this armor, you can use it to cast {@spell Antimagic Field}, requiring no spell components. Once this property is used, it can't be used again until the next dawn."
+				],
+				"attachedSpells": [
+					"antimagic field"
+				]
+			}
+		},
+		{
+			"name": "Armblade",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "M"
+				}
+			],
+			"excludes": {
+				"property": "2H"
+			},
+			"inherits": {
+				"nameSuffix": " Armblade",
+				"source": "ERLW",
+				"page": 276,
+				"rarity": "common",
+				"reqAttune": "by a warforged",
+				"reqAttuneTags": [
+					{
+						"race": "warforged|erlw"
+					}
+				],
+				"entries": [
+					"An armblade is a magic weapon that attaches to your arm, becoming inseparable from you as long as you're attuned to it. To attune to this item, you must hold it against your forearm for the entire attunement period.",
+					"As a bonus action, you can retract the armblade into your forearm or extend it from there. While it is extended, you can use the weapon as if you were holding it, and you can't use that hand for other purposes."
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Armor of Acid Resistance",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"armor": true
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Acid Resistance",
+				"source": "DMG",
+				"page": 152,
+				"srd": true,
+				"resist": [
+					"acid"
+				],
+				"tier": "major",
+				"rarity": "rare",
+				"reqAttune": true,
+				"hasRefs": true,
+				"entries": [
+					"{#itemEntry Armor of Resistance}"
+				]
+			}
+		},
+		{
+			"name": "Armor of Cold Resistance",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"armor": true
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Cold Resistance",
+				"source": "DMG",
+				"page": 152,
+				"srd": true,
+				"resist": [
+					"cold"
+				],
+				"tier": "major",
+				"rarity": "rare",
+				"reqAttune": true,
+				"hasRefs": true,
+				"entries": [
+					"{#itemEntry Armor of Resistance}"
+				]
+			}
+		},
+		{
+			"name": "Armor of Fire Resistance",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"armor": true
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Fire Resistance",
+				"source": "DMG",
+				"page": 152,
+				"srd": true,
+				"resist": [
+					"fire"
+				],
+				"tier": "major",
+				"rarity": "rare",
+				"reqAttune": true,
+				"hasRefs": true,
+				"entries": [
+					"{#itemEntry Armor of Resistance}"
+				]
+			}
+		},
+		{
+			"name": "Armor of Force Resistance",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"armor": true
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Force Resistance",
+				"source": "DMG",
+				"page": 152,
+				"srd": true,
+				"resist": [
+					"force"
+				],
+				"tier": "major",
+				"rarity": "rare",
+				"reqAttune": true,
+				"hasRefs": true,
+				"entries": [
+					"{#itemEntry Armor of Resistance}"
+				]
+			}
+		},
+		{
+			"name": "Armor of Fungal Spores",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "MA"
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Fungal Spores",
+				"source": "BMT",
+				"page": 65,
+				"rarity": "uncommon",
+				"entries": [
+					"While wearing this armor, you can take a bonus action to make the armor emit poisonous spores, which fill a 10-foot-radius sphere centered on yourself. Each creature in that area must succeed on a DC 15 Constitution saving throw or have the poisoned condition until the end of your next turn. Once this property is used, it can't be used again until the next dawn."
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Armor of Gleaming",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "HA"
+				},
+				{
+					"type": "MA"
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Gleaming",
+				"source": "XGE",
+				"page": 136,
+				"tier": "minor",
+				"rarity": "common",
+				"entries": [
+					"This armor never gets dirty."
+				]
+			}
+		},
+		{
+			"name": "Armor of Lightning Resistance",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"armor": true
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Lightning Resistance",
+				"source": "DMG",
+				"page": 152,
+				"srd": true,
+				"resist": [
+					"lightning"
+				],
+				"tier": "major",
+				"rarity": "rare",
+				"reqAttune": true,
+				"hasRefs": true,
+				"entries": [
+					"{#itemEntry Armor of Resistance}"
+				]
+			}
+		},
+		{
+			"name": "Armor of Necrotic Resistance",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"armor": true
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Necrotic Resistance",
+				"source": "DMG",
+				"page": 152,
+				"srd": true,
+				"resist": [
+					"necrotic"
+				],
+				"tier": "major",
+				"rarity": "rare",
+				"reqAttune": true,
+				"hasRefs": true,
+				"entries": [
+					"{#itemEntry Armor of Resistance}"
+				]
+			}
+		},
+		{
+			"name": "Armor of Poison Resistance",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"armor": true
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Poison Resistance",
+				"source": "DMG",
+				"page": 152,
+				"srd": true,
+				"resist": [
+					"poison"
+				],
+				"tier": "major",
+				"rarity": "rare",
+				"reqAttune": true,
+				"hasRefs": true,
+				"entries": [
+					"{#itemEntry Armor of Resistance}"
+				]
+			}
+		},
+		{
+			"name": "Armor of Psychic Resistance",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"armor": true
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Psychic Resistance",
+				"source": "DMG",
+				"page": 152,
+				"srd": true,
+				"resist": [
+					"psychic"
+				],
+				"tier": "major",
+				"rarity": "rare",
+				"reqAttune": true,
+				"hasRefs": true,
+				"entries": [
+					"{#itemEntry Armor of Resistance}"
+				]
+			}
+		},
+		{
+			"name": "Armor of Radiant Resistance",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"armor": true
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Radiant Resistance",
+				"source": "DMG",
+				"page": 152,
+				"srd": true,
+				"resist": [
+					"radiant"
+				],
+				"tier": "major",
+				"rarity": "rare",
+				"reqAttune": true,
+				"hasRefs": true,
+				"entries": [
+					"{#itemEntry Armor of Resistance}"
+				]
+			}
+		},
+		{
+			"name": "Armor of Safeguarding",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "HA"
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Safeguarding",
+				"source": "BGG",
+				"page": 111,
+				"rarity": "very rare",
+				"reqAttune": true,
+				"entries": [
+					"Set in the center of this armor's chest is a citrine engraved with the shield rune.",
+					"While wearing this armor, your hit point maximum increases by an amount equal to 10 + your level.",
+					{
+						"type": "entries",
+						"name": "Invoking the Rune",
+						"entries": [
+							"As an action, you can invoke the armor's rune to cast the {@spell beacon of hope} spell with it; the spell has a duration of 1 minute and doesn't require {@status concentration}. Once the rune has been invoked, it can't be invoked again until the next dawn."
+						]
+					}
+				],
+				"attachedSpells": [
+					"beacon of hope"
+				]
+			}
+		},
+		{
+			"name": "Armor of the Fallen",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "MA"
+				},
+				{
+					"type": "HA"
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of the Fallen",
+				"source": "BMT",
+				"page": 65,
+				"rarity": "uncommon",
+				"reqAttune": true,
+				"entries": [
+					"While wearing this armor, you can use it to cast either {@spell Speak with Dead} or {@spell Animate Dead}. Once the armor has cast a spell in this way, it can't cast either spell until the next dawn.",
+					"Your soul keeps this armor together. If you die while you are attuned to the armor, the armor is destroyed."
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Armor of Thunder Resistance",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"armor": true
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Thunder Resistance",
+				"source": "DMG",
+				"page": 152,
+				"srd": true,
+				"resist": [
+					"thunder"
+				],
+				"tier": "major",
+				"rarity": "rare",
+				"reqAttune": true,
+				"hasRefs": true,
+				"entries": [
+					"{#itemEntry Armor of Resistance}"
+				]
+			}
+		},
+		{
+			"name": "Armor of Weightlessness",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "LA"
+				},
+				{
+					"type": "MA"
+				},
+				{
+					"type": "HA"
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Weightlessness",
+				"source": "BMT",
+				"page": 65,
+				"rarity": "uncommon",
+				"reqAttune": true,
+				"recharge": "dawn",
+				"rechargeAmount": "{@dice 1d4 + 1}",
+				"charges": 5,
+				"entries": [
+					"This armor has 5 charges. While you wear it, you can use a bonus action to expend 1 or more charges to cast one of the following spells from the armor, targeting yourself: {@spell Jump} (1 charge) or {@spell Levitate} (2 charges).",
+					"This armor regains {@dice 1d4 + 1} expended charges daily at dawn."
+				],
+				"attachedSpells": [
+					"jump",
+					"levitate"
+				]
+			}
+		},
+		{
+			"name": "Arrow of Slaying (*)",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"arrow": true
+				},
+				{
+					"bolt": true
+				}
+			],
+			"excludes": {
+				"name": [
+					"Energy Cell",
+					"Modern Bullet",
+					"Modern Bullets (10)",
+					"Renaissance Bullet",
+					"Renaissance Bullets (10)"
+				]
+			},
+			"ammo": true,
+			"entries": [
+				"{@note * This generic variant has the same name and source as the item {@item arrow of slaying}}.",
+				"An {@i arrow of slaying} is a magic weapon meant to slay a particular kind of creature. Some are more focused than others; for example, there are both {@i arrows of dragon slaying} and {@i arrows of blue dragon slaying}. If a creature belonging to the type, race, or group associated with an {@i arrow of slaying} takes damage from the arrow, the creature must make a DC 17 Constitution saving throw, taking an extra {@dice 6d10} piercing damage on a failed save, or half as much extra damage on a successful one.",
+				"Once an {@i arrow of slaying} deals its extra damage to a creature, it becomes a nonmagical arrow.",
+				"Other types of magic ammunition of this kind exist, such as bolts of slaying meant for a crossbow, though arrows are most common."
+			],
+			"inherits": {
+				"nameSuffix": " of Slaying",
+				"source": "DMG",
+				"page": 152,
+				"srd": true,
+				"tier": "minor",
+				"rarity": "very rare",
+				"entries": [
+					"{=baseName/at} {=baseName/l} of slaying is a magic weapon meant to slay a particular kind of creature. Some are more focused than others; for example, there are both {@i {=baseName/l}s of dragon slaying} and {@i {=baseName/l}s of blue dragon slaying}. If a creature belonging to the type, race, or group associated with {=baseName/a} {=baseName/l} of slaying takes damage from the {=baseName/l}, the creature must make a DC 17 Constitution saving throw, taking an extra {@dice 6d10} piercing damage on a failed save, or half as much extra damage on a successful one.",
+					"Once {=baseName/a} {=baseName/l} of slaying deals its extra damage to a creature, it becomes a nonmagical {=baseName/l}."
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Ascendant Dragon's Wrath Weapon",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"weapon": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Ascendant Dragon's Wrath ",
+				"source": "FTD",
+				"page": 25,
+				"rarity": "legendary",
+				"reqAttune": true,
+				"bonusWeapon": "+3",
+				"entries": [
+					"This weapon is decorated with dragon heads, claws, wings, scales, or Draconic letters. When it steeps in a dragon's hoard, it absorbs the energy of the dragon's breath weapon and deals damage of that type with its special properties.",
+					"Whenever you roll a 20 on your attack roll with this weapon, each creature of your choice within 5 feet of the target takes 5 damage of the type dealt by the dragon's breath weapon.",
+					"You gain a {=bonusWeapon} bonus to attack and damage rolls made using the weapon. On a hit, the weapon deals an extra {@damage 3d6} damage of the type dealt by the dragon's breath weapon.",
+					"As an action, you can unleash a 60-foot cone of destructive energy from the weapon. Each creature in that area must make a DC 18 Dexterity saving throw, taking {@damage 12d6} damage of the type dealt by the dragon's breath weapon on a failed save, or half as much damage on a successful one. Once this action is used, it can't be used again until the next dawn."
+				]
+			}
+		},
+		{
+			"name": "Barding",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"armor": true
+				}
+			],
+			"inherits": {
+				"nameSuffix": " Barding",
+				"nameRemove": " Armor",
+				"source": "PHB",
+				"page": 157,
+				"srd": true,
+				"basicRules": true,
+				"type": "TAH",
+				"rarity": "none",
+				"weightMult": 2,
+				"weightExpression": "[[baseItem.weight]] * 2",
+				"valueMult": 4,
+				"valueExpression": "[[baseItem.value]] * 4",
+				"barding": true,
+				"entries": [
+					"Barding is armor designed to protect an animal's head, neck, chest, and body. Any type of armor shown on the Armor table in this chapter can be purchased as barding. The cost is four times the equivalent armor made for humanoids, and it weighs twice as much."
+				]
+			}
+		},
+		{
+			"name": "Berserker Axe",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"axe": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Berserker ",
+				"source": "DMG",
+				"page": 155,
+				"srd": true,
+				"tier": "major",
+				"rarity": "rare",
+				"reqAttune": true,
+				"curse": true,
+				"bonusWeapon": "+1",
+				"entries": [
+					"You gain a +1 bonus to attack and damage rolls made with this magic weapon. In addition, while you are attuned to this weapon, your hit point maximum increases by 1 for each level you have attained.",
+					{
+						"type": "entries",
+						"name": "Curse",
+						"entries": [
+							"This axe is cursed, and becoming attuned to it extends the curse to you. As long as you remain cursed, you are unwilling to part with the axe, keeping it within reach at all times. You also have disadvantage on attack rolls with weapons other than this one, unless no foe is within 60 feet of you that you can see or hear."
+						]
+					},
+					"Whenever a hostile creature damages you while the axe is in your possession, you must succeed on a DC 15 Wisdom saving throw or go berserk. While berserk, you must use your action each round to attack the creature nearest to you with the axe. If you can make extra attacks as part of the {@action Attack} action, you use those extra attacks, moving to attack the next nearest creature after you fell your current target. If you have multiple possible targets, you attack one at random. You are berserk until you start your turn with no creatures within 60 feet of you that you can see or hear."
+				],
+				"lootTables": [
+					"Magic Item Table G"
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Blade of the Medusa",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"sword": true
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of the Medusa",
+				"source": "LLK",
+				"page": 53,
+				"rarity": "very rare",
+				"reqAttune": true,
+				"curse": true,
+				"entries": [
+					"When you attack a creature with this magic weapon and roll a 20 on the attack roll, the creature must make a DC 15 Constitution saving throw in addition to suffering the attack's normal effects. On a failed save, the creature is restrained and must make another Constitution saving throw at the end of each of its turns. If it successfully saves against this effect three times, the effect ends. If it fails its saves three times, it is turned to stone and subjected to the {@condition petrified} condition for 1 hour.",
+					"A creature is immune to this effect if it is immune to damage of the weapon's type, does not have a body made of flesh, or has legendary actions.",
+					{
+						"name": "Curse",
+						"type": "entries",
+						"entries": [
+							"This weapon is cursed, and becoming attuned to it extends the curse to you. Until the curse is broken with a {@spell remove curse} spell or similar magic, you are unwilling to part with the weapon. Whenever you attack a creature with this weapon and roll a 1 on the attack roll, you must succeed on a DC 15 Constitution saving throw or be {@condition restrained} and forced to make additional saves against being {@condition petrified}, as above."
+						]
+					}
+				]
+			}
+		},
+		{
+			"name": "Blade of the Wood",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"sword": true
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of the Wood",
+				"source": "HWCS",
+				"page": 213,
+				"rarity": "rare",
+				"reqAttune": true,
+				"bonusWeapon": "+1",
+				"charges": 2,
+				"entries": [
+					"A finely crafted sword with delicate etchings, it resonates with a faint hum of life.",
+					"You gain a {=bonusWeapon} bonus to attack and damage rolls made with this magic weapon.",
+					"The sword has 2 charges. You can expend a charge and speak the command word to cast {@spell spike growth} (save DC 16) centered on yourself. You can pass through this terrain unaffected.",
+					"The sword regains one charge each day at dawn."
+				],
+				"attachedSpells": [
+					"spike growth"
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Bloodseeker Ammunition",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "A"
+				},
+				{
+					"type": "AF|DMG"
+				}
+			],
+			"ammo": true,
+			"inherits": {
+				"namePrefix": "Bloodseeker ",
+				"source": "BMT",
+				"page": 66,
+				"rarity": "very rare",
+				"entries": [
+					"Ranged attack rolls made with this ammunition have advantage against any creature that doesn't have all its hit points."
+				]
+			}
+		},
+		{
+			"name": "Bloodshed Blade",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"sword": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Bloodshed ",
+				"source": "BGG",
+				"page": 111,
+				"rarity": "very rare",
+				"reqAttune": true,
+				"bonusWeaponDamage": "+1",
+				"entries": [
+					"The hilt of this sword bears a carnelian engraved with the blood rune.",
+					"You can add your Constitution modifier (minimum of {=bonusWeaponDamage}) to the damage rolls of attacks made with this weapon.",
+					{
+						"type": "entries",
+						"name": "Invoking the Rune",
+						"entries": [
+							"When you target a creature with an attack using this weapon, you can invoke the sword's rune, causing it to flare with crimson light and infusing your attack with bloodthirsty precision. You then spend and roll one of your unspent Hit Dice and add the number rolled to the attack roll. You can choose to invoke the rune after rolling the {@dice d20}.",
+							"If this attack hits, you can also spend and roll any number of your unspent Hit Dice and add the total rolled to the weapon's damage.",
+							"Once the rune has been invoked, it can't be invoked again until the next dawn."
+						]
+					}
+				]
+			}
+		},
+		{
+			"name": "Bow of Conflagration",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"bow": true
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Conflagration",
+				"source": "BMT",
+				"page": 66,
+				"rarity": "rare",
+				"reqAttune": true,
+				"entries": [
+					"Ammunition fired from this bow blazes brightly. When you hit with an attack roll using this bow, the target takes an extra {@damage 1d6} fire damage. If the target is a flammable, nonmagical object, it catches fire, taking {@damage 1d6} fire damage at the start of each of your turns until a creature uses an action to extinguish the flames."
+				]
+			}
+		},
+		{
+			"name": "Bow of Melodies",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"bow": true
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Melodies",
+				"source": "BMT",
+				"page": 66,
+				"rarity": "very rare",
+				"reqAttune": true,
+				"entries": [
+					"This bow has multiple strings and resembles a lyre or small harp. By strumming the strings while setting an arrow to the bow, you imbue the arrow with magic.",
+					"You can play one of the following melodies when you use the bow to make a ranged weapon attack. You must choose to do so before you make the attack roll, and you can play only one melody per attack.",
+					{
+						"type": "entries",
+						"name": "Melody of Precision",
+						"entries": [
+							"If you're proficient in {@skill Performance}, you gain a +1 bonus to the attack roll. If you have expertise in {@skill Performance}, you gain a +2 bonus instead."
+						]
+					},
+					{
+						"type": "entries",
+						"name": "Melody of Reverberation",
+						"entries": [
+							"The melody you strum echoes loudly. On a hit, the target takes extra thunder damage equal to your Charisma modifier."
+						]
+					}
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Cast-Off Armor",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"armor": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Cast-Off ",
+				"source": "XGE",
+				"page": 136,
+				"tier": "minor",
+				"rarity": "common",
+				"entries": [
+					"You can doff this armor as an action."
+				]
+			}
+		},
+		{
+			"name": "Clockwork Armor",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "HA"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Clockwork ",
+				"source": "BMT",
+				"page": 67,
+				"rarity": "very rare",
+				"reqAttune": true,
+				"recharge": "dawn",
+				"rechargeAmount": "{@dice 1d4}",
+				"charges": 4,
+				"entries": [
+					"The outside surface and internal joints of this armor whir with interlocking gears, drawing on the orderly magic of the plane of Mechanus.",
+					"The armor has 4 charges. If you make a {@dice d20} roll while wearing this armor, you can expend 1 charge to change the number rolled to a 10. The armor regains {@dice 1d4} expended charges daily at dawn."
+				]
+			}
+		},
+		{
+			"name": "Comet Smasher",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "M",
+					"dmgType": "B"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Comet Smasher ",
+				"source": "DoDk",
+				"page": 230,
+				"rarity": "very rare",
+				"reqAttune": true,
+				"entries": [
+					"The head of this bludgeoning weapon is made from a massive delerium crystal that crackles with arcane energies. When you hit with an attack using this weapon, the target takes an extra ({@dice 3d6}) necrotic damage.",
+					"When you roll a 20 on an attack roll made with this weapon, it unleashes an arcane anomaly (see Dungeons of Drakkenheim). You can roll twice on the table and choose either result."
+				]
+			}
+		},
+		{
+			"name": "Corpse Slayer",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"weapon": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Corpse Slayer ",
+				"source": "EGW",
+				"page": 266,
+				"rarity": "rare",
+				"reqAttune": true,
+				"bonusWeapon": "+1",
+				"entries": [
+					"You gain a {=bonusWeapon} bonus to attack and damage rolls made with this magic weapon.",
+					"When you hit an undead creature with an attack using this weapon, the attack deals an extra {@damage 1d8} damage of the weapon's type, and the creature has disadvantage on saving throws against effects that turn undead until the start of your next turn."
+				]
+			}
+		},
+		{
+			"name": "Crystal Blade",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"sword": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Crystal ",
+				"source": "FTD",
+				"page": 22,
+				"rarity": "rare",
+				"reqAttune": true,
+				"recharge": "dawn",
+				"rechargeAmount": "{@dice 1d3}",
+				"charges": 3,
+				"entries": [
+					"This magic sword's blade is fashioned from a horn or spine from a crystal dragon. When you hit with an attack roll using this sword, the target takes an extra {@damage 1d8} radiant damage.",
+					"The sword has 3 charges and regains {@dice 1d3} expended charges daily at dawn. When you hit a creature with an attack roll using the sword, you can expend 1 charge to regain a number of hit points equal to the extra radiant damage the sword dealt.",
+					"While you're holding the sword, you can use a bonus action to cause it to shed bright light in a 30-foot radius and dim light for an additional 30 feet, to cause it to shed dim light in a 10-foot radius, or to douse the light."
+				]
+			}
+		},
+		{
+			"name": "Dancing Sword",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"sword": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Dancing ",
+				"source": "DMG",
+				"page": 161,
+				"srd": true,
+				"tier": "major",
+				"rarity": "very rare",
+				"reqAttune": true,
+				"entries": [
+					"You can use a bonus action to toss this magic sword into the air and speak the command word. When you do so, the sword begins to hover, flies up to 30 feet, and attacks one creature of your choice within 5 feet of it. The sword uses your attack roll and ability score modifier to damage rolls.",
+					"While the sword hovers, you can use a bonus action to cause it to fly up to 30 feet to another spot within 30 feet of you. As part of the same bonus action, you can cause the sword to attack one creature within 5 feet of it.",
+					"After the hovering sword attacks for the fourth time, it flies up to 30 feet and tries to return to your hand. If you have no hand free, it falls to the ground at your feet. If the sword has no unobstructed path to you, it moves as close to you as it can and then falls to the ground. It also ceases to hover if you grasp it or move more than 30 feet away from it."
+				],
+				"lootTables": [
+					"Magic Item Table H"
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Defender",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"sword": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Defender ",
+				"source": "DMG",
+				"page": 164,
+				"srd": true,
+				"tier": "major",
+				"rarity": "legendary",
+				"reqAttune": true,
+				"bonusWeapon": "+3",
+				"bonusAc": "+1",
+				"entries": [
+					"You gain a +3 bonus to attack and damage rolls made with this magic weapon.",
+					"The first time you attack with the sword on each of your turns, you can transfer some or all of the sword's bonus to your Armor Class, instead of using the bonus on any attacks that turn. For example, you could reduce the bonus to your attack and damage rolls to +1 and gain a +2 bonus to AC. The adjusted bonuses remain in effect until the start of your next turn, although you must hold the sword to gain a bonus to AC from it."
+				],
+				"lootTables": [
+					"Magic Item Table I"
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Delerium-Forged Blade",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"sword": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Delerium-Forged Blade ",
+				"source": "DoDk",
+				"page": 230,
+				"rarity": "rare",
+				"bonusWeapon": "+2",
+				"entries": [
+					"This sword has a small delerium sliver encased in glass and set in the hilt like a gemstone. The blade is made of meteoric iron infused with delerium dust, which causes it to softly glow with octarine light.",
+					"You gain a {=bonusWeapon} bonus to attack and damage rolls made with this weapon.",
+					"When you make an attack with this weapon, you can use your spellcasting ability modifier, instead of Strength or Dexterity, for the attack and damage rolls. In addition, you can use this weapon as a spellcasting focus.",
+					"When you roll a 20 on an attack roll made with this weapon against a humanoid, the humanoid must succeed on a DC 15 Constitution saving throw or take an extra ({@dice 3d6}) necrotic damage and gain one {@adventure level of contamination|DoDk|12}."
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Demon Skin",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "HA"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Demon Skin ",
+				"source": "DitLCoT",
+				"page": 14,
+				"resist": [
+					"poison"
+				],
+				"rarity": "rare",
+				"reqAttune": true,
+				"stealth": false,
+				"entries": [
+					"This magic armor appears as a pot of bubbling black ichor. When you attune to it, the ichor adheres to and contours to your skin, and the pot disappears. The armor can be worn under normal clothes, and it doesn't impede bodily functions. Once you put it on, it can't be removed unless you choose to do so or you die, at which point the pot reappears and the ichor flows back into it.",
+					"While wearing the armor, you have resistance to poison damage. The armor also doesn't impose disadvantage on Dexterity ({@skill Stealth}) checks."
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Demonbone Polearm",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"polearm": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Demonbone ",
+				"source": "CoA",
+				"page": 268,
+				"rarity": "very rare",
+				"reqAttune": true,
+				"curse": true,
+				"bonusWeapon": "+2",
+				"entries": [
+					"You have a {=bonusWeapon} bonus to attack and damage rolls made with this magic weapon. In addition, when you're damaged by a creature in reach, you may use your reaction to make one melee attack against it with this weapon.",
+					{
+						"type": "entries",
+						"name": "Curse",
+						"entries": [
+							"You're unwilling to part with this weapon while attuned to it. While attuned, you have disadvantage on attack rolls with weapons other than this one.",
+							"Whenever a hostile creature damages you, you must succeed on a DC 15 Wisdom saving throw or go berserk. While berserk, you must use your action on each of your turns to attack the creature nearest to you with the weapon. If you can make extra attacks as part of the {@action Attack} action, you use those extra attacks, moving to attack the next nearest creature after you fell your current target. If you have multiple possible targets, you attack one at random.",
+							"You're berserk until you start your turn with no creatures within 60 feet of you that you can see or hear. Alternatively, an ally can use an action to make a DC 15 Charisma ({@skill Persuasion}) check and if successful, you're no longer berserk. Only the {@spell Remove Curse} spell allows you to end attunement to this item."
+						]
+					},
+					{
+						"type": "entries",
+						"name": "Corrupting",
+						"entries": [
+							"This item corrupts. See the \"{@adventure Infernal Item Corruption|CoA|16|Infernal Item Corruption}\" section."
+						]
+					}
+				]
+			}
+		},
+		{
+			"name": "Dragon Slayer",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"sword": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Dragon Slayer ",
+				"source": "DMG",
+				"page": 166,
+				"srd": true,
+				"tier": "major",
+				"rarity": "rare",
+				"bonusWeapon": "+1",
+				"entries": [
+					"You gain a +1 bonus to attack and damage rolls made with this magic weapon.",
+					"When you hit a dragon with this weapon, the dragon takes an extra {@dice 3d6} damage of the weapon's type. For the purpose of this weapon, \"dragon\" refers to any creature with the dragon type, including dragon turtles and wyverns."
+				],
+				"lootTables": [
+					"Magic Item Table G"
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Dragon Wing Bow",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"bow": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Dragon Wing ",
+				"source": "FTD",
+				"page": 23,
+				"rarity": "rare",
+				"reqAttune": true,
+				"entries": [
+					"The limb tips of this magic bow are shaped like a dragon's wings, and the weapon is infused with the essence of a chromatic, gem, or metallic dragon's breath. When you hit with an attack roll using this magic bow, the target takes an extra {@damage 1d6} damage of the same type as the breath infused in the bow\u2014acid, cold, fire, force, lightning, necrotic, poison, psychic, radiant, or thunder.",
+					"If you load no ammunition in the weapon, it produces its own, automatically creating one piece of magic ammunition when you pull back the string. The ammunition created by the bow vanishes the instant after it hits or misses a target."
+				]
+			}
+		},
+		{
+			"name": "Dragonlance",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"name": "Pike"
+				},
+				{
+					"name": "Lance"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Dragonlance ",
+				"source": "FTD",
+				"page": 23,
+				"otherSources": [
+					{
+						"source": "DSotDQ",
+						"page": 23
+					}
+				],
+				"rarity": "legendary",
+				"reqAttune": true,
+				"bonusWeapon": "+3",
+				"entries": [
+					"A dragonlance is a renowned weapon forged from rare metal with the aid of powerful artifacts associated with Bahamut. Different lances are forged for use by foot soldiers (as pikes) and by riders (as lances), but the magical properties of the weapons are the same.",
+					"You gain a {=bonusWeapon} bonus to attack and damage rolls made with this magic weapon.",
+					"When you hit a Dragon with this weapon, the Dragon takes an extra {@damage 3d6} force damage, and any Dragon of your choice that you can see within 30 feet of you can immediately use its reaction to make a melee attack."
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Dried Leech",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "A"
+				},
+				{
+					"type": "AF|DMG"
+				}
+			],
+			"excludes": {
+				"name": "Energy Cell"
+			},
+			"ammo": true,
+			"inherits": {
+				"namePrefix": "Dried Leech ",
+				"source": "BMT",
+				"page": 67,
+				"rarity": "uncommon",
+				"entries": [
+					"This leech has been dried and imbued with a mote of animating magic. If you hit a creature with a ranged attack roll using this ammunition, the leech springs to life and sinks its teeth into the target, dealing {@damage 1d4} piercing damage at the start of each of the target's turns. If the leech deals at least 10 damage or the target dies, the leech falls off. A creature, including the target, can use its action to detach the leech. Once a leech is no longer attached to its target, the leech dies and is no longer magical."
+				]
+			}
+		},
+		{
+			"name": "Drow +1 Armor",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"armor": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Drow +1 ",
+				"source": "MM",
+				"page": 126,
+				"rarity": "unknown (magic)",
+				"bonusAc": "+1",
+				"entries": [
+					"You have a {=bonusAc} bonus to AC while wearing this armor. This armor loses its enchantment bonus permanently if it is exposed to sunlight for 1 hour or longer."
+				]
+			}
+		},
+		{
+			"name": "Drow +1 Weapon",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"weapon": true
+				}
+			],
+			"excludes": {
+				"net": true
+			},
+			"inherits": {
+				"namePrefix": "Drow +1 ",
+				"source": "MM",
+				"page": 126,
+				"rarity": "unknown (magic)",
+				"bonusWeapon": "+1",
+				"entries": [
+					"You have a {=bonusWeapon} bonus to attack and damage rolls made with this weapon. This weapon loses its enchantment bonus permanently if it is exposed to sunlight for 1 hour or longer."
+				]
+			}
+		},
+		{
+			"name": "Drow +2 Armor",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"armor": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Drow +2 ",
+				"source": "MM",
+				"page": 126,
+				"rarity": "unknown (magic)",
+				"bonusAc": "+2",
+				"entries": [
+					"You have a {=bonusAc} bonus to AC while wearing this armor. This armor loses its enchantment bonus permanently if it is exposed to sunlight for 1 hour or longer."
+				]
+			}
+		},
+		{
+			"name": "Drow +2 Weapon",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"weapon": true
+				}
+			],
+			"excludes": {
+				"net": true
+			},
+			"inherits": {
+				"namePrefix": "Drow +2 ",
+				"source": "MM",
+				"page": 126,
+				"rarity": "unknown (magic)",
+				"bonusWeapon": "+2",
+				"entries": [
+					"You have a {=bonusWeapon} bonus to attack and damage rolls made with this weapon. This weapon loses its enchantment bonus permanently if it is exposed to sunlight for 1 hour or longer."
+				]
+			}
+		},
+		{
+			"name": "Drow +3 Armor",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"armor": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Drow +3 ",
+				"source": "MM",
+				"page": 126,
+				"rarity": "unknown (magic)",
+				"bonusAc": "+3",
+				"entries": [
+					"You have a {=bonusAc} bonus to AC while wearing this armor. This armor loses its enchantment bonus permanently if it is exposed to sunlight for 1 hour or longer."
+				]
+			}
+		},
+		{
+			"name": "Drow +3 Weapon",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"weapon": true
+				}
+			],
+			"excludes": {
+				"net": true
+			},
+			"inherits": {
+				"namePrefix": "Drow +3 ",
+				"source": "MM",
+				"page": 126,
+				"rarity": "unknown (magic)",
+				"bonusWeapon": "+3",
+				"entries": [
+					"You have a {=bonusWeapon} bonus to attack and damage rolls made with this weapon. This weapon loses its enchantment bonus permanently if it is exposed to sunlight for 1 hour or longer."
+				]
+			}
+		},
+		{
+			"name": "Feywrought Armor",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "LA"
+				},
+				{
+					"type": "MA"
+				},
+				{
+					"type": "HA"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Feywrought ",
+				"source": "BMT",
+				"page": 67,
+				"rarity": "rare",
+				"reqAttune": true,
+				"recharge": "dawn",
+				"rechargeAmount": "{@dice 1d3}",
+				"charges": 3,
+				"entries": [
+					"This colorful, flowery armor was forged in the Feywild and is infused with that plane's captivating magic.",
+					"While wearing this armor, you have advantage on saving throws you make to avoid or end the {@condition charmed} condition on yourself.",
+					"This armor has 3 charges. You can use an action to expend a charge to cast the {@spell Compulsion} spell (save DC 15) from this armor. The armor regains {@dice 1d3} expended charges daily at dawn."
+				],
+				"attachedSpells": [
+					"compulsion"
+				]
+			}
+		},
+		{
+			"name": "Flame Tongue",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"sword": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Flame Tongue ",
+				"source": "DMG",
+				"page": 170,
+				"srd": true,
+				"tier": "major",
+				"rarity": "rare",
+				"reqAttune": true,
+				"entries": [
+					"You can use a bonus action to speak this magic sword's command word, causing flames to erupt from the blade. These flames shed bright light in a 40-foot radius and dim light for an additional 40 feet. While the sword is ablaze, it deals an extra {@dice 2d6} fire damage to any target it hits. The flames last until you use a bonus action to speak the command word again or until you drop or sheathe the sword."
+				],
+				"lootTables": [
+					"Magic Item Table G"
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Fool's Blade",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"sword": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Fool's ",
+				"source": "BMT",
+				"page": 36,
+				"rarity": "very rare",
+				"reqAttune": true,
+				"bonusWeapon": "+2",
+				"entries": [
+					"This weapon appears ordinary, but it bears strong illusion magic that allows its wielder to skillfully deceive opponents.",
+					"You have a {=bonusWeapon} bonus to attack and damage rolls made with this magic weapon. While wielding it, you also gain the following benefits:",
+					{
+						"type": "list",
+						"style": "list-hang-notitle",
+						"items": [
+							{
+								"type": "item",
+								"name": "Fool's Feint",
+								"entries": [
+									"As a bonus action, you can feint, choosing a creature within 5 feet of you as your target. Until the start of your next turn, you have advantage on attack rolls against the target. Once this bonus action is used, it can't be used again until the next dawn."
+								]
+							},
+							{
+								"type": "item",
+								"name": "Misdirect",
+								"entries": [
+									"When a creature within 60 feet of you targets you with an attack roll, you can use your reaction to require that creature to make a DC 15 Intelligence saving throw. On a failed save, the attack instead targets another creature of your choice that is within the attacker's reach. Once this reaction has been used, it can't be used again until the next dawn."
+								]
+							}
+						]
+					}
+				]
+			}
+		},
+		{
+			"name": "Forcebreaker Weapon",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"dmgType": "B"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Forcebreaker ",
+				"source": "BMT",
+				"page": 67,
+				"rarity": "very rare",
+				"bonusWeapon": "+2",
+				"entries": [
+					"You gain a {=bonusWeapon} bonus to attack and damage rolls made with this magic weapon.",
+					"This weapon was crafted to destroy structures made of force, such as those created by {@spell Forcecage} or {@spell Wall of Force}. Striking a Large or smaller structure of magical force with this weapon automatically shatters that structure. If the target is a Huge or larger structure of force, this weapon shatters a 20-foot-cube portion of it."
+				]
+			}
+		},
+		{
+			"name": "Frost Brand",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"sword": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Frost Brand ",
+				"source": "DMG",
+				"page": 171,
+				"srd": true,
+				"resist": [
+					"fire"
+				],
+				"tier": "major",
+				"rarity": "very rare",
+				"reqAttune": true,
+				"entries": [
+					"When you hit with an attack using this magic sword, the target takes an extra {@dice 1d6} cold damage. In addition, while you hold the sword, you have resistance to fire damage.",
+					"In freezing temperatures, the blade sheds bright light in a 10-foot radius and dim light for an additional 10 feet.",
+					"When you draw this weapon, you can extinguish all nonmagical flames within 30 feet of you. This property can be used no more than once per hour."
+				],
+				"lootTables": [
+					"Magic Item Table H"
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Gambler's Blade",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"sword": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Gambler's Blade ",
+				"source": "LLK",
+				"page": 55,
+				"rarity": "rare",
+				"reqAttune": true,
+				"curse": true,
+				"entries": [
+					"Choose a magical bonus of +1 to +3. This sword gains that bonus to its attack and damage rolls. For each point of bonus you choose for the sword, you take a corresponding penalty (\u22121 to \u22123) to your death saving throws. You can change this magical bonus each day at dawn.",
+					{
+						"name": "Curse",
+						"type": "entries",
+						"entries": [
+							"This weapon is cursed, and becoming attuned to it extends the curse to you. Until the curse is broken with a {@spell remove curse} spell or similar magic, you are unwilling to part with the weapon."
+						]
+					}
+				]
+			}
+		},
+		{
+			"name": "Giant Slayer",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"axe": true
+				},
+				{
+					"sword": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Giant Slayer ",
+				"source": "DMG",
+				"page": 172,
+				"srd": true,
+				"tier": "major",
+				"rarity": "rare",
+				"bonusWeapon": "+1",
+				"entries": [
+					"You gain a +1 bonus to attack and damage rolls made with this magic weapon.",
+					"When you hit a giant with it, the giant takes an extra {@dice 2d6} damage of the weapon's type and must succeed on a DC 15 Strength saving throw or fall {@condition prone}. For the purpose of this weapon, \"giant\" refers to any creature with the giant type, including ettins and trolls."
+				],
+				"lootTables": [
+					"Magic Item Table G"
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Glimmering Moonbow",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"bow": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Glimmering Moon ",
+				"source": "BMT",
+				"page": 36,
+				"resist": [
+					"bludgeoning",
+					"piercing",
+					"slashing"
+				],
+				"rarity": "rare",
+				"reqAttune": true,
+				"bonusWeapon": "+1",
+				"entries": [
+					"This silver-and-black bow is engraved with the phases of the moon. You gain a {=bonusWeapon} bonus to attack and damage rolls made with this magic weapon.",
+					"When you hit with a ranged attack roll using this magic bow, the target takes an extra {@damage 1d6} radiant damage. If you load no ammunition in the weapon, it produces its own, automatically creating one piece of magic ammunition when you make a ranged attack with it. The ammunition created by the bow vanishes the instant after it hits or misses a target.",
+					"While wielding this magic bow, you can use a bonus action to enter a semi-incorporeal state until the start of your next turn. While semi-incorporeal, you have resistance to bludgeoning, piercing, and slashing damage. Once this bonus action is used, it can't be used again until the next dawn."
+				]
+			}
+		},
+		{
+			"name": "Gloomwrought Armor",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "LA"
+				},
+				{
+					"type": "MA"
+				},
+				{
+					"type": "HA"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Gloomwrought ",
+				"source": "BMT",
+				"page": 67,
+				"rarity": "rare",
+				"reqAttune": true,
+				"recharge": "dawn",
+				"rechargeAmount": "{@dice 1d3}",
+				"charges": 3,
+				"entries": [
+					"This intricate grayscale armor was forged in the Shadowfell and is infused with that plane's gloom.",
+					"While you're wearing this armor, you have advantage on saving throws you make to avoid or end the frightened condition on yourself.",
+					"This armor has 3 charges. You can expend a charge to cast the {@spell Calm Emotions} spell (save DC 15) from the armor. This armor regains {@dice 1d3} expended charges daily at dawn."
+				],
+				"attachedSpells": [
+					"calm emotions"
+				]
+			}
+		},
+		{
+			"name": "Hardened Delerium-tipped Arrows",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"arrow": true
+				},
+				{
+					"bolt": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Hardened Delerium-tipped ",
+				"source": "DoDk",
+				"page": 230,
+				"rarity": "rare",
+				"entries": [
+					"This piece of ammunition has a refined delerium arrowtip. A creature hit by a ranged attack using one of these arrows takes an extra ({@dice 3d6}) necrotic damage and must succeed on a DC 15 Constitution saving throw or gain one {@adventure level of contamination|DoDk|12}. Once it hits a target, the delerium tip crumbles to dust and the arrow becomes nonmagical."
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Hellfire Weapon",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"weapon": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Hellfire ",
+				"source": "BGDIA",
+				"page": 223,
+				"rarity": "uncommon",
+				"entries": [
+					"This weapon is fashioned from infernal iron and traced with veins of hellfire that shed dim light in a 5-foot-radius.",
+					"Any humanoid killed by an attack made with this weapon has its soul funneled into the River Styx, where it's reborn instantly as a {@creature lemure} devil."
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Holy Avenger",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"sword": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Holy Avenger ",
+				"source": "DMG",
+				"page": 174,
+				"srd": true,
+				"tier": "major",
+				"rarity": "legendary",
+				"reqAttune": "by a paladin",
+				"reqAttuneTags": [
+					{
+						"class": "paladin"
+					}
+				],
+				"bonusWeapon": "+3",
+				"entries": [
+					"You gain a +3 bonus to attack and damage rolls made with this magic weapon. When you hit a fiend or an undead with it, that creature takes an extra {@dice 2d10} radiant damage.",
+					"While you hold the drawn sword, it creates an aura in a 10-foot radius around you. You and all creatures friendly to you in the aura have advantage on saving throws against spells and other magical effects. If you have 17 or more levels in the paladin class, the radius of the aura increases to 30 feet."
+				],
+				"lootTables": [
+					"Magic Item Table I"
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Imbued Wood (Fernian Ash)",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "SCF",
+					"scfType": "arcane"
+				}
+			],
+			"excludes": {
+				"name": [
+					"Crystal",
+					"Orb"
+				]
+			},
+			"inherits": {
+				"namePrefix": "Fernian Ash ",
+				"source": "ERLW",
+				"page": 277,
+				"rarity": "common",
+				"reqAttune": true,
+				"wondrous": true,
+				"bonusSpellDamage": "+1",
+				"entries": [
+					"An imbued wood focus is a rod, staff, or wand cut from a tree infused with extraplanar energy. If you're a spellcaster, you can use this item as a spellcasting focus.",
+					"When you cast a damage-dealing spell using this item as your spellcasting focus, you gain a +1 bonus to one fire damage roll of the spell."
+				]
+			}
+		},
+		{
+			"name": "Imbued Wood (Irian Rosewood)",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "SCF",
+					"scfType": "arcane"
+				}
+			],
+			"excludes": {
+				"name": [
+					"Crystal",
+					"Orb"
+				]
+			},
+			"inherits": {
+				"namePrefix": "Irian Rosewood ",
+				"source": "ERLW",
+				"page": 277,
+				"rarity": "common",
+				"reqAttune": true,
+				"wondrous": true,
+				"bonusSpellDamage": "+1",
+				"entries": [
+					"An imbued wood focus is a rod, staff, or wand cut from a tree infused with extraplanar energy. If you're a spellcaster, you can use this item as a spellcasting focus.",
+					"When you cast a damage-dealing spell using this item as your spellcasting focus, you gain a +1 bonus to one radiant damage roll of the spell."
+				]
+			}
+		},
+		{
+			"name": "Imbued Wood (Kythrian Manchineel)",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "SCF",
+					"scfType": "arcane"
+				}
+			],
+			"excludes": {
+				"name": [
+					"Crystal",
+					"Orb"
+				]
+			},
+			"inherits": {
+				"namePrefix": "Kythrian Manchineel ",
+				"source": "ERLW",
+				"page": 277,
+				"rarity": "common",
+				"reqAttune": true,
+				"wondrous": true,
+				"bonusSpellDamage": "+1",
+				"entries": [
+					"An imbued wood focus is a rod, staff, or wand cut from a tree infused with extraplanar energy. If you're a spellcaster, you can use this item as a spellcasting focus.",
+					"When you cast a damage-dealing spell using this item as your spellcasting focus, you gain a +1 bonus to one acid or poison damage roll of the spell."
+				]
+			}
+		},
+		{
+			"name": "Imbued Wood (Lamannian Oak)",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "SCF",
+					"scfType": "arcane"
+				}
+			],
+			"excludes": {
+				"name": [
+					"Crystal",
+					"Orb"
+				]
+			},
+			"inherits": {
+				"namePrefix": "Lamannian Oak ",
+				"source": "ERLW",
+				"page": 277,
+				"rarity": "common",
+				"reqAttune": true,
+				"wondrous": true,
+				"bonusSpellDamage": "+1",
+				"entries": [
+					"An imbued wood focus is a rod, staff, or wand cut from a tree infused with extraplanar energy. If you're a spellcaster, you can use this item as a spellcasting focus.",
+					"When you cast a damage-dealing spell using this item as your spellcasting focus, you gain a +1 bonus to one lightning or thunder damage roll of the spell."
+				]
+			}
+		},
+		{
+			"name": "Imbued Wood (Mabaran Ebony)",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "SCF",
+					"scfType": "arcane"
+				}
+			],
+			"excludes": {
+				"name": [
+					"Crystal",
+					"Orb"
+				]
+			},
+			"inherits": {
+				"namePrefix": "Mabaran Ebony ",
+				"source": "ERLW",
+				"page": 277,
+				"rarity": "common",
+				"reqAttune": true,
+				"wondrous": true,
+				"bonusSpellDamage": "+1",
+				"entries": [
+					"An imbued wood focus is a rod, staff, or wand cut from a tree infused with extraplanar energy. If you're a spellcaster, you can use this item as a spellcasting focus.",
+					"When you cast a damage-dealing spell using this item as your spellcasting focus, you gain a +1 bonus to one necrotic damage roll of the spell."
+				]
+			}
+		},
+		{
+			"name": "Imbued Wood (Risian Pine)",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "SCF",
+					"scfType": "arcane"
+				}
+			],
+			"excludes": {
+				"name": [
+					"Crystal",
+					"Orb"
+				]
+			},
+			"inherits": {
+				"namePrefix": "Risian Pine ",
+				"source": "ERLW",
+				"page": 277,
+				"rarity": "common",
+				"reqAttune": true,
+				"wondrous": true,
+				"bonusSpellDamage": "+1",
+				"entries": [
+					"An imbued wood focus is a rod, staff, or wand cut from a tree infused with extraplanar energy. If you're a spellcaster, you can use this item as a spellcasting focus.",
+					"When you cast a damage-dealing spell using this item as your spellcasting focus, you gain a +1 bonus to one cold damage roll of the spell."
+				]
+			}
+		},
+		{
+			"name": "Imbued Wood (Shavarran Birch)",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "SCF",
+					"scfType": "arcane"
+				}
+			],
+			"excludes": {
+				"name": [
+					"Crystal",
+					"Orb"
+				]
+			},
+			"inherits": {
+				"namePrefix": "Shavarran Birch ",
+				"source": "ERLW",
+				"page": 277,
+				"rarity": "common",
+				"reqAttune": true,
+				"wondrous": true,
+				"bonusSpellDamage": "+1",
+				"entries": [
+					"An imbued wood focus is a rod, staff, or wand cut from a tree infused with extraplanar energy. If you're a spellcaster, you can use this item as a spellcasting focus.",
+					"When you cast a damage-dealing spell using this item as your spellcasting focus, you gain a +1 bonus to one force damage roll of the spell."
+				]
+			}
+		},
+		{
+			"name": "Imbued Wood (Xorian Wenge)",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "SCF",
+					"scfType": "arcane"
+				}
+			],
+			"excludes": {
+				"name": [
+					"Crystal",
+					"Orb"
+				]
+			},
+			"inherits": {
+				"namePrefix": "Xorian Wenge ",
+				"source": "ERLW",
+				"page": 277,
+				"rarity": "common",
+				"reqAttune": true,
+				"wondrous": true,
+				"bonusSpellDamage": "+1",
+				"entries": [
+					"An imbued wood focus is a rod, staff, or wand cut from a tree infused with extraplanar energy. If you're a spellcaster, you can use this item as a spellcasting focus.",
+					"When you cast a damage-dealing spell using this item as your spellcasting focus, you gain a +1 bonus to one psychic damage roll of the spell."
+				]
+			}
+		},
+		{
+			"name": "Last Stand Armor",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"armor": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Last Stand ",
+				"source": "EGW",
+				"page": 267,
+				"rarity": "very rare",
+				"bonusAc": "+1",
+				"entries": [
+					"You have a {=bonusAc} bonus to AC while wearing this armor, which shimmers softly.",
+					"If you die while wearing the armor, it is destroyed, and each celestial, fey, and fiend within 30 feet of you must succeed on a DC 15 Charisma saving throw or be banished to its home plane of existence, unless it is already there."
+				]
+			}
+		},
+		{
+			"name": "Living Armor",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"armor": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Living ",
+				"source": "ERLW",
+				"page": 278,
+				"resist": [
+					"necrotic",
+					"poison",
+					"psychic"
+				],
+				"rarity": "very rare",
+				"reqAttune": true,
+				"bonusAc": "+1",
+				"entries": [
+					"This hideous armor is formed from black chitin, beneath which veins pulse and red sinews glisten. To attune to this item, you must wear it for the entire attunement period, during which tendrils on the inside burrow into you.",
+					"While wearing this armor, you have a {=bonusAc} bonus to Armor Class, and you have resistance to the following damage types: necrotic, poison, and psychic.",
+					{
+						"type": "entries",
+						"name": "Symbiotic Nature",
+						"entries": [
+							"The armor can't be removed from you while you're attuned to it, and you can't voluntarily end your attunement to it. If you're targeted by a spell that ends a curse, your attunement to the armor ends, and it detaches from you.",
+							"The armor requires fresh blood be fed to it. Immediately after you finish any long rest, you must either feed half of your remaining Hit Dice to the armor (round up) or take 1 level of {@condition exhaustion}."
+						]
+					}
+				]
+			}
+		},
+		{
+			"name": "Luck Blade",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"sword": true
+				}
+			],
+			"entries": [
+				"You gain a +1 bonus to attack and damage rolls made with this magic weapon. While the sword is on your person, you also gain a +1 bonus to saving throws.",
+				{
+					"type": "entries",
+					"name": "Luck",
+					"entries": [
+						"If the sword is on your person, you can call on its luck (no action required) to reroll one attack roll, ability check, or saving throw you dislike. You must use the second roll. This property can't be used again until the next dawn."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Wish",
+					"entries": [
+						"The sword has {@dice 1d4 - 1} charges. While holding it, you can use an action to expend 1 charge and cast the {@spell wish} spell from it. This property can't be used again until the next dawn. The sword loses this property if it has no charges."
+					]
+				}
+			],
+			"inherits": {
+				"namePrefix": "Luck Blade ",
+				"source": "DMG",
+				"page": 179,
+				"srd": true,
+				"tier": "major",
+				"rarity": "legendary",
+				"reqAttune": true,
+				"bonusWeapon": "+1",
+				"bonusSavingThrow": "+1",
+				"charges": "{@dice 1d4 - 1}",
+				"entries": [
+					"You gain a +1 bonus to attack and damage rolls made with this magic weapon. While the sword is on your person, you also gain a +1 bonus to saving throws.",
+					{
+						"type": "entries",
+						"name": "Luck",
+						"entries": [
+							"If the sword is on your person, you can call on its luck (no action required) to reroll one attack roll, ability check, or saving throw you dislike. You must use the second roll. This property can't be used again until the next dawn."
+						]
+					},
+					{
+						"type": "entries",
+						"name": "Wish",
+						"entries": [
+							"The sword has {@dice 1d4 - 1} charges. While holding it, you can use an action to expend 1 charge and cast the {@spell wish} spell from it. This property can't be used again until the next dawn. The sword loses this property if it has no charges."
+						]
+					}
+				],
+				"attachedSpells": [
+					"wish"
+				],
+				"lootTables": [
+					"Magic Item Table I"
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Lycan Weapon",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"weapon": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Lycan ",
+				"source": "GHLoE",
+				"page": 111,
+				"rarity": "rare",
+				"bonusWeapon": "+2",
+				"entries": [
+					"Made from the claws, teeth, and bones of lycanthropes, these weapons are particularly effective against other lycanthropes or vampires. You gain a {=bonusWeapon} bonus to attack and damage rolls made with this weapon.",
+					"Additionally, on a successful attack against a lycanthrope, the target is forced back into its human form unless it succeeds on a DC 10 Charisma saving throw. Also, damage done to vampires with lycan weapons cannot be regenerated until the creature finishes a short rest."
+				]
+			}
+		},
+		{
+			"name": "Mariner's Armor",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"armor": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Mariner's ",
+				"source": "DMG",
+				"page": 181,
+				"tier": "minor",
+				"rarity": "uncommon",
+				"modifySpeed": {
+					"equal": {
+						"swim": "walk"
+					}
+				},
+				"entries": [
+					"While wearing this armor, you have a swimming speed equal to your walking speed. In addition, whenever you start your turn underwater with 0 hit points, the armor causes you to rise 60 feet toward the surface. The armor is decorated with fish and shell motifs."
+				],
+				"lootTables": [
+					"Magic Item Table B"
+				]
+			}
+		},
+		{
+			"name": "Mind Blade",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"sword": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Mind Blade ",
+				"source": "VGM",
+				"page": 81,
+				"rarity": "rare",
+				"reqAttune": "by a specific individual",
+				"entries": [
+					"Mind flayers can turn any nonmagical sword into a mind blade. Only one creature can attune to it: either a specific mind flayer or one of its thralls. In the hands of any other creature, the mind blade functions as a normal sword of its kind. In the hands of its intended wielder, the mind blade is a magic weapon that deals an extra {@dice 2d6} psychic damage to any target it hits."
+				]
+			}
+		},
+		{
+			"name": "Mind Carapace Armor",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "HA"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Mind Carapace ",
+				"source": "VGM",
+				"page": 81,
+				"rarity": "uncommon",
+				"reqAttune": "by a specific individual",
+				"entries": [
+					"Any nonmagical suit of heavy armor can be turned by mind flayers into mind carapace armor. Only one creature can attune to it: either a specific mind flayer or one of its thralls. While worn by any other creature, the mind carapace armor functions as normal armor of its kind. To its intended wearer, the armor grants advantage on Intelligence, Wisdom, and Charisma saving throws and makes its wearer immune to the {@condition frightened} condition."
+				]
+			}
+		},
+		{
+			"name": "Mithral +1 Armor",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "HA"
+				},
+				{
+					"type": "MA"
+				}
+			],
+			"excludes": {
+				"name": "Hide Armor"
+			},
+			"inherits": {
+				"namePrefix": "Mithral +1 ",
+				"source": "AI",
+				"page": 156,
+				"rarity": "rare",
+				"strength": null,
+				"bonusAc": "+1",
+				"stealth": false,
+				"entries": [
+					"You have a {=bonusAc} bonus to AC while wearing this armor.",
+					"Mithral is a light, flexible metal. A mithral chain shirt or breastplate can be worn under normal clothes. If the armor normally imposes disadvantage on Dexterity ({@skill Stealth}) checks or has a Strength requirement, the mithral version of the armor doesn't."
+				]
+			}
+		},
+		{
+			"name": "Mithral Armor",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "HA"
+				},
+				{
+					"type": "MA"
+				}
+			],
+			"excludes": {
+				"name": "Hide Armor"
+			},
+			"inherits": {
+				"namePrefix": "Mithral ",
+				"source": "DMG",
+				"page": 182,
+				"srd": true,
+				"tier": "minor",
+				"rarity": "uncommon",
+				"strength": null,
+				"stealth": false,
+				"entries": [
+					"Mithral is a light, flexible metal. A mithral chain shirt or breastplate can be worn under normal clothes. If the armor normally imposes disadvantage on Dexterity ({@skill Stealth}) checks or has a Strength requirement, the mithral version of the armor doesn't."
+				],
+				"lootTables": [
+					"Magic Item Table B"
+				]
+			}
+		},
+		{
+			"name": "Mizzium Armor",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "HA"
+				},
+				{
+					"type": "MA"
+				}
+			],
+			"excludes": {
+				"name": "Hide Armor"
+			},
+			"inherits": {
+				"namePrefix": "Mizzium ",
+				"source": "GGR",
+				"page": 179,
+				"rarity": "rare",
+				"entries": [
+					"This suit of armor is reinforced with a magically enhanced metal alloy called mizzium, which is made in Izzet foundries. While you're wearing the armor, any critical hit against you becomes a normal hit. In addition, when you are subjected to a magical effect that allows you to make a Strength or Constitution saving throw to take only half damage, you instead take no damage if you succeed on the saving throw."
+				]
+			}
+		},
+		{
+			"name": "Molten Bronze Skin",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"name": "Half Plate Armor",
+					"source": "PHB"
+				},
+				{
+					"name": "Plate Armor",
+					"source": "PHB"
+				},
+				{
+					"name": "Breastplate",
+					"source": "PHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Molten Bronze Skin ",
+				"source": "MOT",
+				"page": 197,
+				"resist": [
+					"fire"
+				],
+				"rarity": "rare",
+				"reqAttune": true,
+				"stealth": false,
+				"entries": [
+					"This magical armor appears as a jug of molten bronze. When you attune to it, the bronze adheres and contours to your skin. The armor can be worn under normal clothes, but it doesn't impede bodily functions. Once you put it on, it can't be removed unless you choose to do so.",
+					"While wearing the armor, you have resistance to fire damage. The armor also doesn't impose disadvantage on Dexterity ({@skill Stealth}) checks."
+				]
+			}
+		},
+		{
+			"name": "Moon-Touched Sword",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"sword": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Moon-Touched ",
+				"source": "XGE",
+				"page": 138,
+				"tier": "minor",
+				"rarity": "common",
+				"entries": [
+					"In darkness, the unsheathed blade of this sword sheds moonlight, creating bright light in a 15-foot radius and dim light for an additional 15 feet."
+				]
+			}
+		},
+		{
+			"name": "Nine Lives Stealer",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"sword": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Nine Lives Stealer ",
+				"source": "DMG",
+				"page": 183,
+				"srd": true,
+				"tier": "major",
+				"rarity": "very rare",
+				"reqAttune": true,
+				"bonusWeapon": "+2",
+				"charges": "{@dice 1d8 + 1}",
+				"entries": [
+					"You gain a +2 bonus to attack and damage rolls made with this magic weapon.",
+					"The sword has {@dice 1d8 + 1} charges. If you score a critical hit against a creature that has fewer than 100 hit points, it must succeed on a DC 15 Constitution saving throw or be slain instantly as the sword tears its life force from its body (a construct or an undead is immune). The sword loses 1 charge if the creature is slain. When the sword has no charges remaining, it loses this property."
+				],
+				"lootTables": [
+					"Magic Item Table H"
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Oceanic Weapon",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "R"
+				},
+				{
+					"property": "T"
+				}
+			],
+			"excludes": {
+				"net": true
+			},
+			"inherits": {
+				"namePrefix": "Oceanic ",
+				"source": "TDCSR",
+				"page": 199,
+				"rarity": "rare",
+				"reqAttune": true,
+				"bonusWeapon": "+1",
+				"modifySpeed": {
+					"static": {
+						"swim": 30
+					}
+				},
+				"recharge": "dawn",
+				"entries": [
+					"This elegant weapon is adorned with engravings depicting leaping dolphins and drifting jellyfish. You gain a {=bonusWeapon} bonus to attack and damage rolls made with this magic weapon, and you ignore {@quickref Underwater Combat|PHB|3|0|the normal penalties on ranged weapon attacks while using this weapon underwater}. While holding the weapon in front of you with both hands, you have a swimming speed of 30 feet.",
+					"Additionally, while you hold the weapon, you can use an action to cast the {@spell water breathing} spell. Once this property is used, it can't be used again until the next dawn."
+				],
+				"attachedSpells": [
+					"water breathing"
+				]
+			}
+		},
+		{
+			"name": "Orb of Shielding (Fernian Basalt)",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "SCF",
+					"scfType": "arcane"
+				}
+			],
+			"excludes": {
+				"name": [
+					"Staff",
+					"Rod",
+					"Wand"
+				]
+			},
+			"inherits": {
+				"namePrefix": "Fernian Basalt ",
+				"source": "ERLW",
+				"page": 278,
+				"rarity": "common",
+				"reqAttune": true,
+				"wondrous": true,
+				"entries": [
+					"An orb of shielding is a polished, spherical chunk of crystal or stone aligned to one of the planes of existence. If you're a spellcaster, you can use this orb as a spellcasting focus.",
+					"If you're holding the orb when you take fire damage, you can use your reaction to reduce the damage by {@dice 1d4} (to a minimum of 0)."
+				]
+			}
+		},
+		{
+			"name": "Orb of Shielding (Irian Quartz)",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "SCF",
+					"scfType": "arcane"
+				}
+			],
+			"excludes": {
+				"name": [
+					"Staff",
+					"Rod",
+					"Wand"
+				]
+			},
+			"inherits": {
+				"namePrefix": "Irian Quartz ",
+				"source": "ERLW",
+				"page": 278,
+				"rarity": "common",
+				"reqAttune": true,
+				"wondrous": true,
+				"entries": [
+					"An orb of shielding is a polished, spherical chunk of crystal or stone aligned to one of the planes of existence. If you're a spellcaster, you can use this orb as a spellcasting focus.",
+					"If you're holding the orb when you take radiant damage, you can use your reaction to reduce the damage by {@dice 1d4} (to a minimum of 0)."
+				]
+			}
+		},
+		{
+			"name": "Orb of Shielding (Kythrian Skarn)",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "SCF",
+					"scfType": "arcane"
+				}
+			],
+			"excludes": {
+				"name": [
+					"Staff",
+					"Rod",
+					"Wand"
+				]
+			},
+			"inherits": {
+				"namePrefix": "Kythrian Skarn ",
+				"source": "ERLW",
+				"page": 278,
+				"rarity": "common",
+				"reqAttune": true,
+				"wondrous": true,
+				"entries": [
+					"An orb of shielding is a polished, spherical chunk of crystal or stone aligned to one of the planes of existence. If you're a spellcaster, you can use this orb as a spellcasting focus.",
+					"If you're holding the orb when you take acid or poison damage, you can use your reaction to reduce the damage by {@dice 1d4} (to a minimum of 0)."
+				]
+			}
+		},
+		{
+			"name": "Orb of Shielding (Lamannian Flint)",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "SCF",
+					"scfType": "arcane"
+				}
+			],
+			"excludes": {
+				"name": [
+					"Staff",
+					"Rod",
+					"Wand"
+				]
+			},
+			"inherits": {
+				"namePrefix": "Lamannian Flint ",
+				"source": "ERLW",
+				"page": 278,
+				"rarity": "common",
+				"reqAttune": true,
+				"wondrous": true,
+				"entries": [
+					"An orb of shielding is a polished, spherical chunk of crystal or stone aligned to one of the planes of existence. If you're a spellcaster, you can use this orb as a spellcasting focus.",
+					"If you're holding the orb when you take lightning or thunder damage, you can use your reaction to reduce the damage by {@dice 1d4} (to a minimum of 0)."
+				]
+			}
+		},
+		{
+			"name": "Orb of Shielding (Mabaran Obsidian)",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "SCF",
+					"scfType": "arcane"
+				}
+			],
+			"excludes": {
+				"name": [
+					"Staff",
+					"Rod",
+					"Wand"
+				]
+			},
+			"inherits": {
+				"namePrefix": "Mabaran Obsidian ",
+				"source": "ERLW",
+				"page": 278,
+				"rarity": "common",
+				"reqAttune": true,
+				"wondrous": true,
+				"entries": [
+					"An orb of shielding is a polished, spherical chunk of crystal or stone aligned to one of the planes of existence. If you're a spellcaster, you can use this orb as a spellcasting focus.",
+					"If you're holding the orb when you take necrotic damage, you can use your reaction to reduce the damage by {@dice 1d4} (to a minimum of 0)."
+				]
+			}
+		},
+		{
+			"name": "Orb of Shielding (Risian Shale)",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "SCF",
+					"scfType": "arcane"
+				}
+			],
+			"excludes": {
+				"name": [
+					"Staff",
+					"Rod",
+					"Wand"
+				]
+			},
+			"inherits": {
+				"namePrefix": "Risian Shale ",
+				"source": "ERLW",
+				"page": 278,
+				"rarity": "common",
+				"reqAttune": true,
+				"wondrous": true,
+				"entries": [
+					"An orb of shielding is a polished, spherical chunk of crystal or stone aligned to one of the planes of existence. If you're a spellcaster, you can use this orb as a spellcasting focus.",
+					"If you're holding the orb when you take cold damage, you can use your reaction to reduce the damage by {@dice 1d4} (to a minimum of 0)."
+				]
+			}
+		},
+		{
+			"name": "Orb of Shielding (Shavarran Chert)",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "SCF",
+					"scfType": "arcane"
+				}
+			],
+			"excludes": {
+				"name": [
+					"Staff",
+					"Rod",
+					"Wand"
+				]
+			},
+			"inherits": {
+				"namePrefix": "Shavarran Chert ",
+				"source": "ERLW",
+				"page": 278,
+				"rarity": "common",
+				"reqAttune": true,
+				"wondrous": true,
+				"entries": [
+					"An orb of shielding is a polished, spherical chunk of crystal or stone aligned to one of the planes of existence. If you're a spellcaster, you can use this orb as a spellcasting focus.",
+					"If you're holding the orb when you take force damage, you can use your reaction to reduce the damage by {@dice 1d4} (to a minimum of 0)."
+				]
+			}
+		},
+		{
+			"name": "Orb of Shielding (Xorian Marble)",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "SCF",
+					"scfType": "arcane"
+				}
+			],
+			"excludes": {
+				"name": [
+					"Staff",
+					"Rod",
+					"Wand"
+				]
+			},
+			"inherits": {
+				"namePrefix": "Xorian Marble ",
+				"source": "ERLW",
+				"page": 278,
+				"rarity": "common",
+				"reqAttune": true,
+				"wondrous": true,
+				"entries": [
+					"An orb of shielding is a polished, spherical chunk of crystal or stone aligned to one of the planes of existence. If you're a spellcaster, you can use this orb as a spellcasting focus.",
+					"If you're holding the orb when you take psychic damage, you can use your reaction to reduce the damage by {@dice 1d4} (to a minimum of 0)."
+				]
+			}
+		},
+		{
+			"name": "Polymorph Blade",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"sword": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Polymorph Blade ",
+				"source": "LLK",
+				"page": 56,
+				"rarity": "very rare",
+				"reqAttune": true,
+				"curse": true,
+				"entries": [
+					"When you attack a creature with this magic weapon and roll a 20 on the attack roll, the creature must make a DC 15 Wisdom saving throw in addition to suffering the attack's normal effects. On a failed save, the creature also suffers the effects of a {@spell polymorph} spell. Roll a d20 and consult the following table to determine the form the target creature is transformed into.",
+					{
+						"type": "table",
+						"caption": "",
+						"colLabels": [
+							"d20",
+							"New Form"
+						],
+						"colStyles": [
+							"col-2 text-center",
+							"col-10"
+						],
+						"rows": [
+							[
+								"1",
+								"{@creature Tyrannosaurus Rex}"
+							],
+							[
+								"2",
+								"{@creature Giant Ape}"
+							],
+							[
+								"3",
+								"{@creature Elephant}"
+							],
+							[
+								"4",
+								"{@creature Giant scorpion}"
+							],
+							[
+								"5",
+								"{@creature Rhinoceros}"
+							],
+							[
+								"6",
+								"{@creature Polar bear}"
+							],
+							[
+								"7",
+								"{@creature Giant toad}"
+							],
+							[
+								"8",
+								"{@creature Giant eagle}"
+							],
+							[
+								"9",
+								"{@creature Black bear}"
+							],
+							[
+								"10",
+								"{@creature Crocodile}"
+							],
+							[
+								"11",
+								"{@creature Wolf}"
+							],
+							[
+								"12",
+								"{@creature Riding Horse||Horse}"
+							],
+							[
+								"13",
+								"{@creature Ox|VGM}"
+							],
+							[
+								"14",
+								"{@creature Giant frog}"
+							],
+							[
+								"15",
+								"{@creature Poisonous snake}"
+							],
+							[
+								"16",
+								"{@creature Hawk}"
+							],
+							[
+								"17",
+								"{@creature Octopus}"
+							],
+							[
+								"18",
+								"{@creature Cat}"
+							],
+							[
+								"19",
+								"{@creature Rat}"
+							],
+							[
+								"20",
+								"Rabbit"
+							]
+						]
+					},
+					"A creature is immune to this effect if it is immune to damage of the weapon's type, is a shapechanger, or has legendary actions.",
+					{
+						"name": "Curse",
+						"type": "entries",
+						"entries": [
+							"This weapon is cursed, and becoming attuned to it extends the curse to you. Until the curse is broken with a {@spell remove curse} spell or similar magic, you are unwilling to part with the weapon. Whenever you attack a creature with this weapon and roll a 1 on the attack roll, you suffer the effect of a {@spell polymorph} spell for 1 hour, rolling on the table to determine your new form."
+						]
+					}
+				]
+			}
+		},
+		{
+			"name": "Red-Feather Bow",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"bow": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Red-Feather ",
+				"source": "HWCS",
+				"page": 214,
+				"rarity": "uncommon",
+				"reqAttune": true,
+				"bonusWeapon": "+1",
+				"charges": 3,
+				"entries": [
+					"A prized hunting weapon among mistral raptors, this bow is imbued with magic to help the wielder see their prey from afar.",
+					"You gain a {=bonusWeapon} bonus to attack and damage rolls made with this magic weapon.",
+					"The bow has 3 charges. When you fire an arrow from this bow, you can speak the command word and use a charge to see through the arrow as a bonus action. You can see from the point your arrow lands as if you were there for 1 minute. If the arrow strikes a creature, you see what they see for the same duration."
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Ruidium Armor",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "MA"
+				},
+				{
+					"type": "HA"
+				}
+			],
+			"excludes": {
+				"name": "Hide Armor"
+			},
+			"inherits": {
+				"namePrefix": "Ruidium ",
+				"source": "CRCotN",
+				"page": 215,
+				"resist": [
+					"psychic"
+				],
+				"rarity": "very rare",
+				"reqAttune": true,
+				"bonusAc": "+1",
+				"modifySpeed": {
+					"equal": {
+						"swim": "walk"
+					}
+				},
+				"entries": [
+					"This magic armor has a dull, rusty color or has veins of ruidium running through it. While you wear this armor, you gain the following benefits:",
+					{
+						"type": "list",
+						"items": [
+							"You have resistance to psychic damage.",
+							"You can breathe water.",
+							"You gain a swimming speed equal to your walking speed."
+						]
+					},
+					{
+						"type": "entries",
+						"name": "Ruidium Corruption",
+						"entries": [
+							"When you roll a 1 on a saving throw while wearing this armor, you must make a DC 15 Charisma saving throw. On a failed save, you gain 1 level of {@condition exhaustion}. If you are not already suffering from ruidium corruption, you become corrupted when you fail this save."
+						]
+					},
+					{
+						"type": "entries",
+						"name": "If Ruidium Is Destroyed",
+						"entries": [
+							"If the Apotheon is killed or redeemed, all the ruidium in Exandria is destroyed instantly, and ruidium armor becomes {@item +1 armor}."
+						]
+					}
+				]
+			}
+		},
+		{
+			"name": "Ruidium Weapon",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"weapon": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Ruidium ",
+				"source": "CRCotN",
+				"page": 216,
+				"rarity": "very rare",
+				"reqAttune": true,
+				"bonusWeapon": "+2",
+				"modifySpeed": {
+					"equal": {
+						"swim": "walk"
+					}
+				},
+				"entries": [
+					"This magic weapon has a dull, rusty color or has veins of ruidium running through it. While this weapon is on your person, you gain the following benefits:",
+					{
+						"type": "list",
+						"items": [
+							"You can breathe water.",
+							"You gain a swimming speed equal to your walking speed."
+						]
+					},
+					{
+						"type": "entries",
+						"name": "Ruidium Strike",
+						"entries": [
+							"A creature you hit with this weapon takes an extra {@damage 2d6} psychic damage."
+						]
+					},
+					{
+						"type": "entries",
+						"name": "Ruidium Corruption",
+						"entries": [
+							"When you roll a 1 on an attack roll made with this weapon, you must make a DC 20 Charisma saving throw. On a failed save, you gain 1 level of {@condition exhaustion}. If you are not already suffering from ruidium corruption, you become corrupted when you fail this save."
+						]
+					},
+					{
+						"type": "entries",
+						"name": "If Ruidium Is Destroyed",
+						"entries": [
+							"If the Apotheon is killed or redeemed, all the ruidium in Exandria is destroyed instantly, and a ruidium weapon becomes a {@item +2 weapon}."
+						]
+					}
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Silvered Ammunition",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "A"
+				},
+				{
+					"type": "AF|DMG"
+				}
+			],
+			"excludes": {
+				"name": "Energy Cell"
+			},
+			"ammo": true,
+			"entries": [
+				"Some monsters that have immunity or resistance to nonmagical weapons are susceptible to silver ammunition, so cautious adventurers invest extra coin to plate their ammunition in silver. You can silver ten pieces of ammunition for 100 gp. This cost represents not only the price of the silver, but the time and expertise needed to add silver to the ammunition without making it less effective."
+			],
+			"inherits": {
+				"namePrefix": "Silvered ",
+				"source": "PHB",
+				"page": 148,
+				"basicRules": true,
+				"tier": "minor",
+				"rarity": "unknown"
+			}
+		},
+		{
+			"name": "Silvered Weapon",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"weapon": true
+				}
+			],
+			"excludes": {
+				"net": true
+			},
+			"entries": [
+				"Some monsters that have immunity or resistance to nonmagical weapons are susceptible to silver weapons, so cautious adventurers invest extra coin to plate their weapons with silver. You can silver a single weapon for 100 gp. This cost represents not only the price of the silver, but the time and expertise needed to add silver to the weapon without making it less effective."
+			],
+			"inherits": {
+				"namePrefix": "Silvered ",
+				"source": "PHB",
+				"page": 148,
+				"basicRules": true,
+				"tier": "major",
+				"rarity": "unknown",
+				"valueExpression": "[[baseItem.value]] + 10000"
+			}
+		},
+		{
+			"name": "Slumbering Dragon's Wrath Weapon",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"weapon": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Slumbering Dragon's Wrath ",
+				"source": "FTD",
+				"page": 25,
+				"rarity": "uncommon",
+				"reqAttune": true,
+				"entries": [
+					"This weapon is decorated with dragon heads, claws, wings, scales, or Draconic letters. When it steeps in a dragon's hoard, it absorbs the energy of the dragon's breath weapon and deals damage of that type with its special properties.",
+					"Whenever you roll a 20 on your attack roll with this weapon, each creature of your choice within 5 feet of the target takes 5 damage of the type dealt by the dragon's breath weapon."
+				]
+			}
+		},
+		{
+			"name": "Smoldering Armor",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"armor": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Smoldering ",
+				"source": "XGE",
+				"page": 139,
+				"tier": "minor",
+				"rarity": "common",
+				"entries": [
+					"Wisps of harmless, odorless smoke rise from this armor while it is worn."
+				]
+			}
+		},
+		{
+			"name": "Starcrossed Bow",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"bow": true
+				},
+				{
+					"crossbow": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Starcrossed ",
+				"source": "DoDk",
+				"page": 232,
+				"rarity": "rare",
+				"reqAttune": true,
+				"bonusWeapon": "+2",
+				"recharge": "dawn",
+				"rechargeAmount": 3,
+				"charges": 3,
+				"entries": [
+					"This magical bow or crossbow has an intricate arrangement of delerium shards and focusing lenses along the stock where a bolt would normally be loaded, and instead magically conjures its own projectiles. You gain a {=bonusWeapon} bonus to attack and damage rolls made with this weapon, which deals radiant damage instead of piercing damage and ignores the ammunition and loading properties.",
+					"The weapon has 3 charges, which are regained each day at dawn. When you hit with a ranged attack using it, you can cause the bolt to explode in a brilliant flash of light. The target you hit and any creatures within 10 feet of it must succeed on a DC 15 Constitution saving throw or become blinded until the end of your next turn."
+				]
+			}
+		},
+		{
+			"name": "Starshot Crossbow",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"crossbow": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Starshot ",
+				"source": "BMT",
+				"page": 38,
+				"rarity": "rare",
+				"reqAttune": true,
+				"recharge": "dawn",
+				"rechargeAmount": "{@dice 1d3}",
+				"charges": 3,
+				"entries": [
+					"This crossbow is crafted from blackened wood, and its limbs bear pearl inlays depicting constellations. You ignore the loading property with this crossbow. If you load no ammunition in the weapon, it produces its own, automatically creating one piece of magic ammunition when you make a ranged attack with it. The ammunition created by the weapon vanishes the instant after it hits or misses a target. The crossbow has 3 charges and regains {@dice 1d3} expended charges daily at dawn.",
+					{
+						"type": "entries",
+						"name": "Constellations",
+						"entries": [
+							"The crossbow is decorated with three constellations. As a bonus action, you can tap one of the constellations to invoke it, expending 1 charge and producing one of the following effects:",
+							{
+								"type": "list",
+								"style": "list-hang-notitle",
+								"items": [
+									{
+										"type": "item",
+										"name": "Balance",
+										"entries": [
+											"The next time you hit a creature with a ranged attack roll using this crossbow before the end of your next turn, you or another creature of your choice within 30 feet of you can regain hit points equal to {@dice 1d8} plus your proficiency bonus."
+										]
+									},
+									{
+										"type": "item",
+										"name": "Flames",
+										"entries": [
+											"Until the end of your next turn, when you hit a creature with a ranged attack roll using this crossbow, the attack deals an additional {@damage 2d8} fire damage."
+										]
+									},
+									{
+										"type": "item",
+										"name": "Rogue",
+										"entries": [
+											"Until the end of your next turn, you have the invisible condition, and anything you are wearing or carrying is also invisible."
+										]
+									}
+								]
+							}
+						]
+					}
+				]
+			}
+		},
+		{
+			"name": "Stirring Dragon's Wrath Weapon",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"weapon": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Stirring Dragon's Wrath ",
+				"source": "FTD",
+				"page": 25,
+				"rarity": "rare",
+				"reqAttune": true,
+				"bonusWeapon": "+1",
+				"entries": [
+					"This weapon is decorated with dragon heads, claws, wings, scales, or Draconic letters. When it steeps in a dragon's hoard, it absorbs the energy of the dragon's breath weapon and deals damage of that type with its special properties.",
+					"Whenever you roll a 20 on your attack roll with this weapon, each creature of your choice within 5 feet of the target takes 5 damage of the type dealt by the dragon's breath weapon.",
+					"You gain a {=bonusWeapon} bonus to attack and damage rolls made using the weapon. On a hit, the weapon deals an extra {@damage 1d6} damage of the type dealt by the dragon's breath weapon."
+				]
+			}
+		},
+		{
+			"name": "Stygian Spear",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"spear": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Stygian ",
+				"source": "CoA",
+				"page": 270,
+				"rarity": "very rare",
+				"reqAttune": true,
+				"curse": true,
+				"bonusWeapon": "+2",
+				"entries": [
+					"You have a {=bonusWeapon} bonus to attack and damage rolls made with this magic weapon. When you throw it, it deals one extra die of damage on a hit. After you throw it and it hits or misses, it flies back to your hand immediately.",
+					{
+						"type": "entries",
+						"name": "Curse",
+						"entries": [
+							"You're unwilling to part with this weapon while attuned to it. In addition, you have disadvantage on attack rolls made with weapons other than this one.",
+							"Whenever you roll a 1 on an attack roll using this weapon, your target changes to your closest ally.",
+							"If there are multiple allies, randomly determine which is the target. Make a new attack roll with advantage against your ally. If the attack hits, in addition to the standard damage you deal an extra {@damage 2d6} poison damage. Only the {@spell Remove Curse} spell allows you to end attunement to this item."
+						]
+					},
+					{
+						"type": "entries",
+						"name": "Corrupting",
+						"entries": [
+							"This item corrupts. See the \"{@adventure Infernal Item Corruption|CoA|16|Infernal Item Corruption}\" section."
+						]
+					}
+				]
+			}
+		},
+		{
+			"name": "Sword of Life Stealing",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"sword": true
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Life Stealing",
+				"source": "DMG",
+				"page": 206,
+				"srd": true,
+				"tier": "major",
+				"rarity": "rare",
+				"reqAttune": true,
+				"entries": [
+					"When you attack a creature with this magic weapon and roll a 20 on the attack roll, that target takes an extra 10 necrotic damage if it isn't a construct or an undead. You also gain 10 temporary hit points.",
+					"{@note Note: According to the SRD, it is an extra {@dice 3d6} necrotic damage, although {@link this is incorrect|https://rpg.stackexchange.com/a/174522/53884}.}"
+				],
+				"lootTables": [
+					"Magic Item Table G"
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Sword of Retribution",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"sword": true
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Retribution",
+				"source": "CoA",
+				"page": 270,
+				"rarity": "very rare",
+				"reqAttune": true,
+				"curse": true,
+				"bonusWeapon": "+3",
+				"entries": [
+					"You gain a {=bonusWeapon} bonus to attack and damage rolls made with this sword. Hit points lost to this weapon's damage can be regained only through a short or long rest, rather than by regeneration, magic, or any other means.",
+					{
+						"type": "entries",
+						"name": "Curse",
+						"entries": [
+							"You're unwilling to part with this weapon while attuned to it. While attuned to this weapon, you also have disadvantage on attack rolls made with weapons other than this one.",
+							"The vengeful spirit possessing the sword shares its history and lust for vengeance with the wielder. After each successful long rest, you experience nightmares of the spirit's past, culminating in its death. When you wake, you must make a DC 11 Constitution saving throw. On a failed save, you only gain the benefits of a short rest. Only the {@spell Remove Curse} spell allows you to end attunement to this item."
+						]
+					},
+					{
+						"type": "entries",
+						"name": "Corrupting",
+						"entries": [
+							"This item corrupts. See the \"{@adventure Infernal Item Corruption|CoA|16|Infernal Item Corruption}\" section."
+						]
+					}
+				]
+			}
+		},
+		{
+			"name": "Sword of Sharpness",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"sword": true,
+					"dmgType": "S"
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Sharpness",
+				"source": "DMG",
+				"page": 206,
+				"srd": true,
+				"tier": "major",
+				"rarity": "very rare",
+				"reqAttune": true,
+				"entries": [
+					"When you attack an object with this magic sword and hit, maximize your weapon damage dice against the target.",
+					"When you attack a creature with this weapon and roll a 20 on the attack roll, that target takes an extra 14 slashing damage. Then roll another {@dice d20}. If you roll a 20, you lop off one of the target's limbs, with the effect of such loss determined by the DM. If the creature has no limb to sever, you lop off a portion of its body instead.",
+					"{@note Note: According to the SRD, it is an extra {@dice 4d6} slashing damage, although {@link this is incorrect|https://rpg.stackexchange.com/a/174522/53884}}.",
+					"In addition, you can speak the sword's command to cause the blade to shed bright light in a 10-foot radius and dim light for an additional 10 feet. Speaking the command word again or sheathing the sword puts out the light."
+				],
+				"lootTables": [
+					"Magic Item Table H"
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Sword of the Planes",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"sword": true
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of the Planes",
+				"source": "BMT",
+				"page": 68,
+				"rarity": "legendary",
+				"reqAttune": true,
+				"bonusWeapon": "+3",
+				"entries": [
+					"You gain a {=bonusWeapon} bonus to attack and damage rolls made with this magic sword.",
+					"This sword can tear the fabric of reality, creating a temporary rift between planes. You can use your action to choose a different plane of existence from the one you're on and slice through an unoccupied space within 5 feet of yourself, creating a rift to that other plane. The rift can be up to 10 feet high and 10 feet wide, and it lasts for 1 minute. Once this property is used, it can't be used again until the next dawn.",
+					"You can specify a target destination, such as the City of Brass on the Elemental Plane of Fire or the palace of Dispater on the second layer of the Nine Hells, and the rift opens in or near that destination (DM's discretion). If you are trying to reach the City of Brass, for example, the rift might appear on the Street of Steel, before the Gate of Ashes, or facing the city from across the Sea of Fire, at the DM's discretion.",
+					"Anything that enters the rift is instantly transported to the other plane, appearing in the unoccupied space nearest to the rift."
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Sword of Vengeance",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"sword": true
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Vengeance",
+				"source": "DMG",
+				"page": 206,
+				"tier": "major",
+				"rarity": "uncommon",
+				"reqAttune": true,
+				"curse": true,
+				"bonusWeapon": "+1",
+				"entries": [
+					"You gain a +1 bonus to attack and damage rolls made with this magic weapon.",
+					{
+						"name": "Curse",
+						"type": "entries",
+						"entries": [
+							"This sword is cursed and possessed by a vengeful spirit. Becoming attuned to it extends the curse to you. As long as you remain cursed, you are unwilling to part with the sword, keeping it on your person at all times. While attuned to this weapon, you have disadvantage on attack rolls made with weapons other than this one.",
+							"In addition, while the sword is on your person, you must succeed on a DC 15 Wisdom saving throw whenever you take damage in combat. On a failed save you must attack the creature that damaged you until you drop to 0 hit points or it does, or until you can't reach the creature to make a melee attack against it.",
+							"You can break the curse in the usual ways. Alternatively, casting {@spell banishment} on the sword forces the vengeful spirit to leave it. The sword then becomes a +1 weapon with no other properties."
+						]
+					}
+				],
+				"lootTables": [
+					"Magic Item Table F"
+				]
+			}
+		},
+		{
+			"name": "Sword of Wounding",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"sword": true
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Wounding",
+				"source": "DMG",
+				"page": 207,
+				"srd": true,
+				"tier": "major",
+				"rarity": "rare",
+				"reqAttune": true,
+				"entries": [
+					"Hit points lost to this weapon's damage can be regained only through a short or long rest, rather than by regeneration, magic, or any other means.",
+					"Once per turn, when you hit a creature with an attack using this magic weapon, you can wound the target. At the start of each of the wounded creature's turns, it takes {@dice 1d4} necrotic damage for each time you've wounded it, and it can then make a DC 15 Constitution saving throw, ending the effect of all such wounds on itself on a success. Alternatively, the wounded creature, or a creature within 5 feet of it, can use an action to make a DC 15 Wisdom ({@skill Medicine}) check, ending the effect of such wounds on it on a success."
+				],
+				"lootTables": [
+					"Magic Item Table G"
+				]
+			}
+		},
+		{
+			"name": "Vicious +1 Weapon",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"weapon": true
+				}
+			],
+			"excludes": {
+				"net": true
+			},
+			"entries": [
+				"When you roll a 20 with this magic weapon, the target takes an extra 7 damage of the weapon's type.",
+				"{@note Note: According to the SRD, it is an extra {@dice 2d6} damage, although {@link this is incorrect|https://rpg.stackexchange.com/a/174522/53884}.}"
+			],
+			"inherits": {
+				"namePrefix": "Vicious +1 ",
+				"source": "AI",
+				"page": 149,
+				"rarity": "unknown (magic)",
+				"bonusWeapon": "+1",
+				"entries": [
+					"You have a {=bonusWeapon} bonus to attack and damage rolls made with this weapon.",
+					"When you roll a 20 with this magic weapon, the target takes an extra 7 {=dmgType} damage.",
+					"{@note Note: According to the SRD, it is an extra {@dice 2d6} {=dmgType} damage, although {@link this is incorrect|https://rpg.stackexchange.com/a/174522/53884}.}"
+				]
+			}
+		},
+		{
+			"name": "Vicious Weapon",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"weapon": true
+				}
+			],
+			"excludes": {
+				"net": true
+			},
+			"entries": [
+				"When you roll a 20 with this magic weapon, the target takes an extra 7 damage of the weapon's type.",
+				"{@note Note: According to the SRD, it is an extra {@dice 2d6} damage, although {@link this is incorrect|https://rpg.stackexchange.com/a/174522/53884}.}"
+			],
+			"inherits": {
+				"namePrefix": "Vicious ",
+				"source": "DMG",
+				"page": 209,
+				"srd": true,
+				"tier": "major",
+				"rarity": "rare",
+				"entries": [
+					"When you roll a 20 with this magic weapon, the target takes an extra 7 {=dmgType} damage.",
+					"{@note Note: According to the SRD, it is an extra {@dice 2d6} {=dmgType} damage, although {@link this is incorrect|https://rpg.stackexchange.com/a/174522/53884}.}"
+				],
+				"lootTables": [
+					"Magic Item Table G"
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Vorpal Sword",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"sword": true,
+					"dmgType": "S"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Vorpal ",
+				"source": "DMG",
+				"page": 209,
+				"srd": true,
+				"tier": "major",
+				"rarity": "legendary",
+				"reqAttune": true,
+				"bonusWeapon": "+3",
+				"entries": [
+					"You gain a +3 bonus to attack and damage rolls made with this magic weapon. In addition, the weapon ignores resistance to slashing damage.",
+					"When you attack a creature that has at least one head with this weapon and roll a 20 on the attack roll, you cut off one of the creature's heads. The creature dies if it can't survive without the lost head. A creature is immune to this effect if it is immune to slashing damage, doesn't have or need a head, has legendary actions, or the DM decides that the creature is too big for its head to be cut off with this weapon. Such a creature instead takes an extra {@dice 6d8} slashing damage from the hit."
+				],
+				"lootTables": [
+					"Magic Item Table I"
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Wakened Dragon's Wrath Weapon",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"weapon": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Wakened Dragon's Wrath ",
+				"source": "FTD",
+				"page": 25,
+				"rarity": "very rare",
+				"reqAttune": true,
+				"bonusWeapon": "+2",
+				"entries": [
+					"This weapon is decorated with dragon heads, claws, wings, scales, or Draconic letters. When it steeps in a dragon's hoard, it absorbs the energy of the dragon's breath weapon and deals damage of that type with its special properties.",
+					"Whenever you roll a 20 on your attack roll with this weapon, each creature of your choice within 5 feet of the target takes 5 damage of the type dealt by the dragon's breath weapon.",
+					"You gain a {=bonusWeapon} bonus to attack and damage rolls made using the weapon. On a hit, the weapon deals an extra {@damage 2d6} damage of the type dealt by the dragon's breath weapon.",
+					"As an action, you can unleash a 30-foot cone of destructive energy from the weapon. Each creature in that area must make a DC 16 Dexterity saving throw, taking {@damage 8d6} damage of the type dealt by the dragon's breath weapon on a failed save, or half as much damage on a successful one. Once this action is used, it can't be used again until the next dawn."
+				]
+			}
+		},
+		{
+			"name": "Walloping Ammunition",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "A"
+				},
+				{
+					"type": "AF|DMG"
+				}
+			],
+			"ammo": true,
+			"inherits": {
+				"namePrefix": "Walloping ",
+				"source": "XGE",
+				"page": 139,
+				"tier": "minor",
+				"rarity": "common",
+				"entries": [
+					" This ammunition packs a wallop. A creature hit by the ammunition must succeed on a DC 10 Strength saving throw or be knocked {@condition prone}."
+				]
+			}
+		},
+		{
+			"name": "Weapon of Agonizing Paralysis",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "M"
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Agonizing Paralysis",
+				"source": "CoA",
+				"page": 271,
+				"rarity": "very rare",
+				"reqAttune": true,
+				"bonusWeapon": "+3",
+				"entries": [
+					"You have a {=bonusWeapon} bonus to attack and damage rolls made with this magic weapon. When this weapon reduces a creature to 0 hit points, the creature doesn't die. Instead, infernal runes appear as if carved into their flesh and they're healed to 1 hit point. They now have the {@condition paralyzed} condition until the condition is removed by a {@spell Lesser Restoration} spell or similar magic. When the condition is removed, the runes disappear. At the start of each of their turns while they're {@condition paralyzed}, the creature suffers immense pain and gains a level of {@condition exhaustion}."
+				]
+			}
+		},
+		{
+			"name": "Weapon of Certain Death",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"weapon": true
+				}
+			],
+			"excludes": {
+				"net": true
+			},
+			"inherits": {
+				"nameSuffix": " of Certain Death",
+				"source": "EGW",
+				"page": 270,
+				"rarity": "rare",
+				"entries": [
+					"When you damage a creature with an attack using this magic weapon, the target can't regain hit points until the start of your next turn."
+				]
+			}
+		},
+		{
+			"name": "Weapon of Throne's Command",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"weaponCategory": "martial"
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Throne's Command",
+				"source": "BMT",
+				"page": 39,
+				"rarity": "very rare",
+				"reqAttune": true,
+				"grantsProficiency": true,
+				"bonusWeapon": "+1",
+				"recharge": "dawn",
+				"rechargeAmount": "{@dice 1d4}",
+				"charges": 5,
+				"entries": [
+					"This weapon is bedecked in ornate gold filigree and deep-blue and maroon jewels. You gain a {=bonusWeapon} bonus to attack and damage rolls made with this weapon. Additionally, you gain proficiency in the {@skill Intimidation} and {@skill Persuasion} skills if you don't already have it.",
+					{
+						"type": "entries",
+						"name": "Spellcasting",
+						"entries": [
+							"The weapon has 5 charges. You can use a bonus action and expend 1 or more of its charges to cast one of the following spells (save DC 16): {@spell Command} (1 charge), {@spell Zone of Truth} (2 charges), {@spell Compulsion} (4 charges), {@spell Banishment} (4 charges), or {@spell Dominate Person} (5 charges).",
+							"The weapon regains {@dice 1d4} expended charges daily at dawn."
+						]
+					}
+				],
+				"attachedSpells": [
+					"command",
+					"zone of truth",
+					"compulsion",
+					"banishment",
+					"dominate person"
+				]
+			}
+		},
+		{
+			"name": "Weapon of Warning",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"weapon": true
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Warning",
+				"source": "DMG",
+				"page": 213,
+				"tier": "major",
+				"rarity": "uncommon",
+				"reqAttune": true,
+				"entries": [
+					"This magic weapon warns you of danger. While the weapon is on your person, you have advantage on initiative rolls. In addition, you and any of your companions within 30 feet of you can't be {@status surprised}, except when {@condition incapacitated} by something other than nonmagical sleep. The weapon magically awakens you and your companions within range if any of you are sleeping naturally when combat begins."
+				],
+				"lootTables": [
+					"Magic Item Table F"
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Winged Ammunition",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "A"
+				},
+				{
+					"type": "AF|DMG"
+				}
+			],
+			"excludes": {
+				"name": "Energy Cell"
+			},
+			"ammo": true,
+			"inherits": {
+				"namePrefix": "Winged ",
+				"source": "BMT",
+				"page": 69,
+				"rarity": "uncommon",
+				"entries": [
+					"Ranged weapon attack rolls made with this ammunition ignore half and {@quickref Cover||3||three-quarters cover}. In addition, attacking at long range doesn't impose disadvantage on ranged weapon attack rolls made with this ammunition."
+				]
+			}
+		},
+		{
+			"name": "Zephyr Armor",
+			"type": "GV|DMG",
+			"requires": [
+				{
+					"type": "LA"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Zephyr ",
+				"source": "BGG",
+				"page": 117,
+				"rarity": "rare",
+				"reqAttune": true,
+				"entries": [
+					"This fine set of white-and-silver armor bears the wind rune upon its chest.",
+					"While wearing this armor, you have advantage on Dexterity ({@skill Acrobatics}) checks and Dexterity saving throws as your movements are bolstered by gentle currents of wind.",
+					{
+						"type": "entries",
+						"name": "Invoking the Rune",
+						"entries": [
+							"As an action, you can invoke the armor's rune to cast the {@spell wind wall} spell (save DC 15) with it. Once the rune has been invoked, it can't be invoked again until the next dawn."
+						]
+					}
+				],
+				"attachedSpells": [
+					"wind wall"
+				]
+			}
+		}
+	],
+	"linkedLootTables": {
+		"DMG": {
+			"Arrow of Slaying": [
+				"Magic Item Table E"
+			],
+			"Shield +1": [
+				"Magic Item Table F"
+			],
+			"Adamantine Chain Mail": [
+				"Magic Item Table F"
+			],
+			"Adamantine Chain Shirt": [
+				"Magic Item Table F"
+			],
+			"Adamantine Scale Mail": [
+				"Magic Item Table F"
+			],
+			"Adamantine Breastplate": [
+				"Magic Item Table G"
+			],
+			"Adamantine Splint Armor": [
+				"Magic Item Table G"
+			],
+			"Chain Mail +1": [
+				"Magic Item Table G"
+			],
+			"Chain Mail of Acid Resistance": [
+				"Magic Item Table G"
+			],
+			"Chain Mail of Cold Resistance": [
+				"Magic Item Table G"
+			],
+			"Chain Mail of Fire Resistance": [
+				"Magic Item Table G"
+			],
+			"Chain Mail of Force Resistance": [
+				"Magic Item Table G"
+			],
+			"Chain Mail of Lightning Resistance": [
+				"Magic Item Table G"
+			],
+			"Chain Mail of Necrotic Resistance": [
+				"Magic Item Table G"
+			],
+			"Chain Mail of Poison Resistance": [
+				"Magic Item Table G"
+			],
+			"Chain Mail of Psychic Resistance": [
+				"Magic Item Table G"
+			],
+			"Chain Mail of Radiant Resistance": [
+				"Magic Item Table G"
+			],
+			"Chain Mail of Thunder Resistance": [
+				"Magic Item Table G"
+			],
+			"Chain Shirt +1": [
+				"Magic Item Table G"
+			],
+			"Chain Shirt of Acid Resistance": [
+				"Magic Item Table G"
+			],
+			"Chain Shirt of Cold Resistance": [
+				"Magic Item Table G"
+			],
+			"Chain Shirt of Fire Resistance": [
+				"Magic Item Table G"
+			],
+			"Chain Shirt of Force Resistance": [
+				"Magic Item Table G"
+			],
+			"Chain Shirt of Lightning Resistance": [
+				"Magic Item Table G"
+			],
+			"Chain Shirt of Necrotic Resistance": [
+				"Magic Item Table G"
+			],
+			"Chain Shirt of Poison Resistance": [
+				"Magic Item Table G"
+			],
+			"Chain Shirt of Psychic Resistance": [
+				"Magic Item Table G"
+			],
+			"Chain Shirt of Radiant Resistance": [
+				"Magic Item Table G"
+			],
+			"Chain Shirt of Thunder Resistance": [
+				"Magic Item Table G"
+			],
+			"Leather Armor +1": [
+				"Magic Item Table G"
+			],
+			"Leather Armor of Acid Resistance": [
+				"Magic Item Table G"
+			],
+			"Leather Armor of Cold Resistance": [
+				"Magic Item Table G"
+			],
+			"Leather Armor of Fire Resistance": [
+				"Magic Item Table G"
+			],
+			"Leather Armor of Force Resistance": [
+				"Magic Item Table G"
+			],
+			"Leather Armor of Lightning Resistance": [
+				"Magic Item Table G"
+			],
+			"Leather Armor of Necrotic Resistance": [
+				"Magic Item Table G"
+			],
+			"Leather Armor of Poison Resistance": [
+				"Magic Item Table G"
+			],
+			"Leather Armor of Psychic Resistance": [
+				"Magic Item Table G"
+			],
+			"Leather Armor of Radiant Resistance": [
+				"Magic Item Table G"
+			],
+			"Leather Armor of Thunder Resistance": [
+				"Magic Item Table G"
+			],
+			"Scale Mail +1": [
+				"Magic Item Table G",
+				"Magic Item Table I"
+			],
+			"Scale Mail of Acid Resistance": [
+				"Magic Item Table G"
+			],
+			"Scale Mail of Cold Resistance": [
+				"Magic Item Table G"
+			],
+			"Scale Mail of Fire Resistance": [
+				"Magic Item Table G"
+			],
+			"Scale Mail of Force Resistance": [
+				"Magic Item Table G"
+			],
+			"Scale Mail of Lightning Resistance": [
+				"Magic Item Table G"
+			],
+			"Scale Mail of Necrotic Resistance": [
+				"Magic Item Table G"
+			],
+			"Scale Mail of Poison Resistance": [
+				"Magic Item Table G"
+			],
+			"Scale Mail of Psychic Resistance": [
+				"Magic Item Table G"
+			],
+			"Scale Mail of Radiant Resistance": [
+				"Magic Item Table G"
+			],
+			"Scale Mail of Thunder Resistance": [
+				"Magic Item Table G"
+			],
+			"Shield +2": [
+				"Magic Item Table G"
+			],
+			"Shield +3": [
+				"Magic Item Table H"
+			],
+			"Adamantine Half Plate Armor": [
+				"Magic Item Table H"
+			],
+			"Adamantine Plate Armor": [
+				"Magic Item Table H"
+			],
+			"Breastplate +1": [
+				"Magic Item Table H"
+			],
+			"Breastplate of Acid Resistance": [
+				"Magic Item Table H"
+			],
+			"Breastplate of Cold Resistance": [
+				"Magic Item Table H"
+			],
+			"Breastplate of Fire Resistance": [
+				"Magic Item Table H"
+			],
+			"Breastplate of Force Resistance": [
+				"Magic Item Table H"
+			],
+			"Breastplate of Lightning Resistance": [
+				"Magic Item Table H"
+			],
+			"Breastplate of Necrotic Resistance": [
+				"Magic Item Table H"
+			],
+			"Breastplate of Poison Resistance": [
+				"Magic Item Table H"
+			],
+			"Breastplate of Psychic Resistance": [
+				"Magic Item Table H"
+			],
+			"Breastplate of Radiant Resistance": [
+				"Magic Item Table H"
+			],
+			"Breastplate of Thunder Resistance": [
+				"Magic Item Table H"
+			],
+			"Chain Mail +2": [
+				"Magic Item Table H"
+			],
+			"Chain Shirt +2": [
+				"Magic Item Table H"
+			],
+			"Leather Armor +2": [
+				"Magic Item Table H"
+			],
+			"Scale Mail +2": [
+				"Magic Item Table H"
+			],
+			"Splint Armor +1": [
+				"Magic Item Table H"
+			],
+			"Splint Armor of Acid Resistance": [
+				"Magic Item Table H"
+			],
+			"Splint Armor of Cold Resistance": [
+				"Magic Item Table H"
+			],
+			"Splint Armor of Fire Resistance": [
+				"Magic Item Table H"
+			],
+			"Splint Armor of Force Resistance": [
+				"Magic Item Table H"
+			],
+			"Splint Armor of Lightning Resistance": [
+				"Magic Item Table H"
+			],
+			"Splint Armor of Necrotic Resistance": [
+				"Magic Item Table H"
+			],
+			"Splint Armor of Poison Resistance": [
+				"Magic Item Table H"
+			],
+			"Splint Armor of Psychic Resistance": [
+				"Magic Item Table H"
+			],
+			"Splint Armor of Radiant Resistance": [
+				"Magic Item Table H"
+			],
+			"Splint Armor of Thunder Resistance": [
+				"Magic Item Table H"
+			],
+			"Studded Leather Armor +1": [
+				"Magic Item Table H"
+			],
+			"Studded Leather Armor of Acid Resistance": [
+				"Magic Item Table H"
+			],
+			"Studded Leather Armor of Cold Resistance": [
+				"Magic Item Table H"
+			],
+			"Studded Leather Armor of Fire Resistance": [
+				"Magic Item Table H"
+			],
+			"Studded Leather Armor of Force Resistance": [
+				"Magic Item Table H"
+			],
+			"Studded Leather Armor of Lightning Resistance": [
+				"Magic Item Table H"
+			],
+			"Studded Leather Armor of Necrotic Resistance": [
+				"Magic Item Table H"
+			],
+			"Studded Leather Armor of Poison Resistance": [
+				"Magic Item Table H"
+			],
+			"Studded Leather Armor of Psychic Resistance": [
+				"Magic Item Table H"
+			],
+			"Studded Leather Armor of Radiant Resistance": [
+				"Magic Item Table H"
+			],
+			"Studded Leather Armor of Thunder Resistance": [
+				"Magic Item Table H"
+			],
+			"Breastplate +2": [
+				"Magic Item Table I"
+			],
+			"Chain Mail +3": [
+				"Magic Item Table I"
+			],
+			"Chain Shirt +3": [
+				"Magic Item Table I"
+			],
+			"Half Plate Armor +1": [
+				"Magic Item Table I"
+			],
+			"Leather Armor +3": [
+				"Magic Item Table I"
+			],
+			"Plate Armor +1": [
+				"Magic Item Table I"
+			],
+			"Splint Armor +2": [
+				"Magic Item Table I"
+			],
+			"Studded Leather Armor +2": [
+				"Magic Item Table I"
+			],
+			"Half Plate Armor +2": [
+				"Magic Item Table I"
+			],
+			"Plate Armor +2": [
+				"Magic Item Table I"
+			],
+			"Studded Leather Armor +3": [
+				"Magic Item Table I"
+			],
+			"Breastplate +3": [
+				"Magic Item Table I"
+			],
+			"Splint Armor +3": [
+				"Magic Item Table I"
+			],
+			"Half Plate Armor +3": [
+				"Magic Item Table I"
+			],
+			"Plate Armor +3": [
+				"Magic Item Table I"
+			],
+			"Half Plate Armor of Acid Resistance": [
+				"Magic Item Table I"
+			],
+			"Half Plate Armor of Cold Resistance": [
+				"Magic Item Table I"
+			],
+			"Half Plate Armor of Fire Resistance": [
+				"Magic Item Table I"
+			],
+			"Half Plate Armor of Force Resistance": [
+				"Magic Item Table I"
+			],
+			"Half Plate Armor of Lightning Resistance": [
+				"Magic Item Table I"
+			],
+			"Half Plate Armor of Necrotic Resistance": [
+				"Magic Item Table I"
+			],
+			"Half Plate Armor of Poison Resistance": [
+				"Magic Item Table I"
+			],
+			"Half Plate Armor of Psychic Resistance": [
+				"Magic Item Table I"
+			],
+			"Half Plate Armor of Radiant Resistance": [
+				"Magic Item Table I"
+			],
+			"Half Plate Armor of Thunder Resistance": [
+				"Magic Item Table I"
+			],
+			"Plate Armor of Acid Resistance": [
+				"Magic Item Table I"
+			],
+			"Plate Armor of Cold Resistance": [
+				"Magic Item Table I"
+			],
+			"Plate Armor of Fire Resistance": [
+				"Magic Item Table I"
+			],
+			"Plate Armor of Force Resistance": [
+				"Magic Item Table I"
+			],
+			"Plate Armor of Lightning Resistance": [
+				"Magic Item Table I"
+			],
+			"Plate Armor of Necrotic Resistance": [
+				"Magic Item Table I"
+			],
+			"Plate Armor of Poison Resistance": [
+				"Magic Item Table I"
+			],
+			"Plate Armor of Psychic Resistance": [
+				"Magic Item Table I"
+			],
+			"Plate Armor of Radiant Resistance": [
+				"Magic Item Table I"
+			],
+			"Plate Armor of Thunder Resistance": [
+				"Magic Item Table I"
+			]
+		}
+	}
+}

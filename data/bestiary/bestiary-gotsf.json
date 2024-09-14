@@ -1,0 +1,48 @@
+{
+	"_meta": {
+		"dependencies": {
+			"monster": [
+				"MM"
+			]
+		},
+		"otherSources": {
+			"monster": {
+				"MM": "GotSF",
+				"BGG": "GotSF"
+			}
+		}
+	},
+	"monster": [
+		{
+			"name": "Acidic Mist Apparition",
+			"source": "GotSF",
+			"page": 6,
+			"_copy": {
+				"name": "Air Elemental",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "elemental",
+						"with": "apparition"
+					},
+					"action": {
+						"mode": "replaceArr",
+						"replace": "Slam",
+						"items": {
+							"name": "Slam",
+							"entries": [
+								"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}14 ({@damage 2d8 + 5}) acid damage."
+							]
+						}
+					}
+				}
+			},
+			"immune": [
+				"acid",
+				"poison"
+			],
+			"hasToken": true
+		}
+	]
+}

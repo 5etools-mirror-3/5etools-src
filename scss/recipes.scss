@@ -1,0 +1,28 @@
+@use "vars/vars";
+@use "vars/vars-night";
+
+.recipes {
+	&__ {
+		&wrp-fluff {
+			.rd__wrp-image {
+				margin-top: 0;
+			}
+
+			.rd__image {
+				max-height: 50vh;
+			}
+		}
+
+		&tbl-recipes {
+			border-left: 1px solid vars.$rgb-border-grey--trans;
+		}
+	}
+}
+
+.ve-night-mode .recipes {
+	&__ {
+		&tbl-recipes {
+			border-left: 1px solid vars-night.$rgb-border-grey--trans-night;
+		}
+	}
+}

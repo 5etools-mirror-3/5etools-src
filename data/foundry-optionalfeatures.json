@@ -1,0 +1,1752 @@
+{
+	"optionalfeature": [
+		{
+			"name": "Agonizing Blast",
+			"source": "PHB",
+			"effects": [
+				{
+					"name": "Bonus Damage",
+					"transfer": true,
+					"changes": [
+						{
+							"key": "data.bonuses.rsak.damage",
+							"mode": "ADD",
+							"value": "+(@srd5e.name.eldritchblast * @abilities.cha.mod)"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Arcane Propulsion Armor",
+			"source": "TCE",
+			"system": {
+				"activation": {
+					"type": "special"
+				},
+				"actionType": "ench",
+				"type": {
+					"value": "enchantment",
+					"subtype": "artificerInfusion"
+				},
+				"enchantment": {
+					"restrictions": {
+						"type": "equipment"
+					}
+				}
+			},
+			"effects": [
+				{
+					"name": "Arcane Propulsion Armor",
+					"changes": [
+						{
+							"key": "system.attributes.movement.walk",
+							"mode": "ADD",
+							"value": "5"
+						}
+					],
+					"enchantmentRiderParent": "XY7pERdPxxb8bjlq",
+					"transfer": true
+				},
+				{
+					"name": "Arcane Propulsion",
+					"changes": [
+						{
+							"key": "name",
+							"mode": "ADD",
+							"value": "of Arcane Propulsion"
+						},
+						{
+							"key": "system.attunement",
+							"mode": "OVERRIDE",
+							"value": "1"
+						},
+						{
+							"key": "system.properties",
+							"mode": "ADD",
+							"value": "mgc"
+						}
+					],
+					"type": "enchantment",
+					"foundryId": "XY7pERdPxxb8bjlq"
+				}
+			],
+			"subEntities": {
+				"item": [
+					{
+						"name": "Arcane Propulsion Gauntlets",
+						"source": "TCE",
+						"page": 20,
+						"type": "M",
+						"rarity": "none",
+						"weaponCategory": "simple",
+						"property": [
+							"T"
+						],
+						"range": "20/60",
+						"dmg1": "1d8",
+						"dmgType": "O",
+						"entries": [
+							"These gauntlets are part of your Arcane Propulsion Armor. Each gauntlet is a magic melee weapon that can be wielded only when the hand is holding nothing. The wearer is proficient with the gauntlets. When thrown, the gauntlet detaches and flies at the attack's target, then immediately returns to the wearer and reattaches."
+						],
+						"foundrySystem": {
+							"equipped": true,
+							"proficient": 1,
+							"properties.mgc": true
+						}
+					}
+				]
+			}
+		},
+		{
+			"name": "Armor of Magical Strength",
+			"source": "TCE",
+			"system": {
+				"activation": {
+					"type": "special"
+				},
+				"actionType": "ench",
+				"type": {
+					"value": "enchantment",
+					"subtype": "artificerInfusion"
+				},
+				"enchantment": {
+					"restrictions": {
+						"type": "equipment"
+					}
+				}
+			},
+			"effects": [
+				{
+					"name": "Armor of Magical Strength",
+					"changes": [
+						{
+							"key": "name",
+							"mode": "OVERRIDE",
+							"value": "{} of Magical Strength"
+						},
+						{
+							"key": "system.attunement",
+							"mode": "OVERRIDE",
+							"value": "required"
+						},
+						{
+							"key": "system.activation.type",
+							"mode": "OVERRIDE",
+							"value": "reaction"
+						},
+						{
+							"key": "system.activation.cost",
+							"mode": "OVERRIDE",
+							"value": "1"
+						},
+						{
+							"key": "system.uses.per",
+							"mode": "OVERRIDE",
+							"value": "charges"
+						},
+						{
+							"key": "system.uses.max",
+							"mode": "OVERRIDE",
+							"value": "6"
+						},
+						{
+							"key": "system.activation.condition",
+							"mode": "OVERRIDE",
+							"value": "when the wearer makes a Strength check or saving throw or would be knocked prone"
+						},
+						{
+							"key": "system.uses.recovery",
+							"mode": "OVERRIDE",
+							"value": "1d6"
+						},
+						{
+							"key": "system.description.value",
+							"mode": "OVERRIDE",
+							"value": "<p><em>Item: A suit of armor (requires attunement)</em></p> <p>This armor has 6 charges. The wearer can expend the armor's charges in the following ways:</p> <ul> <li> <p>When the wearer makes a Strength check or a Strength saving throw, it can expend 1 charge to add a bonus to the roll equal to its Intelligence modifier (currently, [[/r @abilities.int.mod]]).</p> </li> <li> <p>If the creature would be knocked prone, it can use its reaction to expend 1 charge to avoid being knocked prone.</p> </li> </ul> <p>The armor regains 1d6 expended charges daily at dawn.</p> <p><strong>Foundry Note</strong></p> <p>This feature is configured as a Reaction. For use with a Strength check/saving throw simply reduce the charges by 1.</p> "
+						},
+						{
+							"key": "system.properties",
+							"mode": "ADD",
+							"value": "mgc"
+						}
+					],
+					"type": "enchantment"
+				}
+			]
+		},
+		{
+			"name": "Armor of Shadows",
+			"source": "PHB",
+			"system": {
+				"activation.type": null,
+				"activation.cost": null
+			}
+		},
+		{
+			"name": "Ascendant Step",
+			"source": "PHB",
+			"system": {
+				"activation.type": null,
+				"activation.cost": null
+			}
+		},
+		{
+			"name": "Beast Speech",
+			"source": "PHB",
+			"system": {
+				"activation.type": null,
+				"activation.cost": null
+			}
+		},
+		{
+			"name": "Bewitching Whispers",
+			"source": "PHB",
+			"system": {
+				"activation.type": null,
+				"activation.cost": null
+			}
+		},
+		{
+			"name": "Book of Ancient Secrets",
+			"source": "PHB",
+			"system": {
+				"activation.type": null,
+				"activation.cost": null
+			}
+		},
+		{
+			"name": "Boots of the Winding Path",
+			"source": "TCE",
+			"system": {
+				"activation": {
+					"type": "none"
+				},
+				"actionType": "ench",
+				"type": {
+					"value": "enchantment",
+					"subtype": "artificerInfusion"
+				},
+				"enchantment": {
+					"restrictions": {
+						"type": "equipment"
+					}
+				}
+			},
+			"effects": [
+				{
+					"name": "Boots of the Winding Path",
+					"changes": [
+						{
+							"key": "name",
+							"mode": "OVERRIDE",
+							"value": "Boots of the Winding Path"
+						},
+						{
+							"key": "system.description.value",
+							"mode": "ADD",
+							"value": "<p>While wearing these boots, a creature can teleport up to 15 feet as a bonus action to an unoccupied space the creature can see. The creature must have occupied that space at some point during the current turn.</p>"
+						},
+						{
+							"key": "system.activation.cost",
+							"mode": "OVERRIDE",
+							"value": "1"
+						},
+						{
+							"key": "system.activation.type",
+							"mode": "OVERRIDE",
+							"value": "bonus"
+						},
+						{
+							"key": "system.range.value",
+							"mode": "OVERRIDE",
+							"value": "15"
+						},
+						{
+							"key": "system.range.units",
+							"mode": "OVERRIDE",
+							"value": "ft"
+						},
+						{
+							"key": "system.properties",
+							"mode": "ADD",
+							"value": "mgc"
+						}
+					],
+					"type": "enchantment"
+				}
+			]
+		},
+		{
+			"name": "Chains of Carceri",
+			"source": "PHB",
+			"system": {
+				"activation.type": null,
+				"activation.cost": null
+			}
+		},
+		{
+			"name": "Cloud Rune",
+			"source": "TCE",
+			"system": {
+				"activation": {
+					"type": "reaction"
+				},
+				"type": {
+					"value": "enchantment",
+					"subtype": "rune"
+				}
+			}
+		},
+		{
+			"name": "Devil's Sight",
+			"source": "PHB",
+			"effects": [
+				{
+					"name": "Enhanced Vision",
+					"transfer": true,
+					"changes": [
+						{
+							"key": "data.attributes.senses.darkvision",
+							"mode": "OVERRIDE",
+							"value": "120"
+						},
+						{
+							"key": "data.attributes.senses.special",
+							"mode": "ADD",
+							"value": "Devil's Sight"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Dreadful Word",
+			"source": "PHB",
+			"system": {
+				"activation.type": null,
+				"activation.cost": null
+			}
+		},
+		{
+			"name": "Eldritch Mind",
+			"source": "TCE",
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.attributes.concentration.roll.mode",
+							"mode": "OVERRIDE",
+							"value": "1"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Eldritch Sight",
+			"source": "PHB",
+			"system": {
+				"activation.type": null,
+				"activation.cost": null
+			}
+		},
+		{
+			"name": "Enhanced Arcane Focus",
+			"source": "TCE",
+			"system": {
+				"activation": {
+					"type": "none"
+				},
+				"actionType": "ench",
+				"type": {
+					"value": "enchantment",
+					"subtype": "artificerInfusion"
+				},
+				"enchantment": {
+					"restrictions": {
+						"type": "weapon"
+					}
+				}
+			},
+			"effects": [
+				{
+					"name": "Enhanced Arcane Focus",
+					"changes": [
+						{
+							"key": "name",
+							"mode": "ADD",
+							"value": ", Enhanced Arcane Focus"
+						},
+						{
+							"key": "system.description.value",
+							"mode": "ADD",
+							"value": "<p>While holding this item, a creature gains a +1 bonus to spell attack rolls. In addition, the creature ignores half cover when making a spell attack.</p> <p>The bonus increases to +2 when you reach 10th level in this class.</p> <p><strong>Foundry Note</strong></p> <p>The infusion will automatically increase at level 10 but it will not automatically update already enchanted Items. Re-enchant the Item to grant the higher bonus.</p> "
+						},
+						{
+							"key": "system.properties",
+							"mode": "OVERRIDE",
+							"value": "mgc"
+						},
+						{
+							"key": "system.attunement",
+							"mode": "OVERRIDE",
+							"value": "required"
+						}
+					],
+					"type": "enchantment",
+					"foundryId": "syx3ZXUoQwVJUZxP"
+				},
+				{
+					"name": "Enhanced Arcane Focus +2",
+					"changes": [
+						{
+							"key": "name",
+							"mode": "ADD",
+							"value": ", Enhanced Arcane Focus"
+						},
+						{
+							"key": "system.description.value",
+							"mode": "ADD",
+							"value": "<p>While holding this item, a creature gains a +1 bonus to spell attack rolls. In addition, the creature ignores half cover when making a spell attack.</p> <p>The bonus increases to +2 when you reach 10th level in this class.</p> <p><strong>Foundry Note</strong></p> <p>The infusion will automatically increase at level 10 but it will not automatically update already enchanted Items. Re-enchant the Item to grant the higher bonus.</p> "
+						},
+						{
+							"key": "system.properties",
+							"mode": "OVERRIDE",
+							"value": "mgc"
+						},
+						{
+							"key": "system.attunement",
+							"mode": "OVERRIDE",
+							"value": "required"
+						}
+					],
+					"type": "enchantment",
+					"foundryId": "I4qB050rdgSsoIEd"
+				},
+				{
+					"name": "Enhanced Arcane Focus",
+					"changes": [
+						{
+							"key": "system.bonuses.msak.attack",
+							"mode": "ADD",
+							"value": "1"
+						},
+						{
+							"key": "system.bonuses.rsak.attack",
+							"mode": "ADD",
+							"value": "1"
+						}
+					],
+					"enchantmentRiderParent": "syx3ZXUoQwVJUZxP",
+					"transfer": true
+				},
+				{
+					"name": "Enhanced Arcane Focus +2",
+					"changes": [
+						{
+							"key": "system.bonuses.msak.attack",
+							"mode": "ADD",
+							"value": "2"
+						},
+						{
+							"key": "system.bonuses.rsak.attack",
+							"mode": "ADD",
+							"value": "2"
+						}
+					],
+					"enchantmentRiderParent": "I4qB050rdgSsoIEd",
+					"transfer": true
+				}
+			]
+		},
+		{
+			"name": "Enhanced Defense",
+			"source": "TCE",
+			"system": {
+				"activation": {
+					"type": "none"
+				},
+				"actionType": "ench",
+				"type": {
+					"value": "enchantment",
+					"subtype": "artificerInfusion"
+				},
+				"enchantment": {
+					"restrictions": {
+						"type": "equipment"
+					}
+				}
+			},
+			"effects": [
+				{
+					"name": "Enhanced Defense",
+					"changes": [
+						{
+							"key": "name",
+							"mode": "ADD",
+							"value": ", Enhanced Defense"
+						},
+						{
+							"key": "system.description.value",
+							"mode": "ADD",
+							"value": "<p>A creature gains a +1 bonus to Armor Class while wearing (armor) or wielding (shield) the infused item.</p> <p>The bonus increases to +2 when you reach 10th level in this class.</p> <p><strong>Foundry Note</strong></p> <p>The infusion will automatically increase at level 10 but it will not automatically update already enchanted Items. Re-enchant the Item to grant the higher bonus.</p> "
+						},
+						{
+							"key": "system.properties",
+							"mode": "ADD",
+							"value": "mgc"
+						},
+						{
+							"key": "system.armor.magicalBonus",
+							"mode": "ADD",
+							"value": "1"
+						}
+					],
+					"type": "enchantment"
+				},
+				{
+					"name": "Enhanced Defense +2",
+					"changes": [
+						{
+							"key": "name",
+							"mode": "ADD",
+							"value": ", Enhanced Defense"
+						},
+						{
+							"key": "system.description.value",
+							"mode": "ADD",
+							"value": "<p>A creature gains a +1 bonus to Armor Class while wearing (armor) or wielding (shield) the infused item.</p> <p>The bonus increases to +2 when you reach 10th level in this class.</p> <p><strong>Foundry Note</strong></p> <p>The infusion will automatically increase at level 10 but it will not automatically update already enchanted Items. Re-enchant the Item to grant the higher bonus.</p> "
+						},
+						{
+							"key": "system.properties",
+							"mode": "ADD",
+							"value": "mgc"
+						},
+						{
+							"key": "system.armor.magicalBonus",
+							"mode": "ADD",
+							"value": "2"
+						}
+					],
+					"type": "enchantment"
+				}
+			]
+		},
+		{
+			"name": "Enhanced Weapon",
+			"source": "TCE",
+			"system": {
+				"activation": {
+					"type": "none"
+				},
+				"actionType": "ench",
+				"type": {
+					"value": "enchantment",
+					"subtype": "artificerInfusion"
+				},
+				"enchantment": {
+					"restrictions": {
+						"type": "weapon"
+					}
+				}
+			},
+			"effects": [
+				{
+					"name": "Enhanced Weapon",
+					"changes": [
+						{
+							"key": "name",
+							"mode": "ADD",
+							"value": ", Enhanced Weapon"
+						},
+						{
+							"key": "system.description.value",
+							"mode": "ADD",
+							"value": "<p>This magic weapon grants a +1 bonus to attack and damage rolls made with it.</p> <p>The bonus increases to +2 when you reach 10th level in this class.</p> <p><strong>Foundry Note</strong></p> <p>The increase is handled automatically by the Active Effect.</p> "
+						},
+						{
+							"key": "system.properties",
+							"mode": "ADD",
+							"value": "mgc"
+						},
+						{
+							"key": "system.magicalBonus",
+							"mode": "ADD",
+							"value": "1"
+						}
+					],
+					"type": "enchantment"
+				},
+				{
+					"name": "Enhanced Weapon +2",
+					"changes": [
+						{
+							"key": "name",
+							"mode": "ADD",
+							"value": ", Enhanced Weapon"
+						},
+						{
+							"key": "system.description.value",
+							"mode": "ADD",
+							"value": "<p>This magic weapon grants a +1 bonus to attack and damage rolls made with it.</p> <p>The bonus increases to +2 when you reach 10th level in this class.</p> <p><strong>Foundry Note</strong></p> <p>The increase is handled automatically by the Active Effect.</p> "
+						},
+						{
+							"key": "system.properties",
+							"mode": "ADD",
+							"value": "mgc"
+						},
+						{
+							"key": "system.magicalBonus",
+							"mode": "ADD",
+							"value": "2"
+						}
+					],
+					"type": "enchantment"
+				}
+			]
+		},
+		{
+			"name": "Fiendish Vigor",
+			"source": "PHB",
+			"system": {
+				"activation.type": null,
+				"activation.cost": null
+			}
+		},
+		{
+			"name": "Fire Rune",
+			"source": "TCE",
+			"system": {
+				"activation": {
+					"type": "none"
+				},
+				"actionType": "other",
+				"type": {
+					"value": "enchantment",
+					"subtype": "rune"
+				}
+			},
+			"effects": [
+				{
+					"name": "Restrained",
+					"duration": {
+						"seconds": 60
+					},
+					"statuses": [
+						"restrained"
+					]
+				}
+			]
+		},
+		{
+			"name": "Frost Rune",
+			"source": "TCE",
+			"system": {
+				"activation": {
+					"type": "bonus"
+				},
+				"type": {
+					"value": "enchantment",
+					"subtype": "rune"
+				}
+			},
+			"effects": [
+				{
+					"name": "Sturdy",
+					"duration": {
+						"rounds": 1,
+						"seconds": 600
+					},
+					"changes": [
+						{
+							"key": "system.abilities.con.bonuses.save",
+							"mode": "ADD",
+							"value": "+2"
+						},
+						{
+							"key": "system.abilities.con.bonuses.check",
+							"mode": "ADD",
+							"value": "+2"
+						},
+						{
+							"key": "system.abilities.str.bonuses.save",
+							"mode": "ADD",
+							"value": "+2"
+						},
+						{
+							"key": "system.abilities.str.bonuses.check",
+							"mode": "ADD",
+							"value": "+2"
+						}
+					],
+					"transfer": true
+				}
+			]
+		},
+		{
+			"name": "Helm of Awareness",
+			"source": "TCE",
+			"system": {
+				"activation": {
+					"type": "none"
+				},
+				"actionType": "ench",
+				"type": {
+					"value": "enchantment",
+					"subtype": "artificerInfusion"
+				},
+				"enchantment": {
+					"restrictions": {
+						"type": "equipment"
+					}
+				}
+			},
+			"effects": [
+				{
+					"name": "Helm of Awareness",
+					"changes": [
+						{
+							"key": "name",
+							"mode": "ADD",
+							"value": ", of Awareness"
+						},
+						{
+							"key": "system.description.value",
+							"mode": "ADD",
+							"value": "<p>While wearing this helmet, a creature has advantage on initiative rolls. In addition, the wearer can't be &amp;Reference[surprise]{surprised}, provided it isn't &amp;Reference[incapacitated]{incapacitated}.</p>"
+						},
+						{
+							"key": "system.attunement",
+							"mode": "OVERRIDE",
+							"value": "required"
+						},
+						{
+							"key": "system.properties",
+							"mode": "ADD",
+							"value": "mgc"
+						}
+					],
+					"type": "enchantment"
+				},
+				{
+					"name": "Helm of Awareness",
+					"changes": [
+						{
+							"key": "system.traits.ci.value",
+							"mode": "ADD",
+							"value": "surprised"
+						},
+						{
+							"key": "flags.dnd5e.initiativeAdv",
+							"mode": "OVERRIDE",
+							"value": "true"
+						}
+					],
+					"transfer": true
+				}
+			]
+		},
+		{
+			"name": "Hill Rune",
+			"source": "TCE",
+			"system": {
+				"activation": {
+					"type": "bonus"
+				},
+				"type": {
+					"value": "enchantment",
+					"subtype": "rune"
+				}
+			},
+			"effects": [
+				{
+					"name": "Resilience",
+					"duration": {
+						"rounds": 1,
+						"seconds": 60
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "piercing"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "bludeoning"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "slashing"
+						}
+					],
+					"transfer": true
+				}
+			]
+		},
+		{
+			"name": "Homunculus Servant",
+			"source": "TCE",
+			"system": {
+				"activation": {
+					"type": "action"
+				},
+				"actionType": "summ",
+				"type": {
+					"value": "enchantment",
+					"subtype": "artificerInfusion"
+				}
+			}
+		},
+		{
+			"name": "Mask of Many Faces",
+			"source": "PHB",
+			"system": {
+				"activation.type": null,
+				"activation.cost": null
+			}
+		},
+		{
+			"name": "Master of Myriad Forms",
+			"source": "PHB",
+			"system": {
+				"activation.type": null,
+				"activation.cost": null
+			}
+		},
+		{
+			"name": "Mind Sharpener",
+			"source": "TCE",
+			"system": {
+				"activation": {
+					"type": "none"
+				},
+				"actionType": "ench",
+				"type": {
+					"value": "enchantment",
+					"subtype": "artificerInfusion"
+				},
+				"enchantment": {
+					"restrictions": {
+						"type": "equipment"
+					}
+				}
+			},
+			"effects": [
+				{
+					"name": "Mind Sharpener",
+					"changes": [
+						{
+							"key": "name",
+							"mode": "OVERRIDE",
+							"value": "{} of Mind Sharpening"
+						},
+						{
+							"key": "system.description.value",
+							"mode": "ADD",
+							"value": "<p>The infused item can send a jolt to the wearer to refocus their mind. The item has 4 charges. When the wearer fails a Constitution saving throw to maintain concentration on a spell, the wearer can use its reaction to expend 1 of the item's charges to succeed instead. The item regains 1d4 expended charges daily at dawn.</p>"
+						},
+						{
+							"key": "system.activation.type",
+							"mode": "OVERRIDE",
+							"value": "reaction"
+						},
+						{
+							"key": "system.activation.cost",
+							"mode": "OVERRIDE",
+							"value": "1"
+						},
+						{
+							"key": "system.activation.condition",
+							"mode": "OVERRIDE",
+							"value": "When the wearer fails a concentration check"
+						},
+						{
+							"key": "system.uses.per",
+							"mode": "OVERRIDE",
+							"value": "charges"
+						},
+						{
+							"key": "system.uses.max",
+							"mode": "OVERRIDE",
+							"value": "4"
+						},
+						{
+							"key": "system.uses.recovery",
+							"mode": "OVERRIDE",
+							"value": "1d4"
+						},
+						{
+							"key": "system.properties",
+							"mode": "ADD",
+							"value": "mgc"
+						}
+					],
+					"type": "enchantment"
+				}
+			]
+		},
+		{
+			"name": "Minions of Chaos",
+			"source": "PHB",
+			"system": {
+				"activation.type": null,
+				"activation.cost": null
+			}
+		},
+		{
+			"name": "Mire the Mind",
+			"source": "PHB",
+			"system": {
+				"activation.type": null,
+				"activation.cost": null
+			}
+		},
+		{
+			"name": "Misty Visions",
+			"source": "PHB",
+			"system": {
+				"activation.type": null,
+				"activation.cost": null
+			}
+		},
+		{
+			"name": "Otherworldly Leap",
+			"source": "PHB",
+			"system": {
+				"activation.type": null,
+				"activation.cost": null
+			}
+		},
+		{
+			"name": "Pact of the Blade",
+			"source": "PHB",
+			"system": {
+				"activation.type": "action",
+				"activation.cost": 1
+			}
+		},
+		{
+			"name": "Radiant Weapon",
+			"source": "TCE",
+			"system": {
+				"activation": {
+					"type": "none"
+				},
+				"actionType": "ench",
+				"type": {
+					"value": "enchantment",
+					"subtype": "artificerInfusion"
+				},
+				"enchantment": {
+					"restrictions": {
+						"type": "weapon"
+					}
+				}
+			},
+			"effects": [
+				{
+					"name": "Radiant Weapon",
+					"changes": [
+						{
+							"key": "name",
+							"mode": "ADD",
+							"value": ", Radiant"
+						},
+						{
+							"key": "system.description.value",
+							"mode": "ADD",
+							"value": "<p>This magic weapon grants a +1 bonus to attack and damage rolls made with it. While holding it, the wielder can take a bonus action to cause it to shed bright light in a 30-foot radius and dim light for an additional 30 feet. The wielder can extinguish the light as a bonus action.</p> <p>The weapon has 4 charges. As a reaction immediately after being hit by an attack, the wielder can expend 1 charge and cause the attacker to be blinded until the end of the attacker's next turn, unless the attacker succeeds on a Constitution saving throw against your spell save DC. The weapon regains 1d4 expended charges daily at dawn.</p> <p><strong>Foundry Note</strong></p> <p>This infusion adds the bonus to attack and damage rolls and the charges but they are not automatically consumed nor are you prompted on each use. This is to enable quick use of the weapon's normal abilities. The chat card includes an option to consume the charge if needed.</p> <p>This infusion also grants the [[/item Radiant Weapon Reaction]] item for handling its charges and saving throw. When the infusion is removed the reaction item will be as well.</p> "
+						},
+						{
+							"key": "system.activation.type",
+							"mode": "OVERRIDE",
+							"value": "reaction"
+						},
+						{
+							"key": "system.activation.cost",
+							"mode": "OVERRIDE",
+							"value": "1"
+						},
+						{
+							"key": "system.activation.condition",
+							"mode": "OVERRIDE",
+							"value": "After being hit by an attack"
+						},
+						{
+							"key": "system.uses.per",
+							"mode": "OVERRIDE",
+							"value": "charges"
+						},
+						{
+							"key": "system.uses.max",
+							"mode": "OVERRIDE",
+							"value": "4"
+						},
+						{
+							"key": "system.uses.recovery",
+							"mode": "OVERRIDE",
+							"value": "1d4"
+						},
+						{
+							"key": "system.properties",
+							"mode": "ADD",
+							"value": "mgc"
+						},
+						{
+							"key": "system.magicalBonus",
+							"mode": "ADD",
+							"value": "1"
+						},
+						{
+							"key": "system.attunement",
+							"mode": "OVERRIDE",
+							"value": "required"
+						}
+					],
+					"type": "enchantment"
+				}
+			]
+		},
+		{
+			"name": "Repeating Shot",
+			"source": "TCE",
+			"system": {
+				"activation": {
+					"type": "none"
+				},
+				"actionType": "ench",
+				"type": {
+					"value": "enchantment",
+					"subtype": "artificerInfusion"
+				},
+				"enchantment": {
+					"restrictions": {
+						"type": "weapon"
+					}
+				}
+			},
+			"effects": [
+				{
+					"name": "Repeating Shot",
+					"changes": [
+						{
+							"key": "name",
+							"mode": "ADD",
+							"value": ", Repeating Shot"
+						},
+						{
+							"key": "system.description.value",
+							"mode": "ADD",
+							"value": "<p>This magic weapon grants a +1 bonus to attack and damage rolls made with it when it's used to make a ranged attack, and it ignores the loading property if it has it.</p> <p>If the weapon lacks ammunition, it produces its own, automatically creating one piece of magic ammunition when the wielder makes a ranged attack with it. The ammunition created by the weapon vanishes the instant after it hits or misses a target.</p>"
+						},
+						{
+							"key": "system.properties",
+							"mode": "ADD",
+							"value": "-lod"
+						},
+						{
+							"key": "system.properties",
+							"mode": "ADD",
+							"value": "mgc"
+						},
+						{
+							"key": "system.magicalBonus",
+							"mode": "ADD",
+							"value": "1"
+						},
+						{
+							"key": "system.attunement",
+							"mode": "OVERRIDE",
+							"value": "required"
+						}
+					],
+					"type": "enchantment"
+				}
+			]
+		},
+		{
+			"name": "Replicate Magic Item",
+			"source": "TCE",
+			"system": {
+				"activation": {
+					"type": "none"
+				},
+				"actionType": "ench",
+				"type": {
+					"value": "enchantment",
+					"subtype": "artificerInfusion"
+				}
+			},
+			"effects": [
+				{
+					"name": "Replicated Magic Item",
+					"changes": [
+						{
+							"key": "name",
+							"mode": "ADD",
+							"value": ", Replicated"
+						}
+					],
+					"type": "enchantment"
+				}
+			]
+		},
+		{
+			"name": "Repulsion Shield",
+			"source": "TCE",
+			"system": {
+				"activation": {
+					"type": "none"
+				},
+				"actionType": "ench",
+				"type": {
+					"value": "enchantment",
+					"subtype": "artificerInfusion"
+				},
+				"enchantment": {
+					"restrictions": {
+						"type": "equipment"
+					}
+				}
+			},
+			"effects": [
+				{
+					"name": "Repulsion Shield",
+					"changes": [
+						{
+							"key": "name",
+							"mode": "ADD",
+							"value": ", Repulsion Shield"
+						},
+						{
+							"key": "system.description.value",
+							"mode": "ADD",
+							"value": "<p>A creature gains a +1 bonus to Armor Class while wielding this shield.</p> <p>The shield has 4 charges. While holding it, the wielder can use a reaction immediately after being hit by a melee attack to expend 1 of the shield's charges and push the attacker up to 15 feet away. The shield regains 1d4 expended charges daily at dawn.</p> <p><strong>Foundry Note</strong></p> <p>This Infusion includes the bonus to armor class.</p> "
+						},
+						{
+							"key": "system.armor.magicalBonus",
+							"mode": "ADD",
+							"value": "1"
+						},
+						{
+							"key": "system.attunement",
+							"mode": "OVERRIDE",
+							"value": "required"
+						},
+						{
+							"key": "system.activation.type",
+							"mode": "OVERRIDE",
+							"value": "reaction"
+						},
+						{
+							"key": "system.activation.cost",
+							"mode": "OVERRIDE",
+							"value": "1"
+						},
+						{
+							"key": "system.uses.per",
+							"mode": "OVERRIDE",
+							"value": "charges"
+						},
+						{
+							"key": "system.uses.max",
+							"mode": "OVERRIDE",
+							"value": "4"
+						},
+						{
+							"key": "system.activation.condition",
+							"mode": "ADD",
+							"value": "Immediately after being hit by a melee attack"
+						},
+						{
+							"key": "system.uses.recovery",
+							"mode": "OVERRIDE",
+							"value": "1d4"
+						},
+						{
+							"key": "system.properties",
+							"mode": "ADD",
+							"value": "mgc"
+						}
+					],
+					"type": "enchantment"
+				}
+			]
+		},
+		{
+			"name": "Resistant Armor",
+			"source": "TCE",
+			"system": {
+				"activation": {
+					"type": "none"
+				},
+				"actionType": "ench",
+				"type": {
+					"value": "enchantment",
+					"subtype": "artificerInfusion"
+				},
+				"enchantment": {
+					"restrictions": {
+						"type": "equipment"
+					}
+				}
+			},
+			"effects": [
+				{
+					"name": "Acid Resistance",
+					"changes": [
+						{
+							"key": "name",
+							"mode": "ADD",
+							"value": ", Acid Resistant"
+						},
+						{
+							"key": "system.description.value",
+							"mode": "ADD",
+							"value": "<p>While wearing this armor, a creature has resistance to acid damage.</p>"
+						},
+						{
+							"key": "system.attunement",
+							"mode": "OVERRIDE",
+							"value": "required"
+						}
+					],
+					"type": "enchantment",
+					"foundryId": "ufnjdkye4AwCNw3y"
+				},
+				{
+					"name": "Cold Resistance",
+					"changes": [
+						{
+							"key": "name",
+							"mode": "ADD",
+							"value": ", Cold Resistant"
+						},
+						{
+							"key": "system.description.value",
+							"mode": "ADD",
+							"value": "<p>While wearing this armor, a creature has resistance to cold damage.</p>"
+						},
+						{
+							"key": "system.attunement",
+							"mode": "OVERRIDE",
+							"value": "required"
+						}
+					],
+					"type": "enchantment",
+					"foundryId": "IwMxrYsS7HFjX4Oi"
+				},
+				{
+					"name": "Fire Resistance",
+					"changes": [
+						{
+							"key": "name",
+							"mode": "ADD",
+							"value": ", Fire Resistant"
+						},
+						{
+							"key": "system.description.value",
+							"mode": "ADD",
+							"value": "<p>While wearing this armor, a creature has resistance to fire damage.</p>"
+						},
+						{
+							"key": "system.attunement",
+							"mode": "OVERRIDE",
+							"value": "required"
+						}
+					],
+					"type": "enchantment",
+					"foundryId": "BaA8aaeV86SWrjFp"
+				},
+				{
+					"name": "Force Resistance",
+					"changes": [
+						{
+							"key": "name",
+							"mode": "ADD",
+							"value": ", Force Resistant"
+						},
+						{
+							"key": "system.description.value",
+							"mode": "ADD",
+							"value": "<p>While wearing this armor, a creature has resistance to force damage.</p>"
+						},
+						{
+							"key": "system.attunement",
+							"mode": "OVERRIDE",
+							"value": "required"
+						}
+					],
+					"type": "enchantment",
+					"foundryId": "hCI4vspbQZLRR92W"
+				},
+				{
+					"name": "Lightning Resistance",
+					"changes": [
+						{
+							"key": "name",
+							"mode": "ADD",
+							"value": ", Lightning Resistant"
+						},
+						{
+							"key": "system.description.value",
+							"mode": "ADD",
+							"value": "<p>While wearing this armor, a creature has resistance to lightning damage.</p>"
+						},
+						{
+							"key": "system.attunement",
+							"mode": "OVERRIDE",
+							"value": "required"
+						}
+					],
+					"type": "enchantment",
+					"foundryId": "6a8ZKAYbgRClp31A"
+				},
+				{
+					"name": "Necrotic Resistance",
+					"changes": [
+						{
+							"key": "name",
+							"mode": "ADD",
+							"value": ", Necrotic Resistant"
+						},
+						{
+							"key": "system.description.value",
+							"mode": "ADD",
+							"value": "<p>While wearing this armor, a creature has resistance to necrotic damage.</p>"
+						},
+						{
+							"key": "system.attunement",
+							"mode": "OVERRIDE",
+							"value": "required"
+						}
+					],
+					"type": "enchantment",
+					"foundryId": "sUfuFKyLRr8SHrW1"
+				},
+				{
+					"name": "Poison Resistance",
+					"changes": [
+						{
+							"key": "name",
+							"mode": "ADD",
+							"value": ", Poison Resistant"
+						},
+						{
+							"key": "system.description.value",
+							"mode": "ADD",
+							"value": "<p>While wearing this armor, a creature has resistance to poison damage.</p>"
+						},
+						{
+							"key": "system.attunement",
+							"mode": "OVERRIDE",
+							"value": "required"
+						}
+					],
+					"type": "enchantment",
+					"foundryId": "urJlfLzdn7EMQVeI"
+				},
+				{
+					"name": "Psychic Resistance",
+					"changes": [
+						{
+							"key": "name",
+							"mode": "ADD",
+							"value": ", Psychic Resistant"
+						},
+						{
+							"key": "system.description.value",
+							"mode": "ADD",
+							"value": "<p>While wearing this armor, a creature has resistance to psychic damage.</p>"
+						},
+						{
+							"key": "system.attunement",
+							"mode": "OVERRIDE",
+							"value": "required"
+						}
+					],
+					"type": "enchantment",
+					"foundryId": "PMg1xUSzmdfkehmk"
+				},
+				{
+					"name": "Radiant Resistance",
+					"changes": [
+						{
+							"key": "name",
+							"mode": "ADD",
+							"value": ", Radiant Resistant"
+						},
+						{
+							"key": "system.description.value",
+							"mode": "ADD",
+							"value": "<p>While wearing this armor, a creature has resistance to radiant damage.</p>"
+						},
+						{
+							"key": "system.attunement",
+							"mode": "OVERRIDE",
+							"value": "required"
+						}
+					],
+					"type": "enchantment",
+					"foundryId": "d91sC1CVni1UqvD9"
+				},
+				{
+					"name": "Thunder Resistance",
+					"changes": [
+						{
+							"key": "name",
+							"mode": "ADD",
+							"value": ", Thunder Resistant"
+						},
+						{
+							"key": "system.description.value",
+							"mode": "ADD",
+							"value": "<p>While wearing this armor, a creature has resistance to thunder damage.</p>"
+						},
+						{
+							"key": "system.attunement",
+							"mode": "OVERRIDE",
+							"value": "required"
+						}
+					],
+					"type": "enchantment",
+					"foundryId": "53ofZQaLsaqm16Wv"
+				},
+				{
+					"name": "Acid Resistance",
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "acid"
+						}
+					],
+					"transfer": true,
+					"enchantmentRiderParent": "ufnjdkye4AwCNw3y"
+				},
+				{
+					"name": "Cold Resistance",
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "cold"
+						}
+					],
+					"transfer": true,
+					"enchantmentRiderParent": "IwMxrYsS7HFjX4Oi"
+				},
+				{
+					"name": "Fire Resistance",
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "fire"
+						}
+					],
+					"transfer": true,
+					"enchantmentRiderParent": "BaA8aaeV86SWrjFp"
+				},
+				{
+					"name": "Force Resistance",
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "force"
+						}
+					],
+					"transfer": true,
+					"enchantmentRiderParent": "hCI4vspbQZLRR92W"
+				},
+				{
+					"name": "Lightning Resistance",
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "lightning"
+						}
+					],
+					"transfer": true,
+					"enchantmentRiderParent": "6a8ZKAYbgRClp31A"
+				},
+				{
+					"name": "Necrotic Resistance",
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "necrotic"
+						}
+					],
+					"transfer": true,
+					"enchantmentRiderParent": "sUfuFKyLRr8SHrW1"
+				},
+				{
+					"name": "Poison Resistance",
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "poison"
+						}
+					],
+					"transfer": true,
+					"enchantmentRiderParent": "urJlfLzdn7EMQVeI"
+				},
+				{
+					"name": "Psychic Resistance",
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "psychic"
+						}
+					],
+					"transfer": true,
+					"enchantmentRiderParent": "PMg1xUSzmdfkehmk"
+				},
+				{
+					"name": "Radiant Resistance",
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "radiant"
+						}
+					],
+					"transfer": true,
+					"enchantmentRiderParent": "d91sC1CVni1UqvD9"
+				},
+				{
+					"name": "Thunder Resistance",
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "thunder"
+						}
+					],
+					"transfer": true,
+					"enchantmentRiderParent": "53ofZQaLsaqm16Wv"
+				}
+			]
+		},
+		{
+			"name": "Returning Weapon",
+			"source": "TCE",
+			"system": {
+				"activation": {
+					"type": "none"
+				},
+				"actionType": "ench",
+				"type": {
+					"value": "enchantment",
+					"subtype": "artificerInfusion"
+				},
+				"enchantment": {
+					"restrictions": {
+						"type": "weapon"
+					}
+				}
+			},
+			"effects": [
+				{
+					"name": "Returning Weapon",
+					"changes": [
+						{
+							"key": "name",
+							"mode": "ADD",
+							"value": ", Returning"
+						},
+						{
+							"key": "system.description.value",
+							"mode": "ADD",
+							"value": "<p>This magic weapon grants a +1 bonus to attack and damage rolls made with it, and it returns to the wielder's hand immediately after it is used to make a ranged attack.</p>"
+						},
+						{
+							"key": "system.properties",
+							"mode": "ADD",
+							"value": "mgc"
+						},
+						{
+							"key": "system.magicalBonus",
+							"mode": "ADD",
+							"value": "1"
+						},
+						{
+							"key": "system.properties",
+							"mode": "ADD",
+							"value": "ret"
+						}
+					],
+					"type": "enchantment"
+				}
+			]
+		},
+		{
+			"name": "Sculptor of Flesh",
+			"source": "PHB",
+			"system": {
+				"activation.type": null,
+				"activation.cost": null
+			}
+		},
+		{
+			"name": "Sign of Ill Omen",
+			"source": "PHB",
+			"system": {
+				"activation.type": null,
+				"activation.cost": null
+			}
+		},
+		{
+			"name": "Spell-Refueling Ring",
+			"source": "TCE",
+			"system": {
+				"activation": {
+					"type": "none"
+				},
+				"actionType": "ench",
+				"type": {
+					"value": "enchantment",
+					"subtype": "artificerInfusion"
+				},
+				"enchantment": {
+					"restrictions": {
+						"type": "equipment"
+					}
+				}
+			},
+			"effects": [
+				{
+					"name": "Spell-Refueling Ring",
+					"changes": [
+						{
+							"key": "name",
+							"mode": "ADD",
+							"value": ", Spell-Refueling"
+						},
+						{
+							"key": "system.description.value",
+							"mode": "ADD",
+							"value": "<p>While wearing this ring, the creature can recover one expended spell slot as an action. The recovered slot can be of 3rd level or lower. Once used, the ring can't be used again until the next dawn.</p>"
+						},
+						{
+							"key": "system.activation.type",
+							"mode": "OVERRIDE",
+							"value": "action"
+						},
+						{
+							"key": "system.activation.cost",
+							"mode": "OVERRIDE",
+							"value": "1"
+						},
+						{
+							"key": "system.uses.per",
+							"mode": "OVERRIDE",
+							"value": "dawn"
+						},
+						{
+							"key": "system.uses.max",
+							"mode": "ADD",
+							"value": "1"
+						},
+						{
+							"key": "system.uses.recovery",
+							"mode": "ADD",
+							"value": "1"
+						},
+						{
+							"key": "system.attunement",
+							"mode": "OVERRIDE",
+							"value": "required"
+						}
+					],
+					"type": "enchantment"
+				}
+			]
+		},
+		{
+			"name": "Stone Rune",
+			"source": "TCE",
+			"system": {
+				"activation": {
+					"type": "reaction"
+				},
+				"actionType": "save",
+				"type": {
+					"value": "enchantment",
+					"subtype": "rune"
+				}
+			},
+			"effects": [
+				{
+					"name": "Judiciousness",
+					"changes": [
+						{
+							"key": "system.attributes.senses.darkvision",
+							"mode": "UPGRADE",
+							"value": "120"
+						}
+					],
+					"transfer": true
+				},
+				{
+					"name": "Judged",
+					"duration": {
+						"seconds": 60
+					},
+					"statuses": [
+						"charmed",
+						"incapacitated"
+					]
+				}
+			]
+		},
+		{
+			"name": "Storm Rune",
+			"source": "TCE",
+			"system": {
+				"activation": {
+					"type": "bonus"
+				},
+				"type": {
+					"value": "enchantment",
+					"subtype": "rune"
+				}
+			}
+		},
+		{
+			"name": "Thief of Five Fates",
+			"source": "PHB",
+			"system": {
+				"activation.type": null,
+				"activation.cost": null
+			}
+		},
+		{
+			"name": "Visions of Distant Realms",
+			"source": "PHB",
+			"system": {
+				"activation.type": null,
+				"activation.cost": null
+			}
+		},
+		{
+			"name": "Whispers of the Grave",
+			"source": "PHB",
+			"system": {
+				"activation.type": null,
+				"activation.cost": null
+			}
+		}
+	]
+}

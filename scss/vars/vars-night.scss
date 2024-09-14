@@ -1,0 +1,84 @@
+@use "sass:color";
+
+@use "../vars/vars";
+
+$rgb-name-red--night: #d29a38;
+$rgb-name-alt--night: #c2c2c2;
+
+$rgb-link-blue--night: #7db6e8;
+$rgb-link-blue--muted-night: #6e8eab;
+
+$rgb-border-grey--night: #555;
+$rgb-border-grey--trans-night: #555555a0;
+$rgb-border-grey--list-row-night: #444;
+$rgb-border-grey--statblock-night: #565656;
+
+$rgb-stripe-grey--night: #aaa2;
+
+$rgb-bg--body-night: #1c1c1c;
+$rgb-bg--night: #222;
+$rgb-bg--alt-night: #383838;
+$rgb-bg-homebrew--night: rgb(255 0 0 / 15%);
+
+$rgb-bg-highlight--night: #cc0;
+
+$rgb-font--night: #bbb;
+$rgb-font--muted-night: #777;
+
+$rgb-form-control-bg--night: #222;
+
+$rgb-btn-default-active--night: #ffffff40;
+
+$rgb-btn-danger-bg-red--night: #7e3a38;
+
+$rgb-class-variant--night: #e6ab94;
+$rgb-class-ua--night: #a2ce42;
+$rgb-subclass--night: vars.$rgb-subclass;
+$rgb-subclass--night-stale: vars.$rgb-subclass--stale;
+$rgb-subclass-ua--night: #179e50;
+$rgb-subclass-ua--night-stale: #509e8a;
+$rgb-class-brew--night: #aa40b4;
+$rgb-class-variant-brew--night: #da9db5;
+
+// Colors blended using https://www.w3schools.com/colors/colors_mixer.asp
+$rgb-btn-primary-blue--night: #2a4e6c; // #337ab7 blended with #222
+$rgb-btn-danger-red--night: #7e3a38; // #d9534f blended with #222
+$rgb-btn-warning-orange--night: #896838; // #f0ad4e blended with #222
+$rgb-btn-info-blue--night: #2a697c; // #31b0d5 blended with #222
+$rgb-btn-success-green--night: #427442; // #5cb85c blended with #222
+
+$rgb-alert-info-blue--night: #375a7f;
+$rgb-alert-danger-red--night: #8d1d1a;
+$rgb-alert-warning-orange--night: #cd8514;
+$rgb-alert-success-green--night: #009e56;
+
+$rgb-alert-info-border-blue--night: color.adjust($rgb-alert-info-blue--night, $lightness: vars.$pct-darken-border);
+$rgb-alert-danger-border-red--night: color.adjust($rgb-alert-danger-red--night, $lightness: vars.$pct-darken-border);
+$rgb-alert-warning-border-orange--night: color.adjust($rgb-alert-warning-orange--night, $lightness: vars.$pct-darken-border);
+$rgb-alert-success-border-green--night: color.adjust($rgb-alert-success-green--night, $lightness: vars.$pct-darken-border);
+
+@mixin mix-shadow-active--night {
+	box-shadow: 0 0 3px 0 #fffb;
+}
+
+@mixin mix-cb-custom--night {
+	background: $rgb-bg--night;
+	border-color: $rgb-border-grey--night;
+
+	&:active {
+		@include mix-shadow-active--night;
+	}
+
+	&.active {
+		background: $rgb-border-grey--night;
+		border-color: color.adjust($rgb-border-grey--night, $lightness: 10%);
+
+		&.disabled {
+			background-color: color.adjust($rgb-border-grey--night, $lightness: 20%);
+		}
+	}
+
+	&.disabled {
+		box-shadow: none;
+	}
+}

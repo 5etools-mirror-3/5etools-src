@@ -1,0 +1,39 @@
+<div class="view-col itm__wrp-lists" id="listcontainer">
+	<div class="ve-flex-col min-h-0 w-100 itm__wrp-list itm__wrp-list--empty itm__wrp-list--mundane">
+		<div class="lst__form-top" id="filter-search-group">
+			<div class="w-100 relative">
+				<input type="search" id="lst__search" autocomplete="off" autocapitalize="off" spellcheck="false" class="search form-control lst__search lst__search--no-border-h">
+				<div id="lst__search-glass" class="lst__wrp-search-glass no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
+				<div class="lst__wrp-search-visible no-events ve-flex-vh-center"></div>
+			</div>
+			<button type="button" class="ve-btn ve-btn-default" id="reset">Reset</button>
+		</div>
+
+		<div id="filtertools-mundane" class="ele-mundane input-group input-group--bottom ve-flex no-shrink">
+			<button type="button" class="ve-col-3-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name" data-sortby="asc">Name</button>
+			<button type="button" class="ve-col-4-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="type" data-sortby="asc">Type</button>
+			<button type="button" class="ve-col-1-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="cost" data-sortby="asc">Cost</button>
+			<button type="button" class="ve-col-1-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="weight" data-sortby="asc">Weight</button>
+			<button type="button" class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source" data-sortby="asc">Source</button>
+		</div>
+
+		<div class="list list--stats mundane ele-mundane"></div>
+		<h3 class="ele-mundane"><span class="side-label side-label--mundane clickable"></span></h3>
+	</div>
+
+	<div class="ve-flex-col min-h-0 w-100 itm__wrp-list itm__wrp-list--empty itm__wrp-list--magic">
+		<div class="no-shrink itm__list-divider ele-mundane-and-magic"></div>
+
+		<div id="filtertools-magic" class="ele-magic input-group input-group--bottom ve-flex no-shrink">
+			<button type="button" class="fullborder ve-col-3-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name" data-sortby="asc">Name</button>
+			<button type="button" class="fullborder ve-col-4 sort ve-btn ve-btn-default ve-btn-xs" data-sort="type" data-sortby="asc">Type</button>
+			<button type="button" class="fullborder ve-col-1-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="weight" data-sortby="asc">Weight</button>
+			<button type="button" class="ve-col-0-6 sort ve-btn ve-btn-default ve-btn-xs" data-sort="attunement" title="Can Be Attuned">A.</button>
+			<button type="button" class="fullborder ve-col-1-4 sort ve-btn ve-btn-default ve-btn-xs" data-sort="rarity" data-sortby="asc">Rarity</button>
+			<button type="button" class="fullborder sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source" data-sortby="asc">Source</button>
+		</div>
+
+		<div class="list list--stats magic ele-magic"></div>
+		<h3 class="ele-magic"><span class="side-label side-label--magic clickable"></span></h3>
+	</div>
+</div>

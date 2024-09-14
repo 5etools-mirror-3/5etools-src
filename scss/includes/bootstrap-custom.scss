@@ -1,0 +1,363 @@
+@use "../vars/vars";
+@use "../vars/vars-night";
+
+:root {
+	--safe-area-inset-top: 0;
+	--safe-area-inset-right: 0;
+	--safe-area-inset-bottom: 0;
+	--safe-area-inset-left: 0;
+}
+
+// region Fix Glyphicon alignments
+.glyphicon-send {
+	top: 2px;
+	right: 1px;
+}
+
+.glyphicon--top-2p {
+	top: 2px;
+}
+// endregion
+
+.roller {
+	color: vars.$rgb-link-blue;
+	cursor: pointer;
+}
+
+.font-ui {
+	font-family: Arial, sans-serif;
+}
+
+// Help styling which should only be displayed on screens wide enough to use hover windows
+.help--hover {
+	// This should approx. match the hover cutoff defined in renderer (768px).
+	// Approximate, since jQuery calculates window width differently, offset likely varies with e.g. scrollbar width.
+	@media screen and (width <= #{vars.$width-screen-sm}) {
+		cursor: default !important;
+		text-decoration: none !important;
+	}
+}
+
+/* Base elements */
+body {
+	min-height: 100vh;
+	position: relative;
+	overflow-x: hidden;
+
+	// :^)
+	// TODO(iOS) deploy sensibly if this "concept" works
+	padding: var(--safe-area-inset-top) var(--safe-area-inset-right) var(--safe-area-inset-bottom) var(--safe-area-inset-left);
+
+	&.is-fullscreen .page__header {
+		display: none;
+	}
+
+	&.is-fullscreen .page__nav {
+		display: none;
+	}
+}
+
+// Fix inputs on Firefox
+input {
+	min-width: 0;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+	margin: 0;
+}
+
+main {
+	padding: 10px 15px;
+}
+
+footer {
+	padding: 20px 15px;
+	font-size: 90%;
+}
+
+pre,
+textarea {
+	tab-size: 2;
+}
+
+hr {
+	flex-shrink: 0;
+}
+
+/* *** */
+
+/* custom scrollbars */
+// Firefox only--use thinner scrollbars where possible (Chrome uses `-webkit` custom styling instead)
+@-moz-document url-prefix() {
+	* {
+		scrollbar-width: thin;
+	}
+}
+
+::-webkit-scrollbar {
+	width: 9px;
+	height: 9px;
+}
+
+::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #cbcbcb;
+}
+
+// thicker scrollbar for the body only
+body {
+	scrollbar-width: auto;
+}
+
+body::-webkit-scrollbar {
+	width: vars.$w-scroll-body;
+}
+
+/* *** */
+
+/* Bootstrap overrides */
+.container {
+	position: relative;
+}
+
+.input-xs {
+	height: vars.$h-ipt-xs;
+	padding: 1px 5px;
+	font-size: 12px;
+	line-height: 1.5;
+	border-radius: 3px;
+}
+
+.form-control--minimal {
+	border-radius: 0;
+	padding: 0 2px;
+}
+
+.ve-flex-label {
+	display: inline-flex;
+	align-items: center;
+
+	> input[type="checkbox"],
+	> input[type="radio"] {
+		margin: 0 0 0 5px;
+	}
+}
+
+.ve-btn-xxs {
+	padding: 0 2px;
+	font-size: 12px;
+	line-height: 1.5;
+	border-radius: 3px;
+}
+
+.ve-btn-primary--half {
+	background: repeating-linear-gradient(135deg, vars.$rgb-btn-primary-blue, vars.$rgb-btn-primary-blue 16px, vars.$rgb-btn-primary-blue--desaturated 16px, vars.$rgb-btn-primary-blue--desaturated 32px);
+}
+
+.ve-dropdown-menu--side {
+	top: -10px;
+	left: 100%;
+	max-height: calc(100vh - 190px);
+	overflow-y: auto;
+}
+
+.nav > li {
+	> a {
+		padding: 5px 14px 6px;
+
+		@media screen and (width > #{vars.$width-screen-md}) {
+			border-top-left-radius: 0;
+			border-top-right-radius: 0;
+		}
+	}
+
+	@media screen and (width <= #{vars.$width-screen-md}) {
+		margin-top: 2px;
+		margin-bottom: 2px;
+	}
+}
+
+.page__nav-inner > li.active > a,
+.page__nav-inner > li.active > a:focus,
+.page__nav-inner > li.active > a:hover {
+	background-color: #006bc4;
+	border-top: 0;
+
+	@media screen and (width > #{vars.$width-screen-md}) {
+		border-left: 1px solid transparent;
+		border-right: 1px solid transparent;
+		border-bottom: 1px solid #999;
+	}
+}
+
+.nav > li > a:focus,
+.nav > li > a:hover {
+	background-color: rgb(0 0 0 / 10%);
+}
+
+.nav .open > a,
+.nav .open > a:focus,
+.nav .open > a:hover {
+	background-color: rgb(0 0 0 / 10%);
+}
+
+.row {
+	margin-right: 0;
+	margin-left: 0;
+}
+
+.ve-dropdown-menu > li > a.ve-dropdown-ext-link {
+	display: flex;
+	justify-content: space-between;
+}
+
+.ve-dropdown-menu > li > a.ve-dropdown-ext-link:hover {
+	padding-right: 10px;
+}
+
+/* Allow spans instead of links in dropdown menus. Styling borrowed from original */
+.ve-dropdown-menu > li > span {
+	cursor: pointer;
+	display: block;
+	padding: 3px 20px;
+	clear: both;
+	font-weight: 400;
+	line-height: vars.$font-line-height;
+	color: #333;
+	white-space: nowrap;
+
+	&:focus,
+	&:hover {
+		color: #262626;
+		text-decoration: none;
+		background-color: vars.$rgb-bg--alt;
+	}
+}
+
+.ve-dropdown-menu > .disabled > span {
+	pointer-events: none;
+	color: vars.$rgb-ctx-item-text-disabled;
+
+	&:focus,
+	&:hover {
+		color: vars.$rgb-ctx-item-text-disabled;
+		text-decoration: none;
+		cursor: not-allowed;
+		background-color: transparent;
+		background-image: none;
+	}
+}
+
+.ve-dropdown-menu > .ctx-danger > span {
+	background: vars.$rgb-btn-danger-bg-red;
+	color: #fff;
+
+	&:focus,
+	&:hover {
+		color: #fff;
+		text-decoration: none;
+		background-color: vars.$rgb-btn-danger-border-red;
+	}
+}
+/* *** */
+
+.ve-dropdown-ext-link > .glyphicon {
+	top: 3px;
+	display: none;
+}
+
+.ve-dropdown-ext-link:hover > .glyphicon {
+	display: inline-block;
+}
+
+.caret--right {
+	transform: rotate(270deg);
+}
+
+// region Override defaults to better implement filter UI
+.input-group {
+	> input.form-control,
+	> label,
+	> button,
+	> a.ve-btn {
+		border-radius: 0;
+		border-right: 0;
+
+		&:first-child {
+			border-top-left-radius: 3px;
+			border-bottom-left-radius: 3px;
+		}
+
+		&:last-child {
+			border-top-right-radius: 3px;
+			border-bottom-right-radius: 3px;
+			border-right: 1px solid vars.$rgb-border-grey;
+		}
+	}
+
+	// The first horizontal row in multiple vertically-stacked input-group rows
+	&--top {
+		input.form-control,
+		label,
+		button,
+		a.ve-btn {
+			&:first-child {
+				border-bottom-left-radius: 0;
+			}
+
+			&:last-child {
+				border-bottom-right-radius: 0;
+			}
+		}
+	}
+
+	&--middle {
+		input.form-control,
+		label,
+		button,
+		a.ve-btn {
+			border-top: 0;
+
+			&:first-child {
+				border-radius: 0;
+			}
+
+			&:last-child {
+				border-radius: 0;
+			}
+		}
+	}
+
+	&--bottom {
+		input.form-control,
+		label,
+		button,
+		a.ve-btn {
+			border-top: 0;
+
+			&:first-child {
+				border-top-left-radius: 0;
+			}
+
+			&:last-child {
+				border-top-right-radius: 0;
+			}
+		}
+	}
+}
+
+.ve-night-mode .input-group {
+	> input.form-control,
+	> label,
+	> button,
+	> a.ve-btn {
+		&:last-child {
+			border-right-color: vars-night.$rgb-border-grey--night;
+		}
+	}
+}
+// endregion

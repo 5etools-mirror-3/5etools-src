@@ -1,0 +1,27 @@
+@use "../vars/vars";
+
+.ecgen {
+	&__ {
+		&wrp_add_players_btn_wrp {
+			width: calc(140px + 0.5rem);
+		}
+
+		&btn-random-adjust {
+			min-width: 135px;
+		}
+	}
+
+	&-player__ {
+		&wrp-row {
+			&:only-child {
+				.ecgen-player__btn-inline {
+					display: none !important;
+				}
+			}
+		}
+
+		&btn-inline {
+			font-size: 10px;
+		}
+	}
+}

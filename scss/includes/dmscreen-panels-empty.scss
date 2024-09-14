@@ -1,0 +1,14 @@
+@use "../vars/vars";
+@use "../vars/vars-night";
+
+.dm-blank__ {
+	&panel {
+		background: vars.$rgb-bg;
+	}
+}
+
+.ve-night-mode .dm-blank__ {
+	&panel {
+		background: vars-night.$rgb-bg--night;
+	}
+}

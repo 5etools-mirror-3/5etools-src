@@ -1,0 +1,84 @@
+@use "../vars/vars";
+
+.lst__ {
+	&wrp-search-glass {
+		position: absolute;
+		top: 0;
+		bottom: 2px;
+		left: 6px;
+		opacity: 0.5;
+	}
+
+	&wrp-search-visible {
+		position: absolute;
+		top: 0;
+		right: 6px;
+		bottom: 0;
+		opacity: 0.5;
+	}
+
+	&caret {
+		&--active {
+			display: inline-block;
+			width: 0;
+			height: 0;
+			vertical-align: middle;
+			border-top: 4px dashed;
+			border-right: 4px solid transparent;
+			border-left: 4px solid transparent;
+			margin-left: 2px;
+		}
+
+		&--reverse {
+			transform: rotate(180deg);
+		}
+	}
+
+	&is-exporting-image {
+		.lst-is-exporting-image {
+			&__hidden {
+				display: none !important;
+			}
+		}
+	}
+
+	&row {
+		&:hover {
+			background: vars.$rgb-bg--alt;
+		}
+
+		&--blocklisted {
+			display: none !important;
+		}
+
+		&-inner {
+			line-height: 14px;
+			color: inherit;
+			display: flex;
+			align-items: center;
+			overflow: hidden;
+			padding: 0 2px 1px;
+			text-decoration: none;
+
+			&:hover,
+			&:focus {
+				text-decoration: none;
+			}
+		}
+
+		&-border {
+			border-bottom: 1px solid vars.$rgb-border-grey--list-row;
+		}
+	}
+}
+
+input.lst__ {
+	&search {
+		padding-left: 23px;
+	}
+
+	&search--no-border-h {
+		border-radius: 0;
+		border-right: 0;
+	}
+}

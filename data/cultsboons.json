@@ -1,0 +1,1343 @@
+{
+	"cult": [
+		{
+			"name": "Cult of Asmodeus",
+			"source": "MTF",
+			"page": 21,
+			"type": "Diabolical",
+			"entries": [
+				"{@deity Asmodeus|faerûnian|scag} demands the loyalty of all cultists who gain power and leadership in the cults of the Nine. His cult subsumes all the others.",
+				"Any NPC who leads a diabolical cult must acknowledge the power of Asmodeus. In return, the most worthy of those leaders gain the Demands of Nessus trait.",
+				{
+					"type": "entries",
+					"name": "Demands of Nessus",
+					"entries": [
+						"At the start of each of this creature's turns, this creature can choose one ally it can see within 30 feet of it. The chosen ally loses 10 hit points, and this creature regains the same number of hit points. If the creature is {@condition incapacitated}, it makes no choice; instead, the closest ally within 30 feet is the chosen ally."
+					]
+				}
+			]
+		},
+		{
+			"name": "Cult of Atropus, the World Born Dead",
+			"source": "MTF",
+			"page": 237,
+			"otherSources": [
+				{
+					"source": "MPMM",
+					"page": 226
+				}
+			],
+			"type": "Elder Evil",
+			"entries": [
+				{
+					"name": "Gaze of Corruption {@recharge}",
+					"type": "entries",
+					"entries": [
+						"The cultist targets one creature it can see within 30 feet of it. The target must succeed on a {@dc 15} Constitution saving throw or take 16 ({@damage 3d10}) necrotic damage and be {@condition poisoned} for 1 minute. The {@condition poisoned} target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+					]
+				}
+			]
+		},
+		{
+			"name": "Cult of Baalzebul",
+			"source": "MTF",
+			"page": 21,
+			"type": "Diabolical",
+			"goal": {
+				"entry": "Restoration of honor and respect, at the cost of those who stole it"
+			},
+			"cultists": {
+				"entry": "Any NPC or monster that has suffered a fall from grace"
+			},
+			"signaturespells": {
+				"entry": "{@spell Minor illusion} (cantrip), {@spell disguise self} (1st level), {@spell phantasmal force} (2nd level), {@spell major image} (3rd level)"
+			},
+			"entries": [
+				"Baalzebul typically recruits individuals rather than cults. He offers hope to those whose failures drive them to seek redemption.",
+				"He grants a boon, the Path of Baalzebul trait, that allows a favored cultist to look good in the aftermath of an ally's failure.",
+				{
+					"type": "entries",
+					"name": "Path of Baalzebul",
+					"entries": [
+						"As a bonus action on its turn, this creature can choose one ally it can see within 30 feet of it. Until the start of this creature's next turn, it gains advantage on all ability checks and attack rolls, while the chosen ally suffers disadvantage on all ability checks, attack rolls, and saving throws."
+					]
+				}
+			]
+		},
+		{
+			"name": "Cult of Baphomet",
+			"source": "MPMM",
+			"page": 58,
+			"type": "Demonic",
+			"entries": [
+				"Baphomet grants his cultists special abilities. All his devotees gain the Labyrinthine Recall trait below. He grants his rank-and-file followers the Unerring Tracker trait, and cult leaders gain the Incite the Hunters trait.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Labyrinthine Recall",
+							"entries": [
+								"This creature can perfectly recall any path it has traveled."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Unerring Tracker",
+							"entries": [
+								"As a bonus action, this creature magically creates a psychic link with one creature it can see. For the next hour, as a bonus action this creature learns the current distance and direction to the target if it is on the same plane of existence. The link ends if this creature is {@condition incapacitated} or if it uses this ability on a different target."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Incite the Hunters (Recharges after a Short or Long Rest)",
+							"entries": [
+								"As an action, this creature allows each ally within 30 feet of it that has the Unerring Tracker trait to make one weapon attack as a reaction against the target of that ally's Unerring Tracker."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Cult of Belzenlok",
+			"source": "PSD",
+			"page": 17,
+			"type": "Diabolical",
+			"cultists": {
+				"entry": "{@creature acolyte||acolytes}, {@creature cultist||cultists}, {@creature cult fanatic||cult fanatics}, {@creature mage||mages}, or {@creature priest||priests} for Cultists, Initiates, and Priests; {@creature gladiator||gladiators}, {@creature guard||guards}, {@creature knight||knights}, {@creature veteran||veterans}, or infrequently {@creature wight||wights} riding undead horses with the statistics of Large-sized {@creature zombie||zombies} for Grimnants; and {@creature assassin||assassins}, {@creature bandit||bandits}, {@creature bandit captain||bandit captains}, {@creature spy||spies}, or {@creature thug||thugs} for Infiltrators and Assassins."
+			},
+			"signaturespells": {
+				"entry": "{@spell Chill touch} (cantrip), {@spell hex} (1st level), {@spell phantasmal force} (2nd level), {@spell fear} (3rd level)"
+			},
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Belzenlok's Cultists",
+					"entries": [
+						"Cabalists are uniformly fanatical, tormented into zealotry by pain, greed, and the distinctive power of their dementia magic. From the Cabal's beginning, spellcasters known as dementists have manipulated the very stuff of nightmares, reshaping reality and creating items and creatures from the parallel realm of \"dementia space.\" Though it has been greatly changed by centuries of hardship, dementia magic remains a powerful asset of the Cabal, and cabalists value prowess with such magic above everything except the favor of Belzenlok."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Cultists, Initiates, and Priests",
+					"entries": [
+						"Most members of the Cabal serve it in a religious capacity. Cells of Cabal cultists are found throughout the world, worshiping Belzenlok in secret. Once inducted into the Cabal more formally, cultists shave their heads and become initiates, assisting priests in their dark rites. As Cabal priests rise through the ranks, they dress more ornately, often wearing headgear or high collars that set them apart from initiates. Most Cabal clerics are dementists, and carry with them implements of sacrifice and veneration. But a few are more martial in nature, wielding heavy blades and viewing combat as the most active form of sacrifice to Belzenlok."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Grimnants",
+					"entries": [
+						"Cabal knights are all members of an order called the Grimnant. The armor they wear has been melted down from scavenged or stolen pieces and forged anew, painted in a black lacquer and with its edges honed. Often, the armor is molded to mirror aspects of the demon Belzenlok, a form of idol worship that Grimnant knights believe gains them power and favor.",
+						"Grimnants are brutal combatants who arrive after the Cabal's infiltration has weakened a target. Most have some minor knowledge of dementia magic or carry trinkets that give them the ability to wield dark magic in battle, but they're not generally known as spellcasters. Appearing stoic from afar, most Grimnant knights experience a bloodlust in battle and enjoy going in close for the kill."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Infiltrators and Assassins",
+					"entries": [
+						"In its cells throughout the world, the Cabal has need for more than prayer. Whether striking from the shadows or venturing out in full regalia to spread open terror, Belzenlok's infiltrators and assassins emphasize what many fear: that the Cabal is already everywhere."
+					]
+				},
+				"Belzenlok's cultists can gain the Demonic Vigor trait. Favored cultists or cult leaders can also have the Unholy Tether trait.",
+				{
+					"type": "entries",
+					"name": "Demonic Vigor (1/day)",
+					"entries": [
+						"As a bonus action, or as a reaction when this creature would drop to 0 hit points, it regains 1 hit point and gains temporary hit points equal to its Constitution modifier plus its maximum number of Hit Dice."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Unholy Tether",
+					"entries": [
+						"As a reaction when an ally of this creature within 30 feet of it dies, this creature regains hit points equal to twice the dead creature's Constitution modifier."
+					]
+				}
+			]
+		},
+		{
+			"name": "Cult of Borem, of the Lake of Boiling Mud",
+			"source": "MTF",
+			"page": 237,
+			"type": "Elder Evil",
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Borem's Embrace (1/Day)",
+					"entries": [
+						"The cultist touches one creature within 5 feet of it. The target must succeed on a DC 15 Dexterity saving throw or be coated in sticky, steaming mud. While it is coated in this way, the target's speed is halved, it can't use reactions, and it takes 10 ({@dice 3d6}) fire damage at the start of each of its turns. The effect lasts for 1 minute, until the cultist is {@condition incapacitated} or dies, or until the target is immersed in water."
+					]
+				}
+			]
+		},
+		{
+			"name": "Cult of Demogorgon",
+			"source": "MPMM",
+			"page": 90,
+			"type": "Demonic",
+			"entries": [
+				"Demogorgon's followers are typically lone killers driven by the whispering voice of their master. His most blessed followers gain the Two Minds of Chaos trait.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Two Minds of Chaos",
+							"entries": [
+								"This creature has advantage on all Intelligence, Wisdom, and Charisma saving throws."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Cult of Dispater",
+			"source": "MTF",
+			"page": 21,
+			"type": "Diabolical",
+			"goal": {
+				"entry": "Power gained and used in secret, influence exerted via blackmail, control of people and organizations through knowledge of their weaknesses and shames"
+			},
+			"cultists": {
+				"entry": "{@creature Acolyte}, {@creature bandit}, {@creature bandit captain}, {@creature cult fanatic}, {@creature cultist}, {@creature mage}, {@creature noble}, {@creature spy}"
+			},
+			"signaturespells": {
+				"entry": "{@spell Guidance} (cantrip), {@spell identify} (1st level), {@spell see invisibility} (2nd level), {@spell clairvoyance} (3rd level)"
+			},
+			"entries": [
+				"Dispater trades in secrets, offering them in return for a creature's soul. His cults typically trade secrets to devils in return for other information. They often hatch conspiracies aimed at toppling and replacing governments or religious orders.",
+				"Renegade {@creature mind flayer||mind flayers} sometimes strike pacts with Dispater in search of the secrets needed to forever escape an {@creature Elder Brain|vgm}'s domination.",
+				"Cultists can gain the Infernal Insight trait. Cult leaders might also have the Vexing Escape trait.",
+				{
+					"type": "entries",
+					"name": "Infernal Insight (Recharges after a Short or Long Rest)",
+					"entries": [
+						"As a bonus action, this creature gains advantage on all ability checks and attack rolls it makes until the end of the current turn."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Vexing Escape (1/Day)",
+					"entries": [
+						"As a reaction when this creature takes damage, it reduces that damage to 0 and teleports up to 60 feet to an unoccupied space it can see."
+					]
+				}
+			]
+		},
+		{
+			"name": "Cult of Fierna",
+			"source": "MTF",
+			"page": 21,
+			"type": "Diabolical",
+			"goal": {
+				"entry": "Control over the emotions of others, turning them into puppets and playthings"
+			},
+			"cultists": {
+				"entry": "{@creature Acolyte}, {@creature archmage}, {@creature bandit captain}, {@creature cult fanatic}, {@creature cultist}, {@creature knight}, {@creature noble}, {@creature priest}, {@creature spy}"
+			},
+			"signaturespells": {
+				"entry": "{@spell Friends} (cantrip), {@spell charm person} (1st level), {@spell suggestion} (2nd level), {@spell hypnotic pattern} (3rd level)"
+			},
+			"entries": [
+				"Fierna is a master manipulator. Mortals who desire success in love or who seek to become beloved leaders at the head of a band of fanatics are drawn to striking bargains with her.",
+				"Her cultists can gain the Infernal Loyalty trait. Cult leaders can also gain the Loyalty beyond Death trait.",
+				{
+					"type": "entries",
+					"name": "Infernal Loyalty",
+					"entries": [
+						"This creature has advantage on saving throws while it can see a creature within 30 feet of it that has the Loyalty beyond Death trait."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Loyalty beyond Death (Recharges after a Short or Long Rest)",
+					"entries": [
+						"As a reaction when an ally this creature can see is reduced to 0 hit points, that ally is instead reduced to 1 hit point and gains temporary hit points equal to this creature's Charisma score + half its number of Hit Dice."
+					]
+				}
+			]
+		},
+		{
+			"name": "Cult of Fraz-Urb'luu",
+			"source": "MPMM",
+			"page": 129,
+			"type": "Demonic",
+			"entries": [
+				"Fraz-Urb'luu grants his cultists the Liar's Eye trait.",
+				{
+					"type": "entries",
+					"name": "Liar's Eye",
+					"entries": [
+						"This creature has advantage on Wisdom ({@skill Insight} or {@skill Perception}) checks.",
+						"As a bonus action, the creature detects the location of all illusions and hidden creatures within 15 feet of it."
+					]
+				}
+			]
+		},
+		{
+			"name": "Cult of Geryon",
+			"source": "MPMM",
+			"page": 136,
+			"type": "Diabolical",
+			"entries": [
+				"Geryon grants his cultists special abilities. Members of his cult can gain the Crushing Blow trait. Cult leaders can also gain the Indomitable Strength trait.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"name": "Crushing Blow (Recharges after a Short or Long Rest)",
+							"type": "entries",
+							"entries": [
+								"As a bonus action, the creature gains a bonus to the damage roll of its next melee weapon attack roll that hits within the next minute. The bonus equals its Strength modifier (minimum of +1)."
+							]
+						},
+						{
+							"name": "Indomitable Strength {@recharge 5}",
+							"type": "entries",
+							"entries": [
+								"As a reaction when this creature takes damage, it can roll a {@dice d10} and subtract the number rolled from the damage."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Cult of Geryon",
+			"source": "MTF",
+			"page": 21,
+			"type": "Diabolical",
+			"goal": {
+				"entry": "Physical prowess, domination of others through strength, destruction of all opposition"
+			},
+			"cultists": {
+				"entry": "{@creature Bandit}, {@creature bandit captain}, {@creature berserker}, {@creature cult fanatic}, {@creature cultist}, {@creature gladiator}, {@creature thug}, {@creature tribal warrior}, {@creature veteran||veterans}"
+			},
+			"signaturespells": {
+				"entry": "{@spell Shillelagh} (cantrip), {@spell wrathful smite} (1st level), {@spell enhance ability} (2nd level), {@spell aura of vitality} (3rd level)"
+			},
+			"entries": [
+				"Despite being deposed, Geryon still has the ability to strike bargains. He deals especially with those who seek brute strength. Any warlike monster-such as {@creature orc||orcs}, {@creature ogre||ogres}, and {@creature troll||trolls}-can be lured into Geryon's cult.",
+				"His cultists typically form fighting companies and bandit gangs, proving their strength by defeating others in battle and taking what they want as loot.",
+				"Members of the cult can gain the Crushing Blow trait. Cult leaders can also gain the Indomitable Strength trait.",
+				{
+					"type": "entries",
+					"name": "Crushing Blow (Recharges after a Short or Long Rest)",
+					"entries": [
+						"As a bonus action, the creature gains a bonus to the damage roll of its next melee weapon attack that hits within the next minute. The bonus equals its Strength modifier (minimum of +1)."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Indomitable Strength {@recharge 5}",
+					"entries": [
+						"As a reaction when this creature takes damage, it can roll a {@dice d10} and subtract the number rolled from the damage."
+					]
+				}
+			]
+		},
+		{
+			"name": "Cult of Glasya",
+			"source": "MTF",
+			"page": 21,
+			"type": "Diabolical",
+			"goal": {
+				"entry": "Power gained by turning a system against itself, yielding power that isn't only absolute but legitimate on a cultural and legal basis"
+			},
+			"cultists": {
+				"entry": "{@creature Bandit}, {@creature bandit captain}, {@creature cult fanatic}, {@creature cultist}, {@creature knight}, {@creature noble}, {@creature spy}, {@creature thug}"
+			},
+			"signaturespells": {
+				"entry": "{@spell Friends} (cantrip), {@spell charm person} (1st level), {@spell invisibility} (2nd level), {@spell haste} (3rd level)"
+			},
+			"entries": [
+				"As an expert in finding loopholes and exploiting the law for her own good, Glasya is a patron of thieves and other criminals, especially corrupt nobles. Her influence is supposed to strengthen family bonds, but she has taken a liberal interpretation of that and offers gifts that can be turned against family members.",
+				"{@creature goblin||Goblins} who risk insurrection against their {@creature hobgoblin} masters make pacts with Glasya, as do {@creature kenku} who form criminal gangs.",
+				"Glasya grants the Step into Shadows trait. Cult leaders can also gain the Infernal Ring Leader trait.",
+				{
+					"type": "entries",
+					"name": "Step into Shadows (Recharges after a Short or Long Rest)",
+					"entries": [
+						"As an action, this creature, along with anything it is wearing and carrying, magically becomes {@condition invisible} until the end of its next turn."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Infernal Ring Leader",
+					"entries": [
+						"As a reaction when this creature is hit by an attack, it can choose one ally it can see within 5 feet of it and cause that ally to be hit by that attack instead."
+					]
+				}
+			]
+		},
+		{
+			"name": "Cult of Graz'zt",
+			"source": "MPMM",
+			"page": 148,
+			"type": "Demonic",
+			"entries": [
+				"Graz'zt grants his cultists special abilities. His cultists can gain the Joy from Pain trait, while his cult leaders can gain the Master of Pleasures trait.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"name": "Joy from Pain",
+							"type": "entries",
+							"entries": [
+								"Whenever this creature suffers a critical hit, it can make one melee weapon attack as a reaction."
+							]
+						},
+						{
+							"name": "Master of Pleasures",
+							"type": "entries",
+							"entries": [
+								"As a reaction when this creature takes damage, it can magically grant 5 temporary hit points to itself and up to three allies within 30 feet of it."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Cult of Haask, the Voice of Hargut",
+			"source": "MTF",
+			"page": 237,
+			"otherSources": [
+				{
+					"source": "MPMM",
+					"page": 226
+				}
+			],
+			"type": "Elder Evil",
+			"entries": [
+				{
+					"name": "Haask's Presence (1/Day)",
+					"type": "entries",
+					"entries": [
+						"The cultist transforms into a Tiny, slug-like being and teleports onto the shoulder of a Humanoid that it can see within 30 feet of it. The targeted Humanoid must succeed on a {@dc 15} Charisma saving throw or be {@condition charmed} by the cultist. While the target is {@condition charmed}, the cultist has control of it on the target's next turn. At the end of that turn, the cultist teleports to an unoccupied space it can see within 30 feet of it and returns to its normal form. The cultist can't be targeted directly by any attack or other effect while it's in the slug-like form, but it is subject to areas of effect as normal."
+					]
+				}
+			]
+		},
+		{
+			"name": "Cult of Juiblex",
+			"source": "MPMM",
+			"page": 160,
+			"type": "Demonic",
+			"entries": [
+				"The Faceless Lord grants its cultists special abilities. Lesser followers can gain the Liquid Movement trait. The most dedicated devotees of ooze can also gain the Slimy Organs trait.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Liquid Movement",
+							"entries": [
+								"As an action, this creature can move up to 20 feet through spaces no more than an inch in diameter. It must end this movement in a space that can accommodate its full size. Otherwise, it takes 5 force damage and returns to the space where it began this movement."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Slimy Organs",
+							"entries": [
+								"This creature has resistance to bludgeoning, piercing, and slashing damage from nonmagical attacks.",
+								"Whenever this creature suffers a critical hit or is reduced to 0 hit points, it sprays acid; each creature within 5 feet of it takes acid damage equal to its number of Hit Dice."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Cult of Levistus",
+			"source": "MTF",
+			"page": 21,
+			"type": "Diabolical",
+			"goal": {
+				"entry": "Survival and eventual revenge against those who wrong them"
+			},
+			"cultists": {
+				"entry": "{@creature Assassin}, {@creature bandit captain}, {@creature cult fanatic}, {@creature cultist}, {@creature mage}, {@creature noble}, {@creature spy}, {@creature thug}"
+			},
+			"signaturespells": {
+				"entry": "{@spell Blade ward} (cantrip), {@spell expeditious retreat} (1st level), {@spell spider climb} (2nd level), {@spell gaseous form} (3rd level)"
+			},
+			"entries": [
+				"Levistus has no cult in the traditional sense. Instead, he offers favors to those who are desperate to escape a seemingly inevitable fate.",
+				"{@creature Drow} are sometimes worshipers of Levistus, as their cruel society often pushes them into situations they feel they can't escape.",
+				"Levistus usually grants those who pledge their souls to him a single chance to escape from danger, but some cunning folk strike a deal with Levistus, pledging their souls to him in return for escape at a future date. This boon takes the form of the Path of Levistus trait.",
+				{
+					"type": "entries",
+					"name": "Path of Levistus",
+					"entries": [
+						"This creature magically teleports to a location of Levistus's choice within 1 mile of its location. Using this ability also restores all of the creature's hit points. This ability can be invoked as an action by the creature or when the creature would die. Once the creature uses it, the creature can't use it again."
+					]
+				}
+			]
+		},
+		{
+			"name": "Cult of Mammon",
+			"source": "MTF",
+			"page": 21,
+			"type": "Diabolical",
+			"goal": {
+				"entry": "Wealth, secured not only to promise personal comfort and power but to deny wealth and its benefits to others."
+			},
+			"cultists": {
+				"entry": "{@creature Bandit}, {@creature bandit captain}, {@creature cult fanatic}, {@creature cultist}, {@creature noble}, {@creature spy}, {@creature thug}"
+			},
+			"signaturespells": {
+				"entry": "{@spell Mending} (cantrip), {@spell Tenser's floating disk} (1st level), {@spell arcane lock} (2nd level), {@spell glyph of warding} (3rd level)"
+			},
+			"entries": [
+				"Mammon's greed overwhelms everything else. He deals with mortals who desire material wealth and provides them with the ability to spread that greed like an infection.",
+				"The greedy {@creature duergar} and even some dragons are prone to falling prey to Mammon's temptations, and merchants and trade guilds are vulnerable to his bargains.",
+				"Mammon's cultists can gain the Grasping Hands trait. Cult leaders can also gain the Promise of Wealth trait.",
+				{
+					"type": "entries",
+					"name": "Grasping Hands (Recharges after a Short or Long Rest)",
+					"entries": [
+						"As a bonus action, this creature makes a Dexterity (Sleight of Hand) check contested by the Wisdom (Insight) check of a creature it can see within 15 feet of it. If this creature succeeds, one hand-held item of its choice that it can see on the target magically teleports to its open hand. The item can't be one that the target is holding, and it must weigh no more than 10 pounds."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Promise of Wealth (Recharges after a Short or Long Rest)",
+					"entries": [
+						"As a bonus action, this creature chooses one creature it can see. Up to five allies of its choice become convinced that the target carries great wealth. Until the end of this creature's next turn, those allies gain advantage on all attack rolls against the target."
+					]
+				}
+			]
+		},
+		{
+			"name": "Cult of Mephistopheles",
+			"source": "MTF",
+			"page": 21,
+			"type": "Diabolical",
+			"goal": {
+				"entry": "Magical skill and power, backed with the will to use it to crush rivals"
+			},
+			"cultists": {
+				"entry": "{@creature Archmage}, {@creature cult fanatic}, {@creature cultist}, {@creature mage}, {@creature priest}"
+			},
+			"signaturespells": {
+				"entry": "{@spell Fire bolt} (cantrip), {@spell burning hands} (1st level), {@spell flaming sphere} (2nd level), {@spell fireball} (3rd level)"
+			},
+			"entries": [
+				"As a master of the arcane arts, Mephistopheles finds eager recruits among those who study magic. Any monsters that use spells, such as {@creature storm giant||storm giants} and {@creature oni}, might follow him, and wizards' guilds and conclaves of sages are the most likely to come under his influence.",
+				"Mephistopheles's cultists can gain the Spell Shield trait. Cult leaders can also gain the Spell Leech trait.",
+				{
+					"type": "entries",
+					"name": "Spell Shield",
+					"entries": [
+						"This creature gains advantage on saving throws against spells. If it succeeds on such a saving throw, it gains temporary hit points equal to the spell's level."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spell Leech",
+					"entries": [
+						"As a bonus action, this creature chooses one ally it can see within 30 feet of it. The target loses its lowest-level spell slot, and this creature gains it."
+					]
+				}
+			]
+		},
+		{
+			"name": "Cult of Orcus",
+			"source": "MPMM",
+			"page": 204,
+			"type": "Demonic",
+			"entries": [
+				"Orcus grants his rank-and-file cultists the Undying Soul trait, and his cult leaders can gain the Aura of Death trait.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Undying Soul (Recharges after a Short or Long Rest)",
+							"entries": [
+								"If this creature is reduced to 0 hit points, it immediately makes a DC 10 Constitution saving throw. If it succeeds, it is instead reduced to 1 hit point."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Aura of Death",
+							"entries": [
+								"This creature emanates a deathly aura that extends 30 feet in every direction from its space while it isn't incapacitated. The aura is blocked by {@quickref Cover||3||total cover}. While in the aura, the creature and any friendly Undead are immune to the {@condition frightened} condition and have resistance to radiant damage. Enemies have disadvantage on death saving throws while in the aura."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Cult of Tharizdun, the Chained God",
+			"source": "MTF",
+			"page": 237,
+			"otherSources": [
+				{
+					"source": "MPMM",
+					"page": 226
+				}
+			],
+			"type": "Elder Evil",
+			"entries": [
+				{
+					"name": "Tharizdun's Spark {@recharge 6}",
+					"type": "entries",
+					"entries": [
+						"As a bonus action, the cultist touches a {@filter simple or martial weapon|items|source=phb|category=basic|type=martial weapon;simple weapon} or a natural weapon, if it has one. The next creature hit by the touched weapon must succeed on a {@dc 15} Wisdom saving throw or have disadvantage on all ability checks. The affected creature can repeat the saving throw at the end of each minute, ending the effect on itself on a success."
+					]
+				}
+			]
+		},
+		{
+			"name": "Cult of the Black Earth",
+			"source": "PotA",
+			"page": 8,
+			"type": "Elemental",
+			"entries": [
+				{
+					"type": "section",
+					"entries": [
+						{
+							"type": "entries",
+							"entries": [
+								"The earth cult worships the implacable strength and unyielding resistance of elemental earth. Cultists seek the power to destroy the works of civilization with landslides, sinkholes, or mighty earthquakes, thus demonstrating the true power of elemental earth and the futility of resistance. Earth cultists see mines, quarries, and tilled fields as insults imposed upon the living rock and soil. They believe the earth thirsts for the blood of those who don't venerate it before all other powers and beings.",
+								"The Cult of the Black Earth appeals to those who draw their fortunes from the earth-directly or indirectly. In areas where the influence of Elemental Evil takes hold, animals and monsters that live or burrow in the ground accept the cultists as allies. Creatures such as ankhegs or bulettes, normally too stupid and ravenous to be trained, submit to the will of the Black Earth. The monsters allow themselves to be herded or ridden into battle against the enemies of the cult.",
+								{
+									"type": "entries",
+									"entries": [
+										{
+											"type": "entries",
+											"name": "The Sign of the Black Earth",
+											"entries": [
+												"The symbol of the earth cult signifies purpose and stability. Cultists sometimes identify themselves with a hand gesture: they make a triangle by touching the thumbs and forefingers of both hands together."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Tactics and Philosophy",
+									"entries": [
+										"The Black Earth cult is the most defense-minded and patient of the four elemental cults. Earth cultists admire stoicism, endurance, and unyielding resolve. They are deliberate and slow to act, careful to consider their plans and gather their strength before beginning any new enterprise. Once earth cultists resolve to act, they are inflexible, grinding their way forward through any obstacle or unforeseen development. They are single-minded in the extreme, and most earth cultists have little use for social niceties. They see common courtesy as a way for the weak to put limits on the behavior of the strong, and they scorn empathy or friendship as weakness.",
+										"In battle, Black Earth cultists are brutal and straightforward. They overpower foes with direct assaults, although if they have the opportunity to undermine defenses or attack from below, they unhesitatingly put their skill at tunneling and mastery of burrowing monsters to good use. They are unflinching in the face of death. Surrender is never an option.",
+										"Earth cultists live and work underground. They craft weapons from stone or iron and \"bathe\" themselves in sand or dirt to feel close to their favored element. Black Earth initiates know the secret of creating armor from magically shaped stone, and even their robes include stone pauldrons or masks."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Prophet of Earth",
+									"entries": [
+										"A medusa named Marlos Urnrayle leads the Black Earth cult. He wields the elemental weapon {@item Ironfang|PotA}, a war pick infused with the power of Ogrémoch, the Prince of Evil Earth. Marlos is vain and cruel, an extreme narcissist who delights in surrounding himself with objects of beauty and luxurious comforts. Beneath this sneering self-assurance lies a bitter being who loathes himself and holds everyone around him in contempt.",
+										"Marlos began life as a human aristocrat, born into a wealthy Cormyrean family. He squandered his familys wealth on endless self-indulgence, seeking more questionable forms of entertainment through the years. The Urnrayle estate became known as a place of outrageous masquerades, bizarre banquets, and grotesque orgies. Marlos required his guests to don ugly or monstrous masks, thus ensuring that no ones beauty would outshine his own.",
+										"As he aged, Marlos turned to magic to preserve his fading beauty. After searching for years, he found a ring that contained the stolen vitality of a lovely fey creature. As long as he wore the ring, his imperfections vanished and no one could resist his physical charms-until the day the ring transformed Marlos into a medusa. The horror of his fate drove Marlos mad. He fled his ancestral home, taking his collection of masks with him.",
+										"After years of wandering and hiding in one ruined estate or another across the Western Heartlands, Marlos felt drawn to the desolate Sumber Hills by troubling dreams and visions. A long stairway beneath a ruined monastery brought him to an ancient cavern with a hideous altar, upon which lay a war pick of iron. When the medusa claimed {@item Ironfang|PotA}, his purpose finally became clear to him. He established his lair in the dungeon nearby and began building the Cult of the Black Earth.",
+										{
+											"type": "entries",
+											"name": "Traits",
+											"entries": [
+												"Unlike many of his followers, Marlos is genteel and well-spoken. He delights in witty banter and pointed repartee, although he is quick to make a cutting remark or jest at someone elses expense. Marlos takes pleasure in mocking others, especially if he can do so in a clever or elegant way. Marloss previous life had been a constant search for pleasure, but the only thing that now stirs his loveless soul is refined cruelty. He can be driven to fits of blind, unreasoning jealousy if he is outshone by another urbane and attractive individual."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Enemies and Allies",
+									"entries": [
+										"The Black Earth cultists are highly suspicious of the Cult of Howling Hatred. They believe that the air cultists are mercurial, unreliable, and generally out of touch with reality. The earth cultists respect the strength and ferocity of the Eternal Flame followers, but also find them maddeningly inconstant. Black Earth cultists ally most often with the Crushing Wave, since they admire the patience and pragmatism of the water cultists."
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Cult of the Crushing Wave",
+			"source": "PotA",
+			"page": 9,
+			"type": "Elemental",
+			"entries": [
+				{
+					"type": "section",
+					"entries": [
+						{
+							"type": "entries",
+							"entries": [
+								"Cultists of the Crushing Wave worship the awesome power of water, from the surging tides and deadly maelstroms of the sea to the raging torrents of rivers in flood and the rock-crushing power of ice and glaciers. Crushing Wave cultists see all living creatures as nothing more than trapped water that could one day be free to return to the seas or skies in a new form. The seas and deep waters are eager to reclaim the parts of themselves currently held in the blood and bodies of living creatures, and it is the duty of Crushing Wave initiates to return nonbelievers to the primal waters by drowning them or shedding their blood.",
+								"The Crushing Wave cult appeals to those who live in or near bodies of water, as well as to those who appreciate subtlety and inevitability. Wicked sea creatures such as aquatic ghouls and merrows are friendly toward water cultists. Even non-sentient predators such as sharks or octopuses understand that water cultists are allies to be aided or masters to be obeyed.",
+								{
+									"type": "entries",
+									"entries": [
+										{
+											"type": "entries",
+											"name": "The Sign of the Crushing Wave",
+											"entries": [
+												"Water cultists use a simple hand sign to identify one another when a token of recognition is required: crossing the forefingers and overlapping the thumbs to create an X-shape linked by a line across the bottom. It stands for waters eternal surge and retreat, a cycle of unending change."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Tactics and Philosophy",
+									"entries": [
+										"Crushing Wave cultists are almost as patient and stoic as the followers of the earth cult. They understand the value of outlasting formidable foes and slowly eroding their defenses. However, they are far more flexible and opportunistic in their overall philosophy than the earth cultists are. Like a flood that seeks the weak point in a levee and then bursts through with ever-growing strength, water cultists are quick to sense an opening and then act to exploit it. This philosophy of pragmatism and opportunism means that the Crushing Wave is the most mercenary of the four elemental cults. Water cultists eagerly seek out rich prizes and use their ill-gotten loot to develop their schemes.",
+										"In combat, Crushing Wave cultists excel as skirmishers. They value mobility and opportunism, rarely making a stand in one place for long. Instead, they feign retreats, regroup, and launch new attacks, wearing down their foes like storm-driven waves eating away at a sandy beach. Almost all water cultists are excellent swimmers skilled at fighting in water, so they look for opportunities to surprise their enemies by using bodies of water to slip around or through defenses.",
+										"Because the cultists see water as the wellspring of all life and purpose, they spend as much time in or around it as possible. Many cult hideouts are located near large bodies of water, and those that aren't feature hidden pools or wells in which cult members can immerse themselves. Water cultists prize water-breathing magic and seek it out for no other reason than to spend hours meditating underwater. Few cultists gain any profound insights from these exercises."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Prophet of Water",
+									"entries": [
+										"The former sailor Gar Shatterkeel leads the Crushing Wave cult. He wields the elemental weapon {@item Drown|PotA}, a trident imbued with the essence of Olhydra, Princess of Evil Water. Gar is a sullen man who says little, letting his actions speak for him. He believes he has been wronged by the world and hates all people except those as broken and unfortunate as himself. Gar also despises weakness in others.",
+										"Gar was born in a poor fishing village in the Nelanther Isles. At a young age, he lost his family to a sahuagin attack. The sea devils slaughtered almost everyone he knew. A Tethyrian merchant galley conscripted the young orphan into service, and Gar was forced into a brutal indentured servitude that was barely better than being enslaved. His unwilling service came to an end when pirates attacked the merchant ship. During the fighting, Gar was knocked overboard. For days he survived by clinging to the ships wreckage, until a shark ripped off his left arm. Death seemed imminent, but a powerful current arose and bore him away from the hungry predator. Within an hour he was cast upon the shores of the Sword Coast.",
+										"Gar believed that the current that had saved his life was an elemental sent by the sea. From that day forward, he devoted himself to the ocean, teaching himself its secrets and learning powerful water magic over years of lonely wandering. He despised all other people, remembering only his harsh treatment by the merchant crew and the brutality of the pirates. But in time he became aware of a call to a higher purpose, impelling him to find other examples of human flotsam and teach them about the power of the sea.",
+										"Gars visions led him to the secret waters beneath the Sumber Hills. He found a hidden cavern temple, on whose altar lay a powerful magical trident. Sensing its power, Gar took up the weapon and began to call his cult to join him in the Temple of the Crushing Wave.",
+										{
+											"type": "entries",
+											"name": "Traits",
+											"entries": [
+												"Gar is covered in barnacles, and he wears an artificial arm in the shape of a crabs claw over the stump of his left arm. He never uses two words when one will do, and he believes that anyone addressing him with courtesy is either insincere or subtly mocking him. The water prophets primary motivation is retribution; the world has been cruel to him, and he intends to make everyone else suffer as he has. He longs to be near the ocean again and is distressed by the fact that the driving force behind his visions keeps him so far from the sea."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Enemies and Allies",
+									"entries": [
+										"The followers of the Crushing Wave detest the Cult of the Eternal Flame. They find the fire cultists to be hostile, short-tempered, and unforgivably rash. The Howling Hatred cultists aren't as hostile, but they are likewise given to sudden impulses and are unreliable. The water cultists get along with the Cult of the Black Earth. The earth cultists are deliberate and dependable, if perhaps too inflexible for their own good."
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Cult of the Eternal Flame",
+			"source": "PotA",
+			"page": 10,
+			"type": "Elemental",
+			"entries": [
+				{
+					"type": "section",
+					"entries": [
+						{
+							"type": "entries",
+							"entries": [
+								"The followers of the Eternal Flame cult worship the destructive power of fire in all its manifestations. They seek the power to burn away the \"corruption\" of both civilization and nature with volcanic eruptions, forest fires, heat waves, and droughts, creating a wasteland of ash and cinders ruled by fire alone. Eternal Flame cultists believe the world and all its peoples are wicked and malformed, and they consider it a sacred duty to \"purify\" everything around them by reducing their surroundings to smoking cinders.",
+								"The Eternal Flame appeals to those drawn to destruction for its own sake. Creatures of elemental fire are most likely to take up this reckless philosophy; even non-intelligent fire monsters sense the reckless lust for destruction lurking in the hearts of fire cultists and consider Eternal Flame believers to be their allies.",
+								{
+									"type": "entries",
+									"entries": [
+										{
+											"type": "entries",
+											"name": "The Sign of the Eternal Flame",
+											"entries": [
+												"The symbol of the fire cult is reminiscent of a bowl-like brazier with a burning flame. Fire cultists sometimes identify themselves with a symbolic hand sign: holding one hand in a fist, thumb up, and laying the other hand over the fist as if to cover the bowl but allow the flame to show. Members of the cult can also be identified by their burn scars."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Tactics and Philosophy",
+									"entries": [
+										"Fire cultists are impetuous, hot-tempered, and violent. They aren't mindless savages; their impetuousness also encompasses fiendish inventiveness and a drive to devise new tools for their mad cause. They are masters of fire and forge, taking captives to work in their infernal foundries. Fire cultists see conquest and enslavement of the weak as necessary steps in bringing about the chaos they intend to unleash on the world.",
+										"In battle, fire cultists launch sudden, overwhelming assaults. They throw themselves into reckless attacks with no regard for their own lives, seeking to cause as much damage as possible before falling. They are fearless and would rather die fighting among a mob of enemies than retreat a single step.",
+										"Followers of the Eternal Flame cult surround themselves with the largest fires they can create. Their favorite tactic involves using magic to open volcanic fissures or vents and channel flows of molten rock. Widespread arson and deliberately set forest fires are acceptable alternatives. Most fire cultists believe that something important and beautiful should be set on fire every day, or else they're just not doing their part."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Fire Prophet",
+									"entries": [
+										"Through all-consuming ambition and a desire to punish all who ever thwarted her dreams, the tiefling Vanifer has risen to leadership of the Eternal Flame cult. Beneath her refined exterior is a steel edge of scorned pride. And underneath her hard pride lies a desire for murder and mayhem. Vanifer harbors a fierce hatred for all who think themselves superior to her, and she stops at nothing to make them see her as a figure to be feared and respected.",
+										"Vanifer was born and raised in the crushing poverty of Calimports poorest quarters, armed with only her cunning intelligence. In her youth, she learned to dance for coin and slowly worked her way up from the wine sinks of the laborers districts to the elegant chambers of the citys nobles. She mastered minor fire magic to distinguish herself from other dancers and incorporated flame into her routine. Her talents grew, and soon she caught the eye of a pasha and became his concubine. But even as she enjoyed the gifts he lavished on her, Vanifer hated the pasha for seeing her as a mere trophy. She left before long, robbing the pasha of a small fortune in jewelry and setting fire to his palace.",
+										"Vanifer fled to Zazesspur, but her former masters agents soon found her. She fled again to Baldurs Gate, taking up residence in the poor neighborhood known as Little Calimshan. There she opened a school of dance and discovered that her gift for fire attracted other sorts of students. She became the leader of a cult of fire worshipers. There she remained until a few months ago, when dreams and visions impelled her to seek out a lost dungeon in the North. On the altar of a forgotten temple she found the dagger {@item Tinderstrike|PotA}, imbued with the power of Imix, the Prince of Evil Fire. Armed with this powerful weapon, Vanifer resolved to establish a new chapter of her cult beneath the Sumber Hills.",
+										{
+											"type": "entries",
+											"name": "Traits",
+											"entries": [
+												"Vanifer is an extraordinary manipulator. She collects allies and followers with her wiles, using them as she needs and discarding them the moment they lose their usefulness. Its a testament to her natural talent that many of her victims are pathetically eager to bask in the glow of her attention again if she discovers she needs something else from them. While Vanifer puts on the airs of a rich noble, she despises those raised with great wealth, and her sensibilities favor the coarse. Vanifer is ambitious above all else, and as undisputed master of the fire cult, she intends to make the Eternal Flame the strongest and most feared cult of all."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Enemies and Allies",
+									"entries": [
+										"Eternal Flame cultists detest the followers of the Crushing Wave. They see the water cultists as slippery and untrustworthy, perhaps even cowardly-after all, the Crushing Wave retreats quickly from opposition and seeks the path of least resistance before committing its strength. The earth cultists are stolid and courageous, but maddeningly slow to act. The cultists of the Howling Hatred share the fire cults impulse to act swiftly and show many of the same qualities of inventiveness and creativity in the service of Elemental Evil."
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Cult of the Howling Hatred",
+			"source": "PotA",
+			"page": 11,
+			"type": "Elemental",
+			"entries": [
+				{
+					"type": "section",
+					"entries": [
+						{
+							"type": "entries",
+							"entries": [
+								"The followers of elemental air call themselves the Cult of the Howling Hatred. They worship the destructive power of wind and storms, believing that those who venerate elemental air gain the power to punish those who have wronged them. More so than the members of the other cults, air cultists see their beliefs as a means to an end. Destruction for its own sake isn't particularly interesting, but destruction as an expression of personal freedom or to earn things wrongfully denied? Thats a different story.",
+								"The Cult of the Howling Hatred appeals to those who deal in perceptions over facts: illusionists, spies, and assassins, for example. Predatory or fierce winged creatures of any kind, even non-sentient monsters that would otherwise resist training, perceive the air cultists as allies and cooperate with them. Hippogriffs, griffons, and giant vultures are frequently used as air cult steeds.",
+								{
+									"type": "entries",
+									"entries": [
+										{
+											"type": "entries",
+											"name": "The Sign of the Howling Hatred",
+											"entries": [
+												"The symbol of elemental air is an inverted triangle with three branching lines above it. Some believe it stands for the funnel cloud of a tornado, while others see it as the superiority of winged creatures over the ground. Some maintain it is an ancient rune that stands for the elemental lord Yan-C-Bin. Whatever their interpretations, the air cultists use the symbol as a secret password of sorts. By touching the thumbs and little fingers together and closing the rest of the fingers into a fist, an air cultist forms an inverted triangle that is a mark of membership in the cult."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Tactics and Philosophy",
+									"entries": [
+										"Howling Hatred cultists are clever, impulsive, and creative. They usually see themselves as smarter, quicker, and more capable than others they meet. Howling Hatred cultists dislike open battle. They prefer to work in secret, using stealth and illusion to gain their ends with a minimum of force. Tactics of deception and ambush provide the air cultists with opportunities to prove themselves smarter and more resourceful than their opponents. The wind doesn't blow down a castle, but flows around and through it. Infiltration and indirect attack are clearly superior tactics.",
+										"Air cultists seek out high places for their strongholds wherever possible, although they value subterranean spaces with wide chasms or lofty vaults. Places where flying is possible are mandatory. The followers of the Howling Hatred understand that sometimes they must put secrecy above other considerations."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Prophet of Air",
+									"entries": [
+										"The moon elf Aerisi Kalinoth leads the Cult of the Howling Hatred. Tall and slender, with illusory wings that gently fan the air, Aerisi speaks to her people in a whisper that sounds clearly in the ears of all in her presence. Aerisi regards her followers not as cultists, but as her noble subjects. Before them she is prophet and queen. Musicians and courtiers amuse and flatter her, and warriors mounted on hippogriffs serve as her knights.",
+										"Aerisi grew up in an enchanted castle in a remote part of Faerun, surrounded by tales, histories, and tomes of magic. She passed her early years playing games, practicing enchantments, and imagining herself as one of the avariel (winged elves) from her storybooks. Her parents' sheltered her from the conflicts of Faerun, and she came of age with a tender and fragile disposition.",
+										"Eventually her paren'ts decided it was time for their daughter to engage in elven society, and they brought her to the hidden city of Evereska. Her paren'ts then realized their grave mistake. In pampering and sheltering their daughter, they had raised not a young lady but a spoiled child. Accustomed to having all she desired, the princess erupted into tantrums whenever she was denied her slightest whim, and the moon elves of Evereska could hardly endure her.",
+										"Aerisi felt powerless among the moon elves. Although she had become a skilled enchanter in Faerie, her people were resistant to such charms. In her dreams she began to envision herself as one of the winged elves from her storybooks. She wished to control the wind and go wherever she liked, and to punish those who offended her. The childlike fantasies of her youth became dark visions where she ruled the storms and the air itself. She dreamed of an old mystic with brown skin and white hair, who promised to teach her all she desired to know-a vision of Yan-C-Bin, the Prince of Evil Air. Aerisi turned her study to elemental air, learning the secret of flight and escaping Evereska to follow the deluded visions of her dreams.",
+										"Aerisis visions led her to a strange altar in a cavern beneath the Sumber Hills, where she acquired the spear {@item Windvane|PotA}. Driven by Yan-C-Bin, she dubbed herself a queen and set out to find followers to rule. Her enchantments helped fill the ranks of the Cult of the Howling Hatred with initiates hopelessly devoted to her.",
+										{
+											"type": "entries",
+											"name": "Traits",
+											"entries": [
+												"No one can deny Aerisis grace, but she also possesses a violent temper that reveals itself whenever she is denied what she wants. Aerisi is prone to flights of fancy and impulsive decadence. She doesn't see herself as evil because she lacks the capacity to empathize with anyone else. Those who worship and please her are good, and those who defy her are wicked and must be punished. Her wish to lash the world with storms and destruction is, at its root, a temper tantrum against the elven society that dared to impose its strictures on her."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Enemies and Allies",
+									"entries": [
+										"The cultists of the Howling Hatred find the Black Earth cultists to be coarse, rude, unimaginative, and stubborn to the point of stupidity. Most offensively, the earth cultists are bluntly unimpressed by the Howling Hatred cult and its achievements. Followers of the Crushing Wave are more flexible and inventive, but they are crass mercenaries and likewise too pragmatic to appreciate the finer points of the air cults philosophy. The Eternal Flame is the best of the lot, since the fire cultists share the decisiveness and creative energy of the Howling Hatred cult, even if they are overly proud and aggressive."
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Cult of Tyranthraxus, the Flamed One",
+			"source": "MTF",
+			"page": 237,
+			"otherSources": [
+				{
+					"source": "MPMM",
+					"page": 226
+				}
+			],
+			"type": "Elder Evil",
+			"entries": [
+				{
+					"name": "Radiant Flames (1/Day)",
+					"type": "entries",
+					"entries": [
+						"Multihued flame surrounds the cultist for 1 minute, until the cultist is {@condition incapacitated} or dies, or until the cultist extinguishes the flame (no action required). While inflamed, the cultist has telepathy with a range of 30 feet, and it can teleport as a bonus action up to 30 feet to an unoccupied space it can see. In addition, every creature that starts its turn within 5 feet of the cultist must make a {@dc 15} Dexterity saving throw, taking 16 ({@damage 3d10}) radiant damage on a failed save, or half as much damage on a successful one."
+					]
+				}
+			]
+		},
+		{
+			"name": "Cult of Yeenoghu",
+			"source": "MPMM",
+			"page": 270,
+			"type": "Demonic",
+			"entries": [
+				"Yeenoghu grants special abilities to his cultists. His most devoted followers gain the Gnashing Jaws action and the Rampage bonus action, while cult leaders gain the Aura of Bloodthirst trait.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Gnashing Jaws",
+							"entries": [
+								"{@atk mw} bonus to hit equal to this creature's proficiency bonus plus its Strength modifier, reach 5 ft., one target. {@h}{@dice 1d4} + this creature's Strength modifier piercing damage."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Rampage",
+							"entries": [
+								"When this creature reduces a creature to 0 hit points with a melee attack on its turn, it can take a bonus action to move up to half its speed and make one Gnashing Jaws attack."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Aura of Bloodthirst",
+							"entries": [
+								"If this creature isn't incapacitated, any creature that has Rampage can make its Gnashing Jaws attack as a bonus action while within 10 feet of this creature."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Cult of Zariel",
+			"source": "MPMM",
+			"page": 280,
+			"type": "Diabolical",
+			"entries": [
+				"Zariel grants special abilities to her most loyal cultists. They can gain the Ferocious Surge trait, and her cult's leaders can also gain the Infernal Tactics trait.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Ferocious Surge (Recharges after a Short or Long Rest)",
+							"entries": [
+								"When this creature hits with an attack roll that isn't a critical hit, it can turn the hit into a critical hit."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Infernal Tactics",
+							"entries": [
+								"Immediately after rolling initiative, this creature can choose  and up to three allies it can see if it isn't {@condition incapacitated}. It can swap the initiative results of the chosen creatures among them."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Cult of Zariel",
+			"source": "MTF",
+			"page": 21,
+			"reprintedAs": [
+				{
+					"tag": "boon",
+					"uid": "Cult of Zariel|MPMM"
+				}
+			],
+			"type": "Diabolical",
+			"goal": {
+				"entry": "Conquest, glory in battle, fame and fortune derived from military victory"
+			},
+			"cultists": {
+				"entry": "{@creature Berserker}, {@creature cult fanatic}, {@creature cultist}, {@creature gladiator}, {@creature guard}, {@creature knight}, {@creature veteran}"
+			},
+			"signaturespells": {
+				"entry": "{@spell True strike} (cantrip), {@spell heroism} (1st level), {@spell spiritual weapon} (2nd level), {@spell crusader's mantle} (3rd level)"
+			},
+			"entries": [
+				"Zariel's cult offers martial training and talent. It flourishes in areas wracked by war. Refugees with the will to fight but lacking experience are drawn to Zariel, as she can provide them with the skills needed to survive. Established warriors looking for an edge are otherwise her most common recruits.",
+				"Knightly orders, fighters' guilds, and mercenary companies are the most likely to come under her sway. {@creature hobgoblin||Hobgoblins} sometimes turn to her, but only if they have escaped the influence of Maglubiyet and his priests.",
+				"Zariel's cultists can gain the Ferocious Surge trait. Cult leaders can also gain the Infernal Tactics trait.",
+				{
+					"type": "entries",
+					"name": "Ferocious Surge (Recharges after a Short or Long Rest)",
+					"entries": [
+						"When this creature hits with an attack that isn't a critical hit, it can turn the hit into a critical hit."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Infernal Tactics",
+					"entries": [
+						"This creature has a keen eye for seizing a tactical advantage. Immediately after rolling initiative, it can choose itself and up to three allies it can see if it isn't {@condition incapacitated}. It can swap the initiative results of the chosen creatures among them."
+					]
+				}
+			]
+		},
+		{
+			"name": "Cult of Zuggtmoy",
+			"source": "MPMM",
+			"page": 281,
+			"type": "Demonic",
+			"entries": [
+				"Zuggtmoy's cultists are primarily mindless victims of her children's strange spores. The spores burrow into a victim's brain, turning it into a fanatic servitor. Each victim gains the Spore Kissed trait.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Spore Kissed",
+							"entries": [
+								"This creature is immune to the {@condition charmed} and {@condition frightened} conditions. In addition, if it is reduced to 0 hit points, each creature within 10 feet of it takes poison damage equal to its number of Hit Dice."
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"boon": [
+		{
+			"name": "Demonic Boon of Balor",
+			"source": "MTF",
+			"page": 32,
+			"type": "Demonic",
+			"entries": [
+				"Demons of sufficient cunning and power can bestow boons, using the boons' recipients as pawns. A {@creature balor} can grant the following special trait:",
+				{
+					"type": "entries",
+					"name": "Fiery Soul",
+					"entries": [
+						"This creature has resistance to fire damage. When it dies, it explodes; each creature within 10 feet of it takes fire damage equal to its number of Hit Dice."
+					]
+				}
+			]
+		},
+		{
+			"name": "Demonic Boon of Baphomet",
+			"source": "MTF",
+			"page": 30,
+			"reprintedAs": [
+				{
+					"tag": "boon",
+					"uid": "Cult of Baphomet|MPMM"
+				}
+			],
+			"type": "Demonic",
+			"ability": {
+				"entry": "Up to a +4 bonus to Strength, Wisdom, or both"
+			},
+			"signaturespells": {
+				"entry": "{@spell Hunter's mark} (1st level), {@spell beast sense} (2nd level), {@spell slow} (3rd level)"
+			},
+			"entries": [
+				"Baphomet grants the gifts of cunning and physical power. He grants his rank-and-file followers the Unerring Tracker trait, and cult leaders gain the Incite the Hunters trait. All of his devotees also gain the Labyrinthine Recall trait.",
+				{
+					"type": "entries",
+					"name": "Unerring Tracker",
+					"entries": [
+						"As a bonus action, this creature magically creates a psychic link with one creature it can see. For the next hour, as a bonus action this creature learns the current distance and direction to the target if it is on the same plane of existence. The link ends if this creature is {@condition incapacitated} or if it uses this ability on a different target."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Incite the Hunters (Recharges after a Short or Long Rest)",
+					"entries": [
+						"As an action, this creature allows each ally within 30 feet of it that has the Unerring Tracker trait to make one weapon attack as a reaction against the target of that ally's Unerring Tracker."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Labyrinthine Recall",
+					"entries": [
+						"This creature can perfectly recall any path it has traveled."
+					]
+				}
+			]
+		},
+		{
+			"name": "Demonic Boon of Demogorgon",
+			"source": "MTF",
+			"page": 30,
+			"reprintedAs": [
+				{
+					"tag": "boon",
+					"uid": "Cult of Demogorgon|MPMM"
+				}
+			],
+			"type": "Demonic",
+			"ability": {
+				"entry": "Up to a +4 bonus to Strength, Charisma, or both"
+			},
+			"signaturespells": {
+				"entry": "{@spell Charm person} (1st level), {@spell enlarge/reduce} (2nd level), {@spell vampiric touch} (3rd level)"
+			},
+			"entries": [
+				"Demogorgon's followers are typically lone killers driven by the whispering voice of their master. His most blessed followers gain the Two Minds of Madness trait.",
+				{
+					"type": "entries",
+					"name": "Two Minds of Madness",
+					"entries": [
+						"This creature has advantage on all Intelligence, Wisdom, and Charisma saving throws."
+					]
+				}
+			]
+		},
+		{
+			"name": "Demonic Boon of Fraz-Urb'luu",
+			"source": "MTF",
+			"page": 30,
+			"reprintedAs": [
+				{
+					"tag": "boon",
+					"uid": "Cult of Fraz-Urb'luu|MPMM"
+				}
+			],
+			"type": "Demonic",
+			"ability": {
+				"entry": "Up to a +4 bonus to Wisdom, Charisma, or both"
+			},
+			"signaturespells": {
+				"entry": "{@spell Minor illusion} (cantrip), {@spell disguise self} (1st level), {@spell invisibility} (2nd level), {@spell hypnotic pattern} (3rd level)"
+			},
+			"entries": [
+				"As a master of deceit, Fraz-Urb'luu teaches his initiates the secrets of lies and illusions. They can also gain the Liar's Eye trait.",
+				{
+					"type": "entries",
+					"name": "Liar's Eye",
+					"entries": [
+						"This creature has advantage on Wisdom ({@skill Insight} or {@skill Perception}) checks.",
+						"As a bonus action, it automatically detects the location of all illusions and hidden creatures within 15 feet of it."
+					]
+				}
+			]
+		},
+		{
+			"name": "Demonic Boon of Goristro",
+			"source": "MTF",
+			"page": 32,
+			"type": "Demonic",
+			"entries": [
+				"Demons of sufficient cunning and power can bestow boons, using the boons' recipients as pawns. A {@creature goristro} can grant the following special trait:",
+				{
+					"type": "entries",
+					"name": "Labyrinthine Recall",
+					"entries": [
+						"This creature can perfectly recall any path it has traveled."
+					]
+				}
+			]
+		},
+		{
+			"name": "Demonic Boon of Graz'zt",
+			"source": "MTF",
+			"page": 30,
+			"reprintedAs": [
+				{
+					"tag": "boon",
+					"uid": "Cult of Graz'zt|MPMM"
+				}
+			],
+			"type": "Demonic",
+			"ability": {
+				"entry": "Up to a +4 bonus to Constitution, Charisma, or both"
+			},
+			"signaturespells": {
+				"entry": "{@spell False life} (1st level), {@spell hold person} (2nd level), {@spell fear} (3rd level)"
+			},
+			"entries": [
+				"The Lord of Forbidden Pleasures grants his cultists the ability to transform even the most hideous pain into pleasure. His cultists gain the Joy from Pain trait, while his cult leaders gain the Master of Pleasures trait.",
+				{
+					"type": "entries",
+					"name": "Joy from Pain",
+					"entries": [
+						"Whenever this creature suffers a critical hit, it can make one melee weapon attack as a reaction."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Master of Pleasures",
+					"entries": [
+						"As a reaction when this creature takes damage, it can magically grant 5 temporary hit points to itself and up to three allies within 30 feet of it."
+					]
+				}
+			]
+		},
+		{
+			"name": "Demonic Boon of Juiblex",
+			"source": "MTF",
+			"page": 30,
+			"reprintedAs": [
+				{
+					"tag": "boon",
+					"uid": "Cult of Juiblex|MPMM"
+				}
+			],
+			"type": "Demonic",
+			"ability": {
+				"entry": "Up to a +8 bonus to Constitution, with an equal penalty to Intelligence, Wisdom, and Charisma"
+			},
+			"signaturespells": {
+				"entry": "{@spell Grease} (1st level), {@spell web} (2nd level), {@spell gaseous form} (3rd level)"
+			},
+			"entries": [
+				"The Faceless Lord's followers are bizarre loners who prefer the company of slimes and oozes to other creatures. They gain the hardiness of a slime at the cost of their minds. Lesser followers gain the Liquid Movement trait. The most dedicated devotees of ooze also gain the Slimy Organs trait.",
+				{
+					"type": "entries",
+					"name": "Liquid Movement",
+					"entries": [
+						"As an action, this creature can move up to 20 feet through spaces no more than an inch in diameter. It must end this movement in a space that can accommodate its full size. Otherwise, it takes 5 force damage and returns to the space where it began this movement."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Slimy Organs",
+					"entries": [
+						"This creature has resistance to bludgeoning, piercing, and slashing damage from nonmagical attacks.",
+						"Whenever this creature suffers a critical hit or is reduced to 0 hit points, all creatures within 5 feet of it take acid damage equal to its number of Hit Dice."
+					]
+				}
+			]
+		},
+		{
+			"name": "Demonic Boon of Marilith",
+			"source": "MTF",
+			"page": 32,
+			"type": "Demonic",
+			"entries": [
+				"Demons of sufficient cunning and power can bestow boons, using the boons' recipients as pawns. A {@creature marilith} can grant the following special trait:",
+				{
+					"type": "entries",
+					"name": "Serpentine Reaction",
+					"entries": [
+						"This creature can take an extra reaction each round, but this reaction can be used only to make an opportunity attack."
+					]
+				}
+			]
+		},
+		{
+			"name": "Demonic Boon of Nalfeshnee",
+			"source": "MTF",
+			"page": 32,
+			"type": "Demonic",
+			"entries": [
+				"Demons of sufficient cunning and power can bestow boons, using the boons' recipients as pawns. A {@creature nalfeshnee} can grant the following special trait:",
+				{
+					"type": "entries",
+					"name": "Guarded Mind",
+					"entries": [
+						"This creature is immune to the {@condition frightened} condition."
+					]
+				}
+			]
+		},
+		{
+			"name": "Demonic Boon of Orcus",
+			"source": "MTF",
+			"page": 31,
+			"reprintedAs": [
+				{
+					"tag": "boon",
+					"uid": "Cult of Orcus|MPMM"
+				}
+			],
+			"type": "Demonic",
+			"ability": {
+				"entry": "Up to a +4 bonus to Intelligence, Wisdom, or both"
+			},
+			"signaturespells": {
+				"entry": "{@spell False life} (1st level), {@spell ray of enfeeblement} (2nd level), {@spell animate dead} (3rd level)"
+			},
+			"entries": [
+				"In most cases, Orcus transforms his followers into undead creatures such as ghouls and wights. Sometimes he needs his followers to retain their mortal forms, to more easily infiltrate a kingdom or city. He grants rank-and-file cultists the Undying Soul trait, and his cult leaders gain the Aura of Death trait.",
+				{
+					"type": "entries",
+					"name": "Undying Soul (Recharges after a Short or Long Rest)",
+					"entries": [
+						"If this creature is reduced to 0 hit points, it immediately makes a DC 10 Constitution saving throw. If it succeeds, it is instead reduced to 1 hit point."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Aura of Death",
+					"entries": [
+						"This creature emanates a deathly aura that extends 30 feet in every direction from its space while it isn't {@condition incapacitated}. The aura is blocked by {@quickref Cover||3||total cover}. While in the aura, the creature and any friendly undead are immune to the {@condition frightened} condition and have resistance to radiant damage. Enemies suffer disadvantage on death saving throws while in the aura."
+					]
+				}
+			]
+		},
+		{
+			"name": "Demonic Boon of Yeenoghu",
+			"source": "MTF",
+			"page": 31,
+			"reprintedAs": [
+				{
+					"tag": "boon",
+					"uid": "Cult of Yeenoghu|MPMM"
+				}
+			],
+			"type": "Demonic",
+			"ability": {
+				"entry": "Up to a +4 bonus to Strength and Dexterity, with an equal penalty to Intelligence and Charisma"
+			},
+			"signaturespells": {
+				"entry": "{@spell Tasha's hideous laughter} (1st level), {@spell crown of madness} (2nd level), {@spell fear} (3rd level)"
+			},
+			"entries": [
+				"Yeenoghu's followers form packs of cannibalistic marauders. They grow more like {@creature gnoll||gnolls} in temperament with each passing day. His most devoted followers gain the Gnashing Jaws action option and the Rampage trait, while cult leaders gain the Aura of Bloodthirst trait.",
+				{
+					"type": "entries",
+					"name": "Gnashing Jaws",
+					"entries": [
+						"{@i Melee Weapon Attack}: bonus to hit equal to this creature's proficiency bonus plus its Strength modifier, reach 5 ft., one target. Hit: {@dice 1d4} + this creature's Strength modifier piercing damage."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Rampage",
+					"entries": [
+						"When this creature reduces a creature to 0 hit points with a melee attack on its turn, it can take a bonus action to move up to half its speed and make its Gnashing Jaws attack once."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Aura of Bloodthirst",
+					"entries": [
+						"If this creature isn't {@condition incapacitated}, any creature with the Rampage trait can make its Gnashing Jaws attack as a bonus action while within 10 feet of this creature."
+					]
+				}
+			]
+		},
+		{
+			"name": "Demonic Boon of Zuggtmoy",
+			"source": "MTF",
+			"page": 31,
+			"reprintedAs": [
+				{
+					"tag": "boon",
+					"uid": "Cult of Zuggtmoy|MPMM"
+				}
+			],
+			"type": "Demonic",
+			"ability": {
+				"entry": "Up to a +4 bonus to Constitution, with an equal penalty to Intelligence, Wisdom, and Charisma"
+			},
+			"signaturespells": {
+				"entry": "{@spell Ray of sickness} (1st level), {@spell suggestion} (2nd level), {@spell plant growth} (3rd level)"
+			},
+			"entries": [
+				"Zuggtmoy's followers are primarily mindless victims of her children's strange spores. The spores burrow into a victim's brain, turning it into a fanatic servitor. Each victim gains the Spore Kissed trait.",
+				{
+					"type": "entries",
+					"name": "Spore Kissed",
+					"entries": [
+						"This creature is immune to the {@condition charmed} and {@condition frightened} conditions. In addition, if it is reduced to 0 hit points, each creature within 10 feet of it takes poison damage equal to its number of Hit Dice."
+					]
+				}
+			]
+		}
+	]
+}

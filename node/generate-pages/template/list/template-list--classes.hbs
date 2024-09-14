@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{{> "head" }}
+
+<body>
+
+{{> "overlayNoise" }}
+
+{{> "adLeaderboard" }}
+
+{{> "navbar" }}
+
+{{> "adRhsScrollingPage" }}
+
+<main class="container classes">
+	<div class="row">
+		<div class="col-md-3" id="listcontainer">
+			<div class="night__shadow-big">
+				<div class="lst__form-top" id="filter-search-group">
+					<div class="w-100 relative">
+						<input type="search" id="lst__search" autocomplete="off" autocapitalize="off" spellcheck="false" class="search form-control lst__search lst__search--no-border-h">
+						<div id="lst__search-glass" class="lst__wrp-search-glass no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
+						<div class="lst__wrp-search-visible no-events ve-flex-vh-center"></div>
+					</div>
+					<button class="ve-btn ve-btn-default px-2" id="reset"><span class="glyphicon glyphicon-refresh"></span></button>
+				</div>
+				<div id="filtertools" class="input-group input-group--bottom ve-flex no-shrink">
+					<button class="ve-col-8 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
+					<button class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">Source</button>
+				</div>
+
+				<div class="list list--stats classes cls__list"></div>
+			</div>
+
+			<div class="ve-flex-vh-center my-3">
+				{{> "btngroupManager" }}
+			</div>
+		</div>
+		<div class="col-md-9" id="classtable"></div>
+	</div>
+
+	<hr class="mt-0">
+
+	<div class="row ve-flex mobile-md__ve-flex-col">
+		<div class="col-md-3">
+			<div class="ve-flex-vh-center ve-text-center wrp-btn-readmode mb-3">
+				<button class="ve-btn ve-btn-default ve-btn-xs no-print mr-1" id="btn-comparemode" title="A pop-up table which can be used to compare subclass features.">Subclass Comparison</button>
+				<button class="ve-btn ve-btn-default ve-btn-xs no-print mr-1" id="btn-readmode" title="A pop-up reading mode with a layout and content order matching that of the books.">Book View</button>
+				<div class=" ve-flex-v-center ve-btn-group">
+					<button class="ve-btn ve-btn-default ve-btn-xs" id="btn-link-export"><span class="glyphicon glyphicon-magnet"></span></button>
+					<button class="ve-btn ve-btn-default ve-btn-xs" id="btn-sidebar-settings" title="Settings"><span class="glyphicon glyphicon-cog"></span></button>
+				</div>
+			</div>
+
+			<div id="statsprof"></div>
+
+			<div id="sticky-nav" class="cls-nav"></div>
+		</div>
+		<div class="col-md-9">
+			<div class="cancer__wrp-mobile-1 cancer__anchor"><div class="cancer__disp-cancer"></div><!--5ETOOLS_AD_MOB_PLAYER_1--></div>
+
+			<div id="subclasstabs" class="w-100 ve-flex mb-2 cls-tabs__wrp"></div>
+			<table id="pagecontent" class="w-100 stats shadow-big cls__stats">
+				<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+				<tr><td colspan="6" class="initial-message initial-message--med">Loading...</td></tr>
+				<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+			</table>
+		</div>
+	</div>
+</main>
+
+{{> "adFooter" }}
+
+{{> "scripts" }}
+
+</body>
+</html>

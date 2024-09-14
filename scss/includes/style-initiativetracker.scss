@@ -1,0 +1,144 @@
+@use "../vars/vars";
+@use "../vars/vars-night";
+
+// Initiative tracker
+.init__ {
+	&wrp_conds {
+		display: flex;
+	}
+
+	&cond {
+		width: 7px;
+		margin-right: 3px;
+		display: grid;
+		grid-gap: 3px;
+		cursor: pointer;
+
+		&:hover {
+			box-shadow: 0 0 5px 0 #808080;
+		}
+	}
+
+	&cond_bar {
+		width: 7px;
+		height: 100%;
+	}
+}
+
+// Player initiative tracker
+.initp__ {
+	&content {
+		overflow: hidden auto;
+		height: 100%;
+		width: 100%;
+	}
+
+	&wrp_active {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		height: 100%;
+	}
+
+	&meta {
+		font-size: 1.6rem;
+	}
+
+	&header {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		padding: 0 3px;
+		font-variant: small-caps;
+		border-bottom: 1px solid vars.$rgb-border-grey;
+	}
+
+	&h_name--compact {
+		text-align: center;
+	}
+
+	&r_name {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	&h_hp--compact {
+		text-align: center;
+	}
+
+	&h_stat,
+	&r_stat {
+		width: 40px;
+		text-align: center;
+		flex-shrink: 0;
+		flex-grow: 0;
+	}
+
+	&r_hp_pill {
+		padding: 2px 4px;
+		border-radius: 3px;
+		color: #fff;
+		text-align: center;
+	}
+
+	&h_score,
+	&r_score {
+		flex: none;
+		width: 80px;
+		text-align: center;
+
+		&--compact {
+			width: 40px;
+		}
+	}
+
+	&r_score {
+		line-height: 24px;
+	}
+
+	&r {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		padding: 2px 3px;
+		border-bottom: 1px solid vars.$rgb-border-grey--trans;
+
+		&:last-of-type {
+			border-bottom: 0;
+		}
+	}
+
+	&r:hover {
+		background: #00000010;
+	}
+
+	&r--active {
+		background: #cfe5ff78;
+	}
+
+	&r--active:hover {
+		background: #bfd5ef78;
+	}
+}
+
+.ve-night-mode .initp__ {
+	&header {
+		border-color: vars-night.$rgb-border-grey--night;
+	}
+
+	&r {
+		border-color: vars-night.$rgb-border-grey--trans-night;
+
+		&:hover {
+			background: #ffffff18;
+		}
+
+		&--active {
+			background: #8dc1ff20;
+		}
+
+		&--active:hover {
+			background: #93bae838;
+		}
+	}
+}

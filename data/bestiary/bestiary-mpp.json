@@ -1,0 +1,7790 @@
+{
+	"monster": [
+		{
+			"name": "Adult Time Dragon",
+			"source": "MPP",
+			"page": 50,
+			"otherSources": [
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"H"
+			],
+			"type": "dragon",
+			"alignment": [
+				"N"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 19,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 250,
+				"formula": "20d12 + 120"
+			},
+			"speed": {
+				"walk": 40,
+				"climb": 40,
+				"fly": 80
+			},
+			"str": 25,
+			"dex": 14,
+			"con": 23,
+			"int": 23,
+			"wis": 16,
+			"cha": 20,
+			"save": {
+				"dex": "+8",
+				"con": "+12",
+				"wis": "+9",
+				"cha": "+11"
+			},
+			"skill": {
+				"arcana": "+12",
+				"history": "+18",
+				"perception": "+15",
+				"stealth": "+14"
+			},
+			"senses": [
+				"blindsight 60 ft.",
+				"darkvision 120 ft."
+			],
+			"passive": 25,
+			"languages": [
+				"all"
+			],
+			"cr": {
+				"cr": "18",
+				"lair": "19"
+			},
+			"trait": [
+				{
+					"name": "Legendary Resistance (3/Day)",
+					"entries": [
+						"If the dragon fails a saving throw, it can choose to succeed instead."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The dragon makes three Rend attacks."
+					]
+				},
+				{
+					"name": "Rend",
+					"entries": [
+						"{@atk mw} {@hit 13} to hit, reach 10 ft., one target. {@h}14 ({@damage 2d6 + 7}) slashing damage plus 7 ({@damage 2d6}) force damage."
+					]
+				},
+				{
+					"name": "Time Breath {@recharge 5}",
+					"entries": [
+						"The dragon exhales a wave of shimmering light in a 60-foot cone. Nonmagical objects and vegetation in that area that aren't being worn or carried crumble to dust. Each creature in that area must make a {@dc 20} Constitution saving throw. On a failed save, a creature takes 36 ({@damage 8d8}) force damage and is magically weakened as it is desynchronized from the time stream. While the creature is in this state, attack rolls against it have advantage, and it has the {@condition poisoned} condition. On a successful save, a creature takes half as much damage only. A weakened creature can repeat the saving throw at the end of each of its turns, ending the effect on itself after it succeeds on three of these saves."
+					]
+				}
+			],
+			"reactionHeader": [
+				"The dragon can take up to three reactions per round but only one per turn."
+			],
+			"reaction": [
+				{
+					"name": "Reactive Rend",
+					"entries": [
+						"After using Legendary Resistance or in response to being hit by an attack roll, the dragon makes one Rend attack."
+					]
+				},
+				{
+					"name": "Slow Time",
+					"entries": [
+						"Immediately after a creature the dragon can see ends its turn, the dragon targets a creature it can see within 60 feet of itself that is weakened by its Time Breath. Until the weakened effect ends on the target, its speed becomes 0, and its speed can't increase."
+					]
+				},
+				{
+					"name": "Time Slip",
+					"entries": [
+						"The dragon halves the damage it takes from an attack made against it, provided it can see the attacker. The dragon can then immediately teleport, along with any equipment it is wearing or carrying, up to 30 feet to an unoccupied space it can see."
+					]
+				}
+			],
+			"legendaryGroup": {
+				"name": "Time Dragon",
+				"source": "MPP"
+			},
+			"dragonAge": "adult",
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"B",
+				"SD"
+			],
+			"actionTags": [
+				"Breath Weapon",
+				"Multiattack"
+			],
+			"languageTags": [
+				"XX"
+			],
+			"damageTags": [
+				"O",
+				"S"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RCH"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Ancient Time Dragon",
+			"source": "MPP",
+			"page": 48,
+			"otherSources": [
+				{
+					"source": "SatO"
+				},
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"G"
+			],
+			"type": "dragon",
+			"alignment": [
+				"N"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 22,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 536,
+				"formula": "29d20 + 232"
+			},
+			"speed": {
+				"walk": 40,
+				"climb": 40,
+				"fly": 80
+			},
+			"str": 28,
+			"dex": 14,
+			"con": 26,
+			"int": 27,
+			"wis": 18,
+			"cha": 23,
+			"save": {
+				"dex": "+10",
+				"con": "+16",
+				"wis": "+12",
+				"cha": "+14"
+			},
+			"skill": {
+				"arcana": "+16",
+				"history": "+24",
+				"perception": "+20",
+				"stealth": "+18"
+			},
+			"senses": [
+				"blindsight 60 ft.",
+				"darkvision 120 ft."
+			],
+			"passive": 30,
+			"languages": [
+				"all"
+			],
+			"cr": {
+				"cr": "26",
+				"lair": "27"
+			},
+			"trait": [
+				{
+					"name": "Cycle of Rebirth",
+					"entries": [
+						"If the dragon dies, its soul coalesces into a steely egg and teleports to a random plane of existence. The egg is immune to all damage and hatches into a time dragon wyrmling after {@dice 1d100} years. The dragon retains all memories and knowledge it gained in its previous life."
+					]
+				},
+				{
+					"name": "Legendary Resistance (5/Day)",
+					"entries": [
+						"If the dragon fails a saving throw, it can choose to succeed instead."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The dragon makes three Rend attacks."
+					]
+				},
+				{
+					"name": "Rend",
+					"entries": [
+						"{@atk mw} {@hit 17} to hit, reach 15 ft., one target. {@h}22 ({@damage 3d8 + 9}) slashing damage plus 10 ({@damage 3d6}) force damage."
+					]
+				},
+				{
+					"name": "Time Breath {@recharge 5}",
+					"entries": [
+						"The dragon exhales a wave of shimmering light in a 90-foot cone. Nonmagical objects and vegetation in that area that aren't being worn or carried crumble to dust. Each creature in that area must make a {@dc 24} Constitution saving throw. On a failed save, a creature takes 52 ({@damage 8d12}) force damage and is magically weakened as it is desynchronized from the time stream. While the creature is in this state, attack rolls against it have advantage, it has the {@condition poisoned} condition, and other creatures have resistance to all damage it deals. On a successful save, the creature takes half as much damage only. A weakened creature can repeat the saving throw at the end of each of its turns, ending the effect on itself after it succeeds on three of these saves."
+					]
+				},
+				{
+					"name": "Time Gate (1/Day)",
+					"entries": [
+						"The dragon conjures a 20-foot-diameter, circular portal in the space between its horns or in an unoccupied space it can see within 30 feet of itself. The portal links to a precise location on any plane of existence at a point in time up to 8,000 years from the present, whether past or future. The portal lasts for 24 hours or until the dragon's {@status concentration} ends (as if {@status concentration||concentrating} on a spell). The portal has a front and a back on each plane where it appears. Travel through the portal is possible only by moving through its front. Anything that does so is transported to the destination, appearing in the unoccupied space nearest to the portal. Deities and other planar rulers can prevent portals created by the dragon from opening in the rulers' presence or anywhere within their domains."
+					]
+				}
+			],
+			"reactionHeader": [
+				"The dragon can take up to three reactions per round but only one per turn."
+			],
+			"reaction": [
+				{
+					"name": "Reactive Rend",
+					"entries": [
+						"After using Legendary Resistance or in response to being hit by an attack roll, the dragon makes one Rend attack."
+					]
+				},
+				{
+					"name": "Slow Time",
+					"entries": [
+						"Immediately after a creature the dragon can see ends its turn, the dragon targets a creature it can see within 90 feet of itself that is weakened by its Time Breath. Until the weakened effect ends on the target, its speed becomes 0, and its speed can't increase."
+					]
+				},
+				{
+					"name": "Time Slip",
+					"entries": [
+						"The dragon halves the damage it takes from an attack made against it, provided it can see the attacker. The dragon can then immediately teleport, along with any equipment it is wearing or carrying, up to 60 feet to an unoccupied space it can see."
+					]
+				}
+			],
+			"legendaryGroup": {
+				"name": "Time Dragon",
+				"source": "MPP"
+			},
+			"dragonAge": "ancient",
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"B",
+				"SD"
+			],
+			"actionTags": [
+				"Breath Weapon",
+				"Multiattack"
+			],
+			"languageTags": [
+				"XX"
+			],
+			"damageTags": [
+				"O",
+				"S"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RCH"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Athar Null",
+			"source": "MPP",
+			"page": 53,
+			"otherSources": [
+				{
+					"source": "SatO"
+				},
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				{
+					"ac": 14,
+					"from": [
+						"{@item leather armor|PHB}"
+					]
+				}
+			],
+			"hp": {
+				"average": 84,
+				"formula": "13d8 + 26"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 12,
+			"dex": 16,
+			"con": 14,
+			"int": 15,
+			"wis": 14,
+			"cha": 10,
+			"save": {
+				"dex": "+6",
+				"wis": "+5"
+			},
+			"skill": {
+				"investigation": "+8",
+				"perception": "+5",
+				"stealth": "+6"
+			},
+			"passive": 15,
+			"languages": [
+				"Common plus two more languages"
+			],
+			"cr": "5",
+			"trait": [
+				{
+					"name": "Avoidance",
+					"entries": [
+						"If the null is subjected to an effect that allows it to make a saving throw to take half as much damage, it instead takes no damage if it succeeds on the saving throw, and half as much damage if it fails."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The null makes two Force Dagger attacks."
+					]
+				},
+				{
+					"name": "Force Dagger",
+					"entries": [
+						"{@atk mw,rw} {@hit 6} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}5 ({@damage 1d4 + 3}) piercing damage plus 13 ({@damage 3d8}) force damage. Hit or Miss: The dagger magically returns to the null's hand immediately after a ranged attack."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Defier's Whim",
+					"entries": [
+						"The null takes the Dash, Disengage, or Use an Object action."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Nullify Spell (3/Day)",
+					"entries": [
+						"The null utters a magical word of cancelation to interrupt a creature it can see that is casting a spell. If the spell is 3rd level or lower, it fails and has no effect. If the spell is 4th level or higher, the null makes an Intelligence check ({@dc 10} + the spell's level). On a successful check, the spell fails and has no effect."
+					]
+				}
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"X"
+			],
+			"damageTags": [
+				"O",
+				"P"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RW",
+				"THW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Aurumach Rilmani",
+			"source": "MPP",
+			"page": 43,
+			"size": [
+				"L"
+			],
+			"type": "celestial",
+			"alignment": [
+				"N"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 285,
+				"formula": "30d10 + 120"
+			},
+			"speed": {
+				"walk": 0,
+				"fly": {
+					"number": 40,
+					"condition": "(hover)"
+				},
+				"canHover": true
+			},
+			"str": 20,
+			"dex": 21,
+			"con": 18,
+			"int": 21,
+			"wis": 18,
+			"cha": 16,
+			"save": {
+				"dex": "+11",
+				"int": "+11"
+			},
+			"skill": {
+				"arcana": "+11",
+				"history": "+11",
+				"perception": "+10"
+			},
+			"senses": [
+				"truesight 120 ft."
+			],
+			"passive": 20,
+			"resist": [
+				"psychic",
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "from nonmagical attacks",
+					"cond": true
+				}
+			],
+			"languages": [
+				"all",
+				"telepathy 120 ft."
+			],
+			"cr": "17",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The aurumach casts one of the following spells, requiring no material components and using Intelligence as the spellcasting ability (spell save {@dc 19}):"
+					],
+					"will": [
+						"{@spell detect magic}",
+						"{@spell detect thoughts}"
+					],
+					"daily": {
+						"1e": [
+							"{@spell fly}",
+							"{@spell geas} (as an action)",
+							"{@spell slow}",
+							"{@spell suggestion}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The aurumach makes three Manifested Blade or Gleaming Ray attacks."
+					]
+				},
+				{
+					"name": "Manifested Blade",
+					"entries": [
+						"{@atk mw} {@hit 11} to hit, reach 10 ft., one target. {@h}23 ({@damage 4d8 + 5}) force damage."
+					]
+				},
+				{
+					"name": "Gleaming Ray",
+					"entries": [
+						"{@atk rs} {@hit 11} to hit, range 120 ft., one target. {@h}24 ({@damage 3d12 + 5}) force damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Aura of Blades",
+					"entries": [
+						"The aurumach manifests a spectral, golden aura of blades around itself. While this aura is manifested, each creature that starts its turn within 10 feet of the aurumach must make a {@dc 19} Dexterity saving throw, taking 16 ({@damage 3d10}) force damage on a failed save, or half as much damage on a successful one. The aura disappears after 1 minute, when the aurumach has the {@condition incapacitated} condition or dies, or when the aurumach uses a bonus action to end it."
+					]
+				},
+				{
+					"name": "Invoke Weakness {@recharge 5}",
+					"entries": [
+						"The aurumach attempts to use its magic to weaken the defenses of a creature it can see within 120 feet of itself. The target must succeed on a {@dc 19} Wisdom saving throw or become cursed until the end of the aurumach's next turn. The next time the aurumach hits the cursed target with a Manifested Blade or Gleaming Ray attack, the target takes an extra 27 ({@damage 6d8}) force damage."
+					]
+				}
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"TP",
+				"XX"
+			],
+			"damageTags": [
+				"O"
+			],
+			"damageTagsSpell": [
+				"Y"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"CUR",
+				"MW",
+				"RCH"
+			],
+			"conditionInflictSpell": [
+				"charmed"
+			],
+			"savingThrowForced": [
+				"dexterity",
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Avoral Guardinal",
+			"source": "MPP",
+			"page": 32,
+			"otherSources": [
+				{
+					"source": "SatO"
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": "celestial",
+			"alignment": [
+				"N",
+				"G"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 172,
+				"formula": "23d8 + 69"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": 50
+			},
+			"str": 16,
+			"dex": 19,
+			"con": 17,
+			"int": 16,
+			"wis": 16,
+			"cha": 18,
+			"save": {
+				"dex": "+8",
+				"cha": "+8"
+			},
+			"skill": {
+				"perception": "+11",
+				"religion": "+7"
+			},
+			"senses": [
+				"darkvision 120 ft."
+			],
+			"passive": 21,
+			"resist": [
+				"radiant"
+			],
+			"conditionImmune": [
+				"frightened"
+			],
+			"languages": [
+				"Celestial",
+				"Common"
+			],
+			"cr": "9",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The avoral casts one of the following spells, requiring no material components and using Charisma as the spellcasting ability (spell save {@dc 16}):"
+					],
+					"daily": {
+						"1e": [
+							"{@spell command}",
+							"{@spell hold person}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Dive Attack",
+					"entries": [
+						"If the avoral is flying, dives at least 30 feet in a straight line toward a Medium or smaller creature, and ends within 5 feet of it, that creature must succeed on a {@dc 15} Strength saving throw or take 14 ({@damage 4d6}) piercing damage and have the {@condition prone} condition."
+					]
+				},
+				{
+					"name": "Flyby",
+					"entries": [
+						"The avoral doesn't provoke an opportunity attack when it flies out of an enemy's reach."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The avoral makes two Talon attacks. It can replace one attack with a use of Spellcasting."
+					]
+				},
+				{
+					"name": "Talon",
+					"entries": [
+						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}11 ({@damage 2d6 + 4}) piercing damage plus 13 ({@damage 2d12}) radiant damage."
+					]
+				}
+			],
+			"traitTags": [
+				"Flyby"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"CE"
+			],
+			"damageTags": [
+				"P",
+				"R"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"conditionInflictSpell": [
+				"paralyzed",
+				"prone"
+			],
+			"savingThrowForced": [
+				"strength"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Baernaloth",
+			"source": "MPP",
+			"page": 20,
+			"otherSources": [
+				{
+					"source": "SatO"
+				},
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"L"
+			],
+			"type": {
+				"type": "fiend",
+				"tags": [
+					"yugoloth"
+				]
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 17,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 256,
+				"formula": "27d10 + 108"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 19,
+			"dex": 14,
+			"con": 18,
+			"int": 22,
+			"wis": 16,
+			"cha": 21,
+			"save": {
+				"con": "+10",
+				"wis": "+9"
+			},
+			"skill": {
+				"arcana": "+12",
+				"insight": "+9",
+				"perception": "+9"
+			},
+			"senses": [
+				"truesight 120 ft."
+			],
+			"passive": 19,
+			"resist": [
+				"cold",
+				"fire",
+				"lightning",
+				"necrotic",
+				"psychic",
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "from nonmagical attacks",
+					"cond": true
+				}
+			],
+			"immune": [
+				"acid",
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"frightened",
+				"poisoned"
+			],
+			"languages": [
+				"all",
+				"telepathy 120 ft."
+			],
+			"cr": "17",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The baernaloth casts one of the following spells, requiring no material components and using Intelligence as the spellcasting ability (spell save {@dc 20}):"
+					],
+					"will": [
+						"{@spell detect thoughts}",
+						"{@spell phantasmal force}",
+						"{@spell suggestion}"
+					],
+					"daily": {
+						"1e": [
+							"{@spell cloudkill}",
+							"{@spell plane shift} (self only)",
+							"{@spell scrying} (as an action)"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Legendary Resistance (4/Day)",
+					"entries": [
+						"If the baernaloth fails a saving throw, it can choose to succeed instead."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The baernaloth has advantage on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The baernaloth makes one Anguishing Bite attack and one Claw attack. It can also use Teleport."
+					]
+				},
+				{
+					"name": "Anguishing Bite",
+					"entries": [
+						"{@atk mw} {@hit 10} to hit, reach 5 ft., one target. {@h}9 ({@damage 1d10 + 4}) piercing damage plus 10 ({@damage 3d6}) psychic damage. If the target is a creature, it can't regain hit points until the start of the baernaloth's next turn."
+					]
+				},
+				{
+					"name": "Claw",
+					"entries": [
+						"{@atk mw} {@hit 10} to hit, reach 10 ft., one target. {@h}11 ({@damage 2d6 + 4}) slashing damage plus 17 ({@damage 5d6}) necrotic damage."
+					]
+				},
+				{
+					"name": "Miasma of Discord {@recharge 5}",
+					"entries": [
+						"The baernaloth exhales gray vapors that coalesce at a point it can see within 120 feet of itself. The vapors fill a 20-foot-radius sphere centered on that point, then vanish. Each non-yugoloth creature in that area must make a {@dc 19} Wisdom saving throw. On a failed save, the creature takes 35 ({@damage 10d6}) psychic damage and has the {@condition charmed} condition until the end of its next turn. A creature {@condition charmed} in this way treats its allies as foes, and the colors of its body and equipment become shades of gray. On a successful save, the creature takes half as much damage only."
+					]
+				},
+				{
+					"name": "Summon Yugoloth (1/Day)",
+					"entries": [
+						"The baernaloth has a 50 percent chance of summoning its choice of {@dice 1d4} mezzoloths, 1 arcanaloth, or 1 baernaloth (the mezzoloth and arcanaloth appear in the Monster Manual). A summoned yugoloth appears in an unoccupied space within 60 feet of the baernaloth, acts as an ally of the baernaloth, and can't summon other yugoloths. It remains for 1 minute, until it or the baernaloth dies, or until the baernaloth dismisses it as an action."
+					]
+				},
+				{
+					"name": "Teleport",
+					"entries": [
+						"The baernaloth teleports, along with any equipment it is wearing or carrying, up to 120 feet to an unoccupied space it can see."
+					]
+				}
+			],
+			"reactionHeader": [
+				"The baernaloth can take up to three reactions per round but only one per turn."
+			],
+			"reaction": [
+				{
+					"name": "Afflict Despair",
+					"entries": [
+						"When a creature that the baernaloth can see within 60 feet of itself hits with an attack roll or succeeds on a saving throw, the baernaloth forces the creature to reroll the {@dice d20} and use the new result."
+					]
+				},
+				{
+					"name": "Inescapable Pain",
+					"entries": [
+						"When the baernaloth is damaged by another creature, that creature must make a {@dc 19} Constitution saving throw, taking 14 ({@damage 4d6}) necrotic damage on a failed save, or half as much damage on a successful one."
+					]
+				}
+			],
+			"legendaryGroup": {
+				"name": "Baernaloth",
+				"source": "MPP"
+			},
+			"traitTags": [
+				"Legendary Resistances",
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Teleport"
+			],
+			"languageTags": [
+				"TP",
+				"XX"
+			],
+			"damageTags": [
+				"N",
+				"P",
+				"S",
+				"Y"
+			],
+			"damageTagsSpell": [
+				"I",
+				"Y"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"charmed"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"constitution",
+				"intelligence",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Bariaur Wanderer",
+			"source": "MPP",
+			"page": 21,
+			"otherSources": [
+				{
+					"source": "SatO"
+				},
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": "celestial",
+			"alignment": [
+				"C",
+				"G"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 14,
+					"from": [
+						"{@item studded leather armor|PHB|studded leather}"
+					]
+				}
+			],
+			"hp": {
+				"average": 71,
+				"formula": "11d8 + 22"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 18,
+			"dex": 14,
+			"con": 15,
+			"int": 11,
+			"wis": 15,
+			"cha": 10,
+			"save": {
+				"str": "+6",
+				"dex": "+4"
+			},
+			"skill": {
+				"athletics": "+6",
+				"perception": "+4",
+				"stealth": "+4",
+				"survival": "+6"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 14,
+			"languages": [
+				"Celestial",
+				"Common"
+			],
+			"cr": "3",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The bariaur casts one of the following spells, requiring no material components and using Wisdom as the spellcasting ability:"
+					],
+					"will": [
+						"{@spell dancing lights}",
+						"{@spell druidcraft}"
+					],
+					"daily": {
+						"1e": [
+							"{@spell goodberry}",
+							"{@spell pass without trace}",
+							"{@spell tongues}"
+						]
+					},
+					"ability": "wis",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Portal Sense",
+					"entries": [
+						"The bariaur can sense the presence of portals within 30 feet of itself, including inactive portals, and instinctively knows the destination of each one. The bariaur knows the distance and direction to the last portal it used as long as they're on the same plane."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The bariaur makes two Barbed Javelin or Shortbow attacks."
+					]
+				},
+				{
+					"name": "Barbed Javelin",
+					"entries": [
+						"{@atk mw,rw} {@hit 6} to hit, reach 5 ft. or range 30/120 ft., one target. {@h}9 ({@damage 1d10 + 4}) piercing damage. If the target is a creature, its speed is reduced by 10 feet until the start of the bariaur's next turn."
+					]
+				},
+				{
+					"name": "Ram",
+					"entries": [
+						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}8 ({@damage 1d8 + 4}) bludgeoning damage. If the bariaur moved at least 20 feet straight toward the target immediately before the hit, the target takes an extra 10 ({@damage 3d6}) bludgeoning damage, and the target must succeed on a {@dc 14} Strength saving throw or have the {@condition prone} condition."
+					]
+				},
+				{
+					"name": "Shortbow",
+					"entries": [
+						"{@atk rw} {@hit 4} to hit, range 80/320 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage, plus 4 ({@damage 1d8}) piercing damage if the target doesn't have all its hit points."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Mighty Leap",
+					"entries": [
+						"The bariaur jumps a distance up to its walking speed."
+					]
+				}
+			],
+			"attachedItems": [
+				"shortbow|phb"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"CE"
+			],
+			"damageTags": [
+				"B",
+				"P"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RW",
+				"THW"
+			],
+			"conditionInflict": [
+				"prone"
+			],
+			"savingThrowForced": [
+				"strength"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Bleak Cabal Void Soother",
+			"source": "MPP",
+			"page": 54,
+			"otherSources": [
+				{
+					"source": "SatO"
+				},
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"{@item breastplate|PHB}"
+					]
+				}
+			],
+			"hp": {
+				"average": 55,
+				"formula": "10d8 + 10"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 16,
+			"dex": 14,
+			"con": 12,
+			"int": 12,
+			"wis": 15,
+			"cha": 10,
+			"save": {
+				"con": "+3",
+				"wis": "+4"
+			},
+			"skill": {
+				"medicine": "+4"
+			},
+			"passive": 12,
+			"languages": [
+				"Common plus one more language"
+			],
+			"cr": "3",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The void soother casts one of the following spells, using Wisdom as the spellcasting ability (spell save {@dc 12}):"
+					],
+					"will": [
+						"{@spell guidance}",
+						"{@spell light}"
+					],
+					"daily": {
+						"1e": [
+							"{@spell calm emotions}",
+							"{@spell lesser restoration}",
+							"{@spell remove curse}",
+							"{@spell protection from energy}"
+						]
+					},
+					"ability": "wis",
+					"displayAs": "action"
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The void soother makes two Mace or Void Bolt attacks."
+					]
+				},
+				{
+					"name": "Mace",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) bludgeoning damage plus 3 ({@damage 1d6}) force damage."
+					]
+				},
+				{
+					"name": "Void Bolt",
+					"entries": [
+						"{@atk rs} {@hit 4} to hit, range 90 ft., one target. {@h}9 ({@damage 2d8}) force damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Soothing Word (3/Day)",
+					"entries": [
+						"The void soother speaks a magical word of mercy, healing one creature it can see within 60 feet of itself. The target regains 4 ({@dice 1d4 + 2}) hit points."
+					]
+				}
+			],
+			"attachedItems": [
+				"mace|phb"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"B",
+				"O"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Cranium Rat Squeaker",
+			"source": "MPP",
+			"page": 22,
+			"otherSources": [
+				{
+					"source": "SatO"
+				},
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"T"
+			],
+			"type": "aberration",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				12
+			],
+			"hp": {
+				"average": 2,
+				"formula": "1d4"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 2,
+			"dex": 14,
+			"con": 10,
+			"int": 4,
+			"wis": 11,
+			"cha": 8,
+			"senses": [
+				"darkvision 30 ft."
+			],
+			"passive": 10,
+			"languages": [
+				"telepathy 30 ft. (emotions only)"
+			],
+			"cr": "0",
+			"trait": [
+				{
+					"name": "Shared Telepathy",
+					"entries": [
+						"Any creature touching the cranium rat can use the rat's telepathy if the rat allows it. If the creature knows any language, the creature can use the telepathy to communicate words and emotions."
+					]
+				},
+				{
+					"name": "Telepathic Shroud",
+					"entries": [
+						"The cranium rat is immune to any effect that would sense its emotions or read its thoughts, as well as to divination spells."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}1 piercing damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Illumination",
+					"entries": [
+						"The cranium rat sheds dim light from its exposed brain in a 5-foot radius or extinguishes the light."
+					]
+				}
+			],
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"TP"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"AOE",
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Cranium Rat Squeaker Swarm",
+			"source": "MPP",
+			"page": 22,
+			"otherSources": [
+				{
+					"source": "SatO"
+				},
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "aberration",
+				"swarmSize": "T"
+			},
+			"alignment": [
+				"N"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				12
+			],
+			"hp": {
+				"average": 76,
+				"formula": "17d8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 9,
+			"dex": 14,
+			"con": 10,
+			"int": 15,
+			"wis": 11,
+			"cha": 14,
+			"senses": [
+				"darkvision 30 ft."
+			],
+			"passive": 10,
+			"resist": [
+				"bludgeoning",
+				"piercing",
+				"slashing"
+			],
+			"conditionImmune": [
+				"charmed",
+				"frightened",
+				"grappled",
+				"paralyzed",
+				"petrified",
+				"prone",
+				"restrained",
+				"stunned"
+			],
+			"languages": [
+				"telepathy 30 ft."
+			],
+			"cr": "5",
+			"spellcasting": [
+				{
+					"name": "Spellcasting (Psionics)",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The swarm casts one of the following spells, requiring no spell components and using Intelligence as the spellcasting ability (spell save {@dc 13}):"
+					],
+					"will": [
+						"{@spell command} *",
+						"{@spell detect thoughts} *",
+						"{@spell sending} *"
+					],
+					"daily": {
+						"1e": [
+							"{@spell confusion} *",
+							"{@spell dominate monster} *"
+						]
+					},
+					"footerEntries": [
+						"*To cast this spell, the swarm must have more than half its hit points remaining."
+					],
+					"ability": "int",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Psychic Messenger",
+					"entries": [
+						"The swarm can use its {@spell sending} spell to target someone familiar to a creature in telepathic contact with the swarm."
+					]
+				},
+				{
+					"name": "Swarm",
+					"entries": [
+						"The swarm can occupy another creature's space and vice versa, and the swarm can move through any opening large enough for a Tiny rat. The swarm can't regain hit points or gain temporary hit points."
+					]
+				},
+				{
+					"name": "Telepathic Shroud",
+					"entries": [
+						"The swarm is immune to any effect that would sense its emotions or read its thoughts, as well as to divination spells."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Bites",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 0 ft., one target in the swarm's space. {@h}14 ({@damage 4d6}) piercing damage, or 7 ({@damage 2d6}) piercing damage if the swarm has half of its hit points or fewer, plus 22 ({@damage 5d8}) psychic damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Illumination",
+					"entries": [
+						"The swarm sheds dim light from its brains in a 5-foot radius, increases the illumination to bright light in a 5- to 20-foot radius and dim light for an additional number of feet equal to the chosen radius, or extinguishes the light."
+					]
+				}
+			],
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"TP"
+			],
+			"damageTags": [
+				"P",
+				"Y"
+			],
+			"spellcastingTags": [
+				"P"
+			],
+			"miscTags": [
+				"AOE",
+				"MW"
+			],
+			"conditionInflictSpell": [
+				"charmed",
+				"prone"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Cuprilach Rilmani",
+			"source": "MPP",
+			"page": 44,
+			"otherSources": [
+				{
+					"source": "SatO"
+				},
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": "celestial",
+			"alignment": [
+				"N"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 202,
+				"formula": "27d8 + 81"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 12,
+			"dex": 20,
+			"con": 16,
+			"int": 16,
+			"wis": 15,
+			"cha": 14,
+			"save": {
+				"dex": "+9",
+				"cha": "+6"
+			},
+			"skill": {
+				"perception": "+6",
+				"stealth": "+13"
+			},
+			"senses": [
+				"truesight 120 ft."
+			],
+			"passive": 16,
+			"resist": [
+				"psychic"
+			],
+			"languages": [
+				"telepathy 120 ft.",
+				"any four languages"
+			],
+			"cr": "12",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The cuprilach casts one of the following spells, requiring no material components and using Intelligence as the spellcasting ability (spell save {@dc 15}):"
+					],
+					"will": [
+						"{@spell detect magic}",
+						"{@spell disguise self}"
+					],
+					"daily": {
+						"1e": [
+							"{@spell alter self}",
+							"{@spell fog cloud}",
+							"{@spell silence}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The cuprilach makes three Burnished Blade or Bolt attacks."
+					]
+				},
+				{
+					"name": "Burnished Blade",
+					"entries": [
+						"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}8 ({@damage 1d6 + 5}) piercing damage plus 13 ({@damage 2d12}) psychic damage."
+					]
+				},
+				{
+					"name": "Bolt",
+					"entries": [
+						"{@atk rw} {@hit 9} to hit, range 20/60 ft., one target. {@h}7 ({@damage 1d4 + 5}) piercing damage plus 13 ({@damage 2d12}) psychic damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Assassin's Agility",
+					"entries": [
+						"The cuprilach takes the Dash or Disengage action, or it makes one Burnished Blade attack."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Uncanny Dodge",
+					"entries": [
+						"The cuprilach halves the damage it takes from an attack that hits it, provided it can see the attacker."
+					]
+				}
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"TP",
+				"X"
+			],
+			"damageTags": [
+				"P",
+				"Y"
+			],
+			"damageTagsSpell": [
+				"B",
+				"P",
+				"S"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MW",
+				"RW"
+			],
+			"conditionInflictSpell": [
+				"deafened"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Dabus",
+			"source": "MPP",
+			"page": 23,
+			"otherSources": [
+				{
+					"source": "SatO"
+				},
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": "celestial",
+			"alignment": [
+				"L",
+				"N"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				12
+			],
+			"hp": {
+				"average": 44,
+				"formula": "8d8 + 8"
+			},
+			"speed": {
+				"walk": 20,
+				"fly": {
+					"number": 30,
+					"condition": "(hover)"
+				},
+				"canHover": true
+			},
+			"str": 8,
+			"dex": 14,
+			"con": 12,
+			"int": 16,
+			"wis": 15,
+			"cha": 14,
+			"save": {
+				"int": "+5",
+				"wis": "+4"
+			},
+			"skill": {
+				"insight": "+4",
+				"perception": "+6"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 16,
+			"conditionImmune": [
+				"exhaustion"
+			],
+			"languages": [
+				"understands all languages but can't speak; communicates via Symbol Speech"
+			],
+			"cr": "2",
+			"trait": [
+				{
+					"name": "Physical Restraint",
+					"entries": [
+						"The dabus doesn't make melee attacks or opportunity attacks, even in self-defense."
+					]
+				},
+				{
+					"name": "Symbol Speech",
+					"entries": [
+						"A dabus communicates by creating illusory symbols and pictures that float in the air in front of itself and disappear a few seconds later. A creature that can see such a message can decipher it with a successful {@dc 10} Intelligence ({@skill Investigation}) check (no action required)."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The dabus makes two Flying Brick attacks."
+					]
+				},
+				{
+					"name": "Flying Brick",
+					"entries": [
+						"{@atk rs} {@hit 5} to hit, range 90 ft., one target. {@h}7 ({@damage 1d8 + 3}) bludgeoning damage."
+					]
+				},
+				{
+					"name": "Grasping Ground {@recharge}",
+					"entries": [
+						"The dabus causes a 20-foot-square area of ground it can see within 60 feet of itself to sprout clutching appendages made of stone. Each creature of the dabus's choice in that area must succeed on a {@dc 13} Dexterity saving throw or take 9 ({@damage 2d8}) bludgeoning damage and have the {@condition grappled} condition (escape {@dc 13}). While {@condition grappled} in this way, the creature has the {@condition restrained} condition. The appendages vanish after 1 minute or if the dabus's {@status concentration} ends (as if {@status concentration||concentrating} on a spell)."
+					]
+				}
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"CS",
+				"XX"
+			],
+			"damageTags": [
+				"B"
+			],
+			"conditionInflict": [
+				"grappled"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Darkweaver",
+			"source": "MPP",
+			"page": 25,
+			"otherSources": [
+				{
+					"source": "SatO"
+				},
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": "aberration",
+			"alignment": [
+				"C",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 149,
+				"formula": "23d8 + 46"
+			},
+			"speed": {
+				"walk": 50,
+				"climb": 50
+			},
+			"str": 10,
+			"dex": 17,
+			"con": 14,
+			"int": 17,
+			"wis": 14,
+			"cha": 15,
+			"save": {
+				"dex": "+7",
+				"wis": "+6"
+			},
+			"skill": {
+				"perception": "+6",
+				"stealth": "+7"
+			},
+			"senses": [
+				"darkvision 120 ft."
+			],
+			"passive": 16,
+			"resist": [
+				"cold"
+			],
+			"immune": [
+				"necrotic"
+			],
+			"languages": [
+				"Abyssal",
+				"Deep Speech",
+				"telepathy 120 ft."
+			],
+			"cr": "10",
+			"trait": [
+				{
+					"name": "Shadowy Form",
+					"entries": [
+						"While the darkweaver is in dim light or darkness, attack rolls against it are made with disadvantage unless the darkweaver has the {@condition incapacitated} condition."
+					]
+				},
+				{
+					"name": "Spider Climb",
+					"entries": [
+						"The darkweaver can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check."
+					]
+				},
+				{
+					"name": "Sunlight Hypersensitivity",
+					"entries": [
+						"The darkweaver takes 10 radiant damage when it starts its turn in sunlight. While in sunlight, it has disadvantage on attack rolls and ability checks."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The darkweaver makes two Shadow Web attacks and one Bite attack. It can use Reel after any of these attacks."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 7} to hit, reach 10 ft., one target. {@h}13 ({@damage 3d6 + 3}) piercing damage plus 17 ({@damage 5d6}) necrotic damage, and if the target is a creature, the target's hit point maximum is reduced by an amount equal to the necrotic damage taken. This reduction lasts until the target finishes a long rest. The target dies if its hit point maximum is reduced to 0."
+					]
+				},
+				{
+					"name": "Shadow Web",
+					"entries": [
+						"{@atk rw} {@hit 7} to hit, reach 120 ft., one creature. {@h}16 ({@damage 3d10}) necrotic damage, and the target has the {@condition grappled} condition (escape {@dc 15}). The shadow web can be attacked and destroyed (AC 16; 20 hit points; vulnerability to radiant damage; immunity to bludgeoning, necrotic, poison, and psychic damage). The darkweaver can grapple up to six creatures at a time using its shadow web."
+					]
+				},
+				{
+					"name": "Reel",
+					"entries": [
+						"The darkweaver pulls each creature it has {@condition grappled} up to 60 feet toward itself."
+					]
+				}
+			],
+			"legendaryGroup": {
+				"name": "Darkweaver",
+				"source": "MPP"
+			},
+			"traitTags": [
+				"Spider Climb",
+				"Sunlight Sensitivity"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AB",
+				"DS",
+				"TP"
+			],
+			"damageTags": [
+				"N",
+				"P",
+				"R"
+			],
+			"miscTags": [
+				"HPR",
+				"MW",
+				"RCH",
+				"RW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Decaton Modron",
+			"source": "MPP",
+			"page": 36,
+			"otherSources": [
+				{
+					"source": "SatO"
+				},
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"L"
+			],
+			"type": "construct",
+			"alignment": [
+				"L",
+				"N"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 144,
+				"formula": "17d10 + 51"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": {
+					"number": 30,
+					"condition": "(hover)"
+				},
+				"canHover": true
+			},
+			"str": 18,
+			"dex": 12,
+			"con": 16,
+			"int": 15,
+			"wis": 15,
+			"cha": 11,
+			"save": {
+				"int": "+5",
+				"wis": "+5"
+			},
+			"skill": {
+				"perception": "+8"
+			},
+			"senses": [
+				"truesight 120 ft."
+			],
+			"passive": 18,
+			"conditionImmune": [
+				"charmed",
+				"frightened"
+			],
+			"languages": [
+				"Modron",
+				"telepathy 120 ft."
+			],
+			"cr": "8",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The decaton casts one of the following spells, requiring no material components and using Intelligence as the spellcasting ability (spell save {@dc 13}):"
+					],
+					"will": [
+						"{@spell detect magic}",
+						"{@spell dispel magic}",
+						"{@spell mending} (as an action)"
+					],
+					"daily": {
+						"1e": [
+							"{@spell plane shift} (self only)",
+							"{@spell protection from evil and good}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Axiomatic Mind",
+					"entries": [
+						"The decaton can't be compelled to act in a manner contrary to its nature or its instructions."
+					]
+				},
+				{
+					"name": "Combat Ready",
+					"entries": [
+						"The decaton has advantage on initiative rolls."
+					]
+				},
+				{
+					"name": "Disintegration",
+					"entries": [
+						"If the decaton dies, its body disintegrates into dust, leaving behind anything it was carrying."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The decaton makes three Tentacle attacks."
+					]
+				},
+				{
+					"name": "Tentacle",
+					"entries": [
+						"{@atk mw} {@hit 7} to hit, reach 10 ft., one target. {@h}15 ({@damage 2d10 + 4}) piercing damage, and if the target is a Medium or smaller creature, it has the {@condition grappled} condition (escape {@dc 14}). Until this grapple ends, the decaton can't use this tentacle against other targets. The decaton has ten tentacles, each of which can grapple one target."
+					]
+				},
+				{
+					"name": "Lightning Rays {@recharge}",
+					"entries": [
+						"The decaton unleashes a barrage of lightning bolts from its eyes. Each creature within 30 feet of the decaton must make a {@dc 13} Dexterity saving throw, taking 38 ({@damage 7d10}) lightning damage on a failed save, or half as much damage on a successful save."
+					]
+				}
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Tentacles"
+			],
+			"languageTags": [
+				"OTH",
+				"TP"
+			],
+			"damageTags": [
+				"L",
+				"P"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RCH"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"savingThrowForcedSpell": [
+				"charisma"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Doomguard Doom Lord",
+			"source": "MPP",
+			"page": 54,
+			"otherSources": [
+				{
+					"source": "SatO"
+				}
+			],
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"{@item plate armor|PHB}"
+					]
+				}
+			],
+			"hp": {
+				"average": 202,
+				"formula": "27d8 + 81"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 20,
+			"dex": 12,
+			"con": 16,
+			"int": 15,
+			"wis": 14,
+			"cha": 18,
+			"save": {
+				"str": "+9",
+				"con": "+7"
+			},
+			"skill": {
+				"perception": "+6"
+			},
+			"passive": 16,
+			"immune": [
+				"necrotic"
+			],
+			"languages": [
+				"Common plus three more languages"
+			],
+			"cr": "12",
+			"trait": [
+				{
+					"name": "Aura of Doom",
+					"entries": [
+						"Any creature that starts its turn within 10 feet of the doom lord must make a {@dc 16} Constitution saving throw, taking 18 ({@damage 4d8}) necrotic damage on a failed save, or half as much damage on a successful one. If the doom lord doesn't have the {@condition incapacitated} condition, it can suppress or resume this aura at the start of its turn (no action required)."
+					]
+				},
+				{
+					"name": "Siege Monster",
+					"entries": [
+						"The doom lord deals double damage to objects and structures."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The doom lord makes two Entropic Greatsword or Entropic Javelin attacks."
+					]
+				},
+				{
+					"name": "Entropic Greatsword",
+					"entries": [
+						"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}12 ({@damage 2d6 + 5}) slashing damage plus 10 ({@damage 3d6}) necrotic damage. A creature killed by this attack has its body and everything it is wearing or carrying, except for magic items, reduced to ash."
+					]
+				},
+				{
+					"name": "Entropic Javelin",
+					"entries": [
+						"{@atk mw,rw} {@hit 9} to hit, reach 5 ft. or range 30/120 ft., one target. {@h}8 ({@damage 1d6 + 5}) piercing damage plus 14 ({@damage 4d6}) necrotic damage. A creature killed by this attack has its body and everything it is wearing or carrying, except for magic items, reduced to ash."
+					]
+				}
+			],
+			"traitTags": [
+				"Siege Monster"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"N",
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RW",
+				"THW"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Doomguard Rot Blade",
+			"source": "MPP",
+			"page": 56,
+			"otherSources": [
+				{
+					"source": "SatO"
+				},
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"{@item plate armor|PHB}"
+					]
+				}
+			],
+			"hp": {
+				"average": 97,
+				"formula": "13d8 + 39"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 18,
+			"dex": 12,
+			"con": 16,
+			"int": 12,
+			"wis": 10,
+			"cha": 15,
+			"save": {
+				"str": "+7",
+				"con": "+6"
+			},
+			"skill": {
+				"perception": "+3"
+			},
+			"passive": 13,
+			"resist": [
+				"necrotic"
+			],
+			"languages": [
+				"Common plus two more languages"
+			],
+			"cr": "6",
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The rot blade makes two Entropic Blade or Entropic Javelin attacks."
+					]
+				},
+				{
+					"name": "Entropic Blade",
+					"entries": [
+						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}9 ({@damage 1d10 + 4}) slashing damage plus 7 ({@damage 2d6}) necrotic damage. A creature killed by this attack has its body and everything it is wearing or carrying, except for magic items, reduced to ash. Hit or Miss: The rot blade can cause the blade to emit a burst of entropic magic in a 10-foot-radius sphere centered on the weapon. Each creature in that area other than the rot blade must succeed on a {@dc 13} Constitution saving throw or take 6 ({@damage 1d12}) necrotic damage. The blade can emit entropic magic in this way only once per turn."
+					]
+				},
+				{
+					"name": "Entropic Javelin",
+					"entries": [
+						"{@atk mw,rw} {@hit 7} to hit, reach 5 ft. or range 30/120 ft., one target. {@h}7 ({@damage 1d6 + 4}) piercing damage plus 13 ({@damage 2d12}) necrotic damage. A creature killed by this attack has its body and everything it is wearing or carrying, except for magic items, reduced to ash."
+					]
+				}
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"X"
+			],
+			"damageTags": [
+				"N",
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"AOE",
+				"MLW",
+				"MW",
+				"RW",
+				"THW"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Eater of Knowledge",
+			"source": "MPP",
+			"page": 29,
+			"otherSources": [
+				{
+					"source": "SatO"
+				},
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"L"
+			],
+			"type": "aberration",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 102,
+				"formula": "12d10 + 36"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 18,
+			"dex": 10,
+			"con": 17,
+			"int": 18,
+			"wis": 16,
+			"cha": 15,
+			"save": {
+				"str": "+7",
+				"int": "+7"
+			},
+			"skill": {
+				"arcana": "+7",
+				"perception": "+6"
+			},
+			"passive": 16,
+			"immune": [
+				"psychic"
+			],
+			"conditionImmune": [
+				"charmed",
+				"frightened"
+			],
+			"languages": [
+				"telepathy 120 ft."
+			],
+			"cr": "6",
+			"spellcasting": [
+				{
+					"name": "Spellcasting (Psionics)",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The eater of knowledge casts one of the following spells, requiring no spell components and using Intelligence as its spellcasting ability (spell save {@dc 15}). It must have consumed the requisite number of brains to cast the spell, as indicated:"
+					],
+					"daily": {
+						"1e": [
+							"{@spell plane shift} (self only, 0 brains)",
+							"{@spell detect magic} (1 brain)",
+							"{@spell silent image} (2 brains)",
+							"{@spell invisibility} (3 brains)",
+							"{@spell hypnotic pattern} (4 brains)",
+							"{@spell major image} (5 brains)",
+							"{@spell telekinesis} (6 brains)",
+							"{@spell arcane eye} (7 brains)",
+							"{@spell mislead} (8 brains)",
+							"{@spell greater invisibility} (9 brains)",
+							"{@spell mass suggestion} (10 or more brains)"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Brains Devoured",
+					"entries": [
+						"When the eater of knowledge is first encountered, roll {@dice 1d10} to determine the number of brains it has already consumed."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The eater of knowledge has advantage on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The eater of knowledge makes two Slam attacks. If both attacks hit the same creature and the target is Large or smaller, it has the {@condition grappled} condition (escape {@dc 14}) and must succeed on a {@dc 15} Intelligence saving throw or have the {@condition stunned} condition until the grapple ends."
+					]
+				},
+				{
+					"name": "Slam",
+					"entries": [
+						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}11 ({@damage 2d6 + 4}) bludgeoning damage."
+					]
+				},
+				{
+					"name": "Extract Brain",
+					"entries": [
+						"{@atk mw} {@hit 7} to hit, reach 5 ft., one Humanoid with the {@condition incapacitated} condition. {@h}45 ({@damage 10d8}) piercing damage. If this damage reduces the target to 0 hit points, the eater of knowledge kills the target by extracting and consuming its brain."
+					]
+				}
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"TP"
+			],
+			"damageTags": [
+				"B",
+				"P"
+			],
+			"spellcastingTags": [
+				"P"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"conditionInflict": [
+				"grappled"
+			],
+			"conditionInflictSpell": [
+				"blinded",
+				"charmed",
+				"deafened",
+				"incapacitated",
+				"invisible",
+				"restrained"
+			],
+			"savingThrowForced": [
+				"intelligence"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Equinal Guardinal",
+			"source": "MPP",
+			"page": 33,
+			"otherSources": [
+				{
+					"source": "SatO"
+				},
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"L"
+			],
+			"type": "celestial",
+			"alignment": [
+				"N",
+				"G"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 93,
+				"formula": "11d10 + 33"
+			},
+			"speed": {
+				"walk": 50
+			},
+			"str": 23,
+			"dex": 16,
+			"con": 17,
+			"int": 15,
+			"wis": 14,
+			"cha": 12,
+			"save": {
+				"str": "+9",
+				"con": "+6"
+			},
+			"skill": {
+				"athletics": "+9",
+				"perception": "+5",
+				"religion": "+5"
+			},
+			"passive": 15,
+			"resist": [
+				"radiant"
+			],
+			"conditionImmune": [
+				"charmed",
+				"frightened"
+			],
+			"languages": [
+				"Celestial",
+				"Common"
+			],
+			"cr": "6",
+			"trait": [
+				{
+					"name": "Headfirst Charge",
+					"entries": [
+						"If the equinal moves at least 30 feet in a straight line toward a creature and ends within 5 feet of it, that creature must succeed on a {@dc 17} Strength saving throw or take 14 ({@damage 4d6}) bludgeoning damage and have the {@condition prone} condition."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The equinal makes two Fist attacks."
+					]
+				},
+				{
+					"name": "Fist",
+					"entries": [
+						"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}13 ({@damage 2d6 + 6}) bludgeoning damage plus 3 ({@damage 1d6}) radiant damage."
+					]
+				},
+				{
+					"name": "Rock",
+					"entries": [
+						"{@atk rw} {@hit 9} to hit, range 60/180 ft., one target. {@h}22 ({@damage 3d10 + 6}) bludgeoning damage. If the target is a creature, it must succeed on a {@dc 17} Strength saving throw or have the {@condition prone} condition."
+					]
+				},
+				{
+					"name": "Shout {@recharge}",
+					"entries": [
+						"The equinal lets out a booming shout. Each creature within 30 feet of the equinal must succeed on a {@dc 14} Constitution saving throw or have the {@condition stunned} condition until the end of the equinal's next turn."
+					]
+				}
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"CE"
+			],
+			"damageTags": [
+				"B",
+				"R"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RW"
+			],
+			"conditionInflict": [
+				"prone"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"strength"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Farastu Demodand",
+			"source": "MPP",
+			"page": 26,
+			"otherSources": [
+				{
+					"source": "SatO"
+				},
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": "fiend",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 17,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 195,
+				"formula": "26d8 + 78"
+			},
+			"speed": {
+				"walk": 40,
+				"climb": 40
+			},
+			"str": 20,
+			"dex": 13,
+			"con": 16,
+			"int": 8,
+			"wis": 12,
+			"cha": 16,
+			"save": {
+				"dex": "+5",
+				"wis": "+5"
+			},
+			"skill": {
+				"perception": "+9",
+				"stealth": "+5",
+				"survival": "+5"
+			},
+			"senses": [
+				"darkvision 120 ft."
+			],
+			"passive": 19,
+			"resist": [
+				"cold",
+				"fire"
+			],
+			"immune": [
+				"acid",
+				"poison"
+			],
+			"conditionImmune": [
+				"paralyzed",
+				"poisoned",
+				"restrained"
+			],
+			"languages": [
+				"Abyssal",
+				"Demodand",
+				"telepathy 120 ft."
+			],
+			"cr": "11",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The farastu casts one of the following spells, requiring no material components and using Charisma as the spellcasting ability:"
+					],
+					"will": [
+						"{@spell invisibility} (self only)"
+					],
+					"daily": {
+						"1e": [
+							"{@spell dispel magic}",
+							"{@spell fog cloud}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Boundless Movement",
+					"entries": [
+						"The farastu ignores difficult terrain, and magical effects can't reduce its speed. It can spend 5 feet of movement to automatically remove the {@condition grappled} condition from itself."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The farastu has advantage on saving throws against spells and other magical effects."
+					]
+				},
+				{
+					"name": "Spider Climb",
+					"entries": [
+						"The farastu can climb difficult surfaces, including upside down on ceilings, without an ability check."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The farastu makes two Claw attacks and one Bite attack."
+					]
+				},
+				{
+					"name": "Claw",
+					"entries": [
+						"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}16 ({@damage 2d10 + 5}) slashing damage. If the target is a Large or smaller creature, it has the {@condition grappled} condition (escape {@dc 15}, with disadvantage). The farastu has two claws, each of which can grapple one creature."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 9} to hit (with advantage against a creature the farastu is grappling), reach 5 ft., one target. {@h}12 ({@damage 2d6 + 5}) piercing damage plus 24 ({@damage 7d6}) acid damage."
+					]
+				},
+				{
+					"name": "Summon Demodand (1/Day)",
+					"entries": [
+						"The farastu has a 40 percent chance of summoning 1 farastu demodand. A summoned demodand appears in an unoccupied space within 60 feet of the farastu, acts as an ally of the farastu, and can't summon other demodands. It remains for 1 minute, until it or the farastu dies, or until the farastu dismisses it as an action."
+					]
+				}
+			],
+			"traitTags": [
+				"Magic Resistance",
+				"Spider Climb"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AB",
+				"TP"
+			],
+			"damageTags": [
+				"A",
+				"P",
+				"S"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"conditionInflictSpell": [
+				"invisible"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Fated Shaker",
+			"source": "MPP",
+			"page": 56,
+			"otherSources": [
+				{
+					"source": "SatO"
+				}
+			],
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				13,
+				{
+					"ac": 16,
+					"condition": "with {@spell mage armor}",
+					"braces": true
+				}
+			],
+			"hp": {
+				"average": 76,
+				"formula": "17d8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 16,
+			"con": 10,
+			"int": 15,
+			"wis": 16,
+			"cha": 15,
+			"save": {
+				"int": "+5",
+				"wis": "+6"
+			},
+			"skill": {
+				"insight": "+6",
+				"investigation": "+5",
+				"perception": "+6"
+			},
+			"passive": 16,
+			"languages": [
+				"Common plus two more languages"
+			],
+			"cr": "5",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The shaker casts one of the following spells, requiring no material components and using Wisdom as the spellcasting ability (spell save {@dc 14}):"
+					],
+					"will": [
+						"{@spell mage armor}",
+						"{@spell mage hand}"
+					],
+					"daily": {
+						"1e": [
+							"{@spell enlarge/reduce}",
+							"{@spell fly}",
+							"{@spell suggestion}"
+						]
+					},
+					"ability": "wis",
+					"displayAs": "action"
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The shaker makes two Golden Rod or Radiant Bolt attacks."
+					]
+				},
+				{
+					"name": "Golden Rod",
+					"entries": [
+						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) bludgeoning damage plus 9 ({@damage 2d8}) radiant damage."
+					]
+				},
+				{
+					"name": "Radiant Bolt",
+					"entries": [
+						"{@atk rs} {@hit 6} to hit, range 120 ft., one target. {@h}14 ({@damage 2d10 + 3}) radiant damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Commanding Words",
+					"entries": [
+						"The shaker speaks magical words to order a creature it can see within 30 feet of itself. The target must succeed on a {@dc 14} Wisdom saving throw or be affected by one of the following effects (choose one or roll a {@dice d4}):",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "1-2: Grovel",
+									"entries": [
+										"The target takes 14 ({@damage 4d6}) psychic damage, drops whatever it is holding, and has the {@condition prone} condition."
+									]
+								},
+								{
+									"type": "item",
+									"name": "3-4: Cower",
+									"entries": [
+										"The target takes 10 ({@damage 3d6}) psychic damage and has the {@condition frightened} condition until the end of its next turn."
+									]
+								}
+							]
+						}
+					]
+				}
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"X"
+			],
+			"damageTags": [
+				"B",
+				"R",
+				"Y"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"conditionInflict": [
+				"frightened",
+				"prone"
+			],
+			"savingThrowForced": [
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Ferrumach Rilmani",
+			"source": "MPP",
+			"page": 44,
+			"otherSources": [
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": "celestial",
+			"alignment": [
+				"N"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 136,
+				"formula": "16d8 + 64"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 19,
+			"dex": 14,
+			"con": 18,
+			"int": 15,
+			"wis": 14,
+			"cha": 10,
+			"save": {
+				"str": "+8",
+				"con": "+8"
+			},
+			"skill": {
+				"athletics": "+8",
+				"perception": "+6"
+			},
+			"senses": [
+				"truesight 120 ft."
+			],
+			"passive": 16,
+			"resist": [
+				"psychic"
+			],
+			"languages": [
+				"telepathy 120 ft.",
+				"any two languages"
+			],
+			"cr": "9",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The ferrumach casts one of the following spells, requiring no material components and using Intelligence as the spellcasting ability (spell save {@dc 14}):"
+					],
+					"will": [
+						"{@spell detect magic}"
+					],
+					"daily": {
+						"1e": [
+							"{@spell dispel magic}",
+							"{@spell ice storm}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Bladed Edges",
+					"entries": [
+						"A creature takes 10 ({@damage 3d6}) slashing damage if it starts its turn grappling or being {@condition grappled} by the ferrumach."
+					]
+				},
+				{
+					"name": "Skewering Charge",
+					"entries": [
+						"If the ferrumach moves at least 20 feet in a straight line toward a Large or smaller creature and ends within 5 feet of it, that creature must succeed on a {@dc 16} Strength saving throw or have the {@condition grappled} condition (escape {@dc 18}) and take 10 ({@damage 3d6}) piercing damage."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The ferrumach makes three Sharpened Limb or Bolt attacks."
+					]
+				},
+				{
+					"name": "Sharpened Limb",
+					"entries": [
+						"{@atk mw} {@hit 8} to hit, reach 10 ft., one target. {@h}9 ({@damage 1d10 + 4}) slashing damage plus 11 ({@damage 2d10}) psychic damage."
+					]
+				},
+				{
+					"name": "Bolt",
+					"entries": [
+						"{@atk rw} {@hit 8} to hit, range 20/60 ft., one target. {@h}7 ({@damage 1d6 + 4}) piercing damage plus 11 ({@damage 2d10}) psychic damage."
+					]
+				}
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"TP",
+				"X"
+			],
+			"damageTags": [
+				"P",
+				"S",
+				"Y"
+			],
+			"damageTagsSpell": [
+				"B",
+				"C"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MW",
+				"RCH",
+				"RW"
+			],
+			"savingThrowForced": [
+				"strength"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Fraternity of Order Law Bender",
+			"source": "MPP",
+			"page": 57,
+			"otherSources": [
+				{
+					"source": "SatO"
+				}
+			],
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				12,
+				{
+					"ac": 15,
+					"condition": "with {@spell mage armor}",
+					"braces": true
+				}
+			],
+			"hp": {
+				"average": 137,
+				"formula": "25d8 + 25"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 8,
+			"dex": 15,
+			"con": 12,
+			"int": 19,
+			"wis": 16,
+			"cha": 14,
+			"save": {
+				"con": "+5",
+				"wis": "+7"
+			},
+			"skill": {
+				"insight": "+7",
+				"perception": "+7"
+			},
+			"passive": 17,
+			"languages": [
+				"Common plus three more languages"
+			],
+			"cr": "9",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The law bender casts one of the following spells, requiring no material components and using Intelligence as the spellcasting ability:"
+					],
+					"will": [
+						"{@spell dispel magic}",
+						"{@spell fly}",
+						"{@spell mage armor}",
+						"{@spell mage hand}",
+						"{@spell prestidigitation}"
+					],
+					"ability": "int",
+					"displayAs": "action"
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The law bender makes three Arcane Burst attacks and uses Power of Authority or Spellcasting."
+					]
+				},
+				{
+					"name": "Arcane Burst",
+					"entries": [
+						"{@atk ms,rs} {@hit 8} to hit, reach 5 ft. or range 90 ft., one target. {@h}17 ({@damage 2d12 + 4}) force damage."
+					]
+				},
+				{
+					"name": "Power of Authority",
+					"entries": [
+						"The law bender targets a creature it can see within 60 feet of itself. The target must succeed on a {@dc 16} Intelligence saving throw or take 10 ({@damage 3d6}) psychic damage and have the {@condition incapacitated} condition for 1 minute. At the end of each of the target's turns, it can repeat the saving throw, ending the {@condition incapacitated} condition on itself on a success. A target that succeeds on the saving throw becomes immune to this law bender's Power of Authority for 24 hours."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Spatial Loophole",
+					"entries": [
+						"The law bender teleports, along with any equipment it is wearing or carrying, up to 30 feet to an unoccupied space it can see."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Probability Loophole (3/Day)",
+					"entries": [
+						"When the law bender or a creature it can see makes an attack roll, a saving throw, or an ability check, the law bender can cause the roll to be made with advantage or disadvantage."
+					]
+				}
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"O",
+				"Y"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"conditionInflict": [
+				"incapacitated"
+			],
+			"savingThrowForced": [
+				"intelligence"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Githzerai Futurist",
+			"source": "MPP",
+			"page": 30,
+			"otherSources": [
+				{
+					"source": "SatO"
+				},
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "aberration",
+				"tags": [
+					"gith"
+				]
+			},
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"psychic defense"
+					]
+				}
+			],
+			"hp": {
+				"average": 149,
+				"formula": "23d8 + 46"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 14,
+			"dex": 17,
+			"con": 15,
+			"int": 17,
+			"wis": 17,
+			"cha": 13,
+			"save": {
+				"str": "+6",
+				"dex": "+7",
+				"int": "+7",
+				"wis": "+7"
+			},
+			"skill": {
+				"arcana": "+7",
+				"insight": "+7",
+				"perception": "+7"
+			},
+			"senses": [
+				"truesight 30 ft."
+			],
+			"passive": 17,
+			"languages": [
+				"Common",
+				"Gith"
+			],
+			"cr": "9",
+			"spellcasting": [
+				{
+					"name": "Spellcasting (Psionics)",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The githzerai casts one of the following spells, requiring no spell components and using Wisdom as the spellcasting ability (spell save {@dc 15}):"
+					],
+					"will": [
+						"{@spell dispel magic}",
+						"{@spell levitate} (self only)",
+						"{@spell mage hand} (the hand is invisible)",
+						"{@spell see invisibility}"
+					],
+					"daily": {
+						"1e": [
+							"{@spell plane shift} (self only)",
+							"{@spell scrying} (as an action)",
+							"{@spell slow}",
+							"{@spell telekinesis}"
+						]
+					},
+					"ability": "wis",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Psychic Defense",
+					"entries": [
+						"While the githzerai is wearing no armor and wielding no shield, its AC includes its Wisdom modifier."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The githzerai makes three Unarmed Strike or Psychic Bolt attacks."
+					]
+				},
+				{
+					"name": "Unarmed Strike",
+					"entries": [
+						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}12 ({@damage 2d8 + 3}) bludgeoning damage plus 11 ({@damage 2d10}) psychic damage."
+					]
+				},
+				{
+					"name": "Psychic Bolt",
+					"entries": [
+						"{@atk rs} {@hit 7} to hit, range 60 ft., one creature. {@h}21 ({@damage 4d8 + 3}) psychic damage."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Future Insight (3/Day)",
+					"entries": [
+						"When the githzerai or a creature it can see makes an attack roll, a saving throw, or an ability check, the githzerai can cause the roll to be made with advantage or disadvantage."
+					]
+				}
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"GTH"
+			],
+			"damageTags": [
+				"B",
+				"Y"
+			],
+			"spellcastingTags": [
+				"P"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"conditionInflictSpell": [
+				"restrained"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"constitution",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Githzerai Traveler",
+			"source": "MPP",
+			"page": 31,
+			"otherSources": [
+				{
+					"source": "SatO"
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "aberration",
+				"tags": [
+					"gith"
+				]
+			},
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"psychic defense"
+					]
+				}
+			],
+			"hp": {
+				"average": 44,
+				"formula": "8d8 + 8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 12,
+			"dex": 15,
+			"con": 12,
+			"int": 14,
+			"wis": 16,
+			"cha": 10,
+			"save": {
+				"str": "+3",
+				"dex": "+4",
+				"int": "+4",
+				"wis": "+5"
+			},
+			"skill": {
+				"perception": "+5",
+				"survival": "+5"
+			},
+			"passive": 15,
+			"languages": [
+				"Common",
+				"Gith"
+			],
+			"cr": "3",
+			"spellcasting": [
+				{
+					"name": "Spellcasting (Psionics)",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The githzerai casts one of the following spells, requiring no spell components and using Wisdom as the spellcasting ability (spell save {@dc 13}):"
+					],
+					"will": [
+						"{@spell mage hand} (the hand is invisible)"
+					],
+					"daily": {
+						"1e": [
+							"{@spell jump}",
+							"{@spell plane shift} (self only)",
+							"{@spell see invisibility}"
+						]
+					},
+					"ability": "wis",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Psychic Defense",
+					"entries": [
+						"While the githzerai is wearing no armor and wielding no shield, its AC includes its Wisdom modifier."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The githzerai makes three Unarmed Strike attacks."
+					]
+				},
+				{
+					"name": "Unarmed Strike",
+					"entries": [
+						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d8 + 2}) bludgeoning damage plus 4 ({@damage 1d8}) psychic damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Matter Manipulation {@recharge 4}",
+					"entries": [
+						"The githzerai manipulates the energy of the plane of existence it's on to produce one of the following effects (choose one or roll a {@dice d6}):",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "1-2: Astral Step",
+									"entries": [
+										"The githzerai can teleport, along with any equipment it is wearing or carrying, up to 40 feet to an unoccupied space it can see. In addition, its walking speed increases to 40 feet until the start of its next turn."
+									]
+								},
+								{
+									"type": "item",
+									"name": "3-4: Growth",
+									"entries": [
+										"Flowers and vines grow around the githzerai until the start of its next turn, then vanish; the ground within 15 feet of the githzerai is difficult terrain for other creatures while the flowers and vines are present."
+									]
+								},
+								{
+									"type": "item",
+									"name": "5-6: Retaliating Light",
+									"entries": [
+										"Multicolored lights surround the githzerai until the start of its next turn. For the effect's duration, whenever a creature within 5 feet of the githzerai hits it with a melee attack roll, that creature takes 3 ({@damage 1d6}) force damage, as magic lashes out in retribution."
+									]
+								}
+							]
+						}
+					]
+				}
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"GTH"
+			],
+			"damageTags": [
+				"B",
+				"O",
+				"Y"
+			],
+			"spellcastingTags": [
+				"P"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"savingThrowForcedSpell": [
+				"charisma"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Githzerai Uniter",
+			"source": "MPP",
+			"page": 31,
+			"otherSources": [
+				{
+					"source": "SatO"
+				},
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "aberration",
+				"tags": [
+					"gith"
+				]
+			},
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"psychic defense"
+					]
+				}
+			],
+			"hp": {
+				"average": 123,
+				"formula": "19d8 + 38"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 13,
+			"dex": 17,
+			"con": 15,
+			"int": 15,
+			"wis": 17,
+			"cha": 16,
+			"save": {
+				"str": "+4",
+				"dex": "+6",
+				"int": "+5",
+				"wis": "+6"
+			},
+			"skill": {
+				"insight": "+6",
+				"perception": "+6"
+			},
+			"passive": 16,
+			"languages": [
+				"Common",
+				"Gith"
+			],
+			"cr": "7",
+			"spellcasting": [
+				{
+					"name": "Spellcasting (Psionics)",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The githzerai casts one of the following spells, requiring no spell components and using Wisdom as the spellcasting ability (spell save {@dc 14}):"
+					],
+					"will": [
+						"{@spell mage hand} (the hand is invisible)",
+						"{@spell see invisibility}"
+					],
+					"daily": {
+						"1e": [
+							"{@spell plane shift} (self only)",
+							"{@spell telekinesis}"
+						]
+					},
+					"ability": "wis",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Psychic Defense",
+					"entries": [
+						"While the githzerai is wearing no armor and wielding no shield, its AC includes its Wisdom modifier."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The githzerai makes three Unarmed Strike or Psychic Bolt attacks. It can replace any of these attacks with one use of its Pacifying Touch."
+					]
+				},
+				{
+					"name": "Unarmed Strike",
+					"entries": [
+						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d8 + 3}) bludgeoning damage plus 10 ({@damage 3d6}) psychic damage."
+					]
+				},
+				{
+					"name": "Psychic Bolt",
+					"entries": [
+						"{@atk rs} {@hit 6} to hit, range 60 ft., one creature. {@h}17 ({@damage 5d6}) psychic damage."
+					]
+				},
+				{
+					"name": "Pacifying Touch",
+					"entries": [
+						"The githzerai touches one creature it can see within 5 feet of itself. The target must succeed on a {@dc 14} Intelligence saving throw, or the githzerai chooses an action for that target: Attack, Cast a Spell, or Dash. The affected target can't take that action for 1 minute. At the end of each of the target's turns, it can repeat the saving throw, ending the effect on itself on a successful save. A target that succeeds on the saving throw becomes immune to this githzerai's Pacifying Touch for 24 hours."
+					]
+				}
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"GTH"
+			],
+			"damageTags": [
+				"B",
+				"Y"
+			],
+			"spellcastingTags": [
+				"P"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"conditionInflictSpell": [
+				"restrained"
+			],
+			"savingThrowForced": [
+				"intelligence"
+			],
+			"savingThrowForcedSpell": [
+				"charisma"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Hands of Havoc Fire Starter",
+			"source": "MPP",
+			"page": 58,
+			"otherSources": [
+				{
+					"source": "SatO"
+				},
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"{@item breastplate|PHB}"
+					]
+				}
+			],
+			"hp": {
+				"average": 65,
+				"formula": "10d8 + 20"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 16,
+			"dex": 14,
+			"con": 14,
+			"int": 10,
+			"wis": 16,
+			"cha": 11,
+			"save": {
+				"str": "+5",
+				"con": "+4"
+			},
+			"passive": 13,
+			"resist": [
+				"fire"
+			],
+			"languages": [
+				"Common plus one more language"
+			],
+			"cr": "4",
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The fire starter makes two Havoc Hammer or Havoc Flask attacks."
+					]
+				},
+				{
+					"name": "Havoc Hammer",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d8 + 3}) bludgeoning damage plus 9 ({@damage 2d8}) fire damage. If the target is a creature, magical flames cling to it, causing it to take 3 ({@damage 1d6}) fire damage at the start of each of its turns. Immediately after taking this damage on its turn, the target can make a {@dc 13} Dexterity saving throw, ending the effect on itself on a successful save."
+					]
+				},
+				{
+					"name": "Havoc Flask",
+					"entries": [
+						"{@atk rw} {@hit 4} to hit, range 30/90 ft., one target. {@h}13 ({@damage 2d12}) fire damage. If the target is a creature, magical flames cling to it, causing it to take 3 ({@damage 1d6}) fire damage at the start of each of its turns. Immediately after taking this damage on its turn, the target can make a {@dc 13} Dexterity saving throw, ending the effect on itself on a successful save.",
+						"After the fire starter throws the flask, roll a {@dice d6}; on a 3 or lower, the fire starter has no more flasks to throw."
+					]
+				}
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"B",
+				"F"
+			],
+			"miscTags": [
+				"MW",
+				"RW"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Harmonium Captain",
+			"source": "MPP",
+			"page": 58,
+			"otherSources": [
+				{
+					"source": "SatO"
+				},
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				{
+					"ac": 20,
+					"from": [
+						"{@item plate armor|PHB}",
+						"{@item shield|PHB}"
+					]
+				}
+			],
+			"hp": {
+				"average": 110,
+				"formula": "17d8 + 34"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 19,
+			"dex": 10,
+			"con": 14,
+			"int": 12,
+			"wis": 16,
+			"cha": 16,
+			"save": {
+				"str": "+7",
+				"wis": "+6"
+			},
+			"skill": {
+				"perception": "+6"
+			},
+			"passive": 16,
+			"conditionImmune": [
+				"charmed",
+				"frightened"
+			],
+			"languages": [
+				"Common plus one more language"
+			],
+			"cr": "8",
+			"trait": [
+				{
+					"name": "Aura of Command",
+					"entries": [
+						"Allies within 30 feet of the captain are immune to the {@condition charmed} and {@condition frightened} conditions. This aura is suppressed while the captain has the {@condition incapacitated} condition."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The captain makes three Harmonium Blade attacks. The captain can also use Dictate if available."
+					]
+				},
+				{
+					"name": "Harmonium Blade",
+					"entries": [
+						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}9 ({@damage 1d10 + 4}) piercing damage plus 10 ({@damage 3d6}) lightning damage."
+					]
+				},
+				{
+					"name": "Dictate {@recharge 5}",
+					"entries": [
+						"The captain verbally commands up to three creatures it can see within 60 feet of itself. This magical command must be to undertake an action or to refrain from taking actions (for example, \"Throw down your weapons\").",
+						"A target must succeed on a {@dc 14} Wisdom saving throw or have the {@condition charmed} condition for 1 minute, during which time it follows the captain's command. The effect ends early if the target takes damage or if it successfully completes the command. A target automatically succeeds on its saving throw if the command is directly harmful to itself, such as commanding it to walk into fire.",
+						"A creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a successful save."
+					]
+				}
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"L",
+				"P"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"conditionInflict": [
+				"charmed"
+			],
+			"savingThrowForced": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Harmonium Peacekeeper",
+			"source": "MPP",
+			"page": 59,
+			"otherSources": [
+				{
+					"source": "SatO"
+				},
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"{@item plate armor|PHB}"
+					]
+				}
+			],
+			"hp": {
+				"average": 45,
+				"formula": "7d8 + 14"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 16,
+			"dex": 10,
+			"con": 14,
+			"int": 12,
+			"wis": 14,
+			"cha": 11,
+			"skill": {
+				"perception": "+4"
+			},
+			"passive": 14,
+			"languages": [
+				"Common plus one more language"
+			],
+			"cr": "3",
+			"trait": [
+				{
+					"name": "Pack Tactics",
+					"entries": [
+						"The peacekeeper has advantage on an attack roll against a creature if at least one of the peacekeeper's allies is within 5 feet of the creature and the ally doesn't have the {@condition incapacitated} condition."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Electrified Mancatcher",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 10 ft., one target. {@h}8 ({@damage 1d10 + 3}) piercing damage plus 4 ({@damage 1d8}) lightning damage. If the target is a Large or smaller creature, it has the {@condition grappled} condition (escape {@dc 13}). Until the {@condition grappled} condition ends, the target has the {@condition restrained} condition and can't teleport, the peacekeeper can't make Electrified Mancatcher attacks, and the target takes 8 ({@damage 1d10 + 3}) lightning damage at the start of each of its turns."
+					]
+				}
+			],
+			"traitTags": [
+				"Pack Tactics"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"L",
+				"P"
+			],
+			"miscTags": [
+				"MW",
+				"RCH"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Heralds of Dust Remnant",
+			"source": "MPP",
+			"page": 59,
+			"otherSources": [
+				{
+					"source": "AATM"
+				},
+				{
+					"source": "SatO"
+				},
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				12,
+				{
+					"ac": 15,
+					"condition": "with {@spell mage armor}",
+					"braces": true
+				}
+			],
+			"hp": {
+				"average": 45,
+				"formula": "7d8 + 14"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 8,
+			"dex": 14,
+			"con": 15,
+			"int": 17,
+			"wis": 14,
+			"cha": 11,
+			"skill": {
+				"arcana": "+5",
+				"perception": "+4",
+				"stealth": "+6"
+			},
+			"passive": 14,
+			"resist": [
+				"necrotic"
+			],
+			"languages": [
+				"Common plus three more languages"
+			],
+			"cr": "4",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The remnant casts one of the following spells, requiring no material components and using Intelligence as the spellcasting ability (spell save {@dc 13}):"
+					],
+					"will": [
+						"{@spell mage armor}",
+						"{@spell mage hand}",
+						"{@spell prestidigitation}"
+					],
+					"daily": {
+						"1e": [
+							"{@spell bane}",
+							"{@spell dimension door}",
+							"{@spell web}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The remnant makes two Necrotic Surge attacks."
+					]
+				},
+				{
+					"name": "Necrotic Surge",
+					"entries": [
+						"{@atk ms,rs} {@hit 5} to hit, reach 5 ft. or range 120 ft., one target. {@h}14 ({@damage 2d10 + 3}) necrotic damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Phase (2/Day)",
+					"entries": [
+						"The remnant becomes partially incorporeal for as long as it maintains {@status concentration} on the effect (as if {@status concentration||concentrating} on a spell). While partially incorporeal, the remnant has resistance to bludgeoning, piercing, and slashing damage."
+					]
+				}
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"N"
+			],
+			"damageTagsSpell": [
+				"F",
+				"O"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"conditionInflictSpell": [
+				"restrained"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Hexton Modron",
+			"source": "MPP",
+			"page": 37,
+			"otherSources": [
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"H"
+			],
+			"type": "construct",
+			"alignment": [
+				"L",
+				"N"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 17,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 209,
+				"formula": "22d12 + 66"
+			},
+			"speed": {
+				"walk": 40,
+				"fly": {
+					"number": 40,
+					"condition": "(hover)"
+				},
+				"canHover": true
+			},
+			"str": 19,
+			"dex": 16,
+			"con": 17,
+			"int": 19,
+			"wis": 17,
+			"cha": 15,
+			"save": {
+				"int": "+9",
+				"wis": "+8"
+			},
+			"skill": {
+				"perception": "+13"
+			},
+			"senses": [
+				"truesight 120 ft."
+			],
+			"passive": 23,
+			"resist": [
+				"lightning",
+				"psychic"
+			],
+			"conditionImmune": [
+				"charmed",
+				"frightened"
+			],
+			"languages": [
+				"all",
+				"telepathy 120 ft."
+			],
+			"cr": "13",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The hexton casts one of the following spells, requiring no material components and using Intelligence as the spellcasting ability (spell save {@dc 17}):"
+					],
+					"will": [
+						"{@spell detect magic}",
+						"{@spell dispel magic}",
+						"{@spell mending} (as an action)"
+					],
+					"daily": {
+						"1e": [
+							"{@spell plane shift} (self only)",
+							"{@spell protection from evil and good}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Axiomatic Mind",
+					"entries": [
+						"The hexton can't be compelled to act in a manner contrary to its nature or its instructions."
+					]
+				},
+				{
+					"name": "Combat Ready",
+					"entries": [
+						"The hexton has advantage on initiative rolls."
+					]
+				},
+				{
+					"name": "Disintegration",
+					"entries": [
+						"If the hexton dies, its body disintegrates into dust, leaving behind anything it was carrying."
+					]
+				},
+				{
+					"name": "Legendary Resistance (4/Day)",
+					"entries": [
+						"If the hexton fails a saving throw, it can choose to succeed instead."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The hexton makes one Pincer attack and two Tentacle attacks."
+					]
+				},
+				{
+					"name": "Pincer",
+					"entries": [
+						"{@atk mw} {@hit 9} to hit, reach 10 ft., one target. {@h}13 ({@damage 2d8 + 4}) bludgeoning damage plus 10 ({@damage 3d6}) force damage. If the target is a creature, it must succeed on a {@dc 17} Constitution saving throw or have the {@condition incapacitated} condition until the end of its next turn."
+					]
+				},
+				{
+					"name": "Tentacle",
+					"entries": [
+						"{@atk mw} {@hit 9} to hit, reach 10 ft., one target. {@h}15 ({@damage 2d10 + 4}) piercing damage, and if the target is a Medium or smaller creature, it has the {@condition grappled} condition (escape {@dc 14}). Until this grapple ends, the hexton can't use this tentacle against other targets. The hexton has six tentacles, each of which can grapple one target."
+					]
+				}
+			],
+			"reactionHeader": [
+				"The hexton can take up to three reactions per round but only one per turn."
+			],
+			"reaction": [
+				{
+					"name": "Counter Magic",
+					"entries": [
+						"The hexton attempts to interrupt a creature it can see that is casting a spell. If the spell is 3rd level or lower, it fails and has no effect. If the spell is 4th level or higher, the hexton makes an Intelligence check ({@dc 10} + the spell's level). On a success, the spell fails and has no effect."
+					]
+				},
+				{
+					"name": "Lightning Rebuke",
+					"entries": [
+						"When a creature within 120 feet of the hexton damages it, the hexton magically retaliates with an arc of lightning. The creature must make a {@dc 17} Dexterity saving throw, taking 11 ({@damage 2d10}) lightning damage on a failed save, or half as much damage on a successful one."
+					]
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Tentacles"
+			],
+			"languageTags": [
+				"TP",
+				"XX"
+			],
+			"damageTags": [
+				"B",
+				"L",
+				"O",
+				"P"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MW",
+				"RCH"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity"
+			],
+			"savingThrowForcedSpell": [
+				"charisma"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Hound Archon",
+			"source": "MPP",
+			"page": 16,
+			"otherSources": [
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": "celestial",
+			"alignment": [
+				"L",
+				"G"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 65,
+				"formula": "10d8 + 20"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 18,
+			"dex": 12,
+			"con": 15,
+			"int": 11,
+			"wis": 14,
+			"cha": 15,
+			"save": {
+				"int": "+2",
+				"wis": "+4"
+			},
+			"skill": {
+				"insight": "+4",
+				"perception": "+6",
+				"stealth": "+3"
+			},
+			"senses": [
+				"darkvision 120 ft."
+			],
+			"passive": 16,
+			"immune": [
+				"lightning"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"paralyzed"
+			],
+			"languages": [
+				"all"
+			],
+			"cr": "4",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The archon casts one of the following spells, requiring no material components and using Charisma as the spellcasting ability:"
+					],
+					"will": [
+						"{@spell detect evil and good}"
+					],
+					"daily": {
+						"1e": [
+							"{@spell aid}",
+							"{@spell continual flame}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Aura of Menace",
+					"entries": [
+						"As long as the archon doesn't have the {@condition incapacitated} condition, each creature of the archon's choice that starts its turn within 20 feet of the archon must make a {@dc 12} Wisdom saving throw. On a failed save, the creature has the {@condition frightened} condition until the start of its next turn. On a successful save, the creature is immune to all archons' Aura of Menace for 24 hours."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The archon makes two Bite attacks. It can replace one of the attacks with a Shining Blade attack."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d6 + 4}) piercing damage. If the target is a Large or smaller creature, it must succeed on a {@dc 14} Strength saving throw or have the {@condition prone} condition."
+					]
+				},
+				{
+					"name": "Shining Blade (True Form Only)",
+					"entries": [
+						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}11 ({@damage 2d6 + 4}) radiant damage."
+					]
+				},
+				{
+					"name": "Teleport",
+					"entries": [
+						"The archon teleports, along with any equipment it is wearing or carrying, to an unoccupied space it can see within 120 feet of itself."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Change Shape",
+					"entries": [
+						"The archon magically transforms into any Medium or Large dog or wolf while retaining its game statistics (other than its size and losing its Shining Blade attack). The archon reverts to its true form if reduced to 0 hit points or if it uses a bonus action to do so."
+					]
+				}
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Shapechanger",
+				"Teleport"
+			],
+			"languageTags": [
+				"XX"
+			],
+			"damageTags": [
+				"P",
+				"R"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"conditionInflict": [
+				"frightened"
+			],
+			"savingThrowForced": [
+				"strength",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Kelubar Demodand",
+			"source": "MPP",
+			"page": 27,
+			"otherSources": [
+				{
+					"source": "SatO"
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": "fiend",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 187,
+				"formula": "22d8 + 88"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": 60
+			},
+			"str": 22,
+			"dex": 13,
+			"con": 18,
+			"int": 14,
+			"wis": 15,
+			"cha": 18,
+			"save": {
+				"dex": "+6",
+				"wis": "+7"
+			},
+			"skill": {
+				"insight": "+7"
+			},
+			"senses": [
+				"darkvision 120 ft."
+			],
+			"passive": 12,
+			"resist": [
+				"cold",
+				"fire"
+			],
+			"immune": [
+				"acid",
+				"poison"
+			],
+			"conditionImmune": [
+				"paralyzed",
+				"poisoned",
+				"restrained"
+			],
+			"languages": [
+				"Abyssal",
+				"Demodand",
+				"telepathy 120 ft."
+			],
+			"cr": "13",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The kelubar casts one of the following spells, requiring no material components and using Charisma as the spellcasting ability (spell save {@dc 17}):"
+					],
+					"will": [
+						"{@spell invisibility} (self only)"
+					],
+					"daily": {
+						"1e": [
+							"{@spell dispel magic}",
+							"{@spell scrying} (as an action)"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Acidic Secretions",
+					"entries": [
+						"A creature that touches the kelubar or hits it with a melee attack while within 5 feet of it takes 5 ({@damage 2d4}) acid damage."
+					]
+				},
+				{
+					"name": "Boundless Movement",
+					"entries": [
+						"The kelubar ignores difficult terrain, and magical effects can't reduce its speed. It can spend 5 feet of movement to automatically remove the {@condition grappled} condition from itself."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The kelubar has advantage on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The kelubar makes two Bite attacks."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 11} to hit, reach 5 ft., one target. {@h}11 ({@damage 1d10 + 6}) piercing damage plus 18 ({@damage 4d8}) acid damage."
+					]
+				},
+				{
+					"name": "Spit Acid",
+					"entries": [
+						"The kelubar spits acid in a line 60 feet long and 5 feet wide. Each creature in that area must make a {@dc 17} Dexterity saving throw, taking 27 ({@damage 6d8}) acid damage on a failed save, or half as much damage on a successful one."
+					]
+				},
+				{
+					"name": "Summon Demodand (1/Day)",
+					"entries": [
+						"The kelubar has a 40 percent chance of summoning its choice of {@dice 1d2} farastu demodands or 1 kelubar demodand. A summoned demodand appears in an unoccupied space within 60 feet of the kelubar, acts as an ally of the kelubar, and can't summon other demodands. It remains for 1 minute, until it or the kelubar dies, or until the kelubar dismisses it as an action."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Nauseating Fog {@recharge}",
+					"entries": [
+						"The kelubar magically creates a cloud of greenish fog that fills a 20-foot-radius sphere centered on a point within 120 feet of itself. The cloud remains for 1 minute or until the kelubar uses this bonus action again. The cloud is heavily obscured and difficult terrain. Any creature that starts its turn in the cloud or enters the cloud for the first time on a turn must succeed on a {@dc 17} Constitution saving throw or have the {@condition poisoned} condition until the end of its next turn."
+					]
+				}
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AB",
+				"TP"
+			],
+			"damageTags": [
+				"A",
+				"P"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE",
+				"MW"
+			],
+			"conditionInflictSpell": [
+				"invisible"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Kolyarut",
+			"source": "MPP",
+			"page": 34,
+			"otherSources": [
+				{
+					"source": "SatO"
+				},
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "construct",
+				"tags": [
+					"inevitable"
+				]
+			},
+			"alignment": [
+				"L",
+				"N"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 297,
+				"formula": "35d8 + 140"
+			},
+			"speed": {
+				"walk": 50,
+				"fly": {
+					"number": 35,
+					"condition": "(hover)"
+				},
+				"canHover": true
+			},
+			"str": 25,
+			"dex": 12,
+			"con": 19,
+			"int": 25,
+			"wis": 22,
+			"cha": 18,
+			"save": {
+				"int": "+13",
+				"wis": "+12",
+				"cha": "+10"
+			},
+			"skill": {
+				"history": "+13",
+				"insight": "+12",
+				"perception": "+12"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 22,
+			"resist": [
+				"thunder",
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "from nonmagical attacks",
+					"cond": true
+				}
+			],
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"poisoned",
+				"unconscious"
+			],
+			"languages": [
+				"all"
+			],
+			"cr": "20",
+			"trait": [
+				{
+					"name": "Immutable Form",
+					"entries": [
+						"The kolyarut is immune to any spell or effect that would alter its form."
+					]
+				},
+				{
+					"name": "Legendary Resistance (4/Day)",
+					"entries": [
+						"If the kolyarut fails a saving throw, it can choose to succeed instead."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The kolyarut has advantage on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The kolyarut makes four Unerring Blade attacks."
+					]
+				},
+				{
+					"name": "Unerring Blade",
+					"entries": [
+						"{@atk mw} automatic hit, reach 5 ft., one target. {@h}24 force damage plus one of the following effects (choose one or roll a {@dice d6}):",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "1-2: Disarm",
+									"entries": [
+										"The target drops one item it is holding of the kolyarut's choice."
+									]
+								},
+								{
+									"type": "item",
+									"name": "3-4: Imbalance",
+									"entries": [
+										"The target can't take reactions until the start of the kolyarut's next turn."
+									]
+								},
+								{
+									"type": "item",
+									"name": "5-6: Push",
+									"entries": [
+										"If the target is Large or smaller, the target is pushed up to 15 feet away from the kolyarut."
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Edict of Blades {@recharge 5}",
+					"entries": [
+						"The kolyarut moves up to its speed without provoking opportunity attacks and can make one Unerring Blade attack against each creature it moves past. Whenever it hits a creature with an Unerring Blade attack during this movement, each spell of 5th level or lower on the creature ends, and the creature has the {@condition incapacitated} condition until the end of the kolyarut's next turn."
+					]
+				},
+				{
+					"name": "Plane Shift (3/Day)",
+					"entries": [
+						"The kolyarut casts {@spell plane shift}, requiring no material components and using Intelligence as the spellcasting ability. The kolyarut can cast the spell normally, or it can cast the spell on an unwilling creature it can see within 60 feet of itself. If it uses the latter option, the targeted creature must succeed on a {@dc 18} Charisma saving throw or be sent to a teleportation circle in the Hall of Concordance in Sigil."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Parry",
+					"entries": [
+						"The kolyarut adds 6 to its AC against one attack roll that would hit it. To do so, the kolyarut must see the attacker and be wielding a melee weapon."
+					]
+				}
+			],
+			"traitTags": [
+				"Immutable Form",
+				"Legendary Resistances",
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Parry"
+			],
+			"languageTags": [
+				"XX"
+			],
+			"damageTags": [
+				"O"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"savingThrowForced": [
+				"charisma"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Lantern Archon",
+			"source": "MPP",
+			"page": 17,
+			"otherSources": [
+				{
+					"source": "SatO"
+				},
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"S"
+			],
+			"type": "celestial",
+			"alignment": [
+				"L",
+				"G"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 22,
+				"formula": "5d6 + 5"
+			},
+			"speed": {
+				"walk": 0,
+				"fly": {
+					"number": 60,
+					"condition": "(hover)"
+				},
+				"canHover": true
+			},
+			"str": 1,
+			"dex": 16,
+			"con": 12,
+			"int": 6,
+			"wis": 12,
+			"cha": 13,
+			"skill": {
+				"perception": "+3"
+			},
+			"senses": [
+				"darkvision 120 ft."
+			],
+			"passive": 13,
+			"resist": [
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "from nonmagical attacks",
+					"cond": true
+				}
+			],
+			"immune": [
+				"lightning",
+				"radiant"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"grappled",
+				"paralyzed",
+				"prone",
+				"restrained"
+			],
+			"languages": [
+				"all"
+			],
+			"cr": "2",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The archon casts one of the following spells, requiring no material components and using Charisma as the spellcasting ability:"
+					],
+					"will": [
+						"{@spell detect evil and good}"
+					],
+					"daily": {
+						"1": [
+							"{@spell aid}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Aura of Menace",
+					"entries": [
+						"As long as the archon doesn't have the {@condition incapacitated} condition, each creature of the archon's choice that starts its turn within 20 feet of the archon must make a {@dc 11} Wisdom saving throw. On a failed save, the creature has the {@condition frightened} condition until the start of its next turn. On a successful save, the creature is immune to all archons' Aura of Menace for 24 hours."
+					]
+				},
+				{
+					"name": "Illumination",
+					"entries": [
+						"The archon sheds bright light in a 30-foot radius and dim light for an additional 30 feet."
+					]
+				},
+				{
+					"name": "Incorporeal Movement",
+					"entries": [
+						"The archon can move through creatures and objects as if they were difficult terrain. If it ends its turn inside an object, it takes 5 ({@damage 1d10}) force damage."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The archon makes two Radiant Strike attacks. It can replace one attack with a use of Teleport."
+					]
+				},
+				{
+					"name": "Radiant Strike",
+					"entries": [
+						"{@atk mw,rw} {@hit 5} to hit, reach 5 ft. or range 60 ft., one target. {@h}6 ({@damage 1d6 + 3}) radiant damage."
+					]
+				},
+				{
+					"name": "Teleport",
+					"entries": [
+						"The archon teleports, along with any equipment it is wearing or carrying, to an unoccupied space it can see within 120 feet of itself."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Shift Radiance",
+					"entries": [
+						"The archon reduces its Illumination to shed only dim light in a 5-foot radius, or it returns the light to full intensity."
+					]
+				}
+			],
+			"traitTags": [
+				"Illumination",
+				"Incorporeal Movement"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Teleport"
+			],
+			"languageTags": [
+				"XX"
+			],
+			"damageTags": [
+				"O",
+				"R"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RW"
+			],
+			"conditionInflict": [
+				"frightened"
+			],
+			"savingThrowForced": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Maelephant",
+			"source": "MPP",
+			"page": 35,
+			"otherSources": [
+				{
+					"source": "SatO"
+				},
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"L"
+			],
+			"type": "fiend",
+			"alignment": [
+				"L",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"{@item half plate armor|PHB}"
+					]
+				}
+			],
+			"hp": {
+				"average": 161,
+				"formula": "17d10 + 68"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 19,
+			"dex": 10,
+			"con": 18,
+			"int": 10,
+			"wis": 16,
+			"cha": 12,
+			"save": {
+				"str": "+8",
+				"con": "+8"
+			},
+			"skill": {
+				"perception": "+7"
+			},
+			"senses": [
+				"darkvision 120 ft."
+			],
+			"passive": 17,
+			"resist": [
+				"acid",
+				"fire",
+				"lightning"
+			],
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"frightened",
+				"poisoned"
+			],
+			"languages": [
+				"Infernal"
+			],
+			"cr": "10",
+			"trait": [
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The maelephant has advantage on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The maelephant makes one Barbed Trunk attack and two Glaive attacks."
+					]
+				},
+				{
+					"name": "Barbed Trunk",
+					"entries": [
+						"{@atk mw} {@hit 8} to hit, reach 10 ft., one target. {@h}13 ({@damage 2d8 + 4}) piercing damage plus 13 ({@damage 2d12}) poison damage. If the target is a Medium or smaller creature, it has the {@condition grappled} condition (escape {@dc 14}). Until this grapple ends, the target has the {@condition restrained} condition. While it is grappling a creature, the maelephant can't use its barbed trunk to attack other creatures."
+					]
+				},
+				{
+					"name": "Glaive",
+					"entries": [
+						"{@atk mw} {@hit 8} to hit, reach 10 ft., one target. {@h}15 ({@damage 2d10 + 4}) slashing damage."
+					]
+				},
+				{
+					"name": "Mind Poison {@recharge 5}",
+					"entries": [
+						"The maelephant expels poisonous gas from its trunk in a 60-foot cone. Each creature in that area must make a {@dc 16} Constitution saving throw. On a failed save, a creature takes 39 ({@damage 6d12}) poison damage and has the {@condition poisoned} condition. While {@condition poisoned} in this way, the creature loses all weapon and skill proficiencies, it can't cast spells, it can't understand language, and it has disadvantage on Intelligence saving throws. The target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success. On a successful save, the target takes half as much damage only and is immune to this maelephant's Mind Poison for 24 hours."
+					]
+				}
+			],
+			"attachedItems": [
+				"glaive|phb"
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"I"
+			],
+			"damageTags": [
+				"I",
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"AOE",
+				"MLW",
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"poisoned"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Mercykiller Bloodhound",
+			"source": "MPP",
+			"page": 60,
+			"otherSources": [
+				{
+					"source": "SatO"
+				},
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"{@item plate armor|PHB}"
+					]
+				}
+			],
+			"hp": {
+				"average": 104,
+				"formula": "16d8 + 48"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 17,
+			"dex": 12,
+			"con": 16,
+			"int": 12,
+			"wis": 15,
+			"cha": 8,
+			"skill": {
+				"perception": "+8",
+				"survival": "+8"
+			},
+			"passive": 18,
+			"languages": [
+				"Common plus one more language"
+			],
+			"cr": "7",
+			"trait": [
+				{
+					"name": "Portal Sense",
+					"entries": [
+						"The bloodhound can sense the presence of portals within 30 feet of itself, including inactive portals, and instinctively knows the destination of each portal."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The bloodhound makes three Clawed Gauntlet attacks."
+					]
+				},
+				{
+					"name": "Clawed Gauntlet",
+					"entries": [
+						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d8 + 3}) slashing damage plus 10 ({@damage 3d6}) necrotic damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Marked for Pursuit (3/Day)",
+					"entries": [
+						"The bloodhound attempts to place a magical mark on a creature it can see within 30 feet of itself. The target must succeed on a {@dc 13} Charisma saving throw or become cursed for 24 hours. A creature missing any of its hit points has disadvantage on this saving throw. While cursed in this way, the bloodhound can sense the direction and distance to the target as long as the two are on the same plane of existence. If the target isn't on the same plane, the bloodhound knows what plane the target is on."
+					]
+				}
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"N",
+				"S"
+			],
+			"miscTags": [
+				"CUR",
+				"MW"
+			],
+			"savingThrowForced": [
+				"charisma"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Mind's Eye Matter Smith",
+			"source": "MPP",
+			"page": 60,
+			"otherSources": [
+				{
+					"source": "SatO"
+				},
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				12,
+				{
+					"ac": 15,
+					"condition": "with {@spell mage armor}",
+					"braces": true
+				}
+			],
+			"hp": {
+				"average": 78,
+				"formula": "12d8 + 24"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 14,
+			"con": 14,
+			"int": 14,
+			"wis": 14,
+			"cha": 16,
+			"save": {
+				"int": "+4",
+				"cha": "+5"
+			},
+			"skill": {
+				"investigation": "+4",
+				"perception": "+6"
+			},
+			"passive": 16,
+			"languages": [
+				"Common plus two more languages"
+			],
+			"cr": "4",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The matter smith casts one of the following spells, using Charisma as the spellcasting ability:"
+					],
+					"will": [
+						"{@spell mage armor}",
+						"{@spell mage hand}",
+						"{@spell prestidigitation}"
+					],
+					"daily": {
+						"1e": [
+							"{@spell create food and water}",
+							"{@spell fabricate} (as an action)"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action"
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The matter smith makes two Manifested Force attacks."
+					]
+				},
+				{
+					"name": "Manifested Force",
+					"entries": [
+						"{@atk ms,rs} {@hit 5} to hit, reach 5 ft. or range 120 ft., one target. {@h}10 ({@damage 2d6 + 3}) force damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Planar Smithing",
+					"entries": [
+						"The matter smith magically manipulates the energy of the plane of existence it's on to produce one of the following effects (choose one or roll a {@dice d4}):",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "1-2: Chains",
+									"entries": [
+										"The matter smith creates spectral bindings around a creature it can see within 30 feet of itself. The target must succeed on a {@dc 13} Dexterity saving throw or have the {@condition restrained} condition until the end of its next turn."
+									]
+								},
+								{
+									"type": "item",
+									"name": "3-4: Magic Shield",
+									"entries": [
+										"The matter smith conjures a floating, spectral shield that grants the matter smith a +5 bonus to its AC until the shield disappears at the start of the matter smith's next turn. The first time a creature misses a melee attack roll against the matter smith while the shield is conjured, that creature takes 7 ({@damage 2d6}) force damage."
+									]
+								}
+							]
+						}
+					]
+				}
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"X"
+			],
+			"damageTags": [
+				"O"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"conditionInflict": [
+				"restrained"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Musteval Guardinal",
+			"source": "MPP",
+			"page": 33,
+			"otherSources": [
+				{
+					"source": "SatO"
+				},
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"S"
+			],
+			"type": "celestial",
+			"alignment": [
+				"N",
+				"G"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 38,
+				"formula": "11d6"
+			},
+			"speed": {
+				"walk": 35
+			},
+			"str": 12,
+			"dex": 16,
+			"con": 11,
+			"int": 14,
+			"wis": 15,
+			"cha": 14,
+			"save": {
+				"dex": "+5",
+				"cha": "+4"
+			},
+			"skill": {
+				"perception": "+6",
+				"stealth": "+7"
+			},
+			"passive": 16,
+			"resist": [
+				"radiant"
+			],
+			"conditionImmune": [
+				"frightened"
+			],
+			"languages": [
+				"Celestial",
+				"Common"
+			],
+			"cr": "2",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The musteval casts one of the following spells, requiring no material components and using Charisma as the spellcasting ability:"
+					],
+					"will": [
+						"{@spell dancing lights}"
+					],
+					"daily": {
+						"1e": [
+							"{@spell disguise self}",
+							"{@spell invisibility}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action"
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The musteval makes two Bone Blade attacks."
+					]
+				},
+				{
+					"name": "Bone Blade",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) slashing damage plus 3 ({@damage 1d6}) radiant damage."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Skirmish Movement",
+					"entries": [
+						"When a creature ends its turn within 5 feet of the musteval, the musteval can move up to half its speed. This movement doesn't provoke opportunity attacks."
+					]
+				}
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"CE"
+			],
+			"damageTags": [
+				"R",
+				"S"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"conditionInflictSpell": [
+				"invisible"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Nonaton Modron",
+			"source": "MPP",
+			"page": 38,
+			"otherSources": [
+				{
+					"source": "SatO"
+				},
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"L"
+			],
+			"type": "construct",
+			"alignment": [
+				"L",
+				"N"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 161,
+				"formula": "19d10 + 57"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": {
+					"number": 30,
+					"condition": "(hover)"
+				},
+				"canHover": true
+			},
+			"str": 18,
+			"dex": 13,
+			"con": 16,
+			"int": 16,
+			"wis": 16,
+			"cha": 13,
+			"save": {
+				"int": "+7",
+				"wis": "+7"
+			},
+			"skill": {
+				"investigation": "+7",
+				"perception": "+11"
+			},
+			"senses": [
+				"truesight 120 ft."
+			],
+			"passive": 21,
+			"languages": [
+				"Modron",
+				"telepathy 120 ft."
+			],
+			"cr": "10",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The nonaton casts one of the following spells, requiring no material components and using Intelligence as the spellcasting ability (spell save {@dc 15}):"
+					],
+					"will": [
+						"{@spell detect magic}",
+						"{@spell dispel magic}",
+						"{@spell mending} (as an action)"
+					],
+					"daily": {
+						"1e": [
+							"{@spell plane shift} (self only)",
+							"{@spell protection from evil and good}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Axiomatic Mind",
+					"entries": [
+						"The nonaton can't be compelled to act in a manner contrary to its nature or its instructions."
+					]
+				},
+				{
+					"name": "Combat Ready",
+					"entries": [
+						"The nonaton has advantage on initiative rolls."
+					]
+				},
+				{
+					"name": "Disintegration",
+					"entries": [
+						"If the nonaton dies, its body disintegrates into dust, leaving behind anything it was carrying."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The nonaton makes three Arm attacks and uses Pillar of Truth or Spellcasting."
+					]
+				},
+				{
+					"name": "Arm",
+					"entries": [
+						"{@atk mw} {@hit 8} to hit, reach 10 ft., one target. {@h}13 ({@damage 2d8 + 4}) piercing damage, and if the target is a Medium or smaller creature, it has the {@condition grappled} condition (escape {@dc 14}). Until this grapple ends, the nonaton can't use this arm against other targets. The nonaton has nine arms, each of which can grapple one target."
+					]
+				},
+				{
+					"name": "Pillar of Truth",
+					"entries": [
+						"The nonaton chooses a point on the ground that it can see within 60 feet of itself. A 60-foot-tall, 20-foot-radius cylinder of magical force rises from that point. Each creature in that area must make a {@dc 15} Dexterity saving throw. On a failed save, a creature takes 21 ({@damage 6d6}) force damage, and the creature reverts to its original form (if it's in a different form) and can't assume a different form until the end of its next turn. On a successful save, a creature takes half as much damage only."
+					]
+				}
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"OTH",
+				"TP"
+			],
+			"damageTags": [
+				"O",
+				"P"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RCH"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"savingThrowForcedSpell": [
+				"charisma"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Octon Modron",
+			"source": "MPP",
+			"page": 40,
+			"otherSources": [
+				{
+					"source": "SatO"
+				}
+			],
+			"size": [
+				"L"
+			],
+			"type": "construct",
+			"alignment": [
+				"L",
+				"N"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 187,
+				"formula": "22d10 + 66"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": {
+					"number": 30,
+					"condition": "(hover)"
+				},
+				"swim": 30,
+				"canHover": true
+			},
+			"str": 18,
+			"dex": 14,
+			"con": 17,
+			"int": 17,
+			"wis": 16,
+			"cha": 14,
+			"save": {
+				"int": "+7",
+				"wis": "+7"
+			},
+			"skill": {
+				"perception": "+11"
+			},
+			"senses": [
+				"truesight 120 ft."
+			],
+			"passive": 21,
+			"resist": [
+				"psychic"
+			],
+			"languages": [
+				"Modron",
+				"telepathy 120 ft."
+			],
+			"cr": "11",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The octon casts one of the following spells, requiring no material components and using Intelligence as the spellcasting ability (spell save {@dc 15}):"
+					],
+					"will": [
+						"{@spell detect magic}",
+						"{@spell dispel magic}",
+						"{@spell mending} (as an action)"
+					],
+					"daily": {
+						"1e": [
+							"{@spell plane shift} (self only)",
+							"{@spell protection from evil and good}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Axiomatic Mind",
+					"entries": [
+						"The octon can't be compelled to act in a manner contrary to its nature or its instructions."
+					]
+				},
+				{
+					"name": "Combat Ready",
+					"entries": [
+						"The octon has advantage on initiative checks."
+					]
+				},
+				{
+					"name": "Disintegration",
+					"entries": [
+						"If the octon dies, its body disintegrates into dust, leaving behind anything it was carrying."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The octon makes three Tentacle attacks."
+					]
+				},
+				{
+					"name": "Tentacle",
+					"entries": [
+						"{@atk mw} {@hit 8} to hit, reach 10 ft., one target. {@h}14 ({@damage 3d6 + 4}) bludgeoning damage plus 9 ({@damage 2d8}) lightning damage."
+					]
+				},
+				{
+					"name": "Whirlwind of Tentacles {@recharge 5}",
+					"entries": [
+						"The octon rapidly extends and spins its ring of tentacles. Each creature within 20 feet of the octon must succeed on a {@dc 16} Strength saving throw or be pulled up to 10 feet in a straight line toward the octon. Then, the octon makes two Tentacle attacks against each creature within 10 feet of itself."
+					]
+				}
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Tentacles"
+			],
+			"languageTags": [
+				"OTH",
+				"TP"
+			],
+			"damageTags": [
+				"B",
+				"L"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RCH"
+			],
+			"savingThrowForced": [
+				"strength"
+			],
+			"savingThrowForcedSpell": [
+				"charisma"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Planar Incarnate",
+			"source": "MPP",
+			"page": 41,
+			"size": [
+				"G"
+			],
+			"type": {
+				"type": {
+					"choose": [
+						"celestial",
+						"fiend"
+					]
+				}
+			},
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				{
+					"ac": 20,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 333,
+				"formula": "18d20 + 144"
+			},
+			"speed": {
+				"walk": 40,
+				"fly": 40
+			},
+			"str": 27,
+			"dex": 10,
+			"con": 26,
+			"int": 15,
+			"wis": 20,
+			"cha": 20,
+			"skill": {
+				"perception": "+12"
+			},
+			"senses": [
+				"truesight 120 ft."
+			],
+			"passive": 22,
+			"immune": [
+				"necrotic",
+				"poison",
+				"radiant",
+				{
+					"immune": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "from nonmagical attacks",
+					"cond": true
+				}
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"grappled",
+				"paralyzed",
+				"petrified",
+				"poisoned",
+				"restrained",
+				"stunned",
+				"unconscious"
+			],
+			"languages": [
+				"all"
+			],
+			"cr": "22",
+			"trait": [
+				{
+					"name": "Legendary Resistance (3/Day)",
+					"entries": [
+						"If the incarnate fails a saving throw, it can choose to succeed instead."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The incarnate has advantage on saving throws against spells and other magical effects."
+					]
+				},
+				{
+					"name": "Planar Form",
+					"entries": [
+						"An incarnate on the Upper Planes is a Celestial. An incarnate on the Lower Planes is a Fiend."
+					]
+				},
+				{
+					"name": "Siege Monster",
+					"entries": [
+						"The incarnate deals double damage to objects and structures."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The incarnate makes two Slam or Energy Bolt attacks."
+					]
+				},
+				{
+					"name": "Slam",
+					"entries": [
+						"{@atk mw} {@hit 15} to hit, reach 15 ft., one target. {@h}27 ({@damage 3d12 + 8}) force damage."
+					]
+				},
+				{
+					"name": "Energy Bolt",
+					"entries": [
+						"{@atk rs} {@hit 12} to hit, range 120 ft., one target. {@h}32 ({@damage 5d12}) necrotic damage if the incarnate is a Fiend or radiant damage if the incarnate is a Celestial."
+					]
+				},
+				{
+					"name": "Planar Exhalation {@recharge 5}",
+					"entries": [
+						"The incarnate exhales concentrated energy native to its plane in a 60-foot cone. Each creature in that area must make a {@dc 23} Constitution saving throw. On a failed save, a creature takes 52 ({@damage 8d12}) necrotic damage if the incarnate is a Fiend or radiant damage if the incarnate is a Celestial, and the creature has the {@condition blinded} condition until the end of the incarnate's next turn. On a successful save, a creature takes half as much damage only."
+					]
+				}
+			],
+			"reactionHeader": [
+				"The incarnate can take up to three reactions per round but only one per turn."
+			],
+			"reaction": [
+				{
+					"name": "Searing Gaze",
+					"entries": [
+						"In response to being hit by an attack roll, the incarnate turns its magical gaze toward one creature it can see within 120 feet of itself and commands it to combust. The target must succeed on a {@dc 20} Wisdom saving throw or take 16 ({@damage 3d10}) fire damage."
+					]
+				},
+				{
+					"name": "Teleport",
+					"entries": [
+						"Immediately after a creature the incarnate sees ends its turn, the incarnate teleports up to 60 feet to an unoccupied space it can see."
+					]
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances",
+				"Magic Resistance",
+				"Siege Monster"
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"XX"
+			],
+			"damageTags": [
+				"F",
+				"N",
+				"O"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"blinded"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Razorvine Blight",
+			"source": "MPP",
+			"page": 42,
+			"otherSources": [
+				{
+					"source": "SatO"
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": "plant",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				12
+			],
+			"hp": {
+				"average": 27,
+				"formula": "5d8 + 5"
+			},
+			"speed": {
+				"walk": 30,
+				"climb": 30
+			},
+			"str": 10,
+			"dex": 15,
+			"con": 13,
+			"int": 5,
+			"wis": 10,
+			"cha": 3,
+			"skill": {
+				"stealth": "+4"
+			},
+			"senses": [
+				"blindsight 60 ft. (can't see beyond this radius)"
+			],
+			"passive": 10,
+			"conditionImmune": [
+				"blinded",
+				"deafened"
+			],
+			"languages": [
+				"understands Common but can't speak"
+			],
+			"cr": "1",
+			"trait": [
+				{
+					"name": "False Appearance",
+					"entries": [
+						"If the blight is motionless at the start of combat, it has advantage on its initiative roll. If a creature hasn't observed the blight move or act, that creature must succeed on a {@dc 18} Intelligence ({@skill Investigation}) check to discern that the blight is animate."
+					]
+				},
+				{
+					"name": "Spider Climb",
+					"entries": [
+						"The blight can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The blight makes two Claw attacks."
+					]
+				},
+				{
+					"name": "Claw",
+					"entries": [
+						"{@atk mw} {@hit 4} to hit (with advantage if the target is missing any of its hit points), reach 10 ft., one target. {@h}5 ({@damage 1d6 + 2}) slashing damage."
+					]
+				},
+				{
+					"name": "Life-Draining Vines {@recharge}",
+					"entries": [
+						"Snaking vines erupt from the blight. Each creature within 10 feet of it must make a {@dc 12} Dexterity saving throw, taking 9 ({@damage 2d8}) slashing damage on failed save, or half as much damage on a successful one. If at least one of the creatures that failed this save isn't a Construct or an Undead, the blight regains 9 hit points."
+					]
+				}
+			],
+			"traitTags": [
+				"False Appearance",
+				"Spider Climb"
+			],
+			"senseTags": [
+				"B"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"CS"
+			],
+			"damageTags": [
+				"S"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RCH"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Septon Modron",
+			"source": "MPP",
+			"page": 40,
+			"otherSources": [
+				{
+					"source": "SatO"
+				},
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"L"
+			],
+			"type": "construct",
+			"alignment": [
+				"L",
+				"N"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 17,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 204,
+				"formula": "24d10 + 72"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": {
+					"number": 30,
+					"condition": "(hover)"
+				},
+				"swim": 30,
+				"canHover": true
+			},
+			"str": 18,
+			"dex": 15,
+			"con": 17,
+			"int": 18,
+			"wis": 16,
+			"cha": 14,
+			"save": {
+				"int": "+8",
+				"wis": "+7"
+			},
+			"skill": {
+				"perception": "+11"
+			},
+			"senses": [
+				"truesight 120 ft."
+			],
+			"passive": 21,
+			"resist": [
+				"lightning",
+				"psychic"
+			],
+			"languages": [
+				"all",
+				"telepathy 120 ft."
+			],
+			"cr": "12",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The septon casts one of the following spells, requiring no material components and using Intelligence as the spellcasting ability (spell save {@dc 16}):"
+					],
+					"will": [
+						"{@spell detect magic}",
+						"{@spell dispel magic}",
+						"{@spell mending} (as an action)"
+					],
+					"daily": {
+						"1e": [
+							"{@spell plane shift} (self only)",
+							"{@spell protection from evil and good}",
+							"{@spell sending}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Axiomatic Mind",
+					"entries": [
+						"The septon can't be compelled to act in a manner contrary to its nature or its instructions."
+					]
+				},
+				{
+					"name": "Combat Ready",
+					"entries": [
+						"The septon has advantage on initiative checks."
+					]
+				},
+				{
+					"name": "Disintegration",
+					"entries": [
+						"If the septon dies, its body disintegrates into dust, leaving behind anything it was carrying."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The septon makes four Tentacle attacks and uses Lightning Network or Spellcasting."
+					]
+				},
+				{
+					"name": "Tentacle",
+					"entries": [
+						"{@atk mw} {@hit 8} to hit, reach 10 ft., one target. {@h}15 ({@damage 2d10 + 4}) piercing damage, and if the target is a Medium or smaller creature, it has the {@condition grappled} condition (escape {@dc 14}). Until this grapple ends, the septon can't use this tentacle against other targets. The septon has seven tentacles, each of which can grapple one target."
+					]
+				},
+				{
+					"name": "Lightning Network",
+					"entries": [
+						"The septon conjures a field of electricity that fills a 30-foot cube originating from itself before dissipating. Each creature in that area must make a {@dc 16} Dexterity saving throw. On a failed save, a creature takes 33 ({@damage 6d10}) lightning damage and has the {@condition stunned} condition for 1 minute. On a successful save, a creature takes half as much damage only. A {@condition stunned} creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+					]
+				}
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Tentacles"
+			],
+			"languageTags": [
+				"TP",
+				"XX"
+			],
+			"damageTags": [
+				"L",
+				"P"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"stunned"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"savingThrowForcedSpell": [
+				"charisma"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Shator Demodand",
+			"source": "MPP",
+			"page": 28,
+			"otherSources": [
+				{
+					"source": "SatO"
+				}
+			],
+			"size": [
+				"L"
+			],
+			"type": "fiend",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 19,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 195,
+				"formula": "23d10 + 69"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": 60
+			},
+			"str": 24,
+			"dex": 15,
+			"con": 17,
+			"int": 21,
+			"wis": 16,
+			"cha": 20,
+			"save": {
+				"dex": "+7",
+				"wis": "+8"
+			},
+			"skill": {
+				"perception": "+13",
+				"stealth": "+7"
+			},
+			"senses": [
+				"truesight 120 ft."
+			],
+			"passive": 23,
+			"resist": [
+				"cold",
+				"fire"
+			],
+			"immune": [
+				"acid",
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"frightened",
+				"paralyzed",
+				"poisoned",
+				"restrained"
+			],
+			"languages": [
+				"Abyssal",
+				"Common",
+				"Demodand",
+				"Infernal",
+				"telepathy 120 ft."
+			],
+			"cr": "16",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The shator casts one of the following spells, requiring no material components and using Intelligence as the spellcasting ability (spell save {@dc 18}, {@hit 10} to hit with spell attacks):"
+					],
+					"will": [
+						"{@spell invisibility} (self only)",
+						"{@spell suggestion}"
+					],
+					"daily": {
+						"1e": [
+							"{@spell dispel magic}",
+							"{@spell plane shift} (to Carceri only)",
+							"{@spell scrying} (as an action)"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Boundless Movement",
+					"entries": [
+						"The shator ignores difficult terrain, and magical effects can't reduce its speed. It can spend 5 feet of movement to automatically remove the {@condition grappled} condition from itself."
+					]
+				},
+				{
+					"name": "Jailer (1/Day)",
+					"entries": [
+						"The shator can cast the {@spell imprisonment} spell, requiring no material components and using Intelligence as the spellcasting ability (chaining effect only; spell save {@dc 18})."
+					]
+				},
+				{
+					"name": "Liquefaction Ritual",
+					"entries": [
+						"The shator can perform a 1-minute ritual that turns all willing farastus and kelubars of its choice within 60 feet of itself into a living liquid form. Each liquefied demodand becomes enough liquid to fill a flask. A demodand's liquefaction lasts until a shator uses an action to end it or a creature opens a container holding the liquid. While liquefied in this way, a demodand has the {@condition paralyzed} condition despite any immunity to that condition, it has immunity to all damage, and any curse affecting it is suspended."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The shator has advantage on saving throws against spells and other magical effects."
+					]
+				},
+				{
+					"name": "Numbing Secretions",
+					"entries": [
+						"A creature that touches the shator or hits it with a melee attack while within 5 feet of it must succeed on a {@dc 17} Dexterity saving throw or have disadvantage on attack rolls and its speed halved until the end of its next turn."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The shator makes one Bite attack and two Enervating Trident attacks."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 12} to hit, reach 5 ft., one target. {@h}17 ({@damage 3d6 + 7}) piercing damage plus 26 ({@damage 4d12}) acid damage. If the target is a creature, it must succeed on a {@dc 16} Constitution saving throw or have the {@condition paralyzed} condition until the start of the shator's next turn."
+					]
+				},
+				{
+					"name": "Enervating Trident",
+					"entries": [
+						"{@atk mw} {@hit 12} to hit, reach 10 ft., one target. {@h}18 ({@damage 2d10 + 7}) necrotic damage."
+					]
+				},
+				{
+					"name": "Inhibitory Spray {@recharge 5}",
+					"entries": [
+						"The shator exhales a spray of slime in a line 100 feet long and 5 feet wide. Each creature in that area must make a {@dc 16} Dexterity saving throw. On a failed save, a creature takes 40 ({@damage 9d8}) acid damage and has the {@condition paralyzed} condition for 1 minute. The creature repeats the saving throw at the end of each of its turns, ending the effect on itself on a success. On a successful save, a creature takes half as much damage only."
+					]
+				},
+				{
+					"name": "Summon Demodand (1/Day)",
+					"entries": [
+						"The shator has a 50 percent chance of summoning its choice of {@dice 1d4} farastu demodands, {@dice 1d2} kelubar demodands, or 1 shator demodand. A summoned demodand appears in an unoccupied space within 60 feet of the shator, acts as an ally of the shator, and can't summon other demodands. It remains for 1 minute, until it or the shator dies, or until the shator dismisses it as an action."
+					]
+				}
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AB",
+				"C",
+				"I",
+				"TP"
+			],
+			"damageTags": [
+				"A",
+				"N",
+				"P"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"paralyzed"
+			],
+			"conditionInflictSpell": [
+				"invisible"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Shemeshka",
+			"isNamedCreature": true,
+			"source": "MPP",
+			"page": 46,
+			"otherSources": [
+				{
+					"source": "SatO"
+				},
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "fiend",
+				"tags": [
+					"yugoloth"
+				]
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 17,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 162,
+				"formula": "25d8 + 50"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": {
+					"number": 30,
+					"condition": "(hover)"
+				},
+				"canHover": true
+			},
+			"str": 20,
+			"dex": 14,
+			"con": 14,
+			"int": 21,
+			"wis": 16,
+			"cha": 18,
+			"save": {
+				"dex": "+7",
+				"int": "+10",
+				"wis": "+8",
+				"cha": "+9"
+			},
+			"skill": {
+				"deception": "+9",
+				"insight": "+8",
+				"perception": "+8"
+			},
+			"senses": [
+				"truesight 120 ft."
+			],
+			"passive": 18,
+			"resist": [
+				"cold",
+				"fire",
+				"lightning",
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "from nonmagical attacks",
+					"cond": true
+				}
+			],
+			"immune": [
+				"acid",
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"poisoned"
+			],
+			"languages": [
+				"all",
+				"telepathy 120 ft."
+			],
+			"cr": "14",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Shemeshka casts one of the following spells, requiring no material components and using Intelligence as the spellcasting ability (spell save {@dc 18}):"
+					],
+					"will": [
+						"{@spell alter self}",
+						"{@spell darkness}",
+						"{@spell invisibility} (self only)",
+						"{@spell mage hand}",
+						"{@spell prestidigitation}"
+					],
+					"daily": {
+						"2e": [
+							"{@spell detect thoughts}",
+							"{@spell dimension door}",
+							"{@spell suggestion}"
+						],
+						"1e": [
+							"{@spell banishment}",
+							"{@spell contact other plane} (as an action)",
+							"{@spell mind blank}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Legendary Resistance (4/Day)",
+					"entries": [
+						"If Shemeshka fails a saving throw, she can choose to succeed instead."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"Shemeshka has advantage on saving throws against spells and other magical effects."
+					]
+				},
+				{
+					"name": "Special Equipment",
+					"entries": [
+						"Shemeshka carries a magic crown called the Razorvine Tiara. In the hands of anyone other than Shemeshka, the Razorvine Tiara functions as a {@item tentacle rod} that deals slashing damage instead of bludgeoning damage."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Shemeshka uses Arcane Flux or Spellcasting. She then makes one Claw attack or one attack with her Razorvine Tiara."
+					]
+				},
+				{
+					"name": "Arcane Flux",
+					"entries": [
+						"Shemeshka causes a surge of arcane energy to burst around one creature she can see within 120 feet of herself. The target must make a {@dc 18} Dexterity saving throw. On a failed save, the target takes 45 ({@damage 7d12}) force damage and has the {@condition incapacitated} condition until the end of its next turn. On a successful save, the target takes half as much damage only."
+					]
+				},
+				{
+					"name": "Claw",
+					"entries": [
+						"{@atk mw} {@hit 10} to hit, reach 5 ft., one target. {@h}10 ({@damage 2d4 + 5}) slashing damage plus 14 ({@damage 4d6}) poison damage."
+					]
+				},
+				{
+					"name": "Razorvine Tiara",
+					"entries": [
+						"{@atk mw} {@hit 10} to hit, reach 15 ft., one target. {@h}10 ({@damage 3d6}) slashing damage plus 9 ({@damage 2d8}) necrotic damage. If the target is a creature, it must succeed on a {@dc 15} Constitution saving throw, or its speed is halved and it has disadvantage on attack rolls and saving throws until the end of its next turn."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Teleport",
+					"entries": [
+						"Shemeshka teleports, along with any equipment she is wearing or carrying, up to 60 feet to an unoccupied space she can see."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Fell Counterspell (3/Day)",
+					"entries": [
+						"Shemeshka utters a magical word to interrupt a creature she can see that is casting a spell. If the spell is 5th level or lower, it fails and has no effect. If the spell is 6th level or higher, Shemeshka makes an Intelligence check ({@dc 10} + the spell's level). On a success, the spell fails and has no effect. Whatever the spell's level, the caster gains the {@condition poisoned} condition until the end of its next turn."
+					]
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances",
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"TP",
+				"XX"
+			],
+			"damageTags": [
+				"I",
+				"N",
+				"O",
+				"S"
+			],
+			"damageTagsSpell": [
+				"B",
+				"O",
+				"P",
+				"S",
+				"Y"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"incapacitated"
+			],
+			"conditionInflictSpell": [
+				"incapacitated",
+				"invisible"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"intelligence",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Society of Sensation Muse",
+			"source": "MPP",
+			"page": 61,
+			"otherSources": [
+				{
+					"source": "SatO"
+				},
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				{
+					"ac": 14,
+					"from": [
+						"{@item leather armor|PHB}"
+					]
+				}
+			],
+			"hp": {
+				"average": 44,
+				"formula": "8d8 + 8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 8,
+			"dex": 16,
+			"con": 12,
+			"int": 15,
+			"wis": 14,
+			"cha": 17,
+			"save": {
+				"dex": "+5",
+				"cha": "+5"
+			},
+			"skill": {
+				"insight": "+4",
+				"perception": "+4",
+				"performance": "+7",
+				"stealth": "+5"
+			},
+			"passive": 14,
+			"languages": [
+				"Common plus two more languages"
+			],
+			"cr": "3",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The muse casts one of the following spells, using Charisma as the spellcasting ability (spell save {@dc 13}):"
+					],
+					"will": [
+						"{@spell dancing lights}"
+					],
+					"daily": {
+						"1e": [
+							"{@spell comprehend languages}",
+							"{@spell hypnotic pattern}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action"
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The muse makes two Beguiling Resonance attacks."
+					]
+				},
+				{
+					"name": "Beguiling Resonance",
+					"entries": [
+						"{@atk ms,rs} {@hit 5} to hit, reach 5 ft. or range 90 ft., one target. {@h}9 ({@damage 2d8}) psychic damage. If the target is a creature, it must succeed on a {@dc 13} Charisma saving throw or have disadvantage on the next attack roll it makes until the end of its next turn."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Enchanting Presence",
+					"entries": [
+						"Each creature within 30 feet of the muse must make a {@dc 13} Wisdom saving throw. On a failed save, the creature has the {@condition charmed} condition for 1 minute. On a successful save, the creature becomes immune to any muse's Enchanting Presence for 24 hours.",
+						"Whenever the muse deals damage to the {@condition charmed} creature, the {@condition charmed} creature can repeat the saving throw, ending the effect on itself on a success."
+					]
+				}
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"X"
+			],
+			"damageTags": [
+				"Y"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE"
+			],
+			"conditionInflict": [
+				"charmed"
+			],
+			"conditionInflictSpell": [
+				"charmed",
+				"incapacitated"
+			],
+			"savingThrowForced": [
+				"charisma",
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Sunfly",
+			"source": "MPP",
+			"page": 47,
+			"otherSources": [
+				{
+					"source": "SatO"
+				},
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"T"
+			],
+			"type": "celestial",
+			"alignment": [
+				"C",
+				"G"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 2,
+				"formula": "1d4"
+			},
+			"speed": {
+				"walk": 10,
+				"fly": 40
+			},
+			"str": 4,
+			"dex": 17,
+			"con": 10,
+			"int": 4,
+			"wis": 10,
+			"cha": 6,
+			"passive": 10,
+			"languages": [
+				"understands Celestial but can't speak"
+			],
+			"cr": "0",
+			"action": [
+				{
+					"name": "Sting",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}2 ({@damage 1d4}) piercing damage. Additionally, if the sunfly is on an Outer Plane, it injects the target with a toxin, the effect of which is determined by the sunfly's location:"
+					]
+				},
+				{
+					"name": "Upper Plane",
+					"entries": [
+						"The target sheds bright light in a 5-foot radius until the end of its next turn."
+					]
+				},
+				{
+					"name": "Neutral Plane",
+					"entries": [
+						"If the target is {@status concentration||concentrating} on a spell or similar effect, it makes the Constitution saving throw with disadvantage to maintain its {@status concentration}."
+					]
+				},
+				{
+					"name": "Lower Plane",
+					"entries": [
+						"The target's speed is reduced by 5 feet until the end of its next turn."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Illumination",
+					"entries": [
+						"The sunfly sheds bright light in a 5-foot radius and dim light for an additional 5 feet, or it uses a bonus action to extinguish the light."
+					]
+				}
+			],
+			"languageTags": [
+				"CE",
+				"CS"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"AOE",
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Swarm of Sunflies",
+			"source": "MPP",
+			"page": 47,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "celestial",
+				"swarmSize": "T"
+			},
+			"alignment": [
+				"C",
+				"G"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 22,
+				"formula": "5d8"
+			},
+			"speed": {
+				"walk": 10,
+				"fly": 40
+			},
+			"str": 6,
+			"dex": 17,
+			"con": 10,
+			"int": 4,
+			"wis": 10,
+			"cha": 6,
+			"passive": 10,
+			"languages": [
+				"understands Celestial but can't speak"
+			],
+			"cr": "1",
+			"trait": [
+				{
+					"name": "Swarm",
+					"entries": [
+						"The swarm can occupy another creature's space and vice versa, and the swarm can move through any opening large enough for a Tiny dragonfly. The swarm can't regain hit points or gain temporary hit points."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Stings",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 0 ft., one creature in the swarm's space. {@h}10 ({@damage 3d4 + 3}) piercing damage, or 5 ({@damage 1d4 + 3}) piercing damage if the swarm has half of its hit points or fewer. Additionally, if the swarm is on an Outer Plane, it injects the target with a toxin, the effect of which is determined by the swarm's location:"
+					]
+				},
+				{
+					"name": "Upper Plane",
+					"entries": [
+						"The target sheds bright light in a 5-foot radius until the end of its next turn. During that time, the {@condition invisible} condition has no effect on it."
+					]
+				},
+				{
+					"name": "Neutral Plane",
+					"entries": [
+						"If the target is {@status concentration||concentrating} on a spell or similar effect, it loses its {@status concentration}."
+					]
+				},
+				{
+					"name": "Lower Plane",
+					"entries": [
+						"The target's speed is reduced by 10 feet until the end of its next turn."
+					]
+				},
+				{
+					"name": "Dazzling Lights {@recharge}",
+					"entries": [
+						"The swarm shines its lights in a dazzling display. Each creature within 15 feet of the swarm must succeed on a {@dc 10} Constitution saving throw or have the {@condition stunned} condition for 1 minute. A creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Illumination",
+					"entries": [
+						"The swarm sheds bright light in a 15-foot radius and dim light for an additional 15 feet, or it uses a bonus action to extinguish the light."
+					]
+				}
+			],
+			"languageTags": [
+				"CE",
+				"CS"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"AOE",
+				"MW"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Time Dragon Wyrmling",
+			"source": "MPP",
+			"page": 51,
+			"otherSources": [
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": "dragon",
+			"alignment": [
+				"N"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 17,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 75,
+				"formula": "10d8 + 30"
+			},
+			"speed": {
+				"walk": 30,
+				"climb": 30,
+				"fly": 60
+			},
+			"str": 19,
+			"dex": 10,
+			"con": 17,
+			"int": 17,
+			"wis": 13,
+			"cha": 17,
+			"save": {
+				"dex": "+3",
+				"con": "+6",
+				"wis": "+4",
+				"cha": "+6"
+			},
+			"skill": {
+				"arcana": "+6",
+				"history": "+9",
+				"perception": "+7",
+				"stealth": "+6"
+			},
+			"senses": [
+				"blindsight 10 ft.",
+				"darkvision 120 ft."
+			],
+			"passive": 17,
+			"languages": [
+				"Draconic plus any two languages"
+			],
+			"cr": "5",
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The dragon makes three Rend attacks."
+					]
+				},
+				{
+					"name": "Rend",
+					"entries": [
+						"{@atk mw} {@hit 7} to hit, reach 10 ft., one target. {@h}7 ({@damage 1d6 + 4}) slashing damage plus 3 ({@damage 1d6}) force damage."
+					]
+				},
+				{
+					"name": "Time Breath {@recharge 5}",
+					"entries": [
+						"The dragon exhales a wave of shimmering light in a 15-foot cone. Nonmagical objects and vegetation in that area that aren't being worn or carried crumble to dust. Each creature in that area must make a {@dc 14} Constitution saving throw. On a failed save, a creature takes 27 ({@damage 6d8}) force damage and is magically weakened as it is desynchronized from the time stream. While the creature is in this state, attack rolls against it have advantage. On a successful save, a creature takes half as much damage only. A weakened creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+					]
+				}
+			],
+			"dragonAge": "wyrmling",
+			"senseTags": [
+				"B",
+				"SD"
+			],
+			"actionTags": [
+				"Breath Weapon",
+				"Multiattack"
+			],
+			"languageTags": [
+				"DR",
+				"X"
+			],
+			"damageTags": [
+				"O",
+				"S"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RCH"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Transcendent Order Conduit",
+			"source": "MPP",
+			"page": 62,
+			"otherSources": [
+				{
+					"source": "SatO"
+				}
+			],
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"Unarmored Defense"
+					]
+				}
+			],
+			"hp": {
+				"average": 97,
+				"formula": "15d8 + 30"
+			},
+			"speed": {
+				"walk": 50
+			},
+			"str": 10,
+			"dex": 19,
+			"con": 14,
+			"int": 10,
+			"wis": 18,
+			"cha": 12,
+			"save": {
+				"wis": "+7",
+				"cha": "+4"
+			},
+			"skill": {
+				"acrobatics": "+7",
+				"perception": "+7",
+				"performance": "+4"
+			},
+			"passive": 17,
+			"languages": [
+				"Common plus one more language"
+			],
+			"cr": "8",
+			"trait": [
+				{
+					"name": "Instinctive Reflexes",
+					"entries": [
+						"The conduit has advantage on initiative rolls, and it can't have disadvantage on attack rolls."
+					]
+				},
+				{
+					"name": "Unarmored Defense",
+					"entries": [
+						"While the conduit is wearing no armor and wielding no shield, its AC includes its Wisdom modifier."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The conduit makes three Unarmed Strike attacks."
+					]
+				},
+				{
+					"name": "Unarmed Strike",
+					"entries": [
+						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}11 ({@damage 2d6 + 4}) bludgeoning damage. If the target is a creature, the conduit can choose one of the following additional effects (up to once per turn each):",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "Incapacitate",
+									"entries": [
+										"The target must succeed on a {@dc 15} Constitution saving throw or have the {@condition incapacitated} condition until the end of the conduit's next turn."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Push",
+									"entries": [
+										"The target is pushed up to 10 feet horizontally away from the conduit."
+									]
+								}
+							]
+						}
+					]
+				}
+			],
+			"reactionHeader": [
+				"The conduit can take up to three reactions per round but only one per turn."
+			],
+			"reaction": [
+				{
+					"name": "Deflect Attack",
+					"entries": [
+						"In response to being hit by an attack roll, the conduit partially deflects the blow. The damage the conduit takes from the attack is reduced by {@dice 1d10}."
+					]
+				},
+				{
+					"name": "Don't Be There",
+					"entries": [
+						"When the conduit must make a saving throw, it can move up to half its speed without provoking opportunity attacks. If its new position moves it out of range or otherwise makes it impossible to be targeted by the effect, the conduit avoids the effect entirely."
+					]
+				}
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"B"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"conditionInflict": [
+				"incapacitated"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Transcendent Order Instinct",
+			"source": "MPP",
+			"page": 62,
+			"otherSources": [
+				{
+					"source": "SatO"
+				}
+			],
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"Unarmored Defense"
+					]
+				}
+			],
+			"hp": {
+				"average": 49,
+				"formula": "9d8 + 9"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 10,
+			"dex": 16,
+			"con": 12,
+			"int": 10,
+			"wis": 16,
+			"cha": 12,
+			"save": {
+				"wis": "+5",
+				"cha": "+3"
+			},
+			"skill": {
+				"acrobatics": "+5",
+				"perception": "+5",
+				"performance": "+3"
+			},
+			"passive": 15,
+			"languages": [
+				"Common plus one more language"
+			],
+			"cr": "3",
+			"trait": [
+				{
+					"name": "Unarmored Defense",
+					"entries": [
+						"While the instinct is wearing no armor and wielding no shield, its AC includes its Wisdom modifier."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The instinct makes three Unarmed Strike attacks."
+					]
+				},
+				{
+					"name": "Unarmed Strike",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d8 + 3}) bludgeoning damage."
+					]
+				}
+			],
+			"reactionHeader": [
+				"The instinct can take up to three reactions per round but only one per turn."
+			],
+			"reaction": [
+				{
+					"name": "Deflect Blow",
+					"entries": [
+						"In response to being hit by a melee attack roll, the instinct partially deflects the blow. The damage the instinct takes from the attack is reduced by {@dice 1d6}."
+					]
+				}
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"B"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Vargouille Reflection",
+			"source": "MPP",
+			"page": 52,
+			"otherSources": [
+				{
+					"source": "SatO"
+				},
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"T"
+			],
+			"type": "fiend",
+			"alignment": [
+				"C",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				12
+			],
+			"hp": {
+				"average": 22,
+				"formula": "5d4 + 10"
+			},
+			"speed": {
+				"walk": 5,
+				"fly": 40
+			},
+			"str": 6,
+			"dex": 15,
+			"con": 14,
+			"int": 6,
+			"wis": 10,
+			"cha": 2,
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 10,
+			"resist": [
+				"cold",
+				"fire",
+				"lightning",
+				"psychic"
+			],
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"poisoned"
+			],
+			"languages": [
+				"understands Abyssal",
+				"Infernal",
+				"and any languages it knew before becoming a vargouille",
+				"but it can't speak"
+			],
+			"cr": "1",
+			"trait": [
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The vargouille has advantage on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage plus 10 ({@damage 3d6}) psychic damage."
+					]
+				},
+				{
+					"name": "Abyssal Curse",
+					"entries": [
+						"The vargouille targets one Humanoid within 5 feet of itself that has the {@condition incapacitated} condition. The target must succeed on a {@dc 12} Charisma saving throw or become cursed. The cursed target's Charisma decreases by 1 after each hour, as its head takes on fiendish aspects, and its Charisma can't increase. The curse doesn't advance while the target is in sunlight or the area of a {@spell daylight} spell. When the cursed target's Charisma becomes 2, the target dies, and its head tears from its body and becomes a new vargouille reflection. Casting remove curse, greater restoration, or a similar spell on the target before the transformation is complete ends the curse and restores the target's Charisma."
+					]
+				},
+				{
+					"name": "Horrific Reflection {@recharge 5}",
+					"entries": [
+						"The vargouille's head mimics that of a Humanoid the vargouille can see within 120 feet of itself. The target must succeed on a {@dc 12} Wisdom saving throw or take 10 ({@damage 3d6}) psychic damage and have the {@condition frightened} condition for 1 hour or until the vargouille loses {@status concentration} (as if {@status concentration||concentrating} on a spell). If the target's saving throw is successful or if the effect ends on it, the target is immune to the Horrific Reflection of all vargouille reflections for 1 hour."
+					]
+				}
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"AB",
+				"CS",
+				"I"
+			],
+			"damageTags": [
+				"P",
+				"Y"
+			],
+			"miscTags": [
+				"CUR",
+				"MW"
+			],
+			"conditionInflict": [
+				"frightened"
+			],
+			"savingThrowForced": [
+				"charisma",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Warden Archon",
+			"source": "MPP",
+			"page": 18,
+			"otherSources": [
+				{
+					"source": "SatO"
+				},
+				{
+					"source": "ToFW"
+				}
+			],
+			"size": [
+				"L"
+			],
+			"type": "celestial",
+			"alignment": [
+				"L",
+				"G"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"{@item plate armor|PHB}"
+					]
+				}
+			],
+			"hp": {
+				"average": 136,
+				"formula": "16d10 + 48"
+			},
+			"speed": {
+				"walk": 30,
+				"climb": 30
+			},
+			"str": 20,
+			"dex": 10,
+			"con": 17,
+			"int": 15,
+			"wis": 18,
+			"cha": 18,
+			"save": {
+				"con": "+6",
+				"wis": "+7"
+			},
+			"skill": {
+				"arcana": "+5",
+				"athletics": "+8",
+				"perception": "+10"
+			},
+			"senses": [
+				"darkvision 120 ft.",
+				"truesight 30 ft."
+			],
+			"passive": 20,
+			"immune": [
+				"lightning"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"paralyzed"
+			],
+			"languages": [
+				"all"
+			],
+			"cr": "8",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The archon casts one of the following spells, requiring no material components and using Charisma as the spellcasting ability (spell save {@dc 15}):"
+					],
+					"will": [
+						"{@spell detect evil and good}"
+					],
+					"daily": {
+						"1e": [
+							"{@spell aid}",
+							"{@spell continual flame}",
+							"{@spell protection from evil and good}",
+							"{@spell scrying} (as an action)"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Aura of Menace",
+					"entries": [
+						"As long as the archon doesn't have the {@condition incapacitated} condition, each creature of the archon's choice that starts its turn within 20 feet of the archon must make a {@dc 15} Wisdom saving throw. On a failed save, the creature has the {@condition frightened} condition until the start of its next turn. On a successful save, the creature is immune to all archons' Aura of Menace for 24 hours."
+					]
+				},
+				{
+					"name": "Eternal Vigil",
+					"entries": [
+						"The archon can't be surprised. Moreover, it knows when any creature uses a portal it is assigned to guard."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The archon makes two Claw attacks and one Tracker's Bite attack."
+					]
+				},
+				{
+					"name": "Claw",
+					"entries": [
+						"{@atk mw} {@hit 8} to hit, reach 10 ft., one target. {@h}12 ({@damage 2d6 + 5}) slashing damage. If the target is a Medium or smaller creature, the target has the {@condition grappled} condition (escape {@dc 18}). The archon can have only one creature {@condition grappled} in this way at a time."
+					]
+				},
+				{
+					"name": "Tracker's Bite",
+					"entries": [
+						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}15 ({@damage 3d6 + 5}) piercing damage. If the target is a creature, for the next 24 hours, the archon knows the distance and direction to the target while they are both on the same plane of existence."
+					]
+				},
+				{
+					"name": "Teleport",
+					"entries": [
+						"The archon teleports, along with any equipment it is wearing or carrying, to an unoccupied space it can see within 120 feet of itself."
+					]
+				}
+			],
+			"senseTags": [
+				"SD",
+				"U"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Teleport"
+			],
+			"languageTags": [
+				"XX"
+			],
+			"damageTags": [
+				"P",
+				"S"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"frightened"
+			],
+			"savingThrowForced": [
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Young Time Dragon",
+			"source": "MPP",
+			"page": 51,
+			"size": [
+				"L"
+			],
+			"type": "dragon",
+			"alignment": [
+				"N"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 210,
+				"formula": "20d10 + 100"
+			},
+			"speed": {
+				"walk": 40,
+				"climb": 40,
+				"fly": 80
+			},
+			"str": 20,
+			"dex": 12,
+			"con": 20,
+			"int": 20,
+			"wis": 15,
+			"cha": 17,
+			"save": {
+				"dex": "+5",
+				"con": "+9",
+				"wis": "+6",
+				"cha": "+7"
+			},
+			"skill": {
+				"arcana": "+9",
+				"history": "+13",
+				"perception": "+10",
+				"stealth": "+9"
+			},
+			"senses": [
+				"blindsight 30 ft.",
+				"darkvision 120 ft."
+			],
+			"passive": 20,
+			"languages": [
+				"Draconic plus any four languages"
+			],
+			"cr": "11",
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The dragon makes three Rend attacks."
+					]
+				},
+				{
+					"name": "Rend",
+					"entries": [
+						"{@atk mw} {@hit 9} to hit, reach 10 ft., one target. {@h}12 ({@damage 2d6 + 5}) slashing damage plus 7 ({@damage 2d6}) force damage."
+					]
+				},
+				{
+					"name": "Time Breath {@recharge 5}",
+					"entries": [
+						"The dragon exhales a wave of shimmering light in a 30-foot cone. Nonmagical objects and vegetation in that area that aren't being worn or carried crumble to dust. Each creature in that area must make a {@dc 17} Constitution saving throw. On a failed save, a creature takes 31 ({@damage 7d8}) force damage and is magically weakened as it is desynchronized from the time stream. While the creature is in this state, attack rolls against it have advantage. On a successful save, a creature takes half as much damage only. A weakened creature can repeat the saving throw at the end of each of its turns, ending the effect on itself after it succeeds on two of these saves."
+					]
+				}
+			],
+			"dragonAge": "young",
+			"senseTags": [
+				"B",
+				"SD"
+			],
+			"actionTags": [
+				"Breath Weapon",
+				"Multiattack"
+			],
+			"languageTags": [
+				"DR",
+				"X"
+			],
+			"damageTags": [
+				"O",
+				"S"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RCH"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluff": true
+		}
+	]
+}

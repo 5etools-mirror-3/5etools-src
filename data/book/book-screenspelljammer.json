@@ -1,0 +1,938 @@
+{
+	"data": [
+		{
+			"type": "section",
+			"entries": [
+				{
+					"type": "table",
+					"caption": "Setting a DC",
+					"colLabels": [
+						"Difficulty",
+						"DC",
+						"Difficulty",
+						"DC"
+					],
+					"colStyles": [
+						"col-5",
+						"col-1 text-center",
+						"col-5",
+						"col-1 text-center"
+					],
+					"rows": [
+						[
+							"Very easy",
+							"5",
+							"Hard",
+							"20"
+						],
+						[
+							"Easy",
+							"10",
+							"Very hard",
+							"25"
+						],
+						[
+							"Moderate",
+							"15",
+							"Nearly impossible",
+							"30"
+						]
+					]
+				},
+				{
+					"type": "table",
+					"caption": "Skills and Associated Abilities",
+					"colLabels": [
+						"Skill",
+						"Ability",
+						"Skill",
+						"Ability"
+					],
+					"colStyles": [
+						"col-3",
+						"col-3",
+						"col-3",
+						"col-3"
+					],
+					"rows": [
+						[
+							"{@skill Acrobatics}",
+							"Dexterity",
+							"{@skill Medicine}",
+							"Wisdom"
+						],
+						[
+							"{@skill Animal Handling}",
+							"Wisdom",
+							"{@skill Nature}",
+							"Intelligence"
+						],
+						[
+							"{@skill Arcana}",
+							"Intelligence",
+							"{@skill Perception}",
+							"Wisdom"
+						],
+						[
+							"{@skill Athletics}",
+							"Strength",
+							"{@skill Performance}",
+							"Charisma"
+						],
+						[
+							"{@skill Deception}",
+							"Charisma",
+							"{@skill Persuasion}",
+							"Charisma"
+						],
+						[
+							"{@skill History}",
+							"Intelligence",
+							"{@skill Religion}",
+							"Intelligence"
+						],
+						[
+							"{@skill Insight}",
+							"Wisdom",
+							"{@skill Sleight of Hand}",
+							"Dexterity"
+						],
+						[
+							"{@skill Intimidation}",
+							"Charisma",
+							"{@skill Stealth}",
+							"Dexterity"
+						],
+						[
+							"{@skill Investigation}",
+							"Intelligence",
+							"{@skill Survival}",
+							"Wisdom"
+						]
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Suffocating",
+					"entries": [
+						"You can hold your breath for a number ofminutes equal to 1 + your Constitution modifier (minimum of 30 seconds).",
+						"Ifyou run out of breath or you're choking, you can survive for a number ofrounds equal to your Constitution modifier (minimum of 1 round). At the start ofyour next turn, you drop to 0 hit points and are dying, and you can't regain hit points or be stabilized until you can breathe again."
+					],
+					"id": "001"
+				},
+				{
+					"type": "entries",
+					"name": "Weightlessness",
+					"entries": [
+						"In any location where gravity is not present, the following rules apply:",
+						{
+							"type": "entries",
+							"entries": [
+								{
+									"type": "entries",
+									"name": "Impeded Melee",
+									"entries": [
+										"When making a melee attack with a weapon, a creature that doesn't have a flying or swimming speed (either naturally or provided by magic) has disadvantage on the attack roll unless the weapon deals piercing damage."
+									],
+									"id": "004"
+								},
+								{
+									"type": "entries",
+									"name": "Movement",
+									"entries": [
+										"A creature can use an action to push off something heavier than itselfand move up to its walking, flying, or swimming speed in a straight line. The creature continues along this course, moving in a straight line at its speed on each ofits turns until something stops it or changes its trajectory."
+									],
+									"id": "005"
+								}
+							],
+							"id": "003"
+						}
+					],
+					"id": "002"
+				},
+				{
+					"type": "gallery",
+					"images": [
+						{
+							"type": "image",
+							"href": {
+								"type": "internal",
+								"path": "book/AAG/014-02-003.the-astral-plane.webp"
+							},
+							"width": 1700,
+							"height": 1100
+						},
+						{
+							"type": "image",
+							"href": {
+								"type": "internal",
+								"path": "book/AAG/013-02-002.air-and-gravity.webp"
+							},
+							"width": 1700,
+							"height": 1100
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Astral Encounters",
+					"id": "009",
+					"entries": [
+						"You can generate a random encounter on the Astral Plane by rolling on either the Wildspace Encounters table or the Astral Sea Encounters table, as appropriate, or by choosing an encounter you like. If the encounter is with a spelljamming ship, you can roll on the Ship Encounters to determine the ship and its crew, or you can create a ship encounter of your own (see the {@book Astral Adventurer's Guide|AAG} for {@book ship descriptions|AAG|2|Spelljammer Vessels}).",
+						"Creatures marked with an asterisk (*) appear in this book; the rest are described in the {@book Monster Manual|MM}. Any creature marked with a dagger (†) can serve as a spelljammer because it is a spellcaster.",
+						"If a Humanoid has no specified race, it can be of any race you choose.",
+						{
+							"type": "entries",
+							"name": "Initial Attitude",
+							"id": "00a",
+							"entries": [
+								"To randomly determine the initial attitude of the creatures encountered, make the attitude roll called for in an encounter table entry, then refer to the appropriate line of the Initial Attitude table.",
+								{
+									"type": "table",
+									"caption": "Initial Attitude",
+									"colLabels": [
+										"Attitude Roll Total",
+										"Initial Attitude"
+									],
+									"colStyles": [
+										"col-6 text-center",
+										"col-6 text-center"
+									],
+									"rows": [
+										[
+											"4 or lower",
+											"Hostile"
+										],
+										[
+											"5\u20138",
+											"Indifferent"
+										],
+										[
+											"9 or higher",
+											"Friendly"
+										]
+									]
+								},
+								{
+									"type": "table",
+									"caption": "Wildspace Encounters",
+									"colLabels": [
+										"d100",
+										"Wildspace Encounter",
+										"Attitude Roll"
+									],
+									"colStyles": [
+										"col-2 text-center",
+										"col-8",
+										"col-2 text-center"
+									],
+									"rows": [
+										[
+											"01\u201303",
+											"{@dice 1d4} {@creature Chwinga Astronaut|BAM|chwinga astronauts},* each mounted on 1 {@creature space guppy|BAM}*",
+											"{@dice 1d6 + 4}"
+										],
+										[
+											"04",
+											"1 {@creature cosmic horror|BAM}* (30 percent chance it is asleep)",
+											"{@dice 1d6}"
+										],
+										[
+											"05",
+											"1 {@creature esthetic|BAM}* piloted by 1 {@creature reigar|BAM}*†",
+											"{@dice 1d12}"
+										],
+										[
+											"06\u201307",
+											"1 {@creature eye monger|BAM}*",
+											"{@dice 1d6}"
+										],
+										[
+											"08\u201311",
+											"1 {@creature feyr|BAM}*",
+											"{@dice 1d6}"
+										],
+										[
+											"12\u201313",
+											"1 {@creature giant octopus} that has a flying speed of 60 feet and doesn't need to breathe air",
+											"{@dice 1d10}"
+										],
+										[
+											"14\u201317",
+											"{@dice 1d6} {@creature Jammer Leech|BAM|jammer leeches}*",
+											"{@dice 1d8}"
+										],
+										[
+											"18\u201323",
+											"{@dice 1d4} {@creature kindori|BAM}*",
+											"{@dice 1d6 + 3}"
+										],
+										[
+											"24\u201325",
+											"1 {@creature kindori|BAM}* with 1 {@creature druid}† living in a hut on its back",
+											"{@dice 2d6 + 3}"
+										],
+										[
+											"26",
+											"1 {@creature kraken} that has a flying speed of 60 feet and doesn't need to breathe air",
+											"{@dice 1d6}"
+										],
+										[
+											"27",
+											"1 lunar dragon* (your choice of {@creature Young Lunar Dragon|BAM|young}, {@creature Adult Lunar Dragon|BAM|adult}, or {@creature Ancient Lunar Dragon|BAM|ancient})",
+											"{@dice 1d10}"
+										],
+										[
+											"28\u201335",
+											"A tavern or inn built on an asteroid, with docks where ships can berth",
+											"\u2014"
+										],
+										[
+											"36\u201339",
+											"{@dice 1d6} {@creature Murder Comet|BAM|murder comets}*",
+											"{@dice 1d6}"
+										],
+										[
+											"40\u201344",
+											"{@dice 1d4} {@creature Brown Scavver|BAM|brown scavvers}*",
+											"{@dice 1d8}"
+										],
+										[
+											"45\u201348",
+											"1 {@creature night scavver|BAM}* and {@dice 2d6} {@creature Gray Scavver|BAM|gray scavvers}*",
+											"{@dice 1d8}"
+										],
+										[
+											"49\u201350",
+											"1 {@creature void scavver|BAM}*",
+											"{@dice 1d6}"
+										],
+										[
+											"51\u201352",
+											"A shipwreck that might still have treasure or creatures aboard it (choose a ship from {@book chapter 2|AAG|2|Spelljammer Vessels} of the {@book Astral Adventurer's Guide|AAG})",
+											"\u2014"
+										],
+										[
+											"53\u201354",
+											"1 solar dragon* (your choice of {@creature Young Solar Dragon|BAM|young}, {@creature Adult Solar Dragon|BAM|adult}, or {@creature Ancient Solar Dragon|BAM|ancient})",
+											"{@dice 2d6}"
+										],
+										[
+											"55\u201359",
+											"{@dice 1d6} {@creature Space Eel|BAM|space eels}*",
+											"{@dice 1d10}"
+										],
+										[
+											"60",
+											"1 {@creature starlight apparition|BAM}*",
+											"{@dice 2d6 + 2}"
+										],
+										[
+											"61\u201364",
+											"{@dice 3d6} {@creature Stirge||stirges} that don't need to breathe air",
+											"{@dice 1d6}"
+										],
+										[
+											"65\u201370",
+											"{@dice 1d6} {@creature Will-o'-Wisp||will-o'-wisps}",
+											"{@dice 1d10}"
+										],
+										[
+											"71\u201300",
+											"1 spelljamming ship (roll on the {@book Ship Encounters table|BAM|0|Ship Encounters})",
+											"\u2014"
+										]
+									],
+									"data": {
+										"tableIgnore": true
+									}
+								},
+								{
+									"type": "table",
+									"caption": "Astral Sea Encounters",
+									"colLabels": [
+										"d100",
+										"Astral Sea Encounter",
+										"Attitude Roll"
+									],
+									"colStyles": [
+										"col-2 text-center",
+										"col-8",
+										"col-2 text-center"
+									],
+									"rows": [
+										[
+											"01\u201302",
+											"1 {@creature aartuk starhorror|BAM}*† and {@dice 2d4} {@creature Aartuk Weedling|BAM|aartuk weedlings}*",
+											"{@dice 1d12}"
+										],
+										[
+											"03\u201309",
+											"1 {@creature archmage}† using the {@spell astral projection} spell",
+											"{@dice 1d10 + 3}"
+										],
+										[
+											"10\u201311",
+											"1 {@creature braxat|BAM}*",
+											"{@dice 1d8}"
+										],
+										[
+											"12",
+											"1 {@creature cosmic horror|BAM}* (70 percent chance it is asleep)",
+											"{@dice 1d6}"
+										],
+										[
+											"13\u201315",
+											"{@dice 1d4} {@creature Deva||devas}† on a divine errand",
+											"{@dice 1d12 + 3}"
+										],
+										[
+											"16\u201328",
+											"1 {@creature githyanki knight}† and {@dice 1d6} {@creature Githyanki Warrior||githyanki warriors}†",
+											"{@dice 1d10}"
+										],
+										[
+											"29\u201331",
+											"1 {@creature githyanki knight}† mounted on a {@creature young red dragon}",
+											"{@dice 1d8}"
+										],
+										[
+											"32",
+											"1 {@creature githzerai zerth}† being hunted by githyanki",
+											"{@dice 1d6 + 6}"
+										],
+										[
+											"33\u201338",
+											"{@dice 1d4} {@creature kindori|BAM}*",
+											"{@dice 1d6 + 3}"
+										],
+										[
+											"39",
+											"1 {@creature mercane|BAM}*† and 1 {@creature beholder} bodyguard",
+											"{@dice 1d8 + 4}"
+										],
+										[
+											"40",
+											"1 {@creature neh-thalggu|BAM}*† looking for a portal to the Far Realm",
+											"{@dice 1d10}"
+										],
+										[
+											"41\u201342",
+											"1 {@creature pentadrone}",
+											"{@dice 1d6 + 3}"
+										],
+										[
+											"43\u201344",
+											"1 {@creature planetar}† from a nearby astral dominion",
+											"{@dice 1d12 + 3}"
+										],
+										[
+											"45\u201347",
+											"{@dice 2d4} {@creature Psurlon|BAM|psurlons}*†",
+											"{@dice 1d8}"
+										],
+										[
+											"48\u201350",
+											"Gargantuan floating crystal obelisk of mysterious origin",
+											"\u2014"
+										],
+										[
+											"51\u201352",
+											"{@dice 4d4} {@creature Quadrone||quadrones}",
+											"{@dice 1d6 + 3}"
+										],
+										[
+											"53",
+											"1 {@creature monodrone} that has gone rogue",
+											"{@dice 2d6 + 3}"
+										],
+										[
+											"54\u201356",
+											"{@dice 1d4} {@creature Gray Slaad||gray slaadi}† in Humanoid form",
+											"{@dice 1d10}"
+										],
+										[
+											"57\u201358",
+											"1 {@creature green slaad}†",
+											"{@dice 1d12}"
+										],
+										[
+											"59\u201363",
+											"{@dice 3d6} {@creature Gray Scavver|BAM|gray scavvers}*",
+											"{@dice 1d8}"
+										],
+										[
+											"64",
+											"1 {@creature solar}† watching over a dead god that drifts nearby",
+											"{@dice 1d12 + 3}"
+										],
+										[
+											"65\u201366",
+											"1 solar dragon* (your choice of {@creature Young Solar Dragon|BAM|young}, {@creature Adult Solar Dragon|BAM|adult}, or {@creature Ancient Solar Dragon|BAM|ancient})",
+											"{@dice 2d6}"
+										],
+										[
+											"67",
+											"1 {@creature starlight apparition|BAM}*",
+											"{@dice 2d6 + 2}"
+										],
+										[
+											"68\u201370",
+											"{@dice 1d8} {@creature Unicorn||unicorns} galloping merrily across the Astral Sea",
+											"{@dice 1d6 + 6}"
+										],
+										[
+											"71\u201300",
+											"1 spelljamming ship (roll on the Ship Encounters table)",
+											"\u2014"
+										]
+									],
+									"data": {
+										"tableIgnore": true
+									}
+								},
+								{
+									"type": "table",
+									"caption": "Ship Encounters",
+									"colLabels": [
+										"d100",
+										"Ship Encounter",
+										"Attitude Roll"
+									],
+									"colStyles": [
+										"col-2 text-center",
+										"col-8",
+										"col-2 text-center"
+									],
+									"rows": [
+										[
+											"01\u201307",
+											"{@vehicle Bombard|AAG} Leviathan, captained by Myrtle Hunt ({@creature giff warlord|BAM}*) and crewed by 8 {@creature Giff Shipmate|BAM|giff shipmates}* and 3 {@creature Mage||mages}†",
+											"{@dice 1d10 + 2}"
+										],
+										[
+											"08\u201316",
+											"{@vehicle Damselfly ship|AAG} Voidwinder, captained by Krig Kalu ({@creature hadozee explorer|BAM}*) and crewed by 1 {@creature drow}† and 7 {@creature Hadozee Shipmate|BAM|hadozee shipmates}*",
+											"{@dice 2d6 + 3}"
+										],
+										[
+											"17\u201323",
+											"{@vehicle Flying fish ship|AAG} Horizon, captained by Thaal Vod (renegade {@creature mind flayer arcanist}†) and crewed by 9 {@creature Plasmoid Warrior|BAM|plasmoid warriors}*",
+											"{@dice 1d12}"
+										],
+										[
+											"24\u201331",
+											"{@vehicle Hammerhead ship|AAG} Jander Sunstar, captained by Veluna Valderak ({@creature vampirate captain|BAM}*) and crewed by 13 {@creature Vampirate|BAM|vampirates}* and 1 {@creature priest}†",
+											"{@dice 1d12}"
+										],
+										[
+											"32\u201336",
+											"{@vehicle Lamprey ship|AAG} Astral Prize, crewed by 15 {@creature Psurlon Ringer|BAM|psurlon ringers},*† including Captain Uscath",
+											"{@dice 1d12}"
+										],
+										[
+											"37\u201339",
+											"{@vehicle Living ship|AAG} Eldervine, captained by Queth ({@creature aartuk elder|BAM}*) and crewed by 2 {@creature Aartuk Starhorror|BAM|aartuk starhorrors},*† 8 {@creature Aartuk Weedling|BAM|aartuk weedlings},* and Eldervine ({@creature treant})",
+											"{@dice 1d10}"
+										],
+										[
+											"40\u201345",
+											"{@vehicle Nautiloid|AAG} Neurophage, crewed by 4 {@creature Mind Flayer||mind flayers}† and 16 {@creature kuo-toa}, with {@dice 1d6} {@creature Grell||grells} and {@dice 1d6} {@creature Intellect Devourer||intellect devourers} as passengers",
+											"{@dice 1d6}"
+										],
+										[
+											"46\u201350",
+											"{@vehicle Nightspider|AAG} Malevolence, captained by Yeshk ({@creature neogi void hunter|BAM}*†) and crewed by 24 {@creature Neogi Pirate|BAM|neogi pirates}* and 5 {@creature Umber Hulk||umber hulks}",
+											"{@dice 1d6}"
+										],
+										[
+											"51\u201355",
+											"{@vehicle Scorpion ship|AAG} Claws of Huraj, captained by Huraj ({@creature hobgoblin captain}) and crewed by 1 {@creature bugbear} (first mate), 8 {@creature Hobgoblin||hobgoblins}, and 2 hobgoblin {@creature Priest||priests}†",
+											"{@dice 1d12}"
+										],
+										[
+											"56\u201361",
+											"{@vehicle Shrike ship|AAG} Fedifensor, captained by Yaj ({@creature githyanki xenomancer|BAM}*†) and crewed by 10 {@creature Githyanki Buccaneer|BAM|githyanki buccaneers}*†",
+											"{@dice 1d12}"
+										],
+										[
+											"62\u201366",
+											"{@vehicle Space galleon|AAG} Eleventh, captained by Xorpha Eleven-Eyes ({@creature beholder}) and crewed by 1 {@creature spectator} (first mate), 3 {@creature Cult Fanatic||cult fanatics},† and 16 {@creature Cultist||cultists}",
+											"{@dice 1d12}"
+										],
+										[
+											"67\u201372",
+											"{@vehicle Space galleon|AAG} Great Kindori, captained by Mystan the Mighty ({@creature djinni}†) and crewed by 1 {@creature invisible stalker} (first mate), 1 {@creature couatl},† 17 {@creature aarakocra}, and 1 {@creature rug of smothering}",
+											"{@dice 2d6 + 2}"
+										],
+										[
+											"73\u201378",
+											"{@vehicle Squid ship|AAG} Syken's Reach, captained by the pirate Arviglas Syken (human {@creature bandit captain}) and crewed by 1 {@creature cambion}† (Syken's daughter, Tenebra) and 11 {@creature Thug||thugs}",
+											"{@dice 1d12}"
+										],
+										[
+											"79\u201384",
+											"{@vehicle Star moth|AAG} Apex, captained by Xaleen ({@creature astral elf commander|BAM}*†) and crewed by 11 {@creature Astral Elf Warrior|BAM|astral elf warriors}* and 1 {@creature astral elf aristocrat|BAM}*†",
+											"{@dice 1d12}"
+										],
+										[
+											"85\u201390",
+											"{@vehicle Turtle ship|AAG} Snorkel, captained by Shelby Norkel (gnome {@creature mage}†) and crewed by 15 {@creature Autognome|BAM|autognomes}*",
+											"{@dice 1d10 + 3}"
+										],
+										[
+											"91\u201394",
+											"{@vehicle Tyrant ship|AAG} Doomdreamer, crewed by {@dice 2d4 + 2} {@creature Beholder||beholders}",
+											"{@dice 1d8}"
+										],
+										[
+											"95\u201300",
+											"{@vehicle Wasp ship|AAG} Adventure, abandoned and adrift (25 percent chance that its {@item spelljamming helm|AAG} is still aboard)",
+											"\u2014"
+										]
+									],
+									"data": {
+										"tableIgnore": true
+									}
+								}
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Ship-to-Ship Starting Distance",
+							"entries": [
+								"At the start of an engagement, the DM decides how far a ship is from its enemies. Three possibilities are provided in the Starting Encounter Distance table. The shorter the distance, the less time crews have to load weapons and make other preparations.",
+								{
+									"type": "table",
+									"colLabels": [
+										"Distance",
+										"Notes"
+									],
+									"colStyles": [
+										"col-2",
+										"col-10"
+									],
+									"rows": [
+										[
+											"250 feet",
+											"Long range for {@object ballista||ballistae}, {@object Mangonel||mangonels}, {@item shortbow|phb|shortbows}, {@item longbow|phb|longbows}, {@item light crossbow|phb|light crossbows}, and {@item heavy crossbow|phb|heavy crossbows}"
+										],
+										[
+											"500 feet",
+											"Long range for {@item longbow|phb|longbows} and {@object Mangonel||mangonels}; beyond the range of {@object ballista||ballistae} and crossbows"
+										],
+										[
+											"1,000 feet",
+											"Beyond the range of most ranged weapons"
+										]
+									]
+								}
+							],
+							"id": "006"
+						},
+						{
+							"type": "entries",
+							"name": "Crashing",
+							"entries": [
+								"When a spelljamming ship crashes into a creature or an object that could reasonably damage it, both the ship and the creature or object it struck take bludgeoning damage based on the size of the struck object, as shown in the table below.",
+								{
+									"type": "table",
+									"colLabels": [
+										"Size of Creature or Object Struck",
+										"Bludgeoning Damage"
+									],
+									"colStyles": [
+										"col-6 text-center",
+										"col-6 text-center"
+									],
+									"rows": [
+										[
+											"Large",
+											"{@dice 4d10}"
+										],
+										[
+											"Huge",
+											"{@dice 8d10}"
+										],
+										[
+											"Gargantuan",
+											"{@dice 16d10}"
+										]
+									]
+								},
+								"If the ship runs into something that doesn't have hit points (such as a planet or a moon), apply the damage only to the ship. The ship stops after crashing into a Gargantuan or immovable creature or object; otherwise, the ship can continue moving ifit has any movement left, and whatever it struck moves to the nearest unoccupied space that isn't in the ship's path."
+							],
+							"id": "007"
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Shipboard Tasks",
+					"entries": [
+						"During the uneventful part of a voyage, the captain of a spelljamming ship can put crew members to work in several ways. If a character is looking for a job to do, or if a captain wants to keep a character busy, roll on the Shipboard Tasks table to determine what needs to be done. The time it takes to complete a task is at least 1 hour, and certain tasks might take longer at your discretion.",
+						{
+							"type": "table",
+							"caption": "Shipboard Tasks",
+							"colLabels": [
+								"d12",
+								"Task"
+							],
+							"colStyles": [
+								"col-2 text-center",
+								"col-10"
+							],
+							"rows": [
+								[
+									"1",
+									"Scrape barnacles off the hull."
+								],
+								[
+									"2",
+									"Scrub pots and dishes in the galley."
+								],
+								[
+									"3",
+									"Chop vegetables in the galley."
+								],
+								[
+									"4",
+									"Swab the deck or sweep the cargo hold."
+								],
+								[
+									"5",
+									"Update the ship's navigational charts, which requires cartographer's tools."
+								],
+								[
+									"6",
+									"Repair the captain's favorite pair of boots, which requires cobbler's tools. (A {@spell mending} spell also does the trick.)"
+								],
+								[
+									"7",
+									"Repair superficial damage to the ship, which requires carpenter's tools or woodcarver's tools. (A {@spell mending} spell also does the trick.)"
+								],
+								[
+									"8",
+									"Compose a new chantey, which requires a musical instrument."
+								],
+								[
+									"9",
+									"Entertain the crew with tall tales or gossip."
+								],
+								[
+									"10",
+									"Fix the captain's broken spyglass, which requires jeweler's tools or tinker's tools. (A {@spell mending} spell also does the trick.)"
+								],
+								[
+									"11",
+									"Teach the captain the basics of a language they don't already know."
+								],
+								[
+									"12",
+									"Prepare a tasty dinner for the captain's table, which requires cook's utensils."
+								]
+							]
+						}
+					],
+					"id": "008"
+				},
+				{
+					"type": "entries",
+					"name": "Ship Quirks",
+					"entries": [
+						"Roll on the Ship Quirks table if you want to add a bit of \"personality\" to a ship.",
+						{
+							"type": "table",
+							"caption": "Ship Quirks",
+							"colLabels": [
+								"d10",
+								"Quirk"
+							],
+							"colStyles": [
+								"col-2 text-center",
+								"col-10"
+							],
+							"rows": [
+								[
+									"1",
+									"A chatty but harmless spirit haunts the cargo hold."
+								],
+								[
+									"2",
+									"The excessive creaking of the hull echoes throughout the ship."
+								],
+								[
+									"3",
+									"Any creature that removes itself from the ship's {@item spelljamming helm|AAG} receives a startling but harmless magical shock."
+								],
+								[
+									"4",
+									"The ship's companionways are smaller than those found in most other similar vessels."
+								],
+								[
+									"5",
+									"The ship makes a groaning sound in what seems like defiance whenever it comes to a stop."
+								],
+								[
+									"6",
+									"The floor of the main deck is adorned with a stylized rendering of a mysterious star chart that pulsates occasionally with scintillating colors."
+								],
+								[
+									"7",
+									"The ship's air envelope has a salty, briny smell."
+								],
+								[
+									"8",
+									"Bulkheads throughout the ship have lines of poetry scrawled on them."
+								],
+								[
+									"9",
+									"Unattended tools often go missing, only to reappear {@dice 1d4} hours later in another part of the ship."
+								],
+								[
+									"10",
+									"A creature seated in the ship's {@item spelljamming helm|AAG} hears faint spacefaring chanteys in its mind except when the ship is under attack."
+								]
+							]
+						}
+					],
+					"id": "00b"
+				},
+				{
+					"type": "entries",
+					"name": "Ship Cargo",
+					"entries": [
+						"To randomly determine what's in the cargo hold of a spelljamming ship, roll {@dice 1d6} times on the Cheap Cargo table and {@dice 1d4-1} times on the Expensive Cargo table. A duplicate result indicates that the ship has more of the same cargo.",
+						"If a cargo container is locked, at least one crew member (typically the captain) has the key to it. A character can try to unlock a container using thieves' tools, doing so with a successful DC 20 Dexterity check.",
+						{
+							"type": "table",
+							"caption": "Cheap Cargo",
+							"colLabels": [
+								"d12",
+								"Cargo"
+							],
+							"colStyles": [
+								"col-2 text-center",
+								"col-10"
+							],
+							"rows": [
+								[
+									"1",
+									"Trunk containing ten outfits of {@item traveler's clothes|PHB} (2 gp each)"
+								],
+								[
+									"2",
+									"Crate containing one hundred bars of soap (2 cp each)"
+								],
+								[
+									"3",
+									"Twenty ballista bolts (5 gp each)"
+								],
+								[
+									"4",
+									"Coop containing fifty live chickens (2 cp each)"
+								],
+								[
+									"5",
+									"Crate containing twenty wheels of cheese (5 sp each)"
+								],
+								[
+									"6",
+									"Locked cage containing one friendly Beast of your choice"
+								],
+								[
+									"7",
+									"Ten 40-gallon barrels of fresh water"
+								],
+								[
+									"8",
+									"Ten crates, each containing fifty days of rations (25 gp per crate)"
+								],
+								[
+									"9",
+									"Locked cage containing one hostile Beast of your choice"
+								],
+								[
+									"10",
+									"Chest containing fifty {@item Perfume (vial)|PHB|vials of perfume} (2 gp each)"
+								],
+								[
+									"11",
+									"Crate containing fifty loaves of bread (2 cp each)"
+								],
+								[
+									"12",
+									"Ten 40-gallon barrels of ale (4 gp each)"
+								]
+							]
+						},
+						{
+							"type": "table",
+							"caption": "Expensive Cargo",
+							"colLabels": [
+								"d12",
+								"Cargo"
+							],
+							"colStyles": [
+								"col-2 text-center",
+								"col-10"
+							],
+							"rows": [
+								[
+									"1",
+									"Crate containing fifty blank {@item Spellbook|PHB|spellbooks} (50 gp each)"
+								],
+								[
+									"2",
+									"Crate containing one hundred {@item Ink (1-ounce bottle)|PHB|1-ounce bottles of ink} (10 gp each) and one thousand sheets of {@item Parchment (one sheet)|PHB|parchment} (1 sp each)"
+								],
+								[
+									"3",
+									"Crate containing twenty {@item Potion of Healing||potions of healing}, {@item Alchemist's Fire (flask)|PHB|flasks of alchemist's fire}, or {@item Antitoxin (vial)|PHB|vials of antitoxin} (50 gp each)"
+								],
+								[
+									"4",
+									"Crate containing one hundred bottles of exquisite wine (25 gp each)"
+								],
+								[
+									"5",
+									"Set of exquisitely crafted furniture (2,500 gp)"
+								],
+								[
+									"6",
+									"Locked trunk containing five unloaded {@item Pistol||pistols} (250 gp each) and a box of 100 bullets"
+								],
+								[
+									"7",
+									"Locked case containing an exquisite Dragonchess set made of crystal or ivory (2,500 gp)"
+								],
+								[
+									"8",
+									"Locked trunk containing ten {@item Bomb||bombs} (150 gp each; see \"{@book Explosives|DMG|9|Explosives}\" in the {@book Dungeon Master's Guide|DMG})"
+								],
+								[
+									"9",
+									"Crate containing one hundred fireworks (25 gp each)"
+								],
+								[
+									"10",
+									"Crate containing five unloaded {@item Musket||muskets} (500 gp each) and a box of 100 bullets"
+								],
+								[
+									"11",
+									"Locked case containing five {@item Spyglass|PHB|spyglasses} (1,000 gp each)"
+								],
+								[
+									"12",
+									"Ten 20-pound {@item Gunpowder Keg||kegs of gunpowder} (250 gp each; see \"{@book Explosives|DMG|9|Explosives}\" in the {@book Dungeon Master's Guide|DMG})"
+								]
+							]
+						}
+					],
+					"id": "00c"
+				}
+			],
+			"id": "000"
+		}
+	]
+}

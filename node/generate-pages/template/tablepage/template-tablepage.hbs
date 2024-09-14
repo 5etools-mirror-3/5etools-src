@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{{> "head" }}
+
+<body>
+
+{{> "overlayNoise" }}
+
+{{> "adRhs" }}
+
+<div class="viewport-wrapper">
+	{{> "adLeaderboard" }}
+
+	{{> "navbar" }}
+
+	<div class="container view-col-wrapper">
+		<div class="view-col" id="listcontainer">
+			<div class="input-group ve-btn-group search-box ve-flex">
+				<div class="w-100 relative">
+					<input type="search" id="lst__search" autocomplete="off" autocapitalize="off" spellcheck="false" class="search form-control lst__search br-0">
+					<div id="lst__search-glass" class="lst__wrp-search-glass no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
+				</div>
+				<button class="ve-btn ve-btn-default reset" id="reset" type="button">Reset</button>
+			</div>
+
+			<div class="flex-col ve-overflow-y-scroll min-h-0 pr-2" data-name="tablepage-wrp-list">
+				<!-- populate with JS -->
+			</div>
+		</div>
+
+		<div class="view-col" id="tablecontainer">
+			<div class="rolltable" id="contentwrapper">
+				<table id="pagecontent" class="w-100 stats stats--book stats--book-large">
+					<!-- populate with JS -->
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+{{> "adFooter" }}
+
+{{> "scripts" }}
+
+</body>
+</html>

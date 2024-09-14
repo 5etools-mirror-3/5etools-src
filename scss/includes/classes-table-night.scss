@@ -1,0 +1,26 @@
+@use "../vars/vars";
+@use "../vars/vars-night";
+
+.ve-night-mode {
+	.cls-tbl {
+		background: vars-night.$rgb-bg--night;
+
+		> tbody > tr > th {
+			color: vars-night.$rgb-font--night;
+		}
+
+		&__ {
+			&disp-name {
+				color: vars-night.$rgb-font--night;
+			}
+
+			&col-group::after {
+				border-color: vars-night.$rgb-border-grey--night;
+			}
+
+			&stripe-odd:nth-child(odd) {
+				background: vars.$rgb-stripe-grey;
+			}
+		}
+	}
+}

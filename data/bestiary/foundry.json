@@ -1,0 +1,210 @@
+{
+	"monster": [
+		{
+			"name": "Beast of the Land",
+			"source": "TCE",
+			"prototypeToken": {
+				"actorLink": true
+			},
+			"effects": [
+				{
+					"name": "Ranger's Leadership",
+					"changes": [
+						{
+							"key": "system.attributes.hp.max",
+							"mode": "ADD",
+							"value": "+ 5 * @srd5e.userchar.classes.ranger.levels"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Beast of the Sea",
+			"source": "TCE",
+			"prototypeToken": {
+				"actorLink": true
+			},
+			"effects": [
+				{
+					"name": "Ranger's Leadership",
+					"changes": [
+						{
+							"key": "system.attributes.hp.max",
+							"mode": "ADD",
+							"value": "+ 5 * @srd5e.userchar.classes.ranger.levels"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Beast of the Sky",
+			"source": "TCE",
+			"prototypeToken": {
+				"actorLink": true
+			},
+			"effects": [
+				{
+					"name": "Ranger's Leadership",
+					"changes": [
+						{
+							"key": "system.attributes.hp.max",
+							"mode": "ADD",
+							"value": "+ 4 * @srd5e.userchar.classes.ranger.levels"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Blighted Sapling",
+			"source": "TDCSR",
+			"effects": [
+				{
+					"name": "Druid's Leadership",
+					"changes": [
+						{
+							"key": "system.attributes.hp.max",
+							"mode": "ADD",
+							"value": "+(2 * @srd5e.userchar.classes.druid.levels)"
+						},
+						{
+							"key": "data.attributes.ac.formula",
+							"mode": "ADD",
+							"value": "+ @srd5e.userchar.pb"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Drake Companion",
+			"source": "FTD",
+			"prototypeToken": {
+				"actorLink": true
+			},
+			"effects": [
+				{
+					"name": "Ranger's Leadership",
+					"changes": [
+						{
+							"key": "system.attributes.hp.max",
+							"mode": "ADD",
+							"value": "+(5 * @srd5e.userchar.classes.ranger.levels)"
+						},
+						{
+							"key": "data.attributes.ac.formula",
+							"mode": "ADD",
+							"value": "+ @srd5e.userchar.pb"
+						},
+						{
+							"key": "data.abilities.dex.bonuses.save",
+							"mode": "ADD",
+							"value": "+ @srd5e.userchar.pb"
+						},
+						{
+							"key": "data.abilities.wis.bonuses.save",
+							"mode": "ADD",
+							"value": "+ @srd5e.userchar.pb"
+						},
+						{
+							"key": "data.attributes.movement.fly",
+							"mode": "UPGRADE",
+							"value": "min(1, max(@srd5e.userchar.classes.ranger.levels - 6, 0)) * @attributes.movement.walk"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Homunculus Servant",
+			"source": "TCE",
+			"prototypeToken": {
+				"actorLink": true
+			},
+			"effects": [
+				{
+					"name": "Artificer's Leadership",
+					"changes": [
+						{
+							"key": "system.attributes.hp.max",
+							"mode": "ADD",
+							"value": "+ @srd5e.userchar.abilities.int.mod + @srd5e.userchar.classes.artificer.levels"
+						},
+						{
+							"key": "data.abilities.dex.bonuses.save",
+							"mode": "ADD",
+							"value": "+ @srd5e.userchar.pb"
+						},
+						{
+							"key": "data.skills.prc.bonuses.check",
+							"mode": "ADD",
+							"value": "+(2 * @srd5e.userchar.pb)"
+						},
+						{
+							"key": "data.skills.ste.bonuses.check",
+							"mode": "ADD",
+							"value": "+ @srd5e.userchar.pb"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Steel Defender",
+			"source": "TCE",
+			"prototypeToken": {
+				"actorLink": true
+			},
+			"effects": [
+				{
+					"name": "Artificer's Leadership",
+					"changes": [
+						{
+							"key": "system.attributes.hp.max",
+							"mode": "ADD",
+							"value": "+ @srd5e.userchar.abilities.int.mod + (5 * @srd5e.userchar.classes.artificer.levels)"
+						},
+						{
+							"key": "data.abilities.dex.bonuses.save",
+							"mode": "ADD",
+							"value": "+ @srd5e.userchar.pb"
+						},
+						{
+							"key": "data.abilities.con.bonuses.save",
+							"mode": "ADD",
+							"value": "+ @srd5e.userchar.pb"
+						},
+						{
+							"key": "data.skills.ath.bonuses.check",
+							"mode": "ADD",
+							"value": "+ @srd5e.userchar.pb"
+						},
+						{
+							"key": "data.skills.prc.bonuses.check",
+							"mode": "ADD",
+							"value": "+(2 * @srd5e.userchar.pb)"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Wildfire Spirit",
+			"source": "TCE",
+			"effects": [
+				{
+					"name": "Druid's Leadership",
+					"changes": [
+						{
+							"key": "system.attributes.hp.max",
+							"mode": "ADD",
+							"value": "+(5 * @srd5e.userchar.classes.druid.levels)"
+						}
+					]
+				}
+			]
+		}
+	]
+}

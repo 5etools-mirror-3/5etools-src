@@ -1,0 +1,6370 @@
+{
+	"_meta": {
+		"dependencies": {
+			"monster": [
+				"MM",
+				"MPMM",
+				"BAM",
+				"VRGR"
+			]
+		},
+		"internalCopies": [
+			"monster"
+		],
+		"otherSources": {
+			"monster": {
+				"MM": "VEoR",
+				"BAM": "VEoR",
+				"VRGR": "VEoR",
+				"MPMM": "VEoR",
+				"DSotDQ": "VEoR",
+				"WBtW": "VEoR"
+			}
+		}
+	},
+	"monster": [
+		{
+			"name": "Alustriel Silverhand",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"page": 242,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human",
+					"wizard"
+				]
+			},
+			"alignment": [
+				"C",
+				"G"
+			],
+			"ac": [
+				15,
+				{
+					"ac": 18,
+					"condition": "with {@spell mage armor}",
+					"braces": true
+				}
+			],
+			"hp": {
+				"average": 272,
+				"formula": "32d8 + 128"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 12,
+			"dex": 20,
+			"con": 18,
+			"int": 24,
+			"wis": 23,
+			"cha": 22,
+			"save": {
+				"con": "+11",
+				"int": "+14",
+				"wis": "+13"
+			},
+			"skill": {
+				"arcana": "+14",
+				"history": "+14",
+				"insight": "+13",
+				"religion": "+14"
+			},
+			"passive": 16,
+			"resist": [
+				"radiant"
+			],
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"poisoned"
+			],
+			"languages": [
+				"Common",
+				"Draconic",
+				"Elvish"
+			],
+			"cr": "21",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Alustriel casts one of the following spells, using Intelligence as the spellcasting ability (spell save {@dc 22}):"
+					],
+					"will": [
+						"{@spell Dancing Lights}",
+						"{@spell Detect Magic}",
+						"{@spell Mage Armor} (self only)",
+						"{@spell Mage Hand}"
+					],
+					"daily": {
+						"2e": [
+							"{@spell Detect Thoughts}",
+							"{@spell Dispel Magic}",
+							"{@spell Tongues}"
+						],
+						"1e": [
+							"{@spell Telepathy}",
+							"{@spell Teleport}",
+							"{@spell Time Stop}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Ear of the Chosen",
+					"entries": [
+						"Whenever a creature on the same plane of existence as Alustriel speaks Alustriel's name, Alustriel hears her name and the next nine words the speaker utters."
+					]
+				},
+				{
+					"name": "Legendary Resistance (3/Day)",
+					"entries": [
+						"If Alustriel fails a saving throw, she can choose to succeed instead."
+					]
+				},
+				{
+					"name": "Special Equipment",
+					"entries": [
+						"Alustriel carries a magic staff known as the Staff of Silverymoon. In the hands of anyone other than Alustriel, the Staff of Silverymoon is a Staff of Power."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Alustriel makes three Staff of Silverymoon attacks or two Reproving Ray attacks."
+					]
+				},
+				{
+					"name": "Staff of Silverymoon",
+					"entries": [
+						"{@atk mw} {@hit 12} to hit, reach 5 ft., one target. {@h}14 ({@damage 2d8 + 5}) bludgeoning damage plus 38 ({@damage 7d10}) radiant damage."
+					]
+				},
+				{
+					"name": "Reproving Ray",
+					"entries": [
+						"{@atk rs} {@hit 14} to hit, range 120 ft., one target. {@h}65 ({@damage 9d12 + 7}) force damage, and if the target is a creature, it must make a {@dc 22} Charisma saving throw. On a failed save, the target has the {@condition incapacitated} condition until the start of Alustriel's next turn. On a successful save, the target's speed is reduced by 10 feet until the start of Alustriel's next turn."
+					]
+				},
+				{
+					"name": "Argent Blaze (Requires Silver Fire)",
+					"entries": [
+						"Alustriel summons a 60- foot cone of silver fire. Each creature in that area must make a {@dc 22} Dexterity saving throw, taking 77 ({@damage 14d10}) radiant damage on a failed save or half as much damage on a successful one. Additionally, Alustriel or one creature of her choice within 60 feet of her then regains 10 ({@dice 3d6}) hit points."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Silver Fire (2/Day)",
+					"entries": [
+						"Brilliant silver fire harmlessly wreathes Alustriel and empowers her. The silver fire lasts for 1 hour or until she has the {@condition incapacitated} condition or uses another bonus action to quench it. While wreathed in silver fire, Alustriel gains truesight within 30 feet and can use her Argent Blaze action. In addition, Alustriel is unaffected by magic that would ascertain her alignment, creature type, thoughts, or truthfulness."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Shining Counterspell",
+					"entries": [
+						"Alustriel interrupts a creature she can see within 60 feet of herself that is casting a spell. If the spell is 5th level or lower, it fails and has no effect. If the spell is 6th level or higher, Alustriel makes an Intelligence check ({@dc 10} plus the spell's level). On a successful check, the spell fails and has no effect. Whatever the spell's level, the caster takes 11 ({@damage 2d10}) radiant damage if the spell fails."
+					]
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"E"
+			],
+			"damageTags": [
+				"B",
+				"O",
+				"R"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"conditionInflict": [
+				"incapacitated"
+			],
+			"savingThrowForced": [
+				"charisma",
+				"dexterity"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Argentia Skywright",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"_copy": {
+				"name": "Werewolf",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the werewolf",
+						"with": "Argentia",
+						"flags": "i"
+					}
+				}
+			},
+			"alignment": [
+				"N",
+				"G"
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Black Rose Bearer",
+			"source": "VEoR",
+			"page": 208,
+			"size": [
+				"M"
+			],
+			"type": "undead",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 11,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 110,
+				"formula": "13d8 + 52"
+			},
+			"speed": {
+				"walk": 20
+			},
+			"str": 17,
+			"dex": 6,
+			"con": 18,
+			"int": 2,
+			"wis": 10,
+			"cha": 5,
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 10,
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"poisoned"
+			],
+			"languages": [
+				"understands the languages it knew in life but can't speak"
+			],
+			"cr": "6",
+			"trait": [
+				{
+					"name": "Berserk",
+					"entries": [
+						"Whenever the bearer takes damage or makes a Strength or Dexterity saving throw, roll a {@dice d6}. On a 5 or 6, the bearer goes berserk. On each of its turns while berserk, the bearer has advantage on melee attack rolls, it can Dash as a bonus action, and it must attack the nearest creature it can see. If no creature is near enough to move to and attack, the bearer attacks an object, with preference for an object smaller than itself. Once the bearer goes berserk, it remains berserk until it is destroyed or its creator gives it a pristine black rose."
+					]
+				},
+				{
+					"name": "Undead Fortitude",
+					"entries": [
+						"If damage reduces the bearer to 0 hit points, it must make a Constitution saving throw with a DC of 5 plus the damage taken, unless the damage is radiant or from a critical hit. On a successful save, the bearer drops to 1 hit point instead."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The bearer makes two Slam attacks."
+					]
+				},
+				{
+					"name": "Slam",
+					"entries": [
+						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}12 ({@damage 2d8 + 3}) bludgeoning damage plus 11 ({@damage 2d10}) necrotic damage."
+					]
+				}
+			],
+			"traitTags": [
+				"Undead Fortitude"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"CS",
+				"LF"
+			],
+			"damageTags": [
+				"B",
+				"N"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Blade Lieutenant",
+			"source": "VEoR",
+			"page": 209,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "construct",
+				"tags": [
+					"warforged"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 153,
+				"formula": "18d8 + 72"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 18,
+			"dex": 13,
+			"con": 19,
+			"int": 14,
+			"wis": 14,
+			"cha": 17,
+			"save": {
+				"int": "+6",
+				"cha": "+7"
+			},
+			"skill": {
+				"insight": "+6",
+				"intimidation": "+7",
+				"perception": "+6"
+			},
+			"passive": 16,
+			"resist": [
+				"poison"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"poisoned"
+			],
+			"languages": [
+				"Common"
+			],
+			"cr": "9",
+			"trait": [
+				{
+					"name": "Pack Tactics",
+					"entries": [
+						"The lieutenant has advantage on an attack roll against a creature if at least one of the lieutenant's allies is within 5 feet of the creature and the ally doesn't have the {@condition incapacitated} condition."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The lieutenant makes three Longsword or Javelin Launcher attacks."
+					]
+				},
+				{
+					"name": "Longsword",
+					"entries": [
+						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}17 ({@damage 3d8 + 4}) slashing damage, or 20 ({@damage 3d10 + 4}) slashing damage if used with two hands."
+					]
+				},
+				{
+					"name": "Javelin Launcher",
+					"entries": [
+						"{@atk rw} {@hit 8} to hit, range 30/120 ft., one target. {@h}14 ({@damage 3d6 + 4}) piercing damage, and the target has the {@condition prone} condition."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Command Ally",
+					"entries": [
+						"The lieutenant targets one ally it can see within 30 feet of itself. If the target can see or hear the lieutenant, the target can make one melee attack using its reaction, if available, and has advantage on the attack roll."
+					]
+				},
+				{
+					"name": "Rally the Troops (1/Day)",
+					"entries": [
+						"The lieutenant ends the {@condition charmed} and {@condition frightened} conditions on itself and each creature of its choice that it can see within 30 feet of itself."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Parry",
+					"entries": [
+						"The lieutenant adds 3 to its AC against one melee attack that would hit it. To do so, the lieutenant must see the attacker and be wielding a melee weapon."
+					]
+				}
+			],
+			"attachedItems": [
+				"longsword|phb"
+			],
+			"traitTags": [
+				"Pack Tactics"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Parry"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RW",
+				"THW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Blade Scout",
+			"source": "VEoR",
+			"page": 209,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "construct",
+				"tags": [
+					"warforged"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 105,
+				"formula": "14d8 + 42"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 14,
+			"dex": 20,
+			"con": 16,
+			"int": 10,
+			"wis": 19,
+			"cha": 10,
+			"save": {
+				"dex": "+8",
+				"wis": "+7"
+			},
+			"skill": {
+				"acrobatics": "+8",
+				"perception": "+7",
+				"stealth": "+8"
+			},
+			"passive": 17,
+			"resist": [
+				"poison"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"poisoned"
+			],
+			"languages": [
+				"Common"
+			],
+			"cr": "7",
+			"trait": [
+				{
+					"name": "Pack Tactics",
+					"entries": [
+						"The scout has advantage on an attack roll against a creature if at least one of the scout's allies is within 5 feet of the creature and the ally doesn't have the {@condition incapacitated} condition."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The scout makes three Armblade or Bolt Launcher attacks. It can replace one of the attacks with a use of Snare Trap."
+					]
+				},
+				{
+					"name": "Armblade",
+					"entries": [
+						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}12 ({@damage 2d6 + 5}) slashing damage."
+					]
+				},
+				{
+					"name": "Bolt Launcher",
+					"entries": [
+						"{@atk rw} {@hit 8} to hit, range 80/320 ft., one target. {@h}9 ({@damage 1d8 + 5}) piercing damage."
+					]
+				},
+				{
+					"name": "Snare Trap (1/Day)",
+					"entries": [
+						"The scout deploys a Tiny mechanical trap on a solid surface within 5 feet of itself. The trap is hidden, requiring a successful {@dc 17} Intelligence ({@skill Investigation}) check to find. The trap lasts for 1 minute. Whenever an enemy enters a space within 10 feet of the trap or starts its turn there, it must succeed on a {@dc 16} Dexterity saving throw or take 21 ({@damage 6d6}) piercing damage and have the {@condition prone} condition. A creature makes this saving throw only once per turn."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Dash",
+					"entries": [
+						"The scout moves up to its speed without provoking opportunity attacks."
+					]
+				}
+			],
+			"traitTags": [
+				"Pack Tactics"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MW",
+				"RW"
+			],
+			"conditionInflict": [
+				"prone"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Blazebear",
+			"source": "VEoR",
+			"page": 210,
+			"size": [
+				"L"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 14,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 189,
+				"formula": "18d10 + 90"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 24,
+			"dex": 17,
+			"con": 21,
+			"int": 3,
+			"wis": 13,
+			"cha": 16,
+			"save": {
+				"str": "+11",
+				"cha": "+7"
+			},
+			"skill": {
+				"perception": "+5"
+			},
+			"senses": [
+				"darkvision 120 ft."
+			],
+			"passive": 15,
+			"cr": "12",
+			"trait": [
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The blazebear has advantage on saving throws against spells and other magical effects."
+					]
+				},
+				{
+					"name": "Mist Sight",
+					"entries": [
+						"The blazebear can see normally through heavily obscured areas created by mist or fog, including areas created by spells such as Fog Cloud."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The blazebear makes two Bite attacks. It can replace one attack with Stunning Gaze if available."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 11} to hit, reach 5 ft., one target. {@h}20 ({@damage 2d12 + 7}) piercing damage plus 11 ({@damage 2d10}) force damage."
+					]
+				},
+				{
+					"name": "Stunning Gaze {@recharge 5}",
+					"entries": [
+						"The blazebear targets two creatures it can see within 120 feet of itself. Each target must succeed on a {@dc 15} Wisdom saving throw or have the {@condition stunned} condition until the start of the blazebear's next turn."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Antimagic Swipe",
+					"entries": [
+						"{@atk mw} {@hit 11} to hit, reach 10 ft., one creature casting a spell of 3rd level or lower. {@h}22 ({@damage 4d10}) force damage, and the target must succeed on a {@dc 15} Intelligence saving throw or the spell fails and has no effect."
+					]
+				}
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"damageTags": [
+				"O",
+				"P"
+			],
+			"miscTags": [
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"stunned"
+			],
+			"savingThrowForced": [
+				"intelligence",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Bone Roc",
+			"source": "VEoR",
+			"page": 211,
+			"size": [
+				"H"
+			],
+			"type": "undead",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				15
+			],
+			"hp": {
+				"average": 133,
+				"formula": "14d12 + 42"
+			},
+			"speed": {
+				"walk": 15,
+				"fly": 90
+			},
+			"str": 18,
+			"dex": 20,
+			"con": 16,
+			"int": 2,
+			"wis": 17,
+			"cha": 10,
+			"save": {
+				"dex": "+8",
+				"wis": "+6"
+			},
+			"skill": {
+				"perception": "+6"
+			},
+			"senses": [
+				"darkvision 120 ft."
+			],
+			"passive": 16,
+			"immune": [
+				"poison"
+			],
+			"vulnerable": [
+				"bludgeoning"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"poisoned"
+			],
+			"cr": "8",
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The bone roc makes one Beak attack and two Talons attacks."
+					]
+				},
+				{
+					"name": "Beak",
+					"entries": [
+						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}14 ({@damage 2d8 + 5}) piercing damage."
+					]
+				},
+				{
+					"name": "Talons",
+					"entries": [
+						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}12 ({@damage 2d6 + 5}) slashing damage plus 10 ({@damage 3d6}) necrotic damage."
+					]
+				}
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"damageTags": [
+				"N",
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Borthak",
+			"source": "VEoR",
+			"page": 212,
+			"size": [
+				"H"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"C",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 200,
+				"formula": "16d12 + 96"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 25,
+			"dex": 16,
+			"con": 22,
+			"int": 4,
+			"wis": 14,
+			"cha": 15,
+			"save": {
+				"str": "+12",
+				"con": "+11",
+				"cha": "+7"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 12,
+			"resist": [
+				"acid",
+				"cold"
+			],
+			"cr": "15",
+			"trait": [
+				{
+					"name": "Glacial Aura",
+					"entries": [
+						"At the end of the borthak's turn, slippery ice covers surfaces within 10 feet of the borthak. This ice is difficult terrain. When a creature other than the borthak enters the ice's area for the first time on a turn or starts its turn there, it must succeed on a {@dc 16} Dexterity saving throw or have the {@condition prone} condition. The ice disappears at the start of the borthak's next turn."
+					]
+				},
+				{
+					"name": "Webbed Feet",
+					"entries": [
+						"The borthak can move across icy surfaces without needing to make an ability check. Additionally, difficult terrain composed of ice or snow doesn't cost it extra movement."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The borthak makes one Bite attack or uses Noxious Regurgitation if available, and it makes two Stomp attacks."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 12} to hit, reach 5 ft., one target. {@h}16 ({@damage 2d8 + 7}) piercing damage plus 7 ({@damage 2d6}) acid damage."
+					]
+				},
+				{
+					"name": "Stomp",
+					"entries": [
+						"{@atk mw} {@hit 12} to hit, reach 10 ft., one target. {@h}11 ({@damage 1d8 + 7}) bludgeoning damage."
+					]
+				},
+				{
+					"name": "Noxious Regurgitation {@recharge 5}",
+					"entries": [
+						"The borthak spews acid at a creature it can see within 120 feet of itself. The target must make a {@dc 21} Constitution saving throw. On a failed save, the creature takes 24 ({@damage 7d6}) acid damage and has the {@condition poisoned} condition until the start of the borthak's next turn. On a successful save, the creature takes half as much damage only."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Reactive Tail",
+					"entries": [
+						"When a creature within 10 feet of the borthak hits the borthak with an attack roll, the borthak swings its tail in retaliation. The triggering creature and any creature within 5 feet of it must succeed on a {@dc 16} Dexterity saving throw or take 16 ({@damage 2d8 + 7}) bludgeoning damage."
+					]
+				}
+			],
+			"legendary": [
+				{
+					"name": "Move",
+					"entries": [
+						"The borthak moves up to its speed without provoking opportunity attacks."
+					]
+				},
+				{
+					"name": "Bite (Costs 2 Actions)",
+					"entries": [
+						"The borthak makes one Bite attack."
+					]
+				}
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"damageTags": [
+				"A",
+				"B",
+				"P"
+			],
+			"miscTags": [
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"poisoned"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Camlash",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"page": 181,
+			"size": [
+				"H"
+			],
+			"type": {
+				"type": "fiend",
+				"tags": [
+					"demon"
+				]
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 19,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 325,
+				"formula": "26d12 + 156"
+			},
+			"speed": {
+				"walk": 40,
+				"fly": 80
+			},
+			"str": 26,
+			"dex": 15,
+			"con": 22,
+			"int": 20,
+			"wis": 16,
+			"cha": 22,
+			"save": {
+				"str": "+14",
+				"con": "+12",
+				"wis": "+9",
+				"cha": "+12"
+			},
+			"senses": [
+				"truesight 120 ft."
+			],
+			"passive": 13,
+			"resist": [
+				"cold",
+				"lightning",
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "from nonmagical attacks",
+					"cond": true
+				}
+			],
+			"immune": [
+				"fire",
+				"poison"
+			],
+			"conditionImmune": [
+				"poisoned"
+			],
+			"languages": [
+				"Abyssal",
+				"telepathy 120 ft."
+			],
+			"cr": "19",
+			"trait": [
+				{
+					"name": "Death Throes",
+					"entries": [
+						"Camlash explodes when reduced to 0 hit points, and each creature within 30 feet of Camlash must make a {@dc 21} Dexterity saving throw, taking 70 ({@damage 20d6}) fire damage on a failed save or half as much damage on a successful one. The explosion ignites flammable objects in that area that aren't being worn or carried."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"Camlash has advantage on saving throws against spells and other magical effects."
+					]
+				},
+				{
+					"name": "Spider Aura",
+					"entries": [
+						"Camlash is surrounded by tiny biting spiders that magically appear and disappear from moment to moment. At the start of each of Camlash's turns, each creature within 10 feet of Camlash takes 10 ({@damage 3d6}) poison damage and must succeed on a {@dc 21} Constitution saving throw or have the {@condition paralyzed} condition until the start of Camlash's next turn."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Camlash makes one Flaming Whip attack and one Lightning Blade attack. Camlash can replace one of these attacks with Teleport."
+					]
+				},
+				{
+					"name": "Flaming Whip",
+					"entries": [
+						"{@atk mw} {@hit 15} to hit, reach 30 ft., one target. {@h}25 ({@damage 5d6 + 8}) fire damage, and if the target is a creature, it must succeed on a {@dc 21} Strength saving throw or be pulled up to 25 feet toward Camlash."
+					]
+				},
+				{
+					"name": "Lightning Blade",
+					"entries": [
+						"{@atk mw} {@hit 15} to hit, reach 10 ft., one target. {@h}21 ({@damage 3d8 + 8}) slashing damage plus 13 ({@damage 3d8}) lightning damage."
+					]
+				},
+				{
+					"name": "Teleport",
+					"entries": [
+						"Camlash magically teleports, along with any equipment she is wearing or carrying, up to 120 feet to an unoccupied space she can see."
+					]
+				}
+			],
+			"traitTags": [
+				"Death Burst",
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Teleport"
+			],
+			"languageTags": [
+				"AB",
+				"TP"
+			],
+			"damageTags": [
+				"F",
+				"I",
+				"L",
+				"S"
+			],
+			"miscTags": [
+				"AOE",
+				"MLW",
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"paralyzed"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity",
+				"strength"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Citadel Spider",
+			"source": "VEoR",
+			"page": 214,
+			"size": [
+				"G"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 310,
+				"formula": "20d20 + 150"
+			},
+			"speed": {
+				"walk": 50,
+				"climb": 50
+			},
+			"str": 26,
+			"dex": 10,
+			"con": 21,
+			"int": 6,
+			"wis": 12,
+			"cha": 9,
+			"senses": [
+				"blindsight 30 ft.",
+				"darkvision 120 ft."
+			],
+			"passive": 11,
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened"
+			],
+			"cr": "18",
+			"trait": [
+				{
+					"name": "Legendary Resistance (3/Day)",
+					"entries": [
+						"If the spider fails a saving throw, it can choose to succeed instead."
+					]
+				},
+				{
+					"name": "Spider Climb",
+					"entries": [
+						"The spider can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check."
+					]
+				},
+				{
+					"name": "Web Walker",
+					"entries": [
+						"The spider ignores movement restrictions caused by webbing."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The spider makes two Bite attacks. It can replace one of these attacks with a use of Web Bomb."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 14} to hit, reach 20 ft., one target. {@h}19 ({@damage 2d10 + 8}) piercing damage plus 7 ({@damage 2d6}) poison damage."
+					]
+				},
+				{
+					"name": "Web Bomb",
+					"entries": [
+						"{@atk rw} {@hit 14} to hit, range 300 ft./600 ft., one target. {@h}24 ({@damage 3d10 + 8}) bludgeoning damage, and the target and all creatures within 10 feet of it must succeed on a {@dc 19} Dexterity saving throw or take 10 ({@damage 3d6}) acid damage and have the {@condition restrained} condition until the start of the spider's next turn."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Absorb Blow",
+					"entries": [
+						"In response to being hit with an attack roll, the spider's carapace absorbs some of the blow, reducing the damage it takes by 11 ({@dice 2d10})."
+					]
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances",
+				"Spider Climb",
+				"Web Walker"
+			],
+			"senseTags": [
+				"B",
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"damageTags": [
+				"A",
+				"B",
+				"I",
+				"P"
+			],
+			"miscTags": [
+				"MW",
+				"RCH",
+				"RW"
+			],
+			"conditionInflict": [
+				"restrained"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Crunch",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"_copy": {
+				"name": "Blade Scout",
+				"source": "VEoR",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the scout",
+						"with": "Crunch",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true
+		},
+		{
+			"name": "Deadbark Dryad",
+			"source": "VEoR",
+			"page": 216,
+			"size": [
+				"M"
+			],
+			"type": "fey",
+			"alignment": [
+				"C",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 187,
+				"formula": "22d8 + 88"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 17,
+			"dex": 16,
+			"con": 18,
+			"int": 11,
+			"wis": 16,
+			"cha": 18,
+			"save": {
+				"con": "+9",
+				"cha": "+9"
+			},
+			"skill": {
+				"perception": "+8",
+				"stealth": "+8"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 18,
+			"resist": [
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "from nonmagical attacks",
+					"cond": true
+				}
+			],
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"poisoned"
+			],
+			"languages": [
+				"Elvish",
+				"Sylvan"
+			],
+			"cr": "13",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The dryad casts one of the following spells, requiring no material components and using Charisma as the spellcasting ability (spell save {@dc 17}):"
+					],
+					"will": [
+						"{@spell Druidcraft}"
+					],
+					"daily": {
+						"1": [
+							"{@spell Dispel Magic}"
+						],
+						"2e": [
+							"{@spell Pass without Trace}",
+							"{@spell Spike Growth}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Bramble Walk",
+					"entries": [
+						"Difficult terrain composed of vegetation, such as foliage or thorns, doesn't cost the dryad extra movement."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The dryad has advantage on saving throws against spells and other magical effects."
+					]
+				},
+				{
+					"name": "Speak with Beasts and Plants",
+					"entries": [
+						"The dryad can communicate with Beasts and Plants as if they shared a language."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The dryad makes two Poisonous Thorn attacks and one Sapping Vine attack."
+					]
+				},
+				{
+					"name": "Poisonous Thorn",
+					"entries": [
+						"{@atk mw,rw} {@hit 8} to hit, reach 5 ft. or range 120 ft., one target. {@h}13 ({@damage 4d4 + 3}) piercing damage plus 10 ({@damage 3d6}) poison damage. If the target is a creature, it must succeed on a {@dc 17} Constitution saving throw or have the {@condition poisoned} condition until the start of the dryad's next turn."
+					]
+				},
+				{
+					"name": "Sapping Vine",
+					"entries": [
+						"{@atk mw} {@hit 8} to hit, reach 30 ft., one target. {@h}The target has the {@condition grappled} condition (escape {@dc 16}). Until the grapple ends, the target has the {@condition restrained} condition, and the dryad can't use the same vine on another target. A creature {@condition restrained} in this way takes 13 ({@damage 3d8}) necrotic damage at the start of its turn.",
+						"The dryad has six vines. Each vine can be attacked (AC 20; 10 hit points; immunity to poison and psychic damage). Destroying a vine deals no damage to the dryad, but any creature {@condition grappled} by that vine no longer has the {@condition grappled} condition. All vines immediately wither and disappear when the dryad is reduced to 0 hit points."
+					]
+				}
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"E",
+				"S"
+			],
+			"damageTags": [
+				"I",
+				"N",
+				"P"
+			],
+			"damageTagsSpell": [
+				"P"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MW",
+				"RCH",
+				"RW"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Deathwolf",
+			"source": "VEoR",
+			"page": 217,
+			"size": [
+				"M"
+			],
+			"type": "undead",
+			"alignment": [
+				"C",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 153,
+				"formula": "18d8 + 72"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 20,
+			"dex": 16,
+			"con": 18,
+			"int": 10,
+			"wis": 17,
+			"cha": 19,
+			"save": {
+				"str": "+10",
+				"dex": "+8",
+				"cha": "+9"
+			},
+			"skill": {
+				"perception": "+13",
+				"stealth": "+8"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 23,
+			"immune": [
+				"poison",
+				{
+					"immune": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "from nonmagical attacks that aren't silvered",
+					"cond": true
+				}
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"poisoned"
+			],
+			"languages": [
+				"Common"
+			],
+			"cr": "15",
+			"trait": [
+				{
+					"name": "Legendary Resistance (2/Day)",
+					"entries": [
+						"If the deathwolf fails a saving throw, it can choose to succeed instead."
+					]
+				},
+				{
+					"name": "Moon's Grace",
+					"entries": [
+						"When the deathwolf falls, it descends at a rate of 60 feet per round and takes no falling damage."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The deathwolf makes one Bite attack and two Claw attacks. It can replace one of these attacks with Phantom Deathwolf if available."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 10} to hit, reach 5 ft., one target. {@h}14 ({@damage 2d8 + 5}) piercing damage plus 9 ({@damage 2d8}) necrotic damage. The target must succeed on a {@dc 16} Wisdom saving throw or have disadvantage on saving throws against the {@condition frightened} condition. This curse lasts until removed by the {@spell Remove Curse} spell or other magic."
+					]
+				},
+				{
+					"name": "Claw",
+					"entries": [
+						"{@atk mw} {@hit 10} to hit, reach 5 ft., one target. {@h}12 ({@damage 2d6 + 5}) slashing damage plus 4 ({@damage 1d8}) necrotic damage."
+					]
+				},
+				{
+					"name": "Phantom Deathwolf {@recharge 5}",
+					"entries": [
+						"The deathwolf creates a terrifying phantom of itself in the mind of a creature the deathwolf can see within 60 feet of itself. The target must succeed on a {@dc 17} Intelligence saving throw or have the {@condition frightened} condition for 1 minute.",
+						"While the target is {@condition frightened}, the phantom deals 21 ({@damage 6d6}) psychic damage to the target at the start of each of the target's turns. A {@condition frightened} target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+					]
+				}
+			],
+			"reactionHeader": [
+				"The deathwolf can take up to two reactions per round but only one per turn."
+			],
+			"reaction": [
+				{
+					"name": "Imposing Slash",
+					"entries": [
+						"When a creature within 5 feet of the deathwolf makes an attack roll against it, the deathwolf forces the creature to succeed on a {@dc 17} Wisdom saving throw or have disadvantage on that roll. After the attack hits or misses, the deathwolf makes one Claw attack against the creature."
+					]
+				},
+				{
+					"name": "Phase Step",
+					"entries": [
+						"Immediately after taking damage, the deathwolf teleports up to 30 feet to an unoccupied space it can see that is in dim light or darkness."
+					]
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"N",
+				"P",
+				"S",
+				"Y"
+			],
+			"miscTags": [
+				"CUR",
+				"MW"
+			],
+			"conditionInflict": [
+				"frightened"
+			],
+			"savingThrowForced": [
+				"intelligence",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Degloth",
+			"source": "VEoR",
+			"page": 218,
+			"size": [
+				"L"
+			],
+			"type": {
+				"type": "fiend",
+				"tags": [
+					"demon"
+				]
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 133,
+				"formula": "14d10 + 56"
+			},
+			"speed": {
+				"walk": 40,
+				"climb": 40
+			},
+			"str": 23,
+			"dex": 17,
+			"con": 18,
+			"int": 6,
+			"wis": 11,
+			"cha": 9,
+			"save": {
+				"str": "+10",
+				"con": "+8"
+			},
+			"skill": {
+				"athletics": "+10",
+				"perception": "+4"
+			},
+			"senses": [
+				"darkvision 120 ft."
+			],
+			"passive": 14,
+			"resist": [
+				"cold",
+				"fire",
+				"lightning",
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "from nonmagical attacks",
+					"cond": true
+				}
+			],
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"poisoned"
+			],
+			"languages": [
+				"Abyssal",
+				"telepathy 120 ft."
+			],
+			"cr": "11",
+			"trait": [
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The degloth has advantage on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The degloth makes two Razor Fist attacks."
+					]
+				},
+				{
+					"name": "Razor Fist",
+					"entries": [
+						"{@atk mw} {@hit 10} to hit, reach 10 ft., one target. {@h}17 ({@damage 2d10 + 6}) slashing damage, and if the target is a Medium or smaller creature, the target has the {@condition grappled} condition (escape {@dc 18}). Until this grapple ends, the target has the {@condition restrained} condition, and the degloth can't use this fist to grapple another target. The degloth has two fists."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Crush",
+					"entries": [
+						"The degloth targets one creature currently {@condition grappled} by it. The target must make a {@dc 18} Strength saving throw, taking 15 ({@damage 2d8 + 6}) bludgeoning damage on a failed save or half as much damage on a successful one."
+					]
+				}
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AB",
+				"TP"
+			],
+			"damageTags": [
+				"B",
+				"S"
+			],
+			"miscTags": [
+				"MW",
+				"RCH"
+			],
+			"savingThrowForced": [
+				"strength"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Eldon Keyward",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"_copy": {
+				"name": "Priest",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the priest",
+						"with": "Eldon",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true
+		},
+		{
+			"name": "False Lich",
+			"source": "VEoR",
+			"page": 220,
+			"size": [
+				"M"
+			],
+			"type": "undead",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 199,
+				"formula": "21d8 + 105"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 16,
+			"con": 20,
+			"int": 25,
+			"wis": 19,
+			"cha": 15,
+			"save": {
+				"con": "+12",
+				"int": "+14",
+				"wis": "+11",
+				"cha": "+9"
+			},
+			"senses": [
+				"truesight 60 ft."
+			],
+			"passive": 14,
+			"immune": [
+				"necrotic",
+				"poison",
+				"psychic",
+				{
+					"immune": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "from nonmagical attacks",
+					"cond": true
+				}
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"poisoned",
+				"stunned"
+			],
+			"languages": [
+				"Abyssal",
+				"Common",
+				"Draconic",
+				"Dwarvish",
+				"Elvish",
+				"Giant",
+				"Infernal",
+				"Primordial",
+				"Undercommon"
+			],
+			"cr": "21",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The false lich casts one of the following spells, requiring no material components and using Intelligence as the spellcasting ability (spell save {@dc 22}):"
+					],
+					"will": [
+						"{@spell Detect Magic}",
+						"{@spell Fly}",
+						"{@spell Mage Hand}",
+						"{@spell Prestidigitation}"
+					],
+					"daily": {
+						"3e": [
+							"{@spell Dispel Magic}",
+							"{@spell Invisibility} (self only)"
+						],
+						"1e": [
+							"{@spell Globe of Invulnerability}",
+							"{@spell Hold Monster}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Legendary Resistance (3/Day)",
+					"entries": [
+						"If the false lich fails a saving throw, it can choose to succeed instead."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The false lich has advantage on saving throws against spells and magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The false lich makes two Death Rend attacks and uses Bloodcurdling Lament if available."
+					]
+				},
+				{
+					"name": "Death Rend",
+					"entries": [
+						"{@atk ms} {@hit 14} to hit, reach 5 ft., one target. {@h}23 ({@damage 3d10 + 7}) necrotic damage."
+					]
+				},
+				{
+					"name": "Bloodcurdling Lament {@recharge 5}",
+					"entries": [
+						"The false lich emits a hideous shriek charged with malignant energy. Each creature within 30 feet of the false lich must succeed on a {@dc 22} Wisdom saving throw or have the {@condition frightened} condition for 1 minute. While {@condition frightened} in this way, a creature also has the {@condition unconscious} condition. An affected creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Soul Siphon",
+					"entries": [
+						"The false lich targets one creature it can see within 120 feet of itself. The target must make a {@dc 22} Charisma saving throw; if the target has the {@condition unconscious} condition, it has disadvantage on this saving throw. The target takes 21 ({@damage 6d6}) force damage on a failed save or half as much damage on a successful one. The false lich then regains a number of hit points equal to the amount of force damage taken.",
+						"If this damage reduces the target to 0 hit points, the target immediately dies, its body disappears, and its soul is trapped inside one of the soul gems within the false lich's skull. After 24 hours, the gem transfers the soul to the false lich's creator.",
+						"When the false lich is reduced to 0 hit points, it is destroyed and disintegrates, leaving behind the gems. Crushing a gem releases any souls trapped within, at which point the soul's body re-forms in an unoccupied space nearest to the gem and in the same state as it was when its soul was trapped."
+					]
+				}
+			],
+			"legendary": [
+				{
+					"name": "Spiteful Teleport",
+					"entries": [
+						"The false lich, along with anything it is wearing or carrying, teleports to an unoccupied space it can see within 60 feet of itself. It then makes one Death Rend attack if possible."
+					]
+				},
+				{
+					"name": "Cast a Spell (Costs 2 Actions)",
+					"entries": [
+						"The false lich uses Spellcasting."
+					]
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances",
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AB",
+				"C",
+				"D",
+				"DR",
+				"E",
+				"GI",
+				"I",
+				"P",
+				"U"
+			],
+			"damageTags": [
+				"N",
+				"O"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE"
+			],
+			"conditionInflict": [
+				"unconscious"
+			],
+			"conditionInflictSpell": [
+				"invisible",
+				"paralyzed"
+			],
+			"savingThrowForced": [
+				"charisma",
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Fernitha",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"_copy": {
+				"name": "Erinyes",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the erinyes",
+						"with": "Fernitha",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true
+		},
+		{
+			"name": "Figaro",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"_copy": {
+				"name": "Mage",
+				"source": "MM",
+				"_templates": [
+					{
+						"name": "Tiefling",
+						"source": "PHB"
+					}
+				],
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the mage",
+						"with": "Figaro",
+						"flags": "i"
+					}
+				}
+			},
+			"alignment": [
+				"L",
+				"G"
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Glaive",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"page": 81,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "construct",
+				"tags": [
+					"warforged"
+				]
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 187,
+				"formula": "22d8 + 88"
+			},
+			"speed": {
+				"walk": {
+					"number": 30,
+					"condition": "(50 ft. with overdrive)"
+				}
+			},
+			"str": 20,
+			"dex": 16,
+			"con": 19,
+			"int": 11,
+			"wis": 16,
+			"cha": 9,
+			"save": {
+				"str": "+9",
+				"dex": "+7",
+				"wis": "+7"
+			},
+			"skill": {
+				"athletics": "+9",
+				"perception": "+7",
+				"stealth": "+7",
+				"survival": "+7"
+			},
+			"passive": 17,
+			"resist": [
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"poisoned"
+			],
+			"languages": [
+				"Common"
+			],
+			"cr": "11",
+			"trait": [
+				{
+					"name": "Heatsink",
+					"entries": [
+						"When Glaive takes cold damage, her Overdrive immediately recharges."
+					]
+				},
+				{
+					"name": "Pack Tactics",
+					"entries": [
+						"Glaive has advantage on attack rolls if at least one ally is within 5 feet of the creature she's attacking and the ally doesn't have the {@condition incapacitated} condition."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Glaive makes two Spiked Glaive attacks and two Serrated Bolt attacks."
+					]
+				},
+				{
+					"name": "Spiked Glaive",
+					"entries": [
+						"{@atk mw} {@hit 9} to hit, reach 10 ft., one target. {@h}10 ({@damage 1d10 + 5}) piercing or slashing damage, or 14 ({@damage 1d10 + 9}) piercing or slashing damage if Glaive is in overdrive."
+					]
+				},
+				{
+					"name": "Serrated Bolt",
+					"entries": [
+						"{@atk rw} {@hit 7} to hit, range 60 ft., one target. {@h}13 ({@damage 3d6 + 3}) piercing damage. If Glaive has advantage on the attack roll, the serrated bolt lodges in the target, and the target's speed is reduced by 10 feet until the serrated bolt is removed. A target's speed can be reduced by only one serrated bolt at a time. A creature can use its action to remove a serrated bolt lodged in itself or another creature within its reach; when the bolt is removed from a creature, that creature takes 5 ({@damage 2d4}) slashing damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Overdrive (Recharges after Finishing a Short or Long Rest)",
+					"entries": [
+						"Glaive enters a state of overdrive that lasts for 1 minute or until she has the {@condition incapacitated} condition. While in overdrive, Glaive gains the following benefits:",
+						{
+							"type": "list",
+							"items": [
+								"Glaive has advantage on Strength checks and Strength saving throws.",
+								"When Glaive makes a melee weapon attack, she gains a +4 bonus to the damage roll.",
+								"Glaive's speed increases to 50 feet."
+							]
+						}
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Self-Preservation",
+					"entries": [
+						"In response to being hit by a weapon attack, Glaive reduces the damage by 11 ({@dice 2d10})."
+					]
+				}
+			],
+			"traitTags": [
+				"Pack Tactics"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RCH",
+				"RW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Granite Juggernaut",
+			"source": "VEoR",
+			"page": 221,
+			"size": [
+				"L"
+			],
+			"type": "construct",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 14,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 157,
+				"formula": "15d10 + 75"
+			},
+			"speed": {
+				"walk": {
+					"number": 30,
+					"condition": "(in a straight line)"
+				}
+			},
+			"str": 23,
+			"dex": 1,
+			"con": 20,
+			"int": 2,
+			"wis": 11,
+			"cha": 3,
+			"senses": [
+				"blindsight 120 ft."
+			],
+			"passive": 10,
+			"immune": [
+				"poison",
+				"psychic",
+				{
+					"immune": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "from nonmagical attacks that aren't adamantine",
+					"cond": true
+				}
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"petrified",
+				"poisoned",
+				"prone"
+			],
+			"cr": "12",
+			"trait": [
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The juggernaut has advantage on saving throws against spells and other magical effects."
+					]
+				},
+				{
+					"name": "Siege Monster",
+					"entries": [
+						"The juggernaut deals double damage to objects and structures."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Slam",
+					"entries": [
+						"{@atk mw} {@hit 10} to hit, reach 5 ft., one target. {@h}11 ({@damage 1d10 + 6}) bludgeoning damage, and if the target is a Large or smaller creature, it must succeed on a {@dc 18} Strength saving throw or have the {@condition prone} condition."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Devastating Roll",
+					"entries": [
+						"The juggernaut moves up to its speed. During this movement, the juggernaut can move through the spaces of creatures with the {@condition prone} condition. When the juggernaut enters the space of a {@condition prone} creature for the first time during this movement, the creature must make a {@dc 18} Dexterity saving throw, taking 55 ({@damage 10d10}) bludgeoning damage on a failed save or half as much damage on a successful one."
+					]
+				}
+			],
+			"traitTags": [
+				"Magic Resistance",
+				"Siege Monster"
+			],
+			"senseTags": [
+				"B"
+			],
+			"damageTags": [
+				"B"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"savingThrowForced": [
+				"dexterity",
+				"strength"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Grottenelle Stonecutter",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"_copy": {
+				"name": "Mage",
+				"source": "MM",
+				"_templates": [
+					{
+						"name": "Deep Gnome",
+						"source": "DMG"
+					}
+				],
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the mage",
+						"with": "Grottenelle",
+						"flags": "i"
+					}
+				}
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Hazvongel",
+			"source": "VEoR",
+			"page": 222,
+			"size": [
+				"H"
+			],
+			"type": {
+				"type": "fiend",
+				"tags": [
+					"demon"
+				]
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 17,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 237,
+				"formula": "25d12 + 75"
+			},
+			"speed": {
+				"walk": 20,
+				"fly": 60
+			},
+			"str": 21,
+			"dex": 20,
+			"con": 16,
+			"int": 12,
+			"wis": 15,
+			"cha": 11,
+			"save": {
+				"con": "+8",
+				"wis": "+7"
+			},
+			"skill": {
+				"perception": "+7"
+			},
+			"senses": [
+				"blindsight 60 ft.",
+				"darkvision 120 ft."
+			],
+			"passive": 17,
+			"resist": [
+				"cold",
+				"fire",
+				"lightning",
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "from nonmagical attacks",
+					"cond": true
+				}
+			],
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"poisoned"
+			],
+			"languages": [
+				"Abyssal",
+				"telepathy 120 ft."
+			],
+			"cr": "14",
+			"trait": [
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The hazvongel has advantage on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The hazvongel makes three Talon attacks."
+					]
+				},
+				{
+					"name": "Talon",
+					"entries": [
+						"{@atk mw} {@hit 10} to hit, reach 15 ft., one target. {@h}18 ({@damage 3d8 + 5}) piercing damage."
+					]
+				},
+				{
+					"name": "Blood Barrage {@recharge 5}",
+					"entries": [
+						"The hazvongel launches a spray of blood in a 90-foot cone. Each creature in that area must make a {@dc 18} Dexterity saving throw, taking 27 ({@damage 6d8}) necrotic damage on a failed save or half as much damage on a successful one."
+					]
+				}
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"B",
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AB",
+				"TP"
+			],
+			"damageTags": [
+				"N",
+				"P"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RCH"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Hertilod",
+			"source": "VEoR",
+			"page": 223,
+			"size": [
+				"H"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				14
+			],
+			"hp": {
+				"average": 241,
+				"formula": "21d12 + 105"
+			},
+			"speed": {
+				"walk": 50,
+				"climb": 50
+			},
+			"str": 23,
+			"dex": 18,
+			"con": 20,
+			"int": 3,
+			"wis": 15,
+			"cha": 10,
+			"save": {
+				"str": "+12",
+				"dex": "+10"
+			},
+			"skill": {
+				"perception": "+8"
+			},
+			"senses": [
+				"blindsight 30 ft.",
+				"tremorsense 60 ft."
+			],
+			"passive": 18,
+			"resist": [
+				"necrotic",
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "from nonmagical attacks",
+					"cond": true
+				}
+			],
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"poisoned"
+			],
+			"cr": "17",
+			"trait": [
+				{
+					"name": "Legendary Resistances (3/Day)",
+					"entries": [
+						"If the hertilod fails a saving throw, it can choose to succeed instead."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The hertilod has advantage on saving throws against spells and other magical effects."
+					]
+				},
+				{
+					"name": "Shock Susceptibility",
+					"entries": [
+						"If the hertilod takes lightning damage, its speed is halved until the end of its next turn, and it must succeed on a {@dc 15} Constitution saving throw or immediately regurgitate all swallowed creatures, each of which lands in a space within 10 feet of the hertilod and has the {@condition prone} condition."
+					]
+				},
+				{
+					"name": "Spider Climb",
+					"entries": [
+						"The hertilod can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The hertilod makes one Bite attack and two Claw attacks."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 12} to hit, reach 10 ft., one target. {@h}15 ({@damage 2d8 + 6}) piercing damage plus 13 ({@damage 2d12}) poison damage. If the target is a Large or smaller creature, it must succeed on a {@dc 20} Strength saving throw or be swallowed by the hertilod. A swallowed creature has the {@condition blinded} and {@condition restrained} conditions, and it has {@quickref Cover||3||total cover} against attacks and other effects outside the hertilod. At the start of each of the hertilod's turns, each swallowed creature takes 13 ({@damage 2d12}) poison damage from the poisonous secretion in the hertilod's gullet.",
+						"The hertilod's gullet can hold up to two creatures at a time. If the hertilod takes 40 damage or more on a single turn from a swallowed creature, the hertilod must succeed on a {@dc 15} Constitution saving throw at the end of that turn or regurgitate all swallowed creatures, each of which lands in a space within 10 feet of the hertilod and has the {@condition prone} condition. If the hertilod dies, a swallowed creature is no longer {@condition restrained} and can escape from the corpse by using 10 feet of movement, exiting with the {@condition prone} condition."
+					]
+				},
+				{
+					"name": "Claw",
+					"entries": [
+						"{@atk mw} {@hit 12} to hit, reach 5 ft., one target. {@h}17 ({@damage 2d10 + 6}) slashing damage."
+					]
+				}
+			],
+			"legendary": [
+				{
+					"name": "Sprint",
+					"entries": [
+						"The hertilod moves up to its speed. This movement doesn't provoke opportunity attacks."
+					]
+				},
+				{
+					"name": "Feed (Costs 2 Actions)",
+					"entries": [
+						"The hertilod drains life from the creatures in its gullet to bolster itself. Each creature in the hertilod's gullet takes 10 ({@damage 3d6}) necrotic damage, and the hertilod regains a number of hit points equal to the damage."
+					]
+				}
+			],
+			"traitTags": [
+				"Magic Resistance",
+				"Spider Climb"
+			],
+			"senseTags": [
+				"B",
+				"T"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Swallow"
+			],
+			"damageTags": [
+				"I",
+				"N",
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MW",
+				"RCH"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"strength"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Inda",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"_copy": {
+				"name": "Deva",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the deva",
+						"with": "Inda",
+						"flags": "i"
+					}
+				}
+			},
+			"speed": {
+				"walk": 30
+			},
+			"hasToken": true
+		},
+		{
+			"name": "Indrina Lamsensettle",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"_copy": {
+				"name": "Noble",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the noble",
+						"with": "Indrina",
+						"flags": "i"
+					}
+				}
+			},
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"alignment": [
+				"L",
+				"N"
+			],
+			"ac": [
+				11
+			],
+			"action": null,
+			"hasToken": true
+		},
+		{
+			"name": "Jerot Galgin",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"_copy": {
+				"name": "Necromancer Wizard",
+				"source": "MPMM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the necromancer",
+						"with": "Jerot",
+						"flags": "i"
+					}
+				}
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Kakkuu Spyder-Fiend",
+			"source": "VEoR",
+			"page": 234,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "fiend",
+				"tags": [
+					"demon"
+				]
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 91,
+				"formula": "14d8 + 28"
+			},
+			"speed": {
+				"walk": 30,
+				"climb": 30
+			},
+			"str": 17,
+			"dex": 15,
+			"con": 14,
+			"int": 6,
+			"wis": 10,
+			"cha": 10,
+			"save": {
+				"dex": "+5",
+				"con": "+5",
+				"wis": "+3"
+			},
+			"skill": {
+				"perception": "+3",
+				"stealth": "+5"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 13,
+			"resist": [
+				"cold",
+				"fire",
+				"lightning"
+			],
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"poisoned"
+			],
+			"languages": [
+				"understands Abyssal but can't speak"
+			],
+			"cr": "5",
+			"trait": [
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The kakkuu has advantage on saving throws against spells and other magical effects."
+					]
+				},
+				{
+					"name": "Spider Climb",
+					"entries": [
+						"The kakkuu can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check."
+					]
+				},
+				{
+					"name": "Web Sense",
+					"entries": [
+						"When in contact with a web, the kakkuu knows the exact location of any other creature in contact with the same web."
+					]
+				},
+				{
+					"name": "Web Walker",
+					"entries": [
+						"The kakkuu ignores movement restrictions caused by webbing."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The kakkuu makes a Web Snare attack, uses Reel, and makes a Bite attack."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}14 ({@damage 2d10 + 3}) piercing damage plus 10 ({@damage 3d6}) poison damage."
+					]
+				},
+				{
+					"name": "Reel",
+					"entries": [
+						"The kakkuu pulls each creature within 60 feet of itself that is {@condition grappled} by its Web Snare up to 30 feet straight toward itself."
+					]
+				},
+				{
+					"name": "Web Snare",
+					"entries": [
+						"{@atk rw} {@hit 6} to hit, reach 30/60 ft., one Large or smaller creature. {@h}The target has the {@condition grappled} condition (escape {@dc 13}). While {@condition grappled}, the target also has the {@condition restrained} condition. A web snare grappling a creature can be attacked and destroyed (AC 10; 10 hit points; immunity to bludgeoning, poison, and psychic damage)."
+					]
+				}
+			],
+			"traitTags": [
+				"Magic Resistance",
+				"Spider Climb",
+				"Web Sense",
+				"Web Walker"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AB",
+				"CS"
+			],
+			"damageTags": [
+				"I",
+				"P"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Kas the Betrayer",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"page": 244,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "undead",
+				"tags": [
+					"vampire"
+				]
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"{@item plate armor|PHB|plate}"
+					]
+				}
+			],
+			"hp": {
+				"average": 315,
+				"formula": "30d8 + 180"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 26,
+			"dex": 20,
+			"con": 22,
+			"int": 24,
+			"wis": 19,
+			"cha": 26,
+			"save": {
+				"con": "+13",
+				"wis": "+11",
+				"cha": "+15"
+			},
+			"skill": {
+				"arcana": "+14",
+				"deception": "+22",
+				"perception": "+11",
+				"stealth": "+12"
+			},
+			"senses": [
+				"darkvision 120 ft."
+			],
+			"passive": 21,
+			"immune": [
+				"necrotic",
+				"poison",
+				{
+					"immune": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "from nonmagical attacks",
+					"cond": true
+				}
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"poisoned"
+			],
+			"languages": [
+				"Abyssal",
+				"Common",
+				"Draconic",
+				"Infernal"
+			],
+			"cr": "23",
+			"trait": [
+				{
+					"name": "Eager Betrayer",
+					"entries": [
+						"Kas adds {@dice 1d10} to his initiative rolls. He has advantage on attack rolls against any creature that has the {@condition frightened} condition."
+					]
+				},
+				{
+					"name": "Legendary Resistance (3/Day)",
+					"entries": [
+						"If Kas fails a saving throw, he can choose to succeed instead."
+					]
+				},
+				{
+					"name": "Regeneration",
+					"entries": [
+						"Kas regains 20 hit points at the start of his turn if he has at least 1 hit point. If he takes radiant damage, this trait doesn't function at the start of his next turn."
+					]
+				},
+				{
+					"name": "Special Equipment",
+					"entries": [
+						"Kas wears the Crown of Lies (see the Introduction of Vecna: Eve of Ruin)."
+					]
+				},
+				{
+					"name": "Spider Climb",
+					"entries": [
+						"Kas can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check."
+					]
+				},
+				{
+					"name": "Strength of the Night",
+					"entries": [
+						"Kas doesn't require a coffin, and he drinks blood to sow terror rather than for sustenance. If destroyed, Kas revives in {@dice 1d100} nights in an unoccupied space in Tovag, his Domain of Dread. He can be permanently destroyed only by having a stake driven through his heart and then being beheaded. The stake must be cut from a tree growing in soil from Oerth, Kas's home world."
+					]
+				},
+				{
+					"name": "Sunlight Hypersensitivity",
+					"entries": [
+						"While in sunlight, Kas takes 20 radiant damage at the start of his turn, has disadvantage on attack rolls and ability checks, and can't use his Change Shape bonus action."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Kas makes three Vengeful Sword attacks. He can replace one of these attacks with a Bite attack."
+					]
+				},
+				{
+					"name": "Vengeful Sword",
+					"entries": [
+						"{@atk mw} {@hit 15} to hit, reach 5 ft., one target. {@h}20 ({@damage 2d8 + 11}) slashing damage. The sword scores a critical hit on a roll of 19 or 20."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 15} to hit, reach 5 ft., one creature. {@h}11 ({@damage 1d6 + 8}) piercing damage plus 10 ({@damage 3d6}) necrotic damage. The target's hit point maximum is reduced by an amount equal to the necrotic damage taken, and Kas regains a number of hit points equal to that amount. The reduction lasts until the target finishes a long rest. The target dies if its hit point maximum is reduced to 0. A Humanoid slain in this way and then buried rises the following night as a vampire spawn under Kas's control."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Change Shape",
+					"entries": [
+						"Kas transforms into a Medium cloud of mist. While in this form, Kas has a flying speed of 20 feet, can hover, and can enter a hostile creature's space and stop there. While in mist form, Kas can pass through a space without squeezing as long as air can pass through that space, but he can't pass through water. Kas has advantage on Strength, Dexterity, and Constitution saving throws, and he is immune to all nonmagical damage except the damage he takes as part of his Vampire Weaknesses trait. While in mist form, Kas can't take any actions, speak, or manipulate objects."
+					]
+				},
+				{
+					"name": "Menacing Glare",
+					"entries": [
+						"Kas targets one creature he can see within 60 feet of himself. The target must succeed on a {@dc 23} Wisdom saving throw or have the {@condition frightened} condition until the start of Kas's next turn."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Parrying Riposte",
+					"entries": [
+						"Kas adds 3 to his AC against one melee attack roll that would hit him. He then makes one Vengeful Sword attack against the attacker if it is within his reach. On a hit, the target takes an additional 9 ({@damage 2d8}) slashing damage."
+					]
+				}
+			],
+			"legendary": [
+				{
+					"name": "Move",
+					"entries": [
+						"Kas moves up to his speed without provoking opportunity attacks."
+					]
+				},
+				{
+					"name": "Sword (Costs 2 Actions)",
+					"entries": [
+						"Kas makes one Vengeful Sword attack."
+					]
+				},
+				{
+					"name": "Rise, Fallen Soldier (Costs 3 Actions)",
+					"entries": [
+						"Kas magically summons a specter. The specter appears in an unoccupied space within 30 feet of Kas, whom it obeys. The specter takes its turn immediately after Kas. It lasts for 1 hour, until Kas dies, or until Kas dismisses it as a bonus action. Kas can't have more than two specters summoned at a time."
+					]
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances",
+				"Regeneration",
+				"Spider Climb",
+				"Sunlight Sensitivity"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Shapechanger"
+			],
+			"languageTags": [
+				"AB",
+				"C",
+				"DR",
+				"I"
+			],
+			"damageTags": [
+				"N",
+				"P",
+				"R",
+				"S"
+			],
+			"miscTags": [
+				"HPR",
+				"MW"
+			],
+			"conditionInflict": [
+				"frightened"
+			],
+			"savingThrowForced": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Kaylan Renaudon",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"_copy": {
+				"name": "Vampire",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the vampire",
+						"with": "Kaylan",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true
+		},
+		{
+			"name": "Ker-arach",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"_copy": {
+				"name": "Spiderdragon",
+				"source": "VEoR",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the spiderdragon",
+						"with": "Ker-arach",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true
+		},
+		{
+			"name": "Kevetta Dolindar",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"_copy": {
+				"name": "Lonely Sorrowsworn",
+				"source": "MPMM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the sorrowsworn",
+						"with": "Kevetta",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true
+		},
+		{
+			"name": "Khai Kiroth",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"_copy": {
+				"name": "Red Abishai",
+				"source": "MPMM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the abishai",
+						"with": "Khai",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true
+		},
+		{
+			"name": "Laysa Matulin",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"_copy": {
+				"name": "Assassin",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the assassin",
+						"with": "Laysa",
+						"flags": "i"
+					}
+				}
+			},
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"alignment": [
+				"C",
+				"G"
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Lysan",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"_copy": {
+				"name": "Githyanki Knight",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the githyanki",
+						"with": "Lysan",
+						"flags": "i"
+					}
+				}
+			},
+			"alignment": [
+				"L",
+				"N"
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Malaina van Talstiv",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"_copy": {
+				"name": "Assassin",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the assassin",
+						"with": "Malaina",
+						"flags": "i"
+					}
+				}
+			},
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"alignment": [
+				"N",
+				"G"
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Mirror Shade",
+			"source": "VEoR",
+			"page": 226,
+			"size": [
+				"M"
+			],
+			"type": "undead",
+			"alignment": [
+				"C",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 91,
+				"formula": "14d8 + 28"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 8,
+			"dex": 17,
+			"con": 14,
+			"int": 10,
+			"wis": 13,
+			"cha": 18,
+			"save": {
+				"dex": "+7",
+				"wis": "+5"
+			},
+			"skill": {
+				"deception": "+8",
+				"stealth": "+7"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 11,
+			"resist": [
+				"acid",
+				"fire",
+				"lightning",
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "from nonmagical attacks",
+					"cond": true
+				}
+			],
+			"immune": [
+				"poison",
+				"psychic",
+				"radiant"
+			],
+			"conditionImmune": [
+				"blinded",
+				"exhaustion",
+				"frightened",
+				"grappled",
+				"paralyzed",
+				"petrified",
+				"poisoned",
+				"prone",
+				"restrained"
+			],
+			"cr": "10",
+			"trait": [
+				{
+					"name": "False Appearance",
+					"entries": [
+						"If the mirror shade is within 5 feet of a reflective surface\u2014such as a mirror, glass pane, or still water\u2014it has advantage on its initiative roll. If a creature hasn't observed the mirror shade move or act, that creature must succeed on a {@dc 18} Intelligence ({@skill Investigation}) check to discern that the mirror shade isn't the creature's own reflection."
+					]
+				},
+				{
+					"name": "Mirror Movement",
+					"entries": [
+						"The mirror shade can move along the surface of reflective or translucent objects, such as mirrors, without provoking opportunity attacks. It can move through translucent objects as if they were difficult terrain."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The mirror shade makes two Phantasmal Strike attacks and uses Reflect Fear."
+					]
+				},
+				{
+					"name": "Phantasmal Strike",
+					"entries": [
+						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d8 + 3}) radiant damage plus 7 ({@damage 2d6}) psychic damage."
+					]
+				},
+				{
+					"name": "Reflect Fear",
+					"entries": [
+						"The mirror shade targets one creature it can see within 60 feet of itself and projects an illusion of that creature's greatest fear. The target must make a {@dc 16} Wisdom saving throw. On a failed save, the target takes 28 ({@damage 8d6}) psychic damage and has the {@condition frightened} condition until the start of the mirror shade's next turn. On a successful save, the target takes half as much damage only."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Mirror Stealth",
+					"entries": [
+						"While within 5 feet of a reflective surface, such as a mirror, the mirror shade takes the Hide action."
+					]
+				}
+			],
+			"traitTags": [
+				"False Appearance"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"damageTags": [
+				"R",
+				"Y"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"conditionInflict": [
+				"frightened"
+			],
+			"savingThrowForced": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Miska the Wolf-Spider",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"page": 247,
+			"size": [
+				"H"
+			],
+			"type": {
+				"type": "fiend",
+				"tags": [
+					"demon"
+				]
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 21,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 399,
+				"formula": "38d12 + 152"
+			},
+			"speed": {
+				"walk": 40,
+				"climb": 40
+			},
+			"str": 23,
+			"dex": 18,
+			"con": 19,
+			"int": 18,
+			"wis": 21,
+			"cha": 22,
+			"save": {
+				"dex": "+11",
+				"con": "+11",
+				"wis": "+12"
+			},
+			"skill": {
+				"insight": "+12",
+				"perception": "+12",
+				"stealth": "+11"
+			},
+			"senses": [
+				"truesight 120 ft."
+			],
+			"passive": 21,
+			"resist": [
+				"cold",
+				"fire",
+				"lightning"
+			],
+			"immune": [
+				"poison",
+				{
+					"immune": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "from nonmagical attacks",
+					"cond": true
+				}
+			],
+			"conditionImmune": [
+				"poisoned"
+			],
+			"languages": [
+				"Abyssal",
+				"Common",
+				"telepathy 120 ft."
+			],
+			"cr": "24",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Miska casts one of the following spells, requiring no material components and using Charisma as the spellcasting ability (spell save {@dc 21}):"
+					],
+					"will": [
+						"{@spell Disguise Self}",
+						"{@spell Invisibility}",
+						"{@spell Mage Hand}",
+						"{@spell Minor Illusion}",
+						"{@spell Web}"
+					],
+					"daily": {
+						"2e": [
+							"{@spell Dominate Monster}",
+							"{@spell Mass Suggestion}",
+							"{@spell Mirror Image}",
+							"{@spell Telekinesis}",
+							"{@spell Teleport}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Foul Ichor",
+					"entries": [
+						"A creature that hits Miska with a melee weapon attack takes 7 ({@damage 2d6}) poison damage."
+					]
+				},
+				{
+					"name": "Legendary Resistance (3/Day)",
+					"entries": [
+						"If Miska fails a saving throw, he can choose to succeed instead."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"Miska has advantage on saving throws against spells and other magical effects."
+					]
+				},
+				{
+					"name": "Spider Climb",
+					"entries": [
+						"Miska can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check."
+					]
+				},
+				{
+					"name": "Web Sense",
+					"entries": [
+						"When in contact with a web, Miska knows the exact location of any other creature in contact with the same web."
+					]
+				},
+				{
+					"name": "Web Walker",
+					"entries": [
+						"Miska ignores movement restrictions caused by webbing."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Miska makes one Lupine Bite attack and two Trident of Chaos attacks."
+					]
+				},
+				{
+					"name": "Lupine Bite",
+					"entries": [
+						"{@atk mw} {@hit 13} to hit, reach 10 ft., one target. {@h}17 ({@damage 2d10 + 6}) piercing damage plus 27 ({@damage 6d8}) poison damage. If the target is a creature, it must succeed on a {@dc 21} Constitution saving throw or have the {@condition poisoned} condition for 1 minute. While {@condition poisoned} in this way, a creature has the {@condition incapacitated} condition and can't regain hit points. A {@condition poisoned} creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+					]
+				},
+				{
+					"name": "Trident of Chaos",
+					"entries": [
+						"{@atk mw} {@hit 13} to hit, reach 15 ft., one target. {@h}13 ({@damage 2d6 + 6}) piercing damage plus 9 ({@damage 2d8}) force damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Demand Loyalty",
+					"entries": [
+						"Miska magically ends the {@condition charmed} and {@condition frightened} conditions on himself and on any of his allies within 120 feet of himself."
+					]
+				}
+			],
+			"legendary": [
+				{
+					"name": "Howl",
+					"entries": [
+						"Miska utters a bloodthirsty howl at one creature within 120 feet of himself that isn't a Fiend. The target must succeed on a {@dc 20} Wisdom saving throw or take 13 ({@damage 2d12}) psychic damage."
+					]
+				},
+				{
+					"name": "Skitter",
+					"entries": [
+						"Miska moves up to his speed without provoking opportunity attacks."
+					]
+				},
+				{
+					"name": "Cast a Spell (Costs 2 Actions)",
+					"entries": [
+						"Miska uses Spellcasting."
+					]
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances",
+				"Magic Resistance",
+				"Spider Climb",
+				"Web Sense",
+				"Web Walker"
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AB",
+				"C",
+				"TP"
+			],
+			"damageTags": [
+				"I",
+				"O",
+				"P",
+				"Y"
+			],
+			"damageTagsSpell": [
+				"F"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"incapacitated"
+			],
+			"conditionInflictSpell": [
+				"charmed",
+				"invisible",
+				"restrained"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Moonlight Guardian",
+			"source": "VEoR",
+			"page": 227,
+			"size": [
+				"M"
+			],
+			"type": "construct",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 105,
+				"formula": "14d8 + 42"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 19,
+			"dex": 9,
+			"con": 16,
+			"int": 6,
+			"wis": 12,
+			"cha": 6,
+			"senses": [
+				"truesight 120 ft."
+			],
+			"passive": 11,
+			"resist": [
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "from nonmagical attacks",
+					"cond": true
+				}
+			],
+			"immune": [
+				"poison",
+				"radiant"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"petrified",
+				"poisoned"
+			],
+			"languages": [
+				"understands the languages of its creator but can't speak"
+			],
+			"cr": "6",
+			"trait": [
+				{
+					"name": "Immutable Form",
+					"entries": [
+						"The guardian is immune to any spell or other effect that would alter its form."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The guardian has advantage on saving throws against spells and other magical effects."
+					]
+				},
+				{
+					"name": "Radiant Absorption",
+					"entries": [
+						"Whenever the guardian is subjected to radiant damage, it takes no damage and instead regains a number of hit points equal to the radiant damage."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The guardian makes two Moonlight Slam attacks."
+					]
+				},
+				{
+					"name": "Moonlight Slam",
+					"entries": [
+						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}8 ({@damage 1d8 + 4}) bludgeoning damage plus 4 ({@damage 1d8}) radiant damage."
+					]
+				},
+				{
+					"name": "Moonlight Blast {@recharge 5}",
+					"entries": [
+						"The guardian unleashes a magical blast of moonlight in a line 60 feet long and 5 feet wide. Each creature in that area must make a {@dc 14} Dexterity saving throw. Creatures that aren't in their true form have disadvantage on the save. On a failed save, a creature takes 22 ({@damage 5d8}) radiant damage, and if it isn't in its true form, it is forced into its true form and can't change forms until the end of the guardian's next turn. On a successful save, a creature takes half as much damage only."
+					]
+				}
+			],
+			"traitTags": [
+				"Damage Absorption",
+				"Immutable Form",
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"CS"
+			],
+			"damageTags": [
+				"B",
+				"R"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Naxa",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"_copy": {
+				"name": "Drow Mage",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the drow",
+						"with": "Naxa",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true
+		},
+		{
+			"name": "Nyssa Otellion",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"_copy": {
+				"name": "Blue Abishai",
+				"source": "MPMM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the abishai",
+						"with": "Nyssa",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true
+		},
+		{
+			"name": "Orinix",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"_copy": {
+				"name": "Adult Lunar Dragon",
+				"source": "BAM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the dragon",
+						"with": "Orinix",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true
+		},
+		{
+			"name": "Phisarazu Spyder-Fiend",
+			"source": "VEoR",
+			"page": 235,
+			"size": [
+				"L"
+			],
+			"type": {
+				"type": "fiend",
+				"tags": [
+					"demon"
+				]
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 17,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 170,
+				"formula": "20d10 + 60"
+			},
+			"speed": {
+				"walk": 40,
+				"climb": 40
+			},
+			"str": 19,
+			"dex": 14,
+			"con": 17,
+			"int": 11,
+			"wis": 14,
+			"cha": 13,
+			"save": {
+				"dex": "+7",
+				"con": "+8",
+				"wis": "+7"
+			},
+			"skill": {
+				"perception": "+7",
+				"stealth": "+7"
+			},
+			"senses": [
+				"truesight 120 ft."
+			],
+			"passive": 17,
+			"resist": [
+				"cold",
+				"fire",
+				"lightning",
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "from nonmagical attacks",
+					"cond": true
+				}
+			],
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"poisoned"
+			],
+			"languages": [
+				"Abyssal",
+				"Common",
+				"telepathy 120 ft."
+			],
+			"cr": "13",
+			"trait": [
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The phisarazu has advantage on saving throws against spells and other magical effects."
+					]
+				},
+				{
+					"name": "Spider Climb",
+					"entries": [
+						"The phisarazu can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check."
+					]
+				},
+				{
+					"name": "Web Sense",
+					"entries": [
+						"When in contact with a web, the phisarazu knows the exact location of any other creature in contact with the same web."
+					]
+				},
+				{
+					"name": "Web Walker",
+					"entries": [
+						"The phisarazu ignores movement restrictions caused by webbing."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The phisarazu makes one Bite attack and two Claw attacks. It can replace one of these attacks with Scintillating Spray if available."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}15 ({@damage 2d10 + 4}) piercing damage plus 9 ({@damage 2d8}) poison damage, and the target has the {@condition poisoned} condition until the start of the phisarazu's next turn."
+					]
+				},
+				{
+					"name": "Claw",
+					"entries": [
+						"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}22 ({@damage 4d8 + 4}) slashing damage."
+					]
+				},
+				{
+					"name": "Scintillating Spray {@recharge 5}",
+					"entries": [
+						"The phisarazu expels shimmering webs in a 60-foot cone. Creatures and objects in that area are outlined by the glittering webs for 1 minute, during which time they emit dim light for 10 feet and can't benefit from the {@condition invisible} condition. Additionally, creatures in that area must succeed on a {@dc 16} Wisdom saving throw or have the {@condition stunned} condition for 1 minute. A {@condition stunned} creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Change Shape",
+					"entries": [
+						"The phisarazu transforms into a crab, drider, or giant crab, or returns to its true form. Its game statistics, except for its size, are the same in each form. Any equipment it is wearing or carrying isn't transformed."
+					]
+				}
+			],
+			"traitTags": [
+				"Magic Resistance",
+				"Spider Climb",
+				"Web Sense",
+				"Web Walker"
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Shapechanger"
+			],
+			"languageTags": [
+				"AB",
+				"C",
+				"TP"
+			],
+			"damageTags": [
+				"I",
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"AOE",
+				"MW"
+			],
+			"savingThrowForced": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Quavilithku Spyder-Fiend",
+			"source": "VEoR",
+			"page": 236,
+			"size": [
+				"L"
+			],
+			"type": {
+				"type": "fiend",
+				"tags": [
+					"demon"
+				]
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 19,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 256,
+				"formula": "27d10 + 108"
+			},
+			"speed": {
+				"walk": 40,
+				"climb": 40
+			},
+			"str": 18,
+			"dex": 16,
+			"con": 19,
+			"int": 17,
+			"wis": 14,
+			"cha": 12,
+			"save": {
+				"dex": "+9",
+				"con": "+10",
+				"wis": "+8"
+			},
+			"skill": {
+				"investigation": "+9",
+				"perception": "+8",
+				"stealth": "+9"
+			},
+			"senses": [
+				"truesight 60 ft."
+			],
+			"passive": 18,
+			"resist": [
+				"cold",
+				"fire",
+				"lightning"
+			],
+			"immune": [
+				"acid",
+				"poison"
+			],
+			"conditionImmune": [
+				"poisoned"
+			],
+			"languages": [
+				"Abyssal",
+				"Common",
+				"telepathy 120 ft."
+			],
+			"cr": "17",
+			"trait": [
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The quavilithku has advantage on saving throws against spells and other magical effects."
+					]
+				},
+				{
+					"name": "Spider Climb",
+					"entries": [
+						"The quavilithku can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check."
+					]
+				},
+				{
+					"name": "Web Sense",
+					"entries": [
+						"When in contact with a web, the quavilithku knows the exact location of any other creature in contact with the same web."
+					]
+				},
+				{
+					"name": "Web Walker",
+					"entries": [
+						"The quavilithku ignores movement restrictions caused by webbing."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The quavilithku makes two Bite attacks."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 10} to hit, reach 5 ft., one target. {@h}15 ({@damage 2d10 + 4}) piercing damage plus 17 ({@damage 5d6}) poison damage. If the target is a creature, it must succeed on a {@dc 18} Constitution saving throw or have the {@condition poisoned} condition for 1 minute. While {@condition poisoned} in this way, a creature can't regain hit points. A {@condition poisoned} creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+					]
+				},
+				{
+					"name": "Dissolving Web {@recharge 5}",
+					"entries": [
+						"The quavilithku expels acid-drenched webs in a 90-foot cone. Each creature in that area must make a {@dc 18} Constitution saving throw, taking 44 ({@damage 8d10}) acid damage on a failed save or half as much damage on a successful one. Nonmagical objects in the area that aren't being worn or carried take 44 ({@damage 8d10}) acid damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Assess Weakness",
+					"entries": [
+						"The quavilithku sizes up a creature it can see within 40 feet of itself. Until the start of the quavilithku's next turn, it has advantage on attack rolls against the creature."
+					]
+				}
+			],
+			"traitTags": [
+				"Magic Resistance",
+				"Spider Climb",
+				"Web Sense",
+				"Web Walker"
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AB",
+				"C",
+				"TP"
+			],
+			"damageTags": [
+				"A",
+				"I",
+				"P"
+			],
+			"miscTags": [
+				"AOE",
+				"MW"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Rack",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"_copy": {
+				"name": "Blade Scout",
+				"source": "VEoR",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the scout",
+						"with": "Crunch",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true
+		},
+		{
+			"name": "Raklupis Spyder-Fiend",
+			"source": "VEoR",
+			"page": 236,
+			"size": [
+				"L"
+			],
+			"type": {
+				"type": "fiend",
+				"tags": [
+					"demon"
+				]
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 19,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 210,
+				"formula": "28d10 + 56"
+			},
+			"speed": {
+				"walk": 40,
+				"climb": 40
+			},
+			"str": 17,
+			"dex": 20,
+			"con": 14,
+			"int": 18,
+			"wis": 16,
+			"cha": 23,
+			"save": {
+				"dex": "+11",
+				"con": "+8",
+				"wis": "+9"
+			},
+			"skill": {
+				"perception": "+9",
+				"stealth": "+11"
+			},
+			"senses": [
+				"truesight 120 ft."
+			],
+			"passive": 19,
+			"immune": [
+				"cold",
+				"fire",
+				"lightning",
+				"poison"
+			],
+			"conditionImmune": [
+				"poisoned"
+			],
+			"languages": [
+				"Abyssal",
+				"Common",
+				"telepathy 120 ft."
+			],
+			"cr": "19",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The raklupis casts one of the following spells, requiring no material components and using Charisma as the spellcasting ability (spell save {@dc 20})."
+					],
+					"will": [
+						"{@spell Disguise Self}",
+						"{@spell Invisibility} (self only)",
+						"{@spell Mage Hand}",
+						"{@spell Minor Illusion}"
+					],
+					"daily": {
+						"2e": [
+							"{@spell Darkness}",
+							"{@spell Dominate Monster}",
+							"{@spell Mass Suggestion}",
+							"{@spell Telekinesis}",
+							"{@spell Teleport}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The raklupis has advantage on saving throws against spells and other magical effects."
+					]
+				},
+				{
+					"name": "Spider Climb",
+					"entries": [
+						"The raklupis can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check."
+					]
+				},
+				{
+					"name": "Web Sense",
+					"entries": [
+						"When in contact with a web, the raklupis knows the exact location of any other creature in contact with the same web."
+					]
+				},
+				{
+					"name": "Web Walker",
+					"entries": [
+						"The raklupis ignores movement restrictions caused by webbing."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The raklupis makes a Bite attack and two Serrated Sword attacks. It can use Venom Globe in place of one of these attacks."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 11} to hit, reach 5 ft., one target. {@h}16 ({@damage 2d10 + 5}) piercing damage plus 18 ({@damage 4d8}) poison damage. If the target is a creature, it must succeed on a {@dc 20} Constitution saving throw or have the {@condition poisoned} condition for 1 minute. While {@condition poisoned} in this way, a creature has the {@condition incapacitated} condition and can't regain hit points. A {@condition poisoned} creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+					]
+				},
+				{
+					"name": "Serrated Sword",
+					"entries": [
+						"{@atk mw} {@hit 11} to hit, reach 5 ft., one target. {@h}19 ({@damage 4d6 + 5}) slashing damage plus 18 ({@damage 4d8}) poison damage."
+					]
+				},
+				{
+					"name": "Venom Globe",
+					"entries": [
+						"{@atk rw} {@hit 11} to hit, range 60/180 ft., one target. {@h}45 ({@damage 10d8}) poison damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Demand Loyalty",
+					"entries": [
+						"The raklupis magically ends the {@condition charmed} and {@condition frightened} conditions on itself and on any number of allies within 60 feet of itself."
+					]
+				}
+			],
+			"traitTags": [
+				"Magic Resistance",
+				"Spider Climb",
+				"Web Sense",
+				"Web Walker"
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AB",
+				"C",
+				"TP"
+			],
+			"damageTags": [
+				"I",
+				"P",
+				"S"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MW",
+				"RW"
+			],
+			"conditionInflict": [
+				"incapacitated"
+			],
+			"conditionInflictSpell": [
+				"charmed",
+				"invisible",
+				"restrained"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Redbud",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"_copy": {
+				"name": "Treant",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the treant",
+						"with": "Redbud",
+						"flags": "i"
+					}
+				}
+			},
+			"speed": {
+				"walk": 0
+			},
+			"hasToken": true
+		},
+		{
+			"name": "Relentless Impaler",
+			"source": "VEoR",
+			"page": 231,
+			"size": [
+				"L"
+			],
+			"type": "fiend",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 184,
+				"formula": "16d10 + 96"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 23,
+			"dex": 16,
+			"con": 22,
+			"int": 12,
+			"wis": 15,
+			"cha": 18,
+			"save": {
+				"str": "+11",
+				"dex": "+8",
+				"cha": "+9"
+			},
+			"skill": {
+				"athletics": "+11",
+				"perception": "+7",
+				"survival": "+7"
+			},
+			"senses": [
+				"darkvision 120 ft."
+			],
+			"passive": 17,
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened"
+			],
+			"languages": [
+				"understands all languages but can't speak"
+			],
+			"cr": "15",
+			"trait": [
+				{
+					"name": "Bloodheart Stake",
+					"entries": [
+						"The impaler is magically bound to the ceremonial stake and the sacrificed corpse the ritual caster used to create it. If the impaler is reduced to 0 hit points, it disappears, then re-forms {@dice 1d8} hours later in the nearest unoccupied space to the stake and regains all its hit points. The impaler dies only if it is reduced to 0 hit points while either the ceremonial stake is removed from the sacrifice's corpse or the impaler is on a different plane of existence from that corpse."
+					]
+				},
+				{
+					"name": "Legendary Resistance (3/Day)",
+					"entries": [
+						"If the impaler fails a saving throw, it can choose to succeed instead."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The impaler makes one Spike attack and two Wicked Spear attacks."
+					]
+				},
+				{
+					"name": "Spike",
+					"entries": [
+						"{@atk mw} {@hit 11} to hit, reach 5 ft., one target. {@h}15 ({@damage 2d8 + 6}) piercing damage, and the target's speed is halved until the start of the impaler's next turn."
+					]
+				},
+				{
+					"name": "Wicked Spear",
+					"entries": [
+						"{@atk mw,rw} {@hit 11} to hit, reach 10 ft. or range 20/40 ft., one target. {@h}13 ({@damage 2d6 + 6}) piercing damage plus 13 ({@damage 3d8}) necrotic damage."
+					]
+				},
+				{
+					"name": "Spike Burst {@recharge 5}",
+					"entries": [
+						"Twisted, spectral spikes shoot out from the impaler's body. Each creature within 30 feet of the impaler must make a {@dc 19} Dexterity saving throw, taking 40 ({@damage 9d8}) force damage on a failed save or half as much damage on a successful one."
+					]
+				}
+			],
+			"legendary": [
+				{
+					"name": "Speed Spike",
+					"entries": [
+						"The impaler teleports up to 30 feet to an unoccupied space it can see. It can then make a Spike attack."
+					]
+				},
+				{
+					"name": "Deepen Wounds (Costs 2 Actions)",
+					"entries": [
+						"Each creature whose speed is currently reduced by the impaler's Spike attack takes 18 ({@damage 4d8}) necrotic damage."
+					]
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"CS",
+				"XX"
+			],
+			"damageTags": [
+				"N",
+				"O",
+				"P"
+			],
+			"miscTags": [
+				"AOE",
+				"MLW",
+				"MW",
+				"RCH",
+				"RW",
+				"THW"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Rerak",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"_copy": {
+				"name": "False Lich",
+				"source": "VEoR",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the false lich",
+						"with": "Rerak",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true
+		},
+		{
+			"name": "Rezran \"Snake Eyes\" Agrodro",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"_copy": {
+				"name": "Green Abishai",
+				"source": "MPMM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the abishai",
+						"with": "Rezran",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true
+		},
+		{
+			"name": "Riffel",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"_copy": {
+				"name": "Werewolf",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the werewolf",
+						"with": "Riffel",
+						"flags": "i"
+					}
+				}
+			},
+			"size": [
+				"S"
+			],
+			"alignment": [
+				"N",
+				"G"
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Sangora",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"_copy": {
+				"name": "Vampire",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the vampire",
+						"with": "Sangora",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true
+		},
+		{
+			"name": "Sarcelle Malinosh",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"_copy": {
+				"name": "Mage",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the mage",
+						"with": "Sarcelle",
+						"flags": "i"
+					}
+				}
+			},
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"spellcasting": null,
+			"hasToken": true
+		},
+		{
+			"name": "Sarusanda Allester",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"_copy": {
+				"name": "Inquisitor of the Tome",
+				"source": "VRGR",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the inquisitor",
+						"with": "Sarusanda",
+						"flags": "i"
+					},
+					"_": {
+						"mode": "addSpells",
+						"will": [
+							"{@spell speak with dead}"
+						]
+					}
+				}
+			},
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"alignment": [
+				"L",
+				"N"
+			],
+			"languages": [
+				"Celestial",
+				"Common",
+				"Draconic",
+				"Elvish",
+				"any four languages",
+				"telepathy 120 ft."
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Shanzezim",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"_copy": {
+				"name": "Marid",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the marid",
+						"with": "Shanzezim",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true
+		},
+		{
+			"name": "Spiderdragon",
+			"source": "VEoR",
+			"page": 233,
+			"size": [
+				"H"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"C",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 17,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 152,
+				"formula": "16d12 + 48"
+			},
+			"speed": {
+				"walk": 50,
+				"climb": 60
+			},
+			"str": 21,
+			"dex": 18,
+			"con": 16,
+			"int": 7,
+			"wis": 14,
+			"cha": 18,
+			"save": {
+				"str": "+9",
+				"dex": "+8"
+			},
+			"skill": {
+				"intimidation": "+8",
+				"perception": "+6"
+			},
+			"senses": [
+				"darkvision 90 ft."
+			],
+			"passive": 16,
+			"resist": [
+				"poison",
+				"psychic"
+			],
+			"languages": [
+				"Abyssal",
+				"Draconic",
+				"Undercommon"
+			],
+			"cr": "11",
+			"trait": [
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The spiderdragon has advantage on saving throws against spells and other magical effects."
+					]
+				},
+				{
+					"name": "Spider Climb",
+					"entries": [
+						"The spiderdragon can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check."
+					]
+				},
+				{
+					"name": "Web Walker",
+					"entries": [
+						"The spiderdragon ignores movement restrictions caused by webbing."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The spiderdragon makes one Bite attack and two Claw attacks."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 9} to hit, reach 10 ft., one target. {@h}10 ({@damage 1d10 + 5}) piercing damage plus 13 ({@damage 2d12}) poison damage."
+					]
+				},
+				{
+					"name": "Claw",
+					"entries": [
+						"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}12 ({@damage 2d6 + 5}) slashing damage."
+					]
+				},
+				{
+					"name": "Spiderling Breath {@recharge 5}",
+					"entries": [
+						"The spiderdragon exhales venomous spiderlings in a 30-foot cone. Each creature in that area must make a {@dc 15} Dexterity saving throw, taking 33 ({@damage 6d10}) piercing damage and 33 ({@damage 6d10}) poison damage on a failed save or half as much damage on a successful one."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Stifling Webs {@recharge 5}",
+					"entries": [
+						"The spiderdragon spins a 30-foot cube of strong, sticky webbing in an area adjacent to itself. The webbing lasts for 1 minute, is difficult terrain, and lightly obscures its area. A creature that starts its turn in the webbing or enters the webbing for the first time on its turn must succeed on a {@dc 15} Dexterity saving throw or have the {@condition restrained} condition while in the web. As an action, a creature can free itself or another creature from the web by succeeding on a {@dc 15} Strength check.",
+						"A 5-foot cube of the web is destroyed if it takes at least 10 acid, fire, or slashing damage on a single turn."
+					]
+				}
+			],
+			"traitTags": [
+				"Magic Resistance",
+				"Spider Climb",
+				"Web Walker"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Breath Weapon",
+				"Multiattack"
+			],
+			"languageTags": [
+				"AB",
+				"DR",
+				"U"
+			],
+			"damageTags": [
+				"I",
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RCH"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Star Angler",
+			"source": "VEoR",
+			"page": 237,
+			"size": [
+				"L"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 119,
+				"formula": "14d10 + 42"
+			},
+			"speed": {
+				"walk": 0,
+				"fly": 40
+			},
+			"str": 21,
+			"dex": 15,
+			"con": 17,
+			"int": 3,
+			"wis": 14,
+			"cha": 6,
+			"skill": {
+				"perception": "+5",
+				"stealth": "+8"
+			},
+			"senses": [
+				"blindsight 120 ft. (can't see beyond this radius)"
+			],
+			"passive": 15,
+			"cr": "8",
+			"trait": [
+				{
+					"name": "Avoidance",
+					"entries": [
+						"If the star angler is subjected to an effect that allows it to make a saving throw to take only half damage, it instead takes no damage if it succeeds on the saving throw and only half damage if it fails."
+					]
+				},
+				{
+					"name": "Illumination",
+					"entries": [
+						"The star angler's lure sheds bright light in a 30- foot radius and dim light for an additional 30 feet."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The star angler makes three Bite attacks."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}16 ({@damage 2d10 + 5}) piercing damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Lure Charm",
+					"entries": [
+						"The star angler's lure flares with enchanting starlight, targeting one creature the star angler can see within 120 feet of itself. The target must succeed on a {@dc 13} Wisdom saving throw or have the {@condition charmed} condition until the start of the star angler's next turn. While {@condition charmed} in this way, the target has the {@condition incapacitated} condition and must use its movement on its turn to move directly toward the star angler; a {@condition charmed} target doesn't avoid opportunity attacks, but it does avoid damaging terrain. A target can be {@condition charmed} by only one star angler at a time."
+					]
+				}
+			],
+			"traitTags": [
+				"Illumination"
+			],
+			"senseTags": [
+				"B"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"conditionInflict": [
+				"charmed"
+			],
+			"savingThrowForced": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Strahd, Master of Death House",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"page": 251,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "undead",
+				"tags": [
+					"vampire",
+					"wizard"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 136,
+				"formula": "16d8 + 64"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 18,
+			"dex": 18,
+			"con": 18,
+			"int": 20,
+			"wis": 15,
+			"cha": 18,
+			"save": {
+				"dex": "+9",
+				"wis": "+7",
+				"cha": "+9"
+			},
+			"skill": {
+				"arcana": "+15",
+				"perception": "+12",
+				"religion": "+10",
+				"stealth": "+14"
+			},
+			"senses": [
+				"darkvision 120 ft."
+			],
+			"passive": 22,
+			"resist": [
+				"necrotic",
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "from nonmagical attacks",
+					"cond": true
+				}
+			],
+			"languages": [
+				"Abyssal",
+				"Common",
+				"Draconic",
+				"Elvish",
+				"Giant",
+				"Infernal"
+			],
+			"cr": "15",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Strahd casts one of the following spells, using Intelligence as the spellcasting ability (spell save {@dc 18}):"
+					],
+					"will": [
+						"{@spell Detect Thoughts}",
+						"{@spell Fog Cloud}",
+						"{@spell Mage Hand}"
+					],
+					"daily": {
+						"2e": [
+							"{@spell Animate Dead} (as an action)",
+							"{@spell Gust of Wind}",
+							"{@spell Mirror Image}",
+							"{@spell Nondetection}"
+						],
+						"1e": [
+							"{@spell Greater Invisibility}",
+							"{@spell Polymorph}",
+							"{@spell Scrying} (as an action)"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Legendary Resistance (3/Day)",
+					"entries": [
+						"If Strahd fails a saving throw, he can choose to succeed instead."
+					]
+				},
+				{
+					"name": "Master of the House",
+					"entries": [
+						"When Strahd is reduced to 0 hit points, he dissolves into mist and immediately teleports to his lair in Castle Ravenloft. After {@dice 1d4} hours, Strahd re-forms in a random unoccupied space within his lair, regaining all his hit points."
+					]
+				},
+				{
+					"name": "Regeneration",
+					"entries": [
+						"Strahd regains 20 hit points at the start of his turn if he has at least 1 hit point. If he takes radiant damage, this trait doesn't function at the start of his next turn."
+					]
+				},
+				{
+					"name": "Spider Climb",
+					"entries": [
+						"Strahd can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check."
+					]
+				},
+				{
+					"name": "Vampire Weaknesses",
+					"entries": [
+						"Strahd has the following flaws:"
+					]
+				},
+				{
+					"name": "Harmed by Running Water",
+					"entries": [
+						"While in running water, Strahd takes 20 acid damage if he ends his turn there, and he can't use his Change Shape."
+					]
+				},
+				{
+					"name": "Sunlight Hypersensitivity",
+					"entries": [
+						"While in sunlight, Strahd takes 20 radiant damage at the start of his turn, has disadvantage on attack rolls and ability checks, and can't use his Change Shape bonus action."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Strahd makes two Death Strike attacks. He can replace one of these attacks with Blighted Fire if available."
+					]
+				},
+				{
+					"name": "Death Strike",
+					"entries": [
+						"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}8 ({@damage 1d8 + 4}) slashing damage plus 14 ({@damage 4d6}) necrotic damage. If the target is a creature, Strahd can forgo dealing slashing damage; the target then has the {@condition grappled} condition (escape {@dc 18}) instead. Strahd can grapple only one creature at a time."
+					]
+				},
+				{
+					"name": "Blighted Fire {@recharge 5}",
+					"entries": [
+						"Strahd summons shadowy, necrotic fire that fills a 20-foot-radius sphere centered on a point he can see within 90 feet of himself. Each creature in that area must make a {@dc 18} Dexterity saving throw, taking 14 ({@damage 4d6}) fire damage plus 14 ({@damage 4d6}) necrotic damage on a failed save or half as much damage on a successful one."
+					]
+				},
+				{
+					"name": "Charm",
+					"entries": [
+						"Strahd targets one Humanoid he can see within 30 feet of himself. The target must succeed on a {@dc 17} Wisdom saving throw or have the {@condition charmed} condition. The {@condition charmed} target regards Strahd as a trusted friend to be heeded and protected. The target isn't under Strahd's control, but it takes Strahd's requests and actions in the most favorable way.",
+						"Each time Strahd or his companions deal damage to the target, it can repeat the saving throw, ending the effect on itself on a success. Otherwise, the effect lasts 24 hours or until Strahd is reduced to 0 hit points, is on a different plane of existence than the target, or uses a bonus action to end the effect."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 9} to hit, reach 5 ft., one creature that has the {@condition charmed} or {@condition grappled} condition. {@h}7 ({@damage 1d6 + 4}) piercing damage plus 10 ({@damage 3d6}) necrotic damage. The target's hit point maximum is reduced by an amount equal to the necrotic damage taken, and Strahd regains a number of hit points equal to that amount. The reduction lasts until the target finishes a long rest. The target dies if its hit point maximum is reduced to 0. A Humanoid slain in this way and then buried rises the following night as a vampire spawn under Strahd's control."
+					]
+				},
+				{
+					"name": "Change Shape",
+					"entries": [
+						"Strahd transforms into a new form or back into his true form. Anything he is wearing transforms with him, but nothing he is carrying does. He reverts to his true form if he dies. When transforming into a new form, Strahd chooses one of the following options:"
+					]
+				},
+				{
+					"name": "Beast Form",
+					"entries": [
+						"Strahd transforms into a Tiny bat (flying speed 30 ft.) or a Medium wolf (speed 40 ft.). While in that form, he can't speak, and he retains his game statistics other than his size and speed."
+					]
+				},
+				{
+					"name": "Mist Form",
+					"entries": [
+						"Strahd transforms into a Medium cloud of mist. While in this form, Strahd has a flying speed of 20 feet, can hover, and can enter a hostile creature's space and stop there. While in mist form, Strahd can pass through a space without squeezing as long as air can pass through that space, but he can't pass through water. Strahd has advantage on Strength, Dexterity, and Constitution saving throws, and he is immune to all nonmagical damage except the damage he takes as part of his Vampire Weaknesses trait. While in mist form, Strahd can't take any actions, speak, or manipulate objects."
+					]
+				}
+			],
+			"legendary": [
+				{
+					"name": "Cunning Escape",
+					"entries": [
+						"Strahd moves up to his speed without provoking opportunity attacks."
+					]
+				},
+				{
+					"name": "Strike (Costs 2 Actions)",
+					"entries": [
+						"Strahd makes one Death Strike attack."
+					]
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances",
+				"Regeneration",
+				"Spider Climb",
+				"Sunlight Sensitivity"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Shapechanger"
+			],
+			"languageTags": [
+				"AB",
+				"C",
+				"DR",
+				"E",
+				"GI",
+				"I"
+			],
+			"damageTags": [
+				"A",
+				"F",
+				"N",
+				"P",
+				"R",
+				"S"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE",
+				"HPR",
+				"MW"
+			],
+			"conditionInflict": [
+				"charmed"
+			],
+			"conditionInflictSpell": [
+				"invisible"
+			],
+			"savingThrowForced": [
+				"dexterity",
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"strength",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Tasha the Witch",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"page": 252,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human",
+					"wizard"
+				]
+			},
+			"alignment": [
+				"C",
+				"N"
+			],
+			"ac": [
+				{
+					"ac": 19,
+					"from": [
+						"{@item robe of the archmagi}"
+					]
+				}
+			],
+			"hp": {
+				"average": 210,
+				"formula": "28d8 + 84"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 18,
+			"con": 17,
+			"int": 23,
+			"wis": 12,
+			"cha": 22,
+			"save": {
+				"int": "+12",
+				"wis": "+7",
+				"cha": "+12"
+			},
+			"skill": {
+				"arcana": "+18",
+				"history": "+12",
+				"persuasion": "+12"
+			},
+			"passive": 11,
+			"conditionImmune": [
+				"charmed",
+				"frightened"
+			],
+			"languages": [
+				"Abyssal",
+				"Celestial",
+				"Common",
+				"Draconic",
+				"Elvish",
+				"Infernal",
+				"Sylvan"
+			],
+			"cr": "19",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Tasha casts one of the following spells, using Intelligence as the spellcasting ability (spell save {@dc 22}, {@hit 14} to hit with spell attacks):"
+					],
+					"will": [
+						"{@spell Detect Magic}",
+						"{@spell Disguise Self}",
+						"{@spell Dispel Magic}",
+						"{@spell Light}",
+						"{@spell Mage Hand}",
+						"{@spell Message}",
+						"{@spell Prestidigitation}",
+						"{@spell Tasha's Hideous Laughter}"
+					],
+					"daily": {
+						"2": [
+							"{@spell Polymorph}"
+						],
+						"1e": [
+							"{@spell Maze}",
+							"{@spell Telekinesis}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Legendary Resistance (3/Day)",
+					"entries": [
+						"If Tasha fails a saving throw, she can choose to succeed instead."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"Tasha has advantage on saving throws against spells and other magical effects. (This trait is bestowed by her Robe of the Archmagi.)"
+					]
+				},
+				{
+					"name": "Special Equipment",
+					"entries": [
+						"Tasha wears a Robe of the Archmagi."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Tasha makes two Caustic Blast attacks and uses Psychic Whip once."
+					]
+				},
+				{
+					"name": "Caustic Blast",
+					"entries": [
+						"{@atk ms,rs} {@hit 14} to hit, reach 5 ft. or range 120 ft., one target. {@h}21 ({@damage 6d4 + 6}) acid damage."
+					]
+				},
+				{
+					"name": "Psychic Whip",
+					"entries": [
+						"Tasha psychically lashes out at one creature she can see within 90 feet of herself. The target must make a {@dc 20} Intelligence saving throw. On a failed save, the target takes 21 ({@damage 6d6}) psychic damage and has the {@condition stunned} condition until the start of Tasha's next turn. On a successful save, the target takes half as much damage only."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Abyssal Visage (2/Day)",
+					"entries": [
+						"For 1 minute, Tasha gains a flying speed of 30 feet, is immune to poison damage and the {@condition poisoned} condition, and has advantage on attack rolls against any creature that doesn't have all its hit points. These benefits end early if Tasha has the {@condition incapacitated} condition or if she uses another bonus action to dismiss them."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Arcane Rebuff",
+					"entries": [
+						"Immediately after Tasha takes damage, she unleashes arcane energy in a 10-foot-radius sphere centered on herself. All other creatures in that area must make a {@dc 20} Dexterity saving throw, taking 19 ({@damage 3d12}) lightning damage on a failed save or half as much damage on a successful one. Tasha then teleports, along with any equipment she is wearing or carrying, to an unoccupied space she can see within 60 feet of herself."
+					]
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances",
+				"Magic Resistance"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AB",
+				"C",
+				"CE",
+				"DR",
+				"E",
+				"I",
+				"S"
+			],
+			"damageTags": [
+				"A",
+				"L",
+				"Y"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE",
+				"MLW"
+			],
+			"conditionInflict": [
+				"stunned"
+			],
+			"conditionInflictSpell": [
+				"incapacitated",
+				"prone",
+				"restrained"
+			],
+			"savingThrowForced": [
+				"dexterity",
+				"intelligence"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Teremini Nightsedge",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"_copy": {
+				"name": "Archmage",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the archmage",
+						"with": "Teremini",
+						"flags": "i"
+					}
+				}
+			},
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"elf"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Umberto Noblin",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"_copy": {
+				"name": "Mage",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the mage",
+						"with": "Umberto",
+						"flags": "i"
+					}
+				}
+			},
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"gnome"
+				]
+			},
+			"alignment": [
+				"L",
+				"N"
+			],
+			"spellcasting": null,
+			"hasToken": true
+		},
+		{
+			"name": "Uvashar",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"_copy": {
+				"name": "Rakshasa",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the rakshasa",
+						"with": "Uvashar",
+						"flags": "i"
+					}
+				}
+			},
+			"spellcasting": null,
+			"hasToken": true
+		},
+		{
+			"name": "Vaeve",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"_copy": {
+				"name": "Drow Mage",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the drow",
+						"with": "Vaeve",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true
+		},
+		{
+			"name": "Valendar",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"_copy": {
+				"name": "Werewolf",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the werewolf",
+						"with": "Valendar",
+						"flags": "i"
+					}
+				}
+			},
+			"alignment": [
+				"C",
+				"G"
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Vecna the Archlich",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"page": 254,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "undead",
+				"tags": [
+					"wizard"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 272,
+				"formula": "32d8 + 128"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 14,
+			"dex": 16,
+			"con": 18,
+			"int": 22,
+			"wis": 24,
+			"cha": 16,
+			"save": {
+				"con": "+12",
+				"int": "+14",
+				"wis": "+15"
+			},
+			"skill": {
+				"arcana": "+22",
+				"history": "+14",
+				"insight": "+15",
+				"perception": "+15"
+			},
+			"senses": [
+				"truesight 120 ft."
+			],
+			"passive": 25,
+			"resist": [
+				"cold",
+				"lightning",
+				"necrotic"
+			],
+			"immune": [
+				"poison",
+				{
+					"immune": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "from nonmagical attacks",
+					"cond": true
+				}
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"poisoned",
+				"stunned"
+			],
+			"languages": [
+				"Common",
+				"Draconic",
+				"Elvish",
+				"Infernal"
+			],
+			"cr": "26",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Vecna casts one of the following spells, requiring no material components and using Intelligence as the spellcasting ability (spell save {@dc 22}):"
+					],
+					"will": [
+						"{@spell Animate Dead} (as an action)",
+						"{@spell Detect Magic}",
+						"{@spell Dispel Magic}",
+						"{@spell Fly}",
+						"{@spell Lightning Bolt}",
+						"{@spell Mage Hand}",
+						"{@spell Prestidigitation}"
+					],
+					"daily": {
+						"2e": [
+							"{@spell Dimension Door}",
+							"{@spell Invisibility}",
+							"{@spell Scrying} (as an action)"
+						],
+						"1e": [
+							"{@spell Dominate Monster}",
+							"{@spell Globe of Invulnerability}",
+							"{@spell Plane Shift} (self only)"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Legendary Resistance (5/Day)",
+					"entries": [
+						"If Vecna fails a saving throw, he can choose to succeed instead."
+					]
+				},
+				{
+					"name": "Special Equipment",
+					"entries": [
+						"Vecna carries a magic dagger named Afterthought. In the hands of anyone other than Vecna, Afterthought is a +2 Dagger."
+					]
+				},
+				{
+					"name": "Undying",
+					"entries": [
+						"If Vecna is slain, his soul refuses to accept its fate and lives on as a disembodied spirit that fashions a new body for itself after {@dice 1d100} years. Vecna's new body appears within 100 miles of where he was slain. When the new body is complete, Vecna regains all his hit points and becomes active again."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Vecna uses Flight of the Damned (if available), Rotten Fate, or Spellcasting. He then makes two attacks with Afterthought."
+					]
+				},
+				{
+					"name": "Afterthought",
+					"entries": [
+						"{@atk mw} {@hit 13} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d4 + 5}) piercing damage plus 9 ({@damage 2d8}) necrotic damage. If the target is a creature, it is afflicted by entropic magic, taking 9 ({@damage 2d8}) necrotic damage at the start of each of its turns. Immediately after taking this damage on its turn, the target must make a {@dc 20} Constitution saving throw, ending the effect on itself on a success. Until it succeeds on this save, the afflicted target can't regain hit points."
+					]
+				},
+				{
+					"name": "Flight of the Damned {@recharge 5}",
+					"entries": [
+						"Vecna conjures a torrent of flying, spectral entities that fill a 120-foot cone and pass through all creatures in that area before dissipating. Each creature in that area must make a {@dc 22} Constitution saving throw. On a failed save, the creature takes 36 ({@damage 8d8}) necrotic damage and has the {@condition frightened} condition for 1 minute. On a successful save, the creature takes half as much damage only. A {@condition frightened} creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+					]
+				},
+				{
+					"name": "Rotten Fate",
+					"entries": [
+						"Vecna causes necrotic magic to engulf one creature he can see within 120 feet of himself. The target must make a {@dc 22} Constitution saving throw, taking 96 ({@damage 8d8 + 60}) necrotic damage on a failed save or half as much damage on a successful one. A Humanoid killed by this magic rises as a zombie at the start of Vecna's next turn and acts immediately after Vecna in the initiative order. The zombie is under Vecna's control."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Vile Teleport",
+					"entries": [
+						"Vecna teleports, along with any equipment he is wearing or carrying, up to 30 feet to an unoccupied space he can see. He can cause each creature of his choice within 15 feet of his destination space to take 10 ({@damage 3d6}) psychic damage. If at least one creature takes this damage, Vecna regains 80 hit points."
+					]
+				}
+			],
+			"reactionHeader": [
+				"Vecna can take up to three reactions per round but only one per turn."
+			],
+			"reaction": [
+				{
+					"name": "Dread Counterspell",
+					"entries": [
+						"Vecna utters a dread word to interrupt a creature he can see that is casting a spell. If the spell is 4th level or lower, it fails and has no effect. If the spell is 5th level or higher, Vecna makes an Intelligence check ({@dc 10} plus the spell's level). On a successful check, the spell fails and has no effect. Whatever the spell's level, the caster takes 10 ({@damage 3d6}) psychic damage if the spell fails."
+					]
+				},
+				{
+					"name": "Fell Rebuke",
+					"entries": [
+						"In response to being hit by an attack, Vecna utters a fell word, dealing 10 ({@damage 3d6}) necrotic damage to the attacker, and Vecna teleports, along with any equipment he is wearing or carrying, up to 30 feet to an unoccupied space he can see."
+					]
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"E",
+				"I"
+			],
+			"damageTags": [
+				"N",
+				"P",
+				"Y"
+			],
+			"damageTagsSpell": [
+				"L",
+				"O"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE",
+				"MW"
+			],
+			"conditionInflict": [
+				"frightened"
+			],
+			"conditionInflictSpell": [
+				"charmed",
+				"invisible"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Vlazok",
+			"source": "VEoR",
+			"page": 238,
+			"size": [
+				"L"
+			],
+			"type": {
+				"type": "fiend",
+				"tags": [
+					"demon"
+				]
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 17,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 136,
+				"formula": "16d10 + 48"
+			},
+			"speed": {
+				"walk": 30,
+				"climb": 30
+			},
+			"str": 21,
+			"dex": 18,
+			"con": 16,
+			"int": 6,
+			"wis": 9,
+			"cha": 9,
+			"save": {
+				"str": "+9",
+				"con": "+7"
+			},
+			"skill": {
+				"perception": "+3"
+			},
+			"senses": [
+				"darkvision 120 ft."
+			],
+			"passive": 13,
+			"resist": [
+				"cold",
+				"fire",
+				"lightning"
+			],
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"poisoned"
+			],
+			"languages": [
+				"Abyssal",
+				"telepathy 120 ft."
+			],
+			"cr": "11",
+			"trait": [
+				{
+					"name": "All-Around Vision",
+					"entries": [
+						"The vlazok can't be surprised."
+					]
+				},
+				{
+					"name": "Blood Frenzy",
+					"entries": [
+						"The vlazok has advantage on melee attack rolls against any creature that doesn't have all its hit points."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The vlazok has advantage on saving throws against spells and other magical effects."
+					]
+				},
+				{
+					"name": "Spider Climb",
+					"entries": [
+						"The vlazok can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The vlazok makes two Gore attacks."
+					]
+				},
+				{
+					"name": "Gore",
+					"entries": [
+						"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}23 ({@damage 4d8 + 5}) piercing damage, and if the target is a Large or smaller creature, it has the {@condition prone} condition."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Stomp",
+					"entries": [
+						"{@atk mw} {@hit 9} to hit, reach 5 ft., one {@condition prone} creature. {@h}27 ({@damage 4d10 + 5}) bludgeoning damage."
+					]
+				}
+			],
+			"traitTags": [
+				"Magic Resistance",
+				"Spider Climb"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AB",
+				"TP"
+			],
+			"damageTags": [
+				"B",
+				"P"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Warforged Warrior",
+			"source": "VEoR",
+			"page": 238,
+			"size": [
+				"M"
+			],
+			"type": "construct",
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 30,
+				"formula": "4d8 + 12"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 16,
+			"dex": 12,
+			"con": 16,
+			"int": 10,
+			"wis": 14,
+			"cha": 11,
+			"skill": {
+				"athletics": "+5",
+				"perception": "+4",
+				"survival": "+4"
+			},
+			"passive": 14,
+			"resist": [
+				"poison"
+			],
+			"conditionImmune": [
+				"poisoned"
+			],
+			"languages": [
+				"Common"
+			],
+			"cr": "1",
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The warforged makes two Armblade attacks."
+					]
+				},
+				{
+					"name": "Armblade",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) slashing damage."
+					]
+				},
+				{
+					"name": "Javelin",
+					"entries": [
+						"{@atk mw,rw} {@hit 5} to hit, reach 5 ft. or range 30/120 ft., one target. {@h}6 ({@damage 1d6 + 3}) piercing damage."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Protection",
+					"entries": [
+						"When an attacker the warforged can see makes an attack roll against a creature within 5 feet of the warforged, the warforged can impose disadvantage on the attack roll."
+					]
+				}
+			],
+			"attachedItems": [
+				"javelin|phb"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RW",
+				"THW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Whirling Chandelier",
+			"source": "VEoR",
+			"page": 239,
+			"size": [
+				"L"
+			],
+			"type": "construct",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 13,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 105,
+				"formula": "14d10 + 28"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": {
+					"number": 30,
+					"condition": "(hover)"
+				},
+				"canHover": true
+			},
+			"str": 18,
+			"dex": 15,
+			"con": 15,
+			"int": 3,
+			"wis": 5,
+			"cha": 1,
+			"senses": [
+				"blindsight 60 ft. (blind beyond this radius)"
+			],
+			"passive": 7,
+			"resist": [
+				"fire"
+			],
+			"immune": [
+				"poison",
+				"psychic"
+			],
+			"conditionImmune": [
+				"blinded",
+				"charmed",
+				"deafened",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"petrified",
+				"poisoned"
+			],
+			"languages": [
+				"understands Common but can't speak"
+			],
+			"cr": "7",
+			"trait": [
+				{
+					"name": "False Appearance",
+					"entries": [
+						"If the chandelier is motionless at the start of combat, it has advantage on its initiative roll. Moreover, if a creature hasn't observed the chandelier move or act, that creature must succeed on a {@dc 18} Intelligence ({@skill Investigation}) check to discern that the chandelier is animate."
+					]
+				},
+				{
+					"name": "Fiery Aura",
+					"entries": [
+						"Any creature that starts its turn within 5 feet of the chandelier takes 7 ({@damage 2d6}) fire damage."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The chandelier makes three Chain attacks, three Lamp attacks, or a combination thereof."
+					]
+				},
+				{
+					"name": "Chain",
+					"entries": [
+						"{@atk mw} {@hit 7} to hit, reach 15 ft., one target. {@h}13 ({@damage 2d8 + 4}) bludgeoning damage, and the target must succeed on a {@dc 15} Strength saving throw or be pulled into an unoccupied space within 5 feet of the chandelier."
+					]
+				},
+				{
+					"name": "Lamp",
+					"entries": [
+						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}9 ({@damage 2d4 + 4}) bludgeoning damage plus 13 ({@damage 3d8}) fire damage."
+					]
+				},
+				{
+					"name": "Blazing Vortex {@recharge 5}",
+					"entries": [
+						"Each creature within 20 feet of the chandelier and not behind {@quickref Cover||3||total cover} must succeed on a {@dc 14} Constitution saving throw or take 36 ({@damage 8d8}) fire damage and have the {@condition blinded} condition until the start of the chandelier's next turn."
+					]
+				}
+			],
+			"traitTags": [
+				"False Appearance"
+			],
+			"senseTags": [
+				"B"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"CS"
+			],
+			"damageTags": [
+				"B",
+				"F"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"blinded"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"strength"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Windfall",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"page": 153,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"bard",
+					"tiefling"
+				]
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 19,
+					"from": [
+						"{@item studded leather armor|PHB}"
+					]
+				}
+			],
+			"hp": {
+				"average": 323,
+				"formula": "34d8 + 170"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": 30
+			},
+			"str": 14,
+			"dex": 24,
+			"con": 20,
+			"int": 22,
+			"wis": 18,
+			"cha": 26,
+			"save": {
+				"str": "+9",
+				"dex": "+14",
+				"wis": "+11",
+				"cha": "+15"
+			},
+			"skill": {
+				"arcana": "+13",
+				"deception": "+22",
+				"insight": "+18",
+				"perception": "+11",
+				"performance": "+22",
+				"persuasion": "+22",
+				"sleight of hand": "+14"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 21,
+			"resist": [
+				"acid",
+				"cold",
+				"fire",
+				"lightning",
+				"thunder"
+			],
+			"conditionImmune": [
+				"charmed",
+				"frightened"
+			],
+			"languages": [
+				"Common",
+				"Draconic",
+				"Infernal"
+			],
+			"cr": "23",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Windfall casts one of the following spells, requiring no material components and using Charisma as the spellcasting ability (spell save {@dc 23}):"
+					],
+					"will": [
+						"{@spell Detect Magic}",
+						"{@spell Light}",
+						"{@spell Thaumaturgy}"
+					],
+					"daily": {
+						"1": [
+							"{@spell Hold Monster}"
+						],
+						"3e": [
+							"{@spell Shatter}",
+							"{@spell Unseen Servant}"
+						],
+						"2e": [
+							"{@spell Hypnotic Pattern}",
+							"{@spell Sending}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Dazzling Visage",
+					"entries": [
+						"A brilliant array of chromatic colors emanates from Windfall, causing attack rolls against her to have disadvantage. This trait ceases to function while Windfall has the {@condition incapacitated} condition or has a speed of 0."
+					]
+				},
+				{
+					"name": "Legendary Resistance (3/Day)",
+					"entries": [
+						"If Windfall fails a saving throw, she can choose to succeed instead."
+					]
+				},
+				{
+					"name": "Special Equipment",
+					"entries": [
+						"Windfall wears an iridescent magic coat that was tailored specifically for her and imbued with Tiamat's power. When she dies, the coat functions as a Robe of Scintillating Colors."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Windfall makes two Chromatic Rapier attacks and uses Dragon's Fury once."
+					]
+				},
+				{
+					"name": "Chromatic Rapier",
+					"entries": [
+						"{@atk mw} {@hit 14} to hit, reach 5 ft., one target. {@h}11 ({@damage 1d8 + 7}) piercing damage plus 21 ({@damage 6d6}) acid, cold, fire, lightning, or poison damage (Windfall's choice)."
+					]
+				},
+				{
+					"name": "Dragon's Fury",
+					"entries": [
+						"Windfall targets one creature she can see within 60 feet of herself and unleashes a burst of magical ire. The target must make a {@dc 23} Wisdom saving throw. On a failed save, the target takes 36 ({@damage 8d8}) psychic damage and has the {@condition frightened} condition until the start of Windfall's next turn. On a successful save, the target takes half as much damage only."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Stunning Scintillation {@recharge 5}",
+					"entries": [
+						"Windfall emits an overwhelming array of colors from her coat. Each creature within 30 feet of Windfall that can see her must succeed on a {@dc 23} Constitution saving throw or have the {@condition stunned} condition until the start of Windfall's next turn."
+					]
+				}
+			],
+			"legendary": [
+				{
+					"name": "Deft Dance",
+					"entries": [
+						"Windfall moves up to her speed without provoking opportunity attacks."
+					]
+				},
+				{
+					"name": "Dragon's Flare",
+					"entries": [
+						"Windfall flares with multicolored flames and targets a creature she can see within 30 feet of herself. The target must make a {@dc 23} Dexterity saving throw. On a failed save, the target takes 26 ({@damage 4d12}) damage of a type chosen by Windfall: acid, cold, fire, lightning, or poison. On a successful save, the target takes half as much damage."
+					]
+				},
+				{
+					"name": "Cast a Spell (Costs 2 Actions)",
+					"entries": [
+						"Windfall uses Spellcasting."
+					]
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"I"
+			],
+			"damageTags": [
+				"P",
+				"Y"
+			],
+			"damageTagsSpell": [
+				"T"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE",
+				"MLW",
+				"MW"
+			],
+			"conditionInflict": [
+				"frightened"
+			],
+			"conditionInflictSpell": [
+				"charmed",
+				"incapacitated",
+				"paralyzed"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity",
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Zastra",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "VEoR",
+			"_copy": {
+				"name": "Githyanki Knight",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the githyanki",
+						"with": "Zastra",
+						"flags": "i"
+					}
+				}
+			},
+			"alignment": [
+				"L",
+				"N"
+			],
+			"hasToken": true
+		}
+	]
+}

@@ -1,0 +1,105 @@
+@use "../vars/vars";
+
+// (Class namespace to enable selectors in FVTT)
+.statgen .statgen {
+	&-shared__ {
+		&btn-reset {
+			right: -3px;
+			width: vars.$h-ipt-xs;
+			height: vars.$h-ipt-xs;
+		}
+
+		&ipt {
+			width: 42px;
+			height: 24px;
+
+			&[readonly] {
+				background-color: vars.$rgb-border-grey--muted;
+			}
+
+			&--sel {
+				width: 64px;
+				text-align-last: center;
+			}
+		}
+
+		&btn-toggle-tashas-rules {
+			line-height: 14px;
+			width: 16px;
+			height: 16px;
+
+			.glyphicon {
+				left: -0.6px;
+			}
+		}
+	}
+
+	&-rolled__ {
+		&wrp-results {
+			border: 1px solid vars.$rgb-border-grey--trans;
+			border-radius: 3px;
+		}
+
+		&disp-result {
+			min-width: 24px;
+		}
+	}
+
+	&-pb__ {
+		&ipt-budget {
+			width: 70px;
+
+			&--error {
+				border-color: #f00;
+			}
+		}
+
+		&header {
+			height: vars.$h-ipt-xs;
+
+			&--group {
+				border-bottom: 1px solid vars.$rgb-border-grey--trans;
+			}
+
+			&--choose-from {
+				min-width: 40px;
+			}
+		}
+
+		&cell {
+			height: 24px;
+			min-width: 36px;
+		}
+
+		&col-cost {
+			width: 90px;
+		}
+
+		&col-cost-delete {
+			width: 26px;
+		}
+
+		&row-cost {
+			min-height: 27px;
+		}
+	}
+
+	&-asi__ {
+		&row {
+			border-bottom: 1px solid vars.$rgb-border-grey--trans;
+		}
+
+		&cell {
+			width: 52px;
+		}
+
+		&disp-plus {
+			left: -1px;
+		}
+
+		&cell-feat {
+			width: 40px;
+			min-height: 20px;
+		}
+	}
+}

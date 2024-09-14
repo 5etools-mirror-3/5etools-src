@@ -1,0 +1,57 @@
+@use "vars/vars";
+@use "vars/vars-night";
+
+.inputArea,
+.outputArea {
+	width: 100%;
+	height: 100%;
+}
+
+.select-inline {
+	display: inline-block;
+	width: initial;
+}
+
+.conv__ {
+	&head {
+		margin-top: 0;
+		margin-bottom: 2px;
+	}
+
+	&out_control__wrp {
+		padding: 0 3rem 0 0;
+		flex-shrink: 0;
+	}
+
+	&disp-message {
+		flex-shrink: 0;
+		font-size: 13px;
+		background-color: vars.$rgb-bg--alt;
+		border: 1px solid vars.$rgb-border-grey;
+		border-radius: 4px;
+		margin-right: 3rem;
+
+		&--warning {
+			color: #df00ff;
+		}
+
+		&--error {
+			color: #f00;
+		}
+	}
+}
+
+.ve-night-mode {
+	.conv__ {
+		&disp-message {
+			background-color: vars-night.$rgb-bg--alt-night;
+			border-color: vars-night.$rgb-border-grey--night;
+		}
+	}
+}
+
+@media screen and (width <= #{vars.$width-screen-md}) {
+	.view-col-wrapper {
+		height: 40vh;
+	}
+}

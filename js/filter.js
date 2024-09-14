@@ -1,0 +1,31 @@
+import {EVNT_VALCHANGE, TITLE_BTN_RESET} from "./filter/filter-constants.js";
+import {PageFilterBase} from "./filter/filter-page-filter-base.js";
+import {ModalFilterBase} from "./filter/filter-modal-filter-base.js";
+import {FilterBox} from "./filter/filter-box.js";
+import {FilterItem, FilterItemClassSubclass} from "./filter/filter-item.js";
+import {SearchableFilter} from "./filter/filter/filter-filter-searchable.js";
+import {FilterBase} from "./filter/filter/filter-filter-base.js";
+import {Filter} from "./filter/filter/filter-filter-generic.js";
+import {SourceFilter, SourceFilterItem} from "./filter/filter/filter-filter-source.js";
+import {AbilityScoreFilter} from "./filter/filter/filter-filter-ability-score.js";
+import {RangeFilter} from "./filter/filter/filter-filter-range.js";
+import {OptionsFilter} from "./filter/filter/filter-filter-options.js";
+import {MultiFilter} from "./filter/filter/filter-filter-multi.js";
+
+globalThis.FILTER_BOX_EVNT_VALCHANGE = EVNT_VALCHANGE;
+globalThis.FILTER_BOX_TITLE_BTN_RESET = TITLE_BTN_RESET;
+
+globalThis.PageFilterBase = PageFilterBase;
+globalThis.ModalFilterBase = ModalFilterBase;
+globalThis.FilterBox = FilterBox;
+globalThis.FilterItem = FilterItem;
+globalThis.FilterItemClassSubclass = FilterItemClassSubclass;
+globalThis.FilterBase = FilterBase;
+globalThis.Filter = Filter;
+globalThis.SearchableFilter = SearchableFilter;
+globalThis.SourceFilterItem = SourceFilterItem;
+globalThis.SourceFilter = SourceFilter;
+globalThis.AbilityScoreFilter = AbilityScoreFilter;
+globalThis.RangeFilter = RangeFilter;
+globalThis.OptionsFilter = OptionsFilter;
+globalThis.MultiFilter = MultiFilter;

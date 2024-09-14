@@ -1,0 +1,339 @@
+@use "sass:color";
+
+@use "../vars/vars";
+@use "../vars/vars-night";
+
+.stats {
+	font-family: Convergence, Arial, sans-serif;
+	width: 100%;
+	font-size: 12.6px;
+	table-layout: fixed;
+	overflow-wrap: break-word;
+	background: vars.$rgb-bg-orange;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	&__ {
+		&btn-name-pronounce,
+		&btn-stats-name {
+			vertical-align: top;
+			height: 24px;
+			width: 24px;
+		}
+
+		&icn-pronounce-name {
+			line-height: 16px;
+		}
+
+		&th-name {
+			position: relative;
+			font-size: 1.8em;
+			font-family: "Times New Roman", serif;
+			font-variant: small-caps;
+			font-weight: 500;
+			padding-left: 0.2em !important;
+		}
+
+		&h-name {
+			font-size: unset;
+			line-height: unset;
+			color: vars.$rgb-name-red;
+		}
+
+		&wrp-h-source {
+			&--token {
+				padding-right: 120px;
+			}
+		}
+
+		&wrp-avoid-token {
+			max-width: calc(100% - 117px);
+		}
+
+		&wrp-token {
+			display: block;
+			position: absolute;
+			z-index: vars.$z-token-image;
+			top: 0;
+			right: 0.5rem;
+			width: auto;
+			max-width: 11rem;
+			height: auto;
+			transition:
+				opacity vars.$time-2-frames,
+				max-width vars.$time-2-frames,
+				right vars.$time-2-frames;
+
+			&:hover {
+				max-width: 100%;
+				right: 0;
+				opacity: 1 !important;
+				transition:
+					opacity vars.$time-2-frames,
+					max-width vars.$time-2-frames,
+					right vars.$time-2-frames;
+
+				.stats__btn-token-cycle {
+					opacity: 1;
+					transition: opacity vars.$time-2-frames;
+				}
+
+				.stats__wrp-token-footer {
+					opacity: 1;
+					transition: opacity vars.$time-2-frames;
+				}
+			}
+		}
+
+		&token {
+			width: 100%;
+			height: 100%;
+		}
+
+		&btn-token-cycle {
+			position: absolute;
+			top: 50%;
+			bottom: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 40px;
+			height: 40px;
+			background: vars.$rgb-shadow-grey--dark;
+			cursor: pointer;
+			color: #fff;
+			border: 1px solid vars.$rgb-border-grey--trans;
+			opacity: 0;
+			transition: opacity vars.$time-2-frames;
+
+			&--left {
+				left: 0;
+				border-top-left-radius: 5px;
+				border-bottom-left-radius: 5px;
+				border-right: 1px solid vars.$rgb-border-grey--trans-muted;
+			}
+
+			&--right {
+				right: 0;
+				border-top-right-radius: 5px;
+				border-bottom-right-radius: 5px;
+				border-left: 1px solid vars.$rgb-border-grey--trans-muted;
+			}
+
+			&:hover {
+				color: #ddd;
+			}
+		}
+
+		&wrp-token-footer {
+			display: flex;
+			position: absolute;
+			height: 22px;
+			right: 5px;
+			bottom: 0;
+			left: 5px;
+			align-items: center;
+			justify-content: center;
+			opacity: 0;
+			transition: opacity vars.$time-2-frames;
+		}
+
+		&token-footer {
+			background: vars.$rgb-shadow-grey--dark;
+			color: #fff;
+			font-family: "Times New Roman", serif;
+			font-variant: small-caps;
+			font-size: 16px;
+			border-radius: 5px;
+			padding: 1px 5px;
+			border: 1px solid vars.$rgb-border-grey--trans;
+		}
+
+		&sect-header-inner {
+			display: block;
+			margin-top: 3px;
+			margin-bottom: -1px;
+			font-weight: 100;
+			color: vars.$rgb-name-red;
+			font-size: 17px;
+			line-height: 18px;
+			font-family: Convergence, Arial, sans-serif;
+			font-variant: small-caps;
+			border-bottom: 1px solid vars.$rgb-name-red;
+
+			&--non-statblock {
+				font-size: 18px;
+				font-family: "Times New Roman", serif;
+			}
+		}
+
+		&sect-row-inner {
+			padding-top: (vars.$spacer * 0.5);
+
+			> *:last-of-type {
+				margin-bottom: (vars.$spacer * 0.5);
+			}
+		}
+	}
+}
+
+.lst__is-exporting-image .stats__wrp-h-source--token {
+	padding-right: 0;
+}
+
+.ve-night-mode .stats {
+	background-color: vars-night.$rgb-bg--night;
+
+	&__ {
+		&h-name {
+			color: vars-night.$rgb-name-red--night;
+		}
+
+		&btn-token-cycle {
+			color: #ddd;
+			background: rgb(255 255 255 / 15%);
+
+			&:hover {
+				color: vars-night.$rgb-font--night;
+			}
+		}
+
+		&token-footer {
+			color: #ddd;
+			background: vars-night.$rgb-bg--night;
+		}
+
+		&sect-header-inner {
+			color: vars-night.$rgb-name-red--night;
+			border-bottom-color: vars-night.$rgb-name-red--night;
+		}
+	}
+}
+
+/* -------------------------------------------- */
+
+.mon__ {
+	&btn-reset-cr,
+	&btn-scale-cr {
+		padding: 0 5px;
+		font-size: 10px;
+	}
+
+	&cr-slider-wrp {
+		position: absolute;
+		top: 23px;
+		left: 0;
+		background: #fff;
+		border: 1px solid vars.$rgb-border-grey;
+		width: calc(100% - 30px);
+		margin: 0 10px;
+		padding: 5px 7px 0;
+		border-radius: 4px;
+		box-shadow: 0 0 3px 0 #000;
+
+		&--compact {
+			top: 41px;
+		}
+	}
+}
+
+.ve-night-mode .mon__ {
+	&cr-slider-wrp {
+		border-color: vars-night.$rgb-border-grey--night;
+		background: vars-night.$rgb-bg--night;
+		color: #bbb;
+	}
+}
+
+/* -------------------------------------------- */
+
+.stats--book {
+	@include vars.mix-shadow-1;
+
+	font-family: Roboto, Helvetica, sans-serif;
+	background: #fff;
+
+	::selection {
+		background: #242527;
+		color: #fff;
+		text-shadow: none;
+	}
+
+	.ve-tbl-border {
+		background: #c0c0c0;
+	}
+}
+
+.ve-night-mode .stats--book {
+	::selection {
+		color: #242527;
+		background: #fff;
+	}
+
+	.ve-tbl-border {
+		background: vars-night.$rgb-border-grey--statblock-night;
+	}
+}
+
+/* -------------------------------------------- */
+
+// Book mode adjustments
+.stats--book-large {
+	--sz-font-h0: 2.5em;
+	--sz-font-h1: 1.9em;
+	--sz-font-h2: 1.6em;
+
+	// FIXME this doesn't affect e.g. lists
+	//  Also, affects e.g. nested tables (bad!)
+	--h-mb-p: 15px;
+	--h-mb-p-inline: var(--h-mb-p);
+	--h-mb-quote-line: 10px;
+	--h-mb-li: 5px;
+	--w-text-indent-inline-p: 0;
+
+	border-radius: 0;
+	line-height: 1.7;
+	font-size: 1em;
+
+	.rd__list-hang-notitle {
+		> .rd__li {
+			> .rd__p-list-item {
+				text-indent: -1.1em;
+			}
+		}
+	}
+
+	.rd__p-cont-indent {
+		text-indent: 0;
+		margin-top: 5px;
+	}
+}
+
+/* -------------------------------------------- */
+
+img.token {
+	position: absolute;
+	z-index: vars.$z-token-image;
+	top: 0;
+	right: 0.5rem;
+	float: right;
+	width: auto;
+	max-width: 11rem;
+	height: auto;
+	transition:
+		opacity vars.$time-2-frames,
+		max-width vars.$time-2-frames,
+		right vars.$time-2-frames;
+}
+
+img.token:hover {
+	max-width: 100%;
+	right: 0;
+	opacity: 1 !important;
+	transition:
+		opacity vars.$time-2-frames,
+		max-width vars.$time-2-frames,
+		right vars.$time-2-frames;
+}

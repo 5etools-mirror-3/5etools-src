@@ -1,0 +1,26 @@
+@use "../vars/vars";
+
+@include vars.mix-is-print {
+	.no-print {
+		display: none !important;
+	}
+
+	.print__ {
+		&ve-block {
+			display: block !important;
+		}
+
+		&h-initial {
+			height: initial !important;
+		}
+
+		&overflow-visible {
+			overflow: visible !important;
+		}
+
+		&my-2 {
+			margin-top: (vars.$spacer * 0.5) !important;
+			margin-bottom: (vars.$spacer * 0.5) !important;
+		}
+	}
+}

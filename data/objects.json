@@ -1,0 +1,831 @@
+{
+	"object": [
+		{
+			"name": "Ballista",
+			"source": "DMG",
+			"page": 255,
+			"size": [
+				"L"
+			],
+			"objectType": "SW",
+			"ac": 15,
+			"hp": 50,
+			"immune": [
+				"poison",
+				"psychic"
+			],
+			"entries": [
+				"A ballista is a massive crossbow that fires heavy bolts. Before it can be fired, it must be loaded and aimed. It takes one action to load the weapon, one action to aim it, and one action to fire it."
+			],
+			"actionEntries": [
+				{
+					"type": "actions",
+					"name": "Bolt",
+					"entries": [
+						{
+							"type": "attack",
+							"attackType": "RW",
+							"attackEntries": [
+								"{@hit +6} to hit, range 120/480 ft., one target."
+							],
+							"hitEntries": [
+								"16 ({@damage 3d10}) piercing damage."
+							]
+						}
+					]
+				}
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Boilerdrak",
+			"source": "DSotDQ",
+			"page": 189,
+			"size": [
+				"L"
+			],
+			"objectType": "SW",
+			"ac": 15,
+			"hp": 100,
+			"immune": [
+				"poison",
+				"psychic"
+			],
+			"entries": [
+				"This wagon-sized device is designed to look roughly like a dragon. Before it can be used, the boilerdrak must be lit and aimed. It takes 1 action to light the weapon, 1 action to aim it, and 1 action to fire it. When you use your action to fire it, roll a {@dice d20}. If you roll a 2 or higher, use the Flames action. If you roll a 1, use the Explosion action."
+			],
+			"actionEntries": [
+				{
+					"type": "entries",
+					"name": "Flames",
+					"entries": [
+						"The boilerdrak expels flames in a 60-foot cone. Each creature in that area must make a {@dc 15} Dexterity saving throw, taking 27 ({@dice 5d10}) fire damage on a failed save, or half as much damage on a successful one."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Explosion",
+					"entries": [
+						"The boilerdrak explodes in a 30-foot-radius sphere and is destroyed. Each creature in that area must make a {@dc 15} Dexterity saving throw, taking 27 ({@dice 5d10}) fire damage on a failed save, or half as much damage on a successful one."
+					]
+				}
+			],
+			"hasToken": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Cannon",
+			"source": "DMG",
+			"page": 255,
+			"size": [
+				"L"
+			],
+			"objectType": "SW",
+			"ac": 19,
+			"hp": 75,
+			"immune": [
+				"poison",
+				"psychic"
+			],
+			"entries": [
+				"A cannon uses gunpowder to propel heavy balls of cast iron through the air at destructive speeds. In a campaign without gunpowder, a cannon might be an arcane device built by clever gnomes or wizardly engineers.",
+				"A cannon is usually supported in a wooden frame with wheels. Before it can be fired, the cannon must be loaded and aimed. It takes one action to load the weapon, one action to aim it, and one action to fire it."
+			],
+			"actionEntries": [
+				{
+					"type": "actions",
+					"name": "Cannon Ball",
+					"entries": [
+						{
+							"type": "attack",
+							"attackType": "RW",
+							"attackEntries": [
+								"{@hit +6} to hit, range 600/2,400 ft., one target."
+							],
+							"hitEntries": [
+								"44 ({@damage 8d10}) bludgeoning damage."
+							]
+						}
+					]
+				}
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Captain A-Hole",
+			"isNpc": true,
+			"source": "RMBRE",
+			"page": 21,
+			"size": [
+				"L"
+			],
+			"objectType": "U",
+			"ac": 17,
+			"hp": 50,
+			"speed": 0,
+			"str": 14,
+			"dex": 10,
+			"int": 3,
+			"wis": 3,
+			"cha": 1,
+			"senses": [
+				"blindsight 30 ft. (blind beyond this radius)"
+			],
+			"immune": [
+				"poison",
+				"psychic"
+			],
+			"actionEntries": [
+				{
+					"type": "actions",
+					"name": "Cannon",
+					"entries": [
+						{
+							"type": "attack",
+							"attackType": "RW",
+							"attackEntries": [
+								"{@hit +5} to hit, range 30 ft., one target."
+							],
+							"hitEntries": [
+								"3 ({@damage 1d6}) bludgeoning damage."
+							]
+						}
+					]
+				}
+			],
+			"hasToken": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Eldritch Cannon, Flamethrower",
+			"source": "TCE",
+			"page": 17,
+			"size": [
+				"T",
+				"S"
+			],
+			"objectType": "U",
+			"ac": 18,
+			"hp": {
+				"special": "equal to five times your artificer level"
+			},
+			"str": 10,
+			"dex": 10,
+			"con": 10,
+			"int": 10,
+			"wis": 10,
+			"cha": 10,
+			"immune": [
+				"poison",
+				"psychic"
+			],
+			"conditionImmune": [
+				"blinded",
+				"charmed",
+				"deafened",
+				"exhaustion",
+				"frightened",
+				"grappled",
+				"incapacitated",
+				"invisible",
+				"paralyzed",
+				"petrified",
+				"poisoned",
+				"prone",
+				"restrained",
+				"stunned",
+				"unconscious"
+			],
+			"entries": [
+				"{@note Created by the {@subclassFeature Eldritch Cannon|Artificer|TCE|Artillerist|TCE|3} subclass feature.}"
+			],
+			"actionEntries": [
+				{
+					"type": "entries",
+					"name": "Flamethrower",
+					"entries": [
+						"The cannon exhales fire in an adjacent 15-foot cone that you designate. Each creature in that area must make a Dexterity saving throw against your spell save DC, taking {@damage 2d8} fire damage on a failed save or half as much damage on a successful one. The fire ignites any flammable objects in the area that aren't being worn or carried."
+					]
+				}
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Eldritch Cannon, Force Ballista",
+			"source": "TCE",
+			"page": 17,
+			"size": [
+				"T",
+				"S"
+			],
+			"objectType": "U",
+			"ac": 18,
+			"hp": {
+				"special": "equal to five times your artificer level"
+			},
+			"str": 10,
+			"dex": 10,
+			"con": 10,
+			"int": 10,
+			"wis": 10,
+			"cha": 10,
+			"immune": [
+				"poison",
+				"psychic"
+			],
+			"conditionImmune": [
+				"blinded",
+				"charmed",
+				"deafened",
+				"exhaustion",
+				"frightened",
+				"grappled",
+				"incapacitated",
+				"invisible",
+				"paralyzed",
+				"petrified",
+				"poisoned",
+				"prone",
+				"restrained",
+				"stunned",
+				"unconscious"
+			],
+			"entries": [
+				"{@note Created by the {@subclassFeature Eldritch Cannon|Artificer|TCE|Artillerist|TCE|3} subclass feature.}"
+			],
+			"actionEntries": [
+				{
+					"type": "entries",
+					"name": "Force Ballista",
+					"entries": [
+						"Make a ranged spell attack, originating from the cannon, at one creature or object within 120 feet of it. On a hit, the target takes {@damage 2d8} force damage, and if the target is a creature, it is pushed up to 5 feet away from the cannon."
+					]
+				}
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Eldritch Cannon, Protector",
+			"source": "TCE",
+			"page": 17,
+			"size": [
+				"T",
+				"S"
+			],
+			"objectType": "U",
+			"ac": 18,
+			"hp": {
+				"special": "equal to five times your artificer level"
+			},
+			"str": 10,
+			"dex": 10,
+			"con": 10,
+			"int": 10,
+			"wis": 10,
+			"cha": 10,
+			"immune": [
+				"poison",
+				"psychic"
+			],
+			"conditionImmune": [
+				"blinded",
+				"charmed",
+				"deafened",
+				"exhaustion",
+				"frightened",
+				"grappled",
+				"incapacitated",
+				"invisible",
+				"paralyzed",
+				"petrified",
+				"poisoned",
+				"prone",
+				"restrained",
+				"stunned",
+				"unconscious"
+			],
+			"entries": [
+				"{@note Created by the {@subclassFeature Eldritch Cannon|Artificer|TCE|Artillerist|TCE|3} subclass feature.}"
+			],
+			"actionEntries": [
+				{
+					"type": "entries",
+					"name": "Protector",
+					"entries": [
+						"The cannon emits a burst of positive energy that grants itself and each creature of your choice within 10 feet of it a number of temporary hit points equal to {@damage 1d8} + your Intelligence modifier (minimum of +1)."
+					]
+				}
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Generic Object",
+			"source": "DMG",
+			"page": 246,
+			"srd": true,
+			"size": [
+				"V"
+			],
+			"objectType": "GEN",
+			"ac": {
+				"special": "Varies (see below)"
+			},
+			"hp": {
+				"special": "Varies (see below)"
+			},
+			"immune": [
+				{
+					"special": "Varies (see below)"
+				}
+			],
+			"entries": [
+				"When characters need to saw through ropes, shatter a window, or smash a vampire's coffin, the only hard and fast rule is this: given enough time and the right tools, characters can destroy any destructible object. Use common sense when determining a character's success at damaging an object. Can a fighter cut through a section of a stone wall with a sword? No, the sword is likely to break before the wall does.",
+				"For the purpose of these rules, an object is a discrete, inanimate item like a window, door, sword, book, table, chair, or stone, not a building or a vehicle that is composed of many other objects.",
+				{
+					"type": "entries",
+					"name": "Statistics for Objects",
+					"entries": [
+						"When time is a factor, you can assign an Armor Class and hit points to a destructible object. You can also give it immunities, resistances, and vulnerabilities to specific types of damage.",
+						{
+							"type": "entries",
+							"name": "Armor Class",
+							"entries": [
+								" An object's Armor Class is a measure of how difficult it is to deal damage to the object when striking it (because the object has no chance of dodging out of the way). The Object Armor Class table provides suggested AC values for various substances.",
+								{
+									"type": "table",
+									"caption": "Object Armor Class",
+									"colLabels": [
+										"Substance",
+										"AC"
+									],
+									"colStyles": [
+										"col-6",
+										"col-6"
+									],
+									"rows": [
+										[
+											"Cloth, paper, rope",
+											"11"
+										],
+										[
+											"Crystal, glass, ice",
+											"13"
+										],
+										[
+											"Wood, bone",
+											"15"
+										],
+										[
+											"Stone",
+											"17"
+										],
+										[
+											"Iron, steel",
+											"19"
+										],
+										[
+											"Mithral",
+											"21"
+										],
+										[
+											"Adamantine",
+											"23"
+										]
+									]
+								}
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Hit Points",
+							"entries": [
+								" An object's hit points measure how much damage it can take before losing its structural integrity. Resilient objects have more hit points than fragile ones. Large objects also tend to have more hit points than small ones, unless breaking a small part of the object is just as effective as breaking the whole thing. The Object Hit Points table provides suggested hit points for fragile and resilient objects that are Large or smaller.",
+								{
+									"type": "table",
+									"caption": "Object Hit Points",
+									"colLabels": [
+										"Size",
+										"Fragile",
+										"Resilient"
+									],
+									"colStyles": [
+										"col-6",
+										"col-6"
+									],
+									"rows": [
+										[
+											"Tiny (bottle, lock)",
+											"2 (1d4)",
+											"5 (2d4)"
+										],
+										[
+											"Small (chest, lute)",
+											"3 (1d6)",
+											"10 (3d6)"
+										],
+										[
+											"Medium (barrel, chandelier)",
+											"4 (1d8)",
+											"18 (4d8)"
+										],
+										[
+											"Large (cart, 10-ft.-by-10-ft. window)",
+											"5 (1d10)",
+											"27 (5d10)"
+										]
+									]
+								}
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Huge and Gargantuan Objects",
+							"entries": [
+								"Normal weapons are of little use against many Huge and Gargantuan objects, such as a colossal statue, towering column of stone, or massive boulder. That said, one torch can burn a Huge tapestry, and an earthquake spell can reduce a colossus to rubble. You can track a Huge or Gargantuan object's hit points if you like, or you can simply decide how long the object can withstand whatever weapon or force is acting against it. If you track hit points for the object, divide it into Large or smaller sections, and track each section's hit points separately. Destroying one of those sections could ruin the entire object. For example, a Gargantuan statue of a human might topple over when one of its Large legs is reduced to 0 hit points."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Objects and Damage Types",
+							"entries": [
+								"Objects are immune to poison and psychic damage. You might decide that some damage types are more effective against a particular object or substance than others. For example, bludgeoning damage works well for smashing things but not for cutting through rope or leather. Paper or cloth objects might be vulnerable to fire and lightning damage. A pick can chip away stone but can't effectively cut down a tree. As always, use your best judgment."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Damage Threshold",
+							"entries": [
+								"Big objects such as castle walls often have extra resilience represented by a damage threshold. An object with a damage threshold has immunity to all damage unless it takes an amount of damage from a single attack or effect equal to or greater than its damage threshold, in which case it takes damage as normal. Any damage that fails to meet or exceed the object's damage threshold is considered superficial and doesn't reduce the object's hit points."
+							]
+						}
+					]
+				}
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Gnomeflinger",
+			"source": "DSotDQ",
+			"page": 189,
+			"size": [
+				"L"
+			],
+			"objectType": "SW",
+			"ac": 15,
+			"hp": 100,
+			"immune": [
+				"poison",
+				"psychic"
+			],
+			"entries": [
+				"The gnomeflinger is a catapult designed to hurl creatures, instead of projectiles, in a high arc. The gnomeflinger was designed in conjunction with the {@item narycrash|DSotDQ} (see the {@area \"Adventuring Gear\"|498|x} section) to hasten transportation. The device can hold one Medium or smaller creature. Before it can be used, the gnomeflinger must be loaded and aimed. It takes 1 action to load the gnomeflinger, 1 action to aim it, and 1 action to fire it.",
+				"While taking an action to aim the gnomeflinger, you set the maximum horizontal distance of the Fling Personnel action to 60 feet, 150 feet, or 300 feet."
+			],
+			"actionEntries": [
+				{
+					"type": "entries",
+					"name": "Fling Personnel",
+					"entries": [
+						"The gnomeflinger catapults a Medium or smaller creature at least 60 feet away horizontally, with a maximum horizontal distance of 60 feet, 150 feet, or 300 feet, depending on the option chosen when the catapult was aimed. During this trajectory, the creature always reaches a height of 60 feet vertically.",
+						"A creature that collides with another creature or an object during this trajectory takes 3 ({@dice 1d6}) bludgeoning damage for every 10 feet away from the gnomeflinger it is."
+					]
+				}
+			],
+			"hasToken": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Gulthias Tree",
+			"source": "TftYP",
+			"page": 31,
+			"size": [
+				"G"
+			],
+			"objectType": "U",
+			"ac": 10,
+			"hp": 35,
+			"immune": [
+				"necrotic",
+				"poison",
+				"psychic"
+			],
+			"resist": [
+				"piercing"
+			],
+			"vulnerable": [
+				"fire"
+			],
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Fruit",
+					"entries": [
+						"Two magical fruits (evocation school) ripen on the tree each year. Each fruit resembles an apple, but it slowly extrudes from the tree like a cyst.",
+						"Up to a week before the summer solstice, a ruby red fruit grows. Someone other than a construct who eats a quarter or more of it regains 70 hit points. In addition, any {@condition blinded||blindness}, {@condition deafened||deafness}, and diseases affecting the eater end.",
+						"Up to a week before the winter solstice, a sickly white fruit grows. Someone who eats a quarter or more of it takes 70 necrotic damage. Each fruit has {@dice 1d4} seeds that, if planted, grow leafless woody shrubs that animate as twig blights after one year."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Tree Thralls",
+					"entries": [
+						"If a humanoid is bound to the bole of the Gulthias Tree, over the next 24 hours the victim is sucked completely into the tree. Once the victim is completely absorbed into the tree, it becomes the tree's thrall, and is expelled over the course of 1 hour. The Gulthias Tree can have only four thralls at any one time. A victim's skin is rough, gray, and bark-like. A thrall is totally corrupted, becoming neutral evil. Such a creature exists only to serve the Gulthias Tree and those who tend it (such as Belak). It possesses all of its former abilities and gains the following traits:",
+						{
+							"type": "entries",
+							"name": "Barkskin",
+							"entries": [
+								"The thrall's AC can't be lower than 16."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Tree Thrall",
+							"entries": [
+								"If the Gulthias Tree dies, the thrall dies 24 hours later."
+							]
+						}
+					]
+				}
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Ice Troll Heart",
+			"source": "IDRotF",
+			"page": 294,
+			"size": [
+				"T"
+			],
+			"objectType": "U",
+			"ac": 13,
+			"hp": 4,
+			"immune": [
+				"acid",
+				"bludgeoning",
+				"cold",
+				"force",
+				"lightning",
+				"necrotic",
+				"piercing",
+				"poison",
+				"psychic",
+				"radiant",
+				"slashing",
+				"thunder"
+			],
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Heart Effects",
+					"entries": [
+						"An ice troll's heart remains cold even after the troll's destruction. As long as the troll can't regenerate, its heart can be safely removed from its remains, handled, and kept. An ice troll's heart, once removed, becomes a harmless Tiny object. For the next 24 hours, the heart has the following magical properties:",
+						{
+							"type": "list",
+							"items": [
+								"A creature that eats the heart gains the ability to regenerate for the next 24 hours, regaining 5 hit points at the start of each of its turns. If the creature takes acid or fire damage, this trait doesn't function at the start of its next turn. The creature dies only if it starts its turn with 0 hit points and doesn't regenerate.",
+								"If buried in the ground under a foot or more of earth, the heart melts away and summons a blizzard like that created by the {@spell control weather} spell. It takes 10 minutes for the heart to melt and the blizzard to form. The blizzard lasts for 8 hours.",
+								"A hag or similar creature can perform a ritual that turns the heart into a magical talisman that acts like a patch of brown mold (see \"{@hazard Brown Mold}\" in the {@book Dungeon Master's Guide|DMG}). This effect lasts until the heart is destroyed.",
+								"A creature proficient with alchemist's supplies can squeeze enough residual fluid out of the heart to mix with other alchemical ingredients, creating one {@item Potion of Cold Resistance||potion of resistance (cold)}. It takes 1 hour to create this potion. "
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Mangonel",
+			"source": "DMG",
+			"page": 255,
+			"size": [
+				"L"
+			],
+			"objectType": "SW",
+			"ac": 15,
+			"hp": 100,
+			"immune": [
+				"poison",
+				"psychic"
+			],
+			"entries": [
+				"A mangonel is a type of catapult that hurls heavy projectiles in a high arc. This payload can hit targets behind cover. Before the mangonel can be fired, it must be loaded and aimed. It takes two actions to load the weapon, two actions to aim it, and one action to fire it.",
+				"A mangonel typically hurls a heavy stone, although it can hurl other kinds of projectiles, with different effects."
+			],
+			"actionEntries": [
+				{
+					"type": "actions",
+					"name": "Mangonel Stone",
+					"entries": [
+						{
+							"type": "attack",
+							"attackType": "RW",
+							"attackEntries": [
+								"{@hit +5} to hit, range 200/800 ft. (can't hit targets within 60 feet of it), one target."
+							],
+							"hitEntries": [
+								"27 ({@damage 5d10}) bludgeoning damage."
+							]
+						}
+					]
+				}
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Ram",
+			"source": "DMG",
+			"page": 255,
+			"size": [
+				"L"
+			],
+			"objectType": "SW",
+			"ac": 15,
+			"hp": 100,
+			"immune": [
+				"poison",
+				"psychic"
+			],
+			"entries": [
+				"A ram consists of a movable gallery equipped with a heavy log suspended from two roof beams by chains.",
+				"The log is shod in iron and used to batter through doors and barricades.",
+				"It takes a minimum of four Medium creatures to operate a ram. Because of the gallery roof, these operators have {@quickref Cover||3||total cover} against attacks from above."
+			],
+			"actionEntries": [
+				{
+					"type": "actions",
+					"name": "Ram",
+					"entries": [
+						{
+							"type": "attack",
+							"attackType": "MW",
+							"attackEntries": [
+								"{@hit +8} to hit, reach 5 ft., one object."
+							],
+							"hitEntries": [
+								"16 ({@damage 3d10}) bludgeoning damage."
+							]
+						}
+					]
+				}
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Siege Tower",
+			"source": "DMG",
+			"page": 256,
+			"size": [
+				"G"
+			],
+			"objectType": "SW",
+			"ac": 15,
+			"hp": 200,
+			"immune": [
+				"poison",
+				"psychic"
+			],
+			"entries": [
+				"A siege tower is a mobile wooden structure with a beam frame and slats in its walls. Large wooden wheels or rollers allow the tower to be pushed or pulled by soldiers or beasts of burden. Medium or smaller creatures can use the siege tower to reach the top of walls up to 40 feet high. A creature in the tower has {@quickref Cover||3||total cover} from attacks outside the tower."
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Spirit Blister",
+			"source": "JttRC",
+			"page": 142,
+			"size": [
+				"M"
+			],
+			"objectType": "SW",
+			"ac": 17,
+			"hp": 30,
+			"immune": [
+				"acid",
+				"necrotic",
+				"psychic"
+			],
+			"vulnerable": [
+				"fire",
+				"radiant"
+			],
+			"entries": [
+				"If destroyed, the blister bursts with a chorus of distant sighs. A moment later, {@adventure a spectral figure appears|JttRC|10|Memory of Peace}."
+			],
+			"hasToken": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Suspended Cauldron",
+			"source": "DMG",
+			"page": 255,
+			"size": [
+				"L"
+			],
+			"objectType": "SW",
+			"ac": 19,
+			"hp": 20,
+			"immune": [
+				"poison",
+				"psychic"
+			],
+			"entries": [
+				"A cauldron is an iron pot suspended so that it can be tipped easily, spilling its contents. Once emptied, a cauldron must be refilled-and its contents must usually be reheated-before it can be used again. It takes three actions to fill a cauldron and one action to tip it.",
+				"Cauldrons can be filled with other liquids, such as acid or {@hazard green slime}, with different effects."
+			],
+			"actionEntries": [
+				{
+					"type": "entries",
+					"name": "Boiling Oil",
+					"entries": [
+						"The cauldron pours boiling oil onto a 10-foot-square area directly below it. Any creature in the area must make a DC 15 Dexterity saving throw, taking 10 ({@damage 3d6}) fire damage on a failed save, or half as much damage on a successful one."
+					]
+				}
+			],
+			"hasToken": true
+		},
+		{
+			"name": "The Head",
+			"isNpc": true,
+			"source": "RMBRE",
+			"page": 25,
+			"size": [
+				"L"
+			],
+			"objectType": "U",
+			"ac": 17,
+			"hp": 50,
+			"speed": 0,
+			"str": 14,
+			"dex": 3,
+			"int": 3,
+			"wis": 3,
+			"cha": 10,
+			"immune": [
+				"poison",
+				"psychic"
+			]
+		},
+		{
+			"name": "Trebuchet",
+			"source": "DMG",
+			"page": 256,
+			"size": [
+				"H"
+			],
+			"objectType": "SW",
+			"ac": 15,
+			"hp": 150,
+			"immune": [
+				"poison",
+				"psychic"
+			],
+			"entries": [
+				"A trebuchet is a powerful catapult that throws its payload in a high arc, so it can hit targets behind cover.",
+				"Before the trebuchet can be fired, it must be loaded and aimed. It takes two actions to load the weapon, two actions to aim it, and one action to fire it.",
+				"A trebuchet typically hurls a heavy stone. However, it can launch other kinds of projectiles, such as barrels of oil or sewage, with different effects."
+			],
+			"actionEntries": [
+				{
+					"type": "actions",
+					"name": "Trebuchet Stone",
+					"entries": [
+						{
+							"type": "attack",
+							"attackType": "RW",
+							"attackEntries": [
+								"{@hit +5} to hit, range 300/1,200 ft. (can't hit targets within 60 feet of it), one target."
+							],
+							"hitEntries": [
+								"44 ({@damage 8d10}) bludgeoning damage."
+							]
+						}
+					]
+				}
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Unborn Palanquin",
+			"source": "BMT",
+			"page": 173,
+			"size": [
+				"G"
+			],
+			"objectType": "U",
+			"ac": 20,
+			"hp": 250,
+			"speed": {
+				"walk": 50,
+				"burrow": 30
+			},
+			"immune": [
+				"poison",
+				"psychic"
+			],
+			"entries": [
+				"The Unborn Palanquin is a wormlike leviathan of screeching gears made up of hundreds of tireless {@creature mezzoloth||mezzoloths}. It is a unique vehicle which serves as both {@creature Malaxxix|BMT}'s primary conveyance and the Fiend's lair."
+			],
+			"hasToken": true,
+			"hasFluffImages": true
+		}
+	]
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{{> "head" }}
+
+<body>
+
+{{> "overlayNoise" }}
+
+{{> "adLeaderboard" }}
+
+{{> "navbar" }}
+
+{{> "adRhsScrollingPage" }}
+
+<div class="container view-col-wrapper">
+	<div class="view-col" id="listcontainer">
+		<div class="lst__form-top">
+			<input type="search" id="search" autocomplete="off" autocapitalize="off" spellcheck="false" class="search form-control" placeholder="Find {{searchName}}...">
+			<button class="ve-btn ve-btn-default" id="reset">Reset</button>
+		</div>
+
+		<div id="filtertools" class="input-group input-group--bottom ve-flex no-shrink">
+			{{#each btnsList}}
+			{{{this}}}
+			{{/each}}
+			<button class="ve-btn ve-btn-default ve-btn-xs w-30p mobile__hidden" disabled></button>
+		</div>
+
+		<div class="list list--stats books">
+			<!-- populate with JS -->
+		</div>
+
+		<div class="ve-flex-vh-center mt-3 no-print">
+			{{> "btngroupManager" }}
+		</div>
+
+		<hr class="hr-3 mt-4">
+
+		<div class="books--alt ve-flex-h-center ve-flex-wrap bks__wrp-bookshelf">
+			<!-- populate with JS -->
+		</div>
+	</div>
+</div>
+
+{{> "adFooter" }}
+
+{{> "scripts" }}
+
+</body>
+</html>

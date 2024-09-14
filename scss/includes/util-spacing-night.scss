@@ -1,0 +1,42 @@
+@use "../vars/vars-night";
+
+.ve-night-mode {
+	.hr-0,
+	.hr-1,
+	.hr-2,
+	.hr-3,
+	.hr-4,
+	.hr-5,
+	.vr-0,
+	.vr-1,
+	.vr-2,
+	.vr-3,
+	.vr-4,
+	.vr-5 {
+		border-color: vars-night.$rgb-border-grey--night;
+	}
+
+	.b-1p {
+		border-color: vars-night.$rgb-border-grey--night !important;
+	}
+
+	.bt-1p {
+		border-top-color: vars-night.$rgb-border-grey--night !important;
+	}
+
+	.br-1p {
+		border-right-color: vars-night.$rgb-border-grey--night !important;
+	}
+
+	.bb-1p {
+		border-bottom-color: vars-night.$rgb-border-grey--night !important;
+
+		&-trans {
+			border-bottom-color: vars-night.$rgb-border-grey--trans-night !important;
+		}
+	}
+
+	.bl-1p {
+		border-left-color: vars-night.$rgb-border-grey--night !important;
+	}
+}

@@ -1,0 +1,874 @@
+{
+	"data": [
+		{
+			"type": "section",
+			"name": "Renderer Demo",
+			"entries": [
+				"(This is a section heading. This is mainly used in Adventures, for the header of entire chapters. The root entry does {@b not} need have the 'section' type, 'entries' is generally used instead. The 'section' produces a {@bold level -1} header; the 'basement' level, if you will.)",
+				{
+					"type": "quote",
+					"entries": [
+						"Look, don't quote me on this, but"
+					],
+					"by": "Anon",
+					"from": "Archive of Lost Chats"
+				},
+				"This is a demo of the JSON format, and how it (usually) gets rendered. You can edit this text, and it will reset on refresh.",
+				"{@b If a JSON property is described as 'optional,' the property may be excluded, unless otherwise noted.}",
+				"The goal of this system is to emulate the look and feel of the books, while maintaining a convenient and consistent data structure that can be re-used.",
+				"The general format is to nest multiple levels of 'entries'-typed objects, with other specific types (described in detail below) used as needed.",
+				"String entries can contain tags, and these work when nested in most other structures. These will eventually all work with the hover-to-view feature. They are case-insensitive, unless otherwise noted. These are:",
+				{
+					"type": "list",
+					"items": [
+						"Style tags; {@bold some text to be bolded} (alternative {@b shorthand}), {@italic some text to be italicised} (alternative {@i shorthand}), {@underline some text to be underlined} (alternative {@u shorthand}), {@underlineDouble some text to be underlined} (alternative {@u2 shorthand}), {@strike some text to strike-through}, (alternative {@s shorthand}), , {@strikeDouble some text to strike-through}, (alternative {@s2 shorthand}), {@color color|e40707}/{@color color variable|--rgb-name} tags, {@highlight highlight} tags, {@sup superscript} tags, {@sub subscript} tags, {@kbd keyboard} tags, {@code print(&quot;hello world&quot;)} tags, misc {@style Style|small-caps;small;capitalize;dnd-font} tags, {@font alternate font|Comic Sans MS} tags",
+						"Additionally, {@note note tags}, used for adding errata or Twitter \"designer footnotes,\" and {@tip tooltip tags|a note}.",
+						"Dice roller tags; {@dice 1d2-2+2d3+5} for regular dice rolls ({@dice 1d6;2d6} for multiple options; {@dice 1d6 + #$prompt_number:min=1,title=Enter a Number!,default=123$#} for input prompts), with extended {@dice 1d20+2|display text} and {@dice 1d20+2|display text|rolled by name}, and a special 'hit' version which assumes a d20 is to be rolled {@hit +7} (and rolls advantage on {@kbd SHIFT}+click, disadvantage on {@kbd ALT}+click). There's also {@damage 1d12+3} which will roll critical hits on {@kbd SHIFT}+click and half damage (rounding down) on {@kbd ALT}+click, and {@d20 -4} which will also roll advantage/disadvantage, although @hit tags are preferred where appropriate. Spells can have scaling-dice tags, (damage of 2d6 or 3d6 at level 1, add an extra {@scaledamage 2d6;3d6|2-9|1d6} for each level beyond 2nd; or, roll 2d6 when using 1 psi point, add an {@scaledice 2d6|1,3,5,7,9|1d6|psi|extra amount} for each additional psi point spent), for when a spell effect scales at higher levels. {@ability str 20}, {@savingThrow str 5}, and {@skillCheck animal_handling 5} are used as internal shorthand, but may be useful elsewhere.",
+						"Auto dice tags; as above, but a result is automatically rolled upon rendering: {@autodice 2d10+2}.",
+						"Chance tags; similar to dice roller tags, but output success/failure. Similar syntax as dice tags: {@chance 50}; {@chance 50|display text}; {@chance 50|display text|rolled by name}; {@chance 50|display text|rolled by name|on success text}; {@chance 50|display text|rolled by name|on success text|on failure text}.",
+						"Summon/companion-specific tags: {@hitYourSpellAttack} ({@hitYourSpellAttack with optional display text}), {@dcYourSpellSave} ({@dcYourSpellSave with optional display text}).",
+						"Recharge tags; output success/failure for ability recharge. {@recharge} in an ability title for '(Recharge 6)', {@recharge 4} for '(Recharge 4\u20136)'.",
+						"Coinflip tags; {@coinflip} or {@coinflip display text|rolee name|success text|failure text}",
+						"Skill and sense tags; {@skill Athletics}/{@skill Perception} (case sensitive) and {@sense Truesight}/{@sense darkvision} (case insensitive) which provide tooltips on hover.",
+						"Footnote tags; allows a footnote to be embedded {@footnote directly in text|This is primarily for homebrew purposes, as the official texts (so far) avoid using footnotes}, with {@footnote optional reference information|This is the footnote. References are free text.|Footnote 1, page 20}.",
+						"The homebrew tag; can show {@homebrew changes|modifications}, {@homebrew additions} or {@homebrew |removals}.",
+						"Content tags:",
+						{
+							"type": "list",
+							"items": [
+								"Spells: {@spell acid splash} assumes PHB by default, {@spell tiny servant|xge} can have sources added with a pipe, {@spell tiny servant|xge|and optional link text added with another pipe}.",
+								"Items: {@item alchemy jug} assumes DMG by default, {@item longsword|phb} can have sources added with a pipe, {@item longsword|phb|and optional link text added with another pipe}.",
+								"Creatures: {@creature goblin} assumes MM by default, {@creature cow|vgm} can have sources added with a pipe, {@creature cow|vgm|and optional link text added with another pipe}.",
+								"Creature legendary groups: {@legroup unicorn} assumes MM by default, {@legroup balhannoth|MPMM} can have sources added with a pipe, {@legroup balhannoth|MPMM|and optional link text added with another pipe}.",
+								"Backgrounds: {@background Charlatan} assumes PHB by default, {@background Anthropologist|toa} can have sources added with a pipe, {@background Anthropologist|ToA|and optional link text added with another pipe}.",
+								"Races: {@race Human} assumes PHB by default, {@race Aarakocra|eepc} can have sources added with a pipe, {@race Aarakocra|eepc|and optional link text added with another pipe}.",
+								"Invocations and Other Optional Features: {@optfeature Agonizing Blast} assumes PHB by default, {@optfeature Aspect of the Moon|xge} can have sources added with a pipe, {@optfeature Aspect of the Moon|xge|and optional link text added with another pipe}.",
+								"Classes: {@class fighter} assumes PHB by default, {@class artificer|tce} can have sources added with a pipe, {@class fighter|phb|optional link text added with another pipe}, {@class fighter|phb|subclasses added|Eldritch Knight} with another pipe, {@class fighter|phb|and class feature added|Eldritch Knight|phb|2-0} with another pipe (first number is level index (0-19), second number is feature index (0-n)).",
+								"Class Features: {@classFeature Rage|Barbarian||1}, {@classFeature Infuse Item|Artificer|TCE|2}, {@classFeature Primal Knowledge|Barbarian||3|TCE}, {@classFeature Rage|Barbarian||1||optional display text}. Class source is assumed to be PHB. Class feature source is assumed to be the same as class source.",
+								"Subclass Features: {@subclassFeature Path of the Berserker|Barbarian||Berserker||3}, {@subclassFeature Alchemist|Artificer|TCE|Alchemist|TCE|3}, {@subclassFeature Path of the Battlerager|Barbarian||Battlerager|SCAG|3}, {@subclassFeature Blessed Strikes|Cleric||Life||8|TCE}, {@subclassFeature Path of the Berserker|Barbarian||Berserker||3||optional display text}. Class source is assumed to be PHB. Subclass source is assumed to be PHB. Subclass feature source is assumed to be the same as subclass source.",
+								"Conditions: {@condition stunned} assumes PHB by default, {@condition stunned|PHB} can have sources added with a pipe (not that it's ever useful), {@condition stunned|PHB|and optional link text added with another pipe}.",
+								"Diseases: {@disease cackle fever} assumes DMG by default, {@disease cackle fever} can have sources added with a pipe, {@disease cackle fever|DMG|and optional link text added with another pipe}.",
+								"Other Rewards: {@reward Blessing of Health} assumes DMG by default, {@reward Blessing of Health} can have sources added with a pipe, {@reward Blessing of Health|DMG|and optional link text added with another pipe}.",
+								"Feats: {@feat Alert} assumes PHB by default, {@feat Elven Accuracy|xge} can have sources added with a pipe, {@feat Elven Accuracy|xge|and optional link text added with another pipe}.",
+								"Psionics: {@psionic Mastery of Force} assumes UATheMysticClass by default, {@psionic Mastery of Force|UATheMysticClass} can have sources added with a pipe, {@psionic Mastery of Force|UATheMysticClass|and optional link text added with another pipe}.",
+								"Objects: {@object Ballista} assumes DMG by default, {@object Ballista} can have sources added with a pipe, {@object Ballista|DMG|and optional link text added with another pipe}.",
+								"Boons: {@boon Demonic Boon of Demogorgon} assumes MTF by default, {@boon Demonic Boon of Demogorgon} can have sources added with a pipe, {@boon Demonic Boon of Demogorgon|MTF|and optional link text added with another pipe}.",
+								"Cults: {@cult Cult of Asmodeus} assumes MTF by default, {@cult Cult of Asmodeus} can have sources added with a pipe, {@cult Cult of Asmodeus|MTF|and optional link text added with another pipe}.",
+								"Traps: {@trap falling net} assumes DMG by default, {@trap falling portcullis|xge} can have sources added with a pipe, {@trap falling portcullis|xge|and optional link text added with another pipe}.",
+								"Hazards: {@hazard brown mold} assumes DMG by default, {@hazard russet mold|vgm} can have sources added with a pipe, {@hazard russet mold|vgm|and optional link text added with another pipe}.",
+								"Deities: {@deity Gond} assumes PHB Forgotten Realms pantheon by default, {@deity Gruumsh|nonhuman} can have pantheons added with a pipe, {@deity Ioun|dawn war|dmg} can have sources added with another pipe, {@deity Ioun|dawn war|dmg|and optional link text added with another pipe}.",
+								"Variant rules: {@variantrule Diagonals} assumes DMG by default, {@variantrule Multiclassing|phb} can have sources added with a pipe, {@variantrule Multiclassing|phb|and optional link text added with another pipe}.",
+								"Vehicles: {@vehicle Galley} assumes GoS by default, {@vehicle Galley|GoS} can have sources added with a pipe, {@vehicle Galley|GoS|and optional link text added with another pipe}.",
+								"Vehicle upgrades: {@vehupgrade Guardian Figurehead} assumes GoS by default, {@vehicle Gilded Death Armor|BGDIA} can have sources added with a pipe, {@vehicle Guardian Figurehead|GoS|and optional link text added with another pipe}.",
+								"Tables: {@table 25 gp Art Objects} assumes DMG by default, {@table Adventuring Gear|phb} can have sources added with a pipe, {@table Adventuring Gear|phb|and optional link text added with another pipe}.",
+								"Actions: {@action Attack} assumes PHB by default, {@action Tumble|DMG} can have sources added with a pipe, {@action Tumble|DMG|and optional link text added with another pipe}.",
+								"Languages: {@language common} assumes PHB by default, {@language Dambrathan|SCAG} can have sources added with a pipe, {@language Dambrathan|SCAG|and optional link text added with another pipe}.",
+								"Other Character Creation Options: {@charoption Anvilwrought} assumes MOT by default, {@charoption Hollow One|EGW} can have sources added with a pipe, {@charoption Hollow One|EGW|and optional link text added with another pipe}.",
+								"Recipes: {@recipe Elven Bread} assumes Heroes' Feast by default, {@recipe Barovian Garlic Bread|HFFotM} can have sources added with a pipe, {@recipe Barovian Garlic Bread|HFFotM|and optional link text added with another pipe}.",
+								"Decks: {@deck Deck of Many Things} assumes DMG by default, {@deck Deck of Many Things|DMG} can have sources added with a pipe, {@deck Deck of Many Things|DMG|and optional link text added with another pipe}.",
+								"Cards: {@card Vizier|Deck of Many Things} assumes DMG by default, {@card Vizier|Deck of Many Things|DMG} can have sources added with a pipe, {@card Vizier|Deck of Many Things|DMG|and optional link text added with another pipe}."
+							]
+						},
+						{
+							"type": "inset",
+							"name": "Filter Tag",
+							"entries": [
+								"Another tag that appears occasionally in the data is the @filter tag. This tag can be tricky to use, and generally relies on knowledge of the internals of each page. As such, use with caution, and if you're not sure about something, don't be afraid to drop by our {@link Discord|https://discord.gg/5etools} and ask questions. Note that you can {@kbd CTRL}+click the \"Get link to filters\" (magnet) button on a list page to copy the @filter tag for your current filter selection.",
+								"The syntax for the @filter tag is as follows:",
+								"(open curly brace)@filter display text|page_without_file_extension|filter_name_1=filter_1_value_1;filter_1_value_2;...filter_1_value_n|...|filter_name_m=filter_m_value_1;filter_m_value_2;...(close curly brace)",
+								"The purpose of this tag is to open the given page, pre-filtered with the specified filtering options. There's one major caveat that makes this tricky to use for aspiring JSONtranauts\u2014the filter values use the {@i internal} version, as you'd find in the data. So, for example, ..|school=D|.. would filter spells to Divination school spells, as 'D' is the Divination identifier in the data. Trying to do e.g. ..|school=Divination|.. will not work.",
+								"The 'filter_name_X' here matches the literal text name of the filter, as displayed in the dropdown.",
+								"Some examples of the tag in action:",
+								"{@filter Races that have a bonus to Intelligence|races|Ability Scores (Including Subrace)=Intelligence +any}",
+								"{@filter Bard cantrips and first-level spells|spells|level=0;1|class=bard}",
+								"{@filter Beast with challenge rating 1 or lower|bestiary|challenge rating=[&0;&1]|type=beast}",
+								"{@filter Creatures with a Strength score of 18 or more|bestiary|strength=[18;]}",
+								"{@filter Divination and Evocation spells|spells|school=D;V}",
+								"{@filter All uncommon magic items|items|source=|type=|rarity=uncommon|miscellaneous=Magic}",
+								"{@filter Simple melee weapons|items|source=phb|category=basic|type=simple weapon;melee weapon=sand}",
+								"Meta-options can be set; inline for individual filters, and using 'fbmt' for filtering meta-options {@filter filter meta example|spells|level=1;2=sor~sand|fbmt=sor|fbmh=source}",
+								"Search can be set; {@filter view dinosaurs|bestiary|search=dinosaur}",
+								"An exact starting entity; {@filter filter for beasts and show cat|bestiary|type=beast|hash=cat_mm} where 'hash' is the part after a '#' and before any commas which appears in the URL bar when viewing the entity.",
+								{
+									"type": "entries",
+									"name": "Note",
+									"entries": [
+										"Setting a filter to \"no value\", i.e. ..|school=|.. is equivalent to 'clear the filter,' resetting it to all-white.",
+										"The pages that support this functionality are those with the 'magnet' button; the link this button exports will give clues as to what one could do with the filter tag."
+									]
+								}
+							]
+						},
+						{
+							"type": "inset",
+							"name": "Area Tags and IDs",
+							"entries": [
+								"Adventure and book content supports \"area\" tags, which have the form `@area [area name]|[entry id]` or `@area [area name]|[entry id]|[modifiers]` where [modifiers] is a combination of \"x\" for e[x]act text, and \"u\" for [u]ppercase. The \"exact\" modifier removes the leading \"area \" which is prepended to the area name, and the \"uppercase\" modifier causes the prepended text to \"Area \".",
+								"A variety of entries blocks can have \"id\" fields (and may therefore be linked to with \"area\" tags), notable \"entries\"-type, \"section\"-type, and \"inset\"-type. These IDs are conventionally 3-digit hexadecimal numbers (allowing for a total of 4096 IDs per adventure/book), but any string which is unique within the document will suffice."
+							]
+						},
+						{
+							"type": "inset",
+							"name": "Book/Reference Tags",
+							"entries": [
+								"The following tags can be used to link specific sections of adventures/books. Note that chapters and headers are indexed from zero.",
+								{
+									"type": "list",
+									"items": [
+										"Adventure tags: link to an adventure {@adventure display text|CoS}; a chapter in an adventure {@adventure display text|CoS|2}; a heading in a chapter in an adventure {@adventure display text|CoS|2|Treasure}; or the Nth heading of a given name in a chapter in an adventure {@adventure display text|CoS|2|Treasure|1}",
+										"Book tags: link to a book {@book display text|PHB}; a chapter in a book {@book display text|PHB|2}; a heading in a chapter in a book {@book display text|PHB|2|Age}; or the Nth heading of a given name in a chapter in a book {@book display text|PHB|2|Age|0} (although this is generally unnecessary as, unlike adventures, books don't repeat their headings very often.",
+										"Quick Reference tags; {@code &lt;name&gt;|&lt;source&gt;|&lt;chapterIndex&gt;|&lt;headerIndex&gt;|&lt;displayText&gt;}: {@quickref Multiclassing}, {@quickref Multiclassing|PHB}, {@quickref Adventuring Gear|PHB|1}, {@quickref Adventuring Gear|PHB|1|0}, {@quickref Adventuring Gear|PHB|1|0|Display Text}."
+									]
+								}
+							]
+						},
+						{
+							"type": "inset",
+							"name": "Other Tags",
+							"entries": [
+								"Links:",
+								{
+									"type": "list",
+									"items": [
+										"Internal links: {@5etools This Is Your Life|lifegen.html}",
+										"Internal \"img\" links (i.e., anything in {@link https://github.com/5etools-mirror-2/5etools-img}): {@5etoolsImg Players Handbook Cover|covers/PHB.webp}; {@5etoolsImg Human Paladin sheet|pdf/DoSI/Human-Paladin.pdf}",
+										"External links: {@link https://discord.gg/5etools} or {@link Discord|https://discord.gg/5etools}"
+									]
+								},
+								"Page specific/other tags:",
+								{
+									"type": "list",
+									"items": [
+										"Bestiary 'attack' tags: {@atk m}, {@atk r}, {@atk m,r}, {@atk mw}, {@atk rw}, {@atk ms}, {@atk rs}; (homebrew only) {@atk a}, {@atk aw}. Commas separate or'd attack types; the general form is: '@atk &lt;m|r|a&gt;[&lt;w|s&gt;][,&lt;m|r|a&gt;[&lt;w|s&gt;][,...]]'"
+									]
+								},
+								"Homebrew loading tags: {@loader Tome of Beasts|creature/Kobold Press; Tome of Beasts.json}. The URL after the pipe is assumed to be from the root of the homebrew repository, unless it starts with a \"...://\" prefix (i.e., any link should work, but there's a shorthand for homebrew repository links).",
+								"Prerelease loading tags; as above: {@loader UA: When Armies Clash|collection/Unearthed Arcana - When Armies Clash.json|prerelease}."
+							]
+						}
+					]
+				},
+				"These tags may be {@b {@i {@spell fireball|phb|nested}}}, although there are often better ways to get the combination of bold and italic that you're probably going to use this for; consider using one of the properly typed objects below (such as level 2 headers).",
+				{
+					"type": "entries",
+					"name": "A Subclass Name, For Example",
+					"entries": [
+						"The above is a 'level 0' header.",
+						"The 'name' property is optional",
+						{
+							"type": "entries",
+							"name": "A Subclass Feature Name",
+							"entries": [
+								"The above is a 'level 1' header.",
+								{
+									"type": "entries",
+									"name": "A Subclass Feature Inline Header",
+									"entries": [
+										"This bold-italic inline header is a 'level 2' header, please use this as opposed to nesting tags. You can make a chain of empty entry objects with no names to get to this header level, if required.",
+										"Note that the period in the inline name is added automagically."
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"entries": [
+								{
+									"type": "entries",
+									"name": "This is an example of a level 2 header with no real parents",
+									"entries": [
+										"This technique can be useful, sometimes."
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "inline",
+					"entries": [
+						"Entries can be inlined, useful for e.g. links beyond the tags listed above, ",
+						{
+							"type": "link",
+							"href": {
+								"type": "internal",
+								"path": "index.html"
+							},
+							"text": "such as a link to the homepage"
+						},
+						" but you can see why the tags are preferable."
+					]
+				},
+				{
+					"type": "inlineBlock",
+					"entries": [
+						"Similar to the above, but keeps the paragraph/etc tags around the inlined children, ",
+						{
+							"type": "link",
+							"href": {
+								"type": "internal",
+								"path": "index.html"
+							},
+							"text": "such as a link to the homepage"
+						},
+						" so can easily be mixed with lines of text."
+					]
+				},
+				{
+					"type": "options",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Option B",
+							"entries": [
+								"Sometimes useful, e.g. for Fighting Styles on a class. (Note that this option is rendered second, when it's listed first in the data.)"
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Option A",
+							"entries": [
+								"The 'options' type is very similar to a list of entries, but it alphabetically sorts the list of options by name, before displaying them."
+							]
+						}
+					]
+				},
+				{
+					"type": "table",
+					"caption": "Optional Caption",
+					"colLabels": [
+						"Col 1",
+						"Column the Second",
+						"Third Col"
+					],
+					"colStyles": [
+						"col-6 text-center",
+						"col-4-5 text-right",
+						"col-1-5"
+					],
+					"rows": [
+						[
+							"This is a table row",
+							"The number of entries should match the number of columns, naturally*",
+							""
+						],
+						[
+							"The 'colStyles' list is literally used as CSS classes",
+							"Column widths can be specified in 12ths, as `col-[1 to 12]` (e.g. col-12 is 100% width, and col-6 is 50% width)",
+							"**"
+						],
+						[
+							{
+								"type": "list",
+								"items": [
+									"Nested entries (generally) work, too.",
+									"Although layout may start to deteriorate with more exotic nesting."
+								]
+							},
+							"{@spell bless||Spells, on the other hand, make sense.}",
+							""
+						],
+						{
+							"type": "row",
+							"style": "row-indent-first",
+							"row": [
+								"Rows may also be defined",
+								"As objects with additional properties",
+								""
+							]
+						}
+					],
+					"footnotes": [
+						"* Optional footer entries",
+						"** As an extension to Bootstrap's 1-to-12 system, 1/10th subdivisions can be used, e.g. col-1-5 for 1.5/12. The total column widths should still sum to exactly 12; enjoy doing the math."
+					]
+				},
+				{
+					"type": "table",
+					"caption": "Optional Caption",
+					"colLabelGroups": [
+						{
+							"colLabels": [
+								"Single"
+							]
+						},
+						{
+							"colLabels": [
+								"Stacked Top",
+								"Stacked Bottom"
+							]
+						},
+						{}
+					],
+					"colStyles": [
+						"col-4",
+						"col-4",
+						"col-4"
+					],
+					"rows": [
+						[
+							"This table has multiple header rows stacked one atop the other",
+							"Lorem ipsum",
+							"This column has no labels"
+						]
+					]
+				},
+				"Rollable tables can be made like so (note the 'pad' to format single digit numbers e.g. '01' for tables with >10 rows):",
+				{
+					"type": "table",
+					"caption": "Rollable Table Caption",
+					"colLabels": [
+						"{@dice d6}",
+						"Item"
+					],
+					"colStyles": [
+						"col-1 text-center",
+						"col-11"
+					],
+					"rows": [
+						[
+							{
+								"type": "cell",
+								"roll": {
+									"exact": 1,
+									"pad": true
+								}
+							},
+							"First Item"
+						],
+						[
+							{
+								"type": "cell",
+								"roll": {
+									"exact": 2
+								}
+							},
+							"Item the Second"
+						],
+						[
+							{
+								"type": "cell",
+								"roll": {
+									"min": 3,
+									"max": 4
+								}
+							},
+							"Three of Four Items"
+						],
+						[
+							{
+								"type": "cell",
+								"roll": {
+									"exact": 5
+								}
+							},
+							"Item V: The Item Items Back"
+						],
+						[
+							{
+								"type": "cell",
+								"roll": {
+									"exact": 6
+								}
+							},
+							"Item for Lucky Winners"
+						]
+					]
+				},
+				{
+					"type": "list",
+					"items": [
+						"A basic list of items",
+						"As usual, nested entries work",
+						{
+							"type": "list",
+							"items": [
+								"Such as a nested list"
+							]
+						}
+					]
+				},
+				{
+					"type": "list",
+					"columns": 3,
+					"items": [
+						"A list of items with wrapping columns",
+						"Which will wrap",
+						"Up to a maximum number of times as specified by the 'columns' field",
+						"And will attempt to balance content between each column"
+					]
+				},
+				"There's also:",
+				{
+					"type": "list",
+					"style": "list-no-bullets",
+					"items": [
+						"A list of items without bullets",
+						"Used very rarely"
+					]
+				},
+				{
+					"type": "list",
+					"style": "list-hang",
+					"name": "Hanging List",
+					"items": [
+						"A hanging items list",
+						"Which has a 'name'/title, and will hang below that title"
+					]
+				},
+				{
+					"type": "list",
+					"style": "list-hang",
+					"name": "Hanging List",
+					"items": [
+						{
+							"type": "item",
+							"name": "An extension of the hanging list",
+							"entry": "Which has bold inline titles -- note that this only allows {@i one} entry per item (it's 'entry' and not 'entries')"
+						},
+						"Can be mixed with regular strings"
+					]
+				},
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "A similar story here",
+							"entry": "The 'item' is an entry as above, but there's no 'name' for the entire list, so this has no left inset. Some long text to show what happens when the lines wrap around, it should continue but be indented after the first line. Some example of this in the source books can be found in Metalic Dragon breath weapons in the Monster Manual."
+						},
+						{
+							"type": "itemSub",
+							"name": "A sub-item used in some places",
+							"entry": "For example, XGE's complex traps"
+						},
+						{
+							"type": "item",
+							"name": "Multiple entry version",
+							"entries": [
+								"This was, again, required specifically for XGE's complex traps, which can have multiple lines of text, often long enough to wrap into multiple rows in the same column. For example:",
+								"Either portal can be neutralized with three successful DC 20 Intelligence ({@skill Arcana}) checks, but the process of analyzing a portal to disrupt it takes time. Faint runes in the ceiling and floor at both ends of the hallway are involved in the functioning of the portals. A creature must first use an action to examine a set of runes, then use a subsequent action to attempt to vandalize the runes. Each successful check reduces the sphere's damage by 11 ({@dice 2d10}), as the disrupted sphere loses speed moving through the failing portal.",
+								"Alternatively, a set of runes can be disabled with three successful castings of {@spell dispel magic} (DC 19) targeting any of the runes in the set.",
+								"If the southern portal is destroyed, the sphere slams into the south wall and comes to a halt. It blocks the door to the tomb, but the characters can escape."
+							]
+						}
+					]
+				},
+				{
+					"type": "list",
+					"style": "list-decimal",
+					"items": [
+						"A decimal-numbered list. Alternatively, 'list-lower-roman' can be used for lowercase Roman numerals.",
+						"So far only seen in homebrew."
+					]
+				},
+				{
+					"type": "list",
+					"style": "list-upper-roman",
+					"start": 5,
+					"items": [
+						"First list item",
+						"Second list item"
+					]
+				},
+				"The 'bonus' type just sticks a + in front of things",
+				{
+					"type": "bonus",
+					"value": 3
+				},
+				"We don't use that one much. It's useful because it allows us to store the data as a number, and render it with a plus sign as required, but it's mostly just forgotten about.",
+				"Similar story with 'bonusSpeed' type (these 'bonus' flavors are mainly used in the class tables)",
+				{
+					"type": "bonusSpeed",
+					"value": 100
+				},
+				"The 'dice' type is rarely used, since the shorthand tag exists, but it looks like this:",
+				{
+					"type": "dice",
+					"toRoll": [
+						{
+							"number": 1,
+							"faces": 4
+						},
+						{
+							"number": 2,
+							"faces": 7,
+							"modifier": 0
+						},
+						{
+							"number": 3,
+							"faces": 10,
+							"modifier": 0,
+							"hideModifier": true
+						}
+					],
+					"rollable": true
+				},
+				"The 'abilityDc' type is more helpful:",
+				{
+					"type": "abilityDc",
+					"name": "Buggy Code",
+					"attributes": [
+						"wis",
+						"int"
+					]
+				},
+				"As is the 'abilityAttackMod' type:",
+				{
+					"type": "abilityAttackMod",
+					"name": "Killing Things",
+					"attributes": [
+						"str"
+					]
+				},
+				"There's also a generic version that allows more text customisation; 'abilityGeneric':",
+				{
+					"type": "abilityGeneric",
+					"name": "Initiative",
+					"text": "10 - your power level + somebody else's",
+					"attributes": [
+						"dex",
+						"str"
+					]
+				},
+				{
+					"type": "abilityGeneric",
+					"text": "leave out the 'name' and 'attributes' properties as required"
+				},
+				"External links using 'link':",
+				{
+					"type": "link",
+					"href": {
+						"type": "external",
+						"url": "https://raw.githubusercontent.com/TheGiddyLimit/5etools-utils/master/schema/site/entry.json"
+					},
+					"text": "The full 'entry' schema."
+				},
+				"Internal links are also possible, but generally covered by @tags. Check out the schema linked above for the full usage; it's massive and horrible so I'm not going to go into detail here.",
+				"Invocations/Other Optional Features:",
+				{
+					"type": "optfeature",
+					"name": "Optional Feature Name",
+					"prerequisite": "Optional prerequisite, which can include tags {@spell eldritch blast}",
+					"entries": [
+						"Optional feature text."
+					]
+				},
+				"Patrons:",
+				{
+					"type": "inset",
+					"name": "Inset Title (Optional)",
+					"entries": [
+						"This is a text inset/insert/sidebar/etc."
+					]
+				},
+				{
+					"type": "insetReadaloud",
+					"name": "Same As Above",
+					"entries": [
+						"But a different color."
+					]
+				},
+				{
+					"type": "variant",
+					"name": "Better Monster",
+					"entries": [
+						"Some variant monster text",
+						{
+							"type": "entries",
+							"name": "Inline Header",
+							"entries": [
+								"Text text text",
+								{
+									"type": "variantSub",
+									"name": "These can have child items",
+									"entries": [
+										"And the header style for them is unique, so this exists to cope with that."
+									]
+								}
+							]
+						}
+					]
+				},
+				"Images (similar to the structure of the 'link' type):",
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "blank.webp"
+					},
+					"title": "Optional Title",
+					"credit": "Optional credit"
+				},
+				{
+					"type": "entries",
+					"name": "Data Embeds",
+					"entries": [
+						"Creatures; format based on Bestiary data, with added type (note that a proper Bestiary entry and a link to the entry is the preferred method of adding creatures, this functionality exists primarily for homebrew data):",
+						{
+							"type": "statblockInline",
+							"style": "inset",
+							"dataType": "monster",
+							"data": {
+								"name": "Unicorn",
+								"size": [
+									"L"
+								],
+								"type": "celestial",
+								"source": "MM",
+								"alignment": [
+									"L",
+									"G"
+								],
+								"ac": [
+									12
+								],
+								"hp": {
+									"average": 67,
+									"formula": "9d10 + 18"
+								},
+								"speed": {
+									"walk": 50
+								},
+								"str": 18,
+								"dex": 14,
+								"con": 15,
+								"int": 11,
+								"wis": 17,
+								"cha": 16,
+								"immune": [
+									"poison"
+								],
+								"conditionImmune": [
+									"charmed",
+									"paralyzed",
+									"poisoned"
+								],
+								"senses": [
+									"darkvision 60 ft."
+								],
+								"passive": 13,
+								"languages": [
+									"Celestial",
+									"Elvish",
+									"Sylvan",
+									"telepathy 60 ft."
+								],
+								"cr": "5",
+								"trait": [
+									{
+										"name": "Charge",
+										"entries": [
+											"If the unicorn moves at least 20 ft. straight toward a target and then hits it with a horn attack on the same turn, the target takes an extra 9 ({@dice 2d8}) piercing damage. If the target is a creature, it must succeed on a {@dc 15} Strength saving throw or be knocked prone."
+										]
+									},
+									{
+										"name": "Magic Resistance",
+										"entries": [
+											"The unicorn has advantage on saving throws against spells and other magical effects."
+										]
+									},
+									{
+										"name": "Magic Weapons",
+										"entries": [
+											"The unicorn's weapon attacks are magical."
+										]
+									}
+								],
+								"action": [
+									{
+										"name": "Multiattack",
+										"entries": [
+											"The unicorn makes two attacks: one with its hooves and one with its horn."
+										]
+									},
+									{
+										"name": "Hooves",
+										"entries": [
+											"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. Hit: 11 ({@damage 2d6 + 4}) bludgeoning damage."
+										]
+									},
+									{
+										"name": "Horn",
+										"entries": [
+											"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. Hit: 8 ({@damage 1d8 + 4}) piercing damage."
+										]
+									},
+									{
+										"name": "Healing Touch (3/Day)",
+										"entries": [
+											"The unicorn touches another creature with its horn. The target magically regains 11 ({@dice 2d8 + 2}) hit points. In addition, the touch removes all diseases and neutralizes all poisons afflicting the target."
+										]
+									},
+									{
+										"name": "Teleport (1/Day)",
+										"entries": [
+											"The unicorn magically teleports itself and up to three willing creatures it can see within 5 feet of it, along with any equipment they are wearing or carrying, to a location the unicorn is familiar with, up to 1 mile away."
+										]
+									}
+								],
+								"legendaryGroup": {
+									"name": "Unicorn",
+									"source": "MM"
+								},
+								"legendary": [
+									{
+										"name": "Hooves",
+										"entries": [
+											"The unicorn makes one attack with its hooves."
+										]
+									},
+									{
+										"name": "Shimmering Shield (Costs 2 Actions)",
+										"entries": [
+											"The unicorn creates a shimmering, magical field around itself or another creature it can see within 60 feet of it. The target gains a +2 bonus to AC until the end of the unicorn's next turn."
+										]
+									},
+									{
+										"name": "Heal Self (Costs 3 Actions)",
+										"entries": [
+											"The unicorn magically regains 11 ({@dice 2d8 + 2}) hit points."
+										]
+									}
+								],
+								"page": 294,
+								"spellcasting": [
+									{
+										"name": "Innate Spellcasting",
+										"type": "spellcasting",
+										"headerEntries": [
+											"The unicorn's innate spellcasting ability is Charisma (spell save {@dc 14}). The unicorn can innately cast the following spells, requiring no components:"
+										],
+										"will": [
+											"{@spell detect evil and good}",
+											"{@spell druidcraft}",
+											"{@spell pass without trace}"
+										],
+										"daily": {
+											"1e": [
+												"{@spell calm emotions}",
+												"{@spell dispel evil and good}",
+												"{@spell entangle}"
+											]
+										},
+										"ability": "cha"
+									}
+								],
+								"environment": [
+									"forest"
+								],
+								"soundClip": {
+									"type": "internal",
+									"path": "bestiary/unicorn.mp3"
+								},
+								"traitTags": [
+									"Charge",
+									"Magic Resistance",
+									"Magic Weapons"
+								],
+								"actionTags": [
+									"Multiattack"
+								]
+							}
+						},
+						"Spells; as above:",
+						{
+							"type": "statblockInline",
+							"collapsed": true,
+							"dataType": "spell",
+							"data": {
+								"name": "Fireball",
+								"level": 3,
+								"school": "V",
+								"time": [
+									{
+										"number": 1,
+										"unit": "action"
+									}
+								],
+								"range": {
+									"type": "point",
+									"distance": {
+										"type": "feet",
+										"amount": 150
+									}
+								},
+								"components": {
+									"v": true,
+									"s": true,
+									"m": "a tiny ball of bat guano and sulfur"
+								},
+								"duration": [
+									{
+										"type": "instant"
+									}
+								],
+								"source": "PHB",
+								"entries": [
+									"A bright streak flashes from your pointing finger to a point you choose within range and then blossoms with a low roar into an explosion of flame. Each creature in a 20-foot-radius sphere centered on that point must make a Dexterity saving throw. A target takes {@dice 8d6} fire damage on a failed save, or half as much damage on a successful one.",
+									"The fire spreads around corners. It ignites flammable objects in the area that aren't being worn or carried."
+								],
+								"entriesHigherLevel": [
+									{
+										"type": "entries",
+										"name": "At Higher Levels",
+										"entries": [
+											"When you cast this spell using a spell slot of 4th level or higher, the damage increases by {@scaledice 8d6|3-9|1d6} for each slot level above 3rd."
+										]
+									}
+								],
+								"page": 241
+							}
+						},
+						"Using \"dependencies\" and \"_copy\" to copy an existing piece of content:",
+						{
+							"type": "statblockInline",
+							"dataType": "monster",
+							"dependencies": [
+								"MM"
+							],
+							"data": {
+								"name": "Ancient Red Dragon (Weakened)",
+								"source": "MM",
+								"_copy": {
+									"name": "Ancient Red Dragon",
+									"source": "MM"
+								},
+								"str": 3,
+								"con": 3
+							}
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Reference Embeds",
+					"entries": [
+						{
+							"type": "statblock",
+							"tag": "creature",
+							"name": "Goblin",
+							"style": "inset"
+						},
+						{
+							"type": "statblock",
+							"prop": "subclass",
+							"source": "PHB",
+							"name": "Wild",
+							"displayName": "Wild Magic Sorcerer",
+							"className": "Sorcerer",
+							"classSource": "PHB",
+							"collapsed": true
+						}
+					]
+				}
+			]
+		}
+	]
+}

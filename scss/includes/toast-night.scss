@@ -1,0 +1,41 @@
+@use "sass:color";
+
+@use "../vars/vars-night";
+
+.ve-night-mode .toast {
+	&--type-info {
+		color: #fff;
+		background-color: color.adjust(color.adjust(vars-night.$rgb-alert-info-blue--night, $lightness: - 15%), $alpha: - 0.05);
+		border-color: vars-night.$rgb-alert-info-border-blue--night;
+	}
+
+	&--type-danger {
+		color: #fff;
+		background-color: color.adjust(color.adjust(vars-night.$rgb-alert-danger-red--night, $lightness: - 15%), $alpha: - 0.05);
+		border-color: vars-night.$rgb-alert-danger-border-red--night;
+	}
+
+	&--type-warning {
+		color: #fff;
+		background-color: color.adjust(color.adjust(vars-night.$rgb-alert-warning-orange--night, $lightness: - 15%), $alpha: - 0.05);
+		border-color: vars-night.$rgb-alert-warning-border-orange--night;
+	}
+
+	&--type-success {
+		color: #fff;
+		background-color: color.adjust(color.adjust(vars-night.$rgb-alert-success-green--night, $lightness: - 15%), $alpha: - 0.05);
+		border-color: vars-night.$rgb-alert-success-border-green--night;
+	}
+
+	&__ {
+		&btn-close {
+			color: #fff;
+
+			&:hover,
+			&:focus {
+				color: #d8d8d8;
+				box-shadow: 0 0 1px 1px #fff6;
+			}
+		}
+	}
+}

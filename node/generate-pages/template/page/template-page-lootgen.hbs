@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{{> "head" }}
+
+<body>
+
+{{> "overlayNoise" }}
+
+{{> "adRhs" }}
+
+<div class="viewport-wrapper">
+	{{> "adLeaderboard" }}
+
+	{{> "navbar" }}
+
+	<div class="view-col-group--cancer h-100 mh-0">
+		<div class="py-2 ve-flex-vh-center initial-message initial-message--large h-100" id="wrp-loading">Loading...</div>
+
+		<div class="container view-col-wrapper view-col-wrapper--cancer ve-hidden" id="wrp-content">
+			<div class="view-col ve-flex-4 mb-0" id="lootgen-lhs"></div>
+
+			<div class="cancer__wrp-mobile-1 cancer__anchor"><div class="cancer__disp-cancer"></div><!--5ETOOLS_AD_MOB_PLAYER_1--></div>
+
+			<div class="view-col ve-flex-6" id="lootgen-rhs"></div>
+		</div>
+	</div>
+</div>
+
+{{> "adFooter" }}
+
+{{> "scripts" }}
+
+</body>
+</html>

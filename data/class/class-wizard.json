@@ -1,0 +1,2583 @@
+{
+	"class": [
+		{
+			"name": "Wizard",
+			"source": "PHB",
+			"page": 112,
+			"srd": true,
+			"basicRules": true,
+			"hd": {
+				"number": 1,
+				"faces": 6
+			},
+			"proficiency": [
+				"int",
+				"wis"
+			],
+			"spellcastingAbility": "int",
+			"casterProgression": "full",
+			"preparedSpells": "<$level$> + <$int_mod$>",
+			"cantripProgression": [
+				3,
+				3,
+				3,
+				4,
+				4,
+				4,
+				4,
+				4,
+				4,
+				5,
+				5,
+				5,
+				5,
+				5,
+				5,
+				5,
+				5,
+				5,
+				5,
+				5
+			],
+			"spellsKnownProgressionFixed": [
+				6,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2
+			],
+			"spellsKnownProgressionFixedAllowLowerLevel": true,
+			"startingProficiencies": {
+				"weapons": [
+					"{@item dagger|phb|daggers}",
+					"{@item dart|phb|darts}",
+					"{@item sling|phb|slings}",
+					"{@item quarterstaff|phb|quarterstaffs}",
+					"{@item light crossbow|phb|light crossbows}"
+				],
+				"skills": [
+					{
+						"choose": {
+							"from": [
+								"arcana",
+								"history",
+								"insight",
+								"investigation",
+								"medicine",
+								"religion"
+							],
+							"count": 2
+						}
+					}
+				]
+			},
+			"startingEquipment": {
+				"additionalFromBackground": true,
+				"default": [
+					"(a) a {@item quarterstaff|phb} or (b) a {@item dagger|phb}",
+					"(a) a {@item component pouch|phb} or (b) an {@item arcane focus|phb}",
+					"(a) a {@item scholar's pack|phb} or (b) an {@item explorer's pack|phb}",
+					"A {@item spellbook|phb}"
+				],
+				"goldAlternative": "{@dice 4d4 × 10|4d4 × 10|Starting Gold}",
+				"defaultData": [
+					{
+						"a": [
+							"quarterstaff|phb"
+						],
+						"b": [
+							"dagger|phb"
+						]
+					},
+					{
+						"a": [
+							"component pouch|phb"
+						],
+						"b": [
+							{
+								"equipmentType": "focusSpellcastingArcane"
+							}
+						]
+					},
+					{
+						"a": [
+							"scholar's pack|phb"
+						],
+						"b": [
+							"explorer's pack|phb"
+						]
+					},
+					{
+						"_": [
+							"spellbook|phb"
+						]
+					}
+				]
+			},
+			"multiclassing": {
+				"requirements": {
+					"int": 13
+				}
+			},
+			"classTableGroups": [
+				{
+					"colLabels": [
+						"{@filter Cantrips Known|spells|level=0|class=Wizard}"
+					],
+					"rows": [
+						[
+							3
+						],
+						[
+							3
+						],
+						[
+							3
+						],
+						[
+							4
+						],
+						[
+							4
+						],
+						[
+							4
+						],
+						[
+							4
+						],
+						[
+							4
+						],
+						[
+							4
+						],
+						[
+							5
+						],
+						[
+							5
+						],
+						[
+							5
+						],
+						[
+							5
+						],
+						[
+							5
+						],
+						[
+							5
+						],
+						[
+							5
+						],
+						[
+							5
+						],
+						[
+							5
+						],
+						[
+							5
+						],
+						[
+							5
+						]
+					]
+				},
+				{
+					"title": "Spell Slots per Spell Level",
+					"colLabels": [
+						"{@filter 1st|spells|level=1|class=Wizard}",
+						"{@filter 2nd|spells|level=2|class=Wizard}",
+						"{@filter 3rd|spells|level=3|class=Wizard}",
+						"{@filter 4th|spells|level=4|class=Wizard}",
+						"{@filter 5th|spells|level=5|class=Wizard}",
+						"{@filter 6th|spells|level=6|class=Wizard}",
+						"{@filter 7th|spells|level=7|class=Wizard}",
+						"{@filter 8th|spells|level=8|class=Wizard}",
+						"{@filter 9th|spells|level=9|class=Wizard}"
+					],
+					"rowsSpellProgression": [
+						[
+							2,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							3,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							2,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							2,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							1,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							2,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							1,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							1,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							1,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							1,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							3,
+							1,
+							1,
+							1,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							3,
+							2,
+							2,
+							1,
+							1
+						]
+					]
+				}
+			],
+			"classFeatures": [
+				"Arcane Recovery|Wizard||1",
+				"Spellcasting|Wizard||1",
+				{
+					"classFeature": "Arcane Tradition|Wizard||2",
+					"gainSubclassFeature": true
+				},
+				"Cantrip Formulas|Wizard||3|TCE",
+				"Ability Score Improvement|Wizard||4",
+				{
+					"classFeature": "Arcane Tradition feature|Wizard||6",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Wizard||8",
+				{
+					"classFeature": "Arcane Tradition feature|Wizard||10",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Wizard||12",
+				{
+					"classFeature": "Arcane Tradition feature|Wizard||14",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Wizard||16",
+				"Spell Mastery|Wizard||18",
+				"Ability Score Improvement|Wizard||19",
+				"Signature Spells|Wizard||20"
+			],
+			"subclassTitle": "Arcane Tradition",
+			"hasFluff": true,
+			"hasFluffImages": true
+		}
+	],
+	"subclass": [
+		{
+			"name": "School of Abjuration",
+			"shortName": "Abjuration",
+			"source": "PHB",
+			"className": "Wizard",
+			"classSource": "PHB",
+			"page": 115,
+			"subclassFeatures": [
+				"School of Abjuration|Wizard||Abjuration||2",
+				"Projected Ward|Wizard||Abjuration||6",
+				"Improved Abjuration|Wizard||Abjuration||10",
+				"Spell Resistance|Wizard||Abjuration||14"
+			]
+		},
+		{
+			"name": "School of Conjuration",
+			"shortName": "Conjuration",
+			"source": "PHB",
+			"className": "Wizard",
+			"classSource": "PHB",
+			"page": 116,
+			"subclassFeatures": [
+				"School of Conjuration|Wizard||Conjuration||2",
+				"Benign Transposition|Wizard||Conjuration||6",
+				"Focused Conjuration|Wizard||Conjuration||10",
+				"Durable Summons|Wizard||Conjuration||14"
+			]
+		},
+		{
+			"name": "School of Divination",
+			"shortName": "Divination",
+			"source": "PHB",
+			"className": "Wizard",
+			"classSource": "PHB",
+			"page": 116,
+			"subclassFeatures": [
+				"School of Divination|Wizard||Divination||2",
+				"Expert Divination|Wizard||Divination||6",
+				"The Third Eye|Wizard||Divination||10",
+				"Greater Portent|Wizard||Divination||14"
+			]
+		},
+		{
+			"name": "School of Enchantment",
+			"shortName": "Enchantment",
+			"source": "PHB",
+			"className": "Wizard",
+			"classSource": "PHB",
+			"page": 117,
+			"subclassFeatures": [
+				"School of Enchantment|Wizard||Enchantment||2",
+				"Instinctive Charm|Wizard||Enchantment||6",
+				"Split Enchantment|Wizard||Enchantment||10",
+				"Alter Memories|Wizard||Enchantment||14"
+			]
+		},
+		{
+			"name": "School of Evocation",
+			"shortName": "Evocation",
+			"source": "PHB",
+			"className": "Wizard",
+			"classSource": "PHB",
+			"page": 117,
+			"srd": true,
+			"basicRules": true,
+			"subclassFeatures": [
+				"School of Evocation|Wizard||Evocation||2",
+				"Potent Cantrip|Wizard||Evocation||6",
+				"Empowered Evocation|Wizard||Evocation||10",
+				"Overchannel|Wizard||Evocation||14"
+			]
+		},
+		{
+			"name": "School of Illusion",
+			"shortName": "Illusion",
+			"source": "PHB",
+			"className": "Wizard",
+			"classSource": "PHB",
+			"page": 118,
+			"additionalSpells": [
+				{
+					"known": {
+						"1": [
+							"minor illusion#c"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"School of Illusion|Wizard||Illusion||2",
+				"Malleable Illusions|Wizard||Illusion||6",
+				"Illusory Self|Wizard||Illusion||10",
+				"Illusory Reality|Wizard||Illusion||14"
+			]
+		},
+		{
+			"name": "School of Necromancy",
+			"shortName": "Necromancy",
+			"source": "PHB",
+			"className": "Wizard",
+			"classSource": "PHB",
+			"page": 118,
+			"subclassFeatures": [
+				"School of Necromancy|Wizard||Necromancy||2",
+				"Undead Thralls|Wizard||Necromancy||6",
+				"Inured to Undeath|Wizard||Necromancy||10",
+				"Command Undead|Wizard||Necromancy||14"
+			]
+		},
+		{
+			"name": "School of Transmutation",
+			"shortName": "Transmutation",
+			"source": "PHB",
+			"className": "Wizard",
+			"classSource": "PHB",
+			"page": 119,
+			"subclassFeatures": [
+				"School of Transmutation|Wizard||Transmutation||2",
+				"Transmuter's Stone|Wizard||Transmutation||6",
+				"Shapechanger|Wizard||Transmutation||10",
+				"Master Transmuter|Wizard||Transmutation||14"
+			]
+		},
+		{
+			"name": "War Magic",
+			"shortName": "War",
+			"source": "XGE",
+			"className": "Wizard",
+			"classSource": "PHB",
+			"page": 59,
+			"subclassFeatures": [
+				"War Magic|Wizard||War|XGE|2",
+				"Power Surge|Wizard||War|XGE|6",
+				"Durable Magic|Wizard||War|XGE|10",
+				"Deflecting Shroud|Wizard||War|XGE|14"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Chronurgy Magic",
+			"shortName": "Chronurgy",
+			"source": "EGW",
+			"className": "Wizard",
+			"classSource": "PHB",
+			"page": 184,
+			"additionalSpells": [
+				{
+					"expanded": {
+						"1": [
+							{
+								"all": "source=EGW"
+							}
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Chronurgy Magic|Wizard||Chronurgy|EGW|2",
+				"Momentary Stasis|Wizard||Chronurgy|EGW|6",
+				"Arcane Abeyance|Wizard||Chronurgy|EGW|10",
+				"Convergent Future|Wizard||Chronurgy|EGW|14"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Graviturgy Magic",
+			"shortName": "Graviturgy",
+			"source": "EGW",
+			"className": "Wizard",
+			"classSource": "PHB",
+			"page": 185,
+			"additionalSpells": [
+				{
+					"expanded": {
+						"1": [
+							{
+								"all": "source=EGW"
+							}
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Graviturgy Magic|Wizard||Graviturgy|EGW|2",
+				"Gravity Well|Wizard||Graviturgy|EGW|6",
+				"Violent Attraction|Wizard||Graviturgy|EGW|10",
+				"Event Horizon|Wizard||Graviturgy|EGW|14"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Bladesinging",
+			"shortName": "Bladesinging",
+			"source": "TCE",
+			"className": "Wizard",
+			"classSource": "PHB",
+			"page": 76,
+			"otherSources": [
+				{
+					"source": "SCAG",
+					"page": 141
+				}
+			],
+			"subclassFeatures": [
+				"Bladesinging|Wizard||Bladesinging|TCE|2",
+				"Extra Attack|Wizard||Bladesinging|TCE|6",
+				"Song of Defense|Wizard||Bladesinging|TCE|10",
+				"Song of Victory|Wizard||Bladesinging|TCE|14"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Order of Scribes",
+			"shortName": "Scribes",
+			"source": "TCE",
+			"className": "Wizard",
+			"classSource": "PHB",
+			"page": 77,
+			"subclassFeatures": [
+				"Order of Scribes|Wizard||Scribes|TCE|2",
+				"Manifest Mind|Wizard||Scribes|TCE|6",
+				"Master Scrivener|Wizard||Scribes|TCE|10",
+				"One with the Word|Wizard||Scribes|TCE|14"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Blood Magic",
+			"shortName": "Blood Magic",
+			"source": "TDCSR",
+			"className": "Wizard",
+			"classSource": "PHB",
+			"page": 178,
+			"subclassFeatures": [
+				"Blood Magic|Wizard|PHB|Blood Magic|TDCSR|2",
+				"Bond of Mutual Suffering|Wizard|PHB|Blood Magic|TDCSR|6",
+				"Glyph of Hemorrhaging|Wizard|PHB|Blood Magic|TDCSR|10",
+				"Bond of Mutual Suffering (14th Level)|Wizard|PHB|Blood Magic|TDCSR|14",
+				"Thicker than Water|Wizard|PHB|Blood Magic|TDCSR|14"
+			],
+			"hasFluffImages": true
+		}
+	],
+	"classFeature": [
+		{
+			"name": "Arcane Recovery",
+			"source": "PHB",
+			"page": 112,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"level": 1,
+			"entries": [
+				"You have learned to regain some of your magical energy by studying your spellbook. Once per day when you finish a short rest, you can choose expended spell slots to recover. The spell slots can have a combined level that is equal to or less than half your wizard level (rounded up), and none of the slots can be 6th level or higher.",
+				"For example, if you're a 4th-level wizard, you can recover up to two levels worth of spell slots. You can recover either a 2nd-level spell slot or two 1st-level spell slots."
+			]
+		},
+		{
+			"name": "Spellcasting",
+			"source": "PHB",
+			"page": 112,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"level": 1,
+			"entries": [
+				"As a student of arcane magic, you have a spellbook containing spells that show the first glimmerings of your true power. See {@book chapter 10|PHB|10} for the general rules of spellcasting and {@book chapter 11|PHB|11} for the {@filter wizard spell list|spells|class=wizard}.",
+				{
+					"type": "entries",
+					"name": "Cantrips",
+					"entries": [
+						"At 1st level, you know three cantrips of your choice from the wizard spell list. You learn additional wizard cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Wizard table."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spellbook",
+					"entries": [
+						"At 1st level, you have a spellbook containing six 1st-level {@filter wizard spells|spells|class=wizard} of your choice. Your spellbook is the repository of the wizard spells you know, except your cantrips, which are fixed in your mind."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Preparing and Casting Spells",
+					"entries": [
+						"The Wizard table shows how many spell slots you have to cast your wizard spells of 1st level and higher. To cast one of these spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.",
+						"You prepare the list of wizard spells that are available for you to cast. To do so, choose a number of wizard spells from your spellbook equal to your Intelligence modifier + your wizard level (minimum of one spell). The spells must be of a level for which you have spell slots.",
+						"For example, if you're a 3rd-level wizard, you have four 1st-level and two 2nd-level spell slots. With an Intelligence of 16, your list of prepared spells can include six spells of 1st or 2nd level, in any combination, chosen from your spellbook. If you prepare the 1st-level spell {@spell magic missile}, you can cast it using a 1st-level or a 2nd-level slot. Casting the spell doesn't remove it from your list of prepared spells.",
+						"You can change your list of prepared spells when you finish a long rest. Preparing a new list of wizard spells requires time spent studying your spellbook and memorizing the incantations and gestures you must make to cast the spell: at least 1 minute per spell level for each spell on your list."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spellcasting Ability",
+					"entries": [
+						"Intelligence is your spellcasting ability for your wizard spells, since you learn your wizard spells through dedicated study and memorization. You use your Intelligence whenever a spell refers to your spellcasting ability. In addition, you use your Intelligence modifier when setting the saving throw DC for a wizard spell you cast and when making an attack roll with one.",
+						{
+							"type": "abilityDc",
+							"name": "Spell",
+							"attributes": [
+								"int"
+							]
+						},
+						{
+							"type": "abilityAttackMod",
+							"name": "Spell",
+							"attributes": [
+								"int"
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Ritual Casting",
+					"entries": [
+						"You can cast a wizard spell as a ritual if that spell has the ritual tag and you have the spell in your spellbook. You don't need to have the spell prepared."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spellcasting Focus",
+					"entries": [
+						"You can use an {@item arcane focus|phb} as a spellcasting focus for your wizard spells."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Learning Spells of 1st Level and Higher",
+					"entries": [
+						"Each time you gain a wizard level, you can add two wizard spells of your choice to your spellbook. Each of these spells must be of a level for which you have spell slots, as shown on the Wizard table. On your adventures, you might find other spells that you can add to your spellbook (see \"Your Spellbook\")."
+					]
+				},
+				{
+					"type": "inset",
+					"name": "Your Spellbook",
+					"entries": [
+						"The spells that you add to your spellbook as you gain levels reflect the arcane research you conduct on your own, as well as intellectual breakthroughs you have had about the nature of the multiverse. You might find other spells during your adventures. You could discover a spell recorded on a scroll in an evil wizard's chest, for example, or in a dusty tome in an ancient library.",
+						"A spellbook doesn't contain cantrips.",
+						{
+							"type": "entries",
+							"entries": [
+								{
+									"type": "entries",
+									"name": "Copying a Spell into the Book",
+									"entries": [
+										"When you find a wizard spell of 1st level or higher, you can add it to your spellbook if it is of a spell level you can prepare and if you can spare the time to decipher and copy it.",
+										"Copying a spell into your spellbook involves reproducing the basic form of the spell, then deciphering the unique system of notation used by the wizard who wrote it. You must practice the spell until you understand the sounds or gestures required, then transcribe it into your spellbook using your own notation.",
+										"For each level of the spell, the process takes 2 hours and costs 50 gp. The cost represents material components you expend as you experiment with the spell to master it, as well as the fine inks you need to record it. Once you have spent this time and money, you can prepare the spell just like your other spells.",
+										{
+											"type": "entries",
+											"name": "Copying from a Spell Scroll",
+											"source": "DMG",
+											"page": 139,
+											"entries": [
+												"A wizard spell on a spell scroll can be copied just as spells in spellbooks can be copied. When you copy a spell from a spell scroll, you must succeed on an Intelligence ({@skill Arcana}) check with a DC equal to 10 + the spell's level. If the check succeeds, the spell is successfully copied. Whether the check succeeds or fails, the spell scroll is destroyed."
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "entries",
+							"entries": [
+								{
+									"type": "entries",
+									"name": "Replacing the Book",
+									"entries": [
+										"You can copy a spell from your own spellbook into another book\u2014for example, if you want to make a backup copy of your spellbook. This is just like copying a new spell into your spellbook, but faster and easier, since you understand your own notation and already know how to cast the spell. You need spend only 1 hour and 10 gp for each level of the copied spell.",
+										"If you lose your spellbook, you can use the same procedure to transcribe the spells that you have prepared into a new spellbook. Filling out the remainder of your spellbook requires you to find new spells to do so, as normal. For this reason, many wizards keep backup spellbooks in a safe place."
+									]
+								}
+							]
+						},
+						{
+							"type": "entries",
+							"entries": [
+								{
+									"type": "entries",
+									"name": "The Book's Appearance",
+									"entries": [
+										"Your spellbook is a unique compilation of spells, with its own decorative flourishes and margin notes. It might be a plain, functional leather volume that you received as a gift from your master, a finely bound gilt-edged tome you found in an ancient library, or even a loose collection of notes scrounged together after you lost your previous spellbook in a mishap."
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Arcane Tradition",
+			"source": "PHB",
+			"page": 112,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"level": 2,
+			"entries": [
+				"When you reach 2nd level, you choose an arcane tradition from the list of available traditions, shaping your practice of magic. Your choice grants you features at 2nd level and again at 6th, 10th, and 14th level."
+			]
+		},
+		{
+			"name": "Cantrip Formulas",
+			"source": "TCE",
+			"page": 75,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"level": 3,
+			"isClassFeatureVariant": true,
+			"entries": [
+				"{@i 3rd-level wizard {@variantrule optional class features|tce|optional feature}}",
+				"You have scribed a set of arcane formulas in your spellbook that you can use to formulate a cantrip in your mind. Whenever you finish a long rest and consult those formulas in your spellbook, you can replace one wizard cantrip you know with another cantrip from the wizard spell list."
+			]
+		},
+		{
+			"name": "Ability Score Improvement",
+			"source": "PHB",
+			"page": 112,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"level": 4,
+			"entries": [
+				"When you reach 4th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+				"If your DM allows the use of feats, you may instead take a {@5etools feat|feats.html}."
+			]
+		},
+		{
+			"name": "Arcane Tradition feature",
+			"source": "PHB",
+			"page": 112,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"level": 6,
+			"entries": [
+				"At 6th level, you gain a feature granted by your Arcane Tradition."
+			]
+		},
+		{
+			"name": "Ability Score Improvement",
+			"source": "PHB",
+			"page": 112,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"level": 8,
+			"entries": [
+				"When you reach 8th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+				"If your DM allows the use of feats, you may instead take a {@5etools feat|feats.html}."
+			]
+		},
+		{
+			"name": "Arcane Tradition feature",
+			"source": "PHB",
+			"page": 112,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"level": 10,
+			"entries": [
+				"At 10th level, you gain a feature granted by your Arcane Tradition."
+			]
+		},
+		{
+			"name": "Ability Score Improvement",
+			"source": "PHB",
+			"page": 112,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"level": 12,
+			"entries": [
+				"When you reach 12th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+				"If your DM allows the use of feats, you may instead take a {@5etools feat|feats.html}."
+			]
+		},
+		{
+			"name": "Arcane Tradition feature",
+			"source": "PHB",
+			"page": 112,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"level": 14,
+			"entries": [
+				"At 14th level, you gain a feature granted by your Arcane Tradition."
+			]
+		},
+		{
+			"name": "Ability Score Improvement",
+			"source": "PHB",
+			"page": 112,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"level": 16,
+			"entries": [
+				"When you reach 16th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+				"If your DM allows the use of feats, you may instead take a {@5etools feat|feats.html}."
+			]
+		},
+		{
+			"name": "Spell Mastery",
+			"source": "PHB",
+			"page": 112,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"level": 18,
+			"entries": [
+				"At 18th level, you have achieved such mastery over certain spells that you can cast them at will. Choose a 1st-level wizard spell and a 2nd-level wizard spell that are in your spellbook. You can cast those spells at their lowest level without expending a spell slot when you have them prepared. If you want to cast either spell at a higher level, you must expend a spell slot as normal.",
+				"By spending 8 hours in study, you can exchange one or both of the spells you chose for different spells of the same levels."
+			]
+		},
+		{
+			"name": "Ability Score Improvement",
+			"source": "PHB",
+			"page": 112,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"level": 19,
+			"entries": [
+				"When you reach 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature.",
+				"If your DM allows the use of feats, you may instead take a {@5etools feat|feats.html}."
+			]
+		},
+		{
+			"name": "Signature Spells",
+			"source": "PHB",
+			"page": 112,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"level": 20,
+			"entries": [
+				"When you reach 20th level, you gain mastery over two powerful spells and can cast them with little effort. Choose two 3rd-level wizard spells in your spellbook as your signature spells. You always have these spells prepared, they don't count against the number of spells you have prepared, and you can cast each of them once at 3rd level without expending a spell slot. When you do so, you can't do so again until you finish a short or long rest.",
+				"If you want to cast either spell at a higher level, you must expend a spell slot as normal."
+			]
+		}
+	],
+	"subclassFeature": [
+		{
+			"name": "Chronurgy Magic",
+			"source": "EGW",
+			"page": 184,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Chronurgy",
+			"subclassSource": "EGW",
+			"level": 2,
+			"entries": [
+				"Focusing on the manipulation of time, those who follow the Chronurgy tradition learn to alter the pace of reality to their liking. Using the ramping of anticipatory dunamis energy, these mages can bend the flow of time as adroitly as a skilled musician plays an instrument, lending themselves and their allies an advantage in the blink of an eye.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Chronal Shift|Wizard||Chronurgy|EGW|2"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Temporal Awareness|Wizard||Chronurgy|EGW|2"
+				}
+			]
+		},
+		{
+			"name": "Chronal Shift",
+			"source": "EGW",
+			"page": 184,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Chronurgy",
+			"subclassSource": "EGW",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"{@i 2nd-level Chronurgy Magic feature}",
+				"You can magically exert limited control over the flow of time around a creature. As a reaction, after you or a creature you can see within 30 feet of you makes an attack roll, an ability check, or a saving throw, you can force the creature to reroll. You make this decision after you see whether the roll succeeds or fails. The target must use the result of the second roll.",
+				"You can use this ability twice, and you regain any expended uses when you finish a long rest."
+			]
+		},
+		{
+			"name": "Temporal Awareness",
+			"source": "EGW",
+			"page": 184,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Chronurgy",
+			"subclassSource": "EGW",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"{@i 2nd-level Chronurgy Magic feature}",
+				"You can add your Intelligence modifier to your initiative rolls."
+			]
+		},
+		{
+			"name": "Momentary Stasis",
+			"source": "EGW",
+			"page": 184,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Chronurgy",
+			"subclassSource": "EGW",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"{@i 6th-level Chronurgy Magic feature}",
+				"As an action, you can magically force a Large or smaller creature you can see within 60 feet of you to make a Constitution saving throw against your spell save DC. Unless the saving throw is a success, the creature is encased in a field of magical energy until the end of your next turn or until the creature takes any damage. While encased in this way, the creature is {@condition incapacitated} and has a speed of 0.",
+				"You can use this feature a number of times equal to your Intelligence modifier (a minimum of once). You regain all expended uses when you finish a long rest."
+			]
+		},
+		{
+			"name": "Arcane Abeyance",
+			"source": "EGW",
+			"page": 184,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Chronurgy",
+			"subclassSource": "EGW",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"{@i 10th-level Chronurgy Magic feature}",
+				"When you cast a spell using a spell slot of 4th level or lower, you can condense the spell's magic into a mote. The spell is frozen in time at the moment of casting and held within a gray bead for 1 hour. This bead is a Tiny object with AC 15 and 1 hit point, and it is immune to poison and psychic damage. When the duration ends, or if the bead is destroyed, it vanishes in a flash of light, and the spell is lost.",
+				"A creature holding the bead can use its action to release the spell within, whereupon the bead disappears. The spell uses your spell attack bonus and save DC, and the spell treats the creature who released it as the caster for all other purposes.",
+				"Once you create a bead with this feature, you can't do so again until you finish a short or long rest."
+			]
+		},
+		{
+			"name": "Convergent Future",
+			"source": "EGW",
+			"page": 184,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Chronurgy",
+			"subclassSource": "EGW",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"{@i 14th-level Chronurgy Magic feature}",
+				"You can peer through possible futures and magically pull one of them into events around you, ensuring a particular outcome. When you or a creature you can see within 60 feet of you makes an attack roll, an ability check, or a saving throw, you can use your reaction to ignore the die roll and decide whether the number rolled is the minimum needed to succeed or one less than that number (your choice).",
+				"When you use this feature, you gain one level of {@condition exhaustion}. Only by finishing a long rest can you remove a level of {@condition exhaustion} gained in this way."
+			]
+		},
+		{
+			"name": "Graviturgy Magic",
+			"source": "EGW",
+			"page": 185,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Graviturgy",
+			"subclassSource": "EGW",
+			"level": 2,
+			"entries": [
+				"Understanding and mastering the forces that draw bodies of matter together or drive them apart, the students of the Graviturgy arcane tradition learn to further bend and manipulate the violent energy of gravity to their benefit, and the terrible detriment of their enemies.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Adjust Density|Wizard||Graviturgy|EGW|2"
+				}
+			]
+		},
+		{
+			"name": "Adjust Density",
+			"source": "EGW",
+			"page": 185,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Graviturgy",
+			"subclassSource": "EGW",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"{@i 2nd-level Graviturgy Magic feature}",
+				"As an action, you can magically alter the weight of one object or creature you can see within 30 feet of you. The object or creature must be Large or smaller. The target's weight is halved or doubled for up to 1 minute or until your {@status concentration} ends (as if you were {@status concentration||concentrating} on a spell).",
+				"While the weight of a creature is halved by this effect, the creature's speed increases by 10 feet, it can jump twice as far as normal, and it has disadvantage on Strength checks and Strength saving throws. While the weight of a creature is doubled by this effect, the creature's speed is reduced by 10 feet, and it has advantage on Strength checks and Strength saving throws.",
+				"Upon reaching 10th level in this class, you can target an object or a creature that is Huge or smaller."
+			]
+		},
+		{
+			"name": "Gravity Well",
+			"source": "EGW",
+			"page": 185,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Graviturgy",
+			"subclassSource": "EGW",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"{@i 6th-level Graviturgy Magic feature}",
+				"You've learned how to manipulate gravity around a living being: whenever you cast a spell on a creature, you can move the target 5 feet to an unoccupied space of your choice if the target is willing to move, the spell hits it with an attack, or it fails a saving throw against the spell."
+			]
+		},
+		{
+			"name": "Violent Attraction",
+			"source": "EGW",
+			"page": 185,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Graviturgy",
+			"subclassSource": "EGW",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"{@i 10th-level Graviturgy Magic feature}",
+				"When another creature that you can see within 60 feet of you hits with a weapon attack, you can use your reaction to increase the attack's velocity, causing the attack's target to take an extra {@damage 1d10} damage of the weapon's type.",
+				"Alternatively, if a creature within 60 feet of you takes damage from a fall, you can use your reaction to increase the fall's damage by {@dice 2d10}.",
+				"You can use this feature a number of times equal to your Intelligence modifier (a minimum of once). You regain all expended uses when you finish a long rest."
+			]
+		},
+		{
+			"name": "Event Horizon",
+			"source": "EGW",
+			"page": 185,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Graviturgy",
+			"subclassSource": "EGW",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"{@i 14th-level Graviturgy Magic feature}",
+				"As an action, you can magically emit a powerful field of gravitational energy that tugs at other creatures for up to 1 minute or until your {@status concentration} ends (as if you were {@status concentration||concentrating} on a spell). For the duration, whenever a creature hostile to you starts its turn within 30 feet of you, it must make a Strength saving throw against your spell save DC. On a failed save, it takes {@damage 2d10} force damage, and its speed is reduced to 0 until the start of its next turn. On a successful save, it takes half as much damage, and every foot it moves this turn costs 2 extra feet of movement.",
+				"Once you use this feature, you can't do so again until you finish a long rest or until you expend a spell slot of 3rd level or higher on it."
+			]
+		},
+		{
+			"name": "School of Abjuration",
+			"source": "PHB",
+			"page": 115,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Abjuration",
+			"subclassSource": "PHB",
+			"level": 2,
+			"entries": [
+				"The School of Abjuration emphasizes magic that blocks, banishes, or protects. Detractors of this school say that its tradition is about denial, negation rather than positive assertion. You understand, however, that ending harmful effects, protecting the weak, and banishing evil influences is anything but a philosophical void. It is a proud and respected vocation.",
+				"Called abjurers, members of this school are sought when baleful spirits require exorcism, when important locations must be guarded against magical spying, and when portals to other planes of existence must be closed.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Abjuration Savant|Wizard||Abjuration||2"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Arcane Ward|Wizard||Abjuration||2"
+				}
+			]
+		},
+		{
+			"name": "Abjuration Savant",
+			"source": "PHB",
+			"page": 115,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Abjuration",
+			"subclassSource": "PHB",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"Beginning when you select this school at 2nd level, the gold and time you must spend to copy an abjuration spell into your spellbook is halved."
+			]
+		},
+		{
+			"name": "Arcane Ward",
+			"source": "PHB",
+			"page": 115,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Abjuration",
+			"subclassSource": "PHB",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"Starting at 2nd level, you can weave magic around yourself for protection. When you cast an {@filter abjuration spell of 1st level or higher|spells|school=A|level=!0}, you can simultaneously use a strand of the spell's magic to create a magical ward on yourself that lasts until you finish a long rest. The ward has a hit point maximum equal to twice your wizard level + your Intelligence modifier. Whenever you take damage, the ward takes the damage instead. If this damage reduces the ward to 0 hit points, you take any remaining damage.",
+				"While the ward has 0 hit points, it can't absorb damage, but its magic remains. Whenever you cast an {@filter abjuration spell of 1st level or higher|spells|school=A|level=!0}, the ward regains a number of hit points equal to twice the level of the spell.",
+				"Once you create the ward, you can't create it again until you finish a long rest."
+			]
+		},
+		{
+			"name": "Projected Ward",
+			"source": "PHB",
+			"page": 115,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Abjuration",
+			"subclassSource": "PHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"Starting at 6th level, when a creature that you can see within 30 feet of you takes damage, you can use your reaction to cause your Arcane Ward to absorb that damage. If this damage reduces the ward to 0 hit points, the warded creature takes any remaining damage."
+			]
+		},
+		{
+			"name": "Improved Abjuration",
+			"source": "PHB",
+			"page": 115,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Abjuration",
+			"subclassSource": "PHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"Beginning at 10th level, when you cast an abjuration spell that requires you to make an ability check as a part of casting that spell (as in {@spell counterspell} and {@spell dispel magic}), you add your proficiency bonus to that ability check."
+			]
+		},
+		{
+			"name": "Spell Resistance",
+			"source": "PHB",
+			"page": 115,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Abjuration",
+			"subclassSource": "PHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"Starting at 14th level, you have advantage on saving throws against spells.",
+				"Furthermore, you have resistance against the damage of spells."
+			]
+		},
+		{
+			"name": "School of Conjuration",
+			"source": "PHB",
+			"page": 116,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Conjuration",
+			"subclassSource": "PHB",
+			"level": 2,
+			"entries": [
+				"As a conjurer, you favor spells that produce objects and creatures out of thin air. You can conjure billowing clouds of killing fog or summon creatures from elsewhere to fight on your behalf. As your mastery grows, you learn spells of transportation and can teleport yourself across vast distances, even to other planes of existence, in an instant.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Conjuration Savant|Wizard||Conjuration||2"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Minor Conjuration|Wizard||Conjuration||2"
+				}
+			]
+		},
+		{
+			"name": "Conjuration Savant",
+			"source": "PHB",
+			"page": 116,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Conjuration",
+			"subclassSource": "PHB",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"Beginning when you select this school at 2nd level, the gold and time you must spend to copy a conjuration spell into your spellbook is halved."
+			]
+		},
+		{
+			"name": "Minor Conjuration",
+			"source": "PHB",
+			"page": 116,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Conjuration",
+			"subclassSource": "PHB",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"Starting at 2nd level when you select this school, you can use your action to conjure up an inanimate object in your hand or on the ground in an unoccupied space that you can see within 10 feet of you. This object can be no larger than 3 feet on a side and weigh no more than 10 pounds, and its form must be that of a nonmagical object that you have seen. The object is visibly magical, radiating dim light out to 5 feet.",
+				"The object disappears after 1 hour, when you use this feature again, if it takes any damage, or if it deals any damage."
+			]
+		},
+		{
+			"name": "Benign Transposition",
+			"source": "PHB",
+			"page": 116,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Conjuration",
+			"subclassSource": "PHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"Starting at 6th level, you can use your action to teleport up to 30 feet to an unoccupied space that you can see. Alternatively, you can choose a space within range that is occupied by a Small or Medium creature. If that creature is willing, you both teleport, swapping places.",
+				"Once you use this feature, you can't use it again until you finish a long rest or you cast a conjuration spell of 1st level or higher."
+			]
+		},
+		{
+			"name": "Focused Conjuration",
+			"source": "PHB",
+			"page": 116,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Conjuration",
+			"subclassSource": "PHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"Beginning at 10th level, while you are {@status concentration||concentrating} on a conjuration spell, your {@status concentration} can't be broken as a result of taking damage."
+			]
+		},
+		{
+			"name": "Durable Summons",
+			"source": "PHB",
+			"page": 116,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Conjuration",
+			"subclassSource": "PHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"Starting at 14th level, any creature that you summon or create with a conjuration spell has 30 temporary hit points."
+			]
+		},
+		{
+			"name": "School of Divination",
+			"source": "PHB",
+			"page": 116,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Divination",
+			"subclassSource": "PHB",
+			"level": 2,
+			"entries": [
+				"The counsel of a diviner is sought by royalty and commoners alike, for all seek a clearer understanding of the past, present, and future. As a diviner, you strive to part the veils of space, time, and consciousness so that you can see clearly. You work to master spells of discernment, remote viewing, supernatural knowledge, and foresight.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Divination Savant|Wizard||Divination||2"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Portent|Wizard||Divination||2"
+				}
+			]
+		},
+		{
+			"name": "Divination Savant",
+			"source": "PHB",
+			"page": 116,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Divination",
+			"subclassSource": "PHB",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"Beginning when you select this school at 2nd level, the gold and time you must spend to copy a divination spell into your spellbook is halved."
+			]
+		},
+		{
+			"name": "Portent",
+			"source": "PHB",
+			"page": 116,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Divination",
+			"subclassSource": "PHB",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"Starting at 2nd level when you choose this school, glimpses of the future begin to press in on your awareness. When you finish a long rest, roll two {@dice d20}s and record the numbers rolled. You can replace any attack roll, saving throw, or ability check made by you or a creature that you can see with one of these foretelling rolls. You must choose to do so before the roll, and you can replace a roll in this way only once per turn.",
+				"Each foretelling roll can be used only once. When you finish a long rest, you lose any unused foretelling rolls."
+			]
+		},
+		{
+			"name": "Expert Divination",
+			"source": "PHB",
+			"page": 116,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Divination",
+			"subclassSource": "PHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"Beginning at 6th level, casting divination spells comes so easily to you that it expends only a fraction of your spellcasting efforts. When you cast a {@filter divination spell of 2nd level or higher|spells|school=D} using a spell slot, you regain one expended spell slot. The slot you regain must be of a level lower than the spell you cast and can't be higher than 5th level."
+			]
+		},
+		{
+			"name": "The Third Eye",
+			"source": "PHB",
+			"page": 116,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Divination",
+			"subclassSource": "PHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"Starting at 10th level, you can use your action to increase your powers of perception. When you do so, choose one of the following benefits, which lasts until you are {@condition incapacitated} or you take a short or long rest. You can't use the feature again until you finish a rest.",
+				{
+					"type": "options",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Darkvision",
+							"entries": [
+								"You gain {@sense darkvision} out to a range of 60 feet."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Ethereal Sight",
+							"entries": [
+								"You can see into the Ethereal Plane within 60 feet of you."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Greater Comprehension",
+							"entries": [
+								"You can read any language."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "See Invisibility",
+							"entries": [
+								"You can see {@condition invisible} creatures and objects within 10 feet of you that are within line of sight."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Greater Portent",
+			"source": "PHB",
+			"page": 116,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Divination",
+			"subclassSource": "PHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"Starting at 14th level, the visions in your dreams intensify and paint a more accurate picture in your mind of what is to come. You roll three {@dice d20}s for your Portent feature, rather than two."
+			]
+		},
+		{
+			"name": "School of Enchantment",
+			"source": "PHB",
+			"page": 117,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Enchantment",
+			"subclassSource": "PHB",
+			"level": 2,
+			"entries": [
+				"As a member of the School of Enchantment, you have honed your ability to magically entrance and beguile other people and monsters. Some enchanters are peacemakers who bewitch the violent to lay down their arms and charm the cruel into showing mercy. Others are tyrants who magically bind the unwilling into their service. Most enchanters fall somewhere in between.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Enchantment Savant|Wizard||Enchantment||2"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Hypnotic Gaze|Wizard||Enchantment||2"
+				}
+			]
+		},
+		{
+			"name": "Enchantment Savant",
+			"source": "PHB",
+			"page": 117,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Enchantment",
+			"subclassSource": "PHB",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"Beginning when you select this school at 2nd level, the gold and time you must spend to copy an enchantment spell into your spellbook is halved."
+			]
+		},
+		{
+			"name": "Hypnotic Gaze",
+			"source": "PHB",
+			"page": 117,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Enchantment",
+			"subclassSource": "PHB",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"Starting at 2nd level when you choose this school, your soft words and enchanting gaze can magically enthrall another creature. As an action, choose one creature that you can see within 5 feet of you. If the target can see or hear you, it must succeed on a Wisdom saving throw against your wizard spell save DC or be {@condition charmed} by you until the end of your next turn. The {@condition charmed} creature's speed drops to 0, and the creature is {@condition incapacitated} and visibly dazed.",
+				"On subsequent turns, you can use your action to maintain this effect, extending its duration until the end of your next turn. However, the effect ends if you move more than 5 feet away from the creature, if the creature can neither see nor hear you, or if the creature takes damage.",
+				"Once the effect ends, or if the creature succeeds on its initial saving throw against this effect, you can't use this feature on that creature again until you finish a long rest."
+			]
+		},
+		{
+			"name": "Instinctive Charm",
+			"source": "PHB",
+			"page": 117,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Enchantment",
+			"subclassSource": "PHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"Beginning at 6th level, when a creature you can see within 30 feet of you makes an attack roll against you, you can use your reaction to divert the attack, provided that another creature is within the attack's range. The attacker must make a Wisdom saving throw against your wizard spell save DC. On a failed save, the attacker must target the creature that is closest to it, not including you or itself. If multiple creatures are closest, the attacker chooses which one to target. On a successful save, you can't use this feature on the attacker again until you finish a long rest.",
+				"You must choose to use this feature before knowing whether the attack hits or misses. Creatures that can't be {@condition charmed} are immune to this effect."
+			]
+		},
+		{
+			"name": "Split Enchantment",
+			"source": "PHB",
+			"page": 117,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Enchantment",
+			"subclassSource": "PHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"Starting at 10th level, when you cast an enchantment spell of 1st level or higher that targets only one creature, you can have it target a second creature."
+			]
+		},
+		{
+			"name": "Alter Memories",
+			"source": "PHB",
+			"page": 117,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Enchantment",
+			"subclassSource": "PHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"At 14th level, you gain the ability to make a creature unaware of your magical influence on it. When you cast an enchantment spell to charm one or more creatures, you can alter one creature's understanding so that it remains unaware of being {@condition charmed}.",
+				"Additionally, once before the spell expires, you can use your action to try to make the chosen creature forget some of the time it spent {@condition charmed}. The creature must succeed on an Intelligence saving throw against your wizard spell save DC or lose a number of hours of its memories equal to 1 + your Charisma modifier (minimum of 1). You can make the creature forget less time, and the amount of time can't exceed the duration of your enchantment spell."
+			]
+		},
+		{
+			"name": "School of Evocation",
+			"source": "PHB",
+			"page": 117,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Evocation",
+			"subclassSource": "PHB",
+			"level": 2,
+			"entries": [
+				"You focus your study on magic that creates powerful elemental effects such as bitter cold, searing flame, rolling thunder, crackling lightning, and burning acid. Some evokers find employment in military forces, serving as artillery to blast enemy armies from afar. Others use their spectacular power to protect the weak, while some seek their own gain as bandits, adventurers, or aspiring tyrants.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Evocation Savant|Wizard||Evocation||2"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Sculpt Spells|Wizard||Evocation||2"
+				}
+			]
+		},
+		{
+			"name": "Evocation Savant",
+			"source": "PHB",
+			"page": 117,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Evocation",
+			"subclassSource": "PHB",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"Beginning when you select this school at 2nd level, the gold and time you must spend to copy an evocation spell into your spellbook is halved."
+			]
+		},
+		{
+			"name": "Sculpt Spells",
+			"source": "PHB",
+			"page": 117,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Evocation",
+			"subclassSource": "PHB",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"Beginning at 2nd level, you can create pockets of relative safety within the effects of your evocation spells. When you cast an evocation spell that affects other creatures that you can see, you can choose a number of them equal to 1 + the spell's level. The chosen creatures automatically succeed on their saving throws against the spell, and they take no damage if they would normally take half damage on a successful save."
+			]
+		},
+		{
+			"name": "Potent Cantrip",
+			"source": "PHB",
+			"page": 117,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Evocation",
+			"subclassSource": "PHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"Starting at 6th level, your damaging cantrips affect even creatures that avoid the brunt of the effect. When a creature succeeds on a saving throw against your cantrip, the creature takes half the cantrip's damage (if any) but suffers no additional effect from the cantrip."
+			]
+		},
+		{
+			"name": "Empowered Evocation",
+			"source": "PHB",
+			"page": 117,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Evocation",
+			"subclassSource": "PHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"Beginning at 10th level, you can add your Intelligence modifier to one damage roll of any wizard evocation spell you cast."
+			]
+		},
+		{
+			"name": "Overchannel",
+			"source": "PHB",
+			"page": 117,
+			"srd": true,
+			"basicRules": true,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Evocation",
+			"subclassSource": "PHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"Starting at 14th level, you can increase the power of your simpler spells. When you cast a wizard spell of 1st through 5th-level that deals damage, you can deal maximum damage with that spell.",
+				"The first time you do so, you suffer no adverse effect. If you use this feature again before you finish a long rest, you take {@damage 2d12} necrotic damage for each level of the spell, immediately after you cast it. Each time you use this feature again before finishing a long rest, the necrotic damage per spell level increases by {@dice 1d12}. This damage ignores resistance and immunity."
+			]
+		},
+		{
+			"name": "School of Illusion",
+			"source": "PHB",
+			"page": 118,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Illusion",
+			"subclassSource": "PHB",
+			"level": 2,
+			"entries": [
+				"You focus your studies on magic that dazzles the senses, befuddles the mind, and tricks even the wisest folk. Your magic is subtle, but the illusions crafted by your keen mind make the impossible seem real. Some illusionists\u2014including many gnome wizards\u2014are benign tricksters who use their spells to entertain. Others are more sinister masters of deception, using their illusions to frighten and fool others for their personal gain.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Illusion Savant|Wizard||Illusion||2"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Improved Minor Illusion|Wizard||Illusion||2"
+				}
+			]
+		},
+		{
+			"name": "Illusion Savant",
+			"source": "PHB",
+			"page": 118,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Illusion",
+			"subclassSource": "PHB",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"Beginning when you select this school at 2nd level, the gold and time you must spend to copy an illusion spell into your spellbook is halved."
+			]
+		},
+		{
+			"name": "Improved Minor Illusion",
+			"source": "PHB",
+			"page": 118,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Illusion",
+			"subclassSource": "PHB",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"When you choose this school at 2nd level, you learn the {@spell minor illusion} cantrip. If you already know this cantrip, you learn a different wizard cantrip of your choice. The cantrip doesn't count against your number of cantrips known.",
+				"When you cast {@spell minor illusion}, you can create both a sound and an image with a single casting of the spell."
+			]
+		},
+		{
+			"name": "Malleable Illusions",
+			"source": "PHB",
+			"page": 118,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Illusion",
+			"subclassSource": "PHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"Starting at 6th level, when you cast an illusion spell that has a duration of 1 minute or longer, you can use your action to change the nature of that illusion (using the spell's normal parameters for the illusion), provided that you can see the illusion."
+			]
+		},
+		{
+			"name": "Illusory Self",
+			"source": "PHB",
+			"page": 118,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Illusion",
+			"subclassSource": "PHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"Beginning at 10th level, you can create an illusory duplicate of yourself as an instant, almost instinctual reaction to danger. When a creature makes an attack roll against you, you can use your reaction to interpose the illusory duplicate between the attacker and yourself. The attack automatically misses you, then the illusion dissipates.",
+				"Once you use this feature, you can't use it again until you finish a short or long rest."
+			]
+		},
+		{
+			"name": "Illusory Reality",
+			"source": "PHB",
+			"page": 118,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Illusion",
+			"subclassSource": "PHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"By 14th level, you have learned the secret of weaving shadow magic into your illusions to give them a semireality. When you cast an illusion spell of 1st level or higher, you can choose one inanimate, nonmagical object that is part of the illusion and make that object real. You can do this on your turn as a bonus action while the spell is ongoing. The object remains real for 1 minute. For example, you can create an illusion of a bridge over a chasm and then make it real long enough for your allies to cross.",
+				"The object can't deal damage or otherwise directly harm anyone."
+			]
+		},
+		{
+			"name": "School of Necromancy",
+			"source": "PHB",
+			"page": 118,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Necromancy",
+			"subclassSource": "PHB",
+			"level": 2,
+			"entries": [
+				"The School of Necromancy explores the cosmic forces of life, death, and undeath. As you focus your studies in this tradition, you learn to manipulate the energy that animates all living things. As you progress, you learn to sap the life force from a creature as your magic destroys its body, transforming that vital energy into magical power you can manipulate.",
+				"Most people see necromancers as menacing, or even villainous, due to the close association with death. Not all necromancers are evil, but the forces they manipulate are considered taboo by many societies.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Necromancy Savant|Wizard||Necromancy||2"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Grim Harvest|Wizard||Necromancy||2"
+				}
+			]
+		},
+		{
+			"name": "Grim Harvest",
+			"source": "PHB",
+			"page": 118,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Necromancy",
+			"subclassSource": "PHB",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"At 2nd level, you gain the ability to reap life energy from creatures you kill with your spells. Once per turn when you kill one or more creatures with a spell of 1st level or higher, you regain hit points equal to twice the spell's level, or three times its level if the spell belongs to the {@filter School of Necromancy|spells|school=N}. You don't gain this benefit for killing constructs or undead."
+			]
+		},
+		{
+			"name": "Necromancy Savant",
+			"source": "PHB",
+			"page": 118,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Necromancy",
+			"subclassSource": "PHB",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"Beginning when you select this school at 2nd level, the gold and time you must spend to copy a necromancy spell into your spellbook is halved."
+			]
+		},
+		{
+			"name": "Undead Thralls",
+			"source": "PHB",
+			"page": 118,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Necromancy",
+			"subclassSource": "PHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"At 6th level, you add the {@spell animate dead} spell to your spellbook if it is not there already. When you cast {@spell animate dead}, you can target one additional corpse or pile of bones, creating another zombie or skeleton, as appropriate.",
+				"Whenever you create an undead using a necromancy spell, it has additional benefits:",
+				{
+					"type": "list",
+					"items": [
+						"The creature's hit point maximum is increased by an amount equal to your wizard level.",
+						"The creature adds your proficiency bonus to its weapon damage rolls."
+					]
+				}
+			]
+		},
+		{
+			"name": "Inured to Undeath",
+			"source": "PHB",
+			"page": 118,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Necromancy",
+			"subclassSource": "PHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"Beginning at 10th level, you have resistance to necrotic damage, and your hit point maximum can't be reduced. You have spent so much time dealing with undead and the forces that animate them that you have become inured to some of their worst effects."
+			]
+		},
+		{
+			"name": "Command Undead",
+			"source": "PHB",
+			"page": 118,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Necromancy",
+			"subclassSource": "PHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"Starting at 14th level, you can use magic to bring undead under your control, even those created by other wizards. As an action, you can choose one undead that you can see within 60 feet of you. That creature must make a Charisma saving throw against your wizard spell save DC. If it succeeds, you can't use this feature on it again. If it fails, it becomes friendly to you and obeys your commands until you use this feature again.",
+				"Intelligent undead are harder to control in this way. If the target has an Intelligence of 8 or higher, it has advantage on the saving throw. If it fails the saving throw and has an Intelligence of 12 or higher, it can repeat the saving throw at the end of every hour until it succeeds and breaks free."
+			]
+		},
+		{
+			"name": "School of Transmutation",
+			"source": "PHB",
+			"page": 119,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Transmutation",
+			"subclassSource": "PHB",
+			"level": 2,
+			"entries": [
+				"You are a student of spells that modify energy and matter. To you, the world is not a fixed thing, but eminently mutable, and you delight in being an agent of change. You wield the raw stuff of creation and learn to alter both physical forms and mental qualities. Your magic gives you the tools to become a smith on reality's forge.",
+				"Some transmuters are tinkerers and pranksters, turning people into toads and transforming copper into silver for fun and occasional profit. Others pursue their magical studies with deadly seriousness, seeking the power of the gods to make and destroy worlds.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Transmutation Savant|Wizard||Transmutation||2"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Minor Alchemy|Wizard||Transmutation||2"
+				}
+			]
+		},
+		{
+			"name": "Minor Alchemy",
+			"source": "PHB",
+			"page": 119,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Transmutation",
+			"subclassSource": "PHB",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"Starting at 2nd level when you select this school, you can temporarily alter the physical properties of one nonmagical object, changing it from one substance into another. You perform a special alchemical procedure on one object composed entirely of wood, stone (but not a gemstone), iron, copper, or silver, transforming it into a different one of those materials. For each 10 minutes you spend performing the procedure, you can transform up to 1 cubic foot of material. After 1 hour, or until you lose your {@status concentration} (as if you were {@status concentration||concentrating} on a spell), the material reverts to its original substance."
+			]
+		},
+		{
+			"name": "Transmutation Savant",
+			"source": "PHB",
+			"page": 119,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Transmutation",
+			"subclassSource": "PHB",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"Beginning when you select this school at 2nd level, the gold and time you must spend to copy a transmutation spell into your spellbook is halved."
+			]
+		},
+		{
+			"name": "Transmuter's Stone",
+			"source": "PHB",
+			"page": 119,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Transmutation",
+			"subclassSource": "PHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"Starting at 6th level, you can spend 8 hours creating a transmuter's stone that stores transmutation magic. You can benefit from the stone yourself or give it to another creature. A creature gains a benefit of your choice as long as the stone is in the creature's possession. When you create the stone, choose the benefit from the following options:",
+				{
+					"type": "list",
+					"items": [
+						"Darkvision out to a range of 60 feet, as described in chapter 8.",
+						"An increase to speed of 10 feet while the creature is unencumbered.",
+						"Proficiency in Constitution saving throws.",
+						"Resistance to acid, cold, fire, lightning, or thunder damage (your choice whenever you choose this benefit)."
+					]
+				},
+				"Each time you cast a transmutation spell of 1st level or higher, you can change the effect of your stone if the stone is on your person.",
+				"If you create a new transmuter's stone, the previous one ceases to function."
+			]
+		},
+		{
+			"name": "Shapechanger",
+			"source": "PHB",
+			"page": 119,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Transmutation",
+			"subclassSource": "PHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"At 10th level, you add the {@spell polymorph} spell to your spellbook, if it is not there already. You can cast {@spell polymorph} without expending a spell slot. When you do so, you can target only yourself and transform into a {@filter beast whose challenge rating is 1 or lower|bestiary|challenge rating=[&0;&1]|type=beast|miscellaneous=!swarm}.",
+				"Once you cast {@spell polymorph} in this way, you can't do so again until you finish a short or long rest, though you can still cast it normally using an available spell slot."
+			]
+		},
+		{
+			"name": "Master Transmuter",
+			"source": "PHB",
+			"page": 119,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Transmutation",
+			"subclassSource": "PHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"Starting at 14th level, you can use your action to consume the reserve of transmutation magic stored within your transmuter's stone in a single burst. When you do so, choose one of the following effects. Your transmuter's stone is destroyed and can't be remade until you finish a long rest.",
+				{
+					"type": "options",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Major Transformation",
+							"entries": [
+								"You can transmute one nonmagical object\u2014no larger than a 5-foot cube\u2014into another nonmagical object of similar size and mass and of equal or lesser value. You must spend 10 minutes handling the object to transform it."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Panacea",
+							"entries": [
+								"You remove all curses, diseases, and poisons affecting a creature that you touch with the transmuter's stone. The creature also regains all its hit points."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Restore Life",
+							"entries": [
+								"You cast the {@spell raise dead} spell on a creature you touch with the transmuter's stone, without expending a spell slot or needing to have the spell in your spellbook."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Restore Youth",
+							"entries": [
+								"You touch the transmuter's stone to a willing creature, and that creature's apparent age is reduced by {@dice 3d10} years, to a minimum of 13 years. This effect doesn't extend the creature's lifespan."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Bladesinging",
+			"source": "TCE",
+			"page": 76,
+			"otherSources": [
+				{
+					"source": "SCAG",
+					"page": 141
+				}
+			],
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Bladesinging",
+			"subclassSource": "TCE",
+			"level": 2,
+			"entries": [
+				"Bladesingers master a tradition of wizardry that incorporates swordplay and dance. Originally created by elves, this tradition has been adopted by non-elf practitioners, who honor and expand on the elven ways.",
+				"In combat, a bladesinger uses a series of intricate, elegant maneuvers that fend off harm and allow the bladesinger to channel magic into devastating attacks and a cunning defense. Many who have observed a bladesinger at work remember the display as one of the more beautiful experiences in their life, a glorious dance accompanied by a singing blade.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Training in War and Song (Bladesinging)|Wizard||Bladesinging|TCE|2"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Bladesong|Wizard||Bladesinging|TCE|2"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Bladesinger Styles|Wizard||Bladesinging|TCE|2"
+				}
+			]
+		},
+		{
+			"name": "Bladesinger Styles",
+			"source": "TCE",
+			"page": 76,
+			"otherSources": [
+				{
+					"source": "SCAG",
+					"page": 141
+				}
+			],
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Bladesinging",
+			"subclassSource": "TCE",
+			"level": 2,
+			"header": 1,
+			"type": "inset",
+			"entries": [
+				"From its inception as a martial and magical art, Bladesinging has been tied to the sword, more specifically the longsword. Yet many generations of study gave rise to various styles of Bladesinging based on the melee weapon employed. The techniques of these styles are passed from master to students in small schools, some of which have a building dedicated to instruction. Even the newest styles are hundreds of years old, but are still taught by their original creators due to the long lives of elves. Most schools of Bladesinging are in Evermeet or Evereska. One was started in Myth Drannor, but the city's destruction has scattered those students who survived.",
+				"Styles of Bladesinging are broadly categorized based on the type of weapon employed, and each is associated with a category of animal. Within that style are specializations named after specific animal types, based on the types of spells employed, the techniques of the master, and the particular weapon used. Bladesingers who apprentice to a master typically get a tattoo of their chosen style's animal. Some bladesingers learn multiple styles and bear many tattoos, wearing a warning on their skin of their deadly skills.",
+				{
+					"type": "entries",
+					"name": "Cat",
+					"entries": [
+						"Styles that employ a sword belong to this family. The lion style, the eldest, trains practitioners in the use of the longsword and doesn't favor any particular type of spells. Leopard style focuses on the shortsword and spells of illusion and stealth. Red tiger, a style just three centuries old, has its bladesingers using the scimitar in a whirling dance of defense from which they launch into sudden leaps and attacks."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Bird",
+					"entries": [
+						"Styles that focus on the use of a hafted weapon, such as an axe or hammer, have been grouped together as bird styles, yet they vary wildly. All relatively new styles, they use weapons not typically favored by elves. Eagle-style bladesingers use small handaxes, and many maneuvers in the style focus on fluid ways to throw the weapon and draw a new one. Raven style uses a war pick, and spells associated with it grant the bladesinger more agility in combat."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Snake",
+					"entries": [
+						"Practitioners of these styles use a flail, chain, or whip. Viper style uses a whip, despite its inelegance as a weapon, and has almost as long a history as the lion style. Its masters punctuate their bladesong with a stunningly rapid rhythm of whip cracks, which can keep many foes at bay and allow the bladesinger space to cast the cruel spells of poison and disease favored by the style."
+					]
+				}
+			]
+		},
+		{
+			"name": "Bladesong",
+			"source": "TCE",
+			"page": 76,
+			"otherSources": [
+				{
+					"source": "SCAG",
+					"page": 141
+				}
+			],
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Bladesinging",
+			"subclassSource": "TCE",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"Starting at 2nd level, you can invoke a secret elven magic called the Bladesong, provided you aren't wearing medium or heavy armor or using a shield. It graces you with supernatural speed, agility, and focus.",
+				"You can use a bonus action to start the Bladesong, which lasts for 1 minute. It ends early if you are {@condition incapacitated}, if you don medium or heavy armor or a shield, or if you use two hands to make an attack with a weapon. You can also dismiss Bladesong at any time you choose (no action required).",
+				"While your bladesong is active, you gain the following benefits:",
+				{
+					"type": "list",
+					"items": [
+						"You gain a bonus to your AC equal to your Intelligence modifier (minimum of +1).",
+						"Your walking speed increases by 10 feet.",
+						"You have advantage on Dexterity ({@skill Acrobatics}) checks.",
+						"You gain a bonus to any Constitution saving throws you make to maintain {@status concentration} on a spell. The bonus equals your Intelligence modifier (minimum of +1)."
+					]
+				},
+				"You can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses of it when you finish a long rest."
+			]
+		},
+		{
+			"name": "Training in War and Song (Bladesinging)",
+			"source": "TCE",
+			"page": 76,
+			"otherSources": [
+				{
+					"source": "SCAG",
+					"page": 141
+				}
+			],
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Bladesinging",
+			"subclassSource": "TCE",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"When you adopt this tradition at 2nd level, you gain proficiency with light armor, and you gain proficiency with one type of one-handed melee weapon of your choice.",
+				"You also gain proficiency in the {@skill Performance} skill if you don't already have it."
+			]
+		},
+		{
+			"name": "Extra Attack",
+			"source": "TCE",
+			"page": 76,
+			"otherSources": [
+				{
+					"source": "SCAG",
+					"page": 141
+				}
+			],
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Bladesinging",
+			"subclassSource": "TCE",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"Starting at 6th level, you can attack twice, instead of once, whenever you take the {@action Attack} action on your turn. Moreover, you can cast one of your cantrips in place of one of those attacks."
+			]
+		},
+		{
+			"name": "Song of Defense",
+			"source": "TCE",
+			"page": 76,
+			"otherSources": [
+				{
+					"source": "SCAG",
+					"page": 141
+				}
+			],
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Bladesinging",
+			"subclassSource": "TCE",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"Beginning at 10th level, you can direct your magic to absorb damage while your bladesong is active. When you take damage, you can use your reaction to expend one spell slot and reduce that damage to you by an amount equal to five times the spell's slot level."
+			]
+		},
+		{
+			"name": "Song of Victory",
+			"source": "TCE",
+			"page": 76,
+			"otherSources": [
+				{
+					"source": "SCAG",
+					"page": 141
+				}
+			],
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Bladesinging",
+			"subclassSource": "TCE",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"Starting at 14th level, you add your Intelligence modifier (minimum of +1) to the damage of your melee weapon attacks while your Bladesong is active."
+			]
+		},
+		{
+			"name": "Order of Scribes",
+			"source": "TCE",
+			"page": 77,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Scribes",
+			"subclassSource": "TCE",
+			"level": 2,
+			"entries": [
+				"Magic of the book-that's what many folk call wizardry. The name is apt, given how much time wizards spend poring over tomes and penning theories about the nature of magic. It's rare to see wizards traveling without books and scrolls sprouting from their bags, and a wizard would go to great lengths to plumb an archive of ancient knowledge.",
+				"Among wizards, the Order of Scribes is the most bookish. It takes many forms in different worlds, but its primary mission is the same everywhere: recording magical discoveries so that wizardry can flourish. And while all wizards value spellbooks, a wizard in the Order of Scribes magically awakens their book, turning it into a trusted companion. All wizards study books, but a wizardly scribe talks to theirs!",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Wizardly Quill|Wizard||Scribes|TCE|2"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Awakened Spellbook|Wizard||Scribes|TCE|2"
+				}
+			]
+		},
+		{
+			"name": "Awakened Spellbook",
+			"source": "TCE",
+			"page": 77,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Scribes",
+			"subclassSource": "TCE",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"{@i 2nd-level Order of Scribes feature}",
+				"Using specially prepared inks and ancient incantations passed down by your wizardly order, you have awakened an arcane sentience within your spellbook.",
+				"While you are holding the book, it grants you the following benefits:",
+				{
+					"type": "list",
+					"items": [
+						"You can use the book as a spellcasting focus for your wizard spells.",
+						"When you cast a wizard spell with a spell slot, you can temporarily replace its damage type with a type that appears in another spell in your spellbook, which magically alters the spell's formula for this casting only. The latter spell must be of the same level as the spell slot you expend.",
+						"When you cast a wizard spell as a ritual, you can use the spell's normal casting time, rather than adding 10 minutes to it. Once you use this benefit, you can't do so again until you finish a long rest."
+					]
+				},
+				"If necessary, you can replace the book over the course of a short rest by using your Wizardly Quill to write arcane sigils in a blank book or a magic spellbook to which you're attuned. At the end of the rest, your spellbook's consciousness is summoned into the new book, which the consciousness transforms into your spellbook, along with all its spells. If the previous book still existed somewhere, all the spells vanish from its pages."
+			]
+		},
+		{
+			"name": "Wizardly Quill",
+			"source": "TCE",
+			"page": 77,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Scribes",
+			"subclassSource": "TCE",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"{@i 2nd-level Order of Scribes feature}",
+				"As a bonus action, you can magically create a Tiny quill in your free hand. The magic quill has the following properties:",
+				{
+					"type": "list",
+					"items": [
+						"The quill doesn't require ink. When you write with it, it produces ink in a color of your choice on the writing surface.",
+						"The time you must spend to copy a spell into your spellbook equals 2 minutes per spell level if you use the quill for the transcription.",
+						"You can erase anything you write with the quill if you wave the feather over the text as a bonus action, provided the text is within 5 feet of you."
+					]
+				},
+				"This quill disappears if you create another one or if you die."
+			]
+		},
+		{
+			"name": "Manifest Mind",
+			"source": "TCE",
+			"page": 78,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Scribes",
+			"subclassSource": "TCE",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"{@i 6th-level Order of Scribes feature}",
+				"You can conjure forth the mind of your Awakened Spellbook. As a bonus action while the book is on your person, you can cause the mind to manifest as a Tiny spectral object, hovering in an unoccupied space of your choice within 60 feet of you. The spectral mind is intangible and doesn't occupy its space, and it sheds dim light in a 10-foot radius. It looks like a ghostly tome, a cascade of text, or a scholar from the past (your choice).",
+				"While manifested, the spectral mind can hear and see, and it has {@sense darkvision} with a range of 60 feet. The mind can telepathically share with you what it sees and hears (no action required).",
+				"Whenever you cast a wizard spell on your turn, you can cast it as if you were in the spectral mind's space, instead of your own, using its senses. You can do so a number of times per day equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+				"As a bonus action, you can cause the spectral mind to hover up to 30 feet to an unoccupied space that you or it can see. It can pass through creatures but not objects.",
+				"The spectral mind stops manifesting if it is ever more than 300 feet away from you, if someone casts {@spell dispel magic} on it, if the Awakened Spellbook is destroyed, if you die, or if you dismiss the spectral mind as a bonus action.",
+				"Once you conjure the mind, you can't do so again until you finish a long rest, unless you expend a spell slot of any level to conjure it again."
+			]
+		},
+		{
+			"name": "Master Scrivener",
+			"source": "TCE",
+			"page": 78,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Scribes",
+			"subclassSource": "TCE",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"{@i 10th-level Order of Scribes feature}",
+				"Whenever you finish a long rest, you can create one magic scroll by touching your Wizardly Quill to a blank piece of paper or parchment and causing one spell from your Awakened Spellbook to be copied onto the scroll. The spellbook must be within 5 feet of you when you make the scroll.",
+				"The chosen spell must be of 1st or 2nd level and must have a casting time of 1 action. Once in the scroll, the spell's power is enhanced, counting as one level higher than normal. You can cast the spell from the scroll by reading it as an action. The scroll is unintelligible to anyone else, and the spell vanishes from the scroll when you cast it or when you finish your next long rest.",
+				"You are also adept at crafting spell scrolls, which are described in the treasure chapter of the Dungeon Master's Guide. The gold and time you must spend to make such a scroll are halved if you use your Wizardly Quill."
+			]
+		},
+		{
+			"name": "One with the Word",
+			"source": "TCE",
+			"page": 78,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Scribes",
+			"subclassSource": "TCE",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"{@i 14th-level Order of Scribes feature}",
+				"Your connection to your Awakened Spellbook has become so profound that your soul has become entwined with it. While the book is on your person, you have advantage on all Intelligence ({@skill Arcana}) checks, as the spellbook helps you remember magical lore.",
+				"Moreover, if you take damage while your spellbook's mind is manifested, you can prevent all of that damage to you by using your reaction to dismiss the spectral mind, using its magic to save yourself. Then roll {@dice 3d6}. The spellbook temporarily loses spells of your choice that have a combined spell level equal to that roll or higher. For example, if the roll's total is 9, spells vanish from the book that have a combined level of at least 9, which could mean one 9th-level spell, three 3rd-level spells, or some other combination. If there aren't enough spells in the book to cover this cost, you drop to 0 hit points.",
+				"Until you finish {@dice 1d6} long rests, you are incapable of casting the lost spells, even if you find them on a scroll or in another spellbook. After you finish the required number of rests, the spells reappear in the spellbook.",
+				"Once you use this reaction, you can't do so again until you finish a long rest."
+			]
+		},
+		{
+			"name": "Blood Magic",
+			"source": "TDCSR",
+			"page": 178,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Blood Magic",
+			"subclassSource": "TDCSR",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"Considered taboo by many societies and magic practitioners, the use of blood magic\u2014also known as {@variantrule hemocraft|TDCSR}\u2014is a rare art that harnesses the latent powers of a creature's vitality to fuel and amplify the caster's own capabilities, while manipulating and weakening the bodies of enemies from the inside. Some of the more macabre mages seeking to empower their arcane pursuits turn to {@variantrule hemocraft|TDCSR} as a means of bolstering their spells, giving their own life's blood to reach new heights of frightening magical prowess.",
+				"The secrets of {@variantrule hemocraft|TDCSR} and other forms of blood magic were once the sole purview of the mysterious {@book Claret Orders|TDCSR|2|Claret Orders}. In recent years, however, these secrets have begun to spread beyond the order's members and into the hands of less scrupulous mages. Blood magic has a bad reputation in Tal'Dorei, even though its powers can be used for much more than evil.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Blood Channeling|Wizard|PHB|Blood Magic|TDCSR|2"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Sanguine Burst|Wizard|PHB|Blood Magic|TDCSR|2"
+				}
+			]
+		},
+		{
+			"name": "Blood Channeling",
+			"source": "TDCSR",
+			"page": 178,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Blood Magic",
+			"subclassSource": "TDCSR",
+			"level": 2,
+			"header": 2,
+			"entries": [
+				"When you choose this arcane tradition at 2nd level, you are able to use your own depleted life essence to channel your magical abilities. Whenever your current hit points are below your hit point maximum, you can use your own body as an {@item arcane focus|PHB}.",
+				"In addition, when casting a wizard spell that requires a costly material component, you can forego the component by taking {@damage 1d10} necrotic damage per 50 gp of the cost of the component (minimum {@damage 1d10}). This damage can't be reduced in any way. If this damage reduces you to 0 hit points, the spell fails but the spell slot is not expended."
+			]
+		},
+		{
+			"name": "Sanguine Burst",
+			"source": "TDCSR",
+			"page": 179,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Blood Magic",
+			"subclassSource": "TDCSR",
+			"level": 2,
+			"header": 2,
+			"entries": [
+				"Also at 2nd level, you learn how to weave your life force into a spell you cast, boosting its intensity at the cost of your vitality. Whenever you roll damage for a spell you've cast of 1st level or higher, you can choose to take necrotic damage equal to the spell's level to reroll a number of the damage dice up to your Intelligence modifier (minimum one). This damage can't be reduced in any way, and you must use the new rolls."
+			]
+		},
+		{
+			"name": "Bond of Mutual Suffering",
+			"source": "TDCSR",
+			"page": 179,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Blood Magic",
+			"subclassSource": "TDCSR",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"At 6th level, when a creature you can see hits you with an attack, you can use your reaction to bind your vitality to the attacker and force them to share your pain. The attacker takes damage equal to the damage you took.",
+				"This feature cannot be used against constructs or undead. You can use this feature once. You must finish a {@quickref resting|PHB|2|0|short or long rest} before you can use it again."
+			]
+		},
+		{
+			"name": "Glyph of Hemorrhaging",
+			"source": "TDCSR",
+			"page": 179,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Blood Magic",
+			"subclassSource": "TDCSR",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"Starting at 10th level, when you damage a creature with a spell, you can choose to curse that creature for 1 minute. While cursed in this way, whenever the creature is hit by an attack, it takes an extra {@damage 1d6} necrotic damage. At the end of each of the creature's turns, it can make a Constitution {@quickref saving throws|PHB|2|1|saving throw} against your spell save DC, ending the curse on a success.",
+				"This feature cannot be used against creatures that are undead or constructs. Once you use this feature, you can't use it again until you finish a {@quickref resting|PHB|2|0|short or long rest}."
+			]
+		},
+		{
+			"name": "Bond of Mutual Suffering (14th Level)",
+			"source": "TDCSR",
+			"page": 179,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Blood Magic",
+			"subclassSource": "TDCSR",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"At 14th level, you can use this feature twice between rests."
+			]
+		},
+		{
+			"name": "Thicker than Water",
+			"source": "TDCSR",
+			"page": 179,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "Blood Magic",
+			"subclassSource": "TDCSR",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"Upon reaching 14th level, the blood that flows through your veins is empowered with arcane vigor that mends wounds and helps preserve your life. Whenever a spell or magical effect causes you to regain hit points, you regain an additional number of hit points equal to your proficiency bonus.",
+				"In addition, while you are concentrating on a spell, you have resistance to bludgeoning, piercing, and slashing damage from nonmagical attacks."
+			]
+		},
+		{
+			"name": "War Magic",
+			"source": "XGE",
+			"page": 59,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "War",
+			"subclassSource": "XGE",
+			"level": 2,
+			"entries": [
+				"A variety of arcane colleges specialize in training wizards for war. The tradition of War Magic blends principles of evocation and abjuration, rather than specializing in either of those schools. It teaches techniques that empower a caster's spells, while also providing methods for wizards to bolster their own defenses.",
+				"Followers of this tradition are known as war mages. They see their magic as both a weapon and armor, a resource superior to any piece of steel. War mages act fast in battle, using their spells to seize tactical control of a situation. Their spells strike hard, while their defensive skills foil their opponents' attempts to counterattack. War mages are also adept at turning other spellcasters' magical energy against them.",
+				"In great battles, a war mage often works with evokers, abjurers, and other types of wizards. Evokers, in particular, sometimes tease war mages for splitting their attention between offense and defense. A war mage's typical response: \"What good is being able to throw a mighty {@spell fireball} if I die before I can cast it?\"",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Arcane Deflection|Wizard||War|XGE|2"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Tactical Wit|Wizard||War|XGE|2"
+				}
+			]
+		},
+		{
+			"name": "Arcane Deflection",
+			"source": "XGE",
+			"page": 59,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "War",
+			"subclassSource": "XGE",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"At 2nd level, you have learned to weave your magic to fortify yourself against harm. When you are hit by an attack or you fail a saving throw, you can use your reaction to gain a +2 bonus to your AC against that attack or a +4 bonus to that saving throw.",
+				"When you use this feature, you can't cast spells other than cantrips until the end of your next turn."
+			]
+		},
+		{
+			"name": "Tactical Wit",
+			"source": "XGE",
+			"page": 59,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "War",
+			"subclassSource": "XGE",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"Starting at 2nd level, your keen ability to assess tactical situations allows you to act quickly in battle. You can give yourself a bonus to your initiative rolls equal to your Intelligence modifier."
+			]
+		},
+		{
+			"name": "Power Surge",
+			"source": "XGE",
+			"page": 59,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "War",
+			"subclassSource": "XGE",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"Starting at 6th level, you can store magical energy within yourself to later empower your damaging spells. In its stored form, this energy is called a power surge.",
+				"You can store a maximum number of power surges equal to your Intelligence modifier (minimum of one). Whenever you finish a long rest, your number of power surges resets to one. Whenever you successfully end a spell with {@spell dispel magic} or {@spell counterspell}, you gain one power surge, as you steal magic from the spell you foiled. If you end a short rest with no power surges, you gain one power surge.",
+				"Once per turn when you deal damage to a creature or object with a wizard spell, you can spend one power surge to deal extra force damage to that target. The extra damage equals half your wizard level."
+			]
+		},
+		{
+			"name": "Durable Magic",
+			"source": "XGE",
+			"page": 59,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "War",
+			"subclassSource": "XGE",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"Beginning at 10th level, the magic you channel helps ward off harm. While you maintain {@status concentration} on a spell, you have a +2 bonus to AC and all saving throws."
+			]
+		},
+		{
+			"name": "Deflecting Shroud",
+			"source": "XGE",
+			"page": 59,
+			"className": "Wizard",
+			"classSource": "PHB",
+			"subclassShortName": "War",
+			"subclassSource": "XGE",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"At 14th level, your Arcane Deflection becomes infused with deadly magic. When you use your Arcane Deflection feature, you can cause magical energy to arc from you. Up to three creatures of your choice that you can see within 60 feet of you each take force damage equal to half your wizard level."
+			]
+		}
+	]
+}

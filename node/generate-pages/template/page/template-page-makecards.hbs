@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{{> "head" }}
+
+<body>
+
+{{> "overlayNoise" }}
+
+{{> "adRhs" }}
+
+<div class="viewport-wrapper">
+	{{> "adLeaderboard" }}
+
+	{{> "navbar" }}
+
+	<div class="container view-col-wrapper mt-2">
+		<div class="view-col ve-overflow-y-auto" style="flex: 3;">
+			<p>This tool can be used to create data compatible with the <a href="https://rpg-cards.vercel.app" rel="noopener noreferrer">RPG Cards</a> app.</p>
+			<p>Icons are taken from the open-source <i>RPG Cards</i> code, which is in turn sources icons from <a href="https://game-icons.net/" rel="noopener noreferrer">Game-icons.net</a>. Most of the icons available there should be available here.</p>
+			<hr class="hr-0">
+			<h4>Configuration</h4>
+			<div id="wrp_config"></div>
+		</div>
+
+		<div id="wrp_main" class="view-col ve-flex-col" style="flex: 7;"></div>
+	</div>
+</div>
+
+{{> "adFooter" }}
+
+{{> "scripts" }}
+
+</body>
+</html>

@@ -1,0 +1,591 @@
+{
+	"_meta": {
+		"dependencies": {
+			"monster": [
+				"MM"
+			]
+		}
+	},
+	"monster": [
+		{
+			"name": "Clockwork Behir",
+			"source": "OoW",
+			"page": 173,
+			"_copy": {
+				"name": "Behir",
+				"source": "MM"
+			},
+			"type": "construct",
+			"immune": [
+				"poison",
+				"psychic"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"petrified",
+				"poisoned"
+			],
+			"hasToken": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Dagdra Deepforge",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "OoW",
+			"page": 145,
+			"_copy": {
+				"name": "Priest",
+				"source": "MM",
+				"_templates": [
+					{
+						"name": "Mountain Dwarf",
+						"source": "PHB"
+					}
+				],
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the priest",
+						"with": "Dagdra",
+						"flags": "i"
+					},
+					"action": {
+						"mode": "appendArr",
+						"items": {
+							"name": "Scroll Service (1/Day)",
+							"entries": [
+								"As an action, Dagdra draws a {@item spell scroll} from her {@item documancy satchel|AI}. The scroll contains a spell of up to 3rd level of Dagdra's choice. Only Dagdra can use the scroll, which vanishes after 1 minute."
+							]
+						}
+					}
+				}
+			},
+			"alignment": [
+				"N",
+				"G"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"{@item half plate armor|phb}"
+					]
+				}
+			],
+			"languageTags": [
+				"D",
+				"X"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Devil Dog",
+			"shortName": true,
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "OoW",
+			"page": 85,
+			"_copy": {
+				"name": "Acolyte",
+				"source": "MM",
+				"_templates": [
+					{
+						"name": "Tiefling",
+						"source": "PHB"
+					}
+				],
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the acolyte",
+						"with": "Devil Dog",
+						"flags": "i"
+					}
+				}
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"languageTags": [
+				"C",
+				"I",
+				"X"
+			],
+			"damageTagsSpell": [
+				"F",
+				"R"
+			],
+			"spellcastingTags": [
+				"CC",
+				"I"
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Enormous Tentacle",
+			"source": "OoW",
+			"page": 94,
+			"_copy": {
+				"name": "Giant Constrictor Snake",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "snake",
+						"with": "tentacle"
+					}
+				}
+			},
+			"trait": [
+				{
+					"name": "Reach",
+					"entries": [
+						"The tentacle can reach anywhere in the room."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Constrict",
+					"entries": [
+						"{@atk mw} {@hit 6} to hit, reach 35 ft., one creature. {@h}13 ({@damage 2d8 + 4}) bludgeoning damage, and the target is {@condition grappled} (escape {@dc 16}). Until this grapple ends, the creature is {@condition restrained}, and the tentacle can't constrict another target."
+					]
+				}
+			],
+			"damageTags": [
+				"B"
+			],
+			"conditionInflict": [
+				"grappled",
+				"restrained"
+			],
+			"hasToken": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Gildha Duhn",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "OoW",
+			"page": 110,
+			"_copy": {
+				"name": "Acolyte",
+				"source": "MM",
+				"_templates": [
+					{
+						"name": "Half-Orc",
+						"source": "PHB"
+					}
+				],
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the acolyte",
+						"with": "Gildha",
+						"flags": "i"
+					}
+				}
+			},
+			"languageTags": [
+				"C",
+				"O",
+				"X"
+			],
+			"hasToken": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Grunka",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "OoW",
+			"page": 115,
+			"_copy": {
+				"name": "Hobgoblin",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the hobgoblin",
+						"with": "Grunka",
+						"flags": "i"
+					},
+					"action": {
+						"mode": "appendArr",
+						"items": {
+							"name": "Acid Spray Gun {@recharge 5}",
+							"entries": [
+								"The hobgoblin sprays acid in a 10-foot cone. Each creature in the area must make a DC 10 Dexterity saving throw, taking 7 ({@damage 2d6}) acid damage on a failed save, or half as much damage on a successful one.",
+								"The spray gun has a tank that can be filled with ten standard vials of acid mixed with water, allowing it to be used five times."
+							]
+						}
+					}
+				}
+			},
+			"damageTags": [
+				"A",
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RNG",
+				"RW"
+			],
+			"hasToken": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Jelayne",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "OoW",
+			"page": 84,
+			"_copy": {
+				"name": "Skeleton",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the skeleton",
+						"with": "Jelayne",
+						"flags": "i"
+					}
+				}
+			},
+			"int": 14,
+			"cha": 14,
+			"languages": [
+				"Common"
+			],
+			"languageTags": [
+				"C"
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Mechachimera",
+			"source": "OoW",
+			"page": 134,
+			"_copy": {
+				"name": "Chimera",
+				"source": "MM"
+			},
+			"type": "construct",
+			"immune": [
+				"poison",
+				"psychic"
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Onyx",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "OoW",
+			"page": 186,
+			"_copy": {
+				"name": "Cat",
+				"source": "MM",
+				"_mod": {
+					"trait": {
+						"mode": "appendArr",
+						"items": [
+							{
+								"name": "Relative Size",
+								"entries": [
+									"Any damage Onyx would take is reduced to 0. She has advantage on ability checks and saving throws."
+								]
+							},
+							{
+								"name": "Dealing with Onyx",
+								"entries": [
+									"Onyx cannot be overcome or killed by combat. Any weapon attack against her that hits AC 12 makes contact but deals no lasting damage. However, if the attack would deal 10 or more damage, Onyx has disadvantage on attack rolls until the end of her next turn. If Onyx would take 10 or more damage from spells or other effects, it yields the same result. Spells that impose conditions function normally against Onyx, but those conditions end automatically at the end of the cat's next turn."
+								]
+							}
+						]
+					}
+				}
+			},
+			"size": [
+				"H"
+			],
+			"speed": {
+				"walk": 400,
+				"climb": 200
+			},
+			"action": [
+				{
+					"name": "Claws",
+					"entries": [
+						"{@atk mw} {@hit 7} to hit, reach 20 ft., one target. {@h}11 ({@damage 2d10}) slashing damage."
+					]
+				}
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Replica Duodrone",
+			"source": "OoW",
+			"page": 132,
+			"_copy": {
+				"name": "Duodrone",
+				"source": "MM",
+				"_mod": {
+					"trait": {
+						"mode": "replaceArr",
+						"replace": "Disintegration",
+						"items": {
+							"name": "Dismantlable",
+							"entries": [
+								"If the replica duodrone dies, its body falls into a pile of parts (gears, plates, screws, and wires), leaving behind its weapons and anything else it was carrying."
+							]
+						}
+					}
+				}
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"languages": [
+				"Modron",
+				"can understand Common but speaks only preprogrammed responses"
+			],
+			"languageTags": [
+				"C",
+				"OTH"
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Replica Monodrone",
+			"source": "OoW",
+			"page": 132,
+			"_copy": {
+				"name": "Monodrone",
+				"source": "MM",
+				"_mod": {
+					"trait": {
+						"mode": "replaceArr",
+						"replace": "Disintegration",
+						"items": {
+							"name": "Dismantlable",
+							"entries": [
+								"If the replica monodrone dies, its body falls into a pile of parts (gears, plates, screws, and wires), leaving behind its weapons and anything else it was carrying."
+							]
+						}
+					}
+				}
+			},
+			"speed": {
+				"walk": 30
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"languages": [
+				"Modron",
+				"can understand Common but speaks only preprogrammed responses"
+			],
+			"languageTags": [
+				"C",
+				"OTH"
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Replica Pentadrone",
+			"source": "OoW",
+			"page": 132,
+			"_copy": {
+				"name": "Pentadrone",
+				"source": "MM",
+				"_mod": {
+					"trait": {
+						"mode": "replaceArr",
+						"replace": "Disintegration",
+						"items": {
+							"name": "Dismantlable",
+							"entries": [
+								"If the replica pentadrone dies, its body falls into a pile of parts (gears, plates, screws, and wires), leaving behind its weapons and anything else it was carrying."
+							]
+						}
+					}
+				}
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"languages": [
+				"Modron",
+				"can understand Common but speaks only preprogrammed responses"
+			],
+			"languageTags": [
+				"C",
+				"OTH"
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Replica Quadrone",
+			"source": "OoW",
+			"page": 132,
+			"_copy": {
+				"name": "Quadrone",
+				"source": "MM",
+				"_mod": {
+					"trait": {
+						"mode": "replaceArr",
+						"replace": "Disintegration",
+						"items": {
+							"name": "Dismantlable",
+							"entries": [
+								"If the replica quadrone dies, its body falls into a pile of parts (gears, plates, screws, and wires), leaving behind its weapons and anything else it was carrying."
+							]
+						}
+					}
+				}
+			},
+			"speed": {
+				"walk": 30
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"languages": [
+				"Modron",
+				"can understand Common but speaks only preprogrammed responses"
+			],
+			"languageTags": [
+				"C",
+				"OTH"
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Replica Tridrone",
+			"source": "OoW",
+			"page": 132,
+			"_copy": {
+				"name": "Tridrone",
+				"source": "MM",
+				"_mod": {
+					"trait": {
+						"mode": "replaceArr",
+						"replace": "Disintegration",
+						"items": {
+							"name": "Dismantlable",
+							"entries": [
+								"If the replica tridrone dies, its body falls into a pile of parts (gears, plates, screws, and wires), leaving behind its weapons and anything else it was carrying."
+							]
+						}
+					}
+				}
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"languages": [
+				"Modron",
+				"can understand Common but speaks only preprogrammed responses"
+			],
+			"languageTags": [
+				"C",
+				"OTH"
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Stomping Foot",
+			"source": "OoW",
+			"page": 92,
+			"_copy": {
+				"name": "Crawling Claw",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "claw",
+						"with": "foot",
+						"flags": "i"
+					}
+				}
+			},
+			"speed": {
+				"walk": 30
+			},
+			"action": [
+				{
+					"name": "Stomp",
+					"entries": [
+						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d4 + 1}) bludgeoning damage."
+					]
+				}
+			],
+			"damageTags": [
+				"B"
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Two Dry Cloaks",
+			"shortName": true,
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "OoW",
+			"page": 162,
+			"_copy": {
+				"name": "Spy",
+				"source": "MM",
+				"_templates": [
+					{
+						"name": "Tabaxi",
+						"source": "VGM"
+					}
+				],
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the spy",
+						"with": "Two Dry Cloaks",
+						"flags": "i"
+					}
+				}
+			},
+			"damageTags": [
+				"P",
+				"S"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Undead Cockatrice",
+			"source": "OoW",
+			"page": 114,
+			"_copy": {
+				"name": "Cockatrice",
+				"source": "MM"
+			},
+			"type": "undead",
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"poisoned"
+			],
+			"hasToken": true
+		}
+	]
+}

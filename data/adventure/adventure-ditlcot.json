@@ -1,0 +1,7391 @@
+{
+	"data": [
+		{
+			"type": "section",
+			"name": "Descent into the Lost Caverns of Tsojcanth",
+			"id": "000",
+			"entries": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "adventure/DitLCoT/000-00-001.iggwilv-cover.webp"
+					},
+					"credit": "Jodie Muir",
+					"width": 1700,
+					"height": 2196
+				},
+				"Deep in the Yatil Mountains lie the Lost Caverns of Tsojcanth, formerly occupied by the legendary archmage Iggwilv the Witch Queen. Though Iggwilv is long gone, her lair is anything but empty. Demons, giants, and other formidable creatures haunt the perilous caverns, and the archmage's magical defenses remain intact. The rewards for braving these threats defy imagination. Iggwilv is rumored to have amassed a magical hoard of unsurpassed value, a trove of such fame that scores of adventurers have perished in search of it.",
+				"This supplement is part of a yearlong celebration of Dungeons & Dragons and its 50th anniversary. The adventure presented herein is an abridged, quick-play version of \"The Lost Caverns of Tsojcanth,\" which appears in {@adventure Quests from the Infinite Staircase|QftIS}. See that book for the full adventure.",
+				"\"Descent into the Lost Caverns of Tsojcanth\" is designed for four to six 9th-level characters.",
+				{
+					"type": "section",
+					"name": "Using This Supplement",
+					"id": "001",
+					"entries": [
+						"In addition to the adventure, this supplement includes the following appendices:",
+						"{@area Appendix A|05d|x} presents a small trove of magic items available to all who brave the Lost Caverns of Tsojcanth. At the DM's discretion, the characters might earn one or more of these treasures as a reward for completing the adventure.",
+						"{@area Appendix B|062|x} contains a creature that dwells in the Lost Caverns, the {@creature pech|DitLCoT}.",
+						"{@area Appendix C|064|x} features a score sheet for use in competitive play. See the \"{@area Tournament Rules|008|x}\" section for how to run the adventure as a tournament-style scenario.",
+						"{@area Appendix D|065|x} provides six premade characters suitable for this adventure. Each player can choose one of these characters or provide a 9th-level character of their own.",
+						{
+							"type": "image",
+							"href": {
+								"type": "internal",
+								"path": "adventure/DitLCoT/001-00-002.original-cover.webp"
+							},
+							"width": 425,
+							"height": 549
+						},
+						{
+							"type": "insetReadaloud",
+							"name": "About the Original",
+							"id": "002",
+							"entries": [
+								"Published in 1982, the official {@i Lost Caverns of Tsojcanth} module was an expanded and revised version of {@i The Lost Caverns of Tsojconth}, a tournament adventure created by Gary Gygax for Winter Con V in 1976. The adventure offers tantalizing details about Iggwilv the Witch Queen\u2014perhaps better known as the archmage Tasha, famous for her {@i Hideous Laughter} spell. This adaptation pays homage to the original by including a score sheet for competitive play."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Running the Adventure",
+							"id": "003",
+							"entries": [
+								"To run the adventure, you need the fifth edition core rulebooks: the {@book Player's Handbook|PHB}, {@book Dungeon Master's Guide|DMG}, and {@book Monster Manual|MM}. When a creature's name appears in {@b bold} type, that's a visual cue pointing you to its stat block as a way of saying, \"Hey, DM, you should get this creature's stat block ready. You're going to need it.\" The {@book Monster Manual|MM} contains stat blocks for most of the creatures in these adventures; the {@creature pech|DitLCoT} appears in {@area appendix B|062|x}.",
+								{
+									"type": "insetReadaloud",
+									"id": "004",
+									"entries": [
+										"Text that appears in a box like this is meant to be read aloud or paraphrased for the players when their characters first arrive at a location or under a specific circumstance, as described in the text."
+									]
+								},
+								"Spells and equipment mentioned in this supplement are described in the {@book Player's Handbook|PHB}. Magic items are described in the {@book Dungeon Master's Guide|DMG}."
+							]
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Background",
+					"id": "005",
+					"entries": [
+						"Iggwilv carved out a kingdom for herself through magical prowess, strength, and wit, bolstered by a horde of demons bound by magic to further her aims. In her quest for absolute power, Iggwilv accumulated countless enemies determined to destroy her. Among these was the demon lord Graz'zt, whom the archmage imprisoned for a time. Eventually, Iggwilv's ambitions proved excessive, and a climactic battle with Graz'zt broke her power. The Witch Queen then vanished. As her evil influence waned, Iggwilv's realm was sundered, and her lair was lost.",
+						"This lost lair purportedly lies deep in a series of caverns somewhere in the Yatil Mountains. In the decades since Iggwilv's disappearance, adventurers and treasure hunters have sought the Lost Caverns of Tsojcanth and the treasures within. This adventure assumes the characters know the way to the fabled lair, having assembled fragments of information regarding the caverns' location or learned it from another reliable source.",
+						{
+							"type": "entries",
+							"name": "Adventure Hooks",
+							"id": "006",
+							"entries": [
+								"If the prospect of claiming Iggwilv's hoard isn't enough to persuade the characters to undertake this quest, you can further motivate the party with either of the following adventure hooks:",
+								{
+									"type": "list",
+									"style": "list-hang-notitle",
+									"items": [
+										{
+											"type": "item",
+											"name": "Iggwilv's Rival",
+											"entry": "An archmage who was once embroiled in a heated rivalry with Iggwilv has reason to believe she isn't dead. The archmage recruits the characters to search the Lost Caverns for any evidence of the Witch Queen's lingering presence."
+										},
+										{
+											"type": "item",
+											"name": "Margrave's Agents",
+											"entry": "The margrave of a nation near the mountains has uncovered clues to the Lost Caverns' whereabouts, thanks to a few partially successful expeditions in recent years. Most of the agents the margrave sent came back battle worn and empty-handed, if they returned at all. The margrave hires the characters to recover Iggwilv's hoard before it falls into the hands of his rivals."
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Setting the Adventure",
+							"id": "007",
+							"entries": [
+								"On the world of Oerth in the Greyhawk campaign setting, the Lost Caverns hide within the Yatil Mountains, nestled between the nations of Ket and Perrenland, with Bissel to the south.",
+								"You can set the adventure in a different world by placing it in any mountain range near a kingdom or settlement\u2014before her disappearance, Iggwilv's influence spanned multiple worlds and planes of existence. Consider the following suggestions:",
+								{
+									"type": "list",
+									"style": "list-hang-notitle",
+									"items": [
+										{
+											"type": "item",
+											"name": "Dragonlance",
+											"entry": "The Speaker of the Suns, leader of the Qualinesti elves, might charge the characters to search for the Lost Caverns in the Kharolis Mountains south of the elves' forest home."
+										},
+										{
+											"type": "item",
+											"name": "Eberron",
+											"entry": "The nations of Aundair, Breland, and Thrane vie to explore the Lost Caverns in the Blackcap Mountains. Iggwilv's experiments there drew power from the depths of Kyber."
+										},
+										{
+											"type": "item",
+											"name": "Forgotten Realms",
+											"entry": "The Lost Caverns are hidden in the Sunset Mountains, northeast of Proskur along the High Road. The High Overseer of Elturel might hire the characters to locate the caverns."
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Tournament Rules",
+					"id": "008",
+					"entries": [
+						"If you wish to emulate the competitive adventures of old, you can run this adventure as a tournament-style scenario by following the guidance in this section. Rather than pitting characters against one another, adventuring parties are scored as a group.",
+						"These rules are optional. You don't need to score your players to run this adventure. The scoring system included in this supplement is meant to spark joy, not contention.",
+						{
+							"type": "entries",
+							"name": "Rewards",
+							"id": "009",
+							"entries": [
+								"At game conventions and store events, these rules can be used to award prizes to the highest-scoring groups. Otherwise, they mainly exist for groups to enjoy bragging rights, comradery, and other intangible benefits. Consider sharing your group's final score as a lighthearted challenge to other players."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Scoring",
+							"id": "00a",
+							"entries": [
+								"Have this adventure's score sheet (see {@area appendix C|064|x}) handy as you run the adventure. As the characters traverse the Lost Caverns, silently cross-reference the actions of the party with those denoted on the score sheet, making note of any events that qualify for a point increase or deduction.",
+								"Keep these actions and their associated point values secret during the adventure. You can share them with the players afterward, along with the group's final score. Alternatively, you can announce these point fluctuations as they occur to your players for comedic or dramatic effect.",
+								"After the adventure, use the score sheet to tally the group's points and calculate their final score, then report that score to the players. It's possible\u2014albeit unlikely\u2014to earn a negative final score."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Time Limit",
+							"id": "00b",
+							"entries": [
+								"As a tournament scenario, this adventure has a strict time limit: a single game session equal to four hours of play. Encourage players at the onset not to dawdle\u2014the clock is ticking! The adventure concludes once that time has elapsed or whenever any of the following conditions have been met:",
+								{
+									"type": "list",
+									"items": [
+										"Every character in the party is dead or otherwise out of commission.",
+										"The characters explore every area of the lesser caverns (presented later in this adventure).",
+										"The characters descend to the greater caverns (see {@area area L16|043|x} of the lesser caverns) or leave the Lost Caverns altogether. Let players know that these actions will end the adventure (and thus their opportunity to score more points)."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Resting",
+									"id": "00c",
+									"entries": [
+										"To keep the dungeon challenging, the characters can take only one short rest during the session. Long rests are prohibited for tournament play of this adventure."
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Lost Caverns",
+					"id": "00d",
+					"entries": [
+						"The Lost Caverns of Tsojcanth hide in the Yatil Mountains south of Iggwilv's Horn. Not much is known about the caverns' namesake, the mysterious Tsojcanth, who was eclipsed by the archmage who succeeded them. Whether Tsojcanth was slain by Iggwilv or left before her arrival, this predecessor's only remaining trace is the caverns' name, while the Witch Queen's influence persists long after her departure.",
+						"The caverns are divided into the lesser and greater caverns. This abbreviated adventure focuses only on the former.",
+						{
+							"type": "entries",
+							"name": "Starting the Adventure",
+							"id": "00e",
+							"entries": [
+								"Read or paraphrase the following text to begin the adventure:",
+								{
+									"type": "insetReadaloud",
+									"id": "00f",
+									"entries": [
+										"You are a member of a group of adventurers, united in weeks past by your pursuit of a common prize: the treasures of the Lost Caverns of Tsojcanth\u2014the former lair of the archmage Iggwilv, the so-called Witch Queen.",
+										"Guided by a series of hard-won clues, your trek through the Yatil Mountains halts at a yawning cleft in the mountainside. Stalactites and stalagmites growing at the entrance give the cave mouth the impression of fangs waiting to snap together. The opening is forty feet wide, twenty feet high, and blackened by soot. Past the stone maw, a wide passage with roughly hewn stairs descends into darkness."
+									]
+								},
+								"The tunnel slants down to {@area area L1|012|x} of the lesser caverns."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Lesser Caverns Features",
+							"id": "010",
+							"entries": [
+								"The lesser caverns form the upper level of the Lost Caverns. Unless otherwise noted, the lesser caverns have the following features:",
+								{
+									"type": "list",
+									"style": "list-hang-notitle",
+									"items": [
+										{
+											"type": "item",
+											"name": "Ambience",
+											"entry": "The caverns are damp, humid, and full of life. Stalactites drip into shallow puddles, and water trickles down the slick cave walls. The sounds of cave bats, small insects, and the caverns' monstrous denizens echo throughout."
+										},
+										{
+											"type": "item",
+											"name": "Ceilings",
+											"entry": "Ceilings are 15 feet high in corridors and tunnels and 20 feet high in chambers."
+										},
+										{
+											"type": "item",
+											"name": "Lighting",
+											"entry": "The caverns are unlit. Denizens carry their own light or rely on {@sense darkvision} to see. Area descriptions assume the characters have a light source or other means of seeing in the dark."
+										},
+										{
+											"type": "item",
+											"name": "Underground Rivers",
+											"entry": "The rivers that span the lesser caverns have strong currents. A creature that enters a river for the first time on a turn or starts its turn there must succeed on a DC 15 Strength saving throw or be swept 20 feet in the direction indicated by the arrows on the map."
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Lesser Cavern Locations",
+							"id": "011",
+							"entries": [
+								"The following locations are keyed to map 1.1.",
+								{
+									"type": "gallery",
+									"images": [
+										{
+											"type": "image",
+											"href": {
+												"type": "internal",
+												"path": "adventure/DitLCoT/002-map-0.01-lesser-caverns.webp"
+											},
+											"imageType": "map",
+											"title": "Map 1.1: Lesser Caverns",
+											"credit": "Mike Schley",
+											"width": 4096,
+											"height": 5301,
+											"id": "05e",
+											"grid": {
+												"type": "square",
+												"size": 225,
+												"offsetX": 52,
+												"offsetY": -23,
+												"scale": 2,
+												"distance": 10
+											},
+											"mapRegions": [
+												{
+													"area": "03f",
+													"points": [
+														[
+															254,
+															544
+														],
+														[
+															267,
+															504
+														],
+														[
+															283,
+															491
+														],
+														[
+															299,
+															459
+														],
+														[
+															319,
+															426
+														],
+														[
+															346,
+															417
+														],
+														[
+															377,
+															410
+														],
+														[
+															403,
+															417
+														],
+														[
+															431,
+															433
+														],
+														[
+															449,
+															444
+														],
+														[
+															454,
+															463
+														],
+														[
+															483,
+															456
+														],
+														[
+															501,
+															436
+														],
+														[
+															523,
+															424
+														],
+														[
+															531,
+															397
+														],
+														[
+															559,
+															390
+														],
+														[
+															574,
+															367
+														],
+														[
+															609,
+															349
+														],
+														[
+															643,
+															337
+														],
+														[
+															664,
+															323
+														],
+														[
+															673,
+															304
+														],
+														[
+															699,
+															296
+														],
+														[
+															730,
+															296
+														],
+														[
+															747,
+															307
+														],
+														[
+															767,
+															316
+														],
+														[
+															777,
+															337
+														],
+														[
+															771,
+															354
+														],
+														[
+															777,
+															377
+														],
+														[
+															796,
+															386
+														],
+														[
+															817,
+															401
+														],
+														[
+															841,
+															410
+														],
+														[
+															870,
+															414
+														],
+														[
+															887,
+															401
+														],
+														[
+															914,
+															391
+														],
+														[
+															940,
+															389
+														],
+														[
+															971,
+															394
+														],
+														[
+															997,
+															403
+														],
+														[
+															1009,
+															416
+														],
+														[
+															981,
+															480
+														],
+														[
+															983,
+															527
+														],
+														[
+															973,
+															544
+														],
+														[
+															953,
+															563
+														],
+														[
+															944,
+															583
+														],
+														[
+															947,
+															603
+														],
+														[
+															954,
+															630
+														],
+														[
+															951,
+															660
+														],
+														[
+															951,
+															681
+														],
+														[
+															969,
+															729
+														],
+														[
+															970,
+															746
+														],
+														[
+															954,
+															770
+														],
+														[
+															946,
+															784
+														],
+														[
+															944,
+															811
+														],
+														[
+															954,
+															821
+														],
+														[
+															973,
+															849
+														],
+														[
+															1010,
+															921
+														],
+														[
+															990,
+															1051
+														],
+														[
+															953,
+															1076
+														],
+														[
+															920,
+															1086
+														],
+														[
+															876,
+															1076
+														],
+														[
+															870,
+															1061
+														],
+														[
+															847,
+															1059
+														],
+														[
+															816,
+															1060
+														],
+														[
+															776,
+															1057
+														],
+														[
+															753,
+															1047
+														],
+														[
+															711,
+															1053
+														],
+														[
+															700,
+															1066
+														],
+														[
+															673,
+															1066
+														],
+														[
+															659,
+															1053
+														],
+														[
+															631,
+															1049
+														],
+														[
+															603,
+															1034
+														],
+														[
+															581,
+															1003
+														],
+														[
+															576,
+															991
+														],
+														[
+															541,
+															994
+														],
+														[
+															526,
+															1009
+														],
+														[
+															489,
+															1007
+														],
+														[
+															469,
+															1003
+														],
+														[
+															380,
+															980
+														],
+														[
+															343,
+															971
+														],
+														[
+															323,
+															940
+														],
+														[
+															316,
+															894
+														],
+														[
+															290,
+															881
+														],
+														[
+															279,
+															849
+														],
+														[
+															269,
+															814
+														],
+														[
+															247,
+															799
+														],
+														[
+															223,
+															756
+														],
+														[
+															224,
+															716
+														],
+														[
+															246,
+															701
+														],
+														[
+															260,
+															679
+														],
+														[
+															270,
+															667
+														],
+														[
+															270,
+															640
+														],
+														[
+															267,
+															620
+														],
+														[
+															263,
+															599
+														],
+														[
+															254,
+															573
+														]
+													]
+												},
+												{
+													"area": "043",
+													"points": [
+														[
+															1106,
+															419
+														],
+														[
+															1150,
+															410
+														],
+														[
+															1161,
+															394
+														],
+														[
+															1207,
+															384
+														],
+														[
+															1237,
+															370
+														],
+														[
+															1259,
+															383
+														],
+														[
+															1261,
+															421
+														],
+														[
+															1284,
+															439
+														],
+														[
+															1314,
+															450
+														],
+														[
+															1344,
+															439
+														],
+														[
+															1366,
+															433
+														],
+														[
+															1380,
+															460
+														],
+														[
+															1404,
+															471
+														],
+														[
+															1423,
+															483
+														],
+														[
+															1427,
+															519
+														],
+														[
+															1451,
+															526
+														],
+														[
+															1473,
+															527
+														],
+														[
+															1494,
+															549
+														],
+														[
+															1480,
+															573
+														],
+														[
+															1487,
+															594
+														],
+														[
+															1510,
+															596
+														],
+														[
+															1523,
+															623
+														],
+														[
+															1536,
+															641
+														],
+														[
+															1529,
+															683
+														],
+														[
+															1546,
+															707
+														],
+														[
+															1549,
+															731
+														],
+														[
+															1524,
+															741
+														],
+														[
+															1523,
+															757
+														],
+														[
+															1511,
+															799
+														],
+														[
+															1513,
+															813
+														],
+														[
+															1516,
+															833
+														],
+														[
+															1507,
+															844
+														],
+														[
+															1473,
+															851
+														],
+														[
+															1454,
+															844
+														],
+														[
+															1439,
+															860
+														],
+														[
+															1419,
+															877
+														],
+														[
+															1409,
+															901
+														],
+														[
+															1386,
+															916
+														],
+														[
+															1370,
+															927
+														],
+														[
+															1333,
+															939
+														],
+														[
+															1319,
+															943
+														],
+														[
+															1293,
+															940
+														],
+														[
+															1267,
+															944
+														],
+														[
+															1261,
+															963
+														],
+														[
+															1240,
+															979
+														],
+														[
+															1231,
+															1000
+														],
+														[
+															1191,
+															1014
+														],
+														[
+															1153,
+															1013
+														],
+														[
+															1169,
+															960
+														],
+														[
+															1190,
+															909
+														],
+														[
+															1209,
+															856
+														],
+														[
+															1220,
+															843
+														],
+														[
+															1247,
+															841
+														],
+														[
+															1266,
+															830
+														],
+														[
+															1271,
+															806
+														],
+														[
+															1293,
+															783
+														],
+														[
+															1320,
+															784
+														],
+														[
+															1350,
+															766
+														],
+														[
+															1366,
+															751
+														],
+														[
+															1330,
+															744
+														],
+														[
+															1310,
+															740
+														],
+														[
+															1256,
+															740
+														],
+														[
+															1230,
+															739
+														],
+														[
+															1219,
+															774
+														],
+														[
+															1156,
+															781
+														],
+														[
+															1104,
+															771
+														],
+														[
+															1111,
+															724
+														],
+														[
+															1067,
+															701
+														],
+														[
+															1047,
+															674
+														],
+														[
+															1076,
+															611
+														],
+														[
+															1110,
+															577
+														],
+														[
+															1161,
+															587
+														],
+														[
+															1216,
+															606
+														],
+														[
+															1243,
+															594
+														],
+														[
+															1237,
+															566
+														],
+														[
+															1267,
+															563
+														],
+														[
+															1247,
+															541
+														],
+														[
+															1230,
+															516
+														],
+														[
+															1189,
+															520
+														],
+														[
+															1159,
+															514
+														],
+														[
+															1150,
+															500
+														]
+													]
+												},
+												{
+													"area": "048",
+													"points": [
+														[
+															1364,
+															1466
+														],
+														[
+															1399,
+															1433
+														],
+														[
+															1461,
+															1409
+														],
+														[
+															1487,
+															1409
+														],
+														[
+															1517,
+															1400
+														],
+														[
+															1569,
+															1391
+														],
+														[
+															1606,
+															1390
+														],
+														[
+															1626,
+															1416
+														],
+														[
+															1657,
+															1434
+														],
+														[
+															1661,
+															1463
+														],
+														[
+															1689,
+															1471
+														],
+														[
+															1697,
+															1510
+														],
+														[
+															1707,
+															1551
+														],
+														[
+															1727,
+															1569
+														],
+														[
+															1739,
+															1590
+														],
+														[
+															1733,
+															1613
+														],
+														[
+															1719,
+															1621
+														],
+														[
+															1710,
+															1640
+														],
+														[
+															1714,
+															1660
+														],
+														[
+															1723,
+															1680
+														],
+														[
+															1717,
+															1707
+														],
+														[
+															1703,
+															1720
+														],
+														[
+															1669,
+															1731
+														],
+														[
+															1643,
+															1740
+														],
+														[
+															1583,
+															1721
+														],
+														[
+															1570,
+															1703
+														],
+														[
+															1543,
+															1699
+														],
+														[
+															1524,
+															1694
+														],
+														[
+															1494,
+															1693
+														],
+														[
+															1467,
+															1687
+														],
+														[
+															1449,
+															1664
+														],
+														[
+															1421,
+															1656
+														],
+														[
+															1406,
+															1663
+														],
+														[
+															1379,
+															1650
+														],
+														[
+															1361,
+															1639
+														],
+														[
+															1301,
+															1614
+														],
+														[
+															1301,
+															1593
+														],
+														[
+															1311,
+															1576
+														],
+														[
+															1307,
+															1523
+														],
+														[
+															1324,
+															1503
+														],
+														[
+															1346,
+															1500
+														],
+														[
+															1359,
+															1484
+														]
+													]
+												},
+												{
+													"area": "03b",
+													"points": [
+														[
+															431,
+															1871
+														],
+														[
+															447,
+															1899
+														],
+														[
+															494,
+															1910
+														],
+														[
+															510,
+															1924
+														],
+														[
+															529,
+															1950
+														],
+														[
+															561,
+															1951
+														],
+														[
+															616,
+															1954
+														],
+														[
+															656,
+															1949
+														],
+														[
+															706,
+															1941
+														],
+														[
+															721,
+															1926
+														],
+														[
+															764,
+															1919
+														],
+														[
+															779,
+															1857
+														],
+														[
+															756,
+															1774
+														],
+														[
+															747,
+															1733
+														],
+														[
+															714,
+															1721
+														],
+														[
+															690,
+															1713
+														],
+														[
+															666,
+															1701
+														],
+														[
+															647,
+															1670
+														],
+														[
+															596,
+															1666
+														],
+														[
+															551,
+															1663
+														],
+														[
+															511,
+															1671
+														],
+														[
+															474,
+															1694
+														],
+														[
+															443,
+															1700
+														],
+														[
+															426,
+															1733
+														],
+														[
+															416,
+															1786
+														],
+														[
+															414,
+															1826
+														]
+													]
+												},
+												{
+													"area": "03c",
+													"points": [
+														[
+															1581,
+															2811
+														],
+														[
+															1581,
+															2797
+														],
+														[
+															1574,
+															2783
+														],
+														[
+															1553,
+															2780
+														],
+														[
+															1513,
+															2793
+														],
+														[
+															1493,
+															2791
+														],
+														[
+															1483,
+															2783
+														],
+														[
+															1470,
+															2783
+														],
+														[
+															1447,
+															2791
+														],
+														[
+															1424,
+															2804
+														],
+														[
+															1390,
+															2810
+														],
+														[
+															1364,
+															2816
+														],
+														[
+															1349,
+															2804
+														],
+														[
+															1324,
+															2794
+														],
+														[
+															1310,
+															2777
+														],
+														[
+															1284,
+															2789
+														],
+														[
+															1273,
+															2796
+														],
+														[
+															1250,
+															2810
+														],
+														[
+															1253,
+															2841
+														],
+														[
+															1261,
+															2870
+														],
+														[
+															1257,
+															2891
+														],
+														[
+															1246,
+															2906
+														],
+														[
+															1256,
+															2937
+														],
+														[
+															1269,
+															2959
+														],
+														[
+															1284,
+															2961
+														],
+														[
+															1307,
+															2953
+														],
+														[
+															1329,
+															2960
+														],
+														[
+															1353,
+															2973
+														],
+														[
+															1360,
+															2994
+														],
+														[
+															1373,
+															3000
+														],
+														[
+															1390,
+															3001
+														],
+														[
+															1409,
+															3010
+														],
+														[
+															1419,
+															3026
+														],
+														[
+															1437,
+															3036
+														],
+														[
+															1480,
+															3037
+														],
+														[
+															1501,
+															3040
+														],
+														[
+															1529,
+															3006
+														],
+														[
+															1544,
+															2983
+														],
+														[
+															1554,
+															2963
+														],
+														[
+															1580,
+															2940
+														],
+														[
+															1591,
+															2911
+														],
+														[
+															1576,
+															2887
+														],
+														[
+															1571,
+															2860
+														],
+														[
+															1577,
+															2834
+														]
+													]
+												},
+												{
+													"area": "035",
+													"points": [
+														[
+															2609,
+															2686
+														],
+														[
+															2629,
+															2694
+														],
+														[
+															2664,
+															2700
+														],
+														[
+															2691,
+															2703
+														],
+														[
+															2730,
+															2691
+														],
+														[
+															2759,
+															2590
+														],
+														[
+															2759,
+															2496
+														],
+														[
+															2786,
+															2439
+														],
+														[
+															2789,
+															2421
+														],
+														[
+															2766,
+															2410
+														],
+														[
+															2746,
+															2401
+														],
+														[
+															2730,
+															2401
+														],
+														[
+															2704,
+															2397
+														],
+														[
+															2677,
+															2389
+														],
+														[
+															2613,
+															2431
+														],
+														[
+															2580,
+															2473
+														],
+														[
+															2564,
+															2506
+														],
+														[
+															2581,
+															2526
+														],
+														[
+															2593,
+															2547
+														],
+														[
+															2606,
+															2560
+														],
+														[
+															2594,
+															2580
+														],
+														[
+															2597,
+															2610
+														],
+														[
+															2593,
+															2641
+														],
+														[
+															2594,
+															2663
+														]
+													]
+												},
+												{
+													"area": "03a",
+													"points": [
+														[
+															2694,
+															2089
+														],
+														[
+															2710,
+															2077
+														],
+														[
+															2741,
+															2073
+														],
+														[
+															2773,
+															2041
+														],
+														[
+															2843,
+															2023
+														],
+														[
+															2881,
+															2016
+														],
+														[
+															2899,
+															1999
+														],
+														[
+															2940,
+															2019
+														],
+														[
+															2964,
+															2079
+														],
+														[
+															2961,
+															2116
+														],
+														[
+															2934,
+															2134
+														],
+														[
+															2951,
+															2156
+														],
+														[
+															2961,
+															2173
+														],
+														[
+															2960,
+															2207
+														],
+														[
+															2950,
+															2233
+														],
+														[
+															2909,
+															2254
+														],
+														[
+															2857,
+															2244
+														],
+														[
+															2809,
+															2217
+														],
+														[
+															2787,
+															2204
+														],
+														[
+															2769,
+															2201
+														],
+														[
+															2756,
+															2193
+														],
+														[
+															2739,
+															2191
+														],
+														[
+															2714,
+															2167
+														],
+														[
+															2697,
+															2131
+														]
+													]
+												},
+												{
+													"area": "038",
+													"points": [
+														[
+															2813,
+															2830
+														],
+														[
+															2757,
+															2769
+														],
+														[
+															2746,
+															2723
+														],
+														[
+															2739,
+															2699
+														],
+														[
+															2767,
+															2589
+														],
+														[
+															2767,
+															2497
+														],
+														[
+															2793,
+															2437
+														],
+														[
+															2797,
+															2419
+														],
+														[
+															2830,
+															2407
+														],
+														[
+															2856,
+															2389
+														],
+														[
+															2861,
+															2341
+														],
+														[
+															2883,
+															2307
+														],
+														[
+															2947,
+															2300
+														],
+														[
+															2983,
+															2299
+														],
+														[
+															3019,
+															2300
+														],
+														[
+															3057,
+															2293
+														],
+														[
+															3073,
+															2259
+														],
+														[
+															3094,
+															2219
+														],
+														[
+															3090,
+															2194
+														],
+														[
+															3091,
+															2159
+														],
+														[
+															3147,
+															2111
+														],
+														[
+															3217,
+															2097
+														],
+														[
+															3314,
+															2129
+														],
+														[
+															3403,
+															2173
+														],
+														[
+															3470,
+															2241
+														],
+														[
+															3509,
+															2356
+														],
+														[
+															3531,
+															2413
+														],
+														[
+															3539,
+															2443
+														],
+														[
+															3534,
+															2477
+														],
+														[
+															3531,
+															2510
+														],
+														[
+															3503,
+															2524
+														],
+														[
+															3501,
+															2551
+														],
+														[
+															3509,
+															2576
+														],
+														[
+															3503,
+															2601
+														],
+														[
+															3519,
+															2634
+														],
+														[
+															3517,
+															2651
+														],
+														[
+															3510,
+															2680
+														],
+														[
+															3519,
+															2709
+														],
+														[
+															3527,
+															2727
+														],
+														[
+															3529,
+															2766
+														],
+														[
+															3506,
+															2784
+														],
+														[
+															3494,
+															2817
+														],
+														[
+															3493,
+															2841
+														],
+														[
+															3491,
+															2900
+														],
+														[
+															3463,
+															2957
+														],
+														[
+															3347,
+															2973
+														],
+														[
+															3250,
+															2953
+														],
+														[
+															3209,
+															2946
+														],
+														[
+															3169,
+															2937
+														],
+														[
+															3156,
+															2927
+														],
+														[
+															3127,
+															2937
+														],
+														[
+															3110,
+															2949
+														],
+														[
+															3074,
+															2947
+														],
+														[
+															3039,
+															2943
+														],
+														[
+															3014,
+															2926
+														],
+														[
+															2966,
+															2929
+														],
+														[
+															2924,
+															2903
+														],
+														[
+															2881,
+															2873
+														],
+														[
+															2877,
+															2826
+														],
+														[
+															2844,
+															2821
+														]
+													]
+												},
+												{
+													"area": "026",
+													"points": [
+														[
+															3200,
+															3474
+														],
+														[
+															3196,
+															3444
+														],
+														[
+															3210,
+															3416
+														],
+														[
+															3230,
+															3419
+														],
+														[
+															3274,
+															3406
+														],
+														[
+															3293,
+															3387
+														],
+														[
+															3347,
+															3380
+														],
+														[
+															3369,
+															3389
+														],
+														[
+															3389,
+															3400
+														],
+														[
+															3403,
+															3410
+														],
+														[
+															3419,
+															3426
+														],
+														[
+															3440,
+															3430
+														],
+														[
+															3450,
+															3451
+														],
+														[
+															3463,
+															3474
+														],
+														[
+															3481,
+															3496
+														],
+														[
+															3493,
+															3507
+														],
+														[
+															3493,
+															3540
+														],
+														[
+															3524,
+															3591
+														],
+														[
+															3506,
+															3603
+														],
+														[
+															3471,
+															3629
+														],
+														[
+															3436,
+															3646
+														],
+														[
+															3420,
+															3666
+														],
+														[
+															3393,
+															3676
+														],
+														[
+															3354,
+															3660
+														],
+														[
+															3337,
+															3614
+														],
+														[
+															3340,
+															3590
+														],
+														[
+															3324,
+															3570
+														],
+														[
+															3301,
+															3577
+														],
+														[
+															3284,
+															3581
+														],
+														[
+															3251,
+															3569
+														],
+														[
+															3247,
+															3543
+														],
+														[
+															3223,
+															3536
+														],
+														[
+															3206,
+															3504
+														]
+													]
+												},
+												{
+													"area": "01c",
+													"points": [
+														[
+															1347,
+															3657
+														],
+														[
+															1310,
+															3650
+														],
+														[
+															1279,
+															3646
+														],
+														[
+															1263,
+															3654
+														],
+														[
+															1243,
+															3653
+														],
+														[
+															1229,
+															3636
+														],
+														[
+															1204,
+															3641
+														],
+														[
+															1166,
+															3657
+														],
+														[
+															1157,
+															3686
+														],
+														[
+															1160,
+															3723
+														],
+														[
+															1141,
+															3750
+														],
+														[
+															1150,
+															3783
+														],
+														[
+															1173,
+															3813
+														],
+														[
+															1171,
+															3841
+														],
+														[
+															1213,
+															3849
+														],
+														[
+															1229,
+															3866
+														],
+														[
+															1221,
+															3893
+														],
+														[
+															1233,
+															3916
+														],
+														[
+															1259,
+															3931
+														],
+														[
+															1277,
+															3943
+														],
+														[
+															1301,
+															3944
+														],
+														[
+															1314,
+															3957
+														],
+														[
+															1321,
+															3971
+														],
+														[
+															1351,
+															3999
+														],
+														[
+															1364,
+															3976
+														],
+														[
+															1396,
+															3976
+														],
+														[
+															1424,
+															3957
+														],
+														[
+															1423,
+															3931
+														],
+														[
+															1426,
+															3884
+														],
+														[
+															1409,
+															3850
+														],
+														[
+															1377,
+															3839
+														],
+														[
+															1371,
+															3807
+														],
+														[
+															1370,
+															3773
+														],
+														[
+															1380,
+															3749
+														],
+														[
+															1390,
+															3720
+														],
+														[
+															1391,
+															3696
+														],
+														[
+															1380,
+															3670
+														]
+													]
+												},
+												{
+													"area": "020",
+													"points": [
+														[
+															1880,
+															4097
+														],
+														[
+															2219,
+															4097
+														],
+														[
+															2219,
+															4504
+														],
+														[
+															2207,
+															4496
+														],
+														[
+															2159,
+															4486
+														],
+														[
+															2113,
+															4450
+														],
+														[
+															2104,
+															4410
+														],
+														[
+															2104,
+															4213
+														],
+														[
+															1880,
+															4213
+														]
+													]
+												},
+												{
+													"area": "012",
+													"points": [
+														[
+															1314,
+															4491
+														],
+														[
+															1319,
+															4451
+														],
+														[
+															1350,
+															4386
+														],
+														[
+															1390,
+															4380
+														],
+														[
+															1416,
+															4366
+														],
+														[
+															1471,
+															4369
+														],
+														[
+															1491,
+															4367
+														],
+														[
+															1509,
+															4347
+														],
+														[
+															1520,
+															4327
+														],
+														[
+															1589,
+															4317
+														],
+														[
+															1646,
+															4324
+														],
+														[
+															1667,
+															4313
+														],
+														[
+															1704,
+															4311
+														],
+														[
+															1741,
+															4313
+														],
+														[
+															1806,
+															4284
+														],
+														[
+															1840,
+															4291
+														],
+														[
+															1896,
+															4310
+														],
+														[
+															1933,
+															4319
+														],
+														[
+															1971,
+															4340
+														],
+														[
+															2007,
+															4350
+														],
+														[
+															2014,
+															4383
+														],
+														[
+															2021,
+															4397
+														],
+														[
+															2049,
+															4400
+														],
+														[
+															2083,
+															4436
+														],
+														[
+															2101,
+															4460
+														],
+														[
+															2153,
+															4497
+														],
+														[
+															2203,
+															4506
+														],
+														[
+															2161,
+															4519
+														],
+														[
+															2140,
+															4533
+														],
+														[
+															2116,
+															4529
+														],
+														[
+															2096,
+															4531
+														],
+														[
+															2083,
+															4577
+														],
+														[
+															2070,
+															4613
+														],
+														[
+															2060,
+															4647
+														],
+														[
+															2100,
+															4656
+														],
+														[
+															2104,
+															4720
+														],
+														[
+															2094,
+															4754
+														],
+														[
+															2046,
+															4770
+														],
+														[
+															2014,
+															4787
+														],
+														[
+															1957,
+															4830
+														],
+														[
+															1926,
+															4833
+														],
+														[
+															1906,
+															4806
+														],
+														[
+															1899,
+															4780
+														],
+														[
+															1866,
+															4764
+														],
+														[
+															1839,
+															4761
+														],
+														[
+															1730,
+															4760
+														],
+														[
+															1704,
+															4723
+														],
+														[
+															1679,
+															4727
+														],
+														[
+															1666,
+															4749
+														],
+														[
+															1644,
+															4771
+														],
+														[
+															1596,
+															4787
+														],
+														[
+															1579,
+															4804
+														],
+														[
+															1564,
+															4823
+														],
+														[
+															1517,
+															4816
+														],
+														[
+															1500,
+															4811
+														],
+														[
+															1486,
+															4783
+														],
+														[
+															1476,
+															4764
+														],
+														[
+															1446,
+															4746
+														],
+														[
+															1421,
+															4714
+														],
+														[
+															1426,
+															4651
+														],
+														[
+															1391,
+															4613
+														],
+														[
+															1387,
+															4589
+														],
+														[
+															1390,
+															4571
+														],
+														[
+															1384,
+															4556
+														],
+														[
+															1351,
+															4537
+														],
+														[
+															1336,
+															4509
+														]
+													]
+												},
+												{
+													"area": "016",
+													"points": [
+														[
+															486,
+															4949
+														],
+														[
+															449,
+															4926
+														],
+														[
+															437,
+															4906
+														],
+														[
+															427,
+															4881
+														],
+														[
+															433,
+															4861
+														],
+														[
+															453,
+															4851
+														],
+														[
+															466,
+															4846
+														],
+														[
+															476,
+															4837
+														],
+														[
+															480,
+															4813
+														],
+														[
+															491,
+															4797
+														],
+														[
+															501,
+															4787
+														],
+														[
+															493,
+															4770
+														],
+														[
+															476,
+															4756
+														],
+														[
+															454,
+															4750
+														],
+														[
+															437,
+															4727
+														],
+														[
+															437,
+															4706
+														],
+														[
+															427,
+															4673
+														],
+														[
+															406,
+															4664
+														],
+														[
+															381,
+															4656
+														],
+														[
+															363,
+															4643
+														],
+														[
+															327,
+															4641
+														],
+														[
+															286,
+															4654
+														],
+														[
+															264,
+															4650
+														],
+														[
+															256,
+															4633
+														],
+														[
+															236,
+															4637
+														],
+														[
+															214,
+															4656
+														],
+														[
+															187,
+															4673
+														],
+														[
+															179,
+															4693
+														],
+														[
+															180,
+															4726
+														],
+														[
+															166,
+															4753
+														],
+														[
+															166,
+															4776
+														],
+														[
+															160,
+															4796
+														],
+														[
+															154,
+															4826
+														],
+														[
+															164,
+															4849
+														],
+														[
+															180,
+															4871
+														],
+														[
+															183,
+															4890
+														],
+														[
+															184,
+															4926
+														],
+														[
+															199,
+															4959
+														],
+														[
+															213,
+															4976
+														],
+														[
+															229,
+															4999
+														],
+														[
+															243,
+															5024
+														],
+														[
+															267,
+															5033
+														],
+														[
+															297,
+															5039
+														],
+														[
+															317,
+															5059
+														],
+														[
+															341,
+															5073
+														],
+														[
+															356,
+															5076
+														],
+														[
+															383,
+															5071
+														],
+														[
+															420,
+															5077
+														],
+														[
+															463,
+															5079
+														],
+														[
+															491,
+															5046
+														],
+														[
+															511,
+															5040
+														],
+														[
+															553,
+															5039
+														],
+														[
+															579,
+															5027
+														],
+														[
+															541,
+															5013
+														],
+														[
+															493,
+															4984
+														]
+													]
+												},
+												{
+													"area": "019",
+													"points": [
+														[
+															200,
+															3719
+														],
+														[
+															197,
+															3686
+														],
+														[
+															173,
+															3661
+														],
+														[
+															164,
+															3634
+														],
+														[
+															177,
+															3610
+														],
+														[
+															164,
+															3574
+														],
+														[
+															176,
+															3537
+														],
+														[
+															190,
+															3517
+														],
+														[
+															209,
+															3514
+														],
+														[
+															229,
+															3509
+														],
+														[
+															247,
+															3493
+														],
+														[
+															279,
+															3487
+														],
+														[
+															306,
+															3481
+														],
+														[
+															337,
+															3491
+														],
+														[
+															366,
+															3487
+														],
+														[
+															396,
+															3496
+														],
+														[
+															419,
+															3509
+														],
+														[
+															446,
+															3503
+														],
+														[
+															466,
+															3497
+														],
+														[
+															490,
+															3484
+														],
+														[
+															519,
+															3489
+														],
+														[
+															554,
+															3499
+														],
+														[
+															577,
+															3503
+														],
+														[
+															600,
+															3500
+														],
+														[
+															629,
+															3491
+														],
+														[
+															657,
+															3489
+														],
+														[
+															680,
+															3496
+														],
+														[
+															687,
+															3510
+														],
+														[
+															711,
+															3516
+														],
+														[
+															704,
+															3539
+														],
+														[
+															723,
+															3556
+														],
+														[
+															740,
+															3574
+														],
+														[
+															729,
+															3597
+														],
+														[
+															716,
+															3637
+														],
+														[
+															730,
+															3660
+														],
+														[
+															749,
+															3681
+														],
+														[
+															757,
+															3700
+														],
+														[
+															757,
+															3726
+														],
+														[
+															756,
+															3743
+														],
+														[
+															757,
+															3774
+														],
+														[
+															767,
+															3816
+														],
+														[
+															771,
+															3836
+														],
+														[
+															774,
+															3860
+														],
+														[
+															766,
+															3870
+														],
+														[
+															757,
+															3886
+														],
+														[
+															764,
+															3916
+														],
+														[
+															756,
+															3941
+														],
+														[
+															740,
+															3954
+														],
+														[
+															720,
+															3966
+														],
+														[
+															704,
+															3960
+														],
+														[
+															679,
+															3967
+														],
+														[
+															654,
+															3979
+														],
+														[
+															631,
+															3989
+														],
+														[
+															614,
+															3989
+														],
+														[
+															604,
+															4000
+														],
+														[
+															617,
+															4016
+														],
+														[
+															606,
+															4023
+														],
+														[
+															556,
+															4034
+														],
+														[
+															531,
+															4030
+														],
+														[
+															507,
+															4036
+														],
+														[
+															476,
+															4031
+														],
+														[
+															456,
+															4024
+														],
+														[
+															424,
+															4027
+														],
+														[
+															416,
+															4014
+														],
+														[
+															394,
+															3989
+														],
+														[
+															387,
+															3960
+														],
+														[
+															397,
+															3936
+														],
+														[
+															430,
+															3940
+														],
+														[
+															443,
+															3930
+														],
+														[
+															460,
+															3909
+														],
+														[
+															474,
+															3884
+														],
+														[
+															457,
+															3879
+														],
+														[
+															426,
+															3889
+														],
+														[
+															399,
+															3886
+														],
+														[
+															377,
+															3889
+														],
+														[
+															351,
+															3897
+														],
+														[
+															317,
+															3897
+														],
+														[
+															319,
+															3857
+														],
+														[
+															359,
+															3831
+														],
+														[
+															383,
+															3811
+														],
+														[
+															407,
+															3807
+														],
+														[
+															426,
+															3793
+														],
+														[
+															453,
+															3784
+														],
+														[
+															480,
+															3789
+														],
+														[
+															476,
+															3766
+														],
+														[
+															444,
+															3759
+														],
+														[
+															421,
+															3753
+														],
+														[
+															386,
+															3761
+														],
+														[
+															346,
+															3757
+														],
+														[
+															309,
+															3757
+														],
+														[
+															294,
+															3739
+														],
+														[
+															270,
+															3741
+														],
+														[
+															233,
+															3749
+														],
+														[
+															213,
+															3739
+														]
+													]
+												},
+												{
+													"area": "04e",
+													"points": [
+														[
+															1741,
+															943
+														],
+														[
+															1734,
+															924
+														],
+														[
+															1743,
+															896
+														],
+														[
+															1743,
+															869
+														],
+														[
+															1731,
+															860
+														],
+														[
+															1710,
+															869
+														],
+														[
+															1683,
+															863
+														],
+														[
+															1669,
+															837
+														],
+														[
+															1676,
+															814
+														],
+														[
+															1673,
+															787
+														],
+														[
+															1653,
+															736
+														],
+														[
+															1676,
+															711
+														],
+														[
+															1699,
+															687
+														],
+														[
+															1706,
+															660
+														],
+														[
+															1714,
+															636
+														],
+														[
+															1706,
+															610
+														],
+														[
+															1709,
+															583
+														],
+														[
+															1734,
+															570
+														],
+														[
+															1753,
+															549
+														],
+														[
+															1769,
+															506
+														],
+														[
+															1781,
+															487
+														],
+														[
+															1811,
+															480
+														],
+														[
+															1826,
+															481
+														],
+														[
+															1851,
+															460
+														],
+														[
+															1871,
+															446
+														],
+														[
+															1887,
+															416
+														],
+														[
+															1906,
+															420
+														],
+														[
+															1927,
+															443
+														],
+														[
+															1947,
+															430
+														],
+														[
+															1990,
+															413
+														],
+														[
+															1999,
+															426
+														],
+														[
+															2027,
+															439
+														],
+														[
+															2036,
+															417
+														],
+														[
+															2070,
+															403
+														],
+														[
+															2116,
+															391
+														],
+														[
+															2141,
+															401
+														],
+														[
+															2174,
+															409
+														],
+														[
+															2201,
+															409
+														],
+														[
+															2253,
+															406
+														],
+														[
+															2281,
+															403
+														],
+														[
+															2293,
+															387
+														],
+														[
+															2329,
+															380
+														],
+														[
+															2364,
+															389
+														],
+														[
+															2399,
+															380
+														],
+														[
+															2431,
+															381
+														],
+														[
+															2457,
+															400
+														],
+														[
+															2476,
+															389
+														],
+														[
+															2496,
+															369
+														],
+														[
+															2510,
+															349
+														],
+														[
+															2521,
+															376
+														],
+														[
+															2533,
+															397
+														],
+														[
+															2527,
+															413
+														],
+														[
+															2533,
+															430
+														],
+														[
+															2541,
+															443
+														],
+														[
+															2530,
+															467
+														],
+														[
+															2527,
+															494
+														],
+														[
+															2524,
+															516
+														],
+														[
+															2516,
+															534
+														],
+														[
+															2499,
+															543
+														],
+														[
+															2491,
+															557
+														],
+														[
+															2490,
+															596
+														],
+														[
+															2506,
+															611
+														],
+														[
+															2499,
+															631
+														],
+														[
+															2484,
+															647
+														],
+														[
+															2469,
+															673
+														],
+														[
+															2451,
+															681
+														],
+														[
+															2437,
+															687
+														],
+														[
+															2430,
+															716
+														],
+														[
+															2439,
+															740
+														],
+														[
+															2433,
+															763
+														],
+														[
+															2434,
+															779
+														],
+														[
+															2420,
+															804
+														],
+														[
+															2423,
+															826
+														],
+														[
+															2430,
+															844
+														],
+														[
+															2429,
+															861
+														],
+														[
+															2416,
+															884
+														],
+														[
+															2391,
+															896
+														],
+														[
+															2377,
+															907
+														],
+														[
+															2371,
+															929
+														],
+														[
+															2374,
+															949
+														],
+														[
+															2353,
+															971
+														],
+														[
+															2327,
+															984
+														],
+														[
+															2306,
+															994
+														],
+														[
+															2287,
+															994
+														],
+														[
+															2264,
+															1016
+														],
+														[
+															2226,
+															1026
+														],
+														[
+															2191,
+															1029
+														],
+														[
+															2176,
+															1036
+														],
+														[
+															2173,
+															1059
+														],
+														[
+															2151,
+															1067
+														],
+														[
+															2109,
+															1067
+														],
+														[
+															2081,
+															1059
+														],
+														[
+															2027,
+															1056
+														],
+														[
+															1991,
+															1057
+														],
+														[
+															1967,
+															1064
+														],
+														[
+															1953,
+															1081
+														],
+														[
+															1931,
+															1091
+														],
+														[
+															1899,
+															1100
+														],
+														[
+															1881,
+															1110
+														],
+														[
+															1851,
+															1129
+														],
+														[
+															1806,
+															1136
+														],
+														[
+															1727,
+															1110
+														],
+														[
+															1683,
+															1086
+														],
+														[
+															1673,
+															1041
+														],
+														[
+															1701,
+															1029
+														],
+														[
+															1730,
+															984
+														],
+														[
+															1736,
+															967
+														]
+													]
+												},
+												{
+													"area": "057",
+													"points": [
+														[
+															3116,
+															869
+														],
+														[
+															3129,
+															830
+														],
+														[
+															3150,
+															819
+														],
+														[
+															3161,
+															789
+														],
+														[
+															3171,
+															756
+														],
+														[
+															3194,
+															721
+														],
+														[
+															3217,
+															696
+														],
+														[
+															3227,
+															653
+														],
+														[
+															3226,
+															616
+														],
+														[
+															3214,
+															596
+														],
+														[
+															3214,
+															564
+														],
+														[
+															3233,
+															539
+														],
+														[
+															3237,
+															507
+														],
+														[
+															3243,
+															476
+														],
+														[
+															3230,
+															437
+														],
+														[
+															3214,
+															406
+														],
+														[
+															3189,
+															411
+														],
+														[
+															3160,
+															421
+														],
+														[
+															3140,
+															421
+														],
+														[
+															3116,
+															400
+														],
+														[
+															3089,
+															403
+														],
+														[
+															3076,
+															390
+														],
+														[
+															3044,
+															374
+														],
+														[
+															3017,
+															373
+														],
+														[
+															2971,
+															379
+														],
+														[
+															2954,
+															386
+														],
+														[
+															2921,
+															396
+														],
+														[
+															2881,
+															400
+														],
+														[
+															2856,
+															411
+														],
+														[
+															2827,
+															436
+														],
+														[
+															2817,
+															451
+														],
+														[
+															2823,
+															477
+														],
+														[
+															2800,
+															490
+														],
+														[
+															2776,
+															503
+														],
+														[
+															2746,
+															513
+														],
+														[
+															2726,
+															534
+														],
+														[
+															2713,
+															557
+														],
+														[
+															2690,
+															566
+														],
+														[
+															2674,
+															583
+														],
+														[
+															2671,
+															616
+														],
+														[
+															2656,
+															634
+														],
+														[
+															2630,
+															660
+														],
+														[
+															2627,
+															683
+														],
+														[
+															2614,
+															699
+														],
+														[
+															2591,
+															721
+														],
+														[
+															2589,
+															751
+														],
+														[
+															2594,
+															771
+														],
+														[
+															2594,
+															799
+														],
+														[
+															2594,
+															824
+														],
+														[
+															2613,
+															850
+														],
+														[
+															2604,
+															881
+														],
+														[
+															2607,
+															919
+														],
+														[
+															2610,
+															951
+														],
+														[
+															2623,
+															967
+														],
+														[
+															2637,
+															993
+														],
+														[
+															2656,
+															999
+														],
+														[
+															2669,
+															1017
+														],
+														[
+															2671,
+															1040
+														],
+														[
+															2679,
+															1054
+														],
+														[
+															2684,
+															1067
+														],
+														[
+															2684,
+															1086
+														],
+														[
+															2697,
+															1101
+														],
+														[
+															2719,
+															1111
+														],
+														[
+															2746,
+															1109
+														],
+														[
+															2776,
+															1091
+														],
+														[
+															2767,
+															1061
+														],
+														[
+															2769,
+															1039
+														],
+														[
+															2797,
+															1023
+														],
+														[
+															2796,
+															989
+														],
+														[
+															2783,
+															961
+														],
+														[
+															2769,
+															933
+														],
+														[
+															2773,
+															914
+														],
+														[
+															2787,
+															901
+														],
+														[
+															2807,
+															904
+														],
+														[
+															2824,
+															893
+														],
+														[
+															2844,
+															876
+														],
+														[
+															2867,
+															871
+														],
+														[
+															2884,
+															884
+														],
+														[
+															2910,
+															879
+														],
+														[
+															2949,
+															879
+														],
+														[
+															2990,
+															889
+														],
+														[
+															3000,
+															911
+														],
+														[
+															2984,
+															939
+														],
+														[
+															2994,
+															961
+														],
+														[
+															3020,
+															991
+														],
+														[
+															3089,
+															929
+														],
+														[
+															3109,
+															903
+														]
+													]
+												},
+												{
+													"area": "032",
+													"points": [
+														[
+															3299,
+															984
+														],
+														[
+															3309,
+															1000
+														],
+														[
+															3356,
+															1017
+														],
+														[
+															3381,
+															1004
+														],
+														[
+															3414,
+															1004
+														],
+														[
+															3434,
+															1016
+														],
+														[
+															3477,
+															1016
+														],
+														[
+															3507,
+															1004
+														],
+														[
+															3559,
+															1013
+														],
+														[
+															3650,
+															1026
+														],
+														[
+															3761,
+															1031
+														],
+														[
+															3807,
+															1029
+														],
+														[
+															3911,
+															1014
+														],
+														[
+															3913,
+															960
+														],
+														[
+															3901,
+															930
+														],
+														[
+															3913,
+															889
+														],
+														[
+															3919,
+															851
+														],
+														[
+															3919,
+															834
+														],
+														[
+															3909,
+															794
+														],
+														[
+															3911,
+															783
+														],
+														[
+															3931,
+															763
+														],
+														[
+															3946,
+															737
+														],
+														[
+															3951,
+															704
+														],
+														[
+															3937,
+															684
+														],
+														[
+															3911,
+															651
+														],
+														[
+															3901,
+															620
+														],
+														[
+															3894,
+															601
+														],
+														[
+															3911,
+															583
+														],
+														[
+															3924,
+															553
+														],
+														[
+															3923,
+															527
+														],
+														[
+															3894,
+															489
+														],
+														[
+															3887,
+															469
+														],
+														[
+															3883,
+															449
+														],
+														[
+															3884,
+															430
+														],
+														[
+															3886,
+															396
+														],
+														[
+															3867,
+															373
+														],
+														[
+															3837,
+															374
+														],
+														[
+															3819,
+															363
+														],
+														[
+															3810,
+															347
+														],
+														[
+															3781,
+															337
+														],
+														[
+															3744,
+															334
+														],
+														[
+															3709,
+															334
+														],
+														[
+															3683,
+															343
+														],
+														[
+															3659,
+															351
+														],
+														[
+															3619,
+															354
+														],
+														[
+															3601,
+															344
+														],
+														[
+															3584,
+															349
+														],
+														[
+															3576,
+															351
+														],
+														[
+															3554,
+															366
+														],
+														[
+															3536,
+															387
+														],
+														[
+															3516,
+															403
+														],
+														[
+															3470,
+															416
+														],
+														[
+															3436,
+															426
+														],
+														[
+															3413,
+															449
+														],
+														[
+															3394,
+															466
+														],
+														[
+															3363,
+															473
+														],
+														[
+															3349,
+															479
+														],
+														[
+															3331,
+															499
+														],
+														[
+															3331,
+															531
+														],
+														[
+															3331,
+															563
+														],
+														[
+															3339,
+															584
+														],
+														[
+															3327,
+															617
+														],
+														[
+															3323,
+															640
+														],
+														[
+															3311,
+															661
+														],
+														[
+															3317,
+															690
+														],
+														[
+															3324,
+															736
+														],
+														[
+															3336,
+															756
+														],
+														[
+															3351,
+															773
+														],
+														[
+															3344,
+															814
+														],
+														[
+															3330,
+															841
+														],
+														[
+															3317,
+															861
+														],
+														[
+															3297,
+															871
+														],
+														[
+															3281,
+															901
+														],
+														[
+															3289,
+															931
+														],
+														[
+															3280,
+															956
+														]
+													]
+												},
+												{
+													"area": "030",
+													"points": [
+														[
+															3707,
+															2663
+														],
+														[
+															3710,
+															2627
+														],
+														[
+															3700,
+															2593
+														],
+														[
+															3680,
+															2576
+														],
+														[
+															3650,
+															2581
+														],
+														[
+															3629,
+															2581
+														],
+														[
+															3639,
+															2561
+														],
+														[
+															3670,
+															2547
+														],
+														[
+															3666,
+															2526
+														],
+														[
+															3683,
+															2473
+														],
+														[
+															3686,
+															2447
+														],
+														[
+															3667,
+															2443
+														],
+														[
+															3649,
+															2424
+														],
+														[
+															3670,
+															2414
+														],
+														[
+															3701,
+															2421
+														],
+														[
+															3704,
+															2400
+														],
+														[
+															3693,
+															2346
+														],
+														[
+															3659,
+															2340
+														],
+														[
+															3650,
+															2326
+														],
+														[
+															3673,
+															2320
+														],
+														[
+															3700,
+															2314
+														],
+														[
+															3673,
+															2290
+														],
+														[
+															3657,
+															2270
+														],
+														[
+															3639,
+															2279
+														],
+														[
+															3619,
+															2279
+														],
+														[
+															3631,
+															2264
+														],
+														[
+															3654,
+															2250
+														],
+														[
+															3634,
+															2233
+														],
+														[
+															3619,
+															2177
+														],
+														[
+															3577,
+															2159
+														],
+														[
+															3587,
+															2150
+														],
+														[
+															3614,
+															2147
+														],
+														[
+															3623,
+															2117
+														],
+														[
+															3640,
+															2090
+														],
+														[
+															3639,
+															2046
+														],
+														[
+															3596,
+															2057
+														],
+														[
+															3597,
+															2050
+														],
+														[
+															3627,
+															2029
+														],
+														[
+															3620,
+															2004
+														],
+														[
+															3627,
+															1946
+														],
+														[
+															3604,
+															1947
+														],
+														[
+															3579,
+															1944
+														],
+														[
+															3591,
+															1927
+														],
+														[
+															3629,
+															1923
+														],
+														[
+															3629,
+															1909
+														],
+														[
+															3596,
+															1896
+														],
+														[
+															3597,
+															1859
+														],
+														[
+															3584,
+															1830
+														],
+														[
+															3566,
+															1836
+														],
+														[
+															3537,
+															1833
+														],
+														[
+															3553,
+															1817
+														],
+														[
+															3570,
+															1804
+														],
+														[
+															3554,
+															1760
+														],
+														[
+															3536,
+															1723
+														],
+														[
+															3537,
+															1700
+														],
+														[
+															3553,
+															1680
+														],
+														[
+															3550,
+															1644
+														],
+														[
+															3517,
+															1607
+														],
+														[
+															3500,
+															1576
+														],
+														[
+															3490,
+															1499
+														],
+														[
+															3896,
+															1660
+														],
+														[
+															3897,
+															1687
+														],
+														[
+															3903,
+															1719
+														],
+														[
+															3909,
+															1744
+														],
+														[
+															3956,
+															1754
+														],
+														[
+															3939,
+															1763
+														],
+														[
+															3919,
+															1766
+														],
+														[
+															3906,
+															1801
+														],
+														[
+															3897,
+															1827
+														],
+														[
+															3886,
+															1849
+														],
+														[
+															3889,
+															1860
+														],
+														[
+															3921,
+															1866
+														],
+														[
+															3936,
+															1871
+														],
+														[
+															3921,
+															1880
+														],
+														[
+															3893,
+															1893
+														],
+														[
+															3901,
+															1923
+														],
+														[
+															3900,
+															1943
+														],
+														[
+															3894,
+															1976
+														],
+														[
+															3923,
+															1983
+														],
+														[
+															3944,
+															1994
+														],
+														[
+															3891,
+															2004
+														],
+														[
+															3899,
+															2034
+														],
+														[
+															3909,
+															2069
+														],
+														[
+															3913,
+															2081
+														],
+														[
+															3963,
+															2091
+														],
+														[
+															3970,
+															2101
+														],
+														[
+															3930,
+															2120
+														],
+														[
+															3919,
+															2116
+														],
+														[
+															3904,
+															2141
+														],
+														[
+															3901,
+															2179
+														],
+														[
+															3896,
+															2200
+														],
+														[
+															3919,
+															2199
+														],
+														[
+															3949,
+															2211
+														],
+														[
+															3924,
+															2223
+														],
+														[
+															3897,
+															2223
+														],
+														[
+															3899,
+															2256
+														],
+														[
+															3906,
+															2293
+														],
+														[
+															3899,
+															2314
+														],
+														[
+															3934,
+															2320
+														],
+														[
+															3944,
+															2327
+														],
+														[
+															3913,
+															2337
+														],
+														[
+															3891,
+															2340
+														],
+														[
+															3881,
+															2383
+														],
+														[
+															3893,
+															2423
+														],
+														[
+															3926,
+															2416
+														],
+														[
+															3940,
+															2424
+														],
+														[
+															3923,
+															2437
+														],
+														[
+															3904,
+															2440
+														],
+														[
+															3910,
+															2490
+														],
+														[
+															3899,
+															2520
+														],
+														[
+															3896,
+															2537
+														],
+														[
+															3919,
+															2544
+														],
+														[
+															3947,
+															2550
+														],
+														[
+															3937,
+															2559
+														],
+														[
+															3906,
+															2563
+														],
+														[
+															3894,
+															2591
+														],
+														[
+															3886,
+															2631
+														],
+														[
+															3883,
+															2666
+														],
+														[
+															3893,
+															2710
+														],
+														[
+															3889,
+															2764
+														],
+														[
+															3877,
+															2793
+														]
+													]
+												},
+												{
+													"area": "053",
+													"points": [
+														[
+															2734,
+															1749
+														],
+														[
+															2712,
+															1749
+														],
+														[
+															2680,
+															1712
+														],
+														[
+															2638,
+															1693
+														],
+														[
+															2592,
+															1675
+														],
+														[
+															2578,
+															1643
+														],
+														[
+															2547,
+															1651
+														],
+														[
+															2518,
+															1650
+														],
+														[
+															2488,
+															1642
+														],
+														[
+															2427,
+															1614
+														],
+														[
+															2406,
+															1576
+														],
+														[
+															2382,
+															1560
+														],
+														[
+															2347,
+															1550
+														],
+														[
+															2350,
+															1523
+														],
+														[
+															2298,
+															1494
+														],
+														[
+															2282,
+															1472
+														],
+														[
+															2234,
+															1472
+														],
+														[
+															2195,
+															1451
+														],
+														[
+															2158,
+															1435
+														],
+														[
+															2154,
+															1406
+														],
+														[
+															2142,
+															1350
+														],
+														[
+															2107,
+															1322
+														],
+														[
+															2096,
+															1302
+														],
+														[
+															2051,
+															1294
+														],
+														[
+															2022,
+															1293
+														],
+														[
+															1998,
+															1266
+														],
+														[
+															2008,
+															1224
+														],
+														[
+															1994,
+															1187
+														],
+														[
+															2016,
+															1174
+														],
+														[
+															2048,
+															1176
+														],
+														[
+															2069,
+															1184
+														],
+														[
+															2093,
+															1181
+														],
+														[
+															2114,
+															1160
+														],
+														[
+															2147,
+															1149
+														],
+														[
+															2171,
+															1155
+														],
+														[
+															2219,
+															1149
+														],
+														[
+															2275,
+															1134
+														],
+														[
+															2302,
+															1117
+														],
+														[
+															2339,
+															1110
+														],
+														[
+															2354,
+															1086
+														],
+														[
+															2413,
+															1078
+														],
+														[
+															2443,
+															1106
+														],
+														[
+															2450,
+															1118
+														],
+														[
+															2477,
+															1117
+														],
+														[
+															2502,
+															1139
+														],
+														[
+															2514,
+															1163
+														],
+														[
+															2547,
+															1170
+														],
+														[
+															2584,
+															1174
+														],
+														[
+															2630,
+															1182
+														],
+														[
+															2666,
+															1176
+														],
+														[
+															2714,
+															1184
+														],
+														[
+															2746,
+															1206
+														],
+														[
+															2776,
+															1211
+														],
+														[
+															2802,
+															1293
+														],
+														[
+															2754,
+															1280
+														],
+														[
+															2712,
+															1294
+														],
+														[
+															2677,
+															1280
+														],
+														[
+															2637,
+															1261
+														],
+														[
+															2602,
+															1238
+														],
+														[
+															2566,
+															1232
+														],
+														[
+															2550,
+															1248
+														],
+														[
+															2522,
+															1246
+														],
+														[
+															2477,
+															1235
+														],
+														[
+															2448,
+															1262
+														],
+														[
+															2469,
+															1293
+														],
+														[
+															2483,
+															1304
+														],
+														[
+															2509,
+															1320
+														],
+														[
+															2541,
+															1314
+														],
+														[
+															2581,
+															1315
+														],
+														[
+															2589,
+															1349
+														],
+														[
+															2606,
+															1362
+														],
+														[
+															2603,
+															1392
+														],
+														[
+															2622,
+															1413
+														],
+														[
+															2646,
+															1416
+														],
+														[
+															2675,
+															1446
+														],
+														[
+															2678,
+															1475
+														],
+														[
+															2651,
+															1480
+														],
+														[
+															2621,
+															1467
+														],
+														[
+															2597,
+															1451
+														],
+														[
+															2571,
+															1454
+														],
+														[
+															2547,
+															1459
+														],
+														[
+															2512,
+															1448
+														],
+														[
+															2501,
+															1427
+														],
+														[
+															2469,
+															1392
+														],
+														[
+															2459,
+															1403
+														],
+														[
+															2445,
+															1430
+														],
+														[
+															2454,
+															1466
+														],
+														[
+															2477,
+															1472
+														],
+														[
+															2499,
+															1504
+														],
+														[
+															2507,
+															1522
+														],
+														[
+															2547,
+															1541
+														],
+														[
+															2587,
+															1563
+														],
+														[
+															2621,
+															1566
+														],
+														[
+															2646,
+															1595
+														],
+														[
+															2672,
+															1622
+														],
+														[
+															2696,
+															1627
+														]
+													]
+												},
+												{
+													"area": "023",
+													"points": [
+														[
+															2501,
+															4442
+														],
+														[
+															2514,
+															4470
+														],
+														[
+															2522,
+															4502
+														],
+														[
+															2541,
+															4504
+														],
+														[
+															2579,
+															4506
+														],
+														[
+															2622,
+															4518
+														],
+														[
+															2653,
+															4536
+														],
+														[
+															2674,
+															4550
+														],
+														[
+															2709,
+															4542
+														],
+														[
+															2707,
+															4518
+														],
+														[
+															2698,
+															4488
+														],
+														[
+															2710,
+															4470
+														],
+														[
+															2736,
+															4443
+														],
+														[
+															2739,
+															4400
+														],
+														[
+															2742,
+															4368
+														],
+														[
+															2784,
+															4355
+														],
+														[
+															2824,
+															4339
+														],
+														[
+															2850,
+															4328
+														],
+														[
+															2874,
+															4339
+														],
+														[
+															2869,
+															4363
+														],
+														[
+															2870,
+															4398
+														],
+														[
+															2875,
+															4430
+														],
+														[
+															2893,
+															4427
+														],
+														[
+															2918,
+															4400
+														],
+														[
+															2954,
+															4387
+														],
+														[
+															2982,
+															4365
+														],
+														[
+															3050,
+															4362
+														],
+														[
+															3078,
+															4374
+														],
+														[
+															3107,
+															4382
+														],
+														[
+															3114,
+															4410
+														],
+														[
+															3144,
+															4438
+														],
+														[
+															3173,
+															4413
+														],
+														[
+															3234,
+															4422
+														],
+														[
+															3254,
+															4486
+														],
+														[
+															3269,
+															4539
+														],
+														[
+															3286,
+															4560
+														],
+														[
+															3301,
+															4685
+														],
+														[
+															3280,
+															4704
+														],
+														[
+															3282,
+															4731
+														],
+														[
+															3250,
+															4747
+														],
+														[
+															3200,
+															4755
+														],
+														[
+															3149,
+															4757
+														],
+														[
+															3110,
+															4763
+														],
+														[
+															3091,
+															4773
+														],
+														[
+															3074,
+															4786
+														],
+														[
+															3024,
+															4787
+														],
+														[
+															2997,
+															4765
+														],
+														[
+															2965,
+															4768
+														],
+														[
+															2918,
+															4766
+														],
+														[
+															2902,
+															4766
+														],
+														[
+															2885,
+															4778
+														],
+														[
+															2880,
+															4810
+														],
+														[
+															2886,
+															4822
+														],
+														[
+															2856,
+															4842
+														],
+														[
+															2829,
+															4840
+														],
+														[
+															2782,
+															4851
+														],
+														[
+															2747,
+															4859
+														],
+														[
+															2706,
+															4853
+														],
+														[
+															2693,
+															4838
+														],
+														[
+															2669,
+															4842
+														],
+														[
+															2643,
+															4853
+														],
+														[
+															2637,
+															4883
+														],
+														[
+															2637,
+															4910
+														],
+														[
+															2603,
+															4922
+														],
+														[
+															2576,
+															4918
+														],
+														[
+															2542,
+															4920
+														],
+														[
+															2517,
+															4925
+														],
+														[
+															2478,
+															4914
+														],
+														[
+															2472,
+															4891
+														],
+														[
+															2490,
+															4872
+														],
+														[
+															2512,
+															4848
+														],
+														[
+															2493,
+															4824
+														],
+														[
+															2462,
+															4830
+														],
+														[
+															2435,
+															4824
+														],
+														[
+															2379,
+															4830
+														],
+														[
+															2362,
+															4824
+														],
+														[
+															2334,
+															4821
+														],
+														[
+															2346,
+															4811
+														],
+														[
+															2374,
+															4802
+														],
+														[
+															2390,
+															4786
+														],
+														[
+															2413,
+															4787
+														],
+														[
+															2448,
+															4779
+														],
+														[
+															2462,
+															4770
+														],
+														[
+															2515,
+															4766
+														],
+														[
+															2552,
+															4776
+														],
+														[
+															2573,
+															4765
+														],
+														[
+															2584,
+															4734
+														],
+														[
+															2582,
+															4694
+														],
+														[
+															2546,
+															4675
+														],
+														[
+															2523,
+															4662
+														],
+														[
+															2464,
+															4666
+														],
+														[
+															2437,
+															4659
+														],
+														[
+															2427,
+															4619
+														],
+														[
+															2432,
+															4533
+														],
+														[
+															2472,
+															4462
+														]
+													]
+												},
+												{
+													"area": "02e",
+													"points": [
+														[
+															2136,
+															4989
+														],
+														[
+															2195,
+															4982
+														],
+														[
+															2240,
+															4992
+														],
+														[
+															2280,
+															4995
+														],
+														[
+															2336,
+															4992
+														],
+														[
+															2413,
+															4998
+														],
+														[
+															2448,
+															4984
+														],
+														[
+															2510,
+															5003
+														],
+														[
+															2563,
+															5013
+														],
+														[
+															2624,
+															4978
+														],
+														[
+															2704,
+															4982
+														],
+														[
+															2734,
+															4965
+														],
+														[
+															2794,
+															4970
+														],
+														[
+															2854,
+															4950
+														],
+														[
+															2910,
+															4941
+														],
+														[
+															2986,
+															4933
+														],
+														[
+															3029,
+															4938
+														],
+														[
+															3090,
+															4941
+														],
+														[
+															3133,
+															4941
+														],
+														[
+															3181,
+															4947
+														],
+														[
+															3243,
+															4954
+														],
+														[
+															3291,
+															4949
+														],
+														[
+															3352,
+															4931
+														],
+														[
+															3411,
+															4917
+														],
+														[
+															3475,
+															4922
+														],
+														[
+															3509,
+															4899
+														],
+														[
+															3573,
+															4870
+														],
+														[
+															3618,
+															4861
+														],
+														[
+															3664,
+															4819
+														],
+														[
+															3666,
+															4784
+														],
+														[
+															3659,
+															4758
+														],
+														[
+															3702,
+															4714
+														],
+														[
+															3722,
+															4654
+														],
+														[
+															3738,
+															4622
+														],
+														[
+															3774,
+															4581
+														],
+														[
+															3787,
+															4506
+														],
+														[
+															3862,
+															4595
+														],
+														[
+															3875,
+															4646
+														],
+														[
+															3877,
+															4693
+														],
+														[
+															3838,
+															4738
+														],
+														[
+															3806,
+															4754
+														],
+														[
+															3800,
+															4790
+														],
+														[
+															3808,
+															4829
+														],
+														[
+															3797,
+															4859
+														],
+														[
+															3787,
+															4890
+														],
+														[
+															3789,
+															4923
+														],
+														[
+															3766,
+															4944
+														],
+														[
+															3750,
+															4971
+														],
+														[
+															3728,
+															5002
+														],
+														[
+															3678,
+															5008
+														],
+														[
+															3638,
+															4998
+														],
+														[
+															3618,
+															5013
+														],
+														[
+															3578,
+															5053
+														],
+														[
+															3512,
+															5061
+														],
+														[
+															3450,
+															5059
+														],
+														[
+															3376,
+															5080
+														],
+														[
+															3312,
+															5082
+														],
+														[
+															3277,
+															5070
+														],
+														[
+															3218,
+															5083
+														],
+														[
+															3170,
+															5091
+														],
+														[
+															3117,
+															5098
+														],
+														[
+															3082,
+															5088
+														],
+														[
+															3010,
+															5090
+														],
+														[
+															2970,
+															5085
+														],
+														[
+															2925,
+															5083
+														],
+														[
+															2886,
+															5090
+														],
+														[
+															2858,
+															5072
+														],
+														[
+															2795,
+															5067
+														],
+														[
+															2746,
+															5085
+														],
+														[
+															2715,
+															5093
+														],
+														[
+															2666,
+															5099
+														],
+														[
+															2629,
+															5083
+														],
+														[
+															2598,
+															5074
+														],
+														[
+															2579,
+															5077
+														],
+														[
+															2546,
+															5085
+														],
+														[
+															2480,
+															5093
+														],
+														[
+															2442,
+															5096
+														],
+														[
+															2390,
+															5099
+														],
+														[
+															2350,
+															5088
+														],
+														[
+															2275,
+															5086
+														],
+														[
+															2229,
+															5075
+														],
+														[
+															2162,
+															5070
+														],
+														[
+															2118,
+															5074
+														],
+														[
+															2091,
+															5091
+														],
+														[
+															2046,
+															5072
+														],
+														[
+															2003,
+															5050
+														],
+														[
+															1992,
+															5005
+														]
+													]
+												},
+												{
+													"area": "02b",
+													"points": [
+														[
+															3406,
+															4475
+														],
+														[
+															3394,
+															4419
+														],
+														[
+															3402,
+															4378
+														],
+														[
+															3398,
+															4342
+														],
+														[
+															3418,
+															4298
+														],
+														[
+															3402,
+															4258
+														],
+														[
+															3386,
+															4243
+														],
+														[
+															3389,
+															4203
+														],
+														[
+															3395,
+															4178
+														],
+														[
+															3429,
+															4166
+														],
+														[
+															3477,
+															4166
+														],
+														[
+															3482,
+															4138
+														],
+														[
+															3504,
+															4118
+														],
+														[
+															3528,
+															4123
+														],
+														[
+															3547,
+															4110
+														],
+														[
+															3554,
+															4078
+														],
+														[
+															3589,
+															4054
+														],
+														[
+															3618,
+															4050
+														],
+														[
+															3669,
+															4062
+														],
+														[
+															3686,
+															4080
+														],
+														[
+															3685,
+															4101
+														],
+														[
+															3710,
+															4118
+														],
+														[
+															3736,
+															4157
+														],
+														[
+															3741,
+															4186
+														],
+														[
+															3728,
+															4224
+														],
+														[
+															3725,
+															4254
+														],
+														[
+															3710,
+															4269
+														],
+														[
+															3710,
+															4304
+														],
+														[
+															3699,
+															4318
+														],
+														[
+															3701,
+															4357
+														],
+														[
+															3730,
+															4365
+														],
+														[
+															3742,
+															4386
+														],
+														[
+															3725,
+															4424
+														],
+														[
+															3702,
+															4450
+														],
+														[
+															3677,
+															4472
+														],
+														[
+															3678,
+															4493
+														],
+														[
+															3696,
+															4509
+														],
+														[
+															3690,
+															4538
+														],
+														[
+															3675,
+															4555
+														],
+														[
+															3662,
+															4598
+														],
+														[
+															3630,
+															4624
+														],
+														[
+															3598,
+															4643
+														],
+														[
+															3562,
+															4661
+														],
+														[
+															3530,
+															4650
+														],
+														[
+															3523,
+															4627
+														],
+														[
+															3496,
+															4621
+														],
+														[
+															3477,
+															4621
+														],
+														[
+															3450,
+															4626
+														],
+														[
+															3430,
+															4613
+														],
+														[
+															3414,
+															4550
+														],
+														[
+															3413,
+															4509
+														]
+													]
+												}
+											],
+											"hrefThumbnail": {
+												"type": "internal",
+												"path": "adventure/DitLCoT/thumbnail/002-map-0.01-lesser-caverns.webp"
+											}
+										},
+										{
+											"type": "image",
+											"href": {
+												"type": "internal",
+												"path": "adventure/DitLCoT/003-map-0.01-lesser-caverns-player.webp"
+											},
+											"imageType": "mapPlayer",
+											"title": "Player Version",
+											"width": 4096,
+											"height": 5301,
+											"credit": "Mike Schley",
+											"mapParent": {
+												"id": "05e"
+											},
+											"grid": {
+												"type": "square",
+												"size": 225,
+												"offsetX": 52,
+												"offsetY": -23,
+												"scale": 2,
+												"distance": 10
+											}
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "L1: Entry Caverns",
+									"id": "012",
+									"entries": [
+										{
+											"type": "insetReadaloud",
+											"id": "013",
+											"entries": [
+												"This wide chamber is ringed with a mixture of rough-hewn and natural passageways leading away from the entrance and into the unknown. Beside each of these tunnels is a grotesque face carved into the stone. Though each face is slightly different\u2014one has flap-like ears, another protruding tusks, and a third drooping wattles\u2014all are strange and doleful."
+											]
+										},
+										{
+											"type": "image",
+											"href": {
+												"type": "internal",
+												"path": "adventure/DitLCoT/004-00-003.ghastly-visage.webp"
+											},
+											"title": "A ghastly visage outside the entry caverns portends the dangers within",
+											"credit": "Adrián Ibarra Lugo",
+											"width": 850,
+											"height": 1912
+										},
+										"Each of the carved faces is magical. They are immune to all damage and speak a few programmed messages. When a creature approaches one of the tunnels leaving the chamber, the face beside it animates and warns in a deep, dire tone, \"Turn back\u2014this is not the way!\"",
+										"A character who examines one of the faces and succeeds on a DC 15 Wisdom ({@skill Perception}) check notices the glint of a gemstone in its mouth.",
+										{
+											"type": "entries",
+											"name": "Speaking to the Faces",
+											"id": "014",
+											"entries": [
+												"The faces repeat their warning if spoken to, except in the following two circumstances:",
+												{
+													"type": "list",
+													"style": "list-hang-notitle",
+													"items": [
+														{
+															"type": "item",
+															"name": "\"Say 'Aah!",
+															"entry": "'\" If a character asks one of the faces to open its mouth, stick out its tongue, or yawn, the face sticks out its tongue and says \"aah,\" revealing a gemstone the size of a hen's egg on its tongue."
+														},
+														{
+															"type": "item",
+															"name": "\"Truth",
+															"entry": "\" If a character asks one of the faces which way to go or uses the word \"truth\" while speaking near a face, the faces respond in unison. Five of the faces lie, saying, \"My way is the right way.\" The face marking the southeast tunnel leading to {@area area L9|02e|x}, however, responds, \"I watch the best way.\""
+														}
+													]
+												}
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"id": "015",
+											"entries": [
+												"Each of the faces contains a different gem worth 200 gp: amber, amethyst, blue aquamarine, garnet, peridot, and pink tourmaline.",
+												"A creature that tries to retrieve a gem from one of the faces without first asking the face to open its mouth must make a DC 17 Dexterity ({@skill Sleight of Hand}) check. On a failed check, the creature takes 11 ({@dice 2d10}) bludgeoning damage as the mouth clamps shut. The mouth similarly damages tools or weapons inserted into it without its permission."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "L2: Slate Chamber",
+									"id": "016",
+									"entries": [
+										{
+											"type": "insetReadaloud",
+											"id": "017",
+											"entries": [
+												"Alternating blue and gray bands of slate and shale compose the walls of this cave. Rusted weapons lie scattered on the ground.",
+												"A hulking, crudely formed figure made of gray clay charges at you from an alcove in the northeast, growling. The hilt of a pristine sword protrudes from the creature's chest."
+											]
+										},
+										"The figure is a {@creature clay golem} created by Iggwilv to destroy intruders. The golem attacks any creature that enters the chamber. The golem fights to the death and pursues trespassers relentlessly, even chasing them out of the caverns.",
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"id": "018",
+											"entries": [
+												"The weapon stuck in the clay golem is a slender-bladed {@item Giant Slayer Shortsword||Giant Slayer (shortsword)}. The sword's name (\"Longtooth\") is engraved into the blade in Gnomish. Once the golem is destroyed, the sword can easily be freed from its chest."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "L3: Guano-Covered Cave",
+									"id": "019",
+									"entries": [
+										{
+											"type": "insetReadaloud",
+											"id": "01a",
+											"entries": [
+												"The floor of this vaulted cave is covered in pungent piles of bat guano. Large leather hides hang from the stalactites above, flapping in a chilly draft. Sounds of flowing water echo from the far side of the cave."
+											]
+										},
+										"The ceiling of this soiled cave is 50 feet high. This cave once hosted dozens of bats, but a {@creature cloaker} that dwells here devoured them. The hungry creature hides among the stalactites, waiting to fall on one of the characters.",
+										{
+											"type": "entries",
+											"name": "Tunnel Ledge",
+											"id": "01b",
+											"entries": [
+												"A ledge on the north wall of the cave stretches out 30 feet above the floor. A short tunnel leads from the ledge to the river beyond. The water's surface is 40 feet below the tunnel's exit."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "L4: Littered Cave",
+									"id": "01c",
+									"entries": [
+										{
+											"type": "insetReadaloud",
+											"id": "01d",
+											"entries": [
+												"This small cave is littered with broken bones. Near the back wall lies a busted skeleton with a horned bovine head splintered with cracks. Two leather sacks brimming with gold rest near the skeleton."
+											]
+										},
+										"The skeleton is that of a minotaur thief who fell prey to the trap in this cave. The two leather sacks beside it are illusions designed to lure greedy intruders to their doom. A character who inspects the sacks and succeeds on a DC 18 Intelligence ({@skill Investigation}) check or who makes physical contact with one of them discerns their false nature.",
+										{
+											"type": "entries",
+											"name": "Crushing Ceiling Trap",
+											"id": "01e",
+											"entries": [
+												"A 20-foot-wide section of the ceiling over the skeleton contains a crushing deadfall. A character who examines the ceiling and succeeds on a DC 17 Wisdom ({@skill Perception}) check notices bits of decayed flesh stuck to the ceiling, which is flat and made of stone.",
+												"Whenever a creature enters the area marked on the map, the trap magically triggers. That section of the ceiling rapidly drops, crushing anything in its path. Creatures in that area must make a DC 17 Dexterity saving throw. On a failed save, a creature takes 55 ({@dice 10d10}) bludgeoning damage and has the {@condition prone} condition. On a successful save, it takes half as much damage only and is pushed to the nearest unoccupied space outside the trap's area. Objects wedged under the trap are destroyed. The stone then retracts into the ceiling, and the trap resets.",
+												"A successful {@spell Dispel Magic} spell (DC 17) suppresses the trap and its illusions for 24 hours."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"id": "01f",
+											"entries": [
+												"A pouch on the minotaur's skeleton holds five diamonds worth 100 gp each. The illusory sacks contain nothing."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "L5: Grotto",
+									"id": "020",
+									"entries": [
+										{
+											"type": "image",
+											"href": {
+												"type": "internal",
+												"path": "adventure/DitLCoT/005-00-004.diligent-pechs.webp"
+											},
+											"title": "Four pechs diligently dig a staired tunnel up into the mountain, decorating its walls with carvings",
+											"credit": "Mark Behm",
+											"width": 1700,
+											"height": 1143
+										},
+										{
+											"type": "insetReadaloud",
+											"id": "021",
+											"entries": [
+												"This tunnel has been worked recently, judging by the stone chips and dust covering the floor. Roughly carved images of cave-dwelling creatures decorate the smooth stone walls.",
+												"The sounds of mining tools echo from the end of the tunnel, where hewn steps rise into the darkness."
+											]
+										},
+										"Eight {@creature Pech|DitLCoT|pechs} (see {@area appendix B|062|x}) are diligently carving a tunnel from this grotto up into the mountain toward an enclosed cavern they can sense. For now, the tunnel leads only to a dead end. If the characters draw attention with light or noise, the pechs investigate.",
+										"The pechs are initially indifferent toward the characters, admonishing them to douse any bright lights they carry, as the lights hurt the pechs' eyes. If the characters comply, the pechs become curious and willing to chat. Otherwise, they resume their work, defending themselves if necessary.",
+										"In conversation, the pechs warn the characters about the clay golem in the slate chamber ({@area area L2|016|x}). Characters can improve the pechs' attitude toward them by offering the pechs at least 500 gp of gems or a unique carving or sculpture, especially one made of stone. Friendly pechs might be willing to help fight the clay golem or use their Communal Spellcasting action to restore {@condition petrified} characters.",
+										{
+											"type": "entries",
+											"name": "Carvings",
+											"id": "022",
+											"entries": [
+												"The carvings on the walls depict cave-dwelling creatures, such as bats and crickets, as well as creatures from the Elemental Plane of Earth such as {@creature dao}, {@creature Pech|DitLCoT|pechs}, {@creature xorn}, and {@creature Earth Elemental||earth elementals}. Characters who inspect the carvings and succeed on a DC 16 Intelligence ({@skill Arcana}) check identify the planar creatures."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "L6: Fungal Cavern",
+									"id": "023",
+									"entries": [
+										{
+											"type": "insetReadaloud",
+											"id": "024",
+											"entries": [
+												"Bioluminescent fungi, some as high as six feet tall, fill this moist cavern. The caps of the mushrooms sprouting from the floor and walls glow with a faint blue light. Pale, dog-sized insects chitter among the fungus."
+											]
+										},
+										"Three ghost-white cave crickets (use the {@creature giant frog} stat block) nibble at the glowing mushrooms in this cave, which radiate dim light. The crickets are indifferent toward the characters.",
+										"If the characters disturb the crickets, the insects begin to chirp loudly. The trolls in {@area area L8|02b|x} investigate any loud noises coming from this area.",
+										{
+											"type": "entries",
+											"name": "Mushrooms",
+											"id": "025",
+											"entries": [
+												"The fungi in this chamber are edible, and characters can forage here without having to make an ability check. Doing so doesn't disturb the crickets."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "L7: Slimy Cavern",
+									"id": "026",
+									"entries": [
+										{
+											"type": "insetReadaloud",
+											"id": "027",
+											"entries": [
+												"This cavern is full of sizable mushrooms, but the air stings with an acrid scent. Slime in sickly yellow, green, and orange shades blankets most of the fungi, as well as the walls and ceiling.",
+												"Near the back of the cave is a cranny mostly free of fungus. A black-cloaked figure, motionless, is wedged into the crack."
+											]
+										},
+										"Originally this was another cultivated fungus farm like area L6, but slime molds are overtaking the cave. The cloaked figure is the corpse of an elf adventurer who died here, trapped by the green slime. His body has been partially calcified by the mineral-rich water dripping from the ceiling.",
+										{
+											"type": "entries",
+											"name": "Green Slime",
+											"id": "028",
+											"entries": [
+												"Six patches of {@hazard green slime} (see the {@book Dungeon Master's Guide|DMG}) cling to the ceiling near the fallen adventurer. A character who inspects the slime and succeeds on a DC 15 Intelligence ({@skill Nature}) check recognizes the danger it poses. The slime falls on creatures that approach the corpse."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Mushrooms",
+											"id": "029",
+											"entries": [
+												"The fungi here are mostly edible. Foraging in this cavern requires a successful DC 15 Wisdom ({@skill Survival}) check to avoid the harmful molds and slime. On a failed check, the mushrooms the character gathers are contaminated by the slime. A creature that eats a contaminated mushroom must succeed on a DC 12 Constitution saving throw or have the {@condition poisoned} condition for 8 hours."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"id": "02a",
+											"entries": [
+												"The elf corpse carries a silvered {@item rapier|PHB} and wears {@item Bracers of Defense}."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "L8: Stinking Cave",
+									"id": "02b",
+									"entries": [
+										{
+											"type": "image",
+											"href": {
+												"type": "internal",
+												"path": "adventure/DitLCoT/006-00-005.hungry-trolls-splash.webp"
+											},
+											"title": "Three hungry trolls pass the time in their foul-smelling cave",
+											"credit": "Arash Radkia",
+											"width": 1700,
+											"height": 1161
+										},
+										{
+											"type": "insetReadaloud",
+											"id": "02c",
+											"entries": [
+												"This reeking cave is filled with rotting vegetation, bones, pieces of pale chitin, dung, and less identifiable foulness. Three larger heaps of material serve as giant sleeping pallets.",
+												"Three hulking creatures with warty green skin and wiry hair mill through the detritus, chewing cracked bones clutched in their clawed hands."
+											]
+										},
+										"This cave is the lair of three {@creature Troll||trolls}. They regularly gather rotting material from their den and spread it through the nearby fungus caverns (areas L6 and L7) to ensure the mushrooms grow and attract cave crickets for the trolls to feed on. The trolls are ornery, having long gone without the taste of humanoid flesh\u2014their favorite delicacy. The trolls attack anyone they notice, fantasizing aloud in Giant about the meal they're about to have.",
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"id": "02d",
+											"entries": [
+												"Gathered under the trolls' beds is their accumulated loot: 120 gp, 900 sp, four gems worth 50 gp each, gnome-sized wooden dentures set with mother-of-pearl teeth (worth 50 gp), a {@item quiver|PHB} with twenty silvered {@item Arrows (20)|PHB|arrows}, and a {@item Potion of Greater Healing||Potion of Healing (greater)}."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "L9: Bat Corridor",
+									"id": "02e",
+									"entries": [
+										{
+											"type": "insetReadaloud",
+											"id": "02f",
+											"entries": [
+												"The sandy floor of this long, wide corridor is strewn with piles of bat guano. Small fungi sprout from these deposits and the walls. A cacophony of chitters and squeaks echoes from above."
+											]
+										},
+										"The ceiling of this corridor is covered in thousands of roosting bats. Bright light or any noise louder than a whisper agitates the bats and sends them into a panic, causing a number of {@creature Swarm of Bats||swarms of bats} equal to the number of characters in this area descend from the ceiling and attack the source of the disturbance. The swarms extinguish any nonmagical light sources they come within 5 feet of with a flurry of buffeting wings.",
+										"Whenever a creature destroys a swarm, a new swarm immediately forms in an unoccupied space within 15 feet of the creature. The new swarm acts on the destroyed swarm's initiative count.",
+										"If the characters extinguish all light sources and cease attacking and making loud noises, the bats settle back into their roosts at the end of the round. They don't pursue creatures beyond the corridor."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "L10: Long Gallery",
+									"id": "030",
+									"entries": [
+										{
+											"type": "insetReadaloud",
+											"id": "031",
+											"entries": [
+												"The cavern widens into a gallery of considerable height and length. Clusters of small fungi grow throughout the chamber, and odd indentations dot the floor and walls at semiregular intervals. Somewhere farther back in the cave, a dim glow casts flickering shadows."
+											]
+										},
+										"The indentations are the rock-cyst burrows of four cave morays\u2014sluglike scavengers that slither between the burrow entrances through tunnels in the rock. The cave morays use the {@creature giant poisonous snake} stat block. They use their reach to bite at prey from the safety of their burrows.",
+										"Cave morays inside their burrows have {@quickref cover||3||three-quarters cover}. A creature within 5 feet of a burrow can pull a cave moray from its burrow by grappling it. If removed from its burrow, a cave moray frantically tries to escape back to its hole.",
+										"Loud sounds here, including the din of battle, draw the attention of the fomorians in area L11. The cave morays retreat into their burrows when the fomorians arrive."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "L11: Fomorian Cave",
+									"id": "032",
+									"entries": [
+										{
+											"type": "insetReadaloud",
+											"id": "033",
+											"entries": [
+												"This cave stinks of sweat, smoke, and spoiled meat. Old, cracked bones and skulls lie strewn on the floor. A large, flat rock supports massive stone goblets and the carcass of a giant toad, picked clean and buzzing with flies. Two piles of filthy hides and skins form beds at the far end of the cave.",
+												"Two hideous giants squat near a circle of hefty stones enclosing a crackling fire. Above the roaring flames, a charred giant insect rotates slowly on a spit."
+											]
+										},
+										"Two {@creature Fomorian||fomorians} inhabit this cave. The beds, fire pit, and utensils are all sized for Huge creatures.",
+										"The fomorians are cruel, violent, and bored. When the giants notice the characters, they abandon their meal and attack. One of the fomorians wields the roasting spit as its weapon, tearing bites off the bug-tipped skewer between swings.",
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"id": "034",
+											"entries": [
+												"Stashed beneath the fomorians' beds are two ivory mammoth tusks (each is worth 600 gp and weighs 100 pounds), a {@item Spell Scroll} of {@spell Levitate}, and a beaten copper bowl with lapis lazuli handles, which is worth 750 gp."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "L12: River Ledge",
+									"id": "035",
+									"entries": [
+										{
+											"type": "insetReadaloud",
+											"id": "036",
+											"entries": [
+												"A ten-foot-long wooden boat is tied to a ledge near the water. Intricate, flowing knotwork carving decorates the sides of the craft, which tapers to a point at both ends. Two oars lie inside."
+											]
+										},
+										"This ledge is visible from the lake (area L13) and from the shores of {@area areas L9|02e|x} and L14.",
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"id": "037",
+											"entries": [
+												"The vessel is a {@item Folding Boat} created to traverse the lake and the rivers that branch from it. In addition to its usual properties, the boat has an extra command word that functions only while the boat is within the Lost Caverns. A character who knows this additional command word (\"Shrimpkin\")\u2014discovered by casting the {@spell Identify} spell on the boat or by examining clues in the boat's intricate designs and succeeding on a DC 16 Intelligence ({@skill Arcana}) check\u2014can command the boat to row itself in a particular direction at a speed of 30 feet or to hold its position in defiance of the water's swiftest currents."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "L13: Underground Lake",
+									"id": "038",
+									"entries": [
+										{
+											"type": "insetReadaloud",
+											"id": "039",
+											"entries": [
+												"A river flows into the south side of this high-vaulted cavern, feeding a glassy, ebon-hued lake. Drops of water fall from the ceiling high above, rippling the mirrorlike surface of the water.",
+												"Two rivers flow out of the northern side of the lake, while a third flows out to the west. Ledges along the shore lead to dry tunnels."
+											]
+										},
+										"The lake teems with blind cave fish and crayfish. These critters are a food source for many of the denizens in the lesser caverns, including predators that dwell within the lake itself. The lake slopes sharply from its shores to a depth of 100 feet.",
+										"Four {@creature Chuul||chuuls} lurk near the lakebed, 90 feet below the surface. They're content to creep along the lightless depths and prey on cave fish unless something else catches their attention. Bright light draws the chuuls to the water's edge, as does any magic in the lake or near its surface, such as the boat from area L12. If drawn to the surface, the chuuls attack.",
+										{
+											"type": "entries",
+											"name": "L13a: Stone Bridge",
+											"id": "03a",
+											"entries": [
+												"An unadorned stone bridge spans the northwest river."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "L13b: Gargoyle Bridge",
+											"id": "03b",
+											"entries": [
+												"A bridge decorated with reliefs of gargoyles spans the west river flowing from the lake. The sound of roaring water echoes from downstream. A short distance beyond the bridge, the river becomes a waterfall, plummeting 300 feet into an Underdark lake. The lake and the creatures that inhabit it are beyond the scope of this adventure, but you can flesh them out as you see fit."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "L14: Basilisk Den",
+									"id": "03c",
+									"entries": [
+										{
+											"type": "insetReadaloud",
+											"id": "03d",
+											"entries": [
+												"Oddly shaped chunks of rock are strewn about this cave, which reeks of ammonia. Scattered among the irregular rock pieces are stone sculptures of various creatures, including bats, subterranean lizards, and a broken bust of a gnome with a horrified expression."
+											]
+										},
+										"Four {@creature Basilisk||basilisks} dwell in this cave. Toward the back of the cave is a nest where the basilisks lay eggs. The basilisks are protective of their den, attacking any creatures that enter the cave.",
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"id": "03e",
+											"entries": [
+												"The head and shoulder of a {@condition petrified} gnome lie near the basilisk nest at the back of the cave. The broken statue wears a pair of unpetrified goggles, which are {@item Eyes of Minute Seeing}."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "L15: Rainbow Cavern",
+									"id": "03f",
+									"entries": [
+										{
+											"type": "insetReadaloud",
+											"id": "040",
+											"entries": [
+												"This vaulted cavern displays a rainbow of colors on its walls and floor. Stalactites hang like colorful icicles, and the stalagmites feature bright streaks and swirls. Mineral deposits form frozen curtains, cascades, and other fantastical shapes in vibrant hues."
+											]
+										},
+										{
+											"type": "image",
+											"href": {
+												"type": "internal",
+												"path": "adventure/DitLCoT/007-00-006.behir-lludd-splash.webp"
+											},
+											"title": "Adventurers clash with the behir Lludd in his lair within the Lost Caverns",
+											"credit": "Zoltan Boros",
+											"width": 1700,
+											"height": 2129
+										},
+										"The ceiling of this colorful cavern rises to a height of 50 feet. Careful examination of the floor reveals many cracked bone fragments among the stalagmites. Once the lair of a chimera, this cavern is now home to Lludd, a clever and long-lived {@creature behir} who ousted the smaller, weaker creature that preceded him. Lludd speaks Common and Giant in addition to Draconic. The behir lurks on a rufous ledge near the entrance to the chamber, waiting for morsels worthy of his hunger.",
+										"Lludd is hostile toward intruders, but he doesn't immediately resort to violence. Though he's selfish and cruel, the behir hasn't survived this long by attempting to devour every creature that enters his lair\u2014especially hardened adventurers. When he notices the characters, Lludd greets them in Common.",
+										{
+											"type": "entries",
+											"name": "Parleying with Lludd",
+											"id": "041",
+											"entries": [
+												"If the characters converse with Lludd, he offers to point them toward a place where they can find treasure in exchange for leaving him in peace. The behir keeps no hoard of his own. If they agree, Lludd directs them toward a \"vast treasure\" in the black-water lake ({@area area L18|04e|x}).",
+												"During the conversation, Lludd sizes up the party. If the characters appear wounded or offend the behir, he seizes his chance and unleashes his breath on them."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"id": "042",
+											"entries": [
+												"Inside Lludd's stomach is a {@item Periapt of Proof against Poison} left over from an unlucky explorer the behir digested."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "L16: Boulder Heap",
+									"id": "043",
+									"entries": [
+										{
+											"type": "insetReadaloud",
+											"id": "044",
+											"entries": [
+												"Small, rounded boulders are carefully stacked here, blocking the entrance to a wide tunnel."
+											]
+										},
+										"The boulders are obviously not a natural formation. Lludd, the behir in area L15, piled them here to block the entrance to the greater caverns and prevent creatures that dwell there from taking him by surprise.",
+										"With 5 minutes of work, the characters can clear enough of the rocks to expose the tunnel beyond. There, a flight of nine hundred crudely shaped stone steps descends to the greater caverns. If the characters descend the steps, proceed to this adventure's {@area conclusion|05c|x}.",
+										{
+											"type": "entries",
+											"name": "Hollow Boulder",
+											"id": "045",
+											"entries": [
+												"If the characters move any of the rocks, they uncover a smooth, blue-green boulder that's strangely light and clunks dully when moved or shaken, revealing its hollowness. The boulder can be easily broken open with blunt weapons, with tools, or by smashing it against a hard surface."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Graven Glyphs",
+											"id": "046",
+											"entries": [
+												"Inside the hollow boulder is a bronze tablet worth 100 gp. The tablet is etched with a poem for those hoping to delve into the greater caverns. It offers cryptic insight on how to enter Iggwilv's inner sanctum in the greater caverns, where the archmage's true prize resides. The poem reads as follows:",
+												{
+													"type": "insetReadaloud",
+													"id": "047",
+													"entries": [
+														"In the center lies the gate, But its locks will surely vex. Many are the guards who wait As you seek the middle hex.",
+														"Randomly sent to find a way Back to a different iron door. A seventh time and you may stay, And seek the glowing prize no more.",
+														"You have won old Iggwilv's prize, Her hoarded cache of magic, And freed the one with yearning eyes, Whose lot was hunger tragic."
+													]
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "L17: Lavish Parlor",
+									"id": "048",
+									"entries": [
+										{
+											"type": "insetReadaloud",
+											"id": "049",
+											"entries": [
+												"The natural cavern gives way to a luxurious parlor. Crystal chandeliers bathe the chamber in soft light, and the scent of orange blossoms perfumes the air. Plump cushions surround a low table heaped with ripe fruits, refreshing beverages, and succulent meats. Low sofas and comfortable chairs dot the walls of the lounge, and side tables between these sitting areas overflow with gemstones, jewelry, and other treasures.",
+												"Four impeccably dressed human aristocrats laugh and feast in the parlor. An unseen string quartet accompanies their revelry with soothing music."
+											]
+										},
+										"This area is brightly lit. The nobles invite the characters to join the repast, insisting the characters rest and regale them with tales of adventure.",
+										"The nobles are part of an elaborate, genie-wrought illusion created by Kashem, a bitter {@creature dao} bound to guard this chamber by Iggwilv. The Witch Queen imparted a mote of her power to Kashem in exchange for the dao's services. Long after the archmage's departure, Kashem still pursues her original charge to destroy all who enter.",
+										"When the characters arrive, Kashem floats silently above the chamber, waiting for a prime opportunity to strike. If the characters consume any of the food or drink, refuse to join the nobles outright, or see through the illusions, Kashem reveals herself and attacks.",
+										{
+											"type": "entries",
+											"name": "Illusory Finery",
+											"id": "04a",
+											"entries": [
+												"The room's genie-wrought furnishings and inhabitants are convincing illusions. These illusions blanket dingy, neglected versions of the objects they cover and feel real if touched. To pierce the dao's ruse, a character examining the chamber's fixtures must succeed on a DC 20 Intelligence ({@skill Investigation}) check. The nobles, however, fail to hold up to physical inspection. A character who touches a noble automatically succeeds on this check."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Poisoned Feast",
+											"id": "04b",
+											"entries": [
+												"The food and drink on the table are real\u2014and poisoned. A creature that consumes any of the food or drink must make a DC 16 Constitution saving throw. On a failed save, a creature takes 21 ({@dice 6d6}) poison damage and has the {@condition poisoned} condition for 1 hour. On a successful save, the creature takes half as much damage only. The illusory nobles nonchalantly partake of the sumptuous feast, politely encouraging the characters to sample the dishes."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Dust to Dust",
+											"id": "04c",
+											"entries": [
+												"If Kashem is slain, her body disintegrates into a pile of fine dust. This dust can be used in {@area area L20|057|x} to destroy the cage in the lake or prove that Kashem is dead."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"id": "04d",
+											"entries": [
+												"None of the treasure is real. Coins and precious objects taken from the chamber turn out to be flat stones and obvious counterfeits."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "L18: Black-Water Lake",
+									"id": "04e",
+									"entries": [
+										{
+											"type": "insetReadaloud",
+											"id": "04f",
+											"entries": [
+												"The river flows into a flooded cavern, creating a small lake. The surface of the water is glossy and black. A rocky island rises from the center of the pool."
+											]
+										},
+										"The island is strewn with tiny garnets, which sparkle alluringly in the presence of light.",
+										{
+											"type": "entries",
+											"name": "Lurking Death",
+											"id": "050",
+											"entries": [
+												"Eight aquatic {@creature Ghast||ghasts} (each has a swimming speed of 30 feet) lurk in the lake, which is 20 feet deep. Spotting them beneath the water's mirrorlike surface requires a successful DC 20 Wisdom ({@skill Perception}) check. The ghasts ambush any creatures that enter the lake."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Rebuking Island",
+											"id": "051",
+											"entries": [
+												"Iggwilv recorded a series of messages in this cave to taunt intruders. Each time a creature sets foot on the island, an imperious voice echoes throughout the cave, uttering one of the following reproofs:",
+												{
+													"type": "list",
+													"items": [
+														"\"Fools! This is a dead end. Flee while you still can!\"",
+														"\"You were witless to enter at all, so you should probably just stay here.\"",
+														"(Peals of hideous, mocking laughter)"
+													]
+												}
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"id": "052",
+											"entries": [
+												"Six hundred garnets are strewn across the island, each about the size of a pea and worth 1 gp. It takes 10 minutes for a single creature to collect the gems by hand. The gems have a combined weight of 5 pounds."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "L19: Cave of Crystals",
+									"id": "053",
+									"entries": [
+										{
+											"type": "insetReadaloud",
+											"id": "054",
+											"entries": [
+												"Veins of glittering quartz streak the walls of this crystal cave. Three bizarre creatures with stone-lidded eyes converse in grating tones. Each has three clawed arms, three stumpy legs, and a barrel-like body."
+											]
+										},
+										"Three {@creature xorn} from the Elemental Plane of Earth found their way to this cave through a planar rift that has since closed, stranding them here. The xorn are initially indifferent to the characters but defend themselves if attacked.",
+										{
+											"type": "entries",
+											"name": "Hungry Castaways",
+											"id": "055",
+											"entries": [
+												"The xorn are discussing their plight when the characters arrive. The creatures are hungry and upset at their situation. Prone to stress eating, the xorn crave any precious gems or metals they can sense on the characters. If anyone in the party can understand the xorn, the creatures explain their dilemma and attempt to persuade the characters to give them a meal of at least 100 gp worth of gems or metals per xorn.",
+												"If the characters have a means to send the xorn home\u2014such as the {@spell Banishment} spell\u2014the xorn offer to help locate other treasure for the characters as payment. Alternatively, a single character can convince the xorn to assist them in defeating a threat elsewhere in the caverns with a successful DC 18 Charisma ({@skill Persuasion}) check."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"id": "056",
+											"entries": [
+												"The xorn stashed 500 gp worth of uncut gems behind a large crystal formation in the northwest corner of the room. A character searching the crystals finds the stash with a successful DC 17 Wisdom ({@skill Perception}) check."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "L20: Pool Cavern",
+									"id": "057",
+									"entries": [
+										{
+											"type": "insetReadaloud",
+											"id": "058",
+											"entries": [
+												"The narrow river flows into a domed cavern whose ceiling bristles with stalactites. Faint sounds of trickling water echo from the northwest."
+											]
+										},
+										"The river dead-ends in this flooded chamber. A {@creature marid} named Kasdu'ul is trapped at the bottom of the pool, 30 feet below the surface. An unbreakable stone cage etched with glowing runes confines the genie to the pool. Characters who look into the pool and succeed on a DC 15 Wisdom ({@skill Perception}) check notice the cage's faint, glimmering light in the water.",
+										{
+											"type": "entries",
+											"name": "Bound Genie",
+											"id": "059",
+											"entries": [
+												"Kasdu'ul was trapped here by the dao Kashem (see {@area area L17|048|x}) centuries ago, shortly before Kashem was fooled and bound by Iggwilv in turn. A permanent {@spell Antipathy/Sympathy} spell (save DC 18) protects the cage and repels creatures that aren't native to the Elemental Plane of Earth with its Antipathy effect. The runes on the cage invoke the hatred of Ogrémoch, the Prince of Evil Earth.",
+												"While the cage is intact, Kasdu'ul has the {@condition incapacitated} condition and speaks in a lethargic tone. If the characters overcome the Antipathy effect and approach the cage, the genie drowsily asks them to destroy it."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Destroying the Cage",
+											"id": "05a",
+											"entries": [
+												"The cage is immune to all damage and has no locks or opening mechanisms. It can be destroyed in the following ways:",
+												{
+													"type": "list",
+													"items": [
+														"A creature native to the Plane of Earth\u2014such as one of the pechs in {@area area L5|020|x} or the xorn in area L19\u2014can easily break the cage as if it were made of fragile clay.",
+														"If the dust of a slain dao is scattered over the lake, the cage instantly rusts away.",
+														"A successful {@spell Dispel Magic} (DC 18) spell cast on the cage causes it to crumble."
+													]
+												},
+												"Kasdu'ul has had many years to contemplate the cage's magical construction. She might propose one of these methods to the party from inside the cage."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Freed Genie",
+											"id": "05b",
+											"entries": [
+												"If the cage is destroyed, Kasdu'ul returns to her lively self. The grateful genie urges the characters to find and slay the dao that imprisoned her if they haven't already.",
+												"As thanks for freeing her, she's willing to cast {@spell Tongues}, {@spell Water Breathing}, and {@spell Water Walk} on the characters to facilitate their exploration. If the characters also present proof of Kashem's demise\u2014such as a pinch of the dust left behind after her death\u2014or they offer a convincing story and succeed on a DC 17 Charisma ({@skill Deception}) check, Kasdu'ul summons a {@creature water weird} and orders it to serve the characters for 1 hour, after which it vanishes. In either case, Kasdu'ul then bids the characters farewell and returns to the Elemental Plane of Water."
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Conclusion",
+					"id": "05c",
+					"entries": [
+						"Whether the characters found the entrance to the greater caverns (see {@area area L16|043|x}), succumbed to the dungeon's many threats, wisely decided to turn back, or simply ran out of time, Iggwilv's greatest treasures remain yet to be discovered. This adventure ends on a cliffhanger.",
+						"The rest of the Witch Queen's lair, her hoard, and even more iconic adventures can be found in {@adventure Quests from the Infinite Staircase|QftIS}!"
+					]
+				},
+				{
+					"type": "section",
+					"name": "Appendix A: Magic Items",
+					"id": "05d",
+					"entries": [
+						"This section presents four magic items related to Iggwilv and the Lost Caverns. These items are presented in alphabetical order.",
+						{
+							"type": "list",
+							"columns": 3,
+							"items": [
+								"{@item Demon Skin|DitLCoT}",
+								"{@item Iggwilv's Horn|DitLCoT}",
+								"{@item Potion of Polychromy|DitLCoT}",
+								"{@item Tasha's Creeping Keelboat|DitLCoT}"
+							]
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Appendix B: Creature",
+					"id": "062",
+					"entries": [
+						{
+							"type": "list",
+							"items": [
+								"{@creature Pech|DitLCoT}"
+							]
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Appendix C: Score Sheet",
+					"id": "064",
+					"entries": [
+						"Use this score sheet to tally the players' points. Players can gain or lose points for each of these actions only once.",
+						{
+							"type": "table",
+							"caption": "Points by Area",
+							"colLabels": [
+								"",
+								"Action",
+								"Points"
+							],
+							"colStyles": [
+								"col-2",
+								"col-8 text",
+								"col-2 text-center"
+							],
+							"rows": [
+								[
+									"L1: Entry Caverns",
+									"Caused a face to say \"aah\"",
+									"+1"
+								],
+								[
+									"",
+									"Asked a face which way to go or used the word \"truth\"",
+									"+1"
+								],
+								[
+									"",
+									"Recovered any gems",
+									"+1"
+								],
+								[
+									"",
+									"Got bit by a stone face",
+									"\u22121"
+								],
+								[
+									"L2: Slate Chamber",
+									"Defeated the clay golem",
+									"+1"
+								],
+								[
+									"",
+									"Removed the sword stuck in the clay golem's chest",
+									"+1"
+								],
+								[
+									"L3: Guano-Covered Cave",
+									"Defeated the cloaker",
+									"+1"
+								],
+								[
+									"",
+									"Used the tunnel ledge to access the areas to the north",
+									"+1"
+								],
+								[
+									"L4: Littered Cave",
+									"Avoided the crushing ceiling trap",
+									"+1"
+								],
+								[
+									"",
+									"Recovered the treasure",
+									"+1"
+								],
+								[
+									"L5: Grotto",
+									"Attacked the pechs",
+									"\u22121"
+								],
+								[
+									"",
+									"Improved the pechs' mood",
+									"+2"
+								],
+								[
+									"",
+									"Refused to douse any bright lights",
+									"\u22121"
+								],
+								[
+									"L6: Fungal Cavern",
+									"Disturbed the crickets",
+									"\u22121"
+								],
+								[
+									"L7: Slimy Cavern",
+									"Gathered or ate contaminated mushrooms",
+									"\u22121"
+								],
+								[
+									"",
+									"Recovered the elf corpse's equipment",
+									"+1"
+								],
+								[
+									"L8: Stinking Cave",
+									"Defeated the trolls",
+									"+3"
+								],
+								[
+									"",
+									"Found the trolls' loot",
+									"+1"
+								],
+								[
+									"L9: Bat Corridor",
+									"Disturbed the bats",
+									"\u22121"
+								],
+								[
+									"L10: Long Gallery",
+									"Attracted the attention of the fomorians in area L11",
+									"\u22121"
+								],
+								[
+									"",
+									"Pulled a cave moray from its burrow",
+									"+1"
+								],
+								[
+									"L11: Fomorian Cave",
+									"Defeated the fomorians",
+									"+3"
+								],
+								[
+									"",
+									"Found the fomorians' loot",
+									"+1"
+								],
+								[
+									"L12: River Ledge",
+									"Learned the boat's command word",
+									"+1"
+								],
+								[
+									"L13: Underground Lake",
+									"Defeated the chuuls",
+									"+2"
+								],
+								[
+									"",
+									"Failed a Strength saving throw in any of the rivers",
+									"\u22121"
+								],
+								[
+									"",
+									"Cast {@spell Control Water}, {@spell Water Breathing}, or {@spell Water Walk}",
+									"+1"
+								],
+								[
+									"L14: Basilisk Den",
+									"Defeated the basilisks",
+									"+1"
+								],
+								[
+									"",
+									"One or more characters gained the {@condition petrified} condition",
+									"\u22121"
+								],
+								[
+									"",
+									"Recovered the treasure near the basilisk's nest",
+									"+1"
+								],
+								[
+									"L15: Rainbow Cavern",
+									"Defeated Lludd the behir",
+									"+3"
+								],
+								[
+									"L16: Boulder Heap",
+									"Cleared the rocks to expose the tunnel to the greater caverns",
+									"+1"
+								],
+								[
+									"",
+									"Discovered the bronze tablet within the hollow boulder",
+									"+1"
+								],
+								[
+									"L17: Lavish Parlor",
+									"Ate any of the poisoned food or drink",
+									"\u22121"
+								],
+								[
+									"",
+									"Defeated Kashem the dao",
+									"+2"
+								],
+								[
+									"",
+									"Saw through Kashem's illusions before she attacked",
+									"+1"
+								],
+								[
+									"L18: Black-Water Lake",
+									"Gathered all the garnets on the island",
+									"+1"
+								],
+								[
+									"",
+									"Received an insult from Iggwilv",
+									"+1"
+								],
+								[
+									"",
+									"Used a cleric or paladin's Channel Divinity feature against the ghasts",
+									"+1"
+								],
+								[
+									"L19: Cave of Crystals",
+									"Attacked the xorn",
+									"\u22121"
+								],
+								[
+									"",
+									"Sent any xorn home",
+									"+2"
+								],
+								[
+									"",
+									"Enlisted the help of the xorn",
+									"+1"
+								],
+								[
+									"L20: Pool Caverns",
+									"Freed Kasdu'ul the marid",
+									"+2"
+								],
+								[
+									"",
+									"Provided proof of Kashem's demise or convinced Kasdu'ul of the dao's defeat",
+									"+1"
+								]
+							]
+						},
+						{
+							"type": "table",
+							"caption": "Additional Points",
+							"colLabels": [
+								"Condition",
+								"Points"
+							],
+							"colStyles": [
+								"col-10",
+								"col-2 text-center"
+							],
+							"rows": [
+								[
+									"Per character death",
+									"\u22121"
+								],
+								[
+									"One or more players thanked the DM during or after the session",
+									"+1"
+								]
+							]
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Appendix D: Premade Characters",
+					"id": "065",
+					"entries": [
+						"If a player doesn't have a level-appropriate character to play, have them choose one from this section. The Premade Characters table summarizes the characters, all of whom are 9th level. Give players who choose from these options time to read over their character sheets before starting the adventure.",
+						{
+							"type": "table",
+							"caption": "Premade Characters",
+							"colLabels": [
+								"Name",
+								"Species",
+								"Class"
+							],
+							"colStyles": [
+								"col-4",
+								"col-4",
+								"col-4"
+							],
+							"rows": [
+								[
+									"Cathartic",
+									"Human",
+									"Cleric"
+								],
+								[
+									"Dunil",
+									"Halfling",
+									"Rogue"
+								],
+								[
+									"Ethelrede",
+									"Human",
+									"Fighter"
+								],
+								[
+									"Flemin",
+									"Dwarf",
+									"Monk"
+								],
+								[
+									"Rustle Berrydust",
+									"Gnome",
+									"Wizard"
+								],
+								[
+									"Weslocke",
+									"Tiefling",
+									"Warlock"
+								]
+							]
+						},
+						{
+							"type": "gallery",
+							"images": [
+								{
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "adventure/DitLCoT/013-00-012.cathartic.webp"
+									},
+									"credit": "Fay Dalton",
+									"title": "{@5etoolsImg Cathartic|pdf/DitLCoT/cathartic.pdf}",
+									"width": 850,
+									"height": 1087
+								},
+								{
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "adventure/DitLCoT/014-00-013.dunil.webp"
+									},
+									"credit": "Fay Dalton",
+									"title": "{@5etoolsImg Dunil|pdf/DitLCoT/dunil.pdf}",
+									"width": 850,
+									"height": 1087
+								},
+								{
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "adventure/DitLCoT/015-00-014.ethelrede.webp"
+									},
+									"credit": "Fay Dalton",
+									"title": "{@5etoolsImg Ethelrede|pdf/DitLCoT/ethelrede.pdf}",
+									"width": 850,
+									"height": 1087
+								},
+								{
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "adventure/DitLCoT/016-00-015.flemin.webp"
+									},
+									"credit": "Fay Dalton",
+									"title": "{@5etoolsImg Flemin|pdf/DitLCoT/flemin.pdf}",
+									"width": 850,
+									"height": 1087
+								},
+								{
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "adventure/DitLCoT/017-00-016.rustle-berrydust.webp"
+									},
+									"credit": "Fay Dalton",
+									"title": "{@5etoolsImg Rustle Berrydust|pdf/DitLCoT/rustle-berrydust.pdf}",
+									"width": 850,
+									"height": 1087
+								},
+								{
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "adventure/DitLCoT/018-00-017.weslocke.webp"
+									},
+									"credit": "Fay Dalton",
+									"title": "{@5etoolsImg Weslocke|pdf/DitLCoT/weslocke.pdf}",
+									"width": 850,
+									"height": 1087
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Credits",
+					"id": "06d",
+					"entries": [
+						{
+							"type": "entries",
+							"entries": [
+								{
+									"type": "list",
+									"style": "list-hang-notitle",
+									"columns": 2,
+									"items": [
+										{
+											"type": "list",
+											"style": "list-hang-notitle",
+											"items": [
+												{
+													"type": "item",
+													"name": "Lead Designer",
+													"entries": [
+														"Justice Ramin Arman"
+													]
+												},
+												{
+													"type": "item",
+													"name": "Designer",
+													"entries": [
+														"Dan Dillon"
+													]
+												},
+												{
+													"type": "item",
+													"name": "Rules Developer",
+													"entries": [
+														"Ron Lundeen"
+													]
+												},
+												{
+													"type": "item",
+													"name": "Art Director",
+													"entries": [
+														"Fury Galluzzi"
+													]
+												},
+												{
+													"type": "item",
+													"name": "Lead Editor",
+													"entries": [
+														"Judy Bauer"
+													]
+												},
+												{
+													"type": "item",
+													"name": "Editor",
+													"entries": [
+														"Hannah Rose"
+													]
+												},
+												{
+													"type": "item",
+													"name": "Graphic Designer",
+													"entries": [
+														"Paolo Vacala"
+													]
+												},
+												{
+													"type": "item",
+													"name": "Cover Illustrator",
+													"entries": [
+														"Jodie Muir"
+													]
+												},
+												{
+													"type": "item",
+													"name": "Cartographer",
+													"entries": [
+														"Mike Schley"
+													]
+												},
+												{
+													"type": "item",
+													"name": "Interior Illustrators",
+													"entries": [
+														"Stephen Andrade, Mark Behm, Zoltan Boros, Adrián Ibarra Lugo, Arash Radkia"
+													]
+												},
+												{
+													"type": "item",
+													"name": "Premade Character Portraits",
+													"entries": [
+														"Fay Dalton"
+													]
+												},
+												{
+													"type": "item",
+													"name": "Consultants",
+													"entries": [
+														"James Mendez-Hodes, Pam Punzalan"
+													]
+												},
+												{
+													"type": "item",
+													"name": "Game Architects",
+													"entries": [
+														"Jeremy Crawford, Christopher Perkins"
+													]
+												},
+												{
+													"type": "item",
+													"name": "Studio Art Director",
+													"entries": [
+														"Josh Herman"
+													]
+												},
+												{
+													"type": "item",
+													"name": "Senior Producer",
+													"entries": [
+														"Dan Tovar"
+													]
+												},
+												{
+													"type": "item",
+													"name": "Producers",
+													"entries": [
+														"Bill Benham, Siera Bruggeman, Robert Hawkey"
+													]
+												},
+												{
+													"type": "item",
+													"name": "Product Manager",
+													"entries": [
+														"Natalie Egan"
+													]
+												}
+											]
+										},
+										{
+											"type": "entries",
+											"name": "D&D Beyond",
+											"entries": [
+												{
+													"type": "list",
+													"style": "list-hang-notitle",
+													"items": [
+														{
+															"type": "item",
+															"name": "Product Manager",
+															"entries": [
+																"Jeff Turriff"
+															]
+														},
+														{
+															"type": "item",
+															"name": "Digital Design Team",
+															"entries": [
+																"Jay Jani, Sean Stoves, Adam Walton"
+															]
+														}
+													]
+												}
+											],
+											"id": "060"
+										}
+									]
+								}
+							],
+							"id": "05f"
+						},
+						{
+							"type": "entries",
+							"name": "Original Credits",
+							"id": "06e",
+							"entries": [
+								{
+									"type": "list",
+									"style": "list-hang-notitle",
+									"items": [
+										{
+											"type": "item",
+											"name": "Design",
+											"entries": [
+												"Gary Gygax"
+											]
+										},
+										{
+											"type": "item",
+											"name": "Development",
+											"entries": [
+												"Gary Gygax, Allen Hammack, Jon Pickens, Edward G. Sollers"
+											]
+										},
+										{
+											"type": "item",
+											"name": "Editing",
+											"entries": [
+												"Edward G. Sollers"
+											]
+										},
+										{
+											"type": "item",
+											"name": "Art",
+											"entries": [
+												"Jim Holloway, Erol Otus, Jeff Easley, Stephen D. Sullivan"
+											]
+										},
+										{
+											"type": "item",
+											"name": "Playtesting",
+											"entries": [
+												"Jeff Dolphin, Luke Gygax, David Kuntz, Richard Kuntz, Sonny Savage, James M. Ward"
+											]
+										},
+										{
+											"type": "item",
+											"name": "Special Thanks",
+											"entries": [
+												"Rob Kuntz"
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "Special thanks to the original designer of this adventure, Gary Gygax, as well as everyone who contributed to it:",
+									"entry": "Jeff Dolphin, Luke Gygax, Jeff Easley, Allen Hammack, Jim Holloway, David Kuntz, Richard Kuntz, Erol Otus, Jon Pickens, Sonny Savage, Edward G. Sollers, Stephen D. Sullivan, and James M. Ward."
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

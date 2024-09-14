@@ -1,0 +1,8442 @@
+{
+	"monster": [
+		{
+			"name": "Ardwyn, Elder of Meadowfen",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HWCS",
+			"page": 190,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"huden gallus"
+				]
+			},
+			"alignment": [
+				"N",
+				"G"
+			],
+			"ac": [
+				{
+					"ac": 13,
+					"from": [
+						"{@item chain shirt|phb}"
+					]
+				}
+			],
+			"hp": {
+				"average": 27,
+				"formula": "5d8 + 5"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 11,
+			"con": 12,
+			"int": 13,
+			"wis": 18,
+			"cha": 13,
+			"skill": {
+				"medicine": "+8",
+				"persuasion": "+3",
+				"religion": "+5"
+			},
+			"passive": 13,
+			"languages": [
+				"Birdfolk",
+				"can also understand Auran but can't speak it"
+			],
+			"cr": "2",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Ardwyn is a 5th-level spellcaster. Her spellcasting ability is Wisdom (spell save {@dc 14}, {@hit 6} to hit with spell attacks). Ardwyn has the following cleric spells prepared:"
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell light}",
+								"{@spell sacred flame}",
+								"{@spell thaumaturgy}"
+							]
+						},
+						"1": {
+							"slots": 4,
+							"spells": [
+								"{@spell cure wounds}",
+								"{@spell guiding bolt}",
+								"{@spell sanctuary}"
+							]
+						},
+						"2": {
+							"slots": 3,
+							"spells": [
+								"{@spell lesser restoration}",
+								"{@spell spiritual weapon}"
+							]
+						},
+						"3": {
+							"slots": 2,
+							"spells": [
+								"{@spell dispel magic}",
+								"{@spell spirit guardians}"
+							]
+						}
+					},
+					"ability": "wis"
+				}
+			],
+			"trait": [
+				{
+					"name": "Glide",
+					"entries": [
+						"When falling at least 10 feet, Ardwyn can spend a reaction to fly up to her speed in one direction as she descends. She lands in an unoccupied space at the end of her movement, and takes no falling damage. She cannot glide while carrying heavy objects, heavy weapons, or shields (though she can drop any held items as part of her reaction)."
+					]
+				},
+				{
+					"name": "Wing Flap",
+					"entries": [
+						"As a bonus action, Ardwyn can use her powerful feathered arms to propel herself upward a distance equal to half her movement speed. She can use it in conjunction with a regular jump, but not while gliding. "
+					]
+				},
+				{
+					"name": "Seedspeech",
+					"entries": [
+						"Ardwyn can communicate simple ideas to living plants, and is able to interpret their responses in simple language."
+					]
+				},
+				{
+					"name": "Divine Eminence",
+					"entries": [
+						"As a bonus action, Ardwyn can expend a spell slot to cause her melee weapon attacks to magically deal an extra 10 ({@damage 3d6}) radiant damage to a target on a hit. This benefit lasts until the end of the turn. If Ardwyn expends a spell slot of 2nd level or higher, the extra damage increases by {@dice 1d6} for each level above 1st."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Mace",
+					"entries": [
+						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d6}) bludgeoning damage."
+					]
+				}
+			],
+			"attachedItems": [
+				"mace|phb"
+			],
+			"languageTags": [
+				"AU",
+				"CS"
+			],
+			"damageTags": [
+				"B",
+				"R"
+			],
+			"damageTagsSpell": [
+				"N",
+				"O",
+				"R"
+			],
+			"spellcastingTags": [
+				"CC"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Ashsnake",
+			"source": "HWCS",
+			"page": 177,
+			"size": [
+				"H"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 14,
+					"from": [
+						"natural armor"
+					]
+				},
+				{
+					"ac": 18,
+					"condition": "while under ash",
+					"braces": true
+				}
+			],
+			"hp": {
+				"formula": "7d12 + 21",
+				"average": 67
+			},
+			"speed": {
+				"walk": 40,
+				"burrow": 30
+			},
+			"str": 16,
+			"dex": 12,
+			"con": 16,
+			"int": 4,
+			"wis": 12,
+			"cha": 4,
+			"senses": [
+				"blindsight 30 ft. (blind beyond this radius)",
+				"tremorsense 60 ft."
+			],
+			"passive": 11,
+			"resist": [
+				"fire"
+			],
+			"vulnerable": [
+				"cold"
+			],
+			"languages": [
+				"understands Ignan",
+				"but can't speak"
+			],
+			"cr": "4",
+			"trait": [
+				{
+					"name": "Ash Cover",
+					"entries": [
+						"The ashsnake has advantage on Dexterity ({@skill Stealth}) checks made when it is burrowing in ash, as well as a +4 bonus to its armor class."
+					]
+				},
+				{
+					"name": "Eruption",
+					"entries": [
+						"When the ashsnake emerges from burrowing, any creature within 5 feet of it that is at least one size smaller than the ashsnake must make a {@dc 14} Dexterity saving throw or be knocked {@condition prone}."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The Ashsnake can make one bite attack and either one Constrict or Crush attack each round."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 10 ft., one target. {@h}8 ({@damage 1d10 + 3}) piercing damage."
+					]
+				},
+				{
+					"name": "Constrict",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 10 ft., one target. {@h}8 ({@damage 2d8 + 3}) bludgeoning damage and the target is {@condition grappled} (escape {@dc 14}). Until the grapple ends the target is {@condition restrained} and the ashsnake cannot constrict or crush another target. The ashsnake can release the target at any time during its turn."
+					]
+				},
+				{
+					"name": "Crush",
+					"entries": [
+						"The ashsnake crushes its {@condition grappled} target, dealing 11 ({@damage 2d8 + 3}) bludgeoning damage."
+					]
+				},
+				{
+					"name": "Ashen Breath {@recharge 5}",
+					"entries": [
+						"The ashsnake breathes out a cloud of superheated ash in a 15-foot cone. Each creature in the area must make a {@dc 14} Dexterity saving throw, taking 11 ({@damage 2d10}) fire damage on a failed save, or half as much on a success."
+					]
+				}
+			],
+			"senseTags": [
+				"B",
+				"T"
+			],
+			"actionTags": [
+				"Breath Weapon",
+				"Multiattack"
+			],
+			"languageTags": [
+				"CS",
+				"IG"
+			],
+			"damageTags": [
+				"B",
+				"F",
+				"P"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"grappled",
+				"prone",
+				"restrained"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Aspect of Fire",
+			"source": "HWCS",
+			"page": 179,
+			"size": [
+				"G"
+			],
+			"type": "elemental",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"formula": "12d20 + 48",
+				"average": 174
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 21,
+			"dex": 13,
+			"con": 18,
+			"int": 6,
+			"wis": 15,
+			"cha": 14,
+			"save": {
+				"wis": "+6"
+			},
+			"senses": [
+				"darkvision 120 ft."
+			],
+			"passive": 12,
+			"resist": [
+				{
+					"special": "bludgeoning, piercing, and slashing from nonmagical weapons"
+				}
+			],
+			"immune": [
+				"fire",
+				"poison"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"grappled",
+				"paralyzed",
+				"petrified",
+				"poisoned",
+				"restrained",
+				"unconscious"
+			],
+			"languages": [
+				"Ignan"
+			],
+			"cr": "12",
+			"trait": [
+				{
+					"name": "Legendary Resistance (3/Day)",
+					"entries": [
+						"If the Aspect of Fire fails a saving throw, it can choose to succeed instead."
+					]
+				},
+				{
+					"name": "Molten Skin",
+					"entries": [
+						"Any creature who touches, makes a melee attack within 5 feet of, or ends their turn within 5 feet of the aspect takes 11 ({@damage 2d10}) fire damage. Flammable objects within 5 feet of the aspect burst into flames."
+					]
+				},
+				{
+					"name": "Natural Light",
+					"entries": [
+						"The aspect gives off bright light in a 60-foot-radius and dim light for an additional 60 feet."
+					]
+				},
+				{
+					"name": "Cooling",
+					"entries": [
+						"If the aspect of fire takes 50 or more cold damage in one round, its speed is reduced to 0 until the end of its next turn."
+					]
+				},
+				{
+					"name": "Fuel for the Fire",
+					"entries": [
+						"The aspect of fire doesn't treat plant life as difficult terrain. Whenever the aspect begins its turn in a space of plant life that provides cover, it burns the plant life away from all spaces it is currently occupying, healing {@dice 1d4} hit points for each 5-foot square of such plant life it has consumed. If it heals for 17 or more damage in this way, it flares up, recharging its magma throw action."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The aspect makes two molten fist attacks."
+					]
+				},
+				{
+					"name": "Molten Fist",
+					"entries": [
+						"{@atk mw} {@hit 9} to hit, reach 15 ft., one target. {@h}16 ({@damage 2d10 + 5}) fire damage."
+					]
+				},
+				{
+					"name": "Stomp",
+					"entries": [
+						"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}20 ({@damage 3d10 + 5}) fire damage. The target must succeed on a {@dc 17} Constitution saving throw or be knocked {@condition prone}."
+					]
+				},
+				{
+					"name": "Magma Throw {@recharge 5}",
+					"entries": [
+						"The aspect hurls a ball of molten rock. Choose a location within 60 feet of the aspect. All creatures within 15 feet of the target location must make a {@dc 17} Dexterity saving throw. On a failure, a creature takes 22 ({@damage 4d10}) fire damage. On a success, the creature takes half as much damage."
+					]
+				}
+			],
+			"legendaryHeader": [
+				"The aspect of fire can take 3 legendary actions, choosing from the options below. Only one legendary action option can be used at a time, and only at the end of another creature's turn. The aspect regains spent legendary actions at the start of its turn."
+			],
+			"legendary": [
+				{
+					"name": "Detect",
+					"entries": [
+						"The aspect makes a Wisdom ({@skill Perception}) check."
+					]
+				},
+				{
+					"name": "Molten Fist",
+					"entries": [
+						"The aspect makes a molten fist attack."
+					]
+				},
+				{
+					"name": "Magma Barrage (Costs 2 Actions)",
+					"entries": [
+						"The aspect of fire uses its magma throw action. It may use this ability if it has not yet been recharged by dealing 17 points of cold damage to itself. "
+					]
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"IG"
+			],
+			"damageTags": [
+				"F"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"prone"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Benna Seridan",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HWCS",
+			"page": 193,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"cervan"
+				]
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"{@item studded leather armor|phb}"
+					]
+				}
+			],
+			"hp": {
+				"formula": "10d8 + 20",
+				"average": 65
+			},
+			"speed": {
+				"walk": 35
+			},
+			"str": 14,
+			"dex": 17,
+			"con": 14,
+			"int": 14,
+			"wis": 11,
+			"cha": 14,
+			"save": {
+				"dex": "+5",
+				"cha": "+4"
+			},
+			"skill": {
+				"deception": "+4",
+				"persuasion": "+4"
+			},
+			"passive": 10,
+			"languages": [
+				"Birdfolk",
+				"Cervan"
+			],
+			"cr": "2",
+			"trait": [
+				{
+					"name": "Surge of Vigor (Recharges after a Long Rest)",
+					"entries": [
+						"If an attack deals over half of Benna Seridan's current remaining hit points in damage (even if her hit points are reduced to 0 by the attack), she immediately regains 8 ({@dice 1d12 + 2}) hit points."
+					]
+				},
+				{
+					"name": "Standing Leap",
+					"entries": [
+						"Benna Seridan's long jump is 30 feet, and her base high jump is 15 feet, with or without a running start."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Benna Seridan makes three melee attacks, two with her scimitar and one with her dagger. Alternatively, Benna Seridan can make two ranged attack with her daggers."
+					]
+				},
+				{
+					"name": "Scimitar of the Wood",
+					"entries": [
+						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d6 + 4}) slashing damage. The sword has 2 charges. Benna Seridan can expend a charge and speak the command word to cast {@spell spike growth} (save {@dc 16}) centered on herself. She can pass through this terrain unaffected. The sword regains one charge each day at dawn."
+					]
+				},
+				{
+					"name": "Shortsword",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) piercing damage."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Parry",
+					"entries": [
+						"Benna Seridan adds 2 to her AC against one melee attack that would hit her. Benna Seridan must see the attacker and be wielding a melee weapon."
+					]
+				}
+			],
+			"attachedItems": [
+				"shortsword|phb"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Parry"
+			],
+			"damageTags": [
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Birdfolk Dockmaster",
+			"shortName": "dockmaster",
+			"source": "HWCS",
+			"page": 190,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"any birdfolk"
+				]
+			},
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				{
+					"ac": 14,
+					"from": [
+						"{@item leather armor|phb}"
+					]
+				}
+			],
+			"hp": {
+				"formula": "10d8 + 10",
+				"average": 55
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 16,
+			"con": 13,
+			"int": 8,
+			"wis": 13,
+			"cha": 15,
+			"skill": {
+				"perception": "+5",
+				"persuasion": "+4",
+				"athletics": "+2"
+			},
+			"passive": 15,
+			"languages": [
+				"Birdfolk",
+				"can also understand Auran but can't speak it"
+			],
+			"cr": "2",
+			"trait": [
+				{
+					"name": "Glide",
+					"entries": [
+						"When falling at least 10 feet, the dockmaster can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
+					]
+				},
+				{
+					"name": "Confidence",
+					"entries": [
+						"The dockmaster adds their Charisma modifier to their initiative rolls."
+					]
+				},
+				{
+					"name": "Sneak Attack",
+					"entries": [
+						"Once per turn, the dockmaster deals an extra 3 ({@dice 1d6}) damage when they hit a target with a weapon attack and they have advantage on the attack roll, or when the target is within 5 ft. of an ally of the dockmaster that isn't {@condition incapacitated} and the dockmaster doesn't have disadvantage on the attack roll."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The dockmaster makes two saber attacks and one dagger attack."
+					]
+				},
+				{
+					"name": "Saber",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) slashing damage."
+					]
+				},
+				{
+					"name": "Dagger",
+					"entries": [
+						"{@atk mw,rw} {@hit 5} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}5 ({@damage 1d4 + 3}) piercing damage."
+					]
+				}
+			],
+			"attachedItems": [
+				"dagger|phb"
+			],
+			"traitTags": [
+				"Sneak Attack"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AU",
+				"CS"
+			],
+			"damageTags": [
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RW",
+				"THW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Birdfolk Farmer",
+			"shortName": "farmer",
+			"source": "HWCS",
+			"page": 190,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"any birdfolk"
+				]
+			},
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				{
+					"ac": 14,
+					"from": [
+						"{@item leather armor|phb}"
+					]
+				}
+			],
+			"hp": {
+				"formula": "10d8",
+				"average": 45
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 10,
+			"con": 10,
+			"int": 10,
+			"wis": 10,
+			"cha": 10,
+			"skill": {
+				"nature": "+4"
+			},
+			"passive": 10,
+			"languages": [
+				"Birdfolk",
+				"can also understand Auran but can't speak it"
+			],
+			"cr": "0",
+			"trait": [
+				{
+					"name": "Glide",
+					"entries": [
+						"When falling at least 10 feet, the farmer can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Pitchfork",
+					"entries": [
+						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}2 ({@damage 1d4}) slashing damage."
+					]
+				}
+			],
+			"languageTags": [
+				"AU",
+				"CS"
+			],
+			"damageTags": [
+				"S"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Birdfolk Guard",
+			"shortName": "guard",
+			"source": "HWCS",
+			"page": 191,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"any birdfolk"
+				]
+			},
+			"alignment": [
+				"L",
+				"G",
+				"NY",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"{@item chain shirt|phb}",
+						"{@item shield|phb}"
+					]
+				}
+			],
+			"hp": {
+				"formula": "2d8 + 2",
+				"average": 11
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 13,
+			"dex": 12,
+			"con": 12,
+			"int": 10,
+			"wis": 10,
+			"cha": 10,
+			"skill": {
+				"perception": "+2"
+			},
+			"passive": 12,
+			"languages": [
+				"Birdfolk",
+				"can also understand Auran but can't speak it"
+			],
+			"cr": "1/8",
+			"trait": [
+				{
+					"name": "Glide",
+					"entries": [
+						"When falling at least 10 feet, the guard can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects or heavy weapons, (though they can drop any held items as part of their reaction)."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Spear",
+					"entries": [
+						"{@atk mw,rw} {@hit 3} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}4 ({@damage 1d6 + 1}) piercing damage, or 5 ({@damage 1d8 + 1}) piercing damage if used with two hands to make a melee attack."
+					]
+				}
+			],
+			"attachedItems": [
+				"spear|phb"
+			],
+			"languageTags": [
+				"AU",
+				"CS"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RW",
+				"THW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Birdfolk Militia",
+			"shortName": "militia",
+			"source": "HWCS",
+			"page": 191,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"any birdfolk"
+				]
+			},
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				{
+					"ac": 12,
+					"from": [
+						"{@item studded leather armor|phb}"
+					]
+				}
+			],
+			"hp": {
+				"formula": "2d8 + 2",
+				"average": 11
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 12,
+			"dex": 10,
+			"con": 12,
+			"int": 10,
+			"wis": 10,
+			"cha": 10,
+			"passive": 10,
+			"languages": [
+				"Birdfolk",
+				"can also understand Auran but can't speak it"
+			],
+			"cr": "1/8",
+			"trait": [
+				{
+					"name": "Glide",
+					"entries": [
+						"When falling at least 10 feet, the militia can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as ",
+						"part of their reaction)."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Mace",
+					"entries": [
+						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d6 + 1}) bludgeoning damage."
+					]
+				}
+			],
+			"attachedItems": [
+				"mace|phb"
+			],
+			"languageTags": [
+				"AU",
+				"CS"
+			],
+			"damageTags": [
+				"B"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Birdfolk Sailor",
+			"shortName": "sailor",
+			"source": "HWCS",
+			"page": 191,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"any birdfolk"
+				]
+			},
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				{
+					"ac": 12,
+					"from": [
+						"{@item leather armor|phb}"
+					]
+				}
+			],
+			"hp": {
+				"formula": "2d8 + 2",
+				"average": 11
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 12,
+			"dex": 13,
+			"con": 12,
+			"int": 10,
+			"wis": 10,
+			"cha": 10,
+			"skill": {
+				"athletics": "+3"
+			},
+			"passive": 10,
+			"languages": [
+				"Birdfolk",
+				"can also understand Auran but can't speak it"
+			],
+			"cr": "1/8",
+			"trait": [
+				{
+					"name": "Glide",
+					"entries": [
+						"When falling at least 10 feet, the sailor can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Shortsword",
+					"entries": [
+						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
+					]
+				},
+				{
+					"name": "Light Crossbow",
+					"entries": [
+						"{@atk rw} {@hit 3} to hit, range 80/320 ft., one target. {@h}5 ({@damage 1d8 + 2}) piercing damage."
+					]
+				}
+			],
+			"attachedItems": [
+				"light crossbow|phb",
+				"shortsword|phb"
+			],
+			"languageTags": [
+				"AU",
+				"CS"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RNG",
+				"RW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Birdfolk Skeleton",
+			"source": "HWCS",
+			"page": 180,
+			"size": [
+				"M"
+			],
+			"type": "undead",
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 12,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"formula": "2d8 + 4",
+				"average": 13
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 11,
+			"dex": 15,
+			"con": 14,
+			"int": 7,
+			"wis": 8,
+			"cha": 3,
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 9,
+			"immune": [
+				"poison"
+			],
+			"vulnerable": [
+				"bludgeoning"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"poisoned"
+			],
+			"languages": [
+				"understands Auran and Birdfolk",
+				"but can't speak"
+			],
+			"cr": "1/4",
+			"trait": [
+				{
+					"name": "Talons",
+					"entries": [
+						"The birdfolk skeleton has advantage on Strength ({@skill Athletics}) checks made to climb any surface its talons could reasonably grip."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Shortsword",
+					"entries": [
+						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
+					]
+				},
+				{
+					"name": "Talons",
+					"entries": [
+						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d4 + 2}) piercing damage."
+					]
+				}
+			],
+			"attachedItems": [
+				"shortsword|phb"
+			],
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"AU",
+				"CS"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Birdfolk Skirmisher",
+			"shortName": "skirmisher",
+			"source": "HWCS",
+			"page": 191,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"any birdfolk"
+				]
+			},
+			"alignment": [
+				"L",
+				"G",
+				"NY",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 14,
+					"from": [
+						"{@item chain shirt|phb}"
+					]
+				}
+			],
+			"hp": {
+				"formula": "2d8 + 2",
+				"average": 11
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 14,
+			"dex": 12,
+			"con": 12,
+			"int": 10,
+			"wis": 10,
+			"cha": 10,
+			"skill": {
+				"athletics": "+4"
+			},
+			"passive": 10,
+			"languages": [
+				"Birdfolk",
+				"can also understand Auran but can't speak it"
+			],
+			"cr": "1/8",
+			"trait": [
+				{
+					"name": "Glide",
+					"entries": [
+						"When falling at least 10 feet, the skirmisher can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
+					]
+				},
+				{
+					"name": "Drop Attack",
+					"entries": [
+						"The skirmisher can make an attack during their glide. If they do so they deal an extra 4 ({@dice 1d8}) points of damage."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Spear",
+					"entries": [
+						"{@atk mw,rw} {@hit 4} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage, or 6 ({@damage 1d8 + 2}) piercing damage if used with two hands to make a melee attack."
+					]
+				}
+			],
+			"attachedItems": [
+				"spear|phb"
+			],
+			"languageTags": [
+				"AU",
+				"CS"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RW",
+				"THW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Bita, the Council Speaker",
+			"shortName": "Bita",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HWCS",
+			"page": 193,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"bright gallus"
+				]
+			},
+			"alignment": [
+				"L",
+				"G"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"{@item breastplate|phb}"
+					]
+				}
+			],
+			"hp": {
+				"average": 9,
+				"formula": "2d8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 11,
+			"dex": 12,
+			"con": 11,
+			"int": 12,
+			"wis": 16,
+			"cha": 17,
+			"skill": {
+				"deception": "+5",
+				"insight": "+6",
+				"persuasion": "+5"
+			},
+			"passive": 13,
+			"languages": [
+				"Birdfolk",
+				"can also understand Auran but can't speak it"
+			],
+			"cr": "1/8",
+			"trait": [
+				{
+					"name": "Glide",
+					"entries": [
+						"When falling at least 10 feet, Bita can spend a reaction to fly up to her speed in one direction as she descends. She lands in an unoccupied space at the end of her movement, and takes no falling damage. She cannot glide while carrying heavy objects, heavy weapons, or shields (though she can drop any held items as part of her reaction)."
+					]
+				},
+				{
+					"name": "Wing Flap",
+					"entries": [
+						"As a bonus action, Bita can use her powerful feathered arms to propel herself upward a distance equal to half her movement speed. She can use it in conjunction with a regular jump, but not while gliding. "
+					]
+				},
+				{
+					"name": "Inspiring",
+					"entries": [
+						"As an action, Bita inspires an ally that can see and hear her. The ally can roll a {@dice d4} and add the number rolled to their next ability check, attack roll, or saving throw."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Rapier",
+					"entries": [
+						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d8 + 1}) piercing damage."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Parry",
+					"entries": [
+						"Bita adds 2 to her AC against one melee attack that would hit her. To do so, Bita must see the attacker and be wielding a melee weapon."
+					]
+				}
+			],
+			"attachedItems": [
+				"rapier|phb"
+			],
+			"actionTags": [
+				"Parry"
+			],
+			"languageTags": [
+				"AU",
+				"CS"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Cara Stormsinger",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HWCS",
+			"page": 191,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"swift strig"
+				]
+			},
+			"alignment": [
+				"L",
+				"G"
+			],
+			"ac": [
+				{
+					"ac": 12,
+					"from": [
+						"{@item studded leather armor|phb}"
+					]
+				}
+			],
+			"hp": {
+				"formula": "2d8 + 2",
+				"average": 11
+			},
+			"speed": {
+				"walk": 35
+			},
+			"str": 14,
+			"dex": 11,
+			"con": 12,
+			"int": 10,
+			"wis": 10,
+			"cha": 10,
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 10,
+			"languages": [
+				"Birdfolk",
+				"can also understand Auran but can't speak it"
+			],
+			"cr": "1/8",
+			"trait": [
+				{
+					"name": "Glide",
+					"entries": [
+						"When falling at least 10 feet, Cara Stormsinger can spend a reaction to fly up to her speed in one direction as she descends. She lands in an unoccupied space at the end of her movement, and takes no falling damage. She cannot glide while carrying heavy objects, heavy weapons, or shields (though she can drop any held items as part of her reaction)."
+					]
+				},
+				{
+					"name": "Talons",
+					"entries": [
+						"Cara Stormsinger has advantage on Strength ({@skill Athletics}) checks made to climb any surface her talons could reasonably grip."
+					]
+				},
+				{
+					"name": "Patterned Feathers",
+					"entries": [
+						"Cara Stormsinger has advantage on Dexterity ({@skill Stealth}) checks when she attempts to hide in a forest."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Talons",
+					"entries": [
+						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d4 + 2}) piercing damage."
+					]
+				},
+				{
+					"name": "Mace",
+					"entries": [
+						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) bludgeoning damage."
+					]
+				}
+			],
+			"attachedItems": [
+				"mace|phb"
+			],
+			"languageTags": [
+				"AU",
+				"CS"
+			],
+			"damageTags": [
+				"B",
+				"P"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Caustic Slime",
+			"source": "HWCS",
+			"page": 186,
+			"size": [
+				"M"
+			],
+			"type": "ooze",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				8
+			],
+			"hp": {
+				"formula": "3d8 + 9",
+				"average": 22
+			},
+			"speed": {
+				"walk": 20,
+				"climb": 20
+			},
+			"str": 15,
+			"dex": 6,
+			"con": 16,
+			"int": 1,
+			"wis": 6,
+			"cha": 1,
+			"senses": [
+				"blindsight 60 ft. (blind beyond this radius)"
+			],
+			"passive": 8,
+			"immune": [
+				"acid"
+			],
+			"conditionImmune": [
+				"blinded",
+				"charmed",
+				"deafened",
+				"exhaustion",
+				"frightened",
+				"prone"
+			],
+			"cr": "1/4",
+			"trait": [
+				{
+					"name": "Amorphous",
+					"entries": [
+						"The Caustic Slime can move through a space as narrow as 1 inch wide without squeezing."
+					]
+				},
+				{
+					"name": "Spider Climb",
+					"entries": [
+						"The Caustic Slime can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check."
+					]
+				},
+				{
+					"name": "Caustic",
+					"entries": [
+						"Any creature that touches the slime or hits it with a melee attack while within 5 feet of it must succeed on a {@dc 12} Dexterity saving throw or take 2 ({@dice 1d4}) points of acid damage."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Psuedopod",
+					"entries": [
+						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) acid damage."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Split",
+					"entries": [
+						"When a slime that is Medium or larger and has 10 or more hit points is hit with slashing damage, it splits into two new slimes. Each new slime has hit points equal to half the original slime's, rounded down. New slimes are one size smaller than the previous size."
+					]
+				}
+			],
+			"traitTags": [
+				"Amorphous",
+				"Spider Climb"
+			],
+			"senseTags": [
+				"B"
+			],
+			"damageTags": [
+				"A"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Cervan Bandit General",
+			"shortName": "the general",
+			"source": "HWCS",
+			"page": 193,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"cervan"
+				]
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"{@item studded leather armor|phb}"
+					]
+				}
+			],
+			"hp": {
+				"formula": "10d8 + 20",
+				"average": 65
+			},
+			"speed": {
+				"walk": 35
+			},
+			"str": 14,
+			"dex": 17,
+			"con": 14,
+			"int": 14,
+			"wis": 11,
+			"cha": 14,
+			"save": {
+				"dex": "+5",
+				"cha": "+4"
+			},
+			"skill": {
+				"deception": "+4",
+				"persuasion": "+4"
+			},
+			"passive": 10,
+			"languages": [
+				"Birdfolk",
+				"Cervan"
+			],
+			"cr": "2",
+			"trait": [
+				{
+					"name": "Surge of Vigor (Recharges after a Long Rest)",
+					"entries": [
+						"If an attack deals over half of the general's current remaining hit points in damage (even if their hit points are reduced to 0 by the attack), they immediately regain 8 ({@dice 1d12 + 2}) hit points."
+					]
+				},
+				{
+					"name": "Standing Leap",
+					"entries": [
+						"The general's long jump is 30 feet, and their base high jump is 15 feet, with or without a running start."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The general makes three melee attacks, two with their scimitar and one with their dagger. Alternatively, the general can make two ranged attack with their daggers."
+					]
+				},
+				{
+					"name": "Scimitar",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) slashing damage."
+					]
+				},
+				{
+					"name": "Dagger",
+					"entries": [
+						"{@atk mw,rw} {@hit 5} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}5 ({@damage 1d4 + 3}) piercing damage."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Parry",
+					"entries": [
+						"The general adds 2 to their AC against one melee attack that would hit them. The general must see the attacker and be wielding a melee weapon."
+					]
+				}
+			],
+			"attachedItems": [
+				"dagger|phb",
+				"scimitar|phb"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Parry"
+			],
+			"damageTags": [
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RW",
+				"THW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Cervan Priest",
+			"source": "HWCS",
+			"page": 193,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"cervan"
+				]
+			},
+			"alignment": [
+				"NX",
+				"C",
+				"G",
+				"NY",
+				"E"
+			],
+			"ac": [
+				10
+			],
+			"hp": {
+				"formula": "3d8 + 6",
+				"average": 19
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 12,
+			"dex": 10,
+			"con": 14,
+			"int": 10,
+			"wis": 14,
+			"cha": 11,
+			"skill": {
+				"religion": "+2",
+				"medicine": "+4"
+			},
+			"passive": 12,
+			"languages": [
+				"Birdfolk",
+				"Cervan"
+			],
+			"cr": "1/4",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The priest is a 3rd-level spellcaster. Their spellcasting ability is Wisdom (spell save {@dc 12}, +4 to hit with spell attacks). The priest has the following cleric spells prepared: "
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell guidance|PHB}",
+								"{@spell light|PHB}",
+								"{@spell spare the dying|PHB}"
+							]
+						},
+						"1": {
+							"spells": [
+								"{@spell bless|PHB}",
+								"{@spell cure wounds|PHB}",
+								"{@spell guiding bolt|PHB}",
+								"{@spell shield of faith|PHB}"
+							],
+							"slots": 4
+						},
+						"2": {
+							"spells": [
+								"{@spell calm emotions|PHB}",
+								"{@spell warding bond|PHB}"
+							],
+							"slots": 2
+						}
+					},
+					"ability": "wis"
+				}
+			],
+			"trait": [
+				{
+					"name": "Surge of Vigor (Recharges after a Long Rest)",
+					"entries": [
+						"If the priest is dealt damage equal to half or more of their current remaining hit points (even if their HP is reduced to 0 by the attack), they immediately regain 8 ({@dice 1d12 + 2}) hit points."
+					]
+				},
+				{
+					"name": "Charge",
+					"entries": [
+						"If the priest moves at least 20 feet in a straight line towards an enemy, their antler attack deals an extra 3 ({@dice 1d6}) points of piercing damage. If the target of the charge is Large or smaller, they must make a {@dc 11} Strength saving throw or be pushed 10 feet away from the priest."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Antlers",
+					"entries": [
+						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d6 + 1}) piercing damage."
+					]
+				},
+				{
+					"name": "Quarterstaff",
+					"entries": [
+						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d6 + 1}) bludgeoning damage, or 5 ({@damage 1d8 + 1}) bludgeoning damage if being held in both hands."
+					]
+				}
+			],
+			"attachedItems": [
+				"quarterstaff|phb"
+			],
+			"traitTags": [
+				"Charge"
+			],
+			"damageTags": [
+				"B",
+				"P"
+			],
+			"damageTagsSpell": [
+				"R"
+			],
+			"spellcastingTags": [
+				"CC"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"savingThrowForced": [
+				"strength"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Cobblefright",
+			"source": "HWCS",
+			"page": 180,
+			"size": [
+				"L"
+			],
+			"type": "undead",
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"formula": "12d10 + 36",
+				"average": 102
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 19,
+			"dex": 11,
+			"con": 16,
+			"int": 6,
+			"wis": 8,
+			"cha": 5,
+			"save": {
+				"con": "+6",
+				"wis": "+2"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 9,
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"poisoned"
+			],
+			"languages": [
+				"understands Auran",
+				"Birdfolk",
+				"and any other languages it knew in life",
+				"but can't speak"
+			],
+			"cr": "5",
+			"trait": [
+				{
+					"name": "Berserk",
+					"entries": [
+						"Whenever the cobblefright starts its turn with 40 hit points or fewer, roll a {@dice d6}. On a 6, the cobblefright goes berserk. On each of its turns while berserk, the cobblefright attacks the nearest creature it can see. If no creature is near enough to move to and attack, the cobblefright attacks an object, with preference for an object smaller than itself. Once the cobblefright goes berserk, it continues to do so until it is destroyed or regains all its hit points."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The cobblefright makes three claw attacks. One of those attacks can be replaced by a grab attack."
+					]
+				},
+				{
+					"name": "Claw",
+					"entries": [
+						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}8 ({@damage 1d4 + 4}) piercing damage."
+					]
+				},
+				{
+					"name": "Grab",
+					"entries": [
+						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}The target is {@condition grappled} (escape {@dc 15}). The cobblefright can grapple up to 2 targets at once. Once at the start of its turn for each target it has {@condition grappled} the cobblefright can squeeze its victim. The target must make a {@dc 15} Strength saving throw, taking 13 ({@damage 2d8 + 4}) bludgeoning damage on a failed save."
+					]
+				},
+				{
+					"name": "Soul Siphon",
+					"entries": [
+						"One creature the cobblefright has {@condition grappled} must make a {@dc 14} Constitution saving throw, taking 11 ({@damage 2d10}) necrotic damage on a failed save, or half that amount on a success. The target's hit point maximum is reduced by the amount of necrotic damage taken, and the cobblefright regains hit points equal to that amount. The reduction lasts until the target finishes a short or long rest."
+					]
+				}
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AU",
+				"CS",
+				"LF"
+			],
+			"damageTags": [
+				"B",
+				"N",
+				"P"
+			],
+			"miscTags": [
+				"HPR",
+				"MW"
+			],
+			"conditionInflict": [
+				"grappled"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"strength"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Corvax Revayne",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HWCS",
+			"page": 194,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"corvum"
+				]
+			},
+			"alignment": [
+				"L",
+				"N"
+			],
+			"ac": [
+				12,
+				{
+					"ac": 15,
+					"condition": "with mage armor",
+					"braces": true
+				}
+			],
+			"hp": {
+				"formula": "9d8",
+				"average": 40
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 9,
+			"dex": 14,
+			"con": 11,
+			"int": 17,
+			"wis": 12,
+			"cha": 11,
+			"save": {
+				"int": "+6",
+				"wis": "+4"
+			},
+			"skill": {
+				"arcana": "+6",
+				"history": "+6",
+				"religion": "+6"
+			},
+			"passive": 11,
+			"languages": [
+				"Birdfolk",
+				"can also understand Auran but can't speak it"
+			],
+			"cr": "6",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Corvax Revayne is a 9th level spellcaster. His spellcasting ability is Intelligence (spell save {@dc 14}, +6 to hit with spell attacks). Corvax has the following spells prepared:"
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell fire bolt|PHB}",
+								"{@spell light|PHB}",
+								"{@spell mage hand|PHB}",
+								"{@spell prestidigitation|PHB}"
+							]
+						},
+						"1": {
+							"spells": [
+								"{@spell detect magic|PHB}",
+								"{@spell mage armor|PHB}",
+								"{@spell magic missile|PHB}",
+								"{@spell shield|PHB}"
+							],
+							"slots": 4
+						},
+						"2": {
+							"spells": [
+								"{@spell augury|PHB}",
+								"{@spell misty step|PHB}"
+							],
+							"slots": 2
+						},
+						"3": {
+							"spells": [
+								"{@spell clairvoyance|PHB}",
+								"{@spell counterspell|PHB}",
+								"{@spell fly|PHB}"
+							],
+							"slots": 3
+						},
+						"4": {
+							"spells": [
+								"{@spell greater invisibility|PHB}",
+								"{@spell locate creature|PHB}"
+							],
+							"slots": 3
+						},
+						"5": {
+							"spells": [
+								"{@spell scrying|PHB}"
+							],
+							"slots": 1
+						}
+					},
+					"ability": "int"
+				}
+			],
+			"trait": [
+				{
+					"name": "Glide",
+					"entries": [
+						"When falling at least 10 feet, Corvax Revayne can spend a reaction to fly up to his speed in one direction as he descends. Corvax lands in an unoccupied space at the end of his movement, and takes no falling damage. Corvax cannot glide while carrying heavy objects, heavy weapons, or shields (though he can drop any held items as part of his reaction)."
+					]
+				},
+				{
+					"name": "Talons",
+					"entries": [
+						"Corvax Revayne has advantage on Strength ({@skill Athletics}) checks made to climb any surface his talons could reasonably grip."
+					]
+				},
+				{
+					"name": "Skulker",
+					"entries": [
+						"Corvax Revayne has advantage on Dexterity ({@skill Stealth}) checks made in dim light or darkness."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Talons",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d4 + 2}) slashing damage."
+					]
+				}
+			],
+			"languageTags": [
+				"AU",
+				"CS"
+			],
+			"damageTags": [
+				"S"
+			],
+			"damageTagsSpell": [
+				"F",
+				"O"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Corvum Assassin",
+			"shortName": "assassin",
+			"source": "HWCS",
+			"page": 194,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"corvum"
+				]
+			},
+			"alignment": [
+				"L",
+				"N"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"{@item studded leather armor|phb}"
+					]
+				}
+			],
+			"hp": {
+				"formula": "12d8",
+				"average": 54
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 16,
+			"con": 11,
+			"int": 14,
+			"wis": 14,
+			"cha": 10,
+			"save": {
+				"dex": "+6",
+				"int": "+5"
+			},
+			"skill": {
+				"insight": "+5",
+				"nature": "+5",
+				"perception": "+8",
+				"stealth": "+9"
+			},
+			"passive": 18,
+			"languages": [
+				"Birdfolk",
+				"Thieves' Cant",
+				"can also understand Auran but can't speak it"
+			],
+			"cr": "5",
+			"trait": [
+				{
+					"name": "Glide",
+					"entries": [
+						"When falling at least 10 feet, the assassin can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
+					]
+				},
+				{
+					"name": "Talons",
+					"entries": [
+						"The assassin has advantage on Strength ({@skill Athletics}) checks made to climb any surface their talons could reasonably grip."
+					]
+				},
+				{
+					"name": "Assassinate",
+					"entries": [
+						"During their first turn, the assassin has advantage on attack rolls against any creature that hasn't taken a turn. Any hit the assassin scores against a surprised creature is a critical hit."
+					]
+				},
+				{
+					"name": "Sneak Attack",
+					"entries": [
+						"Once per turn, the assassin deals an extra 10 ({@dice 3d6}) damage when they hit a target with a weapon attack and have advantage on the attack roll, or when the target is within 5 feet of an ally of the assassin that isn't {@condition incapacitated} and the assassin doesn't have disadvantage on the attack roll."
+					]
+				},
+				{
+					"name": "Skulker",
+					"entries": [
+						"The assassin has advantage on Dexterity ({@skill Stealth}) checks made in dim light or darkness."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The assassin makes two melee attacks: one with their shortsword and one with their dagger. Or the assassin makes two ranged attacks with their daggers."
+					]
+				},
+				{
+					"name": "Talons",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d4 + 3}) slashing damage."
+					]
+				},
+				{
+					"name": "Shortsword",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 3}) piercing damage, and the target must make a {@dc 13} Constitution saving throw, taking 10 ({@damage 3d6}) poison damage on a failed save, or half as much damage on a successful one. "
+					]
+				},
+				{
+					"name": "Dagger",
+					"entries": [
+						"{@atk mw,rw} {@hit 5} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}5 ({@damage 1d4 + 3}) piercing damage, and the target must make a {@dc 13} Constitution saving throw, taking 10 ({@damage 3d6}) poison damage on a failed save, or half as much damage on a successful one. "
+					]
+				}
+			],
+			"attachedItems": [
+				"dagger|phb",
+				"shortsword|phb"
+			],
+			"traitTags": [
+				"Sneak Attack"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AU",
+				"CS"
+			],
+			"damageTags": [
+				"I",
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RW",
+				"THW"
+			],
+			"conditionInflict": [
+				"incapacitated"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Corvum Diviner",
+			"shortName": "diviner",
+			"source": "HWCS",
+			"page": 194,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"corvum"
+				]
+			},
+			"alignment": [
+				"L",
+				"N"
+			],
+			"ac": [
+				12,
+				{
+					"ac": 15,
+					"condition": "with mage armor",
+					"braces": true
+				}
+			],
+			"hp": {
+				"formula": "9d8",
+				"average": 40
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 9,
+			"dex": 14,
+			"con": 11,
+			"int": 17,
+			"wis": 12,
+			"cha": 11,
+			"save": {
+				"int": "+6",
+				"wis": "+4"
+			},
+			"skill": {
+				"arcana": "+6",
+				"history": "+6",
+				"religion": "+6"
+			},
+			"passive": 11,
+			"languages": [
+				"Birdfolk",
+				"can also understand Auran but can't speak it"
+			],
+			"cr": "6",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The diviner is a 9th level spellcaster. Their spellcasting ability is Intelligence (spell save {@dc 14}, +6 to hit with spell attacks). The diviner has the following spells prepared:"
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell fire bolt|PHB}",
+								"{@spell light|PHB}",
+								"{@spell mage hand|PHB}",
+								"{@spell prestidigitation|PHB}"
+							]
+						},
+						"1": {
+							"spells": [
+								"{@spell detect magic|PHB}",
+								"{@spell mage armor|PHB}",
+								"{@spell magic missile|PHB}",
+								"{@spell shield|PHB}"
+							],
+							"slots": 4
+						},
+						"2": {
+							"spells": [
+								"{@spell augury|PHB}",
+								"{@spell misty step|PHB}"
+							],
+							"slots": 2
+						},
+						"3": {
+							"spells": [
+								"{@spell clairvoyance|PHB}",
+								"{@spell counterspell|PHB}",
+								"{@spell fly|PHB}"
+							],
+							"slots": 3
+						},
+						"4": {
+							"spells": [
+								"{@spell greater invisibility|PHB}",
+								"{@spell locate creature|PHB}"
+							],
+							"slots": 3
+						},
+						"5": {
+							"spells": [
+								"{@spell scrying|PHB}"
+							],
+							"slots": 1
+						}
+					},
+					"ability": "int"
+				}
+			],
+			"trait": [
+				{
+					"name": "Glide",
+					"entries": [
+						"When falling at least 10 feet, the diviner can spend a reaction to fly up to their speed in one direction as they descend. The diviner lands in an unoccupied space at the end of their movement, and takes no falling damage. The diviner cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
+					]
+				},
+				{
+					"name": "Talons",
+					"entries": [
+						"The diviner has advantage on Strength ({@skill Athletics}) checks made to climb any surface their talons could reasonably grip."
+					]
+				},
+				{
+					"name": "Skulker",
+					"entries": [
+						"The diviner has advantage on Dexterity ({@skill Stealth}) checks made in dim light or darkness."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Talons",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d4 + 2}) slashing damage."
+					]
+				}
+			],
+			"languageTags": [
+				"AU",
+				"CS"
+			],
+			"damageTags": [
+				"S"
+			],
+			"damageTagsSpell": [
+				"F",
+				"O"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Corvum Necromancer",
+			"source": "HWCS",
+			"page": 194,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"corvum"
+				]
+			},
+			"alignment": [
+				"L",
+				"NX",
+				"C",
+				"E"
+			],
+			"ac": [
+				12,
+				{
+					"ac": 15,
+					"condition": "with mage armor",
+					"braces": true
+				}
+			],
+			"hp": {
+				"formula": "9d8 + 9",
+				"average": 49
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 9,
+			"dex": 14,
+			"con": 12,
+			"int": 18,
+			"wis": 10,
+			"cha": 14,
+			"save": {
+				"int": "+7",
+				"wis": "+3"
+			},
+			"skill": {
+				"arcana": "+7",
+				"deception": "+5",
+				"medicine": "+3"
+			},
+			"passive": 10,
+			"languages": [
+				"Birdfolk",
+				"any two other languages",
+				"can also understand Auran but can't speak it"
+			],
+			"cr": "6",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The necromancer is a 9th-level spellcaster. Their spellcasting ability is Intelligence (spell save {@dc 15}, +7 to hit with spell attacks). The necromancer has the following wizard spells prepared:"
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell chill touch|PHB}",
+								"{@spell light|PHB}",
+								"{@spell mage hand|PHB}",
+								"{@spell prestidigitation|PHB}"
+							]
+						},
+						"1": {
+							"spells": [
+								"{@spell disguise self|PHB}",
+								"{@spell false life|PHB|false life†}",
+								"{@spell mage armor|PHB}",
+								"{@spell magic missile|PHB}"
+							],
+							"slots": 4
+						},
+						"2": {
+							"spells": [
+								"{@spell misty step|PHB}",
+								"{@spell ray of enfeeblement|PHB|ray of enfeeblement†}",
+								"{@spell suggestion|PHB}"
+							],
+							"slots": 3
+						},
+						"3": {
+							"spells": [
+								"{@spell animate dead|PHB|animate dead†}",
+								"{@spell counterspell|PHB}",
+								"{@spell fear|PHB}"
+							],
+							"slots": 3
+						},
+						"4": {
+							"spells": [
+								"{@spell blight|PHB|blight†}",
+								"{@spell greater invisibility|PHB}"
+							],
+							"slots": 3
+						},
+						"5": {
+							"spells": [
+								"{@spell dominate person|PHB}"
+							],
+							"slots": 1
+						}
+					},
+					"footerEntries": [
+						"†necromancy spell of 1st level or higher"
+					],
+					"ability": "int"
+				}
+			],
+			"trait": [
+				{
+					"name": "Glide",
+					"entries": [
+						"When falling at least 10 feet, the necromancer can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
+					]
+				},
+				{
+					"name": "Talons",
+					"entries": [
+						"The necromancer has advantage on Strength ({@skill Athletics}) checks made to climb any surface their talons could reasonably grip."
+					]
+				},
+				{
+					"name": "Convincing",
+					"entries": [
+						"The necromancer has advantage on all Charisma checks used to convince someone of their knowledge of subject matter pertaining to the Arcana skill."
+					]
+				},
+				{
+					"name": "Life Leech",
+					"entries": [
+						"Once per turn, when the necromancer kills one or more creatures with a spell of 1st level or higher, they can regain hit points equal to twice the level of the spell, or three times the level if it is a necromancy spell."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Staff",
+					"entries": [
+						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}2 ({@damage 1d6 - 1}) bludgeoning damage, or 3 ({@damage 1d8 - 1}) bludgeoning damage if wielded with both hands."
+					]
+				},
+				{
+					"name": "Talons",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d4 + 2}) slashing damage."
+					]
+				}
+			],
+			"languageTags": [
+				"AU",
+				"CS",
+				"X"
+			],
+			"damageTags": [
+				"B",
+				"S"
+			],
+			"damageTagsSpell": [
+				"N",
+				"O"
+			],
+			"spellcastingTags": [
+				"CW"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Eliza Pennygleam",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HWCS",
+			"page": 196,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"eluran"
+				]
+			},
+			"alignment": [
+				"N",
+				"G"
+			],
+			"ac": [
+				10
+			],
+			"hp": {
+				"average": 4,
+				"formula": "1d8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 10,
+			"con": 10,
+			"int": 10,
+			"wis": 10,
+			"cha": 10,
+			"passive": 10,
+			"languages": [
+				"Birdfolk",
+				"Eluran"
+			],
+			"cr": "0",
+			"action": [
+				{
+					"name": "Club",
+					"entries": [
+						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}2 ({@damage 1d4}) bludgeoning damage."
+					]
+				}
+			],
+			"attachedItems": [
+				"club|phb"
+			],
+			"damageTags": [
+				"B"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Emberbat",
+			"source": "HWCS",
+			"page": 182,
+			"size": [
+				"T"
+			],
+			"type": "beast",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				12
+			],
+			"hp": {
+				"formula": "1d4",
+				"average": 2
+			},
+			"speed": {
+				"walk": 5,
+				"fly": 30
+			},
+			"str": 2,
+			"dex": 15,
+			"con": 10,
+			"int": 2,
+			"wis": 12,
+			"cha": 5,
+			"senses": [
+				"blindsight 60 ft."
+			],
+			"passive": 11,
+			"cr": "0",
+			"trait": [
+				{
+					"name": "Echolocation",
+					"entries": [
+						"The Emberbat can't use its blindsight while {@condition deafened}."
+					]
+				},
+				{
+					"name": "Keen Hearing",
+					"entries": [
+						"The Emberbat has advantage on Wisdom ({@skill Perception}) checks that rely on hearing."
+					]
+				},
+				{
+					"name": "Ember Flame",
+					"entries": [
+						"The emberbat can create a flame from its nose at will. It sheds bright light in a 5-foot-radius and dim light in another 5 feet beyond this. This effect lasts until it is dismissed, which the emberbat can do at anytime. When lit, the flame also provides a small damage boost to the emberbat's bite (already included in stat block)."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 0} to hit, reach 5 ft., one target. {@h}1 piercing damage plus 1 fire damage."
+					]
+				}
+			],
+			"familiar": true,
+			"traitTags": [
+				"Keen Senses"
+			],
+			"senseTags": [
+				"B"
+			],
+			"damageTags": [
+				"F",
+				"P"
+			],
+			"miscTags": [
+				"AOE",
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Figory Figgins",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HWCS",
+			"page": 196,
+			"size": [
+				"S"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"jerbeen"
+				]
+			},
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				11
+			],
+			"hp": {
+				"average": 4,
+				"formula": "1d8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 12,
+			"con": 10,
+			"int": 10,
+			"wis": 10,
+			"cha": 11,
+			"passive": 10,
+			"languages": [
+				"Birdfolk",
+				"Jerbeen"
+			],
+			"cr": "0",
+			"trait": [
+				{
+					"name": "Standing Leap",
+					"entries": [
+						"A jerbeen's long jump is 30 feet, and their base high jump is 15 feet, with or without a running start."
+					]
+				},
+				{
+					"name": "Team Tactics",
+					"entries": [
+						"Jerbeens can take the {@action Help} action as a bonus action."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Club",
+					"entries": [
+						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}2 ({@damage 1d4}) bludgeoning damage."
+					]
+				}
+			],
+			"tokenCredit": "Andrea Mazzocchetti",
+			"attachedItems": [
+				"club|phb"
+			],
+			"damageTags": [
+				"B"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true
+		},
+		{
+			"name": "Forest Prowler",
+			"source": "HWCS",
+			"page": 183,
+			"size": [
+				"L"
+			],
+			"type": "beast",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"formula": "10d10 + 20",
+				"average": 75
+			},
+			"speed": {
+				"walk": 40,
+				"climb": 40
+			},
+			"str": 15,
+			"dex": 18,
+			"con": 14,
+			"int": 4,
+			"wis": 14,
+			"cha": 9,
+			"skill": {
+				"perception": "+4",
+				"stealth": "+6"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 14,
+			"cr": "4",
+			"trait": [
+				{
+					"name": "Natural Camouflage",
+					"entries": [
+						"The prowler has advantage on Dexterity ({@skill Stealth}) checks made in the forest. Creatures who attack a target that cannot see them have advantage on their attack roll."
+					]
+				},
+				{
+					"name": "Pounce",
+					"entries": [
+						"If the Forest Prowler moves at least 10 feet straight toward a creature and then hits it with a claw attack on the same turn, that target must succeed on a {@dc 14} Strength saving throw or be knocked {@condition prone}. The prowler can use its bonus action to make another claw attack against this target."
+					]
+				},
+				{
+					"name": "Ambuscade",
+					"entries": [
+						"The prowler can use the dash or hide action as a bonus action."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The prowler makes two claw attacks and one bite attack."
+					]
+				},
+				{
+					"name": "Claw",
+					"entries": [
+						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}8 ({@damage 1d8 + 4}) slashing damage,."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}13 ({@damage 2d8 + 4}) piercing damage. If the target of the bite attack is {@condition prone}, it takes an additional 4 ({@damage 1d8}) piercing damage. "
+					]
+				}
+			],
+			"traitTags": [
+				"Pounce"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"damageTags": [
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"conditionInflict": [
+				"prone"
+			],
+			"savingThrowForced": [
+				"strength"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Fray Merridan",
+			"shortName": "Fray",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HWCS",
+			"page": 207,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"vulpin"
+				]
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 14,
+					"from": [
+						"{@item studded leather armor|phb}"
+					]
+				}
+			],
+			"hp": {
+				"formula": "5d8 + 5",
+				"average": 27
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 13,
+			"dex": 15,
+			"con": 12,
+			"int": 14,
+			"wis": 14,
+			"cha": 12,
+			"skill": {
+				"acrobatics": "+4",
+				"perception": "+4"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 14,
+			"languages": [
+				"Birdfolk",
+				"Vulpin"
+			],
+			"cr": "1",
+			"trait": [
+				{
+					"name": "Evasive",
+					"entries": [
+						"Fray includes her Intelligence modifier as a bonus to her Dexterity saving throws."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Fray makes two attacks."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
+					]
+				},
+				{
+					"name": "Short sword",
+					"entries": [
+						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
+					]
+				},
+				{
+					"name": "Short bow",
+					"entries": [
+						"{@atk mw} {@hit 4} to hit, range 80/320 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Parry",
+					"entries": [
+						"Fray adds 2 to their AC against one melee attack that would hit her per round. Fray must see the attacker and be wielding a melee weapon. "
+					]
+				}
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Parry"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Gabe Windsworth",
+			"shortName": "Gabe",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HWCS",
+			"page": 202,
+			"size": [
+				"S"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"luma"
+				]
+			},
+			"alignment": [
+				"N",
+				"G"
+			],
+			"ac": [
+				12,
+				{
+					"ac": 15,
+					"condition": "with mage armor",
+					"braces": true
+				}
+			],
+			"hp": {
+				"formula": "13d6 + 13",
+				"average": 58
+			},
+			"speed": {
+				"walk": 25
+			},
+			"str": 8,
+			"dex": 15,
+			"con": 12,
+			"int": 18,
+			"wis": 12,
+			"cha": 15,
+			"save": {
+				"int": "+7",
+				"wis": "+4"
+			},
+			"skill": {
+				"arcana": "+7",
+				"history": "+7"
+			},
+			"passive": 11,
+			"resist": [
+				"poison"
+			],
+			"languages": [
+				"Auran",
+				"Birdfolk",
+				"any three other languages"
+			],
+			"cr": "6",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Gabe is a 10th-level spellcaster. His spellcasting ability is Intelligence (spell save {@dc 15}, +7 to hit with spell attacks). Gabe has the following spells prepared:"
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell chill touch|PHB}",
+								"{@spell fire bolt|PHB}",
+								"{@spell minor illusion|PHB}",
+								"{@spell prestidigitation|PHB}",
+								"{@spell ray of frost|PHB}"
+							]
+						},
+						"1": {
+							"spells": [
+								"{@spell charm person|PHB}",
+								"{@spell detect magic|PHB}",
+								"{@spell mage armor|PHB}",
+								"{@spell shield|PHB}",
+								"{@spell sleep|PHB}",
+								"{@spell thunderwave|PHB}"
+							],
+							"slots": 4
+						},
+						"2": {
+							"spells": [
+								"{@spell darkness|PHB}",
+								"{@spell hold person|PHB}",
+								"{@spell ray of enfeeblement|PHB}"
+							],
+							"slots": 3
+						},
+						"3": {
+							"spells": [
+								"{@spell counterspell|PHB}",
+								"{@spell fireball|PHB}"
+							],
+							"slots": 3
+						},
+						"4": {
+							"spells": [
+								"{@spell banishment|PHB}",
+								"{@spell stellar bodies|HWCS}"
+							],
+							"slots": 3
+						},
+						"5": {
+							"spells": [
+								"{@spell conjure elemental|PHB}",
+								"{@spell mislead|PHB}"
+							],
+							"slots": 2
+						}
+					},
+					"ability": "int"
+				}
+			],
+			"trait": [
+				{
+					"name": "Glide",
+					"entries": [
+						"When falling at least 10 feet, Gabe can spend a reaction to fly up to his speed in one direction as he descends. He lands in an unoccupied space at the end of his movement, and takes no falling damage. He cannot glide while carrying heavy objects, heavy weapons, or shields (though he can drop any held items as part of his reaction)."
+					]
+				},
+				{
+					"name": "Wing Flap",
+					"entries": [
+						"As a bonus action, Gabe can use his powerful feathered arms to propel himself upward up to half his movement speed. Gabe can use it in conjunction with a regular jump, but not while gliding."
+					]
+				},
+				{
+					"name": "Fated (Recharges after a Long Rest)",
+					"entries": [
+						"Gabe can choose to reroll any attack, skill check, or saving throw."
+					]
+				},
+				{
+					"name": "Resilience",
+					"entries": [
+						"Gabe has advantage on saving throws against poison."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Staff",
+					"entries": [
+						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}2 ({@damage 1d6 - 1}) bludgeoning damage."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Charming (3/Day)",
+					"entries": [
+						"When a creature makes an attack against Gabe, the creature must succeed on a {@dc 14} Wisdom saving throw or target the next closest creature within range. If multiple creatures are closest, the attacker chooses. This feature does not work if there are no other creatures within range"
+					]
+				}
+			],
+			"languageTags": [
+				"AU"
+			],
+			"damageTags": [
+				"B"
+			],
+			"damageTagsSpell": [
+				"C",
+				"F",
+				"N",
+				"T"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"savingThrowForced": [
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"constitution",
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Gallus Druid",
+			"shortName": "druid",
+			"source": "HWCS",
+			"page": 196,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"gallus"
+				]
+			},
+			"alignment": [
+				"NX",
+				"NY",
+				"N"
+			],
+			"ac": [
+				11,
+				{
+					"ac": 16,
+					"condition": "with barkskin",
+					"braces": true
+				}
+			],
+			"hp": {
+				"formula": "10d8 + 20",
+				"average": 65
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 12,
+			"dex": 13,
+			"con": 14,
+			"int": 10,
+			"wis": 18,
+			"cha": 10,
+			"skill": {
+				"insight": "+6",
+				"nature": "+2",
+				"medicine": "+6",
+				"perception": "+6"
+			},
+			"passive": 16,
+			"languages": [
+				"Birdfolk",
+				"Druidic",
+				"Sylvan",
+				"can also understand Auran but can't speak it"
+			],
+			"cr": "4",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The druid is a 6th-level spellcaster. Their spellcasting ability is Wisdom (spell save {@dc 14}, +6 to hit with spell attacks). The druid has the following spells prepared:"
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell druidcraft|PHB}",
+								"{@spell produce flame|PHB}",
+								"{@spell shillelagh|PHB}"
+							]
+						},
+						"1": {
+							"spells": [
+								"{@spell animal friendship|PHB}",
+								"{@spell cure wounds|PHB}",
+								"{@spell entangle|PHB}",
+								"{@spell fog cloud|PHB}"
+							],
+							"slots": 4
+						},
+						"2": {
+							"spells": [
+								"{@spell barkskin|PHB}",
+								"{@spell gust of wind|PHB}",
+								"{@spell moonbeam|PHB}"
+							],
+							"slots": 3
+						},
+						"3": {
+							"spells": [
+								"{@spell conjure animals|PHB}",
+								"{@spell dispel magic|PHB}",
+								"{@spell wind wall|PHB}"
+							],
+							"slots": 3
+						}
+					},
+					"ability": "wis"
+				}
+			],
+			"trait": [
+				{
+					"name": "Glide",
+					"entries": [
+						"When falling at least 10 feet, the druid can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
+					]
+				},
+				{
+					"name": "Wing Flap",
+					"entries": [
+						"As a bonus action, the druid can use their powerful feathered arms to propel themselves upward up to half their movement speed. The druid can use it in conjunction with a regular jump, but not while gliding."
+					]
+				},
+				{
+					"name": "Seedspeech",
+					"entries": [
+						"The druid can communicate simple ideas to living plants, and is able to interpret their responses in simple language."
+					]
+				},
+				{
+					"name": "Spirit Totem (Recharges after a Short or Long Rest)",
+					"entries": [
+						"As a bonus action, the druid calls forth a nature spirit. The spirit appears at a point the druid can see within 60 feet. The spirit creates a 30-foot-radius aura. The spirit is neither an object nor a creature, but is a spectral beast. As a bonus action, the druid can move the spirit to another location within 60 feet. The spirit lasts for 1 minute.",
+						{
+							"name": "Bear Spirit",
+							"entries": [
+								"The druid and allies within the aura gain 9 temporary hit points and have advantage on Strength checks and saving throws."
+							],
+							"type": "entries"
+						},
+						{
+							"name": "Hawk Spirit",
+							"entries": [
+								"The druid can use their reaction to grant advantage to an ally's attack roll against a target in the aura. The druid and allies within the aura have advantage on Wisdom ({@skill Perception}) checks."
+							],
+							"type": "entries"
+						},
+						{
+							"name": "Unicorn Spirit",
+							"entries": [
+								"If a spell that requires a spell slot heals the druid or allies in the aura, each creature of the druid's choice also gains 4 hit points"
+							],
+							"type": "entries"
+						}
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Staff",
+					"entries": [
+						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d6 + 1}) bludgeoning damage."
+					]
+				}
+			],
+			"languageTags": [
+				"AU",
+				"CS",
+				"DU",
+				"S"
+			],
+			"damageTags": [
+				"B"
+			],
+			"damageTagsSpell": [
+				"B",
+				"F",
+				"R"
+			],
+			"spellcastingTags": [
+				"CD"
+			],
+			"miscTags": [
+				"AOE",
+				"MW"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"strength",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Gallus Monk",
+			"shortName": "monk",
+			"source": "HWCS",
+			"page": 196,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"gallus"
+				]
+			},
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				{
+					"ac": 17,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"formula": "12d8 + 24",
+				"average": 78
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 11,
+			"dex": 18,
+			"con": 14,
+			"int": 11,
+			"wis": 16,
+			"cha": 10,
+			"save": {
+				"dex": "+7"
+			},
+			"skill": {
+				"acrobatics": "+7",
+				"insight": "+6",
+				"perception": "+6",
+				"stealth": "+7"
+			},
+			"passive": 16,
+			"languages": [
+				"Birdfolk",
+				"can also understand Auran but can't speak it"
+			],
+			"cr": "5",
+			"trait": [
+				{
+					"name": "Glide",
+					"entries": [
+						"When falling at least 10 feet, the monk can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
+					]
+				},
+				{
+					"name": "Wing Flap",
+					"entries": [
+						"As a bonus action, the monk can use their powerful feathered arms to propel themselves upward up to half their movement speed. The monk can use it in conjunction with a regular jump, but not while gliding."
+					]
+				},
+				{
+					"name": "Wind's Grace",
+					"entries": [
+						"While moving, the monk can move along vertical surfaces and across liquids without falling."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The monk makes four attacks, each of which can be an unarmed strike or a dart attack. They can also use their Graceful Step once, either before or after one of the attacks."
+					]
+				},
+				{
+					"name": "Unarmed Attack",
+					"entries": [
+						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d6 + 4}) bludgeoning damage."
+					]
+				},
+				{
+					"name": "Dart",
+					"entries": [
+						"{@atk rw} {@hit 7} to hit, range 20/60 ft., one target. {@h}6 ({@damage 1d4 + 4}) piercing damage."
+					]
+				},
+				{
+					"name": "Graceful Step",
+					"entries": [
+						"The monk moves 40 feet. This movement does not provoke {@action opportunity attack|phb|opportunity attacks}."
+					]
+				},
+				{
+					"name": "Inspiring",
+					"entries": [
+						"The monk inspires an ally that can see and hear them. The ally can roll a {@dice d4} and add the number rolled to their next ability check, attack roll, or saving throw."
+					]
+				}
+			],
+			"attachedItems": [
+				"dart|phb"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AU",
+				"CS"
+			],
+			"damageTags": [
+				"B",
+				"P"
+			],
+			"miscTags": [
+				"MW",
+				"RW",
+				"THW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Gallus Necromancer",
+			"shortName": "necromancer",
+			"source": "HWCS",
+			"page": 198,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"gallus"
+				]
+			},
+			"alignment": [
+				"NX",
+				"C",
+				"G",
+				"NY",
+				"E"
+			],
+			"ac": [
+				12,
+				{
+					"ac": 15,
+					"condition": "with mage armor",
+					"braces": true
+				}
+			],
+			"hp": {
+				"formula": "9d8 + 9",
+				"average": 49
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 9,
+			"dex": 14,
+			"con": 12,
+			"int": 18,
+			"wis": 14,
+			"cha": 10,
+			"save": {
+				"int": "+7",
+				"wis": "+5"
+			},
+			"skill": {
+				"arcana": "+7",
+				"deception": "+3",
+				"medicine": "+5"
+			},
+			"passive": 12,
+			"languages": [
+				"Birdfolk",
+				"Hedge",
+				"Sylvan",
+				"can also understand Auran but can't speak it"
+			],
+			"cr": "6",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The necromancer is a 9th level spellcaster. Their spellcasting ability is Intelligence (spell save {@dc 15}, +7 to hit with spell attacks). The necromancer has the following wizard spells prepared:"
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell chill touch|PHB}",
+								"{@spell light|PHB}",
+								"{@spell mage hand|PHB}",
+								"{@spell prestidigitation|PHB}"
+							]
+						},
+						"1": {
+							"spells": [
+								"{@spell false life|PHB}",
+								"{@spell mage armor|PHB}",
+								"{@spell magic missile|PHB}",
+								"{@spell sleep|PHB}"
+							],
+							"slots": 4
+						},
+						"2": {
+							"spells": [
+								"{@spell misty step|PHB}",
+								"{@spell ray of enfeeblement|PHB}",
+								"{@spell web|PHB}"
+							],
+							"slots": 3
+						},
+						"3": {
+							"spells": [
+								"{@spell animate dead|PHB}",
+								"{@spell counterspell|PHB}",
+								"{@spell fear|PHB}"
+							],
+							"slots": 3
+						},
+						"4": {
+							"spells": [
+								"{@spell blight|PHB}",
+								"{@spell evard's black tentacles|PHB}"
+							],
+							"slots": 3
+						},
+						"5": {
+							"spells": [
+								"{@spell passwall|PHB}"
+							],
+							"slots": 1
+						}
+					},
+					"ability": "int"
+				}
+			],
+			"trait": [
+				{
+					"name": "Glide",
+					"entries": [
+						"When falling at least 10 feet, the necromancer can spend a reaction to fly up to their speed in one direction as they descend. The necromancer lands in an unoccupied space at the end of their movement, and takes no falling damage. The necromancer cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
+					]
+				},
+				{
+					"name": "Wing Flap",
+					"entries": [
+						"As a bonus action, the necromancer can use their powerful feathered arms to propel themselves upward up to half their movement speed. The necromancer can use it in conjunction with a regular jump, but not while gliding."
+					]
+				},
+				{
+					"name": "Seedspeech",
+					"entries": [
+						"The necromancer can communicate simple ideas to living plants, and is able to interpret their responses in simple language."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Staff",
+					"entries": [
+						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}2 ({@damage 1d6 - 1}) bludgeoning damage, or 3 ({@damage 1d8 - 1}) bludgeoning damage if used with both hands."
+					]
+				}
+			],
+			"languageTags": [
+				"AU",
+				"CS",
+				"S"
+			],
+			"damageTags": [
+				"B"
+			],
+			"damageTagsSpell": [
+				"B",
+				"F",
+				"N",
+				"O"
+			],
+			"spellcastingTags": [
+				"CW"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Glinda Nightseed",
+			"shortName": "Glinda",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HWCS",
+			"page": 198,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"gallus"
+				]
+			},
+			"alignment": [
+				"C",
+				"G"
+			],
+			"ac": [
+				12,
+				{
+					"ac": 15,
+					"condition": "with mage armor",
+					"braces": true
+				}
+			],
+			"hp": {
+				"formula": "9d8 + 9",
+				"average": 49
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 9,
+			"dex": 14,
+			"con": 12,
+			"int": 18,
+			"wis": 14,
+			"cha": 10,
+			"save": {
+				"int": "+7",
+				"wis": "+5"
+			},
+			"skill": {
+				"arcana": "+7",
+				"deception": "+3",
+				"medicine": "+5"
+			},
+			"passive": 12,
+			"languages": [
+				"Birdfolk",
+				"Hedge",
+				"Sylvan",
+				"can also understand Auran but can't speak it"
+			],
+			"cr": "6",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Glinda is a 9th level spellcaster. Her spellcasting ability is Intelligence (spell save {@dc 15}, +7 to hit with spell attacks). Glinda has the following wizard spells prepared:"
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell chill touch|PHB}",
+								"{@spell light|PHB}",
+								"{@spell mage hand|PHB}",
+								"{@spell prestidigitation|PHB}"
+							]
+						},
+						"1": {
+							"spells": [
+								"{@spell false life|PHB}",
+								"{@spell mage armor|PHB}",
+								"{@spell magic missile|PHB}",
+								"{@spell sleep|PHB}"
+							],
+							"slots": 4
+						},
+						"2": {
+							"spells": [
+								"{@spell misty step|PHB}",
+								"{@spell ray of enfeeblement|PHB}",
+								"{@spell web|PHB}"
+							],
+							"slots": 3
+						},
+						"3": {
+							"spells": [
+								"{@spell animate dead|PHB}",
+								"{@spell counterspell|PHB}",
+								"{@spell fear|PHB}"
+							],
+							"slots": 3
+						},
+						"4": {
+							"spells": [
+								"{@spell blight|PHB}",
+								"{@spell evard's black tentacles|PHB}"
+							],
+							"slots": 3
+						},
+						"5": {
+							"spells": [
+								"{@spell passwall|PHB}"
+							],
+							"slots": 1
+						}
+					},
+					"ability": "int"
+				}
+			],
+			"trait": [
+				{
+					"name": "Glide",
+					"entries": [
+						"When falling at least 10 feet, Glinda can spend a reaction to fly up to her speed in one direction as she descends. Glinda lands in an unoccupied space at the end of her movement, and takes no falling damage. Glinda cannot glide while carrying heavy objects, heavy weapons, or shields (though she can drop any held items as part of her reaction)."
+					]
+				},
+				{
+					"name": "Wing Flap",
+					"entries": [
+						"As a bonus action, Glinda can use her powerful feathered arms to propel herself upward up to half her movement speed. Glinda can use it in conjunction with a regular jump, but not while gliding."
+					]
+				},
+				{
+					"name": "Seedspeech",
+					"entries": [
+						"Glinda can communicate simple ideas to living plants, and is able to interpret their responses in simple language."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Staff",
+					"entries": [
+						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}2 ({@damage 1d6 - 1}) bludgeoning damage, or 3 ({@damage 1d8 - 1}) bludgeoning damage if used with both hands."
+					]
+				}
+			],
+			"languageTags": [
+				"AU",
+				"CS",
+				"S"
+			],
+			"damageTags": [
+				"B"
+			],
+			"damageTagsSpell": [
+				"B",
+				"F",
+				"N",
+				"O"
+			],
+			"spellcastingTags": [
+				"CW"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Gregor Thornspur, Magistrate of Alderheart",
+			"shortName": "Gregor",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HWCS",
+			"page": 198,
+			"size": [
+				"S"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"sable luma"
+				]
+			},
+			"alignment": [
+				"C",
+				"N"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"{@item breastplate|phb}"
+					]
+				}
+			],
+			"hp": {
+				"average": 9,
+				"formula": "2d6 + 2"
+			},
+			"speed": {
+				"walk": 25
+			},
+			"str": 11,
+			"dex": 12,
+			"con": 12,
+			"int": 12,
+			"wis": 14,
+			"cha": 18,
+			"skill": {
+				"deception": "+6",
+				"insight": "+6",
+				"persuasion": "+6"
+			},
+			"passive": 13,
+			"resist": [
+				"poison"
+			],
+			"languages": [
+				"Birdfolk",
+				"can also understand Auran but can't speak it"
+			],
+			"cr": "1/8",
+			"trait": [
+				{
+					"name": "Glide",
+					"entries": [
+						"When falling at least 10 feet, Gregor can spend a reaction to fly up to his speed in one direction as he descends. He lands in an unoccupied space at the end of his movement, and takes no falling damage. He cannot glide while carrying heavy objects, heavy weapons, or shields (though he can drop any held items as part of his reaction)."
+					]
+				},
+				{
+					"name": "Wing Flap",
+					"entries": [
+						"As a bonus action, Gregor can use his powerful feathered arms to propel himself upward a distance equal to half his movement speed. He can use it in conjunction with a regular jump, but not while gliding. "
+					]
+				},
+				{
+					"name": "Fated (Recharges after a Long Rest)",
+					"entries": [
+						"Gregor can choose to reroll any attack roll, skill check, or saving throw."
+					]
+				},
+				{
+					"name": "Damage Resistance",
+					"entries": [
+						"Gregor is resistant to poison damage."
+					]
+				},
+				{
+					"name": "Resilience",
+					"entries": [
+						"Gregor has advantage on saving throws against being {@condition poisoned}."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Rapier",
+					"entries": [
+						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d8 + 1}) piercing damage."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Parry",
+					"entries": [
+						"Gregor adds 2 to his AC against one melee attack that would hit him. To do so, Gregor must see the attacker and be wielding a melee weapon."
+					]
+				}
+			],
+			"tokenCredit": "Anna Christenson",
+			"attachedItems": [
+				"rapier|phb"
+			],
+			"actionTags": [
+				"Parry"
+			],
+			"languageTags": [
+				"AU",
+				"CS"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true
+		},
+		{
+			"name": "Havel of the Autumn Moon",
+			"shortName": "Havel",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HWCS",
+			"page": 207,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"gallus"
+				]
+			},
+			"alignment": [
+				"N",
+				"G"
+			],
+			"ac": [
+				10,
+				{
+					"ac": 16,
+					"condition": "with barkskin",
+					"braces": true
+				}
+			],
+			"hp": {
+				"formula": "4d8 + 4",
+				"average": 22
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 6,
+			"dex": 10,
+			"con": 12,
+			"int": 10,
+			"wis": 16,
+			"cha": 10,
+			"save": {
+				"int": "+7",
+				"wis": "+5"
+			},
+			"skill": {
+				"nature": "+4",
+				"medicine": "+5",
+				"perception": "+5"
+			},
+			"passive": 15,
+			"languages": [
+				"Birdfolk",
+				"Druidic",
+				"Sylvan",
+				"can also understand Auran but can't speak it"
+			],
+			"cr": "2",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Havel is a 4th-level spellcaster. His spellcasting ability is Wisdom (spell save {@dc 13}, +5 to hit with spell attacks). He has the following spells prepared:"
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell druidcraft|PHB}",
+								"{@spell gust barrier|HWCS}",
+								"{@spell produce flame|PHB}"
+							]
+						},
+						"1": {
+							"spells": [
+								"{@spell cure wounds|PHB}",
+								"{@spell elevated sight|HWCS}",
+								"{@spell entangle|PHB}",
+								"{@spell thunderwave|PHB}"
+							],
+							"slots": 4
+						},
+						"2": {
+							"spells": [
+								"{@spell barkskin|PHB}",
+								"{@spell gust of wind|PHB}"
+							],
+							"slots": 3
+						}
+					},
+					"ability": "wis"
+				}
+			],
+			"trait": [
+				{
+					"name": "Glide",
+					"entries": [
+						"When falling at least 10 feet, Havel can spend a reaction to fly up to his speed in one direction as he descends. He lands in an unoccupied space at the end of his movement, and takes no falling damage. Havel cannot glide while carrying heavy objects, heavy weapons, or shields (though he can drop any held items as part of their reaction)."
+					]
+				},
+				{
+					"name": "Wing Flap",
+					"entries": [
+						"As a bonus action, Havel can use his powerful feathered arms to propel himself upward up to half his movement speed. He can use it in conjunction with a regular jump, but not while gliding."
+					]
+				},
+				{
+					"name": "Seedspeech",
+					"entries": [
+						"Havel can communicate simple ideas to living plants, and is able to interpret their responses in simple language."
+					]
+				}
+			],
+			"languageTags": [
+				"AU",
+				"CS",
+				"DU",
+				"S"
+			],
+			"damageTagsSpell": [
+				"F",
+				"T"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"strength"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Hedge Bard",
+			"shortName": "bard",
+			"source": "HWCS",
+			"page": 198,
+			"size": [
+				"S"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"hedge"
+				]
+			},
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"formula": "8d6 + 8",
+				"average": 36
+			},
+			"speed": {
+				"walk": 25,
+				"burrow": 15
+			},
+			"str": 11,
+			"dex": 14,
+			"con": 12,
+			"int": 10,
+			"wis": 13,
+			"cha": 16,
+			"save": {
+				"dex": "+4",
+				"cha": "+5"
+			},
+			"skill": {
+				"acrobatics": "+4",
+				"perception": "+5",
+				"performance": "+7"
+			},
+			"passive": 15,
+			"languages": [
+				"Birdfolk",
+				"Hedge",
+				"can also speak with beasts of any size which represent spiders, insects, worms, or other bugs"
+			],
+			"cr": "2",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The bard is a 4th-level spellcaster. Their spellcasting ability is Charisma (spell save {@dc 13}, +5 to hit with spell attacks). They have the following bard spells prepared:"
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell gust barrier|HWCS}",
+								"{@spell prestidigitation|PHB}",
+								"{@spell vicious mockery|PHB}"
+							]
+						},
+						"1": {
+							"spells": [
+								"{@spell charm person|PHB}",
+								"{@spell healing word|PHB}",
+								"{@spell tasha's hideous laughter|PHB}",
+								"{@spell thunderwave|PHB}"
+							],
+							"slots": 4
+						},
+						"2": {
+							"spells": [
+								"{@spell invisibility|PHB}",
+								"{@spell shatter|PHB}",
+								"{@spell suggestion|PHB}"
+							],
+							"slots": 3
+						}
+					},
+					"ability": "cha"
+				}
+			],
+			"trait": [
+				{
+					"name": "Taunt (2/Day)",
+					"entries": [
+						"The bard can use a bonus action on their turn to target one creature within 30 feet of them. If the target can hear the bard, the target must succeed on a {@dc 13} Charisma saving throw or have disadvantage on ability checks, attack rolls, and saving throws until the start of the bard's next turn"
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"he bard makes two weapon attacks, one with their rapier and one with their dagger."
+					]
+				},
+				{
+					"name": "Rapier",
+					"entries": [
+						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
+					]
+				},
+				{
+					"name": "Dagger",
+					"entries": [
+						"{@atk mw,rw} {@hit 4} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}4 ({@damage 1d4 + 2}) piercing damage."
+					]
+				},
+				{
+					"name": "Curl Up",
+					"entries": [
+						"The bard curls up into a spiny ball. While curled up in this way they cannot move, attack, or cast spells with somatic components, and their base armor class becomes 19. Any creature that misses the hedge bard with a melee attack while they are curled up takes {@dice 2d4} points of piercing damage from their sharp quills. If a creature hits the bard while they are curled up, however, the bard is knocked {@condition prone} in their space at the end of the turn. The bard may uncurl themselves at any point during their turn."
+					]
+				}
+			],
+			"attachedItems": [
+				"dagger|phb",
+				"rapier|phb"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"damageTags": [
+				"P"
+			],
+			"damageTagsSpell": [
+				"T",
+				"Y"
+			],
+			"spellcastingTags": [
+				"CB"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RW",
+				"THW"
+			],
+			"conditionInflict": [
+				"prone"
+			],
+			"conditionInflictSpell": [
+				"charmed",
+				"incapacitated",
+				"invisible",
+				"prone"
+			],
+			"savingThrowForced": [
+				"charisma"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Hedge Witch",
+			"shortName": "witch",
+			"source": "HWCS",
+			"page": 198,
+			"size": [
+				"S"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"hedge"
+				]
+			},
+			"alignment": [
+				"C",
+				"G",
+				"NY",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 14,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"formula": "6d6",
+				"average": 21
+			},
+			"speed": {
+				"walk": 25,
+				"burrow": 15
+			},
+			"str": 8,
+			"dex": 10,
+			"con": 10,
+			"int": 14,
+			"wis": 15,
+			"cha": 16,
+			"skill": {
+				"arcana": "+4",
+				"survival": "+4"
+			},
+			"passive": 12,
+			"languages": [
+				"Abyssal",
+				"Birdfolk",
+				"Hedge",
+				"can also speak with beasts of any size which represent spiders insects worms or other bugs"
+			],
+			"cr": "1",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The witch is a 2nd-level spellcaster. Their spellcasting ability is Charisma (spell save {@dc 13}, +5 to hit with spell attacks). The witch has the following warlock spells prepared:"
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell eldritch blast|PHB}",
+								"{@spell minor illusion|PHB}"
+							]
+						},
+						"1": {
+							"spells": [
+								"{@spell charm person|PHB}",
+								"{@spell hellish rebuke|PHB}",
+								"{@spell unseen servant|PHB}"
+							],
+							"slots": 2,
+							"lower": 1
+						}
+					},
+					"ability": "cha"
+				}
+			],
+			"trait": [
+				{
+					"name": "Dark One's Blessing",
+					"entries": [
+						"When the witch reduces a hostile creature to 0 hit points, the witch gains 5 temporary hit points."
+					]
+				},
+				{
+					"name": "Repelling Blast",
+					"entries": [
+						"When the witch hits a creature with eldritch blast, they can push the creature up to 10 feet away in a straight line."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Staff",
+					"entries": [
+						"{@atk mw} {@hit 1} to hit, reach 5 ft., one target. {@h}2 ({@damage 1d6 - 1}) bludgeoning damage."
+					]
+				},
+				{
+					"name": "Dagger",
+					"entries": [
+						"{@atk mw,rw} {@hit 4} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}4 ({@damage 1d4 + 2}) piercing damage."
+					]
+				},
+				{
+					"name": "Fiendish Vigor",
+					"entries": [
+						"The witch can cast {@spell false life} at will as a 1st-level spell."
+					]
+				},
+				{
+					"name": "Curl Up",
+					"entries": [
+						"The witch curls up into a spiny ball. While curled up in this way they cannot move, attack, or cast spells with somatic components, and their base armor class becomes 19. Any creature that misses the witch with a melee attack while they are curled up takes {@dice 2d4} points of piercing damage from their sharp quills. If a creature hits the witch while they are curled up, however, the witch is knocked {@condition prone} in their space at the end of the turn. The witch may uncurl themselves at any point during their turn."
+					]
+				}
+			],
+			"attachedItems": [
+				"dagger|phb"
+			],
+			"languageTags": [
+				"AB"
+			],
+			"damageTags": [
+				"B",
+				"P"
+			],
+			"damageTagsSpell": [
+				"F",
+				"O"
+			],
+			"spellcastingTags": [
+				"CL"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RW",
+				"THW"
+			],
+			"conditionInflict": [
+				"prone"
+			],
+			"conditionInflictSpell": [
+				"charmed"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Jell Platena",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HWCS",
+			"page": 199,
+			"size": [
+				"S"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"sera luma"
+				]
+			},
+			"alignment": [
+				"N",
+				"G"
+			],
+			"ac": [
+				10
+			],
+			"hp": {
+				"average": 3,
+				"formula": "1d6"
+			},
+			"speed": {
+				"walk": 25
+			},
+			"str": 10,
+			"dex": 10,
+			"con": 10,
+			"int": 10,
+			"wis": 11,
+			"cha": 12,
+			"passive": 10,
+			"languages": [
+				"Birdfolk",
+				"can also understand Auran but can't speak it"
+			],
+			"cr": "0",
+			"trait": [
+				{
+					"name": "Fated (Recharges after a Long Rest)",
+					"entries": [
+						"Jell can choose to reroll any attack roll, skill check, or saving throw."
+					]
+				},
+				{
+					"name": "Songbird (Recharges after a Long Rest)",
+					"entries": [
+						"Jell can cast {@spell charm person}. Charisma is her spellcasting ability and the spell does not require any somatic components to cast."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Club",
+					"entries": [
+						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}2 ({@damage 1d4}) bludgeoning damage."
+					]
+				}
+			],
+			"tokenCredit": "Aireesse",
+			"attachedItems": [
+				"club|phb"
+			],
+			"languageTags": [
+				"AU",
+				"CS"
+			],
+			"damageTags": [
+				"B"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true
+		},
+		{
+			"name": "Jerbeen Swashbuckler",
+			"shortName": "swashbuckler",
+			"source": "HWCS",
+			"page": 200,
+			"size": [
+				"S"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"jerbeen"
+				]
+			},
+			"alignment": [
+				"NX",
+				"C",
+				"G",
+				"NY",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 17,
+					"from": [
+						"{@item leather armor|phb}"
+					]
+				}
+			],
+			"hp": {
+				"formula": "8d6 + 6",
+				"average": 34
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 12,
+			"dex": 18,
+			"con": 12,
+			"int": 14,
+			"wis": 11,
+			"cha": 15,
+			"skill": {
+				"acrobatics": "+8",
+				"athletics": "+5",
+				"persuasion": "+6"
+			},
+			"passive": 10,
+			"languages": [
+				"Birdfolk",
+				"Jerbeen"
+			],
+			"cr": "3",
+			"trait": [
+				{
+					"name": "Standing Leap",
+					"entries": [
+						"The swashbuckler's base long jump is 30 feet, and their base high jump is 15 feet, with or without a running start."
+					]
+				},
+				{
+					"name": "Team Tactics",
+					"entries": [
+						"The swashbuckler can take the {@action Help} action as a bonus action."
+					]
+				},
+				{
+					"name": "Sharp Witted Defense",
+					"entries": [
+						"While the swashbuckler is wearing light or no armor and wielding no shield, their AC includes their Charisma modifier."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The swashbuckler makes three attacks, one with a dagger and two with their rapier."
+					]
+				},
+				{
+					"name": "Dagger",
+					"entries": [
+						"{@atk mw,rw} {@hit 6} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}6 ({@damage 1d4 + 4}) piercing damage."
+					]
+				},
+				{
+					"name": "Rapier",
+					"entries": [
+						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}8 ({@damage 1d8 + 4}) piercing damage."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Riposte",
+					"entries": [
+						"The swashbuckler reduces the damage dealt by one melee attack that would hit them by 4 ({@dice 1d8}), and deals that much piercing damage to their attacker. The swashbuckler must see the attacker and be wielding a melee weapon."
+					]
+				}
+			],
+			"attachedItems": [
+				"dagger|phb",
+				"rapier|phb"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RW",
+				"THW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Jerbeen Thief",
+			"shortName": "thief",
+			"source": "HWCS",
+			"page": 200,
+			"size": [
+				"S"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"jerbeen"
+				]
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 13,
+					"from": [
+						"{@item leather armor|phb}"
+					]
+				}
+			],
+			"hp": {
+				"formula": "4d6",
+				"average": 14
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 12,
+			"dex": 14,
+			"con": 10,
+			"int": 8,
+			"wis": 14,
+			"cha": 14,
+			"skill": {
+				"acrobatics": "+4",
+				"sleight of hand": "+4"
+			},
+			"passive": 12,
+			"languages": [
+				"Birdfolk",
+				"Jerbeen"
+			],
+			"cr": "1/2",
+			"trait": [
+				{
+					"name": "Standing Leap",
+					"entries": [
+						"The thief's long jump is up to 30 feet and their high jump is up to 15 feet, with or without a running start."
+					]
+				},
+				{
+					"name": "Team Tactics",
+					"entries": [
+						"The thief can take the {@action Help} action as a bonus action."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The thief makes two dagger attacks."
+					]
+				},
+				{
+					"name": "Dagger",
+					"entries": [
+						"{@atk mw,rw} {@hit 4} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}4 ({@damage 1d4 + 2}) piercing damage."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Opportunist",
+					"entries": [
+						"When a creature fails a melee attack roll against the thief, the thief can make a Dexterity ({@skill Sleight of Hand}) check against a DC equal to 10 + the target creature's Dexterity modifier. On a success, the thief steals one item of the GMs choosing from the target. It cannot be an item actively held or worn by the target."
+					]
+				}
+			],
+			"attachedItems": [
+				"dagger|phb"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RW",
+				"THW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Kenna Brightspark",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HWCS",
+			"page": 200,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"dusk corvum"
+				]
+			},
+			"alignment": [
+				"C",
+				"G"
+			],
+			"ac": [
+				10
+			],
+			"hp": {
+				"average": 4,
+				"formula": "1d8"
+			},
+			"speed": {
+				"walk": 25
+			},
+			"str": 10,
+			"dex": 11,
+			"con": 10,
+			"int": 12,
+			"wis": 10,
+			"cha": 10,
+			"passive": 10,
+			"languages": [
+				"Birdfolk",
+				"can also understand Auran but can't speak it"
+			],
+			"cr": "0",
+			"trait": [
+				{
+					"name": "Glide",
+					"entries": [
+						"When falling at least 10 feet, Kenna can spend a reaction to fly up to her speed in one direction as she descends. Kenna lands in an unoccupied space at the end of her movement, and takes no falling damage. Kenna cannot glide while carrying heavy objects, heavy weapons, or shields (though she can drop any held items as part of her reaction)."
+					]
+				},
+				{
+					"name": "Talons",
+					"entries": [
+						"Kenna has advantage on Strength ({@skill Athletics}) checks made to climb any surface her talons could reasonably grip."
+					]
+				},
+				{
+					"name": "Learned",
+					"entries": [
+						"Kenna gains proficiency in one of the following skills: {@skill Arcana}, {@skill History}, {@skill Nature}, or {@skill Religion}."
+					]
+				},
+				{
+					"name": "Skulker",
+					"entries": [
+						"Kenna has advantage on Dexterity ({@skill Stealth}) checks made in dim light or darkness."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Club",
+					"entries": [
+						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}2 ({@damage 1d4}) bludgeoning damage."
+					]
+				},
+				{
+					"name": "Talons",
+					"entries": [
+						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}2 ({@damage 1d4}) slashing damage."
+					]
+				}
+			],
+			"tokenCredit": "Ubergank",
+			"attachedItems": [
+				"club|phb"
+			],
+			"languageTags": [
+				"AU",
+				"CS"
+			],
+			"damageTags": [
+				"B",
+				"S"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true
+		},
+		{
+			"name": "Krall, the Scavenger King",
+			"shortName": "Krall",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HWCS",
+			"page": 202,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"mapach"
+				]
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"{@item studded leather armor|phb}"
+					]
+				}
+			],
+			"hp": {
+				"formula": "10d8 + 30",
+				"average": 75
+			},
+			"speed": {
+				"walk": 30,
+				"climb": 20
+			},
+			"str": 14,
+			"dex": 17,
+			"con": 16,
+			"int": 12,
+			"wis": 14,
+			"cha": 14,
+			"save": {
+				"dex": "+5",
+				"cha": "+4"
+			},
+			"skill": {
+				"deception": "+4",
+				"persuasion": "+4"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 12,
+			"resist": [
+				"poison"
+			],
+			"languages": [
+				"Birdfolk",
+				"Mapach"
+			],
+			"cr": "3",
+			"trait": [
+				{
+					"name": "Resilience",
+					"entries": [
+						"Krall has advantage on saving throws against being {@condition poisoned}."
+					]
+				},
+				{
+					"name": "Skulker",
+					"entries": [
+						"Krall has advantage on {@skill Stealth} checks made in dim light or total darkness."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Krall makes three melee attacks, two with his rapier and one with his parrying dagger."
+					]
+				},
+				{
+					"name": "Rapier",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d8 + 3}) piercing damage."
+					]
+				},
+				{
+					"name": "Parrying Dagger",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, range 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) piercing damage."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Parry",
+					"entries": [
+						"Krall adds 2 to his AC against one melee attack that would hit him. Krall must see the attacker and be wielding a melee weapon."
+					]
+				}
+			],
+			"attachedItems": [
+				"rapier|phb"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Parry"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Lesser Demon",
+			"source": "HWCS",
+			"page": 184,
+			"size": [
+				"S"
+			],
+			"type": {
+				"type": "fiend",
+				"tags": [
+					"demon"
+				]
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 13,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"formula": "4d6 + 8",
+				"average": 22
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 11,
+			"dex": 15,
+			"con": 14,
+			"int": 5,
+			"wis": 8,
+			"cha": 3,
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 9,
+			"resist": [
+				"cold",
+				"fire",
+				"lightning"
+			],
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"poisoned"
+			],
+			"languages": [
+				"Abyssal"
+			],
+			"cr": "1",
+			"trait": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The demon makes two attacks, one with its bite and one with its claws."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
+					]
+				},
+				{
+					"name": "Claws",
+					"entries": [
+						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}7 ({@damage 2d4 + 2}) slashing damage."
+					]
+				},
+				{
+					"name": "Foul Odor (1/day)",
+					"entries": [
+						"The demon emits a cloud of poisonous gas that fills a 20-foot sphere and persists for 1 minute until it disperses into the surrounding air. The cloud spreads around corners, and the affected area is heavily obscured. Any creature that is completely within the cloud at the start of its turn must make a {@dc 11} Constitution saving throw against the poison. On a failed save, the creature spends its action on that turn retching and reeling. Creatures immune to poison are immune to this effect. A moderate wind (at least 10 miles per hour) disperses the cloud after 4 rounds. A strong wind (at least 20 miles per hour) will disperse it after 1 round."
+					]
+				}
+			],
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"AB"
+			],
+			"damageTags": [
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"AOE",
+				"MW"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Luma Cleric of Ardea",
+			"shortName": "cleric",
+			"source": "HWCS",
+			"page": 201,
+			"size": [
+				"S"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"luma"
+				]
+			},
+			"alignment": [
+				"L",
+				"NX",
+				"C",
+				"G"
+			],
+			"ac": [
+				{
+					"ac": 14,
+					"from": [
+						"{@item chain shirt|phb}"
+					]
+				}
+			],
+			"hp": {
+				"formula": "6d6 + 6",
+				"average": 27
+			},
+			"speed": {
+				"walk": 25
+			},
+			"str": 10,
+			"dex": 13,
+			"con": 12,
+			"int": 10,
+			"wis": 16,
+			"cha": 14,
+			"skill": {
+				"medicine": "+7",
+				"persuasion": "+4",
+				"religion": "+2"
+			},
+			"passive": 13,
+			"languages": [
+				"Birdfolk",
+				"one other language",
+				"can understand Auran but can't speak it"
+			],
+			"cr": "2",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The cleric is a 5th-level spellcaster. Their spellcasting ability is Wisdom (spell save {@dc 13}, +5 to hit with spell attacks). The cleric has the following cleric spells prepared:"
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell light|PHB}",
+								"{@spell sacred flame|PHB}",
+								"{@spell thaumaturgy|PHB}"
+							]
+						},
+						"1": {
+							"spells": [
+								"{@spell bless|PHB}",
+								"{@spell cure wounds|PHB}",
+								"{@spell guiding bolt|PHB}"
+							],
+							"slots": 4
+						},
+						"2": {
+							"spells": [
+								"{@spell lesser restoration|PHB}",
+								"{@spell spiritual weapon|PHB}"
+							],
+							"slots": 3
+						},
+						"3": {
+							"spells": [
+								"{@spell beacon of hope|PHB}",
+								"{@spell dispel magic|PHB}"
+							],
+							"slots": 2
+						}
+					},
+					"ability": "wis"
+				}
+			],
+			"trait": [
+				{
+					"name": "Glide",
+					"entries": [
+						"When falling at least 10 feet, the cleric can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, or heavy weapons, or shields (though they can drop any held items as part of their reaction)."
+					]
+				},
+				{
+					"name": "Wing Flap",
+					"entries": [
+						"As a bonus action, the cleric can use their powerful feathered arms to propel themselves upward up to half their movement speed. The cleric can use this in conjunction with a regular jump, but not while gliding."
+					]
+				},
+				{
+					"name": "Fated (Recharges after a Long Rest)",
+					"entries": [
+						"The luma cleric can choose to reroll any attack roll, skill check, or saving throw."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Staff",
+					"entries": [
+						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d6}) bludgeoning damage, or 4 ({@damage 1d8}) bludgeoning damage if used with both hands."
+					]
+				},
+				{
+					"name": "Ardea's Vigor (1/Day)",
+					"entries": [
+						"The cleric calls on the powers of Ardea to imbue their allies with her protective life force. The luma cleric and up to 3 allies within 30 feet gain 5 ({@dice 2d4}) temporary hit points. For one minute, anyone under this effect gains 5 temporary hit points at the start of each of their turns."
+					]
+				},
+				{
+					"name": "Songbird (Recharges after a Long Rest)",
+					"entries": [
+						"The cleric can cast {@spell charm person}. Charisma is their spellcasting ability (spell save {@dc 12}) and the spell does not require any somatic components to cast."
+					]
+				}
+			],
+			"languageTags": [
+				"AU",
+				"CS",
+				"X"
+			],
+			"damageTags": [
+				"B"
+			],
+			"damageTagsSpell": [
+				"O",
+				"R"
+			],
+			"spellcastingTags": [
+				"CC"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Luma Wizard",
+			"shortName": "wizard",
+			"source": "HWCS",
+			"page": 202,
+			"size": [
+				"S"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"luma"
+				]
+			},
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				12,
+				{
+					"ac": 15,
+					"condition": "with mage armor",
+					"braces": true
+				}
+			],
+			"hp": {
+				"formula": "13d6 + 13",
+				"average": 58
+			},
+			"speed": {
+				"walk": 25
+			},
+			"str": 8,
+			"dex": 15,
+			"con": 12,
+			"int": 18,
+			"wis": 12,
+			"cha": 15,
+			"save": {
+				"int": "+7",
+				"wis": "+4"
+			},
+			"skill": {
+				"arcana": "+7",
+				"history": "+7"
+			},
+			"passive": 11,
+			"resist": [
+				"poison"
+			],
+			"languages": [
+				"Auran",
+				"Birdfolk",
+				"any three other languages"
+			],
+			"cr": "6",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The wizard is a 10th-level spellcaster. Their spellcasting ability is Intelligence (spell save {@dc 15}, +7 to hit with spell attacks). The wizard has the following spells prepared:"
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell chill touch|PHB}",
+								"{@spell fire bolt|PHB}",
+								"{@spell minor illusion|PHB}",
+								"{@spell prestidigitation|PHB}",
+								"{@spell ray of frost|PHB}"
+							]
+						},
+						"1": {
+							"spells": [
+								"{@spell charm person|PHB}",
+								"{@spell detect magic|PHB}",
+								"{@spell mage armor|PHB}",
+								"{@spell shield|PHB}",
+								"{@spell sleep|PHB}",
+								"{@spell thunderwave|PHB}"
+							],
+							"slots": 4
+						},
+						"2": {
+							"spells": [
+								"{@spell darkness|PHB}",
+								"{@spell hold person|PHB}",
+								"{@spell ray of enfeeblement|PHB}"
+							],
+							"slots": 3
+						},
+						"3": {
+							"spells": [
+								"{@spell counterspell|PHB}",
+								"{@spell fireball|PHB}"
+							],
+							"slots": 3
+						},
+						"4": {
+							"spells": [
+								"{@spell banishment|PHB}",
+								"{@spell stellar bodies|HWCS}"
+							],
+							"slots": 3
+						},
+						"5": {
+							"spells": [
+								"{@spell conjure elemental|PHB}",
+								"{@spell mislead|PHB}"
+							],
+							"slots": 2
+						}
+					},
+					"ability": "int"
+				}
+			],
+			"trait": [
+				{
+					"name": "Glide",
+					"entries": [
+						"When falling at least 10 feet, the wizard can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
+					]
+				},
+				{
+					"name": "Wing Flap",
+					"entries": [
+						"As a bonus action, the wizard can use their powerful feathered arms to propel themselves upward up to half their movement speed. The wizard can use it in conjunction with a regular jump, but not while gliding."
+					]
+				},
+				{
+					"name": "Fated (Recharges after a Long Rest)",
+					"entries": [
+						"The wizard can choose to reroll any attack, skill check, or saving throw."
+					]
+				},
+				{
+					"name": "Resilience",
+					"entries": [
+						"The wizard has advantage on saving throws against poison."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Staff",
+					"entries": [
+						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}2 ({@damage 1d6 - 1}) bludgeoning damage."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Charming (3/Day)",
+					"entries": [
+						"When a creature makes an attack against the wizard, the creature must succeed on a {@dc 14} Wisdom saving throw or target the next closest creature within range. If multiple creatures are closest, the attacker chooses. This feature does not work if there are no other creatures within range"
+					]
+				}
+			],
+			"languageTags": [
+				"AU"
+			],
+			"damageTags": [
+				"B"
+			],
+			"damageTagsSpell": [
+				"C",
+				"F",
+				"N",
+				"T"
+			],
+			"spellcastingTags": [
+				"CW"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"savingThrowForced": [
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"constitution",
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Mapach Bandit",
+			"shortName": "bandit",
+			"source": "HWCS",
+			"page": 202,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"mapach"
+				]
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 12,
+					"from": [
+						"{@item leather armor|phb}"
+					]
+				}
+			],
+			"hp": {
+				"formula": "2d8",
+				"average": 9
+			},
+			"speed": {
+				"walk": 30,
+				"climb": 20
+			},
+			"str": 12,
+			"dex": 13,
+			"con": 10,
+			"int": 8,
+			"wis": 12,
+			"cha": 12,
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 11,
+			"resist": [
+				"poison"
+			],
+			"languages": [
+				"Birdfolk",
+				"Mapach"
+			],
+			"cr": "1/8",
+			"trait": [
+				{
+					"name": "Resilience",
+					"entries": [
+						"The bandit has advantage on saving throws against being {@condition poisoned}."
+					]
+				},
+				{
+					"name": "Skulker",
+					"entries": [
+						"The bandit has advantage on {@skill Stealth} checks made in dim light or total darkness."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Shortsword",
+					"entries": [
+						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d6 + 1}) piercing damage."
+					]
+				},
+				{
+					"name": "Shortbow",
+					"entries": [
+						"{@atk rw} {@hit 3} to hit, range 80/320 ft., one target. {@h}4 ({@damage 1d6 + 1}) piercing damage."
+					]
+				}
+			],
+			"attachedItems": [
+				"shortbow|phb",
+				"shortsword|phb"
+			],
+			"senseTags": [
+				"D"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RNG",
+				"RW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Mapach Brute",
+			"shortName": "brute",
+			"source": "HWCS",
+			"page": 202,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"mapach"
+				]
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"{@item studded leather armor|phb}"
+					]
+				}
+			],
+			"hp": {
+				"formula": "10d8 + 30",
+				"average": 75
+			},
+			"speed": {
+				"walk": 30,
+				"climb": 20
+			},
+			"str": 14,
+			"dex": 17,
+			"con": 16,
+			"int": 12,
+			"wis": 14,
+			"cha": 14,
+			"save": {
+				"dex": "+5",
+				"cha": "+4"
+			},
+			"skill": {
+				"deception": "+4",
+				"persuasion": "+4"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 12,
+			"resist": [
+				"poison"
+			],
+			"languages": [
+				"Birdfolk",
+				"Mapach"
+			],
+			"cr": "3",
+			"trait": [
+				{
+					"name": "Resilience",
+					"entries": [
+						"The brute has advantage on saving throws against being {@condition poisoned}."
+					]
+				},
+				{
+					"name": "Skulker",
+					"entries": [
+						"The brute has advantage on {@skill Stealth} checks made in dim light or total darkness."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The brute makes three melee attacks, two with their rapier and one with their parrying dagger."
+					]
+				},
+				{
+					"name": "Rapier",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d8 + 3}) piercing damage."
+					]
+				},
+				{
+					"name": "Parrying Dagger",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, range 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) piercing damage."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Parry",
+					"entries": [
+						"The brute adds 2 to his AC against one melee attack that would hit them. The brute must see the attacker and be wielding a melee weapon."
+					]
+				}
+			],
+			"attachedItems": [
+				"rapier|phb"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Parry"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Mapach Tinkerer",
+			"shortName": "tinkerer",
+			"source": "HWCS",
+			"page": 203,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"mapach"
+				]
+			},
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				12
+			],
+			"hp": {
+				"formula": "3d8",
+				"average": 13
+			},
+			"speed": {
+				"walk": 30,
+				"climb": 20
+			},
+			"str": 10,
+			"dex": 14,
+			"con": 10,
+			"int": 13,
+			"wis": 12,
+			"cha": 10,
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 11,
+			"resist": [
+				"poison"
+			],
+			"languages": [
+				"Birdfolk",
+				"Mapach"
+			],
+			"cr": "1/4",
+			"trait": [
+				{
+					"name": "Resilience",
+					"entries": [
+						"The tinkerer has advantage on saving throws against being {@condition poisoned}."
+					]
+				},
+				{
+					"name": "Skulker",
+					"entries": [
+						"The tinkerer has advantage on {@skill Stealth} checks made in dim light or total darkness."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Dagger",
+					"entries": [
+						"{@atk mw} {@hit 4} to hit, range 5 ft., one target. {@h}4 ({@damage 1d4 + 2}) piercing damage."
+					]
+				},
+				{
+					"name": "Tinker's Toys",
+					"entries": [
+						"The tinkerer uses one of the following options (roll a {@dice d4} or choose one); the tinkerer can use each one no more than once per day:",
+						{
+							"type": "entries",
+							"name": "1. Cogwork Bird",
+							"entries": [
+								"The tinkerer winds and releases a small mechanical bird that flies to a target creature within 30 feet and distracts it. The next attack against that creature is made with advantage."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "2. Flash-bangs",
+							"entries": [
+								"The tinkerer targets a space up to 10 ft. away, and throws some small explosive shells that flare up in a blinding light. All creatures within 10 ft. of the target space must make a {@dc 11} Constitution saving throw or be {@condition blinded} until the start of the tinkerer's next turn."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "3. Nettle Gun",
+							"entries": [
+								"The tinkerer turns the crank on a small gadget that sprays nettles at a target. {@atk rw} {@hit 4} to hit, range 10/20 ft., one target. {@h}4 ({@damage 1d4 + 2}) piercing damage. All creatures within 5 ft. of the target must make a {@dc 11} Dexterity saving throw or take 5 ({@damage 1d10}) piercing damage."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "4. Grease Balloon",
+							"entries": [
+								"The tinkerer targets a 10-foot by 10-foot area up to 15 feet away, and makes it slick with grease. The area is considered difficult terrain, and each creature standing in the area must succeed on a {@dc 11} Dexterity saving throw or fall {@condition prone}. A creature that enters the area or ends its turn there must also succeed on a {@dc 11} Dexterity saving throw or fall {@condition prone}."
+							]
+						}
+					]
+				}
+			],
+			"attachedItems": [
+				"dagger|phb"
+			],
+			"senseTags": [
+				"D"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RW"
+			],
+			"conditionInflict": [
+				"blinded",
+				"prone"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Mordane Swiftgale",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HWCS",
+			"page": 203,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"swift strig"
+				]
+			},
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				10
+			],
+			"hp": {
+				"average": 4,
+				"formula": "1d8"
+			},
+			"speed": {
+				"walk": 35
+			},
+			"str": 12,
+			"dex": 11,
+			"con": 10,
+			"int": 10,
+			"wis": 10,
+			"cha": 10,
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 10,
+			"languages": [
+				"Birdfolk",
+				"can also understand Auran but can't speak it"
+			],
+			"cr": "0",
+			"trait": [
+				{
+					"name": "Patterned Feathers",
+					"entries": [
+						"Mordane has advantage on Dexterity ({@skill Stealth}) checks when he attempts to hide in a forest."
+					]
+				},
+				{
+					"name": "Talons",
+					"entries": [
+						"Mordane has advantage on Strength ({@skill Athletics}) checks made to climb any surface his talons could reasonably grip."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Club",
+					"entries": [
+						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d4 + 1}) bludgeoning damage."
+					]
+				},
+				{
+					"name": "Talons",
+					"entries": [
+						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d4 + 1}) slashing damage."
+					]
+				}
+			],
+			"attachedItems": [
+				"club|phb"
+			],
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"AU",
+				"CS"
+			],
+			"damageTags": [
+				"B",
+				"S"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Mountain Lion",
+			"source": "HWCS",
+			"page": 184,
+			"size": [
+				"L"
+			],
+			"type": "beast",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"formula": "5d10 + 10",
+				"average": 37
+			},
+			"speed": {
+				"walk": 40,
+				"climb": 30
+			},
+			"str": 17,
+			"dex": 15,
+			"con": 14,
+			"int": 3,
+			"wis": 14,
+			"cha": 6,
+			"skill": {
+				"perception": "+4",
+				"stealth": "+4"
+			},
+			"passive": 14,
+			"cr": "1",
+			"trait": [
+				{
+					"name": "Keen Smell",
+					"entries": [
+						"The Mountain Lion has advantage on Wisdom ({@skill Perception}) checks that rely on smell."
+					]
+				},
+				{
+					"name": "Pounce (Lion)",
+					"entries": [
+						"If the Mountain Lion moves at least 20 feet toward a creature and then hits it with a claw attack on the same turn, that target must succeed on a {@dc 13} Strength saving throw or be knocked {@condition prone}. The mountain lion can make a bite attack against a {@condition prone} target as a bonus action."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}8 ({@damage 1d10 + 3}) piercing damage."
+					]
+				},
+				{
+					"name": "Claw",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d8 + 3}) slashing damage."
+					]
+				},
+				{
+					"name": "Call Avalanche (Recharges after a Short or Long Rest)",
+					"entries": [
+						"With a mystic roar, the mountain lion can call down the very rocks. So long as it is in mountainous terrain, it can use its action to cause a rockslide to fall within a 15-foot-radius of a space it can see within 60 feet. Creatures in this area must make a {@dc 12} Dexterity saving throw, taking 13 ({@damage 3d8}) bludgeoning damage on a failure and half as much on a success."
+					]
+				}
+			],
+			"traitTags": [
+				"Keen Senses",
+				"Pounce"
+			],
+			"damageTags": [
+				"B",
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"AOE",
+				"MW"
+			],
+			"conditionInflict": [
+				"prone"
+			],
+			"savingThrowForced": [
+				"dexterity",
+				"strength"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Oakheart",
+			"source": "HWCS",
+			"page": 203,
+			"size": [
+				"H"
+			],
+			"type": "plant",
+			"alignment": [
+				"C",
+				"G"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"formula": "6d12 + 30",
+				"average": 69
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 20,
+			"dex": 8,
+			"con": 21,
+			"int": 12,
+			"wis": 16,
+			"cha": 12,
+			"passive": 13,
+			"resist": [
+				"bludgeoning",
+				"fire",
+				"piercing"
+			],
+			"languages": [
+				"Birdfolk",
+				"Druidic",
+				"Ignan",
+				"Sylvan"
+			],
+			"cr": "8",
+			"trait": [
+				{
+					"name": "False Appearance (Treant)",
+					"entries": [
+						"While Oakheart remains motionless, he appears as a great oak with charred bark that smolders in places and flames in place of leaves."
+					]
+				},
+				{
+					"name": "Siege Monster",
+					"entries": [
+						"The Oakheart deals double damage to objects and structures."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Oakheart makes two slam attacks."
+					]
+				},
+				{
+					"name": "Slam",
+					"entries": [
+						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}16 ({@damage 3d6 + 5}) fire damage."
+					]
+				},
+				{
+					"name": "Rock",
+					"entries": [
+						"{@atk rw} {@hit 8} to hit, range 60/180 ft., one target. {@h}28 ({@damage 4d10 + 5}) bludgeoning damage."
+					]
+				},
+				{
+					"name": "Animate Trees (1/Day)",
+					"entries": [
+						"Oakheart magically animates one or two trees he can see within 60 feet of him. These trees have the same statistics as Oakheart, except they have Intelligence and Charisma scores of 1, they can't speak, and they have only the Slam action option. An animated tree acts as an ally of Oakheart. The tree remains animate for 1 day or until it dies; until Oakheart dies or is more than 120 feet from the tree; or until Oakheart takes a bonus action to turn him back into an inanimate tree. The tree then takes root if possible."
+					]
+				}
+			],
+			"traitTags": [
+				"False Appearance",
+				"Siege Monster"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"DU",
+				"IG",
+				"S"
+			],
+			"damageTags": [
+				"B",
+				"F"
+			],
+			"miscTags": [
+				"MW",
+				"RW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Odwald Ebonhart",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HWCS",
+			"page": 194,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"corvum"
+				]
+			},
+			"alignment": [
+				"C",
+				"N"
+			],
+			"ac": [
+				12,
+				{
+					"ac": 15,
+					"condition": "with mage armor",
+					"braces": true
+				}
+			],
+			"hp": {
+				"formula": "9d8 + 9",
+				"average": 49
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 9,
+			"dex": 14,
+			"con": 12,
+			"int": 18,
+			"wis": 10,
+			"cha": 14,
+			"save": {
+				"int": "+7",
+				"wis": "+3"
+			},
+			"skill": {
+				"arcana": "+7",
+				"deception": "+5",
+				"medicine": "+3"
+			},
+			"passive": 10,
+			"languages": [
+				"Birdfolk",
+				"any two other languages",
+				"can also understand Auran but can't speak it"
+			],
+			"cr": "6",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Odwald is a 9th-level spellcaster. His spellcasting ability is Intelligence (spell save {@dc 15}, +7 to hit with spell attacks). Odwald has the following wizard spells prepared:"
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell chill touch|PHB}",
+								"{@spell light|PHB}",
+								"{@spell mage hand|PHB}",
+								"{@spell prestidigitation|PHB}"
+							]
+						},
+						"1": {
+							"spells": [
+								"{@spell disguise self|PHB}",
+								"{@spell false life|PHB|false life†}",
+								"{@spell mage armor|PHB}",
+								"{@spell magic missile|PHB}"
+							],
+							"slots": 4
+						},
+						"2": {
+							"spells": [
+								"{@spell misty step|PHB}",
+								"{@spell ray of enfeeblement|PHB|ray of enfeeblement†}",
+								"{@spell suggestion|PHB}"
+							],
+							"slots": 3
+						},
+						"3": {
+							"spells": [
+								"{@spell animate dead|PHB|animate dead†}",
+								"{@spell counterspell|PHB}",
+								"{@spell fear|PHB}"
+							],
+							"slots": 3
+						},
+						"4": {
+							"spells": [
+								"{@spell blight|PHB|blight†}",
+								"{@spell greater invisibility|PHB}"
+							],
+							"slots": 3
+						},
+						"5": {
+							"spells": [
+								"{@spell dominate person|PHB}"
+							],
+							"slots": 1
+						}
+					},
+					"footerEntries": [
+						"†necromancy spell of 1st level or higher"
+					],
+					"ability": "int"
+				}
+			],
+			"trait": [
+				{
+					"name": "Glide",
+					"entries": [
+						"When falling at least 10 feet, Odwald can spend a reaction to fly up to his speed in one direction as he descends. Odwald lands in an unoccupied space at the end of his movement, and takes no falling damage. Odwald cannot glide while carrying heavy objects, heavy weapons, or shields (though he can drop any held items as part of his reaction)."
+					]
+				},
+				{
+					"name": "Talons",
+					"entries": [
+						"Odwald has advantage on Strength ({@skill Athletics}) checks made to climb any surface his talons could reasonably grip."
+					]
+				},
+				{
+					"name": "Convincing",
+					"entries": [
+						"Odwald has advantage on all Charisma checks used to convince someone of his knowledge of subject matter pertaining to the Arcana skill."
+					]
+				},
+				{
+					"name": "Life Leech",
+					"entries": [
+						"Once per turn, when Odwald kills one or more creatures with a spell of 1st level or higher, he can regain hit points equal to twice the level of the spell, or three times the level if it is a necromancy spell."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Staff",
+					"entries": [
+						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}2 ({@damage 1d6 - 1}) bludgeoning damage, or 3 ({@damage 1d8 - 1}) bludgeoning damage if wielded with both hands."
+					]
+				},
+				{
+					"name": "Talons",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d4 + 2}) slashing damage."
+					]
+				}
+			],
+			"languageTags": [
+				"AU",
+				"CS",
+				"X"
+			],
+			"damageTags": [
+				"B",
+				"S"
+			],
+			"damageTagsSpell": [
+				"N",
+				"O"
+			],
+			"spellcastingTags": [
+				"CW"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Raptor Explorer",
+			"shortName": "explorer",
+			"source": "HWCS",
+			"page": 203,
+			"size": [
+				"S"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"raptor"
+				]
+			},
+			"alignment": [
+				"NX",
+				"NY",
+				"N"
+			],
+			"ac": [
+				{
+					"ac": 13,
+					"from": [
+						"{@item leather armor|phb}"
+					]
+				}
+			],
+			"hp": {
+				"formula": "4d6 + 4",
+				"average": 18
+			},
+			"speed": {
+				"walk": 25,
+				"swim": 25
+			},
+			"str": 11,
+			"dex": 14,
+			"con": 12,
+			"int": 11,
+			"wis": 15,
+			"cha": 11,
+			"skill": {
+				"history": "+2",
+				"perception": "+6",
+				"stealth": "+4",
+				"survival": "+6"
+			},
+			"passive": 16,
+			"languages": [
+				"Birdfolk",
+				"can also understand Auran but can't speak it"
+			],
+			"cr": "1/2",
+			"trait": [
+				{
+					"name": "Glide",
+					"entries": [
+						"When falling at least 10 feet, the explorer can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
+					]
+				},
+				{
+					"name": "Talons",
+					"entries": [
+						"The explorer rolls advantage on Strength ({@skill Athletics}) checks made to climb any surface their talons could reasonably grip."
+					]
+				},
+				{
+					"name": "Patient",
+					"entries": [
+						"When the explorer reacts with a readied action, they have advantage on the first attack roll, skill check, or ability check they make as a part of that action."
+					]
+				},
+				{
+					"name": "Keen Hearing and Sight",
+					"entries": [
+						"The explorer has advantage on Wisdom ({@skill Perception}) checks that rely on hearing or sight."
+					]
+				},
+				{
+					"name": "Sure Footing",
+					"entries": [
+						"The explorer ignores non-magical difficult terrain."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The explorer makes two melee attacks or two attacks with their hand crossbow."
+					]
+				},
+				{
+					"name": "Talons",
+					"entries": [
+						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d4 + 2}) piercing damage. "
+					]
+				},
+				{
+					"name": "Saber",
+					"entries": [
+						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) slashing damage. "
+					]
+				},
+				{
+					"name": "Hand Crossbow",
+					"entries": [
+						"{@atk rw} {@hit 4} to hit, range 30/120 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
+					]
+				}
+			],
+			"attachedItems": [
+				"hand crossbow|phb"
+			],
+			"traitTags": [
+				"Keen Senses"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AU",
+				"CS"
+			],
+			"damageTags": [
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MW",
+				"RNG",
+				"RW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Raptor Ranger",
+			"shortName": "ranger",
+			"source": "HWCS",
+			"page": 203,
+			"size": [
+				"S"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"raptor"
+				]
+			},
+			"alignment": [
+				"NX",
+				"NY",
+				"N"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"{@item studded leather armor|phb}"
+					]
+				}
+			],
+			"hp": {
+				"formula": "12d6 + 24",
+				"average": 66
+			},
+			"speed": {
+				"walk": 25
+			},
+			"str": 12,
+			"dex": 16,
+			"con": 14,
+			"int": 10,
+			"wis": 16,
+			"cha": 8,
+			"skill": {
+				"stealth": "+7",
+				"athletics": "+3",
+				"survival": "+5"
+			},
+			"passive": 13,
+			"languages": [
+				"Birdfolk",
+				"Mapach",
+				"can also understand Auran but can't speak it"
+			],
+			"cr": "4",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The ranger is a 3rd-level spellcaster. Their spellcasting ability is ",
+						"Wisdom (spell save {@dc 13}, + 5 to hit with spell attacks). The ranger has the following spells prepared:"
+					],
+					"spells": {
+						"1": {
+							"spells": [
+								"{@spell cure wounds|PHB}",
+								"{@spell fog cloud|PHB}",
+								"{@spell hunter's mark|PHB}",
+								"{@spell protection from evil and good|PHB}"
+							],
+							"slots": 3
+						}
+					},
+					"ability": "wis"
+				}
+			],
+			"trait": [
+				{
+					"name": "Glide",
+					"entries": [
+						"When falling at least 10 feet, the ranger can spend ",
+						"a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
+					]
+				},
+				{
+					"name": "Talons",
+					"entries": [
+						"The ranger rolls advantage on Strength ({@skill Athletics}) checks made to climb any surface their talons could reasonably grip."
+					]
+				},
+				{
+					"name": "Aerial Defense",
+					"entries": [
+						"Creatures who attack the ranger while the ranger is falling, gliding, or jumping have disadvantage on their attack roll."
+					]
+				},
+				{
+					"name": "Keen Hearing and Sight",
+					"entries": [
+						"The explorer has advantage on Wisdom ({@skill Perception}) checks that rely on hearing or sight."
+					]
+				},
+				{
+					"name": "Arrow Sight (3/Day)",
+					"entries": [
+						"When the ranger attacks with their red-feather bow, they can use their bonus action to see from the point the arrow struck as if they were there. If the arrow strikes a creature, the ranger can see from the creature's perspective. This effect lasts for 1 minute."
+					]
+				},
+				{
+					"name": "Hunter (3/Day)",
+					"entries": [
+						"As a bonus action, the ranger can deal an extra {@dice 1d10} damage on their next attack made with a shortbow or longbow."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The ranger makes two red-feather bow attacks."
+					]
+				},
+				{
+					"name": "Red-Feather Bow",
+					"entries": [
+						"{@atk rw} {@hit 6} to hit, range 80/320 ft., one target. {@h}6 ({@damage 1d6 + 4}) piercing damage."
+					]
+				},
+				{
+					"name": "Dagger",
+					"entries": [
+						"{@atk mw, rw} {@hit 5} to hit, reach 5 ft., range 20/60 ft., one target. {@h}5 ({@damage 1d4 + 3}) piercing damage. "
+					]
+				},
+				{
+					"name": "Talons",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d4 + 3}) piercing damage. "
+					]
+				}
+			],
+			"attachedItems": [
+				"dagger|phb"
+			],
+			"traitTags": [
+				"Keen Senses"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AU",
+				"CS"
+			],
+			"damageTags": [
+				"P"
+			],
+			"spellcastingTags": [
+				"CR"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Rhys Birchwalker",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HWCS",
+			"page": 203,
+			"size": [
+				"S"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"mistral raptor"
+				]
+			},
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				11
+			],
+			"hp": {
+				"average": 3,
+				"formula": "1d6"
+			},
+			"speed": {
+				"walk": 25
+			},
+			"str": 10,
+			"dex": 12,
+			"con": 10,
+			"int": 10,
+			"wis": 11,
+			"cha": 10,
+			"passive": 10,
+			"languages": [
+				"Birdfolk",
+				"can also understand Auran but can't speak it"
+			],
+			"cr": "0",
+			"trait": [
+				{
+					"name": "Hunter's Training",
+					"entries": [
+						"Rhys has proficiency with the {@item longbow|phb}, {@item shortbow|phb}, and {@item spear|phb}. Additionally, her familiarity with the longbow means that it is not considered a heavy weapon for her."
+					]
+				},
+				{
+					"name": "Talons",
+					"entries": [
+						"Rhys has advantage on Strength ({@skill Athletics}) checks made to climb any surface her talons could reasonably grip."
+					]
+				},
+				{
+					"name": "Aerial Defense",
+					"entries": [
+						"Creatures who attack Rhys while she ranger is falling, gliding, or jumping have disadvantage on their attack roll."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Club",
+					"entries": [
+						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}2 ({@damage 1d4}) bludgeoning damage."
+					]
+				},
+				{
+					"name": "Talons",
+					"entries": [
+						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d4 + 1}) slashing damage."
+					]
+				}
+			],
+			"tokenCredit": "Jaqdaw",
+			"attachedItems": [
+				"club|phb"
+			],
+			"languageTags": [
+				"AU",
+				"CS"
+			],
+			"damageTags": [
+				"B",
+				"S"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true
+		},
+		{
+			"name": "Riffin, the Ash-Knight",
+			"shortName": "Riffin",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HWCS",
+			"page": 204,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"strig"
+				]
+			},
+			"alignment": [
+				"L",
+				"G"
+			],
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"{@item half plate armor|phb}",
+						"{@item shield|phb}"
+					]
+				}
+			],
+			"hp": {
+				"formula": "8d8 + 24",
+				"average": 60
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 16,
+			"dex": 10,
+			"con": 16,
+			"int": 8,
+			"wis": 13,
+			"cha": 12,
+			"save": {
+				"con": "+5",
+				"wis": "+4"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 11,
+			"languages": [
+				"Birdfolk",
+				"can also understand Auran but can't speak it"
+			],
+			"cr": "3",
+			"trait": [
+				{
+					"name": "Glide",
+					"entries": [
+						"When falling at least 10 feet, Riffin can spend a reaction to fly up to his speed in one direction as he descends. He lands in an unoccupied space at the end of his movement, and takes no falling damage. He cannot glide while carrying heavy objects, heavy weapons, or shields (though he can drop any held items as part of his reaction)."
+					]
+				},
+				{
+					"name": "Talons",
+					"entries": [
+						"Riffin rolls advantage on Strength ({@skill Athletics}) checks made to climb any surface his talons could reasonably grip."
+					]
+				},
+				{
+					"name": "Maneuver (2/Day)",
+					"entries": [
+						"When Riffin hits with an attack, he can choose to maneuver the enemy out of position, granting an ally within 5 feet of the target the opportunity to use their reaction to move away from this enemy at half their movement speed without provoking an {@action opportunity attack|phb|attack of opportunity}."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Riffin makes two short sword attacks."
+					]
+				},
+				{
+					"name": "Short Sword",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) piercing damage."
+					]
+				},
+				{
+					"name": "Talons",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d4 + 3}) piercing damage. The knight can choose to grapple a target hit by this attack as a bonus action."
+					]
+				},
+				{
+					"name": "Wing Crest Shield (1/Day)",
+					"entries": [
+						"Riffin casts the {@spell gust of wind} spell (save {@dc 15})."
+					]
+				}
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AU",
+				"CS"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Shifting Slime",
+			"source": "HWCS",
+			"page": 187,
+			"size": [
+				"L"
+			],
+			"type": "ooze",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				9
+			],
+			"hp": {
+				"formula": "3d10 + 15",
+				"average": 31
+			},
+			"speed": {
+				"walk": 20,
+				"climb": 20
+			},
+			"str": 14,
+			"dex": 8,
+			"con": 20,
+			"int": 1,
+			"wis": 6,
+			"cha": 1,
+			"senses": [
+				"blindsight 60 ft. (blind beyond this radius)"
+			],
+			"passive": 8,
+			"immune": [
+				{
+					"special": "Special; see Adaptive ability"
+				}
+			],
+			"conditionImmune": [
+				"blinded",
+				"charmed",
+				"deafened",
+				"exhaustion",
+				"frightened",
+				"prone"
+			],
+			"cr": "1/2",
+			"trait": [
+				{
+					"name": "Amorphous",
+					"entries": [
+						"The Caustic Slime can move through a space as narrow as 1 inch wide without squeezing."
+					]
+				},
+				{
+					"name": "Spider Climb",
+					"entries": [
+						"The Caustic Slime can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Psuedopod",
+					"entries": [
+						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) acid damage. The target is {@condition grappled} (escape {@dc 13}). Until this grapple ends, the target is {@condition restrained} and the shifting slime can't make a pseudopod attack against another target."
+					]
+				},
+				{
+					"name": "Swallow",
+					"entries": [
+						"The shifting slime makes one pseudopod attack against a target it is grappling that is at least one size smaller than itself. If the attack hits, the target is swallowed, and the grapple ends. The swallowed target is {@condition restrained}, it has {@quickref Cover||3||total cover} against attacks and other effects outside the shifting slime, and it must make a {@dc 13} Constitution saving throw at the start of each of its turns taking 3 ({@damage 1d6}) acid damage on a failure. If the shifting slime used its adaptive ability to become immune to a damage type, the damage dealt to the target on a failed save becomes that type instead. The shifting slime can have only one target swallowed at a time.",
+						"If the shifting slime dies, a swallowed creature is no longer {@condition restrained} by it, and may move freely as the body of the slime quivers and neutralizes into an inert puddle of goo."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Split",
+					"entries": [
+						"When a slime that is Medium or larger and has 10 or more hit points is hit with slashing damage, it splits into two new slimes. Each new slime has hit points equal to half the original slime's, rounded down. New slimes are one size smaller than the previous size. New shifting slimes each have the same damage type immunity as their parent slime and retain the Adaptive ability."
+					]
+				},
+				{
+					"name": "Adaptive",
+					"entries": [
+						"Each time the slime is hit by a spell that deals damage, it can become immune to that damage type for 1 hour. When the slime changes the damage type it's immune to, its color changes based on the table on the below. The slime can only be immune to one damage type at a time. Normally, shifting slimes are iridescent, shimmering with all the colors of the rainbow.",
+						{
+							"type": "table",
+							"colLabels": [
+								"Damage Type",
+								"Slime Color"
+							],
+							"colStyles": [
+								"col-5",
+								"col-5"
+							],
+							"rows": [
+								[
+									"Acid",
+									"Lime Green"
+								],
+								[
+									"Cold",
+									"Ice Blue"
+								],
+								[
+									"Fire",
+									"Bright Crimson"
+								],
+								[
+									"Force",
+									"Clear"
+								],
+								[
+									"Lightning",
+									"Vibrant Yellow"
+								],
+								[
+									"Necrotic",
+									"Dark Black"
+								],
+								[
+									"Poison",
+									"Dark Green"
+								],
+								[
+									"Psychic",
+									"Bright Violet"
+								],
+								[
+									"Radiant",
+									"Warm Orange"
+								],
+								[
+									"Thunder",
+									"Bright White"
+								]
+							]
+						}
+					]
+				}
+			],
+			"traitTags": [
+				"Amorphous",
+				"Spider Climb"
+			],
+			"senseTags": [
+				"B"
+			],
+			"actionTags": [
+				"Swallow"
+			],
+			"damageTags": [
+				"A"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"conditionInflict": [
+				"grappled",
+				"restrained"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Shyla Denn",
+			"shortName": "Shyla",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HWCS",
+			"page": 207,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"vulpin"
+				]
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"{@item chain shirt|phb}"
+					]
+				}
+			],
+			"hp": {
+				"formula": "5d8 + 5",
+				"average": 27
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 14,
+			"con": 12,
+			"int": 15,
+			"wis": 16,
+			"cha": 13,
+			"skill": {
+				"medicine": "+7",
+				"persuasion": "+3",
+				"religion": "+5"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 13,
+			"languages": [
+				"Birdfolk",
+				"Celestial",
+				"Vulpin"
+			],
+			"cr": "2",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Shyla is a 5th level spellcaster, her spellcasting ability is Wisdom (spell save {@dc 13}, +5 to hit with spell attacks). Shyla has the following cleric spells prepared:"
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell light|PHB}",
+								"{@spell sacred flame|PHB}",
+								"{@spell thaumaturgy|PHB}"
+							]
+						},
+						"1": {
+							"spells": [
+								"{@spell cure wounds|PHB}",
+								"{@spell disguise self|PHB}",
+								"{@spell guiding bolt|PHB}"
+							],
+							"slots": 4
+						},
+						"2": {
+							"spells": [
+								"{@spell lesser restoration|PHB}",
+								"{@spell mirror image|PHB}",
+								"{@spell spiritual weapon|PHB}"
+							],
+							"slots": 3
+						},
+						"3": {
+							"spells": [
+								"{@spell blink|PHB}",
+								"{@spell spirit guardians|PHB}"
+							],
+							"slots": 2
+						}
+					},
+					"ability": "wis"
+				}
+			],
+			"trait": [
+				{
+					"name": "Evasive",
+					"entries": [
+						"Shyla includes her Intelligence modifier as a bonus on all Dexterity saving throws."
+					]
+				},
+				{
+					"name": "Divine Eminence",
+					"entries": [
+						"As a bonus action, Shyla can expend a spell slot to cause her melee weapon attacks to magically deal an extra 10 ({@damage 3d6}) poison damage to a target on a hit. This benefit lasts until the end of the turn. If Shyla expends a spell slot of 2nd level or higher, the extra damage increases by {@dice 1d6} for each level above 1st."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
+					]
+				},
+				{
+					"name": "Mace",
+					"entries": [
+						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d6}) bludgeoning damage."
+					]
+				}
+			],
+			"attachedItems": [
+				"mace|phb"
+			],
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"CE"
+			],
+			"damageTags": [
+				"B",
+				"I",
+				"P"
+			],
+			"damageTagsSpell": [
+				"N",
+				"O",
+				"R"
+			],
+			"spellcastingTags": [
+				"CC"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Sticky Slime",
+			"source": "HWCS",
+			"page": 188,
+			"size": [
+				"M"
+			],
+			"type": "ooze",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				6
+			],
+			"hp": {
+				"formula": "2d8 + 4",
+				"average": 13
+			},
+			"speed": {
+				"walk": 15,
+				"climb": 15
+			},
+			"str": 12,
+			"dex": 3,
+			"con": 14,
+			"int": 1,
+			"wis": 6,
+			"cha": 1,
+			"senses": [
+				"blindsight 60 ft. (blind beyond this radius)"
+			],
+			"passive": 8,
+			"resist": [
+				"bludgeoning",
+				"piercing",
+				"slashing"
+			],
+			"conditionImmune": [
+				"blinded",
+				"charmed",
+				"deafened",
+				"exhaustion",
+				"frightened",
+				"prone"
+			],
+			"cr": "1/8",
+			"trait": [
+				{
+					"name": "Amorphous",
+					"entries": [
+						"The Caustic Slime can move through a space as narrow as 1 inch wide without squeezing."
+					]
+				},
+				{
+					"name": "Slime Trail",
+					"entries": [
+						"The slime leaves a trail of ooze behind it that remains tacky for up to 15 minutes. A creature that steps in the ooze must succeed a {@dc 12} Strength saving throw or become {@condition restrained}. A creature may attempt the saving throw again at the end of each of its turns, ending the effect on a success."
+					]
+				},
+				{
+					"name": "Mucus",
+					"entries": [
+						"When the slime is hit by a melee attack, the attacker must succeed on a {@dc 12} Strength saving throw or their weapon becomes stuck in the slime. The weapon can be wrenched out by using an action to make a Strength ({@skill Athletics}) check against the same DC, freeing the weapon on a success. All weapons stuck in the slime can be retrieved once the slime is slain."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Psuedopod",
+					"entries": [
+						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d4 + 1}) bludgeoning damage."
+					]
+				}
+			],
+			"traitTags": [
+				"Amorphous"
+			],
+			"senseTags": [
+				"B"
+			],
+			"damageTags": [
+				"B"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"conditionInflict": [
+				"restrained"
+			],
+			"savingThrowForced": [
+				"strength"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Strig Knight",
+			"shortName": "knight",
+			"source": "HWCS",
+			"page": 204,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"strig"
+				]
+			},
+			"alignment": [
+				"L",
+				"G",
+				"NY",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"{@item half plate armor|phb}",
+						"{@item shield|phb}"
+					]
+				}
+			],
+			"hp": {
+				"formula": "8d8 + 24",
+				"average": 60
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 16,
+			"dex": 10,
+			"con": 16,
+			"int": 8,
+			"wis": 13,
+			"cha": 12,
+			"save": {
+				"con": "+5",
+				"wis": "+4"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 11,
+			"languages": [
+				"Birdfolk",
+				"can also understand Auran but can't speak it"
+			],
+			"cr": "3",
+			"trait": [
+				{
+					"name": "Glide",
+					"entries": [
+						"When falling at least 10 feet, the knight can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
+					]
+				},
+				{
+					"name": "Talons",
+					"entries": [
+						"The knight rolls advantage on Strength ({@skill Athletics}) checks made to climb any surface their talons could reasonably grip."
+					]
+				},
+				{
+					"name": "Maneuver (2/Day)",
+					"entries": [
+						"When the knight hits with an attack, they can choose to maneuver the enemy out of position, granting an ally within 5 feet of the target the opportunity to use their reaction to move away from this enemy at half their movement speed without provoking an {@action opportunity attack|phb|attack of opportunity}."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The knight makes two short sword attacks."
+					]
+				},
+				{
+					"name": "Short Sword",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) piercing damage."
+					]
+				},
+				{
+					"name": "Talons",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d4 + 3}) piercing damage. The knight can choose to grapple a target hit by this attack as a bonus action."
+					]
+				},
+				{
+					"name": "Wing Crest Shield (1/Day)",
+					"entries": [
+						"The knight casts the {@spell gust of wind} spell (save {@dc 15})."
+					]
+				}
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AU",
+				"CS"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Strig Tracker",
+			"shortName": "tracker",
+			"source": "HWCS",
+			"page": 206,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"strig"
+				]
+			},
+			"alignment": [
+				"L",
+				"G"
+			],
+			"ac": [
+				{
+					"ac": 14,
+					"from": [
+						"{@item hide armor|phb}"
+					]
+				}
+			],
+			"hp": {
+				"formula": "10d8 + 20",
+				"average": 65
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 16,
+			"dex": 14,
+			"con": 14,
+			"int": 11,
+			"wis": 15,
+			"cha": 10,
+			"skill": {
+				"acrobatics": "+6",
+				"perception": "+4",
+				"survival": "+4"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 14,
+			"languages": [
+				"Birdfolk",
+				"can also understand Auran but can't speak it"
+			],
+			"cr": "3",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The tracker is a 3rd-level spellcaster. Their spellcasting ability is Wisdom (spell save {@dc 12}, +4 to hit with spell attacks). The strig tracker has the following ranger spells prepared:"
+					],
+					"spells": {
+						"1": {
+							"spells": [
+								"{@spell elevated sight|HWCS}",
+								"{@spell hunter's mark|PHB}",
+								"{@spell longstrider|PHB}",
+								"{@spell speak with animals|PHB}"
+							],
+							"slots": 3
+						}
+					},
+					"ability": "wis"
+				}
+			],
+			"trait": [
+				{
+					"name": "Glide",
+					"entries": [
+						"When falling at least 10 feet, the tracker can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
+					]
+				},
+				{
+					"name": "Talons",
+					"entries": [
+						"The tracker rolls advantage on Strength ({@skill Athletics}) checks made to climb any surface their talons could reasonably grip."
+					]
+				},
+				{
+					"name": "Patterned Feathers",
+					"entries": [
+						"The tracker has advantage on Dexterity ({@skill Stealth}) checks when they attempt to hide in a forest."
+					]
+				},
+				{
+					"name": "Reya's Keen Eye",
+					"entries": [
+						"The tracker can make Wisdom ({@skill Perception}) checks as a bonus action to try and find hidden creatures."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The tracker makes two melee attacks, one with their longsword and one with their hand axe. Or they make two ranged attacks with their hand axe."
+					]
+				},
+				{
+					"name": "Longsword",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d8 + 3}) slashing damage or 8 ({@damage 1d10 + 3}) slashing damage if wielding with both hands."
+					]
+				},
+				{
+					"name": "Hand Axe",
+					"entries": [
+						"{@atk mw,rw} {@hit 5} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}6 ({@damage 1d6 + 3}) slashing damage."
+					]
+				},
+				{
+					"name": "Talons",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d4 + 3}) piercing damage."
+					]
+				}
+			],
+			"attachedItems": [
+				"longsword|phb"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AU",
+				"CS"
+			],
+			"damageTags": [
+				"P",
+				"S"
+			],
+			"spellcastingTags": [
+				"CR"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Susan of the Swamp",
+			"shortName": "Susan",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HWCS",
+			"page": 198,
+			"size": [
+				"S"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"hedge"
+				]
+			},
+			"alignment": [
+				"C",
+				"G"
+			],
+			"ac": [
+				{
+					"ac": 14,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"formula": "6d6",
+				"average": 21
+			},
+			"speed": {
+				"walk": 25,
+				"burrow": 15
+			},
+			"str": 8,
+			"dex": 10,
+			"con": 10,
+			"int": 14,
+			"wis": 15,
+			"cha": 16,
+			"skill": {
+				"arcana": "+4",
+				"survival": "+4"
+			},
+			"passive": 12,
+			"languages": [
+				"Abyssal",
+				"Birdfolk",
+				"Hedge",
+				"can also speak with beasts of any size which represent spiders, insects, worms, or other bugs"
+			],
+			"cr": "1",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Susan is a 2nd-level spellcaster. Her spellcasting ability is Charisma (spell save {@dc 13}, +5 to hit with spell attacks). Susan has the following warlock spells prepared:"
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell eldritch blast|PHB}",
+								"{@spell minor illusion|PHB}"
+							]
+						},
+						"1": {
+							"spells": [
+								"{@spell charm person|PHB}",
+								"{@spell hellish rebuke|PHB}",
+								"{@spell unseen servant|PHB}"
+							],
+							"slots": 2,
+							"lower": 1
+						}
+					},
+					"ability": "cha"
+				}
+			],
+			"trait": [
+				{
+					"name": "Dark One's Blessing",
+					"entries": [
+						"When Susan reduces a hostile creature to 0 hit points, she gains 5 temporary hit points."
+					]
+				},
+				{
+					"name": "Repelling Blast",
+					"entries": [
+						"When Susan hits a creature with eldritch blast, she can push the creature up to 10 feet away in a straight line."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Staff",
+					"entries": [
+						"{@atk mw} {@hit 1} to hit, reach 5 ft., one target. {@h}2 ({@damage 1d6 - 1}) bludgeoning damage."
+					]
+				},
+				{
+					"name": "Dagger",
+					"entries": [
+						"{@atk mw,rw} {@hit 4} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}4 ({@damage 1d4 + 2}) piercing damage."
+					]
+				},
+				{
+					"name": "Fiendish Vigor",
+					"entries": [
+						"Susan can cast {@spell false life} at will as a 1st-level spell."
+					]
+				},
+				{
+					"name": "Curl Up",
+					"entries": [
+						"Susan curls up into a spiny ball. While curled up in this way she cannot move, attack, or cast spells with somatic components, and her base armor class becomes 19. Any creature that misses Susan with a melee attack while she is curled up takes {@dice 2d4} points of piercing damage from her sharp quills. If a creature hits Susan while she is curled up, however, Susan is knocked {@condition prone} in her space at the end of the turn. Susan may uncurl herself at any point during her turn."
+					]
+				}
+			],
+			"attachedItems": [
+				"dagger|phb"
+			],
+			"languageTags": [
+				"AB"
+			],
+			"damageTags": [
+				"B",
+				"P"
+			],
+			"damageTagsSpell": [
+				"F",
+				"O"
+			],
+			"spellcastingTags": [
+				"CL"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RW",
+				"THW"
+			],
+			"conditionInflict": [
+				"prone"
+			],
+			"conditionInflictSpell": [
+				"charmed"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Swarm of Emberbats",
+			"source": "HWCS",
+			"page": 182,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "beast",
+				"swarmSize": "T"
+			},
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				12
+			],
+			"hp": {
+				"formula": "5d8",
+				"average": 22
+			},
+			"speed": {
+				"walk": 0,
+				"fly": 30
+			},
+			"str": 5,
+			"dex": 15,
+			"con": 10,
+			"int": 3,
+			"wis": 10,
+			"cha": 5,
+			"senses": [
+				"blindsight 60 ft."
+			],
+			"passive": 10,
+			"resist": [
+				"bludgeoning",
+				"piercing",
+				"slashing"
+			],
+			"conditionImmune": [
+				"charmed",
+				"frightened",
+				"grappled",
+				"paralyzed",
+				"petrified",
+				"prone",
+				"restrained",
+				"stunned"
+			],
+			"cr": "1/2",
+			"trait": [
+				{
+					"name": "Echolocation",
+					"entries": [
+						"The swarm can't use its blindsight while {@condition deafened}."
+					]
+				},
+				{
+					"name": "Keen Hearing",
+					"entries": [
+						"The swarm has advantage on Wisdom ({@skill Perception}) checks that rely on hearing."
+					]
+				},
+				{
+					"name": "Flame Essence",
+					"entries": [
+						"Any creature that starts their turn within 5 feet of the emberbat swarm must make a {@dc 10} Constitution saving throw, taking 2 ({@dice 1d4}) points of fire damage on a failure."
+					]
+				},
+				{
+					"name": "Swarm",
+					"entries": [
+						"The Swarm of Emberbats can occupy another creature's space and vice versa, and the swarm can move through any opening large enough for a Tiny bat. The swarm can't regain hit points or gain temporary hit points."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Bites",
+					"entries": [
+						"{@atk mw} {@hit 4} to hit, reach 0 ft., one creature in the swarm's space. {@h}5 ({@damage 2d4}) piercing damage, or 2 ({@damage 1d4}) piercing damage if the swarm has half of its hit points or fewer."
+					]
+				}
+			],
+			"traitTags": [
+				"Keen Senses"
+			],
+			"senseTags": [
+				"B"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Tevor of the Spring Path",
+			"shortName": "Tevor",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HWCS",
+			"page": 207,
+			"size": [
+				"S"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"luma"
+				]
+			},
+			"alignment": [
+				"N",
+				"G"
+			],
+			"ac": [
+				{
+					"ac": 14,
+					"from": [
+						"{@item chain shirt|phb}"
+					]
+				}
+			],
+			"hp": {
+				"formula": "5d6 + 5",
+				"average": 22
+			},
+			"speed": {
+				"walk": 25
+			},
+			"str": 14,
+			"dex": 12,
+			"con": 12,
+			"int": 10,
+			"wis": 14,
+			"cha": 12,
+			"skill": {
+				"athletics": "+4"
+			},
+			"passive": 12,
+			"resist": [
+				"poison"
+			],
+			"languages": [
+				"Birdfolk",
+				"Druidic",
+				"can also understand Auran but can't speak it"
+			],
+			"cr": "1/4",
+			"trait": [
+				{
+					"name": "Glide",
+					"entries": [
+						"When falling at least 10 feet, Tevor can spend a reaction to fly up to his speed in one direction as he descends. He lands in an unoccupied space at the end of his movement, and takes no falling damage. He cannot glide while carrying heavy objects, heavy weapons, or shields (though he can drop any held items as part of his reaction)."
+					]
+				},
+				{
+					"name": "Wing Flap",
+					"entries": [
+						"As a bonus action, Tevor can use his powerful feathered arms to propel himself upward up to half his movement speed. He can use it in conjunction with a regular jump, but not while gliding."
+					]
+				},
+				{
+					"name": "Fated (Recharges after a Long Rest)",
+					"entries": [
+						"Tevor can choose to reroll any attack roll, skill check, or saving throw."
+					]
+				},
+				{
+					"name": "Resilience",
+					"entries": [
+						"Tevor rolls with advantage on saving throws against being {@condition poisoned}."
+					]
+				},
+				{
+					"name": "Drop Attack",
+					"entries": [
+						"Tevor can make an attack during his glide. If he does, he deals an extra 4 ({@dice 1d8}) points of damage."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Spear",
+					"entries": [
+						"{@atk mw,rw} {@hit 4} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage or 6 ({@damage 1d8 + 2}) piercing damage if used with both hands."
+					]
+				},
+				{
+					"name": "Tender Healing (Recharges after a Long Rest)",
+					"entries": [
+						"Tevor casts the {@spell cure wounds} spell at 1st level. Wisdom is his spellcasting ability for this spell."
+					]
+				}
+			],
+			"attachedItems": [
+				"spear|phb"
+			],
+			"languageTags": [
+				"AU",
+				"CS",
+				"DU"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MLW",
+				"MW",
+				"RW",
+				"THW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Vulpin Captain",
+			"shortName": "captain",
+			"source": "HWCS",
+			"page": 207,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"vulpin"
+				]
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 14,
+					"from": [
+						"{@item studded leather armor|phb}"
+					]
+				}
+			],
+			"hp": {
+				"formula": "5d8 + 5",
+				"average": 27
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 13,
+			"dex": 15,
+			"con": 12,
+			"int": 14,
+			"wis": 14,
+			"cha": 12,
+			"skill": {
+				"acrobatics": "+4",
+				"perception": "+4"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 14,
+			"languages": [
+				"Birdfolk",
+				"Vulpin"
+			],
+			"cr": "1",
+			"trait": [
+				{
+					"name": "Evasive",
+					"entries": [
+						"The captain includes their Intelligence modifier as a bonus to their Dexterity saving throws."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The captain makes two attacks."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
+					]
+				},
+				{
+					"name": "Short sword",
+					"entries": [
+						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
+					]
+				},
+				{
+					"name": "Short bow",
+					"entries": [
+						"{@atk mw} {@hit 4} to hit, range 80/320 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Parry",
+					"entries": [
+						"The captain adds 2 to their AC against one melee attack that would hit them per round. The captain must see the attacker and be wielding a melee weapon. "
+					]
+				}
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Parry"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Vulpin Noble",
+			"shortName": "noble",
+			"source": "HWCS",
+			"page": 207,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"vulpin"
+				]
+			},
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"{@item breastplate|phb}"
+					]
+				}
+			],
+			"hp": {
+				"formula": "2d8",
+				"average": 9
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 11,
+			"dex": 12,
+			"con": 11,
+			"int": 14,
+			"wis": 12,
+			"cha": 16,
+			"skill": {
+				"deception": "+5",
+				"history": "+4",
+				"insight": "+3",
+				"persuasion": "+5"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 11,
+			"languages": [
+				"Birdfolk",
+				"Vulpin"
+			],
+			"cr": "1/8",
+			"trait": [
+				{
+					"name": "Evasive",
+					"entries": [
+						"The noble includes their Intelligence modifier as a bonus to their Dexterity saving throws."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d6 + 1}) piercing damage."
+					]
+				},
+				{
+					"name": "Short sword",
+					"entries": [
+						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d6 + 1}) piercing damage."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Disparaging Remark",
+					"entries": [
+						"When a creature the noble can see makes an attack roll against an ally, the noble can use their reaction to impose disadvantage on that roll. The target of this effect must be able to hear and understand the noble."
+					]
+				}
+			],
+			"senseTags": [
+				"D"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Vulpin Priest of Kren",
+			"shortName": "priest",
+			"source": "HWCS",
+			"page": 207,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"vulpin"
+				]
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"{@item chain shirt|phb}"
+					]
+				}
+			],
+			"hp": {
+				"formula": "5d8 + 5",
+				"average": 27
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 14,
+			"con": 12,
+			"int": 15,
+			"wis": 16,
+			"cha": 13,
+			"skill": {
+				"medicine": "+7",
+				"persuasion": "+3",
+				"religion": "+5"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 13,
+			"languages": [
+				"Birdfolk",
+				"Celestial",
+				"Vulpin"
+			],
+			"cr": "2",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The priest is a 5th level spellcaster, their spellcasting ability is Wisdom (spell save {@dc 13}, +5 to hit with spell attacks). The priest has the following cleric spells prepared:"
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell light|PHB}",
+								"{@spell sacred flame|PHB}",
+								"{@spell thaumaturgy|PHB}"
+							]
+						},
+						"1": {
+							"spells": [
+								"{@spell cure wounds|PHB}",
+								"{@spell disguise self|PHB}",
+								"{@spell guiding bolt|PHB}"
+							],
+							"slots": 4
+						},
+						"2": {
+							"spells": [
+								"{@spell lesser restoration|PHB}",
+								"{@spell mirror image|PHB}",
+								"{@spell spiritual weapon|PHB}"
+							],
+							"slots": 3
+						},
+						"3": {
+							"spells": [
+								"{@spell blink|PHB}",
+								"{@spell spirit guardians|PHB}"
+							],
+							"slots": 2
+						}
+					},
+					"ability": "wis"
+				}
+			],
+			"trait": [
+				{
+					"name": "Evasive",
+					"entries": [
+						"The priest includes their Intelligence modifier as a bonus on all Dexterity saving throws."
+					]
+				},
+				{
+					"name": "Divine Eminence",
+					"entries": [
+						"As a bonus action, the priest can expend a spell slot to cause their melee weapon attacks to magically deal an extra 10 ({@damage 3d6}) poison damage to a target on a hit. This benefit lasts until the end of the turn. If the priest expends a spell slot of 2nd level or higher, the extra damage increases by {@dice 1d6} for each level above 1st."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
+					]
+				},
+				{
+					"name": "Mace",
+					"entries": [
+						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d6}) bludgeoning damage."
+					]
+				}
+			],
+			"attachedItems": [
+				"mace|phb"
+			],
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"CE"
+			],
+			"damageTags": [
+				"B",
+				"I",
+				"P"
+			],
+			"damageTagsSpell": [
+				"N",
+				"O",
+				"R"
+			],
+			"spellcastingTags": [
+				"CC"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Wakewyrm",
+			"source": "HWCS",
+			"page": 187,
+			"size": [
+				"H"
+			],
+			"type": "beast",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"formula": "13d12 + 52",
+				"average": 136
+			},
+			"speed": {
+				"walk": 20,
+				"swim": 50
+			},
+			"str": 20,
+			"dex": 14,
+			"con": 18,
+			"int": 3,
+			"wis": 12,
+			"cha": 3,
+			"passive": 11,
+			"cr": "6",
+			"trait": [
+				{
+					"name": "Hold Breath",
+					"entries": [
+						"The Wakewyrm can hold its breath for 1 hour."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The wakewyrm makes two attacks, one with its bite and one with its tail, or two bite attacks."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 8} to hit, reach 20 ft., one target. {@h}15 ({@damage 3d6 + 5}) piercing damage. The target must succeed on a {@dc 16} Strength saving throw or be {@condition grappled} (escape {@dc 16}). The wakewyrm can only grapple one creature at a time, and cannot make bite attacks against other creatures while it has a creature {@condition grappled}."
+					]
+				},
+				{
+					"name": "Tail",
+					"entries": [
+						"{@atk mw} {@hit 8} to hit, reach 25 ft., one target. {@h}18 ({@damage 3d8 + 5}) bludgeoning damage."
+					]
+				},
+				{
+					"name": "Swallow",
+					"entries": [
+						"The wakewyrm makes a bite attack against a Large or smaller creature it is grappling, and if the attack hits the target is swallowed, and the grapple ends. The swallowed target is {@condition blinded} and {@condition restrained}, it has {@quickref Cover||3||total cover} against attacks and other effects outside the wakewyrm, and it takes 11 ({@damage 3d6}) acid damage at the start of each of the wakewyrm's turns. If the wakewyrm takes 18 or more points of damage from a creature inside of it, the wakewyrm must succeed on a {@dc 15} Constitution saving throw at the end of that turn or regurgitate all swallowed creatures, which fall {@condition prone} in a space within 10 feet of the wakewyrm. If the wakewyrm dies, a swallowed creature is no longer {@condition restrained} by it, and it can escape from the corpse using 20 feet of movement. After death, internal gasses keep the wakewyrm's body afloat for several hours, before it begins to sink gradually to a watery grave."
+					]
+				}
+			],
+			"traitTags": [
+				"Hold Breath"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Swallow"
+			],
+			"damageTags": [
+				"A",
+				"B",
+				"P"
+			],
+			"miscTags": [
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"blinded",
+				"grappled",
+				"restrained"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"strength"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Walden Krane, Magistrate of Winnowing Reach",
+			"shortName": "Walden",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HWCS",
+			"page": 209,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"kindled corvum"
+				]
+			},
+			"alignment": [
+				"L",
+				"N"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"{@item breastplate|phb}"
+					]
+				}
+			],
+			"hp": {
+				"average": 9,
+				"formula": "2d8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 11,
+			"dex": 12,
+			"con": 11,
+			"int": 14,
+			"wis": 14,
+			"cha": 17,
+			"skill": {
+				"deception": "+5",
+				"insight": "+6",
+				"persuasion": "+5"
+			},
+			"passive": 13,
+			"languages": [
+				"Birdfolk",
+				"can also understand Auran but can't speak it"
+			],
+			"cr": "1/8",
+			"trait": [
+				{
+					"name": "Glide",
+					"entries": [
+						"When falling at least 10 feet, Bita can spend a reaction to fly up to her speed in one direction as she descends. She lands in an unoccupied space at the end of her movement, and takes no falling damage. She cannot glide while carrying heavy objects, heavy weapons, or shields (though she can drop any held items as part of her reaction)."
+					]
+				},
+				{
+					"name": "Talons",
+					"entries": [
+						"Walden rolls advantage on Strength ({@skill Athletics}) checks made to climb any surface his talons could reasonably grip."
+					]
+				},
+				{
+					"name": "Learned",
+					"entries": [
+						"Walden gains proficiency in one of the following skills: {@skill Arcana}, {@skill History}, {@skill Nature}, or {@skill Religion}."
+					]
+				},
+				{
+					"name": "Convincing",
+					"entries": [
+						"Walden gains proficiency in his choice of the {@skill Deception} or {@skill Persuasion} skill. Additionally, he has advantage on all Charisma checks used to convince someone of their knowledge of anything pertaining to the skill he gained proficiency in from his Learned ability."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Rapier",
+					"entries": [
+						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d8 + 1}) piercing damage."
+					]
+				},
+				{
+					"name": "Talons",
+					"entries": [
+						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d4 + 1}) piercing damage."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Parry",
+					"entries": [
+						"Walden adds 2 to his AC against one melee attack that would hit him. To do so, Walden must see the attacker and be wielding a melee weapon."
+					]
+				}
+			],
+			"tokenCredit": "Kiruko_Kun",
+			"attachedItems": [
+				"rapier|phb"
+			],
+			"actionTags": [
+				"Parry"
+			],
+			"languageTags": [
+				"AU",
+				"CS"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true
+		}
+	]
+}

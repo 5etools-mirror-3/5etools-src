@@ -1,0 +1,72 @@
+@use "../vars/vars";
+
+.cls-tbl {
+	font-size: 0.8em;
+	background: vars.$rgb-bg-orange;
+
+	> tbody > tr > th {
+		color: vars.$rgb-off-black;
+		padding: 1px 0.3em;
+	}
+
+	&__ {
+		&disp-name {
+			font-size: 1.8em;
+			font-family: "Times New Roman", serif;
+			font-variant: small-caps;
+			font-weight: 500;
+			padding-left: 0.2em;
+			color: vars.$rgb-off-black;
+		}
+
+		&col-group {
+			text-align: center;
+
+			&::after {
+				position: relative;
+				bottom: 0;
+				left: 0;
+				margin: 0 auto;
+				padding: 0;
+				display: block;
+				content: "";
+				height: 1px;
+				width: 96%;
+				border-bottom: 1px solid vars.$rgb-off-black;
+			}
+		}
+
+		&col-level {
+			text-align: center;
+			width: 1.5em;
+		}
+
+		&col-prof-bonus {
+			text-align: center;
+			width: 1.5em;
+			padding: 1px 0.5em;
+		}
+
+		&col-generic-center {
+			text-align: center;
+			min-width: 1em;
+			max-width: 5em;
+		}
+
+		&stripe-odd:nth-child(odd) {
+			background: #d3d3d3;
+		}
+
+		&cell-spell-progression--spell-points-enabled {
+			display: none !important;
+		}
+
+		&cell-spell-points {
+			display: none !important;
+
+			&--spell-points-enabled {
+				display: table-cell !important;
+			}
+		}
+	}
+}

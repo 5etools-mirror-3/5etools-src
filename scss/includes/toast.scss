@@ -1,0 +1,98 @@
+@use "sass:color";
+
+@use "../vars/vars";
+
+.toast {
+	@include vars.mix-shadow-1;
+
+	z-index: vars.$z-temp-effect;
+	right: 0;
+	bottom: 200px;
+	left: 0;
+	padding: 5px 15px;
+	min-height: 40px;
+	max-width: 850px;
+	display: flex;
+	width: 90vw;
+	justify-content: space-between;
+	align-items: center;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	opacity: 1;
+	transition: bottom vars.$time-5-frames;
+
+	&--animate {
+		bottom: 0;
+		margin-bottom: (vars.$spacer * 0.5);
+		transition: bottom vars.$time-5-frames;
+	}
+
+	&--deleted {
+		z-index: vars.$z-temp-effect - 1;
+	}
+
+	&__container {
+		position: fixed;
+		z-index: vars.$z-temp-effect;
+		top: 0;
+		right: 0;
+		left: 0;
+		height: 200px;
+	}
+
+	&__wrp-control {
+		margin: -5px -15px -5px 0;
+		flex: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		align-self: stretch;
+	}
+
+	&__btn-close {
+		margin: 0;
+		height: 100%;
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+		border-top: 0;
+		border-right: 0;
+		border-bottom: 0;
+		border-left: 1px solid #80808040;
+		background: transparent;
+
+		&:hover,
+		&:focus {
+			background: #80808020;
+		}
+	}
+
+	&--type-info {
+		color: vars.$rgb-alert-text-info;
+		background-color: #d9edf7;
+		border-color: #bce8f1;
+	}
+
+	&--type-danger {
+		color: vars.$rgb-alert-text-danger;
+		background-color: #f2dede;
+		border-color: #ebccd1;
+	}
+
+	&--type-warning {
+		color: vars.$rgb-alert-text-warning;
+		background-color: #fcf8e3;
+		border-color: #faebcc;
+	}
+
+	&--type-success {
+		color: vars.$rgb-alert-text-success;
+		background-color: #dff0d8;
+		border-color: #d6e9c6;
+	}
+}
+
+@include vars.mix-is-print {
+	.toast {
+		display: none !important;
+	}
+}

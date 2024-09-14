@@ -1,0 +1,32 @@
+{
+	"$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+	"version": "0.2",
+	"dictionaryDefinitions": [
+		{
+			"name": "dnd-words",
+			"path": "./spellcheck/dnd-words.txt",
+			"addWords": true
+		},
+		{
+			"name": "javascript-words",
+			"path": "./spellcheck/javascript-words.txt",
+			"addWords": true
+		},
+		{
+			"name": "artist-names",
+			"path": "./spellcheck/artist-names.txt",
+			"addWords": true
+		}
+	],
+	"dictionaries": [
+		"dnd-words",
+		"javascript-words",
+		"artist-names"
+	],
+	"ignorePaths": [
+		"./spellcheck/*.txt",
+		"node_modules",
+		"lib/",
+		"js/sw-files.js"
+	]
+}

@@ -1,0 +1,46 @@
+@use "../vars/vars";
+@use "../vars/vars-night";
+
+.dm-map__ {
+	&picker-wrp-img {
+		display: inline-block;
+		width: 320px;
+		height: 340px;
+		line-height: 320px;
+		text-align: center;
+		font-size: 0;
+		border: 2px solid vars.$rgb-border-grey;
+	}
+
+	&picker-img {
+		width: auto;
+		height: 320px;
+		vertical-align: middle;
+		background-size: contain;
+		background-position: center;
+		background-repeat: no-repeat;
+	}
+
+	&picker-disp-name {
+		inset: calc(100% - 20px) 14px 0 14px;
+		line-height: 20px;
+		font-size: 14px;
+		background: #fff;
+		border-top: 1px solid vars.$rgb-border-grey;
+		border-right: 1px solid vars.$rgb-border-grey;
+		border-left: 1px solid vars.$rgb-border-grey;
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+	}
+}
+
+.ve-night-mode .dm-map__ {
+	&picker-wrp-img {
+		border-color: vars-night.$rgb-border-grey--night;
+	}
+
+	&picker-disp-name {
+		background: vars-night.$rgb-bg--night;
+		border-color: vars-night.$rgb-border-grey--night;
+	}
+}

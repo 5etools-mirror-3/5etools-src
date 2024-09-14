@@ -1,0 +1,19 @@
+@use "../vars/vars";
+
+@include vars.mix-is-print {
+	.rd__b-inset {
+		background: none !important;
+		box-shadow: none !important;
+		border-color: #000 !important;
+	}
+
+	.rd__b-special,
+	.rd__li {
+		break-inside: avoid;
+		page-break-inside: avoid;
+	}
+
+	.rd__h--1 {
+		border-bottom-color: #000 !important;
+	}
+}

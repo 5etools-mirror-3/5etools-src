@@ -1,0 +1,139 @@
+{
+	"_meta": {
+		"dependencies": {
+			"monster": [
+				"MM"
+			]
+		}
+	},
+	"monster": [
+		{
+			"name": "Hound of Ill Omen",
+			"source": "XGE",
+			"page": 50,
+			"summonedByClass": "Sorcerer|PHB",
+			"_copy": {
+				"name": "Dire Wolf",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "\\bwolf\\b",
+						"with": "hound"
+					},
+					"trait": [
+						{
+							"mode": "appendArr",
+							"items": [
+								{
+									"name": "Cloak of Shadows",
+									"entries": [
+										"The hound appears with a number of temporary hit points equal to half your sorcerer level."
+									]
+								},
+								{
+									"name": "Incorporeal Movement",
+									"entries": [
+										"The hound can move through other creatures and objects as if they were {@quickref difficult terrain||3}. The hound takes 5 force damage if it ends its turn inside an object."
+									]
+								},
+								{
+									"name": "Omen Sight",
+									"entries": [
+										"At the start of its turn, the hound automatically knows its target's location. If the target was hidden, it is no longer hidden from the hound."
+									]
+								},
+								{
+									"name": "Ever at Your Heels",
+									"entries": [
+										"On its turn, it can move only toward its target by the most direct route, and it can use its action only to attack its target. The hound can make opportunity attacks, but only against its target. Additionally, while the hound is within 5 feet of the target, the target has disadvantage on saving throws against any spell you cast. The hound disappears if it is reduced to 0 hit points, if its target is reduced to 0 hit points, or after 5 minutes."
+									]
+								}
+							]
+						}
+					]
+				}
+			},
+			"size": [
+				"M"
+			],
+			"type": "monstrosity",
+			"traitTags": [
+				"Incorporeal Movement",
+				"Keen Senses",
+				"Pack Tactics"
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Tiny Servant",
+			"source": "XGE",
+			"page": 169,
+			"size": [
+				"T"
+			],
+			"type": "construct",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 10,
+				"formula": "4d4"
+			},
+			"speed": {
+				"walk": 30,
+				"climb": 30
+			},
+			"str": 4,
+			"dex": 16,
+			"con": 10,
+			"int": 2,
+			"wis": 10,
+			"cha": 1,
+			"senses": [
+				"blindsight 60 ft. (blind beyond this radius)"
+			],
+			"passive": 10,
+			"immune": [
+				"poison",
+				"psychic"
+			],
+			"conditionImmune": [
+				"blinded",
+				"charmed",
+				"deafened",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"petrified",
+				"poisoned"
+			],
+			"action": [
+				{
+					"name": "Slam",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d4 + 3}) bludgeoning damage."
+					]
+				}
+			],
+			"senseTags": [
+				"B"
+			],
+			"damageTags": [
+				"B"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"hasToken": true
+		}
+	]
+}

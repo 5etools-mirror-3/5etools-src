@@ -1,0 +1,263 @@
+@use "sass:color";
+
+$pct-darken-active: 10%;
+$pct-darken-border: 15%;
+$pct-darken-border--active: 20%;
+$pct-darken-hover: 5%;
+
+$sz-y-header: 73px;
+
+$spacer: 1rem;
+
+$rgb-off-black: #333;
+
+$rgb-active-blue--light: #7398b7;
+$rgb-active-blue: #337ab7;
+$rgb-active-blue--dark: #2a6496;
+$rgb-active-red--light: #8a4b4b;
+$rgb-active-red: #8a1a1b;
+$rgb-active-red--dark: #711617;
+$rgb-inactive-grey: #c3c3c3;
+
+$rgb-name-red: #822000;
+$rgb-bg-orange: #fdf1dc;
+$rgb-bg-highlight: #ff0;
+$rgb-border-yellow--statblock: #e69a28;
+
+$rgb-link-blue: $rgb-active-blue;
+$rgb-link-blue--muted: #7096b7;
+
+$rgb-border-grey: #ccc;
+$rgb-border-grey--trans: #cccccca0;
+$rgb-border-grey--trans-muted: #ccc6;
+$rgb-border-grey--muted: #eee;
+$rgb-border-grey--list-row: #ddd;
+
+$rgb-modal-overlay-grey: #45454588;
+$rgb-shadow-grey: rgb(0 0 0 / 17.5%);
+$rgb-shadow-grey--dark: rgb(0 0 0 / 47.5%);
+
+$rgb-stripe-grey: #88888818;
+$rgb-stripe-grey--faint: #bbbbbb18;
+
+$rgb-cb-grey: #666;
+
+$rgb-bg: #fff;
+$rgb-bg--alt: #f5f5f5;
+$rgb-bg-homebrew: #ff00001a;
+
+$rgb-font: #333;
+$rgb-font--muted: #777;
+
+$rgb-ctx-item-text-disabled: #777;
+
+$rgb-alert-text-success: #3c763d;
+$rgb-alert-text-info: #31708f;
+$rgb-alert-text-warning: #8a6d3b;
+$rgb-alert-text-danger: #a94442;
+
+$rgb-btn-danger-bg-red: #d9534f;
+
+$rgb-btn-danger-border-red: #ac2925;
+
+$rgb-btn-primary-blue: $rgb-active-blue;
+$rgb-btn-primary-blue--desaturated: #b8b8b8;
+
+$rgb-class-variant: #8f903c;
+$rgb-class-ua: #827e00;
+$rgb-subclass: #337ab7;
+$rgb-subclass--stale: #7699b7;
+$rgb-subclass-ua: #1d965d;
+$rgb-subclass-ua--stale: #5f967c;
+$rgb-class-brew: #8c3b96;
+$rgb-class-variant-brew: #ba75a1;
+
+$rgb-roll-min: #ff3100;
+$rgb-roll-max: #00b400;
+$rgb-roll-min--muted: color.adjust($rgb-roll-min, $saturation: - 35%);
+$rgb-roll-max--muted: color.adjust($rgb-roll-max, $saturation: - 35%);
+
+/* Z-Indices */
+$z-token-image: 10;
+
+$z-side-menu: 60;
+
+$z-omnisearch: 100;
+$z-book-find: 100;
+$z-bookmode: 100;
+$z-rollerbox-hidden: 100;
+$z-card-viewer: 105; // Minimized rollbox should be underneath; active rollbox should be on top, so we can roll dice in cards
+$z-rollerbox-active: 110;
+
+// Z-indices 200-300 reserved for hover windows
+$z-hwin: 200;
+
+$z-search: 900;
+
+$z-modal-wrapper: 1000;
+$z-modal-inner: 1001;
+$z-modal-legal: 1000;
+
+$z-context-menu: 1100;
+
+$z-temp-effect: 2000;
+
+/* *** */
+
+/* region Timing */
+$time-1-frame: 17ms;
+$time-2-frames: 34ms;
+$time-3-frames: 51ms;
+$time-4-frames: 67ms;
+$time-5-frames: 84ms;
+/* endregion */
+
+// region Widths
+$w-ipt-number-1-digit: 24px;
+$w-ipt-number-1-5-digit: 30px;
+$w-ipt-number-2-digit: 40px;
+$w-ipt-number-3-digit: 60px;
+$w-ipt-number-4-digit: 80px;
+
+$w-scroll-body: 15px;
+// endregion
+
+// region Heights
+$h-ipt-xs: 22px;
+// endregion
+
+// region Fonts
+$font-line-height: 1.42857143;
+// endregion
+
+@mixin mix-shadow-1() {
+	box-shadow: 0 6px 12px $rgb-shadow-grey;
+}
+
+@mixin mix-shadow-1--dark() {
+	box-shadow: 0 6px 12px $rgb-shadow-grey--dark;
+}
+
+@mixin mix-shadow-2() {
+	box-shadow: 0 3px 6px $rgb-shadow-grey;
+}
+
+@mixin mix-shadow-active {
+	box-shadow: 0 0 2px 0 #000b;
+}
+
+@mixin mix-row-glow-active {
+	box-shadow: inset 0 0 0 5000px rgb(0 107 196 / 30%);
+}
+
+@mixin mix-row-glow-active--alt {
+	box-shadow: inset 0 0 0 5000px rgb(148 148 148 / 20%);
+}
+
+@mixin mix-overflow-dots {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+@mixin mix-vr {
+	width: 1px;
+	height: 100%;
+	border-left: 1px solid $rgb-border-grey;
+}
+
+@mixin mix-is-print {
+	@media print {
+		@content;
+	}
+
+	@at-root html.is-faux-print #{&} {
+		@content;
+	}
+}
+
+/* *** */
+
+@mixin mix-font-regular {
+	font-family: Arial, sans-serif;
+	font-variant: normal;
+	font-weight: normal;
+}
+
+$width-screen-xxs: 320px;
+$width-screen-xs: 480px;
+$width-screen-sm: 768px;
+$width-screen-md: 991px;
+$width-screen-lg: 1200px;
+$width-screen-hg: 1600px;
+
+// region linked titles
+%linked-titles-base {
+	.rd__h--0 .entry-title-inner:hover::before {
+		font-size: 50%;
+	}
+
+	.rd__h--1 .entry-title-inner:hover::before {
+		font-size: 55%;
+	}
+
+	.rd__h--2 .entry-title-inner:hover::before {
+		font-size: 60%;
+	}
+}
+
+%linked-titles-base-inner {
+	cursor: copy;
+
+	&:hover::before {
+		content: " 🔗";
+		color: rgb(0 0 0 / 20%);
+		position: relative;
+		float: left;
+		width: 14px;
+		height: 14px;
+		right: 20px;
+		margin-right: -30px;
+		font-size: 85%;
+	}
+}
+// endregion
+
+// region filters
+$fltr-stripe: 11px;
+$fltr-2stripe: 22px;
+// endregion
+
+// region Shared UI
+@mixin mix-cb-custom {
+	width: 16px;
+	height: 16px;
+	padding: 0;
+	flex-shrink: 0;
+	flex-grow: 0;
+	display: inline-block;
+	cursor: pointer;
+	border: 1px solid $rgb-border-grey;
+	border-radius: 4px;
+	outline: none;
+	user-select: none;
+
+	&:active {
+		@include mix-shadow-active;
+	}
+
+	&.active {
+		background: $rgb-cb-grey;
+		border-color: color.adjust($rgb-cb-grey, $lightness: 15%);
+
+		&.disabled {
+			background-color: color.adjust($rgb-cb-grey, $lightness: 25%);
+		}
+	}
+
+	&.disabled {
+		cursor: default;
+		box-shadow: none;
+	}
+}
+// endregion

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{{> "head" }}
+
+<body>
+
+{{> "overlayNoise" }}
+
+<div class="viewport-wrapper">
+	<div class="sidemenu__toggle">
+		<div class="sidemenu__hotzone"></div>
+		<div class="sidemenu__burger"></div>
+		<div class="sidemenu__burger"></div>
+		<div class="sidemenu__burger"></div>
+		<div class="sidemenu"></div>
+	</div>
+
+	{{> "adLeaderboard" }}
+
+	{{> "navbar" }}
+
+	<div class="view-col-wrapper">
+
+		<div class="view-col">
+			<h3 class="conv__head">Input</h3>
+			<pre id="converter_input" class="inputArea ace_editor"></pre>
+			<div class="split-v-center">
+				<div id="wrp-footer-lhs" class="ve-flex-v-center"></div>
+				<div class="ve-flex-v-center ve-btn-group">
+					<button id="parsestatblock" class="ve-btn ve-btn-sm ve-btn-default">Parse</button>
+					<button id="parsestatblockadd" class="ve-btn ve-btn-sm ve-btn-default">Parse and Add</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="view-col">
+			<h3 class="conv__head">Output</h3>
+
+			<pre id="converter_output" class="outputArea ace_editor"></pre>
+
+			<div class="split-v-center conv__out_control__wrp">
+				<button id="editable" class="ve-btn ve-btn-sm ve-btn-default">Enable Editing</button>
+				<div class="ve-flex-v-center">
+					<button id="preview" class="ve-btn ve-btn-sm ve-btn-default mr-2">Preview</button>
+					<button id="save_local" class="ve-btn ve-btn-sm ve-btn-default hidden mr-2">Save to Homebrew</button>
+
+					<div class="ve-btn-group ve-flex-vh-center">
+						<button id="btn-output-copy" class="ve-btn ve-btn-sm ve-btn-default">Copy</button>
+						<button id="btn-output-download" class="ve-btn ve-btn-sm ve-btn-default">Download</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="code mt-2 p-2 ve-flex-col ve-hidden conv__disp-message conv__disp-message--warning" id="lastWarnings"></div>
+			<div class="code mt-2 p-2 ve-flex-col ve-hidden conv__disp-message conv__disp-message--error" id="lastError"></div>
+		</div>
+	</div>
+</div>
+
+{{> "adFooter" }}
+
+{{> "scripts" }}
+
+</body>
+</html>

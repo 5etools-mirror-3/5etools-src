@@ -1,0 +1,17 @@
+@use "vars/vars";
+
+#initp__wrp_active {
+	display: none;
+}
+
+.is-fullscreen .initp__fullscreen-hidden {
+	display: none !important;
+}
+
+@media screen and (width <= #{vars.$width-screen-md}) {
+	.viewport-wrapper {
+		bottom: 0;
+		height: 100vh;
+		min-height: 0;
+	}
+}

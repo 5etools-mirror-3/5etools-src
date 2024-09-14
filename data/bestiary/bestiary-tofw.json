@@ -1,0 +1,585 @@
+{
+	"_meta": {
+		"dependencies": {
+			"monster": [
+				"MM",
+				"MPP"
+			]
+		},
+		"otherSources": {
+			"monster": {
+				"MPP": "ToFW",
+				"MM": "ToFW",
+				"DMG": "ToFW"
+			}
+		}
+	},
+	"monster": [
+		{
+			"name": "Aza Dowling",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "ToFW",
+			"page": 17,
+			"_copy": {
+				"name": "Society of Sensation Muse",
+				"source": "MPP",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "The muse",
+						"with": "Aza",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true
+		},
+		{
+			"name": "Ebonclaw",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "ToFW",
+			"page": 50,
+			"_copy": {
+				"name": "Saber-Toothed Tiger",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "The tiger",
+						"with": "Ebonclaw",
+						"flags": "i"
+					}
+				}
+			},
+			"alignment": [
+				"L",
+				"N"
+			],
+			"hasToken": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Eyestalk of Gzemnid",
+			"source": "ToFW",
+			"page": 88,
+			"_copy": {
+				"name": "Purple Worm",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "\\bworm\\b",
+						"with": "eyestalk"
+					},
+					"action": [
+						{
+							"mode": "replaceArr",
+							"replace": "Multiattack",
+							"items": {
+								"name": "Multiattack",
+								"entries": [
+									"The eyestalk attacks with its bite and uses Eradication Gaze."
+								]
+							}
+						},
+						{
+							"mode": "replaceArr",
+							"replace": "Tail Stinger",
+							"items": {
+								"name": "Eradication Gaze {@recharge 5}",
+								"entries": [
+									"The eyestalk creates an area of magical devastation in a 150-foot cone. Any creature in that area must succeed on a {@dc 16} Dexterity saving throw or take 55 ({@damage 10d10}) necrotic damage. If this damage reduces a creature to 0 hit points, its body becomes a pile of fine violet dust."
+								]
+							}
+						}
+					]
+				}
+			},
+			"tokenCredit": "@hamosart",
+			"hasToken": true,
+			"hasFluff": true
+		},
+		{
+			"name": "Farrow",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "ToFW",
+			"page": 17,
+			"_copy": {
+				"name": "Spy",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "The spy",
+						"with": "Farrow",
+						"flags": "i"
+					}
+				}
+			},
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"elf"
+				]
+			},
+			"alignment": [
+				"N"
+			],
+			"hasToken": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Gertrube",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "ToFW",
+			"page": 18,
+			"_copy": {
+				"name": "Thug",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "The thug",
+						"with": "Gertrube",
+						"flags": "i"
+					}
+				}
+			},
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"hasToken": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Giant Whirlwyrm",
+			"source": "ToFW",
+			"page": 55,
+			"_copy": {
+				"name": "Behir",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "behir",
+						"with": "whirlwyrm"
+					},
+					"action": {
+						"mode": "replaceArr",
+						"replace": "Lightning Breath {@recharge 5}",
+						"items": {
+							"name": "Thunder Breath {@recharge 5}",
+							"entries": [
+								"The whirlwyrm exhales a line of thunder that is 20 feet long and 5 feet wide. Each creature in that line must make a {@dc 16} Dexterity saving throw, taking 66 ({@damage 12d10}) thunder damage on a failed save, or half as much damage on a successful one."
+							]
+						}
+					}
+				}
+			},
+			"speed": {
+				"walk": 50,
+				"swim": 60
+			},
+			"hasToken": true
+		},
+		{
+			"name": "Josbert Plum",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "ToFW",
+			"page": 17,
+			"_copy": {
+				"name": "Harmonium Peacekeeper",
+				"source": "MPP",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the peacekeeper",
+						"with": "Josbert",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Kal the Crisp",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "ToFW",
+			"page": 17,
+			"_copy": {
+				"name": "Hands of Havoc Fire Starter",
+				"source": "MPP",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "The fire starter",
+						"with": "Kal",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true
+		},
+		{
+			"name": "Kopoha",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "ToFW",
+			"page": 61,
+			"_copy": {
+				"name": "Empyrean",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "The empyrean",
+						"with": "Kopoha",
+						"flags": "i"
+					},
+					"action": {
+						"mode": "removeArr",
+						"names": "Maul"
+					}
+				}
+			},
+			"alignment": [
+				"C",
+				"G"
+			],
+			"hasToken": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Modron Planar Incarnate",
+			"source": "ToFW",
+			"page": 92,
+			"_copy": {
+				"name": "Planar Incarnate",
+				"source": "MPP",
+				"_mod": {
+					"trait": {
+						"mode": "removeArr",
+						"names": "Planar Form"
+					},
+					"action": [
+						{
+							"mode": "replaceArr",
+							"replace": "Energy Bolt",
+							"items": {
+								"name": "Energy Bolt",
+								"entries": [
+									"{@atk rs} {@hit 12} to hit, range 120 ft., one target. {@h}32 ({@damage 5d12}) necrotic damage."
+								]
+							}
+						},
+						{
+							"mode": "replaceArr",
+							"replace": "Planar Exhalation {@recharge 5}",
+							"items": {
+								"name": "Planar Exhalation {@recharge 5}",
+								"entries": [
+									"The incarnate exhales concentrated energy native to its plane in a 60-foot cone. Each creature in that area must make a {@dc 23} Constitution saving throw. On a failed save, a creature takes 52 ({@damage 8d12}) necrotic damage, and the creature has the {@condition blinded} condition until the end of the incarnate's next turn. On a successful save, a creature takes half as much damage only."
+								]
+							}
+						}
+					]
+				}
+			},
+			"type": "fiend",
+			"hasToken": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Morte",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "ToFW",
+			"page": 10,
+			"otherSources": [
+				{
+					"source": "MPP"
+				}
+			],
+			"size": [
+				"T"
+			],
+			"type": "undead",
+			"alignment": [
+				"C",
+				"G"
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 22,
+				"formula": "4d4 + 12"
+			},
+			"speed": {
+				"walk": 0,
+				"fly": {
+					"number": 30,
+					"condition": "(hover)"
+				},
+				"canHover": true
+			},
+			"str": 10,
+			"dex": 16,
+			"con": 16,
+			"int": 13,
+			"wis": 10,
+			"cha": 12,
+			"skill": {
+				"arcana": "+3",
+				"stealth": "+5"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 10,
+			"immune": [
+				"poison"
+			],
+			"vulnerable": [
+				"bludgeoning"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"poisoned"
+			],
+			"languages": [
+				"Common"
+			],
+			"cr": "1/4",
+			"action": [
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d4 + 3}) piercing damage."
+					]
+				}
+			],
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Ophelia",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "ToFW",
+			"page": 49,
+			"_copy": {
+				"name": "Elephant",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "The elephant",
+						"with": "Ophelia",
+						"flags": "i"
+					}
+				}
+			},
+			"alignment": [
+				"L",
+				"G"
+			],
+			"int": 10,
+			"wis": 14,
+			"cha": 14,
+			"languages": [
+				"Common"
+			],
+			"hasToken": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Parvaz",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "ToFW",
+			"page": 50,
+			"_copy": {
+				"name": "Giant Eagle",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "The eagle",
+						"with": "Parvaz",
+						"flags": "i"
+					}
+				}
+			},
+			"alignment": [
+				"N"
+			],
+			"int": 16,
+			"cha": 14,
+			"languages": [
+				"Common"
+			],
+			"hasToken": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "R04M",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "ToFW",
+			"page": 75,
+			"_copy": {
+				"name": "Monodrone",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "The monodrone",
+						"with": "R04M",
+						"flags": "i"
+					}
+				}
+			},
+			"alignment": [
+				"N",
+				"G"
+			],
+			"int": 8,
+			"languages": [
+				"Common",
+				"Modron"
+			],
+			"hasToken": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Shariel",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "ToFW",
+			"page": 65,
+			"_copy": {
+				"name": "Deva",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "The deva",
+						"with": "Shariel",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Vecna Impersonator",
+			"source": "ToFW",
+			"page": 26,
+			"_copy": {
+				"name": "Doppelganger",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "doppelganger",
+						"with": "impersonator"
+					}
+				}
+			},
+			"hasToken": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Whirlwyrm",
+			"source": "ToFW",
+			"page": 52,
+			"_copy": {
+				"name": "Giant Crocodile",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "crocodile",
+						"with": "whirlwyrm"
+					}
+				}
+			},
+			"hasToken": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "X01",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "ToFW",
+			"page": 91,
+			"_copy": {
+				"name": "Hexton Modron",
+				"source": "MPP",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "The hexton",
+						"with": "X01",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Zaythir",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "ToFW",
+			"page": 32,
+			"_copy": {
+				"name": "Githzerai Uniter",
+				"source": "MPP",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "The githzerai",
+						"with": "Zaythir",
+						"flags": "i"
+					}
+				}
+			},
+			"alignment": [
+				"N"
+			],
+			"hasToken": true,
+			"hasFluffImages": true
+		}
+	]
+}

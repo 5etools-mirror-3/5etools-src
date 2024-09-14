@@ -1,0 +1,85 @@
+@use "../vars/vars";
+@use "../vars/vars-night";
+
+@mixin mix-source-color ($rgb) {
+	color: $rgb !important;
+	border-color: $rgb !important;
+	text-decoration-color: $rgb !important;
+}
+
+.ve-night-mode .source {
+	$rgb-source-category-site: #de000a;
+	$rgb-source-category-extras: #bb6468;
+	$rgb-source-category-prerelease: vars-night.$rgb-subclass-ua--night;
+	$rgb-source-category-prerelease--local: #60c52f;
+	$rgb-source-category-homebrew: vars-night.$rgb-class-brew--night;
+	$rgb-source-category-homebrew--local: #514bff;
+	$rgb-source-category-homebrew--partnered: #b44051;
+
+	$rgb-source-PHB: vars-night.$rgb-subclass--night;
+	$rgb-source-DMG: #ba1eba;
+	$rgb-source-SADS: #4f63f5;
+	$rgb-source-PSA: #eec276;
+
+	// region Categories
+
+	&-category- {
+		&site {
+			@include mix-source-color($rgb-source-category-site);
+		}
+
+		&extras {
+			@include mix-source-color($rgb-source-category-extras);
+		}
+
+		&homebrew {
+			@include mix-source-color($rgb-source-category-homebrew);
+
+			&--partnered {
+				@include mix-source-color($rgb-source-category-homebrew--partnered);
+			}
+
+			&--local {
+				@include mix-source-color($rgb-source-category-homebrew--local);
+			}
+		}
+
+		&spicy {
+			@include mix-source-color($rgb-source-category-prerelease);
+
+			&--partnered {
+				@include mix-source-color(#ff00ff); // (Should never occur)
+			}
+
+			&--local {
+				@include mix-source-color($rgb-source-category-prerelease--local);
+			}
+		}
+	}
+
+	// endregion
+
+	&__ {
+		&PHB {
+			@include mix-source-color($rgb-source-PHB);
+		}
+
+		&DMG {
+			@include mix-source-color($rgb-source-DMG);
+		}
+
+		&SADS {
+			@include mix-source-color($rgb-source-SADS);
+		}
+
+		&PSA {
+			@include mix-source-color($rgb-source-PSA);
+		}
+	}
+}
+
+.ve-night-mode .ve-source-marker {
+	&--partnered {
+		color: #27ac8c;
+	}
+}

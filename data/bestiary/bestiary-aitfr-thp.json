@@ -1,0 +1,471 @@
+{
+	"monster": [
+		{
+			"name": "Greater Shadow Horror",
+			"source": "AitFR-THP",
+			"page": 12,
+			"size": [
+				"H"
+			],
+			"type": "aberration",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 170,
+				"formula": "20d12 + 40"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 14,
+			"dex": 16,
+			"con": 14,
+			"int": 2,
+			"wis": 17,
+			"cha": 18,
+			"skill": {
+				"perception": "+7",
+				"stealth": "+11"
+			},
+			"senses": [
+				"darkvision 120 ft."
+			],
+			"passive": 17,
+			"vulnerable": [
+				"radiant"
+			],
+			"conditionImmune": [
+				"frightened"
+			],
+			"cr": "12",
+			"trait": [
+				{
+					"name": "Incorporeal Movement",
+					"entries": [
+						"The horror can move through other creatures and objects as if they were {@quickref difficult terrain||3}. It takes 5 ({@damage 1d10}) force damage if it ends its turn inside an object."
+					]
+				},
+				{
+					"name": "Legendary Resistance (2/Day)",
+					"entries": [
+						"If the horror fails a saving throw, it can choose to succeed instead."
+					]
+				},
+				{
+					"name": "Shadow Stealth",
+					"entries": [
+						"While in dim light or darkness, the horror can take the Hide action as a bonus action."
+					]
+				},
+				{
+					"name": "Shadow Stride",
+					"entries": [
+						"As a bonus action, the horror can step into a shadow within 5 feet of it and magically appear in an unoccupied space within 5 feet of a second shadow that is up to 60 feet away. Both shadows must be cast by a Medium or larger creature or object."
+					]
+				},
+				{
+					"name": "Sunlight Sensitivity",
+					"entries": [
+						"While in sunlight, the horror has disadvantage on attack rolls and on Wisdom ({@skill Perception}) checks that rely on sight."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The horror makes three attacks: one with its bite and two with its claws."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}21 ({@damage 4d8 + 3}) piercing damage."
+					]
+				},
+				{
+					"name": "Claw",
+					"entries": [
+						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}17 ({@damage 4d6 + 3}) slashing damage, and the target must succeed on a {@dc 16} Wisdom saving throw or be {@condition frightened} of the horror until the end of the target's next turn."
+					]
+				},
+				{
+					"name": "Lashing Shadows {@recharge 5}",
+					"entries": [
+						"Each creature within 60 feet of the horror, except other horrors, must succeed on a {@dc 16} Dexterity saving throw or take 36 ({@damage 8d8}) necrotic damage."
+					]
+				}
+			],
+			"legendary": [
+				{
+					"name": "Claw",
+					"entries": [
+						"The horror makes a weapon attack."
+					]
+				},
+				{
+					"name": "Glide",
+					"entries": [
+						"The horror moves up to 20 feet without provoking opportunity attacks."
+					]
+				},
+				{
+					"name": "Frighten Foe (Costs 2 Actions)",
+					"entries": [
+						"The horror targets one enemy it can see within 30 feet of it. If the target can see and hear it, the target must succeed on a {@dc 16} Wisdom saving throw or be {@condition frightened} until the end of horror's next turn."
+					]
+				}
+			],
+			"traitTags": [
+				"Incorporeal Movement",
+				"Legendary Resistances",
+				"Sunlight Sensitivity"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"damageTags": [
+				"N",
+				"O",
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"AOE",
+				"MW"
+			],
+			"conditionInflict": [
+				"frightened"
+			],
+			"savingThrowForced": [
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true
+		},
+		{
+			"name": "Morwena Veilmist",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "AitFR-THP",
+			"page": 13,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				12
+			],
+			"hp": {
+				"average": 55,
+				"formula": "10d8 + 10"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 9,
+			"dex": 14,
+			"con": 13,
+			"int": 17,
+			"wis": 12,
+			"cha": 14,
+			"save": {
+				"int": "+6",
+				"wis": "+4"
+			},
+			"skill": {
+				"arcana": "+6",
+				"history": "+6"
+			},
+			"passive": 10,
+			"languages": [
+				"any four languages"
+			],
+			"cr": "5",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Morwena is a 10th-level spellcaster. Her spellcasting ability is Intelligence (spell save {@dc 15}, {@hit 6} to hit with spell attacks). She has the following wizard spells prepared:"
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell friends}",
+								"{@spell mage hand}",
+								"{@spell mending}",
+								"{@spell message}"
+							]
+						},
+						"1": {
+							"slots": 4,
+							"spells": [
+								"{@spell charm person}*",
+								"{@spell mage armor}",
+								"{@spell magic missile}"
+							]
+						},
+						"2": {
+							"slots": 3,
+							"spells": [
+								"{@spell hold person}*",
+								"{@spell invisibility}",
+								"{@spell suggestion}*"
+							]
+						},
+						"3": {
+							"slots": 3,
+							"spells": [
+								"{@spell fireball}",
+								"{@spell haste}",
+								"{@spell tongues}"
+							]
+						},
+						"4": {
+							"slots": 3,
+							"spells": [
+								"{@spell arcane eye}",
+								"{@spell phantasmal killer}"
+							]
+						},
+						"5": {
+							"slots": 2,
+							"spells": [
+								"{@spell hold monster}*"
+							]
+						}
+					},
+					"footerEntries": [
+						"*Enchantment spell of 1st level or higher"
+					],
+					"ability": "int"
+				}
+			],
+			"action": [
+				{
+					"name": "Quarterstaff",
+					"entries": [
+						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}2 (1d6-1) bludgeoning damage, or 3 (1d8-1) bludgeoning damage if used with two hands."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Instinctive Charm (Recharges after Morwena Casts an Enchantment Spell of 1st Level or Higher)",
+					"entries": [
+						"Morwena tries to magically divert an attack made against her, provided that the attacker is within 30 feet of her and visible to her. She must decide to do so before the attack hits or misses.",
+						"The attacker must make a {@dc 15} Wisdom saving throw. On a failed save, the attacker targets the creature closest to it, other than Morwena or itself. If multiple creatures are closest, the attacker chooses which one to target."
+					]
+				}
+			],
+			"attachedItems": [
+				"quarterstaff|phb"
+			],
+			"languageTags": [
+				"X"
+			],
+			"damageTagsSpell": [
+				"F",
+				"O",
+				"Y"
+			],
+			"spellcastingTags": [
+				"CW"
+			],
+			"miscTags": [
+				"MLW",
+				"MW"
+			],
+			"conditionInflictSpell": [
+				"charmed",
+				"frightened",
+				"invisible",
+				"paralyzed"
+			],
+			"savingThrowForced": [
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true
+		},
+		{
+			"name": "Usagt",
+			"source": "AitFR-THP",
+			"page": 14,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "aberration",
+				"tags": [
+					"shapeshifter"
+				]
+			},
+			"alignment": [
+				"L",
+				"N"
+			],
+			"ac": [
+				12
+			],
+			"hp": {
+				"average": 97,
+				"formula": "13d8 + 39"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 15,
+			"con": 16,
+			"int": 15,
+			"wis": 20,
+			"cha": 12,
+			"save": {
+				"int": "+5",
+				"wis": "+8",
+				"cha": "+4"
+			},
+			"skill": {
+				"history": "+5",
+				"insight": "+8",
+				"perception": "+8",
+				"performance": "+7",
+				"stealth": "+5"
+			},
+			"senses": [
+				"darkvision 100 ft."
+			],
+			"passive": 18,
+			"resist": [
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "from nonmagical attacks",
+					"cond": true
+				}
+			],
+			"languages": [
+				"all",
+				"telepathy 30 ft."
+			],
+			"cr": "5",
+			"spellcasting": [
+				{
+					"name": "Innate Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The usagt's innate spellcasting ability is Charisma (spell save {@dc 15}). It can cast the following spells, requiring no spell components:"
+					],
+					"will": [
+						"{@spell banishment}",
+						"{@spell detect thoughts}",
+						"{@spell disguise self}"
+					],
+					"ability": "cha"
+				}
+			],
+			"trait": [
+				{
+					"name": "Invisibility",
+					"entries": [
+						"The usagt's true form is {@condition invisible}."
+					]
+				},
+				{
+					"name": "Shapechanger",
+					"entries": [
+						"The usagt can use its action to polymorph into a Small, Medium, or Large humanoid it has seen in person or telepathically, or back into its true form. Its statistics, other than its size, are the same in each form. While polymorphed, the usagt is not {@condition invisible}. Its new form appears to wear clothes, carry equipment, and even wield weapons, but these are all parts of the usagt itself; they vanish if dropped or removed from the creature. It can't activate, use, wield, or otherwise benefit from any of its apparent equipment. It reverts to its true form if it dies."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The usagt makes two attacks with its claws."
+					]
+				},
+				{
+					"name": "Claws",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}7 (2d4 + 2) slashing damage plus 11 (2d6 + 4) psychic damage."
+					]
+				},
+				{
+					"name": "Personal Insight",
+					"entries": [
+						"The usagt targets one creature it can see within 30 feet of it. The target must contest its Charisma ({@skill Deception}) check against the usagt's Wisdom ({@skill Insight}) check.",
+						"The target has advantage on the roll if it is immune to being {@condition charmed}. A target can choose to fail this check.",
+						"If the usagt wins, it magically learns the identity of a creature from the target's past, someone the target wishes it could speak to again or with whom the target has left something unsaid. If somehow no such creature exists in the target's past, the usagt learns that instead."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Invisibility Response (Recharges When the Usagt Uses Its Shapechanger Ability)",
+					"entries": [
+						"When the usagt takes damage, it can choose to revert to its default, {@condition invisible} form and move up to 15 feet without provoking opportunity attacks."
+					]
+				}
+			],
+			"traitTags": [
+				"Shapechanger"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"TP",
+				"XX"
+			],
+			"spellcastingTags": [
+				"I"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"conditionInflict": [
+				"invisible"
+			],
+			"conditionInflictSpell": [
+				"incapacitated"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true
+		}
+	]
+}

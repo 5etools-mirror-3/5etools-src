@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{{> "head" }}
+
+<body>
+
+{{> "overlayNoise" }}
+
+<div class="viewport-wrapper ve-flex-col">
+	{{> "adLeaderboard" }}
+
+	{{> "navbar" }}
+
+	<div id="content" class="maps ve-flex h-100 mobile__h-initial mobile__ve-flex-col min-h-0">
+		<div class="ve-flex-vh-center h-100 w-100">
+			<div class="ve-flex initial-message initial-message--large px-3">Loading...</div>
+		</div>
+	</div>
+</div>
+
+{{> "adFooter" }}
+
+{{> "scripts" }}
+
+</body>
+</html>

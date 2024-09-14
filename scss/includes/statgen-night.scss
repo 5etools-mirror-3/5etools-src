@@ -1,0 +1,37 @@
+@use "../vars/vars-night";
+
+.ve-night-mode .statgen .statgen {
+	&-shared__ {
+		&ipt {
+			&[readonly] {
+				background-color: #3a3a3a;
+			}
+		}
+	}
+
+	&-rolled__ {
+		&wrp-results {
+			border-color: vars-night.$rgb-border-grey--trans-night;
+		}
+	}
+
+	&-pb__ {
+		&ipt-budget {
+			&--error {
+				border-color: #f00;
+			}
+		}
+	}
+
+	&-asi__ {
+		&row {
+			border-bottom: 1px solid vars-night.$rgb-border-grey--trans-night;
+		}
+
+		&cell {
+			&--top {
+				border-color: vars-night.$rgb-border-grey--night;
+			}
+		}
+	}
+}

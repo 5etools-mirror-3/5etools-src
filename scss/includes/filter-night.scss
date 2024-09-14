@@ -1,0 +1,157 @@
+@use "sass:color";
+
+@use "../vars/vars";
+@use "../vars/vars-night";
+
+.ve-night-mode .fltr {
+	$flt-ignore: vars-night.$rgb-bg--night;
+	$flt-ignore--hover: #323232;
+
+	&__ {
+		&btn_nest {
+			background: $flt-ignore;
+			border-color: vars-night.$rgb-border-grey--night;
+
+			&:hover {
+				background: $flt-ignore--hover;
+			}
+
+			&--include {
+				background: repeating-linear-gradient(135deg, vars.$rgb-active-blue, vars.$rgb-active-blue vars.$fltr-stripe, transparent vars.$fltr-stripe, transparent vars.$fltr-2stripe);
+
+				&:hover {
+					background: repeating-linear-gradient(135deg, color.adjust(vars.$rgb-active-blue, $lightness: - vars.$pct-darken-hover), color.adjust(vars.$rgb-active-blue, $lightness: - vars.$pct-darken-hover) vars.$fltr-stripe, transparent vars.$fltr-stripe, transparent vars.$fltr-2stripe);
+				}
+
+				span {
+					background: vars-night.$rgb-bg--night;
+				}
+			}
+
+			&--include-all {
+				background: vars.$rgb-active-blue;
+
+				&:hover {
+					background: color.adjust(vars.$rgb-active-blue, $lightness: - vars.$pct-darken-hover);
+				}
+			}
+
+			&--exclude {
+				background: repeating-linear-gradient(135deg, transparent, transparent vars.$fltr-stripe, vars.$rgb-active-red vars.$fltr-stripe, vars.$rgb-active-red vars.$fltr-2stripe);
+
+				&:hover {
+					background: repeating-linear-gradient(135deg, transparent, transparent vars.$fltr-stripe, color.adjust(vars.$rgb-active-red, $lightness: - vars.$pct-darken-hover) vars.$fltr-stripe, color.adjust(vars.$rgb-active-red, $lightness: - vars.$pct-darken-hover) vars.$fltr-2stripe);
+				}
+
+				span {
+					background: vars-night.$rgb-bg--night;
+				}
+			}
+
+			&--exclude-all {
+				background: vars.$rgb-active-red;
+
+				&:hover {
+					background: color.adjust(vars.$rgb-active-red, $lightness: - vars.$pct-darken-hover);
+				}
+			}
+
+			&--both {
+				background: repeating-linear-gradient(135deg, vars.$rgb-active-blue, vars.$rgb-active-blue vars.$fltr-stripe, vars.$rgb-active-red vars.$fltr-stripe, vars.$rgb-active-red vars.$fltr-2stripe);
+
+				&:hover {
+					background: repeating-linear-gradient(135deg, color.adjust(vars.$rgb-active-blue, $lightness: - vars.$pct-darken-hover), color.adjust(vars.$rgb-active-blue, $lightness: - vars.$pct-darken-hover) vars.$fltr-stripe, color.adjust(vars.$rgb-active-red, $lightness: - vars.$pct-darken-hover) vars.$fltr-stripe, color.adjust(vars.$rgb-active-red, $lightness: - vars.$pct-darken-hover) vars.$fltr-2stripe);
+				}
+			}
+		}
+
+		&dropdown-divider {
+			border-color: vars-night.$rgb-border-grey--night;
+
+			@media screen and (width <= #{vars.$width-screen-sm}) {
+				box-shadow: inset 0 0 2px 2px vars.$rgb-off-black;
+				background: vars-night.$rgb-border-grey--night;
+			}
+		}
+
+		&dropdown-divider--sub {
+			border-color: vars-night.$rgb-border-grey--trans-night;
+		}
+
+		&pill {
+			border-color: vars-night.$rgb-border-grey--night;
+
+			&[data-state="ignore"] {
+				background: $flt-ignore;
+
+				&:hover:not(.fltr__pill--display-only) {
+					background: $flt-ignore--hover;
+				}
+			}
+
+			&[data-state="yes"] {
+				border-color: color.adjust(vars.$rgb-active-blue, $lightness: - vars.$pct-darken-border);
+			}
+
+			&[data-state="no"] {
+				border-color: color.adjust(vars.$rgb-active-red, $lightness: - vars.$pct-darken-border);
+			}
+
+			&--muted {
+				color: color.adjust(vars.$rgb-font--muted, $lightness: - 7%);
+
+				&[data-state="yes"],
+				&[data-state="no"] {
+					color: #fff;
+				}
+			}
+		}
+
+		&mini-view {
+			border-color: vars-night.$rgb-border-grey--night;
+			background: linear-gradient(to top, vars-night.$rgb-border-grey--night, #343434 1px);
+		}
+
+		&h-btn-logic--blue {
+			color: vars.$rgb-active-blue;
+
+			&:hover {
+				color: vars.$rgb-active-blue--light;
+			}
+		}
+
+		&h-btn-logic--red {
+			color: vars.$rgb-active-red;
+
+			&:hover {
+				color: vars.$rgb-active-red--light;
+			}
+		}
+	}
+
+	&-search__ {
+		&wrp-row {
+			&:focus,
+			&:hover {
+				background-color: color.adjust(vars-night.$rgb-bg--night, $lightness: 2%);
+			}
+		}
+
+		&wrp-values {
+			background-color: vars-night.$rgb-bg--night;
+			border-color: vars-night.$rgb-border-grey--night;
+		}
+	}
+
+	&-src__ {
+		&wrp-slider {
+			background: #333a;
+		}
+	}
+
+	&-cls__ {
+		&tgl {
+			@include vars-night.mix-cb-custom--night;
+		}
+	}
+}

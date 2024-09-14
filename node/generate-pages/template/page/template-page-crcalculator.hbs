@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{{> "head" }}
+
+<body>
+
+{{> "overlayNoise" }}
+
+{{> "adLeaderboard" }}
+
+{{> "navbar" }}
+
+{{> "adRhsScrollingPage" }}
+
+<main class="container">
+
+	<form id="crcalc" autocomplete="off">
+		<div class="row">
+			<div class="col-sm-6">
+				<div id="croutput">Waiting for calculation...</div>
+				<button class="ve-btn ve-btn-sm ve-btn-danger crc__reset mt-3" id="crcalc_reset" type="button">Reset</button>
+				<h4>Instructions</h4>
+				<ol>
+					<li>Enter expected CR of the creature.</li>
+					<li>Fill in the HP, AC, and other defensive attributes of the creature.</li>
+					<li>Fill in offensives attributes of the creature. DPR is averaged over three rounds!</li>
+					<li>Add any special Monster Features of creature.</li>
+				</ol>
+				<p>
+					<small>Be sure to read the <em>Dungeon Master's Guide</em> <a href="book.html#dmg,9,creating%20a%20monster,0">section on monster creation</a>, pages 273
+						through 283. You can click on the table to the right to fill in values for a given and adjust to
+						taste. You can hover over the individual labels for a short description of how each attribute
+						contributes to a monster's CR. You can also hover over each feature description to see how that
+						feature affects the calculations.
+					</small>
+				</p>
+				<hr>
+				<div class="crc__row">
+					<label for="expectedcr" class="ui-tip__parent" style="font-size: 1em;">
+						Expected CR:
+						<span class="explanation ui-tip__child">
+							CR calculation begins by determining what you want the final CR of the monster to be.
+						</span>
+					</label>
+					<span class="ve-flex-v-center">
+						<input type="text" id="expectedcr" value="0" size="2" class="form-control form-control--minimal input-xs">
+					</span>
+				</div>
+			</div>
+			<div class="col-sm-6 ve-text-center">
+				<h4>Monster Statistics by Challenge Rating</h4>
+				<table id="msbcr">
+					<tr>
+						<th>CR</th>
+						<th>XP</th>
+						<th>Prof.<br>Bonus</th>
+						<th>Armor<br>Class</th>
+						<th>Hit<br>Points</th>
+						<th>Attack<br>Bonus</th>
+						<th>Damage/<br>Round</th>
+						<th>Save<br>DC</th>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<hr>
+		<div class="row">
+			<div class="col-sm-6">
+				<h4>Defensive</h4>
+
+				<div class="crc__row">
+					<label for="hp" class="ui-tip__parent">
+						Hit Points:
+						<span class="explanation ui-tip__child">
+							A creature's hit points determine its defensive CR before it is adjusted by its AC.
+						</span>
+					</label>
+					<input type="number" id="hp" placeholder="Average HP" value="1" min="0" max="850" class="form-control form-control--minimal input-xs">
+				</div>
+
+				<div class="crc__row">
+					<label for="ac" class="ui-tip__parent">
+						Armor Class:
+						<span class="explanation ui-tip__child">
+							A creature's AC adjusts its defensive CR.
+						</span>
+					</label>
+					<input type="number" id="ac" placeholder="AC" value="13" min="1" max="40" class="form-control form-control--minimal input-xs">
+				</div>
+			</div>
+
+			<div class="col-sm-6">
+				<h4>Offensive</h4>
+
+				<div class="crc__row">
+					<label for="dpr" class="ui-tip__parent">
+						Damage Per Round:
+						<span class="explanation ui-tip__child">
+							A creature's damage per round (DPR) determines its offensive CR, which is offset by its attack bonus or save DC. DPR is determined by averaging its maximum damage output (taking the average of dice rolls, ignoring critics and accuracy) over three rounds. Areas of effect are treated as though they hit two creatures, which fail any involved saving throws.
+						</span>
+					</label>
+					<input type="number" id="dpr" placeholder="Average DPR" value="1" min="0" max="320" class="form-control form-control--minimal input-xs">
+				</div>
+
+				<div class="crc__row">
+					<label for="attackbonus" class="ui-tip__parent">
+						Attack Bonus/Save DC:
+						<span class="explanation ui-tip__child">
+							A creature's attack bonus or save DC adjusts its offensive CR.
+						</span>
+					</label>
+					<input type="number" id="attackbonus" placeholder="Attack Bonus" value="3" min="-5" max="19" class="form-control form-control--minimal input-xs">
+				</div>
+
+				<div class="crc__row">
+					<label for="saveinstead" class="ui-tip__parent">
+						Use Saves?
+						<span class="explanation ui-tip__child">
+							If a creature's damage output is more dependent on save-based abilities, its save DC is used for adjusting its offensive CR instead of its attack bonus.
+						</span>
+					</label>
+					<input type="checkbox" id="saveinstead" value="0">
+				</div>
+			</div>
+		</div>
+		<hr>
+		<div class="row">
+			<div class="col-sm-6">
+
+				<div class="crc__row">
+					<label for="size" class="ui-tip__parent">
+						Size:
+						<span class="explanation ui-tip__child">
+							A creature's size determines the size of its individual hit dice.
+						</span>
+					</label>
+					<span class="ve-flex-v-center">
+						<select id="size" class="form-control input-xs">
+							<option value="Tiny">Tiny</option>
+							<option value="Small">Small</option>
+							<option value="Medium" selected>Medium</option>
+							<option value="Large">Large</option>
+							<option value="Huge">Huge</option>
+							<option value="Gargantuan">Gargantuan</option>
+						</select>
+					</span>
+				</div>
+
+				<div class="crc__row">
+					<label for="hd" class="ui-tip__parent">
+						Hit Dice:
+						<span class="explanation ui-tip__child">
+							Unlike player characters, the number of hit dice an NPC gets is completely arbitrary. Adjust this amount to taste.
+						</span>
+					</label>
+					<div class="ve-flex-v-center">
+						<input type="number" id="hd" value="1" min="1" max="999" class="form-control form-control--minimal input-xs">
+						<span id="hdval">d8</span>
+					</div>
+				</div>
+
+				<div class="crc__row">
+					<label for="con" class="ui-tip__parent">
+						Constitution:
+						<span class="explanation ui-tip__child">
+							A creature's HP is increases by its Constitution modifier for each hit die it has.
+						</span>
+					</label>
+					<input type="number" id="con" value="10" min="1" max="30" class="form-control form-control--minimal input-xs">
+				</div>
+
+			</div>
+
+			<div class="col-sm-6">
+
+				<div class="crc__row">
+					<label for="vulnerabilities" class="ui-tip__parent">
+						Vulnerabilities:
+						<span class="explanation ui-tip__child">
+							If a creature is vulnerable to common damage types (especially bludgeoning, piercing, and slashing damage), its effective hit points are halved.
+						</span>
+					</label>
+					<input type="checkbox" id="vulnerabilities" class="form-control form-control--minimal input-xs">
+				</div>
+
+				<div class="crc__row">
+					<label for="resistances" class="ui-tip__parent">
+						Resistances/Immunities:
+						<span class="explanation ui-tip__child">
+							A monster's HP is multiplied based on the resistances and immunities has to common damage types (non-magical bludgeoning, piercing, and slashing chief among them).
+						</span>
+					</label>
+					<span class="ve-flex-v-center">
+						<select id="resistances" class="form-control input-xs">
+							<option value="0" selected>None</option>
+							<option value="res">Resistances</option>
+							<option value="imm">Immunities</option>
+						</select>
+					</span>
+				</div>
+
+				<div class="crc__row">
+					<label for="flying" class="ui-tip__parent">
+						Flies and can deal damage at range (CR 0-9 only):
+						<span class="explanation ui-tip__child">
+							A monster's effective AC is increased by 2 if it can fly and deal damage at range, though only if its expected challenge rating is 10 or lower.
+						</span>
+					</label>
+					<input type="checkbox" id="flying">
+				</div>
+
+				<div class="crc__row">
+					<label for="saveprofs" class="ui-tip__parent">
+						Save Proficiencies:
+						<span class="explanation ui-tip__child">
+							Increase a creature's effective AC by 2 if it has 3 or 4 saving throw proficiencies, or by 4 if it has 5 or 6.
+						</span>
+					</label>
+					<span class="ve-flex-v-center">
+						<select id="saveprofs" class="form-control input-xs">
+							<option value="0" selected>0-2</option>
+							<option value="2">3-4</option>
+							<option value="4">5-6</option>
+						</select>
+					</span>
+				</div>
+			</div>
+		</div>
+	</form>
+	<hr>
+	<div class="row">
+		<div class="col-sm-12" id="monsterfeatures">
+			<h4>Monster Features</h4>
+			<div class="crc__hdr_mon_features ve-flex-v-center">
+				<div class="ve-col-1"></div>
+				<div class="ve-col-2">Name</div>
+				<div class="ve-col-2">Example Monster</div>
+				<div class="ve-col-7">Feature Description</div>
+			</div>
+			<div class="crc__wrp_mon_features">
+				<!-- populate with JS -->
+			</div>
+			<p>
+				<small><em>Note: Not all monster features are covered here. The DMG has specific instructions on how to
+					manage other features.</em></small>
+			</p>
+		</div>
+	</div>
+</main>
+
+{{> "adFooter" }}
+
+{{> "scripts" }}
+
+</body>
+</html>
