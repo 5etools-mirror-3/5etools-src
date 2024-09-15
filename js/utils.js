@@ -53,9 +53,10 @@ globalThis.VeCt = {
 
 	LOC_ORIGIN_CANCER: "https://5e.tools",
 
-	URL_BREW: `https://github.com/TheGiddyLimit/homebrew`,
-	URL_ROOT_BREW: `https://raw.githubusercontent.com/TheGiddyLimit/homebrew/master/`, // N.b. must end with a slash
-	URL_ROOT_BREW_IMG: `https://raw.githubusercontent.com/TheGiddyLimit/homebrew-img/main/`, // N.b. must end with a slash
+	URL_BREW: `https://github.com/revilowaldow/homebrew`,
+	URL_ROOT_BREW: `https://raw.githubusercontent.com/revilowaldow/homebrew/master/`, // N.b. must end with a slash
+	URL_ROOT_BREW_IMG: `https://raw.githubusercontent.com/revilowaldow/homebrew-img/main/`, // N.b. must end with a slash
+
 	URL_PRERELEASE: `https://github.com/TheGiddyLimit/unearthed-arcana`,
 	URL_ROOT_PRERELEASE: `https://raw.githubusercontent.com/TheGiddyLimit/unearthed-arcana/master/`, // As above
 
