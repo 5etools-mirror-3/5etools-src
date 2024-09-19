@@ -1,6 +1,6 @@
 import {BuilderBase} from "./makebrew-builder-base.js";
 import {BuilderUi} from "./makebrew-builderui.js";
-import {AttachedItemTag, CreatureSavingThrowTagger, DamageTypeTag, DragonAgeTag, LanguageTag, MiscTag, RechargeConvert, SenseFilterTag, SpellcastingTraitConvert, SpellcastingTypeTag, TagAttack, TagDc, TagHit, TagImmResVulnConditional, TraitActionTag} from "../converter/converterutils-creature.js";
+import {AttachedItemTag, CreatureSavingThrowTagger, DamageTypeTag, DragonAgeTag, LanguageTag, MiscTag, RechargeConvert, SenseFilterTag, SpellcastingTraitConvert, SpellcastingTypeTag, TagCreatureSubEntryInto, TagDc, TagHit, TagImmResVulnConditional, TraitActionTag} from "../converter/converterutils-creature.js";
 import {DiceConvert, TagCondition} from "../converter/converterutils-tags.js";
 import {RenderBestiary} from "../render-bestiary.js";
 
@@ -88,6 +88,9 @@ export class CreatureBuilder extends BuilderBase {
 
 		delete creature.otherSources;
 		delete creature.srd;
+		delete creature.srd52;
+		delete creature.basicRules;
+		delete creature.freeRules2024;
 		delete creature.altArt;
 		delete creature.hasToken;
 		delete creature.uniqueId;
@@ -409,7 +412,7 @@ export class CreatureBuilder extends BuilderBase {
 
 			// do post-processing
 			DiceConvert.cleanHpDice(this._state);
-			TagAttack.tryTagAttacks(this._state);
+			TagCreatureSubEntryInto.tryRun(this._state);
 			TagHit.tryTagHits(this._state);
 			TagDc.tryTagDcs(this._state);
 			TagCondition.tryTagConditions(this._state, {isTagInflicted: true, styleHint: this._meta.styleHint});

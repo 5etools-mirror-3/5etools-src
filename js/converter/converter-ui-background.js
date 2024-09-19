@@ -6,7 +6,8 @@ export class BackgroundConverterUi extends ConverterUiBase {
 		super(
 			ui,
 			{
-				converterId: "Background",
+				name: "Background",
+				converterId: "background",
 				canSaveLocal: true,
 				modes: ["txt"],
 				hasPageNumbers: true,

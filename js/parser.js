@@ -21,7 +21,7 @@ Parser._parse_bToA = function (abMap, b, fallback) {
 };
 
 Parser.attrChooseToFull = function (attList) {
-	if (attList.length === 1) return `${Parser.attAbvToFull(attList[0])} modifier`;
+	if (attList.length === 1) return `${Parser.attAbvToFull(attList[0])}${attList[0] === "spellcasting" ? " ability" : ""} modifier`;
 	else {
 		const attsTemp = [];
 		for (let i = 0; i < attList.length; ++i) {
@@ -252,10 +252,12 @@ Parser.getAbilityModifier = function (abilityScore) {
 	return `${modifier}`;
 };
 
-Parser.getSpeedString = (ent, {isMetric = false, isSkipZeroWalk = false} = {}) => {
+Parser.getSpeedString = (ent, {isMetric = false, isSkipZeroWalk = false, isLongForm = false} = {}) => {
 	if (ent.speed == null) return "\u2014";
 
-	const unit = isMetric ? Parser.metric.getMetricUnit({originalUnit: "ft.", isShortForm: true}) : "ft.";
+	const unit = isMetric
+		? Parser.metric.getMetricUnit({originalUnit: "ft.", isShortForm: !isLongForm})
+		: isLongForm ? "feet" : "ft.";
 	if (typeof ent.speed === "object") {
 		const stack = [];
 		let joiner = ", ";
@@ -668,11 +670,11 @@ Parser.sourceJsonToStylePart = function (source) {
 	return "";
 };
 
-Parser.sourceJsonToMarkerHtml = function (source, {isList = true, additionalStyles = ""} = {}) {
+Parser.sourceJsonToMarkerHtml = function (source, {isList = true, isAddBrackets = null, additionalStyles = ""} = {}) {
 	source = Parser._getSourceStringFromSource(source);
 	// TODO(Future) consider enabling this
 	// if (SourceUtil.isPartneredSourceWotc(source)) return `<span class="help-subtle ve-source-marker ${isList ? `ve-source-marker--list` : ""} ve-source-marker--partnered ${additionalStyles}" title="D&amp;D Partnered Source">${isList ? "" : "["}✦${isList ? "" : "]"}</span>`;
-	if (SourceUtil.isLegacySourceWotc(source)) return `<span class="help-subtle ve-source-marker ${isList ? `ve-source-marker--list` : ""} ve-source-marker--legacy ${additionalStyles}" title="Legacy Source">${isList ? "" : "["}ʟ${isList ? "" : "]"}</span>`;
+	if (SourceUtil.isLegacySourceWotc(source)) return `<span class="help-subtle ve-source-marker ${isList ? `ve-source-marker--list` : ""} ve-source-marker--legacy ${additionalStyles}" title="Legacy Source">${isList && !isAddBrackets ? "" : "["}ʟ${isList && !isAddBrackets ? "" : "]"}</span>`;
 	return "";
 };
 
@@ -1911,6 +1913,8 @@ Parser.MON_MISC_TAG_TO_FULL = {
 	"HPR": "Has HP Reduction",
 	"MW": "Has Weapon Attacks, Melee",
 	"RW": "Has Weapon Attacks, Ranged",
+	"MA": "Has Attacks, Melee",
+	"RA": "Has Attacks, Ranged",
 	"MLW": "Has Melee Weapons",
 	"RNG": "Has Ranged Weapons",
 	"RCH": "Has Reach Attacks",
@@ -2006,8 +2010,8 @@ Parser.FEAT_CATEGORY_TO_FULL = {
 	"G": "General",
 	"O": "Origin",
 	"FS": "Fighting Style",
-	"FS:P": "Fighting Style (Paladin)",
-	"FS:R": "Fighting Style (Ranger)",
+	"FS:P": "Fighting Style Replacement (Paladin)",
+	"FS:R": "Fighting Style Replacement (Ranger)",
 	"EB": "Epic Boon",
 };
 

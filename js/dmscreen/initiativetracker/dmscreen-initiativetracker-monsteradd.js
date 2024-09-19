@@ -269,18 +269,20 @@ export class InitiativeTrackerMonsterAdd extends BaseComponent {
 
 		const $ptrRows = {_: []};
 
-		const doSearch = () => {
+		const pDoSearch = async () => {
 			const searchTerm = $iptSearch.val().trim();
 
 			const index = this._board.availContent["Creature"];
-			const results = index.search(searchTerm, {
-				fields: {
-					n: {boost: 5, expand: true},
-					s: {expand: true},
-				},
-				bool: "AND",
-				expand: true,
-			});
+			const results = await Omnisearch.pGetFilteredResults(
+				index.search(searchTerm, {
+					fields: {
+						n: {boost: 5, expand: true},
+						s: {expand: true},
+					},
+					bool: "AND",
+					expand: true,
+				}),
+			);
 			const resultCount = results.length ? results.length : index.documentStore.length;
 			const toProcess = results.length ? results : Object.values(index.documentStore.docs).slice(0, 75).map(it => ({doc: it}));
 
@@ -288,7 +290,7 @@ export class InitiativeTrackerMonsterAdd extends BaseComponent {
 			$ptrRows._ = [];
 			if (toProcess.length) {
 				if (flags.doClickFirst) {
-					this._render_pHandleClickRow({rdState}, toProcess[0]);
+					await this._render_pHandleClickRow({rdState}, toProcess[0]);
 					flags.doClickFirst = false;
 					return;
 				}
@@ -313,13 +315,13 @@ export class InitiativeTrackerMonsterAdd extends BaseComponent {
 
 		SearchWidget.bindAutoSearch($iptSearch, {
 			flags,
-			fnSearch: doSearch,
+			pFnSearch: pDoSearch,
 			fnShowWait: showMsgDots,
 			$ptrRows,
 		});
 
 		$iptSearch.focus();
-		doSearch();
+		await pDoSearch();
 
 		return pGetResolved();
 	}

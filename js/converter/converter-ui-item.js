@@ -6,7 +6,8 @@ export class ItemConverterUi extends ConverterUiBase {
 		super(
 			ui,
 			{
-				converterId: "Item",
+				name: "Item",
+				converterId: "item",
 				canSaveLocal: true,
 				modes: ["txt"],
 				hasPageNumbers: true,

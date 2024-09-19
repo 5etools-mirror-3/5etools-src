@@ -9,13 +9,12 @@ class PageFilterDecks extends PageFilterBase {
 			items: ["Has Card Art", "SRD", "Legacy"],
 			isMiscFilter: true,
 			selFn: it => it === "Has Card Art",
+			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
 		});
 	}
 
 	static mutateForFilters (ent) {
-		ent._fMisc = [];
-		if (ent.srd) ent._fMisc.push("SRD");
-		if (SourceUtil.isLegacySourceWotc(ent.source)) ent._fMisc.push("Legacy");
+		this._mutateForFilters_commonMisc(ent);
 		if (ent.hasCardArt) ent._fMisc.push("Has Card Art");
 	}
 

@@ -1,5 +1,6 @@
 import {ConverterUtils} from "./converterutils-utils.js";
 import {VetoolsConfig} from "../utils-config/utils-config-config.js";
+import {SITE_STYLE__CLASSIC} from "../consts.js";
 
 export class EntryCoalesceEntryLists {
 	static _WALKER = null;
@@ -17,6 +18,7 @@ export class EntryCoalesceEntryLists {
 		this._WALKER ||= MiscUtil.getWalker({keyBlocklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST});
 
 		this._mutCoalesce_listsBasic({stats, prop, styleHint});
+		this._mutCoalesce_listsHangingAttributes({stats, prop, styleHint});
 	}
 
 	static _mutCoalesce_listsBasic ({stats, prop}) {
@@ -63,6 +65,28 @@ export class EntryCoalesceEntryLists {
 			},
 			"entries",
 		);
+	}
+
+	static _mutCoalesce_listsHangingAttributes ({stats, prop, styleHint}) {
+		if (styleHint === SITE_STYLE__CLASSIC) return;
+
+		let ixEnd = -1;
+
+		for (let i = 0; i < stats[prop].length; ++i) {
+			const ent = stats[prop][i];
+			if (ent.type !== "entries" || ent.entries?.length !== 1 || !ent.name?.endsWith(":")) break;
+			ixEnd = i;
+		}
+
+		if (ixEnd < 1) return;
+
+		const lst = {
+			type: "list",
+			style: "list-hang-notitle",
+			items: stats[prop].slice(0, ixEnd + 1)
+				.map(it => ({type: "item", ...it})),
+		};
+		stats[prop].splice(0, ixEnd + 1, lst);
 	}
 }
 

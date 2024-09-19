@@ -110,6 +110,7 @@ export class ConverterItem extends ConverterBase {
 
 	static _doItemPostProcess_addTags (stats, options) {
 		const manName = stats.name ? `(${stats.name}) ` : "";
+		TagJsons.mutTagObject(stats, {keySet: new Set(["entries"]), isOptimistic: true, styleHint: options.styleHint});
 		ChargeTag.tryRun(stats);
 		RechargeTypeTag.tryRun(stats, {cbMan: () => options.cbWarning(`${manName}Recharge type requires manual conversion`)});
 		RechargeAmountTag.tryRun(stats, {cbMan: () => options.cbWarning(`${manName}Recharge amount requires manual conversion`)});
@@ -122,7 +123,6 @@ export class ConverterItem extends ConverterBase {
 		DamageVulnerabilityTag.tryRun(stats, {cbMan: () => options.cbWarning(`${manName}Damage vulnerability tagging requires manual conversion`)});
 		ConditionImmunityTag.tryRun(stats, {cbMan: () => options.cbWarning(`${manName}Condition immunity tagging requires manual conversion`)});
 		ReqAttuneTagTag.tryRun(stats, {cbMan: () => options.cbWarning(`${manName}Attunement requirement tagging requires manual conversion`)});
-		TagJsons.mutTagObject(stats, {keySet: new Set(["entries"]), isOptimistic: true, styleHint: options.styleHint});
 		AttachedSpellTag.tryRun(stats);
 
 		// TODO
@@ -425,6 +425,8 @@ export class ConverterItem extends ConverterBase {
 			"source",
 			"srd",
 			"basicRules",
+			"freeRules2024",
+			"srd52",
 			"page",
 		]);
 
@@ -543,7 +545,9 @@ export class ConverterItem extends ConverterBase {
 		delete cpyStatsQuarterstaff.rarity;
 		delete cpyStatsQuarterstaff.value;
 		delete cpyStatsQuarterstaff.srd;
+		delete cpyStatsQuarterstaff.srd52;
 		delete cpyStatsQuarterstaff.basicRules;
+		delete cpyStatsQuarterstaff.freeRules2024;
 
 		Object.entries(cpyStatsQuarterstaff)
 			.filter(([k]) => !k.startsWith("_"))
@@ -556,17 +560,29 @@ export class ConverterItem extends ConverterBase {
 		if (stats.__prop === "baseitem") return;
 
 		// region tags found only on basic items
-		delete stats.armor;
-		delete stats.axe;
-		delete stats.bow;
-		delete stats.crossbow;
-		delete stats.dagger;
-		delete stats.mace;
-		delete stats.net;
-		delete stats.spear;
-		delete stats.sword;
-		delete stats.weapon;
-		delete stats.hammer;
+		Object.keys({
+			armor: true,
+			axe: true,
+			sword: true,
+			mace: true,
+			spear: true,
+			hammer: true,
+			bow: true,
+			crossbow: true,
+			club: true,
+			dagger: true,
+			net: true,
+			polearm: true,
+			lance: true,
+			rapier: true,
+			arrow: true,
+			bolt: true,
+			bulletFirearm: true,
+			bulletSling: true,
+			needleBlowgun: true,
+			weapon: true,
+		})
+			.forEach(prop => delete stats[prop]);
 		// endregion
 	}
 }

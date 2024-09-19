@@ -136,8 +136,10 @@ class PageFilterSpells extends PageFilterBase {
 	static getFilterAbilitySave (ability) { return `${ability.uppercaseFirst()} Save`; }
 	static getFilterAbilityCheck (ability) { return `${ability.uppercaseFirst()} Check`; }
 
-	static getMetaFilterObj (s) {
-		const out = [];
+	static _mutMetaFilterObj (s) {
+		this._mutateForFilters_commonMisc(s);
+
+		const out = s._fMisc;
 		if (s.meta) {
 			Object.entries(s.meta)
 				.filter(([_, v]) => v)
@@ -160,11 +162,6 @@ class PageFilterSpells extends PageFilterBase {
 		if (s.miscTags) out.push(...s.miscTags);
 		if ((!s.miscTags || (s.miscTags && !s.miscTags.includes("PRM"))) && s.duration.filter(it => it.type === "permanent").length) out.push("PRM");
 		if ((!s.miscTags || (s.miscTags && !s.miscTags.includes("SCL"))) && s.entriesHigherLevel) out.push("SCL");
-		if (s.srd) out.push("SRD");
-		if (s.basicRules) out.push("Basic Rules");
-		if (SourceUtil.isLegacySourceWotc(s.source)) out.push("Legacy");
-		if (s.hasFluff || s.fluff?.entries) out.push("Has Info");
-		if (s.hasFluffImages || s.fluff?.images) out.push("Has Images");
 		return out;
 	}
 
@@ -364,10 +361,11 @@ class PageFilterSpells extends PageFilterBase {
 		this._optionalfeaturesFilter = new SearchableFilter({header: "Other Option/Feature"});
 		this._metaFilter = new Filter({
 			header: "Components & Miscellaneous",
-			items: [...PageFilterSpells._META_FILTER_BASE_ITEMS, "Ritual", "SRD", "Basic Rules", "Legacy", "Has Images", "Has Token"],
+			items: [...PageFilterSpells._META_FILTER_BASE_ITEMS, "Ritual", "SRD", "Basic Rules", "Legacy", "Reprinted", "Has Images", "Has Token"],
 			itemSortFn: PageFilterSpells.sortMetaFilter,
 			isMiscFilter: true,
 			displayFn: it => Parser.spMiscTagToFull(it),
+			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
 		});
 		this._groupFilter = new Filter({header: "Group"});
 		this._schoolFilter = new Filter({
@@ -463,7 +461,7 @@ class PageFilterSpells extends PageFilterBase {
 
 		// used for filtering
 		s._fSources = SourceFilter.getCompleteFilterSources(s);
-		s._fMeta = PageFilterSpells.getMetaFilterObj(s);
+		PageFilterSpells._mutMetaFilterObj(s);
 		s._fClasses = Renderer.spell.getCombinedClasses(s, "fromClassList").map(c => {
 			return this._getClassFilterItem({
 				className: c.name,
@@ -531,7 +529,7 @@ class PageFilterSpells extends PageFilterBase {
 		this._groupFilter.addItem(s._fGroups);
 		this._schoolFilter.addItem(s.school);
 		this._sourceFilter.addItem(s._fSources);
-		this._metaFilter.addItem(s._fMeta);
+		this._metaFilter.addItem(s._fMisc);
 		this._backgroundFilter.addItem(s._fBackgrounds);
 		this._featFilter.addItem(s._fFeats);
 		this._optionalfeaturesFilter.addItem(s._fOptionalfeatures);
@@ -595,7 +593,7 @@ class PageFilterSpells extends PageFilterBase {
 			s._fBackgrounds,
 			s._fFeats,
 			s._fOptionalfeatures,
-			s._fMeta,
+			s._fMisc,
 			s._fGroups,
 			s.school,
 			s.subschools,

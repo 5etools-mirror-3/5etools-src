@@ -1642,6 +1642,7 @@ class SearchWidget {
 	 * @param $iptSearch input element
 	 * @param opts Options object.
 	 * @param opts.fnSearch Function which runs the search.
+	 * @param opts.pFnSearch Function which runs the search.
 	 * @param opts.fnShowWait Function which displays loading dots
 	 * @param opts.flags Flags object; modified during user interaction.
 	 * @param opts.flags.isWait Flag tracking "waiting for user to stop typing"
@@ -1650,6 +1651,15 @@ class SearchWidget {
 	 * @param opts.$ptrRows Pointer to array of rows.
 	 */
 	static bindAutoSearch ($iptSearch, opts) {
+		if (opts.fnSearch && opts.pFnSearch) throw new Error(`Options "fnSearch" and "pFnSearch" are mutually exclusive!`);
+
+		// Chain each search from the previous, to ensure the last search wins
+		let pSearching = null;
+		const addSearchPromiseTask = () => {
+			if (pSearching) pSearching = pSearching.then(() => opts.pFnSearch());
+			else pSearching = opts.pFnSearch();
+		};
+
 		UiUtil.bindTypingEnd({
 			$ipt: $iptSearch,
 			fnKeyup: evt => {
@@ -1665,6 +1675,7 @@ class SearchWidget {
 				}
 
 				opts.fnSearch && opts.fnSearch();
+				if (opts.pFnSearch) addSearchPromiseTask();
 			},
 			fnKeypress: evt => {
 				switch (evt.key) {
@@ -1675,6 +1686,7 @@ class SearchWidget {
 					case "Enter": {
 						opts.flags.doClickFirst = true;
 						opts.fnSearch && opts.fnSearch();
+						if (opts.pFnSearch) addSearchPromiseTask();
 					}
 				}
 			},
@@ -1704,7 +1716,11 @@ class SearchWidget {
 				}
 			},
 			fnClick: () => {
-				if (opts.fnSearch && $iptSearch.val() && $iptSearch.val().trim().length) opts.fnSearch();
+				if (!opts.fnSearch && !opts.pFnSearch) return;
+				if (!$iptSearch.val() && !$iptSearch.val().trim().length) return;
+
+				if (opts.fnSearch) opts.fnSearch();
+				if (opts.pFnSearch) addSearchPromiseTask();
 			},
 		});
 	}
@@ -1812,7 +1828,10 @@ class SearchWidget {
 	}
 
 	get $wrpSearch () {
-		if (!this._$rendered) this._render();
+		if (!this._$rendered) {
+			this._render();
+			this.__pDoSearch().then(null);
+		}
 		return this._$rendered;
 	}
 
@@ -1830,11 +1849,11 @@ class SearchWidget {
 		this._$wrpResults.empty().append(SearchWidget.getSearchNoResults());
 	}
 
-	__doSearch () {
+	async __pDoSearch () {
 		const searchInput = this._$iptSearch.val().trim();
 
 		const index = this._indexes[this._cat];
-		const results = index.search(searchInput, this.__getSearchOptions());
+		const results = await Omnisearch.pGetFilteredResults(index.search(searchInput, this.__getSearchOptions()));
 
 		const {toProcess, resultCount} = (() => {
 			if (results.length) {
@@ -1918,9 +1937,9 @@ class SearchWidget {
 				${Object.keys(this._indexes).sort().filter(it => it !== "ALL").map(it => `<option value="${it}">${SearchWidget.__getCatOptionText(it)}</option>`).join("")}
 			</select>`)
 				.appendTo($wrpControls).toggle(Object.keys(this._indexes).length !== 1)
-				.on("change", () => {
+				.on("change", async () => {
 					this._cat = this._$selCat.val();
-					this.__doSearch();
+					await this.__pDoSearch();
 				});
 
 			this._$iptSearch = $(`<input class="ui-search__ipt-search search form-control" autocomplete="off" placeholder="Search...">`).appendTo($wrpControls);
@@ -1929,7 +1948,7 @@ class SearchWidget {
 			let lastSearchTerm = "";
 			SearchWidget.bindAutoSearch(this._$iptSearch, {
 				flags: this._flags,
-				fnSearch: this.__doSearch.bind(this),
+				pFnSearch: this.__pDoSearch.bind(this),
 				fnShowWait: this.__showMsgWait.bind(this),
 				$ptrRows: this._$ptrRows,
 			});
@@ -1943,8 +1962,6 @@ class SearchWidget {
 					lastSearchTerm = this._$iptSearch.val();
 				}
 			});
-
-			this.__doSearch();
 		}
 	}
 
@@ -2375,6 +2392,7 @@ class SearchWidget {
 				...(brew[subSpec.prop] || []),
 			]
 				.pSerialAwaitMap(async ent => {
+					const src = SourceUtil.getEntitySource(ent);
 					const doc = {
 						id: id++,
 						c: subSpec.catId,
@@ -2382,8 +2400,9 @@ class SearchWidget {
 						h: 1,
 						n: ent.name,
 						q: subSpec.page,
-						s: ent.source,
+						s: src,
 						u: UrlUtil.URL_TO_HASH_BUILDER[subSpec.page](ent),
+						dP: SourceUtil.isPartneredSourceWotc(src),
 					};
 					if (subSpec.pFnGetDocExtras) Object.assign(doc, await subSpec.pFnGetDocExtras({ent, doc, subSpec}));
 					index.addDoc(doc);

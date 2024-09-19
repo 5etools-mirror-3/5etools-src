@@ -873,3 +873,5 @@ encounterBuilder.sublistManager = sublistManager;
 sublistManager.encounterBuilder = encounterBuilder;
 
 window.addEventListener("load", () => bestiaryPage.pOnLoad());
+
+globalThis.dbg_page = bestiaryPage;

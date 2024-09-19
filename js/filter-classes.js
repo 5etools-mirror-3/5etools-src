@@ -52,21 +52,14 @@ class PageFilterClassesBase extends PageFilterBase {
 		];
 
 		cls._fMisc = [];
-		if (cls.isReprinted) cls._fMisc.push("Reprinted");
-		if (cls.srd) cls._fMisc.push("SRD");
-		if (cls.basicRules) cls._fMisc.push("Basic Rules");
-		if (SourceUtil.isLegacySourceWotc(cls.source)) cls._fMisc.push("Legacy");
+		this._mutateForFilters_commonMisc(cls);
 		if (cls.isSidekick) cls._fMisc.push("Sidekick");
 
 		cls.subclasses.forEach(sc => {
 			sc.source = sc.source || cls.source; // default subclasses to same source as parent
 			sc.shortName = sc.shortName || sc.name; // ensure shortName
 
-			sc._fMisc = [];
-			if (sc.srd) sc._fMisc.push("SRD");
-			if (sc.basicRules) sc._fMisc.push("Basic Rules");
-			if (SourceUtil.isLegacySourceWotc(sc.source)) sc._fMisc.push("Legacy");
-			if (sc.isReprinted) sc._fMisc.push("Reprinted");
+			this._mutateForFilters_commonMisc(sc);
 		});
 	}
 
@@ -128,49 +121,43 @@ class PageFilterClassesBase extends PageFilterBase {
 
 	static _getIsClassNaturallyDisplayedToDisplayParams (cls) { return [cls._fSources, cls._fMisc]; }
 
-	isAnySubclassDisplayed (values, cls) {
-		return values[this._optionsFilter.header].isDisplayClassIfSubclassActive && (cls.subclasses || [])
-			.some(sc => {
-				if (this._filterBox.toDisplay(
-					values,
-					...this.constructor._getIsSubclassDisplayedToDisplayParams(cls, sc),
-				)) return true;
-
-				return sc.otherSources?.length && sc.otherSources.some(src => this._filterBox.toDisplay(
-					values,
-					...this.constructor._getIsSubclassDisplayedToDisplayParams(cls, sc, src),
-				));
-			});
-	}
-
-	static _getIsSubclassDisplayedToDisplayParams (cls, sc, otherSourcesSource) {
-		return [
-			otherSourcesSource || sc.source,
-			sc._fMisc,
-			null,
-		];
+	isAnySubclassDisplayed (f, cls) {
+		if (!f[this._optionsFilter.header].isDisplayClassIfSubclassActive) return false;
+		return (cls.subclasses || [])
+			.some(sc => this.isSubclassVisible(f, cls, sc));
 	}
 
 	isSubclassVisible (f, cls, sc) {
-		if (this.filterBox.toDisplay(
-			f,
-			...this.constructor._getIsSubclassVisibleToDisplayParams(cls, sc),
-		)) return true;
+		if (
+			this._filterBox.toDisplayByFilters(
+				f,
+				{
+					filter: this._sourceFilter,
+					value: sc.source,
+				},
+				{
+					filter: this._miscFilter,
+					value: sc._fMisc,
+				},
+			)
+		) return true;
 
 		if (!sc.otherSources?.length) return false;
 
-		return sc.otherSources.some(src => this.filterBox.toDisplay(
-			f,
-			...this.constructor._getIsSubclassVisibleToDisplayParams(cls, sc, src.source),
-		));
-	}
-
-	static _getIsSubclassVisibleToDisplayParams (cls, sc, otherSourcesSource) {
-		return [
-			otherSourcesSource || sc.source,
-			sc._fMisc,
-			null,
-		];
+		return sc.otherSources
+			.some(src => {
+				return this._filterBox.toDisplayByFilters(
+					f,
+					{
+						filter: this._sourceFilter,
+						value: src,
+					},
+					{
+						filter: this._miscFilter,
+						value: sc._fMisc,
+					},
+				);
+			});
 	}
 
 	/** Return the first active source we find; use this as a fake source for things we want to force-display. */
@@ -250,14 +237,6 @@ class PageFilterClasses extends PageFilterClassesBase {
 
 	static _getIsClassNaturallyDisplayedToDisplayParams (cls) {
 		return [cls._fSources, cls._fMisc, cls._fLevelRange];
-	}
-
-	static _getIsSubclassDisplayedToDisplayParams (cls, sc, otherSourcesSource) {
-		return [otherSourcesSource || sc.source, sc._fMisc, cls._fLevelRange];
-	}
-
-	static _getIsSubclassVisibleToDisplayParams (cls, sc, otherSourcesSource) {
-		return [otherSourcesSource || sc.source, sc._fMisc, cls._fLevelRange, null];
 	}
 
 	_getToDisplayParams (values, cls) {

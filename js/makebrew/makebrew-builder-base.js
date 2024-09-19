@@ -1,5 +1,6 @@
 import {BuilderUi, PageUiUtil} from "./makebrew-builderui.js";
 import {VetoolsConfig} from "../utils-config/utils-config-config.js";
+import {SITE_STYLE__CLASSIC, SITE_STYLE_DISPLAY} from "../consts.js";
 
 class SidemenuRenderCache {
 	constructor ({$lastStageSaved, $lastWrpBtnLoadExisting}) {
@@ -85,7 +86,19 @@ export class BuilderBase extends ProxyBase {
 		};
 	}
 
-	setStateFromLoaded () { throw new TypeError(`Unimplemented method!`); }
+	setStateFromLoaded (state) {
+		// Validate meta
+		if (state.m) {
+			if (!SITE_STYLE_DISPLAY[state.m.styleHint]) state.m.styleHint = SITE_STYLE__CLASSIC;
+		}
+
+		this._setStateFromLoaded(state);
+	}
+
+	/** @abstract */
+	_setStateFromLoaded (state) {
+		throw new TypeError(`Unimplemented method!`);
+	}
 
 	async pDoHandleSourceUpdate () {
 		const nuSource = this._ui.source;

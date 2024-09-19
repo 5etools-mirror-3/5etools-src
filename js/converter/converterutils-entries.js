@@ -150,7 +150,7 @@ export class SpellTag extends ConverterTaggerInitializable {
 						0,
 						str,
 						{
-							fnTag: this._fnTag,
+							fnTag: this._fnTag.bind(this),
 						},
 					);
 					return ptrStack._;
@@ -175,7 +175,7 @@ export class SpellTag extends ConverterTaggerInitializable {
 				return `{@spell ${m[1]}${spellMeta.source !== Parser.SRC_PHB ? `|${spellMeta.source}` : ""}}`;
 			});
 
-		strMod
+		strMod = strMod
 			.replace(this._SPELL_NAME_REGEX_CAST, (...m) => {
 				const spellMeta = this._SPELL_NAMES[m.last().spell.toLowerCase()];
 				return `${m.last().prefix}{@spell ${m.last().spell}${spellMeta.source !== Parser.SRC_PHB ? `|${spellMeta.source}` : ""}}`;
@@ -358,7 +358,7 @@ export class TableTag {
 						0,
 						str,
 						{
-							fnTag: this._fnTag,
+							fnTag: this._fnTag.bind(this),
 						},
 					);
 					return ptrStack._;
@@ -388,7 +388,7 @@ export class TrapTag {
 						0,
 						str,
 						{
-							fnTag: this._fnTag,
+							fnTag: this._fnTag.bind(this),
 						},
 					);
 					return ptrStack._;
@@ -505,7 +505,7 @@ export class ChanceTag {
 						0,
 						str,
 						{
-							fnTag: this._fnTag,
+							fnTag: this._fnTag.bind(this),
 						},
 					);
 					return ptrStack._;

@@ -6,7 +6,8 @@ export class FeatConverterUi extends ConverterUiBase {
 		super(
 			ui,
 			{
-				converterId: "Feat",
+				name: "Feat",
+				converterId: "feat",
 				canSaveLocal: true,
 				modes: ["txt"],
 				hasPageNumbers: true,

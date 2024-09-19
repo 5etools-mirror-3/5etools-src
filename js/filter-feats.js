@@ -51,7 +51,12 @@ class PageFilterFeats extends PageFilterBase {
 		this._immuneFilter = FilterCommon.getDamageImmuneFilter();
 		this._defenseFilter = new MultiFilter({header: "Damage", filters: [this._vulnerableFilter, this._resistFilter, this._immuneFilter]});
 		this._conditionImmuneFilter = FilterCommon.getConditionImmuneFilter();
-		this._miscFilter = new Filter({header: "Miscellaneous", items: ["Has Info", "Has Images", "SRD", "Basic Rules", "Legacy"], isMiscFilter: true});
+		this._miscFilter = new Filter({
+			header: "Miscellaneous",
+			items: ["Has Info", "Has Images", "SRD", "Basic Rules", "Legacy"],
+			isMiscFilter: true,
+			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
+		});
 	}
 
 	static mutateForFilters (feat) {
@@ -85,11 +90,7 @@ class PageFilterFeats extends PageFilterBase {
 			if (feat.skillToolLanguageProficiencies.some(it => (it.choose || []).some(x => x.from || [].includes("anyTool")))) feat._fBenifits.push("Tool Proficiency");
 			if (feat.skillToolLanguageProficiencies.some(it => (it.choose || []).some(x => x.from || [].includes("anyLanguage")))) feat._fBenifits.push("Language Proficiency");
 		}
-		feat._fMisc = feat.srd ? ["SRD"] : [];
-		if (feat.basicRules) feat._fMisc.push("Basic Rules");
-		if (SourceUtil.isLegacySourceWotc(feat.source)) feat._fMisc.push("Legacy");
-		if (this._hasFluff(feat)) feat._fMisc.push("Has Info");
-		if (this._hasFluffImages(feat)) feat._fMisc.push("Has Images");
+		this._mutateForFilters_commonMisc(feat);
 		if (feat.repeatable != null) feat._fMisc.push(feat.repeatable ? "Repeatable" : "Not Repeatable");
 
 		feat._slAbility = ability.asTextShort || VeCt.STR_NONE;

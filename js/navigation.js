@@ -406,7 +406,7 @@ class NavBar {
 
 		const a = document.createElement("a");
 		a.href = href;
-		a.innerHTML = `${this._addElement_getDatePrefix({date: opts.date, isAddDateSpacer: opts.isAddDateSpacer})}${this._addElement_getSourcePrefix({source: opts.source})}${aText}`;
+		a.innerHTML = `${this._addElement_getDatePrefix({date: opts.date, isAddDateSpacer: opts.isAddDateSpacer})}${this._addElement_getSourcePrefix({source: opts.source})}${aText}${this._addElement_getSourceSuffix({source: opts.source})}`;
 		a.classList.add("nav__link");
 		if (opts.isInAccordion) a.classList.add(`nav2-accord__lnk-item`, `inline-block`, `w-100`);
 
@@ -483,6 +483,11 @@ class NavBar {
 
 	static _addElement_getDatePrefix ({date, isAddDateSpacer}) { return `${(date != null || isAddDateSpacer) ? `<div class="ve-small mr-2 page__nav-date inline-block ve-text-right inline-block">${date || ""}</div>` : ""}`; }
 	static _addElement_getSourcePrefix ({source}) { return `${source != null ? `<div class="nav2-list__disp-source ${Parser.sourceJsonToSourceClassname(source)}" ${Parser.sourceJsonToStyle(source)}></div>` : ""}`; }
+
+	static _addElement_getSourceSuffix ({source}) {
+		if (source == null) return "";
+		return Parser.sourceJsonToMarkerHtml(source, {isList: false, additionalStyles: "ml-1 nav2-list__disp-legacy-marker"});
+	}
 
 	static _addElement_divider (parentCategory) {
 		const parentNode = this._getNode(parentCategory);

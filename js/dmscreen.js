@@ -316,7 +316,7 @@ class Board {
 			.addTab(embedTab)
 			.addTab(specialTab);
 
-		this.menu.render();
+		await this.menu.pRender();
 
 		this.sideMenu.render();
 
@@ -2089,11 +2089,11 @@ class Panel {
 			});
 		};
 
-		const openAddMenu = () => {
+		const pOpenAddMenu = async () => {
 			this.board.menu.doOpen();
 			this.board.menu.setPanel(this);
-			if (!this.board.menu.hasActiveTab()) this.board.menu.setFirstTabActive();
-			else if (this.board.menu.getActiveTab().doTransitionActive) this.board.menu.getActiveTab().doTransitionActive();
+			if (!this.board.menu.hasActiveTab()) await this.board.menu.pSetFirstTabActive();
+			else if (this.board.menu.getActiveTab().pDoTransitionActive) await this.board.menu.getActiveTab().pDoTransitionActive();
 		};
 
 		function doInitialRender () {
@@ -2101,12 +2101,14 @@ class Panel {
 			this.$pnl = $pnl;
 			const $ctrlBar = $(`<div class="panel-control-bar"></div>`).appendTo($pnl);
 			this.$pnlTitle = $(`<div class="panel-control-bar panel-control-title"></div>`).appendTo($pnl).click(() => this.$pnlTitle.toggleClass("panel-control-title--bumped"));
-			this.$pnlAddTab = $(`<div class="panel-control-bar panel-control-addtab"><div class="panel-control-icon glyphicon glyphicon-plus" title="Add Tab"></div></div>`).click(() => {
-				this.setIsTabs(true);
-				this.setDirty(true);
-				this.render();
-				openAddMenu();
-			}).appendTo($pnl);
+			this.$pnlAddTab = $(`<div class="panel-control-bar panel-control-addtab"><div class="panel-control-icon glyphicon glyphicon-plus" title="Add Tab"></div></div>`)
+				.on("click", async () => {
+					this.setIsTabs(true);
+					this.setDirty(true);
+					this.render();
+					await pOpenAddMenu();
+				})
+				.appendTo($pnl);
 
 			const $ctrlMove = $(`<div class="panel-control-icon glyphicon glyphicon-move" title="Move"></div>`).appendTo($ctrlBar);
 			$ctrlMove.on("click", () => {
@@ -2124,8 +2126,8 @@ class Panel {
 			const $wrpContent = $(`<div class="panel-content-wrapper"></div>`).appendTo($pnl);
 			const $wrpBtnAdd = $(`<div class="panel-add"></div>`).appendTo($wrpContent);
 			const $btnAdd = $(`<span class="ve-btn-panel-add glyphicon glyphicon-plus"></span>`)
-				.on("click", () => {
-					openAddMenu();
+				.on("click", async () => {
+					await pOpenAddMenu();
 				})
 				.on("drop", async evt => {
 					evt = evt.originalEvent;
@@ -2154,7 +2156,8 @@ class Panel {
 				$wrpTabsInner.scrollLeft(Math.max(0, curr + delta));
 			}).appendTo($wrpTabs);
 			const $btnTabAdd = $(`<button class="ve-btn ve-btn-default content-tab"><span class="glyphicon glyphicon-plus"></span></button>`)
-				.click(() => openAddMenu()).appendTo($wrpTabsInner);
+				.on("cllick", () => pOpenAddMenu())
+				.appendTo($wrpTabsInner);
 			this.$pnlWrpTabs = $wrpTabs;
 			this.$pnlTabs = $wrpTabsInner;
 
@@ -2970,7 +2973,7 @@ class AddMenu {
 		return this.tabs.find(it => it.label === label);
 	}
 
-	setActiveTab (tab) {
+	async pSetActiveTab (tab) {
 		$(document.activeElement).blur();
 
 		this._$menuInner.find(`.panel-addmenu-tab-head`).attr(`active`, false);
@@ -2979,7 +2982,7 @@ class AddMenu {
 		this.$tabView.append(tab.get$Tab());
 		tab.$head.attr(`active`, true);
 
-		if (tab.doTransitionActive) tab.doTransitionActive();
+		if (tab.pDoTransitionActive) await tab.pDoTransitionActive();
 	}
 
 	hasActiveTab () {
@@ -2990,27 +2993,29 @@ class AddMenu {
 		return this.activeTab;
 	}
 
-	setFirstTabActive () {
+	async pSetFirstTabActive () {
 		const t = this.tabs[0];
-		this.setActiveTab(t);
+		await this.pSetActiveTab(t);
 	}
 
-	render () {
-		if (!this._$menuInner) {
-			this._$menuInner = $(`<div class="ve-flex-col w-100 h-100">`);
-			const $tabBar = $(`<div class="panel-addmenu-bar"></div>`).appendTo(this._$menuInner);
-			this.$tabView = $(`<div class="panel-addmenu-view"></div>`).appendTo(this._$menuInner);
+	async pRender () {
+		if (this._$menuInner) return;
 
-			this.tabs.forEach(t => {
-				t.render();
+		this._$menuInner = $(`<div class="ve-flex-col w-100 h-100">`);
+		const $tabBar = $(`<div class="panel-addmenu-bar"></div>`).appendTo(this._$menuInner);
+		this.$tabView = $(`<div class="panel-addmenu-view"></div>`).appendTo(this._$menuInner);
+
+		await this.tabs.pMap(t => t.pRender());
+
+		this.tabs
+			.forEach(t => {
 				const $head = $(`<button class="ve-btn ve-btn-default panel-addmenu-tab-head">${t.label}</button>`).appendTo($tabBar);
 				const $body = $(`<div class="panel-addmenu-tab-body"></div>`).appendTo($tabBar);
 				$body.append(t.get$Tab);
 				t.$head = $head;
 				t.$body = $body;
-				$head.on("click", () => this.setActiveTab(t));
+				$head.on("click", () => this.pSetActiveTab(t));
 			});
-		}
 	}
 
 	setPanel (pnl) {
@@ -3066,7 +3071,7 @@ class AddMenuVideoTab extends AddMenuTab {
 		this.tabId = this.genTabId("tube");
 	}
 
-	render () {
+	async pRender () {
 		if (!this.$tab) {
 			const $tab = $(`<div class="ui-search__wrp-output underline-tabs" id="${this.tabId}"></div>`);
 
@@ -3167,7 +3172,7 @@ class AddMenuImageTab extends AddMenuTab {
 		this.tabId = this.genTabId("image");
 	}
 
-	render () {
+	async pRender () {
 		if (!this.$tab) {
 			const $tab = $(`<div class="ui-search__wrp-output underline-tabs" id="${this.tabId}"></div>`);
 
@@ -3269,7 +3274,7 @@ class AddMenuSpecialTab extends AddMenuTab {
 		this.tabId = this.genTabId("special");
 	}
 
-	render () {
+	async pRender () {
 		if (!this.$tab) {
 			const $tab = $(`<div class="ui-search__wrp-output underline-tabs ve-overflow-y-auto pr-1" id="${this.tabId}"></div>`);
 
@@ -3345,8 +3350,8 @@ class AddMenuSpecialTab extends AddMenuTab {
 			$(`<hr class="hr-2">`).appendTo($tab);
 
 			const $btnSwitchToEmbedTag = $(`<button class="ve-btn ve-btn-default ve-btn-xxs">embed</button>`)
-				.click(() => {
-					this.menu.setActiveTab(this.menu.getTab({label: "Embed"}));
+				.on("click", async () => {
+					await this.menu.pSetActiveTab(this.menu.getTab({label: "Embed"}));
 				});
 
 			const $wrpText = $$`<div class="ui-modal__row"><span>Basic Text Box <i class="ve-muted">(for a feature-rich editor, ${$btnSwitchToEmbedTag} a Google Doc or similar)</i></span></div>`.appendTo($tab);
@@ -3431,7 +3436,7 @@ class AddMenuSearchTab extends AddMenuTab {
 		this.$srch = null;
 		this.$results = null;
 		this.showMsgIpt = null;
-		this.doSearch = null;
+		this._pDoSearch = null;
 		this._$ptrRows = null;
 	}
 
@@ -3514,7 +3519,7 @@ class AddMenuSearchTab extends AddMenuTab {
 		}
 	}
 
-	render () {
+	async pRender () {
 		const flags = {
 			doClickFirst: false,
 			isWait: false,
@@ -3536,12 +3541,17 @@ class AddMenuSearchTab extends AddMenuTab {
 
 		this._$ptrRows = {_: []};
 
-		this.doSearch = () => {
+		this._pDoSearch = async () => {
 			const srch = this.$srch.val().trim();
 
 			const searchOptions = this._getSearchOptions();
 			const index = this.indexes[this.cat];
-			const results = index.search(srch, searchOptions);
+			let results = index.search(srch, searchOptions);
+
+			if (this.subType === "content") {
+				results = await Omnisearch.pGetFilteredResults(results);
+			}
+
 			const resultCount = results.length ? results.length : index.documentStore.length;
 			const toProcess = results.length ? results : Object.values(index.documentStore.docs).slice(0, UiUtil.SEARCH_RESULTS_CAP).map(it => ({doc: it}));
 
@@ -3612,9 +3622,9 @@ class AddMenuSearchTab extends AddMenuTab {
 			Object.keys(this.indexes).sort().filter(it => it !== "ALL").forEach(it => {
 				$selCat.append(`<option value="${it}">${this._getCatOptionText(it)}</option>`);
 			});
-			$selCat.on("change", () => {
+			$selCat.on("change", async () => {
 				this.cat = $selCat.val();
-				this.doSearch();
+				await this._pDoSearch();
 			});
 
 			const $srch = $(`<input class="ui-search__ipt-search search form-control" autocomplete="off" placeholder="Search...">`).blurOnEsc().appendTo($wrpCtrls);
@@ -3622,7 +3632,7 @@ class AddMenuSearchTab extends AddMenuTab {
 
 			SearchWidget.bindAutoSearch($srch, {
 				flags,
-				fnSearch: this.doSearch,
+				pFnSearch: this._pDoSearch,
 				fnShowWait: showMsgDots,
 				$ptrRows: this._$ptrRows,
 			});
@@ -3632,13 +3642,13 @@ class AddMenuSearchTab extends AddMenuTab {
 			this.$srch = $srch;
 			this.$results = $results;
 
-			this.doSearch();
+			await this._pDoSearch();
 		}
 	}
 
-	doTransitionActive () {
+	async pDoTransitionActive () {
 		this.$srch.val("").focus();
-		if (this.doSearch) this.doSearch();
+		if (this._pDoSearch) await this._pDoSearch();
 	}
 }
 

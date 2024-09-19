@@ -110,3 +110,5 @@ class BackgroundPage extends ListPage {
 const backgroundsPage = new BackgroundPage();
 backgroundsPage.sublistManager = new BackgroundSublistManager();
 window.addEventListener("load", () => backgroundsPage.pOnLoad());
+
+globalThis.dbg_page = backgroundsPage;

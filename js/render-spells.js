@@ -270,7 +270,7 @@ class _RenderSpellsImplClassic extends _RenderSpellsImplBase {
 
 			${Renderer.utils.getDividerTr()}
 
-			<tr class="text"><td colspan="6">
+			<tr><td colspan="6">
 				${htmlPtEntries}
 				${htmlPtFrom}
 			</td></tr>

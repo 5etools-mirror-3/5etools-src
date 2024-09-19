@@ -307,11 +307,13 @@ class _RenderBestiaryImplBase {
 			source: mon.source,
 			page: mon.page,
 			srd: mon.srd,
+			srd52: mon.srd52,
 			sourceSub: mon.sourceSub,
 			otherSources: mon.otherSources,
 			additionalSources: mon.additionalSources,
 			externalSources: mon.externalSources,
 			reprintedAs: mon.reprintedAs,
+			__prop: mon.__prop,
 		};
 		const additional = mon.additionalSources ? MiscUtil.copy(mon.additionalSources) : [];
 		if (mon.variant?.length) {
@@ -329,7 +331,7 @@ class _RenderBestiaryImplBase {
 		}
 		srcCpy.additionalSources = additional;
 
-		const pageTrInner = Renderer.utils.getSourceAndPageTrHtml(srcCpy, {tag: "creature", fnUnpackUid: (uid) => DataUtil.generic.unpackUid(uid, "creature")});
+		const pageTrInner = Renderer.utils.getSourceAndPageTrHtml(srcCpy);
 		if (!mon.environment?.length) return [pageTrInner];
 		return [pageTrInner, `<div><b>Environment:</b> ${Renderer.monster.getRenderedEnvironment(mon.environment)}</div>`];
 	}

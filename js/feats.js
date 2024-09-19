@@ -121,3 +121,5 @@ class FeatsPage extends ListPage {
 const featsPage = new FeatsPage();
 featsPage.sublistManager = new FeatsSublistManager();
 window.addEventListener("load", () => featsPage.pOnLoad());
+
+globalThis.dbg_page = featsPage;

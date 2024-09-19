@@ -889,7 +889,7 @@ MakeCards.utils = class {
 						Renderer.item._initFullEntries(item);
 						fromCustom.entries.forEach(e => item._fullEntries.push(e));
 					}
-				} else if (Renderer.item.getProperty(p).entries) {
+				} else if (Renderer.item.getProperty(p)?.entries) {
 					Renderer.item._initFullEntries(item);
 					Renderer.item.getProperty(p).entries.forEach(e => item._fullEntries.push(e));
 				}

@@ -163,7 +163,7 @@ export class InitiativeTracker extends BaseComponent {
 					.filter(Boolean);
 			});
 
-		const $btnAddMonster = $(`<button class="ve-btn ve-btn-success ve-btn-xs dm-init-lockable mr-2" title="Add Monster"><span class="glyphicon glyphicon-print"></span></button>`)
+		const $btnAddMonster = $(`<button class="ve-btn ve-btn-success ve-btn-xs dm-init-lockable mr-2" title="Add Creature"><span class="glyphicon glyphicon-print"></span></button>`)
 			.on("click", async () => {
 				if (this._state.isLocked) return;
 

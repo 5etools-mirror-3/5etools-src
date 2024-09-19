@@ -76,7 +76,12 @@ class PageFilterOptionalFeatures extends PageFilterBase {
 				this._featureFilter,
 			],
 		});
-		this._miscFilter = new Filter({header: "Miscellaneous", items: ["Has Info", "Has Images", "SRD", "Legacy", "Grants Additional Spells"], isMiscFilter: true});
+		this._miscFilter = new Filter({
+			header: "Miscellaneous",
+			items: ["Has Info", "Has Images", "SRD", "Legacy", "Grants Additional Spells"],
+			isMiscFilter: true,
+			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
+		});
 	}
 
 	static mutateForFilters (ent) {
@@ -119,11 +124,8 @@ class PageFilterOptionalFeatures extends PageFilterBase {
 		ent._lFeatureType = ent.featureType.join(", ");
 		ent.featureType.sort((a, b) => SortUtil.ascSortLower(Parser.optFeatureTypeToFull(a), Parser.optFeatureTypeToFull(b)));
 
-		ent._fMisc = ent.srd ? ["SRD"] : [];
-		if (SourceUtil.isLegacySourceWotc(ent.source)) ent._fMisc.push("Legacy");
+		this._mutateForFilters_commonMisc(ent);
 		if (ent.additionalSpells) ent._fMisc.push("Grants Additional Spells");
-		if (this._hasFluff(ent)) ent._fMisc.push("Has Info");
-		if (this._hasFluffImages(ent)) ent._fMisc.push("Has Images");
 	}
 
 	addToFilters (it, isExcluded) {

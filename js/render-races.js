@@ -1,8 +1,10 @@
 export class RenderRaces {
 	static $getRenderedRace (ent) {
+		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
+
 		const renderer = Renderer.get().setFirstSection(true);
 
-		const entriesMeta = Renderer.race.getRaceRenderableEntriesMeta(ent);
+		const entriesMeta = Renderer.race.getRaceRenderableEntriesMeta(ent, {styleHint});
 		const ptHeightWeight = RenderRaces._getHeightAndWeightPart(ent);
 
 		return $$`
@@ -21,7 +23,7 @@ export class RenderRaces {
 
 		${ptHeightWeight ? $$`<tr><td colspan="6"><hr class="rd__hr">${ptHeightWeight}</td></tr>` : ""}
 
-		${Renderer.utils.getPageTr(ent, {tag: "race", fnUnpackUid: (uid) => DataUtil.generic.unpackUid(uid, "race")})}
+		${Renderer.utils.getPageTr(ent)}
 		${Renderer.utils.getBorderTr()}`;
 	}
 

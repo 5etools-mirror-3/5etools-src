@@ -692,8 +692,13 @@ class RendererMarkdown {
 				break;
 			case "@atk":
 			case "@atkr":
-				textStack[0] += `*${Renderer.attackTagToFull(text, {isRoll: tag === "@atkr"})}*`;
+				textStack[0] += `*${Renderer.attackTagToFull(text, {isRoll: tag === "@atkr"})}* `;
 				break;
+			case "@actSave": textStack[0] += `*${Parser.attAbvToFull(text)} Saving Throw:*`; break;
+			case "@actSaveSuccess": textStack[0] += `*Success:*`; break;
+			case "@actSaveFail": textStack[0] += `*Failure:*`; break;
+			case "@actTrigger": textStack[0] += `*Trigger:*`; break;
+			case "@actResponse": textStack[0] += `*Response:*`; break;
 			case "@h": textStack[0] += `*Hit:* `; break;
 
 			// DCs /////////////////////////////////////////////////////////////////////////////////////////////

@@ -6,7 +6,8 @@ export class TableConverterUi extends ConverterUiBase {
 		super(
 			ui,
 			{
-				converterId: "Table",
+				name: "Table",
+				converterId: "table",
 				modes: ["html", "md"],
 				prop: "table",
 			},

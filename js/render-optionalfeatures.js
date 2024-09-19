@@ -31,15 +31,15 @@ class _RenderOptionalfeaturesImplBase extends RenderPageImplBase {
 	/* ----- */
 
 	_getCommonHtmlParts_prerequisites ({ent}) {
-		const ptCategoryPrerequisite = Renderer.utils.prerequisite.getHtml(ent.prerequisite, {styleHint: this._style});
-		return ptCategoryPrerequisite ? `<tr><td colspan="6">${ptCategoryPrerequisite}</td></tr>` : "";
+		const ptPrerequisites = Renderer.utils.prerequisite.getHtml(ent.prerequisite, {styleHint: this._style});
+		return ptPrerequisites ? `<tr><td colspan="6" class="pt-0 ${this._style === SITE_STYLE__CLASSIC ? "" : "italic"}">${ptPrerequisites}</td></tr>` : "";
 	}
 
 	/* ----- */
 
 	_getCommonHtmlParts_cost ({ent}) {
 		const ptCost = Renderer.optionalfeature.getCostHtml(ent);
-		return ptCost ? `<tr><td colspan="6">${ptCost}</td></tr>` : "";
+		return ptCost ? `<tr><td colspan="6" ${ent.prerequisite ? "" : `class="pt-0"`}>${ptCost}</td></tr>` : "";
 	}
 
 	/* ----- */
@@ -90,7 +90,7 @@ class _RenderOptionalfeaturesImplClassic extends _RenderOptionalfeaturesImplBase
 		
 			<tr><td colspan="6" class="py-0"><div class="ve-tbl-divider"></div></td></tr>
 			
-			<tr class="text"><td colspan="6">
+			<tr><td colspan="6">
 				${htmlPtEntries}
 			</td></tr>
 			

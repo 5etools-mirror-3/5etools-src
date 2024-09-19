@@ -21,7 +21,12 @@ class PageFilterBackgrounds extends PageFilterBase {
 		this._languageFilter = FilterCommon.getLanguageProficienciesFilter();
 		this._asiFilter = new AbilityScoreFilter({header: "Ability Scores"});
 		this._otherBenefitsFilter = new Filter({header: "Other Benefits"});
-		this._miscFilter = new Filter({header: "Miscellaneous", items: ["Has Info", "Has Images", "SRD", "Basic Rules", "Legacy"], isMiscFilter: true});
+		this._miscFilter = new Filter({
+			header: "Miscellaneous",
+			items: ["Has Info", "Has Images", "SRD", "Basic Rules", "Legacy"],
+			isMiscFilter: true,
+			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
+		});
 	}
 
 	static mutateForFilters (bg) {
@@ -51,11 +56,7 @@ class PageFilterBackgrounds extends PageFilterBase {
 		bg._fLangs = languages;
 
 		bg._fMisc = [];
-		if (bg.srd) bg._fMisc.push("SRD");
-		if (bg.basicRules) bg._fMisc.push("Basic Rules");
-		if (SourceUtil.isLegacySourceWotc(bg.source)) bg._fMisc.push("Legacy");
-		if (this._hasFluff(bg)) bg._fMisc.push("Has Info");
-		if (this._hasFluffImages(bg)) bg._fMisc.push("Has Images");
+		this._mutateForFilters_commonMisc(bg);
 		bg._fOtherBenifits = [];
 		if (bg.feats) bg._fOtherBenifits.push("Feat");
 		if (bg.additionalSpells) bg._fOtherBenifits.push("Additional Spells");

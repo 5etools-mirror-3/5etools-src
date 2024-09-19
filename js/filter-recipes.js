@@ -47,12 +47,12 @@ class PageFilterRecipes extends PageFilterBase {
 			items: ["SRD", "Legacy"],
 			isMiscFilter: true,
 			displayFn: PageFilterRecipes._miscTagToFull,
+			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
 		});
 	}
 
 	static mutateForFilters (it) {
-		it._fMisc = it.srd ? ["SRD"] : [];
-		if (SourceUtil.isLegacySourceWotc(it.source)) it._fMisc.push("Legacy");
+		this._mutateForFilters_commonMisc(it);
 		if (it.miscTags) it._fMisc.push(...it.miscTags);
 		it._fServes = (it.serves?.min != null && it.serves?.max != null) ? [it.serves.min, it.serves.max] : (it.serves?.exact ?? null);
 		const totalTime = it.time?.total ?? this._mutateForFilters_getTotalTime(it.time);
@@ -60,8 +60,6 @@ class PageFilterRecipes extends PageFilterBase {
 		it._fTimePreparation = it.time?.preparation ? this._mutateForFilters_getFilterTime(it.time.preparation) : null;
 		it._fTimeCooking = it.time?.cooking ? this._mutateForFilters_getFilterTime(it.time.cooking) : null;
 		it._fDiet = it.diet ? PageFilterRecipes._DIET_TO_FULL[it.diet] || it.diet : null;
-		if (this._hasFluff(it)) it._fMisc.push("Has Info");
-		if (this._hasFluffImages(it)) it._fMisc.push("Has Images");
 	}
 
 	static _ONE_DAY_MINS = 24 * 60;

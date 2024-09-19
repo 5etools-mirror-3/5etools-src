@@ -184,7 +184,8 @@ export class InitiativeTrackerNetworking {
 		const $btnGetLink = $(`<button class="ve-btn ve-btn-default" disabled><span class="glyphicon glyphicon-link"></span> Copy Link</button>`).appendTo($wrpHelp)
 			.click(async () => {
 				const cleanOrigin = window.location.origin.replace(/\/+$/, "");
-				const url = `${cleanOrigin}/inittrackerplayerview.html#v1:${this._p2pMetaV1.serverPeer.token}`;
+				const cleanPathname = window.location.pathname.split("/").slice(0, -1).join("/");
+				const url = `${cleanOrigin}${cleanPathname}/inittrackerplayerview.html#v1:${this._p2pMetaV1.serverPeer.token}`;
 				await MiscUtil.pCopyTextToClipboard(url);
 				JqueryUtil.showCopiedEffect($btnGetLink);
 			});

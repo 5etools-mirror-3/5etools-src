@@ -59,13 +59,29 @@ class _SpellSourceUtil {
 		}
 
 		if (spellItem.all != null) { // A filter expression
-			return modalFilterSpells.getEntitiesMatchingFilterExpression({filterExpression: spellItem.all})
+			return modalFilterSpells.getEntitiesMatchingFilterExpression({
+				filterExpression: spellItem.all,
+				valuesOverride: {
+					"Components & Miscellaneous": {
+						"Legacy": 0,
+						"Reprinted": 0,
+					},
+				},
+			})
 				.forEach(ent => outSpells.push(DataUtil.generic.getUid({name: ent.name, source: ent.source})));
 		}
 
 		if (spellItem.choose != null) {
 			if (typeof spellItem.choose === "string") { // A filter expression
-				return modalFilterSpells.getEntitiesMatchingFilterExpression({filterExpression: spellItem.choose})
+				return modalFilterSpells.getEntitiesMatchingFilterExpression({
+					filterExpression: spellItem.choose,
+					valuesOverride: {
+						"Components & Miscellaneous": {
+							"Legacy": 0,
+							"Reprinted": 0,
+						},
+					},
+				})
 					.forEach(ent => outSpells.push(DataUtil.generic.getUid({name: ent.name, source: ent.source})));
 			}
 

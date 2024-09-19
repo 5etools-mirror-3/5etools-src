@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.210.2"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.210.3"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -4361,7 +4361,9 @@ globalThis.DataUtil = {
 			page: true,
 			otherSources: true,
 			srd: true,
+			srd52: true,
 			basicRules: true,
+			freeRules2024: true,
 			reprintedAs: true,
 			hasFluff: true,
 			hasFluffImages: true,
@@ -5389,26 +5391,26 @@ globalThis.DataUtil = {
 		},
 	},
 
-	proxy: {
-		getVersions (prop, ent, {isExternalApplicationIdentityOnly = false} = {}) {
+	proxy: class {
+		static getVersions (prop, ent, {isExternalApplicationIdentityOnly = false} = {}) {
 			if (DataUtil[prop]?.getVersions) return DataUtil[prop]?.getVersions(ent, {isExternalApplicationIdentityOnly});
 			return DataUtil.generic.getVersions(ent, {isExternalApplicationIdentityOnly});
-		},
+		}
 
-		unpackUid (prop, uid, tag, opts) {
+		static unpackUid (prop, uid, tag, opts) {
 			if (DataUtil[prop]?.unpackUid) return DataUtil[prop]?.unpackUid(uid, tag, opts);
 			return DataUtil.generic.unpackUid(uid, tag, opts);
-		},
+		}
 
-		getNormalizedUid (prop, uid, tag, opts) {
+		static getNormalizedUid (prop, uid, tag, opts) {
 			if (DataUtil[prop]?.getNormalizedUid) return DataUtil[prop].getNormalizedUid(uid, tag, opts);
 			return DataUtil.generic.getNormalizedUid(uid, tag, opts);
-		},
+		}
 
-		getUid (prop, ent, opts) {
+		static getUid (prop, ent, opts) {
 			if (DataUtil[prop]?.getUid) return DataUtil[prop].getUid(ent, opts);
 			return DataUtil.generic.getUid(ent, opts);
-		},
+		}
 	},
 
 	monster: class extends _DataUtilPropConfigMultiSource {
@@ -5891,6 +5893,17 @@ globalThis.DataUtil = {
 				source,
 			};
 		}
+
+		static getUid (ent, {isMaintainCase = false, isRetainDefault = false} = {}) {
+			// <abbreviation>|<source>
+			const sourceDefault = Parser.SRC_PHB;
+			const out = [
+				ent.abbreviation,
+				!isRetainDefault && (ent.source || "").toLowerCase() === sourceDefault.toLowerCase() ? "" : ent.source,
+			].join("|").replace(/\|+$/, ""); // Trim trailing pipes
+			if (isMaintainCase) return out;
+			return out.toLowerCase();
+		}
 	},
 
 	language: class extends _DataUtilPropConfigSingleSource {
@@ -6147,14 +6160,34 @@ globalThis.DataUtil = {
 		}
 
 		static packUidSubclass (it) {
-			// <name>|<className>|<classSource>|<source>
-			const sourceDefault = Parser.getTagSource("subclass");
+			// <shortName>|<className>|<classSource>|<source>
+			const sourceDefault = Parser.getTagSource("class");
 			return [
-				it.name,
+				it.shortName,
 				it.className,
 				(it.classSource || "").toLowerCase() === sourceDefault.toLowerCase() ? "" : it.classSource,
 				(it.source || "").toLowerCase() === sourceDefault.toLowerCase() ? "" : it.source,
 			].join("|").replace(/\|+$/, ""); // Trim trailing pipes
+		}
+
+		/**
+		 * @param uid
+		 * @param [opts]
+		 * @param [opts.isLower] If the returned values should be lowercase.
+		 */
+		static unpackUidSubclass (uid, opts) {
+			opts = opts || {};
+			if (opts.isLower) uid = uid.toLowerCase();
+			let [shortName, className, classSource, source, displayText] = uid.split("|").map(it => it.trim());
+			classSource = classSource || (opts.isLower ? Parser.SRC_PHB.toLowerCase() : Parser.SRC_PHB);
+			source = source || (opts.isLower ? Parser.SRC_PHB.toLowerCase() : Parser.SRC_PHB);
+			return {
+				shortName,
+				className,
+				classSource,
+				source,
+				displayText,
+			};
 		}
 
 		/**

@@ -135,17 +135,11 @@ class PageFilterRaces extends PageFilterBase {
 		r._fSources = SourceFilter.getCompleteFilterSources(r);
 		r._fLangs = PageFilterRaces.getLanguageProficiencyTags(r.languageProficiencies);
 		r._fCreatureTypes = r.creatureTypes ? r.creatureTypes.map(it => it.choose || it).flat() : ["humanoid"];
-		r._fMisc = [];
+		this._mutateForFilters_commonMisc(r);
 		if (r._isBaseRace) r._fMisc.push("Base Race");
 		if (r._isBaseRace || !r._isSubRace) r._fMisc.push("Key Race");
 		if (r._isCopy) r._fMisc.push("Modified Copy");
-		if (r.srd) r._fMisc.push("SRD");
-		if (r.basicRules) r._fMisc.push("Basic Rules");
-		if (SourceUtil.isLegacySourceWotc(r.source)) r._fMisc.push("Legacy");
-		if (this._hasFluff(r)) r._fMisc.push("Has Info");
-		if (this._hasFluffImages(r)) r._fMisc.push("Has Images");
 		if (r.lineage) r._fMisc.push("Lineage");
-		if (this._isReprinted({reprintedAs: r.reprintedAs, tag: "race", prop: "race", page: UrlUtil.PG_RACES})) r._fMisc.push("Reprinted");
 
 		const ability = r.ability ? Renderer.getAbilityData(r.ability, {isOnlyShort: true, isCurrentLineage: r.lineage === "VRGR"}) : {asTextShort: "None"};
 		r._slAbility = ability.asTextShort;

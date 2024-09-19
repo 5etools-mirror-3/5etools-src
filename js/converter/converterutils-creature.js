@@ -203,7 +203,7 @@ export class AcConvert {
 	static _tryPostProcessAc_special (mon, cbMan, cbErr) {
 		mon.ac = mon.ac.trim();
 
-		const mPlusSpecial = /^(\d+) (plus|\+) (?:PB|the level of the spell|your [^ ]+ modifier)(?: \([^)]+\))?$/i.exec(mon.ac);
+		const mPlusSpecial = /^(\d+) (plus|\+) (?:PB|the level of the spell|the spell's level|your [^ ]+ modifier|\d+ per spell level)(?: (\+\s*\d )?\([^)]+\))?$/i.exec(mon.ac);
 		if (mPlusSpecial) {
 			mon.ac = [{special: mon.ac}];
 			return true;
@@ -552,49 +552,80 @@ export class CreatureConditionImmunityConverter extends _CreatureImmunityResista
 	}
 }
 
-export class TagAttack {
-	static tryTagAttacks (m, cbMan) {
-		TagAttack._PROPS.forEach(prop => this._handleProp({m, prop, cbMan}));
+export class TagCreatureSubEntryInto {
+	static _PROPS = ["action", "reaction", "bonus", "trait", "legendary", "mythic", "variant"];
+	static _MAP = {
+		"melee weapon attack:": "{@atk mw}",
+		"ranged weapon attack:": "{@atk rw}",
+		"melee attack:": "{@atk m}",
+		"ranged attack:": "{@atk r}",
+		"area attack:": "{@atk a}",
+		"area weapon attack:": "{@atk aw}",
+		"melee spell attack:": "{@atk ms}",
+		"melee or ranged weapon attack:": "{@atk mw,rw}",
+		"ranged spell attack:": "{@atk rs}",
+		"melee or ranged spell attack:": "{@atk ms,rs}",
+		"melee or ranged attack:": "{@atk m,r}",
+		"melee power attack:": "{@atk mp}",
+		"ranged power attack:": "{@atk rp}",
+		"melee or ranged power attack:": "{@atk mp,rp}",
+		"melee attack roll:": "{@atkr m}",
+		"ranged attack roll:": "{@atkr r}",
+		"melee or ranged attack roll:": "{@atkr m,r}",
+	};
+
+	static _WALKER = null;
+
+	static tryRun (m, cbMan) {
+		this._PROPS.forEach(prop => this._handleProp({m, prop, cbMan}));
 	}
 
 	static _handleProp ({m, prop, cbMan}) {
 		if (!m[prop]) return;
 
+		this._WALKER ||= MiscUtil.getWalker({keyBlocklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST});
+
 		m[prop]
 			.forEach(it => {
 				if (!it.entries) return;
 
-				const str = JSON.stringify(it.entries, null, "\t");
-				const out = str.replace(/([\t ]")((?:(?:[A-Z][a-z]*|or) )*Attack:) /g, (...m) => {
-					const lower = m[2].toLowerCase();
-					if (TagAttack.MAP[lower]) {
-						return `${m[1]}${TagAttack.MAP[lower]} `;
-					} else {
-						if (cbMan) cbMan(m[2]);
-						return m[0];
-					}
-				});
-				it.entries = JSON.parse(out);
+				it.entries = this._WALKER.walk(
+					it.entries,
+					{
+						string: (str) => {
+							return str
+								// "Melee Weapon Attack: ..."
+								// "Melee Attack Roll: ..."
+								.replace(/^(?<text>(?:(?:[A-Z][a-z]*|or) )*Attack(?: Roll)?:)(?= )/g, (...m) => {
+									const {text} = m.at(-1);
+									const lower = text.toLowerCase();
+
+									if (this._MAP[lower]) return this._MAP[lower];
+
+									if (cbMan) cbMan(text);
+
+									return m[0];
+								})
+								// "Strength Saving Throw: ..."
+								.replace(/^((?<abil>Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma) Saving Throw:)(?= )/g, (...m) => {
+									const {abil} = m.at(-1);
+									return `{@actSave ${abil.toLowerCase().slice(0, 3)}}`;
+								})
+								// "Success: ..."
+								.replace(/(?<=^|[.!?;] )(Success:)(?= )/g, (...m) => `{@actSaveSuccess}`)
+								// "Failure: ..."
+								.replace(/(?<=^|[.!?;] )(Failure:)(?= )/g, (...m) => `{@actSaveFail}`)
+								// "Trigger: ..."
+								.replace(/^(Trigger:)(?= )/g, (...m) => `{@actTrigger}`)
+								// "Response: ..."
+								.replace(/(?<=^|[.!?;] )(Response:)(?= )/g, (...m) => `{@actResponse}`)
+							;
+						},
+					},
+				);
 			});
 	}
 }
-TagAttack._PROPS = ["action", "reaction", "bonus", "trait", "legendary", "mythic", "variant"];
-TagAttack.MAP = {
-	"melee weapon attack:": "{@atk mw}",
-	"ranged weapon attack:": "{@atk rw}",
-	"melee attack:": "{@atk m}",
-	"ranged attack:": "{@atk r}",
-	"area attack:": "{@atk a}",
-	"area weapon attack:": "{@atk aw}",
-	"melee spell attack:": "{@atk ms}",
-	"melee or ranged weapon attack:": "{@atk mw,rw}",
-	"ranged spell attack:": "{@atk rs}",
-	"melee or ranged spell attack:": "{@atk ms,rs}",
-	"melee or ranged attack:": "{@atk m,r}",
-	"melee power attack:": "{@atk mp}",
-	"ranged power attack:": "{@atk rp}",
-	"melee or ranged power attack:": "{@atk mp,rp}",
-};
 
 export class TagHit {
 	static tryTagHits (m) {
@@ -1217,15 +1248,15 @@ export class DamageTypeTag extends _PrimaryLegendarySpellsTaggerBase {
 
 	static _handleString ({m = null, str, outSet}) {
 		str.replace(RollerUtil.REGEX_DAMAGE_DICE, (m0, average, prefix, diceExp, suffix) => {
-			suffix.replace(ConverterConst.RE_DAMAGE_TYPE, (m0, type) => outSet.add(this._TYPE_LOOKUP[type]));
+			suffix.replace(ConverterConst.RE_DAMAGE_TYPE, (m0, type) => outSet.add(this._TYPE_LOOKUP[type.toLowerCase()]));
 		});
 
 		str.replace(this._STATIC_DAMAGE_REGEX, (m0, type) => {
-			outSet.add(this._TYPE_LOOKUP[type]);
+			outSet.add(this._TYPE_LOOKUP[type.toLowerCase()]);
 		});
 
 		str.replace(this._TARGET_TASKES_DAMAGE_REGEX, (m0, type) => {
-			outSet.add(this._TYPE_LOOKUP[type]);
+			outSet.add(this._TYPE_LOOKUP[type.toLowerCase()]);
 		});
 
 		if (this._isSummon(m)) {
@@ -1235,7 +1266,7 @@ export class DamageTypeTag extends _PrimaryLegendarySpellsTaggerBase {
 					if (!isSentenceMatch) return;
 
 					sentence.replace(ConverterConst.RE_DAMAGE_TYPE, (m0, type) => {
-						outSet.add(this._TYPE_LOOKUP[type]);
+						outSet.add(this._TYPE_LOOKUP[type.toLowerCase()]);
 					});
 				});
 		}
@@ -1321,15 +1352,20 @@ export class MiscTag {
 				string: (str) => {
 					// - any melee/ranged attack
 					str
-						.replace(/{@atk ([^}]+)}/g, (...mx) => {
-							const spl = mx[1].split(",");
+						.replace(/{@(?<tag>atkr?) (?<text>[^}]+)}/g, (...mx) => {
+							const {tag, text} = mx.at(-1);
+							const spl = text.split(",");
 
 							if (spl.includes("rw")) {
 								this._addTag({tagSet, allowlistTags, tag: "RW"});
 								hasRangedAttack = true;
+							} else if (spl.some(it => it.includes("r"))) {
+								this._addTag({tagSet, allowlistTags, tag: "RA"});
+								hasRangedAttack = true;
 							}
 
 							if (spl.includes("mw")) this._addTag({tagSet, allowlistTags, tag: "MW"});
+							else if (spl.some(it => it.includes("m"))) this._addTag({tagSet, allowlistTags, tag: "MA"});
 						});
 
 					// - reach
@@ -1358,7 +1394,7 @@ export class MiscTag {
 							subEntry.entries,
 							{
 								string: (str) => {
-									const mAtk = /{@atk ([^}]+)}/.exec(str || "");
+									const mAtk = /{@atkr? ([^}]+)}/.exec(str || "");
 									if (mAtk) {
 										const spl = mAtk[1].split(",");
 										// Avoid adding the "ranged attack" tag for spell attacks
@@ -1496,6 +1532,7 @@ export class SpellcastingTraitConvert {
 		spellData.forEach(s => {
 			this.SPELL_SRC_MAP[s.name.toLowerCase()] = s.source;
 			if (typeof s.srd === "string") this.SPELL_SRD_MAP[s.srd.toLowerCase()] = s.name;
+			if (typeof s.srd52 === "string") this.SPELL_SRD_MAP[s.srd52.toLowerCase()] = s.name;
 		});
 	}
 
@@ -1750,7 +1787,12 @@ export class SpellcastingTraitConvert {
 	}
 
 	static _parseToHit (line) {
-		return line.replace(/ ([-+])(\d+)( to hit with spell)/g, (m0, m1, m2, m3) => ` {@hit ${m1 === "-" ? "-" : ""}${m2}}${m3}`);
+		return line
+			.replace(/ (?<op>[-+])(?<num>\d+)(?<suffix> to hit with spell)/g, (...m) => {
+				const {op, num, suffix} = m.at(-1);
+				return ` {@hit ${op === "-" ? "-" : ""}${num}}${suffix}`;
+			})
+		;
 	}
 
 	static mutSpellcastingAbility (spellcastingEntry) {
@@ -1857,9 +1899,12 @@ export class SpeedConvert {
 			c = str.charAt(i);
 			switch (c) {
 				case ",":
+				case ";":
 					if (para === 0) {
 						ret.push(stack);
 						stack = "";
+					} else {
+						stack += c;
 					}
 					break;
 				case "(": para++; stack += c; break;
@@ -1880,60 +1925,60 @@ export class SpeedConvert {
 	}
 
 	static tryConvertSpeed (m, cbMan) {
-		if (typeof m.speed === "string") {
-			let line = m.speed.toLowerCase().trim().replace(/^speed[:.]?\s*/, "");
+		if (typeof m.speed !== "string") return;
 
-			const out = {};
-			let byHand = false;
-			let prevSpeed = null;
+		let line = m.speed.toLowerCase().trim().replace(/^speed[:.]?\s*/, "");
 
-			SpeedConvert._splitSpeed(line.toLowerCase()).map(it => it.trim()).forEach(s => {
-				// For e.g. shapechanger speeds, store them behind a "condition" on the previous speed
-				const mParens = /^\((\w+?\s+)?(\d+)\s*ft\.?( .*)?\)$/.exec(s);
-				if (mParens && prevSpeed) {
-					if (typeof out[prevSpeed] === "number") out[prevSpeed] = {number: out[prevSpeed], condition: s};
-					else out[prevSpeed].condition = s;
-					return;
-				}
+		const out = {};
+		let byHand = false;
+		let prevSpeed = null;
 
-				const m = /^(\w+?\s+)?(\d+)\s*ft\.?( .*)?$/.exec(s);
-				if (!m) {
-					byHand = true;
-					return;
-				}
-
-				let [_, mode, feet, condition] = m;
-				feet = Number(feet);
-
-				if (mode) mode = mode.trim().toLowerCase();
-				else mode = "walk";
-
-				if (SpeedConvert._SPEED_TYPES.has(mode)) {
-					if (condition) {
-						out[mode] = {
-							number: Number(feet),
-							condition: condition.trim(),
-						};
-					} else out[mode] = Number(feet);
-					prevSpeed = mode;
-				} else {
-					byHand = true;
-					prevSpeed = null;
-				}
-			});
-
-			// flag speed as invalid
-			if (Object.values(out).filter(s => (s.number != null ? s.number : s) % 5 !== 0).length) out.INVALID_SPEED = true;
-
-			// flag speed as needing hand-parsing
-			if (byHand) {
-				out.UNPARSED_SPEED = line;
-				if (cbMan) cbMan(`${m.name ? `(${m.name}) ` : ""}Speed requires manual conversion: "${line}"`);
+		SpeedConvert._splitSpeed(line.toLowerCase()).map(it => it.trim()).forEach(s => {
+			// For e.g. shapechanger speeds, store them behind a "condition" on the previous speed
+			const mParens = /^\((\w+?\s+)?(\d+)\s*ft\.?( .*)?\)$/.exec(s);
+			if (mParens && prevSpeed) {
+				if (typeof out[prevSpeed] === "number") out[prevSpeed] = {number: out[prevSpeed], condition: s};
+				else out[prevSpeed].condition = s;
+				return;
 			}
 
-			m.speed = out;
-			SpeedConvert._tagHover(m);
+			const m = /^(\w+?\s+)?(\d+)\s*ft\.?( .*)?$/.exec(s);
+			if (!m) {
+				byHand = true;
+				return;
+			}
+
+			let [_, mode, feet, condition] = m;
+			feet = Number(feet);
+
+			if (mode) mode = mode.trim().toLowerCase();
+			else mode = "walk";
+
+			if (SpeedConvert._SPEED_TYPES.has(mode)) {
+				if (condition) {
+					out[mode] = {
+						number: Number(feet),
+						condition: condition.trim(),
+					};
+				} else out[mode] = Number(feet);
+				prevSpeed = mode;
+			} else {
+				byHand = true;
+				prevSpeed = null;
+			}
+		});
+
+		// flag speed as invalid
+		if (Object.values(out).filter(s => (s.number != null ? s.number : s) % 5 !== 0).length) out.INVALID_SPEED = true;
+
+		// flag speed as needing hand-parsing
+		if (byHand) {
+			out.UNPARSED_SPEED = line;
+			if (cbMan) cbMan(`${m.name ? `(${m.name}) ` : ""}Speed requires manual conversion: "${line}"`);
 		}
+
+		m.speed = out;
+		SpeedConvert._tagHover(m);
 	}
 }
 SpeedConvert._SPEED_TYPES = new Set(Parser.SPEED_MODES);
@@ -2087,7 +2132,7 @@ export class AttachedItemTag {
 
 	static _isLikelyWeapon (act) {
 		if (!act.entries?.length || typeof act.entries[0] !== "string") return false;
-		const mAtk = /^{@atk ([^}]+)}/.exec(act.entries[0].trim());
+		const mAtk = /^{@atkr? ([^}]+)}/.exec(act.entries[0].trim());
 		if (!mAtk) return;
 		return mAtk[1].split(",").some(it => it.includes("w"));
 	}

@@ -4,6 +4,7 @@ import "../js/render.js";
 import "../js/render-dice.js";
 import "../js/hist.js";
 import "../js/utils-dataloader.js";
+import "../js/utils-config.js";
 import * as utS from "../node/util-search-index.js";
 import "../js/omnidexer.js";
 import * as ut from "../node/util.js";
@@ -32,6 +33,13 @@ class TagTestUrlLookup {
 		if (this._CAT_ID_BLOCKLIST.has(indexItem.c)) return;
 
 		const url = `${UrlUtil.categoryToPage(indexItem.c).toLowerCase()}#${(indexItem.u).toLowerCase().trim()}`;
+
+		this._ALL_URLS_SET.add(url);
+		this._ALL_URLS_LIST.push(url);
+	}
+
+	static addEntityItem (ent, page) {
+		const url = `${page.toLowerCase()}#${(UrlUtil.URL_TO_HASH_BUILDER[page](ent)).toLowerCase().trim()}`;
 
 		this._ALL_URLS_SET.add(url);
 		this._ALL_URLS_LIST.push(url);
@@ -66,6 +74,9 @@ class TagTestUtil {
 		const secondaryIndexItem = Omnidexer.decompressIndex(await utS.UtilSearchIndex.pGetIndexAdditionalItem({baseIndex: highestId + 1, doLogging: false}));
 		secondaryIndexItem
 			.forEach(indexItem => TagTestUrlLookup.addIndexItem(indexItem));
+
+		(await DataLoader.pCacheAndGetAllSite("itemProperty"))
+			.forEach(ent => TagTestUrlLookup.addEntityItem(ent, "itemProperty"));
 	}
 
 	static async _pInit_pPopulateClassSubclassIndex () {
@@ -145,12 +156,12 @@ class GenericDataCheck extends DataTesterBase {
 
 	static _testAdditionalSpells_testSpellExists (file, spellOrObj) {
 		if (typeof spellOrObj === "object") {
-			if (spellOrObj.choose || spellOrObj.all) {
+			if (spellOrObj.choose != null || spellOrObj.all != null) {
 				// e.g. "level=0|class=Sorcerer"
-				// (no-op)
-			} else throw new Error(`Unhandled additionalSpells special object: ${JSON.stringify(spellOrObj)}`);
+				return;
+			}
 
-			return;
+			throw new Error(`Unhandled additionalSpells special object in "${file}": ${JSON.stringify(spellOrObj)}`);
 		}
 
 		spellOrObj = spellOrObj.split("#")[0]; // An optional "cast at spell level" can be added with a "#", remove it
@@ -207,7 +218,7 @@ class GenericDataCheck extends DataTesterBase {
 		obj.feats.forEach(featsObj => {
 			Object.entries(featsObj)
 				.forEach(([k, v]) => {
-					if (k === "any") return;
+					if (["any", "anyFromCategory"].includes(k)) return;
 
 					const url = getEncoded(k, "feat");
 					if (!TagTestUrlLookup.hasUrl(url)) {
@@ -225,10 +236,16 @@ class GenericDataCheck extends DataTesterBase {
 				const _tag = rep.tag ?? tag;
 				const _uid = rep.uid ?? rep;
 
-				const url = getEncoded(_uid, _tag);
-				if (!TagTestUrlLookup.hasUrl(url)) {
-					this._addMessage(`Missing link: ${url} in file ${file} (evaluates to "${url}") in "feats"\n${TagTestUtil.getLogPtSimilarUrls({url})}`);
-				}
+				// FIXME(Future)
+				const url = tag === "subclass"
+					? getEncodedSubclass(_uid, _tag)
+					: tag === "deity"
+						? getEncodedDeity(_uid, _tag)
+						: getEncoded(_uid, _tag);
+
+				if (TagTestUrlLookup.hasUrl(url)) return;
+
+				this._addMessage(`Missing link: ${url} in file ${file} (evaluates to "${url}") in "${_tag}"\n${TagTestUtil.getLogPtSimilarUrls({url})}`);
 			});
 	}
 }
@@ -241,6 +258,12 @@ function getEncoded (str, tag, {prop = null} = {}) {
 function getEncodedDeity (str, tag) {
 	const [name, pantheon, source] = str.split("|");
 	return `${Renderer.tag.getPage(tag)}#${UrlUtil.encodeForHash([name, pantheon, Parser.getTagSource(tag, source)])}`.toLowerCase().trim();
+}
+
+function getEncodedSubclass (str, tag) {
+	const unpacked = DataUtil.class.unpackUidSubclass(str);
+	const hash = UrlUtil.URL_TO_HASH_BUILDER["subclass"](unpacked);
+	return `${UrlUtil.PG_CLASSES}#${hash}`.toLowerCase().trim();
 }
 
 class LinkCheck extends DataTesterBase {
@@ -458,6 +481,8 @@ class ActionDataCheck extends GenericDataCheck {
 			}
 
 			this._doCheckSeeAlso({entity: it, prop: "seeAlsoAction", tag: "action", file});
+
+			this._testReprintedAs(file, it, "action");
 		});
 	}
 }
@@ -814,6 +839,9 @@ class ClassDataCheck extends GenericDataCheck {
 			WALKER.walk(scf.entries, handlersNestedRefsFeats);
 		});
 		// endregion
+
+		this._testAdditionalSpells(file, cls);
+		this._testReprintedAs(file, cls, "class");
 	}
 
 	static _doCheckSubclass (file, data, subclassFeatureLookup, sc) {
@@ -828,6 +856,8 @@ class ClassDataCheck extends GenericDataCheck {
 		});
 
 		this._testAdditionalSpells(file, sc);
+
+		this._testReprintedAs(file, sc, "subclass");
 	}
 
 	static pRun () {
@@ -894,6 +924,7 @@ class RaceDataCheck extends GenericDataCheck {
 class FeatDataCheck extends GenericDataCheck {
 	static _handleFeat (file, feat) {
 		this._testAdditionalSpells(file, feat);
+		this._testReprintedAs(file, feat, "feat");
 	}
 
 	static pRun () {
@@ -907,6 +938,7 @@ class BackgroundDataCheck extends GenericDataCheck {
 	static _handleBackground (file, bg) {
 		this._testAdditionalSpells(file, bg);
 		this._testAdditionalFeats(file, bg);
+		this._testReprintedAs(file, bg, "background");
 	}
 
 	static pRun () {
@@ -983,6 +1015,114 @@ class CultsBoonsDataCheck extends GenericDataCheck {
 		const json = ut.readJson(`./${file}`);
 		json.cult.forEach(ent => this._handleEntity(file, ent, "cult"));
 		json.boon.forEach(ent => this._handleEntity(file, ent, "boon"));
+	}
+}
+
+class OptionalfeatureDataCheck extends GenericDataCheck {
+	static _FILE = "data/optionalfeatures.json";
+
+	static _doPrerequisite (ent) {
+		if (!ent.prerequisite?.length) return;
+
+		ent.prerequisite
+			.forEach(prereq => {
+				(prereq.feat || []).forEach(uid => this._doUid({uid, tag: "feat", propPath: "prerequisite.feat"}));
+				(prereq.optionalfeature || []).forEach(uid => this._doUid({uid, tag: "optfeature", propPath: "prerequisite.optionalfeature"}));
+			});
+	}
+
+	static _doUid ({uid, tag, propPath}) {
+		const url = getEncoded(uid, tag);
+		if (!TagTestUrlLookup.hasUrl(url)) this._addMessage(`Missing link: ${uid} in file ${this._FILE} (evaluates to "${url}") in "${propPath}"\n${TagTestUtil.getLogPtSimilarUrls({url})}`);
+	}
+
+	static pRun () {
+		const json = ut.readJson(this._FILE);
+		json.optionalfeature
+			.forEach(ent => {
+				this._doPrerequisite(ent);
+				this._testReprintedAs(this._FILE, ent, "optfeature");
+			});
+	}
+}
+
+class SpellDataCheck extends GenericDataCheck {
+	static pRun () {
+		const index = ut.readJson("./data/spells/index.json");
+		Object.values(index)
+			.map(filename => ({filename: filename, data: ut.readJson(`./data/spells/${filename}`)}))
+			.forEach(({filename, data}) => {
+				data.spell
+					.forEach(ent => this._testReprintedAs(filename, ent, "spell"));
+			});
+	}
+}
+
+class ConditionDiseaseDataCheck extends GenericDataCheck {
+	static _FILE = "data/conditionsdiseases.json";
+
+	static pRun () {
+		const json = ut.readJson(this._FILE);
+		json.condition
+			.forEach(ent => {
+				this._testReprintedAs(this._FILE, ent, "condition");
+			});
+		json.disease
+			.forEach(ent => {
+				this._testReprintedAs(this._FILE, ent, "disease");
+			});
+		json.status
+			.forEach(ent => {
+				this._testReprintedAs(this._FILE, ent, "status");
+			});
+	}
+}
+
+class RewardsDataCheck extends GenericDataCheck {
+	static _FILE = "data/rewards.json";
+
+	static pRun () {
+		const json = ut.readJson(this._FILE);
+		json.reward
+			.forEach(ent => {
+				this._testReprintedAs(this._FILE, ent, "reward");
+			});
+	}
+}
+
+class VariantRuleDataCheck extends GenericDataCheck {
+	static _FILE = "data/variantrules.json";
+
+	static pRun () {
+		const json = ut.readJson(this._FILE);
+		json.variantrule
+			.forEach(ent => {
+				this._testReprintedAs(this._FILE, ent, "variantrule");
+			});
+	}
+}
+
+class SkillsRuleDataCheck extends GenericDataCheck {
+	static _FILE = "data/skills.json";
+
+	static pRun () {
+		const json = ut.readJson(this._FILE);
+		json.skill
+			.forEach(ent => {
+				this._testReprintedAs(this._FILE, ent, "skill");
+			});
+	}
+}
+
+class SensesDataCheck extends GenericDataCheck {
+	static _FILE = "data/senses.json";
+
+	static pRun () {
+		const json = ut.readJson(this._FILE);
+		json.sense
+			.forEach(ent => {
+				this._testReprintedAs(this._FILE, ent, "sense");
+			});
 	}
 }
 
@@ -1406,6 +1546,13 @@ async function main () {
 		BestiaryDataCheck,
 		DeckDataCheck,
 		CultsBoonsDataCheck,
+		OptionalfeatureDataCheck,
+		SpellDataCheck,
+		ConditionDiseaseDataCheck,
+		RewardsDataCheck,
+		VariantRuleDataCheck,
+		SkillsRuleDataCheck,
+		SensesDataCheck,
 		FoundrySpellsDataCheck,
 	];
 	DataTester.register({ClazzDataTesters});

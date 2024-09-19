@@ -37,7 +37,7 @@ export class TaggerUtils {
 		name = name.toLowerCase();
 		source = source.toLowerCase();
 
-		const doFind = arr => arr.find(s => (s.name.toLowerCase() === name || (typeof s.srd === "string" && s.srd.toLowerCase() === name)) && s.source.toLowerCase() === source);
+		const doFind = arr => arr.find(s => (s.name.toLowerCase() === name || (typeof s.srd === "string" && s.srd.toLowerCase() === name) || (typeof s.srd52 === "string" && s.srd52.toLowerCase() === name)) && s.source.toLowerCase() === source);
 
 		const fromPrerelease = typeof PrereleaseUtil !== "undefined" ? doFind(PrereleaseUtil.getBrewProcessedFromCache("spell")) : null;
 		if (fromPrerelease) return fromPrerelease;
@@ -457,6 +457,7 @@ TagCondition._CONDITION_INFLICTED_MATCHERS = [
 	{re: `The (?!(?:[^.]+) can sense)(?:[^.]+) is {@condition (invisible)}`, flags: "g"}, // MM :: Invisible Stalker :: Invisibility
 	`succeed\\b[^.!?]+\\bsaving throw\\b[^.!?]+\\. (?:It|The (?:creature|target)) is {@condition ([^}]+)}`, // MM :: Beholder :: 6. Telekinetic Ray
 	{re: `\\bhave the {@condition ([^}]+)}\\b`, flags: "g"}, // XPHB :: Animal Friendship
+	{re: `\\bhas the {@condition ([^}]+)} condition\\b`, flags: "g"}, // XPHB :: Constrictor Snake
 ]
 	.map(it => typeof it === "object" ? it : ({re: it, flags: "gi"}))
 	.map(({re, flags}) => new RegExp(`${re}((?:, {@condition [^}]+})*)(,? (?:and|or) {@condition [^}]+})?`, flags));
@@ -468,15 +469,15 @@ export class DiceConvert {
 		if (traitOrAction.entries) {
 			traitOrAction.entries = traitOrAction.entries
 				.filter(it => it.trim ? it.trim() : true)
-				.map(entry => this._getConvertedEntry(entry, true));
+				.map(entry => this._getConvertedEntry({entry, isTagHits: true}));
 		}
 	}
 
 	static getTaggedEntry (entry) {
-		return this._getConvertedEntry(entry);
+		return this._getConvertedEntry({entry});
 	}
 
-	static _getConvertedEntry (entry, isTagHits = false) {
+	static _getConvertedEntry ({entry, isTagHits = false}) {
 		if (!DiceConvert._walker) {
 			DiceConvert._walker = MiscUtil.getWalker({
 				keyBlocklist: new Set([
@@ -484,6 +485,7 @@ export class DiceConvert {
 					"dmg1",
 					"dmg2",
 					"area",
+					"path",
 				]),
 			});
 			DiceConvert._walkerHandlers = {
@@ -496,7 +498,7 @@ export class DiceConvert {
 						0,
 						str,
 						{
-							fnTag: this._walkerStringHandler.bind(this, isTagHits),
+							fnTag: str => this._walkerStringHandler({str, isTagHits}),
 						},
 					);
 					return ptrStack._;
@@ -509,12 +511,16 @@ export class DiceConvert {
 
 	static _RE_NO_FORMAT_STRINGS = /(\b(?:plus|minus|PB)\b)/;
 
-	static _walkerStringHandler (isTagHits, str) {
+	static _walkerStringHandler ({str, isTagHits}) {
 		if (isTagHits) {
 			str = str
 				// Handle e.g. `+3 to hit`
 				// Handle e.g. `+3 plus PB to hit`
-				.replace(/(?<op>[-+])?(?<bonus>\d+(?: (?:plus|minus|[-+]) PB)?)(?= to hit)\b/g, (...m) => `{@hit ${m.last().op === "-" ? "-" : ""}${m.last().bonus}}`)
+				.replace(/(?<op>[-+])?(?<bonus>\d+(?: (?:plus|minus|[-+]) PB)?)(?= to hit\b)/g, (...m) => `{@hit ${m.last().op === "-" ? "-" : ""}${m.last().bonus}}`)
+				// Handle E.g. "... Attack Roll: +5, ..."
+				.replace(/(?<=Attack Roll: )(?<op>[-+])?(?<bonus>\d+(?: (?:plus|minus|[-+]) PB)?)(?=,)/g, (...m) => `{@hit ${m.last().op === "-" ? "-" : ""}${m.last().bonus}}`)
+				// Handle E.g. "... Attack Roll: Bonus equals your spell attack modifier, ..."
+				.replace(/(?<=Attack Roll: )Bonus equals your spell attack modifier(?=,)/g, (...m) => `{@hitYourSpellAttack Bonus equals your spell attack modifier}`)
 			;
 		}
 

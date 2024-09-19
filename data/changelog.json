@@ -1947,7 +1947,7 @@
 	{
 		"ver": "1.150.1",
 		"date": "2022-02-27",
-		"txt": "- Added missing TftYP player maps\n- (The site is now available as a Docker image <https://github.com/5etools-mirror-2/5etools-mirror-2.github.io/pkgs/container/5etools>, thanks @ drangon)\n- (Fixed typos/added tags)"
+		"txt": "- Added missing TftYP player maps\n- (The site is now available as a Docker image <https://github.com/5etools-mirror-3/5etools-src/pkgs/container/5etools>, thanks @ drangon)\n- (Fixed typos/added tags)"
 	},
 	{
 		"ver": "1.151.0",
@@ -2760,8 +2760,14 @@
 		"txt": "- Added 'Remove \"Default\"' button to filter snapshots\n- Tweaked Bestiary/Vehicles/Objects styling to better match source material\n- (Brew) Page numbers in list-page rendered homebrew entities will now link to their corresponding adventure/book, where available _[this was previously implemented for non-brew entities, but unimplemented for homebrew]_\n- (Brew) Extended time-to-search grace period when searching list pages with 20k+ entities loaded\n- (Fixed typos/added tags)"
 	},
 	{
-		"ver": "1.211.2",
+		"ver": "1.210.2",
 		"date": "2024-09-15",
 		"txt": "- Added ability display to hovered skills\n- Replaced long-standing Bestiary/Vehicles/Objects page \"token disappears when scrolling\" hack with normal scrolling behaviour\n- Fixed prerelease/homebrew content not appearing as available to choose in the Blocklist\n- Fixed `J`/`K` failing to wrap across Items page lists when one list had no visible items\n- Fixed Rivet button failing to hide when using list page \"Export as Image\" function\n- Fixed Feats page displaying full-length \"Ability\" text in list view\n- Fixed various minor layout bugs\n- (Brew) The List page `... copies @filter tag` CTRL-click function will now dynamically choose between \"extend defaults\" or \"extend from blank\" modes, depending on which produces the shortest result\n- (Brew) Made various parsing improvements to Text Converters\n- (Brew) Added various additional properties to the Prettifier\n- (Brew) Reworked item `\"type\"`/`\"property\"` to include `|<source>` parts (defaulting to the source where the type/property was first defined). _[Note that there is a fallback in place for un-migrated types/properties, so this Shouldn't:tm: break things. Using the new format is recommended.]_\n- (Brew) JSON editors now auto-escape backslashes when pasting, unless CTRL+SHIFT are pressed\n- (Brew) Improved sort ordering in Get Homebrew/similar lists\n- (Brew) Added `@initiative` tag; `@atkr` tag; `@itemProperty` tag\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "1.210.3",
+		"date": "2024-09-20",
+		"title": "Smoke 'em while you Got 'em",
+		"txt": "- Added \"Legacy\" toggle to Omnisearch\n- Made various search modals (DM Screen panel \"+\" buttons; DM Screen Encounter Builder \"Add Monster\" button; Creature Homebrew Builder search for spells; etc.) respect current Omnisearch filter toggles\n- Added legacy markers to adventures/books in nav menu; adventures/books list pages\n- Fixed Recipe page scaler \"In the original recipe...\" text showing scaled values\n- Fixed SEO pages failing to load\n- Fixed copying Initiative Tracker links on non-root hosted instance producing broken links (thanks @ Formulaic)\n- (Brew) Improved Bestiary Text Converter handling of various input formats\n- (Brew) Improved Race Text Converter handling of various input formats\n- (Brew) Added various \"action\" tags, for rendering parts of actions: `{@actSave <ability>}`, `{@actSaveFail}`, `{@actSaveSuccess}`, `{@actTrigger}`, `{@actResponse}`.\n- (Brew) Added optional `preserve.prerequisite`/`preserve.consumes` to `refOptionalfeature` entries, allowing additional text to be rendered\n- (Brew) Fixed \"missing types/properties\" crash when attempting to load items page with old homebrew/prerelease content active _[an error notification is now shown instead]_\n- (Brew) Fixed various Item Text Converter regressions\n- (Brew) (Maybe?) fixed Items Page crash when loading with >1000 homebrews active _[:^)]_\n- (Fixed typos/added tags)"
 	}
 ]

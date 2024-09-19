@@ -41,6 +41,9 @@ export class SpellBuilder extends BuilderBase {
 		spell.source = this._ui.source;
 
 		delete spell.srd;
+		delete spell.srd52;
+		delete spell.basicRules;
+		delete spell.freeRules2024;
 		delete spell.uniqueId;
 		delete spell.reprintedAs;
 

@@ -104,6 +104,14 @@ class SearchPage {
 			text: "Blocklisted",
 		});
 
+		const $btnToggleLegacy = this._render_$getBtnToggleFilter({
+			propOmnisearch: "isShowLegacy",
+			fnAddHookOmnisearch: "addHookLegacy",
+			fnDoToggleOmnisearch: "doToggleLegacy",
+			title: "Include legacy content results",
+			text: "Legacy",
+		});
+
 		const $btnToggleSrd = this._render_$getBtnToggleFilter({
 			propOmnisearch: "isSrdOnly",
 			fnAddHookOmnisearch: "addHookSrdOnly",
@@ -141,7 +149,12 @@ class SearchPage {
 						${$btnTogglePartnered}
 						${$btnToggleBrew}
 						${$btnToggleUa}
+					</div>
+					<div class="ve-flex-v-center ve-btn-group mr-2 mobile__mb-2 mobile__mr-0">
 						${$btnToggleBlocklisted}
+						${$btnToggleLegacy}
+					</div>
+					<div class="ve-flex-v-center mr-2 mobile__mb-2 mobile__mr-0">
 						${$btnToggleSrd}
 					</div>
 					<div class="ve-btn-group ve-flex-v-center">
@@ -214,6 +227,7 @@ class SearchPage {
 						category,
 						hash,
 						isSrd,
+						isSrd52,
 
 						ptStyle,
 						sourceAbv,
@@ -226,8 +240,11 @@ class SearchPage {
 						? `<a href="${adventureBookSourceHref}">${ptPageInner}</a>`
 						: ptPageInner;
 
+					const ptSrd = isSrd ? `<span class="ve-muted relative help-subtle pg-search__disp-srd" title="Available in the Systems Reference Document (5.1)">[SRD]</span>` : "";
+					const ptSrd52 = isSrd52 ? `<span class="ve-muted relative help-subtle pg-search__disp-srd" title="Available in the Systems Reference Document (5.2)">[SRD]</span>` : "";
+
 					const ptSourceInner = source
-						? `<i>${sourceFull}</i> (<span class="${Parser.sourceJsonToSourceClassname(source)}" ${ptStyle}>${sourceAbv}</span>)${isSrd ? `<span class="ve-muted relative help-subtle pg-search__disp-srd" title="Available in the Systems Reference Document">[SRD]</span>` : ""}${Parser.sourceJsonToMarkerHtml(source, {isList: false, additionalStyles: "pg-search__disp-source-marker"})}`
+						? `<i>${sourceFull}</i> (<span class="${Parser.sourceJsonToSourceClassname(source)}" ${ptStyle}>${sourceAbv}</span>)${ptSrd}${ptSrd52}${Parser.sourceJsonToMarkerHtml(source, {isList: false, additionalStyles: "pg-search__disp-source-marker"})}`
 						: `<span></span>`;
 					const ptSource = ptPage || !adventureBookSourceHref
 						? ptSourceInner

@@ -36,7 +36,7 @@ export class RenderItems {
 
 			${renderedText ? `<tr><td colspan="6" class="py-0"><div class="ve-tbl-divider"></div></td></tr>
 			<tr><td colspan="6">${renderedText}</td></tr>` : ""}
-			${Renderer.utils.getPageTr(item, {tag: "item", fnUnpackUid: (uid) => DataUtil.proxy.unpackUid("item", uid, "item")})}
+			${Renderer.utils.getPageTr(item)}
 			${Renderer.utils.getBorderTr()}
 		`;
 	}

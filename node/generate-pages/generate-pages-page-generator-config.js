@@ -142,7 +142,7 @@ class _PageGeneratorIndex extends PageGeneratorGeneric {
 
 	_navbarTitleHtml = `5e<span>tools</span>`;
 	_navbarDescription = "A suite of tools for 5th Edition Dungeons & Dragons players and Dungeon Masters.";
-	_navbarPageTitleStyleAdditional = "my-0--home";
+	_navbarPageTitleStyleAdditional = "page__title--home";
 
 	_isFontAwesome = true;
 	_stylesheets = [

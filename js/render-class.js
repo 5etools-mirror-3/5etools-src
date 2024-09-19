@@ -132,46 +132,6 @@ class _RenderClassesSidebarImplBase {
 
 	/* ----- */
 
-	_getPtStartingEquipment ({cls, renderer}) {
-		if (!cls.startingEquipment) return null;
-
-		const {startingEquipment: equip} = cls;
-
-		if (equip.additionalFromBackground && equip.default) return this._getPtStartingEquipment_default({equip, renderer});
-		return this._getPtStartingEquipment_entries({equip, renderer});
-	}
-
-	_getPtStartingEquipment_default ({equip, renderer}) {
-		return [
-			equip.additionalFromBackground ? "<p>You start with the following items, plus anything provided by your background.</p>" : "",
-			equip.default && equip.default.length ? `<ul class="pl-4"><li>${equip.default.map(it => renderer.render(it)).join("</li><li>")}</ul>` : "",
-			equip.goldAlternative != null ? `<p>Alternatively, you may start with ${renderer.render(equip.goldAlternative)} gp to buy your own equipment.</p>` : "",
-		]
-			.filter(Boolean)
-			.join("");
-	}
-
-	_getPtStartingEquipment_entries ({equip, renderer}) {
-		if (this._style === "classic" || !equip.entries?.length || typeof equip.entries[0] !== "string") {
-			return renderer.render({
-				type: "entries",
-				entries: equip.entries || [],
-			});
-		}
-
-		const [firstEntry, ...otherEntries] = equip.entries;
-
-		return renderer.render({
-			type: "entries",
-			entries: [
-				`{@b Starting Equipment:} ${firstEntry}`,
-				...otherEntries,
-			],
-		});
-	}
-
-	/* ----- */
-
 	_getCommonElements_multiclassing ({comp, cls, renderer}) {
 		if (!cls.multiclassing) return null;
 
@@ -296,7 +256,7 @@ class _RenderClassesSidebarImplClassic extends _RenderClassesSidebarImplBase {
 	/* ----- */
 
 	_getElements_startingEquipment ({comp, cls, renderer}) {
-		const renderedStartingEquipment = this._getPtStartingEquipment({cls, renderer});
+		const renderedStartingEquipment = Renderer.class.getHtmlPtStartingEquipment(cls, {renderer, styleHint: this._style});
 		if (!renderedStartingEquipment) return null;
 
 		const eleDisp = e_({

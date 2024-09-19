@@ -17,17 +17,7 @@ import {SpellSourceLookupBuilder} from "../js/converter/converterutils-spell-sou
 async function pMain () {
 	ut.patchLoadJson();
 
-	const index = ut.readJson("./data/spells/index.json");
-	const jsonMetas = Object.values(index)
-		.map(filename => {
-			const path = `./data/spells/${filename}`;
-			return {
-				path,
-				json: ut.readJson(path),
-			};
-		});
-
-	const spellDatas = jsonMetas.flatMap(({json}) => json.spell);
+	const spellDatas = await DataLoader.pCacheAndGetAllSite(UrlUtil.PG_SPELLS);
 
 	const lookup = await SpellSourceLookupBuilder.pGetLookup({spells: spellDatas});
 

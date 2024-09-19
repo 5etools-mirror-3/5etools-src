@@ -6,7 +6,8 @@ export class SpellConverterUi extends ConverterUiBase {
 		super(
 			ui,
 			{
-				converterId: "Spell",
+				name: "Spell",
+				converterId: "spell",
 				canSaveLocal: true,
 				modes: ["txt"],
 				hasPageNumbers: true,

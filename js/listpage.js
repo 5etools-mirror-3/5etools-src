@@ -1260,13 +1260,25 @@ class ListPage {
 
 	async _pOnLoad_pPreDataAdd () { /* Implement as required */ }
 
+	static _MAX_DATA_CHUNK_SIZE = 4096;
+
 	_addData (data) {
 		if (!this._dataProps.some(prop => data[prop] && data[prop].length)) return;
 
-		this._dataProps.forEach(prop => {
-			if (!data[prop]) return;
-			this._dataList.push(...data[prop]);
-		});
+		for (const prop of this._dataProps) {
+			const len = data[prop]?.length || 0;
+			if (!len) continue;
+
+			// Conservatively chunk data before spreading, to (hopefully) avoid call stack errors
+			//   while maintaining speed for smaller datasets.
+			// See e.g.:
+			//   https://stackoverflow.com/a/67738439
+			//   https://stackoverflow.com/a/22747272
+			for (let i = 0; i < len; i += this.constructor._MAX_DATA_CHUNK_SIZE) {
+				const chunk = data[prop].slice(i, i + this.constructor._MAX_DATA_CHUNK_SIZE);
+				this._dataList.push(...chunk);
+			}
+		}
 
 		const len = this._dataList.length;
 		for (; this._ixData < len; this._ixData++) {

@@ -138,3 +138,5 @@ class RacesPage extends ListPage {
 const racesPage = new RacesPage();
 racesPage.sublistManager = new RacesSublistManager();
 window.addEventListener("load", () => racesPage.pOnLoad());
+
+globalThis.dbg_page = racesPage;

@@ -106,7 +106,7 @@ class _RenderFeatsImplClassic extends _RenderFeatsImplBase {
 		
 			<tr><td colspan="6" class="py-0"><div class="ve-tbl-divider"></div></td></tr>
 			
-			<tr class="text"><td colspan="6">
+			<tr><td colspan="6">
 				${htmlPtEntries}
 			</td></tr>
 			

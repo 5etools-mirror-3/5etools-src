@@ -22,7 +22,12 @@ class PageFilterVehicles extends PageFilterBase {
 		this._hpFilter = new RangeFilter({header: "Hit Points"});
 		this._hpFilter = new RangeFilter({header: "Hit Points"});
 		this._creatureCapacityFilter = new RangeFilter({header: "Creature Capacity"});
-		this._miscFilter = new Filter({header: "Miscellaneous", items: ["SRD", "Legacy", "Has Images", "Has Info", "Has Token"], isMiscFilter: true});
+		this._miscFilter = new Filter({
+			header: "Miscellaneous",
+			items: ["SRD", "Legacy", "Has Images", "Has Info", "Has Token"],
+			isMiscFilter: true,
+			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
+		});
 	}
 
 	static mutateForFilters (ent) {
@@ -58,11 +63,8 @@ class PageFilterVehicles extends PageFilterBase {
 
 		ent._fCreatureCapacity = (ent.capCrew || 0) + (ent.capPassenger || 0) + (ent.capCreature || 0);
 
-		ent._fMisc = ent.srd ? ["SRD"] : [];
-		if (SourceUtil.isLegacySourceWotc(ent.source)) ent._fMisc.push("Legacy");
+		this._mutateForFilters_commonMisc(ent);
 		if (Renderer.vehicle.hasToken(ent)) ent._fMisc.push("Has Token");
-		if (this._hasFluff(ent)) ent._fMisc.push("Has Info");
-		if (this._hasFluffImages(ent)) ent._fMisc.push("Has Images");
 	}
 
 	addToFilters (it, isExcluded) {

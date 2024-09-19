@@ -80,6 +80,7 @@ class PageFilterEquipment extends PageFilterBase {
 			header: "Miscellaneous",
 			items: [...PageFilterEquipment._MISC_FILTER_ITEMS, ...Object.values(Parser.ITEM_MISC_TAG_TO_FULL)],
 			isMiscFilter: true,
+			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
 		});
 		this._poisonTypeFilter = new Filter({header: "Poison Type", items: ["ingested", "injury", "inhaled", "contact"], displayFn: StrUtil.toTitleCase});
 		this._masteryFilter = new Filter({header: "Mastery", displayFn: this.constructor._getMasteryDisplay.bind(this)});
@@ -88,18 +89,12 @@ class PageFilterEquipment extends PageFilterBase {
 	static mutateForFilters (item) {
 		item._fSources = SourceFilter.getCompleteFilterSources(item);
 
-		item._fProperties = item.property ? item.property.map(p => Renderer.item.getProperty(p).name).filter(n => n) : [];
+		item._fProperties = item.property ? item.property.map(p => Renderer.item.getProperty(p)?.name).filter(Boolean) : [];
 
-		item._fMisc = [];
+		this._mutateForFilters_commonMisc(item);
 		if (item._isItemGroup) item._fMisc.push("Item Group");
 		if (item.packContents) item._fMisc.push("Bundle");
-		if (item.srd) item._fMisc.push("SRD");
-		if (item.basicRules) item._fMisc.push("Basic Rules");
-		if (SourceUtil.isLegacySourceWotc(item.source)) item._fMisc.push("Legacy");
-		if (this._hasFluff(item)) item._fMisc.push("Has Info");
-		if (this._hasFluffImages(item)) item._fMisc.push("Has Images");
 		if (item.miscTags) item._fMisc.push(...item.miscTags.map(Parser.itemMiscTagToFull));
-		if (this._isReprinted({reprintedAs: item.reprintedAs, tag: "item", prop: "item", page: UrlUtil.PG_ITEMS})) item._fMisc.push("Reprinted");
 		if (item.stealth) item._fMisc.push("Disadvantage on Stealth");
 		if (item.strength != null) item._fMisc.push("Strength Requirement");
 
@@ -303,7 +298,12 @@ class PageFilterItems extends PageFilterEquipment {
 			itemSortFn: null,
 		});
 		this._rechargeTypeFilter = new Filter({header: "Recharge Type", displayFn: Parser.itemRechargeToFull});
-		this._miscFilter = new Filter({header: "Miscellaneous", items: ["Ability Score Adjustment", "Charges", "Cursed", "Grants Language", "Grants Proficiency", "Magic", "Mundane", "Sentient", "Speed Adjustment", ...PageFilterEquipment._MISC_FILTER_ITEMS], isMiscFilter: true});
+		this._miscFilter = new Filter({
+			header: "Miscellaneous",
+			items: ["Ability Score Adjustment", "Charges", "Cursed", "Grants Language", "Grants Proficiency", "Magic", "Mundane", "Sentient", "Speed Adjustment", ...PageFilterEquipment._MISC_FILTER_ITEMS],
+			isMiscFilter: true,
+			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
+		});
 		this._baseSourceFilter = new SourceFilter({header: "Base Source", selFn: null});
 		this._baseItemFilter = new Filter({header: "Base Item", displayFn: this.constructor._getBaseItemDisplay.bind(this.constructor)});
 		this._optionalfeaturesFilter = new Filter({
