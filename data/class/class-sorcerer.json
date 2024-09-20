@@ -5,6 +5,9 @@
 			"source": "PHB",
 			"page": 99,
 			"srd": true,
+			"reprintedAs": [
+				"Sorcerer|XPHB"
+			],
 			"hd": {
 				"number": 1,
 				"faces": 6
@@ -578,6 +581,565 @@
 			"subclassTitle": "Sorcerous Origin",
 			"hasFluff": true,
 			"hasFluffImages": true
+		},
+		{
+			"name": "Sorcerer",
+			"source": "XPHB",
+			"page": 138,
+			"primaryAbility": [
+				{
+					"cha": true
+				}
+			],
+			"hd": {
+				"number": 1,
+				"faces": 6
+			},
+			"proficiency": [
+				"con",
+				"cha"
+			],
+			"spellcastingAbility": "cha",
+			"casterProgression": "full",
+			"preparedSpellsProgression": [
+				2,
+				4,
+				6,
+				7,
+				9,
+				10,
+				11,
+				12,
+				14,
+				15,
+				16,
+				16,
+				17,
+				17,
+				18,
+				18,
+				19,
+				20,
+				21,
+				22
+			],
+			"cantripProgression": [
+				4,
+				4,
+				4,
+				5,
+				5,
+				5,
+				5,
+				5,
+				5,
+				6,
+				6,
+				6,
+				6,
+				6,
+				6,
+				6,
+				6,
+				6,
+				6,
+				6
+			],
+			"optionalfeatureProgression": [
+				{
+					"name": "Metamagic",
+					"featureType": [
+						"MM"
+					],
+					"progression": {
+						"3": 2,
+						"10": 4,
+						"17": 6
+					}
+				}
+			],
+			"startingProficiencies": {
+				"weapons": [
+					"simple"
+				],
+				"skills": [
+					{
+						"choose": {
+							"from": [
+								"arcana",
+								"deception",
+								"insight",
+								"intimidation",
+								"persuasion",
+								"religion"
+							],
+							"count": 2
+						}
+					}
+				]
+			},
+			"startingEquipment": {
+				"entries": [
+					"{@i Choose A or B:} (A) {@item Spear|XPHB}, 2 {@item Dagger|XPHB|Daggers}, {@item Arcane Focus|XPHB} ({@item crystal|XPHB}), {@item Dungeoneer's Pack|XPHB}, and 28 GP; or (B) 50 GP"
+				],
+				"defaultData": [
+					{
+						"A": [
+							{
+								"item": "spear|xphb"
+							},
+							{
+								"item": "dagger|xphb",
+								"quantity": 2
+							},
+							{
+								"item": "crystal|xphb"
+							},
+							{
+								"item": "dungeoneer's pack|xphb"
+							},
+							{
+								"value": 2800
+							}
+						],
+						"B": [
+							{
+								"value": 5000
+							}
+						]
+					}
+				]
+			},
+			"multiclassing": {},
+			"classTableGroups": [
+				{
+					"colLabels": [
+						"Sorcery Points"
+					],
+					"rows": [
+						[
+							0
+						],
+						[
+							2
+						],
+						[
+							3
+						],
+						[
+							4
+						],
+						[
+							5
+						],
+						[
+							6
+						],
+						[
+							7
+						],
+						[
+							8
+						],
+						[
+							9
+						],
+						[
+							10
+						],
+						[
+							11
+						],
+						[
+							12
+						],
+						[
+							13
+						],
+						[
+							14
+						],
+						[
+							15
+						],
+						[
+							16
+						],
+						[
+							17
+						],
+						[
+							18
+						],
+						[
+							19
+						],
+						[
+							20
+						]
+					]
+				},
+				{
+					"colLabels": [
+						"{@filter Cantrips|spells|level=0|class=sorcerer}",
+						"{@filter Prepared Spells|spells|level=!0|class=sorcerer}"
+					],
+					"rows": [
+						[
+							4,
+							2
+						],
+						[
+							4,
+							4
+						],
+						[
+							4,
+							6
+						],
+						[
+							5,
+							7
+						],
+						[
+							5,
+							9
+						],
+						[
+							5,
+							10
+						],
+						[
+							5,
+							11
+						],
+						[
+							5,
+							12
+						],
+						[
+							5,
+							14
+						],
+						[
+							6,
+							15
+						],
+						[
+							6,
+							16
+						],
+						[
+							6,
+							16
+						],
+						[
+							6,
+							17
+						],
+						[
+							6,
+							17
+						],
+						[
+							6,
+							18
+						],
+						[
+							6,
+							18
+						],
+						[
+							6,
+							19
+						],
+						[
+							6,
+							20
+						],
+						[
+							6,
+							21
+						],
+						[
+							6,
+							22
+						]
+					]
+				},
+				{
+					"title": "Spell Slots per Spell Level",
+					"colLabels": [
+						"{@filter 1st|spells|level=1|class=sorcerer}",
+						"{@filter 2nd|spells|level=2|class=sorcerer}",
+						"{@filter 3rd|spells|level=3|class=sorcerer}",
+						"{@filter 4th|spells|level=4|class=sorcerer}",
+						"{@filter 5th|spells|level=5|class=sorcerer}",
+						"{@filter 6th|spells|level=6|class=sorcerer}",
+						"{@filter 7th|spells|level=7|class=sorcerer}",
+						"{@filter 8th|spells|level=8|class=sorcerer}",
+						"{@filter 9th|spells|level=9|class=sorcerer}"
+					],
+					"rowsSpellProgression": [
+						[
+							2,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							3,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							2,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							2,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							1,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							2,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							1,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							1,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							1,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							1,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							3,
+							1,
+							1,
+							1,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							3,
+							2,
+							2,
+							1,
+							1
+						]
+					]
+				}
+			],
+			"classFeatures": [
+				"Spellcasting|Sorcerer|XPHB|1",
+				"Innate Sorcery|Sorcerer|XPHB|1",
+				"Font of Magic|Sorcerer|XPHB|2",
+				"Metamagic|Sorcerer|XPHB|2",
+				"Metamagic Options|Sorcerer|XPHB|2",
+				{
+					"classFeature": "Sorcerer Subclass|Sorcerer|XPHB|3",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Sorcerer|XPHB|4",
+				"Sorcerous Restoration|Sorcerer|XPHB|5",
+				{
+					"classFeature": "Subclass Feature|Sorcerer|XPHB|6",
+					"gainSubclassFeature": true
+				},
+				"Sorcery Incarnate|Sorcerer|XPHB|7",
+				"Ability Score Improvement|Sorcerer|XPHB|8",
+				"Metamagic|Sorcerer|XPHB|10",
+				"Ability Score Improvement|Sorcerer|XPHB|12",
+				{
+					"classFeature": "Subclass Feature|Sorcerer|XPHB|14",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Sorcerer|XPHB|16",
+				"Metamagic|Sorcerer|XPHB|17",
+				{
+					"classFeature": "Subclass Feature|Sorcerer|XPHB|18",
+					"gainSubclassFeature": true
+				},
+				"Epic Boon|Sorcerer|XPHB|19",
+				"Arcane Apotheosis|Sorcerer|XPHB|20"
+			],
+			"subclassTitle": "Sorcerer Subclass",
+			"hasFluff": true,
+			"hasFluffImages": true
 		}
 	],
 	"subclass": [
@@ -589,6 +1151,9 @@
 			"classSource": "PHB",
 			"page": 102,
 			"srd": true,
+			"reprintedAs": [
+				"Draconic|Sorcerer|XPHB|XPHB"
+			],
 			"subclassFeatures": [
 				"Draconic Bloodline|Sorcerer||Draconic||1",
 				"Elemental Affinity|Sorcerer||Draconic||6",
@@ -603,6 +1168,9 @@
 			"className": "Sorcerer",
 			"classSource": "PHB",
 			"page": 103,
+			"reprintedAs": [
+				"Wild Magic|Sorcerer|XPHB|XPHB"
+			],
 			"subclassFeatures": [
 				"Wild Magic|Sorcerer||Wild||1",
 				"Bend Luck|Sorcerer||Wild||6",
@@ -982,6 +1550,9 @@
 			"className": "Sorcerer",
 			"classSource": "PHB",
 			"page": 66,
+			"reprintedAs": [
+				"Aberrant|Sorcerer|XPHB|XPHB"
+			],
 			"additionalSpells": [
 				{
 					"known": {
@@ -1025,6 +1596,9 @@
 			"className": "Sorcerer",
 			"classSource": "PHB",
 			"page": 68,
+			"reprintedAs": [
+				"Clockwork|Sorcerer|XPHB|XPHB"
+			],
 			"additionalSpells": [
 				{
 					"known": {
@@ -1148,6 +1722,140 @@
 				"Waxing and Waning|Sorcerer||Lunar|DSotDQ|6",
 				"Lunar Empowerment|Sorcerer||Lunar|DSotDQ|14",
 				"Lunar Phenomenon|Sorcerer||Lunar|DSotDQ|18"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Aberrant Sorcery",
+			"shortName": "Aberrant",
+			"source": "XPHB",
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"page": 145,
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"arms of hadar|xphb",
+							"calm emotions|xphb",
+							"detect thoughts|xphb",
+							"dissonant whispers|xphb",
+							"mind sliver|xphb#c"
+						],
+						"5": [
+							"hunger of hadar|xphb",
+							"sending|xphb"
+						],
+						"7": [
+							"evard's black tentacles|xphb",
+							"summon aberration|xphb"
+						],
+						"9": [
+							"rary's telepathic bond|xphb",
+							"telekinesis|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Aberrant Sorcery|Sorcerer|XPHB|Aberrant|XPHB|3",
+				"Psionic Sorcery|Sorcerer|XPHB|Aberrant|XPHB|6",
+				"Psychic Defenses|Sorcerer|XPHB|Aberrant|XPHB|6",
+				"Revelation in Flesh|Sorcerer|XPHB|Aberrant|XPHB|14",
+				"Warping Implosion|Sorcerer|XPHB|Aberrant|XPHB|18"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Clockwork Sorcery",
+			"shortName": "Clockwork",
+			"source": "XPHB",
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"page": 146,
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"aid|xphb",
+							"alarm|xphb",
+							"lesser restoration|xphb",
+							"protection from evil and good|xphb"
+						],
+						"5": [
+							"dispel magic|xphb",
+							"protection from energy|xphb"
+						],
+						"7": [
+							"freedom of movement|xphb",
+							"summon construct|xphb"
+						],
+						"9": [
+							"greater restoration|xphb",
+							"wall of force|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Clockwork Sorcery|Sorcerer|XPHB|Clockwork|XPHB|3",
+				"Bastion of Law|Sorcerer|XPHB|Clockwork|XPHB|6",
+				"Trance of Order|Sorcerer|XPHB|Clockwork|XPHB|14",
+				"Clockwork Cavalcade|Sorcerer|XPHB|Clockwork|XPHB|18"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Draconic Sorcery",
+			"shortName": "Draconic",
+			"source": "XPHB",
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"page": 148,
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"alter self|xphb",
+							"chromatic orb|xphb",
+							"command|xphb",
+							"dragon's breath|xphb"
+						],
+						"5": [
+							"fear|xphb",
+							"fly|xphb"
+						],
+						"7": [
+							"arcane eye|xphb",
+							"charm monster|xphb"
+						],
+						"9": [
+							"legend lore|xphb",
+							"summon dragon|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Draconic Sorcery|Sorcerer|XPHB|Draconic|XPHB|3",
+				"Elemental Affinity|Sorcerer|XPHB|Draconic|XPHB|6",
+				"Dragon Wings|Sorcerer|XPHB|Draconic|XPHB|14",
+				"Dragon Companion|Sorcerer|XPHB|Draconic|XPHB|18"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Wild Magic Sorcery",
+			"shortName": "Wild Magic",
+			"source": "XPHB",
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"page": 149,
+			"subclassFeatures": [
+				"Wild Magic Sorcery|Sorcerer|XPHB|Wild Magic|XPHB|3",
+				"Bend Luck|Sorcerer|XPHB|Wild Magic|XPHB|6",
+				"Controlled Chaos|Sorcerer|XPHB|Wild Magic|XPHB|14",
+				"Tamed Surge|Sorcerer|XPHB|Wild Magic|XPHB|18"
 			],
 			"hasFluffImages": true
 		}
@@ -1602,6 +2310,419 @@
 			"level": 20,
 			"entries": [
 				"At 20th level, you regain 4 expended sorcery points whenever you finish a short rest."
+			]
+		},
+		{
+			"name": "Innate Sorcery",
+			"source": "XPHB",
+			"page": 140,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"An event in your past left an indelible mark on you, infusing you with simmering magic. As a {@variantrule Bonus Action|XPHB}, you can unleash that magic for 1 minute, during which you gain the following benefits:",
+				{
+					"type": "list",
+					"items": [
+						"The spell save DC of your Sorcerer spells increases by 1.",
+						"You have {@variantrule Advantage|XPHB} on the attack rolls of Sorcerer spells you cast."
+					]
+				},
+				"You can use this feature twice, and you regain all expended uses of it when you finish a {@variantrule Long Rest|XPHB}."
+			]
+		},
+		{
+			"name": "Spellcasting",
+			"source": "XPHB",
+			"page": 139,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"Drawing from your innate magic, you can cast spells. See {@book chapter 7|XPHB|7} for the rules on spellcasting. The information below details how you use those rules with Sorcerer spells, which appear in the {@filter Sorcerer spell list|spells|class=Sorcerer} later in the class's description.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Cantrips",
+							"entries": [
+								"You know four Sorcerer cantrips of your choice. {@spell Light|XPHB}, {@spell Prestidigitation|XPHB}, {@spell Shocking Grasp|XPHB}, and {@spell Sorcerous Burst|XPHB} are recommended. Whenever you gain a Sorcerer level, you can replace one of your cantrips from this feature with another Sorcerer cantrip of your choice.",
+								"When you reach Sorcerer levels 4 and 10, you learn another Sorcerer cantrip of your choice, as shown in the Cantrips column of the Sorcerer Features table."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Spell Slots",
+							"entries": [
+								"The Sorcerer Features table shows how many spell slots you have to cast your level 1+ spells. You regain all expended slots when you finish a {@variantrule Long Rest|XPHB}."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Prepared Spells of Level 1+",
+							"entries": [
+								"You prepare the list of level 1+ spells that are available for you to cast with this feature. To start, choose two level 1 Sorcerer spells. {@spell Burning Hands|XPHB} and {@spell Detect Magic|XPHB} are recommended.",
+								"The number of spells on your list increases as you gain Sorcerer levels, as shown in the Prepared Spells column of the Sorcerer Features table. Whenever that number increases, choose additional Sorcerer spells until the number of spells on your list matches the number in the Sorcerer Features table. The chosen spells must be of a level for which you have spell slots. For example, if you're a level 3 Sorcerer, your list of prepared spells can include six Sorcerer spells of level 1 or 2 in any combination.",
+								"If another Sorcerer feature gives you spells that you always have prepared, those spells don't count against the number of spells you can prepare with this feature, but those spells otherwise count as Sorcerer spells for you."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Changing Your Prepared Spells",
+							"entries": [
+								"Whenever you gain a Sorcerer level, you can replace one spell on your list with another Sorcerer spell for which you have spell slots."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Spellcasting Ability",
+							"entries": [
+								"Charisma is your spellcasting ability for your Sorcerer spells."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Spellcasting Focus",
+							"entries": [
+								"You can use an {@item Arcane Focus|XPHB} as a {@variantrule Spellcasting Focus|XPHB} for your Sorcerer spells."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Font of Magic",
+			"source": "XPHB",
+			"page": 140,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"level": 2,
+			"entries": [
+				"You can tap into the wellspring of magic within yourself. This wellspring is represented by Sorcery Points, which allow you to create a variety of magical effects.",
+				"You have 2 Sorcery Points, and you gain more as you reach higher levels, as shown in the Sorcery Points column of the Sorcerer Features table. You can't have more Sorcery Points than the number shown in the table for your level. You regain all expended Sorcery Points when you finish a {@variantrule Long Rest|XPHB}.",
+				"You can use your Sorcery Points to fuel the options below, along with other features, such as Metamagic, that use those points.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Converting Spell Slots to Sorcery Points",
+							"entries": [
+								"You can expend a spell slot to gain a number of Sorcery Points equal to the slot's level (no action required)."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Creating Spell Slots",
+							"entries": [
+								"As a {@variantrule Bonus Action|XPHB}, you can transform unexpended Sorcery Points into one spell slot. The Creating Spell Slots table shows the cost of creating a spell slot of a given level, and it lists the minimum Sorcerer level you must be to create a slot. You can create a spell slot no higher than level 5.",
+								"Any spell slot you create with this feature vanishes when you finish a {@variantrule Long Rest|XPHB}.",
+								{
+									"type": "table",
+									"caption": "Creating Spell Slots",
+									"colLabels": [
+										"Spell Slot Level",
+										"Sorcery Point Cost",
+										"Min. Sorcerer Level"
+									],
+									"colStyles": [
+										"col-3 text-center",
+										"col-3 text-center",
+										"col-3 text-center"
+									],
+									"rows": [
+										[
+											"1",
+											"2",
+											"2"
+										],
+										[
+											"2",
+											"3",
+											"3"
+										],
+										[
+											"3",
+											"5",
+											"5"
+										],
+										[
+											"4",
+											"6",
+											"7"
+										],
+										[
+											"5",
+											"7",
+											"9"
+										]
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Metamagic",
+			"source": "XPHB",
+			"page": 141,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"level": 2,
+			"entries": [
+				"Because your magic flows from within, you can alter your spells to suit your needs; you gain two Metamagic options of your choice from \"{@filter Metamagic Options|optionalfeatures|feature type=MM|source=XPHB}\" later in this class's description. You use the chosen options to temporarily modify spells you cast. To use an option, you must spend the number of Sorcery Points that it costs.",
+				"You can use only one Metamagic option on a spell when you cast it unless otherwise noted in one of those options.",
+				"Whenever you gain a Sorcerer level, you can replace one of your Metamagic options with one you don't know. You gain two more options at Sorcerer level 10 and two more at Sorcerer level 17."
+			]
+		},
+		{
+			"name": "Metamagic Options",
+			"source": "XPHB",
+			"page": 141,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"level": 2,
+			"entries": [
+				"The following options are available to your Metamagic feature. The options are presented in alphabetical order.",
+				{
+					"type": "options",
+					"count": 2,
+					"entries": [
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Careful Spell|XPHB",
+							"preserve": {
+								"consumes": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Distant Spell|XPHB",
+							"preserve": {
+								"consumes": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Empowered Spell|XPHB",
+							"preserve": {
+								"consumes": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Extended Spell|XPHB",
+							"preserve": {
+								"consumes": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Heightened Spell|XPHB",
+							"preserve": {
+								"consumes": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Quickened Spell|XPHB",
+							"preserve": {
+								"consumes": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Seeking Spell|XPHB",
+							"preserve": {
+								"consumes": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Subtle Spell|XPHB",
+							"preserve": {
+								"consumes": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Transmuted Spell|XPHB",
+							"preserve": {
+								"consumes": true
+							}
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Twinned Spell|XPHB",
+							"preserve": {
+								"consumes": true
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Sorcerer Subclass",
+			"source": "XPHB",
+			"page": 141,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"You gain a Sorcerer subclass of your choice. A subclass is a specialization that grants you features at certain Sorcerer levels. For the rest of your career, you gain each of your subclass's features that are of your Sorcerer level or lower."
+			]
+		},
+		{
+			"name": "Ability Score Improvement",
+			"source": "XPHB",
+			"page": 141,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"level": 4,
+			"entries": [
+				"You gain the {@feat Ability Score Improvement|XPHB} feat or another {@5etools feat|feats.html} of your choice for which you qualify. You gain this feature again at Sorcerer levels 8, 12, and 16."
+			]
+		},
+		{
+			"name": "Sorcerous Restoration",
+			"source": "XPHB",
+			"page": 141,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"level": 5,
+			"entries": [
+				"When you finish a {@variantrule Short Rest|XPHB}, you can regain expended Sorcery Points, but no more than a number equal to half your Sorcerer level (round down). Once you use this feature, you can't do so again until you finish a {@variantrule Long Rest|XPHB}."
+			]
+		},
+		{
+			"name": "Subclass Feature",
+			"source": "XPHB",
+			"page": 141,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"level": 6,
+			"entries": [
+				"You gain a feature from your Sorcerer subclass."
+			]
+		},
+		{
+			"name": "Sorcery Incarnate",
+			"source": "XPHB",
+			"page": 141,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"level": 7,
+			"entries": [
+				"If you have no uses of Innate Sorcery left, you can use it if you spend 2 Sorcery Points when you take the {@variantrule Bonus Action|XPHB} to activate it.",
+				"In addition, while your Innate Sorcery feature is active, you can use up to two of your {@filter Metamagic options|optionalfeatures|feature type=MM} on each spell you cast."
+			]
+		},
+		{
+			"name": "Ability Score Improvement",
+			"source": "XPHB",
+			"page": 141,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"level": 8,
+			"entries": [
+				"You gain the {@feat Ability Score Improvement|XPHB} feat or another {@5etools feat|feats.html} of your choice for which you qualify."
+			]
+		},
+		{
+			"name": "Metamagic",
+			"source": "XPHB",
+			"page": 141,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"level": 10,
+			"entries": [
+				"Because your magic flows from within you, you can alter your spells to suit your needs; you gain two Metamagic options of your choice from the \"{@filter Metamagic Options|optionalfeatures|feature type=MM|source=XPHB}\" section later in this class's description.",
+				"You can use only one Metamagic option on a spell when you cast it, unless otherwise noted in one of those options.",
+				"Whenever you gain a Sorcerer level, you can replace one of your Metamagic options with one you don't know."
+			]
+		},
+		{
+			"name": "Ability Score Improvement",
+			"source": "XPHB",
+			"page": 141,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"level": 12,
+			"entries": [
+				"You gain the {@feat Ability Score Improvement|XPHB} feat or another {@5etools feat|feats.html} of your choice for which you qualify."
+			]
+		},
+		{
+			"name": "Subclass Feature",
+			"source": "XPHB",
+			"page": 141,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"level": 14,
+			"entries": [
+				"You gain a feature from your Sorcerer subclass."
+			]
+		},
+		{
+			"name": "Ability Score Improvement",
+			"source": "XPHB",
+			"page": 141,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"level": 16,
+			"entries": [
+				"You gain the {@feat Ability Score Improvement|XPHB} feat or another {@5etools feat|feats.html} of your choice for which you qualify."
+			]
+		},
+		{
+			"name": "Metamagic",
+			"source": "XPHB",
+			"page": 141,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"level": 17,
+			"entries": [
+				"Because your magic flows from within you, you can alter your spells to suit your needs; you gain two Metamagic options of your choice from the \"{@filter Metamagic Options|optionalfeatures|feature type=MM|source=XPHB}\" section later in this class's description.",
+				"You can use only one Metamagic option on a spell when you cast it, unless otherwise noted in one of those options.",
+				"Whenever you gain a Sorcerer level, you can replace one of your Metamagic options with one you don't know."
+			]
+		},
+		{
+			"name": "Subclass Feature",
+			"source": "XPHB",
+			"page": 141,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"level": 18,
+			"entries": [
+				"You gain a feature from your Sorcerer subclass."
+			]
+		},
+		{
+			"name": "Epic Boon",
+			"source": "XPHB",
+			"page": 141,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"level": 19,
+			"entries": [
+				"You gain an {@filter Epic Boon feat|feats|category=EB} or another {@5etools feat|feats.html} of your choice for which you qualify. {@feat Boon of Dimensional Travel|XPHB} is recommended."
+			]
+		},
+		{
+			"name": "Arcane Apotheosis",
+			"source": "XPHB",
+			"page": 141,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"level": 20,
+			"entries": [
+				"While your Innate Sorcery feature is active, you can use one Metamagic option on each of your turns without spending Sorcery Points on it."
 			]
 		}
 	],
@@ -3359,6 +4480,713 @@
 			"entries": [
 				"At 18th level, you gain immunity to lightning and thunder damage.",
 				"You also gain a magical flying speed of 60 feet. As an action, you can reduce your flying speed to 30 feet for 1 hour and choose a number of creatures within 30 feet of you equal to 3 + your Charisma modifier. The chosen creatures gain a magical flying speed of 30 feet for 1 hour. Once you reduce your flying speed in this way, you can't do so again until you finish a short or long rest."
+			]
+		},
+		{
+			"name": "Aberrant Sorcery",
+			"source": "XPHB",
+			"page": 145,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Aberrant",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i Wield Unnatural Psionic Power}",
+				"An alien influence has wrapped its tendrils around your mind, giving you psionic power. You can now touch other minds with that power and alter the world around you. Will this power shine from you as a hopeful beacon to others? Or will you be a terror to those who feel the stab of your mind?",
+				"Perhaps a psychic wind from the Astral Plane carried psionic energy to you, or you were exposed to the Far Realm's warping influence. Alternatively, you were implanted with a mind flayer tadpole, but your transformation into a mind flayer never occurred; now the tadpole's psionic power is yours. However you acquired this power, your mind is aflame with it.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Psionic Spells|Sorcerer|XPHB|Aberrant|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Telepathic Speech|Sorcerer|XPHB|Aberrant|XPHB|3"
+				}
+			]
+		},
+		{
+			"name": "Psionic Spells",
+			"source": "XPHB",
+			"page": 145,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Aberrant",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"When you reach a Sorcerer level specified in the Psionic Spells table, you thereafter always have the listed spells prepared.",
+				{
+					"type": "table",
+					"caption": "Psionic Spells",
+					"colLabels": [
+						"Sorcerer Level",
+						"Spells"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3rd",
+							"{@spell Arms of Hadar|XPHB}, {@spell Calm Emotions|XPHB}, {@spell Detect Thoughts|XPHB}, {@spell Dissonant Whispers|XPHB}, {@spell Mind Sliver|XPHB}"
+						],
+						[
+							"5th",
+							"{@spell Hunger of Hadar|XPHB}, {@spell Sending|XPHB}"
+						],
+						[
+							"7th",
+							"{@spell Evard's Black Tentacles|XPHB}, {@spell Summon Aberration|XPHB}"
+						],
+						[
+							"9th",
+							"{@spell Rary's Telepathic Bond|XPHB}, {@spell Telekinesis|XPHB}"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Telepathic Speech",
+			"source": "XPHB",
+			"page": 145,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Aberrant",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"You can form a telepathic connection between your mind and the mind of another. As a {@variantrule Bonus Action|XPHB}, choose one creature you can see within 30 feet of yourself. You and the chosen creature can communicate telepathically with each other while the two of you are within a number of miles of each other equal to your Charisma modifier (minimum of 1 mile). To understand each other, you each must mentally use a language the other knows.",
+				"The telepathic connection lasts for a number of minutes equal to your Sorcerer level. It ends early if you use this ability to form a connection with a different creature."
+			]
+		},
+		{
+			"name": "Psionic Sorcery",
+			"source": "XPHB",
+			"page": 146,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Aberrant",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"When you cast any level 1+ spell from your Psionic Spells feature, you can cast it by expending a spell slot as normal or by spending a number of Sorcery Points equal to the spell's level. If you cast the spell using Sorcery Points, it requires no Verbal or Somatic components, and it requires no Material components unless they are consumed by the spell or have a cost specified in it."
+			]
+		},
+		{
+			"name": "Psychic Defenses",
+			"source": "XPHB",
+			"page": 146,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Aberrant",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"You have {@variantrule Resistance|XPHB} to Psychic damage, and you have {@variantrule Advantage|XPHB} on saving throws to avoid or end the {@condition Charmed|XPHB} or {@condition Frightened|XPHB} condition."
+			]
+		},
+		{
+			"name": "Revelation in Flesh",
+			"source": "XPHB",
+			"page": 146,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Aberrant",
+			"subclassSource": "XPHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"You can unleash the aberrant truth hidden within yourself. As a {@variantrule Bonus Action|XPHB}, you can spend 1 Sorcery Point or more to magically alter your body for 10 minutes. For each Sorcery Point you spend, you gain one of the following benefits of your choice, the effects of which last until the alteration ends.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Aquatic Adaptation",
+							"entries": [
+								"You gain a {@variantrule Swim Speed|XPHB} equal to twice your {@variantrule Speed|XPHB}, and you can breathe underwater. Gills grow from your neck or flare behind your ears, and your fingers become webbed or you grow wriggling cilia."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Glistening Flight",
+							"entries": [
+								"You gain a {@variantrule Fly Speed|XPHB} equal to your {@variantrule Speed|XPHB}, and you can hover. As you fly, your skin glistens with mucus or otherworldly light."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "See the Invisible",
+							"entries": [
+								"You can see any {@condition Invisible|XPHB} creature within 60 feet of yourself that isn't behind {@variantrule Cover|XPHB|Total Cover}. Your eyes also turn black or become writhing sensory tendrils."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Wormlike Movement",
+							"entries": [
+								"Your body, along with any equipment you are wearing or carrying, becomes slimy and pliable. You can move through any space as narrow as 1 inch, and you can spend 5 feet of movement to escape from nonmagical restraints or the {@condition Grappled|XPHB} condition."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Warping Implosion",
+			"source": "XPHB",
+			"page": 146,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Aberrant",
+			"subclassSource": "XPHB",
+			"level": 18,
+			"header": 2,
+			"entries": [
+				"You can unleash a space-warping anomaly. As a {@action Magic|XPHB} action, you teleport to an unoccupied space you can see within 120 feet of yourself. Immediately after you disappear, each creature within 30 feet of the space you left must make a Strength saving throw against your spell save DC. On a failed save, a creature takes {@damage 3d10} Force damage and is pulled straight toward the space you left, ending in an unoccupied space as close to your former space as possible. On a successful save, the creature takes half as much damage only.",
+				"Once you use this feature, you can't do so again until you finish a {@variantrule Long Rest|XPHB} unless you spend 5 Sorcery Points (no action required) to restore your use of it."
+			]
+		},
+		{
+			"name": "Clockwork Sorcery",
+			"source": "XPHB",
+			"page": 146,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Clockwork",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i Channel Cosmic Forces of Order}",
+				"The cosmic force of order has suffused you with magic. That power arises from Mechanus or a realm like it\u2014a plane of existence shaped entirely by clockwork efficiency. You or someone from your lineage might have become entangled in the machinations of modrons, the orderly beings who inhabit Mechanus. Perhaps your ancestor even took part in the Great Modron March. Whatever its origin within you, the power of order can seem strange to others, but for you, it's part of a vast and glorious system.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Clockwork Spells|Sorcerer|XPHB|Clockwork|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Restore Balance|Sorcerer|XPHB|Clockwork|XPHB|3"
+				}
+			]
+		},
+		{
+			"name": "Clockwork Spells",
+			"source": "XPHB",
+			"page": 146,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Clockwork",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"When you reach a Sorcerer level specified in the Clockwork Spells table, you thereafter always have the listed spells prepared.",
+				{
+					"type": "table",
+					"caption": "Clockwork Spells",
+					"colLabels": [
+						"Sorcerer Level",
+						"Spells"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3rd",
+							"{@spell Aid|XPHB}, {@spell Alarm|XPHB}, {@spell Lesser Restoration|XPHB}, {@spell Protection from Evil and Good|XPHB}"
+						],
+						[
+							"5th",
+							"{@spell Dispel Magic|XPHB}, {@spell Protection From Energy|XPHB}"
+						],
+						[
+							"7th",
+							"{@spell Freedom of Movement|XPHB}, {@spell Summon Construct|XPHB}"
+						],
+						[
+							"9th",
+							"{@spell Greater Restoration|XPHB}, {@spell Wall of Force|XPHB}"
+						]
+					]
+				},
+				"In addition, consult the Manifestations of Order table and choose or randomly determine a way your connection to order manifests while you are casting any of your Sorcerer spells.",
+				{
+					"type": "table",
+					"caption": "Manifestations of Order",
+					"colLabels": [
+						"{@dice 1d6}",
+						"Manifestation"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"1",
+							"Spectral cogwheels hover behind you."
+						],
+						[
+							"2",
+							"The hands of a clock spin in your eyes."
+						],
+						[
+							"3",
+							"Your skin glows with a brassy sheen."
+						],
+						[
+							"4",
+							"Floating equations and geometric objects overlay your body."
+						],
+						[
+							"5",
+							"Your {@variantrule Spellcasting Focus|XPHB} temporarily takes the form of a Tiny clockwork mechanism."
+						],
+						[
+							"6",
+							"The ticking of gears or ringing of a clock can be heard by you and those affected by your magic."
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Restore Balance",
+			"source": "XPHB",
+			"page": 146,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Clockwork",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"Your connection to the plane of absolute order allows you to equalize chaotic moments. When a creature you can see within 60 feet of yourself is about to roll a {@dice d20} with {@variantrule Advantage|XPHB} or {@variantrule Disadvantage|XPHB}, you can take a {@variantrule Reaction|XPHB} to prevent the roll from being affected by {@variantrule Advantage|XPHB} and {@variantrule Disadvantage|XPHB}.",
+				"You can use this feature a number of times equal to your Charisma modifier (minimum of once), and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
+			]
+		},
+		{
+			"name": "Bastion of Law",
+			"source": "XPHB",
+			"page": 147,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Clockwork",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"header": 2,
+			"consumes": {
+				"name": "Sorcery Point"
+			},
+			"entries": [
+				"You can tap into the grand equation of existence to imbue a creature with a shimmering shield of order. As a {@action Magic|XPHB} action, you can expend 1 to 5 Sorcery Points to create a magical ward around yourself or another creature you can see within 30 feet of yourself. The ward is represented by a number of d8s equal to the number of Sorcery Points spent to create it. When the warded creature takes damage, it can expend a number of those dice, roll them, and reduce the damage taken by the total rolled on those dice.",
+				"The ward lasts until you finish a {@variantrule Long Rest|XPHB} or until you use this feature again."
+			]
+		},
+		{
+			"name": "Trance of Order",
+			"source": "XPHB",
+			"page": 147,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Clockwork",
+			"subclassSource": "XPHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"You gain the ability to align your consciousness with the endless calculations of Mechanus. As a {@variantrule Bonus Action|XPHB}, you can enter this state for 1 minute. For the duration, attack rolls against you can't benefit from {@variantrule Advantage|XPHB}, and whenever you make a {@variantrule D20 Test|XPHB}, you can treat a roll of 9 or lower on the {@dice d20} as a 10.",
+				"Once you use this feature, you can't use it again until you finish a {@variantrule Long Rest|XPHB} unless you spend 5 Sorcery Points (no action required) to restore your use of it."
+			]
+		},
+		{
+			"name": "Clockwork Cavalcade",
+			"source": "XPHB",
+			"page": 147,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Clockwork",
+			"subclassSource": "XPHB",
+			"level": 18,
+			"header": 2,
+			"entries": [
+				"You momentarily summon spirits of order to expunge disorder around you. As a {@action Magic|XPHB} action, you summon the spirits in a 30-foot {@variantrule Cube [Area of Effect]|XPHB|Cube} originating from you. The spirits look like modrons or other Constructs of your choice. The spirits are intangible and invulnerable, and they create the effects below within the {@variantrule Cube [Area of Effect]|XPHB|Cube} before vanishing. Once you use this action, you can't use it again until you finish a {@variantrule Long Rest|XPHB} unless you spend 7 Sorcery Points (no action required) to restore your use of it.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Heal",
+							"entries": [
+								"The spirits restore up to 100 {@variantrule Hit Points|XPHB}, divided as you choose among any number of creatures of your choice in the {@variantrule Cube [Area of Effect]|XPHB|Cube}."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Repair",
+							"entries": [
+								"Any damaged objects entirely in the {@variantrule Cube [Area of Effect]|XPHB|Cube} are repaired instantly."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Dispel",
+							"entries": [
+								"Every spell of level 6 and lower ends on creatures and objects of your choice in the {@variantrule Cube [Area of Effect]|XPHB|Cube}."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Draconic Sorcery",
+			"source": "XPHB",
+			"page": 148,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Draconic",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i Breathe the Magic of Dragons}",
+				"Your innate magic comes from the gift of a dragon. Perhaps an ancient dragon facing death bequeathed some of its magical power to you or your ancestor. You might have absorbed magic from a site infused with dragons' power. Or perhaps you handled a treasure taken from a dragon's hoard that was steeped in draconic power. Or you might have a dragon for an ancestor.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Draconic Resilience|Sorcerer|XPHB|Draconic|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Draconic Spells|Sorcerer|XPHB|Draconic|XPHB|3"
+				}
+			]
+		},
+		{
+			"name": "Draconic Spells",
+			"source": "XPHB",
+			"page": 148,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Draconic",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"When you reach a Sorcerer level specified in the Draconic Spells table, you thereafter always have the listed spells prepared.",
+				{
+					"type": "table",
+					"caption": "Psionic Spells",
+					"colLabels": [
+						"Sorcerer Level",
+						"Spells"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3rd",
+							"{@spell Alter Self|XPHB}, {@spell Chromatic Orb|XPHB}, {@spell Command|XPHB}, {@spell Dragon's Breath|XPHB}"
+						],
+						[
+							"5th",
+							"{@spell Fear|XPHB}, {@spell Fly|XPHB}"
+						],
+						[
+							"7th",
+							"{@spell Arcane Eye|XPHB}, {@spell Charm Monster|XPHB}"
+						],
+						[
+							"9th",
+							"{@spell Legend Lore|XPHB}, {@spell Summon Dragon|XPHB}"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Draconic Resilience",
+			"source": "XPHB",
+			"page": 148,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Draconic",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"entries": [
+				"The magic in your body manifests physical traits of your draconic gift. Your {@variantrule Hit Points|XPHB|Hit Point} maximum increases by 3, and it increases by 1 whenever you gain another Sorcerer level.",
+				"Parts of you are also covered by dragon-like scales. While you aren't wearing armor, your base {@variantrule Armor Class|XPHB} equals 10 plus your Dexterity and Charisma modifiers."
+			]
+		},
+		{
+			"name": "Elemental Affinity",
+			"source": "XPHB",
+			"page": 148,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Draconic",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"Your draconic magic has an affinity with a damage type associated with dragons. Choose one of those types: Acid, Cold, Fire, Lightning, or Poison.",
+				"You have {@variantrule Resistance|XPHB} to that damage type, and when you cast a spell that deals damage of that type, you can add your Charisma modifier to one damage roll of that spell."
+			]
+		},
+		{
+			"name": "Dragon Wings",
+			"source": "XPHB",
+			"page": 148,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Draconic",
+			"subclassSource": "XPHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"As a {@variantrule Bonus Action|XPHB}, you can cause draconic wings to appear on your back. The wings last for 1 hour or until you dismiss them (no action required). For the duration, you have a {@variantrule Fly Speed|XPHB} of 60 feet.",
+				"Once you use this feature, you can't use it again until you finish a {@variantrule Long Rest|XPHB} unless you spend 3 Sorcery Points (no action required) to restore your use of it."
+			]
+		},
+		{
+			"name": "Dragon Companion",
+			"source": "XPHB",
+			"page": 148,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Draconic",
+			"subclassSource": "XPHB",
+			"level": 18,
+			"header": 2,
+			"entries": [
+				"You can cast {@spell Summon Dragon|XPHB} without a Material component. You can also cast it once without a spell slot, and you regain the ability to cast it in this way when you finish a {@variantrule Long Rest|XPHB}.",
+				"Whenever you start casting the spell, you can modify it so that it doesn't require {@status Concentration|XPHB}. If you do so, the spell's duration becomes 1 minute for that casting."
+			]
+		},
+		{
+			"name": "Wild Magic Sorcery",
+			"source": "XPHB",
+			"page": 149,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Wild Magic",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i Unleash Chaotic Magic}",
+				"Your innate magic stems from the forces of chaos that underlie the order of creation. You or an ancestor might have endured exposure to raw magic, perhaps through a planar portal leading to Limbo or the Elemental Planes. Perhaps you were blessed by a fey being or marked by a demon. Or your magic could be a fluke with no apparent cause. Whatever its source, this magic churns within you, waiting for any outlet.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Wild Magic Surge|Sorcerer|XPHB|Wild Magic|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Tides of Chaos|Sorcerer|XPHB|Wild Magic|XPHB|3"
+				}
+			]
+		},
+		{
+			"name": "Tides of Chaos",
+			"source": "XPHB",
+			"page": 149,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Wild Magic",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"You can manipulate chaos itself to give yourself {@variantrule Advantage|XPHB} on one {@variantrule D20 Test|XPHB} before you roll the {@dice d20}. Once you do so, you must cast a Sorcerer spell with a spell slot or finish a {@variantrule Long Rest|XPHB} before you can use this feature again.",
+				"If you do cast a Sorcerer spell with a spell slot before you finish a {@variantrule Long Rest|XPHB}, you automatically roll on the {@table Wild Magic Surge|XPHB} table."
+			]
+		},
+		{
+			"name": "Wild Magic Surge",
+			"source": "XPHB",
+			"page": 149,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Wild Magic",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"Your spellcasting can unleash surges of untamed magic. Once per turn, you can roll {@dice 1d20} immediately after you cast a Sorcerer spell with a spell slot. If you roll a 20, roll on the Wild Magic Surge table to create a magical effect.",
+				"If the magical effect is a spell, it is too wild to be affected by your Metamagic.",
+				{
+					"type": "table",
+					"caption": "Wild Magic Surge",
+					"colLabels": [
+						"{@dice 1d100}",
+						"Effect"
+					],
+					"colStyles": [
+						"col-1 text-center",
+						"col-11"
+					],
+					"rows": [
+						[
+							"01\u201304",
+							"Roll on this table at the start of each of your turns for the next minute, ignoring this result on subsequent rolls."
+						],
+						[
+							"05\u201308",
+							"A creature that is Friendly toward you appears in a random unoccupied space within 60 feet of you. The creature is under the DM's control and disappears 1 minute later. Roll {@dice 1d4} to determine the creature: on a 1, a Modron Duodrone appears; on a 2, a Flumph appears; on a 3, a Modron Monodrone appears; on a 4, a Unicorn appears. See the Monster Manual for the creature's stat block."
+						],
+						[
+							"09\u201312",
+							"For the next minute, you regain 5 {@variantrule Hit Points|XPHB} at the start of each of your turns."
+						],
+						[
+							"13\u201316",
+							"Creatures have {@variantrule Disadvantage|XPHB} on saving throws against the next spell you cast in the next minute that involves a saving throw."
+						],
+						[
+							"17\u201320",
+							"You are subjected to an effect that lasts for 1 minute unless its description says otherwise. Roll {@dice 1d8} to determine the effect: on a 1, you're surrounded by faint, ethereal music only you and creatures within 5 feet of you can hear; on a 2, your size increases by one size category; on a 3, you grow a long beard made of feathers that remains until you sneeze, at which point the feathers explode from your face and vanish; on a 4, you must shout when you speak; on a 5, illusory butterflies flutter in the air within 10 feet of you; on a 6, an eye appears on your forehead, granting you {@variantrule Advantage|XPHB} on Wisdom ({@skill Perception|XPHB}) checks; on an 7, pink bubbles float out of your mouth whenever you speak; on an 8, your skin turns a vibrant shade of blue for 24 hours or until the effect is ended by a {@spell Remove Curse|XPHB} spell."
+						],
+						[
+							"21\u201324",
+							"For the next minute, all your spells with a casting time of an action have a casting time of a {@variantrule Bonus Action|XPHB}."
+						],
+						[
+							"25\u201328",
+							"You are transported to the Astral Plane until the end of your next turn. You then return to the space you previously occupied or the nearest unoccupied space if that space is occupied."
+						],
+						[
+							"29\u201332",
+							"The next time you cast a spell that deals damage within the next minute, don't roll the spell's damage dice for the damage. Instead use the highest number possible for each damage die."
+						],
+						[
+							"33\u201336",
+							"You have {@variantrule Resistance|XPHB} to all damage for the next minute."
+						],
+						[
+							"37\u201340",
+							"You turn into a potted plant until the start of your next turn. While you're a plant, you have the {@condition Incapacitated|XPHB} condition and have {@variantrule Vulnerability|XPHB} to all damage. If you drop to 0 {@variantrule Hit Points|XPHB}, your pot breaks, and your form reverts."
+						],
+						[
+							"41\u201344",
+							"For the next minute, you can teleport up to 20 feet as a {@variantrule Bonus Action|XPHB} on each of your turns."
+						],
+						[
+							"45\u201348",
+							"You and up to three creatures you choose within 30 feet of you have the {@condition Invisible|XPHB} condition for 1 minute. This invisibility ends on a creature immediately after it makes an attack roll, deals damage, or casts a spell."
+						],
+						[
+							"49\u201352",
+							"A spectral shield hovers near you for the next minute, granting you a +2 bonus to AC and immunity to {@spell Magic Missile|XPHB}."
+						],
+						[
+							"53\u201356",
+							"You can take one extra action on this turn."
+						],
+						[
+							"57\u201360",
+							"You cast a random spell. If the spell normally requires {@status Concentration|XPHB}, it doesn't require {@status Concentration|XPHB} in this case; the spell lasts for its full duration. Roll {@dice 1d10} to determine the spell: on a 1, {@spell Confusion|XPHB}; on a 2, {@spell Fireball|XPHB}; on a 3, {@spell Fog Cloud|XPHB}; on a 4, {@spell Fly|XPHB} (cast on a random creature within 60 feet of you), on a 5, {@spell Grease|XPHB}; on a 6, {@spell Levitate|XPHB} (cast on yourself); on a 7, {@spell Magic Missile|XPHB} (cast as a level 5 spell); on an 8, {@spell Mirror Image|XPHB}; on a 9, {@spell Polymorph|XPHB} (cast on yourself), and if you fail the saving throw, you turn into a Goat (see appendix B); on a 10, See {@spell Invisibility|XPHB}."
+						],
+						[
+							"61\u201364",
+							"For the next minute, any flammable, nonmagical object you touch that isn't being worn or carried by another creature bursts into flame, takes {@damage 1d4} Fire damage, and is burning."
+						],
+						[
+							"65\u201368",
+							"If you die within the next hour, you immediately revive as if by the {@spell Reincarnate|XPHB} spell."
+						],
+						[
+							"69\u201372",
+							"You have the {@condition Frightened|XPHB} condition until the end of your next turn. The DM determines the source of your fear."
+						],
+						[
+							"73\u201376",
+							"You teleport up to 60 feet to an unoccupied space you can see."
+						],
+						[
+							"77\u201380",
+							"A random creature within 60 feet of you has the {@condition Poisoned|XPHB} condition for {@dice 1d4} hours."
+						],
+						[
+							"81\u201384",
+							"You radiate {@variantrule Bright Light|XPHB} in a 30-foot radius for the next minute. Any creature that ends its turn within 5 feet of you has the {@condition Blinded|XPHB} condition until the end of its next turn."
+						],
+						[
+							"85\u201388",
+							"Up to three creatures of your choice that you can see within 30 feet of you take {@damage 1d10} Necrotic damage. You regain {@variantrule Hit Points|XPHB} equal to the sum of the Necrotic damage dealt."
+						],
+						[
+							"89\u201392",
+							"Up to three creatures of your choice that you can see within 30 feet of you take {@damage 4d10} Lightning damage."
+						],
+						[
+							"93\u201396",
+							"You and all creatures within 30 feet of you have {@variantrule Vulnerability|XPHB} to Piercing damage for the next minute."
+						],
+						[
+							"97\u201300",
+							"Roll {@dice 1d6} On a 1, you regain {@dice 2d10} {@variantrule Hit Points|XPHB}; on a 2, one ally of your choice within 300 feet of you regains {@dice 2d10} {@variantrule Hit Points|XPHB}; on a 3, you regain your lowest-level expended spell slot; on a 4, one ally of your choice within 300 feet of you regains their lowest-level expended spell slot; on a 5, you regain all your expended Sorcery Points; on a 6, all the effects of row 17\u201320 affect you simultaneously."
+						]
+					],
+					"data": {
+						"tableInclude": true
+					}
+				}
+			]
+		},
+		{
+			"name": "Bend Luck",
+			"source": "XPHB",
+			"page": 149,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Wild Magic",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"header": 2,
+			"consumes": {
+				"name": "Sorcery Point",
+				"amount": 1
+			},
+			"entries": [
+				"You have the ability to twist fate using your wild magic. Immediately after another creature you can see rolls the {@dice d20} for a {@variantrule D20 Test|XPHB}, you can take a {@variantrule Reaction|XPHB} and spend 1 Sorcery Point to roll {@dice 1d4} and apply the number rolled as a bonus or penalty (your choice) to the {@dice d20} roll."
+			]
+		},
+		{
+			"name": "Controlled Chaos",
+			"source": "XPHB",
+			"page": 149,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Wild Magic",
+			"subclassSource": "XPHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"You gain a modicum of control over the surges of your wild magic. Whenever you roll on the Wild {@action Magic|XPHB} Surge table, you can roll twice and use either number."
+			]
+		},
+		{
+			"name": "Tamed Surge",
+			"source": "XPHB",
+			"page": 150,
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Wild Magic",
+			"subclassSource": "XPHB",
+			"level": 18,
+			"header": 2,
+			"entries": [
+				"Immediately after you cast a Sorcerer spell with a spell slot, you can create an effect of your choice from the {@table Wild Magic Surge|XPHB} table instead of rolling on that table. You can choose any effect in the table except for the final row, and if the chosen effect involves a roll, you must make it.",
+				"Once you use this feature, you can't do so again until you finish a {@variantrule Long Rest|XPHB}."
 			]
 		}
 	]

@@ -321,7 +321,7 @@ class PageFilterSpells extends PageFilterBase {
 			group: SourceUtil.getFilterGroup(r.source || Parser.SRC_PHB),
 		};
 		if (r.baseName) opts.nest = r.baseName;
-		else opts.nest = "(No Subraces)";
+		else opts.nest = "(No Subspecies)";
 		return new FilterItem(opts);
 	}
 	// endregion
@@ -352,7 +352,7 @@ class PageFilterSpells extends PageFilterBase {
 			variantClassFilter: this._variantClassFilter,
 		});
 		this._raceFilter = new Filter({
-			header: "Race",
+			header: "Species",
 			nests: {},
 			groupFn: it => it.group,
 		});

@@ -2,6 +2,7 @@ import {AlignmentUtil} from "./converterutils-utils-alignment.js";
 import {TagCondition, TaggerUtils, TagUtil} from "./converterutils-tags.js";
 import {ConverterConst} from "./converterutils-const.js";
 import {ItemTag} from "./converterutils-entries.js";
+import {VetoolsConfig} from "../utils-config/utils-config-config.js";
 
 export class AcConvert {
 	static tryPostProcessAc (mon, cbMan, cbErr) {
@@ -2186,12 +2187,19 @@ export class CreatureSavingThrowTagger extends _PrimaryLegendarySpellsTaggerBase
 }
 
 export class CreatureSpecialEquipmentTagger {
-	static tryRun (mon) {
+	/**
+	 * @param mon
+	 * @param {"classic" | "one" | null} styleHint
+	 */
+	static tryRun (mon, {styleHint = null} = {}) {
 		if (!mon.trait) return;
+
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
 		mon.trait = mon.trait
 			.map(ent => {
 				if (!/\bEquipment\b/.test(ent.name || "")) return ent;
-				return ItemTag.tryRun(ent);
+				return ItemTag.tryRun(ent, {styleHint});
 			});
 	}
 }

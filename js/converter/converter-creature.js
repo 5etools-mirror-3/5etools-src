@@ -1519,7 +1519,7 @@ export class ConverterCreature extends ConverterBase {
 				isTagInflicted: true,
 			},
 		);
-		CreatureSpecialEquipmentTagger.tryRun(stats);
+		CreatureSpecialEquipmentTagger.tryRun(stats, {styleHint: options.styleHint});
 		TraitActionTag.tryRun(stats);
 		LanguageTag.tryRun(stats);
 		SenseFilterTag.tryRun(stats);

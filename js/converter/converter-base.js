@@ -1,9 +1,11 @@
 import {ConverterConst} from "./converterutils-const.js";
+import {VetoolsConfig} from "../utils-config/utils-config-config.js";
 
 export class ConverterBase {
 	static _getValidOptions (options) {
 		options = options || {};
 		if (!options.cbWarning || !options.cbOutput) throw new Error(`Missing required callback options!`);
+		options.styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 		return options;
 	}
 

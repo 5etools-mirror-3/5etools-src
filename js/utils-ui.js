@@ -2115,7 +2115,7 @@ class SearchWidget {
 		};
 		await SearchWidget.pLoadCustomIndex({
 			contentIndexName: "entity_Races",
-			errorName: "races",
+			errorName: "species",
 			customIndexSubSpecs: [
 				new SearchWidget.CustomIndexSubSpec({
 					dataSource,
@@ -2127,7 +2127,7 @@ class SearchWidget {
 		});
 
 		return SearchWidget.pGetUserEntitySearch(
-			"Select Race",
+			"Select Species",
 			"entity_Races",
 			{
 				fnTransform: doc => {

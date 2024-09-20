@@ -244,7 +244,7 @@ class PageFilterItems extends PageFilterEquipment {
 						case "background": out.push(`Background: ${val.split("|")[0].toTitleCase()}`); break;
 						case "languageProficiency": out.push(`Language Proficiency: ${val.toTitleCase()}`); break;
 						case "skillProficiency": out.push(`Skill Proficiency: ${val.toTitleCase()}`); break;
-						case "race": out.push(`Race: ${val.split("|")[0].toTitleCase()}`); break;
+						case "race": out.push(`Species: ${val.split("|")[0].toTitleCase()}`); break;
 						case "creatureType": out.push(`Creature Type: ${val.toTitleCase()}`); break;
 						case "size": out.push(`Size: ${Parser.sizeAbvToFull(val)}`.toTitleCase()); break;
 						case "class": out.push(`Class: ${val.split("|")[0].toTitleCase()}`); break;

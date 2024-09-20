@@ -1256,8 +1256,8 @@ class StatGenUi extends BaseComponent {
 	};
 
 	static _RenderLevelOneRace = class extends this._RenderLevelOneEntity {
-		_title = "Race";
-		_titleShort = "Race";
+		_title = "Species";
+		_titleShort = "Species";
 		_propIxEntity = "common_ixRace";
 		_propIxAbilityScoreSet = "common_ixAbilityScoreSetRace";
 		_propData = "_races";
@@ -2375,7 +2375,7 @@ StatGenUi.CompAsi = class extends BaseComponent {
 			return $stg;
 		};
 
-		const $stgRace = $getStgEntity({title: "Race", $wrpRows: $wrpRowsRace, propEntity: "race", propIxEntity: "common_ixRace"});
+		const $stgRace = $getStgEntity({title: "Species", $wrpRows: $wrpRowsRace, propEntity: "race", propIxEntity: "common_ixRace"});
 
 		const $stgBackground = $getStgEntity({title: "Background", $wrpRows: $wrpRowsBackground, propEntity: "background", propIxEntity: "common_ixBackground"});
 

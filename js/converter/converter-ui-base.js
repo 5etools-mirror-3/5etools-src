@@ -1,6 +1,6 @@
 import {ConverterUiUtil} from "./converter-ui-utils.js";
 import {VetoolsConfig} from "../utils-config/utils-config-config.js";
-import {SITE_STYLE__CLASSIC, SITE_STYLE_DISPLAY} from "../consts.js";
+import {SITE_STYLE__CLASSIC, SITE_STYLE__ONE, SITE_STYLE_DISPLAY} from "../consts.js";
 
 export class ConverterUiBase extends BaseComponent {
 	static _getDisplayMode (mode) {
@@ -300,6 +300,7 @@ export class ConverterUiBase extends BaseComponent {
 			{
 				values: [
 					SITE_STYLE__CLASSIC,
+					SITE_STYLE__ONE,
 				],
 				fnDisplay: val => SITE_STYLE_DISPLAY[val],
 			},

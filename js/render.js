@@ -2059,7 +2059,7 @@ globalThis.Renderer = function () {
 			}
 
 			default: {
-				const {name, source, displayText, others, page, hash, hashPreEncoded, pageHover, hashHover, hashPreEncodedHover, preloadId, linkText, subhashes, subhashesHover, isFauxPage} = Renderer.utils.getTagMeta(tag, text);
+				const {name, source, displayText, others, page, hash, hashPreEncoded, pageHover, hashHover, hashPreEncodedHover, preloadId, linkText, subhashes, subhashesHover, isFauxPage, isAllowRedirect} = Renderer.utils.getTagMeta(tag, text);
 
 				const fauxEntry = {
 					type: "link",
@@ -2084,6 +2084,7 @@ globalThis.Renderer = function () {
 				if (linkText) fauxEntry.text = linkText;
 				if (subhashes) fauxEntry.href.subhashes = subhashes;
 				if (subhashesHover) fauxEntry.href.hover.subhashes = subhashesHover;
+				if (isAllowRedirect) fauxEntry.href.hover.isAllowRedirect = isAllowRedirect;
 
 				this._recursiveRender(fauxEntry, textStack, meta);
 
@@ -2196,6 +2197,7 @@ globalThis.Renderer = function () {
 			hash: procHash,
 			preloadId: entry.href.hover.preloadId,
 			isFauxPage: entry.href.hover.isFauxPage,
+			isAllowRedirect: entry.href.hover.isAllowRedirect,
 		});
 	};
 
@@ -4135,7 +4137,7 @@ Renderer.utils = class {
 	}
 
 	static _getTagMeta_generic (tag, text) {
-		const {name, source, displayText, others} = DataUtil.generic.unpackUid(text, tag);
+		const {name, source, displayText, others, isAllowRedirect} = DataUtil.generic.unpackUid(text, tag);
 		const hash = UrlUtil.encodeForHash([name, source]);
 
 		const out = {
@@ -4152,6 +4154,8 @@ Renderer.utils = class {
 			linkText: null,
 
 			hashPreEncoded: true,
+
+			isAllowRedirect,
 		};
 
 		switch (tag) {
@@ -5001,7 +5005,7 @@ Renderer.tag = class {
 
 	static TagItemMastery = class extends this._TagPipedDisplayTextThird {
 		tagName = "itemMastery";
-		defaultSource = VeCt.STR_GENERIC; // TODO(Future) adjust as/when these are published
+		defaultSource = Parser.SRC_XPHB;
 		page = "itemMastery";
 	};
 
@@ -5698,6 +5702,34 @@ class _RenderCompactFeatsImplClassic extends _RenderCompactFeatsImplBase {
 	}
 }
 
+class _RenderCompactFeatsImplOne extends _RenderCompactFeatsImplBase {
+	_style = "one";
+
+	/* -------------------------------------------- */
+
+	_getCompactRenderedString ({ent, renderer, opts}) {
+		const {
+			htmlPtIsExcluded,
+			htmlPtName,
+
+			htmlPtPrerequisites,
+
+			htmlPtEntries,
+		} = this._getCommonHtmlParts({
+			ent,
+			renderer,
+			opts,
+		});
+
+		return `
+			${htmlPtIsExcluded}
+			${htmlPtName}
+			${htmlPtPrerequisites ? `<tr><td colspan="6" class="pb-2 pt-0">${htmlPtPrerequisites}</td></tr>` : ""}
+			<tr><td colspan="6" class="pb-2 ${htmlPtPrerequisites ? "" : "pt-0"}">${htmlPtEntries}</td></tr>
+		`;
+	}
+}
+
 Renderer.feat = class {
 	static _mergeAbilityIncrease_getListItemText (abilityObj) {
 		return Renderer.feat._mergeAbilityIncrease_getText(abilityObj);
@@ -5801,6 +5833,7 @@ Renderer.feat = class {
 	/* -------------------------------------------- */
 
 	static _RENDER_CLASSIC = new _RenderCompactFeatsImplClassic();
+	static _RENDER_ONE = new _RenderCompactFeatsImplOne();
 
 	/**
 	 * @param ent
@@ -5812,6 +5845,7 @@ Renderer.feat = class {
 		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
 		switch (styleHint) {
 			case "classic": return this._RENDER_CLASSIC.getCompactRenderedString(ent, opts);
+			case "one": return this._RENDER_ONE.getCompactRenderedString(ent, opts);
 			default: throw new Error(`Unhandled style "${styleHint}"!`);
 		}
 	}
@@ -5892,8 +5926,76 @@ class _RenderCompactClassesImplClassic extends _RenderCompactClassesImplBase {
 	}
 }
 
+class _RenderCompactClassesImplOne extends _RenderCompactClassesImplBase {
+	_style = "one";
+
+	/* -------------------------------------------- */
+
+	_getHtmlParts (
+		{
+			ent,
+			renderer,
+		},
+	) {
+		return {
+			htmlPtCoreTraits: this._getHtmlParts_coreTraits({ent}),
+		};
+	}
+
+	/* ----- */
+
+	_getHtmlParts_coreTraits ({ent, renderer}) {
+		const pts = [
+			Renderer.class.getHtmlPtPrimaryAbility(ent, {renderer, styleHint: this._style}),
+			Renderer.class.getHtmlPtHitPoints(ent, {renderer, styleHint: this._style}),
+			Renderer.class.getHtmlPtSavingThrows(ent, {renderer, styleHint: this._style}),
+			Renderer.class.getHtmlPtSkills(ent, {renderer, styleHint: this._style}),
+			Renderer.class.getHtmlPtWeaponProficiencies(ent, {renderer, styleHint: this._style}),
+			Renderer.class.getHtmlPtToolProficiencies(ent, {renderer, styleHint: this._style}),
+			Renderer.class.getHtmlPtArmorProficiencies(ent, {renderer, styleHint: this._style}),
+			Renderer.class.getHtmlPtStartingEquipment(ent, {renderer, styleHint: this._style}),
+		]
+			.filter(Boolean)
+			.join(`<div class="py-1 w-100"></div>`);
+
+		return `<tr><td colspan="6" class="pb-2 pt-0">
+			${pts}
+		</td></tr>`;
+	}
+
+	/* -------------------------------------------- */
+
+	_getCompactRenderedString ({ent, renderer, opts}) {
+		const {
+			htmlPtIsExcluded,
+			htmlPtName,
+
+			htmlPtEntries,
+		} = this._getCommonHtmlParts({
+			ent,
+			renderer,
+			opts,
+		});
+		const {
+			htmlPtCoreTraits,
+		} = this._getHtmlParts({
+			ent,
+			renderer,
+		});
+
+		return `
+			${htmlPtIsExcluded}
+			${htmlPtName}
+			${htmlPtCoreTraits}
+			<tr><td colspan="6" class="py-0"><hr class="hr-2"></td></tr>
+			<tr><td colspan="6" class="pb-2 pt-0">${htmlPtEntries}</td></tr>
+		`;
+	}
+}
+
 Renderer.class = class {
 	static _RENDER_CLASSIC = new _RenderCompactClassesImplClassic();
+	static _RENDER_ONE = new _RenderCompactClassesImplOne();
 
 	/**
 	 * @param ent
@@ -5907,20 +6009,54 @@ Renderer.class = class {
 		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
 		switch (styleHint) {
 			case "classic": return this._RENDER_CLASSIC.getCompactRenderedString(ent, opts);
+			case "one": return this._RENDER_ONE.getCompactRenderedString(ent, opts);
 			default: throw new Error(`Unhandled style "${styleHint}"!`);
 		}
 	}
 
 	/* -------------------------------------------- */
 
-	static getHitDiceEntry (clsHd) { return clsHd ? `{@dice ${clsHd.number}d${clsHd.faces}||Hit die}` : null; }
+	/**
+	 * @param clsHd
+	 * @param {"classic" | null} styleHint
+	 */
+	static getHitDiceEntry (clsHd, {styleHint = null} = {}) {
+		if (!clsHd) return null;
 
-	static getHitPointsAtFirstLevel (clsHd) { return clsHd ? `${clsHd.number * clsHd.faces} + your Constitution modifier` : null; }
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
-	static getHitPointsAtHigherLevels (className, clsHd) {
-		return className && clsHd
-			? `${Renderer.get().render(Renderer.class.getHitDiceEntry(clsHd))} (or ${((clsHd.number * clsHd.faces) / 2 + 1)}) + your Constitution modifier per ${className} level after 1st`
-			: null;
+		return styleHint === "classic"
+			? `{@dice ${clsHd.number}d${clsHd.faces}||Hit die}`
+			: `{@dice ${clsHd.number}d${clsHd.faces}|${clsHd.number === 1 ? "" : clsHd.number}D${clsHd.faces}|Hit die}`;
+	}
+
+	/**
+	 * @param clsHd
+	 * @param {"classic" | null} styleHint
+	 */
+	static getHitPointsAtFirstLevel (clsHd, {styleHint = null} = {}) {
+		if (!clsHd) return null;
+
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
+		return styleHint === "classic"
+			? `${clsHd.number * clsHd.faces} + your Constitution modifier`
+			: `${clsHd.number * clsHd.faces} + Con. modifier`;
+	}
+
+	/**
+	 * @param className
+	 * @param clsHd
+	 * @param {"classic" | null} styleHint
+	 */
+	static getHitPointsAtHigherLevels (className, clsHd, {styleHint = null} = {}) {
+		if (!className || !clsHd) return null;
+
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
+		return styleHint === "classic"
+			? `${Renderer.get().render(Renderer.class.getHitDiceEntry(clsHd, {styleHint}))} (or ${((clsHd.number * clsHd.faces) / 2 + 1)}) + your Constitution modifier per ${className} level after 1st`
+			: `${Renderer.get().render(Renderer.class.getHitDiceEntry(clsHd, {styleHint}))} + your Con. modifier, or, ${((clsHd.number * clsHd.faces) / 2 + 1)} + your Con. modifier`;
 	}
 
 	/* -------------------------------------------- */
@@ -5932,14 +6068,35 @@ Renderer.class = class {
 	static getRenderedArmorProfs (armorProfs, {styleHint = null} = {}) {
 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
-		return armorProfs
+		const [profsArmor, profsOther] = armorProfs
+			.segregate(it => ["light", "medium", "heavy"].includes(it));
+
+		const ptsArmor = profsArmor
+			.map((a, i, arr) => Renderer.get().render(`{@filter ${styleHint === "classic" ? a : a.toTitleCase()}${styleHint === "classic" || i === arr.length - 1 ? " armor" : ""}|items|type=${a} armor}`));
+
+		const ptsOther = profsOther
 			.map(a => {
 				if (a.full) return Renderer.get().render(a.full);
-				if (["light", "medium", "heavy"].includes(a)) return Renderer.get().render(`{@filter ${styleHint === "classic" ? a : a.toTitleCase()} armor|items|type=${a} armor}`);
-				if (a === "shield") return Renderer.get().render(`{@item shield|PHB|shields}`);
+				if (a === "shield") {
+					if (styleHint === "classic") Renderer.get().render(`{@item shield|PHB|shields}`);
+					return Renderer.get().render(`{@item shield|XPHB|Shields}`);
+				}
 				return Renderer.get().render(a);
-			})
-			.join(", ");
+			});
+
+		if (styleHint === "classic") {
+			return [
+				...ptsArmor,
+				...ptsOther,
+			]
+				.join(", ");
+		}
+
+		return [
+			ptsArmor.joinConjunct(", ", " and "),
+			...ptsOther,
+		]
+			.joinConjunct(", ", " and ");
 	}
 
 	/**
@@ -5949,16 +6106,34 @@ Renderer.class = class {
 	static getRenderedWeaponProfs (weaponProfs, {styleHint = null} = {}) {
 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
-		return weaponProfs
+		const [profsSimpleMartial, profsOther] = weaponProfs
+			.segregate(it => ["simple", "martial"].includes(it));
+
+		const ptsSimpleMartial = profsSimpleMartial
+			.map((w, i, arr) => Renderer.get().render(`{@filter ${styleHint === "classic" ? w : w.toTitleCase()}${styleHint === "classic" || i === arr.length - 1 ? " weapons" : ""}|items|type=${w} weapon}`));
+
+		const ptsOther = profsOther
 			.map(w => {
-				if (["simple", "martial"].includes(w)) return Renderer.get().render(`{@filter ${styleHint === "classic" ? w : w.toTitleCase()} weapons|items|type=${w} weapon}`);
 				if (w.optional) return `<span class="help help--hover" title="Optional Proficiency">${Renderer.get().render(w.proficiency)}</span>`;
 				return Renderer.get().render(w);
-			})
-			.join(", ");
+			});
+
+		const pts = [
+			...ptsSimpleMartial,
+			...ptsOther,
+		];
+
+		return styleHint === "classic" ? pts.join(", ") : pts.joinConjunct(", ", " and ");
 	}
 
-	static getRenderedToolProfs (toolProfs) { return toolProfs.map(it => Renderer.get().render(it)).join(", "); }
+	/**
+	 * @param toolProfs
+	 * @param {"classic" | null} styleHint
+	 */
+	static getRenderedToolProfs (toolProfs, {styleHint = null} = {}) {
+		const pts = toolProfs.map(it => Renderer.get().render(it));
+		return styleHint === "classic" ? pts.join(", ") : pts.joinConjunct(", ", " and ");
+	}
 
 	/**
 	 * @param skills
@@ -6295,8 +6470,13 @@ class _RenderCompactSubclassesImplClassic extends _RenderCompactSubclassesImplBa
 	_style = "classic";
 }
 
+class _RenderCompactSubclassesImplOne extends _RenderCompactSubclassesImplBase {
+	_style = "one";
+}
+
 Renderer.subclass = class {
 	static _RENDER_CLASSIC = new _RenderCompactSubclassesImplClassic();
+	static _RENDER_ONE = new _RenderCompactSubclassesImplOne();
 
 	/**
 	 * @param ent
@@ -6308,6 +6488,7 @@ Renderer.subclass = class {
 		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
 		switch (styleHint) {
 			case "classic": return this._RENDER_CLASSIC.getCompactRenderedString(ent, opts);
+			case "one": return this._RENDER_ONE.getCompactRenderedString(ent, opts);
 			default: throw new Error(`Unhandled style "${styleHint}"!`);
 		}
 	}
@@ -6452,8 +6633,13 @@ class _RenderCompactSpellsImplClassic extends _RenderCompactSpellsImplBase {
 	_style = "classic";
 }
 
+class _RenderCompactSpellsImplOne extends _RenderCompactSpellsImplBase {
+	_style = "one";
+}
+
 Renderer.spell = class {
 	static _RENDER_CLASSIC = new _RenderCompactSpellsImplClassic();
+	static _RENDER_ONE = new _RenderCompactSpellsImplOne();
 
 	/**
 	 * @param ent
@@ -6464,6 +6650,7 @@ Renderer.spell = class {
 		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
 		switch (styleHint) {
 			case "classic": return this._RENDER_CLASSIC.getCompactRenderedString(ent, opts);
+			case "one": return this._RENDER_ONE.getCompactRenderedString(ent, opts);
 			default: throw new Error(`Unhandled style "${styleHint}"!`);
 		}
 	}
@@ -7145,6 +7332,10 @@ class _RenderCompactOptionalfeaturesImplClassic extends _RenderCompactOptionalfe
 	_style = "classic";
 }
 
+class _RenderCompactOptionalfeaturesImplOne extends _RenderCompactOptionalfeaturesImplBase {
+	_style = "one";
+}
+
 Renderer.optionalfeature = class {
 	static getListPrerequisiteLevelText (prerequisites) {
 		if (!prerequisites || !prerequisites.some(it => it.level)) return "\u2014";
@@ -7207,6 +7398,7 @@ Renderer.optionalfeature = class {
 	/* -------------------------------------------- */
 
 	static _RENDER_CLASSIC = new _RenderCompactOptionalfeaturesImplClassic();
+	static _RENDER_ONE = new _RenderCompactOptionalfeaturesImplOne();
 
 	/**
 	 * @param ent
@@ -7218,6 +7410,7 @@ Renderer.optionalfeature = class {
 		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
 		switch (styleHint) {
 			case "classic": return this._RENDER_CLASSIC.getCompactRenderedString(ent, opts);
+			case "one": return this._RENDER_ONE.getCompactRenderedString(ent, opts);
 			default: throw new Error(`Unhandled style "${styleHint}"!`);
 		}
 	}
@@ -7580,7 +7773,7 @@ Renderer.race = class {
 			// If the base race doesn't have any ability scores, make a set of empty records
 			if ((cpySr.overwrite && cpySr.overwrite.ability) || !cpy.ability) cpy.ability = cpySr.ability.map(() => ({}));
 
-			if (cpy.ability.length !== cpySr.ability.length) throw new Error(`Race and subrace ability array lengths did not match!`);
+			if (cpy.ability.length !== cpySr.ability.length) throw new Error(`"race" and "subrace" ability array lengths did not match!`);
 			cpySr.ability.forEach((obj, i) => Object.assign(cpy.ability[i], obj));
 			delete cpySr.ability;
 		}
@@ -7613,11 +7806,11 @@ Renderer.race = class {
 			if (!cpy.skillProficiencies || (cpySr.overwrite && cpySr.overwrite["skillProficiencies"])) cpy.skillProficiencies = cpySr.skillProficiencies;
 			else {
 				if (!cpySr.skillProficiencies.length || !cpy.skillProficiencies.length) throw new Error(`No items!`);
-				if (cpySr.skillProficiencies.length > 1 || cpy.skillProficiencies.length > 1) throw new Error(`Subrace merging does not handle choices!`); // Implement if required
+				if (cpySr.skillProficiencies.length > 1 || cpy.skillProficiencies.length > 1) throw new Error(`Merging "subrace" does not handle choices!`); // Implement if required
 
 				// Otherwise, merge
 				if (cpySr.skillProficiencies.choose) {
-					if (cpy.skillProficiencies.choose) throw new Error(`Subrace choose merging is not supported!!`); // Implement if required
+					if (cpy.skillProficiencies.choose) throw new Error(`Merging "subrace" choose is not supported!!`); // Implement if required
 					cpy.skillProficiencies.choose = cpySr.skillProficiencies.choose;
 					delete cpySr.skillProficiencies.choose;
 				}
@@ -7644,7 +7837,7 @@ Renderer.race = class {
 		const nxtData = [];
 
 		subraces.forEach(sr => {
-			if (!sr.raceName || !sr.raceSource) throw new Error(`Subrace was missing parent "raceName" and/or "raceSource"!`);
+			if (!sr.raceName || !sr.raceSource) throw new Error(`Adopted "subrace" was missing parent "raceName" and/or "raceSource"!`);
 
 			const _baseRace = allRaces.find(r => r.name === sr.raceName && r.source === sr.raceSource);
 			if (!_baseRace) throw new Error(`Could not find parent race for subrace "${sr.name}" (${sr.source})!`);
@@ -8690,6 +8883,163 @@ class _RenderCompactBestiaryImplClassic extends _RenderCompactBestiaryImplBase {
 	}
 }
 
+class _RenderCompactBestiaryImplOne extends _RenderCompactBestiaryImplBase {
+	_style = "one";
+
+	/* -------------------------------------------- */
+
+	_getHtmlParts (
+		{
+			mon,
+			renderer,
+
+			entsTrait,
+		},
+	) {
+		return {
+			htmlPtSavingThrows: this._getHtmlParts_savingThrows({mon, renderer}),
+
+			htmlPtImmunities: this._getHtmlParts_immunities({mon}),
+
+			htmlPtTraits: this._getHtmlParts_traits({mon, renderer, entsTrait}),
+		};
+	}
+
+	/* ----- */
+
+	_getHtmlParts_savingThrows ({mon, renderer}) {
+		if (!mon.save?.special) return "";
+		return `<p><b>Saving Throws</b> ${Renderer.monster.getSave(renderer, "special", mon.save.special)}</p>`;
+	}
+
+	_getHtmlParts_immunities ({mon}) {
+		const pt = Renderer.monster.getImmunitiesCombinedPart(mon);
+		if (!pt) return "";
+		return `<p><b title="Immunities">Imm.</b> ${pt}</p>`;
+	}
+
+	/* ----- */
+
+	_getHtmlParts_traits ({mon, renderer, entsTrait}) {
+		return Renderer.monster.getCompactRenderedStringSection({...mon, trait: entsTrait}, renderer, "Traits", "trait", 2);
+	}
+
+	/* -------------------------------------------- */
+
+	_getCompactRenderedString ({mon, renderer, opts}) {
+		const {
+			isInlinedToken,
+
+			isShowCrScaler,
+			isShowSpellLevelScaler,
+			isShowClassLevelScaler,
+		} = this._getFlags({mon, opts});
+
+		const {
+			entsTrait,
+			entsAction,
+			entsBonusAction,
+			entsReaction,
+			legGroup,
+		} = Renderer.monster.getSubEntries(mon, {renderer});
+
+		const {
+			htmlPtIsExcluded,
+			htmlPtName,
+			htmlPtSizeTypeAlignment,
+
+			htmlPtAttributeHeaders,
+			htmlPtAttributeValues,
+
+			htmlPtAbilityScores,
+
+			htmlPtsResources,
+			htmlPtSkills,
+			htmlPtVulnerabilities,
+			htmlPtResistances,
+			htmlPtSenses,
+			htmlPtLanguages,
+
+			htmlPtActions,
+			htmlPtBonusActions,
+			htmlPtReactions,
+			htmlPtLegendaryActions,
+			htmlPtMythicActions,
+
+			htmlPtLairActions,
+			htmlPtRegionalEffects,
+
+			htmlPtVariants,
+		} = this._getCommonHtmlParts({
+			mon,
+			renderer,
+			opts,
+
+			isInlinedToken,
+
+			isShowCrScaler,
+			isShowSpellLevelScaler,
+			isShowClassLevelScaler,
+
+			entsTrait,
+			entsAction,
+			entsBonusAction,
+			entsReaction,
+			legGroup,
+		});
+
+		const {
+			htmlPtSavingThrows,
+
+			htmlPtImmunities,
+
+			htmlPtTraits,
+		} = this._getHtmlParts({
+			mon,
+			renderer,
+
+			isInlinedToken,
+
+			entsTrait,
+		});
+
+		return `
+			${htmlPtIsExcluded}
+			${htmlPtName}
+			<tr><td colspan="6" class="pt-0 pb-1"><div class="ve-tbl-border ve-tbl-border--small"></div></td></tr>
+			${htmlPtSizeTypeAlignment}
+			<tr><td colspan="6">
+				<table class="w-100 summary-noback relative table-layout-fixed my-1">
+					${htmlPtAttributeHeaders}
+					${htmlPtAttributeValues}
+				</table>
+			</td></tr>
+			${htmlPtAbilityScores}
+			<tr><td colspan="6">
+				<div class="rd__compact-stat mt-2">
+					${htmlPtsResources.join("")}
+					${htmlPtSavingThrows}
+					${htmlPtSkills}
+					${htmlPtVulnerabilities}
+					${htmlPtResistances}
+					${htmlPtImmunities}
+					${htmlPtSenses}
+					${htmlPtLanguages}
+				</div>
+			</td></tr>
+			${htmlPtTraits}
+			${htmlPtActions}
+			${htmlPtBonusActions}
+			${htmlPtReactions}
+			${htmlPtLegendaryActions}
+			${htmlPtMythicActions}
+			${htmlPtLairActions}
+			${htmlPtRegionalEffects}
+			${htmlPtVariants}
+		`;
+	}
+}
+
 Renderer.monster = class {
 	static CHILD_PROPS = ["action", "bonus", "reaction", "trait", "legendary", "mythic", "variant", "spellcasting"];
 
@@ -9073,6 +9423,31 @@ Renderer.monster = class {
 		return `${mon.level ? `${Parser.getOrdinalForm(mon.level)}-level ` : ""}${typeObj.asTextSidekick ? `${typeObj.asTextSidekick}; ` : ""}${Renderer.utils.getRenderedSize(mon.size)}${mon.sizeNote ? ` ${mon.sizeNote}` : ""} ${typeObj.asText}${mon.alignment ? `, ${mon.alignmentPrefix ? Renderer.get().render(mon.alignmentPrefix) : ""}${Parser.alignmentListToFull(mon.alignment).toTitleCase()}` : ""}`;
 	}
 
+	static getInitiativePart (mon) {
+		const initBonus = this._getInitiativeBonus({mon});
+		const initPassive = this._getInitiativePassive({mon, initBonus});
+		if (initBonus == null || initPassive == null) return "\u2014";
+		return `${Renderer.get().render(`{@initiative ${initBonus}}`)} (${initPassive})`;
+	}
+
+	static _getInitiativeBonus ({mon}) {
+		if (mon.initiative == null && mon.dex == null) return null;
+		if (mon.initiative == null) return Parser.getAbilityModNumber(mon.dex);
+		if (typeof mon.initiative === "number") return mon.initiative;
+		if (typeof mon.initiative !== "object") return null;
+		if (typeof mon.initiative.initiative === "number") return mon.initiative.initiative;
+		if (mon.dex == null) return;
+		const profBonus = mon.initiative.proficient && Parser.crToNumber(mon.cr) < VeCt.CR_CUSTOM ? Parser.crToPb(mon.cr) : 0;
+		return Parser.getAbilityModNumber(mon.dex) + profBonus;
+	}
+
+	static _getInitiativePassive ({mon, initBonus}) {
+		if (initBonus == null) return null;
+		if (mon.initiative == null || typeof mon.initiative !== "object") return 10 + initBonus;
+		const advDisMod = mon.initiative.advantageMode === "adv" ? 5 : mon.initiative.advantageMode === "dis" ? -5 : 0;
+		return 10 + initBonus + advDisMod;
+	}
+
 	static getSavesPart (mon) { return `${Object.keys(mon.save || {}).sort(SortUtil.ascSortAtts).map(s => Renderer.monster.getSave(Renderer.get(), s, mon.save[s])).join(", ")}`; }
 
 	static getSensesPart (mon, {isTitleCase = false} = {}) { return `${mon.senses ? `${Renderer.utils.getRenderedSenses(mon.senses, {isTitleCase})}, ` : ""}${isTitleCase ? "Passive" : "passive"} Perception ${mon.passive || "\u2014"}`; }
@@ -9086,7 +9461,7 @@ Renderer.monster = class {
 
 	/**
 	 * @param {object} mon
-	 * @param {"classic" | null} styleHint
+	 * @param {"classic" | "one" | null} styleHint
 	 * @param {boolean} isPlainText
 	 * @return {string}
 	 */
@@ -9097,6 +9472,7 @@ Renderer.monster = class {
 
 		switch (styleHint) {
 			case "classic": return this._getChallengeRatingPart_classic({mon, isPlainText});
+			case "one": return this._getChallengeRatingPart_one({mon, isPlainText});
 			default: throw new Error(`Unhandled style "${styleHint}"!`);
 		}
 	}
@@ -9115,6 +9491,48 @@ Renderer.monster = class {
 		if (mon.cr.lair) stack.push(`${getBasicCrRender(mon.cr.lair)} when encountered in lair`);
 		if (mon.cr.coven) stack.push(`${getBasicCrRender(mon.cr.coven)} when part of a coven`);
 		return stack.joinConjunct(", ", " or ");
+	}
+
+	static _getChallengeRatingPart_one ({mon, isPlainText = false} = {}) {
+		if (Parser.crToNumber(mon.cr) >= VeCt.CR_CUSTOM) return mon.cr;
+
+		const crBase = mon.cr.cr ?? mon.cr;
+
+		// TODO(ODND) speculative text; revise
+		const ptsXp = [
+			Parser.crToXp(crBase),
+			mon.mythic ? `${Parser.crToXp(crBase, {isDouble: true})} as a mythic encounter` : null,
+		]
+			.filter(Boolean);
+
+		if (typeof mon.cr !== "string") {
+			if (mon.cr.lair) ptsXp.push(`${Parser.crToXp(mon.cr.lair)} in lair`);
+			if (mon.cr.coven) ptsXp.push(`${Parser.crToXp(mon.cr.coven)} when part of a coven`);
+		}
+
+		const ptPbVal = Renderer.monster.getPbPart(mon, {isPlainText});
+
+		const ptParens = [
+			ptsXp.length ? `XP ${ptsXp.joinConjunct(", ", " or ")}` : "",
+			ptPbVal ? `${isPlainText ? "PB" : `<span title="Proficiency Bonus">PB</span>`} ${ptPbVal}` : "",
+		]
+			.filter(Boolean)
+			.join("; ");
+
+		return `${crBase}${ptParens ? ` (${ptParens})` : ""}`;
+	}
+
+	/* -------------------------------------------- */
+
+	static getImmunitiesCombinedPart (mon) {
+		if (!mon.immune && !mon.conditionImmune) return "";
+
+		const ptImmune = mon.immune ? Parser.getFullImmRes(mon.immune, {isTitleCase: true}) : "";
+		const ptConditionImmune = mon.conditionImmune ? Parser.getFullCondImm(mon.conditionImmune, {isTitleCase: true}) : "";
+
+		const hasSemi = ptImmune && ptConditionImmune && (ptImmune.includes(";") || ptConditionImmune.includes(";"));
+
+		return [ptImmune, ptConditionImmune].join(hasSemi ? `<span class="italic">;</span> ` : "; ");
 	}
 
 	/* -------------------------------------------- */
@@ -9144,6 +9562,7 @@ Renderer.monster = class {
 	}
 
 	static _RENDER_CLASSIC = new _RenderCompactBestiaryImplClassic();
+	static _RENDER_ONE = new _RenderCompactBestiaryImplOne();
 
 	/**
 	 * @param ent
@@ -9159,6 +9578,7 @@ Renderer.monster = class {
 		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
 		switch (styleHint) {
 			case "classic": return this._RENDER_CLASSIC.getCompactRenderedString(ent, opts);
+			case "one": return this._RENDER_ONE.getCompactRenderedString(ent, opts);
 			default: throw new Error(`Unhandled style "${styleHint}"!`);
 		}
 	}
@@ -9271,9 +9691,53 @@ Renderer.monster = class {
 		<tr>${abvsRemaining.map(ab => `<td class="ve-text-center">${Renderer.utils.getAbilityRoller(mon, ab)}</td>`).join("")}</tr>`;
 	}
 
+	static _getRenderedAbilityScores_one ({mon, renderer}) {
+		renderer ||= Renderer.get();
+
+		const {abvsRemaining, ptsSpecial} = this._getRenderedAbilityScores_getSpecialMeta({mon});
+		const ptSpecial = ptsSpecial.map(pt => `<tr><td colspan="6">${pt}</td></tr>`).join("");
+
+		const ptHeaders = Array.from(
+			{length: 12},
+			(_, i) => `<div class="ve-muted ve-text-center small-caps">${i % 4 === 2 ? "mod" : i % 4 === 3 ? "save" : ""}</div>`,
+		)
+			.join("");
+
+		Object.keys(mon.save || {})
+			.map(s => Renderer.monster.getSave(Renderer.get(), s, mon.save[s]));
+
+		let cntSpecialSaves = 0;
+		const ptsCells = Parser.ABIL_ABVS
+			.flatMap((abv, i) => {
+				const styleName = i < 3 ? "physical" : "mental";
+
+				const numScore = abvsRemaining.includes(abv) ? mon[abv] : null;
+				const ptScore = numScore != null ? `${mon[abv]}` : `\u2013`;
+				const ptBonus = numScore != null ? Renderer.utils.getAbilityRoller(mon, abv, {isDisplayAsBonus: true}) : `\u2013`;
+				const ptSave = renderer.render(`{@savingThrow ${abv} ${mon.save?.[abv] == null ? ptScore : mon.save[abv]}}`);
+
+				return [
+					`<div class="bold small-caps ve-text-right stats__disp-as-score stats__disp-as-score--label stats__disp-as-score--${styleName}">${abv.toTitleCase()}</div>`,
+					`<div class="ve-text-center stats__disp-as-score stats__disp-as-score--${styleName}">${ptScore}</div>`,
+					`<div class="ve-text-center stats__disp-as-bonus stats__disp-as-bonus--${styleName}">${ptBonus}</div>`,
+					`<div class="ve-text-center stats__disp-as-bonus stats__disp-as-bonus--${styleName} ${i % 3 !== 2 ? "mr-2" : ""}">${ptSave}</div>`,
+				];
+			})
+			.join("");
+
+		return `
+		<tr><td colspan="6" class="pt-0 pb-3">
+			<div class="stats__grid-ability-scores">
+				${ptHeaders}
+				${ptsCells}
+			</div>
+		</td></tr>
+		${ptSpecial}`;
+	}
+
 	/**
 	 * @param {object}} mon
-	 * @param {"classic" | null} styleHint
+	 * @param {"classic" | "one" | null} styleHint
 	 * @param {?Renderer} renderer
 	 */
 	static getRenderedAbilityScores (mon, {styleHint = null, renderer = null} = {}) {
@@ -9281,6 +9745,7 @@ Renderer.monster = class {
 
 		switch (styleHint) {
 			case "classic": return Renderer.monster._getRenderedAbilityScores_classic({mon, renderer});
+			case "one": return Renderer.monster._getRenderedAbilityScores_one({mon, renderer});
 			default: throw new Error(`Unhandled style "${styleHint}"!`);
 		}
 	}
@@ -10294,6 +10759,9 @@ Renderer.item = class {
 			if (curBaseItem.packContents) return; // e.g. "Arrows (20)"
 
 			genericVariants.forEach((curGenericVariant) => {
+				// Never make variants for "classic" baseitems, to avoid clashes with improved items
+				if (curBaseItem.edition === "classic") return;
+
 				if (!Renderer.item._createSpecificVariants_hasRequiredProperty(curBaseItem, curGenericVariant)) return;
 				if (Renderer.item._createSpecificVariants_hasExcludedProperty(curBaseItem, curGenericVariant)) return;
 
@@ -10461,7 +10929,12 @@ Renderer.item = class {
 			(specificVariant.lootTables = specificVariant.lootTables || []).push(...opts.linkedLootTables[specificVariant.source][specificVariant.name]);
 		}
 
-		if (baseItem.source !== Parser.SRC_PHB && baseItem.source !== Parser.SRC_DMG) {
+		if (
+			baseItem.source !== Parser.SRC_PHB
+			&& baseItem.source !== Parser.SRC_XPHB
+			&& baseItem.source !== Parser.SRC_DMG
+			&& baseItem.source !== Parser.SRC_XDMG
+		) {
 			Renderer.item._initFullEntries(specificVariant);
 			specificVariant._fullEntries.unshift({
 				type: "wrapper",
@@ -10675,7 +11148,10 @@ Renderer.item = class {
 		if (itemTypeAbv === Parser.ITM_TYP_ABV__LIGHT_ARMOR || itemTypeAbv === Parser.ITM_TYP_ABV__MEDIUM_ARMOR || itemTypeAbv === Parser.ITM_TYP_ABV__HEAVY_ARMOR) {
 			if (item.stealth) {
 				Renderer.item._initFullEntries(item);
-				item._fullEntries.push({type: "wrapper", wrapped: "The wearer has disadvantage on Dexterity ({@skill Stealth}) checks.", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type"}});
+				const wrapped = styleHint === "classic"
+					? "The wearer has disadvantage on Dexterity ({@skill Stealth}) checks."
+					: "The wearer has {@variantrule Disadvantage|XPHB} on Dexterity ({@skill Stealth|XPHB}) checks.";
+				item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type"}});
 			}
 			if (itemTypeAbv === Parser.ITM_TYP_ABV__HEAVY_ARMOR && item.strength) {
 				Renderer.item._initFullEntries(item);
@@ -10686,30 +11162,46 @@ Renderer.item = class {
 			if (item._isItemGroup) {
 				if (item.scfType === "arcane" && item.source !== Parser.SRC_ERLW) {
 					Renderer.item._initFullEntries(item);
-					item._fullEntries.push({type: "wrapper", wrapped: "An arcane focus is a special item\u2014an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item\u2014designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus.", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
+					const wrapped = styleHint === "classic"
+						? "An arcane focus is a special item\u2014an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item\u2014designed to channel the power of arcane spells. A {@class sorcerer}, {@class warlock}, or {@class wizard} can use such an item as a spellcasting focus."
+						: "An Arcane Focus takes a specific form and is bejeweled or carved to channel arcane magic. A {@class Sorcerer|XPHB}, {@class Warlock|XPHB}, or {@class Wizard|XPHB} can use such an item as a {@variantrule Spellcasting Focus|XPHB}.";
+					item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
 				}
 				if (item.scfType === "druid") {
 					Renderer.item._initFullEntries(item);
-					item._fullEntries.push({type: "wrapper", wrapped: "A druidic focus might be a sprig of mistletoe or holly, a wand or scepter made of yew or another special wood, a staff drawn whole out of a living tree, or a totem object incorporating feathers, fur, bones, and teeth from sacred animals. A druid can use such an object as a spellcasting focus.", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
+					const wrapped = styleHint === "classic"
+						? "A druidic focus might be a sprig of mistletoe or holly, a wand or scepter made of yew or another special wood, a staff drawn whole out of a living tree, or a totem object incorporating feathers, fur, bones, and teeth from sacred animals. A {@class druid} can use such an object as a spellcasting focus."
+						: "A Druidic Focus takes a specific form and is carved, tied with ribbon, or painted to channel primal magic. A {@class Druid|XPHB} or {@class Ranger|XPHB} can use such an object as a {@variantrule Spellcasting Focus|XPHB}.";
+					item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
 				}
 				if (item.scfType === "holy") {
 					Renderer.item._initFullEntries(item);
-					item._fullEntries.push({type: "wrapper", wrapped: "A holy symbol is a representation of a god or pantheon. It might be an amulet depicting a symbol representing a deity, the same symbol carefully engraved or inlaid as an emblem on a shield, or a tiny box holding a fragment of a sacred relic. A cleric or paladin can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield.", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
+					const wrapped = styleHint === "classic"
+						? "A holy symbol is a representation of a god or pantheon. It might be an amulet depicting a symbol representing a deity, the same symbol carefully engraved or inlaid as an emblem on a shield, or a tiny box holding a fragment of a sacred relic. A cleric or paladin can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield."
+						: "A Holy Symbol takes a specific form and is bejeweled or painted to channel divine magic. A {@class Cleric|XPHB} or {@class Paladin|XPHB} can use a Holy Symbol as a {@variantrule Spellcasting Focus|XPHB}.";
+					item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
 				}
 			} else {
 				if (item.scfType === "arcane") {
 					Renderer.item._initFullEntries(item);
-					item._fullEntries.push({type: "wrapper", wrapped: "An arcane focus is a special item designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus.", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
+					const wrapped = styleHint === "classic"
+						? "An arcane focus is a special item designed to channel the power of arcane spells. A {@class sorcerer}, {@class warlock}, or {@class wizard} can use such an item as a spellcasting focus."
+						: "An Arcane Focus takes a specific form and is bejeweled or carved to channel arcane magic. A {@class Sorcerer|XPHB}, {@class Warlock|XPHB}, or {@class Wizard|XPHB} can use such an item as a {@variantrule Spellcasting Focus|XPHB}.";
+					item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
 				}
 				if (item.scfType === "druid") {
 					Renderer.item._initFullEntries(item);
-					item._fullEntries.push({type: "wrapper", wrapped: "A druid can use this object as a spellcasting focus.", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
+					const wrapped = styleHint === "classic"
+						? "A {@class druid} can use this object as a spellcasting focus."
+						: "A Druidic Focus takes a specific form and is carved, tied with ribbon, or painted to channel primal magic. A {@class Druid|XPHB} or {@class Ranger|XPHB} can use such an object as a {@variantrule Spellcasting Focus|XPHB}.";
+					item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
 				}
 				if (item.scfType === "holy") {
 					Renderer.item._initFullEntries(item);
-
-					item._fullEntries.push({type: "wrapper", wrapped: "A holy symbol is a representation of a god or pantheon.", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
-					item._fullEntries.push({type: "wrapper", wrapped: "A cleric or paladin can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield.", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
+					const wrapped = styleHint === "classic"
+						? "A holy symbol is a representation of a god or pantheon. A {@class cleric} or {@class paladin} can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield."
+						: "A Holy Symbol takes a specific form and is bejeweled or painted to channel divine magic. A {@class Cleric|XPHB} or {@class Paladin|XPHB} can use a Holy Symbol as a {@variantrule Spellcasting Focus|XPHB}.";
+					item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
 				}
 			}
 		}
@@ -12856,6 +13348,7 @@ Renderer.hover = class {
 			hash,
 			preloadId = null,
 			isFauxPage = false,
+			isAllowRedirect = false,
 		},
 	) {
 		return [
@@ -12869,6 +13362,7 @@ Renderer.hover = class {
 			`data-vet-hash="${hash.qq()}"`,
 			preloadId != null ? `data-vet-preload-id="${`${preloadId}`.qq()}"` : "",
 			isFauxPage ? `data-vet-is-faux-page="true"` : "",
+			isAllowRedirect ? `data-vet-is-allow-redirect="true"` : "",
 			Renderer.hover.getPreventTouchString(),
 		]
 			.filter(Boolean)
@@ -12882,6 +13376,7 @@ Renderer.hover = class {
 			hash: ele.getAttribute("data-vet-hash"),
 			preloadId: ele.getAttribute("data-vet-preload-id"),
 			isFauxPage: ele.getAttribute("data-vet-is-faux-page") === "true",
+			isAllowRedirect: ele.getAttribute("data-vet-is-allow-redirect") === "true",
 		};
 	}
 
@@ -12889,7 +13384,7 @@ Renderer.hover = class {
 	static async pHandleLinkMouseOver (evt, ele, opts) {
 		Renderer.hover._doInit();
 
-		let page, source, hash, preloadId, customHashId, isFauxPage;
+		let page, source, hash, preloadId, customHashId, isFauxPage, isAllowRedirect;
 		if (opts) {
 			page = opts.page;
 			source = opts.source;
@@ -12897,6 +13392,7 @@ Renderer.hover = class {
 			preloadId = opts.preloadId;
 			customHashId = opts.customHashId;
 			isFauxPage = !!opts.isFauxPage;
+			isAllowRedirect = !!opts.isAllowRedirect;
 		} else {
 			({
 				page,
@@ -12904,8 +13400,12 @@ Renderer.hover = class {
 				hash,
 				preloadId,
 				isFauxPage,
+				isAllowRedirect,
 			} = Renderer.hover.getLinkElementData(ele));
 		}
+
+		const redirectMeta = await this._pHandleLinkMouseOver_pGetVersionRedirectMeta({page, source, hash, preloadId, customHashId, isAllowRedirect});
+		if (redirectMeta != null) ({page, source, hash} = redirectMeta);
 
 		let meta = Renderer.hover._handleGenericMouseOverStart({evt, ele});
 		if (meta == null) return;
@@ -12992,6 +13492,24 @@ Renderer.hover = class {
 			const fnBind = Renderer.hover.getFnBindListenersCompact(page);
 			if (fnBind) fnBind(toRender, $content);
 		}
+	}
+
+	static _VERSION_REDIRECT_LOOKUP = null;
+	static async _pHandleLinkMouseOver_pGetVersionRedirectMeta ({page, source, hash, preloadId, customHashId, isAllowRedirect}) {
+		if (!isAllowRedirect || preloadId || customHashId) return null;
+		if (VetoolsConfig.get("styleSwitcher", "style") === "classic") return null;
+
+		const redirectLookup = await (
+			this._VERSION_REDIRECT_LOOKUP ||= DataUtil.loadJSON(`${Renderer.get().baseUrl}data/generated/gendata-tag-redirects.json`)
+		);
+
+		const fromLookup = MiscUtil.get(redirectLookup, page, hash);
+		if (!fromLookup) return null;
+
+		const hashNxt = fromLookup.hash || fromLookup;
+		const pageNxt = fromLookup.page || page;
+		const decodedNxt = await UrlUtil.pAutoDecodeHash(hashNxt, {page: pageNxt});
+		return {page: pageNxt, hash: hashNxt, source: decodedNxt.source || source};
 	}
 
 	// (Baked into render strings)

@@ -1,4 +1,4 @@
-import {SITE_STYLE__CLASSIC} from "./consts.js";
+import {SITE_STYLE__CLASSIC, SITE_STYLE__ONE} from "./consts.js";
 import {VetoolsConfig} from "./utils-config/utils-config-config.js";
 import {RenderPageImplBase} from "./render-page-base.js";
 
@@ -74,13 +74,52 @@ class _RenderBackgroundsImplClassic extends _RenderBackgroundsImplBase {
 	}
 }
 
+class _RenderBackgroundsImplOne extends _RenderBackgroundsImplBase {
+	_style = SITE_STYLE__ONE;
+
+	_getRendered ({ent, opts, renderer}) {
+		const {
+			htmlPtIsExcluded,
+			htmlPtName,
+
+			htmlPtPrerequisites,
+
+			htmlPtEntries,
+
+			htmlPtPage,
+		} = this._getCommonHtmlParts({
+			ent,
+			renderer,
+			opts,
+		});
+
+		return `
+			${Renderer.utils.getBorderTr()}
+
+			${htmlPtIsExcluded}
+			${htmlPtName}
+			
+			${htmlPtPrerequisites}
+		
+			<tr><td colspan="6" class="pt-0">
+				${htmlPtEntries}
+			</td></tr>
+			
+			${htmlPtPage}
+			${Renderer.utils.getBorderTr()}
+		`;
+	}
+}
+
 export class RenderBackgrounds {
 	static _RENDER_CLASSIC = new _RenderBackgroundsImplClassic();
+	static _RENDER_ONE = new _RenderBackgroundsImplOne();
 
 	static $getRenderedBackground (ent) {
 		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
 		switch (styleHint) {
 			case SITE_STYLE__CLASSIC: return this._RENDER_CLASSIC.$getRendered(ent);
+			case SITE_STYLE__ONE: return this._RENDER_ONE.$getRendered(ent);
 			default: throw new Error(`Unhandled style "${styleHint}"!`);
 		}
 	}

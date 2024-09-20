@@ -968,6 +968,60 @@
 			]
 		},
 		{
+			"name": "Burning",
+			"source": "XPHB",
+			"page": 362,
+			"entries": [
+				"A burning creature or object takes {@damage 1d4} Fire damage at the start of each of its turns. As an action, you can extinguish fire on yourself by giving yourself the {@condition Prone|XPHB} condition and rolling on the ground. The fire also goes out if it is doused, submerged, or suffocated."
+			]
+		},
+		{
+			"name": "Dehydration",
+			"source": "XPHB",
+			"page": 365,
+			"entries": [
+				"A creature requires an amount of water per day based on its size, as shown in the Water Needs per Day table. A creature that drinks less than half the required water for a day gains 1 {@condition Exhaustion|XPHB} level at the day's end. {@condition Exhaustion|XPHB} caused by dehydration can't be removed until the creature drinks the full amount of water required for a day.",
+				{
+					"type": "table",
+					"caption": "Water Needs per Day",
+					"colLabels": [
+						"Size",
+						"Water"
+					],
+					"colStyles": [
+						"col-6",
+						"col-6"
+					],
+					"rows": [
+						[
+							"Tiny",
+							"1 gallon"
+						],
+						[
+							"Small",
+							"1 gallon"
+						],
+						[
+							"Medium",
+							"1/4 gallon"
+						],
+						[
+							"Large",
+							"4 gallons"
+						],
+						[
+							"Huge",
+							"16 gallons"
+						],
+						[
+							"Gargantuan",
+							"64 gallons"
+						]
+					]
+				}
+			]
+		},
+		{
 			"name": "Demon Ichor",
 			"source": "BGDIA",
 			"page": 78,
@@ -1106,6 +1160,15 @@
 			"entries": [
 				"When the temperature is at or above 100 degrees Fahrenheit, a creature exposed to the heat and without access to drinkable water must succeed on a Constitution saving throw at the end of each hour or gain one level of {@condition exhaustion}. The DC is 5 for the first hour and increases by 1 for each additional hour.",
 				"Creatures wearing medium or heavy armor, or who are clad in heavy clothing, have disadvantage on the saving throw. Creatures with resistance or immunity to fire damage automatically succeed on the saving throw, as do creatures naturally adapted to hot climates."
+			]
+		},
+		{
+			"name": "Falling",
+			"source": "XPHB",
+			"page": 367,
+			"entries": [
+				"A creature that falls takes {@damage 1d6} Bludgeoning damage at the end of the fall for every 10 feet it fell, to a maximum of {@dice 20d6}. When the creature lands, it has the {@condition Prone|XPHB} condition unless it avoids taking any damage from the fall.",
+				"A creature that falls into water or another liquid can use its {@variantrule Reaction|XPHB} to make a {@dc 15} Strength ({@skill Athletics|XPHB}) or Dexterity ({@skill Acrobatics|XPHB}) check to hit the surface head or feet first. On a successful check, any damage resulting from the fall is halved."
 			]
 		},
 		{
@@ -1279,6 +1342,53 @@
 			]
 		},
 		{
+			"name": "Malnutrition",
+			"source": "XPHB",
+			"page": 371,
+			"entries": [
+				"A creature needs an amount of food per day based on its size, as shown in the Food Needs per Day table. A creature that eats but consumes less than half the required food for a day must succeed on a {@dc 10} Constitution {@variantrule Saving Throw|XPHB|saving throw} or gain 1 {@condition Exhaustion|XPHB} level at the day's end. A creature that eats nothing for 5 days automatically gains 1 {@condition Exhaustion|XPHB} level at the end of the fifth day as well as an additional level at the end of each subsequent day without food.",
+				"{@condition Exhaustion|XPHB} caused by malnutrition can't be removed until the creature eats the full amount of food required for a day.",
+				{
+					"type": "table",
+					"caption": "Food Needs per Day",
+					"colLabels": [
+						"Size",
+						"Food"
+					],
+					"colStyles": [
+						"col-6",
+						"col-6"
+					],
+					"rows": [
+						[
+							"Tiny",
+							"1/4 pound"
+						],
+						[
+							"Small",
+							"1 pound"
+						],
+						[
+							"Medium",
+							"1 pound"
+						],
+						[
+							"Large",
+							"4 pound"
+						],
+						[
+							"Huge",
+							"16 pound"
+						],
+						[
+							"Gargantuan",
+							"64 pound"
+						]
+					]
+				}
+			]
+		},
+		{
 			"name": "Necrotic Tempest",
 			"source": "TCE",
 			"page": 163,
@@ -1379,6 +1489,14 @@
 			"entries": [
 				"A strong wind imposes disadvantage on ranged weapon attack rolls and Wisdom ({@skill Perception}) checks that rely on hearing. A strong wind also extinguishes open flames, disperses fog, and makes flying by nonmagical means nearly impossible. A flying creature in a strong wind must land at the end of its turn or fall.",
 				"A strong wind in a desert can create a sandstorm that imposes disadvantage on Wisdom ({@skill Perception}) checks that rely on sight."
+			]
+		},
+		{
+			"name": "Suffocation",
+			"source": "XPHB",
+			"page": 376,
+			"entries": [
+				"A creature can hold its breath for a number of minutes equal to 1 plus its Constitution modifier (minimum of 30 seconds) before suffocation begins. When a creature runs out of breath or is choking, it gains 1 {@condition Exhaustion|XPHB} level at the end of each of its turns. When a creature can breathe again, it removes all levels of {@condition Exhaustion|XPHB} it gained from suffocating."
 			]
 		},
 		{

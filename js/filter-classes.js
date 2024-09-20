@@ -179,6 +179,7 @@ class PageFilterClassesBase extends PageFilterBase {
 			this.isAnySubclassDisplayed(values, cls)
 				? cls._fSourceSubclass
 				: (cls._fSources ?? cls.source),
+			cls._fPrimaryAbility,
 			cls._fMisc,
 			null,
 		];
@@ -200,14 +201,35 @@ class PageFilterClasses extends PageFilterClassesBase {
 			min: 1,
 			max: 20,
 		});
+		this._primaryAbilityFilter = new Filter({
+			header: "Primary Ability",
+			items: [
+				"str",
+				"dex",
+				"con",
+				"int",
+				"wis",
+				"cha",
+			],
+			displayFn: Parser.attAbvToFull,
+			itemSortFn: null,
+		});
 	}
 
 	get levelFilter () { return this._levelFilter; }
+
+	static _mutateForFilters_getFilterPrimaryAbility (cls) {
+		if (!cls.primaryAbility?.length) return null;
+		const out = {};
+		cls.primaryAbility.forEach(obj => Object.assign(out, obj));
+		return Object.keys(out);
+	}
 
 	static mutateForFilters (cls) {
 		super.mutateForFilters(cls);
 
 		cls._fLevelRange = this._getClassSubclassLevelArray(cls);
+		cls._fPrimaryAbility = this._mutateForFilters_getFilterPrimaryAbility(cls);
 	}
 
 	/**
@@ -229,6 +251,7 @@ class PageFilterClasses extends PageFilterClassesBase {
 
 		opts.filters = [
 			this._sourceFilter,
+			this._primaryAbilityFilter,
 			this._miscFilter,
 			this._levelFilter,
 			this._optionsFilter,
@@ -244,6 +267,7 @@ class PageFilterClasses extends PageFilterClassesBase {
 			this.isAnySubclassDisplayed(values, cls)
 				? cls._fSourceSubclass
 				: (cls._fSources ?? cls.source),
+			cls._fPrimaryAbility,
 			cls._fMisc,
 			cls._fLevelRange,
 		];

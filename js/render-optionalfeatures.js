@@ -1,4 +1,4 @@
-import {SITE_STYLE__CLASSIC} from "./consts.js";
+import {SITE_STYLE__CLASSIC, SITE_STYLE__ONE} from "./consts.js";
 import {VetoolsConfig} from "./utils-config/utils-config-config.js";
 import {RenderPageImplBase} from "./render-page-base.js";
 
@@ -101,13 +101,59 @@ class _RenderOptionalfeaturesImplClassic extends _RenderOptionalfeaturesImplBase
 	}
 }
 
+class _RenderOptionalfeaturesImplOne extends _RenderOptionalfeaturesImplBase {
+	_style = SITE_STYLE__ONE;
+
+	_getRendered ({ent, renderer, opts}) {
+		const {
+			htmlPtIsExcluded,
+			htmlPtName,
+
+			htmlPtPrerequisites,
+
+			htmlPtCost,
+
+			htmlPtEntries,
+
+			htmlPtPreviouslyPrinted,
+
+			htmlPtPage,
+		} = this._getCommonHtmlParts({
+			ent,
+			renderer,
+			opts,
+		});
+
+		return `
+			${Renderer.utils.getBorderTr()}
+
+			${htmlPtIsExcluded}
+			${htmlPtName}
+			
+			${htmlPtPrerequisites}
+			
+			${htmlPtCost}
+			
+			<tr><td colspan="6" ${htmlPtPrerequisites || htmlPtCost ? `class="pt-2"` : `class="pt-0"`}>
+				${htmlPtEntries}
+			</td></tr>
+			
+			${htmlPtPreviouslyPrinted}
+			${htmlPtPage}
+			${Renderer.utils.getBorderTr()}
+		`;
+	}
+}
+
 export class RenderOptionalFeatures {
 	static _RENDER_CLASSIC = new _RenderOptionalfeaturesImplClassic();
+	static _RENDER_ONE = new _RenderOptionalfeaturesImplOne();
 
 	static $getRenderedOptionalFeature (ent) {
 		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
 		switch (styleHint) {
 			case SITE_STYLE__CLASSIC: return this._RENDER_CLASSIC.$getRendered(ent);
+			case SITE_STYLE__ONE: return this._RENDER_ONE.$getRendered(ent);
 			default: throw new Error(`Unhandled style "${styleHint}"!`);
 		}
 	}

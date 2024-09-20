@@ -8,7 +8,7 @@ export class EntryCoalesceEntryLists {
 	/**
 	 * @param stats
 	 * @param prop
-	 * @param {"classic" | null} styleHint
+	 * @param {"classic" | "one" | null} styleHint
 	 */
 	static mutCoalesce (stats, prop, {styleHint = null} = {}) {
 		if (!stats[prop]) return;
@@ -18,6 +18,7 @@ export class EntryCoalesceEntryLists {
 		this._WALKER ||= MiscUtil.getWalker({keyBlocklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST});
 
 		this._mutCoalesce_listsBasic({stats, prop, styleHint});
+		this._mutCoalesce_listsHanging({stats, prop, styleHint});
 		this._mutCoalesce_listsHangingAttributes({stats, prop, styleHint});
 	}
 
@@ -56,6 +57,63 @@ export class EntryCoalesceEntryLists {
 						}
 
 						tmpList.items.push(mBullet[1].trim());
+					}
+
+					checkFinalizeList();
+
+					return out;
+				},
+			},
+			"entries",
+		);
+	}
+
+	static _mutCoalesce_listsHanging ({stats, prop, styleHint}) {
+		if (styleHint === SITE_STYLE__CLASSIC) return;
+
+		stats[prop] = this._WALKER.walk(
+			stats[prop],
+			{
+				array: (arr, objProp) => {
+					if (objProp !== "entries") return arr;
+
+					const out = [];
+					let tmpList = null;
+
+					const getNewList = () => ({type: "list", style: "list-hang-notitle", items: []});
+					const checkFinalizeList = () => {
+						if (!tmpList?.items?.length) return;
+						out.push(tmpList);
+						tmpList = null;
+					};
+
+					for (let i = 0; i < arr.length; ++i) {
+						const ent = arr[i];
+						const entNxt = arr[i + 1];
+
+						if (typeof ent === "string") {
+							checkFinalizeList();
+							out.push(ent);
+
+							if (
+								ent.trim().endsWith(":")
+								&& /\b(choose|choice)\b/i.exec(ent)
+								&& entNxt?.type === "entries"
+							) {
+								tmpList = getNewList();
+							}
+
+							continue;
+						}
+
+						if (!tmpList) {
+							out.push(ent);
+							continue;
+						}
+
+						tmpList.items.push(
+							ConverterUtils.mutSetEntryTypePretty({obj: ent, type: "item"}),
+						);
 					}
 
 					checkFinalizeList();

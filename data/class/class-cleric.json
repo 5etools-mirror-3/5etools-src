@@ -6,6 +6,9 @@
 			"page": 56,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Cleric|XPHB"
+			],
 			"hd": {
 				"number": 1,
 				"faces": 8
@@ -491,6 +494,493 @@
 			"subclassTitle": "Divine Domain",
 			"hasFluff": true,
 			"hasFluffImages": true
+		},
+		{
+			"name": "Cleric",
+			"source": "XPHB",
+			"page": 68,
+			"freeRules2024": true,
+			"primaryAbility": [
+				{
+					"wis": true
+				}
+			],
+			"hd": {
+				"number": 1,
+				"faces": 8
+			},
+			"proficiency": [
+				"wis",
+				"cha"
+			],
+			"spellcastingAbility": "wis",
+			"casterProgression": "full",
+			"cantripProgression": [
+				3,
+				3,
+				3,
+				4,
+				4,
+				4,
+				4,
+				4,
+				4,
+				5,
+				5,
+				5,
+				5,
+				5,
+				5,
+				5,
+				5,
+				5,
+				5,
+				5
+			],
+			"startingProficiencies": {
+				"armor": [
+					"light",
+					"medium",
+					"shield"
+				],
+				"weapons": [
+					"simple"
+				],
+				"skills": [
+					{
+						"choose": {
+							"from": [
+								"history",
+								"insight",
+								"medicine",
+								"persuasion",
+								"religion"
+							],
+							"count": 2
+						}
+					}
+				]
+			},
+			"startingEquipment": {
+				"entries": [
+					"{@i Choose A or B:} (A) {@item Chain Shirt|XPHB}, {@item Shield|XPHB}, {@item Mace|XPHB}, {@item Holy Symbol|XPHB}, {@item Priest's Pack|XPHB}, 7 GP; or (B) 90 GP"
+				],
+				"defaultData": [
+					{
+						"A": [
+							{
+								"item": "chain shirt|xphb"
+							},
+							{
+								"item": "shield|xphb"
+							},
+							{
+								"item": "mace|xphb"
+							},
+							{
+								"item": "holy symbol|xphb"
+							},
+							{
+								"item": "priest's pack|xphb"
+							},
+							{
+								"value": 1900
+							}
+						],
+						"B": [
+							{
+								"value": 11000
+							}
+						]
+					}
+				]
+			},
+			"multiclassing": {
+				"proficienciesGained": {
+					"armor": [
+						"light",
+						"medium",
+						"shield"
+					]
+				}
+			},
+			"classTableGroups": [
+				{
+					"colLabels": [
+						"Channel Divinity",
+						"{@filter Cantrips|spells|level=0|class=Cleric}",
+						"{@filter Prepared Spells|spells|level=!0|class=Cleric}"
+					],
+					"rows": [
+						[
+							0,
+							3,
+							4
+						],
+						[
+							2,
+							3,
+							5
+						],
+						[
+							2,
+							3,
+							6
+						],
+						[
+							2,
+							4,
+							7
+						],
+						[
+							2,
+							4,
+							9
+						],
+						[
+							3,
+							4,
+							10
+						],
+						[
+							3,
+							4,
+							11
+						],
+						[
+							3,
+							4,
+							12
+						],
+						[
+							3,
+							4,
+							14
+						],
+						[
+							3,
+							5,
+							15
+						],
+						[
+							3,
+							5,
+							16
+						],
+						[
+							3,
+							5,
+							16
+						],
+						[
+							3,
+							5,
+							17
+						],
+						[
+							3,
+							5,
+							17
+						],
+						[
+							3,
+							5,
+							18
+						],
+						[
+							3,
+							5,
+							18
+						],
+						[
+							3,
+							5,
+							19
+						],
+						[
+							4,
+							5,
+							20
+						],
+						[
+							4,
+							5,
+							21
+						],
+						[
+							4,
+							5,
+							22
+						]
+					]
+				},
+				{
+					"title": "Prepared Spells per Spell Level",
+					"colLabels": [
+						"{@filter 1st|spells|level=1|class=Cleric}",
+						"{@filter 2nd|spells|level=2|class=Cleric}",
+						"{@filter 3rd|spells|level=3|class=Cleric}",
+						"{@filter 4th|spells|level=4|class=Cleric}",
+						"{@filter 5th|spells|level=5|class=Cleric}",
+						"{@filter 6th|spells|level=6|class=Cleric}",
+						"{@filter 7th|spells|level=7|class=Cleric}",
+						"{@filter 8th|spells|level=8|class=Cleric}",
+						"{@filter 9th|spells|level=9|class=Cleric}"
+					],
+					"rowsSpellProgression": [
+						[
+							2,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							3,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							2,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							2,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							1,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							2,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							1,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							1,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							1,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							1,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							3,
+							1,
+							1,
+							1,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							3,
+							2,
+							2,
+							1,
+							1
+						]
+					]
+				}
+			],
+			"classFeatures": [
+				"Spellcasting|Cleric|XPHB|1",
+				"Divine Order|Cleric|XPHB|1",
+				"Channel Divinity|Cleric|XPHB|2",
+				{
+					"classFeature": "Cleric Subclass|Cleric|XPHB|3",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Cleric|XPHB|4",
+				"Sear Undead|Cleric|XPHB|5",
+				{
+					"classFeature": "Subclass Feature|Cleric|XPHB|6",
+					"gainSubclassFeature": true
+				},
+				"Blessed Strikes|Cleric|XPHB|7",
+				"Ability Score Improvement|Cleric|XPHB|8",
+				"Divine Intervention|Cleric|XPHB|10",
+				"Ability Score Improvement|Cleric|XPHB|12",
+				"Improved Blessed Strikes|Cleric|XPHB|14",
+				"Ability Score Improvement|Cleric|XPHB|16",
+				{
+					"classFeature": "Subclass Feature|Cleric|XPHB|17",
+					"gainSubclassFeature": true
+				},
+				"Epic Boon|Cleric|XPHB|19",
+				"Greater Divine Intervention|Cleric|XPHB|20"
+			],
+			"subclassTitle": "Cleric Subclass",
+			"hasFluff": true,
+			"hasFluffImages": true
 		}
 	],
 	"subclass": [
@@ -545,6 +1035,9 @@
 			"page": 60,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Life|Cleric|XPHB|XPHB"
+			],
 			"additionalSpells": [
 				{
 					"prepared": {
@@ -587,6 +1080,9 @@
 			"className": "Cleric",
 			"classSource": "PHB",
 			"page": 60,
+			"reprintedAs": [
+				"Light|Cleric|XPHB|XPHB"
+			],
 			"additionalSpells": [
 				{
 					"prepared": {
@@ -727,6 +1223,9 @@
 			"className": "Cleric",
 			"classSource": "PHB",
 			"page": 62,
+			"reprintedAs": [
+				"Trickery|Cleric|XPHB|XPHB"
+			],
 			"additionalSpells": [
 				{
 					"prepared": {
@@ -769,6 +1268,9 @@
 			"className": "Cleric",
 			"classSource": "PHB",
 			"page": 63,
+			"reprintedAs": [
+				"War|Cleric|XPHB|XPHB"
+			],
 			"additionalSpells": [
 				{
 					"prepared": {
@@ -1543,6 +2045,159 @@
 				"Eclipse of Ill Omen|Cleric|PHB|Moon|TDCSR|17"
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Life Domain",
+			"shortName": "Life",
+			"source": "XPHB",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"page": 73,
+			"freeRules2024": true,
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"aid|xphb",
+							"bless|xphb",
+							"cure wounds|xphb",
+							"lesser restoration|xphb"
+						],
+						"5": [
+							"mass healing word|xphb",
+							"revivify|xphb"
+						],
+						"7": [
+							"aura of life|xphb",
+							"death ward|xphb"
+						],
+						"9": [
+							"greater restoration|xphb",
+							"mass cure wounds|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Life Domain|Cleric|XPHB|Life|XPHB|3",
+				"Blessed Healer|Cleric|XPHB|Life|XPHB|6",
+				"Supreme Healing|Cleric|XPHB|Life|XPHB|17"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Light Domain",
+			"shortName": "Light",
+			"source": "XPHB",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"page": 74,
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"burning hands|xphb",
+							"faerie fire|xphb",
+							"moonbeam|xphb",
+							"see invisibility|xphb"
+						],
+						"5": [
+							"daylight|xphb",
+							"fireball|xphb"
+						],
+						"7": [
+							"arcane eye|xphb",
+							"wall of fire|xphb"
+						],
+						"9": [
+							"flame strike|xphb",
+							"scrying|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Light Domain|Cleric|XPHB|Light|XPHB|3",
+				"Improved Warding Flare|Cleric|XPHB|Light|XPHB|6",
+				"Corona of Light|Cleric|XPHB|Light|XPHB|17"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Trickery Domain",
+			"shortName": "Trickery",
+			"source": "XPHB",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"page": 75,
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"charm person|xphb",
+							"disguise self|xphb",
+							"invisibility|xphb",
+							"pass without trace|xphb"
+						],
+						"5": [
+							"hypnotic pattern|xphb",
+							"nondetection|xphb"
+						],
+						"7": [
+							"confusion|xphb",
+							"dimension door|xphb"
+						],
+						"9": [
+							"hold monster|xphb",
+							"mislead|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Trickery Domain|Cleric|XPHB|Trickery|XPHB|3",
+				"Trickster's Transposition|Cleric|XPHB|Trickery|XPHB|6",
+				"Improved Duplicity|Cleric|XPHB|Trickery|XPHB|17"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "War Domain",
+			"shortName": "War",
+			"source": "XPHB",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"page": 76,
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"divine favor|xphb",
+							"magic weapon|xphb",
+							"shield of faith|xphb",
+							"spiritual weapon|xphb"
+						],
+						"5": [
+							"crusader's mantle|xphb",
+							"spirit guardians|xphb"
+						],
+						"7": [
+							"freedom of movement|xphb",
+							"stoneskin|xphb"
+						],
+						"9": [
+							"destructive wave|xphb",
+							"hold monster|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"War Domain|Cleric|XPHB|War|XPHB|3",
+				"War God's Blessing|Cleric|XPHB|War|XPHB|6",
+				"Avatar of Battle|Cleric|XPHB|War|XPHB|17"
+			],
+			"hasFluffImages": true
 		}
 	],
 	"classFeature": [
@@ -1938,6 +2593,336 @@
 			"level": 20,
 			"entries": [
 				"At 20th level, your call for intervention succeeds automatically, no roll required."
+			]
+		},
+		{
+			"name": "Divine Order",
+			"source": "XPHB",
+			"page": 70,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"You have dedicated yourself to one of the following sacred roles of your choice.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Protector",
+							"entries": [
+								"Trained for battle, you gain proficiency with Martial weapons and training with Heavy armor."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Thaumaturge",
+							"entries": [
+								"You know one extra cantrip from the {@filter Cleric spell list|spells|class=Cleric}. In addition, your mystical connection to the divine gives you a bonus to your Intelligence ({@skill Arcana|XPHB} or {@skill Religion|XPHB}) checks. The bonus equals your Wisdom modifier (minimum of +1)."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Spellcasting",
+			"source": "XPHB",
+			"page": 70,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"You have learned to cast spells through prayer and meditation. See {@book chapter 7|XPHB|7} for the rules on spellcasting. The information below details how you use those rules with Cleric spells, which appear on the {@filter Cleric spell list|spells|class=Cleric} later in the class's description.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Cantrips",
+							"entries": [
+								"You know three cantrips of your choice from the {@filter Cleric spell list|spells|class=Cleric}. {@spell Guidance|XPHB}, {@spell Sacred Flame|XPHB}, and {@spell Thaumaturgy|XPHB} are recommended.",
+								"Whenever you gain a Cleric level, you can replace one of your cantrips with another cantrip of your choice from the {@filter Cleric spell list|spells|class=Cleric}.",
+								"When you reach Cleric levels 4 and 10, you learn another cantrip of your choice from the {@filter Cleric spell list|spells|class=Cleric}, as shown in the Cantrips column of the Cleric Features table."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Spell Slots",
+							"entries": [
+								"The Cleric Features table shows how many spell slots you have to cast your level 1+ spells. You regain all expended slots when you finish a {@variantrule Long Rest|XPHB}."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Prepared Spells of Level 1+",
+							"entries": [
+								"You prepare the list of level 1+ spells that are available for you to cast with this feature. To start, choose four level 1 spells from the {@filter Cleric spell list|spells|class=Cleric}. {@spell Bless|XPHB}, {@spell Cure Wounds|XPHB}, {@spell Guiding Bolt|XPHB}, and {@spell Shield of Faith|XPHB} are recommended.",
+								"The number of spells on your list increases as you gain Cleric levels, as shown in the Prepared Spells column of the Cleric Features table. Whenever that number increases, choose additional spells from the {@filter Cleric spell list|spells|class=Cleric} until the number of spells on your list matches the number on the table. The chosen spells must be of a level for which you have spell slots. For example, if you're a level 3 Cleric, your list of prepared spells can include six spells of levels 1 and 2 in any combination.",
+								"If another Cleric feature gives you spells that you always have prepared, those spells don't count against the number of spells you can prepare with this feature, but those spells otherwise count as Cleric spells for you."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Changing Your Prepared Spells",
+							"entries": [
+								"Whenever you finish a {@variantrule Long Rest|XPHB}, you can change your list of prepared spells, replacing any of the spells there with other Cleric spells for which you have spell slots."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Spellcasting Ability",
+							"entries": [
+								"Wisdom is your spellcasting ability for your Cleric spells."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Spellcasting Focus",
+							"entries": [
+								"You can use a {@item Holy Symbol|XPHB} as a {@variantrule Spellcasting Focus|XPHB} for your Cleric spells."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Channel Divinity",
+			"source": "XPHB",
+			"page": 70,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"level": 2,
+			"entries": [
+				"You can channel divine energy directly from the Outer Planes to fuel magical effects. You start with two such effects: Divine Spark and Turn Undead, each of which is described below. Each time you use this class's Channel Divinity, choose which Channel Divinity effect from this class to create. You gain additional effect options at higher Cleric levels.",
+				"You can use this class's Channel Divinity twice. You regain one of its expended uses when you finish a {@variantrule Short Rest|XPHB}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}. You gain additional uses when you reach certain Cleric levels, as shown in the Channel Divinity column of the Cleric Features table.",
+				"If a Channel Divinity effect requires a saving throw, the DC equals the spell save DC from this class's Spellcasting feature.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "refClassFeature",
+							"classFeature": "Divine Spark|Cleric|XPHB|2|XPHB"
+						},
+						{
+							"type": "refClassFeature",
+							"classFeature": "Turn Undead|Cleric|XPHB|2|XPHB"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Divine Spark",
+			"source": "XPHB",
+			"page": 70,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"level": 2,
+			"header": 2,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"As a {@action Magic|XPHB} action, you point your {@item Holy Symbol|XPHB} at another creature you can see within 30 feet of yourself and focus divine energy at it. Roll {@dice 1d8} and add your Wisdom modifier. You either restore {@variantrule Hit Points|XPHB} to the creature equal to that total or force the creature to make a Constitution saving throw. On a failed save, the creature takes Necrotic or Radiant damage (your choice) equal to that total. On a successful save, the creature takes half as much damage (round down).",
+				"You roll an additional {@dice d8} when you reach Cleric levels 7 ({@dice 2d8}), 13 ({@dice 3d8}), and 18 ({@dice 4d8})."
+			]
+		},
+		{
+			"name": "Turn Undead",
+			"source": "XPHB",
+			"page": 70,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"level": 2,
+			"header": 2,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"As a {@action Magic|XPHB} action, you present your {@item Holy Symbol|XPHB} and censure Undead creatures. Each Undead of your choice within 30 feet of you must make a Wisdom saving throw. If the creature fails its save, it has the {@condition Frightened|XPHB} and {@condition Incapacitated|XPHB} conditions for 1 minute. For that duration, it tries to move as far from you as it can on its turns. This effect ends early on the creature if it takes any damage, if you have the {@condition Incapacitated|XPHB} condition, or if you die."
+			]
+		},
+		{
+			"name": "Cleric Subclass",
+			"source": "XPHB",
+			"page": 71,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"You gain a Cleric subclass of your choice. A subclass is a specialization that grants you features at certain Cleric levels. For the rest of your career, you gain each of your subclass's features that are of your Cleric level or lower."
+			]
+		},
+		{
+			"name": "Ability Score Improvement",
+			"source": "XPHB",
+			"page": 71,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"level": 4,
+			"entries": [
+				"You gain the {@feat Ability Score Improvement|XPHB} feat or another {@5etools feat|feats.html} of your choice for which you qualify. You gain this feature again at Cleric levels 8, 12, and 16."
+			]
+		},
+		{
+			"name": "Sear Undead",
+			"source": "XPHB",
+			"page": 71,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"level": 5,
+			"entries": [
+				"Whenever you use Turn Undead, you can roll a number of d8s equal to your Wisdom modifier (minimum of {@dice 1d8}) and add the rolls together. Each Undead that fails its saving throw against that use of Turn Undead takes Radiant damage equal to the roll's total. This damage doesn't end the turn effect."
+			]
+		},
+		{
+			"name": "Subclass Feature",
+			"source": "XPHB",
+			"page": 71,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"level": 6,
+			"entries": [
+				"You gain a feature from your Cleric Subclass."
+			]
+		},
+		{
+			"name": "Blessed Strikes",
+			"source": "XPHB",
+			"page": 71,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"level": 7,
+			"entries": [
+				"Divine power infuses you in battle. You gain one of the following options of your choice (if you get either option from a Cleric subclass in an older book, use only the option you choose for this feature).",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Divine Strike",
+							"entries": [
+								"Once on each of your turns when you hit a creature with an attack roll using a weapon, you can cause the target to take an extra {@damage 1d8} Necrotic or Radiant damage (your choice)."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Potent Spellcasting",
+							"entries": [
+								"Add your Wisdom modifier to the damage you deal with any Cleric cantrip."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Ability Score Improvement",
+			"source": "XPHB",
+			"page": 71,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"level": 8,
+			"entries": [
+				"You gain the {@feat Ability Score Improvement|XPHB} feat or another {@5etools feat|feats.html} of your choice for which you qualify."
+			]
+		},
+		{
+			"name": "Divine Intervention",
+			"source": "XPHB",
+			"page": 71,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"level": 10,
+			"entries": [
+				"You can call on your deity or pantheon to intervene on your behalf. As a {@action Magic|XPHB} action, choose any Cleric spell of level 5 or lower that doesn't require a {@variantrule Reaction|XPHB} to cast. As part of the same action, you cast that spell without expending a spell slot or needing Material components. You can't use this feature again until you finish a {@variantrule Long Rest|XPHB}."
+			]
+		},
+		{
+			"name": "Ability Score Improvement",
+			"source": "XPHB",
+			"page": 71,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"level": 12,
+			"entries": [
+				"You gain the {@feat Ability Score Improvement|XPHB} feat or another {@5etools feat|feats.html} of your choice for which you qualify."
+			]
+		},
+		{
+			"name": "Improved Blessed Strikes",
+			"source": "XPHB",
+			"page": 71,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"level": 14,
+			"entries": [
+				"The option you chose for Blessed Strikes grows more powerful.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Divine Strike",
+							"entries": [
+								"The extra damage of your Divine Strike increases to {@dice 2d8}."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Potent Spellcasting",
+							"entries": [
+								"When you cast a Cleric cantrip and deal damage to a creature with it, you can give vitality to yourself or another creature within 60 feet of yourself, granting a number of {@variantrule Temporary Hit Points|XPHB} equal to twice your Wisdom modifier."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Ability Score Improvement",
+			"source": "XPHB",
+			"page": 71,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"level": 16,
+			"entries": [
+				"You gain the {@feat Ability Score Improvement|XPHB} feat or another {@5etools feat|feats.html} of your choice for which you qualify."
+			]
+		},
+		{
+			"name": "Subclass Feature",
+			"source": "XPHB",
+			"page": 71,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"level": 17,
+			"entries": [
+				"You gain a feature from your Cleric Subclass."
+			]
+		},
+		{
+			"name": "Epic Boon",
+			"source": "XPHB",
+			"page": 71,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"level": 19,
+			"entries": [
+				"You gain an {@filter Epic Boon feat|feats|category=EB} or another {@5etools feat|feats.html} of your choice for which you qualify. {@feat Boon of Fate|XPHB} is recommended."
+			]
+		},
+		{
+			"name": "Greater Divine Intervention",
+			"source": "XPHB",
+			"page": 71,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"level": 20,
+			"entries": [
+				"You can call on even more powerful divine intervention. When you use your Divine Intervention feature, you can choose {@spell Wish|XPHB} when you select a spell. If you do so, you can't use Divine Intervention again until you finish {@dice 2d4} Long Rests."
 			]
 		}
 	],
@@ -5772,6 +6757,578 @@
 			"header": 2,
 			"entries": [
 				"Starting at 17th level, you can seize a trace of vitality from a parting soul and use it to heal the living. When an enemy you can see dies within 60 feet of you, you or one creature of your choice that is within 60 feet of you regains hit points equal to the enemy's number of Hit Dice. You can use this feature only if you aren't {@condition incapacitated}. Once you use it, you can't do so again until the start of your next turn."
+			]
+		},
+		{
+			"name": "Life Domain",
+			"source": "XPHB",
+			"page": 73,
+			"freeRules2024": true,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Life",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i Soothe the Hurts of the World}",
+				"The Life Domain focuses on the positive energy that helps sustain all life in the multiverse. Clerics who tap into this domain are masters of healing, using that life force to cure many hurts.",
+				"Existence itself relies on the positive energy associated with this domain, so a Cleric of almost any religious tradition might choose it. This domain is particularly associated with agricultural deities, gods of healing or endurance, and gods of home and community. Religious orders of healing also seek the magic of this domain.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Life Domain Spells|Cleric|XPHB|Life|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Disciple of Life|Cleric|XPHB|Life|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Preserve Life|Cleric|XPHB|Life|XPHB|3"
+				}
+			]
+		},
+		{
+			"name": "Disciple of Life",
+			"source": "XPHB",
+			"page": 73,
+			"freeRules2024": true,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Life",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"When a spell you cast with a spell slot restores {@variantrule Hit Points|XPHB} to a creature, that creature regains additional {@variantrule Hit Points|XPHB} on the turn you cast the spell. The additional {@variantrule Hit Points|XPHB} equal 2 plus the spell slot's level."
+			]
+		},
+		{
+			"name": "Life Domain Spells",
+			"source": "XPHB",
+			"page": 73,
+			"freeRules2024": true,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Life",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"Your connection to this divine domain ensures you always have certain spells ready. When you reach a Cleric level specified in the Life Domain Spells table, you thereafter always have the listed spells prepared.",
+				{
+					"type": "table",
+					"caption": "Life Domain Spells",
+					"colLabels": [
+						"Cleric Level",
+						"Prepared Spells"
+					],
+					"colStyles": [
+						"col-1 text-center",
+						"col-11"
+					],
+					"rows": [
+						[
+							"3rd",
+							"{@spell Aid|XPHB}, {@spell Bless|XPHB}, {@spell Cure Wounds|XPHB}, {@spell Lesser Restoration|XPHB}"
+						],
+						[
+							"5th",
+							"{@spell Mass Healing Word|XPHB}, {@spell Revivify|XPHB}"
+						],
+						[
+							"7th",
+							"{@spell Aura of Life|XPHB}, {@spell Death Ward|XPHB}"
+						],
+						[
+							"9th",
+							"{@spell Greater Restoration|XPHB}, {@spell Mass Cure Wounds|XPHB}"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Preserve Life",
+			"source": "XPHB",
+			"page": 73,
+			"freeRules2024": true,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Life",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"As a {@action Magic|XPHB} action, you present your {@item Holy Symbol|XPHB} and expend a use of your Channel Divinity to evoke healing energy that can restore a number of {@variantrule Hit Points|XPHB} equal to five times your Cleric level. Choose {@variantrule Bloodied|XPHB} creatures within 30 feet of yourself (which can include you), and divide those {@variantrule Hit Points|XPHB} among them. This feature can restore a creature to no more than half its {@variantrule Hit Points|XPHB|Hit Point} maximum."
+			]
+		},
+		{
+			"name": "Blessed Healer",
+			"source": "XPHB",
+			"page": 74,
+			"freeRules2024": true,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Life",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"The healing spells you cast on others heal you as well. Immediately after you cast a spell with a spell slot that restores {@variantrule Hit Points|XPHB} to one creature other than you, you regain {@variantrule Hit Points|XPHB} equal to 2 plus the spell slot's level."
+			]
+		},
+		{
+			"name": "Supreme Healing",
+			"source": "XPHB",
+			"page": 74,
+			"freeRules2024": true,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Life",
+			"subclassSource": "XPHB",
+			"level": 17,
+			"header": 2,
+			"entries": [
+				"When you would normally roll one or more dice to restore {@variantrule Hit Points|XPHB} to a creature with a spell or Channel Divinity, don't roll those dice for the healing; instead use the highest number possible for each die. For example, instead of restoring {@dice 2d6} {@variantrule Hit Points|XPHB} to a creature with a spell, you restore 12."
+			]
+		},
+		{
+			"name": "Light Domain",
+			"source": "XPHB",
+			"page": 74,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Light",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i Bring Light to Banish Darkness}",
+				"The Light Domain emphasizes the divine power to bring about blazing fire and revelation. Clerics who wield this power are enlightened souls infused with radiance and the power of their deities' discerning vision, charged with chasing away lies and burning away darkness.",
+				"The Light Domain is associated with gods of truth, vigilance, beauty, insight, and renewal. Some of these gods are identified with the sun or as charioteers who guide the sun across the sky. Others are sentinels who pierce deception. Some are deities of beauty and artistry who teach that art is a vehicle for the soul's improvement.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Light Domain Spells|Cleric|XPHB|Light|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Radiance of the Dawn|Cleric|XPHB|Light|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Warding Flare|Cleric|XPHB|Light|XPHB|3"
+				}
+			]
+		},
+		{
+			"name": "Light Domain Spells",
+			"source": "XPHB",
+			"page": 74,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Light",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"Your connection to this divine domain ensures you always have certain spells ready. When you reach a Cleric level specified in the Light Domain Spells table, you thereafter always have the listed spells prepared.",
+				{
+					"type": "table",
+					"caption": "Light Domain Spells",
+					"colLabels": [
+						"Cleric Level",
+						"Prepared Spells"
+					],
+					"colStyles": [
+						"col-1 text-center",
+						"col-11"
+					],
+					"rows": [
+						[
+							"3rd",
+							"{@spell Burning Hands|XPHB}, {@spell Faerie Fire|XPHB}, {@spell Scorching Ray|XPHB}, {@spell See Invisibility|XPHB}"
+						],
+						[
+							"5th",
+							"{@spell Daylight|XPHB}, {@spell Fireball|XPHB}"
+						],
+						[
+							"7th",
+							"{@spell Arcane Eye|XPHB}, {@spell Wall of Fire|XPHB}"
+						],
+						[
+							"9th",
+							"{@spell Flame Strike|XPHB}, {@spell Scrying|XPHB}"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Radiance of the Dawn",
+			"source": "XPHB",
+			"page": 74,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Light",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"As a {@action Magic|XPHB} action, you present your {@item Holy Symbol|XPHB} and expend a use of your Channel Divinity to emit a flash of light in a 30-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from yourself. Any magical {@variantrule Darkness|XPHB}\u2014such as that created by the {@spell Darkness|XPHB} spell\u2014in that area is dispelled. Additionally, each creature of your choice in that area must make a Constitution saving throw, taking Radiant damage equal to {@dice 2d10} plus your Cleric level on a failed save or half as much damage on a successful one."
+			]
+		},
+		{
+			"name": "Warding Flare",
+			"source": "XPHB",
+			"page": 74,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Light",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"When a creature that you can see within 30 feet of yourself makes an attack roll, you can take a {@variantrule Reaction|XPHB} to impose {@variantrule Disadvantage|XPHB} on the attack roll, causing light to flare before it hits or misses.",
+				"You can use this feature a number of times equal to your Wisdom modifier (minimum of once). You regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
+			]
+		},
+		{
+			"name": "Improved Warding Flare",
+			"source": "XPHB",
+			"page": 75,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Light",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"You regain all expended uses of your Warding Flare when you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}.",
+				"In addition, whenever you use Warding Flare, you can give the target of the triggering attack a number of {@variantrule Temporary Hit Points|XPHB} equal to {@dice 2d6} plus your Wisdom modifier."
+			]
+		},
+		{
+			"name": "Corona of Light",
+			"source": "XPHB",
+			"page": 75,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Light",
+			"subclassSource": "XPHB",
+			"level": 17,
+			"header": 2,
+			"entries": [
+				"As a {@action Magic|XPHB} action, you cause yourself to emit an aura of sunlight that lasts for 1 minute or until you dismiss it (no action required). You emit {@variantrule Bright Light|XPHB} in a 60-foot radius and {@variantrule Dim Light|XPHB} for an additional 30 feet. Your enemies in the {@variantrule Bright Light|XPHB} have {@variantrule Disadvantage|XPHB} on saving throws against your Radiance of the Dawn and any spell that deals Fire or Radiant damage.",
+				"You can use this feature a number of times equal to your Wisdom modifier (minimum of once), and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
+			]
+		},
+		{
+			"name": "Trickery Domain",
+			"source": "XPHB",
+			"page": 75,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Trickery",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i Make Mischief and Challenge Authority}",
+				"The Trickery Domain offers magic of deception, illusion, and stealth. Clerics who wield this magic are a disruptive force in the world, puncturing pride, mocking tyrants, freeing captives, and flouting hollow traditions. They prefer subterfuge and pranks to direct confrontation.",
+				"Gods of trickery are mischief-makers and instigators who stand as a constant challenge to the accepted order among both gods and mortals. They embody the forces of change and social upheaval, and they're patrons of thieves, scoundrels, gamblers, rebels, and liberators. Religious orders that operate in secret, especially those that seek to undermine oppressive governments or hierarchies, also draw on the power of the Trickery Domain.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Domain Spells|Cleric|XPHB|Trickery|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Blessing of the Trickster|Cleric|XPHB|Trickery|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Invoke Duplicity|Cleric|XPHB|Trickery|XPHB|3"
+				}
+			]
+		},
+		{
+			"name": "Blessing of the Trickster",
+			"source": "XPHB",
+			"page": 75,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Trickery",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"As a {@action Magic|XPHB} action, you can choose yourself or a willing creature within 30 feet of yourself to have {@variantrule Advantage|XPHB} on Dexterity ({@skill Stealth|XPHB}) checks. This blessing lasts until you finish a {@variantrule Long Rest|XPHB} or you use this feature again."
+			]
+		},
+		{
+			"name": "Domain Spells",
+			"source": "XPHB",
+			"page": 76,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Trickery",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"Your connection to this divine domain ensures you always have certain spells ready. When you reach a Cleric level specified in the Trickery Domain Spells table, you thereafter always have the listed spells prepared.",
+				{
+					"type": "table",
+					"caption": "Trickery Domain Spells",
+					"colLabels": [
+						"Cleric Level",
+						"Prepared Spells"
+					],
+					"colStyles": [
+						"col-1 text-center",
+						"col-11"
+					],
+					"rows": [
+						[
+							"3rd",
+							"{@spell Charm Person|XPHB}, {@spell Disguise Self|XPHB}, {@spell Invisibility|XPHB}, {@spell Pass without Trace|XPHB}"
+						],
+						[
+							"5th",
+							"{@spell Hypnotic Pattern|XPHB}, {@spell Nondetection|XPHB}"
+						],
+						[
+							"7th",
+							"{@spell Confusion|XPHB}, {@spell Dimension Door|XPHB}"
+						],
+						[
+							"9th",
+							"{@spell Dominate Person|XPHB}, {@spell Modify Memory|XPHB}"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Invoke Duplicity",
+			"source": "XPHB",
+			"page": 75,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Trickery",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"As a {@variantrule Bonus Action|XPHB}, you can expend one use of your Channel Divinity to create a perfect visual illusion of yourself in an unoccupied space you can see within 30 feet of yourself. The illusion is intangible and doesn't occupy its space. It lasts for 1 minute, but it ends early if you dismiss it (no action required) or have the {@condition Incapacitated|XPHB} condition. The illusion is animated and mimics your expressions and gestures. While it persists, you gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Cast Spells",
+					"entries": [
+						"You can cast spells as though you were in the illusion's space, but you must use your own senses."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Distract",
+					"entries": [
+						"When both you and your illusion are within 5 feet of a creature that can see the illusion, you have {@variantrule Advantage|XPHB} on attack rolls against that creature, given how distracting the illusion is to the target."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Move",
+					"entries": [
+						"As a {@variantrule Bonus Action|XPHB}, you can move the illusion up to 30 feet to an unoccupied space you can see that is within 120 feet of yourself."
+					]
+				}
+			]
+		},
+		{
+			"name": "Trickster's Transposition",
+			"source": "XPHB",
+			"page": 76,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Trickery",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"Whenever you take the {@variantrule Bonus Action|XPHB} to create or move the illusion of your Invoke Duplicity, you can teleport, swapping places with the illusion."
+			]
+		},
+		{
+			"name": "Improved Duplicity",
+			"source": "XPHB",
+			"page": 76,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Trickery",
+			"subclassSource": "XPHB",
+			"level": 17,
+			"header": 2,
+			"entries": [
+				"The illusion of your Invoke Duplicity has grown more powerful in the following ways.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Shared Distraction",
+							"entries": [
+								"When you and your allies make attack rolls against a creature within 5 feet of the illusion, the attack rolls have {@variantrule Advantage|XPHB}."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Healing Illusion",
+							"entries": [
+								"When the illusion ends, you or a creature of your choice within 5 feet of it regains a number of {@variantrule Hit Points|XPHB} equal to your Cleric level."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "War Domain",
+			"source": "XPHB",
+			"page": 76,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "War",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i Inspire Valor and Smite Foes}",
+				"War has many manifestations. It can make heroes of ordinary people. It can be desperate and horrific, with acts of cruelty and cowardice eclipsing instances of excellence and courage. Clerics who tap into the magic of the War Domain excel in battle, inspiring others to fight the good fight or offering acts of violence as prayers.",
+				"Gods of the War Domain watch over warriors and reward them for their great deeds. They include champions of honor and chivalry as well as gods of destruction and pillage. Other war gods take a more neutral stance, promoting war in all its manifestations and supporting warriors in any circumstance.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Domain Spells|Cleric|XPHB|War|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "War Priest|Cleric|XPHB|War|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Guided Strike|Cleric|XPHB|War|XPHB|3"
+				}
+			]
+		},
+		{
+			"name": "Domain Spells",
+			"source": "XPHB",
+			"page": 77,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "War",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"Your connection to this divine domain ensures you always have certain spells ready. When you reach a Cleric level specified in the War Domain Spells table, you thereafter always have the listed spells prepared.",
+				{
+					"type": "table",
+					"caption": "War Domain Spells",
+					"colLabels": [
+						"Cleric Level",
+						"Prepared Spells"
+					],
+					"colStyles": [
+						"col-1 text-center",
+						"col-11"
+					],
+					"rows": [
+						[
+							"3rd",
+							"{@spell Guiding Bolt|XPHB}, {@spell Magic Weapon|XPHB}, {@spell Shield of Faith|XPHB}, {@spell Spiritual Weapon|XPHB}"
+						],
+						[
+							"5th",
+							"{@spell Crusader's Mantle|XPHB}, {@spell Spirit Guardians|XPHB}"
+						],
+						[
+							"7th",
+							"{@spell Fire Shield|XPHB}, {@spell Freedom of Movement|XPHB}"
+						],
+						[
+							"9th",
+							"{@spell Hold Monster|XPHB}, {@spell Steel Wind Strike|XPHB}"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Guided Strike",
+			"source": "XPHB",
+			"page": 77,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "War",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"When you or a creature within 30 feet of you misses with an attack roll, you can expend one use of your Channel Divinity and give that roll a +10 bonus, potentially causing it to hit. When you use this feature to benefit another creature's attack roll, you must take a {@variantrule Reaction|XPHB} to do so."
+			]
+		},
+		{
+			"name": "War Priest",
+			"source": "XPHB",
+			"page": 77,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "War",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"As a {@variantrule Bonus Action|XPHB}, you can make one attack with a weapon or an {@variantrule Unarmed Strike|XPHB}. You can use this {@variantrule Bonus Action|XPHB} a number of times equal to your Wisdom modifier (minimum of once). You regain all expended uses when you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
+			]
+		},
+		{
+			"name": "War God's Blessing",
+			"source": "XPHB",
+			"page": 77,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "War",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"header": 2,
+			"consumes": {
+				"name": "Channel Divinity"
+			},
+			"entries": [
+				"You can expend a use of your Channel Divinity to cast {@spell Shield of Faith|XPHB} or {@spell Spiritual Weapon|XPHB} rather than expending a spell slot. When you cast either spell in this way, the spell doesn't require {@status Concentration|XPHB}. Instead the spell lasts for 1 minute, but it ends early if you cast that spell again, have the {@condition Incapacitated|XPHB} condition, or die."
+			]
+		},
+		{
+			"name": "Avatar of Battle",
+			"source": "XPHB",
+			"page": 77,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "War",
+			"subclassSource": "XPHB",
+			"level": 17,
+			"header": 2,
+			"entries": [
+				"You gain {@variantrule Resistance|XPHB} to Bludgeoning, Piercing, and Slashing damage."
 			]
 		}
 	]

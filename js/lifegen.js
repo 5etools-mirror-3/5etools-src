@@ -120,7 +120,7 @@ async function getPersonDetails (opts) {
 			else return rollSuppRace().result;
 		})() : rollSuppRace().result;
 
-		out.unshift(`<i><b>Race:</b> ${race}</i>`);
+		out.unshift(`<i><b>Species:</b> ${race}</i>`);
 		const gender = opts.gender ? opts.gender : rollUnofficialGender().result;
 		out.unshift(`<i><b>Gender:</b> ${gender}</i>`);
 
@@ -700,9 +700,9 @@ async function pSectParents () {
 	}
 
 	if (selRace === "Other") {
-		$parents.html(concatSentences(`<b>Race:</b> Other ${fmtChoice(`${race}; generated using the {@table Supplemental Tables; Race|XGE|Supplemental Race} table`, true)}`, knowParentsStr, parentage));
+		$parents.html(concatSentences(`<b>Species:</b> Other ${fmtChoice(`${race}; generated using the {@table Supplemental Tables; Race|XGE|Supplemental Race} table`, true)}`, knowParentsStr, parentage));
 	} else {
-		$parents.html(concatSentences(`<b>Race:</b> ${race}${selRace === "Random" ? ` ${fmtChoice("generated using the {@table Supplemental Tables; Race|XGE|Supplemental Race} table", true)}` : ""}`, knowParentsStr, parentage));
+		$parents.html(concatSentences(`<b>Species:</b> ${race}${selRace === "Random" ? ` ${fmtChoice("generated using the {@table Supplemental Tables; Race|XGE|Supplemental Race} table", true)}` : ""}`, knowParentsStr, parentage));
 	}
 
 	if (knowParents) {

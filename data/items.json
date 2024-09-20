@@ -894,11 +894,27 @@
 			]
 		},
 		{
+			"name": "Acid",
+			"source": "XPHB",
+			"page": 222,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 1,
+			"value": 2500,
+			"entries": [
+				"When you take the {@action Attack|XPHB} action, you can replace one of your attacks with throwing a vial of Acid. Target one creature or object you can see within 20 feet of yourself. The target must succeed on a Dexterity saving throw (DC 8 plus your Dexterity modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus}) or take {@damage 2d6} Acid damage."
+			]
+		},
+		{
 			"name": "Acid (vial)",
 			"source": "PHB",
 			"page": 148,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Acid|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 1,
@@ -1178,9 +1194,27 @@
 			"name": "Airship",
 			"source": "DMG",
 			"page": 119,
+			"reprintedAs": [
+				"Airship|XPHB"
+			],
 			"type": "AIR|DMG",
 			"rarity": "none",
 			"value": 2000000,
+			"crew": 10,
+			"vehAc": 13,
+			"vehHp": 300,
+			"vehSpeed": 8,
+			"capPassenger": 20,
+			"capCargo": 1
+		},
+		{
+			"name": "Airship",
+			"source": "XPHB",
+			"page": 230,
+			"freeRules2024": true,
+			"type": "AIR|XPHB",
+			"rarity": "none",
+			"value": 4000000,
 			"crew": 10,
 			"vehAc": 13,
 			"vehHp": 300,
@@ -1339,11 +1373,27 @@
 			]
 		},
 		{
+			"name": "Alchemist's Fire",
+			"source": "XPHB",
+			"page": 222,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 1,
+			"value": 5000,
+			"entries": [
+				"When you take the {@action Attack|XPHB} action, you can replace one of your attacks with throwing a flask of Alchemist's Fire. Target one creature or object you can see within 20 feet of yourself. The target must succeed on a Dexterity saving throw (DC 8 plus your Dexterity modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus}) or take {@damage 1d4} Fire damage and start burning."
+			]
+		},
+		{
 			"name": "Alchemist's Fire (flask)",
 			"source": "PHB",
 			"page": 148,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Alchemist's Fire|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 1,
@@ -1363,6 +1413,9 @@
 					"source": "XGE",
 					"page": 79
 				}
+			],
+			"reprintedAs": [
+				"Alchemist's Supplies|XPHB"
 			],
 			"type": "AT",
 			"rarity": "none",
@@ -1430,6 +1483,45 @@
 							"Neutralize acid",
 							"20"
 						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Alchemist's Supplies",
+			"source": "XPHB",
+			"page": 220,
+			"freeRules2024": true,
+			"type": "AT|XPHB",
+			"rarity": "none",
+			"weight": 8,
+			"value": 5000,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Intelligence"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Identify a substance ({@dc 15}), or start a fire ({@dc 15})"
+							]
+						},
+						{
+							"name": "Craft:",
+							"type": "item",
+							"entries": [
+								"{@item Acid|XPHB}, {@item Alchemist's Fire|XPHB}, {@item Component Pouch|XPHB}, {@item Oil|XPHB}, {@item Paper|XPHB}, {@item Perfume|XPHB}"
+							]
+						}
 					]
 				}
 			]
@@ -1660,7 +1752,22 @@
 			"page": 158,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Ale (mug)|XPHB"
+			],
 			"type": "FD",
+			"rarity": "none",
+			"value": 4,
+			"miscTags": [
+				"CNS"
+			]
+		},
+		{
+			"name": "Ale (mug)",
+			"source": "XPHB",
+			"page": 231,
+			"freeRules2024": true,
+			"type": "FD|XPHB",
 			"rarity": "none",
 			"value": 4,
 			"miscTags": [
@@ -1760,11 +1867,28 @@
 			"page": 151,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Amulet|XPHB"
+			],
 			"type": "SCF",
 			"scfType": "holy",
 			"rarity": "none",
 			"weight": 1,
 			"value": 500
+		},
+		{
+			"name": "Amulet",
+			"source": "XPHB",
+			"page": 226,
+			"freeRules2024": true,
+			"type": "SCF|XPHB",
+			"scfType": "holy",
+			"rarity": "none",
+			"weight": 1,
+			"value": 500,
+			"entries": [
+				"For an Amulet to be an effective Holy Symbol, it must be worn or held."
+			]
 		},
 		{
 			"name": "Amulet of Appearance",
@@ -2087,11 +2211,26 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Antitoxin",
+			"source": "XPHB",
+			"page": 222,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"value": 5000,
+			"entries": [
+				"As a {@variantrule Bonus Action|XPHB}, you can drink a vial of Antitoxin to gain {@variantrule Advantage|XPHB} on saving throws to avoid or end the {@condition Poisoned|XPHB} condition for 1 hour."
+			]
+		},
+		{
 			"name": "Antitoxin (vial)",
 			"source": "PHB",
 			"page": 151,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Antitoxin|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"value": 5000,
@@ -3280,12 +3419,33 @@
 			"page": 153,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Backpack|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 5,
 			"value": 200,
 			"entries": [
 				"A backpack can hold one cubic foot or 30 pounds of gear. You can also strap items, such as a bedroll or a coil of rope, to the outside of a backpack."
+			],
+			"containerCapacity": {
+				"weight": [
+					30
+				]
+			}
+		},
+		{
+			"name": "Backpack",
+			"source": "XPHB",
+			"page": 224,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 5,
+			"value": 200,
+			"entries": [
+				"A Backpack holds up to 30 pounds within 1 cubic foot. It can also serve as a saddlebag."
 			],
 			"containerCapacity": {
 				"weight": [
@@ -3705,11 +3865,27 @@
 			]
 		},
 		{
+			"name": "Ball Bearings",
+			"source": "XPHB",
+			"page": 224,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 2,
+			"value": 100,
+			"entries": [
+				"As a {@action Utilize|XPHB} action, you can spill Ball Bearings from their pouch. They spread to cover a level, 10-foot-square area within 10 feet of yourself. A creature that enters this area for the first time on a turn must succeed on a DC 10 Dexterity saving throw or have the {@condition Prone|XPHB} condition. It takes 10 minutes to recover the Ball Bearings."
+			]
+		},
+		{
 			"name": "Ball Bearings (bag of 1,000)",
 			"source": "PHB",
 			"page": 151,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Ball Bearings|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 2,
@@ -3810,6 +3986,9 @@
 			"page": 153,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Barrel|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 70,
@@ -3817,6 +3996,24 @@
 			"entries": [
 				"A barrel can hold 40 gallons of liquid or 4 cubic feet of solids."
 			]
+		},
+		{
+			"name": "Barrel",
+			"source": "XPHB",
+			"page": 224,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 70,
+			"value": 200,
+			"entries": [
+				"A Barrel holds up to 40 gallons of liquid or up to 4 cubic feet of dry goods."
+			],
+			"containerCapacity": {
+				"volume": [
+					4
+				]
+			}
 		},
 		{
 			"name": "Barrier Peaks Trinket",
@@ -4173,11 +4370,30 @@
 			]
 		},
 		{
+			"name": "Basic Poison",
+			"source": "XPHB",
+			"page": 227,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"value": 10000,
+			"poison": true,
+			"entries": [
+				"As a {@variantrule Bonus Action|XPHB}, you can use a vial of Basic Poison to coat one weapon or up to three pieces of ammunition. A creature that takes Piercing or Slashing damage from the poisoned weapon or ammunition takes an extra {@damage 1d4} Poison damage. Once applied, the poison retains potency for 1 minute or until its damage is dealt, whichever comes first."
+			],
+			"miscTags": [
+				"CNS"
+			]
+		},
+		{
 			"name": "Basic Poison (vial)",
 			"source": "PHB",
 			"page": 153,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Basic Poison|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"value": 10000,
@@ -4195,12 +4411,33 @@
 			"page": 153,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Basket|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 2,
 			"value": 40,
 			"entries": [
 				"A basket holds 2 cubic feet or 40 pounds of gear."
+			],
+			"containerCapacity": {
+				"weight": [
+					40
+				]
+			}
+		},
+		{
+			"name": "Basket",
+			"source": "XPHB",
+			"page": 224,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 2,
+			"value": 40,
+			"entries": [
+				"A Basket holds up to 40 pounds within 2 cubic feet."
 			],
 			"containerCapacity": {
 				"weight": [
@@ -4296,10 +4533,26 @@
 			"page": 150,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Bedroll|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 7,
 			"value": 100
+		},
+		{
+			"name": "Bedroll",
+			"source": "XPHB",
+			"page": 224,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 7,
+			"value": 100,
+			"entries": [
+				"A Bedroll sleeps one Small or Medium creature. While in a Bedroll, you automatically succeed on saving throws against {@hazard extreme cold} (see the Dungeon Master's Guide)."
+			]
 		},
 		{
 			"name": "Bejeweled ivory drinking horn with gold filigree",
@@ -4366,9 +4619,24 @@
 			"page": 150,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Bell|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"value": 100
+		},
+		{
+			"name": "Bell",
+			"source": "XPHB",
+			"page": 224,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"value": 100,
+			"entries": [
+				"When rung as a {@action Utilize|XPHB} action, a Bell produces a sound that can be heard up to 60 feet away."
+			]
 		},
 		{
 			"name": "Bell Branch",
@@ -5280,10 +5548,26 @@
 			"page": 150,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Blanket|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 3,
 			"value": 50
+		},
+		{
+			"name": "Blanket",
+			"source": "XPHB",
+			"page": 224,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 3,
+			"value": 50,
+			"entries": [
+				"While wrapped in a blanket, you have {@variantrule Advantage|XPHB} on saving throws against {@hazard extreme cold} (see the Dungeon Master's Guide)."
+			]
 		},
 		{
 			"name": "Blast Scepter",
@@ -5359,12 +5643,28 @@
 			"page": 151,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Block and Tackle|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 5,
 			"value": 100,
 			"entries": [
 				"A set of pulleys with a cable threaded through them and a hook to attach to objects, a block and tackle allows you to hoist up to four times the weight you can normally lift."
+			]
+		},
+		{
+			"name": "Block and Tackle",
+			"source": "XPHB",
+			"page": 224,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 5,
+			"value": 100,
+			"entries": [
+				"A {@item Block and Tackle|XPHB} allows you to hoist up to four times the weight you can normally lift."
 			]
 		},
 		{
@@ -5773,12 +6073,28 @@
 			"page": 151,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Book|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 5,
 			"value": 2500,
 			"entries": [
 				"A book might contain poetry, historical accounts, information pertaining to a particular field of lore, diagrams and notes on gnomish contraptions, or just about anything else that can be represented using text or pictures. A book of spells is a {@item spellbook|phb}."
+			]
+		},
+		{
+			"name": "Book",
+			"source": "XPHB",
+			"page": 224,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 5,
+			"value": 2500,
+			"entries": [
+				"A Book contains fiction or nonfiction. If you consult an accurate nonfiction Book about its topic, you gain a +5 bonus to Intelligence ({@skill Arcana|XPHB}, {@skill History|XPHB}, {@skill Nature|XPHB}, or {@skill Religion|XPHB}) checks you make about that topic."
 			]
 		},
 		{
@@ -6586,6 +6902,18 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Bread (loaf)",
+			"source": "XPHB",
+			"page": 231,
+			"freeRules2024": true,
+			"type": "FD|XPHB",
+			"rarity": "none",
+			"value": 2,
+			"miscTags": [
+				"CNS"
+			]
+		},
+		{
 			"name": "Breastplate of Balance",
 			"source": "BMT",
 			"page": 34,
@@ -6657,6 +6985,9 @@
 					"page": 79
 				}
 			],
+			"reprintedAs": [
+				"Brewer's Supplies|XPHB"
+			],
 			"type": "AT",
 			"rarity": "none",
 			"weight": 9,
@@ -6722,6 +7053,45 @@
 							"Ignore effects of alcohol",
 							"20"
 						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Brewer's Supplies",
+			"source": "XPHB",
+			"page": 220,
+			"freeRules2024": true,
+			"type": "AT|XPHB",
+			"rarity": "none",
+			"weight": 9,
+			"value": 2000,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Intelligence"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Detect poisoned drink ({@dc 15}), or identify alcohol ({@dc 10})"
+							]
+						},
+						{
+							"name": "Craft:",
+							"type": "item",
+							"entries": [
+								"{@item Antitoxin|XPHB}"
+							]
+						}
 					]
 				}
 			]
@@ -6835,6 +7205,9 @@
 			"page": 153,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Bucket|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 2,
@@ -6844,11 +7217,32 @@
 			]
 		},
 		{
+			"name": "Bucket",
+			"source": "XPHB",
+			"page": 224,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 2,
+			"value": 5,
+			"entries": [
+				"A Bucket holds up to half a cubic foot of contents."
+			],
+			"containerCapacity": {
+				"volume": [
+					0.5
+				]
+			}
+		},
+		{
 			"name": "Bullseye Lantern",
 			"source": "PHB",
 			"page": 152,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Bullseye Lantern|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 2,
@@ -6858,11 +7252,27 @@
 			]
 		},
 		{
+			"name": "Bullseye Lantern",
+			"source": "XPHB",
+			"page": 226,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 2,
+			"value": 1000,
+			"entries": [
+				"A Bullseye Lantern burns Oil as fuel to cast {@variantrule Bright Light|XPHB} in a 60-foot Cone and {@variantrule Dim Light|XPHB} for an additional 60 feet."
+			]
+		},
+		{
 			"name": "Burglar's Pack",
 			"source": "PHB",
 			"page": 151,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Burglar's Pack|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 44.5,
@@ -6918,6 +7328,41 @@
 				"tinderbox|phb",
 				"waterskin|phb",
 				"hempen rope (50 feet)|phb"
+			]
+		},
+		{
+			"name": "Burglar's Pack",
+			"source": "XPHB",
+			"page": 224,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 47.5,
+			"value": 1600,
+			"entries": [
+				"A Burglar's Pack contains the following items: {@item Backpack|XPHB}, {@item Ball Bearings|XPHB}, {@item Bell|XPHB}, 10 {@item Candle|XPHB|Candles}, {@item Crowbar|XPHB}, {@item Hooded Lantern|XPHB}, 7 flasks of {@item Oil|XPHB}, 5 days of {@item Rations|XPHB}, {@item Rope|XPHB}, {@item Tinderbox|XPHB}, and {@item Waterskin|XPHB}."
+			],
+			"packContents": [
+				"backpack|xphb",
+				"ball bearings|xphb",
+				"bell|xphb",
+				{
+					"item": "candle|xphb",
+					"quantity": 10
+				},
+				"crowbar|xphb",
+				"hooded lantern|xphb",
+				{
+					"item": "oil|xphb",
+					"quantity": 7
+				},
+				{
+					"item": "rations|xphb",
+					"quantity": 5
+				},
+				"rope|xphb",
+				"tinderbox|xphb",
+				"waterskin|xphb"
 			]
 		},
 		{
@@ -7078,6 +7523,9 @@
 					"page": 79
 				}
 			],
+			"reprintedAs": [
+				"Calligrapher's Supplies|XPHB"
+			],
 			"type": "AT",
 			"rarity": "none",
 			"weight": 5,
@@ -7145,6 +7593,45 @@
 			]
 		},
 		{
+			"name": "Calligrapher's Supplies",
+			"source": "XPHB",
+			"page": 220,
+			"freeRules2024": true,
+			"type": "AT|XPHB",
+			"rarity": "none",
+			"weight": 5,
+			"value": 1000,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Dexterity"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Write text with impressive flourishes that guard against forgery ({@dc 15})"
+							]
+						},
+						{
+							"name": "Craft:",
+							"type": "item",
+							"entries": [
+								"{@item Ink|XPHB}, {@item Spell Scroll|XPHB}"
+							]
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Caltrop",
 			"source": "PHB",
 			"page": 151,
@@ -7159,11 +7646,27 @@
 			]
 		},
 		{
+			"name": "Caltrops",
+			"source": "XPHB",
+			"page": 224,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 2,
+			"value": 100,
+			"entries": [
+				"As a {@action Utilize|XPHB} action, you can spread Caltrops from their bag to cover a 5-foot-square area within 5 feet of yourself. A creature that enters this area for the first time on a turn must succeed on a DC 15 Dexterity saving throw or take 1 Piercing damage and have its {@variantrule Speed|XPHB} reduced to 0 until the start of its next turn. It takes 10 minutes to recover the Caltrops."
+			]
+		},
+		{
 			"name": "Caltrops (bag of 20)",
 			"source": "PHB",
 			"page": 151,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Caltrops|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 2,
@@ -7185,10 +7688,24 @@
 			"page": 157,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Camel|XPHB"
+			],
 			"type": "MNT",
 			"rarity": "none",
 			"value": 5000,
 			"carryingCapacity": 480,
+			"speed": 50
+		},
+		{
+			"name": "Camel",
+			"source": "XPHB",
+			"page": 229,
+			"freeRules2024": true,
+			"type": "MNT|XPHB",
+			"rarity": "none",
+			"value": 5000,
+			"carryingCapacity": 450,
 			"speed": 50
 		},
 		{
@@ -7197,11 +7714,26 @@
 			"page": 151,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Candle|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"value": 1,
 			"entries": [
 				"For 1 hour, a candle sheds bright light in a 5-foot radius and dim light for an additional 5 feet."
+			]
+		},
+		{
+			"name": "Candle",
+			"source": "XPHB",
+			"page": 224,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"value": 1,
+			"entries": [
+				"For 1 hour, a lit Candle sheds {@variantrule Bright Light|XPHB} in a 5-foot radius and {@variantrule Dim Light|XPHB} for an additional 5 feet."
 			]
 		},
 		{
@@ -7489,6 +8021,9 @@
 					"page": 80
 				}
 			],
+			"reprintedAs": [
+				"Carpenter's Tools|XPHB"
+			],
 			"type": "AT",
 			"rarity": "none",
 			"weight": 6,
@@ -7577,6 +8112,45 @@
 			]
 		},
 		{
+			"name": "Carpenter's Tools",
+			"source": "XPHB",
+			"page": 220,
+			"freeRules2024": true,
+			"type": "AT|XPHB",
+			"rarity": "none",
+			"weight": 6,
+			"value": 800,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Strength"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Seal or pry open a door or container ({@dc 20})"
+							]
+						},
+						{
+							"name": "Craft:",
+							"type": "item",
+							"entries": [
+								"{@item Club|XPHB}, {@item Greatclub|XPHB}, {@item Quarterstaff|XPHB}, {@item Barrel|XPHB}, {@item Chest|XPHB}, {@item Ladder|XPHB}, {@item Pole|XPHB}, {@item Portable Ram|XPHB}, {@item Torch|XPHB}"
+							]
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Carpet of Flying, 3 ft. × 5 ft.",
 			"source": "DMG",
 			"page": 157,
@@ -7634,7 +8208,20 @@
 			"page": 157,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Carriage|XPHB"
+			],
 			"type": "VEH",
+			"rarity": "none",
+			"weight": 600,
+			"value": 10000
+		},
+		{
+			"name": "Carriage",
+			"source": "XPHB",
+			"page": 230,
+			"freeRules2024": true,
+			"type": "VEH|XPHB",
 			"rarity": "none",
 			"weight": 600,
 			"value": 10000
@@ -7664,7 +8251,20 @@
 			"page": 157,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Cart|XPHB"
+			],
 			"type": "VEH",
+			"rarity": "none",
+			"weight": 200,
+			"value": 1500
+		},
+		{
+			"name": "Cart",
+			"source": "XPHB",
+			"page": 230,
+			"freeRules2024": true,
+			"type": "VEH|XPHB",
 			"rarity": "none",
 			"weight": 200,
 			"value": 1500
@@ -7751,6 +8351,9 @@
 					"page": 80
 				}
 			],
+			"reprintedAs": [
+				"Cartographer's Tools|XPHB"
+			],
 			"type": "AT",
 			"rarity": "none",
 			"weight": 6,
@@ -7820,6 +8423,45 @@
 							"Fill in a missing part of a map",
 							"20"
 						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Cartographer's Tools",
+			"source": "XPHB",
+			"page": 220,
+			"freeRules2024": true,
+			"type": "AT|XPHB",
+			"rarity": "none",
+			"weight": 6,
+			"value": 1500,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Wisdom"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Draft a map of a small area ({@dc 15})"
+							]
+						},
+						{
+							"name": "Craft:",
+							"type": "item",
+							"entries": [
+								"{@item Map|XPHB}"
+							]
+						}
 					]
 				}
 			]
@@ -7989,11 +8631,27 @@
 			"value": 75000
 		},
 		{
+			"name": "Chain",
+			"source": "XPHB",
+			"page": 224,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 10,
+			"value": 500,
+			"entries": [
+				"As a {@action Utilize|XPHB} action, you can wrap a Chain around an unwilling creature within 5 feet of yourself that has the {@condition Grappled|XPHB}, {@condition Incapacitated|XPHB}, or {@condition Restrained|XPHB} condition if you succeed on a DC 13 Strength ({@skill Athletics|XPHB}) check. If the creature's legs are bound, the creature has the {@condition Restrained|XPHB} condition until it escapes. Escaping the Chain requires the creature to make a successful DC 18 Dexterity ({@skill Acrobatics|XPHB}) check as an action. Bursting the Chain requires a successful DC 20 Strength ({@skill Athletics|XPHB}) check as an action."
+			]
+		},
+		{
 			"name": "Chain (10 feet)",
 			"source": "PHB",
 			"page": 151,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Chain|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 10,
@@ -8060,6 +8718,9 @@
 					"page": 196
 				}
 			],
+			"reprintedAs": [
+				"Chariot|XPHB"
+			],
 			"type": "VEH",
 			"rarity": "none",
 			"weight": 100,
@@ -8084,6 +8745,16 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Chariot",
+			"source": "XPHB",
+			"page": 230,
+			"freeRules2024": true,
+			"type": "VEH|XPHB",
+			"rarity": "none",
+			"weight": 100,
+			"value": 25000
 		},
 		{
 			"name": "Charlatan's Die",
@@ -8131,11 +8802,26 @@
 			}
 		},
 		{
+			"name": "Cheese (wedge)",
+			"source": "XPHB",
+			"page": 231,
+			"freeRules2024": true,
+			"type": "FD|XPHB",
+			"rarity": "none",
+			"value": 10,
+			"miscTags": [
+				"CNS"
+			]
+		},
+		{
 			"name": "Chest",
 			"source": "PHB",
 			"page": 153,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Chest|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 25,
@@ -8146,6 +8832,24 @@
 			"containerCapacity": {
 				"weight": [
 					300
+				]
+			}
+		},
+		{
+			"name": "Chest",
+			"source": "XPHB",
+			"page": 225,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 25,
+			"value": 500,
+			"entries": [
+				"A Chest holds up to 12 cubic feet of contents."
+			],
+			"containerCapacity": {
+				"volume": [
+					12
 				]
 			}
 		},
@@ -8583,12 +9287,28 @@
 			"page": 151,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Climber's Kit|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 12,
 			"value": 2500,
 			"entries": [
 				"A climber's kit includes special pitons, boot tips, gloves, and a harness. You can use the climber's kit as an action to anchor yourself; when you do, you can't fall more than 25 feet from the point where you anchored yourself, and you can't climb more than 25 feet away from that point without undoing the anchor."
+			]
+		},
+		{
+			"name": "Climber's Kit",
+			"source": "XPHB",
+			"page": 225,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 12,
+			"value": 2500,
+			"entries": [
+				"A Climber's Kit includes boot tips, gloves, pitons, and a harness. As a {@action Utilize|XPHB} action, you can use the Climber's Kit to anchor yourself; when you do, you can't fall more than 25 feet from the anchor point, and you can't move more than 25 feet from there without undoing the anchor as a {@variantrule Bonus Action|XPHB}."
 			]
 		},
 		{
@@ -8894,6 +9614,9 @@
 					"page": 80
 				}
 			],
+			"reprintedAs": [
+				"Cobbler's Tools|XPHB"
+			],
 			"type": "AT",
 			"rarity": "none",
 			"weight": 5,
@@ -8955,6 +9678,45 @@
 							"Find a hidden compartment in a boot heel",
 							"15"
 						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Cobbler's Tools",
+			"source": "XPHB",
+			"page": 220,
+			"freeRules2024": true,
+			"type": "AT|XPHB",
+			"rarity": "none",
+			"weight": 5,
+			"value": 500,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Dexterity"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Modify footwear to give {@variantrule Advantage|XPHB} on the wearer's next Dexterity ({@skill Acrobatics|XPHB}) check ({@dc 10})"
+							]
+						},
+						{
+							"name": "Craft:",
+							"type": "item",
+							"entries": [
+								"{@item Climber's Kit|XPHB}"
+							]
+						}
 					]
 				}
 			]
@@ -9095,11 +9857,26 @@
 			]
 		},
 		{
+			"name": "Common Wine (bottle)",
+			"source": "XPHB",
+			"page": 231,
+			"freeRules2024": true,
+			"type": "FD|XPHB",
+			"rarity": "none",
+			"value": 20,
+			"miscTags": [
+				"CNS"
+			]
+		},
+		{
 			"name": "Common Wine (pitcher)",
 			"source": "PHB",
 			"page": 158,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Common Wine (bottle)|XPHB"
+			],
 			"type": "FD",
 			"rarity": "none",
 			"value": 20,
@@ -9113,12 +9890,28 @@
 			"page": 151,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Component Pouch|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 2,
 			"value": 2500,
 			"entries": [
 				"A component pouch is a small, watertight leather belt pouch that has compartments to hold all the material components and other special items you need to cast your spells, except for those components that have a specific cost (as indicated in a spell's description)."
+			]
+		},
+		{
+			"name": "Component Pouch",
+			"source": "XPHB",
+			"page": 225,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 2,
+			"value": 2500,
+			"entries": [
+				"A Component Pouch is watertight and filled with compartments that hold all the free Material components of your spells."
 			]
 		},
 		{
@@ -9401,6 +10194,9 @@
 					"page": 80
 				}
 			],
+			"reprintedAs": [
+				"Cook's Utensils|XPHB"
+			],
 			"type": "AT",
 			"rarity": "none",
 			"weight": 8,
@@ -9470,6 +10266,45 @@
 							"Create a gourmet meal",
 							"15"
 						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Cook's Utensils",
+			"source": "XPHB",
+			"page": 220,
+			"freeRules2024": true,
+			"type": "AT|XPHB",
+			"rarity": "none",
+			"weight": 8,
+			"value": 100,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Wisdom"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Improve food's flavor ({@dc 10}), or detect spoiled or poisoned food ({@dc 15})"
+							]
+						},
+						{
+							"name": "Craft:",
+							"type": "item",
+							"entries": [
+								"{@item Rations|XPHB}"
+							]
+						}
 					]
 				}
 			]
@@ -9599,11 +10434,27 @@
 			]
 		},
 		{
+			"name": "Costume",
+			"source": "XPHB",
+			"page": 225,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 4,
+			"value": 500,
+			"entries": [
+				"While wearing a Costume, you have {@variantrule Advantage|XPHB} on any ability check you make to impersonate the person or type of person it represents."
+			]
+		},
+		{
 			"name": "Costume Clothes",
 			"source": "PHB",
 			"page": 150,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Costume|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 4,
@@ -9780,6 +10631,9 @@
 			"page": 151,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Crossbow Bolt Case|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 1,
@@ -9796,17 +10650,53 @@
 			}
 		},
 		{
+			"name": "Crossbow Bolt Case",
+			"source": "XPHB",
+			"page": 224,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 1,
+			"value": 100,
+			"entries": [
+				"A {@item Crossbow Bolt Case|XPHB} holds up to 20 Bolts."
+			],
+			"containerCapacity": {
+				"item": [
+					{
+						"bolt|xphb": 20
+					}
+				]
+			}
+		},
+		{
 			"name": "Crowbar",
 			"source": "PHB",
 			"page": 151,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Crowbar|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 5,
 			"value": 200,
 			"entries": [
 				"Using a crowbar grants advantage to Strength checks where the crowbar's leverage can be applied."
+			]
+		},
+		{
+			"name": "Crowbar",
+			"source": "XPHB",
+			"page": 225,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 5,
+			"value": 200,
+			"entries": [
+				"Using a Crowbar gives you {@variantrule Advantage|XPHB} on Strength checks where the Crowbar's leverage can be applied."
 			]
 		},
 		{
@@ -14097,9 +14987,43 @@
 			"page": 154,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Dice Set|XPHB"
+			],
 			"type": "GS",
 			"rarity": "none",
 			"value": 10
+		},
+		{
+			"name": "Dice Set",
+			"source": "XPHB",
+			"page": 221,
+			"freeRules2024": true,
+			"type": "GS|XPHB",
+			"rarity": "none",
+			"value": 10,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Wisdom"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Discern whether someone is cheating ({@dc 10}), or win the game ({@dc 20})"
+							]
+						}
+					]
+				}
+			]
 		},
 		{
 			"name": "Dimensional Loop",
@@ -14199,6 +15123,9 @@
 			"page": 151,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Diplomat's Pack|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 36,
@@ -14246,6 +15173,47 @@
 			]
 		},
 		{
+			"name": "Diplomat's Pack",
+			"source": "XPHB",
+			"page": 225,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 39,
+			"value": 3900,
+			"entries": [
+				"A Diplomat's Pack contains the following items: {@item Chest|XPHB}, {@item Fine Clothes|XPHB}, {@item Ink|XPHB}, 5 {@item Ink Pen|XPHB|Ink Pens}, {@item Lamp|XPHB}, 2 {@item Map or Scroll Case|XPHB|Map or Scroll Cases}, 4 flasks of {@item Oil|XPHB}, 5 sheets of {@item Paper|XPHB}, 5 sheets of {@item Parchment|XPHB}, {@item Perfume|XPHB}, and {@item Tinderbox|XPHB}."
+			],
+			"packContents": [
+				"chest|xphb",
+				"fine clothes|xphb",
+				"ink|xphb",
+				{
+					"item": "ink pen|xphb",
+					"quantity": 5
+				},
+				"lamp|xphb",
+				{
+					"item": "map or scroll case|xphb",
+					"quantity": 2
+				},
+				{
+					"item": "oil|xphb",
+					"quantity": 4
+				},
+				{
+					"item": "paper|xphb",
+					"quantity": 5
+				},
+				{
+					"item": "parchment|xphb",
+					"quantity": 5
+				},
+				"perfume|xphb",
+				"tinderbox|xphb"
+			]
+		},
+		{
 			"name": "Disguise Kit",
 			"source": "PHB",
 			"page": 154,
@@ -14256,6 +15224,9 @@
 					"source": "XGE",
 					"page": 81
 				}
+			],
+			"reprintedAs": [
+				"Disguise Kit|XPHB"
 			],
 			"type": "T",
 			"rarity": "none",
@@ -14333,6 +15304,45 @@
 							"Copy a humanoid's appearance",
 							"20"
 						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Disguise Kit",
+			"source": "XPHB",
+			"page": 221,
+			"freeRules2024": true,
+			"type": "T|XPHB",
+			"rarity": "none",
+			"weight": 3,
+			"value": 2500,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Charisma"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Apply makeup ({@dc 10})"
+							]
+						},
+						{
+							"name": "Craft:",
+							"type": "item",
+							"entries": [
+								"{@item Costume|XPHB}"
+							]
+						}
 					]
 				}
 			]
@@ -14629,7 +15639,21 @@
 			"page": 157,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Draft Horse|XPHB"
+			],
 			"type": "MNT",
+			"rarity": "none",
+			"value": 5000,
+			"carryingCapacity": 540,
+			"speed": 40
+		},
+		{
+			"name": "Draft Horse",
+			"source": "XPHB",
+			"page": 229,
+			"freeRules2024": true,
+			"type": "MNT|XPHB",
 			"rarity": "none",
 			"value": 5000,
 			"carryingCapacity": 540,
@@ -14702,10 +15726,44 @@
 			"source": "PHB",
 			"page": 154,
 			"basicRules": true,
+			"reprintedAs": [
+				"Dragonchess Set|XPHB"
+			],
 			"type": "GS",
 			"rarity": "none",
 			"weight": 0.5,
 			"value": 100
+		},
+		{
+			"name": "Dragonchess Set",
+			"source": "XPHB",
+			"page": 221,
+			"freeRules2024": true,
+			"type": "GS|XPHB",
+			"rarity": "none",
+			"value": 100,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Wisdom"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Discern whether someone is cheating ({@dc 10}), or win the game ({@dc 20})"
+							]
+						}
+					]
+				}
+			]
 		},
 		{
 			"name": "Dragongleam",
@@ -14969,6 +16027,9 @@
 			"page": 151,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Dungeoneer's Pack|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 61.5,
@@ -15009,6 +16070,39 @@
 				},
 				"waterskin|phb",
 				"hempen rope (50 feet)|phb"
+			]
+		},
+		{
+			"name": "Dungeoneer's Pack",
+			"source": "XPHB",
+			"page": 225,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 55,
+			"value": 1200,
+			"entries": [
+				"A Dungeoneer's Pack contains the following items: {@item Backpack|XPHB}, {@item Caltrops|XPHB}, {@item Crowbar|XPHB}, 2 flasks of {@item Oil|XPHB}, 10 days of {@item Rations|XPHB}, {@item Rope|XPHB}, {@item Tinderbox|XPHB}, 10 {@item Torch|XPHB|Torches}, and {@item Waterskin|XPHB}."
+			],
+			"packContents": [
+				"backpack|xphb",
+				"caltrops|xphb",
+				"crowbar|xphb",
+				{
+					"item": "oil|xphb",
+					"quantity": 2
+				},
+				{
+					"item": "rations|xphb",
+					"quantity": 10
+				},
+				"rope|xphb",
+				"tinderbox|xphb",
+				{
+					"item": "torch|xphb",
+					"quantity": 10
+				},
+				"waterskin|xphb"
 			]
 		},
 		{
@@ -15821,7 +16915,21 @@
 			"page": 157,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Elephant|XPHB"
+			],
 			"type": "MNT",
+			"rarity": "none",
+			"value": 20000,
+			"carryingCapacity": 1320,
+			"speed": 40
+		},
+		{
+			"name": "Elephant",
+			"source": "XPHB",
+			"page": 229,
+			"freeRules2024": true,
+			"type": "MNT|XPHB",
 			"rarity": "none",
 			"value": 20000,
 			"carryingCapacity": 1320,
@@ -15955,10 +17063,26 @@
 			"page": 151,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Emblem|XPHB"
+			],
 			"type": "SCF",
 			"scfType": "holy",
 			"rarity": "none",
 			"value": 500
+		},
+		{
+			"name": "Emblem",
+			"source": "XPHB",
+			"page": 226,
+			"freeRules2024": true,
+			"type": "SCF|XPHB",
+			"scfType": "holy",
+			"rarity": "none",
+			"value": 500,
+			"entries": [
+				"For an Emblem to be an effective Holy Symbol, it must be borne on fabric (such as a tabard or banner) or a {@item Shield|XPHB}."
+			]
 		},
 		{
 			"name": "Embroidered glove set with jewel chips",
@@ -16041,6 +17165,9 @@
 			"page": 151,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Entertainer's Pack|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 38,
@@ -16077,6 +17204,40 @@
 				},
 				"waterskin|phb",
 				"disguise kit|phb"
+			]
+		},
+		{
+			"name": "Entertainer's Pack",
+			"source": "XPHB",
+			"page": 225,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 58.5,
+			"value": 4000,
+			"entries": [
+				"An Entertainer's Pack contains the following items: {@item Backpack|XPHB}, {@item Bedroll|XPHB}, {@item Bell|XPHB}, {@item Bullseye Lantern|XPHB}, 3 {@item Costume|XPHB|Costumes}, {@item Mirror|XPHB}, 8 flasks of {@item Oil|XPHB}, 9 days of {@item Rations|XPHB}, {@item Tinderbox|XPHB}, and {@item Waterskin|XPHB}."
+			],
+			"packContents": [
+				"backpack|xphb",
+				"bedroll|xphb",
+				"bell|xphb",
+				"bullseye lantern|xphb",
+				{
+					"item": "costume|xphb",
+					"quantity": 3
+				},
+				"mirror|xphb",
+				{
+					"item": "oil|xphb",
+					"quantity": 8
+				},
+				{
+					"item": "rations|xphb",
+					"quantity": 9
+				},
+				"tinderbox|xphb",
+				"waterskin|xphb"
 			]
 		},
 		{
@@ -16315,6 +17476,9 @@
 			"page": 157,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Exotic Saddle|XPHB"
+			],
 			"type": "TAH",
 			"rarity": "none",
 			"weight": 40,
@@ -16324,11 +17488,27 @@
 			]
 		},
 		{
+			"name": "Exotic Saddle",
+			"source": "XPHB",
+			"page": 230,
+			"freeRules2024": true,
+			"type": "TAH|XPHB",
+			"rarity": "none",
+			"weight": 40,
+			"value": 6000,
+			"entries": [
+				"A saddle comes with a bit, a bridle, reins, and any other equipment needed to use the saddle. An Exotic Saddle is required for riding an aquatic or a flying mount."
+			]
+		},
+		{
 			"name": "Explorer's Pack",
 			"source": "PHB",
 			"page": 151,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Explorer's Pack|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 59,
@@ -16364,6 +17544,38 @@
 				},
 				"waterskin|phb",
 				"hempen rope (50 feet)|phb"
+			]
+		},
+		{
+			"name": "Explorer's Pack",
+			"source": "XPHB",
+			"page": 225,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 55,
+			"value": 1000,
+			"entries": [
+				"An Explorer's Pack contains the following items: {@item Backpack|XPHB}, {@item Bedroll|XPHB}, 2 flasks of {@item Oil|XPHB}, 10 days of {@item Rations|XPHB}, {@item Rope|XPHB}, {@item Tinderbox|XPHB}, 10 {@item Torch|XPHB|Torches}, and {@item Waterskin|XPHB}."
+			],
+			"packContents": [
+				"backpack|xphb",
+				"bedroll|xphb",
+				{
+					"item": "oil|xphb",
+					"quantity": 2
+				},
+				{
+					"item": "rations|xphb",
+					"quantity": 10
+				},
+				"rope|xphb",
+				"tinderbox|xphb",
+				{
+					"item": "torch|xphb",
+					"quantity": 10
+				},
+				"waterskin|xphb"
 			]
 		},
 		{
@@ -16918,7 +18130,20 @@
 			"page": 157,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Feed (per day)|XPHB"
+			],
 			"type": "TAH",
+			"rarity": "none",
+			"weight": 10,
+			"value": 5
+		},
+		{
+			"name": "Feed (per day)",
+			"source": "XPHB",
+			"page": 230,
+			"freeRules2024": true,
+			"type": "TAH|XPHB",
 			"rarity": "none",
 			"weight": 10,
 			"value": 5
@@ -17755,10 +18980,26 @@
 			"page": 150,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Fine Clothes|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 6,
 			"value": 1500
+		},
+		{
+			"name": "Fine Clothes",
+			"source": "XPHB",
+			"page": 225,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 6,
+			"value": 1500,
+			"entries": [
+				"Fine Clothes are made of expensive fabrics and adorned with expertly crafted details. Some events and locations admit only people wearing these clothes."
+			]
 		},
 		{
 			"name": "Fine gold chain set with a fire opal",
@@ -17798,7 +19039,22 @@
 			"page": 158,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Fine Wine (bottle)|XPHB"
+			],
 			"type": "FD",
+			"rarity": "none",
+			"value": 1000,
+			"miscTags": [
+				"CNS"
+			]
+		},
+		{
+			"name": "Fine Wine (bottle)",
+			"source": "XPHB",
+			"page": 231,
+			"freeRules2024": true,
+			"type": "FD|XPHB",
 			"rarity": "none",
 			"value": 1000,
 			"miscTags": [
@@ -18002,6 +19258,9 @@
 			"page": 153,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Flask|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 1,
@@ -18009,6 +19268,24 @@
 			"entries": [
 				"A flask holds 1 pint of liquid."
 			]
+		},
+		{
+			"name": "Flask",
+			"source": "XPHB",
+			"page": 225,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 1,
+			"value": 2,
+			"entries": [
+				"A Flask holds up to 1 pint."
+			],
+			"containerCapacity": {
+				"volume": [
+					0.02
+				]
+			}
 		},
 		{
 			"name": "Flayer Slayer",
@@ -18249,6 +19526,9 @@
 					"page": 81
 				}
 			],
+			"reprintedAs": [
+				"Forgery Kit|XPHB"
+			],
 			"type": "T",
 			"rarity": "none",
 			"weight": 5,
@@ -18327,6 +19607,38 @@
 							"Duplicate a wax seal",
 							"20"
 						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Forgery Kit",
+			"source": "XPHB",
+			"page": 221,
+			"freeRules2024": true,
+			"type": "T|XPHB",
+			"rarity": "none",
+			"weight": 5,
+			"value": 1500,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Dexterity"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Mimic 10 or fewer words of someone else's handwriting ({@dc 15}), or duplicate a wax seal ({@dc 20})"
+							]
+						}
 					]
 				}
 			]
@@ -18480,7 +19792,28 @@
 			"page": 119,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Galley|XPHB"
+			],
 			"type": "SHP",
+			"rarity": "none",
+			"value": 3000000,
+			"crew": 80,
+			"vehAc": 15,
+			"vehHp": 500,
+			"vehDmgThresh": 20,
+			"vehSpeed": 4,
+			"capCargo": 150,
+			"seeAlsoVehicle": [
+				"Galley"
+			]
+		},
+		{
+			"name": "Galley",
+			"source": "XPHB",
+			"page": 230,
+			"freeRules2024": true,
+			"type": "SHP|XPHB",
 			"rarity": "none",
 			"value": 3000000,
 			"crew": 80,
@@ -18856,6 +20189,9 @@
 			"page": 153,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Glass Bottle|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 2,
@@ -18863,6 +20199,24 @@
 			"entries": [
 				"A bottle holds 1½ pints of liquid."
 			]
+		},
+		{
+			"name": "Glass Bottle",
+			"source": "XPHB",
+			"page": 224,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 2,
+			"value": 200,
+			"entries": [
+				"A Glass Bottle holds up to 1½ pints."
+			],
+			"containerCapacity": {
+				"volume": [
+					0.03
+				]
+			}
 		},
 		{
 			"name": "Glass-Studded Armor",
@@ -18892,6 +20246,9 @@
 					"source": "XGE",
 					"page": 82
 				}
+			],
+			"reprintedAs": [
+				"Glassblower's Tools|XPHB"
 			],
 			"type": "AT",
 			"rarity": "none",
@@ -18947,6 +20304,45 @@
 							"Determine what a glass object once held",
 							"20"
 						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Glassblower's Tools",
+			"source": "XPHB",
+			"page": 220,
+			"freeRules2024": true,
+			"type": "AT|XPHB",
+			"rarity": "none",
+			"weight": 5,
+			"value": 3000,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Intelligence"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Discern what a glass object held in the past 24 hours ({@dc 15})"
+							]
+						},
+						{
+							"name": "Craft:",
+							"type": "item",
+							"entries": [
+								"{@item Glass Bottle|XPHB}, {@item Magnifying Glass|XPHB}, {@item Spyglass|XPHB}, {@item Vial|XPHB}"
+							]
+						}
 					]
 				}
 			]
@@ -19492,10 +20888,26 @@
 			"page": 150,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Grappling Hook|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 4,
 			"value": 200
+		},
+		{
+			"name": "Grappling Hook",
+			"source": "XPHB",
+			"page": 225,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 4,
+			"value": 200,
+			"entries": [
+				"As a {@action Utilize|XPHB} action, you can throw the {@variantrule Grappling|XPHB} Hook at a railing, a ledge, or another catch within 50 feet of yourself, and the hook catches on if you succeed on a DC 13 Dexterity ({@skill Acrobatics|XPHB}) check. If you tied a Rope to the hook, you can then climb it."
+			]
 		},
 		{
 			"name": "Grasping Whip",
@@ -20605,6 +22017,9 @@
 			"page": 151,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Healer's Kit|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 3,
@@ -20613,6 +22028,19 @@
 				"This kit is a leather pouch containing bandages, salves, and splints. The kit has ten uses. As an action, you can expend one use of the kit to stabilize a creature that has 0 hit points, without needing to make a Wisdom ({@skill Medicine}) check."
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Healer's Kit",
+			"source": "XPHB",
+			"page": 225,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 3,
+			"value": 500,
+			"entries": [
+				"A Healer's Kit has ten uses. As a {@action Utilize|XPHB} action, you can expend one of its uses to stabilize an {@condition Unconscious|XPHB} creature that has 0 {@variantrule Hit Points|XPHB} without needing to make a Wisdom ({@skill Medicine|XPHB}) check."
+			]
 		},
 		{
 			"name": "Heart Weaver's Primer",
@@ -21124,6 +22552,9 @@
 			"page": 153,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Rope|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 10,
@@ -21143,6 +22574,9 @@
 					"source": "XGE",
 					"page": 82
 				}
+			],
+			"reprintedAs": [
+				"Herbalism Kit|XPHB"
 			],
 			"type": "T",
 			"rarity": "none",
@@ -21215,6 +22649,45 @@
 							"Identify poison",
 							"20"
 						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Herbalism Kit",
+			"source": "XPHB",
+			"page": 221,
+			"freeRules2024": true,
+			"type": "T|XPHB",
+			"rarity": "none",
+			"weight": 3,
+			"value": 500,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Intelligence"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Identify a plant ({@dc 10})"
+							]
+						},
+						{
+							"name": "Craft:",
+							"type": "item",
+							"entries": [
+								"{@item Antitoxin|XPHB}, {@item Candle|XPHB}, {@item Healer's Kit|XPHB}, {@item Potion of Healing|XPHB}"
+							]
+						}
 					]
 				}
 			]
@@ -21584,11 +23057,27 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Holy Water",
+			"source": "XPHB",
+			"page": 226,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 1,
+			"value": 2500,
+			"entries": [
+				"When you take the {@action Attack|XPHB} action, you can replace one of your attacks with throwing a flask of Holy Water. Target one creature you can see within 20 feet of yourself. The target must succeed on a Dexterity saving throw (DC 8 plus your Dexterity modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus}) or take {@damage 2d8} Radiant damage if it is a Fiend or an Undead."
+			]
+		},
+		{
 			"name": "Holy Water (flask)",
 			"source": "PHB",
 			"page": 151,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Holy Water|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 1,
@@ -21727,12 +23216,28 @@
 			"page": 152,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Hooded Lantern|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 2,
 			"value": 500,
 			"entries": [
 				"A hooded lantern casts bright light in a 30-foot radius and dim light for an additional 30 feet. Once lit, it burns for 6 hours on a flask (1 pint) of oil. As an action, you can lower the hood, reducing the light to dim light in a 5-foot radius."
+			]
+		},
+		{
+			"name": "Hooded Lantern",
+			"source": "XPHB",
+			"page": 226,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 2,
+			"value": 500,
+			"entries": [
+				"A Hooded Lantern burns Oil as fuel to cast {@variantrule Bright Light|XPHB} in a 30-foot radius and {@variantrule Dim Light|XPHB} for an additional 30 feet. As a {@variantrule Bonus Action|XPHB}, you can lower the hood, reducing the light to {@variantrule Dim Light|XPHB} in a 5-foot radius, or raise it again."
 			]
 		},
 		{
@@ -22429,6 +23934,9 @@
 			"page": 158,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Cheese (wedge)|XPHB"
+			],
 			"type": "FD",
 			"rarity": "none",
 			"value": 10,
@@ -22462,12 +23970,28 @@
 			"page": 152,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Hunting Trap|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 25,
 			"value": 500,
 			"entries": [
 				"When you use your action to set it, this trap forms a saw-toothed steel ring that snaps shut when a creature steps on a pressure plate in the center. The trap is affixed by a heavy chain to an immobile object, such as a tree or a spike driven into the ground. A creature that steps on the plate must succeed on a DC 13 Dexterity saving throw or take {@damage 1d4} piercing damage and stop moving. Thereafter, until the creature breaks free of the trap, its movement is limited by the length of the chain (typically 3 feet long). A creature can use its action to make a DC 13 Strength check, freeing itself or another creature within its reach on a success. Each failed check deals 1 piercing damage to the trapped creature."
+			]
+		},
+		{
+			"name": "Hunting Trap",
+			"source": "XPHB",
+			"page": 226,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 25,
+			"value": 500,
+			"entries": [
+				"As a {@action Utilize|XPHB} action, you can set a Hunting Trap, which is a sawtooth steel ring that snaps shut when a creature steps on a pressure plate in the center. The trap is affixed by a heavy chain to an immobile object, such as a tree or a spike driven into the ground. A creature that steps on the plate must succeed on a DC 13 Dexterity saving throw or take {@damage 1d4} Piercing damage and have its {@variantrule Speed|XPHB} reduced to 0 until the start of its next turn. Thereafter, until the creature breaks free of the trap, its movement is limited by the length of the chain (typically 3 feet). A creature can use its action to make a DC 13 Strength ({@skill Athletics|XPHB}) check, freeing itself or another creature within its reach on a success. Each failed check deals 1 Piercing damage to the trapped creature."
 			]
 		},
 		{
@@ -23171,11 +24695,26 @@
 			]
 		},
 		{
+			"name": "Ink",
+			"source": "XPHB",
+			"page": 226,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"value": 1000,
+			"entries": [
+				"Ink comes in a 1-ounce bottle, which provides enough ink to write about 500 pages."
+			]
+		},
+		{
 			"name": "Ink (1-ounce bottle)",
 			"source": "PHB",
 			"page": 150,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Ink|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"value": 1000,
@@ -23189,9 +24728,24 @@
 			"page": 150,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Ink Pen|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"value": 2
+		},
+		{
+			"name": "Ink Pen",
+			"source": "XPHB",
+			"page": 226,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"value": 2,
+			"entries": [
+				"Using Ink, an Ink Pen is used to write or draw."
+			]
 		},
 		{
 			"name": "Inscrutable Staff",
@@ -24184,6 +25738,9 @@
 			"page": 153,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Iron Pot|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 10,
@@ -24193,15 +25750,68 @@
 			]
 		},
 		{
+			"name": "Iron Pot",
+			"source": "XPHB",
+			"page": 228,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 10,
+			"value": 200,
+			"entries": [
+				"An Iron Pot holds up to 1 gallon."
+			],
+			"containerCapacity": {
+				"volume": [
+					0.1
+				]
+			}
+		},
+		{
 			"name": "Iron Spike",
 			"source": "PHB",
 			"page": 150,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Iron Spike|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 0.5,
 			"value": 10
+		},
+		{
+			"name": "Iron Spike",
+			"source": "XPHB",
+			"page": 228,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 0.5,
+			"value": 10,
+			"entries": [
+				"Iron Spikes come in bundles of ten. As a {@action Utilize|XPHB} action, you can use a blunt object, such as a Light Hammer, to hammer a spike into wood, earth, or a similar material. You can do so to jam a door shut or to then tie a {@item Rope|XPHB} or {@item Chain|XPHB} to the Spike."
+			]
+		},
+		{
+			"name": "Iron Spikes",
+			"source": "XPHB",
+			"page": 228,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 5,
+			"value": 100,
+			"entries": [
+				"Iron Spikes come in bundles of ten. As a {@action Utilize|XPHB} action, you can use a blunt object, such as a Light Hammer, to hammer a spike into wood, earth, or a similar material. You can do so to jam a door shut or to then tie a {@item Rope|XPHB} or {@item Chain|XPHB} to the Spike."
+			],
+			"packContents": [
+				{
+					"item": "iron spike|xphb",
+					"quantity": 10
+				}
+			]
 		},
 		{
 			"name": "Iron Spikes (10)",
@@ -24209,6 +25819,9 @@
 			"page": 150,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Iron Spikes|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 5,
@@ -24771,6 +26384,9 @@
 					"page": 82
 				}
 			],
+			"reprintedAs": [
+				"Jeweler's Tools|XPHB"
+			],
 			"type": "AT",
 			"rarity": "none",
 			"weight": 2,
@@ -24830,11 +26446,53 @@
 			]
 		},
 		{
+			"name": "Jeweler's Tools",
+			"source": "XPHB",
+			"page": 220,
+			"freeRules2024": true,
+			"type": "AT|XPHB",
+			"rarity": "none",
+			"weight": 2,
+			"value": 2500,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Intelligence"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Discern a gem's value ({@dc 15})"
+							]
+						},
+						{
+							"name": "Craft:",
+							"type": "item",
+							"entries": [
+								"{@item Arcane Focus|XPHB}, {@item Holy Symbol|XPHB}"
+							]
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Jug",
 			"source": "PHB",
 			"page": 153,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Jug|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 4,
@@ -24842,6 +26500,24 @@
 			"entries": [
 				"A jug holds 1 gallon of liquid."
 			]
+		},
+		{
+			"name": "Jug",
+			"source": "XPHB",
+			"page": 226,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 4,
+			"value": 2,
+			"entries": [
+				"A Jug holds up to 1 gallon."
+			],
+			"containerCapacity": {
+				"volume": [
+					0.1
+				]
+			}
 		},
 		{
 			"name": "Junky +1 Dagger",
@@ -24883,6 +26559,9 @@
 			"page": 119,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Keelboat|XPHB"
+			],
 			"type": "SHP",
 			"rarity": "none",
 			"value": 300000,
@@ -24896,6 +26575,25 @@
 			"entries": [
 				"Keelboats and rowboats are used on lakes and rivers. If going downstream, add the speed of the current (typically 3 miles per hour) to the speed of the vehicle. These vehicles can't be rowed against any significant current, but they can be pulled upstream by draft animals on the shores."
 			],
+			"seeAlsoVehicle": [
+				"Keelboat"
+			]
+		},
+		{
+			"name": "Keelboat",
+			"source": "XPHB",
+			"page": 230,
+			"freeRules2024": true,
+			"type": "SHP|XPHB",
+			"rarity": "none",
+			"value": 300000,
+			"crew": 1,
+			"vehAc": 15,
+			"vehHp": 100,
+			"vehDmgThresh": 10,
+			"vehSpeed": 1,
+			"capPassenger": 6,
+			"capCargo": 0.5,
 			"seeAlsoVehicle": [
 				"Keelboat"
 			]
@@ -25508,11 +27206,27 @@
 			]
 		},
 		{
+			"name": "Ladder",
+			"source": "XPHB",
+			"page": 226,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 25,
+			"value": 10,
+			"entries": [
+				"A Ladder is 10 feet tall. You must climb to move up or down it."
+			]
+		},
+		{
 			"name": "Ladder (10-foot)",
 			"source": "PHB",
 			"page": 150,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Ladder|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 25,
@@ -25527,6 +27241,9 @@
 			"page": 152,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Lamp|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 1,
@@ -25534,6 +27251,20 @@
 			"entries": [
 				"A lamp casts bright light in a 15-foot radius and dim light for an additional 30 feet. Once lit, it burns for 6 hours on a flask (1 pint) of oil."
 			]
+		},
+		{
+			"name": "Lamp",
+			"source": "XPHB",
+			"page": 226,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 1,
+			"value": 50,
+			"entries": [
+				"A Lamp burns Oil as fuel to cast {@variantrule Bright Light|XPHB} in a 15-foot radius and {@variantrule Dim Light|XPHB} for an additional 30 feet."
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Lamprey Ship",
@@ -25946,6 +27677,9 @@
 					"page": 82
 				}
 			],
+			"reprintedAs": [
+				"Leatherworker's Tools|XPHB"
+			],
 			"type": "AT",
 			"rarity": "none",
 			"weight": 5,
@@ -26000,6 +27734,45 @@
 							"Determine a leather item's history",
 							"20"
 						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Leatherworker's Tools",
+			"source": "XPHB",
+			"page": 221,
+			"freeRules2024": true,
+			"type": "AT|XPHB",
+			"rarity": "none",
+			"weight": 5,
+			"value": 500,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Dexterity"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Add a design to a leather item ({@dc 10})"
+							]
+						},
+						{
+							"name": "Craft:",
+							"type": "item",
+							"entries": [
+								"{@item Sling|XPHB}, {@item Whip|XPHB}, {@item Hide Armor|XPHB}, {@item Leather Armor|XPHB}, {@item Studded Leather Armor|XPHB}, {@item Backpack|XPHB}, {@item Crossbow Bolt Case|PHB}, {@item Map or Scroll Case|XPHB}, {@item Parchment|XPHB}, {@item Pouch|XPHB}, {@item Quiver|XPHB}, {@item Waterskin|XPHB}"
+							]
+						}
 					]
 				}
 			]
@@ -26349,6 +28122,9 @@
 			"page": 158,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Bread (loaf)|XPHB"
+			],
 			"type": "FD",
 			"rarity": "none",
 			"value": 2,
@@ -26362,12 +28138,28 @@
 			"page": 152,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Lock|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 1,
 			"value": 1000,
 			"entries": [
 				"A key is provided with the lock. Without the key, a creature proficient with {@item thieves' tools|phb} can pick this lock with a successful DC 15 Dexterity check. Your DM may decide that better locks are available for higher prices."
+			]
+		},
+		{
+			"name": "Lock",
+			"source": "XPHB",
+			"page": 226,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 1,
+			"value": 1000,
+			"entries": [
+				"A Lock comes with a key. Without the key, a creature can use {@item Thieves' Tools|XPHB} to pick this Lock with a successful DC 15 Dexterity ({@skill Sleight of Hand|XPHB}) check."
 			]
 		},
 		{
@@ -26436,7 +28228,29 @@
 			"page": 119,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Longship|XPHB"
+			],
 			"type": "SHP",
+			"rarity": "none",
+			"value": 1000000,
+			"crew": 40,
+			"vehAc": 15,
+			"vehHp": 300,
+			"vehDmgThresh": 15,
+			"vehSpeed": 3,
+			"capPassenger": 150,
+			"capCargo": 10,
+			"seeAlsoVehicle": [
+				"Longship"
+			]
+		},
+		{
+			"name": "Longship",
+			"source": "XPHB",
+			"page": 230,
+			"freeRules2024": true,
+			"type": "SHP|XPHB",
 			"rarity": "none",
 			"value": 1000000,
 			"crew": 40,
@@ -27208,11 +29022,26 @@
 			"page": 152,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Magnifying Glass|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"value": 10000,
 			"entries": [
 				"This lens allows a closer look at small objects. It is also useful as a substitute for flint and steel when starting fires. Lighting a fire with a magnifying glass requires light as bright as sunlight to focus, tinder to ignite, and about 5 minutes for the fire to ignite. A magnifying glass grants advantage on any ability check made to appraise or inspect an item that is small or highly detailed."
+			]
+		},
+		{
+			"name": "Magnifying Glass",
+			"source": "XPHB",
+			"page": 226,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"value": 10000,
+			"entries": [
+				"A Magnifying Glass grants {@variantrule Advantage|XPHB} on any ability check made to appraise or inspect a highly detailed item. Lighting a fire with a Magnifying Glass requires light as bright as sunlight to focus, tinder to ignite, and about 5 minutes for the fire to ignite."
 			]
 		},
 		{
@@ -27251,12 +29080,29 @@
 			"page": 152,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Manacles|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 6,
 			"value": 200,
 			"entries": [
 				"These metal restraints can bind a Small or Medium creature. Escaping the manacles requires a successful DC 20 Dexterity check. Breaking them requires a successful DC 20 Strength check. Each set of manacles comes with one key. Without the key, a creature proficient with {@item thieves' tools|PHB} can pick the manacles' lock with a successful DC 15 Dexterity check. Manacles have 15 hit points."
+			]
+		},
+		{
+			"name": "Manacles",
+			"source": "XPHB",
+			"page": 226,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 6,
+			"value": 200,
+			"entries": [
+				"As a {@action Utilize|XPHB} action, you can use Manacles to bind an unwilling Small or Medium creature within 5 feet of yourself that has the {@condition Grappled|XPHB}, {@condition Incapacitated|XPHB}, or {@condition Restrained|XPHB} condition if you succeed on a DC 13 Dexterity ({@skill Sleight of Hand|XPHB}) check. While bound, a creature has {@variantrule Disadvantage|XPHB} on attack rolls, and the creature is {@condition Restrained|XPHB} if the Manacles are attached to a chain or hook that is fixed in place. Escaping the Manacles requires a successful DC 20 Dexterity ({@skill Sleight of Hand|XPHB}) check as an action. Bursting them requires a successful DC 25 Strength ({@skill Athletics|XPHB}) check as an action.",
+				"Each set of Manacles comes with a key. Without the key, a creature can use {@item Thieves' Tools|XPHB} to pick the Manacles' lock with a successful DC 15 Dexterity ({@skill Sleight of Hand|XPHB}) check."
 			]
 		},
 		{
@@ -27396,11 +29242,26 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Map",
+			"source": "XPHB",
+			"page": 227,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"value": 100,
+			"entries": [
+				"If you consult an accurate Map, you gain a +5 bonus to Wisdom ({@skill Survival|XPHB}) checks you make to find your way in the place represented on it."
+			]
+		},
+		{
 			"name": "Map or Scroll Case",
 			"source": "PHB",
 			"page": 151,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Map or Scroll Case|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 1,
@@ -27413,6 +29274,27 @@
 					{
 						"parchment (one sheet)|phb": 5,
 						"paper (one sheet)|phb": 10
+					}
+				]
+			}
+		},
+		{
+			"name": "Map or Scroll Case",
+			"source": "XPHB",
+			"page": 224,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 1,
+			"value": 100,
+			"entries": [
+				"A {@item Map or Scroll Case|XPHB} holds up to 10 sheets of paper or 5 sheets of parchment."
+			],
+			"containerCapacity": {
+				"item": [
+					{
+						"parchment|xphb": 5,
+						"paper|xphb": 10
 					}
 				]
 			}
@@ -27473,6 +29355,9 @@
 					"source": "XGE",
 					"page": 83
 				}
+			],
+			"reprintedAs": [
+				"Mason's Tools|XPHB"
 			],
 			"type": "AT",
 			"rarity": "none",
@@ -27535,6 +29420,45 @@
 							"Find a weak point in a stone wall",
 							"15"
 						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Mason's Tools",
+			"source": "XPHB",
+			"page": 221,
+			"freeRules2024": true,
+			"type": "AT|XPHB",
+			"rarity": "none",
+			"weight": 8,
+			"value": 1000,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Strength"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Chisel a symbol or hole in stone ({@dc 10})"
+							]
+						},
+						{
+							"name": "Craft:",
+							"type": "item",
+							"entries": [
+								"{@item Block and Tackle|XPHB}"
+							]
+						}
 					]
 				}
 			]
@@ -27615,7 +29539,21 @@
 			"page": 157,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Mastiff|XPHB"
+			],
 			"type": "MNT",
+			"rarity": "none",
+			"value": 2500,
+			"carryingCapacity": 195,
+			"speed": 40
+		},
+		{
+			"name": "Mastiff",
+			"source": "XPHB",
+			"page": 229,
+			"freeRules2024": true,
+			"type": "MNT|XPHB",
 			"rarity": "none",
 			"value": 2500,
 			"carryingCapacity": 195,
@@ -27969,12 +29907,28 @@
 			"page": 157,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Military Saddle|XPHB"
+			],
 			"type": "TAH",
 			"rarity": "none",
 			"weight": 30,
 			"value": 2000,
 			"entries": [
 				"A military saddle braces the rider, helping you keep your seat on an active mount in battle. It gives you advantage on any check you make to remain mounted."
+			]
+		},
+		{
+			"name": "Military Saddle",
+			"source": "XPHB",
+			"page": 230,
+			"freeRules2024": true,
+			"type": "TAH|XPHB",
+			"rarity": "none",
+			"weight": 30,
+			"value": 2000,
+			"entries": [
+				"A saddle comes with a bit, a bridle, reins, and any other equipment needed to use the saddle. A Military Saddle gives {@variantrule Advantage|XPHB} on any ability check you make to remain mounted."
 			]
 		},
 		{
@@ -28208,6 +30162,19 @@
 			"rarity": "none",
 			"weight": 10,
 			"value": 200
+		},
+		{
+			"name": "Mirror",
+			"source": "XPHB",
+			"page": 227,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 0.5,
+			"value": 500,
+			"entries": [
+				"A handheld steel Mirror is useful for personal cosmetics but also for peeking around corners and reflecting light as a signal."
+			]
 		},
 		{
 			"name": "Mirror of Infinite Transpondence",
@@ -28916,7 +30883,21 @@
 			"page": 157,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Mule|XPHB"
+			],
 			"type": "MNT",
+			"rarity": "none",
+			"value": 800,
+			"carryingCapacity": 420,
+			"speed": 40
+		},
+		{
+			"name": "Mule",
+			"source": "XPHB",
+			"page": 229,
+			"freeRules2024": true,
+			"type": "MNT|XPHB",
 			"rarity": "none",
 			"value": 800,
 			"carryingCapacity": 420,
@@ -29242,6 +31223,9 @@
 					"page": 83
 				}
 			],
+			"reprintedAs": [
+				"Navigator's Tools|XPHB"
+			],
 			"type": "T",
 			"rarity": "none",
 			"weight": 2,
@@ -29292,6 +31276,38 @@
 							"Discover your position on a nautical chart",
 							"15"
 						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Navigator's Tools",
+			"source": "XPHB",
+			"page": 221,
+			"freeRules2024": true,
+			"type": "T|XPHB",
+			"rarity": "none",
+			"weight": 2,
+			"value": 2500,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Wisdom"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Plot a course ({@dc 10}), or determine position by stargazing ({@dc 15})"
+							]
+						}
 					]
 				}
 			]
@@ -29654,6 +31670,21 @@
 				"This charm is a sphere of intricate metal branches, interwoven to form a sort of nest.",
 				"By placing the charm on the ground and speaking its command word, you can cause it to unfold, creating a 30-foot-diameter circular platform of interwoven branches. Once the platform has reached its full size, a magical tree grows beneath it, lifting the platform 50 feet into the air, carrying any passengers and items along with it.",
 				"This perch lasts up to 8 hours, at which point the tree will retreat into the ground and the platform will shrink, eventually curling back into the small charm. At any time the command word can be spoken again to dismiss the perch in a similar fashion. Once the nest charm's power has been used, it can't be used again until the next dawn."
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Net",
+			"source": "XPHB",
+			"page": 227,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 3,
+			"value": 100,
+			"entries": [
+				"When you take the {@action Attack|XPHB} action, you can replace one of your attacks with throwing a Net. Target a creature you can see within 15 feet of yourself. The target must succeed on a Dexterity saving throw (DC 8 plus your Dexterity modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus}) or have the {@condition Restrained|XPHB} condition until it escapes. The target succeeds automatically if it is Huge or larger.",
+				"To escape, the target or a creature within 5 feet of it must take an action to make a DC 10 Strength ({@skill Athletics|XPHB}) check, freeing the {@condition Restrained|XPHB} creature on a success. Destroying the Net (AC 10; 5 HP; {@variantrule Immunity|XPHB} to Bludgeoning, Poison, and Psychic damage) also frees the target, ending the effect."
 			],
 			"hasFluffImages": true
 		},
@@ -30037,11 +32068,48 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Oil",
+			"source": "XPHB",
+			"page": 227,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 1,
+			"value": 10,
+			"entries": [
+				"You can douse a creature, object, or space with Oil or use it as fuel, as detailed below.",
+				{
+					"name": "Dousing a Creature or an Object",
+					"type": "entries",
+					"entries": [
+						"When you take the {@action Attack|XPHB} action, you can replace one of your attacks with throwing an Oil flask. Target one creature or object within 20 feet of yourself. The target must succeed on a Dexterity saving throw (DC 8 plus your Dexterity modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus}) or be covered in oil. If the target takes Fire damage before the oil dries (after 1 minute), the target takes an extra 5 Fire damage from burning oil."
+					]
+				},
+				{
+					"name": "Dousing a Space",
+					"type": "entries",
+					"entries": [
+						"You can take the {@action Utilize|XPHB} action to pour an Oil flask on level ground to cover a 5-foot-square area within 5 feet of yourself. If lit, the oil burns until the end of the turn 2 rounds from when the oil was lit (or 12 seconds) and deals 5 Fire damage to any creature that enters the area or ends its turn there. A creature can take this damage only once per turn."
+					]
+				},
+				{
+					"name": "Fuel",
+					"type": "entries",
+					"entries": [
+						"Oil serves as fuel for Lamps and Lanterns. Once lit, a flask of Oil burns for 6 hours in a Lamp or Lantern. That duration doesn't need to be consecutive; you can extinguish the burning Oil (as a {@action Utilize|XPHB} action) and rekindle it again until it has burned for a total of 6 hours."
+					]
+				}
+			]
+		},
+		{
 			"name": "Oil (flask)",
 			"source": "PHB",
 			"page": 152,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Oil|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 1,
@@ -30944,6 +33012,9 @@
 					"page": 83
 				}
 			],
+			"reprintedAs": [
+				"Painter's Supplies|XPHB"
+			],
 			"type": "AT",
 			"rarity": "none",
 			"weight": 5,
@@ -31003,6 +33074,45 @@
 			]
 		},
 		{
+			"name": "Painter's Supplies",
+			"source": "XPHB",
+			"page": 221,
+			"freeRules2024": true,
+			"type": "AT|XPHB",
+			"rarity": "none",
+			"weight": 5,
+			"value": 1000,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Wisdom"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Paint a recognizable image of something you've seen ({@dc 10})"
+							]
+						},
+						{
+							"name": "Craft:",
+							"type": "item",
+							"entries": [
+								"{@item Druidic Focus|XPHB}, {@item Holy Symbol|XPHB}"
+							]
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Pair of engraved bone dice",
 			"source": "DMG",
 			"page": 134,
@@ -31038,11 +33148,26 @@
 			]
 		},
 		{
+			"name": "Paper",
+			"source": "XPHB",
+			"page": 227,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"value": 20,
+			"entries": [
+				"One sheet of Paper can hold about 250 handwritten words."
+			]
+		},
+		{
 			"name": "Paper (one sheet)",
 			"source": "PHB",
 			"page": 150,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Paper|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"value": 20
@@ -31087,11 +33212,26 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Parchment",
+			"source": "XPHB",
+			"page": 227,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"value": 10,
+			"entries": [
+				"One sheet of Parchment can hold about 250 handwritten words."
+			]
+		},
+		{
 			"name": "Parchment (one sheet)",
 			"source": "PHB",
 			"page": 150,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Parchment|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"value": 10
@@ -31276,11 +33416,26 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Perfume",
+			"source": "XPHB",
+			"page": 227,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"value": 500,
+			"entries": [
+				"Perfume comes in a 4-ounce vial. For 1 hour after applying Perfume to yourself, you have {@variantrule Advantage|XPHB} on Charisma ({@skill Persuasion|XPHB}) checks made to influence an Indifferent Humanoid within 5 feet of yourself."
+			]
+		},
+		{
 			"name": "Perfume (vial)",
 			"source": "PHB",
 			"page": 150,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Perfume|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"value": 500
@@ -32002,9 +34157,43 @@
 			"page": 154,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Playing Cards|XPHB"
+			],
 			"type": "GS",
 			"rarity": "none",
 			"value": 50
+		},
+		{
+			"name": "Playing Cards",
+			"source": "XPHB",
+			"page": 221,
+			"freeRules2024": true,
+			"type": "GS|XPHB",
+			"rarity": "none",
+			"value": 50,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Wisdom"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Discern whether someone is cheating ({@dc 10}), or win the game ({@dc 20})"
+							]
+						}
+					]
+				}
+			]
 		},
 		{
 			"name": "Poison Absorbing Tattoo",
@@ -32034,6 +34223,9 @@
 					"source": "XGE",
 					"page": 83
 				}
+			],
+			"reprintedAs": [
+				"Poisoner's Kit|XPHB"
 			],
 			"type": "T",
 			"rarity": "none",
@@ -32112,11 +34304,66 @@
 			]
 		},
 		{
+			"name": "Poisoner's Kit",
+			"source": "XPHB",
+			"page": 221,
+			"freeRules2024": true,
+			"type": "T|XPHB",
+			"rarity": "none",
+			"weight": 2,
+			"value": 5000,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Intelligence"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Detect a poisoned object ({@dc 10})"
+							]
+						},
+						{
+							"name": "Craft:",
+							"type": "item",
+							"entries": [
+								"{@item Basic Poison|XPHB}"
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Pole",
+			"source": "XPHB",
+			"page": 228,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 7,
+			"value": 5,
+			"entries": [
+				"A Pole is 10 feet long. You can use it to touch something up to 10 feet away. If you must make a Strength ({@skill Athletics|XPHB}) check as part of a High or {@variantrule Long Jump|XPHB}, you can use the Pole to vault, giving yourself {@variantrule Advantage|XPHB} on the check."
+			]
+		},
+		{
 			"name": "Pole (10-foot)",
 			"source": "PHB",
 			"page": 150,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Pole|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 7,
@@ -32151,7 +34398,21 @@
 			"page": 157,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Pony|XPHB"
+			],
 			"type": "MNT",
+			"rarity": "none",
+			"value": 3000,
+			"carryingCapacity": 225,
+			"speed": 40
+		},
+		{
+			"name": "Pony",
+			"source": "XPHB",
+			"page": 229,
+			"freeRules2024": true,
+			"type": "MNT|XPHB",
 			"rarity": "none",
 			"value": 3000,
 			"carryingCapacity": 225,
@@ -32182,12 +34443,28 @@
 			"page": 153,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Portable Ram|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 35,
 			"value": 400,
 			"entries": [
 				"You can use a portable ram to break down doors. When doing so, you gain a +4 bonus on the Strength check. One other character can help you use the ram, giving you advantage on this check."
+			]
+		},
+		{
+			"name": "Portable Ram",
+			"source": "XPHB",
+			"page": 228,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 35,
+			"value": 400,
+			"entries": [
+				"You can use a Portable Ram to break down doors. When doing so, you gain a +4 bonus to the Strength check. One other character can help you use the ram, giving you {@variantrule Advantage|XPHB} on this check."
 			]
 		},
 		{
@@ -32691,6 +34968,9 @@
 					"page": 153
 				}
 			],
+			"reprintedAs": [
+				"Potion of Healing|XPHB"
+			],
 			"type": "P",
 			"tier": "minor",
 			"rarity": "common",
@@ -32701,6 +34981,22 @@
 			],
 			"lootTables": [
 				"Magic Item Table A"
+			],
+			"miscTags": [
+				"CNS"
+			]
+		},
+		{
+			"name": "Potion of Healing",
+			"source": "XPHB",
+			"page": 228,
+			"freeRules2024": true,
+			"type": "P|XPHB",
+			"rarity": "common",
+			"weight": 0.5,
+			"value": 5000,
+			"entries": [
+				"This potion is a magic item. As a {@variantrule Bonus Action|XPHB}, you can drink it or administer it to another creature within 5 feet of yourself. The creature that drinks the magical red fluid in this vial regains {@dice 2d4 + 2} {@variantrule Hit Points|XPHB}."
 			],
 			"miscTags": [
 				"CNS"
@@ -33251,6 +35547,9 @@
 					"page": 84
 				}
 			],
+			"reprintedAs": [
+				"Potter's Tools|XPHB"
+			],
 			"type": "AT",
 			"rarity": "none",
 			"weight": 3,
@@ -33314,11 +35613,53 @@
 			]
 		},
 		{
+			"name": "Potter's Tools",
+			"source": "XPHB",
+			"page": 221,
+			"freeRules2024": true,
+			"type": "AT|XPHB",
+			"rarity": "none",
+			"weight": 3,
+			"value": 1000,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Intelligence"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Discern what a ceramic object held in the past 24 hours ({@dc 15})"
+							]
+						},
+						{
+							"name": "Craft:",
+							"type": "item",
+							"entries": [
+								"{@item Jug|XPHB}, {@item Lamp|XPHB}"
+							]
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Pouch",
 			"source": "PHB",
 			"page": 153,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Pouch|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 1,
@@ -33334,6 +35675,31 @@
 					{
 						"sling bullet|phb": 20,
 						"blowgun needle|phb": 50
+					}
+				]
+			}
+		},
+		{
+			"name": "Pouch",
+			"source": "XPHB",
+			"page": 228,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 1,
+			"value": 50,
+			"entries": [
+				"A Pouch holds up to 6 pounds within one-fifth of a cubic foot."
+			],
+			"containerCapacity": {
+				"weight": [
+					6
+				],
+				"item": [
+					{
+						"firearm bullet|xphb": 10,
+						"sling bullet|xphb": 20,
+						"needle|xphb": 50
 					}
 				]
 			}
@@ -33602,6 +35968,9 @@
 			"page": 151,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Priest's Pack|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 24,
@@ -33650,6 +36019,31 @@
 				{
 					"special": "vestments"
 				}
+			]
+		},
+		{
+			"name": "Priest's Pack",
+			"source": "XPHB",
+			"page": 228,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 29,
+			"value": 3300,
+			"entries": [
+				"A Priest's Pack contains the following items: {@item Backpack|XPHB}, {@item Blanket|XPHB}, {@item Holy Water|XPHB}, {@item Lamp|XPHB}, 7 days of {@item Rations|XPHB}, {@item Robe|XPHB}, and {@item Tinderbox|XPHB}."
+			],
+			"packContents": [
+				"backpack|xphb",
+				"blanket|xphb",
+				"holy water|xphb",
+				"lamp|xphb",
+				{
+					"item": "rations|xphb",
+					"quantity": 7
+				},
+				"robe|xphb",
+				"tinderbox|xphb"
 			]
 		},
 		{
@@ -33943,6 +36337,24 @@
 			"entries": [
 				"{#itemEntry Absorbing Tattoo|TCE}"
 			]
+		},
+		{
+			"name": "Psychic Blade",
+			"source": "XPHB",
+			"page": 136,
+			"type": "M",
+			"rarity": "none",
+			"weaponCategory": "simple",
+			"property": [
+				"F|XPHB",
+				"T|XPHB"
+			],
+			"mastery": [
+				"Vex|XPHB"
+			],
+			"range": "20/60",
+			"dmg1": "1d6",
+			"dmgType": "Y"
 		},
 		{
 			"name": "Purging Rod",
@@ -34389,6 +36801,9 @@
 			"page": 153,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Quiver|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 1,
@@ -34400,6 +36815,26 @@
 				"item": [
 					{
 						"arrow|phb": 20
+					}
+				]
+			}
+		},
+		{
+			"name": "Quiver",
+			"source": "XPHB",
+			"page": 228,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 1,
+			"value": 100,
+			"entries": [
+				"A Quiver holds up to 20 Arrows."
+			],
+			"containerCapacity": {
+				"item": [
+					{
+						"arrow|xphb": 20
 					}
 				]
 			}
@@ -34646,11 +37081,27 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Rations",
+			"source": "XPHB",
+			"page": 228,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 2,
+			"value": 50,
+			"entries": [
+				"Rations consist of travel-ready food, including jerky, dried fruit, hardtack, and nuts. See \"{@hazard Malnutrition|XPHB}\" for the risks of not eating."
+			]
+		},
+		{
 			"name": "Rations (1 day)",
 			"source": "PHB",
 			"page": 153,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Rations|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 2,
@@ -34867,11 +37318,28 @@
 			"page": 151,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Reliquary|XPHB"
+			],
 			"type": "SCF",
 			"scfType": "holy",
 			"rarity": "none",
 			"weight": 2,
 			"value": 500
+		},
+		{
+			"name": "Reliquary",
+			"source": "XPHB",
+			"page": 226,
+			"freeRules2024": true,
+			"type": "SCF|XPHB",
+			"scfType": "holy",
+			"rarity": "none",
+			"weight": 2,
+			"value": 500,
+			"entries": [
+				"For a Reliquary to be an effective Holy Symbol, it must be held."
+			]
 		},
 		{
 			"name": "Residuum",
@@ -34964,7 +37432,21 @@
 			"page": 157,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Riding Horse|XPHB"
+			],
 			"type": "MNT",
+			"rarity": "none",
+			"value": 7500,
+			"carryingCapacity": 480,
+			"speed": 60
+		},
+		{
+			"name": "Riding Horse",
+			"source": "XPHB",
+			"page": 229,
+			"freeRules2024": true,
+			"type": "MNT|XPHB",
 			"rarity": "none",
 			"value": 7500,
 			"carryingCapacity": 480,
@@ -34976,10 +37458,26 @@
 			"page": 157,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Riding Saddle|XPHB"
+			],
 			"type": "TAH",
 			"rarity": "none",
 			"weight": 25,
 			"value": 1000
+		},
+		{
+			"name": "Riding Saddle",
+			"source": "XPHB",
+			"page": 230,
+			"freeRules2024": true,
+			"type": "TAH|XPHB",
+			"rarity": "none",
+			"weight": 25,
+			"value": 1000,
+			"entries": [
+				"A saddle comes with a bit, a bridle, reins, and any other equipment needed to use the saddle."
+			]
 		},
 		{
 			"name": "Ring of Acid Resistance",
@@ -36040,6 +38538,19 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Robe",
+			"source": "XPHB",
+			"page": 228,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 4,
+			"value": 100,
+			"entries": [
+				"A Robe has vocational or ceremonial significance. Some events and locations admit only people wearing a Robe bearing certain colors or symbols."
+			]
+		},
+		{
 			"name": "Robe of Eyes",
 			"source": "DMG",
 			"page": 193,
@@ -36274,6 +38785,9 @@
 			"page": 150,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Robe|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 4,
@@ -36780,6 +39294,20 @@
 			]
 		},
 		{
+			"name": "Rope",
+			"source": "XPHB",
+			"page": 228,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 5,
+			"value": 100,
+			"entries": [
+				"As a {@action Utilize|XPHB} action, you can tie a knot with Rope if you succeed on a DC 10 Dexterity ({@skill Sleight of Hand|XPHB}) check. The Rope can be burst with a successful DC 20 Strength ({@skill Athletics|XPHB}) check.",
+				"You can bind an unwilling creature with the Rope only if the creature has the {@condition Grappled|XPHB}, {@condition Incapacitated|XPHB}, or {@condition Restrained|XPHB} condition. If the creature's legs are bound, the creature has the {@condition Restrained|XPHB} condition until it escapes. Escaping the Rope requires the creature to make a successful DC 15 Dexterity ({@skill Acrobatics|XPHB}) check as an action."
+			]
+		},
+		{
 			"name": "Rope of Climbing",
 			"source": "DMG",
 			"page": 197,
@@ -36869,6 +39397,9 @@
 			"page": 119,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Rowboat|XPHB"
+			],
 			"type": "SHP",
 			"rarity": "none",
 			"weight": 100,
@@ -36881,6 +39412,23 @@
 			"entries": [
 				"Keelboats and rowboats are used on lakes and rivers, If going downstream, add the speed of the current (typically 3 miles per hour) to the speed of the vehicle. These vehicles can't be rowed against any significant current, but they can be pulled upstream by draft animals on the shores. A rowboat weighs 100 pounds, in case adventurers carry it over land."
 			],
+			"seeAlsoVehicle": [
+				"Rowboat"
+			]
+		},
+		{
+			"name": "Rowboat",
+			"source": "XPHB",
+			"page": 230,
+			"freeRules2024": true,
+			"type": "SHP|XPHB",
+			"rarity": "none",
+			"value": 5000,
+			"crew": 1,
+			"vehAc": 11,
+			"vehHp": 50,
+			"vehSpeed": 1.5,
+			"capPassenger": 3,
 			"seeAlsoVehicle": [
 				"Rowboat"
 			]
@@ -37338,12 +39886,33 @@
 			"page": 153,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Sack|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 0.5,
 			"value": 1,
 			"entries": [
 				"A sack can hold up to 1 cubic foot or 30 pounds of gear."
+			],
+			"containerCapacity": {
+				"weight": [
+					30
+				]
+			}
+		},
+		{
+			"name": "Sack",
+			"source": "XPHB",
+			"page": 228,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 0.5,
+			"value": 1,
+			"entries": [
+				"A Sack holds up to 30 pounds within 1 cubic foot."
 			],
 			"containerCapacity": {
 				"weight": [
@@ -37565,7 +40134,29 @@
 			"page": 119,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Sailing Ship|XPHB"
+			],
 			"type": "SHP",
+			"rarity": "none",
+			"value": 1000000,
+			"crew": 20,
+			"vehAc": 15,
+			"vehHp": 300,
+			"vehDmgThresh": 15,
+			"vehSpeed": 2,
+			"capPassenger": 20,
+			"capCargo": 100,
+			"seeAlsoVehicle": [
+				"Sailing Ship"
+			]
+		},
+		{
+			"name": "Sailing Ship",
+			"source": "XPHB",
+			"page": 230,
+			"freeRules2024": true,
+			"type": "SHP|XPHB",
 			"rarity": "none",
 			"value": 1000000,
 			"crew": 20,
@@ -37852,6 +40443,9 @@
 			"page": 151,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Scholar's Pack|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 10,
@@ -37883,6 +40477,35 @@
 				{
 					"special": "small knife"
 				}
+			]
+		},
+		{
+			"name": "Scholar's Pack",
+			"source": "XPHB",
+			"page": 228,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 22,
+			"value": 4000,
+			"entries": [
+				"A Scholar's Pack contains the following items: {@item Backpack|XPHB}, {@item Book|XPHB}, {@item Ink|XPHB}, {@item Ink Pen|XPHB}, {@item Lamp|XPHB}, 10 flasks of {@item Oil|XPHB}, 10 sheets of {@item Parchment|XPHB}, and {@item Tinderbox|XPHB}."
+			],
+			"packContents": [
+				"backpack|xphb",
+				"book|xphb",
+				"ink|xphb",
+				"ink pen|xphb",
+				"lamp|xphb",
+				{
+					"item": "oil|xphb",
+					"quantity": 10
+				},
+				{
+					"item": "parchment|xphb",
+					"quantity": 10
+				},
+				"tinderbox|xphb"
 			]
 		},
 		{
@@ -39264,10 +41887,26 @@
 			"page": 150,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Shovel|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 5,
 			"value": 200
+		},
+		{
+			"name": "Shovel",
+			"source": "XPHB",
+			"page": 228,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 5,
+			"value": 200,
+			"entries": [
+				"Working for 1 hour, you can use a Shovel to dig a hole that is 5 feet on each side in soil or similar material."
+			]
 		},
 		{
 			"name": "Shrieking Greaves",
@@ -39321,9 +41960,24 @@
 			"page": 150,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Signal Whistle|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"value": 5
+		},
+		{
+			"name": "Signal Whistle",
+			"source": "XPHB",
+			"page": 228,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"value": 5,
+			"entries": [
+				"When blown as a {@action Utilize|XPHB} action, a Signal Whistle produces a sound that can be heard up to 600 feet away."
+			]
 		},
 		{
 			"name": "Signet Ring",
@@ -39989,7 +42643,20 @@
 			"page": 157,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Sled|XPHB"
+			],
 			"type": "VEH",
+			"rarity": "none",
+			"weight": 300,
+			"value": 2000
+		},
+		{
+			"name": "Sled",
+			"source": "XPHB",
+			"page": 230,
+			"freeRules2024": true,
+			"type": "VEH|XPHB",
 			"rarity": "none",
 			"weight": 300,
 			"value": 2000
@@ -40211,6 +42878,9 @@
 					"page": 84
 				}
 			],
+			"reprintedAs": [
+				"Smith's Tools|XPHB"
+			],
 			"type": "AT",
 			"rarity": "none",
 			"weight": 8,
@@ -40269,6 +42939,45 @@
 							"Sunder a nonmagical metal object",
 							"15"
 						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Smith's Tools",
+			"source": "XPHB",
+			"page": 221,
+			"freeRules2024": true,
+			"type": "AT|XPHB",
+			"rarity": "none",
+			"weight": 8,
+			"value": 2000,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Strength"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Pry open a door or container ({@dc 20})"
+							]
+						},
+						{
+							"name": "Craft:",
+							"type": "item",
+							"entries": [
+								"Any Melee weapon (except {@item Club|XPHB}, {@item Greatclub|XPHB}, {@item Quarterstaff|XPHB}, and {@item Whip|XPHB}), Medium armor (except {@item Hide Armor|XPHB|Hide}), Heavy armor, {@item Ball Bearings|XPHB}, {@item Bucket|XPHB}, {@item Caltrops|XPHB}, {@item Chain|XPHB}, {@item Crowbar|XPHB}, {@item Firearm Bullets (10)|XPHB|Firearm Bullets}, {@item Grappling Hook|XPHB}, {@item Iron Pot|XPHB}, {@item Iron Spikes|XPHB}, {@item Sling Bullets (20)|XPHB|Sling Bullets}"
+							]
+						}
 					]
 				}
 			]
@@ -41074,6 +43783,9 @@
 			"page": 200,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Spell Scroll (Level 1)|XPHB"
+			],
 			"type": "SC|DMG",
 			"tier": "minor",
 			"rarity": "common",
@@ -41292,6 +44004,9 @@
 			"page": 199,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Spell Scroll (Cantrip)|XPHB"
+			],
 			"type": "SC|DMG",
 			"tier": "minor",
 			"rarity": "common",
@@ -41305,6 +44020,38 @@
 			"lootTables": [
 				"Magic Item Table A"
 			],
+			"miscTags": [
+				"CNS"
+			]
+		},
+		{
+			"name": "Spell Scroll (Cantrip)",
+			"source": "XPHB",
+			"page": 228,
+			"freeRules2024": true,
+			"type": "SC|XPHB",
+			"rarity": "common",
+			"entries": [
+				"A Spell Scroll (Cantrip) is a magic item that bears the words of a cantrip, determined by the scroll's creator. If the spell is on your class's spell list, you can read the scroll and cast the spell using its normal casting time and without providing any Material components.",
+				"If the spell requires a saving throw or an attack roll, the spell save DC is 13, and the attack bonus is {@hit 5}. The scroll disintegrates when the casting is completed."
+			],
+			"spellScrollLevel": 0,
+			"miscTags": [
+				"CNS"
+			]
+		},
+		{
+			"name": "Spell Scroll (Level 1)",
+			"source": "XPHB",
+			"page": 228,
+			"freeRules2024": true,
+			"type": "SC|XPHB",
+			"rarity": "common",
+			"entries": [
+				"A Spell Scroll (Level 1) is a magic item that bears the words of a level 1 spell, determined by the scroll's creator. If the spell is on your class's spell list, you can read the scroll and cast the spell using its normal casting time and without providing any Material components.",
+				"If the spell requires a saving throw or an attack roll, the spell save DC is 13, and the attack bonus is {@hit 5}. The scroll disintegrates when the casting is completed."
+			],
+			"spellScrollLevel": 1,
 			"miscTags": [
 				"CNS"
 			]
@@ -41859,7 +44606,20 @@
 			"page": 151,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Sprig of Mistletoe|XPHB"
+			],
 			"type": "SCF",
+			"scfType": "druid",
+			"rarity": "none",
+			"value": 100
+		},
+		{
+			"name": "Sprig of Mistletoe",
+			"source": "XPHB",
+			"page": 225,
+			"freeRules2024": true,
+			"type": "SCF|XPHB",
 			"scfType": "druid",
 			"rarity": "none",
 			"value": 100
@@ -41870,12 +44630,28 @@
 			"page": 153,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Spyglass|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 1,
 			"value": 100000,
 			"entries": [
 				"Objects viewed through a spyglass are magnified to twice their size."
+			]
+		},
+		{
+			"name": "Spyglass",
+			"source": "XPHB",
+			"page": 229,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 1,
+			"value": 100000,
+			"entries": [
+				"Objects viewed through a Spyglass are magnified to twice their size."
 			]
 		},
 		{
@@ -41942,9 +44718,21 @@
 			"page": 157,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Stabling (per day)|XPHB"
+			],
 			"type": "TAH",
 			"rarity": "none",
 			"value": 50
+		},
+		{
+			"name": "Stabling (per day)",
+			"source": "XPHB",
+			"page": 230,
+			"freeRules2024": true,
+			"type": "TAH|XPHB",
+			"rarity": "none",
+			"value": 5
 		},
 		{
 			"name": "Staff of Adornment",
@@ -43416,6 +46204,9 @@
 			"page": 150,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Mirror|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 0.5,
@@ -44000,6 +46791,18 @@
 					]
 				},
 				"Once this property is used, it can't be used again until the next dawn."
+			]
+		},
+		{
+			"name": "String",
+			"source": "XPHB",
+			"page": 229,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"value": 10,
+			"entries": [
+				"String is 10 feet long. You can tie a knot in it as a {@action Utilize|XPHB} action."
 			]
 		},
 		{
@@ -45534,6 +48337,19 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Tent",
+			"source": "XPHB",
+			"page": 229,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 20,
+			"value": 200,
+			"entries": [
+				"A Tent sleeps up to two Small or Medium creatures."
+			]
+		},
+		{
 			"name": "Tentacle Rod",
 			"source": "DMG",
 			"page": 208,
@@ -46440,6 +49256,9 @@
 					"page": 84
 				}
 			],
+			"reprintedAs": [
+				"Thieves' Tools|XPHB"
+			],
 			"type": "T",
 			"rarity": "none",
 			"weight": 1,
@@ -46503,13 +49322,79 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Thieves' Tools",
+			"source": "XPHB",
+			"page": 221,
+			"freeRules2024": true,
+			"type": "T|XPHB",
+			"rarity": "none",
+			"weight": 1,
+			"value": 2500,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Dexterity"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Pick a lock ({@dc 15}), or disarm a trap ({@dc 15})"
+							]
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Three-Dragon Ante Set",
 			"source": "PHB",
 			"page": 154,
 			"basicRules": true,
+			"reprintedAs": [
+				"Three-Dragon Ante Set|XPHB"
+			],
 			"type": "GS",
 			"rarity": "none",
 			"value": 100
+		},
+		{
+			"name": "Three-Dragon Ante Set",
+			"source": "XPHB",
+			"page": 221,
+			"freeRules2024": true,
+			"type": "GS|XPHB",
+			"rarity": "none",
+			"value": 100,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Wisdom"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Discern whether someone is cheating ({@dc 10}), or win the game ({@dc 20})"
+							]
+						}
+					]
+				}
+			]
 		},
 		{
 			"name": "Throne Card",
@@ -46663,12 +49548,28 @@
 			"page": 153,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Tinderbox|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 1,
 			"value": 50,
 			"entries": [
 				"This small container holds flint, fire steel, and tinder (usually dry cloth soaked in light oil) used to kindle a fire. Using it to light a torch\u2014or anything else with abundant, exposed fuel\u2014takes an action. Lighting any other fire takes 1 minute."
+			]
+		},
+		{
+			"name": "Tinderbox",
+			"source": "XPHB",
+			"page": 229,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 1,
+			"value": 50,
+			"entries": [
+				"A Tinderbox is a small container holding flint, fire steel, and tinder (usually dry cloth soaked in light oil) used to kindle a fire. Using it to light a Candle, Lamp, Lantern, or Torch\u2014or anything else with exposed fuel\u2014takes a {@variantrule Bonus Action|XPHB}. Lighting any other fire takes 1 minute."
 			]
 		},
 		{
@@ -46744,6 +49645,9 @@
 					"page": 84
 				}
 			],
+			"reprintedAs": [
+				"Tinker's Tools|XPHB"
+			],
 			"type": "AT",
 			"rarity": "none",
 			"weight": 10,
@@ -46802,6 +49706,45 @@
 							"Improvise a temporary item using scraps",
 							"20"
 						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Tinker's Tools",
+			"source": "XPHB",
+			"page": 221,
+			"freeRules2024": true,
+			"type": "AT|XPHB",
+			"rarity": "none",
+			"weight": 10,
+			"value": 5000,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Dexterity"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Assemble a Tiny item composed of scrap, which falls apart in 1 minute ({@dc 20})"
+							]
+						},
+						{
+							"name": "Craft:",
+							"type": "item",
+							"entries": [
+								"{@item Musket|XPHB}, {@item Pistol|XPHB}, {@item Bell|XPHB}, {@item Bullseye Lantern|XPHB}, {@item Flask|XPHB}, {@item Hooded Lantern|XPHB}, {@item Hunting Trap|XPHB}, {@item Lock|XPHB}, {@item Manacles|XPHB}, {@item Mirror|XPHB}, {@item Shovel|XPHB}, {@item Signal Whistle|XPHB}, {@item Tinderbox|XPHB}"
+							]
+						}
 					]
 				}
 			]
@@ -47101,12 +50044,28 @@
 			"page": 153,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Torch|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 1,
 			"value": 1,
 			"entries": [
 				"A torch burns for 1 hour, providing bright light in a 20-foot radius and dim light for an additional 20 feet. If you make a melee attack with a burning torch and hit, it deals 1 fire damage."
+			]
+		},
+		{
+			"name": "Torch",
+			"source": "XPHB",
+			"page": 229,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 1,
+			"value": 1,
+			"entries": [
+				"A Torch burns for 1 hour, casting {@variantrule Bright Light|XPHB} in a 20-foot radius and {@variantrule Dim Light|XPHB} for an additional 20 feet. When you take the {@action Attack|XPHB} action, you can attack with the Torch, using it as a Simple Melee weapon. On a hit, the target takes 1 Fire damage."
 			]
 		},
 		{
@@ -47169,10 +50128,26 @@
 			"page": 150,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Traveler's Clothes|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 4,
 			"value": 200
+		},
+		{
+			"name": "Traveler's Clothes",
+			"source": "XPHB",
+			"page": 225,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 4,
+			"value": 200,
+			"entries": [
+				"Traveler's Clothes are resilient garments designed for travel in various environments."
+			]
 		},
 		{
 			"name": "Treasure chest crafted of exotic wood with gold fittings and opals (Brazen Coalition)",
@@ -47220,6 +50195,9 @@
 			"name": "Trinket",
 			"source": "AI",
 			"page": 222,
+			"reprintedAs": [
+				"Trinket|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"entries": [
@@ -47648,6 +50626,9 @@
 			"name": "Trinket",
 			"source": "CoS",
 			"page": 2,
+			"reprintedAs": [
+				"Trinket|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"entries": [
@@ -47875,6 +50856,9 @@
 			"name": "Trinket",
 			"source": "EET",
 			"page": 1,
+			"reprintedAs": [
+				"Trinket|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"entries": [
@@ -48303,6 +51287,9 @@
 			"source": "PHB",
 			"page": 159,
 			"basicRules": true,
+			"reprintedAs": [
+				"Trinket|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"entries": [
@@ -48728,6 +51715,435 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Trinket",
+			"source": "XPHB",
+			"page": 47,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"entries": [
+				"When you make your character, you can roll once on the Trinkets table to gain a Tiny trinket, a simple item lightly touched by mystery. The DM might also use this table. It can help stock a room in a dungeon or fill a creature's pockets.",
+				{
+					"type": "table",
+					"caption": "Trinkets",
+					"colLabels": [
+						"{@dice 1d100}",
+						"Trinket"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"01",
+							"A mummified goblin hand"
+						],
+						[
+							"02",
+							"A crystal that faintly glows in moonlight"
+						],
+						[
+							"03",
+							"A gold coin minted in an unknown land"
+						],
+						[
+							"04",
+							"A diary written in a language you don't know"
+						],
+						[
+							"05",
+							"A brass ring that never tarnishes"
+						],
+						[
+							"06",
+							"An old chess piece made from glass"
+						],
+						[
+							"07",
+							"A pair of knucklebone dice, each with a skull symbol on the side that would normally show six pips"
+						],
+						[
+							"08",
+							"A small idol depicting a nightmarish creature that gives you unsettling dreams when you sleep near it"
+						],
+						[
+							"09",
+							"A lock of someone's hair"
+						],
+						[
+							"10",
+							"The deed for a parcel of land in a realm unknown to you"
+						],
+						[
+							"11",
+							"A 1-ounce block made from an unknown material"
+						],
+						[
+							"12",
+							"A small cloth doll skewered with needles"
+						],
+						[
+							"13",
+							"A tooth from an unknown beast"
+						],
+						[
+							"14",
+							"An enormous scale, perhaps from a dragon"
+						],
+						[
+							"15",
+							"A bright-green feather"
+						],
+						[
+							"16",
+							"An old divination card bearing your likeness"
+						],
+						[
+							"17",
+							"A glass orb filled with moving smoke"
+						],
+						[
+							"18",
+							"A 1-pound egg with a bright-red shell"
+						],
+						[
+							"19",
+							"A pipe that blows bubbles"
+						],
+						[
+							"20",
+							"A glass jar containing a bit of flesh floating in pickling fluid"
+						],
+						[
+							"21",
+							"A gnome-crafted music box that plays a song you dimly remember from your childhood"
+						],
+						[
+							"22",
+							"A wooden statuette of a smug halfling"
+						],
+						[
+							"23",
+							"A brass orb etched with strange runes"
+						],
+						[
+							"24",
+							"A multicolored stone disk"
+						],
+						[
+							"25",
+							"A silver icon of a raven"
+						],
+						[
+							"26",
+							"A bag containing forty-seven teeth, one of which is rotten"
+						],
+						[
+							"27",
+							"A shard of obsidian that always feels warm to the touch"
+						],
+						[
+							"28",
+							"A dragon's talon strung on a leather necklace"
+						],
+						[
+							"29",
+							"A pair of old socks"
+						],
+						[
+							"30",
+							"A blank book whose pages refuse to hold ink, chalk, graphite, or any other marking"
+						],
+						[
+							"31",
+							"A silver badge that is a five-pointed star"
+						],
+						[
+							"32",
+							"A knife that belonged to a relative"
+						],
+						[
+							"33",
+							"A glass vial filled with nail clippings"
+						],
+						[
+							"34",
+							"A rectangular metal device with two tiny metal cups on one end that throws sparks when wet"
+						],
+						[
+							"35",
+							"A white, sequined glove sized for a human"
+						],
+						[
+							"36",
+							"A vest with one hundred tiny pockets"
+						],
+						[
+							"37",
+							"A weightless stone"
+						],
+						[
+							"38",
+							"A sketch of a goblin"
+						],
+						[
+							"39",
+							"An empty glass vial that smells of perfume"
+						],
+						[
+							"40",
+							"A gemstone that looks like a lump of coal when examined by anyone but you"
+						],
+						[
+							"41",
+							"A scrap of cloth from an old banner"
+						],
+						[
+							"42",
+							"A rank insignia from a lost legionnaire"
+						],
+						[
+							"43",
+							"A silver bell without a clapper"
+						],
+						[
+							"44",
+							"A mechanical canary inside a lamp"
+						],
+						[
+							"45",
+							"A miniature chest carved to look like it has numerous feet on the bottom"
+						],
+						[
+							"46",
+							"A dead sprite inside a clear glass bottle"
+						],
+						[
+							"47",
+							"A metal can that has no opening but sounds as if it is filled with liquid, sand, spiders, or broken glass (your choice)"
+						],
+						[
+							"48",
+							"A glass orb filled with water, in which swims a clockwork goldfish"
+						],
+						[
+							"49",
+							"A silver spoon with an M engraved on the handle"
+						],
+						[
+							"50",
+							"A whistle made from gold-colored wood"
+						],
+						[
+							"51",
+							"A dead scarab beetle the size of your hand"
+						],
+						[
+							"52",
+							"Two toy soldiers, one missing a head"
+						],
+						[
+							"53",
+							"A small box filled with different-sized buttons"
+						],
+						[
+							"54",
+							"A candle that can't be lit"
+						],
+						[
+							"55",
+							"A miniature cage with no door"
+						],
+						[
+							"56",
+							"An old key"
+						],
+						[
+							"57",
+							"An indecipherable treasure map"
+						],
+						[
+							"58",
+							"A hilt from a broken sword"
+						],
+						[
+							"59",
+							"A rabbit's foot"
+						],
+						[
+							"60",
+							"A glass eye"
+						],
+						[
+							"61",
+							"A cameo of a hideous person"
+						],
+						[
+							"62",
+							"A silver skull the size of a coin"
+						],
+						[
+							"63",
+							"An alabaster mask"
+						],
+						[
+							"64",
+							"A cone of sticky black incense that stinks"
+						],
+						[
+							"65",
+							"A nightcap that gives you pleasant dreams when you wear it"
+						],
+						[
+							"66",
+							"A single caltrop made from bone"
+						],
+						[
+							"67",
+							"A gold monocle frame without the lens"
+						],
+						[
+							"68",
+							"A 1-inch cube, each side a different color"
+						],
+						[
+							"69",
+							"A crystal doorknob"
+						],
+						[
+							"70",
+							"A packet filled with pink dust"
+						],
+						[
+							"71",
+							"A fragment of a beautiful song, written as musical notes on two pieces of parchment"
+						],
+						[
+							"72",
+							"A silver teardrop earring containing a real teardrop"
+						],
+						[
+							"73",
+							"An eggshell painted with scenes of misery in disturbing detail"
+						],
+						[
+							"74",
+							"A fan that, when unfolded, shows a sleepy cat"
+						],
+						[
+							"75",
+							"A set of bone pipes"
+						],
+						[
+							"76",
+							"A four-leaf clover pressed inside a book discussing manners and etiquette"
+						],
+						[
+							"77",
+							"A sheet of parchment upon which is drawn a mechanical contraption"
+						],
+						[
+							"78",
+							"An ornate scabbard that fits no blade you have found"
+						],
+						[
+							"79",
+							"An invitation to a party where a murder happened"
+						],
+						[
+							"80",
+							"A bronze pentacle with an etching of a rat's head in its center"
+						],
+						[
+							"81",
+							"A purple handkerchief embroidered with the name of an archmage"
+						],
+						[
+							"82",
+							"Half a floor plan for a temple, a castle, or another structure"
+						],
+						[
+							"83",
+							"A bit of folded cloth that, when unfolded, turns into a stylish cap"
+						],
+						[
+							"84",
+							"A receipt of deposit at a bank in a far-off city"
+						],
+						[
+							"85",
+							"A diary with seven missing pages"
+						],
+						[
+							"86",
+							"An empty silver snuffbox bearing the inscription \"dreams\" on its lid"
+						],
+						[
+							"87",
+							"An iron holy symbol devoted to an unknown god"
+						],
+						[
+							"88",
+							"A book about a legendary hero's rise and fall, with the last chapter missing"
+						],
+						[
+							"89",
+							"A vial of dragon blood"
+						],
+						[
+							"90",
+							"An ancient arrow of elven design"
+						],
+						[
+							"91",
+							"A needle that never bends"
+						],
+						[
+							"92",
+							"An ornate brooch of dwarven design"
+						],
+						[
+							"93",
+							"An empty wine bottle bearing a pretty label that says, \"The Wizard of Wines Winery, Red Dragon Crush, 331422-W\""
+						],
+						[
+							"94",
+							"A mosaic tile with a multicolored, glazed surface"
+						],
+						[
+							"95",
+							"A petrified mouse"
+						],
+						[
+							"96",
+							"A black pirate flag adorned with a dragon's skull and crossbones"
+						],
+						[
+							"97",
+							"A tiny mechanical crab or spider that moves about when it's not being observed"
+						],
+						[
+							"98",
+							"A glass jar containing lard with a label that reads, \"Griffon Grease\""
+						],
+						[
+							"99",
+							"A wooden box with a ceramic bottom that holds a living worm with a head on each end of its body"
+						],
+						[
+							"00",
+							"A metal urn containing the ashes of a hero"
+						]
+					]
+				}
+			],
+			"miscTags": [
+				"TT"
+			],
+			"hasFluffImages": true
+		},
+		{
 			"name": "True-Ice Shards (Dagger)",
 			"source": "CoA",
 			"page": 275,
@@ -48967,6 +52383,9 @@
 			"page": 153,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Tent|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 20,
@@ -49233,12 +52652,32 @@
 			"page": 153,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Vial|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"value": 100,
 			"entries": [
 				"A vial can hold up to 4 ounces of liquid."
 			]
+		},
+		{
+			"name": "Vial",
+			"source": "XPHB",
+			"page": 229,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"value": 100,
+			"entries": [
+				"A Vial holds up to 4 ounces."
+			],
+			"containerCapacity": {
+				"weight": [
+					0.25
+				]
+			}
 		},
 		{
 			"name": "Vial of Greed",
@@ -49390,7 +52829,20 @@
 			"page": 157,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Wagon|XPHB"
+			],
 			"type": "VEH",
+			"rarity": "none",
+			"weight": 400,
+			"value": 3500
+		},
+		{
+			"name": "Wagon",
+			"source": "XPHB",
+			"page": 230,
+			"freeRules2024": true,
+			"type": "VEH|XPHB",
 			"rarity": "none",
 			"weight": 400,
 			"value": 3500
@@ -50281,7 +53733,21 @@
 			"page": 157,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Warhorse|XPHB"
+			],
 			"type": "MNT",
+			"rarity": "none",
+			"value": 40000,
+			"carryingCapacity": 540,
+			"speed": 60
+		},
+		{
+			"name": "Warhorse",
+			"source": "XPHB",
+			"page": 229,
+			"freeRules2024": true,
+			"type": "MNT|XPHB",
 			"rarity": "none",
 			"value": 40000,
 			"carryingCapacity": 540,
@@ -50318,7 +53784,29 @@
 			"page": 119,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Warship|XPHB"
+			],
 			"type": "SHP",
+			"rarity": "none",
+			"value": 2500000,
+			"crew": 60,
+			"vehAc": 15,
+			"vehHp": 500,
+			"vehDmgThresh": 20,
+			"vehSpeed": 2.5,
+			"capPassenger": 60,
+			"capCargo": 200,
+			"seeAlsoVehicle": [
+				"Warship"
+			]
+		},
+		{
+			"name": "Warship",
+			"source": "XPHB",
+			"page": 230,
+			"freeRules2024": true,
+			"type": "SHP|XPHB",
 			"rarity": "none",
 			"value": 2500000,
 			"crew": 60,
@@ -50375,6 +53863,9 @@
 			"page": 153,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Waterskin|XPHB"
+			],
 			"type": "G",
 			"rarity": "none",
 			"weight": 5,
@@ -50383,6 +53874,25 @@
 			"entries": [
 				"A waterskin can hold up to 4 pints of liquid."
 			]
+		},
+		{
+			"name": "Waterskin",
+			"source": "XPHB",
+			"page": 229,
+			"freeRules2024": true,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 5,
+			"weightNote": "(full)",
+			"value": 20,
+			"entries": [
+				"A Waterskin holds up to 4 pints. If you don't drink sufficient water, you risk dehydration."
+			],
+			"containerCapacity": {
+				"volume": [
+					0.08
+				]
+			}
 		},
 		{
 			"name": "Wave",
@@ -50503,6 +54013,9 @@
 					"page": 85
 				}
 			],
+			"reprintedAs": [
+				"Weaver's Tools|XPHB"
+			],
 			"type": "AT",
 			"rarity": "none",
 			"weight": 5,
@@ -50568,6 +54081,45 @@
 							"Tailor an outfit",
 							"15"
 						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Weaver's Tools",
+			"source": "XPHB",
+			"page": 221,
+			"freeRules2024": true,
+			"type": "AT|XPHB",
+			"rarity": "none",
+			"weight": 5,
+			"value": 100,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Dexterity"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Mend a tear in clothing ({@dc 10}), or sew a Tiny design ({@dc 10})"
+							]
+						},
+						{
+							"name": "Craft:",
+							"type": "item",
+							"entries": [
+								"{@item Padded Armor|XPHB}, {@item Basket|XPHB}, {@item Bedroll|XPHB}, {@item Blanket|XPHB}, {@item Fine Clothes|XPHB}, {@item Net|XPHB}, {@item Robe|XPHB}, {@item Rope|XPHB}, {@item Sack|XPHB}, {@item String|XPHB}, {@item Tent|XPHB}, {@item Traveler's Clothes|XPHB}"
+							]
+						}
 					]
 				}
 			]
@@ -51663,6 +55215,9 @@
 					"page": 85
 				}
 			],
+			"reprintedAs": [
+				"Woodcarver's Tools|XPHB"
+			],
 			"type": "AT",
 			"rarity": "none",
 			"weight": 5,
@@ -51724,6 +55279,45 @@
 							"Carve an intricate pattern in wood",
 							"15"
 						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Woodcarver's Tools",
+			"source": "XPHB",
+			"page": 221,
+			"freeRules2024": true,
+			"type": "AT|XPHB",
+			"rarity": "none",
+			"weight": 5,
+			"value": 100,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Dexterity"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Carve a pattern in wood ({@dc 10})"
+							]
+						},
+						{
+							"name": "Craft:",
+							"type": "item",
+							"entries": [
+								"{@item Club|XPHB}, {@item Greatclub|XPHB}, {@item Quarterstaff|XPHB}, Ranged weapons (except {@item Pistol|XPHB}, {@item Musket|XPHB}, and  {@item Sling|XPHB}), {@item Arcane Focus|XPHB}, {@item Arrows (20)|XPHB|Arrows}, {@item Bolts (20)|XPHB|Bolts}, {@item Druidic Focus|XPHB}, {@item Ink Pen|XPHB}, {@item Needles (50)|XPHB|Needles}"
+							]
+						}
 					]
 				}
 			]
@@ -52277,7 +55871,21 @@
 			"page": 151,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Yew Wand|XPHB"
+			],
 			"type": "SCF",
+			"scfType": "druid",
+			"rarity": "none",
+			"weight": 1,
+			"value": 1000
+		},
+		{
+			"name": "Yew Wand",
+			"source": "XPHB",
+			"page": 225,
+			"freeRules2024": true,
+			"type": "SCF|XPHB",
 			"scfType": "druid",
 			"rarity": "none",
 			"weight": 1,
@@ -52511,6 +56119,9 @@
 			"name": "Arcane Focus",
 			"source": "PHB",
 			"page": 151,
+			"reprintedAs": [
+				"Arcane Focus|XPHB"
+			],
 			"type": "SCF",
 			"scfType": "arcane",
 			"rarity": "none",
@@ -52525,6 +56136,26 @@
 				"Rod|phb",
 				"Staff|phb",
 				"Wand|phb"
+			]
+		},
+		{
+			"name": "Arcane Focus",
+			"source": "XPHB",
+			"page": 224,
+			"type": "SCF|XPHB",
+			"scfType": "arcane",
+			"rarity": "none",
+			"focus": [
+				"Sorcerer",
+				"Warlock",
+				"Wizard"
+			],
+			"items": [
+				"Crystal|XPHB",
+				"Orb|XPHB",
+				"Rod|XPHB",
+				"Staff|XPHB",
+				"Wand|XPHB"
 			]
 		},
 		{
@@ -52671,6 +56302,9 @@
 			"page": 154,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Artisan's Tools|XPHB"
+			],
 			"type": "AT",
 			"rarity": "none",
 			"items": [
@@ -52691,6 +56325,32 @@
 				"Tinker's Tools|PHB",
 				"Weaver's Tools|PHB",
 				"Woodcarver's Tools|PHB"
+			]
+		},
+		{
+			"name": "Artisan's Tools",
+			"source": "XPHB",
+			"page": 220,
+			"type": "AT|XPHB",
+			"rarity": "none",
+			"items": [
+				"Alchemist's Supplies|XPHB",
+				"Brewer's Supplies|XPHB",
+				"Calligrapher's Supplies|XPHB",
+				"Carpenter's Tools|XPHB",
+				"Cartographer's Tools|XPHB",
+				"Cobbler's Tools|XPHB",
+				"Cook's Utensils|XPHB",
+				"Glassblower's Tools|XPHB",
+				"Jeweler's Tools|XPHB",
+				"Leatherworker's Tools|XPHB",
+				"Mason's Tools|XPHB",
+				"Painter's Supplies|XPHB",
+				"Potter's Tools|XPHB",
+				"Smith's Tools|XPHB",
+				"Tinker's Tools|XPHB",
+				"Weaver's Tools|XPHB",
+				"Woodcarver's Tools|XPHB"
 			]
 		},
 		{
@@ -53132,6 +56792,9 @@
 			"name": "Druidic Focus",
 			"source": "PHB",
 			"page": 151,
+			"reprintedAs": [
+				"Druidic Focus|XPHB"
+			],
 			"type": "SCF",
 			"scfType": "druid",
 			"rarity": "none",
@@ -53143,6 +56806,22 @@
 				"Totem|phb",
 				"Wooden staff|phb",
 				"Yew wand|phb"
+			]
+		},
+		{
+			"name": "Druidic Focus",
+			"source": "XPHB",
+			"page": 225,
+			"type": "SCF|XPHB",
+			"scfType": "druid",
+			"rarity": "none",
+			"focus": [
+				"Druid"
+			],
+			"items": [
+				"Sprig of mistletoe|XPHB",
+				"Wooden staff|XPHB",
+				"Yew wand|XPHB"
 			]
 		},
 		{
@@ -53348,6 +57027,9 @@
 			"page": 154,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Gaming Set|XPHB"
+			],
 			"type": "GS",
 			"rarity": "none",
 			"items": [
@@ -53355,6 +57037,20 @@
 				"Dragonchess Set|PHB",
 				"Playing Card Set|PHB",
 				"Three-Dragon Ante Set|PHB"
+			]
+		},
+		{
+			"name": "Gaming Set",
+			"source": "XPHB",
+			"page": 221,
+			"freeRules2024": true,
+			"type": "GS|XPHB",
+			"rarity": "none",
+			"items": [
+				"Dice Set|XPHB",
+				"Dragonchess Set|XPHB",
+				"Playing Cards|XPHB",
+				"Three-Dragon Ante Set|XPHB"
 			]
 		},
 		{
@@ -53498,6 +57194,9 @@
 			"name": "Holy Symbol",
 			"source": "PHB",
 			"page": 151,
+			"reprintedAs": [
+				"Holy Symbol|XPHB"
+			],
 			"type": "SCF",
 			"scfType": "holy",
 			"rarity": "none",
@@ -53509,6 +57208,23 @@
 				"Amulet|phb",
 				"Emblem|phb",
 				"Reliquary|phb"
+			]
+		},
+		{
+			"name": "Holy Symbol",
+			"source": "XPHB",
+			"page": 226,
+			"type": "SCF|XPHB",
+			"scfType": "holy",
+			"rarity": "none",
+			"focus": [
+				"Cleric",
+				"Paladin"
+			],
+			"items": [
+				"Amulet|XPHB",
+				"Emblem|XPHB",
+				"Reliquary|XPHB"
 			]
 		},
 		{
@@ -53882,6 +57598,9 @@
 			"page": 154,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Musical Instrument|XPHB"
+			],
 			"type": "INS",
 			"rarity": "none",
 			"items": [
@@ -53901,6 +57620,9 @@
 			"name": "Musical Instrument",
 			"source": "SCAG",
 			"page": 124,
+			"reprintedAs": [
+				"Musical Instrument|XPHB"
+			],
 			"type": "INS",
 			"rarity": "none",
 			"items": [
@@ -53916,6 +57638,26 @@
 				"Wargong|SCAG",
 				"Yarting|SCAG",
 				"Zulkoon|SCAG"
+			]
+		},
+		{
+			"name": "Musical Instrument",
+			"source": "XPHB",
+			"page": 221,
+			"freeRules2024": true,
+			"type": "INS|XPHB",
+			"rarity": "none",
+			"items": [
+				"Bagpipes|XPHB",
+				"Drum|XPHB",
+				"Dulcimer|XPHB",
+				"Flute|XPHB",
+				"Horn|XPHB",
+				"Lute|XPHB",
+				"Lyre|XPHB",
+				"Pan Flute|XPHB",
+				"Shawm|XPHB",
+				"Viol|XPHB"
 			]
 		},
 		{
@@ -54635,6 +58377,9 @@
 			"name": "Spell Scroll",
 			"source": "DMG",
 			"page": 200,
+			"reprintedAs": [
+				"Spell Scroll|XPHB"
+			],
 			"type": "SC|DMG",
 			"rarity": "varies",
 			"items": [
@@ -54648,6 +58393,20 @@
 				"Spell Scroll (7th Level)",
 				"Spell Scroll (8th Level)",
 				"Spell Scroll (9th Level)"
+			],
+			"miscTags": [
+				"CNS"
+			]
+		},
+		{
+			"name": "Spell Scroll",
+			"source": "XPHB",
+			"page": 228,
+			"type": "SC|XPHB",
+			"rarity": "varies",
+			"items": [
+				"Spell Scroll (Cantrip)|XPHB",
+				"Spell Scroll (Level 1)|XPHB"
 			],
 			"miscTags": [
 				"CNS"

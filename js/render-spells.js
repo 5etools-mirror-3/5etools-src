@@ -1,4 +1,4 @@
-import {SITE_STYLE__CLASSIC} from "./consts.js";
+import {SITE_STYLE__CLASSIC, SITE_STYLE__ONE} from "./consts.js";
 import {VetoolsConfig} from "./utils-config/utils-config-config.js";
 import {RenderPageImplBase} from "./render-page-base.js";
 
@@ -52,8 +52,8 @@ export class RenderSpellsSettings {
 
 		isDisplayRaces: new SettingsUtil.Setting({
 			type: "boolean",
-			name: "Spell Sources: Show Races",
-			help: `Whether or not "Races" should be shown for a spell.`,
+			name: "Spell Sources: Show Species",
+			help: `Whether or not "Species" should be shown for a spell.`,
 			defaultVal: true,
 		}),
 
@@ -196,7 +196,7 @@ class _RenderSpellsImplBase extends RenderPageImplBase {
 			}
 		}
 
-		if (settings.isDisplayRaces) this._mutStackPtSpellSource({ent, stackFroms, renderer, title: "Races", propSpell: "races", prop: "race", tag: "race"});
+		if (settings.isDisplayRaces) this._mutStackPtSpellSource({ent, stackFroms, renderer, title: "Species", propSpell: "races", prop: "race", tag: "race"});
 		if (settings.isDisplayBackgrounds) this._mutStackPtSpellSource({ent, stackFroms, renderer, title: "Backgrounds", propSpell: "backgrounds", prop: "background", tag: "background"});
 		if (settings.isDisplayFeats) this._mutStackPtSpellSource({ent, stackFroms, renderer, title: "Feats", propSpell: "feats", prop: "feat", tag: "feat"});
 		if (settings.isDisplayOptionalfeatures) this._mutStackPtSpellSource({ent, stackFroms, renderer, title: "Other Options/Features", propSpell: "optionalfeatures", prop: "optionalfeature", tag: "optfeature"});
@@ -281,8 +281,60 @@ class _RenderSpellsImplClassic extends _RenderSpellsImplBase {
 	}
 }
 
+class _RenderSpellsImplOne extends _RenderSpellsImplBase {
+	_style = SITE_STYLE__ONE;
+
+	/* -------------------------------------------- */
+
+	_getRendered ({ent, opts, renderer}) {
+		const {
+			htmlPtIsExcluded,
+			htmlPtName,
+
+			htmlPtLevelSchoolRitual,
+
+			htmlPtCastingTime,
+			htmlPtRange,
+			htmlPtComponents,
+			htmlPtDuration,
+
+			htmlPtEntries,
+			htmlPtFrom,
+
+			htmlPtPage,
+		} = this._getCommonHtmlParts({
+			ent,
+			opts,
+			renderer,
+		});
+
+		return `
+			${Renderer.utils.getBorderTr()}
+
+			${htmlPtIsExcluded}
+			${htmlPtName}
+
+			${htmlPtLevelSchoolRitual}
+
+			${htmlPtCastingTime}
+			${htmlPtRange}
+			${htmlPtComponents}
+			${htmlPtDuration}
+
+			<tr class="text"><td colspan="6">
+				${htmlPtEntries}
+				${htmlPtFrom}
+			</td></tr>
+
+			${htmlPtPage}
+			${Renderer.utils.getBorderTr()}
+		`;
+	}
+}
+
 export class RenderSpells {
 	static _RENDER_CLASSIC = new _RenderSpellsImplClassic();
+	static _RENDER_ONE = new _RenderSpellsImplOne();
 
 	/**
 	 * @param {object} ent
@@ -295,6 +347,7 @@ export class RenderSpells {
 		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
 		switch (styleHint) {
 			case SITE_STYLE__CLASSIC: return this._RENDER_CLASSIC.$getRendered(ent, opts);
+			case SITE_STYLE__ONE: return this._RENDER_ONE.$getRendered(ent, opts);
 			default: throw new Error(`Unhandled style "${styleHint}"!`);
 		}
 	}

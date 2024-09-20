@@ -6,7 +6,7 @@ export class RaceConverterUi extends ConverterUiBase {
 		super(
 			ui,
 			{
-				name: "Race",
+				name: "Species",
 				converterId: "race",
 				canSaveLocal: true,
 				modes: ["txt", "md"],

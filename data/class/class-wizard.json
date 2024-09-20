@@ -6,6 +6,9 @@
 			"page": 112,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Wizard|XPHB"
+			],
 			"hd": {
 				"number": 1,
 				"faces": 6
@@ -470,6 +473,509 @@
 			"subclassTitle": "Arcane Tradition",
 			"hasFluff": true,
 			"hasFluffImages": true
+		},
+		{
+			"name": "Wizard",
+			"source": "XPHB",
+			"page": 164,
+			"freeRules2024": true,
+			"primaryAbility": [
+				{
+					"int": true
+				}
+			],
+			"hd": {
+				"number": 1,
+				"faces": 6
+			},
+			"proficiency": [
+				"int",
+				"wis"
+			],
+			"spellcastingAbility": "int",
+			"casterProgression": "full",
+			"preparedSpellsProgression": [
+				4,
+				5,
+				6,
+				7,
+				9,
+				10,
+				11,
+				12,
+				14,
+				15,
+				16,
+				16,
+				17,
+				18,
+				19,
+				21,
+				22,
+				23,
+				24,
+				25
+			],
+			"cantripProgression": [
+				3,
+				3,
+				3,
+				4,
+				4,
+				4,
+				4,
+				4,
+				4,
+				5,
+				5,
+				5,
+				5,
+				5,
+				5,
+				5,
+				5,
+				5,
+				5,
+				5
+			],
+			"spellsKnownProgressionFixed": [
+				6,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2
+			],
+			"spellsKnownProgressionFixedAllowLowerLevel": true,
+			"startingProficiencies": {
+				"weapons": [
+					"simple"
+				],
+				"skills": [
+					{
+						"choose": {
+							"from": [
+								"arcana",
+								"history",
+								"insight",
+								"investigation",
+								"medicine",
+								"religion"
+							],
+							"count": 2
+						}
+					}
+				]
+			},
+			"startingEquipment": {
+				"entries": [
+					"{@i Choose A or B:} (A) 2 {@item Dagger|XPHB|Daggers}, {@item Arcane Focus|XPHB} ({@item Quarterstaff|XPHB}), {@item Robe|XPHB}, Spellbook, {@item Scholar's Pack|XPHB}, and 5 GP; or (B) 55 GP"
+				],
+				"defaultData": [
+					{
+						"A": [
+							{
+								"item": "dagger|xphb",
+								"quantity": 2
+							},
+							{
+								"item": "quarterstaff|xphb"
+							},
+							{
+								"item": "robe|xphb"
+							},
+							{
+								"special": "Spellbook"
+							},
+							{
+								"item": "scholar's pack|xphb"
+							},
+							{
+								"value": 500
+							}
+						],
+						"B": [
+							{
+								"value": 5500
+							}
+						]
+					}
+				]
+			},
+			"multiclassing": {},
+			"classTableGroups": [
+				{
+					"colLabels": [
+						"{@filter Cantrips|spells|level=0|class=Wizard}",
+						"{@filter Prepared Spells|spells|level=!0|class=Wizard}"
+					],
+					"rows": [
+						[
+							3,
+							4
+						],
+						[
+							3,
+							5
+						],
+						[
+							3,
+							6
+						],
+						[
+							4,
+							7
+						],
+						[
+							4,
+							9
+						],
+						[
+							4,
+							10
+						],
+						[
+							4,
+							11
+						],
+						[
+							4,
+							12
+						],
+						[
+							4,
+							14
+						],
+						[
+							5,
+							15
+						],
+						[
+							5,
+							16
+						],
+						[
+							5,
+							16
+						],
+						[
+							5,
+							17
+						],
+						[
+							5,
+							18
+						],
+						[
+							5,
+							19
+						],
+						[
+							5,
+							21
+						],
+						[
+							5,
+							22
+						],
+						[
+							5,
+							23
+						],
+						[
+							5,
+							24
+						],
+						[
+							5,
+							25
+						]
+					]
+				},
+				{
+					"title": "Spell Slots per Spell Level",
+					"colLabels": [
+						"{@filter 1st|spells|level=1|class=Wizard}",
+						"{@filter 2nd|spells|level=2|class=Wizard}",
+						"{@filter 3rd|spells|level=3|class=Wizard}",
+						"{@filter 4th|spells|level=4|class=Wizard}",
+						"{@filter 5th|spells|level=5|class=Wizard}",
+						"{@filter 6th|spells|level=6|class=Wizard}",
+						"{@filter 7th|spells|level=7|class=Wizard}",
+						"{@filter 8th|spells|level=8|class=Wizard}",
+						"{@filter 9th|spells|level=9|class=Wizard}"
+					],
+					"rowsSpellProgression": [
+						[
+							2,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							3,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							2,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							2,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							1,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							2,
+							0,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							1,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							1,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							1,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							1,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							3,
+							1,
+							1,
+							1,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							3,
+							2,
+							1,
+							1,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							3,
+							3,
+							2,
+							2,
+							1,
+							1
+						]
+					]
+				}
+			],
+			"classFeatures": [
+				"Spellcasting|Wizard|XPHB|1",
+				"Ritual Adept|Wizard|XPHB|1",
+				"Arcane Recovery|Wizard|XPHB|1",
+				"Scholar|Wizard|XPHB|2",
+				{
+					"classFeature": "Wizard Subclass|Wizard|XPHB|3",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Wizard|XPHB|4",
+				"Memorize Spell|Wizard|XPHB|5",
+				{
+					"classFeature": "Subclass Feature|Wizard|XPHB|6",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Wizard|XPHB|8",
+				{
+					"classFeature": "Subclass Feature|Wizard|XPHB|10",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Wizard|XPHB|12",
+				{
+					"classFeature": "Subclass Feature|Wizard|XPHB|14",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Wizard|XPHB|16",
+				"Spell Mastery|Wizard|XPHB|18",
+				"Epic Boon|Wizard|XPHB|19",
+				"Signature Spells|Wizard|XPHB|20"
+			],
+			"subclassTitle": "Wizard Subclass",
+			"hasFluff": true,
+			"hasFluffImages": true
 		}
 	],
 	"subclass": [
@@ -480,6 +986,9 @@
 			"className": "Wizard",
 			"classSource": "PHB",
 			"page": 115,
+			"reprintedAs": [
+				"Abjurer|Wizard|XPHB|XPHB"
+			],
 			"subclassFeatures": [
 				"School of Abjuration|Wizard||Abjuration||2",
 				"Projected Ward|Wizard||Abjuration||6",
@@ -508,6 +1017,9 @@
 			"className": "Wizard",
 			"classSource": "PHB",
 			"page": 116,
+			"reprintedAs": [
+				"Diviner|Wizard|XPHB|XPHB"
+			],
 			"subclassFeatures": [
 				"School of Divination|Wizard||Divination||2",
 				"Expert Divination|Wizard||Divination||6",
@@ -538,6 +1050,9 @@
 			"page": 117,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Evoker|Wizard|XPHB|XPHB"
+			],
 			"subclassFeatures": [
 				"School of Evocation|Wizard||Evocation||2",
 				"Potent Cantrip|Wizard||Evocation||6",
@@ -552,6 +1067,9 @@
 			"className": "Wizard",
 			"classSource": "PHB",
 			"page": 118,
+			"reprintedAs": [
+				"Illusionist|Wizard|XPHB|XPHB"
+			],
 			"additionalSpells": [
 				{
 					"known": {
@@ -712,6 +1230,92 @@
 				"Glyph of Hemorrhaging|Wizard|PHB|Blood Magic|TDCSR|10",
 				"Bond of Mutual Suffering (14th Level)|Wizard|PHB|Blood Magic|TDCSR|14",
 				"Thicker than Water|Wizard|PHB|Blood Magic|TDCSR|14"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Abjurer",
+			"shortName": "Abjurer",
+			"source": "XPHB",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"page": 172,
+			"additionalSpells": [
+				{
+					"prepared": {
+						"10": [
+							"counterspell|xphb",
+							"dispel magic|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Abjurer|Wizard|XPHB|Abjurer|XPHB|3",
+				"Projected Ward|Wizard|XPHB|Abjurer|XPHB|6",
+				"Spell Breaker|Wizard|XPHB|Abjurer|XPHB|10",
+				"Spell Resistance|Wizard|XPHB|Abjurer|XPHB|14"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Diviner",
+			"shortName": "Diviner",
+			"source": "XPHB",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"page": 173,
+			"subclassFeatures": [
+				"Diviner|Wizard|XPHB|Diviner|XPHB|3",
+				"Expert Divination|Wizard|XPHB|Diviner|XPHB|6",
+				"The Third Eye|Wizard|XPHB|Diviner|XPHB|10",
+				"Greater Portent|Wizard|XPHB|Diviner|XPHB|14"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Evoker",
+			"shortName": "Evoker",
+			"source": "XPHB",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"page": 174,
+			"freeRules2024": true,
+			"subclassFeatures": [
+				"Evoker|Wizard|XPHB|Evoker|XPHB|3",
+				"Sculpt Spells|Wizard|XPHB|Evoker|XPHB|6",
+				"Empowered Evocation|Wizard|XPHB|Evoker|XPHB|10",
+				"Overchannel|Wizard|XPHB|Evoker|XPHB|14"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Illusionist",
+			"shortName": "Illusionist",
+			"source": "XPHB",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"page": 175,
+			"additionalSpells": [
+				{
+					"known": {
+						"3": [
+							"minor illusion|xphb#c"
+						]
+					},
+					"prepared": {
+						"6": [
+							"summon beast|xphb",
+							"summon fey|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Illusionist|Wizard|XPHB|Illusionist|XPHB|3",
+				"Phantasmal Creatures|Wizard|XPHB|Illusionist|XPHB|6",
+				"Illusory Self|Wizard|XPHB|Illusionist|XPHB|10",
+				"Illusory Reality|Wizard|XPHB|Illusionist|XPHB|14"
 			],
 			"hasFluffImages": true
 		}
@@ -1027,6 +1631,265 @@
 			"entries": [
 				"When you reach 20th level, you gain mastery over two powerful spells and can cast them with little effort. Choose two 3rd-level wizard spells in your spellbook as your signature spells. You always have these spells prepared, they don't count against the number of spells you have prepared, and you can cast each of them once at 3rd level without expending a spell slot. When you do so, you can't do so again until you finish a short or long rest.",
 				"If you want to cast either spell at a higher level, you must expend a spell slot as normal."
+			]
+		},
+		{
+			"name": "Arcane Recovery",
+			"source": "XPHB",
+			"page": 155,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"You can regain some of your magical energy by studying your spellbook. When you finish a {@variantrule Short Rest|XPHB}, you can choose expended spell slots to recover. The spell slots can have a combined level equal to no more than half your Wizard level (round up), and none of the slots can be level 6 or higher. For example, if you're a level 4 Wizard, you can recover up to two levels' worth of spell slots, regaining either one level 2 spell slot or two level 1 spell slots.",
+				"Once you use this feature, you can't do so again until you finish a {@variantrule Long Rest|XPHB}."
+			]
+		},
+		{
+			"name": "Ritual Adept",
+			"source": "XPHB",
+			"page": 155,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"You can cast any spell as a {@variantrule Ritual|XPHB} if that spell has the {@variantrule Ritual|XPHB} tag and the spell is in your spellbook. You needn't have the spell prepared, but you must read from the book to cast a spell in this way."
+			]
+		},
+		{
+			"name": "Spellcasting",
+			"source": "XPHB",
+			"page": 165,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"As a student of arcane magic, you have learned to cast spells. See {@book chapter 7|XPHB|7} for the rules on spellcasting. The information below details how you use those rules with Wizard spells, which appear in the {@filter Wizard spell list|spells|class=Wizard} later in the class's description.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Cantrips",
+							"entries": [
+								"You know three Wizard cantrips of your choice. {@spell Light|XPHB}, {@spell Mage Hand|XPHB}, and {@spell Ray of Frost|XPHB} are recommended. Whenever you finish a {@variantrule Long Rest|XPHB}, you can replace one of your cantrips from this feature with another Wizard cantrip of your choice.",
+								"When you reach Wizard levels 4 and 10, you learn another Wizard cantrip of your choice, as shown in the Cantrips column of the Wizard Features table."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Spellbook",
+							"entries": [
+								"Your wizardly apprenticeship culminated in the creation of a unique book: your spellbook. It is a Tiny object that weighs 3 pounds, contains 100 pages, and can be read only by you or someone casting {@spell Identify|XPHB}. You determine the book's appearance and materials, such as a gilt-edged tome or a collection of vellum bound with twine.",
+								"The book contains the level 1+ spells you know. It starts with six level 1 Wizard spells of your choice. {@spell Detect Magic|XPHB}, {@spell Feather Fall|XPHB}, {@spell Mage Armor|XPHB}, {@spell Magic Missile|XPHB}, {@spell Sleep|XPHB}, and {@spell Thunderwave|XPHB} are recommended.",
+								"Whenever you gain a Wizard level after 1, add two Wizard spells of your choice to your spellbook. Each of these spells must be of a level for which you have spell slots, as shown in the Wizard Features table. The spells are the culmination of arcane research you do regularly."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Spell Slots",
+							"entries": [
+								"The Wizard Features table shows how many spell slots you have to cast your level 1+ spells. You regain all expended slots when you finish a {@variantrule Long Rest|XPHB}."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Prepared Spells of Level 1+",
+							"entries": [
+								"You prepare the list of level 1+ spells that are available for you to cast with this feature. To do so, choose four spells from your spellbook. The chosen spells must be of a level for which you have spell slots.",
+								"The number of spells on your list increases as you gain Wizard levels, as shown in the Prepared Spells column of the Wizard Features table. Whenever that number increases, choose additional Wizard spells until the number of spells on your list matches the number in the table. The chosen spells must be of a level for which you have spell slots. For example, if you're a level 3 Wizard, your list of prepared spells can include six spells of levels 1 and 2 in any combination, chosen from your spellbook.",
+								"If another Wizard feature gives you spells that you always have prepared, those spells don't count against the number of spells you can prepare with this feature, but those spells otherwise count as Wizard spells for you."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Changing Your Prepared Spells",
+							"entries": [
+								"Whenever you finish a {@variantrule Long Rest|XPHB}, you can change your list of prepared spells, replacing any of the spells there with spells from your spellbook."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Spellcasting Ability",
+							"entries": [
+								"Intelligence is your spellcasting ability for your Wizard spells."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Spellcasting Focus",
+							"entries": [
+								"You can use an {@item Arcane Focus|XPHB} or your spellbook as a {@variantrule Spellcasting Focus|XPHB} for your Wizard spells."
+							]
+						},
+						{
+							"type": "inset",
+							"name": "Expanding and Replacing a Spellbook",
+							"entries": [
+								"The spells you add to your spellbook as you gain levels reflect your ongoing magical research, but you might find other spells during your adventures that you can add to the book. You could discover a Wizard spell on a {@item Spell Scroll|XPHB}, for example, and then copy it into your spellbook.",
+								{
+									"type": "entries",
+									"name": "Copying a Spell into the Book",
+									"entries": [
+										"When you find a level 1+ Wizard spell, you can copy it into your spellbook if it's of a level you can prepare and if you have time to copy it. For each level of the spell, the transcription takes 2 hours and costs 50 GP. Afterward you can prepare the spell like the other spells in your spellbook."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Copying the Book",
+									"entries": [
+										"You can copy a spell from your spellbook into another book. This is like copying a new spell into your spellbook but faster, since you already know how to cast the spell. You need spend only 1 hour and 10 GP for each level of the copied spell.",
+										"If you lose your spellbook, you can use the same procedure to transcribe the Wizard spells that you have prepared into a new spellbook. Filling out the remainder of the new book requires you to find new spells to do so. For this reason, many wizards keep a backup spellbook."
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Scholar",
+			"source": "XPHB",
+			"page": 166,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"level": 2,
+			"entries": [
+				"While studying magic, you also specialized in another field of study. Choose one of the following skills in which you have proficiency: {@skill Arcana|XPHB}, {@skill History|XPHB}, {@skill Investigation|XPHB}, {@skill Medicine|XPHB}, {@skill Nature|XPHB}, or {@skill Religion|XPHB}. You have {@variantrule Expertise|XPHB} in the chosen skill."
+			]
+		},
+		{
+			"name": "Wizard Subclass",
+			"source": "XPHB",
+			"page": 167,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"You gain a Wizard subclass of your choice. A subclass is a specialization that grants you features at certain Wizard levels. For the rest of your career, you gain each of your subclass's features that are of your Wizard level or lower."
+			]
+		},
+		{
+			"name": "Ability Score Improvement",
+			"source": "XPHB",
+			"page": 167,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"level": 4,
+			"entries": [
+				"You gain the {@feat Ability Score Improvement|XPHB} feat or another {@5etools feat|feats.html} of your choice for which you qualify. You gain this feature again at Wizard levels 8, 12, and 16."
+			]
+		},
+		{
+			"name": "Memorize Spell",
+			"source": "XPHB",
+			"page": 167,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"level": 5,
+			"entries": [
+				"Whenever you finish a {@variantrule Short Rest|XPHB}, you can study your spellbook and replace one of the level 1+ Wizard spells you have prepared for your Spellcasting feature with another level 1+ spell from the book."
+			]
+		},
+		{
+			"name": "Subclass Feature",
+			"source": "XPHB",
+			"page": 167,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"level": 6,
+			"entries": [
+				"You gain a feature from your Wizard Subclass."
+			]
+		},
+		{
+			"name": "Ability Score Improvement",
+			"source": "XPHB",
+			"page": 167,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"level": 8,
+			"entries": [
+				"You gain the {@feat Ability Score Improvement|XPHB} Feat or another {@5etools feat|feats.html} of your choice for which you qualify."
+			]
+		},
+		{
+			"name": "Subclass Feature",
+			"source": "XPHB",
+			"page": 167,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"level": 10,
+			"entries": [
+				"You gain a feature from your Wizard Subclass."
+			]
+		},
+		{
+			"name": "Ability Score Improvement",
+			"source": "XPHB",
+			"page": 167,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"level": 12,
+			"entries": [
+				"You gain the {@feat Ability Score Improvement|XPHB} Feat or another {@5etools feat|feats.html} of your choice for which you qualify."
+			]
+		},
+		{
+			"name": "Subclass Feature",
+			"source": "XPHB",
+			"page": 167,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"level": 14,
+			"entries": [
+				"You gain a feature from your Wizard Subclass."
+			]
+		},
+		{
+			"name": "Ability Score Improvement",
+			"source": "XPHB",
+			"page": 167,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"level": 16,
+			"entries": [
+				"You gain the {@feat Ability Score Improvement|XPHB} Feat or another {@5etools feat|feats.html} of your choice for which you qualify."
+			]
+		},
+		{
+			"name": "Spell Mastery",
+			"source": "XPHB",
+			"page": 167,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"level": 18,
+			"entries": [
+				"You have achieved such mastery over certain spells that you can cast them at will. Choose a level 1 and a level 2 spell in your spellbook that have a casting time of an action. You always have those spells prepared, and you can cast them at their lowest level without expending a spell slot. To cast either spell at a higher level, you must expend a spell slot.",
+				"Whenever you finish a {@variantrule Long Rest|XPHB}, you can study your spellbook and replace one of those spells with an eligible spell of the same level from the book.d spells you have prepared for your Spellcasting feature with another level 1+ spell from the book."
+			]
+		},
+		{
+			"name": "Epic Boon",
+			"source": "XPHB",
+			"page": 167,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"level": 19,
+			"entries": [
+				"You gain an {@filter Epic Boon feat|feats|category=EB} or another {@5etools feat|feats.html} of your choice for which you qualify. {@feat Boon of Spell Recall|XPHB} is recommended."
+			]
+		},
+		{
+			"name": "Signature Spells",
+			"source": "XPHB",
+			"page": 167,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"level": 20,
+			"entries": [
+				"Choose two level 3 spells in your spellbook as your signature spells. You always have these spells prepared, and you can cast each of them once at level 3 without expending a spell slot. When you do so, you can't cast them in this way again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}. To cast either spell at a higher level, you must expend a spell slot.ended."
 			]
 		}
 	],
@@ -2577,6 +3440,418 @@
 			"header": 2,
 			"entries": [
 				"At 14th level, your Arcane Deflection becomes infused with deadly magic. When you use your Arcane Deflection feature, you can cause magical energy to arc from you. Up to three creatures of your choice that you can see within 60 feet of you each take force damage equal to half your wizard level."
+			]
+		},
+		{
+			"name": "Abjurer",
+			"source": "XPHB",
+			"page": 172,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Abjurer",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i Shield Companions and Banish Foes}",
+				"Your study of magic is focused on spells that block, banish, or protect\u2014ending harmful effects, banishing evil influences, and protecting the weak. Abjurers are sought when baleful spirits require exorcism, when locations must be guarded against magical spying, and when portals to other planes of existence must be closed. Adventuring parties value Abjurers for the protection they provide against a variety of hostile magic and other attacks.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Abjuration Savant|Wizard|XPHB|Abjurer|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Arcane Ward|Wizard|XPHB|Abjurer|XPHB|3"
+				}
+			]
+		},
+		{
+			"name": "Abjuration Savant",
+			"source": "XPHB",
+			"page": 172,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Abjurer",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"Choose two Wizard spells from the Abjuration school, each of which must be no higher than level 2, and add them to your spellbook for free.",
+				"In addition, whenever you gain access to a new level of spell slots in this class, you can add one Wizard spell from the Abjuration school to your spellbook for free. The chosen spell must be of a level for which you have spell slots."
+			]
+		},
+		{
+			"name": "Arcane Ward",
+			"source": "XPHB",
+			"page": 172,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Abjurer",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"You can weave magic around yourself for protection. When you cast an Abjuration spell with a spell slot, you can simultaneously use a strand of the spell's magic to create a magical ward on yourself that lasts until you finish a {@variantrule Long Rest|XPHB}. The ward has a {@variantrule Hit Points|XPHB|Hit Point} maximum equal to twice your Wizard level plus your Intelligence modifier. Whenever you take damage, the ward takes the damage instead, and if you have any Resistances or Vulnerabilities, apply them before reducing the ward's {@variantrule Hit Points|XPHB}. If the damage reduces the ward to 0 {@variantrule Hit Points|XPHB}, you take any remaining damage. While the ward has 0 {@variantrule Hit Points|XPHB}, it can't absorb damage, but its magic remains.",
+				"Whenever you cast an Abjuration spell with a spell slot, the ward regains a number of {@variantrule Hit Points|XPHB} equal to twice the level of the spell slot. Alternatively, as a {@variantrule Bonus Action|XPHB}, you can expend a spell slot, and the ward regains a number of {@variantrule Hit Points|XPHB} equal to twice the level of the spell slot expended.",
+				"Once you create the ward, you can't create it again until you finish a {@variantrule Long Rest|XPHB}."
+			]
+		},
+		{
+			"name": "Projected Ward",
+			"source": "XPHB",
+			"page": 172,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Abjurer",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"When a creature that you can see within 30 feet of yourself takes damage, you can take a {@variantrule Reaction|XPHB} to cause your Arcane Ward to absorb that damage. If this damage reduces the ward to 0 {@variantrule Hit Points|XPHB}, the warded creature takes any remaining damage. If that creature has any Resistances or Vulnerabilities, apply them before reducing the ward's {@variantrule Hit Points|XPHB}."
+			]
+		},
+		{
+			"name": "Spell Breaker",
+			"source": "XPHB",
+			"page": 173,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Abjurer",
+			"subclassSource": "XPHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"You always have the {@spell Counterspell|XPHB} and {@spell Dispel Magic|XPHB} spells prepared. In addition, you can cast {@spell Dispel Magic|XPHB} as a {@variantrule Bonus Action|XPHB}, and you can add your {@variantrule Proficiency|XPHB} Bonus to its ability check.",
+				"When you cast either spell with a spell slot, that slot isn't expended if the spell fails to stop a spell."
+			]
+		},
+		{
+			"name": "Spell Resistance",
+			"source": "XPHB",
+			"page": 173,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Abjurer",
+			"subclassSource": "XPHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"You have {@variantrule Advantage|XPHB} on saving throws against spells, and you have {@variantrule Resistance|XPHB} to the damage of spells."
+			]
+		},
+		{
+			"name": "Diviner",
+			"source": "XPHB",
+			"page": 173,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Diviner",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i Learn the Secrets of the Multiverse}",
+				"The counsel of a Diviner is sought by those who want a clearer understanding of the past, present, and future. As a Diviner, you strive to part the veils of space, time, and consciousness. You work to master spells of discernment, remote viewing, supernatural knowledge, and foresight.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Divination Savant|Wizard|XPHB|Diviner|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Portent|Wizard|XPHB|Diviner|XPHB|3"
+				}
+			]
+		},
+		{
+			"name": "Divination Savant",
+			"source": "XPHB",
+			"page": 173,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Diviner",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"Choose two Wizard spells from the Divination school, each of which must be no higher than level 2, and add them to your spellbook for free.",
+				"In addition, whenever you gain access to a new level of spell slots in this class, you can add one Wizard spell from the Divination school to your spellbook for free. The chosen spell must be of a level for which you have spell slots."
+			]
+		},
+		{
+			"name": "Portent",
+			"source": "XPHB",
+			"page": 173,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Diviner",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"Glimpses of the future begin to press on your awareness. Whenever you finish a {@variantrule Long Rest|XPHB}, roll two d20s and record the numbers rolled. You can replace any {@variantrule D20 Test|XPHB} made by you or a creature that you can see with one of these foretelling rolls. You must choose to do so before the roll, and you can replace a roll in this way only once per turn.",
+				"Each foretelling roll can be used only once. When you finish a {@variantrule Long Rest|XPHB}, you lose any unused foretelling rolls."
+			]
+		},
+		{
+			"name": "Expert Divination",
+			"source": "XPHB",
+			"page": 173,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Diviner",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"Casting Divination spells comes so easily to you that it expends only a fraction of your spellcasting efforts. When you cast a Divination spell using a level 2+ spell slot, you regain one expended spell slot. The slot you regain must be of a level lower than the slot you expended and can't be higher than level 5."
+			]
+		},
+		{
+			"name": "The Third Eye",
+			"source": "XPHB",
+			"page": 173,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Diviner",
+			"subclassSource": "XPHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"You can increase your powers of perception. As a {@variantrule Bonus Action|XPHB}, choose one of the following benefits, which lasts until you start a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}. You can't use this feature again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Darkvision",
+							"entries": [
+								"You gain {@sense Darkvision|XPHB} with a range of 120 feet."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Greater Comprehension",
+							"entries": [
+								"You can read any language."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "See Invisibility",
+							"entries": [
+								"You can cast {@spell See Invisibility|XPHB} without expending a spell slot."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Greater Portent",
+			"source": "XPHB",
+			"page": 173,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Diviner",
+			"subclassSource": "XPHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"The visions in your dreams intensify and paint a more accurate picture in your mind of what is to come. Roll three d20s for your Portent feature rather than two."
+			]
+		},
+		{
+			"name": "Evoker",
+			"source": "XPHB",
+			"page": 174,
+			"freeRules2024": true,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Evoker",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i Create Explosive Elemental Effects}",
+				"Your studies focus on magic that creates powerful elemental effects such as bitter cold, searing flame, rolling thunder, crackling lightning, and burning acid. Some Evokers find employment in military forces, serving as artillery to blast armies from afar. Others use their power to protect others, while some seek their own gain.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Evocation Savant|Wizard|XPHB|Evoker|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Potent Cantrip|Wizard|XPHB|Evoker|XPHB|3"
+				}
+			]
+		},
+		{
+			"name": "Evocation Savant",
+			"source": "XPHB",
+			"page": 174,
+			"freeRules2024": true,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Evoker",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"Choose two Wizard spells from the Evocation school, each of which must be no higher than level 2, and add them to your spellbook for free.",
+				"In addition, whenever you gain access to a new level of spell slots in this class, you can add one Wizard spell from the Evocation school to your spellbook for free. The chosen spell must be of a level for which you have spell slots."
+			]
+		},
+		{
+			"name": "Potent Cantrip",
+			"source": "XPHB",
+			"page": 174,
+			"freeRules2024": true,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Evoker",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"Your damaging cantrips affect even creatures that avoid the brunt of the effect. When you cast a cantrip at a creature and you miss with the attack roll or the target succeeds on a saving throw against the cantrip, the target takes half the cantrip's damage (if any) but suffers no additional effect from the cantrip."
+			]
+		},
+		{
+			"name": "Sculpt Spells",
+			"source": "XPHB",
+			"page": 174,
+			"freeRules2024": true,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Evoker",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"You can create pockets of relative safety within the effects of your evocations. When you cast an Evocation spell that affects other creatures that you can see, you can choose a number of them equal to 1 plus the spell's level. The chosen creatures automatically succeed on their saving throws against the spell, and they take no damage if they would normally take half damage on a successful save."
+			]
+		},
+		{
+			"name": "Empowered Evocation",
+			"source": "XPHB",
+			"page": 174,
+			"freeRules2024": true,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Evoker",
+			"subclassSource": "XPHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"Whenever you cast a Wizard spell from the Evocation school, you can add your Intelligence modifier to one damage roll of that spell."
+			]
+		},
+		{
+			"name": "Overchannel",
+			"source": "XPHB",
+			"page": 174,
+			"freeRules2024": true,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Evoker",
+			"subclassSource": "XPHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"You can increase the power of your spells. When you cast a Wizard spell with a spell slot of levels 1\u20135 that deals damage, you can deal maximum damage with that spell on the turn you cast it.",
+				"The first time you do so, you suffer no adverse effect. If you use this feature again before you finish a {@variantrule Long Rest|XPHB}, you take {@damage 2d12} Necrotic damage for each level of the spell slot immediately after you cast it. This damage ignores {@variantrule Resistance|XPHB} and {@variantrule Immunity|XPHB}.",
+				"Each time you use this feature again before finishing a {@variantrule Long Rest|XPHB}, the Necrotic damage per spell level increases by {@dice 1d12}."
+			]
+		},
+		{
+			"name": "Illusionist",
+			"source": "XPHB",
+			"page": 175,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Illusionist",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i Weave Subtle Spells of Deception}",
+				"You specialize in magic that dazzles the senses and tricks the mind, and the illusions you craft make the impossible seem real.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Illusion Savant|Wizard|XPHB|Illusionist|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Improved Illusions|Wizard|XPHB|Illusionist|XPHB|3"
+				}
+			]
+		},
+		{
+			"name": "Illusion Savant",
+			"source": "XPHB",
+			"page": 175,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Illusionist",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"Choose two Wizard spells from the Illusion school, each of which must be no higher than level 2, and add them to your spellbook for free.",
+				"In addition, whenever you gain access to a new level of spell slots in this class, you can add one Wizard spell from the Illusion school to your spellbook for free. The chosen spell must be of a level for which you have spell slots."
+			]
+		},
+		{
+			"name": "Improved Illusions",
+			"source": "XPHB",
+			"page": 175,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Illusionist",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"You can cast Illusion spells without providing Verbal components, and if an Illusion spell you cast has a range of 10+ feet, the range increases by 60 feet.",
+				"You also know the {@spell Minor Illusion|XPHB} cantrip. If you already know it, you learn a different Wizard cantrip of your choice. The cantrip doesn't count against your number of cantrips known. You can create both a sound and an image with a single casting of {@spell Minor Illusion|XPHB}, and you can cast it as a {@variantrule Bonus Action|XPHB}."
+			]
+		},
+		{
+			"name": "Phantasmal Creatures",
+			"source": "XPHB",
+			"page": 175,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Illusionist",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"You always have the {@spell Summon Beast|XPHB} and {@spell Summon Fey|XPHB} spells prepared. Whenever you cast either spell, you can change its school to Illusion, which causes the summoned creature to appear spectral. You can cast the Illusion version of each spell without expending a spell slot, but casting it without a slot halves the creature's {@variantrule Hit Points|XPHB}. Once you cast either spell without a spell slot, you must finish a {@variantrule Long Rest|XPHB} before you can cast the spell in that way again."
+			]
+		},
+		{
+			"name": "Illusory Self",
+			"source": "XPHB",
+			"page": 175,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Illusionist",
+			"subclassSource": "XPHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"When a creature hits you with an attack roll, you can take a {@variantrule Reaction|XPHB} to interpose an illusory duplicate of yourself between the attacker and yourself. The attack automatically misses you, then the illusion dissipates.",
+				"Once you use this feature, you can't use it again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}. You can also restore your use of it by expending a level 2+ spell slot (no action required)."
+			]
+		},
+		{
+			"name": "Illusory Reality",
+			"source": "XPHB",
+			"page": 175,
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Illusionist",
+			"subclassSource": "XPHB",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"You have learned to weave shadow magic into your illusions to give them a semi-reality. When you cast an Illusion spell with a spell slot, you can choose one inanimate, nonmagical object that is part of the illusion and make that object real. You can do this on your turn as a {@variantrule Bonus Action|XPHB} while the spell is ongoing. The object remains real for 1 minute, during which it can't deal damage or give any conditions. For example, you can create an illusion of a bridge over a chasm and then make it real and cross it."
 			]
 		}
 	]

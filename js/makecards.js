@@ -769,8 +769,8 @@ MakeCards._AVAILABLE_TYPES = {
 		},
 	},
 	race: {
-		searchTitle: "Race",
-		pageTitle: "Races",
+		searchTitle: "Species",
+		pageTitle: "Species",
 		page: UrlUtil.PG_RACES,
 		colorDefault: "#a7894b",
 		iconDefault: "family-tree",

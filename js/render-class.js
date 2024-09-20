@@ -1,4 +1,4 @@
-import {SITE_STYLE__CLASSIC} from "./consts.js";
+import {SITE_STYLE__CLASSIC, SITE_STYLE__ONE} from "./consts.js";
 import {VetoolsConfig} from "./utils-config/utils-config-config.js";
 
 /** @abstract */
@@ -344,13 +344,101 @@ class _RenderClassesSidebarImplClassic extends _RenderClassesSidebarImplBase {
 	}
 }
 
+class _RenderClassesSidebarImplOne extends _RenderClassesSidebarImplBase {
+	_style = SITE_STYLE__ONE;
+
+	/* -------------------------------------------- */
+
+	_getElements (
+		{
+			comp,
+			cls,
+			renderer,
+		},
+	) {
+		return {
+			eleCoreTraits: this._getElements_coreTraits({comp, cls, renderer}),
+		};
+	}
+
+	/* ----- */
+
+	_getElements_coreTraits ({comp, cls, renderer}) {
+		const pts = [
+			Renderer.class.getHtmlPtPrimaryAbility(cls, {renderer, styleHint: this._style}),
+			Renderer.class.getHtmlPtHitPoints(cls, {renderer, styleHint: this._style}),
+			Renderer.class.getHtmlPtSavingThrows(cls, {renderer, styleHint: this._style}),
+			Renderer.class.getHtmlPtSkills(cls, {renderer, styleHint: this._style}),
+			Renderer.class.getHtmlPtWeaponProficiencies(cls, {renderer, styleHint: this._style}),
+			Renderer.class.getHtmlPtToolProficiencies(cls, {renderer, styleHint: this._style}),
+			Renderer.class.getHtmlPtArmorProficiencies(cls, {renderer, styleHint: this._style}),
+			Renderer.class.getHtmlPtStartingEquipment(cls, {renderer, styleHint: this._style}),
+		]
+			.filter(Boolean)
+			.join(`<div class="py-2 w-100"></div>`);
+
+		const ele = e_({
+			tag: "tr",
+			html: `<td colspan="6" class="cls-side__section">
+				<h5 class="cls-side__section-head">Core Traits</h5>
+				${pts}
+			</td>`,
+		});
+
+		comp._addHookBase("isHideSidebar", () => {
+			ele.toggleVe(!comp._state.isHideSidebar);
+		})();
+
+		return ele;
+	}
+
+	/* -------------------------------------------- */
+
+	_getRenderedClassSidebar ({comp, cls, renderer}) {
+		const {
+			eleName,
+			eleAuthors,
+			eleGroup,
+			eleRequirements,
+			eleMulticlassing,
+		} = this._getCommonElements({
+			comp,
+			cls,
+			renderer,
+		});
+		const {
+			eleCoreTraits,
+		} = this._getElements({
+			comp,
+			cls,
+			renderer,
+		});
+
+		return ee`<table class="w-100 stats shadow-big cls__stats">
+			<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+			
+			${eleName}
+			${eleAuthors}
+
+			${eleGroup}
+			${eleRequirements}
+			${eleCoreTraits}
+			${eleMulticlassing}
+
+			<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+		</table>`;
+	}
+}
+
 export class RenderClassesSidebar {
 	static _RENDER_CLASSIC = new _RenderClassesSidebarImplClassic();
+	static _RENDER_ONE = new _RenderClassesSidebarImplOne();
 
 	static getRenderedClassSidebar (comp, cls) {
 		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
 		switch (styleHint) {
 			case SITE_STYLE__CLASSIC: return this._RENDER_CLASSIC.getRenderedClassSidebar(comp, cls);
+			case SITE_STYLE__ONE: return this._RENDER_ONE.getRenderedClassSidebar(comp, cls);
 			default: throw new Error(`Unhandled style "${styleHint}"!`);
 		}
 	}

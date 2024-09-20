@@ -28,14 +28,16 @@ class _PageGeneratorListBackgrounds extends PageGeneratorListBase {
 	_isModule = true;
 
 	_btnsList = [
-		HtmlGeneratorListButtons.getBtn({width: "4", sortIdent: "name", text: "Name"}),
-		HtmlGeneratorListButtons.getBtn({width: "6", sortIdent: "skills", text: "Skill Proficiencies"}),
+		HtmlGeneratorListButtons.getBtn({width: "2-5", sortIdent: "name", text: "Name"}),
+		HtmlGeneratorListButtons.getBtn({width: "3-5", sortIdent: "ability", text: "Ability"}),
+		HtmlGeneratorListButtons.getBtn({width: "4", sortIdent: "skills", text: "Skill Proficiencies"}),
 		HtmlGeneratorListButtons.getBtnSource(),
 	];
 
 	_btnsSublist = [
-		HtmlGeneratorListButtons.getBtn({width: "4", sortIdent: "name", text: "Name"}),
-		HtmlGeneratorListButtons.getBtn({width: "8", sortIdent: "skills", text: "Skills"}),
+		HtmlGeneratorListButtons.getBtn({width: "3", sortIdent: "name", text: "Name"}),
+		HtmlGeneratorListButtons.getBtn({width: "5", sortIdent: "ability", text: "Ability"}),
+		HtmlGeneratorListButtons.getBtn({width: "4", sortIdent: "skills", text: "Skills"}),
 	];
 
 	_isPrinterView = true;
@@ -219,15 +221,17 @@ class _PageGeneratorListFeats extends PageGeneratorListBase {
 
 	_btnsList = [
 		HtmlGeneratorListButtons.getBtnPreviewToggle(),
-		HtmlGeneratorListButtons.getBtn({width: "3-5", sortIdent: "name", text: "Name"}),
-		HtmlGeneratorListButtons.getBtn({width: "3-5", sortIdent: "ability", text: "Ability"}),
+		HtmlGeneratorListButtons.getBtn({width: "3-2", sortIdent: "name", text: "Name"}),
+		HtmlGeneratorListButtons.getBtn({width: "1-3", sortIdent: "category", text: "Category"}),
+		HtmlGeneratorListButtons.getBtn({width: "2-5", sortIdent: "ability", text: "Ability"}),
 		HtmlGeneratorListButtons.getBtn({width: "3", sortIdent: "prerequisite", text: "Prerequisite"}),
 		HtmlGeneratorListButtons.getBtnSource(),
 	];
 
 	_btnsSublist = [
 		HtmlGeneratorListButtons.getBtn({width: "4", sortIdent: "name", text: "Name"}),
-		HtmlGeneratorListButtons.getBtn({width: "4", sortIdent: "ability", text: "Ability"}),
+		HtmlGeneratorListButtons.getBtn({width: "2", sortIdent: "ability", text: "Category"}),
+		HtmlGeneratorListButtons.getBtn({width: "2", sortIdent: "ability", text: "Ability"}),
 		HtmlGeneratorListButtons.getBtn({width: "4", sortIdent: "prerequisite", text: "Prerequisite"}),
 	];
 
@@ -442,7 +446,7 @@ class _PageGeneratorListPsionics extends PageGeneratorListBase {
 
 class _PageGeneratorListRaces extends PageGeneratorListBase {
 	_page = UrlUtil.PG_RACES;
-	_pageTitle = "Races";
+	_pageTitle = "Species";
 	_scriptIdentList = "races";
 	_isHasRenderer = false;
 
@@ -583,8 +587,8 @@ class _PageGeneratorListTables extends PageGeneratorListBase {
 
 class _PageGeneratorListVariantRules extends PageGeneratorListBase {
 	_page = UrlUtil.PG_VARIANTRULES;
-	_pageTitle = "Optional, Variant, and Expanded Rules";
-	_navbarTitle = "Optional/etc. Rules";
+	_pageTitle = "Rules Glossary";
+	_navbarTitle = "Rules Glossary";
 	_scriptIdentList = "variantrules";
 
 	_btnsList = [
