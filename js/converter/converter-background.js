@@ -113,7 +113,7 @@ export class ConverterBackground extends ConverterFeatureBase {
 		const entryEquipment = ConverterBackgroundUtil.getEquipmentEntry(background);
 		if (!entryEquipment) return;
 
-		entryEquipment.entry = ItemTag.tryRunBasicEquipment(entryEquipment.entry);
+		entryEquipment.entry = ItemTag.tryRunBasicEquipment(entryEquipment.entry, {styleHint: options.styleHint});
 	}
 
 	static _doBackgroundPostProcess_tables (background, options) {

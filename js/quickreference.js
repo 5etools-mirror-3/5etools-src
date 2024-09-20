@@ -32,7 +32,7 @@ function onJsonLoad (data) {
 	BookUtil.baseDataUrl = "data/generated/";
 	BookUtil.bookIndex = reference;
 	BookUtil.referenceId = "bookref-quick";
-	BookUtil.typeTitle = "Quick Reference";
+	BookUtil.typeTitle = "Quick Reference (2014)";
 	BookUtil.initLinkGrabbers();
 	BookUtil.initScrollTopFloat();
 

@@ -114,9 +114,65 @@
 			]
 		},
 		{
+			"name": "Ability Score Improvement",
+			"source": "XPHB",
+			"page": 202,
+			"freeRules2024": true,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"repeatable": true,
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						],
+						"amount": 2
+					},
+					"hidden": true
+				},
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						],
+						"count": 2
+					},
+					"hidden": true
+				}
+			],
+			"entries": [
+				"Increase one ability score of your choice by 2, or increase two ability scores of your choice by 1. This feat can't increase an ability score above 20.",
+				{
+					"type": "entries",
+					"name": "Repeatable",
+					"entries": [
+						"You can take this feat more than once."
+					]
+				}
+			]
+		},
+		{
 			"name": "Actor",
 			"source": "PHB",
 			"page": 165,
+			"reprintedAs": [
+				"Actor|XPHB"
+			],
 			"ability": [
 				{
 					"cha": 1
@@ -129,6 +185,44 @@
 					"items": [
 						"You have advantage on Charisma ({@skill Deception}) and Charisma ({@skill Performance}) checks when trying to pass yourself off as a different person.",
 						"You can mimic the speech of another person or the sounds made by other creatures. You must have heard the person speaking, or heard the creature make the sound, for at least 1 minute. A successful Wisdom ({@skill Insight}) check contested by your Charisma ({@skill Deception}) check allows a listener to determine that the effect is faked."
+					]
+				}
+			]
+		},
+		{
+			"name": "Actor",
+			"source": "XPHB",
+			"page": 202,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"cha": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"cha": 1
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Impersonation",
+					"entries": [
+						"While you're disguised as a real or fictional person, you have Advantage on Charisma ({@skill Deception|XPHB} or {@skill Performance|XPHB}) checks to convince others that you are that person."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Mimicry",
+					"entries": [
+						"You can mimic the sounds of other creatures, including speech. A creature that hears the mimicry must succeed on a Wisdom ({@skill Insight|XPHB}) check to determine the effect is faked (DC 8 plus your Charisma modifier and Proficiency Bonus)."
 					]
 				}
 			]
@@ -401,6 +495,9 @@
 			"name": "Alert",
 			"source": "PHB",
 			"page": 165,
+			"reprintedAs": [
+				"Alert|XPHB"
+			],
 			"entries": [
 				"Always on the lookout for danger, you gain the following benefits:",
 				{
@@ -411,6 +508,47 @@
 						"Other creatures don't gain advantage on attack rolls against you as a result of being unseen by you."
 					]
 				}
+			]
+		},
+		{
+			"name": "Alert",
+			"source": "XPHB",
+			"page": 200,
+			"freeRules2024": true,
+			"category": "O",
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Initiative Proficiency",
+					"entries": [
+						"When you roll Initiative, you can add your Proficiency Bonus to the roll."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Initiative Swap",
+					"entries": [
+						"Immediately after you roll Initiative, you can swap your Initiative with the Initiative of one willing ally in the same combat. You can't make this swap if you or the ally has the {@condition Incapacitated|XPHB} condition."
+					]
+				}
+			]
+		},
+		{
+			"name": "Archery",
+			"source": "XPHB",
+			"page": 209,
+			"freeRules2024": true,
+			"category": "FS",
+			"prerequisite": [
+				{
+					"feature": [
+						"Fighting Style"
+					]
+				}
+			],
+			"entries": [
+				"You gain a +2 bonus to attack rolls you make with Ranged weapons."
 			]
 		},
 		{
@@ -461,6 +599,9 @@
 			"name": "Athlete",
 			"source": "PHB",
 			"page": 165,
+			"reprintedAs": [
+				"Athlete|XPHB"
+			],
 			"ability": [
 				{
 					"choose": {
@@ -480,6 +621,64 @@
 						"When you are {@condition prone}, standing up uses only 5 feet of your movement.",
 						"Climbing doesn't cost you extra movement.",
 						"You can make a running long jump or a running high jump after moving only 5 feet on foot, rather than 10 feet."
+					]
+				}
+			]
+		},
+		{
+			"name": "Athlete",
+			"source": "XPHB",
+			"page": 202,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"str": 13
+						}
+					]
+				},
+				{
+					"level": 4,
+					"ability": [
+						{
+							"dex": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Climb Speed",
+					"entries": [
+						"You gain a Climb Speed equal to your Speed."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Hop Up",
+					"entries": [
+						"When you have the {@condition Prone|XPHB} condition, you can right yourself with only 5 feet of movement."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Jumping",
+					"entries": [
+						"You can make a running Long or High Jump after moving only 5 feet."
 					]
 				}
 			]
@@ -549,6 +748,580 @@
 								"one special sense they possess"
 							]
 						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Blessed Warrior",
+			"source": "XPHB",
+			"page": 110,
+			"category": "FS:P",
+			"prerequisite": [
+				{
+					"otherSummary": {
+						"entry": "When Gaining the Level 2 Paladin \"Fighting Style\" Feature",
+						"entrySummary": "Special"
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"ability": "cha",
+					"known": {
+						"_": [
+							{
+								"choose": "level=0|class=cleric",
+								"count": 2
+							}
+						]
+					}
+				}
+			],
+			"entries": [
+				"You learn two {@filter Cleric cantrips|spells|level=0|class=Cleric} of your choice. {@spell Guidance|XPHB} and {@spell Sacred Flame|XPHB} are recommended. The chosen cantrips count as Paladin spells for you, and Charisma is your spellcasting ability for them. Whenever you gain a Paladin level, you can replace one of these cantrips with another Cleric cantrip."
+			]
+		},
+		{
+			"name": "Blind Fighting",
+			"source": "XPHB",
+			"page": 209,
+			"category": "FS",
+			"prerequisite": [
+				{
+					"feature": [
+						"Fighting Style"
+					]
+				}
+			],
+			"senses": [
+				{
+					"blindsight": 10
+				}
+			],
+			"entries": [
+				"You have {@sense Blindsight|XPHB} with a range of 10 feet."
+			]
+		},
+		{
+			"name": "Boon of Combat Prowess",
+			"source": "XPHB",
+			"page": 210,
+			"freeRules2024": true,
+			"category": "EB",
+			"prerequisite": [
+				{
+					"level": 19
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"max": 30
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Peerless Aim",
+					"entries": [
+						"When you miss with an attack roll, you can hit instead. Once you use this benefit, you can't use it again until the start of your next turn."
+					]
+				}
+			]
+		},
+		{
+			"name": "Boon of Dimensional Travel",
+			"source": "XPHB",
+			"page": 210,
+			"category": "EB",
+			"prerequisite": [
+				{
+					"level": 19
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"max": 30
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Blink Steps",
+					"entries": [
+						"Immediately after you take the {@action Attack|XPHB} action or the {@action Magic|XPHB} action, you can teleport up to 30 feet to an unoccupied space you can see."
+					]
+				}
+			]
+		},
+		{
+			"name": "Boon of Energy Resistance",
+			"source": "XPHB",
+			"page": 210,
+			"category": "EB",
+			"prerequisite": [
+				{
+					"level": 19
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"max": 30
+				}
+			],
+			"resist": [
+				{
+					"choose": {
+						"from": [
+							"acid",
+							"cold",
+							"fire",
+							"lightning",
+							"necrotic",
+							"poison",
+							"psychic",
+							"radiant",
+							"thunder"
+						],
+						"count": 2
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Energy Resistances",
+					"entries": [
+						"You gain Resistance to two of the following damage types of your choice: Acid, Cold, Fire, Lightning, Necrotic, Poison, Psychic, Radiant, or Thunder. Whenever you finish a Long Rest, you can change your choices."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Energy Redirection",
+					"entries": [
+						"When you take damage of one of the types chosen for the Energy Resistances benefit, you can take a Reaction to direct damage of the same type toward another creature you can see within 60 feet of yourself that isn't behind Total Cover. If you do so, that creature must succeed on a Dexterity saving throw (DC 8 plus your Constitution modifier and Proficiency Bonus) or take damage equal to {@dice 2d12} plus your Constitution modifier."
+					]
+				}
+			]
+		},
+		{
+			"name": "Boon of Fate",
+			"source": "XPHB",
+			"page": 210,
+			"freeRules2024": true,
+			"category": "EB",
+			"prerequisite": [
+				{
+					"level": 19
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"max": 30
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Improve Fate",
+					"entries": [
+						"When you or another creature within 60 feet of you succeeds on or fails a {@variantrule D20 Test|XPHB}, you can roll {@dice 2d4} and apply the total rolled as a bonus or penalty to the {@dice d20} roll. Once you use this benefit, you can't use it again until you roll Initiative or finish a Short or Long Rest."
+					]
+				}
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Boon of Fortitude",
+			"source": "XPHB",
+			"page": 210,
+			"category": "EB",
+			"prerequisite": [
+				{
+					"level": 19
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"max": 30
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Fortified Health",
+					"entries": [
+						"Your Hit Point maximum increases by 40. In addition, whenever you regain Hit Points, you can regain additional Hit Points equal to your Constitution modifier. Once you've regained these additional Hit Points, you can't do so again until the start of your next turn."
+					]
+				}
+			]
+		},
+		{
+			"name": "Boon of Irresistible Offense",
+			"source": "XPHB",
+			"page": 211,
+			"category": "EB",
+			"prerequisite": [
+				{
+					"level": 19
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex"
+						]
+					},
+					"max": 30
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Overcome Defenses",
+					"entries": [
+						"The Bludgeoning, Piercing, and Slashing damage you deal always ignores Resistance."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Overwhelming Strike",
+					"entries": [
+						"When you roll a 20 on the {@dice d20} for an attack roll, you can deal extra damage to the target equal to the ability score increased by this feat. The extra damage's type is the same as the attack's type."
+					]
+				}
+			]
+		},
+		{
+			"name": "Boon of Recovery",
+			"source": "XPHB",
+			"page": 211,
+			"category": "EB",
+			"prerequisite": [
+				{
+					"level": 19
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"max": 30
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Last Stand",
+					"entries": [
+						"When you would be reduced to 0 Hit Points, you can drop to 1 Hit Point instead and regain a number of Hit Points equal to half your Hit Point maximum. Once you use this benefit, you can't use it again until you finish a Long Rest."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Recover Vitality",
+					"entries": [
+						"You have a pool of ten d10s. As a Bonus Action, you can expend dice from the pool, roll those dice, and regain a number of Hit Points equal to the roll's total. You regain all the expended dice when you finish a Long Rest."
+					]
+				}
+			]
+		},
+		{
+			"name": "Boon of Skill",
+			"source": "XPHB",
+			"page": 211,
+			"category": "EB",
+			"prerequisite": [
+				{
+					"level": 19
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"max": 30
+				}
+			],
+			"skillProficiencies": [
+				{
+					"athletics": true,
+					"acrobatics": true,
+					"sleight of hand": true,
+					"stealth": true,
+					"arcana": true,
+					"history": true,
+					"investigation": true,
+					"nature": true,
+					"religion": true,
+					"animal handling": true,
+					"insight": true,
+					"medicine": true,
+					"perception": true,
+					"survival": true,
+					"deception": true,
+					"intimidation": true,
+					"performance": true,
+					"persuasion": true
+				}
+			],
+			"expertise": [
+				{
+					"anyProficientSkill": 1
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "All-Around Adept",
+					"entries": [
+						"You gain proficiency in all skills."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Expertise",
+					"entries": [
+						"Choose one skill in which you lack Expertise. You gain Expertise in that skill."
+					]
+				}
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Boon of Speed",
+			"source": "XPHB",
+			"page": 211,
+			"category": "EB",
+			"prerequisite": [
+				{
+					"level": 19
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"max": 30
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Escape Artist",
+					"entries": [
+						"As a Bonus Action, you can take the {@action Disengage|XPHB} action, which also ends the {@condition Grappled|XPHB} condition on you."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Quickness",
+					"entries": [
+						"Your Speed increases by 30 feet."
+					]
+				}
+			]
+		},
+		{
+			"name": "Boon of Spell Recall",
+			"source": "XPHB",
+			"page": 211,
+			"category": "EB",
+			"prerequisite": [
+				{
+					"level": 19,
+					"spellcasting2020": true
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"max": 30
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Free Casting",
+					"entries": [
+						"Whenever you cast a spell with a level 1-4 spell slot, roll {@dice 1d4}. If the number you roll is the same as the slot's level, the slot isn't expended."
+					]
+				}
+			]
+		},
+		{
+			"name": "Boon of the Night Spirit",
+			"source": "XPHB",
+			"page": 211,
+			"freeRules2024": true,
+			"category": "EB",
+			"prerequisite": [
+				{
+					"level": 19
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"max": 30
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Merge with Shadows",
+					"entries": [
+						"While within Dim Light or Darkness, you can give yourself the {@condition Invisible|XPHB} condition as a Bonus Action. The condition ends on you immediately after you take an action, a Bonus Action, or a Reaction."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Shadowy Form",
+					"entries": [
+						"While within Dim Light or Darkness, you have Resistance to all damage except Psychic and Radiant."
+					]
+				}
+			]
+		},
+		{
+			"name": "Boon of Truesight",
+			"source": "XPHB",
+			"page": 211,
+			"category": "EB",
+			"prerequisite": [
+				{
+					"level": 19
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"max": 30
+				}
+			],
+			"senses": [
+				{
+					"truesight": 60
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Truesight",
+					"entries": [
+						"You have {@sense Truesight|XPHB} with a range of 60 feet."
 					]
 				}
 			]
@@ -644,15 +1417,72 @@
 			"name": "Charger",
 			"source": "PHB",
 			"page": 165,
+			"reprintedAs": [
+				"Charger|XPHB"
+			],
 			"entries": [
 				"When you use your action to {@action Dash}, you can use a bonus action to make one melee weapon attack or to {@action shove} a creature.",
 				"If you move at least 10 feet in a straight line immediately before taking this bonus action, you either gain a +5 bonus to the attack's damage roll (if you chose to make a melee attack and hit) or push the target up to 10 feet away from you (if you chose to shove and you succeed)."
 			]
 		},
 		{
+			"name": "Charger",
+			"source": "XPHB",
+			"page": 202,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"str": 13
+						}
+					]
+				},
+				{
+					"level": 4,
+					"ability": [
+						{
+							"dex": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Improved Dash",
+					"entries": [
+						"When you take the {@action Dash|XPHB} action, your Speed increases by 10 feet for that action."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Charge Attack",
+					"entries": [
+						"If you move at least 10 feet in a straight line toward a target immediately before hitting it with a melee attack roll as part of the {@action Attack|XPHB} action, choose one of the following effects: gain a {@dice 1d8} bonus to the attack's damage roll, or push the target up to 10 feet away if it is no more than one size larger than you. You can use this benefit only once on each of your turns."
+					]
+				}
+			]
+		},
+		{
 			"name": "Chef",
 			"source": "TCE",
 			"page": 79,
+			"reprintedAs": [
+				"Chef|XPHB"
+			],
 			"ability": [
 				{
 					"choose": {
@@ -677,6 +1507,56 @@
 						"You gain proficiency with {@item cook's utensils|phb} if you don't already have it.",
 						"As part of a short rest, you can cook special food, provided you have ingredients and {@item cook's utensils|phb} on hand. You can prepare enough of this food for a number of creatures equal to 4 + your proficiency bonus. At the end of the short rest, any creature who eats the food and spends one or more Hit Dice to regain hit points regains an extra {@dice 1d8} hit points.",
 						"With one hour of work or when you finish a long rest, you can cook a number of treats equal to your proficiency bonus. These special treats last 8 hours after being made. A creature can use a bonus action to eat one of those treats to gain temporary hit points equal to your proficiency bonus."
+					]
+				}
+			]
+		},
+		{
+			"name": "Chef",
+			"source": "XPHB",
+			"page": 202,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"con",
+							"wis"
+						]
+					}
+				}
+			],
+			"toolProficiencies": [
+				{
+					"cook's utensils": true
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Cook's Utensils",
+					"entries": [
+						"You gain proficiency with Cook's Utensils if you don't already have it."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Replenishing Meal",
+					"entries": [
+						"As part of a Short Rest, you can cook special food if you have ingredients and Cook's Utensils on hand. You can prepare enough of this food for a number of creatures equal to 4 plus your Proficiency Bonus. At the end of the Short Rest, any creature who eats the food and spends one or more Hit Dice to regain Hit Points regains an extra {@dice 1d8} Hit Points."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Bolstering Treats",
+					"entries": [
+						"With 1 hour of work or when you finish a Long Rest, you can cook a number of treats equal to your Proficiency Bonus if you have ingredients and Cook's Utensils on hand. These special treats last 8 hours after being made. A creature can use a Bonus Action to eat one of those treats to gain a number of Temporary Hit Points equal to your Proficiency Bonus."
 					]
 				}
 			]
@@ -756,9 +1636,105 @@
 			]
 		},
 		{
+			"name": "Crafter",
+			"source": "XPHB",
+			"page": 200,
+			"category": "O",
+			"toolProficiencies": [
+				{
+					"choose": {
+						"from": [
+							"carpenter's tools",
+							"leatherworker's tools",
+							"mason's tools",
+							"potter's tools",
+							"smith's tools",
+							"tinker's tools",
+							"weaver's tools",
+							"woodcarver's tools"
+						],
+						"count": 3
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Tool Proficiency",
+					"entries": [
+						"You gain proficiency with three different Artisan's Tools of your choice from the Fast Crafting table."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Discount",
+					"entries": [
+						"Whenever you buy a nonmagical item, you receive a 20 percent discount on it."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Fast Crafting",
+					"entries": [
+						"When you finish a Long Rest, you can craft one piece of gear from the Fast Crafting table, provided you have the Artisan's Tools associated with that item and have proficiency with those tools. The item lasts until you finish another Long Rest, at which point the item falls apart.",
+						{
+							"type": "table",
+							"caption": "Fast Crafting",
+							"colStyles": [
+								"col-3",
+								"col-9"
+							],
+							"colLabels": [
+								"Artisan's Tools",
+								"Crafted Gear"
+							],
+							"rows": [
+								[
+									"{@item Carpenter's Tools|XPHB}",
+									"{@item Ladder|XPHB}, {@item Torch|XPHB}"
+								],
+								[
+									"{@item Leatherworker's Tools|XPHB}",
+									"{@item Crossbow Bolt Case|XPHB}, {@item Map or Scroll Case|XPHB}, {@item Pouch|XPHB}"
+								],
+								[
+									"{@item Mason's Tools|XPHB}",
+									"{@item Block and Tackle|XPHB}"
+								],
+								[
+									"{@item Potter's Tools|XPHB}",
+									"{@item Jug|XPHB}, {@item Lamp|XPHB}"
+								],
+								[
+									"{@item Smith's Tools|XPHB}",
+									"{@item Ball Bearings|XPHB}, {@item Bucket|XPHB}, {@item Caltrops|XPHB}, {@item Grappling Hook|XPHB}, {@item Iron Pot|XPHB}"
+								],
+								[
+									"{@item Tinker's Tools|XPHB}",
+									"{@item Bell|XPHB}, {@item Shovel|XPHB}, {@item Tinderbox|XPHB}"
+								],
+								[
+									"{@item Weaver's Tools|XPHB}",
+									"{@item Basket|XPHB}, {@item Rope|XPHB}, {@item Net|XPHB}, {@item Tent|XPHB}"
+								],
+								[
+									"{@item Woodcarver's Tools|XPHB}",
+									"{@item Club|XPHB}, {@item Greatclub|XPHB}, {@item Quarterstaff|XPHB}"
+								]
+							]
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Crossbow Expert",
 			"source": "PHB",
 			"page": 165,
+			"reprintedAs": [
+				"Crossbow Expert|XPHB"
+			],
 			"entries": [
 				"Thanks to extensive practice with the crossbow, you gain the following benefits:",
 				{
@@ -767,6 +1743,51 @@
 						"You ignore the loading quality of crossbows with which you are proficient.",
 						"Being within 5 feet of a hostile creature doesn't impose disadvantage on your ranged attack rolls.",
 						"When you use the {@action Attack} action and attack with a one-handed weapon, you can use a bonus action to attack with a {@item hand crossbow|phb} you are holding."
+					]
+				}
+			]
+		},
+		{
+			"name": "Crossbow Expert",
+			"source": "XPHB",
+			"page": 203,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"dex": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"dex": 1
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Ignore Loading",
+					"entries": [
+						"You ignore the Loading property of the Hand Crossbow, Heavy Crossbow, and Light Crossbow (all called crossbows elsewhere in this feat). If you're holding one of them, you can load a piece of ammunition into it even if you lack a free hand."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Firing in Melee",
+					"entries": [
+						"Being within 5 feet of an enemy doesn't impose Disadvantage on your attack rolls with crossbows."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Dual Wielding",
+					"entries": [
+						"When you make the extra attack of the Light property, you can add your ability modifier to the damage of the extra attack if that attack is with a crossbow that has the Light property and you aren't already adding that modifier to the damage."
 					]
 				}
 			]
@@ -793,6 +1814,9 @@
 			"name": "Crusher",
 			"source": "TCE",
 			"page": 79,
+			"reprintedAs": [
+				"Crusher|XPHB"
+			],
 			"ability": [
 				{
 					"choose": {
@@ -816,9 +1840,67 @@
 			]
 		},
 		{
+			"name": "Crusher",
+			"source": "XPHB",
+			"page": 203,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"con"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Push",
+					"entries": [
+						"Once per turn, when you hit a creature with an attack that deals Bludgeoning damage, you can move it 5 feet to an unoccupied space if the target is no more than one size larger than you."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Enhanced Critical",
+					"entries": [
+						"When you score a Critical Hit that deals Bludgeoning damage to a creature, attack rolls against that creature have Advantage until the start of your next turn."
+					]
+				}
+			]
+		},
+		{
+			"name": "Defense",
+			"source": "XPHB",
+			"page": 209,
+			"freeRules2024": true,
+			"category": "FS",
+			"prerequisite": [
+				{
+					"feature": [
+						"Fighting Style"
+					]
+				}
+			],
+			"entries": [
+				"While you're wearing Light, Medium, or Heavy armor, you gain a +1 bonus to Armor Class."
+			]
+		},
+		{
 			"name": "Defensive Duelist",
 			"source": "PHB",
 			"page": 165,
+			"reprintedAs": [
+				"Defensive Duelist|XPHB"
+			],
 			"prerequisite": [
 				{
 					"ability": [
@@ -830,6 +1912,37 @@
 			],
 			"entries": [
 				"When you are wielding a finesse weapon with which you are proficient and another creature hits you with a melee attack, you can use your reaction to add your proficiency bonus to your AC for that attack, potentially causing the attack to miss you."
+			]
+		},
+		{
+			"name": "Defensive Duelist",
+			"source": "XPHB",
+			"page": 203,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"dex": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"dex": 1
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Parry",
+					"entries": [
+						"If you're holding a Finesse weapon and another creature hits you with a melee attack, you can take a Reaction to add your Proficiency Bonus to your Armor Class, potentially causing the attack to miss you. You gain this bonus to your AC against melee attacks until the start of your next turn."
+					]
+				}
 			]
 		},
 		{
@@ -1078,9 +2191,42 @@
 			]
 		},
 		{
+			"name": "Druidic Warrior",
+			"source": "XPHB",
+			"page": 120,
+			"category": "FS:R",
+			"prerequisite": [
+				{
+					"otherSummary": {
+						"entry": "When Gaining the Level 2 Ranger \"Fighting Style\" Feature",
+						"entrySummary": "Special"
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"ability": "wis",
+					"known": {
+						"_": [
+							{
+								"choose": "level=0|class=druid",
+								"count": 2
+							}
+						]
+					}
+				}
+			],
+			"entries": [
+				"You learn two {@filter Druid cantrips|spells|level=0|class=druid} of your choice. {@spell Guidance|XPHB} and {@spell Starry Wisp|XPHB} are recommended. The chosen cantrips count as Ranger spells for you, and Wisdom is your spellcasting ability for them. Whenever you gain a Ranger level, you can replace one of these cantrips with another Druid cantrip."
+			]
+		},
+		{
 			"name": "Dual Wielder",
 			"source": "PHB",
 			"page": 165,
+			"reprintedAs": [
+				"Dual Wielder|XPHB"
+			],
 			"entries": [
 				"You master fighting with two weapons, gaining the following benefits:",
 				{
@@ -1091,6 +2237,73 @@
 						"You can draw or stow two one-handed weapons when you would normally be able to draw or stow only one."
 					]
 				}
+			]
+		},
+		{
+			"name": "Dual Wielder",
+			"source": "XPHB",
+			"page": 203,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"str": 13
+						}
+					]
+				},
+				{
+					"level": 4,
+					"ability": [
+						{
+							"dex": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Enhanced Dual Wielding",
+					"entries": [
+						"When you take the {@action Attack|XPHB} action on your turn and attack with a weapon that has the Light property, you can make one extra attack as a Bonus Action later on the same turn with a different weapon, which must be a Melee weapon that lacks the Two-Handed property. You don't add your ability modifier to the extra attack's damage unless that modifier is negative."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Quick Draw",
+					"entries": [
+						"You can draw or stow two weapons that lack the Two-Handed property when you would normally be able to draw or stow only one."
+					]
+				}
+			]
+		},
+		{
+			"name": "Dueling",
+			"source": "XPHB",
+			"page": 209,
+			"category": "FS",
+			"prerequisite": [
+				{
+					"feature": [
+						"Fighting Style"
+					]
+				}
+			],
+			"entries": [
+				"When you're holding a Melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon."
 			]
 		},
 		{
@@ -1114,6 +2327,9 @@
 			"name": "Durable",
 			"source": "PHB",
 			"page": 166,
+			"reprintedAs": [
+				"Durable|XPHB"
+			],
 			"ability": [
 				{
 					"con": 1
@@ -1125,6 +2341,39 @@
 					"type": "list",
 					"items": [
 						"When you roll a Hit Die to regain hit points, the minimum number of hit points you regain from the roll equals twice your Constitution modifier (minimum of 2)."
+					]
+				}
+			]
+		},
+		{
+			"name": "Durable",
+			"source": "XPHB",
+			"page": 203,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"con": 1
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Defy Death",
+					"entries": [
+						"You have Advantage on Death Saving Throws."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Speedy Recovery",
+					"entries": [
+						"As a Bonus Action, you can expend one of your Hit Point Dice, roll the die, and regain a number of Hit Points equal to the roll."
 					]
 				}
 			]
@@ -1187,6 +2436,9 @@
 			"name": "Elemental Adept",
 			"source": "PHB",
 			"page": 166,
+			"reprintedAs": [
+				"Elemental Adept|XPHB"
+			],
 			"prerequisite": [
 				{
 					"spellcasting": true
@@ -1196,6 +2448,47 @@
 				"When you gain this feat, choose one of the following damage types: acid, cold, fire, lightning, or thunder.",
 				"Spells you cast ignore resistance to damage of the chosen type. In addition, when you roll damage for a spell you cast that deals damage of that type, you can treat any 1 on a damage die as a 2.",
 				"You can select this feat multiple times. Each time you do so, you must choose a different damage type."
+			]
+		},
+		{
+			"name": "Elemental Adept",
+			"source": "XPHB",
+			"page": 203,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"spellcasting2020": true
+				}
+			],
+			"repeatable": true,
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Energy Mastery",
+					"entries": [
+						"Choose one of the following damage types: Acid, Cold, Fire, Lightning, or Thunder. Spells you cast ignore Resistance to damage of the chosen type. In addition, when you roll damage for a spell you cast that deals damage of that type, you can treat any 1 on a damage die as a 2."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Repeatable",
+					"entries": [
+						"You can take this feat more than once, but you must choose a different damage type each time for Energy Mastery."
+					]
+				}
 			]
 		},
 		{
@@ -1381,6 +2674,9 @@
 			"name": "Fey Touched",
 			"source": "TCE",
 			"page": 79,
+			"reprintedAs": [
+				"Fey-Touched|XPHB"
+			],
 			"ability": [
 				{
 					"choose": {
@@ -1419,6 +2715,56 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Fey-Touched",
+			"source": "XPHB",
+			"page": 204,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"ability": "inherit",
+					"innate": {
+						"_": {
+							"daily": {
+								"1e": [
+									"misty step|xphb",
+									{
+										"choose": "level=1|school=E;D"
+									}
+								]
+							}
+						}
+					}
+				}
+			],
+			"entries": [
+				"Your exposure to the Feywild's magic grants you the following benefits.",
+				{
+					"type": "entries",
+					"name": "Fey Magic",
+					"entries": [
+						"Choose one level 1 spell from the Divination or Enchantment school of magic. You always have that spell and the Misty Step spell prepared. You can cast each of these spells without expending a spell slot. Once you cast either spell in this way, you can't cast that spell in this way again until you finish a Long Rest. You can also cast these spells using spell slots you have of the appropriate level. The spells' spellcasting ability is the ability increased by this feat."
+					]
+				}
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Fighting Initiate",
@@ -1673,6 +3019,9 @@
 			"source": "PHB",
 			"page": 167,
 			"srd": true,
+			"reprintedAs": [
+				"Grappler|XPHB"
+			],
 			"prerequisite": [
 				{
 					"ability": [
@@ -1694,9 +3043,87 @@
 			]
 		},
 		{
+			"name": "Grappler",
+			"source": "XPHB",
+			"page": 204,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"str": 13
+						}
+					]
+				},
+				{
+					"level": 4,
+					"ability": [
+						{
+							"dex": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Punch and Grab",
+					"entries": [
+						"When you hit a creature with an Unarmed Strike as part of the {@action Attack|XPHB} action on your turn, you can use both the Damage and the Grapple option. You can use this benefit only once per turn."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Attack Advantage",
+					"entries": [
+						"You have Advantage on attack rolls against a creature {@condition Grappled|XPHB} by you."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Fast Wrestler",
+					"entries": [
+						"You don't have to spend extra movement to move a creature {@condition Grappled|XPHB} by you if the creature is your size or smaller."
+					]
+				}
+			]
+		},
+		{
+			"name": "Great Weapon Fighting",
+			"source": "XPHB",
+			"page": 209,
+			"freeRules2024": true,
+			"category": "FS",
+			"prerequisite": [
+				{
+					"feature": [
+						"Fighting Style"
+					]
+				}
+			],
+			"entries": [
+				"When you roll damage for an attack you make with a Melee weapon that you are holding with two hands, you can treat any 1 or 2 on a damage die as a 3. The weapon must have the Two-Handed or Versatile property to gain this benefit."
+			]
+		},
+		{
 			"name": "Great Weapon Master",
 			"source": "PHB",
 			"page": 167,
+			"reprintedAs": [
+				"Great Weapon Master|XPHB"
+			],
 			"entries": [
 				"You've learned to put the weight of a weapon to your advantage, letting its momentum empower your strikes. You gain the following benefits:",
 				{
@@ -1704,6 +3131,44 @@
 					"items": [
 						"On your turn, when you score a critical hit with a melee weapon or reduce a creature to 0 hit points with one, you can make one melee weapon attack as a bonus action.",
 						"Before you make a melee attack with a heavy weapon that you are proficient with, you can choose to take a -5 penalty to the attack roll. If the attack hits, you add +10 to the attack's damage."
+					]
+				}
+			]
+		},
+		{
+			"name": "Great Weapon Master",
+			"source": "XPHB",
+			"page": 204,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"str": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"str": 1
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Heavy Weapon Mastery",
+					"entries": [
+						"When you hit a creature with a weapon that has the Heavy property as part of the {@action Attack|XPHB} action on your turn, you can cause the weapon to deal extra damage to the target. The extra damage equals your Proficiency Bonus."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Hew",
+					"entries": [
+						"Immediately after you score a Critical Hit with a Melee weapon or reduce a creature to 0 Hit Points with one, you can make one attack with the same weapon as a Bonus Action."
 					]
 				}
 			]
@@ -1779,6 +3244,9 @@
 			"name": "Healer",
 			"source": "PHB",
 			"page": 167,
+			"reprintedAs": [
+				"Healer|XPHB"
+			],
 			"entries": [
 				"You are an able physician, allowing you to mend wounds quickly and get your allies back in the fight. You gain the following benefits:",
 				{
@@ -1791,9 +3259,36 @@
 			]
 		},
 		{
+			"name": "Healer",
+			"source": "XPHB",
+			"page": 201,
+			"category": "O",
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Battle Medic",
+					"entries": [
+						"If you have a Healer's Kit, you can expend one use of it and tend to a creature within 5 feet of yourself as a {@action Utilize|XPHB} action. That creature can expend one of its Hit Point Dice, and you then roll that die. The creature regains a number of Hit Points equal to the roll plus your Proficiency Bonus."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Healing Rerolls",
+					"entries": [
+						"Whenever you roll a die to determine the number of Hit Points you restore with a spell or with this feat's Battle Medic benefit, you can reroll the die if it rolls a 1, and you must use the new roll."
+					]
+				}
+			],
+			"hasFluffImages": true
+		},
+		{
 			"name": "Heavily Armored",
 			"source": "PHB",
 			"page": 167,
+			"reprintedAs": [
+				"Heavily Armored|XPHB"
+			],
 			"prerequisite": [
 				{
 					"proficiency": [
@@ -1824,9 +3319,53 @@
 			]
 		},
 		{
+			"name": "Heavily Armored",
+			"source": "XPHB",
+			"page": 204,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"proficiency": [
+						{
+							"armor": "medium"
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"con",
+							"str"
+						]
+					}
+				}
+			],
+			"armorProficiencies": [
+				{
+					"heavy": true
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Armor Training",
+					"entries": [
+						"You gain training with Heavy armor."
+					]
+				}
+			]
+		},
+		{
 			"name": "Heavy Armor Master",
 			"source": "PHB",
 			"page": 167,
+			"reprintedAs": [
+				"Heavy Armor Master|XPHB"
+			],
 			"prerequisite": [
 				{
 					"proficiency": [
@@ -1847,6 +3386,42 @@
 					"type": "list",
 					"items": [
 						"While you are wearing heavy armor, bludgeoning, piercing, and slashing damage that you take from nonmagical attacks is reduced by 3."
+					]
+				}
+			]
+		},
+		{
+			"name": "Heavy Armor Master",
+			"source": "XPHB",
+			"page": 204,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"proficiency": [
+						{
+							"armor": "heavy"
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"con",
+							"str"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Damage Reduction",
+					"entries": [
+						"When you're hit by an attack while you're wearing Heavy armor, any Bludgeoning, Piercing, and Slashing damage dealt to you by that attack is reduced by an amount equal to your Proficiency Bonus."
 					]
 				}
 			]
@@ -2093,6 +3668,9 @@
 			"name": "Inspiring Leader",
 			"source": "PHB",
 			"page": 167,
+			"reprintedAs": [
+				"Inspiring Leader|XPHB"
+			],
 			"prerequisite": [
 				{
 					"ability": [
@@ -2108,9 +3686,72 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Inspiring Leader",
+			"source": "XPHB",
+			"page": 204,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"wis": 13
+						}
+					]
+				},
+				{
+					"level": 4,
+					"ability": [
+						{
+							"cha": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Bolstering Performance",
+					"entries": [
+						"When you finish a Short or Long Rest, you can give an inspiring performance: a speech, song, or dance. When you do so, choose up to six allies (which can include yourself) within 30 feet of yourself who witness the performance. The chosen creatures each gain Temporary Hit Points equal to your character level plus the modifier of the ability you increased with this feat."
+					]
+				}
+			]
+		},
+		{
+			"name": "Interception",
+			"source": "XPHB",
+			"page": 209,
+			"category": "FS",
+			"prerequisite": [
+				{
+					"feature": [
+						"Fighting Style"
+					]
+				}
+			],
+			"entries": [
+				"When a creature you can see hits another creature within 5 feet of you with an attack roll, you can take a Reaction to reduce the damage dealt to the target by {@dice 1d10} plus your Proficiency Bonus. You must be holding a Shield or a Simple or Martial weapon to use this Reaction."
+			]
+		},
+		{
 			"name": "Keen Mind",
 			"source": "PHB",
 			"page": 167,
+			"reprintedAs": [
+				"Keen Mind|XPHB"
+			],
 			"ability": [
 				{
 					"int": 1
@@ -2124,6 +3765,57 @@
 						"You always know which way is north.",
 						"You always know the number of hours left before the next sunrise or sunset.",
 						"You can accurately recall anything you have seen or heard within the past month."
+					]
+				}
+			]
+		},
+		{
+			"name": "Keen Mind",
+			"source": "XPHB",
+			"page": 205,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"int": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"int": 1
+				}
+			],
+			"skillProficiencies": [
+				{
+					"choose": {
+						"from": [
+							"arcana",
+							"history",
+							"investigation",
+							"nature",
+							"religion"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Lore Knowledge",
+					"entries": [
+						"Choose one of the following skills: {@skill Arcana|XPHB}, {@skill History|XPHB}, {@skill Investigation|XPHB}, {@skill Nature|XPHB}, or {@skill Religion|XPHB}. If you lack proficiency in the chosen skill, you gain proficiency in it, and if you already have proficiency in it, you gain Expertise in it."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Quick Study",
+					"entries": [
+						"You can take the {@action Study|XPHB} action as a Bonus Action."
 					]
 				}
 			]
@@ -2324,6 +4016,9 @@
 			"name": "Lightly Armored",
 			"source": "PHB",
 			"page": 167,
+			"reprintedAs": [
+				"Lightly Armored|XPHB"
+			],
 			"ability": [
 				{
 					"choose": {
@@ -2346,6 +4041,43 @@
 					"type": "list",
 					"items": [
 						"You gain proficiency with light armor."
+					]
+				}
+			]
+		},
+		{
+			"name": "Lightly Armored",
+			"source": "XPHB",
+			"page": 205,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex"
+						]
+					}
+				}
+			],
+			"armorProficiencies": [
+				{
+					"light": true,
+					"shield": true
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Armor Training",
+					"entries": [
+						"You gain training with Light armor and Shields."
 					]
 				}
 			]
@@ -2379,6 +4111,9 @@
 			"name": "Lucky",
 			"source": "PHB",
 			"page": 167,
+			"reprintedAs": [
+				"Lucky|XPHB"
+			],
 			"entries": [
 				"You have inexplicable luck that seems to kick in at just the right moment.",
 				"You have 3 luck points. Whenever you make an attack roll, an ability check, or a saving throw, you can spend one luck point to roll an additional {@dice d20}. You can choose to spend one of your luck points after you roll the die, but before the outcome is determined. You choose which of the {@dice d20}s is used for the attack roll, ability check, or saving throw.",
@@ -2387,9 +4122,42 @@
 			]
 		},
 		{
+			"name": "Lucky",
+			"source": "XPHB",
+			"page": 201,
+			"category": "O",
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Luck Points",
+					"entries": [
+						"You have a number of Luck Points equal to your Proficiency Bonus and can spend the points on the benefits below. You regain your expended Luck Points when you finish a Long Rest."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Advantage",
+					"entries": [
+						"When you roll a {@dice d20} for a {@variantrule D20 Test|XPHB}, you can spend 1 Luck Point to give yourself Advantage on the roll."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Disadvantage",
+					"entries": [
+						"When a creature rolls a {@dice d20} for an attack roll against you, you can spend 1 Luck Point to impose Disadvantage on that roll."
+					]
+				}
+			]
+		},
+		{
 			"name": "Mage Slayer",
 			"source": "PHB",
 			"page": 168,
+			"reprintedAs": [
+				"Mage Slayer|XPHB"
+			],
 			"entries": [
 				"You have practiced techniques useful in melee combat against spellcasters, gaining the following benefits:",
 				{
@@ -2403,9 +4171,50 @@
 			]
 		},
 		{
+			"name": "Mage Slayer",
+			"source": "XPHB",
+			"page": 205,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Concentration Breaker",
+					"entries": [
+						"When you damage a creature that is {@status Concentration|XPHB|Concentrating}, it has Disadvantage on the saving throw it makes to maintain {@status Concentration|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Guarded Mind",
+					"entries": [
+						"If you fail an Intelligence, a Wisdom, or a Charisma saving throw, you can cause yourself to succeed instead. Once you use this benefit, you can't use it again until you finish a Short or Long Rest."
+					]
+				}
+			]
+		},
+		{
 			"name": "Magic Initiate",
 			"source": "PHB",
 			"page": 168,
+			"reprintedAs": [
+				"Magic Initiate|XPHB"
+			],
 			"additionalSpells": [
 				{
 					"name": "Bard Spells",
@@ -2553,6 +4362,221 @@
 			]
 		},
 		{
+			"name": "Magic Initiate",
+			"source": "XPHB",
+			"page": 201,
+			"freeRules2024": true,
+			"category": "O",
+			"repeatable": true,
+			"additionalSpells": [
+				{
+					"name": "Bard Spells",
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"innate": {
+						"_": {
+							"daily": {
+								"1": [
+									{
+										"choose": "level=1|class=Bard"
+									}
+								]
+							}
+						}
+					},
+					"known": {
+						"_": [
+							{
+								"choose": "level=0|class=Bard",
+								"count": 2
+							}
+						]
+					}
+				},
+				{
+					"name": "Cleric Spells",
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"innate": {
+						"_": {
+							"daily": {
+								"1": [
+									{
+										"choose": "level=1|class=Cleric"
+									}
+								]
+							}
+						}
+					},
+					"known": {
+						"_": [
+							{
+								"choose": "level=0|class=Cleric",
+								"count": 2
+							}
+						]
+					}
+				},
+				{
+					"name": "Druid Spells",
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"innate": {
+						"_": {
+							"daily": {
+								"1": [
+									{
+										"choose": "level=1|class=Druid"
+									}
+								]
+							}
+						}
+					},
+					"known": {
+						"_": [
+							{
+								"choose": "level=0|class=Druid",
+								"count": 2
+							}
+						]
+					}
+				},
+				{
+					"name": "Sorcerer Spells",
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"innate": {
+						"_": {
+							"daily": {
+								"1": [
+									{
+										"choose": "level=1|class=Sorcerer"
+									}
+								]
+							}
+						}
+					},
+					"known": {
+						"_": [
+							{
+								"choose": "level=0|class=Sorcerer",
+								"count": 2
+							}
+						]
+					}
+				},
+				{
+					"name": "Warlock Spells",
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"innate": {
+						"_": {
+							"daily": {
+								"1": [
+									{
+										"choose": "level=1|class=Warlock"
+									}
+								]
+							}
+						}
+					},
+					"known": {
+						"_": [
+							{
+								"choose": "level=0|class=Warlock",
+								"count": 2
+							}
+						]
+					}
+				},
+				{
+					"name": "Wizard Spells",
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"innate": {
+						"_": {
+							"daily": {
+								"1": [
+									{
+										"choose": "level=1|class=Wizard"
+									}
+								]
+							}
+						}
+					},
+					"known": {
+						"_": [
+							{
+								"choose": "level=0|class=Wizard",
+								"count": 2
+							}
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Two Cantrips",
+					"entries": [
+						"You learn two cantrips of your choice from the Cleric, Druid, or Wizard spell list. Intelligence, Wisdom, or Charisma is your spellcasting ability for this feat's spells (choose when you select this feat)."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Level 1 Spell",
+					"entries": [
+						"Choose a level 1 spell from the same list you selected for this feat's cantrips. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. You can also cast the spell using any spell slots you have."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spell Change",
+					"entries": [
+						"Whenever you gain a new level, you can replace one of the spells you chose for this feat with a different spell of the same level from the chosen spell list."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Repeatable",
+					"entries": [
+						"You can take this feat more than once, but you must choose a different spell list each time."
+					]
+				}
+			]
+		},
+		{
 			"name": "Martial Adept",
 			"source": "PHB",
 			"page": 168,
@@ -2579,9 +4603,48 @@
 			]
 		},
 		{
+			"name": "Martial Weapon Training",
+			"source": "XPHB",
+			"page": 205,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex"
+						]
+					}
+				}
+			],
+			"weaponProficiencies": [
+				{
+					"martial": true
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Weapon Proficiency",
+					"entries": [
+						"You gain proficiency with Martial Weapons."
+					]
+				}
+			]
+		},
+		{
 			"name": "Medium Armor Master",
 			"source": "PHB",
 			"page": 168,
+			"reprintedAs": [
+				"Medium Armor Master|XPHB"
+			],
 			"prerequisite": [
 				{
 					"proficiency": [
@@ -2598,6 +4661,42 @@
 					"items": [
 						"Wearing medium armor doesn't impose disadvantage on your Dexterity ({@skill Stealth}) checks.",
 						"When you wear medium armor, you can add 3, rather than 2, to your AC if you have a Dexterity of 16 or higher."
+					]
+				}
+			]
+		},
+		{
+			"name": "Medium Armor Master",
+			"source": "XPHB",
+			"page": 205,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"proficiency": [
+						{
+							"armor": "medium"
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Dexterous Wearer",
+					"entries": [
+						"While you're wearing Medium armor, you can add 3, rather than 2 to your AC if you have a Dexterity score of 16 or higher."
 					]
 				}
 			]
@@ -2637,6 +4736,9 @@
 			"name": "Mobile",
 			"source": "PHB",
 			"page": 168,
+			"reprintedAs": [
+				"Speedy|XPHB"
+			],
 			"entries": [
 				"You are exceptionally speedy and agile. You gain the following benefits:",
 				{
@@ -2653,6 +4755,9 @@
 			"name": "Moderately Armored",
 			"source": "PHB",
 			"page": 168,
+			"reprintedAs": [
+				"Moderately Armored|XPHB"
+			],
 			"prerequisite": [
 				{
 					"proficiency": [
@@ -2690,9 +4795,53 @@
 			]
 		},
 		{
+			"name": "Moderately Armored",
+			"source": "XPHB",
+			"page": 205,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"proficiency": [
+						{
+							"armor": "light"
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex"
+						]
+					}
+				}
+			],
+			"armorProficiencies": [
+				{
+					"medium": true
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Armor Training",
+					"entries": [
+						"You gain training with Medium armor."
+					]
+				}
+			]
+		},
+		{
 			"name": "Mounted Combatant",
 			"source": "PHB",
 			"page": 168,
+			"reprintedAs": [
+				"Mounted Combatant|XPHB"
+			],
 			"entries": [
 				"You are a dangerous foe to face while mounted. While you are mounted and aren't {@condition incapacitated}, you gain the following benefits:",
 				{
@@ -2701,6 +4850,80 @@
 						"You have advantage on melee attack rolls against any unmounted creature that is smaller than your mount.",
 						"You can force an attack targeted at your mount to target you instead.",
 						"If your mount is subjected to an effect that allows it to make a Dexterity saving throw to take only half damage, it instead takes no damage if it succeeds on the saving throw, and only half damage if it fails."
+					]
+				}
+			]
+		},
+		{
+			"name": "Mounted Combatant",
+			"source": "XPHB",
+			"page": 205,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"wis"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Mounted Strike",
+					"entries": [
+						"While mounted, you have Advantage on attack rolls against any unmounted creature within 5 feet of your mount that is at least one size smaller than the mount."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Leap Aside",
+					"entries": [
+						"If your mount is subjected to an effect that allows it to make a Dexterity saving throw to take only half damage, it instead takes no damage if it succeeds on the saving throw and only half damage if it fails. For your mount to gain this benefit, you must be riding it, and neither of you can have the {@condition Incapacitated|XPHB} condition."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Veer",
+					"entries": [
+						"While mounted, you can force an attack that hits your mount to hit you instead if you don't have the {@condition Incapacitated|XPHB} condition."
+					]
+				}
+			]
+		},
+		{
+			"name": "Musician",
+			"source": "XPHB",
+			"page": 201,
+			"category": "O",
+			"toolProficiencies": [
+				{
+					"anyMusicalInstrument": 3
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Instrument Training",
+					"entries": [
+						"You gain proficiency with three Musical Instruments of your choice."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Encouraging Song",
+					"entries": [
+						"As you finish a Short or Long Rest, you can play a song on a Musical Instrument with which you have proficiency and give Heroic Inspiration to allies who hear the song. The number of allies you can affect in this way equals your Proficiency Bonus."
 					]
 				}
 			]
@@ -2737,6 +4960,9 @@
 			"name": "Observant",
 			"source": "PHB",
 			"page": 168,
+			"reprintedAs": [
+				"Observant|XPHB"
+			],
 			"ability": [
 				{
 					"choose": {
@@ -2755,6 +4981,68 @@
 					"items": [
 						"If you can see a creature's mouth while it is speaking a language you understand, you can interpret what it's saying by reading its lips.",
 						"You have a +5 bonus to your passive Wisdom ({@skill Perception}) and passive Intelligence ({@skill Investigation}) scores."
+					]
+				}
+			]
+		},
+		{
+			"name": "Observant",
+			"source": "XPHB",
+			"page": 205,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"int": 13
+						}
+					]
+				},
+				{
+					"level": 4,
+					"ability": [
+						{
+							"wis": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis"
+						]
+					}
+				}
+			],
+			"skillProficiencies": [
+				{
+					"choose": {
+						"from": [
+							"insight",
+							"investigation",
+							"perception"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Keen Observer",
+					"entries": [
+						"Choose one of the following skills: {@skill Insight|XPHB}, {@skill Investigation|XPHB}, or {@skill Perception|XPHB}. If you lack proficiency with the chosen skill, you gain proficiency in it, and if you already have proficiency in it, you gain Expertise in it."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Quick Search",
+					"entries": [
+						"You can take the {@action Search|XPHB} action as a Bonus Action."
 					]
 				}
 			]
@@ -2883,6 +5171,9 @@
 			"name": "Piercer",
 			"source": "TCE",
 			"page": 80,
+			"reprintedAs": [
+				"Piercer|XPHB"
+			],
 			"ability": [
 				{
 					"choose": {
@@ -2901,6 +5192,44 @@
 					"items": [
 						"Once per turn, when you hit a creature with an attack that deals piercing damage, you can reroll one of the attack's damage dice, and you must use the new roll.",
 						"When you score a critical hit that deals piercing damage to a creature, you can roll one additional damage die when determining the extra piercing damage the target takes."
+					]
+				}
+			]
+		},
+		{
+			"name": "Piercer",
+			"source": "XPHB",
+			"page": 206,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Puncture",
+					"entries": [
+						"Once per turn, when you hit a creature with an attack that deals Piercing damage, you can reroll one of the attack's damage dice, and you must use the new roll."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Enhanced Critical",
+					"entries": [
+						"When you score a Critical Hit that deals Piercing damage to a creature, you can roll one additional damage die when determining the extra Piercing damage the target takes."
 					]
 				}
 			]
@@ -2956,6 +5285,9 @@
 			"name": "Poisoner",
 			"source": "TCE",
 			"page": 80,
+			"reprintedAs": [
+				"Poisoner|XPHB"
+			],
 			"toolProficiencies": [
 				{
 					"poisoner's kit": true
@@ -2974,9 +5306,56 @@
 			]
 		},
 		{
+			"name": "Poisoner",
+			"source": "XPHB",
+			"page": 206,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"dex",
+							"int"
+						]
+					}
+				}
+			],
+			"toolProficiencies": [
+				{
+					"poisoner's kit": true
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Potent Poison",
+					"entries": [
+						"When you make a damage roll that deals Poison damage, it ignores Resistance to Poison damage."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Brew Poison",
+					"entries": [
+						"You gain proficiency with the Poisoner's Kit. With 1 hour of work using such a kit and expending 50 GP worth of materials, you can create a number of poison doses equal to your Proficiency Bonus. As a Bonus Action, you can apply a poison dose to a weapon or piece of ammunition. Once applied, the poison retains its potency for 1 minute or until you deal damage with the {@condition poisoned} item, whichever is shorter. When a creature takes damage from the {@condition poisoned} item, that creature must succeed on a Constitution saving throw (DC 8 plus the modifier of the ability increased by this feat and your Proficiency Bonus) or take {@damage 2d8} Poison damage and have the {@condition Poisoned|XPHB} condition until the end of your next turn."
+					]
+				}
+			],
+			"hasFluffImages": true
+		},
+		{
 			"name": "Polearm Master",
 			"source": "PHB",
 			"page": 168,
+			"reprintedAs": [
+				"Polearm Master|XPHB"
+			],
 			"entries": [
 				"You can keep your enemies at bay with reach weapons. You gain the following benefits:",
 				{
@@ -2984,6 +5363,57 @@
 					"items": [
 						"When you take the {@action Attack} action and attack with only a {@item glaive|phb}, {@item halberd|phb}, {@item quarterstaff|phb}, or {@item spear|phb}, you can use a bonus action to make a melee attack with the opposite end of the weapon; this attack uses the same ability modifier as the primary attack. The weapon's damage die for this attack is a {@dice d4}, and the attack deals bludgeoning damage.",
 						"While you are wielding a {@item glaive|phb}, {@item halberd|phb}, {@item pike|phb}, {@item quarterstaff|phb}, or {@item spear|phb}, other creatures provoke an opportunity attack from you when they enter the reach you have with that weapon."
+					]
+				}
+			]
+		},
+		{
+			"name": "Polearm Master",
+			"source": "XPHB",
+			"page": 206,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"str": 13
+						}
+					]
+				},
+				{
+					"level": 4,
+					"ability": [
+						{
+							"dex": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"dex",
+							"str"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Pole Strike",
+					"entries": [
+						"Immediately after you take the {@action Attack|XPHB} action and attack with a Quarterstaff , a Spear, or a weapon that has the Heavy and Reach properties, you can use a Bonus Action to make a melee attack with the opposite end of the weapon. The weapon deals Bludgeoning damage, and the weapon's damage die for this attack is a {@dice d4}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Reactive Strike",
+					"entries": [
+						"While you're holding a Quarterstaff, a Spear, or a weapon that has the Heavy and Reach properties, you can take a Reaction to make one melee attack against a creature that enters the reach you have with that weapon."
 					]
 				}
 			]
@@ -3052,6 +5482,22 @@
 						"Choose one skill in which you have proficiency. You gain expertise with that skill, which means your proficiency bonus is doubled for any ability check you make with it. The skill you choose must be one that isn't already benefiting from a feature, such as Expertise, that doubles your proficiency bonus."
 					]
 				}
+			]
+		},
+		{
+			"name": "Protection",
+			"source": "XPHB",
+			"page": 209,
+			"category": "FS",
+			"prerequisite": [
+				{
+					"feature": [
+						"Fighting Style"
+					]
+				}
+			],
+			"entries": [
+				"When a creature you can see attacks a target other than you that is within 5 feet of you, you can take a Reaction to interpose your Shield if you're holding one. You impose Disadvantage on the triggering attack roll and all other attack rolls against the target until the start of your next turn if you remain within 5 feet of the target."
 			]
 		},
 		{
@@ -3142,6 +5588,9 @@
 			"name": "Resilient",
 			"source": "PHB",
 			"page": 168,
+			"reprintedAs": [
+				"Resilient|XPHB"
+			],
 			"ability": [
 				{
 					"choose": {
@@ -3178,6 +5627,57 @@
 					"type": "list",
 					"items": [
 						"You gain proficiency in saving throws using the chosen ability."
+					]
+				}
+			]
+		},
+		{
+			"name": "Resilient",
+			"source": "XPHB",
+			"page": 206,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						],
+						"amount": 1,
+						"entry": "Choose one ability in which you lack saving throw proficiency. Increase the chosen ability score by 1, to a maximum of 20."
+					}
+				}
+			],
+			"savingThrowProficiencies": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Saving Throw Proficiency",
+					"entries": [
+						"You gain saving throw proficiency with the chosen ability."
 					]
 				}
 			]
@@ -3265,6 +5765,9 @@
 			"name": "Ritual Caster",
 			"source": "PHB",
 			"page": 169,
+			"reprintedAs": [
+				"Ritual Caster|XPHB"
+			],
 			"prerequisite": [
 				{
 					"ability": [
@@ -3379,6 +5882,103 @@
 				"You have learned a number of spells that you can cast as rituals. These spells are written in a ritual book, which you must have in hand while casting one of them.",
 				"When you choose this feat, you acquire a ritual book holding two 1st-level spells of your choice. Choose one of the following classes: {@filter bard|spells|level=1|class=bard|components & miscellaneous=ritual}, {@filter cleric|spells|level=1|class=cleric|components & miscellaneous=ritual}, {@filter druid|spells|level=1|class=druid|components & miscellaneous=ritual}, {@filter sorcerer|spells|level=1|class=sorcerer|components & miscellaneous=ritual}, {@filter warlock|spells|level=1|class=warlock|components & miscellaneous=ritual}, or {@filter wizard|spells|level=1|class=wizard|components & miscellaneous=ritual}. You must choose your spells from that class's spell list, and the spells you choose must have the ritual tag. The class you choose also determines your spellcasting ability for these spells: Charisma for bard, sorcerer, or warlock; Wisdom for cleric or druid; or Intelligence for wizard.",
 				"If you come across a spell in written form, such as a magical {@item spell scroll} or a wizard's spellbook, you might be able to add it to your ritual book. The spell must be on the spell list for the class you chose, the spell's level can be no higher than half your level (rounded up), and it must have the ritual tag. The process of copying the spell into your ritual book takes 2 hours per level of the spell, and costs 50 gp per level. The cost represents material components you expend as you experiment with the spell to master it, as well as the fine inks you need to record it."
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Ritual Caster",
+			"source": "XPHB",
+			"page": 206,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"int": 13
+						}
+					]
+				},
+				{
+					"level": 4,
+					"ability": [
+						{
+							"wis": 13
+						}
+					]
+				},
+				{
+					"level": 4,
+					"ability": [
+						{
+							"cha": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"prepared": {
+						"1": [
+							{
+								"choose": "level=1|components & miscellaneous=ritual",
+								"count": 2
+							}
+						],
+						"5": [
+							{
+								"choose": "level=1|components & miscellaneous=ritual",
+								"count": 1
+							}
+						],
+						"9": [
+							{
+								"choose": "level=1|components & miscellaneous=ritual",
+								"count": 1
+							}
+						],
+						"13": [
+							{
+								"choose": "level=1|components & miscellaneous=ritual",
+								"count": 1
+							}
+						],
+						"17": [
+							{
+								"choose": "level=1|components & miscellaneous=ritual",
+								"count": 1
+							}
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Ritual Spells",
+					"entries": [
+						"Choose a number of level 1 spells equal to your Proficiency Bonus that have the Ritual tag. You always have those spells prepared, and you can cast them with any spell slots you have. The spells' spellcasting ability is the ability increased by this feat. Whenever your Proficiency Bonus increases thereafter, you can add an additional level 1 spell with the Ritual tag to the spells always prepared with this feature."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Quick Ritual",
+					"entries": [
+						"With this benefit, you can cast a Ritual spell that you have prepared using its regular casting time rather than the extended time for a Ritual. Doing so doesn't require a spell slot. Once you cast the spell in this way, you can't use this benefit again until you finish a Long Rest."
+					]
+				}
 			],
 			"hasFluffImages": true
 		},
@@ -3507,8 +6107,21 @@
 			"name": "Savage Attacker",
 			"source": "PHB",
 			"page": 169,
+			"reprintedAs": [
+				"Savage Attacker|XPHB"
+			],
 			"entries": [
 				"Once per turn when you roll damage for a melee weapon attack, you can reroll the weapon's damage dice and use either total."
+			]
+		},
+		{
+			"name": "Savage Attacker",
+			"source": "XPHB",
+			"page": 201,
+			"freeRules2024": true,
+			"category": "O",
+			"entries": [
+				"You've trained to deal particularly damaging strikes. Once per turn when you hit a target with a weapon, you can roll the weapon's damage dice twice and use either roll against the target."
 			]
 		},
 		{
@@ -3695,6 +6308,9 @@
 			"name": "Sentinel",
 			"source": "PHB",
 			"page": 169,
+			"reprintedAs": [
+				"Sentinel|XPHB"
+			],
 			"entries": [
 				"You have mastered techniques to take advantage of every drop in any enemy's guard, gaining the following benefits:",
 				{
@@ -3703,6 +6319,57 @@
 						"When you hit a creature with an opportunity attack, the creature's speed becomes 0 for the rest of the turn.",
 						"Creatures provoke opportunity attacks from you even if they take the {@action Disengage} action before leaving your reach.",
 						"When a creature within 5 feet of you makes an attack against a target other than you (and that target doesn't have this feat), you can use your reaction to make a melee weapon attack against the attacking creature."
+					]
+				}
+			]
+		},
+		{
+			"name": "Sentinel",
+			"source": "XPHB",
+			"page": 207,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"str": 13
+						}
+					]
+				},
+				{
+					"level": 4,
+					"ability": [
+						{
+							"dex": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Guardian",
+					"entries": [
+						"Immediately after a creature within 5 feet of you takes the {@action Disengage|XPHB} action or hits a target other than you with an attack, you can make an {@action Opportunity Attack|XPHB} against that creature."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Halt",
+					"entries": [
+						"When you hit a creature with an {@action Opportunity Attack|XPHB}, the creature's Speed becomes 0 for the rest of the current turn."
 					]
 				}
 			]
@@ -3742,6 +6409,9 @@
 			"name": "Shadow Touched",
 			"source": "TCE",
 			"page": 80,
+			"reprintedAs": [
+				"Shadow-Touched|XPHB"
+			],
 			"ability": [
 				{
 					"choose": {
@@ -3782,9 +6452,61 @@
 			]
 		},
 		{
+			"name": "Shadow-Touched",
+			"source": "XPHB",
+			"page": 207,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"ability": "inherit",
+					"innate": {
+						"_": {
+							"daily": {
+								"1e": [
+									"invisibility|xphb",
+									{
+										"choose": "level=1|school=I;N"
+									}
+								]
+							}
+						}
+					}
+				}
+			],
+			"entries": [
+				"Your exposure to the Shadowfell's magic grants you the following benefits.",
+				{
+					"type": "entries",
+					"name": "Shadow Magic",
+					"entries": [
+						"Choose one level 1 spell from the Illusion or Necromancy school of magic. You always have that spell and the {@spell Invisibility|XPHB} spell prepared. You can cast each of these spells without expending a spell slot. Once you cast either spell in this way, you can't cast that spell in this way again until you finish a Long Rest. You can also cast these spells using spell slots you have of the appropriate level. The spells' spellcasting ability is the ability increased by this feat."
+					]
+				}
+			]
+		},
+		{
 			"name": "Sharpshooter",
 			"source": "PHB",
 			"page": 170,
+			"reprintedAs": [
+				"Sharpshooter|XPHB"
+			],
 			"entries": [
 				"You have mastered ranged weapons and can make shots that others find impossible. You gain the following benefits:",
 				{
@@ -3798,9 +6520,57 @@
 			]
 		},
 		{
+			"name": "Sharpshooter",
+			"source": "XPHB",
+			"page": 207,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"dex": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"dex": 1
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Bypass Cover",
+					"entries": [
+						"Your ranged attacks with weapons ignore Half Cover and Three-Quarters Cover."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Firing in Melee",
+					"entries": [
+						"Being within 5 feet of an enemy doesn't impose Disadvantage on your attack rolls with Ranged weapons."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Long Shots",
+					"entries": [
+						"Attacking at long range doesn't impose Disadvantage on your attack rolls with Ranged weapons."
+					]
+				}
+			]
+		},
+		{
 			"name": "Shield Master",
 			"source": "PHB",
 			"page": 170,
+			"reprintedAs": [
+				"Shield Master|XPHB"
+			],
 			"entries": [
 				"You use shields not just for protection but also for offense. You gain the following benefits while you are wielding a {@item shield|phb}:",
 				{
@@ -3814,9 +6584,50 @@
 			]
 		},
 		{
+			"name": "Shield Master",
+			"source": "XPHB",
+			"page": 207,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"proficiency": [
+						{
+							"armor": "shield"
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"str": 1
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Shield Bash",
+					"entries": [
+						"If you attack a creature within 5 feet of you as part of the {@action Attack|XPHB} action and hit with a Melee weapon, you can immediately bash the target with your Shield if it's equipped, forcing the target to make a Strength saving throw (DC 8 plus your Strength modifier and Proficiency Bonus). On a failed save, you either push the target 5 feet from you or cause it to have the {@condition Prone|XPHB} condition (your choice). You can use this benefit only once on each of your turns."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Interpose Shield",
+					"entries": [
+						"If you're subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you can take a Reaction to take no damage if you succeed on the saving throw and are holding a Shield."
+					]
+				}
+			]
+		},
+		{
 			"name": "Skill Expert",
 			"source": "TCE",
 			"page": 80,
+			"reprintedAs": [
+				"Skill Expert|XPHB"
+			],
 			"ability": [
 				{
 					"choose": {
@@ -3875,9 +6686,64 @@
 			]
 		},
 		{
+			"name": "Skill Expert",
+			"source": "XPHB",
+			"page": 207,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"skillProficiencies": [
+				{
+					"any": 1
+				}
+			],
+			"expertise": [
+				{
+					"anyProficientSkill": 1
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Skill Proficiency",
+					"entries": [
+						"You gain proficiency in one skill of your choice."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Expertise",
+					"entries": [
+						"Choose one skill in which you have proficiency but lack Expertise. You gain Expertise with that skill."
+					]
+				}
+			]
+		},
+		{
 			"name": "Skilled",
 			"source": "PHB",
 			"page": 170,
+			"reprintedAs": [
+				"Skilled|XPHB"
+			],
 			"skillToolLanguageProficiencies": [
 				{
 					"choose": [
@@ -3896,9 +6762,43 @@
 			]
 		},
 		{
+			"name": "Skilled",
+			"source": "XPHB",
+			"page": 201,
+			"freeRules2024": true,
+			"category": "O",
+			"repeatable": true,
+			"skillToolLanguageProficiencies": [
+				{
+					"choose": [
+						{
+							"from": [
+								"anySkill",
+								"anyTool"
+							],
+							"count": 3
+						}
+					]
+				}
+			],
+			"entries": [
+				"You gain proficiency in any combination of three skills or tools of your choice.",
+				{
+					"type": "entries",
+					"name": "Repeatable",
+					"entries": [
+						"You can take this feat more than once."
+					]
+				}
+			]
+		},
+		{
 			"name": "Skulker",
 			"source": "PHB",
 			"page": 170,
+			"reprintedAs": [
+				"Skulker|XPHB"
+			],
 			"prerequisite": [
 				{
 					"ability": [
@@ -3921,9 +6821,62 @@
 			]
 		},
 		{
+			"name": "Skulker",
+			"source": "XPHB",
+			"page": 208,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"dex": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"dex": 1
+				}
+			],
+			"senses": [
+				{
+					"blindsight": 10
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Blindsight",
+					"entries": [
+						"You have {@sense Blindsight|XPHB} with a range of 10 feet."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Fog of War",
+					"entries": [
+						"You exploit the distractions of battle, gaining Advantage on any Dexterity ({@skill Stealth|XPHB}) check you make as part of the {@action Hide|XPHB} action during combat."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Sniper",
+					"entries": [
+						"If you make an attack roll while hidden and the roll misses, making the attack roll doesn't reveal your location."
+					]
+				}
+			]
+		},
+		{
 			"name": "Slasher",
 			"source": "TCE",
 			"page": 81,
+			"reprintedAs": [
+				"Slasher|XPHB"
+			],
 			"ability": [
 				{
 					"choose": {
@@ -3942,6 +6895,44 @@
 					"items": [
 						"Once per turn when you hit a creature with an attack that deals slashing damage, you can reduce the speed of the target by 10 feet until the start of your next turn.",
 						"When you score a critical hit that deals slashing damage to a creature, you grievously wound it. Until the start of your next turn, the target has disadvantage on all attack rolls."
+					]
+				}
+			]
+		},
+		{
+			"name": "Slasher",
+			"source": "XPHB",
+			"page": 208,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Hamstring",
+					"entries": [
+						"Once per turn when you hit a creature with an attack that deals Slashing damage, you can reduce the Speed of that creature by 10 feet until the start of your next turn."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Enhanced Critical",
+					"entries": [
+						"When you score a Critical Hit that deals Slashing damage to a creature , it has Disadvantage on attack rolls until the start of your next turn."
 					]
 				}
 			]
@@ -4009,9 +7000,70 @@
 			]
 		},
 		{
+			"name": "Speedy",
+			"source": "XPHB",
+			"page": 208,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"dex": 13
+						}
+					]
+				},
+				{
+					"level": 4,
+					"ability": [
+						{
+							"con": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"dex",
+							"con"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Speed Increase",
+					"entries": [
+						"Your Speed increases by 10 feet."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Dash over Difficult Terrain",
+					"entries": [
+						"When you take the {@action Dash|XPHB} action on your turn, Difficult Terrain doesn't cost you extra movement for the rest of that turn."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Agile Movement",
+					"entries": [
+						"Opportunity Attacks have Disadvantage against you."
+					]
+				}
+			]
+		},
+		{
 			"name": "Spell Sniper",
 			"source": "PHB",
 			"page": 170,
+			"reprintedAs": [
+				"Spell Sniper|XPHB"
+			],
 			"prerequisite": [
 				{
 					"spellcasting": true
@@ -4099,6 +7151,53 @@
 						"When you cast a spell that requires you to make an attack roll, the spell's range is doubled.",
 						"Your ranged spell attacks ignore {@quickref Cover||3||half cover} and {@quickref Cover||3||three-quarters cover}.",
 						"You learn one cantrip that requires an attack roll. Choose the cantrip from the {@filter bard|spells|level=0|class=bard|spell attack=m;r;o}, {@filter cleric|spells|level=0|class=cleric|spell attack=m;r;o}, {@filter druid|spells|level=0|class=druid|spell attack=m;r;o}, {@filter sorcerer|spells|level=0|class=sorcerer|spell attack=m;r;o}, {@filter warlock|spells|level=0|class=warlock|spell attack=m;r;o}, or {@filter wizard|spells|level=0|class=wizard|spell attack=m;r;o} spell list. Your spellcasting ability for this cantrip depends on the spell list you chose from: Charisma for bard, sorcerer, or warlock; Wisdom for cleric or druid; or Intelligence for wizard."
+					]
+				}
+			]
+		},
+		{
+			"name": "Spell Sniper",
+			"source": "XPHB",
+			"page": 208,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"spellcasting2020": true
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Bypass Cover",
+					"entries": [
+						"Your attack rolls for spells ignore Half Cover and Three-Quarters Cover."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Casting in Melee",
+					"entries": [
+						"Being within 5 feet of an enemy doesn't impose Disadvantage on your attack rolls with spells."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Increased Range",
+					"entries": [
+						"When you cast a spell that has a range of at least 10 feet and requires you to make an attack roll, you can increase the spell's range by 60 feet."
 					]
 				}
 			]
@@ -4863,6 +7962,9 @@
 			"name": "Tavern Brawler",
 			"source": "PHB",
 			"page": 170,
+			"reprintedAs": [
+				"Tavern Brawler|XPHB"
+			],
 			"ability": [
 				{
 					"choose": {
@@ -4887,9 +7989,54 @@
 			]
 		},
 		{
+			"name": "Tavern Brawler",
+			"source": "XPHB",
+			"page": 202,
+			"category": "O",
+			"weaponProficiencies": [
+				{
+					"improvised": true
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Enhanced Unarmed Strike",
+					"entries": [
+						"When you hit with your Unarmed Strike and deal damage, you can deal Bludgeoning damage equal to {@dice 1d4} plus your Strength modifier instead of the normal damage of an Unarmed Strike."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Damage Rerolls",
+					"entries": [
+						"Whenever you roll a damage die for your Unarmed Strike, you can reroll the die if it rolls a 1, and you must use the new roll."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Improvised Weaponry",
+					"entries": [
+						"You have proficiency with improvised weapons."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Push",
+					"entries": [
+						"When you hit a creature with an Unarmed Strike as part of the {@action Attack|XPHB} action on your turn, you can deal damage to the target and also push it 5 feet away from you. You can use this benefit only once per turn."
+					]
+				}
+			]
+		},
+		{
 			"name": "Telekinetic",
 			"source": "TCE",
 			"page": 81,
+			"reprintedAs": [
+				"Telekinetic|XPHB"
+			],
 			"ability": [
 				{
 					"choose": {
@@ -4924,9 +8071,61 @@
 			]
 		},
 		{
+			"name": "Telekinetic",
+			"source": "XPHB",
+			"page": 208,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"ability": "inherit",
+					"known": {
+						"_": [
+							"mage hand|xphb#c"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Minor Telekinesis",
+					"entries": [
+						"You learn the {@spell Mage Hand|XPHB} spell. You can cast it without Verbal or Somatic components, you can make the spectral hand {@condition Invisible|XPHB}, and its range and the distance it can be away from you both increase by 30 feet when you cast it. The spell's spellcasting ability is the ability increased by this feat."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Telekinetic Shove",
+					"entries": [
+						"As a Bonus Action, you can telekinetically shove one creature you can see within 30 feet of yourself. When you do so, the target must succeed on a Strength saving throw (DC 8 plus the ability modifier of the score increased by this feat and your Proficiency Bonus) or be moved 5 feet toward or away from you."
+					]
+				}
+			]
+		},
+		{
 			"name": "Telepathic",
 			"source": "TCE",
 			"page": 81,
+			"reprintedAs": [
+				"Telepathic|XPHB"
+			],
 			"ability": [
 				{
 					"choose": {
@@ -4966,6 +8165,59 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Telepathic",
+			"source": "XPHB",
+			"page": 208,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"ability": "inherit",
+					"innate": {
+						"_": {
+							"daily": {
+								"1": [
+									"detect thoughts|xphb"
+								]
+							}
+						}
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Telepathic Utterance",
+					"entries": [
+						"You can speak telepathically to any creature you can see within 60 feet of yourself. Your telepathic utterances are in a language you know, and the creature understands you only if it knows that language. Your communication doesn't give the creature the ability to respond to you telepathically."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Detect Thoughts",
+					"entries": [
+						"You always have the {@spell Detect Thoughts|XPHB} spell prepared. You can cast it without a spell slot or spell components, and you must finish a Long Rest before you can cast it in this way again. You can also cast it using spell slots you have of the appropriate level. Your spellcasting ability for the spell is the ability increased by this feat."
+					]
+				}
+			]
+		},
+		{
 			"name": "Thrown Arms Master",
 			"source": "TDCSR",
 			"page": 191,
@@ -4993,11 +8245,74 @@
 			]
 		},
 		{
+			"name": "Thrown Weapon Fighting",
+			"source": "XPHB",
+			"page": 210,
+			"category": "FS",
+			"prerequisite": [
+				{
+					"feature": [
+						"Fighting Style"
+					]
+				}
+			],
+			"entries": [
+				"When you hit with a ranged attack roll using a weapon that has the Thrown property, you gain a +2 bonus to the damage roll."
+			]
+		},
+		{
 			"name": "Tough",
 			"source": "PHB",
 			"page": 170,
+			"reprintedAs": [
+				"Tough|XPHB"
+			],
 			"entries": [
 				"Your hit point maximum increases by an amount equal to twice your level when you gain this feat. Whenever you gain a level thereafter, your hit point maximum increases by an additional 2 hit points."
+			]
+		},
+		{
+			"name": "Tough",
+			"source": "XPHB",
+			"page": 202,
+			"category": "O",
+			"entries": [
+				"Your Hit Point maximum increases by an amount equal to twice your character level when you gain this feat. Whenever you gain a character level thereafter, your Hit Point maximum increases by an additional 2 Hit Points."
+			]
+		},
+		{
+			"name": "Two-Weapon Fighting",
+			"source": "XPHB",
+			"page": 210,
+			"freeRules2024": true,
+			"category": "FS",
+			"prerequisite": [
+				{
+					"feature": [
+						"Fighting Style"
+					]
+				}
+			],
+			"entries": [
+				"When you make an extra attack as a result of using a weapon that has the Light property, you can add your ability modifier to the damage of that attack if you aren't already adding it to the damage."
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Unarmed Fighting",
+			"source": "XPHB",
+			"page": 210,
+			"category": "FS",
+			"prerequisite": [
+				{
+					"feature": [
+						"Fighting Style"
+					]
+				}
+			],
+			"entries": [
+				"When you hit with your Unarmed Strike and deal damage, you can deal Bludgeoning damage equal to {@dice 1d6} plus your Strength modifier instead of the normal damage of an Unarmed Strike. If you aren't holding any weapons or a Shield when you make the attack roll, the {@dice d6} becomes a {@dice d8}.",
+				"At the start of each of your turns, you can deal {@damage 1d4} Bludgeoning damage to one creature {@condition Grappled|XPHB} by you."
 			]
 		},
 		{
@@ -5087,6 +8402,9 @@
 			"name": "War Caster",
 			"source": "PHB",
 			"page": 170,
+			"reprintedAs": [
+				"War Caster|XPHB"
+			],
 			"prerequisite": [
 				{
 					"spellcasting": true
@@ -5105,9 +8423,59 @@
 			]
 		},
 		{
+			"name": "War Caster",
+			"source": "XPHB",
+			"page": 209,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"spellcasting2020": true
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Concentration",
+					"entries": [
+						"You have Advantage on Constitution saving throws that you make to maintain {@status Concentration|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Reactive Spell",
+					"entries": [
+						"When a creature provokes an {@action Opportunity Attack|XPHB} from you by leaving your reach, you can take a Reaction to cast a spell at the creature rather than making an {@action Opportunity Attack|XPHB}. The spell must have a casting time of one action and must target only that creature."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Somatic Components",
+					"entries": [
+						"You can perform the Somatic components of spells even when you have weapons or a Shield in one or both hands."
+					]
+				}
+			]
+		},
+		{
 			"name": "Weapon Master",
 			"source": "PHB",
 			"page": 170,
+			"reprintedAs": [
+				"Martial Weapon Training|XPHB"
+			],
 			"ability": [
 				{
 					"choose": {
@@ -5136,6 +8504,38 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Weapon Master",
+			"source": "XPHB",
+			"page": 209,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Mastery Property",
+					"entries": [
+						"Your training with weapons allows you to use the mastery property of one kind of Simple or Martial weapon of your choice, provided you have proficiency with it. Whenever you finish a Long Rest, you can change the kind of weapon to another eligible kind."
+					]
+				}
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Wood Elf Magic",

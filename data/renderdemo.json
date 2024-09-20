@@ -79,7 +79,7 @@
 								"The purpose of this tag is to open the given page, pre-filtered with the specified filtering options. There's one major caveat that makes this tricky to use for aspiring JSONtranauts\u2014the filter values use the {@i internal} version, as you'd find in the data. So, for example, ..|school=D|.. would filter spells to Divination school spells, as 'D' is the Divination identifier in the data. Trying to do e.g. ..|school=Divination|.. will not work.",
 								"The 'filter_name_X' here matches the literal text name of the filter, as displayed in the dropdown.",
 								"Some examples of the tag in action:",
-								"{@filter Races that have a bonus to Intelligence|races|Ability Scores (Including Subrace)=Intelligence +any}",
+								"{@filter Races that have a bonus to Intelligence|races|Ability Scores (Including Subspecies)=Intelligence +any}",
 								"{@filter Bard cantrips and first-level spells|spells|level=0;1|class=bard}",
 								"{@filter Beast with challenge rating 1 or lower|bestiary|challenge rating=[&0;&1]|type=beast}",
 								"{@filter Creatures with a Strength score of 18 or more|bestiary|strength=[18;]}",
@@ -131,7 +131,7 @@
 									"type": "list",
 									"items": [
 										"Internal links: {@5etools This Is Your Life|lifegen.html}",
-										"Internal \"img\" links (i.e., anything in {@link https://github.com/5etools-mirror-2/5etools-img}): {@5etoolsImg Players Handbook Cover|covers/PHB.webp}; {@5etoolsImg Human Paladin sheet|pdf/DoSI/Human-Paladin.pdf}",
+										"Internal \"img\" links (i.e., anything in {@link https://github.com/5etools-mirror-3/5etools-img}): {@5etoolsImg Players Handbook Cover|covers/PHB.webp}; {@5etoolsImg Human Paladin sheet|pdf/DoSI/Human-Paladin.pdf}",
 										"External links: {@link https://discord.gg/5etools} or {@link Discord|https://discord.gg/5etools}"
 									]
 								},
@@ -551,16 +551,6 @@
 					"text": "The full 'entry' schema."
 				},
 				"Internal links are also possible, but generally covered by @tags. Check out the schema linked above for the full usage; it's massive and horrible so I'm not going to go into detail here.",
-				"Invocations/Other Optional Features:",
-				{
-					"type": "optfeature",
-					"name": "Optional Feature Name",
-					"prerequisite": "Optional prerequisite, which can include tags {@spell eldritch blast}",
-					"entries": [
-						"Optional feature text."
-					]
-				},
-				"Patrons:",
 				{
 					"type": "inset",
 					"name": "Inset Title (Optional)",

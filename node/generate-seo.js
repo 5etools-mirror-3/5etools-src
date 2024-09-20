@@ -6,6 +6,7 @@ import fs from "fs";
 import "../js/parser.js";
 import "../js/utils.js";
 import "../js/utils-dataloader.js";
+import "../js/utils-config.js";
 import "../js/render.js";
 import "../js/render-dice.js";
 import * as ut from "./util.js";
@@ -92,7 +93,7 @@ ${img ? `<meta property="og:image" content="${BASE_SITE_URL}${img}">` : ""}
 <script type="module" src="/js/filter.js"></script>
 <script type="text/javascript" defer src="/js/utils-dataloader.js"></script>
 <script type="module" src="/js/utils-brew.js"></script>
-<script type="module" src="js/utils-config.js"></script>
+<script type="module" src="/js/utils-config.js"></script>
 <script type="text/javascript" defer src="/js/render.js"></script>
 <script type="text/javascript" defer src="/js/render-dice.js"></script>
 <script type="text/javascript" defer src="/js/scalecreature.js"></script>

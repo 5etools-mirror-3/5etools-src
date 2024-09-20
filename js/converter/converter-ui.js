@@ -28,6 +28,15 @@ export class ConverterUi extends BaseComponent {
 		};
 	}
 
+	setBaseSaveableStateFrom (toLoad, ...rest) {
+		// Avoid crash on missing converter
+		if (toLoad?.state?.converter && !this._converters[toLoad.state.converter]) {
+			toLoad.state.converter = Object.keys(this._converters)[0];
+		}
+
+		super.setBaseSaveableStateFrom(toLoad, ...rest);
+	}
+
 	getPod () {
 		return {
 			...super.getPod(),
@@ -392,6 +401,7 @@ export class ConverterUi extends BaseComponent {
 			"converter",
 			{
 				values: Object.keys(this._converters),
+				fnDisplay: converterId => this._converters[converterId].name,
 			},
 		);
 
@@ -423,10 +433,9 @@ export class ConverterUi extends BaseComponent {
 		// endregion
 
 		const $wrpConverters = $(`<div class="w-100 ve-flex-col"></div>`).appendTo($mnu);
-		Object
-			.keys(this._converters)
-			.sort(SortUtil.ascSortLower)
-			.forEach(k => this._converters[k].renderSidebar(this.getPod(), $wrpConverters));
+		Object.entries(this._converters)
+			.sort(([, vA], [, vB]) => SortUtil.ascSortLower(vA.name, vB.name))
+			.forEach(([, converter]) => converter.renderSidebar(this.getPod(), $wrpConverters));
 
 		const hkMode = () => {
 			this._editorIn.setOptions({
@@ -440,10 +449,9 @@ export class ConverterUi extends BaseComponent {
 	_initFooterLhs () {
 		const $wrpFooterLhs = $(`#wrp-footer-lhs`);
 
-		Object
-			.keys(this._converters)
-			.sort(SortUtil.ascSortLower)
-			.forEach(k => this._converters[k].renderFooterLhs(this.getPod(), {$wrpFooterLhs}));
+		Object.entries(this._converters)
+			.sort(([, vA], [, vB]) => SortUtil.ascSortLower(vA.name, vB.name))
+			.forEach(([, converter]) => converter.renderFooterLhs(this.getPod(), {$wrpFooterLhs}));
 	}
 
 	doCleanAndOutput (obj, append) {

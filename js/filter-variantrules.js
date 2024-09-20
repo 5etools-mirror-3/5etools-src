@@ -8,12 +8,17 @@ class PageFilterVariantRules extends PageFilterBase {
 		super();
 
 		this._ruleTypeFilter = new Filter({header: "Rule Type", items: ["O", "V", "VO", "VV", "U"], displayFn: Parser.ruleTypeToFull});
-		this._miscFilter = new Filter({header: "Miscellaneous", items: ["SRD", "Legacy"], isMiscFilter: true});
+		this._miscFilter = new Filter({
+			header: "Miscellaneous",
+			items: ["SRD", "Legacy"],
+			isMiscFilter: true,
+			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
+		});
 	}
 
 	static mutateForFilters (rule) {
-		rule._fMisc = rule.srd ? ["SRD"] : [];
-		if (SourceUtil.isLegacySourceWotc(rule.source)) rule._fMisc.push("Legacy");
+		this._mutateForFilters_commonMisc(rule);
+
 		rule._fRuleType = rule.ruleType || "U";
 	}
 

@@ -238,6 +238,9 @@ class UtilGenTables {
 			it.name = it.caption;
 			it.source = it._tmpMeta.subclassSource || it._tmpMeta.classSource;
 			it.srd = !!cls.srd;
+			it.srd52 = !!cls.srd52;
+			it.basicRules = !!cls.basicRules;
+			it.freeRules2024 = !!cls.freeRules2024;
 
 			this._mutDataAddPage(it);
 			this._mutCleanData(it);
@@ -287,6 +290,9 @@ class UtilGenTables {
 			it.name = it.caption;
 			it.source = it._tmpMeta.subclassSource || it._tmpMeta.classSource;
 			it.srd = !!sc.srd;
+			it.srd52 = !!sc.srd52;
+			it.basicRules = !!sc.basicRules;
+			it.freeRules2024 = !!sc.freeRules2024;
 
 			this._mutDataAddPage(it);
 			this._mutCleanData(it);

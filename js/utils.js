@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.210.2"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.0.0"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -543,6 +543,13 @@ globalThis.SourceUtil = class {
 			|| source.startsWith(Parser.SRC_AL_PREFIX)
 			|| source.startsWith(Parser.SRC_MCVX_PREFIX)
 			|| Parser.SOURCES_NON_STANDARD_WOTC.has(source);
+	}
+
+	static _CLASSIC_THRESHOLD_TIMESTAMP = null;
+
+	static isClassicSource (source) {
+		this._CLASSIC_THRESHOLD_TIMESTAMP ||= new Date(Parser.sourceJsonToDate(Parser.SRC_XPHB));
+		return new Date(Parser.sourceJsonToDate(source)) < this._CLASSIC_THRESHOLD_TIMESTAMP;
 	}
 
 	static FILTER_GROUP_STANDARD = 0;
@@ -3324,16 +3331,16 @@ UrlUtil.PG_TO_NAME[UrlUtil.PG_CONDITIONS_DISEASES] = "Conditions & Diseases";
 UrlUtil.PG_TO_NAME[UrlUtil.PG_FEATS] = "Feats";
 UrlUtil.PG_TO_NAME[UrlUtil.PG_OPT_FEATURES] = "Other Options and Features";
 UrlUtil.PG_TO_NAME[UrlUtil.PG_PSIONICS] = "Psionics";
-UrlUtil.PG_TO_NAME[UrlUtil.PG_RACES] = "Races";
+UrlUtil.PG_TO_NAME[UrlUtil.PG_RACES] = "Species";
 UrlUtil.PG_TO_NAME[UrlUtil.PG_REWARDS] = "Supernatural Gifts & Rewards";
-UrlUtil.PG_TO_NAME[UrlUtil.PG_VARIANTRULES] = "Optional, Variant, and Expanded Rules";
+UrlUtil.PG_TO_NAME[UrlUtil.PG_VARIANTRULES] = "Rules Glossary";
 UrlUtil.PG_TO_NAME[UrlUtil.PG_ADVENTURES] = "Adventures";
 UrlUtil.PG_TO_NAME[UrlUtil.PG_BOOKS] = "Books";
 UrlUtil.PG_TO_NAME[UrlUtil.PG_DEITIES] = "Deities";
 UrlUtil.PG_TO_NAME[UrlUtil.PG_CULTS_BOONS] = "Cults & Supernatural Boons";
 UrlUtil.PG_TO_NAME[UrlUtil.PG_OBJECTS] = "Objects";
 UrlUtil.PG_TO_NAME[UrlUtil.PG_TRAPS_HAZARDS] = "Traps & Hazards";
-UrlUtil.PG_TO_NAME[UrlUtil.PG_QUICKREF] = "Quick Reference";
+UrlUtil.PG_TO_NAME[UrlUtil.PG_QUICKREF] = "Quick Reference (2014)";
 UrlUtil.PG_TO_NAME[UrlUtil.PG_MANAGE_BREW] = "Homebrew Manager";
 UrlUtil.PG_TO_NAME[UrlUtil.PG_MANAGE_PRERELEASE] = "Prerelease Content Manager";
 UrlUtil.PG_TO_NAME[UrlUtil.PG_MAKE_BREW] = "Homebrew Builder";
@@ -4362,7 +4369,9 @@ globalThis.DataUtil = {
 			page: true,
 			otherSources: true,
 			srd: true,
+			srd52: true,
 			basicRules: true,
+			freeRules2024: true,
 			reprintedAs: true,
 			hasFluff: true,
 			hasFluffImages: true,
@@ -4383,6 +4392,9 @@ globalThis.DataUtil = {
 			if (opts.isLower) uid = uid.toLowerCase();
 			let [name, source, displayText, ...others] = uid.split("|").map(Function.prototype.call.bind(String.prototype.trim));
 
+			// If "ambiguous" source, allow linking to version-dependent entity
+			const isAllowRedirect = !source;
+
 			source = source || Parser.getTagSource(tag, source);
 			if (opts.isLower) source = source.toLowerCase();
 
@@ -4391,6 +4403,7 @@ globalThis.DataUtil = {
 				source,
 				displayText,
 				others,
+				isAllowRedirect,
 			};
 		},
 
@@ -5390,26 +5403,26 @@ globalThis.DataUtil = {
 		},
 	},
 
-	proxy: {
-		getVersions (prop, ent, {isExternalApplicationIdentityOnly = false} = {}) {
+	proxy: class {
+		static getVersions (prop, ent, {isExternalApplicationIdentityOnly = false} = {}) {
 			if (DataUtil[prop]?.getVersions) return DataUtil[prop]?.getVersions(ent, {isExternalApplicationIdentityOnly});
 			return DataUtil.generic.getVersions(ent, {isExternalApplicationIdentityOnly});
-		},
+		}
 
-		unpackUid (prop, uid, tag, opts) {
+		static unpackUid (prop, uid, tag, opts) {
 			if (DataUtil[prop]?.unpackUid) return DataUtil[prop]?.unpackUid(uid, tag, opts);
 			return DataUtil.generic.unpackUid(uid, tag, opts);
-		},
+		}
 
-		getNormalizedUid (prop, uid, tag, opts) {
+		static getNormalizedUid (prop, uid, tag, opts) {
 			if (DataUtil[prop]?.getNormalizedUid) return DataUtil[prop].getNormalizedUid(uid, tag, opts);
 			return DataUtil.generic.getNormalizedUid(uid, tag, opts);
-		},
+		}
 
-		getUid (prop, ent, opts) {
+		static getUid (prop, ent, opts) {
 			if (DataUtil[prop]?.getUid) return DataUtil[prop].getUid(ent, opts);
 			return DataUtil.generic.getUid(ent, opts);
-		},
+		}
 	},
 
 	monster: class extends _DataUtilPropConfigMultiSource {
@@ -5892,6 +5905,17 @@ globalThis.DataUtil = {
 				source,
 			};
 		}
+
+		static getUid (ent, {isMaintainCase = false, isRetainDefault = false} = {}) {
+			// <abbreviation>|<source>
+			const sourceDefault = Parser.SRC_PHB;
+			const out = [
+				ent.abbreviation,
+				!isRetainDefault && (ent.source || "").toLowerCase() === sourceDefault.toLowerCase() ? "" : ent.source,
+			].join("|").replace(/\|+$/, ""); // Trim trailing pipes
+			if (isMaintainCase) return out;
+			return out.toLowerCase();
+		}
 	},
 
 	language: class extends _DataUtilPropConfigSingleSource {
@@ -6148,14 +6172,34 @@ globalThis.DataUtil = {
 		}
 
 		static packUidSubclass (it) {
-			// <name>|<className>|<classSource>|<source>
-			const sourceDefault = Parser.getTagSource("subclass");
+			// <shortName>|<className>|<classSource>|<source>
+			const sourceDefault = Parser.getTagSource("class");
 			return [
-				it.name,
+				it.shortName,
 				it.className,
 				(it.classSource || "").toLowerCase() === sourceDefault.toLowerCase() ? "" : it.classSource,
 				(it.source || "").toLowerCase() === sourceDefault.toLowerCase() ? "" : it.source,
 			].join("|").replace(/\|+$/, ""); // Trim trailing pipes
+		}
+
+		/**
+		 * @param uid
+		 * @param [opts]
+		 * @param [opts.isLower] If the returned values should be lowercase.
+		 */
+		static unpackUidSubclass (uid, opts) {
+			opts = opts || {};
+			if (opts.isLower) uid = uid.toLowerCase();
+			let [shortName, className, classSource, source, displayText] = uid.split("|").map(it => it.trim());
+			classSource = classSource || (opts.isLower ? Parser.SRC_PHB.toLowerCase() : Parser.SRC_PHB);
+			source = source || (opts.isLower ? Parser.SRC_PHB.toLowerCase() : Parser.SRC_PHB);
+			return {
+				shortName,
+				className,
+				classSource,
+				source,
+				displayText,
+			};
 		}
 
 		/**

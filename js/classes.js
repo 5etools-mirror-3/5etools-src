@@ -79,6 +79,7 @@ class UtilClassesPage {
 			isAddLeadingHr = false,
 			isAddTrailingHr = false,
 			isAddSourceNote = false,
+			isIncludeFooterImages = false,
 		},
 	) {
 		entFluff = MiscUtil.copyFast(entFluff);
@@ -133,7 +134,10 @@ class UtilClassesPage {
 				stack += `<div class="py-2"></div>`;
 			}
 
-			this._getFluffLayoutImages(entFluff.images)
+			const images = [
+				...this._getFluffLayoutImages_header(entFluff.images),
+				...(isIncludeFooterImages ? this._getFluffLayoutImages_footer(entFluff.images) : []),
+			]
 				.forEach(ent => stack += Renderer.get().render(ent));
 		}
 
@@ -149,7 +153,38 @@ class UtilClassesPage {
 		};
 	}
 
-	static getRenderedClassFluff (
+	static _getRenderedClassSubclassFluffFooter (
+		{
+			ent,
+			entFluff,
+			isAddLeadingHr = false,
+			isAddTrailingHr = false,
+		},
+	) {
+		entFluff = MiscUtil.copyFast(entFluff);
+
+		const hasFooterImages = (entFluff?.images?.length || 0) > 1;
+
+		let stack = "";
+		Renderer.get().setFirstSection(true);
+
+		if (hasFooterImages) {
+			this._getFluffLayoutImages_footer(entFluff.images)
+				.forEach(ent => stack += Renderer.get().render(ent));
+		}
+
+		if (hasFooterImages) {
+			if (isAddLeadingHr) stack = Renderer.get().render({type: "hr"}) + stack;
+			if (isAddTrailingHr) stack += Renderer.get().render({type: "hr"});
+		}
+
+		return {
+			hasImages: hasFooterImages,
+			rendered: stack || null,
+		};
+	}
+
+	static getRenderedClassFluffHeader (
 		{
 			cls,
 			clsFluff,
@@ -168,6 +203,22 @@ class UtilClassesPage {
 		});
 	}
 
+	static getRenderedClassFluffFooter (
+		{
+			cls,
+			clsFluff,
+			isAddLeadingHr = false,
+			isAddTrailingHr = false,
+		},
+	) {
+		return this._getRenderedClassSubclassFluffFooter({
+			ent: cls,
+			entFluff: clsFluff,
+			isAddLeadingHr,
+			isAddTrailingHr,
+		});
+	}
+
 	static getRenderedSubclassFluff (
 		{
 			sc,
@@ -181,45 +232,31 @@ class UtilClassesPage {
 			depthArr,
 			isAddLeadingHr: true,
 			isAddTrailingHr: true,
+			isIncludeFooterImages: true,
 		});
 	}
 
-	static _getFluffLayoutImages (images) {
-		if (images.length === 1) {
-			return [
-				{
-					maxWidth: "98",
-					maxWidthUnits: "%",
-					...images[0],
-				},
-			];
-		}
+	static _getFluffLayoutImages_header (images) {
+		const [img1] = images;
 
 		return [
 			{
-				type: "gallery",
-				images: [...images],
+				maxWidth: "98",
+				maxWidthUnits: "%",
+				...img1,
 			},
 		];
 	}
 
-	/* -------------------------------------------- */
+	static _getFluffLayoutImages_footer (images) {
+		const [, ...rest] = images;
 
-	static getDisplayNamedClassFeatureEntry (entry, styleHint) {
-		if (styleHint === SITE_STYLE__CLASSIC || !entry.level || !entry.name) return entry;
-		return {_displayName: `Level ${entry.level}: ${entry._displayName || entry.name}`, ...entry};
-	}
-
-	static getDisplayNamedSubclassFeatureEntry (entry, styleHint) {
-		if (styleHint === SITE_STYLE__CLASSIC || !entry.level || !entry.entries?.length) return entry;
-
-		const cpy = MiscUtil.copyFast(entry);
-		cpy.entries = cpy.entries
-			.map(ent => {
-				if (ent.type !== "entries" || !ent.name) return ent;
-				return {_displayName: `Level ${entry.level}: ${ent._displayName || ent.name}`, ...ent};
-			});
-		return cpy;
+		return [
+			{
+				type: "gallery",
+				images: [...rest],
+			},
+		];
 	}
 }
 
@@ -765,7 +802,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		}
 
 		const f = this.filterBox.getValues();
-		this._list.filter(item => this._pageFilter.toDisplay(f, item.data.entity, [], null));
+		this._list.filter(item => this._pageFilter.toDisplay(f, item.data.entity));
 
 		if (this._fnOutlineHandleFilterChange) this._fnOutlineHandleFilterChange();
 		if (this._fnTableHandleFilterChange) this._fnTableHandleFilterChange(f);
@@ -1902,7 +1939,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		if (clsFluff) {
 			const depthArr = [];
 
-			const {hasEntries, rendered} = UtilClassesPage.getRenderedClassFluff({cls, clsFluff, depthArr, isAddTrailingHr: true});
+			const {hasEntries, rendered} = UtilClassesPage.getRenderedClassFluffHeader({cls, clsFluff, depthArr, isAddTrailingHr: true});
 
 			if (rendered) {
 				const $trFluff = $(`<tr class="cls-main__cls-fluff"><td colspan="6"></td></tr>`).fastSetHtml(rendered).appendTo($content);
@@ -1956,6 +1993,11 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				.appendTo($content);
 		}
 
+		if (clsFluff) {
+			const {rendered} = UtilClassesPage.getRenderedClassFluffFooter({cls, clsFluff, isAddLeadingHr: true});
+			if (rendered) $(`<tr class="cls-main__cls-fluff"><td colspan="6"></td></tr>`).fastSetHtml(rendered).appendTo($content);
+		}
+
 		this._$trNoContent = ClassesPage._render_$getTrNoContent().appendTo($content);
 
 		$content.append(Renderer.utils.getBorderTr());
@@ -1995,7 +2037,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 					depthArr,
 					({renderer}) => {
 						return $(`<tr data-scroll-id="${ixLvl}-${ixFeature}" data-feature-type="class" class="cls-main__linked-titles"><td colspan="6"></td></tr>`)
-							.fastSetHtml(renderer.render(UtilClassesPage.getDisplayNamedClassFeatureEntry(feature, styleHint)))
+							.fastSetHtml(renderer.render(Renderer.class.getDisplayNamedClassFeatureEntry(feature, styleHint)))
 							.appendTo($content);
 					},
 					{additionalProps: ["isReprinted"], additionalPropsInherited: ["_isStandardSource", "isClassFeatureVariant"]},
@@ -2064,7 +2106,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 					fn: () => {
 						const $trSubclassFeature = $(`<tr class="cls-main__sc-feature" data-subclass-id="${UrlUtil.getStateKeySubclass(sc)}"><td colspan="6"></td></tr>`)
 							.fastSetHtml(
-								Renderer.get().withDepthTracker(depthArr, ({renderer}) => renderer.render(UtilClassesPage.getDisplayNamedSubclassFeatureEntry(toRender, styleHint)), {additionalProps: ["isReprinted"], additionalPropsInherited: ["_isStandardSource", "isClassFeatureVariant"]}),
+								Renderer.get().withDepthTracker(depthArr, ({renderer}) => renderer.render(Renderer.class.getDisplayNamedSubclassFeatureEntry(toRender, styleHint)), {additionalProps: ["isReprinted"], additionalPropsInherited: ["_isStandardSource", "isClassFeatureVariant"]}),
 							)
 							.appendTo($content);
 					},
@@ -2429,7 +2471,7 @@ ClassesPage.ClassBookView = class extends BookModeViewBase {
 
 		const clsFluff = await Renderer.class.pGetFluff(cls);
 		if (clsFluff) {
-			const {hasEntries, rendered} = UtilClassesPage.getRenderedClassFluff({cls, clsFluff, isRemoveRootName: true});
+			const {hasEntries, rendered} = UtilClassesPage.getRenderedClassFluffHeader({cls, clsFluff, isRemoveRootName: true});
 
 			if (rendered) {
 				renderStack.push(`<tr data-cls-book-fluff="true"><td colspan="6" class="py-3 px-5">`);
@@ -2442,9 +2484,19 @@ ClassesPage.ClassBookView = class extends BookModeViewBase {
 
 		renderStack.push(`<tr data-cls-book-cf="true"><td colspan="6" class="py-3 px-5">`);
 		cls.classFeatures.forEach(lvl => {
-			lvl.forEach(cf => Renderer.get().recursiveRender(UtilClassesPage.getDisplayNamedClassFeatureEntry(cf, styleHint), renderStack));
+			lvl.forEach(cf => Renderer.get().recursiveRender(Renderer.class.getDisplayNamedClassFeatureEntry(cf, styleHint), renderStack));
 		});
 		renderStack.push(`</td></tr>`);
+
+		if (clsFluff) {
+			const {rendered} = UtilClassesPage.getRenderedClassFluffFooter({cls, clsFluff});
+
+			if (rendered) {
+				renderStack.push(`<tr data-cls-book-fluff="true"><td colspan="6" class="py-3 px-5">`);
+				renderStack.push(rendered);
+				renderStack.push(`</td></tr>`);
+			}
+		}
 
 		await cls.subclasses
 			.filter(sc => !ClassesPage.isSubclassExcluded_(cls, sc))
@@ -2453,7 +2505,7 @@ ClassesPage.ClassBookView = class extends BookModeViewBase {
 
 				sc.subclassFeatures.forEach((lvl, ix) => {
 					renderStack.push(`<tr data-cls-book-sc-ix="${ixSubclass}" class="cls-main__sc-feature"><td colspan="6" class="py-3 px-5">`);
-					lvl.forEach(scf => Renderer.get().recursiveRender(UtilClassesPage.getDisplayNamedSubclassFeatureEntry(scf, styleHint), renderStack));
+					lvl.forEach(scf => Renderer.get().recursiveRender(Renderer.class.getDisplayNamedSubclassFeatureEntry(scf, styleHint), renderStack));
 					renderStack.push(`</td></tr>`);
 
 					if (ix !== 0) return;
@@ -2546,3 +2598,5 @@ ClassesPage.ClassBookView = class extends BookModeViewBase {
 
 const classesPage = new ClassesPage();
 window.addEventListener("load", () => classesPage.pOnLoad());
+
+globalThis.dbg_page = classesPage;

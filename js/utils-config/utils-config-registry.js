@@ -1,6 +1,6 @@
 import {ConfigSettingsGroup} from "./util-config-settings-group.js";
 import {ConfigSettingBoolean, ConfigSettingEnum, ConfigSettingExternal} from "./utils-config-setting-base.js";
-import {SITE_STYLE__CLASSIC, SITE_STYLE_DISPLAY} from "../consts.js";
+import {SITE_STYLE__CLASSIC, SITE_STYLE__ONE, SITE_STYLE_DISPLAY} from "../consts.js";
 
 const settingsGroupStyleSwitcher = new ConfigSettingsGroup({
 	groupId: "styleSwitcher",
@@ -22,9 +22,10 @@ const settingsGroupStyleSwitcher = new ConfigSettingsGroup({
 			help: `The styling to be applied when rendering specific information (stat blocks, etc.).`,
 			isRowLabel: true,
 			isReloadRequired: true,
-			default: SITE_STYLE__CLASSIC,
+			default: SITE_STYLE__ONE,
 			values: [
 				SITE_STYLE__CLASSIC,
+				SITE_STYLE__ONE,
 			],
 			fnDisplay: it => SITE_STYLE_DISPLAY[it] || it,
 		}),

@@ -116,7 +116,7 @@ class FilterCommon {
 
 	/* -------------------------------------------- */
 
-	static PREREQ_FILTER_ITEMS = ["Ability", "Race", "Psionics", "Proficiency", "Special", "Spellcasting"];
+	static PREREQ_FILTER_ITEMS = ["Ability", "Species", "Psionics", "Proficiency", "Special", "Spellcasting"];
 
 	static _PREREQ_KEY_TO_FULL = {
 		"other": "Special",

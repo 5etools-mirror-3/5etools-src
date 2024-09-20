@@ -33,6 +33,10 @@
 			"page": 150,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Arrow|XPHB"
+			],
+			"edition": "classic",
 			"type": "A",
 			"rarity": "none",
 			"weight": 0.05,
@@ -40,11 +44,29 @@
 			"arrow": true
 		},
 		{
+			"name": "Arrow",
+			"source": "XPHB",
+			"page": 222,
+			"type": "A|XPHB",
+			"rarity": "none",
+			"weight": 0.05,
+			"value": 5,
+			"arrow": true,
+			"entries": [
+				"Arrows are used with a weapon that has the ammunition property to make a ranged attack. Each time you attack with the weapon, you expend one piece of ammunition. Drawing the ammunition from a quiver, case, or other container is part of the attack (you need a free hand to load a one-handed weapon). At the end of the battle, you can recover half your expended ammunition by taking a minute to search the battlefield.",
+				"Arrows are typically stored in a {@item Quiver|XPHB} (bought separately)."
+			]
+		},
+		{
 			"name": "Arrows (20)",
 			"source": "PHB",
 			"page": 150,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Arrows (20)|XPHB"
+			],
+			"edition": "classic",
 			"type": "A",
 			"rarity": "none",
 			"weight": 1,
@@ -53,6 +75,26 @@
 			"packContents": [
 				{
 					"item": "arrow|phb",
+					"quantity": 20
+				}
+			]
+		},
+		{
+			"name": "Arrows (20)",
+			"source": "XPHB",
+			"page": 222,
+			"type": "A|XPHB",
+			"rarity": "none",
+			"weight": 1,
+			"value": 100,
+			"arrow": true,
+			"entries": [
+				"Arrows are used with a weapon that has the ammunition property to make a ranged attack. Each time you attack with the weapon, you expend one piece of ammunition. Drawing the ammunition from a quiver, case, or other container is part of the attack (you need a free hand to load a one-handed weapon). At the end of the battle, you can recover half your expended ammunition by taking a minute to search the battlefield.",
+				"Arrows are typically stored in a {@item Quiver|XPHB} (bought separately)."
+			],
+			"packContents": [
+				{
+					"item": "arrow|xphb",
 					"quantity": 20
 				}
 			]
@@ -107,10 +149,46 @@
 			"page": 154,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Bagpipes|XPHB"
+			],
+			"edition": "classic",
 			"type": "INS",
 			"rarity": "none",
 			"weight": 6,
 			"value": 3000
+		},
+		{
+			"name": "Bagpipes",
+			"source": "XPHB",
+			"page": 221,
+			"freeRules2024": true,
+			"type": "INS|XPHB",
+			"rarity": "none",
+			"weight": 6,
+			"value": 3000,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Charisma"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Play a known tune ({@dc 10}), or improvise a song ({@dc 15})"
+							]
+						}
+					]
+				}
+			]
 		},
 		{
 			"name": "Battleaxe",
@@ -118,6 +196,10 @@
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Battleaxe|XPHB"
+			],
+			"edition": "classic",
 			"type": "M",
 			"rarity": "none",
 			"weight": 4,
@@ -131,6 +213,29 @@
 			"dmg2": "1d10",
 			"axe": true,
 			"weapon": true
+		},
+		{
+			"name": "Battleaxe",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "M",
+			"rarity": "none",
+			"weight": 4,
+			"value": 1000,
+			"weaponCategory": "martial",
+			"property": [
+				"V|XPHB"
+			],
+			"mastery": [
+				"Topple|XPHB"
+			],
+			"dmg1": "1d8",
+			"dmgType": "S",
+			"dmg2": "1d10",
+			"axe": true,
+			"weapon": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Birdpipes",
@@ -148,6 +253,10 @@
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Blowgun|XPHB"
+			],
+			"edition": "classic",
 			"type": "R",
 			"rarity": "none",
 			"weight": 1,
@@ -164,11 +273,39 @@
 			"ammoType": "blowgun needle|phb"
 		},
 		{
+			"name": "Blowgun",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "R",
+			"rarity": "none",
+			"weight": 1,
+			"value": 1000,
+			"weaponCategory": "martial",
+			"property": [
+				"A|XPHB",
+				"LD|XPHB"
+			],
+			"mastery": [
+				"Vex|XPHB"
+			],
+			"range": "25/100",
+			"dmg1": "1",
+			"dmgType": "P",
+			"weapon": true,
+			"ammoType": "needle|xphb",
+			"hasFluffImages": true
+		},
+		{
 			"name": "Blowgun Needle",
 			"source": "PHB",
 			"page": 150,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Needle|XPHB"
+			],
+			"edition": "classic",
 			"type": "A",
 			"rarity": "none",
 			"weight": 0.02,
@@ -181,6 +318,10 @@
 			"page": 150,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Needles (50)|XPHB"
+			],
+			"edition": "classic",
 			"type": "A",
 			"rarity": "none",
 			"weight": 1,
@@ -194,11 +335,49 @@
 			]
 		},
 		{
+			"name": "Bolt",
+			"source": "XPHB",
+			"page": 222,
+			"type": "A|XPHB",
+			"rarity": "none",
+			"weight": 0.075,
+			"value": 5,
+			"bolt": true,
+			"entries": [
+				"Crossbow bolts are used with a weapon that has the ammunition property to make a ranged attack. Each time you attack with the weapon, you expend one piece of ammunition. Drawing the ammunition from a quiver, case, or other container is part of the attack (you need a free hand to load a one-handed weapon). At the end of the battle, you can recover half your expended ammunition by taking a minute to search the battlefield.",
+				"Bolts are typically stored in a {@item Crossbow Bolt Case|XPHB} (bought separately)."
+			]
+		},
+		{
+			"name": "Bolts (20)",
+			"source": "XPHB",
+			"page": 222,
+			"type": "A|XPHB",
+			"rarity": "none",
+			"weight": 1.5,
+			"value": 100,
+			"bolt": true,
+			"entries": [
+				"Crossbow bolts are used with a weapon that has the ammunition property to make a ranged attack. Each time you attack with the weapon, you expend one piece of ammunition. Drawing the ammunition from a quiver, case, or other container is part of the attack (you need a free hand to load a one-handed weapon). At the end of the battle, you can recover half your expended ammunition by taking a minute to search the battlefield.",
+				"Bolts are typically stored in a {@item Crossbow Bolt Case|XPHB} (bought separately)."
+			],
+			"packContents": [
+				{
+					"item": "bolt|xphb",
+					"quantity": 20
+				}
+			]
+		},
+		{
 			"name": "Breastplate",
 			"source": "PHB",
 			"page": 145,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Breastplate|XPHB"
+			],
+			"edition": "classic",
 			"type": "MA",
 			"rarity": "none",
 			"weight": 20,
@@ -210,11 +389,28 @@
 			]
 		},
 		{
+			"name": "Breastplate",
+			"source": "XPHB",
+			"page": 219,
+			"freeRules2024": true,
+			"type": "MA",
+			"rarity": "none",
+			"weight": 20,
+			"value": 40000,
+			"ac": 14,
+			"armor": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Chain Mail",
 			"source": "PHB",
 			"page": 145,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Chain Mail|XPHB"
+			],
+			"edition": "classic",
 			"type": "HA",
 			"rarity": "none",
 			"weight": 55,
@@ -228,11 +424,30 @@
 			]
 		},
 		{
+			"name": "Chain Mail",
+			"source": "XPHB",
+			"page": 219,
+			"freeRules2024": true,
+			"type": "HA",
+			"rarity": "none",
+			"weight": 55,
+			"value": 7500,
+			"ac": 16,
+			"strength": "13",
+			"armor": true,
+			"stealth": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Chain Shirt",
 			"source": "PHB",
 			"page": 144,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Chain Shirt|XPHB"
+			],
+			"edition": "classic",
 			"type": "MA",
 			"rarity": "none",
 			"weight": 20,
@@ -244,11 +459,28 @@
 			]
 		},
 		{
+			"name": "Chain Shirt",
+			"source": "XPHB",
+			"page": 219,
+			"freeRules2024": true,
+			"type": "MA",
+			"rarity": "none",
+			"weight": 20,
+			"value": 5000,
+			"ac": 13,
+			"armor": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Club",
 			"source": "PHB",
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Club|XPHB"
+			],
+			"edition": "classic",
 			"type": "M",
 			"rarity": "none",
 			"weight": 2,
@@ -263,11 +495,37 @@
 			"weapon": true
 		},
 		{
+			"name": "Club",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "M",
+			"rarity": "none",
+			"weight": 2,
+			"value": 10,
+			"weaponCategory": "simple",
+			"property": [
+				"L|XPHB"
+			],
+			"mastery": [
+				"Slow|XPHB"
+			],
+			"dmg1": "1d4",
+			"dmgType": "B",
+			"club": true,
+			"weapon": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Crossbow Bolt",
 			"source": "PHB",
 			"page": 150,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Bolt|XPHB"
+			],
+			"edition": "classic",
 			"type": "A",
 			"rarity": "none",
 			"weight": 0.075,
@@ -280,6 +538,10 @@
 			"page": 150,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Bolts (20)|XPHB"
+			],
+			"edition": "classic",
 			"type": "A",
 			"rarity": "none",
 			"weight": 1.5,
@@ -298,7 +560,21 @@
 			"page": 151,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Crystal|XPHB"
+			],
+			"edition": "classic",
 			"type": "SCF",
+			"scfType": "arcane",
+			"rarity": "none",
+			"weight": 1,
+			"value": 1000
+		},
+		{
+			"name": "Crystal",
+			"source": "XPHB",
+			"page": 224,
+			"type": "SCF|XPHB",
 			"scfType": "arcane",
 			"rarity": "none",
 			"weight": 1,
@@ -310,6 +586,10 @@
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Dagger|XPHB"
+			],
+			"edition": "classic",
 			"type": "M",
 			"rarity": "none",
 			"weight": 1,
@@ -327,11 +607,40 @@
 			"weapon": true
 		},
 		{
+			"name": "Dagger",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "M",
+			"rarity": "none",
+			"weight": 1,
+			"value": 200,
+			"weaponCategory": "simple",
+			"property": [
+				"F|XPHB",
+				"L|XPHB",
+				"T|XPHB"
+			],
+			"mastery": [
+				"Nick|XPHB"
+			],
+			"range": "20/60",
+			"dmg1": "1d4",
+			"dmgType": "P",
+			"dagger": true,
+			"weapon": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Dart",
 			"source": "PHB",
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Dart|XPHB"
+			],
+			"edition": "classic",
 			"type": "R",
 			"rarity": "none",
 			"weight": 0.25,
@@ -345,6 +654,29 @@
 			"dmg1": "1d4",
 			"dmgType": "P",
 			"weapon": true
+		},
+		{
+			"name": "Dart",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "R",
+			"rarity": "none",
+			"weight": 0.25,
+			"value": 5,
+			"weaponCategory": "simple",
+			"property": [
+				"F|XPHB",
+				"T|XPHB"
+			],
+			"mastery": [
+				"Vex|XPHB"
+			],
+			"range": "20/60",
+			"dmg1": "1d4",
+			"dmgType": "P",
+			"weapon": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Double-Bladed Scimitar",
@@ -380,10 +712,46 @@
 			"page": 154,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Drum|XPHB"
+			],
+			"edition": "classic",
 			"type": "INS",
 			"rarity": "none",
 			"weight": 3,
 			"value": 600
+		},
+		{
+			"name": "Drum",
+			"source": "XPHB",
+			"page": 221,
+			"freeRules2024": true,
+			"type": "INS|XPHB",
+			"rarity": "none",
+			"weight": 3,
+			"value": 600,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Charisma"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Play a known tune ({@dc 10}), or improvise a song ({@dc 15})"
+							]
+						}
+					]
+				}
+			]
 		},
 		{
 			"name": "Dulcimer",
@@ -391,10 +759,46 @@
 			"page": 154,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Dulcimer|XPHB"
+			],
+			"edition": "classic",
 			"type": "INS",
 			"rarity": "none",
 			"weight": 10,
 			"value": 2500
+		},
+		{
+			"name": "Dulcimer",
+			"source": "XPHB",
+			"page": 221,
+			"freeRules2024": true,
+			"type": "INS|XPHB",
+			"rarity": "none",
+			"weight": 10,
+			"value": 2500,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Charisma"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Play a known tune ({@dc 10}), or improvise a song ({@dc 15})"
+							]
+						}
+					]
+				}
+			]
 		},
 		{
 			"name": "Energy Cell",
@@ -409,11 +813,55 @@
 			]
 		},
 		{
+			"name": "Firearm Bullet",
+			"source": "XPHB",
+			"page": 222,
+			"type": "A|XPHB",
+			"rarity": "none",
+			"weight": 0.2,
+			"value": 30,
+			"bulletFirearm": true,
+			"entries": [
+				"The ammunition of a firearm is destroyed upon use.",
+				"Firearm Bullets are typically stored in a {@item Pouch|XPHB} (bought separately)."
+			],
+			"miscTags": [
+				"CNS"
+			]
+		},
+		{
+			"name": "Firearm Bullets (10)",
+			"source": "XPHB",
+			"page": 222,
+			"type": "A|XPHB",
+			"rarity": "none",
+			"weight": 2,
+			"value": 300,
+			"bulletFirearm": true,
+			"entries": [
+				"The ammunition of a firearm is destroyed upon use.",
+				"Firearm Bullets are typically stored in a {@item Pouch|XPHB} (bought separately)."
+			],
+			"packContents": [
+				{
+					"item": "firearm bullet|xphb",
+					"quantity": 10
+				}
+			],
+			"miscTags": [
+				"CNS"
+			]
+		},
+		{
 			"name": "Flail",
 			"source": "PHB",
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Flail|XPHB"
+			],
+			"edition": "classic",
 			"type": "M",
 			"rarity": "none",
 			"weight": 2,
@@ -424,15 +872,69 @@
 			"weapon": true
 		},
 		{
+			"name": "Flail",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "M",
+			"rarity": "none",
+			"weight": 2,
+			"value": 1000,
+			"weaponCategory": "martial",
+			"mastery": [
+				"Sap|XPHB"
+			],
+			"dmg1": "1d8",
+			"dmgType": "B",
+			"weapon": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Flute",
 			"source": "PHB",
 			"page": 154,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Flute|XPHB"
+			],
+			"edition": "classic",
 			"type": "INS",
 			"rarity": "none",
 			"weight": 1,
 			"value": 200
+		},
+		{
+			"name": "Flute",
+			"source": "XPHB",
+			"page": 221,
+			"freeRules2024": true,
+			"type": "INS|XPHB",
+			"rarity": "none",
+			"weight": 1,
+			"value": 200,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Charisma"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Play a known tune ({@dc 10}), or improvise a song ({@dc 15})"
+							]
+						}
+					]
+				}
+			]
 		},
 		{
 			"name": "Glaive",
@@ -440,6 +942,10 @@
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Glaive|XPHB"
+			],
+			"edition": "classic",
 			"type": "M",
 			"rarity": "none",
 			"weight": 6,
@@ -454,6 +960,30 @@
 			"dmgType": "S",
 			"polearm": true,
 			"weapon": true
+		},
+		{
+			"name": "Glaive",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "M",
+			"rarity": "none",
+			"weight": 6,
+			"value": 2000,
+			"weaponCategory": "martial",
+			"property": [
+				"H|XPHB",
+				"R|XPHB",
+				"2H|XPHB"
+			],
+			"mastery": [
+				"Graze|XPHB"
+			],
+			"dmg1": "1d10",
+			"dmgType": "S",
+			"polearm": true,
+			"weapon": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Glaur",
@@ -471,6 +1001,10 @@
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Greataxe|XPHB"
+			],
+			"edition": "classic",
 			"type": "M",
 			"rarity": "none",
 			"weight": 7,
@@ -486,11 +1020,38 @@
 			"weapon": true
 		},
 		{
+			"name": "Greataxe",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "M",
+			"rarity": "none",
+			"weight": 7,
+			"value": 3000,
+			"weaponCategory": "martial",
+			"property": [
+				"H|XPHB",
+				"2H|XPHB"
+			],
+			"mastery": [
+				"Cleave|XPHB"
+			],
+			"dmg1": "1d12",
+			"dmgType": "S",
+			"axe": true,
+			"weapon": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Greatclub",
 			"source": "PHB",
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Greatclub|XPHB"
+			],
+			"edition": "classic",
 			"type": "M",
 			"rarity": "none",
 			"weight": 10,
@@ -505,11 +1066,37 @@
 			"weapon": true
 		},
 		{
+			"name": "Greatclub",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "M",
+			"rarity": "none",
+			"weight": 10,
+			"value": 20,
+			"weaponCategory": "simple",
+			"property": [
+				"2H|XPHB"
+			],
+			"mastery": [
+				"Push|XPHB"
+			],
+			"dmg1": "1d8",
+			"dmgType": "B",
+			"club": true,
+			"weapon": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Greatsword",
 			"source": "PHB",
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Greatsword|XPHB"
+			],
+			"edition": "classic",
 			"type": "M",
 			"rarity": "none",
 			"weight": 6,
@@ -525,11 +1112,38 @@
 			"weapon": true
 		},
 		{
+			"name": "Greatsword",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "M",
+			"rarity": "none",
+			"weight": 6,
+			"value": 5000,
+			"weaponCategory": "martial",
+			"property": [
+				"H|XPHB",
+				"2H|XPHB"
+			],
+			"mastery": [
+				"Graze|XPHB"
+			],
+			"dmg1": "2d6",
+			"dmgType": "S",
+			"sword": true,
+			"weapon": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Halberd",
 			"source": "PHB",
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Halberd|XPHB"
+			],
+			"edition": "classic",
 			"type": "M",
 			"rarity": "none",
 			"weight": 6,
@@ -546,11 +1160,39 @@
 			"weapon": true
 		},
 		{
+			"name": "Halberd",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "M",
+			"rarity": "none",
+			"weight": 6,
+			"value": 2000,
+			"weaponCategory": "martial",
+			"property": [
+				"H|XPHB",
+				"R|XPHB",
+				"2H|XPHB"
+			],
+			"mastery": [
+				"Cleave|XPHB"
+			],
+			"dmg1": "1d10",
+			"dmgType": "S",
+			"polearm": true,
+			"weapon": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Half Plate Armor",
 			"source": "PHB",
 			"page": 145,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Half Plate Armor|XPHB"
+			],
+			"edition": "classic",
 			"type": "MA",
 			"rarity": "none",
 			"weight": 40,
@@ -563,11 +1205,29 @@
 			]
 		},
 		{
+			"name": "Half Plate Armor",
+			"source": "XPHB",
+			"page": 219,
+			"freeRules2024": true,
+			"type": "MA",
+			"rarity": "none",
+			"weight": 40,
+			"value": 75000,
+			"ac": 15,
+			"armor": true,
+			"stealth": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Hand Crossbow",
 			"source": "PHB",
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Hand Crossbow|XPHB"
+			],
+			"edition": "classic",
 			"type": "R",
 			"rarity": "none",
 			"weight": 3,
@@ -586,6 +1246,32 @@
 			"ammoType": "crossbow bolt|phb"
 		},
 		{
+			"name": "Hand Crossbow",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "R",
+			"rarity": "none",
+			"weight": 3,
+			"value": 7500,
+			"weaponCategory": "martial",
+			"property": [
+				"A|XPHB",
+				"L|XPHB",
+				"LD|XPHB"
+			],
+			"mastery": [
+				"Vex|XPHB"
+			],
+			"range": "30/120",
+			"dmg1": "1d6",
+			"dmgType": "P",
+			"crossbow": true,
+			"weapon": true,
+			"ammoType": "bolt|xphb",
+			"hasFluffImages": true
+		},
+		{
 			"name": "Hand Drum",
 			"source": "SCAG",
 			"page": 124,
@@ -601,6 +1287,10 @@
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Handaxe|XPHB"
+			],
+			"edition": "classic",
 			"type": "M",
 			"rarity": "none",
 			"weight": 2,
@@ -617,11 +1307,39 @@
 			"weapon": true
 		},
 		{
+			"name": "Handaxe",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "M",
+			"rarity": "none",
+			"weight": 2,
+			"value": 500,
+			"weaponCategory": "simple",
+			"property": [
+				"L|XPHB",
+				"T|XPHB"
+			],
+			"mastery": [
+				"Vex|XPHB"
+			],
+			"range": "20/60",
+			"dmg1": "1d6",
+			"dmgType": "S",
+			"axe": true,
+			"weapon": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Heavy Crossbow",
 			"source": "PHB",
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Heavy Crossbow|XPHB"
+			],
+			"edition": "classic",
 			"type": "R",
 			"rarity": "none",
 			"weight": 18,
@@ -641,11 +1359,42 @@
 			"ammoType": "crossbow bolt|phb"
 		},
 		{
+			"name": "Heavy Crossbow",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "R",
+			"rarity": "none",
+			"weight": 18,
+			"value": 5000,
+			"weaponCategory": "martial",
+			"property": [
+				"A|XPHB",
+				"H|XPHB",
+				"LD|XPHB",
+				"2H|XPHB"
+			],
+			"mastery": [
+				"Push|XPHB"
+			],
+			"range": "100/400",
+			"dmg1": "1d10",
+			"dmgType": "P",
+			"crossbow": true,
+			"weapon": true,
+			"ammoType": "bolt|xphb",
+			"hasFluffImages": true
+		},
+		{
 			"name": "Hide Armor",
 			"source": "PHB",
 			"page": 144,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Hide Armor|XPHB"
+			],
+			"edition": "classic",
 			"type": "MA",
 			"rarity": "none",
 			"weight": 12,
@@ -655,6 +1404,19 @@
 			"entries": [
 				"This crude armor consists of thick furs and pelts. It is commonly worn by barbarian tribes, evil humanoids, and other folk who lack access to the tools and materials needed to create better armor."
 			]
+		},
+		{
+			"name": "Hide Armor",
+			"source": "XPHB",
+			"page": 219,
+			"freeRules2024": true,
+			"type": "MA",
+			"rarity": "none",
+			"weight": 12,
+			"value": 1000,
+			"ac": 12,
+			"armor": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Hooked Shortspear",
@@ -712,10 +1474,46 @@
 			"page": 154,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Horn|XPHB"
+			],
+			"edition": "classic",
 			"type": "INS",
 			"rarity": "none",
 			"weight": 2,
 			"value": 300
+		},
+		{
+			"name": "Horn",
+			"source": "XPHB",
+			"page": 221,
+			"freeRules2024": true,
+			"type": "INS|XPHB",
+			"rarity": "none",
+			"weight": 2,
+			"value": 300,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Charisma"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Play a known tune ({@dc 10}), or improvise a song ({@dc 15})"
+							]
+						}
+					]
+				}
+			]
 		},
 		{
 			"name": "Hunting Rifle",
@@ -745,6 +1543,10 @@
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Javelin|XPHB"
+			],
+			"edition": "classic",
 			"type": "M",
 			"rarity": "none",
 			"weight": 2,
@@ -760,11 +1562,38 @@
 			"weapon": true
 		},
 		{
+			"name": "Javelin",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "M",
+			"rarity": "none",
+			"weight": 2,
+			"value": 50,
+			"weaponCategory": "simple",
+			"property": [
+				"T|XPHB"
+			],
+			"mastery": [
+				"Slow|XPHB"
+			],
+			"range": "30/120",
+			"dmg1": "1d6",
+			"dmgType": "P",
+			"spear": true,
+			"weapon": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Lance",
 			"source": "PHB",
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Lance|XPHB"
+			],
+			"edition": "classic",
 			"type": "M",
 			"rarity": "none",
 			"weight": 6,
@@ -787,6 +1616,33 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Lance",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "M",
+			"rarity": "none",
+			"weight": 6,
+			"value": 1000,
+			"weaponCategory": "martial",
+			"property": [
+				"H|XPHB",
+				"R|XPHB",
+				"2H|XPHB"
+			],
+			"mastery": [
+				"Topple|XPHB"
+			],
+			"dmg1": "1d10",
+			"dmgType": "P",
+			"lance": true,
+			"weapon": true,
+			"entries": [
+				"A Lance requires two hands to wield when you aren't mounted."
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Laser Pistol",
@@ -837,6 +1693,10 @@
 			"page": 144,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Leather Armor|XPHB"
+			],
+			"edition": "classic",
 			"type": "LA",
 			"rarity": "none",
 			"weight": 10,
@@ -848,11 +1708,28 @@
 			]
 		},
 		{
+			"name": "Leather Armor",
+			"source": "XPHB",
+			"page": 219,
+			"freeRules2024": true,
+			"type": "LA",
+			"rarity": "none",
+			"weight": 10,
+			"value": 1000,
+			"ac": 11,
+			"armor": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Light Crossbow",
 			"source": "PHB",
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Light Crossbow|XPHB"
+			],
+			"edition": "classic",
 			"type": "R",
 			"rarity": "none",
 			"weight": 5,
@@ -871,11 +1748,41 @@
 			"ammoType": "crossbow bolt|phb"
 		},
 		{
+			"name": "Light Crossbow",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "R",
+			"rarity": "none",
+			"weight": 5,
+			"value": 2500,
+			"weaponCategory": "simple",
+			"property": [
+				"A|XPHB",
+				"LD|XPHB",
+				"2H|XPHB"
+			],
+			"mastery": [
+				"Slow|XPHB"
+			],
+			"range": "80/320",
+			"dmg1": "1d8",
+			"dmgType": "P",
+			"crossbow": true,
+			"weapon": true,
+			"ammoType": "bolt|xphb",
+			"hasFluffImages": true
+		},
+		{
 			"name": "Light Hammer",
 			"source": "PHB",
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Light Hammer|XPHB"
+			],
+			"edition": "classic",
 			"type": "M",
 			"rarity": "none",
 			"weight": 2,
@@ -890,6 +1797,30 @@
 			"dmgType": "B",
 			"hammer": true,
 			"weapon": true
+		},
+		{
+			"name": "Light Hammer",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "M",
+			"rarity": "none",
+			"weight": 2,
+			"value": 200,
+			"weaponCategory": "simple",
+			"property": [
+				"L|XPHB",
+				"T|XPHB"
+			],
+			"mastery": [
+				"Nick|XPHB"
+			],
+			"range": "20/60",
+			"dmg1": "1d4",
+			"dmgType": "B",
+			"hammer": true,
+			"weapon": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Light Repeating Crossbow",
@@ -919,6 +1850,10 @@
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Longbow|XPHB"
+			],
+			"edition": "classic",
 			"type": "R",
 			"rarity": "none",
 			"weight": 2,
@@ -937,6 +1872,32 @@
 			"ammoType": "arrow|phb"
 		},
 		{
+			"name": "Longbow",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "R",
+			"rarity": "none",
+			"weight": 2,
+			"value": 5000,
+			"weaponCategory": "martial",
+			"property": [
+				"A|XPHB",
+				"H|XPHB",
+				"2H|XPHB"
+			],
+			"mastery": [
+				"Slow|XPHB"
+			],
+			"range": "150/600",
+			"dmg1": "1d8",
+			"dmgType": "P",
+			"bow": true,
+			"weapon": true,
+			"ammoType": "arrow|xphb",
+			"hasFluffImages": true
+		},
+		{
 			"name": "Longhorn",
 			"source": "SCAG",
 			"page": 124,
@@ -952,6 +1913,10 @@
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Longsword|XPHB"
+			],
+			"edition": "classic",
 			"type": "M",
 			"rarity": "none",
 			"weight": 3,
@@ -967,15 +1932,74 @@
 			"weapon": true
 		},
 		{
+			"name": "Longsword",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "M",
+			"rarity": "none",
+			"weight": 3,
+			"value": 1500,
+			"weaponCategory": "martial",
+			"property": [
+				"V|XPHB"
+			],
+			"mastery": [
+				"Sap|XPHB"
+			],
+			"dmg1": "1d8",
+			"dmgType": "S",
+			"dmg2": "1d10",
+			"sword": true,
+			"weapon": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Lute",
 			"source": "PHB",
 			"page": 154,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Lute|XPHB"
+			],
+			"edition": "classic",
 			"type": "INS",
 			"rarity": "none",
 			"weight": 2,
 			"value": 3500
+		},
+		{
+			"name": "Lute",
+			"source": "XPHB",
+			"page": 221,
+			"freeRules2024": true,
+			"type": "INS|XPHB",
+			"rarity": "none",
+			"weight": 2,
+			"value": 3500,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Charisma"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Play a known tune ({@dc 10}), or improvise a song ({@dc 15})"
+							]
+						}
+					]
+				}
+			]
 		},
 		{
 			"name": "Lyre",
@@ -983,10 +2007,46 @@
 			"page": 154,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Lyre|XPHB"
+			],
+			"edition": "classic",
 			"type": "INS",
 			"rarity": "none",
 			"weight": 2,
 			"value": 3000
+		},
+		{
+			"name": "Lyre",
+			"source": "XPHB",
+			"page": 221,
+			"freeRules2024": true,
+			"type": "INS|XPHB",
+			"rarity": "none",
+			"weight": 2,
+			"value": 3000,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Charisma"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Play a known tune ({@dc 10}), or improvise a song ({@dc 15})"
+							]
+						}
+					]
+				}
+			]
 		},
 		{
 			"name": "Mace",
@@ -994,6 +2054,10 @@
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Mace|XPHB"
+			],
+			"edition": "classic",
 			"type": "M",
 			"rarity": "none",
 			"weight": 4,
@@ -1005,11 +2069,34 @@
 			"weapon": true
 		},
 		{
+			"name": "Mace",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "M",
+			"rarity": "none",
+			"weight": 4,
+			"value": 500,
+			"weaponCategory": "simple",
+			"mastery": [
+				"Sap|XPHB"
+			],
+			"dmg1": "1d6",
+			"dmgType": "B",
+			"mace": true,
+			"weapon": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Maul",
 			"source": "PHB",
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Maul|XPHB"
+			],
+			"edition": "classic",
 			"type": "M",
 			"rarity": "none",
 			"weight": 10,
@@ -1023,6 +2110,29 @@
 			"dmgType": "B",
 			"hammer": true,
 			"weapon": true
+		},
+		{
+			"name": "Maul",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "M",
+			"rarity": "none",
+			"weight": 10,
+			"value": 1000,
+			"weaponCategory": "martial",
+			"property": [
+				"H|XPHB",
+				"2H|XPHB"
+			],
+			"mastery": [
+				"Topple|XPHB"
+			],
+			"dmg1": "2d6",
+			"dmgType": "B",
+			"hammer": true,
+			"weapon": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Modern Bullet",
@@ -1060,6 +2170,10 @@
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Morningstar|XPHB"
+			],
+			"edition": "classic",
 			"type": "M",
 			"rarity": "none",
 			"weight": 4,
@@ -1071,9 +2185,32 @@
 			"weapon": true
 		},
 		{
+			"name": "Morningstar",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "M",
+			"rarity": "none",
+			"weight": 4,
+			"value": 1500,
+			"weaponCategory": "martial",
+			"mastery": [
+				"Sap|XPHB"
+			],
+			"dmg1": "1d8",
+			"dmgType": "P",
+			"mace": true,
+			"weapon": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Musket",
 			"source": "DMG",
 			"page": 268,
+			"reprintedAs": [
+				"Musket|XPHB"
+			],
+			"edition": "classic",
 			"type": "R",
 			"rarity": "none",
 			"weight": 10,
@@ -1093,11 +2230,78 @@
 			"ammoType": "renaissance bullet"
 		},
 		{
+			"name": "Musket",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "R",
+			"rarity": "none",
+			"weight": 10,
+			"value": 50000,
+			"weaponCategory": "martial",
+			"property": [
+				"A|XPHB",
+				"LD|XPHB",
+				"2H|XPHB"
+			],
+			"mastery": [
+				"Slow|XPHB"
+			],
+			"range": "40/120",
+			"dmg1": "1d12",
+			"dmgType": "P",
+			"firearm": true,
+			"weapon": true,
+			"ammoType": "firearm bullet|xphb",
+			"hasFluffImages": true
+		},
+		{
+			"name": "Needle",
+			"source": "XPHB",
+			"page": 222,
+			"type": "A|XPHB",
+			"rarity": "none",
+			"weight": 0.02,
+			"value": 2,
+			"needleBlowgun": true,
+			"entries": [
+				"Blowgun needles are used with a weapon that has the ammunition property to make a ranged attack. Each time you attack with the weapon, you expend one piece of ammunition. Drawing the ammunition from a quiver, case, or other container is part of the attack (you need a free hand to load a one-handed weapon). At the end of the battle, you can recover half your expended ammunition by taking a minute to search the battlefield.",
+				"Needles are typically stored in a {@item Pouch|XPHB} (bought separately)."
+			]
+		},
+		{
+			"name": "Needles (50)",
+			"source": "XPHB",
+			"page": 222,
+			"type": "A|XPHB",
+			"rarity": "none",
+			"weight": 1,
+			"value": 100,
+			"needleBlowgun": true,
+			"entries": [
+				"Blowgun needles are used with a weapon that has the ammunition property to make a ranged attack. Each time you attack with the weapon, you expend one piece of ammunition. Drawing the ammunition from a quiver, case, or other container is part of the attack (you need a free hand to load a one-handed weapon). At the end of the battle, you can recover half your expended ammunition by taking a minute to search the battlefield.",
+				"Needles are typically stored in a {@item Pouch|XPHB} (bought separately)."
+			],
+			"packContents": [
+				{
+					"item": "needle|xphb",
+					"quantity": 50
+				}
+			]
+		},
+		{
 			"name": "Net",
 			"source": "PHB",
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				{
+					"uid": "Net|XPHB",
+					"tag": "item"
+				}
+			],
+			"edition": "classic",
 			"type": "R",
 			"rarity": "none",
 			"weight": 3,
@@ -1126,7 +2330,21 @@
 			"page": 151,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Orb|XPHB"
+			],
+			"edition": "classic",
 			"type": "SCF",
+			"scfType": "arcane",
+			"rarity": "none",
+			"weight": 3,
+			"value": 2000
+		},
+		{
+			"name": "Orb",
+			"source": "XPHB",
+			"page": 224,
+			"type": "SCF|XPHB",
 			"scfType": "arcane",
 			"rarity": "none",
 			"weight": 3,
@@ -1138,6 +2356,10 @@
 			"page": 144,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Padded Armor|XPHB"
+			],
+			"edition": "classic",
 			"type": "LA",
 			"rarity": "none",
 			"weight": 8,
@@ -1150,15 +2372,65 @@
 			]
 		},
 		{
+			"name": "Padded Armor",
+			"source": "XPHB",
+			"page": 219,
+			"freeRules2024": true,
+			"type": "LA",
+			"rarity": "none",
+			"weight": 8,
+			"value": 500,
+			"ac": 11,
+			"armor": true,
+			"stealth": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Pan Flute",
 			"source": "PHB",
 			"page": 154,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Pan Flute|XPHB"
+			],
+			"edition": "classic",
 			"type": "INS",
 			"rarity": "none",
 			"weight": 2,
 			"value": 1200
+		},
+		{
+			"name": "Pan Flute",
+			"source": "XPHB",
+			"page": 221,
+			"freeRules2024": true,
+			"type": "INS|XPHB",
+			"rarity": "none",
+			"weight": 2,
+			"value": 1200,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Charisma"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Play a known tune ({@dc 10}), or improvise a song ({@dc 15})"
+							]
+						}
+					]
+				}
+			]
 		},
 		{
 			"name": "Pike",
@@ -1166,6 +2438,10 @@
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Pike|XPHB"
+			],
+			"edition": "classic",
 			"type": "M",
 			"rarity": "none",
 			"weight": 18,
@@ -1181,9 +2457,36 @@
 			"weapon": true
 		},
 		{
+			"name": "Pike",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "M",
+			"rarity": "none",
+			"weight": 18,
+			"value": 500,
+			"weaponCategory": "martial",
+			"property": [
+				"H|XPHB",
+				"R|XPHB",
+				"2H|XPHB"
+			],
+			"mastery": [
+				"Push|XPHB"
+			],
+			"dmg1": "1d10",
+			"dmgType": "P",
+			"weapon": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Pistol",
 			"source": "DMG",
 			"page": 268,
+			"reprintedAs": [
+				"Pistol|XPHB"
+			],
+			"edition": "classic",
 			"type": "R",
 			"rarity": "none",
 			"weight": 3,
@@ -1202,11 +2505,40 @@
 			"ammoType": "renaissance bullet"
 		},
 		{
+			"name": "Pistol",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "R",
+			"rarity": "none",
+			"weight": 3,
+			"value": 25000,
+			"weaponCategory": "martial",
+			"property": [
+				"A|XPHB",
+				"LD|XPHB"
+			],
+			"mastery": [
+				"Vex|XPHB"
+			],
+			"range": "30/90",
+			"dmg1": "1d10",
+			"dmgType": "P",
+			"firearm": true,
+			"weapon": true,
+			"ammoType": "firearm bullet|xphb",
+			"hasFluffImages": true
+		},
+		{
 			"name": "Plate Armor",
 			"source": "PHB",
 			"page": 145,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Plate Armor|XPHB"
+			],
+			"edition": "classic",
 			"type": "HA",
 			"rarity": "none",
 			"weight": 65,
@@ -1220,11 +2552,30 @@
 			]
 		},
 		{
+			"name": "Plate Armor",
+			"source": "XPHB",
+			"page": 219,
+			"freeRules2024": true,
+			"type": "HA",
+			"rarity": "none",
+			"weight": 65,
+			"value": 150000,
+			"ac": 18,
+			"strength": "15",
+			"armor": true,
+			"stealth": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Quarterstaff",
 			"source": "PHB",
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Quarterstaff|XPHB"
+			],
+			"edition": "classic",
 			"type": "M",
 			"rarity": "none",
 			"weight": 4,
@@ -1239,11 +2590,37 @@
 			"weapon": true
 		},
 		{
+			"name": "Quarterstaff",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "M",
+			"rarity": "none",
+			"weight": 4,
+			"value": 20,
+			"weaponCategory": "simple",
+			"property": [
+				"V|XPHB"
+			],
+			"mastery": [
+				"Topple|XPHB"
+			],
+			"dmg1": "1d6",
+			"dmgType": "B",
+			"dmg2": "1d8",
+			"weapon": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Rapier",
 			"source": "PHB",
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Rapier|XPHB"
+			],
+			"edition": "classic",
 			"type": "M",
 			"rarity": "none",
 			"weight": 2,
@@ -1259,9 +2636,35 @@
 			"weapon": true
 		},
 		{
+			"name": "Rapier",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "M",
+			"rarity": "none",
+			"weight": 2,
+			"value": 2500,
+			"weaponCategory": "martial",
+			"property": [
+				"F|XPHB"
+			],
+			"mastery": [
+				"Vex|XPHB"
+			],
+			"dmg1": "1d8",
+			"dmgType": "P",
+			"rapier": true,
+			"sword": true,
+			"weapon": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Renaissance Bullet",
 			"source": "DMG",
 			"page": 268,
+			"reprintedAs": [
+				"Firearm Bullet|XPHB"
+			],
 			"type": "AF|DMG",
 			"rarity": "none",
 			"weight": 0.2,
@@ -1275,6 +2678,9 @@
 			"name": "Renaissance Bullets (10)",
 			"source": "DMG",
 			"page": 268,
+			"reprintedAs": [
+				"Firearm Bullets (10)|XPHB"
+			],
 			"type": "AF|DMG",
 			"rarity": "none",
 			"weight": 2,
@@ -1317,6 +2723,10 @@
 			"page": 145,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Ring Mail|XPHB"
+			],
+			"edition": "classic",
 			"type": "HA",
 			"rarity": "none",
 			"weight": 40,
@@ -1329,12 +2739,40 @@
 			]
 		},
 		{
+			"name": "Ring Mail",
+			"source": "XPHB",
+			"page": 219,
+			"freeRules2024": true,
+			"type": "HA",
+			"rarity": "none",
+			"weight": 40,
+			"value": 3000,
+			"ac": 14,
+			"armor": true,
+			"stealth": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Rod",
 			"source": "PHB",
 			"page": 151,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Rod|XPHB"
+			],
+			"edition": "classic",
 			"type": "SCF",
+			"scfType": "arcane",
+			"rarity": "none",
+			"weight": 2,
+			"value": 1000
+		},
+		{
+			"name": "Rod",
+			"source": "XPHB",
+			"page": 224,
+			"type": "SCF|XPHB",
 			"scfType": "arcane",
 			"rarity": "none",
 			"weight": 2,
@@ -1346,6 +2784,10 @@
 			"page": 144,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Scale Mail|XPHB"
+			],
+			"edition": "classic",
 			"type": "MA",
 			"rarity": "none",
 			"weight": 45,
@@ -1358,11 +2800,29 @@
 			]
 		},
 		{
+			"name": "Scale Mail",
+			"source": "XPHB",
+			"page": 219,
+			"freeRules2024": true,
+			"type": "MA",
+			"rarity": "none",
+			"weight": 45,
+			"value": 5000,
+			"ac": 14,
+			"armor": true,
+			"stealth": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Scimitar",
 			"source": "PHB",
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Scimitar|XPHB"
+			],
+			"edition": "classic",
 			"type": "M",
 			"rarity": "none",
 			"weight": 3,
@@ -1378,11 +2838,38 @@
 			"weapon": true
 		},
 		{
+			"name": "Scimitar",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "M",
+			"rarity": "none",
+			"weight": 3,
+			"value": 2500,
+			"weaponCategory": "martial",
+			"property": [
+				"F|XPHB",
+				"L|XPHB"
+			],
+			"mastery": [
+				"Nick|XPHB"
+			],
+			"dmg1": "1d6",
+			"dmgType": "S",
+			"sword": true,
+			"weapon": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Shawm",
 			"source": "PHB",
 			"page": 154,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Shawm|XPHB"
+			],
+			"edition": "classic",
 			"type": "INS",
 			"rarity": "none",
 			"weight": 1,
@@ -1392,10 +2879,45 @@
 			"name": "Shawm",
 			"source": "SCAG",
 			"page": 124,
+			"reprintedAs": [
+				"Shawm|XPHB"
+			],
 			"type": "INS",
 			"rarity": "none",
 			"entries": [
 				"A double-reed instrument similar to an oboe or a bassoon, popular with gnomes, who have developed some bellows-powered versions."
+			]
+		},
+		{
+			"name": "Shawm",
+			"source": "XPHB",
+			"page": 221,
+			"freeRules2024": true,
+			"type": "INS|XPHB",
+			"rarity": "none",
+			"weight": 1,
+			"value": 200,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Charisma"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Play a known tune ({@dc 10}), or improvise a song ({@dc 15})"
+							]
+						}
+					]
+				}
 			]
 		},
 		{
@@ -1404,6 +2926,10 @@
 			"page": 144,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Shield|XPHB"
+			],
+			"edition": "classic",
 			"type": "S",
 			"rarity": "none",
 			"weight": 6,
@@ -1414,11 +2940,27 @@
 			]
 		},
 		{
+			"name": "Shield",
+			"source": "XPHB",
+			"page": 219,
+			"freeRules2024": true,
+			"type": "S",
+			"rarity": "none",
+			"weight": 6,
+			"value": 1000,
+			"ac": 2,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Shortbow",
 			"source": "PHB",
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Shortbow|XPHB"
+			],
+			"edition": "classic",
 			"type": "R",
 			"rarity": "none",
 			"weight": 2,
@@ -1436,11 +2978,40 @@
 			"ammoType": "arrow|phb"
 		},
 		{
+			"name": "Shortbow",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "R",
+			"rarity": "none",
+			"weight": 2,
+			"value": 2500,
+			"weaponCategory": "simple",
+			"property": [
+				"A|XPHB",
+				"2H|XPHB"
+			],
+			"mastery": [
+				"Vex|XPHB"
+			],
+			"range": "80/320",
+			"dmg1": "1d6",
+			"dmgType": "P",
+			"bow": true,
+			"weapon": true,
+			"ammoType": "arrow|xphb",
+			"hasFluffImages": true
+		},
+		{
 			"name": "Shortsword",
 			"source": "PHB",
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Shortsword|XPHB"
+			],
+			"edition": "classic",
 			"type": "M",
 			"rarity": "none",
 			"weight": 2,
@@ -1454,6 +3025,29 @@
 			"dmgType": "P",
 			"sword": true,
 			"weapon": true
+		},
+		{
+			"name": "Shortsword",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "M",
+			"rarity": "none",
+			"weight": 2,
+			"value": 1000,
+			"weaponCategory": "martial",
+			"property": [
+				"F|XPHB",
+				"L|XPHB"
+			],
+			"mastery": [
+				"Vex|XPHB"
+			],
+			"dmg1": "1d6",
+			"dmgType": "P",
+			"sword": true,
+			"weapon": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Shotgun",
@@ -1483,6 +3077,10 @@
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Sickle|XPHB"
+			],
+			"edition": "classic",
 			"type": "M",
 			"rarity": "none",
 			"weight": 2,
@@ -1496,11 +3094,36 @@
 			"weapon": true
 		},
 		{
+			"name": "Sickle",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "M",
+			"rarity": "none",
+			"weight": 2,
+			"value": 100,
+			"weaponCategory": "simple",
+			"property": [
+				"L|XPHB"
+			],
+			"mastery": [
+				"Nick|XPHB"
+			],
+			"dmg1": "1d4",
+			"dmgType": "S",
+			"weapon": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Sling",
 			"source": "PHB",
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Sling|XPHB"
+			],
+			"edition": "classic",
 			"type": "R",
 			"rarity": "none",
 			"value": 10,
@@ -1515,11 +3138,37 @@
 			"ammoType": "sling bullet|phb"
 		},
 		{
+			"name": "Sling",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "R",
+			"rarity": "none",
+			"value": 10,
+			"weaponCategory": "simple",
+			"property": [
+				"A|XPHB"
+			],
+			"mastery": [
+				"Slow|XPHB"
+			],
+			"range": "30/120",
+			"dmg1": "1d4",
+			"dmgType": "B",
+			"weapon": true,
+			"ammoType": "sling bullet|xphb",
+			"hasFluffImages": true
+		},
+		{
 			"name": "Sling Bullet",
 			"source": "PHB",
 			"page": 150,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Sling Bullet|XPHB"
+			],
+			"edition": "classic",
 			"type": "A",
 			"rarity": "none",
 			"weight": 0.075,
@@ -1527,11 +3176,29 @@
 			"bulletSling": true
 		},
 		{
+			"name": "Sling Bullet",
+			"source": "XPHB",
+			"page": 222,
+			"type": "A|XPHB",
+			"rarity": "none",
+			"weight": 0.075,
+			"value": 0.2,
+			"bulletSling": true,
+			"entries": [
+				"Sling bullets are used with a weapon that has the ammunition property to make a ranged attack. Each time you attack with the weapon, you expend one piece of ammunition. Drawing the ammunition from a quiver, case, or other container is part of the attack (you need a free hand to load a one-handed weapon). At the end of the battle, you can recover half your expended ammunition by taking a minute to search the battlefield.",
+				"Sling Bullets are typically stored in a {@item Pouch|XPHB} (bought separately)."
+			]
+		},
+		{
 			"name": "Sling Bullets (20)",
 			"source": "PHB",
 			"page": 150,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Sling Bullets (20)|XPHB"
+			],
+			"edition": "classic",
 			"type": "A",
 			"rarity": "none",
 			"weight": 1.5,
@@ -1540,6 +3207,26 @@
 			"packContents": [
 				{
 					"item": "sling bullet|phb",
+					"quantity": 20
+				}
+			]
+		},
+		{
+			"name": "Sling Bullets (20)",
+			"source": "XPHB",
+			"page": 222,
+			"type": "A|XPHB",
+			"rarity": "none",
+			"weight": 1.5,
+			"value": 4,
+			"bulletSling": true,
+			"entries": [
+				"Sling bullets are used with a weapon that has the ammunition property to make a ranged attack. Each time you attack with the weapon, you expend one piece of ammunition. Drawing the ammunition from a quiver, case, or other container is part of the attack (you need a free hand to load a one-handed weapon). At the end of the battle, you can recover half your expended ammunition by taking a minute to search the battlefield.",
+				"Sling Bullets are typically stored in a {@item Pouch|XPHB} (bought separately)."
+			],
+			"packContents": [
+				{
+					"item": "sling bullet|xphb",
 					"quantity": 20
 				}
 			]
@@ -1560,6 +3247,10 @@
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Spear|XPHB"
+			],
+			"edition": "classic",
 			"type": "M",
 			"rarity": "none",
 			"weight": 3,
@@ -1575,6 +3266,31 @@
 			"dmg2": "1d8",
 			"spear": true,
 			"weapon": true
+		},
+		{
+			"name": "Spear",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "M",
+			"rarity": "none",
+			"weight": 3,
+			"value": 100,
+			"weaponCategory": "simple",
+			"property": [
+				"T|XPHB",
+				"V|XPHB"
+			],
+			"mastery": [
+				"Sap|XPHB"
+			],
+			"range": "20/60",
+			"dmg1": "1d6",
+			"dmgType": "P",
+			"dmg2": "1d8",
+			"spear": true,
+			"weapon": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Spiked Armor",
@@ -1597,6 +3313,10 @@
 			"page": 145,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Splint Armor|XPHB"
+			],
+			"edition": "classic",
 			"type": "HA",
 			"rarity": "none",
 			"weight": 60,
@@ -1610,12 +3330,49 @@
 			]
 		},
 		{
+			"name": "Splint Armor",
+			"source": "XPHB",
+			"page": 219,
+			"freeRules2024": true,
+			"type": "HA",
+			"rarity": "none",
+			"weight": 60,
+			"value": 20000,
+			"ac": 17,
+			"strength": "15",
+			"armor": true,
+			"stealth": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Staff",
 			"source": "PHB",
 			"page": 151,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Staff|XPHB"
+			],
+			"edition": "classic",
 			"type": "SCF",
+			"scfType": "arcane",
+			"rarity": "none",
+			"weight": 4,
+			"value": 500,
+			"weaponCategory": "simple",
+			"property": [
+				"V"
+			],
+			"dmg1": "1d6",
+			"dmgType": "B",
+			"dmg2": "1d8",
+			"staff": true
+		},
+		{
+			"name": "Staff",
+			"source": "XPHB",
+			"page": 224,
+			"type": "SCF|XPHB",
 			"scfType": "arcane",
 			"rarity": "none",
 			"weight": 4,
@@ -1635,6 +3392,10 @@
 			"page": 144,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Studded Leather Armor|XPHB"
+			],
+			"edition": "classic",
 			"type": "LA",
 			"rarity": "none",
 			"weight": 13,
@@ -1644,6 +3405,19 @@
 			"entries": [
 				"Made from tough but flexible leather, studded leather is reinforced with close-set rivets or spikes."
 			]
+		},
+		{
+			"name": "Studded Leather Armor",
+			"source": "XPHB",
+			"page": 219,
+			"freeRules2024": true,
+			"type": "LA",
+			"rarity": "none",
+			"weight": 13,
+			"value": 4500,
+			"ac": 12,
+			"armor": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Tantan",
@@ -1681,6 +3455,10 @@
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Trident|XPHB"
+			],
+			"edition": "classic",
 			"type": "M",
 			"rarity": "none",
 			"weight": 4,
@@ -1697,15 +3475,75 @@
 			"weapon": true
 		},
 		{
+			"name": "Trident",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "M",
+			"rarity": "none",
+			"weight": 4,
+			"value": 500,
+			"weaponCategory": "martial",
+			"property": [
+				"T|XPHB",
+				"V|XPHB"
+			],
+			"mastery": [
+				"Topple|XPHB"
+			],
+			"range": "20/60",
+			"dmg1": "1d8",
+			"dmgType": "P",
+			"dmg2": "1d10",
+			"weapon": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Viol",
 			"source": "PHB",
 			"page": 154,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Viol|XPHB"
+			],
+			"edition": "classic",
 			"type": "INS",
 			"rarity": "none",
 			"weight": 1,
 			"value": 3000
+		},
+		{
+			"name": "Viol",
+			"source": "XPHB",
+			"page": 221,
+			"freeRules2024": true,
+			"type": "INS|XPHB",
+			"rarity": "none",
+			"weight": 1,
+			"value": 3000,
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"name": "Ability:",
+							"type": "item",
+							"entries": [
+								"Charisma"
+							]
+						},
+						{
+							"name": "Utilize:",
+							"type": "item",
+							"entries": [
+								"Play a known tune ({@dc 10}), or improvise a song ({@dc 15})"
+							]
+						}
+					]
+				}
+			]
 		},
 		{
 			"name": "Wand",
@@ -1713,7 +3551,21 @@
 			"page": 151,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Wand|XPHB"
+			],
+			"edition": "classic",
 			"type": "SCF",
+			"scfType": "arcane",
+			"rarity": "none",
+			"weight": 1,
+			"value": 1000
+		},
+		{
+			"name": "Wand",
+			"source": "XPHB",
+			"page": 224,
+			"type": "SCF|XPHB",
 			"scfType": "arcane",
 			"rarity": "none",
 			"weight": 1,
@@ -1725,6 +3577,10 @@
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"War Pick|XPHB"
+			],
+			"edition": "classic",
 			"type": "M",
 			"rarity": "none",
 			"weight": 2,
@@ -1733,6 +3589,28 @@
 			"dmg1": "1d8",
 			"dmgType": "P",
 			"weapon": true
+		},
+		{
+			"name": "War Pick",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "M",
+			"rarity": "none",
+			"weight": 2,
+			"value": 500,
+			"weaponCategory": "martial",
+			"property": [
+				"V|XPHB"
+			],
+			"mastery": [
+				"Sap|XPHB"
+			],
+			"dmg1": "1d8",
+			"dmgType": "P",
+			"dmg2": "1d10",
+			"weapon": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Wargong",
@@ -1750,6 +3628,10 @@
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Warhammer|XPHB"
+			],
+			"edition": "classic",
 			"type": "M",
 			"rarity": "none",
 			"weight": 2,
@@ -1765,11 +3647,38 @@
 			"weapon": true
 		},
 		{
+			"name": "Warhammer",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "M",
+			"rarity": "none",
+			"weight": 5,
+			"value": 1500,
+			"weaponCategory": "martial",
+			"property": [
+				"V|XPHB"
+			],
+			"mastery": [
+				"Push|XPHB"
+			],
+			"dmg1": "1d8",
+			"dmgType": "B",
+			"dmg2": "1d10",
+			"hammer": true,
+			"weapon": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Whip",
 			"source": "PHB",
 			"page": 149,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Whip|XPHB"
+			],
+			"edition": "classic",
 			"type": "M",
 			"rarity": "none",
 			"weight": 3,
@@ -1784,12 +3693,55 @@
 			"weapon": true
 		},
 		{
+			"name": "Whip",
+			"source": "XPHB",
+			"page": 215,
+			"freeRules2024": true,
+			"type": "M",
+			"rarity": "none",
+			"weight": 3,
+			"value": 200,
+			"weaponCategory": "martial",
+			"property": [
+				"F|XPHB",
+				"R|XPHB"
+			],
+			"mastery": [
+				"Slow|XPHB"
+			],
+			"dmg1": "1d4",
+			"dmgType": "S",
+			"weapon": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Wooden Staff",
 			"source": "PHB",
 			"page": 151,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Wooden Staff|XPHB"
+			],
+			"edition": "classic",
 			"type": "SCF",
+			"scfType": "druid",
+			"rarity": "none",
+			"weight": 4,
+			"value": 500,
+			"weaponCategory": "simple",
+			"property": [
+				"V"
+			],
+			"dmg1": "1d6",
+			"dmgType": "B",
+			"dmg2": "1d8"
+		},
+		{
+			"name": "Wooden Staff",
+			"source": "XPHB",
+			"page": 225,
+			"type": "SCF|XPHB",
 			"scfType": "druid",
 			"rarity": "none",
 			"weight": 4,
@@ -1848,6 +3800,9 @@
 			"abbreviation": "2H",
 			"source": "PHB",
 			"page": 147,
+			"reprintedAs": [
+				"2H|XPHB"
+			],
 			"template": "{{prop_name_lower}}",
 			"entries": [
 				{
@@ -1860,9 +3815,28 @@
 			]
 		},
 		{
+			"abbreviation": "2H",
+			"source": "XPHB",
+			"page": 214,
+			"freeRules2024": true,
+			"template": "{{prop_name}}",
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Two-Handed",
+					"entries": [
+						"A Two-Handed weapon requires two hands when you attack with it."
+					]
+				}
+			]
+		},
+		{
 			"abbreviation": "A",
 			"source": "PHB",
 			"page": 146,
+			"reprintedAs": [
+				"A|XPHB"
+			],
 			"template": "{{prop_name_lower}} ({{item.range}}\u00A0ft.)",
 			"entries": [
 				{
@@ -1871,6 +3845,22 @@
 					"entries": [
 						"You can use a weapon that has the ammunition property to make a ranged attack only if you have ammunition to fire from the weapon. Each time you attack with the weapon, you expend one piece of ammunition. Drawing the ammunition from a quiver, case, or other container is part of the attack. Loading a one-handed weapon requires a free hand. At the end of the battle, you can recover half your expended ammunition by taking a minute to search the battlefield.",
 						"If you use a weapon that has the ammunition property to make a melee attack, you treat the weapon as an improvised weapon. A sling must be loaded to deal any damage when used in this way."
+					]
+				}
+			]
+		},
+		{
+			"abbreviation": "A",
+			"source": "XPHB",
+			"page": 213,
+			"freeRules2024": true,
+			"template": "{{prop_name}} ({{item.range}}\u00A0ft.)",
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Ammunition",
+					"entries": [
+						"You can use a weapon that has the Ammunition property to make a ranged attack only if you have ammunition to fire from it. The type of ammunition required is specified with the weapon's range. Each attack expends one piece of ammunition. Drawing the ammunition is part of the attack (you need a free hand to load a one-handed weapon). After a fight, you can spend 1 minute to recover half the ammunition (round down) you used in the fight; the rest is lost."
 					]
 				}
 			]
@@ -1926,6 +3916,9 @@
 			"abbreviation": "F",
 			"source": "PHB",
 			"page": 147,
+			"reprintedAs": [
+				"F|XPHB"
+			],
 			"template": "{{prop_name_lower}}",
 			"entries": [
 				{
@@ -1938,9 +3931,28 @@
 			]
 		},
 		{
+			"abbreviation": "F",
+			"source": "XPHB",
+			"page": 213,
+			"freeRules2024": true,
+			"template": "{{prop_name}}",
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Finesse",
+					"entries": [
+						"When making an attack with a Finesse weapon, use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You must use the same modifier for both rolls."
+					]
+				}
+			]
+		},
+		{
 			"abbreviation": "H",
 			"source": "PHB",
 			"page": 147,
+			"reprintedAs": [
+				"H|XPHB"
+			],
 			"template": "{{prop_name_lower}}",
 			"entries": [
 				{
@@ -1953,9 +3965,28 @@
 			]
 		},
 		{
+			"abbreviation": "H",
+			"source": "XPHB",
+			"page": 213,
+			"freeRules2024": true,
+			"template": "{{prop_name}}",
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Heavy",
+					"entries": [
+						"You have {@variantrule Disadvantage|XPHB} on attack rolls with a Heavy weapon if it's a Melee weapon and your Strength score isn't at least 13 or if it's a Ranged weapon and your Dexterity score isn't at least 13."
+					]
+				}
+			]
+		},
+		{
 			"abbreviation": "L",
 			"source": "PHB",
 			"page": 147,
+			"reprintedAs": [
+				"L|XPHB"
+			],
 			"template": "{{prop_name_lower}}",
 			"entries": [
 				{
@@ -1968,9 +3999,28 @@
 			]
 		},
 		{
+			"abbreviation": "L",
+			"source": "XPHB",
+			"page": 213,
+			"freeRules2024": true,
+			"template": "{{prop_name}}",
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Light",
+					"entries": [
+						"When you take the {@action Attack|XPHB} action on your turn and attack with a Light weapon, you can make one extra attack as a {@variantrule Bonus Action|XPHB} later on the same turn. That extra attack must be made with a different Light weapon, and you don't add your ability modifier to the extra attack's damage unless that modifier is negative. For example, you can attack with a {@item Shortsword|XPHB} in one hand and a {@item Dagger|XPHB} in the other using the {@action Attack|XPHB} action and a {@variantrule Bonus Action|XPHB}, but you don't add your Strength or Dexterity modifier to the damage roll of the {@variantrule Bonus Action|XPHB} unless that modifier is negative."
+					]
+				}
+			]
+		},
+		{
 			"abbreviation": "LD",
 			"source": "PHB",
 			"page": 147,
+			"reprintedAs": [
+				"LD|XPHB"
+			],
 			"template": "{{prop_name_lower}}",
 			"entries": [
 				{
@@ -1983,9 +4033,28 @@
 			]
 		},
 		{
+			"abbreviation": "LD",
+			"source": "XPHB",
+			"page": 214,
+			"freeRules2024": true,
+			"template": "{{prop_name}}",
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Loading",
+					"entries": [
+						"You can fire only one piece of ammunition from a Loading weapon when you use an action, a {@variantrule Bonus Action|XPHB}, or a {@variantrule Reaction|XPHB} to fire it, regardless of the number of attacks you can normally make."
+					]
+				}
+			]
+		},
+		{
 			"abbreviation": "R",
 			"source": "PHB",
 			"page": 147,
+			"reprintedAs": [
+				"R|XPHB"
+			],
 			"template": "{{prop_name_lower}}",
 			"entries": [
 				{
@@ -1993,6 +4062,22 @@
 					"name": "Reach",
 					"entries": [
 						"This weapon adds 5 feet to your reach when you attack with it. This property also determines your reach for opportunity attacks with a reach weapon."
+					]
+				}
+			]
+		},
+		{
+			"abbreviation": "R",
+			"source": "XPHB",
+			"page": 214,
+			"freeRules2024": true,
+			"template": "{{prop_name}}",
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Reach",
+					"entries": [
+						"A Reach weapon adds 5 feet to your reach when you attack with it, as well as when determining your reach for Opportunity Attacks with it."
 					]
 				}
 			]
@@ -2023,6 +4108,9 @@
 			"abbreviation": "T",
 			"source": "PHB",
 			"page": 147,
+			"reprintedAs": [
+				"T|XPHB"
+			],
 			"template": "{{prop_name_lower}} ({{item.range}}\u00A0ft.)",
 			"entries": [
 				{
@@ -2035,9 +4123,28 @@
 			]
 		},
 		{
+			"abbreviation": "T",
+			"source": "XPHB",
+			"page": 214,
+			"freeRules2024": true,
+			"template": "{{prop_name}} ({{item.range}}\u00A0ft.)",
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Thrown",
+					"entries": [
+						"If a weapon has the Thrown property, you can throw the weapon to make a ranged attack, and you can draw that weapon as part of the attack. If the weapon is a Melee weapon, use the same ability modifier for the attack and damage rolls that you use for a melee attack with that weapon."
+					]
+				}
+			]
+		},
+		{
 			"abbreviation": "V",
 			"source": "PHB",
 			"page": 147,
+			"reprintedAs": [
+				"V|XPHB"
+			],
 			"template": "{{prop_name_lower}} ({{item.dmg2}})",
 			"entries": [
 				{
@@ -2045,6 +4152,22 @@
 					"name": "Versatile",
 					"entries": [
 						"This weapon can be used with one or two hands. A damage value in parentheses appears with the property\u2014the damage when the weapon is used with two hands to make a melee attack."
+					]
+				}
+			]
+		},
+		{
+			"abbreviation": "V",
+			"source": "XPHB",
+			"page": 214,
+			"freeRules2024": true,
+			"template": "{{prop_name}}",
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Versatile",
+					"entries": [
+						"A Versatile weapon can be used with one or two hands. A damage value in parentheses appears with the property. The weapon deals that damage when used with two hands to make a melee attack."
 					]
 				}
 			]
@@ -2083,7 +4206,21 @@
 			"name": "Treasure (Coinage)",
 			"abbreviation": "$C",
 			"source": "PHB",
-			"page": 143
+			"page": 143,
+			"reprintedAs": [
+				"$C|XPHB"
+			]
+		},
+		{
+			"name": "Treasure (Coinage)",
+			"abbreviation": "$C",
+			"source": "XPHB",
+			"page": 213,
+			"freeRules2024": true,
+			"entries": [
+				"Characters often find coins on their adventures and can spend those coins in shops, inns, and other businesses. Coins come in different denominations based on the relative worth of their material. The Coin Values table lists coins and how much they're worth relative to the Gold Piece, which is the game's main coin. For example, 100 Copper Pieces are worth 1 Gold Piece.",
+				"A coin weighs about a third of an ounce, so fifty coins weigh a pound."
+			]
 		},
 		{
 			"name": "Treasure (Gemstone)",
@@ -2095,7 +4232,17 @@
 			"name": "Ammunition",
 			"abbreviation": "A",
 			"source": "PHB",
-			"page": 148
+			"page": 148,
+			"reprintedAs": [
+				"A|XPHB"
+			]
+		},
+		{
+			"name": "Ammunition",
+			"abbreviation": "A",
+			"source": "XPHB",
+			"page": 222,
+			"freeRules2024": true
 		},
 		{
 			"name": "Ammunition",
@@ -2108,9 +4255,23 @@
 			"abbreviation": "AIR",
 			"source": "DMG",
 			"page": 119,
+			"reprintedAs": [
+				"AIR|XPHB"
+			],
 			"_copy": {
 				"abbreviation": "SHP",
 				"source": "DMG"
+			}
+		},
+		{
+			"name": "Vehicle (Air)",
+			"abbreviation": "AIR",
+			"source": "XPHB",
+			"page": 230,
+			"freeRules2024": true,
+			"_copy": {
+				"abbreviation": "SHP",
+				"source": "XPHB"
 			}
 		},
 		{
@@ -2118,8 +4279,22 @@
 			"abbreviation": "AT",
 			"source": "PHB",
 			"page": 154,
+			"reprintedAs": [
+				"AT|XPHB"
+			],
 			"entries": [
 				"These special tools include the items needed to pursue a craft or trade. Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency."
+			]
+		},
+		{
+			"name": "Artisan's Tools",
+			"abbreviation": "AT",
+			"source": "XPHB",
+			"page": 220,
+			"freeRules2024": true,
+			"entries": [
+				"Artisan's Tools are each focused on crafting items and pursuing a trade. Each type of Artisan's Tools tools requires a separate proficiency.",
+				"If you have proficiency with a tool, add your {@variantrule Proficiency|XPHB|Proficiency Bonus} to any ability check you make that uses the tool. If you have proficiency in a skill that's used with that check, you have {@variantrule Advantage|XPHB} on the check too."
 			]
 		},
 		{
@@ -2132,21 +4307,54 @@
 			"name": "Food and Drink",
 			"abbreviation": "FD",
 			"source": "PHB",
-			"page": 158
+			"page": 158,
+			"reprintedAs": [
+				"FD|XPHB"
+			]
+		},
+		{
+			"name": "Food and Drink",
+			"abbreviation": "FD",
+			"source": "XPHB",
+			"page": 231,
+			"freeRules2024": true
 		},
 		{
 			"name": "Adventuring Gear",
 			"abbreviation": "G",
 			"source": "PHB",
-			"page": 148
+			"page": 148,
+			"reprintedAs": [
+				"G|XPHB"
+			]
+		},
+		{
+			"name": "Adventuring Gear",
+			"abbreviation": "G",
+			"source": "XPHB",
+			"page": 222,
+			"freeRules2024": true
 		},
 		{
 			"name": "Gaming Set",
 			"abbreviation": "GS",
 			"source": "PHB",
 			"page": 154,
+			"reprintedAs": [
+				"GS|XPHB"
+			],
 			"entries": [
 				"If you are proficient with a gaming set, you can add your proficiency bonus to ability checks you make to play a game with that set. Each type of gaming set requires a separate proficiency."
+			]
+		},
+		{
+			"name": "Gaming Set",
+			"abbreviation": "GS",
+			"source": "XPHB",
+			"page": 221,
+			"freeRules2024": true,
+			"entries": [
+				"If you have proficiency with a tool, add your {@variantrule Proficiency|XPHB|Proficiency Bonus} to any ability check you make that uses the tool. If you have proficiency in a skill that's used with that check, you have {@variantrule Advantage|XPHB} on the check too."
 			]
 		},
 		{
@@ -2159,7 +4367,17 @@
 			"name": "Heavy Armor",
 			"abbreviation": "HA",
 			"source": "PHB",
-			"page": 145
+			"page": 145,
+			"reprintedAs": [
+				"HA|XPHB"
+			]
+		},
+		{
+			"name": "Heavy Armor",
+			"abbreviation": "HA",
+			"source": "XPHB",
+			"page": 219,
+			"freeRules2024": true
 		},
 		{
 			"name": "Illegal Drug",
@@ -2175,33 +4393,86 @@
 			"abbreviation": "INS",
 			"source": "PHB",
 			"page": 154,
+			"reprintedAs": [
+				"INS|XPHB"
+			],
 			"entries": [
 				"If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each type of musical instrument requires a separate proficiency."
+			]
+		},
+		{
+			"name": "Instrument",
+			"abbreviation": "INS",
+			"source": "XPHB",
+			"page": 221,
+			"freeRules2024": true,
+			"entries": [
+				"If you have proficiency with a tool, add your {@variantrule Proficiency|XPHB|Proficiency Bonus} to any ability check you make that uses the tool. If you have proficiency in a skill that's used with that check, you have {@variantrule Advantage|XPHB} on the check too."
 			]
 		},
 		{
 			"name": "Light Armor",
 			"abbreviation": "LA",
 			"source": "PHB",
-			"page": 144
+			"page": 144,
+			"reprintedAs": [
+				"LA|XPHB"
+			]
+		},
+		{
+			"name": "Light Armor",
+			"abbreviation": "LA",
+			"source": "XPHB",
+			"page": 219,
+			"freeRules2024": true
 		},
 		{
 			"name": "Melee Weapon",
 			"abbreviation": "M",
 			"source": "PHB",
-			"page": 146
+			"page": 146,
+			"reprintedAs": [
+				"M|XPHB"
+			]
+		},
+		{
+			"name": "Melee Weapon",
+			"abbreviation": "M",
+			"source": "XPHB",
+			"page": 213,
+			"freeRules2024": true
 		},
 		{
 			"name": "Medium Armor",
 			"abbreviation": "MA",
 			"source": "PHB",
-			"page": 144
+			"page": 144,
+			"reprintedAs": [
+				"MA|XPHB"
+			]
+		},
+		{
+			"name": "Medium Armor",
+			"abbreviation": "MA",
+			"source": "XPHB",
+			"page": 219,
+			"freeRules2024": true
 		},
 		{
 			"name": "Mount",
 			"abbreviation": "MNT",
 			"source": "PHB",
-			"page": 155
+			"page": 155,
+			"reprintedAs": [
+				"MNT|XPHB"
+			]
+		},
+		{
+			"name": "Mount",
+			"abbreviation": "MNT",
+			"source": "XPHB",
+			"page": 230,
+			"freeRules2024": true
 		},
 		{
 			"name": "Other",
@@ -2213,19 +4484,48 @@
 			"name": "Potion",
 			"abbreviation": "P",
 			"source": "PHB",
-			"page": 148
+			"page": 148,
+			"reprintedAs": [
+				"P|XPHB"
+			]
+		},
+		{
+			"name": "Potion",
+			"abbreviation": "P",
+			"source": "XPHB",
+			"page": 222,
+			"freeRules2024": true
 		},
 		{
 			"name": "Ranged Weapon",
 			"abbreviation": "R",
 			"source": "PHB",
 			"page": 146,
+			"reprintedAs": [
+				"R|XPHB"
+			],
 			"entries": [
 				{
 					"type": "entries",
 					"name": "Range",
 					"entries": [
 						"A weapon that can be used to make a ranged attack has a range shown in parentheses after the ammunition or thrown property. The range lists two numbers. The first is the weapon's normal range in feet, and the second indicates the weapon's maximum range. When attacking a target beyond normal range, you have disadvantage on the attack roll. You can't attack a target beyond the weapon's long range."
+					]
+				}
+			]
+		},
+		{
+			"name": "Ranged Weapon",
+			"abbreviation": "R",
+			"source": "XPHB",
+			"page": 214,
+			"freeRules2024": true,
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Range",
+					"entries": [
+						"A Range weapon has a range in parentheses after the Ammunition or Thrown property. The range lists two numbers. The first is the weapon's normal range in feet, and the second is the weapon's long range. When attacking a target beyond normal range, you have {@variantrule Disadvantage|XPHB} on the attack roll. You can't attack a target beyond the long range."
 					]
 				}
 			]
@@ -2246,25 +4546,58 @@
 			"name": "Shield",
 			"abbreviation": "S",
 			"source": "PHB",
-			"page": 144
+			"page": 144,
+			"reprintedAs": [
+				"S|XPHB"
+			]
+		},
+		{
+			"name": "Shield",
+			"abbreviation": "S",
+			"source": "XPHB",
+			"page": 219,
+			"freeRules2024": true
 		},
 		{
 			"name": "Scroll",
 			"abbreviation": "SC",
 			"source": "DMG",
-			"page": 139
+			"page": 139,
+			"reprintedAs": [
+				"SC|XPHB"
+			]
+		},
+		{
+			"name": "Scroll",
+			"abbreviation": "SC",
+			"source": "XPHB",
+			"page": 222,
+			"freeRules2024": true
 		},
 		{
 			"name": "Spellcasting Focus",
 			"abbreviation": "SCF",
 			"source": "PHB",
-			"page": 148
+			"page": 148,
+			"reprintedAs": [
+				"SCF|XPHB"
+			]
+		},
+		{
+			"name": "Spellcasting Focus",
+			"abbreviation": "SCF",
+			"source": "XPHB",
+			"page": 222,
+			"freeRules2024": true
 		},
 		{
 			"name": "Vehicle (Water)",
 			"abbreviation": "SHP",
 			"source": "DMG",
 			"page": 119,
+			"reprintedAs": [
+				"SHP|XPHB"
+			],
 			"entries": [
 				{
 					"type": "entries",
@@ -2307,22 +4640,89 @@
 			]
 		},
 		{
+			"name": "Vehicle (Water)",
+			"abbreviation": "SHP",
+			"source": "XPHB",
+			"page": 230,
+			"freeRules2024": true,
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Speed",
+					"entries": [
+						"A ship sailing against a strong wind moves at half speed. In a dead calm (no wind), waterborne ships can't move under sail and must be rowed. Keelboats and Rowboats are used on lakes and rivers. If going downstream, add the speed of the current (typically 3 miles per hour) to the speed of the vehicle. These vehicles can't be rowed against any significant current, but they can be pulled upstream by draft animals on the shores. A Rowboat can be carried and weighs 100 pounds."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Crew",
+					"entries": [
+						"A ship larger than a Keelboat or Rowboat needs a crew of skilled hirelings (see \"{@book Services|XPHB|6|Services}\") to function. The minimum number of skilled hirelings needed to crew a ship depends on the type of ship."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Passengers",
+					"entries": [
+						"The number of Small and Medium passengers the ship can accommodate using hammocks. A ship outfitted with private accommodations can carry one-fifth as many passengers. A passenger usually pays 5 SP per day for a hammock, but prices can vary from ship to ship. A small private cabin usually costs 2 GP per day."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Damage Threshold",
+					"entries": [
+						"See the {@variantrule Damage Threshold|XPHB|rules glossary}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Ship Repair",
+					"entries": [
+						"Repairs to a damaged ship can be made while the vessel is berthed. Repairing 1 {@variantrule Hit Points|XPHB|Hit Point} of damage requires 1 day and costs 20 GP for materials and labor. If the repairs are made in a location where supplies and skilled labor are abundant, such as a city shipyard, the repair time and cost are halved."
+					]
+				}
+			]
+		},
+		{
 			"name": "Vehicle (Space)",
 			"abbreviation": "SPC",
 			"source": "AAG",
 			"page": 24
 		},
 		{
-			"name": "Tools",
+			"name": "Tool",
 			"abbreviation": "T",
 			"source": "PHB",
-			"page": 154
+			"page": 154,
+			"reprintedAs": [
+				"T|XPHB"
+			]
+		},
+		{
+			"name": "Tool",
+			"abbreviation": "T",
+			"source": "XPHB",
+			"page": 220,
+			"freeRules2024": true,
+			"entries": [
+				"If you have proficiency with a tool, add your {@variantrule Proficiency|XPHB|Proficiency Bonus} to any ability check you make that uses the tool. If you have proficiency in a skill that's used with that check, you have {@variantrule Advantage|XPHB} on the check too."
+			]
 		},
 		{
 			"name": "Tack and Harness",
 			"abbreviation": "TAH",
 			"source": "PHB",
-			"page": 155
+			"page": 155,
+			"reprintedAs": [
+				"TAH|XPHB"
+			]
+		},
+		{
+			"name": "Tack and Harness",
+			"abbreviation": "TAH",
+			"source": "XPHB",
+			"page": 230,
+			"freeRules2024": true
 		},
 		{
 			"name": "Trade Good",
@@ -2338,7 +4738,17 @@
 			"name": "Vehicle (Land)",
 			"abbreviation": "VEH",
 			"source": "PHB",
-			"page": 155
+			"page": 155,
+			"reprintedAs": [
+				"VEH|XPHB"
+			]
+		},
+		{
+			"name": "Vehicle (Land)",
+			"abbreviation": "VEH",
+			"source": "XPHB",
+			"page": 230,
+			"freeRules2024": true
 		},
 		{
 			"name": "Wand",
@@ -2523,6 +4933,80 @@
 			"source": "DMG",
 			"entriesTemplate": [
 				"You have resistance to {{item.resist}} damage while wearing this ring. The ring is set with {{item.detail1}}."
+			]
+		}
+	],
+	"itemMastery": [
+		{
+			"name": "Cleave",
+			"source": "XPHB",
+			"page": 214,
+			"freeRules2024": true,
+			"entries": [
+				"If you hit a creature with a melee attack roll using this weapon, you can make a melee attack roll with the weapon against a second creature within 5 feet of the first that is also within your reach. On a hit, the second creature takes the weapon's damage, but don't add your ability modifier to that damage unless that modifier is negative. You can make this extra attack only once per turn."
+			]
+		},
+		{
+			"name": "Graze",
+			"source": "XPHB",
+			"page": 214,
+			"freeRules2024": true,
+			"entries": [
+				"If your attack roll with this weapon misses a creature, you can deal damage to that creature equal to the ability modifier you used to make the attack roll. This damage is the same type dealt by the weapon, and the damage can be increased only by increasing the ability modifier."
+			]
+		},
+		{
+			"name": "Nick",
+			"source": "XPHB",
+			"page": 214,
+			"freeRules2024": true,
+			"entries": [
+				"When you make the extra attack of the Light property, you can make it as part of the {@action Attack|XPHB} action instead of as a {@variantrule Bonus Action|XPHB}. You can make this extra attack only once per turn."
+			]
+		},
+		{
+			"name": "Push",
+			"source": "XPHB",
+			"page": 214,
+			"freeRules2024": true,
+			"entries": [
+				"If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller."
+			]
+		},
+		{
+			"name": "Sap",
+			"source": "XPHB",
+			"page": 214,
+			"freeRules2024": true,
+			"entries": [
+				"If you hit a creature with this weapon, that creature has {@variantrule Disadvantage|XPHB} on its next attack roll before the start of your next turn."
+			]
+		},
+		{
+			"name": "Slow",
+			"source": "XPHB",
+			"page": 214,
+			"freeRules2024": true,
+			"entries": [
+				"If you hit a creature with this weapon and deal damage to it, you can reduce its {@variantrule Speed|XPHB} by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the {@variantrule Speed|XPHB} reduction doesn't exceed 10 feet."
+			]
+		},
+		{
+			"name": "Topple",
+			"source": "XPHB",
+			"page": 214,
+			"freeRules2024": true,
+			"entries": [
+				"If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw ({@dc 8} plus the ability modifier used to make the attack roll and your {@variantrule Proficiency|XPHB} Bonus). On a failed save, the creature has the {@condition Prone|XPHB} condition."
+			]
+		},
+		{
+			"name": "Vex",
+			"source": "XPHB",
+			"page": 214,
+			"freeRules2024": true,
+			"entries": [
+				"If you hit a creature with this weapon and deal damage to the creature, you have {@variantrule Advantage|XPHB} on your next attack roll against that creature before the end of your next turn."
 			]
 		}
 	]

@@ -7,10 +7,15 @@ class AdventuresBooksList {
 		return DatetimeUtil.getDateStr({date, isShort: true, isPad: true});
 	}
 
-	static _getGroupStr (advBook) {
+	static _getGroupHtml (advBook) {
 		const group = advBook.group || "other";
 		const entry = SourceUtil.ADV_BOOK_GROUPS.find(it => it.group === group);
-		return entry.displayName;
+		return [
+			entry.displayName,
+			Parser.sourceJsonToMarkerHtml(advBook.source, {isList: true, isAddBrackets: true}),
+		]
+			.filter(Boolean)
+			.join("");
 	}
 
 	static _sortAdventuresBooks (dataList, a, b, o) {
@@ -182,8 +187,10 @@ class AdventuresBooksList {
 
 			this._list.addItem(listItem);
 
+			const isLegacySource = SourceUtil.isLegacySourceWotc(it.source);
+
 			// region Alt list (covers/thumbnails)
-			const eleLiAlt = $(`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)}" class="ve-flex-col ve-flex-v-center m-3 bks__wrp-bookshelf-item ${isExcluded ? `bks__wrp-bookshelf-item--blocklisted` : ""} py-3 px-2 ${Parser.sourceJsonToSourceClassname(it.source)}" ${Parser.sourceJsonToStyle(it.source)}>
+			const eleLiAlt = $(`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)}" class="ve-flex-col ve-flex-v-center m-3 bks__wrp-bookshelf-item ${isExcluded ? `bks__wrp-bookshelf-item--blocklisted` : ""} ${isLegacySource ? `bks__wrp-bookshelf-item--legacy` : ""} py-3 px-2 ${Parser.sourceJsonToSourceClassname(it.source)}" ${Parser.sourceJsonToStyle(it.source)} ${isLegacySource ? `title="(Legacy Source)"` : ""}>
 				<img src="${Renderer.adventureBook.getCoverUrl(it)}" class="mb-2 bks__bookshelf-image" loading="lazy" alt="Cover Image: ${(it.name || "").qq()}">
 				<div class="bks__bookshelf-item-name ve-flex-vh-center ve-text-center">${it.name}</div>
 			</a>`)[0];
@@ -191,7 +198,7 @@ class AdventuresBooksList {
 				this._dataIx,
 				eleLiAlt,
 				it.name,
-				{source: it.id},
+				{source: it.source},
 			);
 			this._listAlt.addItem(listItemAlt);
 			// endregion

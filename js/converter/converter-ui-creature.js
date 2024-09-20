@@ -7,7 +7,8 @@ export class CreatureConverterUi extends ConverterUiBase {
 		super(
 			ui,
 			{
-				converterId: "Creature",
+				name: "Creature",
+				converterId: "monster",
 				canSaveLocal: true,
 				modes: ["txt", "md"],
 				hasPageNumbers: true,

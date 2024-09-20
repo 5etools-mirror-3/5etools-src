@@ -6,6 +6,9 @@
 			"page": 94,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Rogue|XPHB"
+			],
 			"hd": {
 				"number": 1,
 				"faces": 8
@@ -431,6 +434,441 @@
 			"subclassTitle": "Roguish Archetype",
 			"hasFluff": true,
 			"hasFluffImages": true
+		},
+		{
+			"name": "Rogue",
+			"source": "XPHB",
+			"page": 128,
+			"freeRules2024": true,
+			"primaryAbility": [
+				{
+					"dex": true
+				}
+			],
+			"hd": {
+				"number": 1,
+				"faces": 8
+			},
+			"proficiency": [
+				"dex",
+				"int"
+			],
+			"spellcastingAbility": "wis",
+			"casterProgression": "full",
+			"startingProficiencies": {
+				"armor": [
+					"light"
+				],
+				"weapons": [
+					"simple",
+					"Martial weapons that have the {@filter Finesse or Light|items|type=martial weapon|property=finesse;light} property"
+				],
+				"weaponProficiencies": [
+					{
+						"simple": true,
+						"all": {
+							"fromFilter": "type=martial weapon|property=light;finesse"
+						}
+					}
+				],
+				"tools": [
+					"{@item Thieves' Tools|XPHB}"
+				],
+				"toolProficiencies": [
+					{
+						"thieves' tools": true
+					}
+				],
+				"skills": [
+					{
+						"choose": {
+							"from": [
+								"acrobatics",
+								"athletics",
+								"deception",
+								"insight",
+								"intimidation",
+								"investigation",
+								"perception",
+								"persuasion",
+								"sleight of hand",
+								"stealth"
+							],
+							"count": 4
+						}
+					}
+				]
+			},
+			"startingEquipment": {
+				"entries": [
+					"{@i Choose A or B:} (A) {@item Leather Armor|XPHB}, 2 {@item Dagger|XPHB|Daggers}, {@item Shortsword|XPHB}, {@item Shortbow|XPHB}, {@item Arrows (20)|XPHB|20 Arrows}, {@item Quiver|XPHB}, {@item Thieves' Tools|XPHB}, {@item Burglar's Pack|XPHB}, and 8 GP; or (B) 100 GP"
+				],
+				"defaultData": [
+					{
+						"A": [
+							{
+								"item": "leather armor|xphb"
+							},
+							{
+								"item": "dagger|xphb",
+								"quantity": 2
+							},
+							{
+								"item": "shortsword|xphb"
+							},
+							{
+								"item": "shortbow|xphb"
+							},
+							{
+								"item": "arrows|xphb"
+							},
+							{
+								"item": "quiver|xphb"
+							},
+							{
+								"item": "thieves' tools|xphb"
+							},
+							{
+								"item": "burglar's pack|xphb"
+							},
+							{
+								"value": 800
+							}
+						],
+						"B": [
+							{
+								"value": 10000
+							}
+						]
+					}
+				]
+			},
+			"multiclassing": {
+				"proficienciesGained": {
+					"armor": [
+						"light"
+					],
+					"tools": [
+						"{@item Thieves' Tools|XPHB}"
+					],
+					"toolProficiencies": [
+						{
+							"thieves' tools": true
+						}
+					],
+					"skills": [
+						{
+							"choose": {
+								"from": [
+									"acrobatics",
+									"athletics",
+									"deception",
+									"insight",
+									"intimidation",
+									"investigation",
+									"perception",
+									"persuasion",
+									"sleight of hand",
+									"stealth"
+								],
+								"count": 1
+							}
+						}
+					]
+				}
+			},
+			"classTableGroups": [
+				{
+					"colLabels": [
+						"Sneak Attack"
+					],
+					"rows": [
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 6
+									}
+								],
+								"rollable": true
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 6
+									}
+								],
+								"rollable": true
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 2,
+										"faces": 6
+									}
+								],
+								"rollable": true
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 2,
+										"faces": 6
+									}
+								],
+								"rollable": true
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 3,
+										"faces": 6
+									}
+								],
+								"rollable": true
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 3,
+										"faces": 6
+									}
+								],
+								"rollable": true
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 4,
+										"faces": 6
+									}
+								],
+								"rollable": true
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 4,
+										"faces": 6
+									}
+								],
+								"rollable": true
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 5,
+										"faces": 6
+									}
+								],
+								"rollable": true
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 5,
+										"faces": 6
+									}
+								],
+								"rollable": true
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 6,
+										"faces": 6
+									}
+								],
+								"rollable": true
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 6,
+										"faces": 6
+									}
+								],
+								"rollable": true
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 7,
+										"faces": 6
+									}
+								],
+								"rollable": true
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 7,
+										"faces": 6
+									}
+								],
+								"rollable": true
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 8,
+										"faces": 6
+									}
+								],
+								"rollable": true
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 8,
+										"faces": 6
+									}
+								],
+								"rollable": true
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 9,
+										"faces": 6
+									}
+								],
+								"rollable": true
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 9,
+										"faces": 6
+									}
+								],
+								"rollable": true
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 10,
+										"faces": 6
+									}
+								],
+								"rollable": true
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 10,
+										"faces": 6
+									}
+								],
+								"rollable": true
+							}
+						]
+					]
+				}
+			],
+			"classFeatures": [
+				"Expertise|Rogue|XPHB|1",
+				"Sneak Attack|Rogue|XPHB|1",
+				"Thieves' Cant|Rogue|XPHB|1",
+				"Weapon Mastery|Rogue|XPHB|1",
+				"Cunning Action|Rogue|XPHB|2",
+				{
+					"classFeature": "Rogue Subclass|Rogue|XPHB|3",
+					"gainSubclassFeature": true
+				},
+				"Steady Aim|Rogue|XPHB|3",
+				"Ability Score Improvement|Rogue|XPHB|4",
+				"Cunning Strike|Rogue|XPHB|5",
+				"Uncanny Dodge|Rogue|XPHB|5",
+				"Expertise|Rogue|XPHB|6",
+				"Evasion|Rogue|XPHB|7",
+				"Reliable Talent|Rogue|XPHB|7",
+				"Ability Score Improvement|Rogue|XPHB|8",
+				{
+					"classFeature": "Subclass Feature|Rogue|XPHB|9",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Rogue|XPHB|10",
+				"Improved Cunning Strike|Rogue|XPHB|11",
+				"Ability Score Improvement|Rogue|XPHB|12",
+				{
+					"classFeature": "Subclass Feature|Rogue|XPHB|13",
+					"gainSubclassFeature": true
+				},
+				"Devious Strikes|Rogue|XPHB|14",
+				"Slippery Mind|Rogue|XPHB|15",
+				"Ability Score Improvement|Rogue|XPHB|16",
+				{
+					"classFeature": "Subclass Feature|Rogue|XPHB|17",
+					"gainSubclassFeature": true
+				},
+				"Elusive|Rogue|XPHB|18",
+				"Epic Boon|Rogue|XPHB|19",
+				"Stroke of Luck|Rogue|XPHB|20"
+			],
+			"subclassTitle": "Rogue Subclass",
+			"hasFluff": true,
+			"hasFluffImages": true
 		}
 	],
 	"subclass": [
@@ -441,6 +879,9 @@
 			"className": "Rogue",
 			"classSource": "PHB",
 			"page": 97,
+			"reprintedAs": [
+				"Arcane Trickster|Rogue|XPHB|XPHB"
+			],
 			"spellcastingAbility": "int",
 			"casterProgression": "1/3",
 			"cantripProgression": [
@@ -768,6 +1209,9 @@
 			"className": "Rogue",
 			"classSource": "PHB",
 			"page": 97,
+			"reprintedAs": [
+				"Assassin|Rogue|XPHB|XPHB"
+			],
 			"subclassFeatures": [
 				"Assassin|Rogue||Assassin||3",
 				"Infiltration Expertise|Rogue||Assassin||9",
@@ -784,6 +1228,9 @@
 			"page": 97,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Thief|Rogue|XPHB|XPHB"
+			],
 			"subclassFeatures": [
 				"Thief|Rogue||Thief||3",
 				"Supreme Sneak|Rogue||Thief||9",
@@ -881,11 +1328,463 @@
 			"className": "Rogue",
 			"classSource": "PHB",
 			"page": 63,
+			"reprintedAs": [
+				"Soulknife|Rogue|XPHB|XPHB"
+			],
 			"subclassFeatures": [
 				"Soulknife|Rogue||Soulknife|TCE|3",
 				"Soul Blades|Rogue||Soulknife|TCE|9",
 				"Psychic Veil|Rogue||Soulknife|TCE|13",
 				"Rend Mind|Rogue||Soulknife|TCE|17"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Arcane Trickster",
+			"shortName": "Arcane Trickster",
+			"source": "XPHB",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"page": 132,
+			"spellcastingAbility": "int",
+			"casterProgression": "1/3",
+			"preparedSpellsProgression": [
+				0,
+				0,
+				3,
+				4,
+				4,
+				4,
+				6,
+				6,
+				6,
+				7,
+				7,
+				7,
+				9,
+				9,
+				9,
+				10,
+				10,
+				10,
+				11,
+				11
+			],
+			"cantripProgression": [
+				0,
+				0,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				3,
+				3,
+				3,
+				3,
+				3,
+				3,
+				3,
+				3,
+				3,
+				3,
+				3
+			],
+			"additionalSpells": [
+				{
+					"known": {
+						"3": [
+							"mage hand|xphb#c"
+						]
+					},
+					"expanded": {
+						"3": [
+							{
+								"all": "level=0|class=Wizard"
+							},
+							{
+								"all": "level=1|class=Wizard"
+							}
+						],
+						"7": [
+							{
+								"all": "level=2|class=Wizard"
+							}
+						],
+						"13": [
+							{
+								"all": "level=3|class=Wizard"
+							}
+						],
+						"19": [
+							{
+								"all": "level=4|class=Wizard"
+							}
+						]
+					}
+				}
+			],
+			"subclassTableGroups": [
+				{
+					"subclasses": [
+						{
+							"name": "Arcane Trickster",
+							"source": "XPHB"
+						}
+					],
+					"colLabels": [
+						"{@filter Prepared Spells|spells|subclass=Rogue: Arcane Trickster}"
+					],
+					"rows": [
+						[
+							0
+						],
+						[
+							0
+						],
+						[
+							3
+						],
+						[
+							4
+						],
+						[
+							4
+						],
+						[
+							4
+						],
+						[
+							5
+						],
+						[
+							6
+						],
+						[
+							6
+						],
+						[
+							7
+						],
+						[
+							8
+						],
+						[
+							8
+						],
+						[
+							9
+						],
+						[
+							10
+						],
+						[
+							10
+						],
+						[
+							11
+						],
+						[
+							11
+						],
+						[
+							11
+						],
+						[
+							12
+						],
+						[
+							13
+						]
+					]
+				},
+				{
+					"title": "Spell Slots per Spell Level",
+					"subclasses": [
+						{
+							"name": "Arcane Trickster",
+							"source": "XPHB"
+						}
+					],
+					"colLabels": [
+						"{@filter 1st|spells|level=1|subclass=Rogue: Arcane Trickster}",
+						"{@filter 2nd|spells|level=2|subclass=Rogue: Arcane Trickster}",
+						"{@filter 3rd|spells|level=3|subclass=Rogue: Arcane Trickster}",
+						"{@filter 4th|spells|level=4|subclass=Rogue: Arcane Trickster}"
+					],
+					"rowsSpellProgression": [
+						[
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							2,
+							0,
+							0,
+							0
+						],
+						[
+							3,
+							0,
+							0,
+							0
+						],
+						[
+							3,
+							0,
+							0,
+							0
+						],
+						[
+							3,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							2,
+							0,
+							0
+						],
+						[
+							4,
+							2,
+							0,
+							0
+						],
+						[
+							4,
+							2,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							2,
+							0
+						],
+						[
+							4,
+							3,
+							2,
+							0
+						],
+						[
+							4,
+							3,
+							2,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							1
+						]
+					]
+				}
+			],
+			"subclassFeatures": [
+				"Arcane Trickster|Rogue|XPHB|Trickster|XPHB|3",
+				"Magical Ambush|Rogue|XPHB|Trickster|XPHB|9",
+				"Versatile Trickster|Rogue|XPHB|Trickster|XPHB|13",
+				"Spell Thief|Rogue|XPHB|Trickster|XPHB|17"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Assassin",
+			"shortName": "Assassin",
+			"source": "XPHB",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"page": 134,
+			"subclassFeatures": [
+				"Assassin|Rogue|XPHB|Assassin|XPHB|3",
+				"Infiltration Expertise|Rogue|XPHB|Assassin|XPHB|9",
+				"Envenom Weapons|Rogue|XPHB|Assassin|XPHB|13",
+				"Death Strike|Rogue|XPHB|Assassin|XPHB|17"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Soulknife",
+			"shortName": "Soulknife",
+			"source": "XPHB",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"page": 135,
+			"subclassTableGroups": [
+				{
+					"subclasses": [
+						{
+							"name": "Soulknife",
+							"source": "XPHB"
+						}
+					],
+					"colLabels": [
+						"{@tip Die Size|Soulknife Energy Die Size}",
+						"{@tip Number|Soulknife Energy Die Number}"
+					],
+					"rows": [
+						[
+							0,
+							0
+						],
+						[
+							0,
+							0
+						],
+						[
+							"{@dice D6}",
+							4
+						],
+						[
+							"{@dice D6}",
+							4
+						],
+						[
+							"{@dice D8}",
+							6
+						],
+						[
+							"{@dice D8}",
+							6
+						],
+						[
+							"{@dice D8}",
+							6
+						],
+						[
+							"{@dice D8}",
+							6
+						],
+						[
+							"{@dice D8}",
+							8
+						],
+						[
+							"{@dice D8}",
+							8
+						],
+						[
+							"{@dice D10}",
+							8
+						],
+						[
+							"{@dice D10}",
+							8
+						],
+						[
+							"{@dice D10}",
+							10
+						],
+						[
+							"{@dice D10}",
+							10
+						],
+						[
+							"{@dice D10}",
+							10
+						],
+						[
+							"{@dice D10}",
+							10
+						],
+						[
+							"{@dice D12}",
+							12
+						],
+						[
+							"{@dice D12}",
+							12
+						],
+						[
+							"{@dice D12}",
+							12
+						],
+						[
+							"{@dice D12}",
+							12
+						]
+					]
+				}
+			],
+			"subclassFeatures": [
+				"Soulknife|Rogue|XPHB|Soulknife|XPHB|3",
+				"Soul Blades|Rogue|XPHB|Soulknife |XPHB|9",
+				"Psychic Veil|Rogue|XPHB|Soulknife|XPHB|13",
+				"Rend Mind|Rogue|XPHB|Soulknife|XPHB|17"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Thief",
+			"shortName": "Thief",
+			"source": "XPHB",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"page": 137,
+			"freeRules2024": true,
+			"subclassFeatures": [
+				"Thief|Rogue|XPHB|Thief|XPHB|3",
+				"Supreme Sneak|Rogue|XPHB|Thief|XPHB|9",
+				"Use Magic Device|Rogue|XPHB|Thief|XPHB|13",
+				"Thief's Reflexes|Rogue|XPHB|Thief|XPHB|17"
 			],
 			"hasFluffImages": true
 		}
@@ -1199,6 +2098,399 @@
 			"entries": [
 				"At 20th level, you have an uncanny knack for succeeding when you need to. If your attack misses a target within range, you can turn the miss into a hit. Alternatively, if you fail an ability check, you can treat the {@dice d20} roll as a 20.",
 				"Once you use this feature, you can't use it again until you finish a short or long rest."
+			]
+		},
+		{
+			"name": "Expertise",
+			"source": "XPHB",
+			"page": 128,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"You gain {@variantrule Expertise|XPHB} in two of your skill proficiencies of your choice. {@skill Sleight of Hand|XPHB} and {@skill Stealth|XPHB} are recommended if you have proficiency in them.",
+				"At Rogue level 6, you gain {@variantrule Expertise|XPHB} in two more of your skill proficiencies of your choice."
+			]
+		},
+		{
+			"name": "Sneak Attack",
+			"source": "XPHB",
+			"page": 128,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"You know how to strike subtly and exploit a foe's distraction. Once per turn, you can deal an extra {@damage 1d6} damage to one creature you hit with an attack roll if you have {@variantrule Advantage|XPHB} on the roll and the attack uses a Finesse or a Ranged weapon. The extra damage's type is the same as the weapon's type.",
+				"You don't need {@variantrule Advantage|XPHB} on the attack roll if at least one of your allies is within 5 feet of the target, the ally doesn't have the {@condition Incapacitated|XPHB} condition, and you don't have {@variantrule Disadvantage|XPHB} on the attack roll.",
+				"The extra damage increases as you gain Rogue levels, as shown in the Sneak Attack column of the Rogue Features table."
+			]
+		},
+		{
+			"name": "Thieves' Cant",
+			"source": "XPHB",
+			"page": 128,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"You picked up various languages in the communities where you plied your roguish talents. You know Thieves' Cant and one other language of your choice, which you choose from the language tables in {@book chapter 2|XPHB|2|Choose Languages}."
+			]
+		},
+		{
+			"name": "Weapon Mastery",
+			"source": "XPHB",
+			"page": 128,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"Your training with weapons allows you to use the mastery properties of two kinds of weapons of your choice with which you have proficiency, such as {@item Dagger|XPHB|Daggers} and {@item Shortbow|XPHB|Shortbows}.",
+				"Whenever you finish a {@variantrule Long Rest|XPHB}, you can change the kinds of weapons you chose. For example, you could switch to using the mastery properties of {@item Scimitar|XPHB|Scimitars} and {@item Shortsword|XPHB|Shortswords}."
+			]
+		},
+		{
+			"name": "Cunning Action",
+			"source": "XPHB",
+			"page": 129,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 2,
+			"entries": [
+				"Your quick thinking and agility allow you to move and act quickly. On your turn, you can take one of the following actions as a {@variantrule Bonus Action|XPHB}: {@action Dash|XPHB}, {@action Disengage|XPHB}, or {@action Hide|XPHB}."
+			]
+		},
+		{
+			"name": "Rogue Subclass",
+			"source": "XPHB",
+			"page": 129,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"You gain a Rogue subclass of your choice. A subclass is a specialization that grants you features at certain Rogue levels. For the rest of your career, you gain each of your subclass's features that are of your Rogue level or lower."
+			]
+		},
+		{
+			"name": "Steady Aim",
+			"source": "XPHB",
+			"page": 129,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"As a {@variantrule Bonus Action|XPHB}, you give yourself {@variantrule Advantage|XPHB} on your next attack roll on the current turn. You can use this feature only if you haven't moved during this turn, and after you use it, your {@variantrule Speed|XPHB} is 0 until the end of the current turn."
+			]
+		},
+		{
+			"name": "Ability Score Improvement",
+			"source": "XPHB",
+			"page": 129,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 4,
+			"entries": [
+				"You gain the {@feat Ability Score Improvement|XPHB} feat or another {@5etools feat|feats.html} of your choice for which you qualify. You gain this feature again at Rogue levels 8, 10, 12, and 16."
+			]
+		},
+		{
+			"name": "Cunning Strike",
+			"source": "XPHB",
+			"page": 129,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 5,
+			"entries": [
+				"You've developed cunning ways to use your Sneak Attack. When you deal Sneak Attack damage, you can add one of the following Cunning Strike effects. Each effect has a die cost, which is the number of Sneak Attack damage dice you must forgo to add the effect. You remove the die before rolling, and the effect occurs immediately after the attack's damage is dealt. For example, if you add the Poison effect, remove {@dice 1d6} from the Sneak Attack's damage before rolling.",
+				"If a Cunning Strike effect requires a saving throw, the DC equals 8 plus your Dexterity modifier and {@variantrule Proficiency|XPHB} Bonus.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "refClassFeature",
+							"classFeature": "Poison (Cost: 1d6)|Rogue|XPHB|5|XPHB"
+						},
+						{
+							"type": "refClassFeature",
+							"classFeature": "Trip (Cost: 1d6)|Rogue|XPHB|5|XPHB"
+						},
+						{
+							"type": "refClassFeature",
+							"classFeature": "Withdraw (Cost: 1d6)|Rogue|XPHB|5|XPHB"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Poison (Cost: 1d6)",
+			"source": "XPHB",
+			"page": 129,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 5,
+			"entries": [
+				"You add a toxin to your strike, forcing the target to make a Constitution saving throw. On a failed save, the target has the {@condition Poisoned|XPHB} condition for 1 minute. At the end of each of its turns, the {@condition Poisoned|XPHB} target repeats the save, ending the effect on itself on a success.",
+				"To use this effect, you must have a {@item Poisoner's Kit|XPHB} on your person."
+			]
+		},
+		{
+			"name": "Trip (Cost: 1d6)",
+			"source": "XPHB",
+			"page": 129,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 5,
+			"entries": [
+				"If the target is Large or smaller, it must succeed on a Dexterity saving throw or have the {@condition Prone|XPHB} condition."
+			]
+		},
+		{
+			"name": "Uncanny Dodge",
+			"source": "XPHB",
+			"page": 129,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 5,
+			"entries": [
+				"When an attacker that you can see hits you with an attack roll, you can take a {@variantrule Reaction|XPHB} to halve the attack's damage against you (round down)."
+			]
+		},
+		{
+			"name": "Withdraw (Cost: 1d6)",
+			"source": "XPHB",
+			"page": 129,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 5,
+			"entries": [
+				"Immediately after the attack, you move up to half your {@variantrule Speed|XPHB} without provoking {@action Opportunity Attack|XPHB|Opportunity Attacks}."
+			]
+		},
+		{
+			"name": "Expertise",
+			"source": "XPHB",
+			"page": 129,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 6,
+			"entries": [
+				"You gain {@variantrule Expertise|XPHB} in two of your Skill Proficiencies of your choice."
+			]
+		},
+		{
+			"name": "Evasion",
+			"source": "XPHB",
+			"page": 129,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 7,
+			"entries": [
+				"You can nimbly dodge out of the way of certain dangers. When you're subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you instead take no damage if you succeed on the saving throw and only half damage if you fail. You can't use this feature if you have the {@condition Incapacitated|XPHB} condition."
+			]
+		},
+		{
+			"name": "Reliable Talent",
+			"source": "XPHB",
+			"page": 130,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 7,
+			"entries": [
+				"Whenever you make an ability check that uses one of your skill or tool proficiencies, you can treat a {@dice d20} roll of 9 or lower as a 10."
+			]
+		},
+		{
+			"name": "Ability Score Improvement",
+			"source": "XPHB",
+			"page": 130,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 8,
+			"entries": [
+				"You gain the {@feat Ability Score Improvement|XPHB} feat or another {@5etools feat|feats.html} of your choice for which you qualify."
+			]
+		},
+		{
+			"name": "Subclass Feature",
+			"source": "XPHB",
+			"page": 130,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 9,
+			"entries": [
+				"You gain a feature from your Rogue Subclass."
+			]
+		},
+		{
+			"name": "Ability Score Improvement",
+			"source": "XPHB",
+			"page": 130,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 10,
+			"entries": [
+				"You gain the {@feat Ability Score Improvement|XPHB} feat or another {@5etools feat|feats.html} of your choice for which you qualify."
+			]
+		},
+		{
+			"name": "Improved Cunning Strike",
+			"source": "XPHB",
+			"page": 130,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 11,
+			"entries": [
+				"You can use up to two Cunning Strike effects when you deal Sneak Attack damage, paying the die cost for each effect."
+			]
+		},
+		{
+			"name": "Ability Score Improvement",
+			"source": "XPHB",
+			"page": 131,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 12,
+			"entries": [
+				"You gain the {@feat Ability Score Improvement|XPHB} feat or another {@5etools feat|feats.html} of your choice for which you qualify."
+			]
+		},
+		{
+			"name": "Subclass Feature",
+			"source": "XPHB",
+			"page": 131,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 13,
+			"entries": [
+				"You gain a feature from your Rogue Subclass."
+			]
+		},
+		{
+			"name": "Daze (Cost: 2d6)",
+			"source": "XPHB",
+			"page": 131,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 14,
+			"entries": [
+				"The target must succeed on a Constitution saving throw, or on its next turn, it can do only one of the following: move or take an action or a {@variantrule Bonus Action|XPHB}."
+			]
+		},
+		{
+			"name": "Devious Strikes",
+			"source": "XPHB",
+			"page": 131,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 14,
+			"entries": [
+				"You've practiced new ways to use your Sneak Attack deviously. The following effects are now among your Cunning Strike options.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "refClassFeature",
+							"classFeature": "Daze (Cost: 2d6)|Rogue|XPHB|14|XPHB"
+						},
+						{
+							"type": "refClassFeature",
+							"classFeature": "Knock Out (Cost: 6d6)|Rogue|XPHB|14|XPHB"
+						},
+						{
+							"type": "refClassFeature",
+							"classFeature": "Obscure (Cost: 3d6)|Rogue|XPHB|14|XPHB"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Knock Out (Cost: 6d6)",
+			"source": "XPHB",
+			"page": 131,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 14,
+			"entries": [
+				"The target must succeed on a Constitution saving throw, or it has the {@condition Unconscious|XPHB} condition for 1 minute or until it takes any damage. The {@condition Unconscious|XPHB} target repeats the save at the end of each of its turns, ending the effect on itself on a success."
+			]
+		},
+		{
+			"name": "Obscure (Cost: 3d6)",
+			"source": "XPHB",
+			"page": 131,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 14,
+			"entries": [
+				"The target must succeed on a Dexterity saving throw, or it has the {@condition Blinded|XPHB} condition until the end of its next turn."
+			]
+		},
+		{
+			"name": "Slippery Mind",
+			"source": "XPHB",
+			"page": 131,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 15,
+			"entries": [
+				"Your cunning mind is exceptionally difficult to control. You gain proficiency in Wisdom and Charisma saving throws."
+			]
+		},
+		{
+			"name": "Ability Score Improvement",
+			"source": "XPHB",
+			"page": 131,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 16,
+			"entries": [
+				"You gain the {@feat Ability Score Improvement|XPHB} feat or another {@5etools feat|feats.html} of your choice for which you qualify."
+			]
+		},
+		{
+			"name": "Subclass Feature",
+			"source": "XPHB",
+			"page": 131,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 17,
+			"entries": [
+				"You gain a feature from your Rogue Subclass."
+			]
+		},
+		{
+			"name": "Elusive",
+			"source": "XPHB",
+			"page": 131,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 18,
+			"entries": [
+				"You're so evasive that attackers rarely gain the upper hand against you. No attack roll can have {@variantrule Advantage|XPHB} against you unless you have the {@condition Incapacitated|XPHB} condition."
+			]
+		},
+		{
+			"name": "Epic Boon",
+			"source": "XPHB",
+			"page": 131,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 19,
+			"entries": [
+				"You gain an {@filter Epic Boon feat|feats|category=EB} or another {@5etools feat|feats.html} of your choice for which you qualify. {@feat Boon of the Night Spirit|XPHB} is recommended."
+			]
+		},
+		{
+			"name": "Stroke of Luck",
+			"source": "XPHB",
+			"page": 131,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 20,
+			"entries": [
+				"You have a marvelous knack for succeeding when you need to. If you fail a {@variantrule D20 Test|XPHB}, you can turn the roll into a 20.",
+				"Once you use this feature, you can't use it again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
 			]
 		}
 	],
@@ -2271,6 +3563,622 @@
 			"level": 9,
 			"entries": [
 				"As a bonus action, you manifest one of your Psychic Blades, expend one Psionic Energy die and roll it, and throw the blade at an unoccupied space you can see, up to a number of feet away equal to 10 times the number rolled. You then teleport to that space, and the blade vanishes."
+			]
+		},
+		{
+			"name": "Assassin",
+			"source": "XPHB",
+			"page": 134,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Assassin",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i Practice the Grim Art of Death}",
+				"An Assassin's training focuses on using stealth, poison, and disguise to eliminate foes with deadly efficiency. While some Rogues who follow this path are hired killers, spies, or bounty hunters, the capabilities of this subclass are equally useful for adventurers facing a variety of monstrous enemies.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Assassinate|Rogue|XPHB|Assassin|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Assassin's Tools|Rogue|XPHB|Assassin|XPHB|3"
+				}
+			]
+		},
+		{
+			"name": "Assassin's Tools",
+			"source": "XPHB",
+			"page": 134,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Assassin",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"You gain a {@item Disguise Kit|XPHB} and a {@item Poisoner's Kit|XPHB}, and you have proficiency with them."
+			]
+		},
+		{
+			"name": "Assassinate",
+			"source": "XPHB",
+			"page": 134,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Assassin",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"You're adept at ambushing a target, granting you the following benefits.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Initiative",
+							"entries": [
+								"You have {@variantrule Advantage|XPHB} on {@variantrule Initiative|XPHB} rolls."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Surprising Strikes",
+							"entries": [
+								"During the first round of each combat, you have {@variantrule Advantage|XPHB} on attack rolls against any creature that hasn't taken a turn. If your Sneak Attack hits any target during that round, the target takes extra damage of the weapon's type equal to your Rogue level."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Infiltration Expertise",
+			"source": "XPHB",
+			"page": 134,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Assassin",
+			"subclassSource": "XPHB",
+			"level": 9,
+			"header": 2,
+			"entries": [
+				"You are expert at the following techniques that aid your infiltrations.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Masterful Mimicry",
+							"entries": [
+								"You can unerringly mimic another person's speech, handwriting, or both if you have spent at least 1 hour studying them."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Roving Aim",
+							"entries": [
+								"Your {@variantrule Speed|XPHB} isn't reduced to 0 by using Steady Aim."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Envenom Weapons",
+			"source": "XPHB",
+			"page": 134,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Assassin",
+			"subclassSource": "XPHB",
+			"level": 13,
+			"header": 2,
+			"entries": [
+				"When you use the Poison option of your Cunning Strike, the target also takes {@damage 2d6} Poison damage whenever it fails the saving throw. This damage ignores {@variantrule Resistance|XPHB} to Poison damage."
+			]
+		},
+		{
+			"name": "Death Strike",
+			"source": "XPHB",
+			"page": 134,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Assassin",
+			"subclassSource": "XPHB",
+			"level": 17,
+			"header": 2,
+			"entries": [
+				"When you hit with your Sneak Attack on the first round of a combat, the target must succeed on a Constitution saving throw ({@dc 8} plus your Dexterity modifier and {@variantrule Proficiency|XPHB} Bonus), or the attack's damage is doubled against the target."
+			]
+		},
+		{
+			"name": "Soulknife",
+			"source": "XPHB",
+			"page": 135,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Soulknife",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i Strike Foes with Psionic Blades}",
+				"A Soulknife strikes with the mind, cutting through barriers both physical and psychic. These Rogues discover psionic power within themselves and channel it to do their roguish work. As a Soulknife, your psionic abilities might have haunted you since childhood, revealing their full potential only as you experienced the stress of adventure. Or you might have sought out an order of psychic adepts and spent years learning how to manifest your power.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Psionic Power|Rogue|XPHB|Soulknife|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Psychic Blades|Rogue|XPHB|Soulknife|XPHB|3"
+				}
+			]
+		},
+		{
+			"name": "Psionic Power",
+			"source": "XPHB",
+			"page": 135,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Soulknife",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"You harbor a wellspring of psionic energy within yourself. It is represented by your Psionic Energy Dice, which fuel certain powers you have from this subclass. The Soulknife Energy Dice table shows the number of these dice you have when you reach certain Rogue levels, and the table shows the die size.",
+				{
+					"type": "table",
+					"caption": "Soulknife Energy Dice",
+					"colLabels": [
+						"Rogue Level",
+						"Die Size",
+						"Number"
+					],
+					"colStyles": [
+						"col-4 text-center",
+						"col-4 text-center",
+						"col-4 text-center"
+					],
+					"rows": [
+						[
+							"3",
+							"{@dice D6}",
+							"4"
+						],
+						[
+							"5",
+							"{@dice D8}",
+							"6"
+						],
+						[
+							"9",
+							"{@dice D8}",
+							"8"
+						],
+						[
+							"11",
+							"{@dice D10}",
+							"8"
+						],
+						[
+							"13",
+							"{@dice D10}",
+							"10"
+						],
+						[
+							"17",
+							"{@dice D12}",
+							"12"
+						]
+					]
+				},
+				"Any features in this subclass that use a Psionic Energy Die use only the dice from this subclass. Some of your powers expend a Psionic Energy Die, as specified in a power's description, and you can't use a power if it requires you to use a die when your Psionic Energy Dice are all expended.",
+				"You regain one of your expended Psionic Energy Dice when you finish a {@variantrule Short Rest|XPHB}, and you regain all of them when you finish a {@variantrule Long Rest|XPHB}.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Psi-Bolstered Knack",
+							"entries": [
+								"If you fail an ability check using a skill or tool with which you have proficiency, you can roll one Psionic Energy Die and add the number rolled to the check, potentially turning failure into success. The die is expended only if the roll then succeeds."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Psychic Whispers",
+							"entries": [
+								"You can establish telepathic communication between yourself and others. As a {@action Magic|XPHB} action, choose one or more creatures you can see, up to a number of creatures equal to your {@variantrule Proficiency|XPHB} Bonus, and then roll one Psionic Energy Die. For a number of hours equal to the number rolled, the chosen creatures can speak telepathically with you, and you can speak telepathically with them. To send or receive a message (no action required), you and the other creature must be within 1 mile of each other. A creature can end the telepathic connection at any time (no action required)."
+							]
+						}
+					]
+				},
+				"The first time you use this power after each {@variantrule Long Rest|XPHB}, you don't expend the Psionic Energy Die. All other times you use the power, you expend the die."
+			]
+		},
+		{
+			"name": "Psychic Blades",
+			"source": "XPHB",
+			"page": 136,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Soulknife",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"You can manifest shimmering blades of psychic energy. Whenever you take the {@action Attack|XPHB} action or make an {@action Opportunity Attack|XPHB}, you can manifest a {@item Psychic Blade|XPHB} in your free hand and make the attack with that blade. The magic blade has the following traits:",
+				{
+					"type": "statblock",
+					"tag": "item",
+					"name": "Psychic Blade",
+					"source": "XPHB"
+				},
+				"The blade vanishes immediately after it hits or misses its target, and it leaves no mark if it deals damage.",
+				"After you attack with the blade on your turn, you can make a melee or ranged attack with a second psychic blade as a {@variantrule Bonus Action|XPHB} on the same turn if your other hand is free to create it. The damage die of this bonus attack is {@dice 1d4} instead of {@dice 1d6}."
+			]
+		},
+		{
+			"name": "Soul Blades",
+			"source": "XPHB",
+			"page": 136,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Soulknife",
+			"subclassSource": "XPHB",
+			"level": 9,
+			"header": 2,
+			"entries": [
+				"You can now use the following powers with your Psychic Blades.",
+				{
+					"type": "entries",
+					"name": "Homing Strikes",
+					"entries": [
+						"If you make an attack roll with your {@item Psychic Blade|XPHB} and miss the target, you can roll one Psionic Energy Die and add the number rolled to the attack roll. If this causes the attack to hit, the die is expended."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Psychic Teleportation",
+					"entries": [
+						"As a {@variantrule Bonus Action|XPHB}, you manifest a {@item Psychic Blade|XPHB}, expend one Psionic Energy Die and roll it, and throw the blade at an unoccupied space you can see up to a number of feet away equal to 10 times the number rolled. You then teleport to that space, and the blade vanishes."
+					]
+				}
+			]
+		},
+		{
+			"name": "Psychic Veil",
+			"source": "XPHB",
+			"page": 136,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Soulknife",
+			"subclassSource": "XPHB",
+			"level": 13,
+			"header": 2,
+			"entries": [
+				"You can weave a veil of psychic static to mask yourself. As a {@action Magic|XPHB} action, you gain the {@condition Invisible|XPHB} condition for 1 hour or until you dismiss this effect (no action required). This invisibility ends early immediately after you deal damage to a creature or you force a creature to make a saving throw.",
+				"Once you use this feature, you can't do so again until you finish a {@variantrule Long Rest|XPHB} unless you expend a Psionic Energy Die (no action required) to restore your use of it."
+			]
+		},
+		{
+			"name": "Rend Mind",
+			"source": "XPHB",
+			"page": 136,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Soulknife",
+			"subclassSource": "XPHB",
+			"level": 17,
+			"header": 2,
+			"entries": [
+				"You can sweep your Psychic Blades through a creature's mind. When you use your Psychic Blades to deal Sneak Attack damage to a creature, you can force that target to make a Wisdom saving throw ({@dc 8} plus your Dexterity modifier and {@variantrule Proficiency|XPHB} Bonus). If the save fails, the target has the {@condition Stunned|XPHB} condition for 1 minute. The {@condition Stunned|XPHB} target repeats the save at the end of each of its turns, ending the effect on itself on a success.",
+				"Once you use this feature, you can't do so again until you finish a {@variantrule Long Rest|XPHB} unless you expend three Psionic Energy Dice (no action required) to restore your use of it."
+			]
+		},
+		{
+			"name": "Fast Hands",
+			"source": "XPHB",
+			"page": 137,
+			"freeRules2024": true,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Thief",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"As a {@variantrule Bonus Action|XPHB}, you can do one of the following.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Sleight of Hand",
+							"entries": [
+								"Make a Dexterity ({@skill Sleight of Hand|XPHB}) check to pick a lock or disarm a trap with {@item Thieves' Tools|XPHB} or to pick a pocket."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Use an Object",
+							"entries": [
+								"Take the {@action Utilize|XPHB} action, or take the {@action Magic|XPHB} action to use a magic item that requires that action."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Second-Story Work",
+			"source": "XPHB",
+			"page": 137,
+			"freeRules2024": true,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Thief",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"You've trained to get into especially hard-to-reach places, granting you these benefits.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Climber",
+							"entries": [
+								"You gain a {@variantrule Climb Speed|XPHB} equal to your {@variantrule Speed|XPHB}."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Jumper",
+							"entries": [
+								"You can determine your jump distance using your Dexterity rather than your Strength."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Thief",
+			"source": "XPHB",
+			"page": 137,
+			"freeRules2024": true,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Thief",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i Hunt for Treasure as a Classic Adventurer}",
+				"A mix of burglar, treasure hunter, and explorer, you are the epitome of an adventurer. In addition to improving your agility and stealth, you gain abilities useful for delving into ruins and getting maximum benefit from the magic items you find there.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Fast Hands|Rogue|XPHB|Thief|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Second-Story Work|Rogue|XPHB|Thief|XPHB|3"
+				}
+			]
+		},
+		{
+			"name": "Supreme Sneak",
+			"source": "XPHB",
+			"page": 137,
+			"freeRules2024": true,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Thief",
+			"subclassSource": "XPHB",
+			"level": 9,
+			"header": 2,
+			"entries": [
+				"You gain the following Cunning Strike option.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Stealth Attack (Cost: 1d6)",
+							"entries": [
+								"If you have the {@action Hide|XPHB} action's {@condition Invisible|XPHB} condition, this attack doesn't end that condition on you if you end the turn behind {@variantrule Cover|XPHB|Three-Quarters Cover} or {@variantrule Cover|XPHB|Total Cover}."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Use Magic Device",
+			"source": "XPHB",
+			"page": 137,
+			"freeRules2024": true,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Thief",
+			"subclassSource": "XPHB",
+			"level": 13,
+			"header": 2,
+			"entries": [
+				"You've learned how to maximize use of magic items, granting you the following benefits.",
+				{
+					"type": "entries",
+					"name": "Attunement",
+					"entries": [
+						"You can attune to up to four magic items at once."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Charges",
+					"entries": [
+						"Whenever you use a magic item property that expends charges, roll {@dice 1d6}. On a roll of 6, you use the property without expending the charges."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Scrolls",
+					"entries": [
+						"You can use any {@item Spell Scroll}, using Intelligence as your spellcasting ability for the spell. If the spell is a cantrip or a level 1 spell, you can cast it reliably. If the scroll contains a higher-level spell, you must first succeed on an Intelligence ({@skill Arcana|XPHB}) check ({@dc 10} plus the spell's level). On a successful check, you cast the spell from the scroll. On a failed check, the scroll disintegrates."
+					]
+				}
+			]
+		},
+		{
+			"name": "Thief's Reflexes",
+			"source": "XPHB",
+			"page": 137,
+			"freeRules2024": true,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Thief",
+			"subclassSource": "XPHB",
+			"level": 17,
+			"header": 2,
+			"entries": [
+				"You are adept at laying ambushes and quickly escaping danger. You can take two turns during the first round of any combat. You take your first turn at your normal {@variantrule Initiative|XPHB} and your second turn at your {@variantrule Initiative|XPHB} minus 10."
+			]
+		},
+		{
+			"name": "Arcane Trickster",
+			"source": "XPHB",
+			"page": 132,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Trickster",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i Enhance Stealth with Arcane Spells}",
+				"Some Rogues enhance their fine-honed skills of stealth and agility with spells, learning magical tricks to aid them in their trade. Some Arcane Tricksters use their talents as pickpockets and burglars, while others are pranksters.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Spellcasting|Rogue|XPHB|Trickster|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Mage Hand Legerdemain|Rogue|XPHB|Trickster|XPHB|3"
+				}
+			]
+		},
+		{
+			"name": "Mage Hand Legerdemain",
+			"source": "XPHB",
+			"page": 133,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Trickster",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"When you cast {@spell Mage Hand|XPHB}, you can cast it as a {@variantrule Bonus Action|XPHB}, and you can make the spectral hand {@condition Invisible|XPHB}. You can control the hand as a {@variantrule Bonus Action|XPHB}, and through it, you can make Dexterity ({@skill Sleight of Hand|XPHB}) checks."
+			]
+		},
+		{
+			"name": "Spellcasting",
+			"source": "XPHB",
+			"page": 132,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Trickster",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"You have learned to cast spells. See {@book chapter 7|XPHB|7} for the rules on spellcasting. The information below details how you use those rules as an Arcane Trickster.",
+				{
+					"type": "entries",
+					"name": "Cantrips",
+					"entries": [
+						"You know three cantrips: {@spell Mage Hand|XPHB} and two other cantrips of your choice from the {@filter Wizard spell list|spells|class=Wizard} (see that class's section for its list). {@spell Mind Sliver|XPHB} and {@spell Minor Illusion|XPHB} are recommended.",
+						"Whenever you gain a Rogue level, you can replace one of your cantrips, except {@spell Mage Hand|XPHB}, with another Wizard cantrip of your choice.",
+						"When you reach Rogue level 10, you learn another Wizard cantrip of your choice."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spell Slots",
+					"entries": [
+						"The Arcane Trickster Spellcasting table shows how many spell slots you have to cast your level 1+ spells. You regain all expended spell slots when you finish a {@variantrule Long Rest|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Prepared Spells of 1st+ Level",
+					"entries": [
+						"You prepare the list of level 1+ spells that are available for you to cast with this feature. To start, choose three level 1 Wizard spells. {@spell Charm Person|XPHB}, {@spell Disguise Self|XPHB}, and {@spell Fog Cloud|XPHB} are recommended.",
+						"The number of spells on your list increases as you gain Rogue levels, as shown in the Prepared Spells column of the Arcane Trickster Spellcasting table. Whenever that number increases, choose additional Wizard spells until the number of spells on your list matches the number in the Arcane Trickster Spellcasting table. The chosen spells must be of a level for which you have spell slots. For example, if you're a level 7 Rogue, your list of prepared spells can include five Wizard spells of level 1 or 2 in any combination."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Changing Your Prepared Spells",
+					"entries": [
+						"Whenever you gain a Rogue level, you can replace one spell on your list with another Wizard spell for which you have spell slots."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spellcasting Ability",
+					"entries": [
+						"Intelligence is your spellcasting ability for your Wizard spells."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spellcasting Focus",
+					"entries": [
+						"You can use an {@item Arcane Focus|XPHB} as a {@variantrule Spellcasting Focus|XPHB} for your Wizard spells."
+					]
+				}
+			]
+		},
+		{
+			"name": "Magical Ambush",
+			"source": "XPHB",
+			"page": 133,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Trickster",
+			"subclassSource": "XPHB",
+			"level": 9,
+			"header": 2,
+			"entries": [
+				"If you have the {@condition Invisible|XPHB} condition when you cast a spell on a creature, it has {@variantrule Disadvantage|XPHB} on any saving throw it makes against the spell on the same turn."
+			]
+		},
+		{
+			"name": "Versatile Trickster",
+			"source": "XPHB",
+			"page": 133,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Trickster",
+			"subclassSource": "XPHB",
+			"level": 13,
+			"header": 2,
+			"entries": [
+				"You gain the ability to distract targets with your {@spell Mage Hand|XPHB}. When you use the Trip option of your Cunning Strike on a creature, you can also use that option on another creature within 5 feet of the spectral hand."
+			]
+		},
+		{
+			"name": "Spell Thief",
+			"source": "XPHB",
+			"page": 133,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Trickster",
+			"subclassSource": "XPHB",
+			"level": 17,
+			"header": 2,
+			"entries": [
+				"You gain the ability to magically steal the knowledge of how to cast a spell from another spellcaster.",
+				"Immediately after a creature casts a spell that targets you or includes you in its area of effect, you can take a {@variantrule Reaction|XPHB} to force the creature to make an Intelligence saving throw. The DC equals your spell save DC. On a failed save, you negate the spell's effect against you, and you steal the knowledge of the spell if it is at least level 1 and of a level you can cast (it doesn't need to be a Wizard spell). For the next 8 hours, you have the spell prepared. The creature can't cast it until the 8 hours have passed.",
+				"Once you steal a spell with this feature, you can't use this feature again until you finish a {@variantrule Long Rest|XPHB}."
 			]
 		}
 	]

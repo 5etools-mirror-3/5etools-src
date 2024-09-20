@@ -463,3 +463,5 @@ class ItemsPage extends ListPage {
 const itemsPage = new ItemsPage();
 itemsPage.sublistManager = new ItemsSublistManager();
 window.addEventListener("load", () => itemsPage.pOnLoad());
+
+globalThis.dbg_page = itemsPage;

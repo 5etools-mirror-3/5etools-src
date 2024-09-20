@@ -337,14 +337,11 @@ class PageFilterBestiary extends PageFilterBase {
 		if (mon.variant) mon._fMisc.push("Has Variants");
 		if (mon._isCopy) mon._fMisc.push("Modified Copy");
 		if (mon.altArt) mon._fMisc.push("Has Alternate Token");
-		if (mon.srd) mon._fMisc.push("SRD");
-		if (mon.basicRules) mon._fMisc.push("Basic Rules");
-		if (SourceUtil.isLegacySourceWotc(mon.source)) mon._fMisc.push("Legacy");
+		this._mutateForFilters_commonMisc(mon);
 		if (Renderer.monster.hasToken(mon)) mon._fMisc.push("Has Token");
 		if (mon.mythic) mon._fMisc.push("Mythic");
 		if (this._hasFluff(mon)) mon._fMisc.push("Has Info");
 		if (this._hasFluffImages(mon)) mon._fMisc.push("Has Images");
-		if (this._isReprinted({reprintedAs: mon.reprintedAs, tag: "creature", prop: "monster", page: UrlUtil.PG_BESTIARY})) mon._fMisc.push("Reprinted");
 		if (this._hasRecharge(mon)) mon._fMisc.push("Has Recharge");
 		if (mon._versionBase_isVersion) mon._fMisc.push("Is Variant");
 		if (mon.summonedBySpell) mon._fMisc.push("Summoned by Spell");

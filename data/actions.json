@@ -53,6 +53,9 @@
 			"page": 192,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Attack|XPHB"
+			],
 			"time": [
 				{
 					"number": 1,
@@ -74,11 +77,50 @@
 			]
 		},
 		{
+			"name": "Attack",
+			"source": "XPHB",
+			"page": 361,
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"When you take the Attack action, you can make one attack roll with a weapon or an {@variantrule Unarmed Strike|XPHB}.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Equipping and Unequipping Weapons",
+							"entries": [
+								"You can either equip or unequip one weapon when you make an attack as part of this action. You do so either before or after the attack. If you equip a weapon before an attack, you don't need to use it for that attack. Equipping a weapon includes drawing it from a sheath or picking it up. Unequipping a weapon includes sheathing, stowing, or dropping it."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Moving Between Attacks",
+							"entries": [
+								"If you move on your turn and have a feature, such as Extra Attack, that gives you more than one attack as part of the Attack action, you can use some or all of that movement to move between those attacks."
+							]
+						}
+					]
+				}
+			],
+			"seeAlsoAction": [
+				"Two-Weapon Fighting|XPHB"
+			]
+		},
+		{
 			"name": "Cast a Spell",
 			"source": "PHB",
 			"page": 192,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Magic|XPHB"
+			],
 			"time": [
 				"Varies"
 			],
@@ -109,6 +151,9 @@
 			"page": 192,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Dash|XPHB"
+			],
 			"time": [
 				{
 					"number": 1,
@@ -118,6 +163,21 @@
 			"entries": [
 				"When you take the Dash action, you gain extra movement for the current turn. The increase equals your speed, after applying any modifiers. With a speed of 30 feet, for example, you can move up to 60 feet on your turn if you dash.",
 				"Any increase or decrease to your speed changes this additional movement by the same amount. If your speed of 30 feet is reduced to 15 feet, for instance, you can move up to 30 feet this turn if you dash."
+			]
+		},
+		{
+			"name": "Dash",
+			"source": "XPHB",
+			"page": 365,
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"When you take the Dash action, you gain extra movement for the current turn. The increase equals your {@variantrule Speed|XPHB} after applying any modifiers. With a {@variantrule Speed|XPHB} of 30 feet, for example, you can move up to 60 feet on your turn if you Dash. If your {@variantrule Speed|XPHB} of 30 feet is reduced to 15 feet, you can move up to 30 feet this turn if you Dash.",
+				"If you have a special speed, such as a {@variantrule Fly Speed|XPHB} or {@variantrule Swim Speed|XPHB}, you can use that speed instead of your {@variantrule Speed|XPHB} when you take this action. You choose which speed to use each time you take it."
 			]
 		},
 		{
@@ -145,6 +205,9 @@
 			"page": 192,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Disengage|XPHB"
+			],
 			"time": [
 				{
 					"number": 1,
@@ -156,11 +219,28 @@
 			]
 		},
 		{
+			"name": "Disengage",
+			"source": "XPHB",
+			"page": 366,
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"If you take the Disengage action, your movement doesn't provoke {@action Opportunity Attack|XPHB|Opportunity Attacks} for the rest of the current turn."
+			]
+		},
+		{
 			"name": "Dodge",
 			"source": "PHB",
 			"page": 192,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Dodge|XPHB"
+			],
 			"time": [
 				{
 					"number": 1,
@@ -172,11 +252,29 @@
 			]
 		},
 		{
+			"name": "Dodge",
+			"source": "XPHB",
+			"page": 366,
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"lf you take the Dodge action, you gain the following benefits: until the start of your next turn, any attack roll made against you has {@variantrule Disadvantage|XPHB} if you can see the attacker, and you make Dexterity {@variantrule Saving Throw|XPHB|saving throws} with {@variantrule Advantage|XPHB}.",
+				"You lose these benefits if you have the {@condition Incapacitated|XPHB} condition or if your {@variantrule Speed|XPHB} is 0."
+			]
+		},
+		{
 			"name": "Don or Doff a Shield",
 			"source": "PHB",
 			"page": 146,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Don or Doff a Shield|XPHB"
+			],
 			"time": [
 				{
 					"number": 1,
@@ -188,11 +286,29 @@
 			]
 		},
 		{
+			"name": "Don or Doff a Shield",
+			"source": "XPHB",
+			"page": 219,
+			"freeRules2024": true,
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"A {@item Shield|XPHB} can be donned or doffed as an action."
+			]
+		},
+		{
 			"name": "End Concentration",
 			"source": "PHB",
 			"page": 203,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"End Concentration|XPHB"
+			],
 			"time": [
 				"Free"
 			],
@@ -201,11 +317,26 @@
 			]
 		},
 		{
+			"name": "End Concentration",
+			"source": "XPHB",
+			"page": 363,
+			"freeRules2024": true,
+			"time": [
+				"Free"
+			],
+			"entries": [
+				"Some spells and other effects require Concentration to remain active, as specified in their descriptions. You can end Concentration at any time (no action required)."
+			]
+		},
+		{
 			"name": "Escape a Grapple",
 			"source": "PHB",
 			"page": 195,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Escape a Grapple|XPHB"
+			],
 			"time": [
 				{
 					"number": 1,
@@ -220,11 +351,32 @@
 			]
 		},
 		{
+			"name": "Escape a Grapple",
+			"source": "XPHB",
+			"page": 367,
+			"freeRules2024": true,
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"A Grappled creature can use its action to make a Strength ({@skill Athletics|XPHB}) or Dexterity ({@skill Acrobatics|XPHB}) check against the grapple's escape DC, ending the {@variantrule Condition|XPHB|condition} on itself on a success. The {@variantrule Condition|XPHB|condition} also ends if the grappler has the {@condition Incapacitated|XPHB} condition or if the distance between the Grappled target and the grappler exceeds the grapple's range."
+			]
+		},
+		{
 			"name": "Grapple",
 			"source": "PHB",
 			"page": 195,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				{
+					"uid": "Unarmed Strike|XPHB",
+					"tag": "variantrule"
+				}
+			],
 			"time": [
 				{
 					"number": 1,
@@ -268,6 +420,9 @@
 			"page": 192,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Help|XPHB"
+			],
 			"time": [
 				{
 					"number": 1,
@@ -280,11 +435,47 @@
 			]
 		},
 		{
+			"name": "Help",
+			"source": "XPHB",
+			"page": 368,
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"When you take the Help action, you do one of the following.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Assist an Ability Check",
+							"entries": [
+								"Choose one of your skill or tool proficiencies and one ally who is near enough for you to assist verbally or physically when they make an ability check. That ally has {@variantrule Advantage|XPHB} on the next ability check they make with the chosen skill or tool. This benefit expires if the ally doesn't use it before the start of your next turn. The DM has final say on whether your assistance is possible."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Assist an Attack Roll",
+							"entries": [
+								"You momentarily distract an enemy within S feet of you, giving {@variantrule Advantage|XPHB} to the next attack roll by one of your allies against that enemy. This benefit expires at the start of your next turn."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Hide",
 			"source": "PHB",
 			"page": 192,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Hide|XPHB"
+			],
 			"time": [
 				{
 					"number": 1,
@@ -293,6 +484,22 @@
 			],
 			"entries": [
 				"When you take the Hide action, you make a Dexterity ({@skill Stealth}) check in an attempt to hide, following the rules in {@book chapter 7 |phb|7|hiding} for hiding. If you succeed, you gain certain benefits, as described in the \"{@book Unseen Attackers and Targets|PHB|9|unseen attackers and targets}\" section in the Player's Handbook."
+			]
+		},
+		{
+			"name": "Hide",
+			"source": "XPHB",
+			"page": 368,
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"With the Hide action, you try to conceal yourself. To do so, you must succeed on a {@dc 15} Dexterity ({@skill Stealth|XPHB}) check while you're {@variantrule Heavily Obscured|XPHB} or behind {@variantrule Cover|XPHB|Three-Quarters Cover or Total Cover}, and you must be out of any enemy's line of sight; if you can see a creature, you can discern whether it can see you.",
+				"On a successful check, you have the {@condition Invisible|XPHB} condition. Make note of your check's total, which is the DC for a creature to find you with a Wisdom ({@skill Perception|XPHB}) check.",
+				"The condition ends on you immediately after any of the following occurs: you make a sound louder than a whisper, an enemy finds you, you make an attack roll, or you cast a spell with a Verbal component."
 			]
 		},
 		{
@@ -321,12 +528,116 @@
 			"source": "PHB",
 			"page": 193,
 			"basicRules": true,
+			"reprintedAs": [
+				"Improvising an Action|XPHB"
+			],
 			"time": [
 				"Varies"
 			],
 			"entries": [
 				"Your character can do things not covered by the actions in this chapter, such as breaking down doors, intimidating enemies, sensing weaknesses in magical defenses, or calling for a parley with a foe. The only limits to the actions you can attempt are your imagination and your character's ability scores. See the descriptions of the ability scores in {@book chapter 7|phb|7|Ability Scores and Modifiers} for inspiration as you improvise.",
 				"When you describe an action not detailed elsewhere in the rules, the DM tells you whether that action is possible and what kind of roll you need to make, if any, to determine success or failure."
+			]
+		},
+		{
+			"name": "Improvising an Action",
+			"source": "XPHB",
+			"page": 15,
+			"freeRules2024": true,
+			"time": [
+				"Varies"
+			],
+			"entries": [
+				"Player characters and monsters can also do things not covered by other actions. Many class features and other abilities provide additional action options, and you can improvise other actions. When you describe an action not detailed elsewhere in the rules, the Dungeon Master tells you whether that action is possible and what kind of {@variantrule D20 Test|XPHB} you need to make, if any."
+			]
+		},
+		{
+			"name": "Influence",
+			"source": "XPHB",
+			"page": 369,
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"With the Influence action, you urge a monster to do something. Describe or roleplay how you're communicating with the monster. Are you trying to deceive, intimidate, amuse, or gently persuade? The DM then determines whether the monster feels willing, unwilling, or hesitant due to your interaction; this determination establishes whether an ability check is necessary, as explained below.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Willing",
+							"entries": [
+								"If your urging aligns with the monster's desires, no ability check is necessary; the monster fulfills your request in a way it prefers."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Unwilling",
+							"entries": [
+								"If your urging is repugnant to the monster or counter to its alignment, no ability check is necessary; it doesn't comply."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Hesitant",
+							"entries": [
+								"If you urge the monster to do something that it is hesitant to do, you must make an ability check, which is affected by the monster's attitude: Indifferent, Friendly, or Hostile, each of which is defined in this glossary. The Influence Checks table suggests which ability check to make based on how you're interacting with the monster. The OM chooses the check, which has a default DC equal to 15 or the monster's Intelligence score, whichever is higher. On a successful check, the monster does as urged. On a failed check, you must wait 24 hours (or a duration set by the DM) before urging it in the same way again."
+							]
+						},
+						{
+							"type": "table",
+							"caption": "Influence Checks",
+							"colLabels": [
+								"Ability Check",
+								"Interaction"
+							],
+							"colStyles": [
+								"col-4",
+								"col-8"
+							],
+							"rows": [
+								[
+									"Charisma ({@skill Deception|XPHB})",
+									"Deceiving a monster that understands you"
+								],
+								[
+									"Charisma ({@skill Intimidation|XPHB})",
+									"Intimidating a monster"
+								],
+								[
+									"Charisma ({@skill Performance|XPHB})",
+									"Amusing a monster"
+								],
+								[
+									"Charisma ({@skill Persuasion|XPHB})",
+									"Persuading a monster that understands you"
+								],
+								[
+									"Wisdom ({@skill Animal Handling|XPHB})",
+									"Gently coaxing a Beast or Monstrosity"
+								]
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Magic",
+			"source": "XPHB",
+			"page": 371,
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"When you take the Magic action, you cast a spell that has a casting time of an action or use a feature or magic item that requires a Magic action to be activated.",
+				"If you cast a spell that has a casting time of 1 minute or longer, you must take the Magic action on each turn of that casting, and you must maintain {@status Concentration|XPHB} while you do so. If your {@status Concentration|XPHB} is broken, the spell fails, but you don't expend a spell slot."
 			]
 		},
 		{
@@ -348,6 +659,9 @@
 			"page": 195,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Opportunity Attack|XPHB"
+			],
 			"time": [
 				{
 					"number": 1,
@@ -358,6 +672,20 @@
 				"In a fight, everyone is constantly watching for enemies to drop their guard. You can rarely move heedlessly past your foes without putting yourself in danger; doing so provokes an opportunity attack.",
 				"You can make an opportunity attack when a hostile creature that you can see moves out of your reach. To make the opportunity attack, you use your reaction to make one melee attack against the provoking creature. The attack interrupts the provoking creature's movement, occurring right before the creature leaves your reach.",
 				"You can avoid provoking an opportunity attack by taking the {@action Disengage} action. You also don't provoke an opportunity attack when you teleport or when someone or something moves you without using your movement, action, or reaction. For example, you don't provoke an opportunity attack if an explosion hurls you out of a foe's reach or if gravity causes you to fall past an enemy."
+			]
+		},
+		{
+			"name": "Opportunity Attack",
+			"source": "XPHB",
+			"page": 371,
+			"time": [
+				{
+					"number": 1,
+					"unit": "reaction"
+				}
+			],
+			"entries": [
+				"You can make an Opportunity Attack when a creature that you can see leaves your reach using its action, its {@variantrule Bonus Action|XPHB}, its {@variantrule Reaction|XPHB}, or one of its speeds. To make the Opportunity Attack, take a {@variantrule Reaction|XPHB} to make one melee attack with a weapon or an {@variantrule Unarmed Strike|XPHB} against the provoking creature. The attack occurs right before the creature leaves your reach."
 			]
 		},
 		{
@@ -438,6 +766,9 @@
 			"page": 193,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Ready|XPHB"
+			],
 			"time": [
 				{
 					"number": 1,
@@ -453,11 +784,31 @@
 			]
 		},
 		{
+			"name": "Ready",
+			"source": "XPHB",
+			"page": 372,
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"You take the Ready action to wait for a particular circumstance before you act. To do so, you take this action on your turn, which lets you act by taking a {@variantrule Reaction|XPHB} before the start of your next turn.",
+				"First, you decide what perceivable circumstance will trigger your {@variantrule Reaction|XPHB}. Then, you choose the action you will take in response to that trigger, or you choose to move up to your {@variantrule Speed|XPHB} in response to it. Examples include \"If the cultist steps on the trapdoor, I'll pull the lever that opens it,\" and \"If the zombie steps next to me, I move away.\"",
+				"When the trigger occurs, you can either take your {@variantrule Reaction|XPHB} right after the trigger finishes or ignore the trigger.",
+				"When you Ready a spell, you cast it as normal (expending any resources used to cast it) but hold its energy, which you release with your {@variantrule Reaction|XPHB} when the trigger occurs. To be readied, a spell must have a casting time of an action, and holding on to the spell's magic requires {@status Concentration|XPHB}, which you can maintain up to the start of your next turn. If your {@status Concentration|XPHB} is broken, the spell dissipates without taking effect."
+			]
+		},
+		{
 			"name": "Search",
 			"source": "PHB",
 			"page": 193,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Search|XPHB"
+			],
 			"time": [
 				{
 					"number": 1,
@@ -469,11 +820,61 @@
 			]
 		},
 		{
+			"name": "Search",
+			"source": "XPHB",
+			"page": 373,
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"When you take the Search action, you make a Wisdom check to discern something that isn't obvious. The Search table suggests which skills are applicable when you take this action, depending on what you're trying to detect.",
+				{
+					"type": "table",
+					"caption": "Search",
+					"colLabels": [
+						"Skill",
+						"Thing to Detect"
+					],
+					"colStyles": [
+						"col-4",
+						"col-8"
+					],
+					"rows": [
+						[
+							"{@skill Insight|XPHB}",
+							"Creature's state of mind"
+						],
+						[
+							"{@skill Medicine|XPHB}",
+							"Creature's ailment or cause of death"
+						],
+						[
+							"{@skill Perception|XPHB}",
+							"Concealed creature or object"
+						],
+						[
+							"{@skill Survival|XPHB}",
+							"Tracks or food"
+						]
+					]
+				}
+			]
+		},
+		{
 			"name": "Shove",
 			"source": "PHB",
 			"page": 195,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				{
+					"uid": "Unarmed Strike|XPHB",
+					"tag": "variantrule"
+				}
+			],
 			"time": [
 				{
 					"number": 1,
@@ -510,6 +911,9 @@
 			"page": 197,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Help|XPHB"
+			],
 			"time": [
 				{
 					"number": 1,
@@ -519,6 +923,55 @@
 			"entries": [
 				"You can use your action to administer first aid to an {@condition unconscious} creature and attempt to stabilize it, which requires a successful DC 10 Wisdom ({@skill Medicine}) check.",
 				"A stable creature doesn't make death saving throws, even though it has 0 hit points, but it does remain {@condition unconscious}. The creature stops being stable, and must start making death saving throws again, if it takes any damage. A stable creature that isn't healed regains 1 hit point after {@dice 1d4} hours."
+			]
+		},
+		{
+			"name": "Study",
+			"source": "XPHB",
+			"page": 375,
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"When you take the Study action, you make an Intelligence check to study your memory, a book, a clue, or another source of knowledge and call to mind an important piece of information about it.",
+				"The Areas of Knowledge table suggests which skills are applicable to various areas of knowledge.",
+				{
+					"type": "table",
+					"caption": "Areas of Knowledge",
+					"colLabels": [
+						"Skill",
+						"Areas"
+					],
+					"colStyles": [
+						"col-3",
+						"col-9"
+					],
+					"rows": [
+						[
+							"{@skill Arcana|XPHB}",
+							"Spells, magic items, eldritch symbols, magical traditions, planes of existence, and certain creatures (Aberrations, Constructs, Elementals, Fey, and Monstrosities)"
+						],
+						[
+							"{@skill History|XPHB}",
+							"Historic events and people, ancient civilizations, wars, and certain creatures (Giants and Humanoids)"
+						],
+						[
+							"{@skill Investigation|XPHB}",
+							"Traps, ciphers, riddles, and gadgetry"
+						],
+						[
+							"{@skill Nature|XPHB}",
+							"Terrain, flora, weather, and certain creatures (Beasts, Dragons, Oozes, and Plants)"
+						],
+						[
+							"{@skill Religion|XPHB}",
+							"Deities, religious hierarchies and rites, holy symbols, cults, and certain creatures (Celestials, Fiends, and Undead)"
+						]
+					]
+				}
 			]
 		},
 		{
@@ -549,6 +1002,9 @@
 			"page": 195,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Two-Weapon Fighting|XPHB"
+			],
 			"time": [
 				{
 					"number": 1,
@@ -564,11 +1020,32 @@
 			]
 		},
 		{
+			"name": "Two-Weapon Fighting",
+			"source": "XPHB",
+			"page": 213,
+			"freeRules2024": true,
+			"time": [
+				{
+					"number": 1,
+					"unit": "bonus"
+				}
+			],
+			"entries": [
+				"When you take the {@action Attack|XPHB} action on your turn and attack with a Light weapon, you can make one extra attack as a {@variantrule Bonus Action|XPHB} later on the same turn. That extra attack must be made with a different Light weapon, and you don't add your ability modifier to the extra attack's damage unless that modifier is negative. For example, you can attack with a {@item Shortsword|XPHB} in one hand and a {@item Dagger|XPHB} in the other using the {@action Attack|XPHB} action and a {@variantrule Bonus Action|XPHB}, but you don't add your Strength or Dexterity modifier to the damage roll of the {@variantrule Bonus Action|XPHB} unless that modifier is negative."
+			],
+			"seeAlsoAction": [
+				"Attack|XPHB"
+			]
+		},
+		{
 			"name": "Use an Object",
 			"source": "PHB",
 			"page": 193,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Utilize|XPHB"
+			],
 			"time": [
 				{
 					"number": 1,
@@ -577,6 +1054,20 @@
 			],
 			"entries": [
 				"You normally interact with an object while doing something else, such as when you draw a sword as part of an attack. When an object requires your action for its use, you take the Use an Object action. This action is also useful when you want to interact with more than one object on your turn."
+			]
+		},
+		{
+			"name": "Utilize",
+			"source": "XPHB",
+			"page": 377,
+			"time": [
+				{
+					"number": 1,
+					"unit": "action"
+				}
+			],
+			"entries": [
+				"You normally interact with an object while doing something else, such as when you draw a sword as part of the {@action Attack|XPHB} action. When an object requires an action for its use, you take the Utilize action."
 			]
 		},
 		{

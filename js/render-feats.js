@@ -1,4 +1,4 @@
-import {SITE_STYLE__CLASSIC} from "./consts.js";
+import {SITE_STYLE__CLASSIC, SITE_STYLE__ONE} from "./consts.js";
 import {VetoolsConfig} from "./utils-config/utils-config-config.js";
 import {RenderPageImplBase} from "./render-page-base.js";
 
@@ -106,6 +106,45 @@ class _RenderFeatsImplClassic extends _RenderFeatsImplBase {
 		
 			<tr><td colspan="6" class="py-0"><div class="ve-tbl-divider"></div></td></tr>
 			
+			<tr><td colspan="6">
+				${htmlPtEntries}
+			</td></tr>
+			
+			${htmlPtPage}
+			${Renderer.utils.getBorderTr()}
+		`;
+	}
+}
+
+class _RenderFeatsImplOne extends _RenderFeatsImplBase {
+	_style = SITE_STYLE__ONE;
+
+	/* -------------------------------------------- */
+
+	_getRendered ({ent, opts, renderer}) {
+		const {
+			htmlPtIsExcluded,
+			htmlPtName,
+
+			htmlPtPrerequisites,
+
+			htmlPtEntries,
+
+			htmlPtPage,
+		} = this._getCommonHtmlParts({
+			ent,
+			opts,
+			renderer,
+		});
+
+		return `
+			${Renderer.utils.getBorderTr()}
+
+			${htmlPtIsExcluded}
+			${htmlPtName}
+			
+			${htmlPtPrerequisites}
+			
 			<tr class="text"><td colspan="6">
 				${htmlPtEntries}
 			</td></tr>
@@ -118,11 +157,13 @@ class _RenderFeatsImplClassic extends _RenderFeatsImplBase {
 
 export class RenderFeats {
 	static _RENDER_CLASSIC = new _RenderFeatsImplClassic();
+	static _RENDER_ONE = new _RenderFeatsImplOne();
 
 	static $getRenderedFeat (ent) {
 		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
 		switch (styleHint) {
 			case SITE_STYLE__CLASSIC: return this._RENDER_CLASSIC.$getRendered(ent);
+			case SITE_STYLE__ONE: return this._RENDER_ONE.$getRendered(ent);
 			default: throw new Error(`Unhandled style "${styleHint}"!`);
 		}
 	}

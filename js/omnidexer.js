@@ -48,7 +48,8 @@ class Omnidexer {
 		 *   p: 110, // page number
 		 *   [q: "bestiary.html", // page; synthetic property only used by search widget]
 		 *   h: 1 // if isHover enabled, otherwise undefined
-		 *   r: 1 // if SRD
+		 *   r: 1 // if SRD 5.1
+		 *   r2: 1 // if SRD 5.2
 		 *   [dP: 1] // if partnered
 		 *   c: 10, // category ID
 		 *   id: 123, // index ID
@@ -130,6 +131,11 @@ class Omnidexer {
 				await this._pAddToIndex_pHandleItem(state, it, ix + ixOffset, it.srd);
 			}
 
+			if (typeof it.srd52 === "string") {
+				ixOffset++;
+				await this._pAddToIndex_pHandleItem(state, it, ix + ixOffset, it.srd52);
+			}
+
 			if (it.alias?.length) {
 				for (const a of it.alias) {
 					ixOffset++;
@@ -179,6 +185,7 @@ class Omnidexer {
 		if (arbiter.isHover) indexDoc.h = 1;
 		if (arbiter.isFauxPage) indexDoc.hx = 1;
 		if (ent.srd) indexDoc.r = 1;
+		if (ent.srd52) indexDoc.r2 = 1;
 
 		if (src) {
 			if (SourceUtil.isPartneredSourceWotc(src)) indexDoc.dP = 1;

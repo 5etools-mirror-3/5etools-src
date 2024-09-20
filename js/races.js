@@ -24,7 +24,7 @@ class RacesSublistManager extends SublistManager {
 	pGetSublistItem (race, hash) {
 		const cellsText = [
 			race.name,
-			new SublistCell({text: race._slAbility, css: race._slAbility === "Lineage (choose)" ? "italic" : ""}),
+			new SublistCell({text: race._slAbility, css: race._slAbility === VeCt.STR_NONE || race._slAbility === "Lineage (choose)" ? "italic" : ""}),
 			(race.size || [Parser.SZ_VARIES]).map(sz => Parser.sizeAbvToFull(sz)).join("/"),
 		];
 
@@ -69,8 +69,8 @@ class RacesPage extends ListPage {
 			dataProps: ["race"],
 
 			bookViewOptions: {
-				namePlural: "races",
-				pageTitle: "Races Book View",
+				namePlural: "species",
+				pageTitle: "Species Book View",
 			},
 
 			hasAudio: true,
@@ -102,7 +102,7 @@ class RacesPage extends ListPage {
 
 		eleLi.innerHTML = `<a href="#${hash}" class="lst__row-border lst__row-inner">
 			<span class="bold ve-col-4 pl-0 pr-1">${race.name}</span>
-			<span class="ve-col-4 px-1 ${race._slAbility === "Lineage (choose)" ? "italic" : ""}">${race._slAbility}</span>
+			<span class="ve-col-4 px-1 ${race._slAbility === VeCt.STR_NONE || race._slAbility === "Lineage (choose)" ? "italic" : ""}">${race._slAbility}</span>
 			<span class="ve-col-2 px-1 ve-text-center">${size}</span>
 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(race.source)} pl-1 pr-0" title="${Parser.sourceJsonToFull(race.source)}" ${Parser.sourceJsonToStyle(race.source)}>${source}</span>
 		</a>`;
@@ -138,3 +138,5 @@ class RacesPage extends ListPage {
 const racesPage = new RacesPage();
 racesPage.sublistManager = new RacesSublistManager();
 window.addEventListener("load", () => racesPage.pOnLoad());
+
+globalThis.dbg_page = racesPage;

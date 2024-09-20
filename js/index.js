@@ -12,7 +12,7 @@ class IndexPage {
 	static _pOnLoad_initElements () {
 		$(`#current_year`).text((new Date()).getFullYear());
 
-		$(`#version_number`).text(VERSION_NUMBER).attr("href", `https://github.com/5etools-mirror-2/5etools-mirror-2.github.io/releases/latest`);
+		$(`#version_number`).text(VERSION_NUMBER).attr("href", `https://github.com/5etools-mirror-3/5etools-src/releases/latest`);
 
 		$(`#wrp-patreon`)
 			.html(`<a href="https://www.patreon.com/bePatron?u=22018559" rel="noopener noreferrer"><img src="${Renderer.get().getMediaUrl("img", "patreon.webp")}" alt="Become a Patron" style="width: 217px; height: 51px"></a>`);

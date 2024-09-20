@@ -383,6 +383,7 @@ globalThis.Renderer = function () {
 		meta = meta || {};
 		meta._typeStack = [];
 		meta.depth = meta.depth == null ? 0 : meta.depth;
+		meta.styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
 		this._recursiveRender(entry, textStack, meta, options);
 		if (this._fnPostProcess) textStack[0] = this._fnPostProcess(textStack[0]);
@@ -907,11 +908,17 @@ globalThis.Renderer = function () {
 	};
 
 	this._renderEntriesSubtypes_renderPreReqText = function (entry, textStack, meta) {
-		if (entry.prerequisite) {
+		if (!entry.prerequisite) return;
+
+		/** @deprecated */
+		if (entry.type === "optfeature") {
 			textStack[0] += `<span class="rd__prerequisite">Prerequisite: `;
 			this._recursiveRender({type: "inline", entries: [entry.prerequisite]}, textStack, meta);
 			textStack[0] += `</span>`;
+			return;
 		}
+
+		textStack[0] += `<p><i>${Renderer.utils.prerequisite.getHtml(entry.prerequisite, {styleHint: meta.styleHint})}</i></p>`;
 	};
 
 	this._renderEntriesSubtypes_getStyleString = function (entry, meta, isInlineTitle) {
@@ -1241,7 +1248,8 @@ globalThis.Renderer = function () {
 		this._renderPrefix(entry, textStack, meta, options);
 		textStack[0] += `<div class="ve-text-center"><b>`;
 		this._recursiveRender(entry.name, textStack, meta);
-		textStack[0] += ` save DC</b> = 8 + your proficiency bonus + your ${Parser.attrChooseToFull(entry.attributes)}</div>`;
+		if (options.styleHint === "classic") textStack[0] += ` save DC</b> = 8 + your proficiency bonus + your ${Parser.attrChooseToFull(entry.attributes)}</div>`;
+		else textStack[0] += ` save DC</b> = 8 + ${Parser.attrChooseToFull(entry.attributes)} + Proficiency Bonus</div>`;
 		this._renderSuffix(entry, textStack, meta, options);
 	};
 
@@ -1249,7 +1257,8 @@ globalThis.Renderer = function () {
 		this._renderPrefix(entry, textStack, meta, options);
 		textStack[0] += `<div class="ve-text-center"><b>`;
 		this._recursiveRender(entry.name, textStack, meta);
-		textStack[0] += ` attack modifier</b> = your proficiency bonus + your ${Parser.attrChooseToFull(entry.attributes)}</div>`;
+		if (options.styleHint === "classic") textStack[0] += ` attack modifier</b> = your proficiency bonus + your ${Parser.attrChooseToFull(entry.attributes)}</div>`;
+		else textStack[0] += ` attack modifier</b> = ${Parser.attrChooseToFull(entry.attributes)} + Proficiency Bonus</div>`;
 		this._renderSuffix(entry, textStack, meta, options);
 	};
 
@@ -1756,6 +1765,11 @@ globalThis.Renderer = function () {
 			case "@atkr":
 				textStack[0] += `<i>${Renderer.attackTagToFull(text, {isRoll: tag === "@atkr"})}</i>`;
 				break;
+			case "@actSave": textStack[0] += `<i>${Parser.attAbvToFull(text)} Saving Throw:</i>`; break;
+			case "@actSaveSuccess": textStack[0] += `<i>Success:</i>`; break;
+			case "@actSaveFail": textStack[0] += `<i>Failure:</i>`; break;
+			case "@actTrigger": textStack[0] += `<i>Trigger:</i>`; break;
+			case "@actResponse": textStack[0] += `<i>Response:</i>`; break;
 			case "@h": textStack[0] += `<i>Hit:</i> `; break;
 			case "@m": textStack[0] += `<i>Miss:</i> `; break;
 			case "@color": {
@@ -2045,7 +2059,7 @@ globalThis.Renderer = function () {
 			}
 
 			default: {
-				const {name, source, displayText, others, page, hash, hashPreEncoded, pageHover, hashHover, hashPreEncodedHover, preloadId, linkText, subhashes, subhashesHover, isFauxPage} = Renderer.utils.getTagMeta(tag, text);
+				const {name, source, displayText, others, page, hash, hashPreEncoded, pageHover, hashHover, hashPreEncodedHover, preloadId, linkText, subhashes, subhashesHover, isFauxPage, isAllowRedirect} = Renderer.utils.getTagMeta(tag, text);
 
 				const fauxEntry = {
 					type: "link",
@@ -2070,6 +2084,7 @@ globalThis.Renderer = function () {
 				if (linkText) fauxEntry.text = linkText;
 				if (subhashes) fauxEntry.href.subhashes = subhashes;
 				if (subhashesHover) fauxEntry.href.hover.subhashes = subhashesHover;
+				if (isAllowRedirect) fauxEntry.href.hover.isAllowRedirect = isAllowRedirect;
 
 				this._recursiveRender(fauxEntry, textStack, meta);
 
@@ -2176,21 +2191,14 @@ globalThis.Renderer = function () {
 		const replacementAttributes = pluginData.map(it => it.attributesHoverReplace).filter(Boolean);
 		if (replacementAttributes.length) return replacementAttributes.join(" ");
 
-		return [
-			`onmouseover="Renderer.hover.pHandleLinkMouseOver(event, this)"`,
-			`onmouseleave="Renderer.hover.handleLinkMouseLeave(event, this)"`,
-			`onmousemove="Renderer.hover.handleLinkMouseMove(event, this)"`,
-			`onclick="Renderer.hover.handleLinkClick(event, this)"`,
-			`ondragstart="Renderer.hover.handleLinkDragStart(event, this)"`,
-			`data-vet-page="${entry.href.hover.page.qq()}"`,
-			`data-vet-source="${entry.href.hover.source.qq()}"`,
-			`data-vet-hash="${procHash.qq()}"`,
-			entry.href.hover.preloadId != null ? `data-vet-preload-id="${`${entry.href.hover.preloadId}`.qq()}"` : "",
-			entry.href.hover.isFauxPage ? `data-vet-is-faux-page="true"` : "",
-			Renderer.hover.getPreventTouchString(),
-		]
-			.filter(Boolean)
-			.join(" ");
+		return Renderer.hover.getHoverElementAttributes({
+			page: entry.href.hover.page,
+			source: entry.href.hover.source,
+			hash: procHash,
+			preloadId: entry.href.hover.preloadId,
+			isFauxPage: entry.href.hover.isFauxPage,
+			isAllowRedirect: entry.href.hover.isAllowRedirect,
+		});
 	};
 
 	/**
@@ -2251,7 +2259,6 @@ Renderer.get = () => {
 Renderer.applyProperties = function (entry, object) {
 	const propSplit = Renderer.splitByTags(entry);
 	const len = propSplit.length;
-	if (len === 1) return entry;
 
 	let textStack = "";
 
@@ -2951,8 +2958,8 @@ Renderer.utils = class {
 		return isExcluded ? `<div class="ve-text-center text-danger"><b><i>Warning: This content has been <a href="blocklist.html">blocklisted</a>.</i></b></div>` : "";
 	}
 
-	static getSourceAndPageTrHtml (it, {tag, fnUnpackUid} = {}) {
-		const html = Renderer.utils.getSourceAndPageHtml(it, {tag, fnUnpackUid});
+	static getSourceAndPageTrHtml (it) {
+		const html = Renderer.utils.getSourceAndPageHtml(it);
 		return html ? `<b>Source:</b> ${html}` : "";
 	}
 
@@ -2965,22 +2972,23 @@ Renderer.utils = class {
 		}).join("; ")}`;
 	}
 
-	static _getReprintedAsHtmlOrText (ent, {isText, tag, fnUnpackUid} = {}) {
+	static _getReprintedAsHtmlOrText (ent, {isText} = {}) {
 		if (!ent.reprintedAs) return "";
-		if (!tag || !fnUnpackUid) return "";
+
+		const tag = Parser.getPropTag(ent.__prop);
 
 		const ptReprinted = ent.reprintedAs
 			.map(it => {
 				const uid = it.uid ?? it;
 				const tag_ = it.tag ?? tag;
 
-				const {name, source, displayText} = fnUnpackUid(uid);
+				const {name, source, displayText} = DataUtil.proxy.unpackUid(ent.__prop, uid, tag_);
 
 				if (isText) {
 					return `${Renderer.stripTags(displayText || name)} in ${Parser.sourceJsonToAbv(source)}`;
 				}
 
-				const asTag = `{@${tag_} ${name}|${source}${displayText ? `|${displayText}` : ""}}`;
+				const asTag = `{@${tag_} ${uid}${displayText ? `|${displayText}` : ""}}`;
 
 				return `${Renderer.get().render(asTag)} in <i class="help-subtle" title="${Parser.sourceJsonToFull(source).qq()}">${Parser.sourceJsonToAbv(source)}</i>`;
 			})
@@ -2989,19 +2997,27 @@ Renderer.utils = class {
 		return `Reprinted as ${ptReprinted}`;
 	}
 
-	static getSourceAndPageHtml (it, {tag, fnUnpackUid} = {}) { return this._getSourceAndPageHtmlOrText(it, {tag, fnUnpackUid}); }
-	static getSourceAndPageText (it, {tag, fnUnpackUid} = {}) { return this._getSourceAndPageHtmlOrText(it, {isText: true, tag, fnUnpackUid}); }
+	static getSourceAndPageHtml (it) { return this._getSourceAndPageHtmlOrText(it); }
+	static getSourceAndPageText (it) { return this._getSourceAndPageHtmlOrText(it, {isText: true}); }
 
-	static _getSourceAndPageHtmlOrText (it, {isText, tag, fnUnpackUid} = {}) {
+	static _getSourceAndPageHtmlOrText (it, {isText} = {}) {
 		const sourceSub = Renderer.utils.getSourceSubText(it);
 		const baseText = `${isText ? `` : `<i title="${Parser.sourceJsonToFull(it.source)}${sourceSub}">`}${Parser.sourceJsonToAbv(it.source)}${sourceSub}${isText ? "" : `</i>`}${Renderer.utils.isDisplayPage(it.page) ? `, page ${it.page}` : ""}`;
-		const reprintedAsText = Renderer.utils._getReprintedAsHtmlOrText(it, {isText, tag, fnUnpackUid});
+		const reprintedAsText = Renderer.utils._getReprintedAsHtmlOrText(it, {isText});
 		const addSourceText = Renderer.utils._getAltSourceHtmlOrText(it, "additionalSources", "Additional information from", isText);
 		const otherSourceText = Renderer.utils._getAltSourceHtmlOrText(it, "otherSources", "Also found in", isText);
 		const externalSourceText = Renderer.utils._getAltSourceHtmlOrText(it, "externalSources", "External sources:", isText);
 
-		const srdText = it.srd ? `${isText ? "" : `the <span title="Systems Reference Document">`}SRD${isText ? "" : `</span>`}${typeof it.srd === "string" ? ` (as &quot;${it.srd}&quot;)` : ""}` : "";
-		const basicRulesText = it.basicRules ? `the Basic Rules${typeof it.basicRules === "string" ? ` (as &quot;${it.basicRules}&quot;)` : ""}` : "";
+		const srdText = it.srd52
+			? `${isText ? "" : `the <span title="Systems Reference Document (5.2)">`}SRD${isText ? "" : `</span>`}${typeof it.srd === "string" ? ` (as &quot;${it.srd}&quot;)` : ""}`
+			: it.srd
+				? `${isText ? "" : `the <span title="Systems Reference Document (5.1)">`}SRD${isText ? "" : `</span>`}${typeof it.srd === "string" ? ` (as &quot;${it.srd}&quot;)` : ""}`
+				: "";
+		const basicRulesText = it.freeRules2024
+			? `the Free Rules (2024)${typeof it.freeRules2024 === "string" ? ` (as &quot;${it.freeRules2024}&quot;)` : ""}`
+			: it.basicRules
+				? `the Basic Rules (2014)${typeof it.basicRules === "string" ? ` (as &quot;${it.basicRules}&quot;)` : ""}`
+				: "";
 		const srdAndBasicRulesText = (srdText || basicRulesText) ? `Available in ${[srdText, basicRulesText].filter(it => it).join(" and ")}` : "";
 
 		return `${[baseText, addSourceText, reprintedAsText, otherSourceText, srdAndBasicRulesText, externalSourceText].filter(it => it).join(". ")}${baseText && (addSourceText || otherSourceText || srdAndBasicRulesText || externalSourceText) ? "." : ""}`;
@@ -3012,8 +3028,8 @@ Renderer.utils = class {
 		JqueryUtil.showCopiedEffect($(ele));
 	}
 
-	static getPageTr (it, {tag, fnUnpackUid} = {}) {
-		return `<tr><td colspan="6" class="pt-3">${Renderer.utils.getSourceAndPageTrHtml(it, {tag, fnUnpackUid})}</td></tr>`;
+	static getPageTr (it) {
+		return `<tr><td colspan="6" class="pt-3">${Renderer.utils.getSourceAndPageTrHtml(it)}</td></tr>`;
 	}
 
 	static getAbilityRollerEntry (statblock, ability, {isDisplayAsBonus} = {}) {
@@ -3476,7 +3492,14 @@ Renderer.utils = class {
 			if (isClassVisible && isSubclassVisible) classPart = ` ${v.class.name} (${v.subclass.name})`;
 			else if (isClassVisible) classPart = ` ${v.class.name}`;
 			else if (isSubclassVisible) classPart = ` &lt;remember to insert class name here&gt; (${v.subclass.name})`; // :^)
-			return `${isLevelVisible ? `${Parser.getOrdinalForm(v.level)} level` : ""}${isClassVisible ? ` ${classPart}` : ""}`;
+
+			const ptLevel = !isLevelVisible
+				? ""
+				: styleHint === "classic"
+					? `${Parser.getOrdinalForm(v.level)} level`
+					: `Level ${v.level}+`;
+
+			return [ptLevel, classPart].filter(Boolean).join(" ");
 		}
 
 		static _getHtml_pact ({v, isListMode}) {
@@ -3501,16 +3524,24 @@ Renderer.utils = class {
 					.joinConjunct(", ", " or ");
 		}
 
-		static _getHtml_feat ({v, isListMode, isTextOnly}) {
-			return isListMode
-				? v.map(x => x.split("|")[0].toTitleCase()).join("/")
-				: v.map(it => (isTextOnly ? Renderer.stripTags.bind(Renderer) : Renderer.get().render.bind(Renderer.get()))(`{@feat ${it}} feat`)).joinConjunct(", ", " or ");
+		static _getHtml_feat ({v, isListMode, isTextOnly, styleHint}) {
+			return this._getHtml_uidTag({v, isListMode, isTextOnly, styleHint, tag: "feat"});
 		}
 
-		static _getHtml_optionalfeature ({v, isListMode, isTextOnly}) {
-			return isListMode
-				? v.map(x => x.split("|")[0].toTitleCase()).join("/")
-				: v.map(it => (isTextOnly ? Renderer.stripTags.bind(Renderer) : Renderer.get().render.bind(Renderer.get()))(`{@optfeature ${it}}`)).joinConjunct(", ", " or ");
+		static _getHtml_optionalfeature ({v, isListMode, isTextOnly, styleHint}) {
+			return this._getHtml_uidTag({v, isListMode, isTextOnly, styleHint, tag: "optfeature"});
+		}
+
+		static _getHtml_uidTag ({v, isListMode, isTextOnly, styleHint, tag}) {
+			if (isListMode) return v.map(x => x.split("|")[0].toTitleCase()).join("/");
+
+			return v
+				.map(uid => {
+					uid = styleHint === "classic" ? uid : uid.split("|").map((pt, i) => i === 0 ? pt.toTitleCase() : pt).join("|");
+					const asTag = `{@${tag} ${uid}}`;
+					return isTextOnly ? Renderer.stripTags(asTag) : Renderer.get().render(asTag);
+				})
+				.joinConjunct(", ", " or ");
 		}
 
 		static _getHtml_feature ({v, isListMode, isTextOnly, styleHint}) {
@@ -3530,11 +3561,13 @@ Renderer.utils = class {
 			return isListMode
 				? v
 					.map(it => Renderer.item.getType(it, {isIgnoreMissing: true}))
-					.map(it => it?.abbreviation)
+					.filter(Boolean)
+					.map(it => it.abbreviation)
 					.join("+")
 				: v
 					.map(it => Renderer.item.getType(it, {isIgnoreMissing: true}))
-					.map(it => it?.name?.toTitleCase())
+					.filter(Boolean)
+					.map(it => it.name?.toTitleCase())
 					.joinConjunct(", ", " and ");
 		}
 
@@ -3543,13 +3576,15 @@ Renderer.utils = class {
 
 			return isListMode
 				? v
-					.map(it => Renderer.item.getProperty(it))
-					.map(it => it?.abbreviation)
+					.map(it => Renderer.item.getProperty(it, {isIgnoreMissing: true}))
+					.filter(Boolean)
+					.map(it => it.abbreviation)
 					.join("+")
 				: (
 					`${v
-						.map(it => Renderer.item.getProperty(it))
-						.map(it => it?.name?.toTitleCase())
+						.map(it => Renderer.item.getProperty(it, {isIgnoreMissing: true}))
+						.filter(Boolean)
+						.map(it => it.name?.toTitleCase())
 						.joinConjunct(", ", " and ")
 					} Property`
 				);
@@ -4102,7 +4137,7 @@ Renderer.utils = class {
 	}
 
 	static _getTagMeta_generic (tag, text) {
-		const {name, source, displayText, others} = DataUtil.generic.unpackUid(text, tag);
+		const {name, source, displayText, others, isAllowRedirect} = DataUtil.generic.unpackUid(text, tag);
 		const hash = UrlUtil.encodeForHash([name, source]);
 
 		const out = {
@@ -4119,6 +4154,8 @@ Renderer.utils = class {
 			linkText: null,
 
 			hashPreEncoded: true,
+
+			isAllowRedirect,
 		};
 
 		switch (tag) {
@@ -4633,6 +4670,36 @@ Renderer.tag = class {
 		}
 	};
 
+	static TagActSave = class extends this._TagBaseAt {
+		tagName = "actSave";
+
+		_getStripped (tag, text) { return `${Parser.attAbvToFull(text)} Saving Throw:`; }
+	};
+
+	static TagActSaveSuccess = class extends this._TagBaseAt {
+		tagName = "actSaveSuccess";
+
+		_getStripped (tag, text) { return "Success:"; }
+	};
+
+	static TagActSaveFailure = class extends this._TagBaseAt {
+		tagName = "actSaveFail";
+
+		_getStripped (tag, text) { return "Failure:"; }
+	};
+
+	static TagActTrigger = class extends this._TagBaseAt {
+		tagName = "actTrigger";
+
+		_getStripped (tag, text) { return "Trigger:"; }
+	};
+
+	static TagActResponse = class extends this._TagBaseAt {
+		tagName = "actResponse";
+
+		_getStripped (tag, text) { return "Response:"; }
+	};
+
 	static TagHitText = class extends this._TagBaseAt {
 		tagName = "h";
 
@@ -4938,7 +5005,7 @@ Renderer.tag = class {
 
 	static TagItemMastery = class extends this._TagPipedDisplayTextThird {
 		tagName = "itemMastery";
-		defaultSource = VeCt.STR_GENERIC; // TODO(Future) adjust as/when these are published
+		defaultSource = Parser.SRC_XPHB;
 		page = "itemMastery";
 	};
 
@@ -5184,6 +5251,12 @@ Renderer.tag = class {
 		new this.TagTip(),
 
 		new this.TagUnit(),
+
+		new this.TagActSave(),
+		new this.TagActSaveSuccess(),
+		new this.TagActSaveFailure(),
+		new this.TagActTrigger(),
+		new this.TagActResponse(),
 
 		new this.TagHitText(),
 		new this.TagMissText(),
@@ -5526,7 +5599,7 @@ class _RenderCompactImplBase {
 
 	_getCommonHtmlParts_prerequisites ({ent}) {
 		const pt = Renderer.utils.prerequisite.getHtml(ent.prerequisite, {styleHint: this._style});
-		return pt ? `<p><i>${pt}</i></p>` : "";
+		return pt ? `<div><i>${pt}</i></div>` : "";
 	}
 }
 
@@ -5558,7 +5631,7 @@ class _RenderCompactFeatsImplBase extends _RenderCompactImplBase {
 			ent.category,
 			Renderer.utils.prerequisite.getHtml(ent.prerequisite, {styleHint: this._style}),
 		);
-		return ptCategoryPrerequisite ? `<p><i>${ptCategoryPrerequisite}</i></p>` : "";
+		return ptCategoryPrerequisite ? `<div><i>${ptCategoryPrerequisite}</i></div>` : "";
 	}
 
 	/* ----- */
@@ -5590,7 +5663,7 @@ class _RenderCompactFeatsImplClassic extends _RenderCompactFeatsImplBase {
 
 	_getHtmlParts_repeatable ({ent}) {
 		const ptRepeatable = Renderer.utils.getRepeatableHtml(ent);
-		return ptRepeatable ? `<p>${ptRepeatable}</p>` : "";
+		return ptRepeatable ? `<div>${ptRepeatable}</div>` : "";
 	}
 
 	/* -------------------------------------------- */
@@ -5615,14 +5688,44 @@ class _RenderCompactFeatsImplClassic extends _RenderCompactFeatsImplBase {
 			renderer,
 		});
 
+		const ptHeader = htmlPtPrerequisites || htmlPtRepeatable ? `<tr><td colspan="6" class="pb-2 pt-0">
+			${htmlPtPrerequisites}
+			${htmlPtRepeatable}
+		</td></tr>` : "";
+
 		return `
 			${htmlPtIsExcluded}
 			${htmlPtName}
-			<tr><td colspan="6" class="pb-2 pt-0">
-				${htmlPtPrerequisites}
-				${htmlPtRepeatable}
-				${htmlPtEntries}
-			</td></tr>
+			${ptHeader}
+			<tr><td colspan="6" class="pb-2 ${ptHeader ? "" : "pt-0"}">${htmlPtEntries}</td></tr>
+		`;
+	}
+}
+
+class _RenderCompactFeatsImplOne extends _RenderCompactFeatsImplBase {
+	_style = "one";
+
+	/* -------------------------------------------- */
+
+	_getCompactRenderedString ({ent, renderer, opts}) {
+		const {
+			htmlPtIsExcluded,
+			htmlPtName,
+
+			htmlPtPrerequisites,
+
+			htmlPtEntries,
+		} = this._getCommonHtmlParts({
+			ent,
+			renderer,
+			opts,
+		});
+
+		return `
+			${htmlPtIsExcluded}
+			${htmlPtName}
+			${htmlPtPrerequisites ? `<tr><td colspan="6" class="pb-2 pt-0">${htmlPtPrerequisites}</td></tr>` : ""}
+			<tr><td colspan="6" class="pb-2 ${htmlPtPrerequisites ? "" : "pt-0"}">${htmlPtEntries}</td></tr>
 		`;
 	}
 }
@@ -5720,7 +5823,7 @@ Renderer.feat = class {
 	}
 
 	static getJoinedCategoryPrerequisites (category, rdPrereqs) {
-		const ptCategory = category ? `${Parser.featCategoryToFull(category)} Feat` : "";
+		const ptCategory = category ? `${Parser.featCategoryToFull(category)}${["FS:P", "FS:R"].includes(category) ? "" : ` Feat`}` : "";
 
 		return ptCategory && rdPrereqs
 			? `${ptCategory} (${rdPrereqs})`
@@ -5730,6 +5833,7 @@ Renderer.feat = class {
 	/* -------------------------------------------- */
 
 	static _RENDER_CLASSIC = new _RenderCompactFeatsImplClassic();
+	static _RENDER_ONE = new _RenderCompactFeatsImplOne();
 
 	/**
 	 * @param ent
@@ -5741,6 +5845,7 @@ Renderer.feat = class {
 		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
 		switch (styleHint) {
 			case "classic": return this._RENDER_CLASSIC.getCompactRenderedString(ent, opts);
+			case "one": return this._RENDER_ONE.getCompactRenderedString(ent, opts);
 			default: throw new Error(`Unhandled style "${styleHint}"!`);
 		}
 	}
@@ -5755,31 +5860,203 @@ Renderer.feat = class {
 	}
 };
 
-Renderer.class = class {
-	static getCompactRenderedString (cls) {
-		if (cls.__prop === "subclass") return Renderer.subclass.getCompactRenderedString(cls);
+/** @abstract */
+class _RenderCompactClassesImplBase extends _RenderCompactImplBase {
+	_page = UrlUtil.PG_CLASSES;
+	_dataProp = "class";
 
-		const clsEntry = {
+	/* -------------------------------------------- */
+
+	_getCommonHtmlParts (
+		{
+			ent,
+			renderer,
+			opts,
+		},
+	) {
+		return {
+			...super._getCommonHtmlParts({ent, renderer, opts}),
+
+			htmlPtEntries: this._getCommonHtmlParts_entries({ent, renderer}),
+		};
+	}
+
+	/* ----- */
+
+	_getCommonHtmlParts_entries ({ent, renderer}) {
+		const cpyEntries = MiscUtil.copyFast(ent.classFeatures || [])
+			.flat()
+			.map(ent => Renderer.class.getDisplayNamedClassFeatureEntry(ent, this._style));
+
+		const fauxEnt = {
 			type: "section",
-			name: cls.name,
-			source: cls.source,
-			page: cls.page,
-			entries: MiscUtil.copyFast((cls.classFeatures || []).flat()),
+			entries: cpyEntries,
 		};
 
-		return Renderer.hover.getGenericCompactRenderedString(clsEntry);
+		return `
+			<tr><td colspan="6" class="pb-2">
+			${renderer.render(fauxEnt)}
+			</td></tr>
+		`;
+	}
+}
+
+class _RenderCompactClassesImplClassic extends _RenderCompactClassesImplBase {
+	_style = "classic";
+
+	/* -------------------------------------------- */
+
+	_getCompactRenderedString ({ent, renderer, opts}) {
+		const {
+			htmlPtIsExcluded,
+			htmlPtName,
+
+			htmlPtEntries,
+		} = this._getCommonHtmlParts({
+			ent,
+			renderer,
+			opts,
+		});
+
+		return `
+			${htmlPtIsExcluded}
+			${htmlPtName}
+			<tr><td colspan="6" class="pb-2 pt-0">${htmlPtEntries}</td></tr>
+		`;
+	}
+}
+
+class _RenderCompactClassesImplOne extends _RenderCompactClassesImplBase {
+	_style = "one";
+
+	/* -------------------------------------------- */
+
+	_getHtmlParts (
+		{
+			ent,
+			renderer,
+		},
+	) {
+		return {
+			htmlPtCoreTraits: this._getHtmlParts_coreTraits({ent}),
+		};
+	}
+
+	/* ----- */
+
+	_getHtmlParts_coreTraits ({ent, renderer}) {
+		const pts = [
+			Renderer.class.getHtmlPtPrimaryAbility(ent, {renderer, styleHint: this._style}),
+			Renderer.class.getHtmlPtHitPoints(ent, {renderer, styleHint: this._style}),
+			Renderer.class.getHtmlPtSavingThrows(ent, {renderer, styleHint: this._style}),
+			Renderer.class.getHtmlPtSkills(ent, {renderer, styleHint: this._style}),
+			Renderer.class.getHtmlPtWeaponProficiencies(ent, {renderer, styleHint: this._style}),
+			Renderer.class.getHtmlPtToolProficiencies(ent, {renderer, styleHint: this._style}),
+			Renderer.class.getHtmlPtArmorProficiencies(ent, {renderer, styleHint: this._style}),
+			Renderer.class.getHtmlPtStartingEquipment(ent, {renderer, styleHint: this._style}),
+		]
+			.filter(Boolean)
+			.join(`<div class="py-1 w-100"></div>`);
+
+		return `<tr><td colspan="6" class="pb-2 pt-0">
+			${pts}
+		</td></tr>`;
 	}
 
 	/* -------------------------------------------- */
 
-	static getHitDiceEntry (clsHd) { return clsHd ? `{@dice ${clsHd.number}d${clsHd.faces}||Hit die}` : null; }
+	_getCompactRenderedString ({ent, renderer, opts}) {
+		const {
+			htmlPtIsExcluded,
+			htmlPtName,
 
-	static getHitPointsAtFirstLevel (clsHd) { return clsHd ? `${clsHd.number * clsHd.faces} + your Constitution modifier` : null; }
+			htmlPtEntries,
+		} = this._getCommonHtmlParts({
+			ent,
+			renderer,
+			opts,
+		});
+		const {
+			htmlPtCoreTraits,
+		} = this._getHtmlParts({
+			ent,
+			renderer,
+		});
 
-	static getHitPointsAtHigherLevels (className, clsHd) {
-		return className && clsHd
-			? `${Renderer.get().render(Renderer.class.getHitDiceEntry(clsHd))} (or ${((clsHd.number * clsHd.faces) / 2 + 1)}) + your Constitution modifier per ${className} level after 1st`
-			: null;
+		return `
+			${htmlPtIsExcluded}
+			${htmlPtName}
+			${htmlPtCoreTraits}
+			<tr><td colspan="6" class="py-0"><hr class="hr-2"></td></tr>
+			<tr><td colspan="6" class="pb-2 pt-0">${htmlPtEntries}</td></tr>
+		`;
+	}
+}
+
+Renderer.class = class {
+	static _RENDER_CLASSIC = new _RenderCompactClassesImplClassic();
+	static _RENDER_ONE = new _RenderCompactClassesImplOne();
+
+	/**
+	 * @param ent
+	 * @param [opts]
+	 * @param [opts.isEmbeddedEntity]
+	 * @param [opts.isSkipNameRow]
+	 */
+	static getCompactRenderedString (ent, opts) {
+		if (ent.__prop === "subclass") return Renderer.subclass.getCompactRenderedString(ent);
+
+		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
+		switch (styleHint) {
+			case "classic": return this._RENDER_CLASSIC.getCompactRenderedString(ent, opts);
+			case "one": return this._RENDER_ONE.getCompactRenderedString(ent, opts);
+			default: throw new Error(`Unhandled style "${styleHint}"!`);
+		}
+	}
+
+	/* -------------------------------------------- */
+
+	/**
+	 * @param clsHd
+	 * @param {"classic" | null} styleHint
+	 */
+	static getHitDiceEntry (clsHd, {styleHint = null} = {}) {
+		if (!clsHd) return null;
+
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
+		return styleHint === "classic"
+			? `{@dice ${clsHd.number}d${clsHd.faces}||Hit die}`
+			: `{@dice ${clsHd.number}d${clsHd.faces}|${clsHd.number === 1 ? "" : clsHd.number}D${clsHd.faces}|Hit die}`;
+	}
+
+	/**
+	 * @param clsHd
+	 * @param {"classic" | null} styleHint
+	 */
+	static getHitPointsAtFirstLevel (clsHd, {styleHint = null} = {}) {
+		if (!clsHd) return null;
+
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
+		return styleHint === "classic"
+			? `${clsHd.number * clsHd.faces} + your Constitution modifier`
+			: `${clsHd.number * clsHd.faces} + Con. modifier`;
+	}
+
+	/**
+	 * @param className
+	 * @param clsHd
+	 * @param {"classic" | null} styleHint
+	 */
+	static getHitPointsAtHigherLevels (className, clsHd, {styleHint = null} = {}) {
+		if (!className || !clsHd) return null;
+
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
+		return styleHint === "classic"
+			? `${Renderer.get().render(Renderer.class.getHitDiceEntry(clsHd, {styleHint}))} (or ${((clsHd.number * clsHd.faces) / 2 + 1)}) + your Constitution modifier per ${className} level after 1st`
+			: `${Renderer.get().render(Renderer.class.getHitDiceEntry(clsHd, {styleHint}))} + your Con. modifier, or, ${((clsHd.number * clsHd.faces) / 2 + 1)} + your Con. modifier`;
 	}
 
 	/* -------------------------------------------- */
@@ -5791,14 +6068,35 @@ Renderer.class = class {
 	static getRenderedArmorProfs (armorProfs, {styleHint = null} = {}) {
 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
-		return armorProfs
+		const [profsArmor, profsOther] = armorProfs
+			.segregate(it => ["light", "medium", "heavy"].includes(it));
+
+		const ptsArmor = profsArmor
+			.map((a, i, arr) => Renderer.get().render(`{@filter ${styleHint === "classic" ? a : a.toTitleCase()}${styleHint === "classic" || i === arr.length - 1 ? " armor" : ""}|items|type=${a} armor}`));
+
+		const ptsOther = profsOther
 			.map(a => {
 				if (a.full) return Renderer.get().render(a.full);
-				if (["light", "medium", "heavy"].includes(a)) return Renderer.get().render(`{@filter ${styleHint === "classic" ? a : a.toTitleCase()} armor|items|type=${a} armor}`);
-				if (a === "shield") return Renderer.get().render(`{@item shield|PHB|shields}`);
+				if (a === "shield") {
+					if (styleHint === "classic") Renderer.get().render(`{@item shield|PHB|shields}`);
+					return Renderer.get().render(`{@item shield|XPHB|Shields}`);
+				}
 				return Renderer.get().render(a);
-			})
-			.join(", ");
+			});
+
+		if (styleHint === "classic") {
+			return [
+				...ptsArmor,
+				...ptsOther,
+			]
+				.join(", ");
+		}
+
+		return [
+			ptsArmor.joinConjunct(", ", " and "),
+			...ptsOther,
+		]
+			.joinConjunct(", ", " and ");
 	}
 
 	/**
@@ -5808,16 +6106,34 @@ Renderer.class = class {
 	static getRenderedWeaponProfs (weaponProfs, {styleHint = null} = {}) {
 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
-		return weaponProfs
+		const [profsSimpleMartial, profsOther] = weaponProfs
+			.segregate(it => ["simple", "martial"].includes(it));
+
+		const ptsSimpleMartial = profsSimpleMartial
+			.map((w, i, arr) => Renderer.get().render(`{@filter ${styleHint === "classic" ? w : w.toTitleCase()}${styleHint === "classic" || i === arr.length - 1 ? " weapons" : ""}|items|type=${w} weapon}`));
+
+		const ptsOther = profsOther
 			.map(w => {
-				if (["simple", "martial"].includes(w)) return Renderer.get().render(`{@filter ${styleHint === "classic" ? w : w.toTitleCase()} weapons|items|type=${w} weapon}`);
 				if (w.optional) return `<span class="help help--hover" title="Optional Proficiency">${Renderer.get().render(w.proficiency)}</span>`;
 				return Renderer.get().render(w);
-			})
-			.join(", ");
+			});
+
+		const pts = [
+			...ptsSimpleMartial,
+			...ptsOther,
+		];
+
+		return styleHint === "classic" ? pts.join(", ") : pts.joinConjunct(", ", " and ");
 	}
 
-	static getRenderedToolProfs (toolProfs) { return toolProfs.map(it => Renderer.get().render(it)).join(", "); }
+	/**
+	 * @param toolProfs
+	 * @param {"classic" | null} styleHint
+	 */
+	static getRenderedToolProfs (toolProfs, {styleHint = null} = {}) {
+		const pts = toolProfs.map(it => Renderer.get().render(it));
+		return styleHint === "classic" ? pts.join(", ") : pts.joinConjunct(", ", " and ");
+	}
 
 	/**
 	 * @param skills
@@ -5827,6 +6143,132 @@ Renderer.class = class {
 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
 		return `${Parser.skillProficienciesToFull(skills, {styleHint}).uppercaseFirst()}.`;
+	}
+
+	/* -------------------------------------------- */
+
+	static getHtmlPtPrimaryAbility (cls) {
+		if (!cls.primaryAbility) return "";
+
+		const pts = cls.primaryAbility
+			.map(abilObj => {
+				return Object.entries(abilObj)
+					.filter(([, v]) => v)
+					.map(([k]) => Parser.attAbvToFull(k))
+					.joinConjunct(", ", " and ");
+			})
+			.joinConjunct(", ", " or ");
+
+		return `<div><b>Primary Ability:</b> <span>${pts}</span></div>`;
+	}
+
+	static getHtmlPtHitPoints (cls, {renderer = null, styleHint = null}) {
+		if (!cls.hd) return "";
+
+		renderer ||= Renderer.get();
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
+		return `<div><strong>Hit Point Die:</strong> ${renderer.render(Renderer.class.getHitDiceEntry(cls.hd, {styleHint}))} per ${cls.name} level</div>
+		<div><strong>Hit Points at Level 1:</strong> ${Renderer.class.getHitPointsAtFirstLevel(cls.hd, {styleHint})}</div>
+		<div><strong>Hit Points per ${cls.name} Level:</strong> ${Renderer.class.getHitPointsAtHigherLevels(cls.name, cls.hd, {styleHint})}</div>`;
+	}
+
+	static getHtmlPtSavingThrows (cls) {
+		if (!cls.proficiency) return "";
+
+		return `<div><b>Saving Throw Proficiencies:</b> <span>${cls.proficiency.map(p => Parser.attAbvToFull(p))}</span></div>`;
+	}
+
+	static getHtmlPtSkills (cls, {styleHint = null}) {
+		if (!cls.startingProficiencies?.skills) return "";
+
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
+		return `<div><b>Skill Proficiencies:</b> <span>${Renderer.class.getRenderedSkillProfs(cls.startingProficiencies.skills, {styleHint})}</span></div>`;
+	}
+
+	static getHtmlPtWeaponProficiencies (cls, {styleHint = null}) {
+		if (!cls.startingProficiencies?.weapons) return "";
+
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
+		return `<div><b>Weapon Proficiencies:</b> <span>${Renderer.class.getRenderedWeaponProfs(cls.startingProficiencies.weapons, {styleHint})}</span></div>`;
+	}
+
+	static getHtmlPtToolProficiencies (cls, {styleHint = null}) {
+		if (!cls.startingProficiencies?.tools) return "";
+
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
+		return `<div><b>Tool Proficiencies:</b> <span>${Renderer.class.getRenderedToolProfs(cls.startingProficiencies.tools, {styleHint})}</span></div>`;
+	}
+
+	static getHtmlPtArmorProficiencies (cls, {styleHint = null}) {
+		if (!cls.startingProficiencies?.armor) return "";
+
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
+		return `<div><b>Armor Training:</b> <span>${Renderer.class.getRenderedArmorProfs(cls.startingProficiencies.armor, {styleHint})}</span></div>`;
+	}
+
+	static getHtmlPtStartingEquipment (cls, {renderer = null, styleHint = null}) {
+		if (!cls.startingEquipment) return null;
+
+		renderer ||= Renderer.get();
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
+		const {startingEquipment: equip} = cls;
+
+		if (equip.additionalFromBackground && equip.default) return this._getHtmlPtStartingEquipment_default({equip, renderer});
+		return this._getHtmlPtStartingEquipment_entries({equip, renderer, styleHint});
+	}
+
+	static _getHtmlPtStartingEquipment_default ({equip, renderer}) {
+		return [
+			equip.additionalFromBackground ? "<p>You start with the following items, plus anything provided by your background.</p>" : "",
+			equip.default && equip.default.length ? `<ul class="pl-4"><li>${equip.default.map(it => renderer.render(it)).join("</li><li>")}</ul>` : "",
+			equip.goldAlternative != null ? `<p>Alternatively, you may start with ${renderer.render(equip.goldAlternative)} gp to buy your own equipment.</p>` : "",
+		]
+			.filter(Boolean)
+			.join("");
+	}
+
+	static _getHtmlPtStartingEquipment_entries ({equip, renderer, styleHint}) {
+		if (styleHint === "classic" || !equip.entries?.length || typeof equip.entries[0] !== "string") {
+			return renderer.render({
+				type: "entries",
+				entries: equip.entries || [],
+			});
+		}
+
+		const [firstEntry, ...otherEntries] = equip.entries;
+
+		return renderer.render({
+			type: "entries",
+			entries: [
+				`{@b Starting Equipment:} ${firstEntry}`,
+				...otherEntries,
+			],
+		});
+	}
+
+	/* -------------------------------------------- */
+
+	static getDisplayNamedClassFeatureEntry (ent, styleHint) {
+		if (styleHint === "classic" || !ent.level || !ent.name) return ent;
+		return {_displayName: `Level ${ent.level}: ${ent._displayName || ent.name}`, ...ent};
+	}
+
+	static getDisplayNamedSubclassFeatureEntry (ent, styleHint) {
+		if (styleHint === "classic" || !ent.level || !ent.entries?.length) return ent;
+
+		const cpy = MiscUtil.copyFast(ent);
+		cpy.entries = cpy.entries
+			.map(ent => {
+				if (ent.type !== "entries" || !ent.name) return ent;
+				return {_displayName: `Level ${ent.level}: ${ent._displayName || ent.name}`, ...ent};
+			});
+		return cpy;
 	}
 
 	/* -------------------------------------------- */
@@ -5960,20 +6402,95 @@ Renderer.class = class {
 	}
 };
 
-Renderer.subclass = class {
-	static getCompactRenderedString (sc) {
-		const entries = MiscUtil.copyFast((sc.subclassFeatures || []).flat());
-		if (entries[0]?.name === sc.name) delete entries[0].name;
+/** @abstract */
+class _RenderCompactSubclassesImplBase extends _RenderCompactImplBase {
+	_page = UrlUtil.PG_CLASSES;
+	_dataProp = "subclass";
 
-		const scEntry = {
+	/* -------------------------------------------- */
+
+	_getCommonHtmlParts (
+		{
+			ent,
+			renderer,
+			opts,
+		},
+	) {
+		return {
+			...super._getCommonHtmlParts({ent, renderer, opts}),
+
+			htmlPtEntries: this._getCommonHtmlParts_entries({ent, renderer}),
+		};
+	}
+
+	/* ----- */
+
+	_getCommonHtmlParts_entries ({ent, renderer}) {
+		const cpyEntries = MiscUtil.copyFast((ent.subclassFeatures || []).flat())
+			.flat()
+			.map(ent => Renderer.class.getDisplayNamedSubclassFeatureEntry(ent, this._style));
+
+		if (cpyEntries[0]?.name === ent.name) delete cpyEntries[0].name;
+
+		const fauxEnt = {
 			type: "section",
-			name: sc.name,
-			source: sc.source,
-			page: sc.page,
-			entries,
+			entries: cpyEntries,
 		};
 
-		return Renderer.hover.getGenericCompactRenderedString(scEntry);
+		return `
+			<tr><td colspan="6" class="pb-2">
+			${renderer.render(fauxEnt)}
+			</td></tr>
+		`;
+	}
+
+	/* -------------------------------------------- */
+
+	_getCompactRenderedString ({ent, renderer, opts}) {
+		const {
+			htmlPtIsExcluded,
+			htmlPtName,
+
+			htmlPtEntries,
+		} = this._getCommonHtmlParts({
+			ent,
+			renderer,
+			opts,
+		});
+
+		return `
+			${htmlPtIsExcluded}
+			${htmlPtName}
+			<tr><td colspan="6" class="pb-2 pt-0">${htmlPtEntries}</td></tr>
+		`;
+	}
+}
+
+class _RenderCompactSubclassesImplClassic extends _RenderCompactSubclassesImplBase {
+	_style = "classic";
+}
+
+class _RenderCompactSubclassesImplOne extends _RenderCompactSubclassesImplBase {
+	_style = "one";
+}
+
+Renderer.subclass = class {
+	static _RENDER_CLASSIC = new _RenderCompactSubclassesImplClassic();
+	static _RENDER_ONE = new _RenderCompactSubclassesImplOne();
+
+	/**
+	 * @param ent
+	 * @param [opts]
+	 * @param [opts.isEmbeddedEntity]
+	 * @param [opts.isSkipNameRow]
+	 */
+	static getCompactRenderedString (ent, opts) {
+		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
+		switch (styleHint) {
+			case "classic": return this._RENDER_CLASSIC.getCompactRenderedString(ent, opts);
+			case "one": return this._RENDER_ONE.getCompactRenderedString(ent, opts);
+			default: throw new Error(`Unhandled style "${styleHint}"!`);
+		}
 	}
 
 	static pGetFluff (sc) {
@@ -6028,12 +6545,16 @@ class _RenderCompactSpellsImplBase extends _RenderCompactImplBase {
 			${htmlPtName}
 			<tr><td colspan="6" class="pb-2">
 				<div class="pb-2">${htmlPtLevelSchoolRitual}</div>
-				<div class="split-v-center">
-					<div>${htmlPtCastingTime}</div>
-					<div>${htmlPtDuration}</div>
+				<div class="ve-flex pb-2 w100">
+					<div class="ve-flex-col ve-grow min-w-25 pr-2">
+						<div>${htmlPtCastingTime}</div>
+						<div>${htmlPtComponents}</div>
+					</div>
+					<div class="ve-flex-col ve-grow min-w-25">
+						<div>${htmlPtRange}</div>
+						<div>${htmlPtDuration}</div>
+					</div>
 				</div>
-				<div>${htmlPtRange}</div>
-				<div class="pb-2">${htmlPtComponents}</div>
 				${htmlPtEntriesFrom}
 			</td></tr>
 		`;
@@ -6112,8 +6633,13 @@ class _RenderCompactSpellsImplClassic extends _RenderCompactSpellsImplBase {
 	_style = "classic";
 }
 
+class _RenderCompactSpellsImplOne extends _RenderCompactSpellsImplBase {
+	_style = "one";
+}
+
 Renderer.spell = class {
 	static _RENDER_CLASSIC = new _RenderCompactSpellsImplClassic();
+	static _RENDER_ONE = new _RenderCompactSpellsImplOne();
 
 	/**
 	 * @param ent
@@ -6124,6 +6650,7 @@ Renderer.spell = class {
 		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
 		switch (styleHint) {
 			case "classic": return this._RENDER_CLASSIC.getCompactRenderedString(ent, opts);
+			case "one": return this._RENDER_ONE.getCompactRenderedString(ent, opts);
 			default: throw new Error(`Unhandled style "${styleHint}"!`);
 		}
 	}
@@ -6740,7 +7267,7 @@ class _RenderCompactOptionalfeaturesImplBase extends _RenderCompactImplBase {
 
 	_getCommonHtmlParts_cost ({ent}) {
 		const ptCost = Renderer.optionalfeature.getCostHtml(ent);
-		return ptCost ? `<p>${ptCost}</p>` : "";
+		return ptCost ? `<div>${ptCost}</div>` : "";
 	}
 
 	/* ----- */
@@ -6758,12 +7285,10 @@ class _RenderCompactOptionalfeaturesImplBase extends _RenderCompactImplBase {
 	/* ----- */
 
 	_getCommonHtmlParts_featureType ({ent, renderer}) {
-		return `<tr><td colspan="6"><p>${renderer.render(Renderer.optionalfeature.getTypeEntry(ent))}</p></td></tr>`;
+		return `<tr><td colspan="6" class="pb-2">${renderer.render(Renderer.optionalfeature.getTypeEntry(ent))}</td></tr>`;
 	}
-}
 
-class _RenderCompactOptionalfeaturesImplClassic extends _RenderCompactOptionalfeaturesImplBase {
-	_style = "classic";
+	/* -------------------------------------------- */
 
 	_getCompactRenderedString ({ent, renderer, opts}) {
 		const {
@@ -6785,18 +7310,30 @@ class _RenderCompactOptionalfeaturesImplClassic extends _RenderCompactOptionalfe
 			opts,
 		});
 
+		const ptHeader = htmlPtPrerequisites || htmlPtCost ? `<tr><td colspan="6" class="pb-2 pt-0">
+			${htmlPtPrerequisites}
+			${htmlPtCost}
+		</td></tr>` : "";
+
 		return `
 			${htmlPtIsExcluded}
 			${htmlPtName}
-			<tr><td colspan="6" class="pb-2 pt-0">
-				${htmlPtPrerequisites}
-				${htmlPtCost}
+			${ptHeader}
+			<tr><td colspan="6" class="pb-2 ${ptHeader ? "" : "pt-0"}">
 				${htmlPtEntries}
 			</td></tr>
 			${htmlPtPreviouslyPrinted}
 			${htmlPtFeatureType}
 		`;
 	}
+}
+
+class _RenderCompactOptionalfeaturesImplClassic extends _RenderCompactOptionalfeaturesImplBase {
+	_style = "classic";
+}
+
+class _RenderCompactOptionalfeaturesImplOne extends _RenderCompactOptionalfeaturesImplBase {
+	_style = "one";
 }
 
 Renderer.optionalfeature = class {
@@ -6825,7 +7362,8 @@ Renderer.optionalfeature = class {
 			.split(" ")
 			.map(it => it.trim())
 			.filter(Boolean);
-		tksUnit.last(tksUnit.last()[ent.consumes.amount != null && ent.consumes.amount !== 1 ? "toPlural" : "toString"]());
+		const amtMax = ent.consumes.amountMax ?? ent.consumes.amount;
+		tksUnit.last(tksUnit.last()[amtMax != null && amtMax !== 1 ? "toPlural" : "toString"]());
 		const ptUnit = ` ${tksUnit.join(" ")}`;
 
 		if (ent.consumes?.amountMin != null && ent.consumes?.amountMax != null) return `{@i ${ptPrefix}${ent.consumes.amountMin}\u2013${ent.consumes.amountMax}${ptUnit}}`;
@@ -6860,6 +7398,7 @@ Renderer.optionalfeature = class {
 	/* -------------------------------------------- */
 
 	static _RENDER_CLASSIC = new _RenderCompactOptionalfeaturesImplClassic();
+	static _RENDER_ONE = new _RenderCompactOptionalfeaturesImplOne();
 
 	/**
 	 * @param ent
@@ -6871,6 +7410,7 @@ Renderer.optionalfeature = class {
 		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
 		switch (styleHint) {
 			case "classic": return this._RENDER_CLASSIC.getCompactRenderedString(ent, opts);
+			case "one": return this._RENDER_ONE.getCompactRenderedString(ent, opts);
 			default: throw new Error(`Unhandled style "${styleHint}"!`);
 		}
 	}
@@ -6925,12 +7465,14 @@ Renderer.reward = class {
 };
 
 Renderer.race = class {
-	static getRaceRenderableEntriesMeta (ent) {
+	static getRaceRenderableEntriesMeta (ent, {styleHint = null} = {}) {
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
 		const entsAttributes = [
-			ent.ability ? {type: "item", name: "Ability Scores:", entry: Renderer.getAbilityData(ent.ability).asText} : null,
-			this._getRaceRenderableEntriesMeta_creatureType(ent),
-			ent.size ? {type: "item", name: "Size:", entry: Renderer.utils.getRenderedSize(ent.size || [Parser.SZ_VARIES])} : null,
-			ent.speed != null ? {type: "item", name: "Speed:", entry: Parser.getSpeedString(ent)} : null,
+			ent.abilityEntry || (ent.ability ? {type: "item", name: "Ability Scores:", entry: Renderer.getAbilityData(ent.ability).asText} : null),
+			ent.creatureTypesEntry || (this._getRaceRenderableEntriesMeta_creatureType({ent, styleHint})),
+			ent.sizeEntry || (ent.size ? {type: "item", name: "Size:", entry: Renderer.utils.getRenderedSize(ent.size || [Parser.SZ_VARIES])} : null),
+			ent.speedEntry || (ent.speed != null ? {type: "item", name: "Speed:", entry: Parser.getSpeedString(ent, {isLongForm: true})} : null),
 		]
 			.filter(Boolean);
 
@@ -6944,19 +7486,25 @@ Renderer.race = class {
 		};
 	}
 
-	static _getRaceRenderableEntriesMeta_creatureType (ent) {
-		const types = (ent.creatureTypes || []).filter(it => `${it}`.toLowerCase() !== Parser.TP_HUMANOID);
-		if (!types.length) return null;
-		return {type: "item", name: "Creature Type:", entry: Parser.raceCreatureTypesToFull(ent.creatureTypes)};
+	static _getRaceRenderableEntriesMeta_creatureType ({ent, styleHint}) {
+		const types = ent.creatureTypes || [Parser.TP_HUMANOID];
+
+		if (styleHint !== "classic") return {type: "item", name: "Creature Type:", entry: Parser.raceCreatureTypesToFull(types)};
+
+		const typesFilt = (ent.creatureTypes || []).filter(it => `${it}`.toLowerCase() !== Parser.TP_HUMANOID);
+		if (!typesFilt.length) return null;
+		return {type: "item", name: "Creature Type:", entry: Parser.raceCreatureTypesToFull(typesFilt)};
 	}
 
 	/* -------------------------------------------- */
 
 	static getCompactRenderedString (ent, {isStatic = false} = {}) {
+		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
+
 		const renderer = Renderer.get().setFirstSection(true);
 		const renderStack = [];
 
-		const entriesMeta = Renderer.race.getRaceRenderableEntriesMeta(ent);
+		const entriesMeta = Renderer.race.getRaceRenderableEntriesMeta(ent, {styleHint});
 
 		renderStack.push(`
 			${Renderer.utils.getExcludedTr({entity: ent, dataProp: "race", page: UrlUtil.PG_RACES})}
@@ -7201,10 +7749,14 @@ Renderer.race = class {
 		cpy._baseName = cpy.name;
 		cpy._baseSource = cpy.source;
 		cpy._baseSrd = cpy.srd;
+		cpy._baseSrd52 = cpy.srd52;
 		cpy._baseBasicRules = cpy.basicRules;
+		cpy._baseFreeRules2024 = cpy.freeRules2024;
 		delete cpy.subraces;
 		delete cpy.srd;
+		delete cpy.srd52;
 		delete cpy.basicRules;
+		delete cpy.freeRules2024;
 		delete cpy._versions;
 		delete cpy.hasFluff;
 		delete cpy.hasFluffImages;
@@ -7221,7 +7773,7 @@ Renderer.race = class {
 			// If the base race doesn't have any ability scores, make a set of empty records
 			if ((cpySr.overwrite && cpySr.overwrite.ability) || !cpy.ability) cpy.ability = cpySr.ability.map(() => ({}));
 
-			if (cpy.ability.length !== cpySr.ability.length) throw new Error(`Race and subrace ability array lengths did not match!`);
+			if (cpy.ability.length !== cpySr.ability.length) throw new Error(`"race" and "subrace" ability array lengths did not match!`);
 			cpySr.ability.forEach((obj, i) => Object.assign(cpy.ability[i], obj));
 			delete cpySr.ability;
 		}
@@ -7254,11 +7806,11 @@ Renderer.race = class {
 			if (!cpy.skillProficiencies || (cpySr.overwrite && cpySr.overwrite["skillProficiencies"])) cpy.skillProficiencies = cpySr.skillProficiencies;
 			else {
 				if (!cpySr.skillProficiencies.length || !cpy.skillProficiencies.length) throw new Error(`No items!`);
-				if (cpySr.skillProficiencies.length > 1 || cpy.skillProficiencies.length > 1) throw new Error(`Subrace merging does not handle choices!`); // Implement if required
+				if (cpySr.skillProficiencies.length > 1 || cpy.skillProficiencies.length > 1) throw new Error(`Merging "subrace" does not handle choices!`); // Implement if required
 
 				// Otherwise, merge
 				if (cpySr.skillProficiencies.choose) {
-					if (cpy.skillProficiencies.choose) throw new Error(`Subrace choose merging is not supported!!`); // Implement if required
+					if (cpy.skillProficiencies.choose) throw new Error(`Merging "subrace" choose is not supported!!`); // Implement if required
 					cpy.skillProficiencies.choose = cpySr.skillProficiencies.choose;
 					delete cpySr.skillProficiencies.choose;
 				}
@@ -7285,7 +7837,7 @@ Renderer.race = class {
 		const nxtData = [];
 
 		subraces.forEach(sr => {
-			if (!sr.raceName || !sr.raceSource) throw new Error(`Subrace was missing parent "raceName" and/or "raceSource"!`);
+			if (!sr.raceName || !sr.raceSource) throw new Error(`Adopted "subrace" was missing parent "raceName" and/or "raceSource"!`);
 
 			const _baseRace = allRaces.find(r => r.name === sr.raceName && r.source === sr.raceSource);
 			if (!_baseRace) throw new Error(`Could not find parent race for subrace "${sr.name}" (${sr.source})!`);
@@ -8331,6 +8883,163 @@ class _RenderCompactBestiaryImplClassic extends _RenderCompactBestiaryImplBase {
 	}
 }
 
+class _RenderCompactBestiaryImplOne extends _RenderCompactBestiaryImplBase {
+	_style = "one";
+
+	/* -------------------------------------------- */
+
+	_getHtmlParts (
+		{
+			mon,
+			renderer,
+
+			entsTrait,
+		},
+	) {
+		return {
+			htmlPtSavingThrows: this._getHtmlParts_savingThrows({mon, renderer}),
+
+			htmlPtImmunities: this._getHtmlParts_immunities({mon}),
+
+			htmlPtTraits: this._getHtmlParts_traits({mon, renderer, entsTrait}),
+		};
+	}
+
+	/* ----- */
+
+	_getHtmlParts_savingThrows ({mon, renderer}) {
+		if (!mon.save?.special) return "";
+		return `<p><b>Saving Throws</b> ${Renderer.monster.getSave(renderer, "special", mon.save.special)}</p>`;
+	}
+
+	_getHtmlParts_immunities ({mon}) {
+		const pt = Renderer.monster.getImmunitiesCombinedPart(mon);
+		if (!pt) return "";
+		return `<p><b title="Immunities">Imm.</b> ${pt}</p>`;
+	}
+
+	/* ----- */
+
+	_getHtmlParts_traits ({mon, renderer, entsTrait}) {
+		return Renderer.monster.getCompactRenderedStringSection({...mon, trait: entsTrait}, renderer, "Traits", "trait", 2);
+	}
+
+	/* -------------------------------------------- */
+
+	_getCompactRenderedString ({mon, renderer, opts}) {
+		const {
+			isInlinedToken,
+
+			isShowCrScaler,
+			isShowSpellLevelScaler,
+			isShowClassLevelScaler,
+		} = this._getFlags({mon, opts});
+
+		const {
+			entsTrait,
+			entsAction,
+			entsBonusAction,
+			entsReaction,
+			legGroup,
+		} = Renderer.monster.getSubEntries(mon, {renderer});
+
+		const {
+			htmlPtIsExcluded,
+			htmlPtName,
+			htmlPtSizeTypeAlignment,
+
+			htmlPtAttributeHeaders,
+			htmlPtAttributeValues,
+
+			htmlPtAbilityScores,
+
+			htmlPtsResources,
+			htmlPtSkills,
+			htmlPtVulnerabilities,
+			htmlPtResistances,
+			htmlPtSenses,
+			htmlPtLanguages,
+
+			htmlPtActions,
+			htmlPtBonusActions,
+			htmlPtReactions,
+			htmlPtLegendaryActions,
+			htmlPtMythicActions,
+
+			htmlPtLairActions,
+			htmlPtRegionalEffects,
+
+			htmlPtVariants,
+		} = this._getCommonHtmlParts({
+			mon,
+			renderer,
+			opts,
+
+			isInlinedToken,
+
+			isShowCrScaler,
+			isShowSpellLevelScaler,
+			isShowClassLevelScaler,
+
+			entsTrait,
+			entsAction,
+			entsBonusAction,
+			entsReaction,
+			legGroup,
+		});
+
+		const {
+			htmlPtSavingThrows,
+
+			htmlPtImmunities,
+
+			htmlPtTraits,
+		} = this._getHtmlParts({
+			mon,
+			renderer,
+
+			isInlinedToken,
+
+			entsTrait,
+		});
+
+		return `
+			${htmlPtIsExcluded}
+			${htmlPtName}
+			<tr><td colspan="6" class="pt-0 pb-1"><div class="ve-tbl-border ve-tbl-border--small"></div></td></tr>
+			${htmlPtSizeTypeAlignment}
+			<tr><td colspan="6">
+				<table class="w-100 summary-noback relative table-layout-fixed my-1">
+					${htmlPtAttributeHeaders}
+					${htmlPtAttributeValues}
+				</table>
+			</td></tr>
+			${htmlPtAbilityScores}
+			<tr><td colspan="6">
+				<div class="rd__compact-stat mt-2">
+					${htmlPtsResources.join("")}
+					${htmlPtSavingThrows}
+					${htmlPtSkills}
+					${htmlPtVulnerabilities}
+					${htmlPtResistances}
+					${htmlPtImmunities}
+					${htmlPtSenses}
+					${htmlPtLanguages}
+				</div>
+			</td></tr>
+			${htmlPtTraits}
+			${htmlPtActions}
+			${htmlPtBonusActions}
+			${htmlPtReactions}
+			${htmlPtLegendaryActions}
+			${htmlPtMythicActions}
+			${htmlPtLairActions}
+			${htmlPtRegionalEffects}
+			${htmlPtVariants}
+		`;
+	}
+}
+
 Renderer.monster = class {
 	static CHILD_PROPS = ["action", "bonus", "reaction", "trait", "legendary", "mythic", "variant", "spellcasting"];
 
@@ -8714,6 +9423,31 @@ Renderer.monster = class {
 		return `${mon.level ? `${Parser.getOrdinalForm(mon.level)}-level ` : ""}${typeObj.asTextSidekick ? `${typeObj.asTextSidekick}; ` : ""}${Renderer.utils.getRenderedSize(mon.size)}${mon.sizeNote ? ` ${mon.sizeNote}` : ""} ${typeObj.asText}${mon.alignment ? `, ${mon.alignmentPrefix ? Renderer.get().render(mon.alignmentPrefix) : ""}${Parser.alignmentListToFull(mon.alignment).toTitleCase()}` : ""}`;
 	}
 
+	static getInitiativePart (mon) {
+		const initBonus = this._getInitiativeBonus({mon});
+		const initPassive = this._getInitiativePassive({mon, initBonus});
+		if (initBonus == null || initPassive == null) return "\u2014";
+		return `${Renderer.get().render(`{@initiative ${initBonus}}`)} (${initPassive})`;
+	}
+
+	static _getInitiativeBonus ({mon}) {
+		if (mon.initiative == null && mon.dex == null) return null;
+		if (mon.initiative == null) return Parser.getAbilityModNumber(mon.dex);
+		if (typeof mon.initiative === "number") return mon.initiative;
+		if (typeof mon.initiative !== "object") return null;
+		if (typeof mon.initiative.initiative === "number") return mon.initiative.initiative;
+		if (mon.dex == null) return;
+		const profBonus = mon.initiative.proficient && Parser.crToNumber(mon.cr) < VeCt.CR_CUSTOM ? Parser.crToPb(mon.cr) : 0;
+		return Parser.getAbilityModNumber(mon.dex) + profBonus;
+	}
+
+	static _getInitiativePassive ({mon, initBonus}) {
+		if (initBonus == null) return null;
+		if (mon.initiative == null || typeof mon.initiative !== "object") return 10 + initBonus;
+		const advDisMod = mon.initiative.advantageMode === "adv" ? 5 : mon.initiative.advantageMode === "dis" ? -5 : 0;
+		return 10 + initBonus + advDisMod;
+	}
+
 	static getSavesPart (mon) { return `${Object.keys(mon.save || {}).sort(SortUtil.ascSortAtts).map(s => Renderer.monster.getSave(Renderer.get(), s, mon.save[s])).join(", ")}`; }
 
 	static getSensesPart (mon, {isTitleCase = false} = {}) { return `${mon.senses ? `${Renderer.utils.getRenderedSenses(mon.senses, {isTitleCase})}, ` : ""}${isTitleCase ? "Passive" : "passive"} Perception ${mon.passive || "\u2014"}`; }
@@ -8727,7 +9461,7 @@ Renderer.monster = class {
 
 	/**
 	 * @param {object} mon
-	 * @param {"classic" | null} styleHint
+	 * @param {"classic" | "one" | null} styleHint
 	 * @param {boolean} isPlainText
 	 * @return {string}
 	 */
@@ -8738,6 +9472,7 @@ Renderer.monster = class {
 
 		switch (styleHint) {
 			case "classic": return this._getChallengeRatingPart_classic({mon, isPlainText});
+			case "one": return this._getChallengeRatingPart_one({mon, isPlainText});
 			default: throw new Error(`Unhandled style "${styleHint}"!`);
 		}
 	}
@@ -8756,6 +9491,48 @@ Renderer.monster = class {
 		if (mon.cr.lair) stack.push(`${getBasicCrRender(mon.cr.lair)} when encountered in lair`);
 		if (mon.cr.coven) stack.push(`${getBasicCrRender(mon.cr.coven)} when part of a coven`);
 		return stack.joinConjunct(", ", " or ");
+	}
+
+	static _getChallengeRatingPart_one ({mon, isPlainText = false} = {}) {
+		if (Parser.crToNumber(mon.cr) >= VeCt.CR_CUSTOM) return mon.cr;
+
+		const crBase = mon.cr.cr ?? mon.cr;
+
+		// TODO(ODND) speculative text; revise
+		const ptsXp = [
+			Parser.crToXp(crBase),
+			mon.mythic ? `${Parser.crToXp(crBase, {isDouble: true})} as a mythic encounter` : null,
+		]
+			.filter(Boolean);
+
+		if (typeof mon.cr !== "string") {
+			if (mon.cr.lair) ptsXp.push(`${Parser.crToXp(mon.cr.lair)} in lair`);
+			if (mon.cr.coven) ptsXp.push(`${Parser.crToXp(mon.cr.coven)} when part of a coven`);
+		}
+
+		const ptPbVal = Renderer.monster.getPbPart(mon, {isPlainText});
+
+		const ptParens = [
+			ptsXp.length ? `XP ${ptsXp.joinConjunct(", ", " or ")}` : "",
+			ptPbVal ? `${isPlainText ? "PB" : `<span title="Proficiency Bonus">PB</span>`} ${ptPbVal}` : "",
+		]
+			.filter(Boolean)
+			.join("; ");
+
+		return `${crBase}${ptParens ? ` (${ptParens})` : ""}`;
+	}
+
+	/* -------------------------------------------- */
+
+	static getImmunitiesCombinedPart (mon) {
+		if (!mon.immune && !mon.conditionImmune) return "";
+
+		const ptImmune = mon.immune ? Parser.getFullImmRes(mon.immune, {isTitleCase: true}) : "";
+		const ptConditionImmune = mon.conditionImmune ? Parser.getFullCondImm(mon.conditionImmune, {isTitleCase: true}) : "";
+
+		const hasSemi = ptImmune && ptConditionImmune && (ptImmune.includes(";") || ptConditionImmune.includes(";"));
+
+		return [ptImmune, ptConditionImmune].join(hasSemi ? `<span class="italic">;</span> ` : "; ");
 	}
 
 	/* -------------------------------------------- */
@@ -8785,6 +9562,7 @@ Renderer.monster = class {
 	}
 
 	static _RENDER_CLASSIC = new _RenderCompactBestiaryImplClassic();
+	static _RENDER_ONE = new _RenderCompactBestiaryImplOne();
 
 	/**
 	 * @param ent
@@ -8800,6 +9578,7 @@ Renderer.monster = class {
 		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
 		switch (styleHint) {
 			case "classic": return this._RENDER_CLASSIC.getCompactRenderedString(ent, opts);
+			case "one": return this._RENDER_ONE.getCompactRenderedString(ent, opts);
 			default: throw new Error(`Unhandled style "${styleHint}"!`);
 		}
 	}
@@ -8912,9 +9691,53 @@ Renderer.monster = class {
 		<tr>${abvsRemaining.map(ab => `<td class="ve-text-center">${Renderer.utils.getAbilityRoller(mon, ab)}</td>`).join("")}</tr>`;
 	}
 
+	static _getRenderedAbilityScores_one ({mon, renderer}) {
+		renderer ||= Renderer.get();
+
+		const {abvsRemaining, ptsSpecial} = this._getRenderedAbilityScores_getSpecialMeta({mon});
+		const ptSpecial = ptsSpecial.map(pt => `<tr><td colspan="6">${pt}</td></tr>`).join("");
+
+		const ptHeaders = Array.from(
+			{length: 12},
+			(_, i) => `<div class="ve-muted ve-text-center small-caps">${i % 4 === 2 ? "mod" : i % 4 === 3 ? "save" : ""}</div>`,
+		)
+			.join("");
+
+		Object.keys(mon.save || {})
+			.map(s => Renderer.monster.getSave(Renderer.get(), s, mon.save[s]));
+
+		let cntSpecialSaves = 0;
+		const ptsCells = Parser.ABIL_ABVS
+			.flatMap((abv, i) => {
+				const styleName = i < 3 ? "physical" : "mental";
+
+				const numScore = abvsRemaining.includes(abv) ? mon[abv] : null;
+				const ptScore = numScore != null ? `${mon[abv]}` : `\u2013`;
+				const ptBonus = numScore != null ? Renderer.utils.getAbilityRoller(mon, abv, {isDisplayAsBonus: true}) : `\u2013`;
+				const ptSave = renderer.render(`{@savingThrow ${abv} ${mon.save?.[abv] == null ? ptScore : mon.save[abv]}}`);
+
+				return [
+					`<div class="bold small-caps ve-text-right stats__disp-as-score stats__disp-as-score--label stats__disp-as-score--${styleName}">${abv.toTitleCase()}</div>`,
+					`<div class="ve-text-center stats__disp-as-score stats__disp-as-score--${styleName}">${ptScore}</div>`,
+					`<div class="ve-text-center stats__disp-as-bonus stats__disp-as-bonus--${styleName}">${ptBonus}</div>`,
+					`<div class="ve-text-center stats__disp-as-bonus stats__disp-as-bonus--${styleName} ${i % 3 !== 2 ? "mr-2" : ""}">${ptSave}</div>`,
+				];
+			})
+			.join("");
+
+		return `
+		<tr><td colspan="6" class="pt-0 pb-3">
+			<div class="stats__grid-ability-scores">
+				${ptHeaders}
+				${ptsCells}
+			</div>
+		</td></tr>
+		${ptSpecial}`;
+	}
+
 	/**
 	 * @param {object}} mon
-	 * @param {"classic" | null} styleHint
+	 * @param {"classic" | "one" | null} styleHint
 	 * @param {?Renderer} renderer
 	 */
 	static getRenderedAbilityScores (mon, {styleHint = null, renderer = null} = {}) {
@@ -8922,6 +9745,7 @@ Renderer.monster = class {
 
 		switch (styleHint) {
 			case "classic": return Renderer.monster._getRenderedAbilityScores_classic({mon, renderer});
+			case "one": return Renderer.monster._getRenderedAbilityScores_one({mon, renderer});
 			default: throw new Error(`Unhandled style "${styleHint}"!`);
 		}
 	}
@@ -9352,6 +10176,7 @@ Renderer.item = class {
 			.sort(Renderer.item._sortProperties)
 			.map(p => {
 				const pFull = Renderer.item.getProperty(p);
+				if (!pFull) return "";
 
 				if (pFull.template) {
 					const toRender = Renderer.utils.applyTemplate(
@@ -9370,7 +10195,8 @@ Renderer.item = class {
 
 					return renderer.render(toRender);
 				} else return pFull.name;
-			});
+			})
+			.filter(Boolean);
 
 		if (!renderedDmg2 && item.dmg2) renderedProperties.unshift(`alt. ${Renderer.item._renderDamage(item.dmg2, {renderer})}`);
 
@@ -9719,6 +10545,7 @@ Renderer.item = class {
 		MiscUtil.set(this._propertyMap, sourceLookupFallback, abvLookup, cpy);
 	}
 
+	static _ERRORS_LOGGED_MISSING_PROPERTY = {};
 	static getProperty (uid, {isIgnoreMissing = false} = {}) {
 		const {abbreviation, source} = DataUtil.itemProperty.unpackUid(uid || "", {isLower: true});
 
@@ -9727,7 +10554,14 @@ Renderer.item = class {
 			// Fall back on sourceless tag
 			|| this._propertyMap?.[Parser.SRC_PHB.toLowerCase()]?.[abbreviation];
 
-		if (!isIgnoreMissing && !out) throw new Error(`Item property ${uid} not found. You probably meant to load the property reference first.`);
+		if (!isIgnoreMissing && !out) {
+			if (!this._ERRORS_LOGGED_MISSING_PROPERTY[uid]) {
+				this._ERRORS_LOGGED_MISSING_PROPERTY[uid] = true;
+				const msg = `Item property "${uid}" not found!`;
+				JqueryUtil.doToast({type: "danger", content: msg});
+				setTimeout(() => { throw new Error(msg); });
+			}
+		}
 		return out;
 	}
 
@@ -9760,6 +10594,7 @@ Renderer.item = class {
 		MiscUtil.set(this._typeMap, sourceLookupFallback, abvLookup, cpy);
 	}
 
+	static _ERRORS_LOGGED_MISSING_TYPE = {};
 	static getType (uid, {isIgnoreMissing = false} = {}) {
 		const {abbreviation, source} = DataUtil.itemType.unpackUid(uid || "", {isLower: true});
 
@@ -9767,7 +10602,14 @@ Renderer.item = class {
 			// TODO(Future; 2025-Q2) remove once all prerelease/homebrew migrated
 			// Fall back on sourceless tag
 			|| this._typeMap?.[Parser.SRC_PHB.toLowerCase()]?.[abbreviation];
-		if (!isIgnoreMissing && !out) throw new Error(`Item type ${uid} not found. You probably meant to load the type reference first.`);
+		if (!isIgnoreMissing && !out) {
+			if (!this._ERRORS_LOGGED_MISSING_TYPE[uid]) {
+				this._ERRORS_LOGGED_MISSING_TYPE[uid] = true;
+				const msg = `Item type "${uid}" not found!`;
+				JqueryUtil.doToast({type: "danger", content: msg});
+				setTimeout(() => { throw new Error(msg); });
+			}
+		}
 		return out;
 	}
 
@@ -9917,6 +10759,9 @@ Renderer.item = class {
 			if (curBaseItem.packContents) return; // e.g. "Arrows (20)"
 
 			genericVariants.forEach((curGenericVariant) => {
+				// Never make variants for "classic" baseitems, to avoid clashes with improved items
+				if (curBaseItem.edition === "classic") return;
+
 				if (!Renderer.item._createSpecificVariants_hasRequiredProperty(curBaseItem, curGenericVariant)) return;
 				if (Renderer.item._createSpecificVariants_hasExcludedProperty(curBaseItem, curGenericVariant)) return;
 
@@ -9978,7 +10823,9 @@ Renderer.item = class {
 
 		specificVariant._baseName = baseItem.name;
 		specificVariant._baseSrd = baseItem.srd;
+		specificVariant._baseSrd52 = baseItem.srd52;
 		specificVariant._baseBasicRules = baseItem.basicRules;
+		specificVariant._baseFreeRules2024 = baseItem.freeRules2024;
 		if (baseItem.source !== inherits.source) specificVariant._baseSource = baseItem.source;
 
 		specificVariant._variantName = genericVariant.name;
@@ -9988,7 +10835,9 @@ Renderer.item = class {
 
 		// Magic variants apply their own SRD info; page info
 		delete specificVariant.srd;
+		delete specificVariant.srd52;
 		delete specificVariant.basicRules;
+		delete specificVariant.freeRules2024;
 		delete specificVariant.page;
 
 		// Remove fluff specifiers
@@ -10080,7 +10929,12 @@ Renderer.item = class {
 			(specificVariant.lootTables = specificVariant.lootTables || []).push(...opts.linkedLootTables[specificVariant.source][specificVariant.name]);
 		}
 
-		if (baseItem.source !== Parser.SRC_PHB && baseItem.source !== Parser.SRC_DMG) {
+		if (
+			baseItem.source !== Parser.SRC_PHB
+			&& baseItem.source !== Parser.SRC_XPHB
+			&& baseItem.source !== Parser.SRC_DMG
+			&& baseItem.source !== Parser.SRC_XDMG
+		) {
 			Renderer.item._initFullEntries(specificVariant);
 			specificVariant._fullEntries.unshift({
 				type: "wrapper",
@@ -10258,7 +11112,7 @@ Renderer.item = class {
 	}
 
 	static getItemTypeName (t) {
-		return Renderer.item.getType(t).name?.toLowerCase() || t;
+		return Renderer.item.getType(t)?.name?.toLowerCase() || t;
 	}
 
 	static enhanceItem (item, {styleHint = null} = {}) {
@@ -10282,7 +11136,7 @@ Renderer.item = class {
 		if (item.property) {
 			item.property.forEach(p => {
 				const entProperty = Renderer.item.getProperty(p);
-				if (!entProperty.entries && !entProperty.entriesTemplate) return;
+				if (!entProperty?.entries && !entProperty?.entriesTemplate) return;
 
 				Renderer.item._initFullEntries(item);
 
@@ -10294,7 +11148,10 @@ Renderer.item = class {
 		if (itemTypeAbv === Parser.ITM_TYP_ABV__LIGHT_ARMOR || itemTypeAbv === Parser.ITM_TYP_ABV__MEDIUM_ARMOR || itemTypeAbv === Parser.ITM_TYP_ABV__HEAVY_ARMOR) {
 			if (item.stealth) {
 				Renderer.item._initFullEntries(item);
-				item._fullEntries.push({type: "wrapper", wrapped: "The wearer has disadvantage on Dexterity ({@skill Stealth}) checks.", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type"}});
+				const wrapped = styleHint === "classic"
+					? "The wearer has disadvantage on Dexterity ({@skill Stealth}) checks."
+					: "The wearer has {@variantrule Disadvantage|XPHB} on Dexterity ({@skill Stealth|XPHB}) checks.";
+				item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type"}});
 			}
 			if (itemTypeAbv === Parser.ITM_TYP_ABV__HEAVY_ARMOR && item.strength) {
 				Renderer.item._initFullEntries(item);
@@ -10305,30 +11162,46 @@ Renderer.item = class {
 			if (item._isItemGroup) {
 				if (item.scfType === "arcane" && item.source !== Parser.SRC_ERLW) {
 					Renderer.item._initFullEntries(item);
-					item._fullEntries.push({type: "wrapper", wrapped: "An arcane focus is a special item\u2014an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item\u2014designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus.", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
+					const wrapped = styleHint === "classic"
+						? "An arcane focus is a special item\u2014an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item\u2014designed to channel the power of arcane spells. A {@class sorcerer}, {@class warlock}, or {@class wizard} can use such an item as a spellcasting focus."
+						: "An Arcane Focus takes a specific form and is bejeweled or carved to channel arcane magic. A {@class Sorcerer|XPHB}, {@class Warlock|XPHB}, or {@class Wizard|XPHB} can use such an item as a {@variantrule Spellcasting Focus|XPHB}.";
+					item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
 				}
 				if (item.scfType === "druid") {
 					Renderer.item._initFullEntries(item);
-					item._fullEntries.push({type: "wrapper", wrapped: "A druidic focus might be a sprig of mistletoe or holly, a wand or scepter made of yew or another special wood, a staff drawn whole out of a living tree, or a totem object incorporating feathers, fur, bones, and teeth from sacred animals. A druid can use such an object as a spellcasting focus.", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
+					const wrapped = styleHint === "classic"
+						? "A druidic focus might be a sprig of mistletoe or holly, a wand or scepter made of yew or another special wood, a staff drawn whole out of a living tree, or a totem object incorporating feathers, fur, bones, and teeth from sacred animals. A {@class druid} can use such an object as a spellcasting focus."
+						: "A Druidic Focus takes a specific form and is carved, tied with ribbon, or painted to channel primal magic. A {@class Druid|XPHB} or {@class Ranger|XPHB} can use such an object as a {@variantrule Spellcasting Focus|XPHB}.";
+					item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
 				}
 				if (item.scfType === "holy") {
 					Renderer.item._initFullEntries(item);
-					item._fullEntries.push({type: "wrapper", wrapped: "A holy symbol is a representation of a god or pantheon. It might be an amulet depicting a symbol representing a deity, the same symbol carefully engraved or inlaid as an emblem on a shield, or a tiny box holding a fragment of a sacred relic. A cleric or paladin can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield.", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
+					const wrapped = styleHint === "classic"
+						? "A holy symbol is a representation of a god or pantheon. It might be an amulet depicting a symbol representing a deity, the same symbol carefully engraved or inlaid as an emblem on a shield, or a tiny box holding a fragment of a sacred relic. A cleric or paladin can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield."
+						: "A Holy Symbol takes a specific form and is bejeweled or painted to channel divine magic. A {@class Cleric|XPHB} or {@class Paladin|XPHB} can use a Holy Symbol as a {@variantrule Spellcasting Focus|XPHB}.";
+					item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
 				}
 			} else {
 				if (item.scfType === "arcane") {
 					Renderer.item._initFullEntries(item);
-					item._fullEntries.push({type: "wrapper", wrapped: "An arcane focus is a special item designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus.", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
+					const wrapped = styleHint === "classic"
+						? "An arcane focus is a special item designed to channel the power of arcane spells. A {@class sorcerer}, {@class warlock}, or {@class wizard} can use such an item as a spellcasting focus."
+						: "An Arcane Focus takes a specific form and is bejeweled or carved to channel arcane magic. A {@class Sorcerer|XPHB}, {@class Warlock|XPHB}, or {@class Wizard|XPHB} can use such an item as a {@variantrule Spellcasting Focus|XPHB}.";
+					item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
 				}
 				if (item.scfType === "druid") {
 					Renderer.item._initFullEntries(item);
-					item._fullEntries.push({type: "wrapper", wrapped: "A druid can use this object as a spellcasting focus.", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
+					const wrapped = styleHint === "classic"
+						? "A {@class druid} can use this object as a spellcasting focus."
+						: "A Druidic Focus takes a specific form and is carved, tied with ribbon, or painted to channel primal magic. A {@class Druid|XPHB} or {@class Ranger|XPHB} can use such an object as a {@variantrule Spellcasting Focus|XPHB}.";
+					item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
 				}
 				if (item.scfType === "holy") {
 					Renderer.item._initFullEntries(item);
-
-					item._fullEntries.push({type: "wrapper", wrapped: "A holy symbol is a representation of a god or pantheon.", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
-					item._fullEntries.push({type: "wrapper", wrapped: "A cleric or paladin can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield.", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
+					const wrapped = styleHint === "classic"
+						? "A holy symbol is a representation of a god or pantheon. A {@class cleric} or {@class paladin} can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield."
+						: "A Holy Symbol takes a specific form and is bejeweled or painted to channel divine magic. A {@class Cleric|XPHB} or {@class Paladin|XPHB} can use a Holy Symbol as a {@variantrule Spellcasting Focus|XPHB}.";
+					item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
 				}
 			}
 		}
@@ -12468,13 +13341,42 @@ Renderer.hover = class {
 		return meta;
 	}
 
+	static getHoverElementAttributes (
+		{
+			page,
+			source,
+			hash,
+			preloadId = null,
+			isFauxPage = false,
+			isAllowRedirect = false,
+		},
+	) {
+		return [
+			`onmouseover="Renderer.hover.pHandleLinkMouseOver(event, this)"`,
+			`onmouseleave="Renderer.hover.handleLinkMouseLeave(event, this)"`,
+			`onmousemove="Renderer.hover.handleLinkMouseMove(event, this)"`,
+			`onclick="Renderer.hover.handleLinkClick(event, this)"`,
+			`ondragstart="Renderer.hover.handleLinkDragStart(event, this)"`,
+			`data-vet-page="${page.qq()}"`,
+			`data-vet-source="${source.qq()}"`,
+			`data-vet-hash="${hash.qq()}"`,
+			preloadId != null ? `data-vet-preload-id="${`${preloadId}`.qq()}"` : "",
+			isFauxPage ? `data-vet-is-faux-page="true"` : "",
+			isAllowRedirect ? `data-vet-is-allow-redirect="true"` : "",
+			Renderer.hover.getPreventTouchString(),
+		]
+			.filter(Boolean)
+			.join(" ");
+	}
+
 	static getLinkElementData (ele) {
 		return {
-			page: ele.dataset.vetPage,
-			source: ele.dataset.vetSource,
-			hash: ele.dataset.vetHash,
-			preloadId: ele.dataset.vetPreloadId,
-			isFauxPage: ele.dataset.vetIsFauxPage,
+			page: ele.getAttribute("data-vet-page"),
+			source: ele.getAttribute("data-vet-source"),
+			hash: ele.getAttribute("data-vet-hash"),
+			preloadId: ele.getAttribute("data-vet-preload-id"),
+			isFauxPage: ele.getAttribute("data-vet-is-faux-page") === "true",
+			isAllowRedirect: ele.getAttribute("data-vet-is-allow-redirect") === "true",
 		};
 	}
 
@@ -12482,7 +13384,7 @@ Renderer.hover = class {
 	static async pHandleLinkMouseOver (evt, ele, opts) {
 		Renderer.hover._doInit();
 
-		let page, source, hash, preloadId, customHashId, isFauxPage;
+		let page, source, hash, preloadId, customHashId, isFauxPage, isAllowRedirect;
 		if (opts) {
 			page = opts.page;
 			source = opts.source;
@@ -12490,6 +13392,7 @@ Renderer.hover = class {
 			preloadId = opts.preloadId;
 			customHashId = opts.customHashId;
 			isFauxPage = !!opts.isFauxPage;
+			isAllowRedirect = !!opts.isAllowRedirect;
 		} else {
 			({
 				page,
@@ -12497,8 +13400,12 @@ Renderer.hover = class {
 				hash,
 				preloadId,
 				isFauxPage,
+				isAllowRedirect,
 			} = Renderer.hover.getLinkElementData(ele));
 		}
+
+		const redirectMeta = await this._pHandleLinkMouseOver_pGetVersionRedirectMeta({page, source, hash, preloadId, customHashId, isAllowRedirect});
+		if (redirectMeta != null) ({page, source, hash} = redirectMeta);
 
 		let meta = Renderer.hover._handleGenericMouseOverStart({evt, ele});
 		if (meta == null) return;
@@ -12585,6 +13492,24 @@ Renderer.hover = class {
 			const fnBind = Renderer.hover.getFnBindListenersCompact(page);
 			if (fnBind) fnBind(toRender, $content);
 		}
+	}
+
+	static _VERSION_REDIRECT_LOOKUP = null;
+	static async _pHandleLinkMouseOver_pGetVersionRedirectMeta ({page, source, hash, preloadId, customHashId, isAllowRedirect}) {
+		if (!isAllowRedirect || preloadId || customHashId) return null;
+		if (VetoolsConfig.get("styleSwitcher", "style") === "classic") return null;
+
+		const redirectLookup = await (
+			this._VERSION_REDIRECT_LOOKUP ||= DataUtil.loadJSON(`${Renderer.get().baseUrl}data/generated/gendata-tag-redirects.json`)
+		);
+
+		const fromLookup = MiscUtil.get(redirectLookup, page, hash);
+		if (!fromLookup) return null;
+
+		const hashNxt = fromLookup.hash || fromLookup;
+		const pageNxt = fromLookup.page || page;
+		const decodedNxt = await UrlUtil.pAutoDecodeHash(hashNxt, {page: pageNxt});
+		return {page: pageNxt, hash: hashNxt, source: decodedNxt.source || source};
 	}
 
 	// (Baked into render strings)
@@ -13558,7 +14483,7 @@ Renderer.hover = class {
 
 	static getGenericCompactRenderedString (entry, depth = 0) {
 		return `
-			<tr class="homebrew-hover"><td colspan="6" class="pb-2">
+			<tr><td colspan="6" class="pb-2">
 			${Renderer.get().setFirstSection(true).render(entry, depth)}
 			</td></tr>
 		`;

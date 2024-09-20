@@ -35,7 +35,8 @@ export class UtilsFoundryItem {
 		"rings of",
 		"robe of",
 		"slippers of",
-	].map(it => new RegExp(`(?:[ (]|^)${it}`, "i"));
+		"signet",
+	].map(it => new RegExp(`\\b${it}\\b`, "i"));
 
 	static getFoundryItemType (item) {
 		const itemTypeAbv = item.type ? DataUtil.itemType.unpackUid(item.type).abbreviation : null;
@@ -76,6 +77,12 @@ export class UtilsFoundryItem {
 			|| itemTypeAbv === Parser.ITM_TYP_ABV__SPELLCASTING_FOCUS
 		) return this._TYPE_EQUIPMENT;
 
+		if (
+			itemTypeAbv === Parser.ITM_TYP_ABV__WAND
+			|| itemTypeAbv === Parser.ITM_TYP_ABV__ROD
+			|| itemTypeAbv === Parser.ITM_TYP_ABV__RING
+		) return this._TYPE_EQUIPMENT;
+
 		if (item.containerCapacity) return this._TYPE_CONTAINER;
 
 		// Classify some "other" items as "trinket"-type equipment
@@ -95,7 +102,7 @@ export class UtilsFoundryItem {
 			|| item.wondrous
 		) return this._TYPE_EQUIPMENT;
 
-		// Try to process various equipment-sounding item names as equipment (e.g. rings, bracers)
+		// Try to process various equipment-sounding item names as equipment (e.g. gloves, bracers)
 		if (this._ITEM_EQUIPMENT_NAME_RES.some(it => it.test(item.name))) return this._TYPE_EQUIPMENT;
 
 		// Treat everything else as loot

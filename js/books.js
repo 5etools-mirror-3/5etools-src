@@ -14,7 +14,7 @@ class BooksList extends AdventuresBooksList {
 			},
 			rowBuilderFn: (bk) => {
 				return `
-					<span class="ve-col-1-3 ve-text-center">${AdventuresBooksList._getGroupStr(bk)}</span>
+					<span class="ve-col-1-3 ve-text-center">${AdventuresBooksList._getGroupHtml(bk)}</span>
 					<span class="ve-col-8-5 bold">${bk.name}</span>
 					<span class="ve-grow ve-text-center code">${AdventuresBooksList._getDateStr(bk)}</span>
 				`;

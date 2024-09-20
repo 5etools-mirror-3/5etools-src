@@ -1,6 +1,6 @@
 import {ConverterUiUtil} from "./converter-ui-utils.js";
 import {VetoolsConfig} from "../utils-config/utils-config-config.js";
-import {SITE_STYLE__CLASSIC, SITE_STYLE_DISPLAY} from "../consts.js";
+import {SITE_STYLE__CLASSIC, SITE_STYLE__ONE, SITE_STYLE_DISPLAY} from "../consts.js";
 
 export class ConverterUiBase extends BaseComponent {
 	static _getDisplayMode (mode) {
@@ -15,6 +15,7 @@ export class ConverterUiBase extends BaseComponent {
 	/**
 	 * @param ui Converter UI instance.
 	 * @param opts Options object.
+	 * @param opts.name Converter name.
 	 * @param opts.converterId Converter unique ID.
 	 * @param [opts.canSaveLocal] If the output of this converter is suitable for saving to local homebrew.
 	 * @param opts.modes Available converter parsing modes (e.g. "txt", "html", "md")
@@ -27,6 +28,7 @@ export class ConverterUiBase extends BaseComponent {
 		super();
 		this._ui = ui;
 
+		this._name = opts.name;
 		this._converterId = opts.converterId;
 		this._canSaveLocal = !!opts.canSaveLocal;
 		this._modes = opts.modes;
@@ -40,6 +42,7 @@ export class ConverterUiBase extends BaseComponent {
 		this._addHookAll("state", this._ui.saveSettingsDebounced);
 	}
 
+	get name () { return this._name; }
 	get converterId () { return this._converterId; }
 	get canSaveLocal () { return this._canSaveLocal; }
 	get prop () { return this._prop; }
@@ -60,6 +63,17 @@ export class ConverterUiBase extends BaseComponent {
 	_renderSidebar () { throw new Error("Unimplemented!"); }
 	handleParse () { throw new Error("Unimplemented!"); }
 	_getSample () { throw new Error("Unimplemented!"); }
+
+	/* -------------------------------------------- */
+
+	setBaseSaveableStateFrom (savedState, ...rest) {
+		// Validate state
+		if (savedState?.state) {
+			if (!SITE_STYLE_DISPLAY[savedState.state.styleHint]) savedState.state.styleHint = SITE_STYLE__CLASSIC;
+		}
+
+		return super.setBaseSaveableStateFrom(savedState, ...rest);
+	}
 
 	/* -------------------------------------------- */
 
@@ -286,6 +300,7 @@ export class ConverterUiBase extends BaseComponent {
 			{
 				values: [
 					SITE_STYLE__CLASSIC,
+					SITE_STYLE__ONE,
 				],
 				fnDisplay: val => SITE_STYLE_DISPLAY[val],
 			},

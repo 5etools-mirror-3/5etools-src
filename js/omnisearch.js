@@ -199,6 +199,57 @@ class Omnisearch {
 
 	/* -------------------------------------------- */
 
+	static async pGetFilteredResults (results, {isApplySrdFilter = false} = {}) {
+		Omnisearch.initState();
+
+		if (isApplySrdFilter && this._state.isSrdOnly) {
+			results = results.filter(r => r.doc.r);
+		}
+
+		if (!this._state.isShowPartnered) {
+			results = results.filter(r => !r.doc.s || !r.doc.dP);
+		}
+
+		if (!this._state.isShowBrew) {
+			// Always filter in partnered, as these are handled by the more specific filter, above
+			results = results.filter(r => !r.doc.s || r.doc.dP || !BrewUtil2.hasSourceJson(r.doc.s));
+		}
+
+		if (!this._state.isShowUa) {
+			results = results.filter(r => !r.doc.s || !SourceUtil.isNonstandardSourceWotc(r.doc.s));
+		}
+
+		if (!this._state.isShowLegacy) {
+			results = results.filter(r => !r.doc.s || !SourceUtil.isLegacySourceWotc(r.doc.s));
+		}
+
+		if (!this._state.isShowBlocklisted && ExcludeUtil.getList().length) {
+			const resultsNxt = [];
+			for (const r of results) {
+				if (r.doc.c === Parser.CAT_ID_QUICKREF || r.doc.c === Parser.CAT_ID_PAGE) {
+					resultsNxt.push(r);
+					continue;
+				}
+
+				const bCat = Parser.pageCategoryToProp(r.doc.c);
+				if (bCat !== "item") {
+					if (!ExcludeUtil.isExcluded(r.doc.u, bCat, r.doc.s, {isNoCount: true})) resultsNxt.push(r);
+					continue;
+				}
+
+				const item = await DataLoader.pCacheAndGetHash(UrlUtil.PG_ITEMS, r.doc.u);
+				if (!Renderer.item.isExcluded(item, {hash: r.doc.u})) resultsNxt.push(r);
+			}
+			results = resultsNxt;
+		}
+
+		results.sort(this._sortResults);
+
+		return results;
+	}
+
+	/* -------------------------------------------- */
+
 	static async pGetResults (searchTerm) {
 		searchTerm = (searchTerm || "").toAscii();
 
@@ -286,46 +337,7 @@ class Omnisearch {
 			);
 		}
 
-		if (this._state.isSrdOnly) {
-			results = results.filter(r => r.doc.r);
-		}
-
-		if (!this._state.isShowPartnered) {
-			results = results.filter(r => !r.doc.s || !r.doc.dP);
-		}
-
-		if (!this._state.isShowBrew) {
-			// Always filter in partnered, as these are handled by the more specific filter, above
-			results = results.filter(r => !r.doc.s || r.doc.dP || !BrewUtil2.hasSourceJson(r.doc.s));
-		}
-
-		if (!this._state.isShowUa) {
-			results = results.filter(r => !r.doc.s || !SourceUtil.isNonstandardSourceWotc(r.doc.s));
-		}
-
-		if (!this._state.isShowBlocklisted && ExcludeUtil.getList().length) {
-			const resultsNxt = [];
-			for (const r of results) {
-				if (r.doc.c === Parser.CAT_ID_QUICKREF || r.doc.c === Parser.CAT_ID_PAGE) {
-					resultsNxt.push(r);
-					continue;
-				}
-
-				const bCat = Parser.pageCategoryToProp(r.doc.c);
-				if (bCat !== "item") {
-					if (!ExcludeUtil.isExcluded(r.doc.u, bCat, r.doc.s, {isNoCount: true})) resultsNxt.push(r);
-					continue;
-				}
-
-				const item = await DataLoader.pCacheAndGetHash(UrlUtil.PG_ITEMS, r.doc.u);
-				if (!Renderer.item.isExcluded(item, {hash: r.doc.u})) resultsNxt.push(r);
-			}
-			results = resultsNxt;
-		}
-
-		results.sort(this._sortResults);
-
-		return results;
+		return this.pGetFilteredResults(results, {isApplySrdFilter: true});
 	}
 
 	// region Search
@@ -335,19 +347,12 @@ class Omnisearch {
 	}
 
 	static _renderLink_getHoverString (category, url, src, {isFauxPage = false} = {}) {
-		return [
-			`onmouseover="Renderer.hover.pHandleLinkMouseOver(event, this)"`,
-			`onmouseleave="Renderer.hover.handleLinkMouseLeave(event, this)"`,
-			`onmousemove="Renderer.hover.handleLinkMouseMove(event, this)"`,
-			`ondragstart="Renderer.hover.handleLinkDragStart(event, this)"`,
-			`data-vet-page="${UrlUtil.categoryToHoverPage(category).qq()}"`,
-			`data-vet-source="${src.qq()}"`,
-			`data-vet-hash="${url.qq()}"`,
-			isFauxPage ? `data-vet-is-faux-page="true"` : "",
-			Renderer.hover.getPreventTouchString(),
-		]
-			.filter(Boolean)
-			.join(" ");
+		return Renderer.hover.getHoverElementAttributes({
+			page: UrlUtil.categoryToHoverPage(category),
+			source: src,
+			hash: url,
+			isFauxPage,
+		});
 	}
 
 	static _isFauxPage (r) {
@@ -373,6 +378,7 @@ class Omnisearch {
 	static _btnToggleBrew = null;
 	static _btnToggleUa = null;
 	static _btnToggleBlocklisted = null;
+	static _btnToggleLegacy = null;
 	static _btnToggleSrd = null;
 
 	static _doInitBtnToggleFilter (
@@ -433,6 +439,13 @@ class Omnisearch {
 		});
 
 		this._doInitBtnToggleFilter({
+			propState: "isShowLegacy",
+			propBtn: "_btnToggleLegacy",
+			title: "Include legacy content results",
+			text: "Legacy",
+		});
+
+		this._doInitBtnToggleFilter({
 			propState: "isSrdOnly",
 			propBtn: "_btnToggleSrd",
 			title: "Only show Systems Reference Document content results",
@@ -455,7 +468,10 @@ class Omnisearch {
 				${this._btnTogglePartnered}
 				${this._btnToggleBrew}
 				${this._btnToggleUa}
+			</div>
+			<div class="ve-btn-group ve-flex-v-center mr-2">
 				${this._btnToggleBlocklisted}
+				${this._btnToggleLegacy}
 			</div>
 			${this._btnToggleSrd}
 			${btnHelp}
@@ -472,6 +488,7 @@ class Omnisearch {
 				source,
 				page,
 				isSrd,
+				isSrd52,
 
 				ptStyle,
 				sourceAbv,
@@ -495,7 +512,8 @@ class Omnisearch {
 				${$link}
 				<div class="ve-flex-v-center">
 					${ptSource}
-					${isSrd ? `<span class="ve-muted omni__disp-srd help-subtle relative" title="Available in the Systems Reference Document">[SRD]</span>` : ""}
+					${isSrd ? `<span class="ve-muted omni__disp-srd help-subtle relative" title="Available in the Systems Reference Document (5.1)">[SRD]</span>` : ""}
+					${isSrd52 ? `<span class="ve-muted omni__disp-srd help-subtle relative" title="Available in the Systems Reference Document (5.2)">[SRD]</span>` : ""}
 					${Parser.sourceJsonToMarkerHtml(source, {isList: false, additionalStyles: "omni__disp-source-marker"})}
 					${ptPage ? `<span class="omni__wrp-page small-caps">${ptPage}</span>` : ""}
 				</div>
@@ -551,6 +569,7 @@ class Omnisearch {
 		isShowBrew: true,
 		isShowUa: true,
 		isShowBlocklisted: false,
+		isShowLegacy: false,
 		isSrdOnly: false,
 	};
 
@@ -566,11 +585,14 @@ class Omnisearch {
 			get isShowBrew () { return this._state.isShowBrew; }
 			get isShowUa () { return this._state.isShowUa; }
 			get isShowBlocklisted () { return this._state.isShowBlocklisted; }
+			get isShowLegacy () { return this._state.isShowLegacy; }
 			get isSrdOnly () { return this._state.isSrdOnly; }
+
 			set isShowPartnered (val) { this._state.isShowPartnered = !!val; }
 			set isShowBrew (val) { this._state.isShowBrew = !!val; }
 			set isShowUa (val) { this._state.isShowUa = !!val; }
 			set isShowBlocklisted (val) { this._state.isShowBlocklisted = !!val; }
+			set isShowLegacy (val) { this._state.isShowLegacy = !!val; }
 			set isSrdOnly (val) { this._state.isSrdOnly = !!val; }
 		}
 		this._state = SearchState.fromObject(saved);
@@ -583,17 +605,21 @@ class Omnisearch {
 	static addHookBrew (hk) { this._state._addHookBase("isShowBrew", hk); }
 	static addHookUa (hk) { this._state._addHookBase("isShowUa", hk); }
 	static addHookBlocklisted (hk) { this._state._addHookBase("isShowBlocklisted", hk); }
+	static addHookLegacy (hk) { this._state._addHookBase("isShowLegacy", hk); }
 	static addHookSrdOnly (hk) { this._state._addHookBase("isSrdOnly", hk); }
+
 	static doTogglePartnered () { this._state.isShowPartnered = !this._state.isShowPartnered; }
 	static doToggleBrew () { this._state.isShowBrew = !this._state.isShowBrew; }
 	static doToggleUa () { this._state.isShowUa = !this._state.isShowUa; }
 	static doToggleBlocklisted () { this._state.isShowBlocklisted = !this._state.isShowBlocklisted; }
+	static doToggleLegacy () { this._state.isShowLegacy = !this._state.isShowLegacy; }
 	static doToggleSrdOnly () { this._state.isSrdOnly = !this._state.isSrdOnly; }
+
 	static get isShowPartnered () { return this._state.isShowPartnered; }
 	static get isShowBrew () { return this._state.isShowBrew; }
 	static get isShowUa () { return this._state.isShowUa; }
+	static get isShowLegacy () { return this._state.isShowLegacy; }
 	static get isShowBlocklisted () { return this._state.isShowBlocklisted; }
-	static get isSrdOnly () { return this._state.isSrdOnly; }
 
 	static async _pDoSearchLoad () {
 		elasticlunr.clearStopWords();

@@ -46,18 +46,19 @@ class NavBar {
 		this._addElement_li(null, "index.html", "Home", {isRoot: true});
 
 		this._addElement_dropdown(null, NavBar._CAT_RULES);
-		this._addElement_li(NavBar._CAT_RULES, "quickreference.html", "Quick Reference");
-		this._addElement_li(NavBar._CAT_RULES, "variantrules.html", "Optional, Variant, and Expanded Rules");
+		this._addElement_li(NavBar._CAT_RULES, "variantrules.html", "Rules Glossary");
 		this._addElement_li(NavBar._CAT_RULES, "tables.html", "Tables");
 		this._addElement_divider(NavBar._CAT_RULES);
 		this._addElement_dropdown(NavBar._CAT_RULES, NavBar._CAT_BOOKS, {isSide: true, page: "books.html"});
 		this._addElement_li(NavBar._CAT_BOOKS, "books.html", "View All/Homebrew");
+		this._addElement_divider(NavBar._CAT_RULES);
+		this._addElement_li(NavBar._CAT_RULES, "quickreference.html", "Quick Reference (2014)");
 
 		this._addElement_dropdown(null, NavBar._CAT_PLAYER);
 		this._addElement_li(NavBar._CAT_PLAYER, "classes.html", "Classes");
 		this._addElement_li(NavBar._CAT_PLAYER, "backgrounds.html", "Backgrounds");
 		this._addElement_li(NavBar._CAT_PLAYER, "feats.html", "Feats");
-		this._addElement_li(NavBar._CAT_PLAYER, "races.html", "Races");
+		this._addElement_li(NavBar._CAT_PLAYER, "races.html", "Species");
 		this._addElement_li(NavBar._CAT_PLAYER, "charcreationoptions.html", "Other Character Creation Options");
 		this._addElement_li(NavBar._CAT_PLAYER, "optionalfeatures.html", "Other Options & Features");
 		this._addElement_divider(NavBar._CAT_PLAYER);
@@ -412,7 +413,7 @@ class NavBar {
 
 		const a = document.createElement("a");
 		a.href = href;
-		a.innerHTML = `${this._addElement_getDatePrefix({date: opts.date, isAddDateSpacer: opts.isAddDateSpacer})}${this._addElement_getSourcePrefix({source: opts.source})}${aText}`;
+		a.innerHTML = `${this._addElement_getDatePrefix({date: opts.date, isAddDateSpacer: opts.isAddDateSpacer})}${this._addElement_getSourcePrefix({source: opts.source})}${aText}${this._addElement_getSourceSuffix({source: opts.source})}`;
 		a.classList.add("nav__link");
 		if (opts.isInAccordion) a.classList.add(`nav2-accord__lnk-item`, `inline-block`, `w-100`);
 
@@ -489,6 +490,11 @@ class NavBar {
 
 	static _addElement_getDatePrefix ({date, isAddDateSpacer}) { return `${(date != null || isAddDateSpacer) ? `<div class="ve-small mr-2 page__nav-date inline-block ve-text-right inline-block">${date || ""}</div>` : ""}`; }
 	static _addElement_getSourcePrefix ({source}) { return `${source != null ? `<div class="nav2-list__disp-source ${Parser.sourceJsonToSourceClassname(source)}" ${Parser.sourceJsonToStyle(source)}></div>` : ""}`; }
+
+	static _addElement_getSourceSuffix ({source}) {
+		if (source == null) return "";
+		return Parser.sourceJsonToMarkerHtml(source, {isList: false, additionalStyles: "ml-1 nav2-list__disp-legacy-marker"});
+	}
 
 	static _addElement_divider (parentCategory) {
 		const parentNode = this._getNode(parentCategory);

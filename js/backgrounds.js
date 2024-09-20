@@ -5,12 +5,17 @@ class BackgroundSublistManager extends SublistManager {
 		return [
 			new SublistCellTemplate({
 				name: "Name",
-				css: "bold ve-col-4 pl-0 pr-1",
+				css: "bold ve-col-3 pl-0 pr-1",
+				colStyle: "",
+			}),
+			new SublistCellTemplate({
+				name: "Ability",
+				css: "ve-col-5 px-1",
 				colStyle: "",
 			}),
 			new SublistCellTemplate({
 				name: "Skills",
-				css: "ve-col-8 pl-1 pr-0",
+				css: "ve-col-4 pl-1 pr-0",
 				colStyle: "",
 			}),
 		];
@@ -19,7 +24,11 @@ class BackgroundSublistManager extends SublistManager {
 	pGetSublistItem (it, hash) {
 		const name = it.name.replace("Variant ", "");
 		const {summary: skills} = Renderer.generic.getSkillSummary({skillProfs: it.skillProficiencies || [], isShort: true});
-		const cellsText = [name, skills];
+		const cellsText = [
+			name,
+			new SublistCell({text: it._slAbility, css: it._slAbility === VeCt.STR_NONE ? "italic" : ""}),
+			skills,
+		];
 
 		const $ele = $$`<div class="lst__row lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="lst__row-border lst__row-inner">
@@ -77,8 +86,9 @@ class BackgroundPage extends ListPage {
 		const source = Parser.sourceJsonToAbv(bg.source);
 
 		eleLi.innerHTML = `<a href="#${hash}" class="lst__row-border lst__row-inner">
-			<span class="bold ve-col-4 pl-0 pr-1">${name}</span>
-			<span class="ve-col-6 px-1">${bg._skillDisplay}</span>
+			<span class="bold ve-col-2-5 pl-0 pr-1">${name}</span>
+			<span class="ve-col-3-5 px-1 ${bg._slAbility === VeCt.STR_NONE ? "italic" : ""}">${bg._slAbility}</span>
+			<span class="ve-col-4 px-1">${bg._skillDisplay}</span>
 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(bg.source)}  pl-1 pr-0" title="${Parser.sourceJsonToFull(bg.source)}" ${Parser.sourceJsonToStyle(bg.source)}>${source}</span>
 		</a>`;
 
@@ -89,6 +99,7 @@ class BackgroundPage extends ListPage {
 			{
 				hash,
 				source,
+				ability: bg._slAbility,
 				skills: bg._skillDisplay,
 			},
 			{
@@ -110,3 +121,5 @@ class BackgroundPage extends ListPage {
 const backgroundsPage = new BackgroundPage();
 backgroundsPage.sublistManager = new BackgroundSublistManager();
 window.addEventListener("load", () => backgroundsPage.pOnLoad());
+
+globalThis.dbg_page = backgroundsPage;

@@ -417,7 +417,9 @@ PropOrder._MONSTER = [
 	"page",
 
 	"srd",
+	"srd52",
 	"basicRules",
+	"freeRules2024",
 	"additionalSources",
 	"otherSources",
 	"reprintedAs",
@@ -648,9 +650,12 @@ PropOrder._SPELL = [
 	"source",
 	"page",
 	"srd",
+	"srd52",
 	"basicRules",
+	"freeRules2024",
 	"additionalSources",
 	"otherSources",
+	"reprintedAs",
 
 	PropOrder._ObjectKey.getCopyKey({fnGetModOrder: () => PropOrder._SPELL__COPY_MOD}),
 
@@ -765,8 +770,11 @@ PropOrder._ACTION = [
 	"source",
 	"page",
 	"srd",
+	"srd52",
 	"basicRules",
+	"freeRules2024",
 	"otherSources",
+	"reprintedAs",
 
 	"fromVariant",
 
@@ -839,9 +847,12 @@ PropOrder._BACKGROUND = [
 	"source",
 	"page",
 	"srd",
+	"srd52",
 	"basicRules",
+	"freeRules2024",
 	"additionalSources",
 	"otherSources",
+	"reprintedAs",
 
 	PropOrder._ObjectKey.getCopyKey({fnGetModOrder: () => PropOrder._BACKGROUND__COPY_MOD}),
 
@@ -914,9 +925,12 @@ PropOrder._CLASS = [
 	"source",
 	"page",
 	"srd",
-	"isReprinted",
+	"srd52",
 	"basicRules",
+	"freeRules2024",
 	"otherSources",
+	"isReprinted",
+	"reprintedAs",
 
 	"isSidekick",
 	"classGroup",
@@ -993,9 +1007,12 @@ PropOrder._SUBCLASS = [
 
 	"page",
 	"srd",
-	"isReprinted",
+	"srd52",
 	"basicRules",
+	"freeRules2024",
 	"otherSources",
+	"isReprinted",
+	"reprintedAs",
 
 	new PropOrder._ObjectKey("_copy", {
 		order: [
@@ -1105,7 +1122,9 @@ PropOrder._CLASS_FEATURE = [
 	"source",
 	"page",
 	"srd",
+	"srd52",
 	"basicRules",
+	"freeRules2024",
 	"otherSources",
 
 	"className",
@@ -1134,7 +1153,9 @@ PropOrder._SUBCLASS_FEATURE = [
 	"source",
 	"page",
 	"srd",
+	"srd52",
 	"basicRules",
+	"freeRules2024",
 	"otherSources",
 
 	"className",
@@ -1233,9 +1254,12 @@ PropOrder._LANGUAGE = [
 	"source",
 	"page",
 	"srd",
+	"srd52",
 	"basicRules",
+	"freeRules2024",
 	"additionalSources",
 	"otherSources",
+	"reprintedAs",
 
 	"type",
 	"typicalSpeakers",
@@ -1273,8 +1297,11 @@ PropOrder._CONDITION = [
 	"source",
 	"page",
 	"srd",
+	"srd52",
 	"basicRules",
+	"freeRules2024",
 	"otherSources",
+	"reprintedAs",
 
 	"color",
 
@@ -1292,8 +1319,11 @@ PropOrder._DISEASE = [
 	"source",
 	"page",
 	"srd",
+	"srd52",
 	"basicRules",
+	"freeRules2024",
 	"otherSources",
+	"reprintedAs",
 
 	"color",
 
@@ -1313,8 +1343,11 @@ PropOrder._STATUS = [
 	"source",
 	"page",
 	"srd",
+	"srd52",
 	"basicRules",
+	"freeRules2024",
 	"otherSources",
+	"reprintedAs",
 
 	"color",
 
@@ -1332,7 +1365,9 @@ PropOrder._CULT = [
 	"source",
 	"page",
 	"srd",
+	"srd52",
 	"basicRules",
+	"freeRules2024",
 	"additionalSources",
 	"otherSources",
 	"reprintedAs",
@@ -1352,7 +1387,9 @@ PropOrder._BOON = [
 	"source",
 	"page",
 	"srd",
+	"srd52",
 	"basicRules",
+	"freeRules2024",
 	"additionalSources",
 	"otherSources",
 	"reprintedAs",
@@ -1376,7 +1413,9 @@ PropOrder._DEITY = [
 	"source",
 	"page",
 	"srd",
+	"srd52",
 	"basicRules",
+	"freeRules2024",
 	"additionalSources",
 	"otherSources",
 
@@ -1429,9 +1468,12 @@ PropOrder._FEAT = [
 	"source",
 	"page",
 	"srd",
+	"srd52",
 	"basicRules",
+	"freeRules2024",
 	"additionalSources",
 	"otherSources",
+	"reprintedAs",
 
 	PropOrder._ObjectKey.getCopyKey({fnGetModOrder: () => PropOrder._FEAT__COPY_MOD}),
 
@@ -1485,7 +1527,9 @@ PropOrder._VEHICLE = [
 	"source",
 	"page",
 	"srd",
+	"srd52",
 	"basicRules",
+	"freeRules2024",
 	"otherSources",
 
 	"vehicleType",
@@ -1560,7 +1604,9 @@ PropOrder._VEHICLE_UPGRADE = [
 	"source",
 	"page",
 	"srd",
+	"srd52",
 	"basicRules",
+	"freeRules2024",
 	"otherSources",
 
 	"upgradeType",
@@ -1589,7 +1635,9 @@ PropOrder._ITEM = [
 	"source",
 	"page",
 	"srd",
+	"srd52",
 	"basicRules",
+	"freeRules2024",
 	"additionalSources",
 	"otherSources",
 	"reprintedAs",
@@ -1789,6 +1837,10 @@ PropOrder._ITEM_MASTERY = [
 	"source",
 
 	"page",
+	"srd",
+	"srd52",
+	"basicRules",
+	"freeRules2024",
 
 	"prerequisite",
 
@@ -1800,6 +1852,11 @@ PropOrder._ITEM_PROPERTY = [
 
 	"source",
 	"page",
+	"srd",
+	"srd52",
+	"basicRules",
+	"freeRules2024",
+	"reprintedAs",
 
 	PropOrder._ObjectKey.getCopyKey({
 		identKeys: [
@@ -1828,6 +1885,11 @@ PropOrder._ITEM_TYPE = [
 
 	"source",
 	"page",
+	"srd",
+	"srd52",
+	"basicRules",
+	"freeRules2024",
+	"reprintedAs",
 
 	PropOrder._ObjectKey.getCopyKey({
 		identKeys: [
@@ -1876,7 +1938,9 @@ PropOrder._OBJECT = [
 	"source",
 	"page",
 	"srd",
+	"srd52",
 	"basicRules",
+	"freeRules2024",
 	"otherSources",
 
 	"size",
@@ -1924,8 +1988,11 @@ PropOrder._OPTIONALFEATURE = [
 	"source",
 	"page",
 	"srd",
+	"srd52",
 	"basicRules",
+	"freeRules2024",
 	"otherSources",
+	"reprintedAs",
 
 	PropOrder._ObjectKey.getCopyKey({fnGetModOrder: () => PropOrder._OPTIONALFEATURE__COPY_MOD}),
 
@@ -1992,6 +2059,7 @@ PropOrder._REWARD = [
 
 	"source",
 	"page",
+	"reprintedAs",
 
 	"type",
 
@@ -2013,9 +2081,12 @@ PropOrder._VARIANTRULE = [
 	"source",
 	"page",
 	"srd",
+	"srd52",
 	"basicRules",
+	"freeRules2024",
 	"additionalSources",
 	"otherSources",
+	"reprintedAs",
 
 	"ruleType",
 
@@ -2027,7 +2098,9 @@ PropOrder._VARIANTRULE = [
 PropOrder._RACE_SUBRACE = [
 	"page",
 	"srd",
+	"srd52",
 	"basicRules",
+	"freeRules2024",
 	"additionalSources",
 	"otherSources",
 	"reprintedAs",
@@ -2066,6 +2139,11 @@ PropOrder._RACE_SUBRACE = [
 	"soundClip",
 
 	"additionalSpells",
+
+	"abilityEntry",
+	"creatureTypesEntry",
+	"sizeEntry",
+	"speedEntry",
 
 	"entries",
 
@@ -2152,7 +2230,9 @@ PropOrder._TABLE = [
 	"source",
 	"page",
 	"srd",
+	"srd52",
 	"basicRules",
+	"freeRules2024",
 	"otherSources",
 
 	"type",
@@ -2183,7 +2263,9 @@ PropOrder._TRAP = [
 	"source",
 	"page",
 	"srd",
+	"srd52",
 	"basicRules",
+	"freeRules2024",
 	"otherSources",
 
 	"trapHazType",
@@ -2218,7 +2300,9 @@ PropOrder._HAZARD = [
 	"source",
 	"page",
 	"srd",
+	"srd52",
 	"basicRules",
+	"freeRules2024",
 	"additionalSources",
 	"otherSources",
 	"reprintedAs",
@@ -2291,8 +2375,11 @@ PropOrder._SKILL = [
 	"source",
 	"page",
 	"srd",
+	"srd52",
 	"basicRules",
+	"freeRules2024",
 	"otherSources",
+	"reprintedAs",
 
 	"ability",
 
@@ -2305,8 +2392,11 @@ PropOrder._SENSE = [
 	"source",
 	"page",
 	"srd",
+	"srd52",
 	"basicRules",
+	"freeRules2024",
 	"otherSources",
+	"reprintedAs",
 
 	"entries",
 ];
@@ -2317,7 +2407,9 @@ PropOrder._DECK = [
 	"source",
 	"page",
 	"srd",
+	"srd52",
 	"basicRules",
+	"freeRules2024",
 	"otherSources",
 
 	PropOrder._ObjectKey.getCopyKey({fnGetModOrder: () => PropOrder._DECK__COPY_MOD}),
@@ -2343,7 +2435,9 @@ PropOrder._CARD = [
 	"set",
 	"page",
 	"srd",
+	"srd52",
 	"basicRules",
+	"freeRules2024",
 	"otherSources",
 
 	"suit",

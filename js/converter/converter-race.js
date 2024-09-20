@@ -4,6 +4,7 @@ import {TagJsons} from "./converterutils-entries.js";
 import {RaceImmResVulnTag, RaceLanguageTag, RaceTraitTag} from "./converterutils-race.js";
 import {EntryCoalesceEntryLists, EntryCoalesceRawLines} from "./converterutils-entrycoalesce.js";
 import {ConverterFeatureBase} from "./converter-feature.js";
+import {SITE_STYLE__CLASSIC} from "../consts.js";
 
 class _ConversionStateTextRace extends ConversionStateTextBase {
 
@@ -17,6 +18,21 @@ class _ConversionStateMarkdownRace extends ConversionStateMarkdownBase {
 }
 
 export class ConverterRace extends ConverterFeatureBase {
+	static _doParse_getInitialState (inText, options) {
+		const out = super._doParse_getInitialState(inText, options);
+
+		out.toConvert = out.toConvert
+			.filter(line => {
+				if (/[yY]ou have the following traits[.:]$/.test(line)) return false;
+				if (/As [^.]+, you have (?:these|the following) special traits[.:]$/.test(line)) return false;
+				return true;
+			});
+
+		return out;
+	}
+
+	/* -------------------------------------------- */
+
 	/**
 	 * Parses races from raw text pastes
 	 * @param inText Input text.
@@ -62,12 +78,14 @@ export class ConverterRace extends ConverterFeatureBase {
 		const name = state.curLine.replace(/ Traits$/i, "");
 		state.entity.name = this._getAsTitle("name", name, state.options.titleCaseFields, state.options.isTitleCase);
 
-		// region Skip over intro line
+		// region Skip repeated name line
 		const nextLineMeta = state.getNextLineMeta();
 
-		if (!/[yY]ou have the following traits[.:]$/.test(nextLineMeta.nxtLine.trim())) return;
-
-		state.ixToConvert = nextLineMeta.ixToConvertNext;
+		if (
+			new RegExp(`^${name.escapeRegexp()} Traits$`).test(nextLineMeta.nxtLine.trim())
+		) {
+			state.ixToConvert = nextLineMeta.ixToConvertNext;
+		}
 		// endregion
 	}
 
@@ -202,8 +220,10 @@ export class ConverterRace extends ConverterFeatureBase {
 
 		const isAbilitySet = this._doPostProcess_setAbility(race, options);
 		if (!isAbilitySet) {
-			// If there is no ASI info, we assume ~~the worst~~ it's a post-VRGR "lineage" race
-			race.lineage = "VRGR";
+			if (options.styleHint === SITE_STYLE__CLASSIC) {
+				// If there is no ASI info, we assume ~~the worst~~ it's a post-VRGR "lineage" race
+				race.lineage = "VRGR";
+			}
 		}
 
 		// region Race-specific cleanup and generation
@@ -219,8 +239,21 @@ export class ConverterRace extends ConverterFeatureBase {
 		// endregion
 	}
 
+	static _getNamedEntry ({race, reName}) {
+		const entEntry = race.entries.find(it => reName.test(it.name || ""));
+		if (entEntry) return {entry: entEntry, isInRoot: true};
+
+		if (race.entries[0]?.type !== "list") return null;
+		const [lst] = race.entries;
+
+		const entList = lst.items.find(it => reName.test(it.name || ""));
+		if (!entList) return null;
+
+		return {entry: entList, isInRoot: false};
+	}
+
 	static _doRacePostProcess_size (race, options) {
-		const entry = race.entries.find(it => (it.name || "").toLowerCase() === "size");
+		const {entry, isInRoot} = this._getNamedEntry({race, reName: /^Size:?$/i}) || {};
 		if (entry?.entries?.length !== 1) return options.cbWarning(`Could not convert size\u2014no valid "Size" entry found!`);
 
 		const text = entry.entries[0];
@@ -231,13 +264,29 @@ export class ConverterRace extends ConverterFeatureBase {
 			race.size = [
 				mSimple.groups.size.toUpperCase()[0],
 			];
+
 			// Filter out "redundant" size info, as it will be displayed in subtitle
-			race.entries = race.entries.filter(it => it !== entry);
+			if (isInRoot) race.entries = race.entries.filter(it => it !== entry);
+			else race.hasSizeEntry = true;
+
 			return;
 		}
 
-		// "Choose whether you are Small or Medium sized.
+		// "Medium (about 4–5 feet tall)"
+		const mSimpleShort = /^(?<size>Medium|Small|Tiny) \([^)]+\)$/.exec(text);
+		if (mSimpleShort) {
+			race.size = [
+				mSimpleShort.groups.size.toUpperCase()[0],
+			];
 
+			// Filter out "redundant" size info, as it will be displayed in subtitle
+			if (isInRoot) race.entries = race.entries.filter(it => it !== entry);
+			else race.hasSizeEntry = true;
+
+			return;
+		}
+
+		// "Choose whether you are Small or Medium sized."
 		const mChooseTwo = /\b(?:You are|Your size is) (?<size1>Medium) or (?<size2>Small)\b/.exec(text)
 			|| /\bChoose whether you are (?<size1>Small) or (?<size2>Medium) sized?\b/.exec(text);
 		if (mChooseTwo) {
@@ -248,11 +297,22 @@ export class ConverterRace extends ConverterFeatureBase {
 			return;
 		}
 
+		// "Medium (about 4-7 feet tall) or Small (about 2-4 feet tall), chosen when you select this species"
+		const mChooseTwoSpecies = /^(?<size1>Medium) \([^)]+\) or (?<size2>Small) \([^)]+\)/.exec(text);
+		if (mChooseTwoSpecies) {
+			race.size = [
+				mChooseTwoSpecies.groups.size1.toUpperCase()[0],
+				mChooseTwoSpecies.groups.size2.toUpperCase()[0],
+			];
+			if (!isInRoot) race.hasSizeEntry = true;
+			return;
+		}
+
 		options.cbWarning(`Size text "${text}" requires manual conversion!`);
 	}
 
 	static _doRacePostProcess_speed (race, options) {
-		const entry = race.entries.find(it => (it.name || "").toLowerCase() === "speed");
+		const {entry, isInRoot} = this._getNamedEntry({race, reName: /^Speed:?$/i}) || {};
 		if (entry?.entries?.length !== 1) return options.cbWarning(`Could not convert speed\u2014no valid "Speed" entry found!`);
 
 		const text = entry.entries[0];
@@ -260,8 +320,22 @@ export class ConverterRace extends ConverterFeatureBase {
 		const mSimple = /^Your (?:base )?(?:walking )?speed is (?<speed>\d+) feet\.?$/.exec(text);
 		if (mSimple) {
 			race.speed = Number(mSimple.groups.speed);
-			// Filter out "redundant" speed info, as it will be displayed in subtitle
-			race.entries = race.entries.filter(it => it !== entry);
+
+			// Filter out "redundant" size info, as it will be displayed in subtitle
+			if (isInRoot) race.entries = race.entries.filter(it => it !== entry);
+			else race.hasSpeedEntry = true;
+
+			return;
+		}
+
+		const mSimpleShort = /^(?<speed>\d+) feet\.?$/.exec(text);
+		if (mSimpleShort) {
+			race.speed = Number(mSimpleShort.groups.speed);
+
+			// Filter out "redundant" size info, as it will be displayed in subtitle
+			if (isInRoot) race.entries = race.entries.filter(it => it !== entry);
+			else race.hasSpeedEntry = true;
+
 			return;
 		}
 
@@ -334,14 +408,30 @@ export class ConverterRace extends ConverterFeatureBase {
 		}
 	}
 
-	static _RE_CREATURE_TYPES = new RegExp(`You are(?: an?)? (?<type>${Parser.MON_TYPES.map(it => it.uppercaseFirst()).join("|")})(?:\\.|$)`);
+	static _RE_CREATURE_TYPES = new RegExp(`^You are(?: an?)? (?<type>${Parser.MON_TYPES.map(it => it.uppercaseFirst()).join("|")})(?:\\.|$)`);
+	static _RE_CREATURE_TYPES_SHORT = new RegExp(`^(?<type>${Parser.MON_TYPES.map(it => it.uppercaseFirst()).join("|")})\\.?$`);
 	static _doRacePostProcess_creatureType (race, options) {
-		const entry = race.entries.find(it => (it.name || "").toLowerCase() === "creature type");
+		const {entry, isInRoot} = this._getNamedEntry({race, reName: /^Creature Type:?$/i}) || {};
 		if (!entry) return; // If unspecified, defaults to humanoid
 
 		if (entry?.entries?.length !== 1) return options.cbWarning(`Could not convert creature type\u2014no valid "Creature Type" entry found!`);
 
 		let text = entry.entries[0];
+
+		const mSimpleShort = this._RE_CREATURE_TYPES_SHORT.exec(text);
+		if (mSimpleShort) {
+			const type = mSimpleShort.groups.type.toLowerCase();
+
+			// Filter out "redundant" creature type info, as we assume "undefined" = "humanoid"
+			if (isInRoot && type === Parser.TP_HUMANOID) {
+				race.entries = race.entries.filter(it => it !== entry);
+			} else {
+				race.creatureTypes = [type];
+				race.hasCreatureTypeEntry = true;
+			}
+
+			return;
+		}
 
 		const types = [];
 		text = text
@@ -374,7 +464,7 @@ export class ConverterRace extends ConverterFeatureBase {
 	}
 
 	static _doRacePostProcess_darkvision (race, options) {
-		const entry = race.entries.find(it => (it.name || "").toLowerCase() === "darkvision");
+		const {entry} = this._getNamedEntry({race, reName: /^Darkvision:?$/i}) || {};
 		if (!entry?.entries?.length) return;
 
 		const walker = MiscUtil.getWalker({isNoModification: true, isBreakOnReturn: true});
@@ -382,19 +472,23 @@ export class ConverterRace extends ConverterFeatureBase {
 			entry,
 			{
 				string: (str) => {
-					const mDarkvision = /\bsee [^.]+ dim light [^.]+ (?<radius>\d+) feet [^.]+ bright light/i.exec(str);
-					if (!mDarkvision) return;
+					const stStripped = Renderer.stripTags(str);
 
-					race.darkvision = Number(mDarkvision.groups.radius);
+					const mDarkvision = /\bsee [^.]+ dim light [^.]+ (?<radius>\d+) feet [^.]+ bright light/i.exec(stStripped);
+					if (mDarkvision) {
+						race.darkvision = Number(mDarkvision.groups.radius);
+						return true;
+					}
 
-					return true;
+					const mDarkvisionShort = /You have Darkvision with a range of (?<radius>\d+) feet/.exec(stStripped);
+					if (mDarkvisionShort) {
+						race.darkvision = Number(mDarkvisionShort.groups.radius);
+						return true;
+					}
+
+					return false;
 				},
 			},
 		);
-	}
-
-	// SHARED PARSING FUNCTIONS ////////////////////////////////////////////////////////////////////////////////////////
-	static _setX (race, options, curLine) {
-
 	}
 }

@@ -638,7 +638,7 @@ export class DamageResistanceImmunityVulnerabilityTag {
 						outer.push(full);
 						full = full.split(/ except /gi)[0];
 						full.replace(ConverterConst.RE_DAMAGE_TYPE, (full, dmgType) => {
-							all.add(dmgType);
+							all.add(dmgType.toLowerCase());
 						});
 					});
 				},

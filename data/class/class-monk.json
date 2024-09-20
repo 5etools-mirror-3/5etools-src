@@ -5,6 +5,9 @@
 			"source": "PHB",
 			"page": 76,
 			"srd": true,
+			"reprintedAs": [
+				"Monk|XPHB"
+			],
 			"hd": {
 				"number": 1,
 				"faces": 8
@@ -493,6 +496,497 @@
 			"subclassTitle": "Monastic Tradition",
 			"hasFluff": true,
 			"hasFluffImages": true
+		},
+		{
+			"name": "Monk",
+			"source": "XPHB",
+			"page": 100,
+			"primaryAbility": [
+				{
+					"dex": true,
+					"wis": true
+				}
+			],
+			"hd": {
+				"number": 1,
+				"faces": 8
+			},
+			"proficiency": [
+				"str",
+				"dex"
+			],
+			"startingProficiencies": {
+				"weapons": [
+					"simple",
+					"Martial weapons that have the {@filter Light|items|type=martial weapon|property=light} property"
+				],
+				"weaponProficiencies": [
+					{
+						"simple": true,
+						"all": {
+							"fromFilter": "type=martial weapon|property=light"
+						}
+					}
+				],
+				"tools": [
+					"Choose one type of {@item Artisan's Tools|XPHB} or {@item Musical Instrument|XPHB}"
+				],
+				"toolProficiencies": [
+					{
+						"anyArtisansTool": 1
+					},
+					{
+						"anyMusicalInstrument": 1
+					}
+				],
+				"skills": [
+					{
+						"choose": {
+							"from": [
+								"acrobatics",
+								"athletics",
+								"history",
+								"insight",
+								"religion",
+								"stealth"
+							],
+							"count": 2
+						}
+					}
+				]
+			},
+			"startingEquipment": {
+				"entries": [
+					"{@i Choose A or B:} (A) {@item Spear|XPHB}, 5 {@item Dagger|XPHB|Daggers}, {@item Artisan's Tools|XPHB} or {@item Musical Instrument|XPHB} chosen for the tool proficiency above, {@item Explorer's Pack|XPHB}, and 11 GP; or (B) 50 GP"
+				],
+				"defaultData": [
+					{
+						"A": [
+							{
+								"item": "spear|xphb"
+							},
+							{
+								"item": "dagger|xphb",
+								"quantity": 5
+							},
+							{
+								"equipmentTypes": [
+									"instrumentMusical",
+									"toolArtisan"
+								]
+							},
+							{
+								"item": "explorer's pack|xphb"
+							},
+							{
+								"value": 1100
+							}
+						],
+						"B": [
+							{
+								"value": 5000
+							}
+						]
+					}
+				]
+			},
+			"multiclassing": {},
+			"classTableGroups": [
+				{
+					"colLabels": [
+						"Martial Arts",
+						"Discipline Points",
+						"Unarmored Movement"
+					],
+					"rows": [
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 6
+									}
+								],
+								"rollable": true
+							},
+							0,
+							{
+								"type": "bonusSpeed",
+								"value": 0
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 6
+									}
+								],
+								"rollable": true
+							},
+							2,
+							{
+								"type": "bonusSpeed",
+								"value": 10
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 6
+									}
+								],
+								"rollable": true
+							},
+							3,
+							{
+								"type": "bonusSpeed",
+								"value": 10
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 6
+									}
+								],
+								"rollable": true
+							},
+							4,
+							{
+								"type": "bonusSpeed",
+								"value": 10
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 8
+									}
+								],
+								"rollable": true
+							},
+							5,
+							{
+								"type": "bonusSpeed",
+								"value": 10
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 8
+									}
+								],
+								"rollable": true
+							},
+							6,
+							{
+								"type": "bonusSpeed",
+								"value": 15
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 8
+									}
+								],
+								"rollable": true
+							},
+							7,
+							{
+								"type": "bonusSpeed",
+								"value": 15
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 8
+									}
+								],
+								"rollable": true
+							},
+							8,
+							{
+								"type": "bonusSpeed",
+								"value": 15
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 8
+									}
+								],
+								"rollable": true
+							},
+							9,
+							{
+								"type": "bonusSpeed",
+								"value": 15
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 8
+									}
+								],
+								"rollable": true
+							},
+							10,
+							{
+								"type": "bonusSpeed",
+								"value": 20
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 10
+									}
+								],
+								"rollable": true
+							},
+							11,
+							{
+								"type": "bonusSpeed",
+								"value": 20
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 10
+									}
+								],
+								"rollable": true
+							},
+							12,
+							{
+								"type": "bonusSpeed",
+								"value": 20
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 10
+									}
+								],
+								"rollable": true
+							},
+							13,
+							{
+								"type": "bonusSpeed",
+								"value": 20
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 10
+									}
+								],
+								"rollable": true
+							},
+							14,
+							{
+								"type": "bonusSpeed",
+								"value": 25
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 10
+									}
+								],
+								"rollable": true
+							},
+							15,
+							{
+								"type": "bonusSpeed",
+								"value": 25
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 10
+									}
+								],
+								"rollable": true
+							},
+							16,
+							{
+								"type": "bonusSpeed",
+								"value": 25
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 12
+									}
+								],
+								"rollable": true
+							},
+							17,
+							{
+								"type": "bonusSpeed",
+								"value": 25
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 12
+									}
+								],
+								"rollable": true
+							},
+							18,
+							{
+								"type": "bonusSpeed",
+								"value": 30
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 12
+									}
+								],
+								"rollable": true
+							},
+							19,
+							{
+								"type": "bonusSpeed",
+								"value": 30
+							}
+						],
+						[
+							{
+								"type": "dice",
+								"toRoll": [
+									{
+										"number": 1,
+										"faces": 12
+									}
+								],
+								"rollable": true
+							},
+							20,
+							{
+								"type": "bonusSpeed",
+								"value": 30
+							}
+						]
+					]
+				}
+			],
+			"classFeatures": [
+				"Martial Arts|Monk|XPHB|1",
+				"Unarmored Defense|Monk|XPHB|1",
+				"Monk's Focus|Monk|XPHB|2",
+				"Unarmored Movement|Monk|XPHB|2",
+				"Uncanny Metabolism|Monk|XPHB|2",
+				"Deflect Attacks|Monk|XPHB|3",
+				{
+					"classFeature": "Monk Subclass|Monk|XPHB|3",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Monk|XPHB|4",
+				"Slow Fall|Monk|XPHB|4",
+				"Extra Attack|Monk|XPHB|5",
+				"Stunning Strike|Monk|XPHB|5",
+				"Empowered Strikes|Monk|XPHB|6",
+				{
+					"classFeature": "Subclass Feature|Monk|XPHB|6",
+					"gainSubclassFeature": true
+				},
+				"Evasion|Monk|XPHB|7",
+				"Ability Score Improvement|Monk|XPHB|8",
+				"Acrobatic Movement|Monk|XPHB|9",
+				"Heightened Focus|Monk|XPHB|10",
+				"Self-Restoration|Monk|XPHB|10",
+				{
+					"classFeature": "Subclass Feature|Monk|XPHB|11",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Monk|XPHB|12",
+				"Deflect Energy|Monk|XPHB|13",
+				"Disciplined Survivor|Monk|XPHB|14",
+				"Perfect Focus|Monk|XPHB|15",
+				"Ability Score Improvement|Monk|XPHB|16",
+				{
+					"classFeature": "Subclass Feature|Monk|XPHB|17",
+					"gainSubclassFeature": true
+				},
+				"Superior Defense|Monk|XPHB|18",
+				"Epic Boon|Monk|XPHB|19",
+				"Body and Mind|Monk|XPHB|20"
+			],
+			"subclassTitle": "Monk Subclass",
+			"hasFluff": true,
+			"hasFluffImages": true
 		}
 	],
 	"subclass": [
@@ -503,6 +997,9 @@
 			"className": "Monk",
 			"classSource": "PHB",
 			"page": 80,
+			"reprintedAs": [
+				"Shadow|Monk|XPHB|XPHB"
+			],
 			"additionalSpells": [
 				{
 					"known": {
@@ -540,6 +1037,9 @@
 			"className": "Monk",
 			"classSource": "PHB",
 			"page": 80,
+			"reprintedAs": [
+				"Elements|Monk|XPHB|XPHB"
+			],
 			"spellcastingAbility": "wis",
 			"optionalfeatureProgression": [
 				{
@@ -575,6 +1075,9 @@
 			"classSource": "PHB",
 			"page": 79,
 			"srd": true,
+			"reprintedAs": [
+				"Open Hand|Monk|XPHB|XPHB"
+			],
 			"additionalSpells": [
 				{
 					"innate": {
@@ -680,6 +1183,9 @@
 			"className": "Monk",
 			"classSource": "PHB",
 			"page": 49,
+			"reprintedAs": [
+				"Mercy|Monk|XPHB|XPHB"
+			],
 			"subclassFeatures": [
 				"Way of Mercy|Monk||Mercy|TCE|3",
 				"Physician's Touch|Monk||Mercy|TCE|6",
@@ -733,6 +1239,86 @@
 				"Mystical Erudition (17th Level)|Monk|PHB|Cobalt Soul|TDCSR|17",
 				"Mind of Mercury|Monk|PHB|Cobalt Soul|TDCSR|11",
 				"Debilitating Barrage|Monk|PHB|Cobalt Soul|TDCSR|17"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Warrior of Mercy",
+			"shortName": "Mercy",
+			"source": "XPHB",
+			"className": "Monk",
+			"classSource": "XPHB",
+			"page": 104,
+			"subclassFeatures": [
+				"Warrior of Mercy|Monk|XPHB|Mercy|XPHB|3",
+				"Physician's Touch|Monk|XPHB|Mercy|XPHB|6",
+				"Flurry of Healing and Harm|Monk|XPHB|Mercy|XPHB|11",
+				"Hand of Ultimate Mercy|Monk|XPHB|Mercy|XPHB|17"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Warrior of Shadow",
+			"shortName": "Shadow",
+			"source": "XPHB",
+			"className": "Monk",
+			"classSource": "XPHB",
+			"page": 105,
+			"additionalSpells": [
+				{
+					"known": {
+						"3": [
+							"minor illusion|xphb#c"
+						]
+					},
+					"innate": {
+						"3": {
+							"resource": {
+								"1": [
+									"darkness|xphb"
+								]
+							}
+						}
+					},
+					"resourceName": "Focus Point",
+					"ability": "wis"
+				}
+			],
+			"subclassFeatures": [
+				"Warrior of Shadow|Monk|XPHB|Shadow|XPHB|3",
+				"Shadow Step|Monk|XPHB|Shadow|XPHB|6",
+				"Improved Shadow Step|Monk|XPHB|Shadow|XPHB|11",
+				"Cloak of Shadows|Monk|XPHB|Shadow|XPHB|17"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Warrior of the Elements",
+			"shortName": "Elements",
+			"source": "XPHB",
+			"className": "Monk",
+			"classSource": "XPHB",
+			"page": 106,
+			"subclassFeatures": [
+				"Warrior of the Elements|Monk|XPHB|Elements|XPHB|3",
+				"Elemental Burst|Monk|XPHB|Elements|XPHB|6",
+				"Stride of the Elements|Monk|XPHB|Elements|XPHB|11",
+				"Elemental Epitome|Monk|XPHB|Elements|XPHB|17"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Warrior of the Open Hand",
+			"shortName": "Open Hand",
+			"source": "XPHB",
+			"className": "Monk",
+			"classSource": "XPHB",
+			"page": 107,
+			"subclassFeatures": [
+				"Warrior of the Open Hand|Monk|XPHB|Open Hand|XPHB|3",
+				"Wholeness of Body|Monk|XPHB|Open Hand|XPHB|6",
+				"Fleet Step|Monk|XPHB|Open Hand|XPHB|11",
+				"Quivering Palm|Monk|XPHB|Open Hand|XPHB|17"
 			],
 			"hasFluffImages": true
 		}
@@ -1231,6 +1817,409 @@
 			"level": 20,
 			"entries": [
 				"At 20th level, when you roll for initiative and have no ki points remaining, you regain 4 ki points."
+			]
+		},
+		{
+			"name": "Martial Arts",
+			"source": "XPHB",
+			"page": 101,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"Your practice of martial arts gives you mastery of combat styles that use your {@variantrule Unarmed Strike|XPHB} and Monk weapons, which are the following:",
+				{
+					"type": "list",
+					"items": [
+						"{@filter Simple Melee Weapons|items|type=simple weapon;melee weapon=sand}",
+						"{@filter Martial Weapons that have the Light property|items|type=martial weapon|property=light}"
+					]
+				},
+				"You gain the following benefits while you are unarmed or wielding only Monk weapons and you aren't wearing armor or wielding a {@item Shield|XPHB}.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Bonus Unarmed Strike",
+							"entries": [
+								"You can make an {@variantrule Unarmed Strike|XPHB} as a {@variantrule Bonus Action|XPHB}."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Martial Arts Die",
+							"entries": [
+								"You can roll {@dice 1d6} in place of the normal damage of your {@variantrule Unarmed Strike|XPHB} or Monk weapons. This die changes as you gain Monk levels, as shown in the Martial Arts column of the Monk Features table."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Dexterous Attacks",
+							"entries": [
+								"You can use your Dexterity modifier instead of your Strength modifier for the attack and damage rolls of your Unarmed Strikes and Monk weapons. In addition, when you use the Grapple or Shove option of your {@variantrule Unarmed Strike|XPHB}, you can use your Dexterity modifier instead of your Strength modifier to determine the save DC."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Unarmored Defense",
+			"source": "XPHB",
+			"page": 101,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"While you aren't wearing armor or wielding a {@item Shield|XPHB}, your base {@variantrule Armor Class|XPHB} equals 10 plus your Dexterity and Wisdom modifiers."
+			]
+		},
+		{
+			"name": "Monk's Focus",
+			"source": "XPHB",
+			"page": 101,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 2,
+			"entries": [
+				"Your focus and martial training allow you to harness a well of extraordinary energy within yourself. This energy is represented by Focus Points. Your Monk level determines the number of points you have, as shown in the Focus Points column of the Monk Features table.",
+				"You can expend these points to enhance or fuel certain Monk features. You start knowing three such features: Flurry of Blows, Patient Defense, and Step of the Wind, each of which is detailed below.",
+				"When you expend a Focus Point, it is unavailable until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}, at the end of which you regain all your expended points.",
+				"Some features that use Focus Points require your target to make a saving throw. The save DC equals 8 plus your Wisdom modifier and {@variantrule Proficiency|XPHB} Bonus.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Flurry of Blows",
+							"entries": [
+								"You can expend 1 Focus Point to make two Unarmed Strikes as a {@variantrule Bonus Action|XPHB}."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Patient Defense",
+							"entries": [
+								"You can take the {@action Disengage|XPHB} action as a {@variantrule Bonus Action|XPHB}. Alternatively, you can expend 1 Focus Point to take both the {@action Disengage|XPHB} and the {@action Dodge|XPHB} actions as a {@variantrule Bonus Action|XPHB}."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Step of the Wind",
+							"entries": [
+								"You can take the {@action Dash|XPHB} action as a {@variantrule Bonus Action|XPHB}. Alternatively, you can expend 1 Focus Point to take both the {@action Disengage|XPHB} and {@action Dash|XPHB} actions as a {@variantrule Bonus Action|XPHB}, and your jump distance is doubled for the turn."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Unarmored Movement",
+			"source": "XPHB",
+			"page": 102,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 2,
+			"entries": [
+				"Your speed increases by 10 feet while you aren't wearing armor or wielding a {@item Shield|XPHB}. This bonus increases when you reach certain Monk levels, as shown on the Monk Features table."
+			]
+		},
+		{
+			"name": "Uncanny Metabolism",
+			"source": "XPHB",
+			"page": 102,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 2,
+			"entries": [
+				"When you roll {@variantrule Initiative|XPHB}, you can regain all expended Focus Points. When you do so, roll your Martial Arts die, and regain a number of {@variantrule Hit Points|XPHB} equal to your Monk level plus the number rolled.",
+				"Once you use this feature, you can't use it again until you finish a {@variantrule Long Rest|XPHB}."
+			]
+		},
+		{
+			"name": "Deflect Attacks",
+			"source": "XPHB",
+			"page": 102,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"When an attack roll hits you and its damage includes Bludgeoning, Piercing, or Slashing damage, you can take a {@variantrule Reaction|XPHB} to reduce the attack's total damage against you. The reduction equals {@dice 1d10} plus your Dexterity modifier and Monk level.",
+				"If you reduce the damage to 0, you can expend 1 Focus Point to redirect some of the attack's force. If you do so, choose a creature you can see within 5 feet of yourself if the attack was a melee attack or a creature you can see within 60 feet of yourself that isn't behind {@variantrule Cover|XPHB|Total Cover} if the attack was a ranged attack. That creature must succeed on a Dexterity saving throw or take damage equal to two rolls of your Martial Arts die plus your Dexterity modifier. The damage is the same type dealt by the attack."
+			]
+		},
+		{
+			"name": "Monk Subclass",
+			"source": "XPHB",
+			"page": 103,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"You gain a Monk subclass of your choice. A subclass is a specialization that grants you features at certain Monk levels. For the rest of your career, you gain each of your subclass's features that are of your Monk level or lower."
+			]
+		},
+		{
+			"name": "Ability Score Improvement",
+			"source": "XPHB",
+			"page": 103,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 4,
+			"entries": [
+				"You gain the {@feat Ability Score Improvement|XPHB} feat or another {@5etools feat|feats.html} of your choice for which you qualify. You gain this feature again at Monk levels 8, 12, and 16."
+			]
+		},
+		{
+			"name": "Slow Fall",
+			"source": "XPHB",
+			"page": 103,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 4,
+			"entries": [
+				"You can take a {@variantrule Reaction|XPHB} when you fall to reduce any damage you take from the fall by an amount equal to five times your Monk level."
+			]
+		},
+		{
+			"name": "Extra Attack",
+			"source": "XPHB",
+			"page": 103,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 5,
+			"entries": [
+				"You can attack twice instead of once whenever you take the {@action Attack|XPHB} action on your turn."
+			]
+		},
+		{
+			"name": "Stunning Strike",
+			"source": "XPHB",
+			"page": 103,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 5,
+			"entries": [
+				"Once per turn when you hit a creature with a Monk weapon or an {@variantrule Unarmed Strike|XPHB}, you can expend 1 Focus Point to attempt a stunning strike. The target must make a Constitution saving throw. On a failed save, the target has the {@condition Stunned|XPHB} condition until the start of your next turn. On a successful save, the target's {@variantrule Speed|XPHB} is halved until the start of your next turn, and the next attack roll made against the target before then has {@variantrule Advantage|XPHB}."
+			]
+		},
+		{
+			"name": "Empowered Strikes",
+			"source": "XPHB",
+			"page": 103,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 6,
+			"entries": [
+				"Whenever you deal damage with your {@variantrule Unarmed Strike|XPHB}, it can deal your choice of Force damage or its normal damage type."
+			]
+		},
+		{
+			"name": "Subclass Feature",
+			"source": "XPHB",
+			"page": 103,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 6,
+			"entries": [
+				"You gain a feature from your Monk subclass."
+			]
+		},
+		{
+			"name": "Evasion",
+			"source": "XPHB",
+			"page": 103,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 7,
+			"entries": [
+				"When you're subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you instead take no damage if you succeed on the saving throw and only half damage if you fail.",
+				"You don't benefit from this feature if you have the {@condition Incapacitated|XPHB} condition."
+			]
+		},
+		{
+			"name": "Ability Score Improvement",
+			"source": "XPHB",
+			"page": 103,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 8,
+			"entries": [
+				"You gain the {@feat Ability Score Improvement|XPHB} feat or another {@5etools feat|feats.html} of your choice for which you qualify."
+			]
+		},
+		{
+			"name": "Acrobatic Movement",
+			"source": "XPHB",
+			"page": 103,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 9,
+			"entries": [
+				"While you aren't wearing armor or wielding a {@item Shield|XPHB}, you gain the ability to move along vertical surfaces and across liquids on your turn without falling during the movement."
+			]
+		},
+		{
+			"name": "Heightened Focus",
+			"source": "XPHB",
+			"page": 103,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 10,
+			"entries": [
+				"Your Flurry of Blows, Patient Defense, and Step of the Wind gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Flurry of Blows",
+							"entries": [
+								"You can expend 1 Focus Point to use Flurry of Blows and make three Unarmed Strikes with it instead of two."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Patient Defense",
+							"entries": [
+								"When you expend a Focus Point to use Patient Defense, you gain a number of {@variantrule Temporary Hit Points|XPHB} equal to two rolls of your Martial Arts die."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Step of the Wind",
+							"entries": [
+								"When you expend a Focus Point to use Step of the Wind, you can choose a willing creature within 5 feet of yourself that is Large or smaller. You move the creature with you until the end of your turn. The creature's movement doesn't provoke {@action Opportunity Attack|XPHB|Opportunity Attacks}."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Self-Restoration",
+			"source": "XPHB",
+			"page": 103,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 10,
+			"entries": [
+				"Through sheer force of will, you can remove one of the following conditions from yourself at the end of each of your turns: {@condition Charmed|XPHB}, {@condition Frightened|XPHB}, or {@condition Poisoned|XPHB}.",
+				"In addition, forgoing food and drink doesn't give you levels of {@condition Exhaustion|XPHB}."
+			]
+		},
+		{
+			"name": "Subclass Feature",
+			"source": "XPHB",
+			"page": 103,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 11,
+			"entries": [
+				"You gain a feature from your Monk subclass."
+			]
+		},
+		{
+			"name": "Ability Score Improvement",
+			"source": "XPHB",
+			"page": 103,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 12,
+			"entries": [
+				"You gain the {@feat Ability Score Improvement|XPHB} feat or another {@5etools feat|feats.html} of your choice for which you qualify."
+			]
+		},
+		{
+			"name": "Deflect Energy",
+			"source": "XPHB",
+			"page": 103,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 13,
+			"entries": [
+				"You can now use your Deflect Attacks feature against attacks that deal any damage type, not just Bludgeoning, Piercing, or Slashing."
+			]
+		},
+		{
+			"name": "Disciplined Survivor",
+			"source": "XPHB",
+			"page": 103,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 14,
+			"entries": [
+				"Your physical and mental discipline grant you proficiency in all saving throws.",
+				"Additionally, whenever you make a saving throw and fail, you can expend 1 Focus Point to reroll it, and you must use the new roll."
+			]
+		},
+		{
+			"name": "Perfect Focus",
+			"source": "XPHB",
+			"page": 103,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 15,
+			"entries": [
+				"When you roll {@variantrule Initiative|XPHB} and don't use Uncanny Metabolism, you regain expended Focus Points until you have 4 if you have 3 or fewer."
+			]
+		},
+		{
+			"name": "Ability Score Improvement",
+			"source": "XPHB",
+			"page": 103,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 16,
+			"entries": [
+				"You gain the {@feat Ability Score Improvement|XPHB} feat or another {@5etools feat|feats.html} of your choice for which you qualify."
+			]
+		},
+		{
+			"name": "Subclass Feature",
+			"source": "XPHB",
+			"page": 103,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 17,
+			"entries": [
+				"You gain a feature from your Monk subclass."
+			]
+		},
+		{
+			"name": "Superior Defense",
+			"source": "XPHB",
+			"page": 103,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 18,
+			"entries": [
+				"At the start of your turn, you can expend 3 Focus Points to bolster yourself against harm for 1 minute or until you have the {@condition Incapacitated|XPHB} condition. During that time, you have {@variantrule Resistance|XPHB} to all damage except Force damage."
+			]
+		},
+		{
+			"name": "Epic Boon",
+			"source": "XPHB",
+			"page": 103,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 19,
+			"entries": [
+				"You gain an {@filter Epic Boon feat|feats|category=EB} or another {@5etools feat|feats.html} of your choice for which you qualify. {@feat Boon of Irresistible Offense|XPHB} is recommended."
+			]
+		},
+		{
+			"name": "Body and Mind",
+			"source": "XPHB",
+			"page": 103,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 20,
+			"entries": [
+				"You have developed your body and mind to new heights. Your Dexterity and Wisdom scores increase by 4, to a maximum of 25."
 			]
 		}
 	],
@@ -2738,6 +3727,490 @@
 			"level": 3,
 			"entries": [
 				"You can use a bonus action on your turn to make your ranged attacks with a kensei weapon more deadly. When you do so, any target you hit with a ranged attack using a kensei weapon takes an extra {@damage 1d4} damage of the weapon's type. You retain this benefit until the end of the current turn."
+			]
+		},
+		{
+			"name": "Elemental Attunement",
+			"source": "XPHB",
+			"page": 106,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"subclassShortName": "Elements",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"At the start of your turn, you can expend 1 Focus Point to imbue yourself with elemental energy. The energy lasts for 10 minutes or until you have the {@condition Incapacitated|XPHB} condition. You gain the following benefits while this feature is active.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Reach",
+							"entries": [
+								"When you make an {@variantrule Unarmed Strike|XPHB}, your reach is 10 feet greater than normal, as elemental energy extends from you."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Elemental Strikes",
+							"entries": [
+								"Whenever you hit with your {@variantrule Unarmed Strike|XPHB}, you can cause it to deal your choice of Acid, Cold, Fire, Lightning, or Thunder damage rather than its normal damage type. When you deal one of these types with it, you can also force the target to make a Strength saving throw. On a failed save, you can move the target up to 10 feet toward or away from you, as elemental energy swirls around it."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Manipulate Elements",
+			"source": "XPHB",
+			"page": 106,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"subclassShortName": "Elements",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"You know the {@spell Elementalism|XPHB} spell. Wisdom is your spellcasting ability for it."
+			]
+		},
+		{
+			"name": "Warrior of the Elements",
+			"source": "XPHB",
+			"page": 106,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"subclassShortName": "Elements",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i Wield Strikes and Bursts of Elemental Power}",
+				"Warriors of the Elements tap into the power of the Elemental Planes. Harnessing their supernatural focus, these Monks momentarily tame the energy of the Elemental Chaos to empower themselves in and out of battle.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Elemental Attunement|Monk|XPHB|Elements|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Manipulate Elements|Monk|XPHB|Elements|XPHB|3"
+				}
+			]
+		},
+		{
+			"name": "Elemental Burst",
+			"source": "XPHB",
+			"page": 106,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"subclassShortName": "Elements",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"As a {@action Magic|XPHB} action, you can expend 2 Focus Points to cause elemental energy to burst in a 20-foot-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on a point within 120 feet of yourself. Choose a damage type: Acid, Cold, Fire, Lightning, or Thunder.",
+				"Each creature in the {@variantrule Sphere [Area of Effect]|XPHB|Sphere} must make a Dexterity saving throw. On a failed save, a creature takes damage of the chosen type equal to three rolls of your Martial Arts die. On a successful save, a creature takes half as much damage."
+			]
+		},
+		{
+			"name": "Stride of the Elements",
+			"source": "XPHB",
+			"page": 106,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"subclassShortName": "Elements",
+			"subclassSource": "XPHB",
+			"level": 11,
+			"header": 2,
+			"entries": [
+				"While your Elemental Attunement is active, you also have a {@variantrule Fly Speed|XPHB} and a {@variantrule Swim Speed|XPHB} equal to your {@variantrule Speed|XPHB}."
+			]
+		},
+		{
+			"name": "Elemental Epitome",
+			"source": "XPHB",
+			"page": 106,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"subclassShortName": "Elements",
+			"subclassSource": "XPHB",
+			"level": 17,
+			"header": 2,
+			"entries": [
+				"While your Elemental Attunement is active, you also gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Damage Resistance",
+					"entries": [
+						"You gain {@variantrule Resistance|XPHB} to one of the following damage types of your choice: Acid, Cold, Fire, Lightning, or Thunder. At the start of each of your turns, you can change this choice."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Destructive Stride",
+					"entries": [
+						"When you use your Step of the Wind, your {@variantrule Speed|XPHB} increases by 20 feet until the end of the turn. For that duration, any creature of your choice takes damage equal to one roll of your Martial Arts die when you enter a space within 5 feet of it. The damage type is your choice of Acid, Cold, Fire, Lightning, or Thunder. A creature can take this damage only once per turn."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Empowered Strikes",
+					"entries": [
+						"Once on each of your turns, you can deal extra damage to a target equal to one roll of your Martial Arts die when you hit it with an {@variantrule Unarmed Strike|XPHB}. The extra damage is the same type dealt by that strike."
+					]
+				}
+			]
+		},
+		{
+			"name": "Warrior of Mercy",
+			"source": "XPHB",
+			"page": 104,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"subclassShortName": "Mercy",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i Manipulate Forces of Life and Death}",
+				"Warriors of Mercy manipulate the life force of others. These Monks are wandering physicians, but they bring a swift end to their enemies. They often wear masks, presenting themselves as faceless bringers of life and death.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Hand of Harm|Monk|XPHB|Mercy|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Hand of Healing|Monk|XPHB|Mercy|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Implements of Mercy|Monk|XPHB|Mercy|XPHB|3"
+				}
+			]
+		},
+		{
+			"name": "Hand of Harm",
+			"source": "XPHB",
+			"page": 104,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"subclassShortName": "Mercy",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"consumes": {
+				"name": "Focus Point"
+			},
+			"entries": [
+				"Once per turn when you hit a creature with an {@variantrule Unarmed Strike|XPHB} and deal damage, you can expend 1 Focus Point to deal extra Necrotic damage equal to one roll of your Martial Arts die plus your Wisdom modifier."
+			]
+		},
+		{
+			"name": "Hand of Healing",
+			"source": "XPHB",
+			"page": 104,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"subclassShortName": "Mercy",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"consumes": {
+				"name": "Focus Point"
+			},
+			"entries": [
+				"As a {@action Magic|XPHB} action, you can expend 1 Focus Point to touch a creature and restore a number of {@variantrule Hit Points|XPHB} equal to a roll of your Martial Arts die plus your Wisdom modifier. When you use your Flurry of Blows, you can replace one of the Unarmed Strikes with a use of this feature without expending a Focus Point for the healing."
+			]
+		},
+		{
+			"name": "Implements of Mercy",
+			"source": "XPHB",
+			"page": 104,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"subclassShortName": "Mercy",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"You gain proficiency in the {@skill Insight|XPHB} and {@skill Medicine|XPHB} skills and proficiency with the {@item Herbalism Kit|XPHB}."
+			]
+		},
+		{
+			"name": "Physician's Touch",
+			"source": "XPHB",
+			"page": 104,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"subclassShortName": "Mercy",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"Your Hand of Harm and Hand of Healing improve, as detailed below.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Hand of Harm",
+							"entries": [
+								"When you use Hand of Harm on a creature, you can also give that creature the {@condition Poisoned|XPHB} condition until the end of your next turn."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Hand of Healing",
+							"entries": [
+								"When you use Hand of Healing, you can also end one of the following conditions on the creature you heal: {@condition Blinded|XPHB}, {@condition Deafened|XPHB}, {@condition Paralyzed|XPHB}, {@condition Poisoned|XPHB}, or {@condition Stunned|XPHB}."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Flurry of Healing and Harm",
+			"source": "XPHB",
+			"page": 104,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"subclassShortName": "Mercy",
+			"subclassSource": "XPHB",
+			"level": 11,
+			"header": 2,
+			"entries": [
+				"When you use Flurry of Blows, you can replace each of the Unarmed Strikes with a use of Hand of Healing without expending Focus Points for the healing.",
+				"In addition, when you make an {@variantrule Unarmed Strike|XPHB} with Flurry of Blows and deal damage, you can use Hand of Harm with that strike without expending a Focus Point for Hand of Harm. You can still use Hand of Harm only once per turn.",
+				"You can use these benefits a total number of times equal to your Wisdom modifier (minimum of once). You regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
+			]
+		},
+		{
+			"name": "Hand of Ultimate Mercy",
+			"source": "XPHB",
+			"page": 105,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"subclassShortName": "Mercy",
+			"subclassSource": "XPHB",
+			"level": 17,
+			"header": 2,
+			"consumes": {
+				"name": "Focus Point",
+				"amount": 5
+			},
+			"entries": [
+				"Your mastery of life energy opens the door to the ultimate mercy. As a {@action Magic|XPHB} action, you can touch the corpse of a creature that died within the past 24 hours and expend 5 Focus Points. The creature then returns to life with a number of {@variantrule Hit Points|XPHB} equal to {@dice 4d10} plus your Wisdom modifier. If the creature died with any of the following conditions, the creature revives with the conditions removed: {@condition Blinded|XPHB}, {@condition Deafened|XPHB}, {@condition Paralyzed|XPHB}, {@condition Poisoned|XPHB}, and {@condition Stunned|XPHB}.",
+				"Once you use this feature, you can't use it again until you finish a {@variantrule Long Rest|XPHB}."
+			]
+		},
+		{
+			"name": "Open Hand Technique",
+			"source": "XPHB",
+			"page": 107,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"subclassShortName": "Open Hand",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"Whenever you hit a creature with an attack granted by your Flurry of Blows, you can impose one of the following effects on that target.",
+				{
+					"type": "entries",
+					"name": "Addle",
+					"entries": [
+						"The target can't make {@action Opportunity Attack|XPHB|Opportunity Attacks} until the start of its next turn."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Push",
+					"entries": [
+						"The target must succeed on a Strength saving throw or be pushed up to 15 feet away from you."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Topple",
+					"entries": [
+						"The target must succeed on a Dexterity saving throw or have the {@condition Prone|XPHB} condition."
+					]
+				}
+			]
+		},
+		{
+			"name": "Warrior of the Open Hand",
+			"source": "XPHB",
+			"page": 107,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"subclassShortName": "Open Hand",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i Master Unarmed Combat Techniques}",
+				"Warriors of the Open Hand are masters of unarmed combat. They learn techniques to push and trip their opponents and manipulate their own energy to protect themselves from harm.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Open Hand Technique|Monk|XPHB|Open Hand|XPHB|3"
+				}
+			]
+		},
+		{
+			"name": "Wholeness of Body",
+			"source": "XPHB",
+			"page": 107,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"subclassShortName": "Open Hand",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"You gain the ability to heal yourself. As a {@variantrule Bonus Action|XPHB}, you can roll your Martial Arts die. You regain a number of {@variantrule Hit Points|XPHB} equal to the number rolled plus your Wisdom modifier (minimum of 1 {@variantrule Hit Points|XPHB|Hit Point} regained).",
+				"You can use this feature a number of times equal to your Wisdom modifier (minimum of once), and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
+			]
+		},
+		{
+			"name": "Fleet Step",
+			"source": "XPHB",
+			"page": 107,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"subclassShortName": "Open Hand",
+			"subclassSource": "XPHB",
+			"level": 11,
+			"header": 2,
+			"entries": [
+				"When you take a {@variantrule Bonus Action|XPHB} other than Step of the Wind, you can also use Step of the Wind immediately after that {@variantrule Bonus Action|XPHB}."
+			]
+		},
+		{
+			"name": "Quivering Palm",
+			"source": "XPHB",
+			"page": 107,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"subclassShortName": "Open Hand",
+			"subclassSource": "XPHB",
+			"level": 17,
+			"header": 2,
+			"entries": [
+				"You gain the ability to set up lethal vibrations in someone's body. When you hit a creature with an {@variantrule Unarmed Strike|XPHB}, you can expend 4 Focus Points to start these imperceptible vibrations, which last for a number of days equal to your Monk level. The vibrations are harmless unless you take an action to end them. Alternatively, when you take the {@action Attack|XPHB} action on your turn, you can forgo one of the attacks to end the vibrations. To end them, you and the target must be on the same plane of existence. When you end them, the target must make a Constitution saving throw, taking {@damage 10d12} Force damage on a failed save or half as much damage on a successful one.",
+				"You can have only one creature under the effect of this feature at a time. You can end the vibrations harmlessly (no action required)."
+			]
+		},
+		{
+			"name": "Shadow Arts",
+			"source": "XPHB",
+			"page": 105,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"subclassShortName": "Shadow",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"You have learned to draw on the power of the Shadowfell, gaining the following benefits.",
+				{
+					"type": "entries",
+					"name": "Darkness",
+					"entries": [
+						"You can expend 1 Focus Point to cast the {@spell Darkness|XPHB} spell without spell components. You can see within the spell's area when you cast it with this feature. While the spell persists, you can move its area of {@variantrule Darkness|XPHB} to a space within 60 feet of yourself at the start of each of your turns."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Darkvision",
+					"entries": [
+						"You gain {@sense Darkvision|XPHB} with a range of 60 feet. If you already have {@sense Darkvision|XPHB}, its range increases by 60 feet."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Shadowy Figments",
+					"entries": [
+						"You know the {@spell Minor Illusion|XPHB} spell. Wisdom is your spellcasting ability for it."
+					]
+				}
+			]
+		},
+		{
+			"name": "Warrior of Shadow",
+			"source": "XPHB",
+			"page": 105,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"subclassShortName": "Shadow",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i Harness Shadow Power for Stealth and Subterfuge}",
+				"Warriors of Shadow practice stealth and subterfuge, harnessing the power of the Shadowfell. They are at home in darkness, able to draw gloom around themselves to hide, leap from shadow to shadow, and take on a wraithlike form.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Shadow Arts|Monk|XPHB|Shadow|XPHB|3"
+				}
+			]
+		},
+		{
+			"name": "Shadow Step",
+			"source": "XPHB",
+			"page": 105,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"subclassShortName": "Shadow",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"While entirely within {@variantrule Dim Light|XPHB} or {@variantrule Darkness|XPHB}, you can use a {@variantrule Bonus Action|XPHB} to teleport up to 60 feet to an unoccupied space you can see that is also in {@variantrule Dim Light|XPHB} or {@variantrule Darkness|XPHB}. You then have {@variantrule Advantage|XPHB} on the next melee attack you make before the end of the current turn."
+			]
+		},
+		{
+			"name": "Improved Shadow Step",
+			"source": "XPHB",
+			"page": 105,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"subclassShortName": "Shadow",
+			"subclassSource": "XPHB",
+			"level": 11,
+			"header": 2,
+			"entries": [
+				"You can draw on your Shadowfell connection to empower your teleportation. When you use your Shadow Step, you can expend 1 Focus Point to remove the requirement that you must start and end in {@variantrule Dim Light|XPHB} or {@variantrule Darkness|XPHB} for that use of the feature. As part of this {@variantrule Bonus Action|XPHB}, you can make an {@variantrule Unarmed Strike|XPHB} immediately after you teleport."
+			]
+		},
+		{
+			"name": "Cloak of Shadows",
+			"source": "XPHB",
+			"page": 105,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"subclassShortName": "Shadow",
+			"subclassSource": "XPHB",
+			"level": 17,
+			"header": 2,
+			"entries": [
+				"As a {@action Magic|XPHB} action while entirely within {@variantrule Dim Light|XPHB} or {@variantrule Darkness|XPHB}, you can expend 3 Focus Points to shroud yourself with shadows for 1 minute, until you have the {@condition Incapacitated|XPHB} condition, or until you end your turn in {@variantrule Bright Light|XPHB}. While shrouded by these shadows, you gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Invisibility",
+					"entries": [
+						"You have the {@condition Invisible|XPHB} condition."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Partially Incorporeal",
+					"entries": [
+						"You can move through occupied spaces as if they were {@variantrule Difficult Terrain|XPHB}. If you end your turn in such a space, you are shunted to the last unoccupied space you were in."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Shadow Flurry",
+					"entries": [
+						"You can use your Flurry of Blows without expending any Focus Points."
+					]
+				}
 			]
 		}
 	]

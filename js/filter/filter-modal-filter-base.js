@@ -202,10 +202,25 @@ export class ModalFilterBase {
 		return this._filterCache.list.getSortedItems({items: filteredItems});
 	}
 
-	getEntitiesMatchingFilterExpression ({filterExpression}) {
+	getEntitiesMatchingFilterExpression ({filterExpression, valuesOverride = null}) {
 		const nxtStateOuter = this._getStateFromFilterExpression(filterExpression);
 
 		const f = this._pageFilter.filterBox.getValues({nxtStateOuter});
+
+		if (valuesOverride) {
+			Object.entries(valuesOverride)
+				.forEach(([header, values]) => {
+					if (!f[header]) throw new Error(`Header "${header}" was not in filter values!`);
+
+					const tgt = f[header];
+					Object.entries(values)
+						.forEach(([k, v]) => {
+							if (tgt[k] == null) throw new Error(`Key "${k}" was not in "${header}" filter values!`);
+							tgt[k] = v;
+						});
+				});
+		}
+
 		return this._allData.filter(this._isEntityItemMatchingFilter.bind(this, f));
 	}
 

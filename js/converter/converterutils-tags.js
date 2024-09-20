@@ -1,3 +1,4 @@
+import {SITE_STYLE__CLASSIC, SITE_STYLE__ONE} from "../consts.js";
 import {VetoolsConfig} from "../utils-config/utils-config-config.js";
 import {ConverterTaggerInitializable} from "./converterutils-taggerbase.js";
 
@@ -37,7 +38,7 @@ export class TaggerUtils {
 		name = name.toLowerCase();
 		source = source.toLowerCase();
 
-		const doFind = arr => arr.find(s => (s.name.toLowerCase() === name || (typeof s.srd === "string" && s.srd.toLowerCase() === name)) && s.source.toLowerCase() === source);
+		const doFind = arr => arr.find(s => (s.name.toLowerCase() === name || (typeof s.srd === "string" && s.srd.toLowerCase() === name) || (typeof s.srd52 === "string" && s.srd52.toLowerCase() === name)) && s.source.toLowerCase() === source);
 
 		const fromPrerelease = typeof PrereleaseUtil !== "undefined" ? doFind(PrereleaseUtil.getBrewProcessedFromCache("spell")) : null;
 		if (fromPrerelease) return fromPrerelease;
@@ -219,6 +220,7 @@ export class TagCondition extends ConverterTaggerInitializable {
 		"concentrating": "concentration",
 	};
 
+	static _conditionMatcherCore = null;
 	static _conditionMatcher = null;
 	static _conditionSourceMapBrew = null;
 
@@ -228,6 +230,11 @@ export class TagCondition extends ConverterTaggerInitializable {
 
 	static async _pInit_conditions ({conditionsBrew}) {
 		const conditionData = await DataUtil.condition.loadJSON();
+
+		const conditionsXphb = conditionData.condition
+			.filter(cond => cond.source === Parser.SRC_XPHB);
+
+		this._conditionMatcherCore = new RegExp(`\\b(?<name>${conditionsXphb.map(it => it.name).join("|")})\\b`, "g");
 
 		const conditionsPhb = conditionData.condition
 			.filter(cond => cond.source === Parser.SRC_PHB);
@@ -261,18 +268,46 @@ export class TagCondition extends ConverterTaggerInitializable {
 			})
 			.replace(this._STATUS_MATCHER, (...m) => {
 				const name = m[1];
-				return `{@status ${name}}`;
+				if (styleHint === SITE_STYLE__CLASSIC) return `{@status ${name}}`;
+
+				if (name === "surprised") return `{@status ${name}|${Parser.SRC_XPHB}}`; // Surprised is never capitalized
+				return `{@status ${name.toTitleCase()}|${Parser.SRC_XPHB}}`;
 			})
 			.replace(this._STATUS_MATCHER_ALT, (...m) => {
 				const displayText = m[1];
 				const name = this._STATUS_MATCHER_ALT_REPLACEMENTS[m[1].toLowerCase()];
-				return `{@status ${name}||${displayText}}`;
+
+				if (styleHint === SITE_STYLE__CLASSIC) return `{@status ${name}||${displayText}}`;
+				return `{@status ${name.toTitleCase()}|${Parser.SRC_XPHB}|${displayText.toTitleCase()}}`;
+			})
+		;
+	}
+
+	static _getModifiedString_one (str) {
+		return str
+			.replace(this._conditionMatcherCore, (...m) => {
+				const {name} = m.at(-1);
+				return `{@condition ${name}|${Parser.SRC_XPHB}}`;
 			})
 		;
 	}
 
 	static _walkerStringHandler ({styleHint, str, inflictedSet = null, inflictedAllowlist = null}) {
 		const ptrStack = {_: ""};
+
+		TaggerUtils.walkerStringHandler(
+			["@condition", "@status"],
+			ptrStack,
+			0,
+			0,
+			str,
+			{
+				fnTag: this._getModifiedString_one.bind(this),
+			},
+		);
+
+		str = ptrStack._;
+		ptrStack._ = "";
 
 		TaggerUtils.walkerStringHandler(
 			["@condition", "@status"],
@@ -355,7 +390,11 @@ export class TagCondition extends ConverterTaggerInitializable {
 	}
 
 	static _collectInflictedConditions_withAllowlist ({inflictedAllowlist, inflictedSet, cond}) {
-		if (!inflictedAllowlist || inflictedAllowlist.has(cond)) inflictedSet.add(cond);
+		// Treat XPHB conditions as base
+		const [name, source] = cond.toLowerCase().split("|");
+		const condClean = source === Parser.SRC_XPHB.toLowerCase() ? name : `${name}|${source}`;
+
+		if (!inflictedAllowlist || inflictedAllowlist.has(cond)) inflictedSet.add(condClean);
 		return "";
 	}
 
@@ -457,6 +496,7 @@ TagCondition._CONDITION_INFLICTED_MATCHERS = [
 	{re: `The (?!(?:[^.]+) can sense)(?:[^.]+) is {@condition (invisible)}`, flags: "g"}, // MM :: Invisible Stalker :: Invisibility
 	`succeed\\b[^.!?]+\\bsaving throw\\b[^.!?]+\\. (?:It|The (?:creature|target)) is {@condition ([^}]+)}`, // MM :: Beholder :: 6. Telekinetic Ray
 	{re: `\\bhave the {@condition ([^}]+)}\\b`, flags: "g"}, // XPHB :: Animal Friendship
+	{re: `\\bhas the {@condition ([^}]+)} condition\\b`, flags: "g"}, // XPHB :: Constrictor Snake
 ]
 	.map(it => typeof it === "object" ? it : ({re: it, flags: "gi"}))
 	.map(({re, flags}) => new RegExp(`${re}((?:, {@condition [^}]+})*)(,? (?:and|or) {@condition [^}]+})?`, flags));
@@ -468,15 +508,15 @@ export class DiceConvert {
 		if (traitOrAction.entries) {
 			traitOrAction.entries = traitOrAction.entries
 				.filter(it => it.trim ? it.trim() : true)
-				.map(entry => this._getConvertedEntry(entry, true));
+				.map(entry => this._getConvertedEntry({entry, isTagHits: true}));
 		}
 	}
 
 	static getTaggedEntry (entry) {
-		return this._getConvertedEntry(entry);
+		return this._getConvertedEntry({entry});
 	}
 
-	static _getConvertedEntry (entry, isTagHits = false) {
+	static _getConvertedEntry ({entry, isTagHits = false}) {
 		if (!DiceConvert._walker) {
 			DiceConvert._walker = MiscUtil.getWalker({
 				keyBlocklist: new Set([
@@ -484,6 +524,7 @@ export class DiceConvert {
 					"dmg1",
 					"dmg2",
 					"area",
+					"path",
 				]),
 			});
 			DiceConvert._walkerHandlers = {
@@ -496,7 +537,7 @@ export class DiceConvert {
 						0,
 						str,
 						{
-							fnTag: this._walkerStringHandler.bind(this, isTagHits),
+							fnTag: str => this._walkerStringHandler({str, isTagHits}),
 						},
 					);
 					return ptrStack._;
@@ -509,12 +550,16 @@ export class DiceConvert {
 
 	static _RE_NO_FORMAT_STRINGS = /(\b(?:plus|minus|PB)\b)/;
 
-	static _walkerStringHandler (isTagHits, str) {
+	static _walkerStringHandler ({str, isTagHits}) {
 		if (isTagHits) {
 			str = str
 				// Handle e.g. `+3 to hit`
 				// Handle e.g. `+3 plus PB to hit`
-				.replace(/(?<op>[-+])?(?<bonus>\d+(?: (?:plus|minus|[-+]) PB)?)(?= to hit)\b/g, (...m) => `{@hit ${m.last().op === "-" ? "-" : ""}${m.last().bonus}}`)
+				.replace(/(?<op>[-+])?(?<bonus>\d+(?: (?:plus|minus|[-+]) PB)?)(?= to hit\b)/g, (...m) => `{@hit ${m.last().op === "-" ? "-" : ""}${m.last().bonus}}`)
+				// Handle E.g. "... Attack Roll: +5, ..."
+				.replace(/(?<=Attack Roll: )(?<op>[-+])?(?<bonus>\d+(?: (?:plus|minus|[-+]) PB)?)(?=,)/g, (...m) => `{@hit ${m.last().op === "-" ? "-" : ""}${m.last().bonus}}`)
+				// Handle E.g. "... Attack Roll: Bonus equals your spell attack modifier, ..."
+				.replace(/(?<=Attack Roll: )Bonus equals your spell attack modifier(?=,)/g, (...m) => `{@hitYourSpellAttack Bonus equals your spell attack modifier}`)
 			;
 		}
 
@@ -596,14 +641,24 @@ export class ArtifactPropertiesTag {
 	}
 }
 
-export class SkillTag {
+export class SkillTag extends ConverterTaggerInitializable {
+	static _RE_BASIC_XPHB = null;
 	static _RE_BASIC = /\b(?<name>Acrobatics|Animal Handling|Arcana|Athletics|Deception|History|Insight|Intimidation|Investigation|Medicine|Nature|Perception|Performance|Persuasion|Religion|Sleight of Hand|Stealth|Survival)\b/g;
+
+	static async _pInit () {
+		const skillData = await DataLoader.pCacheAndGetAllSite("skill");
+
+		const coreSKills = [...skillData]
+			.filter(skill => skill.source === Parser.SRC_XPHB);
+
+		this._RE_BASIC_XPHB = new RegExp(`\\b(?<name>${(coreSKills.map(skill => skill.name).join("|"))})\\b`, "g");
+	}
 
 	/**
 	 * @param ent
-	 * @param {"classic" | null} styleHint
+	 * @param {"classic" | "one" | null} styleHint
 	 */
-	static tryRun (ent, {styleHint = null} = {}) {
+	static _tryRun (ent, {styleHint = null} = {}) {
 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
 		const walker = MiscUtil.getWalker({keyBlocklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST});
@@ -612,6 +667,22 @@ export class SkillTag {
 			{
 				string: (str) => {
 					const ptrStack = {_: ""};
+
+					if (styleHint === SITE_STYLE__ONE) {
+						TaggerUtils.walkerStringHandler(
+							["@skill"],
+							ptrStack,
+							0,
+							0,
+							str,
+							{
+								fnTag: this._fnTag_one.bind(this),
+							},
+						);
+
+						str = ptrStack._;
+						ptrStack._ = "";
+					}
 
 					TaggerUtils.walkerStringHandler(
 						["@skill"],
@@ -630,6 +701,12 @@ export class SkillTag {
 		);
 	}
 
+	static _fnTag_one (strMod) {
+		return strMod
+			.replace(this._RE_BASIC_XPHB, (...m) => `{@skill ${m.at(-1).name}|${Parser.SRC_XPHB}}`)
+		;
+	}
+
 	static _fnTag_classic (strMod) {
 		return strMod.replace(this._RE_BASIC, (...m) => {
 			const {name} = m.at(-1);
@@ -646,16 +723,41 @@ export class SkillTag {
 	}
 }
 
-export class ActionTag {
+export class ActionTag extends ConverterTaggerInitializable {
+	static _RE_BASIC_XPHB = null;
 	static _RE_BASIC_CLASSIC = /\b(Attack|Dash|Disengage|Dodge|Help|Hide|Ready|Search|Use an Object|shove a creature)\b/g;
 
-	static tryRun (it) {
+	static async _pInit () {
+		const actionData = await DataUtil.action.loadJSON();
+
+		const coreActions = [...actionData.action]
+			.filter(action => action.source === Parser.SRC_XPHB);
+
+		this._RE_BASIC_XPHB = new RegExp(`\\b(?<name>${(coreActions.map(action => action.name).join("|"))})\\b`, "g");
+	}
+
+	static _tryRun (it) {
 		const walker = MiscUtil.getWalker({keyBlocklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST});
 		return walker.walk(
 			it,
 			{
 				string: (str) => {
 					const ptrStack = {_: ""};
+
+					TaggerUtils.walkerStringHandler(
+						["@action"],
+						ptrStack,
+						0,
+						0,
+						str,
+						{
+							fnTag: this._fnTag_one.bind(this),
+						},
+					);
+
+					str = ptrStack._;
+					ptrStack._ = "";
+
 					TaggerUtils.walkerStringHandler(
 						["@action"],
 						ptrStack,
@@ -675,6 +777,12 @@ export class ActionTag {
 				},
 			},
 		);
+	}
+
+	static _fnTag_one (strMod) {
+		return strMod
+			.replace(this._RE_BASIC_XPHB, (...m) => `{@action ${m.at(-1).name}|${Parser.SRC_XPHB}}`)
+		;
 	}
 
 	static _fnTag_classic (strMod) {
@@ -702,16 +810,49 @@ export class ActionTag {
 	}
 }
 
-export class SenseTag {
+export class SenseTag extends ConverterTaggerInitializable {
+	static _RE_BASIC_XPHB = null;
 	static _RE_BASIC = /\b(?<name>tremorsense|blindsight|truesight|darkvision)\b/ig;
 
-	static tryRun (it) {
+	static async _pInit () {
+		const senseData = await DataLoader.pCacheAndGetAllSite("sense");
+
+		const coreSenses = [...senseData]
+			.filter(skill => skill.source === Parser.SRC_XPHB);
+
+		this._RE_BASIC_XPHB = new RegExp(`\\b(?<name>${(coreSenses.map(sense => sense.name).join("|"))})\\b`, "g");
+	}
+
+	/**
+	 * @param ent
+	 * @param {"classic" | "one" | null} styleHint
+	 */
+	static _tryRun (ent, {styleHint = null} = {}) {
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
 		const walker = MiscUtil.getWalker({keyBlocklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST});
 		return walker.walk(
-			it,
+			ent,
 			{
 				string: (str) => {
 					const ptrStack = {_: ""};
+
+					if (styleHint === SITE_STYLE__ONE) {
+						TaggerUtils.walkerStringHandler(
+							["@sense"],
+							ptrStack,
+							0,
+							0,
+							str,
+							{
+								fnTag: this._fnTag_one.bind(this),
+							},
+						);
+
+						str = ptrStack._;
+						ptrStack._ = "";
+					}
+
 					TaggerUtils.walkerStringHandler(
 						["@sense"],
 						ptrStack,
@@ -719,16 +860,23 @@ export class SenseTag {
 						0,
 						str,
 						{
-							fnTag: this._fnTag.bind(this),
+							fnTag: this._fnTag_classic.bind(this),
 						},
 					);
+
 					return ptrStack._;
 				},
 			},
 		);
 	}
 
-	static _fnTag (strMod) {
+	static _fnTag_one (strMod) {
+		return strMod
+			.replace(this._RE_BASIC_XPHB, (...m) => `{@sense ${m.at(-1).name}|${Parser.SRC_XPHB}}`)
+		;
+	}
+
+	static _fnTag_classic (strMod) {
 		return strMod.replace(this._RE_BASIC, (...m) => {
 			const {name} = m.at(-1);
 			return `{@sense ${name}${name.toLowerCase() === "tremorsense" ? "|MM" : ""}}`;

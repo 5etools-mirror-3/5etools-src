@@ -177,3 +177,5 @@ class OptionalFeaturesPage extends ListPage {
 const optionalFeaturesPage = new OptionalFeaturesPage();
 optionalFeaturesPage.sublistManager = new OptionalFeaturesSublistManager();
 window.addEventListener("load", () => optionalFeaturesPage.pOnLoad());
+
+globalThis.dbg_page = optionalFeaturesPage;

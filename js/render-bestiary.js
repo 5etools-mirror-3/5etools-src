@@ -1,5 +1,5 @@
 import {VetoolsConfig} from "./utils-config/utils-config-config.js";
-import {SITE_STYLE__CLASSIC} from "./consts.js";
+import {SITE_STYLE__CLASSIC, SITE_STYLE__ONE} from "./consts.js";
 
 /** @abstract */
 class _RenderBestiaryImplBase {
@@ -307,11 +307,13 @@ class _RenderBestiaryImplBase {
 			source: mon.source,
 			page: mon.page,
 			srd: mon.srd,
+			srd52: mon.srd52,
 			sourceSub: mon.sourceSub,
 			otherSources: mon.otherSources,
 			additionalSources: mon.additionalSources,
 			externalSources: mon.externalSources,
 			reprintedAs: mon.reprintedAs,
+			__prop: mon.__prop,
 		};
 		const additional = mon.additionalSources ? MiscUtil.copy(mon.additionalSources) : [];
 		if (mon.variant?.length) {
@@ -329,7 +331,7 @@ class _RenderBestiaryImplBase {
 		}
 		srcCpy.additionalSources = additional;
 
-		const pageTrInner = Renderer.utils.getSourceAndPageTrHtml(srcCpy, {tag: "creature", fnUnpackUid: (uid) => DataUtil.generic.unpackUid(uid, "creature")});
+		const pageTrInner = Renderer.utils.getSourceAndPageTrHtml(srcCpy);
 		if (!mon.environment?.length) return [pageTrInner];
 		return [pageTrInner, `<div><b>Environment:</b> ${Renderer.monster.getRenderedEnvironment(mon.environment)}</div>`];
 	}
@@ -538,8 +540,187 @@ class _RenderBestiaryImplClassic extends _RenderBestiaryImplBase {
 	}
 }
 
+class _RenderBestiaryImplOne extends _RenderBestiaryImplBase {
+	_style = SITE_STYLE__ONE;
+
+	/* -------------------------------------------- */
+
+	_getHtmlParts (
+		{
+			mon,
+			renderer,
+
+			isInlinedToken,
+
+			entsTrait,
+		},
+	) {
+		return {
+			htmlPtArmorClass: this._getHtmlParts_armorClass({mon, renderer, isInlinedToken}),
+
+			htmlPtSavingThrows: this._getHtmlParts_savingThrows({mon, renderer}),
+
+			htmlPtImmunities: this._getHtmlParts_immunities({mon}),
+
+			htmlPtTraits: this._getHtmlParts_traits({mon, entsTrait}),
+		};
+	}
+
+	/* ----- */
+
+	_getHtmlParts_armorClass ({mon, renderer, isInlinedToken}) {
+		return `<tr><td colspan="6">
+			<div class="split-v-center ${isInlinedToken ? `stats__wrp-avoid-token` : ""}">
+				<div><strong title="Armor Class">AC</strong> ${mon.ac == null ? "\u2014" : Parser.acToFull(mon.ac, {renderer, isHideFrom: true})}</div>
+				<div><strong>Initiative</strong> ${Renderer.monster.getInitiativePart(mon)}</div>
+			</div>
+		</td></tr>`;
+	}
+
+	/* ----- */
+
+	_getHtmlParts_savingThrows ({mon, renderer}) {
+		if (!mon.save?.special) return "";
+		return `<tr><td colspan="6"><strong>Saving Throws</strong> ${Renderer.monster.getSave(renderer, "special", mon.save.special)}</td></tr>`;
+	}
+
+	/* ----- */
+
+	_getHtmlParts_immunities ({mon}) {
+		const pt = Renderer.monster.getImmunitiesCombinedPart(mon);
+		if (!pt) return "";
+		return `<tr><td colspan="6"><strong>Immunities</strong> ${pt}</td></tr>`;
+	}
+
+	/* ----- */
+
+	_getHtmlParts_traits ({mon, entsTrait}) {
+		return `${entsTrait?.length ? `${this._getRenderedSectionHeader({mon, title: "Traits", prop: "trait"})}
+		${this._getRenderedSection({prop: "trait", entries: entsTrait})}` : ""}`;
+	}
+
+	/* -------------------------------------------- */
+
+	_$getRenderedCreature ({mon, opts, renderer}) {
+		const isInlinedToken = this._isInlinedToken({mon, opts});
+
+		const {
+			entsTrait,
+			entsAction,
+			entsBonusAction,
+			entsReaction,
+			legGroup,
+		} = Renderer.monster.getSubEntries(mon, {renderer});
+
+		const {
+			htmlPtIsExcluded,
+			htmlPtName,
+			htmlPtSizeTypeAlignment,
+
+			htmlPtHitPoints,
+			htmlPtsResources,
+			htmlPtSpeed,
+
+			htmlPtAbilityScores,
+
+			htmlPtSkills,
+			htmlPtVulnerabilities,
+			htmlPtResistances,
+			htmlPtSenses,
+			htmlPtLanguages,
+
+			htmlPtActions,
+			htmlPtBonusActions,
+			htmlPtReactions,
+			htmlPtLegendaryActions,
+			htmlPtMythicActions,
+
+			htmlPtLairActions,
+			htmlPtRegionalEffects,
+
+			htmlPtFooterExtended,
+		} = this._getCommonHtmlParts({
+			mon,
+			renderer,
+
+			isSkipExcludesRender: opts.isSkipExcludesRender,
+
+			isInlinedToken,
+
+			entsAction,
+			entsBonusAction,
+			entsReaction,
+			legGroup,
+		});
+
+		const {
+			htmlPtArmorClass,
+
+			htmlPtSavingThrows,
+
+			htmlPtImmunities,
+
+			htmlPtTraits,
+		} = this._getHtmlParts({
+			mon,
+			renderer,
+
+			isInlinedToken,
+
+			entsTrait,
+		});
+
+		return $$`
+		${Renderer.utils.getBorderTr()}
+
+		${htmlPtIsExcluded}
+		${htmlPtName}
+
+		<tr><td colspan="6" class="pt-0"><div class="ve-tbl-divider mt-0 ${isInlinedToken ? `stats__wrp-avoid-token` : ""}"></div></td></tr>
+
+		${htmlPtSizeTypeAlignment}
+
+		${htmlPtArmorClass}
+		${htmlPtHitPoints}
+		${htmlPtsResources.join("")}
+		${htmlPtSpeed}
+
+		${htmlPtAbilityScores}
+
+		${htmlPtSavingThrows}
+		${htmlPtSkills}
+		${htmlPtVulnerabilities}
+		${htmlPtResistances}
+		${htmlPtImmunities}
+		${htmlPtSenses}
+		${htmlPtLanguages}
+
+		<tr class="relative">
+			${this._$getTdChallenge(mon, opts)}
+		</tr>
+
+		<tr>${opts.selSummonSpellLevel ? $$`<td colspan="6"><strong class="mr-2">Spell Level</strong> ${opts.selSummonSpellLevel}</td>` : ""}</tr>
+		<tr>${opts.selSummonClassLevel ? $$`<td colspan="6"><strong class="mr-2">Class Level</strong> ${opts.selSummonClassLevel}</td>` : ""}</tr>
+
+		${htmlPtTraits}
+		${htmlPtActions}
+		${htmlPtBonusActions}
+		${htmlPtReactions}
+		${htmlPtLegendaryActions}
+		${htmlPtMythicActions}
+
+		${htmlPtLairActions}
+		${htmlPtRegionalEffects}
+
+		${htmlPtFooterExtended}
+
+		${Renderer.utils.getBorderTr()}`;
+	}
+}
+
 export class RenderBestiary {
 	static _RENDER_CLASSIC = new _RenderBestiaryImplClassic();
+	static _RENDER_ONE = new _RenderBestiaryImplOne();
 
 	/**
 	 * @param {object} mon Creature data.
@@ -555,6 +736,7 @@ export class RenderBestiary {
 		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
 		switch (styleHint) {
 			case SITE_STYLE__CLASSIC: return this._RENDER_CLASSIC.$getRenderedCreature(mon, opts);
+			case SITE_STYLE__ONE: return this._RENDER_ONE.$getRenderedCreature(mon, opts);
 			default: throw new Error(`Unhandled style "${styleHint}"!`);
 		}
 	}

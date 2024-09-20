@@ -403,3 +403,5 @@ class SpellsPage extends ListPageMultiSource {
 const spellsPage = new SpellsPage();
 spellsPage.sublistManager = new SpellsSublistManager();
 window.addEventListener("load", () => spellsPage.pOnLoad());
+
+globalThis.dbg_page = spellsPage;

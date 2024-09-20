@@ -51,7 +51,12 @@ class PageFilterFeats extends PageFilterBase {
 		this._immuneFilter = FilterCommon.getDamageImmuneFilter();
 		this._defenseFilter = new MultiFilter({header: "Damage", filters: [this._vulnerableFilter, this._resistFilter, this._immuneFilter]});
 		this._conditionImmuneFilter = FilterCommon.getConditionImmuneFilter();
-		this._miscFilter = new Filter({header: "Miscellaneous", items: ["Has Info", "Has Images", "SRD", "Basic Rules", "Legacy"], isMiscFilter: true});
+		this._miscFilter = new Filter({
+			header: "Miscellaneous",
+			items: ["Has Info", "Has Images", "SRD", "Basic Rules", "Legacy"],
+			isMiscFilter: true,
+			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
+		});
 	}
 
 	static mutateForFilters (feat) {
@@ -85,11 +90,7 @@ class PageFilterFeats extends PageFilterBase {
 			if (feat.skillToolLanguageProficiencies.some(it => (it.choose || []).some(x => x.from || [].includes("anyTool")))) feat._fBenifits.push("Tool Proficiency");
 			if (feat.skillToolLanguageProficiencies.some(it => (it.choose || []).some(x => x.from || [].includes("anyLanguage")))) feat._fBenifits.push("Language Proficiency");
 		}
-		feat._fMisc = feat.srd ? ["SRD"] : [];
-		if (feat.basicRules) feat._fMisc.push("Basic Rules");
-		if (SourceUtil.isLegacySourceWotc(feat.source)) feat._fMisc.push("Legacy");
-		if (this._hasFluff(feat)) feat._fMisc.push("Has Info");
-		if (this._hasFluffImages(feat)) feat._fMisc.push("Has Images");
+		this._mutateForFilters_commonMisc(feat);
 		if (feat.repeatable != null) feat._fMisc.push(feat.repeatable ? "Repeatable" : "Not Repeatable");
 
 		feat._slAbility = ability.asTextShort || VeCt.STR_NONE;
@@ -169,8 +170,9 @@ class ModalFilterFeats extends ModalFilterBase {
 
 	_$getColumnHeaders () {
 		const btnMeta = [
-			{sort: "name", text: "Name", width: "4"},
-			{sort: "ability", text: "Ability", width: "3"},
+			{sort: "name", text: "Name", width: "3-5"},
+			{sort: "category", text: "Category", width: "1-5"},
+			{sort: "ability", text: "Ability", width: "2"},
 			{sort: "prerequisite", text: "Prerequisite", width: "3"},
 			{sort: "source", text: "Source", width: "1"},
 		];
@@ -199,8 +201,9 @@ class ModalFilterFeats extends ModalFilterBase {
 				<div class="ui-list__btn-inline px-2 no-select" title="Toggle Preview (SHIFT to Toggle Info Preview)">[+]</div>
 			</div>
 
-			<div class="ve-col-4 px-1 ${feat._versionBase_isVersion ? "italic" : ""} ${this._getNameStyle()}">${feat._versionBase_isVersion ? `<span class="px-3"></span>` : ""}${feat.name}</div>
-			<span class="ve-col-3 px-1 ${feat._slAbility === VeCt.STR_NONE ? "italic" : ""}">${feat._slAbility}</span>
+			<div class="ve-col-3-5 px-1 ${feat._versionBase_isVersion ? "italic" : ""} ${this._getNameStyle()}">${feat._versionBase_isVersion ? `<span class="px-3"></span>` : ""}${feat.name}</div>
+			<span class="ve-col-1-5 px-1 ve-text-center ${feat.category == null ? "italic" : ""}" ${feat.category ? `title="${Parser.featCategoryToFull(feat.category).qq()}"` : ""}>${feat.category || "\u2014"}</span>
+			<span class="ve-col-2 px-1 ${feat._slAbility === VeCt.STR_NONE ? "italic" : ""}">${feat._slAbility}</span>
 			<span class="ve-col-3 px-1 ${feat._slPrereq === VeCt.STR_NONE ? "italic" : ""}">${feat._slPrereq}</span>
 			<div class="ve-col-1 pl-1 pr-0 ve-flex-h-center ${Parser.sourceJsonToSourceClassname(feat.source)}" title="${Parser.sourceJsonToFull(feat.source)}" ${Parser.sourceJsonToStyle(feat.source)}>${source}${Parser.sourceJsonToMarkerHtml(feat.source)}</div>
 		</div>`;
@@ -215,6 +218,7 @@ class ModalFilterFeats extends ModalFilterBase {
 				hash,
 				source,
 				sourceJson: feat.source,
+				category: feat.category || "Other",
 				ability: feat._slAbility,
 				prerequisite: feat._slPrereq,
 			},

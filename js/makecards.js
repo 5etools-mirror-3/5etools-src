@@ -769,8 +769,8 @@ MakeCards._AVAILABLE_TYPES = {
 		},
 	},
 	race: {
-		searchTitle: "Race",
-		pageTitle: "Races",
+		searchTitle: "Species",
+		pageTitle: "Species",
 		page: UrlUtil.PG_RACES,
 		colorDefault: "#a7894b",
 		iconDefault: "family-tree",
@@ -889,7 +889,7 @@ MakeCards.utils = class {
 						Renderer.item._initFullEntries(item);
 						fromCustom.entries.forEach(e => item._fullEntries.push(e));
 					}
-				} else if (Renderer.item.getProperty(p).entries) {
+				} else if (Renderer.item.getProperty(p)?.entries) {
 					Renderer.item._initFullEntries(item);
 					Renderer.item.getProperty(p).entries.forEach(e => item._fullEntries.push(e));
 				}

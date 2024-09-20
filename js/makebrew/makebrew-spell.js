@@ -41,6 +41,9 @@ export class SpellBuilder extends BuilderBase {
 		spell.source = this._ui.source;
 
 		delete spell.srd;
+		delete spell.srd52;
+		delete spell.basicRules;
+		delete spell.freeRules2024;
 		delete spell.uniqueId;
 		delete spell.reprintedAs;
 
@@ -919,7 +922,7 @@ export class SpellBuilder extends BuilderBase {
 	}
 
 	__$getRaces (cb) {
-		const [$row, $rowInner] = BuilderUi.getLabelledRowTuple("Races", {isMarked: true});
+		const [$row, $rowInner] = BuilderUi.getLabelledRowTuple("Species", {isMarked: true});
 
 		const doUpdateState = () => {
 			const races = raceRows.map(row => row.getRace()).filter(Boolean);
@@ -940,7 +943,7 @@ export class SpellBuilder extends BuilderBase {
 		doRefresh();
 
 		const $wrpBtnAdd = $(`<div></div>`).appendTo($rowInner);
-		$(`<button class="ve-btn ve-btn-xs ve-btn-default">Add Race</button>`)
+		$(`<button class="ve-btn ve-btn-xs ve-btn-default">Add Species</button>`)
 			.appendTo($wrpBtnAdd)
 			.click(() => {
 				this.__$getRaces__getRaceRow(doUpdateState, raceRows, null).$wrp.appendTo($wrpRows);
@@ -987,7 +990,7 @@ export class SpellBuilder extends BuilderBase {
 			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33 help" title="For example, the &quot;Elf&quot; base race has a source of &quot;${Parser.SRC_PHB}&quot;">Base Source</span>${$selBaseSource}</div>
 			${$wrpBtnRemove}
 		</div>`;
-		this.constructor.$getBtnRemoveRow(doUpdateState, raceRows, out, $wrp, "Race").appendTo($wrpBtnRemove);
+		this.constructor.$getBtnRemoveRow(doUpdateState, raceRows, out, $wrp, "Species").appendTo($wrpBtnRemove);
 
 		out.$wrp = $wrp;
 		raceRows.push(out);

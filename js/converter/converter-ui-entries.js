@@ -5,7 +5,8 @@ export class EntryConverterUi extends ConverterUiBase {
 		super(
 			ui,
 			{
-				converterId: "Generic",
+				name: "Generic",
+				converterId: "generic",
 				canSaveLocal: false,
 				modes: ["md"],
 				hasPageNumbers: false,

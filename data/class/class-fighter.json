@@ -6,6 +6,9 @@
 			"page": 70,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Fighter|XPHB"
+			],
 			"hd": {
 				"number": 1,
 				"faces": 10
@@ -174,6 +177,279 @@
 			"subclassTitle": "Martial Archetype",
 			"hasFluff": true,
 			"hasFluffImages": true
+		},
+		{
+			"name": "Fighter",
+			"source": "XPHB",
+			"page": 90,
+			"freeRules2024": true,
+			"primaryAbility": [
+				{
+					"str": true
+				},
+				{
+					"dex": true
+				}
+			],
+			"hd": {
+				"number": 1,
+				"faces": 10
+			},
+			"proficiency": [
+				"str",
+				"con"
+			],
+			"featProgression": [
+				{
+					"name": "Fighting Style",
+					"category": [
+						"FS"
+					],
+					"progression": {
+						"1": 1
+					}
+				}
+			],
+			"startingProficiencies": {
+				"armor": [
+					"light",
+					"medium",
+					"heavy",
+					"shield"
+				],
+				"weapons": [
+					"simple",
+					"martial"
+				],
+				"skills": [
+					{
+						"choose": {
+							"from": [
+								"acrobatics",
+								"animal handling",
+								"athletics",
+								"history",
+								"insight",
+								"intimidation",
+								"persuasion",
+								"perception",
+								"survival"
+							],
+							"count": 2
+						}
+					}
+				]
+			},
+			"startingEquipment": {
+				"entries": [
+					"{@i Choose A, B, or C:} (A) {@item Chain Mail|XPHB}, {@item Greatsword|XPHB}, {@item Flail|XPHB}, 8 {@item Javelin|XPHB|Javelins}, {@item Dungeoneer's Pack|XPHB}, and 4 GP; (B) {@item Studded Leather Armor|XPHB}, {@item Scimitar|XPHB}, {@item Shortsword|XPHB}, {@item Longbow|XPHB}, {@item Arrows (20)|XPHB|20 Arrows}, {@item Quiver|XPHB}, {@item Dungeoneer's Pack|XPHB}, and 11 GP; or (C) 155 GP"
+				],
+				"defaultData": [
+					{
+						"A": [
+							{
+								"item": "chain mail|xphb"
+							},
+							{
+								"item": "greatsword|xphb"
+							},
+							{
+								"item": "flail|xphb"
+							},
+							{
+								"item": "javelin|xphb",
+								"quantity": 8
+							},
+							{
+								"item": "dungeoneer's pack|xphb"
+							},
+							{
+								"value": 400
+							}
+						],
+						"B": [
+							{
+								"item": "studded leather armor|xphb"
+							},
+							{
+								"item": "scimitar|xphb"
+							},
+							{
+								"item": "shortsword|xphb"
+							},
+							{
+								"item": "longbow|xphb"
+							},
+							{
+								"item": "arrows|xphb"
+							},
+							{
+								"item": "quiver|xphb"
+							},
+							{
+								"item": "dungeoneer's pack|xphb"
+							},
+							{
+								"value": 1100
+							}
+						],
+						"C": [
+							{
+								"value": 15500
+							}
+						]
+					}
+				]
+			},
+			"multiclassing": {
+				"proficienciesGained": {
+					"armor": [
+						"light",
+						"medium",
+						"shield"
+					],
+					"weapons": [
+						"martial"
+					]
+				}
+			},
+			"classTableGroups": [
+				{
+					"colLabels": [
+						"Second Wind",
+						"Weapon Mastery"
+					],
+					"rows": [
+						[
+							"2",
+							"3"
+						],
+						[
+							"2",
+							"3"
+						],
+						[
+							"2",
+							"3"
+						],
+						[
+							"3",
+							"4"
+						],
+						[
+							"3",
+							"4"
+						],
+						[
+							"3",
+							"4"
+						],
+						[
+							"3",
+							"4"
+						],
+						[
+							"3",
+							"4"
+						],
+						[
+							"3",
+							"4"
+						],
+						[
+							"4",
+							"5"
+						],
+						[
+							"4",
+							"5"
+						],
+						[
+							"4",
+							"5"
+						],
+						[
+							"4",
+							"5"
+						],
+						[
+							"4",
+							"5"
+						],
+						[
+							"4",
+							"5"
+						],
+						[
+							"4",
+							"5"
+						],
+						[
+							"4",
+							"5"
+						],
+						[
+							"4",
+							"5"
+						],
+						[
+							"4",
+							"5"
+						],
+						[
+							"4",
+							"5"
+						]
+					]
+				}
+			],
+			"classFeatures": [
+				"Fighting Style|Fighter|XPHB|1",
+				"Second Wind|Fighter|XPHB|1",
+				"Weapon Mastery|Fighter|XPHB|1",
+				"Action Surge|Fighter|XPHB|2",
+				"Tactical Mind|Fighter|XPHB|2",
+				{
+					"classFeature": "Fighter Subclass|Fighter|XPHB|3",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Fighter|XPHB|4",
+				"Extra Attack|Fighter|XPHB|5",
+				"Tactical Shift|Fighter|XPHB|5",
+				"Ability Score Improvement|Fighter|XPHB|6",
+				{
+					"classFeature": "Subclass Feature|Fighter|XPHB|7",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Fighter|XPHB|8",
+				"Indomitable|Fighter|XPHB|9",
+				"Tactical Master|Fighter|XPHB|9",
+				{
+					"classFeature": "Subclass Feature|Fighter|XPHB|10",
+					"gainSubclassFeature": true
+				},
+				"Two Extra Attacks|Fighter|XPHB|11",
+				"Ability Score Improvement|Fighter|XPHB|12",
+				"Indomitable|Fighter|XPHB|13",
+				"Studied Attacks|Fighter|XPHB|13",
+				"Ability Score Improvement|Fighter|XPHB|14",
+				{
+					"classFeature": "Subclass Feature|Fighter|XPHB|15",
+					"gainSubclassFeature": true
+				},
+				"Ability Score Improvement|Fighter|XPHB|16",
+				"Action Surge|Fighter|XPHB|17",
+				"Indomitable|Fighter|XPHB|17",
+				{
+					"classFeature": "Subclass Feature|Fighter|XPHB|18",
+					"gainSubclassFeature": true
+				},
+				"Epic Boon|Fighter|XPHB|19",
+				"Three Extra Attacks|Fighter|XPHB|20"
+			],
+			"subclassTitle": "Fighter Subclass",
+			"hasFluff": true,
+			"hasFluffImages": true
 		}
 	],
 	"subclass": [
@@ -184,6 +460,9 @@
 			"className": "Fighter",
 			"classSource": "PHB",
 			"page": 73,
+			"reprintedAs": [
+				"Battle Master|Fighter|XPHB|XPHB"
+			],
 			"optionalfeatureProgression": [
 				{
 					"name": "Maneuvers",
@@ -220,6 +499,9 @@
 			"page": 72,
 			"srd": true,
 			"basicRules": true,
+			"reprintedAs": [
+				"Champion|Fighter|XPHB|XPHB"
+			],
 			"optionalfeatureProgression": [
 				{
 					"name": "Fighting Style",
@@ -246,6 +528,9 @@
 			"className": "Fighter",
 			"classSource": "PHB",
 			"page": 74,
+			"reprintedAs": [
+				"Eldritch Knight|Fighter|XPHB|XPHB"
+			],
 			"spellcastingAbility": "int",
 			"casterProgression": "1/3",
 			"cantripProgression": [
@@ -696,6 +981,9 @@
 			"className": "Fighter",
 			"classSource": "PHB",
 			"page": 42,
+			"reprintedAs": [
+				"Psi Warrior|Fighter|XPHB|XPHB"
+			],
 			"additionalSpells": [
 				{
 					"innate": {
@@ -748,6 +1036,492 @@
 				"Master of Runes|Fighter||Rune Knight|TCE|15",
 				"Additional Rune Known|Fighter||Rune Knight|TCE|15",
 				"Runic Juggernaut|Fighter||Rune Knight|TCE|18"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Battle Master",
+			"shortName": "Battle Master",
+			"source": "XPHB",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"page": 93,
+			"optionalfeatureProgression": [
+				{
+					"name": "Maneuvers",
+					"featureType": [
+						"MV:B"
+					],
+					"progression": {
+						"3": 3,
+						"7": 5,
+						"10": 7,
+						"15": 9
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Battle Master|Fighter|XPHB|Battle Master|XPHB|3",
+				"Know Your Enemy|Fighter|XPHB|Battle Master|XPHB|7",
+				"Improved Combat Superiority|Fighter|XPHB|Battle Master|XPHB|10",
+				"Relentless|Fighter|XPHB|Battle Master|XPHB|15",
+				"Ultimate Combat Superiority|Fighter|XPHB|Battle Master|XPHB|18"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Champion",
+			"shortName": "Champion",
+			"source": "XPHB",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"page": 96,
+			"freeRules2024": true,
+			"featProgression": [
+				{
+					"name": "Fighting Style",
+					"category": [
+						"FS"
+					],
+					"progression": {
+						"7": 1
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Champion|Fighter|XPHB|Champion|XPHB|3",
+				"Additional Fighting Style|Fighter|XPHB|Champion|XPHB|7",
+				"Heroic Warrior|Fighter|XPHB|Champion|XPHB|10",
+				"Superior Critical|Fighter|XPHB|Champion|XPHB|15",
+				"Survivor|Fighter|XPHB|Champion|XPHB|18"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Eldritch Knight",
+			"shortName": "Eldritch Knight",
+			"source": "XPHB",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"page": 96,
+			"spellcastingAbility": "int",
+			"casterProgression": "1/3",
+			"cantripProgression": [
+				0,
+				0,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				2,
+				3,
+				3,
+				3,
+				3,
+				3,
+				3,
+				3,
+				3,
+				3,
+				3,
+				3
+			],
+			"spellsKnownProgression": [
+				0,
+				0,
+				3,
+				4,
+				4,
+				4,
+				5,
+				6,
+				6,
+				7,
+				8,
+				8,
+				9,
+				10,
+				10,
+				11,
+				11,
+				11,
+				12,
+				13
+			],
+			"additionalSpells": [
+				{
+					"expanded": {
+						"3": [
+							{
+								"all": "level=0|class=Wizard"
+							},
+							{
+								"all": "level=1|class=Wizard"
+							}
+						],
+						"7": [
+							{
+								"all": "level=2|class=Wizard"
+							}
+						],
+						"13": [
+							{
+								"all": "level=3|class=Wizard"
+							}
+						],
+						"19": [
+							{
+								"all": "level=4|class=Wizard"
+							}
+						]
+					}
+				}
+			],
+			"subclassTableGroups": [
+				{
+					"subclasses": [
+						{
+							"name": "Eldritch Knight",
+							"source": "XPHB"
+						}
+					],
+					"colLabels": [
+						"{@filter Spells Prepared|spells|subclass=Fighter: Eldritch Knight}"
+					],
+					"rows": [
+						[
+							0
+						],
+						[
+							0
+						],
+						[
+							3
+						],
+						[
+							4
+						],
+						[
+							4
+						],
+						[
+							4
+						],
+						[
+							5
+						],
+						[
+							6
+						],
+						[
+							6
+						],
+						[
+							7
+						],
+						[
+							8
+						],
+						[
+							8
+						],
+						[
+							9
+						],
+						[
+							10
+						],
+						[
+							10
+						],
+						[
+							11
+						],
+						[
+							11
+						],
+						[
+							11
+						],
+						[
+							12
+						],
+						[
+							13
+						]
+					]
+				},
+				{
+					"title": "Spell Slots per Spell Level",
+					"subclasses": [
+						{
+							"name": "Eldritch Knight",
+							"source": "XPHB"
+						}
+					],
+					"colLabels": [
+						"{@filter 1st|spells|level=1|subclass=Fighter: Eldritch Knight}",
+						"{@filter 2nd|spells|level=2|subclass=Fighter: Eldritch Knight}",
+						"{@filter 3rd|spells|level=3|subclass=Fighter: Eldritch Knight}",
+						"{@filter 4th|spells|level=4|subclass=Fighter: Eldritch Knight}"
+					],
+					"rowsSpellProgression": [
+						[
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							0,
+							0,
+							0,
+							0
+						],
+						[
+							2,
+							0,
+							0,
+							0
+						],
+						[
+							3,
+							0,
+							0,
+							0
+						],
+						[
+							3,
+							0,
+							0,
+							0
+						],
+						[
+							3,
+							0,
+							0,
+							0
+						],
+						[
+							4,
+							2,
+							0,
+							0
+						],
+						[
+							4,
+							2,
+							0,
+							0
+						],
+						[
+							4,
+							2,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							0,
+							0
+						],
+						[
+							4,
+							3,
+							2,
+							0
+						],
+						[
+							4,
+							3,
+							2,
+							0
+						],
+						[
+							4,
+							3,
+							2,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							0
+						],
+						[
+							4,
+							3,
+							3,
+							1
+						],
+						[
+							4,
+							3,
+							3,
+							1
+						]
+					]
+				}
+			],
+			"subclassFeatures": [
+				"Eldritch Knight|Fighter|XPHB|Eldritch Knight|XPHB|3",
+				"War Magic|Fighter|XPHB|Eldritch Knight|XPHB|7",
+				"Eldritch Strike|Fighter|XPHB|Eldritch Knight|XPHB|10",
+				"Arcane Charge|Fighter|XPHB|Eldritch Knight|XPHB|15",
+				"Improved War Magic|Fighter|XPHB|Eldritch Knight|XPHB|18"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Psi Warrior",
+			"shortName": "Psi Warrior",
+			"source": "XPHB",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"page": 98,
+			"additionalSpells": [
+				{
+					"innate": {
+						"18": {
+							"daily": {
+								"1": [
+									"telekinesis|xphb"
+								]
+							}
+						}
+					}
+				}
+			],
+			"subclassTableGroups": [
+				{
+					"subclasses": [
+						{
+							"name": "Psi Warrior",
+							"source": "XPHB"
+						}
+					],
+					"colLabels": [
+						"{@tip Die Size|Psionic Energy Die Size}",
+						"{@tip Number|Psionic Energy Die Number}"
+					],
+					"rows": [
+						[
+							0,
+							0
+						],
+						[
+							0,
+							0
+						],
+						[
+							"{@dice D6}",
+							4
+						],
+						[
+							"{@dice D6}",
+							4
+						],
+						[
+							"{@dice D8}",
+							6
+						],
+						[
+							"{@dice D8}",
+							6
+						],
+						[
+							"{@dice D8}",
+							6
+						],
+						[
+							"{@dice D8}",
+							6
+						],
+						[
+							"{@dice D8}",
+							8
+						],
+						[
+							"{@dice D8}",
+							8
+						],
+						[
+							"{@dice D10}",
+							8
+						],
+						[
+							"{@dice D10}",
+							8
+						],
+						[
+							"{@dice D10}",
+							10
+						],
+						[
+							"{@dice D10}",
+							10
+						],
+						[
+							"{@dice D10}",
+							10
+						],
+						[
+							"{@dice D10}",
+							10
+						],
+						[
+							"{@dice D12}",
+							12
+						],
+						[
+							"{@dice D12}",
+							12
+						],
+						[
+							"{@dice D12}",
+							12
+						],
+						[
+							"{@dice D12}",
+							12
+						]
+					]
+				}
+			],
+			"subclassFeatures": [
+				"Psi Warrior|Fighter|XPHB|Psi Warrior|XPHB|3",
+				"Telekinetic Adept|Fighter|XPHB|Psi Warrior|XPHB|7",
+				"Guarded Mind|Fighter|XPHB|Psi Warrior|XPHB|10",
+				"Bulwark of Force|Fighter|XPHB|Psi Warrior|XPHB|15",
+				"Telekinetic Master|Fighter|XPHB|Psi Warrior|XPHB|18"
 			],
 			"hasFluffImages": true
 		}
@@ -1118,6 +1892,312 @@
 			"level": 20,
 			"entries": [
 				"At 20th level, you can attack four times whenever you take the {@action Attack} action on your turn."
+			]
+		},
+		{
+			"name": "Fighting Style",
+			"source": "XPHB",
+			"page": 91,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"You have honed your martial prowess and gain a {@filter Fighting Style feat|feats|category=FS} of your choice. {@feat Defense|XPHB} is recommended.",
+				"Whenever you gain a Fighter level, you can replace the feat you chose with a different {@filter Fighting Style feat|feats|category=FS}."
+			]
+		},
+		{
+			"name": "Second Wind",
+			"source": "XPHB",
+			"page": 91,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"You have a limited well of physical and mental stamina that you can draw on. As a {@variantrule Bonus Action|XPHB}, you can use it to regain {@variantrule Hit Points|XPHB} equal to {@dice 1d10} plus your Fighter level.",
+				"You can use this feature twice. You regain one expended use when you finish a {@variantrule Short Rest|XPHB}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}.",
+				"When you reach certain Fighter levels, you gain more uses of this feature, as shown in the Second Wind column of the Fighter Features table."
+			]
+		},
+		{
+			"name": "Weapon Mastery",
+			"source": "XPHB",
+			"page": 91,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"Your training with weapons allows you to use the mastery properties of three kinds of Simple or Martial weapons of your choice. Whenever you finish a {@variantrule Long Rest|XPHB}, you can practice weapon drills and change one of those weapon choices.",
+				"When you reach certain Fighter levels, you gain the ability to use the mastery properties of more kinds of weapons, as shown in the {@variantrule Weapon|XPHB} Mastery column of the Fighter Features table."
+			]
+		},
+		{
+			"name": "Action Surge",
+			"source": "XPHB",
+			"page": 91,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 2,
+			"entries": [
+				"You can push yourself beyond your normal limits for a moment. On your turn, you can take one additional action, except the {@action Magic|XPHB} action.",
+				"Once you use this feature, you can't do so again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}. Starting at level 17, you can use it twice before a rest but only once on a turn."
+			]
+		},
+		{
+			"name": "Tactical Mind",
+			"source": "XPHB",
+			"page": 91,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 2,
+			"entries": [
+				"You have a mind for tactics on and off the battlefield. When you fail an ability check, you can expend a use of your Second Wind to push yourself toward success. Rather than regaining {@variantrule Hit Points|XPHB}, you roll {@dice 1d10} and add the number rolled to the ability check, potentially turning it into a success. If the check still fails, this use of Second Wind isn't expended."
+			]
+		},
+		{
+			"name": "Fighter Subclass",
+			"source": "XPHB",
+			"page": 92,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"You gain a Fighter subclass of your choice. A subclass is a specialization that grants you features at certain Fighter levels. For the rest of your career, you gain each of your subclass's features that are of your Fighter level or lower."
+			]
+		},
+		{
+			"name": "Ability Score Improvement",
+			"source": "XPHB",
+			"page": 92,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 4,
+			"entries": [
+				"You gain the {@feat Ability Score Improvement|XPHB} feat or another {@5etools feat|feats.html} of your choice for which you qualify. You gain this feature again at Fighter levels 6, 8, 12, 14, and 16."
+			]
+		},
+		{
+			"name": "Extra Attack",
+			"source": "XPHB",
+			"page": 92,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 5,
+			"entries": [
+				"You can attack twice instead of once whenever you take the {@action Attack|XPHB} action on your turn."
+			]
+		},
+		{
+			"name": "Tactical Shift",
+			"source": "XPHB",
+			"page": 92,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 5,
+			"entries": [
+				"Whenever you activate your Second Wind with a {@variantrule Bonus Action|XPHB}, you can move up to half your {@variantrule Speed|XPHB} without provoking {@action Opportunity Attack|XPHB|Opportunity Attacks}."
+			]
+		},
+		{
+			"name": "Ability Score Improvement",
+			"source": "XPHB",
+			"page": 92,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 6,
+			"entries": [
+				"You gain the {@feat Ability Score Improvement|XPHB} feat or another {@5etools feat|feats.html} of your choice for which you qualify."
+			]
+		},
+		{
+			"name": "Subclass Feature",
+			"source": "XPHB",
+			"page": 92,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 7,
+			"entries": [
+				"You gain a feature from your Fighter Subclass."
+			]
+		},
+		{
+			"name": "Ability Score Improvement",
+			"source": "XPHB",
+			"page": 92,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 8,
+			"entries": [
+				"You gain the {@feat Ability Score Improvement|XPHB} feat or another {@5etools feat|feats.html} of your choice for which you qualify."
+			]
+		},
+		{
+			"name": "Indomitable",
+			"source": "XPHB",
+			"page": 92,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 9,
+			"entries": [
+				"If you fail a saving throw, you can reroll it with a bonus equal to your Fighter level. You must use the new roll, and you can't use this feature again until you finish a {@variantrule Long Rest|XPHB}.",
+				"You can use this feature twice before a {@variantrule Long Rest|XPHB} starting at level 13 and three times before a {@variantrule Long Rest|XPHB} starting at level 17."
+			]
+		},
+		{
+			"name": "Tactical Master",
+			"source": "XPHB",
+			"page": 92,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 9,
+			"entries": [
+				"When you attack with a weapon whose mastery property you can use, you can replace that property with the {@itemMastery Push|XPHB}, {@itemMastery Sap|XPHB}, or {@itemMastery Slow|XPHB} property for that attack."
+			]
+		},
+		{
+			"name": "Subclass Feature",
+			"source": "XPHB",
+			"page": 92,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 10,
+			"entries": [
+				"You gain a feature from your Fighter Subclass."
+			]
+		},
+		{
+			"name": "Two Extra Attacks",
+			"source": "XPHB",
+			"page": 92,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 11,
+			"entries": [
+				"You can attack three times instead of once whenever you take the {@action Attack|XPHB} action on your turn."
+			]
+		},
+		{
+			"name": "Ability Score Improvement",
+			"source": "XPHB",
+			"page": 92,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 12,
+			"entries": [
+				"You gain the {@feat Ability Score Improvement|XPHB} feat or another {@5etools feat|feats.html} of your choice for which you qualify."
+			]
+		},
+		{
+			"name": "Indomitable",
+			"source": "XPHB",
+			"page": 92,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 13,
+			"entries": [
+				"If you fail a saving throw, you can reroll it with a bonus equal to your Fighter level. You must use the new roll, and you can't use this feature again until you finish a {@variantrule Long Rest|XPHB}.",
+				"You can use this feature twice before a {@variantrule Long Rest|XPHB} starting at level 13 and three times before a {@variantrule Long Rest|XPHB} starting at level 17."
+			]
+		},
+		{
+			"name": "Studied Attacks",
+			"source": "XPHB",
+			"page": 92,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 13,
+			"entries": [
+				"You study your opponents and learn from each attack you make. If you make an attack roll against a creature and miss, you have {@variantrule Advantage|XPHB} on your next attack roll against that creature before the end of your next turn."
+			]
+		},
+		{
+			"name": "Ability Score Improvement",
+			"source": "XPHB",
+			"page": 92,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 14,
+			"entries": [
+				"You gain the {@feat Ability Score Improvement|XPHB} feat or another {@5etools feat|feats.html} of your choice for which you qualify."
+			]
+		},
+		{
+			"name": "Subclass Feature",
+			"source": "XPHB",
+			"page": 92,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 15,
+			"entries": [
+				"You gain a feature from your Fighter Subclass."
+			]
+		},
+		{
+			"name": "Ability Score Improvement",
+			"source": "XPHB",
+			"page": 92,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 16,
+			"entries": [
+				"You gain the {@feat Ability Score Improvement|XPHB} feat or another {@5etools feat|feats.html} of your choice for which you qualify."
+			]
+		},
+		{
+			"name": "Action Surge",
+			"source": "XPHB",
+			"page": 91,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 17,
+			"entries": [
+				"You can push yourself beyond your normal limits for a moment. On your turn, you can take one additional action, except the {@action Magic|XPHB} action.",
+				"Once you use this feature, you can't do so again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}. Starting at level 17, you can use it twice before a rest but only once on a turn."
+			]
+		},
+		{
+			"name": "Indomitable",
+			"source": "XPHB",
+			"page": 92,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 17,
+			"entries": [
+				"If you fail a saving throw, you can reroll it with a bonus equal to your Fighter level. You must use the new roll, and you can't use this feature again until you finish a {@variantrule Long Rest|XPHB}.",
+				"You can use this feature twice before a {@variantrule Long Rest|XPHB} starting at level 13 and three times before a {@variantrule Long Rest|XPHB} starting at level 17."
+			]
+		},
+		{
+			"name": "Subclass Feature",
+			"source": "XPHB",
+			"page": 92,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 18,
+			"entries": [
+				"You gain a feature from your Fighter Subclass."
+			]
+		},
+		{
+			"name": "Epic Boon",
+			"source": "XPHB",
+			"page": 92,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 19,
+			"entries": [
+				"You gain an {@filter Epic Boon feat|feats|category=EB} or another {@5etools feat|feats.html} of your choice for which you qualify. {@feat Boon of Combat Prowess|XPHB} is recommended.ture and miss, you have {@variantrule Advantage|XPHB} on your next attack roll against that creature before the end of your next turn."
+			]
+		},
+		{
+			"name": "Three Extra Attacks",
+			"source": "XPHB",
+			"page": 92,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 20,
+			"entries": [
+				"You can attack four times instead of once whenever you take the {@action Attack|XPHB} action on your turn."
 			]
 		}
 	],
@@ -3002,6 +4082,731 @@
 			"level": 7,
 			"entries": [
 				"When you deal damage to a target with your Psionic Strike, you can force the target to make a Strength saving throw against a DC equal to 8 + your proficiency bonus + your Intelligence modifier. If the save fails, you can knock the target {@condition prone} or move it up to 10 feet in any direction horizontally."
+			]
+		},
+		{
+			"name": "Battle Master",
+			"source": "XPHB",
+			"page": 93,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i Master Sophisticated Battle Maneuvers}",
+				"Battle Masters are students of the art of battle, learning martial techniques passed down through generations. The most accomplished Battle Masters are well-rounded figures who combine their carefully honed combat skills with academic study in the fields of history, theory, and the arts.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Combat Superiority|Fighter|XPHB|Battle Master|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Student of War|Fighter|XPHB|Battle Master|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Maneuver Options|Fighter|XPHB|Battle Master|XPHB|3"
+				}
+			]
+		},
+		{
+			"name": "Combat Superiority",
+			"source": "XPHB",
+			"page": 93,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"Your experience on the battlefield has refined your fighting techniques. You learn maneuvers that are fueled by special dice called Superiority Dice.",
+				{
+					"type": "entries",
+					"name": "Maneuvers",
+					"entries": [
+						"You learn three maneuvers of your choice from the \"{@filter Maneuvers Options|optionalfeatures|feature type=MV:B|source=XPHB}\" section later in this subclass's description. Many maneuvers enhance an attack in some way. You can use only one maneuver per attack.",
+						"You learn two additional maneuvers of your choice when you reach Fighter levels 7, 10, and 15. Each time you learn new maneuvers, you can also replace one maneuver you know with a different one."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Superiority Dice",
+					"entries": [
+						"You have four Superiority Dice, which are {@dice d8|d8s}. A Superiority Die is expended when you use it. You regain all expended Superiority Dice when you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}.",
+						"You gain an additional Superiority Die when you reach Fighter levels 7 (five dice total) and 15 (six dice total)."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Saving Throws",
+					"entries": [
+						"If a maneuver requires a saving throw, the DC equals 8 plus your Strength or Dexterity modifier (your choice) and {@variantrule Proficiency|XPHB} Bonus."
+					]
+				}
+			]
+		},
+		{
+			"name": "Maneuver Options",
+			"source": "XPHB",
+			"page": 94,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"The maneuvers are presented here in alphabetical order.",
+				{
+					"type": "options",
+					"count": 3,
+					"entries": [
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Ambush|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Bait and Switch|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Commander's Strike|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Commanding Presence|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Disarming Attack|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Distracting Strike|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Evasive Footwork|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Feinting Attack|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Goading Attack|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Lunging Attack|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Maneuvering Attack|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Menacing Attack|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Parry|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Precision Attack|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Pushing Attack|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Rally|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Riposte|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Sweeping Attack|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Tactical Assessment|XPHB"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Trip Attack|XPHB"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Student of War",
+			"source": "XPHB",
+			"page": 94,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"You gain proficiency with one type of {@item Artisan's Tools|XPHB} of your choice, and you gain proficiency in one skill of your choice from the skills available to Fighters at level 1."
+			]
+		},
+		{
+			"name": "Know Your Enemy",
+			"source": "XPHB",
+			"page": 94,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "XPHB",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"As a {@variantrule Bonus Action|XPHB}, you can discern certain strengths and weaknesses of a creature you can see within 30 feet of yourself; you know whether that creature has any Immunities, Resistances, or Vulnerabilities, and if the creature has any, you know what they are.",
+				"Once you use this feature, you can't do so again until you finish a {@variantrule Long Rest|XPHB}. You can also restore a use of the feature by expending one Superiority Die (no action required)."
+			]
+		},
+		{
+			"name": "Improved Combat Superiority",
+			"source": "XPHB",
+			"page": 94,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "XPHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"Your Superiority Die becomes a {@dice d10}."
+			]
+		},
+		{
+			"name": "Relentless",
+			"source": "XPHB",
+			"page": 94,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "XPHB",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"Once per turn, when you use a maneuver, you can roll {@dice 1d8} and use the number rolled instead of expending a Superiority Die."
+			]
+		},
+		{
+			"name": "Ultimate Combat Superiority",
+			"source": "XPHB",
+			"page": 94,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "XPHB",
+			"level": 18,
+			"header": 2,
+			"entries": [
+				"Your Superiority Die becomes a {@dice d12}."
+			]
+		},
+		{
+			"name": "Champion",
+			"source": "XPHB",
+			"page": 96,
+			"freeRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Champion",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i Pursue Physical Excellence in Combat}",
+				"A Champion focuses on the development of martial prowess in a relentless pursuit of victory. Champions combine rigorous training with physical excellence to deal devastating blows, withstand peril, and garner glory. Whether in athletic contests or bloody battle, Champions strive for the crown of the victor.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Improved Critical|Fighter|XPHB|Champion|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Remarkable Athlete|Fighter|XPHB|Champion|XPHB|3"
+				}
+			]
+		},
+		{
+			"name": "Improved Critical",
+			"source": "XPHB",
+			"page": 96,
+			"freeRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Champion",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"entries": [
+				"Your attack rolls with weapons and Unarmed Strikes can score a {@variantrule Critical Hit|XPHB} on a roll of 19 or 20 on the {@dice d20}."
+			]
+		},
+		{
+			"name": "Remarkable Athlete",
+			"source": "XPHB",
+			"page": 96,
+			"freeRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Champion",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"entries": [
+				"Thanks to your athleticism, you have {@variantrule Advantage|XPHB} on {@variantrule Initiative|XPHB} rolls and Strength ({@skill Athletics|XPHB}) checks.",
+				"In addition, immediately after you score a {@variantrule Critical Hit|XPHB}, you can move up to half your {@variantrule Speed|XPHB} without provoking {@action Opportunity Attack|XPHB|Opportunity Attacks}."
+			]
+		},
+		{
+			"name": "Additional Fighting Style",
+			"source": "XPHB",
+			"page": 96,
+			"freeRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Champion",
+			"subclassSource": "XPHB",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"You gain another {@filter Fighting Style feat|feats|category=FS} of your choice."
+			]
+		},
+		{
+			"name": "Heroic Warrior",
+			"source": "XPHB",
+			"page": 96,
+			"freeRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Champion",
+			"subclassSource": "XPHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"The thrill of battle drives you toward victory. During combat, you can give yourself {@variantrule Heroic Inspiration|XPHB} whenever you start your turn without it."
+			]
+		},
+		{
+			"name": "Superior Critical",
+			"source": "XPHB",
+			"page": 96,
+			"freeRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Champion",
+			"subclassSource": "XPHB",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"Your attack rolls with weapons and Unarmed Strikes can now score a {@variantrule Critical Hit|XPHB} on a roll of 18\u201320 on the {@dice d20}."
+			]
+		},
+		{
+			"name": "Survivor",
+			"source": "XPHB",
+			"page": 96,
+			"freeRules2024": true,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Champion",
+			"subclassSource": "XPHB",
+			"level": 18,
+			"header": 2,
+			"entries": [
+				"You attain the pinnacle of resilience in battle, giving you these benefits.",
+				{
+					"type": "entries",
+					"name": "Defy Death",
+					"entries": [
+						"You have {@variantrule Advantage|XPHB} on Death Saving Throws. Moreover, when you roll 18\u201320 on a {@variantrule Death Saving Throw|XPHB}, you gain the benefit of rolling a 20 on it."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Heroic Rally",
+					"entries": [
+						"At the start of each of your turns, you regain {@variantrule Hit Points|XPHB} equal to 5 plus your Constitution modifier if you are {@variantrule Bloodied|XPHB} and have at least 1 {@variantrule Hit Points|XPHB|Hit Point}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Eldritch Knight",
+			"source": "XPHB",
+			"page": 96,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Eldritch Knight",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i Support Combat Skills with Arcane Magic}",
+				"Eldritch Knights combine the martial mastery common to all Fighters with a careful study of magic. Their spells both complement and extend their combat skills, providing additional protection to shore up their armor and also allowing them to engage many foes at once with explosive magic.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Spellcasting|Fighter|XPHB|Eldritch Knight|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Weapon Bond|Fighter|XPHB|Eldritch Knight|XPHB|3"
+				}
+			]
+		},
+		{
+			"name": "Spellcasting",
+			"source": "XPHB",
+			"page": 96,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Eldritch Knight",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"You have learned to cast spells. See {@book chapter 7|XPHB|7} for the rules on spellcasting. The information below details how you use those rules as an Eldritch Knight.",
+				{
+					"type": "entries",
+					"name": "Cantrips",
+					"entries": [
+						"You know two cantrips of your choice from the {@filter Wizard spell list|spells|class=Wizard} (see that class's section for its list). Ray of Frost and Shocking Grasp are recommended. Whenever you gain a Fighter level, you can replace one of these cantrips with another cantrip of your choice from the {@filter Wizard spell list|spells|class=Wizard}.",
+						"When you reach Fighter level 10, you learn another Wizard cantrip of your choice."
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Spell Slots",
+							"entries": [
+								"The Eldritch Knight Spellcasting table shows how many spell slots you have to cast your level 1+ spells. You regain all expended slots when you finish a {@variantrule Long Rest|XPHB}."
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Prepared Spells of Level 1+",
+							"entries": [
+								"You prepare the list of level 1+ spells that are available for you to cast with this feature. To start, choose three level 1 spells from the {@filter Wizard spell list|spells|class=Wizard}. {@spell Burning Hands|XPHB}, {@spell Jump|XPHB}, and {@spell Shield|XPHB} are recommended.",
+								"The number of spells on your list increases as you gain Fighter levels, as shown in the Prepared Spells column of the Eldritch Knight Spellcasting table. Whenever that number increases, choose additional spells from the {@filter Wizard spell list|spells|class=Wizard} until the number of spells on your list matches the number on the table. The chosen spells must be of a level for which you have spell slots. For example, if you're a level 7 Fighter, your list of prepared spells can include five Wizard spells of levels 1 and 2 in any combination."
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Changing your Prepared Spells",
+							"entries": [
+								"Whenever you gain a Fighter level, you can replace one spell on your list with another Wizard spell for which you have spell slots."
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Spellcasting Ability",
+							"entries": [
+								"Intelligence is your spellcasting ability for your Wizard spells."
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Spellcasting Focus",
+							"entries": [
+								"You can use an {@item Arcane Focus|XPHB} as a {@variantrule Spellcasting Focus|XPHB} for your Wizard spells."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Weapon Bond",
+			"source": "XPHB",
+			"page": 98,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Eldritch Knight",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 1,
+			"entries": [
+				"You learn a ritual that creates a magical bond between yourself and one weapon. You perform the ritual over the course of 1 hour, which can be done during a {@variantrule Short Rest|XPHB}. The weapon must be within your reach throughout the ritual, at the conclusion of which you touch the weapon and forge the bond. The bond fails if another Fighter is bonded to the weapon or if the weapon is a magic item to which someone else is attuned.",
+				"Once you have bonded a weapon to yourself, you can't be disarmed of that weapon unless you have the {@condition Incapacitated|XPHB} condition. If it is on the same plane of existence, you can summon that weapon as a {@variantrule Bonus Action|XPHB}, causing it to teleport instantly to your hand.",
+				"You can have up to two bonded weapons, but you can summon only one at a time with a {@variantrule Bonus Action|XPHB}. If you attempt to bond with a third weapon, you must break the bond with one of the other two."
+			]
+		},
+		{
+			"name": "War Magic",
+			"source": "XPHB",
+			"page": 98,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Eldritch Knight",
+			"subclassSource": "XPHB",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"When you take the {@action Attack|XPHB} action on your turn, you can replace one of the attacks with a casting of one of your Wizard cantrips that has a casting time of an action."
+			]
+		},
+		{
+			"name": "Eldritch Strike",
+			"source": "XPHB",
+			"page": 98,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Eldritch Knight",
+			"subclassSource": "XPHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"You learn how to make your weapon strikes undercut a creature's ability to withstand your spells. When you hit a creature with an attack using a weapon, that creature has {@variantrule Disadvantage|XPHB} on the next saving throw it makes against a spell you cast before the end of your next turn."
+			]
+		},
+		{
+			"name": "Arcane Charge",
+			"source": "XPHB",
+			"page": 98,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Eldritch Knight",
+			"subclassSource": "XPHB",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"When you use your {@variantrule Action|XPHB} Surge, you can teleport up to 30 feet to an unoccupied space you can see. You can teleport before or after the additional action."
+			]
+		},
+		{
+			"name": "Improved War Magic",
+			"source": "XPHB",
+			"page": 98,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Eldritch Knight",
+			"subclassSource": "XPHB",
+			"level": 18,
+			"header": 2,
+			"entries": [
+				"When you take the {@action Attack|XPHB} action on your turn, you can replace two of the attacks with a casting of one of your level 1 or level 2 Wizard spells that has a casting time of an action."
+			]
+		},
+		{
+			"name": "Psi Warrior",
+			"source": "XPHB",
+			"page": 98,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entries": [
+				"{@i Augment Physical Might with Psionic Power}",
+				"Psi Warriors awaken the power of their minds to augment their physical might. They harness this psionic power to infuse their weapon strikes, lash out with telekinetic energy, and create barriers of mental force.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Psionic Power|Fighter|XPHB|Psi Warrior|XPHB|3"
+				}
+			]
+		},
+		{
+			"name": "Psionic Power",
+			"source": "XPHB",
+			"page": 98,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"consumes": {
+				"name": "Psionic Energy Die"
+			},
+			"entries": [
+				"You harbor a wellspring of psionic energy within yourself. It is represented by your Psionic Energy Dice, which fuel powers you have from this subclass. The Psi Warrior Energy Dice table shows the die size and number of these dice you have when you reach certain Fighter levels.",
+				{
+					"type": "table",
+					"caption": "Psi Warrior Energy Dice",
+					"colLabels": [
+						"Fighter Level",
+						"Die Size",
+						"Number"
+					],
+					"colStyles": [
+						"col-4 text-center",
+						"col-4 text-center",
+						"col-4 text-center"
+					],
+					"rows": [
+						[
+							"3",
+							"{@dice D6}",
+							"4"
+						],
+						[
+							"5",
+							"{@dice D8}",
+							"6"
+						],
+						[
+							"9",
+							"{@dice D8}",
+							"8"
+						],
+						[
+							"11",
+							"{@dice D10}",
+							"8"
+						],
+						[
+							"13",
+							"{@dice D10}",
+							"10"
+						],
+						[
+							"17",
+							"{@dice D12}",
+							"12"
+						]
+					]
+				},
+				"Any features in this subclass that use a Psionic Energy Die use only the dice from this subclass. Some of your powers expend the Psionic Energy Die, as specified in a power's description, and you can't use a power if it requires you to use a die when all your Psionic Energy Dice are expended.",
+				"You regain one of your expended Psionic Energy Dice when you finish a {@variantrule Short Rest|XPHB}, and you regain all of them when you finish a {@variantrule Long Rest|XPHB}.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Protective Field",
+							"entries": [
+								"When you or another creature you can see within 30 feet of you takes damage, you can take a {@variantrule Reaction|XPHB} to expend one Psionic Energy Die, roll the die, and reduce the damage taken by the number rolled plus your Intelligence modifier (minimum reduction of 1), as you create a momentary shield of telekinetic force."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Psionic Strike",
+							"entries": [
+								"You can propel your weapons with psionic force. Once on each of your turns, immediately after you hit a target within 30 feet of yourself with an attack and deal damage to it with a weapon, you can expend one Psionic Energy Die, rolling it and dealing Force damage to the target equal to the number rolled plus your Intelligence modifier."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Telekinetic Movement",
+							"entries": [
+								"You can move an object or a creature with your mind. As a {@action Magic|XPHB} action, choose one target you can see within 30 feet of yourself; the target must be a loose object that is Large or smaller or one willing creature other than you. You transport the target up to 30 feet to an unoccupied space you can see. Alternatively, if the target is a Tiny object, you can transport it to or from your hand.",
+								"Once you take this action, you can't do so again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB} unless you expend a Psionic Energy Die (no action required) to restore your use of it."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Telekinetic Adept",
+			"source": "XPHB",
+			"page": 99,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "XPHB",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"You have mastered new ways to use your telekinetic abilities, detailed below.",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Psi-Powered Leap",
+							"entries": [
+								"As a {@variantrule Bonus Action|XPHB}, you gain a {@variantrule Fly Speed|XPHB} equal to twice your {@variantrule Speed|XPHB} until the end of the current turn. Once you take this {@variantrule Bonus Action|XPHB}, you can't do so again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB} unless you expend a Psionic Energy Die (no action required) to restore your use of it."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Telekinetic Thrust",
+							"entries": [
+								"When you deal damage to a target with your Psionic Strike, you can force the target to make a Strength saving throw ({@dc 8} plus your Intelligence modifier and {@variantrule Proficiency|XPHB} Bonus). On a failed save, you can give the target the {@condition Prone|XPHB} condition or transport it up to 10 feet horizontally."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Guarded Mind",
+			"source": "XPHB",
+			"page": 99,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "XPHB",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"You have {@variantrule Resistance|XPHB} to Psychic damage. Moreover, if you start your turn with the {@condition Charmed|XPHB} or {@condition Frightened|XPHB} condition, you can expend a Psionic Energy Die (no action required) and end every effect on yourself giving you those conditions."
+			]
+		},
+		{
+			"name": "Bulwark of Force",
+			"source": "XPHB",
+			"page": 99,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "XPHB",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"You can shield yourself and others with telekinetic force. As a {@variantrule Bonus Action|XPHB}, you can choose creatures, including yourself, within 30 feet of yourself, up to a number of creatures equal to your Intelligence modifier (minimum of one creature). Each of the chosen creatures has {@variantrule Cover|XPHB|Half Cover} for 1 minute or until you have the {@condition Incapacitated|XPHB} condition.",
+				"Once you use this feature, you can't do so again until you finish a {@variantrule Long Rest|XPHB} unless you expend a Psionic Energy Die (no action required) to restore your use of it."
+			]
+		},
+		{
+			"name": "Telekinetic Master",
+			"source": "XPHB",
+			"page": 99,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "XPHB",
+			"level": 18,
+			"header": 2,
+			"entries": [
+				"You always have the {@spell Telekinesis|XPHB} spell prepared. With this feature, you can cast it without a spell slot or components, and your spellcasting ability for it is Intelligence. On each of your turns while you maintain {@status Concentration|XPHB} on it, including the turn when you cast it, you can make one attack with a weapon as a {@variantrule Bonus Action|XPHB}.",
+				"Once you cast the spell with this feature, you can't do so in this way again until you finish a {@variantrule Long Rest|XPHB} unless you expend a Psionic Energy Die (no action required) to restore your use of it."
 			]
 		}
 	]

@@ -35,12 +35,18 @@ class PageFilterRaces extends PageFilterBase {
 	}
 	// endregion
 
+	static _TRAIT_DISPLAY_VALUES = {
+		"Monstrous Race": "Monstrous Species",
+		"NPC Race": "NPC Species",
+		"Uncommon Race": "Uncommon Species",
+	};
+
 	constructor () {
 		super();
 
 		this._sizeFilter = new Filter({header: "Size", displayFn: Parser.sizeAbvToFull, itemSortFn: PageFilterRaces.filterAscSortSize});
-		this._asiFilter = new AbilityScoreFilter({header: "Ability Scores (Including Subrace)"});
-		this._baseRaceFilter = new Filter({header: "Base Race"});
+		this._asiFilter = new AbilityScoreFilter({header: "Ability Scores (Including Subspecies)"});
+		this._baseRaceFilter = new Filter({header: "Base Species"});
 		this._speedFilter = new Filter({header: "Speed", items: ["Climb", "Fly", "Swim", "Walk (Fast)", "Walk", "Walk (Slow)"]});
 		this._traitFilter = new Filter({
 			header: "Traits",
@@ -64,6 +70,7 @@ class PageFilterRaces extends PageFilterBase {
 				"Uncommon Race",
 				"Weapon Proficiency",
 			],
+			displayFn: val => this.constructor._TRAIT_DISPLAY_VALUES[val] || val,
 			deselFn: (it) => {
 				return it === "NPC Race";
 			},
@@ -111,9 +118,9 @@ class PageFilterRaces extends PageFilterBase {
 		});
 		this._miscFilter = new Filter({
 			header: "Miscellaneous",
-			items: ["Base Race", "Key Race", "Lineage", "Modified Copy", "Reprinted", "SRD", "Basic Rules", "Legacy", "Has Images", "Has Info"],
+			items: ["Base Species", "Key Species", "Lineage", "Modified Copy", "Reprinted", "SRD", "Basic Rules", "Legacy", "Has Images", "Has Info"],
 			isMiscFilter: true,
-			// N.b. "Reprinted" is not red by default, as we assume tastes vary w.r.t. ability score style
+			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
 		});
 	}
 
@@ -135,20 +142,14 @@ class PageFilterRaces extends PageFilterBase {
 		r._fSources = SourceFilter.getCompleteFilterSources(r);
 		r._fLangs = PageFilterRaces.getLanguageProficiencyTags(r.languageProficiencies);
 		r._fCreatureTypes = r.creatureTypes ? r.creatureTypes.map(it => it.choose || it).flat() : ["humanoid"];
-		r._fMisc = [];
-		if (r._isBaseRace) r._fMisc.push("Base Race");
-		if (r._isBaseRace || !r._isSubRace) r._fMisc.push("Key Race");
+		this._mutateForFilters_commonMisc(r);
+		if (r._isBaseRace) r._fMisc.push("Base Species");
+		if (r._isBaseRace || !r._isSubRace) r._fMisc.push("Key Species");
 		if (r._isCopy) r._fMisc.push("Modified Copy");
-		if (r.srd) r._fMisc.push("SRD");
-		if (r.basicRules) r._fMisc.push("Basic Rules");
-		if (SourceUtil.isLegacySourceWotc(r.source)) r._fMisc.push("Legacy");
-		if (this._hasFluff(r)) r._fMisc.push("Has Info");
-		if (this._hasFluffImages(r)) r._fMisc.push("Has Images");
 		if (r.lineage) r._fMisc.push("Lineage");
-		if (this._isReprinted({reprintedAs: r.reprintedAs, tag: "race", prop: "race", page: UrlUtil.PG_RACES})) r._fMisc.push("Reprinted");
 
 		const ability = r.ability ? Renderer.getAbilityData(r.ability, {isOnlyShort: true, isCurrentLineage: r.lineage === "VRGR"}) : {asTextShort: "None"};
-		r._slAbility = ability.asTextShort;
+		r._slAbility = ability.asTextShort || VeCt.STR_NONE;
 
 		if (r.age?.mature != null && r.age?.max != null) r._fAge = [r.age.mature, r.age.max];
 		else if (r.age?.mature != null) r._fAge = r.age.mature;
@@ -244,7 +245,7 @@ class ModalFilterRaces extends ModalFilterBase {
 		opts = opts || {};
 		super({
 			...opts,
-			modalTitle: `Race${opts.isRadio ? "" : "s"}`,
+			modalTitle: `Species`,
 			pageFilter: new PageFilterRaces(),
 		});
 	}
