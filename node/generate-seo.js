@@ -6,6 +6,7 @@ import fs from "fs";
 import "../js/parser.js";
 import "../js/utils.js";
 import "../js/utils-dataloader.js";
+import "../js/utils-config.js";
 import "../js/render.js";
 import "../js/render-dice.js";
 import * as ut from "./util.js";
