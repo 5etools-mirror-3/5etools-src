@@ -571,7 +571,7 @@ class _RenderBestiaryImplOne extends _RenderBestiaryImplBase {
 	_getHtmlParts_armorClass ({mon, renderer, isInlinedToken}) {
 		return `<tr><td colspan="6">
 			<div class="split-v-center ${isInlinedToken ? `stats__wrp-avoid-token` : ""}">
-				<div><strong title="Armor Class">AC</strong> ${mon.ac == null ? "\u2014" : Parser.acToFull(mon.ac, {renderer, isHideFrom: true})}</div>
+				<div><strong title="Armor Class">AC</strong> ${mon.ac == null ? "\u2014" : Parser.acToFull(mon.ac, {renderer})}</div>
 				<div><strong>Initiative</strong> ${Renderer.monster.getInitiativePart(mon)}</div>
 			</div>
 		</td></tr>`;

@@ -10,7 +10,7 @@ class PageFilterVariantRules extends PageFilterBase {
 		this._ruleTypeFilter = new Filter({header: "Rule Type", items: ["O", "V", "VO", "VV", "U"], displayFn: Parser.ruleTypeToFull});
 		this._miscFilter = new Filter({
 			header: "Miscellaneous",
-			items: ["SRD", "Legacy"],
+			items: ["Legacy"],
 			isMiscFilter: true,
 			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
 		});
@@ -27,6 +27,7 @@ class PageFilterVariantRules extends PageFilterBase {
 
 		this._sourceFilter.addItem(rule.source);
 		this._ruleTypeFilter.addItem(rule._fRuleType);
+		this._miscFilter.addItem(rule._fMisc);
 	}
 
 	async _pPopulateBoxOptions (opts) {

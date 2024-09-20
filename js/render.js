@@ -2588,8 +2588,9 @@ Renderer.parseScaleDice = function (tag, text) {
 	return out;
 };
 
-Renderer.getAbilityData = function (abArr, {isOnlyShort, isCurrentLineage} = {}) {
+Renderer.getAbilityData = function (abArr, {isOnlyShort, isCurrentLineage = false, isBackgroundShortForm = false} = {}) {
 	if (isOnlyShort && isCurrentLineage) return new Renderer._AbilityData({asTextShort: "Lineage"});
+	if (isOnlyShort && isBackgroundShortForm && abArr.length === 2) return new Renderer._AbilityData({asTextShort: "Origin"});
 
 	const outerStack = (abArr || [null]).map(it => Renderer.getAbilityData._doRenderOuter(it));
 	if (outerStack.length <= 1) return outerStack[0];
@@ -3169,13 +3170,13 @@ Renderer.utils = class {
 
 	/**
 	 * @param entry Data entry to search for fluff on, e.g. a monster
-	 * @param prop The fluff index reference prop, e.g. `"monsterFluff"`
+	 * @param fluffProp The fluff index reference prop, e.g. `"monsterFluff"`
 	 */
-	static async pGetPredefinedFluff (entry, prop) {
+	static async pGetPredefinedFluff (entry, fluffProp, {lockToken2 = null} = {}) {
 		if (!entry.fluff) return null;
 
-		const mappedProp = `_${prop}`;
-		const mappedPropAppend = `_append${prop.uppercaseFirst()}`;
+		const mappedProp = `_${fluffProp}`;
+		const mappedPropAppend = `_append${fluffProp.uppercaseFirst()}`;
 		const fluff = {};
 
 		const assignPropsIfExist = (fromObj, ...props) => {
@@ -3187,28 +3188,29 @@ Renderer.utils = class {
 		assignPropsIfExist(entry.fluff, "name", "type", "entries", "images");
 
 		if (entry.fluff[mappedProp]) {
-			const fromList = [
-				...((await PrereleaseUtil.pGetBrewProcessed())[prop] || []),
-				...((await BrewUtil2.pGetBrewProcessed())[prop] || []),
-			]
-				.find(it =>
-					it.name === entry.fluff[mappedProp].name
-					&& it.source === entry.fluff[mappedProp].source,
-				);
+			const fromList = await DataLoader.pCacheAndGet(
+				fluffProp,
+				entry.source,
+				UrlUtil.URL_TO_HASH_BUILDER[fluffProp](entry.fluff[mappedProp]),
+				{
+					lockToken2,
+					isCopy: true,
+				},
+			);
 			if (fromList) {
 				assignPropsIfExist(fromList, "name", "type", "entries", "images");
 			}
 		}
 
 		if (entry.fluff[mappedPropAppend]) {
-			const fromList = [
-				...((await PrereleaseUtil.pGetBrewProcessed())[prop] || []),
-				...((await BrewUtil2.pGetBrewProcessed())[prop] || []),
-			]
-				.find(it =>
-					it.name === entry.fluff[mappedPropAppend].name
-					&& it.source === entry.fluff[mappedPropAppend].source,
-				);
+			const fromList = await DataLoader.pCacheAndGet(
+				fluffProp,
+				entry.source,
+				UrlUtil.URL_TO_HASH_BUILDER[mappedPropAppend](entry.fluff[mappedProp]),
+				{
+					lockToken2,
+				},
+			);
 			if (fromList) {
 				if (fromList.entries) {
 					fluff.entries = MiscUtil.copyFast(fluff.entries || []);
@@ -3247,13 +3249,13 @@ Renderer.utils = class {
 
 	// TODO(Future) move into `DataLoader`; cleanup `lockToken2` usage
 	static async pGetFluff ({entity, pFnPostProcess, fluffProp, lockToken2 = null} = {}) {
-		const predefinedFluff = await Renderer.utils.pGetPredefinedFluff(entity, fluffProp);
+		const predefinedFluff = await Renderer.utils.pGetPredefinedFluff(entity, fluffProp, {lockToken2});
 		if (predefinedFluff) {
 			if (pFnPostProcess) return pFnPostProcess(predefinedFluff);
 			return predefinedFluff;
 		}
 
-		const fluff = await Renderer.utils._pGetFluff({entity, fluffProp});
+		const fluff = await Renderer.utils._pGetFluff({entity, fluffProp, lockToken2});
 		if (!fluff) return null;
 
 		if (pFnPostProcess) return pFnPostProcess(fluff);
@@ -6254,13 +6256,18 @@ Renderer.class = class {
 
 	/* -------------------------------------------- */
 
-	static getDisplayNamedClassFeatureEntry (ent, styleHint) {
+	static getDisplayNamedClassFeatureEntry (ent, {styleHint = null} = {}) {
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
 		if (styleHint === "classic" || !ent.level || !ent.name) return ent;
 		return {_displayName: `Level ${ent.level}: ${ent._displayName || ent.name}`, ...ent};
 	}
 
-	static getDisplayNamedSubclassFeatureEntry (ent, styleHint) {
+	static getDisplayNamedSubclassFeatureEntry (ent, {styleHint = null, isEditionMismatch = false} = {}) {
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
 		if (styleHint === "classic" || !ent.level || !ent.entries?.length) return ent;
+		if (isEditionMismatch) return ent;
 
 		const cpy = MiscUtil.copyFast(ent);
 		cpy.entries = cpy.entries
@@ -6428,7 +6435,7 @@ class _RenderCompactSubclassesImplBase extends _RenderCompactImplBase {
 	_getCommonHtmlParts_entries ({ent, renderer}) {
 		const cpyEntries = MiscUtil.copyFast((ent.subclassFeatures || []).flat())
 			.flat()
-			.map(ent => Renderer.class.getDisplayNamedSubclassFeatureEntry(ent, this._style));
+			.map(ent => Renderer.class.getDisplayNamedSubclassFeatureEntry(ent, {styleHint: this._style}));
 
 		if (cpyEntries[0]?.name === ent.name) delete cpyEntries[0].name;
 
@@ -9714,7 +9721,7 @@ Renderer.monster = class {
 				const numScore = abvsRemaining.includes(abv) ? mon[abv] : null;
 				const ptScore = numScore != null ? `${mon[abv]}` : `\u2013`;
 				const ptBonus = numScore != null ? Renderer.utils.getAbilityRoller(mon, abv, {isDisplayAsBonus: true}) : `\u2013`;
-				const ptSave = renderer.render(`{@savingThrow ${abv} ${mon.save?.[abv] == null ? ptScore : mon.save[abv]}}`);
+				const ptSave = renderer.render(`{@savingThrow ${abv} ${mon.save?.[abv] == null ? Parser.getAbilityModNumber(ptScore) : mon.save[abv]}}`);
 
 				return [
 					`<div class="bold small-caps ve-text-right stats__disp-as-score stats__disp-as-score--label stats__disp-as-score--${styleName}">${abv.toTitleCase()}</div>`,

@@ -6,7 +6,7 @@ class PageFilterClassesBase extends PageFilterBase {
 
 		this._miscFilter = new Filter({
 			header: "Miscellaneous",
-			items: ["Reprinted", "Sidekick", "SRD", "Basic Rules", "Legacy"],
+			items: ["Reprinted", "Sidekick", "Legacy"],
 			deselFn: (it) => { return it === "Reprinted" || it === "Sidekick"; },
 			displayFnMini: it => it === "Reprinted" ? "Repr." : it,
 			displayFnTitle: it => it === "Reprinted" ? it : "",
@@ -51,7 +51,6 @@ class PageFilterClassesBase extends PageFilterBase {
 			]),
 		];
 
-		cls._fMisc = [];
 		this._mutateForFilters_commonMisc(cls);
 		if (cls.isSidekick) cls._fMisc.push("Sidekick");
 
@@ -90,6 +89,7 @@ class PageFilterClassesBase extends PageFilterBase {
 		// Note that we assume that, for fluff from a given source, a class/subclass will exist from that source.
 		//   This allows us to skip loading the class/subclass fluff in order to track the fluff's sources.
 		this._sourceFilter.addItem(cls.source);
+		this._miscFilter.addItem(cls._fMisc);
 
 		cls.classFeatures.forEach(lvlFeatures => lvlFeatures.forEach(feature => this._addEntrySourcesToFilter(feature)));
 
@@ -97,6 +97,7 @@ class PageFilterClassesBase extends PageFilterBase {
 			const isScExcluded = (subclassExclusions[sc.source] || {})[sc.name] || false;
 			if (!isScExcluded) {
 				this._sourceFilter.addItem(sc.source);
+				this._miscFilter.addItem(sc._fMisc);
 				sc.subclassFeatures.forEach(lvlFeatures => lvlFeatures.forEach(feature => this._addEntrySourcesToFilter(feature)));
 			}
 		});

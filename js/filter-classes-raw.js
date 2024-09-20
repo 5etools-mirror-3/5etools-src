@@ -22,6 +22,7 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 		const subclassExclusions = opts.subclassExclusions || {};
 
 		this._sourceFilter.addItem(cls.source);
+		this._miscFilter.addItem(cls._fMisc);
 
 		if (cls.fluff) cls.fluff.forEach(it => this._addEntrySourcesToFilter(it));
 
@@ -31,6 +32,7 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 			const isScExcluded = (subclassExclusions[sc.source] || {})[sc.name] || false;
 			if (!isScExcluded) {
 				this._sourceFilter.addItem(sc.source);
+				this._miscFilter.addItem(sc._fMisc);
 				sc.subclassFeatures.forEach(feature => feature.loadeds.forEach(ent => this._addEntrySourcesToFilter(ent.entity)));
 			}
 		});

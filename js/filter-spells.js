@@ -361,7 +361,7 @@ class PageFilterSpells extends PageFilterBase {
 		this._optionalfeaturesFilter = new SearchableFilter({header: "Other Option/Feature"});
 		this._metaFilter = new Filter({
 			header: "Components & Miscellaneous",
-			items: [...PageFilterSpells._META_FILTER_BASE_ITEMS, "Ritual", "SRD", "Basic Rules", "Legacy", "Reprinted", "Has Images", "Has Token"],
+			items: [...PageFilterSpells._META_FILTER_BASE_ITEMS, "Ritual", "Legacy", "Reprinted", "Has Images", "Has Token"],
 			itemSortFn: PageFilterSpells.sortMetaFilter,
 			isMiscFilter: true,
 			displayFn: it => Parser.spMiscTagToFull(it),

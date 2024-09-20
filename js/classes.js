@@ -2069,12 +2069,17 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			scLvlFeatures.forEach((scFeature, ixScFeature) => {
 				const depthArr = [];
 
-				const ptDate = ptrIsFirstSubclassLevel._ === true && SourceUtil.isNonstandardSource(sc.source) && Parser.sourceJsonToDate(sc.source)
+				const isEditionMismatch = cls.edition && sc.edition && cls.edition !== sc.edition;
+				const ptMismatchedEdition = !ixScFeature && ptrIsFirstSubclassLevel._ === true && isEditionMismatch
+					? Renderer.get().render(`{@note This subclass is from a different game edition. For a given subclass feature, you may gain that feature at a different level from the one specified in the subclass feature.}`)
+					: "";
+				const ptDate = !ixScFeature && ptrIsFirstSubclassLevel._ === true && SourceUtil.isNonstandardSource(sc.source) && Parser.sourceJsonToDate(sc.source)
 					? Renderer.get().render(`{@note This subclass was published on ${DatetimeUtil.getDateStr({date: new Date(Parser.sourceJsonToDate(sc.source))})}.}`)
 					: "";
-				const ptSources = ptrIsFirstSubclassLevel._ === true && sc.otherSources ? `{@note {@b Subclass source:} ${Renderer.utils.getSourceAndPageHtml(sc)}}` : "";
+				const ptSources = !ixScFeature && ptrIsFirstSubclassLevel._ === true && sc.otherSources ? `{@note {@b Subclass source:} ${Renderer.utils.getSourceAndPageHtml(sc)}}` : "";
 				const toRender = MiscUtil.copyFast(scFeature);
 
+				if (ptMismatchedEdition && toRender.entries) toRender.entries.unshift(ptMismatchedEdition);
 				if (ptDate && toRender.entries) toRender.entries.unshift(ptDate);
 				if (ptSources && toRender.entries) toRender.entries.push(ptSources);
 
@@ -2083,7 +2088,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				let hasNamePluginRun = false;
 				Renderer.get()
 					.addPlugin("entries_namePrefix", (commonArgs, {input: entry}) => {
-						if (ptrIsFirstSubclassLevel._ === true || !entry.name) return;
+						if ((!ixScFeature && ptrIsFirstSubclassLevel._ === true) || !entry.name) return;
 
 						if (hasNamePluginRun) return;
 						hasNamePluginRun = true;
@@ -2106,7 +2111,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 					fn: () => {
 						const $trSubclassFeature = $(`<tr class="cls-main__sc-feature" data-subclass-id="${UrlUtil.getStateKeySubclass(sc)}"><td colspan="6"></td></tr>`)
 							.fastSetHtml(
-								Renderer.get().withDepthTracker(depthArr, ({renderer}) => renderer.render(Renderer.class.getDisplayNamedSubclassFeatureEntry(toRender, styleHint)), {additionalProps: ["isReprinted"], additionalPropsInherited: ["_isStandardSource", "isClassFeatureVariant"]}),
+								Renderer.get().withDepthTracker(depthArr, ({renderer}) => renderer.render(Renderer.class.getDisplayNamedSubclassFeatureEntry(toRender, {styleHint, isEditionMismatch})), {additionalProps: ["isReprinted"], additionalPropsInherited: ["_isStandardSource", "isClassFeatureVariant"]}),
 							)
 							.appendTo($content);
 					},
@@ -2503,9 +2508,11 @@ ClassesPage.ClassBookView = class extends BookModeViewBase {
 			.pSerialAwaitMap(async (sc, ixSubclass) => {
 				const scFluff = await Renderer.subclass.pGetFluff(sc);
 
+				const isEditionMismatch = cls.edition && sc.edition && cls.edition !== sc.edition;
+
 				sc.subclassFeatures.forEach((lvl, ix) => {
 					renderStack.push(`<tr data-cls-book-sc-ix="${ixSubclass}" class="cls-main__sc-feature"><td colspan="6" class="py-3 px-5">`);
-					lvl.forEach(scf => Renderer.get().recursiveRender(Renderer.class.getDisplayNamedSubclassFeatureEntry(scf, styleHint), renderStack));
+					lvl.forEach(scf => Renderer.get().recursiveRender(Renderer.class.getDisplayNamedSubclassFeatureEntry(scf, {styleHint, isEditionMismatch}), renderStack));
 					renderStack.push(`</td></tr>`);
 
 					if (ix !== 0) return;

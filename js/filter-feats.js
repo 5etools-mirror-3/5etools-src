@@ -53,7 +53,7 @@ class PageFilterFeats extends PageFilterBase {
 		this._conditionImmuneFilter = FilterCommon.getConditionImmuneFilter();
 		this._miscFilter = new Filter({
 			header: "Miscellaneous",
-			items: ["Has Info", "Has Images", "SRD", "Basic Rules", "Legacy"],
+			items: ["Has Info", "Has Images", "Legacy"],
 			isMiscFilter: true,
 			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
 		});

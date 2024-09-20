@@ -24,7 +24,7 @@ class PageFilterVehicles extends PageFilterBase {
 		this._creatureCapacityFilter = new RangeFilter({header: "Creature Capacity"});
 		this._miscFilter = new Filter({
 			header: "Miscellaneous",
-			items: ["SRD", "Legacy", "Has Images", "Has Info", "Has Token"],
+			items: ["Legacy", "Has Images", "Has Info", "Has Token"],
 			isMiscFilter: true,
 			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
 		});
@@ -78,6 +78,7 @@ class PageFilterVehicles extends PageFilterBase {
 		this._acFilter.addItem(it._fAc);
 		this._hpFilter.addItem(it._fHp);
 		this._creatureCapacityFilter.addItem(it._fCreatureCapacity);
+		this._miscFilter.addItem(it._fMisc);
 	}
 
 	async _pPopulateBoxOptions (opts) {

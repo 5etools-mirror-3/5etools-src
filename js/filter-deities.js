@@ -28,7 +28,7 @@ class PageFilterDeities extends PageFilterBase {
 		});
 		this._miscFilter = new Filter({
 			header: "Miscellaneous",
-			items: ["Grants Piety Features", "Has Info", "Has Images", "Reprinted", "SRD", "Basic Rules", "Legacy"],
+			items: ["Grants Piety Features", "Has Info", "Has Images", "Reprinted", "Legacy"],
 			displayFn: StrUtil.uppercaseFirst,
 			isMiscFilter: true,
 			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
@@ -54,6 +54,7 @@ class PageFilterDeities extends PageFilterBase {
 		this._domainFilter.addItem(ent.domains);
 		this._pantheonFilter.addItem(ent.pantheon);
 		this._categoryFilter.addItem(ent.category);
+		this._miscFilter.addItem(ent._fMisc);
 	}
 
 	async _pPopulateBoxOptions (opts) {

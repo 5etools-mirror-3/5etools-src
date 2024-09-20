@@ -8,7 +8,7 @@ class PageFilterLanguages extends PageFilterBase {
 		this._scriptFilter = new Filter({header: "Script", displayFn: StrUtil.uppercaseFirst});
 		this._miscFilter = new Filter({
 			header: "Miscellaneous",
-			items: ["Has Fonts", "SRD", "Basic Rules", "Legacy", "Has Images", "Has Info"],
+			items: ["Has Fonts", "Legacy", "Has Images", "Has Info"],
 			isMiscFilter: true,
 			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
 		});
