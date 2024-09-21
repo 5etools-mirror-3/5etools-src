@@ -18,7 +18,7 @@ class PageFilterConditionsDiseases extends PageFilterBase {
 		});
 		this._miscFilter = new Filter({
 			header: "Miscellaneous",
-			items: ["SRD", "Basic Rules", "Legacy", "Has Images", "Has Info"],
+			items: ["Legacy", "Has Images", "Has Info"],
 			isMiscFilter: true,
 			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
 		});

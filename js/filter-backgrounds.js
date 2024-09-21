@@ -23,7 +23,7 @@ class PageFilterBackgrounds extends PageFilterBase {
 		this._otherBenefitsFilter = new Filter({header: "Other Benefits"});
 		this._miscFilter = new Filter({
 			header: "Miscellaneous",
-			items: ["Has Info", "Has Images", "SRD", "Basic Rules", "Legacy"],
+			items: ["Has Info", "Has Images", "Legacy"],
 			isMiscFilter: true,
 			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
 		});
@@ -55,7 +55,6 @@ class PageFilterBackgrounds extends PageFilterBase {
 		});
 		bg._fLangs = languages;
 
-		bg._fMisc = [];
 		this._mutateForFilters_commonMisc(bg);
 		bg._fOtherBenifits = [];
 		if (bg.feats) bg._fOtherBenifits.push("Feat");
@@ -64,7 +63,7 @@ class PageFilterBackgrounds extends PageFilterBase {
 		if (bg.weaponProficiencies) bg._fOtherBenifits.push("Weapon Proficiencies");
 		bg._skillDisplay = skillDisplay;
 
-		const ability = Renderer.getAbilityData(bg.ability);
+		const ability = Renderer.getAbilityData(bg.ability, {isOnlyShort: true, isBackgroundShortForm: bg.edition === "one"});
 		bg._slAbility = ability.asTextShort || VeCt.STR_NONE;
 	}
 
@@ -78,6 +77,7 @@ class PageFilterBackgrounds extends PageFilterBase {
 		this._toolFilter.addItem(bg._fTools);
 		this._languageFilter.addItem(bg._fLangs);
 		this._otherBenefitsFilter.addItem(bg._fOtherBenifits);
+		this._miscFilter.addItem(bg._fMisc);
 	}
 
 	async _pPopulateBoxOptions (opts) {

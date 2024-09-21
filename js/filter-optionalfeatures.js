@@ -78,7 +78,7 @@ class PageFilterOptionalFeatures extends PageFilterBase {
 		});
 		this._miscFilter = new Filter({
 			header: "Miscellaneous",
-			items: ["Has Info", "Has Images", "SRD", "Legacy", "Grants Additional Spells"],
+			items: ["Has Info", "Has Images", "Legacy", "Grants Additional Spells"],
 			isMiscFilter: true,
 			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
 		});
@@ -137,6 +137,7 @@ class PageFilterOptionalFeatures extends PageFilterBase {
 		this._patronFilter.addItem(it._fPrereqPatron);
 		this._spellFilter.addItem(it._fprereqSpell);
 		this._featureFilter.addItem(it._fprereqFeature);
+		this._miscFilter.addItem(it._fMisc);
 
 		(it._fPrereqLevel || []).forEach(it => {
 			this._levelFilter.addNest(it.nest, {isHidden: true});

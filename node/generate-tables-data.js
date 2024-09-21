@@ -8,6 +8,40 @@ import "../js/utils-dataloader.js";
 import "../js/hist.js";
 
 class GenTables {
+	static _GenState = class {
+		constructor () {
+			this._tables = [];
+			this._tableGroups = [];
+			this._seenHashes = new Set();
+		}
+
+		addTables (ents) {
+			ents = ents
+				.filter(ent => {
+					const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_TABLES](ent);
+					if (this._seenHashes.has(hash)) return false;
+					this._seenHashes.add(hash);
+					return true;
+				});
+			this._tables.push(...ents);
+		}
+
+		addTableGroups (ents) {
+			ents = ents
+				.filter(ent => {
+					const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_TABLES](ent);
+					if (this._seenHashes.has(hash)) return false;
+					this._seenHashes.add(hash);
+					return true;
+				});
+			this._tableGroups.push(...ents);
+		}
+
+		getOutput () {
+			return {table: this._tables, tableGroup: this._tableGroups};
+		}
+	};
+
 	static BOOK_BLOCKLIST = {};
 	static ADVENTURE_BLOCKLIST = {};
 
@@ -36,21 +70,21 @@ class GenTables {
 	}
 
 	async pRun () {
-		const output = {tables: [], tableGroups: []};
+		const genState = new this.constructor._GenState();
 
-		this._addBookAndAdventureData(output);
-		await this._pAddClassData(output);
-		await this._pAddVariantRuleData(output);
-		await this._pAddBackgroundData(output);
-		await this._pAddEncountersData(output);
-		await this._pAddNamesData(output);
+		this._addBookAndAdventureData(genState);
+		await this._pAddClassData(genState);
+		await this._pAddVariantRuleData(genState);
+		await this._pAddBackgroundData(genState);
+		await this._pAddEncountersData(genState);
+		await this._pAddNamesData(genState);
 
-		const toSave = JSON.stringify({table: output.tables, tableGroup: output.tableGroups});
+		const toSave = JSON.stringify(genState.getOutput());
 		fs.writeFileSync(`./data/generated/gendata-tables.json`, toSave, "utf-8");
 		console.log("Regenerated table data.");
 	}
 
-	_addBookAndAdventureData (output) {
+	_addBookAndAdventureData (genState) {
 		[
 			{
 				data: this._getAdventureData(),
@@ -81,41 +115,41 @@ class GenTables {
 							},
 						);
 
-						output.tables.push(...foundTables);
-						output.tableGroups.push(...foundTableGroups);
+						genState.addTables(foundTables);
+						genState.addTableGroups(foundTableGroups);
 					});
 			});
 	}
 
-	async _pAddClassData (output) {
+	async _pAddClassData (genState) {
 		ut.patchLoadJson();
 		const classData = await DataUtil.class.loadJSON();
 		ut.unpatchLoadJson();
 
 		classData.class.forEach(cls => {
 			const {table: foundTables, tableGroup: foundTableGroups} = UtilGenTables.getClassTables(cls);
-			output.tables.push(...foundTables);
-			output.tableGroups.push(...foundTableGroups);
+			genState.addTables(foundTables);
+			genState.addTableGroups(foundTableGroups);
 		});
 
 		classData.subclass.forEach(sc => {
 			const {table: foundTables, tableGroup: foundTableGroups} = UtilGenTables.getSubclassTables(sc);
-			output.tables.push(...foundTables);
-			output.tableGroups.push(...foundTableGroups);
+			genState.addTables(foundTables);
+			genState.addTableGroups(foundTableGroups);
 		});
 	}
 
-	async _pAddVariantRuleData (output) {
+	async _pAddVariantRuleData (genState) {
 		return this._pAddGenericEntityData({
-			output,
+			genState,
 			path: `./data/variantrules.json`,
 			props: ["variantrule"],
 		});
 	}
 
-	async _pAddBackgroundData (output) {
+	async _pAddBackgroundData (genState) {
 		return this._pAddGenericEntityData({
-			output,
+			genState,
 			path: `./data/backgrounds.json`,
 			props: ["background"],
 		});
@@ -123,7 +157,7 @@ class GenTables {
 
 	async _pAddGenericEntityData (
 		{
-			output,
+			genState,
 			path,
 			props,
 		},
@@ -136,16 +170,16 @@ class GenTables {
 			jsonData[prop].forEach(it => {
 				// Note that this implicitly requires each table to have a `"tableInclude"`
 				const {table: foundTables} = UtilGenTables.getGenericTables(it, prop, "entries");
-				output.tables.push(...foundTables);
+				genState.addTables(foundTables);
 			});
 		});
 	}
 
 	// -----------------------
 
-	async _pAddEncountersData (output) {
+	async _pAddEncountersData (genState) {
 		return this._pAddEncounterOrNamesData({
-			output,
+			genState,
 			path: `./data/encounters.json`,
 			prop: "encounter",
 			fnGetNameCaption: Renderer.table.getConvertedEncounterTableName.bind(Renderer.table),
@@ -153,9 +187,9 @@ class GenTables {
 		});
 	}
 
-	async _pAddNamesData (output) {
+	async _pAddNamesData (genState) {
 		return this._pAddEncounterOrNamesData({
-			output,
+			genState,
 			path: `./data/names.json`,
 			prop: "name",
 			fnGetNameCaption: Renderer.table.getConvertedNameTableName.bind(Renderer.table),
@@ -165,7 +199,7 @@ class GenTables {
 
 	async _pAddEncounterOrNamesData (
 		{
-			output,
+			genState,
 			path,
 			prop,
 			fnGetNameCaption,
@@ -177,14 +211,14 @@ class GenTables {
 		ut.unpatchLoadJson();
 
 		jsonData[prop].forEach(group => {
-			group.tables.forEach(tableRaw => {
-				output.tables.push(Renderer.table.getConvertedEncounterOrNamesTable({
+			genState.addTables(
+				group.tables.map(tableRaw => Renderer.table.getConvertedEncounterOrNamesTable({
 					group,
 					tableRaw,
 					fnGetNameCaption,
 					colLabel1,
-				}));
-			});
+				})),
+			);
 		});
 	}
 

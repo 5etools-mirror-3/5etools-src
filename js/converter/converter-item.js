@@ -4,19 +4,38 @@ import {ArtifactPropertiesTag, TagCondition} from "./converterutils-tags.js";
 import {TagJsons} from "./converterutils-entries.js";
 import {ConverterUtils} from "./converterutils-utils.js";
 import {EntryCoalesceEntryLists, EntryCoalesceRawLines} from "./converterutils-entrycoalesce.js";
-import {SITE_STYLE__ONE} from "../consts.js";
+import {SITE_STYLE__CLASSIC, SITE_STYLE__ONE} from "../consts.js";
 
 export class ConverterItem extends ConverterBase {
+	static _ALL_ITEMS = null;
+	static _ALL_CLASSES = null;
+	static _MAPPED_ITEM_NAMES = {
+		"studded leather": "studded leather armor",
+		"leather": "leather armor",
+		"scale": "scale mail",
+	};
+
 	static init (itemData, classData) {
-		ConverterItem._ALL_ITEMS = itemData;
-		ConverterItem._ALL_CLASSES = classData.class;
+		this._ALL_ITEMS = itemData;
+		this._ALL_CLASSES = classData.class;
 	}
 
-	static getItem (itemName) {
+	static getItem (itemName, {styleHint}) {
 		itemName = itemName.trim().toLowerCase();
-		itemName = ConverterItem._MAPPED_ITEM_NAMES[itemName] || itemName;
-		const matches = ConverterItem._ALL_ITEMS.filter(it => it.name.toLowerCase() === itemName);
-		if (matches.length > 1) throw new Error(`Multiple items found with name "${itemName}"`);
+		itemName = this._MAPPED_ITEM_NAMES[itemName] || itemName;
+		const matches = this._ALL_ITEMS
+			.filter(it => it.name.toLowerCase() === itemName)
+			.filter(it => {
+				const src = SourceUtil.getEntitySource(it);
+				if (styleHint === SITE_STYLE__ONE && it.edition === src) return false;
+				if (styleHint === SITE_STYLE__CLASSIC && !SourceUtil.isClassicSource(src)) return false;
+				return true;
+			})
+			.sort((a, b) => {
+				const aDate = Parser.sourceJsonToDate(SourceUtil.getEntitySource(a));
+				const bDate = Parser.sourceJsonToDate(SourceUtil.getEntitySource(b));
+				return SortUtil.ascSortDateString(aDate, bDate);
+			});
 		if (matches.length) return matches[0];
 		return null;
 	}
@@ -268,7 +287,7 @@ export class ConverterItem extends ConverterBase {
 					continue;
 				}
 
-				const baseItems = ptsParens.map(pt => ConverterItem.getItem(pt));
+				const baseItems = ptsParens.map(pt => ConverterItem.getItem(pt, {styleHint: options.styleHint}));
 				if (baseItems.some(it => it == null) || !baseItems.length) throw new Error(`Could not find base item(s) for "${mBaseWeapon.groups.ptParens}"`);
 
 				if (baseItems.length === 1) {
@@ -298,7 +317,7 @@ export class ConverterItem extends ConverterBase {
 					continue;
 				}
 
-				baseItem = this._setCleanTaglineInfo_getArmorBaseItem(mBaseArmor.groups.type);
+				baseItem = this._setCleanTaglineInfo_getArmorBaseItem(mBaseArmor.groups.type, options);
 				if (!baseItem) throw new Error(`Could not find base item "${mBaseArmor.groups.type}"`);
 				continue;
 			}
@@ -354,9 +373,9 @@ export class ConverterItem extends ConverterBase {
 		return true;
 	}
 
-	static _setCleanTaglineInfo_getArmorBaseItem (name) {
-		let baseItem = ConverterItem.getItem(name);
-		if (!baseItem) baseItem = ConverterItem.getItem(`${name} armor`); // "armor (plate)" -> "plate armor"
+	static _setCleanTaglineInfo_getArmorBaseItem (name, options) {
+		let baseItem = ConverterItem.getItem(name, {styleHint: options.styleHint});
+		if (!baseItem) baseItem = ConverterItem.getItem(`${name} armor`, {styleHint: options.styleHint}); // "armor (plate)" -> "plate armor"
 		return baseItem;
 	}
 
@@ -372,7 +391,7 @@ export class ConverterItem extends ConverterBase {
 			case "heavy armor":
 				return {"type": options.styleHint === SITE_STYLE__ONE ? Parser.ITM_TYP__ODND_HEAVY_ARMOR : Parser.ITM_TYP__HEAVY_ARMOR};
 			default: {
-				const baseItem = this._setCleanTaglineInfo_getArmorBaseItem(pt);
+				const baseItem = this._setCleanTaglineInfo_getArmorBaseItem(pt, options);
 				if (!baseItem) throw new Error(`Could not find base item "${pt}"`);
 
 				return {name: baseItem.name};
@@ -590,10 +609,3 @@ export class ConverterItem extends ConverterBase {
 		// endregion
 	}
 }
-ConverterItem._ALL_ITEMS = null;
-ConverterItem._ALL_CLASSES = null;
-ConverterItem._MAPPED_ITEM_NAMES = {
-	"studded leather": "studded leather armor",
-	"leather": "leather armor",
-	"scale": "scale mail",
-};

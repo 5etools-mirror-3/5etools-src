@@ -1894,15 +1894,17 @@ StatGenUi._MAX_CUSTOM_FEATS = 20;
 globalThis.StatGenUi = StatGenUi;
 
 class UtilAdditionalFeats {
+	static _KEYS_NON_STATIC = new Set(["any", "anyFromCategory"]);
+
 	static isNoChoice (available) {
 		if (!available?.length) return true;
 		if (available.length > 1) return false;
-		return !available[0].any;
+		return !Object.keys(available[0]).some(k => this._KEYS_NON_STATIC.has(k));
 	}
 
 	static getUidsStatic (availableSet) {
 		return Object.entries(availableSet || {})
-			.filter(([k, v]) => k !== "any" && v)
+			.filter(([k, v]) => !this._KEYS_NON_STATIC.has(k) && v)
 			.sort(([kA], [kB]) => SortUtil.ascSortLower(kA, kB))
 			.map(([k]) => k);
 	}
@@ -1920,6 +1922,11 @@ class UtilAdditionalFeats {
 
 					if (featSet.any) {
 						out.push(`Choose any${featSet.any > 1 ? ` ${Parser.numberToText(featSet.any)}` : ""}`);
+					}
+
+					if (featSet.anyFromCategory) {
+						const cnt = featSet.anyFromCategory.count || 1;
+						out.push(`Choose any ${Parser.featCategoryToFull(featSet.anyFromCategory.category)}${cnt > 1 ? ` ${Parser.numberToText(featSet.any)}` : ""}`);
 					}
 
 					this.getUidsStatic(featSet)
@@ -2177,6 +2184,20 @@ StatGenUi.CompAsi = class extends BaseComponent {
 					$rows.push($row);
 				});
 
+				[...new Array(featSet?.anyFromCategory?.count || 0)].map((_, ix) => {
+					const {propIxFeat, propIxFeatAbility, propFeatAbilityChooseFrom} = this._parent.getPropsAdditionalFeatsFeatSet_(namespace, "fromCategory", ix);
+					const {$stgFeat, hkIxFeat, cleanup} = this._render_getMetaFeat({propIxFeat, propIxFeatAbility, propFeatAbilityChooseFrom, category: featSet.anyFromCategory.category});
+					fnsCleanupGroup.push(cleanup);
+					hkIxFeat();
+
+					const $row = $$`<div class="ve-flex-v-end py-3 px-1 statgen-asi__row">
+						<div class="ve-btn-group"><div class="w-100p ve-text-center">${Parser.featCategoryToFull(featSet.anyFromCategory.category)} Feat</div></div>
+						<div class="vr-4"></div>
+						${$stgFeat}
+					</div>`.appendTo($wrpRowsInner);
+					$rows.push($row);
+				});
+
 				// Remove border styling from the last row
 				if ($rows.last()) $rows.last().removeClass("statgen-asi__row");
 
@@ -2191,13 +2212,15 @@ StatGenUi.CompAsi = class extends BaseComponent {
 		hkEnt();
 	}
 
-	_render_getMetaFeat ({featStatic = null, propIxFeat = null, propIxFeatAbility, propFeatAbilityChooseFrom}) {
+	_render_getMetaFeat ({featStatic = null, propIxFeat = null, propIxFeatAbility, propFeatAbilityChooseFrom, category = null}) {
 		if (featStatic && propIxFeat) throw new Error(`Cannot combine static feat and feat property!`);
 		if (featStatic == null && propIxFeat == null) throw new Error(`Either a static feat or a feat property must be specified!`);
 
 		const $btnChooseFeat = featStatic ? null : $(`<button class="ve-btn ve-btn-xxs ve-btn-default mr-2" title="Choose a Feat"><span class="glyphicon glyphicon-search"></span></button>`)
 			.click(async () => {
-				const selecteds = await this._parent.modalFilterFeats.pGetUserSelection();
+				const selecteds = await this._parent.modalFilterFeats.pGetUserSelection({
+					filterExpression: category ? `Category=${category}` : `Category=${category}`,
+				});
 				if (selecteds == null || !selecteds.length) return;
 
 				const selected = selecteds[0];
@@ -2492,6 +2515,22 @@ StatGenUi.CompAsi = class extends BaseComponent {
 				propIxFeatAbility,
 				propFeatAbilityChooseFrom,
 				type: "choose",
+			});
+
+			outs.push(out);
+			outIsFormCompletes.push(isFormComplete);
+		});
+
+		[...new Array(featSet?.anyFromCategory?.count || 0)].map((_, ix) => {
+			const {propIxFeat, propIxFeatAbility, propFeatAbilityChooseFrom} = this._parent.getPropsAdditionalFeatsFeatSet_(namespace, "fromCategory", ix);
+
+			const {isFormComplete, out} = this._getFormData_doAddFeatMeta({
+				namespace,
+				outFeats,
+				propIxFeat,
+				propIxFeatAbility,
+				propFeatAbilityChooseFrom,
+				type: "chooseCategory",
 			});
 
 			outs.push(out);

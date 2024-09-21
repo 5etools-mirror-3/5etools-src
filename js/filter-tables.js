@@ -12,7 +12,7 @@ class PageFilterTables extends PageFilterBase {
 
 		this._miscFilter = new Filter({
 			header: "Miscellaneous",
-			items: ["SRD", "Basic Rules", "Legacy"],
+			items: ["Legacy"],
 			isMiscFilter: true,
 			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
 		});
@@ -26,6 +26,7 @@ class PageFilterTables extends PageFilterBase {
 		if (isExcluded) return;
 
 		this._sourceFilter.addItem(it.source);
+		this._miscFilter.addItem(it._fMisc);
 	}
 
 	async _pPopulateBoxOptions (opts) {

@@ -118,7 +118,7 @@ class PageFilterRaces extends PageFilterBase {
 		});
 		this._miscFilter = new Filter({
 			header: "Miscellaneous",
-			items: ["Base Species", "Key Species", "Lineage", "Modified Copy", "Reprinted", "SRD", "Basic Rules", "Legacy", "Has Images", "Has Info"],
+			items: ["Base Species", "Key Species", "Lineage", "Modified Copy", "Reprinted", "Legacy", "Has Images", "Has Info"],
 			isMiscFilter: true,
 			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
 		});
@@ -174,6 +174,7 @@ class PageFilterRaces extends PageFilterBase {
 		this._conditionImmuneFilter.addItem(r._fCondImm);
 		this._ageFilter.addItem(r._fAge);
 		this._languageFilter.addItem(r._fLangs);
+		this._miscFilter.addItem(r._fMisc);
 	}
 
 	async _pPopulateBoxOptions (opts) {

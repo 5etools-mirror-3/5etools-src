@@ -4,8 +4,6 @@ class PageFilterEquipment extends PageFilterBase {
 	static _MISC_FILTER_ITEMS = [
 		"Item Group",
 		"Bundle",
-		"SRD",
-		"Basic Rules",
 		"Legacy",
 		"Has Images",
 		"Has Info",

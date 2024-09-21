@@ -854,6 +854,8 @@ PropOrder._BACKGROUND = [
 	"otherSources",
 	"reprintedAs",
 
+	"edition",
+
 	PropOrder._ObjectKey.getCopyKey({fnGetModOrder: () => PropOrder._BACKGROUND__COPY_MOD}),
 
 	"prerequisite",
@@ -931,6 +933,8 @@ PropOrder._CLASS = [
 	"otherSources",
 	"isReprinted",
 	"reprintedAs",
+
+	"edition",
 
 	"isSidekick",
 	"classGroup",
@@ -1014,9 +1018,12 @@ PropOrder._SUBCLASS = [
 	"isReprinted",
 	"reprintedAs",
 
+	"edition",
+
 	new PropOrder._ObjectKey("_copy", {
 		order: [
 			"name",
+			"source",
 			"shortName",
 			"source",
 			"className",
@@ -1131,6 +1138,20 @@ PropOrder._CLASS_FEATURE = [
 	"classSource",
 	"level",
 
+	new PropOrder._ObjectKey("_copy", {
+		order: [
+			"name",
+			"source",
+			"className",
+			"classSource",
+			"level",
+			new PropOrder._ObjectKey("_mod", {
+				fnGetOrder: () => PropOrder._CLASS_FEATURE__COPY_MOD,
+			}),
+			"_preserve",
+		],
+	}),
+
 	"isClassFeatureVariant",
 
 	...PropOrder._ENTRY_DATA_OBJECT,
@@ -1145,6 +1166,11 @@ PropOrder._CLASS_FEATURE = [
 	"foundrySystem",
 	"foundryFlags",
 	"foundryImg",
+];
+PropOrder._CLASS_FEATURE__COPY_MOD = [
+	"*",
+	"_",
+	...PropOrder._CLASS_FEATURE,
 ];
 PropOrder._SUBCLASS_FEATURE = [
 	"name",
@@ -1164,6 +1190,22 @@ PropOrder._SUBCLASS_FEATURE = [
 	"subclassSource",
 	"level",
 
+	new PropOrder._ObjectKey("_copy", {
+		order: [
+			"name",
+			"source",
+			"className",
+			"classSource",
+			"subclassShortName",
+			"subclassSource",
+			"level",
+			new PropOrder._ObjectKey("_mod", {
+				fnGetOrder: () => PropOrder._SUBCLASS_FEATURE__COPY_MOD,
+			}),
+			"_preserve",
+		],
+	}),
+
 	"isClassFeatureVariant",
 
 	"isGainAtNextFeatureLevel",
@@ -1180,6 +1222,11 @@ PropOrder._SUBCLASS_FEATURE = [
 	"foundrySystem",
 	"foundryFlags",
 	"foundryImg",
+];
+PropOrder._SUBCLASS_FEATURE__COPY_MOD = [
+	"*",
+	"_",
+	...PropOrder._SUBCLASS_FEATURE,
 ];
 PropOrder._FOUNDRY_CLASS_FEATURE = [
 	"name",

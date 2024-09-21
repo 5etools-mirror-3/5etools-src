@@ -2233,6 +2233,7 @@ class ListPageTokenDisplay {
 		this._fnHasToken = fnHasToken;
 		this._fnGetTokenUrl = fnGetTokenUrl;
 
+		this._$wrpContainer = null;
 		this._$dispToken = null;
 	}
 
@@ -2247,13 +2248,18 @@ class ListPageTokenDisplay {
 	}
 
 	render (ent) {
-		this._$dispToken ||= $(`#float-token`);
+		if (!this._$wrpContainer?.length) this._$wrpContainer ||= $(`#wrp-pagecontent`);
+		if (!this._$dispToken?.length) this._$dispToken ||= $(`#float-token`);
 		this._$dispToken.empty();
 
 		if (!this._fnHasToken(ent)) return;
 
+		const bcr = this._$wrpContainer[0].getBoundingClientRect();
+		const wMax = Math.max(Math.floor(bcr.height) - 6, 110);
+
 		const imgLink = this._fnGetTokenUrl(ent);
-		const $img = $(`<img src="${imgLink}" class="stats__token" alt="Token Image: ${(ent.name || "").qq()}" ${ent.tokenCredit ? `title="Credit: ${ent.tokenCredit.qq()}"` : ""} loading="lazy">`);
+		const $img = $(`<img src="${imgLink}" class="stats__token" alt="Token Image: ${(ent.name || "").qq()}" ${ent.tokenCredit ? `title="Credit: ${ent.tokenCredit.qq()}"` : ""} loading="lazy">`)
+			.css("max-width", wMax);
 		const $lnkToken = $$`<a href="${imgLink}" class="stats__wrp-token" target="_blank" rel="noopener noreferrer">${$img}</a>`
 			.appendTo(this._$dispToken);
 
@@ -2275,6 +2281,7 @@ class ListPageTokenDisplay {
 				const imgLink = this._fnGetTokenUrl(meta);
 				const displayName = Renderer.utils.getAltArtDisplayName(meta);
 				const $img = $(`<img src="${imgLink}" class="stats__token" alt="Token Image${displayName ? `: ${displayName.qq()}` : ""}}" ${meta.tokenCredit ? `title="Credit: ${meta.tokenCredit.qq()}"` : ""} loading="lazy">`)
+					.css("max-width", wMax)
 					.on("error", () => {
 						$img.attr("src", this.constructor._SRC_ERROR);
 					});

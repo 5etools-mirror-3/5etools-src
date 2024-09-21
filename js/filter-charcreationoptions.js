@@ -15,7 +15,7 @@ class PageFilterCharCreationOptions extends PageFilterBase {
 		});
 		this._miscFilter = new Filter({
 			header: "Miscellaneous",
-			items: ["SRD", "Legacy", "Has Images", "Has Info"],
+			items: ["Legacy", "Has Images", "Has Info"],
 			isMiscFilter: true,
 			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
 		});
@@ -32,6 +32,7 @@ class PageFilterCharCreationOptions extends PageFilterBase {
 
 		this._sourceFilter.addItem(it.source);
 		this._typeFilter.addItem(it._fOptionType);
+		this._miscFilter.addItem(it._fMisc);
 	}
 
 	async _pPopulateBoxOptions (opts) {

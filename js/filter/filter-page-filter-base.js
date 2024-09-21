@@ -114,7 +114,7 @@ export class PageFilterBase {
 	static _hasFluffImages (ent) { return ent.hasFluffImages || ent.fluff?.images; }
 
 	static _mutateForFilters_commonMisc (ent) {
-		ent._fMisc ||= [];
+		ent._fMisc = [];
 
 		if (ent.srd) ent._fMisc.push(MISC_FILTER_VALUE__SRD_5_1);
 		if (ent.basicRules) ent._fMisc.push(MISC_FILTER_VALUE__BASIC_RULES_2014);

@@ -239,7 +239,7 @@ class PageFilterBestiary extends PageFilterBase {
 		});
 		this._miscFilter = new Filter({
 			header: "Miscellaneous",
-			items: ["Familiar", ...Object.keys(Parser.MON_MISC_TAG_TO_FULL), "Bonus Actions", "Lair Actions", "Legendary", "Mythic", "Adventure NPC", "Spellcaster", ...Object.values(Parser.ATB_ABV_TO_FULL).map(it => `${PageFilterBestiary.MISC_FILTER_SPELLCASTER}${it}`), "Regional Effects", "Reactions", "Reprinted", "Swarm", "Has Variants", "Modified Copy", "Has Alternate Token", "Has Info", "Has Images", "Has Token", "Has Recharge", "SRD", "Basic Rules", "Legacy", "AC from Item(s)", "AC from Natural Armor", "AC from Unarmored Defense", "Summoned by Spell", "Summoned by Class"],
+			items: ["Familiar", ...Object.keys(Parser.MON_MISC_TAG_TO_FULL), "Bonus Actions", "Lair Actions", "Legendary", "Mythic", "Adventure NPC", "Spellcaster", ...Object.values(Parser.ATB_ABV_TO_FULL).map(it => `${PageFilterBestiary.MISC_FILTER_SPELLCASTER}${it}`), "Regional Effects", "Reactions", "Reprinted", "Swarm", "Has Variants", "Modified Copy", "Has Alternate Token", "Has Info", "Has Images", "Has Token", "Has Recharge", "Legacy", "AC from Item(s)", "AC from Natural Armor", "AC from Unarmored Defense", "Summoned by Spell", "Summoned by Class"],
 			displayFn: (it) => Parser.monMiscTagToFull(it).uppercaseFirst(),
 			deselFn: (it) => ["Adventure NPC", "Reprinted"].includes(it),
 			itemSortFn: PageFilterBestiary.ascSortMiscFilter,
@@ -307,7 +307,8 @@ class PageFilterBestiary extends PageFilterBase {
 				mon[propF] = typeof mon[ab] !== "number" ? null : mon[ab];
 			});
 
-		mon._fMisc = [...mon.miscTags || []];
+		this._mutateForFilters_commonMisc(mon);
+		mon._fMisc.push(...mon.miscTags || []);
 		for (const it of (mon.trait || [])) {
 			if (it.name && it.name.startsWith("Unarmored Defense")) mon._fMisc.push("AC from Unarmored Defense");
 		}
@@ -337,7 +338,6 @@ class PageFilterBestiary extends PageFilterBase {
 		if (mon.variant) mon._fMisc.push("Has Variants");
 		if (mon._isCopy) mon._fMisc.push("Modified Copy");
 		if (mon.altArt) mon._fMisc.push("Has Alternate Token");
-		this._mutateForFilters_commonMisc(mon);
 		if (Renderer.monster.hasToken(mon)) mon._fMisc.push("Has Token");
 		if (mon.mythic) mon._fMisc.push("Mythic");
 		if (this._hasFluff(mon)) mon._fMisc.push("Has Info");
@@ -498,6 +498,7 @@ class PageFilterBestiary extends PageFilterBase {
 		this._spellKnownFilter.addItem(mon._fSpellsKnown);
 		this._equipmentFilter.addItem(mon._fEquipment);
 		if (mon._versionBase_isVersion) this._miscFilter.addItem("Is Variant");
+		this._miscFilter.addItem(mon._fMisc);
 		this._damageTypeFilterBase.addItem(mon.damageTags);
 		this._damageTypeFilterLegendary.addItem(mon.damageTagsLegendary);
 		this._damageTypeFilterSpells.addItem(mon.damageTagsSpell);

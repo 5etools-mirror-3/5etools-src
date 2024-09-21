@@ -26,7 +26,7 @@ class BackgroundSublistManager extends SublistManager {
 		const {summary: skills} = Renderer.generic.getSkillSummary({skillProfs: it.skillProficiencies || [], isShort: true});
 		const cellsText = [
 			name,
-			new SublistCell({text: it._slAbility, css: it._slAbility === VeCt.STR_NONE ? "italic" : ""}),
+			new SublistCell({text: it._slAbility, css: [VeCt.STR_NONE, "Origin"].includes(it._slAbility) ? "italic" : ""}),
 			skills,
 		];
 
@@ -87,7 +87,7 @@ class BackgroundPage extends ListPage {
 
 		eleLi.innerHTML = `<a href="#${hash}" class="lst__row-border lst__row-inner">
 			<span class="bold ve-col-2-5 pl-0 pr-1">${name}</span>
-			<span class="ve-col-3-5 px-1 ${bg._slAbility === VeCt.STR_NONE ? "italic" : ""}">${bg._slAbility}</span>
+			<span class="ve-col-3-5 px-1 ${[VeCt.STR_NONE, "Origin"].includes(bg._slAbility) ? "italic" : ""}">${bg._slAbility}</span>
 			<span class="ve-col-4 px-1">${bg._skillDisplay}</span>
 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(bg.source)}  pl-1 pr-0" title="${Parser.sourceJsonToFull(bg.source)}" ${Parser.sourceJsonToStyle(bg.source)}>${source}</span>
 		</a>`;

@@ -6,7 +6,7 @@ class PageFilterObjects extends PageFilterBase {
 
 		this._miscFilter = new Filter({
 			header: "Miscellaneous",
-			items: ["SRD", "Legacy", "Has Images", "Has Info", "Has Token"],
+			items: ["Legacy", "Has Images", "Has Info", "Has Token"],
 			isMiscFilter: true,
 			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
 		});
@@ -21,6 +21,7 @@ class PageFilterObjects extends PageFilterBase {
 		if (isExcluded) return;
 
 		this._sourceFilter.addItem(obj.source);
+		this._miscFilter.addItem(obj._fMisc);
 	}
 
 	async _pPopulateBoxOptions (opts) {
