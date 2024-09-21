@@ -447,6 +447,8 @@ export class ConverterItem extends ConverterBase {
 			"freeRules2024",
 			"srd52",
 			"page",
+			"hasFluff",
+			"hasFluffImages",
 		]);
 
 		// Apply base item stats only if there's no existing data

@@ -275,41 +275,32 @@ class LinkCheck extends DataTesterBase {
 	static _checkString (str, {filePath, isStatblock = false}) {
 		let match;
 		while ((match = LinkCheck.RE.exec(str))) {
-			const tag = match[1];
-			const parts = match[2].split("|");
+			const [, tag, text] = match;
 
-			const toEncode = [];
-
+			let encoded;
 			switch (tag) {
-				case "deity": {
-					toEncode.push(parts[0], parts[1] || "forgotten realms", Parser.getTagSource(tag, parts[2]));
-					break;
-				}
-				case "card": {
-					toEncode.push(parts[0], parts[1] || "none", Parser.getTagSource(tag, parts[2]));
-					break;
-				}
+				// FIXME(Future)
 				case "classFeature": {
-					const {name, source, className, classSource, level} = DataUtil.class.unpackUidClassFeature(match[2]);
-					toEncode.push(name, className, classSource, level, source);
+					const {name, source, className, classSource, level} = DataUtil.class.unpackUidClassFeature(text);
+					encoded = UrlUtil.encodeForHash([name, className, classSource, level, source]);
 					break;
 				}
+				// FIXME(Future)
 				case "subclassFeature": {
-					const {name, source, className, classSource, subclassShortName, subclassSource, level} = DataUtil.class.unpackUidSubclassFeature(match[2]);
-					toEncode.push(name, className, classSource, subclassShortName, subclassSource, level, source);
+					const {name, source, className, classSource, subclassShortName, subclassSource, level} = DataUtil.class.unpackUidSubclassFeature(text);
+					encoded = UrlUtil.encodeForHash([name, className, classSource, subclassShortName, subclassSource, level, source]);
 					break;
 				}
 				default: {
-					toEncode.push(parts[0], Parser.getTagSource(tag, parts[1]));
+					encoded = Renderer.utils.getTagMeta(`@${tag}`, text).hash;
 					break;
 				}
 			}
 
-			const url = `${Renderer.tag.getPage(tag)}#${UrlUtil.encodeForHash(toEncode)}`.toLowerCase().trim()
-				.replace(/%5c/gi, ""); // replace slashes
-			if (!TagTestUrlLookup.hasUrl(url)) {
-				this._addMessage(`Missing link: ${isStatblock ? `(as "statblock" entry) ` : ""}${match[0]} in file ${filePath} (evaluates to "${url}")\n${TagTestUtil.getLogPtSimilarUrls({url})}`);
-			}
+			const url = `${Renderer.tag.getPage(tag)}#${encoded}`.toLowerCase().trim();
+			if (TagTestUrlLookup.hasUrl(url)) return;
+
+			this._addMessage(`Missing link: ${isStatblock ? `(as "statblock" entry) ` : ""}${match[0]} in file ${filePath} (evaluates to "${url}")\n${TagTestUtil.getLogPtSimilarUrls({url})}`);
 		}
 	}
 
