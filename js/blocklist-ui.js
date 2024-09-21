@@ -322,6 +322,7 @@ class BlocklistUi {
 		Object.keys(this._data).forEach(prop => {
 			propSet.add(prop);
 			const arr = this._data[prop];
+			if (!(arr instanceof Array)) return;
 			arr.forEach(it => sourceSet.add(SourceUtil.getEntitySource(it)));
 		});
 

@@ -2155,8 +2155,8 @@ class Panel {
 				const curr = $wrpTabsInner.scrollLeft();
 				$wrpTabsInner.scrollLeft(Math.max(0, curr + delta));
 			}).appendTo($wrpTabs);
-			const $btnTabAdd = $(`<button class="ve-btn ve-btn-default content-tab"><span class="glyphicon glyphicon-plus"></span></button>`)
-				.on("cllick", () => pOpenAddMenu())
+			const $btnTabAdd = $(`<button class="ve-btn ve-btn-default content-tab" title="Add Tab"><span class="glyphicon glyphicon-plus"></span></button>`)
+				.on("click", () => pOpenAddMenu())
 				.appendTo($wrpTabsInner);
 			this.$pnlWrpTabs = $wrpTabs;
 			this.$pnlTabs = $wrpTabsInner;

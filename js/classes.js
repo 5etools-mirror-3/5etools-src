@@ -2068,27 +2068,32 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 			scLvlFeatures.forEach((scFeature, ixScFeature) => {
 				const depthArr = [];
+				const isFirstFeature = !ixScFeature && ptrIsFirstSubclassLevel._ === true;
 
 				const isEditionMismatch = cls.edition && sc.edition && cls.edition !== sc.edition;
-				const ptMismatchedEdition = !ixScFeature && ptrIsFirstSubclassLevel._ === true && isEditionMismatch
+				const ptMismatchedEdition = isFirstFeature && isEditionMismatch
 					? Renderer.get().render(`{@note This subclass is from a different game edition. For a given subclass feature, you may gain that feature at a different level from the one specified in the subclass feature.}`)
 					: "";
-				const ptDate = !ixScFeature && ptrIsFirstSubclassLevel._ === true && SourceUtil.isNonstandardSource(sc.source) && Parser.sourceJsonToDate(sc.source)
+				const ptDate = isFirstFeature && SourceUtil.isNonstandardSource(sc.source) && Parser.sourceJsonToDate(sc.source)
 					? Renderer.get().render(`{@note This subclass was published on ${DatetimeUtil.getDateStr({date: new Date(Parser.sourceJsonToDate(sc.source))})}.}`)
 					: "";
-				const ptSources = !ixScFeature && ptrIsFirstSubclassLevel._ === true && sc.otherSources ? `{@note {@b Subclass source:} ${Renderer.utils.getSourceAndPageHtml(sc)}}` : "";
+				const ptSources = isFirstFeature && sc.otherSources ? `{@note {@b Subclass source:} ${Renderer.utils.getSourceAndPageHtml(sc)}}` : "";
+				const ptReprinted = isFirstFeature && sc.reprintedAs ? `{@note ${Renderer.utils.getReprintedAsHtml(sc)}.}` : "";
 				const toRender = MiscUtil.copyFast(scFeature);
 
-				if (ptMismatchedEdition && toRender.entries) toRender.entries.unshift(ptMismatchedEdition);
-				if (ptDate && toRender.entries) toRender.entries.unshift(ptDate);
-				if (ptSources && toRender.entries) toRender.entries.push(ptSources);
+				if (toRender.entries) {
+					if (ptMismatchedEdition) toRender.entries.unshift(ptMismatchedEdition);
+					if (ptDate) toRender.entries.unshift(ptDate);
+					if (ptSources) toRender.entries.push(ptSources);
+					if (ptReprinted) toRender.entries.push(ptReprinted);
+				}
 
 				// region Prefix subclass feature names with the subclass name, which can be shown if multiple
 				//   subclasses are shown.
 				let hasNamePluginRun = false;
 				Renderer.get()
 					.addPlugin("entries_namePrefix", (commonArgs, {input: entry}) => {
-						if ((!ixScFeature && ptrIsFirstSubclassLevel._ === true) || !entry.name) return;
+						if (isFirstFeature || !entry.name) return;
 
 						if (hasNamePluginRun) return;
 						hasNamePluginRun = true;
