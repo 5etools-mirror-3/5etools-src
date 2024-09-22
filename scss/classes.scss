@@ -609,10 +609,10 @@
 	}
 
 	&linked-titles {
-		@extend %linked-titles-base;
+		@include vars.linked-titles-base;
 
 		> td > * > .rd__h .entry-title-inner {
-			@extend %linked-titles-base-inner;
+			@include vars.linked-titles-base-inner;
 		}
 	}
 }

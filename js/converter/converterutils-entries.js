@@ -857,7 +857,7 @@ export class CoreRuleTag extends ConverterTaggerInitializable {
 		"Monster",
 		"Weapon",
 		"Spell",
-		"Illusion",
+		"Illusions",
 	]);
 	static _LOOKUP_XPHB = {};
 

@@ -842,55 +842,116 @@ globalThis.Renderer = function () {
 	};
 
 	this._renderEntriesSubtypes = function (entry, textStack, meta, options, incDepth) {
-		const type = entry.type || "entries";
 		const displayName = entry._displayName || entry.name;
 		const isInlineTitle = meta.depth >= 2;
-		const isAddPeriod = isInlineTitle && displayName && !Renderer._INLINE_HEADER_TERMINATORS.has(displayName[displayName.length - 1]);
-		const pagePart = !this._isPartPageExpandCollapseDisabled && !isInlineTitle
+
+		const cachedLastDepthTrackerProps = MiscUtil.copyFast(this._lastDepthTrackerInheritedProps);
+		this._handleTrackDepth(entry, meta.depth);
+
+		if (isInlineTitle) {
+			this._renderEntriesSubtypes_inline({
+				entry,
+				textStack,
+				meta,
+				options,
+				displayName,
+			});
+		} else {
+			this._renderEntriesSubtypes_block({
+				entry,
+				textStack,
+				meta,
+				options,
+				incDepth,
+				displayName,
+			});
+		}
+
+		this._lastDepthTrackerInheritedProps = cachedLastDepthTrackerProps;
+	};
+
+	this._renderEntriesSubtypes_block = function ({entry, textStack, meta, options, incDepth, displayName}) {
+		const pagePart = !this._isPartPageExpandCollapseDisabled
 			? this._getPagePart(entry)
 			: "";
-		const partExpandCollapse = !this._isPartPageExpandCollapseDisabled && !isInlineTitle
+		const partExpandCollapse = !this._isPartPageExpandCollapseDisabled
 			? this._getPtExpandCollapse()
 			: "";
 		const partPageExpandCollapse = !this._isPartPageExpandCollapseDisabled && (pagePart || partExpandCollapse)
 			? `<span class="ve-flex-vh-center">${[pagePart, partExpandCollapse].filter(Boolean).join("")}</span>`
 			: "";
-		const nextDepth = incDepth && meta.depth < 2 ? meta.depth + 1 : meta.depth;
-		const styleString = this._renderEntriesSubtypes_getStyleString(entry, meta, isInlineTitle);
+
+		const nextDepth = incDepth ? meta.depth + 1 : meta.depth;
+
+		const styleString = this._renderEntriesSubtypes_getStyleString({entry, meta});
+
 		const dataString = this._renderEntriesSubtypes_getDataString(entry);
 		if (entry.name != null && Renderer.ENTRIES_WITH_ENUMERATED_TITLES_LOOKUP[entry.type]) this._handleTrackTitles(entry.name);
 
-		const headerTag = isInlineTitle ? "span" : `h${Math.min(Math.max(meta.depth + 2, 1), 6)}`;
-		const headerClass = `rd__h--${meta.depth + 1}`; // adjust as the CSS is 0..4 rather than -1..3
-
-		const cachedLastDepthTrackerProps = MiscUtil.copyFast(this._lastDepthTrackerInheritedProps);
-		this._handleTrackDepth(entry, meta.depth);
-
-		const pluginDataNamePrefix = this._applyPlugins_getAll(`${type}_namePrefix`, {textStack, meta, options}, {input: entry});
-
-		const headerSpan = displayName ? `<${headerTag} class="rd__h ${headerClass}" data-title-index="${this._headerIndex++}" ${this._getEnumeratedTitleRel(entry.name)}> <span class="entry-title-inner${!pagePart && entry.source ? ` help-subtle` : ""}"${!pagePart && entry.source ? ` title="Source: ${Parser.sourceJsonToFull(entry.source)}${entry.page ? `, p${entry.page}` : ""}"` : ""}>${pluginDataNamePrefix.join("")}${this.render({type: "inline", entries: [displayName]})}${isAddPeriod ? "." : ""}</span>${partPageExpandCollapse}</${headerTag}> ` : "";
+		const headerSpan = this._renderEntriesSubtypes_getHeaderSpan({
+			entry,
+			textStack,
+			meta,
+			options,
+			displayName,
+			headerTag: `h${Math.min(Math.max(meta.depth + 2, 1), 6)}`,
+			pagePart,
+			partPageExpandCollapse,
+		});
 
 		if (meta.depth === -1) {
 			if (!this._firstSection) textStack[0] += `<hr class="rd__hr rd__hr--section">`;
 			this._firstSection = false;
 		}
 
-		if (entry.entries || displayName) {
-			textStack[0] += `<${this.wrapperTag} ${dataString} ${styleString}>${headerSpan}`;
-			this._renderEntriesSubtypes_renderPreReqText(entry, textStack, meta);
-			if (entry.entries) {
-				const cacheDepth = meta.depth;
-				const len = entry.entries.length;
-				for (let i = 0; i < len; ++i) {
-					meta.depth = nextDepth;
-					this._recursiveRender(entry.entries[i], textStack, meta, {prefix: "<p>", suffix: "</p>"});
-				}
-				meta.depth = cacheDepth;
-			}
-			textStack[0] += `</${this.wrapperTag}>`;
-		}
+		if (!entry.entries && !displayName) return;
 
-		this._lastDepthTrackerInheritedProps = cachedLastDepthTrackerProps;
+		textStack[0] += `<${this.wrapperTag} ${dataString} ${styleString}>${headerSpan}`;
+		this._renderEntriesSubtypes_renderPreReqText(entry, textStack, meta);
+		if (entry.entries) {
+			const cacheDepth = meta.depth;
+			const len = entry.entries.length;
+			for (let i = 0; i < len; ++i) {
+				meta.depth = nextDepth;
+				this._recursiveRender(entry.entries[i], textStack, meta, {prefix: "<p>", suffix: "</p>"});
+			}
+			meta.depth = cacheDepth;
+		}
+		textStack[0] += `</${this.wrapperTag}>`;
+	};
+
+	this._renderEntriesSubtypes_inline = function ({entry, textStack, meta, options, displayName}) {
+		const styleString = this._renderEntriesSubtypes_getStyleString({entry, meta, isInlineTitle: true});
+
+		const dataString = this._renderEntriesSubtypes_getDataString(entry);
+		if (entry.name != null && Renderer.ENTRIES_WITH_ENUMERATED_TITLES_LOOKUP[entry.type]) this._handleTrackTitles(entry.name);
+
+		const headerSpan = this._renderEntriesSubtypes_getHeaderSpan({
+			entry,
+			textStack,
+			meta,
+			options,
+			displayName,
+			headerTag: "span",
+			isAddPeriod: displayName && !Renderer._INLINE_HEADER_TERMINATORS.has(displayName[displayName.length - 1]),
+		});
+
+		if (!entry.entries && !displayName) return;
+
+		textStack[0] += `<${this.wrapperTag} ${dataString} ${styleString}>`;
+		if (entry.entries) {
+			const cacheDepth = meta.depth;
+			const len = entry.entries.length;
+			for (let i = 0; i < len; ++i) {
+				meta.depth = 2;
+				const toRender = i === 0 ? {type: "inlineBlock", entries: [headerSpan, entry.entries[i]]} : entry.entries[i];
+				this._recursiveRender(toRender, textStack, meta, {prefix: "<p>", suffix: "</p>"});
+			}
+			meta.depth = cacheDepth;
+		} else {
+			this._recursiveRender({type: "inlineBlock", entries: [headerSpan]}, textStack, meta, {prefix: "<p>", suffix: "</p>"});
+		}
+		textStack[0] += `</${this.wrapperTag}>`;
 	};
 
 	this._renderEntriesSubtypes_getDataString = function (entry) {
@@ -907,6 +968,29 @@ globalThis.Renderer = function () {
 		return dataString;
 	};
 
+	this._renderEntriesSubtypes_getHeaderSpan = function ({
+		entry,
+		textStack,
+		meta,
+		options,
+		displayName,
+		headerTag,
+		pagePart = "",
+		partPageExpandCollapse = "",
+		isAddPeriod = false,
+	}) {
+		if (!displayName) return "";
+
+		const type = entry.type || "entries";
+
+		const headerClass = `rd__h--${meta.depth + 1}`; // adjust as the CSS is 0..4 rather than -1..3
+		const pluginDataNamePrefix = this._applyPlugins_getAll(`${type}_namePrefix`, {textStack, meta, options}, {input: entry});
+
+		const ptText = `${pluginDataNamePrefix.join("")}${this.render({type: "inline", entries: [displayName]})}${isAddPeriod ? "." : ""}`;
+
+		return `<${headerTag} class="rd__h ${headerClass}" data-title-index="${this._headerIndex++}" ${this._getEnumeratedTitleRel(entry.name)}> <span class="entry-title-inner${!pagePart && entry.source ? ` help-subtle` : ""}"${!pagePart && entry.source ? ` title="Source: ${Parser.sourceJsonToFull(entry.source)}${entry.page ? `, p${entry.page}` : ""}"` : ""}>${ptText}</span>${partPageExpandCollapse}</${headerTag}> `;
+	};
+
 	this._renderEntriesSubtypes_renderPreReqText = function (entry, textStack, meta) {
 		if (!entry.prerequisite) return;
 
@@ -921,13 +1005,15 @@ globalThis.Renderer = function () {
 		textStack[0] += `<p><i>${Renderer.utils.prerequisite.getHtml(entry.prerequisite, {styleHint: meta.styleHint})}</i></p>`;
 	};
 
-	this._renderEntriesSubtypes_getStyleString = function (entry, meta, isInlineTitle) {
+	this._renderEntriesSubtypes_getStyleString = function ({entry, meta, isInlineTitle = false}) {
 		const styleClasses = ["rd__b"];
 		styleClasses.push(this._getStyleClass(entry.type || "entries", entry));
 		if (isInlineTitle) {
 			if (this._subVariant) styleClasses.push(Renderer.HEAD_2_SUB_VARIANT);
 			else styleClasses.push(Renderer.HEAD_2);
-		} else styleClasses.push(meta.depth === -1 ? Renderer.HEAD_NEG_1 : meta.depth === 0 ? Renderer.HEAD_0 : Renderer.HEAD_1);
+		} else {
+			styleClasses.push(meta.depth === -1 ? Renderer.HEAD_NEG_1 : meta.depth === 0 ? Renderer.HEAD_0 : Renderer.HEAD_1);
+		}
 		return styleClasses.length > 0 ? `class="${styleClasses.join(" ")}"` : "";
 	};
 
@@ -1245,29 +1331,24 @@ globalThis.Renderer = function () {
 	};
 
 	this._renderAbilityDc = function (entry, textStack, meta, options) {
-		this._renderPrefix(entry, textStack, meta, options);
-		textStack[0] += `<div class="ve-text-center"><b>`;
+		textStack[0] += `<div class="rd__wrp-centered-ability"><b>`;
 		this._recursiveRender(entry.name, textStack, meta);
 		if (options.styleHint === "classic") textStack[0] += ` save DC</b> = 8 + your proficiency bonus + your ${Parser.attrChooseToFull(entry.attributes)}</div>`;
 		else textStack[0] += ` save DC</b> = 8 + ${Parser.attrChooseToFull(entry.attributes)} + Proficiency Bonus</div>`;
-		this._renderSuffix(entry, textStack, meta, options);
 	};
 
 	this._renderAbilityAttackMod = function (entry, textStack, meta, options) {
-		this._renderPrefix(entry, textStack, meta, options);
-		textStack[0] += `<div class="ve-text-center"><b>`;
+		textStack[0] += `<div class="rd__wrp-centered-ability"><b>`;
 		this._recursiveRender(entry.name, textStack, meta);
 		if (options.styleHint === "classic") textStack[0] += ` attack modifier</b> = your proficiency bonus + your ${Parser.attrChooseToFull(entry.attributes)}</div>`;
 		else textStack[0] += ` attack modifier</b> = ${Parser.attrChooseToFull(entry.attributes)} + Proficiency Bonus</div>`;
-		this._renderSuffix(entry, textStack, meta, options);
 	};
 
 	this._renderAbilityGeneric = function (entry, textStack, meta, options) {
-		this._renderPrefix(entry, textStack, meta, options);
-		textStack[0] += `<div class="ve-text-center">`;
+		textStack[0] += `<div class="rd__wrp-centered-ability">`;
 		if (entry.name) this._recursiveRender(entry.name, textStack, meta, {prefix: "<b>", suffix: "</b> = "});
-		textStack[0] += `${entry.text}${entry.attributes ? ` ${Parser.attrChooseToFull(entry.attributes)}` : ""}</div>`;
-		this._renderSuffix(entry, textStack, meta, options);
+		if (entry.text) this._recursiveRender(entry.text, textStack, meta);
+		textStack[0] += `${entry.attributes ? ` ${Parser.attrChooseToFull(entry.attributes)}` : ""}</div>`;
 	};
 
 	this._renderInline = function (entry, textStack, meta, options) {
@@ -1321,9 +1402,18 @@ globalThis.Renderer = function () {
 		const cachedLastDepthTrackerProps = MiscUtil.copyFast(this._lastDepthTrackerInheritedProps);
 		this._handleTrackDepth(entry, 2);
 
-		textStack[0] += `<${this.wrapperTag} class="${Renderer.HEAD_2}" ${dataString}><span class="rd__h rd__h--3" data-title-index="${this._headerIndex++}" ${this._getEnumeratedTitleRel(entry.name)}><span class="entry-title-inner">${entry.name}.</span></span> `;
-		const len = entry.entries.length;
-		for (let i = 0; i < len; ++i) this._recursiveRender(entry.entries[i], textStack, meta, {prefix: "<p>", suffix: "</p>"});
+		const headerSpan = `<span class="rd__h rd__h--3" data-title-index="${this._headerIndex++}" ${this._getEnumeratedTitleRel(entry.name)}><span class="entry-title-inner">${entry.name}.</span></span> `;
+
+		textStack[0] += `<${this.wrapperTag} class="${Renderer.HEAD_2}" ${dataString}>`;
+		if (entry.entries) {
+			const len = entry.entries.length;
+			for (let i = 0; i < len; ++i) {
+				const toRender = i === 0 ? {type: "inlineBlock", entries: [headerSpan, entry.entries[i]]} : entry.entries[i];
+				this._recursiveRender(toRender, textStack, meta, {prefix: "<p>", suffix: "</p>"});
+			}
+		} else {
+			this._recursiveRender({type: "inlineBlock", entries: [headerSpan]}, textStack, meta, {prefix: "<p>", suffix: "</p>"});
+		}
 		textStack[0] += `</${this.wrapperTag}>`;
 
 		this._lastDepthTrackerInheritedProps = cachedLastDepthTrackerProps;
@@ -7819,6 +7909,7 @@ Renderer.race = class {
 		delete cpy._versions;
 		delete cpy.hasFluff;
 		delete cpy.hasFluffImages;
+		delete cpy.reprintedAs;
 		delete cpySr.__prop;
 
 		// merge names, abilities, entries, tags
@@ -8959,6 +9050,7 @@ class _RenderCompactBestiaryImplOne extends _RenderCompactBestiaryImplBase {
 			htmlPtSavingThrows: this._getHtmlParts_savingThrows({mon, renderer}),
 
 			htmlPtImmunities: this._getHtmlParts_immunities({mon}),
+			htmlPtGear: this._getHtmlParts_gear({mon}),
 
 			htmlPtTraits: this._getHtmlParts_traits({mon, renderer, entsTrait}),
 		};
@@ -8975,6 +9067,12 @@ class _RenderCompactBestiaryImplOne extends _RenderCompactBestiaryImplBase {
 		const pt = Renderer.monster.getImmunitiesCombinedPart(mon);
 		if (!pt) return "";
 		return `<p><b title="Immunities">Imm.</b> ${pt}</p>`;
+	}
+
+	_getHtmlParts_gear ({mon}) {
+		const pt = Renderer.monster.getGearPart(mon);
+		if (!pt) return "";
+		return `<p><b title="Immunities">Gear</b> ${pt}</p>`;
 	}
 
 	/* ----- */
@@ -9051,6 +9149,7 @@ class _RenderCompactBestiaryImplOne extends _RenderCompactBestiaryImplBase {
 			htmlPtSavingThrows,
 
 			htmlPtImmunities,
+			htmlPtGear,
 
 			htmlPtTraits,
 		} = this._getHtmlParts({
@@ -9082,6 +9181,7 @@ class _RenderCompactBestiaryImplOne extends _RenderCompactBestiaryImplBase {
 					${htmlPtVulnerabilities}
 					${htmlPtResistances}
 					${htmlPtImmunities}
+					${htmlPtGear}
 					${htmlPtSenses}
 					${htmlPtLanguages}
 				</div>
@@ -9591,7 +9691,24 @@ Renderer.monster = class {
 
 		const hasSemi = ptImmune && ptConditionImmune && (ptImmune.includes(";") || ptConditionImmune.includes(";"));
 
-		return [ptImmune, ptConditionImmune].join(hasSemi ? `<span class="italic">;</span> ` : "; ");
+		return [ptImmune, ptConditionImmune].filter(Boolean).join(hasSemi ? `<span class="italic">;</span> ` : "; ");
+	}
+
+	/* -------------------------------------------- */
+
+	// TODO(Future; XMM) revise
+	static getGearPart (mon, {renderer = null} = {}) {
+		if (!mon.attachedItems) return "";
+
+		renderer ||= Renderer.get();
+		return mon.attachedItems
+			.map(uid => {
+				const unpacked = DataUtil.proxy.unpackUid("item", uid, "item");
+				unpacked.name = unpacked.name.toTitleCase();
+				const uidTitle = DataUtil.proxy.getUid("item", unpacked, {isMaintainCase: true});
+				return renderer.render(`{@item ${uidTitle}}`);
+			})
+			.join(", ");
 	}
 
 	/* -------------------------------------------- */
