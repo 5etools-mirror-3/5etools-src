@@ -2680,7 +2680,7 @@ Renderer.parseScaleDice = function (tag, text) {
 
 Renderer.getAbilityData = function (abArr, {isOnlyShort, isCurrentLineage = false, isBackgroundShortForm = false} = {}) {
 	if (isOnlyShort && isCurrentLineage) return new Renderer._AbilityData({asTextShort: "Lineage"});
-	if (isOnlyShort && isBackgroundShortForm && abArr.length === 2) return new Renderer._AbilityData({asTextShort: "Origin"});
+	if (isOnlyShort && isBackgroundShortForm && abArr.length === 2 && abArr[0].choose?.weighted?.from?.length === 3) return new Renderer._AbilityData({asTextShort: `Origin (${abArr[0].choose?.weighted?.from.map(it => it.uppercaseFirst()).join("/")})`});
 
 	const outerStack = (abArr || [null]).map(it => Renderer.getAbilityData._doRenderOuter(it));
 	if (outerStack.length <= 1) return outerStack[0];

@@ -3,6 +3,7 @@ import {Command} from "commander";
 import "../js/parser.js";
 import "../js/utils.js";
 import "../js/utils-ui.js";
+import "../js/utils-config.js";
 import "../js/render.js";
 import "../js/render-dice.js";
 import "../js/hist.js";
