@@ -119,7 +119,8 @@ export class _BrewDocContentMigrator {
 				// If the brew already defines a version of the subclass for the 2024-era class, avoid making one
 				if (scExisting) return;
 
-				const [scfRefsLowLevel, scfRefsOther] = sc.subclassFeatures
+				// `.subclassFeatures` may not exist for e.g. "_copy" subclasses; always "_copy" these
+				const [scfRefsLowLevel, scfRefsOther] = (sc.subclassFeatures || [])
 					.segregate(scfRef => {
 						const uid = scfRef.subclassFeature || scfRef;
 						const unpacked = DataUtil.class.unpackUidSubclassFeature(uid);

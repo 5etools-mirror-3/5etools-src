@@ -1707,43 +1707,44 @@ Parser.spAttackTypeToFull = function (type) {
 };
 
 Parser.SPELL_AREA_TYPE_TO_FULL = {
-	ST: "Single Target",
-	MT: "Multiple Targets",
-	C: "Cube",
-	N: "Cone",
-	Y: "Cylinder",
-	S: "Sphere",
-	R: "Circle",
-	Q: "Square",
-	L: "Line",
-	H: "Hemisphere",
-	W: "Wall",
+	"ST": "Single Target",
+	"MT": "Multiple Targets",
+	"C": "Cube",
+	"N": "Cone",
+	"Y": "Cylinder",
+	"S": "Sphere",
+	"R": "Circle",
+	"Q": "Square",
+	"L": "Line",
+	"H": "Hemisphere",
+	"W": "Wall",
 };
 Parser.spAreaTypeToFull = function (type) {
 	return Parser._parse_aToB(Parser.SPELL_AREA_TYPE_TO_FULL, type);
 };
 
 Parser.SP_MISC_TAG_TO_FULL = {
-	HL: "Healing",
-	THP: "Grants Temporary Hit Points",
-	SGT: "Requires Sight",
-	PRM: "Permanent Effects",
-	SCL: "Scaling Effects",
-	SMN: "Summons Creature",
-	MAC: "Modifies AC",
-	TP: "Teleportation",
-	FMV: "Forced Movement",
-	RO: "Rollable Effects",
-	LGTS: "Creates Sunlight",
-	LGT: "Creates Light",
-	UBA: "Uses Bonus Action",
-	PS: "Plane Shifting",
-	OBS: "Obscures Vision",
-	DFT: "Difficult Terrain",
-	AAD: "Additional Attack Damage",
-	OBJ: "Affects Objects",
-	ADV: "Grants Advantage",
-	PIR: "Permanent If Repeated",
+	"HL": "Healing",
+	"THP": "Grants Temporary Hit Points",
+	"SGT": "Requires Sight",
+	"PRM": "Permanent Effects",
+	"SCL": "Scaling Effects",
+	"SCT": "Scaling Targets",
+	"SMN": "Summons Creature",
+	"MAC": "Modifies AC",
+	"TP": "Teleportation",
+	"FMV": "Forced Movement",
+	"RO": "Rollable Effects",
+	"LGTS": "Creates Sunlight",
+	"LGT": "Creates Light",
+	"UBA": "Uses Bonus Action",
+	"PS": "Plane Shifting",
+	"OBS": "Obscures Vision",
+	"DFT": "Difficult Terrain",
+	"AAD": "Additional Attack Damage",
+	"OBJ": "Affects Objects",
+	"ADV": "Grants Advantage",
+	"PIR": "Permanent If Repeated",
 };
 Parser.spMiscTagToFull = function (type) {
 	return Parser._parse_aToB(Parser.SP_MISC_TAG_TO_FULL, type);
@@ -3095,7 +3096,7 @@ Parser.SOURCE_JSON_TO_FULL[Parser.SRC_HWAitW] = "Humblewood: Adventure in the Wo
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_ToB1_2023] = "Tome of Beasts 1 (2023 Edition)";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_XPHB] = "Player's Handbook (2024)";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_XDMG] = "Dungeon Master's Guide (2024)";
-Parser.SOURCE_JSON_TO_FULL[Parser.SRC_XMM] = "Monster Manual (2025)";
+Parser.SOURCE_JSON_TO_FULL[Parser.SRC_XMM] = "Monster Manual (2024)";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_TD] = "Tarot Deck";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_SCREEN] = "Dungeon Master's Screen";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_SCREEN_WILDERNESS_KIT] = "Dungeon Master's Screen: Wilderness Kit";
@@ -3256,7 +3257,7 @@ Parser.SOURCE_JSON_TO_ABV[Parser.SRC_HWAitW] = "HWAitW";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_ToB1_2023] = "ToB1'23";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_XPHB] = "PHB'24";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_XDMG] = "DMG'24";
-Parser.SOURCE_JSON_TO_ABV[Parser.SRC_XMM] = "MM'25";
+Parser.SOURCE_JSON_TO_ABV[Parser.SRC_XMM] = "MM'24";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_TD] = "TD";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_SCREEN] = "Screen";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_SCREEN_WILDERNESS_KIT] = "ScWild";

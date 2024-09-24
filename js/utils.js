@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.1.0"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.1.2"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -4416,11 +4416,6 @@ globalThis.DataUtil = {
 			].join("|").replace(/\|+$/, ""); // Trim trailing pipes
 		},
 
-		getNormalizedUid (uid, tag) {
-			const {name, source} = DataUtil.generic.unpackUid(uid, tag, {isLower: true});
-			return [name, source].join("|");
-		},
-
 		getUid (ent, {isMaintainCase = false} = {}) {
 			const {name} = ent;
 			const source = SourceUtil.getEntitySource(ent);
@@ -5415,8 +5410,8 @@ globalThis.DataUtil = {
 		}
 
 		static getNormalizedUid (prop, uid, tag, opts) {
-			if (DataUtil[prop]?.getNormalizedUid) return DataUtil[prop].getNormalizedUid(uid, tag, opts);
-			return DataUtil.generic.getNormalizedUid(uid, tag, opts);
+			const unpacked = DataUtil.proxy.unpackUid(prop, uid, tag, opts);
+			return DataUtil.proxy.getUid(prop, unpacked, opts);
 		}
 
 		static getUid (prop, ent, opts) {
@@ -6171,15 +6166,17 @@ globalThis.DataUtil = {
 			};
 		}
 
-		static packUidSubclass (it) {
+		static packUidSubclass (ent, {isMaintainCase = false} = {}) {
 			// <shortName>|<className>|<classSource>|<source>
 			const sourceDefault = Parser.getTagSource("class");
-			return [
-				it.shortName,
-				it.className,
-				(it.classSource || "").toLowerCase() === sourceDefault.toLowerCase() ? "" : it.classSource,
-				(it.source || "").toLowerCase() === sourceDefault.toLowerCase() ? "" : it.source,
+			const out = [
+				ent.shortName,
+				ent.className,
+				(ent.classSource || "").toLowerCase() === sourceDefault.toLowerCase() ? "" : ent.classSource,
+				(ent.source || "").toLowerCase() === sourceDefault.toLowerCase() ? "" : ent.source,
 			].join("|").replace(/\|+$/, ""); // Trim trailing pipes
+			if (isMaintainCase) return out;
+			return out.toLowerCase();
 		}
 
 		/**
@@ -6320,7 +6317,13 @@ globalThis.DataUtil = {
 		}
 
 		static unpackUid (uid, opts) {
+			// <shortName>|<className>|<classSource>|<source>
 			return DataUtil.class.unpackUidSubclass(uid, opts);
+		}
+
+		static getUid (ent, {isMaintainCase = false} = {}) {
+			// <shortName>|<className>|<classSource>|<source>
+			return DataUtil.class.packUidSubclass(ent, {isMaintainCase});
 		}
 	},
 
@@ -6389,11 +6392,6 @@ globalThis.DataUtil = {
 
 		static getUid (ent, opts) {
 			return this.packUidDeity(ent, opts);
-		}
-
-		static getNormalizedUid (uid, tag) {
-			const {name, pantheon, source} = this.unpackUidDeity(uid, tag, {isLower: true});
-			return [name, pantheon, source].join("|");
 		}
 
 		static unpackUid (uid, opts) {

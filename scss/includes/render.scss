@@ -17,6 +17,8 @@ $rgb-inset-border: #656565;
 	--h-mb-quote-line-last: 5px;
 	--h-mb-li: 3px;
 	--w-text-indent-inline-p: 0.7em;
+	--w-text-indent-li-hang: 1.1em;
+	--w-text-indent-li-hang--inv: calc(-1 * var(--w-text-indent-li-hang));
 	--w-pl-list: 24px;
 	--w-pl-list-no-bullets: 10px;
 }
@@ -98,13 +100,6 @@ $rgb-inset-border: #656565;
 			margin-bottom: var(--h-mb-p);
 		}
 
-		&compact-stats {
-			display: flex;
-			flex-wrap: wrap;
-			place-content: flex-start space-between;
-			align-items: flex-start;
-		}
-
 		&title-link {
 			opacity: 0.3;
 			font-size: 12px;
@@ -178,6 +173,11 @@ $rgb-inset-border: #656565;
 			}
 		}
 
+		&wrp-centered-ability {
+			text-align: center;
+			margin-bottom: var(--h-mb-p);
+		}
+
 		&p-list-item {
 			// This prevents e.g. "italic" on the list item name from affecting the list item"s text.
 			font-style: initial;
@@ -185,7 +185,7 @@ $rgb-inset-border: #656565;
 
 		&p-cont-indent {
 			display: block;
-			text-indent: 1em;
+			text-indent: var(--w-text-indent-inline-p);
 		}
 
 		&tab-indent {
@@ -255,8 +255,8 @@ $rgb-inset-border: #656565;
 
 			> .rd__li {
 				margin-bottom: var(--h-mb-li);
-				text-indent: -1.1em;
-				margin-left: 1.1em;
+				text-indent: var(--w-text-indent-li-hang--inv);
+				margin-left: var(--w-text-indent-li-hang);
 
 				a,
 				span {
@@ -269,7 +269,7 @@ $rgb-inset-border: #656565;
 
 				// fixme?
 				> ul {
-					text-indent: 0;
+					text-indent: initial;
 				}
 			}
 		}
@@ -283,8 +283,8 @@ $rgb-inset-border: #656565;
 
 			// Firefox workaround; list bullets are pseudo-elements "::marker"
 			> li > *:not(::marker) {
-				text-indent: -1.1em;
-				margin-left: 1.1em;
+				text-indent: var(--w-text-indent-li-hang--inv);
+				margin-left: var(--w-text-indent-li-hang);
 			}
 		}
 
@@ -410,20 +410,12 @@ $rgb-inset-border: #656565;
 
 		&b--3 > p,
 		&b--4 > p {
-			text-indent: var(--w-text-indent-inline-p);
 			margin-bottom: var(--h-mb-p-inline);
-
-			&:first-of-type {
-				display: inline;
-			}
 		}
 
-		&b-inset > p {
+		&b--3 > p + p,
+		&b-inset > p + p {
 			text-indent: var(--w-text-indent-inline-p);
-
-			&:first-of-type {
-				text-indent: 0;
-			}
 		}
 
 		&b-inset {
@@ -700,10 +692,7 @@ td > .rd__b:last-child {
 .rd-recipes {
 	&__ {
 		&wrp-recipe {
-			.rd__b--3 > p,
-			.rd__b--4 > p {
-				text-indent: 0;
-			}
+			--w-text-indent-inline-p: 0;
 		}
 
 		&wrp-instructions {

@@ -192,7 +192,7 @@ $width-screen-lg: 1200px;
 $width-screen-hg: 1600px;
 
 // region linked titles
-%linked-titles-base {
+@mixin linked-titles-base {
 	.rd__h--0 .entry-title-inner:hover::before {
 		font-size: 50%;
 	}
@@ -206,7 +206,7 @@ $width-screen-hg: 1600px;
 	}
 }
 
-%linked-titles-base-inner {
+@mixin linked-titles-base-inner {
 	cursor: copy;
 
 	&:hover::before {
