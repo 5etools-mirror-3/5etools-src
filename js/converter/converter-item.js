@@ -100,8 +100,6 @@ export class ConverterItem extends ConverterBase {
 	}
 
 	static _getFinalState (item, options) {
-		if (item.__prop === "baseitem") item.acceptsVariantEdition = options.styleHint;
-
 		if (!item.entries.length) delete item.entries;
 		else this._setWeight(item, options);
 
@@ -269,8 +267,11 @@ export class ConverterItem extends ConverterBase {
 					stats.type = options.styleHint === SITE_STYLE__ONE ? Parser.ITM_TYP__ODND_ROD : Parser.ITM_TYP__ROD;
 				}
 
-				if (mBaseWeapon.groups.ptParens === "spear or javelin") {
-					(stats.requires ||= []).push(...this._setCleanTaglineInfo_getGenericRequires({stats, str: "spear", options}));
+				if (
+					/ or /.test(mBaseWeapon.groups.ptParens)
+					&& this._GENERIC_REQUIRES_LOOKUP_WEAPON[mBaseWeapon.groups.ptParens.toLowerCase()]
+				) {
+					(stats.requires ||= []).push(...this._setCleanTaglineInfo_getGenericRequires({stats, str: mBaseWeapon.groups.ptParens, options}));
 					stats.__genericType = true;
 					continue;
 				}
@@ -460,7 +461,7 @@ export class ConverterItem extends ConverterBase {
 		delete stats.armor;
 		delete stats.value;
 
-		stats.baseItem = `${baseItem.name.toLowerCase()}${baseItem.source === Parser.SRC_DMG ? "" : `|${baseItem.source}`}`;
+		stats.baseItem = `${baseItem.name.toLowerCase()}${baseItem.source === Parser.SRC_DMG ? "" : `|${baseItem.source.toLowerCase()}`}`;
 	}
 
 	static _GENERIC_REQUIRES_LOOKUP_WEAPON = {
@@ -469,6 +470,7 @@ export class ConverterItem extends ConverterBase {
 		"axe": [{"axe": true}],
 		"armor": [{"armor": true}],
 		"bow": [{"bow": true}],
+		"longbow or shortbow": [{"bow": true}],
 		"crossbow": [{"crossbow": true}],
 		"bow or crossbow": [{"bow": true}, {"crossbow": true}],
 		"spear": [{"spear": true}],
@@ -479,6 +481,7 @@ export class ConverterItem extends ConverterBase {
 		"hammer": [{"hammer": true}],
 		"mace": [{"mace": true}],
 		"staff": [{"staff": true}],
+		"spear or javelin": [{"spear": true}],
 
 		"ammunition": ({styleHint}) => [{"type": styleHint === SITE_STYLE__ONE ? Parser.ITM_TYP__ODND_AMMUNITION : Parser.ITM_TYP__AMMUNITION}, {"type": Parser.ITM_TYP__AMMUNITION_FUTURISTIC}],
 		"arrow": [{"arrow": true}],
@@ -508,7 +511,7 @@ export class ConverterItem extends ConverterBase {
 		const strLookup = str.toLowerCase();
 
 		const lookupWeapon = this._GENERIC_REQUIRES_LOOKUP_WEAPON[strLookup];
-		if (lookupWeapon[strLookup]) return typeof lookupWeapon === "function" ? lookupWeapon({styleHint: options.styleHint}) : MiscUtil.copyFast(lookupWeapon);
+		if (lookupWeapon) return typeof lookupWeapon === "function" ? lookupWeapon({styleHint: options.styleHint}) : MiscUtil.copyFast(lookupWeapon);
 
 		const lookupArmor = this._GENERIC_REQUIRES_LOOKUP_ARMOR[strLookup];
 		if (lookupArmor) return typeof lookupArmor === "function" ? lookupArmor({styleHint: options.styleHint}) : MiscUtil.copyFast(lookupArmor);
@@ -541,7 +544,6 @@ export class ConverterItem extends ConverterBase {
 
 		stats.__prop = "magicvariant";
 		stats.type = options.styleHint === SITE_STYLE__ONE ? Parser.ITM_TYP__ODND_GENERIC_VARIANT : Parser.ITM_TYP__GENERIC_VARIANT;
-		stats.edition = options.styleHint;
 	}
 
 	static _setWeight (stats, options) {

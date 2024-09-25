@@ -1785,6 +1785,47 @@
 			}
 		},
 		{
+			"name": "Energy Bow",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"bow": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Energy ",
+				"source": "UtHftLH",
+				"rarity": "very rare",
+				"reqAttune": true,
+				"bonusWeapon": "+1",
+				"entries": [
+					"You gain a +1 bonus to attack rolls and damage rolls made with this magic weapon, which has no string. Each time you pull your arm back in a firing motion, a magical arrow made of golden energy appears nocked and ready to fire. An arrow produced by this weapon deals Force damage instead of Piercing damage on a hit, and it disappears after it hits or misses its target. Until it disappears, the arrow emits {@variantrule Bright Light|XPHB} in a 20-foot radius and {@variantrule Dim Light|XPHB} for an additional 20 feet.",
+					"This weapon has the following additional properties.",
+					{
+						"type": "entries",
+						"name": "Arrow of Restraint",
+						"entries": [
+							"Whenever you use this weapon to make a ranged attack against a creature, you can try to restrain the target instead of dealing damage to it. If the arrow hits, the target must succeed on a DC 15 Strength saving throw or have the {@condition Restrained|XPHB} condition for 1 minute. As an action, a creature {@condition Restrained|XPHB} by an arrow can make a DC 20 Strength ({@skill Athletics|XPHB}) check to try to break the restraint, ending the effect on itself on a successful check."
+						]
+					},
+					{
+						"type": "entries",
+						"name": "Arrow of Transport",
+						"entries": [
+							"As a {@action Magic|XPHB} action, you can fire one energy arrow from this weapon at a target you can see within 60 feet of yourself. The target can be either a willing Medium or smaller creature or an object that isn't being worn or carried, provided the object is small enough to fit inside a 5-foot {@variantrule Cube [Area of Effect]|XPHB|Cube}. The arrow teleports the target to an unoccupied space you can see within 10 feet of you."
+						]
+					},
+					{
+						"type": "entries",
+						"name": "Energy Ladder",
+						"entries": [
+							"As a {@action Magic|XPHB} action, you can loose a flurry of energy arrows from this weapon at a wall up to 60 feet away from yourself. The arrows become glowing rungs that stick out of the wall, forming a magical {@item ladder|XPHB} up to 60 feet long on the wall. This ladder lasts for 1 minute before disappearing."
+						]
+					}
+				]
+			}
+		},
+		{
 			"name": "Feywrought Armor",
 			"type": "GV|DMG",
 			"requires": [

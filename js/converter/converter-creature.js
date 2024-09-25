@@ -47,6 +47,7 @@ export class ConverterCreature extends ConverterBase {
 		"LANGUAGES",
 		"CHALLENGE",
 		"PROFICIENCY BONUS",
+		"GEAR",
 	];
 
 	static _NO_ABSORB_TITLES = [
@@ -71,6 +72,7 @@ export class ConverterCreature extends ConverterBase {
 	static _RE_START_LANGUAGES = "Languages?";
 	static _RE_START_CHALLENGE = "Challenge";
 	static _RE_START_PROF_BONUS = "Proficiency Bonus(?: \\(PB\\))?";
+	static _RE_START_GEAR = "Gear";
 
 	static _LINE_MODES = {
 		UNKNOWN: "unknown",
@@ -200,7 +202,9 @@ export class ConverterCreature extends ConverterBase {
 
 			// armor class
 			if (meta.ixToConvert === 2) {
-				stats.ac = ConverterUtils.getStatblockLineHeaderText({reStartStr: "(?:Armor Class|AC)", line: meta.curLine});
+				const [ptAc, ptInit] = meta.curLine.split(/\s+Initiative\s*/).map(it => it.trim()).filter(Boolean);
+				stats.ac = ConverterUtils.getStatblockLineHeaderText({reStartStr: "(?:Armor Class|AC)", line: ptAc});
+				if (ptInit) stats.initiative = ptInit;
 				continue;
 			}
 
@@ -318,6 +322,14 @@ export class ConverterCreature extends ConverterBase {
 				// noinspection StatementWithEmptyBodyJS
 				while (this._absorbBrokenLine({meta}));
 				this._setCleanDamageConditionImm(stats, meta.curLine, options);
+				continue;
+			}
+
+			// gear (optional)
+			if (ConverterUtils.isStatblockLineHeaderStart({reStartStr: this._RE_START_GEAR, line: meta.curLine})) {
+				// noinspection StatementWithEmptyBodyJS
+				while (this._absorbBrokenLine({meta}));
+				this._setCleanGear({stats, line: meta.curLine, options});
 				continue;
 			}
 
@@ -517,6 +529,17 @@ export class ConverterCreature extends ConverterBase {
 					meta.curLine = meta.toConvert[meta.ixToConvert];
 				}
 
+				if (
+					!stats.gear
+					&& curTrait.name === "Gear"
+					&& curTrait.entries.length === 1
+					&& typeof curTrait.entries[0] === "string"
+				) {
+					this._setCleanGear({stats, line: `Gear ${curTrait.entries[0]}`, options});
+					curTrait = {};
+					continue;
+				}
+
 				if (curTrait.name || curTrait.entries) {
 					// convert dice tags
 					DiceConvert.convertTraitActionDice(curTrait);
@@ -558,6 +581,7 @@ export class ConverterCreature extends ConverterBase {
 		}
 		meta.doPostLoop();
 
+		this._doCleanInitiative(stats, options);
 		this._doCleanLegendaryActionHeader(stats);
 
 		this._addExtraTypeTags(stats, meta);
@@ -790,6 +814,27 @@ export class ConverterCreature extends ConverterBase {
 		if (/\b\d+(?:st|nd|rd|th)[-\u2012-\u2014\u2212]Order Power\b/.test(entry.name)) return "action";
 
 		return "trait";
+	}
+
+	static _doCleanInitiative (stats, options) {
+		if (!stats.initiative) return delete stats.initiative;
+
+		const mInit = /^(?<bonus>[-+]\d+) \((?<score>\d+)\)$/.exec(stats.initiative);
+		if (!mInit) {
+			return options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Initiative requires manual conversion`);
+		}
+
+		const bonusNum = Number(mInit.groups.bonus);
+		const scoreNum = Number(mInit.groups.score);
+
+		const dexMod = Parser.getAbilityModNumber(stats.dex);
+		// Basic initiative; delete
+		if (dexMod === bonusNum && scoreNum === 10 + dexMod) {
+			return delete stats.initiative;
+		}
+
+		// TODO(Future) refine
+		options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Initiative requires manual conversion`);
 	}
 
 	static _doCleanLegendaryActionHeader (stats) {
@@ -1535,7 +1580,7 @@ export class ConverterCreature extends ConverterBase {
 		DetectNamedCreature.tryRun(stats);
 		TagImmResVulnConditional.tryRun(stats);
 		DragonAgeTag.tryRun(stats);
-		AttachedItemTag.tryRun(stats);
+		if (!stats.gear) AttachedItemTag.tryRun(stats);
 		this._doStatblockPostProcess_doCleanup(stats, options);
 	}
 
@@ -1886,6 +1931,43 @@ export class ConverterCreature extends ConverterBase {
 			stats.immune = CreatureDamageImmunityConverter.getParsed(pt, options);
 			if (stats.immune == null) delete stats.immune;
 		}
+	}
+
+	static _setCleanGear ({stats, line, options}) {
+		const lineGear = ConverterUtils.getStatblockLineHeaderText({reStartStr: this._RE_START_GEAR, line});
+
+		const out = [];
+
+		// TODO(Future) refine
+		lineGear
+			.split(StrUtil.COMMA_SPACE_NOT_IN_PARENTHESES_REGEX)
+			.forEach(pt => {
+				pt = pt.trim();
+				if (!pt) return;
+
+				let quantity = 1;
+				pt = pt
+					.replace(/^(?<quantityText>one|two|three|four|five|six|seven|eight|nine|ten)\s*/, (...m) => {
+						const {quantityText} = m.at(-1);
+						quantity = Parser.textToNumber(quantityText);
+						return "";
+					})
+					.replace(/^(?<quantityNumber>\d+)\s*/, (...m) => {
+						const {quantityNumber} = m.at(-1);
+						quantity = Number(quantityNumber);
+						return "";
+					})
+				;
+
+				if (quantity > 1) pt = pt.toSingle();
+
+				const uid = `${pt}|${Parser.SRC_XPHB}`.toLowerCase();
+				if (quantity === 1) out.push(uid);
+				else out.push({item: uid, quantity});
+			});
+
+		if (!out.length) return;
+		stats.gear = out;
 	}
 
 	static _setCleanSenses ({stats, line, cbWarning}) {

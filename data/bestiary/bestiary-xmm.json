@@ -32,6 +32,415 @@
 			}
 		},
 		{
+			"name": "Blink Dog",
+			"source": "XMM",
+			"otherSources": [
+				{
+					"source": "UtHftLH"
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": "fey",
+			"alignment": [
+				"L",
+				"G"
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 16,
+				"formula": "3d8 + 3"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 12,
+			"dex": 17,
+			"con": 12,
+			"int": 10,
+			"wis": 13,
+			"cha": 11,
+			"skill": {
+				"perception": "+5",
+				"stealth": "+5"
+			},
+			"passive": 15,
+			"languages": [
+				"Blink Dog",
+				"understands Sylvan but can't speak it"
+			],
+			"cr": "1/4",
+			"action": [
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atkr m} {@hit 5}, reach 5 ft. {@h}5 ({@damage 1d4 + 3}) Piercing damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Teleport {@recharge 4}",
+					"entries": [
+						"The dog teleports up to 40 feet to an unoccupied space it can see."
+					]
+				}
+			],
+			"token": {
+				"name": "Blink Dog",
+				"source": "MM"
+			},
+			"languageTags": [
+				"CS",
+				"OTH",
+				"S"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MA"
+			]
+		},
+		{
+			"name": "Bugbear Warrior",
+			"source": "XMM",
+			"otherSources": [
+				{
+					"source": "UtHftLH"
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "fey",
+				"tags": [
+					"goblinoid"
+				]
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				14
+			],
+			"hp": {
+				"average": 33,
+				"formula": "6d8 + 6"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 15,
+			"dex": 14,
+			"con": 13,
+			"int": 8,
+			"wis": 11,
+			"cha": 9,
+			"skill": {
+				"stealth": "+6"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 10,
+			"languages": [
+				"Common",
+				"Goblin"
+			],
+			"cr": "1",
+			"gear": [
+				"hide armor|xphb",
+				{
+					"item": "light hammer|xphb",
+					"quantity": 3
+				}
+			],
+			"trait": [
+				{
+					"name": "Abduct",
+					"entries": [
+						"The bugbear's Speed isn't halved when it moves a creature {@condition Grappled|XPHB} by it."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Unarmed Strike",
+					"entries": [
+						"{@atkr m} {@hit 4}, Reach 10 ft. {@h}6 ({@damage 1d8 + 2}) Bludgeoning damage, and if the target is a Medium or smaller creature, it has the {@condition Grappled|XPHB} condition (escape {@dc 12}). Until this {@condition Grappled|XPHB} ends, the bugbear can't make an Unarmed Strike against another target."
+					]
+				},
+				{
+					"name": "Light Hammer",
+					"entries": [
+						"{@atkr m,r} +4 (with Advantage if the target is {@condition Grappled|XPHB} by the bugbear), reach 10 ft. or range 20/60 ft. {@h}9 ({@damage 3d4 + 2}) Bludgeoning damage."
+					]
+				}
+			],
+			"token": {
+				"name": "Bugbear",
+				"source": "MM"
+			},
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"C",
+				"GO"
+			],
+			"damageTags": [
+				"B"
+			],
+			"miscTags": [
+				"MA",
+				"MLW",
+				"RA",
+				"RCH",
+				"THW"
+			],
+			"conditionInflict": [
+				"grappled"
+			]
+		},
+		{
+			"name": "Bullywug Bog Sage",
+			"source": "XMM",
+			"otherSources": [
+				{
+					"source": "UtHftLH"
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": "fey",
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				16
+			],
+			"hp": {
+				"average": 52,
+				"formula": "8d8 + 16"
+			},
+			"speed": {
+				"walk": 30,
+				"swim": 30
+			},
+			"str": 8,
+			"dex": 16,
+			"con": 14,
+			"int": 10,
+			"wis": 12,
+			"cha": 16,
+			"save": {
+				"con": "+4",
+				"cha": "+5"
+			},
+			"skill": {
+				"stealth": "+5"
+			},
+			"passive": 11,
+			"languages": [
+				"Bullywug",
+				"Common"
+			],
+			"cr": "4",
+			"spellcasting": [
+				{
+					"name": "Spellcasting (Sorcerer)",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The bullywug casts one of the following spells, using Charisma as the spellcasting ability (spell save {@dc 13}):"
+					],
+					"will": [
+						"{@spell Dancing Lights|XPHB}",
+						"{@spell Ray of Sickness|XPHB} (level 2 version)"
+					],
+					"daily": {
+						"1": [
+							"{@spell Vitriolic Sphere|XPHB}"
+						],
+						"2e": [
+							"{@spell Fog Cloud|XPHB}",
+							"{@spell Grease|XPHB}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Amphibious",
+					"entries": [
+						"The bullywug can breathe air and water."
+					]
+				},
+				{
+					"name": "Speak with Frogs and Toads",
+					"entries": [
+						"The bullywug can communicate simple concepts to frogs and toads when it speaks in Bullywug."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The bullywug makes two Putrid Staff attacks."
+					]
+				},
+				{
+					"name": "Putrid Staff",
+					"entries": [
+						"{@atkr m} {@hit 5}, reach 5 ft. {@h}7 ({@damage 1d8 + 3}) Bludgeoning damage plus 10 ({@damage 3d6}) Poison damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Leap",
+					"entries": [
+						"The bullywug can jump up to 30 feet by spending 10 feet of movement."
+					]
+				}
+			],
+			"token": {
+				"name": "Bullywug",
+				"source": "MM"
+			},
+			"traitTags": [
+				"Amphibious"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"OTH"
+			],
+			"damageTags": [
+				"B",
+				"I"
+			],
+			"damageTagsSpell": [
+				"A",
+				"I"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA"
+			],
+			"conditionInflictSpell": [
+				"poisoned",
+				"prone"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity"
+			]
+		},
+		{
+			"name": "Bullywug Warrior",
+			"source": "XMM",
+			"otherSources": [
+				{
+					"source": "UtHftLH"
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": "fey",
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				15
+			],
+			"hp": {
+				"average": 11,
+				"formula": "2d8 + 2"
+			},
+			"speed": {
+				"walk": 30,
+				"swim": 40
+			},
+			"str": 12,
+			"dex": 14,
+			"con": 13,
+			"int": 7,
+			"wis": 10,
+			"cha": 7,
+			"skill": {
+				"stealth": "+4"
+			},
+			"passive": 10,
+			"languages": [
+				"Bullywug",
+				"Common"
+			],
+			"cr": "1/4",
+			"trait": [
+				{
+					"name": "Amphibious",
+					"entries": [
+						"The bullywug can breathe air and water."
+					]
+				},
+				{
+					"name": "Speak with Frogs and Toads",
+					"entries": [
+						"The bullywug can communicate simple concepts to frogs and toads when it speaks in Bullywug."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Insectile Rapier",
+					"entries": [
+						"{@atkr m} {@hit 4}, reach 5 ft. {@h}6 ({@damage 1d8 + 2}) Piercing damage plus 2 ({@damage 1d4}) Poison damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Leap",
+					"entries": [
+						"The bullywug can jump up to 30 feet by spending 10 feet of movement."
+					]
+				}
+			],
+			"token": {
+				"name": "Bullywug",
+				"source": "MM"
+			},
+			"traitTags": [
+				"Amphibious"
+			],
+			"languageTags": [
+				"C",
+				"OTH"
+			],
+			"damageTags": [
+				"I",
+				"P"
+			],
+			"miscTags": [
+				"MA",
+				"MLW"
+			]
+		},
+		{
 			"name": "Ghast",
 			"source": "XMM",
 			"_copy": {
@@ -56,6 +465,141 @@
 			}
 		},
 		{
+			"name": "Mage",
+			"source": "XMM",
+			"otherSources": [
+				{
+					"source": "UtHftLH"
+				}
+			],
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				15
+			],
+			"hp": {
+				"average": 81,
+				"formula": "18d8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 9,
+			"dex": 14,
+			"con": 11,
+			"int": 17,
+			"wis": 12,
+			"cha": 11,
+			"save": {
+				"int": "+6",
+				"wis": "+4"
+			},
+			"skill": {
+				"arcana": "+6",
+				"history": "+6"
+			},
+			"passive": 11,
+			"languages": [
+				"Common and any three languages"
+			],
+			"cr": "6",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The mage casts one of the following spells using Intelligence as the spellcasting ability (spell save {@dc 14}):"
+					],
+					"will": [
+						"{@spell Detect Magic|XPHB}",
+						"{@spell Light|XPHB}",
+						"{@spell Mage Armor|XPHB} (included above)",
+						"{@spell Mage Hand|XPHB}",
+						"{@spell Prestidigitation|XPHB}"
+					],
+					"daily": {
+						"1": [
+							"{@spell Cone of Cold|XPHB}"
+						],
+						"2e": [
+							"{@spell Fireball|XPHB}",
+							"{@spell Fly|XPHB}",
+							"{@spell Suggestion|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The mage makes three Arcane Burst attacks."
+					]
+				},
+				{
+					"name": "Arcane Burst",
+					"entries": [
+						"{@atkr m,r} {@hit 6}, reach 5 ft. or range 120 ft. {@h}16 ({@damage 3d10}) Force damage."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Counterspell (1/Day)",
+					"entries": [
+						"The mage casts {@spell Counterspell|XPHB} in response to that spell's trigger, using the same spellcasting ability in Spellcasting."
+					]
+				},
+				{
+					"name": "Shield (2/Day)",
+					"entries": [
+						"The mage casts {@spell Shield|XPHB} in response to that spell's trigger, using the same spellcasting ability in Spellcasting."
+					]
+				}
+			],
+			"token": {
+				"name": "Mage",
+				"source": "MM"
+			},
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"X"
+			],
+			"damageTags": [
+				"O"
+			],
+			"damageTagsSpell": [
+				"C",
+				"F"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"conditionInflictSpell": [
+				"charmed"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity",
+				"wisdom"
+			]
+		},
+		{
 			"name": "Mummy",
 			"source": "XMM",
 			"_copy": {
@@ -78,6 +622,76 @@
 				"name": "Wight",
 				"source": "MM"
 			}
+		},
+		{
+			"name": "Worg",
+			"source": "XMM",
+			"otherSources": [
+				{
+					"source": "UtHftLH"
+				}
+			],
+			"size": [
+				"L"
+			],
+			"type": "fey",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 26,
+				"formula": "4d10 + 4"
+			},
+			"speed": {
+				"walk": 50
+			},
+			"str": 16,
+			"dex": 13,
+			"con": 13,
+			"int": 7,
+			"wis": 11,
+			"cha": 8,
+			"skill": {
+				"perception": "+4"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 14,
+			"languages": [
+				"Goblin",
+				"Worg"
+			],
+			"cr": "1/2",
+			"action": [
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atkr m} {@hit 5}, reach 5 ft. {@h}7 ({@damage 1d8 + 3}) Piercing damage, and the next attack roll made against the target before the start of the worg's next turn has Advantage."
+					]
+				}
+			],
+			"token": {
+				"name": "Worg",
+				"source": "MM"
+			},
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"GO",
+				"OTH"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MA"
+			]
 		}
 	]
 }

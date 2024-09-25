@@ -9698,15 +9698,22 @@ Renderer.monster = class {
 
 	// TODO(Future; XMM) revise
 	static getGearPart (mon, {renderer = null} = {}) {
-		if (!mon.attachedItems) return "";
+		if (!mon.gear?.length && !mon.attachedItems?.length) return "";
 
 		renderer ||= Renderer.get();
-		return mon.attachedItems
-			.map(uid => {
+		return (mon.gear || mon.attachedItems)
+			.map(ref => {
+				const uid = ref.item || ref;
+				const quantity = ref.quantity || 1;
+
 				const unpacked = DataUtil.proxy.unpackUid("item", uid, "item");
 				unpacked.name = unpacked.name.toTitleCase();
 				const uidTitle = DataUtil.proxy.getUid("item", unpacked, {isMaintainCase: true});
-				return renderer.render(`{@item ${uidTitle}}`);
+
+				if (quantity === 1) return renderer.render(`{@item ${uidTitle}}`);
+
+				const displayName = unpacked.name.toPlural();
+				return renderer.render(`${Parser.numberToText(quantity)} {@item ${uidTitle}|${displayName}}`);
 			})
 			.join(", ");
 	}
@@ -10041,9 +10048,15 @@ Renderer.monster = class {
 		return cpy;
 	}
 
-	static getRenderedLanguages (languages) {
+	static getRenderedLanguages (languages, {styleHint = null} = {}) {
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
 		if (typeof languages === "string") languages = [languages]; // handle legacy format
-		return languages ? languages.map(it => Renderer.get().render(it)).join(", ") : "\u2014";
+		if (!languages?.length) return "\u2014";
+
+		const out = languages.map(it => Renderer.get().render(it)).join(", ");
+		if (styleHint === "classic") return out;
+		return out.uppercaseFirst();
 	}
 
 	static initParsed (mon) {

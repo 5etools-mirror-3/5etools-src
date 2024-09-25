@@ -4,6 +4,20 @@ class PageFilterClassesBase extends PageFilterBase {
 	constructor () {
 		super();
 
+		this._primaryAbilityFilter = new Filter({
+			header: "Primary Ability",
+			items: [
+				"str",
+				"dex",
+				"con",
+				"int",
+				"wis",
+				"cha",
+			],
+			displayFn: Parser.attAbvToFull,
+			itemSortFn: null,
+		});
+
 		this._miscFilter = new Filter({
 			header: "Miscellaneous",
 			items: ["Reprinted", "Sidekick", "Legacy"],
@@ -38,6 +52,13 @@ class PageFilterClassesBase extends PageFilterBase {
 
 	get optionsFilter () { return this._optionsFilter; }
 
+	static _mutateForFilters_getFilterPrimaryAbility (cls) {
+		if (!cls.primaryAbility?.length) return null;
+		const out = {};
+		cls.primaryAbility.forEach(obj => Object.assign(out, obj));
+		return Object.keys(out);
+	}
+
 	static mutateForFilters (cls) {
 		cls.source = cls.source || Parser.SRC_PHB;
 		cls.subclasses = cls.subclasses || [];
@@ -50,6 +71,8 @@ class PageFilterClassesBase extends PageFilterBase {
 				...cls.subclasses.map(it => [it.source, ...(it.otherSources || []).map(it => it.source)]).flat(),
 			]),
 		];
+
+		cls._fPrimaryAbility = this._mutateForFilters_getFilterPrimaryAbility(cls);
 
 		this._mutateForFilters_commonMisc(cls);
 		if (cls.isSidekick) cls._fMisc.push("Sidekick");
@@ -107,6 +130,7 @@ class PageFilterClassesBase extends PageFilterBase {
 	async _pPopulateBoxOptions (opts) {
 		opts.filters = [
 			this._sourceFilter,
+			this._primaryAbilityFilter,
 			this._miscFilter,
 			this._optionsFilter,
 		];
@@ -182,7 +206,7 @@ class PageFilterClassesBase extends PageFilterBase {
 				: (cls._fSources ?? cls.source),
 			cls._fPrimaryAbility,
 			cls._fMisc,
-			null,
+			null, // Options filter
 		];
 	}
 }
@@ -202,35 +226,14 @@ class PageFilterClasses extends PageFilterClassesBase {
 			min: 1,
 			max: 20,
 		});
-		this._primaryAbilityFilter = new Filter({
-			header: "Primary Ability",
-			items: [
-				"str",
-				"dex",
-				"con",
-				"int",
-				"wis",
-				"cha",
-			],
-			displayFn: Parser.attAbvToFull,
-			itemSortFn: null,
-		});
 	}
 
 	get levelFilter () { return this._levelFilter; }
-
-	static _mutateForFilters_getFilterPrimaryAbility (cls) {
-		if (!cls.primaryAbility?.length) return null;
-		const out = {};
-		cls.primaryAbility.forEach(obj => Object.assign(out, obj));
-		return Object.keys(out);
-	}
 
 	static mutateForFilters (cls) {
 		super.mutateForFilters(cls);
 
 		cls._fLevelRange = this._getClassSubclassLevelArray(cls);
-		cls._fPrimaryAbility = this._mutateForFilters_getFilterPrimaryAbility(cls);
 	}
 
 	/**
@@ -271,6 +274,7 @@ class PageFilterClasses extends PageFilterClassesBase {
 			cls._fPrimaryAbility,
 			cls._fMisc,
 			cls._fLevelRange,
+			null, // Options filter
 		];
 	}
 }

@@ -1928,22 +1928,22 @@ export class SpeedConvert {
 	static tryConvertSpeed (m, cbMan) {
 		if (typeof m.speed !== "string") return;
 
-		let line = m.speed.toLowerCase().trim().replace(/^speed[:.]?\s*/, "");
+		let line = m.speed.trim().replace(/^speed[:.]?\s*/i, "");
 
 		const out = {};
 		let byHand = false;
 		let prevSpeed = null;
 
-		SpeedConvert._splitSpeed(line.toLowerCase()).map(it => it.trim()).forEach(s => {
+		SpeedConvert._splitSpeed(line).map(it => it.trim()).forEach(s => {
 			// For e.g. shapechanger speeds, store them behind a "condition" on the previous speed
-			const mParens = /^\((\w+?\s+)?(\d+)\s*ft\.?( .*)?\)$/.exec(s);
+			const mParens = /^\((\w+?\s+)?(\d+)\s*ft\.?( .*)?\)$/i.exec(s);
 			if (mParens && prevSpeed) {
 				if (typeof out[prevSpeed] === "number") out[prevSpeed] = {number: out[prevSpeed], condition: s};
 				else out[prevSpeed].condition = s;
 				return;
 			}
 
-			const m = /^(\w+?\s+)?(\d+)\s*ft\.?( .*)?$/.exec(s);
+			const m = /^(\w+?\s+)?(\d+)\s*ft\.?( .*)?$/i.exec(s);
 			if (!m) {
 				byHand = true;
 				return;

@@ -928,6 +928,9 @@ export class CoreRuleTag extends ConverterTaggerInitializable {
 			.replace(/\b(Cone|Cube|Cylinder|Emanation|Line|Sphere)\b/g, (...m) => {
 				return `{@variantrule ${m[1]} [Area of Effect]|XPHB|${m[1]}}`;
 			})
+			.replace(/\b(Friendly|Hostile|Indifferent)\b/g, (...m) => {
+				return `{@variantrule ${m[1]} [Attitude]|XPHB|${m[1]}}`;
+			})
 		;
 	}
 }

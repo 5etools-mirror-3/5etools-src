@@ -9415,6 +9415,19 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Cloak of Invisibility",
+			"source": "UtHftLH",
+			"rarity": "legendary",
+			"reqAttune": true,
+			"wondrous": true,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d3}",
+			"charges": 3,
+			"entries": [
+				"This cloak has 3 charges and regains {@dice 1d3} expended charges daily at dawn. While wearing the cloak, you can take a {@action Magic|XPHB} action to pull its hood over your head and expend 1 charge to give yourself the {@condition Invisible|XPHB} condition for 1 hour. The effect ends early if you pull the hood down (no action required) or cease wearing the hood."
+			]
+		},
+		{
 			"name": "Cloak of Many Fashions",
 			"source": "XGE",
 			"page": 136,
@@ -21856,6 +21869,107 @@
 			]
 		},
 		{
+			"name": "Hat of Many Spells",
+			"source": "UtHftLH",
+			"rarity": "very rare",
+			"reqAttune": "by a wizard",
+			"reqAttuneTags": [
+				{
+					"class": "wizard"
+				}
+			],
+			"wondrous": true,
+			"focus": [
+				"Wizard"
+			],
+			"entries": [
+				"This pointed hat has the following properties.",
+				{
+					"type": "entries",
+					"name": "Spellcasting Focus",
+					"entries": [
+						"While holding the hat, you can use it as a {@variantrule Spellcasting Focus|XPHB} for your Wizard spells. Any spell you cast using the hat gains a special Somatic component: you must reach into the hat and \"pull\" the spell out of it."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Unknown Spell",
+					"entries": [
+						"While holding the hat, you can try to cast a level 1+ spell you don't know. The spell must be on the Wizard spell list, it must be of a level you can cast, and it can't have Material components costing more than 1,000 GP. Once you decide on the spell, you must expend a spell slot of the spell's level. Then, to determine whether you cast the spell, make an Intelligence ({@skill Arcana|XPHB}) check (DC 10 plus the spell's level). On a successful check, you cast the spell using its normal casting time, and you can't use this property again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}. On a failed check, you fail to cast the spell and a random effect occurs instead, determined by rolling on the following table.",
+						"Any spell you cast from the hat uses your spell save DC and spell attack bonus.",
+						{
+							"type": "table",
+							"colStyles": [
+								"col-2 text-center",
+								"col-10"
+							],
+							"colLabels": [
+								"1d100",
+								"Effect"
+							],
+							"rows": [
+								[
+									"01-50",
+									"You cast a random spell determined by rolling {@dice 1d10}: on a {@b 1}, {@spell Enlarge/Reduce|XPHB} (enlarge effect); on a {@b 2}, {@spell Enlarge/Reduce|XPHB} (reduce effect); on a {@b 3}, {@spell Faerie Fire|XPHB}; on a {@b 4}, {@spell Fireball|XPHB}; on a {@b 5}, {@spell Gust of Wind|XPHB}; on a {@b 6}, {@spell Invisibility|XPHB} (cast on yourself); on a {@b 7}, {@spell Lightning Bolt|XPHB}; on an {@b 8}, {@spell Phantasmal Force|XPHB}; on a {@b 9}, {@spell Polymorph|XPHB}; on a {@b 10}, {@spell Stinking Cloud|XPHB}."
+								],
+								[
+									"51-55",
+									"You have the {@condition Stunned|XPHB} condition until the end of your next turn, believing something awesome just happened."
+								],
+								[
+									"56-60",
+									"A harmless swarm of butterflies fills a 10-foot {@variantrule Cube [Area of Effect]|XPHB|Cube} within 30 feet of yourself. The swarm disperses after 1 minute."
+								],
+								[
+									"61-65",
+									"You pull a nonmagical object out of the hat. Roll {@dice 1d4} to determine the object: on a {@b 1}, a vial of Acid; on a {@b 2}, a flask of Alchemist's Fire; on a {@b 3}, a Crowbar; on a {@b 4}, a lit Torch."
+								],
+								[
+									"66-70",
+									"You suffer a bout of \"magic sickness\" and have the {@condition Poisoned|XPHB} condition for 1 hour."
+								],
+								[
+									"71-75",
+									"You have the {@condition Petrified|XPHB} condition until the end of your next turn."
+								],
+								[
+									"76-80",
+									"You pull a nonmagical object out of the hat. Roll {@dice 1d4} to determine the object: on a {@b 1}, a {@item Dagger|XPHB}; on a {@b 2}, a {@item Rope|XPHB} with a {@item Grappling Hook|XPHB} tied to one end; on a {@b 3}, a bag of {@item Caltrops|XPHB}; on a {@b 4}, a gem worth 50 GP."
+								],
+								[
+									"81-85",
+									"A creature appears in an unoccupied space as close to you as possible. The creature isn't under your control and acts as it normally would, and it disappears after 1 hour or when it drops to 0 {@variantrule Hit Points|XPHB}. Roll {@dice 1d4} to determine the creature: on a {@b 1}, a {@creature Camel|XPHB}; on a {@b 2}, a {@creature Constrictor Snake|XPHB}; on a {@b 3}, an {@creature Elephant|XPHB}; on a {@b 4}, a {@creature Mule|XPHB}."
+								],
+								[
+									"86-90",
+									"A {@variantrule Hostile [Attitude]|XPHB|Hostile} {@creature Swarm of Bats|XPHB} flies out of the hat, occupies your space, and attacks you."
+								],
+								[
+									"91-95",
+									"A vertical, 10-foot-diameter, two-way portal to another plane of existence opens in an unoccupied space within 30 feet of you and remains open until the end of your next turn. The DM determines where it leads."
+								],
+								[
+									"96-00",
+									"You pull a magic item out of the hat. Roll {@dice 1d6} to determine the item's rarity: on a {@b 1-3}, {@filter Common|items|rarity=Common}; on a {@b 4-5}, {@filter Uncommon|items|rarity=Uncommon}; on a {@b 6}, {@filter Rare|items|rarity=Rare}. The DM chooses the item, which disappears after 1 hour if it's not consumed or destroyed before then."
+								]
+							]
+						}
+					]
+				}
+			],
+			"attachedSpells": [
+				"enlarge/reduce|xphb",
+				"faerie fire|xphb",
+				"fireball|xphb",
+				"gust of wind|xphb",
+				"invisibility|xphb",
+				"lightning bolt|xphb",
+				"phantasmal force|xphb",
+				"polymorph|xphb",
+				"stinking cloud|xphb"
+			]
+		},
+		{
 			"name": "Hat of Vermin",
 			"source": "XGE",
 			"page": 137,
@@ -24744,7 +24858,7 @@
 			"rarity": "none",
 			"value": 2,
 			"entries": [
-				"Using Ink, an Ink Pen is used to write or draw."
+				"Using {@item Ink|XPHB}, an Ink Pen is used to write or draw."
 			]
 		},
 		{
@@ -25791,7 +25905,7 @@
 			"weight": 0.5,
 			"value": 10,
 			"entries": [
-				"Iron Spikes come in bundles of ten. As a {@action Utilize|XPHB} action, you can use a blunt object, such as a Light Hammer, to hammer a spike into wood, earth, or a similar material. You can do so to jam a door shut or to then tie a {@item Rope|XPHB} or {@item Chain|XPHB} to the Spike."
+				"Iron Spikes come in bundles of ten. As a {@action Utilize|XPHB} action, you can use a blunt object, such as a {@item Light Hammer|XPHB}, to hammer a spike into wood, earth, or a similar material. You can do so to jam a door shut or to then tie a {@item Rope|XPHB} or {@item Chain|XPHB} to the Spike."
 			]
 		},
 		{
@@ -25804,7 +25918,7 @@
 			"weight": 5,
 			"value": 100,
 			"entries": [
-				"Iron Spikes come in bundles of ten. As a {@action Utilize|XPHB} action, you can use a blunt object, such as a Light Hammer, to hammer a spike into wood, earth, or a similar material. You can do so to jam a door shut or to then tie a {@item Rope|XPHB} or {@item Chain|XPHB} to the Spike."
+				"Iron Spikes come in bundles of ten. As a {@action Utilize|XPHB} action, you can use a blunt object, such as a {@item Light Hammer|XPHB}, to hammer a spike into wood, earth, or a similar material. You can do so to jam a door shut or to then tie a {@item Rope|XPHB} or {@item Chain|XPHB} to the Spike."
 			],
 			"packContents": [
 				{
@@ -27262,7 +27376,7 @@
 			"weight": 1,
 			"value": 50,
 			"entries": [
-				"A Lamp burns Oil as fuel to cast {@variantrule Bright Light|XPHB} in a 15-foot radius and {@variantrule Dim Light|XPHB} for an additional 30 feet."
+				"A Lamp burns {@item Oil|XPHB} as fuel to cast {@variantrule Bright Light|XPHB} in a 15-foot radius and {@variantrule Dim Light|XPHB} for an additional 30 feet."
 			],
 			"hasFluffImages": true
 		},
@@ -31829,6 +31943,36 @@
 			],
 			"seeAlsoVehicle": [
 				"Nightspider|AAG"
+			]
+		},
+		{
+			"name": "Niko's Mace",
+			"source": "UtHftLH",
+			"baseItem": "mace|xphb",
+			"type": "M",
+			"rarity": "very rare",
+			"reqAttune": "by a spellcaster",
+			"reqAttuneTags": [
+				{
+					"spellcasting": true
+				}
+			],
+			"weight": 4,
+			"weaponCategory": "simple",
+			"mastery": [
+				"Sap|XPHB"
+			],
+			"dmg1": "1d6",
+			"dmgType": "B",
+			"bonusWeaponAttack": "+9",
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d6}",
+			"charges": 6,
+			"entries": [
+				"This Mace has 6 charges and regains {@dice 1d6} expended charges daily at dawn. While holding the Mace, you can expend 1 of its charges to cast {@spell Summon Celestial|XPHB} (+9 to hit with spell attacks)."
+			],
+			"attachedSpells": [
+				"summon celestial|xphb"
 			]
 		},
 		{
@@ -36785,6 +36929,59 @@
 			]
 		},
 		{
+			"name": "Quarterstaff of the Acrobat",
+			"source": "UtHftLH",
+			"reprintedAs": [
+				"Quarterstaff|XPHB"
+			],
+			"baseItem": "quarterstaff|xphb",
+			"type": "M",
+			"rarity": "very rare",
+			"reqAttune": true,
+			"weight": 4,
+			"weaponCategory": "simple",
+			"property": [
+				"V|XPHB",
+				"T|XPHB"
+			],
+			"mastery": [
+				"Topple|XPHB"
+			],
+			"dmg1": "1d6",
+			"dmgType": "B",
+			"dmg2": "1d8",
+			"bonusWeapon": "+2",
+			"bonusAc": "+5",
+			"staff": true,
+			"entries": [
+				"You have a +2 bonus to attack rolls and damage rolls made with this magic weapon.",
+				"While holding this weapon, you can cause it to emit green {@variantrule Dim Light|XPHB} out to 10 feet, either as a {@variantrule Bonus Action|XPHB} or after you roll {@variantrule Initiative|XPHB}, or you can extinguish the light as a {@variantrule Bonus Action|XPHB}.",
+				"While holding this weapon, you can take a {@variantrule Bonus Action|XPHB} to alter its form, turning it into a 6-inch rod (for ease of storage) or a 10-foot {@item pole|XPHB}, or reverting it a {@item Quarterstaff|XPHB}; the weapon will elongate only as far as the surrounding space allows.",
+				"In certain forms, the weapon has the following additional properties.",
+				{
+					"type": "entries",
+					"name": "Acrobatic Assist (Quarterstaff and 10-Foot Pole Forms Only)",
+					"entries": [
+						"While holding this weapon, you have {@variantrule Advantage|XPHB} on Dexterity ({@skill Acrobatics|XPHB}) checks."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Attack Deflection (Quarterstaff Form Only)",
+					"entries": [
+						"When you are hit by an attack while holding the weapon, you can take a {@variantrule Reaction|XPHB} to twirl the weapon around you, gaining a +5 bonus to your {@variantrule Armor Class|XPHB} against the triggering attack, potentially causing the attack to miss you. You can't use this property again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Ranged Weapon (Quarterstaff Form Only)",
+					"entries": [
+						"This weapon has the Thrown property with a normal range of 30 feet and a long range of 120 feet. Immediately after you make a ranged attack with the weapon, it flies back to your hand."
+					]
+				}
+			]
+		},
+		{
 			"name": "Quartz",
 			"source": "DMG",
 			"page": 134,
@@ -41724,6 +41921,35 @@
 			]
 		},
 		{
+			"name": "Shield of the Cavalier",
+			"source": "UtHftLH",
+			"baseItem": "shield|xphb",
+			"type": "S",
+			"rarity": "very rare",
+			"reqAttune": true,
+			"weight": 6,
+			"ac": 2,
+			"bonusAc": "+2",
+			"entries": [
+				"While holding this Shield, you have a +2 bonus to {@variantrule Armor Class|XPHB}. This bonus is in addition to the Shield's normal bonus to AC.",
+				"The Shield has the following additional properties that you can use while holding it.",
+				{
+					"type": "entries",
+					"name": "Forceful Bash",
+					"entries": [
+						"When you take the {@action Attack|XPHB}, you can make one of the attack rolls using the Shield against a target within 5 feet of yourself. Apply your {@variantrule Proficiency|XPHB|Proficiency Bonus} and Strength modifier to the attack roll. On a hit, the Shield deals Force damage to the target equal to {@dice 2d6 + 2} plus your Strength modifier, and if the target is a creature, you can push it up to 10 feet directly away from yourself. If the creature is your size or smaller, you can also knock it down, giving it the {@condition Prone|XPHB} condition."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Protective Field",
+					"entries": [
+						"As a {@variantrule Reaction|XPHB}, when you or an ally you can see within 5 feet of you is targeted by an attack or makes a saving throw against an area of effect, you can use the Shield to create an immobile 5-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from you. When the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} appears, any creatures or objects not fully contained within it are pushed into the nearest unoccupied spaces outside it. The attack or area of effect that triggered the {@variantrule Reaction|XPHB} has no effect on creatures and objects inside the {@variantrule Emanation [Area of Effect]|XPHB|Emanation}, which lasts as long as you maintain {@status Concentration|XPHB}, up to 1 minute. Nothing can pass into or out of the {@variantrule Emanation [Area of Effect]|XPHB|Emanation}. A creature or object inside the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} can't be damaged by attacks or effects originating from outside, nor can a creature inside the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} damage anything outside it. Once this property is used, it can't be used again until the next dawn."
+					]
+				}
+			]
+		},
+		{
 			"name": "Shield of the Hidden Lord",
 			"source": "BGDIA",
 			"page": 225,
@@ -44031,6 +44257,7 @@
 			"freeRules2024": true,
 			"type": "SC|XPHB",
 			"rarity": "common",
+			"value": 3000,
 			"entries": [
 				"A Spell Scroll (Cantrip) is a magic item that bears the words of a cantrip, determined by the scroll's creator. If the spell is on your class's spell list, you can read the scroll and cast the spell using its normal casting time and without providing any Material components.",
 				"If the spell requires a saving throw or an attack roll, the spell save DC is 13, and the attack bonus is {@hit 5}. The scroll disintegrates when the casting is completed."
@@ -44047,6 +44274,7 @@
 			"freeRules2024": true,
 			"type": "SC|XPHB",
 			"rarity": "common",
+			"value": 5000,
 			"entries": [
 				"A Spell Scroll (Level 1) is a magic item that bears the words of a level 1 spell, determined by the scroll's creator. If the spell is on your class's spell list, you can read the scroll and cast the spell using its normal casting time and without providing any Material components.",
 				"If the spell requires a saving throw or an attack roll, the spell save DC is 13, and the attack bonus is {@hit 5}. The scroll disintegrates when the casting is completed."
@@ -49461,6 +49689,42 @@
 			],
 			"ammoType": "renaissance bullet",
 			"hasFluffImages": true
+		},
+		{
+			"name": "Thunderous Greatclub",
+			"source": "UtHftLH",
+			"baseItem": "greatclub|xphb",
+			"type": "M",
+			"rarity": "very rare",
+			"reqAttune": true,
+			"weight": 10,
+			"weaponCategory": "simple",
+			"property": [
+				"2H|XPHB"
+			],
+			"mastery": [
+				"Push|XPHB"
+			],
+			"dmg1": "1d8",
+			"dmgType": "B",
+			"entries": [
+				"While you are attuned to this magic weapon, your Strength is 20 unless your Strength is already equal to or greater than that score. The weapon deals an extra {@damage 1d8} Thunder damage to any creature it hits and an extra {@damage 3d8} Thunder damage to objects it hits that aren't being worn or carried.",
+				"The weapon has the following additional properties.",
+				{
+					"type": "entries",
+					"name": "Clap of Thunder",
+					"entries": [
+						"As a {@action Magic|XPHB} action, you can strike the weapon against a hard surface to create a loud clap of thunder audible out to 300 feet. You also create a 30-foot {@variantrule Cone [Area of Effect]|XPHB|Cone} of thunderous energy. Each creature in the {@variantrule Cone [Area of Effect]|XPHB|Cone} must succeed on a DC 15 Strength saving throw or have the {@condition Prone|XPHB} condition. Nonmagical objects in the {@variantrule Cone [Area of Effect]|XPHB|Cone} that aren't being worn or carried take {@damage 3d8} Thunder damage."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Earthquake",
+					"entries": [
+						"As a {@action Magic|XPHB} action, you can strike the weapon against the ground to create an intense seismic disturbance in a 50-foot-radius circle centered on the point of impact. Structures in contact with the ground in that area take 50 Bludgeoning damage, and each creature on the ground in that area must succeed on a DC 20 Dexterity saving throw or have the {@condition Prone|XPHB} condition. If that creature is also {@status Concentration|XPHB|Concentrating}, it must succeed on a DC 20 Constitution saving throw or its {@status Concentration|XPHB} is broken. In addition, you can cause a 30-foot-deep, 10-foot-wide fissure to open up on the ground anywhere in the area. Any creature on a spot where the fissure opens must make a DC 20 Dexterity saving throw, falling into the fissure on a failed save or moving with the fissure's edge on a successful one. Any structure on a spot where the fissure opens collapses into the fissure. Once you use this property, it can't be used again until the next dawn."
+					]
+				}
+			]
 		},
 		{
 			"name": "Tidecaller Trident",
