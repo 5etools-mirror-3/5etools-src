@@ -211,7 +211,7 @@ class _RenderBestiaryImplBase {
 	}
 
 	_getCommonHtmlParts_speed ({mon, isInlinedToken}) {
-		return `<tr><td colspan="6"><div ${this._style !== "classic" && isInlinedToken ? `class="stats__wrp-avoid-token"` : ""}><strong>Speed</strong> ${Parser.getSpeedString(mon)}</div></td></tr>`;
+		return `<tr><td colspan="6"><div ${this._style !== "classic" && isInlinedToken ? `class="stats__wrp-avoid-token"` : ""}><strong>Speed</strong> ${Parser.getSpeedString(mon, {styleHint: this._style})}</div></td></tr>`;
 	}
 
 	/* ----- */
@@ -241,7 +241,7 @@ class _RenderBestiaryImplBase {
 	}
 
 	_getCommonHtmlParts_languages ({mon}) {
-		return `<tr><td colspan="6"><strong>Languages</strong> ${Renderer.monster.getRenderedLanguages(mon.languages)}</td></tr>`;
+		return `<tr><td colspan="6"><strong>Languages</strong> ${Renderer.monster.getRenderedLanguages(mon.languages, {styleHint: this._style})}</td></tr>`;
 	}
 
 	/* ----- */

@@ -435,6 +435,11 @@ class PageFilterBestiary extends PageFilterBase {
 	/* -------------------------------------------- */
 
 	static _getEquipmentList (mon) {
+		if (mon.gear) {
+			return mon.gear
+				.map(ref => (ref.item || ref).toLowerCase());
+		}
+
 		const itemSet = new Set(mon.attachedItems || []);
 
 		const walker = this._getInitWalker();

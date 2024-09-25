@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.1.2"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.2.0"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -152,6 +152,10 @@ String.prototype.toCamelCase = String.prototype.toCamelCase || function () {
 		if (index === 0) return word.toLowerCase();
 		return `${word.charAt(0).toUpperCase()}${word.slice(1).toLowerCase()}`;
 	}).join("");
+};
+
+String.prototype.toSingle = String.prototype.toSingle || function () {
+	return this.replace(/i?e?s$/i, "");
 };
 
 String.prototype.toPlural = String.prototype.toPlural || function () {

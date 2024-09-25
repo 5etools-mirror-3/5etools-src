@@ -820,122 +820,118 @@ class ModalFilterClasses extends ModalFilterBase {
 
 		if (this._filterCache) {
 			this._filterCache.$wrpModalInner.appendTo($modalInner);
-		} else {
-			await this._pInit();
+			return;
+		}
 
-			const $ovlLoading = $(`<div class="w-100 h-100 ve-flex-vh-center"><i class="dnd-font ve-muted">Loading...</i></div>`).appendTo($modalInner);
+		await this._pInit();
 
-			const $iptSearch = $(`<input class="form-control h-100" type="search" placeholder="Search...">`);
-			const $btnReset = $(`<button class="ve-btn ve-btn-default">Reset</button>`);
-			const $wrpFormTop = $$`<div class="ve-flex input-group ve-btn-group w-100 lst__form-top">${$iptSearch}${$btnReset}</div>`;
+		const $ovlLoading = $(`<div class="w-100 h-100 ve-flex-vh-center"><i class="dnd-font ve-muted">Loading...</i></div>`).appendTo($modalInner);
 
-			const $wrpFormBottom = $(`<div class="w-100"></div>`);
+		const $iptSearch = $(`<input class="form-control h-100" type="search" placeholder="Search...">`);
+		const $btnReset = $(`<button class="ve-btn ve-btn-default">Reset</button>`);
+		const $wrpFormTop = $$`<div class="ve-flex input-group ve-btn-group w-100 lst__form-top">${$iptSearch}${$btnReset}</div>`;
 
-			const $wrpFormHeaders = $(`<div class="input-group input-group--bottom ve-flex no-shrink">
-				<div class="ve-btn ve-btn-default disabled ve-col-1 pl-0"></div>
-				<button class="ve-col-9 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
-				<button class="ve-col-2 pr-0 sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">Source</button>
-			</div>`);
+		const $wrpFormBottom = $(`<div class="w-100"></div>`);
 
-			const $wrpForm = $$`<div class="ve-flex-col w-100 mb-2">${$wrpFormTop}${$wrpFormBottom}${$wrpFormHeaders}</div>`;
-			const $wrpList = this._$getWrpList();
+		const $wrpFormHeaders = $(`<div class="input-group input-group--bottom ve-flex no-shrink">
+			<div class="ve-btn ve-btn-default disabled ve-col-1 pl-0"></div>
+			<button class="ve-col-9 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
+			<button class="ve-col-2 pr-0 sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">Source</button>
+		</div>`);
 
-			const $btnConfirm = $(`<button class="ve-btn ve-btn-default">Confirm</button>`);
+		const $wrpForm = $$`<div class="ve-flex-col w-100 mb-2">${$wrpFormTop}${$wrpFormBottom}${$wrpFormHeaders}</div>`;
+		const $wrpList = this._$getWrpList();
 
-			const list = new List({
-				$iptSearch,
-				$wrpList,
-				fnSort: this._fnSort,
-			});
+		const $btnConfirm = $(`<button class="ve-btn ve-btn-default">Confirm</button>`);
 
-			SortUtil.initBtnSortHandlers($wrpFormHeaders, list);
+		this._list = new List({
+			$iptSearch,
+			$wrpList,
+			fnSort: this._fnSort,
+		});
 
-			const allData = this._allData || await this._pLoadAllData();
-			const pageFilter = this._pageFilter;
+		SortUtil.initBtnSortHandlers($wrpFormHeaders, this._list);
 
-			await pageFilter.pInitFilterBox({
-				$wrpFormTop,
-				$btnReset,
-				$wrpMiniPills: $wrpFormBottom,
-				namespace: this._namespace,
-			});
+		this._allData ||= await this._pLoadAllData();
 
-			allData.forEach((it, i) => {
-				pageFilter.mutateAndAddToFilters(it);
-				const filterListItems = this._getListItems(pageFilter, it, i);
-				filterListItems.forEach(li => {
-					list.addItem(li);
-					li.ele.addEventListener("click", evt => {
-						const isScLi = li.data.ixSubclass != null;
+		await this._pageFilter.pInitFilterBox({
+			$wrpFormTop,
+			$btnReset,
+			$wrpMiniPills: $wrpFormBottom,
+			namespace: this._namespace,
+		});
 
-						if (isScLi) {
-							if (this._isSubclassDisabled) return;
-							if (this._isClassDisabled && li.data.ixClass !== this._ixPrevSelectedClass) return;
-						} else {
-							if (this._isClassDisabled) return;
-						}
+		this._allData.forEach((it, i) => {
+			this._pageFilter.mutateAndAddToFilters(it);
+			const filterListItems = this._getListItems(this._pageFilter, it, i);
+			filterListItems.forEach(li => {
+				this._list.addItem(li);
+				li.ele.addEventListener("click", evt => {
+					const isScLi = li.data.ixSubclass != null;
 
-						this._handleSelectClick({list,
-							filterListItems,
-							filterListItem: li,
-							evt,
-						});
+					if (isScLi) {
+						if (this._isSubclassDisabled) return;
+						if (this._isClassDisabled && li.data.ixClass !== this._ixPrevSelectedClass) return;
+					} else {
+						if (this._isClassDisabled) return;
+					}
+
+					this._handleSelectClick({
+						filterListItems,
+						filterListItem: li,
+						evt,
 					});
 				});
 			});
+		});
 
-			list.init();
-			list.update();
+		this._list.init();
+		this._list.update();
 
-			const handleFilterChange = () => {
-				return this.constructor.handleFilterChange({pageFilter, list, allData});
-			};
+		this._pageFilter.trimState();
 
-			pageFilter.trimState();
+		this._pageFilter.filterBox.on(FILTER_BOX_EVNT_VALCHANGE, this._handleFilterChange.bind(this));
+		this._pageFilter.filterBox.render();
+		this._handleFilterChange();
 
-			pageFilter.filterBox.on(FILTER_BOX_EVNT_VALCHANGE, handleFilterChange);
-			pageFilter.filterBox.render();
-			handleFilterChange();
+		$ovlLoading.remove();
 
-			$ovlLoading.remove();
+		const $wrpModalInner = $$`<div class="ve-flex-col h-100">
+			${$wrpForm}
+			${$wrpList}
+			<div class="ve-flex-vh-center">${$btnConfirm}</div>
+		</div>`.appendTo($modalInner);
 
-			const $wrpModalInner = $$`<div class="ve-flex-col h-100">
-				${$wrpForm}
-				${$wrpList}
-				<div class="ve-flex-vh-center">${$btnConfirm}</div>
-			</div>`.appendTo($modalInner);
-
-			this._filterCache = {$wrpModalInner, $btnConfirm, pageFilter, list, allData, $iptSearch};
-		}
+		this._filterCache = {$wrpModalInner, $btnConfirm, pageFilter: this._pageFilter, list: this._list, allData: this._allData, $iptSearch};
 	}
 
-	static handleFilterChange ({pageFilter, list, allData}) {
-		const f = pageFilter.filterBox.getValues();
+	_handleFilterChange () {
+		const f = this._pageFilter.filterBox.getValues();
 
-		list.filter(li => {
-			const cls = allData[li.data.ixClass];
+		this._list.filter(li => {
+			const cls = this._allData[li.data.ixClass];
 
 			if (li.data.ixSubclass != null) {
 				const sc = cls.subclasses[li.data.ixSubclass];
 				// Both the subclass and the class must be displayed
 				if (
-					!pageFilter.toDisplay(
-						f,
-						cls,
-						[],
-						null,
-					)
+					!this._pageFilter.toDisplay(f, cls)
 				) return false;
 
-				return pageFilter.filterBox.toDisplay(
+				return this._pageFilter.filterBox.toDisplayByFilters(
 					f,
-					sc.source,
-					sc._fMisc,
-					null,
+					{
+						filter: this._pageFilter._sourceFilter,
+						value: sc.source,
+					},
+					{
+						filter: this._pageFilter._miscFilter,
+						value: sc._fMisc,
+					},
 				);
 			}
 
-			return pageFilter.toDisplay(f, cls, [], null);
+			return this._pageFilter.toDisplay(f, cls);
 		});
 	}
 
@@ -948,7 +944,7 @@ class ModalFilterClasses extends ModalFilterBase {
 		});
 	}
 
-	_handleSelectClick ({list, filterListItems, filterListItem, evt}) {
+	_handleSelectClick ({filterListItems, filterListItem, evt}) {
 		evt.preventDefault();
 		evt.stopPropagation();
 
@@ -956,7 +952,7 @@ class ModalFilterClasses extends ModalFilterBase {
 
 		// When only allowing subclass to be changed, avoid de-selecting the entire list
 		if (this._isClassDisabled && this._ixPrevSelectedClass != null && isScLi) {
-			if (!filterListItem.data.tglSel.classList.contains("active")) this.constructor._doListDeselectAll(list, {isSubclassItemsOnly: true});
+			if (!filterListItem.data.tglSel.classList.contains("active")) this.constructor._doListDeselectAll(this._list, {isSubclassItemsOnly: true});
 			filterListItem.data.tglSel.classList.toggle("active");
 			filterListItem.ele.classList.toggle("list-multi-selected");
 			return;
@@ -964,13 +960,13 @@ class ModalFilterClasses extends ModalFilterBase {
 
 		// region De-selecting the currently-selected item
 		if (filterListItem.data.tglSel.classList.contains("active")) {
-			this.constructor._doListDeselectAll(list);
+			this.constructor._doListDeselectAll(this._list);
 			return;
 		}
 		// endregion
 
 		// region Selecting an item
-		this.constructor._doListDeselectAll(list);
+		this.constructor._doListDeselectAll(this._list);
 
 		if (isScLi) {
 			const classItem = filterListItems[0];

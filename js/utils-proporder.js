@@ -441,6 +441,7 @@ PropOrder._MONSTER = [
 	"ac",
 	"hp",
 	"speed",
+	"initiative",
 
 	"resource",
 
@@ -462,6 +463,7 @@ PropOrder._MONSTER = [
 	"languages",
 	"cr",
 	"pbNote",
+	"gear",
 
 	new PropOrder._ArrayKey("spellcasting", {
 		fnGetOrder: () => [
@@ -1548,6 +1550,7 @@ PropOrder._FEAT = [
 	"conditionImmune",
 
 	"senses",
+	"bonusSenses",
 
 	"additionalSpells",
 
@@ -2064,6 +2067,7 @@ PropOrder._OPTIONALFEATURE = [
 	"conditionImmune",
 
 	"senses",
+	"bonusSenses",
 
 	"additionalSpells",
 

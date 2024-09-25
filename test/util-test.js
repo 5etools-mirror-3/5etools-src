@@ -16,6 +16,7 @@ export const BLOCKLIST_SOURCES_PAGES = new Set([
 	Parser.SRC_GotSF,
 	Parser.SRC_DitLCoT,
 	Parser.SRC_VNotEE,
+	Parser.SRC_UtHftLH,
 
 	// N.b.: other MCV source creatures mysteriously have page numbers on Beyond
 	Parser.SRC_MCV4EC,
