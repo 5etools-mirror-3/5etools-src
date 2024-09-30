@@ -1,5 +1,7 @@
 // region Based on `Charactermancer_AdditionalSpellsUtil`
 
+import {UtilsAdditionalSpells} from "../utils-additionalspells.js";
+
 class _SpellSourceUtil {
 	static _getCleanUid (uid) {
 		return DataUtil.proxy.getUid(
@@ -101,15 +103,7 @@ class _SpellSourceUtil {
 
 		switch (rechargeType) {
 			case "rest":
-			case "daily": {
-				Object.values(levelMetaInner)
-					.forEach(spellList => {
-						spellList.forEach(spellItem => this._getSpellUids_doProcessSpellItem({...opts, spellItem}));
-					});
-
-				break;
-			}
-
+			case "daily":
 			case "resource": {
 				Object.values(levelMetaInner)
 					.forEach(spellList => {
@@ -224,31 +218,52 @@ class _AdditionalSpellSource extends _SpellSource {
 
 	/* -------------------------------------------- */
 
+	_pInit_doProcessAdditionalSpells ({uidToSummary, additionalSpells, cntAdditionalSpellBlocks}) {
+		if (!additionalSpells?.length) return;
+
+		additionalSpells
+			.forEach(additionalSpellBlock => {
+				_SpellSourceUtil.getSpellUids(additionalSpellBlock, this._modalFilterSpells)
+					.forEach(uid => {
+						uidToSummary[uid] = uidToSummary[uid] || {
+							cntAdditionalSpellBlocks,
+						};
+
+						if (additionalSpellBlock.name) {
+							uidToSummary[uid].names ||= [];
+							if (!uidToSummary[uid].names.includes(additionalSpellBlock.name)) uidToSummary[uid].names.push(additionalSpellBlock.name);
+						}
+					});
+			});
+	}
+
 	async pInit () {
 		const data = await this._pLoadData();
-		this._props
-			.forEach(prop => {
-				data[prop]
+
+		await this._props
+			.pSerialAwaitMap(async prop => {
+				await data[prop]
 					.filter(ent => ent.additionalSpells)
 					.filter(ent => !this._isSkipEntity(ent))
-					.forEach(ent => {
+					.pSerialAwaitMap(async ent => {
 						const propPath = this._getPropPath(ent);
 
 						const uidToSummary = {};
 
-						ent.additionalSpells
-							.forEach(additionalSpellBlock => {
-								_SpellSourceUtil.getSpellUids(additionalSpellBlock, this._modalFilterSpells)
-									.forEach(uid => {
-										uidToSummary[uid] = uidToSummary[uid] || {
-											cntAdditionalSpellBlocks: ent.additionalSpells.length,
-										};
+						const additionalSpellsMigrated = await UtilsAdditionalSpells.pGetMigratedAdditionalSpells(ent.additionalSpells);
 
-										if (additionalSpellBlock.name) {
-											(uidToSummary[uid].names = uidToSummary[uid].names || []).push(additionalSpellBlock.name);
-										}
-									});
+						this._pInit_doProcessAdditionalSpells({
+							uidToSummary,
+							additionalSpells: ent.additionalSpells,
+							cntAdditionalSpellBlocks: ent.additionalSpells.length,
+						});
+						if (!CollectionUtil.deepEquals(ent.additionalSpells, additionalSpellsMigrated)) {
+							this._pInit_doProcessAdditionalSpells({
+								uidToSummary,
+								additionalSpells: additionalSpellsMigrated,
+								cntAdditionalSpellBlocks: additionalSpellsMigrated.length,
 							});
+						}
 
 						Object.entries(uidToSummary)
 							.forEach(([uid, additionalSpellsSummary]) => {

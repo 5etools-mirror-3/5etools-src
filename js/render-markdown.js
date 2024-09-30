@@ -1090,7 +1090,7 @@ ___
 - **Casting Time:** ${Parser.spTimeListToFull(sp.time, sp.meta)}
 - **Range:** ${Parser.spRangeToFull(sp.range)}
 - **Components:** ${Parser.spComponentsToFull(sp.components, sp.level, {isPlainText: true})}
-- **Duration:** ${Parser.spDurationToFull(sp.duration)}
+- **Duration:** ${Parser.spDurationToFull(sp.duration, {isPlainText: true})}
 ---\n`;
 
 		const cacheDepth = meta.depth;

@@ -392,7 +392,7 @@ export class TagCondition extends ConverterTaggerInitializable {
 	static _collectInflictedConditions_withAllowlist ({inflictedAllowlist, inflictedSet, cond}) {
 		// Treat XPHB conditions as base
 		const [name, source] = cond.toLowerCase().split("|");
-		const condClean = source === Parser.SRC_XPHB.toLowerCase() ? name : `${name}|${source}`;
+		const condClean = !source || [Parser.SRC_PHB.toLowerCase(), Parser.SRC_XPHB.toLowerCase()].includes(source) ? name : `${name}|${source}`;
 
 		if (!inflictedAllowlist || inflictedAllowlist.has(cond)) inflictedSet.add(condClean);
 		return "";

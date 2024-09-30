@@ -479,6 +479,9 @@ globalThis.Renderer = function () {
 				// misc
 				case "code": this._renderCode(entry, textStack, meta, options); break;
 				case "hr": this._renderHr(entry, textStack, meta, options); break;
+
+				// raw
+				case "wrappedHtml": textStack[0] += entry.html; break;
 			}
 
 			meta._typeStack.pop();
@@ -944,12 +947,12 @@ globalThis.Renderer = function () {
 			const len = entry.entries.length;
 			for (let i = 0; i < len; ++i) {
 				meta.depth = 2;
-				const toRender = i === 0 ? {type: "inlineBlock", entries: [headerSpan, entry.entries[i]]} : entry.entries[i];
+				const toRender = i === 0 ? {type: "inlineBlock", entries: [{type: "wrappedHtml", html: headerSpan}, entry.entries[i]]} : entry.entries[i];
 				this._recursiveRender(toRender, textStack, meta, {prefix: "<p>", suffix: "</p>"});
 			}
 			meta.depth = cacheDepth;
 		} else {
-			this._recursiveRender({type: "inlineBlock", entries: [headerSpan]}, textStack, meta, {prefix: "<p>", suffix: "</p>"});
+			this._recursiveRender({type: "inlineBlock", entries: [{type: "wrappedHtml", html: headerSpan}]}, textStack, meta, {prefix: "<p>", suffix: "</p>"});
 		}
 		textStack[0] += `</${this.wrapperTag}>`;
 	};
@@ -1408,11 +1411,11 @@ globalThis.Renderer = function () {
 		if (entry.entries) {
 			const len = entry.entries.length;
 			for (let i = 0; i < len; ++i) {
-				const toRender = i === 0 ? {type: "inlineBlock", entries: [headerSpan, entry.entries[i]]} : entry.entries[i];
+				const toRender = i === 0 ? {type: "inlineBlock", entries: [{type: "wrappedHtml", html: headerSpan}, entry.entries[i]]} : entry.entries[i];
 				this._recursiveRender(toRender, textStack, meta, {prefix: "<p>", suffix: "</p>"});
 			}
 		} else {
-			this._recursiveRender({type: "inlineBlock", entries: [headerSpan]}, textStack, meta, {prefix: "<p>", suffix: "</p>"});
+			this._recursiveRender({type: "inlineBlock", entries: [{type: "wrappedHtml", html: headerSpan}]}, textStack, meta, {prefix: "<p>", suffix: "</p>"});
 		}
 		textStack[0] += `</${this.wrapperTag}>`;
 
@@ -6311,7 +6314,7 @@ Renderer.class = class {
 
 		return `<div><strong>Hit Point Die:</strong> ${renderer.render(Renderer.class.getHitDiceEntry(cls.hd, {styleHint}))} per ${cls.name} level</div>
 		<div><strong>Hit Points at Level 1:</strong> ${Renderer.class.getHitPointsAtFirstLevel(cls.hd, {styleHint})}</div>
-		<div><strong>Hit Points per ${cls.name} Level:</strong> ${Renderer.class.getHitPointsAtHigherLevels(cls.name, cls.hd, {styleHint})}</div>`;
+		<div><strong>Hit Points per additional ${cls.name} Level:</strong> ${Renderer.class.getHitPointsAtHigherLevels(cls.name, cls.hd, {styleHint})}</div>`;
 	}
 
 	static getHtmlPtSavingThrows (cls) {
@@ -9582,11 +9585,17 @@ Renderer.monster = class {
 		return `${mon.level ? `${Parser.getOrdinalForm(mon.level)}-level ` : ""}${typeObj.asTextSidekick ? `${typeObj.asTextSidekick}; ` : ""}${Renderer.utils.getRenderedSize(mon.size)}${mon.sizeNote ? ` ${mon.sizeNote}` : ""} ${typeObj.asText}${mon.alignment ? `, ${mon.alignmentPrefix ? Renderer.get().render(mon.alignmentPrefix) : ""}${Parser.alignmentListToFull(mon.alignment).toTitleCase()}` : ""}`;
 	}
 
+	static _getInitiativePart_passive ({mon, initPassive}) {
+		if (!mon.initiative?.advantageMode) return initPassive;
+		const ptTitle = `This creature has ${mon.initiative?.advantageMode === "adv" ? "Advantage" : "Disadvantage"} on Initiative.`;
+		return `<span title="${ptTitle.qq()}" class="help-subtle">${initPassive}</span>`;
+	}
+
 	static getInitiativePart (mon) {
 		const initBonus = this._getInitiativeBonus({mon});
 		const initPassive = this._getInitiativePassive({mon, initBonus});
 		if (initBonus == null || initPassive == null) return "\u2014";
-		return `${Renderer.get().render(`{@initiative ${initBonus}}`)} (${initPassive})`;
+		return `${Renderer.get().render(`{@initiative ${initBonus}}`)} (${this._getInitiativePart_passive({mon, initPassive})})`;
 	}
 
 	static _getInitiativeBonus ({mon}) {
@@ -9627,8 +9636,6 @@ Renderer.monster = class {
 	static getChallengeRatingPart (mon, {styleHint = null, isPlainText = false} = {}) {
 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
-		if (mon.cr == null) return "\u2014";
-
 		switch (styleHint) {
 			case "classic": return this._getChallengeRatingPart_classic({mon, isPlainText});
 			case "one": return this._getChallengeRatingPart_one({mon, isPlainText});
@@ -9637,6 +9644,8 @@ Renderer.monster = class {
 	}
 
 	static _getChallengeRatingPart_classic ({mon, isPlainText = false} = {}) {
+		if (mon.cr == null) return "\u2014";
+
 		const getBasicCrRender = (cr, {xp = null, isMythic = false} = {}) => {
 			if (Parser.crToNumber(cr) >= VeCt.CR_CUSTOM) return `${cr}${xp != null ? ` (${xp} XP)` : ""}`;
 
@@ -9653,18 +9662,18 @@ Renderer.monster = class {
 	}
 
 	static _getChallengeRatingPart_one ({mon, isPlainText = false} = {}) {
-		if (Parser.crToNumber(mon.cr) >= VeCt.CR_CUSTOM) return mon.cr;
+		const crBase = mon.cr?.cr ?? mon.cr;
 
-		const crBase = mon.cr.cr ?? mon.cr;
+		const ptsXp = Parser.crToNumber(mon.cr) >= VeCt.CR_CUSTOM
+			? [0]
+			// TODO(ODND) speculative text; revise
+			: [
+				Parser.crToXp(crBase),
+				mon.mythic ? `${Parser.crToXp(crBase, {isDouble: true})} as a mythic encounter` : null,
+			]
+				.filter(Boolean);
 
-		// TODO(ODND) speculative text; revise
-		const ptsXp = [
-			Parser.crToXp(crBase),
-			mon.mythic ? `${Parser.crToXp(crBase, {isDouble: true})} as a mythic encounter` : null,
-		]
-			.filter(Boolean);
-
-		if (typeof mon.cr !== "string") {
+		if (mon.cr != null && typeof mon.cr !== "string") {
 			if (mon.cr.lair) ptsXp.push(`${Parser.crToXp(mon.cr.lair)} in lair`);
 			if (mon.cr.coven) ptsXp.push(`${Parser.crToXp(mon.cr.coven)} when part of a coven`);
 		}
@@ -9678,7 +9687,7 @@ Renderer.monster = class {
 			.filter(Boolean)
 			.join("; ");
 
-		return `${crBase}${ptParens ? ` (${ptParens})` : ""}`;
+		return `${crBase || "None"}${ptParens ? ` (${ptParens})` : ""}`;
 	}
 
 	/* -------------------------------------------- */
@@ -13408,6 +13417,35 @@ Renderer.generic = class {
 	}
 };
 
+Renderer.redirect = class {
+	static _VERSION_REDIRECT_LOOKUP = null;
+
+	static async pGetRedirectByHash (page, hash) {
+		const redirectLookup = await (
+			this._VERSION_REDIRECT_LOOKUP ||= DataUtil.loadJSON(`${Renderer.get().baseUrl}data/generated/gendata-tag-redirects.json`)
+		);
+
+		const fromLookup = MiscUtil.get(redirectLookup, page, hash);
+		if (!fromLookup) return null;
+
+		const hashNxt = fromLookup.hash || fromLookup;
+		const pageNxt = fromLookup.page || page;
+		const decodedNxt = await UrlUtil.pAutoDecodeHash(hashNxt, {page: pageNxt});
+		return {page: pageNxt, hash: hashNxt, source: decodedNxt.source || source, name: decodedNxt.name};
+	}
+
+	static async pGetRedirectByUid (prop, uid) {
+		const page = UrlUtil.PROP_TO_PAGE[prop];
+		if (!page) throw new Error(`Unhandled prop "${prop}"`);
+
+		const tag = Parser.getPropTag(prop);
+		const unpacked = DataUtil.proxy.unpackUid(prop, uid, tag, {isLower: true});
+		const hash = UrlUtil.URL_TO_HASH_BUILDER[prop](unpacked);
+
+		return this.pGetRedirectByHash(page, hash);
+	}
+};
+
 Renderer.hover = class {
 	static LinkMeta = class {
 		constructor () {
@@ -13695,24 +13733,14 @@ Renderer.hover = class {
 		if (!isAllowRedirect || preloadId || customHashId) return null;
 		if (VetoolsConfig.get("styleSwitcher", "style") === "classic") return null;
 
-		const redirectLookup = await (
-			this._VERSION_REDIRECT_LOOKUP ||= DataUtil.loadJSON(`${Renderer.get().baseUrl}data/generated/gendata-tag-redirects.json`)
-		);
-
-		const fromLookup = MiscUtil.get(redirectLookup, page, hash);
-		if (!fromLookup) return null;
-
-		const hashNxt = fromLookup.hash || fromLookup;
-		const pageNxt = fromLookup.page || page;
-		const decodedNxt = await UrlUtil.pAutoDecodeHash(hashNxt, {page: pageNxt});
-		return {page: pageNxt, hash: hashNxt, source: decodedNxt.source || source};
+		return Renderer.redirect.pGetRedirectByHash(page, hash);
 	}
 
 	// (Baked into render strings)
 	static handleInlineMouseOver (evt, ele, entry, opts) {
 		Renderer.hover._doInit();
 
-		entry = entry || JSON.parse(ele.dataset.vetEntry);
+		entry = entry || JSON.parse(ele.getAttribute("data-vet-entry"));
 
 		let meta = Renderer.hover._handleGenericMouseOverStart({evt, ele});
 		if (meta == null) return;

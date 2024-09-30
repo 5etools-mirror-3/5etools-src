@@ -82,6 +82,7 @@ export class _BrewDocContentMigrator {
 
 		const outSubclasses = [];
 		const outSubclassFeatures = [];
+		const depsSubclass = new Set();
 
 		json.subclass
 			.filter(sc => sc.source !== Parser.SRC_XPHB && sc.classSource === Parser.SRC_PHB)
@@ -137,6 +138,15 @@ export class _BrewDocContentMigrator {
 							const uid = scfRef.subclassFeature || scfRef;
 							const unpacked = DataUtil.class.unpackUidSubclassFeature(uid);
 
+							// When copying a site subclass feature re-used in a homebrew subclass,
+							//   include the site class as a dependency.
+							// Note that we do not do this for e.g. homebrew depending on homebrew,
+							//   as we assume the brew already defines this relationship.
+							const sourceJson = Parser.sourceJsonToJson(unpacked.source);
+							if (SourceUtil.isSiteSource(sourceJson)) {
+								depsSubclass.add(unpacked.className.toLowerCase());
+							}
+
 							const scfNxt = {
 								classSource: Parser.SRC_XPHB,
 								level: this._MIN_SUBCLASS_FEATURE_LEVEL,
@@ -171,6 +181,13 @@ export class _BrewDocContentMigrator {
 		if (outSubclassFeatures.length) json.subclassFeature.push(...outSubclassFeatures);
 
 		if (outSubclassFeatures.length && !internalCopies.includes("subclassFeature")) internalCopies.push("subclassFeature");
+
+		if (depsSubclass.size) {
+			const tgt = MiscUtil.getOrSet(json, "_meta", "dependencies", "subclass", []);
+			depsSubclass.forEach(dep => {
+				if (!tgt.includes(dep)) tgt.push(dep);
+			});
+		}
 
 		return true;
 	}

@@ -1592,7 +1592,7 @@ Parser.spEndTypeToFull = function (type) {
 	return Parser._parse_aToB(Parser.SP_END_TYPE_TO_FULL, type);
 };
 
-Parser.spDurationToFull = function (dur) {
+Parser.spDurationToFull = function (dur, {isPlainText = false} = {}) {
 	let hasSubOr = false;
 
 	const outParts = dur
@@ -1601,12 +1601,12 @@ Parser.spDurationToFull = function (dur) {
 
 			switch (d.type) {
 				case "special":
-					if (d.concentration) return `Concentration${ptCondition}`;
+					if (d.concentration) return `${isPlainText ? "Concentration" : Renderer.get().render(`{@status Concentration}`)}${ptCondition}`;
 					return `Special${ptCondition}`;
 				case "instant":
 					return `Instantaneous${ptCondition}`;
 				case "timed":
-					return `${d.concentration ? "Concentration, " : ""}${d.concentration ? "u" : d.duration.upTo ? "U" : ""}${d.concentration || d.duration.upTo ? "p to " : ""}${d.duration.amount} ${d.duration.amount === 1 ? d.duration.type : `${d.duration.type}s`}${ptCondition}`;
+					return `${d.concentration ? `${isPlainText ? "Concentration" : Renderer.get().render(`{@status Concentration}`)}, ` : ""}${d.concentration ? "u" : d.duration.upTo ? "U" : ""}${d.concentration || d.duration.upTo ? "p to " : ""}${d.duration.amount} ${d.duration.amount === 1 ? d.duration.type : `${d.duration.type}s`}${ptCondition}`;
 				case "permanent": {
 					if (!d.ends) return `Permanent${ptCondition}`;
 
@@ -1982,6 +1982,7 @@ Parser.MON_LANGUAGE_TAG_TO_FULL = {
 	"C": "Common",
 	"CE": "Celestial",
 	"CS": "Can't Speak Known Languages",
+	"CSL": "Common Sign Language",
 	"D": "Dwarvish",
 	"DR": "Draconic",
 	"DS": "Deep Speech",

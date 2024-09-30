@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.2.0"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.2.1"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -172,7 +172,7 @@ String.prototype.toPlural = String.prototype.toPlural || function () {
 };
 
 String.prototype.escapeQuotes = String.prototype.escapeQuotes || function () {
-	return this.replace(/'/g, `&apos;`).replace(/"/g, `&quot;`).replace(/</g, `&lt;`).replace(/>/g, `&gt;`);
+	return this.replace(/&/g, `&amp;`).replace(/'/g, `&apos;`).replace(/"/g, `&quot;`).replace(/</g, `&lt;`).replace(/>/g, `&gt;`);
 };
 
 String.prototype.qq = String.prototype.qq || function () {
@@ -180,7 +180,7 @@ String.prototype.qq = String.prototype.qq || function () {
 };
 
 String.prototype.unescapeQuotes = String.prototype.unescapeQuotes || function () {
-	return this.replace(/&apos;/g, `'`).replace(/&quot;/g, `"`).replace(/&lt;/g, `<`).replace(/&gt;/g, `>`);
+	return this.replace(/&apos;/g, `'`).replace(/&quot;/g, `"`).replace(/&lt;/g, `<`).replace(/&gt;/g, `>`).replace(/&amp;/g, `&`);
 };
 
 String.prototype.uq = String.prototype.uq || function () {
@@ -3480,6 +3480,9 @@ UrlUtil.PAGE_TO_PROPS[UrlUtil.PG_SPELLS] = ["spell"];
 UrlUtil.PAGE_TO_PROPS[UrlUtil.PG_ITEMS] = ["item", "itemGroup", "itemType", "itemEntry", "itemProperty", "itemTypeAdditionalEntries", "itemMastery", "baseitem", "magicvariant"];
 UrlUtil.PAGE_TO_PROPS[UrlUtil.PG_RACES] = ["race", "subrace"];
 
+UrlUtil.PROP_TO_PAGE = {};
+UrlUtil.PROP_TO_PAGE["spell"] = UrlUtil.PG_SPELLS;
+
 if (!IS_DEPLOYED && !IS_VTT && typeof window !== "undefined") {
 	// for local testing, hotkey to get a link to the current page on the main site
 	window.addEventListener("keypress", (e) => {
@@ -6347,16 +6350,11 @@ globalThis.DataUtil = {
 		static _FILENAME = "deities.json";
 
 		static doPostLoad (data) {
-			const PRINT_ORDER = [
-				Parser.SRC_PHB,
-				Parser.SRC_DMG,
-				Parser.SRC_SCAG,
-				Parser.SRC_VGM,
-				Parser.SRC_MTF,
-				Parser.SRC_ERLW,
-				Parser.SRC_EGW,
-				Parser.SRC_TDCSR,
-			];
+			const PRINT_ORDER = data.deity
+				.map(it => SourceUtil.getEntitySource(it))
+				.unique()
+				.sort((a, b) => SortUtil.ascSortDateString(Parser.sourceJsonToDate(a), Parser.sourceJsonToDate(b)))
+				.reverse();
 
 			const inSource = {};
 			PRINT_ORDER.forEach(src => {
@@ -8085,6 +8083,8 @@ if (typeof window !== "undefined") window.addEventListener("rivet.active", () =>
  * @constructor
  */
 globalThis.VeLock = function ({name = null, isDbg = false} = {}) {
+	this._MSG_PAD_LEN = 8;
+
 	this._name = name;
 	this._isDbg = isDbg;
 	this._lockMeta = null;
@@ -8097,14 +8097,14 @@ globalThis.VeLock = function ({name = null, isDbg = false} = {}) {
 		if (token != null && this._lockMeta?.token === token) {
 			++this._lockMeta.depth;
 			// eslint-disable-next-line no-console
-			if (this._isDbg) console.warn(`Lock "${this._name || "(unnamed)"}" add (now ${this._lockMeta.depth}) at ${this._getCaller()}`);
+			if (this._isDbg) console.warn(`Lock ${"add".padEnd(this._MSG_PAD_LEN, " ")} "${this._name || "(unnamed)"}" (now ${this._lockMeta.depth}) at ${this._getCaller()}`);
 			return token;
 		}
 
 		while (this._lockMeta) await this._lockMeta.lock;
 
 		// eslint-disable-next-line no-console
-		if (this._isDbg) console.warn(`Lock "${this._name || "(unnamed)"}" acquired at ${this._getCaller()}`);
+		if (this._isDbg) console.warn(`Lock ${"acquired".padEnd(this._MSG_PAD_LEN, " ")} "${this._name || "(unnamed)"}" at ${this._getCaller()}`);
 
 		let unlock = null;
 		const lock = new Promise(resolve => unlock = resolve);
@@ -8123,12 +8123,12 @@ globalThis.VeLock = function ({name = null, isDbg = false} = {}) {
 
 		if (this._lockMeta.depth > 0) {
 			// eslint-disable-next-line no-console
-			if (this._isDbg) console.warn(`Lock "${this._name || "(unnamed)"}" sub (now ${this._lockMeta.depth - 1}) at ${this._getCaller()}`);
+			if (this._isDbg) console.warn(`Lock ${"sub".padEnd(this._MSG_PAD_LEN, " ")} "${this._name || "(unnamed)"}" (now ${this._lockMeta.depth - 1}) at ${this._getCaller()}`);
 			return --this._lockMeta.depth;
 		}
 
 		// eslint-disable-next-line no-console
-		if (this._isDbg) console.warn(`Lock "${this._name || "(unnamed)"}" released at ${this._getCaller()}`);
+		if (this._isDbg) console.warn(`Lock ${"released".padEnd(this._MSG_PAD_LEN, " ")} "${this._name || "(unnamed)"}" at ${this._getCaller()}`);
 
 		const lockMeta = this._lockMeta;
 		this._lockMeta = null;

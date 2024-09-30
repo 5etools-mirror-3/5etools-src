@@ -959,6 +959,14 @@ class BestiaryDataCheck extends GenericDataCheck {
 				if (!TagTestUrlLookup.hasUrl(url)) this._addMessage(`Missing link: ${s} in file ${file} (evaluates to "${url}") in "attachedItems"\n${TagTestUtil.getLogPtSimilarUrls({url})}`);
 			});
 		}
+
+		if (mon.gear) {
+			mon.gear.forEach(ref => {
+				const uid = ref.item || ref;
+				const url = getEncoded(uid, "item");
+				if (!TagTestUrlLookup.hasUrl(url)) this._addMessage(`Missing link: ${uid} in file ${file} (evaluates to "${url}") in "gear"\n${TagTestUtil.getLogPtSimilarUrls({url})}`);
+			});
+		}
 	}
 
 	static pRun () {
