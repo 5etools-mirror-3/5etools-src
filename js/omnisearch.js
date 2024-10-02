@@ -199,14 +199,14 @@ class Omnisearch {
 
 	/* -------------------------------------------- */
 
-	static async pGetFilteredResults (results, {isApplySrdFilter = false} = {}) {
+	static async pGetFilteredResults (results, {isApplySrdFilter = false, isApplyPartneredFilter = false} = {}) {
 		Omnisearch.initState();
 
 		if (isApplySrdFilter && this._state.isSrdOnly) {
 			results = results.filter(r => r.doc.r);
 		}
 
-		if (!this._state.isShowPartnered) {
+		if (isApplyPartneredFilter && !this._state.isShowPartnered) {
 			results = results.filter(r => !r.doc.s || !r.doc.dP);
 		}
 
@@ -337,7 +337,7 @@ class Omnisearch {
 			);
 		}
 
-		return this.pGetFilteredResults(results, {isApplySrdFilter: true});
+		return this.pGetFilteredResults(results, {isApplySrdFilter: true, isApplyPartneredFilter: true});
 	}
 
 	// region Search

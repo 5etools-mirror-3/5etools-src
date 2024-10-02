@@ -526,6 +526,8 @@ PropOrder._MONSTER = [
 	"foundryImg",
 	"foundryTokenScale",
 	"foundryPrototypeToken",
+	"foundryTokenSubjectHref",
+	"foundryTokenSubjectScale",
 
 	"altArt",
 
@@ -1646,6 +1648,8 @@ PropOrder._VEHICLE = [
 	"foundryImg",
 	"foundryTokenScale",
 	"foundryPrototypeToken",
+	"foundryTokenSubjectHref",
+	"foundryTokenSubjectScale",
 ];
 PropOrder._VEHICLE_UPGRADE = [
 	"name",
@@ -2030,6 +2034,8 @@ PropOrder._OBJECT = [
 
 	"foundryTokenScale",
 	"foundryPrototypeToken",
+	"foundryTokenSubjectHref",
+	"foundryTokenSubjectScale",
 ];
 PropOrder._OPTIONALFEATURE = [
 	"name",
@@ -2071,6 +2077,7 @@ PropOrder._OPTIONALFEATURE = [
 
 	"additionalSpells",
 
+	"featProgression",
 	"optionalfeatureProgression",
 
 	"consumes",

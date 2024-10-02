@@ -341,10 +341,10 @@ class _RenderBestiaryImplBase {
 	_$getTdChallenge (mon, opts) {
 		const ptLabel = `<strong ${this._style === "classic" ? "" : `title="Challenge Rating"`}>${this._style !== "classic" ? "CR" : "Challenge"}</strong>`;
 
-		if (Parser.crToNumber(mon.cr) >= VeCt.CR_UNKNOWN) return `<td colspan="${this._style !== "classic" ? "6" : "3"}">${ptLabel} <span>\u2014</span></td>`;
+		if (Parser.crToNumber(mon.cr) >= VeCt.CR_UNKNOWN && this._style === "classic") return `<td colspan="3">${ptLabel} <span>\u2014</span></td>`;
 
 		return $$`<td colspan="${this._style !== "classic" ? "6" : "3"}">${ptLabel}
-			<span>${Renderer.monster.getChallengeRatingPart(mon, {style: this._style})}</span>
+			<span>${Renderer.monster.getChallengeRatingPart(mon, {styleHint: this._style})}</span>
 			${opts.$btnScaleCr || ""}
 			${opts.$btnResetScaleCr || ""}
 		</td>`;

@@ -1430,7 +1430,8 @@ class ListPage {
 		$btn.addClass("ve-btn-copy-effect")
 			.off("click")
 			.on("click", async evt => {
-				let url = window.location.href;
+				const url = new URL(window.location.href);
+				url.hash ||= globalThis.HASH_BLANK;
 
 				if (EventUtil.isCtrlMetaKey(evt)) {
 					await MiscUtil.pCopyTextToClipboard(this._filterBox.getFilterTag({isAddSearchTerm: true}));
@@ -1439,7 +1440,7 @@ class ListPage {
 				}
 
 				const parts = this._filterBox.getSubHashes({isAddSearchTerm: true, isAllowNonExtension: true});
-				parts.unshift(url);
+				parts.unshift(url.toString());
 
 				if (evt.shiftKey && this._sublistManager) {
 					parts.push(await this._sublistManager.pGetHashPartExport());

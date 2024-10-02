@@ -4074,26 +4074,19 @@ function MixinBaseComponent (Cls) {
 		getSaveableState () { return {...this.getBaseSaveableState()}; }
 		setStateFrom (toLoad, isOverwrite = false) { this.setBaseSaveableStateFrom(toLoad, isOverwrite); }
 
-		async _pLock (lockName) {
-			while (this.__locks[lockName]) await this.__locks[lockName].lock;
-			let unlock = null;
-			const lock = new Promise(resolve => unlock = resolve);
-			this.__locks[lockName] = {
-				lock,
-				unlock,
-			};
+		async _pLock (lockName, {lockToken = null} = {}) {
+			this.__locks[lockName] ||= new VeLock({name: lockName});
+			return this.__locks[lockName].pLock({token: lockToken});
 		}
 
 		async _pGate (lockName) {
-			while (this.__locks[lockName]) await this.__locks[lockName].lock;
+			await this._pLock(lockName);
+			this._unlock(lockName);
 		}
 
 		_unlock (lockName) {
-			const lockMeta = this.__locks[lockName];
-			if (lockMeta) {
-				delete this.__locks[lockName];
-				lockMeta.unlock();
-			}
+			if (!this.__locks[lockName]) return;
+			this.__locks[lockName].unlock();
 		}
 
 		async _pDoProxySetBase (prop, value) { return this._pDoProxySet("state", this.__state, prop, value); }
