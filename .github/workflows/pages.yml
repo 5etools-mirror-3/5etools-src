@@ -68,17 +68,17 @@ jobs:
                rm -rf node_modules node
                ls -lah
 
-        -  name: Setup Pages
-           uses: actions/configure-pages@v5
+         -  name: Setup Pages
+            uses: actions/configure-pages@v5
 
-        -  name: Upload artifact
-           uses: actions/upload-pages-artifact@v3
-           with:
+         -  name: Upload artifact
+            uses: actions/upload-pages-artifact@v3
+            with:
               path: '.'
 
-        -  name: Deploy to GitHub Pages
-           id: deployment
-           uses: actions/deploy-pages@v4
-           with:
+         -  name: Deploy to GitHub Pages
+            id: deployment
+            uses: actions/deploy-pages@v4
+            with:
               # Timeout in millis (10 mins)
               timeout: 600000
