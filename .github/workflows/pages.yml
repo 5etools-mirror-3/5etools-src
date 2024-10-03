@@ -35,6 +35,9 @@ jobs:
             run: |
                bash ./.github/set-img-root.sh ${{ github.repository_owner }}
 
+         - name: Prepare SNS data
+           run: cat homebrew/sns.json | jq '.spell' > data/spells/spells-sns.json
+
          # Notably: remove anything which should not be added to the service worker manifest:
          #  - `homebrew`
          #  - `prerelease`
