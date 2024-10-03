@@ -2,9 +2,8 @@ name: Build and Deploy Pages
 
 on:
    push:
-      tags:
-         - 'v**'
-
+      branches:
+         - main
    # Allow running manually from the actions tab
    workflow_dispatch:
 
@@ -34,7 +33,6 @@ jobs:
 
          -  name: Set Deployed Flag and Image Root
             run: |
-               bash ./.github/set-deployed-flag.sh ${{ github.ref_name }}
                bash ./.github/set-img-root.sh ${{ github.repository_owner }}
 
          # Notably: remove anything which should not be added to the service worker manifest:
