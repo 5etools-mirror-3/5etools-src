@@ -248,6 +248,30 @@ class GenericDataCheck extends DataTesterBase {
 				this._addMessage(`Missing link: ${url} in file ${file} (evaluates to "${url}") in "${_tag}"\n${TagTestUtil.getLogPtSimilarUrls({url})}`);
 			});
 	}
+
+	static _testStartingEquipment (file, obj, {propDotPath = "startingEquipment"} = {}) {
+		const propPath = propDotPath.split(".");
+		const equi = MiscUtil.get(obj, ...propPath);
+
+		if (!equi) return;
+
+		equi
+			.forEach(group => {
+				Object.entries(group)
+					.forEach(([k, arr]) => {
+						arr
+							.forEach(meta => {
+								if (!meta.item) return;
+
+								const url = getEncoded(meta.item, "item");
+
+								if (TagTestUrlLookup.hasUrl(url)) return;
+
+								this._addMessage(`Missing link: ${meta.item} in file ${file} (evaluates to "${url}") in "${propDotPath}"\n${TagTestUtil.getLogPtSimilarUrls({url})}`);
+							});
+					});
+			});
+	}
 }
 
 function getEncoded (str, tag, {prop = null} = {}) {
@@ -833,6 +857,7 @@ class ClassDataCheck extends GenericDataCheck {
 
 		this._testAdditionalSpells(file, cls);
 		this._testReprintedAs(file, cls, "class");
+		this._testStartingEquipment(file, cls, {propDotPath: "startingEquipment.defaultData"});
 	}
 
 	static _doCheckSubclass (file, data, subclassFeatureLookup, sc) {
@@ -930,6 +955,7 @@ class BackgroundDataCheck extends GenericDataCheck {
 		this._testAdditionalSpells(file, bg);
 		this._testAdditionalFeats(file, bg);
 		this._testReprintedAs(file, bg, "background");
+		this._testStartingEquipment(file, bg);
 	}
 
 	static pRun () {

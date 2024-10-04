@@ -694,7 +694,14 @@ Parser.itemValueToFull = function (item, opts = {isShortForm: false, isSmallUnit
 	return Parser._moneyToFull(item, "value", "valueMult", opts);
 };
 
-Parser.itemValueToFullMultiCurrency = function (item, opts = {isShortForm: false, isSmallUnits: false}) {
+/**
+ * @param item
+ * @param [opts]
+ * @param {?boolean} [opts.isShortForm]
+ * @param {?boolean} [opts.isSmallUnits]
+ * @param {?number} [opts.multiplier]
+ */
+Parser.itemValueToFullMultiCurrency = function (item, opts = {isShortForm: false, isSmallUnits: false, multiplier: null}) {
 	return Parser._moneyToFullMultiCurrency(item, "value", "valueMult", opts);
 };
 

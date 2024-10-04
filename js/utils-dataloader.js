@@ -728,7 +728,7 @@ class _DataTypeLoader {
 
 	hasCustomCacheStrategy ({obj}) { return false; }
 
-	addToCacheCustom ({cache, obj}) { /* Implement as required */ }
+	addToCacheCustom ({cache, obj, propAllowlist}) { /* Implement as required */ }
 }
 
 class _DataTypeLoaderSingleSource extends _DataTypeLoader {
@@ -1564,7 +1564,9 @@ class _DataTypeLoaderCustomQuickref extends _DataTypeLoader {
 
 	hasCustomCacheStrategy ({obj}) { return this.constructor.PROPS.some(prop => obj[prop]?.length); }
 
-	addToCacheCustom ({cache, obj}) {
+	addToCacheCustom ({cache, obj, propAllowlist}) {
+		if (!this.constructor.PROPS.every(prop => propAllowlist.has(prop))) return [];
+
 		obj.referenceData.forEach((chapter, ixChapter) => this._addToCacheCustom_chapter({cache, chapter, ixChapter}));
 		return [...this.constructor.PROPS];
 	}
@@ -1608,7 +1610,9 @@ class _DataTypeLoaderCustomAdventureBook extends _DataTypeLoader {
 
 	hasCustomCacheStrategy ({obj}) { return this.constructor.PROPS.some(prop => obj[prop]?.length); }
 
-	addToCacheCustom ({cache, obj}) {
+	addToCacheCustom ({cache, obj, propAllowlist}) {
+		if (!this.constructor.PROPS.every(prop => propAllowlist.has(prop))) return [];
+
 		const [prop, propData] = this.constructor.PROPS;
 
 		// Get only the ids that exist in both data + contents
@@ -2231,7 +2235,7 @@ class DataLoader {
 		this._DATA_TYPE_LOADER_LIST
 			.filter(loader => loader.hasCustomCacheStrategy({obj: allDataMerged}))
 			.forEach(loader => {
-				const propsToRemove = loader.addToCacheCustom({cache: this._CACHE, obj: allDataMerged});
+				const propsToRemove = loader.addToCacheCustom({cache: this._CACHE, obj: allDataMerged, propAllowlist});
 				propsToRemove.forEach(prop => delete allDataMerged[prop]);
 			});
 

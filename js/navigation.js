@@ -81,8 +81,6 @@ class NavBar {
 		this._addElement_li(NavBar._CAT_DUNGEON_MASTER, "lootgen.html", "Loot Generator");
 		this._addElement_divider(NavBar._CAT_DUNGEON_MASTER);
 		this._addElement_li(NavBar._CAT_DUNGEON_MASTER, "maps.html", "Maps");
-		this._addElement_divider(NavBar._CAT_DUNGEON_MASTER);
-		this._addElement_li(NavBar._CAT_DUNGEON_MASTER, "img", "Browse Local Images");
 
 		this._addElement_dropdown(null, NavBar._CAT_REFERENCES);
 		this._addElement_li(NavBar._CAT_REFERENCES, "actions.html", "Actions");
@@ -104,9 +102,11 @@ class NavBar {
 		this._addElement_divider(NavBar._CAT_UTILITIES);
 		this._addElement_li(NavBar._CAT_UTILITIES, "blocklist.html", "Content Blocklist");
 		this._addElement_li(NavBar._CAT_UTILITIES, "manageprerelease.html", "Prerelease Content Manager");
-		this._addElement_li(NavBar._CAT_UTILITIES, "prerelease", "Browse Local Prerelease Content");
 		this._addElement_li(NavBar._CAT_UTILITIES, "makebrew.html", "Homebrew Builder");
 		this._addElement_li(NavBar._CAT_UTILITIES, "managebrew.html", "Homebrew Manager");
+		this._addElement_divider(NavBar._CAT_UTILITIES);
+		this._addElement_li(NavBar._CAT_UTILITIES, "img", "Browse Local Images");
+		this._addElement_li(NavBar._CAT_UTILITIES, "prerelease", "Browse Local Prerelease Content");
 		this._addElement_li(NavBar._CAT_UTILITIES, "homebrew", "Browse Local Homebrew");
 		this._addElement_li(NavBar._CAT_UTILITIES, "_img", "Browse Local Homebrew Images");
 		this._addElement_li(NavBar._CAT_UTILITIES, "_img-brew", "Browse Local Homebrew Asset Repo");
@@ -141,6 +141,7 @@ class NavBar {
 		this._addElement_li(NavBar._CAT_UTILITIES, "inittrackerplayerview.html", "Initiative Tracker Player View");
 		this._addElement_divider(NavBar._CAT_UTILITIES);
 		this._addElement_li(NavBar._CAT_UTILITIES, "renderdemo.html", "Renderer Demo");
+		this._addElement_li(NavBar._CAT_UTILITIES, "makebrew.html", "Homebrew Builder");
 		this._addElement_li(NavBar._CAT_UTILITIES, "makecards.html", "RPG Cards JSON Builder");
 		this._addElement_li(NavBar._CAT_UTILITIES, "converter.html", "Text Converter");
 		this._addElement_divider(NavBar._CAT_UTILITIES);
