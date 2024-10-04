@@ -102,7 +102,6 @@ class NavBar {
 		this._addElement_divider(NavBar._CAT_UTILITIES);
 		this._addElement_li(NavBar._CAT_UTILITIES, "blocklist.html", "Content Blocklist");
 		this._addElement_li(NavBar._CAT_UTILITIES, "manageprerelease.html", "Prerelease Content Manager");
-		this._addElement_li(NavBar._CAT_UTILITIES, "makebrew.html", "Homebrew Builder");
 		this._addElement_li(NavBar._CAT_UTILITIES, "managebrew.html", "Homebrew Manager");
 		this._addElement_buttonSplit(
 			NavBar._CAT_UTILITIES,
@@ -135,6 +134,7 @@ class NavBar {
 		this._addElement_li(NavBar._CAT_UTILITIES, "inittrackerplayerview.html", "Initiative Tracker Player View");
 		this._addElement_divider(NavBar._CAT_UTILITIES);
 		this._addElement_li(NavBar._CAT_UTILITIES, "renderdemo.html", "Renderer Demo");
+		this._addElement_li(NavBar._CAT_UTILITIES, "makebrew.html", "Homebrew Builder");
 		this._addElement_li(NavBar._CAT_UTILITIES, "makecards.html", "RPG Cards JSON Builder");
 		this._addElement_li(NavBar._CAT_UTILITIES, "converter.html", "Text Converter");
 		this._addElement_divider(NavBar._CAT_UTILITIES);
