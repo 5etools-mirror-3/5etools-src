@@ -35,7 +35,17 @@ jobs:
             run: |
                bash ./.github/set-img-root.sh ${{ github.repository_owner }}
 
-         - name: Prepare SNS data
+         - uses: DeLaGuardo/setup-clojure@12.5
+           with:
+             bb: latest
+             github-token: ${{ secrets.GITHUB_TOKEN }}
+         - run: bb .github/generate-merged-json.bb
+         - uses: actions/upload-artifact@v4
+           with:
+             name: sns.json
+             path: homebrew/sns.json
+
+         - name: Prepare SNS spells data
            run: cat homebrew/sns.json | jq -c '.spell' > data/spells/spells-sns.json
 
          # Notably: remove anything which should not be added to the service worker manifest:

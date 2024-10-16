@@ -1,0 +1,393 @@
+{
+  "_meta": {
+    "sources": [
+      {
+        "json": "sns",
+        "abbreviation": "S&S",
+        "full": "Spies & Spiders",
+        "authors": [
+          "Spies & Spiders"
+        ],
+        "version": "0.0.1"
+      }
+    ],
+    "dateAdded": 0,
+    "dateLastModified": 0
+  },
+  "condition": [
+    {
+      "name": "Blinded",
+      "source": "sns",
+      "page": 0,
+      "entries": [
+        {
+          "type": "list",
+          "items": [
+            "A blinded creature can't sense with eyesight and automatically fails any ability check that requires eyesight.",
+            "Armour attack rolls against the creature have advantage, and the creature's attack rolls have disadvantage."
+          ]
+        }
+      ],
+      "hasFluffImages": false
+    },
+    {
+      "name": "Charmed",
+      "source": "sns",
+      "page": 0,
+      "entries": [
+        {
+          "type": "list",
+          "items": [
+            "A charmed creature is {@condition debilitated|sns} when attempting to attack the charmer.",
+            "The charmer has advantage on any ability check to interact socially with the creature."
+          ]
+        }
+      ],
+      "hasFluffImages": false
+    },
+    {
+      "name": "Confused",
+      "source": "sns",
+      "page": 0,
+      "entries": [
+        "On its turn, a confused creature rolls a {@dice d8} to determine what it does.",
+        {
+          "type": "list",
+          "items": [
+            "On a 1-4, a confused creature is {@condition debilitated|sns} until the end of its turn.",
+            "On a 5-6, a confused creature is {@condition dazed|sns} until the end of its turn.",
+            "On a 7+, a confused creature makes a melee weapon attack against a randomly determined creature at the start of its turn as a free action."
+          ]
+        }
+      ],
+      "hasFluffImages": false
+    },
+    {
+      "name": "Dazed",
+      "source": "sns",
+      "page": 0,
+      "entries": [
+        {
+          "type": "list",
+          "items": [
+            "A dazed creature has disadvantage with attacks.",
+            "All attacks against a dazed creature have advantage."
+          ]
+        }
+      ],
+      "hasFluffImages": false
+    },
+    {
+      "name": "Deafened",
+      "source": "sns",
+      "page": 0,
+      "entries": [
+        "A deafened creature can't sense with hearing and automatically fails any ability check that requires hearing."
+      ],
+      "hasFluffImages": false
+    },
+    {
+      "name": "Debilitated",
+      "source": "sns",
+      "page": 0,
+      "entries": [
+        "A debilitated creature suffers the following effects:",
+        {
+          "type": "list",
+          "items": [
+            "Disadvantage with attacks.",
+            "Damaging attacks are downgraded one success tier.",
+            "Does not grant disadvantage on armour attack rolls to adjacent ranged attackers."
+          ]
+        }
+      ],
+      "hasFluffImages": false
+    },
+    {
+      "name": "Dominated",
+      "source": "sns",
+      "page": 0,
+      "entries": [
+        "A dominated creature is {@condition charmed|sns}. Additionally, a dominated creature gains a free action at the start of each of its turns that can be taken to both move up to its speed and make either a single weapon attack or cast a cantrip. This free action is completely controlled by the dominator."
+      ],
+      "hasFluffImages": false
+    },
+    {
+      "name": "Doomed",
+      "source": "sns",
+      "page": 0,
+      "entries": [
+        "A doomed creature dies at a time determined by the DM, or within 13 ({@dice 2d12}) hours.",
+        "A doomed creature continues to be doomed even after it dies. Magic equivalent to a 7th-level or higher spell can remove the doomed condition (such as {@spell regenerate|sns} or {@spell wish|sns}."
+      ],
+      "hasFluffImages": false
+    },
+    {
+      "name": "Fatigue",
+      "source": "sns",
+      "page": 0,
+      "entries": [
+        {
+          "type": "table",
+          "colLabels": [
+            "Level",
+            "Effects"
+          ],
+          "colStyles": [
+            "col-1 text-center",
+            "col-11"
+          ],
+          "rows": [
+            [
+              "1",
+              "Cannot take the Dash action."
+            ],
+            [
+              "2",
+              "Disadvantage on Strength and Dexterity checks."
+            ],
+            [
+              "3",
+              "Speed halved."
+            ],
+            [
+              "4",
+              "Disadvantage on armour attack rolls based on Strength or Dexterity, and incoming fortitude and reflex attacks have advantage."
+            ],
+            [
+              "5",
+              "Maximum Hit Dice halved."
+            ],
+            [
+              "6",
+              "Speed reduced to 5 feet."
+            ],
+            [
+              "7",
+              "Death"
+            ]
+          ]
+        }
+      ],
+      "hasFluffImages": false
+    },
+    {
+      "name": "Frightened",
+      "source": "sns",
+      "page": 0,
+      "entries": [
+        {
+          "type": "list",
+          "items": [
+            "A frightened creature has disadvantage on ability checks and armour attack rolls.",
+            "While moving towards the source of its fear, the creature is {@condition sluggish|sns}."
+          ]
+        }
+      ],
+      "hasFluffImages": false
+    },
+    {
+      "name": "Grappled",
+      "source": "sns",
+      "page": 0,
+      "entries": [
+        {
+          "type": "list",
+          "items": [
+            "A grappled creature who is adjacent to the grappler has 0 speed. If it is not adjacent to the grappler, it is {@condition sluggish|sns}.",
+            "The condition ends if the grappler is {@condition incapacitated|sns}.",
+            "The condition also ends if an effect removes the grappled creature from the grappler or grappling effect, such as when a creature is hurled away by the {@spell thunderwave|sns} spell."
+          ]
+        }
+      ],
+      "hasFluffImages": false
+    },
+    {
+      "name": "Incapacitated",
+      "source": "sns",
+      "page": 0,
+      "entries": [
+        "An incapacitated creature can't take actions or reactions."
+      ],
+      "hasFluffImages": false
+    },
+    {
+      "name": "Poisoned",
+      "source": "sns",
+      "page": 0,
+      "entries": [
+        "A poisoned creature has disadvantage on armour attack rolls and ability checks."
+      ],
+      "hasFluffImages": false
+    },
+    {
+      "name": "Prone",
+      "source": "sns",
+      "page": 0,
+      "entries": [
+        {
+          "type": "list",
+          "items": [
+            "A prone creature's only movement option is to crawl, unless it stands up and thereby ends the condition.",
+            "The creature has disadvantage on armour attack rolls.",
+            "An armour attack roll against the creature has advantage if the attacker is adjacent to the creature. Otherwise, it has disadvantage."
+          ]
+        }
+      ],
+      "hasFluffImages": false
+    },
+    {
+      "name": "Rattled",
+      "source": "sns",
+      "page": 0,
+      "entries": [
+        "A rattled creature cannot take reactions."
+      ],
+      "hasFluffImages": false
+    },
+    {
+      "name": "Restrained",
+      "source": "sns",
+      "page": 0,
+      "entries": [
+        {
+          "type": "list",
+          "items": [
+            "A restrained creature who is adjacent to the restrainer has 0 speed. If it is not adjacent to the restrainer, it is {@condition sluggish|sns}.",
+            "Armour and reflex attack rolls against the creature have advantage, and the creature's armour attack rolls have disadvantage."
+          ]
+        }
+      ],
+      "hasFluffImages": false
+    },
+    {
+      "name": "Slowed",
+      "source": "sns",
+      "page": 0,
+      "entries": [
+        {
+          "type": "list",
+          "items": [
+            "A slowed creature's speed is halved.",
+            "Armour and reflex attacks against the creature have advantage.",
+            "The creature cannot take reactions.",
+            "On its turn, the creature can take either an action or a bonus action, not both."
+          ]
+        }
+      ],
+      "hasFluffImages": false
+    },
+    {
+      "name": "Sluggish",
+      "source": "sns",
+      "page": 0,
+      "entries": [
+        "For every foot of movement a sluggish creature takes, they must spend 2 feet of speed."
+      ],
+      "hasFluffImages": false
+    },
+    {
+      "name": "Staggered",
+      "source": "sns",
+      "page": 0,
+      "entries": [
+        "A staggered creature suffers the following effects:",
+        {
+          "type": "list",
+          "items": [
+            "Incoming attack rolls have advantage.",
+            "Incoming damaging attacks are upgraded one success tier."
+          ]
+        }
+      ],
+      "hasFluffImages": false
+    },
+    {
+      "name": "Strife",
+      "source": "sns",
+      "page": 0,
+      "entries": [
+        {
+          "type": "table",
+          "colLabels": [
+            "Level",
+            "Effects"
+          ],
+          "colStyles": [
+            "col-1 text-center",
+            "col-11"
+          ],
+          "rows": [
+            [
+              "1",
+              "Disadvantage on Intelligence, Wisdom, and Charisma checks."
+            ],
+            [
+              "2",
+              "Concentration is lost upon being hit."
+            ],
+            [
+              "3",
+              "Can only take a bonus or standard action each turn (not both)."
+            ],
+            [
+              "4",
+              "Disadvantage on armour attack rolls based on Intelligence, Wisdom, or Charisma, and incoming reflex and will attacks have advantage."
+            ],
+            [
+              "5",
+              "Suffer the effects of a random short-term mental stress effect."
+            ],
+            [
+              "6",
+              "Cannot cast levelled spells."
+            ],
+            [
+              "7",
+              "Suffer the effects of a random long-term mental stress effect."
+            ]
+          ]
+        }
+      ],
+      "hasFluffImages": false
+    },
+    {
+      "name": "Taunted",
+      "source": "sns",
+      "page": 0,
+      "entries": [
+        "A taunted creature must target at least the taunter with all attacks."
+      ],
+      "hasFluffImages": false
+    },
+    {
+      "name": "Unconscious",
+      "source": "sns",
+      "page": 0,
+      "entries": [
+        {
+          "type": "list",
+          "items": [
+            "An unconscious creature is {@condition incapacitated|sns}, can't move or speak, and cannot sense its surroundings.",
+            "The creature falls {@condition prone|sns}.",
+            "If the creature's fortitude and reflex are higher than 0, they are 0.",
+            "Armour attack rolls against the creature have advantage.",
+            "Damaging attacks against the creature from adjacent creatures are upgraded one success tier.",
+            "If this condition is lost during combat and the creature had at least one turn while unconscious, it immediately takes a turn. This does not change initiative order."
+          ]
+        }
+      ],
+      "hasFluffImages": false
+    },
+    {
+      "name": "Fixated",
+      "source": "sns",
+      "page": 0,
+      "entries": [
+        "A fixated creature has disadvantage on Investigation and Perception checks to perceive or examine creatures or objects other than the source of its fixation.",
+        "While moving away from the source of its fixation, the creature is {@condition sluggish|sns}."
+      ],
+      "hasFluffImages": false
+    }
+  ]
+}

@@ -1,0 +1,1148 @@
+{
+  "_meta": {
+    "sources": [
+      {
+        "json": "sns",
+        "abbreviation": "S&S",
+        "full": "Spies & Spiders",
+        "authors": [
+          "Spies & Spiders"
+        ],
+        "version": "0.0.1"
+      }
+    ],
+    "dateAdded": 0,
+    "dateLastModified": 0,
+    "optionalFeatureTypes": {
+      "SK": "Soldiering Knack"
+    }
+  },
+  "class": [
+    {
+      "name": "Fighter",
+      "source": "sns",
+      "hd": {
+        "number": 1,
+        "faces": 10
+      },
+      "proficiency": [
+        "str",
+        "con"
+      ],
+      "startingProficiencies": {
+        "armor": [
+          "light",
+          "medium",
+          "heavy",
+          "{@item shield|phb|shields}"
+        ],
+        "weapons": [
+          "simple",
+          "martial"
+        ],
+        "skills": [
+          {
+            "choose": {
+              "from": [
+                "acrobatics",
+                "animal handling",
+                "athletics",
+                "brawn",
+                "history",
+                "insight",
+                "intimidation",
+                "perception",
+                "survival"
+              ],
+              "count": 2
+            }
+          }
+        ]
+      },
+      "startingEquipment": {
+        "additionalFromBackground": true,
+        "default": [
+          "(a) {@item chain mail|phb} or (b) {@item leather armor|phb}, {@item longbow|phb}, and {@item arrows (20)|phb|20 arrows}",
+          "(a) a {@filter martial weapon|items|source=phb|category=basic|type=martial weapon} and a {@item shield|phb} or (b) two {@filter martial weapons|items|source=phb|category=basic|type=martial weapon}",
+          "(a) a {@item light crossbow|phb} and {@item crossbow bolts (20)|phb|20 bolts} or (b) two {@item handaxe|phb|handaxes}",
+          "(a) a {@item dungeoneer's pack|phb} or (b) an {@item explorer's pack|phb}"
+        ],
+        "goldAlternative": "{@dice 5d4 × 10|5d4 × 10|Starting Gold}",
+        "defaultData": [
+          {
+            "a": [
+              "chain mail|phb"
+            ],
+            "b": [
+              "leather armor|phb",
+              "longbow|phb",
+              "arrows (20)|phb"
+            ]
+          },
+          {
+            "a": [
+              {
+                "equipmentType": "weaponMartial"
+              },
+              "shield|phb"
+            ],
+            "b": [
+              {
+                "equipmentType": "weaponMartial",
+                "quantity": 2
+              }
+            ]
+          },
+          {
+            "a": [
+              "light crossbow|phb",
+              "crossbow bolts (20)|phb"
+            ],
+            "b": [
+              {
+                "item": "handaxe|phb",
+                "quantity": 2
+              }
+            ]
+          },
+          {
+            "a": [
+              "dungeoneer's pack|phb"
+            ],
+            "b": [
+              "explorer's pack|phb"
+            ]
+          }
+        ]
+      },
+      "multiclassing": {
+        "requirements": {
+          "or": [
+            {
+              "str": 13,
+              "dex": 13
+            }
+          ]
+        },
+        "proficienciesGained": {
+          "armor": [
+            "light",
+            "medium",
+            "{@item shield|phb|shields}"
+          ],
+          "weapons": [
+            "simple",
+            "martial"
+          ]
+        }
+      },
+      "classTableGroups": [
+        {
+          "colLabels": [
+            "{@filter Knacks Known|optionalfeatures|feature type=sk}",
+            "{@filter Maneuvers Known|spells|Subschool=Maneuver}",
+            "Maneuver Degree"
+          ],
+          "rows": [
+            [
+              1,
+              3,
+              "{@filter 1st|spells|Subschool=Maneuver|level=1}"
+            ],
+            [
+              1,
+              4,
+              "{@filter 1st|spells|Subschool=Maneuver|level=1}"
+            ],
+            [
+              1,
+              4,
+              "{@filter 1st|spells|Subschool=Maneuver|level=1}"
+            ],
+            [
+              1,
+              5,
+              "{@filter 2nd|spells|Subschool=Maneuver|level=2}"
+            ],
+            [
+              2,
+              6,
+              "{@filter 2nd|spells|Subschool=Maneuver|level=2}"
+            ],
+            [
+              2,
+              7,
+              "{@filter 2nd|spells|Subschool=Maneuver|level=2}"
+            ],
+            [
+              2,
+              7,
+              "{@filter 2nd|spells|Subschool=Maneuver|level=2}"
+            ],
+            [
+              2,
+              8,
+              "{@filter 3rd|spells|Subschool=Maneuver|level=3}"
+            ],
+            [
+              3,
+              9,
+              "{@filter 3rd|spells|Subschool=Maneuver|level=3}"
+            ],
+            [
+              3,
+              10,
+              "{@filter 3rd|spells|Subschool=Maneuver|level=3}"
+            ],
+            [
+              3,
+              10,
+              "{@filter 3rd|spells|Subschool=Maneuver|level=3}"
+            ],
+            [
+              3,
+              11,
+              "{@filter 4th|spells|Subschool=Maneuver|level=4}"
+            ],
+            [
+              4,
+              12,
+              "{@filter 4th|spells|Subschool=Maneuver|level=4}"
+            ],
+            [
+              4,
+              13,
+              "{@filter 4th|spells|Subschool=Maneuver|level=4}"
+            ],
+            [
+              4,
+              13,
+              "{@filter 4th|spells|Subschool=Maneuver|level=4}"
+            ],
+            [
+              4,
+              14,
+              "{@filter 5th|spells|Subschool=Maneuver|level=5}"
+            ],
+            [
+              5,
+              15,
+              "{@filter 5th|spells|Subschool=Maneuver|level=5}"
+            ],
+            [
+              5,
+              16,
+              "{@filter 5th|spells|Subschool=Maneuver|level=5}"
+            ],
+            [
+              5,
+              16,
+              "{@filter 5th|spells|Subschool=Maneuver|level=5}"
+            ],
+            [
+              5,
+              17,
+              "{@filter 5th|spells|Subschool=Maneuver|level=5}"
+            ]
+          ]
+        }
+      ],
+      "classFeatures": [
+        "Fighting Style|Fighter|sns|1|sns",
+        "Combat Maneuvers|Fighter|sns|1|sns",
+        "Soldiering Knacks|Fighter|sns|1|sns",
+        {
+          "classFeature": "First Subclass Tier 1|Fighter|sns|1|sns",
+          "gainSubclassFeature": true
+        },
+        "Steely Mien|Fighter|sns|2|sns",
+        "Maneuver Specialisation (1)|Fighter|sns|3|sns",
+        {
+          "classFeature": "First Subclass Tier 2|Fighter|sns|3|sns",
+          "gainSubclassFeature": true
+        },
+        "Ability Score Improvement|Fighter|sns|4|sns",
+        "Reserves (1)|Fighter|sns|4|sns",
+        "Empowered Attack (1)|Fighter|sns|5|sns",
+        {
+          "classFeature": "First Subclass Tier 3|Fighter|sns|5|sns",
+          "gainSubclassFeature": true
+        },
+        "Martial Lore|Fighter|sns|6|sns",
+        "Maneuver Specialisation (2)|Fighter|sns|7|sns",
+        {
+          "classFeature": "First Subclass Tier 4|Fighter|sns|7|sns",
+          "gainSubclassFeature": true
+        },
+        "Ability Score Improvement|Fighter|sns|8|sns",
+        "Reserves (2)|Fighter|sns|8|sns",
+        "Indomitable (1)|Fighter|sns|9|sns",
+        {
+          "classFeature": "First Subclass Tier 5|Fighter|sns|9|sns",
+          "gainSubclassFeature": true
+        },
+        "Reputation|Fighter|sns|10|sns",
+        "Empowered Attack (2)|Fighter|sns|11|sns",
+        "Maneuver Specialisation (3)|Fighter|sns|11|sns",
+        "Second Subclass Tier 1|Fighter|sns|11|sns",
+        "Ability Score Improvement|Fighter|sns|12|sns",
+        "Reserves (3)|Fighter|sns|12|sns",
+        "Indomitable (2)|Fighter|sns|13|sns",
+        "Second Subclass Tier 2|Fighter|sns|13|sns",
+        "War's Toll|Fighter|sns|14|sns",
+        "Maneuver Specialisation (4)|Fighter|sns|15|sns",
+        "Second Subclass Tier 3|Fighter|sns|15|sns",
+        "Ability Score Improvement|Fighter|sns|16|sns",
+        "Reserves (4)|Fighter|sns|16|sns",
+        "Indomitable (3)|Fighter|sns|17|sns",
+        "Second Subclass Tier 4|Fighter|sns|17|sns",
+        "Martial Legacy|Fighter|sns|18|sns",
+        "Ability Score Improvement|Fighter|sns|19|sns",
+        "Second Subclass Tier 5|Fighter|sns|19|sns",
+        "Warmaster|Fighter|sns|20|sns"
+      ],
+      "subclassTitle": "Fighter Subclass"
+    }
+  ],
+  "subclass": [
+    {
+      "name": "Sharpshooter",
+      "shortName": "Sharpshooter",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "subclassFeatures": [
+        "Sharpshooter|Fighter|sns|Sharpshooter|sns|1",
+        "Hawkeye|Fighter|sns|Sharpshooter|sns|3",
+        "Sniper|Fighter|sns|Sharpshooter|sns|3",
+        "Focus Shot|Fighter|sns|Sharpshooter|sns|5",
+        "Sharpshooter Major Effect #2|Fighter|sns|Sharpshooter|sns|5",
+        "Reflexive Shot|Fighter|sns|Sharpshooter|sns|7",
+        "Critical Shot|Fighter|sns|Sharpshooter|sns|9"
+      ]
+    }
+  ],
+  "classFeature": [
+    {
+      "name": "First Subclass Tier 1",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 1,
+      "entries": [
+        "At 1st level, you gain the tier 1 feature from your first subclass."
+      ]
+    },
+    {
+      "name": "First Subclass Tier 2",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 3,
+      "entries": [
+        "At 3rd level, you gain the tier 2 feature from your first subclass."
+      ]
+    },
+    {
+      "name": "First Subclass Tier 3",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 5,
+      "entries": [
+        "At 5th level, you gain the tier 3 feature from your first subclass."
+      ]
+    },
+    {
+      "name": "First Subclass Tier 4",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 7,
+      "entries": [
+        "At 7th level, you gain the tier 4 feature from your first subclass."
+      ]
+    },
+    {
+      "name": "First Subclass Tier 5",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 9,
+      "entries": [
+        "At 9th level, you gain the tier 5 feature from your first subclass."
+      ]
+    },
+    {
+      "name": "Second Subclass Tier 1",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 11,
+      "entries": [
+        "At 11th level, you gain the tier 1 feature from your second subclass."
+      ]
+    },
+    {
+      "name": "Second Subclass Tier 2",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 13,
+      "entries": [
+        "At 13th level, you gain the tier 2 feature from your second subclass."
+      ]
+    },
+    {
+      "name": "Second Subclass Tier 3",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 15,
+      "entries": [
+        "At 15th level, you gain the tier 3 feature from your second subclass."
+      ]
+    },
+    {
+      "name": "Second Subclass Tier 4",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 17,
+      "entries": [
+        "At 17th level, you gain the tier 4 feature from your second subclass."
+      ]
+    },
+    {
+      "name": "Second Subclass Tier 5",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 19,
+      "entries": [
+        "At 19th level, you gain the tier 5 feature from your second subclass."
+      ]
+    },
+    {
+      "name": "Fighting Style",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 1,
+      "entries": [
+        "At 1st level you adopt a particular style of fighting as your specialty. Choose one of the following options. You can't take a Fighting Style option more than once, even if you later get to choose again.",
+        {
+          "type": "entries",
+          "name": "Archery",
+          "entries": [
+            "You gain a +2 bonus to attack rolls you make with ranged weapons."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Battle Ready",
+          "entries": [
+            "You may activate up to 2 combat stances you know without expending any exertion points using the same bonus action. Once you activate a set of combat stances in this way you can't use this feature again until you finish a short or long rest."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Defence",
+          "entries": [
+            "While you are wearing body armour, you gain a +1 bonus to your armour."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Dueling",
+          "entries": [
+            "When you are wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Great Weapon Fighting",
+          "entries": [
+            "When you roll a 1 or 2 on a damage die for an attack you make with a melee weapon that you are wielding with two hands, you can reroll the die and must use the new roll, even if the new roll is a 1 or a 2. The weapon must have the two-handed trait for you to gain this benefit."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Mounted Combatant",
+          "entries": [
+            "While mounted, you gain an expertise die on armour attack rolls against creatures that are Medium-sized or smaller and not mounted."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Protection",
+          "entries": [
+            "When a creature you can see makes an armour attack against a target other than you that is adjacent to you, if you are wielding a shield you can use your reaction to hinder the attack, forcing the creature to roll with disadvantage."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Technical Fighting",
+          "entries": [
+            "Whenever you use a combat maneuver any attacks it triggers have a +1 bonus to their attack rolls and deal 2 additional damage."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Thrown Weapon Fighting",
+          "entries": [
+            "Whenever you would make an attack using a weapon with the Thrown trait you may draw the weapon as part of the attack. In addition, your ranged weapon attacks with Thrown weapons deal an additional 2 damage."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Tireless Fighting",
+          "entries": [
+            "Whenever you expend hit dice to recover exertion points, you recover 3 exertion points per hit die expended (instead of 1d4 exertion points as normal)."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Two-Weapon Fighting",
+          "entries": [
+            "You add your choice of either your Strength or Dexterity modifier to the damage of weapons with the Offhand trait."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Unarmed Fighting",
+          "entries": [
+            "Your damage with brawling weapons is increased by 2. If you start your turn grappling a creature, you may deal bludgeoning DoT damage equal to your Strength modifier to any creature you are grappling."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Combat Maneuvers",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 1,
+      "entries": [
+        "At 1st level, you gain the ability to use {@filter combat maneuvers|spells|Subschool=Maneuver}. You gain proficiency in two combat traditions of your choice. You learn three maneuvers of your choice from traditions you are proficient with.",
+        "You gain an exertion pool equal to twice your proficiency bonus, regaining any spent exertion at the end of a short or long rest. You use your maneuvers by spending points from your exertion pool. The Maneuvers Known column of the Fighter table shows when you learn more maneuvers from a tradition you are proficient with, while the Maneuver Degree column shows the highest degree you can select maneuvers from at a given level.",
+        "Additionally, whenever you complete a long rest, you can choose one of the maneuvers you know and replace it with another maneuver of the same degree from a tradition you are proficient with."
+      ]
+    },
+    {
+      "name": "Soldiering Knacks",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 1,
+      "entries": [
+        "Over the course of your training and adventures you have picked up a variety of skills and tricks to help you make your way. At 1st level you gain a {@filter soldiering knack|optionalfeatures|feature type=sk} of your choice. The Knacks Known column of the Fighter table shows when you learn more fighter soldering knacks."
+      ]
+    },
+    {
+      "name": "Steely Mien",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 2,
+      "entries": [
+        "At 2nd level your combat experience becomes obvious on some subtle level, influencing how people perceive you, or perhaps how you see them. Choose one of the following options:",
+        {
+          "type": "entries",
+          "name": "Closed Helm",
+          "entries": [
+            "You have great control over your emotions; your face is an unmoving mask, revealing nothing of what you're thinking. Creatures have disadvantage on Insight checks made against you. This grants you advantage with the Gossip journey activity when using Deception, but disadvantage with the Pray journey activity when using Persuasion. In addition, you subtract {@dice 1d4} from the attack rolls of attacks that can {@condition charmed|sns|charm} or {@condition frightened|sns|frighten} you."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Heroic Flair",
+          "entries": [
+            "Your victories have emboldened you and you radiate with heroic confidence. You have advantage on Persuasion checks made to influence friendly creatures with a CR lower than your level. This does not affect the Pray journey activity."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Watchful Eye",
+          "entries": [
+            "You are enternally alert and wary, ready for trouble. You have advantage on Insight checks made to determine hostile intent or predict violence (which does not affect the Gossip journey activity), and gain an expertise die in Perception."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Maneuver Specialisation (1)",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 3,
+      "entries": [
+        "As you experience combat and perfect your techniques they get easier for you to perform and more difficult for your foes to overcome. At 3rd level, and again at 7th, 11th, and 15th level you may choose to master a combat maneuver you know. You cannot master the same maneuver more than once in this way.",
+        "The exertion point cost of mastered maneuvers is reduced by 1 (minimum 1).",
+        "You gain a +1 bonus to the attack rolls of mastered maneuvers.",
+        "Any attack you make as part of a mastered maneuver (including triggering attacks) deals 2 additional damage."
+      ]
+    },
+    {
+      "name": "Maneuver Specialisation (2)",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 7,
+      "entries": [
+        "At 7th level you may choose to master another combat maneuver you know, as per your Maneuver Specialisation feature."
+      ]
+    },
+    {
+      "name": "Maneuver Specialisation (3)",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 11,
+      "entries": [
+        "At 11th level you may choose to master another combat maneuver you know, as per your Maneuver Specialisation feature."
+      ]
+    },
+    {
+      "name": "Maneuver Specialisation (4)",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 15,
+      "entries": [
+        "At 15th level you may choose to master another combat maneuver you know, as per your Maneuver Specialisation feature."
+      ]
+    },
+    {
+      "name": "Ability Score Improvement",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 4,
+      "entries": [
+        "When you reach 4th level, you can increase one ability score of your choice by 1. As normal, you can't increase an ability score above 20 using this feature. Additionally, you gain a feat."
+      ]
+    },
+    {
+      "name": "Ability Score Improvement",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 8,
+      "entries": [
+        "When you reach 8th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature. Alternatively, you may gain a feat instead of any increases to your ability scores."
+      ]
+    },
+    {
+      "name": "Ability Score Improvement",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 12,
+      "entries": [
+        "When you reach 12th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature. Alternatively, you may gain a feat instead of any increases to your ability scores."
+      ]
+    },
+    {
+      "name": "Ability Score Improvement",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 16,
+      "entries": [
+        "When you reach 16th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature. Alternatively, you may gain a feat instead of any increases to your ability scores."
+      ]
+    },
+    {
+      "name": "Ability Score Improvement",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 19,
+      "entries": [
+        "When you reach 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature. Alternatively, you may gain a feat instead of any increases to your ability scores."
+      ]
+    },
+    {
+      "name": "Reserves (1)",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 4,
+      "entries": [
+        "At 4th level your stamina increases, allowing you to engage foes longer without tiring. Your exertion pool increases by 1. At 8th, 12th, and 16th level your exertion pool increases by an additional point."
+      ]
+    },
+    {
+      "name": "Reserves (2)",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 8,
+      "entries": [
+        "At 8th level your exertion pool further increases by 1."
+      ]
+    },
+    {
+      "name": "Reserves (3)",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 12,
+      "entries": [
+        "At 12th level your exertion pool further increases by 1."
+      ]
+    },
+    {
+      "name": "Reserves (4)",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 16,
+      "entries": [
+        "At 16th level your exertion pool further increases by 1."
+      ]
+    },
+    {
+      "name": "Empowered Attack (1)",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 5,
+      "entries": [
+        "From 5th level, when you use the Attack action, your main hand weapon's base damage is doubled. For example, a weapon with a damage of {@dice 1d6} + your Strength modifier deals {@dice 2d6} + double your Strength modifier instead."
+      ]
+    },
+    {
+      "name": "Empowered Attack (2)",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 11,
+      "entries": [
+        "From 11th level, when you use the Attack action, your main hand weapon's base damage is tripled. For example, a weapon with a damage of {@dice 1d6} + your Strength modifier deals {@dice 3d6} + triple your Strength modifier instead."
+      ]
+    },
+    {
+      "name": "Martial Lore",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 6,
+      "entries": [
+        "At 6th level, your knowledge of martial lore deepens. Choose one of the following options:",
+        {
+          "type": "entries",
+          "name": "Military Traditions",
+          "entries": [
+            "You've familiarised yourself with wars long past and military protocols of the present. You gain an expertise die on Intelligence checks made to recall lore or gather information regarding warfare or military action. In addition, you gain an expertise die on Charisma checks made to influence soldiers, guards, or other organised martial forces. This does not affect any journey activities."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Size Up",
+          "entries": [
+            "Your combat experience against a wide variety of foes has given you a good eye for evaluating threats. You can use a bonus action to determine the CR of a creature you can see within 200 feet, and that creature's standard DC."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Weapon Lore",
+          "entries": [
+            "You gain an expertise die on Intelligence checks made to recall lore or gather information about weapons, armour, and other martial equipment. This does not affect any journey activities. In addition, you can use an action to investigate the magical properties of such an item by handling it, such as swinging a sword or hefting a shield. You learn its properties, how to use them, whether it requires attunement, and how many charges it has. You also learn if the item has any sentience or bears a curse, though you only learn if it is sentient or cursed (not the nature of that sentience or curse)."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Indomitable (1)",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 9,
+      "entries": [
+        "At 9th level, you can draw upon your indomitable will to overcome pain, resist overwhelming forces, or retaliate when most warriors would be shirking back. You can use this feature and your reaction to perform any of the following:",
+        {
+          "type": "list",
+          "items": [
+            "Force a non-armour attack against you to be rerolled. If you do so, you must use the new roll.",
+            "Reduce the damage you would take from a single instance by {@dice 2d8} + your level.",
+            "Make a single weapon attack against a creature that has just completed an attack against you."
+          ]
+        },
+        "You gain an additional use of this feature at 13th level and a third use starting at 17th level. You regain all spent uses of this feature whenever you finish a long rest."
+      ]
+    },
+    {
+      "name": "Indomitable (2)",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 13,
+      "entries": [
+        "At 13th level, you gain an additional use of your Indomitable feature."
+      ]
+    },
+    {
+      "name": "Indomitable (3)",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 17,
+      "entries": [
+        "At 17th level, you gain an additional use of your Indomitable feature."
+      ]
+    },
+    {
+      "name": "Reputation",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 10,
+      "entries": [
+        "At 10th level, your reputation has begun to precede you. Choose one of the following options:",
+        {
+          "type": "entries",
+          "name": "Inspiring",
+          "entries": [
+            "You're a reputed leader, a person to be trusted whose words are to be heeded. You gain an expertise die on Persuasion checks. In addition, you may spend 1 exertion point as a bonus action to inspire a creature that can hear you. The creature makes an Insight check opposed by your Persuasion check, becoming inspired by you on a failure. Indifferent creatures you inspire this way become friendly towards you and your allies, and friendly creatures you inspire in this way will consider you an ally and may provide you with local information that would otherwise remain secret. Creatures will remain inspired by you indefinitely unless you do something that would make them hostile or lose confidence in you, such as lying, stealing, or causing them or their allies harm, or being proven cowardly or untrustworthy in any way."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Intimidating",
+          "entries": [
+            "You're reputed to be a terror to your foes and a fearsome ally. You gain an expertise die on Intimidation checks. In addition, you can use a bonus action and spend 1 expertion point to intimidate one creature you can see. Make a will attack against the creature with the following outcomes:",
+            {
+              "type": "list",
+              "items": [
+                {
+                  "type": "item",
+                  "name": "Minor success",
+                  "entries": [
+                    "The target is {@condition sluggish|sns} when moving towards you for 1 round."
+                  ]
+                },
+                {
+                  "type": "item",
+                  "name": "Standard success",
+                  "entries": [
+                    "The target is {@condition frightened|sns} for 1 minute, or until it succeeds on a passive save."
+                  ]
+                },
+                {
+                  "type": "item",
+                  "name": "Critical success",
+                  "entries": [
+                    "As standard success, but the target is also {@condition debilitated|sns}."
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Legendary",
+          "entries": [
+            "Your deeds have become epic stories, growing bigger and more outlandish with each retelling. You gain an expertise die on Deception checks. In addition, you can spend 1 exertion point to weave your real legendary deeds into a Persuasion check as boasting, or include fabricated legendary deeds into a Deception check. When you do so, you have advantage on the check. This affects your journey activity checks."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "War's Toll",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 14,
+      "entries": [
+        "At 14th level, your experiences have left their impressions on you. All the lives ended - both friends and foes - inevitably weighs down on a person, and each must find their own way to cope and pay the toll of war. Choose one of the following.",
+        {
+          "type": "entries",
+          "name": "Battle Scarred",
+          "entries": [
+            "You've embraced every victory and loss, and you wear each battle scar like a badge of honour. Whenever you are reduced to 0 hit points you gain a new permanent scar or mark, and you gain Inspiration. Once you gain Inspiration in this way you cannot do so again until you finish a long rest."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Carouser",
+          "entries": [
+            "You cope through drink and revelry, and have mastered both. You can gain the benefits of a long rest by spending 4 hours drinking, carousing, and taking the occasional blackout nap. You can carouse in this way so long as you consume at least 4 pints worth of ale (or equivalent drink), and you are alert and aware of your surroundings while doing so. If you carouse with another creature in this way, you can attempt to learn secrets from it by drinking it under the table. Each hour you spend carousing with a willing creature, make an opposed {@dice d20} roll, adding your fortitudes. On a success, that creature answers a question truthfully (even questions it would not normally answer).",
+            "In addition, you can enjoy alcohol as normal but can't gain the {@condition poisoned|sns} condition from it.",
+            "This feature has no effect on creatures that are immune to the {@condition poisoned|sns} condition."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "One Eye Open",
+          "entries": [
+            "Your life has been so regularly in danger that you've learned to literally sleep with one eye open. You are alert and aware of your surroundings while sleeping during long rests. You can also never be surprised and you gain an expertise die on initiative rolls."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Martial Legacy",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 18,
+      "entries": [
+        "At 18th level, your mastered maneuvers have become as natural as breathing, and you have the opportunity to pass your techniques down to the next generation. By spending 8 hours sparring, you can teach another willing creature a maneuver you have mastered using Maneuver Specialisation. A creature must be proficient in at least one combat tradition to learn a maneuver this way, it can only learn maneuvers of a degree from which it already knows at least one maneuver, and this counts against its number of maneuvers known."
+      ]
+    },
+    {
+      "name": "Warmaster",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "level": 20,
+      "entries": [
+        "At 20th level, you have become an undisputed master of battle. You gain the following features.",
+        {
+          "type": "entries",
+          "name": "Master of Combat",
+          "entries": [
+            "You master every maneuver you know and any future maneuvers you learn as per Maneuver Specialisation. Additionally, choose one manveuver of 3rd degree or less that you know. You are able to use the chosen maneuver without expending any exertion points."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Finishing Blow",
+          "entries": [
+            "You can make spectacular, devastating attacks which inspire awe in those nearby. When you fail to hit with a weapon attack while taking the Attack action, you can choose to score a standard success instead. Alternatively, you can choose to change a standard or major success with a weapon attack into a critical success, or when you score a critical success you can choose to double your critical damage bonus.",
+            "If the Finishing Blow's original outcome was a major success, all hostile creatures who see the Finishing Blow become {@condition frightened|sns} for 1 minute.",
+            "Once you use this feature, you can't use it again until you finish a short or long rest."
+          ]
+        }
+      ]
+    }
+  ],
+  "subclassFeature": [
+    {
+      "name": "Sharpshooter",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "subclassShortName": "Sharpshooter",
+      "subclassSource": "sns",
+      "level": 1,
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Crack Shot",
+          "level": 1,
+          "entries": [
+            "At tier 1, your training with ranged weapons grants the following benefits:",
+            {
+              "type": "list",
+              "items": [
+                "You do not have disadvantage on ranged weapon attack rolls due to being adjacent to a hostile creature or attacking at long range.",
+                "Your ranged weapon attack rolls ignore half cover and three-quarters covers."
+              ]
+            }
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Sharpshooting Traditions",
+          "level": 1,
+          "entries": [
+            "Also at tier 1, you gain proficiency in one of the following combat traditions of your choice: {@filter Biting Zephyr|spells|Subschool=biting zephyr|}, {@filter Razor's Edge|spells|Subschool=razor's edge|}, {@filter Unending Wheel|spells|Subschool=unending wheel|}."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Sharpshooter Major Effect #1",
+          "level": 1,
+          "entries": [
+            "For 1 round, attacks against the target have +2 critical hit range. If the target dies from this attack, your attacks have +2 critical hit range for the rest of the combat, or until you land a critical hit."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Focus Shot",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "subclassShortName": "Sharpshooter",
+      "subclassSource": "sns",
+      "level": 5,
+      "header": 2,
+      "entries": [
+        "At tier 3, you've become precise enough that when given enough time to focus you can not only strike your target, but hit specific parts of your target to great effect. Once per turn, whenever you take the Attack action and make a ranged attack, you may forgo one instance of your Empowered Attack feature to make the attack a Focus Shot. When you make a Focus Shot choose one of the following options. You gain an expertise die on the attack, and on a hit it does your chosen effect in addition to the attack's damage.",
+        "Creatures wounded by any of these effects can end the effect upon passing a passive save. Alternatively, the wounded creature (or a creature adjacent to it) can use an action to make a Medicine check against your standard DC, ending the effect on a success. Receiving any healing also ends the effect. You cannot choose effects that specifically target features a creature does not have.",
+        {
+          "type": "list",
+          "items": [
+            "Aim for the Eyes: You aim for the creature's weak and delicate eyes. If the Focus Shot scores a major success, the target is {@condition blinded|sns} until it recovers.",
+            "Bring it Down: You aim for weak points on the creature's legs. If the Focus Shot scores a major success, its Speed is reduced by half until it recovers.",
+            "Center of Mass: You aim for the heart or its horrid equivalent. Your Focus Shot's critical success range increases by 1.",
+            "Vein Slice: You aim for a vital vein or artery to bleed your target out. If the Focus Shot scores a major success, the target takes {@dice 1d6} ongoing damage of your weapon's base type until it recovers.",
+            "Wing Clip: You aim for your target's wings. If the Focus Shot scores a major success, the target's flying speed is reduced by half until it recovers. Creatures who are currently flying when this effect begins immediately plummet up to 60 feet down and take falling damage as normal."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Sharpshooter Major Effect #2",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "subclassShortName": "Sharpshooter",
+      "subclassSource": "sns",
+      "level": 5,
+      "header": 2,
+      "entries": [
+        "For 1 round, if you make a ranged weapon attack as part of a maneuver you perform (e.g. Missile Volley, Horizon Shot), or use a bonus action to perform a maneuver that impacts your next ranged weapon attack (e.g. Doubleshot, Blindshot), it has no Exertion cost."
+      ]
+    },
+    {
+      "name": "Hawkeye",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "subclassShortName": "Sharpshooter",
+      "subclassSource": "sns",
+      "level": 3,
+      "header": 2,
+      "entries": [
+        "At tier 2, you have become incredibly observant and alert. You gain an expertise die on Investigation and Perception checks, and on initiative rolls."
+      ]
+    },
+    {
+      "name": "Sniper",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "subclassShortName": "Sharpshooter",
+      "subclassSource": "sns",
+      "level": 3,
+      "header": 2,
+      "entries": [
+        "Also from tier 2, your threshold for landing a major success with ranged weapon attacks is reduced by 1."
+      ]
+    },
+    {
+      "name": "Reflexive Shot",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "subclassShortName": "Sharpshooter",
+      "subclassSource": "sns",
+      "level": 7,
+      "header": 2,
+      "entries": [
+        "At tier 4, your accurate reflexes allow you to threaten shots at a moment's notice. You may make opportunity attacks using ranged weapons, acting as if your reach were 5 feet."
+      ]
+    },
+    {
+      "name": "Critical Shot",
+      "source": "sns",
+      "className": "Fighter",
+      "classSource": "sns",
+      "subclassShortName": "Sharpshooter",
+      "subclassSource": "sns",
+      "level": 9,
+      "header": 2,
+      "entries": [
+        "At tier 5, you can hit miniscule targets at ludicrous ranges with seemingly impossible accuracy. Whenever you take the Attack action, you may forgo all instances of your Empowered Attack feature to turn your attack into a Critical Shot, making the attack with advantage. If your Critical Shot hits it becomes a critical success."
+      ]
+    }
+  ],
+  "optionalfeature": [
+    {
+      "name": "Amphibious Combatant",
+      "source": "sns",
+      "featureType": [
+        "SK"
+      ],
+      "entries": [
+        "You gain a swimming speed equal to your Speed, and may spend 1 exertion to reroll a failed Strength or Dexterity check related to aquatic activity (such as Athletics checks to swim or Acrobatics checks to keep balance on a ship's deck). You may choose whether to use the new roll or the original. In addition, you add your proficiency bonus to the number of minutes you can hold your breath before suffocating, and can spend 1 exertion to hold your breath for additional minutes equal to your proficiency bonus. This does not affect your journey activities."
+      ]
+    },
+    {
+      "name": "Burst of Strength",
+      "source": "sns",
+      "featureType": [
+        "SK"
+      ],
+      "entries": [
+        "You have moments of incredible strength. You may spend 1 exertion to add your proficiency bonus to a Strength check, even if you already add your proficiency bonus to the check."
+      ]
+    },
+    {
+      "name": "Campaigner",
+      "source": "sns",
+      "featureType": [
+        "SK"
+      ],
+      "entries": [
+        "You have the ability to go for the long haul, carrying heavy equipment across long distances. You add your Strength modifier an additional time to your Brawn checks. You may also reduce the duration of journeys by 1 day, to a minimum of 1. This must be decided at the start of the journey and the decision cannot be changed throughout it."
+      ]
+    },
+    {
+      "name": "Clearsight Sentinel",
+      "source": "sns",
+      "featureType": [
+        "SK"
+      ],
+      "entries": [
+        "You gain 60 feet of darkvision. In addition, you do not suffer disadvantage on Perception checks in dim light."
+      ]
+    },
+    {
+      "name": "Extreme Leap",
+      "source": "sns",
+      "featureType": [
+        "SK"
+      ],
+      "entries": [
+        "When you take the Dash action and make a long jump after moving no less than 20 feet, your jump distance is doubled for the turn. You may spend 1 exertion to triple your jump distance for the turn instead, and may move the full distance of your jump even if it exceeds your Speed."
+      ]
+    },
+    {
+      "name": "Mountaineer",
+      "source": "sns",
+      "featureType": [
+        "SK"
+      ],
+      "entries": [
+        "You gain a climbing speed equal to your Speed. In addition, moving through non-magical difficult terrain costs you no extra movement."
+      ]
+    },
+    {
+      "name": "Nightwatch",
+      "source": "sns",
+      "featureType": [
+        "SK"
+      ],
+      "entries": [
+        "You are used to sleeping light and making the most of your rest. When taking a long rest, add your proficiency bonus to the number of hours you can spend in light activity. In addition, one hour of that time can be spent in strenuous activity near the rest site (such as patrolling, fighting, or other adventuring activities) without interrupting your rest. This allows you to perform an additional disadvantaged journey activity for the day if you wish."
+      ]
+    },
+    {
+      "name": "Stable Footing",
+      "source": "sns",
+      "featureType": [
+        "SK"
+      ],
+      "entries": [
+        "A steady stance and careful footwork is instinctive to you. You have advantage on any check or save to avoid falling {@condition prone|sns} or handle difficult ground (such as against a {@spell grease|sns} spell or slippery ice), and any non-armour attacks against you attempting to do similar things to you have disadvantage. You are never {@condition prone|sns} after taking fall damage, and when calculating fall damage you treat the fall distance as if it were shorter by a number of feet equal to your proficiency bonus x 10."
+      ]
+    },
+    {
+      "name": "Weather Beaten",
+      "source": "sns",
+      "featureType": [
+        "SK"
+      ],
+      "entries": [
+        "Exposed to all kinds of weather over your life, you are inured to all but the most deadly effects. Attacks against you from cold and hot weather, as well as any adverse effects from wind or precipitation, have disadvantage. This also allows you to ignore the effects of these types of weather during journeys, if you wish."
+      ]
+    }
+  ]
+}

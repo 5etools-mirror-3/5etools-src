@@ -1,0 +1,1534 @@
+{
+  "_meta": {
+    "sources": [
+      {
+        "json": "sns",
+        "abbreviation": "S&S",
+        "full": "Spies & Spiders",
+        "authors": [
+          "Spies & Spiders"
+        ],
+        "version": "0.0.1"
+      }
+    ],
+    "dateAdded": 0,
+    "dateLastModified": 0,
+    "optionalFeatureTypes": {
+      "SF": "Sign of Faith"
+    }
+  },
+  "class": [
+    {
+      "name": "Cleric",
+      "source": "sns",
+      "hd": {
+        "number": 1,
+        "faces": 8
+      },
+      "proficiency": [
+        "wis",
+        "cha"
+      ],
+      "spellcastingAbility": "wis",
+      "casterProgression": "full",
+      "preparedSpells": "<$level$> + <$wis_mod$>",
+      "cantripProgression": [
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "startingProficiencies": {
+        "weapons": [
+          "simple"
+        ],
+        "skills": [
+          {
+            "choose": {
+              "from": [
+                "history",
+                "insight",
+                "medicine",
+                "persuasion",
+                "religion"
+              ],
+              "count": 2
+            }
+          }
+        ]
+      },
+      "startingEquipment": {
+        "additionalFromBackground": true,
+        "default": [
+          "(a) a {@item mace|phb} or (b) a {@item warhammer|phb} (if proficient)",
+          "(a) {@item scale mail|phb}, (b) {@item leather armor|phb}, or (c) {@item chain mail|phb} (if proficient)",
+          "(a) a {@item light crossbow|phb} and {@item Crossbow Bolts (20)|phb|20 bolts} or (b) any {@filter simple weapon|items|source=phb|category=basic|type=simple weapon}",
+          "(a) a {@item priest's pack|phb} or (b) an {@item explorer's pack|phb}",
+          "A {@item shield|phb} and a {@item holy symbol|phb}"
+        ],
+        "goldAlternative": "{@dice 5d4 x 10|5d4 x 10|Starting Gold}",
+        "defaultData": [
+          {
+            "a": [
+              "mace|phb"
+            ],
+            "b": [
+              "warhammer|phb"
+            ]
+          },
+          {
+            "a": [
+              "scale mail|phb"
+            ],
+            "b": [
+              "leather armor|phb"
+            ],
+            "c": [
+              "chain mail|phb"
+            ]
+          },
+          {
+            "a": [
+              "light crossbow|phb",
+              "Crossbow Bolts (20)|phb"
+            ],
+            "b": [
+              {
+                "equipmentType": "weaponSimple"
+              }
+            ]
+          },
+          {
+            "a": [
+              "priest's pack|phb"
+            ],
+            "b": [
+              "explorer's pack|phb"
+            ]
+          },
+          {
+            "_": [
+              "shield|phb",
+              "holy symbol|phb"
+            ]
+          }
+        ]
+      },
+      "multiclassing": {
+        "requirements": {
+          "wis": 13
+        },
+        "proficienciesGained": {
+          "armor": [
+            "light",
+            "medium",
+            "{@item shield|phb|shields}"
+          ]
+        }
+      },
+      "classTableGroups": [
+        {
+          "colLabels": [
+            "{@filter Signs Known|optionalfeatures|feature type=sf}",
+            "{@filter Cantrips Known|spells|level=0|class=Cleric}"
+          ],
+          "rows": [
+            [
+              0,
+              3
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              5
+            ]
+          ]
+        },
+        {
+          "title": "Spell Slots per Spell Level",
+          "colLabels": [
+            "{@filter 1st|spells|level=1|class=Cleric}",
+            "{@filter 2nd|spells|level=2|class=Cleric}",
+            "{@filter 3rd|spells|level=3|class=Cleric}",
+            "{@filter 4th|spells|level=4|class=Cleric}",
+            "{@filter 5th|spells|level=5|class=Cleric}",
+            "{@filter 6th|spells|level=6|class=Cleric}",
+            "{@filter 7th|spells|level=7|class=Cleric}",
+            "{@filter 8th|spells|level=8|class=Cleric}",
+            "{@filter 9th|spells|level=9|class=Cleric}"
+          ],
+          "rowsSpellProgression": [
+            [
+              2,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              3,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              2,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              2,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              2,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              2,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              2,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              2,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              2,
+              1,
+              1,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              2,
+              1,
+              1,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              2,
+              1,
+              1,
+              1,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              2,
+              1,
+              1,
+              1,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              2,
+              1,
+              1,
+              1,
+              1
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              3,
+              1,
+              1,
+              1,
+              1
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              3,
+              2,
+              1,
+              1,
+              1
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              3,
+              2,
+              2,
+              1,
+              1
+            ]
+          ]
+        }
+      ],
+      "classFeatures": [
+        {
+          "classFeature": "First Subclass Tier 1|Cleric|sns|1",
+          "gainSubclassFeature": true
+        },
+        "Defensive Blessing|Cleric|sns|1",
+        "Sacred Call|Cleric|sns|1",
+        "Spellcasting|Cleric|sns|1",
+        "Channel Divinity (1/rest)|Cleric|sns|2",
+        "Principles of Devotion|Cleric|sns|2",
+        "Signs of Faith|Cleric|sns|3",
+        {
+          "classFeature": "First Subclass Tier 2|Cleric|sns|3",
+          "gainSubclassFeature": true
+        },
+        "Ability Score Improvement|Cleric|sns|4",
+        "Sacred Office|Cleric|sns|4",
+        "Empowered Turning (1)|Cleric|sns|5",
+        {
+          "classFeature": "First Subclass Tier 3|Cleric|sns|5",
+          "gainSubclassFeature": true
+        },
+        "Channel Divinity (2/rest)|Cleric|sns|6",
+        {
+          "classFeature": "First Subclass Tier 4|Cleric|sns|7",
+          "gainSubclassFeature": true
+        },
+        "Ability Score Improvement|Cleric|sns|8",
+        "Empowered Turning (2)|Cleric|sns|8",
+        "Sacred Presence|Cleric|sns|9",
+        {
+          "classFeature": "First Subclass Tier 5|Cleric|sns|9",
+          "gainSubclassFeature": true
+        },
+        "Providence|Cleric|sns|10",
+        "Empowered Turning (3)|Cleric|sns|11",
+        "Second Subclass Tier 1|Cleric|sns|11",
+        "Ability Score Improvement|Cleric|sns|12",
+        "Second Subclass Tier 2|Cleric|sns|13",
+        "Empowered Turning (4)|Cleric|sns|14",
+        "Second Subclass Tier 3|Cleric|sns|15",
+        "Ability Score Improvement|Cleric|sns|16",
+        "Empowered Turning (5)|Cleric|sns|17",
+        "Second Subclass Tier 4|Cleric|sns|17",
+        "Channel Divinity (3/rest)|Cleric|sns|18",
+        "Ability Score Improvement|Cleric|sns|19",
+        "Second Subclass Tier 5|Cleric|sns|19",
+        "Avatar of Faith|Cleric|sns|20"
+      ],
+      "subclassTitle": "Cleric Subclass"
+    }
+  ],
+  "subclass": [
+    {
+      "name": "Sun Priest",
+      "shortName": "Sun Priest",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "additionalSpells": [
+        {
+          "prepared": {
+            "1": [
+              "burning hands|sns",
+              "faerie fire|sns"
+            ],
+            "3": [
+              "continual flame|sns",
+              "scorching ray|sns"
+            ],
+            "5": [
+              "darklight|sns",
+              "fireball|sns"
+            ],
+            "7": [
+              "fire shield|sns",
+              "wall of fire|sns"
+            ],
+            "9": [
+              "creation|sns",
+              "wall of force|sns"
+            ]
+          }
+        }
+      ],
+      "subclassFeatures": [
+        "Sun Priest|Cleric|sns|Sun Priest|sns|1",
+        "Channel Divinity: Radiant Burst|Cleric|sns|Sun Priest|sns|3",
+        "Honed Searing|Cleric|sns|Sun Priest|sns|3",
+        "Fierce Flash|Cleric|sns|Sun Priest|sns|5",
+        "Sun Priest Major Effect #2|Cleric|sns|Sun Priest|sns|5",
+        "Harness the Flame|Cleric|sns|Sun Priest|sns|7",
+        "Channel Divinity: Summon the Stars|Cleric|sns|Sun Priest|sns|9"
+      ]
+    }
+  ],
+  "classFeature": [
+    {
+      "name": "First Subclass Tier 1",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "level": 1,
+      "entries": [
+        "At 1st level, you gain the tier 1 feature from your first subclass.",
+        {
+          "type": "entries",
+          "name": "Subclass Spells",
+          "entries": [
+            "With your subclass you gain access to a list of subclass spells at the levels noted in your subclass description. Once you gain a subclass spell it is always prepared and doesn't count against the spells you can prepare each day.",
+            "If you gain a subclass spell that is not on the cleric spell list, it is considered cleric spell for you."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "First Subclass Tier 2",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "level": 3,
+      "entries": [
+        "At 3rd level, you gain the tier 2 feature from your first subclass."
+      ]
+    },
+    {
+      "name": "First Subclass Tier 3",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "level": 5,
+      "entries": [
+        "At 5th level, you gain the tier 3 feature from your first subclass."
+      ]
+    },
+    {
+      "name": "First Subclass Tier 4",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "level": 7,
+      "entries": [
+        "At 7th level, you gain the tier 4 feature from your first subclass."
+      ]
+    },
+    {
+      "name": "First Subclass Tier 5",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "level": 9,
+      "entries": [
+        "At 9th level, you gain the tier 5 feature from your first subclass."
+      ]
+    },
+    {
+      "name": "Second Subclass Tier 1",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "level": 11,
+      "entries": [
+        "At 11th level, you gain the tier 1 feature from your second subclass."
+      ]
+    },
+    {
+      "name": "Second Subclass Tier 2",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "level": 13,
+      "entries": [
+        "At 13th level, you gain the tier 2 feature from your second subclass."
+      ]
+    },
+    {
+      "name": "Second Subclass Tier 3",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "level": 15,
+      "entries": [
+        "At 15th level, you gain the tier 3 feature from your second subclass."
+      ]
+    },
+    {
+      "name": "Second Subclass Tier 4",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "level": 17,
+      "entries": [
+        "At 17th level, you gain the tier 4 feature from your second subclass."
+      ]
+    },
+    {
+      "name": "Second Subclass Tier 5",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "level": 19,
+      "entries": [
+        "At 19th level, you gain the tier 5 feature from your second subclass."
+      ]
+    },
+    {
+      "name": "Defensive Blessing",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "level": 1,
+      "entries": [
+        "Starting at 1st level, the high powers which guide you bestow a modicum of protection for your journey. Choose one of the following options.",
+        {
+          "type": "entries",
+          "name": "Armour of Conviction",
+          "entries": [
+            "While you are not wearing any body armour or wielding a shield, your armour is equal to half your Wisdom modifier.",
+            "Also, in addition to the spells you normally prepare, you always have {@spell shield of faith|sns} prepared."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Sacred Archery",
+          "entries": [
+            "You gain proficiency with light armour, medium armour, and ranged martial weapons."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Spirit Soldier",
+          "entries": [
+            "You gain proficiency with light armour, medium armour, and shields."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Sacred Call",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "level": 1,
+      "entries": [
+        "Also at 1st level, your clerical vocation anoints you with certain graces for spreading your message to the people. Choose one of the following.",
+        {
+          "type": "entries",
+          "name": "Clerical Charisma",
+          "entries": [
+            "Crowds find your public presence irresistable. You gain proficiency in the Performance skill. Whenever you use Performance to deliver a sermon or to sing holy songs in a town or city, even on a failed check other than a natural 1, you still attract a crowd of people no smaller than your standard DC."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Ordination",
+          "entries": [
+            "Your mission in the world is supported by the spiritual community or religious hierarchy who called you to religious service. As a formal leader within your religious order, you are expected to perform the ceremonies of your faith, including weddings and funerals. In exchange, members of your faith provide you and your companions with food, lodging, and a modest lifestyle. This also improves their default attitude towards you to friendly.",
+            "Additionally, if your congregation or order is able, they send you letters with regular updates about their well-being. They are willing to help connect you with other chapters of your faith through letters of introduction."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Zeal of the Convert",
+          "entries": [
+            "You enthusiastically see the hand of a greater entity everywhere. You gain advantage on Persuasion checks when you invoke the name of your deity or movement during a conversation with a pious person. If the listener is negatively disposed to your greater entity or movement, you have disadvantage instead. This balances out to not affect your journey activity checks."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Spellcasting",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "level": 1,
+      "entries": [
+        "As a conduit for divine power, you can cast cleric spells. See {@book chapter 10|PHB|10} for the general rules of spellcasting and {@book chapter 11|PHB|11} for a selection of {@filter cleric spells|spells|class=cleric}.",
+        {
+          "type": "entries",
+          "name": "Cantrips",
+          "entries": [
+            "At 1st level, you know three cantrips of your choice from the cleric spell list. You learn additional cleric cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Cleric table."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Preparing and Casting Spells",
+          "entries": [
+            "The Cleric table shows how many spell slots you have to cast your {@filter cleric spells|spells|class=cleric} of 1st level and higher. To cast one of these spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.",
+            "You prepare the list of cleric spells that are available for you to cast, choosing from the cleric spell list. When you do so, choose a number of cleric spells equal to your Wisdom modifier + your cleric level (minimum of one spell). The spells must be of a level for which you have spell slots.",
+            "For example, if you are a 3rd-level cleric, you have four 1st-level and two 2nd-level spell slots. With a Wisdom of 16, your list of prepared spells can include six spells of 1st or 2nd level, in any combination. If you prepare the 1st-level spell {@spell cure wounds|sns}, you can cast it using a 1st-level or 2nd-level slot. Casting the spell doesn't remove it from your list of prepared spells.",
+            "You can change your list of prepared spells when you finish a long rest. Preparing a new list of cleric spells requires time spent in prayer and meditation: at least 1 minute per spell level for each spell on your list."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Spellcasting Ability",
+          "entries": [
+            "Wisdom is your spellcasting ability for your cleric spells. The power of your spells comes from your devotion to your deity. You use your Wisdom whenever a cleric spell refers to your spellcasting ability."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Spellcasting Focus",
+          "entries": [
+            "You can use a {@item holy symbol|phb} as a spellcasting focus for your cleric spells."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Channel Divinity (1/rest)",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "level": 2,
+      "entries": [
+        "At 2nd level, you are able to channel the energy of your greater entity directly, and use it for a variety of magical effects. You start with one of these effects, Turn Undead, and can gain additional effects from your Cleric Subclasses. Some subclasses provide additional uses of Channel Divinity as your cleric level increases, detailed under the heading of your chosen archetypes.",
+        "You may choose which Channel Divinity effect to create each time you use this feature. You must then finish a short or long rest before you're able to Channel Divinity again.",
+        "From 6th level you can use your Channel Divinity twice between rests, and beginning at 18th level you can use it three times between rests. Finishing a short or long rest regains your expended uses.",
+        {
+          "type": "entries",
+          "name": "Channel Divinity: Turn Undead",
+          "entries": [
+            "As an action, you present the holy symbol of your greater entity and speak a divine word, rebuking the undead. Make a will attack against each undead creature within 30 feet of you that can sense you, with the following outcomes:. If the creature fails it is turned for 1 minute or until it takes damage from any source.",
+            {
+              "type": "list",
+              "items": [
+                {
+                  "type": "item",
+                  "name": "Minor success",
+                  "entries": [
+                    "The target is {@condition sluggish|sns} when moving towards you for 1 round."
+                  ]
+                },
+                {
+                  "type": "item",
+                  "name": "Standard success",
+                  "entries": [
+                    "The target is turned for 1 minute, or until it takes damage from any source. If this effect ends from damage and the target spent at least one of its own turns turned, it immediately takes a turn. This does not affect initiative order."
+                  ]
+                },
+                {
+                  "type": "item",
+                  "name": "Critical success",
+                  "entries": [
+                    "As standard success, but the target is also vulnerable to all damage while turned."
+                  ]
+                }
+              ]
+            },
+            "A turned creature must use its turns trying to move as far away from you as possible. It cannot willingly move to a space within 30 feet of you by moving towards you. It also cannot take reactions. On its action, it can use only the Dash action or try to escape any effect that prevents it from moving. If there's nowhere to move, the creature can use the Dodge action."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Channel Divinity (2/rest)",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "level": 6,
+      "entries": [
+        "From 6th level, you can use your Channel Divinity twice between rests."
+      ]
+    },
+    {
+      "name": "Channel Divinity (3/rest)",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "level": 18,
+      "entries": [
+        "From 18th level, you can use your Channel Divinity thrice between rests."
+      ]
+    },
+    {
+      "name": "Principles of Devotion",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "level": 2,
+      "entries": [
+        "At 2nd level, after much contemplation and communication with your greater entity, you pledge to uphold certain standards of behaviour beyond what is necessary for adventure. In return, your greater entity grants you one of the following related boons. When you fail to uphold this pledge, you lose any benefits from it until 24 hours after you finish a long rest and rededicate yourself.",
+        {
+          "type": "entries",
+          "name": "Chaste",
+          "entries": [
+            "In exchange for forgoing pleasures of the heart and flesh, you are hardened to the persuasions of others. Subtract your Wisdom modifier from any attack rolls made against you that can {@condition charmed|sns|charm}. You also gain an expertise die in your choice of Insight, Persuasion, or Religion checks."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Destitute",
+          "entries": [
+            "In exchange for forgoing material luxury, vendors who are not explicitly opposed to your greater entity are compelled to give you heavy discounts of up to 20%, and inkeeps offer free lodging."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Devotional Integrity",
+          "entries": [
+            "You adhere to a strict code of morality and ethics. When an action you take is honest and non-violent, until the end of your turn you are immune to the {@condition rattled|sns} condition and you do not suffer disadvantage or penalties on Intelligence, Wisdom, or Charisma checks made as part of that action."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Image of the Divine",
+          "entries": [
+            "You exhibit a uniform, makeup, tattoo, or body modification indicating your higher entity or religious order. Creatures have advantage when discerning your religious identity. Attacks that can {@condition frightened|sns|frighten} and Intimidation checks made against you have disadvantage. You also gain an expertise die in your choice of Insight, Intimidation, or Persuasion checks."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Merciful",
+          "entries": [
+            "In exchange for forgoing bloodshed - torture, attacking {@condition unconscious|sns} creatures, and intentionally dealing lethal wounds to creatures you reduce to 0 hit points - you are yourself granted mercy. While you have at least two failed death saves, you have advantage on death saves."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Rule of Ritual",
+          "entries": [
+            "You make formal religious observances and perform ritual timekeeping. You can spend 1 hour during a long rest to make these observances, and if you do you only need 4 hours of sleep instead of the normal 6. You learn the {@spell guidance|sns} cantrip if you do not already know it, and when you grant expertise dice with a levelled spell, the expertise die you grant increases by one step."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Secrecy",
+          "entries": [
+            "Your mission from your deity requires you to work undercover, concealing your true self with a secret identity. In exchange for forgoing the pleasure of true connection and friendship, you gain an expertise die on Deception checks."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Severity",
+          "entries": [
+            "In exchange for forgoing weakness such as helping or protecting others (except when it serves you), you add your Wisdom modifier to Perception checks made to find valuable objects, and on opposed checks made against the Persuasion check of another creature. This benefits your Insight journey activity checks, but no others."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Silence",
+          "entries": [
+            "In exchange for speaking only to cast spells, you are able to compel other creatures to action with only a glance. Your Persuasion bonus is not factored into your party's Group Persuasion bonus, but the Group Persuasion bonus is increased by your Wisdom modifier."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Signs of Faith",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "level": 3,
+      "entries": [
+        "At 3rd level, you gain a {@filter sign of faith|optionalfeatures|feature type=sf} of your choice. The Signs Known column of the Cleric table shows when you gain new signs."
+      ]
+    },
+    {
+      "name": "Ability Score Improvement",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "level": 4,
+      "entries": [
+        "When you reach 4th level, you can increase one ability score of your choice by 1. As normal, you can't increase an ability score above 20 using this feature. Additionally, you gain a feat."
+      ]
+    },
+    {
+      "name": "Ability Score Improvement",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "level": 8,
+      "entries": [
+        "When you reach 8th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature. Alternatively, you may gain a feat instead of any increases to your ability scores."
+      ]
+    },
+    {
+      "name": "Ability Score Improvement",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "level": 12,
+      "entries": [
+        "When you reach 12th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature. Alternatively, you may gain a feat instead of any increases to your ability scores."
+      ]
+    },
+    {
+      "name": "Ability Score Improvement",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "level": 16,
+      "entries": [
+        "When you reach 16th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature. Alternatively, you may gain a feat instead of any increases to your ability scores."
+      ]
+    },
+    {
+      "name": "Ability Score Improvement",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "level": 19,
+      "entries": [
+        "When you reach 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature. Alternatively, you may gain a feat instead of any increases to your ability scores."
+      ]
+    },
+    {
+      "name": "Sacred Office",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "level": 4,
+      "entries": [
+        "Also at 4th level, your mission has taken root and is known through much of the land, conveying rumours both good and ill about your deeds. Choose one of the following.",
+        {
+          "type": "entries",
+          "name": "Auspicious Collaborator",
+          "entries": [
+            "The higher powers you are attuned to have witnessed your deeds and bestowed upon you a quality of worthiness. Your requests for aid are perceived as opportunities for partnership rather than impositions.",
+            "People of all backgrounds are more drawn to help you than they would ordinarily be. You gain an expertise die in Persuasion, and an additional expertise die on Persuasion checks related to seeking aid. The Pray journey activity counts as seeking aid."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Divine Authority",
+          "entries": [
+            "Your connection to religious hierarchy opens many doors. Sermons you give and courtesy calls you make to different religious groups put you in contact with a local representative of your faith, who is happy to strongly recommend you to another local leader. You gain an expertise die in your choice of Insight or Persuasion. In addition, you gain an expertise die on Insight and Persuasion checks made against local leaders to whom you are recommended that would otherwise be indifferent towards you."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Engaging Proclaimer",
+          "entries": [
+            "Your recitations of divine stories, songs, or chants quickly build and hold an audience's attention, whether you are speaking to a packed tavern or a smaller gathering. You gain an expertise die on Performance checks to gather and hold the attention of 2 or more people. This counts for Busk and Entertain journey activity checks. In addition, you gain an expertise die in your choice of Perfomance or Religion checks."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Reputation",
+          "entries": [
+            "Your reputation for talented ministry and good work precedes you. Common folk frequently recognise you on sight, and those who do often have a friendly disposition towards you. They often ask you for counsel, favours, and blessings. The disposition of people they introduce you to are one stage better than normal (the indifferent become friendly, the hostile become indifferent)."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Symbol of Might",
+          "entries": [
+            "The strength of the powers you serve is obvious to anybody you interact with, and you are able to use it to garner a certain level of fear and compliance. You gain an expertise die in Intimidation, and you gain an additional expertise die on Intimidation checks made to convince others to comply with your demands. This counts for Rob journey activity checks. The people you intimidate are no longer friendly towards you, if they were previously."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Empowered Turning (1)",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "level": 5,
+      "entries": [
+        "At 5th level your greater entity grants you improved ways to turn undead or other abhorrent beings. You gain this feature again at 8th, 11th, 14th, and 17th level. Each time you gain Empowered Turning, choose one of the following:",
+        {
+          "type": "entries",
+          "name": "Command Undead",
+          "entries": [
+            "If you choose, creatures you turn instead regard you as their master for the duration. While they are under this effect, you may use your action to issue simple commands (no more than a sentence or two) which they are compelled to obey. They will not take any action that is obviously harmful to them, and so will not leap from a great height, jump onto a sword, or purposefully self-inflict any damage. They follow the command until you issue a new one. During combat, this simply counts as the target being {@condition dominated|sns}."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Destroy Undead",
+          "entries": [
+            "Creatures turned by you of CR 1/2 or less are immediately destroyed, transformed into dust by a blinding flash of light. You can select this option multilpe times. Each time you choose it, you are able to destroy more powerful creatures, progressing to CR 1, CR 2, CR 3, and then CR 4 each subsequent time you select this option."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Turn Ideology",
+          "entries": [
+            "Choose one of the following: Chaotic, Evil, Good, or Lawful. When you use Turn Undead, you can also choose to affect creatures with the chosen alignment trait. You can select this option multiple times."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Turn Supernatural",
+          "entries": [
+            "Choose a creature type from celestial, elemental, fey, or fiend. When you use Turn Undead, you can also choose to affect creatures of that type. You can select this option multiple times."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Empowered Turning (2)",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "level": 8,
+      "entries": [
+        "At 8th level, you gain another choice from your Empowered Turning options."
+      ]
+    },
+    {
+      "name": "Empowered Turning (3)",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "level": 11,
+      "entries": [
+        "At 11th level, you gain another choice from your Empowered Turning options."
+      ]
+    },
+    {
+      "name": "Empowered Turning (4)",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "level": 14,
+      "entries": [
+        "At 14th level, you gain another choice from your Empowered Turning options."
+      ]
+    },
+    {
+      "name": "Empowered Turning (5)",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "level": 17,
+      "entries": [
+        "At 17th level, you gain another choice from your Empowered Turning options."
+      ]
+    },
+    {
+      "name": "Sacred Presence",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "level": 9,
+      "entries": [
+        "At 9th level, you bring the true presence of your ideals wherever you go. Choose one of the following.",
+        {
+          "type": "entries",
+          "name": "Cosmic Idealist",
+          "entries": [
+            "Your moral compass aligns with the transcendent forces of the multiverse. Choose Chaotic, Evil, Good, Lawful, or one of the following: Chaotic and Evil, Chaotic and Good, Lawful and Evil, or Lawful and Good. You gain the chosen alignment trait or alignment traits, though you do not need to act upon them. You can identify creatures that have the same alignment traits as you, and you have advantage when making Intelligence, Wisdom, or Charisma checks against them.",
+            "Additionally, you do not suffer negative effects from being on a plane with which you share an alignment trait."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Eyes of the Heart",
+          "entries": [
+            "You have a way of really seeing folk's inner character. When you succeed on a contested Insight check, if the opposing creature's Charisma score is equal to or less than your standard DC, for the next 24 hours you do not need to make any further checks to recognise whenever that creature is lying, telling the truth, or excluding information."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Spiritual Salve",
+          "entries": [
+            "Your spiritual mindset has given you unique insights that can help you and your companions endure hardships. Your constant encouragements and proverbs allow allies within 30 feet of you to reroll a fortitude attack against them. If they do so, they must use the new roll. Once a creature has used your Spiritual Salve to make a reroll, it cannot do so again until it has finished a long rest."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Providence",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "level": 10,
+      "entries": [
+        "At 10th level, the potency of your faith increases. Choose one of the following.",
+        {
+          "type": "entries",
+          "name": "Divine Intervention",
+          "entries": [
+            "Beginning at 10th level, you can use an action to call on your deity to intervene on your behalf when your need is great. Describe the assistance you seek and roll percentile dice. If you roll a number equal to or lower than your level, your deity intervenes. The DM chooses the nature of the intervention; the effect of any spell would be appopriate. If your deity intervenes, you can't use this feature again for 7 days. Otherwise, you can use it again after you finish a long rest.",
+            "After each failed divine intervention roll, add 1 to the number required to succeed until it is a success, at which point it resets to your cleric level or below.",
+            "At 20th level, your call for intervention succeeds automatically, no roll required."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Imminent Turning",
+          "entries": [
+            "A powerful connection to the life force of your greater entity extends the range of your Turn Undead. You may now Turn Undead from up to 60 feet away."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Master Ritualist",
+          "entries": [
+            "Careful study of your holy texts has made you intimiately familiar with all of your ritual spells. You may cast any ritual spell in the cleric spell list as a ritual, whether or not you have it prepared."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Prayer of Protection",
+          "entries": [
+            "After each long rest choose one damage type from the following list: cold, fire, force, lightning, necrotic, psychic, radiant, or thunder. You gain 50% resistance to this damage type until the end of your next long rest."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Avatar of Faith",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "level": 20,
+      "entries": [
+        "At 20th level, your secret inner divinity is finally revealed. You can use your Channel Divinity to become a conduit of the divine, flooding the world around you with the unfettered power of the Moral Planes. Once you have used either of these options, you cannot use that option again until you finish a long rest.",
+        {
+          "type": "entries",
+          "name": "Channel Negative Energy",
+          "entries": [
+            "You can use an action to evoke baleful energy from the Lower Planes to harm creatures. You choose the creatures. Make a will attack against each creature that deals {@dice 5d12} force damage and {@dice 5d12} necrotic damage.",
+            "When you use this feature, you also choose one of the following conditions: {@condition blinded|sns}, {@condition confused|sns}, {@condition deafened|sns}, {@condition frightened|sns}, {@condition poisoned|sns}, {@condition rattled|sns}, or {@condition slowed|sns}. A creature hit by the attack also gains the chosen condition until it passes a passive save.",
+            "In addition, you can choose any number of creatures that have the Evil alignment trait. Each regains {@dice 5d10} hit points."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Channel Positive Energy",
+          "entries": [
+            "You can use an action to evoke energy from the Upper Planes to heal creatures you are able to see. You choose the creatures and divide 225 hit points of healing among them.",
+            "A creature that regains hit points from this feature is also healed of one level of {@condition fatigue|sns} and one level of {@condition strife|sns}, and if it is {@condition blinded|sns}, {@condition charmed|sns}, {@condition confused|sns}, {@condition deafened|sns}, {@condition doomed|sns}, {@condition frightened|sns}, {@condition staggered|sns}, {@condition poisoned|sns}, {@condition rattled|sns}, {@condition slowed|sns}, or {@condition debilitated|sns} those conditions end on it. This feature cannot be used on undead or constructs."
+          ]
+        }
+      ]
+    }
+  ],
+  "subclassFeature": [
+    {
+      "name": "Sun Priest",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "subclassShortName": "Sun Priest",
+      "subclassSource": "sns",
+      "level": 1,
+      "entries": [
+        "At each indicated level, add the listed spells to your spells prepared. They do not count towards your limit.",
+        {
+          "type": "table",
+          "caption": "Sun Priest Spells",
+          "colLabels": [
+            "Level",
+            "Spells"
+          ],
+          "colStyles": [
+            "col-2 text-center",
+            "col-10"
+          ],
+          "rows": [
+            [
+              "1st",
+              "{@spell burning hands|sns}, {@spell faerie fire|sns}"
+            ],
+            [
+              "3rd",
+              "{@spell continual flame|sns}, {@spell scorching ray|sns}"
+            ],
+            [
+              "5th",
+              "{@spell darklight|sns}, {@spell fireball|sns}"
+            ],
+            [
+              "7th",
+              "{@spell fire shield|sns}, {@spell wall of fire|sns}"
+            ],
+            [
+              "9th",
+              "{@spell creation|sns}, {@spell wall of force|sns}"
+            ]
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Favoured Illumination",
+          "entries": [
+            "Starting at tier 1 when you choose this subclass, you learn the {@spell dancing lights|sns}, {@spell light|sns}, or {@spell produce flame|sns} cantrip. This does not count against your number of known cantrips."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Flash Fight",
+          "entries": [
+            "Also at tier 1, you learn that light is everything on the battlefield. You can use an action to touch a hostile creature within your reach, gently illuminating it with your divine will and granting advantage on armour attacks made against it before the start of your next turn.",
+            "Alternatively, you can use an action to touch an ally within reach, surrounding them with a coruscating shimmer of bright light. Until the start of your next turn, creatures have disadvantage on armour attacks against the touched ally.",
+            "Once you have used this feature a number of times equal to your Wisdom modifier, you cannot do so again until you finish a long rest."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Sun Priest Major Effect #1",
+          "entries": [
+            "The target makes a saving throw, becoming blinded for 1 round on a failed save. On a successful save, or if they were already blinded, their attacks have -1AB for 1 round. If the target dies from this attack, your next blinding effect during the combat has advantaged offence."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Channel Divinity: Radiant Burst",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "subclassShortName": "Sun Priest",
+      "subclassSource": "sns",
+      "level": 3,
+      "header": 2,
+      "consumes": {
+        "name": "Channel Divinity"
+      },
+      "entries": [
+        "Starting at tier 2, you can use an action to clutch your holy symbol and emit a bright blast. In addition to dispelling any magical darkness within 30 feet, make a fortitude attack against all enemy creatures within 30 feet, with the following outcomes:",
+        {
+          "type": "list",
+          "items": [
+            {
+              "type": "item",
+              "name": "Minor success",
+              "entries": [
+                "The target has disadvantage with armour attacks for 1 round."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Standard success",
+              "entries": [
+                "The target is {@condition blinded|sns} by the light for 1 minute, or until it succeeds on a passive save."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Critical success",
+              "entries": [
+                "As standard success, but the target is also {@condition debilitated|sns}."
+              ]
+            }
+          ]
+        },
+        "Alternatively, you can choose to make the light more harmful. Instead of any of the above outcomes of the fortitude attack, you can have it deal radiant damage equal to {@dice 2d12} + your level."
+      ]
+    },
+    {
+      "name": "Honed Searing",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "subclassShortName": "Sun Priest",
+      "subclassSource": "sns",
+      "level": 3,
+      "header": 2,
+      "entries": [
+        "Also from tier 2, no more than once per turn when you roll 1 on a damage die for fire or radiant damage, you may treat that roll as if it was the maximum value on that die."
+      ]
+    },
+    {
+      "name": "Fierce Flash",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "subclassShortName": "Sun Priest",
+      "subclassSource": "sns",
+      "level": 5,
+      "header": 2,
+      "entries": [
+        "Beginning at tier 3, you can use Flash Fight on creatures within 30 feet of you in addition to creatures you can touch."
+      ]
+    },
+    {
+      "name": "Sun Priest Major Effect #2",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "subclassShortName": "Sun Priest",
+      "subclassSource": "sns",
+      "level": 5,
+      "header": 2,
+      "entries": [
+        "Any number of creatures of your choice that you can see and are in bright light gain +3 to saving throws for 1 round."
+      ]
+    },
+    {
+      "name": "Harness the Flame",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "subclassShortName": "Sun Priest",
+      "subclassSource": "sns",
+      "level": 7,
+      "header": 2,
+      "entries": [
+        "Starting at tier 4, when you make a damaging attack with a cleric cantrip or a weapon, add fire or radiant damage equal to your Wisdom modifier. You must choose the damage type at the beginning of each long rest, and may not change it until you have completed another long rest."
+      ]
+    },
+    {
+      "name": "Channel Divinity: Summon the Stars",
+      "source": "sns",
+      "className": "Cleric",
+      "classSource": "sns",
+      "subclassShortName": "Sun Priest",
+      "subclassSource": "sns",
+      "level": 9,
+      "header": 2,
+      "entries": [
+        "At tier 5, you are able to manipulate the burning brilliance of the stars themselves. As an action, choose an object or creature within 60 feet. For 1 minute the target emits bright light in a 60-foot radius and dim light for an additional 30 feet. The target emits a 30-foot persistent zone around it that forces creatures to make a save or become {@condition blinded|sns} for 1 minute, or until they pass a passive save.",
+        "The first time this feature is used per long rest, the persistent zone also deals {@dice 8d6} radiant DoT damage. Magical auras within the bright light become visible for 1 hour, shedding dim light in a 5-foot radius for 1 hour. An {@condition invisible} creature that takes radiant damage from the light is also revealed and it sheds dim light in a 5-foot radius for 1 hour."
+      ]
+    }
+  ],
+  "optionalfeature": [
+    {
+      "name": "Ancestral Guidance",
+      "source": "sns",
+      "featureType": [
+        "SF"
+      ],
+      "entries": [
+        "In addition to the spells you normally prepare, you always have {@spell speak with dead|sns} prepared, and you can use this feature to cast it once between long rests without spending a spell slot. When you do so, you do not have to target a corpse; you can also target a grave marker, memorial, statue, painting, or other depiction of the deceased creature you wish to talk to. If the chosen creature is not dead, or if such a creature never existed in the first place, the spell fails."
+      ]
+    },
+    {
+      "name": "Compassionate Nurse",
+      "source": "sns",
+      "featureType": [
+        "SF"
+      ],
+      "entries": [
+        "Your insight and sympathy more than make up for your lack of formal medical training. You gain an expertise die on Medicine checks. In addition, you may always choose to use Wisdom when making Wisdom checks."
+      ]
+    },
+    {
+      "name": "Faithful Historian",
+      "source": "sns",
+      "featureType": [
+        "SF"
+      ],
+      "entries": [
+        "You have a deep relationship with religious history and art. You gain an expertise die on History checks. In addition, you may always choose to use Wisdom when making History checks."
+      ]
+    },
+    {
+      "name": "Gentle Healer",
+      "source": "sns",
+      "featureType": [
+        "SF"
+      ],
+      "entries": [
+        "During a short rest, you can aid your allies in their recovery. A creature you choose may roll expended Hit Dice twice, taking the higher result. You may not expend your own Hit Dice while using this feature, since you use all of your energies to heal your companions."
+      ]
+    },
+    {
+      "name": "Graceful Fall",
+      "source": "sns",
+      "featureType": [
+        "SF"
+      ],
+      "entries": [
+        "Falling from a height greater than 30 feet causes your greater entity to intervene. You are protected as if by the {@spell feather fall|sns} spell. This sign does not use your reaction."
+      ]
+    },
+    {
+      "name": "Monastic Austerity",
+      "source": "sns",
+      "featureType": [
+        "SF"
+      ],
+      "entries": [
+        "Your greater entity acts as a buffer to shield you from hardship or your religious self-discipline sustains you even during harsh times, preventing the first level of {@condition fatigue|sns} you would take each day."
+      ]
+    },
+    {
+      "name": "Numinous Awareness",
+      "source": "sns",
+      "featureType": [
+        "SF"
+      ],
+      "entries": [
+        "When you see a creature that appears to be a beast, you automatically recognise whether it is a celestial, fiend, or fey. You have advantage on Arcana and Medicine checks made to interact with magical wounds and maladies caused by celestials, fiends, and fey."
+      ]
+    },
+    {
+      "name": "Premonition",
+      "source": "sns",
+      "featureType": [
+        "SF"
+      ],
+      "entries": [
+        "You have the ability to interpret messages sent to you in dreams or visions by your greater entity. After each long rest you know either:",
+        {
+          "type": "list",
+          "items": [
+            "a piece of information that will help you in your endeavours before the end of your next long rest,",
+            "or, how one action will play out before the end of your next long rest. Roll a {@dice d20}. Before the end of your next long rest, you may choose to replace any attack roll or ability check made by a creature that you can see within 30 feet of you with the result of this {@dice d20} roll."
+          ]
+        },
+        "The DM lets you know which benefit is available whenever you finish a long rest."
+      ]
+    },
+    {
+      "name": "Preservation",
+      "source": "sns",
+      "featureType": [
+        "SF"
+      ],
+      "entries": [
+        "Your connection to a greater entity allows you to sense poison or disease in food, drink, or other consumables. You must have had direct contact with them or their container in order to sense this corruption. This turns all of your substantial failures in the Harvest journey activity into failures."
+      ]
+    },
+    {
+      "name": "Righteous Path",
+      "source": "sns",
+      "featureType": [
+        "SF"
+      ],
+      "entries": [
+        "Divine intuition guides you through the tangled paths of constructed or inhabited areas without confusion. Once per long rest you may choose to walk the Righteous Path for 1 hour. While walking the Righteous Path, you are aware when enemies are within 60 feet of you, and you know if backtracking or alternate routes could avoid them. You can also use an action to sense if there are traps within 30 feet, but not the location or nature of the traps."
+      ]
+    },
+    {
+      "name": "Soothing Words",
+      "source": "sns",
+      "featureType": [
+        "SF"
+      ],
+      "entries": [
+        "Your divinely-inspired counsel and wise advice can calm troubled minds. You may reduce one ally's {@condition strife|sns} by one level. Once you use this feature, you cannot do so again until you finish a long rest."
+      ]
+    },
+    {
+      "name": "Supernal Intuition",
+      "source": "sns",
+      "featureType": [
+        "SF"
+      ],
+      "entries": [
+        "Choose a creature type from fiend, fey, celestial, elemental, or undead. You know when a creature of this type is within 60 feet of you, although you do not know its location. The {@spell nondetection|sns} spell protects against this feature. You may select this sign multiple times, choosing a different creature type each time."
+      ]
+    },
+    {
+      "name": "Theologian",
+      "source": "sns",
+      "featureType": [
+        "SF"
+      ],
+      "entries": [
+        "Years of devoted learning have given you a deep understanding regarding the evolution of religion, theology, and the figures involved. You gain an expertise die on Religion checks. In addition, you may always choose to use Wisdom when making Religion checks."
+      ]
+    },
+    {
+      "name": "Voice of Doom",
+      "source": "sns",
+      "featureType": [
+        "SF"
+      ],
+      "entries": [
+        "Your personal knowledge of divine wrath and the end times make your proclamations utterly chilling. You gain an expertise die on Intimidation checks. In addition, you may always choose to use Wisdom when making Intimidation checks."
+      ]
+    }
+  ]
+}

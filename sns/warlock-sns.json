@@ -1,0 +1,2829 @@
+{
+  "_meta": {
+    "sources": [
+      {
+        "json": "sns",
+        "abbreviation": "S&S",
+        "full": "Spies & Spiders",
+        "authors": [
+          "Spies & Spiders"
+        ],
+        "version": "0.0.1"
+      }
+    ],
+    "dateAdded": 0,
+    "dateLastModified": 0,
+    "optionalFeatureTypes": {
+      "SA": "Secret of Arcana"
+    }
+  },
+  "class": [
+    {
+      "name": "Warlock",
+      "source": "sns",
+      "hd": {
+        "number": 1,
+        "faces": 8
+      },
+      "proficiency": [
+        "int",
+        "wis"
+      ],
+      "spellcastingAbility": "int",
+      "casterProgression": "pact",
+      "cantripProgression": [
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "spellsKnownProgression": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        11,
+        12,
+        12,
+        13,
+        13,
+        14,
+        14,
+        15,
+        15,
+        16
+      ],
+      "optionalfeatureProgression": [
+        {
+          "name": "Eldritch Invocations",
+          "featureType": [
+            "EI"
+          ],
+          "progression": [
+            0,
+            1,
+            2,
+            2,
+            2,
+            2,
+            3,
+            3,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            5,
+            5,
+            5,
+            6,
+            6,
+            6
+          ]
+        },
+        {
+          "name": "Secrets of Arcana",
+          "featureType": [
+            "SA"
+          ],
+          "progression": [
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3
+          ]
+        }
+      ],
+      "startingProficiencies": {
+        "armor": [
+          "light"
+        ],
+        "weapons": [
+          "simple"
+        ],
+        "skills": [
+          {
+            "choose": {
+              "from": [
+                "arcana",
+                "deception",
+                "engineering",
+                "history",
+                "intimidation",
+                "investigation",
+                "nature",
+                "religion"
+              ],
+              "count": 2
+            }
+          }
+        ]
+      },
+      "classTableGroups": [
+        {
+          "colLabels": [
+            "{@filter Cantrips Known|spells|level=0|class=Warlock}",
+            "{@filter Spells Known|spells|class=Warlock}",
+            "Spell Points",
+            "Spell Level",
+            "{@filter Secrets Known|optionalfeatures|feature type=sa}",
+            "{@filter Invocations Known|optionalfeatures|feature type=ei}"
+          ],
+          "rows": [
+            [
+              2,
+              2,
+              2,
+              "{@filter 1st|spells|level=1|class=Warlock}",
+              0,
+              0
+            ],
+            [
+              2,
+              2,
+              4,
+              "{@filter 1st|spells|level=1|class=Warlock}",
+              1,
+              1
+            ],
+            [
+              2,
+              4,
+              6,
+              "{@filter 2nd|spells|level=2|class=Warlock}",
+              1,
+              2
+            ],
+            [
+              3,
+              5,
+              8,
+              "{@filter 2nd|spells|level=2|class=Warlock}",
+              1,
+              2
+            ],
+            [
+              3,
+              6,
+              10,
+              "{@filter 3rd|spells|level=3|class=Warlock}",
+              1,
+              3
+            ],
+            [
+              3,
+              7,
+              11,
+              "{@filter 3rd|spells|level=3|class=Warlock}",
+              1,
+              3
+            ],
+            [
+              3,
+              8,
+              12,
+              "{@filter 4th|spells|level=4|class=Warlock}",
+              1,
+              4
+            ],
+            [
+              3,
+              9,
+              13,
+              "{@filter 4th|spells|level=4|class=Warlock}",
+              2,
+              4
+            ],
+            [
+              3,
+              10,
+              14,
+              "{@filter 5th|spells|level=5|class=Warlock}",
+              2,
+              5
+            ],
+            [
+              4,
+              11,
+              17,
+              "{@filter 5th|spells|level=5|class=Warlock}",
+              2,
+              5
+            ],
+            [
+              4,
+              11,
+              21,
+              "{@filter 5th|spells|level=5|class=Warlock}",
+              2,
+              5
+            ],
+            [
+              4,
+              12,
+              22,
+              "{@filter 5th|spells|level=5|class=Warlock}",
+              2,
+              6
+            ],
+            [
+              4,
+              12,
+              24,
+              "{@filter 5th|spells|level=5|class=Warlock}",
+              2,
+              6
+            ],
+            [
+              4,
+              13,
+              25,
+              "{@filter 5th|spells|level=5|class=Warlock}",
+              3,
+              6
+            ],
+            [
+              4,
+              13,
+              26,
+              "{@filter 5th|spells|level=5|class=Warlock}",
+              3,
+              7
+            ],
+            [
+              4,
+              14,
+              27,
+              "{@filter 5th|spells|level=5|class=Warlock}",
+              3,
+              7
+            ],
+            [
+              4,
+              14,
+              28,
+              "{@filter 5th|spells|level=5|class=Warlock}",
+              3,
+              7
+            ],
+            [
+              4,
+              15,
+              29,
+              "{@filter 5th|spells|level=5|class=Warlock}",
+              3,
+              8
+            ],
+            [
+              4,
+              15,
+              30,
+              "{@filter 5th|spells|level=5|class=Warlock}",
+              3,
+              8
+            ],
+            [
+              4,
+              16,
+              31,
+              "{@filter 5th|spells|level=5|class=Warlock}",
+              3,
+              8
+            ]
+          ]
+        }
+      ],
+      "classFeatures": [
+        {
+          "classFeature": "First Subclass Tier 1|Warlock|sns|1|sns",
+          "gainSubclassFeature": true
+        },
+        "Pact Magic|Warlock|sns|1|sns",
+        "Eldritch Blast|Warlock|sns|1|sns",
+        "Expanded Spell List (First)|Warlock|sns|1|sns",
+        "Eldritch Invocations|Warlock|sns|2|sns",
+        "Secrets of Arcana|Warlock|sns|2|sns",
+        "Pact Boon|Warlock|sns|3|sns",
+        {
+          "classFeature": "First Subclass Tier 2|Warlock|sns|3|sns",
+          "gainSubclassFeature": true
+        },
+        "Ability Score Improvement|Warlock|sns|4|sns",
+        "Invocation of the Courts (1)|Warlock|sns|4|sns",
+        "Empowered Blast|Warlock|sns|5|sns",
+        {
+          "classFeature": "First Subclass Tier 3|Warlock|sns|5|sns",
+          "gainSubclassFeature": true
+        },
+        "Eldritch Evolution (1)|Warlock|sns|6|sns",
+        {
+          "classFeature": "First Subclass Tier 4|Warlock|sns|7|sns",
+          "gainSubclassFeature": true
+        },
+        "Ability Score Improvement|Warlock|sns|8|sns",
+        {
+          "classFeature": "First Subclass Tier 5|Warlock|sns|9|sns",
+          "gainSubclassFeature": true
+        },
+        "Invocation of the Courts (2)|Warlock|sns|10|sns",
+        "Second Subclass Tier 1|Warlock|sns|11|sns",
+        "Expanded Spell List (Second)|Warlock|sns|11|sns",
+        "Ability Score Improvement|Warlock|sns|12|sns",
+        "Second Subclass Tier 2|Warlock|sns|13|sns",
+        "Eldritch Evolution (2)|Warlock|sns|14|sns",
+        "Second Subclass Tier 3|Warlock|sns|15|sns",
+        "Ability Score Improvement|Warlock|sns|16|sns",
+        "Invocation of the Courts (3)|Warlock|sns|16|sns",
+        "Second Subclass Tier 4|Warlock|sns|17|sns",
+        "Eldritch Evolution (3)|Warlock|sns|18|sns",
+        "Ability Score Improvement|Warlock|sns|19|sns",
+        "Second Subclass Tier 5|Warlock|sns|19|sns",
+        "Dread Thaumaturge|Warlock|sns|20|sns"
+      ],
+      "subclassTitle": "Warlock Subclass"
+    }
+  ],
+  "subclass": [
+    {
+      "name": "The Genie",
+      "shortName": "Genie",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "additionalSpells": [
+        {
+          "name": "Dao",
+          "expanded": {
+            "1": [
+              "detect evil and good|sns",
+              "sanctuary|sns"
+            ],
+            "2": [
+              "phantasmal force|sns",
+              "spike growth|sns"
+            ],
+            "3": [
+              "create food and water|sns",
+              "meld into stone|sns"
+            ],
+            "4": [
+              "phantasmal killer|sns",
+              "stone shape|sns"
+            ],
+            "5": [
+              "creation|sns",
+              "wall of stone|sns"
+            ],
+            "9": [
+              "wish|sns"
+            ]
+          }
+        },
+        {
+          "name": "Djinni",
+          "expanded": {
+            "1": [
+              "detect evil and good|sns",
+              "thunderwave|sns"
+            ],
+            "2": [
+              "phantasmal force|sns",
+              "gust of wind|sns"
+            ],
+            "3": [
+              "create food and water|sns",
+              "wind wall|sns"
+            ],
+            "4": [
+              "phantasmal killer|sns",
+              "greater invisibility|sns"
+            ],
+            "5": [
+              "creation|sns",
+              "seeming|sns"
+            ],
+            "9": [
+              "wish|sns"
+            ]
+          }
+        },
+        {
+          "name": "Efreeti",
+          "expanded": {
+            "1": [
+              "detect evil and good|sns",
+              "burning hands|sns"
+            ],
+            "2": [
+              "phantasmal force|sns",
+              "scorching ray|sns"
+            ],
+            "3": [
+              "create food and water|sns",
+              "fireball|sns"
+            ],
+            "4": [
+              "phantasmal killer|sns",
+              "fire shield|sns"
+            ],
+            "5": [
+              "creation|sns",
+              "flame strike|sns"
+            ],
+            "9": [
+              "wish|sns"
+            ]
+          }
+        },
+        {
+          "name": "Marid",
+          "expanded": {
+            "1": [
+              "detect evil and good|sns",
+              "fog cloud|sns"
+            ],
+            "2": [
+              "phantasmal force|sns",
+              "blur|sns"
+            ],
+            "3": [
+              "create food and water|sns",
+              "sleet storm|sns"
+            ],
+            "4": [
+              "phantasmal killer|sns",
+              "control water|sns"
+            ],
+            "5": [
+              "creation|sns",
+              "cone of cold|sns"
+            ],
+            "9": [
+              "wish|sns"
+            ]
+          }
+        }
+      ],
+      "subclassFeatures": [
+        "The Genie|Warlock|sns|Genie|sns|1",
+        "Elemental Gift|Warlock|sns|Genie|sns|3",
+        "Assisted Arcana|Warlock|sns|Genie|sns|5",
+        "Genie Major Effect #2|Warlock|sns|Genie|sns|5",
+        "Sanctuary Vessel|Warlock|sns|Genie|sns|7",
+        "Limited Wish|Warlock|sns|Genie|sns|9"
+      ]
+    }
+  ],
+  "classFeature": [
+    {
+      "name": "First Subclass Tier 1",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "level": 1,
+      "entries": [
+        "At 1st level, you gain the tier 1 feature from your first subclass"
+      ]
+    },
+    {
+      "name": "First Subclass Tier 2",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "level": 3,
+      "entries": [
+        "At 3rd level, you gain the tier 2 feature from your first subclass"
+      ]
+    },
+    {
+      "name": "First Subclass Tier 3",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "level": 5,
+      "entries": [
+        "At 5th level, you gain the tier 3 feature from your first subclass"
+      ]
+    },
+    {
+      "name": "First Subclass Tier 4",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "level": 7,
+      "entries": [
+        "At 7th level, you gain the tier 4 feature from your first subclass"
+      ]
+    },
+    {
+      "name": "First Subclass Tier 5",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "level": 9,
+      "entries": [
+        "At 9th level, you gain the tier 5 feature from your first subclass"
+      ]
+    },
+    {
+      "name": "Second Subclass Tier 1",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "level": 11,
+      "entries": [
+        "At 11th level, you gain the tier 1 feature from your second subclass"
+      ]
+    },
+    {
+      "name": "Second Subclass Tier 2",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "level": 13,
+      "entries": [
+        "At 13th level, you gain the tier 2 feature from your second subclass"
+      ]
+    },
+    {
+      "name": "Second Subclass Tier 3",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "level": 15,
+      "entries": [
+        "At 15th level, you gain the tier 3 feature from your second subclass"
+      ]
+    },
+    {
+      "name": "Second Subclass Tier 4",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "level": 17,
+      "entries": [
+        "At 17th level, you gain the tier 4 feature from your second subclass"
+      ]
+    },
+    {
+      "name": "Second Subclass Tier 5",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "level": 19,
+      "entries": [
+        "At 19th level, you gain the tier 5 feature from your second subclass"
+      ]
+    },
+    {
+      "name": "Pact Magic",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "level": 1,
+      "entries": [
+        "With care, practice, and dedication you have learned how to best siphon and channel the otherworldly powers you've gained from your patron.",
+        {
+          "type": "entries",
+          "name": "Cantrips",
+          "entries": [
+            "You know two cantrips of your choice from the warlock spell list. You learn additional warlock cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Warlock table."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Spell Points",
+          "entries": [
+            "The Warlock table shows how many spell points you have. To cast one of your warlock spells of 1st-level or higher, you must spend a number of spell points dependent on the spell's level, shown on the table below. You can also cast a spell you know at a higher spell level by spending the appropriate number of spell points. The maximum spell level you can cast is shown in the Spell Level column of the Warlock table. You regain all expended spell points when you finish a short or long rest.",
+            {
+              "type": "table",
+              "caption": "Spell Points",
+              "colLabels": [
+                "Spell Level",
+                "Spell Points"
+              ],
+              "colStyles": [
+                "col-5 text-center",
+                "col-5 text-center"
+              ],
+              "rows": [
+                [
+                  "1st",
+                  "2"
+                ],
+                [
+                  "2nd",
+                  "3"
+                ],
+                [
+                  "3rd",
+                  "5"
+                ],
+                [
+                  "4th",
+                  "6"
+                ],
+                [
+                  "5th",
+                  "7"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Spells Known of 1st Level and Higher",
+          "entries": [
+            "At 1st level, you know two 1st-level spells of your choice from the warlock spell list.",
+            "The Spells Known column of the Warlock table shows when you learn more warlock spells of your choice of 1st level and higher. A spell you choose must be of a level no higher than what's shown in the table's Slot Level column for your level. When you reach 6th level, for example, you learn a new warlock spell, which can be 1st, 2nd, or 3rd level.",
+            "Additionally, whenever you complete a long rest, you can choose one of the warlock spells you know and replace it with another spell from the warlock spell list, which also must be of a level for which you have spell slots."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Spellcasting Ability",
+          "entries": [
+            "The manner in which you pursue ever greater power from your patron is defined by the nature of that pursuit: through wit, devotion, or fervor. Choose Intelligence, Wisdom, or Charisma to be your spellcasting ability. Once you make this choice, you cannot change it. You use the chosen ability whenever a spell refers to your spellcasting ability."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Spellcasting Focus",
+          "entries": [
+            "You can use an {@item arcane focus|phb} as a spellcasting focus for your warlock spells."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Eldritch Blast",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "level": 1,
+      "entries": [
+        "At 1st level you learn to use your patron's power as a weapon, blasting enemies with an eldritch force that defies even the laws of magic. Choose one of the following features.",
+        {
+          "type": "entries",
+          "name": "Eldritch Disturbance",
+          "entries": [
+            "You can use an action to strike a creature within 60 feet with a reality-distorting curse, blending pain both mental and physical. Make a ranged spell will attack against the creature that deals {@dice 1d12} force damage."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Eldritch Ray",
+          "entries": [
+            "You can use an action to create a deadly beam that strikes a creature within 120 feet. Make a ranged spell armour attack against the creature that deals {@dice 1d10} force damage."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Eldritch Scythe",
+          "entries": [
+            "Once per turn when you would make a melee weapon attack as part of the Attack action or an opportunity attack, you can instead make a melee spell armour attack, lashing out with an ephemeral and unearthly blade. It deals {@dice 1d8} force damage. In addition, on a hit, you can choose a creature that you can see and that is within your reach. It takes half as much damage as force DoT damage."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Eldritch Whip",
+          "entries": [
+            "You can use an action to thrash a creature with a scintillating tendril of arcane force. Make a melee spell armour attack against a creature within 15 feet that deals {@dice 1d6} force damage.",
+            "At the end of your turn you gain a number of temporary hit points equal to half the damage you dealt with Eldritch Whip this turn (minimum 1), which last until the end of your next turn. When you damage a creature with your Eldritch Whip and you already have temporary hit points, you can end the temporary hit points early to gain a bonus to the Eldritch Whip's damage equal to half the number of temporary hit points you ended early."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Expanded Spell List (First)",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "level": 1,
+      "entries": [
+        "At 1st level, if your first subclass does not provide you with an expanded spell list, you choose an expanded spell list from below that your patron grants you access to. Choose one patron expanded spell list. These spells count as warlock spells for you.",
+        {
+          "type": "table",
+          "caption": "Bewilderment Expanded Spells",
+          "colLabels": [
+            "Spell Level",
+            "Spells"
+          ],
+          "colStyles": [
+            "col-2 text-center",
+            "col-10"
+          ],
+          "rows": [
+            [
+              "1st",
+              "{@spell Color Spray|sns}, {@spell Sleep|sns}"
+            ],
+            [
+              "2nd",
+              "{@spell Levitate|sns}, {@spell Seed Bomb|sns}"
+            ],
+            [
+              "3rd",
+              "{@spell Glyph of Warding|sns}, {@spell Wind Wall|sns}"
+            ],
+            [
+              "4th",
+              "{@spell Confusion|sns}, {@spell Polymorph|sns}"
+            ],
+            [
+              "5th",
+              "{@spell Insect Plague|sns}, {@spell Mislead|sns}"
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "caption": "Darkness Expanded Spells",
+          "colLabels": [
+            "Spell Level",
+            "Spells"
+          ],
+          "colStyles": [
+            "col-2 text-center",
+            "col-10"
+          ],
+          "rows": [
+            [
+              "1st",
+              "{@spell Detect Poison and Disease|sns}, {@spell Inflict Wounds|sns}"
+            ],
+            [
+              "2nd",
+              "{@spell Acid Arrow|sns}, {@spell Blindness/Deafness|sns}"
+            ],
+            [
+              "3rd",
+              "{@spell Bestow Curse|sns}, {@spell Phantom Steed|sns}"
+            ],
+            [
+              "4th",
+              "{@spell Black Tentacles|sns}, {@spell Blight|sns}"
+            ],
+            [
+              "5th",
+              "{@spell Cloudkill|sns}, {@spell Contagion|sns}"
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "caption": "Fire Expanded Spells",
+          "colLabels": [
+            "Spell Level",
+            "Spells"
+          ],
+          "colStyles": [
+            "col-2 text-center",
+            "col-10"
+          ],
+          "rows": [
+            [
+              "1st",
+              "{@spell Burning Hands|sns}, {@spell Fog Cloud|sns} (appears as smoke)"
+            ],
+            [
+              "2nd",
+              "{@spell Flaming Sphere|sns}, {@spell Scorching Ray|sns}"
+            ],
+            [
+              "3rd",
+              "{@spell Darklight|sns}, {@spell Fireball|sns}"
+            ],
+            [
+              "4th",
+              "{@spell Fire Shield|sns}, {@spell Wall of Fire|sns}"
+            ],
+            [
+              "5th",
+              "{@spell Conjure Elemental|sns} (fire only), {@spell Flame Strike|sns}"
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "caption": "Genius Loci Expanded Spells",
+          "colLabels": [
+            "Spell Level",
+            "Spells"
+          ],
+          "colStyles": [
+            "col-2 text-center",
+            "col-10"
+          ],
+          "rows": [
+            [
+              "1st",
+              "{@spell Disguise Self|sns}, {@spell Sanctuary|sns}"
+            ],
+            [
+              "2nd",
+              "{@spell Find Traps|sns}, {@spell Knock|sns}"
+            ],
+            [
+              "3rd",
+              "{@spell Meld Into Stone|sns}, {@spell Speak with Dead|sns}"
+            ],
+            [
+              "4th",
+              "{@spell Private Sanctum|sns}, {@spell Stone Shape|sns}"
+            ],
+            [
+              "5th",
+              "{@spell Passwall|sns}, {@spell Wall of Stone|sns}"
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "caption": "Mobility Expanded Spells",
+          "colLabels": [
+            "Spell Level",
+            "Spells"
+          ],
+          "colStyles": [
+            "col-2 text-center",
+            "col-10"
+          ],
+          "rows": [
+            [
+              "1st",
+              "{@spell Feather Fall|sns}, {@spell Thunderwave|sns}"
+            ],
+            [
+              "2nd",
+              "{@spell Blur|sns}, {@spell Deadweight|sns}"
+            ],
+            [
+              "3rd",
+              "{@spell Blink|sns}, {@spell Whirlwind Kick|sns}"
+            ],
+            [
+              "4th",
+              "{@spell Freedom of Movement|sns}, {@spell Greater Invisibility|sns}"
+            ],
+            [
+              "5th",
+              "{@spell Storm Kick|sns}, {@spell Tree Stride|sns}"
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "caption": "Psionics Expanded Spells",
+          "colLabels": [
+            "Spell Level",
+            "Spells"
+          ],
+          "colStyles": [
+            "col-2 text-center",
+            "col-10"
+          ],
+          "rows": [
+            [
+              "1st",
+              "{@spell Command|sns}, {@spell Dramatic Sting|sns}"
+            ],
+            [
+              "2nd",
+              "{@spell Detect Thoughts|sns}, {@spell Enthrall|sns}"
+            ],
+            [
+              "3rd",
+              "{@spell Nondetection|sns}, {@spell Sending|sns}"
+            ],
+            [
+              "4th",
+              "{@spell Dominate Beast|sns}, {@spell Resilient Sphere|sns}"
+            ],
+            [
+              "5th",
+              "{@spell Dominate Person|sns}, {@spell Modify Memory|sns}"
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "caption": "Stars Expanded Spells",
+          "colLabels": [
+            "Spell Level",
+            "Spells"
+          ],
+          "colStyles": [
+            "col-2 text-center",
+            "col-10"
+          ],
+          "rows": [
+            [
+              "1st",
+              "{@spell Bane|sns}, {@spell Guiding Bolt|sns}"
+            ],
+            [
+              "2nd",
+              "{@spell Moonbeam|sns}, {@spell Silence|sns}"
+            ],
+            [
+              "3rd",
+              "{@spell Aspect of the Moon|sns}, {@spell Daylight|sns}"
+            ],
+            [
+              "4th",
+              "{@spell Accelerando|sns}, {@spell Locate Creature|sns}"
+            ],
+            [
+              "5th",
+              "{@spell Antilife Shell|sns}, {@spell Wall of Force|sns}"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Expanded Spell List (Second)",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "level": 11,
+      "entries": [
+        "At 11th level, if your second subclass does not provide you with an expanded spell list, you choose an expanded spell list from below that your patron grants you access to. Choose one patron expanded spell list. These spells count as warlock spells for you.",
+        "You cannot choose the same expanded spell list that you may have chosen for your first expanded spell list.",
+        {
+          "type": "table",
+          "caption": "Bewilderment Expanded Spells",
+          "colLabels": [
+            "Spell Level",
+            "Spells"
+          ],
+          "colStyles": [
+            "col-2 text-center",
+            "col-10"
+          ],
+          "rows": [
+            [
+              "1st",
+              "{@spell Color Spray|sns}, {@spell Sleep|sns}"
+            ],
+            [
+              "2nd",
+              "{@spell Levitate|sns}, {@spell Seed Bomb|sns}"
+            ],
+            [
+              "3rd",
+              "{@spell Glyph of Warding|sns}, {@spell Wind Wall|sns}"
+            ],
+            [
+              "4th",
+              "{@spell Confusion|sns}, {@spell Polymorph|sns}"
+            ],
+            [
+              "5th",
+              "{@spell Insect Plague|sns}, {@spell Mislead|sns}"
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "caption": "Darkness Expanded Spells",
+          "colLabels": [
+            "Spell Level",
+            "Spells"
+          ],
+          "colStyles": [
+            "col-2 text-center",
+            "col-10"
+          ],
+          "rows": [
+            [
+              "1st",
+              "{@spell Detect Poison and Disease|sns}, {@spell Inflict Wounds|sns}"
+            ],
+            [
+              "2nd",
+              "{@spell Acid Arrow|sns}, {@spell Blindness/Deafness|sns}"
+            ],
+            [
+              "3rd",
+              "{@spell Bestow Curse|sns}, {@spell Phantom Steed|sns}"
+            ],
+            [
+              "4th",
+              "{@spell Black Tentacles|sns}, {@spell Blight|sns}"
+            ],
+            [
+              "5th",
+              "{@spell Cloudkill|sns}, {@spell Contagion|sns}"
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "caption": "Fire Expanded Spells",
+          "colLabels": [
+            "Spell Level",
+            "Spells"
+          ],
+          "colStyles": [
+            "col-2 text-center",
+            "col-10"
+          ],
+          "rows": [
+            [
+              "1st",
+              "{@spell Burning Hands|sns}, {@spell Fog Cloud|sns} (appears as smoke)"
+            ],
+            [
+              "2nd",
+              "{@spell Flaming Sphere|sns}, {@spell Scorching Ray|sns}"
+            ],
+            [
+              "3rd",
+              "{@spell Darklight|sns}, {@spell Fireball|sns}"
+            ],
+            [
+              "4th",
+              "{@spell Fire Shield|sns}, {@spell Wall of Fire|sns}"
+            ],
+            [
+              "5th",
+              "{@spell Conjure Elemental|sns} (fire only), {@spell Flame Strike|sns}"
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "caption": "Genius Loci Expanded Spells",
+          "colLabels": [
+            "Spell Level",
+            "Spells"
+          ],
+          "colStyles": [
+            "col-2 text-center",
+            "col-10"
+          ],
+          "rows": [
+            [
+              "1st",
+              "{@spell Disguise Self|sns}, {@spell Sanctuary|sns}"
+            ],
+            [
+              "2nd",
+              "{@spell Find Traps|sns}, {@spell Knock|sns}"
+            ],
+            [
+              "3rd",
+              "{@spell Meld Into Stone|sns}, {@spell Speak with Dead|sns}"
+            ],
+            [
+              "4th",
+              "{@spell Private Sanctum|sns}, {@spell Stone Shape|sns}"
+            ],
+            [
+              "5th",
+              "{@spell Passwall|sns}, {@spell Wall of Stone|sns}"
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "caption": "Mobility Expanded Spells",
+          "colLabels": [
+            "Spell Level",
+            "Spells"
+          ],
+          "colStyles": [
+            "col-2 text-center",
+            "col-10"
+          ],
+          "rows": [
+            [
+              "1st",
+              "{@spell Feather Fall|sns}, {@spell Thunderwave|sns}"
+            ],
+            [
+              "2nd",
+              "{@spell Blur|sns}, {@spell Deadweight|sns}"
+            ],
+            [
+              "3rd",
+              "{@spell Blink|sns}, {@spell Whirlwind Kick|sns}"
+            ],
+            [
+              "4th",
+              "{@spell Freedom of Movement|sns}, {@spell Greater Invisibility|sns}"
+            ],
+            [
+              "5th",
+              "{@spell Storm Kick|sns}, {@spell Tree Stride|sns}"
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "caption": "Psionics Expanded Spells",
+          "colLabels": [
+            "Spell Level",
+            "Spells"
+          ],
+          "colStyles": [
+            "col-2 text-center",
+            "col-10"
+          ],
+          "rows": [
+            [
+              "1st",
+              "{@spell Command|sns}, {@spell Dramatic Sting|sns}"
+            ],
+            [
+              "2nd",
+              "{@spell Detect Thoughts|sns}, {@spell Enthrall|sns}"
+            ],
+            [
+              "3rd",
+              "{@spell Nondetection|sns}, {@spell Sending|sns}"
+            ],
+            [
+              "4th",
+              "{@spell Dominate Beast|sns}, {@spell Resilient Sphere|sns}"
+            ],
+            [
+              "5th",
+              "{@spell Dominate Person|sns}, {@spell Modify Memory|sns}"
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "caption": "Stars Expanded Spells",
+          "colLabels": [
+            "Spell Level",
+            "Spells"
+          ],
+          "colStyles": [
+            "col-2 text-center",
+            "col-10"
+          ],
+          "rows": [
+            [
+              "1st",
+              "{@spell Bane|sns}, {@spell Guiding Bolt|sns}"
+            ],
+            [
+              "2nd",
+              "{@spell Moonbeam|sns}, {@spell Silence|sns}"
+            ],
+            [
+              "3rd",
+              "{@spell Aspect of the Moon|sns}, {@spell Daylight|sns}"
+            ],
+            [
+              "4th",
+              "{@spell Accelerando|sns}, {@spell Locate Creature|sns}"
+            ],
+            [
+              "5th",
+              "{@spell Antilife Shell|sns}, {@spell Wall of Force|sns}"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Eldritch Invocations",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "level": 2,
+      "entries": [
+        "The gifts of your patron are manyfold — not only can you channel their magic to work spells, but you can also siphon away talents, tricks, and reality-defying essence to perform other impressive magical feats.",
+        "At 2nd level, you gain an eldritch invocation of your choice. Your invocation options can be found on the {@filter Optional Features|optionalfeatures|Feature Type=EI} page. When you gain certain warlock levels, you gain additional invocations of your choice, as shown in the Invocations Known column of the Warlock table. Additionally, when you complete a long rest, you can choose one of the invocations you know and replace it with another invocation that you could learn at your level. If you should gain a bonus invocation, they do not count against your Invocations known.",
+        "When you are able to learn a new invocation in this way, you may instead choose to learn a {@filter secret of arcana|optionalfeatures|Feature Type=SA}."
+      ]
+    },
+    {
+      "name": "Secrets of Arcana",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "level": 2,
+      "entries": [
+        "Also at 2nd level, you realize that there is power to be taken that your patron may never have meant for you to have. You gain a secret of arcana of your choice. Your secret options can be found on the {@filter Optional Features|optionalfeatures|Feature Type=SA} page. The Secrets Known column of the Warlock table shows when you learn more secrets of arcana."
+      ]
+    },
+    {
+      "name": "Pact Boon",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "level": 3,
+      "entries": [
+        "At 3rd level, the entity to which you are beholden provides a more durable and lasting blessing. Choose one of the following features.",
+        {
+          "type": "options",
+          "count": 1,
+          "entries": [
+            {
+              "type": "entries",
+              "name": "Pact of the Blade",
+              "entries": [
+                "You can use your action to conjure in your empty hand an armament bestowed with power: a pact weapon. Choose any simple or martial weapon when you conjure your pact weapon. You are proficient with it while you wield your pact weapon, and you can use your spellcasting ability as its governing ability. This weapon ignores resistance and immunity to its base damage type. Your pact weapon disappears if it is more than 5 feet away from you for 1 minute or more. It also disappears if you use this feature again, if you dismiss the weapon (no action required), or if you die.",
+                "By performing a 1 hour ritual while holding a weapon, you can transform it into your pact weapon. Any affixes on this weapon that empower the weapon are also applied to your Eldritch Blast (ranged weapons apply these effects to Eldritch Ray, and melee weapons to Eldritch Scythe; it has no effect on Eldritch Disturbance or Eldritch Whip). You can then dismiss the weapon, shunting it into an extradimensional space, and it appears whenever you create your pact weapon thereafter. You can't affect a sentient weapon in this way. The weapon ceases being your pact weapon if you die, if you perform the ritual on a different weapon, or if you use a 1 hour ritual to break your bond to it. The weapon is collected by your patron if the bond breaks while it is in the extradimensional space."
+              ]
+            },
+            {
+              "type": "entries",
+              "name": "Pact of the Chain",
+              "entries": [
+                "You learn the {@spell find familiar|sns} spell and can cast it as a ritual. The spell doesn't count against your number of spells known. When you cast the spell, you can choose one of the normal forms for your familiar or one of the following special forms: {@creature imp}, {@creature pseudodragon}, {@creature quasit}, or {@creature sprite}. You can also opt for the spirit you call forth to be an aberration, elemental, or undead.",
+                "When you take the Attack action, you can forgo making an attack to allow your familiar to make one attack of its own with its reaction. Additionally, when you use Eldritch Scythe, you can choose to deliver the attack through your familiar as though you had cast a spell with a range of touch."
+              ]
+            },
+            {
+              "type": "entries",
+              "name": "Pact of the Tome",
+              "entries": [
+                "Aware of your drive for knowledge, you awaken to find a grimoire left in your pack by your patron: a Book of Shadows. Choose three cantrips. While the book is in your possession, you know these cantrips and they are treated as warlock spells. They don't count against your number of cantrips known. If you lose your Book of Shadows, you can perform a 1 hour ceremony to receive a replacement from your patron. This ceremony destroys the previous book. The book is collected by your patron when you die."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Ability Score Improvement",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "level": 4,
+      "entries": [
+        "When you reach 4th level, you can increase one ability score of your choice by 1. As normal, you can't increase an ability score above 20 using this feature. Additionally, you gain a feat."
+      ]
+    },
+    {
+      "name": "Invocation of the Courts (1)",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "level": 4,
+      "entries": [
+        "Also at 4th level, you gain a bonus invocation — one to help you traffic in courts both otherworldly and mortal. Choose one invocation from the following list: Beguiling Influence, Courts of the Outer Realms, Eyes of the Runekeeper, Gaze of Two Minds, Mask of Many Faces, Ominous Tormentor, Psionic Secrecy, Spellbinding Contract, Voice of the Chain Master, Whispers of the Grave.",
+        "You gain another bonus invocation in this way at 10th level and again at 16th level. Whenever you complete a long rest, you can choose one of the bonus invocations you know and replace it with another bonus invocation from this list that you could learn at that level."
+      ]
+    },
+    {
+      "name": "Empowered Blast",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "level": 5,
+      "entries": [
+        "Beginning at 5th level, your Eldritch Blast becomes more vicious.",
+        "Your Eldritch Blast gains an additional die of damage at 5th level, and again at 11th level and 17th level (to a maximum of 4 damage dice).",
+        "This feature otherwise counts as Empowered Attack (for the purpose of qualifying for feats, spell effects, and the like)."
+      ]
+    },
+    {
+      "name": "Eldritch Evolution (1)",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "level": 6,
+      "entries": [
+        "At 6th level, you gain a bonus invocation — one which represents your growth in the lethal lore behind Eldritch Blast. Choose one invocation from the following list: Agonizing Blast, Eldritch Bind, Eldritch Elementalism, Eldritch Grasp, Eldritch Prism, Eldritch Riposte, Eldritch Severance, Eldritch Spear, Eldritch Squall, Eldritch Tentacle, Repelling Blast, Versatile Blast.",
+        "You gain another bonus invocation in this way at 14th level and again at 18th level. Whenever you complete a long rest, you can choose one of the bonus invocations you know and replace it with another bonus invocation from this list that you could learn at that level."
+      ]
+    },
+    {
+      "name": "Ability Score Improvement",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "level": 8,
+      "entries": [
+        "When you reach 8th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature. Alternatively, you may gain a feat instead of any increases to your ability scores."
+      ]
+    },
+    {
+      "name": "Invocation of the Courts (2)",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "level": 10,
+      "entries": [
+        "At 10th level, you gain another bonus invocation from your Invocation of the Courts feature."
+      ]
+    },
+    {
+      "name": "Ability Score Improvement",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "level": 12,
+      "entries": [
+        "When you reach 12th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature. Alternatively, you may gain a feat instead of any increases to your ability scores."
+      ]
+    },
+    {
+      "name": "Eldritch Evolution (2)",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "level": 14,
+      "entries": [
+        "At 14th level, you gain another bonus invocation from your Eldritch Evolution feature."
+      ]
+    },
+    {
+      "name": "Ability Score Improvement",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "level": 16,
+      "entries": [
+        "When you reach 16th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature. Alternatively, you may gain a feat instead of any increases to your ability scores."
+      ]
+    },
+    {
+      "name": "Invocation of the Courts (3)",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "level": 16,
+      "entries": [
+        "At 16th level, you gain another bonus invocation from your Invocation of the Courts feature."
+      ]
+    },
+    {
+      "name": "Eldritch Evolution (3)",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "level": 18,
+      "entries": [
+        "At 18th level, you gain another bonus invocation from your Eldritch Evolution feature."
+      ]
+    },
+    {
+      "name": "Ability Score Improvement",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "level": 19,
+      "entries": [
+        "When you reach 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature. Alternatively, you may gain a feat instead of any increases to your ability scores."
+      ]
+    },
+    {
+      "name": "Dread Thaumaturge",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "level": 20,
+      "entries": [
+        "At 20th level, you have learned all you can from your patron. You gain the following abilities.",
+        {
+          "type": "entries",
+          "name": "Aura of Anathema",
+          "entries": [
+            "Hostile creatures within 120 feet gain vulnerability to necrotic damage. A creature with resistance to necrotic damage instead loses its resistance, and a creature immune to necrotic damage instead replaces that immunity with 50% resistance.",
+            "Whenever you finish a long rest, you can choose a different damage type for your aura."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Highest Arcanum",
+          "entries": [
+            "You learn an ultimate exploit in the laws of magic. Choose one of the following:",
+            {
+              "type": "list",
+              "items": [
+                "You can cast {@spell plane shift|sns} without material components once between short rests.",
+                "You are under the constant effects of the {@spell foresight|sns} spell. This effect cannot be detected or dispelled by any means short of a {@spell wish|sns} spell.",
+                "Once per long rest, you can spend 1 minute in arcane contemplation to regain your spent spell points."
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "subclassFeature": [
+    {
+      "name": "The Genie",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "subclassShortName": "Genie",
+      "subclassSource": "sns",
+      "level": 1,
+      "entries": [
+        "You have made a pact with one of the rarest kinds of genie, a noble genie. Such entities rule vast fiefs on the Elemental Planes and have great influence over lesser genies and elemental creatures. Noble genies are varied in their motivations, but most are arrogant and wield power that rivals that of lesser deities. They delight in turning the table on mortals, who often bind genies into servitude, and readily enter into pacts that expand their reach.",
+        "You choose your patron's kind or determine it randomly, using the Genie Kind table.",
+        {
+          "type": "table",
+          "caption": "Genie Kind",
+          "colLabels": [
+            "d4",
+            "Kind",
+            "Element"
+          ],
+          "colStyles": [
+            "col-2 text-center",
+            "col-5",
+            "col-5"
+          ],
+          "rows": [
+            [
+              1,
+              "{@creature Dao}",
+              "Earth"
+            ],
+            [
+              2,
+              "{@creature Djinni}",
+              "Air"
+            ],
+            [
+              3,
+              "{@creature Efreeti}",
+              "Fire"
+            ],
+            [
+              4,
+              "{@creature Marid}",
+              "Water"
+            ]
+          ]
+        },
+        {
+          "name": "Expanded Spell List",
+          "type": "entries",
+          "entries": [
+            "{@i 1st-level Genie feature}",
+            "The Genie lets you choose from an expanded list of spells when you learn a warlock spell. The Genie Expanded Spells table shows the genie spells that are added to the warlock spell list for you, along with the spells associated in the table with your patron's kind: dao, djinni, efreeti, or marid.",
+            {
+              "type": "table",
+              "caption": "Genie Expanded Spells",
+              "colLabels": [
+                "Spell Level",
+                "Genie Spells",
+                "Dao Spells",
+                "Djinni Spells",
+                "Efreeti Spells",
+                "Marid Spells"
+              ],
+              "colStyles": [
+                "col-1 text-center",
+                "col-2-2",
+                "col-2-2",
+                "col-2-2",
+                "col-2-2",
+                "col-2-2"
+              ],
+              "rows": [
+                [
+                  "1st",
+                  "{@spell detect evil and good|sns}",
+                  "{@spell sanctuary|sns}",
+                  "{@spell thunderwave|sns}",
+                  "{@spell burning hands|sns}",
+                  "{@spell fog cloud|sns}"
+                ],
+                [
+                  "2nd",
+                  "{@spell phantasmal force|sns}",
+                  "{@spell spike growth|sns}",
+                  "{@spell gust of wind|sns}",
+                  "{@spell scorching ray|sns}",
+                  "{@spell blur|sns}"
+                ],
+                [
+                  "3rd",
+                  "{@spell create food and water|sns}",
+                  "{@spell meld into stone|sns}",
+                  "{@spell wind wall|sns}",
+                  "{@spell fireball|sns}",
+                  "{@spell sleet storm|sns}"
+                ],
+                [
+                  "4th",
+                  "{@spell phantasmal killer|sns}",
+                  "{@spell stone shape|sns}",
+                  "{@spell greater invisibility|sns}",
+                  "{@spell fire shield|sns}",
+                  "{@spell control water|sns}"
+                ],
+                [
+                  "5th",
+                  "{@spell creation|sns}",
+                  "{@spell wall of stone|sns}",
+                  "{@spell seeming|sns}",
+                  "{@spell flame strike|sns}",
+                  "{@spell cone of cold|sns}"
+                ],
+                [
+                  "9th",
+                  "{@spell wish|sns}",
+                  "\u2014",
+                  "\u2014",
+                  "\u2014",
+                  "\u2014"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "type": "refSubclassFeature",
+          "subclassFeature": "Genie's Vessel|Warlock|sns|Genie|sns|1"
+        },
+        {
+          "type": "refSubclassFeature",
+          "subclassFeature": "Genie Major Effect #1|Warlock|sns|Genie|sns|1"
+        }
+      ]
+    },
+    {
+      "name": "Genie's Vessel",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "subclassShortName": "Genie",
+      "subclassSource": "sns",
+      "level": 1,
+      "header": 1,
+      "entries": [
+        "At tier 1, your patron gifts you a magical vessel that grants you a measure of the genie's power. The vessel is a Tiny object, and you can use it as a spellcasting focus for your warlock spells. You decide what the object is, or you can determine what it is randomly by rolling on the Genie's Vessel table.",
+        {
+          "type": "table",
+          "caption": "Genie's Vessel",
+          "colLabels": [
+            "d6",
+            "Vessel"
+          ],
+          "colStyles": [
+            "col-2 text-center",
+            "col-10"
+          ],
+          "rows": [
+            [
+              "1",
+              "Oil lamp"
+            ],
+            [
+              "2",
+              "Urn"
+            ],
+            [
+              "3",
+              "Ring with a compartment"
+            ],
+            [
+              "4",
+              "Stoppered bottle"
+            ],
+            [
+              "5",
+              "Hollow statuette"
+            ],
+            [
+              "6",
+              "Ornate lantern"
+            ]
+          ]
+        },
+        "While you are touching the vessel, you can use it in the following ways:",
+        {
+          "type": "options",
+          "style": "list-hang-notitle",
+          "entries": [
+            {
+              "type": "item",
+              "name": "Bottled Respite",
+              "entries": [
+                "As an action, you can magically vanish and enter your vessel, which remains in the space you left. The interior of the vessel is an extradimensional space in the shape of a 20-foot-radius cylinder, 20 feet high, and resembles your vessel. The interior is appointed with cushions and low tables and is a comfortable temperature. While inside, you can hear the area around your vessel as if you were in its space. You can remain inside the vessel up to a number of hours equal to twice your proficiency bonus. You exit the vessel early if you use a bonus action to leave, if you die, or if the vessel is destroyed. When you exit the vessel, you appear in an unoccupied space closest to it. Any objects left in the vessel remain there until carried out, and if the vessel is destroyed, every object stored there harmlessly appears in the unoccupied spaces closest to the vessel's former space. Once you enter the vessel, you can't enter again until you finish a long rest."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Genie's Wrath",
+              "entries": [
+                "Once during each of your turns when you hit with an armour attack, you can deal extra damage to the target equal to your proficiency bonus. The type of this damage is determined by your patron: bludgeoning (dao), thunder (djinni), fire (efreeti), or cold (marid)."
+              ]
+            }
+          ]
+        },
+        "The vessel's armour equals your spellcasting ability modifier. Its hit points equal double your warlock level, and it is immune to poison and psychic damage.",
+        "If the vessel is destroyed or you lose it, you can perform a 1-hour ceremony to receive a replacement from your patron. This ceremony can be performed during a short or long rest, and the previous vessel is destroyed if it still exists. The vessel vanishes in a flare of elemental power when you die."
+      ]
+    },
+    {
+      "name": "Genie Major Effect #1",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "subclassShortName": "Genie",
+      "subclassSource": "sns",
+      "level": 1,
+      "entries": [
+        "For 1 round, the target of this attack takes additional damage equal to your proficiency bonus, of a type determined by your patron’s kind, whenever it is hit by an attack. If the target dies from this attack, creatures of your choice that you can see immediately take this damage instead."
+      ]
+    },
+    {
+      "name": "Elemental Gift",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "subclassShortName": "Genie",
+      "subclassSource": "sns",
+      "level": 3,
+      "header": 2,
+      "entries": [
+        "From tier 2, you begin to take on characteristics of your patron's kind. You now have 50% resistance to a damage type determined by your patron's kind: bludgeoning (dao), thunder (djinni), fire (efreeti), or cold (marid).",
+        "In addition, as a bonus action, you can give yourself a flying speed of 30 feet that lasts for 10 minutes, during which you can hover. You can use this bonus action a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
+      ]
+    },
+    {
+      "name": "Assisted Arcana",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "subclassShortName": "Genie",
+      "subclassSource": "sns",
+      "level": 5,
+      "header": 2,
+      "entries": [
+        "You learn each of the spells specific to your patron’s kind available on your expanded spell list. Additionally, when learning warlock spells, you may learn any spell that can deal damage matching your patron’s kind. Whenever you cast either such spells, their spell point cost is reduced by 50%."
+      ]
+    },
+    {
+      "name": "Genie Major Effect #2",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "subclassShortName": "Genie",
+      "subclassSource": "sns",
+      "level": 5,
+      "header": 2,
+      "entries": [
+        "For 1 round, if you cast a spell that would have its spell point cost reduced by your Assisted Arcana feature, its spell point cost is 0 instead."
+      ]
+    },
+    {
+      "name": "Sanctuary Vessel",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "subclassShortName": "Genie",
+      "subclassSource": "sns",
+      "level": 7,
+      "header": 2,
+      "entries": [
+        "From tier 4, when you enter your Genie's Vessel via the Bottled Respite feature, you can now choose up to five willing creatures that you can see within 30 feet of you, and the chosen creatures are drawn into the vessel with you.",
+        "As a bonus action, you can eject any number of creatures from the vessel, and everyone is ejected if you leave or die or if the vessel is destroyed.",
+        "In addition, anyone (including you) who remains within the vessel for at least 10 minutes gains the benefit of finishing a short rest, and anyone can add your level to the number of hit points they regain if they spend any Hit Dice as part of a short rest there."
+      ]
+    },
+    {
+      "name": "Limited Wish",
+      "source": "sns",
+      "className": "Warlock",
+      "classSource": "sns",
+      "subclassShortName": "Genie",
+      "subclassSource": "sns",
+      "level": 9,
+      "header": 2,
+      "entries": [
+        "From tier 5, you can entreat your patron to grant you a small wish. As an action, you can speak your desire to your Genie's Vessel, requesting the effect of one spell that is 6th level or lower and has a casting time of 1 action. The spell can be from any class's spell list, and you don't need to meet the requirements of that spell, including components; the spell simply takes effect as part of this action.",
+        "Once you use this feature, you can't use it again until you finish {@dice 1d4} long rests."
+      ]
+    }
+  ],
+  "optionalfeature": [
+    {
+      "name": "Agonizing Blast",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "entries": [
+        "When you use your Eldritch Blast, you deal extra damage equal to your spellcasting ability modifier."
+      ]
+    },
+    {
+      "name": "Armor of Shadows",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "entries": [
+        "You are under the constant effects of the {@spell mage armour|sns} spell. This effect does not emit a magical aura."
+      ]
+    },
+    {
+      "name": "Beguiling Influence",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "entries": [
+        "You gain proficiency in Deception and Persuasion. If you are already proficient in either of these skills, you instead gain an expertise die."
+      ]
+    },
+    {
+      "name": "Chains of Carceri",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "prerequisite": [
+        {
+          "level": {
+            "level": 15,
+            "class": {
+              "name": "Warlock",
+              "source": "sns"
+            }
+          },
+          "pact": "Chain"
+        }
+      ],
+      "entries": [
+        "You can cast {@spell hold monster|sns} on a celestial, fiend, or elemental without spending spell points or material components. You must finish a long rest before you can use this invocation on the same creature again."
+      ]
+    },
+    {
+      "name": "Cosmic Armory",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "prerequisite": [
+        {
+          "level": {
+            "level": 17,
+            "class": {
+              "name": "Warlock",
+              "source": "sns"
+            }
+          }
+        }
+      ],
+      "entries": [
+        "Your patron bestows you with a loot specialisation of your choice."
+      ]
+    },
+    {
+      "name": "Courts of the Outer Realms",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "entries": [
+        "Choose one creature type from the following: aberration, celestial, elemental, fey, fiend, or undead. You are familiar with the intricacies of society and politics among those creatures, and you have advantage on checks made to interact with them or recall lore about them.",
+        "Additionally, you gain proficiency with your choice of either Arcana, History, or Religion. If you are already proficient in the chosen skill, you instead gain an expertise die."
+      ]
+    },
+    {
+      "name": "Deep Patronage",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "prerequisite": [
+        {
+          "level": {
+            "level": 11,
+            "class": {
+              "name": "Warlock",
+              "source": "sns"
+            }
+          }
+        }
+      ],
+      "entries": [
+        "Choose an additional Expanded Spell List. You learn all the spells on that list and they do not count against your spells known."
+      ]
+    },
+    {
+      "name": "Dreadful Word",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "prerequisite": [
+        {
+          "level": {
+            "level": 7,
+            "class": {
+              "name": "Warlock",
+              "source": "sns"
+            }
+          }
+        }
+      ],
+      "entries": [
+        "You learn the {@spell confusion|sns} spell, and the spell doesn't count against your number of spells known."
+      ]
+    },
+    {
+      "name": "Eigth Arcanum",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "prerequisite": [
+        {
+          "level": {
+            "level": 15,
+            "class": {
+              "name": "Warlock",
+              "source": "sns"
+            }
+          }
+        }
+      ],
+      "entries": [
+        "You learn an {@filter 8th-level warlock spell|spells|level=8|class=Warlock} that you can cast once between long rests."
+      ]
+    },
+    {
+      "name": "Eldritch Bind",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "prerequisite": [
+        {
+          "level": {
+            "level": 7,
+            "class": {
+              "name": "Warlock",
+              "source": "sns"
+            }
+          },
+          "other": "Eldritch Whip feature"
+        }
+      ],
+      "entries": [
+        "When you score a major success against a creature with your Eldritch Whip, it is {@condition staggered|sns} for 1 minute, or until it passes a passive save.",
+        "Once you use this feature, you cannot do so again until you finish a short or long rest. You also regain the use of this feature after you've spent 5 spell points to cast a spell or use other warlock features"
+      ]
+    },
+    {
+      "name": "Eldritch Elementalism",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "entries": [
+        "When you use your Eldritch Blast, you can spend 1 spell point to choose acid, cold, fire, lightning, necrotic, poison, psychic, radiant, or thunder damage. Until you complete a short or long rest, your Eldritch Blast deals your choice of force damage or the chosen damage type."
+      ]
+    },
+    {
+      "name": "Eldritch Grasp",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "prerequisite": [
+        {
+          "level": {
+            "level": 7,
+            "class": {
+              "name": "Warlock",
+              "source": "sns"
+            }
+          }
+        }
+      ],
+      "entries": [
+        "When you score a major success against a Large-sized or smaller creature with your Eldritch Blast, you may grapple it. The grapple automatically ends if the creature leaves your Eldritch Blast range or if you attempt to grapple another creature."
+      ]
+    },
+    {
+      "name": "Eldritch Prism",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "prerequisite": [
+        {
+          "level": {
+            "level": 7,
+            "class": {
+              "name": "Warlock",
+              "source": "sns"
+            }
+          },
+          "other": "Eldritch Disturbance feature"
+        }
+      ],
+      "entries": [
+        "You can use an action to unleash your Eldritch Blast against creatures within a 20-foot cube originating at a point within 60 feet. Make a spell will attack against each creature in the area that deals force damage equal to a number of {@dice d12}s equal to your proficiency bonus.",
+        "Once you use this feature, you cannot do so again until you finish a short or long rest. You also regain the use of this feature after you've spent 5 spell points to cast a spell or use other warlock features."
+      ]
+    },
+    {
+      "name": "Eldritch Riposte",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "prerequisite": [
+        {
+          "other": "Eldritch Disturbance or Eldritch Ray feature"
+        }
+      ],
+      "entries": [
+        "When a creature you can see within 30 feet hits you, you can use your reaction and spend spell points to use your Eldritch Disturbance or Eldritch Ray against it. Instead of the normal damage, you deal {@dice 1d10} force damage for every 1 spell point spent activating this feature (up to a maximum equal to your proficiency bonus)."
+      ]
+    },
+    {
+      "name": "Eldritch Severance",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "prerequisite": [
+        {
+          "level": {
+            "level": 7,
+            "class": {
+              "name": "Warlock",
+              "source": "sns"
+            }
+          },
+          "other": "Eldritch Scythe feature"
+        }
+      ],
+      "entries": [
+        "You can use an action to unleash your Eldritch Blast against creatures within a 60-foot line that is 5 feet wide. Make a spell reflex attack against each creature in the area that deals force damage equal to a number of {@dice d12}s equal to your proficiency bonus.",
+        "Once you use this feature, you cannot do so again until you finish a short or long rest. You also regain the use of this feature after you've spent 5 spell points to cast a spell or use other warlock features"
+      ]
+    },
+    {
+      "name": "Eldritch Spear",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "prerequisite": [
+        {
+          "other": "Eldritch Ray feature"
+        }
+      ],
+      "entries": [
+        "The range of your Eldritch Ray increases to 300 feet."
+      ]
+    },
+    {
+      "name": "Eldritch Squall",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "prerequisite": [
+        {
+          "level": {
+            "level": 7,
+            "class": {
+              "name": "Warlock",
+              "source": "sns"
+            }
+          },
+          "other": "Eldritch Ray feature"
+        }
+      ],
+      "entries": [
+        "You can use an action to unleash your Eldritch Blast against all creatures within a 30-foot cone. Make a spell reflex attack against each creature in the area that deals force damage equal to a number of {@dice 1d12}s equal to your proficiency bonus.",
+        "Once you use this feature, you cannot do so again until you finish a short or long rest. You also regain the use of this feature after you've spent 5 spell points to cast a spell or use other warlock features"
+      ]
+    },
+    {
+      "name": "Eldritch Tentacle",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "entries": [
+        "When you hit a creature with your Eldritch Blast, you can push the creature up to 10 feet straight toward you."
+      ]
+    },
+    {
+      "name": "Eldritch Warrior",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "entries": [
+        "You gain proficiency with medium armour and martial weapons."
+      ]
+    },
+    {
+      "name": "Entity of Myth",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "prerequisite": [
+        {
+          "level": {
+            "level": 17,
+            "class": {
+              "name": "Warlock",
+              "source": "sns"
+            }
+          }
+        }
+      ],
+      "entries": [
+        "You gain 50% resistance to bludgeoning, piercing, and slashing damage from weapons not made from cold iron."
+      ]
+    },
+    {
+      "name": "Eyes of the Runekeeper",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "entries": [
+        "You can read all writing."
+      ]
+    },
+    {
+      "name": "Fiendish Vigor",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "entries": [
+        "You learn the {@spell false life|sns} spell, and the spell doesn't count against your number of spells known. When you cast it on yourself as a 1st-level spell, you can do so without spending spell points or material components."
+      ]
+    },
+    {
+      "name": "Frog Fangs",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "prerequisite": [
+        {
+          "pact": "Chain"
+        }
+      ],
+      "entries": [
+        "Your familiar can take the Attack action. Attacks made by your familiar count as your attacks and deal additional force damage equal to your proficiency bonus."
+      ]
+    },
+    {
+      "name": "Gaze of Two Minds",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "entries": [
+        "You can use your action to touch a willing humanoid and perceive through its senses until the end of your next turn. On subsequent turns you can use a bonus action to maintain this connection, extending the duration until the end of your next turn. While perceiving through the other creature's senses, you benefit from any special senses possessed by that creature, and you are {@condition blinded|sns} and {@condition deafened|sns} to your own surroundings."
+      ]
+    },
+    {
+      "name": "Lifedrinker",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "prerequisite": [
+        {
+          "pact": "Blade"
+        }
+      ],
+      "entries": [
+        "When you hit a creature with your pact weapon, the creature takes extra necrotic damage equal to your spellcasting ability modifier (minimum 1)."
+      ]
+    },
+    {
+      "name": "Mask of Many Faces",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "entries": [
+        "You can cast {@spell disguise self|sns} without spending spell points."
+      ]
+    },
+    {
+      "name": "Minions of the Multiverse",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "prerequisite": [
+        {
+          "level": {
+            "level": 7,
+            "class": {
+              "name": "Warlock",
+              "source": "sns"
+            }
+          }
+        }
+      ],
+      "entries": [
+        "When you choose this invocation, choose one spell with the minion tag of your choice from any spell list, up to a spell level that you are capable of casting (maximum of 5th-level). You can cast this spell once by spending an appropriate number of spell points (see Table: Spell Points). You cannot do so again until you finish a long rest."
+      ]
+    },
+    {
+      "name": "Mire the Mind",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "prerequisite": [
+        {
+          "level": {
+            "level": 5,
+            "class": {
+              "name": "Warlock",
+              "source": "sns"
+            }
+          }
+        }
+      ],
+      "entries": [
+        "You can cast {@spell slow|sns} once by spending 5 spell points. You cannot do so again until you finish a long rest."
+      ]
+    },
+    {
+      "name": "Misty Visions",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "entries": [
+        "You can cast {@spell silent image|sns} without spending spell points or material components."
+      ]
+    },
+    {
+      "name": "Noxious Invigoration",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "entries": [
+        "Whenever you gain temporary hit points, increase the amount you gain by your level."
+      ]
+    },
+    {
+      "name": "Ominous Tormentor",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "entries": [
+        "You gain proficiency in Insight and Intimidation. If you are already proficient in either of these skills, you instead gain an expertise die."
+      ]
+    },
+    {
+      "name": "Overclocked Concentration",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "prerequisite": [
+        {
+          "level": {
+            "level": 15,
+            "class": {
+              "name": "Warlock",
+              "source": "sns"
+            }
+          }
+        }
+      ],
+      "entries": [
+        "You can maintain concentration on two spells simultaneously. Their cumulative spell-level can be no higher than 5th-level. When you lose concentration both spells end."
+      ]
+    },
+    {
+      "name": "Pactkeeper's Reward",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "prerequisite": [
+        {
+          "level": {
+            "level": 13,
+            "class": {
+              "name": "Warlock",
+              "source": "sns"
+            }
+          }
+        }
+      ],
+      "entries": [
+        "You gain an additional Pact Boon of your choice."
+      ]
+    },
+    {
+      "name": "Penultimate Arcanum",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "prerequisite": [
+        {
+          "level": {
+            "level": 17,
+            "class": {
+              "name": "Warlock",
+              "source": "sns"
+            }
+          }
+        }
+      ],
+      "entries": [
+        "You learn a 9th-level warlock spell that you can cast once between long rests."
+      ]
+    },
+    {
+      "name": "Potent Witchcraft",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "entries": [
+        "Your warlock cantrips deal extra damage equal to your spellcasting ability modifier."
+      ]
+    },
+    {
+      "name": "Reanimator",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "prerequisite": [
+        {
+          "level": {
+            "level": 5,
+            "class": {
+              "name": "Warlock",
+              "source": "sns"
+            }
+          }
+        }
+      ],
+      "entries": [
+        "You can cast {@spell animate dead|sns} once by spending 5 spell points; you can instead cast it as a 4th-level spell by spending 6 spell points, or as a 5th-level spell by spending 7 spell points. You cannot do so again until you finish a long rest."
+      ]
+    },
+    {
+      "name": "Repelling Blast",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "entries": [
+        "When you hit a creature with your Eldritch Blast, you can push the creature up to 10 feet away from you in a straight line."
+      ]
+    },
+    {
+      "name": "Sculptor of Flesh",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "prerequisite": [
+        {
+          "level": {
+            "level": 7,
+            "class": {
+              "name": "Warlock",
+              "source": "sns"
+            }
+          }
+        }
+      ],
+      "entries": [
+        "You can cast {@spell polymorph|sns} once by spending 6 spell points. You cannot do so again until you finish a long rest."
+      ]
+    },
+    {
+      "name": "Seething Aura",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "prerequisite": [
+        {
+          "level": {
+            "level": 15,
+            "class": {
+              "name": "Warlock",
+              "source": "sns"
+            }
+          }
+        }
+      ],
+      "entries": [
+        "Choose one of the following damage types: cold, fire, lightning, necrotic, psychic, radiant. Whenever you spend spell points, you can choose to unleash energy that deals an equal amount of damage of the chosen type to hostile creatures within 15 feet of you."
+      ]
+    },
+    {
+      "name": "Seventh Arcanum",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "prerequisite": [
+        {
+          "level": {
+            "level": 13,
+            "class": {
+              "name": "Warlock",
+              "source": "sns"
+            }
+          }
+        }
+      ],
+      "entries": [
+        "You learn a 7th-level warlock spell that you can cast once between long rests."
+      ]
+    },
+    {
+      "name": "Sixth Arcanum",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "prerequisite": [
+        {
+          "level": {
+            "level": 11,
+            "class": {
+              "name": "Warlock",
+              "source": "sns"
+            }
+          }
+        }
+      ],
+      "entries": [
+        "You learn a 6th-level warlock spell that you can cast once between long rests."
+      ]
+    },
+    {
+      "name": "Sign of Ill Omen",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "prerequisite": [
+        {
+          "level": {
+            "level": 5,
+            "class": {
+              "name": "Warlock",
+              "source": "sns"
+            }
+          }
+        }
+      ],
+      "entries": [
+        "You learn the {@spell bestow curse|sns} spell, and the spell doesn't count against your number of spells known."
+      ]
+    },
+    {
+      "name": "Spellbinding Contract",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "prerequisite": [
+        {
+          "level": {
+            "level": 9,
+            "class": {
+              "name": "Warlock",
+              "source": "sns"
+            }
+          }
+        }
+      ],
+      "entries": [
+        "You can cast {@spell geas|sns} once by spending 7 spell points. You cannot do so again until you finish a long rest.",
+        "If the command of the geas is the stipulation of an agreement to which the target consents, the target automatically fails its save against this spell."
+      ]
+    },
+    {
+      "name": "Thief of Five Fates",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "entries": [
+        "You learn the {@spell bane|sns} spell, and the spell doesn't count against your number of spells known."
+      ]
+    },
+    {
+      "name": "Tines of Wyrd",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "prerequisite": [
+        {
+          "level": {
+            "level": 15,
+            "class": {
+              "name": "Warlock",
+              "source": "sns"
+            }
+          }
+        }
+      ],
+      "entries": [
+        "Whenever a non-armour attack hits you, you can spend 5 spell points to reroll it and take the second result."
+      ]
+    },
+    {
+      "name": "Thirsting Blade",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "prerequisite": [
+        {
+          "level": {
+            "level": 5,
+            "class": {
+              "name": "Warlock",
+              "source": "sns"
+            }
+          },
+          "pact": "Blade"
+        }
+      ],
+      "entries": [
+        "When you use the Attack action, your pact weapon's base damage is doubled. For example, a weapon with a damage of {@dice 1d6} + your Strength modifier deals {@dice 2d6} + double your Strength modifier instead."
+      ]
+    },
+    {
+      "name": "Versatile Blast",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "entries": [
+        "You learn an additional Eldritch Blast feature of your choice.",
+        "You can take this invocation a second and third time, each time learning a new Eldritch Blast feature."
+      ]
+    },
+    {
+      "name": "Voice of the Chain Master",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "prerequisite": [
+        {
+          "pact": "Chain"
+        }
+      ],
+      "entries": [
+        "So long as you are on the same plane of existence, you can communicate telepathically with your familiar, perceive through your familiar's senses, and also speak through your familiar in your own voice (even if your familiar is normally incapable of speech)."
+      ]
+    },
+    {
+      "name": "Whispers of the Grave",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "prerequisite": [
+        {
+          "level": {
+            "level": 9,
+            "class": {
+              "name": "Warlock",
+              "source": "sns"
+            }
+          }
+        }
+      ],
+      "entries": [
+        "You can cast {@spell speak with dead|sns} without spending spell points."
+      ]
+    },
+    {
+      "name": "Witch Sight",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "prerequisite": [
+        {
+          "level": {
+            "level": 15,
+            "class": {
+              "name": "Warlock",
+              "source": "sns"
+            }
+          }
+        }
+      ],
+      "entries": [
+        "You can see the true form of any shapechanger or creature concealed by illusion or transmutation magic while the creature is within 30 feet of you."
+      ]
+    },
+    {
+      "name": "Whirling Void",
+      "source": "sns",
+      "featureType": [
+        "EI"
+      ],
+      "prerequisite": [
+        {
+          "level": {
+            "level": 7,
+            "class": {
+              "name": "Warlock",
+              "source": "sns"
+            }
+          }
+        }
+      ],
+      "entries": [
+        "You learn the {@spell black tentacles|sns} spell, and the spell doesn't count against your number of spells known."
+      ]
+    },
+    {
+      "name": "Ascendant Step",
+      "source": "sns",
+      "featureType": [
+        "SA"
+      ],
+      "prerequisite": [
+        {
+          "level": {
+            "level": 9,
+            "class": {
+              "name": "Warlock",
+              "source": "sns"
+            }
+          }
+        }
+      ],
+      "entries": [
+        "You can cast {@spell levitate|sns} on yourself without spending spell points or material components."
+      ]
+    },
+    {
+      "name": "Beast Speech",
+      "source": "sns",
+      "featureType": [
+        "SA"
+      ],
+      "entries": [
+        "You are under the constant effects of the {@spell speak with animals|sns} spell. This effect does not emit a magical aura."
+      ]
+    },
+    {
+      "name": "Book of Ancient Secrets",
+      "source": "sns",
+      "featureType": [
+        "SA"
+      ],
+      "prerequisite": [
+        {
+          "pact": "Tome"
+        }
+      ],
+      "entries": [
+        "The complex sigils and symbols of ritual magic appear in your Book of Shadows. Choose three 1st-level spells that have the ritual tag. The spells appear in the book and don't count against the number of spells you know. You can't cast the spells except as rituals, unless you've learned them by some other means."
+      ]
+    },
+    {
+      "name": "Devil's Sight",
+      "source": "sns",
+      "featureType": [
+        "SA"
+      ],
+      "entries": [
+        "You can see normally in all types of darkness (including magical) to a distance of 120 feet."
+      ]
+    },
+    {
+      "name": "Eldritch Sight",
+      "source": "sns",
+      "featureType": [
+        "SA"
+      ],
+      "entries": [
+        "You can cast {@spell detect magic|sns} without spending spell points."
+      ]
+    },
+    {
+      "name": "Inscrutability",
+      "source": "sns",
+      "featureType": [
+        "SA"
+      ],
+      "prerequisite": [
+        {
+          "level": {
+            "level": 13,
+            "class": {
+              "name": "Warlock",
+              "source": "sns"
+            }
+          }
+        }
+      ],
+      "entries": [
+        "You are under the constant effects of the {@spell nondetection|sns} spell."
+      ]
+    },
+    {
+      "name": "Master of Myriad Forms",
+      "source": "sns",
+      "featureType": [
+        "SA"
+      ],
+      "prerequisite": [
+        {
+          "level": {
+            "level": 15,
+            "class": {
+              "name": "Warlock",
+              "source": "sns"
+            }
+          }
+        }
+      ],
+      "entries": [
+        "You can cast {@spell alter self|sns} without spending spell points."
+      ]
+    },
+    {
+      "name": "Mirror, Mirror",
+      "source": "sns",
+      "featureType": [
+        "SA"
+      ],
+      "prerequisite": [
+        {
+          "level": {
+            "level": 3,
+            "class": {
+              "name": "Warlock",
+              "source": "sns"
+            }
+          }
+        }
+      ],
+      "entries": [
+        "Using a reflective object, such as an ordinary mirror or the smooth surface of water, you can commune with your patron or their emissary. You may do so during a short or long rest, receiving or conveying information related to your master's bidding. This entity may also use such surfaces to bridge communication with you on its own terms.",
+        "You can also use this feature to cast {@spell augury|sns} without spending spell points. Casting the spell in this way does not require material components, although you do need a reflective surface by which your patron might appear to you. Once you cast the spell in this way, you cannot do so again until you finish a long rest."
+      ]
+    },
+    {
+      "name": "One with Shadows",
+      "source": "sns",
+      "featureType": [
+        "SA"
+      ],
+      "prerequisite": [
+        {
+          "level": {
+            "level": 5,
+            "class": {
+              "name": "Warlock",
+              "source": "sns"
+            }
+          }
+        }
+      ],
+      "entries": [
+        "You can use an action to become {@condition invisible} while you are in an area of dim light or darkness. Your invisibility lasts until you move, take an action, or use your reaction."
+      ]
+    },
+    {
+      "name": "Otherworldly Leap",
+      "source": "sns",
+      "featureType": [
+        "SA"
+      ],
+      "entries": [
+        "You are under the constant effects of the {@spell jump|sns} spell. This effect does not emit a magical aura."
+      ]
+    },
+    {
+      "name": "Portents and Portals",
+      "source": "sns",
+      "featureType": [
+        "SA"
+      ],
+      "entries": [
+        "You automatically know when you are within 1 mile of a portal or gateway to another plane, even if it is inactive or malfunctioning (but not destroyed).",
+        "You have advantage on checks made to locate this portal, and gain an expertise die on any checks you make to stabilize, activate, or open it."
+      ]
+    },
+    {
+      "name": "Shadowveil",
+      "source": "sns",
+      "featureType": [
+        "SA"
+      ],
+      "prerequisite": [
+        {
+          "level": {
+            "level": 15,
+            "class": {
+              "name": "Warlock",
+              "source": "sns"
+            }
+          }
+        }
+      ],
+      "entries": [
+        "You can cast {@spell invisibility|sns} without spending spell points."
+      ]
+    },
+    {
+      "name": "Visions of Distant Realms",
+      "source": "sns",
+      "featureType": [
+        "SA"
+      ],
+      "prerequisite": [
+        {
+          "level": {
+            "level": 7,
+            "class": {
+              "name": "Warlock",
+              "source": "sns"
+            }
+          }
+        }
+      ],
+      "entries": [
+        "You can cast {@spell arcane eye|sns} once without spending spell points. You cannot do so again until you finish a long rest.",
+        "At 15th level, you can instead cast {@spell arcane eye|sns} at will."
+      ]
+    },
+    {
+      "name": "Whiff of the Beyond",
+      "source": "sns",
+      "featureType": [
+        "SA"
+      ],
+      "entries": [
+        "You automatically know when an aberration, celestial, elemental, fey, fiend, or undead creature has been in a space within 30 feet of you within the past 24 hours, though not which type of creature triggered this knowledge.",
+        "Additionally, you gain an expertise die on Perception checks, and you have advantage on checks made to track these creatures."
+      ]
+    }
+  ]
+}

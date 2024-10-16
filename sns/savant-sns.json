@@ -1,0 +1,1089 @@
+{
+  "_meta": {
+    "sources": [
+      {
+        "json": "sns",
+        "abbreviation": "S&S",
+        "full": "Spies & Spiders",
+        "authors": [
+          "Spies & Spiders"
+        ],
+        "version": "0.0.1"
+      }
+    ],
+    "dateAdded": 0,
+    "dateLastModified": 0,
+    "optionalFeatureTypes": {
+      "CS": "Clever Scheme"
+    }
+  },
+  "class": [
+    {
+      "name": "Savant",
+      "source": "sns",
+      "hd": {
+        "number": 1,
+        "faces": 8
+      },
+      "proficiency": [
+        "dex",
+        "int"
+      ],
+      "startingProficiencies": {
+        "armor": [],
+        "weapons": [
+          "simple",
+          "improvised"
+        ],
+        "skills": [
+          {
+            "choose": {
+              "from": [
+                "arcana",
+                "brawn",
+                "deception",
+                "engineering",
+                "insight",
+                "investigation",
+                "medicine",
+                "perception",
+                "performance",
+                "persuasion",
+                "sleight of hand"
+              ],
+              "count": 3
+            }
+          }
+        ]
+      },
+      "classTableGroups": [
+        {
+          "colLabels": [
+            "Tricks Known",
+            "{@filter Schemes Known|optionalfeatures|feature type=cs}"
+          ],
+          "rows": [
+            [
+              3,
+              1
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              5,
+              2
+            ],
+            [
+              6,
+              3
+            ],
+            [
+              7,
+              3
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              8,
+              4
+            ],
+            [
+              9,
+              5
+            ],
+            [
+              10,
+              5
+            ],
+            [
+              10,
+              6
+            ],
+            [
+              11,
+              6
+            ],
+            [
+              12,
+              7
+            ],
+            [
+              13,
+              7
+            ],
+            [
+              13,
+              8
+            ],
+            [
+              14,
+              8
+            ],
+            [
+              15,
+              9
+            ],
+            [
+              16,
+              9
+            ],
+            [
+              16,
+              10
+            ],
+            [
+              17,
+              10
+            ]
+          ]
+        }
+      ],
+      "classFeatures": [
+        "Adroit Defence|Savant|sns|1|sns",
+        {
+          "classFeature": "First Subclass Tier 1|Savant|sns|1|sns",
+          "gainSubclassFeature": true
+        },
+        "Clever Schemes|Savant|sns|1|sns",
+        "Savant Tricks|Savant|sns|1|sns",
+        "Combat Poise|Savant|sns|2|sns",
+        "Analysed Need|Savant|sns|3|sns",
+        "Skill Focus|Savant|sns|3|sns",
+        {
+          "classFeature": "First Subclass Tier 2|Savant|sns|3|sns",
+          "gainSubclassFeature": true
+        },
+        "Ability Score Improvement|Savant|sns|4|sns",
+        "Developed Poise|Savant|sns|5|sns",
+        {
+          "classFeature": "First Subclass Tier 3|Savant|sns|5|sns",
+          "gainSubclassFeature": true
+        },
+        "Signature Move|Savant|sns|6|sns",
+        "Intelligent Caution|Savant|sns|7|sns",
+        "Skill Focus|Savant|sns|7|sns",
+        "Quick Wits|Savant|sns|7|sns",
+        {
+          "classFeature": "First Subclass Tier 4|Savant|sns|7|sns",
+          "gainSubclassFeature": true
+        },
+        "Ability Score Improvement|Savant|sns|8|sns",
+        "Focused Defence|Savant|sns|9|sns",
+        {
+          "classFeature": "First Subclass Tier 5|Savant|sns|9|sns",
+          "gainSubclassFeature": true
+        },
+        "More Tricks|Savant|sns|10|sns",
+        "Skill Focus|Savant|sns|11|sns",
+        "Second Subclass Tier 1|Savant|sns|11|sns",
+        "Ability Score Improvement|Savant|sns|12|sns",
+        "Second Subclass Tier 2|Savant|sns|13|sns",
+        "Exceptional Poise|Savant|sns|14|sns",
+        "Clockwork Mind|Savant|sns|15|sns",
+        "Skill Focus|Savant|sns|15|sns",
+        "Second Subclass Tier 3|Savant|sns|15|sns",
+        "Ability Score Improvement|Savant|sns|16|sns",
+        "Second Subclass Tier 4|Savant|sns|17|sns",
+        "Nothing That Can't Be Solved|Savant|sns|18|sns",
+        "Ability Score Improvement|Savant|sns|19|sns",
+        "Skill Focus|Savant|sns|19|sns",
+        "Second Subclass Tier 5|Savant|sns|19|sns",
+        "Ultimate Schema|Savant|sns|20|sns"
+      ],
+      "subclassTitle": "Savant Subclass"
+    }
+  ],
+  "subclass": [
+    {
+      "name": "Sired",
+      "shortName": "Sired",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "subclassFeatures": [
+        "Sired|Savant|sns|Sired|sns|1",
+        "Blood Frenzy|Savant|sns|Sired|sns|3",
+        "Supernatural Senses|Savant|sns|Sired|sns|5",
+        "Sired Major Effect #2|Savant|sns|Sired|sns|5",
+        "Emerging Immortality|Savant|sns|Sired|sns|7",
+        "Perfect Senses|Savant|sns|Sired|sns|7",
+        "Eternal Form|Savant|sns|Sired|sns|9"
+      ]
+    }
+  ],
+  "classFeature": [
+    {
+      "name": "Adroit Defence",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "level": 1,
+      "entries": [
+        "From 1st level, you constantly analyse combat situations to improve your defensive posture, proactively interfering to guide attacks away from yourself. While you are wearing unarmoured body armour, your armour is increased by half your Intelligence modifier. You cannot use a shield and still gain this benefit.",
+        "The savant is not proficient in armour by default, but might gain those proficiencies through other means. When you are wearing armoured body armour, your armour is increased by 1."
+      ]
+    },
+    {
+      "name": "First Subclass Tier 1",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "level": 1,
+      "entries": [
+        "At 1st level, you gain the tier 1 feature from your first subclass."
+      ]
+    },
+    {
+      "name": "First Subclass Tier 2",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "level": 3,
+      "entries": [
+        "At 3rd level, you gain the tier 2 feature from your first subclass."
+      ]
+    },
+    {
+      "name": "First Subclass Tier 3",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "level": 5,
+      "entries": [
+        "At 5th level, you gain the tier 3 feature from your first subclass."
+      ]
+    },
+    {
+      "name": "First Subclass Tier 4",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "level": 7,
+      "entries": [
+        "At 7th level, you gain the tier 4 feature from your first subclass."
+      ]
+    },
+    {
+      "name": "First Subclass Tier 5",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "level": 9,
+      "entries": [
+        "At 9th level, you gain the tier 5 feature from your first subclass."
+      ]
+    },
+    {
+      "name": "Second Subclass Tier 1",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "level": 11,
+      "entries": [
+        "At 11th level, you gain the tier 1 feature from your second subclass."
+      ]
+    },
+    {
+      "name": "Second Subclass Tier 2",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "level": 13,
+      "entries": [
+        "At 13th level, you gain the tier 2 feature from your second subclass."
+      ]
+    },
+    {
+      "name": "Second Subclass Tier 3",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "level": 15,
+      "entries": [
+        "At 15th level, you gain the tier 3 feature from your second subclass."
+      ]
+    },
+    {
+      "name": "Second Subclass Tier 4",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "level": 17,
+      "entries": [
+        "At 17th level, you gain the tier 4 feature from your second subclass."
+      ]
+    },
+    {
+      "name": "Second Subclass Tier 5",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "level": 19,
+      "entries": [
+        "At 19th level, you gain the tier 5 feature from your second subclass."
+      ]
+    },
+    {
+      "name": "Clever Schemes",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "level": 1,
+      "entries": [
+        "At 1st level, you learn one {@filter clever scheme|optionalfeatures|feature type=cs} of your choice. The Schemes Known column of the Savant table shows when you learn more clever schemes."
+      ]
+    },
+    {
+      "name": "Savant Tricks",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "level": 1,
+      "entries": [
+        "At 1st level, you have developed a small number of clever gambits, deft maneuvers, and canny guards which help you prevail in battle by using your wits. The number of tricks you know is listed on the Savant table, and you can choose from the list below and from the list of tricks your subclass may make available.",
+        "To use a trick, you must first prepare it by spending a bonus action. You cannot prepare a trick outside of an encounter, but once a trick is prepared, it remains prepared until you use it, until the encounter ends, or until you spend a bonus action to replace it with a different trick. You can only have on trick prepared at a time.",
+        "Different tricks can be used at different times. Some require your action, bonus action, or reaction. Others might be used when making attacks.",
+        "Whenever you finish a long rest, you can choose to replace any number of tricks you know with different tricks.",
+        {
+          "type": "entries",
+          "name": "Types of Tricks",
+          "entries": [
+            "Some tricks are called Aegises, which let you use your reaction to defend against some sort of attack. Other tricks are called Flourishes, which you can use when you make attacks.",
+            "If a trick offers a save, after you use it against a particular creature, that creature has advantage on saves against other uses of that same trick until the end of combat. If the trick doesn't permit a save, after you use it against a particular creature, you cannot use the same trick against that creature for the rest of the combat.",
+            {
+              "type": "list",
+              "name": "Aegises",
+              "items": [
+                {
+                  "type": "item",
+                  "name": "Attention Diverting Aegis",
+                  "entries": [
+                    "When a creature within 30 feet that can sense you makes an armour attack that isn't targeting you, you can use this trick to try to distract the attacker. If it fails a save, until your next turn it has disadvantage on all armour attack rolls it makes that aren't against you."
+                  ]
+                },
+                {
+                  "type": "item",
+                  "name": "Canny Dodge Aegis",
+                  "entries": [
+                    "When an armour or reflex attack would hit you, you can use your reaction to reduce the attack's success tier by 1."
+                  ]
+                },
+                {
+                  "type": "item",
+                  "name": "Committee Defence Aegis",
+                  "entries": [
+                    "When a creature makes an armour attack against you, if it is not the first creature to attack you since the start of your last turn, you find an avenue of opportunity amid the massed assault. You can use this trick to impose disadvantage on that creature's attack. Then, you gain advantage on the next attack roll you make before the end of your next turn that targets a creature that attacked you this round."
+                  ]
+                },
+                {
+                  "type": "item",
+                  "name": "Improvised Bastion Aegis",
+                  "entries": [
+                    "When a creature would damage you, you can use this trick to devise a momentary defence (using a chair as a shield, predicting a safe spot in an explosion, diluting a spray of acid with a solvent, etc.). You gain 50% resistance to one type of damage you would take, which protects you only against the triggering damage."
+                  ]
+                },
+                {
+                  "type": "item",
+                  "name": "Mindful Reason Aegis",
+                  "entries": [
+                    "When you would be hit by a reflex or will attack, you can use this trick to reduce the attack's success tier by 1."
+                  ]
+                },
+                {
+                  "type": "item",
+                  "name": "Serpentine Rush Aegis",
+                  "entries": [
+                    "When you are targeted by a ranged armour attack, you can use this trick to move your speed. Until the end of your next turn, ranged weapon attacks against you have disadvantage. Additionally, your movement might get you to a locaiton where cover makes you hard or impossible to hit. Reduce your speed on your next turn by the distance that you move when using this trick."
+                  ]
+                },
+                {
+                  "type": "item",
+                  "name": "Tangled Dance Aegis",
+                  "entries": [
+                    "When you would be hit with an armour attack and a creature other than the attacker is adjacent to you, you can use this trick to try to dodge so the attack hits that creature. If the attacker fails a save, change the attack's target to another creature within 5 feet, and the attacker uses the same result of its attack roll."
+                  ]
+                },
+                {
+                  "type": "item",
+                  "name": "Undermining Taunt Aegis",
+                  "entries": [
+                    "When a creature fails to hit with an attack, you can use this trick to capitalise on their failure, warning the creature why another possible course of action will also turn out badly. If that creature can understand you, choose an action, such as Attack or Cast a Spell. The trget must make a save. If it fails, until the end of its next turn it is {@condition debilitated|sns} while attempting to take that action."
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "list",
+              "name": "Flourishes",
+              "items": [
+                {
+                  "type": "item",
+                  "name": "Antagonising Flourish",
+                  "entries": [
+                    "When you hit a creature with a melee weapon attack, you can try to draw its ire. If it fails a save, it has disadvantage on attack rolls against creatures other than you until the start of your next turn."
+                  ]
+                },
+                {
+                  "type": "item",
+                  "name": "Disarming Flourish",
+                  "entries": [
+                    "WHen you hit a creature with a melee weapon attack, you can attempt to disarm it. If it fails a save, its grip is loosened, and the creature cannot make use of the item until it spends a bonus action on its turn to regain a solid hold. If the creature has disadvantage on the save and fails both rolls, it drops the item."
+                  ]
+                },
+                {
+                  "type": "item",
+                  "name": "Experimental Flourish",
+                  "entries": [
+                    "Whenever you fail to hit with an armour attack, you improvise a follow-up that doesn't directly attack a foe, such as slicing a rope to pin an enemy with a chandelier or smashing a pipe to spray blinding steam on an enemy. Circumstances will dictate what the effect is, but some examples include shoving or imposing the {@condition blinded|sns}, {@condition deafened|sns}, {@condition grappled|sns}, or {@condition prone|sns} condition, and may also deal environmental damage equal to your Intelligence modifier. Any conditions imposed should seldom last more than one round. Creatures affected can make a save to anticipate your trick and avoid the effect."
+                  ]
+                },
+                {
+                  "type": "item",
+                  "name": "Guiding Flourish",
+                  "entries": [
+                    "When you hit a creature with a melee weapon attack, you can try to trick it into moving. If it fails a save, it shifts up to 10 feet in a direction of your choice. If this movement would cause it to take damage (such as by falling or entering fire), the creature has advantage on this save."
+                  ]
+                },
+                {
+                  "type": "item",
+                  "name": "Menacing Flourish",
+                  "entries": [
+                    "When you hit a creature with a melee weapon attack, you can spend a bonus action to activate this trick and deliver a terrifying threat. The target makes a save. If it fails, for the next minute it is {@condition frightened|sns} of you."
+                  ]
+                },
+                {
+                  "type": "item",
+                  "name": "Surgical Flourish",
+                  "entries": [
+                    "When you have advantage on a melee weapon attack and both die results are high enough to hit, choose one of the creature's limbs or eyes to disable. If the creature succeeds a save, you disable that body part only until the end of your next turn. If it fails the save, the body part is disabled until it can take a short rest.",
+                    "A creature is {@condition debilitated|sns} when attempting to use a disabled limb to attack, and gains no armour benefit from a shield held by a disabled limb. A creature with a disabled leg has its speed reduced by half, it falls {@condition prone|sns} after using the Dash action, and it has disadvantage on Dexterity checks to balance. A creature with a disabled eye has disadvantage on Perception checks that rely on sight and on ranged weapon attack rolls."
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "list",
+              "name": "Other Tricks",
+              "items": [
+                {
+                  "type": "item",
+                  "name": "Assess Vulnerability",
+                  "entries": [
+                    "When you make an armour attack against a creature, you can use your Intelligence modifier in place of another ability score modifier for the attack's damage. This applies to all armour attacks you make against it before the start of your next turn, but not to armour attacks you make against other creatures."
+                  ]
+                },
+                {
+                  "type": "item",
+                  "name": "Choreographed Disappearance",
+                  "entries": [
+                    "On your turn, you say something to turn a foe's attention away from you or an ally. You or an ally of your choice who can understand you can move up to their speed. This movement does not provoke opportunity attacks from one creature of your choice that can understand you. If they end up having obscurement or cover relative to the distracted foe, they can immediately Hide as a free action."
+                  ]
+                },
+                {
+                  "type": "item",
+                  "name": "Defending Advice",
+                  "entries": [
+                    "Spend a bonus action to advise an ally who can understand you. Choose a non-armour defence. One time before the end of this encounter, that ally can reduce the success tier of an attack of that defence type by 1."
+                  ]
+                },
+                {
+                  "type": "item",
+                  "name": "Direct Ally",
+                  "entries": [
+                    "You identify an opening an ally can take advantage of. You can spend an action and choose an ally that can understand you, then choose a target. If that ally hits that target with an armour attack before the start of your next turn, their attack deals an extra {@dice 1d8} damage. Thr bonus dice increase to {@dice 2d8} at 5th level, {@dice 3d8} at 11th level, and {@dice 4d8} at 17th level. After you use this trick, you can choose the same ally again, but cannot choose the same target for the rest of the encounter."
+                  ]
+                },
+                {
+                  "type": "item",
+                  "name": "Frightful Suppression",
+                  "entries": [
+                    "When you make an armour attack that causes loud noises - a firearm or trap, or also any power that deals thunder damage - you can use this trick to force the attack's target (or creatures in the attack's area) to make a save to gauge when it is safe to move, and thus avoid being pinned down. A creature that fails is {@condition sluggish|sns} and can't move while adjacent to you until the start of your next turn unless it spends an action to break out of the suppression."
+                  ]
+                },
+                {
+                  "type": "item",
+                  "name": "Rallying Word",
+                  "entries": [
+                    "You know just what to say to inspire an ally's flagging stamina. You can spend a bonus action to let an ally within 30 feet who can understand you spend a Hit Die. If it does, it rolls that Hit Die plus {@dice 1d8} and heals hit points equal to the total. The bonus dice increase to {@dice 2d8} at 5th level, {@dice 3d8} at 11th level, and {@dice 4d8} at 17th level. After you use this ability, the same ally cannot benefit from it again until you complete a short rest."
+                  ]
+                },
+                {
+                  "type": "item",
+                  "name": "Sweeping Stride",
+                  "entries": [
+                    "When you move at least 10 feet and enter a space adjacent to a creature no more than one size larger than you, you can try to trip it. If the creature fails a save, it falls {@condition prone|sns}. If it succeeds, instead your movement ends in the space you entered to use this trick."
+                  ]
+                },
+                {
+                  "type": "item",
+                  "name": "Timely Tool",
+                  "entries": [
+                    "Spend a bonus action to use an item that normally can be used as an action. This cannot cause damage or make an attack. Examples include administering an antitoxin, potion, or other easy-to-swallow item to a willing creature within reach; lighting a torch; tossing out caltrops, or barring a door."
+                  ]
+                },
+                {
+                  "type": "item",
+                  "name": "Unbalancing Intervention",
+                  "entries": [
+                    "When a creature within your reach makes a Strength or Dexterity ability check or receives a fortitude or reflex attack, you can use your reaction to perform a series of pulls, shoves, and strikes that put a creature off-balance. The creature has disadvantage on its ability check or the attack roll has advantage."
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Combat Poise",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "level": 2,
+      "entries": [
+        "At 2nd level, you choose one of the following poises.",
+        {
+          "type": "entries",
+          "name": "A Step Ahead",
+          "entries": [
+            "You have a deft ability to predict your opponents' responses and interfere with them. Whenever a creature within your reach that you are aware of attempts to take a reaction, you can use your reaction to try to disrupt them. That creature must make a save, wasting their reaction on a failure."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Combat Maneuvers",
+          "entries": [
+            "You gain the ability to use combat maneuvers. You gain an exertion point pool equal to your proficiency bonus.",
+            "Choose two martial traditions. Whenever you gain a savant trick, you can instead choose a maneuver from any of your chosen martial traditions.",
+            "You can initially learn maneuvers of the 1st degree. At 7th level you gain access to 2nd degree maneuvers, then at 13th level you can access 3rd degree maneuvers, and finally at 19th level you can access 4th degree maneuvers."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Analysed Need",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "level": 3,
+      "entries": [
+        "Starting at 3rd level, when you complete a short or long rest you can choose a skill. Until you complete another rest, whenever you make an ability check using that skill, you use Intelligence instead of the ability score it normally uses."
+      ]
+    },
+    {
+      "name": "Skill Focus",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "level": 3,
+      "entries": [
+        "At 3rd level, and again at 7th, 11th, 15th, and 19th, choose a skill you are proficient with. You gain an expertise die on checks with that skill."
+      ]
+    },
+    {
+      "name": "Skill Focus",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "level": 7,
+      "entries": [
+        "At 7th level, choose a skill you are proficient with. You gain an expertise die on checks with that skill."
+      ]
+    },
+    {
+      "name": "Skill Focus",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "level": 11,
+      "entries": [
+        "At 11th level, choose a skill you are proficient with. You gain an expertise die on checks with that skill."
+      ]
+    },
+    {
+      "name": "Skill Focus",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "level": 15,
+      "entries": [
+        "At 15th level, choose a skill you are proficient with. You gain an expertise die on checks with that skill."
+      ]
+    },
+    {
+      "name": "Skill Focus",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "level": 19,
+      "entries": [
+        "At 19th level, choose a skill you are proficient with. You gain an expertise die on checks with that skill."
+      ]
+    },
+    {
+      "name": "Ability Score Improvement",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "level": 4,
+      "entries": [
+        "When you reach 4th level, you can increase one ability score of your choice by 1. As normal, you can't increase an ability score above 20 using this feature. Additionally, you gain a feat."
+      ]
+    },
+    {
+      "name": "Ability Score Improvement",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "level": 8,
+      "entries": [
+        "When you reach 8th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature. Alternatively, you may gain a feat instead of any increases to your ability scores."
+      ]
+    },
+    {
+      "name": "Ability Score Improvement",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "level": 12,
+      "entries": [
+        "When you reach 12th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature. Alternatively, you may gain a feat instead of any increases to your ability scores."
+      ]
+    },
+    {
+      "name": "Ability Score Improvement",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "level": 16,
+      "entries": [
+        "When you reach 16th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature. Alternatively, you may gain a feat instead of any increases to your ability scores."
+      ]
+    },
+    {
+      "name": "Ability Score Improvement",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "level": 19,
+      "entries": [
+        "When you reach 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature. Alternatively, you may gain a feat instead of any increases to your ability scores."
+      ]
+    },
+    {
+      "name": "Signature Move",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "level": 6,
+      "entries": [
+        "At 6th level, choose one savant trick you know. You are considered to always have that trick prepared, and it does not count against the limit of tricks you can have prepared. When you use that trick, it does not stop being prepared. Whenever you complete a long rest, you can change your signature move."
+      ]
+    },
+    {
+      "name": "Developed Poise",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "level": 5,
+      "entries": [
+        "At 5th level, you refine your combat poise. Choose one of the following, or one of the combat poise options available at 2nd level.",
+        {
+          "type": "entries",
+          "name": "Empowered Attack",
+          "entries": [
+            "When you use the Attack action, your main hand weapon's base damage is doubled. For example, a weapon with a damage of {@dice 1d6} + your Strength modifier deals {@dice 2d6} + double your Strength modifier instead."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Rational Maneuvers",
+          "entries": [
+            "Non-armour attack rolls made through your maneuvers gain a +1 bonus."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Intelligent Caution",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "level": 7,
+      "entries": [
+        "At 7th level, whenever you complete a long rest, you may choose one non-armour defence to gain a +1 bonus to until you use this feature again."
+      ]
+    },
+    {
+      "name": "Quick Wits",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "level": 7,
+      "entries": [
+        "Also at 7th level, on your turn you can prepare a trick without spending a bonus action. You can do this a number of times equal to your proficiency bonus. Thereafter, preparing tricks requires the usual bonus action until you complete a short rest."
+      ]
+    },
+    {
+      "name": "Focused Defence",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "level": 9,
+      "entries": [
+        "At 9th level, you can use the confusion of a large battle to protect you. If there are at least two enemies within 30 feet, you can use a bonus action to choose one of them. Until the end of your next turn, that creature has disadvantage on armour attack rolls against you."
+      ]
+    },
+    {
+      "name": "More Tricks",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "level": 10,
+      "entries": [
+        "At 10th level, you can have two tricks prepared at once, in addition to your signature move. You still require a bonus action to prepare a trick."
+      ]
+    },
+    {
+      "name": "Exceptional Poise",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "level": 14,
+      "entries": [
+        "At 14th level, your combat poise can achieve remarkable things. Choose one of the following, or one of the combat poise options available at 2nd or 5th level.",
+        {
+          "type": "entries",
+          "name": "Confounding Defence",
+          "entries": [
+            "The first time each round that you use an aegis, you can immediately prepare another aegis trick."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "The Opportune Moment",
+          "entries": [
+            "On your turn, you can take one additional action. The additional action that you take cannot make any attacks. You cannot use this ability on the first round of combat. After you use this feature, you cannot use it again until you complete a short or long rest."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Clockwork Mind",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "level": 15,
+      "entries": [
+        "At 15th level, your mental capabilities transcend the normal limitations mortal minds face. You gain an expertise die on all Intelligence checks and a +1 bonus to will."
+      ]
+    },
+    {
+      "name": "Nothing That Can't Be Solved",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "level": 18,
+      "entries": [
+        "At 18th level, you can overcome obstacles with ease. When a creature that can understand you starts its turn you can grant it the ability to ignore all sources of disadvantage until the start of its next turn. After you use this feature, you cannot use it again until you complete a short or long rest."
+      ]
+    },
+    {
+      "name": "Ultimate Schema",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "level": 20,
+      "entries": [
+        "At 20th level, you're clever enough to accomplish anything. Whenever you complete a long rest, choose an effect that could be accomplished by a spell of level 8 or lower. You can have that effect occur immediately, or keep it in reserve for the day, and cause it to occur at any point by spending an action. This can be because your acquired a magic item or spellcaster willing to perform the magic, or have a device or hirelings capable of matching the effect."
+      ]
+    }
+  ],
+  "subclassFeature": [
+    {
+      "name": "Sired",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "subclassShortName": "Sired",
+      "subclassSource": "sns",
+      "level": 1,
+      "entries": [
+        "Sired savants have been infected, or blessed, with vampirism by a more senior vampire. This process is known as being sired by that vampire.",
+        {
+          "type": "refSubclassFeature",
+          "subclassFeature": "Vampiric Transformation|Savant|sns|Sired|sns|1"
+        },
+        {
+          "type": "refSubclassFeature",
+          "subclassFeature": "Sired Major Effect #1|Savant|sns|Sired|sns|1"
+        }
+      ]
+    },
+    {
+      "name": "Vampiric Transformation",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "subclassShortName": "Sired",
+      "subclassSource": "sns",
+      "level": 1,
+      "entries": [
+        "At tier 1 when you first take this subclass, you gain a bite natural weapon, which you can use an action. The weapon cannot be used in any other way, including as part of the Attack action, as a reaction, or when triggered by a maneuver. The bite weapon deals {@dice 1d6} + Strength piercing damage, and you recover hit points equal to the damage it deals on a hit.",
+        "Additionally, you gain 30 feet of darkvision."
+      ]
+    },
+    {
+      "name": "Sired Major Effect #1",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "subclassShortName": "Sired",
+      "subclassSource": "sns",
+      "level": 1,
+      "entries": [
+        "For 1 round, you ignore the effects of sunlight on you and gain +3 armour against attackers who do not have darkvision."
+      ]
+    },
+    {
+      "name": "Blood Frenzy",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "subclassShortName": "Sired",
+      "subclassSource": "sns",
+      "level": 3,
+      "header": 2,
+      "entries": [
+        "From tier 2, your bite natural weapon has advantage on attack rolls against targets with fewer hit points than their maximum.",
+        "Additionally, your bite natural weapon recovers additional hit points equal to your Intelligence modifier on a hit."
+      ]
+    },
+    {
+      "name": "Supernatural Senses",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "subclassShortName": "Sired",
+      "subclassSource": "sns",
+      "level": 5,
+      "header": 2,
+      "entries": [
+        "At tier 3, you gain 60 feet of blindsight."
+      ]
+    },
+    {
+      "name": "Sired Major Effect #2",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "subclassShortName": "Sired",
+      "subclassSource": "sns",
+      "level": 5,
+      "header": 2,
+      "entries": [
+        "For 1 round, you gain a +2 bonus to armour attack rolls against targets with fewer hit points than their maximum."
+      ]
+    },
+    {
+      "name": "Emerging Immortality",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "subclassShortName": "Sired",
+      "subclassSource": "sns",
+      "level": 7,
+      "header": 2,
+      "entries": [
+        "At tier 4, you gain the following benefits:",
+        {
+          "type": "list",
+          "items": [
+            "You have 50% resistance to necrotic damage.",
+            "Whenever you would become {@condition charmed|sns} or {@condition frightened|sns}, make a save, ignoring the condition on a success.",
+            "Whenever you would drop to 0 hit points, make a disadvantaged save, remaining at 1 hit point instead on a success."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Perfect Senses",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "subclassShortName": "Sired",
+      "subclassSource": "sns",
+      "level": 7,
+      "header": 2,
+      "entries": [
+        "Also at tier 4, you gain 30 feet of true sight."
+      ]
+    },
+    {
+      "name": "Eternal Form",
+      "source": "sns",
+      "className": "Savant",
+      "classSource": "sns",
+      "subclassShortName": "Sired",
+      "subclassSource": "sns",
+      "level": 9,
+      "header": 2,
+      "entries": [
+        "From tier 5, as a bonus action, you can cast {@spell Gaseous Form|sns} on yourself at will, as if it were cast with a 5th level spell slot.",
+        "Additionally, you recover hit points equal to your Strength modifier whenever you start your turn while conscious and not in sunlight."
+      ]
+    }
+  ],
+  "optionalfeature": [
+    {
+      "name": "Apothecary Basics",
+      "source": "sns",
+      "featureType": [
+        "CS"
+      ],
+      "entries": [
+        "Whenever you take a short or long rest, you can use your medical knowledge to treat one creature. That creature can heal as if it had one extra {@dice 1d4} Hit Die during this rest, or it can ignore one level of {@condition fatigue|sns} for the next four hours."
+      ]
+    },
+    {
+      "name": "Deductive Tracker",
+      "source": "sns",
+      "featureType": [
+        "CS"
+      ],
+      "entries": [
+        "After observing a creature, you make a deduction that gives you an edge when pursuing it. After you spend at least 1 minute observing a creature, you gain an expertise die on checks made to track that specific creature."
+      ]
+    },
+    {
+      "name": "Hostilia Naturae",
+      "source": "sns",
+      "featureType": [
+        "CS"
+      ],
+      "entries": [
+        "Following the path trod by Drakran naturalist Karl Evol, author of A Theory of Noetic Field Adaptation Toward Terrifyingness Among Malice Ecologies, you have studied the many perils of wild flora and fauna. You gain an expertise die on checks to avoid, locate, or understand the abilities of aberrations, beasts, and monstrosities. This doesn't affect your journey activities."
+      ]
+    },
+    {
+      "name": "Impromptu Persona",
+      "source": "sns",
+      "featureType": [
+        "CS"
+      ],
+      "entries": [
+        "You do not need preparation to come up with a convincing fake persona, background, and excuse to cover anything suspicious you are doing. You can gain advantage on Deception checks to pretend to be someone else. However, the ruse won't hold up to prolonged scrutiny. If you spend more than a few minutes in someone's presence, you must make a new Dexeption check with disadvantage to maintain the ruse."
+      ]
+    },
+    {
+      "name": "Just What Have We Gotten Ourselves Into?",
+      "source": "sns",
+      "featureType": [
+        "CS"
+      ],
+      "entries": [
+        "Whenever you start a combat surprised, you gain an expertise die on your initiative check. When you trigger a trap, you gain an expertise die to your defences for the first attack the trap makes against you. After you use this scheme, you cannot use it again until you complete a short rest."
+      ]
+    },
+    {
+      "name": "Kleptology",
+      "source": "sns",
+      "featureType": [
+        "CS"
+      ],
+      "entries": [
+        "When a creature makes a melee armour attack against you or otherwise touches you, you can make a Sleight of Hand check against them as a reaction.",
+        "Additionally, when you spend at least a minute interacting with someone while within arm's reach, you gain an expertise die on Sleight of Hand checks that involve them until the interaction ends. This counts for the Rob journey activity."
+      ]
+    },
+    {
+      "name": "Local Informants",
+      "source": "sns",
+      "featureType": [
+        "CS"
+      ],
+      "entries": [
+        "You quickly can locate people willing to share information. If you spend an hour reaching out to local residents or simply perusing a recent periodical or newspaper, for the next day you gain an expertise die on History and Investigation checks related to the area. This does not aid any journey activities."
+      ]
+    },
+    {
+      "name": "Meeting of Minds",
+      "source": "sns",
+      "featureType": [
+        "CS"
+      ],
+      "entries": [
+        "You gain an expertise die on Charisma checks when trying to interact with someone who has proficiency in either Arcana, History, Nature, or Religion, so long as you also have proficiency in that skill. This does not aid any journey activities."
+      ]
+    },
+    {
+      "name": "Motto of the Tropezaros",
+      "source": "sns",
+      "featureType": [
+        "CS"
+      ],
+      "entries": [
+        "You make sure you're always prepared. Once per short rest you can produce a non-magical item that you could have purchased or prepared at some point, small enough to fit in whatever storage you have available. This could range from a forged passport in your pocket to a glider stowed in the hold of a ship you're traveling on. Pay the appropriate price for it. Limits of causality apply."
+      ]
+    },
+    {
+      "name": "Physical Education",
+      "source": "sns",
+      "featureType": [
+        "CS"
+      ],
+      "entries": [
+        "Once per hour, when you succeed on an Acrobatics or Athletics check to climb, swim, or jump you can offer advice and encouragement to your allies. For the next minute, each ally who attempts a check to traverse the same area gains an expertise die on the check. This counts for the Chronicle and Seek Shelter journey activities, but no others."
+      ]
+    },
+    {
+      "name": "Read You Like A Spellbook",
+      "source": "sns",
+      "featureType": [
+        "CS"
+      ],
+      "entries": [
+        "You can spend an action to make an Arcana check against the standard DC of a creature you can sense. If you succeed, you deduce from the creature's demeanor, fashion, and accoutrements what cantrips they know and the last non-cantrip spell they cast, if any."
+      ]
+    },
+    {
+      "name": "Reserved Seating",
+      "source": "sns",
+      "featureType": [
+        "CS"
+      ],
+      "entries": [
+        "You have forethought of when and where you might need to be places. If you knew you would be in a given area, once per day you can call upon this forethought to have a vehicle or mount waiting for you and your companions, or to have a reservation available at a venue. You pay any appropriate costs. For exceptional requests, you may need to make a Persuasion check or owe someone a favour."
+      ]
+    },
+    {
+      "name": "Run Silent Run Deep",
+      "source": "sns",
+      "featureType": [
+        "CS"
+      ],
+      "entries": [
+        "Once per hour, when you succeed on a Stelth check you can discreetly direct your allies. For the next minute, each ally who attempts a check to traverse the same area gains an expertise die. This counts for the Scout journey activity.",
+        "When moving through an area you're familiar with or have had time to study maps of, you gain an expertise die on Stealth checks. This does not assist with the Scout journey activity."
+      ]
+    },
+    {
+      "name": "Student of Technology",
+      "source": "sns",
+      "featureType": [
+        "CS"
+      ],
+      "entries": [
+        "You gain an expertise die on Engineering checks to build, repair, or understand a technological device. This does not assist with the Experiment journey activity."
+      ]
+    }
+  ]
+}
