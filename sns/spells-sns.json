@@ -32287,7 +32287,7 @@
       ],
       "source": "sns",
       "subschools": [
-        "sound"
+        "arcane"
       ],
       "level": 1,
       "components": {
@@ -32463,6 +32463,1481 @@
         "type": "point",
         "distance": {
           "type": "self"
+        }
+      }
+    },
+    {
+      "school": "V",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Area",
+          "entries": [
+            "Line 30 feet long and 5 feet wide"
+          ]
+        },
+        "A line of roaring flame emanates from you in a direction you choose. Make a reflex attack against each creature in the line that deals {@dice 4d6} fire damage."
+      ],
+      "name": "Scorcher",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "entriesHigherLevel": [
+        {
+          "type": "entries",
+          "name": "Cast at Higher Levels",
+          "entries": [
+            "The damage increases by {@dice 2d6} for each slot level above 2nd."
+          ]
+        }
+      ],
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "area",
+        "fire",
+        "spell"
+      ],
+      "level": 2,
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "a red dragon's scale"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "self"
+        }
+      }
+    },
+    {
+      "school": "C",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Target",
+          "entries": [
+            "One willing creature"
+          ]
+        },
+        "You create a spectral globe around the target's head. The globe is filled with fresh air that lasts until the spell ends. If the creature has more than one head, the globe of air appears around only one of its heads (which is all the creature needs to avoid suffocation, assuming that all its heads share the same respiratory system)."
+      ],
+      "name": "Air Bubble",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "entriesHigherLevel": [
+        {
+          "type": "entries",
+          "name": "Cast at Higher Levels",
+          "entries": [
+            "You can create two additional globes of fresh air for each slot level above 2nd."
+          ]
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "hour",
+            "amount": 24,
+            "upTo": false
+          }
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "air"
+      ],
+      "level": 2,
+      "components": {
+        "v": false,
+        "s": true
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Artificer",
+            "source": "PHB"
+          },
+          {
+            "name": "Druid",
+            "source": "PHB"
+          },
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 60
+        }
+      }
+    },
+    {
+      "school": "D",
+      "entries": [
+        "You draw on knowledge from spirits of the past. Choose one skill in which you lack proficiency. For the spell's duration, you have proficiency in the chosen skill. The spell ends early if you cast it again."
+      ],
+      "name": "Borrowed Knowledge",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "hour",
+            "amount": 1,
+            "upTo": false
+          }
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "knowledge"
+      ],
+      "level": 2,
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "a book worth at least 25 gp"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Bard",
+            "source": "PHB"
+          },
+          {
+            "name": "Cleric",
+            "source": "PHB"
+          },
+          {
+            "name": "Warlock",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "self"
+        }
+      }
+    },
+    {
+      "school": "T",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Target",
+          "entries": [
+            "One willing creature"
+          ]
+        },
+        "You touch the target and imbue it with the power to spew magical energy from its mouth, provided it has one. Choose acid, fire, lightning, or poison. Until the spell ends, the creature can use an action to exhale energy of the chosen type in a 15-foot cone. Make a reflex attack against each creature in that area that deals {@dice 2d10} damage of the chosen type. This attack scales with your stats, not the target's."
+      ],
+      "name": "Dragon's Breath",
+      "time": [
+        {
+          "number": 1,
+          "unit": "bonus"
+        }
+      ],
+      "entriesHigherLevel": [
+        {
+          "type": "entries",
+          "name": "Cast at Higher Levels",
+          "entries": [
+            "The damage increases by {@dice 1d10} for each slot level above 2nd."
+          ]
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "acid",
+        "cold",
+        "fire",
+        "lightning",
+        "poison",
+        "area",
+        "spell"
+      ],
+      "level": 2,
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "a hot pepper"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "touch"
+        }
+      }
+    },
+    {
+      "school": "C",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Target",
+          "entries": [
+            "One unoccupied 5-foot cube of air"
+          ]
+        },
+        "An elemental force that resembles a dust devil appears in the target and lasts for the spell's duration.",
+        "Any creature that ends its turn within 5 feet of the dust devil must make a save. On a failed save, the creature takes {@dice 1d8} bludgeoning DoT damage and is pushed 10 feet away from the dust devil. On a successful save, the creature takes half as much damage and isn't pushed.",
+        "As a bonus action, you can move the dust devil up to 30 feet in any direction. If the dust devil moves over sand, dust, loose dirt, or light gravel, it sucks up the material and forms a 10-foot-radius cloud of debris around itself that lasts until the start of your next turn. The cloud heavily obscures its area."
+      ],
+      "name": "Dust Devil",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "entriesHigherLevel": [
+        {
+          "type": "entries",
+          "name": "Cast at Higher Levels",
+          "entries": [
+            "The damage increases by {@dice 1d8} for each slot level above 2nd."
+          ]
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "bludgeoning",
+        "dot"
+      ],
+      "level": 2,
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "a pinch of dust"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Druid",
+            "source": "PHB"
+          },
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 60
+        }
+      }
+    },
+    {
+      "school": "T",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Target",
+          "entries": [
+            "One creature"
+          ]
+        },
+        "Yellow strips of magical energy loop around the target. Make a fortitude attack against the target with the following outcomes:",
+        {
+          "type": "list",
+          "items": [
+            {
+              "type": "item",
+              "name": "Minor success",
+              "entries": [
+                "The target's flying speed is halved for 1 round."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Standard success",
+              "entries": [
+                "The target's flying speed (if any) is reduced to 0 for the spell's duration. An airborne target affected by this spell safely descends at 60 feet per round until it reaches the ground or the spell ends."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Critical success",
+              "entries": [
+                "As standard success, except the target falls at a normal pace, potentially taking fall damage."
+              ]
+            }
+          ]
+        }
+      ],
+      "name": "Earthbind",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "ranged"
+      ],
+      "level": 2,
+      "components": {
+        "v": true,
+        "s": false
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Druid",
+            "source": "PHB"
+          },
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Warlock",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 300
+        }
+      }
+    },
+    {
+      "school": "C",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Target",
+          "entries": [
+            "5-foot cube"
+          ]
+        },
+        "You call forth a nature spirit to soothe the wounded. The intangible spirit appears in the area. The spirit looks like a transparent beast or fey (your choice).",
+        "Until the spell ends, the area is a persistent zone. Whenever it triggers, you can choose to restore {@dice 1d8} hit points to the triggering creature. The spirit can't heal constructs or undead. The spirit can heal a number of times equal to 1 + your spellcasting ability modifier (minimum of twice). After healing that number of times, the spirit disappears.",
+        "As a bonus action on your turn, you can move the spirit up to 30 feet to a space you can see."
+      ],
+      "name": "Healing Spirit",
+      "time": [
+        {
+          "number": 1,
+          "unit": "bonus"
+        }
+      ],
+      "entriesHigherLevel": [
+        {
+          "type": "entries",
+          "name": "Cast at Higher Levels",
+          "entries": [
+            "The healing increases by {@dice 1d8} for each slot level above 2nd."
+          ]
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "healing"
+      ],
+      "level": 2,
+      "components": {
+        "v": true,
+        "s": true
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Druid",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 60
+        }
+      }
+    },
+    {
+      "school": "T",
+      "entries": [
+        "You magically empower your movement with dance-like steps, giving yourself the following benefits for the duration.",
+        {
+          "type": "list",
+          "items": [
+            "Your Speed increases by 10 feet.",
+            "You don't provoke opportunity attacks.",
+            "You can move through the space of any other creatures. If you end your turn in another creature's space, you are shunted to the last unoccupied space you occupied, and you take {@dice 1d8} force DoT damage."
+          ]
+        }
+      ],
+      "name": "Kinetic Jaunt",
+      "time": [
+        {
+          "number": 1,
+          "unit": "bonus"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "mobility"
+      ],
+      "level": 2,
+      "components": {
+        "v": false,
+        "s": true
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Artificer",
+            "source": "PHB"
+          },
+          {
+            "name": "Bard",
+            "source": "PHB"
+          },
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "self"
+        }
+      }
+    },
+    {
+      "school": "T",
+      "entries": [
+        "You choose an unoccupied space on the ground within range. A Medium hand made from compacted soil rises there and reaches for one creature adjacent to it. Make a fortitude attack against the target that deals {@dice 2d6} bludgeoning damage. On a hit, the target is {@condition restrained|sns} for the spell's duration.",
+        "As an action, you can cuase the hand to crush the {@condition restrained|sns} target, making a melee spell fortitude attack against the target that deals {@dice 3d4} bludgeoning damage.",
+        "To break out, the {@condition restrained|sns} target can use its action to make a Brawn check against your standard DC. On a success, the target escapes and is no longer {@condition restrained|sns} by the hand.",
+        "As an action, you can cause the hand to reach for a different creature or to move to a different unoccupied space within range. The hand releases a {@condition restrained|sns} target if you do either."
+      ],
+      "name": "Earthen Grasp",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "melee",
+        "spell",
+        "bludgeoning"
+      ],
+      "level": 2,
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "a miniature hand sculpted from clay"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 30
+        }
+      }
+    },
+    {
+      "school": "D",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Target",
+          "entries": [
+            "One creature"
+          ]
+        },
+        "You reach into the target's mind. Make a will attack against the target that deals {@dice 4d6} psychic damage. On a hit, you always know the target's location until the spell ends, but only while the two of you are on the same plane of existence. While you have this knowledge, the target can't become hidden from you, and if it's {@condition invisible|sns}, it gains no benefit from that condition against you."
+      ],
+      "name": "Mind Spike",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "entriesHigherLevel": [
+        {
+          "type": "entries",
+          "name": "Cast at Higher Levels",
+          "entries": [
+            "The damage increases by {@dice 2d6} for each slot level above 2nd."
+          ]
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "hour",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "ranged",
+        "spell",
+        "psychic"
+      ],
+      "level": 2,
+      "components": {
+        "v": false,
+        "s": true
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Warlock",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 60
+        }
+      }
+    },
+    {
+      "school": "I",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Area",
+          "entries": [
+            "20-foot cube"
+          ]
+        },
+        "You fill the area with fey and draconic magic. Roll on the Mischievous Surge table to determine the magical effect produced, and roll again at the start of each of your turns until the spell ends. You can move the cube up to 10 feet before you roll.",
+        {
+          "type": "table",
+          "rows": [
+            [
+              "1",
+              "The smell of apple pie fills the air, and each creature in the area must succeed on a save or become {@condition charmed|sns} until the start of your next turn."
+            ],
+            [
+              "2",
+              "Bouquets of flowers appear all around, and each creature in the area must succeed on a save or be {@condition blinded|sns} until the start of your next turn as the flowers spray water in their faces."
+            ],
+            [
+              "3",
+              "Each creature in the area must succeed on a save or begin giggling until the start of your next turn. A giggling creature is {@condition dazed|sns} and uses all its movement to move in a random direction."
+            ],
+            [
+              "4",
+              "Drops of molasses hover in the cube, making it difficult terrain until the start of your next turn."
+            ]
+          ],
+          "colStyles": [
+            "col-4 text-center",
+            "col-8"
+          ],
+          "colLabels": [
+            "{@dice d4}",
+            "Effect"
+          ],
+          "caption": "Mischievous Surge"
+        }
+      ],
+      "name": "Mischief",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "chaos"
+      ],
+      "level": 2,
+      "components": {
+        "v": false,
+        "s": true,
+        "m": {
+          "text": "a piece of crust from an apple pie"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Bard",
+            "source": "PHB"
+          },
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 60
+        }
+      }
+    },
+    {
+      "school": "T",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Target",
+          "entries": [
+            "5-foot cube of nonmagical flame"
+          ]
+        },
+        "You can extinguish the target, and you create either fireworks or smoke when you do so.",
+        {
+          "type": "list",
+          "items": [
+            {
+              "type": "item",
+              "name": "Fireworks",
+              "entries": [
+                "The target explodes with a dazzling display of colours. Make a fortitude attack against each creature within 10 feet of the target with the following outcomes:",
+                {
+                  "type": "list",
+                  "items": [
+                    {
+                      "type": "item",
+                      "name": "Minor success",
+                      "entries": [
+                        "The target has disadvantage on attack rolls for 1 round."
+                      ]
+                    },
+                    {
+                      "type": "item",
+                      "name": "Standard success",
+                      "entries": [
+                        "The target is {@condition blinded|sns} until the end of your next turn."
+                      ]
+                    },
+                    {
+                      "type": "item",
+                      "name": "Critical success",
+                      "entries": [
+                        "As standard success, but the target is also {@condition debilitated|sns}."
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Smoke",
+              "entries": [
+                "Thick black smoke spreads out from the target in a 20-foot radius, moving around corners. The area of the smoke is heavily obscured. The smoke persists for 1 minute or until a strong wind disperses it."
+              ]
+            }
+          ]
+        }
+      ],
+      "name": "Pyrotechnics",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "area"
+      ],
+      "level": 2,
+      "components": {
+        "v": true,
+        "s": true
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Artificer",
+            "source": "PHB"
+          },
+          {
+            "name": "Bard",
+            "source": "PHB"
+          },
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 60
+        }
+      }
+    },
+    {
+      "school": "V",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Area",
+          "entries": [
+            "30-foot cone"
+          ]
+        },
+        "A burst of cold energy emanates from you. Make a fortitude attack against each creature in the area that deals {@dice 4d6} cold damage. On a hit, a target is hindered by ice formations for 1 minute, or until it or another creature within reach of it uses an action to break away the ice. A creature hindered by ice has its Speed halved."
+      ],
+      "name": "Binding Ice",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "entriesHigherLevel": [
+        {
+          "type": "entries",
+          "name": "Cast at Higher Levels",
+          "entries": [
+            "Increase the cold damage by {@dice 2d6} for each slot level above 2nd."
+          ]
+        }
+      ],
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "area",
+        "cold",
+        "spell"
+      ],
+      "level": 2,
+      "components": {
+        "v": false,
+        "s": true,
+        "m": {
+          "text": "a vial of meltwater"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "self"
+        }
+      }
+    },
+    {
+      "school": "I",
+      "entries": [
+        "You weave together threads of shadow to create a sword of solidified gloom in your hand. This magic sword lasts until the spell ends. It counts as a simple melee weapon with which you are proficient. It deals {@dice 2d8} + STR/DEX psychic damage (governed by your choice of either Strength or Dexterity). Additionally, it has the Thrown (20'/60') trait. In addition, when you use the sword to attack a target that is in dim light or darkness, you make the attack roll with advantage.",
+        "If you drop the weapon, it dissipates at the end of the turn. Thereafter, while the spell persists, you can use a bonus action to cause the sword to reappear in your hand."
+      ],
+      "name": "Shadow Blade",
+      "time": [
+        {
+          "number": 1,
+          "unit": "bonus"
+        }
+      ],
+      "entriesHigherLevel": [
+        {
+          "type": "entries",
+          "name": "Cast at Higher Levels",
+          "entries": [
+            "When you cast this spell using a 3rd- or 4th-level spell slot, the damage increases to {@dice 3d8}. When you cast it using a 5th- or 6th-level spell slot, the damage increses to {@dice 4d8}. When you cast it using a spell slot of 7th level or higher, the damage increases to {@dice 5d8}."
+          ]
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "summoning",
+        "psychic",
+        "weaponry"
+      ],
+      "level": 2,
+      "components": {
+        "v": true,
+        "s": true
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Warlock",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "self"
+        }
+      }
+    },
+    {
+      "meta": {
+        "ritual": true
+      },
+      "school": "T",
+      "entries": [
+        "You cause up to ten words to form in a part of the sky you can see. The words appear to be made of cloud and remain in place for the spell's duration. The words dissipate when the spell ends. A strong wind can disperse the clouds and end the spell early."
+      ],
+      "name": "Skywrite",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "hour",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "air"
+      ],
+      "level": 2,
+      "components": {
+        "v": true,
+        "s": true
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Artificer",
+            "source": "PHB"
+          },
+          {
+            "name": "Bard",
+            "source": "PHB"
+          },
+          {
+            "name": "Druid",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "sight"
+        }
+      }
+    },
+    {
+      "school": "V",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Area",
+          "entries": [
+            "5-foot-radius sphere"
+          ]
+        },
+        "A flurry of magic snowballs erupts from a point you choose within range. Make a reflex attack against each creature in the area that deals {@dice 2d10} cold damage."
+      ],
+      "name": "Snowball Swarm",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "entriesHigherLevel": [
+        {
+          "type": "entries",
+          "name": "Cast at Higher Levels",
+          "entries": [
+            "The damage increases by {@dice 1d10} for each slot level above 2nd."
+          ]
+        }
+      ],
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "cold",
+        "spell",
+        "area"
+      ],
+      "level": 2,
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "a piece of ice or a small white rock chip"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 90
+        }
+      }
+    },
+    {
+      "school": "C",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Target",
+          "entries": [
+            "One creature"
+          ]
+        },
+        "You magically twist space around the target. Make a fortitude attack against the target with the following outcomes (if the target is willing, it can choose to automatically use the standard success result):",
+        {
+          "type": "list",
+          "items": [
+            {
+              "type": "item",
+              "name": "Minor success",
+              "entries": [
+                "The target is {@condition sluggish|sns} for 1 round."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Standard success",
+              "entries": [
+                "The target is teleported to an unoccupied space of your choice within range. The chosen space must be on a surface or in a liquid that can support the target without the target having to squeeze."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Critical success",
+              "entries": [
+                "As standard success, but the target is also {@condition sluggish|sns} for 1 round after being teleported."
+              ]
+            }
+          ]
+        }
+      ],
+      "name": "Vortex Warp",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "entriesHigherLevel": [
+        {
+          "type": "entries",
+          "name": "Cast at Higher Levels",
+          "entries": [
+            "The range of the spell increases by 30 feet for each slot level above 2nd."
+          ]
+        }
+      ],
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "teleportation",
+        "ranged"
+      ],
+      "level": 2,
+      "components": {
+        "v": true,
+        "s": true
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Artificer",
+            "source": "PHB"
+          },
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 90
+        }
+      }
+    },
+    {
+      "school": "V",
+      "entries": [
+        "A strong wind (20 miles per hour) blows around you in a 10-foot radius and moves with you, remaining centered on you. The wind lasts for the spell's duration.",
+        "The wind has the following effects:",
+        {
+          "type": "list",
+          "items": [
+            "It {@condition deafened|sns|deafens} you and other creatures in its area.",
+            "It extinguishes unprotected flames in its area that are torch-sized or smaller.",
+            "It hedges out vapour, gas, and fog that can be dispersed by strong wind.",
+            "The area is difficult terrain for creatures other than you.",
+            "The attack rolls of ranged weapon attacks have disadvantage if the attacks pass in or out of the wind."
+          ]
+        }
+      ],
+      "name": "Warding Wind",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 10,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "air"
+      ],
+      "level": 2,
+      "components": {
+        "v": true,
+        "s": false
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Bard",
+            "source": "PHB"
+          },
+          {
+            "name": "Druid",
+            "source": "PHB"
+          },
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "self"
+        }
+      }
+    },
+    {
+      "school": "D",
+      "entries": [
+        "For the duration, you sense the presence of portals, even inactive ones, within 30 feet of yourself.",
+        "If you detect a portal in this way, you can use your action to study it. Make a {@dc 15} ability check using your spellcasting ability. On a successful check, you learn the destination plane of the portal and what portal key it requires, then the spell ends. On a failed check, you learn nothing and can't study that portal again using this spell until you cast it again.",
+        "The spell can penetrate most barriers but is blocked by 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt."
+      ],
+      "name": "Warp Sense",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "planar"
+      ],
+      "level": 2,
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "a razorvine leaf"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Warlock",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "self"
+        }
+      }
+    },
+    {
+      "school": "N",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Area",
+          "entries": [
+            "10-foot-radius sphere"
+          ]
+        },
+        "You invoke both death and life upon the area centered on a point within range. Make a fortitude attack against each creature in the area that deals {@dice 3d4} necrotic damage. Nonmagical vegetation in the area withers.",
+        "In addition, one creature of your choice in the area can spend and roll one of its unspent Hit Dice and regain a number of hit points equal to the roll plus double your spellcasting ability modifier."
+      ],
+      "name": "Wither and Bloom",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "entriesHigherLevel": [
+        {
+          "type": "entries",
+          "name": "Cast at Higher Levels",
+          "entries": [
+            "The damage increases by {@dice 2d4} for each slot level above 2nd, and the number of Hit Dice that can be spent and added to the healing roll increases by one for each slot level above 2nd."
+          ]
+        }
+      ],
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "necrotic",
+        "area",
+        "spell"
+      ],
+      "level": 2,
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "a withered vine twisted into a loop"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Druid",
+            "source": "PHB"
+          },
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 60
         }
       }
     }
