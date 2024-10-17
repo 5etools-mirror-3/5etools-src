@@ -33940,6 +33940,888 @@
           "amount": 60
         }
       }
+    },
+    {
+      "school": "T",
+      "entries": [
+        "The billowing flames of a dragon blast from your feet, granting you explosive speed. For the duration, your Speed increases by 20 feet all your movement counts as shifting.",
+        "When you move into a space adjacent to a creature or an object that isn't being word or carried, it takes {@dice 1d6} fire DoT damage for your trail of heat. A creature or object can take this damage only once during a turn."
+      ],
+      "name": "Draconic Stride",
+      "time": [
+        {
+          "number": 1,
+          "unit": "bonus"
+        }
+      ],
+      "entriesHigherLevel": [
+        {
+          "type": "entries",
+          "name": "Cast at Higher Levels",
+          "entries": [
+            "Increase your Speed by 5 feet for each spell slot level above 3rd. The spell deals an additional {@dice 1d6} fire damage for each slot level above 3rd."
+          ]
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "fire",
+        "dot",
+        "mobility"
+      ],
+      "level": 3,
+      "components": {
+        "v": true,
+        "s": true
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Artificer",
+            "source": "PHB"
+          },
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "self"
+        }
+      }
+    },
+    {
+      "school": "E",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Target",
+          "entries": [
+            "Up to three willing creatures"
+          ]
+        },
+        "You make a calming gesture, and the targets fall {@condition unconscious|sns} for the spell's duration. The spell ends on a target early if it takes damage or someone uses an action to shake or slap it awake. If a target remains {@condition unconscious|sns} for the full duration, that target gains the benefit of a short rest, and it can't be affected by this spell again until it finishes a long rest."
+      ],
+      "name": "Catnap",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "entriesHigherLevel": [
+        {
+          "type": "entries",
+          "name": "Cast at Higher Levels",
+          "entries": [
+            "You can target one additional willing creature for each slot level above 3rd."
+          ]
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 10,
+            "upTo": false
+          }
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "compulsion"
+      ],
+      "level": 3,
+      "components": {
+        "v": false,
+        "s": true,
+        "m": {
+          "text": "a pinch of sand"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Artificer",
+            "source": "PHB"
+          },
+          {
+            "name": "Bard",
+            "source": "PHB"
+          },
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 30
+        }
+      }
+    },
+    {
+      "school": "E",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Target",
+          "entries": [
+            "One creature that is not immune to being {@condition frightened|sns}"
+          ]
+        },
+        "You reach into the target's mind and make a will attack against it with the following outcomes:",
+        {
+          "type": "list",
+          "items": [
+            {
+              "type": "item",
+              "name": "Minor success",
+              "entries": [
+                "The target has disadvantage on attack rolls against creatures of your choice for 1 round."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Standard success",
+              "entries": [
+                "The target loses the ability to distinguish friend from foe, regarding all creatures it can see as enemies until the spell ends. Each time the target takes damage, it can make a sve, ending the effect on itself on a success.",
+                "Whenever the target chooses another creature as a target, it must choose the target at random from among the creatures it can see within range of the power. If an enemy provokes an opportunity attack from the affected creature, the creature must make that attack if it is able to."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Critical success",
+              "entries": [
+                "As standard success, but the target is also {@condition dominated|sns}."
+              ]
+            }
+          ]
+        }
+      ],
+      "name": "Enemies Abound",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "ranged",
+        "compulsion"
+      ],
+      "level": 3,
+      "components": {
+        "v": true,
+        "s": true
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Bard",
+            "source": "PHB"
+          },
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Warlock",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 120
+        }
+      }
+    },
+    {
+      "school": "T",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Area",
+          "entries": [
+            "20-foot cube centered on a point on the ground"
+          ]
+        },
+        "A fountain of churned earth and stone erupts in the area. Make a reflex attack against each creature in the area that deals {@dice 6d6} bludgeoning damage. Additionally, the ground in the area becomes difficult terrain until cleared. Each 5-foot-square portion of the area requires at least 1 minute to clear by hand."
+      ],
+      "name": "Erupting Earth",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "entriesHigherLevel": [
+        {
+          "type": "entries",
+          "name": "Cast at Higher Levels",
+          "entries": [
+            "The damage increases by {@dice 2d6} for each slot level above 3rd."
+          ]
+        }
+      ],
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "area",
+        "spell",
+        "bludgeoning"
+      ],
+      "level": 3,
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "a piece of obsidian"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Druid",
+            "source": "PHB"
+          },
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 120
+        }
+      }
+    },
+    {
+      "school": "T",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Target",
+          "entries": [
+            "One ranged weapon"
+          ]
+        },
+        "You touch the target. Ranged weapon attacks using the target deal {@dice 1d6} extra fire damage. The spell's magic ends when 12 attacks have been made with the target."
+      ],
+      "name": "Flame Arrows",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "entriesHigherLevel": [
+        {
+          "type": "entries",
+          "name": "Cast at Higher Levels",
+          "entries": [
+            "The number of attacks this spell lasts for increases by two for each slot level above 3rd."
+          ]
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "hour",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "fire",
+        "weaponry"
+      ],
+      "level": 3,
+      "components": {
+        "v": true,
+        "s": true
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Artificer",
+            "source": "PHB"
+          },
+          {
+            "name": "Druid",
+            "source": "PHB"
+          },
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "touch"
+        }
+      }
+    },
+    {
+      "school": "A",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Target",
+          "entries": [
+            "One willing creature"
+          ]
+        },
+        "For the duration, the target has 50% resistance to psychic damage, and will attacks against it have disdavantage."
+      ],
+      "name": "Intellect Fortress",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "entriesHigherLevel": [
+        {
+          "type": "entries",
+          "name": "Cast at Higher Levels",
+          "entries": [
+            "You can target one additional creature for each slot level above 3rd. The creatures must be within 30 feet of each other when you target them."
+          ]
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "hour",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "psychic"
+      ],
+      "level": 3,
+      "components": {
+        "v": true,
+        "s": false
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Artificer",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 30
+        }
+      }
+    },
+    {
+      "school": "N",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Target",
+          "entries": [
+            "One creature"
+          ]
+        },
+        "You sacrifice some of your health to mend the target's injuries. You take {@dice 4d8} true damage and the target regains a number of hit points equal to triple the necrotic damage you take."
+      ],
+      "name": "Life Transference",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "entriesHigherLevel": [
+        {
+          "type": "entries",
+          "name": "Cast at Higher Levels",
+          "entries": [
+            "The damage increases by {@dice 1d8} for each slot level above 3rd."
+          ]
+        }
+      ],
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "healing"
+      ],
+      "level": 3,
+      "components": {
+        "v": true,
+        "s": true
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Cleric",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 30
+        }
+      }
+    },
+    {
+      "school": "V",
+      "entries": [
+        "You create six tiny meteors in your space. They float in the air and orbit you for the spell's duration. When you cast the spell - and as a bonus action on each of your turns thereafter - you can expend one or two of the meteors, sending them streaking towards a point or points you choose within 120 feet of you. Once a meteor reaches its destination or impacts against a solid surface, the meteor explodes. Each creature adjacent to the point where the meteor explodes takes {@dice 1d8} fire DoT damage."
+      ],
+      "name": "Minute Meteors",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "entriesHigherLevel": [
+        {
+          "type": "entries",
+          "name": "Cast at Higher Levels",
+          "entries": [
+            "The number of meteors created increases by two for each slot level above 3rd."
+          ]
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 10,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "fire",
+        "dot"
+      ],
+      "level": 3,
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "niter, sulfur, and pine tar formed into a bead"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "self"
+        }
+      }
+    },
+    {
+      "school": "C",
+      "entries": [
+        "You teleport yourself to an unoccupied space within range. Immediately after you disappear, a thunderous boom sounds, and you make a fortitude attack against each creature within 10 feet of the space you left that deals {@dice 4d8} thunder damage. The thunder can be heard from up to 300 feet away.",
+        "You can bring along objects as long as their weight doesn't exceed what you can carry. You can also teleport one willing creature of your size or smaller who is carrying gear up to its carrying capacity. The creature must be adjacent to you when you cast this spell, and there must be an unoccupied space adjacent to your destination space for the creature to appear in; otherwise, the creature is left behind."
+      ],
+      "name": "Thunder Step",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "entriesHigherLevel": [
+        {
+          "type": "entries",
+          "name": "Cast at Higher Levels",
+          "entries": [
+            "The damage increases by {@dice 2d8} for every slot level above 3rd."
+          ]
+        }
+      ],
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "thunder",
+        "area",
+        "spell",
+        "teleportation"
+      ],
+      "level": 3,
+      "components": {
+        "v": true,
+        "s": false
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Warlock",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 90
+        }
+      }
+    },
+    {
+      "school": "C",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Area",
+          "entries": [
+            "Up to 30 feet long, up to 10 feet wide, and up to 10 feet tall"
+          ]
+        },
+        "You conjure up a wave of water that crashes down on the area. Make a reflex attack against each creature in the area that deals {@dice 3d12} bludgeoning damage. On a hit, a target is knocked {@condition prone|sns}. The water then spreads out across the ground in all directions, extinguishing unprotected flames in its area and within 30 feet of it, and then it vanishes."
+      ],
+      "name": "Tidal Wave",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "bludgeoning",
+        "water",
+        "spell",
+        "area"
+      ],
+      "level": 3,
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "a drop of water"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Druid",
+            "source": "PHB"
+          },
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 120
+        }
+      }
+    },
+    {
+      "school": "T",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Target",
+          "entries": [
+            "One Tiny, nonmagical object that isn't attached to another object or a surface and isn't being carried by another creature"
+          ]
+        },
+        "You touch the target and it animates and sprouts little arms and legs, becoming a creature under your control until the spell ends or the creature drops to 0 hit points. See the {@creature tiny servant|sns} stat block for its statistics.",
+        "As a bonus action, you can mentally command the creature if it is within 120 feet of you. If you control multiple creatures with this spell, you can command any or all of them at the same time, issuing the same command to each one. You decide what action the creature will take and where it will move during its next turn, or you can issue a simple, general command, such as to fetch a key, stand watch, or stack some books. If you issue no commands, the servant does nothing other than defend itself against hostile creatures. Once given an order, the servant continues to follow that order until its task is complete.",
+        "When the creature drops to 0 hit points, it reverts to its original form, and any remaining damage carries over to that form."
+      ],
+      "name": "Tiny Servant",
+      "time": [
+        {
+          "number": 1,
+          "unit": "minute"
+        }
+      ],
+      "entriesHigherLevel": [
+        {
+          "type": "entries",
+          "name": "Cast at Higher Levels",
+          "entries": [
+            "You can animate two additional objects for each slot level above 3rd."
+          ]
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "hour",
+            "amount": 8,
+            "upTo": false
+          }
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "transformation"
+      ],
+      "level": 3,
+      "components": {
+        "v": true,
+        "s": true
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Artificer",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "touch"
+        }
+      }
+    },
+    {
+      "school": "V",
+      "entries": [
+        "You create a wall of swirling sand on the ground at a point within range. You can make the wall up to 30 feet long, 10 feet high, and 10 feet thick, and it vanishes when the spell ends. Its area is heavily obscured. A creature must spend 3 feet of movement for every 1 foot it moves there."
+      ],
+      "name": "Wall of Sand",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 10,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "earth"
+      ],
+      "level": 3,
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "a handful of sand"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 90
+        }
+      }
+    },
+    {
+      "school": "V",
+      "entries": [
+        "You create a wall of water on the ground at a point within range. You can make the wall up to 30 feet long, 10 feet high, and 1 foot thick, or you can make a ringed wall up to 20 feet in diameter, 20 feet high, and 1 foot thick. The wall vanishes when the spell ends. The wall's space is difficult terrain.",
+        "Any ranged weapon attack that enters the wall's space has disadvantage on the attack roll, and fire damage is halved if the fire effect passes through the wall to reach its target. Spells that deal cold damage that pass through the wall cause the area of the wall they pass through to freeze solid (at least a 5-foot-square section is frozen). Each 5-foot-square frozen section has -3 Armour and 16 hit points. Reducing a frozen section to 0 hit points destroys it. When a section is destroyed, the wall's water doesn't fill it."
+      ],
+      "name": "Wall of Water",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 10,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "water"
+      ],
+      "level": 3,
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "a drop of water"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Druid",
+            "source": "PHB"
+          },
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 60
+        }
+      }
     }
   ],
   "monster": [
@@ -34698,6 +35580,81 @@
           "name": "Thrash",
           "entries": [
             "{@atk mw} reach 0 ft., all creatures in the swarm's space. 24 ({@damage 5d6 + 7}) slashing damage and the target is {@condiion grappled|sns}. Slashing damage dealt by this attack ignores resistances and immunities."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Tiny Servant",
+      "source": "sns",
+      "size": [
+        "T"
+      ],
+      "type": "construct",
+      "alignment": [
+        "U"
+      ],
+      "ac": {
+        "ac": 2,
+        "from": [
+          "natural armor"
+        ]
+      },
+      "hp": {
+        "special": "11"
+      },
+      "speed": {
+        "walk": 30,
+        "climb": 30
+      },
+      "str": 4,
+      "dex": 16,
+      "con": 10,
+      "int": 2,
+      "wis": 10,
+      "cha": 1,
+      "save": {
+        "str": "+0",
+        "dex": "+3",
+        "wis": "+0"
+      },
+      "immune": [
+        "poison",
+        "psychic"
+      ],
+      "conditionImmune": [
+        "blinded|sns",
+        "charmed|sns",
+        "deafened|sns",
+        "fatigue|sns",
+        "frightened|sns",
+        "staggered|sns",
+        "poisoned|sns",
+        "strife|sns"
+      ],
+      "senses": [
+        "blindsight 60 ft. (blind beyond this radius)"
+      ],
+      "passive": 10,
+      "languages": [],
+      "trait": [
+        {
+          "name": "—MAJOR EFFECTS—",
+          "entries": [
+            {
+              "type": "list",
+              "items": [
+                "The target's armour is reduced by 1 for 1 round."
+              ]
+            }
+          ]
+        }
+      ],
+      "action": [
+        {
+          "name": "Slam",
+          "entries": [
+            "{@atk mw} reach 5 ft., one target. 5 ({@damage 1d4 + 3}) bludgeoning damage."
           ]
         }
       ]
