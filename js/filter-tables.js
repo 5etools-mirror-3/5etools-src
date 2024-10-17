@@ -19,13 +19,14 @@ class PageFilterTables extends PageFilterBase {
 	}
 
 	static mutateForFilters (it) {
+		this._mutateForFilters_commonSources(it);
 		this._mutateForFilters_commonMisc(it);
 	}
 
 	addToFilters (it, isExcluded) {
 		if (isExcluded) return;
 
-		this._sourceFilter.addItem(it.source);
+		this._sourceFilter.addItem(it._fSources);
 		this._miscFilter.addItem(it._fMisc);
 	}
 
@@ -39,7 +40,7 @@ class PageFilterTables extends PageFilterBase {
 	toDisplay (values, it) {
 		return this._filterBox.toDisplay(
 			values,
-			it.source,
+			it._fSources,
 			it._fMisc,
 		);
 	}

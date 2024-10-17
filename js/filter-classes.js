@@ -63,7 +63,7 @@ class PageFilterClassesBase extends PageFilterBase {
 		cls.source = cls.source || Parser.SRC_PHB;
 		cls.subclasses = cls.subclasses || [];
 
-		cls._fSources = SourceFilter.getCompleteFilterSources(cls);
+		this._mutateForFilters_commonSources(cls);
 
 		cls._fSourceSubclass = [
 			...new Set([

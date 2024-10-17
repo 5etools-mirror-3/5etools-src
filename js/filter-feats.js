@@ -3,6 +3,10 @@
 class PageFilterFeats extends PageFilterBase {
 	// region static
 	static _PREREQ_KEYs_OTHER_IGNORED = new Set(["level"]);
+
+	static _TRAIT_DISPLAY_VALUES = {
+		"Armor Proficiency": "Armor Training",
+	};
 	// endregion
 
 	constructor () {
@@ -45,6 +49,7 @@ class PageFilterFeats extends PageFilterBase {
 				"Tool Proficiency",
 				"Weapon Proficiency",
 			],
+			displayFn: val => this.constructor._TRAIT_DISPLAY_VALUES[val] || val,
 		});
 		this._vulnerableFilter = FilterCommon.getDamageVulnerableFilter();
 		this._resistFilter = FilterCommon.getDamageResistFilter();
@@ -60,6 +65,8 @@ class PageFilterFeats extends PageFilterBase {
 	}
 
 	static mutateForFilters (feat) {
+		this._mutateForFilters_commonSources(feat);
+
 		const ability = Renderer.getAbilityData(feat.ability);
 		feat._fAbility = ability.asCollection.filter(a => !ability.areNegative.includes(a)); // used for filtering
 
@@ -103,7 +110,7 @@ class PageFilterFeats extends PageFilterBase {
 	addToFilters (feat, isExcluded) {
 		if (isExcluded) return;
 
-		this._sourceFilter.addItem(feat.source);
+		this._sourceFilter.addItem(feat._fSources);
 		this._categoryFilter.addItem(feat.category);
 		this._levelFilter.addItem(feat._fPrereqLevel);
 		this._otherPrereqFilter.addItem(feat._fPrereqOther);
@@ -131,7 +138,7 @@ class PageFilterFeats extends PageFilterBase {
 	toDisplay (values, ft) {
 		return this._filterBox.toDisplay(
 			values,
-			ft.source,
+			ft._fSources,
 			ft._fCategory,
 			ft._fAbility,
 			[

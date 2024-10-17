@@ -320,6 +320,9 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 	}
 	get activeClassRaw () { return this._dataList[this._classId._]; }
 
+	/**
+	 * @return {?FilterBox}
+	 */
 	get filterBox () { return this._filterBox; }
 
 	async pOnLoad () {
@@ -1098,6 +1101,8 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		let $thGroupHeaderSpellPoints = null;
 		let $tblHeaderSpellPoints = null;
 		let $tblHeaderSpellPointsMaxSpellLevel = null;
+		let $elesDefault = null;
+		let $elesSpellPoints = null;
 		if (tableGroup.rowsSpellProgression) {
 			// This is always a "spacer"
 			$thGroupHeaderSpellPoints = $(`<th colspan="1" class="cls-tbl__cell-spell-points"></th>`);
@@ -1110,15 +1115,17 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			$tblHeaderSpellPointsMaxSpellLevel = $(`<th class="cls-tbl__col-generic-center cls-tbl__cell-spell-points"><div class="cls__squash_header">Spell Level</div></th>`);
 			$tblHeaders.push($tblHeaderSpellPointsMaxSpellLevel);
 
-			const $elesDefault = [$thGroupHeader, ...$tblHeadersGroup];
-			const $elesSpellPoints = [$thGroupHeaderSpellPoints, $tblHeaderSpellPoints, $tblHeaderSpellPointsMaxSpellLevel];
+			$elesDefault = [$thGroupHeader, ...$tblHeadersGroup];
+			$elesSpellPoints = [$thGroupHeaderSpellPoints, $tblHeaderSpellPoints, $tblHeaderSpellPointsMaxSpellLevel];
 
-			const hkSpellPoints = () => {
-				$elesDefault.forEach($it => $it.toggleClass(`cls-tbl__cell-spell-progression--spell-points-enabled`, this._stateGlobal.isUseSpellPoints));
-				$elesSpellPoints.forEach($it => $it.toggleClass(`cls-tbl__cell-spell-points--spell-points-enabled`, this._stateGlobal.isUseSpellPoints));
-			};
-			this._addHookGlobal("isUseSpellPoints", hkSpellPoints);
-			hkSpellPoints();
+			if (!stateKey) {
+				const hkSpellPoints = () => {
+					$elesDefault.forEach($it => $it.toggleClass(`cls-tbl__cell-spell-progression--spell-points-enabled`, this._stateGlobal.isUseSpellPoints));
+					$elesSpellPoints.forEach($it => $it.toggleClass(`cls-tbl__cell-spell-points--spell-points-enabled`, this._stateGlobal.isUseSpellPoints));
+				};
+				this._addHookGlobal("isUseSpellPoints", hkSpellPoints);
+				hkSpellPoints();
+			}
 		}
 		// endregion
 
@@ -1132,9 +1139,15 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			$tblHeaderSpellPointsMaxSpellLevel,
 		].filter(Boolean);
 
-		const hkShowHide = () => $elesSubclass.forEach($ele => $ele.toggleVe(!!this._state[stateKey]));
-		this._addHookBase(stateKey, hkShowHide);
-		MiscUtil.pDefer(hkShowHide);
+		const hkShowHideSubclass = () => {
+			$elesSubclass.forEach($ele => $ele.toggleVe(!!this._state[stateKey]));
+
+			if ($elesDefault) $elesDefault.forEach($it => $it.toggleClass(`cls-tbl__cell-spell-progression--spell-points-enabled`, !!this._state[stateKey] && this._stateGlobal.isUseSpellPoints));
+			if ($elesSpellPoints) $elesSpellPoints.forEach($it => $it.toggleClass(`cls-tbl__cell-spell-points--spell-points-enabled`, !!this._state[stateKey] && this._stateGlobal.isUseSpellPoints));
+		};
+		this._addHookBase(stateKey, hkShowHideSubclass);
+		this._addHookGlobal("isUseSpellPoints", hkShowHideSubclass);
+		MiscUtil.pDefer(hkShowHideSubclass);
 	}
 
 	_render_renderClassTable_getMetasTblRows (
@@ -1222,16 +1235,26 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			sc,
 		},
 	) {
-		const $cells = tableGroup.rowsSpellProgression?.[ixLvl]
+		const {
+			$cells,
+			$cellsDefault = null,
+			$cellsSpellPoints = null,
+		} = tableGroup.rowsSpellProgression?.[ixLvl]
 			? this._render_renderClassTable_$getSpellProgressionCells({ixLvl, tableGroup, sc})
 			: this._render_renderClassTable_$getGenericRowCells({ixLvl, tableGroup});
 
 		if (!stateKey) return $cells;
 
 		// If there is a state key, this is a subclass table group, and may therefore need to be hidden
-		const hkShowHide = () => $cells.forEach($cell => $cell.toggleVe(!!this._state[stateKey]));
-		this._addHookBase(stateKey, hkShowHide);
-		MiscUtil.pDefer(hkShowHide); // saves ~10ms
+		const hkShowHideSubclass = () => {
+			$cells.forEach($cell => $cell.toggleVe(!!this._state[stateKey]));
+
+			if ($cellsDefault) $cellsDefault.forEach($it => $it.toggleClass(`cls-tbl__cell-spell-progression--spell-points-enabled`, !!this._state[stateKey] && this._stateGlobal.isUseSpellPoints));
+			if ($cellsSpellPoints) $cellsSpellPoints.forEach($it => $it.toggleClass(`cls-tbl__cell-spell-points--spell-points-enabled`, !!this._state[stateKey] && this._stateGlobal.isUseSpellPoints));
+		};
+		this._addHookBase(stateKey, hkShowHideSubclass);
+		this._addHookGlobal("isUseSpellPoints", hkShowHideSubclass);
+		MiscUtil.pDefer(hkShowHideSubclass); // saves ~10ms
 
 		return $cells;
 	}
@@ -1244,14 +1267,16 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		},
 	) {
 		const row = tableGroup[propRows][ixLvl] || [];
-		return row.map(cell => {
-			const td = e_({
-				tag: "td",
-				clazz: "cls-tbl__col-generic-center",
-				html: cell === 0 ? "\u2014" : Renderer.get().render(cell),
-			});
-			return $(td);
-		});
+		return {
+			$cells: row.map(cell => {
+				const td = e_({
+					tag: "td",
+					clazz: "cls-tbl__col-generic-center",
+					html: cell === 0 ? "\u2014" : Renderer.get().render(cell),
+				});
+				return $(td);
+			}),
+		};
 	}
 
 	_render_renderClassTable_$getSpellProgressionCells (
@@ -1296,18 +1321,15 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			$cellSpellPointsMaxSpellLevel,
 		];
 
-		const hkSpellPoints = () => {
-			$cellsDefault.forEach($it => $it.toggleClass(`cls-tbl__cell-spell-progression--spell-points-enabled`, this._stateGlobal.isUseSpellPoints));
-			$cellsSpellPoints.forEach($it => $it.toggleClass(`cls-tbl__cell-spell-points--spell-points-enabled`, this._stateGlobal.isUseSpellPoints));
+		return {
+			$cells: [
+				...$cellsDefault.$cells,
+				$cellSpellPoints,
+				$cellSpellPointsMaxSpellLevel,
+			],
+			$cellsDefault: $cellsDefault.$cells,
+			$cellsSpellPoints,
 		};
-		this._addHookGlobal("isUseSpellPoints", hkSpellPoints);
-		hkSpellPoints();
-
-		return [
-			...$cellsDefault,
-			$cellSpellPoints,
-			$cellSpellPointsMaxSpellLevel,
-		];
 	}
 
 	_render_renderSidebar () {

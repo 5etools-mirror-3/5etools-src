@@ -21,13 +21,14 @@ class PageFilterPsionics extends PageFilterBase {
 	}
 
 	static mutateForFilters (p) {
+		this._mutateForFilters_commonSources(p);
 		p._fOrder = Parser.psiOrderToFull(p.order);
 	}
 
 	addToFilters (p, isExcluded) {
 		if (isExcluded) return;
 
-		this._sourceFilter.addItem(p.source);
+		this._sourceFilter.addItem(p._fSources);
 		this._typeFilter.addItem(p.type);
 		this._orderFilter.addItem(p._fOrder);
 	}
@@ -43,7 +44,7 @@ class PageFilterPsionics extends PageFilterBase {
 	toDisplay (values, p) {
 		return this._filterBox.toDisplay(
 			values,
-			p.source,
+			p._fSources,
 			p.type,
 			p._fOrder,
 		);

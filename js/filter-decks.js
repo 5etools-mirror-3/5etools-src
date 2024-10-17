@@ -14,6 +14,7 @@ class PageFilterDecks extends PageFilterBase {
 	}
 
 	static mutateForFilters (ent) {
+		this._mutateForFilters_commonSources(ent);
 		this._mutateForFilters_commonMisc(ent);
 		if (ent.hasCardArt) ent._fMisc.push("Has Card Art");
 	}
@@ -21,7 +22,7 @@ class PageFilterDecks extends PageFilterBase {
 	addToFilters (ent, isExcluded) {
 		if (isExcluded) return;
 
-		this._sourceFilter.addItem(ent.source);
+		this._sourceFilter.addItem(ent._fSources);
 		this._miscFilter.addItem(ent._fMisc);
 	}
 
@@ -35,7 +36,7 @@ class PageFilterDecks extends PageFilterBase {
 	toDisplay (values, ent) {
 		return this._filterBox.toDisplay(
 			values,
-			ent.source,
+			ent._fSources,
 			ent._fMisc,
 		);
 	}

@@ -279,43 +279,56 @@ export class ItemTag extends ConverterTaggerInitializable {
 	static async _pInit () {
 		const itemArr = await Renderer.item.pBuildList();
 		const standardItems = itemArr.filter(it => !SourceUtil.isNonstandardSource(it.source));
-
 		const [standardItemsClassic, standardItemsOne] = standardItems.segregate(ent => SourceUtil.isClassicSource(ent.source));
 
-		await this._pInit_one({standardItems: standardItemsOne});
-		await this._pInit_classic({standardItems: standardItemsClassic});
+		const itemProperties = await DataLoader.pCacheAndGetAllSite("itemProperty");
+		const standardItemProperties = itemProperties.filter(it => !SourceUtil.isNonstandardSource(it.source));
+		const [standardItemPropertiesClassic, standardItemPropertiesOne] = standardItemProperties.segregate(ent => SourceUtil.isClassicSource(ent.source));
+
+		await this._pInit_one({standardItems: standardItemsOne, standardProperties: standardItemPropertiesOne});
+		await this._pInit_classic({standardItems: standardItemsClassic, standardProperties: standardItemPropertiesClassic});
 	}
 
 	static _ITEM_NAMES__ONE = {};
+	static _ITEM_PROPERTY_NAMES__ONE = {};
 	static _ITEM_NAMES_REGEX_TOOLS__ONE = null;
 	static ITEM_NAMES_REGEX_OTHER__ONE = null;
 	static _ITEM_NAMES_REGEX_EQUIPMENT__ONE = null;
 	static _ITEM_NAMES_REGEX_STRICT__ONE = null;
+	static _ITEM_PROPERTY_REGEX__ONE = null;
 
-	static async _pInit_one ({standardItems}) {
+	static async _pInit_one ({standardItems, standardProperties}) {
 		await this._pInit_generic({
 			standardItems,
+			standardProperties,
 			lookupItemNames: this._ITEM_NAMES__ONE,
+			lookupItemPropertyNames: this._ITEM_PROPERTY_NAMES__ONE,
 			propItemNamesRegexTools: "_ITEM_NAMES_REGEX_TOOLS__ONE",
 			propItemNamesRegexOther: "ITEM_NAMES_REGEX_OTHER__ONE",
 			propItemNamesRegexEquipment: "_ITEM_NAMES_REGEX_EQUIPMENT__ONE",
 			propItemNamesRegexStrict: "_ITEM_NAMES_REGEX_STRICT__ONE",
+			propItemPropertyNamesRegex: "_ITEM_PROPERTY_REGEX__ONE",
 			srcPhb: Parser.SRC_XPHB,
 		});
 	}
 
 	static _ITEM_NAMES__CLASSIC = {};
+	static _ITEM_PROPERTY_NAMES__CLASSIC = {};
 	static _ITEM_NAMES_REGEX_TOOLS__CLASSIC = null;
 	static ITEM_NAMES_REGEX_OTHER__CLASSIC = null;
 	static _ITEM_NAMES_REGEX_EQUIPMENT__CLASSIC = null;
+	static _ITEM_PROPERTY_REGEX__CLASSIC = null;
 
-	static async _pInit_classic ({standardItems}) {
+	static async _pInit_classic ({standardItems, standardProperties}) {
 		await this._pInit_generic({
 			standardItems,
+			standardProperties,
 			lookupItemNames: this._ITEM_NAMES__CLASSIC,
+			lookupItemPropertyNames: this._ITEM_PROPERTY_NAMES__CLASSIC,
 			propItemNamesRegexTools: "_ITEM_NAMES_REGEX_TOOLS__CLASSIC",
 			propItemNamesRegexOther: "ITEM_NAMES_REGEX_OTHER__CLASSIC",
 			propItemNamesRegexEquipment: "_ITEM_NAMES_REGEX_EQUIPMENT__CLASSIC",
+			propItemPropertyNamesRegex: "_ITEM_PROPERTY_REGEX__CLASSIC",
 			srcPhb: Parser.SRC_PHB,
 		});
 	}
@@ -339,11 +352,14 @@ export class ItemTag extends ConverterTaggerInitializable {
 	static _pInit_generic (
 		{
 			standardItems,
+			standardProperties,
 			lookupItemNames,
+			lookupItemPropertyNames,
 			propItemNamesRegexTools,
 			propItemNamesRegexOther,
 			propItemNamesRegexEquipment,
 			propItemNamesRegexStrict,
+			propItemPropertyNamesRegex,
 			srcPhb,
 		},
 	) {
@@ -393,6 +409,15 @@ export class ItemTag extends ConverterTaggerInitializable {
 			standardItems.forEach(itm => lookupItemNames[itm.name.toLowerCase()] = {name: itm.name, source: itm.source});
 		}
 		// endregion
+
+		// region Item properties
+		standardProperties.forEach(ent => {
+			const name = Renderer.item.getPropertyName(ent);
+			lookupItemPropertyNames[name.toLowerCase()] = {abbreviation: ent.abbreviation, source: ent.source};
+		});
+
+		if (standardProperties.length) this[propItemPropertyNamesRegex] = new RegExp(`the (${standardProperties.map(ent => Renderer.item.getPropertyName(ent).escapeRegexp()).join("|")}) property`, "gi");
+		// endregion
 	}
 
 	/* -------------------------------------------- */
@@ -436,6 +461,37 @@ export class ItemTag extends ConverterTaggerInitializable {
 							fnTag: this._fnTag_classic.bind(this),
 						},
 					);
+
+					str = ptrStack._;
+					ptrStack._ = "";
+
+					if (styleHint === SITE_STYLE__ONE) {
+						TaggerUtils.walkerStringHandler(
+							["@itemProperty"],
+							ptrStack,
+							0,
+							0,
+							str,
+							{
+								fnTag: this._fnTag_one_properties.bind(this),
+							},
+						);
+
+						str = ptrStack._;
+						ptrStack._ = "";
+					}
+
+					TaggerUtils.walkerStringHandler(
+						["@itemProperty"],
+						ptrStack,
+						0,
+						0,
+						str,
+						{
+							fnTag: this._fnTag_classic_properties.bind(this),
+						},
+					);
+
 					return ptrStack._;
 				},
 			},
@@ -476,6 +532,30 @@ export class ItemTag extends ConverterTaggerInitializable {
 				.replace(this.ITEM_NAMES_REGEX_OTHER__CLASSIC, (...m) => {
 					const itemMeta = this._ITEM_NAMES__CLASSIC[m[1].toLowerCase()];
 					return `{@item ${m[1]}${itemMeta.source !== Parser.SRC_DMG ? `|${itemMeta.source}` : ""}}`;
+				});
+		}
+
+		return strMod;
+	}
+
+	static _fnTag_one_properties (strMod) {
+		if (this._ITEM_PROPERTY_REGEX__ONE != null) {
+			strMod = strMod
+				.replace(this._ITEM_PROPERTY_REGEX__ONE, (...m) => {
+					const meta = this._ITEM_PROPERTY_NAMES__ONE[m[1].toLowerCase()];
+					return `{@itemProperty ${meta.abbreviation}|${meta.source}|${m[1]}}`;
+				});
+		}
+
+		return strMod;
+	}
+
+	static _fnTag_classic_properties (strMod) {
+		if (this._ITEM_PROPERTY_REGEX__CLASSIC != null) {
+			strMod = strMod
+				.replace(this._ITEM_PROPERTY_REGEX__CLASSIC, (...m) => {
+					const meta = this._ITEM_PROPERTY_NAMES__CLASSIC[m[1].toLowerCase()];
+					return `{@itemProperty ${meta.abbreviation}${meta.source !== Parser.SRC_PHB ? `|${meta.source}` : ""}|${m[1]}}`;
 				});
 		}
 

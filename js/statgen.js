@@ -1,4 +1,4 @@
-"use strict";
+import {StatGenUi} from "./statgen/statgen-ui.js";
 
 class StatGenPage {
 	constructor () {
@@ -199,3 +199,4 @@ StatGenPage._STORAGE_KEY_STATE = "state";
 
 const statGenPage = new StatGenPage();
 window.addEventListener("load", () => statGenPage.pInit());
+globalThis.dbg_statGenPage = statGenPage;

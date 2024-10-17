@@ -662,7 +662,10 @@ export class Filter extends FilterBase {
 			wrpStateBtnsOuter.toggleVe(!this._uiMeta.isHidden);
 
 			// Skip updating renders if results would be invisible
-			if (!this._uiMeta.isHidden) return;
+			if (!this._uiMeta.isHidden) {
+				wrpSummary.toggleVe(this._uiMeta.isHidden);
+				return;
+			}
 
 			// render summary
 			const cur = this.getValues()[this.header];
@@ -719,6 +722,9 @@ export class Filter extends FilterBase {
 		this.__wrpMiniPills = opts.$wrpMini ? e_({ele: opts.$wrpMini[0]}) : null;
 
 		const wrpControls = this._getHeaderControls(opts);
+
+		this.__wrpPills = e_({tag: "div", clazz: `fltr__wrp-pills ${this._groupFn ? "fltr__wrp-subs" : "fltr__container-pills"}`});
+		this._addHook("uiMeta", "isHidden", () => this.__wrpPills.toggleVe(!this._uiMeta.isHidden))();
 
 		if (this._nests) {
 			const wrpNestHead = e_({tag: "div", clazz: "fltr__wrp-pills--sub"}).appendTo(this.__wrpPills);
@@ -794,16 +800,7 @@ export class Filter extends FilterBase {
 		this._filterBox = opts.filterBox;
 		this.__wrpMiniPills = e_({ele: opts.$wrpMini[0]});
 
-		this._renderMinis_initWrpPills();
-
 		this._doRenderMiniPills();
-	}
-
-	_renderMinis_initWrpPills () {
-		this.__wrpPills = e_({tag: "div", clazz: `fltr__wrp-pills ${this._groupFn ? "fltr__wrp-subs" : "fltr__container-pills"}`});
-		const hook = () => this.__wrpPills.toggleVe(!this._uiMeta.isHidden);
-		this._addHook("uiMeta", "isHidden", hook);
-		hook();
 	}
 
 	getValues ({nxtState = null} = {}) {
@@ -816,7 +813,7 @@ export class Filter extends FilterBase {
 
 		// add helper data
 		out._isActive = Object.values(state).some(Boolean);
-		out._totals = {yes: 0, no: 0, ignored: 0};
+		out._totals = Object.fromEntries(PILL_STATES.map(pillState => [pillState, 0]));
 		Object.values(state).forEach(v => {
 			const totalKey = PILL_STATES[v] || PILL_STATES[PILL_STATE__IGNORE];
 			out._totals[totalKey]++;
@@ -850,6 +847,10 @@ export class Filter extends FilterBase {
 	}
 
 	_doRenderPills () {
+		// The filter's UI may not be available if the filter modal has not been opened, but an update has been triggered.
+		// If so, avoid rendering pills; if the filter is later opened, the `$render` call will render the pills as required.
+		if (!this.__wrpPills) return;
+
 		if (this._itemSortFn) this._items.sort(this._isSortByDisplayItems && this._displayFn ? (a, b) => this._itemSortFn(this._displayFn(a.item, a), this._displayFn(b.item, b)) : this._itemSortFn);
 
 		this._items.forEach(it => {
@@ -1092,6 +1093,58 @@ export class Filter extends FilterBase {
 
 	_toDisplay_getFilterState (boxState) { return boxState[this.header]; }
 
+	_toDisplay_isUmbrella (
+		{
+			entryVal,
+			filterState,
+			ptrCacheIsUmbrella,
+		},
+	) {
+		if (ptrCacheIsUmbrella._ != null) return ptrCacheIsUmbrella._;
+
+		if (!this._umbrellaItems) return ptrCacheIsUmbrella._ = false;
+
+		if (!entryVal) return ptrCacheIsUmbrella._ = false;
+
+		if (this._umbrellaExcludes && this._umbrellaExcludes.some(it => filterState[it.item])) return ptrCacheIsUmbrella._ = false;
+
+		return ptrCacheIsUmbrella._ = this._umbrellaItems.some(u => entryVal.includes(u.item))
+			&& (this._umbrellaItems.some(u => filterState[u.item] === PILL_STATE__IGNORE) || this._umbrellaItems.some(u => filterState[u.item] === PILL_STATE__YES));
+	}
+
+	/**
+	 * @param entryVal
+	 * @param filterState
+	 * @param stateRequired
+	 * @param {?object} ptrCacheIsUmbrella
+	 */
+	_toDisplay_getCntUniqueMatches (
+		{
+			entryVal,
+			filterState,
+			stateRequired,
+			ptrCacheIsUmbrella = null,
+		},
+	) {
+		// Avoid counting duplicates, as we may have e.g. "Ranger" from 2014 and "Ranger" from 2024 on a single spell
+		// See e.g.: "Absorb Elements" (XGE)
+		const seenItems = {};
+
+		return entryVal
+			.filter(fi => {
+				if (stateRequired === PILL_STATE__NO && fi.isIgnoreRed) return false;
+
+				if (seenItems[fi.item]) return false;
+				seenItems[fi.item] = true;
+
+				if (filterState[fi.item] === stateRequired) return true;
+
+				if (!ptrCacheIsUmbrella) return false;
+				return this._toDisplay_isUmbrella({ptrCacheIsUmbrella, entryVal, filterState});
+			})
+			.length;
+	}
+
 	toDisplay (boxState, entryVal) {
 		const filterState = this._toDisplay_getFilterState(boxState);
 		if (!filterState) return true;
@@ -1100,17 +1153,7 @@ export class Filter extends FilterBase {
 
 		entryVal = this._toDisplay_getMappedEntryVal(entryVal);
 
-		const isUmbrella = () => {
-			if (this._umbrellaItems) {
-				if (!entryVal) return false;
-
-				if (this._umbrellaExcludes && this._umbrellaExcludes.some(it => filterState[it.item])) return false;
-
-				return this._umbrellaItems.some(u => entryVal.includes(u.item))
-					&& (this._umbrellaItems.some(u => filterState[u.item] === PILL_STATE__IGNORE) || this._umbrellaItems.some(u => filterState[u.item] === PILL_STATE__YES));
-			}
-		};
-
+		const ptrCacheIsUmbrella = {_: null};
 		let hide = false;
 		let display = false;
 
@@ -1120,7 +1163,7 @@ export class Filter extends FilterBase {
 				if (totals.yes === 0) display = true;
 
 				// if any are 1 (blue) include if they match
-				display = display || entryVal.some(fi => filterState[fi.item] === PILL_STATE__YES || isUmbrella());
+				display = display || entryVal.some(fi => filterState[fi.item] === PILL_STATE__YES || this._toDisplay_isUmbrella({entryVal, filterState, ptrCacheIsUmbrella}));
 
 				break;
 			}
@@ -1129,13 +1172,13 @@ export class Filter extends FilterBase {
 				if (totals.yes === 0) display = true;
 
 				// if any are 1 (blue) include if precisely one matches
-				display = display || entryVal.filter(fi => filterState[fi.item] === PILL_STATE__YES || isUmbrella()).length === 1;
+				display = display || this._toDisplay_getCntUniqueMatches({entryVal, filterState, stateRequired: PILL_STATE__YES, ptrCacheIsUmbrella}) === 1;
 
 				break;
 			}
 			case "and": {
-				const totalYes = entryVal.filter(fi => filterState[fi.item] === PILL_STATE__YES).length;
-				display = !totals.yes || totals.yes === totalYes;
+				display = !totals.yes
+					|| totals.yes === this._toDisplay_getCntUniqueMatches({entryVal, filterState, stateRequired: PILL_STATE__YES, ptrCacheIsUmbrella});
 
 				break;
 			}
@@ -1151,13 +1194,13 @@ export class Filter extends FilterBase {
 			}
 			case "xor": {
 				// if exactly one is 2 (red) exclude if it matches
-				hide = hide || entryVal.filter(fi => !fi.isIgnoreRed).filter(fi => filterState[fi.item] === PILL_STATE__NO).length === 1;
+				hide = hide || this._toDisplay_getCntUniqueMatches({entryVal, filterState, stateRequired: PILL_STATE__NO}) === 1;
 
 				break;
 			}
 			case "and": {
-				const totalNo = entryVal.filter(fi => !fi.isIgnoreRed).filter(fi => filterState[fi.item] === PILL_STATE__NO).length;
-				hide = totals.no && totals.no === totalNo;
+				hide = totals.no
+					&& totals.no === this._toDisplay_getCntUniqueMatches({entryVal, filterState, stateRequired: PILL_STATE__NO});
 
 				break;
 			}

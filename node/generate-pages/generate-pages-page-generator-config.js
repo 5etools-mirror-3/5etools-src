@@ -404,9 +404,8 @@ class _PageGeneratorStatgen extends PageGeneratorGeneric {
 		"filter-feats.js",
 	];
 
-	_scripts = [
+	_scriptsModules = [
 		"statgen.js",
-		"statgen-ui.js",
 	];
 }
 

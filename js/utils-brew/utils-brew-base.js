@@ -1243,7 +1243,7 @@ export class BrewUtil2Base {
 		const brews = await this._pGetBrewRaw();
 		const brewsExportable = brews
 			.filter(brew => !brew.head.isEditable && !brew.head.isLocal);
-		return brewsExportable.flatMap(brew => brew.body._meta.sources.map(src => src.json)).unique();
+		return brewsExportable.flatMap(brew => (brew.body._meta?.source || []).map(src => src.json)).unique();
 	}
 	// endregion
 }

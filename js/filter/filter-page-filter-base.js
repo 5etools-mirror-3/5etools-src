@@ -19,10 +19,15 @@ export class PageFilterBase {
 		opts = opts || {};
 		this._sourceFilter = new SourceFilter(opts.sourceFilterOpts);
 		this._filterBox = null;
+		this._miscFilter = null;
 	}
 
+	/**
+	 * @return {?FilterBox}
+	 */
 	get filterBox () { return this._filterBox; }
 	get sourceFilter () { return this._sourceFilter; }
+	get miscFilter () { return this._miscFilter; }
 
 	mutateAndAddToFilters (entity, isExcluded, opts) {
 		this.constructor.mutateForFilters(entity, opts);
@@ -112,6 +117,10 @@ export class PageFilterBase {
 
 	static _hasFluff (ent) { return ent.hasFluff || ent.fluff?.entries; }
 	static _hasFluffImages (ent) { return ent.hasFluffImages || ent.fluff?.images; }
+
+	static _mutateForFilters_commonSources (ent) {
+		ent._fSources = SourceFilter.getCompleteFilterSources(ent);
+	}
 
 	static _mutateForFilters_commonMisc (ent) {
 		ent._fMisc = [];

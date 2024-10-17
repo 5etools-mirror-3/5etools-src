@@ -263,7 +263,7 @@ export class FilterBox extends ProxyBase {
 			cbClose: (isDataEntered) => this._pHandleHide(!isDataEntered),
 		});
 
-		const $children = this._filters.map((f, i) => f.$render({filterBox: this, isFirst: i === 0, $wrpMini: this._$wrpMiniPills}));
+		const $children = this._filters.map((filter, i) => filter.$render({filterBox: this, isFirst: i === 0, $wrpMini: this._$wrpMiniPills}));
 
 		this._metaIptSearch = ComponentUiUtil.$getIptStr(
 			this._compSearch, "search",

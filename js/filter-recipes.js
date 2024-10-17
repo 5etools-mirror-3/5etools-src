@@ -52,6 +52,7 @@ class PageFilterRecipes extends PageFilterBase {
 	}
 
 	static mutateForFilters (it) {
+		this._mutateForFilters_commonSources(it);
 		this._mutateForFilters_commonMisc(it);
 		if (it.miscTags) it._fMisc.push(...it.miscTags);
 		it._fServes = (it.serves?.min != null && it.serves?.max != null) ? [it.serves.min, it.serves.max] : (it.serves?.exact ?? null);
@@ -102,7 +103,7 @@ class PageFilterRecipes extends PageFilterBase {
 	addToFilters (it, isExcluded) {
 		if (isExcluded) return;
 
-		this._sourceFilter.addItem(it.source);
+		this._sourceFilter.addItem(it._fSources);
 		this._typeFilter.addItem(it.type);
 		this._dishTypeFilter.addItem(it.dishTypes);
 		this._servesFilter.addItem(it._fServes);
@@ -130,7 +131,7 @@ class PageFilterRecipes extends PageFilterBase {
 	toDisplay (values, it) {
 		return this._filterBox.toDisplay(
 			values,
-			it.source,
+			it._fSources,
 			it.type,
 			it.dishTypes,
 			it._fServes,

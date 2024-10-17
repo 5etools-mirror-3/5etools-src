@@ -6,8 +6,13 @@ class PageFilterBackgrounds extends PageFilterBase {
 		if (tool === "anyTool") return "Any Tool";
 		if (tool === "anyArtisansTool") return "Any Artisan's Tool";
 		if (tool === "anyMusicalInstrument") return "Any Musical Instrument";
+		if (tool === "anyGamingSet") return "Any Gaming Set";
 		return tool.toTitleCase();
 	}
+
+	static _TRAIT_DISPLAY_VALUES = {
+		"Armor Proficiency": "Armor Training",
+	};
 
 	constructor () {
 		super();
@@ -20,7 +25,10 @@ class PageFilterBackgrounds extends PageFilterBase {
 		});
 		this._toolFilter = new Filter({header: "Tool Proficiencies", displayFn: PageFilterBackgrounds._getToolDisplayText.bind(PageFilterBackgrounds)});
 		this._languageFilter = FilterCommon.getLanguageProficienciesFilter();
-		this._otherBenefitsFilter = new Filter({header: "Other Benefits"});
+		this._otherBenefitsFilter = new Filter({
+			header: "Other Benefits",
+			displayFn: val => this.constructor._TRAIT_DISPLAY_VALUES[val] || val,
+		});
 		this._miscFilter = new Filter({
 			header: "Miscellaneous",
 			items: ["Has Info", "Has Images", "Legacy"],
@@ -47,7 +55,7 @@ class PageFilterBackgrounds extends PageFilterBase {
 	}
 
 	static mutateForFilters (bg) {
-		bg._fSources = SourceFilter.getCompleteFilterSources(bg);
+		this._mutateForFilters_commonSources(bg);
 
 		bg._fPrereq = FilterCommon.getFilterValuesPrerequisite(bg.prerequisite);
 

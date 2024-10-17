@@ -952,6 +952,7 @@ PropOrder._CLASS = [
 	"casterProgression",
 	"preparedSpells",
 	"preparedSpellsProgression",
+	"preparedSpellsChange",
 	"cantripProgression",
 	"spellsKnownProgression",
 	"spellsKnownProgressionFixed",
@@ -1043,6 +1044,7 @@ PropOrder._SUBCLASS = [
 	"casterProgression",
 	"preparedSpells",
 	"preparedSpellsProgression",
+	"preparedSpellsChange",
 	"cantripProgression",
 	"spellsKnownProgression",
 	"spellsKnownProgressionFixed",
@@ -2163,6 +2165,8 @@ PropOrder._RACE_SUBRACE = [
 	"otherSources",
 	"reprintedAs",
 
+	"edition",
+
 	PropOrder._ObjectKey.getCopyKey({fnGetModOrder: () => PropOrder._RACE__COPY_MOD}),
 
 	"lineage",
@@ -2302,6 +2306,8 @@ PropOrder._TABLE = [
 	"colLabels",
 	"colLabelGroups",
 	"colStyles",
+
+	"rowLabels",
 
 	"intro",
 	"rows",

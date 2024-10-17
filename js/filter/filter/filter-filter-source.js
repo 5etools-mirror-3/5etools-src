@@ -11,16 +11,20 @@ export class SourceFilterItem extends FilterItem {
 	constructor (options) {
 		super(options);
 		this.isOtherSource = options.isOtherSource;
+		this._sortName = null;
 	}
 }
 
 export class SourceFilter extends Filter {
+	static _SORT_ITEMS (a, b) {
+		return SortUtil.ascSortLowerPropNumeric("item", a, b);
+	}
+
 	static _SORT_ITEMS_MINI (a, b) {
-		a = a.item ?? a;
-		b = b.item ?? b;
-		const valA = BrewUtil2.hasSourceJson(a) ? 2 : (SourceUtil.isNonstandardSource(a) || PrereleaseUtil.hasSourceJson(a)) ? 1 : 0;
-		const valB = BrewUtil2.hasSourceJson(b) ? 2 : (SourceUtil.isNonstandardSource(b) || PrereleaseUtil.hasSourceJson(b)) ? 1 : 0;
-		return SortUtil.ascSort(valA, valB) || SortUtil.ascSortLower(Parser.sourceJsonToFull(a), Parser.sourceJsonToFull(b));
+		const valA = BrewUtil2.hasSourceJson(a.item) ? 2 : (SourceUtil.isNonstandardSource(a.item) || PrereleaseUtil.hasSourceJson(a.item)) ? 1 : 0;
+		const valB = BrewUtil2.hasSourceJson(b.item) ? 2 : (SourceUtil.isNonstandardSource(b.item) || PrereleaseUtil.hasSourceJson(b.item)) ? 1 : 0;
+		return SortUtil.ascSort(valA, valB)
+			|| SourceFilter._SORT_ITEMS(a, b);
 	}
 
 	static _getDisplayHtmlMini (item) {
@@ -48,7 +52,7 @@ export class SourceFilter extends Filter {
 		opts.displayFnMini = opts.displayFnMini === undefined ? SourceFilter._getDisplayHtmlMini.bind(SourceFilter) : opts.displayFnMini;
 		opts.displayFnTitle = opts.displayFnTitle === undefined ? item => Parser.sourceJsonToFull(item.item || item) : opts.displayFnTitle;
 		opts.itemSortFnMini = opts.itemSortFnMini === undefined ? SourceFilter._SORT_ITEMS_MINI.bind(SourceFilter) : opts.itemSortFnMini;
-		opts.itemSortFn = opts.itemSortFn === undefined ? (a, b) => SortUtil.ascSortLower(Parser.sourceJsonToFull(a.item), Parser.sourceJsonToFull(b.item)) : opts.itemSortFn;
+		opts.itemSortFn = opts.itemSortFn === undefined ? SourceFilter._SORT_ITEMS.bind(SourceFilter) : opts.itemSortFn;
 		opts.groupFn = opts.groupFn === undefined ? SourceUtil.getFilterGroup : opts.groupFn;
 		opts.groupNameFn = opts.groupNameFn === undefined ? SourceUtil.getFilterGroupName : opts.groupNameFn;
 		opts.selFn = opts.selFn === undefined ? PageFilterBase.defaultSourceSelFn : opts.selFn;

@@ -5,6 +5,7 @@ export class _BrewDocContentMigrator {
 		this._mutMakeCompatible_monster(json);
 		this._mutMakeCompatible_object(json);
 		this._mutMakeCompatible_subclass(json);
+		this._mutMakeCompatible_spell(json);
 	}
 
 	/* ----- */
@@ -190,6 +191,36 @@ export class _BrewDocContentMigrator {
 		}
 
 		return true;
+	}
+
+	/* ----- */
+
+	/**
+	 * @since 2024-10-06
+	 * As a temporary measure, for spells which have `classes.fromClassList`, make XPHB copies of PHB class entries.
+	 * @deprecated TODO(Future) remove/rework when moving to a better solution for homebrew spell sources
+	 */
+	static _mutMakeCompatible_spell (json) {
+		if (!json.spell) return false;
+
+		json.spell
+			.forEach(ent => {
+				if (!ent?.classes?.fromClassList?.length) return;
+
+				const phbNames = {};
+				const xphbNames = {};
+
+				ent.classes.fromClassList
+					.forEach(classMeta => {
+						if (classMeta.source === Parser.SRC_PHB) phbNames[classMeta.name] = classMeta;
+						if (classMeta.source === Parser.SRC_XPHB) xphbNames[classMeta.name] = true;
+					});
+
+				Object.keys(xphbNames).forEach(name => delete xphbNames[name]);
+
+				Object.values(phbNames)
+					.forEach(classMeta => ent.classes.fromClassList.push({...classMeta, source: Parser.SRC_XPHB}));
+			});
 	}
 }
 

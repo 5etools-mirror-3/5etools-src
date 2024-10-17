@@ -99,7 +99,7 @@ class ModalFilterClasses extends ModalFilterBase {
 
 			await this.pPreloadHidden($modalInner);
 
-			this._doApplyFilterExpression(filterExpression);
+			this.doApplyFilterExpression(filterExpression);
 
 			this._filterCache.$btnConfirm.off("click").click(async () => {
 				// Note: use invisible items, as this might be the parent class of a selected subclass

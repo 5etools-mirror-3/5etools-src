@@ -85,7 +85,7 @@ class PageFilterEquipment extends PageFilterBase {
 	}
 
 	static mutateForFilters (item) {
-		item._fSources = SourceFilter.getCompleteFilterSources(item);
+		this._mutateForFilters_commonSources(item);
 
 		item._fProperties = item.property ? item.property.map(p => Renderer.item.getProperty(p)?.name).filter(Boolean) : [];
 
@@ -303,7 +303,7 @@ class PageFilterItems extends PageFilterEquipment {
 			deselFn: PageFilterBase.defaultMiscellaneousDeselFn.bind(PageFilterBase),
 		});
 		this._baseSourceFilter = new SourceFilter({header: "Base Source", selFn: null});
-		this._baseItemFilter = new Filter({header: "Base Item", displayFn: this.constructor._getBaseItemDisplay.bind(this.constructor)});
+		this._baseItemFilter = new SearchableFilter({header: "Base Item", displayFn: this.constructor._getBaseItemDisplay.bind(this.constructor), itemSortFn: SortUtil.ascSortLower});
 		this._optionalfeaturesFilter = new Filter({
 			header: "Feature",
 			displayFn: (it) => {

@@ -36,6 +36,8 @@ class PageFilterDeities extends PageFilterBase {
 	}
 
 	static mutateForFilters (ent) {
+		this._mutateForFilters_commonSources(ent);
+
 		ent._fAlign = ent.alignment ? PageFilterDeities.unpackAlignment(ent) : [];
 		if (!ent.category) ent.category = VeCt.STR_NONE;
 		if (!ent.domains) ent.domains = [VeCt.STR_NONE];
@@ -50,7 +52,7 @@ class PageFilterDeities extends PageFilterBase {
 	addToFilters (ent, isExcluded) {
 		if (isExcluded) return;
 
-		this._sourceFilter.addItem(ent.source);
+		this._sourceFilter.addItem(ent._fSources);
 		this._domainFilter.addItem(ent.domains);
 		this._pantheonFilter.addItem(ent.pantheon);
 		this._categoryFilter.addItem(ent.category);
@@ -71,7 +73,7 @@ class PageFilterDeities extends PageFilterBase {
 	toDisplay (values, g) {
 		return this._filterBox.toDisplay(
 			values,
-			g.source,
+			g._fSources,
 			g._fAlign,
 			g.pantheon,
 			g.category,

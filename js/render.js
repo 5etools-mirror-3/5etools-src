@@ -1568,24 +1568,28 @@ globalThis.Renderer = function () {
 	this._renderStatblock = function (entry, textStack, meta, options) {
 		const page = entry.prop || Renderer.tag.getPage(entry.tag);
 		const source = Parser.getTagSource(entry.tag, entry.source);
-		const hash = entry.hash || (UrlUtil.URL_TO_HASH_BUILDER[page] ? UrlUtil.URL_TO_HASH_BUILDER[page]({...entry, name: entry.name, source}) : null);
+		const hash = entry.hash || (UrlUtil.URL_TO_HASH_BUILDER[page] ? UrlUtil.URL_TO_HASH_BUILDER[page]({...entry, source}) : null);
 		const tag = entry.tag || Parser.getPropTag(entry.prop);
 
-		const asTag = `{@${tag} ${entry.name}|${source}${entry.displayName ? `|${entry.displayName}` : ""}}`;
+		const prop = entry.prop || Parser.getTagProps(entry.tag)[0];
+		const uid = prop ? DataUtil.proxy.getUid(prop, entry, {isMaintainCase: true}) : "unknown|unknown";
+		const asTag = `{@${tag} ${uid}${entry.displayName ? `|${entry.displayName}` : ""}}`;
+
+		const displayName = entry.displayName || entry.name || entry.abbreviation;
 
 		const fromPlugins = this._applyPlugins_useFirst(
 			"statblock_render",
 			{textStack, meta, options},
-			{input: {entry, page, source, hash, tag, asTag}},
+			{input: {entry, page, source, hash, tag, prop, uid, asTag, displayName}},
 		);
 		if (fromPlugins) return void (textStack[0] += fromPlugins);
 
 		if (!page || !source || !hash) {
 			this._renderPrefix(entry, textStack, meta, options);
-			this._renderDataHeader(textStack, entry.name, entry.style);
+			this._renderDataHeader(textStack, displayName, entry.style);
 			textStack[0] += `<tr>
 				<td colspan="6">
-					<i class="text-danger">Cannot load ${tag ? `&quot;${asTag}&quot;` : entry.displayName || entry.name}! An unknown tag/prop, source, or hash was provided.</i>
+					<i class="text-danger">Cannot load ${tag ? `&quot;${asTag}&quot;` : displayName}! An unknown tag/prop, source, or hash was provided.</i>
 				</td>
 			</tr>`;
 			this._renderDataFooter(textStack);
@@ -1595,10 +1599,10 @@ globalThis.Renderer = function () {
 		}
 
 		this._renderPrefix(entry, textStack, meta, options);
-		this._renderDataHeader(textStack, entry.displayName || entry.name, entry.style, {isCollapsed: entry.collapsed});
+		this._renderDataHeader(textStack, displayName, entry.style, {isCollapsed: entry.collapsed});
 		textStack[0] += `<tr>
-			<td colspan="6" data-rd-tag="${(tag || "").qq()}" data-rd-page="${(page || "").qq()}" data-rd-source="${(source || "").qq()}" data-rd-hash="${(hash || "").qq()}" data-rd-name="${(entry.name || "").qq()}" data-rd-display-name="${(entry.displayName || "").qq()}" data-rd-style="${(entry.style || "").qq()}">
-				<i>Loading ${tag ? `${Renderer.get().render(asTag)}` : entry.displayName || entry.name}...</i>
+			<td colspan="6" data-rd-tag="${(tag || "").qq()}" data-rd-page="${(page || "").qq()}" data-rd-source="${(source || "").qq()}" data-rd-hash="${(hash || "").qq()}" data-rd-name="${(entry.name || "").qq()}" data-rd-display-name="${(displayName || "").qq()}" data-rd-style="${(entry.style || "").qq()}">
+				<i>Loading ${tag ? `${Renderer.get().render(asTag)}` : displayName}...</i>
 				<style onload="Renderer.events.handleLoad_inlineStatblock(this)"></style>
 			</td>
 		</tr>`;
@@ -2683,7 +2687,10 @@ Renderer.parseScaleDice = function (tag, text) {
 
 Renderer.getAbilityData = function (abArr, {isOnlyShort, isCurrentLineage = false, isBackgroundShortForm = false} = {}) {
 	if (isOnlyShort && isCurrentLineage) return new Renderer._AbilityData({asTextShort: "Lineage"});
-	if (isOnlyShort && isBackgroundShortForm && abArr.length === 2 && abArr[0].choose?.weighted?.from?.length === 3) return new Renderer._AbilityData({asTextShort: `Origin (${abArr[0].choose?.weighted?.from.map(it => it.uppercaseFirst()).join("/")})`});
+	if (isOnlyShort && isBackgroundShortForm) {
+		if (abArr.length === 2 && abArr[0].choose?.weighted?.from?.length === 3) return new Renderer._AbilityData({asTextShort: `Origin (${abArr[0].choose?.weighted?.from.map(it => it.uppercaseFirst()).join("/")})`});
+		if (abArr.length === 2 && abArr[0].choose?.weighted?.from?.length === 6) return new Renderer._AbilityData({asTextShort: `Origin (Any)`});
+	}
 
 	const outerStack = (abArr || [null]).map(it => Renderer.getAbilityData._doRenderOuter(it));
 	if (outerStack.length <= 1) return outerStack[0];
@@ -3301,7 +3308,7 @@ Renderer.utils = class {
 			const fromList = await DataLoader.pCacheAndGet(
 				fluffProp,
 				entry.source,
-				UrlUtil.URL_TO_HASH_BUILDER[mappedPropAppend](entry.fluff[mappedProp]),
+				UrlUtil.URL_TO_HASH_BUILDER[fluffProp](entry.fluff[mappedPropAppend]),
 				{
 					lockToken2,
 				},
@@ -7750,8 +7757,13 @@ Renderer.race = class {
 			// FIXME(Deprecated) Backwards compatibility for old race data; remove at some point
 			if (race.size && typeof race.size === "string") race.size = [race.size];
 
-			// Ignore `"lineage": true`, as it is only used for filters
-			if (race.lineage && race.lineage !== true) {
+			if (
+				race.lineage
+				// Ignore `"lineage": true`, as it is only used for filters
+				&& race.lineage !== true
+				// Only generate ability/language data on legacy entries
+				&& (race.edition === "classic" || race.edition == null)
+			) {
 				race = MiscUtil.copyFast(race);
 
 				if (race.lineage === "VRGR") {
@@ -10727,6 +10739,10 @@ Renderer.item = class {
 
 	/* -------------------------------------------- */
 
+	static getPropertyName (ent) {
+		return ent.name || (ent.entries || ent.entriesTemplate)[0]?.name || "Unknown";
+	}
+
 	static _propertyMap = {};
 	static _addProperty (ent) {
 		const abvLookup = (ent.abbreviation || "UNK").toLowerCase();
@@ -10735,7 +10751,7 @@ Renderer.item = class {
 		if (this._propertyMap?.[sourceLookup]?.[abvLookup]) return;
 
 		const cpy = MiscUtil.copyFast(ent);
-		cpy.name = ent.name || (ent.entries || ent.entriesTemplate)[0]?.name || "Unknown";
+		cpy.name = Renderer.item.getPropertyName(ent);
 
 		MiscUtil.set(this._propertyMap, sourceLookup, abvLookup, cpy);
 
@@ -13173,17 +13189,31 @@ Renderer.generic = class {
 		"shawm",
 		"viol",
 	];
+	static FEATURE__TOOLS_GAMING_SETS = [
+		"dragonchess set",
+		"dice set",
+		"three-dragon ante set",
+	];
+	static _FEATURE__TOOL_GROUPS = new Set([
+		"artisan's tools",
+		"gaming set",
+		"musical instrument",
+	]);
 	static FEATURE__TOOLS_ALL = [
 		"artisan's tools",
-
 		...this.FEATURE__TOOLS_ARTISANS,
-		...this.FEATURE__TOOLS_MUSICAL_INSTRUMENTS,
 
 		"disguise kit",
 		"forgery kit",
+
 		"gaming set",
+		...this.FEATURE__TOOLS_GAMING_SETS,
+
 		"herbalism kit",
+
 		"musical instrument",
+		...this.FEATURE__TOOLS_MUSICAL_INSTRUMENTS,
+
 		"navigator's tools",
 		"thieves' tools",
 		"poisoner's kit",
@@ -13361,6 +13391,8 @@ Renderer.generic = class {
 			case "anyTool": return {
 				name: mappedCount === 1 ? `Any Tool` : `Any ${mappedCount} Tools`,
 				from: this.FEATURE__TOOLS_ALL
+					// "anyTool" should map to "any specific tool", not "any group of tools"
+					.filter(it => !this._FEATURE__TOOL_GROUPS.has(it))
 					.map(it => ({name: it, prop: "toolProficiencies"})),
 				count: mappedCount,
 			};
@@ -13373,6 +13405,12 @@ Renderer.generic = class {
 			case "anyMusicalInstrument": return {
 				name: mappedCount === 1 ? `Any Musical Instrument` : `Any ${mappedCount} Musical Instruments`,
 				from: this.FEATURE__TOOLS_MUSICAL_INSTRUMENTS
+					.map(it => ({name: it, prop: "toolProficiencies"})),
+				count: mappedCount,
+			};
+			case "anyGamingSet": return {
+				name: mappedCount === 1 ? `Any Gaming Set` : `Any ${mappedCount} Gaming Sets`,
+				from: this.FEATURE__TOOLS_GAMING_SETS
 					.map(it => ({name: it, prop: "toolProficiencies"})),
 				count: mappedCount,
 			};

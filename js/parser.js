@@ -228,6 +228,10 @@ Parser.numberToFractional = function (number) {
 	return denominator === 1 ? String(numerator) : `${Math.floor(numerator)}/${Math.floor(denominator)}`;
 };
 
+Parser.isNumberNearEqual = function (a, b) {
+	return Math.abs(a - b) < Number.EPSILON;
+};
+
 Parser.ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 Parser.attAbvToFull = function (abv) {
@@ -3910,6 +3914,19 @@ Parser.PROP_TO_TAG = {
 Parser.getPropTag = function (prop) {
 	if (Parser.PROP_TO_TAG[prop]) return Parser.PROP_TO_TAG[prop];
 	return prop;
+};
+
+// Note that ordering is important; we expect the "primary" prop to be first
+Parser.TAG_TO_PROPS = {
+	"creature": ["monster"],
+	"optfeature": ["optionalfeature"],
+	"table": ["table", "tableGroup"],
+	"vehupgrade": ["vehicleUpgrade"],
+	"item": ["item", "baseitem", "itemGroup", "magicvariant"],
+};
+Parser.getTagProps = function (tag) {
+	if (Parser.TAG_TO_PROPS[tag]) return Parser.TAG_TO_PROPS[tag];
+	return [tag];
 };
 
 Parser.PROP_TO_DISPLAY_NAME = {
