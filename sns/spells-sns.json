@@ -20533,7 +20533,7 @@
         {
           "type": "timed",
           "duration": {
-            "type": "Hours",
+            "type": "hour",
             "amount": 24,
             "upTo": false
           }
@@ -34715,7 +34715,7 @@
     {
       "school": "V",
       "entries": [
-        "You create a wall of swirling sand on the ground at a point within range. You can make the wall up to 30 feet long, 10 feet high, and 10 feet thick, and it vanishes when the spell ends. Its area is heavily obscured. A creature must spend 3 feet of movement for every 1 foot it moves there."
+        "You create a wall of swirling sand on the ground at a point within range. You can make the wall up to 30 feet long, 10 feet high, and 10 feet thick, and it vanishes when the spell ends. Its area blocks line of sight, but not movement. A creature must spend 3 feet of movement for every 1 foot it moves there."
       ],
       "name": "Wall of Sand",
       "time": [
@@ -34820,6 +34820,719 @@
         "distance": {
           "type": "feet",
           "amount": 60
+        }
+      }
+    },
+    {
+      "school": "T",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Target",
+          "entries": [
+            "One creature"
+          ]
+        },
+        "Choose one of the following damage types: acid, cold, fire, lightning, or thunder. Make a fortitude attack against the target with the following outcomes:",
+        {
+          "type": "list",
+          "items": [
+            {
+              "type": "item",
+              "name": "Minor success",
+              "entries": [
+                "The target has -1 resistance to the chosen type for 1 round."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Standard success",
+              "entries": [
+                "For the spell's duration, the first time each turn the target takes damage of the chosen type, the target takes an extra {@dice 2d6} damage of that type. Moreover, the target loses any resistance to that damage type until the spell ends."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Critical success",
+              "entries": [
+                "As standard success, but the target also becomes vulnerable to the chosen damage type."
+              ]
+            }
+          ]
+        }
+      ],
+      "name": "Elemental Bane",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "entriesHigherLevel": [
+        {
+          "type": "entries",
+          "name": "Cast at Higher Levels",
+          "entries": [
+            "You can target one additional creature for each slot level above 4th. The creatures must be within 30 feet of each other when you target them."
+          ]
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "acid",
+        "cold",
+        "fire",
+        "lightning",
+        "thunder",
+        "ranged"
+      ],
+      "level": 4,
+      "components": {
+        "v": true,
+        "s": true
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Artificer",
+            "source": "PHB"
+          },
+          {
+            "name": "Druid",
+            "source": "PHB"
+          },
+          {
+            "name": "Warlock",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 90
+        }
+      }
+    },
+    {
+      "school": "A",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Area",
+          "entries": [
+            "30-foot cube within range"
+          ]
+        },
+        "You fortify the fabric of the planes in the area. Portals inside close and can't be opened for the duration. Spells and other effects that allow planar travel or open portals, such as {@spell gate|sns} or {@spell plane shift|sns}, fail if used to enter or leave the area. The cube is stationary."
+      ],
+      "name": "Gate Seal",
+      "time": [
+        {
+          "number": 1,
+          "unit": "minute"
+        }
+      ],
+      "entriesHigherLevel": [
+        {
+          "type": "entries",
+          "name": "Cast at Higher Levels",
+          "entries": [
+            "When you cast this spell using a spell slot of 6th level or higher, the spell lasts until dispelled."
+          ]
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "hour",
+            "amount": 24,
+            "upTo": false
+          }
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "planar"
+      ],
+      "level": 4,
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "a broken portal key, which the spell consumes"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Warlock",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 60
+        }
+      }
+    },
+    {
+      "school": "T",
+      "entries": [
+        "A nature spirit answers your call and transforms you into a powerful guardian. The transformation lasts until the spell ends. You choose one of the following forms to assume: Primal Beast or Great Tree.",
+        {
+          "type": "list",
+          "items": [
+            {
+              "type": "item",
+              "name": "Primal Beast",
+              "entries": [
+                "Bestial fur covers your body, your facial features become feral, and you gain the following benefits:",
+                {
+                  "type": "list",
+                  "items": [
+                    "Your Speed increases by 10 feet.",
+                    "You gain darkvision with a range of 120 feet.",
+                    "You make armour attack rolls governed by Strength with advantage.",
+                    "Your melee weapon attacks deal an extra {@dice 1d6} force damage."
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Great Tree",
+              "entries": [
+                "Your skin appears barky, leaves sprout from your hair, and you gain the following benefits:",
+                {
+                  "type": "list",
+                  "items": [
+                    "You gain 11 temporary hit points.",
+                    "Fortitude attacks against you have disadvantage.",
+                    "You make armour attack rolls governed by Dexterity and Wisdom with advantage.",
+                    "While you are on the ground, the ground within 15 feet of you is difficult terrain for your enemies."
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "name": "Guardian of Nature",
+      "time": [
+        {
+          "number": 1,
+          "unit": "bonus"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "shapeshift",
+        "force"
+      ],
+      "level": 4,
+      "components": {
+        "v": true,
+        "s": false
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Druid",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "self"
+        }
+      }
+    },
+    {
+      "school": "E",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Target",
+          "entries": [
+            "One creature"
+          ]
+        },
+        "You unleash a shimmering lance of psychic power from your forehead at the target. This spell does not require line of sight if you utter the target's name.",
+        "Make a will attack against the target that deals {@dice 5d10} psychic damage. On a hit, the target is {@condition dazed|sns} until the start of your next turn."
+      ],
+      "name": "Psychic Lance",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "entriesHigherLevel": [
+        {
+          "type": "entries",
+          "name": "Cast at Higher Levels",
+          "entries": [
+            "The damage increases by {@dice 1d10} for each slot level above 4th."
+          ]
+        }
+      ],
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "psychic",
+        "ranged",
+        "spell"
+      ],
+      "level": 4,
+      "components": {
+        "v": true,
+        "s": false
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Bard",
+            "source": "PHB"
+          },
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Warlock",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 120
+        }
+      }
+    },
+    {
+      "school": "N",
+      "entries": [
+        "Flame-like shadows wreathe your body until the spell ends, causing you to become heavily obscured to others. The shadows turn dim light within 10 feet of you into darkness, and bright light in the same area to dim light.",
+        "Until the spell ends, you have 50% resistance to radiant damage. In addition, whenever a creature within 10 feet of you hits you with an armour attack, the shadows lash out at that creature, dealing it {@dice 2d8} necrotic DoT damage."
+      ],
+      "name": "Shadow of Moil",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "necrotic",
+        "dot"
+      ],
+      "level": 4,
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "an undead eyeball encased in a gem worth at least 150 gp"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Warlock",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "self"
+        }
+      }
+    },
+    {
+      "school": "V",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Area",
+          "entries": [
+            "30-foot-radius sphere centered on a point within range"
+          ]
+        },
+        "Dim, greenish light spreads within the area. The area spreads around corners, and it lasts until the spell ends.",
+        "The area is a persistent zone that forces creatures to make a save. On a fail, a creature takes {@dice 4d10} radiant DoT damage, gains one level of {@condition fatigue|sns}, and emits a dim, greenish light in a 5-foot radius. This light makes it impossible for the creature to benefit from being {@condition invisible}. The light and any levels of {@condition fatigue|sns} caused by this spell go away when the spell ends."
+      ],
+      "name": "Sickening Radiance",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 10,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "radiant",
+        "persistent",
+        "dot"
+      ],
+      "level": 4,
+      "components": {
+        "v": true,
+        "s": true
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Warlock",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 120
+        }
+      }
+    },
+    {
+      "school": "V",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Area",
+          "entries": [
+            "20-foot-radius sphere centered on a point within range"
+          ]
+        },
+        "An area of whirling air springs into existence. The area remains for the spell's duration. Each creature in the area when it appears or that ends its turn there must succeed on a save or take {@dice 2d6} bludgeoning DoT damage. The area is difficult terrain.",
+        "Until the spell ends, you can use a bonus action on each of your turns to cause a bolt of lightning to leap from the centre of the area towards one creature you choose within 60 feet of the centre. That creature must make a save, which has disadvantage if it is within the area. On a fail, the creature takes {@dice 4d6} lightning DoT damage.",
+        "Creatures within 30 feet of the area have disadvantage on Perception checks made to listen."
+      ],
+      "name": "Storm Sphere",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "entriesHigherLevel": [
+        {
+          "type": "entries",
+          "name": "Cast at Higher Levels",
+          "entries": [
+            "The damage for each of the spell's effects increases by {@dice 1d6} for each slot level above 4th."
+          ]
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "lightning",
+        "dot"
+      ],
+      "level": 4,
+      "components": {
+        "v": true,
+        "s": true
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 150
+        }
+      }
+    },
+    {
+      "school": "C",
+      "entries": [
+        "You call forth the spirit of a construct. It manifests in an unoccupied space that you can see within range. This corporeal form uses the {@creature Construct Spirit|sns} stat block. When you cast the spell, choose a material: Clay, Metal, or Stone. The creature resembles a golem or a modron (your choice) made of the chosen material, which determines certain traits in its stat block. The creature disappears when it drops to 0 hit points or when the spell ends.",
+        "The creature is an ally to you and your companions. It obeys your verbal commands (no action required by you). If you don't issue any, it takes the Dodge action and uses its move to avoid danger."
+      ],
+      "name": "Summon Construct",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "entriesHigherLevel": [
+        {
+          "type": "entries",
+          "name": "Cast at Higher Levels",
+          "entries": [
+            "Use the higher level wherever the spell's level appears in the stat block."
+          ]
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "hour",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "minion"
+      ],
+      "level": 4,
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "an ornate stone and metal lockbox worth at least 400 gp"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Artificer",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 90
+        }
+      }
+    },
+    {
+      "school": "V",
+      "entries": [
+        "You point at a location within range, and a glowing 1-foot-diameter ball of emerald acid streaks there and explodes in a 20-foot-radius sphere. Make a reflex attack against each creature in that area that deals {@dice 8d6} acid damage. On a hit, a target takes {@dice 5d4} acid DoT damage at the end of its next turn."
+      ],
+      "name": "Vitriolic Sphere",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "entriesHigherLevel": [
+        {
+          "type": "entries",
+          "name": "Cast at Higher Levels",
+          "entries": [
+            "The initial damage increases by {@dice 2d6} for each slot level above 4th."
+          ]
+        }
+      ],
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "acid",
+        "area",
+        "spell",
+        "dot"
+      ],
+      "level": 4,
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "a drop of giant slug bile"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 150
+        }
+      }
+    },
+    {
+      "school": "C",
+      "entries": [
+        "You conjure up a sphere of water with a 5-foot radius at a point you can see within range. The sphere can hover but no more than 10 feet off the ground. The sphere remains for the spell's duration.",
+        "Any creature in the sphere's space when it first appears must make a save. On a success, a creature is ejected from that space to the nearest unoccupied space of the creature's choice outside the sphere. A Huge or larger creature succeeds on the save automatically, and a Large or smaller creature can choose to fail it. On a failed save, a creature is {@condition restrained|sns} by the sphere and is engulfed by the water until it passes a passive save.",
+        "The sphere can restrain as many as four Medium or smaller creatures or one Large creature. If the sphere restrains a creature that causes it to exceed this capacity, a random creature that was already {@condition restrained|sns} by the sphere falls out of it and lands {@condition prone|sns} in a space adjacent to it.",
+        "As an action, you can move the sphere up to 30 feet in a straight line. If it moves over a pit, a cliff, or other drop-off, it safely descends until it is hovering 10 feet above the ground. Any creature {@condition restrained|sns} by the sphere is moved with it. You can ram the sphere into creatures, forcing them to make the save.",
+        "When the spell ends, the sphere falls to the ground and extinguishes all normal flames within 30 feet of it. Any creature {@condition restrained|sns} by the sphere is knocked {@condition prone|sns} in the space where it falls. The water then vanishes."
+      ],
+      "name": "Watery Sphere",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "water"
+      ],
+      "level": 4,
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "a droplet of water"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Druid",
+            "source": "PHB"
+          },
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 90
         }
       }
     }
@@ -35655,6 +36368,100 @@
           "name": "Slam",
           "entries": [
             "{@atk mw} reach 5 ft., one target. 5 ({@damage 1d4 + 3}) bludgeoning damage."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Construct Spirit",
+      "source": "sns",
+      "size": [
+        "M"
+      ],
+      "type": "construct",
+      "alignment": [
+        "U"
+      ],
+      "ac": {
+        "ac": 1,
+        "from": [
+          "plus half the spell's level (rounded up); natural armor"
+        ]
+      },
+      "hp": {
+        "special": "45 + 16 for each spell level above 4th"
+      },
+      "speed": {
+        "walk": 30
+      },
+      "str": 18,
+      "dex": 10,
+      "con": 18,
+      "int": 14,
+      "wis": 11,
+      "cha": 5,
+      "save": {
+        "str": "+4",
+        "dex": "+2",
+        "wis": "+0"
+      },
+      "resist": [
+        "poison"
+      ],
+      "conditionImmune": [
+        "charmed|sns",
+        "fatigue|sns",
+        "frightened|sns",
+        "strife|sns",
+        "dazed|sns",
+        "staggered|sns",
+        "poisoned|sns"
+      ],
+      "senses": [
+        "darkvision 60 ft."
+      ],
+      "passive": 10,
+      "languages": [
+        "understands the languages you speak"
+      ],
+      "trait": [
+        {
+          "name": "—MAJOR EFFECTS—",
+          "entries": [
+            {
+              "type": "list",
+              "items": [
+                "The target's armour is reduced by 1 for 1 round."
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Heated Body (Metal Only)",
+          "entries": [
+            "A creature that touches the construct or hits it with a melee weapon attack while adjacent to it takes {@dice 1d10} fire DoT damage."
+          ]
+        },
+        {
+          "name": "Stony Lethargy (Stone Only)",
+          "entries": [
+            "When a creature starts its turn within 10 feet of the construct, the construct can force it to make a save. On a failed save, the target is {@condition rattled|sns} and {@condition sluggish|sns} until the start of its next turn."
+          ]
+        }
+      ],
+      "action": [
+        {
+          "name": "Slam",
+          "entries": [
+            "{@atk mw} reach 5 ft., one target. {@damage 1d8 + 4} + the spell's level bludgeoning damage. This damage is multiplied by half this spell's level. For example, at spell level 4, the damage is {@dice 2d8} + 8 + 8. Each of these multipliers counts as an instance of the Empowered Attack feature."
+          ]
+        }
+      ],
+      "reaction": [
+        {
+          "name": "Berserk Lashing (Clay Only)",
+          "entries": [
+            "When the construct takes damage, it makes a slam attack against a random creature adjacent to it. If no creature is within reach, the construct shifts up to half its Speed towards an enemy it can see."
           ]
         }
       ]
