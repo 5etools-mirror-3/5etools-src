@@ -28,5 +28,6 @@ export const BLOCKLIST_SOURCES_PAGES = new Set([
 	Parser.SRC_SCREEN_WILDERNESS_KIT,
 	Parser.SRC_SCREEN_DUNGEON_KIT,
 	Parser.SRC_SCREEN_SPELLJAMMER,
+	Parser.SRC_XSCREEN,
 	// endregion
 ]);
