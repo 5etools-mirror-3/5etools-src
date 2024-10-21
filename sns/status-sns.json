@@ -1,0 +1,31 @@
+{
+  "status": [
+    {
+      "name": "Concentration",
+      "source": "sns",
+      "page": 0,
+      "entries": [
+        "Some spells require you to maintain {@status concentration} in order to keep their magic active. If you lose {@status concentration}, such a spell ends.",
+        "If a spell must be maintained with {@status concentration}, that fact appears in its Duration entry, and the spell specifies how long you can concentrate on it. You can end {@status concentration} at any time (no action required).",
+        "Normal activity, such as moving and attacking, doesn't interfere with {@status concentration}. The following factors can break {@status concentration}:",
+        {
+          "type": "list",
+          "items": [
+            "{@b Casting another spell that requires concentration.} You lose {@status concentration} on a spell if you cast another spell that requires {@status concentration}. You can't concentrate on two spells at once.",
+            "{@b Being knocked unconscious or killed.} You lose {@status concentration} on a spell if you are {@condition unconscious} or if you die."
+          ]
+        },
+        "The DM might also decide that certain environmental phenomena, such as a wave crashing over you while you're on a storm-tossed ship, require you to succeed on a DC 10 Constitution saving throw to maintain {@status concentration} on a spell."
+      ]
+    },
+    {
+      "name": "Surprised",
+      "source": "sns",
+      "page": 0,
+      "entries": [
+        "The DM determines who might be surprised. If neither side tries to be stealthy, they automatically notice each other. Otherwise, the DM compares the Dexterity ({@skill Stealth}) checks of anyone hiding with the passive Wisdom ({@skill Perception}) score of each creature on the opposing side. Any character or monster that doesn't notice a threat is {@status surprised} at the start of the encounter.",
+        "If you're surprised, you can't move or take an action on your first turn of the combat, and you can't take a reaction until that turn ends. A member of a group can be {@status surprised} even if the other members aren't."
+      ]
+    }
+  ]
+}

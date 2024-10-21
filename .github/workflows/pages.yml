@@ -39,7 +39,10 @@ jobs:
            with:
              bb: latest
              github-token: ${{ secrets.GITHUB_TOKEN }}
-         - run: bb .github/generate-merged-json.bb
+         - name: Set updated time
+           run: cat sns/meta-sns.json | jq "._meta.dateLastModified = $(date +'%s')" > sns/meta-sns.json
+         - name: Generate merged homebrew JSON
+           run: bb .github/generate-merged-json.bb
          - uses: actions/upload-artifact@v4
            with:
              name: sns.json
