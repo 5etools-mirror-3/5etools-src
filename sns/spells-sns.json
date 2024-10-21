@@ -35535,6 +35535,1090 @@
           "amount": 90
         }
       }
+    },
+    {
+      "school": "T",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Target",
+          "entries": [
+            "The air in a 100-foot cube"
+          ]
+        },
+        "You take control of the target. Choose one of the following effects when you cast the spell. The effect lasts for the spell's duration, unless you use your action on a later turn to switch to a different effect. You can also use your action to temporarily halt the effect or to restart one you've halted.",
+        {
+          "type": "entries",
+          "name": "Gusts",
+          "entries": [
+            "A wind picks up within the target, continually blowing in a horizontal direction you designate. You choose the intensity of the wind: calm, moderate, or strong. If the wind is moderate or strong, ranged weapon attacks that pass through it or that are made against creatures within the target have disadvantage on their attack rolls. If the wind is strong, any creature moving against the wind must spend 1 extra foot of movement for each foot moved."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Downdraft",
+          "entries": [
+            "You cause a sustained blast of strong wind to blow downwards from the top of the target. Ranged weapon attacks that pass through the target or that are made against creatures within it have disadvantage on their attack rolls. The target is a persistent zone that forces flying creatures to make a save, being knocked {@condition prone|sns} on a fail."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Updraft",
+          "entries": [
+            "You cause a sustained updraft within the target, rising upwards from the target's bottom side. Creatures that end a fall within the target take only half damage from the fall. When a creature in the target makes a vertical jump, the creature can jump up to 10 feet higher than normal."
+          ]
+        }
+      ],
+      "name": "Control Winds",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "hour",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "air"
+      ],
+      "level": 5,
+      "components": {
+        "v": true,
+        "s": true
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Druid",
+            "source": "PHB"
+          },
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 300
+        }
+      }
+    },
+    {
+      "school": "V",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Area",
+          "entries": [
+            "30-foot-radius, 40-foot-high cylinder centered on a location within range"
+          ]
+        },
+        "The light of dawn shines down on the area, covering it in bright light. This light is sunlight.",
+        "When the cylinder appears, each creature in it takes {@dice 4d6} radiant DoT damage. A creature also takes this damage whenever it ends its turn in the cylinder.",
+        "If you're within 60 feet of the cylinder, you can move it up to 60 feet as a bonus action on your turn."
+      ],
+      "name": "Dawn",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "radiant",
+        "dot"
+      ],
+      "level": 5,
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "a sunburst pendant worth at least 100 gp"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Cleric",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 60
+        }
+      }
+    },
+    {
+      "school": "N",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Target",
+          "entries": [
+            "One creature"
+          ]
+        },
+        "A tendril of inky darkness reaches out from you, touching the target to drain life from it. Make a reflex attack against the target that deals {@dice 3d12} necrotic damage. If this attack fails to hit, the spell ends. Otherwise, until the spell ends, you can use your action on each of your turns to automatically deal {@dice 4d8} necrotic DoT damage to the target. The spell ends if you use your action to do anything else, if the target is ever outside the spell's range, or if the target has total cover from you.",
+        "Whenever the spell deals damage to a target, you regain hit points equal to the amount of necrotic damage the target takes."
+      ],
+      "name": "Enervation",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "entriesHigherLevel": [
+        {
+          "type": "entries",
+          "name": "Cast at Higher Levels",
+          "entries": [
+            "The damage increases by {@dice 1d8} for each slot level above 5th."
+          ]
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "necrotic",
+        "spell",
+        "ranged",
+        "dot"
+      ],
+      "level": 5,
+      "components": {
+        "v": true,
+        "s": true
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Warlock",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 60
+        }
+      }
+    },
+    {
+      "school": "C",
+      "entries": [
+        "You teleport up to 60 feet to an unoccupied space you can see. On each of your turns before the spell ends, you can use a bonus action to teleport in this way again."
+      ],
+      "name": "Far Step",
+      "time": [
+        {
+          "number": 1,
+          "unit": "bonus"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "teleportation"
+      ],
+      "level": 5,
+      "components": {
+        "v": true,
+        "s": false
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Warlock",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "self"
+        }
+      }
+    },
+    {
+      "school": "V",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Target",
+          "entries": [
+            "One weapon"
+          ]
+        },
+        "You imbue the target with holy power. Until the spell ends, the target emits bright light in a 30-foot radius and dim light for an additional 30 feet. In addition, weapon attacks made with it deal an extra {@dice 2d8} radiant damage. The target's base physical damage also ignores resistances and immunities.",
+        "As a bonus action on your turn, you can dismiss this spell and cause the target to emit a burst of radiance. Make a fortitude attack against each creature of your choice within 30 feet of the target that deals {@dice 3d12} radiant damage. On a hit, a creature is {@condition blinded|sns} for either 1 minute or until it passes a passive save."
+      ],
+      "name": "Holy Weapon",
+      "time": [
+        {
+          "number": 1,
+          "unit": "bonus"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "hour",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "radiant",
+        "weaponry",
+        "area",
+        "spell"
+      ],
+      "level": 5,
+      "components": {
+        "v": true,
+        "s": true
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Cleric",
+            "source": "PHB"
+          },
+          {
+            "name": "Herald",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "touch"
+        }
+      }
+    },
+    {
+      "school": "C",
+      "entries": [
+        "You conjure up a sphere of water with a 5-foot radius at a point you can see within range. The sphere can hover but no more than 10 feet off the ground. The sphere remains for the spell's duration.",
+        "Any creature in the sphere's space when it first appears must make a save. On a success, a creature is ejected from that space to the nearest unoccupied space of the creature's choice outside the sphere. A Huge or larger creature succeeds on the save automatically, and a Large or smaller creature can choose to fail it. On a failed save, a creature is {@condition restrained|sns} by the sphere and is engulfed by the water until it passes a passive save.",
+        "The sphere can restrain as many as four Medium or smaller creatures or one Large creature. If the sphere restrains a creature that causes it to exceed this capacity, a random creature that was already {@condition restrained|sns} by the sphere falls out of it and lands {@condition prone|sns} in a space adjacent to it.",
+        "As an action, you can move the sphere up to 30 feet in a straight line. If it moves over a pit, a cliff, or other drop-off, it safely descends until it is hovering 10 feet above the ground. Any creature {@condition restrained|sns} by the sphere is moved with it. You can ram the sphere into creatures, forcing them to make the save.",
+        "When the spell ends, the sphere falls to the ground and extinguishes all normal flames within 30 feet of it. Any creature {@condition restrained|sns} by the sphere is knocked {@condition prone|sns} in the space where it falls. The water then vanishes."
+      ],
+      "name": "Watery Sphere",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "water"
+      ],
+      "level": 4,
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "a droplet of water"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Druid",
+            "source": "PHB"
+          },
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 90
+        }
+      }
+    },
+    {
+      "school": "V",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Target",
+          "entries": [
+            "One creature"
+          ]
+        },
+        "Flames wreathe the target. Make a reflex attack against the target that deals {@dice 7d8} fire damage. On a hit, the target also burns for the spell's duration. The burning target sheds bright light in a 30-foot radius and dim light for an additional 30 feet, and makes a save at the end of each of its turns. On a failed save, it takes {@dice 4d6} fire DoT damage, and the spell ends on a successful one. These magical flames can't be extinguished by nonmagical means.",
+        "If damage from this spell kills a target, the target is turned to ash."
+      ],
+      "name": "Immolation",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "fire",
+        "ranged",
+        "spell",
+        "dot"
+      ],
+      "level": 5,
+      "components": {
+        "v": true,
+        "s": false
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 90
+        }
+      }
+    },
+    {
+      "school": "V",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Area",
+          "entries": [
+            "30-foot-radius, 5-foot-high cylinder centered on a point on the ground or in a body of water within range"
+          ]
+        },
+        "A swirling mass of water appears in the area. Until the spell ends, the area is difficult terrain, and any creature that starts its turn there must succeed on a save or take {@dice 6d6} bludgeoning DoT damage and be pulled 10 feet towards the centre."
+      ],
+      "name": "Maelstrom",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "bludgeoning",
+        "dot",
+        "water"
+      ],
+      "level": 5,
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "paper or leaf in the shape of a funnel"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Druid",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 120
+        }
+      }
+    },
+    {
+      "school": "N",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Target",
+          "entries": [
+            "One creature"
+          ]
+        },
+        "You send ribbons of negative energy at the target. Unless the target is undead, make a fortitude attack against it that deals {@dice 8d8} necrotic damage. A target killed by this damage rises up as a {@creature zombie|sns} at the start of your next turn. The zombie pursues whatever creature it can see that is closest to it.",
+        "If you target an undead with this spell, you do not attack the target. Instead, roll {@dice 4d8}. The target gains the total as temporary hit points."
+      ],
+      "name": "Negative Energy Flood",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "necrotic",
+        "undead",
+        "ranged",
+        "spell"
+      ],
+      "level": 5,
+      "components": {
+        "v": true,
+        "s": false,
+        "m": {
+          "text": "a broken bone and a square of black silk"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Warlock",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 60
+        }
+      }
+    },
+    {
+      "school": "T",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Target",
+          "entries": [
+            "One willing creature"
+          ]
+        },
+        "Your magic deepens the target's understanding of its own talent. Until the spell ends, the target doubles its proficiency bonus for ability checks it makes that use one skill of your choice.",
+        "You must choose a skill in which the target is proficient and that isn't already benefitting from such an effect that doubles its proficiency bonus."
+      ],
+      "name": "Skill Empowerment",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "hour",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "enhancement"
+      ],
+      "level": 5,
+      "components": {
+        "v": true,
+        "s": true
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Artificer",
+            "source": "PHB"
+          },
+          {
+            "name": "Bard",
+            "source": "PHB"
+          },
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "touch"
+        }
+      }
+    },
+    {
+      "school": "C",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Target",
+          "entries": [
+            "Up to five creatures"
+          ]
+        },
+        "You flourish the weapon used in the casting and then vanish to strike like the wind. Make a melee armour attack against each target that deals {@dice 6d10} force damage.",
+        "You can then teleport to an unoccupied space adjacent to one of the targets you attacked."
+      ],
+      "name": "Steel Wind Strike",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "teleportation",
+        "spell",
+        "melee"
+      ],
+      "level": 5,
+      "components": {
+        "v": false,
+        "s": true,
+        "m": {
+          "text": "a melee weapon worth at least 1 sp"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 30
+        }
+      }
+    },
+    {
+      "school": "C",
+      "entries": [
+        "You call forth a {@creature draconic spirit|sns}. It manifests in an unoccupied space within range. When you cast this spell, choose a family of dragon: chromatic, gem, or metallic. The creature resembles a dragon of the chosen family, which determines certain traits in its stat block. The creature disappears when it drops to 0 hit points or when the spell ends.",
+        "The creature obeys your verbal commands (no action required by you). If you don't issue any, it takes the Dodge action and uses its move to avoid danger."
+      ],
+      "name": "Summon Draconic Spirit",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "entriesHigherLevel": [
+        {
+          "type": "entries",
+          "name": "Cast at Higher Levels",
+          "entries": [
+            "Use the higher spell slot level whenever the spell's level appears in the stat block."
+          ]
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "hour",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "minion"
+      ],
+      "level": 5,
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "an object with the image of a dragon engraved on it, worth at least 500 gp"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Druid",
+            "source": "PHB"
+          },
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 60
+        }
+      }
+    },
+    {
+      "school": "E",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Area",
+          "entries": [
+            "20-foot-radius sphere centered on a point within range"
+          ]
+        },
+        "Psychic energy explodes in the area. Make a will attack against each creature with an Intelligence score of 3 or higher in the area that deals {@dice 7d8} psychic damage.",
+        "On a hit, a target has muddled thoughts for 1 minute, or until it passes a passive save. During that time, it rolls a {@dice d6} and subtracts the number rolled from all its armour attack rolls and ability checks."
+      ],
+      "name": "Synaptic Static",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "psychic",
+        "area",
+        "spell"
+      ],
+      "level": 5,
+      "components": {
+        "v": true,
+        "s": true
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Bard",
+            "source": "PHB"
+          },
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Warlock",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 120
+        }
+      }
+    },
+    {
+      "school": "T",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Target",
+          "entries": [
+            "Stone or mud that fits within a 40-foot cube"
+          ]
+        },
+        "Choose one of the following effects.",
+        {
+          "type": "entries",
+          "name": "Transmute Rock to Mud",
+          "entries": [
+            "Nonmagical rock of any sort in the target becomes an equal volume of thick, flowing mud that remains for the spell's duration.",
+            "The ground in the spell's area becomes muddy enough that creatures can sink into it. Each foot that a creature moves through the mud costs 4 feet of movement, and any creature on the ground when you cast the spell must make a save. A creature must also make the save when it moves into the area for the first time on a turn or ends its turn there. On a failed save, a creature sinks into the mud and is {@condition restrained|sns}, though it can use an action to end the {@condition restrained|sns} condition on itself by pulling itself free of the mud.",
+            "If you cast the spell on a ceiling, the mud falls. Make a reflex attack against any creature under the mud when it falls that deals {@dice 3d12} bludgeoning damage."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Transmute Mud to Rock",
+          "entries": [
+            "Nonmagical mud or quicksand in the area no more than 10 feet deep transforms into soft stone for the spell's duration. Any creature in the mud when it transforms must make a save. On a successful save, a creature is shunted safely to the surface in an unoccupied space. On a failed save, a creature becomes {@condition restrained|sns} by the rock. A {@condition restrained|sns} creature, or another creature within reach, can use an action to try to break the rock by succeeding on a {@dc 20} Brawn check or by dealing damage to it. The rock has 2 Armour and 28 hit points, and it is immune to poison and psychic damage."
+          ]
+        }
+      ],
+      "name": "Transmute Rock",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "permanent",
+          "ends": [
+            "dispel"
+          ]
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "bludgeoning",
+        "earth",
+        "spell",
+        "area"
+      ],
+      "level": 5,
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "clay and water"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Artificer",
+            "source": "PHB"
+          },
+          {
+            "name": "Druid",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 120
+        }
+      }
+    },
+    {
+      "school": "V",
+      "entries": [
+        "A shimmering wall of bright light appears at a point you choose within range. The wall appears in any orientation you choose: horizontally, vertically, or diagonally. It can be free floating, or it can rest on a solid surface. The wall can be up to 60 feet long, 10 feet high, and 5 feet thick. The wall blocks line of sight, but creatures and objects can pass through it. It emits bright light out to 120 feet and dim light for an additional 120 feet.",
+        "When the wall appears, make an area spell fortitude attack against each creature in its area that deals {@dice 3d12} radiant damage. On a hit, a target is {@condition blinded|sns} for 1 minute, or until it passes a passive save.",
+        "A creature that ends its turn in the wall's area takes {@dice 4d8} radiant DoT damage.",
+        "Until the spell ends, you can use an action to launch a beam of radiance from the wall at one creature you can see wtihin 60 feet of it. Make a ranged spell armour attack that deals {@dice 4d8} radiant damage. After this attack, reduce the length of the wall by 10 feet. If the wall's length drops to 0 feet, the spell ends."
+      ],
+      "name": "Wall of Light",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "entriesHigherLevel": [
+        {
+          "type": "entries",
+          "name": "Cast at Higher Levels",
+          "entries": [
+            "The initial attack's damage increases by {@dice 1d12}, and the DoT and armour attack damage increases by {@dice 1d8} for each slot level above 5th."
+          ]
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 10,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "radiant",
+        "area",
+        "spell",
+        "ranged"
+      ],
+      "level": 5,
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "a hand mirror"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Warlock",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 120
+        }
+      }
+    },
+    {
+      "school": "V",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Area",
+          "entries": [
+            "60-foot cube centered on a point within range"
+          ]
+        },
+        "You call out to the spirits of nature to rouse them against your enemies. The spirits cause trees, rocks, and grasses in the area to become animated until the spell ends.",
+        {
+          "type": "entries",
+          "name": "Grasses and Undergrowth",
+          "entries": [
+            "Any area of ground in the area that is covered by grass or undergrowth is difficult terrain for your enemies."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Trees",
+          "entries": [
+            "At the start of each of your turns, each of your enemies within 10 feet of any tree in the area takes {@dice 2d6} slashing DoT damage from whipping branches."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Roots and Vines",
+          "entries": [
+            "At the end of each of your turns, one creature of your choice that is on the ground in the area must succeed on a save or become {@condition restrained|sns} until the spell ends. A {@condition restrained|sns} creature can use an action to make an Athletics check against your standard DC, ending the effect on itself on a success."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Rocks",
+          "entries": [
+            "As a bonus action on your turn, you can cause a loose rock in the area to launch at a creature in the area. The creature takes {@dice 1d12} bludgeoning DoT damage and makes a save. On a fail, it falls {@condition prone|sns}."
+          ]
+        }
+      ],
+      "name": "Wrath of Nature",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "slashing",
+        "dot",
+        "bludgeoning"
+      ],
+      "level": 5,
+      "components": {
+        "v": true,
+        "s": true
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Druid",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 120
+        }
+      }
     }
   ],
   "monster": [
@@ -36462,6 +37546,93 @@
           "name": "Berserk Lashing (Clay Only)",
           "entries": [
             "When the construct takes damage, it makes a slam attack against a random creature adjacent to it. If no creature is within reach, the construct shifts up to half its Speed towards an enemy it can see."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Draconic Spirit",
+      "source": "sns",
+      "size": [
+        "L"
+      ],
+      "type": "dragon",
+      "alignment": [
+        "U"
+      ],
+      "ac": {
+        "ac": 2,
+        "from": [
+          "plus half the spell's level (rounded down); natural armor"
+        ]
+      },
+      "hp": {
+        "special": "56 + 11 for each spell level above 5th"
+      },
+      "speed": {
+        "walk": 30,
+        "fly": 60,
+        "swim": 30
+      },
+      "str": 19,
+      "dex": 14,
+      "con": 17,
+      "int": 10,
+      "wis": 14,
+      "cha": 14,
+      "save": {
+        "str": "+4",
+        "dex": "+2",
+        "wis": "+2"
+      },
+      "resist": [
+        "acid, cold, fire, lightning, and poison (Chromatic and Metallic Only)",
+        "force, necrotic, psychic, radiant, and thunder (Gem Only)"
+      ],
+      "conditionImmune": [
+        "charmed|sns",
+        "frightened|sns",
+        "poisoned|sns"
+      ],
+      "senses": [
+        "blindsight 30 ft.",
+        "darkvision 60 ft."
+      ],
+      "passive": 12,
+      "languages": [
+        "draconic",
+        "understands the languages you speak"
+      ],
+      "trait": [
+        {
+          "name": "—MAJOR EFFECTS—",
+          "entries": [
+            {
+              "type": "list",
+              "items": [
+                "The target's armour is reduced by 1 for 1 round."
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Shared Resistances",
+          "entries": [
+            "When you summon the dragon, choose one of its damage resistances. You have resistance to the chosen damage type until the spell ends."
+          ]
+        }
+      ],
+      "action": [
+        {
+          "name": "Rend",
+          "entries": [
+            "{@atk mw} reach 10 ft., one target. {@damage 1d6 + 4} + the spell's level piercing damage. This damage is multiplied by this spell's level. For example, at spell level 5, the damage is {@dice 5d6} + 20 + 25. Each of these multipliers counts as an instance of the Empowered Attack feature."
+          ]
+        },
+        {
+          "name": "Breath Weapon",
+          "entries": [
+            "The dragon exhales destructive energy in a 30-foot cone. Make an area weapon reflex attack against each creature in that area that deals {@dice 5d6} damage of a type this dragon has 50% resistance to (your choice)."
           ]
         }
       ]
