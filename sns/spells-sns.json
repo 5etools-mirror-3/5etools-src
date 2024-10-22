@@ -36604,6 +36604,966 @@
           "amount": 120
         }
       }
+    },
+    {
+      "school": "T",
+      "entries": [
+        "You cause up to six pillars of stone to burst from places on the ground within range. Each pillar is a cylinder that has a diameter of 5 feet and a height of up to 30 feet. The ground where a pillar appears must be wide enough for this diameter, and you can target the ground under a creature if that creature is Medium or smaller. Each pillar has -3 Armour and 33 hit points. When reduced to 0 hit points, a pillar crumbles into rubble, which creates an area of difficult terrain with a 10-foot radius that lasts until the rubble is cleared. Each 5-foot-diameter portion of the area requires at least 1 minute to clear by hand.",
+        "If a pillar is created under a creature, make a reflex attack against the creature, which it may willingly choose to simply take the standard success outcome. The attack has the following outcomes:",
+        {
+          "type": "list",
+          "items": [
+            {
+              "type": "item",
+              "name": "Minor success",
+              "entries": [
+                "The target is knocked {@condition prone|sns} into the nearest unoccupied space that is not on the pillar's space."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Standard success",
+              "entries": [
+                "The target is lifted by the pillar."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Critical success",
+              "entries": [
+                "As standard success, but the target also takes fall damage as if it had fallen 30 feet."
+              ]
+            }
+          ]
+        },
+        "If a pillar is prevented from reaching its full height because of a ceiling or other obstacle, a creature on the pillar takes {@dice 6d6} bludgeoning DoT damage and is {@condition restrained|sns}, pinched between the pillar and the obstacle. The {@condition restrained|sns} creature can use an action to make a Brawn or Acrobatics check (the creature's choice) against your standard DC. On a success, the creature is no longer {@condition restrained|sns} and must either move off the pillar or fall off it."
+      ],
+      "name": "Bones of the Earth",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "entriesHigherLevel": [
+        {
+          "type": "entries",
+          "name": "Cast at Higher Levels",
+          "entries": [
+            "You can create two additional pillars for each slot level above 6th."
+          ]
+        }
+      ],
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "bludgeoning",
+        "dot",
+        "earth",
+        "area"
+      ],
+      "level": 6,
+      "components": {
+        "v": true,
+        "s": true
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Druid",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 120
+        }
+      }
+    },
+    {
+      "school": "T",
+      "entries": [
+        "While speaking an intricate incantation, you cut yourself with a jewel-encrusted dagger, taking {@dice 2d4} true damage. You then drip your blood on the spell's other components and touch them, transforming them into a special construct called as {@creature homunculus}.",
+        "The homunculus is your faithful companion, and it dies if you die. Whenever you finish a long rest, you can spend up to half your Hit Dice if the homunculus is on the same plane of existence as you. When you do so, roll each die and 5 to it. Your hit point maximum is reduced by the total, and the homunculus' hit point maximum and current hit points are both increased by it. This process can reduce you to no lower than 1 hit point, and the change to your and the homunculus' hit points ends when you finish your next long rest. The reduction to your hit point maximum can't be removed by any means before then, except by the homunculus' death.",
+        "You can have only one homunculus at a time. If you cast this spell while your homunculus lives, the spell fails."
+      ],
+      "name": "Create Homunculus",
+      "time": [
+        {
+          "number": 1,
+          "unit": "hour"
+        }
+      ],
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "summoning"
+      ],
+      "level": 6,
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "clay, ash, and mandrake root, all of which the spell consumes, and a jewel-encrusted dagger worth at least 1,000 gp"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "touch"
+        }
+      }
+    },
+    {
+      "school": "T",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Area",
+          "entries": [
+            "Cube of at least 30 feet or up to 90 feet"
+          ]
+        },
+        "You invoke the spirits of nature to protect an area outdoors or underground. Builds and other structures are excluded from the affected area. If you cast this spell in the same area every day for a year, the spell lasts until dispelled.",
+        "The spell creates the following effects within the area. When you cast this spell, you can specify creatures as friends who are immune to the effects. You can also specify a password that, when spoken aloud, makes the speaker immune to these effects.",
+        "The entire warded area radiates magic. A {@spell dispel magic|sns} cast on the area, if successful, removes only one of the following effects, not the entire area. That spell's caster chooses which effect to end. Only when all its effects are gone is this spell dispelled.",
+        {
+          "type": "entries",
+          "name": "Solid Fog",
+          "entries": [
+            "You can fill any number of 5-foot spaces on the ground with thick fog, making them heavily obscured. The fog reaches 10 feet high. In addition, creatures are {@condition sluggish|sns} while moving through the fog. To a creature immune to this effect, the fog obscures nothing and looks like soft mist, with motes of green light floating in the air."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Grasping Undergrowth",
+          "entries": [
+            "You can fill any number of 5-foot spaces on the ground that aren't filled with fog with grasping weeds and vines, as if they were affected by an {@spell entangle|sns} spell. To a creature immune to this effect, the weeds and vines feel soft and reshape themselves to serve as temporary seats or beds."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Grove Guardians",
+          "entries": [
+            "You can animate up to four trees in the area, causing them to uproot themselves from the ground. These trees have the same statistics as an {@creature awakened tree}, except they can't speak, and their bark is covered with druidic symbols. If any creature not immune to this effect enters the warded area, the grove guardians fight until they have driven off or slain the intruders. The grove guardians also obey your spoken commands (no action required by you) that you issue while in the area. If you don't give them commands and no intruders are present, the grove guardians do nothing. The grove guardians can't leave the warded area. When the spell ends, the magic animating them disappears, and the trees take root again if possible."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Additional Spell Effect",
+          "entries": [
+            "You can place your choice of one of the following magical effects within the warded area:",
+            {
+              "type": "list",
+              "items": [
+                "A constant {@spell gust of wind|sns} in two locations of your choice.",
+                "{@spell Spike growth|sns} in one location of your choice.",
+                "{@spell Wind wall|sns} in two locations of your choice."
+              ]
+            },
+            "To a creature immune to this effect, the winds are a fragrant, gentle breeze, and the area of {@spell spike growth|sns} is harmless."
+          ]
+        }
+      ],
+      "name": "Druid Grove",
+      "time": [
+        {
+          "number": 10,
+          "unit": "minute"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "hour",
+            "amount": 24,
+            "upTo": false
+          }
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "plants",
+        "summoning"
+      ],
+      "level": 6,
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "mistletoe, which the spell consumes, that was harvested with a golden sickle under the light of a full moon"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Druid",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "touch"
+        }
+      }
+    },
+    {
+      "school": "A",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Target",
+          "entries": [
+            "One creature"
+          ]
+        },
+        "You create a field of silvery light that surrounds the target. The field sheds dim light out to 5 feet. While surrounded by the field, a creature gains the following benefits:",
+        {
+          "type": "list",
+          "items": [
+            {
+              "type": "item",
+              "name": "Cover",
+              "entries": [
+                "The creature has half cover."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Damage Resistance",
+              "entries": [
+                "The creature has 50% resistance to acid, cold, fire, lightning, and poison damage."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Evasion",
+              "entries": [
+                "Reflex attacks against the creature are reduced by 1 success tier."
+              ]
+            }
+          ]
+        },
+        "As a bonus action on subsequent turns, you can move the field to another creature within 60 feet of the field."
+      ],
+      "name": "Platinum Shield",
+      "time": [
+        {
+          "number": 1,
+          "unit": "bonus"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "protection"
+      ],
+      "level": 6,
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "a platinum-plated dragon scale, worth at least 500 gp"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 60
+        }
+      }
+    },
+    {
+      "school": "T",
+      "entries": [
+        "Flames race across your body, shedding bright light in a 30-foot radius and dim light for an additional 30 feet for the spell's duration. The flames don't harm you. Until the spell ends, you gain the following benefits:",
+        {
+          "type": "list",
+          "items": [
+            "You are immune to fire damage and have 50% resistance to cold damage.",
+            "Any creature that moves into a space adjacent to you for the first time on a turn or ends its turn there takes {@dice 1d10} fire DoT damage.",
+            "You can use your action to create a line of fire 15 feet long and 5 feet wide extending from you in a direction you choose. Make a reflex attack against each creature in the line that deals {@dice 3d12} fire damage."
+          ]
+        }
+      ],
+      "name": "Investiture of Flame",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 10,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "fire",
+        "dot",
+        "area",
+        "spell"
+      ],
+      "level": 6,
+      "components": {
+        "v": true,
+        "s": true
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Druid",
+            "source": "PHB"
+          },
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Warlock",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "self"
+        }
+      }
+    },
+    {
+      "school": "T",
+      "entries": [
+        "Until the spell ends, ice rimes your body, and you gain the following benefits:",
+        {
+          "type": "list",
+          "items": [
+            "You are immune to cold damage and have 50% resistance to fire damage.",
+            "You can move across difficult terrain created by ice or snow without spending extra movement.",
+            "The ground in a 10-foot radius around you is icy and is difficult terrain for creatures other than you. The radius moves with you.",
+            "You can use your action to create a 15-foot cone of freezing wind extending from your outstretched hand in a direction you choose. Make a fortitude attack against each creature in the cone that deals {@dice 5d6} cold damage. On a hit, a target has its Speed halved until the start of your next turn."
+          ]
+        }
+      ],
+      "name": "Investiture of Ice",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 10,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "cold",
+        "area",
+        "spell"
+      ],
+      "level": 6,
+      "components": {
+        "v": true,
+        "s": true
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Druid",
+            "source": "PHB"
+          },
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Warlock",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "self"
+        }
+      }
+    },
+    {
+      "school": "T",
+      "entries": [
+        "Until the spell ends, bits of rock spread across your body, and you gain the following benefits:",
+        {
+          "type": "list",
+          "items": [
+            "You have 50% resistance to bludgeoning, piercing, and slashing damage.",
+            "You can use your action to create a small earthquake on the ground in a 15-foot radius centered on you. Make a reflex attack against other creatures on that ground with the following outcomes:",
+            {
+              "type": "list",
+              "items": [
+                {
+                  "type": "item",
+                  "name": "Minor success",
+                  "entries": [
+                    "The target is {@condition sluggish|sns} for 1 round."
+                  ]
+                },
+                {
+                  "type": "item",
+                  "name": "Standard success",
+                  "entries": [
+                    "The target is knocked {@condition prone|sns}."
+                  ]
+                },
+                {
+                  "type": "item",
+                  "name": "Critical success",
+                  "entries": [
+                    "As standard success, but the target is also {@condition sluggish|sns} for 1 round."
+                  ]
+                }
+              ]
+            },
+            "You can move across difficult terrain made of earth or stone without spending extra movement. You can move through solid earth or stone as if it was air and without destabilising it, but you can't end your movement there. If you do so, you are ejected to the nearest unoccupied space, this spell ends, and you are {@condition debilitated|sns} until the end of your next turn."
+          ]
+        }
+      ],
+      "name": "Investiture of Stone",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 10,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "earth"
+      ],
+      "level": 6,
+      "components": {
+        "v": true,
+        "s": true
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Druid",
+            "source": "PHB"
+          },
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Warlock",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "self"
+        }
+      }
+    },
+    {
+      "school": "T",
+      "entries": [
+        "Until the spell ends, wind whirls around you, and you gain the following benefits:",
+        {
+          "type": "list",
+          "items": [
+            "Ranged weapon attacks made against you have disadvantage on the attack roll.",
+            "You gain a flying speed of 60 feet. If you are still flying when the spell ends, you fall, unless you can somehow prevent it.",
+            "You can use your action to create a 15-foot cube of swirling wind centered on a point within 60 feet of you. Make a fortitude attack against each creature in that area that deals {@dice 2d12} bludgeoning damage. On a hit against a Large or smaller target, that target is also pushed up to 10 feet away from the centre of the cube."
+          ]
+        }
+      ],
+      "name": "Investiture of Wind",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 10,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "air",
+        "bludgeoning",
+        "area",
+        "spell"
+      ],
+      "level": 6,
+      "components": {
+        "v": true,
+        "s": true
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Druid",
+            "source": "PHB"
+          },
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Warlock",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "self"
+        }
+      }
+    },
+    {
+      "school": "I",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Target",
+          "entries": [
+            "One creature that is not immune to being {@condition charmed|sns}"
+          ]
+        },
+        "You attempt to bind the target within an illusory cell that only it perceives. Make a will attack against the target that deals {@dice 9d8} psychic damage. On a hit, you make the area immediately around the target's space appear dangerous to it in some way. You might cause the target to perceive itself as being surrounded by fire, floating razors, or hideous maws filled with dripping teeth. Whatever form the illusion takes, the target can't sense anything beyond it and is {@condition restrained|sns} for the spell's duration. If the target is moved out of the illusion, makes a melee weapon attack through it, or reaches any part of its body through it, the target takes {@dice 10d10} psychic DoT damage, and the spell ends."
+      ],
+      "name": "Mental Prison",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "psychic",
+        "ranged",
+        "spell",
+        "dot"
+      ],
+      "level": 6,
+      "components": {
+        "v": false,
+        "s": true
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Warlock",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 60
+        }
+      }
+    },
+    {
+      "school": "A",
+      "entries": [
+        "You have 50% resistance to acid, cold, fire, lightning, and thunder damage for the spell's duration.",
+        "When you take damage of one of those types, you can use your reaction to gain immunity to that type of damage, including against the triggering damage. If you do so, the resistance ends, and you have the immunity until the end of your next turn, at which time the spell ends."
+      ],
+      "name": "Primordial Ward",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "protection"
+      ],
+      "level": 6,
+      "components": {
+        "v": true,
+        "s": true
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Druid",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "self"
+        }
+      }
+    },
+    {
+      "school": "C",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Target",
+          "entries": [
+            "Up to five creatures"
+          ]
+        },
+        "The air quivers around the targets. Make a will attack against all unwilling targets. If a target is willing, use the attack's standard success outcome. The attack has the following outcomes:",
+        {
+          "type": "list",
+          "items": [
+            {
+              "type": "item",
+              "name": "Minor success",
+              "entries": [
+                "The target is {@condition sluggish|sns} for 1 round."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Standard success",
+              "entries": [
+                "You teleport the target to an unoccupied space within 120 feet of you. That space must be on the ground or on a floor."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Critical success",
+              "entries": [
+                "As standard success, but the target is also {@condition sluggish|sns} for 1 round."
+              ]
+            }
+          ]
+        }
+      ],
+      "name": "Scatter",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "teleportation",
+        "area"
+      ],
+      "level": 6,
+      "components": {
+        "v": true,
+        "s": false
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Warlock",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 30
+        }
+      }
+    },
+    {
+      "school": "N",
+      "entries": [
+        "This spell snatches the soul of a humanoid as it dies and traps it inside the tiny cage you use for the material component. A stolen soul remains inside the cage until the spell ends or until you destroy the cage, which ends the spell. While you have a soul inside the cage, you can exploit it in any of the ways described below. You can use a trapped soul up to six times. Once you exploit a soul for the sixth time, it is released, and the spell ends. While a soul is trapped, the dead humanoid it came from can't be revived.",
+        {
+          "type": "entries",
+          "name": "Steal Life",
+          "entries": [
+            "You can use a bonus action to drain vigour from the soul and regain {@dice 4d4} hit points."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Query Soul",
+          "entries": [
+            "You ask the soul a question (no action required) and receive a brief telepathic answer, which you can understand regardless of the language used. The soul knows only what it knew in life, but it must answer you truthfully and to the best of its ability. The answer is no more than a sentence or two and might be cryptic."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Borrow Experience",
+          "entries": [
+            "You can use a bonus action to bolster yourself with the soul's life experience, making your next attack roll or ability check with advantage. If you don't use this benefit before the start of your next turn, it is lost."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Eyes of the Dead",
+          "entries": [
+            "You can use an action to name a place the humanoid saw in life, which creates an invisible sensor somewhere in that place if it is on the same plane of existence you're currently on. The sensor remains for as long as you concentrate, up to 10 minutes (as if you were concentrating on a spell). You receive visual and auditory information from the sensor as if you were in its space using your senses.",
+            "A creature that can see the sensor (such as one using {@spell see invisibility|sns} or {@spell truesight|sns}) sees a translucent image of the tormented humanoid whose soul you caged."
+          ]
+        }
+      ],
+      "name": "Soul Cage",
+      "time": [
+        {
+          "number": 1,
+          "unit": "reaction",
+          "condition": "which you take when a humanoid within 60 feet of you dies"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "hour",
+            "amount": 8,
+            "upTo": false
+          }
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "evil"
+      ],
+      "level": 6,
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "a tiny silver cage worth 100 gp"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Warlock",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 60
+        }
+      }
+    },
+    {
+      "school": "T",
+      "entries": [
+        "You endow yourself with endurance and martial prowess fueled by magic. Until the spell ends, you can't cast spells, and you gain the following benefits:",
+        {
+          "type": "list",
+          "items": [
+            "You gain 56 temporary hit points. If any of these remain when the spell ends, they are lost.",
+            "You have advantage on weapon armour attack rolls.",
+            "Your weapon armour attacks deal an extra {@dice 2d12} force damage.",
+            "You have proficiency with all body armour, shields, and weapons.",
+            "Increase your Fortitude by an amount equal to half your proficiency bonus.",
+            "When you use the Attack action, your main hand weapon's base damage is doubled. For example, a weapon with a damage of {@dice 1d6} + your Strength modifier deals {@dice 2d6} + double your Strength modifier instead. This counts as the Empowered Attack feature.",
+            "Immediately after the spell ends, you must succeed on a save or gain one level of {@condition fatigue|sns}."
+          ]
+        }
+      ],
+      "name": "Arcane Transformation",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 10,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "weaponry"
+      ],
+      "level": 6,
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "a few hairs from a bull"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "self"
+        }
+      }
     }
   ],
   "monster": [
