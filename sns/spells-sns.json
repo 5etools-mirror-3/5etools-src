@@ -37564,6 +37564,342 @@
           "type": "self"
         }
       }
+    },
+    {
+      "school": "V",
+      "entries": [
+        "Seven star-like motes of light appear and orbit your head until the spell ends. You can use a bonus action to send one of the motes streaking towards one creature or object within 120 feet of you. When you do so, the target takes {@dice 2d12} radiant DoT damage and the mote is expended. The spell ends early if you expend the last mote.",
+        "If you have four or more motes remaining, they shed bright light in a 30-foot radius and dim light for an additional 30 feet. If you have one to three motes remaining, they shed dim light in a 30-foot radius."
+      ],
+      "name": "Crown of Stars",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "entriesHigherLevel": [
+        {
+          "type": "entries",
+          "name": "Cast at Higher Levels",
+          "entries": [
+            "The number of motes created increases by two for each slot level above 7th."
+          ]
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "hour",
+            "amount": 1,
+            "upTo": false
+          }
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "radiant",
+        "dot"
+      ],
+      "level": 7,
+      "components": {
+        "v": true,
+        "s": true
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Warlock",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "self"
+        }
+      }
+    },
+    {
+      "school": "T",
+      "entries": [
+        "With a roar, you draw on the magic of dragons to transform yourself, taking on draconic features. You gain the following benefits until the spell ends:",
+        {
+          "type": "list",
+          "items": [
+            {
+              "type": "item",
+              "name": "Blindsight",
+              "entries": [
+                "You have blindsight with a range of 30 feet."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Breath Weapon",
+              "entries": [
+                "When you cast this spell, and as a bonus action on subsequent turns for the duration, you can exhale shimmering energy in a 60-foot cone. Each creature in that area takes {@dice 4d8} force DoT damage."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Wings",
+              "entries": [
+                "Incorporeal wings sprout from your back, giving you a flying speed of 60 feet."
+              ]
+            }
+          ]
+        }
+      ],
+      "name": "Draconic Transformation",
+      "time": [
+        {
+          "number": 1,
+          "unit": "bonus"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "shapeshift",
+        "force",
+        "dot"
+      ],
+      "level": 7,
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "a statuette of a dragon, worth at least 500 gp"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Druid",
+            "source": "PHB"
+          },
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "self"
+        }
+      }
+    },
+    {
+      "school": "E",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Target",
+          "entries": [
+            "One creature"
+          ]
+        },
+        "You speak a word of power that causes waves of intense pain to assail the target. If the target has 112 hit points or fewer, it is subject to crippling pain until it passes a passive save. Otherwise, the spell has no effect on it. A target is also unaffected if it is immune to being {@condition charmed|sns}.",
+        "While the target is affected by crippling pain, any speed it has can be no higher than 10 feet. The target also has disadvantage on attack rolls and ability checks. Finally, if the target tries to cast a spell, it must first succeed on a save, or the spell fails and has no effect, consuming its resources as usual. When the spell fails, the caster may then use the same action it used to cast another spell with the same casting time as the failed spell, consuming resources as required. It cannot cast the failed spell again for the next minute. The save to see if the casting fails needs to be made for each spell attempted to be cast, until the creature either succeeds on a save, or runs out of available spells or resources."
+      ],
+      "name": "Power Word Pain",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "evil"
+      ],
+      "level": 7,
+      "components": {
+        "v": true,
+        "s": false
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Warlock",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 60
+        }
+      }
+    },
+    {
+      "school": "C",
+      "entries": [
+        "You cause a temple to shimmer into existence on ground you can see within range. The temple must fit within an unoccupied cube of space, up to 120 feet on each side. The temple remains until the spell ends. It is dedicated to whatever god, pantheon, or philosophy is represented by the holy symbol used in the casting.",
+        "You make all decisions about the temple's appearance. The interior is enclosed by a floor, walls, and a roof, with one door granting access to the interior and as many windows as you wish. Only you and any creatures you designate when you cast the spell can open or close the door.",
+        "The temple's interior is an open space with an idol or altar at one end. You decide whether the temple is illuminated and whether that illumination is bright light or dim light. The smell of burning incense fills the air within, and the temperature is mild.",
+        "The temple opposes types of creatures you choose when you cast this spell. Choose one or more of the following: celestials, elementals, fey, fiends, or undead. If a creature of the chosen type attempts to enter the temple, that creature must make a save. On a failed save, it can't enter the temple for 24 hours. Even if the creature can enter the temple, the magic there hinders it; whenever it makes an attack roll or ability check inside the temple, it must roll a {@dice d4} and subtract the number rolled from the {@dice d20} roll.",
+        "In addition, the snesors created by divination spells can't apepar inside the temple, and creatures within can't be targeted by divination spells.",
+        "Finally, whenever any creature inside the temple regains hit points from a spell of 1st level or higher, the creature regains additional hit points equal to your Wisdom modifier plus your proficiency bonus.",
+        "The temple is made from opaque magical force that extends into the Ethereal Plane, thus blocking ethereal travel into the temple's interior. Nothing can physically pass through the temple's exterior. It can't be dispelled by {@spell dispel magic|sns}, and {spell antimagic field|sns} has no effect on it. A {@spell disintegrate|sns} spell destroys the temple instantly.",
+        "Casting this spell on the same spot every day for a year makes this effect permanent."
+      ],
+      "name": "Temple of the Gods",
+      "time": [
+        {
+          "number": 1,
+          "unit": "hour"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "hour",
+            "amount": 24,
+            "upTo": false
+          }
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "divine"
+      ],
+      "level": 7,
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "a holy symbol worth at least 5 gp"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Cleric",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 120
+        }
+      }
+    },
+    {
+      "school": "V",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Area",
+          "entries": [
+            "10-foot-radius, 30-foot-high cylinder centered on a point on the ground within range"
+          ]
+        },
+        "A whirlwind howls down in the area. Until the spell ends, you can use your action to move the whirlwind up to 30 feet in any direction along the ground. The whirlwind sucks up any Medium or smaller objects that aren't secured to anything and that aren't worn or carried by anyone.",
+        "The first time on a turn that a creature enters the area or that the area enters its space, including when the whirlwind first appears, the creature takes {@dice 5d8} bludgeoning DoT damage. In addition, a Large or smaller creature that takes this damage must succeed on a save or become {@condition restrained|sns} in the whirlwind until the spell ends. When a creature starts its turn {@condition restrained|sns} by the whirlwind, the creature is pushed 5 feet higher inside it, unless the creature is at the top. A {@condition restrained|sns} creature moves with the whirlwind and falls when the spell ends, unless the creature has some means to stay aloft.",
+        "A {@condition restrained|sns} creature can use an action to make a Brawn or Acrobatics check against your standard DC. If successful, the creature is no longer {@condition restrained|sns} by the whirlwind and is hurled {@dice 3d6} x 10 feet away from it in a random direction."
+      ],
+      "name": "Whirlwind",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "air",
+        "bludgeoning",
+        "dot"
+      ],
+      "level": 7,
+      "components": {
+        "v": true,
+        "s": false,
+        "m": {
+          "text": "a piece of straw"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Druid",
+            "source": "PHB"
+          },
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 300
+        }
+      }
     }
   ],
   "monster": [
