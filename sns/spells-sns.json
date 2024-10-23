@@ -37900,6 +37900,263 @@
           "amount": 300
         }
       }
+    },
+    {
+      "school": "N",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Area",
+          "entries": [
+            "30-foot cube centered on a point within range"
+          ]
+        },
+        "You draw the moisture from every creature in the area. Make a fortitude attack against each non-construct, non-undead creature in the area that deals {@dice 9d12} necrotic damage.",
+        "Nonmagical plants in the area that aren't creatures, such as trees and shrubs, wither and die instantly."
+      ],
+      "name": "Horrid Wilting",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "necrotic",
+        "area",
+        "spell"
+      ],
+      "level": 8,
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "a bit of sponge"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 150
+        }
+      }
+    },
+    {
+      "school": "I",
+      "entries": [
+        "By gathering threads of shadow material from the Shadowfell, you create a Huge shadowy dragon in an unoccupied space that you can see within range. The illusion lasts for the spell's duration and occupies its space, as if it were a creature.",
+        "When the illusion appears, make a will attack against any of your enemies that can see it with the following outcomes:",
+        {
+          "type": "list",
+          "items": [
+            {
+              "type": "item",
+              "name": "Minor success",
+              "entries": [
+                "The target is {@condition sluggish|sns} when moving towards the illusion for 1 round."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Standard success",
+              "entries": [
+                "The target is {@condition frightened|sns} of the illusion for 1 minute. If the target ends its turn in a location where it doesn't have line of sight to the illusion, it can make a save, ending the effect on itself on a success."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Critical success",
+              "entries": [
+                "As standard success, but the target is also {@condition debilitated|sns}."
+              ]
+            }
+          ]
+        },
+        "As a bonus action on your turn, you can move the illusion up to 60 feet. At any point during its movement, you can cause it to exhale a blast of energy in a 60-foot cone originating from its space. When you create the dragon, choose a damage type: acid, cold, fire, lightning, necrotic, or poison. Each creature in the cone takes {@dice 5d6} DoT damage of the chosen type.",
+        "The illusion is tangible because of the shadow stuff used to create it, but attacks score critical fails against it automatically and it is immune to all damage and conditions. A creature that uses an action to examine the dragon can determine that it is an illusion by succeeding on an Investigation check against your standard DC. If a creature discerns the illusion for what it is, the creature can see through it and the illusion's breath attack has disadvantage against the creature."
+      ],
+      "name": "Illusory Dragon",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 1,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "acid",
+        "cold",
+        "fire",
+        "lightning",
+        "necrotic",
+        "poison",
+        "dot"
+      ],
+      "level": 8,
+      "components": {
+        "v": false,
+        "s": true
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 120
+        }
+      }
+    },
+    {
+      "school": "V",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Area",
+          "entries": [
+            "60-foot-radius sphere centered on a point within range"
+          ]
+        },
+        "Magical darkness spreads within the area until the spell ends. The darkness spreads around corners. A creature with darkvision can't see through this darkness. Nonmagical light, as well as light created by spells of 8th level of lower, can't illuminate the area.",
+        "Shrieks, gibbering, and mad laughter can be heard within the sphere. Whenever a creature starts its turn in the sphere, it takes {@dice 5d8} psychic DoT damage."
+      ],
+      "name": "Maddening Darkness",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 10,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "psychic",
+        "dot"
+      ],
+      "level": 8,
+      "components": {
+        "v": true,
+        "s": false,
+        "m": {
+          "text": "a drop of pitch mixed with a drop of mercury"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Warlock",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 150
+        }
+      }
+    },
+    {
+      "school": "V",
+      "entries": [
+        "A fortress of stone erupts from a square area of ground of your choice that you can see within range. The area is 120 feet on each side, and it must not have any buildings or other structures on it. Any creatures in the area are harmlessly lifted up as the fortress rises.",
+        "The fortress has four turrets with square bases, each one 20 feet on a side and 30 feet tall, with one turret on each corner. The turrets are connected to each other by stone walls that are each 80 feet long, creating an enclosed area. Each wall is 1 foot thick and is composed of panels that are 10 feet wide and 20 feet tall. Each panel is contiguous with two other panels or one other panel and a turret. You can place up to four stone doors in the fortress' outer wall.",
+        "A small keep stands inside the enclosed area. The keep has a square base that is 50 feet on each side, and it has three floors with 10-foot-high ceilings. Each of the floors can be divided into as many rooms as you like, provided each room is at least 5 feet on each side. The floors of the keep are connected by stone staircases, its walls are 6 inches thick, and interior rooms can have stone doors or open archways as you choose. The keep is furnished and decorated however you like, and it contains sufficient food to serve a nine-course banquet for up to 100 people each day. Furnishings, food, and other objects created by this spell crumble to dust if removed from the fortress.",
+        "A staff of one hundred invisible servants obeys any command given to them by creatures you designate when you cast the spell. Each servant functions as if created by the {@spell unseen servant|sns} spell.",
+        "The walls, turrets, and keep are all made of stone that can be damaged. Each 10-foot-by-10-foot section of stone has 2 Armour and 33 hit points per inch of thickness. It is immune to poison and psychic damage. Reducing a section of stone to 0 hit points destroys it and might cause connected sections to buckle and collapse at the DM's discretion.",
+        "After 7 days or when you cast this spell somewhere else, the fortress harmlessly crumbles and sinks back into the ground, leaving any creatures that were inside it safely on the ground.",
+        "Casting this spell on the same spot once every 7 days for a year makes the fortress permanent."
+      ],
+      "name": "Mighty Fortress",
+      "time": [
+        {
+          "number": 1,
+          "unit": "minute"
+        }
+      ],
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "protection"
+      ],
+      "level": 8,
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "a diamond worth at least 500 gp, which the spell consumes"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "miles",
+          "amount": 1
+        }
+      }
     }
   ],
   "monster": [
