@@ -38157,6 +38157,120 @@
           "amount": 1
         }
       }
+    },
+    {
+      "school": "A",
+      "entries": [
+        "You are immune to all damage until the spell ends."
+      ],
+      "name": "Invulnerability",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "timed",
+          "duration": {
+            "type": "minute",
+            "amount": 10,
+            "upTo": true
+          },
+          "concentration": true
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "protection"
+      ],
+      "level": 9,
+      "components": {
+        "v": true,
+        "s": true,
+        "m": {
+          "text": "a small piece of adamantine worth at least 500 gp, which the spell consumes"
+        }
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "self"
+        }
+      }
+    },
+    {
+      "school": "E",
+      "entries": [
+        {
+          "type": "entries",
+          "name": "Target",
+          "entries": [
+            "Up to ten creatures with an Intelligence score of 3 or higher"
+          ]
+        },
+        "You unleash the power of your mind to blast the intellect of the targets.",
+        "Make a will attack against each target that deals {@dice 10d10} psychic damage. On a hit, a target is {@condition debilitated|sns} until it passes a passive save. If a target is killed by this attack, its head explodes, assuming it has one."
+      ],
+      "name": "Psychic Scream",
+      "time": [
+        {
+          "number": 1,
+          "unit": "action"
+        }
+      ],
+      "duration": [
+        {
+          "type": "instant"
+        }
+      ],
+      "source": "sns",
+      "subschools": [
+        "psychic",
+        "area",
+        "spell"
+      ],
+      "level": 9,
+      "components": {
+        "v": false,
+        "s": true
+      },
+      "classes": {
+        "fromClassList": [
+          {
+            "name": "Bard",
+            "source": "PHB"
+          },
+          {
+            "name": "Sorcerer",
+            "source": "PHB"
+          },
+          {
+            "name": "Warlock",
+            "source": "PHB"
+          },
+          {
+            "name": "Wizard",
+            "source": "PHB"
+          }
+        ]
+      },
+      "range": {
+        "type": "point",
+        "distance": {
+          "type": "feet",
+          "amount": 90
+        }
+      }
     }
   ],
   "monster": [
