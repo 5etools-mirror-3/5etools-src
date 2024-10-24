@@ -51,6 +51,9 @@ jobs:
          - name: Prepare SNS spells data
            run: cat homebrew/sns.json | jq -c '.spell' > data/spells/spells-sns.json
 
+         - name: Prepare SNS bestiary data
+           run: cat homebrew/sns.json | jq -c '.monster' > data/spells/bestiary-sns.json
+
          # Notably: remove anything which should not be added to the service worker manifest:
          #  - `homebrew`
          #  - `prerelease`
