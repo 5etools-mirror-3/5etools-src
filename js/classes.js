@@ -1243,7 +1243,16 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			? this._render_renderClassTable_$getSpellProgressionCells({ixLvl, tableGroup, sc})
 			: this._render_renderClassTable_$getGenericRowCells({ixLvl, tableGroup});
 
-		if (!stateKey) return $cells;
+		if (!stateKey) {
+			const hkShowHideSpellPoints = () => {
+				if ($cellsDefault) $cellsDefault.forEach($it => $it.toggleClass(`cls-tbl__cell-spell-progression--spell-points-enabled`, this._stateGlobal.isUseSpellPoints));
+				if ($cellsSpellPoints) $cellsSpellPoints.forEach($it => $it.toggleClass(`cls-tbl__cell-spell-points--spell-points-enabled`, this._stateGlobal.isUseSpellPoints));
+			};
+			this._addHookGlobal("isUseSpellPoints", hkShowHideSpellPoints);
+			MiscUtil.pDefer(hkShowHideSpellPoints); // saves ~10ms
+
+			return $cells;
+		}
 
 		// If there is a state key, this is a subclass table group, and may therefore need to be hidden
 		const hkShowHideSubclass = () => {

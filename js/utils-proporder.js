@@ -351,6 +351,8 @@ PropOrder._META = [
 	"currencyConversions",
 	"fonts",
 
+	"edition",
+
 	"status",
 	"unlisted",
 

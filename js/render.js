@@ -1572,7 +1572,7 @@ globalThis.Renderer = function () {
 		const tag = entry.tag || Parser.getPropTag(entry.prop);
 
 		const prop = entry.prop || Parser.getTagProps(entry.tag)[0];
-		const uid = prop ? DataUtil.proxy.getUid(prop, entry, {isMaintainCase: true}) : "unknown|unknown";
+		const uid = prop ? DataUtil.proxy.getUid(prop, {...entry, source}, {isMaintainCase: true}) : "unknown|unknown";
 		const asTag = `{@${tag} ${uid}${entry.displayName ? `|${entry.displayName}` : ""}}`;
 
 		const displayName = entry.displayName || entry.name || entry.abbreviation;

@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.2.3"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.3.0"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -4952,6 +4952,14 @@ globalThis.DataUtil = {
 				MiscUtil.set(copyTo, ...propPath, MiscUtil.copyFast(modInfo.value));
 			}
 
+			static _doMod_prefixSuffixStringProp ({copyTo, copyFrom, modInfo, msgPtFailed, prop}) {
+				const propPath = modInfo.prop.split(".");
+				if (prop != null && prop !== "*") propPath.unshift(prop);
+				const str = MiscUtil.get(copyTo, ...propPath);
+				if (str == null || !(typeof str === "string")) return;
+				MiscUtil.set(copyTo, ...propPath, `${modInfo.prefix || ""}${str}${modInfo.suffix || ""}`);
+			}
+
 			static _doMod_handleProp ({copyTo, copyFrom, modInfos, msgPtFailed, prop = null}) {
 				modInfos.forEach(modInfo => {
 					if (typeof modInfo === "string") {
@@ -4976,6 +4984,7 @@ globalThis.DataUtil = {
 							case "scalarAddProp": return this._doMod_scalarAddProp({copyTo, copyFrom, modInfo, msgPtFailed, prop});
 							case "scalarMultProp": return this._doMod_scalarMultProp({copyTo, copyFrom, modInfo, msgPtFailed, prop});
 							case "setProp": return this._doMod_setProp({copyTo, copyFrom, modInfo, msgPtFailed, prop});
+							case "prefixSuffixStringProp": return this._doMod_prefixSuffixStringProp({copyTo, copyFrom, modInfo, msgPtFailed, prop});
 							// region Bestiary specific
 							case "addSenses": return this._doMod_addSenses({copyTo, copyFrom, modInfo, msgPtFailed});
 							case "addSaves": return this._doMod_addSaves({copyTo, copyFrom, modInfo, msgPtFailed});
@@ -6371,7 +6380,7 @@ globalThis.DataUtil = {
 						const newer = inSource[laterSrc][name];
 						if (newer) {
 							const old = inSource[src][name];
-							old.reprinted = true;
+							old.isReprinted = true;
 							if (!newer._isEnhanced) {
 								newer.previousVersions = newer.previousVersions || [];
 								newer.previousVersions.push(old);
