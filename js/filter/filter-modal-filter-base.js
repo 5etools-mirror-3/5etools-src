@@ -13,10 +13,15 @@ export class ModalFilterBase {
 	 * @param opts.pageFilter
 	 * @param [opts.namespace]
 	 * @param [opts.allData]
+	 * @param [opts.sortByInitial]
+	 * @param [opts.sortDirInitial]
+	 * @param [opts.isRadio]
 	 */
 	constructor (opts) {
 		this._modalTitle = opts.modalTitle;
 		this._fnSort = opts.fnSort;
+		this._sortByInitial = opts.sortByInitial;
+		this._sortDirInitial = opts.sortDirInitial;
 		this._pageFilter = opts.pageFilter;
 		this._namespace = opts.namespace;
 		this._allData = opts.allData || null;
@@ -46,7 +51,7 @@ export class ModalFilterBase {
 	 * @param opts.$wrpMiniPills
 	 * @param opts.isBuildUi If an alternate UI should be used, which has "send to right" buttons.
 	 */
-	async pPopulateWrapper ($wrp, opts) {
+	async pPopulateWrapper ($wrp, opts = null) {
 		opts = opts || {};
 
 		await this._pInit();
@@ -91,6 +96,8 @@ export class ModalFilterBase {
 			$iptSearch,
 			$wrpList,
 			fnSort: this._fnSort,
+			sortByInitial: this._sortByInitial,
+			sortDirInitial: this._sortDirInitial,
 		});
 		const listSelectClickHandler = new ListSelectClickHandler({list: this._list});
 
@@ -155,12 +162,23 @@ export class ModalFilterBase {
 	async pPopulateHiddenWrapper () {
 		await this._pInit();
 
-		this._allData = this._allData || await this._pLoadAllData();
-
 		await this._pageFilter.pInitFilterBox({namespace: this._namespace});
 
-		this._allData.forEach(it => {
-			this._pageFilter.mutateAndAddToFilters(it);
+		const allData = this._allData || await this._pLoadAllData();
+
+		this.setHiddenWrapperAllData(allData);
+
+		this._pageFilter.filterBox.render();
+	}
+
+	setHiddenWrapperAllData (allData) {
+		// See `ModalFilterEquipment` if required later
+		if (this._list) throw new Error(`Unimplemented!`);
+
+		this._allData = allData;
+
+		this._allData.forEach(ent => {
+			this._pageFilter.mutateAndAddToFilters(ent);
 		});
 
 		this._pageFilter.trimState();
@@ -191,9 +209,8 @@ export class ModalFilterBase {
 	 * @param filterExpression
 	 */
 	getItemsMatchingFilterExpression ({filterExpression}) {
-		const nxtStateOuter = this._getStateFromFilterExpression(filterExpression);
+		const f = this.getValuesFromFilterExpression({filterExpression});
 
-		const f = this._pageFilter.filterBox.getValues({nxtStateOuter});
 		const filteredItems = this._filterCache.list.getFilteredItems({
 			items: this._filterCache.list.items,
 			fnFilter: li => this._isListItemMatchingFilter(f, li),
@@ -202,10 +219,8 @@ export class ModalFilterBase {
 		return this._filterCache.list.getSortedItems({items: filteredItems});
 	}
 
-	getEntitiesMatchingFilterExpression ({filterExpression, valuesOverride = null}) {
-		const nxtStateOuter = this._getStateFromFilterExpression(filterExpression);
-
-		const f = this._pageFilter.filterBox.getValues({nxtStateOuter});
+	getEntitiesMatchingFilterExpression ({filterExpression = null, valuesOverride = null} = {}) {
+		const f = this.getValuesFromFilterExpression({filterExpression});
 
 		if (valuesOverride) {
 			Object.entries(valuesOverride)
@@ -226,7 +241,12 @@ export class ModalFilterBase {
 
 	getRenderedFilterExpression ({filterExpression}) {
 		const nxtStateOuter = this._getStateFromFilterExpression(filterExpression);
-		return this.pageFilter.filterBox.getDisplayState({nxtStateOuter});
+		return this._pageFilter.filterBox.getDisplayState({nxtStateOuter});
+	}
+
+	getValuesFromFilterExpression ({filterExpression = null} = {}) {
+		const nxtStateOuter = filterExpression ? this._getStateFromFilterExpression(filterExpression) : null;
+		return this._pageFilter.filterBox.getValues({nxtStateOuter});
 	}
 
 	/**
@@ -240,7 +260,7 @@ export class ModalFilterBase {
 
 			await this.pPreloadHidden($modalInner);
 
-			this._doApplyFilterExpression(filterExpression);
+			this.doApplyFilterExpression(filterExpression);
 
 			this._filterCache.$btnConfirm.off("click").click(async () => {
 				const checked = this._filterCache.list.visibleItems.filter(it => it.data.cbSel.checked);
@@ -276,7 +296,7 @@ export class ModalFilterBase {
 		return {$modalInner, doClose};
 	}
 
-	_doApplyFilterExpression (filterExpression) {
+	doApplyFilterExpression (filterExpression) {
 		if (!filterExpression) return;
 
 		const filterSubhashMeta = Renderer.getFilterSubhashes(Renderer.splitTagByPipe(filterExpression), this._namespace);

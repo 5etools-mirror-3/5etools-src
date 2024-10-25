@@ -84,14 +84,37 @@ class PageFilterOptionalFeatures extends PageFilterBase {
 		});
 	}
 
+	static _RE_OPTIONALFEATURE_PACT = /^pact of (?:the )?(?<pactName>[^|]+)(?:\|[^|]+)?$/;
+
+	static _mutateForFilters_getPrerequisitePact (ent) {
+		if (!ent.prerequisite) return [];
+
+		const out = [];
+
+		for (const prereq of ent.prerequisite) {
+			if (prereq.pact) out.push(prereq.pact);
+
+			// Modern pacts are linked `optionalfeatures`; convert to "pact" filter format
+			if (!prereq.optionalfeature) continue;
+
+			for (const uid of prereq.optionalfeature) {
+				const m = this._RE_OPTIONALFEATURE_PACT.exec(uid);
+				if (!m) continue;
+				out.push(m.groups.pactName.toTitleCase());
+			}
+		}
+
+		return out;
+	}
+
 	static mutateForFilters (ent) {
-		ent._fSources = SourceFilter.getCompleteFilterSources(ent);
+		this._mutateForFilters_commonSources(ent);
 
 		// (Convert legacy string format to array)
 		ent.featureType = ent.featureType && ent.featureType instanceof Array ? ent.featureType : ent.featureType ? [ent.featureType] : ["OTH"];
 		if (ent.prerequisite) {
 			ent._sPrereq = true;
-			ent._fPrereqPact = ent.prerequisite.filter(it => it.pact).map(it => it.pact);
+			ent._fPrereqPact = this._mutateForFilters_getPrerequisitePact(ent);
 			ent._fPrereqPatron = ent.prerequisite.filter(it => it.patron).map(it => it.patron);
 			ent._fprereqSpell = ent.prerequisite
 				.filter(it => it.spell)

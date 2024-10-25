@@ -141,7 +141,10 @@ class DmMapperRoot extends BaseComponent {
 			{
 				fnGetContainerDimensions: () => {
 					const bcr = $parent[0].getBoundingClientRect();
-					return {w: bcr.width, h: bcr.height};
+					return {
+						w: bcr.width,
+						h: bcr.height,
+					};
 				},
 			},
 		)

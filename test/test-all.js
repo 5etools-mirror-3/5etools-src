@@ -12,6 +12,7 @@ async function main () {
 	if (!(await (await import("./test-images.js")).default)) handleFail();
 	if (!(await (await import("./test-image-paths.js")).default)) handleFail();
 	await (await import("./test-pagenumbers.js")).default; // don't fail on missing page numbers
+	await (await import("./test-image-credits.js")).default; // don't fail on missing image credits
 	if (!(await (await import("./test-json.js")).default)) handleFail();
 	if (!(await (await import("./test-misc.js")).default)) handleFail();
 	if (!(await (await import("./test-multisource.js")).default)) handleFail();

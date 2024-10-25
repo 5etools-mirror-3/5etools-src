@@ -2532,12 +2532,20 @@
 							"floor": true
 						}
 					],
-					"hp": {
-						"mode": "scalarMultProp",
-						"prop": "average",
-						"scalar": 0.5,
-						"floor": true
-					},
+					"hp": [
+						{
+							"mode": "scalarMultProp",
+							"prop": "average",
+							"scalar": 0.5,
+							"floor": true
+						},
+						{
+							"mode": "prefixSuffixStringProp",
+							"prop": "formula",
+							"prefix": "floor((",
+							"suffix": ") ÷ 2)"
+						}
+					],
 					"save": {
 						"mode": "scalarAddProp",
 						"scalar": -2,

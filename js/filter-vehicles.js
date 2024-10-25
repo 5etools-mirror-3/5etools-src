@@ -31,6 +31,8 @@ class PageFilterVehicles extends PageFilterBase {
 	}
 
 	static mutateForFilters (ent) {
+		this._mutateForFilters_commonSources(ent);
+
 		ent._fSpeed = 0;
 		if (typeof ent.speed === "number" && ent.speed > 0) {
 			ent._fSpeed = ent.speed;
@@ -70,7 +72,7 @@ class PageFilterVehicles extends PageFilterBase {
 	addToFilters (it, isExcluded) {
 		if (isExcluded) return;
 
-		this._sourceFilter.addItem(it.source);
+		this._sourceFilter.addItem(it._fSources);
 		this._vehicleTypeFilter.addItem(it.vehicleType);
 		this._upgradeTypeFilter.addItem(it.upgradeType);
 		this._speedFilter.addItem(it._fSpeed);
@@ -98,7 +100,7 @@ class PageFilterVehicles extends PageFilterBase {
 	toDisplay (values, it) {
 		return this._filterBox.toDisplay(
 			values,
-			it.source,
+			it._fSources,
 			it.vehicleType,
 			it.upgradeType,
 			it.terrain,

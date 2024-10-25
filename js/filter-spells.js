@@ -359,7 +359,7 @@ class PageFilterSpells extends PageFilterBase {
 		this._backgroundFilter = new SearchableFilter({header: "Background"});
 		this._featFilter = new SearchableFilter({header: "Feat"});
 		this._optionalfeaturesFilter = new SearchableFilter({header: "Other Option/Feature"});
-		this._metaFilter = new Filter({
+		this._miscFilter = new Filter({
 			header: "Components & Miscellaneous",
 			items: [...PageFilterSpells._META_FILTER_BASE_ITEMS, "Ritual", "Legacy", "Reprinted", "Has Images", "Has Token"],
 			itemSortFn: PageFilterSpells.sortMetaFilter,
@@ -460,7 +460,7 @@ class PageFilterSpells extends PageFilterBase {
 		s._normalisedRange = PageFilterSpells.getNormalisedRange(s.range);
 
 		// used for filtering
-		s._fSources = SourceFilter.getCompleteFilterSources(s);
+		this._mutateForFilters_commonSources(s);
 		PageFilterSpells._mutMetaFilterObj(s);
 		s._fClasses = Renderer.spell.getCombinedClasses(s, "fromClassList").map(c => {
 			return this._getClassFilterItem({
@@ -529,7 +529,7 @@ class PageFilterSpells extends PageFilterBase {
 		this._groupFilter.addItem(s._fGroups);
 		this._schoolFilter.addItem(s.school);
 		this._sourceFilter.addItem(s._fSources);
-		this._metaFilter.addItem(s._fMisc);
+		this._miscFilter.addItem(s._fMisc);
 		this._backgroundFilter.addItem(s._fBackgrounds);
 		this._featFilter.addItem(s._fFeats);
 		this._optionalfeaturesFilter.addItem(s._fOptionalfeatures);
@@ -562,7 +562,7 @@ class PageFilterSpells extends PageFilterBase {
 			this._backgroundFilter,
 			this._featFilter,
 			this._optionalfeaturesFilter,
-			this._metaFilter,
+			this._miscFilter,
 			this._groupFilter,
 			this._schoolFilter,
 			this._subSchoolFilter,

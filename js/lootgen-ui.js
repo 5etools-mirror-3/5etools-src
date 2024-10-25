@@ -142,9 +142,6 @@ class LootGenUi extends BaseComponent {
 	addHookAll (hookProp, hook) { return this._addHookAll(hookProp, hook); }
 
 	async pInit () {
-		await this._modalFilterSpells.pPreloadHidden();
-		await this._modalFilterItems.pPreloadHidden();
-
 		await this._modalFilterSpells.pPopulateHiddenWrapper();
 		await this._modalFilterItems.pPopulateHiddenWrapper();
 

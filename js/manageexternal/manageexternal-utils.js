@@ -31,20 +31,22 @@ export class ManageExternalUtils {
 
 			JqueryUtil.doToast(`Loading ${meta.brewUtil.DISPLAY_NAME}...`);
 
-			for (const source of sources) {
-				const url = await meta.brewUtil.pGetSourceUrl(source);
-				if (!url) {
-					errors.push(`Could not find URL for ${meta.brewUtil.DISPLAY_NAME} source "${source}"`);
-					continue;
-				}
+			const urlInfoResults = await Promise.allSettled(sources.map(async source => ({
+				url: await meta.brewUtil.pGetSourceUrl(source),
+				source,
+			})));
 
-				try {
-					await meta.brewUtil.pAddBrewFromUrl(url);
-					cntLoaded++;
-				} catch (e) {
-					errors.push(e.message);
-				}
-			}
+			const [urlInfosFound, urlInfosNotFound] = urlInfoResults
+				.segregate(result => result.status === "fulfilled" && result.value.url != null)
+				.map(arr => arr.map(result => result.value));
+			urlInfosNotFound
+				.forEach(({source}) => errors.push(`Could not find URL for ${meta.brewUtil.DISPLAY_NAME} source "${source}"`));
+
+			await Promise.allSettled(urlInfosFound.map(async urlInfo => {
+				await meta.brewUtil.pAddBrewFromUrl(urlInfo.url, {isLazy: true});
+				cntLoaded++;
+			}));
+			await meta.brewUtil.pAddBrewsLazyFinalize();
 		}
 
 		if (errors.length) {
@@ -79,5 +81,11 @@ export class ManageExternalUtils {
 		);
 
 		return `${location.origin}/index.html#${hash}`;
+	}
+
+	/* -------------------------------------------- */
+
+	static isLoadExternalUrl (url) {
+		return url.includes(HASH_BLANK) && (url.includes(this._SUBHASH_KEY_PRERELEASE) || url.includes(this._SUBHASH_KEY_HOMEBREW));
 	}
 }

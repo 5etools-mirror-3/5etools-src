@@ -12,6 +12,9 @@ class BlocklistUtil {
 		"itemEntry",
 		"itemTypeAdditionalEntries",
 
+		// `languages.json`
+		"languageScript",
+
 		// homebrew corpus
 		"adventureData",
 		"bookData",
@@ -39,6 +42,7 @@ class BlocklistUtil {
 		"variantrules.json",
 		"vehicles.json",
 		"decks.json",
+		"languages.json",
 	];
 
 	static async pLoadData (
@@ -532,7 +536,7 @@ class BlocklistUi {
 					case "subclassFeature": prefix = this._getDisplayNamePrefix_subclassFeature(it); break;
 				}
 
-				const displayName = `${prefix}${it.name}${(dupes.has(it.name) || (copy[i + 1] && copy[i + 1].name === it.name)) ? ` (${Parser.sourceJsonToAbv(SourceUtil.getEntitySource(it))})` : ""}`;
+				const displayName = `${prefix}${it.name}${(dupes.has(it.name) || (copy[i + 1] && copy[i + 1].name === it.name)) ? ` [${Parser.sourceJsonToAbv(SourceUtil.getEntitySource(it))}]` : ""}`;
 
 				dupes.add(it.name);
 				return {

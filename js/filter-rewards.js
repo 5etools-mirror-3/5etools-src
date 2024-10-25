@@ -27,6 +27,7 @@ class PageFilterRewards extends PageFilterBase {
 	}
 
 	static mutateForFilters (it) {
+		this._mutateForFilters_commonSources(it);
 		it._fRarity = it.rarity || "unknown";
 		this._mutateForFilters_commonMisc(it);
 	}
@@ -34,7 +35,7 @@ class PageFilterRewards extends PageFilterBase {
 	addToFilters (ent, isExcluded) {
 		if (isExcluded) return;
 
-		this._sourceFilter.addItem(ent.source);
+		this._sourceFilter.addItem(ent._fSources);
 		this._typeFilter.addItem(ent.type);
 		this._rarityFilter.addItem(ent._fRarity);
 		this._miscFilter.addItem(ent._fMisc);

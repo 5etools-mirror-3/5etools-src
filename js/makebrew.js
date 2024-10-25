@@ -4,6 +4,7 @@ import {CreatureBuilder} from "./makebrew/makebrew-creature.js";
 import {LegendaryGroupBuilder} from "./makebrew/makebrew-legendarygroup.js";
 import {PageUiUtil} from "./makebrew/makebrew-builderui.js";
 import {TagCondition, TaggerUtils} from "./converter/converterutils-tags.js";
+import {SITE_STYLE__CLASSIC} from "./consts.js";
 
 class PageUi {
 	constructor () {
@@ -291,6 +292,7 @@ class PageUi {
 				sources: [MiscUtil.copy(BrewUtil2.sourceJsonToSource(this._settings.activeSource))],
 				dateAdded: timestamp,
 				dateLastModified: timestamp,
+				edition: SITE_STYLE__CLASSIC,
 			},
 		};
 	}

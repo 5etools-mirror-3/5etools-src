@@ -3399,6 +3399,12 @@ class InputUiUtil {
 					const out = [];
 					const errs = [];
 
+					const msgExpectedTypes = expectedFileTypes != null
+						? expectedFileTypes.length
+							? `the expected file type was &quot;${expectedFileTypes.join("/")}&quot;`
+							: `no file type was expected`
+						: null;
+
 					reader.onload = async () => {
 						const name = input.files[readIndex - 1].name;
 						const text = reader.result;
@@ -3413,7 +3419,7 @@ class InputUiUtil {
 									textYes: "Yes",
 									textNo: "Cancel",
 									title: "File Type Mismatch",
-									htmlDescription: `The file "${name}" has the type "${json.fileType}" when the expected file type was "${expectedFileTypes.join("/")}".<br>Are you sure you want to upload this file?`,
+									htmlDescription: `The file "${name}" has the type "${json.fileType}" when ${msgExpectedTypes}.<br>Are you sure you want to upload this file?`,
 								}));
 
 							if (!isSkipFile) {
@@ -6420,7 +6426,7 @@ class ComponentUiUtil {
 		// Always return this as a "meta" object
 		const unhook = () => rowMetas.forEach(it => it.unhook());
 		return {
-			$ele: $$`<div class="ve-flex-col w-100 ve-overflow-y-auto">${$eles}</div>`,
+			$ele: $$`<div class="ve-flex-col w-100 ve-overflow-y-auto min-h-40p">${$eles}</div>`,
 			$iptSearch,
 			rowMetas, // Return this to allow for creating custom UI
 			propIsAcceptable,

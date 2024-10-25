@@ -21,6 +21,7 @@ class PageFilterCultsBoons extends PageFilterBase {
 	}
 
 	static mutateForFilters (it) {
+		this._mutateForFilters_commonSources(it);
 		it._fType = it.__prop === "cult" ? "Cult" : it.type ? `Boon, ${it.type}` : "Boon";
 		this._mutateForFilters_commonMisc(it);
 	}
@@ -28,7 +29,7 @@ class PageFilterCultsBoons extends PageFilterBase {
 	addToFilters (it, isExcluded) {
 		if (isExcluded) return;
 
-		this._sourceFilter.addItem(it.source);
+		this._sourceFilter.addItem(it._fSources);
 		this._typeFilter.addItem(it._fType);
 		this._subtypeFilter.addItem(it.type);
 		this._miscFilter.addItem(it._fMisc);
@@ -46,7 +47,7 @@ class PageFilterCultsBoons extends PageFilterBase {
 	toDisplay (values, cb) {
 		return this._filterBox.toDisplay(
 			values,
-			cb.source,
+			cb._fSources,
 			cb._fType,
 			cb.type,
 			cb._fMisc,

@@ -319,7 +319,7 @@ export class ManageBrewUi {
 	}
 
 	async _pHandleClick_btnLoadFromFile (rdState) {
-		const {files, errors} = await InputUiUtil.pGetUserUploadJson({isMultiple: true});
+		const {files, errors} = await InputUiUtil.pGetUserUploadJson({isMultiple: true, expectedFileTypes: []});
 
 		DataUtil.doHandleFileLoadErrorsGeneric(errors);
 
@@ -328,7 +328,13 @@ export class ManageBrewUi {
 	}
 
 	async _pHandleClick_btnLoadFromUrl (rdState) {
-		const enteredUrl = await InputUiUtil.pGetUserString({title: `${this._brewUtil.DISPLAY_NAME.toTitleCase()} URL`});
+		const enteredUrl = await InputUiUtil.pGetUserString({
+			title: `${this._brewUtil.DISPLAY_NAME.toTitleCase()} URL`,
+			htmlDescription: `<p>
+				Provide a link to a ${this._brewUtil.DISPLAY_NAME} JSON.
+				<br><span class="ve-muted">Note that for GitHub links, this should be the &quot;Raw&quot; link.</span>
+			</p>`,
+		});
 		if (!enteredUrl || !enteredUrl.trim()) return;
 
 		const parsedUrl = this.constructor._getParsedCustomUrl(enteredUrl);
@@ -337,6 +343,14 @@ export class ManageBrewUi {
 				content: `The URL was not valid!`,
 				type: "danger",
 			});
+		}
+
+		// If mistakenly passed an "export as URL" link, navigate
+		if (ManageExternalUtils.isLoadExternalUrl(parsedUrl.href)) {
+			parsedUrl.hostname = window.location.hostname;
+			parsedUrl.protocol = window.location.protocol;
+			parsedUrl.port = window.location.port;
+			window.location = parsedUrl;
 		}
 
 		await this._brewUtil.pAddBrewFromUrl(parsedUrl.href);

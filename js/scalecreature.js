@@ -1654,7 +1654,17 @@ globalThis.ScaleCreature = {
 		const targetHpRange = [Math.floor(targetHpOut - targetHpDeviation), Math.ceil(targetHpOut + targetHpDeviation)];
 
 		const origFormula = mon.hp.formula.replace(/\s*/g, "");
-		mon.hp.average = Math.floor(Math.max(1, targetHpOut));
+
+		// if it's not a well-known formula, convert our scaled "average" to a "special" and bail out
+		if (!/^\d+d\d+(?:[-+]\d+)?$/.test(origFormula)) {
+			const hpOutClamped = Math.floor(Math.max(1, targetHpOut));
+
+			delete mon.hp.average;
+			delete mon.hp.formula;
+			mon.hp.special = hpOutClamped;
+
+			return;
+		}
 
 		const fSplit = origFormula.split(/([-+])/);
 		const mDice = /(\d+)d(\d+)/i.exec(fSplit[0]);
@@ -2655,9 +2665,21 @@ globalThis.ScaleSpellSummonedCreature = class extends globalThis.ScaleSummonedCr
 				string: (str) => {
 					str = str
 						// "The aberration makes a number of attacks equal to half this spell's level (rounded down)."
-						.replace(/a number of attacks equal to half this spell's level \(rounded down\)/g, (...m) => {
+						// "The spirit makes a number of attacks equal to half this spell's level (round down)."
+						// ---
+						// "The spirit makes a number of Rend attacks equal to half this spell's level (round down)."
+						.replace(/a number of(?: (?<ptName>[^.!?]+))? attacks equal to half (?:this|the) spell's level \(round(?:ed)? down\)/g, (...m) => {
+							const {ptName} = m.at(-1);
+
 							const count = Math.floor(toSpellLevel / 2);
-							return `${Parser.numberToText(count)} attack${count === 1 ? "" : "s"}`;
+
+							return [
+								Parser.numberToText(count),
+								ptName,
+								`attack${count === 1 ? "" : "s"}`,
+							]
+								.filter(Boolean)
+								.join(" ");
 						})
 						// "{@damage 1d8 + 3 + summonSpellLevel}"
 						.replace(/{@(?:dice|damage|hit|d20) [^}]+}/g, (...m) => {

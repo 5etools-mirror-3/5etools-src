@@ -15,6 +15,7 @@ class PageFilterLanguages extends PageFilterBase {
 	}
 
 	static mutateForFilters (it) {
+		this._mutateForFilters_commonSources(it);
 		this._mutateForFilters_commonMisc(it);
 		if (it.fonts || it._fonts) it._fMisc.push("Has Fonts");
 	}
@@ -22,7 +23,7 @@ class PageFilterLanguages extends PageFilterBase {
 	addToFilters (it, isExcluded) {
 		if (isExcluded) return;
 
-		this._sourceFilter.addItem(it.source);
+		this._sourceFilter.addItem(it._fSources);
 		this._scriptFilter.addItem(it.script);
 		this._miscFilter.addItem(it._fMisc);
 	}
@@ -39,7 +40,7 @@ class PageFilterLanguages extends PageFilterBase {
 	toDisplay (values, it) {
 		return this._filterBox.toDisplay(
 			values,
-			it.source,
+			it._fSources,
 			it.type,
 			it.script,
 			it._fMisc,

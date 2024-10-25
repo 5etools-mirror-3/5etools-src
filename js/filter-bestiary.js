@@ -274,6 +274,8 @@ class PageFilterBestiary extends PageFilterBase {
 	static mutateForFilters (mon) {
 		Renderer.monster.initParsed(mon);
 
+		this._mutateForFilters_commonSources(mon);
+
 		this._mutateForFilters_speed(mon);
 
 		mon._fAc = (mon.ac || []).map(it => it.special ? null : (it.ac || it)).filter(it => it !== null);
@@ -297,7 +299,6 @@ class PageFilterBestiary extends PageFilterBase {
 		mon._fCondImm = mon.conditionImmune ? PageFilterBestiary.getAllImmRest(mon.conditionImmune, "conditionImmune") : [];
 		mon._fSave = mon.save ? Object.keys(mon.save) : [];
 		mon._fSkill = mon.skill ? Object.keys(mon.skill) : [];
-		mon._fSources = SourceFilter.getCompleteFilterSources(mon);
 		mon._fPassive = !isNaN(mon.passive) ? Number(mon.passive) : null;
 
 		Parser.ABIL_ABVS

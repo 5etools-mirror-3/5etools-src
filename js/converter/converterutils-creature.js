@@ -826,6 +826,7 @@ export class TraitActionTag {
 				if (this._isTraits(prop)) {
 					if (cleanName.startsWith("keen ")) return this._doAdd({tags, tag: "Keen Senses", allowlist});
 					if (cleanName.endsWith(" absorption")) return this._doAdd({tags, tag: "Damage Absorption", allowlist});
+					if (cleanName.endsWith(" camouflage")) return this._doAdd({tags, tag: "Camouflage", allowlist});
 				}
 
 				if (this._isActions(prop)) {

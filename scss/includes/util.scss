@@ -1,12 +1,18 @@
 @use "../vars/vars";
 
 // region Fix Chrome
-input[type="checkbox"]:checked {
-	filter: grayscale(100%);
+input[type="checkbox"]:checked,
+input[type="checkbox"]:indeterminate {
+	filter: grayscale(100%) contrast(200%);
 }
 
-input[type="radio"]:checked {
-	filter: grayscale(100%);
+input[type="radio"]:checked,
+input[type="radio"]:indeterminate {
+	filter: grayscale(100%) contrast(200%);
+}
+
+input[type="range"] {
+	filter: grayscale(100%) contrast(200%);
 }
 // endregion
 
@@ -165,6 +171,14 @@ i > i {
 // region Transforms
 .trans-x-flip {
 	transform: scaleX(-1) !important;
+}
+
+.trans-y-flip {
+	transform: scaleY(-1) !important;
+}
+
+.trans-z-flip {
+	transform: scaleZ(-1) !important;
 }
 // endregion
 
@@ -528,6 +542,10 @@ i > i {
 
 .min-h-24p {
 	min-height: 24px !important;
+}
+
+.min-h-40p {
+	min-height: 40px !important;
 }
 
 .min-h-100p {

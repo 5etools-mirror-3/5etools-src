@@ -1,0 +1,1134 @@
+{
+	"data": [
+		{
+			"type": "section",
+			"name": "DM Screen",
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Cover",
+					"entries": [
+						{
+							"type": "image",
+							"href": {
+								"type": "internal",
+								"path": "book/XScreen/XScreen Front.webp"
+							},
+							"credit": "Joy Ang",
+							"width": 1530,
+							"height": 340
+						}
+					],
+					"id": "001"
+				},
+				{
+					"type": "entries",
+					"name": "Conditions",
+					"entries": [
+						{
+							"type": "statblock",
+							"tag": "condition",
+							"source": "XPHB",
+							"name": "Blinded"
+						},
+						{
+							"type": "statblock",
+							"tag": "condition",
+							"source": "XPHB",
+							"name": "Charmed"
+						},
+						{
+							"type": "statblock",
+							"tag": "condition",
+							"source": "XPHB",
+							"name": "Deafened"
+						},
+						{
+							"type": "statblock",
+							"tag": "condition",
+							"source": "XPHB",
+							"name": "Exhaustion"
+						},
+						{
+							"type": "statblock",
+							"tag": "condition",
+							"source": "XPHB",
+							"name": "Frightened"
+						},
+						{
+							"type": "statblock",
+							"tag": "condition",
+							"source": "XPHB",
+							"name": "Grappled"
+						},
+						{
+							"type": "statblock",
+							"tag": "condition",
+							"source": "XPHB",
+							"name": "Incapacitated"
+						},
+						{
+							"type": "statblock",
+							"tag": "condition",
+							"source": "XPHB",
+							"name": "Invisible"
+						},
+						{
+							"type": "statblock",
+							"tag": "condition",
+							"source": "XPHB",
+							"name": "Paralyzed"
+						},
+						{
+							"type": "statblock",
+							"tag": "condition",
+							"source": "XPHB",
+							"name": "Petrified"
+						},
+						{
+							"type": "statblock",
+							"tag": "condition",
+							"source": "XPHB",
+							"name": "Poisoned"
+						},
+						{
+							"type": "statblock",
+							"tag": "condition",
+							"source": "XPHB",
+							"name": "Prone"
+						},
+						{
+							"type": "statblock",
+							"tag": "condition",
+							"source": "XPHB",
+							"name": "Restrained"
+						},
+						{
+							"type": "statblock",
+							"tag": "condition",
+							"source": "XPHB",
+							"name": "Stunned"
+						},
+						{
+							"type": "statblock",
+							"tag": "condition",
+							"source": "XPHB",
+							"name": "Unconscious"
+						}
+					],
+					"id": "002"
+				},
+				{
+					"type": "entries",
+					"name": "Tables",
+					"entries": [
+						{
+							"type": "table",
+							"caption": "Improvising Damage",
+							"colLabels": [
+								"Dice",
+								"Examples"
+							],
+							"colStyles": [
+								"col-2 text-center",
+								"col-10"
+							],
+							"rows": [
+								[
+									"{@damage 1d10}",
+									"Burned by coals, hit by a falling bookcase, pricked by a poison needle"
+								],
+								[
+									"{@damage 2d10}",
+									"Struck by lightning, stumbling into a firepit"
+								],
+								[
+									"{@damage 4d10}",
+									"Hit by falling rubble in a collapsing tunnel, tumbling into a vat of acid"
+								],
+								[
+									"{@damage 10d10}",
+									"Crushed by compacting walls, hit by whirling steel blades, wading through lava"
+								],
+								[
+									"{@damage 18d10}",
+									"Submerged in lava, hit by a crashing flying fortress"
+								],
+								[
+									"{@damage 24d10}",
+									"Tumbling into a vortex of fire on the Elemental Plane of Fire, crushed in the jaws of a godlike creature or a moon-sized monster"
+								]
+							],
+							"data": {
+								"tableChapterIgnore": true
+							}
+						},
+						{
+							"type": "table",
+							"caption": "Damage Severity and Level",
+							"colLabels": [
+								"Character Levels",
+								"Nuisance",
+								"Deadly"
+							],
+							"colStyles": [
+								"col-4 text-center",
+								"col-4 text-center",
+								"col-4 text-center"
+							],
+							"rows": [
+								[
+									"1\u20134",
+									"5 ({@damage 1d10})",
+									"11 ({@damage 2d10})"
+								],
+								[
+									"5\u201310",
+									"11 ({@damage 2d10})",
+									"22 ({@damage 4d10})"
+								],
+								[
+									"11\u201316",
+									"22 ({@damage 4d10})",
+									"55 ({@damage 10d10})"
+								],
+								[
+									"17\u201320",
+									"55 ({@damage 10d10})",
+									"99 ({@damage 18d10})"
+								]
+							],
+							"data": {
+								"tableChapterIgnore": true
+							}
+						},
+						{
+							"type": "table",
+							"caption": "Actions",
+							"colLabels": [
+								"Action",
+								"Summary"
+							],
+							"colStyles": [
+								"col-2",
+								"col-10"
+							],
+							"rows": [
+								[
+									"{@action Attack|XPHB}",
+									"Attack with a weapon or an {@variantrule Unarmed Strike|XPHB}."
+								],
+								[
+									"{@action Dash|XPHB}",
+									"For the rest of the turn, give yourself extra movement equal to your {@variantrule Speed|XPHB}."
+								],
+								[
+									"{@action Disengage|XPHB}",
+									"Your movement doesn't provoke {@action Opportunity Attack|XPHB|Opportunity Attacks} for the rest of the turn."
+								],
+								[
+									"{@action Dodge|XPHB}",
+									"Until the start of your next turn, attach rolls against you have {@variantrule Disadvantage|XPHB}, and you make Dexterity saving throws with {@variantrule Advantage|XPHB}. You lose this benefit if you have the {@condition Incapacitated|XPHB} condition or if your {@variantrule Speed|XPHB} is 0."
+								],
+								[
+									"{@action Help|XPHB}",
+									"Help another creature's ability check or attack roll, or administer first aid."
+								],
+								[
+									"{@action Hide|XPHB}",
+									"Make a Dexterity ({@skill Stealth|XPHB}) check."
+								],
+								[
+									"{@action Influence|XPHB}",
+									"Make a Charisma ({@skill Deception|XPHB}, {@skill Intimidation|XPHB}, {@skill Performance|XPHB}, or {@skill Persuasion|XPHB}) or Wisdom ({@skill Animal Handling|XPHB|}) check to alter a creature's attitude."
+								],
+								[
+									"{@action Magic|XPHB}",
+									"Cast a spell, use a magic item, or use a magical feature."
+								],
+								[
+									"{@action Ready|XPHB}",
+									"Prepare to take an action in response to a trigger you define."
+								],
+								[
+									"{@action Search|XPHB}",
+									"Make a Wisdom ({@skill Insight|XPHB}, {@skill Medicine|XPHB}, {@skill Perception|XPHB}, or {@skill Survival|XPHB}) check."
+								],
+								[
+									"{@action Study|XPHB}",
+									"Make an Intelligence ({@skill Arcana|XPHB}, {@skill History|XPHB}, {@skill Investigation|XPHB}, {@skill Nature|XPHB}, or {@skill Religion|XPHB}) check."
+								],
+								[
+									"{@action Utilize|XPHB}",
+									"Use a nonmagical object."
+								]
+							],
+							"footnotes": [
+								"{@i See the Player's Handbook rules glossary for full action definitions}"
+							],
+							"data": {
+								"tableChapterIgnore": true
+							}
+						},
+						{
+							"type": "statblock",
+							"tag": "variantrule",
+							"source": "XPHB",
+							"name": "Long Jump"
+						},
+						{
+							"type": "statblock",
+							"tag": "variantrule",
+							"source": "XPHB",
+							"name": "High Jump"
+						},
+						{
+							"type": "statblock",
+							"tag": "status",
+							"source": "XPHB",
+							"name": "Concentration"
+						},
+						{
+							"type": "table",
+							"caption": "Skills",
+							"colLabels": [
+								"Skill",
+								"Ability"
+							],
+							"colStyles": [
+								"col-6",
+								"col-6"
+							],
+							"rows": [
+								[
+									"{@skill Acrobatics|XPHB}",
+									"Dexterity"
+								],
+								[
+									"{@skill Animal Handling|XPHB}",
+									"Wisdom"
+								],
+								[
+									"{@skill Arcana|XPHB}",
+									"Intelligence"
+								],
+								[
+									"{@skill Athletics|XPHB}",
+									"Strength"
+								],
+								[
+									"{@skill Deception|XPHB}",
+									"Charisma"
+								],
+								[
+									"{@skill History|XPHB}",
+									"Intelligence"
+								],
+								[
+									"{@skill Insight|XPHB}",
+									"Wisdom"
+								],
+								[
+									"{@skill Intimidation|XPHB}",
+									"Charisma"
+								],
+								[
+									"{@skill Investigation|XPHB}",
+									"Intelligence"
+								],
+								[
+									"{@skill Medicine|XPHB}",
+									"Wisdom"
+								],
+								[
+									"{@skill Nature|XPHB}",
+									"Intelligence"
+								],
+								[
+									"{@skill Perception|XPHB}",
+									"Wisdom"
+								],
+								[
+									"{@skill Performance|XPHB}",
+									"Charisma"
+								],
+								[
+									"{@skill Persuasion|XPHB}",
+									"Charisma"
+								],
+								[
+									"{@skill Religion|XPHB}",
+									"Intelligence"
+								],
+								[
+									"{@skill Sleight of Hand|XPHB}",
+									"Dexterity"
+								],
+								[
+									"{@skill Stealth|XPHB}",
+									"Dexterity"
+								],
+								[
+									"{@skill Survival|XPHB}",
+									"Wisdom"
+								]
+							],
+							"data": {
+								"tableChapterIgnore": true
+							}
+						},
+						{
+							"type": "entries",
+							"name": "Death Saving Throws",
+							"entries": [
+								"When you start your turn with 0 HP, roll {@dice 1d20}, and you succeed on a 10+.",
+								{
+									"type": "list",
+									"style": "list-hang",
+									"items": [
+										{
+											"type": "item",
+											"name": "Third Success",
+											"entries": [
+												"You become {@variantrule Stable|XPHB}."
+											]
+										},
+										{
+											"type": "item",
+											"name": "Third Failure",
+											"entries": [
+												"You die."
+											]
+										},
+										{
+											"type": "item",
+											"name": "Rolling a 1",
+											"entries": [
+												"Counts as two failures."
+											]
+										},
+										{
+											"type": "item",
+											"name": "Rolling a 20",
+											"entries": [
+												"You regain 1 Hit Point."
+											]
+										}
+									]
+								},
+								"If you take damage at 0 HP, it counts as a failed {@variantrule Death Saving Throw|XPHB|Death Save} or two failures if the damage is from a {@variantrule Critical Hit|XPHB}."
+							],
+							"data": {
+								"variantRuleInclude": {
+									"ruleType": "C"
+								}
+							},
+							"id": "004"
+						},
+						{
+							"type": "table",
+							"caption": "Object Armor Class",
+							"colLabels": [
+								"AC",
+								"Substance"
+							],
+							"colStyles": [
+								"col-2 text-center",
+								"col-10"
+							],
+							"rows": [
+								[
+									"11",
+									"Cloth, paper, rope"
+								],
+								[
+									"13",
+									"Crystal, glass, ice"
+								],
+								[
+									"15",
+									"Wood"
+								],
+								[
+									"17",
+									"Stone"
+								],
+								[
+									"19",
+									"Iron, steel"
+								],
+								[
+									"21",
+									"Mithral"
+								],
+								[
+									"23",
+									"Adamantine"
+								]
+							],
+							"data": {
+								"tableChapterIgnore": true
+							}
+						},
+						{
+							"type": "table",
+							"caption": "Object Hit Points",
+							"colLabels": [
+								"Size",
+								"Fragile",
+								"Resilient"
+							],
+							"colStyles": [
+								"col-6",
+								"col-3",
+								"col-3"
+							],
+							"rows": [
+								[
+									"Tiny (bottle, lock)",
+									"2 ({@dice 1d4})",
+									"5 {@dice 2d4})"
+								],
+								[
+									"Small (chest, lute)",
+									"3 ({@dice 1d6})",
+									"10 {@dice 3d6})"
+								],
+								[
+									"Medium (barrel, chandelier)",
+									"4 ({@dice 1d8})",
+									"18 {@dice 4d8})"
+								],
+								[
+									"Large (cart, dining table)",
+									"5 ({@dice 1d10})",
+									"27 {@dice 5d10})"
+								]
+							],
+							"data": {
+								"tableChapterIgnore": true
+							}
+						},
+						{
+							"type": "table",
+							"caption": "Food, Drink, and Lodging",
+							"colLabels": [
+								"Item",
+								"Cost"
+							],
+							"colStyles": [
+								"col-8",
+								"col-4 text-right"
+							],
+							"rows": [
+								[
+									"{@item Ale (mug)|XPHB}",
+									"4 CP"
+								],
+								[
+									"{@item Bread (loaf)|XPHB}",
+									"2 CP"
+								],
+								[
+									"{@item Cheese (wedge)|XPHB}",
+									"1 SP"
+								],
+								[
+									"{@i Inn Stay per Day}",
+									""
+								],
+								{
+									"type": "row",
+									"style": "row-indent-first",
+									"row": [
+										"Squalid",
+										"7 CP"
+									]
+								},
+								{
+									"type": "row",
+									"style": "row-indent-first",
+									"row": [
+										"Poor",
+										"1 SP"
+									]
+								},
+								{
+									"type": "row",
+									"style": "row-indent-first",
+									"row": [
+										"Modest",
+										"5 SP"
+									]
+								},
+								{
+									"type": "row",
+									"style": "row-indent-first",
+									"row": [
+										"Comfortable",
+										"8 SP"
+									]
+								},
+								{
+									"type": "row",
+									"style": "row-indent-first",
+									"row": [
+										"Wealthy",
+										"2 GP"
+									]
+								},
+								{
+									"type": "row",
+									"style": "row-indent-first",
+									"row": [
+										"Aristocratic",
+										"4 GP"
+									]
+								},
+								[
+									"{@i Meal}",
+									""
+								],
+								{
+									"type": "row",
+									"style": "row-indent-first",
+									"row": [
+										"Squalid",
+										"1 CP"
+									]
+								},
+								{
+									"type": "row",
+									"style": "row-indent-first",
+									"row": [
+										"Poor",
+										"2 CP"
+									]
+								},
+								{
+									"type": "row",
+									"style": "row-indent-first",
+									"row": [
+										"Modest",
+										"1 SP"
+									]
+								},
+								{
+									"type": "row",
+									"style": "row-indent-first",
+									"row": [
+										"Comfortable",
+										"2 SP"
+									]
+								},
+								{
+									"type": "row",
+									"style": "row-indent-first",
+									"row": [
+										"Wealthy",
+										"3 SP"
+									]
+								},
+								{
+									"type": "row",
+									"style": "row-indent-first",
+									"row": [
+										"Aristocratic",
+										"6 SP"
+									]
+								},
+								[
+									"{@i Wine (bottle)}",
+									""
+								],
+								{
+									"type": "row",
+									"style": "row-indent-first",
+									"row": [
+										"{@item Common Wine (bottle)|XPHB|Common}",
+										"2 SP"
+									]
+								},
+								{
+									"type": "row",
+									"style": "row-indent-first",
+									"row": [
+										"{@item Fine Wine (bottle)|XPHB|Fine}",
+										"10 GP"
+									]
+								}
+							],
+							"data": {
+								"tableChapterIgnore": true
+							}
+						},
+						{
+							"type": "table",
+							"caption": "Typical Difficulty Classes",
+							"colLabels": [
+								"Task Difficulty",
+								"DC"
+							],
+							"colStyles": [
+								"col-10",
+								"col-2 text-center"
+							],
+							"rows": [
+								[
+									"Very easy",
+									"5"
+								],
+								[
+									"Easy",
+									"10"
+								],
+								[
+									"Medium",
+									"15"
+								],
+								[
+									"Hard",
+									"20"
+								],
+								[
+									"Very hard",
+									"25"
+								],
+								[
+									"Nearly impossible",
+									"30"
+								]
+							],
+							"data": {
+								"tableChapterIgnore": true
+							}
+						},
+						{
+							"type": "table",
+							"caption": "Light Sources",
+							"colLabels": [
+								"Source",
+								"Bright Light",
+								"Dim Light",
+								"Duration"
+							],
+							"colStyles": [
+								"col-3",
+								"col-3",
+								"col-3",
+								"col-3"
+							],
+							"rows": [
+								[
+									"{@item Candle|XPHB}",
+									"5 feet",
+									"+5 feet",
+									"1 hour"
+								],
+								[
+									"{@item Lamp|XPHB}",
+									"15 feet",
+									"+30 feet",
+									"6 hours"
+								],
+								[
+									"{@item Bullseye Lantern|XPHB|Lantern, Bullseye}",
+									"60-foot {@variantrule Cone [Area of Effect]|XPHB|Cone}",
+									"+60 feet",
+									"6 hours"
+								],
+								[
+									"{@item Hooded Lantern|XPHB|Lantern, Hooded}",
+									"30 feet (none with hood lowered)",
+									"+30 feet (5 feet with hood lowered)",
+									"6 hours"
+								],
+								[
+									"{@item Torch|XPHB}",
+									"20 feet",
+									"+20 feet",
+									"1 hour"
+								]
+							],
+							"data": {
+								"tableChapterIgnore": true
+							}
+						},
+						{
+							"type": "table",
+							"caption": "Obscured Areas",
+							"colLabels": [
+								"Obscureness",
+								"Effect",
+								"Examples"
+							],
+							"colStyles": [
+								"col-3",
+								"col-5",
+								"col-4"
+							],
+							"rows": [
+								[
+									"{@variantrule Lightly Obscured|XPHB}",
+									"Creatures have {@variantrule Disadvantage|XPHB} on Wisdom ({@skill Perception}) checks that rely on sight",
+									"{@variantrule Dim Light|XPHB}, patchy fog, moderate foliage"
+								],
+								[
+									"{@variantrule Heavily Obscured|XPHB}",
+									"Creatures have the {@condition Blinded|XPHB} condition",
+									"{@variantrule Darkness|XPHB}, heavy fog, dense foliage"
+								]
+							],
+							"data": {
+								"tableChapterIgnore": true
+							}
+						},
+						{
+							"type": "table",
+							"caption": "Travel Pace",
+							"colLabelGroups": [
+								{
+									"colLabels": [
+										"",
+										"Pace"
+									]
+								},
+								{
+									"colLabels": [
+										"Distance Traveled Per...",
+										"Minute"
+									]
+								},
+								{
+									"colLabels": [
+										"",
+										"Hour"
+									]
+								},
+								{
+									"colLabels": [
+										"",
+										"Day"
+									]
+								},
+								{
+									"colLabels": [
+										"",
+										"Effect"
+									]
+								}
+							],
+							"colStyles": [
+								"col-2",
+								"col-2",
+								"col-2",
+								"col-2",
+								"col-4"
+							],
+							"rows": [
+								[
+									"Fast",
+									"400 feet",
+									"4 miles",
+									"30 miles",
+									"{@variantrule Disadvantage|XPHB} on Wisdom ({@skill Perception|XPHB} or {@skill Survival|XPHB}) and Dexterity ({@skill Stealth|XPHB}) checks"
+								],
+								[
+									"Normal",
+									"300 feet",
+									"3 miles",
+									"24 miles",
+									"{@variantrule Disadvantage|XPHB} on Dexterity ({@skill Stealth|XPHB}) checks"
+								],
+								[
+									"Slow",
+									"200 feet",
+									"2 miles",
+									"18 miles",
+									"{@variantrule Advantage|XPHB} on Wisdom ({@skill Perception|XPHB} or {@skill Survival|XPHB}) checks"
+								]
+							],
+							"data": {
+								"tableChapterIgnore": true
+							}
+						},
+						{
+							"type": "table",
+							"caption": "Travel Terrain",
+							"colLabels": [
+								"Terrain",
+								"Maximum Pace",
+								"Encounter Distance",
+								"Foraging DC",
+								"Navigation DC",
+								"Search DC"
+							],
+							"colStyles": [
+								"col-2",
+								"col-2 text-center",
+								"col-2 text-center",
+								"col-2 text-center",
+								"col-2 text-center",
+								"col-2 text-center"
+							],
+							"rows": [
+								[
+									"Arctic",
+									"Fast*",
+									"{@dice 6d6 × 10} feet",
+									"20",
+									"10",
+									"10"
+								],
+								[
+									"Coastal",
+									"Normal",
+									"{@dice 2d10 × 10} feet",
+									"10",
+									"5",
+									"15"
+								],
+								[
+									"Desert",
+									"Normal",
+									"{@dice 6d6 × 10} feet",
+									"20",
+									"10",
+									"10"
+								],
+								[
+									"Forest",
+									"Normal",
+									"{@dice 2d8 × 10} feet",
+									"10",
+									"15",
+									"15"
+								],
+								[
+									"Grassland",
+									"Fast",
+									"{@dice 6d6 × 10} feet",
+									"15",
+									"5",
+									"15"
+								],
+								[
+									"Hill",
+									"Normal",
+									"{@dice 2d10 × 10} feet",
+									"15",
+									"10",
+									"15"
+								],
+								[
+									"Mountain",
+									"Slow",
+									"{@dice 4d10 × 10} feet",
+									"20",
+									"15",
+									"20"
+								],
+								[
+									"Swamp",
+									"Slow",
+									"{@dice 2d8 × 10} feet",
+									"10",
+									"15",
+									"20"
+								],
+								[
+									"Underdark",
+									"Normal",
+									"{@dice 2d6 × 10} feet",
+									"20",
+									"10",
+									"20"
+								],
+								[
+									"Urban",
+									"Normal",
+									"{@dice 2d6 × 10} feet",
+									"20",
+									"15",
+									"15"
+								],
+								[
+									"Waterborne",
+									"Special†",
+									"{@dice 6d6 × 10} feet",
+									"15",
+									"10",
+									"15"
+								]
+							],
+							"footnotes": [
+								"*Appropriate equipment (such as skis) is necessary to keep up a Fast pace in Arctic terrain.",
+								"†Characters' rate of travel while waterborne depends on the vehicle carrying them."
+							],
+							"data": {
+								"tableChapterIgnore": true
+							}
+						},
+						{
+							"type": "table",
+							"caption": "Cover",
+							"colLabels": [
+								"Cover Degree",
+								"Benefit to Target"
+							],
+							"colStyles": [
+								"col-3",
+								"col-9"
+							],
+							"rows": [
+								[
+									"Half Cover",
+									"+2 bonus to AC and Dexterity saving throws"
+								],
+								[
+									"Three-Quarters Cover",
+									"+5 bonus to AC and Dexterity saving throws"
+								],
+								[
+									"Total Cover",
+									"Can't be targeted directly"
+								]
+							],
+							"data": {
+								"tableChapterIgnore": true
+							}
+						},
+						{
+							"type": "table",
+							"caption": "Audible Distance",
+							"colLabels": [
+								"Noise",
+								"Distance"
+							],
+							"colStyles": [
+								"col-6",
+								"col-6"
+							],
+							"rows": [
+								[
+									"Trying to be quiet",
+									"{@dice 2d6 × 5} feet"
+								],
+								[
+									"Normal noise level",
+									"{@dice 2d6 × 10} feet"
+								],
+								[
+									"Very loud",
+									"{@dice 2d6 × 50} feet"
+								]
+							],
+							"data": {
+								"tableChapterIgnore": true
+							}
+						},
+						{
+							"type": "table",
+							"caption": "Visibility Outdoors",
+							"colLabels": [
+								"Conditions",
+								"Distance"
+							],
+							"colStyles": [
+								"col-6",
+								"col-6"
+							],
+							"rows": [
+								[
+									"Clear day, no obstructions",
+									"2 miles (40 miles from a height)"
+								],
+								[
+									"Rain ({@variantrule Lightly Obscured|XPHB})",
+									"1 mile"
+								],
+								[
+									"Fog ({@variantrule Lightly Obscured|XPHB})",
+									"100 to 300 feet"
+								]
+							],
+							"data": {
+								"tableChapterIgnore": true
+							}
+						},
+						{
+							"type": "tableGroup",
+							"name": "Weather",
+							"tables": [
+								{
+									"type": "table",
+									"caption": "Weather",
+									"colLabels": [
+										"1d20",
+										"Temperature"
+									],
+									"colStyles": [
+										"col-2 text-center",
+										"col-10"
+									],
+									"rows": [
+										[
+											"1\u201314",
+											"Normal for the season"
+										],
+										[
+											"15\u201317",
+											"{@dice 1d4 × 10} degrees Fahrenheit colder"
+										],
+										[
+											"18\u201320",
+											"{@dice 1d4 × 10} degrees Fahrenheit hotter"
+										]
+									],
+									"data": {
+										"tableChapterIgnore": true
+									}
+								},
+								{
+									"type": "table",
+									"colLabels": [
+										"1d20",
+										"Wind",
+										"Precipitation"
+									],
+									"colStyles": [
+										"col-2 text-center",
+										"col-2",
+										"col-8"
+									],
+									"rows": [
+										[
+											"1\u201312",
+											"None",
+											"None"
+										],
+										[
+											"13\u201317",
+											"Light",
+											"Light rain or light snowfall"
+										],
+										[
+											"18\u201320",
+											"Strong",
+											"Heavy rain or heavy snowfall"
+										]
+									],
+									"data": {
+										"tableChapterIgnore": true
+									}
+								}
+							]
+						}
+					],
+					"id": "003"
+				}
+			],
+			"id": "000"
+		}
+	]
+}

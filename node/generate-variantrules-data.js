@@ -105,6 +105,7 @@ class GenVariantrules {
 					);
 					// endregion
 
+					cpy.name = variantRuleMeta.name || cpy.name;
 					cpy.ruleType = variantRuleMeta.ruleType;
 					cpy.source = doc[opts.headProp].source;
 
