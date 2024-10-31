@@ -71,10 +71,7 @@ class MapsPage extends BaseComponent {
 
 		this._addHookAllBase(() => this.saveSettingsDebounced());
 
-		Renderer.get().setLazyImages(true);
-		this._renderContent({mapData});
-		Renderer.initLazyImageLoaders();
-		Renderer.get().setLazyImages(false);
+		Renderer.get().withLazyImages(() => this._renderContent({mapData}));
 
 		window.dispatchEvent(new Event("toolsLoaded"));
 	}

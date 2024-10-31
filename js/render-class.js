@@ -60,7 +60,7 @@ class _RenderClassesSidebarImplBase {
 			btnToggleSidebar.txt(comp._state.isHideSidebar ? `[+]` : `[\u2212]`);
 		})();
 
-		return ee`<tr><th colspan="6">
+		return ee`<tr><th colspan="6" class="ve-text-left">
 			<div class="split-v-center pr-1" ${dataPartSendToFoundry}>
 				<div class="cls-side__name">${cls.name}</div>
 				<div class="ve-flex-v-center">${btnSendToFoundry}${btnToggleSidebar}</div>
@@ -69,7 +69,7 @@ class _RenderClassesSidebarImplBase {
 	}
 
 	_getCommonElements_authors ({comp, cls}) {
-		return `${cls.authors ? `<tr><th colspan="6">By ${cls.authors.join(", ")}</th></tr>` : ""}`;
+		return `${cls.authors ? `<tr><th class="ve-text-left" colspan="6">By ${cls.authors.join(", ")}</th></tr>` : ""}`;
 	}
 
 	/* ----- */

@@ -911,9 +911,8 @@ export class StatGenUi extends BaseComponent {
 							${$wrpsBase}
 						</div>
 
-						${$wrpRaceOuter}
-
 						${$wrpBackgroundOuter}
+						${$wrpRaceOuter}
 
 						<div class="ve-flex-col mr-3">
 							<div class="my-1 statgen-pb__header"></div>
@@ -934,8 +933,8 @@ export class StatGenUi extends BaseComponent {
 						</div>
 					</div>
 
-					${$stgRaceSel}
 					${$stgBackgroundSel}
+					${$stgRaceSel}
 				</div>
 
 				${$vrPbCustom}
@@ -946,12 +945,13 @@ export class StatGenUi extends BaseComponent {
 
 			<hr class="hr-3">
 
+			${$dispPreviewBackground}
+			
+			${$hrPreviewBackground}
+
 			${$dispPreviewRace}
 			${$hrPreviewRaceTashas}
 			${$dispTashas}
-
-			${$dispPreviewBackground}
-			${$hrPreviewBackground}
 
 			${$wrpAsi}
 		</div>`;

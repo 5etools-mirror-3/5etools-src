@@ -1019,9 +1019,12 @@ class ListUiUtil {
 	}
 
 	static bindPreviewAllButton ($btnAll, list) {
-		$btnAll
-			.click(async () => {
-				const nxtHtml = $btnAll.html() === ListUiUtil.HTML_GLYPHICON_EXPAND
+		const btnAll = $btnAll?.[0];
+		if (!btnAll) return;
+
+		btnAll
+			.addEventListener("click", async () => {
+				const nxtHtml = btnAll.innerHTML === ListUiUtil.HTML_GLYPHICON_EXPAND
 					? ListUiUtil.HTML_GLYPHICON_CONTRACT
 					: ListUiUtil.HTML_GLYPHICON_EXPAND;
 
@@ -1033,12 +1036,17 @@ class ListUiUtil {
 					if (!isSure) return;
 				}
 
-				$btnAll.html(nxtHtml);
+				btnAll.innerHTML = nxtHtml;
 
 				list.visibleItems.forEach(listItem => {
 					if (listItem.data.btnShowHidePreview.innerHTML !== nxtHtml) listItem.data.btnShowHidePreview.click();
 				});
 			});
+
+		list.on("updated", () => {
+			const isShowExpand = list.visibleItems.every(listItem => listItem.data.btnShowHidePreview.innerHTML === ListUiUtil.HTML_GLYPHICON_EXPAND);
+			btnAll.innerHTML = isShowExpand ? ListUiUtil.HTML_GLYPHICON_EXPAND : ListUiUtil.HTML_GLYPHICON_CONTRACT;
+		});
 	}
 
 	// ==================
@@ -4080,8 +4088,8 @@ function MixinBaseComponent (Cls) {
 		getSaveableState () { return {...this.getBaseSaveableState()}; }
 		setStateFrom (toLoad, isOverwrite = false) { this.setBaseSaveableStateFrom(toLoad, isOverwrite); }
 
-		async _pLock (lockName, {lockToken = null} = {}) {
-			this.__locks[lockName] ||= new VeLock({name: lockName});
+		async _pLock (lockName, {lockToken = null, isDbg = false} = {}) {
+			this.__locks[lockName] ||= new VeLock({name: lockName, isDbg});
 			return this.__locks[lockName].pLock({token: lockToken});
 		}
 

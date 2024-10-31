@@ -1052,7 +1052,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		$$`<table class="cls-tbl shadow-big w-100 mb-2">
 			<tbody>
 			<tr><th class="ve-tbl-border" colspan="15"></th></tr>
-			<tr><th class="cls-tbl__disp-name" colspan="15">${cls.name}</th></tr>
+			<tr><th class="ve-text-left cls-tbl__disp-name" colspan="15">${cls.name}</th></tr>
 			<tr>
 				<th colspan="3"></th> <!-- spacer to match the 3 default cols (level, prof, features) -->
 				${$tblGroupHeaders}
@@ -1060,7 +1060,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			<tr>
 				<th class="cls-tbl__col-level">Level</th>
 				<th class="cls-tbl__col-prof-bonus">Proficiency Bonus</th>
-				<th>Features</th>
+				<th class="ve-text-left">Features</th>
 				${$tblHeaders}
 			</tr>
 			${metasTblRows.map(it => it.$row)}
@@ -2573,8 +2573,17 @@ ClassesPage.ClassBookView = class extends BookModeViewBase {
 			this._parent.set("isShowFluff", !this._parent.get("isShowFluff"));
 		});
 
-		if (this._parent.get("isHideFeatures")) this._parent.set("isHideFeatures", false);
-		if (!this._parent.get("isShowFluff")) this._parent.set("isShowFluff", true);
+		// Display class/fluff if nothing would be displayed
+		const isAnySubclassActive = cls.subclasses
+			.map(sc => {
+				const stateKey = UrlUtil.getStateKeySubclass(sc);
+				return !!this._parent.get(stateKey);
+			})
+			.some(Boolean);
+		if (!isAnySubclassActive && this._parent.get("isHideFeatures") && !this._parent.get("isShowFluff")) {
+			this._parent.set("isHideFeatures", false);
+			this._parent.set("isShowFluff", true);
+		}
 
 		$pnlMenu.append($btnToggleCf);
 		$pnlMenu.append($btnToggleInfo);

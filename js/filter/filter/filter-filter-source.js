@@ -12,12 +12,13 @@ export class SourceFilterItem extends FilterItem {
 		super(options);
 		this.isOtherSource = options.isOtherSource;
 		this._sortName = null;
+		this.itemFull = Parser.sourceJsonToFull(this.item);
 	}
 }
 
 export class SourceFilter extends Filter {
 	static _SORT_ITEMS (a, b) {
-		return SortUtil.ascSortLowerPropNumeric("item", a, b);
+		return SortUtil.ascSortLowerPropNumeric("itemFull", a, b);
 	}
 
 	static _SORT_ITEMS_MINI (a, b) {

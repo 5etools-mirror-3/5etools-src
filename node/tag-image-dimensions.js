@@ -5,6 +5,7 @@ import probe from "probe-image-size";
 import {ObjectWalker} from "5etools-utils";
 import {Command} from "commander";
 import * as ut from "./util.js";
+import {readJsonSync} from "5etools-utils/lib/UtilFs.js";
 
 function addDir (allFiles, dir) {
 	ut.listFiles({dir})
@@ -13,7 +14,7 @@ function addDir (allFiles, dir) {
 }
 
 function addFile (allFiles, path) {
-	const json = ut.readJson(path, "utf-8");
+	const json = readJsonSync(path);
 	allFiles.push({json, path});
 }
 
@@ -142,8 +143,14 @@ const files = [...(params.file || [])];
 if (!dirs.length && !files.length) {
 	dirs.push("./data/adventure");
 	dirs.push("./data/book");
+
 	files.push("./data/decks.json");
 	files.push("./data/fluff-recipes.json");
+	files.push("./data/fluff-backgrounds.json");
+	files.push("./data/fluff-races.json");
+
+	Object.values(readJsonSync("./data/class/fluff-index.json"))
+		.forEach((fname) => files.push(`./data/class/${fname}`));
 }
 
 main({

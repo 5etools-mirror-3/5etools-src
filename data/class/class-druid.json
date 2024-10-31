@@ -558,6 +558,27 @@
 				4,
 				4
 			],
+			"additionalSpells": [
+				{
+					"name": "Wild Companion",
+					"prepared": {
+						"2": [
+							"find familiar|xphb"
+						]
+					}
+				}
+			],
+			"featProgression": [
+				{
+					"name": "Epic Boon",
+					"category": [
+						"EB"
+					],
+					"progression": {
+						"19": 1
+					}
+				}
+			],
 			"startingProficiencies": {
 				"armor": [
 					"light",
@@ -593,9 +614,7 @@
 				]
 			},
 			"startingEquipment": {
-				"entries": [
-					"{@i Choose A or B:} (A) {@item Leather Armor|XPHB}, {@item Shield|XPHB}, {@item Sickle|XPHB}, {@item Druidic Focus|XPHB|Druidic Focus (Quarterstaff)}, {@item Explorer's Pack|XPHB}, {@item Herbalism kit|XPHB}, 9 GP; or (B) 50 GP"
-				],
+				"additionalFromBackground": true,
 				"defaultData": [
 					{
 						"A": [
@@ -627,6 +646,9 @@
 							}
 						]
 					}
+				],
+				"entries": [
+					"{@i Choose A or B:} (A) {@item Leather Armor|XPHB}, {@item Shield|XPHB}, {@item Sickle|XPHB}, {@item Druidic Focus|XPHB|Druidic Focus (Quarterstaff)}, {@item Explorer's Pack|XPHB}, {@item Herbalism kit|XPHB}, 9 GP; or (B) 50 GP"
 				]
 			},
 			"multiclassing": {
@@ -2314,6 +2336,17 @@
 			]
 		},
 		{
+			"name": "Magician",
+			"source": "XPHB",
+			"page": 80,
+			"className": "Druid",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"You know one extra cantrip from the {@filter Druid spell list|spells|class=Druid}. In addition, your mystical connection to nature gives you a bonus to your Intelligence ({@skill Arcana|XPHB} or {@skill Nature|XPHB}) checks. The bonus equals your Wisdom modifier (minimum bonus of +1)."
+			]
+		},
+		{
 			"name": "Primal Order",
 			"source": "XPHB",
 			"page": 80,
@@ -2323,17 +2356,17 @@
 			"entries": [
 				"You have dedicated yourself to one of the following sacred roles of your choice.",
 				{
-					"type": "entries",
-					"name": "Magician",
+					"type": "options",
+					"count": 1,
 					"entries": [
-						"You know one extra cantrip from the {@filter Druid spell list|spells|class=Druid}. In addition, your mystical connection to nature gives you a bonus to your Intelligence ({@skill Arcana|XPHB} or {@skill Nature|XPHB}) checks. The bonus equals your Wisdom modifier (minimum bonus of +1)."
-					]
-				},
-				{
-					"type": "entries",
-					"name": "Warden",
-					"entries": [
-						"Trained for battle, you gain proficiency with Martial weapons and training with Medium armor."
+						{
+							"type": "refClassFeature",
+							"classFeature": "Magician|Druid|XPHB|1"
+						},
+						{
+							"type": "refClassFeature",
+							"classFeature": "Warden|Druid|XPHB|1"
+						}
 					]
 				}
 			]
@@ -2398,6 +2431,17 @@
 						}
 					]
 				}
+			]
+		},
+		{
+			"name": "Warden",
+			"source": "XPHB",
+			"page": 80,
+			"className": "Druid",
+			"classSource": "XPHB",
+			"level": 1,
+			"entries": [
+				"Trained for battle, you gain proficiency with {@filter Martial weapons|items|type=martial weapon} and training with {@filter Medium armor|items|type=Medium Armor}."
 			]
 		},
 		{

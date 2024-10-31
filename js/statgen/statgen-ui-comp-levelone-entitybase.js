@@ -107,9 +107,9 @@ export class StatGenUiRenderLevelOneEntityBase {
 		);
 
 		const $stgAbilityScoreSet = $$`<div class="ve-flex-v-center mb-2">
-				<div class="mr-2">Ability Score Increase</div>
-				<div>${$selAbilitySet}</div>
-			</div>`;
+			<div class="mr-2 no-wrap">Ability Score Increase</div>
+			<div>${$selAbilitySet}</div>
+		</div>`;
 
 		const hkSetValuesSelAbilitySet = () => {
 			const entity = this._parent[this._propEntity];

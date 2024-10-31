@@ -26,6 +26,7 @@ globalThis.Renderer = function () {
 	}
 
 	this._lazyImages = false;
+	this._isMinimizeLayoutShift = false;
 	this._subVariant = false;
 	this._firstSection = true;
 	this._isAddHandlers = true;
@@ -56,6 +57,33 @@ globalThis.Renderer = function () {
 		if (typeof IntersectionObserver === "undefined") this._lazyImages = false;
 		else this._lazyImages = !!bool;
 		return this;
+	};
+
+	this.withLazyImages = function (fn) {
+		const valOriginal = this._lazyImages;
+		try {
+			this.setLazyImages(true);
+			const out = fn(this);
+			Renderer.initLazyImageLoaders();
+			return out;
+		} finally {
+			this.setLazyImages(valOriginal);
+		}
+	};
+
+	this.setMinimizeLayoutShift = function (bool) {
+		this._isMinimizeLayoutShift = !!bool;
+		return this;
+	};
+
+	this.withMinimizeLayoutShift = function (fn) {
+		const valOriginal = this._isMinimizeLayoutShift;
+		try {
+			this.setMinimizeLayoutShift(true);
+			return fn(this);
+		} finally {
+			this.setMinimizeLayoutShift(valOriginal);
+		}
 	};
 
 	/**
@@ -539,8 +567,12 @@ globalThis.Renderer = function () {
 		if (entry.imageType === "map" || entry.imageType === "mapPlayer") textStack[0] += `<div class="rd__wrp-map">`;
 		textStack[0] += `<div class="${meta._typeStack.includes("gallery") ? "rd__wrp-gallery-image" : ""}">`;
 
+		const hasWidthHeight = entry.width != null && entry.height != null;
+		const isLazy = this._lazyImages && hasWidthHeight;
+		const isMinimizeLayoutShift = this._isMinimizeLayoutShift && hasWidthHeight;
+
 		const href = this._renderImage_getUrl(entry);
-		const svg = this._lazyImages && entry.width != null && entry.height != null
+		const svg = isLazy || isMinimizeLayoutShift
 			? `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="${entry.width}" height="${entry.height}"><rect width="100%" height="100%" fill="#ccc3"></rect></svg>`)}`
 			: null;
 		const ptTitleCreditTooltip = this._renderImage_getTitleCreditTooltipText(entry);
@@ -549,7 +581,7 @@ globalThis.Renderer = function () {
 
 		textStack[0] += `<div class="${this._renderImage_getWrapperClasses(entry, meta)}" ${entry.title && this._isHeaderIndexIncludeImageTitles ? `data-title-index="${this._headerIndex++}"` : ""}>
 			${pluginDataIsNoLink ? "" : `<a href="${href}" target="_blank" rel="noopener noreferrer" ${ptTitle}>`}
-				<img class="${this._renderImage_getImageClasses(entry, meta)}" src="${svg || href}" ${pluginDataIsNoLink ? ptTitle : ""} ${entry.altText || entry.title ? `alt="${Renderer.stripTags((entry.altText || entry.title)).qq()}"` : ""} ${svg ? `data-src="${href}"` : `loading="lazy"`} ${this._renderImage_getStylePart(entry)}>
+				<img class="${this._renderImage_getImageClasses(entry, meta)}" src="${svg || href}" ${pluginDataIsNoLink ? ptTitle : ""} ${entry.altText || entry.title ? `alt="${Renderer.stripTags((entry.altText || entry.title)).qq()}"` : ""} ${isLazy || isMinimizeLayoutShift ? `${Renderer.utils.lazy.ATTR_IMG_FINAL_SRC}="${href}"` : `loading="lazy"`} ${!isLazy && isMinimizeLayoutShift ? `onload="Renderer.utils.lazy.handleLoad_imgMinimizeLayoutShift(this)"` : ""} ${this._renderImage_getStylePart(entry)}>
 			${pluginDataIsNoLink ? "" : `</a>`}
 		</div>`;
 
@@ -827,7 +859,7 @@ globalThis.Renderer = function () {
 	};
 
 	this._renderTable_getTableThClassText = function (entry, i) {
-		return entry.colStyles == null || i >= entry.colStyles.length ? "" : `class="${this._getMutatedStyleString(entry.colStyles[i])}"`;
+		return entry.colStyles == null || i >= entry.colStyles.length ? `class="rd__th"` : `class="rd__th ${this._getMutatedStyleString(entry.colStyles[i])}"`;
 	};
 
 	this._renderTable_makeTableTdClassText = function (entry, i) {
@@ -3006,7 +3038,7 @@ Renderer.utils = class {
 
 		// Add data-page/source/hash attributes for external script use (e.g. Rivet)
 		const $ele = $$`<tr>
-			<th class="stats__th-name pb-0 ${opts.extraThClasses ? opts.extraThClasses.join(" ") : ""}" colspan="6" ${dataPart}>
+			<th class="stats__th-name ve-text-left pb-0 ${opts.extraThClasses ? opts.extraThClasses.join(" ") : ""}" colspan="6" ${dataPart}>
 				<div class="split-v-end">
 					<div class="ve-flex-v-center">
 						<h1 class="stats__h-name copyable m-0" onmousedown="event.preventDefault()" onclick="Renderer.utils._pHandleNameClick(this)">${opts.prefix || ""}${name}${opts.suffix || ""}</h1>
@@ -3148,7 +3180,7 @@ Renderer.utils = class {
 		return `<table class="rd__b-special rd__b-data ${style ? `rd__b-data--${style}` : ""}">
 		<thead>
 			<tr>
-				<th class="rd__data-embed-header" colspan="6" data-rd-data-embed-header="true">
+				<th class="rd__data-embed-header ve-text-left" colspan="6" data-rd-data-embed-header="true">
 					<span class="rd__data-embed-name ${!isStatic && isCollapsed ? "" : `ve-hidden`}">${name}</span>
 					${isStatic ? `<span></span>` : `<span class="rd__data-embed-toggle">[${isCollapsed ? "+" : "\u2013"}]</span>`}
 				</th>
@@ -4642,6 +4674,24 @@ Renderer.utils = class {
 			};
 
 			window.addEventListener("beforeprint", Renderer.utils.lazy._printListener);
+		},
+
+		/* -------------------------------------------- */
+
+		ATTR_IMG_FINAL_SRC: "data-src",
+
+		mutFinalizeImgSrc (ele) {
+			const srcFinal = ele.getAttribute(Renderer.utils.lazy.ATTR_IMG_FINAL_SRC);
+			if (!srcFinal) return;
+
+			ele.removeAttribute(Renderer.utils.lazy.ATTR_IMG_FINAL_SRC);
+			ele.setAttribute("src", srcFinal);
+		},
+
+		/* -------------------------------------------- */
+
+		handleLoad_imgMinimizeLayoutShift (ele) {
+			Renderer.utils.lazy.mutFinalizeImgSrc(ele);
 		},
 	};
 };
@@ -7378,6 +7428,7 @@ Renderer.background = class {
 			{
 				dataProp: "background",
 				page: UrlUtil.PG_BACKGROUNDS,
+				isSkipPageRow: true,
 			},
 		);
 	}
@@ -7392,7 +7443,7 @@ Renderer.background = class {
 
 Renderer.backgroundFeature = class {
 	static getCompactRenderedString (ent) {
-		return Renderer.generic.getCompactRenderedString(ent);
+		return Renderer.generic.getCompactRenderedString(ent, {isSkipPageRow: true});
 	}
 };
 
@@ -8160,7 +8211,7 @@ Renderer.race = class {
 
 Renderer.raceFeature = class {
 	static getCompactRenderedString (ent) {
-		return Renderer.generic.getCompactRenderedString(ent);
+		return Renderer.generic.getCompactRenderedString(ent, {isSkipPageRow: true});
 	}
 };
 
@@ -8747,12 +8798,12 @@ class _RenderCompactBestiaryImplBase {
 		const ptPb = this._style === "classic" ? Renderer.monster.getPbPart(mon) : "";
 
 		return `<tr>
-			<th colspan="${this._style === "classic" ? "2" : "1"}" ${titleAc}>${labelAc}</th>
-			${ptInitiative ? `<th colspan="1" title="Initiative">Init.</th>` : ""}
-			<th colspan="2" ${titleHp}>${labelHp}</th>
-			<th colspan="2">Speed</th>
-			<th colspan="2" ${titleCr}>${labelCr}</th>
-			${ptPb ? `<th colspan="1" title="Proficiency Bonus">PB</th>` : ""}
+			<th class="ve-text-left" colspan="${this._style === "classic" ? "2" : "1"}" ${titleAc}>${labelAc}</th>
+			${ptInitiative ? `<th class="ve-text-left" colspan="1" title="Initiative">Init.</th>` : ""}
+			<th class="ve-text-left" colspan="2" ${titleHp}>${labelHp}</th>
+			<th class="ve-text-left" colspan="2">Speed</th>
+			<th class="ve-text-left" colspan="2" ${titleCr}>${labelCr}</th>
+			${ptPb ? `<th class="ve-text-left" colspan="1" title="Proficiency Bonus">PB</th>` : ""}
 			${isInlinedToken ? `<th colspan="1"></th>` : ""}
 		</tr>`;
 	}
@@ -9907,14 +9958,16 @@ Renderer.monster = class {
 
 		const ptHeaders = Array.from(
 			{length: 12},
-			(_, i) => `<div class="ve-muted ve-text-center small-caps">${i % 4 === 2 ? "mod" : i % 4 === 3 ? "save" : ""}</div>`,
+			(_, i) => {
+				const colClass = i % 4 === 0 ? "stats-tbl-ability-scores__lbl-abv" : "stats-tbl-ability-scores__lbl-score";
+				return `<td class="${colClass}"><div class="ve-muted ve-text-center small-caps">${i % 4 === 2 ? "mod" : i % 4 === 3 ? "save" : ""}</div></td>`;
+			},
 		)
 			.join("");
 
 		Object.keys(mon.save || {})
 			.map(s => Renderer.monster.getSave(Renderer.get(), s, mon.save[s]));
 
-		let cntSpecialSaves = 0;
 		const ptsCells = Parser.ABIL_ABVS
 			.flatMap((abv, i) => {
 				const styleName = i < 3 ? "physical" : "mental";
@@ -9925,21 +9978,27 @@ Renderer.monster = class {
 				const ptSave = renderer.render(`{@savingThrow ${abv} ${mon.save?.[abv] == null ? Parser.getAbilityModNumber(ptScore) : mon.save[abv]}}`);
 
 				return [
-					`<div class="bold small-caps ve-text-right stats__disp-as-score stats__disp-as-score--label stats__disp-as-score--${styleName}">${abv.toTitleCase()}</div>`,
-					`<div class="ve-text-center stats__disp-as-score stats__disp-as-score--${styleName}">${ptScore}</div>`,
-					`<div class="ve-text-center stats__disp-as-bonus stats__disp-as-bonus--${styleName}">${ptBonus}</div>`,
-					`<div class="ve-text-center stats__disp-as-bonus stats__disp-as-bonus--${styleName} ${i % 3 !== 2 ? "mr-2" : ""}">${ptSave}</div>`,
+					`<td class="stats-tbl-ability-scores__lbl-abv"><div class="bold small-caps ve-text-right stats__disp-as-score stats__disp-as-score--label stats__disp-as-score--${styleName}">${abv.toTitleCase()}</div></td>`,
+					`<td class="stats-tbl-ability-scores__lbl-score"><div class="ve-text-center stats__disp-as-score stats__disp-as-score--${styleName}">${ptScore}</div></td>`,
+					`<td class="stats-tbl-ability-scores__lbl-score"><div class="ve-text-center stats__disp-as-bonus stats__disp-as-bonus--${styleName}">${ptBonus}</div></td>`,
+					`<td class="stats-tbl-ability-scores__lbl-score"><div class="ve-text-center stats__disp-as-bonus stats__disp-as-bonus--${styleName} ${i % 3 !== 2 ? "mr-2" : ""}">${ptSave}</div></td>`,
 				];
-			})
-			.join("");
+			});
+
+		const ptsCellsPhysical = ptsCells.slice(0, 12);
+		const ptsCellsMental = ptsCells.slice(12);
 
 		return `
 		<tr><td colspan="6" class="pt-0 pb-3">
-			<div class="stats__grid-ability-scores">
-				${ptHeaders}
-				${ptsCells}
-			</div>
+			<table class="w-100">
+				<tbody>
+					<tr>${ptHeaders}</tr>
+					<tr>${ptsCellsPhysical.join("")}</tr>
+					<tr>${ptsCellsMental.join("")}</tr>
+				</tbody>
+			</table>
 		</td></tr>
+
 		${ptSpecial}`;
 	}
 
@@ -10327,7 +10386,7 @@ Renderer.monster.CHILD_PROPS_EXTENDED.forEach(prop => {
 	const propFull = `monster${prop.uppercaseFirst()}`;
 	Renderer[propFull] = {
 		getCompactRenderedString (ent) {
-			return Renderer.generic.getCompactRenderedString(ent);
+			return Renderer.generic.getCompactRenderedString(ent, {isSkipPageRow: true});
 		},
 	};
 });
@@ -13084,7 +13143,7 @@ Renderer.skill = class {
 
 Renderer.sense = class {
 	static getCompactRenderedString (ent) {
-		return Renderer.generic.getCompactRenderedString(ent);
+		return Renderer.generic.getCompactRenderedString(ent, {isSkipPageRow: true});
 	}
 };
 
@@ -13117,13 +13176,13 @@ Renderer.itemProperty = class {
 			);
 		} else faux.entries = [];
 
-		return Renderer.generic.getCompactRenderedString(faux);
+		return Renderer.generic.getCompactRenderedString(faux, {isSkipPageRow: true});
 	}
 };
 
 Renderer.itemMastery = class {
 	static getCompactRenderedString (ent) {
-		return Renderer.generic.getCompactRenderedString(ent);
+		return Renderer.generic.getCompactRenderedString(ent, {isSkipPageRow: true});
 	}
 };
 
@@ -14777,7 +14836,10 @@ Renderer.hover = class {
 	}
 	// endregion
 
-	static getGenericCompactRenderedString (entry, depth = 0) {
+	static getGenericCompactRenderedString (entry, depth = null) {
+		if (entry.header != null) depth = Math.max(0, entry.header - 1);
+		if (depth == null) depth = 0;
+
 		return `
 			<tr><td colspan="6" class="pb-2">
 			${Renderer.get().setFirstSection(true).render(entry, depth)}
@@ -15176,15 +15238,14 @@ Renderer.getRollableRow._handleInfiniteOpts = function (row, opts) {
 };
 
 Renderer.initLazyImageLoaders = function () {
-	const images = document.querySelectorAll(`img[data-src]`);
+	const images = document.querySelectorAll(`img[${Renderer.utils.lazy.ATTR_IMG_FINAL_SRC}]`);
 
 	Renderer.utils.lazy.destroyObserver({observerId: "images"});
 
 	const observer = Renderer.utils.lazy.getCreateObserver({
 		observerId: "images",
 		fnOnObserve: ({entry}) => {
-			const $img = $(entry.target);
-			$img.attr("src", $img.attr("data-src")).removeAttr("data-src");
+			Renderer.utils.lazy.mutFinalizeImgSrc(entry.target);
 		},
 	});
 

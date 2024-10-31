@@ -215,6 +215,15 @@
 					"progression": {
 						"1": 1
 					}
+				},
+				{
+					"name": "Epic Boon",
+					"category": [
+						"EB"
+					],
+					"progression": {
+						"19": 1
+					}
 				}
 			],
 			"startingProficiencies": {
@@ -248,9 +257,7 @@
 				]
 			},
 			"startingEquipment": {
-				"entries": [
-					"{@i Choose A, B, or C:} (A) {@item Chain Mail|XPHB}, {@item Greatsword|XPHB}, {@item Flail|XPHB}, 8 {@item Javelin|XPHB|Javelins}, {@item Dungeoneer's Pack|XPHB}, and 4 GP; (B) {@item Studded Leather Armor|XPHB}, {@item Scimitar|XPHB}, {@item Shortsword|XPHB}, {@item Longbow|XPHB}, {@item Arrows (20)|XPHB|20 Arrows}, {@item Quiver|XPHB}, {@item Dungeoneer's Pack|XPHB}, and 11 GP; or (C) 155 GP"
-				],
+				"additionalFromBackground": true,
 				"defaultData": [
 					{
 						"A": [
@@ -306,6 +313,9 @@
 							}
 						]
 					}
+				],
+				"entries": [
+					"{@i Choose A, B, or C:} (A) {@item Chain Mail|XPHB}, {@item Greatsword|XPHB}, {@item Flail|XPHB}, 8 {@item Javelin|XPHB|Javelins}, {@item Dungeoneer's Pack|XPHB}, and 4 GP; (B) {@item Studded Leather Armor|XPHB}, {@item Scimitar|XPHB}, {@item Shortsword|XPHB}, {@item Longbow|XPHB}, {@item Arrows (20)|XPHB|20 Arrows}, {@item Quiver|XPHB}, {@item Dungeoneer's Pack|XPHB}, and 11 GP; or (C) 155 GP"
 				]
 			},
 			"multiclassing": {
@@ -4938,7 +4948,7 @@
 			"level": 15,
 			"header": 2,
 			"entries": [
-				"When you use your {@variantrule Action|XPHB} Surge, you can teleport up to 30 feet to an unoccupied space you can see. You can teleport before or after the additional action."
+				"When you use your Action Surge, you can teleport up to 30 feet to an unoccupied space you can see. You can teleport before or after the additional action."
 			]
 		},
 		{
@@ -4982,9 +4992,6 @@
 			"subclassShortName": "Psi Warrior",
 			"subclassSource": "XPHB",
 			"level": 3,
-			"consumes": {
-				"name": "Psionic Energy Die"
-			},
 			"entries": [
 				"You harbor a wellspring of psionic energy within yourself. It is represented by your Psionic Energy Dice, which fuel powers you have from this subclass. The Psi Warrior Energy Dice table shows the die size and number of these dice you have when you reach certain Fighter levels.",
 				{
@@ -5036,32 +5043,86 @@
 				"Any features in this subclass that use a Psionic Energy Die use only the dice from this subclass. Some of your powers expend the Psionic Energy Die, as specified in a power's description, and you can't use a power if it requires you to use a die when all your Psionic Energy Dice are expended.",
 				"You regain one of your expended Psionic Energy Dice when you finish a {@variantrule Short Rest|XPHB}, and you regain all of them when you finish a {@variantrule Long Rest|XPHB}.",
 				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"name": "Protective Field",
-							"entries": [
-								"When you or another creature you can see within 30 feet of you takes damage, you can take a {@variantrule Reaction|XPHB} to expend one Psionic Energy Die, roll the die, and reduce the damage taken by the number rolled plus your Intelligence modifier (minimum reduction of 1), as you create a momentary shield of telekinetic force."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Psionic Strike",
-							"entries": [
-								"You can propel your weapons with psionic force. Once on each of your turns, immediately after you hit a target within 30 feet of yourself with an attack and deal damage to it with a weapon, you can expend one Psionic Energy Die, rolling it and dealing Force damage to the target equal to the number rolled plus your Intelligence modifier."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Telekinetic Movement",
-							"entries": [
-								"You can move an object or a creature with your mind. As a {@action Magic|XPHB} action, choose one target you can see within 30 feet of yourself; the target must be a loose object that is Large or smaller or one willing creature other than you. You transport the target up to 30 feet to an unoccupied space you can see. Alternatively, if the target is a Tiny object, you can transport it to or from your hand.",
-								"Once you take this action, you can't do so again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB} unless you expend a Psionic Energy Die (no action required) to restore your use of it."
-							]
-						}
-					]
+					"type": "refSubclassFeature",
+					"subclassFeature": "Protective Field|Fighter|XPHB|Psi Warrior|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Psionic Strike|Fighter|XPHB|Psi Warrior|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Telekinetic Movement|Fighter|XPHB|Psi Warrior|XPHB|3"
 				}
+			]
+		},
+		{
+			"name": "Protective Field",
+			"source": "XPHB",
+			"page": 98,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"consumes": {
+				"name": "Psionic Energy Die"
+			},
+			"entries": [
+				"When you or another creature you can see within 30 feet of you takes damage, you can take a {@variantrule Reaction|XPHB} to expend one Psionic Energy Die, roll the die, and reduce the damage taken by the number rolled plus your Intelligence modifier (minimum reduction of 1), as you create a momentary shield of telekinetic force."
+			]
+		},
+		{
+			"name": "Psionic Strike",
+			"source": "XPHB",
+			"page": 98,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"consumes": {
+				"name": "Psionic Energy Die"
+			},
+			"entries": [
+				"You can propel your weapons with psionic force. Once on each of your turns, immediately after you hit a target within 30 feet of yourself with an attack and deal damage to it with a weapon, you can expend one Psionic Energy Die, rolling it and dealing Force damage to the target equal to the number rolled plus your Intelligence modifier."
+			]
+		},
+		{
+			"name": "Telekinetic Movement",
+			"source": "XPHB",
+			"page": 98,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"consumes": {
+				"name": "Psionic Energy Die"
+			},
+			"entries": [
+				"You can move an object or a creature with your mind. As a {@action Magic|XPHB} action, choose one target you can see within 30 feet of yourself; the target must be a loose object that is Large or smaller or one willing creature other than you. You transport the target up to 30 feet to an unoccupied space you can see. Alternatively, if the target is a Tiny object, you can transport it to or from your hand.",
+				"Once you take this action, you can't do so again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB} unless you expend a Psionic Energy Die (no action required) to restore your use of it."
+			]
+		},
+		{
+			"name": "Psi-Powered Leap",
+			"source": "XPHB",
+			"page": 99,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "XPHB",
+			"level": 7,
+			"header": 2,
+			"consumes": {
+				"name": "Psionic Energy Die"
+			},
+			"entries": [
+				"As a {@variantrule Bonus Action|XPHB}, you gain a {@variantrule Fly Speed|XPHB} equal to twice your {@variantrule Speed|XPHB} until the end of the current turn. Once you take this {@variantrule Bonus Action|XPHB}, you can't do so again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB} unless you expend a Psionic Energy Die (no action required) to restore your use of it."
 			]
 		},
 		{
@@ -5077,24 +5138,27 @@
 			"entries": [
 				"You have mastered new ways to use your telekinetic abilities, detailed below.",
 				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"name": "Psi-Powered Leap",
-							"entries": [
-								"As a {@variantrule Bonus Action|XPHB}, you gain a {@variantrule Fly Speed|XPHB} equal to twice your {@variantrule Speed|XPHB} until the end of the current turn. Once you take this {@variantrule Bonus Action|XPHB}, you can't do so again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB} unless you expend a Psionic Energy Die (no action required) to restore your use of it."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Telekinetic Thrust",
-							"entries": [
-								"When you deal damage to a target with your Psionic Strike, you can force the target to make a Strength saving throw ({@dc 8} plus your Intelligence modifier and {@variantrule Proficiency|XPHB} Bonus). On a failed save, you can give the target the {@condition Prone|XPHB} condition or transport it up to 10 feet horizontally."
-							]
-						}
-					]
+					"type": "refSubclassFeature",
+					"subclassFeature": "Psi-Powered Leap|Fighter|XPHB|Psi Warrior|XPHB|7"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Telekinetic Thrust|Fighter|XPHB|Psi Warrior|XPHB|7"
 				}
+			]
+		},
+		{
+			"name": "Telekinetic Thrust",
+			"source": "XPHB",
+			"page": 99,
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "XPHB",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"When you deal damage to a target with your Psionic Strike, you can force the target to make a Strength saving throw ({@dc 8} plus your Intelligence modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus}). On a failed save, you can give the target the {@condition Prone|XPHB} condition or transport it up to 10 feet horizontally."
 			]
 		},
 		{
@@ -5107,6 +5171,9 @@
 			"subclassSource": "XPHB",
 			"level": 10,
 			"header": 2,
+			"consumes": {
+				"name": "Psionic Energy Die"
+			},
 			"entries": [
 				"You have {@variantrule Resistance|XPHB} to Psychic damage. Moreover, if you start your turn with the {@condition Charmed|XPHB} or {@condition Frightened|XPHB} condition, you can expend a Psionic Energy Die (no action required) and end every effect on yourself giving you those conditions."
 			]
@@ -5121,6 +5188,9 @@
 			"subclassSource": "XPHB",
 			"level": 15,
 			"header": 2,
+			"consumes": {
+				"name": "Psionic Energy Die"
+			},
 			"entries": [
 				"You can shield yourself and others with telekinetic force. As a {@variantrule Bonus Action|XPHB}, you can choose creatures, including yourself, within 30 feet of yourself, up to a number of creatures equal to your Intelligence modifier (minimum of one creature). Each of the chosen creatures has {@variantrule Cover|XPHB|Half Cover} for 1 minute or until you have the {@condition Incapacitated|XPHB} condition.",
 				"Once you use this feature, you can't do so again until you finish a {@variantrule Long Rest|XPHB} unless you expend a Psionic Energy Die (no action required) to restore your use of it."
@@ -5136,6 +5206,9 @@
 			"subclassSource": "XPHB",
 			"level": 18,
 			"header": 2,
+			"consumes": {
+				"name": "Psionic Energy Die"
+			},
 			"entries": [
 				"You always have the {@spell Telekinesis|XPHB} spell prepared. With this feature, you can cast it without a spell slot or components, and your spellcasting ability for it is Intelligence. On each of your turns while you maintain {@status Concentration|XPHB} on it, including the turn when you cast it, you can make one attack with a weapon as a {@variantrule Bonus Action|XPHB}.",
 				"Once you cast the spell with this feature, you can't do so in this way again until you finish a {@variantrule Long Rest|XPHB} unless you expend a Psionic Energy Die (no action required) to restore your use of it."

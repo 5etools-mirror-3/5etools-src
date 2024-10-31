@@ -462,6 +462,17 @@
 			],
 			"spellcastingAbility": "wis",
 			"casterProgression": "full",
+			"featProgression": [
+				{
+					"name": "Epic Boon",
+					"category": [
+						"EB"
+					],
+					"progression": {
+						"19": 1
+					}
+				}
+			],
 			"startingProficiencies": {
 				"armor": [
 					"light"
@@ -507,9 +518,7 @@
 				]
 			},
 			"startingEquipment": {
-				"entries": [
-					"{@i Choose A or B:} (A) {@item Leather Armor|XPHB}, 2 {@item Dagger|XPHB|Daggers}, {@item Shortsword|XPHB}, {@item Shortbow|XPHB}, {@item Arrows (20)|XPHB|20 Arrows}, {@item Quiver|XPHB}, {@item Thieves' Tools|XPHB}, {@item Burglar's Pack|XPHB}, and 8 GP; or (B) 100 GP"
-				],
+				"additionalFromBackground": true,
 				"defaultData": [
 					{
 						"A": [
@@ -548,6 +557,9 @@
 							}
 						]
 					}
+				],
+				"entries": [
+					"{@i Choose A or B:} (A) {@item Leather Armor|XPHB}, 2 {@item Dagger|XPHB|Daggers}, {@item Shortsword|XPHB}, {@item Shortbow|XPHB}, {@item Arrows (20)|XPHB|20 Arrows}, {@item Quiver|XPHB}, {@item Thieves' Tools|XPHB}, {@item Burglar's Pack|XPHB}, and 8 GP; or (B) 100 GP"
 				]
 			},
 			"multiclassing": {
@@ -4004,23 +4016,12 @@
 				"Any features in this subclass that use a Psionic Energy Die use only the dice from this subclass. Some of your powers expend a Psionic Energy Die, as specified in a power's description, and you can't use a power if it requires you to use a die when your Psionic Energy Dice are all expended.",
 				"You regain one of your expended Psionic Energy Dice when you finish a {@variantrule Short Rest|XPHB}, and you regain all of them when you finish a {@variantrule Long Rest|XPHB}.",
 				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"name": "Psi-Bolstered Knack",
-							"entries": [
-								"If you fail an ability check using a skill or tool with which you have proficiency, you can roll one Psionic Energy Die and add the number rolled to the check, potentially turning failure into success. The die is expended only if the roll then succeeds."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Psychic Whispers",
-							"entries": [
-								"You can establish telepathic communication between yourself and others. As a {@action Magic|XPHB} action, choose one or more creatures you can see, up to a number of creatures equal to your {@variantrule Proficiency|XPHB} Bonus, and then roll one Psionic Energy Die. For a number of hours equal to the number rolled, the chosen creatures can speak telepathically with you, and you can speak telepathically with them. To send or receive a message (no action required), you and the other creature must be within 1 mile of each other. A creature can end the telepathic connection at any time (no action required)."
-							]
-						}
-					]
+					"type": "refSubclassFeature",
+					"subclassFeature": "Psi-Bolstered Knack|Rogue|XPHB|Soulknife|XPHB|3"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Psychic Whispers|Rogue|XPHB|Soulknife|XPHB|3"
 				},
 				"The first time you use this power after each {@variantrule Long Rest|XPHB}, you don't expend the Psionic Energy Die. All other times you use the power, you expend the die."
 			]
@@ -4048,6 +4049,74 @@
 			]
 		},
 		{
+			"name": "Psi-Bolstered Knack",
+			"source": "XPHB",
+			"page": 135,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Soulknife",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"consumes": {
+				"name": "Psionic Energy Die"
+			},
+			"entries": [
+				"If you fail an ability check using a skill or tool with which you have proficiency, you can roll one Psionic Energy Die and add the number rolled to the check, potentially turning failure into success. The die is expended only if the roll then succeeds."
+			]
+		},
+		{
+			"name": "Psychic Whispers",
+			"source": "XPHB",
+			"page": 135,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Soulknife",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"consumes": {
+				"name": "Psionic Energy Die"
+			},
+			"entries": [
+				"You can establish telepathic communication between yourself and others. As a {@action Magic|XPHB} action, choose one or more creatures you can see, up to a number of creatures equal to your {@variantrule Proficiency|XPHB} Bonus, and then roll one Psionic Energy Die. For a number of hours equal to the number rolled, the chosen creatures can speak telepathically with you, and you can speak telepathically with them. To send or receive a message (no action required), you and the other creature must be within 1 mile of each other. A creature can end the telepathic connection at any time (no action required)."
+			]
+		},
+		{
+			"name": "Homing Strikes",
+			"source": "XPHB",
+			"page": 136,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Soulknife",
+			"subclassSource": "XPHB",
+			"level": 9,
+			"header": 2,
+			"consumes": {
+				"name": "Psionic Energy Die"
+			},
+			"entries": [
+				"If you make an attack roll with your {@item Psychic Blade|XPHB} and miss the target, you can roll one Psionic Energy Die and add the number rolled to the attack roll. If this causes the attack to hit, the die is expended."
+			]
+		},
+		{
+			"name": "Psychic Teleportation",
+			"source": "XPHB",
+			"page": 136,
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Soulknife",
+			"subclassSource": "XPHB",
+			"level": 9,
+			"header": 2,
+			"consumes": {
+				"name": "Psionic Energy Die"
+			},
+			"entries": [
+				"As a {@variantrule Bonus Action|XPHB}, you manifest a {@item Psychic Blade|XPHB}, expend one Psionic Energy Die and roll it, and throw the blade at an unoccupied space you can see up to a number of feet away equal to 10 times the number rolled. You then teleport to that space, and the blade vanishes."
+			]
+		},
+		{
 			"name": "Soul Blades",
 			"source": "XPHB",
 			"page": 136,
@@ -4060,18 +4129,12 @@
 			"entries": [
 				"You can now use the following powers with your Psychic Blades.",
 				{
-					"type": "entries",
-					"name": "Homing Strikes",
-					"entries": [
-						"If you make an attack roll with your {@item Psychic Blade|XPHB} and miss the target, you can roll one Psionic Energy Die and add the number rolled to the attack roll. If this causes the attack to hit, the die is expended."
-					]
+					"type": "refSubclassFeature",
+					"subclassFeature": "Homing Strikes|Rogue|XPHB|Soulknife|XPHB|9"
 				},
 				{
-					"type": "entries",
-					"name": "Psychic Teleportation",
-					"entries": [
-						"As a {@variantrule Bonus Action|XPHB}, you manifest a {@item Psychic Blade|XPHB}, expend one Psionic Energy Die and roll it, and throw the blade at an unoccupied space you can see up to a number of feet away equal to 10 times the number rolled. You then teleport to that space, and the blade vanishes."
-					]
+					"type": "refSubclassFeature",
+					"subclassFeature": "Psychic Teleportation|Rogue|XPHB|Soulknife|XPHB|9"
 				}
 			]
 		},
@@ -4085,6 +4148,9 @@
 			"subclassSource": "XPHB",
 			"level": 13,
 			"header": 2,
+			"consumes": {
+				"name": "Psionic Energy Die"
+			},
 			"entries": [
 				"You can weave a veil of psychic static to mask yourself. As a {@action Magic|XPHB} action, you gain the {@condition Invisible|XPHB} condition for 1 hour or until you dismiss this effect (no action required). This invisibility ends early immediately after you deal damage to a creature or you force a creature to make a saving throw.",
 				"Once you use this feature, you can't do so again until you finish a {@variantrule Long Rest|XPHB} unless you expend a Psionic Energy Die (no action required) to restore your use of it."

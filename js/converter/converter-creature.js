@@ -1947,12 +1947,20 @@ export class ConverterCreature extends ConverterBase {
 
 				let quantity = 1;
 				pt = pt
+					// "Two Javelins"
 					.replace(/^(?<quantityText>one|two|three|four|five|six|seven|eight|nine|ten)\s*/, (...m) => {
 						const {quantityText} = m.at(-1);
 						quantity = Parser.textToNumber(quantityText);
 						return "";
 					})
+					// "3 Javelins"
 					.replace(/^(?<quantityNumber>\d+)\s*/, (...m) => {
+						const {quantityNumber} = m.at(-1);
+						quantity = Number(quantityNumber);
+						return "";
+					})
+					// "Javelins (3)"
+					.replace(/\s+\((?<quantityNumber>\d+)\)$/, (...m) => {
 						const {quantityNumber} = m.at(-1);
 						quantity = Number(quantityNumber);
 						return "";

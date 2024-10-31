@@ -654,6 +654,17 @@
 				6,
 				6
 			],
+			"featProgression": [
+				{
+					"name": "Epic Boon",
+					"category": [
+						"EB"
+					],
+					"progression": {
+						"19": 1
+					}
+				}
+			],
 			"optionalfeatureProgression": [
 				{
 					"name": "Metamagic",
@@ -688,9 +699,7 @@
 				]
 			},
 			"startingEquipment": {
-				"entries": [
-					"{@i Choose A or B:} (A) {@item Spear|XPHB}, 2 {@item Dagger|XPHB|Daggers}, {@item Arcane Focus|XPHB} ({@item crystal|XPHB}), {@item Dungeoneer's Pack|XPHB}, and 28 GP; or (B) 50 GP"
-				],
+				"additionalFromBackground": true,
 				"defaultData": [
 					{
 						"A": [
@@ -717,6 +726,9 @@
 							}
 						]
 					}
+				],
+				"entries": [
+					"{@i Choose A or B:} (A) {@item Spear|XPHB}, 2 {@item Dagger|XPHB|Daggers}, {@item Arcane Focus|XPHB} ({@item crystal|XPHB}), {@item Dungeoneer's Pack|XPHB}, and 28 GP; or (B) 50 GP"
 				]
 			},
 			"multiclassing": {},
@@ -2961,6 +2973,10 @@
 			"className": "Sorcerer",
 			"classSource": "XPHB",
 			"level": 7,
+			"consumes": {
+				"name": "Sorcery Point",
+				"amount": 2
+			},
 			"entries": [
 				"If you have no uses of Innate Sorcery left, you can use it if you spend 2 Sorcery Points when you take the {@variantrule Bonus Action|XPHB} to activate it.",
 				"In addition, while your Innate Sorcery feature is active, you can use up to two of your {@filter Metamagic options|optionalfeatures|feature type=MM} on each spell you cast."
@@ -5203,6 +5219,10 @@
 			"subclassSource": "XPHB",
 			"level": 18,
 			"header": 2,
+			"consumes": {
+				"name": "Sorcery Point",
+				"amount": 5
+			},
 			"entries": [
 				"You can unleash a space-warping anomaly. As a {@action Magic|XPHB} action, you teleport to an unoccupied space you can see within 120 feet of yourself. Immediately after you disappear, each creature within 30 feet of the space you left must make a Strength saving throw against your spell save DC. On a failed save, a creature takes {@damage 3d10} Force damage and is pulled straight toward the space you left, ending in an unoccupied space as close to your former space as possible. On a successful save, the creature takes half as much damage only.",
 				"Once you use this feature, you can't do so again until you finish a {@variantrule Long Rest|XPHB} unless you spend 5 Sorcery Points (no action required) to restore your use of it."
@@ -5339,7 +5359,9 @@
 			"level": 6,
 			"header": 2,
 			"consumes": {
-				"name": "Sorcery Point"
+				"name": "Sorcery Point",
+				"amountMin": 1,
+				"amountMax": 5
 			},
 			"entries": [
 				"You can tap into the grand equation of existence to imbue a creature with a shimmering shield of order. As a {@action Magic|XPHB} action, you can expend 1 to 5 Sorcery Points to create a magical ward around yourself or another creature you can see within 30 feet of yourself. The ward is represented by a number of d8s equal to the number of Sorcery Points spent to create it. When the warded creature takes damage, it can expend a number of those dice, roll them, and reduce the damage taken by the total rolled on those dice.",
@@ -5356,6 +5378,10 @@
 			"subclassSource": "XPHB",
 			"level": 14,
 			"header": 2,
+			"consumes": {
+				"name": "Sorcery Point",
+				"amount": 5
+			},
 			"entries": [
 				"You gain the ability to align your consciousness with the endless calculations of Mechanus. As a {@variantrule Bonus Action|XPHB}, you can enter this state for 1 minute. For the duration, attack rolls against you can't benefit from {@variantrule Advantage|XPHB}, and whenever you make a {@variantrule D20 Test|XPHB}, you can treat a roll of 9 or lower on the {@dice d20} as a 10.",
 				"Once you use this feature, you can't use it again until you finish a {@variantrule Long Rest|XPHB} unless you spend 5 Sorcery Points (no action required) to restore your use of it."
@@ -5371,6 +5397,10 @@
 			"subclassSource": "XPHB",
 			"level": 18,
 			"header": 2,
+			"consumes": {
+				"name": "Sorcery Point",
+				"amount": 7
+			},
 			"entries": [
 				"You momentarily summon spirits of order to expunge disorder around you. As a {@action Magic|XPHB} action, you summon the spirits in a 30-foot {@variantrule Cube [Area of Effect]|XPHB|Cube} originating from you. The spirits look like modrons or other Constructs of your choice. The spirits are intangible and invulnerable, and they create the effects below within the {@variantrule Cube [Area of Effect]|XPHB|Cube} before vanishing. Once you use this action, you can't use it again until you finish a {@variantrule Long Rest|XPHB} unless you spend 7 Sorcery Points (no action required) to restore your use of it.",
 				{
@@ -5507,6 +5537,10 @@
 			"subclassSource": "XPHB",
 			"level": 14,
 			"header": 2,
+			"consumes": {
+				"name": "Sorcery Point",
+				"amount": 3
+			},
 			"entries": [
 				"As a {@variantrule Bonus Action|XPHB}, you can cause draconic wings to appear on your back. The wings last for 1 hour or until you dismiss them (no action required). For the duration, you have a {@variantrule Fly Speed|XPHB} of 60 feet.",
 				"Once you use this feature, you can't use it again until you finish a {@variantrule Long Rest|XPHB} unless you spend 3 Sorcery Points (no action required) to restore your use of it."
@@ -5707,8 +5741,7 @@
 			"level": 6,
 			"header": 2,
 			"consumes": {
-				"name": "Sorcery Point",
-				"amount": 1
+				"name": "Sorcery Point"
 			},
 			"entries": [
 				"You have the ability to twist fate using your wild magic. Immediately after another creature you can see rolls the {@dice d20} for a {@variantrule D20 Test|XPHB}, you can take a {@variantrule Reaction|XPHB} and spend 1 Sorcery Point to roll {@dice 1d4} and apply the number rolled as a bonus or penalty (your choice) to the {@dice d20} roll."
