@@ -1,4 +1,7 @@
 import {StatGenUi} from "./statgen/statgen-ui.js";
+import {VetoolsConfig} from "./utils-config/utils-config-config.js";
+import {UtilsEntityBackground} from "./utils/utils-entity-background.js";
+import {UtilsEntityRace} from "./utils/utils-entity-race.js";
 
 class StatGenPage {
 	constructor () {
@@ -107,34 +110,48 @@ class StatGenPage {
 	}
 
 	async _pLoadRaces () {
-		return [
-			...(await DataUtil.race.loadJSON()).race,
-			...((await DataUtil.race.loadPrerelease({isAddBaseRaces: false})).race || []),
-			...((await DataUtil.race.loadBrew({isAddBaseRaces: false})).race || []),
-		]
-			.filter(it => {
-				const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_RACES](it);
-				return !ExcludeUtil.isExcluded(hash, "race", it.source);
-			});
+		const cpyRaces = MiscUtil.copyFast(
+			[
+				...(await DataLoader.pCacheAndGetAllSite(UrlUtil.PG_RACES)),
+				...(await DataLoader.pCacheAndGetAllPrerelease(UrlUtil.PG_RACES)),
+				...(await DataLoader.pCacheAndGetAllBrew(UrlUtil.PG_RACES)),
+			]
+				.filter(it => {
+					const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_RACES](it);
+					return !ExcludeUtil.isExcluded(hash, "race", it.source);
+				}),
+		);
+
+		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
+		cpyRaces.forEach(ent => UtilsEntityRace.mutMigrateForVersion(ent, {styleHint}));
+
+		return cpyRaces;
 	}
 
 	async _pLoadBackgrounds () {
-		return [
-			...(await DataUtil.loadJSON("data/backgrounds.json")).background,
-			...((await PrereleaseUtil.pGetBrewProcessed()).background || []),
-			...((await BrewUtil2.pGetBrewProcessed()).background || []),
-		]
-			.filter(it => {
-				const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BACKGROUNDS](it);
-				return !ExcludeUtil.isExcluded(hash, "background", it.source);
-			});
+		const cpyBackgrounds = MiscUtil.copyFast(
+			[
+				...(await DataLoader.pCacheAndGetAllSite(UrlUtil.PG_BACKGROUNDS)),
+				...(await DataLoader.pCacheAndGetAllPrerelease(UrlUtil.PG_BACKGROUNDS)),
+				...(await DataLoader.pCacheAndGetAllBrew(UrlUtil.PG_BACKGROUNDS)),
+			]
+				.filter(it => {
+					const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BACKGROUNDS](it);
+					return !ExcludeUtil.isExcluded(hash, "background", it.source);
+				}),
+		);
+
+		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
+		cpyBackgrounds.forEach(ent => UtilsEntityBackground.mutMigrateForVersion(ent, {styleHint}));
+
+		return cpyBackgrounds;
 	}
 
 	async _pLoadFeats () {
 		return [
-			...(await DataUtil.loadJSON("data/feats.json")).feat,
-			...((await PrereleaseUtil.pGetBrewProcessed()).feat || []),
-			...((await BrewUtil2.pGetBrewProcessed()).feat || []),
+			...(await DataLoader.pCacheAndGetAllSite(UrlUtil.PG_FEATS)),
+			...(await DataLoader.pCacheAndGetAllPrerelease(UrlUtil.PG_FEATS)),
+			...(await DataLoader.pCacheAndGetAllBrew(UrlUtil.PG_FEATS)),
 		]
 			.filter(it => {
 				const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_FEATS](it);
