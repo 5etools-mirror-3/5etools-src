@@ -1,6 +1,6 @@
 // region Based on `Charactermancer_AdditionalSpellsUtil`
 
-import {UtilsAdditionalSpells} from "../utils-additionalspells.js";
+import {UtilsAdditionalSpells} from "../utils/utils-additionalspells.js";
 
 class _SpellSourceUtil {
 	static _getCleanUid (uid) {
