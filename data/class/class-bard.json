@@ -654,7 +654,6 @@
 			],
 			"additionalSpells": [
 				{
-					"name": "Magical Secrets",
 					"expanded": {
 						"s5": [
 							{
@@ -681,6 +680,23 @@
 								"all": "level=9|class=Cleric;Druid;Wizard"
 							}
 						]
+					},
+					"prepared": {
+						"20": [
+							"power word heal|xphb",
+							"power word kill|xphb"
+						]
+					}
+				}
+			],
+			"featProgression": [
+				{
+					"name": "Epic Boon",
+					"category": [
+						"EB"
+					],
+					"progression": {
+						"19": 1
 					}
 				}
 			],
@@ -706,9 +722,7 @@
 				]
 			},
 			"startingEquipment": {
-				"entries": [
-					"{@i Choose A or B:} (A) {@item Leather Armor|XPHB}, 2 {@item Dagger|XPHB}, {@item Musical Instrument|XPHB} of your choice, {@item Entertainer's Pack|XPHB}, 19 GP; or (B) 90 GP"
-				],
+				"additionalFromBackground": true,
 				"defaultData": [
 					{
 						"A": [
@@ -735,6 +749,9 @@
 							}
 						]
 					}
+				],
+				"entries": [
+					"{@i Choose A or B:} (A) {@item Leather Armor|XPHB}, 2 {@item Dagger|XPHB}, {@item Musical Instrument|XPHB} of your choice, {@item Entertainer's Pack|XPHB}, 19 GP; or (B) 90 GP"
 				]
 			},
 			"multiclassing": {
@@ -3860,6 +3877,48 @@
 			]
 		},
 		{
+			"name": "Agile Strikes",
+			"source": "XPHB",
+			"page": 64,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Dance",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"entries": [
+				"When you expend a use of your Bardic Inspiration as part of an action, a {@variantrule Bonus Action|XPHB}, or a {@variantrule Reaction|XPHB}, you can make one {@variantrule Unarmed Strike|XPHB} as part of that action, {@variantrule Bonus Action|XPHB}, or {@variantrule Reaction|XPHB}."
+			]
+		},
+		{
+			"name": "Bardic Damage",
+			"source": "XPHB",
+			"page": 64,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Dance",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"entries": [
+				"You can use Dexterity instead of Strength for the attack rolls of your Unarmed Strikes. When you deal damage with an {@variantrule Unarmed Strike|XPHB}, you can deal Bludgeoning damage equal to a roll of your Bardic Inspiration die plus your Dexterity modifier, instead of the strike's normal damage. This roll doesn't expend the die."
+			]
+		},
+		{
+			"name": "Dance Virtuoso",
+			"source": "XPHB",
+			"page": 64,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Dance",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"entries": [
+				"You have {@variantrule Advantage|XPHB} on any Charisma ({@skill Performance|XPHB}) check you make that involves you dancing."
+			]
+		},
+		{
 			"name": "Dazzling Footwork",
 			"source": "XPHB",
 			"page": 64,
@@ -3872,33 +3931,35 @@
 			"entries": [
 				"While you aren't wearing armor or wielding a {@item Shield|XPHB}, you gain the following benefits.",
 				{
-					"type": "entries",
-					"name": "Dance Virtuoso",
-					"entries": [
-						"You have {@variantrule Advantage|XPHB} on any Charisma ({@skill Performance|XPHB}) check you make that involves you dancing."
-					]
+					"type": "refSubclassFeature",
+					"subclassFeature": "Dance Virtuoso|Bard|XPHB|Dance|XPHB|3"
 				},
 				{
-					"type": "entries",
-					"name": "Unarmored Defense",
-					"entries": [
-						"Your base {@variantrule Armor Class|XPHB} equals 10 plus your Dexterity and Charisma modifiers."
-					]
+					"type": "refSubclassFeature",
+					"subclassFeature": "Unarmored Defense|Bard|XPHB|Dance|XPHB|3"
 				},
 				{
-					"type": "entries",
-					"name": "Agile Strikes",
-					"entries": [
-						"When you expend a use of your Bardic Inspiration as part of an action, a {@variantrule Bonus Action|XPHB}, or a {@variantrule Reaction|XPHB}, you can make one {@variantrule Unarmed Strike|XPHB} as part of that action, {@variantrule Bonus Action|XPHB}, or {@variantrule Reaction|XPHB}."
-					]
+					"type": "refSubclassFeature",
+					"subclassFeature": "Agile Strikes|Bard|XPHB|Dance|XPHB|3"
 				},
 				{
-					"type": "entries",
-					"name": "Bardic Damage",
-					"entries": [
-						"You can use Dexterity instead of Strength for the attack rolls of your Unarmed Strikes. When you deal damage with an {@variantrule Unarmed Strike|XPHB}, you can deal Bludgeoning damage equal to a roll of your Bardic Inspiration die plus your Dexterity modifier, instead of the strike's normal damage. This roll doesn't expend the die."
-					]
+					"type": "refSubclassFeature",
+					"subclassFeature": "Bardic Damage|Bard|XPHB|Dance|XPHB|3"
 				}
+			]
+		},
+		{
+			"name": "Unarmored Defense",
+			"source": "XPHB",
+			"page": 64,
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Dance",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"entries": [
+				"Your base {@variantrule Armor Class|XPHB} equals 10 plus your Dexterity and Charisma modifiers."
 			]
 		},
 		{
@@ -4169,7 +4230,7 @@
 			"level": 3,
 			"header": 2,
 			"entries": [
-				"You gain proficiency with Martial weapons and training with Medium armor and Shields.",
+				"You gain proficiency with {@filter Martial weapons|items|type=martial weapon} and training with {@filter Medium armor|items|type=Medium Armor} and {@item Shield|XPHB|Shields}.",
 				"In addition, you can use a Simple or Martial weapon as a {@variantrule Spellcasting Focus|XPHB} to cast spells from your {@filter Bard spell list|spells|class=Bard}."
 			]
 		},

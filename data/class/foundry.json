@@ -128,6 +128,79 @@
 					"title": "Infusions Known"
 				}
 			]
+		},
+		{
+			"name": "Sorcerer",
+			"source": "XPHB",
+			"advancement": [
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"identifier": "points",
+						"type": "number",
+						"scale": {
+							"2": {
+								"value": 2
+							},
+							"3": {
+								"value": 3
+							},
+							"4": {
+								"value": 4
+							},
+							"5": {
+								"value": 5
+							},
+							"6": {
+								"value": 6
+							},
+							"7": {
+								"value": 7
+							},
+							"8": {
+								"value": 8
+							},
+							"9": {
+								"value": 9
+							},
+							"10": {
+								"value": 10
+							},
+							"11": {
+								"value": 11
+							},
+							"12": {
+								"value": 12
+							},
+							"13": {
+								"value": 13
+							},
+							"14": {
+								"value": 14
+							},
+							"15": {
+								"value": 15
+							},
+							"16": {
+								"value": 16
+							},
+							"17": {
+								"value": 17
+							},
+							"18": {
+								"value": 18
+							},
+							"19": {
+								"value": 19
+							},
+							"20": {
+								"value": 20
+							}
+						}
+					},
+					"title": "Sorcery Points"
+				}
+			]
 		}
 	],
 	"subclass": [
@@ -1103,6 +1176,394 @@
 					}
 				]
 			}
+		},
+		{
+			"name": "Primal Knowledge",
+			"source": "XPHB",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 3,
+			"entryData": {
+				"skillProficiencies": [
+					{
+						"choose": {
+							"from": [
+								"animal handling",
+								"athletics",
+								"intimidation",
+								"nature",
+								"perception",
+								"survival"
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			"name": "Epic Boon",
+			"source": "XPHB",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 19,
+			"isIgnored": true
+		},
+		{
+			"name": "Expertise",
+			"source": "XPHB",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"level": 2,
+			"entryData": {
+				"expertise": [
+					{
+						"anyProficientSkill": 2
+					}
+				]
+			}
+		},
+		{
+			"name": "Expertise",
+			"source": "XPHB",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"level": 9,
+			"entryData": {
+				"expertise": [
+					{
+						"anyProficientSkill": 2
+					}
+				]
+			}
+		},
+		{
+			"name": "Epic Boon",
+			"source": "XPHB",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"level": 19,
+			"isIgnored": true
+		},
+		{
+			"name": "Protector",
+			"source": "XPHB",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"level": 1,
+			"entryData": {
+				"weaponProficiencies": [
+					{
+						"martial": true
+					}
+				],
+				"armorProficiencies": [
+					{
+						"heavy": true
+					}
+				]
+			}
+		},
+		{
+			"name": "Thaumaturge",
+			"source": "XPHB",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"level": 1,
+			"entryData": {
+				"additionalSpells": [
+					{
+						"known": {
+							"_": [
+								{
+									"choose": "level=0|class=Cleric",
+									"count": 1
+								}
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			"name": "Epic Boon",
+			"source": "XPHB",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"level": 19,
+			"isIgnored": true
+		},
+		{
+			"name": "Druidic",
+			"source": "XPHB",
+			"className": "Druid",
+			"classSource": "XPHB",
+			"level": 1,
+			"entryData": {
+				"languageProficiencies": [
+					{
+						"druidic": true
+					}
+				]
+			}
+		},
+		{
+			"name": "Magician",
+			"source": "XPHB",
+			"className": "Druid",
+			"classSource": "XPHB",
+			"level": 1,
+			"entryData": {
+				"weaponProficiencies": [
+					{
+						"martial": true
+					}
+				],
+				"armorProficiencies": [
+					{
+						"medium": true
+					}
+				]
+			}
+		},
+		{
+			"name": "Warden",
+			"source": "XPHB",
+			"className": "Druid",
+			"classSource": "XPHB",
+			"level": 1,
+			"entryData": {
+				"additionalSpells": [
+					{
+						"known": {
+							"_": [
+								{
+									"choose": "level=0|class=Druid",
+									"count": 1
+								}
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			"name": "Epic Boon",
+			"source": "XPHB",
+			"className": "Druid",
+			"classSource": "XPHB",
+			"level": 19,
+			"isIgnored": true
+		},
+		{
+			"name": "Epic Boon",
+			"source": "XPHB",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 19,
+			"isIgnored": true
+		},
+		{
+			"name": "Epic Boon",
+			"source": "XPHB",
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 19,
+			"isIgnored": true
+		},
+		{
+			"name": "Fighting Style",
+			"source": "XPHB",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"level": 2,
+			"isIgnored": true
+		},
+		{
+			"name": "Epic Boon",
+			"source": "XPHB",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"level": 19,
+			"isIgnored": true
+		},
+		{
+			"name": "Deft Explorer",
+			"source": "XPHB",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 2,
+			"entryData": {
+				"languageProficiencies": [
+					{
+						"any": 2
+					}
+				],
+				"expertise": [
+					{
+						"anyProficientSkill": 2
+					}
+				]
+			}
+		},
+		{
+			"name": "Fighting Style",
+			"source": "XPHB",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 2,
+			"isIgnored": true
+		},
+		{
+			"name": "Expertise",
+			"source": "XPHB",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 9,
+			"entryData": {
+				"expertise": [
+					{
+						"anyProficientSkill": 2
+					}
+				]
+			}
+		},
+		{
+			"name": "Epic Boon",
+			"source": "XPHB",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 19,
+			"isIgnored": true
+		},
+		{
+			"name": "Expertise",
+			"source": "XPHB",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 1,
+			"entryData": {
+				"expertise": [
+					{
+						"anyProficientSkill": 2
+					}
+				]
+			}
+		},
+		{
+			"name": "Thieves' Cant",
+			"source": "XPHB",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 1,
+			"entryData": {
+				"languageProficiencies": [
+					{
+						"thieves' cant": true
+					}
+				]
+			}
+		},
+		{
+			"name": "Expertise",
+			"source": "XPHB",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 6,
+			"entryData": {
+				"expertise": [
+					{
+						"anyProficientSkill": 2
+					}
+				]
+			}
+		},
+		{
+			"name": "Slippery Mind",
+			"source": "XPHB",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 15,
+			"entryData": {
+				"savingThrowProficiencies": [
+					{
+						"wis": true,
+						"cha": true
+					}
+				]
+			}
+		},
+		{
+			"name": "Epic Boon",
+			"source": "XPHB",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 19,
+			"isIgnored": true
+		},
+		{
+			"name": "Font of Magic",
+			"source": "XPHB",
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"level": 2,
+			"system": {
+				"uses.per": "lr",
+				"uses.max": "@scale.sorcerer.points"
+			}
+		},
+		{
+			"name": "Metamagic Options",
+			"source": "XPHB",
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"level": 2,
+			"isIgnored": true
+		},
+		{
+			"name": "Epic Boon",
+			"source": "XPHB",
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"level": 19,
+			"isIgnored": true
+		},
+		{
+			"name": "Eldritch Invocation Options",
+			"source": "XPHB",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"level": 1,
+			"isIgnored": true
+		},
+		{
+			"name": "Epic Boon",
+			"source": "XPHB",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"level": 19,
+			"isIgnored": true
+		},
+		{
+			"name": "Scholar",
+			"source": "XPHB",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"level": 2,
+			"entryData": {
+				"expertise": [
+					{
+						"anyProficientSkill": 1
+					}
+				]
+			}
+		},
+		{
+			"name": "Epic Boon",
+			"source": "XPHB",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"level": 19,
+			"isIgnored": true
 		}
 	],
 	"subclassFeature": [
@@ -4851,6 +5312,301 @@
 					{
 						"anyArtisansTool": 1
 					}
+				]
+			}
+		},
+		{
+			"name": "Bonus Proficiencies",
+			"source": "XPHB",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Lore",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entryData": {
+				"skillProficiencies": [
+					{
+						"any": 3
+					}
+				]
+			}
+		},
+		{
+			"name": "Martial Training",
+			"source": "XPHB",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Valor",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entryData": {
+				"weaponProficiencies": [
+					{
+						"martial": true
+					}
+				],
+				"armorProficiencies": [
+					{
+						"medium": true,
+						"shield": true
+					}
+				]
+			}
+		},
+		{
+			"name": "Nature's Ward",
+			"source": "XPHB",
+			"className": "Druid",
+			"classSource": "XPHB",
+			"subclassShortName": "Land",
+			"subclassSource": "XPHB",
+			"level": 10,
+			"entryData": {
+				"resist": [
+					{
+						"choose": {
+							"from": [
+								"fire",
+								"cold",
+								"lightning",
+								"poison"
+							]
+						}
+					}
+				],
+				"immune": [
+					"poison"
+				]
+			}
+		},
+		{
+			"name": "Combat Superiority",
+			"source": "XPHB",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entryData": {
+				"resources": [
+					{
+						"name": "Superiority Die",
+						"type": "dicePool",
+						"recharge": "restShort",
+						"count": "floor((<$level$> + 1) / 8) + 4",
+						"number": 1,
+						"faces": "8 + (sign(ceil((<$level$> - 2) / 8) - 1) * 2)"
+					}
+				]
+			}
+		},
+		{
+			"name": "Maneuver Options",
+			"source": "XPHB",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Battle Master",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"isIgnored": true
+		},
+		{
+			"name": "Psionic Power",
+			"source": "XPHB",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entryData": {
+				"resources": [
+					{
+						"name": "Psionic Energy Die",
+						"type": "dicePool",
+						"recharge": "restLong",
+						"count": "2 * PB",
+						"number": 1,
+						"faces": "(6 + ((ceil((<$level$> + 2) / 6) - 1) * 2))"
+					}
+				]
+			}
+		},
+		{
+			"name": "Guarded Mind",
+			"source": "XPHB",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "XPHB",
+			"level": 10,
+			"entryData": {
+				"resist": [
+					"psychic"
+				]
+			}
+		},
+		{
+			"name": "Otherworldly Glamour",
+			"source": "XPHB",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Fey Wanderer",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entryData": {
+				"skillProficiencies": [
+					{
+						"choose": {
+							"from": [
+								"deception",
+								"performance",
+								"persuasion"
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			"name": "Umbral Sight",
+			"source": "XPHB",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Gloom Stalker",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"actorTokenMod": {
+				"_": [
+					{
+						"mode": "conditionals",
+						"conditionals": [
+							{
+								"condition": "!PLUT_CONTEXT?.actor?.system?.token?.dimSight",
+								"mod": {
+									"dimSight": [
+										{
+											"mode": "set",
+											"value": 60
+										}
+									]
+								}
+							},
+							{
+								"mod": {
+									"dimSight": [
+										{
+											"mode": "scalarAdd",
+											"scalar": 60
+										}
+									]
+								}
+							}
+						]
+					}
+				]
+			}
+		},
+		{
+			"name": "Iron Mind",
+			"source": "XPHB",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Gloom Stalker",
+			"subclassSource": "XPHB",
+			"level": 7,
+			"entryData": {
+				"savingThrowProficiencies": [
+					{
+						"wis": true
+					},
+					{
+						"choose": {
+							"from": [
+								"int",
+								"cha"
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			"name": "Assassin's Tools",
+			"source": "XPHB",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Assassin",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entryData": {
+				"toolProficiencies": [
+					{
+						"disguise kit": true,
+						"poisoner's kit": true
+					}
+				]
+			}
+		},
+		{
+			"name": "Psionic Power",
+			"source": "XPHB",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Soulknife",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"entryData": {
+				"resources": [
+					{
+						"name": "Psionic Energy Die",
+						"type": "dicePool",
+						"recharge": "restLong",
+						"count": "2 * PB",
+						"number": 1,
+						"faces": "(6 + (ceil((<$level$> + 2) / 6) - 1) * 2)"
+					}
+				]
+			}
+		},
+		{
+			"name": "Psychic Defenses",
+			"source": "XPHB",
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Aberrant",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"entryData": {
+				"resist": [
+					"psychic"
+				]
+			}
+		},
+		{
+			"name": "Radiant Soul",
+			"source": "XPHB",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Celestial",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"entryData": {
+				"resist": [
+					"radiant"
+				]
+			}
+		},
+		{
+			"name": "Thought Shield",
+			"source": "XPHB",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"subclassShortName": "Great Old One",
+			"subclassSource": "XPHB",
+			"level": 10,
+			"entryData": {
+				"resist": [
+					"psychic"
 				]
 			}
 		}

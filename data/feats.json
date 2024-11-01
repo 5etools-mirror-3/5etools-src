@@ -4492,6 +4492,182 @@
 						"You can take this feat more than once, but you must choose a different spell list each time."
 					]
 				}
+			],
+			"_versions": [
+				{
+					"name": "Magic Initiate; Cleric",
+					"source": "XPHB",
+					"_mod": {
+						"entries": [
+							{
+								"mode": "replaceArr",
+								"replace": "Two Cantrips",
+								"items": {
+									"name": "Two Cantrips",
+									"entries": [
+										"You learn two cantrips of your choice from the {@filter Cleric|spells|level=0;1|class=Cleric} spell list. Intelligence, Wisdom, or Charisma is your spellcasting ability for this feat's spells (choose when you select this feat)."
+									]
+								}
+							},
+							{
+								"mode": "replaceArr",
+								"replace": "Level 1 Spell",
+								"items": {
+									"name": "Level 1 Spell",
+									"entries": [
+										"Choose a level 1 spell from the {@filter Cleric|spells|level=0;1|class=Cleric} spell list. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. You can also cast the spell using any spell slots you have."
+									]
+								}
+							}
+						]
+					},
+					"additionalSpells": [
+						{
+							"ability": {
+								"choose": [
+									"int",
+									"wis",
+									"cha"
+								]
+							},
+							"innate": {
+								"_": {
+									"daily": {
+										"1": [
+											{
+												"choose": "level=1|class=Cleric"
+											}
+										]
+									}
+								}
+							},
+							"known": {
+								"_": [
+									{
+										"choose": "level=0|class=Cleric",
+										"count": 2
+									}
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Magic Initiate; Druid",
+					"source": "XPHB",
+					"_mod": {
+						"entries": [
+							{
+								"mode": "replaceArr",
+								"replace": "Two Cantrips",
+								"items": {
+									"name": "Two Cantrips",
+									"entries": [
+										"You learn two cantrips of your choice from the {@filter Druid|spells|level=0;1|class=Druid} spell list. Intelligence, Wisdom, or Charisma is your spellcasting ability for this feat's spells (choose when you select this feat)."
+									]
+								}
+							},
+							{
+								"mode": "replaceArr",
+								"replace": "Level 1 Spell",
+								"items": {
+									"name": "Level 1 Spell",
+									"entries": [
+										"Choose a level 1 spell from the {@filter Druid|spells|level=0;1|class=Druid} spell list. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. You can also cast the spell using any spell slots you have."
+									]
+								}
+							}
+						]
+					},
+					"additionalSpells": [
+						{
+							"ability": {
+								"choose": [
+									"int",
+									"wis",
+									"cha"
+								]
+							},
+							"innate": {
+								"_": {
+									"daily": {
+										"1": [
+											{
+												"choose": "level=1|class=Druid"
+											}
+										]
+									}
+								}
+							},
+							"known": {
+								"_": [
+									{
+										"choose": "level=0|class=Druid",
+										"count": 2
+									}
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Magic Initiate; Wizard",
+					"source": "XPHB",
+					"_mod": {
+						"entries": [
+							{
+								"mode": "replaceArr",
+								"replace": "Two Cantrips",
+								"items": {
+									"name": "Two Cantrips",
+									"entries": [
+										"You learn two cantrips of your choice from the {@filter Wizard|spells|level=0;1|class=Wizard} spell list. Intelligence, Wisdom, or Charisma is your spellcasting ability for this feat's spells (choose when you select this feat)."
+									]
+								}
+							},
+							{
+								"mode": "replaceArr",
+								"replace": "Level 1 Spell",
+								"items": {
+									"name": "Level 1 Spell",
+									"entries": [
+										"Choose a level 1 spell from the {@filter Wizard|spells|level=0;1|class=Wizard} spell list. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. You can also cast the spell using any spell slots you have."
+									]
+								}
+							}
+						]
+					},
+					"additionalSpells": [
+						{
+							"ability": {
+								"choose": [
+									"int",
+									"wis",
+									"cha"
+								]
+							},
+							"innate": {
+								"_": {
+									"daily": {
+										"1": [
+											{
+												"choose": "level=1|class=Wizard"
+											}
+										]
+									}
+								}
+							},
+							"known": {
+								"_": [
+									{
+										"choose": "level=0|class=Wizard",
+										"count": 2
+									}
+								]
+							}
+						}
+					]
+				}
 			]
 		},
 		{
@@ -4551,7 +4727,7 @@
 					"type": "entries",
 					"name": "Weapon Proficiency",
 					"entries": [
-						"You gain proficiency with Martial Weapons."
+						"You gain proficiency with {@filter Martial weapons|items|type=martial weapon}."
 					]
 				}
 			]

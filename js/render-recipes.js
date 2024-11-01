@@ -61,9 +61,6 @@ class RenderRecipes {
 			images: [it.fluff.images[0]],
 		};
 
-		Renderer.get().setLazyImages(true);
-		const out = Renderer.utils.getFluffTabContent({entity: it, isImageTab: true, fluff: fluffReduced});
-		Renderer.get().setLazyImages(false);
-		return out;
+		return Renderer.get().withMinimizeLayoutShift(() => Renderer.utils.getFluffTabContent({entity: it, isImageTab: true, fluff: fluffReduced}));
 	}
 }

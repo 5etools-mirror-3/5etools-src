@@ -37,10 +37,13 @@ class _TestTokenImages {
 	}
 
 	static _readBestiaryJson () {
-		fs.readdirSync("./data/bestiary")
-			.filter(file => file.startsWith("bestiary") && file.endsWith(".json"))
-			.forEach(file => {
-				ut.readJson(`./data/bestiary/${file}`).monster
+		const jsonIndex = ut.readJson(`./data/bestiary/index.json`);
+
+		Object.entries(jsonIndex)
+			.forEach(([source, file]) => {
+				const json = ut.readJson(`./data/bestiary/${file}`);
+
+				json.monster
 					.forEach(m => {
 						m.__prop = "monster";
 
@@ -53,7 +56,13 @@ class _TestTokenImages {
 							return;
 						}
 
-						this._expected.add(implicitTokenPath);
+						if (m.token) {
+							const explicitTokenUrl = Renderer.monster.getTokenUrl(m);
+							const explicitTokenPath = `${this._PATH_BASE}/${explicitTokenUrl.split("/").slice(3).join("/")}`;
+							this._expected.add(explicitTokenPath);
+						} else {
+							this._expected.add(implicitTokenPath);
+						}
 
 						// add tokens specified as part of variants
 						if (m.variant) {
@@ -76,6 +85,11 @@ class _TestTokenImages {
 								.forEach(alt => this._expected.add(`${this._PATH_BASE}/${alt.source}/${Parser.nameToTokenName(alt.name)}.${this._EXT}`));
 						}
 					});
+
+				// If every token in the file references another token, we don't expect this file to have a matching dir
+				if (json.monster.every(mon => mon.token)) {
+					delete this._expectedDirs[source];
+				}
 			});
 	}
 

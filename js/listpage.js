@@ -2134,6 +2134,15 @@ class ListPage {
 
 	static _OFFSET_WINDOW_EXPORT_AS_IMAGE = 17;
 
+	_pHandleClick_exportAsImage_mutOptions ({$ele, optsDomToImage}) {
+		// See: https://github.com/1904labs/dom-to-image-more/issues/146
+		if (BrowserUtil.isFirefox()) {
+			const bcr = $ele[0].getBoundingClientRect();
+			optsDomToImage.width = bcr.width;
+			optsDomToImage.height = bcr.height;
+		}
+	}
+
 	async _pHandleClick_exportAsImage ({evt, isFast, $eleCopyEffect}) {
 		if (typeof domtoimage === "undefined") await import("../lib/dom-to-image-more.min.js");
 
@@ -2149,14 +2158,9 @@ class ListPage {
 			},
 		};
 
-		// See: https://github.com/1904labs/dom-to-image-more/issues/146
-		if (BrowserUtil.isFirefox()) {
-			const bcr = this._$pgContent[0].getBoundingClientRect();
-			optsDomToImage.width = bcr.width;
-			optsDomToImage.height = bcr.height;
-		}
-
 		if (isFast) {
+			this._pHandleClick_exportAsImage_mutOptions({$ele: this._$pgContent, optsDomToImage});
+
 			let blob;
 			try {
 				this._$pgContent.addClass("lst__is-exporting-image");
@@ -2176,10 +2180,11 @@ class ListPage {
 
 		const $cpy = $(html)
 			.addClass("lst__is-exporting-image");
-		$cpy.find();
 
 		const $btnCpy = $(`<button class="ve-btn ve-btn-default ve-btn-xs" title="SHIFT to Copy and Close">Copy</button>`)
 			.on("click", async evt => {
+				this._pHandleClick_exportAsImage_mutOptions({$ele: $cpy, optsDomToImage});
+
 				const blob = await domtoimage.toBlob($cpy[0], optsDomToImage);
 				const isCopy = await MiscUtil.pCopyBlobToClipboard(blob);
 				if (isCopy) JqueryUtil.showCopiedEffect($btnCpy, "Copied!");
@@ -2189,6 +2194,8 @@ class ListPage {
 
 		const $btnSave = $(`<button class="ve-btn ve-btn-default ve-btn-xs" title="SHIFT to Save and Close">Save</button>`)
 			.on("click", async evt => {
+				this._pHandleClick_exportAsImage_mutOptions({$ele: $cpy, optsDomToImage});
+
 				const dataUrl = await domtoimage.toPng($cpy[0], optsDomToImage);
 				DataUtil.userDownloadDataUrl(`${ent.name}.png`, dataUrl);
 

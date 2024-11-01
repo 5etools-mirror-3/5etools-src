@@ -25,6 +25,10 @@ class TagTestUrlLookup {
 	static _ALL_URLS_SET = new Set();
 	static _ALL_URLS_LIST = [];
 
+	// Versions are distinct, as they are valid UIDs, but not valid URLs
+	static _ALL_URLS_SET__VERSIONS = new Set();
+	static _ALL_URLS_LIST__VERSIONS = [];
+
 	static _CAT_ID_BLOCKLIST = new Set([
 		Parser.CAT_ID_PAGE,
 	]);
@@ -41,11 +45,19 @@ class TagTestUrlLookup {
 	static addEntityItem (ent, page) {
 		const url = `${page.toLowerCase()}#${(UrlUtil.URL_TO_HASH_BUILDER[page](ent)).toLowerCase().trim()}`;
 
+		if (ent._versionBase_isVersion) {
+			this._ALL_URLS_SET__VERSIONS.add(url);
+			this._ALL_URLS_LIST__VERSIONS.push(url);
+			return;
+		}
+
 		this._ALL_URLS_SET.add(url);
 		this._ALL_URLS_LIST.push(url);
 	}
 
 	static hasUrl (url) { return this._ALL_URLS_SET.has(url); }
+
+	static hasVersionUrl (url) { return this._ALL_URLS_SET__VERSIONS.has(url); }
 
 	static getSimilarUrls (url) {
 		const mSimilar = /^\w+\.html#\w+/.exec(url);
@@ -77,6 +89,10 @@ class TagTestUtil {
 
 		(await DataLoader.pCacheAndGetAllSite("itemProperty"))
 			.forEach(ent => TagTestUrlLookup.addEntityItem(ent, "itemProperty"));
+
+		(await DataLoader.pCacheAndGetAllSite("feat"))
+			.filter(ent => ent._versionBase_isVersion)
+			.forEach(ent => TagTestUrlLookup.addEntityItem(ent, UrlUtil.PG_FEATS));
 	}
 
 	static async _pInit_pPopulateClassSubclassIndex () {
@@ -221,9 +237,11 @@ class GenericDataCheck extends DataTesterBase {
 					if (["any", "anyFromCategory"].includes(k)) return;
 
 					const url = getEncoded(k, "feat");
-					if (!TagTestUrlLookup.hasUrl(url)) {
-						this._addMessage(`Missing link: ${url} in file ${file} (evaluates to "${url}") in "feats"\n${TagTestUtil.getLogPtSimilarUrls({url})}`);
-					}
+
+					if (TagTestUrlLookup.hasUrl(url)) return;
+					if (TagTestUrlLookup.hasVersionUrl(url)) return;
+
+					this._addMessage(`Missing link: ${url} in file ${file} (evaluates to "${url}") in "feats"\n${TagTestUtil.getLogPtSimilarUrls({url})}`);
 				});
 		});
 	}

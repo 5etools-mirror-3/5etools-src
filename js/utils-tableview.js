@@ -101,7 +101,7 @@ class UtilsTableview {
 	static _getTableHtml ({rdState, entities, colTransforms, sorter}) {
 		let stack = `<table class="w-100 table-striped stats stats--book stats--book-large min-w-100 w-initial">
 			<thead>
-				<tr>${Object.values(colTransforms).map((c, i) => `<th data-col="${i}" class="px-2" colspan="${c.flex || 1}">${c.name}</th>`).join("")}</tr>
+				<tr>${Object.values(colTransforms).map((c, i) => `<th data-col="${i}" class="ve-text-left px-2" colspan="${c.flex || 1}">${c.name}</th>`).join("")}</tr>
 			</thead>
 			<tbody>`;
 

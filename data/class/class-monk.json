@@ -522,6 +522,17 @@
 				"str",
 				"dex"
 			],
+			"featProgression": [
+				{
+					"name": "Epic Boon",
+					"category": [
+						"EB"
+					],
+					"progression": {
+						"19": 1
+					}
+				}
+			],
 			"startingProficiencies": {
 				"weapons": [
 					"simple",
@@ -563,9 +574,7 @@
 				]
 			},
 			"startingEquipment": {
-				"entries": [
-					"{@i Choose A or B:} (A) {@item Spear|XPHB}, 5 {@item Dagger|XPHB|Daggers}, {@item Artisan's Tools|XPHB} or {@item Musical Instrument|XPHB} chosen for the tool proficiency above, {@item Explorer's Pack|XPHB}, and 11 GP; or (B) 50 GP"
-				],
+				"additionalFromBackground": true,
 				"defaultData": [
 					{
 						"A": [
@@ -595,6 +604,9 @@
 							}
 						]
 					}
+				],
+				"entries": [
+					"{@i Choose A or B:} (A) {@item Spear|XPHB}, 5 {@item Dagger|XPHB|Daggers}, {@item Artisan's Tools|XPHB} or {@item Musical Instrument|XPHB} chosen for the tool proficiency above, {@item Explorer's Pack|XPHB}, and 11 GP; or (B) 50 GP"
 				]
 			},
 			"multiclassing": {},
@@ -2119,6 +2131,30 @@
 			]
 		},
 		{
+			"name": "Bonus Unarmed Strike",
+			"source": "XPHB",
+			"page": 101,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 1,
+			"header": 2,
+			"entries": [
+				"You can make an {@variantrule Unarmed Strike|XPHB} as a {@variantrule Bonus Action|XPHB}."
+			]
+		},
+		{
+			"name": "Dexterous Attacks",
+			"source": "XPHB",
+			"page": 101,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 1,
+			"header": 2,
+			"entries": [
+				"You can use your Dexterity modifier instead of your Strength modifier for the attack and damage rolls of your Unarmed Strikes and Monk weapons. In addition, when you use the Grapple or Shove option of your {@variantrule Unarmed Strike|XPHB}, you can use your Dexterity modifier instead of your Strength modifier to determine the save DC."
+			]
+		},
+		{
 			"name": "Martial Arts",
 			"source": "XPHB",
 			"page": 101,
@@ -2139,28 +2175,31 @@
 					"type": "entries",
 					"entries": [
 						{
-							"type": "entries",
-							"name": "Bonus Unarmed Strike",
-							"entries": [
-								"You can make an {@variantrule Unarmed Strike|XPHB} as a {@variantrule Bonus Action|XPHB}."
-							]
+							"type": "refClassFeature",
+							"classFeature": "Bonus Unarmed Strike|Monk|XPHB|1"
 						},
 						{
-							"type": "entries",
-							"name": "Martial Arts Die",
-							"entries": [
-								"You can roll {@dice 1d6} in place of the normal damage of your {@variantrule Unarmed Strike|XPHB} or Monk weapons. This die changes as you gain Monk levels, as shown in the Martial Arts column of the Monk Features table."
-							]
+							"type": "refClassFeature",
+							"classFeature": "Martial Arts Die|Monk|XPHB|1"
 						},
 						{
-							"type": "entries",
-							"name": "Dexterous Attacks",
-							"entries": [
-								"You can use your Dexterity modifier instead of your Strength modifier for the attack and damage rolls of your Unarmed Strikes and Monk weapons. In addition, when you use the Grapple or Shove option of your {@variantrule Unarmed Strike|XPHB}, you can use your Dexterity modifier instead of your Strength modifier to determine the save DC."
-							]
+							"type": "refClassFeature",
+							"classFeature": "Dexterous Attacks|Monk|XPHB|1"
 						}
 					]
 				}
+			]
+		},
+		{
+			"name": "Martial Arts Die",
+			"source": "XPHB",
+			"page": 101,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 1,
+			"header": 2,
+			"entries": [
+				"You can roll {@dice 1d6} in place of the normal damage of your {@variantrule Unarmed Strike|XPHB} or Monk weapons. This die changes as you gain Monk levels, as shown in the Martial Arts column of the Monk Features table."
 			]
 		},
 		{
@@ -2172,6 +2211,21 @@
 			"level": 1,
 			"entries": [
 				"While you aren't wearing armor or wielding a {@item Shield|XPHB}, your base {@variantrule Armor Class|XPHB} equals 10 plus your Dexterity and Wisdom modifiers."
+			]
+		},
+		{
+			"name": "Flurry of Blows",
+			"source": "XPHB",
+			"page": 101,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 2,
+			"header": 2,
+			"consumes": {
+				"name": "Focus Point"
+			},
+			"entries": [
+				"You can expend 1 Focus Point to make two Unarmed Strikes as a {@variantrule Bonus Action|XPHB}."
 			]
 		},
 		{
@@ -2190,28 +2244,49 @@
 					"type": "entries",
 					"entries": [
 						{
-							"type": "entries",
-							"name": "Flurry of Blows",
-							"entries": [
-								"You can expend 1 Focus Point to make two Unarmed Strikes as a {@variantrule Bonus Action|XPHB}."
-							]
+							"type": "refClassFeature",
+							"classFeature": "Flurry of Blows|Monk|XPHB|2"
 						},
 						{
-							"type": "entries",
-							"name": "Patient Defense",
-							"entries": [
-								"You can take the {@action Disengage|XPHB} action as a {@variantrule Bonus Action|XPHB}. Alternatively, you can expend 1 Focus Point to take both the {@action Disengage|XPHB} and the {@action Dodge|XPHB} actions as a {@variantrule Bonus Action|XPHB}."
-							]
+							"type": "refClassFeature",
+							"classFeature": "Patient Defense|Monk|XPHB|2"
 						},
 						{
-							"type": "entries",
-							"name": "Step of the Wind",
-							"entries": [
-								"You can take the {@action Dash|XPHB} action as a {@variantrule Bonus Action|XPHB}. Alternatively, you can expend 1 Focus Point to take both the {@action Disengage|XPHB} and {@action Dash|XPHB} actions as a {@variantrule Bonus Action|XPHB}, and your jump distance is doubled for the turn."
-							]
+							"type": "refClassFeature",
+							"classFeature": "Step of the Wind|Monk|XPHB|2"
 						}
 					]
 				}
+			]
+		},
+		{
+			"name": "Patient Defense",
+			"source": "XPHB",
+			"page": 101,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 2,
+			"header": 2,
+			"consumes": {
+				"name": "Focus Point"
+			},
+			"entries": [
+				"You can take the {@action Disengage|XPHB} action as a {@variantrule Bonus Action|XPHB}. Alternatively, you can expend 1 Focus Point to take both the {@action Disengage|XPHB} and the {@action Dodge|XPHB} actions as a {@variantrule Bonus Action|XPHB}."
+			]
+		},
+		{
+			"name": "Step of the Wind",
+			"source": "XPHB",
+			"page": 101,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 2,
+			"header": 2,
+			"consumes": {
+				"name": "Focus Point"
+			},
+			"entries": [
+				"You can take the {@action Dash|XPHB} action as a {@variantrule Bonus Action|XPHB}. Alternatively, you can expend 1 Focus Point to take both the {@action Disengage|XPHB} and {@action Dash|XPHB} actions as a {@variantrule Bonus Action|XPHB}, and your jump distance is doubled for the turn."
 			]
 		},
 		{
@@ -2244,6 +2319,9 @@
 			"className": "Monk",
 			"classSource": "XPHB",
 			"level": 3,
+			"consumes": {
+				"name": "Focus Point"
+			},
 			"entries": [
 				"When an attack roll hits you and its damage includes Bludgeoning, Piercing, or Slashing damage, you can take a {@variantrule Reaction|XPHB} to reduce the attack's total damage against you. The reduction equals {@dice 1d10} plus your Dexterity modifier and Monk level.",
 				"If you reduce the damage to 0, you can expend 1 Focus Point to redirect some of the attack's force. If you do so, choose a creature you can see within 5 feet of yourself if the attack was a melee attack or a creature you can see within 60 feet of yourself that isn't behind {@variantrule Cover|XPHB|Total Cover} if the attack was a ranged attack. That creature must succeed on a Dexterity saving throw or take damage equal to two rolls of your Martial Arts die plus your Dexterity modifier. The damage is the same type dealt by the attack."
@@ -2300,6 +2378,9 @@
 			"className": "Monk",
 			"classSource": "XPHB",
 			"level": 5,
+			"consumes": {
+				"name": "Focus Point"
+			},
 			"entries": [
 				"Once per turn when you hit a creature with a Monk weapon or an {@variantrule Unarmed Strike|XPHB}, you can expend 1 Focus Point to attempt a stunning strike. The target must make a Constitution saving throw. On a failed save, the target has the {@condition Stunned|XPHB} condition until the start of your next turn. On a successful save, the target's {@variantrule Speed|XPHB} is halved until the start of your next turn, and the next attack roll made against the target before then has {@variantrule Advantage|XPHB}."
 			]
@@ -2450,6 +2531,9 @@
 			"className": "Monk",
 			"classSource": "XPHB",
 			"level": 14,
+			"consumes": {
+				"name": "Focus Point"
+			},
 			"entries": [
 				"Your physical and mental discipline grant you proficiency in all saving throws.",
 				"Additionally, whenever you make a saving throw and fail, you can expend 1 Focus Point to reroll it, and you must use the new roll."
@@ -2495,6 +2579,10 @@
 			"className": "Monk",
 			"classSource": "XPHB",
 			"level": 18,
+			"consumes": {
+				"name": "Focus Point",
+				"amount": 3
+			},
 			"entries": [
 				"At the start of your turn, you can expend 3 Focus Points to bolster yourself against harm for 1 minute or until you have the {@condition Incapacitated|XPHB} condition. During that time, you have {@variantrule Resistance|XPHB} to all damage except Force damage."
 			]
@@ -4037,6 +4125,9 @@
 			"subclassShortName": "Elements",
 			"subclassSource": "XPHB",
 			"level": 3,
+			"consumes": {
+				"name": "Focus Point"
+			},
 			"entries": [
 				"At the start of your turn, you can expend 1 Focus Point to imbue yourself with elemental energy. The energy lasts for 10 minutes or until you have the {@condition Incapacitated|XPHB} condition. You gain the following benefits while this feature is active.",
 				{
@@ -4105,6 +4196,10 @@
 			"subclassSource": "XPHB",
 			"level": 6,
 			"header": 2,
+			"consumes": {
+				"name": "Focus Point",
+				"amount": 2
+			},
 			"entries": [
 				"As a {@action Magic|XPHB} action, you can expend 2 Focus Points to cause elemental energy to burst in a 20-foot-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on a point within 120 feet of yourself. Choose a damage type: Acid, Cold, Fire, Lightning, or Thunder.",
 				"Each creature in the {@variantrule Sphere [Area of Effect]|XPHB|Sphere} must make a Dexterity saving throw. On a failed save, a creature takes damage of the chosen type equal to three rolls of your Martial Arts die. On a successful save, a creature takes half as much damage."
@@ -4392,6 +4487,10 @@
 			"subclassSource": "XPHB",
 			"level": 17,
 			"header": 2,
+			"consumes": {
+				"name": "Focus Point",
+				"amount": 4
+			},
 			"entries": [
 				"You gain the ability to set up lethal vibrations in someone's body. When you hit a creature with an {@variantrule Unarmed Strike|XPHB}, you can expend 4 Focus Points to start these imperceptible vibrations, which last for a number of days equal to your Monk level. The vibrations are harmless unless you take an action to end them. Alternatively, when you take the {@action Attack|XPHB} action on your turn, you can forgo one of the attacks to end the vibrations. To end them, you and the target must be on the same plane of existence. When you end them, the target must make a Constitution saving throw, taking {@damage 10d12} Force damage on a failed save or half as much damage on a successful one.",
 				"You can have only one creature under the effect of this feature at a time. You can end the vibrations harmlessly (no action required)."
@@ -4409,25 +4508,16 @@
 			"entries": [
 				"You have learned to draw on the power of the Shadowfell, gaining the following benefits.",
 				{
-					"type": "entries",
-					"name": "Darkness",
-					"entries": [
-						"You can expend 1 Focus Point to cast the {@spell Darkness|XPHB} spell without spell components. You can see within the spell's area when you cast it with this feature. While the spell persists, you can move its area of {@variantrule Darkness|XPHB} to a space within 60 feet of yourself at the start of each of your turns."
-					]
+					"type": "refSubclassFeature",
+					"subclassFeature": "Darkness|Monk|XPHB|Shadow|XPHB|3"
 				},
 				{
-					"type": "entries",
-					"name": "Darkvision",
-					"entries": [
-						"You gain {@sense Darkvision|XPHB} with a range of 60 feet. If you already have {@sense Darkvision|XPHB}, its range increases by 60 feet."
-					]
+					"type": "refSubclassFeature",
+					"subclassFeature": "Darkvision|Monk|XPHB|Shadow|XPHB|3"
 				},
 				{
-					"type": "entries",
-					"name": "Shadowy Figments",
-					"entries": [
-						"You know the {@spell Minor Illusion|XPHB} spell. Wisdom is your spellcasting ability for it."
-					]
+					"type": "refSubclassFeature",
+					"subclassFeature": "Shadowy Figments|Monk|XPHB|Shadow|XPHB|3"
 				}
 			]
 		},
@@ -4447,6 +4537,51 @@
 					"type": "refSubclassFeature",
 					"subclassFeature": "Shadow Arts|Monk|XPHB|Shadow|XPHB|3"
 				}
+			]
+		},
+		{
+			"name": "Darkness",
+			"source": "XPHB",
+			"page": 105,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"subclassShortName": "Shadow",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"consumes": {
+				"name": "Focus Point"
+			},
+			"entries": [
+				"You can expend 1 Focus Point to cast the {@spell Darkness|XPHB} spell without spell components. You can see within the spell's area when you cast it with this feature. While the spell persists, you can move its area of {@variantrule Darkness|XPHB} to a space within 60 feet of yourself at the start of each of your turns."
+			]
+		},
+		{
+			"name": "Darkvision",
+			"source": "XPHB",
+			"page": 105,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"subclassShortName": "Shadow",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"entries": [
+				"You gain {@sense Darkvision|XPHB} with a range of 60 feet. If you already have {@sense Darkvision|XPHB}, its range increases by 60 feet."
+			]
+		},
+		{
+			"name": "Shadowy Figments",
+			"source": "XPHB",
+			"page": 105,
+			"className": "Monk",
+			"classSource": "XPHB",
+			"subclassShortName": "Shadow",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"entries": [
+				"You know the {@spell Minor Illusion|XPHB} spell. Wisdom is your spellcasting ability for it."
 			]
 		},
 		{
@@ -4473,6 +4608,9 @@
 			"subclassSource": "XPHB",
 			"level": 11,
 			"header": 2,
+			"consumes": {
+				"name": "Focus Point"
+			},
 			"entries": [
 				"You can draw on your Shadowfell connection to empower your teleportation. When you use your Shadow Step, you can expend 1 Focus Point to remove the requirement that you must start and end in {@variantrule Dim Light|XPHB} or {@variantrule Darkness|XPHB} for that use of the feature. As part of this {@variantrule Bonus Action|XPHB}, you can make an {@variantrule Unarmed Strike|XPHB} immediately after you teleport."
 			]
@@ -4487,6 +4625,10 @@
 			"subclassSource": "XPHB",
 			"level": 17,
 			"header": 2,
+			"consumes": {
+				"name": "Focus Point",
+				"amount": 3
+			},
 			"entries": [
 				"As a {@action Magic|XPHB} action while entirely within {@variantrule Dim Light|XPHB} or {@variantrule Darkness|XPHB}, you can expend 3 Focus Points to shroud yourself with shadows for 1 minute, until you have the {@condition Incapacitated|XPHB} condition, or until you end your turn in {@variantrule Bright Light|XPHB}. While shrouded by these shadows, you gain the following benefits.",
 				{

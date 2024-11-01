@@ -2958,6 +2958,7 @@ Parser.SRC_DitLCoT = "DitLCoT";
 Parser.SRC_VNotEE = "VNotEE";
 Parser.SRC_LRDT = "LRDT";
 Parser.SRC_UtHftLH = "UtHftLH";
+Parser.SRC_ScoEE = "ScoEE";
 
 Parser.SRC_AL_PREFIX = "AL";
 
@@ -3147,6 +3148,7 @@ Parser.SOURCE_JSON_TO_FULL[Parser.SRC_DitLCoT] = "Descent into the Lost Caverns 
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_VNotEE] = "Vecna: Nest of the Eldritch Eye";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_LRDT] = "Red Dragon's Tale: A LEGO Adventure";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_UtHftLH] = "Uni and the Hunt for the Lost Horn";
+Parser.SOURCE_JSON_TO_FULL[Parser.SRC_ScoEE] = "Scions of Elemental Evil";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_ALCoS] = `${Parser.AL_PREFIX}Curse of Strahd`;
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_ALEE] = `${Parser.AL_PREFIX}Elemental Evil`;
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_ALRoD] = `${Parser.AL_PREFIX}Rage of Demons`;
@@ -3311,6 +3313,7 @@ Parser.SOURCE_JSON_TO_ABV[Parser.SRC_DitLCoT] = "DitLCoT";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_VNotEE] = "VNotEE";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_LRDT] = "LRDT";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_UtHftLH] = "UHftLH";
+Parser.SOURCE_JSON_TO_ABV[Parser.SRC_ScoEE] = "ScoEE";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_ALCoS] = "ALCoS";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_ALEE] = "ALEE";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_ALRoD] = "ALRoD";
@@ -3474,6 +3477,7 @@ Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DitLCoT] = "2024-03-26";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_VNotEE] = "2024-04-16";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_LRDT] = "2024-04-01";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_UtHftLH] = "2024-09-24";
+Parser.SOURCE_JSON_TO_DATE[Parser.SRC_ScoEE] = "2024-10-24";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_ALCoS] = "2016-03-15";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_ALEE] = "2015-04-07";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_ALRoD] = "2015-09-15";
@@ -3575,6 +3579,7 @@ Parser.SOURCES_ADVENTURES = new Set([
 	Parser.SRC_VNotEE,
 	Parser.SRC_LRDT,
 	Parser.SRC_UtHftLH,
+	Parser.SRC_ScoEE,
 	Parser.SRC_HFStCM,
 	Parser.SRC_GHLoE,
 	Parser.SRC_DoDk,
@@ -3627,6 +3632,7 @@ Parser.SOURCES_NON_STANDARD_WOTC = new Set([
 	Parser.SRC_PiP,
 	Parser.SRC_HFStCM,
 	Parser.SRC_UtHftLH,
+	Parser.SRC_ScoEE,
 ]);
 Parser.SOURCES_PARTNERED_WOTC = new Set([
 	Parser.SRC_RMBRE,
@@ -3706,6 +3712,7 @@ Parser.SOURCES_COMEDY = new Set([
 	Parser.SRC_PiP,
 	Parser.SRC_LRDT,
 	Parser.SRC_UtHftLH,
+	Parser.SRC_ScoEE,
 ]);
 
 // Any opinionated set of sources that are "other settings"
@@ -3748,6 +3755,7 @@ Parser.SOURCES_NON_FR = new Set([
 	Parser.SRC_ToB1_2023,
 	Parser.SRC_LRDT,
 	Parser.SRC_UtHftLH,
+	Parser.SRC_ScoEE,
 ]);
 
 // endregion
@@ -3897,6 +3905,7 @@ Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE = {};
 	Parser.SRC_VEoR,
 	Parser.SRC_VNotEE,
 	Parser.SRC_UtHftLH,
+	Parser.SRC_ScoEE,
 ].forEach(src => {
 	Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE[src] = src;
 	Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE[src.toLowerCase()] = src;

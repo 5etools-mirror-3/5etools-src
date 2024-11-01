@@ -17,6 +17,7 @@ export const BLOCKLIST_SOURCES_PAGES = new Set([
 	Parser.SRC_DitLCoT,
 	Parser.SRC_VNotEE,
 	Parser.SRC_UtHftLH,
+	Parser.SRC_ScoEE,
 	Parser.SRC_HFDoMM, // Deck of recipe cards
 
 	// N.b.: other MCV source creatures mysteriously have page numbers on Beyond

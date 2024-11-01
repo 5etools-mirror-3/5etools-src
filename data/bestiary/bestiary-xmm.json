@@ -32,6 +32,70 @@
 			}
 		},
 		{
+			"name": "Berserker",
+			"source": "XMM",
+			"otherSources": [
+				{
+					"source": "ScoEE"
+				}
+			],
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 67,
+				"formula": "9d8 + 27"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 16,
+			"dex": 12,
+			"con": 17,
+			"int": 9,
+			"wis": 11,
+			"cha": 9,
+			"passive": 10,
+			"languages": [
+				"Common"
+			],
+			"cr": "2",
+			"gear": [
+				"greataxe|xphb",
+				"hide armor|xphb"
+			],
+			"action": [
+				{
+					"name": "Greataxe",
+					"entries": [
+						"{@atkr m} +5 (with Advantage if the target doesn't have all its Hit Points), reach 5 ft. {@h}9 ({@damage 1d12 + 3}) Slashing damage."
+					]
+				}
+			],
+			"token": {
+				"name": "Berserker",
+				"source": "MM"
+			},
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"S"
+			],
+			"miscTags": [
+				"MA",
+				"MLW"
+			]
+		},
+		{
 			"name": "Blink Dog",
 			"source": "XMM",
 			"otherSources": [
@@ -441,6 +505,313 @@
 			]
 		},
 		{
+			"name": "Cultist",
+			"source": "XMM",
+			"otherSources": [
+				{
+					"source": "ScoEE"
+				}
+			],
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				12
+			],
+			"hp": {
+				"average": 9,
+				"formula": "2d8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 11,
+			"dex": 12,
+			"con": 10,
+			"int": 10,
+			"wis": 11,
+			"cha": 10,
+			"skill": {
+				"deception": "+2"
+			},
+			"passive": 10,
+			"languages": [
+				"Common"
+			],
+			"cr": "1/8",
+			"gear": [
+				"leather armor|xphb",
+				"sickle|xphb"
+			],
+			"action": [
+				{
+					"name": "Ritual Sickle",
+					"entries": [
+						"{@atkr m} {@hit 3}, reach 5 ft. {@h}3 ({@damage 1d4 + 1}) Slashing damage plus 1 Necrotic damage."
+					]
+				}
+			],
+			"token": {
+				"name": "Cultist",
+				"source": "MM"
+			},
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"N",
+				"S"
+			],
+			"miscTags": [
+				"MA",
+				"MLW"
+			]
+		},
+		{
+			"name": "Cultist Fanatic",
+			"source": "XMM",
+			"otherSources": [
+				{
+					"source": "ScoEE"
+				}
+			],
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 44,
+				"formula": "8d8 + 8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 11,
+			"dex": 14,
+			"con": 12,
+			"int": 10,
+			"wis": 14,
+			"cha": 13,
+			"save": {
+				"wis": "+4"
+			},
+			"skill": {
+				"deception": "+3",
+				"persuasion": "+3"
+			},
+			"passive": 12,
+			"languages": [
+				"Common"
+			],
+			"cr": "2",
+			"gear": [
+				"leather armor|xphb"
+			],
+			"spellcasting": [
+				{
+					"name": "Spellcasting (Cleric)",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The fanatic casts one of the following spells, using Wisdom as the spellcasting ability (spell save {@dc 12}):"
+					],
+					"will": [
+						"{@spell Light|XPHB}",
+						"{@spell Thaumaturgy|XPHB}"
+					],
+					"daily": {
+						"1": [
+							"{@spell Hold Person|XPHB}"
+						],
+						"2": [
+							"{@spell Command|XPHB}"
+						]
+					},
+					"ability": "wis",
+					"displayAs": "action"
+				}
+			],
+			"action": [
+				{
+					"name": "Pact Blade",
+					"entries": [
+						"{@atkr m} {@hit 4}, reach 5 ft. {@h}6 ({@damage 1d8 + 2}) Slashing damage plus 3 ({@damage 1d6}) Necrotic damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Spiritual Weapon (2/Day)",
+					"entries": [
+						"The fanatic casts the {@spell Spiritual Weapon|XPHB} spell: +4, reach 5 feet of the spectral weapon. {@h}6 ({@damage 1d8 + 2}) Force damage."
+					]
+				}
+			],
+			"token": {
+				"name": "Cult Fanatic",
+				"source": "MM"
+			},
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"N",
+				"O",
+				"S"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA"
+			],
+			"conditionInflictSpell": [
+				"paralyzed",
+				"prone"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			]
+		},
+		{
+			"name": "Fire Elemental",
+			"source": "XMM",
+			"otherSources": [
+				{
+					"source": "ScoEE"
+				}
+			],
+			"size": [
+				"L"
+			],
+			"type": "elemental",
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 93,
+				"formula": "11d10 + 33"
+			},
+			"speed": {
+				"walk": 50
+			},
+			"str": 10,
+			"dex": 17,
+			"con": 16,
+			"int": 6,
+			"wis": 10,
+			"cha": 7,
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 10,
+			"resist": [
+				"bludgeoning",
+				"piercing",
+				"slashing"
+			],
+			"immune": [
+				"fire",
+				"poison"
+			],
+			"vulnerable": [
+				"cold"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"grappled",
+				"paralyzed",
+				"petrified",
+				"poisoned",
+				"prone",
+				"restrained",
+				"unconscious"
+			],
+			"languages": [
+				"Primordial (Ignan)"
+			],
+			"cr": "5",
+			"trait": [
+				{
+					"name": "Fiery Aura",
+					"entries": [
+						"At the end of each of the elemental's turns, each creature in a 10-foot Emanation originating from the elemental takes 5 ({@damage 1d10}) Fire damage. Creatures and flammable objects in the Emanation start burning."
+					]
+				},
+				{
+					"name": "Fire Form",
+					"entries": [
+						"The elemental can move through a space as narrow as 1 inch wide without expending extra movement to do so, and it can enter a creature's space and stop there. The first time it enters a creature's space on a turn, that creature takes 5 ({@damage 1d10}) Fire damage."
+					]
+				},
+				{
+					"name": "Illumination",
+					"entries": [
+						"The elemental sheds Bright Light in a 30-foot radius and Dim Light for an additional 30 feet."
+					]
+				},
+				{
+					"name": "Water Susceptibility",
+					"entries": [
+						"The elemental takes 3 ({@damage 1d6}) Cold damage for every 5 feet the elemental moves in water or for every gallon of water splashed on it."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The elemental makes two Burn attacks."
+					]
+				},
+				{
+					"name": "Burn",
+					"entries": [
+						"{@atkr m} {@hit 6}, reach 5 ft. {@h}10 ({@damage 2d6 + 3}) Fire damage. If the target is a creature or a flammable object, it starts burning."
+					]
+				}
+			],
+			"token": {
+				"name": "Fire Elemental",
+				"source": "MM"
+			},
+			"traitTags": [
+				"Illumination"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"IG",
+				"P"
+			],
+			"damageTags": [
+				"C",
+				"F"
+			],
+			"miscTags": [
+				"AOE",
+				"MA"
+			]
+		},
+		{
 			"name": "Ghast",
 			"source": "XMM",
 			"_copy": {
@@ -463,6 +834,343 @@
 				"name": "Ghoul",
 				"source": "MM"
 			}
+		},
+		{
+			"name": "Gray Ooze",
+			"source": "XMM",
+			"otherSources": [
+				{
+					"source": "ScoEE"
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": "ooze",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				8
+			],
+			"hp": {
+				"average": 22,
+				"formula": "3d8 + 9"
+			},
+			"speed": {
+				"walk": 10,
+				"climb": 10
+			},
+			"str": 12,
+			"dex": 6,
+			"con": 16,
+			"int": 1,
+			"wis": 6,
+			"cha": 2,
+			"skill": {
+				"stealth": "+2"
+			},
+			"senses": [
+				"blindsight 60 ft."
+			],
+			"passive": 8,
+			"resist": [
+				"acid",
+				"cold",
+				"fire"
+			],
+			"conditionImmune": [
+				"blinded",
+				"charmed",
+				"deafened",
+				"exhaustion",
+				"frightened",
+				"prone"
+			],
+			"cr": "1/2",
+			"trait": [
+				{
+					"name": "Amorphous",
+					"entries": [
+						"The ooze can move through a space as narrow as 1 inch without expending extra movement to do so."
+					]
+				},
+				{
+					"name": "Corrosive Form",
+					"entries": [
+						"A creature that hits the ooze with a melee attack roll takes 4 ({@damage 1d8}) Acid damage. The ooze eats through 2-inch-thick nonmagical wood or metal in 1 round."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Pseudopod",
+					"entries": [
+						"{@atkr m} {@hit 3}, reach 5 ft. {@h}8 ({@damage 2d6 + 1}) Acid damage. Nonmagical armor worn by the target takes a -1 penalty to the AC it offers. The armor is destroyed if the penalty reduces its AC to 10. The penalty can be removed by a creature who takes the Utilize action and succeeds on a {@dc 15} Dexterity check using Tinker's Tools to repair the armor."
+					]
+				}
+			],
+			"token": {
+				"name": "Gray Ooze",
+				"source": "MM"
+			},
+			"traitTags": [
+				"Amorphous"
+			],
+			"senseTags": [
+				"B"
+			],
+			"damageTags": [
+				"A"
+			],
+			"miscTags": [
+				"MA"
+			]
+		},
+		{
+			"name": "Incubus",
+			"source": "XMM",
+			"otherSources": [
+				{
+					"source": "ScoEE"
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": "fiend",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				15
+			],
+			"hp": {
+				"average": 66,
+				"formula": "12d8 + 12"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": 60
+			},
+			"str": 8,
+			"dex": 17,
+			"con": 13,
+			"int": 15,
+			"wis": 12,
+			"cha": 20,
+			"skill": {
+				"deception": "+9",
+				"perception": "+5",
+				"stealth": "+7"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 15,
+			"resist": [
+				"cold",
+				"fire",
+				"poison",
+				"psychic"
+			],
+			"languages": [
+				"Abyssal",
+				"Common",
+				"Infernal",
+				"telepathy 60 ft."
+			],
+			"cr": "4",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The incubus casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save {@dc 15}):"
+					],
+					"will": [
+						"{@spell Charm Person|XPHB}",
+						"{@spell Disguise Self|XPHB}",
+						"{@spell Etherealness|XPHB}"
+					],
+					"daily": {
+						"1e": [
+							"{@spell Dream|XPHB}",
+							"{@spell Hypnotic Pattern|XPHB}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Succubus Form",
+					"entries": [
+						"When the incubus finishes a Long Rest, it can shape-shift into a {@creature Succubus|XMM}, using that stat block instead of this one. Any equipment it's wearing or carrying isn't transformed."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The incubus makes two Nightmare Touch attacks."
+					]
+				},
+				{
+					"name": "Nightmare Touch",
+					"entries": [
+						"{@atkr m} {@hit 7}, reach 5 ft. {@h}15 ({@damage 3d6 + 5}) Psychic damage, and the target is cursed for 24 hours or until the incubus dies. Until the curse ends, the target gains no benefit from finishing Short Rests."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Nightmare {@recharge}",
+					"entries": [
+						"{@actSave wis} {@dc 15}, one creature the incubus can see within 60 feet. {@actSaveFail} If the target has 20 Hit Points or fewer, it has the {@condition Unconscious|XPHB} condition for 1 hour, until it takes damage, or until a creature within 5 feet of it takes an action to wake it. Otherwise, the target takes 18 ({@damage 4d8}) Psychic damage."
+					]
+				}
+			],
+			"token": {
+				"name": "Incubus",
+				"source": "MM"
+			},
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AB",
+				"C",
+				"I",
+				"TP"
+			],
+			"damageTags": [
+				"Y"
+			],
+			"damageTagsSpell": [
+				"O",
+				"Y"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"CUR",
+				"MA"
+			],
+			"conditionInflict": [
+				"unconscious"
+			],
+			"conditionInflictSpell": [
+				"charmed",
+				"incapacitated"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			]
+		},
+		{
+			"name": "Knight",
+			"source": "XMM",
+			"otherSources": [
+				{
+					"source": "ScoEE"
+				}
+			],
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				18
+			],
+			"hp": {
+				"average": 52,
+				"formula": "8d8 + 16"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 16,
+			"dex": 11,
+			"con": 14,
+			"int": 11,
+			"wis": 11,
+			"cha": 15,
+			"save": {
+				"wis": "+2"
+			},
+			"passive": 10,
+			"languages": [
+				"Common plus one other language"
+			],
+			"cr": "3",
+			"gear": [
+				"greatsword|xphb",
+				"heavy crossbow|xphb",
+				"plate armor|xphb"
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The knight makes two attacks, using Greatsword or Heavy Crossbow in any combination."
+					]
+				},
+				{
+					"name": "Greatsword",
+					"entries": [
+						"{@atkr m} {@hit 5}, reach 5 ft. {@h}10 ({@damage 2d6 + 3}) Slashing damage plus 4 ({@damage 1d8}) Radiant damage."
+					]
+				},
+				{
+					"name": "Heavy Crossbow",
+					"entries": [
+						"{@atkr r} {@hit 2}, range 100/400 ft. {@h}11 ({@damage 2d10}) Piercing damage plus 4 ({@damage 1d8}) Radiant damage."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Parry",
+					"entries": [
+						"{@actTrigger} The knight is hit by a melee attack roll while holding a weapon. {@actResponse} The knight adds 2 to its AC against that attack, possibly causing it to miss."
+					]
+				}
+			],
+			"token": {
+				"name": "Knight",
+				"source": "MM"
+			},
+			"actionTags": [
+				"Multiattack",
+				"Parry"
+			],
+			"languageTags": [
+				"C",
+				"X"
+			],
+			"damageTags": [
+				"P",
+				"R",
+				"S"
+			],
+			"miscTags": [
+				"MA",
+				"MLW",
+				"RA",
+				"RNG"
+			]
 		},
 		{
 			"name": "Mage",
@@ -610,6 +1318,652 @@
 				"name": "Mummy",
 				"source": "MM"
 			}
+		},
+		{
+			"name": "Ogre",
+			"source": "XMM",
+			"otherSources": [
+				{
+					"source": "ScoEE"
+				}
+			],
+			"size": [
+				"L"
+			],
+			"type": "giant",
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				11
+			],
+			"hp": {
+				"average": 68,
+				"formula": "8d10 + 24"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 19,
+			"dex": 8,
+			"con": 16,
+			"int": 5,
+			"wis": 7,
+			"cha": 7,
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 8,
+			"languages": [
+				"Common",
+				"Giant"
+			],
+			"cr": "2",
+			"gear": [
+				"greatclub|xphb",
+				{
+					"item": "javelin|xphb",
+					"quantity": 3
+				}
+			],
+			"action": [
+				{
+					"name": "Greatclub",
+					"entries": [
+						"{@atkr m} {@hit 6}, reach 5 ft. {@h}13 ({@damage 2d8 + 4}) Bludgeoning damage."
+					]
+				},
+				{
+					"name": "Javelin",
+					"entries": [
+						"{@atkr m,r} {@hit 6}, reach 5 ft. or range 30/120 ft. {@h}11 ({@damage 2d6 + 4}) Piercing damage."
+					]
+				}
+			],
+			"token": {
+				"name": "Ogre",
+				"source": "MM"
+			},
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"C",
+				"GI"
+			],
+			"damageTags": [
+				"B",
+				"P"
+			],
+			"miscTags": [
+				"MA",
+				"MLW",
+				"RA",
+				"THW"
+			]
+		},
+		{
+			"name": "Pirate",
+			"source": "XMM",
+			"otherSources": [
+				{
+					"source": "ScoEE"
+				}
+			],
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				14
+			],
+			"hp": {
+				"average": 27,
+				"formula": "5d8 + 5"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 16,
+			"con": 12,
+			"int": 8,
+			"wis": 12,
+			"cha": 14,
+			"save": {
+				"dex": "+5",
+				"cha": "+4"
+			},
+			"passive": 11,
+			"languages": [
+				"Common plus one other language"
+			],
+			"cr": "1",
+			"gear": [
+				{
+					"item": "dagger|xphb",
+					"quantity": 6
+				},
+				"leather armor|xphb"
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The pirate makes two Dagger attacks. It can replace one of these attacks with a use of Enthralling Panache."
+					]
+				},
+				{
+					"name": "Dagger",
+					"entries": [
+						"{@atkr m,r} {@hit 5}, reach 5 ft. or range 20/60 ft. {@h}5 ({@damage 1d4 + 3}) Piercing damage."
+					]
+				},
+				{
+					"name": "Enthralling Panache",
+					"entries": [
+						"{@actSave wis} {@dc 12}, one creature the pirate can see within 30 feet. {@actSaveFail} The target has the {@condition Charmed|XPHB} condition until the start of the pirate's next turn."
+					]
+				}
+			],
+			"token": {
+				"name": "Pirate Bosun",
+				"source": "GoS"
+			},
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"X"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MA",
+				"MLW",
+				"RA",
+				"THW"
+			],
+			"conditionInflict": [
+				"charmed"
+			]
+		},
+		{
+			"name": "Pirate Captain",
+			"source": "XMM",
+			"otherSources": [
+				{
+					"source": "ScoEE"
+				}
+			],
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				17
+			],
+			"hp": {
+				"average": 78,
+				"formula": "12d8 + 24"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 18,
+			"con": 14,
+			"int": 10,
+			"wis": 14,
+			"cha": 17,
+			"save": {
+				"str": "+3",
+				"dex": "+7",
+				"wis": "+5",
+				"cha": "+6"
+			},
+			"skill": {
+				"acrobatics": "+7",
+				"perception": "+5"
+			},
+			"passive": 15,
+			"languages": [
+				"Common plus one other language"
+			],
+			"cr": "6",
+			"gear": [
+				"pistol|xphb",
+				"rapier|xphb"
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The pirate makes three attacks, using Rapier or Pistol in any combination."
+					]
+				},
+				{
+					"name": "Rapier",
+					"entries": [
+						"{@atkr m} {@hit 7}, reach 5 ft. {@h}13 ({@damage 2d8 + 4}) Piercing damage, and the pirate has Advantage on the next attack roll it makes before the end of this turn."
+					]
+				},
+				{
+					"name": "Pistol",
+					"entries": [
+						"{@atkr r} {@hit 7}, range 30/90 ft. {@h}15 ({@damage 2d10 + 4}) Piercing damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Captain's Charm",
+					"entries": [
+						"{@actSave wis} {@dc 14}, one creature the pirate can see within 30 feet. {@actSaveFail} The target has the {@condition Charmed|XPHB} condition until the start of the pirate's next turn."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Riposte",
+					"entries": [
+						"{@actTrigger} The pirate is hit by a melee attack roll while holding a weapon. {@actResponse} The pirate adds 3 to its AC against that attack, possibly causing the attack to miss. On a miss, the pirate makes one Rapier attack against the triggering creature."
+					]
+				}
+			],
+			"token": {
+				"name": "Pirate Captain",
+				"source": "GoS"
+			},
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"X"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MA",
+				"MLW",
+				"RA",
+				"RNG"
+			],
+			"conditionInflict": [
+				"charmed"
+			]
+		},
+		{
+			"name": "Stone Golem",
+			"source": "XMM",
+			"otherSources": [
+				{
+					"source": "ScoEE"
+				}
+			],
+			"size": [
+				"L"
+			],
+			"type": "construct",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				18
+			],
+			"hp": {
+				"average": 252,
+				"formula": "24d10 + 120"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 22,
+			"dex": 9,
+			"con": 20,
+			"int": 3,
+			"wis": 11,
+			"cha": 1,
+			"senses": [
+				"darkvision 120 ft."
+			],
+			"passive": 10,
+			"immune": [
+				"poison",
+				"psychic"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"petrified",
+				"poisoned"
+			],
+			"languages": [
+				"understands Common plus two other languages but can't speak"
+			],
+			"cr": "10",
+			"trait": [
+				{
+					"name": "Immutable Form",
+					"entries": [
+						"The golem can't shape-shift."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The golem has Advantage on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The golem makes two attacks, using Slam or Force Bolt in any combination."
+					]
+				},
+				{
+					"name": "Slam",
+					"entries": [
+						"{@atkr m} {@hit 10}, reach 5 ft. {@h}15 ({@damage 2d8 + 6}) Bludgeoning damage plus 9 ({@damage 2d8}) Force damage."
+					]
+				},
+				{
+					"name": "Force Bolt",
+					"entries": [
+						"{@atkr r} {@hit 9}, range 90 ft. {@h}26 ({@damage 4d12}) Force damage."
+					]
+				},
+				{
+					"name": "Slow {@recharge 5}",
+					"entries": [
+						"The golem casts {@spell Slow|XPHB} (spell save {@dc 17}), requiring no spell components and using Constitution as the spellcasting ability."
+					]
+				}
+			],
+			"token": {
+				"name": "Stone Golem",
+				"source": "MM"
+			},
+			"traitTags": [
+				"Immutable Form",
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"CS",
+				"X"
+			],
+			"damageTags": [
+				"B",
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			]
+		},
+		{
+			"name": "Succubus",
+			"source": "XMM",
+			"otherSources": [
+				{
+					"source": "ScoEE"
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": "fiend",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				15
+			],
+			"hp": {
+				"average": 66,
+				"formula": "12d8 + 12"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": 60
+			},
+			"str": 8,
+			"dex": 17,
+			"con": 13,
+			"int": 15,
+			"wis": 12,
+			"cha": 20,
+			"skill": {
+				"deception": "+9",
+				"perception": "+5",
+				"stealth": "+7"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 15,
+			"resist": [
+				"cold",
+				"fire",
+				"poison",
+				"psychic"
+			],
+			"languages": [
+				"Abyssal",
+				"Common",
+				"Infernal",
+				"telepathy 60 ft."
+			],
+			"cr": "4",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The succubus casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save {@dc 15}):"
+					],
+					"will": [
+						"{@spell Dominate Person|XPHB} (level 8 version)"
+					],
+					"daily": {
+						"1": [
+							"{@spell Hypnotic Pattern|XPHB}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Incubus Form",
+					"entries": [
+						"When the succubus finishes a Long Rest, it can shape-shift into an {@creature Incubus|XMM}, using that stat block instead of this one."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The succubus makes two Fiendish Touch attacks and can use Spellcasting to cast {@spell Dominate Person|XPHB}. It can replace one attack with a use of Draining Kiss."
+					]
+				},
+				{
+					"name": "Fiendish Touch",
+					"entries": [
+						"{@atkr m} {@hit 5}, reach 5 ft. {@h}6 ({@damage 1d6 + 3}) Psychic damage."
+					]
+				},
+				{
+					"name": "Draining Kiss",
+					"entries": [
+						"{@actSave con} {@dc 15}, one creature {@condition Charmed|XPHB} by the succubus within 5 feet. {@actSaveFail} 13 ({@damage 3d8}) Psychic damage. {@actSaveSuccess} Half damage. Failure or Success: The target's Hit Point maximum is reduced by an amount equal to the damage taken."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Shape-Shift",
+					"entries": [
+						"The succubus shape-shifts to resemble a Medium or Small Humanoid or back into its true form. Its game statistics are the same in each form, except its Fly Speed is available only in its true form. Any equipment it's wearing or carrying isn't transformed."
+					]
+				}
+			],
+			"token": {
+				"name": "Succubus",
+				"source": "MM"
+			},
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AB",
+				"C",
+				"I",
+				"TP"
+			],
+			"damageTags": [
+				"Y"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"HPR",
+				"MA"
+			],
+			"conditionInflictSpell": [
+				"charmed",
+				"incapacitated"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			]
+		},
+		{
+			"name": "Tough Boss",
+			"source": "XMM",
+			"otherSources": [
+				{
+					"source": "ScoEE"
+				}
+			],
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				16
+			],
+			"hp": {
+				"average": 82,
+				"formula": "11d8 + 33"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 17,
+			"dex": 14,
+			"con": 16,
+			"int": 11,
+			"wis": 10,
+			"cha": 11,
+			"save": {
+				"str": "+5",
+				"con": "+5",
+				"cha": "+2"
+			},
+			"passive": 10,
+			"languages": [
+				"Common"
+			],
+			"cr": "4",
+			"gear": [
+				"chain mail|xphb",
+				"heavy crossbow|xphb",
+				"warhammer|xphb"
+			],
+			"trait": [
+				{
+					"name": "Pack Tactics",
+					"entries": [
+						"The tough has Advantage on an attack roll against a creature if at least one of the tough's allies is within 5 feet of the creature and the ally doesn't have the {@condition Incapacitated|XPHB} condition."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The tough makes two attacks, using Warhammer or Heavy Crossbow in any combination."
+					]
+				},
+				{
+					"name": "Warhammer",
+					"entries": [
+						"{@atkr m} {@hit 5}, reach 5 ft. {@h}12 ({@damage 2d8 + 3}) Bludgeoning damage, and if the target is Large or smaller, the tough can push the target up to 10 feet straight away from itself."
+					]
+				},
+				{
+					"name": "Heavy Crossbow",
+					"entries": [
+						"{@atkr r} {@hit 4}, range 100/400 ft. {@h}13 ({@damage 2d10 + 2}) Piercing damage."
+					]
+				}
+			],
+			"traitTags": [
+				"Pack Tactics"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"B",
+				"P"
+			],
+			"miscTags": [
+				"MA",
+				"MLW",
+				"RA",
+				"RNG"
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Wight",

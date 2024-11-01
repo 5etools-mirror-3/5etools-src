@@ -329,6 +329,7 @@ class PageFilterBestiary extends PageFilterBase {
 			}
 		}
 		if (mon.isNpc) mon._fMisc.push("Adventure NPC");
+		if (mon.isNamedCreature) mon._fMisc.push("Named Creature");
 		const legGroup = DataUtil.monster.getLegendaryGroup(mon);
 		if (legGroup) {
 			if (legGroup.lairActions) mon._fMisc.push("Lair Actions");
