@@ -230,7 +230,7 @@ Parser.numberToFractional = function (number) {
 
 Parser.ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-Parser.attAbvToFull = function (abv) {
+Parser.defAbvToFull = function (abv) {
 	return Parser._parse_aToB(Parser.DEF_ABV_TO_FULL, abv);
 };
 
