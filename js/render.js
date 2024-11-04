@@ -6183,9 +6183,7 @@ Renderer.class = class {
 
 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
-		return styleHint === "classic"
-			? `${clsHd.number * clsHd.faces} + your Constitution modifier`
-			: `${clsHd.number * clsHd.faces} + Con. modifier`;
+		return `${(clsHd.number * clsHd.faces) + ((clsHd.number * clsHd.faces) / 2) + 6}`; //+1 for rounding up, +5 for flat bonus
 	}
 
 	/**
@@ -6198,9 +6196,7 @@ Renderer.class = class {
 
 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
-		return styleHint === "classic"
-			? `${Renderer.get().render(Renderer.class.getHitDiceEntry(clsHd, {styleHint}))} (or ${((clsHd.number * clsHd.faces) / 2 + 1)}) + your Constitution modifier per ${className} level after 1st`
-			: `${Renderer.get().render(Renderer.class.getHitDiceEntry(clsHd, {styleHint}))} + your Con. modifier, or, ${((clsHd.number * clsHd.faces) / 2 + 1)} + your Con. modifier`;
+		return `${((clsHd.number * clsHd.faces) / 2) + 6}`; //+1 for rounding up, +5 for flat bonus
 	}
 
 	/* -------------------------------------------- */
