@@ -231,6 +231,10 @@ Parser.numberToFractional = function (number) {
 Parser.ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 Parser.attAbvToFull = function (abv) {
+	return Parser._parse_aToB(Parser.DEF_ABV_TO_FULL, abv);
+};
+
+Parser.attAbvToFull = function (abv) {
 	return Parser._parse_aToB(Parser.ATB_ABV_TO_FULL, abv);
 };
 
@@ -2638,6 +2642,13 @@ Parser.ATB_ABV_TO_FULL = {
 	"int": "Intelligence",
 	"wis": "Wisdom",
 	"cha": "Charisma",
+};
+
+Parser.DEF_ABV_TO_FULL = {
+	"frt": "Fortitude",
+	"ref": "Reflexes",
+	"wil": "Will",
+	"arm": "Armour",
 };
 
 Parser.TP_ABERRATION = "aberration";

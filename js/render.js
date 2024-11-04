@@ -6092,7 +6092,7 @@ class _RenderCompactClassesImplOne extends _RenderCompactClassesImplBase {
 		const pts = [
 			Renderer.class.getHtmlPtPrimaryAbility(ent, {renderer, styleHint: this._style}),
 			Renderer.class.getHtmlPtHitPoints(ent, {renderer, styleHint: this._style}),
-			Renderer.class.getHtmlPtSavingThrows(ent, {renderer, styleHint: this._style}),
+			Renderer.class.getHtmlPtDefences(ent, {renderer, styleHint: this._style}),
 			Renderer.class.getHtmlPtSkills(ent, {renderer, styleHint: this._style}),
 			Renderer.class.getHtmlPtWeaponProficiencies(ent, {renderer, styleHint: this._style}),
 			Renderer.class.getHtmlPtToolProficiencies(ent, {renderer, styleHint: this._style}),
@@ -6313,10 +6313,10 @@ Renderer.class = class {
 		<div><strong>Hit Points per additional ${cls.name} Level:</strong> ${Renderer.class.getHitPointsAtHigherLevels(cls.name, cls.hd, {styleHint})}</div>`;
 	}
 
-	static getHtmlPtSavingThrows (cls) {
-		if (!cls.proficiency) return "";
+	static getHtmlPtDefences (cls) {
+		if (!cls.defences) return "";
 
-		return `<div><b>Saving Throw Proficiencies:</b> <span>${cls.proficiency.map(p => Parser.attAbvToFull(p))}</span></div>`;
+		return `<div><b>Base defences:</b> <span>${Object.keys(cls.defences).map(k => `${Parser.defAbvToFull(k)} (${cls.defences[k]})`} )}</span></div>`;
 	}
 
 	static getHtmlPtSkills (cls, {styleHint = null}) {
