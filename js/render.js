@@ -6316,7 +6316,7 @@ Renderer.class = class {
 	static getHtmlPtDefences (cls) {
 		if (!cls.defences) return "";
 
-		return `<div><b>Base defences:</b> <span>${Object.keys(cls.defences).map(k => `${Parser.defAbvToFull(k)} (${cls.defences[k]})`)} )}</span></div>`;
+		return `<div><b>Base defences:</b> <span>${Object.keys(cls.defences).map(k => `${Parser.defAbvToFull(k)} (${cls.defences[k]})`)}</span></div>`;
 	}
 
 	static getHtmlPtSkills (cls, {styleHint = null}) {
