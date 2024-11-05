@@ -2646,7 +2646,7 @@ Parser.ATB_ABV_TO_FULL = {
 
 Parser.DEF_ABV_TO_FULL = {
 	"frt": "Fortitude",
-	"ref": "Reflexes",
+	"ref": "Reflex",
 	"wil": "Will",
 	"arm": "Armour",
 };
