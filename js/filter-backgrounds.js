@@ -88,8 +88,9 @@ class PageFilterBackgrounds extends PageFilterBase {
 		if (bg.weaponProficiencies) bg._fOtherBenifits.push("Weapon Proficiencies");
 		bg._skillDisplay = skillDisplay;
 
-		const ability = Renderer.getAbilityData(bg.ability, {isOnlyShort: true, isBackgroundShortForm: bg.edition === "one"});
-		bg._slAbility = ability.asTextShort || VeCt.STR_NONE;
+		bg._slAbility = bg.ability
+			? (Renderer.getAbilityData(bg.ability, {isOnlyShort: true, isBackgroundShortForm: bg.edition === "one"}).asTextShort || VeCt.STR_NONE)
+			: VeCt.STR_NONE;
 
 		bg._fFeats = this._mutateForFilters_getFilterFeats(bg);
 	}

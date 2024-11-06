@@ -511,11 +511,12 @@ class MakeCards extends BaseComponent {
 		MakeCards.utils.enhanceItemAlt(item);
 
 		const [typeRarityText, subTypeText, tierText] = Renderer.item.getTypeRarityAndAttunementText(item);
-		const [damage, damageType, propertiesTxt] = Renderer.item.getDamageAndPropertiesText(item);
+		const [ptDamage, ptProperties] = Renderer.item.getRenderedDamageAndProperties(item);
+		const ptMastery = Renderer.item.getRenderedMastery(item, {isSkipPrefix: true});
 		const ptWeight = Parser.itemWeightToFull(item);
 		const ptValue = Parser.itemValueToFullMultiCurrency(item);
-		const ptDamage = this._ct_htmlToText([damage, damageType].filter(Boolean).join(" "));
-		const ptProperties = this._ct_htmlToText([propertiesTxt].filter(Boolean)).substring(2);
+		const ptDamageCt = this._ct_htmlToText(ptDamage);
+		const ptPropertiesCt = this._ct_htmlToText(ptProperties);
 
 		const itemEntries = [];
 		if (item._fullEntries || (item.entries && item.entries.length)) {
@@ -528,8 +529,9 @@ class MakeCards extends BaseComponent {
 
 		return [
 			typeRarityText ? this._ct_htmlToText(this._ct_subtitle(typeRarityText.uppercaseFirst())) : null,
-			ptDamage ? this._ct_property(ptDamage.startsWith("AC") ? "Armor Class" : "Damage", ptDamage) : null,
-			ptProperties ? this._ct_property("Properties", ptProperties.uppercaseFirst()) : null,
+			ptDamageCt ? this._ct_property(ptDamageCt.startsWith("AC") ? "Armor Class" : "Damage", ptDamageCt) : null,
+			ptPropertiesCt ? this._ct_property("Properties", ptPropertiesCt.uppercaseFirst()) : null,
+			ptMastery ? this._ct_property("Mastery", ptMastery) : null,
 			subTypeText ? this._ct_property("Type", subTypeText.uppercaseFirst()) : null,
 			tierText ? this._ct_property("Tier", tierText.uppercaseFirst()) : null,
 			ptWeight ? this._ct_property("Weight", ptWeight) : null,

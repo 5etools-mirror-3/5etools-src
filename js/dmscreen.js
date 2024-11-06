@@ -416,17 +416,19 @@ class Board {
 
 	exilePanel (id) {
 		const panelK = Object.keys(this.panels).find(k => this.panels[k].id === id);
-		if (panelK) {
-			const toExile = this.panels[panelK];
-			if (!toExile.getEmpty()) {
-				delete this.panels[panelK];
-				this.exiledPanels.unshift(toExile);
-				const toDestroy = this.exiledPanels.splice(10);
-				toDestroy.forEach(p => p.destroy());
-				this.sideMenu.doUpdateHistory();
-			} else this.destroyPanel(id);
-			this.doSaveStateDebounced();
+		if (!panelK) return;
+
+		const toExile = this.panels[panelK];
+		if (toExile.getEmpty()) {
+			this.destroyPanel(id);
+		} else {
+			delete this.panels[panelK];
+			this.exiledPanels.unshift(toExile);
+			const toDestroy = this.exiledPanels.splice(10);
+			toDestroy.forEach(p => p.destroy());
+			this.sideMenu.doUpdateHistory();
 		}
+		this.doSaveStateDebounced();
 	}
 
 	recallPanel (panel) {
@@ -839,7 +841,7 @@ class SideMenu {
 		});
 		renderDivider();
 
-		this.$wrpHistory = $(`<div class="sidemenu__history"></div>`).appendTo(this.$mnu);
+		this.$wrpHistory = $(`<div class="sidemenu__history ve-overflow-y-auto ve-overflow-x-hidden"></div>`).appendTo(this.$mnu);
 	}
 
 	doUpdateDimensions () {

@@ -4442,18 +4442,12 @@ Renderer.utils = class {
 	}
 
 	// region Templating
-	static applyTemplate (ent, templateString, {fnPreApply, mapCustom} = {}) {
+	static applyTemplate (ent, templateString, {fnPreApply, mapCustom, mapCustomFns} = {}) {
 		return templateString.replace(/{{([^}]+)}}/g, (fullMatch, strArgs) => {
 			if (fnPreApply) fnPreApply(fullMatch, strArgs);
 
-			// Special case for damage dice -- need to add @damage tags
-			if (strArgs === "item.dmg1") {
-				return Renderer.item._getTaggedDamage(ent.dmg1);
-			} else if (strArgs === "item.dmg2") {
-				return Renderer.item._getTaggedDamage(ent.dmg2);
-			}
-
-			if (mapCustom && mapCustom[strArgs]) return mapCustom[strArgs];
+			if (mapCustom?.[strArgs]) return mapCustom[strArgs];
+			if (mapCustomFns?.[strArgs]) return mapCustomFns[strArgs]();
 
 			const args = strArgs.split(" ").map(arg => arg.trim()).filter(Boolean);
 
@@ -9669,7 +9663,9 @@ Renderer.monster = class {
 		if (typeof mon.initiative !== "object") return null;
 		if (typeof mon.initiative.initiative === "number") return mon.initiative.initiative;
 		if (mon.dex == null) return;
-		const profBonus = mon.initiative.proficient && Parser.crToNumber(mon.cr) < VeCt.CR_CUSTOM ? Parser.crToPb(mon.cr) : 0;
+		const profBonus = mon.initiative.proficiency && Parser.crToNumber(mon.cr) < VeCt.CR_CUSTOM
+			? mon.initiative.proficiency * Parser.crToPb(mon.cr)
+			: 0;
 		return Parser.getAbilityModNumber(mon.dex) + profBonus;
 	}
 
@@ -9707,27 +9703,51 @@ Renderer.monster = class {
 		}
 	}
 
+	static _getChallengeRatingPart_classic_getBasicCrRender ({cr = null, xp = null, isMythic = false} = {}) {
+		if (cr == null && xp == null) return null;
+
+		xp ??= Parser.crToNumber(cr) < VeCt.CR_CUSTOM
+			? Parser.crToXpNumber(cr)
+			: null;
+		const xpMythic = xp != null && isMythic
+			? Parser.crToXpNumber(cr) != null ? (Parser.crToXpNumber(cr) * 2) : null
+			: null;
+
+		const ptXp = xp != null ? xp.toLocaleString() : null;
+		const ptXpMythic = xpMythic != null ? xpMythic.toLocaleString() : null;
+
+		const ptXps = [
+			ptXp != null ? `${ptXp} XP` : null,
+			ptXpMythic != null ? `${ptXpMythic} XP as a mythic encounter` : null,
+		]
+			.filter(Boolean)
+			.joinConjunct(", ", ", or ", true);
+
+		if (cr == null && !ptXps) return null;
+
+		if (cr == null) return `(${ptXps})`;
+
+		if (Parser.crToNumber(cr) >= VeCt.CR_CUSTOM) return `${cr}${ptXps ? ` (${ptXps})` : ""}`;
+
+		return `${cr} (${ptXps})`;
+	}
+
 	static _getChallengeRatingPart_classic ({mon, isPlainText = false} = {}) {
 		if (mon.cr == null) return "\u2014";
 
-		const getBasicCrRender = (cr, {xp = null, isMythic = false} = {}) => {
-			if (Parser.crToNumber(cr) >= VeCt.CR_CUSTOM) return `${cr}${xp != null ? ` (${xp} XP)` : ""}`;
+		if (typeof mon.cr === "string") return this._getChallengeRatingPart_classic_getBasicCrRender({cr: mon.cr, isMythic: !!mon.mythic});
 
-			xp = xp != null ? xp.toLocaleString() : Parser.crToXp(cr);
-			return `${cr} (${xp} XP${isMythic ? `, or ${Parser.crToXp(cr, {isDouble: true})} XP as a mythic encounter` : ""})`;
-		};
-
-		if (typeof mon.cr === "string") return getBasicCrRender(mon.cr);
-
-		const stack = [getBasicCrRender(mon.cr.cr, {xp: mon.cr.xp, isMythic: !!mon.mythic})];
-		if (mon.cr.lair) stack.push(`${getBasicCrRender(mon.cr.lair)} when encountered in lair`);
-		if (mon.cr.coven) stack.push(`${getBasicCrRender(mon.cr.coven)} when part of a coven`);
-		return stack.joinConjunct(", ", " or ");
+		const stack = [this._getChallengeRatingPart_classic_getBasicCrRender({cr: mon.cr.cr, xp: mon.cr.xp, isMythic: !!mon.mythic})];
+		if (mon.cr.lair || mon.cr.xpLair) stack.push(`${this._getChallengeRatingPart_classic_getBasicCrRender({cr: mon.cr.lair, xp: mon.cr.xpLair})} when encountered in lair`);
+		if (mon.cr.coven || mon.cr.xpCoven) stack.push(`${this._getChallengeRatingPart_classic_getBasicCrRender({cr: mon.cr.coven, xp: mon.cr.xpCoven})} when part of a coven`);
+		return stack
+			.filter(Boolean)
+			.joinConjunct(", ", " or ");
 	}
 
 	static _getChallengeRatingPart_one ({mon, isPlainText = false} = {}) {
 		const crBase = mon.cr?.cr ?? mon.cr;
-		const xpBase = mon.cr?.xp ?? (crBase ? Parser.crToXp(crBase) : 0);
+		const xpBase = mon.cr?.xp ?? (crBase ? Parser.crToXpNumber(crBase) : 0);
 
 		const ptsXp = Parser.crToNumber(mon.cr) >= VeCt.CR_CUSTOM
 			? [
@@ -9735,20 +9755,20 @@ Renderer.monster = class {
 			]
 			// TODO(ODND) speculative text; revise
 			: [
-				xpBase,
-				mon.mythic ? `${xpBase * 2} as a mythic encounter` : null,
+				xpBase ? xpBase.toLocaleString() : null,
+				mon.mythic ? `${(xpBase * 2).toLocaleString()} as a mythic encounter` : null,
 			]
 				.filter(Boolean);
 
 		if (mon.cr != null && typeof mon.cr !== "string") {
-			if (mon.cr.lair) ptsXp.push(`${Parser.crToXp(mon.cr.lair)} in lair`);
-			if (mon.cr.coven) ptsXp.push(`${Parser.crToXp(mon.cr.coven)} when part of a coven`);
+			if (mon.cr.lair || mon.cr.xpLair) ptsXp.push(`${(mon.cr.xpLair ? mon.cr.xpLair.toLocaleString() : null) || Parser.crToXp(mon.cr.lair)} in lair`);
+			if (mon.cr.coven || mon.cr.xpCoven) ptsXp.push(`${(mon.cr.xpCoven ? mon.cr.xpCoven.toLocaleString() : null) || Parser.crToXp(mon.cr.coven)} when part of a coven`);
 		}
 
 		const ptPbVal = Renderer.monster.getPbPart(mon, {isPlainText});
 
 		const ptParens = [
-			ptsXp.length ? `XP ${ptsXp.joinConjunct(", ", " or ")}` : "",
+			ptsXp.length ? `XP ${ptsXp.joinConjunct(", ", ", or ", true)}` : "",
 			ptPbVal ? `${isPlainText ? "PB" : `<span title="Proficiency Bonus">PB</span>`} ${ptPbVal}` : "",
 		]
 			.filter(Boolean)
@@ -10436,14 +10456,10 @@ Renderer.item = class {
 	static _getPropertiesText (item, {renderer = null} = {}) {
 		renderer = renderer || Renderer.get();
 
-		if (!item.property) {
-			const parts = [];
-			if (item.dmg2) parts.push(`alt. ${Renderer.item._renderDamage(item.dmg2, {renderer})}`);
-			if (item.range) parts.push(`range ${item.range} ft.`);
-			return `${item.dmg1 && parts.length ? " - " : ""}${parts.join(", ")}`;
-		}
+		if (!item.property) return Renderer.item._getPropertiesText_noProperties({item, renderer});
 
 		let renderedDmg2 = false;
+		let renderedRange = false;
 
 		const renderedProperties = item.property
 			.sort(Renderer.item._sortProperties)
@@ -10458,10 +10474,20 @@ Renderer.item = class {
 						{
 							fnPreApply: (fullMatch, variablePath) => {
 								if (variablePath === "item.dmg2") renderedDmg2 = true;
+								if (variablePath === "item.range") renderedRange = true;
 							},
 							mapCustom: {
 								"prop_name": pFull.name.replace(/-/g, "\u2011"),
 								"prop_name_lower": pFull.name.replace(/-/g, "\u2011").toLowerCase(),
+							},
+							mapCustomFns: {
+								"item.dmg1": () => Renderer.item._getTaggedDamage(item.dmg1),
+								"item.dmg2": () => Renderer.item._getTaggedDamage(item.dmg2),
+
+								"item.ammoType": () => {
+									if (!item.ammoType) return "";
+									return `{@item ${item.ammoType.toTitleCase()}}`;
+								},
 							},
 						},
 					);
@@ -10471,9 +10497,20 @@ Renderer.item = class {
 			})
 			.filter(Boolean);
 
-		if (!renderedDmg2 && item.dmg2) renderedProperties.unshift(`alt. ${Renderer.item._renderDamage(item.dmg2, {renderer})}`);
+		if (!renderedDmg2 && item.dmg2) renderedProperties.unshift(Renderer.item._getPropertiesText_unusedDmg2({item, renderer}));
+		if (!renderedRange && item.range) renderedProperties.push(Renderer.item._getPropertiesText_unusedRange({item, renderer}));
 
-		return `${item.dmg1 && renderedProperties.length ? " - " : ""}${renderedProperties.join(", ")}`;
+		return renderedProperties.join(", ");
+	}
+
+	static _getPropertiesText_unusedDmg2 ({item, renderer}) { return `alt. ${Renderer.item._renderDamage(item.dmg2, {renderer})}`; }
+	static _getPropertiesText_unusedRange ({item, renderer}) { return `range ${item.range} ft.`; }
+
+	static _getPropertiesText_noProperties ({item, renderer}) {
+		const parts = [];
+		if (item.dmg2) parts.push(Renderer.item._getPropertiesText_unusedDmg2({item, renderer}));
+		if (item.range) parts.push(Renderer.item._getPropertiesText_unusedRange({item, renderer}));
+		return parts.join(", ");
 	}
 
 	static _getTaggedDamage (dmg, {renderer = null} = {}) {
@@ -10491,16 +10528,13 @@ Renderer.item = class {
 		return renderer.render(Renderer.item._getTaggedDamage(dmg, {renderer}));
 	}
 
-	static getDamageAndPropertiesText (item, {renderer = null} = {}) {
+	static getRenderedDamageAndProperties (item, {renderer = null} = {}) {
 		renderer = renderer || Renderer.get();
 
-		const damagePartsPre = [];
 		const damageParts = [];
 
 		const itemType = item.bardingType || item.type;
 		const itemTypeAbv = itemType ? DataUtil.itemType.unpackUid(itemType).abbreviation : null;
-
-		if (item.mastery) damagePartsPre.push(`Mastery: ${item.mastery.map(it => renderer.render(`{@itemMastery ${it}}`)).join(", ")}`);
 
 		// armor
 		if (item.ac != null) {
@@ -10517,7 +10551,16 @@ Renderer.item = class {
 		if (item.acSpecial != null) damageParts.push(item.ac != null ? item.acSpecial : `AC ${item.acSpecial}`);
 
 		// damage
-		if (item.dmg1) damageParts.push(Renderer.item._renderDamage(item.dmg1, {renderer}));
+		if (item.dmg1) {
+			damageParts.push(
+				[
+					Renderer.item._renderDamage(item.dmg1, {renderer}),
+					item.dmgType ? Parser.dmgTypeToFull(item.dmgType) : "",
+				]
+					.filter(Boolean)
+					.join(" "),
+			);
+		}
 
 		// mounts
 		if (item.speed != null) damageParts.push(`Speed: ${item.speed}`);
@@ -10552,16 +10595,17 @@ Renderer.item = class {
 			].filter(Boolean).join(renderer.getLineBreak()));
 		}
 
-		const damage = [
-			damagePartsPre.join(", "),
-			damageParts.join(", "),
-		]
-			.filter(Boolean)
-			.join(renderer.getLineBreak());
-		const damageType = item.dmgType ? Parser.dmgTypeToFull(item.dmgType) : "";
-		const propertiesTxt = Renderer.item._getPropertiesText(item, {renderer});
+		const ptDamage = damageParts.join(", ");
+		const ptProperties = Renderer.item._getPropertiesText(item, {renderer});
 
-		return [damage, damageType, propertiesTxt];
+		return [ptDamage, ptProperties];
+	}
+
+	static getRenderedMastery (item, {isSkipPrefix = false, renderer = null} = {}) {
+		renderer = renderer || Renderer.get();
+
+		if (!item.mastery) return "";
+		return `${isSkipPrefix ? "" : "Mastery: "}${item.mastery.map(it => renderer.render(`{@itemMastery ${it}}`)).join(", ")}`;
 	}
 
 	static getTypeRarityAndAttunementText (item) {
@@ -10763,8 +10807,18 @@ Renderer.item = class {
 	static getCompactRenderedString (item, opts) {
 		opts = opts || {};
 
-		const [damage, damageType, propertiesTxt] = Renderer.item.getDamageAndPropertiesText(item);
+		const [ptDamage, ptProperties] = Renderer.item.getRenderedDamageAndProperties(item);
+		const ptMastery = Renderer.item.getRenderedMastery(item);
 		const [typeRarityText, subTypeText, tierText] = Renderer.item.getTypeRarityAndAttunementText(item);
+
+		const textRight = [
+			ptDamage,
+			ptProperties,
+			ptMastery,
+		]
+			.filter(Boolean)
+			.map(pt => `<div class="ve-text-wrap-balance ve-text-right">${pt.uppercaseFirst()}</div>`)
+			.join("");
 
 		return `
 		${Renderer.utils.getExcludedTr({entity: item, dataProp: "item", page: UrlUtil.PG_ITEMS})}
@@ -10772,7 +10826,9 @@ Renderer.item = class {
 		<tr><td class="rd-item__type-rarity-attunement" colspan="6">${Renderer.item.getTypeRarityAndAttunementHtml(typeRarityText, subTypeText, tierText)}</td></tr>
 		<tr>
 			<td colspan="2">${[Parser.itemValueToFullMultiCurrency(item), Parser.itemWeightToFull(item)].filter(Boolean).join(", ").uppercaseFirst()}</td>
-			<td class="ve-text-right" colspan="4">${damage} ${damageType} ${propertiesTxt}</td>
+			<td colspan="4">
+				${textRight}
+			</td>
 		</tr>
 		${Renderer.item.hasEntries(item) ? `${Renderer.utils.getDividerTr()}<tr><td colspan="6" class="pb-2">${Renderer.item.getRenderedEntries(item, {isCompact: true})}</td></tr>` : `<tr><td colspan="6" class="pb-2"></td></tr>`}`;
 	}
@@ -13859,7 +13915,6 @@ Renderer.hover = class {
 		}
 	}
 
-	static _VERSION_REDIRECT_LOOKUP = null;
 	static async _pHandleLinkMouseOver_pGetVersionRedirectMeta ({page, source, hash, preloadId, customHashId, isAllowRedirect}) {
 		if (!isAllowRedirect || preloadId || customHashId) return null;
 		if (VetoolsConfig.get("styleSwitcher", "style") === "classic") return null;

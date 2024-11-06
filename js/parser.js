@@ -1073,8 +1073,14 @@ Parser.weightValueToNumber = function (value) {
 	else throw new Error(`Badly formatted value ${value}`);
 };
 
-Parser.dmgTypeToFull = function (dmgType) {
-	return Parser._parse_aToB(Parser.DMGTYPE_JSON_TO_FULL, dmgType);
+Parser.dmgTypeToFull = function (dmgType, {styleHint = null} = {}) {
+	if (!dmgType) return dmgType;
+
+	styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
+	const out = Parser._parse_aToB(Parser.DMGTYPE_JSON_TO_FULL, dmgType);
+	if (styleHint !== "classic") return out.toTitleCase();
+	return out;
 };
 
 Parser.skillProficienciesToFull = function (skillProficiencies, {styleHint = null} = {}) {
