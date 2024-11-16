@@ -9,7 +9,6 @@ class PageFilterClassesBase extends PageFilterBase {
 			items: [
 				"str",
 				"dex",
-				"con",
 				"int",
 				"wis",
 				"cha",

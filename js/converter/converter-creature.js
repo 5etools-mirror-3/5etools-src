@@ -242,7 +242,6 @@ export class ConverterCreature extends ConverterBase {
 				switch (meta.curLine.toLowerCase()) {
 					case "str": stats.str = this._tryGetStat(meta.toConvert[meta.ixToConvert]); continue;
 					case "dex": stats.dex = this._tryGetStat(meta.toConvert[meta.ixToConvert]); continue;
-					case "con": stats.con = this._tryGetStat(meta.toConvert[meta.ixToConvert]); continue;
 					case "int": stats.int = this._tryGetStat(meta.toConvert[meta.ixToConvert]); continue;
 					case "wis": stats.wis = this._tryGetStat(meta.toConvert[meta.ixToConvert]); continue;
 					case "cha": stats.cha = this._tryGetStat(meta.toConvert[meta.ixToConvert]); continue;
