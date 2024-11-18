@@ -1,6 +1,12 @@
-"use strict";
+import {LootGenOutput, LootGenOutputDragonMundaneItems, LootGenOutputGemsArtObjects, LootGenOutputMagicItems} from "./lootgen-output.js";
+import {LootGenMagicItem} from "./lootgen-magicitem.js";
+import {
+	LOOT_TABLES_TYPE__DMG_MAGIC_ITEMS,
+	LOOT_TABLES_TYPE__XGE_FAUX,
+	LOOT_TABLES_TYPE__XDMG_THEMES,
+} from "./lootgen-const.js";
 
-class LootGenUi extends BaseComponent {
+export class LootGenUi extends BaseComponent {
 	static _CHALLENGE_RATING_RANGES = {
 		0: "0\u20134",
 		5: "5\u201310",
@@ -151,19 +157,39 @@ class LootGenUi extends BaseComponent {
 	}
 
 	async _pInit_pBindFilterHooks () {
-		const tablesMagicItems = await ["A", "B", "C", "D", "E", "F", "G", "H", "I"]
-			.pMap(async letter => {
+		const tablesMagicItemsDmg = await ["A", "B", "C", "D", "E", "F", "G", "H", "I"]
+			.pMap(async type => {
 				return {
-					letter,
-					tableEntry: await DataLoader.pCacheAndGet(UrlUtil.PG_TABLES, Parser.SRC_DMG, UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_TABLES]({name: `Magic Item Table ${letter}`, source: Parser.SRC_DMG})),
+					type,
+					tableEntry: await DataLoader.pCacheAndGet(UrlUtil.PG_TABLES, Parser.SRC_DMG, UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_TABLES]({name: `Magic Item Table ${type}`, source: Parser.SRC_DMG})),
 				};
 			});
+
+		const tablesMagicItemsXdmg = await ["Arcana", "Armaments", "Implements", "Relics"]
+			.flatMap(theme => {
+				return ["Common", "Uncommon", "Rare", "Very Rare", "Legendary"]
+					.map(rarity => ({
+						name: `${theme} Tables; ${theme} - ${rarity}`,
+						type: `${theme.toLowerCase()}.${rarity.toLowerCase()}`,
+						theme,
+						rarity,
+					}));
+			})
+			.pMap(async info => ({
+				type: info.type,
+				theme: info.theme,
+				rarity: info.rarity,
+				tableEntry: await DataLoader.pCacheAndGet(UrlUtil.PG_TABLES, Parser.SRC_XDMG, UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_TABLES]({name: info.name, source: Parser.SRC_XDMG})),
+			}));
 
 		const hkFilterChangeSpells = () => this._handleFilterChangeSpells();
 		this._modalFilterSpells.pageFilter.filterBox.on(FILTER_BOX_EVNT_VALCHANGE, hkFilterChangeSpells);
 		hkFilterChangeSpells();
 
-		const hkFilterChangeItems = () => this._handleFilterChangeItems({tablesMagicItems});
+		const hkFilterChangeItems = () => this._handleFilterChangeItems({
+			tablesMagicItemsDmg,
+			tablesMagicItemsXdmg,
+		});
 		this._modalFilterItems.pageFilter.filterBox.on(FILTER_BOX_EVNT_VALCHANGE, hkFilterChangeItems);
 		hkFilterChangeItems();
 	}
@@ -175,7 +201,12 @@ class LootGenUi extends BaseComponent {
 		this._state.pulseSpellsFiltered = !this._state.pulseSpellsFiltered;
 	}
 
-	_handleFilterChangeItems ({tablesMagicItems}) {
+	_handleFilterChangeItems (
+		{
+			tablesMagicItemsDmg,
+			tablesMagicItemsXdmg,
+		},
+	) {
 		const f = this._modalFilterItems.pageFilter.filterBox.getValues();
 		this._dataItemsFiltered = this._dataItems.filter(it => this._modalFilterItems.pageFilter.toDisplay(f, it));
 
@@ -183,15 +214,30 @@ class LootGenUi extends BaseComponent {
 
 		this._lt_tableMetas = [
 			null,
-			...tablesMagicItems.map(({letter, tableEntry}) => {
+			...tablesMagicItemsXdmg.map(({type, theme, rarity, tableEntry}) => {
 				tableEntry = MiscUtil.copy(tableEntry);
 				tableEntry.type = "table";
 				delete tableEntry.chapter;
 				return {
-					type: "DMG",
-					dmgTableType: letter,
+					type,
+					metaType: LOOT_TABLES_TYPE__XDMG_THEMES,
+					theme,
+					rarity,
 					tableEntry,
-					table: this._data.magicItems.find(it => it.type === letter),
+					table: this._data.magicItems.find(it => it.type === type),
+					tag: `{@table ${theme} Tables; ${theme} - ${rarity}|XDMG|${theme} - ${rarity}}`,
+				};
+			}),
+			...tablesMagicItemsDmg.map(({type, tableEntry}) => {
+				tableEntry = MiscUtil.copy(tableEntry);
+				tableEntry.type = "table";
+				delete tableEntry.chapter;
+				return {
+					type,
+					metaType: LOOT_TABLES_TYPE__DMG_MAGIC_ITEMS,
+					tableEntry,
+					table: this._data.magicItems.find(it => it.type === type),
+					tag: `{@table Magic Item Table ${type}||Table ${type}}`,
 				};
 			}),
 			...xgeTables,
@@ -227,7 +273,8 @@ class LootGenUi extends BaseComponent {
 							: `${tier.toTitleCase()}-tier ${isMundane ? "mundane" : "magic"} items of ${rarity} rarity`;
 
 						return {
-							type: "XGE",
+							metaType: LOOT_TABLES_TYPE__XGE_FAUX,
+							type: `${tier}.${rarity}`,
 							tier,
 							rarity,
 
@@ -353,7 +400,7 @@ class LootGenUi extends BaseComponent {
 
 			<hr class="hr-3">
 
-			<div class="ve-small italic">${this.constructor._er(`Based on the tables and rules in the {@book Dungeon Master's Guide|DMG|7|Treasure Tables}`)}, pages 133-149.</div>
+			<div class="ve-small italic">${this.constructor._er(`Based on the tables and rules in the {@book ${Parser.sourceJsonToFull(Parser.SRC_DMG)}|DMG|7|Treasure Tables}`)}, pages 133-149.</div>
 		</div>`.appendTo(tabMeta.$wrpTab);
 	}
 
@@ -606,11 +653,7 @@ class LootGenUi extends BaseComponent {
 			{
 				asMeta: true,
 				values: getSelTableValues(),
-				fnDisplay: ix => this._lt_tableMetas[ix] == null
-					? `\u2014`
-					: this._lt_tableMetas[ix].tier
-						? `Tier: ${this._lt_tableMetas[ix].tier}; Rarity: ${this._lt_tableMetas[ix].rarity}`
-						: this._lt_tableMetas[ix].tableEntry.caption,
+				fnDisplay: ix => this._lt_getSelTableDisplay({ix}),
 			},
 		);
 
@@ -635,10 +678,10 @@ class LootGenUi extends BaseComponent {
 		this._addHookBase("pulseItemsFiltered", hkPulseItem);
 
 		const $btnRoll = $(`<button class="ve-btn ve-btn-default ve-btn-xs mr-2">Roll Loot</button>`)
-			.click(() => this._lt_pDoHandleClickRollLoot());
+			.on("click", () => this._lt_pDoHandleClickRollLoot());
 
 		const $btnClear = $(`<button class="ve-btn ve-btn-danger ve-btn-xs">Clear Output</button>`)
-			.click(() => this._doClearOutput());
+			.on("click", () => this._doClearOutput());
 
 		const $hrHelp = $(`<hr class="hr-3">`);
 		const $dispHelp = $(`<div class="ve-small italic"></div>`);
@@ -655,9 +698,7 @@ class LootGenUi extends BaseComponent {
 
 			if (tableMeta == null) return;
 
-			$dispHelp
-				.html(tableMeta.type === "DMG" ? this.constructor._er(`Based on the tables and rules in the {@book Dungeon Master's Guide|DMG|7|Treasure Tables}, pages 133-149.`) : this.constructor._er(`Tables auto-generated based on the rules in {@book Xanathar's Guide to Everything (Choosing Items Piecemeal)|XGE|2|choosing items piecemeal}, pages 135-136.`));
-
+			$dispHelp.html(this._lt_getRenderedHelp({tableMeta}));
 			$dispTable.html(this.constructor._er(tableMeta.tableEntry));
 		};
 		this._addHookBase("lt_ixTable", hkTable);
@@ -681,33 +722,83 @@ class LootGenUi extends BaseComponent {
 		</div>`.appendTo(tabMeta.$wrpTab);
 	}
 
-	async _lt_pDoHandleClickRollLoot () {
+	_lt_getSelTableDisplay ({ix}) {
+		const tblMeta = this._lt_tableMetas[ix];
+		if (!tblMeta) return "\u2014";
+
+		if (tblMeta.tier && tblMeta.rarity) return `Tier: ${this._lt_tableMetas[ix].tier}; Rarity: ${this._lt_tableMetas[ix].rarity}`;
+		if (tblMeta.theme && tblMeta.rarity) return `Theme: ${this._lt_tableMetas[ix].theme}; Rarity: ${this._lt_tableMetas[ix].rarity}`;
+
+		return tblMeta.tableEntry.caption;
+	}
+
+	_lt_getRenderedHelp ({tableMeta}) {
+		switch (tableMeta.metaType) {
+			case LOOT_TABLES_TYPE__DMG_MAGIC_ITEMS: return this.constructor._er(`Based on the tables and rules in the {@book ${Parser.sourceJsonToFull(Parser.SRC_DMG)}|DMG|7|Treasure Tables}, pages 133-149.`);
+			case LOOT_TABLES_TYPE__XGE_FAUX: return this.constructor._er(`Tables auto-generated based on the rules in {@book ${Parser.sourceJsonToFull(Parser.SRC_XGE)} (Choosing Items Piecemeal)|XGE|2|choosing items piecemeal}, pages 135-136.`);
+			case LOOT_TABLES_TYPE__XDMG_THEMES: return this.constructor._er(`Based on the tables and rules in the {@book ${Parser.sourceJsonToFull(Parser.SRC_XDMG)}|XDMG|6|Random Magic Items}, pages 326-331.`);
+			default: throw new Error(`Unhandled table meta-type "${tableMeta.metaType}"`);
+		}
+	}
+
+	async _lt_pDoHandleClickRollLoot ({isTest = false} = {}) {
 		const tableMeta = this._lt_tableMetas[this._state.lt_ixTable];
 		if (!tableMeta) return JqueryUtil.doToast({type: "warning", content: `Please select a table first!`});
 
 		const lootOutput = new this._ClsLootGenOutput({
-			type: `Treasure Table Roll: ${tableMeta.type === "DMG" ? tableMeta.tableEntry.caption : `${tableMeta.tier} ${tableMeta.rarity}`}`,
-			name: tableMeta.type === "DMG"
-				? `Rolled against {@b {@table ${tableMeta.tableEntry.caption}|${Parser.SRC_DMG}}}`
-				: `Rolled on the table for {@b ${tableMeta.tier} ${tableMeta.rarity}} items`,
-			magicItemsByTable: await this._lt_pDoHandleClickRollLoot_pGetMagicItemMetas({tableMeta}),
+			type: `Treasure Table Roll: ${this._lt_pDoHandleClickRollLoot_getTypePart({tableMeta})}`,
+			name: this._lt_pDoHandleClickRollLoot_getNamePart({tableMeta}),
+			magicItemsByTable: await this._lt_pDoHandleClickRollLoot_pGetMagicItemMetas({tableMeta, isTest}),
 		});
 		this._doAddOutput({lootOutput});
 	}
 
-	async _lt_pDoHandleClickRollLoot_pGetMagicItemMetas ({tableMeta}) {
+	_lt_pDoHandleClickRollLoot_getTypePart ({tableMeta}) {
+		switch (tableMeta.metaType) {
+			case LOOT_TABLES_TYPE__DMG_MAGIC_ITEMS: return tableMeta.tableEntry.caption;
+			case LOOT_TABLES_TYPE__XGE_FAUX: return `${tableMeta.tier} ${tableMeta.rarity}`;
+			case LOOT_TABLES_TYPE__XDMG_THEMES: return `${tableMeta.theme} ${tableMeta.rarity}`;
+			default: throw new Error(`Unhandled table meta-type "${tableMeta.metaType}"`);
+		}
+	}
+
+	_lt_pDoHandleClickRollLoot_getNamePart ({tableMeta}) {
+		switch (tableMeta.metaType) {
+			case LOOT_TABLES_TYPE__DMG_MAGIC_ITEMS: return `Rolled against {@b {@table ${tableMeta.tableEntry.caption}|${Parser.SRC_DMG}}}`;
+			case LOOT_TABLES_TYPE__XGE_FAUX: return `Rolled on the table for {@b ${tableMeta.tier} ${tableMeta.rarity}} items`;
+			case LOOT_TABLES_TYPE__XDMG_THEMES: return `Rolled on the table for {@b ${tableMeta.rarity} ${tableMeta.theme}}`;
+			default: throw new Error(`Unhandled table meta-type "${tableMeta.metaType}"`);
+		}
+	}
+
+	async _lt_pDoHandleClickRollLoot_pGetMagicItemMetas ({tableMeta, isTest = false}) {
 		const breakdown = [];
-		const lootItem = await LootGenMagicItem.pGetMagicItemRoll({
-			lootGenMagicItems: breakdown,
-			spells: this._dataSpellsFiltered,
-			magicItemTable: tableMeta.table,
-		});
-		breakdown.push(lootItem);
+		if (isTest) {
+			await tableMeta.table.table
+				.map(it => it.min)
+				.pSerialAwaitMap(async rowRoll => {
+					const lootItem = await LootGenMagicItem.pGetMagicItemRoll({
+						lootGenMagicItems: breakdown,
+						spells: this._dataSpellsFiltered,
+						magicItemTable: tableMeta.table,
+						rowRoll,
+					});
+					breakdown.push(lootItem);
+				});
+		} else {
+			const lootItem = await LootGenMagicItem.pGetMagicItemRoll({
+				lootGenMagicItems: breakdown,
+				spells: this._dataSpellsFiltered,
+				magicItemTable: tableMeta.table,
+			});
+			breakdown.push(lootItem);
+		}
 
 		return [
 			new LootGenOutputMagicItems({
-				type: tableMeta.dmgTableType,
-				count: 1,
+				type: tableMeta.type,
+				tag: tableMeta.tag,
+				count: breakdown.length,
 				breakdown,
 			}),
 		];
@@ -930,7 +1021,7 @@ class LootGenUi extends BaseComponent {
 			</label>
 
 			<label class="split-v-center mb-3">
-				<div class="mr-2 w-66 no-shrink" title="If selected, random magic items will be preferred over rolling on the standard DMG &quot;Magic Items Table [A-I]&quot; when generating magic items.">Prefer Random Magic Items</div>
+				<div class="mr-2 w-66 no-shrink" title="If selected, random magic items will be preferred over rolling on the standard ${Parser.sourceJsonToAbv(Parser.SRC_DMG).qq()} &quot;Magic Items Table [A-I]&quot; when generating magic items.">Prefer Random Magic Items</div>
 				${$cbIsPreferRandomMagicItems}
 			</label>
 
@@ -1304,926 +1395,5 @@ class LootGenUi extends BaseComponent {
 			gao_targetGoldAmount: 100,
 			// endregion
 		};
-	}
-}
-
-globalThis.LootGenUi = LootGenUi;
-
-class LootGenOutput {
-	static _TIERS = ["other", "minor", "major"];
-
-	constructor (
-		{
-			type,
-			name,
-			coins,
-			gems,
-			artObjects,
-			magicItemsByTable,
-			dragonMundaneItems,
-		},
-	) {
-		this._type = type;
-		this._name = name;
-		this._coins = coins;
-		this._gems = gems;
-		this._artObjects = artObjects;
-		this._magicItemsByTable = magicItemsByTable;
-		this._dragonMundaneItems = dragonMundaneItems;
-
-		this._datetimeGenerated = Date.now();
-	}
-
-	_$getEleTitleSplit () {
-		const $btnRivet = !IS_VTT && ExtensionUtil.ACTIVE
-			? $(`<button title="Send to Foundry (SHIFT for Temporary Import)" class="ve-btn ve-btn-xs ve-btn-default"><span class="glyphicon glyphicon-send"></span></button>`)
-				.click(evt => this._pDoSendToFoundry({isTemp: !!evt.shiftKey}))
-			: null;
-
-		const $btnDownload = $(`<button title="Download JSON" class="ve-btn ve-btn-xs ve-btn-default"><span class="glyphicon glyphicon-download glyphicon--top-2p"></span></button>`)
-			.click(() => this._pDoSaveAsJson());
-
-		return $$`<div class="ve-btn-group">
-			${$btnRivet}
-			${$btnDownload}
-		</div>`;
-	}
-
-	render ($parent) {
-		const $eleTitleSplit = this._$getEleTitleSplit();
-
-		const $dispTitle = $$`<h4 class="mt-1 mb-2 split-v-center ve-draggable">
-			<div>${Renderer.get().render(this._name)}</div>
-			${$eleTitleSplit}
-		</h4>`;
-
-		const $parts = [
-			this._render_$getPtValueSummary(),
-			this._render_$getPtCoins(),
-			...this._render_$getPtGemsArtObjects({loot: this._gems, name: "gemstones"}),
-			...this._render_$getPtGemsArtObjects({loot: this._artObjects, name: "art objects"}),
-			this._render_$getPtDragonMundaneItems(),
-			...this._render_$getPtMagicItems(),
-		].filter(Boolean);
-
-		this._$wrp = $$`<div class="ve-flex-col lootg__wrp-output py-3 px-2 my-2 mr-1">
-			${$dispTitle}
-			${$parts.length ? $$`<ul>${$parts}</ul>` : null}
-			${!$parts.length ? `<div class="ve-muted help-subtle italic" title="${LootGenMagicItemNull.TOOLTIP_NOTHING.qq()}">(No loot!)</div>` : null}
-		</div>`
-			.prependTo($parent);
-
-		(IS_VTT ? this._$wrp : $dispTitle)
-			.attr("draggable", true)
-			.on("dragstart", evt => {
-				const meta = {
-					type: VeCt.DRAG_TYPE_LOOT,
-					data: dropData,
-				};
-				evt.originalEvent.dataTransfer.setData("application/json", JSON.stringify(meta));
-			});
-
-		// Preload the drop data in the background, to lessen the chance that the user drops the card before it has time
-		//   to load.
-		let dropData;
-		this._pGetFoundryForm().then(it => dropData = it);
-	}
-
-	async _pDoSendToFoundry ({isTemp} = {}) {
-		const toSend = await this._pGetFoundryForm();
-		if (isTemp) toSend.isTemp = isTemp;
-		if (toSend.currency || toSend.entityInfos) return ExtensionUtil.pDoSend({type: "5etools.lootgen.loot", data: toSend});
-		JqueryUtil.doToast({content: `Nothing to send!`, type: "warning"});
-	}
-
-	async _pDoSaveAsJson () {
-		const serialized = await this._pGetFoundryForm();
-		await DataUtil.userDownload("loot", serialized);
-	}
-
-	async _pGetFoundryForm () {
-		const toSend = {name: this._name, type: this._type, dateTimeGenerated: this._datetimeGenerated};
-
-		if (this._coins) toSend.currency = this._coins;
-
-		const entityInfos = [];
-		if (this._gems?.length) entityInfos.push(...await this._pDoSendToFoundry_getGemsArtObjectsMetas({loot: this._gems}));
-		if (this._artObjects?.length) entityInfos.push(...await this._pDoSendToFoundry_getGemsArtObjectsMetas({loot: this._artObjects}));
-
-		if (this._magicItemsByTable?.length) {
-			for (const magicItemsByTable of this._magicItemsByTable) {
-				for (const lootItem of magicItemsByTable.breakdown) {
-					const exportMeta = lootItem.getExtensionExportMeta();
-					if (!exportMeta) continue;
-					const {page, entity, options} = exportMeta;
-					entityInfos.push({
-						page,
-						entity,
-						options,
-					});
-				}
-			}
-		}
-
-		if (this._dragonMundaneItems?.breakdown?.length) {
-			for (const str of this._dragonMundaneItems.breakdown) {
-				entityInfos.push({
-					page: UrlUtil.PG_ITEMS,
-					entity: {
-						name: Renderer.stripTags(str).uppercaseFirst(),
-						source: Parser.SRC_FTD,
-						type: Parser.ITM_TYP__OTHER,
-						rarity: "unknown",
-					},
-				});
-			}
-		}
-
-		if (entityInfos.length) toSend.entityInfos = entityInfos;
-
-		return toSend;
-	}
-
-	async _pDoSendToFoundry_getGemsArtObjectsMetas ({loot}) {
-		const uidToCount = {};
-		const specialItemMetas = {}; // For any rows which don't actually map to an item
-
-		loot.forEach(lt => {
-			Object.entries(lt.breakdown)
-				.forEach(([entry, count]) => {
-					let cntFound = 0;
-					entry.replace(/{@item ([^}]+)}/g, (...m) => {
-						cntFound++;
-						const [name, source] = m[1].toLowerCase().split("|").map(it => it.trim()).filter(Boolean);
-						const uid = `${name}|${source || Parser.SRC_DMG}`.toLowerCase();
-						uidToCount[uid] = (uidToCount[uid] || 0) + count;
-						return "";
-					});
-
-					if (cntFound) return;
-
-					// If we couldn't find any real items in this row, prepare a dummy item
-					const uidFaux = entry.toLowerCase().trim();
-
-					specialItemMetas[uidFaux] = specialItemMetas[uidFaux] || {
-						count: 0,
-						item: {
-							name: Renderer.stripTags(entry).uppercaseFirst(),
-							source: Parser.SRC_DMG,
-							type: Parser.ITM_TYP__OTHER,
-							rarity: "unknown",
-						},
-					};
-
-					specialItemMetas[uidFaux].count += count;
-				});
-		});
-
-		const out = [];
-		for (const [uid, count] of Object.entries(uidToCount)) {
-			const [name, source] = uid.split("|");
-			const item = await DataLoader.pCacheAndGet(UrlUtil.PG_ITEMS, source, UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS]({name, source}));
-			out.push({
-				page: UrlUtil.PG_ITEMS,
-				entity: item,
-				options: {
-					quantity: count,
-				},
-			});
-		}
-
-		for (const {count, item} of Object.values(specialItemMetas)) {
-			out.push({
-				page: UrlUtil.PG_ITEMS,
-				entity: item,
-				options: {
-					quantity: count,
-				},
-			});
-		}
-
-		return out;
-	}
-
-	_render_$getPtValueSummary () {
-		if ([this._coins, this._gems, this._artObjects].filter(Boolean).length <= 1) return null;
-
-		const totalValue = [
-			this._coins ? CurrencyUtil.getAsCopper(this._coins) : 0,
-			this._gems?.length ? this._gems.map(it => it.type * it.count * 100).sum() : 0,
-			this._artObjects?.length ? this._artObjects.map(it => it.type * it.count * 100).sum() : 0,
-		].sum();
-
-		return $(`<li class="italic ve-muted">A total of ${(totalValue / 100).toLocaleString()} gp worth of coins, art objects, and/or gems, as follows:</li>`);
-	}
-
-	_render_$getPtCoins () {
-		if (!this._coins) return null;
-
-		const total = CurrencyUtil.getAsCopper(this._coins);
-		const breakdown = [...Parser.COIN_ABVS]
-			.reverse()
-			.filter(it => this._coins[it])
-			.map(it => `${this._coins[it].toLocaleString()} ${it}`);
-
-		return $$`
-			<li>${(total / 100).toLocaleString()} gp in coinage:</li>
-			<ul>
-				${breakdown.map(it => `<li>${it}</li>`).join("")}
-			</ul>
-		`;
-	}
-
-	_render_$getPtDragonMundaneItems () {
-		if (!this._dragonMundaneItems) return null;
-
-		return $$`
-			<li>${this._dragonMundaneItems.count} mundane item${this._dragonMundaneItems.count !== 1 ? "s" : ""}:</li>
-			<ul>
-				${this._dragonMundaneItems.breakdown.map(it => `<li>${it}</li>`).join("")}
-			</ul>
-		`;
-	}
-
-	_render_$getPtGemsArtObjects ({loot, name}) {
-		if (!loot?.length) return [];
-
-		return loot.map(lt => {
-			return $$`
-			<li>${(lt.type).toLocaleString()} gp ${name} (×${lt.count}; worth ${((lt.type * lt.count)).toLocaleString()} gp total):</li>
-			<ul>
-				${Object.entries(lt.breakdown).map(([result, count]) => `<li>${Renderer.get().render(result)}${count > 1 ? `, ×${count}` : ""}</li>`).join("")}
-			</ul>
-		`;
-		});
-	}
-
-	_render_$getPtMagicItems () {
-		if (!this._magicItemsByTable?.length) return [];
-
-		return [...this._magicItemsByTable]
-			.sort(({tier: tierA, type: typeA}, {tier: tierB, type: typeB}) => this.constructor._ascSortTier(tierB, tierA) || SortUtil.ascSortLower(typeA || "", typeB || ""))
-			.map(magicItems => {
-				// If we're in "tier" mode, sort the items into groups by rarity
-				if (magicItems.tier) {
-					const byRarity = {};
-
-					magicItems.breakdown
-						.forEach(lootItem => {
-							if (!lootItem.item) return;
-
-							const tgt = MiscUtil.getOrSet(byRarity, lootItem.item.rarity, []);
-							tgt.push(lootItem);
-						});
-
-					const $ulsByRarity = Object.entries(byRarity)
-						.sort(([rarityA], [rarityB]) => SortUtil.ascSortItemRarity(rarityB, rarityA))
-						.map(([rarity, lootItems]) => {
-							return $$`
-								<li>${rarity.toTitleCase()} items (×${lootItems.length}):</li>
-								<ul>${lootItems.map(it => it.$getRender())}</ul>
-							`;
-						});
-
-					if (!$ulsByRarity.length) return null;
-
-					return $$`
-						<li>${magicItems.tier.toTitleCase()} items:</li>
-						<ul>
-							${$ulsByRarity}
-						</ul>
-					`;
-				}
-
-				return $$`
-					<li>Magic Items${magicItems.type ? ` (${Renderer.get().render(`{@table Magic Item Table ${magicItems.type}||Table ${magicItems.type}}`)})` : ""}${(magicItems.count || 0) > 1 ? ` (×${magicItems.count})` : ""}</li>
-					<ul>${magicItems.breakdown.map(it => it.$getRender())}</ul>
-				`;
-			});
-	}
-
-	doRemove () {
-		if (this._$wrp) this._$wrp.remove();
-	}
-
-	static _ascSortTier (a, b) { return LootGenOutput._TIERS.indexOf(a) - LootGenOutput._TIERS.indexOf(b); }
-}
-
-globalThis.LootGenOutput = LootGenOutput;
-
-class LootGenOutputGemsArtObjects {
-	constructor (
-		{
-			type,
-			typeRoll,
-			typeTable,
-			count,
-			breakdown,
-		},
-	) {
-		this.type = type;
-		this.count = count;
-		// region Unused--potential for wiring up rerolls from `LootGenOutput` UI, if required
-		this.typeRoll = typeRoll;
-		this.typeTable = typeTable;
-		// endregion
-		this.breakdown = breakdown;
-	}
-}
-
-class LootGenOutputDragonMundaneItems {
-	constructor (
-		{
-			count,
-			breakdown,
-		},
-	) {
-		this.count = count;
-		this.breakdown = breakdown;
-	}
-}
-
-class LootGenOutputMagicItems {
-	constructor (
-		{
-			type,
-			count,
-			typeRoll,
-			typeTable,
-			breakdown,
-			tier,
-		},
-	) {
-		this.type = type;
-		this.count = count;
-		// region Unused--potential for wiring up rerolls from `LootGenOutput` UI, if required
-		this.typeRoll = typeRoll;
-		this.typeTable = typeTable;
-		// endregion
-		this.breakdown = breakdown;
-		this.tier = tier;
-	}
-}
-
-class LootGenMagicItem extends BaseComponent {
-	static async pGetMagicItemRoll (
-		{
-			lootGenMagicItems,
-			spells,
-			magicItemTable,
-			itemsAltChoose,
-			itemsAltChooseDisplayText,
-			isItemsAltChooseRoll = false,
-			fnGetIsPreferAltChoose = null,
-		},
-	) {
-		isItemsAltChooseRoll = isItemsAltChooseRoll && !!itemsAltChoose;
-		if (isItemsAltChooseRoll) {
-			const item = RollerUtil.rollOnArray(itemsAltChoose);
-
-			return this._pGetMagicItemRoll_singleItem({
-				item,
-				lootGenMagicItems,
-				spells,
-				magicItemTable,
-				itemsAltChoose,
-				itemsAltChooseDisplayText,
-				isItemsAltChooseRoll,
-				fnGetIsPreferAltChoose,
-			});
-		}
-
-		if (!magicItemTable?.table) {
-			return new LootGenMagicItemNull({
-				lootGenMagicItems,
-				spells,
-				magicItemTable,
-				itemsAltChoose,
-				itemsAltChooseDisplayText,
-				isItemsAltChooseRoll,
-				fnGetIsPreferAltChoose,
-			});
-		}
-
-		const rowRoll = RollerUtil.randomise(magicItemTable.diceType ?? 100);
-		const row = magicItemTable.table.find(it => rowRoll >= it.min && rowRoll <= (it.max ?? it.min));
-
-		if (row.spellLevel != null) {
-			return new LootGenMagicItemSpellScroll({
-				lootGenMagicItems,
-				spells,
-				magicItemTable,
-				itemsAltChoose,
-				itemsAltChooseDisplayText,
-				isItemsAltChooseRoll,
-				fnGetIsPreferAltChoose,
-				baseEntry: row.item,
-				item: await this._pGetMagicItemRoll_pGetItem({nameOrUid: row.item}),
-				roll: rowRoll,
-				spellLevel: row.spellLevel,
-				spell: RollerUtil.rollOnArray(spells.filter(it => it.level === row.spellLevel)),
-			});
-		}
-
-		if (row.choose?.fromGeneric) {
-			const subItems = (await row.choose.fromGeneric.pMap(nameOrUid => this._pGetMagicItemRoll_pGetItem({nameOrUid})))
-				.map(it => it.variants.map(({specificVariant}) => specificVariant))
-				.flat();
-
-			return new LootGenMagicItemSubItems({
-				lootGenMagicItems,
-				spells,
-				magicItemTable,
-				itemsAltChoose,
-				itemsAltChooseDisplayText,
-				isItemsAltChooseRoll,
-				fnGetIsPreferAltChoose,
-				baseEntry: row.item ?? `{@item ${row.choose.fromGeneric[0]}}`,
-				item: RollerUtil.rollOnArray(subItems),
-				roll: rowRoll,
-				subItems,
-			});
-		}
-
-		if (row.choose?.fromGroup) {
-			const subItems = (await ((await row.choose.fromGroup.pMap(nameOrUid => this._pGetMagicItemRoll_pGetItem({nameOrUid})))
-				.pMap(it => it.items.pMap(x => this._pGetMagicItemRoll_pGetItem({nameOrUid: x})))))
-				.flat();
-
-			return new LootGenMagicItemSubItems({
-				lootGenMagicItems,
-				spells,
-				magicItemTable,
-				itemsAltChoose,
-				itemsAltChooseDisplayText,
-				isItemsAltChooseRoll,
-				fnGetIsPreferAltChoose,
-				baseEntry: row.item ?? `{@item ${row.choose.fromGroup[0]}}`,
-				item: RollerUtil.rollOnArray(subItems),
-				roll: rowRoll,
-				subItems,
-			});
-		}
-
-		if (row.choose?.fromItems) {
-			const subItems = await row.choose?.fromItems.pMap(nameOrUid => this._pGetMagicItemRoll_pGetItem({nameOrUid}));
-
-			return new LootGenMagicItemSubItems({
-				lootGenMagicItems,
-				spells,
-				magicItemTable,
-				itemsAltChoose,
-				itemsAltChooseDisplayText,
-				isItemsAltChooseRoll,
-				fnGetIsPreferAltChoose,
-				baseEntry: row.item,
-				item: RollerUtil.rollOnArray(subItems),
-				roll: rowRoll,
-				subItems,
-			});
-		}
-
-		if (row.table) {
-			const min = Math.min(...row.table.map(it => it.min));
-			const max = Math.max(...row.table.map(it => it.max ?? min));
-
-			const {subRowRoll, subRow, subItem} = await LootGenMagicItemTable.pGetSubRollMeta({
-				min,
-				max,
-				subTable: row.table,
-			});
-
-			return new LootGenMagicItemTable({
-				lootGenMagicItems,
-				spells,
-				magicItemTable,
-				itemsAltChoose,
-				itemsAltChooseDisplayText,
-				isItemsAltChooseRoll,
-				fnGetIsPreferAltChoose,
-				baseEntry: row.item,
-				item: subItem,
-				roll: rowRoll,
-				table: row.table,
-				tableMinRoll: min,
-				tableMaxRoll: max,
-				tableEntry: subRow.item,
-				tableRoll: subRowRoll,
-			});
-		}
-
-		return this._pGetMagicItemRoll_singleItem({
-			item: await this._pGetMagicItemRoll_pGetItem({nameOrUid: row.item}),
-			lootGenMagicItems,
-			spells,
-			magicItemTable,
-			itemsAltChoose,
-			itemsAltChooseDisplayText,
-			isItemsAltChooseRoll,
-			fnGetIsPreferAltChoose,
-			baseEntry: row.item,
-			roll: rowRoll,
-		});
-	}
-
-	static async _pGetMagicItemRoll_singleItem (
-		{
-			item,
-			lootGenMagicItems,
-			spells,
-			magicItemTable,
-			itemsAltChoose,
-			itemsAltChooseDisplayText,
-			isItemsAltChooseRoll = false,
-			fnGetIsPreferAltChoose = null,
-			baseEntry,
-			roll,
-		},
-	) {
-		baseEntry = baseEntry || item
-			? `{@item ${item.name}|${item.source}}`
-			: `<span class="help-subtle" title="${LootGenMagicItemNull.TOOLTIP_NOTHING.qq()}">(no item)</span>`;
-
-		if (item?.spellScrollLevel != null) {
-			return new LootGenMagicItemSpellScroll({
-				lootGenMagicItems,
-				spells,
-				magicItemTable,
-				itemsAltChoose,
-				itemsAltChooseDisplayText,
-				isItemsAltChooseRoll,
-				fnGetIsPreferAltChoose,
-				baseEntry,
-				item,
-				spellLevel: item.spellScrollLevel,
-				spell: RollerUtil.rollOnArray(spells.filter(it => it.level === item.spellScrollLevel)),
-				roll,
-			});
-		}
-
-		if (item?.variants?.length) {
-			const subItems = item.variants.map(({specificVariant}) => specificVariant);
-
-			return new LootGenMagicItemSubItems({
-				lootGenMagicItems,
-				spells,
-				magicItemTable,
-				itemsAltChoose,
-				itemsAltChooseDisplayText,
-				isItemsAltChooseRoll,
-				fnGetIsPreferAltChoose,
-				baseEntry: baseEntry,
-				item: RollerUtil.rollOnArray(subItems),
-				roll,
-				subItems,
-			});
-		}
-
-		return new LootGenMagicItem({
-			lootGenMagicItems,
-			spells,
-			magicItemTable,
-			itemsAltChoose,
-			itemsAltChooseDisplayText,
-			isItemsAltChooseRoll,
-			fnGetIsPreferAltChoose,
-			baseEntry,
-			item,
-			roll,
-		});
-	}
-
-	static async _pGetMagicItemRoll_pGetItem ({nameOrUid}) {
-		nameOrUid = nameOrUid.replace(/{@item ([^}]+)}/g, (...m) => m[1]);
-		const uid = (nameOrUid.includes("|") ? nameOrUid : `${nameOrUid}|${Parser.SRC_DMG}`).toLowerCase();
-		const [name, source] = uid.split("|");
-		return DataLoader.pCacheAndGet(UrlUtil.PG_ITEMS, source, UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS]({name, source}));
-	}
-
-	/**
-	 * @param lootGenMagicItems The parent array in which this item is stored.
-	 * @param spells Spell data list.
-	 * @param magicItemTable The table this result was rolled form.
-	 * @param itemsAltChoose Item list from which alternate rolls can be made.
-	 * @param itemsAltChooseDisplayText Summary display text for the alternate roll options.
-	 * @param isItemsAltChooseRoll If this item was rolled by an alt-choose roll.
-	 * @param fnGetIsPreferAltChoose Function to call when checking if this should default to the "alt choose" item set.
-	 * @param baseEntry The text, which may be an item itself, supplied by the `"item"` property in the row.
-	 * @param item The rolled item.
-	 * @param roll The roll result used to get this row.
-	 */
-	constructor (
-		{
-			lootGenMagicItems,
-			spells,
-			magicItemTable,
-			itemsAltChoose,
-			itemsAltChooseDisplayText,
-			isItemsAltChooseRoll,
-			fnGetIsPreferAltChoose,
-			baseEntry,
-			item,
-			roll,
-		},
-	) {
-		super();
-		this._lootGenMagicItems = lootGenMagicItems;
-		this._spells = spells;
-		this._magicItemTable = magicItemTable;
-		this._itemsAltChoose = itemsAltChoose;
-		this._itemsAltChooseDisplayText = itemsAltChooseDisplayText;
-		this._fnGetIsPreferAltChoose = fnGetIsPreferAltChoose;
-
-		this._state.baseEntry = baseEntry;
-		this._state.item = item;
-		this._state.roll = roll;
-		this._state.isItemsAltChooseRoll = isItemsAltChooseRoll;
-
-		this._$render = null;
-	}
-
-	get item () { return this._state.item; }
-
-	getExtensionExportMeta () {
-		return {
-			page: UrlUtil.PG_ITEMS,
-			entity: this._state.item,
-		};
-	}
-
-	async _pDoReroll ({isAltRoll = false} = {}) {
-		const nxt = await this.constructor.pGetMagicItemRoll({
-			lootGenMagicItems: this._lootGenMagicItems,
-			spells: this._spells,
-			magicItemTable: this._magicItemTable,
-			itemsAltChoose: this._itemsAltChoose,
-			itemsAltChooseDisplayText: this._itemsAltChooseDisplayText,
-			isItemsAltChooseRoll: isAltRoll,
-			fnGetIsPreferAltChoose: this._fnGetIsPreferAltChoose,
-		});
-
-		this._lootGenMagicItems.splice(this._lootGenMagicItems.indexOf(this), 1, nxt);
-
-		if (!this._$render) return;
-		this._$render.replaceWith(nxt.$getRender());
-	}
-
-	_$getBtnReroll () {
-		if (!this._magicItemTable && !this._itemsAltChoose) return null;
-
-		const isAltModeDefault = this._fnGetIsPreferAltChoose && this._fnGetIsPreferAltChoose();
-		const title = this._itemsAltChoose
-			? isAltModeDefault ? `SHIFT to roll on Magic Item Table ${this._magicItemTable.type}` : `SHIFT to roll ${Parser.getArticle(this._itemsAltChooseDisplayText)} ${this._itemsAltChooseDisplayText} item`
-			: null;
-		return $(`<span class="roller render-roller" ${title ? `title="${title}"` : ""}>[reroll]</span>`)
-			.mousedown(evt => evt.preventDefault())
-			.click(evt => this._pDoReroll({isAltRoll: isAltModeDefault ? !evt.shiftKey : evt.shiftKey}));
-	}
-
-	$getRender () {
-		if (this._$render) return this._$render;
-		return this._$render = this._$getRender();
-	}
-
-	_$getRender () {
-		const $dispBaseEntry = this._$getRender_$getDispBaseEntry();
-		const $dispRoll = this._$getRender_$getDispRoll();
-
-		const $btnReroll = this._$getBtnReroll();
-
-		return $$`<li class="split-v-center">
-			<div class="ve-flex-v-center ve-flex-wrap pr-3 min-w-0">
-				${$dispBaseEntry}
-				${$dispRoll}
-			</div>
-			${$btnReroll}
-		</li>`;
-	}
-
-	_$getRender_$getDispBaseEntry ({prop = "baseEntry"} = {}) {
-		const $dispBaseEntry = $(`<div class="mr-2"></div>`);
-		const hkBaseEntry = () => $dispBaseEntry.html(Renderer.get().render(this._state.isItemsAltChooseRoll ? `{@i ${this._state[prop]}}` : this._state[prop]));
-		this._addHookBase(prop, hkBaseEntry);
-		hkBaseEntry();
-		return $dispBaseEntry;
-	}
-
-	_$getRender_$getDispRoll ({prop = "roll"} = {}) {
-		const $dispRoll = $(`<div class="ve-muted"></div>`);
-		const hkRoll = () => $dispRoll.text(this._state.isItemsAltChooseRoll ? `(${this._itemsAltChooseDisplayText} item)` : `(Rolled ${this._state[prop]})`);
-		this._addHookBase(prop, hkRoll);
-		hkRoll();
-		return $dispRoll;
-	}
-
-	_getDefaultState () {
-		return {
-			...super._getDefaultState(),
-			baseEntry: null,
-			item: null,
-			roll: null,
-			isItemsAltChooseRoll: false,
-		};
-	}
-}
-
-class LootGenMagicItemNull extends LootGenMagicItem {
-	static TOOLTIP_NOTHING = `Failed to generate a result! This is normally due to all potential matches being filtered out. You may want to adjust your filters to be more permissive.`;
-
-	getExtensionExportMeta () { return null; }
-
-	_$getRender () {
-		return $$`<li class="split-v-center">
-			<div class="ve-flex-v-center ve-flex-wrap ve-muted help-subtle" title="${this.constructor.TOOLTIP_NOTHING.qq()}">&mdash;</div>
-		</li>`;
-	}
-}
-
-class LootGenMagicItemSpellScroll extends LootGenMagicItem {
-	constructor (
-		{
-			spellLevel,
-			spell,
-			...others
-		},
-	) {
-		super(others);
-
-		this._state.spellLevel = spellLevel;
-		this._state.spell = spell;
-	}
-
-	getExtensionExportMeta () {
-		if (this._state.spell == null) return null;
-
-		return {
-			page: UrlUtil.PG_SPELLS,
-			entity: this._state.spell,
-			options: {
-				isSpellScroll: true,
-			},
-		};
-	}
-
-	_$getRender () {
-		const $dispBaseEntry = this._$getRender_$getDispBaseEntry();
-		const $dispRoll = this._$getRender_$getDispRoll();
-
-		const $btnRerollSpell = $(`<span class="roller render-roller mr-2">[reroll]</span>`)
-			.mousedown(evt => evt.preventDefault())
-			.click(() => {
-				this._state.spell = RollerUtil.rollOnArray(this._spells.filter(it => it.level === this._state.spellLevel));
-			});
-
-		const $dispSpell = $(`<div class="no-wrap"></div>`);
-		const hkSpell = () => {
-			if (!this._state.spell) return $dispSpell.html(`<span class="help-subtle" title="${LootGenMagicItemNull.TOOLTIP_NOTHING.qq()}">(no spell)</span>`);
-			$dispSpell.html(Renderer.get().render(`{@spell ${this._state.spell.name}|${this._state.spell.source}}`));
-		};
-		this._addHookBase("spell", hkSpell);
-		hkSpell();
-
-		const $btnReroll = this._$getBtnReroll();
-
-		return $$`<li class="split-v-center">
-			<div class="ve-flex-v-center ve-flex-wrap pr-3 min-w-0">
-				${$dispBaseEntry}
-				<div class="ve-flex-v-center italic mr-2">
-					<span>(</span>
-					${$btnRerollSpell}
-					${$dispSpell}
-					<span class="ve-muted mx-2 no-wrap">-or-</span>
-					<div class="no-wrap">${Renderer.get().render(`{@filter see all ${Parser.spLevelToFullLevelText(this._state.spellLevel, {isDash: true})} spells|spells|level=${this._state.spellLevel}}`)}</div>
-					<span>)</span>
-				</div>
-				${$dispRoll}
-			</div>
-			${$btnReroll}
-		</li>`;
-	}
-
-	_getDefaultState () {
-		return {
-			...super._getDefaultState(),
-			spellLevel: null,
-			spell: null,
-		};
-	}
-}
-
-class LootGenMagicItemSubItems extends LootGenMagicItem {
-	constructor (
-		{
-			subItems,
-			...others
-		},
-	) {
-		super(others);
-		this._subItems = subItems;
-	}
-
-	_$getRender () {
-		const $dispBaseEntry = this._$getRender_$getDispBaseEntry();
-		const $dispRoll = this._$getRender_$getDispRoll();
-
-		const $btnRerollSubItem = $(`<span class="roller render-roller mr-2">[reroll]</span>`)
-			.mousedown(evt => evt.preventDefault())
-			.click(() => {
-				this._state.item = RollerUtil.rollOnArray(this._subItems);
-			});
-
-		const $dispSubItem = $(`<div></div>`);
-		const hkItem = () => $dispSubItem.html(Renderer.get().render(`{@item ${this._state.item.name}|${this._state.item.source}}`));
-		this._addHookBase("item", hkItem);
-		hkItem();
-
-		const $btnReroll = this._$getBtnReroll();
-
-		return $$`<li class="split-v-center">
-			<div class="ve-flex-v-center ve-flex-wrap pr-3 min-w-0">
-				${$dispBaseEntry}
-				<div class="ve-flex-v-center italic mr-2">
-					<span>(</span>
-					${$btnRerollSubItem}
-					${$dispSubItem}
-					<span>)</span>
-				</div>
-				${$dispRoll}
-			</div>
-			${$btnReroll}
-		</li>`;
-	}
-}
-
-class LootGenMagicItemTable extends LootGenMagicItem {
-	static async pGetSubRollMeta ({min, max, subTable}) {
-		const subRowRoll = RollerUtil.randomise(max, min);
-		const subRow = subTable.find(it => subRowRoll >= it.min && subRowRoll <= (it.max ?? it.min));
-
-		return {
-			subRowRoll,
-			subRow,
-			subItem: await this._pGetMagicItemRoll_pGetItem({nameOrUid: subRow.item}),
-		};
-	}
-
-	constructor (
-		{
-			table,
-			tableMinRoll,
-			tableMaxRoll,
-			tableEntry,
-			tableRoll,
-			...others
-		},
-	) {
-		super(others);
-		this._table = table;
-		this._tableMinRoll = tableMinRoll;
-		this._tableMaxRoll = tableMaxRoll;
-		this._state.tableEntry = tableEntry;
-		this._state.tableRoll = tableRoll;
-	}
-
-	_$getRender () {
-		const $dispBaseEntry = this._$getRender_$getDispBaseEntry();
-		const $dispRoll = this._$getRender_$getDispRoll();
-
-		const $dispTableEntry = this._$getRender_$getDispBaseEntry({prop: "tableEntry"});
-		const $dispTableRoll = this._$getRender_$getDispRoll({prop: "tableRoll"});
-
-		const $btnReroll = this._$getBtnReroll();
-
-		const $btnRerollSub = $(`<span class="roller render-roller ve-small ve-self-flex-end">[reroll]</span>`)
-			.mousedown(evt => evt.preventDefault())
-			.click(async () => {
-				const {subRowRoll, subRow, subItem} = await LootGenMagicItemTable.pGetSubRollMeta({
-					min: this._tableMinRoll,
-					max: this._tableMaxRoll,
-					subTable: this._table,
-				});
-
-				this._state.item = subItem;
-				this._state.tableEntry = subRow.item;
-				this._state.tableRoll = subRowRoll;
-			});
-
-		return $$`<li class="ve-flex-col">
-			<div class="split-v-center">
-				<div class="ve-flex-v-center ve-flex-wrap pr-3 min-w-0">
-					${$dispBaseEntry}
-					${$dispRoll}
-				</div>
-				${$btnReroll}
-			</div>
-			<div class="split-v-center pl-2">
-				<div class="ve-flex-v-center ve-flex-wrap pr-3 min-w-0">
-					<span class="ml-1 mr-2">&rarr;</span>
-					${$dispTableEntry}
-					${$dispTableRoll}
-				</div>
-				${$btnRerollSub}
-			</div>
-		</li>`;
 	}
 }

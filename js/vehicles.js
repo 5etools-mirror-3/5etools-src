@@ -34,6 +34,7 @@ class VehiclesSublistManager extends SublistManager {
 			it.name,
 			{
 				hash,
+				page: it.page,
 				vehicleType: it.vehicleType,
 				upgradeType: it.upgradeType,
 				type: displayType,
@@ -93,6 +94,7 @@ class VehiclesPage extends ListPage {
 			{
 				hash,
 				source,
+				page: it.page,
 				vehicleType: it.vehicleType,
 				upgradeType: it.upgradeType,
 				type: displayType,
@@ -109,12 +111,9 @@ class VehiclesPage extends ListPage {
 	}
 
 	_renderStats_doBuildStatsTab ({ent}) {
-		if (ent.vehicleType) {
-			this._tokenDisplay.render(ent);
-			this._$pgContent.empty().append(RenderVehicles.$getRenderedVehicle(ent));
-		} else {
-			this._$pgContent.empty().append(RenderVehicles.$getRenderedVehicle(ent));
-		}
+		this._$pgContent.empty().append(RenderVehicles.$getRenderedVehicle(ent));
+
+		this._tokenDisplay.render(ent);
 	}
 
 	_renderStats_onTabChangeStats () {

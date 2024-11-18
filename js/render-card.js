@@ -103,8 +103,12 @@ class RendererCard {
 
 				const headerRowMeta = headerRowMetas[ixRow];
 				for (let ixCell = 0; ixCell < headerRowMeta.length; ++ixCell) {
-					const label = headerRowMeta[ixCell];
-					this._recursiveRender(label, textStack, meta);
+					const entCellHeader = headerRowMeta[ixCell];
+					const entryNxt = entCellHeader?.type === "cellHeader"
+						? entCellHeader.entry
+						: entCellHeader;
+					this._recursiveRender(entryNxt, textStack, meta);
+					if (entCellHeader?.type === "cellHeader" && entCellHeader.width) for (let i = 1; i < entCellHeader.width; ++i) textStack[0] += _VERTICAL_LINE;
 					if (ixCell !== headerRowMeta.length - 1) textStack[0] += _VERTICAL_LINE;
 				}
 

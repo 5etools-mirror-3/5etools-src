@@ -58,6 +58,7 @@ class OptionalFeaturesSublistManager extends SublistManager {
 			it.name,
 			{
 				hash,
+				page: it.page,
 				type: it._lFeatureType,
 				prerequisite,
 				level,
@@ -128,6 +129,7 @@ class OptionalFeaturesPage extends ListPage {
 			{
 				hash,
 				source,
+				page: it.page,
 				prerequisite,
 				level,
 				type: it._lFeatureType,

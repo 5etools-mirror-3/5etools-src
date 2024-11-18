@@ -797,6 +797,13 @@ class _DataTypeLoaderCharoption extends _DataTypeLoaderSingleSource {
 	_filename = "charcreationoptions.json";
 }
 
+class _DataTypeLoaderBastion extends _DataTypeLoaderSingleSource {
+	static PROPS = ["facility"];
+	static PAGE = UrlUtil.PG_BASTIONS;
+
+	_filename = "bastions.json";
+}
+
 class _DataTypeLoaderTrapHazard extends _DataTypeLoaderSingleSource {
 	static PROPS = ["trap", "hazard"];
 	static PAGE = UrlUtil.PG_TRAPS_HAZARDS;
@@ -945,6 +952,14 @@ class _DataTypeLoaderCharoptionFluff extends _DataTypeLoaderSingleSource {
 	static IS_FLUFF = true;
 
 	_filename = "fluff-charcreationoptions.json";
+}
+
+class _DataTypeLoaderBastionFluff extends _DataTypeLoaderSingleSource {
+	static PROPS = ["facilityFluff"];
+	static PAGE = UrlUtil.PG_BASTIONS;
+	static IS_FLUFF = true;
+
+	_filename = "fluff-bastions.json";
 }
 
 class _DataTypeLoaderRecipeFluff extends _DataTypeLoaderSingleSource {
@@ -1748,6 +1763,7 @@ class DataLoader {
 		"tableGroup": UrlUtil.PG_TABLES,
 		"language": UrlUtil.PG_LANGUAGES,
 		"recipe": UrlUtil.PG_RECIPES,
+		"facility": UrlUtil.PG_BASTIONS,
 		"classFeature": UrlUtil.PG_CLASS_SUBCLASS_FEATURES,
 		"subclassFeature": UrlUtil.PG_CLASS_SUBCLASS_FEATURES,
 		"reference": UrlUtil.PG_QUICKREF,
@@ -1828,6 +1844,7 @@ class DataLoader {
 		_DataTypeLoaderOptionalfeature.register({fnRegister});
 		_DataTypeLoaderReward.register({fnRegister});
 		_DataTypeLoaderCharoption.register({fnRegister});
+		_DataTypeLoaderBastion.register({fnRegister});
 
 		_DataTypeLoaderTrapHazard.register({fnRegister});
 		_DataTypeLoaderCultBoon.register({fnRegister});
@@ -1855,6 +1872,7 @@ class DataLoader {
 		_DataTypeLoaderVehicleFluff.register({fnRegister});
 		_DataTypeLoaderObjectFluff.register({fnRegister});
 		_DataTypeLoaderCharoptionFluff.register({fnRegister});
+		_DataTypeLoaderBastionFluff.register({fnRegister});
 		_DataTypeLoaderRecipeFluff.register({fnRegister});
 
 		_DataTypeLoaderConditionDiseaseFluff.register({fnRegister});

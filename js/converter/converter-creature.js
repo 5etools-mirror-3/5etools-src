@@ -61,6 +61,10 @@ export class ConverterCreature extends ConverterBase {
 		"UTILITY SPELL", // homebrew
 	];
 
+	static _RE_START_ARMOR_CLASS = "(?:Armor Class|AC)";
+	static _RE_START_INITIATIVE = "(?:Initiative)";
+	static _RE_START_HIT_POINTS = "(?:Hit Points|HP)";
+	static _RE_START_SPEED = "(?:Speed)";
 	static _RE_START_SAVING_THROWS = "(?:Saving Throw|Save)s?";
 	static _RE_START_SKILLS = "Skills?";
 	static _RE_START_DAMAGE_VULN = "(?:Damage )?Vulnerabilit(?:y|ies)";
@@ -201,21 +205,35 @@ export class ConverterCreature extends ConverterBase {
 			}
 
 			// armor class
-			if (meta.ixToConvert === 2) {
+			if (
+				ConverterUtils.isStatblockLineHeaderStart({reStartStr: this._RE_START_ARMOR_CLASS, line: meta.curLine})
+			) {
 				const [ptAc, ptInit] = meta.curLine.split(/\s+Initiative\s*/).map(it => it.trim()).filter(Boolean);
 				stats.ac = ConverterUtils.getStatblockLineHeaderText({reStartStr: "(?:Armor Class|AC)", line: ptAc});
 				if (ptInit) stats.initiative = ptInit;
 				continue;
 			}
 
+			// Initiative
+			if (
+				ConverterUtils.isStatblockLineHeaderStart({reStartStr: this._RE_START_INITIATIVE, line: meta.curLine})
+			) {
+				this._setCleanInitiative(stats, meta.curLine);
+				continue;
+			}
+
 			// hit points
-			if (meta.ixToConvert === 3) {
+			if (
+				ConverterUtils.isStatblockLineHeaderStart({reStartStr: this._RE_START_HIT_POINTS, line: meta.curLine})
+			) {
 				this._setCleanHp(stats, meta.curLine);
 				continue;
 			}
 
 			// speed
-			if (meta.ixToConvert === 4) {
+			if (
+				ConverterUtils.isStatblockLineHeaderStart({reStartStr: this._RE_START_SPEED, line: meta.curLine})
+			) {
 				this._setCleanSpeed(stats, meta.curLine, options);
 				continue;
 			}
@@ -664,6 +682,14 @@ export class ConverterCreature extends ConverterBase {
 			.replace(/([-+] +)\n +(\d+|PB)/g, (...m) => `${m[1]}${m[2]}`)
 		;
 
+		// Handle 2024 ability scores split across lines
+		clean = clean
+			.replace(/\n(?<abil>str|dex|con|int|wis|cha)\s+(?<score>\d+)\s+(?<mod>[-+]\d+)\s+(?<save>[-+]\d+)(?= *\n)/gi, (...m) => {
+				const {abil, score, mod, save} = m.at(-1);
+				return `\n${abil} ${score} ${mod} ${save}`;
+			})
+		;
+
 		// Handle CR XP on separate line
 		clean = clean
 			.replace(/\n(\([\d,]+ XP\)\n)/g, (...m) => m[1])
@@ -726,7 +752,7 @@ export class ConverterCreature extends ConverterBase {
 	}
 
 	static _handleAbilityScores_modSaveTable ({stats, meta, options}) {
-		if (!/^Mod\s+Save$/.test(meta.curLine)) return false;
+		if (!/^Mod\s+Save(\s+Mod\s+Save\s+Mod\s+Save)?$/i.test(meta.curLine)) return false;
 		++meta.ixToConvert;
 		meta.initCurLine();
 
@@ -734,7 +760,7 @@ export class ConverterCreature extends ConverterBase {
 
 		while (true) {
 			if (
-				/^Mod\s+Save$/.test(meta.curLine)
+				/^Mod\s+Save/i.test(meta.curLine)
 				|| meta.isSkippableCurLine()
 			) {
 				++meta.ixToConvert;
@@ -751,13 +777,41 @@ export class ConverterCreature extends ConverterBase {
 		--meta.ixToConvert;
 		meta.initCurLine();
 
+		// Convert scores of the form:
+		// ```
+		// ["Str 10 +0 +0 Dex 16 +3 +5 Con12 +1 +1",
+		//  "Int 13 +1 +1 Wis 17 +3 +5 Cha 12 +1 +1"]
+		// ```
+		if (abilLines.length === 2) {
+			const zipped = abilLines
+				.flatMap(pt => {
+					return pt
+						.split(/(str|dex|con|int|wis|cha)/i)
+						.filter(Boolean)
+						.reduce((accum, val) => {
+							const tgt = accum.at(-1);
+
+							if (!tgt || tgt.length === 2) {
+								accum.push([val]);
+								return accum;
+							}
+
+							tgt.push(val);
+
+							return accum;
+						}, []);
+				})
+				.map(tuple => tuple.join(" ").trim().replace(/\s+/g, " "));
+			abilLines.splice(0, abilLines.length, ...zipped);
+		}
+
 		if (abilLines.length !== 6) {
 			options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Ability scores require manual conversion`);
 			return false;
 		}
 
 		for (const l of abilLines) {
-			const mAbil = /^(?<abil>str|dex|con|int|wis|cha)\s+(?<score>\d+)\s+(?<bonus>[-+]\d+)\s+(?<save>[-+]\d+)$/i.exec(l);
+			const mAbil = /^(?<abil>str|dex|con|int|wis|cha)\s*(?<score>\d+)\s+(?<bonus>[-+]\d+)\s+(?<save>[-+]\d+)$/i.exec(l);
 			if (!mAbil) {
 				options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Ability scores require manual conversion`);
 				return false;
@@ -769,7 +823,7 @@ export class ConverterCreature extends ConverterBase {
 			stats[abilProp] = Number(score);
 
 			const saveNum = Number(save);
-			if (Parser.getAbilityModNumber(stats[abilProp]) !== saveNum) (state.save ||= {})[abilProp] = save;
+			if (Parser.getAbilityModNumber(stats[abilProp]) !== saveNum) (stats.save ||= {})[abilProp] = save;
 		}
 
 		return true;
@@ -828,9 +882,27 @@ export class ConverterCreature extends ConverterBase {
 		const scoreNum = Number(mInit.groups.score);
 
 		const dexMod = Parser.getAbilityModNumber(stats.dex);
+
 		// Basic initiative; delete
 		if (dexMod === bonusNum && scoreNum === 10 + dexMod) {
 			return delete stats.initiative;
+		}
+
+		const pb = Parser.crToPb(stats.cr);
+		if (!pb) return options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Initiative requires manual conversion`);
+
+		if ((bonusNum + 10) === scoreNum) {
+			// Basic initiative with additional proficiency bonus
+			if ((dexMod + pb) === bonusNum) {
+				stats.initiative = {proficiency: 1};
+				return;
+			}
+
+			// Basic initiative with additional expertise
+			if ((dexMod + (2 * pb)) === bonusNum) {
+				stats.initiative = {proficiency: 2};
+				return;
+			}
 		}
 
 		// TODO(Future) refine
@@ -1806,8 +1878,12 @@ export class ConverterCreature extends ConverterBase {
 		stats.type.tags.push(...meta.additionalTypeTags);
 	}
 
+	static _setCleanInitiative (stats, line) {
+		stats.initiative = ConverterUtils.getStatblockLineHeaderText({reStartStr: this._RE_START_INITIATIVE, line});
+	}
+
 	static _setCleanHp (stats, line) {
-		const rawHp = ConverterUtils.getStatblockLineHeaderText({reStartStr: "(?:Hit Points|HP)", line});
+		const rawHp = ConverterUtils.getStatblockLineHeaderText({reStartStr: this._RE_START_HIT_POINTS, line});
 		// split HP into average and formula
 		const m = /^(\d+)\s*\((.*?)\)$/.exec(rawHp.trim());
 		if (!m) stats.hp = {special: rawHp}; // for e.g. Avatar of Death
@@ -2028,7 +2104,7 @@ export class ConverterCreature extends ConverterBase {
 
 	static _setCleanCr (stats, meta, {cbWarning, header = "Challenge"} = {}) {
 		let line = ConverterUtils.getStatblockLineHeaderText({reStartStr: header, line: meta.curLine});
-		let xp = null;
+		let xp = null; let xpLair = null;
 
 		line = line
 			.replace(/(?<=\()(?<amount>[0-9,]+)\s*XP(?=\))/i, (...m) => {
@@ -2043,11 +2119,15 @@ export class ConverterCreature extends ConverterBase {
 			.trim();
 
 		line = line
-			.replace(/(?<=\()\s*XP (?<amount>[0-9,]+)(?:;\s*)?/i, (...m) => {
-				const amountRaw = m.last().amount.replace(/,/, "");
-				if (isNaN(amountRaw)) return m[0];
+			.replace(/(?<=\()\s*XP (?<amount>[0-9,]+)( or (?<amountLair>[0-9,]+) in lair)?(?:;\s*)?/i, (...m) => {
+				const {amount, amountLair} = m.at(-1);
+				const amountRaw = amount.replace(/,/g, "");
+				const amountLairRaw = amountLair ? amountLair.replace(/,/g, "") : null;
+
+				if (isNaN(amountRaw) || (amountLairRaw && isNaN(amountLairRaw))) return m[0];
 
 				xp = Number(amountRaw);
+				if (amountLairRaw) xpLair = Number(amountLairRaw);
 
 				return "";
 			})
@@ -2097,11 +2177,13 @@ export class ConverterCreature extends ConverterBase {
 
 		const cr = line;
 
-		if (xp != null && Parser.crToXpNumber(cr) !== xp) {
-			stats.cr = {
-				cr,
-				xp,
-			};
+		const isXpMismatch = xp != null && Parser.crToXpNumber(cr) !== xp;
+		if (isXpMismatch || xpLair != null) {
+			const outCr = {cr};
+			if (isXpMismatch) outCr.xp = xp;
+			if (xpLair) outCr.xpLair = xpLair;
+
+			stats.cr = outCr;
 			return;
 		}
 

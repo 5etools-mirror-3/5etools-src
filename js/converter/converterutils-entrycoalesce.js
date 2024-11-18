@@ -20,6 +20,8 @@ export class EntryCoalesceEntryLists {
 		this._mutCoalesce_listsBasic({stats, prop, styleHint});
 		this._mutCoalesce_listsHanging({stats, prop, styleHint});
 		this._mutCoalesce_listsHangingAttributes({stats, prop, styleHint});
+
+		this._mutCoalesce_separateUsageNote({stats, prop, styleHint});
 	}
 
 	static _mutCoalesce_listsBasic ({stats, prop}) {
@@ -97,7 +99,7 @@ export class EntryCoalesceEntryLists {
 
 							if (
 								ent.trim().endsWith(":")
-								&& /\b(choose|choice)\b/i.exec(ent)
+								&& /\b(choose|choice|one of the following|following benefits)\b/i.exec(ent)
 								&& entNxt?.type === "entries"
 							) {
 								tmpList = getNewList();
@@ -145,6 +147,39 @@ export class EntryCoalesceEntryLists {
 				.map(it => ({type: "item", ...it})),
 		};
 		stats[prop].splice(0, ixEnd + 1, lst);
+	}
+
+	/** Attempt to pull out "usage" notes which have been mistakenly included in lists etc. */
+	static _mutCoalesce_separateUsageNote ({stats, prop, styleHint}) {
+		if (styleHint === SITE_STYLE__CLASSIC) return;
+
+		stats[prop] = this._WALKER.walk(
+			stats[prop],
+			{
+				array: (arr, objProp) => {
+					if (objProp !== "entries") return arr;
+
+					const entLast = arr.at(-1);
+					if (entLast?.type !== "list" || entLast?.style !== "list-hang-notitle" || !entLast?.items?.length) return arr;
+
+					const itmLast = entLast.items.at(-1);
+					if (
+						itmLast?.type !== "item"
+						|| !itmLast?.entries?.length
+						|| itmLast.entries.length < 2
+						|| typeof itmLast.entries.at(-1) !== "string"
+					) return arr;
+
+					if (!/^(When|Once)/i.test(itmLast.entries.at(-1))) return arr;
+
+					const txtLast = itmLast.entries.pop();
+					arr.push(txtLast);
+
+					return arr;
+				},
+			},
+			"entries",
+		);
 	}
 }
 
@@ -231,7 +266,8 @@ export class EntryCoalesceRawLines {
 
 			if (ConverterUtils.isJsonLine(state.curLine)) {
 				state.popNestedEntries(); // this implicitly pops nested lists
-				state.addEntry({entry: ConverterUtils.getJsonFromLine(state.curLine)});
+				state.addEntry({entry: ConverterUtils.getJsonFromLine(state.curLine), isSkipStack: true});
+				state.popNestedEntries();
 				state.incrementLine();
 				continue;
 			}

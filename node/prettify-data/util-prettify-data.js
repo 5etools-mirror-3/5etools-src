@@ -12,7 +12,6 @@ const FILE_BLOCKLIST = new Set([
 	"life.json",
 	"makecards.json",
 	"renderdemo.json",
-	"makebrew-creature.json",
 	"sources.json",
 	"fluff-index.json",
 	"changelog.json",

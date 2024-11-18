@@ -39,6 +39,7 @@ class RecipesSublistManager extends SublistManager {
 			name,
 			{
 				hash,
+				page: it.page,
 				type: it.type,
 			},
 			{
@@ -93,6 +94,7 @@ class RecipesPage extends ListPage {
 			{
 				hash,
 				source,
+				page: ent.page,
 				type: ent.type,
 				alias: PageFilterRecipes.getListAliases(ent),
 			},

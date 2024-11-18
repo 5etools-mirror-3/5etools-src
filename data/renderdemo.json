@@ -292,29 +292,34 @@
 				{
 					"type": "table",
 					"caption": "Optional Caption",
-					"colLabelGroups": [
-						{
-							"colLabels": [
-								"Single"
-							]
-						},
-						{
-							"colLabels": [
-								"Stacked Top",
-								"Stacked Bottom"
-							]
-						},
-						{}
+					"colLabelRows": [
+						[
+							{
+								"type": "cellHeader",
+								"width": 3,
+								"entry": "Group Header",
+								"style": "th-skewer"
+							}
+						],
+						[
+							"One",
+							"Two",
+							"Three",
+							"Four and More"
+						]
 					],
 					"colStyles": [
-						"col-4",
-						"col-4",
-						"col-4"
+						"col-2",
+						"col-2",
+						"col-2",
+						"col-6"
 					],
 					"rows": [
 						[
+							"Lorem",
+							"ipsum",
+							"dolor",
 							"This table has multiple header rows stacked one atop the other",
-							"Lorem ipsum",
 							"This column has no labels"
 						]
 					]
@@ -846,6 +851,13 @@
 							"tag": "creature",
 							"name": "Goblin",
 							"style": "inset"
+						},
+						{
+							"type": "statblock",
+							"tag": "deity",
+							"name": "Abbathor",
+							"source": "SCAG",
+							"pantheon": "Dwarven"
 						},
 						{
 							"type": "statblock",

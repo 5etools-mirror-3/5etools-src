@@ -45,6 +45,7 @@ class BackgroundSublistManager extends SublistManager {
 			{
 				hash,
 				source: Parser.sourceJsonToAbv(it.source),
+				page: it.page,
 				skills,
 			},
 			{
@@ -99,6 +100,7 @@ class BackgroundPage extends ListPage {
 			{
 				hash,
 				source,
+				page: bg.page,
 				ability: bg._slAbility,
 				skills: bg._skillDisplay,
 			},

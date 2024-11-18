@@ -33,6 +33,7 @@ class RewardsSublistManager extends SublistManager {
 			reward.name,
 			{
 				hash,
+				page: reward.page,
 				type: reward.type,
 			},
 			{
@@ -87,6 +88,7 @@ class RewardsPage extends ListPage {
 			{
 				hash,
 				source,
+				page: reward.page,
 				type: reward.type,
 			},
 			{

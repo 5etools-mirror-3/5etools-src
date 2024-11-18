@@ -205,6 +205,7 @@ class ModalFilterBackgrounds extends ModalFilterBase {
 				hash,
 				source,
 				sourceJson: bg.source,
+				page: bg.page,
 				ability: bg._slAbility,
 				skills: bg._skillDisplay,
 			},

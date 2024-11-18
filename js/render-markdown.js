@@ -156,10 +156,10 @@ class RendererMarkdown {
 		// Pad labels to style width
 		if (entry.colStyles) {
 			labelRows
-				.filter(labelRow => labelRow.length < entry.colStyles.length)
+				.filter(labelRow => Renderer.table.getHeaderRowSpanWidth(labelRow) < entry.colStyles.length)
 				.forEach(labelRow => {
 					labelRow.push(
-						...[...new Array(entry.colStyles.length - labelRow.length)].map(() => ""),
+						...[...new Array(entry.colStyles.length - Renderer.table.getHeaderRowSpanWidth(labelRow))].map(() => ""),
 					);
 				});
 		}
@@ -171,14 +171,29 @@ class RendererMarkdown {
 			// Pad styles to label width
 			labelRows
 				.forEach(labelRow => {
-					if (labelRow.length > styles.length) {
-						styles = styles.concat([...new Array(labelRow.length - styles.length)].map(() => ""));
+					if (Renderer.table.getHeaderRowSpanWidth(labelRow) > styles.length) {
+						styles = styles.concat([...new Array(Renderer.table.getHeaderRowSpanWidth(labelRow) - styles.length)].map(() => ""));
 					}
 				});
 		}
 		// endregion
 
-		const mdHeaderRows = labelRows.map(labelRow => labelRow.map(label => ` ${Renderer.stripTags(label)} `));
+		const mdHeaderRows = labelRows
+			.map(labelRow => {
+				return labelRow
+					.flatMap(entCellHeader => {
+						const entryNxt = entCellHeader?.type === "cellHeader"
+							? entCellHeader.entry
+							: entCellHeader;
+						const ptCellPrimary = ` ${Renderer.stripTags(entryNxt)} `;
+
+						// No "colspan" equivalent, so add empty cells
+						const cntPadCells = (entCellHeader?.type === "cellHeader" ? entCellHeader?.width || 1 : 1) - 1;
+						if (!cntPadCells) return [ptCellPrimary];
+
+						return [ptCellPrimary, " ".repeat(cntPadCells)];
+					});
+			});
 
 		// Get per-cell max width
 		const widths = [
@@ -1080,6 +1095,8 @@ ${pbPart ? `>- **Proficiency Bonus** ${pbPart}` : ""}
 
 RendererMarkdown.spell = class {
 	static getCompactRenderedString (sp, opts = {}) {
+		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
+
 		const meta = opts.meta || {};
 
 		const subStack = [""];
@@ -1090,7 +1107,7 @@ ___
 - **Casting Time:** ${Parser.spTimeListToFull(sp.time, sp.meta)}
 - **Range:** ${Parser.spRangeToFull(sp.range)}
 - **Components:** ${Parser.spComponentsToFull(sp.components, sp.level, {isPlainText: true})}
-- **Duration:** ${Parser.spDurationToFull(sp.duration, {isPlainText: true})}
+- **Duration:** ${Parser.spDurationToFull(sp.duration, {isPlainText: true, styleHint})}
 ---\n`;
 
 		const cacheDepth = meta.depth;
@@ -1419,12 +1436,18 @@ RendererMarkdown.hazard = class {
 
 RendererMarkdown.traphazard = class {
 	static getCompactRenderedString (ent, opts = {}) {
-		const ptHead = RendererMarkdown.utils.withMetaDepth(2, opts, () => {
-			const subtitle = Renderer.traphazard.getSubtitle(ent);
+		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
+
+		return RendererMarkdown.utils.withMetaDepth(2, opts, () => {
+			const subtitle = Renderer.traphazard.getSubtitle(ent, {styleHint});
+
+			const entriesMetaTrap = Renderer.trap.getTrapRenderableEntriesMeta(ent, {styleHint});
 
 			const entries = [
 				subtitle ? `{@i ${subtitle}}` : null,
+				...(entriesMetaTrap.entriesHeader || []),
 				{entries: ent.entries},
+				...(entriesMetaTrap.entriesAttributes || []),
 			]
 				.filter(Boolean);
 
@@ -1435,14 +1458,6 @@ RendererMarkdown.traphazard = class {
 
 			return RendererMarkdown.generic.getCompactRenderedString(entFull, opts);
 		});
-
-		const ptAttributes = RendererMarkdown.utils.withMetaDepth(1, opts, () => {
-			const entriesMeta = Renderer.trap.getTrapRenderableEntriesMeta(ent);
-
-			return RendererMarkdown.generic.getRenderedSubEntry({type: "entries", entries: entriesMeta.entriesAttributes}, opts);
-		});
-
-		return ptHead + ptAttributes;
 	}
 };
 

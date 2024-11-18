@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!--5ETOOLS_CMP-->
+	<!--5ETOOLS_ANALYTICS-->
+	<!--5ETOOLS_ADCODE-->
+	<meta charset="utf-8">
+	<meta name="description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+	<meta name="mobile-web-app-capable" content="yes">
+
+	<title>Bastions - 5etools</title>
+
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/main.css">
+
+	<!-- Favicons -->
+	<link rel="icon" type="image/svg+xml" href="favicon.svg">
+	<link rel="icon" type="image/png" sizes="256x256" href="favicon-256x256.png">
+	<link rel="icon" type="image/png" sizes="144x144" href="favicon-144x144.png">
+	<link rel="icon" type="image/png" sizes="128x128" href="favicon-128x128.png">
+	<link rel="icon" type="image/png" sizes="64x64" href="favicon-64x64.png">
+	<link rel="icon" type="image/png" sizes="48x48" href="favicon-48x48.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+
+	<!-- Chrome Web App Icons -->
+	<link rel="manifest" href="manifest.webmanifest">
+	<meta name="application-name" content="5etools">
+	<meta name="theme-color" content="#006bc4">
+
+	<!-- Windows Start Menu tiles -->
+	<meta name="msapplication-config" content="browserconfig.xml"/>
+	<meta name="msapplication-TileColor" content="#006bc4">
+
+	<!-- Apple Touch Icons -->
+	<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180x180.png">
+	<link rel="apple-touch-icon" sizes="360x360" href="apple-touch-icon-360x360.png">
+	<link rel="apple-touch-icon" sizes="167x167" href="apple-touch-icon-167x167.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="apple-touch-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="apple-touch-icon-120x120.png">
+	<meta name="apple-mobile-web-app-title" content="5etools">
+
+	<!-- macOS Safari Pinned Tab and Touch Bar -->
+	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
+
+	<!-- OpenSearch -->
+	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
+
+	<script type="text/javascript" src="sw-injector.js"></script>
+
+	<script type="text/javascript" src="js/styleswitch.js"></script>
+	<script type="text/javascript" src="js/navigation.js"></script>
+	<script type="text/javascript" src="js/browsercheck.js"></script>
+</head>
+
+<body>
+
+<div class="overlay-noise no-print"></div>
+
+<div class="cancer__wrp-sidebar-rhs cancer__anchor"><div class="cancer__disp-cancer"></div><div class="cancer__sidebar-rhs-inner cancer__sidebar-rhs-inner--top"><!--5ETOOLS_AD_RIGHT_1--></div><div class="cancer__sidebar-rhs-inner cancer__sidebar-rhs-inner--bottom"><!--5ETOOLS_AD_RIGHT_2--></div></div>
+
+<div class="viewport-wrapper">
+	<div class="cancer__wrp-leaderboard cancer__anchor"><div class="cancer__disp-cancer"></div><div class="cancer__wrp-leaderboard-inner"><!--5ETOOLS_AD_LEADERBOARD--></div></div>
+
+	<header class="hidden-xs hidden-sm page__header">
+		<div class="container ve-flex-v-baseline">
+			<h1 class="page__title no-wrap my-0" id="page__title">Bastions</h1>
+			<p class="page__subtitle no-wrap my-0" id="page__subtitle">Search by name on the left, click a name to display on the right.</p>
+		</div>
+	</header>
+
+	<nav class="container page__nav" id="navigation">
+		<ul class="nav nav-pills page__nav-inner" id="navbar"></ul>
+	</nav>
+
+	<div class="view-col-group--cancer h-100 mh-0">
+		<div class="container view-col-wrapper view-col-wrapper--cancer">
+			<div class="view-col" id="listcontainer">
+				<div class="lst__form-top" id="filter-search-group">
+					<div class="w-100 relative">
+						<input type="search" id="lst__search" autocomplete="off" autocapitalize="off" spellcheck="false" class="search form-control lst__search lst__search--no-border-h">
+						<div id="lst__search-glass" class="lst__wrp-search-glass no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
+						<div class="lst__wrp-search-visible no-events ve-flex-vh-center"></div>
+					</div>
+					<button type="button" class="ve-btn ve-btn-default" id="reset">Reset</button>
+				</div>
+
+				<div id="filtertools" class="input-group input-group--bottom ve-flex no-shrink">
+					<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="facilityType">Type</button>
+					<button type="button" class="ve-col-3 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
+					<button type="button" class="ve-col-1 sort ve-btn ve-btn-default ve-btn-xs" data-sort="level">Level</button>
+					<button type="button" class="ve-col-4 sort ve-btn ve-btn-default ve-btn-xs" data-sort="prerequisite">Prerequisite</button>
+					<button type="button" class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">Source</button>
+				</div>
+
+				<div id="list" class="list list--stats"></div>
+			</div>
+
+			<div class="cancer__wrp-mobile-1 cancer__anchor"><div class="cancer__disp-cancer"></div><!--5ETOOLS_AD_MOB_PLAYER_1--></div>
+
+			<div id="contentwrapper" class="view-col">
+				<div id="sublistcontainer" class="sublist sublist--resizable no-print">
+					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
+						<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="facilityType">Type</button>
+						<button type="button" class="ve-col-3 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
+						<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="level">Level</button>
+						<button type="button" class="ve-col-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="prerequisite">Prerequisite</button>
+					</div>
+
+					<div id="sublist" class="list"></div>
+				</div>
+
+				<div class="w-100 ve-flex" id="stat-tabs">
+					<div class="ml-auto ve-flex" id="tabs-right"></div>
+				</div>
+
+				<div id="wrp-pagecontent" class="relative wrp-stats-table">
+					<table id="pagecontent" class="w-100 stats">
+						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+						<tr><td colspan="6" class="initial-message initial-message--med">Select an entry from the list to view it here</td></tr>
+						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
+					</table>
+				</div>
+
+				<div class="ve-flex-vh-center mt-2 no-print">
+					<button type="button" class="ve-btn ve-btn-default ve-btn-xs mr-2" id="btn-book">Printer View</button>
+					<div class="ve-flex-v-center ve-btn-group" id="btngroup-manager">
+						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">Manage Content</button>
+						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-prerelease" title="Manage Prerelease Content"><span class="glyphicon glyphicon-wrench"></span></button>
+						<button type="button" class="ve-btn ve-btn-xs ve-btn-info" name="manage-brew" title="Manage Homebrew"><span class="glyphicon glyphicon-glass"></span></button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--5ETOOLS_SCRIPT_ANCHOR-->
+<!--5ETOOLS_AD_ADHESION-->
+
+<script type="text/javascript" defer src="lib/jquery.js"></script>
+<script type="text/javascript" defer src="js/parser.js"></script>
+<script type="text/javascript" defer src="js/utils.js"></script>
+<script type="text/javascript" defer src="js/utils-ui.js"></script>
+<script type="text/javascript" defer src="lib/localforage.js"></script>
+<script type="module" defer src="js/omnidexer.js"></script>
+<script type="module" src="js/omnisearch.js"></script>
+<script type="module" src="js/filter.js"></script>
+<script type="text/javascript" defer src="js/utils-dataloader.js"></script>
+<script type="module" src="js/utils-brew.js"></script>
+<script type="module" src="js/utils-config.js"></script>
+<script type="text/javascript" defer src="js/utils-list.js"></script>
+<script type="text/javascript" defer src="js/render.js"></script>
+<script type="text/javascript" defer src="js/render-dice.js"></script>
+<script type="text/javascript" defer src="js/render-markdown.js"></script>
+<script type="text/javascript" defer src="js/scalecreature.js"></script>
+<script type="text/javascript" defer src="js/hist.js"></script>
+<script type="text/javascript" defer src="js/listpage.js"></script>
+<script type="text/javascript" defer src="js/filter-common.js"></script>
+<script type="text/javascript" defer src="js/filter-bastions.js"></script>
+<script type="module" src="js/bastions.js"></script>
+<script type="text/javascript" defer src="js/list2.js"></script>
+<script type="text/javascript" defer src="lib/elasticlunr.js"></script>
+
+</body>
+</html>

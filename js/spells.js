@@ -73,6 +73,7 @@ class SpellsSublistManager extends SublistManager {
 			spell.name,
 			{
 				hash,
+				page: spell.page,
 				school,
 				level: spell.level,
 				time,
@@ -355,6 +356,7 @@ class SpellsPage extends ListPageMultiSource {
 			{
 				hash,
 				source,
+				page: spell.page,
 				level: spell.level,
 				time,
 				school: Parser.spSchoolAbvToFull(spell.school),

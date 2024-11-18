@@ -28,6 +28,7 @@ class DecksSublistManager extends SublistManager {
 			ent.name,
 			{
 				hash,
+				page: ent.page,
 				alias: PageFilterDecks.getListAliases(ent),
 			},
 			{
@@ -146,6 +147,7 @@ class DecksPage extends ListPage {
 			{
 				hash,
 				source,
+				page: ent.page,
 			},
 			{
 				isExcluded,

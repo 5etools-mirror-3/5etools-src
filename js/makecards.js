@@ -828,7 +828,7 @@ MakeCards.utils = class {
 		const data = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/makecards.json`);
 		data.reducedItemProperty.forEach(p => MakeCards.utils._addItemProperty(p));
 		data.reducedItemType.forEach(t => {
-			if (t.abbreviation === Parser.ITM_TYP_ABV__VEHICLE_WATER) {
+			if (t.abbreviation === Parser.ITM_TYP_ABV__VEHICLE_WATER && t.source === Parser.SRC_PHB) {
 				const cpy = MiscUtil.copy(t);
 				cpy.abbreviation = Parser.ITM_TYP_ABV__VEHICLE_AIR;
 				cpy.source = Parser.SRC_DMG;

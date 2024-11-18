@@ -379,7 +379,7 @@ export class ItemTag extends ConverterTaggerInitializable {
 			.filter(it => {
 				if (it.type && this._TOOL_TYPES.has(DataUtil.itemType.unpackUid(it.type).abbreviation)) return false;
 				// Disallow specific items
-				if (it.name === "Wave" && it.source === Parser.SRC_DMG) return false;
+				if (it.name === "Wave" && [Parser.SRC_DMG, Parser.SRC_XDMG].includes(it.source)) return false;
 				// Allow all non-specific-variant DMG items
 				if (it.source === Parser.SRC_DMG && it.source === Parser.SRC_XDMG && !Renderer.item.isMundane(it) && it._category !== "Specific Variant") return true;
 				// Allow "sufficiently complex name" items
@@ -818,7 +818,7 @@ export class CreatureTag {
 		const fnTag = strMod => {
 			Object.entries(res)
 				.forEach(([source, re]) => {
-					strMod = strMod.replace(re, (...m) => `{@creature ${m[0]}${source !== Parser.SRC_DMG ? `|${source}` : ""}}`);
+					strMod = strMod.replace(re, (...m) => `{@creature ${m[0]}${source !== Parser.SRC_MM ? `|${source}` : ""}}`);
 				});
 			return strMod;
 		};

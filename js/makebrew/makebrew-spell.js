@@ -4,6 +4,34 @@ import {BuilderUi} from "./makebrew-builderui.js";
 import {TagCondition} from "../converter/converterutils-tags.js";
 import {RenderSpells} from "../render-spells.js";
 
+const _SPELL_RANGE_TYPES = [
+	{type: Parser.RNG_POINT, hasDistance: true, isRequireAmount: false},
+
+	{type: Parser.RNG_LINE, hasDistance: true, isRequireAmount: true},
+	{type: Parser.RNG_CUBE, hasDistance: true, isRequireAmount: true},
+	{type: Parser.RNG_CONE, hasDistance: true, isRequireAmount: true},
+	{type: Parser.RNG_EMANATION, hasDistance: true, isRequireAmount: true},
+	{type: Parser.RNG_RADIUS, hasDistance: true, isRequireAmount: true},
+	{type: Parser.RNG_SPHERE, hasDistance: true, isRequireAmount: true},
+	{type: Parser.RNG_HEMISPHERE, hasDistance: true, isRequireAmount: true},
+	{type: Parser.RNG_CYLINDER, hasDistance: true, isRequireAmount: true},
+
+	{type: Parser.RNG_SPECIAL, hasDistance: false, isRequireAmount: false},
+];
+
+const _SPELL_DIST_TYPES = [
+	{type: Parser.RNG_SELF, hasAmount: false},
+	{type: Parser.RNG_TOUCH, hasAmount: false},
+
+	{type: Parser.UNT_FEET, hasAmount: true},
+	{type: Parser.UNT_YARDS, hasAmount: true},
+	{type: Parser.UNT_MILES, hasAmount: true},
+
+	{type: Parser.RNG_SIGHT, hasAmount: false},
+	{type: Parser.RNG_UNLIMITED_SAME_PLANE, hasAmount: false},
+	{type: Parser.RNG_UNLIMITED, hasAmount: false},
+];
+
 export class SpellBuilder extends BuilderBase {
 	constructor () {
 		super({
@@ -456,14 +484,11 @@ export class SpellBuilder extends BuilderBase {
 		const isInitialDistance = !!this._state.range.distance;
 		const isInitialAmount = this._state.range.distance && this._state.range.distance.amount != null;
 
-		const RANGE_TYPES = Parser.RANGE_TYPES;
-		const DIST_TYPES = Parser.DIST_TYPES;
-
 		const doUpdateState = () => {
-			const rangeMeta = RANGE_TYPES[$selRange.val()];
+			const rangeMeta = _SPELL_RANGE_TYPES[$selRange.val()];
 			const out = {type: rangeMeta.type};
 			if (rangeMeta.hasDistance) {
-				const distMeta = DIST_TYPES[$selDistance.val()];
+				const distMeta = _SPELL_DIST_TYPES[$selDistance.val()];
 				out.distance = {type: distMeta.type};
 				if (distMeta.hasAmount) {
 					out.distance.amount = UiUtil.strToInt($iptAmount.val());
@@ -474,15 +499,15 @@ export class SpellBuilder extends BuilderBase {
 			cb();
 		};
 
-		const ixInitialRange = RANGE_TYPES.findIndex(it => it.type === this._state.range.type);
+		const ixInitialRange = _SPELL_RANGE_TYPES.findIndex(it => it.type === this._state.range.type);
 		const $selRange = $(`<select class="form-control input-xs">
-			${RANGE_TYPES.map((it, i) => `<option value="${i}">${Parser.spRangeTypeToFull(it.type)}</option>`).join("")}
+			${_SPELL_RANGE_TYPES.map((it, i) => `<option value="${i}">${Parser.spRangeTypeToFull(it.type)}</option>`).join("")}
 		</select>`).val(~ixInitialRange ? `${ixInitialRange}` : "0").change(() => {
-			const meta = RANGE_TYPES[$selRange.val()];
+			const meta = _SPELL_RANGE_TYPES[$selRange.val()];
 			$stageDistance.toggleVe(meta.hasDistance);
 
-			if (meta.isRequireAmount && !DIST_TYPES[$selDistance.val()].hasAmount) {
-				$selDistance.val(`${DIST_TYPES.findIndex(it => it.hasAmount)}`).change();
+			if (meta.isRequireAmount && !_SPELL_DIST_TYPES[$selDistance.val()].hasAmount) {
+				$selDistance.val(`${_SPELL_DIST_TYPES.findIndex(it => it.hasAmount)}`).change();
 			} else doUpdateState();
 		});
 		$$`<div class="ve-flex-v-center">
@@ -491,15 +516,15 @@ export class SpellBuilder extends BuilderBase {
 		</div>`.appendTo($rowInner);
 
 		// DISTANCE TYPE
-		const ixInitialDist = this._state.range.distance ? DIST_TYPES.findIndex(it => it.type === this._state.range.distance.type) : -1;
+		const ixInitialDist = this._state.range.distance ? _SPELL_DIST_TYPES.findIndex(it => it.type === this._state.range.distance.type) : -1;
 		const $selDistance = $(`<select class="form-control input-xs">
-			${DIST_TYPES.map((it, i) => `<option value="${i}">${Parser.spDistanceTypeToFull(it.type)}</option>`).join("")}
+			${_SPELL_DIST_TYPES.map((it, i) => `<option value="${i}">${Parser.spDistanceTypeToFull(it.type)}</option>`).join("")}
 		</select>`).val(~ixInitialDist ? `${ixInitialDist}` : "0").change(() => {
-			const meta = DIST_TYPES[$selDistance.val()];
+			const meta = _SPELL_DIST_TYPES[$selDistance.val()];
 			$stageAmount.toggleVe(meta.hasAmount);
 
-			if (!meta.hasAmount && RANGE_TYPES[$selRange.val()].isRequireAmount) {
-				$selDistance.val(`${DIST_TYPES.findIndex(it => it.hasAmount)}`).change();
+			if (!meta.hasAmount && _SPELL_RANGE_TYPES[$selRange.val()].isRequireAmount) {
+				$selDistance.val(`${_SPELL_DIST_TYPES.findIndex(it => it.hasAmount)}`).change();
 			} else doUpdateState();
 		});
 		const $stageDistance = $$`<div class="ve-flex-v-center mt-2">

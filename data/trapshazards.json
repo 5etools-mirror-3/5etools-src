@@ -5,8 +5,12 @@
 			"source": "BMT",
 			"page": 29,
 			"trapHazType": "MECH",
-			"tier": 2,
-			"threat": "deadly",
+			"rating": [
+				{
+					"tier": 2,
+					"threat": "deadly"
+				}
+			],
 			"entries": [
 				{
 					"type": "inset",
@@ -51,8 +55,12 @@
 			"source": "XGE",
 			"page": 113,
 			"trapHazType": "SMPL",
-			"tier": 1,
-			"threat": "dangerous",
+			"rating": [
+				{
+					"tier": 1,
+					"threat": "dangerous"
+				}
+			],
 			"effect": [
 				"{@atk mw} {@hit 8} to hit, triggering creature. Hit: 5 ({@dice 1d10}) piercing damage. This attack can't gain advantage or disadvantage. A creature hit by the trap has its speed reduced to 0. It can't move until it breaks free of the trap, which requires a successful DC 15 Strength check by the creature or another creature adjacent to the trap."
 			],
@@ -71,6 +79,9 @@
 			"source": "DMG",
 			"page": 122,
 			"srd": true,
+			"reprintedAs": [
+				"Collapsing Roof|XDMG"
+			],
 			"trapHazType": "MECH",
 			"entries": [
 				"This trap uses a trip wire to collapse the supports keeping an unstable section of a ceiling in place.",
@@ -81,12 +92,84 @@
 			]
 		},
 		{
+			"name": "Collapsing Roof",
+			"source": "XDMG",
+			"page": 100,
+			"trapHazType": "TRP",
+			"rating": [
+				{
+					"tier": 1,
+					"threat": "deadly"
+				}
+			],
+			"trigger": [
+				"A creature crosses a trip wire"
+			],
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"This trap uses a trip wire to collapse an unstable section of ceiling. The trip wire is 3 inches off the ground and stretches between two weak supports that topple when the trip wire is pulled.",
+				"The first creature that crosses the trip wire causes the supports to topple and the unstable section of ceiling to collapse. Each creature beneath the unstable section of ceiling must succeed on a DC 13 Dexterity saving throw, taking 11 ({@dice 2d10}) Bludgeoning damage on a failed save or half as much damage on a successful one. Rubble from the collapse turns the trapped area into {@variantrule Difficult Terrain|XPHB}.",
+				{
+					"type": "entries",
+					"name": "Detect and Disarm",
+					"entries": [
+						"As a {@action Search|XPHB} action, a creature can examine the trapped area and make a DC 11 Wisdom ({@skill Perception|XPHB}) check, detecting the trip wire and the unstable section of ceiling on a successful check. Once detected, the trip wire can be easily cut or avoided (no ability check required)."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "At Higher Levels",
+					"entries": [
+						"You can scale the trap for higher levels by increasing the damage and the save DC, as shown in the following table.",
+						{
+							"type": "table",
+							"colLabels": [
+								"Levels",
+								"Bludgeoning Damage",
+								"Save DC"
+							],
+							"colStyles": [
+								"col-2 text-center",
+								"col-5 text-center",
+								"col-5 text-center"
+							],
+							"rows": [
+								[
+									"5\u201310",
+									"22 ({@dice 4d10})",
+									"15"
+								],
+								[
+									"11\u201316",
+									"55 ({@dice 10d10})",
+									"17"
+								],
+								[
+									"17\u201320",
+									"99 ({@dice 18d10})",
+									"19"
+								]
+							]
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Crossbow Trap",
 			"source": "XGE",
 			"page": 113,
 			"trapHazType": "SMPL",
-			"tier": 1,
-			"threat": "dangerous",
+			"rating": [
+				{
+					"tier": 1,
+					"threat": "dangerous"
+				}
+			],
 			"effect": [
 				"The trap makes two attacks against the triggering creature. {@atk rw} {@hit 8} to hit, two attacks; Hit: 5 ({@dice 1d10}) piercing damage on a hit. This attack can't gain advantage or disadvantage."
 			],
@@ -105,8 +188,12 @@
 			"source": "RtG",
 			"page": 19,
 			"trapHazType": "SMPL",
-			"tier": 2,
-			"threat": "dangerous",
+			"rating": [
+				{
+					"tier": 2,
+					"threat": "dangerous"
+				}
+			],
 			"effect": [
 				"The doors slam shut and lock as a poisonous cloud (treat as a {@dc 15} {@spell cloudkill} spell) fills the room."
 			],
@@ -125,6 +212,9 @@
 			"source": "DMG",
 			"page": 122,
 			"srd": true,
+			"reprintedAs": [
+				"Falling Net|XDMG"
+			],
 			"trapHazType": "MECH",
 			"entries": [
 				"This trap uses a trip wire to release a net suspended from the ceiling.",
@@ -135,12 +225,68 @@
 			]
 		},
 		{
+			"name": "Falling Net",
+			"source": "XDMG",
+			"page": 100,
+			"trapHazType": "TRP",
+			"rating": [
+				{
+					"tier": 1,
+					"threat": "nuisance"
+				}
+			],
+			"trigger": [
+				"A creature crosses a trip wire"
+			],
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"A falling net trap uses a trip wire to release a weighted, 10-foot-square {@item Net|XPHB} suspended from the ceiling. The trip wire is 3 inches off the ground and stretches between two columns or trees.",
+				"The first creature that crosses the trip wire causes the Net to fall on it. The target must succeed on a DC 10 Dexterity saving throw or have the {@condition Restrained|XPHB} condition until it escapes. The target succeeds automatically if it's Huge or larger. A creature can take an action to make a DC 10 Strength ({@skill Athletics|XPHB}) check, freeing itself or another creature within its reach from the Net on a successful check.",
+				{
+					"type": "entries",
+					"name": "Detect and Disarm",
+					"entries": [
+						"As a {@action Search|XPHB} action, a creature can examine the trapped area and make a DC 11 Wisdom ({@skill Perception|XPHB}) check, detecting the trip wire and the suspended Net on a successful check. Once detected, the trip wire can be easily cut or avoided (no ability check required)."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Destroy the Net",
+					"entries": [
+						"Reducing the Net to 0 Hit Points frees any creature trapped in it (see the {@book Player's Handbook|XPHB} for the {@item Net|XPHB|Net's} statistics)."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Set the Trap",
+					"entries": [
+						"A creature that has {@item Thieves' Tools|XPHB} and all the trap's components (including a Net) can try to set a falling net trap, doing so with a successful DC 13 Dexterity ({@skill Sleight of Hand|XPHB}) check. Each attempt to set this trap takes 10 minutes."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "At Higher Levels",
+					"entries": [
+						"You can scale the trap for higher levels by increasing the weight of the Net, which increases the save DC and the DC of the Strength ({@skill Athletics|XPHB}) check as follows: DC 12 at levels 5\u201310, DC 14 at levels 11\u201316, or DC 16 at levels 17\u201320."
+					]
+				}
+			]
+		},
+		{
 			"name": "Falling Portcullis",
 			"source": "XGE",
 			"page": 113,
 			"trapHazType": "SMPL",
-			"tier": 1,
-			"threat": "moderate",
+			"rating": [
+				{
+					"tier": 1,
+					"threat": "moderate"
+				}
+			],
 			"effect": [
 				"An iron portcullis drops from the ceiling, blocking an exit or a passageway."
 			],
@@ -159,8 +305,12 @@
 			"source": "XGE",
 			"page": 113,
 			"trapHazType": "SMPL",
-			"tier": 2,
-			"threat": "dangerous",
+			"rating": [
+				{
+					"tier": 2,
+					"threat": "dangerous"
+				}
+			],
 			"effect": [
 				"A 15-foot cube of fire erupts, covering the pressure plate and the area around it. Each creature in the area must make a DC 15 Dexterity saving throw, taking 24 ({@dice 7d6}) fire damage on a failed save, or half as much damage on a successful one."
 			],
@@ -179,6 +329,9 @@
 			"source": "DMG",
 			"page": 122,
 			"srd": true,
+			"reprintedAs": [
+				"Fire-Casting Statue|XDMG"
+			],
 			"trapHazType": "MAG",
 			"entries": [
 				"This trap is activated when an intruder steps on a hidden pressure plate, releasing a magical gout of flame from a nearby statue. The statue can be of anything, including a dragon or a wizard casting a spell.",
@@ -188,12 +341,159 @@
 			]
 		},
 		{
+			"name": "Fire-Casting Statue",
+			"source": "XDMG",
+			"page": 102,
+			"trapHazType": "TRP",
+			"rating": [
+				{
+					"tier": 1,
+					"threat": "deadly"
+				}
+			],
+			"trigger": [
+				"A creature moves onto a pressure plate"
+			],
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"When a creature moves onto this trap's pressure plate for the first time on a turn or starts its turn there, a nearby statue exhales a 15-foot {@variantrule Cone [Area of Effect]|XPHB|Cone} of magical flame. The statue can look like anything, such as a dragon or a wizard. Each creature in the Cone must succeed on a DC 15 Dexterity saving throw, taking 11 ({@dice 2d10}) Fire damage on a failed save or half as much damage on a successful one.",
+				{
+					"type": "entries",
+					"name": "Detect and Disarm",
+					"entries": [
+						"A {@spell Detect Magic|XPHB} spell reveals an aura of Evocation magic around the statue. As a {@action Search|XPHB} action, a creature within 5 feet of the statue can examine it and make a DC 10 Wisdom ({@skill Perception|XPHB}) check, detecting a tiny glyph on the statue on a successful check. Once the glyph is found, a character can take a {@action Study|XPHB} action to examine it and make a DC 15 Intelligence ({@skill Arcana|XPHB}) check, ascertaining that the glyph means \"fire\" on a successful check. As an action, a character can use a sharp tool to deface the glyph, which disarms the trap.",
+						"As a {@action Search|XPHB} action, a creature can examine the section of floor that forms the pressure plate and make a DC 15 Wisdom ({@skill Perception|XPHB}) check, detecting the pressure plate on a successful check. Wedging an {@item Iron Spikes|XPHB|Iron Spike} or similar object under the pressure plate prevents the trap from triggering."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "At Higher Levels",
+					"entries": [
+						"You can scale the trap for higher levels by increasing the damage and the area of effect, as shown in the following table.",
+						{
+							"type": "table",
+							"colLabels": [
+								"Levels",
+								"Fire Damage",
+								"Area of Effect"
+							],
+							"colStyles": [
+								"col-2 text-center",
+								"col-5 text-center",
+								"col-5 text-center"
+							],
+							"rows": [
+								[
+									"5\u201310",
+									"22 ({@dice 4d10})",
+									"30-foot Cone"
+								],
+								[
+									"11\u201316",
+									"55 ({@dice 10d10})",
+									"60-foot Cone"
+								],
+								[
+									"17\u201320",
+									"99 ({@dice 18d10})",
+									"120-foot Cone"
+								]
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Hidden Pit",
+			"source": "XDMG",
+			"page": 102,
+			"trapHazType": "TRP",
+			"rating": [
+				{
+					"tier": 1,
+					"threat": "nuisance"
+				}
+			],
+			"trigger": [
+				"A creature moves onto the pit's lid"
+			],
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"This 10-foot-deep pit has a hinged lid constructed from material identical to the surrounding floor. When a creature moves onto the lid, it swings open like a trapdoor, causing the creature to fall into the pit. The lid remains open thereafter.",
+				"A creature that falls into the pit takes 3 ({@dice 1d6}) Bludgeoning damage from the fall.",
+				{
+					"type": "entries",
+					"name": "Detect and Disarm",
+					"entries": [
+						"As a {@action Study|XPHB} action, a creature can examine the section of floor that forms the pit's lid and make a DC 15 Intelligence ({@skill Investigation|XPHB}) check, detecting the pit on a successful check. Once the pit is detected, an Iron Spike or a similar object can be wedged between the pit's lid and the surrounding floor to prevent the lid from opening, thereby making it safe to cross. The cover can also be held shut using {@spell Arcane Lock|XPHB} or similar magic."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Escape",
+					"entries": [
+						"A creature needs a Climb Speed, climbing gear, or magic such as {@spell Spider Climb|XPHB} to scale the pit's smooth walls. (You can make the pit easier to escape by adding cracks in the walls big enough to serve as handholds and footholds.)"
+					]
+				},
+				{
+					"type": "entries",
+					"name": "At Higher Levels",
+					"entries": [
+						"You can scale the trap for higher levels by increasing the pit's depth and damage, as shown in the following table.",
+						{
+							"type": "table",
+							"colLabels": [
+								"Levels",
+								"Pit Depth",
+								"Bludgeoning Damage"
+							],
+							"colStyles": [
+								"col-2 text-center",
+								"col-5 text-center",
+								"col-5 text-center"
+							],
+							"rows": [
+								[
+									"5\u201310",
+									"30 feet",
+									"10 ({@dice 3d6})"
+								],
+								[
+									"11\u201316",
+									"60 feet",
+									"21 ({@dice 6d6})"
+								],
+								[
+									"17\u201320",
+									"120 feet",
+									"42 ({@dice 12d6})"
+								]
+							]
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Malfunctioning Phase Transference Emitter",
 			"source": "AZfyT",
 			"page": 9,
 			"trapHazType": "CMPX",
-			"tier": 1,
-			"threat": "dangerous",
+			"rating": [
+				{
+					"tier": 1,
+					"threat": "dangerous"
+				}
+			],
 			"trigger": [
 				"The trap has already been sprung once the power switch was thrown."
 			],
@@ -313,8 +613,12 @@
 			"source": "XGE",
 			"page": 113,
 			"trapHazType": "SMPL",
-			"tier": 1,
-			"threat": "dangerous",
+			"rating": [
+				{
+					"tier": 1,
+					"threat": "dangerous"
+				}
+			],
 			"effect": [
 				"A net covering a 10-foot-by-10-foot area centered on the trip wire falls to the floor as a bell rings. Any creature fully within this area must succeed on a DC 15 Dexterity saving throw or be {@condition restrained}. A creature can use its action to make a DC 10 Strength check to try to free itself or another creature in the net. Dealing 5 slashing damage to the net (AC 10, 20hp) also frees a creature without harming the creature."
 			],
@@ -333,8 +637,12 @@
 			"source": "XGE",
 			"page": 118,
 			"trapHazType": "CMPX",
-			"tier": 1,
-			"threat": "dangerous",
+			"rating": [
+				{
+					"tier": 1,
+					"threat": "dangerous"
+				}
+			],
 			"trigger": [
 				"This trap activates as soon as a non-undead creature enters the hallway, and it remains active while any non-undead creature is within the hall."
 			],
@@ -449,8 +757,12 @@
 			"source": "XGE",
 			"page": 114,
 			"trapHazType": "SMPL",
-			"tier": 1,
-			"threat": "moderate",
+			"rating": [
+				{
+					"tier": 1,
+					"threat": "moderate"
+				}
+			],
 			"effect": [
 				"The triggering creature must make a DC 10 Dexterity saving throw. On a successful save, the creature catches itself on the pit's edge or instinctively steps back. On a failed save, the creature falls into the pit and takes 3 ({@dice 1d6}) bludgeoning damage from the fall."
 			],
@@ -469,6 +781,10 @@
 			"source": "DMG",
 			"page": 122,
 			"srd": true,
+			"reprintedAs": [
+				"Hidden Pit|XDMG",
+				"Spiked Pit|XDMG"
+			],
 			"trapHazType": "MECH",
 			"entries": [
 				{
@@ -511,6 +827,9 @@
 			"source": "DMG",
 			"page": 123,
 			"srd": true,
+			"reprintedAs": [
+				"Poisoned Darts|XDMG"
+			],
 			"trapHazType": "MECH",
 			"entries": [
 				"When a creature steps on a hidden pressure plate, poison-tipped darts shoot from spring-loaded or pressurized tubes cleverly embedded in the surrounding walls. An area might include multiple pressure plates, each one rigged to its own set of darts.",
@@ -523,6 +842,9 @@
 			"source": "DMG",
 			"page": 123,
 			"srd": true,
+			"reprintedAs": [
+				"Poisoned Needle|XDMG"
+			],
 			"trapHazType": "MECH",
 			"entries": [
 				"A poisoned needle is hidden within a treasure chest's lock, or in something else that a creature might open. Opening the chest without the proper key causes the needle to spring out, delivering a dose of poison.",
@@ -536,8 +858,12 @@
 			"source": "XGE",
 			"page": 114,
 			"trapHazType": "SMPL",
-			"tier": 1,
-			"threat": "deadly",
+			"rating": [
+				{
+					"tier": 1,
+					"threat": "deadly"
+				}
+			],
 			"effect": [
 				"The triggering creature must make a DC 20 Constitution saving throw. On a failed save, the creature takes 14 ({@dice 4d6}) poison damage and is {@condition poisoned} for 10 minutes. While {@condition poisoned} in this way, the creature is {@condition paralyzed}. On a successful save, the creature takes half as much damage and isn't {@condition poisoned}."
 			],
@@ -552,12 +878,130 @@
 			]
 		},
 		{
+			"name": "Poisoned Darts",
+			"source": "XDMG",
+			"page": 101,
+			"trapHazType": "TRP",
+			"rating": [
+				{
+					"tier": 1,
+					"threat": "deadly"
+				}
+			],
+			"trigger": [
+				"A creature moves onto a pressure plate"
+			],
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"When a creature moves onto this trap's pressure plate for the first time on a turn, poisoned darts shoot from tubes embedded in the surrounding walls. The holes that house these tubes are obscured by dust and cobwebs, or skillfully hidden amid bas-reliefs, murals, or frescoes.",
+				"Each creature in the darts' path must succeed on a DC 13 Dexterity saving throw or be struck by {@dice 1d3} darts, taking 3 ({@dice 1d6}) Poison damage per dart.",
+				{
+					"type": "entries",
+					"name": "Detect and Disarm",
+					"entries": [
+						"As a {@action Search|XPHB} action, a creature can examine the walls and make a DC 15 Wisdom ({@skill Perception|XPHB}) check, detecting the holes on a successful check. Plugging all the holes with wax, cloth, or detritus prevents the darts from firing.",
+						"As a {@action Search|XPHB} action, a creature can examine the section of floor that forms the pressure plate and make a DC 15 Wisdom ({@skill Perception|XPHB}) check, detecting the pressure plate on a successful check. Wedging an {@item Iron Spikes|XPHB|Iron Spike} or a similar object under the pressure plate prevents the trap from triggering."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "At Higher Levels",
+					"entries": [
+						"You can scale the trap for higher levels by increasing each dart's Poison damage as follows: 7 ({@dice 2d6}) at levels 5\u201310, 14 ({@dice 4d6}) at levels 11\u201316, or 24 ({@dice 7d6}) at levels 17\u201320."
+					]
+				}
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Poisoned Needle",
+			"source": "XDMG",
+			"page": 102,
+			"trapHazType": "TRP",
+			"rating": [
+				{
+					"tier": 1,
+					"threat": "nuisance"
+				}
+			],
+			"trigger": [
+				"A creature opens the trap's lock improperly or fails to disarm the trap"
+			],
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"A poisoned needle is hidden in a lock. When a creature opens the lock with any object other than the proper key, the needle springs out and stabs the creature. The creature makes a DC 11 Constitution saving throw. On a failed save, the creature takes 5 ({@dice 1d10}) Poison damage and has the {@condition Poisoned|XPHB} condition for 1 hour. On a successful save, the creature takes half as much damage only.",
+				{
+					"type": "entries",
+					"name": "Avoid",
+					"entries": [
+						"The trap doesn't trigger if the lock is opened using a {@spell Knock|XPHB} spell or similar magic."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Detect and Disarm",
+					"entries": [
+						"As a {@action Search|XPHB} action, a creature can examine the trapped lock and make a DC 15 Wisdom ({@skill Perception|XPHB}) check, detecting the needle on a successful check. Once the trap is detected, a character can take an action to try to disarm the trap, doing so with a successful DC 15 Dexterity ({@skill Sleight of Hand|XPHB}) check. On a failed check, the creature triggers the trap."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "At Higher Levels",
+					"entries": [
+						"You can scale the trap for higher levels by increasing the damage and the save DC, as shown in the following table.",
+						{
+							"type": "table",
+							"colLabels": [
+								"Levels",
+								"Poison Damage",
+								"Save DC"
+							],
+							"colStyles": [
+								"col-2 text-center",
+								"col-5 text-center",
+								"col-5 text-center"
+							],
+							"rows": [
+								[
+									"5\u201310",
+									"11 ({@dice 2d10})",
+									"13"
+								],
+								[
+									"11\u201316",
+									"22 ({@dice 4d10})",
+									"15"
+								],
+								[
+									"17\u201320",
+									"55 ({@dice 10d10})",
+									"17"
+								]
+							]
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Poisoned Tempest",
 			"source": "XGE",
 			"page": 120,
 			"trapHazType": "CMPX",
-			"tier": 3,
-			"threat": "deadly",
+			"rating": [
+				{
+					"tier": 3,
+					"threat": "deadly"
+				}
+			],
 			"trigger": [
 				"This trap activates when a ruby is pried from one of the statues. Each statue's mouth slides open, revealing a 1-foot-wide pipe that runs down its throat."
 			],
@@ -668,6 +1112,9 @@
 			"source": "DMG",
 			"page": 123,
 			"srd": true,
+			"reprintedAs": [
+				"Rolling Stone|XDMG"
+			],
 			"trapHazType": "MECH",
 			"entries": [
 				"When 20 or more pounds of pressure are placed on this trap's pressure plate, a hidden trapdoor in the ceiling opens, releasing a 10-foot-diameter rolling sphere of solid stone.",
@@ -680,12 +1127,67 @@
 			]
 		},
 		{
+			"name": "Rolling Stone",
+			"source": "XDMG",
+			"page": 102,
+			"trapHazType": "TRP",
+			"rating": [
+				{
+					"tier": 3,
+					"threat": "deadly"
+				},
+				{
+					"tier": 4,
+					"threat": "nuisance"
+				}
+			],
+			"trigger": [
+				"A creature moves onto a pressure plate"
+			],
+			"duration": [
+				{
+					"type": "special",
+					"condition": "Until the stone stops rolling"
+				}
+			],
+			"entries": [
+				"When a creature moves onto a hidden pressure plate, a 5-foot-radius orb of solid stone is released from a secret compartment and begins to roll. The stone and all creatures nearby roll Initiative; the stone gets a +8 bonus on its Initiative roll.",
+				"On its turn, the stone moves 60 feet in one direction, changing course if redirected by an obstacle. The stone can move through creatures' spaces, and creatures can move through the stone's space, treating it as {@variantrule Difficult Terrain|XPHB}. Whenever the stone enters a creature's space for the first time on a turn or a creature enters the stone's space while the stone is rolling, that creature must succeed on a DC 15 Dexterity saving throw or take 55 ({@dice 10d10}) Bludgeoning damage and have the {@condition Prone|XPHB} condition.",
+				"The stone stops when it hits a wall or similar barrier. It can't go around corners, but creative dungeon builders incorporate curving turns into nearby passages that allow the stone to keep moving.",
+				{
+					"type": "entries",
+					"name": "Detect and Disarm",
+					"entries": [
+						"As a {@action Study|XPHB} action, a creature can examine the section of floor that forms the pressure plate and make a DC 15 Intelligence ({@skill Investigation|XPHB}) check, deducing the pressure plate's function on a successful check. Wedging an Iron Spike or a similar object under the pressure plate prevents the trap from triggering."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Destroy the Stone",
+					"entries": [
+						"The stone is a Large object that has AC 17, HP 100, a {@variantrule Damage Threshold|XPHB} of 10, and {@variantrule Immunity|XPHB} to Poison and Psychic damage."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Slow the Stone",
+					"entries": [
+						"As an action, a creature can try to slow down the stone with a DC 20 Strength ({@skill Athletics|XPHB}) check. If the check is successful, the distance the stone moves on its turn is reduced by 15 feet. If that distance drops to 0, it stops moving and is no longer a threat."
+					]
+				}
+			]
+		},
+		{
 			"name": "Scything Blade Trap",
 			"source": "XGE",
 			"page": 114,
 			"trapHazType": "SMPL",
-			"tier": 2,
-			"threat": "dangerous",
+			"rating": [
+				{
+					"tier": 2,
+					"threat": "dangerous"
+				}
+			],
 			"effect": [
 				"Each Medium or larger creature in a 5-foot-wide, 20-foot-long area must make a DC 15 Dexterity saving throw, taking 14 ({@dice 4d6}) slashing damage on a failed save, or half as much damage on a successful one."
 			],
@@ -704,8 +1206,12 @@
 			"source": "XGE",
 			"page": 114,
 			"trapHazType": "SMPL",
-			"tier": 3,
-			"threat": "deadly",
+			"rating": [
+				{
+					"tier": 3,
+					"threat": "deadly"
+				}
+			],
 			"effect": [
 				"When activated, this trap casts a {@spell sleep} spell centered on the pressure plate, using a 9th-level spell slot."
 			],
@@ -736,8 +1242,12 @@
 			"source": "XGE",
 			"page": 119,
 			"trapHazType": "CMPX",
-			"tier": 2,
-			"threat": "deadly",
+			"rating": [
+				{
+					"tier": 2,
+					"threat": "deadly"
+				}
+			],
 			"trigger": [
 				"This trap activates as soon as the door leading to the jester's coffin is opened. A magic portal opens at the northern end of the hallway and disgorges an enormous steel sphere, which hurtles down the slope. When it reaches the bottom of the slope, a second portal briefly appears and teleports the sphere back to the top of the slope to begin the process again."
 			],
@@ -799,12 +1309,91 @@
 			]
 		},
 		{
+			"name": "Spiked Pit",
+			"source": "XDMG",
+			"page": 103,
+			"trapHazType": "TRP",
+			"rating": [
+				{
+					"tier": 1,
+					"threat": "deadly"
+				}
+			],
+			"trigger": [
+				"A creature moves onto the pit's lid"
+			],
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"entries": [
+				"A 10-foot-deep pit has a hinged lid constructed from material identical to the surrounding floor. When a creature moves onto the lid, it swings open like a trapdoor, causing the creature to fall into the pit, which has sharpened wooden or metal spikes at the bottom. The lid remains open thereafter.",
+				"A creature that falls into the pit lands at the bottom and takes 3 ({@dice 1d6}) Bludgeoning damage from the fall plus 9 ({@dice 2d8}) Piercing damage from the spikes.",
+				{
+					"type": "entries",
+					"name": "Detect and Disarm",
+					"entries": [
+						"As a {@action Study|XPHB} action, a creature can examine the section of floor that forms the pit's lid and make a DC 15 Intelligence ({@skill Investigation|XPHB}) check, detecting the pit on a successful check. Once the hidden pit is detected, an Iron Spike or a similar object can be wedged between the pit's lid and the surrounding floor to prevent the lid from opening, thereby making it safe to cross. The cover can also be held shut using an {@spell Arcane Lock|XPHB} spell or similar magic."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Escape",
+					"entries": [
+						"A creature needs a Climb Speed, climbing gear, or magic such as a {@spell Spider Climb|XPHB} spell to scale the pit's smooth walls. You can make the pit easier to escape by adding cracks in the walls big enough to serve as handholds and footholds."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "At Higher Levels",
+					"entries": [
+						"You can scale the trap for higher levels by increasing the pit's depth and damage, as shown in the following table.",
+						{
+							"type": "table",
+							"colLabels": [
+								"Levels",
+								"Pit Depth",
+								"Damage"
+							],
+							"colStyles": [
+								"col-2 text-center",
+								"col-5 text-center",
+								"col-5 text-center"
+							],
+							"rows": [
+								[
+									"5\u201310",
+									"30 feet",
+									"10 ({@dice 3d6}) Bludgeoning plus 13 ({@dice 3d8}) Piercing"
+								],
+								[
+									"11\u201316",
+									"60 feet",
+									"21 ({@dice 6d6}) Bludgeoning plus 36 ({@dice 8d8}) Piercing"
+								],
+								[
+									"17\u201320",
+									"120 feet",
+									"42 ({@dice 12d6}) Bludgeoning plus 57 ({@dice 13d8}) Piercing"
+								]
+							]
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Surface of the Sun",
 			"source": "BMT",
 			"page": 30,
 			"trapHazType": "MAG",
-			"tier": 1,
-			"threat": "dangerous",
+			"rating": [
+				{
+					"tier": 1,
+					"threat": "dangerous"
+				}
+			],
 			"entries": [
 				{
 					"type": "inset",
@@ -860,8 +1449,12 @@
 			"source": "BMT",
 			"page": 31,
 			"trapHazType": "MECH",
-			"tier": 1,
-			"threat": "setback",
+			"rating": [
+				{
+					"tier": 1,
+					"threat": "setback"
+				}
+			],
 			"entries": [
 				{
 					"type": "inset",
@@ -961,10 +1554,33 @@
 			"name": "Brown Mold",
 			"source": "DMG",
 			"page": 105,
+			"reprintedAs": [
+				"Brown Mold|XDMG"
+			],
 			"entries": [
 				"Brown mold feeds on warmth, drawing heat from anything around it. A patch of brown mold typically covers a 10-foot square, and the temperature within 30 feet of it is always frigid.",
 				"When a creature moves to within 5 feet of the mold for the first time on a turn or starts its turn there, it must make a DC 12 Constitution saving throw, taking 22 ({@dice 4d10}) cold damage on a failed save, or half as much damage on a successful one.",
 				"Brown mold is immune to fire, and any source of fire brought within 5 feet of a patch causes it to instantly expand outward in the direction of the fire, covering a 10-foot-square area (with the source of the fire at the center of that area). A patch of brown mold exposed to an effect that deals cold damage is instantly destroyed."
+			]
+		},
+		{
+			"name": "Brown Mold",
+			"source": "XDMG",
+			"page": 76,
+			"rating": [
+				{
+					"tier": 2,
+					"threat": "deadly"
+				},
+				{
+					"tier": 3,
+					"threat": "nuisance"
+				}
+			],
+			"entries": [
+				"Brown mold resembles a furry, light-brown carpet. This fungus feeds on warmth, drawing heat from anything around itself. One patch of brown mold covers a 10-foot square, and the temperature within 30 feet of it is always frigid.",
+				"When a creature enters a space within 5 feet of the mold for the first time on a turn or starts its turn there, the creature makes a DC 12 Constitution saving throw, taking 22 ({@dice 4d10}) Cold damage on a failed save or half as much damage on a successful one.",
+				"Brown mold has {@variantrule Immunity|XPHB} to Fire damage, and any source of fire brought within 5 feet of it causes the mold to instantly expand across a surface and toward the fire, creating a new patch that covers a 10-foot square. A patch of brown mold exposed to an effect that deals any amount of Cold damage is destroyed instantly."
 			]
 		},
 		{
@@ -973,6 +1589,24 @@
 			"page": 362,
 			"entries": [
 				"A burning creature or object takes {@damage 1d4} Fire damage at the start of each of its turns. As an action, you can extinguish fire on yourself by giving yourself the {@condition Prone|XPHB} condition and rolling on the ground. The fire also goes out if it is doused, submerged, or suffocated."
+			]
+		},
+		{
+			"name": "Dead Magic Zone",
+			"source": "XDMG",
+			"page": 68,
+			"trapHazType": "ENV",
+			"entries": [
+				"A dead magic zone is an area where the fabric of magic is torn. The effect is the same as the {@spell Antimagic Field|XPHB} spell, except that it is permanent and typically covers an area no more than 300 feet in diameter."
+			]
+		},
+		{
+			"name": "Deep Water",
+			"source": "XDMG",
+			"page": 68,
+			"trapHazType": "ENV",
+			"entries": [
+				"Swimming through deep water (more than 100 feet deep) presents additional challenges because of the water's pressure and cold temperature. After each hour of swimming in deep water, a creature that lacks a Swim Speed must succeed on a DC 10 Constitution saving throw or gain 1 {@condition Exhaustion|XPHB} level."
 			]
 		},
 		{
@@ -1147,19 +1781,43 @@
 			"name": "Extreme Cold",
 			"source": "DMG",
 			"page": 110,
+			"reprintedAs": [
+				"Extreme Cold|XDMG"
+			],
 			"trapHazType": "WTH",
 			"entries": [
 				"Whenever the temperature is at or below 0 degrees Fahrenheit, a creature exposed to the cold must succeed on a DC 10 Constitution saving throw at the end of each hour or gain one level of {@condition exhaustion}. Creatures with resistance or immunity to cold damage automatically succeed on the saving throw, as do creatures wearing cold weather gear (thick coats, gloves, and the like) and creatures naturally adapted to cold climates."
 			]
 		},
 		{
+			"name": "Extreme Cold",
+			"source": "XDMG",
+			"page": 68,
+			"trapHazType": "ENV",
+			"entries": [
+				"When the temperature is 0 degrees Fahrenheit or lower, a creature exposed to the extreme cold must succeed on a DC 10 Constitution saving throw at the end of each hour or gain 1 {@condition Exhaustion|XPHB} level. Creatures that have {@variantrule Resistance|XPHB} or {@variantrule Immunity|XPHB} to Cold damage automatically succeed on the save."
+			]
+		},
+		{
 			"name": "Extreme Heat",
 			"source": "DMG",
 			"page": 110,
+			"reprintedAs": [
+				"Extreme Heat|XDMG"
+			],
 			"trapHazType": "WTH",
 			"entries": [
 				"When the temperature is at or above 100 degrees Fahrenheit, a creature exposed to the heat and without access to drinkable water must succeed on a Constitution saving throw at the end of each hour or gain one level of {@condition exhaustion}. The DC is 5 for the first hour and increases by 1 for each additional hour.",
 				"Creatures wearing medium or heavy armor, or who are clad in heavy clothing, have disadvantage on the saving throw. Creatures with resistance or immunity to fire damage automatically succeed on the saving throw, as do creatures naturally adapted to hot climates."
+			]
+		},
+		{
+			"name": "Extreme Heat",
+			"source": "XDMG",
+			"page": 68,
+			"trapHazType": "ENV",
+			"entries": [
+				"When the temperature is 100 degrees Fahrenheit or higher, a creature exposed to the extreme heat and without access to drinkable water must succeed on a Constitution saving throw at the end of each hour or gain 1 {@condition Exhaustion|XPHB} level. The DC is 5 for the first hour and increases by 1 for each additional hour. Creatures wearing Medium or Heavy armor have {@variantrule Disadvantage|XPHB} on the save. Creatures that have {@variantrule Resistance|XPHB} or {@variantrule Immunity|XPHB} to Fire damage automatically succeed on the save."
 			]
 		},
 		{
@@ -1190,6 +1848,28 @@
 			]
 		},
 		{
+			"name": "Fireball Fungus",
+			"source": "XDMG",
+			"page": 76,
+			"rating": [
+				{
+					"tier": 2,
+					"threat": "deadly"
+				}
+			],
+			"entries": [
+				"A fireball fungus is a Small, inanimate mushroom that can grow anywhere fungi are found in abundance. Its luminous, orange cap sheds {@variantrule Bright Light|XPHB} in a 15-foot radius and {@variantrule Dim Light|XPHB} for an additional 15 feet.",
+				"A fireball fungus has AC 10, HP 6, and {@variantrule Immunity|XPHB} to Psychic damage. When it drops to 0 Hit Points, the fungus explodes as if a {@spell Fireball|XPHB} spell (save DC 15) had been centered on it.",
+				{
+					"type": "entries",
+					"name": "At Higher Levels",
+					"entries": [
+						"The explosion of a fireball fungus causes other fireball fungi in the area of effect to explode as well. You can scale the hazard for higher levels by adding one additional fungus at levels 11\u201316 or three additional fungi at levels 17\u201320."
+					]
+				}
+			]
+		},
+		{
 			"name": "Flame Storm",
 			"source": "TCE",
 			"page": 163,
@@ -1213,15 +1893,30 @@
 			"name": "Frigid Water",
 			"source": "DMG",
 			"page": 110,
+			"reprintedAs": [
+				"Frigid Water|XDMG"
+			],
 			"trapHazType": "WLD",
 			"entries": [
 				"A creature can be immersed in frigid water for a number of minutes equal to its Constitution score before suffering any ill effects. Each additional minute spent in frigid water requires the creature to succeed on a DC 10 Constitution saving throw or gain one level of {@condition exhaustion}. Creatures with resistance or immunity to cold damage automatically succeed on the saving throw, as do creatures that are naturally adapted to living in ice-cold water."
 			]
 		},
 		{
+			"name": "Frigid Water",
+			"source": "XDMG",
+			"page": 68,
+			"trapHazType": "ENV",
+			"entries": [
+				"A creature can be immersed in frigid water for a number of minutes equal to its Constitution score before suffering any ill effects. Each additional minute spent in frigid water requires the creature to succeed on a DC 10 Constitution saving throw or gain 1 {@condition Exhaustion|XPHB} level. Creatures with {@variantrule Resistance|XPHB} or {@variantrule Immunity|XPHB} to Cold damage automatically succeed on the save, as do creatures that are naturally adapted to living in ice-cold water."
+			]
+		},
+		{
 			"name": "Green Slime",
 			"source": "DMG",
 			"page": 105,
+			"reprintedAs": [
+				"Green Slime|XDMG"
+			],
 			"entries": [
 				"This acidic slime devours flesh, organic material, and metal on contact. Bright green, wet, and sticky, it clings to walls, floors, and ceilings in patches.",
 				"A patch of green slime covers a 5-foot square, has {@sense blindsight} out to a range of 30 feet, and drops from walls and ceilings when it detects movement below it. Beyond that, it has no ability to move. A creature aware of the slime's presence can avoid being struck by it with a successful DC 10 Dexterity saving throw. Otherwise, the slime can't be avoided as it drops.",
@@ -1230,18 +1925,51 @@
 			]
 		},
 		{
+			"name": "Green Slime",
+			"source": "XDMG",
+			"page": 76,
+			"rating": [
+				{
+					"tier": 1,
+					"threat": "nuisance"
+				}
+			],
+			"entries": [
+				"Acidic green slime devours flesh, organic material, and metal on contact. Bright green, wet, and sticky, it clings to walls, floors, and ceilings in patches.",
+				"One patch of green slime covers a 5-foot square. Green slime has {@sense Blindsight|XPHB} with a range of 30 feet, and it drops from walls and ceilings when it detects movement below itself. Beyond that, it can't move. A creature aware of the slime's presence can avoid being struck by it with a successful DC 10 Dexterity saving throw.",
+				"A creature that comes in contact with green slime takes 5 ({@dice 1d10}) Acid damage. The creature takes the damage again at the start of each of its turns until the slime is scraped off (requiring an action) or destroyed. Against wood or metal, green slime deals 11 ({@dice 2d10}) Acid damage each round, and any nonmagical wood or metal item used to scrape off the green slime is destroyed.",
+				"Direct sunlight or any amount of Cold, Fire, or Radiant damage destroys a patch of green slime."
+			],
+			"hasFluffImages": true
+		},
+		{
 			"name": "Heavy Precipitation",
 			"source": "DMG",
 			"page": 110,
+			"reprintedAs": [
+				"Heavy Precipitation|XDMG"
+			],
 			"trapHazType": "WTH",
 			"entries": [
 				"Everything within an area of heavy rain or heavy snowfall is lightly obscured, and creatures in the area have disadvantage on Wisdom ({@skill Perception}) checks that rely on sight. Heavy rain also extinguishes open flames and imposes disadvantage on Wisdom ({@skill Perception}) checks that rely on hearing."
 			]
 		},
 		{
+			"name": "Heavy Precipitation",
+			"source": "XDMG",
+			"page": 69,
+			"trapHazType": "ENV",
+			"entries": [
+				"Everything within an area of heavy rain or heavy snowfall is {@variantrule Lightly Obscured|XPHB}, and creatures in the area have {@variantrule Disadvantage|XPHB} on all Wisdom ({@skill Perception|XPHB}) checks. Heavy rain also extinguishes open flames."
+			]
+		},
+		{
 			"name": "High Altitude",
 			"source": "DMG",
 			"page": 110,
+			"reprintedAs": [
+				"High Altitude|XDMG"
+			],
 			"trapHazType": "ENV",
 			"entries": [
 				"Traveling at altitudes of 10,000 feet or higher above sea level is taxing for a creature that needs to breathe, because of the reduced amount of oxygen in the air. Each hour such a creature spends traveling at high altitude counts as 2 hours for the purpose of determining how long that creature can travel.",
@@ -1249,9 +1977,22 @@
 			]
 		},
 		{
+			"name": "High Altitude",
+			"source": "XDMG",
+			"page": 69,
+			"trapHazType": "ENV",
+			"entries": [
+				"Traveling at altitudes of 10,000 feet or higher above sea level is taxing for most creatures because of the reduced amount of oxygen in the air. Each hour such a creature spends traveling at high altitude counts as 2 hours for the purpose of determining how long that creature can travel (see \"{@book Travel Pace|XDMG|1|Travel Pace}\" in {@book chapter 2|XDMG|1}).",
+				"Creatures can become acclimated to a high altitude by spending 30 days or more at this elevation. Creatures can't become acclimated to elevations above 20,000 feet unless they are native to such environments."
+			]
+		},
+		{
 			"name": "Improvised Damage",
 			"source": "DMG",
 			"page": 249,
+			"reprintedAs": [
+				"Improvised Damage|XDMG"
+			],
 			"trapHazType": "GEN",
 			"entries": [
 				"In some cases you need to determine damage on the fly. The Improvising Damage table gives you suggestions for when you do so.",
@@ -1268,27 +2009,27 @@
 					],
 					"rows": [
 						[
-							"{@dice 1d10}",
+							"{@damage 1d10}",
 							"Burned by coals, hit by a falling bookcase, pricked by a poison needle"
 						],
 						[
-							"{@dice 2d10}",
+							"{@damage 2d10}",
 							"Being struck by lightning, stumbling into a fire pit"
 						],
 						[
-							"{@dice 4d10}",
+							"{@damage 4d10}",
 							"Hit by falling rubble in a collapsing tunnel, stumbling into a vat of acid"
 						],
 						[
-							"{@dice 10d10}",
+							"{@damage 10d10}",
 							"Crushed by compacting walls, hit by whirling steel blades, wading through a lava stream"
 						],
 						[
-							"{@dice 18d10}",
+							"{@damage 18d10}",
 							"Being submerged in lava, being hit by a crashing flying fortress"
 						],
 						[
-							"{@dice 24d10}",
+							"{@damage 24d10}",
 							"Tumbling into a vortex of fire on the Elemental Plane of Fire, being crushed in the jaws of a godlike creature or a moon-sized monster"
 						]
 					]
@@ -1312,33 +2053,139 @@
 					"rows": [
 						[
 							"1st-4th",
-							"{@dice 1d10}",
-							"{@dice 2d10}",
-							"{@dice 4d10}"
+							"{@damage 1d10}",
+							"{@damage 2d10}",
+							"{@damage 4d10}"
 						],
 						[
 							"5th-10th",
-							"{@dice 2d10}",
-							"{@dice 4d10}",
-							"{@dice 10d10}"
+							"{@damage 2d10}",
+							"{@damage 4d10}",
+							"{@damage 10d10}"
 						],
 						[
 							"11th-16th",
-							"{@dice 4d10}",
-							"{@dice 10d10}",
-							"{@dice 18d10}"
+							"{@damage 4d10}",
+							"{@damage 10d10}",
+							"{@damage 18d10}"
 						],
 						[
 							"17th-20th",
-							"{@dice 10d10}",
-							"{@dice 18d10}",
-							"{@dice 24d10}"
+							"{@damage 10d10}",
+							"{@damage 18d10}",
+							"{@damage 24d10}"
 						]
 					]
 				},
 				"Damage sufficient to cause a {@b setback} rarely poses a risk of death to characters of the level shown, but a severely weakened character might be laid low by this damage.",
 				"In contrast, {@b dangerous} damage values pose a significant threat to weaker characters and could potentially kill a character of the level shown if that character is missing many hit points.",
 				"As the name suggests, {@b deadly} damage is enough to drop a character of the level shown to 0 hit points. This level of damage can kill even powerful characters outright if they are already wounded."
+			]
+		},
+		{
+			"name": "Improvised Damage",
+			"source": "XDMG",
+			"page": 30,
+			"trapHazType": "GEN",
+			"entries": [
+				"The Improvising Damage table gives guidelines for determining damage on the fly.",
+				{
+					"type": "table",
+					"caption": "Improvising Damage",
+					"colLabels": [
+						"Damage",
+						"Examples"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"{@damage 1d10}",
+							"Burned by coals, hit by a falling bookcase, pricked by a poison needle"
+						],
+						[
+							"{@damage 2d10}",
+							"Struck by lightning, stumbling into a firepit"
+						],
+						[
+							"{@damage 4d10}",
+							"Hit by falling rubble in a collapsing tunnel, tumbling into a vat of acid"
+						],
+						[
+							"{@damage 10d10}",
+							"Crushed by compacting walls, hit by whirling steel blades, wading through lava"
+						],
+						[
+							"{@damage 18d10}",
+							"Submerged in lava, hit by a crashing flying fortress"
+						],
+						[
+							"{@damage 24d10}",
+							"Tumbling into a vortex of fire on the {@book Elemental Plane of Fire|XDMG|5|Elemental Plane of Fire}, crushed in the jaws of a godlike creature or a moon-size monster"
+						]
+					]
+				},
+				"The Damage Severity and Level table is a guide to how deadly these damage amounts are for characters of different levels. Cross-reference a character's level with the damage being dealt to gauge the severity of the damage.",
+				{
+					"type": "table",
+					"caption": "Damage Severity and Level",
+					"colLabels": [
+						"Character Levels",
+						"Nuisance",
+						"Deadly"
+					],
+					"colStyles": [
+						"col-4 text-center",
+						"col-4 text-right",
+						"col-4 text-right"
+					],
+					"rows": [
+						[
+							"1\u20134",
+							"5 ({@damage 1d10})",
+							"11 ({@damage 2d10})"
+						],
+						[
+							"5\u201310",
+							"11 ({@damage 2d10})",
+							"22 ({@damage 4d10})"
+						],
+						[
+							"11\u201316",
+							"22 ({@damage 4d10})",
+							"55 ({@damage 10d10})"
+						],
+						[
+							"17\u201320",
+							"55 ({@damage 10d10})",
+							"99 ({@damage 18d10})"
+						]
+					]
+				},
+				"Nuisance damage rarely poses a risk of death to characters of the levels shown, but a severely weakened character might be laid low by this damage.",
+				"Deadly damage poses a significant threat to characters of the levels shown and could potentially kill such a character that's missing many {@variantrule Hit Points|XPHB}."
+			]
+		},
+		{
+			"name": "Inferno",
+			"source": "XDMG",
+			"page": 76,
+			"rating": [
+				{
+					"tier": 2,
+					"threat": "deadly"
+				},
+				{
+					"tier": 3,
+					"threat": "nuisance"
+				}
+			],
+			"entries": [
+				"Whenever an uncontrolled fire spreads, it can create an inferno that quickly engulfs creatures, objects, and vegetation.",
+				"An inferno consists of at least four contiguous 10-foot {@variantrule Cube [Area of Effect]|XPHB|Cubes} of fire. Each of the inferno's 10-foot Cubes can be doused with 10 gallons of water. Exposure to a strong wind for 1 minute causes the inferno to grow, adding {@dice 1d4} new 10-foot Cubes to its volume. An inferno deprived of fuel burns itself out after {@dice 1d10} minutes.",
+				"An inferno damages any vegetation or object that isn't being worn or carried that it touches, dealing 22 ({@dice 4d10}) Fire damage immediately and again at the end of each minute. Any creature that enters the inferno for the first time on a turn or starts its turn there takes 22 ({@dice 4d10}) Fire damage and is burning."
 			]
 		},
 		{
@@ -1400,9 +2247,108 @@
 			]
 		},
 		{
+			"name": "Planar Effects",
+			"source": "XDMG",
+			"page": 69,
+			"trapHazType": "ENV",
+			"entries": [
+				"Certain planes of existence\u2014and areas on the Material Plane affected by them\u2014have supernatural effects on creatures within them. Several examples are presented below. See {@book chapter 6|XDMG|5} for more information about the planes of existence.",
+				{
+					"type": "entries",
+					"name": "Acheronian Bloodlust",
+					"entries": [
+						"The plane of {@book Acheron|XDMG|5|Acheron} rewards a creature for harming other creatures by imbuing it with the strength to keep fighting. While in Acheron or a region under its influence, a creature gains {@variantrule Temporary Hit Points|XPHB} equal to half its Hit Point maximum whenever it reduces another creature to 0 Hit Points."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Arcadian Vitality",
+					"entries": [
+						"On the plane of {@book Arcadia|XDMG|5|Arcadia} and in regions where its influence is felt, creatures benefit from supernatural vitality, which grants them {@variantrule Immunity|XPHB} the {@condition Frightened|XPHB} and {@condition Poisoned|XPHB} conditions."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Blessed Beneficence",
+					"entries": [
+						"On the plane of {@book Mount Celestia|XDMG|5|Mount Celestia} and in regions where its influence is felt, creatures are blessed by the pervasive beneficence of the plane. Creatures other than Fiends and Undead gain the benefit of the {@spell Bless|XPHB} spell as long as they remain in an area of blessed beneficence. In addition, such a creature that finishes a Long Rest in the area gains the benefit of a {@spell Lesser Restoration|XPHB} spell."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Gehennan Cruelty",
+					"entries": [
+						"On the plane of {@book Gehenna|XDMG|5|Gehenna} and in regions where its influence is felt, creatures are driven to loathe helping one another. Whenever a creature subject to Gehennan cruelty casts a spell, including a spell that restores Hit Points or removes a condition other than {@condition Invisible|XPHB}, the caster must succeed on a DC 10 Charisma saving throw, or the spell fails and is wasted."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Winds of Pandemonium",
+					"entries": [
+						"The winds of {@book Pandemonium|XDMG|5|Pandemonium} are common in Pandemonium and regions where its influence is felt, including parts of the Underdark. A creature makes a DC 10 Wisdom saving throw after each hour spent among the howling winds. On a failed save, the creature gains 1 {@condition Exhaustion|XPHB} level. The winds can't increase a creature's {@condition Exhaustion|XPHB} level above 3. Finishing a Long Rest doesn't reduce a creature's Exhaustion level unless the creature can somehow escape the winds."
+					]
+				}
+			]
+		},
+		{
+			"name": "Poisonous Gas",
+			"source": "XDMG",
+			"page": 77,
+			"rating": [
+				{
+					"tier": 1,
+					"threat": "nuisance"
+				}
+			],
+			"entries": [
+				"Poisonous gas is usually encountered in an enclosed space, such as a sewer or sealed tomb. The gas fills as much space as it can, up to a maximum of ten 10-foot {@variantrule Cube [Area of Effect]|XPHB|Cubes}. The transparent gas carries a foul odor. The gas is continuously or periodically replenished by some natural or magical source, though a strong wind disperses the gas for 1 minute.",
+				"Any creature that enters poisonous gas for the first time on a turn or starts its turn there makes a DC 12 Constitution saving throw, taking 5 ({@dice 1d10}) Poison damage on a failed save or half as much damage on a successful one. Creatures in the gas also have {@variantrule Disadvantage|XPHB} on {@variantrule Death Saving Throw|XPHB|Death Saving Throws}.",
+				{
+					"type": "entries",
+					"name": "At Higher Levels",
+					"entries": [
+						"You can scale the hazard for higher levels by increasing the Poison damage and the save DC, as shown in the following table.",
+						{
+							"type": "table",
+							"colLabels": [
+								"Levels",
+								"Poison Damage",
+								"Save DC"
+							],
+							"colStyles": [
+								"col-2 text-center",
+								"col-5 text-center",
+								"col-5 text-center"
+							],
+							"rows": [
+								[
+									"5\u201310",
+									"11 ({@dice 2d10})",
+									"14"
+								],
+								[
+									"11\u201316",
+									"22 ({@dice 4d10})",
+									"16"
+								],
+								[
+									"17\u201320",
+									"55 ({@dice 10d10})",
+									"18"
+								]
+							]
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Quicksand",
 			"source": "DMG",
 			"page": 110,
+			"reprintedAs": [
+				"Quicksand Pit|XDMG"
+			],
 			"trapHazType": "WLD",
 			"entries": [
 				"A quicksand pit covers the ground in roughly a 10-foot square area and is usually 10 feet deep. When a creature enters the area, it sinks {@dice 1d4+1} feet into the quicksand and becomes {@condition restrained}. At the start of each of the creature's turns, it sinks another {@dice 1d4} feet. As long as the creature isn't completely submerged in quicksand, it can escape by using its action and succeeding on a Strength check. The DC is 10 plus the number of feet the creature has sunk into the quicksand. A creature that is completely submerged in quicksand can't breathe (see the {@book suffocation|phb|8|suffocating} rules in the {@i Player's Handbook}).",
@@ -1410,13 +2356,123 @@
 			]
 		},
 		{
+			"name": "Quicksand Pit",
+			"source": "XDMG",
+			"page": 77,
+			"rating": [
+				{
+					"tier": 1,
+					"threat": "nuisance"
+				}
+			],
+			"entries": [
+				"A quicksand pit is 10 feet deep and covers the ground in a 10-foot square. A creature that enters the area sinks {@dice 1d4 + 1} feet into the quicksand and has the {@condition Restrained|XPHB} condition. At the start of each of the creature's turns, it sinks another {@dice 1d4} feet. As long as the creature isn't completely submerged in quicksand, it can take an action to try to escape, doing so with a successful Strength ({@skill Athletics|XPHB}) check (DC 10 plus the number of feet the creature has sunk into the quicksand). A creature that is completely submerged in quicksand has {@table Cover|XPHB|Total Cover} and the {@condition Blinded|XPHB} condition and risks suffocation.",
+				"A creature can pull another creature within its reach out of a quicksand pit by taking an action and succeeding on a Strength ({@skill Athletics|XPHB}) check (DC 5 plus the number of feet the creature has sunk into the quicksand).",
+				{
+					"type": "entries",
+					"name": "At Higher Levels",
+					"entries": [
+						"You can scale this hazard for higher levels by making the pit deeper and increasing the number of feet a creature sinks at the start of each of its turns, as shown in the following table.",
+						{
+							"type": "table",
+							"colLabels": [
+								"Levels",
+								"Pit Depth",
+								"Sinking Rate"
+							],
+							"colStyles": [
+								"col-2 text-center",
+								"col-5 text-center",
+								"col-5 text-center"
+							],
+							"rows": [
+								[
+									"5\u201310",
+									"15 feet",
+									"{@dice 1d6} feet"
+								],
+								[
+									"11\u201316",
+									"20 feet",
+									"{@dice 1d8} feet"
+								],
+								[
+									"17\u201320",
+									"30 feet",
+									"{@dice 1d10} feet"
+								]
+							]
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Razorvine",
 			"source": "DMG",
 			"page": 110,
+			"reprintedAs": [
+				"Razorvine|XDMG"
+			],
 			"trapHazType": "WLD",
 			"entries": [
 				"Razorvine is a plant that grows in wild tangles and hedges. It also clings to the sides of buildings and other surfaces as ivy does. A 10-foot-high, 10-foot-wide, 5-foot-thick wall or hedge of razorvine has AC 11, 25 hit points, and immunity to bludgeoning, piercing, and psychic damage.",
 				"When a creature comes into direct contact with razorvine for the first time on a turn, the creature must succeed on a DC 10 Dexterity saving throw or take 5 ({@dice 1d10}) slashing damage from the razorvine's bladelike thorns."
+			]
+		},
+		{
+			"name": "Razorvine",
+			"source": "XDMG",
+			"page": 78,
+			"rating": [
+				{
+					"tier": 1,
+					"threat": "nuisance"
+				}
+			],
+			"entries": [
+				"Razorvine is a plant that grows in wild tangles and hedges. It also clings to the sides of buildings and other surfaces as ivy does. A 10-foot-high, 10-foot-wide, 5-foot-thick wall or hedge of razorvine has AC 11; HP 25; and {@variantrule Immunity|XPHB} to Bludgeoning, Piercing, and Psychic damage.",
+				"When a creature comes into contact with razorvine for the first time on a turn, the creature must succeed on a DC 10 Dexterity saving throw or take 5 ({@dice 1d10}) Slashing damage from the bladelike thorns."
+			]
+		},
+		{
+			"name": "River Styx",
+			"source": "XDMG",
+			"page": 78,
+			"rating": [
+				{
+					"tier": 3,
+					"threat": "nuisance"
+				}
+			],
+			"entries": [
+				"The {@book River Styx|XDMG|5|River Styx} courses through the Lower Planes. Tasting or touching its waters can shatter a creature's intellect and personality, as well as strip away its memories. Certain Fiends are immune to the river's effects.",
+				"Unless immune to the river's effects, a creature that drinks from the Styx, enters the river, or starts its turn in the river makes a DC 20 Intelligence saving throw. On a failed save, the creature takes 19 ({@dice 3d12}) Psychic damage and can't cast spells or take the {@action Magic|XPHB} action for 30 days. An affected creature can drink from the Styx and swim in its waters without suffering any additional effects.",
+				"The effect can be ended only by the {@spell Greater Restoration|XPHB}, {@spell Heal|XPHB}, or {@spell Wish|XPHB} spell. If the effect isn't ended after 30 days, the effect becomes permanent and the creature loses all its memories. At that point, nothing short of a {@spell Wish|XPHB} spell or divine intervention can undo the effect.",
+				"Water taken from the River Styx loses its potency after 24 hours, becoming a harmless, foul-tasting liquid. Arcanaloths, night hags, and other fell creatures might know rituals that can prolong the water's potency, at your discretion."
+			]
+		},
+		{
+			"name": "Rockslide",
+			"source": "XDMG",
+			"page": 78,
+			"rating": [
+				{
+					"tier": 1,
+					"threat": "deadly"
+				}
+			],
+			"entries": [
+				"When a rockslide occurs, every creature in its path makes a DC 15 Dexterity saving throw. On a failed save, a creature takes 11 ({@dice 2d10}) Bludgeoning damage, has the {@condition Prone|XPHB} condition, and moves with the rockslide. On a successful save, a creature takes half as much damage only.",
+				"When the rockslide stops, its space becomes {@variantrule Difficult Terrain|XPHB}, and all Prone creatures in its space are buried under rocks and debris. A creature buried in this way has the {@condition Restrained|XPHB} condition and has {@table Cover|XPHB|Total Cover}. As an action, a creature can try to crawl out from under the rock pile. If the creature succeeds on a DC 15 Strength ({@skill Athletics|XPHB}) check, it is no longer Restrained; instead, it has the {@condition Prone|XPHB} condition and is atop the rock pile. If the check fails, the creature remains buried and gains 1 {@condition Exhaustion|XPHB} level.",
+				"A creature that has neither the Incapacitated nor the Restrained condition can spend 1 minute freeing another creature buried by the rockslide.",
+				{
+					"type": "entries",
+					"name": "At Higher Levels",
+					"entries": [
+						"You can scale this hazard for higher levels by increasing the Bludgeoning damage as follows: 22 ({@dice 4d10}) at levels 5\u201310, 55 ({@dice 10d10}) at levels 11\u201316, and 99 ({@dice 18d10}) at levels 17\u201320."
+					]
+				}
 			]
 		},
 		{
@@ -1476,19 +2532,44 @@
 			"name": "Slippery Ice",
 			"source": "DMG",
 			"page": 110,
+			"reprintedAs": [
+				"Slippery Ice|XDMG"
+			],
 			"trapHazType": "WLD",
 			"entries": [
 				"Slippery ice is {@quickref difficult terrain||3}. When a creature moves onto slippery ice for the first time on a turn, it must succeed on a DC 10 Dexterity ({@skill Acrobatics}) check or fall {@condition prone}."
 			]
 		},
 		{
+			"name": "Slippery Ice",
+			"source": "XDMG",
+			"page": 69,
+			"trapHazType": "ENV",
+			"entries": [
+				"Slippery ice is {@variantrule Difficult Terrain|XPHB}. A creature that moves onto slippery ice for the first time on a turn or starts its turn there must succeed on a DC 10 Dexterity saving throw or have the {@condition Prone|XPHB} condition."
+			]
+		},
+		{
 			"name": "Strong Wind",
 			"source": "DMG",
 			"page": 110,
+			"reprintedAs": [
+				"Strong Wind|XDMG"
+			],
 			"trapHazType": "WTH",
 			"entries": [
 				"A strong wind imposes disadvantage on ranged weapon attack rolls and Wisdom ({@skill Perception}) checks that rely on hearing. A strong wind also extinguishes open flames, disperses fog, and makes flying by nonmagical means nearly impossible. A flying creature in a strong wind must land at the end of its turn or fall.",
 				"A strong wind in a desert can create a sandstorm that imposes disadvantage on Wisdom ({@skill Perception}) checks that rely on sight."
+			]
+		},
+		{
+			"name": "Strong Wind",
+			"source": "XDMG",
+			"page": 69,
+			"trapHazType": "ENV",
+			"entries": [
+				"Strong wind imposes {@variantrule Disadvantage|XPHB} on attack rolls with weapons. It also extinguishes open flames and disperses fog. A flying creature in a strong wind must land at the end of its turn or fall.",
+				"A strong wind in a desert can create a sandstorm that imposes Disadvantage on Wisdom ({@skill Perception|XPHB}) checks."
 			]
 		},
 		{
@@ -1503,9 +2584,21 @@
 			"name": "Thin Ice",
 			"source": "DMG",
 			"page": 111,
+			"reprintedAs": [
+				"Thin Ice|XDMG"
+			],
 			"trapHazType": "WLD",
 			"entries": [
 				"Thin ice has a weight tolerance of 3d10 × 10 pounds per 10-foot-square area. Whenever the total weight on an area of thin ice exceeds its tolerance, the ice in that area breaks. All creatures on broken ice fall through."
+			]
+		},
+		{
+			"name": "Thin Ice",
+			"source": "XDMG",
+			"page": 69,
+			"trapHazType": "ENV",
+			"entries": [
+				"Thin ice has a weight tolerance of {@dice 3d10 × 10} pounds per 10-foot-square area. Whenever the total weight on an area of thin ice exceeds its tolerance, the ice in that area breaks. All creatures on broken ice fall through. Below the ice is {@hazard frigid water|XDMG}."
 			]
 		},
 		{
@@ -1520,21 +2613,126 @@
 			]
 		},
 		{
+			"name": "Vicious Vine",
+			"source": "XDMG",
+			"page": 78,
+			"rating": [
+				{
+					"tier": 1,
+					"threat": "nuisance"
+				}
+			],
+			"entries": [
+				"Vicious vines are animated by magic. They often cling to doorways, archways, walls, and statuary. Until a vicious vine moves, there's nothing to distinguish it from an inanimate vine.",
+				"Each vicious vine has AC 11; HP 16; and Immunity to Bludgeoning, Piercing, and Psychic damage. When a creature enters a space within 5 feet of the vine for the first time on a turn or starts its turn there, the vine tries to coil around that creature. The target must succeed on a DC 12 Dexterity saving throw or have the {@condition Grappled|XPHB} condition (escape DC 12). While Grappled in this way, the target takes 5 ({@dice 1d10}) Necrotic damage from the vine's life-draining thorns at the start of each of the target's turns. The vine can grapple only one creature at a time.",
+				"As an {@action Influence|XPHB} action, a character under the effect of a {@spell Speak with Plants|XPHB} spell or similar magic can try to persuade the vine to release its victim, doing so with a successful DC 10 Charisma ({@skill Persuasion|XPHB}) check. A creature released by the vine in this way won't be attacked by that vine again for the next 24 hours.",
+				{
+					"type": "entries",
+					"name": "At Higher Levels",
+					"entries": [
+						"You can scale the hazard for higher levels by increasing the Necrotic damage, the save DC, and the escape DC, as shown in the following table.",
+						{
+							"type": "table",
+							"colLabels": [
+								"Levels",
+								"Necrotic Damage",
+								"Save/Escape DC"
+							],
+							"colStyles": [
+								"col-2 text-center",
+								"col-5 text-center",
+								"col-5 text-center"
+							],
+							"rows": [
+								[
+									"5\u201310",
+									"11 ({@dice 2d10})",
+									"14"
+								],
+								[
+									"11\u201316",
+									"22 ({@dice 4d10})",
+									"16"
+								],
+								[
+									"17\u201320",
+									"55 ({@dice 10d10})",
+									"18"
+								]
+							]
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Webs",
 			"source": "DMG",
 			"page": 105,
+			"reprintedAs": [
+				"Webs|XDMG"
+			],
 			"entries": [
 				"Giant spiders weave thick, sticky webs across passages and at the bottom of pits to snare prey. These web-filled areas are {@quickref difficult terrain||3}. Moreover, a creature entering a webbed area for the first time on a turn or starting its turn there must succeed on a DC 12 Dexterity saving throw or become {@condition restrained} by the webs. A {@condition restrained} creature can use its action to try to escape, doing so with a successful DC 12 Strength ({@skill Athletics}) or Dexterity ({@skill Acrobatics}) check.",
 				"Each 10-foot cube of giant webs has AC 10, 15 hit points, vulnerability to fire, and immunity to bludgeoning, piercing, and psychic damage."
 			]
 		},
 		{
+			"name": "Webs",
+			"source": "XDMG",
+			"page": 79,
+			"rating": [
+				{
+					"tier": 1,
+					"threat": "nuisance"
+				}
+			],
+			"entries": [
+				"Giant spiders weave thick, sticky webs across passages and at the bottom of pits to snare prey. These web-filled areas are {@variantrule Difficult Terrain|XPHB}.",
+				"A creature that enters a web-filled area for the first time on a turn or starts its turn there must succeed on a DC 12 Dexterity saving throw or have the {@condition Restrained|XPHB} condition. As an action, a creature Restrained by the webs can try to escape from them, doing so with a successful DC 12 Strength ({@skill Athletics|XPHB}) or Dexterity ({@skill Acrobatics|XPHB}) check.",
+				"Each 10-foot {@variantrule Cube [Area of Effect]|XPHB|Cube} of webs has AC 10; HP 15; Vulnerability to Fire damage; and Immunity to Piercing, Poison, and Psychic damage."
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Wild Magic Zone",
+			"source": "XDMG",
+			"page": 69,
+			"trapHazType": "ENV",
+			"entries": [
+				"A past magical disaster or uncontrolled surge of power in a particular place can cause the fabric of magic to unravel, creating a wild magic zone. In such an area, which is typically no more than 300 feet in diameter, magic behaves unpredictably.",
+				"Whenever a creature expends a spell slot to cast a spell in a wild magic zone, roll {@dice 1d20}. If you roll a 20 on the die, roll on the {@table Wild Magic Surge|XPHB} table in the {@book Player's Handbook|XPHB} to create a magical effect."
+			]
+		},
+		{
 			"name": "Yellow Mold",
 			"source": "DMG",
 			"page": 105,
+			"reprintedAs": [
+				"Yellow Mold|XDMG"
+			],
 			"entries": [
 				"Yellow mold grows in dark places, and one patch covers a 5-foot square. If touched, the mold ejects a cloud of spores that fills a 10-foot cube originating from the mold. Any creature in the area must succeed on a DC 15 Constitution saving throw or take 11 ({@dice 2d10}) poison damage and become {@condition poisoned} for 1 minute. While {@condition poisoned} in this way, the creature takes 5 ({@dice 1d10}) poison damage at the start of each of its turns. The creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a successful save.",
 				"Sunlight or any amount of fire damage instantly destroys one patch of yellow mold."
+			]
+		},
+		{
+			"name": "Yellow Mold",
+			"source": "XDMG",
+			"page": 79,
+			"rating": [
+				{
+					"tier": 1,
+					"threat": "deadly"
+				},
+				{
+					"tier": 2,
+					"threat": "nuisance"
+				}
+			],
+			"entries": [
+				"Yellow mold grows in dark places, and one patch covers a 5-foot square. If touched, the mold ejects a cloud of spores that fills a 10-foot {@variantrule Cube [Area of Effect]|XPHB|Cube}. Any creature in that area must succeed on a DC 15 Constitution saving throw or take 11 ({@dice 2d10}) Poison damage and have the {@condition Poisoned|XPHB} condition for 1 minute. While Poisoned in this way, the creature takes 5 ({@dice 1d10}) Poison damage at the start of each of its turns. The creature repeats the save at the end of each of its turns, ending the effect on itself on a success.",
+				"Direct sunlight or any amount of Fire damage destroys a patch of yellow mold."
 			]
 		}
 	]

@@ -1,5 +1,9 @@
 "use strict";
 
+/**
+ * Scale a creature based on the "Creating Quick Monster Stats" "Monster Statistics by Challenge Rating" table
+ *   in the 2014 DMG.
+ */
 globalThis.ScaleCreatureConsts = class {
 	// DMG p274
 	static CR_DPR_RANGES = {

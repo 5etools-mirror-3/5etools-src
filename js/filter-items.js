@@ -92,6 +92,20 @@ class PageFilterEquipment extends PageFilterBase {
 		return (item.ac || 0) + Number(item.bonusAc);
 	}
 
+	static _mutateForFilters_mutFilterValue (item) {
+		if (item.value || item.valueMult) {
+			item._l_value = Parser.itemValueToFullMultiCurrency(item, {isShortForm: true}).replace(/ +/g, "\u00A0");
+			return;
+		}
+
+		if (item._valueFromRarity) {
+			item._l_value = Parser.itemValueToFullMultiCurrency({value: item._valueFromRarity, currencyConversion: item.currencyConversion}, {isShortForm: true}).replace(/ +/g, "\u00A0");
+			return;
+		}
+
+		item._l_value = "\u2014";
+	}
+
 	static mutateForFilters (item) {
 		this._mutateForFilters_commonSources(item);
 
@@ -136,13 +150,17 @@ class PageFilterEquipment extends PageFilterBase {
 		if (item.dmg2) item._fDamageDice.push(item.dmg2);
 
 		item._fMastery = item.mastery
-			? item.mastery.map(it => {
-				const {name, source} = DataUtil.proxy.unpackUid("itemMastery", it, "itemMastery", {isLower: true});
+			? item.mastery.map(info => {
+				const uid = info.uid || info;
+				const {name, source} = DataUtil.proxy.unpackUid("itemMastery", uid, "itemMastery", {isLower: true});
 				return [name, source].join("|");
 			})
 			: null;
 
 		item._fAc = this._mutateForFilters_getFilterAc(item);
+
+		item._l_weight = Parser.itemWeightToFull(item, true) || "\u2014";
+		this._mutateForFilters_mutFilterValue(item);
 	}
 
 	addToFilters (item, isExcluded) {
@@ -208,20 +226,15 @@ class PageFilterItems extends PageFilterEquipment {
 		"futuristic",
 		"modern",
 		"renaissance",
+		"trade bar",
 	]);
 	static _FILTER_BASE_ITEMS_ATTUNEMENT = ["Requires Attunement", "Requires Attunement By...", "Attunement Optional", VeCt.STR_NO_ATTUNEMENT];
 
 	// region static
 	static sortItems (a, b, o) {
-		if (o.sortBy === "name") return SortUtil.compareListNames(a, b);
-		else if (o.sortBy === "type") return SortUtil.ascSortLower(a.values.type, b.values.type) || SortUtil.compareListNames(a, b);
-		else if (o.sortBy === "source") return SortUtil.ascSortLower(a.values.source, b.values.source) || SortUtil.compareListNames(a, b);
-		else if (o.sortBy === "rarity") return SortUtil.ascSortItemRarity(a.values.rarity, b.values.rarity) || SortUtil.compareListNames(a, b);
-		else if (o.sortBy === "attunement") return SortUtil.ascSort(a.values.attunement, b.values.attunement) || SortUtil.compareListNames(a, b);
-		else if (o.sortBy === "count") return SortUtil.ascSort(a.data.count, b.data.count) || SortUtil.compareListNames(a, b);
-		else if (o.sortBy === "weight") return SortUtil.ascSort(a.values.weight, b.values.weight) || SortUtil.compareListNames(a, b);
-		else if (o.sortBy === "cost") return SortUtil.ascSort(a.values.cost, b.values.cost) || SortUtil.compareListNames(a, b);
-		else return 0;
+		if (o.sortBy === "count") return SortUtil.ascSort(a.data.count, b.data.count) || SortUtil.compareListNames(a, b);
+		if (o.sortBy === "rarity") return SortUtil.ascSortItemRarity(a.values.rarity, b.values.rarity) || SortUtil.compareListNames(a, b);
+		return SortUtil.listSort(a, b, o);
 	}
 
 	static _getBaseItemDisplay (baseItem) {
@@ -529,6 +542,7 @@ class ModalFilterItems extends ModalFilterBase {
 				hash,
 				source,
 				sourceJson: item.source,
+				page: item.page,
 				type,
 			},
 			{

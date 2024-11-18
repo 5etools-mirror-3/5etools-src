@@ -263,7 +263,7 @@ export class AttachedSpellTag {
 
 	static _checkAndTag_tables ({obj, walker, outSet}) {
 		const walkerHandlers = {
-			obj: [
+			object: [
 				(obj) => {
 					if (obj.type !== "table") return obj;
 
@@ -322,7 +322,7 @@ export class BonusTag {
 			return opts.isVariant ? `{=bonusWeaponAttack}${m[2]}` : m[0];
 		});
 
-		strEntries = strEntries.replace(/\+\s*(\d)([^.]+(?:bonus )?(?:to|on)(?: your)? [^.]*(?:AC|Armor Class|armor class))/g, (...m) => {
+		strEntries = strEntries.replace(/\+\s*(\d)([^.]+(?:bonus )?(?:to|on)(?: your)? [^.]*(?:AC|Armor Class|armor class|{@variantrule Armor Class\|XPHB}))/g, (...m) => {
 			obj.bonusAc = `+${m[1]}`;
 			return opts.isVariant ? `{=bonusAc}${m[2]}` : m[0];
 		});

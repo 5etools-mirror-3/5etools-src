@@ -76,7 +76,7 @@ class NavBar {
 		this._addElement_li(NavBar._CAT_DUNGEON_MASTER, "objects.html", "Objects");
 		this._addElement_li(NavBar._CAT_DUNGEON_MASTER, "trapshazards.html", "Traps & Hazards");
 		this._addElement_divider(NavBar._CAT_DUNGEON_MASTER);
-		this._addElement_li(NavBar._CAT_DUNGEON_MASTER, "crcalculator.html", "CR Calculator");
+		this._addElement_li(NavBar._CAT_DUNGEON_MASTER, "crcalculator.html", "CR Calculator (2014)");
 		this._addElement_li(NavBar._CAT_DUNGEON_MASTER, "encountergen.html", "Encounter Generator");
 		this._addElement_li(NavBar._CAT_DUNGEON_MASTER, "lootgen.html", "Loot Generator");
 		this._addElement_divider(NavBar._CAT_DUNGEON_MASTER);
@@ -84,6 +84,7 @@ class NavBar {
 
 		this._addElement_dropdown(null, NavBar._CAT_REFERENCES);
 		this._addElement_li(NavBar._CAT_REFERENCES, "actions.html", "Actions");
+		this._addElement_li(NavBar._CAT_REFERENCES, "bastions.html", "Bastions");
 		this._addElement_li(NavBar._CAT_REFERENCES, "bestiary.html", "Bestiary");
 		this._addElement_li(NavBar._CAT_REFERENCES, "conditionsdiseases.html", "Conditions & Diseases");
 		this._addElement_li(NavBar._CAT_REFERENCES, "decks.html", "Decks");

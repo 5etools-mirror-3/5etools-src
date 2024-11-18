@@ -45,6 +45,7 @@ class DeitiesSublistManager extends SublistManager {
 			it.name,
 			{
 				hash,
+				page: it.page,
 				pantheon: it.pantheon,
 				alignment,
 				domains,
@@ -98,6 +99,7 @@ class DeitiesPage extends ListPage {
 			{
 				hash,
 				source,
+				page: ent.page,
 				title: ent.title || "",
 				pantheon: ent.pantheon,
 				alignment,

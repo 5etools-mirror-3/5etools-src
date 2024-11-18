@@ -34,6 +34,7 @@ class TrapsHazardsSublistManager extends SublistManager {
 			it.name,
 			{
 				hash,
+				page: it.page,
 				trapType,
 			},
 			{
@@ -85,6 +86,7 @@ class TrapsHazardsPage extends ListPage {
 			{
 				hash,
 				source,
+				page: it.page,
 				trapType,
 			},
 			{

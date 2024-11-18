@@ -40,7 +40,7 @@ class PageFilterVehicles extends PageFilterBase {
 			const maxSpeed = Math.max(...Object.values(ent.speed));
 			if (maxSpeed > 0) ent._fSpeed = maxSpeed;
 		} else if (ent.pace && typeof ent.pace === "number") {
-			ent._fSpeed = ent.pace * 10; // Based on "Special Travel Pace," DMG p242
+			ent._fSpeed = ent.pace * 10; // Based on "Special Travel Pace," DMG p242 and/or "Travel Pace" XDMG p39
 		}
 
 		ent._fHp = 0;
