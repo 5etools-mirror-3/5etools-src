@@ -125,6 +125,9 @@ class _PageGeneratorListConditionsDiseases extends PageGeneratorListBase {
 	_page = UrlUtil.PG_CONDITIONS_DISEASES;
 	_pageTitle = "Conditions & Diseases";
 	_scriptIdentList = "conditionsdiseases";
+	_isHasRenderer = false;
+
+	_isModule = true;
 
 	_btnsList = [
 		HtmlGeneratorListButtons.getBtnPreviewToggle(),
@@ -255,7 +258,8 @@ class _PageGeneratorListItems extends PageGeneratorListBase {
 		"utils-tableview.js",
 	];
 
-	_styleContentWrapperAdditional = "itm__wrp-stats";
+	_styleListContainerAdditional = "ve-flex-6 itm__wrp-lists";
+	_styleContentWrapperAdditional = "ve-flex-4 itm__wrp-stats";
 
 	_btnsSublist = [
 		HtmlGeneratorListButtons.getBtn({width: "6", sortIdent: "name", text: "Name"}),
@@ -622,6 +626,32 @@ class _PageGeneratorListVehicles extends PageGeneratorListBase {
 	_isWrpToken = true;
 }
 
+class _PageGeneratorListBastions extends PageGeneratorListBase {
+	_page = UrlUtil.PG_BASTIONS;
+	_pageTitle = "Bastions";
+	_scriptIdentList = "bastions";
+	_isHasRenderer = false;
+
+	_isModule = true;
+
+	_btnsList = [
+		HtmlGeneratorListButtons.getBtn({width: "2", sortIdent: "facilityType", text: "Type"}),
+		HtmlGeneratorListButtons.getBtn({width: "3", sortIdent: "name", text: "Name"}),
+		HtmlGeneratorListButtons.getBtn({width: "1", sortIdent: "level", text: "Level"}),
+		HtmlGeneratorListButtons.getBtn({width: "4", sortIdent: "prerequisite", text: "Prerequisite"}),
+		HtmlGeneratorListButtons.getBtnSource(),
+	];
+
+	_btnsSublist = [
+		HtmlGeneratorListButtons.getBtn({width: "2", sortIdent: "facilityType", text: "Type"}),
+		HtmlGeneratorListButtons.getBtn({width: "3", sortIdent: "name", text: "Name"}),
+		HtmlGeneratorListButtons.getBtn({width: "2", sortIdent: "level", text: "Level"}),
+		HtmlGeneratorListButtons.getBtn({width: "5", sortIdent: "prerequisite", text: "Prerequisite"}),
+	];
+
+	_isPrinterView = true;
+}
+
 class _PageGeneratorListClasses extends PageGeneratorListBase {
 	_filename = "list/template-list--classes.hbs";
 
@@ -660,6 +690,7 @@ export const PAGE_GENERATORS_LISTPAGE = [
 	new _PageGeneratorListTables(),
 	new _PageGeneratorListVariantRules(),
 	new _PageGeneratorListVehicles(),
+	new _PageGeneratorListBastions(),
 
 	new _PageGeneratorListClasses(),
 ];

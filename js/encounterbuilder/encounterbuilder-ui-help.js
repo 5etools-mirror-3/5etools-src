@@ -13,7 +13,7 @@ export class EncounterBuilderUiHelp {
 					entries: [
 						`&dagger; [...] don't count any monsters whose challenge rating is significantly below the average challenge rating of the other monsters in the group [...]`,
 					],
-					"by": "{@book Dungeon Master's Guide, page 82|DMG|3|4 Modify Total XP for Multiple Monsters}",
+					"by": `{@book ${Parser.sourceJsonToFull(Parser.SRC_DMG)}, page 82|DMG|3|4 Modify Total XP for Multiple Monsters}`,
 				},
 				`<hr>`,
 				{
@@ -61,7 +61,7 @@ export class EncounterBuilderUiHelp {
 							entries: [
 								"If the party contains fewer than three characters, apply the next highest multiplier on the Encounter Multipliers table.",
 							],
-							"by": "{@book Dungeon Master's Guide, page 83|DMG|3|Party Size}",
+							"by": `{@book ${Parser.sourceJsonToFull(Parser.SRC_DMG)}, page 83|DMG|3|Party Size}`,
 						},
 					]
 					: partyMeta.cntPlayers >= 6
@@ -71,7 +71,7 @@ export class EncounterBuilderUiHelp {
 								entries: [
 									"If the party contains six or more characters, use the next lowest multiplier on the table. Use a multiplier of 0.5 for a single monster.",
 								],
-								"by": "{@book Dungeon Master's Guide, page 83|DMG|3|Party Size}",
+								"by": `{@book ${Parser.sourceJsonToFull(Parser.SRC_DMG)}, page 83|DMG|3|Party Size}`,
 							},
 						]
 						: []

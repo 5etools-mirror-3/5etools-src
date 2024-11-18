@@ -106,10 +106,16 @@ export class ConverterUi extends BaseComponent {
 							};
 						});
 
-				const $content = Renderer.hover.$getHoverContent_generic({
-					type: "entries",
-					entries,
-				});
+				let $content;
+				try {
+					$content = Renderer.hover.$getHoverContent_generic({
+						type: "entries",
+						entries,
+					});
+				} catch (e) {
+					JqueryUtil.doToast({type: "danger", content: `Could not render preview! ${VeCt.STR_SEE_CONSOLE}`});
+					throw e;
+				}
 
 				if (hovWindowPreview) {
 					hovWindowPreview.$setContent($content);

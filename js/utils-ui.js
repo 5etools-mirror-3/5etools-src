@@ -6317,13 +6317,13 @@ class ComponentUiUtil {
 
 			if (group.text) $eles.push($(`<div class="ve-flex-v-center py-1"><div class="ml-1 mr-3"></div><i>${group.text}</i></div>`));
 
-			group.values.forEach(v => {
+			group.values.forEach(value => {
 				const ixValueFrozen = ixValue;
 
 				const propIsActive = this.getMetaWrpMultipleChoice_getPropIsActive(prop, ixValueFrozen);
 				const propIsRequired = this.getMetaWrpMultipleChoice_getPropIsRequired(prop, ixValueFrozen);
 
-				const isHardRequired = (opts.required && opts.required.includes(v))
+				const isHardRequired = (opts.required && opts.required.includes(value))
 					|| (opts.ixsRequired && opts.ixsRequired.includes(ixValueFrozen));
 				const isRequired = isHardRequired || comp._state[propIsRequired];
 
@@ -6380,12 +6380,12 @@ class ComponentUiUtil {
 					hk();
 				}
 
-				const displayValue = opts.fnDisplay ? opts.fnDisplay(v, ixValueFrozen) : v;
+				const displayValue = opts.fnDisplay ? opts.fnDisplay(value, ixValueFrozen) : value;
 
 				rowMetas.push({
 					$cb,
 					displayValue,
-					value: v,
+					value: value,
 					propIsActive,
 					unhook: () => {
 						if (hk) comp._removeHookBase(propIsActive, hk);
@@ -6399,7 +6399,7 @@ class ComponentUiUtil {
 				$eles.push($ele);
 
 				if (opts.isSearchable) {
-					const searchText = `${opts.fnGetSearchText ? opts.fnGetSearchText(v, ixValueFrozen) : v}`.toLowerCase().trim();
+					const searchText = `${opts.fnGetSearchText ? opts.fnGetSearchText(value, ixValueFrozen) : value}`.toLowerCase().trim();
 					($elesSearchable[searchText] = $elesSearchable[searchText] || []).push($ele);
 				}
 

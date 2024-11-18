@@ -1,3 +1,5 @@
+@use "sass:color";
+
 @use "../vars/vars";
 @use "../vars/vars-night";
 
@@ -79,6 +81,63 @@
 
 		&XPHB {
 			@include mix-source-color($rgb-source-XPHB);
+		}
+	}
+}
+
+// (Unused)
+.ve-night-mode .itm__ {
+	&rarity-alt- {
+		&common {
+			color: color.adjust(vars-night.$rgb-font--night, $lightness: -15%);
+		}
+
+		&uncommon {
+			color: #6ba167;
+		}
+
+		&rare {
+			color: #5384bd;
+		}
+
+		&very {
+			color: #945bd3;
+		}
+
+		&legendary {
+			color: #dd9332;
+		}
+
+		&artifact {
+			color: #c82727;
+		}
+	}
+}
+
+.ve-night-mode .itm__ {
+	&rarity- {
+		&common {
+			color: color.adjust(vars-night.$rgb-font--night, $lightness: -15%);
+		}
+
+		&uncommon {
+			color: #b27f5e;
+		}
+
+		&rare {
+			color: #a69bbe;
+		}
+
+		&very {
+			color: #c59e3f;
+		}
+
+		&legendary {
+			color: #8cc2d8;
+		}
+
+		&artifact {
+			color: #c82727;
 		}
 	}
 }

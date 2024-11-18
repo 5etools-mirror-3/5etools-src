@@ -1,0 +1,250 @@
+export class BrewDocContentMigrator {
+	static mutMakeCompatible (json) {
+		this._mutMakeCompatible_item(json);
+		this._mutMakeCompatible_race(json);
+		this._mutMakeCompatible_monster(json);
+		this._mutMakeCompatible_trap(json);
+		this._mutMakeCompatible_object(json);
+		this._mutMakeCompatible_subclass(json);
+		this._mutMakeCompatible_spell(json);
+	}
+
+	/* ----- */
+
+	static _mutMakeCompatible_item (json) {
+		if (!json.variant) return false;
+
+		// 2022-07-09
+		json.magicvariant = json.variant;
+		delete json.variant;
+	}
+
+	/* ----- */
+
+	static _mutMakeCompatible_race (json) {
+		if (!json.subrace) return false;
+
+		json.subrace.forEach(sr => {
+			if (!sr.race) return;
+			sr.raceName = sr.race.name;
+			sr.raceSource = sr.race.source || sr.source || Parser.SRC_PHB;
+		});
+	}
+
+	/* ----- */
+
+	static _mutMakeCompatible_monster (json) {
+		if (!json.monster) return false;
+
+		json.monster.forEach(mon => {
+			// 2022-03-22
+			if (typeof mon.size === "string") mon.size = [mon.size];
+
+			// 2022=05-29
+			if (mon.summonedBySpell && !mon.summonedBySpellLevel) mon.summonedBySpellLevel = 1;
+		});
+	}
+
+	/* ----- */
+
+	static _mutMakeCompatible_trap (json) {
+		if (!json.trap) return false;
+
+		json.trap.forEach(ent => {
+			// 2024-11-13
+			if (ent.rating) return;
+
+			if (!ent.tier && !ent.level && !ent.threat) return;
+
+			ent.rating = [
+				{
+					tier: ent.tier,
+					level: ent.level,
+					threat: ent.threat,
+				},
+			];
+			delete ent.tier;
+			delete ent.level;
+			delete ent.threat;
+		});
+	}
+
+	/* ----- */
+
+	static _mutMakeCompatible_object (json) {
+		if (!json.object) return false;
+
+		json.object.forEach(obj => {
+			// 2023-10-07
+			if (typeof obj.size === "string") obj.size = [obj.size];
+		});
+	}
+
+	/* ----- */
+
+	static _mutMakeCompatible_subclass (json) {
+		this._mutMakeCompatible_subclass_oneSubclassCopies(json);
+	}
+
+	static _PROPS_SUBCLASS_MAINTAIN = ["name", "source", "shortName", "className"];
+	static _PROPS_SUBCLASS_COPY = [...this._PROPS_SUBCLASS_MAINTAIN, "classSource"];
+
+	static _PROPS_SUBCLASS_FEATURE_MAINTAIN = ["name", "className", "source", "subclassShortName", "subclassSource"];
+	static _PROPS_SUBCLASS_FEATURE_COPY = [...this._PROPS_SUBCLASS_FEATURE_MAINTAIN, "level", "classSource"];
+
+	static _MIN_SUBCLASS_FEATURE_LEVEL = 3; // 2024+ classes all gain initial subclass features at level 3
+
+	/**
+	 * @since 2024-09-20
+	 * Copy subclasses (and subclass features, if they are below level 3) from reprinted 2014-era classes to
+	 *   their 2024-era counterparts
+	 */
+	static _mutMakeCompatible_subclass_oneSubclassCopies (json) {
+		const hasCopies = (json.subclass || []).some(sc => sc.source !== Parser.SRC_XPHB && sc.classSource === Parser.SRC_PHB);
+		if (!hasCopies) return false;
+
+		const internalCopies = MiscUtil.getOrSet(json, "_meta", "internalCopies", []);
+		if (!internalCopies.includes("subclass")) internalCopies.push("subclass");
+
+		const outSubclasses = [];
+		const outSubclassFeatures = [];
+		const depsSubclass = new Set();
+
+		json.subclass
+			.filter(sc => sc.source !== Parser.SRC_XPHB && sc.classSource === Parser.SRC_PHB)
+			.forEach(sc => {
+				const scNxt = {
+					classSource: Parser.SRC_XPHB,
+				};
+				this._PROPS_SUBCLASS_MAINTAIN.forEach(prop => scNxt[prop] = MiscUtil.copyFast(sc[prop]));
+				scNxt._copy = {
+					...Object.fromEntries(
+						this._PROPS_SUBCLASS_COPY
+							.map(prop => [prop, MiscUtil.copyFast(sc[prop])]),
+					),
+					"_preserve": {
+						"page": true,
+						"otherSources": true,
+						"srd": true,
+						"basicRules": true,
+						"reprintedAs": true,
+					},
+				};
+
+				if (sc.hasFluff || sc.hasFluffImages) {
+					scNxt.fluff = {
+						_subclassFluff: Object.fromEntries(
+							this._PROPS_SUBCLASS_COPY
+								.map(prop => [prop, MiscUtil.copyFast(sc[prop])]),
+						),
+					};
+				}
+
+				const fauxScHash = UrlUtil.URL_TO_HASH_BUILDER["subclass"](scNxt);
+				const scExisting = json.subclass.find(sc => UrlUtil.URL_TO_HASH_BUILDER["subclass"](sc) === fauxScHash);
+
+				// If the brew already defines a version of the subclass for the 2024-era class, avoid making one
+				if (scExisting) return;
+
+				// `.subclassFeatures` may not exist for e.g. "_copy" subclasses; always "_copy" these
+				const [scfRefsLowLevel, scfRefsOther] = (sc.subclassFeatures || [])
+					.segregate(scfRef => {
+						const uid = scfRef.subclassFeature || scfRef;
+						const unpacked = DataUtil.class.unpackUidSubclassFeature(uid);
+						return unpacked.level < this._MIN_SUBCLASS_FEATURE_LEVEL;
+					});
+
+				outSubclasses.push(scNxt);
+
+				if (!scfRefsLowLevel.length) return;
+
+				scNxt.subclassFeatures = [
+					...scfRefsLowLevel
+						.map(scfRef => {
+							const uid = scfRef.subclassFeature || scfRef;
+							const unpacked = DataUtil.class.unpackUidSubclassFeature(uid);
+
+							// When copying a site subclass feature re-used in a homebrew subclass,
+							//   include the site class as a dependency.
+							// Note that we do not do this for e.g. homebrew depending on homebrew,
+							//   as we assume the brew already defines this relationship.
+							const sourceJson = Parser.sourceJsonToJson(unpacked.source);
+							if (SourceUtil.isSiteSource(sourceJson)) {
+								depsSubclass.add(unpacked.className.toLowerCase());
+							}
+
+							const scfNxt = {
+								classSource: Parser.SRC_XPHB,
+								level: this._MIN_SUBCLASS_FEATURE_LEVEL,
+							};
+							this._PROPS_SUBCLASS_FEATURE_MAINTAIN.forEach(prop => scfNxt[prop] = MiscUtil.copyFast(unpacked[prop]));
+							scfNxt._copy = {
+								...Object.fromEntries(
+									this._PROPS_SUBCLASS_FEATURE_COPY
+										.map(prop => [prop, MiscUtil.copyFast(unpacked[prop])]),
+								),
+								"_preserve": {
+									"page": true,
+								},
+							};
+
+							outSubclassFeatures.push(scfNxt);
+
+							const uidNxt = DataUtil.class.packUidSubclassFeature(scfNxt);
+							if (scfRef.subclassFeature) {
+								return {
+									...MiscUtil.copy(scfRef),
+									subclassFeature: uidNxt,
+								};
+							}
+							return uidNxt;
+						}),
+					...scfRefsOther,
+				];
+			});
+
+		if (outSubclasses.length) json.subclass.push(...outSubclasses);
+		if (outSubclassFeatures.length) json.subclassFeature.push(...outSubclassFeatures);
+
+		if (outSubclassFeatures.length && !internalCopies.includes("subclassFeature")) internalCopies.push("subclassFeature");
+
+		if (depsSubclass.size) {
+			const tgt = MiscUtil.getOrSet(json, "_meta", "dependencies", "subclass", []);
+			depsSubclass.forEach(dep => {
+				if (!tgt.includes(dep)) tgt.push(dep);
+			});
+		}
+
+		return true;
+	}
+
+	/* ----- */
+
+	/**
+	 * @since 2024-10-06
+	 * As a temporary measure, for spells which have `classes.fromClassList`, make XPHB copies of PHB class entries.
+	 * @deprecated TODO(Future) remove/rework when moving to a better solution for homebrew spell sources
+	 */
+	static _mutMakeCompatible_spell (json) {
+		if (!json.spell) return false;
+
+		json.spell
+			.forEach(ent => {
+				if (!ent?.classes?.fromClassList?.length) return;
+
+				const phbNames = {};
+				const xphbNames = {};
+
+				ent.classes.fromClassList
+					.forEach(classMeta => {
+						if (classMeta.source === Parser.SRC_PHB) phbNames[classMeta.name] = classMeta;
+						if (classMeta.source === Parser.SRC_XPHB) xphbNames[classMeta.name] = true;
+					});
+
+				Object.keys(xphbNames).forEach(name => delete xphbNames[name]);
+
+				Object.values(phbNames)
+					.forEach(classMeta => ent.classes.fromClassList.push({...classMeta, source: Parser.SRC_XPHB}));
+			});
+	}
+}

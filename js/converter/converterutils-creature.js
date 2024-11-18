@@ -723,6 +723,9 @@ export class TraitActionTag {
 			"pack tactics": "Pack Tactics",
 
 			"regeneration": "Regeneration",
+			"fiendish regeneration": "Regeneration",
+			"heat regeneration": "Regeneration",
+			"cold regeneration": "Regeneration",
 
 			"shapechanger": "Shapechanger",
 
@@ -2122,12 +2125,10 @@ export class AttachedItemTag {
 
 				// If there is already something in the cache, prefer DMG + PHB entries, then official sources
 				const existing = this._WEAPON_DETAIL_CACHE[k];
-				if (
-					!(existing.source === Parser.SRC_DMG || existing.source === Parser.SRC_PHB)
-					&& SourceUtil.isNonstandardSource(existing.source)
-				) {
-					this._WEAPON_DETAIL_CACHE[k] = cpy;
-				}
+				if (existing.source === Parser.SRC_XDMG || existing.source === Parser.SRC_XPHB) return;
+				if (existing.source === Parser.SRC_DMG || existing.source === Parser.SRC_PHB) return;
+				if (SourceUtil.isNonstandardSource(existing.source)) return;
+				this._WEAPON_DETAIL_CACHE[k] = cpy;
 			});
 		}
 	}

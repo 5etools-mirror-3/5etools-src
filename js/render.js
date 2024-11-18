@@ -721,7 +721,6 @@ globalThis.Renderer = function () {
 
 		const headerRowMetas = Renderer.table.getHeaderRowMetas(entry);
 		const autoRollMode = Renderer.table.getAutoConvertedRollMode(entry, {headerRowMetas});
-		const toRenderLabel = autoRollMode ? RollerUtil.getFullRollCol(headerRowMetas.last()[0]) : null;
 		const isInfiniteResults = autoRollMode === RollerUtil.ROLL_COL_VARIABLE;
 
 		// caption
@@ -808,9 +807,15 @@ globalThis.Renderer = function () {
 
 				const headerRowMeta = headerRowMetas[ixRow];
 				for (let ixCell = 0, lenCells = headerRowMeta.length; ixCell < lenCells; ++ixCell) {
-					const lbl = headerRowMeta[ixCell];
-					textStack[0] += `<th ${this._renderTable_getTableThClassText(entry, ixCell)} data-rd-isroller="${rollCols[ixCell]}" ${entry.isNameGenerator ? `data-rd-namegeneratorrolls="${headerRowMeta.length - 1}"` : ""}>`;
-					this._recursiveRender(autoRollMode && ixCell === 0 ? RollerUtil.getFullRollCol(lbl) : lbl, textStack, meta);
+					const entCellHeader = headerRowMeta[ixCell];
+					const colSpan = entCellHeader?.type === "cellHeader" ? entCellHeader.width : null;
+					textStack[0] += `<th ${this._renderTable_getTableThClassText(entry, ixCell, entCellHeader)} data-rd-isroller="${rollCols[ixCell]}" ${entry.isNameGenerator ? `data-rd-namegeneratorrolls="${headerRowMeta.length - 1}"` : ""} ${colSpan ? `colspan="${colSpan}"` : ""}>`;
+					const entryNxt = autoRollMode && ixCell === 0
+						? RollerUtil.getFullRollCol(entCellHeader)
+						: entCellHeader?.type === "cellHeader"
+							? entCellHeader.entry
+							: entCellHeader;
+					this._recursiveRender(entryNxt, textStack, meta);
 					textStack[0] += `</th>`;
 				}
 
@@ -858,8 +863,10 @@ globalThis.Renderer = function () {
 		return "";
 	};
 
-	this._renderTable_getTableThClassText = function (entry, i) {
-		return entry.colStyles == null || i >= entry.colStyles.length ? `class="rd__th"` : `class="rd__th ${this._getMutatedStyleString(entry.colStyles[i])}"`;
+	this._renderTable_getTableThClassText = function (entry, i, entCell) {
+		const ptFromCol = entry.colStyles?.[i] ? this._getMutatedStyleString(entry.colStyles[i]) : "";
+		const ptFromCell = entCell?.style ? entCell.style.split(" ").map(it => `rd__${it}`).join(" ") : "";
+		return `class="rd__th ${ptFromCol} ${ptFromCell}"`;
 	};
 
 	this._renderTable_makeTableTdClassText = function (entry, i) {
@@ -1075,9 +1082,9 @@ globalThis.Renderer = function () {
 
 	this._renderList = function (entry, textStack, meta, options) {
 		if (entry.items) {
-			const tag = entry.start ? "ol" : "ul";
+			const tag = entry.start != null ? "ol" : "ul";
 			const cssClasses = this._renderList_getListCssClasses(entry, textStack, meta, options);
-			textStack[0] += `<${tag} ${cssClasses ? `class="${cssClasses}"` : ""} ${entry.start ? `start="${entry.start}"` : ""}>`;
+			textStack[0] += `<${tag} ${cssClasses ? `class="${cssClasses}"` : ""} ${entry.start != null ? `start="${entry.start}"` : ""}>`;
 			if (entry.name) textStack[0] += `<li class="rd__list-name">${entry.name}</li>`;
 			const isListHang = entry.style && entry.style.split(" ").includes("list-hang");
 			const len = entry.items.length;
@@ -2374,6 +2381,7 @@ Renderer._STYLE_TAG_ID_TO_STYLE = {
 	"large": "ve-large",
 	"capitalize": "capitalize",
 	"dnd-font": "dnd-font",
+	"muted": "ve-muted",
 };
 
 Renderer.get = () => {
@@ -3455,10 +3463,12 @@ Renderer.utils = class {
 			"alignment",
 			"ability",
 			"proficiency",
+			"expertise",
 			"spellcasting",
 			"spellcasting2020",
 			"spellcastingFeature",
 			"spellcastingPrepared",
+			"spellcastingFocus",
 			"psionics",
 			"feature",
 			"feat",
@@ -3555,10 +3565,12 @@ Renderer.utils = class {
 								case "background": return this._getHtml_background({v, isListMode, isTextOnly, styleHint});
 								case "ability": return this._getHtml_ability({v, isListMode, isTextOnly, styleHint});
 								case "proficiency": return this._getHtml_proficiency({v, isListMode, isTextOnly, styleHint});
+								case "expertise": return this._getHtml_expertise({v, isListMode, isTextOnly, styleHint});
 								case "spellcasting": return this._getHtml_spellcasting({v, isListMode, isTextOnly, styleHint});
 								case "spellcasting2020": return this._getHtml_spellcasting2020({v, isListMode, isTextOnly, styleHint});
 								case "spellcastingFeature": return this._getHtml_spellcastingFeature({v, isListMode, isTextOnly, styleHint});
 								case "spellcastingPrepared": return this._getHtml_spellcastingPrepared({v, isListMode, isTextOnly, styleHint});
+								case "spellcastingFocus": return this._getHtml_spellcastingFocus({v, isListMode, isTextOnly, styleHint});
 								case "psionics": return this._getHtml_psionics({v, isListMode, isTextOnly, styleHint});
 								case "alignment": return this._getHtml_alignment({v, isListMode, isTextOnly, styleHint});
 								case "campaign": return this._getHtml_campaign({v, isListMode, isTextOnly, styleHint});
@@ -3852,6 +3864,22 @@ Renderer.utils = class {
 			return isListMode ? parts.join("/") : parts.joinConjunct(", ", " or ");
 		}
 
+		static _getHtml_expertise ({v, isListMode, styleHint}) {
+			const parts = v.map(obj => {
+				return Object.entries(obj).map(([profType, prof]) => {
+					switch (profType) {
+						case "skill": {
+							if (prof === true) return isListMode ? `Skill Expertise` : `Expertise in a skill`;
+							// TODO(Future) speculative; consider revising
+							return isListMode ? `${prof.toTitleCase()} Expertise` : `Expertise in ${prof.toTitleCase()}`;
+						}
+						default: throw new Error(`Unhandled expertise type: "${profType}"`);
+					}
+				});
+			});
+			return isListMode ? parts.join("/") : parts.joinConjunct(", ", " or ");
+		}
+
 		static _getHtml_spellcasting ({v, isListMode}) {
 			return isListMode ? "Spellcasting" : "The ability to cast at least one spell";
 		}
@@ -3867,6 +3895,41 @@ Renderer.utils = class {
 
 		static _getHtml_spellcastingPrepared ({v, isListMode}) {
 			return isListMode ? "Spellcasting" : "Spellcasting feature from a class that prepares spells";
+		}
+
+		static _SCF_TYPE_TO_NAME = {
+			"arcane": "Arcane Focus",
+			"druid": "Druidic Focus",
+			"holy": "Holy Symbol",
+		};
+		static _getHtml_spellcastingFocus ({v, isListMode, isTextOnly, styleHint}) {
+			if (isListMode) {
+				if (v === true) return `Spellcasting Focus`;
+				return v.map(n => this._SCF_TYPE_TO_NAME[n] || `Spellcasting ${n.toTitleCase()}`).join("/");
+			}
+
+			const ptScfSuffix = styleHint === "classic" ? "spellcasting focus" : "{@variantrule Spellcasting Focus|XPHB}";
+			if (v === true) {
+				const ent = `Ability to use a ${ptScfSuffix}`;
+				return isTextOnly ? Renderer.stripTags(ent) : Renderer.get().render(ent);
+			}
+
+			const ptScf = v
+				.map((scf, i) => {
+					if (!i) {
+						const a = Parser.getArticle(this._SCF_TYPE_TO_NAME[scf] || scf);
+						if (!this._SCF_TYPE_TO_NAME[scf]) return `${a} ${scf}`;
+						return `${a} {@item ${this._SCF_TYPE_TO_NAME[scf]}${styleHint === "classic" ? "" : "|XPHB"}}`;
+					}
+
+					if (!this._SCF_TYPE_TO_NAME[scf]) return scf;
+					return `{@item ${this._SCF_TYPE_TO_NAME[scf]}${styleHint === "classic" ? "" : "|XPHB"}}`;
+				})
+				.joinConjunct(", ", " or ");
+
+			const ent = `Ability to use ${ptScf} as a ${ptScfSuffix}`;
+
+			return (isTextOnly ? Renderer.stripTags : Renderer.get().render.bind(Renderer.get()))(ent);
 		}
 
 		static _getHtml_psionics ({v, isListMode, isTextOnly}) {
@@ -4337,6 +4400,7 @@ Renderer.utils = class {
 			case "@charoption": out.page = UrlUtil.PG_CHAR_CREATION_OPTIONS; break;
 			case "@recipe": out.page = UrlUtil.PG_RECIPES; break;
 			case "@deck": out.page = UrlUtil.PG_DECKS; break;
+			case "@facility": out.page = UrlUtil.PG_BASTIONS; break;
 
 			case "@legroup": {
 				out.page = "legendaryGroup";
@@ -4458,7 +4522,7 @@ Renderer.utils = class {
 			} else if (args.length === 2) {
 				const val = Renderer.utils._applyTemplate_getValue(ent, args[1]);
 				switch (args[0]) {
-					case "getFullImmRes": return Parser.getFullImmRes(val);
+					case "getFullImmRes": return Parser.getFullImmRes(val, {isTitleCase: VetoolsConfig.get("styleSwitcher", "style") === "one"});
 					default: throw new Error(`Unknown template function "${args[0]}"`);
 				}
 			} else throw new Error(`Unhandled number of arguments ${args.length}`);
@@ -5144,6 +5208,12 @@ Renderer.tag = class {
 		page = UrlUtil.PG_CONDITIONS_DISEASES;
 	};
 
+	static TagFacility = class extends this._TagPipedDisplayTextThird {
+		tagName = "facility";
+		defaultSource = Parser.SRC_XDMG;
+		page = UrlUtil.PG_BASTIONS;
+	};
+
 	static TagFeat = class extends this._TagPipedDisplayTextThird {
 		tagName = "feat";
 		defaultSource = Parser.SRC_PHB;
@@ -5491,6 +5561,7 @@ Renderer.tag = class {
 		new this.TagCult(),
 		new this.TagDeck(),
 		new this.TagDisease(),
+		new this.TagFacility(),
 		new this.TagFeat(),
 		new this.TagHazard(),
 		new this.TagItem(),
@@ -6808,7 +6879,7 @@ class _RenderCompactSpellsImplBase extends _RenderCompactImplBase {
 	}
 
 	_getHtmlParts_duration ({ent}) {
-		return Renderer.spell.getHtmlPtDuration(ent);
+		return Renderer.spell.getHtmlPtDuration(ent, {styleHint: this._style});
 	}
 
 	/* ----- */
@@ -6873,7 +6944,7 @@ Renderer.spell = class {
 
 	static getHtmlPtRange (spell) { return `<b>Range:</b> ${Parser.spRangeToFull(spell.range)}`; }
 	static getHtmlPtComponents (spell) { return `<b>Components:</b> ${Parser.spComponentsToFull(spell.components, spell.level)}`; }
-	static getHtmlPtDuration (spell) { return `<b>Duration:</b> ${Parser.spDurationToFull(spell.duration)}`; }
+	static getHtmlPtDuration (spell, {styleHint = null} = {}) { return `<b>Duration:</b> ${Parser.spDurationToFull(spell.duration, {styleHint})}`; }
 
 	/* -------------------------------------------- */
 
@@ -7392,25 +7463,36 @@ Renderer.spell._spellSourceManagerPrerelease = new Renderer.spell._SpellSourceMa
 Renderer.spell._spellSourceManagerBrew = new Renderer.spell._SpellSourceManager();
 
 Renderer.condition = class {
-	static getCompactRenderedString (cond) {
+	static getCompactRenderedString (ent) { return Renderer.conditionDisease.getCompactRenderedString(ent); }
+	static pGetFluff (ent) { return Renderer.conditionDisease.pGetFluff(ent); }
+};
+
+Renderer.disease = class {
+	static getCompactRenderedString (ent) { return Renderer.conditionDisease.getCompactRenderedString(ent); }
+	static pGetFluff (ent) { return Renderer.conditionDisease.pGetFluff(ent); }
+};
+
+Renderer.status = class {
+	static getCompactRenderedString (ent) { return Renderer.conditionDisease.getCompactRenderedString(ent); }
+	static pGetFluff (ent) { return Renderer.conditionDisease.pGetFluff(ent); }
+};
+
+Renderer.conditionDisease = class {
+	static getCompactRenderedString (ent) {
 		const renderer = Renderer.get();
-		const renderStack = [];
 
-		renderStack.push(`
-			${Renderer.utils.getExcludedTr({entity: cond, dataProp: cond.__prop || cond._type, page: UrlUtil.PG_CONDITIONS_DISEASES})}
-			${Renderer.utils.getNameTr(cond, {page: UrlUtil.PG_CONDITIONS_DISEASES})}
-			<tr><td colspan="6" class="pb-2">
-		`);
-		renderer.recursiveRender({entries: cond.entries}, renderStack);
-		renderStack.push(`</td></tr>`);
+		const ptType = ent.type ? `<tr><td colspan="6" class="pb-2 pt-0">${renderer.render(`{@i ${ent.type}}`)}</td></tr>` : "";
 
-		return renderStack.join("");
+		return `${Renderer.utils.getExcludedTr({entity: ent, dataProp: ent.__prop || ent._type, page: UrlUtil.PG_CONDITIONS_DISEASES})}
+		${Renderer.utils.getNameTr(ent, {page: UrlUtil.PG_CONDITIONS_DISEASES})}
+		${ptType}
+		<tr><td colspan="6" class="pb-2">${renderer.render({entries: ent.entries})}</td></tr>`;
 	}
 
-	static pGetFluff (it) {
+	static pGetFluff (ent) {
 		return Renderer.utils.pGetFluff({
-			entity: it,
-			fluffProp: it.__prop === "condition" ? "conditionFluff" : "diseaseFluff",
+			entity: ent,
+			fluffProp: `${ent.__prop}Fluff`,
 		});
 	}
 };
@@ -8236,6 +8318,12 @@ Renderer.deity = class {
 			name: "Alternate Names",
 			displayFn: (it) => it.join(", "),
 		},
+		"plane": {
+			name: "Home Plane",
+		},
+		"worshipers": {
+			name: "Typical Worshipers",
+		},
 		"symbol": {
 			name: "Symbol",
 		},
@@ -8345,7 +8433,7 @@ Renderer.object = class {
 	/* -------------------------------------------- */
 
 	static getCompactRenderedString (obj, opts) {
-		return Renderer.object.getRenderedString(obj, {...opts, isCompact: true});
+		return Renderer.object.getRenderedString(obj, opts);
 	}
 
 	static getRenderedString (ent, opts) {
@@ -8393,7 +8481,38 @@ Renderer.object = class {
 Renderer.trap = class {
 	static CHILD_PROPS = ["trigger", "effect", "eActive", "eDynamic", "eConstant", "countermeasures"];
 
-	static getTrapRenderableEntriesMeta (ent) {
+	static TRAP_TYPES_CLASSIC = ["MECH", "MAG", "TRP"];
+
+	static getTrapRenderableEntriesMeta (ent, {styleHint = null} = {}) {
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
+		if (Renderer.trap.TRAP_TYPES_CLASSIC.includes(ent.trapHazType)) {
+			if (!ent.trigger?.length && !ent.duration?.length) return {};
+			return {
+				entriesHeader: [
+					{
+						type: "list",
+						style: "list-hang-notitle",
+						items: [
+							ent.trigger ? {
+								type: "item",
+								name: "Trigger:",
+								entries: ent.trigger,
+							} : null,
+							ent.duration ? {
+								type: "item",
+								name: "Duration:",
+								entries: [
+									Renderer.generic.getRenderableDurationEntriesMeta(ent.duration, {styleHint}).entryDuration,
+								],
+							} : null,
+						]
+							.filter(Boolean),
+					},
+				],
+			};
+		}
+
 		return {
 			entriesAttributes: [
 				// region Shared between simple/complex
@@ -8449,10 +8568,11 @@ Renderer.trap = class {
 
 	static getTrapInitiativeEntries (ent) { return [`The trap acts on ${Parser.trapInitToFull(ent.initiative)}${ent.initiativeNote ? ` (${ent.initiativeNote})` : ""}.`]; }
 
-	static getRenderedTrapPart (renderer, ent) {
-		const entriesMeta = Renderer.trap.getTrapRenderableEntriesMeta(ent);
-		if (!entriesMeta.entriesAttributes.length) return "";
-		return renderer.render({entries: entriesMeta.entriesAttributes}, 1);
+	static getRenderedTrapPart (renderer, ent, {styleHint = null} = {}) {
+		const entriesMeta = Renderer.trap.getTrapRenderableEntriesMeta(ent, {styleHint});
+		if (entriesMeta.entriesHeader?.length) return renderer.render({entries: entriesMeta.entriesHeader});
+		if (entriesMeta.entriesAttributes?.length) return renderer.render({entries: entriesMeta.entriesAttributes}, 1);
+		return "";
 	}
 
 	static getCompactRenderedString (ent, opts) {
@@ -8471,47 +8591,61 @@ Renderer.hazard = class {
 };
 
 Renderer.traphazard = class {
-	static getSubtitle (ent) {
+	static getSubtitle (ent, {styleHint} = {}) {
 		const type = ent.trapHazType || "HAZ";
 		if (type === "GEN") return null;
 
-		const ptThreat = ent.threat ? ent.threat.toTitleCase() : null;
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
-		const ptTypeThreat = [
-			Parser.trapHazTypeToFull(type),
-			ent.threat ? ent.threat.toTitleCase() : null,
-		]
+		const ptType = Parser.trapHazTypeToFull(type);
+		if (!ent.rating?.length) return ptType;
+
+		return ent.rating
+			.map(rating => {
+				const ptThreat = rating.threat ? rating.threat.toTitleCase() : "";
+
+				const ptThreatType = [ptThreat, ptType]
+					.filter(Boolean)
+					.join(" ");
+
+				const ptLevelTier = Renderer.traphazard.getRenderedTrapHazardRatingPart(rating, {styleHint});
+
+				return [
+					ptThreatType,
+					ptLevelTier ? `(${ptLevelTier})` : "",
+				]
+					.filter(Boolean)
+					.join(" ");
+			})
 			.filter(Boolean)
-			.join(", ");
-
-		const parenPart = [
-			ent.tier ? Parser.tierToFullLevel(ent.tier) : null,
-			Renderer.traphazard.getTrapLevelPart(ent),
-		]
-			.filter(Boolean)
-			.join(", ");
-
-		return parenPart ? `${ptTypeThreat} (${parenPart})` : ptTypeThreat;
+			.joinConjunct(", ", " or ");
 	}
 
-	static getTrapLevelPart (ent) {
-		return ent.level?.min != null && ent.level?.max != null
-			? `level ${ent.level.min}${ent.level.min !== ent.level.max ? `\u2013${ent.level.max}` : ""}`
-			: null;
+	static getRenderedTrapHazardRatingPart (rating, {styleHint} = {}) {
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
+		if (rating.tier) return Parser.tierToFullLevel(rating.tier, {styleHint});
+
+		if (rating.level?.min == null || rating.level?.max == null) return "";
+
+		const ptLevelLabel = styleHint === "classic" ? "level" : "Levels";
+		return `${ptLevelLabel} ${rating.level.min}${rating.level.min !== rating.level.max ? `\u2013${rating.level.max}` : ""}`;
 	}
 
 	static getCompactRenderedString (ent, opts) {
 		opts = opts || {};
 
+		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
+
 		const renderer = Renderer.get();
-		const subtitle = Renderer.traphazard.getSubtitle(ent);
+		const subtitle = Renderer.traphazard.getSubtitle(ent, {styleHint});
 		return `
 			${Renderer.utils.getExcludedTr({entity: ent, dataProp: ent.__prop, page: UrlUtil.PG_TRAPS_HAZARDS})}
 			${Renderer.utils.getNameTr(ent, {page: UrlUtil.PG_TRAPS_HAZARDS, isEmbeddedEntity: opts.isEmbeddedEntity})}
 			${subtitle ? `<tr><td colspan="6" class="pb-2"><i>${subtitle}</i></td></tr>` : ""}
 			<tr><td colspan="6" class="pb-2">
 			${renderer.render({entries: ent.entries}, 2)}
-			${Renderer.trap.getRenderedTrapPart(renderer, ent)}
+			${Renderer.trap.getRenderedTrapPart(renderer, ent, {styleHint})}
 			</td></tr>
 		`;
 	}
@@ -10595,6 +10729,19 @@ Renderer.item = class {
 			].filter(Boolean).join(renderer.getLineBreak()));
 		}
 
+		// bars
+		if (item.barDimensions) {
+			damageParts.push(
+				[
+					item.barDimensions.l ? `${Parser.getInchesToFull(item.barDimensions.l, {isShort: true})} long` : "",
+					item.barDimensions.w ? `${Parser.getInchesToFull(item.barDimensions.w, {isShort: true})} wide` : "",
+					item.barDimensions.h ? `${Parser.getInchesToFull(item.barDimensions.h, {isShort: true})} thick` : "",
+				]
+					.filter(Boolean)
+					.join(" × "),
+			);
+		}
+
 		const ptDamage = damageParts.join(", ");
 		const ptProperties = Renderer.item._getPropertiesText(item, {renderer});
 
@@ -10605,7 +10752,18 @@ Renderer.item = class {
 		renderer = renderer || Renderer.get();
 
 		if (!item.mastery) return "";
-		return `${isSkipPrefix ? "" : "Mastery: "}${item.mastery.map(it => renderer.render(`{@itemMastery ${it}}`)).join(", ")}`;
+
+		return [
+			isSkipPrefix ? "" : "Mastery: ",
+			item.mastery
+				.map(info => {
+					if (!info.uid) return renderer.render(`{@itemMastery ${info}}`);
+					return renderer.render(`{@itemMastery ${info.uid}} {@style (${info.note})|small}`);
+				})
+				.join(", "),
+		]
+			.filter(Boolean)
+			.join(" ");
 	}
 
 	static getTypeRarityAndAttunementText (item) {
@@ -10642,7 +10800,9 @@ Renderer.item = class {
 		return [attunement, attunementCat];
 	}
 
-	static getHtmlAndTextTypes (item) {
+	static getHtmlAndTextTypes (item, {styleHint = null} = {}) {
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
 		const typeHtml = [];
 		const typeListText = [];
 		const subTypeHtml = [];
@@ -10671,7 +10831,7 @@ Renderer.item = class {
 			typeListText.push(item.age);
 		}
 		if (item.weaponCategory) {
-			typeHtml.push(`weapon${item.baseItem ? ` (${Renderer.get().render(`{@item ${item.baseItem}}`)})` : ""}`);
+			typeHtml.push(`weapon${item.baseItem ? ` (${Renderer.get().render(`{@item ${styleHint === "classic" ? item.baseItem : item.baseItem.toTitleCase()}}`)})` : ""}`);
 			subTypeHtml.push(`${item.weaponCategory} weapon`);
 			typeListText.push(`${item.weaponCategory} weapon`);
 			showingBase = true;
@@ -10772,6 +10932,8 @@ Renderer.item = class {
 		const tgtNameNoBraces = tgtName.replace(/ \(.*$/, "");
 		const tgtLenNoBraces = tgtNameNoBraces.length;
 
+		const reWordBreak = /\W/;
+
 		const len = str.length;
 		for (let i = 0; i < len; ++i) {
 			const c = str[i];
@@ -10791,6 +10953,8 @@ Renderer.item = class {
 			}
 
 			if (depth) continue;
+
+			if (!(str[i + 1] == null || reWordBreak.test(str[i + 1]))) continue;
 
 			if (stack.slice(-tgtLen).join("")[item.sentient ? "toString" : "toLowerCase"]() === tgtName) {
 				stack.splice(stack.length - tgtLen, tgtLen, `{@i ${stack.slice(-tgtLen).join("")}}`);
@@ -11092,8 +11256,7 @@ Renderer.item = class {
 			if (curBaseItem.packContents) return; // e.g. "Arrows (20)"
 
 			genericVariants.forEach((curGenericVariant) => {
-				// Never make variants for "classic" baseitems, to avoid clashes with improved items
-				if (curBaseItem.edition === "classic") return;
+				if (!Renderer.item._createSpecificVariants_isEditionMatch({curBaseItem, curGenericVariant})) return;
 
 				if (!Renderer.item._createSpecificVariants_hasRequiredProperty(curBaseItem, curGenericVariant)) return;
 				if (Renderer.item._createSpecificVariants_hasExcludedProperty(curBaseItem, curGenericVariant)) return;
@@ -11102,6 +11265,32 @@ Renderer.item = class {
 			});
 		});
 		return genericAndSpecificVariants;
+	}
+
+	/**
+	 * When creating specific variants, the application of "classic" and "one" editions
+	 *  goes by the following logic:
+	 *
+	 * |  B. Item | Gen. Var | Apply | Example
+	 * |----------|----------|-------|----------------------------------------
+	 * |     null |     null |     X | "Fool's Blade|BMT" -> "Pitchfork|ToB3-Lairs"
+	 * |  classic |     null |       | "Fool's Blade|BMT" -> "Longsword|PHB"
+	 * |      one |     null |     X | "Fool's Blade|BMT" -> "Longsword|XPHB"
+	 * |     null |  classic |     X | "+1 Weapon|DMG" -> "Pitchfork|ToB3-Lairs" -- TODO(Future): consider cutting this, with a homebrew tag migration
+	 * |  classic |  classic |     X | "+1 Weapon|DMG" -> "Longsword|PHB"
+	 * |      one |  classic |       | "+1 Weapon|DMG" -> "Longsword|XPHB"
+	 * |     null |      one |     X | "+1 Weapon|XDMG" -> "Pitchfork|ToB3-Lairs"
+	 * |  classic |      one |       | "+1 Weapon|XDMG" -> "Longsword|PHB"
+	 * |      one |      one |     X | "+1 Weapon|XDMG" -> "Longsword|XPHB"
+	 *
+	 * This aims to minimize spamming near-duplicates, while preserving as many '14 items as possible.
+	 */
+	static _createSpecificVariants_isEditionMatch ({curBaseItem, curGenericVariant}) {
+		if (MiscUtil.isNearStrictlyEqual(curBaseItem.edition, curGenericVariant.edition)) return true;
+		if (curBaseItem.edition === "classic") return false;
+		if (curBaseItem.edition == null) return true;
+		if (curBaseItem.edition === "one") return curGenericVariant.edition !== "classic";
+		throw new Error(`Unhandled edition combination "${curBaseItem.edition}"/"${curGenericVariant.edition}" for base item "${curBaseItem.name}" and generic variant "${curGenericVariant.name}"!`);
 	}
 
 	static _createSpecificVariants_hasRequiredProperty (baseItem, genericVariant) {
@@ -11540,8 +11729,8 @@ Renderer.item = class {
 		}
 
 		(item.mastery || [])
-			.forEach(uid => {
-				const mastery = Renderer.item._getMastery(uid);
+			.forEach(info => {
+				const mastery = Renderer.item._getMastery(info.uid || info);
 
 				if (!mastery.entries && !mastery.entriesTemplate) return;
 
@@ -11584,7 +11773,7 @@ Renderer.item = class {
 		}
 
 		// bake in types
-		const [typeListText, typeHtml, subTypeHtml] = Renderer.item.getHtmlAndTextTypes(item);
+		const [typeListText, typeHtml, subTypeHtml] = Renderer.item.getHtmlAndTextTypes(item, {styleHint});
 		item._typeListText = typeListText;
 		item._typeHtml = typeHtml;
 		item._subTypeHtml = subTypeHtml;
@@ -11599,8 +11788,11 @@ Renderer.item = class {
 			item._attunementCategory = [attuneCat, attuneCatAlt];
 		}
 
+		// bake in rarity-based value
+		Renderer.item._enhanceItem_mutItemRarityValue({item, styleHint});
+
 		// handle item groups
-		if (item._isItemGroup && item.items?.length) {
+		if (item._isItemGroup && item.items?.length && !item.itemsHidden) {
 			Renderer.item._initFullEntries(item);
 			item._fullEntries.push({type: "wrapper", wrapped: "Multiple variations of this item exist, as listed below:", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "magicvariant"}});
 			item._fullEntries.push({
@@ -11657,6 +11849,25 @@ Renderer.item = class {
 					},
 				},
 			);
+	}
+
+	// See: XDMG, p217
+	static _RARITY_TO_VALUE = {
+		"common": 100_00,
+		"uncommon": 400_00,
+		"rare": 4000_00,
+		"very rare": 40_000_00,
+		"legendary": 200_000_00,
+		"artifact": null,
+	};
+
+	static _enhanceItem_mutItemRarityValue ({item, styleHint}) {
+		if (styleHint === "classic") return;
+
+		const valueFromRarity = this._RARITY_TO_VALUE[item.valueRarity || item.rarity];
+		if (!valueFromRarity) return;
+
+		item._valueFromRarity = valueFromRarity;
 	}
 
 	static unenhanceItem (item) {
@@ -11997,30 +12208,40 @@ Renderer.table = class {
 	}
 
 	static getHeaderRowMetas (ent) {
-		if (!ent.colLabels?.length && !ent.colLabelGroups?.length) return null;
+		if (!ent.colLabels?.length && !ent.colLabelRows?.length) return null;
 
 		if (ent.colLabels?.length) return [ent.colLabels];
 
-		const maxHeight = Math.max(...ent.colLabelGroups.map(clg => clg.colLabels?.length || 0));
+		const lenPer = ent.colLabelRows
+			.map(row => Renderer.table.getHeaderRowSpanWidth(row));
+		const lenMax = Math.max(...lenPer);
+		if (lenPer.every(len => len === lenMax)) return ent.colLabelRows;
 
-		const padded = ent.colLabelGroups
-			.map(clg => {
-				const out = [...(clg.colLabels || [])];
-				while (out.length < maxHeight) out.unshift("");
-				return out;
+		const cpy = MiscUtil.copyFast(ent.colLabelRows);
+		cpy
+			.forEach((row, i) => {
+				const len = lenPer[i];
+				for (let j = len; j < lenMax; ++j) row.push("");
 			});
+		return cpy;
+	}
 
-		return [...new Array(maxHeight)]
-			.map((_, i) => padded.map(lbls => lbls[i]));
+	static getHeaderRowSpanWidth (colLabelRow) {
+		return colLabelRow.reduce((a, b) => a + (b.type === "cellHeader" ? b.width || 1 : 1), 0);
 	}
 
 	static _RE_TABLE_ROW_DASHED_NUMBERS = /^\d+([-\u2012-\u2014\u2212]\d+)?/;
 	static getAutoConvertedRollMode (table, {headerRowMetas} = {}) {
 		if (headerRowMetas === undefined) headerRowMetas = Renderer.table.getHeaderRowMetas(table);
 
-		if (!headerRowMetas || headerRowMetas.last().length < 2) return RollerUtil.ROLL_COL_NONE;
+		if (!headerRowMetas) return RollerUtil.ROLL_COL_NONE;
 
-		const rollColMode = RollerUtil.getColRollType(headerRowMetas.last()[0]);
+		const headerRowMetaBottom = headerRowMetas.at(-1);
+		if (headerRowMetaBottom.length < 2) return RollerUtil.ROLL_COL_NONE;
+
+		const [cellFirst] = headerRowMetaBottom;
+
+		const rollColMode = RollerUtil.getColRollType(cellFirst);
 		if (!rollColMode) return RollerUtil.ROLL_COL_NONE;
 
 		if (!Renderer.table.isEveryRowRollable(table.rows)) return RollerUtil.ROLL_COL_NONE;
@@ -12117,7 +12338,9 @@ Renderer.vehicle = class {
 					? `[{@b Speed} ${ent.pace * 10} ft.]`
 					: null,
 				entryTravelPaceNoteTitle: ent.pace != null
-					? `Based on "Special Travel Pace," DMG p242`
+					? VetoolsConfig.get("styleSwitcher", "style") === "classic"
+						? `Based on "Special Travel Pace," ${Parser.sourceJsonToAbv(Parser.SRC_DMG)} p242`
+						: `Based on "Travel Pace," ${Parser.sourceJsonToAbv(Parser.SRC_XDMG)} p39`
 					: null,
 
 				entriesOtherActions: entriesOtherActions.length ? entriesOtherActions : null,
@@ -12249,7 +12472,7 @@ Renderer.vehicle = class {
 				${entriesMetaShip.entryCreatureCapacity ? `<div>${Renderer.get().render(entriesMetaShip.entryCreatureCapacity)}</div>` : ""}
 				${entriesMetaShip.entryCargoCapacity ? `<div>${Renderer.get().render(entriesMetaShip.entryCargoCapacity)}</div>` : ""}
 				${entriesMetaShip.entryTravelPace ? `<div>${Renderer.get().render(entriesMetaShip.entryTravelPace)}</div>` : ""}
-				${entriesMetaShip.entryTravelPaceNote ? `<div class="ve-muted ve-small help-subtle ml-2" ${entriesMetaShip.entryTravelPaceNoteTitle ? `title="${entriesMetaShip.entryTravelPaceNote.qq()}"` : ""}>${Renderer.get().render(entriesMetaShip.entryTravelPaceNote)}</div>` : ""}
+				${entriesMetaShip.entryTravelPaceNote ? `<div class="ve-muted ve-small help-subtle ml-2" ${entriesMetaShip.entryTravelPaceNoteTitle ? `title="${Renderer.stripTags(entriesMetaShip.entryTravelPaceNote).qq()}"` : ""}>${Renderer.get().render(entriesMetaShip.entryTravelPaceNote)}</div>` : ""}
 			</td></tr>`;
 		}
 	};
@@ -12497,7 +12720,9 @@ Renderer.vehicle = class {
 				entryHitPoints: `{@b Hit Points} ${ent.hp.hp}${ptDtMt ? ` (${ptDtMt})` : ""}`,
 				entrySpeed: `{@b Speed} ${ent.speed} ft.`,
 				entrySpeedNote: `[{@b Travel Pace} ${Math.floor(ent.speed / 10)} miles per hour (${Math.floor(ent.speed * 24 / 10)} miles per day)]`,
-				entrySpeedNoteTitle: `Based on "Special Travel Pace," DMG p242`,
+				entrySpeedNoteTitle: VetoolsConfig.get("styleSwitcher", "style") === "classic"
+					? `Based on "Special Travel Pace," ${Parser.sourceJsonToAbv(Parser.SRC_DMG)} p242`
+					: `Based on "Travel Pace," ${Parser.sourceJsonToAbv(Parser.SRC_XDMG)} p39`,
 			};
 		}
 	};
@@ -12515,7 +12740,7 @@ Renderer.vehicle = class {
 			<tr><td colspan="6" class="pb-2">${renderer.render(entriesMetaInfwar.entrySizeWeight)}</td></tr>
 			<tr><td colspan="6" class="pb-2">
 				${Renderer.vehicle.infwar.PROPS_RENDERABLE_ENTRIES_ATTRIBUTES.map(prop => `<div>${renderer.render(entriesMetaInfwar[prop])}</div>`).join("")}
-				<div class="ve-muted ve-small help-subtle ml-2" title="${entriesMetaInfwar.entrySpeedNoteTitle.qq()}">${renderer.render(entriesMetaInfwar.entrySpeedNote)}</div>
+				<div class="ve-muted ve-small help-subtle ml-2" title="${Renderer.stripTags(entriesMetaInfwar.entrySpeedNoteTitle).qq()}">${renderer.render(entriesMetaInfwar.entrySpeedNote)}</div>
 			</td></tr>
 			${Renderer.vehicle._getAbilitySection(ent)}
 			${Renderer.vehicle._getResImmVulnSection(ent, {entriesMeta})}
@@ -13184,6 +13409,147 @@ Renderer.deck = class {
 	}
 };
 
+Renderer.facility = class {
+	static getFacilityRenderableEntriesMeta (ent) {
+		const entsList = [];
+
+		if (ent.prerequisite) {
+			// FIXME(Future) split prerequisite rendering into to-entries and to-html steps; use the "to entries" step here
+			const entRendered = {
+				type: "wrappedHtml",
+				html: Renderer.utils.prerequisite.getHtml(ent.prerequisite, {styleHint: "one", isSkipPrefix: true}),
+			};
+			entsList.push({type: "item", name: `Prerequisite:`, entry: entRendered});
+		} else if (ent.facilityType !== "basic") {
+			entsList.push({type: "item", name: `Prerequisite:`, entry: "None"});
+		}
+
+		if (ent.space) entsList.push({type: "item", name: `Space:`, entry: ent.space.map(spc => Renderer.facility._getSpaceEntry(spc, {isIncludeCostTime: ent.facilityType === "basic"})).joinConjunct(", ", " or ")});
+
+		if (ent.hirelings) {
+			const ptHirelings = ent.hirelings
+				.map(hire => {
+					const ptSpace = hire.space ? ` {@style (${hire.space.toTitleCase()})|muted}` : "";
+
+					if (hire.exact != null) return `${hire.exact}${ptSpace}`;
+					if (hire.min != null && hire.max != null) return `${hire.min}\u2013${hire.max}${ptSpace}`;
+					if (hire.min != null) return `${hire.min}+ (see below${ptSpace ? ";" : ""}${ptSpace})`;
+
+					return null;
+				})
+				.filter(Boolean)
+				.joinConjunct(", ", " or ");
+
+			if (ptHirelings) entsList.push({type: "item", name: `Hirelings:`, entry: ptHirelings});
+		}
+
+		if (ent.orders) entsList.push({type: "item", name: `Order${ent.orders.length !== 1 ? "s" : ""}:`, entry: ent.orders.map(it => it.toTitleCase()).joinConjunct(", ", " or ")});
+
+		return {
+			entriesDescription: [
+				entsList.length
+					? {
+						type: "list",
+						style: "list-hang-notitle",
+						items: entsList,
+					}
+					: null,
+				...(ent.entries || []),
+			]
+				.filter(Boolean),
+		};
+	}
+
+	static _SPACE_PROGRESSION = ["cramped", "roomy", "vast"];
+
+	static _SPACE_TO_SQUARES = {
+		"cramped": 4,
+		"roomy": 16,
+		"vast": 36,
+	};
+
+	static _SPACE_TO_COST_TIME_BASIC = {
+		"cramped": {cost: 500, time: 20},
+		"roomy": {cost: 1000, time: 45},
+		"vast": {cost: 3000, time: 125},
+	};
+
+	static _getSpaceEntry (spc, {isIncludeCostTime = false} = {}) {
+		const sq = Renderer.facility._SPACE_TO_SQUARES[spc];
+
+		const ptAdditional = [
+			sq ? `{@tip ${sq} sq|${sq} squares}` : null,
+			Renderer.facility._getSpaceEntry_getPriceTimeEntry({spc, isIncludeCostTime}),
+		]
+			.filter(Boolean)
+			.join("; ");
+		const ptSuffix = ptAdditional ? ` {@style [${ptAdditional}]|muted;small}` : "";
+
+		return [spc.toTitleCase(), ptSuffix].filter(Boolean).join(" ");
+	}
+
+	static _getSpaceEntry_getPriceTimeEntry ({spc, isIncludeCostTime}) {
+		if (!isIncludeCostTime) return null;
+		const costTimeInfo = Renderer.facility._SPACE_TO_COST_TIME_BASIC[spc];
+		if (costTimeInfo == null) return null;
+
+		const {cost, time} = costTimeInfo;
+
+		const ptTxt = `${cost} GP, ${time} days`;
+		const ptTipBasic = `${cost} GP and ${time} days to add`;
+
+		const spcPrev = Renderer.facility._SPACE_PROGRESSION[Renderer.facility._SPACE_PROGRESSION.indexOf(spc) - 1];
+		const costTimeInfoPrev = Renderer.facility._SPACE_TO_COST_TIME_BASIC[spcPrev];
+		if (!spcPrev || !costTimeInfoPrev) return `{@tip ${ptTxt}|${ptTipBasic}}`;
+
+		const {cost: costPrev, time: timePrev} = costTimeInfoPrev;
+
+		return `{@tip ${ptTxt}|${ptTipBasic}, or, ${cost - costPrev} GP and ${time - timePrev} days to expand from a ${spcPrev.toTitleCase()} facility}`;
+	}
+
+	/* -------------------------------------------- */
+
+	static getCompactRenderedString (ent) {
+		const ptLevel = ent.level == null ? "" : `<tr><td colspan="6" class="pb-2 pt-0"><i>Level ${ent.level} Bastion Facility</i></td></tr>`;
+
+		const entriesMeta = Renderer.facility.getFacilityRenderableEntriesMeta(ent);
+		const ptEntries = entriesMeta.entriesDescription.map(entry => `<div class="my-1p">${Renderer.get().render(entry, 2)}</div>`).join("");
+
+		return `
+			${Renderer.utils.getNameTr(ent)}
+			${ptLevel}
+			${ptEntries ? `<tr><td colspan="6" class="pb-2">${ptEntries}</td></tr>` : ""}
+		`;
+	}
+
+	/* -------------------------------------------- */
+
+	static pGetFluff (ent) {
+		return Renderer.utils.pGetFluff({
+			entity: ent,
+			fluffProp: "facilityFluff",
+		});
+	}
+};
+
+Renderer.bastion = class {
+	static getCompactRenderedString (ent) {
+		switch (ent.__prop) {
+			case "facility": return Renderer.facility.getCompactRenderedString(ent);
+			default: throw new Error(`Unhandled prop "${ent.__prop}"`);
+		}
+	}
+
+	/* -------------------------------------------- */
+
+	static pGetFluff (ent) {
+		switch (ent.__prop) {
+			case "facility": return Renderer.facility.pGetFluff(ent);
+			default: throw new Error(`Unhandled prop "${ent.__prop}"`);
+		}
+	}
+};
+
 Renderer.skill = class {
 	static getCompactRenderedString (ent) {
 		return `
@@ -13586,6 +13952,42 @@ Renderer.generic = class {
 
 	/* -------------------------------------------- */
 
+	static getRenderableDurationEntriesMeta (durations, {styleHint} = {}) {
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
+		const ptSrcStatus = styleHint === "classic" ? "" : `|${Parser.SRC_XPHB}`;
+
+		let hasSubOr = false;
+
+		const outParts = durations
+			.map(duration => {
+				const ptCondition = duration.condition ? ` (${duration.condition})` : "";
+
+				switch (duration.type) {
+					case "special":
+						if (duration.concentration) return `{@status Concentration${ptSrcStatus}}`;
+						return `Special${ptCondition}`;
+					case "instant":
+						return `Instantaneous${ptCondition}`;
+					case "timed":
+						return `${duration.concentration ? `{@status Concentration${ptSrcStatus}}, ` : ""}${duration.concentration ? "u" : duration.duration.upTo ? "U" : ""}${duration.concentration || duration.duration.upTo ? "p to " : ""}${duration.duration.amount} ${duration.duration.amount === 1 ? duration.duration.type : `${duration.duration.type}s`}${ptCondition}`;
+					case "permanent": {
+						if (!duration.ends) return `Permanent${ptCondition}`;
+
+						const endsToJoin = duration.ends.map(m => Parser.spEndTypeToFull(m));
+						hasSubOr = hasSubOr || endsToJoin.length > 1;
+						return `Until ${endsToJoin.joinConjunct(", ", " or ")}${ptCondition}`;
+					}
+				}
+			});
+
+		return {
+			entryDuration: `${outParts.joinConjunct(hasSubOr ? "; " : ", ", " or ")}${durations.length > 1 ? " (see below)" : ""}`,
+		};
+	}
+
+	/* -------------------------------------------- */
+
 	static hasToken (ent, {isIgnoreImplicit = false} = {}) {
 		const fromEntity = ent.tokenUrl // TODO(Future) legacy; remove
 			|| ent.token // An explicit token
@@ -13857,6 +14259,7 @@ Renderer.hover = class {
 			if (meta.isFluff) toRender = await Renderer.hover.pGetHoverableFluff(page, source, hash);
 			else toRender = await DataLoader.pCacheAndGet(page, source, hash);
 		}
+		if (!toRender) throw new Error(`Failed to load renderable content for: page="${page}" source="${source}" hash="${hash}" preloadId="${preloadId}" customHashId="${customHashId}" isFluff="${meta.isFluff}"`);
 
 		meta.isLoading = false;
 
@@ -14911,7 +15314,7 @@ Renderer.hover = class {
 			case UrlUtil.PG_SPELLS: return Renderer.spell.getCompactRenderedString.bind(Renderer.spell);
 			case UrlUtil.PG_ITEMS: return Renderer.item.getCompactRenderedString.bind(Renderer.item);
 			case UrlUtil.PG_BESTIARY: return it => Renderer.monster.getCompactRenderedString(it, {isShowScalers: !isStatic, isScaledCr: it._originalCr != null, isScaledSpellSummon: it._isScaledSpellSummon, isScaledClassSummon: it._isScaledClassSummon});
-			case UrlUtil.PG_CONDITIONS_DISEASES: return Renderer.condition.getCompactRenderedString.bind(Renderer.condition);
+			case UrlUtil.PG_CONDITIONS_DISEASES: return Renderer.conditionDisease.getCompactRenderedString.bind(Renderer.conditionDisease);
 			case UrlUtil.PG_BACKGROUNDS: return Renderer.background.getCompactRenderedString.bind(Renderer.background);
 			case UrlUtil.PG_FEATS: return Renderer.feat.getCompactRenderedString.bind(Renderer.feat);
 			case UrlUtil.PG_OPT_FEATURES: return Renderer.optionalfeature.getCompactRenderedString.bind(Renderer.optionalfeature);
@@ -14932,6 +15335,7 @@ Renderer.hover = class {
 			case UrlUtil.PG_CLASS_SUBCLASS_FEATURES: return Renderer.hover.getGenericCompactRenderedString.bind(Renderer.hover);
 			case UrlUtil.PG_CREATURE_FEATURES: return Renderer.hover.getGenericCompactRenderedString.bind(Renderer.hover);
 			case UrlUtil.PG_DECKS: return Renderer.deck.getCompactRenderedString.bind(Renderer.deck);
+			case UrlUtil.PG_BASTIONS: return Renderer.bastion.getCompactRenderedString.bind(Renderer.bastion);
 			// region props
 			case "classfeature":
 			case "classFeature":
@@ -14959,7 +15363,7 @@ Renderer.hover = class {
 		switch (page) {
 			case UrlUtil.PG_BESTIARY: return Renderer.monster.pGetFluff.bind(Renderer.monster);
 			case UrlUtil.PG_ITEMS: return Renderer.item.pGetFluff.bind(Renderer.item);
-			case UrlUtil.PG_CONDITIONS_DISEASES: return Renderer.condition.pGetFluff.bind(Renderer.condition);
+			case UrlUtil.PG_CONDITIONS_DISEASES: return Renderer.conditionDisease.pGetFluff.bind(Renderer.conditionDisease);
 			case UrlUtil.PG_SPELLS: return Renderer.spell.pGetFluff.bind(Renderer.spell);
 			case UrlUtil.PG_RACES: return Renderer.race.pGetFluff.bind(Renderer.race);
 			case UrlUtil.PG_BACKGROUNDS: return Renderer.background.pGetFluff.bind(Renderer.background);
@@ -14971,6 +15375,7 @@ Renderer.hover = class {
 			case UrlUtil.PG_RECIPES: return Renderer.recipe.pGetFluff.bind(Renderer.recipe);
 			case UrlUtil.PG_TRAPS_HAZARDS: return Renderer.traphazard.pGetFluff.bind(Renderer.traphazard);
 			case UrlUtil.PG_CLASSES: return Renderer.classSubclass.pGetFluff.bind(Renderer.classSubclass);
+			case UrlUtil.PG_BASTIONS: return Renderer.bastion.pGetFluff.bind(Renderer.UrlUtil.PG_BASTIONS);
 			default: return null;
 		}
 	}

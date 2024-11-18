@@ -54,8 +54,8 @@ class ItemsSublistManager extends SublistManager {
 	pGetSublistItem (item, hash, {count = 1} = {}) {
 		const cellsText = [
 			item.name,
-			Parser.itemWeightToFull(item, true) || "\u2014",
-			item.value || item.valueMult ? Parser.itemValueToFullMultiCurrency(item, {isShortForm: true}).replace(/ +/g, "\u00A0") : "\u2014",
+			item._l_weight || "\u2014",
+			item._l_value,
 		];
 
 		const $dispCount = $(`<span class="ve-text-center ve-col-2 pr-0">${count}</span>`);
@@ -75,6 +75,7 @@ class ItemsSublistManager extends SublistManager {
 			{
 				hash,
 				source: Parser.sourceJsonToAbv(item.source),
+				page: item.page,
 				weight: Parser.weightValueToNumber(item.weight),
 				cost: item.value || 0,
 			},
@@ -260,8 +261,8 @@ class ItemsPage extends ListPage {
 						children: [
 							e_({tag: "span", clazz: `ve-col-3-5 pl-0 pr-1 bold`, text: item.name}),
 							e_({tag: "span", clazz: `ve-col-4-5 px-1`, text: type}),
-							e_({tag: "span", clazz: `ve-col-1-5 px-1 ve-text-center`, text: `${item.value || item.valueMult ? Parser.itemValueToFullMultiCurrency(item, {isShortForm: true}).replace(/ +/g, "\u00A0") : "\u2014"}`}),
-							e_({tag: "span", clazz: `ve-col-1-5 px-1 ve-text-center`, text: Parser.itemWeightToFull(item, true) || "\u2014"}),
+							e_({tag: "span", clazz: `ve-col-1-5 px-1 ve-text-center`, text: item._l_value}),
+							e_({tag: "span", clazz: `ve-col-1-5 px-1 ve-text-center`, text: item._l_weight}),
 							e_({
 								tag: "span",
 								clazz: `ve-col-1 ve-text-center ${Parser.sourceJsonToSourceClassname(item.source)} pl-1 pr-0`,
@@ -281,6 +282,7 @@ class ItemsPage extends ListPage {
 				{
 					hash,
 					source,
+					page: item.page,
 					type,
 					cost: item.value || 0,
 					weight: Parser.weightValueToNumber(item.weight),
@@ -305,9 +307,14 @@ class ItemsPage extends ListPage {
 						children: [
 							e_({tag: "span", clazz: `ve-col-3-5 pl-0 bold`, text: item.name}),
 							e_({tag: "span", clazz: `ve-col-4`, text: type}),
-							e_({tag: "span", clazz: `ve-col-1-5 ve-text-center`, text: Parser.itemWeightToFull(item, true) || "\u2014"}),
+							e_({tag: "span", clazz: `ve-col-1-5 ve-text-center`, text: item._l_weight}),
 							e_({tag: "span", clazz: `ve-col-0-6 ve-text-center`, text: item._attunementCategory !== VeCt.STR_NO_ATTUNEMENT ? "×" : ""}),
-							e_({tag: "span", clazz: `ve-col-1-4 ve-text-center`, text: (item.rarity || "").toTitleCase()}),
+							e_({
+								tag: "span",
+								clazz: `ve-col-1-4 ve-text-center ${item.rarity ? `itm__rarity-${item.rarity}` : ""}`,
+								title: (item.rarity || "").toTitleCase(),
+								text: Parser.itemRarityToShort(item.rarity) || "",
+							}),
 							e_({
 								tag: "span",
 								clazz: `ve-col-1 ve-text-center ${Parser.sourceJsonToSourceClassname(item.source)} pr-0`,
@@ -325,8 +332,9 @@ class ItemsPage extends ListPage {
 				eleLi,
 				item.name,
 				{
-					source,
 					hash,
+					source,
+					page: item.page,
 					type,
 					rarity: item.rarity,
 					attunement: item._attunementCategory !== VeCt.STR_NO_ATTUNEMENT,

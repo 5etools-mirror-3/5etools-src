@@ -112,15 +112,10 @@ class PageFilterSpells extends PageFilterBase {
 	// region static
 	static sortSpells (a, b, o) {
 		switch (o.sortBy) {
-			case "name": return SortUtil.compareListNames(a, b);
-			case "source":
-			case "level":
-			case "school":
-			case "concentration":
-			case "ritual": return SortUtil.ascSort(a.values[o.sortBy], b.values[o.sortBy]) || SortUtil.compareListNames(a, b);
 			case "time": return SortUtil.ascSort(a.values.normalisedTime, b.values.normalisedTime) || SortUtil.compareListNames(a, b);
 			case "range": return SortUtil.ascSort(a.values.normalisedRange, b.values.normalisedRange) || SortUtil.compareListNames(a, b);
 		}
+		return SortUtil.listSort(a, b, o);
 	}
 
 	static sortMetaFilter (a, b) {
@@ -694,6 +689,7 @@ class ModalFilterSpells extends ModalFilterBase {
 				hash,
 				source,
 				sourceJson: spell.source,
+				page: spell.page,
 				level: spell.level,
 				time,
 				school: Parser.spSchoolAbvToFull(spell.school),

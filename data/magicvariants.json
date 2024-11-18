@@ -2,6 +2,7 @@
 	"magicvariant": [
 		{
 			"name": "+1 Ammunition",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -23,6 +24,9 @@
 				"source": "DMG",
 				"page": 150,
 				"srd": true,
+				"reprintedAs": [
+					"+1 Ammunition|XDMG"
+				],
 				"tier": "minor",
 				"rarity": "uncommon",
 				"bonusWeapon": "+1",
@@ -35,7 +39,32 @@
 			}
 		},
 		{
+			"name": "+1 Ammunition",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "A|XPHB"
+				},
+				{
+					"type": "AF|XDMG"
+				}
+			],
+			"ammo": true,
+			"inherits": {
+				"namePrefix": "+1 ",
+				"source": "XDMG",
+				"page": 228,
+				"freeRules2024": true,
+				"rarity": "uncommon",
+				"bonusWeapon": "+1",
+				"entries": [
+					"You have a {=bonusWeapon} bonus to attack and damage rolls made with this piece of magic ammunition. Once it hits a target, the ammunition is no longer magical."
+				]
+			}
+		},
+		{
 			"name": "+1 Armor",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -48,6 +77,9 @@
 				"page": 152,
 				"srd": true,
 				"basicRules": true,
+				"reprintedAs": [
+					"+1 Armor|XDMG"
+				],
 				"tier": "major",
 				"rarity": "rare",
 				"bonusAc": "+1",
@@ -57,7 +89,34 @@
 			}
 		},
 		{
+			"name": "+1 Armor",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "LA|XPHB"
+				},
+				{
+					"type": "MA|XPHB"
+				},
+				{
+					"type": "HA|XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "+1 ",
+				"source": "XDMG",
+				"page": 230,
+				"freeRules2024": true,
+				"rarity": "rare",
+				"bonusAc": "+1",
+				"entries": [
+					"You have a {=bonusAc} bonus to AC while wearing this armor."
+				]
+			}
+		},
+		{
 			"name": "+1 Shield (*)",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -76,6 +135,9 @@
 				"source": "DMG",
 				"page": 200,
 				"srd": true,
+				"reprintedAs": [
+					"+1 Shield (*)|XDMG"
+				],
 				"tier": "major",
 				"rarity": "uncommon",
 				"bonusAc": "+1",
@@ -85,7 +147,32 @@
 			}
 		},
 		{
+			"name": "+1 Shield (*)",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "S|XPHB"
+				}
+			],
+			"entries": [
+				"{@note * This generic variant has the same name and source as the item {@item +1 Shield|XDMG}}.",
+				"While holding this Shield, you have a +1 bonus to {@variantrule Armor Class|XPHB}, in addition to the Shield's normal bonus to AC."
+			],
+			"inherits": {
+				"namePrefix": "+1 ",
+				"source": "XDMG",
+				"page": 303,
+				"freeRules2024": true,
+				"rarity": "uncommon",
+				"bonusAc": "+1",
+				"entries": [
+					"While holding this Shield, you have a {=bonusAc} bonus to {@variantrule Armor Class|XPHB}, in addition to the Shield's normal bonus to AC."
+				]
+			}
+		},
+		{
 			"name": "+1 Weapon",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -101,6 +188,9 @@
 				"page": 213,
 				"srd": true,
 				"basicRules": true,
+				"reprintedAs": [
+					"+1 Weapon|XDMG"
+				],
 				"tier": "major",
 				"rarity": "uncommon",
 				"bonusWeapon": "+1",
@@ -109,6 +199,26 @@
 				],
 				"lootTables": [
 					"Magic Item Table F"
+				]
+			}
+		},
+		{
+			"name": "+1 Weapon",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"weapon": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "+1 ",
+				"source": "XDMG",
+				"page": 324,
+				"freeRules2024": true,
+				"rarity": "uncommon",
+				"bonusWeapon": "+1",
+				"entries": [
+					"You have a {=bonusWeapon} bonus to attack and damage rolls made with this magic weapon."
 				]
 			}
 		},
@@ -134,6 +244,7 @@
 		},
 		{
 			"name": "+2 Ammunition",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -155,6 +266,9 @@
 				"source": "DMG",
 				"page": 150,
 				"srd": true,
+				"reprintedAs": [
+					"+2 Ammunition|XDMG"
+				],
 				"tier": "minor",
 				"rarity": "rare",
 				"bonusWeapon": "+2",
@@ -167,7 +281,32 @@
 			}
 		},
 		{
+			"name": "+2 Ammunition",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "A|XPHB"
+				},
+				{
+					"type": "AF|XDMG"
+				}
+			],
+			"ammo": true,
+			"inherits": {
+				"namePrefix": "+2 ",
+				"source": "XDMG",
+				"page": 228,
+				"freeRules2024": true,
+				"rarity": "rare",
+				"bonusWeapon": "+2",
+				"entries": [
+					"You have a {=bonusWeapon} bonus to attack and damage rolls made with this piece of magic ammunition. Once it hits a target, the ammunition is no longer magical."
+				]
+			}
+		},
+		{
 			"name": "+2 Armor",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -180,6 +319,9 @@
 				"page": 152,
 				"srd": true,
 				"basicRules": true,
+				"reprintedAs": [
+					"+2 Armor|XDMG"
+				],
 				"tier": "major",
 				"rarity": "very rare",
 				"bonusAc": "+2",
@@ -189,7 +331,34 @@
 			}
 		},
 		{
+			"name": "+2 Armor",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "LA|XPHB"
+				},
+				{
+					"type": "MA|XPHB"
+				},
+				{
+					"type": "HA|XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "+2 ",
+				"source": "XDMG",
+				"page": 230,
+				"freeRules2024": true,
+				"rarity": "very rare",
+				"bonusAc": "+2",
+				"entries": [
+					"You have a {=bonusAc} bonus to AC while wearing this armor."
+				]
+			}
+		},
+		{
 			"name": "+2 Shield (*)",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -208,6 +377,9 @@
 				"source": "DMG",
 				"page": 200,
 				"srd": true,
+				"reprintedAs": [
+					"+2 Shield (*)|XDMG"
+				],
 				"tier": "major",
 				"rarity": "rare",
 				"bonusAc": "+2",
@@ -217,7 +389,32 @@
 			}
 		},
 		{
+			"name": "+2 Shield (*)",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "S|XPHB"
+				}
+			],
+			"entries": [
+				"{@note * This generic variant has the same name and source as the item {@item +2 Shield|XDMG}}.",
+				"While holding this Shield, you have a +2 bonus to {@variantrule Armor Class|XPHB}, in addition to the Shield's normal bonus to AC."
+			],
+			"inherits": {
+				"namePrefix": "+2 ",
+				"source": "XDMG",
+				"page": 303,
+				"freeRules2024": true,
+				"rarity": "rare",
+				"bonusAc": "+2",
+				"entries": [
+					"While holding this Shield, you have a {=bonusAc} bonus to {@variantrule Armor Class|XPHB}, in addition to the Shield's normal bonus to AC."
+				]
+			}
+		},
+		{
 			"name": "+2 Weapon",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -233,6 +430,9 @@
 				"page": 213,
 				"srd": true,
 				"basicRules": true,
+				"reprintedAs": [
+					"+2 Weapon|XDMG"
+				],
 				"tier": "major",
 				"rarity": "rare",
 				"bonusWeapon": "+2",
@@ -241,6 +441,26 @@
 				],
 				"lootTables": [
 					"Magic Item Table G"
+				]
+			}
+		},
+		{
+			"name": "+2 Weapon",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"weapon": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "+2 ",
+				"source": "XDMG",
+				"page": 324,
+				"freeRules2024": true,
+				"rarity": "rare",
+				"bonusWeapon": "+2",
+				"entries": [
+					"You have a {=bonusWeapon} bonus to attack and damage rolls made with this magic weapon."
 				]
 			}
 		},
@@ -266,6 +486,7 @@
 		},
 		{
 			"name": "+3 Ammunition",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -287,6 +508,9 @@
 				"source": "DMG",
 				"page": 150,
 				"srd": true,
+				"reprintedAs": [
+					"+3 Ammunition|XDMG"
+				],
 				"tier": "minor",
 				"rarity": "very rare",
 				"bonusWeapon": "+3",
@@ -299,7 +523,32 @@
 			}
 		},
 		{
+			"name": "+3 Ammunition",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "A|XPHB"
+				},
+				{
+					"type": "AF|XDMG"
+				}
+			],
+			"ammo": true,
+			"inherits": {
+				"namePrefix": "+3 ",
+				"source": "XDMG",
+				"page": 228,
+				"freeRules2024": true,
+				"rarity": "very rare",
+				"bonusWeapon": "+3",
+				"entries": [
+					"You have a {=bonusWeapon} bonus to attack and damage rolls made with this piece of magic ammunition. Once it hits a target, the ammunition is no longer magical."
+				]
+			}
+		},
+		{
 			"name": "+3 Armor",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -312,6 +561,9 @@
 				"page": 152,
 				"srd": true,
 				"basicRules": true,
+				"reprintedAs": [
+					"+3 Armor|XDMG"
+				],
 				"tier": "major",
 				"rarity": "legendary",
 				"bonusAc": "+3",
@@ -321,7 +573,34 @@
 			}
 		},
 		{
+			"name": "+3 Armor",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "LA|XPHB"
+				},
+				{
+					"type": "MA|XPHB"
+				},
+				{
+					"type": "HA|XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "+3 ",
+				"source": "XDMG",
+				"page": 230,
+				"freeRules2024": true,
+				"rarity": "legendary",
+				"bonusAc": "+3",
+				"entries": [
+					"You have a {=bonusAc} bonus to AC while wearing this armor."
+				]
+			}
+		},
+		{
 			"name": "+3 Shield (*)",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -340,6 +619,9 @@
 				"source": "DMG",
 				"page": 200,
 				"srd": true,
+				"reprintedAs": [
+					"+3 Shield (*)|XDMG"
+				],
 				"tier": "major",
 				"rarity": "very rare",
 				"bonusAc": "+3",
@@ -349,7 +631,32 @@
 			}
 		},
 		{
+			"name": "+3 Shield (*)",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "S|XPHB"
+				}
+			],
+			"entries": [
+				"{@note * This generic variant has the same name and source as the item {@item +3 Shield|XDMG}}.",
+				"While holding this Shield, you have a +3 bonus to {@variantrule Armor Class|XPHB}, in addition to the Shield's normal bonus to AC."
+			],
+			"inherits": {
+				"namePrefix": "+3 ",
+				"source": "XDMG",
+				"page": 303,
+				"freeRules2024": true,
+				"rarity": "very rare",
+				"bonusAc": "+3",
+				"entries": [
+					"While holding this Shield, you have a {=bonusAc} bonus to {@variantrule Armor Class|XPHB}, in addition to the Shield's normal bonus to AC."
+				]
+			}
+		},
+		{
 			"name": "+3 Weapon",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -365,6 +672,9 @@
 				"page": 213,
 				"srd": true,
 				"basicRules": true,
+				"reprintedAs": [
+					"+3 Weapon|XDMG"
+				],
 				"tier": "major",
 				"rarity": "very rare",
 				"bonusWeapon": "+3",
@@ -373,6 +683,26 @@
 				],
 				"lootTables": [
 					"Magic Item Table H"
+				]
+			}
+		},
+		{
+			"name": "+3 Weapon",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"weapon": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "+3 ",
+				"source": "XDMG",
+				"page": 324,
+				"freeRules2024": true,
+				"rarity": "very rare",
+				"bonusWeapon": "+3",
+				"entries": [
+					"You have a {=bonusWeapon} bonus to attack and damage rolls made with this magic weapon."
 				]
 			}
 		},
@@ -468,6 +798,7 @@
 		},
 		{
 			"name": "Adamantine Armor",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -491,6 +822,9 @@
 				"source": "DMG",
 				"page": 150,
 				"srd": true,
+				"reprintedAs": [
+					"Adamantine Armor|XDMG"
+				],
 				"tier": "major",
 				"rarity": "uncommon",
 				"entries": [
@@ -499,7 +833,33 @@
 			}
 		},
 		{
+			"name": "Adamantine Armor",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "MA|XPHB"
+				},
+				{
+					"type": "HA|XPHB"
+				}
+			],
+			"excludes": {
+				"name": "Hide Armor"
+			},
+			"inherits": {
+				"namePrefix": "Adamantine ",
+				"source": "XDMG",
+				"page": 227,
+				"freeRules2024": true,
+				"rarity": "uncommon",
+				"entries": [
+					"This suit of armor is reinforced with adamantine, one of the hardest substances in existence. While you're wearing it, any {@variantrule Critical Hit|XPHB} against you becomes a normal hit."
+				]
+			}
+		},
+		{
 			"name": "Adamantine Weapon",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -517,6 +877,9 @@
 				"namePrefix": "Adamantine ",
 				"source": "XGE",
 				"page": 78,
+				"reprintedAs": [
+					"Adamantine Weapon|XDMG"
+				],
 				"tier": "major",
 				"rarity": "unknown",
 				"valueExpression": "[[baseItem.value]] + 50000",
@@ -524,6 +887,123 @@
 					"Whenever you hit an object with this weapon, the hit is a critical hit."
 				]
 			}
+		},
+		{
+			"name": "Adamantine Weapon",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "A|XPHB"
+				},
+				{
+					"type": "AF|XDMG"
+				},
+				{
+					"type": "M|XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Adamantine ",
+				"source": "XDMG",
+				"page": 227,
+				"rarity": "uncommon",
+				"entries": [
+					"This weapon or piece of ammunition is made of adamantine, one of the hardest substances in existence. Whenever this weapon or piece of ammunition hits an object, the hit is a {@variantrule Critical Hit|XPHB}."
+				]
+			}
+		},
+		{
+			"name": "Ammunition of Slaying",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "A|XPHB"
+				},
+				{
+					"type": "AF|XDMG"
+				}
+			],
+			"ammo": true,
+			"inherits": {
+				"nameSuffix": " of Slaying",
+				"source": "XDMG",
+				"page": 228,
+				"rarity": "very rare",
+				"entries": [
+					"This magic ammunition is meant to slay creatures of a particular type, which the DM chooses or determines randomly by rolling on the table below. If a creature of that type takes damage from the ammunition, the creature makes a DC 17 Constitution saving throw, taking an extra {@damage 6d10} Force damage on a failed save or half as much extra damage on a successful one.",
+					"After dealing its extra damage to a creature, the ammunition becomes nonmagical.",
+					{
+						"type": "table",
+						"colStyles": [
+							"col-2 text-center",
+							"col-10"
+						],
+						"colLabels": [
+							"1d100",
+							"Creature Type"
+						],
+						"rows": [
+							[
+								"01-10",
+								"Aberrations"
+							],
+							[
+								"11-15",
+								"Beasts"
+							],
+							[
+								"16-20",
+								"Celestials"
+							],
+							[
+								"21-25",
+								"Constructs"
+							],
+							[
+								"26-35",
+								"Dragons"
+							],
+							[
+								"36-45",
+								"Elementals"
+							],
+							[
+								"46-50",
+								"Humanoids"
+							],
+							[
+								"51-60",
+								"Fey"
+							],
+							[
+								"61-70",
+								"Fiends"
+							],
+							[
+								"71-75",
+								"Giants"
+							],
+							[
+								"76-80",
+								"Monstrosities"
+							],
+							[
+								"81-85",
+								"Oozes"
+							],
+							[
+								"86-90",
+								"Plants"
+							],
+							[
+								"91-00",
+								"Undead"
+							]
+						]
+					}
+				]
+			},
+			"hasFluffImages": true
 		},
 		{
 			"name": "Antimagic Armor",
@@ -575,7 +1055,10 @@
 				}
 			],
 			"excludes": {
-				"property": "2H"
+				"property": [
+					"2H",
+					"2H|XPHB"
+				]
 			},
 			"inherits": {
 				"nameSuffix": " Armblade",
@@ -597,6 +1080,7 @@
 		},
 		{
 			"name": "Armor of Acid Resistance",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -608,6 +1092,9 @@
 				"source": "DMG",
 				"page": 152,
 				"srd": true,
+				"reprintedAs": [
+					"Armor of Acid Resistance|XDMG"
+				],
 				"resist": [
 					"acid"
 				],
@@ -621,7 +1108,38 @@
 			}
 		},
 		{
+			"name": "Armor of Acid Resistance",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "LA|XPHB"
+				},
+				{
+					"type": "MA|XPHB"
+				},
+				{
+					"type": "HA|XPHB"
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Acid Resistance",
+				"source": "XDMG",
+				"page": 231,
+				"freeRules2024": true,
+				"resist": [
+					"acid"
+				],
+				"rarity": "rare",
+				"reqAttune": true,
+				"hasRefs": true,
+				"entries": [
+					"{#itemEntry Armor of Resistance|XDMG}"
+				]
+			}
+		},
+		{
 			"name": "Armor of Cold Resistance",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -633,6 +1151,9 @@
 				"source": "DMG",
 				"page": 152,
 				"srd": true,
+				"reprintedAs": [
+					"Armor of Cold Resistance|XDMG"
+				],
 				"resist": [
 					"cold"
 				],
@@ -646,7 +1167,38 @@
 			}
 		},
 		{
+			"name": "Armor of Cold Resistance",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "LA|XPHB"
+				},
+				{
+					"type": "MA|XPHB"
+				},
+				{
+					"type": "HA|XPHB"
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Cold Resistance",
+				"source": "XDMG",
+				"page": 231,
+				"freeRules2024": true,
+				"resist": [
+					"cold"
+				],
+				"rarity": "rare",
+				"reqAttune": true,
+				"hasRefs": true,
+				"entries": [
+					"{#itemEntry Armor of Resistance|XDMG}"
+				]
+			}
+		},
+		{
 			"name": "Armor of Fire Resistance",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -658,6 +1210,9 @@
 				"source": "DMG",
 				"page": 152,
 				"srd": true,
+				"reprintedAs": [
+					"Armor of Fire Resistance|XDMG"
+				],
 				"resist": [
 					"fire"
 				],
@@ -671,7 +1226,38 @@
 			}
 		},
 		{
+			"name": "Armor of Fire Resistance",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "LA|XPHB"
+				},
+				{
+					"type": "MA|XPHB"
+				},
+				{
+					"type": "HA|XPHB"
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Fire Resistance",
+				"source": "XDMG",
+				"page": 231,
+				"freeRules2024": true,
+				"resist": [
+					"fire"
+				],
+				"rarity": "rare",
+				"reqAttune": true,
+				"hasRefs": true,
+				"entries": [
+					"{#itemEntry Armor of Resistance|XDMG}"
+				]
+			}
+		},
+		{
 			"name": "Armor of Force Resistance",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -683,6 +1269,9 @@
 				"source": "DMG",
 				"page": 152,
 				"srd": true,
+				"reprintedAs": [
+					"Armor of Force Resistance|XDMG"
+				],
 				"resist": [
 					"force"
 				],
@@ -692,6 +1281,36 @@
 				"hasRefs": true,
 				"entries": [
 					"{#itemEntry Armor of Resistance}"
+				]
+			}
+		},
+		{
+			"name": "Armor of Force Resistance",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "LA|XPHB"
+				},
+				{
+					"type": "MA|XPHB"
+				},
+				{
+					"type": "HA|XPHB"
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Force Resistance",
+				"source": "XDMG",
+				"page": 231,
+				"freeRules2024": true,
+				"resist": [
+					"force"
+				],
+				"rarity": "rare",
+				"reqAttune": true,
+				"hasRefs": true,
+				"entries": [
+					"{#itemEntry Armor of Resistance|XDMG}"
 				]
 			}
 		},
@@ -719,6 +1338,7 @@
 		},
 		{
 			"name": "Armor of Gleaming",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -738,6 +1358,9 @@
 				"nameSuffix": " of Gleaming",
 				"source": "XGE",
 				"page": 136,
+				"reprintedAs": [
+					"Armor of Gleaming|XDMG"
+				],
 				"tier": "minor",
 				"rarity": "common",
 				"entries": [
@@ -746,7 +1369,32 @@
 			}
 		},
 		{
+			"name": "Armor of Gleaming",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "LA|XPHB"
+				},
+				{
+					"type": "MA|XPHB"
+				},
+				{
+					"type": "HA|XPHB"
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Gleaming",
+				"source": "XDMG",
+				"page": 230,
+				"rarity": "common",
+				"entries": [
+					"This armor never gets dirty."
+				]
+			}
+		},
+		{
 			"name": "Armor of Lightning Resistance",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -758,6 +1406,9 @@
 				"source": "DMG",
 				"page": 152,
 				"srd": true,
+				"reprintedAs": [
+					"Armor of Lightning Resistance|XDMG"
+				],
 				"resist": [
 					"lightning"
 				],
@@ -771,7 +1422,38 @@
 			}
 		},
 		{
+			"name": "Armor of Lightning Resistance",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "LA|XPHB"
+				},
+				{
+					"type": "MA|XPHB"
+				},
+				{
+					"type": "HA|XPHB"
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Lightning Resistance",
+				"source": "XDMG",
+				"page": 231,
+				"freeRules2024": true,
+				"resist": [
+					"lightning"
+				],
+				"rarity": "rare",
+				"reqAttune": true,
+				"hasRefs": true,
+				"entries": [
+					"{#itemEntry Armor of Resistance|XDMG}"
+				]
+			}
+		},
+		{
 			"name": "Armor of Necrotic Resistance",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -783,6 +1465,9 @@
 				"source": "DMG",
 				"page": 152,
 				"srd": true,
+				"reprintedAs": [
+					"Armor of Necrotic Resistance|XDMG"
+				],
 				"resist": [
 					"necrotic"
 				],
@@ -796,7 +1481,38 @@
 			}
 		},
 		{
+			"name": "Armor of Necrotic Resistance",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "LA|XPHB"
+				},
+				{
+					"type": "MA|XPHB"
+				},
+				{
+					"type": "HA|XPHB"
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Necrotic Resistance",
+				"source": "XDMG",
+				"page": 231,
+				"freeRules2024": true,
+				"resist": [
+					"necrotic"
+				],
+				"rarity": "rare",
+				"reqAttune": true,
+				"hasRefs": true,
+				"entries": [
+					"{#itemEntry Armor of Resistance|XDMG}"
+				]
+			}
+		},
+		{
 			"name": "Armor of Poison Resistance",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -808,6 +1524,9 @@
 				"source": "DMG",
 				"page": 152,
 				"srd": true,
+				"reprintedAs": [
+					"Armor of Poison Resistance|XDMG"
+				],
 				"resist": [
 					"poison"
 				],
@@ -821,7 +1540,38 @@
 			}
 		},
 		{
+			"name": "Armor of Poison Resistance",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "LA|XPHB"
+				},
+				{
+					"type": "MA|XPHB"
+				},
+				{
+					"type": "HA|XPHB"
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Poison Resistance",
+				"source": "XDMG",
+				"page": 231,
+				"freeRules2024": true,
+				"resist": [
+					"poison"
+				],
+				"rarity": "rare",
+				"reqAttune": true,
+				"hasRefs": true,
+				"entries": [
+					"{#itemEntry Armor of Resistance|XDMG}"
+				]
+			}
+		},
+		{
 			"name": "Armor of Psychic Resistance",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -833,6 +1583,9 @@
 				"source": "DMG",
 				"page": 152,
 				"srd": true,
+				"reprintedAs": [
+					"Armor of Psychic Resistance|XDMG"
+				],
 				"resist": [
 					"psychic"
 				],
@@ -846,7 +1599,38 @@
 			}
 		},
 		{
+			"name": "Armor of Psychic Resistance",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "LA|XPHB"
+				},
+				{
+					"type": "MA|XPHB"
+				},
+				{
+					"type": "HA|XPHB"
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Psychic Resistance",
+				"source": "XDMG",
+				"page": 231,
+				"freeRules2024": true,
+				"resist": [
+					"psychic"
+				],
+				"rarity": "rare",
+				"reqAttune": true,
+				"hasRefs": true,
+				"entries": [
+					"{#itemEntry Armor of Resistance|XDMG}"
+				]
+			}
+		},
+		{
 			"name": "Armor of Radiant Resistance",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -858,6 +1642,9 @@
 				"source": "DMG",
 				"page": 152,
 				"srd": true,
+				"reprintedAs": [
+					"Armor of Radiant Resistance|XDMG"
+				],
 				"resist": [
 					"radiant"
 				],
@@ -867,6 +1654,36 @@
 				"hasRefs": true,
 				"entries": [
 					"{#itemEntry Armor of Resistance}"
+				]
+			}
+		},
+		{
+			"name": "Armor of Radiant Resistance",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "LA|XPHB"
+				},
+				{
+					"type": "MA|XPHB"
+				},
+				{
+					"type": "HA|XPHB"
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Radiant Resistance",
+				"source": "XDMG",
+				"page": 231,
+				"freeRules2024": true,
+				"resist": [
+					"radiant"
+				],
+				"rarity": "rare",
+				"reqAttune": true,
+				"hasRefs": true,
+				"entries": [
+					"{#itemEntry Armor of Resistance|XDMG}"
 				]
 			}
 		},
@@ -935,6 +1752,7 @@
 		},
 		{
 			"name": "Armor of Thunder Resistance",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -946,6 +1764,9 @@
 				"source": "DMG",
 				"page": 152,
 				"srd": true,
+				"reprintedAs": [
+					"Armor of Thunder Resistance|XDMG"
+				],
 				"resist": [
 					"thunder"
 				],
@@ -955,6 +1776,159 @@
 				"hasRefs": true,
 				"entries": [
 					"{#itemEntry Armor of Resistance}"
+				]
+			}
+		},
+		{
+			"name": "Armor of Thunder Resistance",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "LA|XPHB"
+				},
+				{
+					"type": "MA|XPHB"
+				},
+				{
+					"type": "HA|XPHB"
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Thunder Resistance",
+				"source": "XDMG",
+				"page": 231,
+				"freeRules2024": true,
+				"resist": [
+					"thunder"
+				],
+				"rarity": "rare",
+				"reqAttune": true,
+				"hasRefs": true,
+				"entries": [
+					"{#itemEntry Armor of Resistance|XDMG}"
+				]
+			}
+		},
+		{
+			"name": "Armor of Vulnerability (Bludgeoning)",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "LA|XPHB"
+				},
+				{
+					"type": "MA|XPHB"
+				},
+				{
+					"type": "HA|XPHB"
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Vulnerability (Bludgeoning)",
+				"source": "XDMG",
+				"page": 231,
+				"freeRules2024": true,
+				"resist": [
+					"bludgeoning"
+				],
+				"vulnerable": [
+					"piercing",
+					"slashing"
+				],
+				"rarity": "rare",
+				"reqAttune": true,
+				"curse": true,
+				"entries": [
+					"While wearing this armor, you have {@variantrule Resistance|XPHB} to Bludgeoning damage.",
+					{
+						"type": "entries",
+						"name": "Curse",
+						"entries": [
+							"This armor is cursed, a fact that is revealed only when the {@spell Identify|XPHB} spell is cast on the armor or you attune to it. Attuning to the armor curses you until you are targeted by a {@spell Remove Curse|XPHB} spell or similar magic; removing the armor fails to end the curse. While cursed, you have {@variantrule Vulnerability|XPHB} to Piercing and Slashing damage."
+						]
+					}
+				]
+			}
+		},
+		{
+			"name": "Armor of Vulnerability (Piercing)",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "LA|XPHB"
+				},
+				{
+					"type": "MA|XPHB"
+				},
+				{
+					"type": "HA|XPHB"
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Vulnerability (Piercing)",
+				"source": "XDMG",
+				"page": 231,
+				"freeRules2024": true,
+				"resist": [
+					"piercing"
+				],
+				"vulnerable": [
+					"bludgeoning",
+					"slashing"
+				],
+				"rarity": "rare",
+				"reqAttune": true,
+				"curse": true,
+				"entries": [
+					"While wearing this armor, you have {@variantrule Resistance|XPHB} to Piercing damage.",
+					{
+						"type": "entries",
+						"name": "Curse",
+						"entries": [
+							"This armor is cursed, a fact that is revealed only when the {@spell Identify|XPHB} spell is cast on the armor or you attune to it. Attuning to the armor curses you until you are targeted by a {@spell Remove Curse|XPHB} spell or similar magic; removing the armor fails to end the curse. While cursed, you have {@variantrule Vulnerability|XPHB} to Bludgeoning and Slashing damage."
+						]
+					}
+				]
+			}
+		},
+		{
+			"name": "Armor of Vulnerability (Slashing)",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "LA|XPHB"
+				},
+				{
+					"type": "MA|XPHB"
+				},
+				{
+					"type": "HA|XPHB"
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Vulnerability (Slashing)",
+				"source": "XDMG",
+				"page": 231,
+				"freeRules2024": true,
+				"resist": [
+					"slashing"
+				],
+				"vulnerable": [
+					"bludgeoning",
+					"piercing"
+				],
+				"rarity": "rare",
+				"reqAttune": true,
+				"curse": true,
+				"entries": [
+					"While wearing this armor, you have {@variantrule Resistance|XPHB} to Slashing damage.",
+					{
+						"type": "entries",
+						"name": "Curse",
+						"entries": [
+							"This armor is cursed, a fact that is revealed only when the {@spell Identify|XPHB} spell is cast on the armor or you attune to it. Attuning to the armor curses you until you are targeted by a {@spell Remove Curse|XPHB} spell or similar magic; removing the armor fails to end the curse. While cursed, you have {@variantrule Vulnerability|XPHB} to Bludgeoning and Piercing damage."
+						]
+					}
 				]
 			}
 		},
@@ -1002,6 +1976,7 @@
 		},
 		{
 			"name": "Arrow of Slaying (*)",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -1032,6 +2007,9 @@
 				"source": "DMG",
 				"page": 152,
 				"srd": true,
+				"reprintedAs": [
+					"Ammunition of Slaying|XDMG"
+				],
 				"tier": "minor",
 				"rarity": "very rare",
 				"entries": [
@@ -1093,6 +2071,7 @@
 		},
 		{
 			"name": "Berserker Axe",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -1104,6 +2083,9 @@
 				"source": "DMG",
 				"page": 155,
 				"srd": true,
+				"reprintedAs": [
+					"Berserker Axe|XDMG"
+				],
 				"tier": "major",
 				"rarity": "rare",
 				"reqAttune": true,
@@ -1122,6 +2104,47 @@
 				],
 				"lootTables": [
 					"Magic Item Table G"
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Berserker Axe",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"name": "Battleaxe",
+					"source": "XPHB"
+				},
+				{
+					"name": "Greataxe",
+					"source": "XPHB"
+				},
+				{
+					"name": "Halberd",
+					"source": "XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Berserker ",
+				"source": "XDMG",
+				"page": 236,
+				"freeRules2024": true,
+				"rarity": "rare",
+				"reqAttune": true,
+				"curse": true,
+				"bonusWeapon": "+1",
+				"entries": [
+					"You gain a +1 bonus to attack rolls and damage rolls made with this magic weapon. In addition, while you are attuned to this weapon, your {@variantrule Hit Points|XPHB|Hit Point} maximum increases by 1 for each level you have attained.",
+					{
+						"type": "entries",
+						"name": "Curse",
+						"entries": [
+							"This weapon is cursed, and becoming attuned to it extends the curse to you. As long as you remain cursed, you are unwilling to part with the weapon, keeping it within reach at all times. You also have {@variantrule Disadvantage|XPHB} on attack rolls with weapons other than this one.",
+							"Whenever another creature damages you while the weapon is in your possession, you must succeed on a DC 15 Wisdom saving throw or go berserk. This berserk state ends when you start your turn and there are no creatures within 60 feet of you that you can see or hear.",
+							"While berserk, you regard the creature nearest to you that you can see or hear as your enemy. If there are multiple possible creatures, choose one at random. On each of your turns, you must move as close to the creature as possible and take the {@action Attack|XPHB} action, targeting the creature. If you're unable to get close enough to the creature to attack it with the weapon, your turn ends after you've used up all your available movement. If the creature dies or can no longer be seen or heard by you, the next nearest creature that you can see or hear becomes your new target."
+						]
+					}
 				]
 			},
 			"hasFluffImages": true
@@ -1296,6 +2319,7 @@
 		},
 		{
 			"name": "Cast-Off Armor",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -1306,10 +2330,37 @@
 				"namePrefix": "Cast-Off ",
 				"source": "XGE",
 				"page": 136,
+				"reprintedAs": [
+					"Cast-Off Armor|XDMG"
+				],
 				"tier": "minor",
 				"rarity": "common",
 				"entries": [
 					"You can doff this armor as an action."
+				]
+			}
+		},
+		{
+			"name": "Cast-Off Armor",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "LA|XPHB"
+				},
+				{
+					"type": "MA|XPHB"
+				},
+				{
+					"type": "HA|XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Cast-Off ",
+				"source": "XDMG",
+				"page": 243,
+				"rarity": "common",
+				"entries": [
+					"You can doff this armor as a {@action Magic|XPHB} action."
 				]
 			}
 		},
@@ -1411,6 +2462,7 @@
 		},
 		{
 			"name": "Dancing Sword",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -1422,6 +2474,9 @@
 				"source": "DMG",
 				"page": 161,
 				"srd": true,
+				"reprintedAs": [
+					"Dancing Sword|XDMG"
+				],
 				"tier": "major",
 				"rarity": "very rare",
 				"reqAttune": true,
@@ -1437,7 +2492,31 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Dancing Sword",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"sword": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Dancing ",
+				"source": "XDMG",
+				"page": 248,
+				"freeRules2024": true,
+				"rarity": "very rare",
+				"reqAttune": true,
+				"entries": [
+					"You can take a {@variantrule Bonus Action|XPHB} to toss this magic weapon into the air. When you do so, the weapon begins to hover, flies up to 30 feet, and attacks one creature of your choice within 5 feet of itself. The weapon uses your attack roll and adds your ability modifier to damage rolls.",
+					"While the weapon hovers, you can take a {@variantrule Bonus Action|XPHB} to cause it to fly up to 30 feet to another spot within 30 feet of you. As part of the same {@variantrule Bonus Action|XPHB}, you can cause the weapon to attack one creature within 5 feet of the weapon.",
+					"After the hovering weapon attacks for the fourth time, it flies back to you and tries to return to your hand. If you have no hand free, the weapon falls to the ground in your space. If the weapon has no unobstructed path to you, it moves as close to you as it can and then falls to the ground. It also ceases to hover if you grasp it or are more than 30 feet away from it."
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
 			"name": "Defender",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -1449,6 +2528,9 @@
 				"source": "DMG",
 				"page": 164,
 				"srd": true,
+				"reprintedAs": [
+					"Defender|XDMG"
+				],
 				"tier": "major",
 				"rarity": "legendary",
 				"reqAttune": true,
@@ -1460,6 +2542,29 @@
 				],
 				"lootTables": [
 					"Magic Item Table I"
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Defender",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "M|XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Defender ",
+				"source": "XDMG",
+				"page": 252,
+				"rarity": "legendary",
+				"reqAttune": true,
+				"bonusWeapon": "+3",
+				"bonusAc": "+1",
+				"entries": [
+					"You gain a +3 bonus to attack rolls and damage rolls made with this magic weapon.",
+					"The first time you attack with the weapon on each of your turns, you can transfer some or all of the weapon's bonus to your {@variantrule Armor Class|XPHB}. For example, you could reduce the bonus to your attack rolls and damage rolls to {=bonusAc} and gain a +2 bonus to {@variantrule Armor Class|XPHB}. The adjusted bonuses remain in effect until the start of your next turn, although you must hold the weapon to gain a bonus to AC from it."
 				]
 			},
 			"hasFluffImages": true
@@ -1483,6 +2588,42 @@
 					"You gain a {=bonusWeapon} bonus to attack and damage rolls made with this weapon.",
 					"When you make an attack with this weapon, you can use your spellcasting ability modifier, instead of Strength or Dexterity, for the attack and damage rolls. In addition, you can use this weapon as a spellcasting focus.",
 					"When you roll a 20 on an attack roll made with this weapon against a humanoid, the humanoid must succeed on a DC 15 Constitution saving throw or take an extra ({@dice 3d6}) necrotic damage and gain one {@adventure level of contamination|DoDk|12}."
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Demon Armor",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "LA|XPHB"
+				},
+				{
+					"type": "MA|XPHB"
+				},
+				{
+					"type": "HA|XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Demon ",
+				"source": "XDMG",
+				"page": 252,
+				"rarity": "very rare",
+				"reqAttune": true,
+				"curse": true,
+				"bonusWeapon": "+1",
+				"bonusAc": "+1",
+				"entries": [
+					"While wearing this armor, you gain a {=bonusAc} bonus to {@variantrule Armor Class|XPHB}, and you know Abyssal. In addition, the armor's clawed gauntlets allow your Unarmed Strikes to deal {@damage 1d8} Slashing damage instead of the usual Bludgeoning damage, and you gain a {=bonusWeapon} bonus to the attack and damage rolls of your Unarmed Strikes.",
+					{
+						"type": "entries",
+						"name": "Curse",
+						"entries": [
+							"Once you don this cursed armor, you can't doff it unless you are targeted by a {@spell Remove Curse|XPHB} spell or similar magic. While wearing the armor, you have {@variantrule Disadvantage|XPHB} on attack rolls against demons and on saving throws against their spells and special abilities."
+						]
+					}
 				]
 			},
 			"hasFluffImages": true
@@ -1554,6 +2695,7 @@
 		},
 		{
 			"name": "Dragon Slayer",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -1565,6 +2707,9 @@
 				"source": "DMG",
 				"page": 166,
 				"srd": true,
+				"reprintedAs": [
+					"Dragon Slayer|XDMG"
+				],
 				"tier": "major",
 				"rarity": "rare",
 				"bonusWeapon": "+1",
@@ -1574,6 +2719,30 @@
 				],
 				"lootTables": [
 					"Magic Item Table G"
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Dragon Slayer",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"weaponCategory": "simple"
+				},
+				{
+					"weaponCategory": "martial"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Dragon Slayer ",
+				"source": "XDMG",
+				"page": 254,
+				"rarity": "rare",
+				"bonusWeapon": "+1",
+				"entries": [
+					"You gain a +1 bonus to attack rolls and damage rolls made with this magic weapon.",
+					"The weapon deals an extra {@damage 3d6} damage of the weapon's type if the target is a Dragon."
 				]
 			},
 			"hasFluffImages": true
@@ -1785,7 +2954,91 @@
 			}
 		},
 		{
+			"name": "Dwarven Plate",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"name": "Half Plate Armor",
+					"source": "XPHB"
+				},
+				{
+					"name": "Plate Armor",
+					"source": "XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Dwarven ",
+				"source": "XDMG",
+				"page": 255,
+				"freeRules2024": true,
+				"rarity": "very rare",
+				"bonusAc": "+2",
+				"entries": [
+					"While wearing this armor, you gain a {=bonusAc} bonus to {@variantrule Armor Class|XPHB}. In addition, if an effect moves you against your will along the ground, you can take a {@variantrule Reaction|XPHB} to reduce the distance you are moved by up to 10 feet."
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Efreeti Chain",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"name": "Chain Mail",
+					"source": "XPHB"
+				},
+				{
+					"name": "Chain Shirt",
+					"source": "XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Efreeti ",
+				"source": "XDMG",
+				"page": 257,
+				"freeRules2024": true,
+				"immune": [
+					"fire"
+				],
+				"rarity": "legendary",
+				"reqAttune": true,
+				"bonusAc": "+3",
+				"entries": [
+					"While wearing this armor, you gain a {=bonusAc} bonus to {@variantrule Armor Class|XPHB}, you have {@variantrule Immunity|XPHB} to Fire damage, and you know Primordial. In addition, you can stand on and move across molten rock as if it were solid ground."
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Elven Chain",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"name": "Chain Mail",
+					"source": "XPHB"
+				},
+				{
+					"name": "Chain Shirt",
+					"source": "XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Elven ",
+				"source": "XDMG",
+				"page": 257,
+				"freeRules2024": true,
+				"rarity": "rare",
+				"grantsProficiency": true,
+				"bonusAc": "+1",
+				"entries": [
+					"You gain a {=bonusAc} bonus to {@variantrule Armor Class|XPHB} while you wear this armor. You are considered trained with this armor even if you lack training with Medium or Heavy armor."
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
 			"name": "Energy Bow",
+			"edition": "classic",
 			"type": "GV|XDMG",
 			"requires": [
 				{
@@ -1795,6 +3048,9 @@
 			"inherits": {
 				"namePrefix": "Energy ",
 				"source": "UtHftLH",
+				"reprintedAs": [
+					"Energy Bow|XDMG"
+				],
 				"rarity": "very rare",
 				"reqAttune": true,
 				"bonusWeapon": "+1",
@@ -1822,6 +3078,600 @@
 							"As a {@action Magic|XPHB} action, you can loose a flurry of energy arrows from this weapon at a wall up to 60 feet away from yourself. The arrows become glowing rungs that stick out of the wall, forming a magical {@item ladder|XPHB} up to 60 feet long on the wall. This ladder lasts for 1 minute before disappearing."
 						]
 					}
+				]
+			}
+		},
+		{
+			"name": "Energy Bow",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"name": "Longbow",
+					"source": "XPHB"
+				},
+				{
+					"name": "Shortbow",
+					"source": "XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Energy ",
+				"source": "XDMG",
+				"page": 257,
+				"freeRules2024": true,
+				"rarity": "very rare",
+				"reqAttune": true,
+				"bonusWeapon": "+1",
+				"entries": [
+					"You gain a +1 bonus to attack rolls and damage rolls made with this magic weapon, which has no string. Each time you pull your arm back in a firing motion, a magical arrow made of golden energy appears nocked and ready to fire. An arrow produced by this weapon deals Force damage instead of Piercing damage on a hit, and it disappears after it hits or misses its target. Until it disappears, the arrow emits {@variantrule Bright Light|XPHB} in a 20-foot radius and {@variantrule Dim Light|XPHB} for an additional 20 feet.",
+					"This weapon has the following additional properties.",
+					{
+						"type": "entries",
+						"name": "Arrow of Restraint",
+						"entries": [
+							"Whenever you use this weapon to make a ranged attack against a creature, you can try to restrain the target instead of dealing damage to it. If the arrow hits, the target must succeed on a DC 15 Strength saving throw or have the {@condition Restrained|XPHB} condition for 1 minute. As an action, a creature {@condition Restrained|XPHB} by an arrow can make a DC 20 Strength ({@skill Athletics|XPHB}) check to try to break the restraint, ending the effect on itself on a successful check."
+						]
+					},
+					{
+						"type": "entries",
+						"name": "Arrow of Transport",
+						"entries": [
+							"As a {@action Magic|XPHB} action, you can fire one energy arrow from this weapon at a target you can see within 60 feet of yourself. The target can be either a willing Medium or smaller creature or an object that isn't being worn or carried, provided the object is small enough to fit inside a 5-foot {@variantrule Cube [Area of Effect]|XPHB|Cube}. The arrow teleports the target to an unoccupied space you can see within 10 feet of you."
+						]
+					},
+					{
+						"type": "entries",
+						"name": "Energy Ladder",
+						"entries": [
+							"As a {@action Magic|XPHB} action, you can loose a flurry of energy arrows from this weapon at a wall up to 60 feet away from yourself. The arrows become glowing rungs that stick out of the wall, forming a magical ladder up to 60 feet long on the wall. This ladder lasts for 1 minute before disappearing."
+						]
+					}
+				]
+			}
+		},
+		{
+			"name": "Enspelled Armor (Cantrip)",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "LA|XPHB"
+				},
+				{
+					"type": "MA|XPHB"
+				},
+				{
+					"type": "HA|XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Enspelled (Cantrip) ",
+				"source": "XDMG",
+				"page": 258,
+				"rarity": "uncommon",
+				"reqAttune": true,
+				"recharge": "dawn",
+				"rechargeAmount": "{@dice 1d6}",
+				"charges": 6,
+				"entries": [
+					"Bound into this armor is a cantrip. The cantrip is determined when the armor is created and must belong to the {@filter Abjuration or Illusion|spells|school=A;I|level=0} school of magic. The armor has 6 charges and regains {@dice 1d6} expended charges daily at dawn. While wearing the armor, you can expend 1 charge to cast its spell.",
+					"The spell's saving throw DC is 13, and its attack bonus is {@hit 5}."
+				],
+				"spellScrollLevel": 0
+			}
+		},
+		{
+			"name": "Enspelled Armor (Level 1)",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "LA|XPHB"
+				},
+				{
+					"type": "MA|XPHB"
+				},
+				{
+					"type": "HA|XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Enspelled (Level 1) ",
+				"source": "XDMG",
+				"page": 258,
+				"rarity": "uncommon",
+				"reqAttune": true,
+				"recharge": "dawn",
+				"rechargeAmount": "{@dice 1d6}",
+				"charges": 6,
+				"entries": [
+					"Bound into this armor is a level 1 spell. The spell is determined when the armor is created and must belong to the {@filter Abjuration or Illusion|spells|school=A;I|level=1} school of magic. The armor has 6 charges and regains {@dice 1d6} expended charges daily at dawn. While wearing the armor, you can expend 1 charge to cast its spell.",
+					"The spell's saving throw DC is 13, and its attack bonus is {@hit 5}."
+				],
+				"spellScrollLevel": 1
+			}
+		},
+		{
+			"name": "Enspelled Armor (Level 2)",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "LA|XPHB"
+				},
+				{
+					"type": "MA|XPHB"
+				},
+				{
+					"type": "HA|XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Enspelled (Level 2) ",
+				"source": "XDMG",
+				"page": 258,
+				"rarity": "rare",
+				"reqAttune": true,
+				"recharge": "dawn",
+				"rechargeAmount": "{@dice 1d6}",
+				"charges": 6,
+				"entries": [
+					"Bound into this armor is a level 2 spell. The spell is determined when the armor is created and must belong to the {@filter Abjuration or Illusion|spells|school=A;I|level=2} school of magic. The armor has 6 charges and regains {@dice 1d6} expended charges daily at dawn. While wearing the armor, you can expend 1 charge to cast its spell.",
+					"The spell's saving throw DC is 13, and its attack bonus is {@hit 5}."
+				],
+				"spellScrollLevel": 2
+			}
+		},
+		{
+			"name": "Enspelled Armor (Level 3)",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "LA|XPHB"
+				},
+				{
+					"type": "MA|XPHB"
+				},
+				{
+					"type": "HA|XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Enspelled (Level 3) ",
+				"source": "XDMG",
+				"page": 258,
+				"rarity": "rare",
+				"reqAttune": true,
+				"recharge": "dawn",
+				"rechargeAmount": "{@dice 1d6}",
+				"charges": 6,
+				"entries": [
+					"Bound into this armor is a level 3 spell. The spell is determined when the armor is created and must belong to the {@filter Abjuration or Illusion|spells|school=A;I|level=3} school of magic. The armor has 6 charges and regains {@dice 1d6} expended charges daily at dawn. While wearing the armor, you can expend 1 charge to cast its spell.",
+					"The spell's saving throw DC is 15, and its attack bonus is {@hit 7}."
+				],
+				"spellScrollLevel": 3
+			}
+		},
+		{
+			"name": "Enspelled Armor (Level 4)",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "LA|XPHB"
+				},
+				{
+					"type": "MA|XPHB"
+				},
+				{
+					"type": "HA|XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Enspelled (Level 4) ",
+				"source": "XDMG",
+				"page": 258,
+				"rarity": "very rare",
+				"reqAttune": true,
+				"recharge": "dawn",
+				"rechargeAmount": "{@dice 1d6}",
+				"charges": 6,
+				"entries": [
+					"Bound into this armor is a level 4 spell. The spell is determined when the armor is created and must belong to the {@filter Abjuration or Illusion|spells|school=A;I|level=4} school of magic. The armor has 6 charges and regains {@dice 1d6} expended charges daily at dawn. While wearing the armor, you can expend 1 charge to cast its spell.",
+					"The spell's saving throw DC is 15, and its attack bonus is {@hit 7}."
+				],
+				"spellScrollLevel": 4
+			}
+		},
+		{
+			"name": "Enspelled Armor (Level 5)",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "LA|XPHB"
+				},
+				{
+					"type": "MA|XPHB"
+				},
+				{
+					"type": "HA|XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Enspelled (Level 5) ",
+				"source": "XDMG",
+				"page": 258,
+				"rarity": "very rare",
+				"reqAttune": true,
+				"recharge": "dawn",
+				"rechargeAmount": "{@dice 1d6}",
+				"charges": 6,
+				"entries": [
+					"Bound into this armor is a level 5 spell. The spell is determined when the armor is created and must belong to the {@filter Abjuration or Illusion|spells|school=A;I|level=5} school of magic. The armor has 6 charges and regains {@dice 1d6} expended charges daily at dawn. While wearing the armor, you can expend 1 charge to cast its spell.",
+					"The spell's saving throw DC is 17, and its attack bonus is {@hit 9}."
+				],
+				"spellScrollLevel": 5
+			}
+		},
+		{
+			"name": "Enspelled Armor (Level 6)",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "LA|XPHB"
+				},
+				{
+					"type": "MA|XPHB"
+				},
+				{
+					"type": "HA|XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Enspelled (Level 6) ",
+				"source": "XDMG",
+				"page": 258,
+				"rarity": "legendary",
+				"reqAttune": true,
+				"recharge": "dawn",
+				"rechargeAmount": "{@dice 1d6}",
+				"charges": 6,
+				"entries": [
+					"Bound into this armor is a level 6 spell. The spell is determined when the armor is created and must belong to the {@filter Abjuration or Illusion|spells|school=A;I|level=6} school of magic. The armor has 6 charges and regains {@dice 1d6} expended charges daily at dawn. While wearing the armor, you can expend 1 charge to cast its spell.",
+					"The spell's saving throw DC is 17, and its attack bonus is {@hit 9}."
+				],
+				"spellScrollLevel": 6
+			}
+		},
+		{
+			"name": "Enspelled Armor (Level 7)",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "LA|XPHB"
+				},
+				{
+					"type": "MA|XPHB"
+				},
+				{
+					"type": "HA|XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Enspelled (Level 7) ",
+				"source": "XDMG",
+				"page": 258,
+				"rarity": "legendary",
+				"reqAttune": true,
+				"recharge": "dawn",
+				"rechargeAmount": "{@dice 1d6}",
+				"charges": 6,
+				"entries": [
+					"Bound into this armor is a level 7 spell. The spell is determined when the armor is created and must belong to the {@filter Abjuration or Illusion|spells|school=A;I|level=7} school of magic. The armor has 6 charges and regains {@dice 1d6} expended charges daily at dawn. While wearing the armor, you can expend 1 charge to cast its spell.",
+					"The spell's saving throw DC is 18, and its attack bonus is {@hit 10}."
+				],
+				"spellScrollLevel": 7
+			}
+		},
+		{
+			"name": "Enspelled Armor (Level 8)",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "LA|XPHB"
+				},
+				{
+					"type": "MA|XPHB"
+				},
+				{
+					"type": "HA|XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Enspelled (Level 8) ",
+				"source": "XDMG",
+				"page": 258,
+				"rarity": "legendary",
+				"reqAttune": true,
+				"recharge": "dawn",
+				"rechargeAmount": "{@dice 1d6}",
+				"charges": 6,
+				"entries": [
+					"Bound into this armor is a level 8 spell. The spell is determined when the armor is created and must belong to the {@filter Abjuration or Illusion|spells|school=A;I|level=8} school of magic. The armor has 6 charges and regains {@dice 1d6} expended charges daily at dawn. While wearing the armor, you can expend 1 charge to cast its spell.",
+					"The spell's saving throw DC is 18, and its attack bonus is {@hit 10}."
+				],
+				"spellScrollLevel": 8
+			}
+		},
+		{
+			"name": "Enspelled Weapon (Cantrip)",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"weaponCategory": "simple"
+				},
+				{
+					"weaponCategory": "martial"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Enspelled (Cantrip) ",
+				"source": "XDMG",
+				"page": 258,
+				"rarity": "varies",
+				"reqAttune": true,
+				"recharge": "dawn",
+				"rechargeAmount": "{@dice 1d6}",
+				"charges": 6,
+				"entries": [
+					"Bound into this weapon is a cantrip. The cantrip is determined when the weapon is created and must belong to the {@filter Conjuration, Divination, Evocation, Necromancy, or Transmutation|spells|school=C;D;V;N;T|level=0} school of magic. The weapon has 6 charges and regains {@dice 1d6} expended charges daily at dawn. While holding the weapon, you can expend 1 charge to cast its spell.",
+					"The spell's saving throw DC is 13, and its attack bonus is {@hit 5}."
+				],
+				"spellScrollLevel": 0
+			}
+		},
+		{
+			"name": "Enspelled Weapon (Level 1)",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"weaponCategory": "simple"
+				},
+				{
+					"weaponCategory": "martial"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Enspelled (Level 1) ",
+				"source": "XDMG",
+				"page": 258,
+				"rarity": "uncommon",
+				"reqAttune": true,
+				"recharge": "dawn",
+				"rechargeAmount": "{@dice 1d6}",
+				"charges": 6,
+				"entries": [
+					"Bound into this weapon is a level 1 spell. The spell is determined when the weapon is created and must belong to the {@filter Conjuration, Divination, Evocation, Necromancy, or Transmutation|spells|school=C;D;V;N;T|level=1} school of magic. The weapon has 6 charges and regains {@dice 1d6} expended charges daily at dawn. While holding the weapon, you can expend 1 charge to cast its spell.",
+					"The spell's saving throw DC is 13, and its attack bonus is {@hit 5}."
+				],
+				"spellScrollLevel": 1
+			}
+		},
+		{
+			"name": "Enspelled Weapon (Level 2)",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"weaponCategory": "simple"
+				},
+				{
+					"weaponCategory": "martial"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Enspelled (Level 2) ",
+				"source": "XDMG",
+				"page": 258,
+				"rarity": "rare",
+				"reqAttune": true,
+				"recharge": "dawn",
+				"rechargeAmount": "{@dice 1d6}",
+				"charges": 6,
+				"entries": [
+					"Bound into this weapon is a level 2 spell. The spell is determined when the weapon is created and must belong to the {@filter Conjuration, Divination, Evocation, Necromancy, or Transmutation|spells|school=C;D;V;N;T|level=2} school of magic. The weapon has 6 charges and regains {@dice 1d6} expended charges daily at dawn. While holding the weapon, you can expend 1 charge to cast its spell.",
+					"The spell's saving throw DC is 13, and its attack bonus is {@hit 5}."
+				],
+				"spellScrollLevel": 2
+			}
+		},
+		{
+			"name": "Enspelled Weapon (Level 3)",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"weaponCategory": "simple"
+				},
+				{
+					"weaponCategory": "martial"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Enspelled (Level 3) ",
+				"source": "XDMG",
+				"page": 258,
+				"rarity": "rare",
+				"reqAttune": true,
+				"recharge": "dawn",
+				"rechargeAmount": "{@dice 1d6}",
+				"charges": 6,
+				"entries": [
+					"Bound into this weapon is a level 3 spell. The spell is determined when the weapon is created and must belong to the {@filter Conjuration, Divination, Evocation, Necromancy, or Transmutation|spells|school=C;D;V;N;T|level=3} school of magic. The weapon has 6 charges and regains {@dice 1d6} expended charges daily at dawn. While holding the weapon, you can expend 1 charge to cast its spell.",
+					"The spell's saving throw DC is 15, and its attack bonus is {@hit 7}."
+				],
+				"spellScrollLevel": 3
+			}
+		},
+		{
+			"name": "Enspelled Weapon (Level 4)",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"weaponCategory": "simple"
+				},
+				{
+					"weaponCategory": "martial"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Enspelled (Level 4) ",
+				"source": "XDMG",
+				"page": 258,
+				"rarity": "very rare",
+				"reqAttune": true,
+				"recharge": "dawn",
+				"rechargeAmount": "{@dice 1d6}",
+				"charges": 6,
+				"entries": [
+					"Bound into this weapon is a level 4 spell. The spell is determined when the weapon is created and must belong to the {@filter Conjuration, Divination, Evocation, Necromancy, or Transmutation|spells|school=C;D;V;N;T|level=4} school of magic. The weapon has 6 charges and regains {@dice 1d6} expended charges daily at dawn. While holding the weapon, you can expend 1 charge to cast its spell.",
+					"The spell's saving throw DC is 15, and its attack bonus is {@hit 7}."
+				],
+				"spellScrollLevel": 4
+			}
+		},
+		{
+			"name": "Enspelled Weapon (Level 5)",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"weaponCategory": "simple"
+				},
+				{
+					"weaponCategory": "martial"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Enspelled (Level 5) ",
+				"source": "XDMG",
+				"page": 258,
+				"rarity": "very rare",
+				"reqAttune": true,
+				"recharge": "dawn",
+				"rechargeAmount": "{@dice 1d6}",
+				"charges": 6,
+				"entries": [
+					"Bound into this weapon is a level 5 spell. The spell is determined when the weapon is created and must belong to the {@filter Conjuration, Divination, Evocation, Necromancy, or Transmutation|spells|school=C;D;V;N;T|level=5} school of magic. The weapon has 6 charges and regains {@dice 1d6} expended charges daily at dawn. While holding the weapon, you can expend 1 charge to cast its spell.",
+					"The spell's saving throw DC is 17, and its attack bonus is {@hit 9}."
+				],
+				"spellScrollLevel": 5
+			}
+		},
+		{
+			"name": "Enspelled Weapon (Level 6)",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"weaponCategory": "simple"
+				},
+				{
+					"weaponCategory": "martial"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Enspelled (Level 6) ",
+				"source": "XDMG",
+				"page": 258,
+				"rarity": "legendary",
+				"reqAttune": true,
+				"recharge": "dawn",
+				"rechargeAmount": "{@dice 1d6}",
+				"charges": 6,
+				"entries": [
+					"Bound into this weapon is a level 6 spell. The spell is determined when the weapon is created and must belong to the {@filter Conjuration, Divination, Evocation, Necromancy, or Transmutation|spells|school=C;D;V;N;T|level=6} school of magic. The weapon has 6 charges and regains {@dice 1d6} expended charges daily at dawn. While holding the weapon, you can expend 1 charge to cast its spell.",
+					"The spell's saving throw DC is 17, and its attack bonus is {@hit 9}."
+				],
+				"spellScrollLevel": 6
+			}
+		},
+		{
+			"name": "Enspelled Weapon (Level 7)",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"weaponCategory": "simple"
+				},
+				{
+					"weaponCategory": "martial"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Enspelled (Level 7) ",
+				"source": "XDMG",
+				"page": 258,
+				"rarity": "legendary",
+				"reqAttune": true,
+				"recharge": "dawn",
+				"rechargeAmount": "{@dice 1d6}",
+				"charges": 6,
+				"entries": [
+					"Bound into this weapon is a level 7 spell. The spell is determined when the weapon is created and must belong to the {@filter Conjuration, Divination, Evocation, Necromancy, or Transmutation|spells|school=C;D;V;N;T|level=7} school of magic. The weapon has 6 charges and regains {@dice 1d6} expended charges daily at dawn. While holding the weapon, you can expend 1 charge to cast its spell.",
+					"The spell's saving throw DC is 18, and its attack bonus is {@hit 10}."
+				],
+				"spellScrollLevel": 7
+			}
+		},
+		{
+			"name": "Enspelled Weapon (Level 8)",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"weaponCategory": "simple"
+				},
+				{
+					"weaponCategory": "martial"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Enspelled (Level 8) ",
+				"source": "XDMG",
+				"page": 258,
+				"rarity": "legendary",
+				"reqAttune": true,
+				"recharge": "dawn",
+				"rechargeAmount": "{@dice 1d6}",
+				"charges": 6,
+				"entries": [
+					"Bound into this weapon is a level 8 spell. The spell is determined when the weapon is created and must belong to the {@filter Conjuration, Divination, Evocation, Necromancy, or Transmutation|spells|school=C;D;V;N;T|level=8} school of magic. The weapon has 6 charges and regains {@dice 1d6} expended charges daily at dawn. While holding the weapon, you can expend 1 charge to cast its spell.",
+					"The spell's saving throw DC is 18, and its attack bonus is {@hit 10}."
+				],
+				"spellScrollLevel": 8
+			}
+		},
+		{
+			"name": "Executioner's Axe",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"name": "Battleaxe",
+					"source": "XPHB"
+				},
+				{
+					"name": "Greataxe",
+					"source": "XPHB"
+				},
+				{
+					"name": "Halberd",
+					"source": "XPHB"
+				},
+				{
+					"name": "Handaxe",
+					"source": "XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Executioner's ",
+				"source": "XDMG",
+				"page": 259,
+				"rarity": "very rare",
+				"bonusWeapon": "+1",
+				"entries": [
+					"You gain a +1 bonus to attack rolls and damage rolls made with this magic weapon.",
+					"Any Humanoid you hit with the weapon takes an extra {@damage 2d6} Slashing damage, and you gain {@variantrule Temporary Hit Points|XPHB} equal to the extra damage dealt."
 				]
 			}
 		},
@@ -1869,6 +3719,7 @@
 		},
 		{
 			"name": "Flame Tongue",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -1880,6 +3731,9 @@
 				"source": "DMG",
 				"page": 170,
 				"srd": true,
+				"reprintedAs": [
+					"Flame Tongue|XDMG"
+				],
 				"tier": "major",
 				"rarity": "rare",
 				"reqAttune": true,
@@ -1888,6 +3742,27 @@
 				],
 				"lootTables": [
 					"Magic Item Table G"
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Flame Tongue",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "M|XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Flame Tongue ",
+				"source": "XDMG",
+				"page": 263,
+				"freeRules2024": true,
+				"rarity": "rare",
+				"reqAttune": true,
+				"entries": [
+					"While holding this magic weapon, you can take a {@variantrule Bonus Action|XPHB} and use a command word to cause flames to engulf the damage-dealing part of the weapon. These flames shed {@variantrule Bright Light|XPHB} in a 40-foot radius and {@variantrule Dim Light|XPHB} for an additional 40 feet. While the weapon is ablaze, it deals an extra {@damage 2d6} Fire damage on a hit. The flames last until you take a {@variantrule Bonus Action|XPHB} to issue the command again or until you drop, stow, or sheathe the weapon."
 				]
 			},
 			"hasFluffImages": true
@@ -1955,6 +3830,7 @@
 		},
 		{
 			"name": "Frost Brand",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -1966,6 +3842,9 @@
 				"source": "DMG",
 				"page": 171,
 				"srd": true,
+				"reprintedAs": [
+					"Frost Brand|XDMG"
+				],
 				"resist": [
 					"fire"
 				],
@@ -1979,6 +3858,50 @@
 				],
 				"lootTables": [
 					"Magic Item Table H"
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Frost Brand",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"name": "Glaive",
+					"source": "XPHB"
+				},
+				{
+					"name": "Greatsword",
+					"source": "XPHB"
+				},
+				{
+					"name": "Longsword",
+					"source": "XPHB"
+				},
+				{
+					"name": "Rapier",
+					"source": "XPHB"
+				},
+				{
+					"name": "Scimitar",
+					"source": "XPHB"
+				},
+				{
+					"name": "Shortsword",
+					"source": "XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Frost Brand ",
+				"source": "XDMG",
+				"page": 263,
+				"freeRules2024": true,
+				"rarity": "very rare",
+				"reqAttune": true,
+				"entries": [
+					"When you hit with an attack roll using this magic weapon, the target takes an extra {@damage 1d6} Cold damage. In addition, while you hold the weapon, you have {@variantrule Resistance|XPHB} to Fire damage.",
+					"In freezing temperatures, the weapon sheds {@variantrule Bright Light|XPHB} in a 10-foot radius and {@variantrule Dim Light|XPHB} for an additional 10 feet.",
+					"When you draw this weapon, you can extinguish all nonmagical flames within 30 feet of yourself. Once used, this property can't be used again for 1 hour."
 				]
 			},
 			"hasFluffImages": true
@@ -2012,6 +3935,7 @@
 		},
 		{
 			"name": "Giant Slayer",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -2026,6 +3950,9 @@
 				"source": "DMG",
 				"page": 172,
 				"srd": true,
+				"reprintedAs": [
+					"Giant Slayer|XDMG"
+				],
 				"tier": "major",
 				"rarity": "rare",
 				"bonusWeapon": "+1",
@@ -2035,6 +3962,31 @@
 				],
 				"lootTables": [
 					"Magic Item Table G"
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Giant Slayer",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"weaponCategory": "simple"
+				},
+				{
+					"weaponCategory": "martial"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Giant Slayer ",
+				"source": "XDMG",
+				"page": 264,
+				"freeRules2024": true,
+				"rarity": "rare",
+				"bonusWeapon": "+1",
+				"entries": [
+					"You gain a +1 bonus to attack rolls and damage rolls made with this magic weapon.",
+					"When you hit a Giant with this weapon, the Giant takes an extra {@damage 2d6} damage of the weapon's type and must succeed on a DC 15 Strength saving throw or have the {@condition Prone|XPHB} condition."
 				]
 			},
 			"hasFluffImages": true
@@ -2109,6 +4061,67 @@
 			}
 		},
 		{
+			"name": "Hammer of Thunderbolts",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"name": "Maul",
+					"source": "XPHB"
+				},
+				{
+					"name": "Warhammer",
+					"source": "XPHB"
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Thunderbolts",
+				"source": "XDMG",
+				"page": 265,
+				"rarity": "legendary",
+				"reqAttune": true,
+				"ability": {
+					"str": 4
+				},
+				"bonusWeapon": "+1",
+				"recharge": "dawn",
+				"rechargeAmount": "{@dice 1d4 + 1}",
+				"charges": 5,
+				"entries": [
+					"You gain a +1 bonus to attack rolls and damage rolls made with this magic weapon.",
+					"The weapon has 5 charges. You can expend 1 charge and make a ranged attack with the weapon, hurling it as if it had {@itemProperty T|XPHB|Thrown} with a normal range of 20 feet and a long range of 60 feet.",
+					"If the attack hits, the weapon unleashes a thunderclap audible out to 300 feet. The target and every creature within 30 feet of it other than you must succeed on a DC 17 Constitution saving throw or have the {@condition Stunned|XPHB} condition until the end of your next turn. Immediately after hitting or missing, the weapon flies back to your hand. The weapon regains {@dice 1d4 + 1} expended charges daily at dawn.",
+					{
+						"type": "entries",
+						"name": "Giant's Bane",
+						"entries": [
+							"While you are attuned to the weapon and wearing either a {@item Belt of Giant Strength|XDMG} or {@item Gauntlets of Ogre Power|XDMG} to which you are also attuned, you gain the following benefits:",
+							{
+								"type": "list",
+								"style": "list-hang-notitle",
+								"items": [
+									{
+										"type": "item",
+										"name": "Giants' Bane",
+										"entries": [
+											"When you roll a 20 on the {@dice d20} for an attack roll made with this weapon against a Giant, the creature must succeed on a DC 17 Constitution saving throw or die."
+										]
+									},
+									{
+										"type": "item",
+										"name": "Might of Giants",
+										"entries": [
+											"The Strength score bestowed by your {@item Belt of Giant Strength|XDMG} or {@item Gauntlets of Ogre Power|XDMG} increases by 4, to a maximum of 30."
+										]
+									}
+								]
+							}
+						]
+					}
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
 			"name": "Hardened Delerium-tipped Arrows",
 			"type": "GV|DMG",
 			"requires": [
@@ -2152,6 +4165,7 @@
 		},
 		{
 			"name": "Holy Avenger",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -2163,6 +4177,9 @@
 				"source": "DMG",
 				"page": 174,
 				"srd": true,
+				"reprintedAs": [
+					"Holy Avenger|XDMG"
+				],
 				"tier": "major",
 				"rarity": "legendary",
 				"reqAttune": "by a paladin",
@@ -2178,6 +4195,36 @@
 				],
 				"lootTables": [
 					"Magic Item Table I"
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Holy Avenger",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"weaponCategory": "simple"
+				},
+				{
+					"weaponCategory": "martial"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Holy Avenger ",
+				"source": "XDMG",
+				"page": 269,
+				"rarity": "legendary",
+				"reqAttune": "by a paladin",
+				"reqAttuneTags": [
+					{
+						"class": "paladin"
+					}
+				],
+				"bonusWeapon": "+3",
+				"entries": [
+					"You gain a +3 bonus to attack rolls and damage rolls made with this magic weapon. When you hit a Fiend or an Undead with it, that creature takes an extra {@damage 2d10} Radiant damage.",
+					"While you hold the drawn weapon, it creates a 10-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from you. You and all creatures {@variantrule Friendly [Attitude]|XPHB|Friendly} to you in the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} have {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects. If you have 17 or more levels in the Paladin class, the size of the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} increases to 30 feet."
 				]
 			},
 			"hasFluffImages": true
@@ -2502,6 +4549,7 @@
 		},
 		{
 			"name": "Luck Blade",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -2530,6 +4578,9 @@
 				"source": "DMG",
 				"page": 179,
 				"srd": true,
+				"reprintedAs": [
+					"Luck Blade|XDMG"
+				],
 				"tier": "major",
 				"rarity": "legendary",
 				"reqAttune": true,
@@ -2563,6 +4614,71 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Luck Blade",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"name": "Glaive",
+					"source": "XPHB"
+				},
+				{
+					"name": "Greatsword",
+					"source": "XPHB"
+				},
+				{
+					"name": "Longsword",
+					"source": "XPHB"
+				},
+				{
+					"name": "Rapier",
+					"source": "XPHB"
+				},
+				{
+					"name": "Scimitar",
+					"source": "XPHB"
+				},
+				{
+					"name": "Sickle",
+					"source": "XPHB"
+				},
+				{
+					"name": "Shortsword",
+					"source": "XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Luck ",
+				"source": "XDMG",
+				"page": 275,
+				"rarity": "legendary",
+				"reqAttune": true,
+				"bonusWeapon": "+1",
+				"bonusSavingThrow": "+1",
+				"charges": "{@dice 1d3}",
+				"entries": [
+					"You gain a +1 bonus to attack rolls and damage rolls made with this magic weapon. While the weapon is on your person, you also gain a {=bonusSavingThrow} bonus to saving throws.",
+					{
+						"type": "entries",
+						"name": "Luck",
+						"entries": [
+							"If the weapon is on your person, you can call on its luck (no action required) to reroll one failed {@variantrule D20 Test|XPHB} if you don't have the {@condition Incapacitated|XPHB} condition. You must use the second roll. Once used, this property can't be used again until the next dawn."
+						]
+					},
+					{
+						"type": "entries",
+						"name": "Wish",
+						"entries": [
+							"The weapon has {@dice 1d3} charges. While holding it, you can expend 1 charge and cast {@spell Wish|XPHB} from it. Once used, this property can't be used again until the next dawn. The weapon loses this property if it has no charges."
+						]
+					}
+				],
+				"attachedSpells": [
+					"wish|xphb"
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
 			"name": "Lycan Weapon",
 			"type": "GV|DMG",
 			"requires": [
@@ -2584,6 +4700,7 @@
 		},
 		{
 			"name": "Mariner's Armor",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -2594,6 +4711,9 @@
 				"namePrefix": "Mariner's ",
 				"source": "DMG",
 				"page": 181,
+				"reprintedAs": [
+					"Mariner's Armor|XDMG"
+				],
 				"tier": "minor",
 				"rarity": "uncommon",
 				"modifySpeed": {
@@ -2606,6 +4726,31 @@
 				],
 				"lootTables": [
 					"Magic Item Table B"
+				]
+			}
+		},
+		{
+			"name": "Mariner's Armor",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "LA|XPHB"
+				},
+				{
+					"type": "MA|XPHB"
+				},
+				{
+					"type": "HA|XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Mariner's ",
+				"source": "XDMG",
+				"page": 278,
+				"rarity": "uncommon",
+				"entries": [
+					"While wearing this armor, you have a {@variantrule Swim Speed|XPHB} equal to your {@variantrule Speed|XPHB}. In addition, if you start your turn underwater with 0 {@variantrule Hit Points|XPHB}, you immediately regain {@dice 1d4} {@variantrule Hit Points|XPHB}. The armor can't heal anyone again until the next dawn.",
+					"The armor is decorated with fish and shell motifs."
 				]
 			}
 		},
@@ -2686,6 +4831,7 @@
 		},
 		{
 			"name": "Mithral Armor",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -2709,6 +4855,9 @@
 				"source": "DMG",
 				"page": 182,
 				"srd": true,
+				"reprintedAs": [
+					"Mithral Armor|XDMG"
+				],
 				"tier": "minor",
 				"rarity": "uncommon",
 				"strength": null,
@@ -2718,6 +4867,32 @@
 				],
 				"lootTables": [
 					"Magic Item Table B"
+				]
+			}
+		},
+		{
+			"name": "Mithral Armor",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "MA|XPHB"
+				},
+				{
+					"type": "HA|XPHB"
+				}
+			],
+			"excludes": {
+				"name": "Hide Armor"
+			},
+			"inherits": {
+				"namePrefix": "Mithral ",
+				"source": "XDMG",
+				"page": 279,
+				"freeRules2024": true,
+				"rarity": "uncommon",
+				"entries": [
+					"Mithral is a light, flexible metal. A mithral chain shirt or breastplate can be worn under normal clothes.",
+					"If the armor normally imposes disadvantage on Dexterity ({@skill Stealth|XPHB}) checks or has a Strength requirement, the mithral version of the armor doesn't."
 				]
 			}
 		},
@@ -2786,6 +4961,7 @@
 		},
 		{
 			"name": "Moon-Touched Sword",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -2796,6 +4972,9 @@
 				"namePrefix": "Moon-Touched ",
 				"source": "XGE",
 				"page": 138,
+				"reprintedAs": [
+					"Moon-Touched Sword|XDMG"
+				],
 				"tier": "minor",
 				"rarity": "common",
 				"entries": [
@@ -2804,7 +4983,131 @@
 			}
 		},
 		{
+			"name": "Moon-Touched Sword",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"sword": true
+				}
+			],
+			"inherits": {
+				"namePrefix": "Moon-Touched ",
+				"source": "XDMG",
+				"page": 280,
+				"rarity": "common",
+				"entries": [
+					"In {@variantrule Darkness|XPHB}, the unsheathed blade of this weapon sheds moonlight, creating {@variantrule Bright Light|XPHB} in a 15-foot radius and {@variantrule Dim Light|XPHB} for an additional 15 feet."
+				]
+			}
+		},
+		{
+			"name": "Moonblade",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"name": "Greatsword",
+					"source": "XPHB"
+				},
+				{
+					"name": "Longsword",
+					"source": "XPHB"
+				},
+				{
+					"name": "Rapier",
+					"source": "XPHB"
+				},
+				{
+					"name": "Scimitar",
+					"source": "XPHB"
+				},
+				{
+					"name": "Shortsword",
+					"source": "XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Moonblade ",
+				"source": "XDMG",
+				"page": 279,
+				"rarity": "legendary",
+				"reqAttune": "by a creature of the weapon's choice",
+				"sentient": true,
+				"bonusWeapon": "+1",
+				"entries": [
+					"Of all the magic items created by elves, one of the most prized and jealously guarded is a Moonblade. In ancient times, nearly all elven noble houses claimed one such weapon. Over the centuries, some of these weapons have faded from the world, their magic lost as family lines have become extinct. Others have vanished with their bearers during great quests. Thus, only a few of these weapons remain.",
+					"Every Moonblade longs for a bearer whose disposition and goals are compatible with its own. If you try to attune to a Moonblade that doesn't want you as its bearer, the weapon not only rejects you but also places a curse on you, causing you to make {@dice D20} Tests with {@variantrule Disadvantage|XPHB} for 24 hours or until the curse is ended by a {@spell Remove Curse|XPHB} spell or similar magic. If you're accepted by the weapon and try to attune to it, you become attuned to it instantly, and a new rune appears on it. You remain attuned to the weapon until you die or the weapon is destroyed. A Moonblade functions like a nonmagical weapon of its kind for anyone other than its chosen bearer.",
+					"A Moonblade has one rune on it for each bearer it has willingly served (typically {@dice 1d6 + 1}). The first rune grants a +1 bonus to attack rolls and damage rolls made with this magic weapon. Each rune beyond the first grants the Moonblade an additional property. The DM chooses each property or determines it randomly by rolling on the Moonblade Properties table.",
+					{
+						"type": "entries",
+						"name": "Minor Property",
+						"entries": [
+							"In addition to its aforementioned properties, each Moonblade has a minor property determined by rolling on the {@action Magic|XPHB} Item's Minor Property table."
+						]
+					},
+					{
+						"type": "entries",
+						"name": "Sentience",
+						"entries": [
+							"A Moonblade is a sentient weapon with an Intelligence of 12, a Wisdom of 10, and a Charisma of 12. It has hearing and {@sense Darkvision|XPHB} out to 120 feet. Its alignment matches that of its creator.",
+							"The weapon communicates by transmitting emotions, sending a tingling sensation through the wielder's hand when it wants to communicate something it has sensed. It can communicate through visions or dreams when the wielder is either in a trance or asleep."
+						]
+					},
+					{
+						"type": "entries",
+						"name": "Personality",
+						"entries": [
+							"A Moonblade has a personality similar to that of its creator. Once a Moonblade has decided on an owner, it believes that only that person should wield it, even if the bearer's alignment differs from that of the weapon's or the bearer's goals later clash with the weapon's goals."
+						]
+					},
+					{
+						"type": "table",
+						"caption": "Moonblade Properties",
+						"colStyles": [
+							"col-2 text-center",
+							"col-10"
+						],
+						"colLabels": [
+							"1d100",
+							"Property"
+						],
+						"rows": [
+							[
+								"01-60",
+								"Increase the weapon's bonus to attack rolls and damage rolls by 1, to a maximum of +3. Reroll if the {@i Moonblade} already has a +3 bonus."
+							],
+							[
+								"61-75",
+								"When you hit with an attack roll using the {@i Moonblade}, you deal an extra {@damage 1d6} Force damage. Each time the weapon gains this property after the first, the extra damage increases by {@dice 1d6}, to a maximum of {@dice 3d6}. Reroll if the {@i Moonblade} already deals an extra {@damage 3d6} Force damage on a hit."
+							],
+							[
+								"76-80",
+								"The {@i Moonblade} gains {@itemProperty T|XPHB|Thrown} with a normal range of 20 feet and a long range of 60 feet. Each time you throw the weapon, it flies back to your hand after the attack."
+							],
+							[
+								"81-85",
+								"The {@i Moonblade} scores a {@variantrule Critical Hit|XPHB} on a roll of 19 or 20 on the {@dice d20}."
+							],
+							[
+								"86-95",
+								"You can take a {@variantrule Bonus Action|XPHB} to cause the {@i Moonblade} to flash brightly. Each other creature that is within 30 feet of you and not behind {@variantrule Cover|XPHB|Total Cover} must succeed on a DC 15 Constitution saving throw or have the {@condition Blinded|XPHB} condition for 1 minute. A creature repeats the save at the end of each of its turns, ending the effect on itself on a success. You can't use this property again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
+							],
+							[
+								"96-99",
+								"The Moonblade has the properties of a {@item Ring of Spell Storing|XDMG}."
+							],
+							[
+								"100",
+								"You can take a {@action Magic|XPHB} action to conjure a spectral entity that resembles a shadowy elf if you don't already have one serving you. The entity appears in an unoccupied space within 120 feet of you. It uses the {@creature Shadow|XMM} stat block with these changes: it is a Fey, has a Neutral alignment, and doesn't create new shadows. You control this entity, deciding how it acts and moves. It remains until it drops to 0 {@variantrule Hit Points|XPHB} or you dismiss it as a {@action Magic|XPHB} action."
+							]
+						]
+					}
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
 			"name": "Nine Lives Stealer",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -2816,6 +5119,9 @@
 				"source": "DMG",
 				"page": 183,
 				"srd": true,
+				"reprintedAs": [
+					"Nine Lives Stealer|XDMG"
+				],
 				"tier": "major",
 				"rarity": "very rare",
 				"reqAttune": true,
@@ -2827,6 +5133,67 @@
 				],
 				"lootTables": [
 					"Magic Item Table H"
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Nine Lives Stealer",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"weaponCategory": "simple"
+				},
+				{
+					"weaponCategory": "martial"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Nine Lives Stealer ",
+				"source": "XDMG",
+				"page": 281,
+				"freeRules2024": true,
+				"rarity": "very rare",
+				"reqAttune": true,
+				"bonusWeapon": "+2",
+				"charges": "{@dice 1d8 + 1}",
+				"entries": [
+					"You gain a +2 bonus to attack rolls and damage rolls made with this magic weapon.",
+					{
+						"type": "entries",
+						"name": "Life Stealing",
+						"entries": [
+							"The weapon has {@dice 1d8 + 1} charges. When you attack a creature that has fewer than 100 {@variantrule Hit Points|XPHB} with this weapon and roll a 20 on the {@dice d20} for the attack roll, the creature must succeed on a DC 15 Constitution saving throw or be slain instantly as the sword tears its life force from its body. Constructs and Undead succeed on the save automatically. The weapon loses 1 charge if the creature is slain. When the weapon has no charges remaining, it loses this property."
+						]
+					}
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Oathbow",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"name": "Longbow",
+					"source": "XPHB"
+				},
+				{
+					"name": "Shortbow",
+					"source": "XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Oath ",
+				"source": "XDMG",
+				"page": 282,
+				"freeRules2024": true,
+				"rarity": "very rare",
+				"reqAttune": true,
+				"entries": [
+					"When you nock an arrow on this bow, it whispers in Elvish, \"Swift defeat to my enemies.\" When you use this weapon to make a ranged attack, you can utter or sign the following command words: \"Swift death to you who have wronged me.\" The target of your attack becomes your sworn enemy until it dies or until dawn 7 days later. You can have only one such sworn enemy at a time. When your sworn enemy dies, you can choose a new one after the next dawn.",
+					"When you make a ranged attack roll with this weapon against your sworn enemy, you have {@variantrule Advantage|XPHB} on the roll. In addition, your target gains no benefit from {@variantrule Cover|XPHB|Half Cover} or {@variantrule Cover|XPHB|Three-Quarters Cover}, and you suffer no {@variantrule Disadvantage|XPHB} due to long range. If the attack hits, your sworn enemy takes an extra {@damage 3d6} Piercing damage.",
+					"While your sworn enemy lives, you have {@variantrule Disadvantage|XPHB} on attack rolls with all other weapons."
 				]
 			},
 			"hasFluffImages": true
@@ -2845,8 +5212,7 @@
 					"type": "R|XPHB"
 				},
 				{
-					"property": "T",
-					"type": "T|XPHB"
+					"property": "T|XPHB"
 				}
 			],
 			"excludes": {
@@ -3135,6 +5501,33 @@
 				"entries": [
 					"An orb of shielding is a polished, spherical chunk of crystal or stone aligned to one of the planes of existence. If you're a spellcaster, you can use this orb as a spellcasting focus.",
 					"If you're holding the orb when you take psychic damage, you can use your reaction to reduce the damage by {@dice 1d4} (to a minimum of 0)."
+				]
+			}
+		},
+		{
+			"name": "Plate Armor of Etherealness",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"name": "Half Plate Armor",
+					"source": "XPHB"
+				},
+				{
+					"name": "Plate Armor",
+					"source": "XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": " of Etherealness",
+				"source": "XDMG",
+				"page": 286,
+				"rarity": "legendary",
+				"reqAttune": true,
+				"entries": [
+					"While you're wearing this armor, you can take a {@action Magic|XPHB} action and use a command word to gain the effect of the {@spell Etherealness|XPHB} spell. The spell ends immediately if you remove the armor or take a {@action Magic|XPHB} action to repeat the command word. This property of the armor can't be used again until the next dawn."
+				],
+				"attachedSpells": [
+					"etherealness|xphb"
 				]
 			}
 		},
@@ -3435,6 +5828,7 @@
 		},
 		{
 			"name": "Silvered Weapon",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -3452,9 +5846,33 @@
 				"source": "PHB",
 				"page": 148,
 				"basicRules": true,
+				"reprintedAs": [
+					"Silvered Weapon|XDMG"
+				],
 				"tier": "major",
 				"rarity": "unknown",
 				"valueExpression": "[[baseItem.value]] + 10000"
+			}
+		},
+		{
+			"name": "Silvered Weapon",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"weaponCategory": "simple"
+				},
+				{
+					"weaponCategory": "martial"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Silvered ",
+				"source": "XDMG",
+				"page": 304,
+				"rarity": "common",
+				"entries": [
+					"An alchemical process has bonded silver to this magic weapon. When you score a {@variantrule Critical Hit|XPHB} with it against a creature that is shape-shifted, the weapon deals one additional die of damage."
+				]
 			}
 		},
 		{
@@ -3479,6 +5897,7 @@
 		},
 		{
 			"name": "Smoldering Armor",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -3489,7 +5908,34 @@
 				"namePrefix": "Smoldering ",
 				"source": "XGE",
 				"page": 139,
+				"reprintedAs": [
+					"Smoldering Armor|XDMG"
+				],
 				"tier": "minor",
+				"rarity": "common",
+				"entries": [
+					"Wisps of harmless, odorless smoke rise from this armor while it is worn."
+				]
+			}
+		},
+		{
+			"name": "Smoldering Armor",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "LA|XPHB"
+				},
+				{
+					"type": "MA|XPHB"
+				},
+				{
+					"type": "HA|XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Smoldering ",
+				"source": "XDMG",
+				"page": 305,
 				"rarity": "common",
 				"entries": [
 					"Wisps of harmless, odorless smoke rise from this armor while it is worn."
@@ -3640,6 +6086,7 @@
 		},
 		{
 			"name": "Sword of Life Stealing",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -3651,6 +6098,9 @@
 				"source": "DMG",
 				"page": 206,
 				"srd": true,
+				"reprintedAs": [
+					"Sword of Life Stealing|XDMG"
+				],
 				"tier": "major",
 				"rarity": "rare",
 				"reqAttune": true,
@@ -3660,6 +6110,47 @@
 				],
 				"lootTables": [
 					"Magic Item Table G"
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Sword of Life Stealing",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"name": "Glaive",
+					"source": "XPHB"
+				},
+				{
+					"name": "Greatsword",
+					"source": "XPHB"
+				},
+				{
+					"name": "Longsword",
+					"source": "XPHB"
+				},
+				{
+					"name": "Rapier",
+					"source": "XPHB"
+				},
+				{
+					"name": "Scimitar",
+					"source": "XPHB"
+				},
+				{
+					"name": "Shortsword",
+					"source": "XPHB"
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Life Stealing",
+				"source": "XDMG",
+				"page": 314,
+				"rarity": "rare",
+				"reqAttune": true,
+				"entries": [
+					"When you attack a creature with this magic weapon and roll a 20 on the {@dice d20} for the attack roll, that target takes an extra 15 Necrotic damage if it isn't a Construct or an Undead, and you gain {@variantrule Temporary Hit Points|XPHB} equal to the amount of Necrotic damage taken."
 				]
 			},
 			"hasFluffImages": true
@@ -3702,6 +6193,7 @@
 		},
 		{
 			"name": "Sword of Sharpness",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -3714,6 +6206,9 @@
 				"source": "DMG",
 				"page": 206,
 				"srd": true,
+				"reprintedAs": [
+					"Sword of Sharpness|XDMG"
+				],
 				"tier": "major",
 				"rarity": "very rare",
 				"reqAttune": true,
@@ -3725,6 +6220,40 @@
 				],
 				"lootTables": [
 					"Magic Item Table H"
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Sword of Sharpness",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"name": "Glaive",
+					"source": "XPHB"
+				},
+				{
+					"name": "Greatsword",
+					"source": "XPHB"
+				},
+				{
+					"name": "Longsword",
+					"source": "XPHB"
+				},
+				{
+					"name": "Scimitar",
+					"source": "XPHB"
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Sharpness",
+				"source": "XDMG",
+				"page": 314,
+				"rarity": "very rare",
+				"reqAttune": true,
+				"entries": [
+					"When you attack an object with this magic weapon and hit, maximize your weapon damage dice against the target.",
+					"When you attack a creature with this weapon and roll a 20 on the {@dice d20} for the attack roll, that target takes an extra 14 Slashing damage and gains 1 {@condition Exhaustion|XPHB} level."
 				]
 			},
 			"hasFluffImages": true
@@ -3755,6 +6284,7 @@
 		},
 		{
 			"name": "Sword of Vengeance",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -3765,6 +6295,9 @@
 				"nameSuffix": " of Vengeance",
 				"source": "DMG",
 				"page": 206,
+				"reprintedAs": [
+					"Sword of Vengeance|XDMG"
+				],
 				"tier": "major",
 				"rarity": "uncommon",
 				"reqAttune": true,
@@ -3788,7 +6321,59 @@
 			}
 		},
 		{
+			"name": "Sword of Vengeance",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"name": "Glaive",
+					"source": "XPHB"
+				},
+				{
+					"name": "Greatsword",
+					"source": "XPHB"
+				},
+				{
+					"name": "Longsword",
+					"source": "XPHB"
+				},
+				{
+					"name": "Rapier",
+					"source": "XPHB"
+				},
+				{
+					"name": "Scimitar",
+					"source": "XPHB"
+				},
+				{
+					"name": "Shortsword",
+					"source": "XPHB"
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Vengeance",
+				"source": "XDMG",
+				"page": 206,
+				"rarity": "uncommon",
+				"reqAttune": true,
+				"curse": true,
+				"bonusWeapon": "+1",
+				"entries": [
+					"You gain a +1 bonus to attack rolls and damage rolls made with this magic weapon.",
+					{
+						"type": "entries",
+						"name": "Curse",
+						"entries": [
+							"This weapon is cursed and possessed by a vengeful spirit. Becoming attuned to it extends the curse to you. As long as you remain cursed, you are unwilling to part with the weapon, keeping it on your person at all times. While attuned to this weapon, you have {@variantrule Disadvantage|XPHB} on attack rolls made with weapons other than this one.",
+							"In addition, while the weapon is on your person, you must succeed on a DC 15 Wisdom saving throw whenever you take damage from another creature in combat. On a failed save, you must attack the creature that damaged you until you drop to 0 {@variantrule Hit Points|XPHB} or it does or until you can't reach the creature to make a melee attack against it.",
+							"You can break the curse in the usual ways. Alternatively, casting {@spell Banishment|XPHB} on the weapon forces the vengeful spirit to leave it. The weapon then becomes a +1 Weapon with no other properties."
+						]
+					}
+				]
+			}
+		},
+		{
 			"name": "Sword of Wounding",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -3800,6 +6385,9 @@
 				"source": "DMG",
 				"page": 207,
 				"srd": true,
+				"reprintedAs": [
+					"Sword of Wounding|XDMG"
+				],
 				"tier": "major",
 				"rarity": "rare",
 				"reqAttune": true,
@@ -3809,6 +6397,96 @@
 				],
 				"lootTables": [
 					"Magic Item Table G"
+				]
+			}
+		},
+		{
+			"name": "Sword of Wounding",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"name": "Glaive",
+					"source": "XPHB"
+				},
+				{
+					"name": "Greatsword",
+					"source": "XPHB"
+				},
+				{
+					"name": "Longsword",
+					"source": "XPHB"
+				},
+				{
+					"name": "Rapier",
+					"source": "XPHB"
+				},
+				{
+					"name": "Scimitar",
+					"source": "XPHB"
+				},
+				{
+					"name": "Shortsword",
+					"source": "XPHB"
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Wounding",
+				"source": "XDMG",
+				"page": 314,
+				"rarity": "rare",
+				"reqAttune": true,
+				"entries": [
+					"When you hit a creature with an attack using this magic weapon, the target takes an extra {@damage 2d6} Necrotic damage and must succeed on a DC 15 Constitution saving throw or be unable to regain {@variantrule Hit Points|XPHB} for 1 hour. The target repeats the save at the end of each of its turns, ending the effect on itself on a success."
+				]
+			}
+		},
+		{
+			"name": "Sylvan Talon",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"name": "Dagger",
+					"source": "XPHB"
+				},
+				{
+					"name": "Rapier",
+					"source": "XPHB"
+				},
+				{
+					"name": "Scimitar",
+					"source": "XPHB"
+				},
+				{
+					"name": "Shortsword",
+					"source": "XPHB"
+				},
+				{
+					"name": "Sickle",
+					"source": "XPHB"
+				},
+				{
+					"name": "Spear",
+					"source": "XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Sylvan Talon ",
+				"source": "XDMG",
+				"page": 314,
+				"rarity": "common",
+				"reqAttune": true,
+				"entries": [
+					"While this weapon is on your person, you understand the nonwritten communication of all Fey, and they understand yours.",
+					{
+						"type": "entries",
+						"name": "Secret Message",
+						"entries": [
+							"As a {@action Magic|XPHB} action, you can use the weapon to cast {@spell Message|XPHB}. Once this property is used, it can't be used again until the next dawn."
+						]
+					}
+				],
+				"attachedSpells": [
+					"message|xphb"
 				]
 			}
 		},
@@ -3842,6 +6520,7 @@
 		},
 		{
 			"name": "Vicious Weapon",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -3860,6 +6539,9 @@
 				"source": "DMG",
 				"page": 209,
 				"srd": true,
+				"reprintedAs": [
+					"Vicious Weapon|XDMG"
+				],
 				"tier": "major",
 				"rarity": "rare",
 				"entries": [
@@ -3873,7 +6555,29 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Vicious Weapon",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"weaponCategory": "simple"
+				},
+				{
+					"weaponCategory": "martial"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Vicious ",
+				"source": "XDMG",
+				"page": 318,
+				"rarity": "rare",
+				"entries": [
+					"This magic weapon deals an extra {@damage 2d6} damage to any creature it hits. This extra damage is of the same type as the weapon's normal damage."
+				]
+			}
+		},
+		{
 			"name": "Vorpal Sword",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -3886,6 +6590,9 @@
 				"source": "DMG",
 				"page": 209,
 				"srd": true,
+				"reprintedAs": [
+					"Vorpal Sword|XDMG"
+				],
 				"tier": "major",
 				"rarity": "legendary",
 				"reqAttune": true,
@@ -3896,6 +6603,41 @@
 				],
 				"lootTables": [
 					"Magic Item Table I"
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Vorpal Sword",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"name": "Glaive",
+					"source": "XPHB"
+				},
+				{
+					"name": "Greatsword",
+					"source": "XPHB"
+				},
+				{
+					"name": "Longsword",
+					"source": "XPHB"
+				},
+				{
+					"name": "Scimitar",
+					"source": "XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Vorpal ",
+				"source": "XDMG",
+				"page": 318,
+				"rarity": "legendary",
+				"reqAttune": true,
+				"bonusWeapon": "+3",
+				"entries": [
+					"You gain a +3 bonus to attack rolls and damage rolls made with this magic weapon. In addition, the weapon ignores {@variantrule Resistance|XPHB} to Slashing damage.",
+					"When you use this weapon to attack a creature that has at least one head and roll a 20 on the {@dice d20} for the attack roll, you cut off one of the creature's heads. The creature dies if it can't survive without the lost head. A creature is immune to this effect if it has {@variantrule Immunity|XPHB} to Slashing damage, if it doesn't have or need a head, or if the DM decides that the creature is too big for its head to be cut off with this weapon. Such a creature instead takes an extra 30 Slashing damage from the hit. If the creature has Legendary {@variantrule Resistance|XPHB}, it can expend one daily use of that trait to avoid losing its head, taking the extra damage instead."
 				]
 			},
 			"hasFluffImages": true
@@ -3925,6 +6667,7 @@
 		},
 		{
 			"name": "Walloping Ammunition",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -3945,10 +6688,35 @@
 				"namePrefix": "Walloping ",
 				"source": "XGE",
 				"page": 139,
+				"reprintedAs": [
+					"Walloping Ammunition|XDMG"
+				],
 				"tier": "minor",
 				"rarity": "common",
 				"entries": [
 					" This ammunition packs a wallop. A creature hit by the ammunition must succeed on a DC 10 Strength saving throw or be knocked {@condition prone}."
+				]
+			}
+		},
+		{
+			"name": "Walloping Ammunition",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"type": "A|XPHB"
+				},
+				{
+					"type": "AF|XDMG"
+				}
+			],
+			"ammo": true,
+			"inherits": {
+				"namePrefix": "Walloping ",
+				"source": "XDMG",
+				"page": 318,
+				"rarity": "common",
+				"entries": [
+					"A creature hit by this ammunition must succeed on a DC 10 Strength saving throw or have the {@condition Prone|XPHB} condition."
 				]
 			}
 		},
@@ -4037,6 +6805,7 @@
 		},
 		{
 			"name": "Weapon of Warning",
+			"edition": "classic",
 			"type": "GV|DMG",
 			"requires": [
 				{
@@ -4047,6 +6816,9 @@
 				"nameSuffix": " of Warning",
 				"source": "DMG",
 				"page": 213,
+				"reprintedAs": [
+					"Weapon of Warning|XDMG"
+				],
 				"tier": "major",
 				"rarity": "uncommon",
 				"reqAttune": true,
@@ -4055,6 +6827,43 @@
 				],
 				"lootTables": [
 					"Magic Item Table F"
+				]
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Weapon of Warning",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"weaponCategory": "simple"
+				},
+				{
+					"weaponCategory": "martial"
+				}
+			],
+			"inherits": {
+				"nameSuffix": " of Warning",
+				"source": "XDMG",
+				"page": 324,
+				"rarity": "uncommon",
+				"reqAttune": true,
+				"entries": [
+					"As long as this weapon is within your reach and you are attuned to it, you and allies within 30 feet of you gain the following benefits.",
+					{
+						"type": "entries",
+						"name": "Alarm",
+						"entries": [
+							"The weapon magically awakens each subject who is sleeping naturally when combat begins. This benefit doesn't wake a subject from magically induced sleep."
+						]
+					},
+					{
+						"type": "entries",
+						"name": "Supernatural Readiness",
+						"entries": [
+							"Each subject has {@variantrule Advantage|XPHB} on its {@variantrule Initiative|XPHB} rolls."
+						]
+					}
 				]
 			},
 			"hasFluffImages": true

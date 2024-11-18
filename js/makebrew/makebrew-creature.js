@@ -2166,7 +2166,7 @@ export class CreatureBuilder extends BuilderBase {
 				cb();
 			});
 
-		const $btnAuto = $(`<button class="ve-btn ve-btn-xs ve-btn-default ${this._meta.autoCalc.proficiency ? "active" : ""}" title="Auto-calculate from Challenge Rating (DMG p. 274)"><span class="glyphicon glyphicon-refresh"></span></button>`)
+		const $btnAuto = $(`<button class="ve-btn ve-btn-xs ve-btn-default ${this._meta.autoCalc.proficiency ? "active" : ""}" title="Auto-calculate from Challenge Rating (DMG'14 p. 274)"><span class="glyphicon glyphicon-refresh"></span></button>`)
 			.click(() => {
 				if (this._meta.autoCalc.proficiency) {
 					this._meta.autoCalc.proficiency = false;

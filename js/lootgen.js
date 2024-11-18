@@ -1,6 +1,8 @@
-"use strict";
+import {LootGenUi} from "./lootgen/lootgen-ui.js";
 
 class LootGenPage {
+	static _STORAGE_KEY_STATE = "state";
+
 	constructor () {
 		this._lootGenUi = null;
 	}
@@ -74,8 +76,7 @@ class LootGenPage {
 		await StorageUtil.pSetForPage(LootGenPage._STORAGE_KEY_STATE, statGenState);
 	}
 }
-LootGenPage._STORAGE_KEY_STATE = "state";
 
 const lootGenPage = new LootGenPage();
-
 window.addEventListener("load", () => void lootGenPage.pInit());
+globalThis.dbg_lootGenPage = lootGenPage;

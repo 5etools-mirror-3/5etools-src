@@ -631,10 +631,10 @@ export class ArtifactPropertiesTag {
 				const mode = m[0].trim().toLowerCase();
 
 				switch (mode) {
-					case "major beneficial": return `{@table Artifact Properties; Major Beneficial Properties|dmg|${m[0]}}`;
-					case "minor beneficial": return `{@table Artifact Properties; Minor Beneficial Properties|dmg|${m[0]}}`;
-					case "major detrimental": return `{@table Artifact Properties; Major Detrimental Properties|dmg|${m[0]}}`;
-					case "minor detrimental": return `{@table Artifact Properties; Minor Detrimental Properties|dmg|${m[0]}}`;
+					case "major beneficial": return `{@table Artifact Properties; Major Beneficial Properties|${opts.styleHint === SITE_STYLE__CLASSIC ? Parser.SRC_DMG : Parser.SRC_XDMG}|${m[0]}}`;
+					case "minor beneficial": return `{@table Artifact Properties; Minor Beneficial Properties|${opts.styleHint === SITE_STYLE__CLASSIC ? Parser.SRC_DMG : Parser.SRC_XDMG}|${m[0]}}`;
+					case "major detrimental": return `{@table Artifact Properties; Major Detrimental Properties|${opts.styleHint === SITE_STYLE__CLASSIC ? Parser.SRC_DMG : Parser.SRC_XDMG}|${m[0]}}`;
+					case "minor detrimental": return `{@table Artifact Properties; Minor Detrimental Properties|${opts.styleHint === SITE_STYLE__CLASSIC ? Parser.SRC_DMG : Parser.SRC_XDMG}|${m[0]}}`;
 				}
 			}),
 		});

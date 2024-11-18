@@ -34,6 +34,7 @@ class ActionsSublistManager extends SublistManager {
 			it.name,
 			{
 				hash,
+				page: it.page,
 				time,
 			},
 			{
@@ -87,6 +88,7 @@ class ActionsPage extends ListPage {
 			{
 				hash,
 				source,
+				page: it.page,
 				time,
 			},
 			{

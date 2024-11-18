@@ -81,6 +81,8 @@ export class EncounterBuilderUi extends BaseComponent {
 		} = this._render_randomAndAdjust_getAdjustMeta();
 
 		$$($parentRandomAndAdjust)`<div class="ve-flex-col">
+			<div class="ve-flex-h-right mb-3">${Renderer.get().render(`{@note Based on the encounter building rules in the {@book ${Parser.sourceJsonToFull(Parser.SRC_DMG)}|DMG|3|Creating a Combat Encounter}}`)}</div>
+
 			<div class="ve-flex-h-right">
 				<div class="ve-btn-group mr-3">
 					${$btnRandom}

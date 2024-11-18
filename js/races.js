@@ -43,6 +43,7 @@ class RacesSublistManager extends SublistManager {
 			race.name,
 			{
 				hash,
+				page: race.page,
 				ability: race._slAbility,
 			},
 			{
@@ -113,9 +114,10 @@ class RacesPage extends ListPage {
 			race.name,
 			{
 				hash,
+				source,
+				page: race.page,
 				ability: race._slAbility,
 				size,
-				source,
 				cleanName: PageFilterRaces.getInvertedName(race.name) || "",
 				alias: PageFilterRaces.getListAliases(race),
 			},

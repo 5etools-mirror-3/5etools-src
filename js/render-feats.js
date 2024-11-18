@@ -145,7 +145,7 @@ class _RenderFeatsImplOne extends _RenderFeatsImplBase {
 			
 			${htmlPtPrerequisites}
 			
-			<tr class="text"><td colspan="6">
+			<tr><td colspan="6">
 				${htmlPtEntries}
 			</td></tr>
 			

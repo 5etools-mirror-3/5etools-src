@@ -1,0 +1,142 @@
+{
+	"monster": [
+		{
+			"name": "Avatar of Death",
+			"source": "XDMG",
+			"page": 252,
+			"size": [
+				"M"
+			],
+			"type": "undead",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				20
+			],
+			"hp": {
+				"special": "Half the HP maximum of its summoner"
+			},
+			"speed": {
+				"walk": 60,
+				"fly": {
+					"number": 60,
+					"condition": "(hover)"
+				},
+				"canHover": true
+			},
+			"str": 16,
+			"dex": 16,
+			"con": 16,
+			"int": 16,
+			"wis": 16,
+			"cha": 16,
+			"senses": [
+				"truesight 60 ft."
+			],
+			"passive": 13,
+			"immune": [
+				"necrotic",
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"petrified",
+				"poisoned",
+				"unconscious"
+			],
+			"languages": [
+				"all languages known to its summoner"
+			],
+			"pbNote": "equals its summoner's",
+			"trait": [
+				{
+					"name": "Incorporeal Movement",
+					"entries": [
+						"The avatar can move through other creatures and objects as if they were Difficult Terrain. It takes 5 ({@damage 1d10}) Force damage if it ends its turn inside an object."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The avatar makes a number of Reaping Scythe attacks equal to half the summoner's Proficiency Bonus (rounded up)."
+					]
+				},
+				{
+					"name": "Reaping Scythe",
+					"entries": [
+						"{@atkr m} Automatic hit, reach 5 ft. {@h}7 ({@damage 1d8 + 3}) Slashing damage plus 4 ({@damage 1d8}) Necrotic damage."
+					]
+				}
+			],
+			"traitTags": [
+				"Incorporeal Movement"
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"XX"
+			],
+			"damageTags": [
+				"N",
+				"O",
+				"S"
+			],
+			"miscTags": [
+				"MA"
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Giant Fly",
+			"source": "XDMG",
+			"page": 261,
+			"size": [
+				"L"
+			],
+			"type": "beast",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				11
+			],
+			"hp": {
+				"average": 19,
+				"formula": "3d10 + 3"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": 60
+			},
+			"str": 14,
+			"dex": 13,
+			"con": 13,
+			"int": 2,
+			"wis": 10,
+			"cha": 3,
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 10,
+			"cr": {
+				"cr": "0",
+				"xp": 0
+			},
+			"senseTags": [
+				"D"
+			],
+			"hasToken": true
+		}
+	]
+}

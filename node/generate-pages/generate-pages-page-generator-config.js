@@ -123,7 +123,7 @@ class _PageGeneratorCrcalculator extends PageGeneratorGeneric {
 	_filename = "page/template-page-crcalculator.hbs";
 	_page = "crcalculator.html";
 
-	_pageTitle = "CR Calculator";
+	_pageTitle = "CR Calculator (2014)";
 	_navbarDescription = "Easily build custom creatures.";
 
 	_stylesheets = [
@@ -242,9 +242,8 @@ class _PageGeneratorLootgen extends PageGeneratorGeneric {
 		"filter-spells.js",
 	];
 
-	_scripts = [
+	_scriptsModules = [
 		"lootgen.js",
-		"lootgen-ui.js",
 	];
 }
 

@@ -39,7 +39,7 @@ class SublistCellTemplate {
 	) {
 		this._name = name;
 		this._css = css;
-		this._colStyle = colStyle;
+		this._colStyle = colStyle || "";
 	}
 
 	get name () { return this._name; }

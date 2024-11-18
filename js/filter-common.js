@@ -124,6 +124,7 @@ class FilterCommon {
 		"spellcasting2020": "Spellcasting",
 		"spellcastingFeature": "Spellcasting",
 		"spellcastingPrepared": "Spellcasting",
+		"spellcastingFocus": "Spellcasting Focus",
 		"level": "Class", // We assume that any filter with meaningful level requirements will have these in a separate filter
 		"itemType": "Item Type",
 		"itemProperty": "Item Property",

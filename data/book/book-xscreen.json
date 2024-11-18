@@ -770,7 +770,7 @@
 							"rows": [
 								[
 									"{@variantrule Lightly Obscured|XPHB}",
-									"Creatures have {@variantrule Disadvantage|XPHB} on Wisdom ({@skill Perception}) checks that rely on sight",
+									"Creatures have {@variantrule Disadvantage|XPHB} on Wisdom ({@skill Perception|XPHB}) checks that rely on sight",
 									"{@variantrule Dim Light|XPHB}, patchy fog, moderate foliage"
 								],
 								[
@@ -786,37 +786,24 @@
 						{
 							"type": "table",
 							"caption": "Travel Pace",
-							"colLabelGroups": [
-								{
-									"colLabels": [
-										"",
-										"Pace"
-									]
-								},
-								{
-									"colLabels": [
-										"Distance Traveled Per...",
-										"Minute"
-									]
-								},
-								{
-									"colLabels": [
-										"",
-										"Hour"
-									]
-								},
-								{
-									"colLabels": [
-										"",
-										"Day"
-									]
-								},
-								{
-									"colLabels": [
-										"",
-										"Effect"
-									]
-								}
+							"colLabelRows": [
+								[
+									"",
+									{
+										"type": "cellHeader",
+										"width": 3,
+										"entry": "Distance Traveled Per...",
+										"style": "th-skewer"
+									},
+									""
+								],
+								[
+									"Pace",
+									"Minute",
+									"Hour",
+									"Day",
+									"Effect"
+								]
 							],
 							"colStyles": [
 								"col-2",

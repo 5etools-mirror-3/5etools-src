@@ -34,6 +34,7 @@ class ObjectsSublistManager extends SublistManager {
 			it.name,
 			{
 				hash,
+				page: it.page,
 				size,
 			},
 			{
@@ -91,6 +92,7 @@ class ObjectsPage extends ListPage {
 			{
 				hash,
 				source,
+				page: obj.page,
 				size,
 			},
 			{

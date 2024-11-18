@@ -340,7 +340,7 @@ class LinkCheck extends DataTesterBase {
 			}
 
 			const url = `${Renderer.tag.getPage(tag)}#${encoded}`.toLowerCase().trim();
-			if (TagTestUrlLookup.hasUrl(url)) return;
+			if (TagTestUrlLookup.hasUrl(url)) continue;
 
 			this._addMessage(`Missing link: ${isStatblock ? `(as "statblock" entry) ` : ""}${match[0]} in file ${filePath} (evaluates to "${url}")\n${TagTestUtil.getLogPtSimilarUrls({url})}`);
 		}
@@ -349,8 +349,11 @@ class LinkCheck extends DataTesterBase {
 	static _checkObject (obj, {filePath}) {
 		if (obj.type !== "statblock") return obj;
 
-		// TODO(Future) expand/tweak support as required
-		const asStr = `{@${obj.tag} ${obj.name}|${obj.source || ""}}`;
+		const prop = obj.prop || Parser.getTagProps(obj.tag)[0];
+		const tag = obj.tag || Parser.getPropTag(prop);
+		const sourceDefault = Renderer.tag.TAG_LOOKUP[tag].defaultSource;
+		const uid = DataUtil.proxy.getUid(prop, {...obj, source: obj.source || sourceDefault});
+		const asStr = `{@${tag} ${uid}}`;
 		this._checkString(asStr, {filePath, isStatblock: true});
 
 		return obj;
@@ -395,6 +398,7 @@ class ItemDataCheck extends GenericDataCheck {
 		const asUrls = arr
 			.map(it => {
 				if (it.item) it = it.item;
+				if (it.uid) it = it.uid;
 				if (it.special) return null;
 
 				return getEncoded(it, tag);
@@ -407,12 +411,13 @@ class ItemDataCheck extends GenericDataCheck {
 	}
 
 	static _checkArrayItemsExist (file, name, source, arr, prop, tag) {
-		arr.forEach(s => {
-			if (s.item) s = s.item;
-			if (s.special) return;
+		arr.forEach(it => {
+			if (it.item) it = it.item;
+			if (it.uid) it = it.uid;
+			if (it.special) return;
 
-			const url = getEncoded(s, tag);
-			if (!TagTestUrlLookup.hasUrl(url)) this._addMessage(`Missing link: ${s} in file ${file} (evaluates to "${url}") in "${prop}"\n${TagTestUtil.getLogPtSimilarUrls({url})}`);
+			const url = getEncoded(it, tag);
+			if (!TagTestUrlLookup.hasUrl(url)) this._addMessage(`Missing link: ${it} in file ${file} (evaluates to "${url}") in "${prop}"\n${TagTestUtil.getLogPtSimilarUrls({url})}`);
 		});
 	}
 
@@ -775,11 +780,11 @@ AreaCheck.fileMatcher = /\/(adventure-|book-).*\.json/;
 
 class LootDataCheck extends GenericDataCheck {
 	static pRun () {
-		function handleItem (it) {
-			const toCheck = typeof it === "string" ? {name: it, source: Parser.SRC_DMG} : it;
+		const handleItem = (it) => {
+			const toCheck = DataUtil.proxy.unpackUid("item", it, "item");
 			const url = `${Renderer.tag.getPage("item")}#${UrlUtil.encodeForHash([toCheck.name, toCheck.source])}`.toLowerCase().trim();
 			if (!TagTestUrlLookup.hasUrl(url)) this._addMessage(`Missing link: ${JSON.stringify(it)} in file "${LootDataCheck.file}" (evaluates to "${url}")\n${TagTestUtil.getLogPtSimilarUrls({url})}`);
-		}
+		};
 
 		const loot = ut.readJson(`./${LootDataCheck.file}`);
 		loot.magicItems.forEach(it => {
@@ -1604,7 +1609,7 @@ async function main () {
 		"./data",
 		ClazzDataTesters,
 		{
-			fnIsIgnoredFile: filePath => filePath.endsWith("changelog.json"),
+			fnIsIgnoredFile: filePath => filePath.endsWith("changelog.json") || filePath.includes("/generated/"),
 		},
 	);
 

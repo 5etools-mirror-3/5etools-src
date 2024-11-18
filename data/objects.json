@@ -4,6 +4,9 @@
 			"name": "Ballista",
 			"source": "DMG",
 			"page": 255,
+			"reprintedAs": [
+				"Ballista|XDMG"
+			],
 			"size": [
 				"L"
 			],
@@ -36,6 +39,29 @@
 				}
 			],
 			"hasToken": true
+		},
+		{
+			"name": "Ballista",
+			"source": "XDMG",
+			"page": 96,
+			"size": [
+				"L"
+			],
+			"objectType": "SW",
+			"ac": 15,
+			"hp": 50,
+			"entries": [
+				"A Ballista is a massive crossbow that fires heavy bolts. Loading a Ballista requires the {@action Utilize|XPHB} action, and aiming it requires another Utilize action. Then a crew member can take the Ballista Bolt action."
+			],
+			"actionEntries": [
+				{
+					"type": "entries",
+					"name": "Ballista Bolt (Requires Load and Aim)",
+					"entries": [
+						"{@atkr r} {@hit 6}, range 120/480 ft. {@h}16 ({@damage 3d10}) Piercing damage."
+					]
+				}
+			]
 		},
 		{
 			"name": "Boilerdrak",
@@ -77,6 +103,9 @@
 			"name": "Cannon",
 			"source": "DMG",
 			"page": 255,
+			"reprintedAs": [
+				"Cannon|XDMG"
+			],
 			"size": [
 				"L"
 			],
@@ -110,6 +139,29 @@
 				}
 			],
 			"hasToken": true
+		},
+		{
+			"name": "Cannon",
+			"source": "XDMG",
+			"page": 96,
+			"size": [
+				"L"
+			],
+			"objectType": "SW",
+			"ac": 19,
+			"hp": 75,
+			"entries": [
+				"A Cannon uses gunpowder or arcane power to propel heavy iron balls at destructive speeds. A Cannon is usually attached to a wooden frame with wheels. Loading a Cannon requires the {@action Utilize|XPHB} action, and aiming it requires another Utilize action. Then a crew member can take the Cannonball action."
+			],
+			"actionEntries": [
+				{
+					"type": "entries",
+					"name": "Cannonball (Requires Load and Aim)",
+					"entries": [
+						"{@atkr r} {@hit 6}, range 600/2,400 ft. {@h}44 ({@damage 8d10}) Bludgeoning damage."
+					]
+				}
+			]
 		},
 		{
 			"name": "Captain A-Hole",
@@ -317,6 +369,31 @@
 				}
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Flamethrower Coach",
+			"source": "XDMG",
+			"page": 96,
+			"size": [
+				"L"
+			],
+			"objectType": "SW",
+			"ac": 19,
+			"hp": 100,
+			"entries": [
+				"Powered by magic, this iron coach has a flamethrower turret mounted atop it.",
+				"The coach can accommodate up to two Medium creatures. An iron hatch in the vehicle's underbelly grants access. Narrow slits in the front, sides, and back of the coach allow its occupants to see outside. A creature in the coach has {@table Cover|XPHB|Three-Quarters Cover} against attacks and other effects that originate outside it.",
+				"The coach is designed for a crew of two: a driver and a gunner. The driver can take the {@action Utilize|XPHB} action to move and turn the coach, which has a Speed of 30 feet, using levers and pedals inside. The gunner can use the Flamethrower action to aim and fire it."
+			],
+			"actionEntries": [
+				{
+					"type": "entries",
+					"name": "Flamethrower",
+					"entries": [
+						"{@actSave dex} {@dc 15}, each creature in a 60-foot-long, 5-foot-wide {@variantrule Line [Area of Effect]|XPHB|Line}. {@actSaveFail} 14 ({@damage 4d6}) Fire damage, and the creature starts burning. {@actSaveSuccess} Half damage only."
+					]
+				}
+			]
 		},
 		{
 			"name": "Generic Object",
@@ -593,9 +670,60 @@
 			]
 		},
 		{
+			"name": "Keg Launcher",
+			"source": "XDMG",
+			"page": 96,
+			"size": [
+				"L"
+			],
+			"objectType": "SW",
+			"ac": 15,
+			"hp": 30,
+			"entries": [
+				"A back-mounted, wooden catapult flings small kegs of toxic gas. Loading a Keg Launcher requires the {@action Utilize|XPHB} action, and aiming it requires another Utilize action. Then a crew member can take the Toxic Keg action."
+			],
+			"actionEntries": [
+				{
+					"type": "entries",
+					"name": "Toxic Keg (Requires Load and Aim)",
+					"entries": [
+						"{@actSave con} {@dc 15}, each creature in a 20-foot-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on a point 30 to 300 feet from the launcher. {@actSaveFail} 14 ({@damage 4d6}) Poison damage. {@actSaveSuccess} Half damage."
+					]
+				}
+			],
+			"hasToken": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Lightning Cannon",
+			"source": "XDMG",
+			"page": 96,
+			"size": [
+				"M"
+			],
+			"objectType": "SW",
+			"ac": 19,
+			"hp": 30,
+			"entries": [
+				"A Lightning Cannon is a small, bronze cannon inlaid with arcane runes and mounted on a heavy tripod device. It launches balls of crackling electricity. Aiming a Lightning Cannon requires the {@action Utilize|XPHB} action, then a crew member can take the Lightning Ball action."
+			],
+			"actionEntries": [
+				{
+					"type": "entries",
+					"name": "Lightning Ball (Requires Aim)",
+					"entries": [
+						"{@atkr r} {@hit 6}, range 300/1,200 ft. {@h}22 ({@damage 4d10}) Lightning damage."
+					]
+				}
+			]
+		},
+		{
 			"name": "Mangonel",
 			"source": "DMG",
 			"page": 255,
+			"reprintedAs": [
+				"Mangonel|XDMG"
+			],
 			"size": [
 				"L"
 			],
@@ -631,9 +759,37 @@
 			"hasToken": true
 		},
 		{
+			"name": "Mangonel",
+			"source": "XDMG",
+			"page": 97,
+			"size": [
+				"L"
+			],
+			"objectType": "SW",
+			"ac": 15,
+			"hp": 100,
+			"entries": [
+				"A Mangonel is a catapult that hurls heavy projectiles in a high arc, so it can hit targets behind walls. Loading a Mangonel requires two {@action Utilize|XPHB} actions, and aiming it requires two more Utilize actions. Then a crew member can take the Mangonel Stone action."
+			],
+			"actionEntries": [
+				{
+					"type": "entries",
+					"name": "Mangonel Stone (Requires Load and Aim)",
+					"entries": [
+						"{@atkr r} {@hit 5}, range 200/800 ft. (can't hit targets within 60 feet of itself). {@h}27 ({@damage 5d10}) Bludgeoning damage."
+					]
+				}
+			],
+			"hasToken": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Ram",
 			"source": "DMG",
 			"page": 255,
+			"reprintedAs": [
+				"Ram|XDMG"
+			],
 			"size": [
 				"L"
 			],
@@ -670,9 +826,36 @@
 			"hasToken": true
 		},
 		{
+			"name": "Ram",
+			"source": "XDMG",
+			"page": 97,
+			"size": [
+				"L"
+			],
+			"objectType": "SW",
+			"ac": 15,
+			"hp": 100,
+			"entries": [
+				"A Ram consists of a movable gallery equipped with a heavy log suspended from two roof beams by chains. The log is shod in iron and used to batter through doors and barricades. Positioning a Ram requires three {@action Utilize|XPHB} actions. Then a crew member can use the Ram action.",
+				"The gallery roof gives the operators {@table Cover|XPHB|Total Cover} against attacks and other effects from above."
+			],
+			"actionEntries": [
+				{
+					"type": "entries",
+					"name": "Ram (Requires Position)",
+					"entries": [
+						"{@atkr m} {@hit 8}, reach 5 ft. {@h}16 ({@damage 3d10}) Bludgeoning damage."
+					]
+				}
+			]
+		},
+		{
 			"name": "Siege Tower",
 			"source": "DMG",
 			"page": 256,
+			"reprintedAs": [
+				"Siege Tower|XDMG"
+			],
 			"size": [
 				"G"
 			],
@@ -687,6 +870,20 @@
 				"A siege tower is a mobile wooden structure with a beam frame and slats in its walls. Large wooden wheels or rollers allow the tower to be pushed or pulled by soldiers or beasts of burden. Medium or smaller creatures can use the siege tower to reach the top of walls up to 40 feet high. A creature in the tower has {@quickref Cover||3||total cover} from attacks outside the tower."
 			],
 			"hasToken": true
+		},
+		{
+			"name": "Siege Tower",
+			"source": "XDMG",
+			"page": 97,
+			"size": [
+				"G"
+			],
+			"objectType": "SW",
+			"ac": 15,
+			"hp": 200,
+			"entries": [
+				"A Siege Tower is a mobile wooden structure with a beam frame and slats in its walls. Large wooden wheels or rollers allow the tower to be pushed or pulled by soldiers or beasts of burden. Medium or smaller creatures can use the Siege Tower to reach the top of walls up to 40 feet high. A creature in the tower has {@table Cover|XPHB|Total Cover} against attacks and other effects that originate outside it."
+			]
 		},
 		{
 			"name": "Spirit Blister",
@@ -717,6 +914,9 @@
 			"name": "Suspended Cauldron",
 			"source": "DMG",
 			"page": 255,
+			"reprintedAs": [
+				"Suspended Cauldron|XDMG"
+			],
 			"size": [
 				"L"
 			],
@@ -741,6 +941,30 @@
 				}
 			],
 			"hasToken": true
+		},
+		{
+			"name": "Suspended Cauldron",
+			"source": "XDMG",
+			"page": 97,
+			"size": [
+				"L"
+			],
+			"objectType": "SW",
+			"ac": 19,
+			"hp": 20,
+			"entries": [
+				"An iron pot is suspended so that it can be tipped easily, spilling its contents. Once emptied, a cauldron must be refilled before it can be used again. Filling the cauldron requires three {@action Utilize|XPHB} actions. Then a crew member can take the Spill action.",
+				"Cauldrons are typically filled with boiling oil but can be filled with other substances, such as acid or {@hazard green slime|XDMG} (see \"{@book Hazards|XDMG|2|Hazards}\"), with different effects."
+			],
+			"actionEntries": [
+				{
+					"type": "entries",
+					"name": "Spill (Requires a Full Cauldron)",
+					"entries": [
+						"{@actSave dex} {@dc 15}, each creature in a 10-foot square directly below the cauldron. {@actSaveFail} 10 ({@damage 3d6}) Fire damage. {@actSaveSuccess} Half damage."
+					]
+				}
+			]
 		},
 		{
 			"name": "The Head",
@@ -768,6 +992,9 @@
 			"name": "Trebuchet",
 			"source": "DMG",
 			"page": 256,
+			"reprintedAs": [
+				"Trebuchet|XDMG"
+			],
 			"size": [
 				"H"
 			],
@@ -802,6 +1029,29 @@
 				}
 			],
 			"hasToken": true
+		},
+		{
+			"name": "Trebuchet",
+			"source": "XDMG",
+			"page": 97,
+			"size": [
+				"H"
+			],
+			"objectType": "SW",
+			"ac": 15,
+			"hp": 150,
+			"entries": [
+				"A Trebuchet is a catapult that throws its payload in a high arc so it can hit targets behind walls. Loading a Trebuchet requires two {@action Utilize|XPHB} actions, and aiming it requires two more Utilize actions. Then a crew member can take the Trebuchet Stone action."
+			],
+			"actionEntries": [
+				{
+					"type": "entries",
+					"name": "Trebuchet Stone (Requires Load and Aim)",
+					"entries": [
+						"{@atkr r} {@hit 5}, range 300/1,200 ft. (can't hit targets within 60 feet of itself). {@h}44 ({@damage 8d10}) Bludgeoning damage."
+					]
+				}
+			]
 		},
 		{
 			"name": "Unborn Palanquin",

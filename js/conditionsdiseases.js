@@ -1,4 +1,4 @@
-"use strict";
+import {RenderConditionDiseases} from "./render-conditionsdiseases.js";
 
 class ConditionsDiseasesSublistManager extends SublistManager {
 	static _getRowTemplate () {
@@ -17,7 +17,7 @@ class ConditionsDiseasesSublistManager extends SublistManager {
 	}
 
 	pGetSublistItem (it, hash) {
-		const cellsText = [PageFilterConditionsDiseases.getDisplayProp(it.__prop), it.name];
+		const cellsText = [it.type || PageFilterConditionsDiseases.getDisplayProp(it.__prop), it.name];
 
 		const $ele = $(`<div class="lst__row lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="lst__row-border lst__row-inner">
@@ -33,7 +33,8 @@ class ConditionsDiseasesSublistManager extends SublistManager {
 			it.name,
 			{
 				hash,
-				type: it.__prop,
+				page: it.page,
+				type: it.type || it.__prop,
 			},
 			{
 				entity: it,
@@ -51,7 +52,7 @@ class ConditionsDiseasesPage extends ListPage {
 		super({
 			dataSource: "data/conditionsdiseases.json",
 
-			pFnGetFluff: Renderer.condition.pGetFluff.bind(Renderer.condition),
+			pFnGetFluff: Renderer.conditionDisease.pGetFluff.bind(Renderer.conditionDisease),
 
 			pageFilter,
 
@@ -72,7 +73,7 @@ class ConditionsDiseasesPage extends ListPage {
 
 		eleLi.innerHTML = `<a href="#${hash}" class="lst__row-border lst__row-inner">
 			<span class="ve-col-0-3 px-0 ve-flex-vh-center lst__btn-toggle-expand ve-self-flex-stretch no-select">[+]</span>
-			<span class="ve-col-3 px-1 ve-text-center">${PageFilterConditionsDiseases.getDisplayProp(it.__prop)}</span>
+			<span class="ve-col-3 px-1 ve-text-center">${it.type || PageFilterConditionsDiseases.getDisplayProp(it.__prop)}</span>
 			<span class="bold ve-col-6-7 px-1">${it.name}</span>
 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(it.source)} pr-0" title="${Parser.sourceJsonToFull(it.source)}" ${Parser.sourceJsonToStyle(it.source)}>${source}</span>
 		</a>
@@ -88,7 +89,8 @@ class ConditionsDiseasesPage extends ListPage {
 			{
 				hash,
 				source,
-				type: it.__prop,
+				page: it.page,
+				type: it.type || it.__prop,
 			},
 			{
 				isExcluded,

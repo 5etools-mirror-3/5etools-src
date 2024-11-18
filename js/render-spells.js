@@ -138,7 +138,7 @@ class _RenderSpellsImplBase extends RenderPageImplBase {
 	}
 
 	_getCommonHtmlParts_duration ({ent}) {
-		return `<tr><td colspan="6" ${this._style === "classic" ? "" : `class="pb-2"`}>${Renderer.spell.getHtmlPtDuration(ent)}</td></tr>`;
+		return `<tr><td colspan="6" ${this._style === "classic" ? "" : `class="pb-2"`}>${Renderer.spell.getHtmlPtDuration(ent, {styleHint: this._style})}</td></tr>`;
 	}
 
 	/* ----- */
@@ -321,7 +321,7 @@ class _RenderSpellsImplOne extends _RenderSpellsImplBase {
 			${htmlPtComponents}
 			${htmlPtDuration}
 
-			<tr class="text"><td colspan="6">
+			<tr><td colspan="6">
 				${htmlPtEntries}
 				${htmlPtFrom}
 			</td></tr>
