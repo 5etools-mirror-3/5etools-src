@@ -26,12 +26,11 @@ class BastionsSublistManager extends SublistManager {
 
 	pGetSublistItem (ent, hash) {
 		const facilityType = (ent.facilityType || "Unknown").toTitleCase();
-		const level = ent.level || "\u2014";
 
 		const cellsText = [
 			facilityType,
 			ent.name,
-			level,
+			ent.level || "\u2014",
 			ent._slPrereq,
 		];
 
@@ -51,7 +50,7 @@ class BastionsSublistManager extends SublistManager {
 				hash,
 				page: ent.page,
 				facilityType,
-				level,
+				level: ent.level || 0,
 				prerequisite: ent._slPrereq,
 			},
 			{
@@ -91,12 +90,11 @@ class BastionsPage extends ListPage {
 		const hash = UrlUtil.autoEncodeHash(ent);
 		const source = Parser.sourceJsonToAbv(ent.source);
 		const facilityType = (ent.facilityType || "Unknown").toTitleCase();
-		const level = ent.level || "\u2014";
 
 		eleLi.innerHTML = `<a href="#${hash}" class="lst__row-border lst__row-inner">
 			<span class="ve-col-2 ve-text-center pl-0 pr-1">${facilityType}</span>
 			<span class="bold ve-col-3 px-1">${ent.name}</span>
-			<span class="ve-col-1 ve-text-center px-1 ${ent.level == null ? "italic" : ""}">${level}</span>
+			<span class="ve-col-1 ve-text-center px-1 ${ent.level == null ? "italic" : ""}">${ent.level || "\u2014"}</span>
 			<span class="ve-col-4 px-1 ${ent._slPrereq === VeCt.STR_NONE ? "italic " : ""}">${ent._slPrereq}</span>
 			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(ent.source)}  pl-1 pr-0" title="${Parser.sourceJsonToFull(ent.source)}" ${Parser.sourceJsonToStyle(ent.source)}>${source}</span>
 		</a>`;
@@ -110,7 +108,7 @@ class BastionsPage extends ListPage {
 				source,
 				page: ent.page,
 				facilityType,
-				level,
+				level: ent.level || 0,
 				prerequisite: ent._slPrereq,
 			},
 			{
