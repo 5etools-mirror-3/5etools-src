@@ -2537,11 +2537,11 @@
 						],
 						[
 							"71-80",
-							"Random location on an Outer Plane determined by rolling {@dice 1d8}: on a {@b 1}, Arborea; on a {@b 2}, Arcadia; on a {@b 3}, [Tooltip Not Found]; on a {@b 4}, Bytopia; on a {@b 5}, Elysium; on a {@b 6}, Mechanus; on a {@b 7}, Mount Celestia; on an {@b 8}, Ysgard"
+							"Random location on an Outer Plane determined by rolling 1d8: on a {@b 1}, Arborea; on a {@b 2}, Arcadia; on a {@b 3}, the Beastlands; on a {@b 4}, Bytopia; on a {@b 5}, Elysium; on a {@b 6}, Mechanus; on a {@b 7}, Mount Celestia; on an {@b 8}, Ysgard"
 						],
 						[
 							"81-90",
-							"Random location on an Outer Plane determined by rolling {@dice 1d8}: on a {@b 1}, [Tooltip Not Found]; on a {@b 2}, Acheron; on a {@b 3}, Carceri; on a {@b 4}, Gehenna; on a {@b 5}, Hades; on a {@b 6}, Limbo; on a {@b 7}, [Tooltip Not Found]; on an {@b 8}, Pandemonium"
+							"Random location on an Outer Plane determined by rolling {@dice 1d8}: on a {@b 1}, the Abyss; on a {@b 2}, Acheron; on a {@b 3}, Carceri; on a {@b 4}, Gehenna; on a {@b 5}, Hades; on a {@b 6}, Limbo; on a {@b 7}, the Nine Hells; on an {@b 8}, Pandemonium"
 						],
 						[
 							"91-00",
@@ -5871,7 +5871,7 @@
 			"source": "XDMG",
 			"page": 236,
 			"freeRules2024": true,
-			"rarity": "rare",
+			"rarity": "legendary",
 			"reqAttune": true,
 			"wondrous": true,
 			"ability": {
@@ -6027,7 +6027,8 @@
 			},
 			"entries": [
 				"While wearing this belt, your Strength score changes to 25. The item has no effect on you if your Strength without the belt is equal to or greater than the belt's score."
-			]
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Belt of Frost Giant Strength",
@@ -6102,7 +6103,7 @@
 			"source": "XDMG",
 			"page": 236,
 			"freeRules2024": true,
-			"rarity": "very rare",
+			"rarity": "rare",
 			"reqAttune": true,
 			"wondrous": true,
 			"ability": {
@@ -6147,7 +6148,7 @@
 			"source": "XDMG",
 			"page": 236,
 			"freeRules2024": true,
-			"rarity": "legendary",
+			"rarity": "very rare",
 			"reqAttune": true,
 			"wondrous": true,
 			"ability": {
@@ -6157,7 +6158,8 @@
 			},
 			"entries": [
 				"While wearing this belt, your Strength score changes to 23. The item has no effect on you if your Strength without the belt is equal to or greater than the belt's score."
-			]
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Belt of Storm Giant Strength",
@@ -10090,7 +10092,8 @@
 			],
 			"miscTags": [
 				"CNS"
-			]
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Candle of the Deep",
@@ -11292,7 +11295,8 @@
 			"wondrous": true,
 			"entries": [
 				"Whenever you roll this six-sided die, you can control which number it rolls."
-			]
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Charlatan's Die",
@@ -18715,7 +18719,7 @@
 			"rechargeAmount": "{@dice 1d8}",
 			"charges": 8,
 			"entries": [
-				"This treatise, composed by {@book Iggwilv|XDMG|8|Iggwilv} the archmage, documents [Tooltip Not Found] layers and inhabitants and is widely regarded as the most thorough and blasphemous tome of demonology in the multiverse. The tome recounts both the oldest and most current profanities of the Abyss and demons. Demons have attempted to censor the text, and while sections have been ripped from the book's spine, the general chapters remain, ever revealing demonic secrets. Caged behind lines of script roils a secret piece of the Abyss itself, which keeps the book up-to-date, no matter how many pages are removed, and it longs to be more than mere reference material.",
+				"This treatise, composed by {@book Iggwilv|XDMG|8|Iggwilv} the archmage, documents the Abyss's layers and inhabitants and is widely regarded as the most thorough and blasphemous tome of demonology in the multiverse. The tome recounts both the oldest and most current profanities of the Abyss and demons. Demons have attempted to censor the text, and while sections have been ripped from the book's spine, the general chapters remain, ever revealing demonic secrets. Caged behind lines of script roils a secret piece of the Abyss itself, which keeps the book up-to-date, no matter how many pages are removed, and it longs to be more than mere reference material.",
 				{
 					"type": "entries",
 					"name": "Abyssal Lore",
@@ -18794,7 +18798,7 @@
 									"2"
 								],
 								[
-									"{@spell Plane Shift|XPHB} (to [Tooltip Not Found] only)",
+									"{@spell Plane Shift|XPHB} (to the Abyss only)",
 									"3"
 								],
 								[
@@ -21546,7 +21550,12 @@
 			"page": 258,
 			"type": "M|XPHB",
 			"rarity": "uncommon",
-			"reqAttune": true,
+			"reqAttune": "by a Spellcaster",
+			"reqAttuneTags": [
+				{
+					"spellcasting": true
+				}
+			],
 			"weight": 4,
 			"weaponCategory": "simple",
 			"property": [
@@ -21573,7 +21582,12 @@
 			"page": 258,
 			"type": "M|XPHB",
 			"rarity": "uncommon",
-			"reqAttune": true,
+			"reqAttune": "by a Spellcaster",
+			"reqAttuneTags": [
+				{
+					"spellcasting": true
+				}
+			],
 			"weight": 4,
 			"weaponCategory": "simple",
 			"property": [
@@ -21600,7 +21614,12 @@
 			"page": 258,
 			"type": "M|XPHB",
 			"rarity": "rare",
-			"reqAttune": true,
+			"reqAttune": "by a Spellcaster",
+			"reqAttuneTags": [
+				{
+					"spellcasting": true
+				}
+			],
 			"weight": 4,
 			"weaponCategory": "simple",
 			"property": [
@@ -21627,7 +21646,12 @@
 			"page": 258,
 			"type": "M|XPHB",
 			"rarity": "rare",
-			"reqAttune": true,
+			"reqAttune": "by a Spellcaster",
+			"reqAttuneTags": [
+				{
+					"spellcasting": true
+				}
+			],
 			"weight": 4,
 			"weaponCategory": "simple",
 			"property": [
@@ -21654,7 +21678,12 @@
 			"page": 258,
 			"type": "M|XPHB",
 			"rarity": "very rare",
-			"reqAttune": true,
+			"reqAttune": "by a Spellcaster",
+			"reqAttuneTags": [
+				{
+					"spellcasting": true
+				}
+			],
 			"weight": 4,
 			"weaponCategory": "simple",
 			"property": [
@@ -21681,7 +21710,12 @@
 			"page": 258,
 			"type": "M|XPHB",
 			"rarity": "very rare",
-			"reqAttune": true,
+			"reqAttune": "by a Spellcaster",
+			"reqAttuneTags": [
+				{
+					"spellcasting": true
+				}
+			],
 			"weight": 4,
 			"weaponCategory": "simple",
 			"property": [
@@ -21708,7 +21742,12 @@
 			"page": 258,
 			"type": "M|XPHB",
 			"rarity": "legendary",
-			"reqAttune": true,
+			"reqAttune": "by a Spellcaster",
+			"reqAttuneTags": [
+				{
+					"spellcasting": true
+				}
+			],
 			"weight": 4,
 			"weaponCategory": "simple",
 			"property": [
@@ -21735,7 +21774,12 @@
 			"page": 258,
 			"type": "M|XPHB",
 			"rarity": "legendary",
-			"reqAttune": true,
+			"reqAttune": "by a Spellcaster",
+			"reqAttuneTags": [
+				{
+					"spellcasting": true
+				}
+			],
 			"weight": 4,
 			"weaponCategory": "simple",
 			"property": [
@@ -21762,7 +21806,12 @@
 			"page": 258,
 			"type": "M|XPHB",
 			"rarity": "legendary",
-			"reqAttune": true,
+			"reqAttune": "by a Spellcaster",
+			"reqAttuneTags": [
+				{
+					"spellcasting": true
+				}
+			],
 			"weight": 4,
 			"weaponCategory": "simple",
 			"property": [
@@ -24677,7 +24726,8 @@
 				},
 				"When the box becomes a vessel, its weight becomes that of a normal vessel its size, and anything that was stored in the box remains in the boat.",
 				"Statistics for the {@item Rowboat|XPHB} and {@item Keelboat|XPHB} appear in the {@book Player's Handbook|XPHB}. If either vessel is reduced to 0 {@variantrule Hit Points|XPHB}, the Folding Boat is destroyed."
-			]
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Fool Card",
@@ -25828,7 +25878,8 @@
 			],
 			"optionalfeatures": [
 				"replicate magic item|tce"
-			]
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Glowrune Pigment",
@@ -27726,7 +27777,8 @@
 			],
 			"attachedSpells": [
 				"disguise self|xphb"
-			]
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Hat of Many Spells",
@@ -27847,7 +27899,8 @@
 			"charges": 3,
 			"entries": [
 				"This hat has 3 charges. While holding the hat, you can take a {@action Magic|XPHB} action to expend 1 charge and summon your choice of a {@creature Bat|XPHB}, a {@creature Frog|XPHB}, or a {@creature Rat|XPHB}. The summoned creature magically appears in the hat and tries to get away from you as quickly as possible. The creature is {@variantrule Indifferent [Attitude]|XPHB|Indifferent} toward you and other creatures, and it isn't under your control. It behaves as an ordinary creature of its kind and disappears after 1 hour or when it drops to 0 {@variantrule Hit Points|XPHB}. The hat regains all expended charges daily at dawn."
-			]
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Hat of Vermin",
@@ -46375,7 +46428,8 @@
 						"This weapon has {@itemProperty T|XPHB|Thrown} with a normal range of 30 feet and a long range of 120 feet. Immediately after you make a ranged attack with the weapon, it flies back to your hand."
 					]
 				}
-			]
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Quartz",
@@ -47195,7 +47249,6 @@
 			],
 			"detail1": "pearl",
 			"rarity": "rare",
-			"reqAttune": true,
 			"hasRefs": true,
 			"entries": [
 				"{#itemEntry Ring of Resistance|XDMG}"
@@ -47366,7 +47419,6 @@
 			],
 			"detail1": "tourmaline",
 			"rarity": "rare",
-			"reqAttune": true,
 			"hasRefs": true,
 			"entries": [
 				"{#itemEntry Ring of Resistance|XDMG}"
@@ -47898,7 +47950,6 @@
 			],
 			"detail1": "garnet",
 			"rarity": "rare",
-			"reqAttune": true,
 			"hasRefs": true,
 			"entries": [
 				"{#itemEntry Ring of Resistance|XDMG}"
@@ -47938,7 +47989,6 @@
 			],
 			"detail1": "sapphire",
 			"rarity": "rare",
-			"reqAttune": true,
 			"hasRefs": true,
 			"entries": [
 				"{#itemEntry Ring of Resistance|XDMG}"
@@ -48091,7 +48141,6 @@
 			],
 			"detail1": "citrine",
 			"rarity": "rare",
-			"reqAttune": true,
 			"hasRefs": true,
 			"entries": [
 				"{#itemEntry Ring of Resistance|XDMG}"
@@ -48172,7 +48221,6 @@
 			],
 			"detail1": "jet",
 			"rarity": "rare",
-			"reqAttune": true,
 			"hasRefs": true,
 			"entries": [
 				"{#itemEntry Ring of Resistance|XDMG}"
@@ -48229,7 +48277,6 @@
 			],
 			"detail1": "amethyst",
 			"rarity": "rare",
-			"reqAttune": true,
 			"hasRefs": true,
 			"entries": [
 				"{#itemEntry Ring of Resistance|XDMG}"
@@ -48312,7 +48359,6 @@
 			],
 			"detail1": "jade",
 			"rarity": "rare",
-			"reqAttune": true,
 			"hasRefs": true,
 			"entries": [
 				"{#itemEntry Ring of Resistance|XDMG}"
@@ -48365,7 +48411,6 @@
 			],
 			"detail1": "topaz",
 			"rarity": "rare",
-			"reqAttune": true,
 			"hasRefs": true,
 			"entries": [
 				"{#itemEntry Ring of Resistance|XDMG}"
@@ -48882,7 +48927,6 @@
 			],
 			"detail1": "spinel",
 			"rarity": "rare",
-			"reqAttune": true,
 			"hasRefs": true,
 			"entries": [
 				"{#itemEntry Ring of Resistance|XDMG}"
@@ -51839,7 +51883,8 @@
 			"bonusWeapon": "+2",
 			"entries": [
 				"You gain a +2 bonus to attack rolls and damage rolls made with this magic weapon. In addition, you can make one attack with it as a {@variantrule Bonus Action|XPHB} on each of your turns."
-			]
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Scissors of Shadow Snipping",
@@ -52765,7 +52810,8 @@
 			],
 			"attachedSpells": [
 				"sending|xphb"
-			]
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Sensory Stone",
@@ -53553,7 +53599,8 @@
 						"As a {@variantrule Reaction|XPHB}, when you or an ally you can see within 5 feet of you is targeted by an attack or makes a saving throw against an area of effect, you can use the Shield to create an immobile 5-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from you. When the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} appears, any creatures or objects not fully contained within it are pushed into the nearest unoccupied spaces outside it. The attack or area of effect that triggered the {@variantrule Reaction|XPHB} has no effect on creatures and objects inside the {@variantrule Emanation [Area of Effect]|XPHB|Emanation}, which lasts as long as you maintain {@status Concentration|XPHB}, up to 1 minute. Nothing can pass into or out of the {@variantrule Emanation [Area of Effect]|XPHB|Emanation}. A creature or object inside the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} can't be damaged by attacks or effects originating from outside, nor can a creature inside the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} damage anything outside it. Once this property is used, it can't be used again until the next dawn."
 					]
 				}
-			]
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Shield of the Hidden Lord",
@@ -60003,7 +60050,8 @@
 			"wondrous": true,
 			"entries": [
 				"While touching this 5-pound stone to the ground, you can take a {@action Magic|XPHB} action to summon an {@creature Earth Elemental|XMM}. The elemental appears in an unoccupied space you choose within 30 feet of yourself, obeys your commands, and takes its turn immediately after you on your {@variantrule Initiative|XPHB} count. The elemental disappears after 1 hour, when it dies, or when you dismiss it as a {@variantrule Bonus Action|XPHB}. The stone can't be used this way again until the next dawn."
-			]
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Stone of Creation",
@@ -63516,7 +63564,8 @@
 						"As a {@action Magic|XPHB} action, you can strike the weapon against the ground to create an intense seismic disturbance in a 50-foot-radius circle centered on the point of impact. Structures in contact with the ground in that area take 50 Bludgeoning damage, and each creature on the ground in that area must succeed on a DC 20 Dexterity saving throw or have the {@condition Prone|XPHB} condition. If that creature is also {@status Concentration|XPHB|Concentrating}, it must succeed on a DC 20 Constitution saving throw or its {@status Concentration|XPHB} is broken. In addition, you can cause a 30-foot-deep, 10-foot-wide fissure to open up on the ground anywhere in the area. Any creature on a spot where the fissure opens must make a DC 20 Dexterity saving throw, falling into the fissure on a failed save or moving with the fissure's edge on a successful one. Any structure on a spot where the fissure opens collapses into the fissure. Once you use this property, it can't be used again until the next dawn."
 					]
 				}
-			]
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Tidecaller Trident",
@@ -67798,7 +67847,8 @@
 			],
 			"attachedSpells": [
 				"magic missile|xphb"
-			]
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Wand of Orcus",
@@ -72471,7 +72521,12 @@
 			"page": 258,
 			"type": "M|XPHB",
 			"rarity": "varies",
-			"reqAttune": true,
+			"reqAttune": "by a Spellcaster",
+			"reqAttuneTags": [
+				{
+					"spellcasting": true
+				}
+			],
 			"weight": 4,
 			"weaponCategory": "simple",
 			"property": [
@@ -74489,7 +74544,6 @@
 			"freeRules2024": true,
 			"type": "RG|XDMG",
 			"rarity": "rare",
-			"reqAttune": true,
 			"entries": [
 				"You have {@variantrule Resistance|XPHB} to one damage type while wearing this ring. The gemstone in the ring indicates the type, which the DM chooses or determines randomly by rolling on the following table.",
 				{
@@ -75515,7 +75569,8 @@
 				"+1 Wand of the War Mage|XDMG",
 				"+2 Wand of the War Mage|XDMG",
 				"+3 Wand of the War Mage|XDMG"
-			]
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Whisper",

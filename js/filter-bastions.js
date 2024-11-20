@@ -60,7 +60,7 @@ class PageFilterBastions extends PageFilterBase {
 		return this._filterBox.toDisplay(
 			values,
 			ent._fSources,
-			ent.type,
+			ent.facilityType,
 			ent.level,
 			ent._fPrereq,
 			ent._fMisc,
