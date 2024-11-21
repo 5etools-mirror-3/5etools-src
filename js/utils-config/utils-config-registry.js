@@ -42,6 +42,21 @@ const settingsGroupStyleSwitcher = new ConfigSettingsGroup({
 	],
 });
 
+const settingsGroupLocalization = new ConfigSettingsGroup({
+	groupId: "localization",
+	name: "Localization",
+	configSettings: [
+		new ConfigSettingBoolean({
+			configId: "isMetric",
+			name: "Display Metric Units",
+			help: "Use metric units (meters, kilograms) whenever possible.",
+			isRowLabel: true,
+			isReloadRequired: true,
+			default: false,
+		})
+	],
+});
+
 const _MARKDOWN_TAG_RENDER_MODES = {
 	"convertMarkdown": "Convert to Markdown",
 	"ignore": "Leave As-Is",
@@ -84,5 +99,6 @@ const settingsGroupMarkdown = new ConfigSettingsGroup({
 
 export const SETTINGS_GROUPS = [
 	settingsGroupStyleSwitcher,
+	settingsGroupLocalization,
 	settingsGroupMarkdown,
 ];
