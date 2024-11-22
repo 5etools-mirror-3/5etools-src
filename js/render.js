@@ -1414,7 +1414,11 @@ globalThis.Renderer = function () {
 	};
 
 	this._renderBonusSpeed = function (entry, textStack, meta, options) {
-		textStack[0] += entry.value === 0 ? "\u2014" : `${entry.value < 0 ? "" : "+"}${entry.value} ft.`;
+		let speed = { value: entry.value, unit: "ft." };
+		if (VetoolsConfig.get("localization", "isMetric")) {
+			speed = Parser.metric.getMetric(speed);
+		}
+		textStack[0] += speed.value === 0 ? "\u2014" : `${speed.value < 0 ? "" : "+"}${speed.value} ${speed.unit}`;
 	};
 
 	this._renderDice = function (entry, textStack, meta, options) {
@@ -10697,12 +10701,25 @@ Renderer.item = class {
 		}
 
 		// mounts
-		if (item.speed != null) damageParts.push(`Speed: ${item.speed}`);
-		if (item.carryingCapacity) damageParts.push(`Carrying Capacity: ${item.carryingCapacity} lb.`);
+		if (item.speed != null) {
+			let speed = { value: item.speed, unit: "ft." };
+			if (VetoolsConfig.get("localization", "isMetric")) speed = Parser.metric.getMetric(speed);
+			damageParts.push(`Speed: ${speed.value} ${speed.unit}`);
+		} 
+		if (item.carryingCapacity) {
+			let capacity = { value: item.carryingCapacity, unit: "lb." };
+			if (VetoolsConfig.get("localization", "isMetric")) capacity = Parser.metric.getMetric(capacity);
+			damageParts.push(`Carrying Capacity: ${(capacity.value)} ${capacity.unit}`);
+		}
 
 		// vehicles
 		if (item.vehSpeed || item.capCargo || item.capPassenger || item.crew || item.crewMin || item.crewMax || item.vehAc || item.vehHp || item.vehDmgThresh || item.travelCost || item.shippingCost) {
-			const vehPartUpper = item.vehSpeed ? `Speed: ${Parser.numberToVulgar(item.vehSpeed)} mph` : null;
+			let speed = { value: item.vehSpeed, unit: "mph" };
+			VetoolsConfig.get("localization", "isMetric") 
+				? speed = Parser.metric.getMetric(speed) 
+				: speed.value = Parser.numberToVulgar(speed.value); // only use vulgar for imperial
+
+			const vehPartUpper = item.vehSpeed ? `Speed: ${speed.value} ${speed.unit}` : null;
 
 			const vehPartMiddle = item.capCargo || item.capPassenger ? `Carrying Capacity: ${[item.capCargo ? `${Parser.numberToFractional(item.capCargo)} ton${item.capCargo === 0 || item.capCargo > 1 ? "s" : ""} cargo` : null, item.capPassenger ? `${item.capPassenger} passenger${item.capPassenger === 1 ? "" : "s"}` : null].filter(Boolean).join(", ")}` : null;
 
@@ -12323,6 +12340,14 @@ Renderer.vehicle = class {
 			const entriesOtherActions = (ent.other || []).filter(it => it.name === "Actions");
 			const entriesOtherOthers = (ent.other || []).filter(it => it.name !== "Actions");
 
+			let pace = { value: ent.pace, unit: "miles" };
+			let speed = { value: ent.pace * 10, unit: "ft." };
+
+			if (VetoolsConfig.get("localization", "isMetric")) {
+				pace = Parser.metric.getMetric(pace);
+				speed = Parser.metric.getMetric(speed);
+			}
+
 			return {
 				entrySizeDimensions: `{@i ${Parser.sizeAbvToFull(ent.size)} vehicle${ent.dimensions ? ` (${ent.dimensions.join(" by ")})` : ""}}`,
 				entryCreatureCapacity: ent.capCrew != null || ent.capPassenger != null
@@ -12332,10 +12357,10 @@ Renderer.vehicle = class {
 					? `{@b Cargo Capacity} ${Renderer.vehicle.getShipCargoCapacity(ent)}`
 					: null,
 				entryTravelPace: ent.pace != null
-					? `{@b Travel Pace} ${ent.pace} miles per hour (${ent.pace * 24} miles per day)`
+					? `{@b Travel Pace} ${pace.value} ${pace.unit} per hour (${pace.value * 24} ${pace.unit} per day)`
 					: null,
 				entryTravelPaceNote: ent.pace != null
-					? `[{@b Speed} ${ent.pace * 10} ft.]`
+					? `[{@b Speed} ${speed.value} ${speed.unit}]`
 					: null,
 				entryTravelPaceNoteTitle: ent.pace != null
 					? VetoolsConfig.get("styleSwitcher", "style") === "classic"
@@ -12712,14 +12737,24 @@ Renderer.vehicle = class {
 
 			const ptAc = ent.ac ?? dexMod === 0 ? `19` : `${19 + dexMod} (19 while motionless)`;
 
+			let speed = { value: ent.speed, unit: "ft." };
+			let pace = { value: Math.floor(ent.speed / 10), unit: "miles" };
+			let weight = { value: ent.weight, unit: "lb." };
+
+			if (VetoolsConfig.get("localization", "isMetric")) {
+				speed = Parser.metric.getMetric(speed);
+				pace = Parser.metric.getMetric(pace);
+				weight = Parser.metric.getMetric(weight);
+			}
+
 			return {
-				entrySizeWeight: `{@i ${Parser.sizeAbvToFull(ent.size)} vehicle (${ent.weight.toLocaleString()} lb.)}`,
+				entrySizeWeight: `{@i ${Parser.sizeAbvToFull(ent.size)} vehicle (${weight.value.toLocaleString()} ${weight.unit})}`,
 				entryCreatureCapacity: `{@b Creature Capacity} ${Renderer.vehicle.getInfwarCreatureCapacity(ent)}`,
 				entryCargoCapacity: `{@b Cargo Capacity} ${Parser.weightToFull(ent.capCargo)}`,
 				entryArmorClass: `{@b Armor Class} ${ptAc}`,
 				entryHitPoints: `{@b Hit Points} ${ent.hp.hp}${ptDtMt ? ` (${ptDtMt})` : ""}`,
-				entrySpeed: `{@b Speed} ${ent.speed} ft.`,
-				entrySpeedNote: `[{@b Travel Pace} ${Math.floor(ent.speed / 10)} miles per hour (${Math.floor(ent.speed * 24 / 10)} miles per day)]`,
+				entrySpeed: `{@b Speed} ${speed.value} ${speed.unit}`,
+				entrySpeedNote: `[{@b Travel Pace} ${pace.value} ${pace.unit} per hour (${pace.value * 24} ${pace.unit} per day)]`,
 				entrySpeedNoteTitle: VetoolsConfig.get("styleSwitcher", "style") === "classic"
 					? `Based on "Special Travel Pace," ${Parser.sourceJsonToAbv(Parser.SRC_DMG)} p242`
 					: `Based on "Travel Pace," ${Parser.sourceJsonToAbv(Parser.SRC_XDMG)} p39`,
