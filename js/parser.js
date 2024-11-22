@@ -4076,25 +4076,42 @@ Parser.metric = {
 	"mph": "km/h",
 },
 
+UNIT_PLURAL_MAP: {
+	"centimeter": "centimeters",
+	"meter": "meters",
+	"kilometer": "kilometers",
+	"kilogram": "kilograms",
+},
+
 	/**
  * Attempts to convert a quantity to metric, falling back on the original quantity if needed.
  * @param {Object} quantity - The object representing the original quantity.
  * @param {number|string} quantity.value - The original value to convert.
  * @param {string} quantity.unit - The original unit word for the given value.
+ * @param {boolean} isAdjective - If the quantity is being used as an adjective (e.g. "5-foot pole").
  * @returns {Object} The converted quantity in metric, or the original quantity if conversion fails.
  */
-	getMetric ({value, unit}) {
-		//attempt to convert the unit
-		const metricUnit = this.UNIT_WORDS_MAP[unit];
+	getMetric ({value, unit}, isAdjective = false) {
+		// attempt to convert the unit
+		let metricUnit = this.UNIT_WORDS_MAP[unit];
 		if (!metricUnit) return { value, unit };
 
-		//attempt to parse the value
+		// attempt to parse the value
 		const valueObj = Parser.tryGetValueObj(value);
 		if (!valueObj) return { value, unit };
 
-		//attempt to convert the value
+		// attempt to convert the value
 		const metricNums = valueObj.nums.map((it) => this.getMetricNumber({ originalValue: it, originalUnit: unit }));
 		if (metricNums.some(num => num === null)) return { value, unit };
+
+		// ensure the unit is in the right form
+		metricUnit = !isAdjective && metricNums.some(num => num > 1) 
+			?  this.UNIT_PLURAL_MAP[metricUnit] ?? metricUnit // ensure unit use plural form
+			: metricUnit = Object.keys(this.UNIT_PLURAL_MAP).find(key => this.UNIT_PLURAL_MAP[key] === metricUnit) ?? metricUnit; // ensure unit use singular form
+
+		// if (!isAdjective && metricNums.some(num => num <= 1)) {
+		// 	metricUnit = this.UNIT_PLURAL_MAP[metricUnit] ?? metricUnit;
+		// }
 
 		const metricValue = valueObj.sep ? metricNums.join(valueObj.sep) : metricNums[0];
 		return { value: metricValue, unit: metricUnit };

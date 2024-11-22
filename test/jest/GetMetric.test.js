@@ -13,6 +13,7 @@ describe("Getting metric quantity", () => {
     expect(Parser.metric.getMetric({ value: "12.5", unit: "ft" })).toEqual({ value: 3.75, unit: "m" });
   });
 
+
   it('handle fractions', () => {
     expect(Parser.metric.getMetric({ value: "1/4", unit: "lb" })).toEqual({ value: 0.125, unit: "kg" });
     expect(Parser.metric.getMetric({ value: "1/10", unit: "lb" })).toEqual({ value: 0.05, unit: "kg" });
@@ -23,6 +24,15 @@ describe("Getting metric quantity", () => {
     expect(Parser.metric.getMetric({ value: "5/10", unit: "ft" })).toEqual({ value: "1.5/3", unit: "m" });
     expect(Parser.metric.getMetric({ value: "5-7", unit: "ft" })).toEqual({ value: "1.5-2.1", unit: "m" });
     expect(Parser.metric.getMetric({ value: "5 to 7", unit: "ft" })).toEqual({ value: "1.5 to 2.1", unit: "m" });
+  });
+
+  it('correctly convert the unit to plural form', () => {
+    expect(Parser.metric.getMetric({ value: "1", unit: "mile" })).toEqual({ value: 1.5, unit: "kilometers" });
+    expect(Parser.metric.getMetric({ value: "1", unit: "mile" }, true)).toEqual({ value: 1.5, unit: "kilometer" });
+  });
+
+  it('convert the unit to singular form', () => {
+    expect(Parser.metric.getMetric({ value: 2, unit: "pounds" })).toEqual({ value: 1, unit: "kilogram" });
   });
 
   it('returns original quantity if conversion is not possible', () => {
