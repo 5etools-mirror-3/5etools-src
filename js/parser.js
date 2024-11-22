@@ -4014,15 +4014,91 @@ Parser.NUMBERS_ONES = ["", "one", "two", "three", "four", "five", "six", "seven"
 Parser.NUMBERS_TENS = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
 Parser.NUMBERS_TEENS = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
 
+Parser.tryGetValueObj = function (val) {
+	const toNum = str => str = Number(str.replace(/,/g, "")) // remove thousand separators and convert to number
+
+	if (typeof (val) === "number") return { nums: [val] };
+	if (typeof (val) !== "string" || !val.trim()) return null;
+
+	// handle ranges
+	if (val.includes("/")) {
+		let spl = val.split("/");
+		spl = spl.map(it => toNum(it));
+		// if the first item is >= 5 and the second is >= 10, assume it's a range, else it's a fraction
+		return spl[0] >= 5 && spl[1] >= 10 ? { nums: spl, sep: "/" } : { nums: [spl[0] / spl[1]] };
+	}
+
+	if (/^\d+-\d+$/.test(val)) {
+		return { nums: val.split("-").map(it => toNum(it)), sep: "-" };
+	}
+
+	if (val.includes(" to ")) {
+		return { nums: val.split(" to ").map(it => toNum(it)), sep: " to " };
+	}
+
+	val = toNum(val);
+	return isNaN(val) ? null : { nums: [val] };
+}
+
 // region Metric conversion
 Parser.metric = {
 	// See MPMB's breakdown: https://old.reddit.com/r/dndnext/comments/6gkuec
-	MILES_TO_KILOMETRES: 1.6,
+	MILES_TO_KILOMETRES: 1.5, // 1 mi = 1.5 km see e.g. https://www.aidedd.org/adj/poids-et-mesures/ (in french)
 	FEET_TO_METRES: 0.3, // 5 ft = 1.5 m
 	YARDS_TO_METRES: 0.9, // (as above)
 	POUNDS_TO_KILOGRAMS: 0.5, // 2 lb = 1 kg
 	// Other additions
 	INCHES_TO_CENTIMETERS: 2.5, // 1 in = 2.5 cm
+
+	UNIT_WORDS_MAP: {
+	"in": "cm",
+	"in.": "cm",
+	"inch": "centimeter",
+	"inches": "centimeters",
+	"ft": "m",
+	"ft.": "m",
+	"foot": "meter",
+	"feet": "meters",
+	"yd": "m",
+	"yd.": "m",
+	"yard": "meter",
+	"yards": "meters",
+	"mi": "km",
+	"mi.": "km",
+	"mile": "kilometer",
+	"miles": "kilometers",
+	"lb": "kg",
+	"lb.": "kg",
+	"lbs": "kg",
+	"lbs.": "kg",
+	"pound": "kilogram",
+	"pounds": "kilograms",
+	"mph": "km/h",
+},
+
+	/**
+ * Attempts to convert a quantity to metric, falling back on the original quantity if needed.
+ * @param {Object} quantity - The object representing the original quantity.
+ * @param {number|string} quantity.value - The original value to convert.
+ * @param {string} quantity.unit - The original unit word for the given value.
+ * @returns {Object} The converted quantity in metric, or the original quantity if conversion fails.
+ */
+	getMetric ({value, unit}) {
+		//attempt to convert the unit
+		const metricUnit = this.UNIT_WORDS_MAP[unit];
+		if (!metricUnit) return { value, unit };
+
+		//attempt to parse the value
+		const valueObj = Parser.tryGetValueObj(value);
+		if (!valueObj) return { value, unit };
+
+		//attempt to convert the value
+		const metricNums = valueObj.nums.map((it) => this.getMetricNumber({ originalValue: it, originalUnit: unit }));
+		if (metricNums.some(num => num === null)) return { value, unit };
+
+		const metricValue = valueObj.sep ? metricNums.join(valueObj.sep) : metricNums[0];
+		return { value: metricValue, unit: metricUnit };
+	},
 
 	getMetricNumber ({originalValue, originalUnit, toFixed = null}) {
 		if (originalValue == null || isNaN(originalValue)) return originalValue;
@@ -4032,11 +4108,11 @@ Parser.metric = {
 
 		let out = null;
 		switch (originalUnit) {
-			case "in.": case "in": case Parser.UNT_INCHES: out = originalValue * Parser.metric.INCHES_TO_CENTIMETERS; break;
-			case "ft.": case "ft": case Parser.UNT_FEET: out = originalValue * Parser.metric.FEET_TO_METRES; break;
-			case "yd.": case "yd": case Parser.UNT_YARDS: out = originalValue * Parser.metric.YARDS_TO_METRES; break;
-			case "mi.": case "mi": case Parser.UNT_MILES: out = originalValue * Parser.metric.MILES_TO_KILOMETRES; break;
-			case "lb.": case "lb": case Parser.UNT_LBS: out = originalValue * Parser.metric.POUNDS_TO_KILOGRAMS; break;
+			case "in.": case "in": case "inch": case "inches": case Parser.UNT_INCHES: out = originalValue * Parser.metric.INCHES_TO_CENTIMETERS; break;
+			case "ft.": case "ft": case "foot": case "feet": case Parser.UNT_FEET: out = originalValue * Parser.metric.FEET_TO_METRES; break;
+			case "yd.": case "yd": case "yard": case "yards": case Parser.UNT_YARDS: out = originalValue * Parser.metric.YARDS_TO_METRES; break;
+			case "mi.": case "mi": case "mile": case "miles": case "mph": case Parser.UNT_MILES: out = originalValue * Parser.metric.MILES_TO_KILOMETRES; break;
+			case "lb.": case "lb": case "lbs": case "lbs.": case "pound": case "pounds": case Parser.UNT_LBS: out = originalValue * Parser.metric.POUNDS_TO_KILOGRAMS; break;
 			default: return originalValue;
 		}
 		if (toFixed != null) return NumberUtil.toFixedNumber(out, toFixed);
