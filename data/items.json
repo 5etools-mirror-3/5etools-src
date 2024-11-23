@@ -14273,8 +14273,8 @@
 			"wondrous": true,
 			"entries": [
 				"This Tiny cube looks like a jack-in-the-box. When you wind its crank as a {@action Magic|XPHB} action, a merry tune emits from the box, the lid pops open, a creature appears in the nearest unoccupied space, and the lid closes. The lid can't otherwise be opened.",
-				"Roll on the {@variantrule Cube [Area of Effect]|XPHB|Cube} of Summoning table to determine which spell the cube casts to summon the creature. The spell is cast at level 5 and doesn't require {@status Concentration|XPHB}, and the summoned creature views you as its summoner.",
-				"Once the cube summons a creature, it can't do so again until the next dawn.",
+				"Roll on the {@item Cube of Summoning|XDMG} table to determine which spell the cube casts to summon the creature. The spell is cast at level 5 (save {@dc 17}, +9 attack bonus) and doesn't require {@status Concentration|XPHB}, but you otherwise function as the spell's caster.",
+				"Once the cube summons a creature, the cube can't do so again until the next dawn.",
 				{
 					"type": "table",
 					"caption": "Cube of Summoning",
@@ -32351,7 +32351,7 @@
 				"{#itemEntry Ioun Stone|XDMG}",
 				"This vibrant purple prism stores spells cast into it, holding them until you use them. The stone can store up to 4 levels of spells at a time. When found, it contains {@dice 1d4} levels of stored spells chosen by the DM.",
 				"Any creature can cast a spell of level 1 through 4 into the stone by touching it as the spell is cast. The spell has no effect, other than to be stored in the stone. If the stone can't hold the spell, the spell is expended without effect. The level of the slot used to cast the spell determines how much space it uses.",
-				"While this stone orbits your head, you can cast any spell stored in it. The spell uses the slot level, spell save DC, spell attack bonus, and spellcasting ability of the original caster but is otherwise treated as if you cast the spell. The spell cast from the stone is no longer stored in it, freeing up space. Strength (Very Rare). Your Strength increases by 2, to a maximum of 20, while this pale blue rhomboid orbits your head."
+				"While this stone orbits your head, you can cast any spell stored in it. The spell uses the slot level, spell save DC, spell attack bonus, and spellcasting ability of the original caster but is otherwise treated as if you cast the spell. The spell cast from the stone is no longer stored in it, freeing up space."
 			],
 			"hasFluffImages": true
 		},
@@ -71912,6 +71912,48 @@
 			"rarity": "varies",
 			"reqAttune": true,
 			"wondrous": true,
+			"entries": [
+				{
+					"type": "table",
+					"colLabels": [
+						"Belt",
+						"Str.",
+						"Rarity"
+					],
+					"colStyles": [
+						"col-8",
+						"col-2 text-center",
+						"col-2"
+					],
+					"rows": [
+						[
+							"{@item Belt of Hill Giant Strength|XDMG}",
+							"21",
+							"Rare"
+						],
+						[
+							"{@item Belt of Frost Giant Strength|XDMG} or {@item Belt of Stone Giant Strength|XDMG}",
+							"23",
+							"Very Rare"
+						],
+						[
+							"{@item Belt of Fire Giant Strength|XDMG}",
+							"25",
+							"Very Rare"
+						],
+						[
+							"{@item Belt of Cloud Giant Strength|XDMG}",
+							"27",
+							"Legendary"
+						],
+						[
+							"{@item Belt of Storm Giant Strength|XDMG}",
+							"29",
+							"Legendary"
+						]
+					]
+				}
+			],
 			"items": [
 				"Belt of Cloud Giant Strength|XDMG",
 				"Belt of Fire Giant Strength|XDMG",
@@ -71920,6 +71962,7 @@
 				"Belt of Stone Giant Strength|XDMG",
 				"Belt of Storm Giant Strength|XDMG"
 			],
+			"itemsHidden": true,
 			"hasFluffImages": true
 		},
 		{

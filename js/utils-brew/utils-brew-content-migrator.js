@@ -150,8 +150,8 @@ export class BrewDocContentMigrator {
 				const [scfRefsLowLevel, scfRefsOther] = (sc.subclassFeatures || [])
 					.segregate(scfRef => {
 						const uid = scfRef.subclassFeature || scfRef;
-						const unpacked = DataUtil.class.unpackUidSubclassFeature(uid);
-						return unpacked.level < this._MIN_SUBCLASS_FEATURE_LEVEL;
+						const unpacked = DataUtil.class.unpackUidSubclassFeature(uid, {isLower: true});
+						return unpacked.level < this._MIN_SUBCLASS_FEATURE_LEVEL && unpacked.classSource !== VeCt.STR_GENERIC.toLowerCase();
 					});
 
 				outSubclasses.push(scNxt);

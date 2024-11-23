@@ -26,6 +26,7 @@ globalThis.Renderer = function () {
 	}
 
 	this._lazyImages = false;
+	this._lazyImages_opts = {};
 	this._isMinimizeLayoutShift = false;
 	this._subVariant = false;
 	this._firstSection = true;
@@ -59,15 +60,18 @@ globalThis.Renderer = function () {
 		return this;
 	};
 
-	this.withLazyImages = function (fn) {
+	this.withLazyImages = function (fn, {isAllowCanvas = false} = {}) {
 		const valOriginal = this._lazyImages;
+		const optsOriginal = this._lazyImages_opts;
 		try {
 			this.setLazyImages(true);
+			this._lazyImages_opts = {isAllowCanvas};
 			const out = fn(this);
 			Renderer.initLazyImageLoaders();
 			return out;
 		} finally {
 			this.setLazyImages(valOriginal);
+			this._lazyImages_opts = optsOriginal;
 		}
 	};
 
@@ -567,21 +571,15 @@ globalThis.Renderer = function () {
 		if (entry.imageType === "map" || entry.imageType === "mapPlayer") textStack[0] += `<div class="rd__wrp-map">`;
 		textStack[0] += `<div class="${meta._typeStack.includes("gallery") ? "rd__wrp-gallery-image" : ""}">`;
 
-		const hasWidthHeight = entry.width != null && entry.height != null;
-		const isLazy = this._lazyImages && hasWidthHeight;
-		const isMinimizeLayoutShift = this._isMinimizeLayoutShift && hasWidthHeight;
-
 		const href = this._renderImage_getUrl(entry);
-		const svg = isLazy || isMinimizeLayoutShift
-			? `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="${entry.width}" height="${entry.height}"><rect width="100%" height="100%" fill="#ccc3"></rect></svg>`)}`
-			: null;
+
 		const ptTitleCreditTooltip = this._renderImage_getTitleCreditTooltipText(entry);
 		const ptTitle = ptTitleCreditTooltip ? `title="${ptTitleCreditTooltip}"` : "";
 		const pluginDataIsNoLink = this._applyPlugins_useFirst("image_isNoLink", {textStack, meta, options}, {input: entry});
 
 		textStack[0] += `<div class="${this._renderImage_getWrapperClasses(entry, meta)}" ${entry.title && this._isHeaderIndexIncludeImageTitles ? `data-title-index="${this._headerIndex++}"` : ""}>
 			${pluginDataIsNoLink ? "" : `<a href="${href}" target="_blank" rel="noopener noreferrer" ${ptTitle}>`}
-				<img class="${this._renderImage_getImageClasses(entry, meta)}" src="${svg || href}" ${pluginDataIsNoLink ? ptTitle : ""} ${entry.altText || entry.title ? `alt="${Renderer.stripTags((entry.altText || entry.title)).qq()}"` : ""} ${isLazy || isMinimizeLayoutShift ? `${Renderer.utils.lazy.ATTR_IMG_FINAL_SRC}="${href}"` : `loading="lazy"`} ${!isLazy && isMinimizeLayoutShift ? `onload="Renderer.utils.lazy.handleLoad_imgMinimizeLayoutShift(this)"` : ""} ${this._renderImage_getStylePart(entry)}>
+				${this._renderImage_getImg({entry, meta, href, pluginDataIsNoLink, ptTitle})}
 			${pluginDataIsNoLink ? "" : `</a>`}
 		</div>`;
 
@@ -610,6 +608,52 @@ globalThis.Renderer = function () {
 
 		textStack[0] += `</div>`;
 		if (entry.imageType === "map" || entry.imageType === "mapPlayer") textStack[0] += `</div>`;
+	};
+
+	this._renderImage_getImg = function (
+		{
+			entry,
+			meta,
+			href,
+			pluginDataIsNoLink,
+			ptTitle,
+		},
+	) {
+		const hasWidthHeight = entry.width != null && entry.height != null;
+		const isLazy = this._lazyImages && hasWidthHeight;
+		const isMinimizeLayoutShift = this._isMinimizeLayoutShift && hasWidthHeight;
+
+		const svg = isLazy || isMinimizeLayoutShift
+			? `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="${entry.width}" height="${entry.height}"><rect width="100%" height="100%" fill="${Renderer.utils.lazy.COLOR_PLACEHOLDER}"></rect></svg>`)}`
+			: null;
+
+		const ptAttributesShared = [
+			pluginDataIsNoLink ? ptTitle : "",
+			entry.altText || entry.title ? `alt="${Renderer.stripTags((entry.altText || entry.title)).qq()}"` : "",
+			isLazy || isMinimizeLayoutShift ? `${Renderer.utils.lazy.ATTR_IMG_FINAL_SRC}="${href}"` : `loading="lazy"`,
+			this._renderImage_getStylePart(entry),
+		]
+			.filter(Boolean)
+			.join(" ");
+
+		const imgOut = `<img class="${this._renderImage_getImageClasses(entry, meta)}" ${ptAttributesShared} src="${svg || href}" ${!isLazy && isMinimizeLayoutShift ? `onload="Renderer.utils.lazy.handleLoad_imgMinimizeLayoutShift(this)"` : ""}>`;
+
+		if (
+			!hasWidthHeight
+			|| !isLazy
+			|| pluginDataIsNoLink
+		) return imgOut;
+
+		if (!this._lazyImages_opts?.isAllowCanvas) return imgOut;
+
+		const {width: screenWidth} = window.screen;
+
+		if (entry.width <= screenWidth) return imgOut;
+
+		const cappedWidth = screenWidth;
+		const cappedHeight = Math.round(entry.height / (entry.width / cappedWidth));
+
+		return `<canvas class="${this._renderImage_getImageClasses(entry, meta)} rd__cvs-image" ${ptAttributesShared} width="${cappedWidth}" height="${cappedHeight}"></canvas>`;
 	};
 
 	this._renderImage_getTitleCreditTooltipText = function (entry) {
@@ -4737,19 +4781,41 @@ Renderer.utils = class {
 		/* -------------------------------------------- */
 
 		ATTR_IMG_FINAL_SRC: "data-src",
+		COLOR_PLACEHOLDER: "#ccc3",
 
-		mutFinalizeImgSrc (ele) {
+		mutFinalizeEle (ele) {
 			const srcFinal = ele.getAttribute(Renderer.utils.lazy.ATTR_IMG_FINAL_SRC);
 			if (!srcFinal) return;
 
-			ele.removeAttribute(Renderer.utils.lazy.ATTR_IMG_FINAL_SRC);
-			ele.setAttribute("src", srcFinal);
+			if (ele.tagName === "IMG") {
+				ele.removeAttribute(Renderer.utils.lazy.ATTR_IMG_FINAL_SRC);
+				ele.setAttribute("src", srcFinal);
+				return;
+			}
+
+			if (ele.tagName === "CANVAS") {
+				const ctx = ele.getContext("2d");
+
+				const image = new Image();
+				const pLoad = new Promise((resolve, reject) => {
+					image.onload = () => resolve(image);
+					image.onerror = err => reject(err);
+				});
+				image.src = ele.getAttribute(Renderer.utils.lazy.ATTR_IMG_FINAL_SRC);
+
+				pLoad
+					.then(() => ctx.drawImage(image, 0, 0, ele.width, ele.height));
+
+				return;
+			}
+
+			throw new Error(`Unhandled element type "${ele.tagName}"!`);
 		},
 
 		/* -------------------------------------------- */
 
 		handleLoad_imgMinimizeLayoutShift (ele) {
-			Renderer.utils.lazy.mutFinalizeImgSrc(ele);
+			Renderer.utils.lazy.mutFinalizeEle(ele);
 		},
 	};
 };
@@ -15698,18 +15764,18 @@ Renderer.getRollableRow._handleInfiniteOpts = function (row, opts) {
 };
 
 Renderer.initLazyImageLoaders = function () {
-	const images = document.querySelectorAll(`img[${Renderer.utils.lazy.ATTR_IMG_FINAL_SRC}]`);
+	const images = document.querySelectorAll(`img[${Renderer.utils.lazy.ATTR_IMG_FINAL_SRC}], canvas[${Renderer.utils.lazy.ATTR_IMG_FINAL_SRC}]`);
 
 	Renderer.utils.lazy.destroyObserver({observerId: "images"});
 
 	const observer = Renderer.utils.lazy.getCreateObserver({
 		observerId: "images",
 		fnOnObserve: ({entry}) => {
-			Renderer.utils.lazy.mutFinalizeImgSrc(entry.target);
+			Renderer.utils.lazy.mutFinalizeEle(entry.target);
 		},
 	});
 
-	images.forEach(img => observer.track(img));
+	images.forEach(ele => observer.track(ele));
 };
 
 Renderer.HEAD_NEG_1 = "rd__b--0";
