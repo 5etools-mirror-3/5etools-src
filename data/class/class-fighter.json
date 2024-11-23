@@ -3527,6 +3527,22 @@
 			]
 		},
 		{
+			"name": "Protective Field",
+			"source": "TCE",
+			"page": 42,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "TCE",
+			"level": 3,
+			"consumes": {
+				"name": "Psionic Energy Die"
+			},
+			"entries": [
+				"When you or another creature you can see within 30 feet of you takes damage, you can use your reaction to expend one Psionic Energy die, roll the die, and reduce the damage taken by the number rolled plus your Intelligence modifier (minimum reduction of 1), as you create a momentary shield of telekinetic force."
+			]
+		},
+		{
 			"name": "Psi Warrior",
 			"source": "TCE",
 			"page": 42,
@@ -3542,6 +3558,35 @@
 					"type": "refSubclassFeature",
 					"subclassFeature": "Psionic Power|Fighter||Psi Warrior|TCE|3"
 				}
+			]
+		},
+		{
+			"name": "Psionic Strike",
+			"source": "TCE",
+			"page": 42,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "TCE",
+			"level": 3,
+			"consumes": {
+				"name": "Psionic Energy Die"
+			},
+			"entries": [
+				"You can propel your weapons with psionic force. Once on each of your turns, immediately after you hit a target within 30 feet of you with an attack and deal damage to it with a weapon, you can expend one Psionic Energy die, rolling it and dealing force damage to the target equal to the number rolled plus your Intelligence modifier."
+			]
+		},
+		{
+			"name": "Telekinetic Movement",
+			"source": "TCE",
+			"page": 42,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "TCE",
+			"level": 3,
+			"entries": [
+				"You can move an object or a creature with your mind. As an action, you target one loose object that is Large or smaller or one willing creature, other than yourself. If you can see the target and it is within 30 feet of you, you can move it up to 30 feet to an unoccupied space you can see. Alternatively, if it is a Tiny object, you can move it to or from your hand. Either way, you can move the target horizontally, vertically, or both. Once you take this action, you can't do so again until you finish a short or long rest, unless you expend a Psionic Energy die to take it again."
 			]
 		},
 		{
@@ -3566,18 +3611,44 @@
 					"entries": [
 						{
 							"type": "refSubclassFeature",
-							"subclassFeature": "Protective Field|Fighter|TCE|Psi Warrior|TCE|3"
+							"subclassFeature": "Protective Field|Fighter|PHB|Psi Warrior|TCE|3"
 						},
 						{
 							"type": "refSubclassFeature",
-							"subclassFeature": "Psionic Strike|Fighter|TCE|Psi Warrior|TCE|3"
+							"subclassFeature": "Psionic Strike|Fighter|PHB|Psi Warrior|TCE|3"
 						},
 						{
 							"type": "refSubclassFeature",
-							"subclassFeature": "Telekinetic Movement|Fighter|TCE|Psi Warrior|TCE|3"
+							"subclassFeature": "Telekinetic Movement|Fighter|PHB|Psi Warrior|TCE|3"
 						}
 					]
 				}
+			]
+		},
+		{
+			"name": "Psi-Powered Leap",
+			"source": "TCE",
+			"page": 42,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "TCE",
+			"level": 7,
+			"entries": [
+				"As a bonus action, you can propel your body with your mind. You gain a flying speed equal to twice your walking speed until the end of the current turn. Once you take this bonus action, you can't do so again until you finish a short or long rest, unless you expend a Psionic Energy die to take it again."
+			]
+		},
+		{
+			"name": "Telekinetic Thrust",
+			"source": "TCE",
+			"page": 42,
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Psi Warrior",
+			"subclassSource": "TCE",
+			"level": 7,
+			"entries": [
+				"When you deal damage to a target with your Psionic Strike, you can force the target to make a Strength saving throw against a DC equal to 8 + your proficiency bonus + your Intelligence modifier. If the save fails, you can knock the target {@condition prone} or move it up to 10 feet in any direction horizontally."
 			]
 		},
 		{
@@ -3599,11 +3670,11 @@
 					"entries": [
 						{
 							"type": "refSubclassFeature",
-							"subclassFeature": "Psi-Powered Leap|Fighter|TCE|Psi Warrior|TCE|7"
+							"subclassFeature": "Psi-Powered Leap|Fighter|PHB|Psi Warrior|TCE|7"
 						},
 						{
 							"type": "refSubclassFeature",
-							"subclassFeature": "Telekinetic Thrust|Fighter|TCE|Psi Warrior|TCE|7"
+							"subclassFeature": "Telekinetic Thrust|Fighter|PHB|Psi Warrior|TCE|7"
 						}
 					]
 				}
@@ -4353,77 +4424,6 @@
 			"entries": [
 				"Starting at 18th level, your fighting spirit can delay the grasp of death. If you take damage that reduces you to 0 hit points and doesn't kill you outright, you can use your reaction to delay falling {@condition unconscious}, and you can immediately take an extra turn, interrupting the current turn. While you have 0 hit points during that extra turn, taking damage causes death saving throw failures as normal, and three death saving throw failures can still kill you. When the extra turn ends, you fall {@condition unconscious} if you still have 0 hit points.",
 				"Once you use this feature, you can't use it again until you finish a long rest."
-			]
-		},
-		{
-			"name": "Protective Field",
-			"source": "TCE",
-			"page": 42,
-			"className": "Fighter",
-			"classSource": "TCE",
-			"subclassShortName": "Psi Warrior",
-			"subclassSource": "TCE",
-			"level": 3,
-			"consumes": {
-				"name": "Psionic Energy Die"
-			},
-			"entries": [
-				"When you or another creature you can see within 30 feet of you takes damage, you can use your reaction to expend one Psionic Energy die, roll the die, and reduce the damage taken by the number rolled plus your Intelligence modifier (minimum reduction of 1), as you create a momentary shield of telekinetic force."
-			]
-		},
-		{
-			"name": "Psionic Strike",
-			"source": "TCE",
-			"page": 42,
-			"className": "Fighter",
-			"classSource": "TCE",
-			"subclassShortName": "Psi Warrior",
-			"subclassSource": "TCE",
-			"level": 3,
-			"consumes": {
-				"name": "Psionic Energy Die"
-			},
-			"entries": [
-				"You can propel your weapons with psionic force. Once on each of your turns, immediately after you hit a target within 30 feet of you with an attack and deal damage to it with a weapon, you can expend one Psionic Energy die, rolling it and dealing force damage to the target equal to the number rolled plus your Intelligence modifier."
-			]
-		},
-		{
-			"name": "Telekinetic Movement",
-			"source": "TCE",
-			"page": 42,
-			"className": "Fighter",
-			"classSource": "TCE",
-			"subclassShortName": "Psi Warrior",
-			"subclassSource": "TCE",
-			"level": 3,
-			"entries": [
-				"You can move an object or a creature with your mind. As an action, you target one loose object that is Large or smaller or one willing creature, other than yourself. If you can see the target and it is within 30 feet of you, you can move it up to 30 feet to an unoccupied space you can see. Alternatively, if it is a Tiny object, you can move it to or from your hand. Either way, you can move the target horizontally, vertically, or both. Once you take this action, you can't do so again until you finish a short or long rest, unless you expend a Psionic Energy die to take it again."
-			]
-		},
-		{
-			"name": "Psi-Powered Leap",
-			"source": "TCE",
-			"page": 42,
-			"className": "Fighter",
-			"classSource": "TCE",
-			"subclassShortName": "Psi Warrior",
-			"subclassSource": "TCE",
-			"level": 7,
-			"entries": [
-				"As a bonus action, you can propel your body with your mind. You gain a flying speed equal to twice your walking speed until the end of the current turn. Once you take this bonus action, you can't do so again until you finish a short or long rest, unless you expend a Psionic Energy die to take it again."
-			]
-		},
-		{
-			"name": "Telekinetic Thrust",
-			"source": "TCE",
-			"page": 42,
-			"className": "Fighter",
-			"classSource": "TCE",
-			"subclassShortName": "Psi Warrior",
-			"subclassSource": "TCE",
-			"level": 7,
-			"entries": [
-				"When you deal damage to a target with your Psionic Strike, you can force the target to make a Strength saving throw against a DC equal to 8 + your proficiency bonus + your Intelligence modifier. If the save fails, you can knock the target {@condition prone} or move it up to 10 feet in any direction horizontally."
 			]
 		},
 		{
