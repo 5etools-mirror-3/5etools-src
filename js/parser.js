@@ -260,6 +260,7 @@ Parser.getSpeedString = (ent, {isMetric = false, isSkipZeroWalk = false, isLongF
 	if (ent.speed == null) return "\u2014";
 
 	styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+	isMetric ||= VetoolsConfig.get("localization", "isMetric");
 
 	const unit = isMetric
 		? Parser.metric.getMetricUnit({originalUnit: "ft.", isShortForm: !isLongForm})
@@ -1539,12 +1540,23 @@ Parser.spRangeToFull._renderPoint = function (range) {
 		case Parser.UNT_YARDS:
 		case Parser.UNT_MILES:
 		default:
+			if (VetoolsConfig.get("localization", "isMetric")) {
+				const { value, unit } = Parser.metric.getMetric({ value: dist.amount, unit: dist.type });
+				return `${value} ${unit}`;
+			}
 			return `${dist.amount} ${dist.amount === 1 ? Parser.getSingletonUnit(dist.type) : dist.type}`;
 	}
 };
 Parser.spRangeToFull._renderArea = function (range) {
-	const size = range.distance;
-	return `Self (${size.amount}-${Parser.getSingletonUnit(size.type)}${Parser.spRangeToFull._getAreaStyleString(range)}${range.type === Parser.RNG_CYLINDER ? `${size.amountSecondary != null && size.typeSecondary != null ? `, ${size.amountSecondary}-${Parser.getSingletonUnit(size.typeSecondary)}-high` : ""} cylinder` : ""})`;
+	let size = { value: range.distance.amount, unit: range.distance.type };
+	let secondarySize = range.type === Parser.RNG_CYLINDER ? { value: range.distance.amountSecondary, unit: range.distance.typeSecondary } : null;
+	// const size = range.distance;
+	if (VetoolsConfig.get("localization", "isMetric")) {
+		size = Parser.metric.getMetric(size, true);
+		if (secondarySize) secondarySize = Parser.metric.getMetric(secondarySize, true);
+	}
+
+	return `Self (${size.value}-${Parser.getSingletonUnit(size.unit)}${Parser.spRangeToFull._getAreaStyleString(range)}${range.type === Parser.RNG_CYLINDER ? `${secondarySize.value != null && secondarySize.unit != null ? `, ${secondarySize.value}-${Parser.getSingletonUnit(secondarySize.unit)}-high` : ""} cylinder` : ""})`;
 };
 Parser.spRangeToFull._getAreaStyleString = function (range) {
 	switch (range.type) {
