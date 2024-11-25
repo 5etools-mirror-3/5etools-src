@@ -7827,17 +7827,18 @@ Renderer.race = class {
 	static getHeightAndWeightEntries (race, {isStatic = false} = {}) {
 		const colLabels = ["Base Height", "Base Weight", "Height Modifier", "Weight Modifier"];
 		const colStyles = ["col-2-3 text-center", "col-2-3 text-center", "col-2-3 text-center", "col-2 text-center"];
+		const isMetric = VetoolsConfig.get("localization", "isMetric");
 
 		const cellHeightMod = !isStatic
 			? `+<span data-race-heightmod="true">${race.heightAndWeight.heightMod}</span>`
 			: `+${race.heightAndWeight.heightMod}`;
 		const cellWeightMod = !isStatic
-			? `× <span data-race-weightmod="true">${race.heightAndWeight.weightMod || "1"}</span> lb.`
-			: `× ${race.heightAndWeight.weightMod || "1"} lb.`;
+			? `× <span data-race-weightmod="true">${race.heightAndWeight.weightMod || "1"}</span>${isMetric ? "" : " lb."}` // intermediate unit is hidden for metric
+			: `× ${race.heightAndWeight.weightMod || "1"}${isMetric ? "" : " lb."}`;
 
 		const row = [
-			Renderer.race.getRenderedHeight(race.heightAndWeight.baseHeight),
-			`${race.heightAndWeight.baseWeight} lb.`,
+			isMetric ? `${race.heightAndWeight.baseHeight}` : Renderer.race.formatHeightInFeetAndInches(race.heightAndWeight.baseHeight),
+			`${race.heightAndWeight.baseWeight}${isMetric ? "" : " lb."}`,
 			cellHeightMod,
 			cellWeightMod,
 		];
@@ -7851,14 +7852,15 @@ Renderer.race = class {
 					<div class="race__disp-result-height"></div>
 					<div class="mr-2">; </div>
 					<div class="race__disp-result-weight mr-1"></div>
-					<div class="small">lb.</div>
 				</div>
 				<button class="ve-btn ve-btn-default ve-btn-xs my-1 race__btn-roll-height-weight">Roll</button>
 			</div>`);
 		}
 
 		return [
-			"You may roll for your character's height and weight on the Random Height and Weight table. The roll in the Height Modifier column adds a number (in inches) to the character's base height. To get a weight, multiply the number you rolled for height by the roll in the Weight Modifier column and add the result (in pounds) to the base weight.",
+			isMetric 
+			? "You may roll for your character's height and weight on the Random Height and Weight table. To get a height (in centimeters), add the dice roll given in the Height Modifier column to the base height, and multiply the result by 2.5. To get a weight (in kilograms), multiply the number your rolled for height by the roll in the Weight Modifier column, add the result to the base weight, and divide the total by 2."
+			: "You may roll for your character's height and weight on the Random Height and Weight table. The roll in the Height Modifier column adds a number (in inches) to the character's base height. To get a weight, multiply the number you rolled for height by the roll in the Weight Modifier column and add the result (in pounds) to the base weight.",
 			{
 				type: "table",
 				caption: "Random Height and Weight",
@@ -7869,10 +7871,25 @@ Renderer.race = class {
 		];
 	}
 
-	static getRenderedHeight (height) {
+	static formatHeightInFeetAndInches (height) {
 		const heightFeet = Number(Math.floor(height / 12).toFixed(3));
 		const heightInches = Number((height % 12).toFixed(3));
 		return `${heightFeet ? `${heightFeet}'` : ""}${heightInches ? `${heightInches}"` : ""}`;
+	}
+
+	static getRenderedHeight (heightValue) {
+		if (VetoolsConfig.get("localization", "isMetric")) {
+			const height = Parser.metric.getMetric({ value: heightValue, unit: "in." });
+			return `${height.value.toFixed(0)} ${height.unit}`;
+		} else {
+			return this.formatHeightInFeetAndInches(heightValue);
+		}
+	}
+
+	static getRenderedWeight (weightValue) {
+		let weight = { value: weightValue, unit: "lb." };
+		if (VetoolsConfig.get("localization", "isMetric")) weight = Parser.metric.getMetric(weight);
+		return `${weight.value.toFixed(0)} ${weight.unit}`;
 	}
 
 	/**
@@ -8255,9 +8272,9 @@ Renderer.race = class {
 
 		const updateDisplay = () => {
 			const renderedHeight = Renderer.race.getRenderedHeight(race.heightAndWeight.baseHeight + resultHeight);
-			const totalWeight = race.heightAndWeight.baseWeight + (resultWeightMod * resultHeight);
+			const renderedWeight = Renderer.race.getRenderedWeight(race.heightAndWeight.baseWeight + (resultWeightMod * resultHeight));
 			$dispHeight.text(renderedHeight);
-			$dispWeight.text(Number(totalWeight.toFixed(3)));
+			$dispWeight.text(renderedWeight);
 		};
 
 		const pDoFullRoll = async isPreLocked => {
