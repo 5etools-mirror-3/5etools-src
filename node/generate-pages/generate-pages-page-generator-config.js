@@ -138,10 +138,10 @@ class _PageGeneratorCrcalculator extends PageGeneratorGeneric {
 class _PageGeneratorIndex extends PageGeneratorGeneric {
 	_filename = "page/template-page-index.hbs";
 	_page = "index.html";
-	_pageDescription = "A suite of tools for 5th Edition Dungeons & Dragons players and Dungeon Masters.";
+	_pageDescription = "A suite of tools for Spies & Spiders players and DMs.";
 
 	_navbarTitleHtml = `5e<span>tools</span>`;
-	_navbarDescription = "A suite of tools for 5th Edition Dungeons & Dragons players and Dungeon Masters.";
+	_navbarDescription = "A suite of tools for Spies & Spiders players and DMs.";
 	_navbarPageTitleStyleAdditional = "page__title--home";
 
 	_isFontAwesome = true;
