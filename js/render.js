@@ -1945,6 +1945,15 @@ globalThis.Renderer = function () {
 				break;
 			}
 
+			case "@quantity": {
+				const [value, unitStr] = Renderer.splitTagByPipe(text);
+				const isAdjective = unitStr.includes("-");
+				let quantity = { value, unit: unitStr.replace("-", "") };
+				if (VetoolsConfig.get("localization", "isMetric")) quantity = Parser.metric.getMetric(quantity, isAdjective);
+				textStack[0] += `${quantity.value}${isAdjective ? "-" : " "}${quantity.unit}`;
+				break;
+			}
+
 			// Comic styles ////////////////////////////////////////////////////////////////////////////////////
 			case "@comic":
 				textStack[0] += `<span class="rd__comic">`;
