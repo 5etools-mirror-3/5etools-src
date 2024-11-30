@@ -111,38 +111,62 @@ Parser.numberToText._getPositiveIntegerAsText = num => {
 
 Parser.textToNumber = function (str) {
 	str = str.trim().toLowerCase();
+	if (str === "") return NaN;
 	if (!isNaN(str)) return Number(str);
-	switch (str) {
-		case "zero": return 0;
-		case "one": case "a": case "an": return 1;
-		case "two": case "double": return 2;
-		case "three": case "triple": return 3;
-		case "four": case "quadruple": return 4;
-		case "five": return 5;
-		case "six": return 6;
-		case "seven": return 7;
-		case "eight": return 8;
-		case "nine": return 9;
-		case "ten": return 10;
-		case "eleven": return 11;
-		case "twelve": return 12;
-		case "thirteen": return 13;
-		case "fourteen": return 14;
-		case "fifteen": return 15;
-		case "sixteen": return 16;
-		case "seventeen": return 17;
-		case "eighteen": return 18;
-		case "nineteen": return 19;
-		case "twenty": return 20;
-		case "thirty": return 30;
-		case "forty": return 40;
-		case "fifty": return 50;
-		case "sixty": return 60;
-		case "seventy": return 70;
-		case "eighty": return 80;
-		case "ninety": return 90;
-	}
-	return NaN;
+
+	const numberWords = {
+		"zero": 0,
+		"one": 1, "a": 1, "an": 1,
+		"two": 2, "double": 2,
+		"three": 3, "triple": 3,
+		"four": 4, "quadruple": 4,
+		"five": 5,
+		"six": 6,
+		"seven": 7,
+		"eight": 8,
+		"nine": 9,
+		"ten": 10,
+		"eleven": 11,
+		"twelve": 12,
+		"thirteen": 13,
+		"fourteen": 14,
+		"fifteen": 15,
+		"sixteen": 16,
+		"seventeen": 17,
+		"eighteen": 18,
+		"nineteen": 19,
+		"twenty": 20,
+		"thirty": 30,
+		"forty": 40,
+		"fifty": 50,
+		"sixty": 60,
+		"seventy": 70,
+		"eighty": 80,
+		"ninety": 90,
+		"hundred": 100,
+		"thousand": 1000
+	};
+
+	const parts = str.split(/[\s-]+/);
+	let total = 0;
+	let current = 0;
+
+	for (const part of parts) {
+		if (numberWords[part] === 1000) {
+				total += current * 1000;
+				current = 0;
+		} else if (numberWords[part] === 100) {
+				current *= 100;
+		} else if (numberWords[part] !== undefined) {
+				current += numberWords[part];
+		} else if (part === "and") {
+			continue;
+		} else {
+				return NaN;
+		}
+	};
+
+	return total + current;
 };
 
 Parser.numberToVulgar = function (number, {isFallbackOnFractional = true} = {}) {
