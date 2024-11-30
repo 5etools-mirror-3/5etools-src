@@ -1416,7 +1416,7 @@ globalThis.Renderer = function () {
 	this._renderBonusSpeed = function (entry, textStack, meta, options) {
 		let speed = { value: entry.value, unit: "ft." };
 		if (VetoolsConfig.get("localization", "isMetric")) {
-			speed = Parser.metric.getMetric(speed);
+			speed = Parser.quantity.getMetric(speed);
 		}
 		textStack[0] += speed.value === 0 ? "\u2014" : `${speed.value < 0 ? "" : "+"}${speed.value} ${speed.unit}`;
 	};
@@ -1949,7 +1949,7 @@ globalThis.Renderer = function () {
 				const [value, unitStr] = Renderer.splitTagByPipe(text);
 				const isAdjective = unitStr.includes("-");
 				let quantity = { value, unit: unitStr.replace("-", "") };
-				if (VetoolsConfig.get("localization", "isMetric")) quantity = Parser.metric.getMetric(quantity, isAdjective);
+				if (VetoolsConfig.get("localization", "isMetric")) quantity = Parser.quantity.getMetric(quantity, isAdjective);
 				textStack[0] += `${quantity.value}${isAdjective ? "-" : " "}${quantity.unit}`;
 				break;
 			}
@@ -7888,7 +7888,7 @@ Renderer.race = class {
 
 	static getRenderedHeight (heightValue) {
 		if (VetoolsConfig.get("localization", "isMetric")) {
-			const height = Parser.metric.getMetric({ value: heightValue, unit: "in." });
+			const height = Parser.quantity.getMetric({ value: heightValue, unit: "in." });
 			return `${height.value.toFixed(0)} ${height.unit}`;
 		} else {
 			return this.formatHeightInFeetAndInches(heightValue);
@@ -7897,7 +7897,7 @@ Renderer.race = class {
 
 	static getRenderedWeight (weightValue) {
 		let weight = { value: weightValue, unit: "lb." };
-		if (VetoolsConfig.get("localization", "isMetric")) weight = Parser.metric.getMetric(weight);
+		if (VetoolsConfig.get("localization", "isMetric")) weight = Parser.quantity.getMetric(weight);
 		return `${weight.value.toFixed(0)} ${weight.unit}`;
 	}
 
@@ -10729,12 +10729,12 @@ Renderer.item = class {
 		// mounts
 		if (item.speed != null) {
 			let speed = { value: item.speed, unit: "ft." };
-			if (VetoolsConfig.get("localization", "isMetric")) speed = Parser.metric.getMetric(speed);
+			if (VetoolsConfig.get("localization", "isMetric")) speed = Parser.quantity.getMetric(speed);
 			damageParts.push(`Speed: ${speed.value} ${speed.unit}`);
 		} 
 		if (item.carryingCapacity) {
 			let capacity = { value: item.carryingCapacity, unit: "lb." };
-			if (VetoolsConfig.get("localization", "isMetric")) capacity = Parser.metric.getMetric(capacity);
+			if (VetoolsConfig.get("localization", "isMetric")) capacity = Parser.quantity.getMetric(capacity);
 			damageParts.push(`Carrying Capacity: ${(capacity.value)} ${capacity.unit}`);
 		}
 
@@ -10742,7 +10742,7 @@ Renderer.item = class {
 		if (item.vehSpeed || item.capCargo || item.capPassenger || item.crew || item.crewMin || item.crewMax || item.vehAc || item.vehHp || item.vehDmgThresh || item.travelCost || item.shippingCost) {
 			let speed = { value: item.vehSpeed, unit: "mph" };
 			VetoolsConfig.get("localization", "isMetric") 
-				? speed = Parser.metric.getMetric(speed) 
+				? speed = Parser.quantity.getMetric(speed) 
 				: speed.value = Parser.numberToVulgar(speed.value); // only use vulgar for imperial
 
 			const vehPartUpper = item.vehSpeed ? `Speed: ${speed.value} ${speed.unit}` : null;
@@ -12370,8 +12370,8 @@ Renderer.vehicle = class {
 			let speed = { value: ent.pace * 10, unit: "ft." };
 
 			if (VetoolsConfig.get("localization", "isMetric")) {
-				pace = Parser.metric.getMetric(pace);
-				speed = Parser.metric.getMetric(speed);
+				pace = Parser.quantity.getMetric(pace);
+				speed = Parser.quantity.getMetric(speed);
 			}
 
 			return {
@@ -12768,9 +12768,9 @@ Renderer.vehicle = class {
 			let weight = { value: ent.weight, unit: "lb." };
 
 			if (VetoolsConfig.get("localization", "isMetric")) {
-				speed = Parser.metric.getMetric(speed);
-				pace = Parser.metric.getMetric(pace);
-				weight = Parser.metric.getMetric(weight);
+				speed = Parser.quantity.getMetric(speed);
+				pace = Parser.quantity.getMetric(pace);
+				weight = Parser.quantity.getMetric(weight);
 			}
 
 			return {

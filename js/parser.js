@@ -287,7 +287,7 @@ Parser.getSpeedString = (ent, {isMetric = false, isSkipZeroWalk = false, isLongF
 	isMetric ||= VetoolsConfig.get("localization", "isMetric");
 
 	const unit = isMetric
-		? Parser.metric.getMetricUnit({originalUnit: "ft.", isShortForm: !isLongForm})
+		? Parser.quantity.getMetricUnit({originalUnit: "ft.", isShortForm: !isLongForm})
 		: isLongForm ? "feet" : "ft.";
 	if (typeof ent.speed === "object") {
 		const stack = [];
@@ -305,7 +305,7 @@ Parser.getSpeedString = (ent, {isMetric = false, isSkipZeroWalk = false, isLongF
 		return stack.join(joiner) + (ent.speed.note ? ` ${ent.speed.note}` : "");
 	}
 
-	return (isMetric ? Parser.metric.getMetricNumber({originalValue: ent.speed, originalUnit: Parser.UNT_FEET}) : ent.speed)
+	return (isMetric ? Parser.quantity.getMetricNumber({originalValue: ent.speed, originalUnit: Parser.UNT_FEET}) : ent.speed)
 		+ (ent.speed === "Varies" ? "" : ` ${unit} `);
 };
 Parser._getSpeedString_addSpeedMode = ({ent, prop, stack, isMetric, isSkipZeroWalk, unit, styleHint}) => {
@@ -326,7 +326,7 @@ Parser._getSpeedString_getVal = ({prop, speed, isMetric}) => {
 		? 0
 		: speed.number != null ? speed.number : speed;
 
-	return isMetric ? Parser.metric.getMetricNumber({originalValue: num, originalUnit: Parser.UNT_FEET}) : num;
+	return isMetric ? Parser.quantity.getMetricNumber({originalValue: num, originalUnit: Parser.UNT_FEET}) : num;
 };
 Parser._getSpeedString_getCondition = ({speed}) => speed.condition ? ` ${Renderer.get().render(speed.condition)}` : "";
 
@@ -1565,7 +1565,7 @@ Parser.spRangeToFull._renderPoint = function (range) {
 		case Parser.UNT_MILES:
 		default:
 			if (VetoolsConfig.get("localization", "isMetric")) {
-				const { value, unit } = Parser.metric.getMetric({ value: dist.amount, unit: dist.type });
+				const { value, unit } = Parser.quantity.getMetric({ value: dist.amount, unit: dist.type });
 				return `${value} ${unit}`;
 			}
 			return `${dist.amount} ${dist.amount === 1 ? Parser.getSingletonUnit(dist.type) : dist.type}`;
@@ -1576,8 +1576,8 @@ Parser.spRangeToFull._renderArea = function (range) {
 	let secondarySize = range.type === Parser.RNG_CYLINDER ? { value: range.distance.amountSecondary, unit: range.distance.typeSecondary } : null;
 	// const size = range.distance;
 	if (VetoolsConfig.get("localization", "isMetric")) {
-		size = Parser.metric.getMetric(size, true);
-		if (secondarySize) secondarySize = Parser.metric.getMetric(secondarySize, true);
+		size = Parser.quantity.getMetric(size, true);
+		if (secondarySize) secondarySize = Parser.quantity.getMetric(secondarySize, true);
 	}
 
 	return `Self (${size.value}-${Parser.getSingletonUnit(size.unit)}${Parser.spRangeToFull._getAreaStyleString(range)}${range.type === Parser.RNG_CYLINDER ? `${secondarySize.value != null && secondarySize.unit != null ? `, ${secondarySize.value}-${Parser.getSingletonUnit(secondarySize.unit)}-high` : ""} cylinder` : ""})`;
@@ -4050,34 +4050,8 @@ Parser.NUMBERS_ONES = ["", "one", "two", "three", "four", "five", "six", "seven"
 Parser.NUMBERS_TENS = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
 Parser.NUMBERS_TEENS = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
 
-Parser.tryGetValueObj = function (val) {
-	const toNum = str => str = Number(str.replace(/,/g, "")) // remove thousand separators and convert to number
-
-	if (typeof (val) === "number") return { nums: [val] };
-	if (typeof (val) !== "string" || !val.trim()) return null;
-
-	// handle ranges
-	if (val.includes("/")) {
-		let spl = val.split("/");
-		spl = spl.map(it => toNum(it));
-		// if the first item is >= 5 and the second is >= 10, assume it's a range, else it's a fraction
-		return spl[0] >= 5 && spl[1] >= 10 ? { nums: spl, sep: "/" } : { nums: [spl[0] / spl[1]] };
-	}
-
-	if (/^\d+-\d+$/.test(val)) {
-		return { nums: val.split("-").map(it => toNum(it)), sep: "-" };
-	}
-
-	if (val.includes(" to ")) {
-		return { nums: val.split(" to ").map(it => toNum(it)), sep: " to " };
-	}
-
-	val = toNum(val);
-	return isNaN(val) ? null : { nums: [val] };
-}
-
 // region Metric conversion
-Parser.metric = {
+Parser.quantity = {
 	// See MPMB's breakdown: https://old.reddit.com/r/dndnext/comments/6gkuec
 	MILES_TO_KILOMETRES: 1.5, // 1 mi = 1.5 km see e.g. https://www.aidedd.org/adj/poids-et-mesures/ (in french)
 	FEET_TO_METRES: 0.3, // 5 ft = 1.5 m
@@ -4087,40 +4061,46 @@ Parser.metric = {
 	INCHES_TO_CENTIMETERS: 2.5, // 1 in = 2.5 cm
 
 	UNIT_WORDS_MAP: {
-	"in": "cm",
-	"in.": "cm",
-	"inch": "centimeter",
-	"inches": "centimeters",
-	"ft": "m",
-	"ft.": "m",
-	"foot": "meter",
-	"feet": "meters",
-	"yd": "m",
-	"yd.": "m",
-	"yard": "meter",
-	"yards": "meters",
-	"mi": "km",
-	"mi.": "km",
-	"mile": "kilometer",
-	"miles": "kilometers",
-	"lb": "kg",
-	"lb.": "kg",
-	"lbs": "kg",
-	"lbs.": "kg",
-	"pound": "kilogram",
-	"pounds": "kilograms",
-	"mph": "km/h",
-},
+		"in": "cm",
+		"in.": "cm",
+		"inch": "centimeter",
+		"inches": "centimeters",
+		"ft": "m",
+		"ft.": "m",
+		"foot": "meter",
+		"feet": "meters",
+		"yd": "m",
+		"yd.": "m",
+		"yard": "meter",
+		"yards": "meters",
+		"mi": "km",
+		"mi.": "km",
+		"mile": "kilometer",
+		"miles": "kilometers",
+		"lb": "kg",
+		"lb.": "kg",
+		"lbs": "kg",
+		"lbs.": "kg",
+		"pound": "kilogram",
+		"pounds": "kilograms",
+		"mph": "km/h",
+	},
 
-UNIT_PLURAL_MAP: {
-	"centimeter": "centimeters",
-	"meter": "meters",
-	"kilometer": "kilometers",
-	"kilogram": "kilograms",
-},
+	UNIT_PLURAL_MAP: {
+		"centimeter": "centimeters",
+		"meter": "meters",
+		"kilometer": "kilometers",
+		"kilogram": "kilograms",
+	},
+
+	RANGE_PATTERNS: [
+		[/\d+\/\d+/, "/"],
+		[/\d+-\d+/, "-"],
+		[/\sto\s/, " to "],
+	],
 
 	/**
- * Attempts to convert a quantity to metric, falling back on the original quantity if needed.
+ * Attempts to convert a quantity to metric.
  * @param {Object} quantity - The object representing the original quantity.
  * @param {number|string} quantity.value - The original value to convert.
  * @param {string} quantity.unit - The original unit word for the given value.
@@ -4133,7 +4113,7 @@ UNIT_PLURAL_MAP: {
 		if (!metricUnit) return { value, unit };
 
 		// attempt to parse the value
-		const valueObj = Parser.tryGetValueObj(value);
+		const valueObj = this.getValue(value);
 		if (!valueObj) return { value, unit };
 
 		// attempt to convert the value
@@ -4142,15 +4122,33 @@ UNIT_PLURAL_MAP: {
 
 		// ensure the unit is in the right form
 		metricUnit = !isAdjective && metricNums.some(num => num > 1) 
-			?  this.UNIT_PLURAL_MAP[metricUnit] ?? metricUnit // ensure unit use plural form
-			: metricUnit = Object.keys(this.UNIT_PLURAL_MAP).find(key => this.UNIT_PLURAL_MAP[key] === metricUnit) ?? metricUnit; // ensure unit use singular form
-
-		// if (!isAdjective && metricNums.some(num => num <= 1)) {
-		// 	metricUnit = this.UNIT_PLURAL_MAP[metricUnit] ?? metricUnit;
-		// }
+			? this.UNIT_PLURAL_MAP[metricUnit] ?? metricUnit
+			: metricUnit = Object.keys(this.UNIT_PLURAL_MAP).find(key => this.UNIT_PLURAL_MAP[key] === metricUnit) ?? metricUnit;
 
 		const metricValue = valueObj.sep ? metricNums.join(valueObj.sep) : metricNums[0];
 		return { value: metricValue, unit: metricUnit };
+	},
+
+	getValue (val) {
+		if (typeof (val) === "number") return { nums: [val] };
+		if (typeof (val) !== "string" || !val.trim()) return null;
+
+		for (const [pattern, sep] of this.RANGE_PATTERNS) {
+			if (val.match(pattern)) {
+				const nums = val.split(sep).map(n => this.getNumber(n));
+				if (nums.some(n => n == null)) return null;
+				return sep === "/" && nums[0] < 5 && nums[1] <= 10 // the value is a fraction, not a range
+					? { nums: [nums[0] / nums[1]] } 
+					: { nums, sep };
+			}
+		}
+
+		val = this.getNumber(val);
+		return isNaN(val) ? null : { nums: [val] };
+	},
+
+	getNumber (str) {
+		return str = Number(str.replace(/,/g, ""))
 	},
 
 	getMetricNumber ({originalValue, originalUnit, toFixed = null}) {
@@ -4161,11 +4159,11 @@ UNIT_PLURAL_MAP: {
 
 		let out = null;
 		switch (originalUnit) {
-			case "in.": case "in": case "inch": case "inches": case Parser.UNT_INCHES: out = originalValue * Parser.metric.INCHES_TO_CENTIMETERS; break;
-			case "ft.": case "ft": case "foot": case "feet": case Parser.UNT_FEET: out = originalValue * Parser.metric.FEET_TO_METRES; break;
-			case "yd.": case "yd": case "yard": case "yards": case Parser.UNT_YARDS: out = originalValue * Parser.metric.YARDS_TO_METRES; break;
-			case "mi.": case "mi": case "mile": case "miles": case "mph": case Parser.UNT_MILES: out = originalValue * Parser.metric.MILES_TO_KILOMETRES; break;
-			case "lb.": case "lb": case "lbs": case "lbs.": case "pound": case "pounds": case Parser.UNT_LBS: out = originalValue * Parser.metric.POUNDS_TO_KILOGRAMS; break;
+			case "in.": case "in": case "inch": case "inches": case Parser.UNT_INCHES: out = originalValue * this.INCHES_TO_CENTIMETERS; break;
+			case "ft.": case "ft": case "foot": case "feet": case Parser.UNT_FEET: out = originalValue * this.FEET_TO_METRES; break;
+			case "yd.": case "yd": case "yard": case "yards": case Parser.UNT_YARDS: out = originalValue * this.YARDS_TO_METRES; break;
+			case "mi.": case "mi": case "mile": case "miles": case "mph": case Parser.UNT_MILES: out = originalValue * this.MILES_TO_KILOMETRES; break;
+			case "lb.": case "lb": case "lbs": case "lbs.": case "pound": case "pounds": case Parser.UNT_LBS: out = originalValue * this.POUNDS_TO_KILOGRAMS; break;
 			default: return originalValue;
 		}
 		if (toFixed != null) return NumberUtil.toFixedNumber(out, toFixed);
