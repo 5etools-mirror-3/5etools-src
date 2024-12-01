@@ -4124,6 +4124,25 @@ Parser.quantity = {
 		[/\sto\s/, " to "],
 	],
 
+	QUANTIFIERS: [
+		"a few",
+		"a couple",
+		"several",
+		"many",
+		"some",
+		"a number of",
+		"a handful of",
+		"dozens of",
+		"dozens",
+		"dozen",
+		"hundreds of",
+		"hundreds",
+		"hundred",
+		"thousands of",
+		"thousands",
+		"thousand",
+	],
+
 	/**
  * Attempts to convert a quantity to metric.
  * @param {Object} quantity - The object representing the original quantity.
@@ -4138,19 +4157,23 @@ Parser.quantity = {
 		if (!metricUnit) return { value, unit };
 
 		// attempt to parse the value
-		const valueObj = this.getValue(value);
-		if (!valueObj) return { value, unit };
+		const { nums, sep } = this.getValue(value) ?? {};
+		if (!nums) {
+			return this.isQuantifier(value)
+				? { value, unit: metricUnit }
+				: { value, unit };
+		}
 
 		// attempt to convert the value
-		const metricNums = valueObj.nums.map((it) => this.getMetricNumber({ originalValue: it, originalUnit: unit }));
-		if (metricNums.some(num => num === null)) return { value, unit };
+		const metricNums = nums.map((n) => this.getMetricNumber({ originalValue: n, originalUnit: unit }));
+		if (metricNums.some(n => n === null)) return { value, unit };
 
 		// ensure the unit is in the right form
-		metricUnit = !isAdjective && metricNums.some(num => num > 1) 
+		metricUnit = !isAdjective && metricNums.some(n => n > 1) 
 			? this.UNIT_PLURAL_MAP[metricUnit] ?? metricUnit
 			: metricUnit = Object.keys(this.UNIT_PLURAL_MAP).find(key => this.UNIT_PLURAL_MAP[key] === metricUnit) ?? metricUnit;
 
-		const metricValue = valueObj.sep ? metricNums.join(valueObj.sep) : metricNums[0];
+		const metricValue = sep ? metricNums.join(sep) : metricNums[0];
 		return { value: metricValue, unit: metricUnit };
 	},
 
@@ -4168,8 +4191,8 @@ Parser.quantity = {
 			}
 		}
 
-		val = this.getNumber(val);
-		return isNaN(val) ? null : { nums: [val] };
+		const n = this.getNumber(val);
+		return isNaN(n) ? null : { nums: [n] };
 	},
 
 	getNumber (str) {
@@ -4195,6 +4218,15 @@ Parser.quantity = {
 		}
 
 		return NaN; // failed to convert to number
+	},
+
+	isQuantifier (val) {
+		if (typeof val !== "string") return false;
+
+		for (const quantifier of this.QUANTIFIERS) {
+			if (val.includes(quantifier)) return true;
+		}
+		return false;
 	},
 
 	getMetricNumber ({originalValue, originalUnit, toFixed = null}) {
