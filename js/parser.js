@@ -169,6 +169,28 @@ Parser.textToNumber = function (str) {
 	return total + current;
 };
 
+Parser.fractionTextToNumber = function (str) {
+	str = str.replace(/of\san?/, "").trim().toLowerCase();
+	if (str === "") return NaN;
+
+	const fractionWords = {		
+		"one-eighth": 1/8,
+		"one-fifth": 1/5,
+		"one-quarter": 1/4, "a quarter": 1/4,
+		"three-eighths": 3/8,
+		"two-fifths": 2/5,
+		"two-thirds": 2/3,
+		"one-half": 1/2, "a half": 1/2, "half": 1/2, "half a": 1/2, "half an": 1/2,
+		"three-fifths": 3/5,
+		"five-eighths": 5/8,
+		"three-quarters": 3/4,
+		"four-fifths": 4/5,
+		"seven-eighths": 7/8,
+	};
+
+	return fractionWords[str] !== undefined ? fractionWords[str] : NaN;
+};
+
 Parser.numberToVulgar = function (number, {isFallbackOnFractional = true} = {}) {
 	const isNeg = number < 0;
 	const spl = `${number}`.replace(/^-/, "").split(".");
