@@ -228,8 +228,11 @@ Parser.numberToVulgar = function (number, {isFallbackOnFractional = true} = {}) 
 	return isFallbackOnFractional ? Parser.numberToFractional(number) : null;
 };
 
+Parser.VULGAR_GLYPHS = ["⅛","¼","⅜","½","⅝","¾","⅞","⅓","⅔","⅙","⅚"]
+
 Parser.vulgarToNumber = function (str) {
-	const [, leading = "0", vulgar = ""] = /^(\d+)?([⅛¼⅜½⅝¾⅞⅓⅔⅙⅚])?$/.exec(str) || [];
+	const vulgarRe = new RegExp(`^(\\d+)?([${Parser.VULGAR_GLYPHS.join("")}])?$`);
+	const [, leading = "0", vulgar = ""] = vulgarRe.exec(str) || [];
 	let out = Number(leading);
 	switch (vulgar) {
 		case "⅛": out += 0.125; break;
@@ -4158,7 +4161,7 @@ Parser.quantity = {
 		for (const [pattern, sep] of this.RANGE_PATTERNS) {
 			if (val.match(pattern)) {
 				const nums = val.split(sep).map(n => this.getNumber(n));
-				if (nums.some(n => n == null)) return null;
+				if (nums.some(n => isNaN(n))) return null;
 				return sep === "/" && nums[0] < 5 && nums[1] <= 10 // the value is a fraction, not a range
 					? { nums: [nums[0] / nums[1]] } 
 					: { nums, sep };
@@ -4170,7 +4173,28 @@ Parser.quantity = {
 	},
 
 	getNumber (str) {
-		return str = Number(str.replace(/,/g, ""))
+		// clean the string
+		str = str.trim().toLowerCase();
+		str = str.replace(/of\san?/, "").trim();
+		str = str.replace(/(?<=\d)(\s|,)(?=\d{3})/g, "") // remove thousand separators
+
+		if (str === "") return NaN;
+		if (!isNaN(str)) return Number(str);
+		if (!isNaN(Parser.textToNumber(str))) return Parser.textToNumber(str);
+		if (!isNaN(Parser.fractionTextToNumber(str))) return Parser.fractionTextToNumber(str);
+
+		if (str.match(/^\d+\/\d+$/)) {
+			const [n, d] = str.split("/").map(it => Number(it));
+			return d !== 0 ? n / d : NaN;
+		}
+
+		const glyphRe = new RegExp(`[${Parser.VULGAR_GLYPHS.join("")}]`);
+		if (str.match(glyphRe)) {
+			try {return Parser.vulgarToNumber(str);}
+			catch (e) {return NaN;}
+		}
+
+		return NaN; // failed to convert to number
 	},
 
 	getMetricNumber ({originalValue, originalUnit, toFixed = null}) {

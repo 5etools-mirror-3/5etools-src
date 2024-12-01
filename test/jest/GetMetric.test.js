@@ -36,7 +36,7 @@ describe("Getting metric quantity", () => {
 
   it('returns original quantity if conversion is not possible', () => {
     expect(Parser.quantity.getMetric({ value: "5", unit: "cups" })).toEqual({ value: "5", unit: "cups" });
-    expect(Parser.quantity.getMetric({ value: "a", unit: "ft" })).toEqual({ value: "a", unit: "ft" });
+    expect(Parser.quantity.getMetric({ value: "abc", unit: "ft" })).toEqual({ value: "abc", unit: "ft" });
     expect(Parser.quantity.getMetric({ value: "", unit: "ft" })).toEqual({ value: "", unit: "ft" });
     expect(Parser.quantity.getMetric({ value: " ", unit: "ft" })).toEqual({ value: " ", unit: "ft" });
     expect(Parser.quantity.getMetric({ value: undefined, unit: "ft" })).toEqual({ value: undefined, unit: "ft" });
