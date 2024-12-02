@@ -362,6 +362,11 @@ globalThis.NumberUtil = class {
 
 		return Number(num.toFixed(toFixed));
 	}
+
+	static toHalfPoint (num) {
+		if (num == null || isNaN(num)) return num;
+		return Math.round(num * 2) / 2;
+	}
 };
 
 globalThis.CleanUtil = {

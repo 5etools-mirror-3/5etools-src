@@ -17,7 +17,12 @@ class PageFilterVehicles extends PageFilterBase {
 			isSortByDisplayItems: true,
 		});
 		this._terrainFilter = new Filter({header: "Terrain", items: ["land", "sea", "air"], displayFn: StrUtil.uppercaseFirst});
-		this._speedFilter = new RangeFilter({header: "Speed"});
+		this._speedFilter = new RangeFilter({
+			header: "Speed",
+			displayFn: (it) => VetoolsConfig.get("localization", "isMetric")
+				? `${NumberUtil.toHalfPoint(it*Parser.quantity.FEET_TO_METRES)} m`
+				: `${it} ft.`,
+		});
 		this._acFilter = new RangeFilter({header: "Armor Class"});
 		this._hpFilter = new RangeFilter({header: "Hit Points"});
 		this._hpFilter = new RangeFilter({header: "Hit Points"});
