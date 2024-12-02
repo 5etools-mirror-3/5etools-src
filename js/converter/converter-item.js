@@ -100,7 +100,7 @@ export class ConverterItem extends ConverterBase {
 	}
 
 	static _getFinalState (item, options) {
-		if (!item.entries.length) delete item.entries;
+		if (!item.entries?.length) delete item.entries;
 		else this._setWeight(item, options);
 
 		if (item.staff) this._setQuarterstaffStats(item, options);

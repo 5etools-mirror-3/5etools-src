@@ -1613,11 +1613,12 @@ export class ConverterCreature extends ConverterBase {
 		ConverterCreature._PROPS_ENTRIES
 			.filter(prop => stats[prop])
 			.forEach(prop => SpellTag.tryRun(stats[prop], {styleHint: options.styleHint}));
-		AcConvert.tryPostProcessAc(
-			stats,
-			(ac) => options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}AC "${ac}" requires manual conversion`),
-			(ac) => options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Failed to parse AC "${ac}"`),
-		);
+		AcConvert.tryPostProcessAc({
+			mon: stats,
+			cbMan: (ac) => options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}AC "${ac}" requires manual conversion`),
+			cbErr: (ac) => options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Failed to parse AC "${ac}"`),
+			styleHint: options.styleHint,
+		});
 		TagCreatureSubEntryInto.tryRun(stats, (atk) => options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Manual attack tagging required for "${atk}"`));
 		TagHit.tryTagHits(stats);
 		TagDc.tryTagDcs(stats);
@@ -1670,6 +1671,7 @@ export class ConverterCreature extends ConverterBase {
 					displayAs: prop,
 					actions: stats.action,
 					reactions: stats.reaction,
+					styleHint: options.styleHint,
 				},
 			);
 			if (!parsed) return ent;
@@ -1834,12 +1836,25 @@ export class ConverterCreature extends ConverterBase {
 		const tksNoSize = tks.slice(ixSizeLast + 1);
 
 		const spl = tksNoSize.join("").split(StrUtil.COMMAS_NOT_IN_PARENTHESES_REGEX);
-		if (spl.length < 1) {
+		if (!spl.length) {
 			options.cbWarning(`Type/Alignment "${tksNoSize.join("")}" requires manual conversion`);
 			return;
 		}
 
 		const reType = new RegExp(`\\b(${Parser.MON_TYPES.join("|")})\\b`, "i");
+
+		if (spl.length === 1) {
+			const [pt] = spl;
+			const isType = reType.test(pt);
+			if (isType) {
+				stats.type = pt.trim();
+			} else {
+				stats.alignment = pt.toLowerCase().trim();
+				AlignmentConvert.tryConvertAlignment(stats, (ali) => options.cbWarning(`Alignment "${ali}" requires manual conversion`));
+			}
+			return;
+		}
+
 		const ixAlignmentStart = spl.length === 2
 			? 1
 			: 1 + spl.slice(1).findIndex(pt => !reType.test(pt));

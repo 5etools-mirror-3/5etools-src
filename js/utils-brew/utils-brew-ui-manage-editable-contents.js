@@ -517,6 +517,10 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
 		"senses": {
 			displayName: "Senses",
 		},
+		"featCategories": {
+			displayName: "Feat Categories",
+			displayFn: (brew, propMeta, k) => brew.body._meta[propMeta][k] || k,
+		},
 		"optionalFeatureTypes": {
 			displayName: "Optional Feature Types",
 			displayFn: (brew, propMeta, k) => brew.body._meta[propMeta][k] || k,
