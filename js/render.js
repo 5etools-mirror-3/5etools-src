@@ -4912,6 +4912,15 @@ Renderer.tag = class {
 		}
 	};
 
+	static TagQuantity = class extends this._TagBaseAt {
+		tagName = "quantity";
+
+		_getStripped (tag, text) {
+			const [value, unitStr] = Renderer.splitTagByPipe(text);
+			return `${value} ${unitStr}`;
+		};
+	}
+
 	static TagActSave = class extends this._TagBaseAt {
 		tagName = "actSave";
 
@@ -5512,6 +5521,7 @@ Renderer.tag = class {
 		new this.TagTip(),
 
 		new this.TagUnit(),
+		new this.TagQuantity(),
 
 		new this.TagActSave(),
 		new this.TagActSaveSuccess(),
