@@ -904,6 +904,15 @@ Parser.getDisplayCurrency = function (currency, {isDisplayEmpty = false} = {}) {
 
 Parser.itemWeightToFull = function (item, isShortForm) {
 	if (item.weight) {
+		if (VetoolsConfig.get("localization", "isMetric")) {
+			let { value, unit } = Parser.quantity.getMetric({ value: item.weight, unit: "lb." });
+			if (value < 1) { // convert to grams for readability
+				value = value * 1000;
+				unit = "g";
+			}
+			return `${NumberUtil.toFixedNumber(value, 2)} ${unit}${(item.weightNote ? ` ${item.weightNote}` : "")}`;
+		}
+
 		// Handle pure integers
 		if (Math.round(item.weight) === item.weight) return `${item.weight} lb.${(item.weightNote ? ` ${item.weightNote}` : "")}`;
 
