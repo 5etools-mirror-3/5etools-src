@@ -26,4 +26,12 @@ describe("Title-case strings", () => {
 	it("Should handle compound words", () => {
 		expect("compound-word".toTitleCase()).toBe("Compound-Word");
 	});
+
+	it("Should handle multiple lower-case words", () => {
+		expect("start of the fight".toTitleCase()).toBe("Start of the Fight");
+	});
+
+	it("Should handle ending in a lower-case word", () => {
+		expect("the place between".toTitleCase()).toBe("The Place Between");
+	});
 });

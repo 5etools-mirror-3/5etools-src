@@ -7,6 +7,7 @@ export class BrewDoc {
 		"senses",
 		"spellSchools",
 		"spellDistanceUnits",
+		"featCategories",
 		"optionalFeatureTypes",
 		"psionicTypes",
 		"currencyConversions",

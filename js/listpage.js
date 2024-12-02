@@ -1436,6 +1436,7 @@ class ListPage {
 	_bindPopoutButton () {
 		this._getOrTabRightButton(`popout`, `new-window`)
 			.off("click")
+			.off("auxclick")
 			.title(`Popout Window (SHIFT for Source Data; CTRL for Markdown Render)`)
 			.on(
 				"click",
@@ -1445,7 +1446,15 @@ class ListPage {
 					if (EventUtil.isCtrlMetaKey(evt)) return this._bindPopoutButton_doShowMarkdown(evt);
 					return this._bindPopoutButton_doShowStatblock(evt);
 				},
-			);
+			)
+			.on("auxclick", evt => {
+				if (Hist.lastLoadedId === null) return;
+
+				if (!EventUtil.isMiddleMouse(evt)) return;
+				evt.stopPropagation();
+
+				return Renderer.hover.pDoBrowserPopoutCurPage(evt, this._lastRender.entity);
+			});
 	}
 
 	_bindPopoutButton_doShowStatblock (evt) {

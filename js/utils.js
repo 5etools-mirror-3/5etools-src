@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.5.3"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.5.4"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -99,7 +99,7 @@ String.prototype.toTitleCase = String.prototype.toTitleCase || function () {
 	StrUtil._TITLE_RE_POST_PUNCT ??= /^(\s*)(\S)/;
 
 	// Require space surrounded, as title-case requires a full word on either side
-	StrUtil._TITLE_LOWER_WORDS_RE ??= RegExp(`\\s(${StrUtil.TITLE_LOWER_WORDS.join("|")})\\s`, "gi");
+	StrUtil._TITLE_LOWER_WORDS_RE ??= RegExp(`\\s(${StrUtil.TITLE_LOWER_WORDS.join("|")})(?=\\s)`, "gi");
 	StrUtil._TITLE_UPPER_WORDS_RE ??= RegExp(`\\b(${StrUtil.TITLE_UPPER_WORDS.join("|")})\\b`, "g");
 	StrUtil._TITLE_UPPER_WORDS_PLURAL_RE ??= RegExp(`\\b(${StrUtil.TITLE_UPPER_WORDS_PLURAL.join("|")})\\b`, "g");
 	// endregion
@@ -5068,6 +5068,8 @@ globalThis.DataUtil = {
 								});
 						});
 
+					copyTo._copy_templates = copyMeta._templates.map(({name, source}) => ({name, source}));
+
 					delete copyMeta._templates;
 				}
 
@@ -5416,6 +5418,13 @@ globalThis.DataUtil = {
 			return DataUtil.generic.getVersions(ent, {isExternalApplicationIdentityOnly});
 		}
 
+		/**
+		 * @param prop
+		 * @param uid
+		 * @param tag
+		 * @param [opts]
+		 * @param [opts.isLower]
+		 */
 		static unpackUid (prop, uid, tag, opts) {
 			if (DataUtil[prop]?.unpackUid) return DataUtil[prop]?.unpackUid(uid, tag, opts);
 			return DataUtil.generic.unpackUid(uid, tag, opts);
@@ -5426,6 +5435,13 @@ globalThis.DataUtil = {
 			return DataUtil.proxy.getUid(prop, unpacked, opts);
 		}
 
+		/**
+		 * @param prop
+		 * @param ent
+		 * @param [opts]
+		 * @param [opts.isMaintainCase]
+		 * @param [opts.displayName]
+		 */
 		static getUid (prop, ent, opts) {
 			if (DataUtil[prop]?.getUid) return DataUtil[prop].getUid(ent, opts);
 			return DataUtil.generic.getUid(ent, opts);

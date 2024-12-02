@@ -47,7 +47,7 @@ class PageFilterBackgrounds extends PageFilterBase {
 					.map(([k, v]) => {
 						switch (k) {
 							case "any": return "(Any)";
-							case "anyFromCategory": return `(Any from ${Parser.featCategoryToFull(v.category)} Category)`;
+							case "anyFromCategory": return `(Any From Category)`;
 							default: return k.split("|")[0].toTitleCase();
 						}
 					});

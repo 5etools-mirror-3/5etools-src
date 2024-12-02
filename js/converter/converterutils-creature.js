@@ -3,9 +3,13 @@ import {TagCondition, TaggerUtils, TagUtil} from "./converterutils-tags.js";
 import {ConverterConst} from "./converterutils-const.js";
 import {ItemTag} from "./converterutils-entries.js";
 import {VetoolsConfig} from "../utils-config/utils-config-config.js";
+import {SITE_STYLE__CLASSIC} from "../consts.js";
 
 export class AcConvert {
-	static tryPostProcessAc (mon, cbMan, cbErr) {
+	static _ITEM_LOOKUP = null;
+	static _ITEM_LOOKUP_CLASSIC = null;
+
+	static tryPostProcessAc ({mon, cbMan, cbErr, styleHint}) {
 		const traitNames = new Set(
 			(mon.trait || [])
 				.map(it => it.name ? it.name.toLowerCase() : null)
@@ -124,14 +128,14 @@ export class AcConvert {
 
 						// everything else
 						default: {
-							const simpleFrom = this._getSimpleFrom({fromLow, traitNames});
+							const simpleFrom = this._getSimpleFrom({fromLow, traitNames, styleHint});
 							if (simpleFrom) return froms.push(simpleFrom);
 
 							// Special parsing for barding, as the pre-barding armor type might not exactly match our known
 							//   barding names (e.g. "chainmail barding")
 							const mWithBarding = /^(?<ac>\d+) with (?<name>(?<type>.*?) barding)$/.exec(fromLow);
 							if (mWithBarding) {
-								let simpleFromBarding = this._getSimpleFrom({fromLow: mWithBarding.groups.type, traitNames});
+								let simpleFromBarding = this._getSimpleFrom({fromLow: mWithBarding.groups.type, traitNames, styleHint});
 								if (simpleFromBarding) {
 									simpleFromBarding = simpleFromBarding
 										.replace(/{@item ([^}]+)}/, (...m) => {
@@ -213,7 +217,9 @@ export class AcConvert {
 		return false;
 	}
 
-	static _getSimpleFrom ({fromLow, traitNames}) {
+	static _getSimpleFrom ({fromLow, traitNames, styleHint}) {
+		const lookup = styleHint === SITE_STYLE__CLASSIC ? AcConvert._ITEM_LOOKUP_CLASSIC : AcConvert._ITEM_LOOKUP;
+
 		switch (fromLow) {
 			// region unhandled/other
 			case "unarmored defense":
@@ -258,6 +264,12 @@ export class AcConvert {
 			case "battered splint mail":
 			case "natural & tailored leather":
 			case "canny defense": // Dungeons of Drakkenheim
+			case "mail-shirt": // The Lord of the Rings Roleplaying
+			case "orc-leather":
+			case "heavy orc-mail":
+			case "orc leather":
+			case "orc-mail":
+			case "mail hauberk":
 				return fromLow;
 
 			case "plate armor of bhaal": return "plate armor of Bhaal";
@@ -325,8 +337,8 @@ export class AcConvert {
 			// endregion
 
 			default: {
-				if (AcConvert._ITEM_LOOKUP[fromLow]) {
-					const itemMeta = AcConvert._ITEM_LOOKUP[fromLow];
+				if (lookup[fromLow]) {
+					const itemMeta = lookup[fromLow];
 
 					if (itemMeta.isExact) return `{@item ${fromLow}${itemMeta.source === Parser.SRC_DMG ? "" : `|${itemMeta.source}`}}`;
 					return `{@item ${itemMeta.name}${itemMeta.source === Parser.SRC_DMG ? "|" : `|${itemMeta.source}`}|${fromLow}}`;
@@ -344,15 +356,30 @@ export class AcConvert {
 	}
 
 	static init (items) {
-		const handlePlusName = (item, lowName) => {
-			const mBonus = /^(.+) (\+\d+)$/.exec(lowName);
-			if (mBonus) {
-				const plusFirstName = `${mBonus[2]} ${mBonus[1]}`;
-				AcConvert._ITEM_LOOKUP[plusFirstName] = {source: item.source, name: lowName};
+		const handleBaseName = ({item, lowName, isClassicSource}) => {
+			AcConvert._ITEM_LOOKUP[lowName] = {source: item.source, isExact: true};
+			if (isClassicSource) AcConvert._ITEM_LOOKUP_CLASSIC[lowName] = AcConvert._ITEM_LOOKUP[lowName];
+
+			const noArmorName = lowName.replace(/(^|\s)(?:armor|mail)(\s|$)/g, "$1$2").trim().replace(/\s+/g, " ");
+			if (noArmorName !== lowName) {
+				AcConvert._ITEM_LOOKUP[noArmorName] = {source: item.source, name: lowName};
+				if (isClassicSource) AcConvert._ITEM_LOOKUP_CLASSIC[noArmorName] = AcConvert._ITEM_LOOKUP[noArmorName];
 			}
+
+			return noArmorName;
+		};
+
+		const handlePlusName = ({item, lowName, isClassicSource}) => {
+			const mBonus = /^(.+) (\+\d+)$/.exec(lowName);
+			if (!mBonus) return;
+
+			const plusFirstName = `${mBonus[2]} ${mBonus[1]}`;
+			AcConvert._ITEM_LOOKUP[plusFirstName] = {source: item.source, name: lowName};
+			if (isClassicSource) AcConvert._ITEM_LOOKUP_CLASSIC[plusFirstName] = AcConvert._ITEM_LOOKUP[plusFirstName];
 		};
 
 		AcConvert._ITEM_LOOKUP = {};
+		AcConvert._ITEM_LOOKUP_CLASSIC = {};
 		items
 			.filter(ent => {
 				if (!ent.type) return false;
@@ -364,21 +391,17 @@ export class AcConvert {
 					Parser.ITM_TYP_ABV__SHIELD,
 				].includes(abbreviation);
 			})
-			.forEach(it => {
-				const lowName = it.name.toLowerCase();
-				AcConvert._ITEM_LOOKUP[lowName] = {source: it.source, isExact: true};
+			.forEach(item => {
+				const lowName = item.name.toLowerCase();
+				const isClassicSource = SourceUtil.isClassicSource(item.source);
 
-				const noArmorName = lowName.replace(/(^|\s)(?:armor|mail)(\s|$)/g, "$1$2").trim().replace(/\s+/g, " ");
-				if (noArmorName !== lowName) {
-					AcConvert._ITEM_LOOKUP[noArmorName] = {source: it.source, name: lowName};
-				}
+				const noArmorName = handleBaseName({item, lowName, isClassicSource});
 
-				handlePlusName(it, lowName);
-				handlePlusName(it, noArmorName);
+				handlePlusName({item, lowName, isClassicSource});
+				handlePlusName({item, lowName: noArmorName, isClassicSource});
 			});
 	}
 }
-AcConvert._ITEM_LOOKUP = null;
 
 /** @abstract */
 class _CreatureImmunityResistanceVulnerabilityConverterBase {
@@ -612,6 +635,9 @@ export class TagCreatureSubEntryInto {
 									const {abil} = m.at(-1);
 									return `{@actSave ${abil.toLowerCase().slice(0, 3)}}`;
 								})
+								// "Failure or Success: ..."
+								.replace(/(?<=^|[.!?;] )(Failure or Success:)(?= )/g, (...m) => `{@actSaveSuccessOrFail}`)
+								.replace(/(?<=^|[.!?;] )(Success or Failure:)(?= )/g, (...m) => `{@actSaveSuccessOrFail}`)
 								// "Success: ..."
 								.replace(/(?<=^|[.!?;] )(Success:)(?= )/g, (...m) => `{@actSaveSuccess}`)
 								// "Failure: ..."
@@ -1530,34 +1556,37 @@ export class MiscTag {
 }
 
 export class SpellcastingTraitConvert {
-	static SPELL_SRC_MAP = {};
+	static _SPELL_SRC_MAP = {};
+	static _SPELL_SRC_MAP_CLASSIC = {};
 	static SPELL_SRD_MAP = {};
 
 	static init (spellData) {
-		spellData.forEach(s => {
-			this.SPELL_SRC_MAP[s.name.toLowerCase()] = s.source;
-			if (typeof s.srd === "string") this.SPELL_SRD_MAP[s.srd.toLowerCase()] = s.name;
-			if (typeof s.srd52 === "string") this.SPELL_SRD_MAP[s.srd52.toLowerCase()] = s.name;
+		spellData.forEach(sp => {
+			this._SPELL_SRC_MAP[sp.name.toLowerCase()] = sp.source;
+			if (SourceUtil.isClassicSource(sp.source)) this._SPELL_SRC_MAP_CLASSIC[sp.name.toLowerCase()] = sp.source;
+
+			if (typeof sp.srd === "string") this.SPELL_SRD_MAP[sp.srd.toLowerCase()] = sp.name;
+			if (typeof sp.srd52 === "string") this.SPELL_SRD_MAP[sp.srd52.toLowerCase()] = sp.name;
 		});
 	}
 
-	static tryParseSpellcasting (ent, {isMarkdown, cbMan, cbErr, displayAs, actions, reactions}) {
+	static tryParseSpellcasting (ent, {isMarkdown, cbMan, cbErr, displayAs, actions, reactions, styleHint}) {
 		try {
-			return this._parseSpellcasting({ent, isMarkdown, cbMan, displayAs, actions, reactions});
+			return this._parseSpellcasting({ent, isMarkdown, cbMan, displayAs, actions, reactions, styleHint});
 		} catch (e) {
 			cbErr && cbErr(`Failed to parse spellcasting: ${e.message}`);
 			return null;
 		}
 	}
 
-	static _parseSpellcasting ({ent, isMarkdown, cbMan, displayAs, actions, reactions}) {
+	static _parseSpellcasting ({ent, isMarkdown, cbMan, displayAs, actions, reactions, styleHint}) {
 		const spellcastingEntry = {
 			"name": ent.name,
 			"type": "spellcasting",
 			"headerEntries": [],
 		};
 
-		const headerEntry = this._getMutHeaderEntries({ent, cbMan, spellcastingEntry});
+		const headerEntry = this._getMutHeaderEntries({ent, cbMan, spellcastingEntry, styleHint});
 		spellcastingEntry.headerEntries.push(headerEntry);
 
 		let hasAnyHeader = false;
@@ -1570,7 +1599,7 @@ export class SpellcastingTraitConvert {
 				if (usesMeta) {
 					hasAnyHeader = true;
 
-					const value = this._getParsedSpells({line: usesMeta.lineRemaining});
+					const value = this._getParsedSpells({line: usesMeta.lineRemaining, styleHint});
 					MiscUtil.getOrSet(spellcastingEntry, usesMeta.prop, usesMeta.propPer, value);
 
 					return;
@@ -1578,19 +1607,19 @@ export class SpellcastingTraitConvert {
 
 				if (/^Constant(?::| -) /.test(line)) {
 					hasAnyHeader = true;
-					spellcastingEntry.constant = this._getParsedSpells({line, isMarkdown});
+					spellcastingEntry.constant = this._getParsedSpells({line, isMarkdown, styleHint});
 					return;
 				}
 
 				if (/^At[- ][Ww]ill(?::| -) /.test(line)) {
 					hasAnyHeader = true;
-					spellcastingEntry.will = this._getParsedSpells({line, isMarkdown});
+					spellcastingEntry.will = this._getParsedSpells({line, isMarkdown, styleHint});
 					return;
 				}
 
 				if (line.includes("Cantrip")) {
 					hasAnyHeader = true;
-					const value = this._getParsedSpells({line, isMarkdown});
+					const value = this._getParsedSpells({line, isMarkdown, styleHint});
 					if (!spellcastingEntry.spells) spellcastingEntry.spells = {"0": {"spells": []}};
 					spellcastingEntry.spells["0"].spells = value;
 					return;
@@ -1599,7 +1628,7 @@ export class SpellcastingTraitConvert {
 				if (/[- ][Ll]evel/.test(line) && /(?::| -) /.test(line)) {
 					hasAnyHeader = true;
 					let property = line.substring(0, 1);
-					const allSpells = this._getParsedSpells({line, isMarkdown});
+					const allSpells = this._getParsedSpells({line, isMarkdown, styleHint});
 					spellcastingEntry.spells = spellcastingEntry.spells || {};
 
 					const out = {};
@@ -1632,13 +1661,13 @@ export class SpellcastingTraitConvert {
 		SpellcastingTraitConvert.mutSpellcastingAbility(spellcastingEntry);
 		SpellcastingTraitConvert._mutDisplayAs(spellcastingEntry, displayAs);
 
-		this._addSplitOutSpells({spellcastingEntry, arrayOther: actions});
-		this._addSplitOutSpells({spellcastingEntry, arrayOther: reactions});
+		this._addSplitOutSpells({spellcastingEntry, arrayOther: actions, styleHint});
+		this._addSplitOutSpells({spellcastingEntry, arrayOther: reactions, styleHint});
 
 		return spellcastingEntry;
 	}
 
-	static _getMutHeaderEntries ({ent, cbMan, spellcastingEntry}) {
+	static _getMutHeaderEntries ({ent, cbMan, spellcastingEntry, styleHint}) {
 		let line = this._parseToHit(ent.entries[0]);
 
 		const usesMeta = this._getUsesMeta({line: ent.name});
@@ -1655,7 +1684,7 @@ export class SpellcastingTraitConvert {
 				const ptSpells = m.last().spell
 					.split(" and ")
 					.map(sp => {
-						const value = this._getParsedSpells({line: sp});
+						const value = this._getParsedSpells({line: sp, styleHint});
 						const hidden = MiscUtil.getOrSet(spellcastingEntry, "hidden", []);
 
 						if (isWill) {
@@ -1712,7 +1741,7 @@ export class SpellcastingTraitConvert {
 		};
 	}
 
-	static _getParsedSpells ({line, isMarkdown}) {
+	static _getParsedSpells ({line, isMarkdown, styleHint}) {
 		const mLabelSep = /(?::| -) /.exec(line);
 		let spellPart = line.substring((mLabelSep?.index || 0) + (mLabelSep?.[0]?.length || 0)).trim();
 
@@ -1736,10 +1765,10 @@ export class SpellcastingTraitConvert {
 		// move asterisks before commas (e.g. "chaos bolt,*" -> "chaos bolt*,")
 		spellPart = spellPart.replace(/,\s*\*/g, "*,");
 
-		return spellPart.split(StrUtil.COMMAS_NOT_IN_PARENTHESES_REGEX).map(it => this._parseSpell(it));
+		return spellPart.split(StrUtil.COMMAS_NOT_IN_PARENTHESES_REGEX).map(it => this._parseSpell(it, {styleHint}));
 	}
 
-	static _parseSpell (str) {
+	static _parseSpell (str, {styleHint}) {
 		str = str.trim();
 
 		const ptsSuffix = [];
@@ -1769,7 +1798,7 @@ export class SpellcastingTraitConvert {
 		str = this._parseSpell_getNonSrdSpellName(str);
 
 		return [
-			`{@spell ${str}${this._parseSpell_getSourcePart(str)}}`,
+			`{@spell ${str}${this._parseSpell_getSourcePart(str, {styleHint})}}`,
 			ptsSuffix.join(" "),
 		]
 			.filter(Boolean)
@@ -1786,8 +1815,8 @@ export class SpellcastingTraitConvert {
 		return spellName;
 	}
 
-	static _parseSpell_getSourcePart (spellName) {
-		const source = SpellcastingTraitConvert._getSpellSource(spellName);
+	static _parseSpell_getSourcePart (spellName, {styleHint}) {
+		const source = SpellcastingTraitConvert._getSpellSource(spellName, {styleHint});
 		return `${source && source !== Parser.SRC_PHB ? `|${source}` : ""}`;
 	}
 
@@ -1812,8 +1841,9 @@ export class SpellcastingTraitConvert {
 		spellcastingEntry.displayAs = displayAs;
 	}
 
-	static _getSpellSource (spellName) {
-		if (spellName && SpellcastingTraitConvert.SPELL_SRC_MAP[spellName.toLowerCase()]) return SpellcastingTraitConvert.SPELL_SRC_MAP[spellName.toLowerCase()];
+	static _getSpellSource (spellName, {styleHint}) {
+		const lookup = styleHint === SITE_STYLE__CLASSIC ? this._SPELL_SRC_MAP_CLASSIC : this._SPELL_SRC_MAP;
+		if (spellName && lookup[spellName.toLowerCase()]) return lookup[spellName.toLowerCase()];
 		return null;
 	}
 
@@ -1823,7 +1853,7 @@ export class SpellcastingTraitConvert {
 	 * - "Shocking Grasp (Cantrip)"
 	 * - "Shield (1st-Level Spell; 3/Day)"
 	 * as hidden spells (if they don't already exist). */
-	static _addSplitOutSpells ({spellcastingEntry, arrayOther}) {
+	static _addSplitOutSpells ({spellcastingEntry, arrayOther, styleHint}) {
 		if (!arrayOther?.length) return;
 		arrayOther.forEach(ent => {
 			if (!ent.name) return;
@@ -1832,7 +1862,7 @@ export class SpellcastingTraitConvert {
 
 			const [, spellName, spellLevelRecharge, spellRecharge] = mName;
 
-			const spellTag = this._parseSpell(spellName);
+			const spellTag = this._parseSpell(spellName, {styleHint});
 			const uids = this._getSpellUids(spellTag);
 
 			if (spellLevelRecharge.toLowerCase() === "cantrip") {
