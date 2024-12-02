@@ -4,7 +4,7 @@ import {ConverterUtils} from "./converterutils-utils.js";
 import {DiceConvert, SkillTag, TagCondition} from "./converterutils-tags.js";
 import {ConverterUtilsMarkdown} from "./converterutils-markdown.js";
 import {AcConvert, AlignmentConvert, AttachedItemTag, CreatureConditionImmunityConverter, CreatureDamageImmunityConverter, CreatureDamageResistanceConverter, CreatureDamageVulnerabilityConverter, CreatureSavingThrowTagger, CreatureSpecialEquipmentTagger, DamageTypeTag, DetectNamedCreature, DragonAgeTag, LanguageTag, MiscTag, RechargeConvert, SenseFilterTag, SpeedConvert, SpellcastingTraitConvert, SpellcastingTypeTag, TagCreatureSubEntryInto, TagDc, TagHit, TagImmResVulnConditional, TraitActionTag} from "./converterutils-creature.js";
-import {SpellTag} from "./converterutils-entries.js";
+import {QuantityTag, SpellTag} from "./converterutils-entries.js";
 
 class _ConversionStateTextCreature extends ConversionStateTextBase {
 	constructor (
@@ -1640,6 +1640,7 @@ export class ConverterCreature extends ConverterBase {
 		TraitActionTag.tryRun(stats);
 		LanguageTag.tryRun(stats);
 		SenseFilterTag.tryRun(stats);
+		QuantityTag.tryRun(stats);
 		SpellcastingTypeTag.tryRun(stats);
 		DamageTypeTag.tryRun(stats);
 		DamageTypeTag.tryRunSpells(stats);
