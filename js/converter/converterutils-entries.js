@@ -1162,7 +1162,7 @@ export class QuantityTag {
 		"pints",
 		"quart",
 		"quarts",
-	]
+	];
 
 	static UNIT_WORDS_ABBR = [
 		"ft.",
@@ -1175,61 +1175,9 @@ export class QuantityTag {
 		"gal.",
 	];
 
-	static DIGITS_WORDS = [
-		"zero",
-		"one",
-		"two",
-		"three",
-		"four",
-		"five",
-		"six",
-		"seven",
-		"eight",
-		"nine",
-	];
-
-	static TEENS_WORDS = [
-		"ten",
-		"eleven",
-		"twelve",
-		"thirteen",
-		"fourteen",
-		"fifteen",
-		"sixteen",
-		"seventeen",
-		"eighteen",
-		"nineteen",
-	];
-
-	static TENS_WORDS = [
-		"twenty",
-		"thirty",
-		"forty",
-		"fifty",
-		"sixty",
-		"seventy",
-		"eighty",
-		"ninety",
-	];
-
-	static QUANTIFIERS = [
-		"a few",
-		"a couple",
-		"several",
-		"many",
-		"some",
-		"a number of",
-		"a handful of",
-		"dozens of",
-		"dozens",
-		"dozen",
-		"hundreds of",
-		"hundreds",
-		"hundred",
-		"thousands of",
-		"thousands",
-		"thousand",
-	];
+	static NUMBERS_ONES = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
+	static NUMBERS_TEENS = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
+	static NUMBERS_TENS = ["twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
 
 	static PREPOSITIONS = [
     "of",
@@ -1263,23 +1211,6 @@ export class QuantityTag {
     "through",
     "onto",
     "into"
-];
-
-	static FRACTION_WORDS = [
-		`one-eighth`,
-		`one-fifth`,
-		`one-quarter`,
-		`three-eighths`,
-		`two-fifths`,
-		`two-thirds`,
-		`one-half`,
-		`three-fifths`,
-		`five-eighths`,
-		`three-quarters`,
-		`four-fifths`,
-		`seven-eighths`,
-		`half a`,
-		`half an`,
 	];
 
 	static RE = this.getRegex();
@@ -1287,15 +1218,16 @@ export class QuantityTag {
 	static getRegex() {
 		const numAsDigits = `(\\d{1,3},\\d{3}|\\d+)`;	// 1, 1,000, etc.
 
-		const digits = `(${this.DIGITS_WORDS.join("|")})\\b`; // words for numbers 0-9
-		const teens = `(${this.TEENS_WORDS.join("|")})\\b`; // words for numbers 10-19
-		const tens = `(${digits}|${teens}|(${this.TENS_WORDS.join("|")})(\\s${digits})?)\\b`; // words for numbers 0-99
+
+		const digits = `(${this.NUMBERS_ONES.join("|")})\\b`; // words for numbers 0-9
+		const teens = `(${this.NUMBERS_TEENS.join("|")})\\b`; // words for numbers 10-19
+		const tens = `(${digits}|${teens}|(${this.NUMBERS_TENS.join("|")})(\\s${digits})?)\\b`; // words for numbers 0-99
 		const hundreds = `((${digits}\\s)?hundred(\\s(${tens}))?)\\b`; // words for numbers 100-999
 		const thousands = `((${digits}\\s)?thousand(\\s(${hundreds}|${tens}))?)\\b`; // words for numbers 1,000-9999
 		const numAsText = `\\b(${thousands}|${hundreds}|${tens}|${digits})\\b`; // words for numbers 0-9999
 
-		const fraction = `((\\d\\/\\d{1,2}|\\d?[⅛¼⅜½⅝¾⅞⅓⅔⅙⅚]|(${this.FRACTION_WORDS.join("|")}))(\\sof\\san?)?)`;	// 1/2, ⅛, 2⅛, two-fifths, 2/3 of a , etc.
-		const quantifier = `\\b((${this.QUANTIFIERS.join("|")})(\\s(${this.QUANTIFIERS.join("|")}))?)\\b`; // a few, several hundreds, etc.
+		const fraction = `((\\d\\/\\d{1,2}|\\d?[⅛¼⅜½⅝¾⅞⅓⅔⅙⅚]|(${Object.keys(Parser.FRACTION_WORDS_TO_NUMBER).join("|")}))(\\sof\\san?)?)`;	// 1/2, ⅛, 2⅛, two-fifths, 2/3 of a , etc.
+		const quantifier = `\\b((${Parser.quantity.QUANTIFIERS.join("|")})(\\s(${Parser.quantity.QUANTIFIERS.join("|")}))?)\\b`; // a few, several hundreds, etc.
 		const indefinite = `\\b(an?(?!\\sfoot(?!(\\s|-)(${this.PREPOSITIONS.join("|")})\\b)))\\b`; // match a/an in 'an inch', 'a foot-long', 'a foot across', but not e.g. 'a foot trail'
 
 		const rangeSeparator = `(-|\\/|\\sto\\s|\\sby\\s|-by-)`;
