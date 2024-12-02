@@ -40,6 +40,8 @@ describe("Getting metric quantity", () => {
     expect(Parser.quantity.getMetric({ value: "5/10", unit: "ft." })).toEqual({ value: "1.5/3", unit: "m" });
     expect(Parser.quantity.getMetric({ value: "5-7", unit: "ft." })).toEqual({ value: "1.5-2.1", unit: "m" });
     expect(Parser.quantity.getMetric({ value: "5 to 7", unit: "ft." })).toEqual({ value: "1.5 to 2.1", unit: "m" });
+    expect(Parser.quantity.getMetric({ value: "10 by 20", unit: "feet" })).toEqual({ value: "3 by 6", unit: "meters" });
+    expect(Parser.quantity.getMetric({ value: "10-by-20", unit: "feet" })).toEqual({ value: "3-by-6", unit: "meters" });
   });
 
   it('handles quantifiers', () => {

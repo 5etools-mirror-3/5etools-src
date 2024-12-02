@@ -4086,13 +4086,16 @@ Parser.NUMBERS_TEENS = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fift
 
 // region Metric conversion
 Parser.quantity = {
-	// See MPMB's breakdown: https://old.reddit.com/r/dndnext/comments/6gkuec
-	MILES_TO_KILOMETRES: 1.5, // 1 mi = 1.5 km see e.g. https://www.aidedd.org/adj/poids-et-mesures/ (in french)
+	// See MPMB's breakdown: https://old.reddit.com/r/dndnext/comments/6gkuec and https://www.aidedd.org/adj/poids-et-mesures/ (in french)
+	MILES_TO_KILOMETRES: 1.5, // 1 mi = 1.5 km
 	FEET_TO_METRES: 0.3, // 5 ft = 1.5 m
 	YARDS_TO_METRES: 0.9, // (as above)
 	POUNDS_TO_KILOGRAMS: 0.5, // 2 lb = 1 kg
-	// Other additions
 	INCHES_TO_CENTIMETERS: 2.5, // 1 in = 2.5 cm
+	OUNCES_TO_CENTILITRES: 3, // 1 oz = 3 cl
+	GALLONS_TO_LITRES: 0.25, // 1 gal = 4 l
+	PINTS_TO_LITRES: 0.5, // 1 pt = 0.5 l
+	QUART_TO_LITRES: 1, // 1 qt = 1 l
 
 	UNIT_WORDS_MAP: {
 		"in": "cm",
@@ -4117,6 +4120,18 @@ Parser.quantity = {
 		"lbs.": "kg",
 		"pound": "kilogram",
 		"pounds": "kilograms",
+		"ounce": "centiliter",
+		"ounces": "centiliters",
+		"oz": "cl",
+		"oz.": "cl",
+		"gallon": "liter",
+		"gallons": "liters",
+		"gal": "l",
+		"gal.": "l",
+		"pint": "liter",
+		"pints": "liters",
+		"quart": "liter",
+		"quarts": "liters",
 		"mph": "km/h",
 	},
 
@@ -4125,12 +4140,16 @@ Parser.quantity = {
 		"meter": "meters",
 		"kilometer": "kilometers",
 		"kilogram": "kilograms",
+		"liter": "liters",
+		"centiliter": "centiliters",
 	},
 
 	RANGE_PATTERNS: [
 		[/\d+\/\d+/, "/"],
 		[/\d+-\d+/, "-"],
 		[/\sto\s/, " to "],
+		[/\sby\s/, " by "],
+		[/-by-/, "-by-"],
 	],
 
 	QUANTIFIERS: [
@@ -4251,6 +4270,10 @@ Parser.quantity = {
 			case "yd.": case "yd": case "yard": case "yards": case Parser.UNT_YARDS: out = originalValue * this.YARDS_TO_METRES; break;
 			case "mi.": case "mi": case "mile": case "miles": case "mph": case Parser.UNT_MILES: out = originalValue * this.MILES_TO_KILOMETRES; break;
 			case "lb.": case "lb": case "lbs": case "lbs.": case "pound": case "pounds": case Parser.UNT_LBS: out = originalValue * this.POUNDS_TO_KILOGRAMS; break;
+			case "oz.": case "oz": case "ounce": case "ounces": out = originalValue * this.OUNCES_TO_CENTILITRES; break;
+			case "gal.": case "gal": case "gallon": case "gallons": out = originalValue * this.GALLONS_TO_LITRES; break;
+			case "pint": case "pints": out = originalValue * this.PINTS_TO_LITRES; break;
+			case "quart": case "quarts": out = originalValue * this.QUART_TO_LITRES; break;
 			default: return originalValue;
 		}
 		if (toFixed != null) return NumberUtil.toFixedNumber(out, toFixed);

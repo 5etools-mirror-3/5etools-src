@@ -1160,6 +1160,8 @@ export class QuantityTag {
 		"gallons",
 		"pint",
 		"pints",
+		"quart",
+		"quarts",
 	]
 
 	static UNIT_WORDS_ABBR = [
