@@ -925,7 +925,10 @@ Parser.itemWeightToFull = function (item, isShortForm) {
 		// Fall back on decimal pounds or ounces
 		return `${(item.weight < 1 ? item.weight * 16 : item.weight).toLocaleString(undefined, {maximumFractionDigits: 5})} ${item.weight < 1 ? "oz" : "lb"}.${(item.weightNote ? ` ${item.weightNote}` : "")}`;
 	}
-	if (item.weightMult) return isShortForm ? `×${item.weightMult}` : `base weight ×${item.weightMult}`;
+	if (item.weightMult) {
+		const mult = VetoolsConfig.get("localization", "isMetric") ? item.weightMult*Parser.quantity.POUNDS_TO_KILOGRAMS : item.weightMult;
+		return isShortForm ? `×${mult}` : `base weight ×${mult}`;
+	} 
 	return "";
 };
 
