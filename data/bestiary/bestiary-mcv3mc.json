@@ -40,7 +40,7 @@
 			"wis": 10,
 			"cha": 7,
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 10,
 			"resist": [
@@ -71,25 +71,25 @@
 				{
 					"name": "Blaze Rod",
 					"entries": [
-						"When the blaze drops to 0 hit points, it disappears in a cloud of smoke and has a 50 percent chance of leaving behind a glowing rod worth 100 gp. The rod sheds dim light in a 5-foot radius. As an action, a creature can try to snap the rod, doing so with a successful {@dc 14} Strength check. The snapped rod releases its fiery energy in a 5-foot-radius sphere centered on itself. Each creature in that area must make a {@dc 14} Dexterity saving throw, taking 6 ({@damage 1d12}) fire damage on a failed save, or half as much damage on a successful one."
+						"When the blaze drops to 0 hit points, it disappears in a cloud of smoke and has a 50 percent chance of leaving behind a glowing rod worth 100 gp. The rod sheds dim light in a {@quantity 5|-foot} radius. As an action, a creature can try to snap the rod, doing so with a successful {@dc 14} Strength check. The snapped rod releases its fiery energy in a {@quantity 5|-foot}-radius sphere centered on itself. Each creature in that area must make a {@dc 14} Dexterity saving throw, taking 6 ({@damage 1d12}) fire damage on a failed save, or half as much damage on a successful one."
 					]
 				},
 				{
 					"name": "Heat Aura",
 					"entries": [
-						"Any creature that starts its turn within 5 feet of the blaze takes 3 ({@damage 1d6}) fire damage."
+						"Any creature that starts its turn within {@quantity 5|feet} of the blaze takes 3 ({@damage 1d6}) fire damage."
 					]
 				},
 				{
 					"name": "Illumination",
 					"entries": [
-						"The blaze sheds bright light in a 20-foot radius and dim light for an additional 20 feet."
+						"The blaze sheds bright light in a {@quantity 20|-foot} radius and dim light for an additional {@quantity 20|feet}."
 					]
 				},
 				{
 					"name": "Water Susceptibility",
 					"entries": [
-						"The blaze takes 1 cold damage for every 5 feet it moves in water, for every gallon of water splashed on it, or whenever it starts its turn in the rain."
+						"The blaze takes 1 cold damage for every {@quantity 5|feet} it moves in water, for every gallon of water splashed on it, or whenever it starts its turn in the rain."
 					]
 				}
 			],
@@ -103,7 +103,7 @@
 				{
 					"name": "Fiery Doom",
 					"entries": [
-						"{@atk ms,rs} {@hit 6} to hit; reach 5 ft. or ranged 60 ft., one target. {@h}8 ({@damage 1d10 + 3}) fire damage, and the target catches fire if it's a creature or a flammable object. Until a creature takes an action to extinguish the fire, the burning target takes 3 ({@damage 1d6}) fire damage at the end of each of its turns."
+						"{@atk ms,rs} {@hit 6} to hit; reach {@quantity 5|ft.} or ranged {@quantity 60|ft.}, one target. {@h}8 ({@damage 1d10 + 3}) fire damage, and the target catches fire if it's a creature or a flammable object. Until a creature takes an action to extinguish the fire, the burning target takes 3 ({@damage 1d6}) fire damage at the end of each of its turns."
 					]
 				}
 			],
@@ -174,7 +174,7 @@
 				"stealth": "+4"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 13,
 			"immune": [
@@ -200,13 +200,13 @@
 				{
 					"name": "Destruction",
 					"entries": [
-						"When it ends its turn within 10 feet of a Humanoid that it can see, the creeper stops moving and emits a hiss loud enough to be heard by creatures within 30 feet of itself.",
+						"When it ends its turn within {@quantity 10|feet} of a Humanoid that it can see, the creeper stops moving and emits a hiss loud enough to be heard by creatures within {@quantity 30|feet} of itself.",
 						"If the creeper drops to 0 hit points before the start of its next turn, the hissing stops, and the creeper dies. Otherwise, at the start of the creeper's next turn, one of following things happens:",
 						{
 							"type": "list",
 							"items": [
-								"If there are no Humanoids within 10 feet of the hissing creeper, it stops hissing. It then uses any available movement to approach the nearest Humanoid it can see.",
-								"If there are one or more Humanoids within 10 feet of the hissing creeper, the creeper explodes in a ball of energy that fills a 20-foot-radius sphere centered on itself. This energy spreads around corners. The creeper is destroyed, and every other creature in the explosion's area must make a {@dc 12} Dexterity saving throw, taking 14 ({@damage 4d6}) lightning damage on a failed save, or half as much damage on a successful one. Increase this damage by 7 ({@dice 2d6}) if the creeper is charged (see \"Electrical Charge\" below). Objects in the area that aren't being worn or carried take 14 ({@damage 4d6}) lightning damage, or 21 ({@damage 6d6}) lightning damage if the creeper is charged."
+								"If there are no Humanoids within {@quantity 10|feet} of the hissing creeper, it stops hissing. It then uses any available movement to approach the nearest Humanoid it can see.",
+								"If there are one or more Humanoids within {@quantity 10|feet} of the hissing creeper, the creeper explodes in a ball of energy that fills a {@quantity 20|-foot}-radius sphere centered on itself. This energy spreads around corners. The creeper is destroyed, and every other creature in the explosion's area must make a {@dc 12} Dexterity saving throw, taking 14 ({@damage 4d6}) lightning damage on a failed save, or half as much damage on a successful one. Increase this damage by 7 ({@dice 2d6}) if the creeper is charged (see \"Electrical Charge\" below). Objects in the area that aren't being worn or carried take 14 ({@damage 4d6}) lightning damage, or 21 ({@damage 6d6}) lightning damage if the creeper is charged."
 							]
 						}
 					]
@@ -214,13 +214,13 @@
 				{
 					"name": "Electrical Charge",
 					"entries": [
-						"Whenever the creeper is subjected to lightning damage, it takes no damage and instead becomes charged for 1 minute. While charged, the creeper emits dim blue light in a 5-foot radius."
+						"Whenever the creeper is subjected to lightning damage, it takes no damage and instead becomes charged for 1 minute. While charged, the creeper emits dim blue light in a {@quantity 5|-foot} radius."
 					]
 				},
 				{
 					"name": "Fear of Felines",
 					"entries": [
-						"The creeper has the {@condition frightened} condition whenever it starts its turn within 60 feet of a feline creature it can see. The condition lasts until the start of the creeper's next turn."
+						"The creeper has the {@condition frightened} condition whenever it starts its turn within {@quantity 60|feet} of a feline creature it can see. The condition lasts until the start of the creeper's next turn."
 					]
 				}
 			],
@@ -289,7 +289,7 @@
 				"stealth": "+8"
 			},
 			"senses": [
-				"darkvision 240 ft."
+				"darkvision {@quantity 240|ft.}"
 			],
 			"passive": 24,
 			"resist": [
@@ -330,19 +330,19 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 14} to hit; reach 15 ft., one target. {@h}18 ({@damage 3d6 + 8}) piercing damage plus 7 ({@damage 2d6}) necrotic damage."
+						"{@atk mw} {@hit 14} to hit; reach {@quantity 15|ft.}, one target. {@h}18 ({@damage 3d6 + 8}) piercing damage plus 7 ({@damage 2d6}) necrotic damage."
 					]
 				},
 				{
 					"name": "Beating Wings",
 					"entries": [
-						"The dragon beats its great wings. Each creature within 15 feet of the dragon must succeed on a {@dc 21} Dexterity saving throw or take 10 ({@damage 1d4 + 8}) bludgeoning damage, be pushed 10 feet away from the dragon, and have the {@condition prone} condition."
+						"The dragon beats its great wings. Each creature within {@quantity 15|feet} of the dragon must succeed on a {@dc 21} Dexterity saving throw or take 10 ({@damage 1d4 + 8}) bludgeoning damage, be pushed {@quantity 10|feet} away from the dragon, and have the {@condition prone} condition."
 					]
 				},
 				{
 					"name": "Harmful Breath {@recharge 5}",
 					"entries": [
-						"The dragon exhales putrid gas in a 60-foot cone. Each creature in that area must make a {@dc 21} Constitution saving throw, taking 52 ({@damage 15d6}) necrotic damage on a failed save, or half as much damage on a successful one. The dragon then chooses a point it can see where the cone makes contact with the ground. That point becomes the center of a 10-foot-high, 10-foot-radius cylinder of lingering gas that disappears at the start of the dragon's next turn. Any creature that starts its turn in the cylinder takes 10 ({@damage 3d6}) necrotic damage."
+						"The dragon exhales putrid gas in a {@quantity 60|-foot} cone. Each creature in that area must make a {@dc 21} Constitution saving throw, taking 52 ({@damage 15d6}) necrotic damage on a failed save, or half as much damage on a successful one. The dragon then chooses a point it can see where the cone makes contact with the ground. That point becomes the center of a {@quantity 10|-foot}-high, {@quantity 10|-foot}-radius cylinder of lingering gas that disappears at the start of the dragon's next turn. Any creature that starts its turn in the cylinder takes 10 ({@damage 3d6}) necrotic damage."
 					]
 				}
 			],
@@ -424,7 +424,7 @@
 				"survival": "+7"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 17,
 			"resist": [
@@ -438,13 +438,13 @@
 				{
 					"name": "Evasive Teleportation",
 					"entries": [
-						"Whenever it takes damage or is the target of a ranged attack, the Enderman can teleport, along with any equipment it is wearing or carrying, to an unoccupied space it can see within 20 feet of itself (no action required). If this effect is triggered by a ranged attack, the Enderman teleports just before the attack hits, causing the attack to miss it. This trait is suppressed while the Enderman has the {@condition incapacitated} condition."
+						"Whenever it takes damage or is the target of a ranged attack, the Enderman can teleport, along with any equipment it is wearing or carrying, to an unoccupied space it can see within {@quantity 20|feet} of itself (no action required). If this effect is triggered by a ranged attack, the Enderman teleports just before the attack hits, causing the attack to miss it. This trait is suppressed while the Enderman has the {@condition incapacitated} condition."
 					]
 				},
 				{
 					"name": "Implosion",
 					"entries": [
-						"When the Enderman drops to 0 hit points, it dies as its body implodes. Roll a {@dice d10}. On a roll of 9 or less, the Enderman leaves no remains. On a roll of 10, the Enderman leaves behind a glowing, purple orb called an Ender pearl, worth 500 gp. A creature can throw the pearl up to 60 feet; if the pearl lands in an unoccupied space big enough to contain the creature, the creature teleports to that space, along with any equipment it is wearing or carrying, and the pearl disappears."
+						"When the Enderman drops to 0 hit points, it dies as its body implodes. Roll a {@dice d10}. On a roll of 9 or less, the Enderman leaves no remains. On a roll of 10, the Enderman leaves behind a glowing, purple orb called an Ender pearl, worth 500 gp. A creature can throw the pearl up to {@quantity 60|feet}; if the pearl lands in an unoccupied space big enough to contain the creature, the creature teleports to that space, along with any equipment it is wearing or carrying, and the pearl disappears."
 					]
 				},
 				{
@@ -456,7 +456,7 @@
 				{
 					"name": "Water Susceptibility",
 					"entries": [
-						"The Enderman takes 1 cold damage for every 5 feet it moves in water, for every gallon of water splashed on it, or whenever it starts its turn in the rain."
+						"The Enderman takes 1 cold damage for every {@quantity 5|feet} it moves in water, for every gallon of water splashed on it, or whenever it starts its turn in the rain."
 					]
 				}
 			],
@@ -470,7 +470,7 @@
 				{
 					"name": "Slam",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit; reach 10 ft., one target. {@h}8 ({@damage 1d8 + 4}) bludgeoning damage plus 9 ({@damage 2d8}) necrotic damage."
+						"{@atk mw} {@hit 7} to hit; reach {@quantity 10|ft.}, one target. {@h}8 ({@damage 1d8 + 4}) bludgeoning damage plus 9 ({@damage 2d8}) necrotic damage."
 					]
 				}
 			],
@@ -543,7 +543,7 @@
 				{
 					"name": "Pack Tactics",
 					"entries": [
-						"The wolf has advantage on attack rolls against a creature if at least one of the wolf's allies is within 5 feet of the creature and the ally doesn't have the {@condition incapacitated} condition."
+						"The wolf has advantage on attack rolls against a creature if at least one of the wolf's allies is within {@quantity 5|feet} of the creature and the ally doesn't have the {@condition incapacitated} condition."
 					]
 				}
 			],
@@ -551,7 +551,7 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit; reach 5 ft., one target. {@h}7 ({@damage 2d4 + 2}) piercing damage. If the target is a creature, it must succeed on a {@dc 11} Strength saving throw or have the {@condition prone} condition."
+						"{@atk mw} {@hit 4} to hit; reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 2d4 + 2}) piercing damage. If the target is a creature, it must succeed on a {@dc 11} Strength saving throw or have the {@condition prone} condition."
 					]
 				}
 			],

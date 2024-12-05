@@ -50,7 +50,7 @@
 				"stealth": "+7"
 			},
 			"senses": [
-				"truesight 120 ft."
+				"truesight {@quantity 120|ft.}"
 			],
 			"passive": 23,
 			"conditionImmune": [
@@ -121,8 +121,8 @@
 						{
 							"type": "list",
 							"items": [
-								"A 3-inch-thick, opaque wall of webbing consisting of up to three 10-foot-square sections, each of which must be anchored on at least two sides by other walls or surfaces. Each section has AC 12; 20 hit points; vulnerability to fire damage; and immunity to bludgeoning, poison, and psychic damage.",
-								"A hut small enough to fit in a 10-foot cube. The hut comes with a closable door and a comfortable bed made of webbing, sized for a Tiny, Small, or Medium creature.",
+								"A {@quantity 3|-inch}-thick, opaque wall of webbing consisting of up to three {@quantity 10|-foot}-square sections, each of which must be anchored on at least two sides by other walls or surfaces. Each section has AC 12; 20 hit points; vulnerability to fire damage; and immunity to bludgeoning, poison, and psychic damage.",
+								"A hut small enough to fit in a {@quantity 10|-foot} cube. The hut comes with a closable door and a comfortable bed made of webbing, sized for a Tiny, Small, or Medium creature.",
 								"A message consisting of no more than twenty-five characters, anchored at various points so it hangs in the air."
 							]
 						}
@@ -139,13 +139,13 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 11} to hit, reach 10 ft., one target. {@h}17 ({@damage 3d6 + 7}) piercing damage plus 11 ({@damage 2d10}) poison damage."
+						"{@atk mw} {@hit 11} to hit, reach {@quantity 10|ft.}, one target. {@h}17 ({@damage 3d6 + 7}) piercing damage plus 11 ({@damage 2d10}) poison damage."
 					]
 				},
 				{
 					"name": "Web",
 					"entries": [
-						"Yarnspinner shoots webbing at one creature he can see within 120 feet of himself. The target must succeed on a {@dc 17} Strength saving throw or be {@condition restrained} for 1 hour. The target can repeat the save at the end of each of its turns, ending the effect on itself on a success."
+						"Yarnspinner shoots webbing at one creature he can see within {@quantity 120|feet} of himself. The target must succeed on a {@dc 17} Strength saving throw or be {@condition restrained} for 1 hour. The target can repeat the save at the end of each of its turns, ending the effect on itself on a success."
 					]
 				}
 			],

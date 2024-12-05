@@ -85,19 +85,19 @@
 				{
 					"name": "Shortsword",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) piercing damage."
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 5|ft.}, one target. {@h}6 ({@damage 1d6 + 3}) piercing damage."
 					]
 				},
 				{
 					"name": "Dagger",
 					"entries": [
-						"{@atk mw,rw} {@hit 6} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}5 ({@damage 1d4 + 3}) piercing damage."
+						"{@atk mw,rw} {@hit 6} to hit, reach {@quantity 5|ft.} or range {@quantity 20/60|ft.}, one target. {@h}5 ({@damage 1d4 + 3}) piercing damage."
 					]
 				},
 				{
 					"name": "Shortbow",
 					"entries": [
-						"{@atk rw} {@hit 6} to hit, range 80/320 ft., one target. {@h}6 ({@damage 1d6 + 3}) piercing damage."
+						"{@atk rw} {@hit 6} to hit, range {@quantity 80/320|ft.}, one target. {@h}6 ({@damage 1d6 + 3}) piercing damage."
 					]
 				}
 			],
@@ -154,7 +154,7 @@
 			"wis": 10,
 			"cha": 3,
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 10,
 			"immune": [
@@ -173,7 +173,7 @@
 				{
 					"name": "Sting",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one creature. {@h}5 ({@damage 1d6 + 2}) piercing damage, and the target must make a {@dc 11} Constitution saving throw, taking 10 ({@damage 3d6}) poison damage on a failed save, or half as much damage on a successful one. If the poison damage reduces the target to 0 hit points, the target is stable but {@condition poisoned} for 1 hour, even after regaining hit points, and is {@condition paralyzed} while {@condition poisoned} in this way."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one creature. {@h}5 ({@damage 1d6 + 2}) piercing damage, and the target must make a {@dc 11} Constitution saving throw, taking 10 ({@damage 3d6}) poison damage on a failed save, or half as much damage on a successful one. If the poison damage reduces the target to 0 hit points, the target is stable but {@condition poisoned} for 1 hour, even after regaining hit points, and is {@condition paralyzed} while {@condition poisoned} in this way."
 					]
 				}
 			],
@@ -305,7 +305,7 @@
 				{
 					"name": "Quarterstaff",
 					"entries": [
-						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d6}) bludgeoning damage, or 4 ({@damage 1d8}) bludgeoning damage if used with two hands."
+						"{@atk mw} {@hit 3} to hit, reach {@quantity 5|ft.}, one target. {@h}3 ({@damage 1d6}) bludgeoning damage, or 4 ({@damage 1d8}) bludgeoning damage if used with two hands."
 					]
 				}
 			],
@@ -442,7 +442,7 @@
 				{
 					"name": "Quarterstaff",
 					"entries": [
-						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d6}) bludgeoning damage, or 4 ({@damage 1d8}) bludgeoning damage if used with two hands."
+						"{@atk mw} {@hit 3} to hit, reach {@quantity 5|ft.}, one target. {@h}3 ({@damage 1d6}) bludgeoning damage, or 4 ({@damage 1d8}) bludgeoning damage if used with two hands."
 					]
 				}
 			],
@@ -510,7 +510,7 @@
 				"perception": "+4"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 14,
 			"resist": [
@@ -554,13 +554,13 @@
 				{
 					"name": "Headbutt",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}11 ({@damage 2d6 + 4}) piercing damage."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 5|ft.}, one target. {@h}11 ({@damage 2d6 + 4}) piercing damage."
 					]
 				},
 				{
 					"name": "Lightning Bolt Blades",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}9 ({@damage 2d4 + 4}) slashing damage."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 5|ft.}, one target. {@h}9 ({@damage 2d4 + 4}) slashing damage."
 					]
 				}
 			],
@@ -623,7 +623,7 @@
 				"perception": "+5"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 15,
 			"immune": [
@@ -643,7 +643,7 @@
 				{
 					"name": "Pack Tactics",
 					"entries": [
-						"Tooth-N-Claw has advantage on an attack roll against a creature if at least one of its allies is within 5 feet of the creature and the ally isn't {@condition incapacitated}."
+						"Tooth-N-Claw has advantage on an attack roll against a creature if at least one of its allies is within {@quantity 5|feet} of the creature and the ally isn't {@condition incapacitated}."
 					]
 				}
 			],
@@ -651,13 +651,13 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d8 + 3}) piercing damage plus 7 ({@damage 2d6}) cold damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 1d8 + 3}) piercing damage plus 7 ({@damage 2d6}) cold damage."
 					]
 				},
 				{
 					"name": "Freezing Breath {@recharge 5}",
 					"entries": [
-						"Tooth-N-Claw exhales an icy blast in a 15-foot cone. Each creature in that area must make a {@dc 12} Dexterity saving throw, taking 21 ({@damage 6d6}) cold damage on a failed save, or half as much damage on a successful one."
+						"Tooth-N-Claw exhales an icy blast in a {@quantity 15|-foot} cone. Each creature in that area must make a {@dc 12} Dexterity saving throw, taking 21 ({@damage 6d6}) cold damage on a failed save, or half as much damage on a successful one."
 					]
 				}
 			],
@@ -784,13 +784,13 @@
 				{
 					"name": "Longsword",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d8 + 3}) slashing damage, or 8 ({@damage 1d10 + 3}) slashing damage if used with two hands."
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 1d8 + 3}) slashing damage, or 8 ({@damage 1d10 + 3}) slashing damage if used with two hands."
 					]
 				},
 				{
 					"name": "Longbow",
 					"entries": [
-						"{@atk rw} {@hit 5} to hit, range 150/600 ft., one target. {@h}6 ({@damage 1d8 + 2}) piercing damage."
+						"{@atk rw} {@hit 5} to hit, range {@quantity 150/600|ft.}, one target. {@h}6 ({@damage 1d8 + 2}) piercing damage."
 					]
 				}
 			],
@@ -798,7 +798,7 @@
 				{
 					"name": "Protection (Defender Only)",
 					"entries": [
-						"The warrior imposes disadvantage on the attack roll of a creature within 5 feet of it whose target isn't the warrior. The warrior must be able to see the attacker."
+						"The warrior imposes disadvantage on the attack roll of a creature within {@quantity 5|feet} of it whose target isn't the warrior. The warrior must be able to see the attacker."
 					]
 				}
 			],

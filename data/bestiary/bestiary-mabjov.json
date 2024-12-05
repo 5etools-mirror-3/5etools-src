@@ -37,7 +37,7 @@
 				"perception": "+4"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 14,
 			"languages": [
@@ -62,13 +62,13 @@
 				{
 					"name": "Beak",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}14 ({@damage 3d6 + 4}) piercing damage."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}14 ({@damage 3d6 + 4}) piercing damage."
 					]
 				},
 				{
 					"name": "Talons",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 10 ft., one target. {@h}8 ({@damage 1d8 + 4}) slashing damage."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 10|ft.}, one target. {@h}8 ({@damage 1d8 + 4}) slashing damage."
 					]
 				}
 			],
@@ -84,7 +84,7 @@
 				{
 					"name": "Defensive Cloud",
 					"entries": [
-						"After taking damage the achaierai can use its reaction to release a cloud of poisonous gas in a 10-foot-radius. All creatures in the cloud take 7 ({@damage 2d6}) poison damage and must succeed on a {@dc 15} Constitution saving throw or be {@condition poisoned} for 1 minute. While {@condition poisoned} the target is confused as if from a {@spell confusion} spell. At the end of its turns, the affected target can repeat the Constitution saving throw. If it succeeds the confusion ends. Achaierai are immune to the effects of this cloud."
+						"After taking damage the achaierai can use its reaction to release a cloud of poisonous gas in a {@quantity 10|-foot}-radius. All creatures in the cloud take 7 ({@damage 2d6}) poison damage and must succeed on a {@dc 15} Constitution saving throw or be {@condition poisoned} for 1 minute. While {@condition poisoned} the target is confused as if from a {@spell confusion} spell. At the end of its turns, the affected target can repeat the Constitution saving throw. If it succeeds the confusion ends. Achaierai are immune to the effects of this cloud."
 					]
 				}
 			],
@@ -159,7 +159,7 @@
 				"religion": "+4"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 15,
 			"immune": [
@@ -234,7 +234,7 @@
 				{
 					"name": "Shadows",
 					"entries": [
-						"Three {@creature shadow||shadows} hide within the saddle of Aribeth's nightmare. These shadows only come out if there is a creature within 30 feet that is at 0 hit points. When that happens, a shadow emerges and attacks the creature in order to make it fail a death saving throw. It continues to do so until the creature is dead."
+						"Three {@creature shadow||shadows} hide within the saddle of Aribeth's nightmare. These shadows only come out if there is a creature within {@quantity 30|feet} that is at 0 hit points. When that happens, a shadow emerges and attacks the creature in order to make it fail a death saving throw. It continues to do so until the creature is dead."
 					]
 				},
 				{
@@ -254,13 +254,13 @@
 				{
 					"name": "Void",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d8 + 3}) slashing damage or 8 ({@damage 1d10 + 3}) slashing damage if used with two hands, plus 7 ({@damage 2d6}) necrotic damage. A creature reduced to 0 hit points from damage dealt by the sword Void dies and can't be revived by any means short of a {@spell wish} spell."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 1d8 + 3}) slashing damage or 8 ({@damage 1d10 + 3}) slashing damage if used with two hands, plus 7 ({@damage 2d6}) necrotic damage. A creature reduced to 0 hit points from damage dealt by the sword Void dies and can't be revived by any means short of a {@spell wish} spell."
 					]
 				},
 				{
 					"name": "Unholy Strike",
 					"entries": [
-						"{@atk rs} {@hit 7} to hit, range 120 ft., one target. {@h}12 ({@damage 2d8 + 3}) necrotic damage."
+						"{@atk rs} {@hit 7} to hit, range {@quantity 120|ft.}, one target. {@h}12 ({@damage 2d8 + 3}) necrotic damage."
 					]
 				}
 			],
@@ -368,8 +368,8 @@
 				"persuasion": "+16"
 			},
 			"senses": [
-				"darkvision 120 ft.",
-				"tremorsense 10 ft."
+				"darkvision {@quantity 120|ft.}",
+				"tremorsense {@quantity 10|ft.}"
 			],
 			"passive": 17,
 			"resist": [
@@ -397,7 +397,7 @@
 			],
 			"languages": [
 				"all",
-				"telepathy 120 ft."
+				"telepathy {@quantity 120|ft.}"
 			],
 			"cr": "26",
 			"spellcasting": [
@@ -463,7 +463,7 @@
 				{
 					"name": "Stench of the Slug",
 					"entries": [
-						"A creature that starts its turn within 10 feet of Baalzebul must succeed on a {@dc 21} Constitution saving throw or have the {@condition poisoned} condition until the start of its next turn. On a successful save, a creature is immune to this stench for 1 hour."
+						"A creature that starts its turn within {@quantity 10|feet} of Baalzebul must succeed on a {@dc 21} Constitution saving throw or have the {@condition poisoned} condition until the start of its next turn. On a successful save, a creature is immune to this stench for 1 hour."
 					]
 				}
 			],
@@ -477,19 +477,19 @@
 				{
 					"name": "Slam",
 					"entries": [
-						"{@atk mw} {@hit 17} to hit, reach 10 ft., one target. {@h}19 ({@damage 3d6 + 9}) bludgeoning damage plus 7 ({@damage 2d6}) necrotic damage."
+						"{@atk mw} {@hit 17} to hit, reach {@quantity 10|ft.}, one target. {@h}19 ({@damage 3d6 + 9}) bludgeoning damage plus 7 ({@damage 2d6}) necrotic damage."
 					]
 				},
 				{
 					"name": "Pungent Eruption {@recharge 4}",
 					"entries": [
-						"Baalzebul causes refuse and caustic liquid to spill from the ground at a point he can see within 300 feet. Each creature in a 15-foot-radius sphere centered on that point must make a {@dc 21} Constitution saving throw. Targets take 36 ({@damage 8d8}) acid damage on a failed save, or half as much on a successful one. Creatures that fail the save have the {@condition poisoned} condition for 1 minute."
+						"Baalzebul causes refuse and caustic liquid to spill from the ground at a point he can see within {@quantity 300|feet}. Each creature in a {@quantity 15|-foot}-radius sphere centered on that point must make a {@dc 21} Constitution saving throw. Targets take 36 ({@damage 8d8}) acid damage on a failed save, or half as much on a successful one. Creatures that fail the save have the {@condition poisoned} condition for 1 minute."
 					]
 				},
 				{
 					"name": "Heart of Pestilence {@recharge 5}",
 					"entries": [
-						"Baalzebul channels pestilence into his body, sickening creatures within 50 feet that can see him. Sickened creatures must make a {@dc 21} Charisma saving throw, followed by a {@dc 21} Constitution saving throw. Failing the Charisma save makes a creature have the {@condition frightened} condition, while failing the Constitution save makes a creature weak. While weakened, a creature deals half damage on melee attacks. Both effects last for 1 minute or until a {@spell greater restoration} spell or similar is cast."
+						"Baalzebul channels pestilence into his body, sickening creatures within {@quantity 50|feet} that can see him. Sickened creatures must make a {@dc 21} Charisma saving throw, followed by a {@dc 21} Constitution saving throw. Failing the Charisma save makes a creature have the {@condition frightened} condition, while failing the Constitution save makes a creature weak. While weakened, a creature deals half damage on melee attacks. Both effects last for 1 minute or until a {@spell greater restoration} spell or similar is cast."
 					]
 				}
 			],
@@ -497,7 +497,7 @@
 				{
 					"name": "Displace",
 					"entries": [
-						"Baalzebul magically teleports, along with any equipment he is wearing and carrying, up to 120 feet to an unoccupied space he can see."
+						"Baalzebul magically teleports, along with any equipment he is wearing and carrying, up to {@quantity 120|feet} to an unoccupied space he can see."
 					]
 				}
 			],
@@ -517,7 +517,7 @@
 				{
 					"name": "Insect Gorge (Costs 2 Actions)",
 					"entries": [
-						"Baalzebul disgorges a swarm of biting flies at a point he can see within 300 feet of himself. Each creature within a 20-foot-radius sphere centered on that point must make a {@dc 21} Constitution saving throw. A creature takes 44 ({@damage 8d10}) piercing damage on a failed save, or half as much damage on a successful one. The biting flies persist for 1 minute, or until Baalzebul uses this ability again. Creatures that enter the flies' area or end their turn inside it must repeat the saving throw."
+						"Baalzebul disgorges a swarm of biting flies at a point he can see within {@quantity 300|feet} of himself. Each creature within a {@quantity 20|-foot}-radius sphere centered on that point must make a {@dc 21} Constitution saving throw. A creature takes 44 ({@damage 8d10}) piercing damage on a failed save, or half as much damage on a successful one. The biting flies persist for 1 minute, or until Baalzebul uses this ability again. Creatures that enter the flies' area or end their turn inside it must repeat the saving throw."
 					]
 				},
 				{
@@ -630,8 +630,8 @@
 				"stealth": "+10"
 			},
 			"senses": [
-				"blindsight 30 ft.",
-				"darkvision 60 ft."
+				"blindsight {@quantity 30|ft.}",
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 15,
 			"resist": [
@@ -656,7 +656,7 @@
 			],
 			"languages": [
 				"understands Abyssal but only speaks telepathically to its own kind",
-				"telepathy 120 ft."
+				"telepathy {@quantity 120|ft.}"
 			],
 			"cr": "12",
 			"trait": [
@@ -683,19 +683,19 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}16 ({@damage 2d12 + 3}) piercing damage plus 21 ({@damage 6d6}) poison damage. Any creature that drops to zero hit points because of this attack ignites, suffering 7 ({@damage 2d6}) fire damage at the start of each of its turns until the creature's hit points are above zero."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}16 ({@damage 2d12 + 3}) piercing damage plus 21 ({@damage 6d6}) poison damage. Any creature that drops to zero hit points because of this attack ignites, suffering 7 ({@damage 2d6}) fire damage at the start of each of its turns until the creature's hit points are above zero."
 					]
 				},
 				{
 					"name": "Foreleg",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 10 ft., one target. {@h}21 ({@damage 4d8 + 3}) slashing damage."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 10|ft.}, one target. {@h}21 ({@damage 4d8 + 3}) slashing damage."
 					]
 				},
 				{
 					"name": "Poisoned Web {@recharge 5}",
 					"entries": [
-						"{@atk rw} {@hit 10} to hit, range 30/60 ft., one creature. {@h}51 ({@damage 10d8 + 6}) poison damage, and the target has the {@condition restrained} condition until free of the web. While {@condition restrained}, the target takes 9 ({@damage 2d8}) poison damage at the start of each of its turns. The target may use an action to make a {@dc 17} Strength check and if successful they are freed from the webbing. The webbing can also be attacked and destroyed (AC 12; 10 hit points; immunity to bludgeoning, fire, poison, and psychic damage). If an attack or spell doing fire damage is used on the webbing, the webbing ignites (but is otherwise unharmed). Any creature {@condition restrained} by the webbing suffers an additional 7 ({@damage 2d6}) fire damage at the start of each of its turn."
+						"{@atk rw} {@hit 10} to hit, range {@quantity 30/60|ft.}, one creature. {@h}51 ({@damage 10d8 + 6}) poison damage, and the target has the {@condition restrained} condition until free of the web. While {@condition restrained}, the target takes 9 ({@damage 2d8}) poison damage at the start of each of its turns. The target may use an action to make a {@dc 17} Strength check and if successful they are freed from the webbing. The webbing can also be attacked and destroyed (AC 12; 10 hit points; immunity to bludgeoning, fire, poison, and psychic damage). If an attack or spell doing fire damage is used on the webbing, the webbing ignites (but is otherwise unharmed). Any creature {@condition restrained} by the webbing suffers an additional 7 ({@damage 2d6}) fire damage at the start of each of its turn."
 					]
 				},
 				{
@@ -787,8 +787,8 @@
 				"stealth": "+14"
 			},
 			"senses": [
-				"darkvision 120 ft.",
-				"truesight 60 ft."
+				"darkvision {@quantity 120|ft.}",
+				"truesight {@quantity 60|ft.}"
 			],
 			"passive": 20,
 			"resist": [
@@ -882,19 +882,19 @@
 				{
 					"name": "Claw",
 					"entries": [
-						"{@atk mw} {@hit 16} to hit, reach 5 ft., one target. {@h}22 ({@damage 3d8 + 9}) slashing damage plus 7 ({@damage 2d6}) necrotic damage. If the target is a creature, it must succeed on a {@dc 21} Constitution saving throw or have its hit point maximum reduced by an amount equal to the damage taken. The target dies if this attack reduces its hit point maximum to 0. The reduction lasts until removed by the {@spell greater restoration} spell or other magic."
+						"{@atk mw} {@hit 16} to hit, reach {@quantity 5|ft.}, one target. {@h}22 ({@damage 3d8 + 9}) slashing damage plus 7 ({@damage 2d6}) necrotic damage. If the target is a creature, it must succeed on a {@dc 21} Constitution saving throw or have its hit point maximum reduced by an amount equal to the damage taken. The target dies if this attack reduces its hit point maximum to 0. The reduction lasts until removed by the {@spell greater restoration} spell or other magic."
 					]
 				},
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 16} to hit, reach 5 ft., one target. {@h}25 ({@damage 3d10 + 9}) piercing damage plus 7 ({@damage 2d6}) necrotic damage. If the target is a creature, it must succeed on a {@dc 21} Constitution saving throw or have its hit point maximum reduced by an amount equal to the damage taken. The target dies if this attack reduces its hit point maximum to 0. The reduction lasts until removed by the {@spell greater restoration} spell or other magic. Large or smaller creatures damaged by this attack are {@condition grappled} (escape {@dc 20}) and the ravager can't make another Bite attack until this grapple ends."
+						"{@atk mw} {@hit 16} to hit, reach {@quantity 5|ft.}, one target. {@h}25 ({@damage 3d10 + 9}) piercing damage plus 7 ({@damage 2d6}) necrotic damage. If the target is a creature, it must succeed on a {@dc 21} Constitution saving throw or have its hit point maximum reduced by an amount equal to the damage taken. The target dies if this attack reduces its hit point maximum to 0. The reduction lasts until removed by the {@spell greater restoration} spell or other magic. Large or smaller creatures damaged by this attack are {@condition grappled} (escape {@dc 20}) and the ravager can't make another Bite attack until this grapple ends."
 					]
 				},
 				{
 					"name": "Spines",
 					"entries": [
-						"{@atk rw} {@hit 14} to hit, range 60/120 ft., one target. {@h}17 ({@damage 3d6 + 7}) piercing damage. If the target fails a {@dc 19} Constitution saving throw, they are {@condition stunned} until the end of their next turn."
+						"{@atk rw} {@hit 14} to hit, range {@quantity 60/120|ft.}, one target. {@h}17 ({@damage 3d6 + 7}) piercing damage. If the target fails a {@dc 19} Constitution saving throw, they are {@condition stunned} until the end of their next turn."
 					]
 				}
 			],
@@ -908,13 +908,13 @@
 				{
 					"name": "Spiky Carapace",
 					"entries": [
-						"The ravager flares its numerous spines and they elongate. Any creature within 5 feet of the ravager must make a {@dc 21} Dexterity saving throw, taking 27 ({@damage 5d10}) piercing damage on a failed save, or half as much damage on a successful one."
+						"The ravager flares its numerous spines and they elongate. Any creature within {@quantity 5|feet} of the ravager must make a {@dc 21} Dexterity saving throw, taking 27 ({@damage 5d10}) piercing damage on a failed save, or half as much damage on a successful one."
 					]
 				},
 				{
 					"name": "Smash (Costs 2 Actions)",
 					"entries": [
-						"The ravager smashes downwards with great force, causing a violent implosion. Any creature within 10 feet of the ravager must make a {@dc 20} Constitution saving throw, taking 18 ({@damage 4d8}) thunder damage on a failed save, or half as much damage on a successful one. Creatures that fail the saving throw are also pulled 5 feet towards the ravager. The noise produced by this attack can be heard up to 1 mile away."
+						"The ravager smashes downwards with great force, causing a violent implosion. Any creature within {@quantity 10|feet} of the ravager must make a {@dc 20} Constitution saving throw, taking 18 ({@damage 4d8}) thunder damage on a failed save, or half as much damage on a successful one. Creatures that fail the saving throw are also pulled {@quantity 5|feet} towards the ravager. The noise produced by this attack can be heard up to {@quantity 1|mile} away."
 					]
 				}
 			],
@@ -997,7 +997,7 @@
 				"stealth": "+18"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 13,
 			"resist": [
@@ -1078,7 +1078,7 @@
 				{
 					"name": "Claw",
 					"entries": [
-						"{@atk mw} {@hit 13} to hit, reach 5 ft., one target. {@h}16 ({@damage 2d8 + 7}) slashing damage plus 3 ({@damage 1d6}) necrotic damage. If the target is a creature, it must succeed on a {@dc 19} Constitution saving throw or have its hit point maximum reduced by an amount equal to the damage taken. The target dies if this attack reduces its hit point maximum to 0. The reduction lasts until removed by the {@spell greater restoration} spell or other magic."
+						"{@atk mw} {@hit 13} to hit, reach {@quantity 5|ft.}, one target. {@h}16 ({@damage 2d8 + 7}) slashing damage plus 3 ({@damage 1d6}) necrotic damage. If the target is a creature, it must succeed on a {@dc 19} Constitution saving throw or have its hit point maximum reduced by an amount equal to the damage taken. The target dies if this attack reduces its hit point maximum to 0. The reduction lasts until removed by the {@spell greater restoration} spell or other magic."
 					]
 				}
 			],
@@ -1086,7 +1086,7 @@
 				{
 					"name": "Prey",
 					"entries": [
-						"The slayer focuses on a single creature it can see within 60 feet. Afterwards, the first time each turn that the slayer hits that creature, the slayer does an additional 7 ({@damage 2d6}) damage."
+						"The slayer focuses on a single creature it can see within {@quantity 60|feet}. Afterwards, the first time each turn that the slayer hits that creature, the slayer does an additional 7 ({@damage 2d6}) damage."
 					]
 				}
 			],
@@ -1094,7 +1094,7 @@
 				{
 					"name": "Savage Disengage",
 					"entries": [
-						"The slayer disengages without provoking opportunity attacks. If it moves within 5 feet of a creature it makes a Claw attack against the creature."
+						"The slayer disengages without provoking opportunity attacks. If it moves within {@quantity 5|feet} of a creature it makes a Claw attack against the creature."
 					]
 				},
 				{
@@ -1185,7 +1185,7 @@
 				"stealth": "+15"
 			},
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 17,
 			"resist": [
@@ -1222,13 +1222,13 @@
 				{
 					"name": "Rejuvenation",
 					"entries": [
-						"If Bodhi is destroyed, her body immediately appears in her resting place. She is {@condition paralyzed} until she regains at least 1 hit point. After spending 24 hours in her resting place with 0 hit points, she regains 1 hit point. While {@condition paralyzed} in this manner, if a creature within 60 feet says her name 9 times, Bodhi is permanently destroyed."
+						"If Bodhi is destroyed, her body immediately appears in her resting place. She is {@condition paralyzed} until she regains at least 1 hit point. After spending 24 hours in her resting place with 0 hit points, she regains 1 hit point. While {@condition paralyzed} in this manner, if a creature within {@quantity 60|feet} says her name 9 times, Bodhi is permanently destroyed."
 					]
 				},
 				{
 					"name": "Sneak Attack (1/Turn)",
 					"entries": [
-						"Bodhi deals an extra 28 ({@damage 8d6}) damage when she hits a target with a weapon attack and has advantage on the attack roll, or when the target is within 5 feet of an ally of Bodhi that isn't incapacitated and Bodhi doesn't have disadvantage on the attack roll."
+						"Bodhi deals an extra 28 ({@damage 8d6}) damage when she hits a target with a weapon attack and has advantage on the attack roll, or when the target is within {@quantity 5|feet} of an ally of Bodhi that isn't incapacitated and Bodhi doesn't have disadvantage on the attack roll."
 					]
 				},
 				{
@@ -1252,7 +1252,7 @@
 				{
 					"name": "Elvish Song",
 					"entries": [
-						"Bodhi can't abide a song performed in the elvish language. A creature that can speak the elvish language can use an action to sing an elven song. If Bodhi is within 60 feet of the singer and can hear the song, she has disadvantage on attacks and saving throws."
+						"Bodhi can't abide a song performed in the elvish language. A creature that can speak the elvish language can use an action to sing an elven song. If Bodhi is within {@quantity 60|feet} of the singer and can hear the song, she has disadvantage on attacks and saving throws."
 					]
 				},
 				{
@@ -1278,25 +1278,25 @@
 				{
 					"name": "Unarmed Strike (Vampire Form Only)",
 					"entries": [
-						"{@atk mw} {@hit 10} to hit, reach 5 ft., one creature. {@h}9 ({@damage 1d8 + 5}) bludgeoning damage. Instead of dealing damage, Bodhi can grapple a Medium-sized or smaller target (escape {@dc 18})."
+						"{@atk mw} {@hit 10} to hit, reach {@quantity 5|ft.}, one creature. {@h}9 ({@damage 1d8 + 5}) bludgeoning damage. Instead of dealing damage, Bodhi can grapple a Medium-sized or smaller target (escape {@dc 18})."
 					]
 				},
 				{
 					"name": "Bite (Panther or Vampire Form Only)",
 					"entries": [
-						"{@atk mw} {@hit 10} to hit, reach 5 ft., one creature. {@h}8 ({@damage 1d6 + 5}) piercing damage plus 14 ({@damage 4d6}) necrotic damage. The target's hit point maximum is reduced by an amount equal to the necrotic damage taken, and Bodhi regains hit points equal to that amount. The reduction lasts until the target finishes a long rest. The target dies if this effect reduces its hit point maximum to 0. A Humanoid slain in this way and then buried in the ground rises the following night as a vampire spawn under Bodhi's control."
+						"{@atk mw} {@hit 10} to hit, reach {@quantity 5|ft.}, one creature. {@h}8 ({@damage 1d6 + 5}) piercing damage plus 14 ({@damage 4d6}) necrotic damage. The target's hit point maximum is reduced by an amount equal to the necrotic damage taken, and Bodhi regains hit points equal to that amount. The reduction lasts until the target finishes a long rest. The target dies if this effect reduces its hit point maximum to 0. A Humanoid slain in this way and then buried in the ground rises the following night as a vampire spawn under Bodhi's control."
 					]
 				},
 				{
 					"name": "Change Shape",
 					"entries": [
-						"If Bodhi isn't in sunlight, she can polymorph into a Medium panther or back into her true form. While in panther form, Bodhi Irenicus can't speak, her walking speed is 40 feet, and she has a climb speed of 30 feet. Her statistics, other than her size and speed, are unchanged. Anything she is wearing transforms with her, but nothing she is carrying does. She reverts to her true form if she dies."
+						"If Bodhi isn't in sunlight, she can polymorph into a Medium panther or back into her true form. While in panther form, Bodhi Irenicus can't speak, her walking speed is {@quantity 40|feet}, and she has a climb speed of {@quantity 30|feet}. Her statistics, other than her size and speed, are unchanged. Anything she is wearing transforms with her, but nothing she is carrying does. She reverts to her true form if she dies."
 					]
 				},
 				{
 					"name": "Charm",
 					"entries": [
-						"Bodhi targets one Humanoid she can see within 30 feet of her. If the target can see Bodhi, the target must succeed on a {@dc 17} Wisdom saving throw or be {@condition charmed} by Bodhi. The {@condition charmed} target regards Bodhi as a trusted friend to be heeded and protected. Although the target isn't under Bodhi's control, it takes Bodhi's requests or actions in the most favorable way it can. Each time Bodhi or her allies do anything harmful to the target, it can repeat the saving throw, ending the effect on itself on a success. Otherwise, the effect lasts 24 hours or until Bodhi is destroyed, is on a different plane of existence than the target, or takes a bonus action to end the effect."
+						"Bodhi targets one Humanoid she can see within {@quantity 30|feet} of her. If the target can see Bodhi, the target must succeed on a {@dc 17} Wisdom saving throw or be {@condition charmed} by Bodhi. The {@condition charmed} target regards Bodhi as a trusted friend to be heeded and protected. Although the target isn't under Bodhi's control, it takes Bodhi's requests or actions in the most favorable way it can. Each time Bodhi or her allies do anything harmful to the target, it can repeat the saving throw, ending the effect on itself on a success. Otherwise, the effect lasts 24 hours or until Bodhi is destroyed, is on a different plane of existence than the target, or takes a bonus action to end the effect."
 					]
 				}
 			],
@@ -1457,13 +1457,13 @@
 				{
 					"name": "Shortsword",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}8 ({@damage 1d6 + 5}) piercing damage."
+						"{@atk mw} {@hit 9} to hit, reach {@quantity 5|ft.}, one target. {@h}8 ({@damage 1d6 + 5}) piercing damage."
 					]
 				},
 				{
 					"name": "Heavy Crossbow",
 					"entries": [
-						"{@atk rw} {@hit 9} to hit, ranged 100/400 ft., one target. {@h}10 ({@damage 1d10 + 5}) piercing damage."
+						"{@atk rw} {@hit 9} to hit, ranged {@quantity 100/400|ft.}, one target. {@h}10 ({@damage 1d10 + 5}) piercing damage."
 					]
 				}
 			],
@@ -1645,7 +1645,7 @@
 				{
 					"name": "Arcane Burst",
 					"entries": [
-						"{@atk ms,rs} {@hit 9} to hit, reach 5 ft. or range 120 ft., one target. {@h}32 ({@damage 5d10 + 5}) lightning damage."
+						"{@atk ms,rs} {@hit 9} to hit, reach {@quantity 5|ft.} or range {@quantity 120|ft.}, one target. {@h}32 ({@damage 5d10 + 5}) lightning damage."
 					]
 				}
 			],
@@ -1718,7 +1718,7 @@
 				"wis": "+11"
 			},
 			"senses": [
-				"blindsight 60 ft."
+				"blindsight {@quantity 60|ft.}"
 			],
 			"passive": 14,
 			"resist": [
@@ -1778,7 +1778,7 @@
 				{
 					"name": "Cold Aura",
 					"entries": [
-						"At the start of each of Cryonax's turns, each creature within 10 feet of him takes 21 ({@damage 6d6}) cold damage. A creature also takes 21 ({@damage 6d6}) cold damage if they touch or hit Cryonax. Nonmagical weapons that hit Cryonax are frozen immediately after dealing damage to Cryonax. If used again and they hit any creature, the weapon shatters. The freezing effect disappears after an hour."
+						"At the start of each of Cryonax's turns, each creature within {@quantity 10|feet} of him takes 21 ({@damage 6d6}) cold damage. A creature also takes 21 ({@damage 6d6}) cold damage if they touch or hit Cryonax. Nonmagical weapons that hit Cryonax are frozen immediately after dealing damage to Cryonax. If used again and they hit any creature, the weapon shatters. The freezing effect disappears after an hour."
 					]
 				},
 				{
@@ -1816,19 +1816,19 @@
 				{
 					"name": "Slam",
 					"entries": [
-						"{@atk mw} {@hit 15} to hit, reach 15 ft., one target. {@h}27 ({@damage 3d12 + 8}) bludgeoning damage. If the target is a Large or smaller creature, it has the {@condition grappled} condition (escape {@dc 20}). Cryonax can grapple up to two targets but any tentacle that is grappling can't be used to make a Slam or Ice Spear attack."
+						"{@atk mw} {@hit 15} to hit, reach {@quantity 15|ft.}, one target. {@h}27 ({@damage 3d12 + 8}) bludgeoning damage. If the target is a Large or smaller creature, it has the {@condition grappled} condition (escape {@dc 20}). Cryonax can grapple up to two targets but any tentacle that is grappling can't be used to make a Slam or Ice Spear attack."
 					]
 				},
 				{
 					"name": "Ice Spear",
 					"entries": [
-						"{@atk rw} {@hit 10} to hit, range 120 ft., one target. {@h}36 ({@damage 6d10 + 3}) cold damage."
+						"{@atk rw} {@hit 10} to hit, range {@quantity 120|ft.}, one target. {@h}36 ({@damage 6d10 + 3}) cold damage."
 					]
 				},
 				{
 					"name": "Summon Frost Horde (1/Day)",
 					"entries": [
-						"Cryonax summons two {@creature young white dragon||young white dragons} or a {@creature frost giant} with two {@creature yeti||yetis}. The summoning costs Cryonax 50 hit points. The summoned creatures have maximum hit points and appear within 100 feet of Cryonax."
+						"Cryonax summons two {@creature young white dragon||young white dragons} or a {@creature frost giant} with two {@creature yeti||yetis}. The summoning costs Cryonax 50 hit points. The summoned creatures have maximum hit points and appear within {@quantity 100|feet} of Cryonax."
 					]
 				}
 			],
@@ -1848,7 +1848,7 @@
 				{
 					"name": "Ice Shroud (Costs 3 Actions)",
 					"entries": [
-						"With a gesture Cryonax targets a frozen creature (see Tentacle Freeze) that is within 30 feet of him. The target is encased instantly in a hard shell of crushing ice. The target receives no saving throw and takes 22 ({@damage 5d8}) cold damage immediately and at the start of each of their turns. The target is considered {@condition stunned} but is partly protected by the shroud and resistant to all damage. The shroud disappears if Cryonax removes it, Cryonax dies, the shroud takes 100 hit points of damage or another character uses their action and succeeds on a {@dc 22} Strength check to remove the trapped ally."
+						"With a gesture Cryonax targets a frozen creature (see Tentacle Freeze) that is within {@quantity 30|feet} of him. The target is encased instantly in a hard shell of crushing ice. The target receives no saving throw and takes 22 ({@damage 5d8}) cold damage immediately and at the start of each of their turns. The target is considered {@condition stunned} but is partly protected by the shroud and resistant to all damage. The shroud disappears if Cryonax removes it, Cryonax dies, the shroud takes 100 hit points of damage or another character uses their action and succeeds on a {@dc 22} Strength check to remove the trapped ally."
 					]
 				}
 			],
@@ -1948,7 +1948,7 @@
 				"persuasion": "+5"
 			},
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 11,
 			"resist": [
@@ -2012,13 +2012,13 @@
 				{
 					"name": "Club",
 					"entries": [
-						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d4 + 1}) bludgeoning damage."
+						"{@atk mw} {@hit 3} to hit, reach {@quantity 5|ft.}, one target. {@h}3 ({@damage 1d4 + 1}) bludgeoning damage."
 					]
 				},
 				{
 					"name": "Eruption",
 					"entries": [
-						"{@atk rs} {@hit 5} to hit, range 120 ft., one target. {@h}14 ({@damage 2d10 + 3}) acid damage."
+						"{@atk rs} {@hit 5} to hit, range {@quantity 120|ft.}, one target. {@h}14 ({@damage 2d10 + 3}) acid damage."
 					]
 				}
 			],
@@ -2125,7 +2125,7 @@
 				"persuasion": "+8"
 			},
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 10,
 			"resist": [
@@ -2140,7 +2140,7 @@
 				"Common",
 				"Elvish",
 				"Giant",
-				"telepathy 30 ft."
+				"telepathy {@quantity 30|ft.}"
 			],
 			"cr": "9",
 			"spellcasting": [
@@ -2189,7 +2189,7 @@
 				{
 					"name": "Devil's Sight",
 					"entries": [
-						"Darien can see normally in darkness, both magical and nonmagical, to a distance of 120 feet"
+						"Darien can see normally in darkness, both magical and nonmagical, to a distance of {@quantity 120|feet}"
 					]
 				},
 				{
@@ -2215,7 +2215,7 @@
 				{
 					"name": "Eldritch Blast",
 					"entries": [
-						"{@atk rs} {@hit 8} to hit, range 300 ft., three targets. {@h}9 ({@damage 1d10 + 4}) force damage."
+						"{@atk rs} {@hit 8} to hit, range {@quantity 300|ft.}, three targets. {@h}9 ({@damage 1d10 + 4}) force damage."
 					]
 				},
 				{
@@ -2339,7 +2339,7 @@
 				"stealth": "+8"
 			},
 			"senses": [
-				"tremorsense 60 ft."
+				"tremorsense {@quantity 60|ft.}"
 			],
 			"passive": 11,
 			"cr": "7",
@@ -2373,13 +2373,13 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}14 ({@damage 2d8 + 5}) piercing damage, and the target must make a {@dc 14} Constitution saving throw, taking 18 ({@damage 4d8}) poison damage on a failed save, or half as much damage on a successful one. If the poison damage reduces the target to 0 hit points, the target is stable but {@condition poisoned} for 1 hour, even after regaining hit points, and has the {@condition paralyzed} condition while {@condition poisoned} in this way."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 5|ft.}, one target. {@h}14 ({@damage 2d8 + 5}) piercing damage, and the target must make a {@dc 14} Constitution saving throw, taking 18 ({@damage 4d8}) poison damage on a failed save, or half as much damage on a successful one. If the poison damage reduces the target to 0 hit points, the target is stable but {@condition poisoned} for 1 hour, even after regaining hit points, and has the {@condition paralyzed} condition while {@condition poisoned} in this way."
 					]
 				},
 				{
 					"name": "Foreleg",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}19 ({@damage 4d6 + 5}) slashing damage."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 5|ft.}, one target. {@h}19 ({@damage 4d6 + 5}) slashing damage."
 					]
 				}
 			],
@@ -2450,7 +2450,7 @@
 				"stealth": "+9"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 12,
 			"conditionImmune": [
@@ -2510,13 +2510,13 @@
 				{
 					"name": "Slam",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, range 5 ft., one target. {@h}10 ({@dice 1d8 + 6})."
+						"{@atk mw} {@hit 9} to hit, range {@quantity 5|ft.}, one target. {@h}10 ({@dice 1d8 + 6})."
 					]
 				},
 				{
 					"name": "Read Thoughts",
 					"entries": [
-						"The dread doppelganger magically reads the surface thoughts of one creature within 60 feet of it. The effect can penetrate barriers, but 3 ft. of wood or dirt, 2 feet of stone, 2 inches of metal, or a thin sheet of lead blocks it. While the target is in range, the dread doppelganger can continue reading its thoughts, as long as the dread doppelganger's Concentration isn't broken (as if {@status concentration||concentrating} on a spell). While reading the target's mind, the doppelganger has advantage on Wisdom ({@skill Insight}) and Charisma ({@skill Deception}, {@skill Intimidation}, and {@skill Persuasion}) checks against the target."
+						"The dread doppelganger magically reads the surface thoughts of one creature within {@quantity 60|feet} of it. The effect can penetrate barriers, but {@quantity 3|ft.} of wood or dirt, {@quantity 2|feet} of stone, {@quantity 2|inches} of metal, or a thin sheet of lead blocks it. While the target is in range, the dread doppelganger can continue reading its thoughts, as long as the dread doppelganger's Concentration isn't broken (as if {@status concentration||concentrating} on a spell). While reading the target's mind, the doppelganger has advantage on Wisdom ({@skill Insight}) and Charisma ({@skill Deception}, {@skill Intimidation}, and {@skill Persuasion}) checks against the target."
 					]
 				}
 			],
@@ -2659,7 +2659,7 @@
 				{
 					"name": "Contingency",
 					"entries": [
-						"If Edwin has the {@condition incapacitated}, {@condition paralyzed}, or {@condition stunned} condition, a {@spell contingency} spell triggers, casting {@spell dispel magic} at 6th level, targeting Edwin. He also has a body created by the {@spell clone} spell stored in a cavern one mile beneath the city of Baldur's Gate."
+						"If Edwin has the {@condition incapacitated}, {@condition paralyzed}, or {@condition stunned} condition, a {@spell contingency} spell triggers, casting {@spell dispel magic} at 6th level, targeting Edwin. He also has a body created by the {@spell clone} spell stored in a cavern {@quantity one|mile} beneath the city of Baldur's Gate."
 					]
 				},
 				{
@@ -2685,19 +2685,19 @@
 				{
 					"name": "Staff of Power",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) bludgeoning damage or 6 ({@damage 1d8 + 2}) bludgeoning damage if wielded with two hands. Edwin can expend one of the staff's charges to deal an extra 14 ({@damage 4d6}) force damage on a hit."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d6 + 2}) bludgeoning damage or 6 ({@damage 1d8 + 2}) bludgeoning damage if wielded with two hands. Edwin can expend one of the staff's charges to deal an extra 14 ({@damage 4d6}) force damage on a hit."
 					]
 				},
 				{
 					"name": "Elemental Blast",
 					"entries": [
-						"{@atk rs} {@hit 12} to hit, range 120 ft., one target. {@h}38 ({@damage 6d10 + 5}) acid, cold, lightning, or fire damage."
+						"{@atk rs} {@hit 12} to hit, range {@quantity 120|ft.}, one target. {@h}38 ({@damage 6d10 + 5}) acid, cold, lightning, or fire damage."
 					]
 				},
 				{
 					"name": "Edwin's Choking Cloud {@recharge}",
 					"entries": [
-						"Edwin creates a 20-foot-radius sphere of poisonous fog centered on a point within 120 feet. The cloud spreads around corners but lasts only until the start of Edwin's next turn. When a creature enters the cloud's area for the first time on a turn or starts its turn there, that creature must make a {@dc 18} Constitution saving throw. The creature takes 45 ({@damage 10d8}) poison damage on a failed save, or half as much damage on a successful one. Creatures are affected even if they hold their breath or don't need to breathe."
+						"Edwin creates a {@quantity 20|-foot}-radius sphere of poisonous fog centered on a point within {@quantity 120|feet}. The cloud spreads around corners but lasts only until the start of Edwin's next turn. When a creature enters the cloud's area for the first time on a turn or starts its turn there, that creature must make a {@dc 18} Constitution saving throw. The creature takes 45 ({@damage 10d8}) poison damage on a failed save, or half as much damage on a successful one. Creatures are affected even if they hold their breath or don't need to breathe."
 					]
 				}
 			],
@@ -2705,7 +2705,7 @@
 				{
 					"name": "Summon Hell Hounds",
 					"entries": [
-						"Edwin magically summons three {@creature hell hound||hell hounds}. The summoned hell hounds appear in an unoccupied space within 60 feet of Edwin, and act as Edwin's allies. They remain for 10 minutes, until they or Edwin dies, or until Edwin dismisses them as an action."
+						"Edwin magically summons three {@creature hell hound||hell hounds}. The summoned hell hounds appear in an unoccupied space within {@quantity 60|feet} of Edwin, and act as Edwin's allies. They remain for 10 minutes, until they or Edwin dies, or until Edwin dismisses them as an action."
 					]
 				}
 			],
@@ -2713,7 +2713,7 @@
 				{
 					"name": "Edwin's Evasive Footwork",
 					"entries": [
-						"As a reaction to taking damage, Edwin teleports up to 30 feet to an unoccupied space that he can see."
+						"As a reaction to taking damage, Edwin teleports up to {@quantity 30|feet} to an unoccupied space that he can see."
 					]
 				}
 			],
@@ -2873,7 +2873,7 @@
 				{
 					"name": "Twinned Orbs",
 					"entries": [
-						"{@atk ms,rs} {@hit 9} to hit, reach 5 ft. or range 90 ft., two targets. {@h}27 ({@damage 5d8 + 5}) acid, cold, fire, lightning, poison or thunder damage (Eo's choice)."
+						"{@atk ms,rs} {@hit 9} to hit, reach {@quantity 5|ft.} or range {@quantity 90|ft.}, two targets. {@h}27 ({@damage 5d8 + 5}) acid, cold, fire, lightning, poison or thunder damage (Eo's choice)."
 					]
 				},
 				{
@@ -2885,7 +2885,7 @@
 				{
 					"name": "Discharge (1/Day)",
 					"entries": [
-						"Eo emits a thin green ray at a creature within 60 feet. The target must make a {@dc 17} Dexterity saving throw. On a failed save the target takes 89 ({@damage 14d6 + 40}) force damage. If this damage reduces the target to 0 hit points, it is disintegrated. A disintegrated creature and everything it is wearing and carrying, except magic items, are reduced to a pile of fine gray dust. The creature can be restored to life only by means of a true resurrection or a {@spell wish} spell."
+						"Eo emits a thin green ray at a creature within {@quantity 60|feet}. The target must make a {@dc 17} Dexterity saving throw. On a failed save the target takes 89 ({@damage 14d6 + 40}) force damage. If this damage reduces the target to 0 hit points, it is disintegrated. A disintegrated creature and everything it is wearing and carrying, except magic items, are reduced to a pile of fine gray dust. The creature can be restored to life only by means of a true resurrection or a {@spell wish} spell."
 					]
 				}
 			],
@@ -3053,13 +3053,13 @@
 				{
 					"name": "Staff of the Woodlands",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) bludgeoning damage, or 7 ({@damage 1d8 + 3}) bludgeoning damage if wielded with two hands plus 7 ({@damage 2d6}) acid damage."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 5|ft.}, one target. {@h}6 ({@damage 1d6 + 3}) bludgeoning damage, or 7 ({@damage 1d8 + 3}) bludgeoning damage if wielded with two hands plus 7 ({@damage 2d6}) acid damage."
 					]
 				},
 				{
 					"name": "Shadowlight {@recharge}",
 					"entries": [
-						"A beam of dim light emerges from Faldorn in a 5-foot-wide, 300-foot-long line. Each creature in the line must make a Constitution saving throw. On a failed save, a creature takes 27 ({@damage 6d8}) radiant damage and is {@condition blinded} until Faldorn's next turn. On a successful save, it takes half as much damage and isn't {@condition blinded}."
+						"A beam of dim light emerges from Faldorn in a {@quantity 5|-foot}-wide, {@quantity 300|-foot}-long line. Each creature in the line must make a Constitution saving throw. On a failed save, a creature takes 27 ({@damage 6d8}) radiant damage and is {@condition blinded} until Faldorn's next turn. On a successful save, it takes half as much damage and isn't {@condition blinded}."
 					]
 				},
 				{
@@ -3151,7 +3151,7 @@
 				"athletics": "+7"
 			},
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 11,
 			"resist": [
@@ -3226,13 +3226,13 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}11 ({@damage 2d6 + 4}) piercing damage."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}11 ({@damage 2d6 + 4}) piercing damage."
 					]
 				},
 				{
 					"name": "Claws",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d6 + 4}) slashing damage. The target is held fast by the farastu's adhesive slime ({@condition grappled} condition, escape {@dc 15}) if the farastu isn't already grappling a creature."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 1d6 + 4}) slashing damage. The target is held fast by the farastu's adhesive slime ({@condition grappled} condition, escape {@dc 15}) if the farastu isn't already grappling a creature."
 					]
 				}
 			],
@@ -3329,7 +3329,7 @@
 				"medicine": "+5"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 11,
 			"languages": [
@@ -3397,13 +3397,13 @@
 				{
 					"name": "Magic Warhammer",
 					"entries": [
-						"{@atk mw} {@hit 10} to hit, reach 5 ft., one target. {@h}10 ({@damage 1d8 + 6}) bludgeoning damage plus 3 ({@damage 1d6}) force damage."
+						"{@atk mw} {@hit 10} to hit, reach {@quantity 5|ft.}, one target. {@h}10 ({@damage 1d8 + 6}) bludgeoning damage plus 3 ({@damage 1d6}) force damage."
 					]
 				},
 				{
 					"name": "Hurl Acid {@recharge}",
 					"entries": [
-						"Flimp hurls a vial of acid at a location within 60 feet. Every creature within 10 feet of the target location must succeed on a {@dc 16} Dexterity saving throw or take 21 ({@damage 6d6}) acid damage."
+						"Flimp hurls a vial of acid at a location within {@quantity 60|feet}. Every creature within {@quantity 10|feet} of the target location must succeed on a {@dc 16} Dexterity saving throw or take 21 ({@damage 6d6}) acid damage."
 					]
 				},
 				{
@@ -3417,7 +3417,7 @@
 				{
 					"name": "Flash of Genius",
 					"entries": [
-						"When Flimp or another creature he can see within 30 feet of him makes an ability check or a saving throw, Flimp can use his reaction to add +4 to the roll."
+						"When Flimp or another creature he can see within {@quantity 30|feet} of him makes an ability check or a saving throw, Flimp can use his reaction to add +4 to the roll."
 					]
 				}
 			],
@@ -3495,7 +3495,7 @@
 				"stealth": "+4"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 9,
 			"resist": [
@@ -3524,13 +3524,13 @@
 				{
 					"name": "Dagger",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d4 + 2}) piercing damage."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}4 ({@damage 1d4 + 2}) piercing damage."
 					]
 				},
 				{
 					"name": "Swarm",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. If the target is a Medium or smaller creature, it has the {@condition grappled} condition (escape {@dc 10}). All gibberlings within 5 feet of the target can use a reaction to make a Dagger attack with advantage on the attack roll."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. If the target is a Medium or smaller creature, it has the {@condition grappled} condition (escape {@dc 10}). All gibberlings within {@quantity 5|feet} of the target can use a reaction to make a Dagger attack with advantage on the attack roll."
 					]
 				},
 				{
@@ -3640,7 +3640,7 @@
 				{
 					"name": "Tree Stride",
 					"entries": [
-						"Once on her turn, the hamadryad can use 10 feet of her movement to step magically into one living tree within her reach and emerge from a second living tree within 60 feet of the first tree, appearing in an unoccupied space within 5 feet of the second tree. Both trees must be Large in size or bigger."
+						"Once on her turn, the hamadryad can use {@quantity 10|feet} of her movement to step magically into one living tree within her reach and emerge from a second living tree within {@quantity 60|feet} of the first tree, appearing in an unoccupied space within {@quantity 5|feet} of the second tree. Both trees must be Large in size or bigger."
 					]
 				}
 			],
@@ -3654,7 +3654,7 @@
 				{
 					"name": "Claw",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, range 5 ft., one target. {@h}5 ({@dice 1d4 + 3}) plus 10 ({@damage 3d6}) poison damage."
+						"{@atk mw} {@hit 5} to hit, range {@quantity 5|ft.}, one target. {@h}5 ({@dice 1d4 + 3}) plus 10 ({@damage 3d6}) poison damage."
 					]
 				}
 			],
@@ -3741,7 +3741,7 @@
 				"stealth": "+10"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 13,
 			"resist": [
@@ -3764,7 +3764,7 @@
 				{
 					"name": "Sneak Attack (1/Turn)",
 					"entries": [
-						"Imoen deals an extra 14 ({@damage 4d6}) damage when she hits a target with a weapon attack and has advantage on the attack roll, or when the target is within 5 feet of an ally of Imoen that isn't incapacitated and Imoen doesn't have disadvantage on the attack roll."
+						"Imoen deals an extra 14 ({@damage 4d6}) damage when she hits a target with a weapon attack and has advantage on the attack roll, or when the target is within {@quantity 5|feet} of an ally of Imoen that isn't incapacitated and Imoen doesn't have disadvantage on the attack roll."
 					]
 				},
 				{
@@ -3790,13 +3790,13 @@
 				{
 					"name": "Shortsword",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d6 + 4}) piercing damage plus 3 ({@damage 1d6}) poison damage."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 1d6 + 4}) piercing damage plus 3 ({@damage 1d6}) poison damage."
 					]
 				},
 				{
 					"name": "Hand Crossbow",
 					"entries": [
-						"{@atk rw} {@hit 7} to hit, range 30/210 ft., one target. {@h}7 ({@damage 1d6 + 4}) piercing damage plus 10 ({@damage 3d6}) poison damage."
+						"{@atk rw} {@hit 7} to hit, range {@quantity 30/210|ft.}, one target. {@h}7 ({@damage 1d6 + 4}) piercing damage plus 10 ({@damage 3d6}) poison damage."
 					]
 				}
 			],
@@ -3889,7 +3889,7 @@
 				"perception": "+10"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 20,
 			"languages": [
@@ -3948,13 +3948,13 @@
 				{
 					"name": "Quarterstaff",
 					"entries": [
-						"{@atk mw} {@hit 10} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d8 + 5}) bludgeoning damage plus 21 ({@damage 6d6}) thunder damage."
+						"{@atk mw} {@hit 10} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d8 + 5}) bludgeoning damage plus 21 ({@damage 6d6}) thunder damage."
 					]
 				},
 				{
 					"name": "Cleansing Plague {@recharge}",
 					"entries": [
-						"Jaheira targets a creature she can see within 60 feet and causes a swarm of flying insects to cover the creature. The creature must make a {@dc 18} Constitution saving throw, taking 44 ({@damage 8d10}) piercing damage on a failed save, or half as much damage on a successful one. If the target fails their saving throw they are also {@condition blinded} until the end of their next turn."
+						"Jaheira targets a creature she can see within {@quantity 60|feet} and causes a swarm of flying insects to cover the creature. The creature must make a {@dc 18} Constitution saving throw, taking 44 ({@damage 8d10}) piercing damage on a failed save, or half as much damage on a successful one. If the target fails their saving throw they are also {@condition blinded} until the end of their next turn."
 					]
 				}
 			],
@@ -4060,7 +4060,7 @@
 				"perception": "+9"
 			},
 			"senses": [
-				"truesight 120 ft."
+				"truesight {@quantity 120|ft.}"
 			],
 			"passive": 19,
 			"resist": [
@@ -4146,7 +4146,7 @@
 				{
 					"name": "Rejuvenation",
 					"entries": [
-						"If he has a phylactery and he is destroyed, Jon Irenicus gains a new body in {@dice 1d10} days, regaining all his hit points and becoming active again. The new body appears within 5 feet of the phylactery."
+						"If he has a phylactery and he is destroyed, Jon Irenicus gains a new body in {@dice 1d10} days, regaining all his hit points and becoming active again. The new body appears within {@quantity 5|feet} of the phylactery."
 					]
 				},
 				{
@@ -4172,19 +4172,19 @@
 				{
 					"name": "Flame Tongue (Rod of Lordly Might)",
 					"entries": [
-						"{@atk mw} {@hit 14} to hit, reach 5 ft., one target. {@h}11 ({@damage 1d8 + 7}) slashing damage and 7 ({@damage 2d6}) fire damage."
+						"{@atk mw} {@hit 14} to hit, reach {@quantity 5|ft.}, one target. {@h}11 ({@damage 1d8 + 7}) slashing damage and 7 ({@damage 2d6}) fire damage."
 					]
 				},
 				{
 					"name": "Mace (Rod of Lordly Might)",
 					"entries": [
-						"{@atk mw} {@hit 14} to hit, reach 5 ft., one target. {@h}10 ({@damage 1d6 + 7}) bludgeoning damage."
+						"{@atk mw} {@hit 14} to hit, reach {@quantity 5|ft.}, one target. {@h}10 ({@damage 1d6 + 7}) bludgeoning damage."
 					]
 				},
 				{
 					"name": "Breath of Death (1/Day)",
 					"entries": [
-						"Jon Irenicus emits a 90-foot cone of necrotic energy. Each creature in the effects area must make a {@dc 21} saving throw, taking 55 ({@damage 10d10}) necrotic damage on a failed save, half as much damage on a successful one."
+						"Jon Irenicus emits a {@quantity 90|-foot} cone of necrotic energy. Each creature in the effects area must make a {@dc 21} saving throw, taking 55 ({@damage 10d10}) necrotic damage on a failed save, half as much damage on a successful one."
 					]
 				}
 			],
@@ -4337,7 +4337,7 @@
 				"survival": "+4"
 			},
 			"senses": [
-				"darkvision 30 ft."
+				"darkvision {@quantity 30|ft.}"
 			],
 			"passive": 14,
 			"languages": [
@@ -4363,13 +4363,13 @@
 				{
 					"name": "Berserking Greataxe",
 					"entries": [
-						"{@atk mw} {@hit 11} to hit, reach 5 ft., one target. {@h}13 ({@damage 1d12 + 7}) slashing damage."
+						"{@atk mw} {@hit 11} to hit, reach {@quantity 5|ft.}, one target. {@h}13 ({@damage 1d12 + 7}) slashing damage."
 					]
 				},
 				{
 					"name": "Heavy Crossbow",
 					"entries": [
-						"{@atk rw} {@hit 5} to hit, range 100/400 ft., one target. {@h}6 ({@damage 1d10 + 1}) piercing damage."
+						"{@atk rw} {@hit 5} to hit, range {@quantity 100/400|ft.}, one target. {@h}6 ({@damage 1d10 + 1}) piercing damage."
 					]
 				}
 			],
@@ -4383,7 +4383,7 @@
 				{
 					"name": "Berserk Whirlwind (Costs 3 Actions)",
 					"entries": [
-						"Kagain makes a Berserking Greataxe attack against every creature within 5 feet of him."
+						"Kagain makes a Berserking Greataxe attack against every creature within {@quantity 5|feet} of him."
 					]
 				}
 			],
@@ -4464,7 +4464,7 @@
 				"persuasion": "+8"
 			},
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 12,
 			"resist": [
@@ -4527,7 +4527,7 @@
 				{
 					"name": "Freedom of Movement",
 					"entries": [
-						"The kelubar is unaffected by difficult terrain, and spells and other magical affects don't reduce its speed or cause it to be {@condition paralyzed} or {@condition restrained}. If the kelubar spends 5 feet of movement is automatically escapes from nonmagical restraints or a creature that has it {@condition grappled}. It is also able to move underwater with no movement or attack penalties."
+						"The kelubar is unaffected by difficult terrain, and spells and other magical affects don't reduce its speed or cause it to be {@condition paralyzed} or {@condition restrained}. If the kelubar spends {@quantity 5|feet} of movement is automatically escapes from nonmagical restraints or a creature that has it {@condition grappled}. It is also able to move underwater with no movement or attack penalties."
 					]
 				},
 				{
@@ -4557,13 +4557,13 @@
 				{
 					"name": "Sneak Attack (1/Turn)",
 					"entries": [
-						"The kelubar deals an extra 14 ({@damage 4d6}) damage when it hits a target with a weapon attack and has advantage on the attack roll, or when the target is within 5 ft. of an ally of the kelubar that isn't incapacitated and the kelubar doesn't have disadvantage on the attack roll."
+						"The kelubar deals an extra 14 ({@damage 4d6}) damage when it hits a target with a weapon attack and has advantage on the attack roll, or when the target is within {@quantity 5|ft.} of an ally of the kelubar that isn't incapacitated and the kelubar doesn't have disadvantage on the attack roll."
 					]
 				},
 				{
 					"name": "Stench",
 					"entries": [
-						"Any creature that is not a demodand and starts its turn within 30 feet of the kelubar must succeed on a {@dc 16} Constitution saving throw or or have the {@condition poisoned} condition for 1 minute. On a successful saving throw, the creature is immune to the stench of this kelubar for 1 hour."
+						"Any creature that is not a demodand and starts its turn within {@quantity 30|feet} of the kelubar must succeed on a {@dc 16} Constitution saving throw or or have the {@condition poisoned} condition for 1 minute. On a successful saving throw, the creature is immune to the stench of this kelubar for 1 hour."
 					]
 				}
 			],
@@ -4577,13 +4577,13 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}14 ({@damage 2d8 + 5}) piercing damage plus 7 ({@damage 2d6}) acid damage."
+						"{@atk mw} {@hit 9} to hit, reach {@quantity 5|ft.}, one target. {@h}14 ({@damage 2d8 + 5}) piercing damage plus 7 ({@damage 2d6}) acid damage."
 					]
 				},
 				{
 					"name": "Claws",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}9 ({@damage 1d8 + 5}) slashing damage plus 7 ({@damage 2d6}) acid damage."
+						"{@atk mw} {@hit 9} to hit, reach {@quantity 5|ft.}, one target. {@h}9 ({@damage 1d8 + 5}) slashing damage plus 7 ({@damage 2d6}) acid damage."
 					]
 				}
 			],
@@ -4726,19 +4726,19 @@
 				{
 					"name": "Longsword",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d8 + 3}) slashing damage or 8 ({@damage 1d10 + 3}) slashing damage if wielded with two hands."
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 1d8 + 3}) slashing damage or 8 ({@damage 1d10 + 3}) slashing damage if wielded with two hands."
 					]
 				},
 				{
 					"name": "Longbow",
 					"entries": [
-						"{@atk rw} {@hit 7} to hit, ranged 150/600 ft., one target. {@h}8 ({@damage 1d8 + 4}) piercing damage."
+						"{@atk rw} {@hit 7} to hit, ranged {@quantity 150/600|ft.}, one target. {@h}8 ({@damage 1d8 + 4}) piercing damage."
 					]
 				},
 				{
 					"name": "Volley (2/Day)",
 					"entries": [
-						"Kivan makes a Longbow attack against any number of creatures he can see within 150 feet. He must make a separate attack roll with advantage for each target."
+						"Kivan makes a Longbow attack against any number of creatures he can see within {@quantity 150|feet}. He must make a separate attack roll with advantage for each target."
 					]
 				}
 			],
@@ -4746,7 +4746,7 @@
 				{
 					"name": "Kivan's Mark",
 					"entries": [
-						"Kivan designates one creature he can see within 60 feet as his prey. The first time each turn that Kivan hits his prey with a weapon attack, the prey takes an extra 7 ({@damage 2d6}) damage from the weapon."
+						"Kivan designates one creature he can see within {@quantity 60|feet} as his prey. The first time each turn that Kivan hits his prey with a weapon attack, the prey takes an extra 7 ({@damage 2d6}) damage from the weapon."
 					]
 				}
 			],
@@ -4824,7 +4824,7 @@
 				"survival": "+8"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 14,
 			"immune": [
@@ -4888,13 +4888,13 @@
 				{
 					"name": "Greataxe (Humanoid or Hybrid Form Only)",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}10 ({@damage 1d12 + 4}) slashing damage, 14 ({@dice 1d12 + 8}) while in a rage."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 5|ft.}, one target. {@h}10 ({@damage 1d12 + 4}) slashing damage, 14 ({@dice 1d12 + 8}) while in a rage."
 					]
 				},
 				{
 					"name": "Beak (Raven or Hybrid Form Only)",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}1 piercing damage in raven form, or 6 ({@damage 1d4 + 4}) piercing damage in hybrid form. If the target is Humanoid, it must succeed on a {@dc 15} Constitution saving throw or be cursed with wereraven lycanthropy."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 5|ft.}, one target. {@h}1 piercing damage in raven form, or 6 ({@damage 1d4 + 4}) piercing damage in hybrid form. If the target is Humanoid, it must succeed on a {@dc 15} Constitution saving throw or be cursed with wereraven lycanthropy."
 					]
 				},
 				{
@@ -5011,7 +5011,7 @@
 				"persuasion": "+24"
 			},
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 19,
 			"resist": [
@@ -5039,7 +5039,7 @@
 			],
 			"languages": [
 				"all",
-				"telepathy 120 ft."
+				"telepathy {@quantity 120|ft.}"
 			],
 			"cr": "27",
 			"spellcasting": [
@@ -5125,19 +5125,19 @@
 				{
 					"name": "Ranseur, +3",
 					"entries": [
-						"{@atk mw} {@hit 17} to hit, reach 10 ft., one target. {@h}20 ({@dice 2d10 + 9}) piercing plus 18 ({@damage 4d8}) fire or cold damage (Mephistopheles' choice)."
+						"{@atk mw} {@hit 17} to hit, reach {@quantity 10|ft.}, one target. {@h}20 ({@dice 2d10 + 9}) piercing plus 18 ({@damage 4d8}) fire or cold damage (Mephistopheles' choice)."
 					]
 				},
 				{
 					"name": "Hellfire Implosion {@recharge 4}",
 					"entries": [
-						"A bright streak of Hellfire appears at a point that Mephistopheles can see within 150 feet of him. Each creature in a 20-foot-radius sphere centered on that point must make a {@dc 22} Dexterity saving throw. Targets take 31 ({@damage 9d6}) fire damage on a failed save, or half as much damage on a successful one."
+						"A bright streak of Hellfire appears at a point that Mephistopheles can see within {@quantity 150|feet} of him. Each creature in a {@quantity 20|-foot}-radius sphere centered on that point must make a {@dc 22} Dexterity saving throw. Targets take 31 ({@damage 9d6}) fire damage on a failed save, or half as much damage on a successful one."
 					]
 				},
 				{
 					"name": "Hellfire Lash {@recharge 5}",
 					"entries": [
-						"Mephistopheles unleashes a 60-foot-long, 5-foot-wide lash of Hellfire that ignites a 5-foot- radius sphere around where it strikes. Any targets in the area of effect must make a {@dc 22} Dexterity saving throw, taking 36 ({@damage 8d8}) fire damage on a failed save, or half as much on a successful one."
+						"Mephistopheles unleashes a {@quantity 60|-foot}-long, {@quantity 5|-foot}-wide lash of Hellfire that ignites a {@quantity 5|-foot}- radius sphere around where it strikes. Any targets in the area of effect must make a {@dc 22} Dexterity saving throw, taking 36 ({@damage 8d8}) fire damage on a failed save, or half as much on a successful one."
 					]
 				}
 			],
@@ -5145,7 +5145,7 @@
 				{
 					"name": "Ashen Teleport",
 					"entries": [
-						"Mephistopheles' body and any equipment he is wearing or carrying turns to ash, then he magically teleports up to 120 feet to an unoccupied space he can see and reforms."
+						"Mephistopheles' body and any equipment he is wearing or carrying turns to ash, then he magically teleports up to {@quantity 120|feet} to an unoccupied space he can see and reforms."
 					]
 				}
 			],
@@ -5153,13 +5153,13 @@
 				{
 					"name": "Hellfire Wings",
 					"entries": [
-						"Mephistopheles uses his wings to generate a burst of heat. Each creature within 10 feet of him must succeed on a {@dc 22} Dexterity saving throw or take 9 ({@damage 2d8}) bludgeoning damage plus 9 ({@damage 2d8}) fire damage. Creatures that failed the save also have the {@condition prone} condition."
+						"Mephistopheles uses his wings to generate a burst of heat. Each creature within {@quantity 10|feet} of him must succeed on a {@dc 22} Dexterity saving throw or take 9 ({@damage 2d8}) bludgeoning damage plus 9 ({@damage 2d8}) fire damage. Creatures that failed the save also have the {@condition prone} condition."
 					]
 				},
 				{
 					"name": "Hellfire Storm (Costs 2 Actions)",
 					"entries": [
-						"Mephistopheles creates a rain of Hellfire at a point he can see within 150 feet. Each creature within a 20-foot-radius sphere centered on that point must make a {@dc 24} Dexterity saving throw. Targets take 38 ({@damage 7d10}) fire damage on a failed save, or half as much damage on a successful one."
+						"Mephistopheles creates a rain of Hellfire at a point he can see within {@quantity 150|feet}. Each creature within a {@quantity 20|-foot}-radius sphere centered on that point must make a {@dc 24} Dexterity saving throw. Targets take 38 ({@damage 7d10}) fire damage on a failed save, or half as much damage on a successful one."
 					]
 				},
 				{
@@ -5311,7 +5311,7 @@
 				{
 					"name": "Greatsword",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}12 ({@damage 2d6 + 5}) slashing damage"
+						"{@atk mw} {@hit 9} to hit, reach {@quantity 5|ft.}, one target. {@h}12 ({@damage 2d6 + 5}) slashing damage"
 					]
 				}
 			],
@@ -5450,13 +5450,13 @@
 				{
 					"name": "Sneak Attack (1/Turn)",
 					"entries": [
-						"Montaron deals an extra 21 ({@damage 6d6}) damage when he hits a target with a weapon attack and has advantage on the attack roll, or when the target is within 5 feet of an ally of Montaron that isn't incapacitated and Montaron doesn't have disadvantage on the attack roll."
+						"Montaron deals an extra 21 ({@damage 6d6}) damage when he hits a target with a weapon attack and has advantage on the attack roll, or when the target is within {@quantity 5|feet} of an ally of Montaron that isn't incapacitated and Montaron doesn't have disadvantage on the attack roll."
 					]
 				},
 				{
 					"name": "Special Equipment",
 					"entries": [
-						"Montaron possesses a {@item bag of holding}. He keeps the {@creature demilich}, Xzar, in the bag. He also possesses a {@item portable hole}, which he uses to aid in robberies. As a bonus action, Montaron can place his {@item portable hole} in his {@item bag of holding}. This instantly destroys both items and opens a gate to the Astral Plane. Montaron and any creature within 10 feet of him is sucked through the gate to a random location on the Astral Plane. The gate then closes."
+						"Montaron possesses a {@item bag of holding}. He keeps the {@creature demilich}, Xzar, in the bag. He also possesses a {@item portable hole}, which he uses to aid in robberies. As a bonus action, Montaron can place his {@item portable hole} in his {@item bag of holding}. This instantly destroys both items and opens a gate to the Astral Plane. Montaron and any creature within {@quantity 10|feet} of him is sucked through the gate to a random location on the Astral Plane. The gate then closes."
 					]
 				}
 			],
@@ -5470,19 +5470,19 @@
 				{
 					"name": "Shortsword",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}8 ({@damage 1d6 + 5}) piercing damage, and the target must make a {@dc 15} Constitution saving throw, taking 24 ({@damage 7d6}) poison damage on a failed save, or half as much damage on a successful one."
+						"{@atk mw} {@hit 9} to hit, reach {@quantity 5|ft.}, one target. {@h}8 ({@damage 1d6 + 5}) piercing damage, and the target must make a {@dc 15} Constitution saving throw, taking 24 ({@damage 7d6}) poison damage on a failed save, or half as much damage on a successful one."
 					]
 				},
 				{
 					"name": "Light Crossbow",
 					"entries": [
-						"{@atk rw} {@hit 9} to hit, range 80/320 ft., one target. {@h}9 ({@damage 1d8 + 5}) piercing damage."
+						"{@atk rw} {@hit 9} to hit, range {@quantity 80/320|ft.}, one target. {@h}9 ({@damage 1d8 + 5}) piercing damage."
 					]
 				},
 				{
 					"name": "Unleash the Demilich (1/Day)",
 					"entries": [
-						"Montaron reaches inside his bag of holding and releases Xzar. Xzar is a {@creature demilich} and appears within 5 feet of Montaron. Xzar rolls for his own initiative. Xzar can't use lair actions or legendary actions. He has a CR of 14."
+						"Montaron reaches inside his bag of holding and releases Xzar. Xzar is a {@creature demilich} and appears within {@quantity 5|feet} of Montaron. Xzar rolls for his own initiative. Xzar can't use lair actions or legendary actions. He has a CR of 14."
 					]
 				}
 			],
@@ -5568,7 +5568,7 @@
 				"religion": "+11"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 15,
 			"resist": [
@@ -5610,19 +5610,19 @@
 				{
 					"name": "Mace",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) bludgeoning damage plus 14 ({@damage 4d6}) radiant damage."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d6 + 2}) bludgeoning damage plus 14 ({@damage 4d6}) radiant damage."
 					]
 				},
 				{
 					"name": "Corona of Beauty",
 					"entries": [
-						"Naes activates an aura of sunlight that lasts for 1 minute or until he dismisses it using an action. He emits bright light in a 60-foot-radius and dim light 30 feet beyond that. His enemies in the bright light have disadvantage on saving throws against any spell that deals fire or radiant damage."
+						"Naes activates an aura of sunlight that lasts for 1 minute or until he dismisses it using an action. He emits bright light in a {@quantity 60|-foot}-radius and dim light {@quantity 30|feet} beyond that. His enemies in the bright light have disadvantage on saving throws against any spell that deals fire or radiant damage."
 					]
 				},
 				{
 					"name": "Radiant Beauty of Sune {@recharge 4}",
 					"entries": [
-						"Naes dispels any magical darkness within 30 feet of him. Additionally, each hostile creature within 30 feet of Naes that does not have {@quickref Cover||3||total cover} must make a {@dc 18} Constitution saving throw, taking 60 radiant damage on a failed saving throw, half as much damage on a successful one. A creature that fails the saving throw has the {@condition blinded} condition for 1 minute."
+						"Naes dispels any magical darkness within {@quantity 30|feet} of him. Additionally, each hostile creature within {@quantity 30|feet} of Naes that does not have {@quickref Cover||3||total cover} must make a {@dc 18} Constitution saving throw, taking 60 radiant damage on a failed saving throw, half as much damage on a successful one. A creature that fails the saving throw has the {@condition blinded} condition for 1 minute."
 					]
 				}
 			],
@@ -5745,7 +5745,7 @@
 								"1. The potion works normally.",
 								"2. The potion works normally. In addition, Nauk turns {@condition invisible} for 1 minute or until Nauk attacks or casts a spell.",
 								"3. The potion has no effect.",
-								"4. Instead of the normal effect, the potion causes fire to explode out of Nauk's mouth in a 15 foot cone. Nauk and any creature in the cone take 21 ({@damage 6d6}) fire damage."
+								"4. Instead of the normal effect, the potion causes fire to explode out of Nauk's mouth in a {@quantity 15|foot} cone. Nauk and any creature in the cone take 21 ({@damage 6d6}) fire damage."
 							]
 						}
 					]
@@ -5773,13 +5773,13 @@
 				{
 					"name": "Magic Maul",
 					"entries": [
-						"{@atk mw} {@hit 10} to hit, reach 5 ft., one creature. {@h}13 ({@damage 2d6 + 6}) bludgeoning damage."
+						"{@atk mw} {@hit 10} to hit, reach {@quantity 5|ft.}, one creature. {@h}13 ({@damage 2d6 + 6}) bludgeoning damage."
 					]
 				},
 				{
 					"name": "Heavy Crossbow",
 					"entries": [
-						"{@atk rw} {@hit 6} to hit, ranged 100/400 ft., one target. {@h}7 ({@damage 1d10 + 2}) piercing damage."
+						"{@atk rw} {@hit 6} to hit, ranged {@quantity 100/400|ft.}, one target. {@h}7 ({@damage 1d10 + 2}) piercing damage."
 					]
 				},
 				{
@@ -5882,7 +5882,7 @@
 				"persuasion": "+16"
 			},
 			"senses": [
-				"truesight 120 ft."
+				"truesight {@quantity 120|ft.}"
 			],
 			"passive": 22,
 			"resist": [
@@ -5911,7 +5911,7 @@
 			],
 			"languages": [
 				"all",
-				"telepathy 120 ft."
+				"telepathy {@quantity 120|ft.}"
 			],
 			"cr": "25",
 			"spellcasting": [
@@ -5983,19 +5983,19 @@
 				{
 					"name": "Greatsword",
 					"entries": [
-						"{@atk mw} {@hit 14} to hit, reach 5 ft., one target. {@h}13 ({@damage 2d6 + 6}) slashing damage plus 7 ({@damage 2d6}) necrotic damage."
+						"{@atk mw} {@hit 14} to hit, reach {@quantity 5|ft.}, one target. {@h}13 ({@damage 2d6 + 6}) slashing damage plus 7 ({@damage 2d6}) necrotic damage."
 					]
 				},
 				{
 					"name": "Talon",
 					"entries": [
-						"{@atk mw} {@hit 14} to hit, reach 5 ft., one target. {@h}15 ({@damage 2d8 + 6}) slashing damage plus 9 ({@damage 2d8}) poison damage."
+						"{@atk mw} {@hit 14} to hit, reach {@quantity 5|ft.}, one target. {@h}15 ({@damage 2d8 + 6}) slashing damage plus 9 ({@damage 2d8}) poison damage."
 					]
 				},
 				{
 					"name": "Breath Weapons {@recharge 5}",
 					"entries": [
-						"Pazuzu exhales poisonous acid in a 100-foot line that is 5 feet wide. Every creature hit by the acid must make a {@dc 21} Dexterity saving throw, taking 70 ({@damage 20d6}) acid damage on a failed save, or half as much damage on a successful one. A creature killed by this breath weapon melts and is disintegrated."
+						"Pazuzu exhales poisonous acid in a {@quantity 100|-foot} line that is {@quantity 5|feet} wide. Every creature hit by the acid must make a {@dc 21} Dexterity saving throw, taking 70 ({@damage 20d6}) acid damage on a failed save, or half as much damage on a successful one. A creature killed by this breath weapon melts and is disintegrated."
 					]
 				}
 			],
@@ -6017,13 +6017,13 @@
 				{
 					"name": "Disarm",
 					"entries": [
-						"Pazuzu attempts to knock a weapon out of a target's hand. He makes a Greatsword attack and if it hits, the target does not take damage but instead must make a {@dc 22} Strength saving throw. If the target fails the saving throw, the targeted weapon flies 10 feet away in a random direction."
+						"Pazuzu attempts to knock a weapon out of a target's hand. He makes a Greatsword attack and if it hits, the target does not take damage but instead must make a {@dc 22} Strength saving throw. If the target fails the saving throw, the targeted weapon flies {@quantity 10|feet} away in a random direction."
 					]
 				},
 				{
 					"name": "Lethal Leap",
 					"entries": [
-						"Pazuzu attacks once with his Greatsword or Talon and then may fly up to 60 feet away. Pazuzu's movement does not provoke opportunity attacks."
+						"Pazuzu attacks once with his Greatsword or Talon and then may fly up to {@quantity 60|feet} away. Pazuzu's movement does not provoke opportunity attacks."
 					]
 				}
 			],
@@ -6133,7 +6133,7 @@
 				"stealth": "+6"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 18,
 			"immune": [
@@ -6206,19 +6206,19 @@
 				{
 					"name": "Scimitar (Humanoid or Hybrid Form)",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d6 + 4}) slashing damage plus 7 ({@damage 2d6}) poison damage."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 1d6 + 4}) slashing damage plus 7 ({@damage 2d6}) poison damage."
 					]
 				},
 				{
 					"name": "Hand Crossbow (Humanoid or Hybrid Form)",
 					"entries": [
-						"{@atk rw} {@hit 6} to hit, range 30/90 ft., one target. {@h}6 ({@damage 1d6 + 3}) piercing damage plus 7 ({@damage 2d6}) poison damage."
+						"{@atk rw} {@hit 6} to hit, range {@quantity 30/90|ft.}, one target. {@h}6 ({@damage 1d6 + 3}) piercing damage plus 7 ({@damage 2d6}) poison damage."
 					]
 				},
 				{
 					"name": "Bite (Hybrid Form Only)",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}9 ({@damage 1d10 + 4}) piercing damage. If the target is Medium or smaller, it is {@condition grappled} (escape {@dc 16}) and until this grapple ends, the target is {@condition restrained}, and Pelyious can't Bite another target."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 5|ft.}, one target. {@h}9 ({@damage 1d10 + 4}) piercing damage. If the target is Medium or smaller, it is {@condition grappled} (escape {@dc 16}) and until this grapple ends, the target is {@condition restrained}, and Pelyious can't Bite another target."
 					]
 				},
 				{
@@ -6232,7 +6232,7 @@
 				{
 					"name": "Slippery Step (2/Day)",
 					"entries": [
-						"Pelyious teleports up to 30 feet to an unoccupied space he can see and may use Change Shape."
+						"Pelyious teleports up to {@quantity 30|feet} to an unoccupied space he can see and may use Change Shape."
 					]
 				}
 			],
@@ -6335,7 +6335,7 @@
 				"insight": "+10"
 			},
 			"senses": [
-				"truesight 120 ft."
+				"truesight {@quantity 120|ft.}"
 			],
 			"passive": 15,
 			"resist": [
@@ -6355,7 +6355,7 @@
 			"languages": [
 				"Undercommon",
 				"understands Common",
-				"telepathy 100 ft."
+				"telepathy {@quantity 100|ft.}"
 			],
 			"cr": "15",
 			"spellcasting": [
@@ -6400,7 +6400,7 @@
 				{
 					"name": "Arcane Sight",
 					"entries": [
-						"The phaerimm discerns the location of all magical auras within sight and knows which creatures within 60 feet are spellcasters."
+						"The phaerimm discerns the location of all magical auras within sight and knows which creatures within {@quantity 60|feet} are spellcasters."
 					]
 				},
 				{
@@ -6432,19 +6432,19 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 10} to hit, reach 5 ft., one target. {@h}18 ({@damage 2d12 + 5}) piercing damage."
+						"{@atk mw} {@hit 10} to hit, reach {@quantity 5|ft.}, one target. {@h}18 ({@damage 2d12 + 5}) piercing damage."
 					]
 				},
 				{
 					"name": "Claw",
 					"entries": [
-						"{@atk mw} {@hit 10} to hit, reach 10 ft., one target. {@h}12 ({@damage 2d6 + 5}) slashing damage."
+						"{@atk mw} {@hit 10} to hit, reach {@quantity 10|ft.}, one target. {@h}12 ({@damage 2d6 + 5}) slashing damage."
 					]
 				},
 				{
 					"name": "Stinger",
 					"entries": [
-						"{@atk mw} {@hit 10} to hit, reach 10 ft., one target. {@h}12 ({@damage 2d6 + 5}) piercing damage. If the target fails a {@dc 18} Constitution saving throw, they have the {@condition paralyzed} condition for 1 minute. The phaerimm's poison forces the {@condition paralyzed} target to float 5 feet above the ground. The target may repeat the saving throw at the end of each of it's turns."
+						"{@atk mw} {@hit 10} to hit, reach {@quantity 10|ft.}, one target. {@h}12 ({@damage 2d6 + 5}) piercing damage. If the target fails a {@dc 18} Constitution saving throw, they have the {@condition paralyzed} condition for 1 minute. The phaerimm's poison forces the {@condition paralyzed} target to float {@quantity 5|feet} above the ground. The target may repeat the saving throw at the end of each of it's turns."
 					]
 				},
 				{
@@ -6618,7 +6618,7 @@
 				{
 					"name": "Handaxe",
 					"entries": [
-						"{@atk mw,rw} {@hit 8} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}7 ({@damage 1d6 + 4}) slashing damage plus 3 ({@damage 1d6}) force damage."
+						"{@atk mw,rw} {@hit 8} to hit, reach {@quantity 5|ft.} or range {@quantity 20/60|ft.}, one target. {@h}7 ({@damage 1d6 + 4}) slashing damage plus 3 ({@damage 1d6}) force damage."
 					]
 				}
 			],
@@ -6740,7 +6740,7 @@
 				"religion": "+5"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 13,
 			"immune": [
@@ -6811,7 +6811,7 @@
 				{
 					"name": "Longsword",
 					"entries": [
-						"{@atk mw} {@hit 10} to hit, reach 5 ft., one target. {@h}9 ({@damage 1d8 + 5}) slashing damage or 10 ({@dice 1d10 + 5}) if wielded in two hands. If the target is a creature, it must succeed on a {@dc 16} Constitution saving throw or be cursed by Bhaal. The cursed target can't regain hit points. The curse lasts until removed by the {@spell remove curse} spell or other magic."
+						"{@atk mw} {@hit 10} to hit, reach {@quantity 5|ft.}, one target. {@h}9 ({@damage 1d8 + 5}) slashing damage or 10 ({@dice 1d10 + 5}) if wielded in two hands. If the target is a creature, it must succeed on a {@dc 16} Constitution saving throw or be cursed by Bhaal. The cursed target can't regain hit points. The curse lasts until removed by the {@spell remove curse} spell or other magic."
 					]
 				},
 				{
@@ -6837,7 +6837,7 @@
 				{
 					"name": "Channel Bhaal's Hate (Costs 2 Actions)",
 					"entries": [
-						"Sarevok unleashes Bhaal's power. Creatures within 30 feet of Sarevok, including ones behind barriers and around corners, can't regain hit points until the end of Sarevok's next turn."
+						"Sarevok unleashes Bhaal's power. Creatures within {@quantity 30|feet} of Sarevok, including ones behind barriers and around corners, can't regain hit points until the end of Sarevok's next turn."
 					]
 				}
 			],
@@ -6943,7 +6943,7 @@
 				"persuasion": "+10"
 			},
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 13,
 			"resist": [
@@ -7034,19 +7034,19 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 12} to hit, reach 5 ft., one target. {@h}16 ({@damage 2d8 + 7}) piercing damage plus 10 ({@damage 3d6}) acid damage."
+						"{@atk mw} {@hit 12} to hit, reach {@quantity 5|ft.}, one target. {@h}16 ({@damage 2d8 + 7}) piercing damage plus 10 ({@damage 3d6}) acid damage."
 					]
 				},
 				{
 					"name": "Claws",
 					"entries": [
-						"{@atk mw} {@hit 12} to hit, reach 5 ft., one target. {@h}11 ({@damage 1d8 + 7}) slashing damage plus 7 ({@damage 2d6}) acid damage."
+						"{@atk mw} {@hit 12} to hit, reach {@quantity 5|ft.}, one target. {@h}11 ({@damage 1d8 + 7}) slashing damage plus 7 ({@damage 2d6}) acid damage."
 					]
 				},
 				{
 					"name": "Poisonous Spit {@recharge 5}",
 					"entries": [
-						"The shator exhales poisonous spit in a 20-foot line that is 5 feet wide. Each creature in that line must make a {@dc 18} Dexterity saving throw, taking 22 ({@damage 5d8}) acid damage on a failed save and having the {@condition paralyzed} condition for 1 minute. A creature can repeat the saving throw at the end of each of its turns, ending the effect on a success."
+						"The shator exhales poisonous spit in a {@quantity 20|-foot} line that is {@quantity 5|feet} wide. Each creature in that line must make a {@dc 18} Dexterity saving throw, taking 22 ({@damage 5d8}) acid damage on a failed save and having the {@condition paralyzed} condition for 1 minute. A creature can repeat the saving throw at the end of each of its turns, ending the effect on a success."
 					]
 				}
 			],
@@ -7201,19 +7201,19 @@
 				{
 					"name": "Dagger",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, range 5 ft., one target. {@h}6 ({@damage 1d4 + 4}) piercing damage plus 3 ({@damage 1d6}) cold damage."
+						"{@atk mw} {@hit 6} to hit, range {@quantity 5|ft.}, one target. {@h}6 ({@damage 1d4 + 4}) piercing damage plus 3 ({@damage 1d6}) cold damage."
 					]
 				},
 				{
 					"name": "Shortbow",
 					"entries": [
-						"{@atk rw} {@hit 6} to hit, range 80/320 ft., one target. {@h}7 ({@damage 1d6 + 4}) piercing damage."
+						"{@atk rw} {@hit 6} to hit, range {@quantity 80/320|ft.}, one target. {@h}7 ({@damage 1d6 + 4}) piercing damage."
 					]
 				},
 				{
 					"name": "Sirene's Song (2/Day)",
 					"entries": [
-						"The sirene casts {@spell suggestion} with a range of 1 mile that affects all creatures of the sirene's choosing in range. Each target has disadvantage on the saving throw."
+						"The sirene casts {@spell suggestion} with a range of {@quantity 1|mile} that affects all creatures of the sirene's choosing in range. Each target has disadvantage on the saving throw."
 					]
 				}
 			],
@@ -7293,7 +7293,7 @@
 			"wis": 12,
 			"cha": 12,
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 11,
 			"resist": [
@@ -7335,7 +7335,7 @@
 				{
 					"name": "Fear Aura",
 					"entries": [
-						"Any creature hostile to the skeleton lord that starts its turn within 20 feet of the skeleton lord must make a {@dc 17} Wisdom saving throw, unless the skeleton lord is {@condition incapacitated}. On a failed save, the creature has the {@condition frightened} condition until the start of its next turn. If a creature's saving throw is successful, then the creature is immune to the skeleton lord's Fear Aura for the next 24 hours."
+						"Any creature hostile to the skeleton lord that starts its turn within {@quantity 20|feet} of the skeleton lord must make a {@dc 17} Wisdom saving throw, unless the skeleton lord is {@condition incapacitated}. On a failed save, the creature has the {@condition frightened} condition until the start of its next turn. If a creature's saving throw is successful, then the creature is immune to the skeleton lord's Fear Aura for the next 24 hours."
 					]
 				},
 				{
@@ -7361,7 +7361,7 @@
 				{
 					"name": "Greatsword",
 					"entries": [
-						"{@atk mw} {@hit 10} to hit, reach 5 ft., one target. {@h}13 ({@damage 2d6 + 6}) slashing damage."
+						"{@atk mw} {@hit 10} to hit, reach {@quantity 5|ft.}, one target. {@h}13 ({@damage 2d6 + 6}) slashing damage."
 					]
 				}
 			],
@@ -7433,7 +7433,7 @@
 			"wis": 12,
 			"cha": 12,
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 11,
 			"resist": [
@@ -7495,7 +7495,7 @@
 				{
 					"name": "Greatsword",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}11 ({@damage 2d6 + 4}) slashing damage."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}11 ({@damage 2d6 + 4}) slashing damage."
 					]
 				}
 			],
@@ -7574,8 +7574,8 @@
 				"perception": "+11"
 			},
 			"senses": [
-				"blindsight 60 ft.",
-				"truesight 120 ft."
+				"blindsight {@quantity 60|ft.}",
+				"truesight {@quantity 120|ft.}"
 			],
 			"passive": 21,
 			"resist": [
@@ -7606,7 +7606,7 @@
 			],
 			"languages": [
 				"all",
-				"telepathy 120 ft."
+				"telepathy {@quantity 120|ft.}"
 			],
 			"cr": "23",
 			"spellcasting": [
@@ -7644,7 +7644,7 @@
 				{
 					"name": "Aura of Madness",
 					"entries": [
-						"Any creature (other than Undead or Constructs) that ends its turn within 10 feet of Ssendam must succeed on a {@dc 20} Charisma saving throw or be inflicted with a random short-term madness. If a creature succeeds against any madness ability of Ssendam's, they are immune to Ssendam's madness for 1 hour."
+						"Any creature (other than Undead or Constructs) that ends its turn within {@quantity 10|feet} of Ssendam must succeed on a {@dc 20} Charisma saving throw or be inflicted with a random short-term madness. If a creature succeeds against any madness ability of Ssendam's, they are immune to Ssendam's madness for 1 hour."
 					]
 				},
 				{
@@ -7682,25 +7682,25 @@
 				{
 					"name": "Touch of Madness",
 					"entries": [
-						"{@atk mw} {@hit 12} to hit, reach 5 ft., one target. {@h}10 ({@damage 1d10 + 5}) slashing damage plus 11 ({@damage 2d10}) necrotic damage. A target that fails a {@dc 20} Charisma saving throw is inflicted with a random short-term madness. If it is already mad, the existing madness is replaced with a random long-term madness."
+						"{@atk mw} {@hit 12} to hit, reach {@quantity 5|ft.}, one target. {@h}10 ({@damage 1d10 + 5}) slashing damage plus 11 ({@damage 2d10}) necrotic damage. A target that fails a {@dc 20} Charisma saving throw is inflicted with a random short-term madness. If it is already mad, the existing madness is replaced with a random long-term madness."
 					]
 				},
 				{
 					"name": "Chaos Staff",
 					"entries": [
-						"{@atk mw} {@hit 12} to hit, reach 5 ft., one target. {@h}12 ({@damage 2d6 + 5}) bludgeoning damage plus 11 ({@damage 2d10}) necrotic damage. The target must succeed on a {@dc 19} Constitution saving throw or have the {@condition stunned} condition for 1 minute. The target may repeat the saving throw at the end of each of their turns, ending the effect on a success."
+						"{@atk mw} {@hit 12} to hit, reach {@quantity 5|ft.}, one target. {@h}12 ({@damage 2d6 + 5}) bludgeoning damage plus 11 ({@damage 2d10}) necrotic damage. The target must succeed on a {@dc 19} Constitution saving throw or have the {@condition stunned} condition for 1 minute. The target may repeat the saving throw at the end of each of their turns, ending the effect on a success."
 					]
 				},
 				{
 					"name": "Summon Slaadi (1/Day)",
 					"entries": [
-						"Ssendam summons {@dice 1d4 + 1} {@creature death slaad||death slaadi}. A summoned slaad appears in an unoccupied space within 60 feet of Ssendam, acts as an ally of Ssendam, and can't summon other slaadi. It remains for 1 minute, until it or Ssendam dies, or until Ssendam dismisses it as an action."
+						"Ssendam summons {@dice 1d4 + 1} {@creature death slaad||death slaadi}. A summoned slaad appears in an unoccupied space within {@quantity 60|feet} of Ssendam, acts as an ally of Ssendam, and can't summon other slaadi. It remains for 1 minute, until it or Ssendam dies, or until Ssendam dismisses it as an action."
 					]
 				},
 				{
 					"name": "Teleport",
 					"entries": [
-						"Ssendam magically teleports, along with any equipment she is wearing or carrying, up to 120 feet to an unoccupied space she can see."
+						"Ssendam magically teleports, along with any equipment she is wearing or carrying, up to {@quantity 120|feet} to an unoccupied space she can see."
 					]
 				}
 			],
@@ -7709,7 +7709,7 @@
 					"name": "Change Shape",
 					"entries": [
 						"Ssendam polymorphs into a Small or Medium-sized Humanoid, into a Small Aberration that looks like a golden amoeba, or back into this, her golden slaad form. Any equipment she is wearing or carrying isn't transformed. She reverts to her true form if she dies. Her statistics in the Humanoid forms, other than her size, are the same.",
-						"While in her amoeba form, Ssendam also has the same statistics with the following changes. She can't take any actions (except her Change Shape action), speak, or manipulate objects. She has a movement speed of 40 feet and can enter a hostile creature's space and stop there. In addition, Ssendam can move through a space as narrow as 1 inch wide without squeezing. She has advantage on Strength and Dexterity saving throws, and has resistance to all damage except psychic and radiant."
+						"While in her amoeba form, Ssendam also has the same statistics with the following changes. She can't take any actions (except her Change Shape action), speak, or manipulate objects. She has a movement speed of {@quantity 40|feet} and can enter a hostile creature's space and stop there. In addition, Ssendam can move through a space as narrow as {@quantity 1|inch} wide without squeezing. She has advantage on Strength and Dexterity saving throws, and has resistance to all damage except psychic and radiant."
 					]
 				}
 			],
@@ -7737,7 +7737,7 @@
 				{
 					"name": "Subversion (Costs 2 Actions)",
 					"entries": [
-						"Ssendam forces every creature suffering from madness within 60 feet of her to use their reaction to attack another creature within 5 feet of them."
+						"Ssendam forces every creature suffering from madness within {@quantity 60|feet} of her to use their reaction to attack another creature within {@quantity 5|feet} of them."
 					]
 				}
 			],
@@ -7893,13 +7893,13 @@
 				{
 					"name": "Bronze Bolt",
 					"entries": [
-						"{@atk ms,rs} {@hit 9} to hit, reach 5 ft. or range 120 ft., one target. {@h}21 ({@damage 3d10 + 5}) lightning damage."
+						"{@atk ms,rs} {@hit 9} to hit, reach {@quantity 5|ft.} or range {@quantity 120|ft.}, one target. {@h}21 ({@damage 3d10 + 5}) lightning damage."
 					]
 				},
 				{
 					"name": "Explosion (1/Day)",
 					"entries": [
-						"Suldil discharges a burst of energy in a 60-foot-radius. Each creature in that area must make a {@dc 17} Dexterity saving throw, taking 44 ({@damage 8d10}) lightning damage on failed save, half as much damage on a successful save."
+						"Suldil discharges a burst of energy in a {@quantity 60|-foot}-radius. Each creature in that area must make a {@dc 17} Dexterity saving throw, taking 44 ({@damage 8d10}) lightning damage on failed save, half as much damage on a successful save."
 					]
 				}
 			],
@@ -7976,7 +7976,7 @@
 				"stealth": "+7"
 			},
 			"senses": [
-				"tremorsense 60 ft."
+				"tremorsense {@quantity 60|ft.}"
 			],
 			"passive": 11,
 			"cr": "3",
@@ -8010,13 +8010,13 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d8 + 3}) piercing damage, and the target must make a {@dc 12} Constitution saving throw, taking 9 ({@damage 2d8}) poison damage on a failed save, or half as much damage on a successful one. If the poison damage reduces the target to 0 hit points, the target is stable but {@condition poisoned} for 1 hour, even after regaining hit points, and has the {@condition paralyzed} condition while {@condition poisoned} in this way."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 1d8 + 3}) piercing damage, and the target must make a {@dc 12} Constitution saving throw, taking 9 ({@damage 2d8}) poison damage on a failed save, or half as much damage on a successful one. If the poison damage reduces the target to 0 hit points, the target is stable but {@condition poisoned} for 1 hour, even after regaining hit points, and has the {@condition paralyzed} condition while {@condition poisoned} in this way."
 					]
 				},
 				{
 					"name": "Foreleg",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}10 ({@damage 2d6 + 3}) slashing damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}10 ({@damage 2d6 + 3}) slashing damage."
 					]
 				}
 			],
@@ -8084,7 +8084,7 @@
 				"perception": "+1"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 11,
 			"languages": [
@@ -8111,19 +8111,19 @@
 				{
 					"name": "Shortsword",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) piercing damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}6 ({@damage 1d6 + 3}) piercing damage."
 					]
 				},
 				{
 					"name": "Net",
 					"entries": [
-						"{@atk rw} {@hit 5} to hit, range 5/15 ft., one Large or smaller creature. {@h}The target has the {@condition restrained} condition. A creature can use its action to make a {@dc 10} Strength check to free itself or another creature in a net, ending the effect on a success. Dealing 5 slashing damage to the net (AC 10) frees the target without harming it and destroys the net."
+						"{@atk rw} {@hit 5} to hit, range {@quantity 5/15|ft.}, one Large or smaller creature. {@h}The target has the {@condition restrained} condition. A creature can use its action to make a {@dc 10} Strength check to free itself or another creature in a net, ending the effect on a success. Dealing 5 slashing damage to the net (AC 10) frees the target without harming it and destroys the net."
 					]
 				},
 				{
 					"name": "Javelin",
 					"entries": [
-						"{@atk rw} {@hit 5} to hit, range 30/120 ft., one target. {@h}6 ({@damage 1d6 + 3}) piercing damage."
+						"{@atk rw} {@hit 5} to hit, range {@quantity 30/120|ft.}, one target. {@h}6 ({@damage 1d6 + 3}) piercing damage."
 					]
 				}
 			],
@@ -8187,7 +8187,7 @@
 				"stealth": "+8"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 10,
 			"languages": [
@@ -8214,19 +8214,19 @@
 				{
 					"name": "Shortsword",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d6 + 4}) piercing damage."
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 1d6 + 4}) piercing damage."
 					]
 				},
 				{
 					"name": "Blowgun",
 					"entries": [
-						"{@atk rw} {@hit 6} to hit, range 25/100 ft., one target. {@h}5 (1 + 4) piercing damage and 7 ({@damage 2d6}) poison damage. The target must succeed on a {@dc 10} Constitution saving throw or have the {@condition poisoned} condition for 1 hour."
+						"{@atk rw} {@hit 6} to hit, range {@quantity 25/100|ft.}, one target. {@h}5 (1 + 4) piercing damage and 7 ({@damage 2d6}) poison damage. The target must succeed on a {@dc 10} Constitution saving throw or have the {@condition poisoned} condition for 1 hour."
 					]
 				},
 				{
 					"name": "Javelin",
 					"entries": [
-						"{@atk rw} {@hit 6} to hit, range 30/120 ft., one target. {@h}7 ({@damage 1d6 + 4}) piercing damage."
+						"{@atk rw} {@hit 6} to hit, range {@quantity 30/120|ft.}, one target. {@h}7 ({@damage 1d6 + 4}) piercing damage."
 					]
 				}
 			],
@@ -8333,13 +8333,13 @@
 				{
 					"name": "Flame Tongue",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}11 ({@damage 2d6 + 4}) slashing damage plus 7 ({@damage 2d6}) fire damage."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 5|ft.}, one target. {@h}11 ({@damage 2d6 + 4}) slashing damage plus 7 ({@damage 2d6}) fire damage."
 					]
 				},
 				{
 					"name": "Heavy Crossbow",
 					"entries": [
-						"{@atk rw} {@hit 5} to hit, range 100/400 ft., one target. {@h}6 ({@damage 1d10 + 1}) piercing damage."
+						"{@atk rw} {@hit 5} to hit, range {@quantity 100/400|ft.}, one target. {@h}6 ({@damage 1d10 + 1}) piercing damage."
 					]
 				},
 				{
@@ -8459,13 +8459,13 @@
 				{
 					"name": "Katana",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}8 ({@damage 1d8 + 4}) slashing damage, or 9 ({@damage 1d10 + 4}) slashing damage if used with two hands plus 13 ({@damage 3d8}) poison damage."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 5|ft.}, one target. {@h}8 ({@damage 1d8 + 4}) slashing damage, or 9 ({@damage 1d10 + 4}) slashing damage if used with two hands plus 13 ({@damage 3d8}) poison damage."
 					]
 				},
 				{
 					"name": "Hand Crossbow",
 					"entries": [
-						"{@atk rw} {@hit 8} to hit, range 30/120 ft., one target. {@h}7 ({@damage 1d6 + 4}) piercing damage."
+						"{@atk rw} {@hit 8} to hit, range {@quantity 30/120|ft.}, one target. {@h}7 ({@damage 1d6 + 4}) piercing damage."
 					]
 				}
 			],
@@ -8481,7 +8481,7 @@
 				{
 					"name": "Disrupt Spell",
 					"entries": [
-						"When a creature within 5 feet of Valygar casts a spell, he can use his reaction to make a melee weapon attack against that creature."
+						"When a creature within {@quantity 5|feet} of Valygar casts a spell, he can use his reaction to make a melee weapon attack against that creature."
 					]
 				}
 			],
@@ -8570,14 +8570,14 @@
 				"Common",
 				"Halfling",
 				"Infernal",
-				"telepathy 30 ft."
+				"telepathy {@quantity 30|ft.}"
 			],
 			"cr": "9",
 			"trait": [
 				{
 					"name": "Animal Companions",
 					"entries": [
-						"Vellin is accompanied by Akela ({@creature wolf} with 18 hit points). Vellin can mount or dismount Akela using 5 feet of movement. While mounted, Vellin can order Akela to Dash, Disengage, and Dodge. In addition, Vellin has an {@creature owl} companion with 3 hit points. On Vellin's turn, the owl can perform a flyby on a creature of Vellin's choice. The next attack that Vellin makes against that creature has advantage."
+						"Vellin is accompanied by Akela ({@creature wolf} with 18 hit points). Vellin can mount or dismount Akela using {@quantity 5|feet} of movement. While mounted, Vellin can order Akela to Dash, Disengage, and Dodge. In addition, Vellin has an {@creature owl} companion with 3 hit points. On Vellin's turn, the owl can perform a flyby on a creature of Vellin's choice. The next attack that Vellin makes against that creature has advantage."
 					]
 				},
 				{
@@ -8615,7 +8615,7 @@
 				{
 					"name": "Silvered Shortsword",
 					"entries": [
-						"{@atk mw} {@hit 10} to hit, reach 5 ft., one target. {@h}9 ({@damage 1d6 + 6}) piercing damage."
+						"{@atk mw} {@hit 10} to hit, reach {@quantity 5|ft.}, one target. {@h}9 ({@damage 1d6 + 6}) piercing damage."
 					]
 				}
 			],
@@ -8706,7 +8706,7 @@
 				"religion": "+12"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 15,
 			"resist": [
@@ -8764,7 +8764,7 @@
 				{
 					"name": "Special Equipment",
 					"entries": [
-						"Viconia wears a {@item belt of giant strength} (fire) and a {@item cloak of protection} and wields a +3 mace. Without the belt, her strength is 12 and her speed is reduced to 20 ft."
+						"Viconia wears a {@item belt of giant strength} (fire) and a {@item cloak of protection} and wields a +3 mace. Without the belt, her strength is 12 and her speed is reduced to {@quantity 20|ft.}"
 					]
 				},
 				{
@@ -8784,13 +8784,13 @@
 				{
 					"name": "Magic Mace",
 					"entries": [
-						"{@atk mw} {@hit 15} to hit, reach 5 ft., one target. {@h}13 ({@damage 1d6 + 10}) bludgeoning damage plus 9 ({@damage 2d8}) necrotic damage."
+						"{@atk mw} {@hit 15} to hit, reach {@quantity 5|ft.}, one target. {@h}13 ({@damage 1d6 + 10}) bludgeoning damage plus 9 ({@damage 2d8}) necrotic damage."
 					]
 				},
 				{
 					"name": "Sacred Cleansing {@recharge 4}",
 					"entries": [
-						"Each creature in a 10-foot-radius, 40-foot-high cylinder centered on a point within 60 feet must make a {@dc 18} Dexterity saving throw. A creature takes 28 ({@damage 8d6}) fire damage plus 28 ({@damage 8d6}) radiant damage on a failed save, or half as much damage on a successful one."
+						"Each creature in a {@quantity 10|-foot}-radius, {@quantity 40|-foot}-high cylinder centered on a point within {@quantity 60|feet} must make a {@dc 18} Dexterity saving throw. A creature takes 28 ({@damage 8d6}) fire damage plus 28 ({@damage 8d6}) radiant damage on a failed save, or half as much damage on a successful one."
 					]
 				}
 			],
@@ -8939,7 +8939,7 @@
 				{
 					"name": "Sun Blade",
 					"entries": [
-						"Viktor wields a sun blade. Viktor gains a +2 bonus to attack and damage rolls made with this weapon, which deals radiant damage instead of slashing damage (this is already factored into Viktor's stat block). When Viktor hits an Undead creature with this sword, that target takes an extra 4 ({@damage 1d8}) radiant damage. The sword's luminous blade emits bright light in a 15-foot radius and dim light for an additional 15 feet. The light is sunlight."
+						"Viktor wields a sun blade. Viktor gains a +2 bonus to attack and damage rolls made with this weapon, which deals radiant damage instead of slashing damage (this is already factored into Viktor's stat block). When Viktor hits an Undead creature with this sword, that target takes an extra 4 ({@damage 1d8}) radiant damage. The sword's luminous blade emits bright light in a {@quantity 15|-foot} radius and dim light for an additional {@quantity 15|feet}. The light is sunlight."
 					]
 				}
 			],
@@ -8953,13 +8953,13 @@
 				{
 					"name": "Sun Blade",
 					"entries": [
-						"{@atk mw} {@hit 10} to hit, reach 5 ft., one target. {@h}10 ({@damage 1d8 + 6}) radiant damage or 11 ({@damage 1d10 + 6}) radiant damage if used with two hands."
+						"{@atk mw} {@hit 10} to hit, reach {@quantity 5|ft.}, one target. {@h}10 ({@damage 1d8 + 6}) radiant damage or 11 ({@damage 1d10 + 6}) radiant damage if used with two hands."
 					]
 				},
 				{
 					"name": "Raven's Whisper",
 					"entries": [
-						"{@atk rs} {@hit 7} to hit, range 60 ft., one target. {@h}22 ({@damage 4d10 + 3}) radiant damage."
+						"{@atk rs} {@hit 7} to hit, range {@quantity 60|ft.}, one target. {@h}22 ({@damage 4d10 + 3}) radiant damage."
 					]
 				}
 			],
@@ -9029,7 +9029,7 @@
 			"speed": {
 				"walk": {
 					"number": 30,
-					"condition": "(40 ft. in dire wolf form)"
+					"condition": "({@quantity 40|ft.} in dire wolf form)"
 				}
 			},
 			"str": 18,
@@ -9067,7 +9067,7 @@
 				{
 					"name": "Pack Tactics",
 					"entries": [
-						"The wolfwere has advantage on an attack roll against a creature if at least one of the wolfwere's allies is within 5 feet of the creature and the ally isn't {@condition incapacitated}."
+						"The wolfwere has advantage on an attack roll against a creature if at least one of the wolfwere's allies is within {@quantity 5|feet} of the creature and the ally isn't {@condition incapacitated}."
 					]
 				}
 			],
@@ -9081,25 +9081,25 @@
 				{
 					"name": "Longsword (Humanoid form only)",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}9 ({@damage 1d8 + 4}) slashing damage or 10 ({@damage 1d10 + 5}) slashing damage if used with two hands."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}9 ({@damage 1d8 + 4}) slashing damage or 10 ({@damage 1d10 + 5}) slashing damage if used with two hands."
 					]
 				},
 				{
 					"name": "Bite (Wolf or Hybrid form only)",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}11 ({@damage 2d6 + 4}) piercing damage. If the target is a creature, it must succeed on a {@dc 14} Strength saving throw or be knocked {@condition prone}."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}11 ({@damage 2d6 + 4}) piercing damage. If the target is a creature, it must succeed on a {@dc 14} Strength saving throw or be knocked {@condition prone}."
 					]
 				},
 				{
 					"name": "Claws (Hybrid form only)",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}9 ({@damage 2d4 + 4}) slashing damage."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}9 ({@damage 2d4 + 4}) slashing damage."
 					]
 				},
 				{
 					"name": "Lethargic Song (Humanoid form only)",
 					"entries": [
-						"The wolfwere plays a magical melody on an instrument. Every Humanoid within 200 feet of the wolfwere that hears the melody must succeed on a {@dc 13} Wisdom saving throw or be slowed for 10 minutes, as if the {@spell slow} spell has been cast on them. A creature can repeat the saving throw at the end of each of its turns. If a creature's saving throw is successful, the effect ends on it. A target that successfully saves is immune to this wolfwere's melody for the next 24 hours."
+						"The wolfwere plays a magical melody on an instrument. Every Humanoid within {@quantity 200|feet} of the wolfwere that hears the melody must succeed on a {@dc 13} Wisdom saving throw or be slowed for 10 minutes, as if the {@spell slow} spell has been cast on them. A creature can repeat the saving throw at the end of each of its turns. If a creature's saving throw is successful, the effect ends on it. A target that successfully saves is immune to this wolfwere's melody for the next 24 hours."
 					]
 				},
 				{
@@ -9172,7 +9172,7 @@
 			"speed": {
 				"walk": {
 					"number": 30,
-					"condition": "(40 ft. in dire wolf form)"
+					"condition": "({@quantity 40|ft.} in dire wolf form)"
 				}
 			},
 			"str": 20,
@@ -9210,7 +9210,7 @@
 				{
 					"name": "Pack Tactics",
 					"entries": [
-						"The wolfwere has advantage on an attack roll against a creature if at least one of the wolfwere's allies is within 5 feet of the creature and the ally isn't {@condition incapacitated}."
+						"The wolfwere has advantage on an attack roll against a creature if at least one of the wolfwere's allies is within {@quantity 5|feet} of the creature and the ally isn't {@condition incapacitated}."
 					]
 				}
 			],
@@ -9224,25 +9224,25 @@
 				{
 					"name": "Longsword (Humanoid form only)",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}10 ({@damage 1d8 + 5}) slashing damage or 11 ({@damage 1d10 + 6}) slashing damage if used with two hands."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 5|ft.}, one target. {@h}10 ({@damage 1d8 + 5}) slashing damage or 11 ({@damage 1d10 + 6}) slashing damage if used with two hands."
 					]
 				},
 				{
 					"name": "Bite (Wolf or Hybrid form only)",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}12 ({@damage 2d6 + 5}) piercing damage. If the target is a creature, it must succeed on a {@dc 15} Strength saving throw or be knocked {@condition prone}."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 5|ft.}, one target. {@h}12 ({@damage 2d6 + 5}) piercing damage. If the target is a creature, it must succeed on a {@dc 15} Strength saving throw or be knocked {@condition prone}."
 					]
 				},
 				{
 					"name": "Claws (Hybrid form only)",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}10 ({@damage 2d4 + 5}) slashing damage."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 5|ft.}, one target. {@h}10 ({@damage 2d4 + 5}) slashing damage."
 					]
 				},
 				{
 					"name": "Lethargic Song (Humanoid form only)",
 					"entries": [
-						"The wolfwere plays a magical melody on an instrument. Every Humanoid within 200 feet of the wolfwere that hears the melody must succeed on a {@dc 16} Wisdom saving throw or be slowed for 10 minutes, as if the {@spell slow} spell has been cast on them. A creature can repeat the saving throw at the end of each of its turns. If a creature's saving throw is successful, the effect ends on it. A target that successfully saves is immune to this wolfwere's melody for the next 24 hours."
+						"The wolfwere plays a magical melody on an instrument. Every Humanoid within {@quantity 200|feet} of the wolfwere that hears the melody must succeed on a {@dc 16} Wisdom saving throw or be slowed for 10 minutes, as if the {@spell slow} spell has been cast on them. A creature can repeat the saving throw at the end of each of its turns. If a creature's saving throw is successful, the effect ends on it. A target that successfully saves is immune to this wolfwere's melody for the next 24 hours."
 					]
 				},
 				{
@@ -9404,7 +9404,7 @@
 				{
 					"name": "Moonblade",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}10 ({@damage 1d8 + 6}) slashing damage or 11 ({@damage 1d10 + 6}) slashing damage if wielded with two hands, plus 7 ({@damage 2d6}) cold or fire damage (Xan's choice)."
+						"{@atk mw} {@hit 9} to hit, reach {@quantity 5|ft.}, one target. {@h}10 ({@damage 1d8 + 6}) slashing damage or 11 ({@damage 1d10 + 6}) slashing damage if wielded with two hands, plus 7 ({@damage 2d6}) cold or fire damage (Xan's choice)."
 					]
 				}
 			],
@@ -9412,7 +9412,7 @@
 				{
 					"name": "Bladesong (1/Day)",
 					"entries": [
-						"Xan can use a bonus action to start a bladesong. His bladesong lasts for 1 minute. While using bladesong his movement increases to 40 ft., he gains a +3 bonus to his AC and he gains a +3 bonus to all {@status concentration} checks."
+						"Xan can use a bonus action to start a bladesong. His bladesong lasts for 1 minute. While using bladesong his movement increases to {@quantity 40|ft.}, he gains a +3 bonus to his AC and he gains a +3 bonus to all {@status concentration} checks."
 					]
 				}
 			],
@@ -9505,7 +9505,7 @@
 				"history": "+13"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 10,
 			"resist": [
@@ -9521,7 +9521,7 @@
 				"Infernal",
 				"Primordial",
 				"Undercommon",
-				"telepathy 60 ft."
+				"telepathy {@quantity 60|ft.}"
 			],
 			"cr": "11",
 			"spellcasting": [
@@ -9570,7 +9570,7 @@
 								"Xzar regains 10 hit points at the start of his turn if he has at least 1 hit point",
 								"Xzar has advantage on saving throws against spells and other magical effects",
 								"Xzar has resistance to acid, cold, fire, lightning, thunder",
-								"Xzar has darkvision and telepathy to 60 feet"
+								"Xzar has darkvision and telepathy to {@quantity 60|feet}"
 							]
 						}
 					]
@@ -9598,13 +9598,13 @@
 				{
 					"name": "Deprive",
 					"entries": [
-						"{@atk ms,rs} {@hit 9} to hit, reach 5 ft., or range 120 ft., one target. {@h}27 ({@damage 4d10 + 5}) necrotic damage."
+						"{@atk ms,rs} {@hit 9} to hit, reach {@quantity 5|ft.}, or range {@quantity 120|ft.}, one target. {@h}27 ({@damage 4d10 + 5}) necrotic damage."
 					]
 				},
 				{
 					"name": "Death Eruption (1/Day)",
 					"entries": [
-						"Negative energy erupts from Xzar, intensified by the Chaos Phage. Any creature in a 60-foot-ra- dius sphere around Xzar (but not including Xzar) must make a {@dc 17} Constitution saving throw. A creature takes 36 ({@damage 8d6}) necrotic damage on a failed save, or half as much damage on a successful one. A Humanoid killed by this ability rises at the start of Xzar's next turn as a zombie under his command."
+						"Negative energy erupts from Xzar, intensified by the Chaos Phage. Any creature in a {@quantity 60|-foot}-ra- dius sphere around Xzar (but not including Xzar) must make a {@dc 17} Constitution saving throw. A creature takes 36 ({@damage 8d6}) necrotic damage on a failed save, or half as much damage on a successful one. A Humanoid killed by this ability rises at the start of Xzar's next turn as a zombie under his command."
 					]
 				}
 			],

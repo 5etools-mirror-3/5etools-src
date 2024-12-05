@@ -285,7 +285,7 @@
 				"stealth": "+3"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 13,
 			"conditionImmune": [
@@ -296,7 +296,7 @@
 				{
 					"name": "Tunneler",
 					"entries": [
-						"The aurumvorax can burrow through solid rock and metal at half its burrowing speed and leaves a 5-foot-diameter tunnel in its wake."
+						"The aurumvorax can burrow through solid rock and metal at half its burrowing speed and leaves a {@quantity 5|-foot}-diameter tunnel in its wake."
 					]
 				}
 			],
@@ -310,13 +310,13 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d8 + 2}) piercing damage. If the target is a creature wearing armor of any type, the aurumvorax regains 4 ({@dice 1d6 + 1}) hit points."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}6 ({@damage 1d8 + 2}) piercing damage. If the target is a creature wearing armor of any type, the aurumvorax regains 4 ({@dice 1d6 + 1}) hit points."
 					]
 				},
 				{
 					"name": "Claw",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) slashing damage. If the target is a Medium or smaller creature, it is {@condition grappled} (escape {@dc 12}). Until this grapple ends, the aurumvorax can't use its Claw attack on another target, and when it moves, it can drag the {@condition grappled} creature with it, without the aurumvorax's speed being halved."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d6 + 2}) slashing damage. If the target is a Medium or smaller creature, it is {@condition grappled} (escape {@dc 12}). Until this grapple ends, the aurumvorax can't use its Claw attack on another target, and when it moves, it can drag the {@condition grappled} creature with it, without the aurumvorax's speed being halved."
 					]
 				}
 			],
@@ -389,7 +389,7 @@
 				"stealth": "+4"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 13,
 			"conditionImmune": [
@@ -400,13 +400,13 @@
 				{
 					"name": "Pack Leader",
 					"entries": [
-						"The aurumvorax's allies have advantage on attack rolls while within 10 feet of the aurumvorax, provided it isn't {@condition incapacitated}."
+						"The aurumvorax's allies have advantage on attack rolls while within {@quantity 10|feet} of the aurumvorax, provided it isn't {@condition incapacitated}."
 					]
 				},
 				{
 					"name": "Tunneler",
 					"entries": [
-						"The aurumvorax can burrow through solid rock and metal at half its burrowing speed and leaves a 5-foot-diameter tunnel in its wake."
+						"The aurumvorax can burrow through solid rock and metal at half its burrowing speed and leaves a {@quantity 5|-foot}-diameter tunnel in its wake."
 					]
 				}
 			],
@@ -420,7 +420,7 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}13 ({@damage 2d8 + 4}) piercing damage. If the target is a creature wearing armor of any type, the aurumvorax gains one of the following benefits of its choice:"
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 5|ft.}, one target. {@h}13 ({@damage 2d8 + 4}) piercing damage. If the target is a creature wearing armor of any type, the aurumvorax gains one of the following benefits of its choice:"
 					]
 				},
 				{
@@ -438,7 +438,7 @@
 				{
 					"name": "Claw",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}11 ({@damage 2d6 + 4}) slashing damage. If the target is a Large or smaller creature, it is {@condition grappled} (escape {@dc 14}). Until this grapple ends, the aurumvorax can't use its Claw attack on another target, and when it moves, it can drag the {@condition grappled} creature with it, without the aurumvorax's speed being halved."
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 5|ft.}, one target. {@h}11 ({@damage 2d6 + 4}) slashing damage. If the target is a Large or smaller creature, it is {@condition grappled} (escape {@dc 14}). Until this grapple ends, the aurumvorax can't use its Claw attack on another target, and when it moves, it can drag the {@condition grappled} creature with it, without the aurumvorax's speed being halved."
 					]
 				}
 			],
@@ -548,8 +548,8 @@
 				"wis": "+7"
 			},
 			"senses": [
-				"blindsight 60 ft.",
-				"darkvision 120 ft."
+				"blindsight {@quantity 60|ft.}",
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 21,
 			"resist": [
@@ -586,14 +586,14 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 10 ft., one target. {@h}12 ({@damage 2d6 + 5}) piercing damage plus 7 ({@damage 2d6}) lightning damage. If the target is a Large or smaller creature, it must succeed on a {@dc 17} Strength saving throw or be swallowed by the bakunawa. A swallowed creature is {@condition blinded} and {@condition restrained}, and it has {@quickref Cover||3||total cover} against attacks and other effects outside the bakunawa. At the start of each of the bakunawa's turns, each swallowed creature takes 10 ({@damage 3d6}) lightning damage.",
-						"The bakunawa's gullet can hold up to two creatures at a time. If the bakunawa takes 30 damage or more on a single turn from a swallowed creature, the bakunawa must succeed on a {@dc 16} Constitution saving throw at the end of that turn or regurgitate all swallowed creatures, which fall {@condition prone} in a space within 15 feet of the bakunawa. If the bakunawa dies, a swallowed creature is no longer {@condition restrained} by it and can escape from the corpse by using 15 feet of movement, exiting {@condition prone}."
+						"{@atk mw} {@hit 9} to hit, reach {@quantity 10|ft.}, one target. {@h}12 ({@damage 2d6 + 5}) piercing damage plus 7 ({@damage 2d6}) lightning damage. If the target is a Large or smaller creature, it must succeed on a {@dc 17} Strength saving throw or be swallowed by the bakunawa. A swallowed creature is {@condition blinded} and {@condition restrained}, and it has {@quickref Cover||3||total cover} against attacks and other effects outside the bakunawa. At the start of each of the bakunawa's turns, each swallowed creature takes 10 ({@damage 3d6}) lightning damage.",
+						"The bakunawa's gullet can hold up to two creatures at a time. If the bakunawa takes 30 damage or more on a single turn from a swallowed creature, the bakunawa must succeed on a {@dc 16} Constitution saving throw at the end of that turn or regurgitate all swallowed creatures, which fall {@condition prone} in a space within {@quantity 15|feet} of the bakunawa. If the bakunawa dies, a swallowed creature is no longer {@condition restrained} by it and can escape from the corpse by using {@quantity 15|feet} of movement, exiting {@condition prone}."
 					]
 				},
 				{
 					"name": "Storm Slam",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 10 ft., one target. {@h}9 ({@damage 1d8 + 5}) bludgeoning damage plus 5 ({@damage 1d10}) thunder damage, and the target is pushed up to 10 feet in a horizontal direction away from the bakunawa."
+						"{@atk mw} {@hit 9} to hit, reach {@quantity 10|ft.}, one target. {@h}9 ({@damage 1d8 + 5}) bludgeoning damage plus 5 ({@damage 1d10}) thunder damage, and the target is pushed up to {@quantity 10|feet} in a horizontal direction away from the bakunawa."
 					]
 				}
 			],
@@ -613,7 +613,7 @@
 				{
 					"name": "Lightning Strikes (Costs 3 Actions)",
 					"entries": [
-						"The bakunawa arcs lightning at up to two creatures it can see within 60 feet of itself. Each target must succeed on a {@dc 15} Dexterity saving throw or take 22 ({@damage 4d10}) lightning damage."
+						"The bakunawa arcs lightning at up to two creatures it can see within {@quantity 60|feet} of itself. Each target must succeed on a {@dc 15} Dexterity saving throw or take 22 ({@damage 4d10}) lightning damage."
 					]
 				}
 			],
@@ -699,7 +699,7 @@
 			},
 			"type": "undead",
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"immune": [
 				"poison"
@@ -739,7 +739,7 @@
 				{
 					"name": "Broken Bottle",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
 					]
 				}
 			],
@@ -774,7 +774,7 @@
 				{
 					"name": "High-Heeled Shoe",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) piercing damage."
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 5|ft.}, one target. {@h}6 ({@damage 1d6 + 3}) piercing damage."
 					]
 				}
 			],
@@ -831,7 +831,7 @@
 						"items": {
 							"name": "Longbow",
 							"entries": [
-								"{@atk rw} {@hit 3} to hit, ranged 150/600 ft., one target. {@h}5 ({@damage 1d8 + 1}) piercing damage."
+								"{@atk rw} {@hit 3} to hit, ranged {@quantity 150/600|ft.}, one target. {@h}5 ({@damage 1d8 + 1}) piercing damage."
 							]
 						}
 					}
@@ -965,7 +965,7 @@
 				"stealth": "+8"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 11,
 			"resist": [
@@ -1026,7 +1026,7 @@
 				{
 					"name": "Sorrowful Touch",
 					"entries": [
-						"{@atk ms} {@hit 6} to hit, reach 5 ft., one creature. {@h}21 ({@damage 4d8 + 3}) psychic damage."
+						"{@atk ms} {@hit 6} to hit, reach {@quantity 5|ft.}, one creature. {@h}21 ({@damage 4d8 + 3}) psychic damage."
 					]
 				},
 				{
@@ -1040,7 +1040,7 @@
 				{
 					"name": "Shared Sorrow",
 					"entries": [
-						"The haint targets one creature it can see within 60 feet of itself that is missing any hit points, sharing its own torment with this pained soul. The target must succeed on a {@dc 14} Wisdom saving throw or be {@condition incapacitated}.",
+						"The haint targets one creature it can see within {@quantity 60|feet} of itself that is missing any hit points, sharing its own torment with this pained soul. The target must succeed on a {@dc 14} Wisdom saving throw or be {@condition incapacitated}.",
 						"A creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success. If a creature's saving throw is successful or the effect ends for it, the creature is immune to the haint's Shared Sorrow for the next 24 hours."
 					]
 				}
@@ -1631,7 +1631,7 @@
 				}
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"traitTags": [
 				"Water Breathing"
@@ -1812,7 +1812,7 @@
 				"perception": "+11"
 			},
 			"senses": [
-				"truesight 120 ft."
+				"truesight {@quantity 120|ft.}"
 			],
 			"passive": 21,
 			"resist": [
@@ -1835,7 +1835,7 @@
 			],
 			"languages": [
 				"all",
-				"telepathy 120 ft."
+				"telepathy {@quantity 120|ft.}"
 			],
 			"cr": "13",
 			"spellcasting": [
@@ -1886,13 +1886,13 @@
 				{
 					"name": "Mace",
 					"entries": [
-						"{@atk mw} {@hit 10} to hit, reach 5 ft., one target. {@h}8 ({@damage 1d6 + 5}) bludgeoning damage plus 14 ({@damage 4d6}) radiant damage."
+						"{@atk mw} {@hit 10} to hit, reach {@quantity 5|ft.}, one target. {@h}8 ({@damage 1d6 + 5}) bludgeoning damage plus 14 ({@damage 4d6}) radiant damage."
 					]
 				},
 				{
 					"name": "Disorienting Futures",
 					"entries": [
-						"The pari attempts to flood the mind of one creature it can see within 60 feet of itself with visions of the future. The target must succeed on a {@dc 19} Wisdom saving throw or take 27 ({@damage 5d10}) psychic damage and have disadvantage on attack rolls until the start of the pari's next turn."
+						"The pari attempts to flood the mind of one creature it can see within {@quantity 60|feet} of itself with visions of the future. The target must succeed on a {@dc 19} Wisdom saving throw or take 27 ({@damage 5d10}) psychic damage and have disadvantage on attack rolls until the start of the pari's next turn."
 					]
 				}
 			],
@@ -2054,7 +2054,7 @@
 				"perception": "+7"
 			},
 			"senses": [
-				"blindsight 60 ft."
+				"blindsight {@quantity 60|ft.}"
 			],
 			"passive": 17,
 			"resist": [
@@ -2111,7 +2111,7 @@
 				{
 					"name": "Flood Strike",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 10 ft., one target. {@h}14 ({@damage 2d8 + 5}) bludgeoning damage plus 10 ({@damage 3d6}) cold damage."
+						"{@atk mw} {@hit 9} to hit, reach {@quantity 10|ft.}, one target. {@h}14 ({@damage 2d8 + 5}) bludgeoning damage plus 10 ({@damage 3d6}) cold damage."
 					]
 				}
 			],
@@ -2119,7 +2119,7 @@
 				{
 					"name": "Whirlpool Step",
 					"entries": [
-						"The riverine magically teleports to an unoccupied space it can see within 30 feet of itself. Both the space it leaves and its destination must be in or on the surface of water."
+						"The riverine magically teleports to an unoccupied space it can see within {@quantity 30|feet} of itself. Both the space it leaves and its destination must be in or on the surface of water."
 					]
 				}
 			],
@@ -2127,13 +2127,13 @@
 				{
 					"name": "Whirlpool Rush",
 					"entries": [
-						"The riverine uses its Whirlpool Step. Immediately after it teleports, each creature within 5 feet of the riverine's destination space takes 5 ({@damage 1d10}) cold damage."
+						"The riverine uses its Whirlpool Step. Immediately after it teleports, each creature within {@quantity 5|feet} of the riverine's destination space takes 5 ({@damage 1d10}) cold damage."
 					]
 				},
 				{
 					"name": "Raging Deluge (Costs 2 Actions)",
 					"entries": [
-						"The riverine unleashes a torrent of river water in a 30-foot line that is 5 feet wide. Each creature in that area must make a {@dc 17} Dexterity saving throw. On a failed save, a creature takes 11 ({@damage 2d10}) bludgeoning damage and is knocked {@condition prone}. On a successful save, a creature takes half as much damage and isn't knocked {@condition prone}."
+						"The riverine unleashes a torrent of river water in a {@quantity 30|-foot} line that is {@quantity 5|feet} wide. Each creature in that area must make a {@dc 17} Dexterity saving throw. On a failed save, a creature takes 11 ({@damage 2d10}) bludgeoning damage and is knocked {@condition prone}. On a successful save, a creature takes half as much damage and isn't knocked {@condition prone}."
 					]
 				}
 			],
@@ -2317,7 +2317,7 @@
 			"wis": 11,
 			"cha": 14,
 			"senses": [
-				"blindsight 60 ft. (blind beyond this radius)"
+				"blindsight {@quantity 60|ft.} (blind beyond this radius)"
 			],
 			"passive": 10,
 			"resist": [
@@ -2338,7 +2338,7 @@
 				"restrained"
 			],
 			"languages": [
-				"telepathy 60 ft."
+				"telepathy {@quantity 60|ft.}"
 			],
 			"cr": "4",
 			"trait": [
@@ -2365,7 +2365,7 @@
 				{
 					"name": "Crushing Grasp",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}14 ({@damage 2d8 + 5}) bludgeoning damage. If the target is a Medium or smaller creature, it is {@condition grappled} (escape {@dc 15}). The soul shaker can have only one creature {@condition grappled} in this way at a time."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}14 ({@damage 2d8 + 5}) bludgeoning damage. If the target is a Medium or smaller creature, it is {@condition grappled} (escape {@dc 15}). The soul shaker can have only one creature {@condition grappled} in this way at a time."
 					]
 				}
 			],
@@ -2448,7 +2448,7 @@
 				"stealth": "+6"
 			},
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 15,
 			"resist": [
@@ -2481,7 +2481,7 @@
 				{
 					"name": "Talon",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}8 ({@damage 1d8 + 3}) piercing damage plus 14 ({@damage 3d8}) poison damage."
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 5|ft.}, one target. {@h}8 ({@damage 1d8 + 3}) piercing damage plus 14 ({@damage 3d8}) poison damage."
 					]
 				},
 				{
@@ -2493,7 +2493,7 @@
 				{
 					"name": "Plague Winds (Fiend Form Only; Recharge 5-6)",
 					"entries": [
-						"The tlacatecolo emits a chilling, disease-ridden wind in a 60-foot line that is 10 feet wide. Each creature in that area must succeed on a {@dc 13} Constitution saving throw or take 26 ({@damage 4d12}) cold damage and become {@condition poisoned}.",
+						"The tlacatecolo emits a chilling, disease-ridden wind in a {@quantity 60|-foot} line that is {@quantity 10|feet} wide. Each creature in that area must succeed on a {@dc 13} Constitution saving throw or take 26 ({@damage 4d12}) cold damage and become {@condition poisoned}.",
 						"While {@condition poisoned} in this way, the creature can't regain hit points. At the end of every hour, the creature must succeed on a {@dc 13} Constitution saving throw or gain 1 level of {@condition exhaustion}. If the creature is in direct sunlight when it makes this saving throw, it automatically succeeds on the save.",
 						"If the creature is targeted by magic that ends a poison or disease, such as lesser restoration, while the creature isn't in direct sunlight, the effect does not end."
 					]
@@ -2568,8 +2568,8 @@
 			"wis": 13,
 			"cha": 9,
 			"senses": [
-				"darkvision 120 ft.",
-				"tremorsense 120 ft."
+				"darkvision {@quantity 120|ft.}",
+				"tremorsense {@quantity 120|ft.}"
 			],
 			"passive": 11,
 			"immune": [
@@ -2589,13 +2589,13 @@
 				{
 					"name": "Fire Aura",
 					"entries": [
-						"At the start of each of the tlexolotl's turns, each creature within 10 feet of it takes 7 ({@damage 2d6}) fire damage, and flammable objects in that aura that aren't being worn or carried ignite. A creature that touches the tlexolotl or hits it with a melee attack while within 5 feet of it takes 7 ({@damage 2d6}) fire damage."
+						"At the start of each of the tlexolotl's turns, each creature within {@quantity 10|feet} of it takes 7 ({@damage 2d6}) fire damage, and flammable objects in that aura that aren't being worn or carried ignite. A creature that touches the tlexolotl or hits it with a melee attack while within {@quantity 5|feet} of it takes 7 ({@damage 2d6}) fire damage."
 					]
 				},
 				{
 					"name": "Illumination",
 					"entries": [
-						"The tlexolotl sheds bright light in a 30-foot radius and dim light for an additional 30 feet."
+						"The tlexolotl sheds bright light in a {@quantity 30|-foot} radius and dim light for an additional {@quantity 30|feet}."
 					]
 				},
 				{
@@ -2615,19 +2615,19 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 11} to hit, reach 10 ft., one target. {@h}12 ({@damage 1d10 + 7}) piercing damage plus 18 ({@damage 4d8}) fire damage."
+						"{@atk mw} {@hit 11} to hit, reach {@quantity 10|ft.}, one target. {@h}12 ({@damage 1d10 + 7}) piercing damage plus 18 ({@damage 4d8}) fire damage."
 					]
 				},
 				{
 					"name": "Tail",
 					"entries": [
-						"{@atk mw} {@hit 11} to hit, reach 10 ft., one target. {@h}11 ({@damage 1d8 + 7}) bludgeoning damage plus 14 ({@damage 4d6}) fire damage. If the target is a Large or smaller creature, it must succeed on a {@dc 19} Strength saving throw or be pushed up to 10 feet away from the tlexolotl and knocked {@condition prone}."
+						"{@atk mw} {@hit 11} to hit, reach {@quantity 10|ft.}, one target. {@h}11 ({@damage 1d8 + 7}) bludgeoning damage plus 14 ({@damage 4d6}) fire damage. If the target is a Large or smaller creature, it must succeed on a {@dc 19} Strength saving throw or be pushed up to {@quantity 10|feet} away from the tlexolotl and knocked {@condition prone}."
 					]
 				},
 				{
 					"name": "Pyroclasm {@recharge 5}",
 					"entries": [
-						"Gouts of molten lava erupt from the tlexolotl's body. Each creature in a 30-foot-radius sphere centered on the tlexolotl must make a {@dc 15} Dexterity saving throw. On a failed saving throw, a creature takes 21 ({@damage 6d6}) fire damage and 21 ({@damage 6d6}) bludgeoning damage. On a successful saving throw, a creature takes half as much damage."
+						"Gouts of molten lava erupt from the tlexolotl's body. Each creature in a {@quantity 30|-foot}-radius sphere centered on the tlexolotl must make a {@dc 15} Dexterity saving throw. On a failed saving throw, a creature takes 21 ({@damage 6d6}) fire damage and 21 ({@damage 6d6}) bludgeoning damage. On a successful saving throw, a creature takes half as much damage."
 					]
 				}
 			],
@@ -2863,7 +2863,7 @@
 				"stealth": "+11"
 			},
 			"senses": [
-				"blindsight 60 ft."
+				"blindsight {@quantity 60|ft.}"
 			],
 			"passive": 13,
 			"resist": [
@@ -2876,7 +2876,7 @@
 			],
 			"languages": [
 				"Deep Speech",
-				"telepathy 120 ft."
+				"telepathy {@quantity 120|ft.}"
 			],
 			"cr": "9",
 			"trait": [
@@ -2903,7 +2903,7 @@
 				{
 					"name": "Psychic Swipe",
 					"entries": [
-						"{@atk ms} {@hit 8} to hit, reach 10 ft., one creature. {@h}15 ({@damage 2d10 + 4}) psychic damage."
+						"{@atk ms} {@hit 8} to hit, reach {@quantity 10|ft.}, one creature. {@h}15 ({@damage 2d10 + 4}) psychic damage."
 					]
 				},
 				{
@@ -2917,7 +2917,7 @@
 				{
 					"name": "Surreal Step",
 					"entries": [
-						"The whistler teleports up to 20 feet to an unoccupied space it can see."
+						"The whistler teleports up to {@quantity 20|feet} to an unoccupied space it can see."
 					]
 				}
 			],
@@ -3015,7 +3015,7 @@
 				"stealth": "+7"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 12,
 			"languages": [
@@ -3026,7 +3026,7 @@
 				{
 					"name": "Slam",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d4 + 5}) bludgeoning damage."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 1d4 + 5}) bludgeoning damage."
 					]
 				},
 				{
@@ -3040,7 +3040,7 @@
 				{
 					"name": "Trickster's Flight",
 					"entries": [
-						"Immediately after a creature the wynling can see misses the wynling with an attack roll, the wynling can move up to 30 feet. This movement doesn't provoke opportunity attacks."
+						"Immediately after a creature the wynling can see misses the wynling with an attack roll, the wynling can move up to {@quantity 30|feet}. This movement doesn't provoke opportunity attacks."
 					]
 				}
 			],
@@ -3096,7 +3096,7 @@
 							"items": {
 								"name": "Greathammer",
 								"entries": [
-									"{@atk mw} {@hit 11} to hit, reach 10 ft., one target. {@h}28 ({@damage 6d6 + 7}) bludgeoning damage."
+									"{@atk mw} {@hit 11} to hit, reach {@quantity 10|ft.}, one target. {@h}28 ({@damage 6d6 + 7}) bludgeoning damage."
 								]
 							}
 						}

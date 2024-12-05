@@ -60,8 +60,8 @@
 				"perception": "+5"
 			},
 			"senses": [
-				"darkvision 60 ft.",
-				"truesight 10 ft."
+				"darkvision {@quantity 60|ft.}",
+				"truesight {@quantity 10|ft.}"
 			],
 			"passive": 15,
 			"resist": [
@@ -104,13 +104,13 @@
 				{
 					"name": "Aberrant Form",
 					"entries": [
-						"The zealot exudes the chaos of the Far Realm. Any non-Aberration creature that starts its turn within 5 feet of the zealot must succeed on a {@dc 15} Wisdom saving throw or take 7 ({@damage 2d6}) psychic damage."
+						"The zealot exudes the chaos of the Far Realm. Any non-Aberration creature that starts its turn within {@quantity 5|feet} of the zealot must succeed on a {@dc 15} Wisdom saving throw or take 7 ({@damage 2d6}) psychic damage."
 					]
 				},
 				{
 					"name": "Weirdly Pliable",
 					"entries": [
-						"The zealot, along with any equipment it is wearing or carrying, is unnaturally flexible. The zealot can move through any space as narrow as 1 inch without squeezing."
+						"The zealot, along with any equipment it is wearing or carrying, is unnaturally flexible. The zealot can move through any space as narrow as {@quantity 1|inch} without squeezing."
 					]
 				}
 			],
@@ -124,13 +124,13 @@
 				{
 					"name": "Psychic Rend",
 					"entries": [
-						"{@atk ms,rs} {@hit 7} to hit, reach 15 ft. or range 120 ft., one target. {@h}14 ({@damage 3d6 + 4}) psychic damage, and the target must succeed on a {@dc 15} Wisdom saving throw or have the {@condition stunned} condition until the start of the zealot's next turn."
+						"{@atk ms,rs} {@hit 7} to hit, reach {@quantity 15|ft.} or range {@quantity 120|ft.}, one target. {@h}14 ({@damage 3d6 + 4}) psychic damage, and the target must succeed on a {@dc 15} Wisdom saving throw or have the {@condition stunned} condition until the start of the zealot's next turn."
 					]
 				},
 				{
 					"name": "Shortsword",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 15 ft., one target. {@h}7 ({@damage 1d6 + 4}) piercing damage plus 7 ({@damage 2d6}) psychic damage."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 15|ft.}, one target. {@h}7 ({@damage 1d6 + 4}) piercing damage plus 7 ({@damage 2d6}) psychic damage."
 					]
 				}
 			],
@@ -138,7 +138,7 @@
 				{
 					"name": "Void Warp {@recharge 5}",
 					"entries": [
-						"The zealot teleports, along with any equipment it is wearing or carrying, to an unoccupied space it can see within 120 feet of itself, leaving a churning void in the space it left. Immediately after it teleports, each creature within 30 feet of the void other than the zealot must make a {@dc 15} Strength saving throw. On a failed save, a creature takes 18 ({@damage 4d8}) force damage and is pulled to the unoccupied space closest to the void. On a successful save, the creature takes half as much damage only. The void then disappears."
+						"The zealot teleports, along with any equipment it is wearing or carrying, to an unoccupied space it can see within {@quantity 120|feet} of itself, leaving a churning void in the space it left. Immediately after it teleports, each creature within {@quantity 30|feet} of the void other than the zealot must make a {@dc 15} Strength saving throw. On a failed save, a creature takes 18 ({@damage 4d8}) force damage and is pulled to the unoccupied space closest to the void. On a successful save, the creature takes half as much damage only. The void then disappears."
 					]
 				}
 			],
@@ -205,7 +205,7 @@
 						"items": {
 							"name": "Mind Blast {@recharge 5}",
 							"entries": [
-								"The zealot magically emits psychic energy in a 60-foot cone. Each creature in that area must succeed on a {@dc 15} Intelligence saving throw or take 22 ({@damage 4d8 + 4}) psychic damage and have the {@condition stunned} condition for 1 minute. A target can repeat the saving throw at the end of each of its turns, ending the {@condition stunned} condition on itself on a success."
+								"The zealot magically emits psychic energy in a {@quantity 60|-foot} cone. Each creature in that area must succeed on a {@dc 15} Intelligence saving throw or take 22 ({@damage 4d8 + 4}) psychic damage and have the {@condition stunned} condition for 1 minute. A target can repeat the saving throw at the end of each of its turns, ending the {@condition stunned} condition on itself on a success."
 							]
 						}
 					}
@@ -365,7 +365,7 @@
 				"stealth": "+6"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 11,
 			"resist": [
@@ -379,7 +379,7 @@
 			],
 			"languages": [
 				"Deep Speech",
-				"telepathy 60 ft.",
+				"telepathy {@quantity 60|ft.}",
 				"Undercommon"
 			],
 			"cr": "10",
@@ -407,13 +407,13 @@
 				{
 					"name": "Corpse Swipe",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}20 ({@damage 3d10 + 4}) bludgeoning damage. If the target is a creature, it must succeed on a {@dc 16} Constitution saving throw or have the {@condition poisoned} condition for 1 minute. While {@condition poisoned} in this way, a creature can't regain hit points."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 5|ft.}, one target. {@h}20 ({@damage 3d10 + 4}) bludgeoning damage. If the target is a creature, it must succeed on a {@dc 16} Constitution saving throw or have the {@condition poisoned} condition for 1 minute. While {@condition poisoned} in this way, a creature can't regain hit points."
 					]
 				},
 				{
 					"name": "Tail",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 10 ft., one target. {@h}13 ({@damage 2d8 + 4}) slashing damage."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 10|ft.}, one target. {@h}13 ({@damage 2d8 + 4}) slashing damage."
 					]
 				}
 			],
@@ -427,7 +427,7 @@
 				{
 					"name": "Psychic Moan {@recharge}",
 					"entries": [
-						"The mutate lets out a moan charged with psychic energy. Each creature within 60 feet of the mutate that isn't an Aberration must succeed on a {@dc 16} Wisdom saving throw or take 17 ({@damage 5d6}) psychic damage and have the {@condition frightened} condition until the end of the mutate's next turn."
+						"The mutate lets out a moan charged with psychic energy. Each creature within {@quantity 60|feet} of the mutate that isn't an Aberration must succeed on a {@dc 16} Wisdom saving throw or take 17 ({@damage 5d6}) psychic damage and have the {@condition frightened} condition until the end of the mutate's next turn."
 					]
 				}
 			],
@@ -500,7 +500,7 @@
 			"wis": 8,
 			"cha": 5,
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 9,
 			"immune": [
@@ -529,7 +529,7 @@
 				{
 					"name": "Battleaxe",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d8 + 3}) slashing damage, or 8 ({@damage 1d10 + 3}) slashing damage if used with two hands."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 1d8 + 3}) slashing damage, or 8 ({@damage 1d10 + 3}) slashing damage if used with two hands."
 					]
 				}
 			],
@@ -585,7 +585,7 @@
 			"wis": 17,
 			"cha": 7,
 			"senses": [
-				"blindsight 60 ft. (can't see beyond this radius)"
+				"blindsight {@quantity 60|ft.} (can't see beyond this radius)"
 			],
 			"passive": 13,
 			"resist": [
@@ -619,13 +619,13 @@
 				{
 					"name": "Slam",
 					"entries": [
-						"{@atk mw} {@hit 10} to hit, reach 5 ft., one target. {@h}17 ({@damage 2d10 + 6}) bludgeoning damage plus 10 ({@damage 3d6}) psychic damage, and if the target is a creature, the target must succeed on a {@dc 18} Strength saving throw or have the {@condition prone} condition. If this attack reduces the target to 0 hit points, the target immediately dies and is consumed by the cluster."
+						"{@atk mw} {@hit 10} to hit, reach {@quantity 5|ft.}, one target. {@h}17 ({@damage 2d10 + 6}) bludgeoning damage plus 10 ({@damage 3d6}) psychic damage, and if the target is a creature, the target must succeed on a {@dc 18} Strength saving throw or have the {@condition prone} condition. If this attack reduces the target to 0 hit points, the target immediately dies and is consumed by the cluster."
 					]
 				},
 				{
 					"name": "Spawn Progeny (Recharges after a Short or Long Rest)",
 					"entries": [
-						"The cluster bulges and spews {@dice 1d4} mature eggs. Each egg lands in an unoccupied space of the cluster's choice within 30 feet of itself and immediately transforms into an {@creature encephalon gemmule|PaBTSO}. The gemmules obey the cluster's commands and take their turns immediately after it."
+						"The cluster bulges and spews {@dice 1d4} mature eggs. Each egg lands in an unoccupied space of the cluster's choice within {@quantity 30|feet} of itself and immediately transforms into an {@creature encephalon gemmule|PaBTSO}. The gemmules obey the cluster's commands and take their turns immediately after it."
 					]
 				}
 			],
@@ -633,7 +633,7 @@
 				{
 					"name": "Aggressive Hunger",
 					"entries": [
-						"Immediately after being hit by an attack, the cluster moves up to its speed toward the attacker. This movement doesn't provoke opportunity attacks. If the cluster ends this movement within 5 feet of the attacker, it then makes one Slam attack against that attacker."
+						"Immediately after being hit by an attack, the cluster moves up to its speed toward the attacker. This movement doesn't provoke opportunity attacks. If the cluster ends this movement within {@quantity 5|feet} of the attacker, it then makes one Slam attack against that attacker."
 					]
 				}
 			],
@@ -692,7 +692,7 @@
 			"wis": 12,
 			"cha": 7,
 			"senses": [
-				"blindsight 30 ft. (can't see beyond this radius)"
+				"blindsight {@quantity 30|ft.} (can't see beyond this radius)"
 			],
 			"passive": 11,
 			"resist": [
@@ -720,7 +720,7 @@
 				{
 					"name": "Psychic Slam",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}16 ({@damage 3d10}) psychic damage."
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 5|ft.}, one target. {@h}16 ({@damage 3d10}) psychic damage."
 					]
 				}
 			],
@@ -728,7 +728,7 @@
 				{
 					"name": "Leech",
 					"entries": [
-						"The gemmule targets one creature within 5 feet of itself and forces the target to make a {@dc 14} Dexterity saving throw. On a failed save, the gemmule enters the target's space and attaches to the target. While the gemmule is attached, the target takes 7 ({@damage 3d4}) piercing damage at the start of each of its turns, and the gemmule can't use Leech again until it detaches. It can detach itself by spending 5 feet of its movement. As an action, the target or a creature within 5 feet of the target can detach the gemmule by succeeding on a {@dc 15} Strength check."
+						"The gemmule targets one creature within {@quantity 5|feet} of itself and forces the target to make a {@dc 14} Dexterity saving throw. On a failed save, the gemmule enters the target's space and attaches to the target. While the gemmule is attached, the target takes 7 ({@damage 3d4}) piercing damage at the start of each of its turns, and the gemmule can't use Leech again until it detaches. It can detach itself by spending {@quantity 5|feet} of its movement. As an action, the target or a creature within {@quantity 5|feet} of the target can detach the gemmule by succeeding on a {@dc 15} Strength check."
 					]
 				}
 			],
@@ -791,7 +791,7 @@
 				"con": "+5"
 			},
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 12,
 			"resist": [
@@ -820,7 +820,7 @@
 				{
 					"name": "Necrotic Shard",
 					"entries": [
-						"{@atk mw,rw} {@hit 7} to hit, reach 5 ft. or range 60 ft., one target. {@h}7 ({@damage 1d6 + 4}) necrotic damage. If the target is a creature, it has disadvantage on the next attack roll it makes before the end of its next turn."
+						"{@atk mw,rw} {@hit 7} to hit, reach {@quantity 5|ft.} or range {@quantity 60|ft.}, one target. {@h}7 ({@damage 1d6 + 4}) necrotic damage. If the target is a creature, it has disadvantage on the next attack roll it makes before the end of its next turn."
 					]
 				}
 			],
@@ -881,7 +881,7 @@
 			"wis": 12,
 			"cha": 5,
 			"senses": [
-				"blindsight 60 ft. (can't see beyond this radius)"
+				"blindsight {@quantity 60|ft.} (can't see beyond this radius)"
 			],
 			"passive": 11,
 			"immune": [
@@ -909,7 +909,7 @@
 				{
 					"name": "Tunneler",
 					"entries": [
-						"The auger can burrow through solid rock at half its burrow speed and leaves a 10-foot-diameter tunnel in its wake."
+						"The auger can burrow through solid rock at half its burrow speed and leaves a {@quantity 10|-foot}-diameter tunnel in its wake."
 					]
 				}
 			],
@@ -917,7 +917,7 @@
 				{
 					"name": "Flaming Drill",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}17 ({@damage 2d10 + 6}) piercing damage plus 7 ({@damage 2d6}) fire damage. If the auger moves at least 20 feet in a straight line toward the target immediately before the hit, the target takes an additional 11 ({@damage 2d10}) piercing damage, and if the target is a creature, it must succeed on a {@dc 17} Strength saving throw or have the {@condition prone} condition."
+						"{@atk mw} {@hit 9} to hit, reach {@quantity 5|ft.}, one target. {@h}17 ({@damage 2d10 + 6}) piercing damage plus 7 ({@damage 2d6}) fire damage. If the auger moves at least {@quantity 20|feet} in a straight line toward the target immediately before the hit, the target takes an additional 11 ({@damage 2d10}) piercing damage, and if the target is a creature, it must succeed on a {@dc 17} Strength saving throw or have the {@condition prone} condition."
 					]
 				}
 			],
@@ -925,7 +925,7 @@
 				{
 					"name": "Burst of Heat {@recharge 5}",
 					"entries": [
-						"The auger releases an intense burst of heat in a 30-foot-radius sphere centered on itself. This heat spreads around corners. Each creature in this area must make a {@dc 17} Constitution saving throw, taking 13 ({@damage 3d8}) fire damage on a failed save, or half as much damage on a successful one."
+						"The auger releases an intense burst of heat in a {@quantity 30|-foot}-radius sphere centered on itself. This heat spreads around corners. Each creature in this area must make a {@dc 17} Constitution saving throw, taking 13 ({@damage 3d8}) fire damage on a failed save, or half as much damage on a successful one."
 					]
 				}
 			],
@@ -990,7 +990,7 @@
 				"dex": "+5"
 			},
 			"senses": [
-				"blindsight 60 ft. (can't see beyond this radius)"
+				"blindsight {@quantity 60|ft.} (can't see beyond this radius)"
 			],
 			"passive": 11,
 			"conditionImmune": [
@@ -1005,13 +1005,13 @@
 				{
 					"name": "Amorphous",
 					"entries": [
-						"The flesh meld can move through a space as narrow as 1 inch without squeezing."
+						"The flesh meld can move through a space as narrow as {@quantity 1|inch} without squeezing."
 					]
 				},
 				{
 					"name": "Aura of Death",
 					"entries": [
-						"At the start of each of the flesh meld's turns, each creature within 5 feet of it must succeed on a {@dc 15} Constitution saving throw or take 3 ({@damage 1d6}) necrotic damage and have the {@condition poisoned} condition until the start of the flesh meld's next turn."
+						"At the start of each of the flesh meld's turns, each creature within {@quantity 5|feet} of it must succeed on a {@dc 15} Constitution saving throw or take 3 ({@damage 1d6}) necrotic damage and have the {@condition poisoned} condition until the start of the flesh meld's next turn."
 					]
 				},
 				{
@@ -1037,7 +1037,7 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 30 ft., one target. {@h}16 ({@damage 2d10 + 5}) piercing damage, and if the target is a Large or smaller creature, it has the {@condition grappled} condition (escape {@dc 15}) and is pulled up to 15 feet toward the flesh meld."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 30|ft.}, one target. {@h}16 ({@damage 2d10 + 5}) piercing damage, and if the target is a Large or smaller creature, it has the {@condition grappled} condition (escape {@dc 15}) and is pulled up to {@quantity 15|feet} toward the flesh meld."
 					]
 				}
 			],
@@ -1045,9 +1045,9 @@
 				{
 					"name": "Consume Creature",
 					"entries": [
-						"The flesh meld targets one Large or smaller creature within 5 feet of itself that it's grappling. The target must succeed on a {@dc 15} Dexterity saving throw or be swallowed by the flesh meld. The flesh meld can have one creature swallowed at a time.",
+						"The flesh meld targets one Large or smaller creature within {@quantity 5|feet} of itself that it's grappling. The target must succeed on a {@dc 15} Dexterity saving throw or be swallowed by the flesh meld. The flesh meld can have one creature swallowed at a time.",
 						"A swallowed creature no longer has the {@condition grappled} condition. While swallowed, it has the {@condition blinded} and {@condition restrained} conditions, has {@quickref Cover||3||total cover} against attacks and other effects outside the flesh meld, and takes 10 ({@damage 3d6}) necrotic damage at the start of each of the flesh meld's turns. If this damage reduces a swallowed creature to 0 hit points, the creature dies, and the flesh meld consumes its body.",
-						"If the flesh meld takes 30 damage or more on a single turn from the swallowed creature, the flesh meld must succeed on a {@dc 15} Constitution saving throw at the end of that turn or regurgitate the creature, which falls with the {@condition prone} condition in a space within 5 feet of the flesh meld. If the flesh meld dies, the swallowed creature is no longer {@condition restrained} by it and can escape from the corpse by using 10 feet of movement, exiting with the {@condition prone} condition."
+						"If the flesh meld takes 30 damage or more on a single turn from the swallowed creature, the flesh meld must succeed on a {@dc 15} Constitution saving throw at the end of that turn or regurgitate the creature, which falls with the {@condition prone} condition in a space within {@quantity 5|feet} of the flesh meld. If the flesh meld dies, the swallowed creature is no longer {@condition restrained} by it and can escape from the corpse by using {@quantity 10|feet} of movement, exiting with the {@condition prone} condition."
 					]
 				}
 			],
@@ -1100,7 +1100,7 @@
 						"items": {
 							"name": "Shortbow",
 							"entries": [
-								"{@atk rw} {@hit 4} to hit, range 80 ft./320 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
+								"{@atk rw} {@hit 4} to hit, range {@quantity 80|ft}./{@quantity 320|ft.}, one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
 							]
 						}
 					}
@@ -1153,7 +1153,7 @@
 				"stealth": "+7"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 12,
 			"resist": [
@@ -1162,14 +1162,14 @@
 			"languages": [
 				"Common",
 				"Goblin",
-				"telepathy 30 ft."
+				"telepathy {@quantity 30|ft.}"
 			],
 			"cr": "2",
 			"trait": [
 				{
 					"name": "Mental Burst",
 					"entries": [
-						"When the goblin dies, its pent-up mental energy explodes in a psychic blast. Each creature within 5 feet of it must succeed on a {@dc 13} Intelligence saving throw or take 5 ({@damage 2d4}) psychic damage."
+						"When the goblin dies, its pent-up mental energy explodes in a psychic blast. Each creature within {@quantity 5|feet} of it must succeed on a {@dc 13} Intelligence saving throw or take 5 ({@damage 2d4}) psychic damage."
 					]
 				},
 				{
@@ -1189,7 +1189,7 @@
 				{
 					"name": "Unarmed Strike",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d4 + 3}) bludgeoning damage plus 3 ({@damage 1d6}) psychic damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d4 + 3}) bludgeoning damage plus 3 ({@damage 1d6}) psychic damage."
 					]
 				}
 			],
@@ -1203,7 +1203,7 @@
 				{
 					"name": "Telekinetic Shove",
 					"entries": [
-						"The goblin targets one creature it can see within 30 feet of itself with a thrust of telekinetic force. The target must succeed on a {@dc 13} Strength saving throw or have the {@condition prone} condition."
+						"The goblin targets one creature it can see within {@quantity 30|feet} of itself with a thrust of telekinetic force. The target must succeed on a {@dc 13} Strength saving throw or have the {@condition prone} condition."
 					]
 				}
 			],
@@ -1282,7 +1282,7 @@
 				"stealth": "+8"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 12,
 			"resist": [
@@ -1291,7 +1291,7 @@
 			"languages": [
 				"Common",
 				"Goblin",
-				"telepathy 60 ft."
+				"telepathy {@quantity 60|ft.}"
 			],
 			"cr": "4",
 			"spellcasting": [
@@ -1320,7 +1320,7 @@
 				{
 					"name": "Mental Burst",
 					"entries": [
-						"When the goblin dies, its pent-up mental energy explodes in a psychic blast. Each creature within 5 feet of it must succeed on a {@dc 13} Intelligence saving throw or take 10 ({@damage 4d4}) psychic damage."
+						"When the goblin dies, its pent-up mental energy explodes in a psychic blast. Each creature within {@quantity 5|feet} of it must succeed on a {@dc 13} Intelligence saving throw or take 10 ({@damage 4d4}) psychic damage."
 					]
 				},
 				{
@@ -1340,13 +1340,13 @@
 				{
 					"name": "Psychic Blade",
 					"entries": [
-						"{@atk mw,rw} {@hit 6} to hit, reach 5 ft. or range 60 ft., one creature. {@h}11 ({@damage 2d6 + 4}) psychic damage, and the target must subtract {@dice 1d4} from the next attack roll or saving throw it makes before the end of the goblin's next turn."
+						"{@atk mw,rw} {@hit 6} to hit, reach {@quantity 5|ft.} or range {@quantity 60|ft.}, one creature. {@h}11 ({@damage 2d6 + 4}) psychic damage, and the target must subtract {@dice 1d4} from the next attack roll or saving throw it makes before the end of the goblin's next turn."
 					]
 				},
 				{
 					"name": "Synaptic Rend {@recharge 5}",
 					"entries": [
-						"The goblin unleashes a 30-foot-radius sphere of psychic energy, centered on a point the goblin can see within 60 feet of itself. Each creature in that area must make a {@dc 13} Intelligence saving throw. On a failed save, a creature takes 14 ({@damage 4d6}) psychic damage and has the {@condition incapacitated} condition until the end of the goblin's next turn. On a successful save, a creature takes half as much damage only."
+						"The goblin unleashes a {@quantity 30|-foot}-radius sphere of psychic energy, centered on a point the goblin can see within {@quantity 60|feet} of itself. Each creature in that area must make a {@dc 13} Intelligence saving throw. On a failed save, a creature takes 14 ({@damage 4d6}) psychic damage and has the {@condition incapacitated} condition until the end of the goblin's next turn. On a successful save, a creature takes half as much damage only."
 					]
 				}
 			],
@@ -1362,7 +1362,7 @@
 				{
 					"name": "Psionic Shield",
 					"entries": [
-						"When the goblin or one of its allies within 15 feet of it is hit by an attack roll, the goblin conjures a shield of force. The target of the attack gains a +3 bonus to its AC against the triggering attack roll, potentially causing it to miss."
+						"When the goblin or one of its allies within {@quantity 15|feet} of it is hit by an attack roll, the goblin conjures a shield of force. The target of the attack gains a +3 bonus to its AC against the triggering attack roll, potentially causing it to miss."
 					]
 				}
 			],
@@ -1472,7 +1472,7 @@
 				"stealth": "+6"
 			},
 			"senses": [
-				"blindsight 60 ft. (blind beyond this radius)"
+				"blindsight {@quantity 60|ft.} (blind beyond this radius)"
 			],
 			"passive": 14,
 			"immune": [
@@ -1519,13 +1519,13 @@
 				{
 					"name": "Beak",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}10 ({@damage 3d4 + 3}) piercing damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}10 ({@damage 3d4 + 3}) piercing damage."
 					]
 				},
 				{
 					"name": "Tentacle",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 10 ft., one target. {@h}8 ({@damage 1d10 + 3}) piercing damage, and the target must succeed on a {@dc 11} Constitution saving throw or have the {@condition poisoned} condition for 1 minute. While the target is {@condition poisoned}, it also has the {@condition paralyzed} condition. The target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success. The target also has the {@condition grappled} condition (escape {@dc 16}). While grappling the target, the grell can't make Tentacle attacks against other targets. When the grell moves, any Medium or smaller target it is grappling moves with it."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 10|ft.}, one target. {@h}8 ({@damage 1d10 + 3}) piercing damage, and the target must succeed on a {@dc 11} Constitution saving throw or have the {@condition poisoned} condition for 1 minute. While the target is {@condition poisoned}, it also has the {@condition paralyzed} condition. The target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success. The target also has the {@condition grappled} condition (escape {@dc 16}). While grappling the target, the grell can't make Tentacle attacks against other targets. When the grell moves, any Medium or smaller target it is grappling moves with it."
 					]
 				}
 			],
@@ -1634,9 +1634,9 @@
 				}
 			},
 			"senses": [
-				"blindsight 60 ft.",
-				"darkvision 120 ft.",
-				"truesight 15 ft."
+				"blindsight {@quantity 60|ft.}",
+				"darkvision {@quantity 120|ft.}",
+				"truesight {@quantity 15|ft.}"
 			],
 			"hasToken": true,
 			"hasFluffImages": true
@@ -1719,7 +1719,7 @@
 				"stealth": "+6"
 			},
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 13,
 			"resist": [
@@ -1731,7 +1731,7 @@
 			],
 			"languages": [
 				"Common",
-				"telepathy 60 ft."
+				"telepathy {@quantity 60|ft.}"
 			],
 			"cr": "4",
 			"trait": [
@@ -1752,13 +1752,13 @@
 				{
 					"name": "Unarmed Strike",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d6 + 4}) bludgeoning damage plus 10 ({@damage 3d6}) psychic damage."
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 1d6 + 4}) bludgeoning damage plus 10 ({@damage 3d6}) psychic damage."
 					]
 				},
 				{
 					"name": "Nightmare Blast",
 					"entries": [
-						"{@atk rw} {@hit 6} to hit, range 60 ft., one creature. {@h}7 ({@damage 2d6}) psychic damage, and the target must succeed on a {@dc 12} Wisdom saving throw or have the {@condition frightened} condition until the start of the mutate's next turn."
+						"{@atk rw} {@hit 6} to hit, range {@quantity 60|ft.}, one creature. {@h}7 ({@damage 2d6}) psychic damage, and the target must succeed on a {@dc 12} Wisdom saving throw or have the {@condition frightened} condition until the start of the mutate's next turn."
 					]
 				}
 			],
@@ -1898,7 +1898,7 @@
 				{
 					"name": "Shocking Burst",
 					"entries": [
-						"{@atk ms,rs} {@hit 5} to hit, reach 5 ft. or range 120 ft., one target. {@h}6 ({@damage 1d6 + 3}) lightning damage."
+						"{@atk ms,rs} {@hit 5} to hit, reach {@quantity 5|ft.} or range {@quantity 120|ft.}, one target. {@h}6 ({@damage 1d6 + 3}) lightning damage."
 					]
 				}
 			],
@@ -1906,7 +1906,7 @@
 				{
 					"name": "Teleport (2/Day)",
 					"entries": [
-						"Glasstaff magically teleports, along with any equipment he is wearing or carrying, up to 30 feet to an unoccupied space he can see."
+						"Glasstaff magically teleports, along with any equipment he is wearing or carrying, up to {@quantity 30|feet} to an unoccupied space he can see."
 					]
 				}
 			],
@@ -1984,11 +1984,11 @@
 				"insight": "+12"
 			},
 			"senses": [
-				"blindsight 120 ft."
+				"blindsight {@quantity 120|ft.}"
 			],
 			"passive": 14,
 			"languages": [
-				"telepathy 1 mile; understands Common",
+				"telepathy {@quantity 1|mile}; understands Common",
 				"Deep Speech",
 				"and Undercommon but can't speak"
 			],
@@ -2012,7 +2012,7 @@
 				{
 					"name": "Creature Sense",
 					"entries": [
-						"The elder brain is aware of creatures within 1 mile of itself that have an Intelligence score of 4 or higher. It knows the distance and direction to each creature, as well as each one's Intelligence score, but can't sense anything else about it. A creature protected by a {@spell mind blank} spell, a {@spell nondetection} spell, or similar magic can't be perceived in this manner."
+						"The elder brain is aware of creatures within {@quantity 1|mile} of itself that have an Intelligence score of 4 or higher. It knows the distance and direction to each creature, as well as each one's Intelligence score, but can't sense anything else about it. A creature protected by a {@spell mind blank} spell, a {@spell nondetection} spell, or similar magic can't be perceived in this manner."
 					]
 				},
 				{
@@ -2038,13 +2038,13 @@
 				{
 					"name": "Tentacle",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 30 ft., one target. {@h}15 ({@damage 3d8 + 2}) bludgeoning damage. If the target is a Huge or smaller creature, it has the {@condition grappled} condition (escape {@dc 14}) and takes 9 ({@damage 1d8 + 5}) psychic damage at the start of each of its turns until the grapple ends. The elder brain can have up to four targets {@condition grappled} at a time."
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 30|ft.}, one target. {@h}15 ({@damage 3d8 + 2}) bludgeoning damage. If the target is a Huge or smaller creature, it has the {@condition grappled} condition (escape {@dc 14}) and takes 9 ({@damage 1d8 + 5}) psychic damage at the start of each of its turns until the grapple ends. The elder brain can have up to four targets {@condition grappled} at a time."
 					]
 				},
 				{
 					"name": "Mind Blast {@recharge 5}",
 					"entries": [
-						"Creatures of the elder brain's choice within 60 feet of itself must succeed on a {@dc 17} Intelligence saving throw or take 32 ({@damage 5d10 + 5}) psychic damage and have the {@condition stunned} condition for 1 minute. A {@condition stunned} creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+						"Creatures of the elder brain's choice within {@quantity 60|feet} of itself must succeed on a {@dc 17} Intelligence saving throw or take 32 ({@damage 5d10 + 5}) psychic damage and have the {@condition stunned} condition for 1 minute. A {@condition stunned} creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
 					]
 				}
 			],
@@ -2052,7 +2052,7 @@
 				{
 					"name": "Psychic Link",
 					"entries": [
-						"The elder brain targets one creature with the {@condition incapacitated} condition that the elder brain senses with its Creature Sense trait and establishes a psychic link with the target. Until the link ends, the elder brain can perceive everything the target senses. The target becomes aware that something is linked to its mind once it no longer has the {@condition incapacitated} condition, and the elder brain can terminate the link at any time (no action required). The target can use an action on its turn to attempt to break the link, doing so with a successful {@dc 17} Charisma check. If the target breaks the link this way, the target takes 10 ({@damage 3d6}) psychic damage. The link also ends if the target and the elder brain are more than 1 mile apart. The elder brain can form psychic links with up to ten creatures at a time."
+						"The elder brain targets one creature with the {@condition incapacitated} condition that the elder brain senses with its Creature Sense trait and establishes a psychic link with the target. Until the link ends, the elder brain can perceive everything the target senses. The target becomes aware that something is linked to its mind once it no longer has the {@condition incapacitated} condition, and the elder brain can terminate the link at any time (no action required). The target can use an action on its turn to attempt to break the link, doing so with a successful {@dc 17} Charisma check. If the target breaks the link this way, the target takes 10 ({@damage 3d6}) psychic damage. The link also ends if the target and the elder brain are more than {@quantity 1|mile} apart. The elder brain can form psychic links with up to ten creatures at a time."
 					]
 				}
 			],
@@ -2114,7 +2114,7 @@
 						"items": {
 							"name": "Psychic Slam",
 							"entries": [
-								"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) bludgeoning damage plus 3 ({@damage 1d6}) psychic damage."
+								"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}6 ({@damage 1d6 + 3}) bludgeoning damage plus 3 ({@damage 1d6}) psychic damage."
 							]
 						}
 					}
@@ -2163,7 +2163,7 @@
 				"cha": "+3"
 			},
 			"senses": [
-				"blindsight 120 ft. (can't see beyond this radius)"
+				"blindsight {@quantity 120|ft.} (can't see beyond this radius)"
 			],
 			"passive": 13,
 			"immune": [
@@ -2177,14 +2177,14 @@
 			],
 			"languages": [
 				"Deep Speech",
-				"telepathy 120 ft."
+				"telepathy {@quantity 120|ft.}"
 			],
 			"cr": "8",
 			"trait": [
 				{
 					"name": "Cacophony of Minds",
 					"entries": [
-						"Any creature that starts its turn within 30 feet of the intellect snare must succeed on a {@dc 17} Wisdom saving throw or have the {@condition incapacitated} condition for 1 minute. An {@condition incapacitated} creature can repeat the saving throw at the start of each of its turns, ending the effect on itself on a success. A creature that succeeds on the saving throw is immune to this intellect snare's Cacophony of Minds for 24 hours."
+						"Any creature that starts its turn within {@quantity 30|feet} of the intellect snare must succeed on a {@dc 17} Wisdom saving throw or have the {@condition incapacitated} condition for 1 minute. An {@condition incapacitated} creature can repeat the saving throw at the start of each of its turns, ending the effect on itself on a success. A creature that succeeds on the saving throw is immune to this intellect snare's Cacophony of Minds for 24 hours."
 					]
 				},
 				{
@@ -2204,7 +2204,7 @@
 				{
 					"name": "Tentacle",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 15 ft., one target. {@h}10 ({@damage 1d8 + 6}) force damage, and if the target is a Medium or smaller creature, the target has the {@condition grappled} condition (escape {@dc 17})."
+						"{@atk mw} {@hit 9} to hit, reach {@quantity 15|ft.}, one target. {@h}10 ({@damage 1d8 + 6}) force damage, and if the target is a Medium or smaller creature, the target has the {@condition grappled} condition (escape {@dc 17})."
 					]
 				}
 			],
@@ -2325,8 +2325,8 @@
 				"stealth": "+5"
 			},
 			"senses": [
-				"blindsight 30 ft.",
-				"darkvision 120 ft."
+				"blindsight {@quantity 30|ft.}",
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 20,
 			"resist": [
@@ -2340,7 +2340,7 @@
 			"languages": [
 				"Common",
 				"Draconic",
-				"telepathy 120 ft."
+				"telepathy {@quantity 120|ft.}"
 			],
 			"cr": "9",
 			"spellcasting": [
@@ -2380,19 +2380,19 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 10 ft., one target. {@h}16 ({@damage 2d10 + 5}) piercing damage plus 4 ({@damage 1d8}) force damage."
+						"{@atk mw} {@hit 9} to hit, reach {@quantity 10|ft.}, one target. {@h}16 ({@damage 2d10 + 5}) piercing damage plus 4 ({@damage 1d8}) force damage."
 					]
 				},
 				{
 					"name": "Claw",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}9 ({@damage 1d8 + 5}) slashing damage."
+						"{@atk mw} {@hit 9} to hit, reach {@quantity 5|ft.}, one target. {@h}9 ({@damage 1d8 + 5}) slashing damage."
 					]
 				},
 				{
 					"name": "Singularity Breath {@recharge 5}",
 					"entries": [
-						"Lowarnizel creates a shining bead of gravitational force, then releases the energy in a 30-foot cone. Each creature in that area must make a {@dc 17} Strength saving throw. On a failed save, a creature takes 36 ({@damage 8d8}) force damage, and its speed becomes 0 until the start of the dragon's next turn. On a successful save, a creature takes half as much damage only."
+						"Lowarnizel creates a shining bead of gravitational force, then releases the energy in a {@quantity 30|-foot} cone. Each creature in that area must make a {@dc 17} Strength saving throw. On a failed save, a creature takes 36 ({@damage 8d8}) force damage, and its speed becomes 0 until the start of the dragon's next turn. On a successful save, a creature takes half as much damage only."
 					]
 				}
 			],
@@ -2513,8 +2513,8 @@
 				"stealth": "+5"
 			},
 			"senses": [
-				"darkvision 120 ft.",
-				"truesight 15 ft."
+				"darkvision {@quantity 120|ft.}",
+				"truesight {@quantity 15|ft.}"
 			],
 			"passive": 17,
 			"resist": [
@@ -2527,7 +2527,7 @@
 			],
 			"languages": [
 				"Deep Speech",
-				"telepathy 120 ft.",
+				"telepathy {@quantity 120|ft.}",
 				"Undercommon"
 			],
 			"cr": "11",
@@ -2580,19 +2580,19 @@
 				{
 					"name": "Tentacle",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 5 ft., one creature. {@h}21 ({@damage 3d10 + 5}) psychic damage. If the target is Medium or smaller, it has the {@condition grappled} condition (escape {@dc 17}) and must succeed on a {@dc 17} Intelligence saving throw or have the {@condition incapacitated} condition until the grapple ends."
+						"{@atk mw} {@hit 9} to hit, reach {@quantity 5|ft.}, one creature. {@h}21 ({@damage 3d10 + 5}) psychic damage. If the target is Medium or smaller, it has the {@condition grappled} condition (escape {@dc 17}) and must succeed on a {@dc 17} Intelligence saving throw or have the {@condition incapacitated} condition until the grapple ends."
 					]
 				},
 				{
 					"name": "Extract Brain",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 5 ft., one {@condition incapacitated} Humanoid {@condition grappled} by the mind flayer. {@h}55 ({@damage 10d10}) piercing damage. If this damage reduces the target to 0 hit points, the mind flayer kills it by extracting and devouring its brain."
+						"{@atk mw} {@hit 9} to hit, reach {@quantity 5|ft.}, one {@condition incapacitated} Humanoid {@condition grappled} by the mind flayer. {@h}55 ({@damage 10d10}) piercing damage. If this damage reduces the target to 0 hit points, the mind flayer kills it by extracting and devouring its brain."
 					]
 				},
 				{
 					"name": "Unleash Void {@recharge 5}",
 					"entries": [
-						"The mind flayer opens a rift into the Far Realm, centered on a point the mind flayer can see within 60 feet of itself, and a tentacle lashes across creatures near the rift. Each creature other than mind flayers within 30 feet of the rift must make a {@dc 17} Intelligence saving throw, after which the tentacle disappears and the rift closes. On a failed save, a creature takes 18 ({@damage 4d8}) cold damage from the rift plus 18 ({@damage 4d8}) psychic damage from the tentacle and has the {@condition stunned} condition for 1 minute. On a successful save, a creature takes half as much damage only. A {@condition stunned} creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+						"The mind flayer opens a rift into the Far Realm, centered on a point the mind flayer can see within {@quantity 60|feet} of itself, and a tentacle lashes across creatures near the rift. Each creature other than mind flayers within {@quantity 30|feet} of the rift must make a {@dc 17} Intelligence saving throw, after which the tentacle disappears and the rift closes. On a failed save, a creature takes 18 ({@damage 4d8}) cold damage from the rift plus 18 ({@damage 4d8}) psychic damage from the tentacle and has the {@condition stunned} condition for 1 minute. On a successful save, a creature takes half as much damage only. A {@condition stunned} creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
 					]
 				}
 			],
@@ -2600,7 +2600,7 @@
 				{
 					"name": "Warp Reality",
 					"entries": [
-						"When hit by an attack roll, the mind flayer gains a +4 bonus to its AC against that attack roll, potentially causing it to miss. Then the mind flayer, along with any equipment it is wearing or carrying, magically teleports up to 60 feet to an unoccupied space it can see."
+						"When hit by an attack roll, the mind flayer gains a +4 bonus to its AC against that attack roll, potentially causing it to miss. Then the mind flayer, along with any equipment it is wearing or carrying, magically teleports up to {@quantity 60|feet} to an unoccupied space it can see."
 					]
 				}
 			],
@@ -2660,7 +2660,7 @@
 						"items": {
 							"name": "Mind Blast {@recharge 5}",
 							"entries": [
-								"The nothic magically emits psychic energy in a 30-foot cone. Each creature in that area must succeed on a {@dc 12} Intelligence saving throw or take 10 ({@damage 2d8 + 1}) psychic damage and have the {@condition stunned} condition until the end of its next turn."
+								"The nothic magically emits psychic energy in a {@quantity 30|-foot} cone. Each creature in that area must succeed on a {@dc 12} Intelligence saving throw or take 10 ({@damage 2d8 + 1}) psychic damage and have the {@condition stunned} condition until the end of its next turn."
 							]
 						}
 					}
@@ -2718,12 +2718,12 @@
 				"stealth": "+5"
 			},
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 16,
 			"languages": [
 				"Deep Speech",
-				"telepathy 120 ft.",
+				"telepathy {@quantity 120|ft.}",
 				"Undercommon"
 			],
 			"cr": "8",
@@ -2768,19 +2768,19 @@
 				{
 					"name": "Tentacles",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 5 ft., one creature. {@h}16 ({@damage 2d10 + 5}) psychic damage. If the target is Medium or smaller, it has the {@condition grappled} condition (escape {@dc 16}) and must succeed on a {@dc 16} Intelligence saving throw or have the {@condition stunned} condition until the grapple ends."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 5|ft.}, one creature. {@h}16 ({@damage 2d10 + 5}) psychic damage. If the target is Medium or smaller, it has the {@condition grappled} condition (escape {@dc 16}) and must succeed on a {@dc 16} Intelligence saving throw or have the {@condition stunned} condition until the grapple ends."
 					]
 				},
 				{
 					"name": "Extract Brain",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 5 ft., one Humanoid {@condition grappled} by the mind flayer. {@h}55 ({@damage 10d10}) piercing damage. If this damage reduces the target to 0 hit points, the mind flayer kills it by extracting and devouring its brain."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 5|ft.}, one Humanoid {@condition grappled} by the mind flayer. {@h}55 ({@damage 10d10}) piercing damage. If this damage reduces the target to 0 hit points, the mind flayer kills it by extracting and devouring its brain."
 					]
 				},
 				{
 					"name": "Mind Whip {@recharge 5}",
 					"entries": [
-						"The mind flayer lashes out with psychic energy, targeting up to two creatures it can see within 60 feet of itself. Each target must succeed on a {@dc 16} Intelligence saving throw or take 23 ({@damage 4d8 + 5}) psychic damage and have the {@condition stunned} condition for 1 minute. A {@condition stunned} target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+						"The mind flayer lashes out with psychic energy, targeting up to two creatures it can see within {@quantity 60|feet} of itself. Each target must succeed on a {@dc 16} Intelligence saving throw or take 23 ({@damage 4d8 + 5}) psychic damage and have the {@condition stunned} condition for 1 minute. A {@condition stunned} target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
 					]
 				}
 			],
@@ -2870,7 +2870,7 @@
 						"items": {
 							"name": "Greataxe",
 							"entries": [
-								"{@atk mw} {@hit 10} to hit, reach 5 ft., one target. {@h}19 ({@damage 2d12 + 6}) slashing damage; if the target is an Aberration, it takes an additional 6 ({@damage 1d12}) slashing damage, and if it is grappling a creature, it must succeed on a {@dc 15} Strength saving throw or its grapple ends."
+								"{@atk mw} {@hit 10} to hit, reach {@quantity 5|ft.}, one target. {@h}19 ({@damage 2d12 + 6}) slashing damage; if the target is an Aberration, it takes an additional 6 ({@damage 1d12}) slashing damage, and if it is grappling a creature, it must succeed on a {@dc 15} Strength saving throw or its grapple ends."
 							]
 						}
 					}
@@ -2929,7 +2929,7 @@
 				"stealth": "+3"
 			},
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 14,
 			"languages": [
@@ -2995,7 +2995,7 @@
 				{
 					"name": "Poison Blast",
 					"entries": [
-						"{@atk ms,rs} {@hit 5} to hit, reach 5 ft. or range 120 ft., one creature. {@h}9 ({@damage 2d8}) poison damage."
+						"{@atk ms,rs} {@hit 5} to hit, reach {@quantity 5|ft.} or range {@quantity 120|ft.}, one creature. {@h}9 ({@damage 2d8}) poison damage."
 					]
 				}
 			],
@@ -3131,7 +3131,7 @@
 				"perception": "+10"
 			},
 			"senses": [
-				"truesight 60 ft."
+				"truesight {@quantity 60|ft.}"
 			],
 			"passive": 20,
 			"conditionImmune": [
@@ -3140,7 +3140,7 @@
 			],
 			"languages": [
 				"Deep Speech",
-				"telepathy 120 ft."
+				"telepathy {@quantity 120|ft.}"
 			],
 			"cr": "9",
 			"trait": [
@@ -3167,13 +3167,13 @@
 				{
 					"name": "Dreadful Contact",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one creature. {@h}14 ({@damage 3d6 + 4}) psychic damage, or 25 ({@damage 6d6 + 4}) psychic damage if the target has the {@condition frightened} condition."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one creature. {@h}14 ({@damage 3d6 + 4}) psychic damage, or 25 ({@damage 6d6 + 4}) psychic damage if the target has the {@condition frightened} condition."
 					]
 				},
 				{
 					"name": "Eye Beam",
 					"entries": [
-						"{@atk rs} {@hit 8} to hit, range 120 ft., one creature. {@h}14 ({@damage 3d6 + 4}) psychic damage."
+						"{@atk rs} {@hit 8} to hit, range {@quantity 120|ft.}, one creature. {@h}14 ({@damage 3d6 + 4}) psychic damage."
 					]
 				},
 				{
@@ -3185,13 +3185,13 @@
 				{
 					"name": "Weeping Eyes",
 					"entries": [
-						"The oculorb weeps, releasing a wave of crushing despair. Each creature within 30 feet of the oculorb must make a {@dc 16} Constitution saving throw. On a failed save, a creature's speed is reduced to 0 feet until the end of the oculorb's next turn, and if the creature was {@status concentration||concentrating}, its {@status concentration} is broken."
+						"The oculorb weeps, releasing a wave of crushing despair. Each creature within {@quantity 30|feet} of the oculorb must make a {@dc 16} Constitution saving throw. On a failed save, a creature's speed is reduced to {@quantity 0|feet} until the end of the oculorb's next turn, and if the creature was {@status concentration||concentrating}, its {@status concentration} is broken."
 					]
 				},
 				{
 					"name": "Withering Glare",
 					"entries": [
-						"The oculorb's eyes unleash furious scarlet energy in a 60-foot cone. Each creature in that area must make a {@dc 16} Wisdom saving throw. On a failed save, a creature takes 33 ({@damage 6d10}) necrotic damage and has the {@condition frightened} condition for 1 minute. On a successful save, a creature takes half as much damage and isn't {@condition frightened}. A {@condition frightened} creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a successful save."
+						"The oculorb's eyes unleash furious scarlet energy in a {@quantity 60|-foot} cone. Each creature in that area must make a {@dc 16} Wisdom saving throw. On a failed save, a creature takes 33 ({@damage 6d10}) necrotic damage and has the {@condition frightened} condition for 1 minute. On a successful save, a creature takes half as much damage and isn't {@condition frightened}. A {@condition frightened} creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a successful save."
 					]
 				}
 			],
@@ -3199,7 +3199,7 @@
 				{
 					"name": "Obsessive Rebuke",
 					"entries": [
-						"When the oculorb is damaged by a creature it can see within 60 feet of itself, it forces the creature to make a {@dc 16} Wisdom saving throw. The creature takes 10 ({@damage 3d6}) psychic damage on a failed save, or half as much damage on a successful one."
+						"When the oculorb is damaged by a creature it can see within {@quantity 60|feet} of itself, it forces the creature to make a {@dc 16} Wisdom saving throw. The creature takes 10 ({@damage 3d6}) psychic damage on a failed save, or half as much damage on a successful one."
 					]
 				}
 			],
@@ -3315,7 +3315,7 @@
 				"stealth": "+5"
 			},
 			"senses": [
-				"truesight 120 ft."
+				"truesight {@quantity 120|ft.}"
 			],
 			"passive": 17,
 			"resist": [
@@ -3336,7 +3336,7 @@
 			"languages": [
 				"Common",
 				"Deep Speech",
-				"telepathy 120 ft.",
+				"telepathy {@quantity 120|ft.}",
 				"Undercommon"
 			],
 			"cr": "10",
@@ -3387,19 +3387,19 @@
 				{
 					"name": "Chilling Grasp",
 					"entries": [
-						"{@atk ms} {@hit 8} to hit, reach 5 ft., one target. {@h}14 ({@damage 4d6}) cold damage, and Oshundo regains 14 hit points if the target is a creature."
+						"{@atk ms} {@hit 8} to hit, reach {@quantity 5|ft.}, one target. {@h}14 ({@damage 4d6}) cold damage, and Oshundo regains 14 hit points if the target is a creature."
 					]
 				},
 				{
 					"name": "Arcane Bolt",
 					"entries": [
-						"{@atk rs} {@hit 8} to hit, range 120 ft., one target. {@h}28 ({@damage 8d6}) force damage."
+						"{@atk rs} {@hit 8} to hit, range {@quantity 120|ft.}, one target. {@h}28 ({@damage 8d6}) force damage."
 					]
 				},
 				{
 					"name": "Thundering Blast {@recharge 5}",
 					"entries": [
-						"Oshundo emits a wave of domineering energy in a 60-foot cone. Each creature in that area must succeed on a {@dc 16} Intelligence saving throw or take 22 ({@damage 4d8 + 4}) thunder damage and have the {@condition stunned} condition for 1 minute. A {@condition stunned} creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+						"Oshundo emits a wave of domineering energy in a {@quantity 60|-foot} cone. Each creature in that area must succeed on a {@dc 16} Intelligence saving throw or take 22 ({@damage 4d8 + 4}) thunder damage and have the {@condition stunned} condition for 1 minute. A {@condition stunned} creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
 					]
 				}
 			],
@@ -3407,7 +3407,7 @@
 				{
 					"name": "Negate Spell (3/Day)",
 					"entries": [
-						"Oshundo targets one creature it can perceive within 60 feet of itself that is casting a spell. If the spell is 3rd level or lower, the spell fails, but any spell slots or charges aren't wasted."
+						"Oshundo targets one creature it can perceive within {@quantity 60|feet} of itself that is casting a spell. If the spell is 3rd level or lower, the spell fails, but any spell slots or charges aren't wasted."
 					]
 				}
 			],
@@ -3494,7 +3494,7 @@
 				"con": "+7"
 			},
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 12,
 			"immune": [
@@ -3505,14 +3505,14 @@
 			],
 			"languages": [
 				"Otyugh",
-				"telepathy 120 ft."
+				"telepathy {@quantity 120|ft.}"
 			],
 			"cr": "6",
 			"trait": [
 				{
 					"name": "Virulent Breath",
 					"entries": [
-						"Noxious gas from the mutate's digestion of previous meals spews from its mouth. At the start of the mutate's turn, each creature within 5 feet of it must succeed on a {@dc 15} Constitution saving throw or take 3 ({@damage 1d6}) poison damage."
+						"Noxious gas from the mutate's digestion of previous meals spews from its mouth. At the start of the mutate's turn, each creature within {@quantity 5|feet} of it must succeed on a {@dc 15} Constitution saving throw or take 3 ({@damage 1d6}) poison damage."
 					]
 				}
 			],
@@ -3526,13 +3526,13 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}13 ({@damage 2d8 + 4}) piercing damage. If the target is a creature, it must succeed on a {@dc 15} Constitution saving throw or have the {@condition poisoned} condition. Every 24 hours that elapse, the target must repeat the saving throw, reducing its hit point maximum by 5 ({@dice 1d10}) on a failure. On a successful save, the target is no longer {@condition poisoned}. The target dies if its hit point maximum is reduced to 0. This reduction to the target's hit point maximum lasts until it no longer has the {@condition poisoned} condition."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}13 ({@damage 2d8 + 4}) piercing damage. If the target is a creature, it must succeed on a {@dc 15} Constitution saving throw or have the {@condition poisoned} condition. Every 24 hours that elapse, the target must repeat the saving throw, reducing its hit point maximum by 5 ({@dice 1d10}) on a failure. On a successful save, the target is no longer {@condition poisoned}. The target dies if its hit point maximum is reduced to 0. This reduction to the target's hit point maximum lasts until it no longer has the {@condition poisoned} condition."
 					]
 				},
 				{
 					"name": "Tentacle",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 10 ft., one target. {@h}13 ({@damage 2d8 + 4}) bludgeoning damage, and if the target is a Medium or smaller creature, it has the {@condition grappled} condition (escape {@dc 15}) and the {@condition restrained} condition until this grapple ends. The mutate has two tentacles that can grapple one target each."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 10|ft.}, one target. {@h}13 ({@damage 2d8 + 4}) bludgeoning damage, and if the target is a Medium or smaller creature, it has the {@condition grappled} condition (escape {@dc 15}) and the {@condition restrained} condition until this grapple ends. The mutate has two tentacles that can grapple one target each."
 					]
 				},
 				{
@@ -3629,7 +3629,7 @@
 				"unconscious"
 			],
 			"languages": [
-				"telepathy 120 ft.",
+				"telepathy {@quantity 120|ft.}",
 				"understands the languages it knew in life but can't speak"
 			],
 			"cr": "7",
@@ -3662,13 +3662,13 @@
 				{
 					"name": "Necrotic Shard",
 					"entries": [
-						"{@atk mw,rw} {@hit 7} to hit, reach 5 ft. or range 60 ft., one target. {@h}7 ({@damage 1d6 + 4}) piercing damage plus 9 ({@damage 2d8}) necrotic damage. If the target is a creature, it has disadvantage on the next attack roll it makes before the end of its next turn."
+						"{@atk mw,rw} {@hit 7} to hit, reach {@quantity 5|ft.} or range {@quantity 60|ft.}, one target. {@h}7 ({@damage 1d6 + 4}) piercing damage plus 9 ({@damage 2d8}) necrotic damage. If the target is a creature, it has disadvantage on the next attack roll it makes before the end of its next turn."
 					]
 				},
 				{
 					"name": "Psionic Crown {@recharge 5}",
 					"entries": [
-						"The ashenwight wreathes the head of a creature it can see within 60 feet of itself with a crown of jagged, spectral crystals. The target must succeed on a {@dc 14} Wisdom saving throw or have the {@condition charmed} condition for 1 minute. While {@condition charmed} in this way, the target's thoughts are sluggish; it can't take reactions, its speed is halved, and it takes 9 ({@damage 2d8}) psychic damage at the start of each of its turns. The target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+						"The ashenwight wreathes the head of a creature it can see within {@quantity 60|feet} of itself with a crown of jagged, spectral crystals. The target must succeed on a {@dc 14} Wisdom saving throw or have the {@condition charmed} condition for 1 minute. While {@condition charmed} in this way, the target's thoughts are sluggish; it can't take reactions, its speed is halved, and it takes 9 ({@damage 2d8}) psychic damage at the start of each of its turns. The target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
 					]
 				}
 			],
@@ -3790,12 +3790,12 @@
 				"stealth": "+6"
 			},
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 16,
 			"languages": [
 				"Deep Speech",
-				"telepathy 60 ft.",
+				"telepathy {@quantity 60|ft.}",
 				"Undercommon"
 			],
 			"cr": "9",
@@ -3847,25 +3847,25 @@
 				{
 					"name": "Tentacle",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 5 ft., one creature. {@h}15 ({@damage 2d10 + 4}) psychic damage. If the target is Medium or smaller, it has the {@condition grappled} condition (escape {@dc 16}) and must succeed on a {@dc 16} Intelligence saving throw or have the {@condition stunned} condition until the grapple ends."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 5|ft.}, one creature. {@h}15 ({@damage 2d10 + 4}) psychic damage. If the target is Medium or smaller, it has the {@condition grappled} condition (escape {@dc 16}) and must succeed on a {@dc 16} Intelligence saving throw or have the {@condition stunned} condition until the grapple ends."
 					]
 				},
 				{
 					"name": "Eldritch Bolt",
 					"entries": [
-						"{@atk rs} {@hit 8} to hit, range 120 ft., one target. {@h}20 ({@damage 3d10 + 4}) force damage."
+						"{@atk rs} {@hit 8} to hit, range {@quantity 120|ft.}, one target. {@h}20 ({@damage 3d10 + 4}) force damage."
 					]
 				},
 				{
 					"name": "Extract Brain",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 5 ft., one Humanoid with the {@condition stunned} condition who is {@condition grappled} by Qunbraxel. {@h}55 ({@damage 10d10}) piercing damage. If this damage reduces the target to 0 hit points, Qunbraxel kills it by extracting and devouring its brain."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 5|ft.}, one Humanoid with the {@condition stunned} condition who is {@condition grappled} by Qunbraxel. {@h}55 ({@damage 10d10}) piercing damage. If this damage reduces the target to 0 hit points, Qunbraxel kills it by extracting and devouring its brain."
 					]
 				},
 				{
 					"name": "Mind Blast {@recharge 5}",
 					"entries": [
-						"Qunbraxel magically emits psychic energy in a 60-foot cone. Each creature in that area must succeed on a {@dc 16} Intelligence saving throw or take 26 ({@damage 5d8 + 4}) psychic damage and have the {@condition stunned} condition for 1 minute. A {@condition stunned} creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+						"Qunbraxel magically emits psychic energy in a {@quantity 60|-foot} cone. Each creature in that area must succeed on a {@dc 16} Intelligence saving throw or take 26 ({@damage 5d8 + 4}) psychic damage and have the {@condition stunned} condition for 1 minute. A {@condition stunned} creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
 					]
 				}
 			],
@@ -3961,7 +3961,7 @@
 				{
 					"name": "Shortsword",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
 					]
 				}
 			],
@@ -4037,7 +4037,7 @@
 				"persuasion": "+11"
 			},
 			"senses": [
-				"blindsight 120 ft."
+				"blindsight {@quantity 120|ft.}"
 			],
 			"passive": 15,
 			"resist": [
@@ -4067,7 +4067,7 @@
 			"languages": [
 				"Common",
 				"Deep Speech",
-				"telepathy 100 miles",
+				"telepathy {@quantity 100|miles}",
 				"Undercommon"
 			],
 			"cr": "15",
@@ -4100,7 +4100,7 @@
 				{
 					"name": "Creature Sense",
 					"entries": [
-						"The refraction is aware of creatures within 100 miles of it that have an Intelligence score of 4 or higher. It knows the distance and direction to each creature, as well as each one's Intelligence score, but can't sense anything else about it. A creature protected by a {@spell mind blank} spell, a {@spell nondetection} spell, or similar magic can't be perceived in this manner."
+						"The refraction is aware of creatures within {@quantity 100|miles} of it that have an Intelligence score of 4 or higher. It knows the distance and direction to each creature, as well as each one's Intelligence score, but can't sense anything else about it. A creature protected by a {@spell mind blank} spell, a {@spell nondetection} spell, or similar magic can't be perceived in this manner."
 					]
 				},
 				{
@@ -4132,19 +4132,19 @@
 				{
 					"name": "Dissonant Claw",
 					"entries": [
-						"{@atk mw} {@hit 11} to hit, reach 10 ft. or range 120 ft., one creature. {@h}25 ({@damage 3d12 + 6}) psychic damage. If the target is a creature {@status concentration||concentrating} on a spell, its {@status concentration} is broken."
+						"{@atk mw} {@hit 11} to hit, reach {@quantity 10|ft.} or range {@quantity 120|ft.}, one creature. {@h}25 ({@damage 3d12 + 6}) psychic damage. If the target is a creature {@status concentration||concentrating} on a spell, its {@status concentration} is broken."
 					]
 				},
 				{
 					"name": "Mind Blast {@recharge 5}",
 					"entries": [
-						"Creatures of the refraction's choice within 60 feet of it must succeed on a {@dc 19} Intelligence saving throw or take 33 ({@damage 5d10 + 6}) psychic damage and have the {@condition stunned} condition for 1 minute. A {@condition stunned} creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+						"Creatures of the refraction's choice within {@quantity 60|feet} of it must succeed on a {@dc 19} Intelligence saving throw or take 33 ({@damage 5d10 + 6}) psychic damage and have the {@condition stunned} condition for 1 minute. A {@condition stunned} creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
 					]
 				},
 				{
 					"name": "Teleport",
 					"entries": [
-						"The refraction teleports, along with any equipment it is wearing or carrying, up to 120 feet to an unoccupied place that it can see."
+						"The refraction teleports, along with any equipment it is wearing or carrying, up to {@quantity 120|feet} to an unoccupied place that it can see."
 					]
 				}
 			],
@@ -4152,7 +4152,7 @@
 				{
 					"name": "Mindbreaker",
 					"entries": [
-						"The refraction targets a creature within 120 feet of itself and disrupts its mental processes, causing the target to have disadvantage on all ability checks, attack rolls, and saving throws until the end of the target's next turn."
+						"The refraction targets a creature within {@quantity 120|feet} of itself and disrupts its mental processes, causing the target to have disadvantage on all ability checks, attack rolls, and saving throws until the end of the target's next turn."
 					]
 				},
 				{
@@ -4286,7 +4286,7 @@
 				"stealth": "+10"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 15,
 			"resist": [
@@ -4295,7 +4295,7 @@
 			"languages": [
 				"Common",
 				"Goblin",
-				"telepathy 60 ft."
+				"telepathy {@quantity 60|ft.}"
 			],
 			"cr": "5",
 			"trait": [
@@ -4322,7 +4322,7 @@
 				{
 					"name": "Psi-Charged Scimitar",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}11 ({@damage 2d6 + 4}) slashing damage plus 7 ({@damage 2d6}) psychic damage."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}11 ({@damage 2d6 + 4}) slashing damage plus 7 ({@damage 2d6}) psychic damage."
 					]
 				}
 			],
@@ -4330,13 +4330,13 @@
 				{
 					"name": "Brain Tendrils {@recharge 5}",
 					"entries": [
-						"Ruxithid unleashes a flurry of crystalline psychic tendrils from his brain, targeting one creature that he can see within 30 feet of himself. The target must succeed on a {@dc 15} Dexterity saving throw or take 9 ({@damage 2d8}) psychic damage and have the {@condition stunned} condition until the start of Ruxithid's next turn."
+						"Ruxithid unleashes a flurry of crystalline psychic tendrils from his brain, targeting one creature that he can see within {@quantity 30|feet} of himself. The target must succeed on a {@dc 15} Dexterity saving throw or take 9 ({@damage 2d8}) psychic damage and have the {@condition stunned} condition until the start of Ruxithid's next turn."
 					]
 				},
 				{
 					"name": "Combat Command",
 					"entries": [
-						"Ruxithid commands one allied creature he can see within 60 feet of himself to strike. The creature can immediately use its reaction to make one melee weapon attack against a target within its reach."
+						"Ruxithid commands one allied creature he can see within {@quantity 60|feet} of himself to strike. The creature can immediately use its reaction to make one melee weapon attack against a target within its reach."
 					]
 				}
 			],
@@ -4455,13 +4455,13 @@
 				{
 					"name": "Longsword",
 					"entries": [
-						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d8 + 1}) slashing damage, or 6 ({@damage 1d10 + 1}) slashing damage if used with two hands."
+						"{@atk mw} {@hit 3} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d8 + 1}) slashing damage, or 6 ({@damage 1d10 + 1}) slashing damage if used with two hands."
 					]
 				},
 				{
 					"name": "Heavy Crossbow",
 					"entries": [
-						"{@atk rw} {@hit 2} to hit, range 100/400 ft., one target. {@h}5 ({@damage 1d10}) piercing damage."
+						"{@atk rw} {@hit 2} to hit, range {@quantity 100/400|ft.}, one target. {@h}5 ({@damage 1d10}) piercing damage."
 					]
 				}
 			],

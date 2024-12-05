@@ -35,7 +35,7 @@
 			"wis": 16,
 			"cha": 21,
 			"senses": [
-				"blindsight 120 ft. (blind beyond this radius)"
+				"blindsight {@quantity 120|ft.} (blind beyond this radius)"
 			],
 			"passive": 13,
 			"resist": [
@@ -63,14 +63,14 @@
 			],
 			"languages": [
 				"Deep Speech",
-				"telepathy 120 ft."
+				"telepathy {@quantity 120|ft.}"
 			],
 			"cr": "7",
 			"trait": [
 				{
 					"name": "Ghastly Visions",
 					"entries": [
-						"Each creature that starts its turn within 30 feet of the dream eater must make a {@dc 16} Wisdom saving throw. On a failed save, the creature is {@condition frightened} of the dream eater until the start of the creature's next turn. If a creature's saving throw is successful, the creature is immune to this dream eater's Ghastly Visions trait for the next 24 hours."
+						"Each creature that starts its turn within {@quantity 30|feet} of the dream eater must make a {@dc 16} Wisdom saving throw. On a failed save, the creature is {@condition frightened} of the dream eater until the start of the creature's next turn. If a creature's saving throw is successful, the creature is immune to this dream eater's Ghastly Visions trait for the next 24 hours."
 					]
 				},
 				{
@@ -96,7 +96,7 @@
 				{
 					"name": "Ensnaring Shriek",
 					"entries": [
-						"{@atk ms,rs} {@hit 8} to hit, reach 15 ft. or range 60 ft., one target. {@h}12 ({@damage 2d6 + 5}) psychic damage, and if the target is a Medium or smaller creature, the target must succeed on a {@dc 16} Charisma saving throw or be pulled up to 15 feet toward the dream eater."
+						"{@atk ms,rs} {@hit 8} to hit, reach {@quantity 15|ft.} or range {@quantity 60|ft.}, one target. {@h}12 ({@damage 2d6 + 5}) psychic damage, and if the target is a Medium or smaller creature, the target must succeed on a {@dc 16} Charisma saving throw or be pulled up to {@quantity 15|feet} toward the dream eater."
 					]
 				}
 			],
@@ -104,9 +104,9 @@
 				{
 					"name": "Engulfing Nightmare",
 					"entries": [
-						"The dream eater targets one creature within 5 feet of itself. The target must succeed on a {@dc 16} Wisdom saving throw or be engulfed by the dream eater, as the dream eater envelops the creature in a miasma of its worst fears.",
+						"The dream eater targets one creature within {@quantity 5|feet} of itself. The target must succeed on a {@dc 16} Wisdom saving throw or be engulfed by the dream eater, as the dream eater envelops the creature in a miasma of its worst fears.",
 						"When the dream eater engulfs a target, the dream eater enters its space, and the target immediately takes 10 ({@damage 3d6}) psychic damage. An engulfed target is {@condition restrained} and {@condition blinded}, and it takes an additional 10 ({@damage 3d6}) psychic damage at the start of each of the dream eater's turns. When the dream eater moves, the engulfed target moves with it.",
-						"The dream eater can have only one target engulfed at a time. An engulfed target escapes at the start of its turn by making a {@dc 16} Wisdom saving throw. On a successful save, the target escapes; the target is no longer engulfed, and it enters a space of its choice within 5 feet of the dream eater. A creature within 15 feet of the dream eater also can use its action to attempt to free an engulfed target. Doing so requires the creature to use its action to make a {@dc 16} Charisma ({@skill Persuasion}) check to convince the engulfed target the nightmare isn't real, with the target escaping on a success. The creature making the check takes 10 ({@damage 3d6}) psychic damage, regardless of the check's success or failure, as its mind brushes against the nightmare."
+						"The dream eater can have only one target engulfed at a time. An engulfed target escapes at the start of its turn by making a {@dc 16} Wisdom saving throw. On a successful save, the target escapes; the target is no longer engulfed, and it enters a space of its choice within {@quantity 5|feet} of the dream eater. A creature within {@quantity 15|feet} of the dream eater also can use its action to attempt to free an engulfed target. Doing so requires the creature to use its action to make a {@dc 16} Charisma ({@skill Persuasion}) check to convince the engulfed target the nightmare isn't real, with the target escaping on a success. The creature making the check takes 10 ({@damage 3d6}) psychic damage, regardless of the check's success or failure, as its mind brushes against the nightmare."
 					]
 				}
 			],
@@ -197,8 +197,8 @@
 				"stealth": "+14"
 			},
 			"senses": [
-				"blindsight 60 ft.",
-				"darkvision 120 ft."
+				"blindsight {@quantity 60|ft.}",
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 26,
 			"immune": [
@@ -214,7 +214,7 @@
 				{
 					"name": "Calescent Aura",
 					"entries": [
-						"At the start of Ember's turn, Ember can force any number of creatures of his choice within 10 feet of himself to make a {@dc 22} Constitution saving throw. On a failed save, a creature takes 7 ({@damage 2d6}) fire damage and is {@condition frightened} of Ember until the start of its next turn."
+						"At the start of Ember's turn, Ember can force any number of creatures of his choice within {@quantity 10|feet} of himself to make a {@dc 22} Constitution saving throw. On a failed save, a creature takes 7 ({@damage 2d6}) fire damage and is {@condition frightened} of Ember until the start of its next turn."
 					]
 				},
 				{
@@ -240,19 +240,19 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 16} to hit, reach 10 ft., one target. {@h}26 ({@damage 2d10 + 15}) piercing damage plus 13 ({@damage 2d6 + 6}) fire damage."
+						"{@atk mw} {@hit 16} to hit, reach {@quantity 10|ft.}, one target. {@h}26 ({@damage 2d10 + 15}) piercing damage plus 13 ({@damage 2d6 + 6}) fire damage."
 					]
 				},
 				{
 					"name": "Claw",
 					"entries": [
-						"{@atk mw} {@hit 16} to hit, reach 5 ft., one target. {@h}22 ({@damage 2d6 + 15}) slashing damage."
+						"{@atk mw} {@hit 16} to hit, reach {@quantity 5|ft.}, one target. {@h}22 ({@damage 2d6 + 15}) slashing damage."
 					]
 				},
 				{
 					"name": "Firestorm Breath {@recharge 5}",
 					"entries": [
-						"Ember exhales roiling flames and ash in a 90-foot cone. Each creature in that area must make a {@dc 22} Dexterity saving throw. On a failed save, a creature takes 56 ({@damage 16d6}) fire damage and is pushed up to 30 feet away from Ember and knocked {@condition prone}. On a successful save, a creature takes half as much damage with no other effects. If a creature is reduced to 0 hit points by this effect, the creature immediately dies, and its body is reduced to ash."
+						"Ember exhales roiling flames and ash in a {@quantity 90|-foot} cone. Each creature in that area must make a {@dc 22} Dexterity saving throw. On a failed save, a creature takes 56 ({@damage 16d6}) fire damage and is pushed up to {@quantity 30|feet} away from Ember and knocked {@condition prone}. On a successful save, a creature takes half as much damage with no other effects. If a creature is reduced to 0 hit points by this effect, the creature immediately dies, and its body is reduced to ash."
 					]
 				}
 			],
@@ -268,7 +268,7 @@
 				{
 					"name": "Pursuit",
 					"entries": [
-						"Ember moves up to 40 feet in a straight line toward one creature he can see. This movement ignores opportunity attacks."
+						"Ember moves up to {@quantity 40|feet} in a straight line toward one creature he can see. This movement ignores opportunity attacks."
 					]
 				},
 				{
@@ -364,7 +364,7 @@
 				"perception": "+7"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 17,
 			"immune": [
@@ -379,7 +379,7 @@
 				"Celestial",
 				"Elvish",
 				"Sylvan",
-				"telepathy 60 ft."
+				"telepathy {@quantity 60|ft.}"
 			],
 			"cr": "8",
 			"spellcasting": [
@@ -436,13 +436,13 @@
 				{
 					"name": "Hooves",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}11 ({@damage 2d6 + 4}) bludgeoning damage."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}11 ({@damage 2d6 + 4}) bludgeoning damage."
 					]
 				},
 				{
 					"name": "Moon Bolt",
 					"entries": [
-						"{@atk rs} {@hit 7} to hit, range 60 ft., one target. {@h}11 ({@damage 2d6 + 4}) radiant damage."
+						"{@atk rs} {@hit 7} to hit, range {@quantity 60|ft.}, one target. {@h}11 ({@damage 2d6 + 4}) radiant damage."
 					]
 				}
 			],
@@ -450,7 +450,7 @@
 				{
 					"name": "Erupting Briars {@recharge 4}",
 					"entries": [
-						"The Forest Master touches his horn to the earth and causes a 5-foot-tall wall of briars to erupt in a 90-foot line that is 10 feet wide. When the wall appears, each creature in its area is pushed into the nearest unoccupied space adjacent to the wall and must make a {@dc 15} Dexterity saving throw, taking 27 ({@damage 6d8}) piercing damage on a failed save or half as much damage on a successful one.",
+						"The Forest Master touches his horn to the earth and causes a {@quantity 5|-foot}-tall wall of briars to erupt in a {@quantity 90|-foot} line that is {@quantity 10|feet} wide. When the wall appears, each creature in its area is pushed into the nearest unoccupied space adjacent to the wall and must make a {@dc 15} Dexterity saving throw, taking 27 ({@damage 6d8}) piercing damage on a failed save or half as much damage on a successful one.",
 						"The wall of briars lasts until the start of the Forest Master's next turn. The wall blocks line of sight and counts as difficult terrain for all creatures except the Forest Master. The first time a creature enters the wall's area on a turn, that creature must succeed on a {@dc 15} Dexterity saving throw or take 13 ({@damage 3d8}) piercing damage."
 					]
 				}
@@ -459,7 +459,7 @@
 				{
 					"name": "Misty Escape",
 					"entries": [
-						"If the Forest Master takes damage from a melee attack, he, along with any equipment he is wearing or carrying, teleports to an unoccupied space within 30 feet that he can see."
+						"If the Forest Master takes damage from a melee attack, he, along with any equipment he is wearing or carrying, teleports to an unoccupied space within {@quantity 30|feet} that he can see."
 					]
 				}
 			],
@@ -537,7 +537,7 @@
 				"wis": "+7"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 14,
 			"resist": [
@@ -620,7 +620,7 @@
 				{
 					"name": "Spectral Polearm",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}12 ({@damage 2d6 + 5}) force damage."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 5|ft.}, one target. {@h}12 ({@damage 2d6 + 5}) force damage."
 					]
 				}
 			],
@@ -628,7 +628,7 @@
 				{
 					"name": "Phantasmic Battalion {@recharge 5}",
 					"entries": [
-						"The foresworn summons a battalion of ghostly soldiers to its aid. The ghostly soldiers fill a 10-foot-cube centered on the foresworn, move with the foresworn when the foresworn moves, and last until the start of the foresworn's next turn. While the ghostly soldiers are present, the area they occupy is considered difficult terrain for all creatures except the foresworn, and the foresworn's reach for melee weapon attacks increases by 10 feet."
+						"The foresworn summons a battalion of ghostly soldiers to its aid. The ghostly soldiers fill a {@quantity 10|-foot}-cube centered on the foresworn, move with the foresworn when the foresworn moves, and last until the start of the foresworn's next turn. While the ghostly soldiers are present, the area they occupy is considered difficult terrain for all creatures except the foresworn, and the foresworn's reach for melee weapon attacks increases by {@quantity 10|feet}."
 					]
 				}
 			],
@@ -702,8 +702,8 @@
 				"stealth": "+4"
 			},
 			"senses": [
-				"darkvision 60 ft.",
-				"truesight 5 ft."
+				"darkvision {@quantity 60|ft.}",
+				"truesight {@quantity 5|ft.}"
 			],
 			"passive": 16,
 			"languages": [
@@ -722,7 +722,7 @@
 				{
 					"name": "Crystal Blade",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) force damage, plus 7 ({@damage 2d6}) force damage if the seeker is Large."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d6 + 2}) force damage, plus 7 ({@damage 2d6}) force damage if the seeker is Large."
 					]
 				},
 				{
@@ -742,7 +742,7 @@
 				{
 					"name": "Veil Walk {@recharge 4}",
 					"entries": [
-						"The seeker, along with any equipment it is wearing or carrying, turns {@condition invisible} and teleports to an unoccupied space it can see within 30 feet of itself. The seeker remains {@condition invisible} until the start of its next turn or until immediately after the seeker makes an attack roll, whichever comes first."
+						"The seeker, along with any equipment it is wearing or carrying, turns {@condition invisible} and teleports to an unoccupied space it can see within {@quantity 30|feet} of itself. The seeker remains {@condition invisible} until the start of its next turn or until immediately after the seeker makes an attack roll, whichever comes first."
 					]
 				}
 			],
@@ -812,8 +812,8 @@
 				"perception": "+7"
 			},
 			"senses": [
-				"darkvision 60 ft.",
-				"truesight 5 ft."
+				"darkvision {@quantity 60|ft.}",
+				"truesight {@quantity 5|ft.}"
 			],
 			"passive": 17,
 			"conditionImmune": [
@@ -861,7 +861,7 @@
 				{
 					"name": "Mirage Flare",
 					"entries": [
-						"{@atk ms,rs} {@hit 6} to hit, reach 5 ft. or range 60 ft., one target. {@h}11 ({@damage 2d6 + 4}) radiant damage, and the target must succeed on a {@dc 14} Wisdom saving throw or be {@condition charmed} by the veil keeper until the start of the veil keeper's next turn. While {@condition charmed} in this way, a creature is {@condition incapacitated} as it is beset by hypnotic, illusory visions."
+						"{@atk ms,rs} {@hit 6} to hit, reach {@quantity 5|ft.} or range {@quantity 60|ft.}, one target. {@h}11 ({@damage 2d6 + 4}) radiant damage, and the target must succeed on a {@dc 14} Wisdom saving throw or be {@condition charmed} by the veil keeper until the start of the veil keeper's next turn. While {@condition charmed} in this way, a creature is {@condition incapacitated} as it is beset by hypnotic, illusory visions."
 					]
 				},
 				{
@@ -881,7 +881,7 @@
 				{
 					"name": "Obscuring Mist",
 					"entries": [
-						"If a creature that the veil keeper can see within 30 feet of itself is targeted by an attack, the veil keeper surrounds the creature with illusory mist, granting the creature {@quickref Cover||3||half cover} until the start of the veil keeper's next turn."
+						"If a creature that the veil keeper can see within {@quantity 30|feet} of itself is targeted by an attack, the veil keeper surrounds the creature with illusory mist, granting the creature {@quickref Cover||3||half cover} until the start of the veil keeper's next turn."
 					]
 				}
 			],
@@ -969,7 +969,7 @@
 				"perception": "+2"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 12,
 			"languages": [
@@ -995,13 +995,13 @@
 				{
 					"name": "Flying Fangtrap",
 					"entries": [
-						"{@atk mw,rw} {@hit 5} to hit, reach 5 ft. or range 60 ft., one target. {@h}8 ({@damage 1d10 + 3}) piercing damage, and the creature must succeed on a {@dc 14} Dexterity saving throw or have its speed reduced to 0 until the start of the inventor's next turn."
+						"{@atk mw,rw} {@hit 5} to hit, reach {@quantity 5|ft.} or range {@quantity 60|ft.}, one target. {@h}8 ({@damage 1d10 + 3}) piercing damage, and the creature must succeed on a {@dc 14} Dexterity saving throw or have its speed reduced to 0 until the start of the inventor's next turn."
 					]
 				},
 				{
 					"name": "Thunderscream Gadget {@recharge 5}",
 					"entries": [
-						"The inventor produces a gadget that emits a screeching wave of sound in a 30-foot cone originating from the inventor. Each creature in that area must make a {@dc 14} Constitution saving throw, taking 10 ({@damage 3d6}) thunder damage on a failed save or half as much damage on a successful one."
+						"The inventor produces a gadget that emits a screeching wave of sound in a {@quantity 30|-foot} cone originating from the inventor. Each creature in that area must make a {@dc 14} Constitution saving throw, taking 10 ({@damage 3d6}) thunder damage on a failed save or half as much damage on a successful one."
 					]
 				}
 			],
@@ -1009,7 +1009,7 @@
 				{
 					"name": "Flash Powder",
 					"entries": [
-						"If the inventor is damaged by a creature it can see within 15 feet of itself, the inventor retaliates by flinging brilliantly explosive powder at the creature. The creature must succeed on a {@dc 14} Dexterity saving throw or be {@condition blinded} until the end of its next turn."
+						"If the inventor is damaged by a creature it can see within {@quantity 15|feet} of itself, the inventor retaliates by flinging brilliantly explosive powder at the creature. The creature must succeed on a {@dc 14} Dexterity saving throw or be {@condition blinded} until the end of its next turn."
 					]
 				}
 			],
@@ -1090,7 +1090,7 @@
 				"perception": "+3"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 13,
 			"languages": [
@@ -1122,7 +1122,7 @@
 				{
 					"name": "Clockwork Claw",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 20 ft., one target. {@h}11 ({@damage 2d6 + 4}) piercing damage, and if the target is a Medium or smaller creature, the target is {@condition grappled} (escape {@dc 15}). Until this grapple ends, the target takes 10 ({@damage 3d6}) piercing damage at the start of each of the mastermind's turns. The mastermind has two claws, each of which can grapple only one target."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 20|ft.}, one target. {@h}11 ({@damage 2d6 + 4}) piercing damage, and if the target is a Medium or smaller creature, the target is {@condition grappled} (escape {@dc 15}). Until this grapple ends, the target takes 10 ({@damage 3d6}) piercing damage at the start of each of the mastermind's turns. The mastermind has two claws, each of which can grapple only one target."
 					]
 				},
 				{
@@ -1134,19 +1134,19 @@
 				{
 					"name": "Chattergrab",
 					"entries": [
-						"Parts of this gadget look like gnashing metal teeth. This gadget hurtles toward a creature the mastermind can see within 60 feet of itself. The creature must succeed on a {@dc 16} Dexterity saving throw or take 31 ({@damage 7d8}) piercing damage and be {@condition incapacitated} until the start of the mastermind's next turn."
+						"Parts of this gadget look like gnashing metal teeth. This gadget hurtles toward a creature the mastermind can see within {@quantity 60|feet} of itself. The creature must succeed on a {@dc 16} Dexterity saving throw or take 31 ({@damage 7d8}) piercing damage and be {@condition incapacitated} until the start of the mastermind's next turn."
 					]
 				},
 				{
 					"name": "Phasmoball",
 					"entries": [
-						"The mastermind launches this gadget to a point the mastermind can see within 30 feet of itself, where the gadget unleashes a cloud of mind-warping gases in a 10-foot-radius sphere. Each creature within the sphere must succeed on a {@dc 16} Wisdom saving throw or take 11 ({@damage 2d10}) psychic damage and be {@condition frightened} of the mastermind until the start of the mastermind's next turn."
+						"The mastermind launches this gadget to a point the mastermind can see within {@quantity 30|feet} of itself, where the gadget unleashes a cloud of mind-warping gases in a {@quantity 10|-foot}-radius sphere. Each creature within the sphere must succeed on a {@dc 16} Wisdom saving throw or take 11 ({@damage 2d10}) psychic damage and be {@condition frightened} of the mastermind until the start of the mastermind's next turn."
 					]
 				},
 				{
 					"name": "Thunderscream",
 					"entries": [
-						"This gadget emits a screeching wave of sound in a 30-foot cone originating from the mastermind. Each creature in that area must make a {@dc 16} Constitution saving throw, taking 21 ({@damage 6d6}) thunder damage on a failed save or half as much damage on a successful one."
+						"This gadget emits a screeching wave of sound in a {@quantity 30|-foot} cone originating from the mastermind. Each creature in that area must make a {@dc 16} Constitution saving throw, taking 21 ({@damage 6d6}) thunder damage on a failed save or half as much damage on a successful one."
 					]
 				}
 			],
@@ -1248,7 +1248,7 @@
 				{
 					"name": "Pack Tactics",
 					"entries": [
-						"The hunter has advantage on an attack roll against a creature if at least one of the hunter's allies is within 5 feet of the creature and the ally isn't {@condition incapacitated}."
+						"The hunter has advantage on an attack roll against a creature if at least one of the hunter's allies is within {@quantity 5|feet} of the creature and the ally isn't {@condition incapacitated}."
 					]
 				}
 			],
@@ -1262,13 +1262,13 @@
 				{
 					"name": "Bone Harpoon",
 					"entries": [
-						"{@atk mw,rw} {@hit 6} to hit, reach 10 ft. or range 20/60 ft., one target. {@h}8 ({@damage 1d8 + 4}) piercing damage. Hit or Miss: The harpoon returns to the hunter's hand."
+						"{@atk mw,rw} {@hit 6} to hit, reach {@quantity 10|ft.} or range {@quantity 20/60|ft.}, one target. {@h}8 ({@damage 1d8 + 4}) piercing damage. Hit or Miss: The harpoon returns to the hunter's hand."
 					]
 				},
 				{
 					"name": "Tusk",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d4 + 4}) slashing damage."
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 5|ft.}, one target. {@h}6 ({@damage 1d4 + 4}) slashing damage."
 					]
 				}
 			],
@@ -1335,7 +1335,7 @@
 				"con": "+6"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 9,
 			"conditionImmune": [
@@ -1357,13 +1357,13 @@
 				{
 					"name": "Controlled Fall",
 					"entries": [
-						"If the draconian falls and isn't {@condition incapacitated}, it subtracts up to 50 feet from the fall when calculating the fall's damage."
+						"If the draconian falls and isn't {@condition incapacitated}, it subtracts up to {@quantity 50|feet} from the fall when calculating the fall's damage."
 					]
 				},
 				{
 					"name": "Death Throes",
 					"entries": [
-						"If the draconian is reduced to 0 hit points, its body erupts into sludge that fills a 10-foot-radius sphere. Each creature within that area must succeed on a {@dc 14} Dexterity saving throw or be covered in the sludge for 1 minute. While covered in the sludge, a creature's speed is halved. A creature can use its action to scrape the sludge off itself or another creature within 5 feet of itself."
+						"If the draconian is reduced to 0 hit points, its body erupts into sludge that fills a {@quantity 10|-foot}-radius sphere. Each creature within that area must succeed on a {@dc 14} Dexterity saving throw or be covered in the sludge for 1 minute. While covered in the sludge, a creature's speed is halved. A creature can use its action to scrape the sludge off itself or another creature within {@quantity 5|feet} of itself."
 					]
 				}
 			],
@@ -1377,7 +1377,7 @@
 				{
 					"name": "Claw",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 10 ft., one target. {@h}14 ({@damage 2d8 + 5}) slashing damage."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 10|ft.}, one target. {@h}14 ({@damage 2d8 + 5}) slashing damage."
 					]
 				},
 				{
@@ -1391,7 +1391,7 @@
 				{
 					"name": "Violent Retaliation",
 					"entries": [
-						"If a creature within 10 feet of the draconian hits it with an attack, the draconian can make one Claw attack against that creature. If the Claw attack hits, it deals an additional 4 ({@damage 1d8}) slashing damage."
+						"If a creature within {@quantity 10|feet} of the draconian hits it with an attack, the draconian can make one Claw attack against that creature. If the Claw attack hits, it deals an additional 4 ({@damage 1d8}) slashing damage."
 					]
 				}
 			],
@@ -1476,7 +1476,7 @@
 				"religion": "+9"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 26,
 			"immune": [
@@ -1521,7 +1521,7 @@
 				{
 					"name": "Draconic Command",
 					"entries": [
-						"Whenever a Dragon or a creature with the Draconic Devotion trait within 30 feet of Verminaard makes an attack roll, the creature can roll a {@dice d4} and add the number rolled to the attack roll."
+						"Whenever a Dragon or a creature with the Draconic Devotion trait within {@quantity 30|feet} of Verminaard makes an attack roll, the creature can roll a {@dice d4} and add the number rolled to the attack roll."
 					]
 				},
 				{
@@ -1547,13 +1547,13 @@
 				{
 					"name": "Nightbringer",
 					"entries": [
-						"{@atk mw} {@hit 15} to hit, reach 5 ft., one target. {@h}12 ({@damage 1d6 + 9}) bludgeoning damage plus 10 ({@damage 4d4}) radiant damage. If the target is a creature, the target must succeed on a {@dc 20} Constitution saving throw or be {@condition blinded} until the start of Verminaard's next turn."
+						"{@atk mw} {@hit 15} to hit, reach {@quantity 5|ft.}, one target. {@h}12 ({@damage 1d6 + 9}) bludgeoning damage plus 10 ({@damage 4d4}) radiant damage. If the target is a creature, the target must succeed on a {@dc 20} Constitution saving throw or be {@condition blinded} until the start of Verminaard's next turn."
 					]
 				},
 				{
 					"name": "Malediction",
 					"entries": [
-						"Verminaard utters an unholy word, causing profane fire to descend on one creature Verminaard can see within 60 feet of himself. The creature must make a {@dc 18} Dexterity saving throw, taking 11 ({@damage 2d10}) necrotic damage plus 11 ({@damage 2d10}) radiant damage on a failed save or half as much damage on a successful one."
+						"Verminaard utters an unholy word, causing profane fire to descend on one creature Verminaard can see within {@quantity 60|feet} of himself. The creature must make a {@dc 18} Dexterity saving throw, taking 11 ({@damage 2d10}) necrotic damage plus 11 ({@damage 2d10}) radiant damage on a failed save or half as much damage on a successful one."
 					]
 				}
 			],
@@ -1561,7 +1561,7 @@
 				{
 					"name": "Dragon Queen's Favor (5/Day)",
 					"entries": [
-						"Verminaard or one creature he can see within 60 feet of himself magically regains 17 ({@dice 2d12 + 4}) hit points."
+						"Verminaard or one creature he can see within {@quantity 60|feet} of himself magically regains 17 ({@dice 2d12 + 4}) hit points."
 					]
 				}
 			],

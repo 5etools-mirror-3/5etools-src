@@ -36,7 +36,7 @@
 			"wis": 10,
 			"cha": 6,
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 10,
 			"languages": [
@@ -54,7 +54,7 @@
 				{
 					"name": "Whispering Aura (Mind Flayer Only)",
 					"entries": [
-						"At the start of each of the spirit's turns, the spirit emits psionic energy if it doesn't have the {@condition Incapacitated|XPHB} condition. Wisdom Saving Throw: DC equals your spell save DC, each creature (other than you) within 5 feet of the spirit. {@actSaveFail} {@damage 2d6} Psychic damage."
+						"At the start of each of the spirit's turns, the spirit emits psionic energy if it doesn't have the {@condition Incapacitated|XPHB} condition. Wisdom Saving Throw: DC equals your spell save DC, each creature (other than you) within {@quantity 5|feet} of the spirit. {@actSaveFail} {@damage 2d6} Psychic damage."
 					]
 				}
 			],
@@ -68,19 +68,19 @@
 				{
 					"name": "Claw (Slaad Only)",
 					"entries": [
-						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. {@h}{@damage 1d10 + 3 + summonSpellLevel} Slashing damage, and the target can't regain Hit Points until the start of the spirit's next turn."
+						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}. {@h}{@damage 1d10 + 3 + summonSpellLevel} Slashing damage, and the target can't regain Hit Points until the start of the spirit's next turn."
 					]
 				},
 				{
 					"name": "Eye Ray (Beholderkin Only)",
 					"entries": [
-						"{@atkr r} {@hitYourSpellAttack Bonus equals your spell attack modifier}, range 150 ft. {@h}{@damage 1d8 + 3 + summonSpellLevel} Psychic damage."
+						"{@atkr r} {@hitYourSpellAttack Bonus equals your spell attack modifier}, range {@quantity 150|ft}. {@h}{@damage 1d8 + 3 + summonSpellLevel} Psychic damage."
 					]
 				},
 				{
 					"name": "Psychic Slam (Mind Flayer Only)",
 					"entries": [
-						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. {@h}{@damage 1d8 + 3 + summonSpellLevel} Psychic damage."
+						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}. {@h}{@damage 1d8 + 3 + summonSpellLevel} Psychic damage."
 					]
 				}
 			],
@@ -278,7 +278,7 @@
 			"wis": 3,
 			"cha": 1,
 			"senses": [
-				"blindsight 30 ft."
+				"blindsight {@quantity 30|ft.}"
 			],
 			"passive": 6,
 			"languages": [
@@ -289,7 +289,7 @@
 				{
 					"name": "Slam",
 					"entries": [
-						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. {@h}Force damage equal to {@damage 1d4 + 3} + your spellcasting ability modifier (Medium or smaller), {@damage 2d6 + 3} + your spellcasting ability modifier (Large), or {@damage 2d12 + 3} + your spellcasting ability modifier (Huge)."
+						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}. {@h}Force damage equal to {@damage 1d4 + 3} + your spellcasting ability modifier (Medium or smaller), {@damage 2d6 + 3} + your spellcasting ability modifier (Large), or {@damage 2d12 + 3} + your spellcasting ability modifier (Huge)."
 					]
 				}
 			],
@@ -312,7 +312,7 @@
 						{
 							"name": "Slam",
 							"entries": [
-								"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. {@h}Force damage equal to {@damage 2d12 + 3} + your spellcasting ability modifier."
+								"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}. {@h}Force damage equal to {@damage 2d12 + 3} + your spellcasting ability modifier."
 							]
 						}
 					]
@@ -327,7 +327,7 @@
 						{
 							"name": "Slam",
 							"entries": [
-								"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. {@h}Force damage equal to {@damage 2d6 + 3} + your spellcasting ability modifier."
+								"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}. {@h}Force damage equal to {@damage 2d6 + 3} + your spellcasting ability modifier."
 							]
 						}
 					]
@@ -342,7 +342,7 @@
 						{
 							"name": "Slam",
 							"entries": [
-								"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. {@h}Force damage equal to {@damage 1d4 + 3} + your spellcasting ability modifier."
+								"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}. {@h}Force damage equal to {@damage 1d4 + 3} + your spellcasting ability modifier."
 							]
 						}
 					]
@@ -399,13 +399,13 @@
 				{
 					"name": "Fist",
 					"entries": [
-						"{@atkr m} {@hit 5}, reach 5 ft. {@h}5 ({@damage 1d4 + 3}) Bludgeoning damage."
+						"{@atkr m} {@hit 5}, reach {@quantity 5|ft}. {@h}5 ({@damage 1d4 + 3}) Bludgeoning damage."
 					]
 				},
 				{
 					"name": "Rock {@recharge}",
 					"entries": [
-						"{@atkr r} {@hit 5}, range 25/50 ft. {@h}10 ({@damage 2d6 + 3}) Bludgeoning damage."
+						"{@atkr r} {@hit 5}, range {@quantity 25/50|ft}. {@h}10 ({@damage 2d6 + 3}) Bludgeoning damage."
 					]
 				}
 			],
@@ -464,7 +464,7 @@
 				"perception": "+3"
 			},
 			"senses": [
-				"darkvision 30 ft."
+				"darkvision {@quantity 30|ft.}"
 			],
 			"passive": 13,
 			"resist": [
@@ -478,7 +478,7 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atkr m} {@hit 2}, reach 5 ft. {@h}1 Piercing damage."
+						"{@atkr m} {@hit 2}, reach {@quantity 5|ft}. {@h}1 Piercing damage."
 					]
 				}
 			],
@@ -533,7 +533,7 @@
 			"wis": 12,
 			"cha": 4,
 			"senses": [
-				"blindsight 60 ft."
+				"blindsight {@quantity 60|ft.}"
 			],
 			"passive": 11,
 			"cr": "0",
@@ -541,7 +541,7 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atkr m} {@hit 4} to hit, reach 5 ft. {@h}1 Piercing damage."
+						"{@atkr m} {@hit 4} to hit, reach {@quantity 5|ft}. {@h}1 Piercing damage."
 					]
 				}
 			],
@@ -592,7 +592,7 @@
 			"wis": 14,
 			"cha": 11,
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 12,
 			"languages": [
@@ -611,7 +611,7 @@
 				{
 					"name": "Beast's Strike",
 					"entries": [
-						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. {@h}{@dice 1d8 + 2} plus your Wisdom modifier Bludgeoning, Piercing, or Slashing damage (your choice when you summon the beast). If the beast moved at least 20 feet straight toward the target before the hit, the target takes an extra {@damage 1d6} damage of the same type, and the target has the {@condition Prone|XPHB} condition if it is a Large or smaller creature."
+						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}. {@h}{@dice 1d8 + 2} plus your Wisdom modifier Bludgeoning, Piercing, or Slashing damage (your choice when you summon the beast). If the beast moved at least {@quantity 20|feet} straight toward the target before the hit, the target takes an extra {@damage 1d6} damage of the same type, and the target has the {@condition Prone|XPHB} condition if it is a Large or smaller creature."
 					]
 				}
 			],
@@ -655,7 +655,7 @@
 			"wis": 14,
 			"cha": 11,
 			"senses": [
-				"darkvision 90 ft."
+				"darkvision {@quantity 90|ft.}"
 			],
 			"passive": 12,
 			"languages": [
@@ -680,7 +680,7 @@
 				{
 					"name": "Beast's Strike",
 					"entries": [
-						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. {@h}{@dice 1d6 + 2} plus your Wisdom modifier Bludgeoning or Piercing damage (your choice when you summon the beast), and the target has the {@condition Grappled|XPHB} condition (escape DC equals your spell save DC)."
+						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}. {@h}{@dice 1d6 + 2} plus your Wisdom modifier Bludgeoning or Piercing damage (your choice when you summon the beast), and the target has the {@condition Grappled|XPHB} condition (escape DC equals your spell save DC)."
 					]
 				}
 			],
@@ -727,7 +727,7 @@
 			"wis": 14,
 			"cha": 11,
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 12,
 			"languages": [
@@ -752,7 +752,7 @@
 				{
 					"name": "Beast's Strike",
 					"entries": [
-						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. {@h}{@dice 1d4 + 3} plus your Wisdom modifier Slashing damage."
+						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}. {@h}{@dice 1d4 + 3} plus your Wisdom modifier Slashing damage."
 					]
 				}
 			],
@@ -808,7 +808,7 @@
 			"wis": 14,
 			"cha": 5,
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 12,
 			"languages": [
@@ -825,7 +825,7 @@
 				{
 					"name": "Pack Tactics (Land and Water Only)",
 					"entries": [
-						"The spirit has Advantage on an attack roll against a creature if at least one of the spirit's allies is within 5 feet of the creature and the ally doesn't have the {@condition Incapacitated|XPHB} condition."
+						"The spirit has Advantage on an attack roll against a creature if at least one of the spirit's allies is within {@quantity 5|feet} of the creature and the ally doesn't have the {@condition Incapacitated|XPHB} condition."
 					]
 				},
 				{
@@ -845,7 +845,7 @@
 				{
 					"name": "Rend",
 					"entries": [
-						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. {@h}{@damage 1d8 + 4 + summonSpellLevel} Piercing damage."
+						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}. {@h}{@damage 1d8 + 4 + summonSpellLevel} Piercing damage."
 					]
 				}
 			],
@@ -1003,7 +1003,7 @@
 				"perception": "+5"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 15,
 			"cr": "1/2",
@@ -1017,7 +1017,7 @@
 				{
 					"name": "Rend",
 					"entries": [
-						"{@atkr m} {@hit 4}, reach 5 ft. {@h}5 ({@damage 1d6 + 2}) Slashing damage."
+						"{@atkr m} {@hit 4}, reach {@quantity 5|ft}. {@h}5 ({@damage 1d6 + 2}) Slashing damage."
 					]
 				}
 			],
@@ -1087,7 +1087,7 @@
 				{
 					"name": "Gore",
 					"entries": [
-						"{@atkr m} {@hit 3}, reach 5 ft. {@h}4 ({@damage 1d6 + 1}) Piercing damage. If the boar moved at least 20 feet straight toward the target immediately before the hit, the target takes an extra 3 ({@damage 1d6}) Piercing damage and, if it is Large or smaller, has the {@condition Prone|XPHB} condition."
+						"{@atkr m} {@hit 3}, reach {@quantity 5|ft}. {@h}4 ({@damage 1d6 + 1}) Piercing damage. If the boar moved at least {@quantity 20|feet} straight toward the target immediately before the hit, the target takes an extra 3 ({@damage 1d6}) Piercing damage and, if it is Large or smaller, has the {@condition Prone|XPHB} condition."
 					]
 				}
 			],
@@ -1145,7 +1145,7 @@
 				"perception": "+3"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 13,
 			"languages": [
@@ -1162,13 +1162,13 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atkr m} {@hit 5}, reach 5 ft. {@h}7 ({@damage 1d8 + 3}) Piercing damage."
+						"{@atkr m} {@hit 5}, reach {@quantity 5|ft}. {@h}7 ({@damage 1d8 + 3}) Piercing damage."
 					]
 				},
 				{
 					"name": "Claw",
 					"entries": [
-						"{@atkr m} {@hit 5}, reach 5 ft. {@h}5 ({@damage 1d4 + 3}) Slashing damage, and the target has the {@condition Prone|XPHB} condition if it is Huge or smaller."
+						"{@atkr m} {@hit 5}, reach {@quantity 5|ft}. {@h}5 ({@damage 1d4 + 3}) Slashing damage, and the target has the {@condition Prone|XPHB} condition if it is Huge or smaller."
 					]
 				}
 			],
@@ -1229,7 +1229,7 @@
 			"wis": 11,
 			"cha": 5,
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 10,
 			"cr": "1/8",
@@ -1237,7 +1237,7 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atkr m} {@hit 4}, reach 5 ft. {@h}4 ({@damage 1d4 + 2}) Bludgeoning damage."
+						"{@atkr m} {@hit 4}, reach {@quantity 5|ft}. {@h}4 ({@damage 1d4 + 2}) Bludgeoning damage."
 					]
 				}
 			],
@@ -1299,7 +1299,7 @@
 				"stealth": "+4"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 13,
 			"cr": "0",
@@ -1315,7 +1315,7 @@
 				{
 					"name": "Scratch",
 					"entries": [
-						"{@atkr m} {@hit 4}, reach 5 ft. {@h}1 Slashing damage."
+						"{@atkr m} {@hit 4}, reach {@quantity 5|ft}. {@h}1 Slashing damage."
 					]
 				}
 			],
@@ -1367,7 +1367,7 @@
 			"wis": 14,
 			"cha": 16,
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 12,
 			"resist": [
@@ -1392,13 +1392,13 @@
 				{
 					"name": "Radiant Bow (Avenger Only)",
 					"entries": [
-						"{@atkr r} {@hitYourSpellAttack Bonus equals your spell attack modifier}, range 600 ft. {@h}{@damage 2d6 + 2 + summonSpellLevel} Radiant damage."
+						"{@atkr r} {@hitYourSpellAttack Bonus equals your spell attack modifier}, range {@quantity 600|ft}. {@h}{@damage 2d6 + 2 + summonSpellLevel} Radiant damage."
 					]
 				},
 				{
 					"name": "Radiant Mace (Defender Only)",
 					"entries": [
-						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. {@h}{@damage 1d10 + 3 + summonSpellLevel} Radiant damage, and the spirit can choose itself or another creature it can see within 10 feet of the target. The chosen creature gains {@dice 1d10} Temporary Hit Points."
+						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}. {@h}{@damage 1d10 + 3 + summonSpellLevel} Radiant damage, and the spirit can choose itself or another creature it can see within {@quantity 10|feet} of the target. The chosen creature gains {@dice 1d10} Temporary Hit Points."
 					]
 				},
 				{
@@ -1519,7 +1519,7 @@
 				"stealth": "+4"
 			},
 			"senses": [
-				"blindsight 10 ft."
+				"blindsight {@quantity 10|ft.}"
 			],
 			"passive": 12,
 			"cr": "1/4",
@@ -1527,13 +1527,13 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atkr m} {@hit 4}, reach 5 ft. {@h}6 ({@damage 1d8 + 2}) Piercing damage."
+						"{@atkr m} {@hit 4}, reach {@quantity 5|ft}. {@h}6 ({@damage 1d8 + 2}) Piercing damage."
 					]
 				},
 				{
 					"name": "Constrict",
 					"entries": [
-						"{@actSave str} {@dc 12}, one Medium or smaller creature the snake can see within 5 feet. {@actSaveFail} 7 ({@damage 3d4}) Bludgeoning damage, and the target has the {@condition Grappled|XPHB} condition (escape {@dc 12})."
+						"{@actSave str} {@dc 12}, one Medium or smaller creature the snake can see within {@quantity 5|feet}. {@actSaveFail} 7 ({@damage 3d4}) Bludgeoning damage, and the target has the {@condition Grappled|XPHB} condition (escape {@dc 12})."
 					]
 				}
 			],
@@ -1590,7 +1590,7 @@
 			"wis": 11,
 			"cha": 5,
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 10,
 			"resist": [
@@ -1617,7 +1617,7 @@
 				{
 					"name": "Stony Lethargy (Stone Only)",
 					"entries": [
-						"When a creature starts its turn within 10 feet of the spirit, the spirit can target it with magical energy if the spirit can see it. Wisdom Saving Throw: DC equals your spell save DC, the target. {@actSaveFail} Until the start of its next turn, the target can't make Opportunity Attacks, and its Speed is halved."
+						"When a creature starts its turn within {@quantity 10|feet} of the spirit, the spirit can target it with magical energy if the spirit can see it. Wisdom Saving Throw: DC equals your spell save DC, the target. {@actSaveFail} Until the start of its next turn, the target can't make Opportunity Attacks, and its Speed is halved."
 					]
 				}
 			],
@@ -1631,7 +1631,7 @@
 				{
 					"name": "Slam",
 					"entries": [
-						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. {@h}{@damage 1d8 + 4 + summonSpellLevel} Bludgeoning damage."
+						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}. {@h}{@damage 1d8 + 4 + summonSpellLevel} Bludgeoning damage."
 					]
 				}
 			],
@@ -1758,7 +1758,7 @@
 				"stealth": "+2"
 			},
 			"senses": [
-				"blindsight 30 ft."
+				"blindsight {@quantity 30|ft.}"
 			],
 			"passive": 9,
 			"cr": "0",
@@ -1774,7 +1774,7 @@
 				{
 					"name": "Claw",
 					"entries": [
-						"{@atkr m} {@hit 2}, reach 5 ft. {@h}1 Bludgeoning damage."
+						"{@atkr m} {@hit 2}, reach {@quantity 5|ft}. {@h}1 Bludgeoning damage."
 					]
 				}
 			],
@@ -1848,7 +1848,7 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atkr m} {@hit 4}, reach 5 ft. {@h}6 ({@damage 1d8 + 2}) Piercing damage. If the target is Medium or smaller, it has the {@condition Grappled|XPHB} condition (escape {@dc 12}). While {@condition Grappled|XPHB}, the target has the {@condition Restrained|XPHB} condition."
+						"{@atkr m} {@hit 4}, reach {@quantity 5|ft}. {@h}6 ({@damage 1d8 + 2}) Piercing damage. If the target is Medium or smaller, it has the {@condition Grappled|XPHB} condition (escape {@dc 12}). While {@condition Grappled|XPHB}, the target has the {@condition Restrained|XPHB} condition."
 					]
 				}
 			],
@@ -1910,7 +1910,7 @@
 				"stealth": "+4"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 15,
 			"languages": [
@@ -1921,7 +1921,7 @@
 				{
 					"name": "Pack Tactics",
 					"entries": [
-						"The wolf has Advantage on an attack roll against a creature if at least one of the wolf's allies is within 5 feet of the creature and the ally doesn't have the {@condition Incapacitated|XPHB} condition."
+						"The wolf has Advantage on an attack roll against a creature if at least one of the wolf's allies is within {@quantity 5|feet} of the creature and the ally doesn't have the {@condition Incapacitated|XPHB} condition."
 					]
 				}
 			],
@@ -1929,7 +1929,7 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atkr m} {@hit 5}, reach 5 ft. {@h}8 ({@damage 1d10 + 3}) Piercing damage, and the target has the {@condition Prone|XPHB} condition if it is Huge or smaller."
+						"{@atkr m} {@hit 5}, reach {@quantity 5|ft}. {@h}8 ({@damage 1d10 + 3}) Piercing damage, and the target has the {@condition Prone|XPHB} condition if it is Huge or smaller."
 					]
 				}
 			],
@@ -1988,8 +1988,8 @@
 			"wis": 14,
 			"cha": 14,
 			"senses": [
-				"blindsight 30 ft.",
-				"darkvision 60 ft."
+				"blindsight {@quantity 30|ft.}",
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 12,
 			"resist": [
@@ -2027,13 +2027,13 @@
 				{
 					"name": "Rend",
 					"entries": [
-						"{@atk m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 10 feet. {@h}{@damage 1d6 + 4 + summonSpellLevel} Piercing damage."
+						"{@atk m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 10|feet}. {@h}{@damage 1d6 + 4 + summonSpellLevel} Piercing damage."
 					]
 				},
 				{
 					"name": "Breath Weapon",
 					"entries": [
-						"{@actSave dex} DC equals your spell save DC, each creature in a 30-foot Cone. {@actSaveFail} {@damage 2d6} damage of a type this spirit has Resistance to (your choice when you cast the spell). {@actSaveSuccess} Half damage."
+						"{@actSave dex} DC equals your spell save DC, each creature in a {@quantity 30|-foot} Cone. {@actSaveFail} {@damage 2d6} damage of a type this spirit has Resistance to (your choice when you cast the spell). {@actSaveSuccess} Half damage."
 					]
 				}
 			],
@@ -2089,7 +2089,7 @@
 				{
 					"name": "Hooves",
 					"entries": [
-						"{@atkr m} {@hit 6}, reach 5 ft. {@h}6 ({@damage 1d4 + 4}) Bludgeoning damage."
+						"{@atkr m} {@hit 6}, reach {@quantity 5|ft}. {@h}6 ({@damage 1d4 + 4}) Bludgeoning damage."
 					]
 				}
 			],
@@ -2150,7 +2150,7 @@
 			"wis": 10,
 			"cha": 16,
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 10,
 			"resist": [
@@ -2203,7 +2203,7 @@
 				{
 					"name": "Amorphous Form (Air, Fire, and Water Only)",
 					"entries": [
-						"The spirit can move through a space as narrow as 1 inch wide without it counting as Difficult Terrain."
+						"The spirit can move through a space as narrow as {@quantity 1|inch} wide without it counting as Difficult Terrain."
 					]
 				}
 			],
@@ -2217,7 +2217,7 @@
 				{
 					"name": "Slam",
 					"entries": [
-						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. {@h}{@dice 1d10 + 4 + summonSpellLevel} Bludgeoning (Earth only), Cold (Water only), Lightning (Air only), or Fire (Fire only) damage."
+						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}. {@h}{@dice 1d10 + 4 + summonSpellLevel} Bludgeoning (Earth only), Cold (Water only), Lightning (Air only), or Fire (Fire only) damage."
 					]
 				}
 			],
@@ -2252,7 +2252,7 @@
 							"items": {
 								"name": "Slam",
 								"entries": [
-									"{@atk m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft.. {@h}{@damage 1d10 + 4 + summonSpellLevel} Bludgeoning damage."
+									"{@atk m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}.. {@h}{@damage 1d10 + 4 + summonSpellLevel} Bludgeoning damage."
 								]
 							}
 						}
@@ -2286,7 +2286,7 @@
 							"items": {
 								"name": "Slam",
 								"entries": [
-									"{@atk m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft.. {@h}{@damage 1d10 + 4 + summonSpellLevel} Bludgeoning damage."
+									"{@atk m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}.. {@h}{@damage 1d10 + 4 + summonSpellLevel} Bludgeoning damage."
 								]
 							}
 						}
@@ -2326,7 +2326,7 @@
 							"items": {
 								"name": "Slam",
 								"entries": [
-									"{@atk m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft.. {@h}{@damage 1d10 + 4 + summonSpellLevel} Fire damage."
+									"{@atk m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}.. {@h}{@damage 1d10 + 4 + summonSpellLevel} Fire damage."
 								]
 							}
 						}
@@ -2361,7 +2361,7 @@
 							"items": {
 								"name": "Slam",
 								"entries": [
-									"{@atk m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft.. {@h}{@damage 1d10 + 4 + summonSpellLevel} Bludgeoning damage."
+									"{@atk m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}.. {@h}{@damage 1d10 + 4 + summonSpellLevel} Bludgeoning damage."
 								]
 							}
 						}
@@ -2430,7 +2430,7 @@
 				{
 					"name": "Gore",
 					"entries": [
-						"{@atkr m} {@hit 8}, reach 5 ft. {@h}15 ({@damage 2d8 + 6}) Piercing damage. If the elephant moved at least 20 feet straight toward the target immediately before the hit, the target also has the {@condition Prone|XPHB} condition."
+						"{@atkr m} {@hit 8}, reach {@quantity 5|ft}. {@h}15 ({@damage 2d8 + 6}) Piercing damage. If the elephant moved at least {@quantity 20|feet} straight toward the target immediately before the hit, the target also has the {@condition Prone|XPHB} condition."
 					]
 				}
 			],
@@ -2438,7 +2438,7 @@
 				{
 					"name": "Trample",
 					"entries": [
-						"{@actSave dex} {@dc 16}, one creature within 5 feet that has the {@condition Prone|XPHB} condition. {@actSaveFail} 17 ({@damage 2d10 + 6}) Bludgeoning damage. {@actSaveSuccess} Half damage."
+						"{@actSave dex} {@dc 16}, one creature within {@quantity 5|feet} that has the {@condition Prone|XPHB} condition. {@actSaveFail} 17 ({@damage 2d10 + 6}) Bludgeoning damage. {@actSaveSuccess} Half damage."
 					]
 				}
 			],
@@ -2499,7 +2499,7 @@
 				"perception": "+2"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 12,
 			"cr": "1/4",
@@ -2507,7 +2507,7 @@
 				{
 					"name": "Ram",
 					"entries": [
-						"{@atkr m} {@hit 5}, reach 5 ft. {@h}6 ({@damage 1d6 + 3}) Bludgeoning damage. If the elk moved at least 20 feet straight toward the target immediately before the hit, the target takes an extra 3 ({@damage 1d6}) Bludgeoning damage and, if it is Huge or smaller, has the {@condition Prone|XPHB} condition."
+						"{@atkr m} {@hit 5}, reach {@quantity 5|ft}. {@h}6 ({@damage 1d6 + 3}) Bludgeoning damage. If the elk moved at least {@quantity 20|feet} straight toward the target immediately before the hit, the target takes an extra 3 ({@damage 1d6}) Bludgeoning damage and, if it is Huge or smaller, has the {@condition Prone|XPHB} condition."
 					]
 				}
 			],
@@ -2564,7 +2564,7 @@
 			"wis": 11,
 			"cha": 16,
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 10,
 			"conditionImmune": [
@@ -2585,7 +2585,7 @@
 				{
 					"name": "Fey Blade",
 					"entries": [
-						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. {@h}{@damage 2d6 + 3 + summonSpellLevel} Force damage."
+						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}. {@h}{@damage 2d6 + 3 + summonSpellLevel} Force damage."
 					]
 				}
 			],
@@ -2593,7 +2593,7 @@
 				{
 					"name": "Fey Step",
 					"entries": [
-						"The spirit magically teleports up to 30 feet to an unoccupied space it can see. Then one of the following effects occurs, based on the spirit's chosen mood:",
+						"The spirit magically teleports up to {@quantity 30|feet} to an unoccupied space it can see. Then one of the following effects occurs, based on the spirit's chosen mood:",
 						{
 							"type": "list",
 							"style": "list-hang-notitle",
@@ -2609,14 +2609,14 @@
 									"name": "Mirthful",
 									"type": "item",
 									"entries": [
-										"{@actSave wis} DC equals your spell save DC, one creature the spirit can see within 10 feet of itself. {@actSaveFail} The target is {@condition Charmed|XPHB} by you and the spirit for 1 minute or until the target takes any damage."
+										"{@actSave wis} DC equals your spell save DC, one creature the spirit can see within {@quantity 10|feet} of itself. {@actSaveFail} The target is {@condition Charmed|XPHB} by you and the spirit for 1 minute or until the target takes any damage."
 									]
 								},
 								{
 									"name": "Tricksy",
 									"type": "item",
 									"entries": [
-										"The spirit fills a 10-foot Cube within 5 feet of it with magical Darkness, which lasts until the end of its next turn."
+										"The spirit fills a {@quantity 10|-foot} Cube within {@quantity 5|feet} of it with magical Darkness, which lasts until the end of its next turn."
 									]
 								}
 							]
@@ -2652,7 +2652,7 @@
 						{
 							"name": "Fey Step",
 							"entries": [
-								"The spirit magically teleports up to 30 feet to an unoccupied space it can see. The spirit has Advantage on the next attack roll it makes before the end of this turn."
+								"The spirit magically teleports up to {@quantity 30|feet} to an unoccupied space it can see. The spirit has Advantage on the next attack roll it makes before the end of this turn."
 							]
 						}
 					]
@@ -2664,7 +2664,7 @@
 						{
 							"name": "Fey Step",
 							"entries": [
-								"The spirit magically teleports up to 30 feet to an unoccupied space it can see. {@actSave wis} DC equals your spell save DC, one creature the spirit can see within 10 feet of itself. {@actSaveFail} The target is {@condition Charmed|XPHB} by you and the spirit for 1 minute or until the target takes any damage."
+								"The spirit magically teleports up to {@quantity 30|feet} to an unoccupied space it can see. {@actSave wis} DC equals your spell save DC, one creature the spirit can see within {@quantity 10|feet} of itself. {@actSaveFail} The target is {@condition Charmed|XPHB} by you and the spirit for 1 minute or until the target takes any damage."
 							]
 						}
 					]
@@ -2676,7 +2676,7 @@
 						{
 							"name": "Fey Step",
 							"entries": [
-								"The spirit magically teleports up to 30 feet to an unoccupied space it can see. The spirit fills a 10-foot Cube within 5 feet of it with magical Darkness, which lasts until the end of its next turn."
+								"The spirit magically teleports up to {@quantity 30|feet} to an unoccupied space it can see. The spirit fills a {@quantity 10|-foot} Cube within {@quantity 5|feet} of it with magical Darkness, which lasts until the end of its next turn."
 							]
 						}
 					]
@@ -2722,7 +2722,7 @@
 			"wis": 10,
 			"cha": 16,
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 10,
 			"resist": [
@@ -2737,14 +2737,14 @@
 			"languages": [
 				"Abyssal",
 				"Infernal",
-				"Telepathy 60 ft."
+				"Telepathy {@quantity 60|ft.}"
 			],
 			"pbNote": "equals your Proficiency Bonus",
 			"trait": [
 				{
 					"name": "Death Throes (Demon Only)",
 					"entries": [
-						"When the spirit drops to 0 Hit Points or the spell ends, the spirit explodes. Dexterity Saving Throw: DC equals your spell save DC, each creature in a 10-foot Emanation originating from the spirit. {@actSaveFail} {@dice 2d10} plus this spell's level Fire damage. {@actSaveSuccess} Half damage."
+						"When the spirit drops to 0 Hit Points or the spell ends, the spirit explodes. Dexterity Saving Throw: DC equals your spell save DC, each creature in a {@quantity 10|-foot} Emanation originating from the spirit. {@actSaveFail} {@dice 2d10} plus this spell's level Fire damage. {@actSaveSuccess} Half damage."
 					]
 				},
 				{
@@ -2770,19 +2770,19 @@
 				{
 					"name": "Bite (Demon Only)",
 					"entries": [
-						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. {@h}{@damage 1d12 + 3 + summonSpellLevel} Necrotic damage."
+						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}. {@h}{@damage 1d12 + 3 + summonSpellLevel} Necrotic damage."
 					]
 				},
 				{
 					"name": "Claws (Yugoloth Only)",
 					"entries": [
-						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. {@h}{@damage 1d8 + 3 + summonSpellLevel} Slashing damage. Immediately after the attack hits or misses, the spirit can teleport up to 30 feet to an unoccupied space it can see."
+						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}. {@h}{@damage 1d8 + 3 + summonSpellLevel} Slashing damage. Immediately after the attack hits or misses, the spirit can teleport up to {@quantity 30|feet} to an unoccupied space it can see."
 					]
 				},
 				{
 					"name": "Fiery Strike (Devil Only)",
 					"entries": [
-						"{@atkr m,r} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. or range 150 ft. {@h}{@damage 2d6 + 3 + summonSpellLevel} Fire damage."
+						"{@atkr m,r} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft.} or range {@quantity 150|ft}. {@h}{@damage 2d6 + 3 + summonSpellLevel} Fire damage."
 					]
 				}
 			],
@@ -2988,7 +2988,7 @@
 				"stealth": "+3"
 			},
 			"senses": [
-				"darkvision 30 ft."
+				"darkvision {@quantity 30|ft.}"
 			],
 			"passive": 11,
 			"cr": "0",
@@ -3002,7 +3002,7 @@
 				{
 					"name": "Standing Leap",
 					"entries": [
-						"The frog's Long Jump is up to 10 feet and its High Jump is up to 5 feet with or without a running start."
+						"The frog's Long Jump is up to {@quantity 10|feet} and its High Jump is up to {@quantity 5|feet} with or without a running start."
 					]
 				}
 			],
@@ -3010,7 +3010,7 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atkr m} {@hit 3}, reach 5 ft. {@h}1 Piercing damage."
+						"{@atkr m} {@hit 3}, reach {@quantity 5|ft}. {@h}1 Piercing damage."
 					]
 				}
 			],
@@ -3071,7 +3071,7 @@
 				"perception": "+3"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 13,
 			"resist": [
@@ -3082,7 +3082,7 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atkr m} {@hit 3}, reach 5 ft. {@h}6 ({@damage 2d4 + 1}) Piercing damage."
+						"{@atkr m} {@hit 3}, reach {@quantity 5|ft}. {@h}6 ({@damage 2d4 + 1}) Piercing damage."
 					]
 				}
 			],
@@ -3140,7 +3140,7 @@
 				"stealth": "+3"
 			},
 			"senses": [
-				"blindsight 30 ft."
+				"blindsight {@quantity 30|ft.}"
 			],
 			"passive": 9,
 			"cr": "1/8",
@@ -3156,7 +3156,7 @@
 				{
 					"name": "Claw",
 					"entries": [
-						"{@atkr m} {@hit 3}, reach 5 ft. {@h}4 ({@damage 1d6 + 1}) Bludgeoning damage. If the target is Medium or smaller, it has the {@condition Grappled|XPHB} condition (escape {@dc 11}). The crab has two claws, each of which can grapple one target."
+						"{@atkr m} {@hit 3}, reach {@quantity 5|ft}. {@h}4 ({@damage 1d6 + 1}) Bludgeoning damage. If the target is Medium or smaller, it has the {@condition Grappled|XPHB} condition (escape {@dc 11}). The crab has two claws, each of which can grapple one target."
 					]
 				}
 			],
@@ -3220,7 +3220,7 @@
 				"perception": "+3"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 13,
 			"cr": "1/2",
@@ -3228,7 +3228,7 @@
 				{
 					"name": "Ram",
 					"entries": [
-						"{@atkr m} {@hit 5}, reach 5 ft. {@h}6 ({@damage 1d6 + 3}) Bludgeoning damage. If the goat moved at least 20 feet straight toward the target immediately before the hit, the target takes an extra 5 ({@damage 2d4}) Bludgeoning damage and, if it is Huge or smaller, has the {@condition Prone|XPHB} condition."
+						"{@atkr m} {@hit 5}, reach {@quantity 5|ft}. {@h}6 ({@damage 1d6 + 3}) Bludgeoning damage. If the goat moved at least {@quantity 20|feet} straight toward the target immediately before the hit, the target takes an extra 5 ({@damage 2d4}) Bludgeoning damage and, if it is Huge or smaller, has the {@condition Prone|XPHB} condition."
 					]
 				}
 			],
@@ -3289,7 +3289,7 @@
 			"wis": 14,
 			"cha": 3,
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 12,
 			"languages": [
@@ -3314,13 +3314,13 @@
 				{
 					"name": "Poison Jab",
 					"entries": [
-						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 10 ft. {@h}{@dice 1d6 + 3 + summonSpellLevel} Piercing damage plus {@damage 1d4} Poison damage."
+						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 10|ft}. {@h}{@dice 1d6 + 3 + summonSpellLevel} Piercing damage plus {@damage 1d4} Poison damage."
 					]
 				},
 				{
 					"name": "Web Bolt (Spider Only)",
 					"entries": [
-						"{@atkr r} {@hitYourSpellAttack Bonus equals your spell attack modifier}, range 60 ft. {@h}{@dice 1d10 + 3 + summonSpellLevel} Bludgeoning damage, and the target's Speed is reduced to 0 until the start of the insect's next turn."
+						"{@atkr r} {@hitYourSpellAttack Bonus equals your spell attack modifier}, range {@quantity 60|ft}. {@h}{@dice 1d10 + 3 + summonSpellLevel} Bludgeoning damage, and the target's Speed is reduced to 0 until the start of the insect's next turn."
 					]
 				}
 			],
@@ -3328,7 +3328,7 @@
 				{
 					"name": "Venomous Spew (Centipede Only)",
 					"entries": [
-						"{@actSave con} Your spell save DC, one creature the insect can see within 10 feet. {@actSaveFail} The target has the {@condition Poisoned|XPHB} condition until the start of the insect's next turn."
+						"{@actSave con} Your spell save DC, one creature the insect can see within {@quantity 10|feet}. {@actSaveFail} The target has the {@condition Poisoned|XPHB} condition until the start of the insect's next turn."
 					]
 				}
 			],
@@ -3461,7 +3461,7 @@
 				{
 					"name": "Ram",
 					"entries": [
-						"{@atkr m} {@hit 4}, reach 5 ft. {@h}9 ({@damage 2d6 + 2}) Bludgeoning damage, or the seahorse deals 11 ({@damage 2d8 + 2}) Bludgeoning damage if it moved at least 20 feet straight toward the target immediately before the hit."
+						"{@atkr m} {@hit 4}, reach {@quantity 5|ft}. {@h}9 ({@damage 2d6 + 2}) Bludgeoning damage, or the seahorse deals 11 ({@damage 2d8 + 2}) Bludgeoning damage if it moved at least {@quantity 20|feet} straight toward the target immediately before the hit."
 					]
 				}
 			],
@@ -3524,7 +3524,7 @@
 				"stealth": "+7"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 14,
 			"languages": [
@@ -3549,13 +3549,13 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atkr m} +5 , reach 5 ft. {@h}7 ({@damage 1d8 + 3}) Piercing damage plus 7 ({@damage 2d6}) Poison damage."
+						"{@atkr m} +5 , reach {@quantity 5|ft}. {@h}7 ({@damage 1d8 + 3}) Piercing damage plus 7 ({@damage 2d6}) Poison damage."
 					]
 				},
 				{
 					"name": "Web {@recharge 5}",
 					"entries": [
-						"{@actSave dex} {@dc 13}, one creature the spider can see within 60 feet. {@actSaveFail} The target has the {@condition Restrained|XPHB} condition until the web is destroyed (AC 10; HP 5; Vulnerability to Fire damage; Immunity to Poison and Psychic damage)."
+						"{@actSave dex} {@dc 13}, one creature the spider can see within {@quantity 60|feet}. {@actSaveFail} The target has the {@condition Restrained|XPHB} condition until the web is destroyed (AC 10; HP 5; Vulnerability to Fire damage; Immunity to Poison and Psychic damage)."
 					]
 				}
 			],
@@ -3623,7 +3623,7 @@
 				"stealth": "+5"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 13,
 			"cr": "1/8",
@@ -3631,7 +3631,7 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atkr m} {@hit 5}, reach 5 ft. {@h}5 ({@damage 1d4 + 3}) Piercing damage."
+						"{@atkr m} {@hit 5}, reach {@quantity 5|ft}. {@h}5 ({@damage 1d4 + 3}) Piercing damage."
 					]
 				}
 			],
@@ -3689,7 +3689,7 @@
 				"perception": "+2"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 12,
 			"cr": "0",
@@ -3697,7 +3697,7 @@
 				{
 					"name": "Ram",
 					"entries": [
-						"{@atkr m} {@hit 2} to hit, reach 5 ft. {@h}1 Bludgeoning damage, or the goat deals 2 ({@damage 1d4}) Bludgeoning damage if it moved at least 20 feet straight toward the target immediately before the hit."
+						"{@atkr m} {@hit 2} to hit, reach {@quantity 5|ft}. {@h}1 Bludgeoning damage, or the goat deals 2 ({@damage 1d4}) Bludgeoning damage if it moved at least {@quantity 20|feet} straight toward the target immediately before the hit."
 					]
 				}
 			],
@@ -3763,7 +3763,7 @@
 				{
 					"name": "Talons",
 					"entries": [
-						"{@atkr m} {@hit 5}, reach 5 ft. {@h}1 Slashing damage."
+						"{@atkr m} {@hit 5}, reach {@quantity 5|ft}. {@h}1 Slashing damage."
 					]
 				}
 			],
@@ -3826,7 +3826,7 @@
 				"stealth": "+5"
 			},
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 11,
 			"resist": [
@@ -3879,13 +3879,13 @@
 				{
 					"name": "Sting",
 					"entries": [
-						"{@atkr m} {@hit 5}, reach 5 ft. {@h}6 ({@damage 1d6 + 3}) Piercing damage plus 7 ({@damage 2d6}) Poison damage."
+						"{@atkr m} {@hit 5}, reach {@quantity 5|ft}. {@h}6 ({@damage 1d6 + 3}) Piercing damage plus 7 ({@damage 2d6}) Poison damage."
 					]
 				},
 				{
 					"name": "Change Shape",
 					"entries": [
-						"The imp changes into a form that resembles a rat (Speed 20 ft.), a raven (20 ft., Fly 60 ft.), or a spider (20 ft., Climb 20 ft.), or it returns to its true form. Its statistics are the same in each form, except for its Speed. Any equipment it's wearing or carrying isn't transformed. The imp reverts to its true form if it dies."
+						"The imp changes into a form that resembles a rat (Speed {@quantity 20|ft.}), a raven ({@quantity 20|ft.}, Fly {@quantity 60|ft.}), or a spider ({@quantity 20|ft.}, Climb {@quantity 20|ft.}), or it returns to its true form. Its statistics are the same in each form, except for its Speed. Any equipment it's wearing or carrying isn't transformed. The imp reverts to its true form if it dies."
 					]
 				}
 			],
@@ -3955,7 +3955,7 @@
 				"stealth": "+4"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 13,
 			"cr": "1",
@@ -3963,13 +3963,13 @@
 				{
 					"name": "Pack Tactics",
 					"entries": [
-						"The lion has Advantage on an attack roll against a creature if at least one of the lion's allies is within 5 feet of the creature and the ally doesn't have the {@condition Incapacitated|XPHB} condition."
+						"The lion has Advantage on an attack roll against a creature if at least one of the lion's allies is within {@quantity 5|feet} of the creature and the ally doesn't have the {@condition Incapacitated|XPHB} condition."
 					]
 				},
 				{
 					"name": "Running Leap",
 					"entries": [
-						"With a 10-foot running start, the lion can Long Jump up to 25 feet."
+						"With a {@quantity 10|-foot} running start, the lion can Long Jump up to {@quantity 25|feet}."
 					]
 				}
 			],
@@ -3983,13 +3983,13 @@
 				{
 					"name": "Rend",
 					"entries": [
-						"{@atkr m} {@hit 5}, reach 5 ft. {@h}7 ({@damage 1d8 + 3}) Slashing damage."
+						"{@atkr m} {@hit 5}, reach {@quantity 5|ft}. {@h}7 ({@damage 1d8 + 3}) Slashing damage."
 					]
 				},
 				{
 					"name": "Roar",
 					"entries": [
-						"{@actSave wis} {@dc 11}, one creature within 15 feet. {@actSaveFail} The target has the {@condition Frightened|XPHB} condition until the start of the lion's next turn."
+						"{@actSave wis} {@dc 11}, one creature within {@quantity 15|feet}. {@actSaveFail} The target has the {@condition Frightened|XPHB} condition until the start of the lion's next turn."
 					]
 				}
 			],
@@ -4053,7 +4053,7 @@
 			"wis": 8,
 			"cha": 3,
 			"senses": [
-				"darkvision 30 ft."
+				"darkvision {@quantity 30|ft.}"
 			],
 			"passive": 9,
 			"cr": "0",
@@ -4069,7 +4069,7 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atkr m} {@hit 2}, reach 5 ft. {@h}1 Piercing damage."
+						"{@atkr m} {@hit 2}, reach {@quantity 5|ft}. {@h}1 Piercing damage."
 					]
 				}
 			],
@@ -4131,7 +4131,7 @@
 				"perception": "+5"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 15,
 			"cr": "1/8",
@@ -4139,7 +4139,7 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atkr m} {@hit 3}, reach 5 ft. {@h}4 ({@damage 1d6 + 1}) Piercing damage, and the target has the {@condition Prone|XPHB} condition if it is Large or smaller."
+						"{@atkr m} {@hit 3}, reach {@quantity 5|ft}. {@h}4 ({@damage 1d6 + 1}) Piercing damage, and the target has the {@condition Prone|XPHB} condition if it is Large or smaller."
 					]
 				}
 			],
@@ -4209,7 +4209,7 @@
 				{
 					"name": "Hooves",
 					"entries": [
-						"{@atkr m} {@hit 4}, reach 5 ft. {@h}4 ({@damage 1d4 + 2}) Bludgeoning damage."
+						"{@atkr m} {@hit 4}, reach {@quantity 5|ft}. {@h}4 ({@damage 1d4 + 2}) Bludgeoning damage."
 					]
 				}
 			],
@@ -4268,7 +4268,7 @@
 				"stealth": "+6"
 			},
 			"senses": [
-				"darkvision 30 ft."
+				"darkvision {@quantity 30|ft.}"
 			],
 			"passive": 12,
 			"languages": [
@@ -4279,7 +4279,7 @@
 				{
 					"name": "Compression",
 					"entries": [
-						"The octopus can move through a space as narrow as 1 inch without spending extra movement to do so."
+						"The octopus can move through a space as narrow as {@quantity 1|inch} without spending extra movement to do so."
 					]
 				},
 				{
@@ -4293,7 +4293,7 @@
 				{
 					"name": "Tentacles",
 					"entries": [
-						"{@atkr m} {@hit 4}, reach 5 ft. {@h}1 Bludgeoning damage."
+						"{@atkr m} {@hit 4}, reach {@quantity 5|ft}. {@h}1 Bludgeoning damage."
 					]
 				}
 			],
@@ -4301,7 +4301,7 @@
 				{
 					"name": "Ink Cloud (1/Day)",
 					"entries": [
-						"{@actTrigger} A creature ends its turn within 5 feet of the octopus while underwater. {@actResponse} The octopus releases ink that fills a 5-foot Cube centered on itself, and the octopus moves up to its Swim Speed. The Cube is Heavily Obscured for 1 minute or until a strong current or similar effect disperses the ink."
+						"{@actTrigger} A creature ends its turn within {@quantity 5|feet} of the octopus while underwater. {@actResponse} The octopus releases ink that fills a {@quantity 5|-foot} Cube centered on itself, and the octopus moves up to its Swim Speed. The Cube is Heavily Obscured for 1 minute or until a strong current or similar effect disperses the ink."
 					]
 				}
 			],
@@ -4371,14 +4371,14 @@
 			"cha": 8,
 			"passive": 11,
 			"languages": [
-				"telepathy 1 mile (works only with you)"
+				"telepathy {@quantity 1|mile} (works only with you)"
 			],
 			"pbNote": "equals your Proficiency Bonus",
 			"trait": [
 				{
 					"name": "Life Bond",
 					"entries": [
-						"When you regain Hit Points from a level 1+ spell, the steed regains the same number of Hit Points if you're within 5 feet of it."
+						"When you regain Hit Points from a level 1+ spell, the steed regains the same number of Hit Points if you're within {@quantity 5|feet} of it."
 					]
 				}
 			],
@@ -4386,7 +4386,7 @@
 				{
 					"name": "Otherworldly Slam",
 					"entries": [
-						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. {@h}{@dice 1d8 + summonSpellLevel} of Radiant (Celestial), Psychic (Fey), or Necrotic (Fiend) damage."
+						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}. {@h}{@dice 1d8 + summonSpellLevel} of Radiant (Celestial), Psychic (Fey), or Necrotic (Fiend) damage."
 					]
 				}
 			],
@@ -4394,19 +4394,19 @@
 				{
 					"name": "Fell Glare (Fiend Only; Recharges after a Long Rest)",
 					"entries": [
-						"{@actSave wis} DC equals your spell save DC, one creature within 60 feet the steed can see. {@actSaveFail} The target has the {@condition Frightened|XPHB} condition until the end of your next turn."
+						"{@actSave wis} DC equals your spell save DC, one creature within {@quantity 60|feet} the steed can see. {@actSaveFail} The target has the {@condition Frightened|XPHB} condition until the end of your next turn."
 					]
 				},
 				{
 					"name": "Fey Step (Fey Only; Recharges after a Long Rest)",
 					"entries": [
-						"The steed teleports, along with its rider, to an unoccupied space of your choice up to 60 feet away from itself."
+						"The steed teleports, along with its rider, to an unoccupied space of your choice up to {@quantity 60|feet} away from itself."
 					]
 				},
 				{
 					"name": "Healing Touch (Celestial Only; Recharges after a Long Rest)",
 					"entries": [
-						"One creature within 5 feet of the steed regains a number of Hit Points equal to {@dice 2d8 + summonSpellLevel}."
+						"One creature within {@quantity 5|feet} of the steed regains a number of Hit Points equal to {@dice 2d8 + summonSpellLevel}."
 					]
 				}
 			],
@@ -4461,7 +4461,7 @@
 				"stealth": "+5"
 			},
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 15,
 			"cr": "0",
@@ -4477,7 +4477,7 @@
 				{
 					"name": "Talons",
 					"entries": [
-						"{@atkr m} {@hit 3}, reach 5 ft. {@h}1 Slashing damage."
+						"{@atkr m} {@hit 3}, reach {@quantity 5|ft}. {@h}1 Slashing damage."
 					]
 				}
 			],
@@ -4542,7 +4542,7 @@
 				"stealth": "+6"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 14,
 			"cr": "1/4",
@@ -4556,7 +4556,7 @@
 				{
 					"name": "Pounce",
 					"entries": [
-						"{@atkr m} {@hit 4}, reach 5 ft. {@h}4 ({@damage 1d4 + 2}) Slashing damage, or the panther deals 7 ({@damage 2d4 + 2}) Slashing damage if it had Advantage on the attack roll."
+						"{@atkr m} {@hit 4}, reach {@quantity 5|ft}. {@h}4 ({@damage 1d4 + 2}) Slashing damage, or the panther deals 7 ({@damage 2d4 + 2}) Slashing damage if it had Advantage on the attack roll."
 					]
 				},
 				{
@@ -4626,7 +4626,7 @@
 				{
 					"name": "Hooves",
 					"entries": [
-						"{@atkr m} {@hit 4}, reach 5 ft. {@h}4 ({@damage 1d4 + 2}) Bludgeoning damage."
+						"{@atkr m} {@hit 4}, reach {@quantity 5|ft}. {@h}4 ({@damage 1d4 + 2}) Bludgeoning damage."
 					]
 				}
 			],
@@ -4683,8 +4683,8 @@
 				"stealth": "+4"
 			},
 			"senses": [
-				"blindsight 10 ft.",
-				"darkvision 60 ft."
+				"blindsight {@quantity 10|ft.}",
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 15,
 			"languages": [
@@ -4709,13 +4709,13 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atkr m} {@hit 4}, reach 5 ft. {@h}4 ({@damage 1d4 + 2}) Piercing damage."
+						"{@atkr m} {@hit 4}, reach {@quantity 5|ft}. {@h}4 ({@damage 1d4 + 2}) Piercing damage."
 					]
 				},
 				{
 					"name": "Sting",
 					"entries": [
-						"{@actSave con} {@dc 12}, one creature the pseudodragon can see within 5 feet. {@actSaveFail} 5 ({@damage 2d4}) Poison damage, and the target has the {@condition Poisoned|XPHB} condition for 1 hour. Failure by 5 or More: The {@condition Poisoned|XPHB} target also has the {@condition Unconscious|XPHB} condition until it takes damage or another creature takes an action to shake it awake."
+						"{@actSave con} {@dc 12}, one creature the pseudodragon can see within {@quantity 5|feet}. {@actSaveFail} 5 ({@damage 2d4}) Poison damage, and the target has the {@condition Poisoned|XPHB} condition for 1 hour. Failure by 5 or More: The {@condition Poisoned|XPHB} target also has the {@condition Unconscious|XPHB} condition until it takes damage or another creature takes an action to shake it awake."
 					]
 				}
 			],
@@ -4795,7 +4795,7 @@
 				"stealth": "+5"
 			},
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 10,
 			"resist": [
@@ -4843,19 +4843,19 @@
 				{
 					"name": "Rend",
 					"entries": [
-						"{@atkr m} {@hit 5}, reach 5 ft. {@h}5 ({@damage 1d4 + 3}) Slashing damage, and the target has the {@condition Poisoned|XPHB} condition until the start of the quasit's next turn."
+						"{@atkr m} {@hit 5}, reach {@quantity 5|ft}. {@h}5 ({@damage 1d4 + 3}) Slashing damage, and the target has the {@condition Poisoned|XPHB} condition until the start of the quasit's next turn."
 					]
 				},
 				{
 					"name": "Change Shape",
 					"entries": [
-						"The quasit changes into a form that resembles a bat (Speed 10 ft., Fly 40 ft.), a centipede (40 ft., Climb 40 ft.), or a toad (40 ft., Swim 40 ft.), or it returns to its true form. Its statistics are the same in each form, except for its Speed. Any equipment it's wearing or carrying isn't transformed. The quasit reverts to its true form if it dies."
+						"The quasit changes into a form that resembles a bat (Speed {@quantity 10|ft.}, Fly {@quantity 40|ft.}), a centipede ({@quantity 40|ft.}, Climb {@quantity 40|ft.}), or a toad ({@quantity 40|ft.}, Swim {@quantity 40|ft.}), or it returns to its true form. Its statistics are the same in each form, except for its Speed. Any equipment it's wearing or carrying isn't transformed. The quasit reverts to its true form if it dies."
 					]
 				},
 				{
 					"name": "Scare (1/Day)",
 					"entries": [
-						"{@actSave wis} {@dc 10}, one creature within 20 feet. {@actSaveFail} The target has the {@condition Frightened|XPHB} condition. At the end of each of its turns, the target repeats the save, ending the effect on itself on a success. After 1 minute, it succeeds automatically"
+						"{@actSave wis} {@dc 10}, one creature within {@quantity 20|feet}. {@actSaveFail} The target has the {@condition Frightened|XPHB} condition. At the end of each of its turns, the target repeats the save, ending the effect on itself on a success. After 1 minute, it succeeds automatically"
 					]
 				}
 			],
@@ -4927,7 +4927,7 @@
 				"perception": "+2"
 			},
 			"senses": [
-				"darkvision 30 ft."
+				"darkvision {@quantity 30|ft.}"
 			],
 			"passive": 12,
 			"cr": "0",
@@ -4943,7 +4943,7 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atkr m} {@hit 2}, reach 5 ft. {@h}1 Piercing damage."
+						"{@atkr m} {@hit 2}, reach {@quantity 5|ft}. {@h}1 Piercing damage."
 					]
 				}
 			],
@@ -5017,7 +5017,7 @@
 				{
 					"name": "Beak",
 					"entries": [
-						"{@atkr m} {@hit 4}, reach 5 ft. {@h}1 Piercing damage."
+						"{@atkr m} {@hit 4}, reach {@quantity 5|ft}. {@h}1 Piercing damage."
 					]
 				}
 			],
@@ -5077,7 +5077,7 @@
 				"perception": "+2"
 			},
 			"senses": [
-				"blindsight 30 ft."
+				"blindsight {@quantity 30|ft.}"
 			],
 			"passive": 12,
 			"languages": [
@@ -5088,7 +5088,7 @@
 				{
 					"name": "Pack Tactics",
 					"entries": [
-						"The shark has Advantage on an attack roll against a creature if at least one of the shark's allies is within 5 feet of the creature and the ally doesn't have the {@condition Incapacitated|XPHB} condition."
+						"The shark has Advantage on an attack roll against a creature if at least one of the shark's allies is within {@quantity 5|feet} of the creature and the ally doesn't have the {@condition Incapacitated|XPHB} condition."
 					]
 				},
 				{
@@ -5102,7 +5102,7 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atkr m} {@hit 4}, reach 5 ft. {@h}7 ({@damage 2d4 + 2}) Piercing damage."
+						"{@atkr m} {@hit 4}, reach {@quantity 5|ft}. {@h}7 ({@damage 2d4 + 2}) Piercing damage."
 					]
 				}
 			],
@@ -5165,7 +5165,7 @@
 				{
 					"name": "Hooves",
 					"entries": [
-						"{@atkr m} {@hit 5}, reach 5 ft. {@h}7 ({@damage 1d8 + 3}) Bludgeoning damage."
+						"{@atkr m} {@hit 5}, reach {@quantity 5|ft}. {@h}7 ({@damage 1d8 + 3}) Bludgeoning damage."
 					]
 				}
 			],
@@ -5216,7 +5216,7 @@
 			"wis": 8,
 			"cha": 2,
 			"senses": [
-				"blindsight 10 ft."
+				"blindsight {@quantity 10|ft.}"
 			],
 			"passive": 9,
 			"languages": [
@@ -5227,7 +5227,7 @@
 				{
 					"name": "Sting",
 					"entries": [
-						"{@atkr m} {@hit 2}, reach 5 ft. {@h}1 Piercing damage plus 3 ({@damage 1d6}) Poison damage."
+						"{@atkr m} {@hit 2}, reach {@quantity 5|ft}. {@h}1 Piercing damage plus 3 ({@damage 1d6}) Poison damage."
 					]
 				}
 			],
@@ -5283,7 +5283,7 @@
 			"wis": 8,
 			"cha": 5,
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 9,
 			"immune": [
@@ -5304,13 +5304,13 @@
 				{
 					"name": "Shortsword",
 					"entries": [
-						"{@atkr m} {@hit 5}, reach 5 ft. {@h}6 ({@damage 1d6 + 3}) Piercing damage."
+						"{@atkr m} {@hit 5}, reach {@quantity 5|ft}. {@h}6 ({@damage 1d6 + 3}) Piercing damage."
 					]
 				},
 				{
 					"name": "Shortbow",
 					"entries": [
-						"{@atkr r} {@hit 5}, range 80/320 ft. {@h}6 ({@damage 1d6 + 3}) Piercing damage."
+						"{@atkr r} {@hit 5}, range {@quantity 80/320|ft}. {@h}6 ({@damage 1d6 + 3}) Piercing damage."
 					]
 				}
 			],
@@ -5383,7 +5383,7 @@
 				"stealth": "+4"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 7,
 			"resist": [
@@ -5409,7 +5409,7 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atkr m} {@hit 4}, reach 5 ft. {@h}5 ({@damage 1d6 + 2}) Piercing damage."
+						"{@atkr m} {@hit 4}, reach {@quantity 5|ft}. {@h}5 ({@damage 1d6 + 2}) Piercing damage."
 					]
 				}
 			],
@@ -5477,7 +5477,7 @@
 				"stealth": "+5"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 11,
 			"resist": [
@@ -5502,7 +5502,7 @@
 				{
 					"name": "Rend",
 					"entries": [
-						"{@atkr m} {@hit 5}, reach 5 ft. {@h}5 ({@damage 1d4 + 3}) Slashing damage plus 7 ({@damage 2d6}) Radiant damage."
+						"{@atkr m} {@hit 5}, reach {@quantity 5|ft}. {@h}5 ({@damage 1d4 + 3}) Slashing damage plus 7 ({@damage 2d6}) Radiant damage."
 					]
 				}
 			],
@@ -5510,7 +5510,7 @@
 				{
 					"name": "Burst of Ingenuity (2/Day)",
 					"entries": [
-						"{@actTrigger} The sphinx or another creature within 30 feet makes an ability check or a saving throw. {@actResponse} The sphinx adds 2 to the roll."
+						"{@actTrigger} The sphinx or another creature within {@quantity 30|feet} makes an ability check or a saving throw. {@actResponse} The sphinx adds 2 to the roll."
 					]
 				}
 			],
@@ -5572,7 +5572,7 @@
 				"stealth": "+4"
 			},
 			"senses": [
-				"darkvision 30 ft."
+				"darkvision {@quantity 30|ft.}"
 			],
 			"passive": 10,
 			"cr": "0",
@@ -5594,7 +5594,7 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atkr m} {@hit 4}, reach 5 ft. {@h}1 Piercing damage plus 2 ({@damage 1d4}) Poison damage."
+						"{@atkr m} {@hit 4}, reach {@quantity 5|ft}. {@h}1 Piercing damage plus 2 ({@damage 1d4}) Poison damage."
 					]
 				}
 			],
@@ -5689,19 +5689,19 @@
 				{
 					"name": "Needle Sword",
 					"entries": [
-						"{@atkr m} {@hit 6}, reach 5 ft. {@h}6 ({@damage 1d4 + 4}) Piercing damage."
+						"{@atkr m} {@hit 6}, reach {@quantity 5|ft}. {@h}6 ({@damage 1d4 + 4}) Piercing damage."
 					]
 				},
 				{
 					"name": "Enchanting Bow",
 					"entries": [
-						"{@atkr r} {@hit 6}, range 40/160 ft. {@h}1 Piercing damage, and the target has the {@condition Charmed|XPHB} condition until the start of the sprite's next turn."
+						"{@atkr r} {@hit 6}, range {@quantity 40/160|ft}. {@h}1 Piercing damage, and the target has the {@condition Charmed|XPHB} condition until the start of the sprite's next turn."
 					]
 				},
 				{
 					"name": "Heart Sight",
 					"entries": [
-						"{@actSave cha} {@dc 10}, one creature within 5 feet the sprite can see. Celestials, Fiends, and Undead automatically fail the save. {@actSaveFail} The sprite knows the target's emotions and alignment."
+						"{@actSave cha} {@dc 10}, one creature within {@quantity 5|feet} the sprite can see. Celestials, Fiends, and Undead automatically fail the save. {@actSaveFail} The sprite knows the target's emotions and alignment."
 					]
 				}
 			],
@@ -5765,7 +5765,7 @@
 				"stealth": "+7"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 13,
 			"cr": "1",
@@ -5779,7 +5779,7 @@
 				{
 					"name": "Pounce",
 					"entries": [
-						"{@atkr m} {@hit 5}, reach 5 ft. {@h}6 ({@damage 1d6 + 3}) Slashing damage. If the tiger had Advantage on the attack roll, the target takes an extra 3 ({@damage 1d6}) Slashing damage and, if it is Huge or smaller, has the {@condition Prone|XPHB} condition."
+						"{@atkr m} {@hit 5}, reach {@quantity 5|ft}. {@h}6 ({@damage 1d6 + 3}) Slashing damage. If the tiger had Advantage on the attack roll, the target takes an extra 3 ({@damage 1d6}) Slashing damage and, if it is Huge or smaller, has the {@condition Prone|XPHB} condition."
 					]
 				},
 				{
@@ -5847,7 +5847,7 @@
 			"wis": 10,
 			"cha": 9,
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 10,
 			"immune": [
@@ -5868,13 +5868,13 @@
 				{
 					"name": "Festering Aura (Putrid Only)",
 					"entries": [
-						"{@actSave con} DC equals your spell save DC, any creature (other than you) that starts its turn within a 5-foot Emanation originating from the spirit. {@actSaveFail} The creature has the {@condition Poisoned|XPHB} condition until the start of its next turn."
+						"{@actSave con} DC equals your spell save DC, any creature (other than you) that starts its turn within a {@quantity 5|-foot} Emanation originating from the spirit. {@actSaveFail} The creature has the {@condition Poisoned|XPHB} condition until the start of its next turn."
 					]
 				},
 				{
 					"name": "Incorporeal Passage (Ghostly Only)",
 					"entries": [
-						"The spirit can move through other creatures and objects as if they were Difficult Terrain. If it ends its turn inside an object, it is shunted to the nearest unoccupied space and takes {@damage 1d10} Force damage for every 5 feet traveled."
+						"The spirit can move through other creatures and objects as if they were Difficult Terrain. If it ends its turn inside an object, it is shunted to the nearest unoccupied space and takes {@damage 1d10} Force damage for every {@quantity 5|feet} traveled."
 					]
 				}
 			],
@@ -5888,19 +5888,19 @@
 				{
 					"name": "Deathly Touch (Ghostly Only)",
 					"entries": [
-						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. {@h}{@damage 1d8 + 3 + summonSpellLevel} Necrotic damage, and the target has the {@condition Frightened|XPHB} condition until the end of its next turn."
+						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}. {@h}{@damage 1d8 + 3 + summonSpellLevel} Necrotic damage, and the target has the {@condition Frightened|XPHB} condition until the end of its next turn."
 					]
 				},
 				{
 					"name": "Grave Bolt (Skeletal Only)",
 					"entries": [
-						"{@atkr r} {@hitYourSpellAttack Bonus equals your spell attack modifier}, range 150 ft. {@h}{@damage 2d4 + 3 + summonSpellLevel} Necrotic damage."
+						"{@atkr r} {@hitYourSpellAttack Bonus equals your spell attack modifier}, range {@quantity 150|ft}. {@h}{@damage 2d4 + 3 + summonSpellLevel} Necrotic damage."
 					]
 				},
 				{
 					"name": "Rotting Claw (Putrid Only)",
 					"entries": [
-						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. {@h}{@damage 1d6 + 3 + summonSpellLevel} Slashing damage. If the target has the {@condition Poisoned|XPHB} condition, it has the {@condition Paralyzed|XPHB} condition until the end of its next turn."
+						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}. {@h}{@damage 1d6 + 3 + summonSpellLevel} Slashing damage. If the target has the {@condition Poisoned|XPHB} condition, it has the {@condition Paralyzed|XPHB} condition until the end of its next turn."
 					]
 				}
 			],
@@ -6103,7 +6103,7 @@
 			"wis": 10,
 			"cha": 3,
 			"senses": [
-				"blindsight 10 ft."
+				"blindsight {@quantity 10|ft.}"
 			],
 			"passive": 10,
 			"cr": "1/8",
@@ -6111,7 +6111,7 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atkr m} {@hit 4}, reach 5 ft. {@h}4 ({@damage 1d4 + 2}) Piercing damage plus 3 ({@damage 1d6}) Poison damage."
+						"{@atkr m} {@hit 4}, reach {@quantity 5|ft}. {@h}4 ({@damage 1d4 + 2}) Piercing damage plus 3 ({@damage 1d6}) Poison damage."
 					]
 				}
 			],
@@ -6172,7 +6172,7 @@
 				{
 					"name": "Hooves",
 					"entries": [
-						"{@atkr m} {@hit 6}, reach 5 ft. {@h}9 ({@damage 2d4 + 4}) Bludgeoning damage. If the horse moved at least 20 feet straight toward the target immediately before the hit, the target takes an extra 5 ({@damage 2d4}) Bludgeoning damage and, if it is Huge or smaller, has the {@condition Prone|XPHB} condition."
+						"{@atkr m} {@hit 6}, reach {@quantity 5|ft}. {@h}9 ({@damage 2d4 + 4}) Bludgeoning damage. If the horse moved at least {@quantity 20|feet} straight toward the target immediately before the hit, the target takes an extra 5 ({@damage 2d4}) Bludgeoning damage and, if it is Huge or smaller, has the {@condition Prone|XPHB} condition."
 					]
 				}
 			],
@@ -6228,7 +6228,7 @@
 				"stealth": "+5"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 13,
 			"languages": [
@@ -6239,7 +6239,7 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atkr m} {@hit 5}, reach 5 ft. {@h}1 Piercing damage."
+						"{@atkr m} {@hit 5}, reach {@quantity 5|ft}. {@h}1 Piercing damage."
 					]
 				}
 			],
@@ -6297,7 +6297,7 @@
 				"stealth": "+4"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 15,
 			"cr": "1/4",
@@ -6305,7 +6305,7 @@
 				{
 					"name": "Pack Tactics",
 					"entries": [
-						"The wolf has Advantage on attack rolls against a creature if at least one of the wolf's allies is within 5 feet of the creature and the ally doesn't have the {@condition Incapacitated|XPHB} condition."
+						"The wolf has Advantage on attack rolls against a creature if at least one of the wolf's allies is within {@quantity 5|feet} of the creature and the ally doesn't have the {@condition Incapacitated|XPHB} condition."
 					]
 				}
 			],
@@ -6313,7 +6313,7 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atkr m} {@hit 4}, reach 5 ft. {@h}5 ({@damage 1d6 + 2}) Piercing damage, and the target has the {@condition Prone|XPHB} condition if it is Medium or smaller."
+						"{@atkr m} {@hit 4}, reach {@quantity 5|ft}. {@h}5 ({@damage 1d6 + 2}) Piercing damage, and the target has the {@condition Prone|XPHB} condition if it is Medium or smaller."
 					]
 				}
 			],
@@ -6374,7 +6374,7 @@
 			"wis": 6,
 			"cha": 5,
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 8,
 			"immune": [
@@ -6400,7 +6400,7 @@
 				{
 					"name": "Slam",
 					"entries": [
-						"{@atkr m} {@hit 3}, reach 5 ft. {@h}4 ({@damage 1d6 + 1}) Bludgeoning damage."
+						"{@atkr m} {@hit 3}, reach {@quantity 5|ft}. {@h}4 ({@damage 1d6 + 1}) Bludgeoning damage."
 					]
 				}
 			],

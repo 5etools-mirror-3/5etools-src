@@ -49,7 +49,7 @@
 				"perception": "+7"
 			},
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 17,
 			"resist": [
@@ -86,7 +86,7 @@
 				{
 					"name": "Arcane Leak",
 					"entries": [
-						"When the adranach is reduced to half its hit point maximum (85 hit points), its mithral mask cracks and its arcane form begins to waver, creating a field of unstable magic around it. Any creature that starts its turn within 10 feet of the adranach or enters that area for the first time on a turn takes 10 ({@damage 3d6}) radiant damage. Additionally, if a creature casts a spell within this area, it must make a {@dc 14} ability check using its spellcasting ability. On a failure, the spell backfires, consuming the spell slot and dealing 3 ({@damage 1d6}) force damage to the caster for each level of the spell slot that was consumed."
+						"When the adranach is reduced to half its hit point maximum (85 hit points), its mithral mask cracks and its arcane form begins to waver, creating a field of unstable magic around it. Any creature that starts its turn within {@quantity 10|feet} of the adranach or enters that area for the first time on a turn takes 10 ({@damage 3d6}) radiant damage. Additionally, if a creature casts a spell within this area, it must make a {@dc 14} ability check using its spellcasting ability. On a failure, the spell backfires, consuming the spell slot and dealing 3 ({@damage 1d6}) force damage to the caster for each level of the spell slot that was consumed."
 					]
 				},
 				{
@@ -124,13 +124,13 @@
 				{
 					"name": "Claws",
 					"entries": [
-						"{@atk mw} {@hit 11} to hit, one target, reach 5 ft. {@h}32 ({@damage 4d12 + 6}) slashing damage."
+						"{@atk mw} {@hit 11} to hit, one target, reach {@quantity 5|ft}. {@h}32 ({@damage 4d12 + 6}) slashing damage."
 					]
 				},
 				{
 					"name": "Force Bolts {@recharge 5}",
 					"entries": [
-						"The adranach targets up to four creatures it can see within 60 feet of it. Each target must succeed on a {@dc 18} Dexterity {@quickref saving throws|PHB|2|1|saving throw} or take 28 ({@damage 8d6}) force damage."
+						"The adranach targets up to four creatures it can see within {@quantity 60|feet} of it. Each target must succeed on a {@dc 18} Dexterity {@quickref saving throws|PHB|2|1|saving throw} or take 28 ({@damage 8d6}) force damage."
 					]
 				}
 			],
@@ -159,7 +159,7 @@
 							"name": "Arcane Bond",
 							"page": 224,
 							"entries": [
-								"The adranach's creator can communicate with it telepathically while both are within 1 mile of each other. As an action, the creator can see through the adranach's eyes and hear what it hears until the start of the creator's next turn, gaining the benefits of any special senses the adranach has. During this time, the creator is {@condition deafened} and {@condition blinded} with regard to their own senses."
+								"The adranach's creator can communicate with it telepathically while both are within {@quantity 1|mile} of each other. As an action, the creator can see through the adranach's eyes and hear what it hears until the start of the creator's next turn, gaining the benefits of any special senses the adranach has. During this time, the creator is {@condition deafened} and {@condition blinded} with regard to their own senses."
 							]
 						},
 						{
@@ -310,7 +310,7 @@
 				{
 					"name": "Scimitar",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) slashing damage plus 14 ({@damage 4d6}) fire damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d6 + 2}) slashing damage plus 14 ({@damage 4d6}) fire damage."
 					]
 				},
 				{
@@ -463,7 +463,7 @@
 				{
 					"name": "Skysail",
 					"entries": [
-						"The skydancer flies with a special Ashari magic item called a {@item skysail|TDCSR}. While the {@item skysail|TDCSR|skysail's} wings are extended, the skydancer can glide through the air at a speed of 60 feet, but must descend by at least 10 feet at the end of its turn and can't gain altitude."
+						"The skydancer flies with a special Ashari magic item called a {@item skysail|TDCSR}. While the {@item skysail|TDCSR|skysail's} wings are extended, the skydancer can glide through the air at a speed of {@quantity 60|feet}, but must descend by at least {@quantity 10|feet} at the end of its turn and can't gain altitude."
 					]
 				}
 			],
@@ -477,7 +477,7 @@
 				{
 					"name": "Skysail Staff",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d6 + 4}) bludgeoning damage. If the skydancer makes this attack while flying, the target must make a {@dc 14} Dexterity {@quickref saving throws|PHB|2|1|saving throw}, taking 21 ({@damage 6d6}) lightning damage on a failed save, or half as much damage on a successful one."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 1d6 + 4}) bludgeoning damage. If the skydancer makes this attack while flying, the target must make a {@dc 14} Dexterity {@quickref saving throws|PHB|2|1|saving throw}, taking 21 ({@damage 6d6}) lightning damage on a failed save, or half as much damage on a successful one."
 					]
 				},
 				{
@@ -570,7 +570,7 @@
 				"intimidation": "+2"
 			},
 			"senses": [
-				"tremorsense 30 ft."
+				"tremorsense {@quantity 30|ft.}"
 			],
 			"passive": 12,
 			"resist": [
@@ -636,7 +636,7 @@
 				{
 					"name": "Granite Maul",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}11 ({@damage 2d6 + 4}) bludgeoning damage. If the attack hits, the stoneguard can also immediately cast {@spell thunderwave} as a bonus action. This casting uses a spell slot but requires no components."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}11 ({@damage 2d6 + 4}) bludgeoning damage. If the attack hits, the stoneguard can also immediately cast {@spell thunderwave} as a bonus action. This casting uses a spell slot but requires no components."
 					]
 				}
 			],
@@ -644,7 +644,7 @@
 				{
 					"name": "Sentinel",
 					"entries": [
-						"When a creature within 5 feet of the stoneguard attacks a target other than the stoneguard, the stoneguard can make one attack against that creature."
+						"When a creature within {@quantity 5|feet} of the stoneguard attacks a target other than the stoneguard, the stoneguard can make one attack against that creature."
 					]
 				},
 				{
@@ -812,7 +812,7 @@
 				{
 					"name": "Harpoon",
 					"entries": [
-						"{@atk mw,rw} {@hit 5} to hit, reach 5 ft., range 20/60 ft., one target. {@h}7 ({@damage 1d10 + 2}) piercing damage. If the target is a Large or smaller creature, it must succeed on a Strength contest against the waverider or be pulled up to 20 feet toward the waverider. Attacks with this weapon made while {@quickref Underwater Combat|PHB|3|0|underwater} do not have {@quickref Advantage and Disadvantage|PHB|2|0|disadvantage}."
+						"{@atk mw,rw} {@hit 5} to hit, reach {@quantity 5|ft.}, range {@quantity 20/60|ft.}, one target. {@h}7 ({@damage 1d10 + 2}) piercing damage. If the target is a Large or smaller creature, it must succeed on a Strength contest against the waverider or be pulled up to {@quantity 20|feet} toward the waverider. Attacks with this weapon made while {@quickref Underwater Combat|PHB|3|0|underwater} do not have {@quickref Advantage and Disadvantage|PHB|2|0|disadvantage}."
 					]
 				}
 			],
@@ -908,7 +908,7 @@
 			"wis": 8,
 			"cha": 3,
 			"senses": [
-				"blindsight 60 ft. (blind beyond this radius)"
+				"blindsight {@quantity 60|ft.} (blind beyond this radius)"
 			],
 			"passive": 9,
 			"resist": [
@@ -937,7 +937,7 @@
 				{
 					"name": "Toxic Demise (10th level or higher)",
 					"entries": [
-						"When the creature is reduced to 0 hit points, it explodes in a burst of toxic mulch or fetid viscera. Each creature within 5 feet of the exploding creature must succeed on a Constitution {@quickref saving throws|PHB|2|1|saving throw} against your spell save DC or take necrotic damage based on the creature's challenge rating (see the table below). As an action, you can also cause a summoned creature to explode, immediately killing it.",
+						"When the creature is reduced to 0 hit points, it explodes in a burst of toxic mulch or fetid viscera. Each creature within {@quantity 5|feet} of the exploding creature must succeed on a Constitution {@quickref saving throws|PHB|2|1|saving throw} against your spell save DC or take necrotic damage based on the creature's challenge rating (see the table below). As an action, you can also cause a summoned creature to explode, immediately killing it.",
 						{
 							"type": "table",
 							"caption": "Toxic Demise Damage",
@@ -981,7 +981,7 @@
 				{
 					"name": "Claws",
 					"entries": [
-						"{@atk mw} {@hitYourSpellAttack} to hit, reach 5 ft., one target. {@h} {@damage 2d4 + PB} piercing damage."
+						"{@atk mw} {@hitYourSpellAttack} to hit, reach {@quantity 5|ft.}, one target. {@h} {@damage 2d4 + PB} piercing damage."
 					]
 				}
 			],
@@ -1033,7 +1033,7 @@
 			"wis": 9,
 			"cha": 5,
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 9,
 			"immune": [
@@ -1054,7 +1054,7 @@
 				{
 					"name": "Charge",
 					"entries": [
-						"If the centaur moves at least 30 feet straight toward a target and then hits it with a pike attack on the same turn, the target takes an extra 10 ({@damage 3d6}) piercing damage."
+						"If the centaur moves at least {@quantity 30|feet} straight toward a target and then hits it with a pike attack on the same turn, the target takes an extra 10 ({@damage 3d6}) piercing damage."
 					]
 				}
 			],
@@ -1068,19 +1068,19 @@
 				{
 					"name": "Pike",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 10 ft., one target. {@h}8 ({@damage 1d10 + 3}) piercing damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 10|ft.}, one target. {@h}8 ({@damage 1d10 + 3}) piercing damage."
 					]
 				},
 				{
 					"name": "Hooves",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}10 ({@damage 2d6 + 3}) bludgeoning damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}10 ({@damage 2d6 + 3}) bludgeoning damage."
 					]
 				},
 				{
 					"name": "Longbow",
 					"entries": [
-						"{@atk rw} {@hit 4} to hit, range 150/600 ft., one target. {@h}6 ({@damage 1d8 + 2}) piercing damage."
+						"{@atk rw} {@hit 4} to hit, range {@quantity 150/600|ft.}, one target. {@h}6 ({@damage 1d8 + 2}) piercing damage."
 					]
 				}
 			],
@@ -1101,7 +1101,7 @@
 							"name": "Spirit Away",
 							"page": 256,
 							"entries": [
-								"The centaur skeleton and up to three creatures within 5 feet of it magically enter the Ethereal Plane from the Material Plane, or vice versa. An unwilling creature that succeeds on a {@dc 13} Charisma {@quickref saving throws|PHB|2|1|saving throw} can resist this effect."
+								"The centaur skeleton and up to three creatures within {@quantity 5|feet} of it magically enter the Ethereal Plane from the Material Plane, or vice versa. An unwilling creature that succeeds on a {@dc 13} Charisma {@quickref saving throws|PHB|2|1|saving throw} can resist this effect."
 							]
 						}
 					]
@@ -1197,7 +1197,7 @@
 				"stealth": "+19"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 26,
 			"resist": [
@@ -1259,7 +1259,7 @@
 				{
 					"name": "Aura of Protection",
 					"entries": [
-						"While the Champion is conscious, he and friendly creatures within 10 feet of him have a +3 bonus to {@quickref saving throws|PHB|2|1} (included above)."
+						"While the Champion is conscious, he and friendly creatures within {@quantity 10|feet} of him have a +3 bonus to {@quickref saving throws|PHB|2|1} (included above)."
 					]
 				},
 				{
@@ -1309,13 +1309,13 @@
 				{
 					"name": "Whisper",
 					"entries": [
-						"{@atk mw,rw} {@hit 15} to hit, reach 5 ft. or range 60 ft., one target. {@h}10 ({@damage 1d4 + 8}) piercing damage plus 4 ({@damage 1d8}) psychic damage. On a critical hit, the target must succeed on a {@dc 18} Wisdom {@quickref saving throws|PHB|2|1|saving throw} or be {@condition frightened} of the Champion for 1 minute. On a ranged attack, the Champion can teleport with {@item Whisper (Exalted)|TDCSR|Whisper}, appearing within 5 feet of the target on a hit, or in a random space within 30 feet of the target on a miss."
+						"{@atk mw,rw} {@hit 15} to hit, reach {@quantity 5|ft.} or range {@quantity 60|ft.}, one target. {@h}10 ({@damage 1d4 + 8}) piercing damage plus 4 ({@damage 1d8}) psychic damage. On a critical hit, the target must succeed on a {@dc 18} Wisdom {@quickref saving throws|PHB|2|1|saving throw} or be {@condition frightened} of the Champion for 1 minute. On a ranged attack, the Champion can teleport with {@item Whisper (Exalted)|TDCSR|Whisper}, appearing within {@quantity 5|feet} of the target on a hit, or in a random space within {@quantity 30|feet} of the target on a miss."
 					]
 				},
 				{
 					"name": "Touch of Life and Death (Recharges after a {@quickref resting|PHB|2|0|Short or Long Rest})",
 					"entries": [
-						"The Champion touches a creature within 5 feet of him, and chooses to either heal or harm that creature, restoring 55 ({@dice 10d10}) hit points or dealing 55 ({@damage 10d10}) necrotic damage. If the creature is an unwilling target, it can avoid either effect with a successful {@dc 20} Dexterity {@quickref saving throws|PHB|2|1|saving throw}."
+						"The Champion touches a creature within {@quantity 5|feet} of him, and chooses to either heal or harm that creature, restoring 55 ({@dice 10d10}) hit points or dealing 55 ({@damage 10d10}) necrotic damage. If the creature is an unwilling target, it can avoid either effect with a successful {@dc 20} Dexterity {@quickref saving throws|PHB|2|1|saving throw}."
 					]
 				}
 			],
@@ -1412,7 +1412,7 @@
 			"wis": 10,
 			"cha": 3,
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 10,
 			"resist": [
@@ -1445,19 +1445,19 @@
 				{
 					"name": "Searing Presence",
 					"entries": [
-						"Any creature that starts its turn within 5 feet of the elemental takes 5 ({@damage 1d10}) fire damage."
+						"Any creature that starts its turn within {@quantity 5|feet} of the elemental takes 5 ({@damage 1d10}) fire damage."
 					]
 				},
 				{
 					"name": "Molten Form",
 					"entries": [
-						"The elemental can move through a space as narrow as 1 inch wide without squeezing. In addition, the elemental can enter a hostile creature's space and stop there. The first time it enters a creature's space on a turn, that creature takes 5 ({@damage 1d10}) fire damage and must succeed on a {@dc 14} Strength {@quickref saving throws|PHB|2|1|saving throw} or be {@condition restrained}. A creature that starts its turn {@condition restrained} in this way takes 5 ({@damage 1d10}) fire damage. It can repeat the {@quickref saving throws|PHB|2|1|saving throw} at the end of each of its turns, freeing itself on a success."
+						"The elemental can move through a space as narrow as {@quantity 1|inch} wide without squeezing. In addition, the elemental can enter a hostile creature's space and stop there. The first time it enters a creature's space on a turn, that creature takes 5 ({@damage 1d10}) fire damage and must succeed on a {@dc 14} Strength {@quickref saving throws|PHB|2|1|saving throw} or be {@condition restrained}. A creature that starts its turn {@condition restrained} in this way takes 5 ({@damage 1d10}) fire damage. It can repeat the {@quickref saving throws|PHB|2|1|saving throw} at the end of each of its turns, freeing itself on a success."
 					]
 				},
 				{
 					"name": "Water Susceptibility",
 					"entries": [
-						"For every 5 feet the elemental moves in water, or for every gallon of water splashed on it, it takes 1 cold damage."
+						"For every {@quantity 5|feet} the elemental moves in water, or for every gallon of water splashed on it, it takes 1 cold damage."
 					]
 				}
 			],
@@ -1471,13 +1471,13 @@
 				{
 					"name": "Slam",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}12 ({@damage 3d6 + 2}) bludgeoning damage plus 5 ({@damage 1d10}) fire damage. If the target is a creature or a flammable object, it ignites. Until a creature takes an action to douse the fire, the target takes 5 ({@damage 1d10}) fire damage at the start of each of its turns."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}12 ({@damage 3d6 + 2}) bludgeoning damage plus 5 ({@damage 1d10}) fire damage. If the target is a creature or a flammable object, it ignites. Until a creature takes an action to douse the fire, the target takes 5 ({@damage 1d10}) fire damage at the start of each of its turns."
 					]
 				},
 				{
 					"name": "Molten Gaze",
 					"entries": [
-						"{@atk rs} {@hit 8} to hit, range 30 ft., one target. {@h}21 ({@damage 6d6}) fire damage, and the target must succeed on a {@dc 14} Constitution {@quickref saving throws|PHB|2|1|saving throw} or have one nonmagical item of the elemental's choice that the target is carrying instantly melt or burn to cinders."
+						"{@atk rs} {@hit 8} to hit, range {@quantity 30|ft.}, one target. {@h}21 ({@damage 6d6}) fire damage, and the target must succeed on a {@dc 14} Constitution {@quickref saving throws|PHB|2|1|saving throw} or have one nonmagical item of the elemental's choice that the target is carrying instantly melt or burn to cinders."
 					]
 				}
 			],
@@ -1556,7 +1556,7 @@
 				{
 					"name": "Sneak Attack (1/Turn)",
 					"entries": [
-						"The cutthroat deals an extra 14 ({@damage 4d6}) damage when it hits a target with a weapon attack and has {@quickref Advantage and Disadvantage|PHB|2|0|advantage} on the attack roll, or when the target is within 5 feet of an ally of the cutthroat that isn't {@condition incapacitated} and the cutthroat doesn't have {@quickref Advantage and Disadvantage|PHB|2|0|disadvantage} on the attack roll."
+						"The cutthroat deals an extra 14 ({@damage 4d6}) damage when it hits a target with a weapon attack and has {@quickref Advantage and Disadvantage|PHB|2|0|advantage} on the attack roll, or when the target is within {@quantity 5|feet} of an ally of the cutthroat that isn't {@condition incapacitated} and the cutthroat doesn't have {@quickref Advantage and Disadvantage|PHB|2|0|disadvantage} on the attack roll."
 					]
 				}
 			],
@@ -1570,13 +1570,13 @@
 				{
 					"name": "Shortsword",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d6 + 4}) piercing damage."
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 1d6 + 4}) piercing damage."
 					]
 				},
 				{
 					"name": "Dagger",
 					"entries": [
-						"{@atk mw,rw} {@hit 6} to hit, reach 5 ft., range 20/60 ft., one target. {@h}6 ({@damage 1d4 + 4}) piercing damage."
+						"{@atk mw,rw} {@hit 6} to hit, reach {@quantity 5|ft.}, range {@quantity 20/60|ft.}, one target. {@h}6 ({@damage 1d4 + 4}) piercing damage."
 					]
 				}
 			],
@@ -1688,7 +1688,7 @@
 				{
 					"name": "Warhammer",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}8 ({@damage 1d10 + 3}) bludgeoning damage."
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 5|ft.}, one target. {@h}8 ({@damage 1d10 + 3}) bludgeoning damage."
 					]
 				}
 			],
@@ -1757,7 +1757,7 @@
 			"wis": 11,
 			"cha": 1,
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 10,
 			"immune": [
@@ -1791,7 +1791,7 @@
 				{
 					"name": "Conductive Body",
 					"entries": [
-						"Whenever the golem is subjected to lightning damage, it takes no damage. Instead, its weapon attacks deal an extra 11 ({@dice 2d10}) lightning damage until the end of its next turn. Also until the end of the golem's next turn, any creature that touches it or hits it with a melee attack while within 5 feet of it takes 11 ({@damage 2d10}) lightning damage."
+						"Whenever the golem is subjected to lightning damage, it takes no damage. Instead, its weapon attacks deal an extra 11 ({@dice 2d10}) lightning damage until the end of its next turn. Also until the end of the golem's next turn, any creature that touches it or hits it with a melee attack while within {@quantity 5|feet} of it takes 11 ({@damage 2d10}) lightning damage."
 					]
 				},
 				{
@@ -1823,25 +1823,25 @@
 				{
 					"name": "Slam",
 					"entries": [
-						"{@atk mw} {@hit 15} to hit, reach 5 ft., one target. {@h}25 ({@damage 3d10 + 9}) bludgeoning damage."
+						"{@atk mw} {@hit 15} to hit, reach {@quantity 5|ft.}, one target. {@h}25 ({@damage 3d10 + 9}) bludgeoning damage."
 					]
 				},
 				{
 					"name": "Sword",
 					"entries": [
-						"{@atk mw} {@hit 15} to hit, reach 10 ft., one target. {@h}28 ({@damage 3d12 + 9}) slashing damage."
+						"{@atk mw} {@hit 15} to hit, reach {@quantity 10|ft.}, one target. {@h}28 ({@damage 3d12 + 9}) slashing damage."
 					]
 				},
 				{
 					"name": "Spinning Cleave",
 					"entries": [
-						"The golem makes a sword attack against each creature within 10 feet of it."
+						"The golem makes a sword attack against each creature within {@quantity 10|feet} of it."
 					]
 				},
 				{
 					"name": "Magnetic Pulse {@recharge}",
 					"entries": [
-						"The golem raises its arms and unleashes a magnetic pulse. All unattended metal objects within 30 feet of it are pulled to an unoccupied space within 5 feet of the golem. Each creature wearing metal armor or made of metal within 30 feet of the golem must succeed on a {@dc 20} Strength {@quickref saving throws|PHB|2|1|saving throw} or be pulled to an unoccupied space within 5 feet of the golem, then fall {@condition prone}."
+						"The golem raises its arms and unleashes a magnetic pulse. All unattended metal objects within {@quantity 30|feet} of it are pulled to an unoccupied space within {@quantity 5|feet} of the golem. Each creature wearing metal armor or made of metal within {@quantity 30|feet} of the golem must succeed on a {@dc 20} Strength {@quickref saving throws|PHB|2|1|saving throw} or be pulled to an unoccupied space within {@quantity 5|feet} of the golem, then fall {@condition prone}."
 					]
 				}
 			],
@@ -1912,7 +1912,7 @@
 				"stealth": "+8"
 			},
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 11,
 			"resist": [
@@ -1944,19 +1944,19 @@
 				{
 					"name": "Sense Heat",
 					"entries": [
-						"The cold snap spirit can sense heat within 60 feet of it."
+						"The cold snap spirit can sense heat within {@quantity 60|feet} of it."
 					]
 				},
 				{
 					"name": "Frozen Aura",
 					"entries": [
-						"Any creature that starts its turn within 5 feet of a cold snap spirit takes 5 ({@damage 1d10}) cold damage."
+						"Any creature that starts its turn within {@quantity 5|feet} of a cold snap spirit takes 5 ({@damage 1d10}) cold damage."
 					]
 				},
 				{
 					"name": "Jealous Spirit",
 					"entries": [
-						"If the spirit attacks a creature that is within 5 feet of another cold snap spirit, the attack deals an extra 10 ({@damage 3d6}) cold damage on a hit."
+						"If the spirit attacks a creature that is within {@quantity 5|feet} of another cold snap spirit, the attack deals an extra 10 ({@damage 3d6}) cold damage on a hit."
 					]
 				}
 			],
@@ -1964,13 +1964,13 @@
 				{
 					"name": "Consume Warmth",
 					"entries": [
-						"{@atk ms} {@hit 8} to hit, reach 5 ft., one target. {@h}21 ({@damage 6d6}) cold damage, and the target's speed is halved until the end of the spirit's next turn."
+						"{@atk ms} {@hit 8} to hit, reach {@quantity 5|ft.}, one target. {@h}21 ({@damage 6d6}) cold damage, and the target's speed is halved until the end of the spirit's next turn."
 					]
 				},
 				{
 					"name": "Subzero Wave (1/Day)",
 					"entries": [
-						"Each creature within 30 feet of the cold snap spirit must make a {@dc 15} Constitution {@quickref saving throws|PHB|2|1|saving throw}, taking 18 ({@damage 4d8}) cold damage on a failed save, or half as much damage on a successful one."
+						"Each creature within {@quantity 30|feet} of the cold snap spirit must make a {@dc 15} Constitution {@quickref saving throws|PHB|2|1|saving throw}, taking 18 ({@damage 4d8}) cold damage on a failed save, or half as much damage on a successful one."
 					]
 				}
 			],
@@ -2077,13 +2077,13 @@
 				{
 					"name": "One-Eyed",
 					"entries": [
-						"The cyclops has {@quickref Advantage and Disadvantage|PHB|2|0|disadvantage} on any attack roll against a target more than 30 feet away."
+						"The cyclops has {@quickref Advantage and Disadvantage|PHB|2|0|disadvantage} on any attack roll against a target more than {@quantity 30|feet} away."
 					]
 				},
 				{
 					"name": "Storm Wings",
 					"entries": [
-						"While outdoors in stormy conditions, the cyclops has a flying speed of 60 feet."
+						"While outdoors in stormy conditions, the cyclops has a flying speed of {@quantity 60|feet}."
 					]
 				},
 				{
@@ -2103,7 +2103,7 @@
 				{
 					"name": "Ice Claw",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}13 ({@damage 3d6 + 3}) slashing damage plus 3 ({@damage 1d6}) cold damage."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}13 ({@damage 3d6 + 3}) slashing damage plus 3 ({@damage 1d6}) cold damage."
 					]
 				}
 			],
@@ -2190,7 +2190,7 @@
 				"stealth": "+7"
 			},
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 13,
 			"resist": [
@@ -2229,19 +2229,19 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}8 ({@damage 1d10 + 3}) piercing damage, and the target must make a {@dc 14} Constitution {@quickref saving throws|PHB|2|1|saving throw}. On a failed save, the target takes 27 ({@damage 6d8}) poison damage and is {@condition poisoned} for 1 minute. On a successful save, the target takes half as much damage and isn't {@condition poisoned}. If this poison damage reduces the target to 0 hit points, the target is stable but {@condition poisoned} for 1 hour, even after regaining hit points, and is {@condition paralyzed} while {@condition poisoned} in this way."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}8 ({@damage 1d10 + 3}) piercing damage, and the target must make a {@dc 14} Constitution {@quickref saving throws|PHB|2|1|saving throw}. On a failed save, the target takes 27 ({@damage 6d8}) poison damage and is {@condition poisoned} for 1 minute. On a successful save, the target takes half as much damage and isn't {@condition poisoned}. If this poison damage reduces the target to 0 hit points, the target is stable but {@condition poisoned} for 1 hour, even after regaining hit points, and is {@condition paralyzed} while {@condition poisoned} in this way."
 					]
 				},
 				{
 					"name": "Stinger",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}9 ({@damage 1d12 + 3}) piercing damage, and the target must succeed on a {@dc 14} Constitution {@quickref saving throws|PHB|2|1|saving throw} or be {@condition paralyzed} for 1 minute. The target can repeat the {@quickref saving throws|PHB|2|1|saving throw} at the end of each of its turns, ending the effect on itself on a success."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}9 ({@damage 1d12 + 3}) piercing damage, and the target must succeed on a {@dc 14} Constitution {@quickref saving throws|PHB|2|1|saving throw} or be {@condition paralyzed} for 1 minute. The target can repeat the {@quickref saving throws|PHB|2|1|saving throw} at the end of each of its turns, ending the effect on itself on a success."
 					]
 				},
 				{
 					"name": "Web Spinner",
 					"entries": [
-						"{@atk rw} {@hit 7} to hit, reach 40 ft., one target. {@h} The target is pulled 40 feet toward the spider and is {@condition grappled} (escape {@dc 14}). The spider can {@action grapple} only one creature at a time in this way. As an action, the spider can cocoon a creature it has {@condition grappled} in webbing, causing it to be {@condition restrained} and ending the {@condition grappled} condition."
+						"{@atk rw} {@hit 7} to hit, reach {@quantity 40|ft.}, one target. {@h} The target is pulled {@quantity 40|feet} toward the spider and is {@condition grappled} (escape {@dc 14}). The spider can {@action grapple} only one creature at a time in this way. As an action, the spider can cocoon a creature it has {@condition grappled} in webbing, causing it to be {@condition restrained} and ending the {@condition grappled} condition."
 					]
 				}
 			],
@@ -2249,7 +2249,7 @@
 				{
 					"name": "Arterial Spray",
 					"entries": [
-						"When the spider takes damage while below half its hit point maximum, it can spray poisonous blood in a 15-foot cone. Each creature in the area must make a {@dc 14} Constitution {@quickref saving throws|PHB|2|1|saving throw}. On a failed save, a creature takes 13 ({@damage 3d8}) poison damage and is {@condition poisoned} for 1 minute. On a successful save, the creature takes half as much damage and isn't {@condition poisoned}. If this poison damage reduces a creature to 0 hit points, the creature is stable but {@condition poisoned} for 1 hour, even after regaining hit points, and is {@condition paralyzed} while {@condition poisoned} in this way."
+						"When the spider takes damage while below half its hit point maximum, it can spray poisonous blood in a {@quantity 15|-foot} cone. Each creature in the area must make a {@dc 14} Constitution {@quickref saving throws|PHB|2|1|saving throw}. On a failed save, a creature takes 13 ({@damage 3d8}) poison damage and is {@condition poisoned} for 1 minute. On a successful save, the creature takes half as much damage and isn't {@condition poisoned}. If this poison damage reduces a creature to 0 hit points, the creature is stable but {@condition poisoned} for 1 hour, even after regaining hit points, and is {@condition paralyzed} while {@condition poisoned} in this way."
 					]
 				}
 			],
@@ -2324,7 +2324,7 @@
 				"perception": "+0"
 			},
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 10,
 			"resist": [
@@ -2357,7 +2357,7 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d8 + 1}) piercing damage, and the target must make a {@dc 13} Constitution {@quickref saving throws|PHB|2|1|saving throw}, taking 10 ({@damage 3d6}) poison damage on a failed save, or half as much damage on a successful one."
+						"{@atk mw} {@hit 3} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d8 + 1}) piercing damage, and the target must make a {@dc 13} Constitution {@quickref saving throws|PHB|2|1|saving throw}, taking 10 ({@damage 3d6}) poison damage on a failed save, or half as much damage on a successful one."
 					]
 				}
 			],
@@ -2463,7 +2463,7 @@
 				"perception": "+8"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 18,
 			"immune": [
@@ -2508,7 +2508,7 @@
 				{
 					"name": "Empowered Fist",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}8 ({@damage 1d8 + 4}) force damage."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}8 ({@damage 1d8 + 4}) force damage."
 					]
 				},
 				{
@@ -2522,7 +2522,7 @@
 				{
 					"name": "Deflect",
 					"entries": [
-						"If a creature within 5 feet of Doty that he can see makes an attack against a creature other than Doty, he can impose {@quickref Advantage and Disadvantage|PHB|2|0|disadvantage} on the attack roll. The attacker then takes 6 ({@damage 1d4 + 4}) force damage."
+						"If a creature within {@quantity 5|feet} of Doty that he can see makes an attack against a creature other than Doty, he can impose {@quickref Advantage and Disadvantage|PHB|2|0|disadvantage} on the attack roll. The attacker then takes 6 ({@damage 1d4 + 4}) force damage."
 					]
 				}
 			],
@@ -2613,13 +2613,13 @@
 				{
 					"name": "Searing Presence",
 					"entries": [
-						"Any creature that starts its turn within 5 feet of the roc takes 7 ({@damage 2d6}) fire damage."
+						"Any creature that starts its turn within {@quantity 5|feet} of the roc takes 7 ({@damage 2d6}) fire damage."
 					]
 				},
 				{
 					"name": "Illumination",
 					"entries": [
-						"The roc sheds bright light in a 40-foot radius and dim light for an additional 40 feet."
+						"The roc sheds bright light in a {@quantity 40|-foot} radius and dim light for an additional {@quantity 40|feet}."
 					]
 				}
 			],
@@ -2633,19 +2633,19 @@
 				{
 					"name": "Beak",
 					"entries": [
-						"{@atk mw} {@hit 13} to hit, reach 10 ft., one target. {@h}26 ({@damage 4d8 + 8}) piercing damage and 7 ({@damage 2d6}) fire damage."
+						"{@atk mw} {@hit 13} to hit, reach {@quantity 10|ft.}, one target. {@h}26 ({@damage 4d8 + 8}) piercing damage and 7 ({@damage 2d6}) fire damage."
 					]
 				},
 				{
 					"name": "Talons",
 					"entries": [
-						"{@atk mw} {@hit 13} to hit, reach 5 ft., one target. {@h}22 ({@damage 4d6 + 8}) slashing damage and 7 ({@damage 2d6}) fire damage."
+						"{@atk mw} {@hit 13} to hit, reach {@quantity 5|ft.}, one target. {@h}22 ({@damage 4d6 + 8}) slashing damage and 7 ({@damage 2d6}) fire damage."
 					]
 				},
 				{
 					"name": "Inferno {@recharge 5}",
 					"entries": [
-						"The roc beats its wings, creating a swirling conflagration. Each creature within 30 feet of the roc must succeed on a {@dc 18} Dexterity {@quickref saving throws|PHB|2|1|saving throw} or take 21 ({@damage 6d6}) fire damage."
+						"The roc beats its wings, creating a swirling conflagration. Each creature within {@quantity 30|feet} of the roc must succeed on a {@dc 18} Dexterity {@quickref saving throws|PHB|2|1|saving throw} or take 21 ({@damage 6d6}) fire damage."
 					]
 				}
 			],
@@ -2710,7 +2710,7 @@
 			"wis": 8,
 			"cha": 5,
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 9,
 			"immune": [
@@ -2738,7 +2738,7 @@
 				{
 					"name": "Illumination",
 					"entries": [
-						"The skeleton sheds bright light in a 10-foot radius and dim light for an additional 10 feet."
+						"The skeleton sheds bright light in a {@quantity 10|-foot} radius and dim light for an additional {@quantity 10|feet}."
 					]
 				}
 			],
@@ -2746,13 +2746,13 @@
 				{
 					"name": "Shortsword",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage and 3 ({@damage 1d6}) fire damage."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d6 + 2}) piercing damage and 3 ({@damage 1d6}) fire damage."
 					]
 				},
 				{
 					"name": "Ignite",
 					"entries": [
-						"The skeleton flings itself at a Large or smaller creature within 5 feet of it. The target must succeed on a {@dc 12} Dexterity {@quickref saving throws|PHB|2|1|saving throw} or be {@condition grappled} (escape {@dc 12}). On a failed save, the target also takes 3 ({@damage 1d6}) fire damage at the start of each of its turns, even after the {@action grapple} ends. If the target or a creature within 5 feet of it uses an action to put out the flames, or if some other effect douses the flames (such as the target being submerged in water), the effect ends."
+						"The skeleton flings itself at a Large or smaller creature within {@quantity 5|feet} of it. The target must succeed on a {@dc 12} Dexterity {@quickref saving throws|PHB|2|1|saving throw} or be {@condition grappled} (escape {@dc 12}). On a failed save, the target also takes 3 ({@damage 1d6}) fire damage at the start of each of its turns, even after the {@action grapple} ends. If the target or a creature within {@quantity 5|feet} of it uses an action to put out the flames, or if some other effect douses the flames (such as the target being submerged in water), the effect ends."
 					]
 				}
 			],
@@ -2825,7 +2825,7 @@
 				"con": "+15"
 			},
 			"senses": [
-				"truesight 120 ft."
+				"truesight {@quantity 120|ft.}"
 			],
 			"passive": 10,
 			"immune": [
@@ -2887,19 +2887,19 @@
 				{
 					"name": "Runeblade",
 					"entries": [
-						"{@atk mw} {@hit 18} to hit, reach 15 ft., one target. {@h}36 ({@damage 4d12 + 10}) slashing damage, and the target must succeed on a {@dc 23} Constitution {@quickref saving throws|PHB|2|1|saving throw} or be {@condition blinded} until it deals damage to the guardian."
+						"{@atk mw} {@hit 18} to hit, reach {@quantity 15|ft.}, one target. {@h}36 ({@damage 4d12 + 10}) slashing damage, and the target must succeed on a {@dc 23} Constitution {@quickref saving throws|PHB|2|1|saving throw} or be {@condition blinded} until it deals damage to the guardian."
 					]
 				},
 				{
 					"name": "Kick",
 					"entries": [
-						"{@atk mw} {@hit 18} to hit, reach 10 ft., one target. {@h}23 ({@damage 2d12 + 10}) bludgeoning damage, and the target is pushed up to 15 feet away from the guardian and knocked {@condition prone}."
+						"{@atk mw} {@hit 18} to hit, reach {@quantity 10|ft.}, one target. {@h}23 ({@damage 2d12 + 10}) bludgeoning damage, and the target is pushed up to {@quantity 15|feet} away from the guardian and knocked {@condition prone}."
 					]
 				},
 				{
 					"name": "Bladestorm {@recharge 5}",
 					"entries": [
-						"The guardian makes a Runeblade attack against every creature within 15 feet of it. On a hit, a target is also pushed up to 15 feet away from the guardian and knocked {@condition prone}."
+						"The guardian makes a Runeblade attack against every creature within {@quantity 15|feet} of it. On a hit, a target is also pushed up to {@quantity 15|feet} away from the guardian and knocked {@condition prone}."
 					]
 				}
 			],
@@ -2919,7 +2919,7 @@
 				{
 					"name": "Trample (Costs 2 Actions)",
 					"entries": [
-						"The guardian moves up to 50 feet without triggering {@action opportunity attack|PHB|opportunity attacks}, and can pass through other creature's spaces. Each creature whose space the guardian passes through must make a {@dc 23} Dexterity {@quickref saving throws|PHB|2|1|saving throw}. On a failure, the creature takes 23 ({@damage 2d12 + 10}) bludgeoning damage and is knocked {@condition prone}. On a success, the creature takes half as much damage and isn't knocked {@condition prone}. Any creature that shares the guardian's space when it stops this movement is pushed out of its space into the nearest unoccupied space."
+						"The guardian moves up to {@quantity 50|feet} without triggering {@action opportunity attack|PHB|opportunity attacks}, and can pass through other creature's spaces. Each creature whose space the guardian passes through must make a {@dc 23} Dexterity {@quickref saving throws|PHB|2|1|saving throw}. On a failure, the creature takes 23 ({@damage 2d12 + 10}) bludgeoning damage and is knocked {@condition prone}. On a success, the creature takes half as much damage and isn't knocked {@condition prone}. Any creature that shares the guardian's space when it stops this movement is pushed out of its space into the nearest unoccupied space."
 					]
 				}
 			],
@@ -3040,7 +3040,7 @@
 				"survival": "+6"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 10,
 			"resist": [
@@ -3121,7 +3121,7 @@
 				{
 					"name": "Spellbreaker",
 					"entries": [
-						"When Grog damages a creature that is concentrating on a spell, that creature has {@quickref Advantage and Disadvantage|PHB|2|0|disadvantage} on the {@quickref saving throws|PHB|2|1|saving throw} to maintain its {@status concentration}. In addition, Grog has {@quickref Advantage and Disadvantage|PHB|2|0|advantage} on {@quickref saving throws|PHB|2|1} against spells cast by creatures within 5 feet of him."
+						"When Grog damages a creature that is concentrating on a spell, that creature has {@quickref Advantage and Disadvantage|PHB|2|0|disadvantage} on the {@quickref saving throws|PHB|2|1|saving throw} to maintain its {@status concentration}. In addition, Grog has {@quickref Advantage and Disadvantage|PHB|2|0|advantage} on {@quickref saving throws|PHB|2|1} against spells cast by creatures within {@quantity 5|feet} of him."
 					]
 				},
 				{
@@ -3141,19 +3141,19 @@
 				{
 					"name": "{@item Bloodaxe|EGW}",
 					"entries": [
-						"{@atk mw} {@hit 16} to hit, reach 5 ft., one target. {@h}20 ({@damage 1d12 + 14}) slashing damage and 3 ({@damage 1d6}) necrotic damage. If the target is reduced to 0 hit points, Grog gains 10 temporary hit points."
+						"{@atk mw} {@hit 16} to hit, reach {@quantity 5|ft.}, one target. {@h}20 ({@damage 1d12 + 14}) slashing damage and 3 ({@damage 1d6}) necrotic damage. If the target is reduced to 0 hit points, Grog gains 10 temporary hit points."
 					]
 				},
 				{
 					"name": "{@item Dwarven Thrower}",
 					"entries": [
-						"{@atk mw,rw} {@hit 17} to hit, reach 5 ft. or range 20/60, one target. {@h}24 ({@damage 2d8 + 15}) bludgeoning damage."
+						"{@atk mw,rw} {@hit 17} to hit, reach {@quantity 5|ft.} or range 20/60, one target. {@h}24 ({@damage 2d8 + 15}) bludgeoning damage."
 					]
 				},
 				{
 					"name": "Titanstone Knuckles",
 					"entries": [
-						"{@atk mw} {@hit 14} to hit, reach 5 ft., one target. {@h}14 ({@damage 1d4 + 12}) bludgeoning damage."
+						"{@atk mw} {@hit 14} to hit, reach {@quantity 5|ft.}, one target. {@h}14 ({@damage 1d4 + 12}) bludgeoning damage."
 					]
 				},
 				{
@@ -3186,7 +3186,7 @@
 				{
 					"name": "Opportunist",
 					"entries": [
-						"When a creature within 5 feet of Grog casts a spell or deals damage to him, Grog can make a melee weapon attack against that creature."
+						"When a creature within {@quantity 5|feet} of Grog casts a spell or deals damage to him, Grog can make a melee weapon attack against that creature."
 					]
 				}
 			],
@@ -3273,7 +3273,7 @@
 				"stealth": "+17"
 			},
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 23,
 			"resist": [
@@ -3339,7 +3339,7 @@
 				{
 					"name": "Sneak Attack (1/Turn)",
 					"entries": [
-						"Jourrael deals an extra 35 ({@damage 10d6}) damage when they hit a target with a weapon attack and have {@quickref Advantage and Disadvantage|PHB|2|0|advantage} on the attack roll, or when the target is within 5 feet of an ally of Jourrael that isn't {@condition incapacitated} and Jourrael doesn't have {@quickref Advantage and Disadvantage|PHB|2|0|disadvantage} on the attack roll."
+						"Jourrael deals an extra 35 ({@damage 10d6}) damage when they hit a target with a weapon attack and have {@quickref Advantage and Disadvantage|PHB|2|0|advantage} on the attack roll, or when the target is within {@quantity 5|feet} of an ally of Jourrael that isn't {@condition incapacitated} and Jourrael doesn't have {@quickref Advantage and Disadvantage|PHB|2|0|disadvantage} on the attack roll."
 					]
 				},
 				{
@@ -3359,13 +3359,13 @@
 				{
 					"name": "Spectral Blade",
 					"entries": [
-						"{@atk mw} {@hit 12} to hit, reach 5 ft., one target. {@h}10 ({@damage 1d6 + 7}) slashing damage, and the target must succeed on a {@dc 14} Constitution {@quickref saving throws|PHB|2|1|saving throw} or be {@condition poisoned} for 1 hour. If the {@quickref saving throws|PHB|2|1|saving throw} fails by 5 or more, the target is also {@condition unconscious} while {@condition poisoned} in this way. The target wakes up if it takes damage or if another creature takes an action to shake it awake."
+						"{@atk mw} {@hit 12} to hit, reach {@quantity 5|ft.}, one target. {@h}10 ({@damage 1d6 + 7}) slashing damage, and the target must succeed on a {@dc 14} Constitution {@quickref saving throws|PHB|2|1|saving throw} or be {@condition poisoned} for 1 hour. If the {@quickref saving throws|PHB|2|1|saving throw} fails by 5 or more, the target is also {@condition unconscious} while {@condition poisoned} in this way. The target wakes up if it takes damage or if another creature takes an action to shake it awake."
 					]
 				},
 				{
 					"name": "Void Dagger",
 					"entries": [
-						"{@atk rw} {@hit 12} to hit, range 60/120 ft., one target. {@h}9 ({@damage 1d4 + 7}) piercing damage."
+						"{@atk rw} {@hit 12} to hit, range {@quantity 60/120|ft.}, one target. {@h}9 ({@damage 1d4 + 7}) piercing damage."
 					]
 				}
 			],
@@ -3492,7 +3492,7 @@
 				"survival": "+12"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 22,
 			"languages": [
@@ -3624,13 +3624,13 @@
 				{
 					"name": "Meteor ({@creature Earth Elemental} Form Only)",
 					"entries": [
-						"When Keyleth falls at least 20 feet, she lands with meteoric force. Each creature within 20 feet of her must succeed on a {@dc 19} Dexterity {@quickref saving throws|PHB|2|1|saving throw} or take {@damage 1d6} bludgeoning damage for every 10 feet Keyleth fell. Keyleth still takes {@quickref falling|XGE|2|0|falling damage} while in {@creature earth elemental} form."
+						"When Keyleth falls at least {@quantity 20|feet}, she lands with meteoric force. Each creature within {@quantity 20|feet} of her must succeed on a {@dc 19} Dexterity {@quickref saving throws|PHB|2|1|saving throw} or take {@damage 1d6} bludgeoning damage for every {@quantity 10|feet} Keyleth fell. Keyleth still takes {@quickref falling|XGE|2|0|falling damage} while in {@creature earth elemental} form."
 					]
 				},
 				{
 					"name": "Chain Lightning",
 					"entries": [
-						"Keyleth casts {@spell chain lightning} (spell save {@dc 22}) from the {@item Spire of Conflux (Exalted)|TDCSR|Spire of Conflux} at a creature she can see within 150 feet of her."
+						"Keyleth casts {@spell chain lightning} (spell save {@dc 22}) from the {@item Spire of Conflux (Exalted)|TDCSR|Spire of Conflux} at a creature she can see within {@quantity 150|feet} of her."
 					]
 				}
 			],
@@ -3644,7 +3644,7 @@
 				{
 					"name": "Healing Word (4th Level)",
 					"entries": [
-						"Keyleth casts {@spell healing word}, restoring 16 ({@dice 4d4 + 6}) hit points to herself or another creature she can see within 60 feet of her."
+						"Keyleth casts {@spell healing word}, restoring 16 ({@dice 4d4 + 6}) hit points to herself or another creature she can see within {@quantity 60|feet} of her."
 					]
 				}
 			],
@@ -3735,7 +3735,7 @@
 				"religion": "+4"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 10,
 			"resist": [
@@ -3784,7 +3784,7 @@
 				{
 					"name": "Aura of Protection",
 					"entries": [
-						"Whenever the goat-knight or a creature friendly to it within 10 feet of it makes a {@quickref saving throws|PHB|2|1|saving throw}, that creature gains a +2 bonus (included in the goat-knight's {@quickref saving throws|PHB|2|1} above). The goat-knight must be conscious to grant and gain this bonus."
+						"Whenever the goat-knight or a creature friendly to it within {@quantity 10|feet} of it makes a {@quickref saving throws|PHB|2|1|saving throw}, that creature gains a +2 bonus (included in the goat-knight's {@quickref saving throws|PHB|2|1} above). The goat-knight must be conscious to grant and gain this bonus."
 					]
 				},
 				{
@@ -3810,7 +3810,7 @@
 				{
 					"name": "Warhammer",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d8 + 3}) bludgeoning damage, or 8 ({@damage 1d10 + 3}) bludgeoning damage if used with two hands."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 1d8 + 3}) bludgeoning damage, or 8 ({@damage 1d10 + 3}) bludgeoning damage if used with two hands."
 					]
 				}
 			],
@@ -3889,8 +3889,8 @@
 				"perception": "+5"
 			},
 			"senses": [
-				"darkvision 120 ft.",
-				"truesight 30 ft."
+				"darkvision {@quantity 120|ft.}",
+				"truesight {@quantity 30|ft.}"
 			],
 			"passive": 15,
 			"immune": [
@@ -3922,7 +3922,7 @@
 				{
 					"name": "Antimagic Cone",
 					"entries": [
-						"The golem creates an area of antimagic, as in the {@spell antimagic field} spell, in a 60-foot cone originating from it. At the start of each of its turns, the golem decides which way the cone faces and whether the cone is active."
+						"The golem creates an area of antimagic, as in the {@spell antimagic field} spell, in a {@quantity 60|-foot} cone originating from it. At the start of each of its turns, the golem decides which way the cone faces and whether the cone is active."
 					]
 				},
 				{
@@ -3960,13 +3960,13 @@
 				{
 					"name": "Slam",
 					"entries": [
-						"{@atk mw} {@hit 12} to hit, reach 5 ft., one target. {@h}20 ({@damage 3d8 + 7}) bludgeoning damage."
+						"{@atk mw} {@hit 12} to hit, reach {@quantity 5|ft.}, one target. {@h}20 ({@damage 3d8 + 7}) bludgeoning damage."
 					]
 				},
 				{
 					"name": "Claw {@recharge 5}",
 					"entries": [
-						"{@atk mw} {@hit 12} to hit, reach 5 ft., one target. {@h}11 ({@damage 1d8 + 7}) bludgeoning damage, and the target must succeed on a {@dc 16} Dexterity {@quickref saving throws|PHB|2|1|saving throw} or have a magic collar placed upon its neck. While the target wears the collar, it is magically prevented from speaking and cannot cast any spell. A successful {@dc 25} Dexterity check using {@item thieves' tools|PHB} removes the collar."
+						"{@atk mw} {@hit 12} to hit, reach {@quantity 5|ft.}, one target. {@h}11 ({@damage 1d8 + 7}) bludgeoning damage, and the target must succeed on a {@dc 16} Dexterity {@quickref saving throws|PHB|2|1|saving throw} or have a magic collar placed upon its neck. While the target wears the collar, it is magically prevented from speaking and cannot cast any spell. A successful {@dc 25} Dexterity check using {@item thieves' tools|PHB} removes the collar."
 					]
 				},
 				{
@@ -4042,8 +4042,8 @@
 				"perception": "+7"
 			},
 			"senses": [
-				"darkvision 60 ft.",
-				"tremorsense 120 ft."
+				"darkvision {@quantity 60|ft.}",
+				"tremorsense {@quantity 120|ft.}"
 			],
 			"passive": 17,
 			"immune": [
@@ -4054,19 +4054,19 @@
 				{
 					"name": "Searing Presence",
 					"entries": [
-						"Any creature that starts its turn within 10 feet of the landshark takes 11 ({@damage 2d10}) fire damage."
+						"Any creature that starts its turn within {@quantity 10|feet} of the landshark takes 11 ({@damage 2d10}) fire damage."
 					]
 				},
 				{
 					"name": "Standing Leap",
 					"entries": [
-						"The landshark's {@quickref jumping|PHB|4|0|long jump} is up to 40 feet and its {@quickref jumping|PHB|4|0|high jump} is up to 20 feet, with or without a running start."
+						"The landshark's {@quickref jumping|PHB|4|0|long jump} is up to {@quantity 40|feet} and its {@quickref jumping|PHB|4|0|high jump} is up to {@quantity 20|feet}, with or without a running start."
 					]
 				},
 				{
 					"name": "Illumination",
 					"entries": [
-						"The landshark sheds bright light in a 15-foot radius and dim light for an additional 15 feet."
+						"The landshark sheds bright light in a {@quantity 15|-foot} radius and dim light for an additional {@quantity 15|feet}."
 					]
 				}
 			],
@@ -4074,20 +4074,20 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 11} to hit, reach 5 ft., one target. {@h}45 ({@damage 6d12 + 6}) piercing damage, and 14 ({@damage 4d6}) fire damage. If the target is a Large or smaller creature, it must succeed on a {@dc 18} Dexterity {@quickref saving throws|PHB|2|1|saving throw} or be swallowed by the landshark. A swallowed creature is {@condition blinded} and {@condition restrained}, it has {@quickref cover||3||total cover} against attacks and other effects outside the landshark, and it takes 42 ({@damage 12d6}) fire damage at the start of each of the landshark's turns.",
-						"If the landshark takes 30 damage or more on a single turn from a creature inside it, the landshark must succeed on a {@dc 23} Constitution {@quickref saving throws|PHB|2|1|saving throw} at the end of that turn or regurgitate all swallowed creatures, which fall {@condition prone} in a space within 10 feet of the landshark. If the landshark dies, a swallowed creature is no longer {@condition restrained} by it and can escape from the corpse by using 15 feet of movement, exiting {@condition prone}."
+						"{@atk mw} {@hit 11} to hit, reach {@quantity 5|ft.}, one target. {@h}45 ({@damage 6d12 + 6}) piercing damage, and 14 ({@damage 4d6}) fire damage. If the target is a Large or smaller creature, it must succeed on a {@dc 18} Dexterity {@quickref saving throws|PHB|2|1|saving throw} or be swallowed by the landshark. A swallowed creature is {@condition blinded} and {@condition restrained}, it has {@quickref cover||3||total cover} against attacks and other effects outside the landshark, and it takes 42 ({@damage 12d6}) fire damage at the start of each of the landshark's turns.",
+						"If the landshark takes 30 damage or more on a single turn from a creature inside it, the landshark must succeed on a {@dc 23} Constitution {@quickref saving throws|PHB|2|1|saving throw} at the end of that turn or regurgitate all swallowed creatures, which fall {@condition prone} in a space within {@quantity 10|feet} of the landshark. If the landshark dies, a swallowed creature is no longer {@condition restrained} by it and can escape from the corpse by using {@quantity 15|feet} of movement, exiting {@condition prone}."
 					]
 				},
 				{
 					"name": "Deadly Leap",
 					"entries": [
-						"If the landshark {@quickref jumping|PHB|4|0|jumps} at least 15 feet as part of its movement, it can then use this action to land on its feet in a space that contains one or more other creatures. Each of those creatures must succeed on a {@dc 18} Strength or Dexterity {@quickref saving throws|PHB|2|1|saving throw} (target's choice) or be knocked {@condition prone} and take 27 ({@damage 6d6 + 6}) bludgeoning damage plus 21 ({@damage 6d6}) fire damage. On a successful save, the creature takes only half the damage, isn't knocked {@condition prone}, and is pushed 5 feet out of the landshark's space into an unoccupied space of the creature's choice. If no unoccupied space is within range, the creature instead falls {@condition prone} in the landshark's space."
+						"If the landshark {@quickref jumping|PHB|4|0|jumps} at least {@quantity 15|feet} as part of its movement, it can then use this action to land on its feet in a space that contains one or more other creatures. Each of those creatures must succeed on a {@dc 18} Strength or Dexterity {@quickref saving throws|PHB|2|1|saving throw} (target's choice) or be knocked {@condition prone} and take 27 ({@damage 6d6 + 6}) bludgeoning damage plus 21 ({@damage 6d6}) fire damage. On a successful save, the creature takes only half the damage, isn't knocked {@condition prone}, and is pushed {@quantity 5|feet} out of the landshark's space into an unoccupied space of the creature's choice. If no unoccupied space is within range, the creature instead falls {@condition prone} in the landshark's space."
 					]
 				},
 				{
 					"name": "Lava Pool {@recharge}",
 					"entries": [
-						"If the landshark is on solid ground, it melts the area around it, creating a pool of lava in a 10-foot radius. Any creature that starts its turn in the area or enters it for the first time on a turn takes 44 ({@damage 8d10}) fire damage."
+						"If the landshark is on solid ground, it melts the area around it, creating a pool of lava in a {@quantity 10|-foot} radius. Any creature that starts its turn in the area or enters it for the first time on a turn takes 44 ({@damage 8d10}) fire damage."
 					]
 				}
 			],
@@ -4166,7 +4166,7 @@
 				"perception": "+16"
 			},
 			"senses": [
-				"darkvision 360 ft."
+				"darkvision {@quantity 360|ft.}"
 			],
 			"passive": 26,
 			"resist": [
@@ -4202,7 +4202,7 @@
 				{
 					"name": "Arcane Leak",
 					"entries": [
-						"When the adranach is reduced to half its hit point maximum (145 hit points), its mithral mask cracks and its arcane form begins to waver, creating a field of unstable magic around it. Any creature that starts its turn within 20 feet of the adranach or enters that area for the first time on a turn takes 21 ({@damage 6d6}) radiant damage. Additionally, if a creature casts a spell within this area, it must make a {@dc 18} ability check using its spellcasting ability. On a failure, the spell backfires, consuming the spell slot and dealing 7 ({@damage 2d6}) force damage to the caster for each level of the spell slot that was consumed."
+						"When the adranach is reduced to half its hit point maximum (145 hit points), its mithral mask cracks and its arcane form begins to waver, creating a field of unstable magic around it. Any creature that starts its turn within {@quantity 20|feet} of the adranach or enters that area for the first time on a turn takes 21 ({@damage 6d6}) radiant damage. Additionally, if a creature casts a spell within this area, it must make a {@dc 18} ability check using its spellcasting ability. On a failure, the spell backfires, consuming the spell slot and dealing 7 ({@damage 2d6}) force damage to the caster for each level of the spell slot that was consumed."
 					]
 				},
 				{
@@ -4252,19 +4252,19 @@
 				{
 					"name": "Claws",
 					"entries": [
-						"{@atk mw} {@hit 14} to hit, one target, reach 5 ft. {@h}33 ({@damage 4d12 + 7}) slashing damage."
+						"{@atk mw} {@hit 14} to hit, one target, reach {@quantity 5|ft}. {@h}33 ({@damage 4d12 + 7}) slashing damage."
 					]
 				},
 				{
 					"name": "Tail",
 					"entries": [
-						"{@atk mw} {@hit 14} to hit, one target, reach 15 ft. {@h}20 ({@damage 2d12 + 7}) bludgeoning damage."
+						"{@atk mw} {@hit 14} to hit, one target, reach {@quantity 15|ft}. {@h}20 ({@damage 2d12 + 7}) bludgeoning damage."
 					]
 				},
 				{
 					"name": "Force Bolts {@recharge 5}",
 					"entries": [
-						"The adranach targets up to six creatures it can see within 120 feet of it. Each target must succeed on a {@dc 22} Dexterity {@quickref saving throws|PHB|2|1|saving throw} or take 35 ({@damage 10d6}) force damage."
+						"The adranach targets up to six creatures it can see within {@quantity 120|feet} of it. Each target must succeed on a {@dc 22} Dexterity {@quickref saving throws|PHB|2|1|saving throw} or take 35 ({@damage 10d6}) force damage."
 					]
 				}
 			],
@@ -4284,7 +4284,7 @@
 				{
 					"name": "Starry Burst (Costs 3 Actions)",
 					"entries": [
-						"A burst of astral energy flares from the adranach's body. Each creature within 60 feet of it must make a {@dc 22} Constitution {@quickref saving throws|PHB|2|1|saving throw}. On a failed save, a creature takes 27 ({@damage 5d10}) force damage and is {@condition blinded} until the end of its next turn. On a successful save, the creature takes half as much damage and is not {@condition blinded}. The adranach then turns {@condition invisible} until the start of its next turn or until it makes an attack."
+						"A burst of astral energy flares from the adranach's body. Each creature within {@quantity 60|feet} of it must make a {@dc 22} Constitution {@quickref saving throws|PHB|2|1|saving throw}. On a failed save, a creature takes 27 ({@damage 5d10}) force damage and is {@condition blinded} until the end of its next turn. On a successful save, the creature takes half as much damage and is not {@condition blinded}. The adranach then turns {@condition invisible} until the start of its next turn or until it makes an attack."
 					]
 				}
 			],
@@ -4313,7 +4313,7 @@
 							"name": "Arcane Bond",
 							"page": 224,
 							"entries": [
-								"The adranach's creator can communicate with it telepathically while both are within 1 mile of each other. As an action, the creator can see through the adranach's eyes and hear what it hears until the start of the creator's next turn, gaining the benefits of any special senses the adranach has. During this time, the creator is {@condition deafened} and {@condition blinded} with regard to their own senses."
+								"The adranach's creator can communicate with it telepathically while both are within {@quantity 1|mile} of each other. As an action, the creator can see through the adranach's eyes and hear what it hears until the start of the creator's next turn, gaining the benefits of any special senses the adranach has. During this time, the creator is {@condition deafened} and {@condition blinded} with regard to their own senses."
 							]
 						},
 						{
@@ -4337,7 +4337,7 @@
 							"name": "Truesight ({@i Master Adranach Only})",
 							"page": 224,
 							"entries": [
-								"The adranach has {@sense truesight} out to a range of 30 feet. As an action, it can increase the range of its {@sense truesight} to 120 feet until the end of its next turn."
+								"The adranach has {@sense truesight} out to a range of {@quantity 30|feet}. As an action, it can increase the range of its {@sense truesight} to {@quantity 120|feet} until the end of its next turn."
 							]
 						}
 					]
@@ -4519,13 +4519,13 @@
 				{
 					"name": "Animus",
 					"entries": [
-						"{@atk rw} {@hit 15} to hit, range 320 ft., one target. {@h}11 ({@damage 1d10 + 6}) piercing damage and 3 ({@damage 1d6}) psychic damage."
+						"{@atk rw} {@hit 15} to hit, range {@quantity 320|ft.}, one target. {@h}11 ({@damage 1d10 + 6}) piercing damage and 3 ({@damage 1d6}) psychic damage."
 					]
 				},
 				{
 					"name": "Bad News",
 					"entries": [
-						"{@atk rw} {@hit 15} to hit, range 800 ft., one target. {@h}19 ({@damage 2d12 + 6}) piercing damage."
+						"{@atk rw} {@hit 15} to hit, range {@quantity 800|ft.}, one target. {@h}19 ({@damage 2d12 + 6}) piercing damage."
 					]
 				}
 			],
@@ -4611,7 +4611,7 @@
 				"stealth": "+7"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 21,
 			"resist": [
@@ -4745,7 +4745,7 @@
 				{
 					"name": "Dawnmartyr's Grace (1/{@quickref resting|PHB|2|0|Long Rest})",
 					"entries": [
-						"When Pike is reduced to 0 hit points while wearing the {@item plate of the dawnmartyr (exalted)|TDCSR|Plate of the Dawnmartyr}, she can choose to have a blast of healing flame surround her. She regains 1 hit point and is lifted to her feet. Each enemy within 10 feet of her takes 7 ({@damage 2d6}) fire damage or radiant damage (her choice)."
+						"When Pike is reduced to 0 hit points while wearing the {@item plate of the dawnmartyr (exalted)|TDCSR|Plate of the Dawnmartyr}, she can choose to have a blast of healing flame surround her. She regains 1 hit point and is lifted to her feet. Each enemy within {@quantity 10|feet} of her takes 7 ({@damage 2d6}) fire damage or radiant damage (her choice)."
 					]
 				}
 			],
@@ -4753,13 +4753,13 @@
 				{
 					"name": "Mace of Disruption",
 					"entries": [
-						"{@atk mw} {@hit 10} to hit, reach 5 ft., one target. {@h}17 ({@damage 3d8 + 4}) bludgeoning damage, plus an extra 7 ({@damage 2d6}) radiant damage if the target is a fiend or an undead. If the target has 25 hit points or fewer after taking this damage, it must succeed on a {@dc 15} Wisdom {@quickref saving throws|PHB|2|1|saving throw} or be destroyed. On a successful save, the creature becomes {@condition frightened} of Pike until the end of her next turn."
+						"{@atk mw} {@hit 10} to hit, reach {@quantity 5|ft.}, one target. {@h}17 ({@damage 3d8 + 4}) bludgeoning damage, plus an extra 7 ({@damage 2d6}) radiant damage if the target is a fiend or an undead. If the target has 25 hit points or fewer after taking this damage, it must succeed on a {@dc 15} Wisdom {@quickref saving throws|PHB|2|1|saving throw} or be destroyed. On a successful save, the creature becomes {@condition frightened} of Pike until the end of her next turn."
 					]
 				},
 				{
 					"name": "Guiding Bolt (5th Level)",
 					"entries": [
-						"{@atk rs} {@hit 11} to hit, range 120 ft., one target. {@h}28 ({@damage 8d6}) radiant damage, and the next attack roll made against the target before the end of Pike's next turn has {@quickref Advantage and Disadvantage|PHB|2|0|advantage}."
+						"{@atk rs} {@hit 11} to hit, range {@quantity 120|ft.}, one target. {@h}28 ({@damage 8d6}) radiant damage, and the next attack roll made against the target before the end of Pike's next turn has {@quickref Advantage and Disadvantage|PHB|2|0|advantage}."
 					]
 				}
 			],
@@ -4773,7 +4773,7 @@
 				{
 					"name": "{@spell Healing Word} (4th Level)",
 					"entries": [
-						"Pike casts {@spell healing word}, restoring 16 ({@dice 4d4 + 6}) hit points to herself or another creature she can see within 60 feet of her."
+						"Pike casts {@spell healing word}, restoring 16 ({@dice 4d4 + 6}) hit points to herself or another creature she can see within {@quantity 60|feet} of her."
 					]
 				}
 			],
@@ -4781,13 +4781,13 @@
 				{
 					"name": "Dawnmartyr's Rebuke",
 					"entries": [
-						"When a creature within 5 feet of Pike hits her with a melee attack, she can deal 7 ({@damage 2d6}) fire or radiant damage to it (her choice)."
+						"When a creature within {@quantity 5|feet} of Pike hits her with a melee attack, she can deal 7 ({@damage 2d6}) fire or radiant damage to it (her choice)."
 					]
 				},
 				{
 					"name": "Everlight's Guidance (3/{@quickref resting|PHB|2|0|Short Rest})",
 					"entries": [
-						"When Pike or a creature she can see within 30 feet of her makes an attack roll, she can grant a +10 bonus to the roll. She can grant this bonus after the roll is made but before it hits or misses."
+						"When Pike or a creature she can see within {@quantity 30|feet} of her makes an attack roll, she can grant a +10 bonus to the roll. She can grant this bonus after the roll is made but before it hits or misses."
 					]
 				}
 			],
@@ -4890,7 +4890,7 @@
 				{
 					"name": "Trampling Charge",
 					"entries": [
-						"If the plainscow moves at least 20 feet straight toward a creature and then hits it with a hooves attack on the same turn, that target must succeed on a {@dc 14} Strength {@quickref saving throws|PHB|2|1|saving throw} or be knocked {@condition prone}. If the target is {@condition prone}, the plainscow can make another attack with its hooves as a bonus action."
+						"If the plainscow moves at least {@quantity 20|feet} straight toward a creature and then hits it with a hooves attack on the same turn, that target must succeed on a {@dc 14} Strength {@quickref saving throws|PHB|2|1|saving throw} or be knocked {@condition prone}. If the target is {@condition prone}, the plainscow can make another attack with its hooves as a bonus action."
 					]
 				}
 			],
@@ -4898,7 +4898,7 @@
 				{
 					"name": "Hooves",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}11 ({@damage 2d6 + 4}) bludgeoning damage."
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 5|ft.}, one target. {@h}11 ({@damage 2d6 + 4}) bludgeoning damage."
 					]
 				}
 			],
@@ -4952,7 +4952,7 @@
 			"wis": 12,
 			"cha": 1,
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 11,
 			"immune": [
@@ -5019,19 +5019,19 @@
 				{
 					"name": "Slam",
 					"entries": [
-						"{@atk mw} {@hit 11} to hit, reach 5 ft., one target. {@h}19 ({@damage 3d8 + 6}) piercing damage."
+						"{@atk mw} {@hit 11} to hit, reach {@quantity 5|ft.}, one target. {@h}19 ({@damage 3d8 + 6}) piercing damage."
 					]
 				},
 				{
 					"name": "Mace",
 					"entries": [
-						"{@atk mw} {@hit 11} to hit, reach 10 ft., one target. {@h}22 ({@damage 3d10 + 6}) bludgeoning damage."
+						"{@atk mw} {@hit 11} to hit, reach {@quantity 10|ft.}, one target. {@h}22 ({@damage 3d10 + 6}) bludgeoning damage."
 					]
 				},
 				{
 					"name": "Radiant Blast {@recharge}",
 					"entries": [
-						"The golem emits a burst of radiant light in a 20-foot radius. Each creature in the area must make a {@dc 18} Constitution {@quickref saving throws|PHB|2|1|saving throw}. On a failed save, a creature takes 18 ({@damage 4d8}) radiant damage and is {@condition blinded} until the end of its next turn. On a success, the creature takes half as much damage and is not {@condition blinded}."
+						"The golem emits a burst of radiant light in a {@quantity 20|-foot} radius. Each creature in the area must make a {@dc 18} Constitution {@quickref saving throws|PHB|2|1|saving throw}. On a failed save, a creature takes 18 ({@damage 4d8}) radiant damage and is {@condition blinded} until the end of its next turn. On a success, the creature takes half as much damage and is not {@condition blinded}."
 					]
 				}
 			],
@@ -5039,7 +5039,7 @@
 				{
 					"name": "Divine Judgment",
 					"entries": [
-						"When a creature within 10 feet of the golem makes an attack against a target other than the golem, the golem can make a mace attack against that creature."
+						"When a creature within {@quantity 10|feet} of the golem makes an attack against a target other than the golem, the golem can make a mace attack against that creature."
 					]
 				}
 			],
@@ -5129,7 +5129,7 @@
 				"religion": "+5"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 13,
 			"languages": [
@@ -5186,13 +5186,13 @@
 				{
 					"name": "Dual Greatswords",
 					"entries": [
-						"{@atk mw} {@hit 10} to hit, reach 5 ft., one target. {@h}13 ({@damage 2d6 + 6}) piercing damage plus 3 ({@damage 1d6}) fire damage."
+						"{@atk mw} {@hit 10} to hit, reach {@quantity 5|ft.}, one target. {@h}13 ({@damage 2d6 + 6}) piercing damage plus 3 ({@damage 1d6}) fire damage."
 					]
 				},
 				{
 					"name": "Spear",
 					"entries": [
-						"{@atk mw,rw} {@hit 10} to hit, range 20/60 ft., one target. {@h}13 ({@damage 2d6 + 6}) piercing damage plus 3 ({@damage 1d6}) fire damage, or 15 ({@damage 2d8 + 6}) piercing damage plus 3 ({@damage 1d6}) fire damage if used with both hands to make a melee attack."
+						"{@atk mw,rw} {@hit 10} to hit, range {@quantity 20/60|ft.}, one target. {@h}13 ({@damage 2d6 + 6}) piercing damage plus 3 ({@damage 1d6}) fire damage, or 15 ({@damage 2d8 + 6}) piercing damage plus 3 ({@damage 1d6}) fire damage if used with both hands to make a melee attack."
 					]
 				}
 			],
@@ -5321,7 +5321,7 @@
 				"wis": "+1"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 9,
 			"conditionImmune": [
@@ -5344,13 +5344,13 @@
 				{
 					"name": "Shortsword",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) piercing damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}6 ({@damage 1d6 + 3}) piercing damage."
 					]
 				},
 				{
 					"name": "Dagger",
 					"entries": [
-						"{@atk mw,rw} {@hit 5} to hit, reach 5 ft., range 20/60 ft., one target. {@h}5 ({@damage 1d4 + 3}) piercing damage."
+						"{@atk mw,rw} {@hit 5} to hit, reach {@quantity 5|ft.}, range {@quantity 20/60|ft.}, one target. {@h}5 ({@damage 1d4 + 3}) piercing damage."
 					]
 				}
 			],
@@ -5431,7 +5431,7 @@
 				"deception": "+9"
 			},
 			"senses": [
-				"truesight 60 ft."
+				"truesight {@quantity 60|ft.}"
 			],
 			"passive": 13,
 			"resist": [
@@ -5547,7 +5547,7 @@
 				{
 					"name": "Withering Touch",
 					"entries": [
-						"{@atk ms} {@hit 9} to hit, reach 5 ft., one target. {@h}17 ({@damage 5d6}) force damage plus extra damage from the Withering Touch trait. If this damage reduces a creature to 0 hit points, the creature and everything it is wearing and carrying, except magic items, are reduced to a pile of fine gray dust. The creature can be restored to life only by means of a {@spell true resurrection} or a {@spell wish} spell."
+						"{@atk ms} {@hit 9} to hit, reach {@quantity 5|ft.}, one target. {@h}17 ({@damage 5d6}) force damage plus extra damage from the Withering Touch trait. If this damage reduces a creature to 0 hit points, the creature and everything it is wearing and carrying, except magic items, are reduced to a pile of fine gray dust. The creature can be restored to life only by means of a {@spell true resurrection} or a {@spell wish} spell."
 					]
 				}
 			],
@@ -5721,7 +5721,7 @@
 				{
 					"name": "One-Eyed",
 					"entries": [
-						"The cultist has {@quickref Advantage and Disadvantage|PHB|2|0|disadvantage} on any attack roll made against a target more than 30 feet away."
+						"The cultist has {@quickref Advantage and Disadvantage|PHB|2|0|disadvantage} on any attack roll made against a target more than {@quantity 30|feet} away."
 					]
 				},
 				{
@@ -5735,8 +5735,8 @@
 				{
 					"name": "Dagger of Wounding",
 					"entries": [
-						"{@atk mw,rw} {@hit 6} to hit, reach 5 ft., range 20/60 ft., one target. {@h}5 ({@damage 1d4 + 3}) piercing damage. Hit points lost to {@item sword of wounding|DMG|this weapon's} damage can be regained only through a {@quickref resting|PHB|2|0|short or long rest}, rather than by regeneration, magic, or any other means.",
-						"Once per turn when the cultist hits a creature with an attack using this weapon, it can wound its target. At the start of each of the wounded creature's turns, it takes 2 ({@damage 1d4}) necrotic damage for each time it's been wounded by this weapon. It can then make a {@dc 15} Constitution {@quickref saving throws|PHB|2|1|saving throw}, ending the effect of all such wounds on itself on a success. Alternatively, the wounded creature, or a creature within 5 feet of it, can use an action to make a {@dc 15} Wisdom ({@skill Medicine}) check, ending the effect of such wounds on it on a success."
+						"{@atk mw,rw} {@hit 6} to hit, reach {@quantity 5|ft.}, range {@quantity 20/60|ft.}, one target. {@h}5 ({@damage 1d4 + 3}) piercing damage. Hit points lost to {@item sword of wounding|DMG|this weapon's} damage can be regained only through a {@quickref resting|PHB|2|0|short or long rest}, rather than by regeneration, magic, or any other means.",
+						"Once per turn when the cultist hits a creature with an attack using this weapon, it can wound its target. At the start of each of the wounded creature's turns, it takes 2 ({@damage 1d4}) necrotic damage for each time it's been wounded by this weapon. It can then make a {@dc 15} Constitution {@quickref saving throws|PHB|2|1|saving throw}, ending the effect of all such wounds on itself on a success. Alternatively, the wounded creature, or a creature within {@quantity 5|feet} of it, can use an action to make a {@dc 15} Wisdom ({@skill Medicine}) check, ending the effect of such wounds on it on a success."
 					]
 				}
 			],
@@ -5850,7 +5850,7 @@
 				{
 					"name": "Unarmed Strike",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d8 + 3}) bludgeoning damage. If the target is a Large or smaller creature, the brawler can choose one of the following additional effects:",
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 1d8 + 3}) bludgeoning damage. If the target is a Large or smaller creature, the brawler can choose one of the following additional effects:",
 						{
 							"type": "list",
 							"items": [
@@ -5858,7 +5858,7 @@
 									"name": "Bruise",
 									"type": "item",
 									"entries": [
-										"The target must succeed on a {@dc 13} Constitution {@quickref saving throws|PHB|2|1|saving throw}. On a failure, its speed is reduced by 5 feet until it receives at least 1 point of magical healing. A creature can use its action to make a {@dc 15} Wisdom ({@skill Medicine}) check to heal an affected creature within 5 feet of it (including itself), restoring any lost speed on a success."
+										"The target must succeed on a {@dc 13} Constitution {@quickref saving throws|PHB|2|1|saving throw}. On a failure, its speed is reduced by {@quantity 5|feet} until it receives at least 1 point of magical healing. A creature can use its action to make a {@dc 15} Wisdom ({@skill Medicine}) check to heal an affected creature within {@quantity 5|feet} of it (including itself), restoring any lost speed on a success."
 									]
 								},
 								{
@@ -6008,7 +6008,7 @@
 				{
 					"name": "Greataxe",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}10 ({@damage 1d12 + 4}) slashing damage plus 3 ({@damage 1d6}) lightning damage."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}10 ({@damage 1d12 + 4}) slashing damage plus 3 ({@damage 1d6}) lightning damage."
 					]
 				}
 			],
@@ -6150,7 +6150,7 @@
 				"persuasion": "+16"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 8,
 			"resist": [
@@ -6278,7 +6278,7 @@
 				{
 					"name": "Mythcarver",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d8 + 3}) piercing damage and 3 ({@damage 1d6}) force damage."
+						"{@atk mw} {@hit 9} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 1d8 + 3}) piercing damage and 3 ({@damage 1d6}) force damage."
 					]
 				}
 			],
@@ -6286,19 +6286,19 @@
 				{
 					"name": "Arcane Fist (8th Level)",
 					"entries": [
-						"{@atk ms} {@hit 11} to hit, reach 5 ft., one target. {@h}45 ({@damage 10d8}) force damage. Scanlan can use this bonus action only while concentrating on the {@spell Bigby's Hand||arcane hand} spell."
+						"{@atk ms} {@hit 11} to hit, reach {@quantity 5|ft.}, one target. {@h}45 ({@damage 10d8}) force damage. Scanlan can use this bonus action only while concentrating on the {@spell Bigby's Hand||arcane hand} spell."
 					]
 				},
 				{
 					"name": "Bardic Inspiration (6/{@quickref resting|PHB|2|0|Short Rest})",
 					"entries": [
-						"Scanlan grants a Bardic Inspiration die to one creature other than himself within 60 feet of him who can hear him. Once within the next 10 minutes, the creature can roll a {@dice d12} and add the number rolled to one ability check, attack roll, or {@quickref saving throws|PHB|2|1|saving throw} it makes.  When Scanlan uses this ability, he gains {@quickref Advantage and Disadvantage|PHB|2|0|advantage} on attack rolls with {@item Mythcarver (Exalted)|TDCSR|Mythcarver} until the end of his turn."
+						"Scanlan grants a Bardic Inspiration die to one creature other than himself within {@quantity 60|feet} of him who can hear him. Once within the next 10 minutes, the creature can roll a {@dice d12} and add the number rolled to one ability check, attack roll, or {@quickref saving throws|PHB|2|1|saving throw} it makes.  When Scanlan uses this ability, he gains {@quickref Advantage and Disadvantage|PHB|2|0|advantage} on attack rolls with {@item Mythcarver (Exalted)|TDCSR|Mythcarver} until the end of his turn."
 					]
 				},
 				{
 					"name": "{@spell Healing Word} (5th Level)",
 					"entries": [
-						"Scanlan casts {@spell healing word}, restoring 18 ({@dice 5d4 + 6}) hit points to himself or another creature he can see within 60 feet of him."
+						"Scanlan casts {@spell healing word}, restoring 18 ({@dice 5d4 + 6}) hit points to himself or another creature he can see within {@quantity 60|feet} of him."
 					]
 				}
 			],
@@ -6306,7 +6306,7 @@
 				{
 					"name": "Cutting Words",
 					"entries": [
-						"When a creature Scanlan can see within 60 feet of him makes an attack roll, an ability check, or a damage roll, he can expend a use of Bardic Inspiration to roll a {@dice d12} and subtract the number rolled from the creature's roll. The creature also has {@quickref Advantage and Disadvantage|PHB|2|0|disadvantage} on its next {@quickref saving throws|PHB|2|1|saving throw}."
+						"When a creature Scanlan can see within {@quantity 60|feet} of him makes an attack roll, an ability check, or a damage roll, he can expend a use of Bardic Inspiration to roll a {@dice d12} and subtract the number rolled from the creature's roll. The creature also has {@quickref Advantage and Disadvantage|PHB|2|0|disadvantage} on its next {@quickref saving throws|PHB|2|1|saving throw}."
 					]
 				}
 			],
@@ -6519,13 +6519,13 @@
 				{
 					"name": "Mercurial Longsword",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d10 + 1}) slashing damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}6 ({@damage 1d10 + 1}) slashing damage."
 					]
 				},
 				{
 					"name": "{@item Bead of Force}",
 					"entries": [
-						"Tary throws a {@item bead of force} up to 60 feet. Each creature within a 10-foot radius of where the bead landed must succeed on a {@dc 15} Dexterity {@quickref saving throws|PHB|2|1|saving throw} or take 12 ({@damage 5d4}) force damage. A sphere of transparent force then encloses the area for 1 minute. A creature that fails the save and is completely within the area is trapped inside the sphere."
+						"Tary throws a {@item bead of force} up to {@quantity 60|feet}. Each creature within a {@quantity 10|-foot} radius of where the bead landed must succeed on a {@dc 15} Dexterity {@quickref saving throws|PHB|2|1|saving throw} or take 12 ({@damage 5d4}) force damage. A sphere of transparent force then encloses the area for 1 minute. A creature that fails the save and is completely within the area is trapped inside the sphere."
 					]
 				}
 			],
@@ -6533,7 +6533,7 @@
 				{
 					"name": "Brilliant Intellect",
 					"entries": [
-						"When Tary or another creature he can see within 30 feet of him makes an ability check or a {@quickref saving throws|PHB|2|1|saving throw}, he can use his reaction to add +4 to the roll."
+						"When Tary or another creature he can see within {@quantity 30|feet} of him makes an ability check or a {@quickref saving throws|PHB|2|1|saving throw}, he can use his reaction to add +4 to the roll."
 					]
 				}
 			],
@@ -6640,7 +6640,7 @@
 				{
 					"name": "Raven's Slumber",
 					"entries": [
-						"If Trinket is reduced to 0 hit points and is within 100 feet of Vex, he is immediately drawn into the demiplane within {@creature Vex'ahlia|TDCSR|Vex's} {@item raven's slumber|TDCSR} and stabilized."
+						"If Trinket is reduced to 0 hit points and is within {@quantity 100|feet} of Vex, he is immediately drawn into the demiplane within {@creature Vex'ahlia|TDCSR|Vex's} {@item raven's slumber|TDCSR} and stabilized."
 					]
 				}
 			],
@@ -6654,13 +6654,13 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 13} to hit, reach 5 ft., one target. {@h}14 ({@damage 1d8 + 10}) piercing damage."
+						"{@atk mw} {@hit 13} to hit, reach {@quantity 5|ft.}, one target. {@h}14 ({@damage 1d8 + 10}) piercing damage."
 					]
 				},
 				{
 					"name": "Claws",
 					"entries": [
-						"{@atk mw} {@hit 13} to hit, reach 5 ft., one target. {@h}17 ({@damage 2d6 + 10}) slashing damage."
+						"{@atk mw} {@hit 13} to hit, reach {@quantity 5|ft.}, one target. {@h}17 ({@damage 2d6 + 10}) slashing damage."
 					]
 				}
 			],
@@ -6757,7 +6757,7 @@
 				"survival": "+9"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 25,
 			"resist": [
@@ -6840,7 +6840,7 @@
 				{
 					"name": "Sneak Attack (1/Turn)",
 					"entries": [
-						"Vex deals an extra 14 ({@damage 4d6}) damage when she hits a target with a weapon attack and has {@quickref Advantage and Disadvantage|PHB|2|0|advantage} on the attack roll, or when the target is within 5 feet of an ally of Vex that isn't {@condition incapacitated} and she doesn't have {@quickref Advantage and Disadvantage|PHB|2|0|disadvantage} on the attack roll."
+						"Vex deals an extra 14 ({@damage 4d6}) damage when she hits a target with a weapon attack and has {@quickref Advantage and Disadvantage|PHB|2|0|advantage} on the attack roll, or when the target is within {@quantity 5|feet} of an ally of Vex that isn't {@condition incapacitated} and she doesn't have {@quickref Advantage and Disadvantage|PHB|2|0|disadvantage} on the attack roll."
 					]
 				},
 				{
@@ -6866,7 +6866,7 @@
 				{
 					"name": "Fenthras",
 					"entries": [
-						"{@atk rw} {@hit 16} to hit, range 600 ft., one target. {@h}22 ({@damage 1d8 + 18}) piercing damage and 3 ({@damage 1d6}) lightning damage, and Vex can use the following ability:"
+						"{@atk rw} {@hit 16} to hit, range {@quantity 600|ft.}, one target. {@h}22 ({@damage 1d8 + 18}) piercing damage and 3 ({@damage 1d6}) lightning damage, and Vex can use the following ability:"
 					]
 				},
 				{
@@ -6886,7 +6886,7 @@
 				{
 					"name": "Hunter's Mark",
 					"entries": [
-						"Vex casts {@spell hunter's mark} to mark a creature she can see within 90 feet of her. For 1 hour, Vex's weapon attacks deal an extra {@damage 1d6} damage to the marked creature, and she has {@quickref Advantage and Disadvantage|PHB|2|0|advantage} on Wisdom ({@skill Perception}) and Wisdom ({@skill Survival}) checks made to find it."
+						"Vex casts {@spell hunter's mark} to mark a creature she can see within {@quantity 90|feet} of her. For 1 hour, Vex's weapon attacks deal an extra {@damage 1d6} damage to the marked creature, and she has {@quickref Advantage and Disadvantage|PHB|2|0|advantage} on Wisdom ({@skill Perception}) and Wisdom ({@skill Survival}) checks made to find it."
 					]
 				}
 			],
@@ -6981,7 +6981,7 @@
 				"stealth": "+4"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 12,
 			"immune": [
@@ -7036,19 +7036,19 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one creature. {@h}6 ({@damage 1d6 + 3}) piercing damage plus 7 ({@damage 2d6}) poison damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one creature. {@h}6 ({@damage 1d6 + 3}) piercing damage plus 7 ({@damage 2d6}) poison damage."
 					]
 				},
 				{
 					"name": "Scimitar",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) slashing damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}6 ({@damage 1d6 + 3}) slashing damage."
 					]
 				},
 				{
 					"name": "Constrict",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one creature. {@h}7 ({@damage 1d8 + 3}) bludgeoning damage, and the target is {@condition grappled} (escape {@dc 13}). Until this {@action grapple} ends, the creature is {@condition restrained}, and the serpentfolk can't constrict another target."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one creature. {@h}7 ({@damage 1d8 + 3}) bludgeoning damage, and the target is {@condition grappled} (escape {@dc 13}). Until this {@action grapple} ends, the creature is {@condition restrained}, and the serpentfolk can't constrict another target."
 					]
 				}
 			],
@@ -7144,7 +7144,7 @@
 				"stealth": "+7"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 12,
 			"resist": [
@@ -7186,7 +7186,7 @@
 				{
 					"name": "Ethereal Sight",
 					"entries": [
-						"The ghost can see 60 feet into the Ethereal Plane when it is on the Material Plane, and vice versa."
+						"The ghost can see {@quantity 60|feet} into the Ethereal Plane when it is on the Material Plane, and vice versa."
 					]
 				},
 				{
@@ -7206,7 +7206,7 @@
 				{
 					"name": "Spear",
 					"entries": [
-						"{@atk mw,rw} {@hit 5} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}6 ({@damage 1d6 + 3}) piercing damage plus 7 ({@damage 2d6}) necrotic damage. If the ghost makes a ranged attack, its spear rematerializes in its hands after the attack is resolved."
+						"{@atk mw,rw} {@hit 5} to hit, reach {@quantity 5|ft.} or range {@quantity 20/60|ft.}, one target. {@h}6 ({@damage 1d6 + 3}) piercing damage plus 7 ({@damage 2d6}) necrotic damage. If the ghost makes a ranged attack, its spear rematerializes in its hands after the attack is resolved."
 					]
 				},
 				{
@@ -7218,7 +7218,7 @@
 				{
 					"name": "Terrifying Hiss",
 					"entries": [
-						"The ghost emits an uncanny, rasping hiss. Each non-undead creature within 30 feet of the ghost that can hear it must succeed on a {@dc 13} Wisdom {@quickref saving throws|PHB|2|1|saving throw} or be {@condition frightened} for 1 minute. A {@condition frightened} target can repeat the {@quickref saving throws|PHB|2|1|saving throw} at the end of each of its turns, ending the condition on itself on a success. If a target's {@quickref saving throws|PHB|2|1|saving throw} is successful or the effect ends for it, the target is immune to this ghost's Terrifying Hiss for the next 24 hours."
+						"The ghost emits an uncanny, rasping hiss. Each non-undead creature within {@quantity 30|feet} of the ghost that can hear it must succeed on a {@dc 13} Wisdom {@quickref saving throws|PHB|2|1|saving throw} or be {@condition frightened} for 1 minute. A {@condition frightened} target can repeat the {@quickref saving throws|PHB|2|1|saving throw} at the end of each of its turns, ending the condition on itself on a success. If a target's {@quickref saving throws|PHB|2|1|saving throw} is successful or the effect ends for it, the target is immune to this ghost's Terrifying Hiss for the next 24 hours."
 					]
 				}
 			],
@@ -7344,19 +7344,19 @@
 				{
 					"name": "Slam",
 					"entries": [
-						"{@atk mw} {@hit 11} to hit, reach 10 ft., one target. {@h}16 ({@damage 3d6 + 6}) bludgeoning damage."
+						"{@atk mw} {@hit 11} to hit, reach {@quantity 10|ft.}, one target. {@h}16 ({@damage 3d6 + 6}) bludgeoning damage."
 					]
 				},
 				{
 					"name": "Rock",
 					"entries": [
-						"{@atk rw} {@hit 11} to hit, range 60/180 ft., one target. {@h}28 ({@damage 4d10 + 6}) bludgeoning damage."
+						"{@atk rw} {@hit 11} to hit, range {@quantity 60/180|ft.}, one target. {@h}28 ({@damage 4d10 + 6}) bludgeoning damage."
 					]
 				},
 				{
 					"name": "Wraithstorm {@recharge 5}",
 					"entries": [
-						"The wraithroot tree pulls life energy from the area around it, leaving creatures temporarily frail. Each creature that is not a construct or undead within 30 feet of the tree must succeed on a {@dc 16} Constitution {@quickref saving throws|PHB|2|1|saving throw} or have its speed halved and gain vulnerability to bludgeoning damage until the end of the tree's next turn."
+						"The wraithroot tree pulls life energy from the area around it, leaving creatures temporarily frail. Each creature that is not a construct or undead within {@quantity 30|feet} of the tree must succeed on a {@dc 16} Constitution {@quickref saving throws|PHB|2|1|saving throw} or have its speed halved and gain vulnerability to bludgeoning damage until the end of the tree's next turn."
 					]
 				}
 			],
@@ -7426,8 +7426,8 @@
 				"perception": "+4"
 			},
 			"senses": [
-				"darkvision 60 ft.",
-				"tremorsense 120 ft."
+				"darkvision {@quantity 60|ft.}",
+				"tremorsense {@quantity 120|ft.}"
 			],
 			"passive": 14,
 			"immune": [
@@ -7438,19 +7438,19 @@
 				{
 					"name": "Searing Presence",
 					"entries": [
-						"Any creature that starts its turn within 10 feet of the landshark takes 11 ({@damage 2d10}) fire damage."
+						"Any creature that starts its turn within {@quantity 10|feet} of the landshark takes 11 ({@damage 2d10}) fire damage."
 					]
 				},
 				{
 					"name": "Standing Leap",
 					"entries": [
-						"The landshark's {@quickref jumping|PHB|4|0|long jump} is up to 40 feet and its {@quickref jumping|PHB|4|0|high jump} is up to 20 feet, with or without a running start."
+						"The landshark's {@quickref jumping|PHB|4|0|long jump} is up to {@quantity 40|feet} and its {@quickref jumping|PHB|4|0|high jump} is up to {@quantity 20|feet}, with or without a running start."
 					]
 				},
 				{
 					"name": "Illumination",
 					"entries": [
-						"The landshark sheds bright light in a 15-foot radius and dim light for an additional 15 feet."
+						"The landshark sheds bright light in a {@quantity 15|-foot} radius and dim light for an additional {@quantity 15|feet}."
 					]
 				}
 			],
@@ -7458,13 +7458,13 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}31 ({@damage 4d12 + 5}) piercing damage, and 14 ({@damage 4d6}) fire damage."
+						"{@atk mw} {@hit 9} to hit, reach {@quantity 5|ft.}, one target. {@h}31 ({@damage 4d12 + 5}) piercing damage, and 14 ({@damage 4d6}) fire damage."
 					]
 				},
 				{
 					"name": "Deadly Leap",
 					"entries": [
-						"If the landshark {@quickref jumping|PHB|4|0|jumps} at least 15 feet as part of its movement, it can then use this action to land on its feet in a space that contains one or more other creatures. Each of those creatures must succeed on a {@dc 16} Strength or Dexterity {@quickref saving throws|PHB|2|1|saving throw} (target's choice) or be knocked {@condition prone} and take 19 ({@damage 4d6 + 5}) bludgeoning damage plus 14 ({@damage 4d6}) fire damage. On a successful save, the creature takes only half the damage, isn't knocked {@condition prone}, and is pushed 5 feet out of the landshark's space into an unoccupied space of the creature's choice. If no unoccupied space is within range, the creature instead falls {@condition prone} in the land-shark's space."
+						"If the landshark {@quickref jumping|PHB|4|0|jumps} at least {@quantity 15|feet} as part of its movement, it can then use this action to land on its feet in a space that contains one or more other creatures. Each of those creatures must succeed on a {@dc 16} Strength or Dexterity {@quickref saving throws|PHB|2|1|saving throw} (target's choice) or be knocked {@condition prone} and take 19 ({@damage 4d6 + 5}) bludgeoning damage plus 14 ({@damage 4d6}) fire damage. On a successful save, the creature takes only half the damage, isn't knocked {@condition prone}, and is pushed {@quantity 5|feet} out of the landshark's space into an unoccupied space of the creature's choice. If no unoccupied space is within range, the creature instead falls {@condition prone} in the land-shark's space."
 					]
 				}
 			],

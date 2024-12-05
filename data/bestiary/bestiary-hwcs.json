@@ -96,7 +96,7 @@
 				{
 					"name": "Glide",
 					"entries": [
-						"When falling at least 10 feet, Ardwyn can spend a reaction to fly up to her speed in one direction as she descends. She lands in an unoccupied space at the end of her movement, and takes no falling damage. She cannot glide while carrying heavy objects, heavy weapons, or shields (though she can drop any held items as part of her reaction)."
+						"When falling at least {@quantity 10|feet}, Ardwyn can spend a reaction to fly up to her speed in one direction as she descends. She lands in an unoccupied space at the end of her movement, and takes no falling damage. She cannot glide while carrying heavy objects, heavy weapons, or shields (though she can drop any held items as part of her reaction)."
 					]
 				},
 				{
@@ -122,7 +122,7 @@
 				{
 					"name": "Mace",
 					"entries": [
-						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d6}) bludgeoning damage."
+						"{@atk mw} {@hit 2} to hit, reach {@quantity 5|ft.}, one target. {@h}3 ({@damage 1d6}) bludgeoning damage."
 					]
 				}
 			],
@@ -196,8 +196,8 @@
 			"wis": 12,
 			"cha": 4,
 			"senses": [
-				"blindsight 30 ft. (blind beyond this radius)",
-				"tremorsense 60 ft."
+				"blindsight {@quantity 30|ft.} (blind beyond this radius)",
+				"tremorsense {@quantity 60|ft.}"
 			],
 			"passive": 11,
 			"resist": [
@@ -221,7 +221,7 @@
 				{
 					"name": "Eruption",
 					"entries": [
-						"When the ashsnake emerges from burrowing, any creature within 5 feet of it that is at least one size smaller than the ashsnake must make a {@dc 14} Dexterity saving throw or be knocked {@condition prone}."
+						"When the ashsnake emerges from burrowing, any creature within {@quantity 5|feet} of it that is at least one size smaller than the ashsnake must make a {@dc 14} Dexterity saving throw or be knocked {@condition prone}."
 					]
 				}
 			],
@@ -235,13 +235,13 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 10 ft., one target. {@h}8 ({@damage 1d10 + 3}) piercing damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 10|ft.}, one target. {@h}8 ({@damage 1d10 + 3}) piercing damage."
 					]
 				},
 				{
 					"name": "Constrict",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 10 ft., one target. {@h}8 ({@damage 2d8 + 3}) bludgeoning damage and the target is {@condition grappled} (escape {@dc 14}). Until the grapple ends the target is {@condition restrained} and the ashsnake cannot constrict or crush another target. The ashsnake can release the target at any time during its turn."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 10|ft.}, one target. {@h}8 ({@damage 2d8 + 3}) bludgeoning damage and the target is {@condition grappled} (escape {@dc 14}). Until the grapple ends the target is {@condition restrained} and the ashsnake cannot constrict or crush another target. The ashsnake can release the target at any time during its turn."
 					]
 				},
 				{
@@ -253,7 +253,7 @@
 				{
 					"name": "Ashen Breath {@recharge 5}",
 					"entries": [
-						"The ashsnake breathes out a cloud of superheated ash in a 15-foot cone. Each creature in the area must make a {@dc 14} Dexterity saving throw, taking 11 ({@damage 2d10}) fire damage on a failed save, or half as much on a success."
+						"The ashsnake breathes out a cloud of superheated ash in a {@quantity 15|-foot} cone. Each creature in the area must make a {@dc 14} Dexterity saving throw, taking 11 ({@damage 2d10}) fire damage on a failed save, or half as much on a success."
 					]
 				}
 			],
@@ -327,7 +327,7 @@
 				"wis": "+6"
 			},
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 12,
 			"resist": [
@@ -362,13 +362,13 @@
 				{
 					"name": "Molten Skin",
 					"entries": [
-						"Any creature who touches, makes a melee attack within 5 feet of, or ends their turn within 5 feet of the aspect takes 11 ({@damage 2d10}) fire damage. Flammable objects within 5 feet of the aspect burst into flames."
+						"Any creature who touches, makes a melee attack within {@quantity 5|feet} of, or ends their turn within {@quantity 5|feet} of the aspect takes 11 ({@damage 2d10}) fire damage. Flammable objects within {@quantity 5|feet} of the aspect burst into flames."
 					]
 				},
 				{
 					"name": "Natural Light",
 					"entries": [
-						"The aspect gives off bright light in a 60-foot-radius and dim light for an additional 60 feet."
+						"The aspect gives off bright light in a {@quantity 60|-foot}-radius and dim light for an additional {@quantity 60|feet}."
 					]
 				},
 				{
@@ -380,7 +380,7 @@
 				{
 					"name": "Fuel for the Fire",
 					"entries": [
-						"The aspect of fire doesn't treat plant life as difficult terrain. Whenever the aspect begins its turn in a space of plant life that provides cover, it burns the plant life away from all spaces it is currently occupying, healing {@dice 1d4} hit points for each 5-foot square of such plant life it has consumed. If it heals for 17 or more damage in this way, it flares up, recharging its magma throw action."
+						"The aspect of fire doesn't treat plant life as difficult terrain. Whenever the aspect begins its turn in a space of plant life that provides cover, it burns the plant life away from all spaces it is currently occupying, healing {@dice 1d4} hit points for each {@quantity 5|-foot} square of such plant life it has consumed. If it heals for 17 or more damage in this way, it flares up, recharging its magma throw action."
 					]
 				}
 			],
@@ -394,19 +394,19 @@
 				{
 					"name": "Molten Fist",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 15 ft., one target. {@h}16 ({@damage 2d10 + 5}) fire damage."
+						"{@atk mw} {@hit 9} to hit, reach {@quantity 15|ft.}, one target. {@h}16 ({@damage 2d10 + 5}) fire damage."
 					]
 				},
 				{
 					"name": "Stomp",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}20 ({@damage 3d10 + 5}) fire damage. The target must succeed on a {@dc 17} Constitution saving throw or be knocked {@condition prone}."
+						"{@atk mw} {@hit 9} to hit, reach {@quantity 5|ft.}, one target. {@h}20 ({@damage 3d10 + 5}) fire damage. The target must succeed on a {@dc 17} Constitution saving throw or be knocked {@condition prone}."
 					]
 				},
 				{
 					"name": "Magma Throw {@recharge 5}",
 					"entries": [
-						"The aspect hurls a ball of molten rock. Choose a location within 60 feet of the aspect. All creatures within 15 feet of the target location must make a {@dc 17} Dexterity saving throw. On a failure, a creature takes 22 ({@damage 4d10}) fire damage. On a success, the creature takes half as much damage."
+						"The aspect hurls a ball of molten rock. Choose a location within {@quantity 60|feet} of the aspect. All creatures within {@quantity 15|feet} of the target location must make a {@dc 17} Dexterity saving throw. On a failure, a creature takes 22 ({@damage 4d10}) fire damage. On a success, the creature takes half as much damage."
 					]
 				}
 			],
@@ -528,7 +528,7 @@
 				{
 					"name": "Standing Leap",
 					"entries": [
-						"Benna Seridan's long jump is 30 feet, and her base high jump is 15 feet, with or without a running start."
+						"Benna Seridan's long jump is {@quantity 30|feet}, and her base high jump is {@quantity 15|feet}, with or without a running start."
 					]
 				}
 			],
@@ -542,13 +542,13 @@
 				{
 					"name": "Scimitar of the Wood",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d6 + 4}) slashing damage. The sword has 2 charges. Benna Seridan can expend a charge and speak the command word to cast {@spell spike growth} (save {@dc 16}) centered on herself. She can pass through this terrain unaffected. The sword regains one charge each day at dawn."
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 1d6 + 4}) slashing damage. The sword has 2 charges. Benna Seridan can expend a charge and speak the command word to cast {@spell spike growth} (save {@dc 16}) centered on herself. She can pass through this terrain unaffected. The sword regains one charge each day at dawn."
 					]
 				},
 				{
 					"name": "Shortsword",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) piercing damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}6 ({@damage 1d6 + 3}) piercing damage."
 					]
 				}
 			],
@@ -632,7 +632,7 @@
 				{
 					"name": "Glide",
 					"entries": [
-						"When falling at least 10 feet, the dockmaster can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
+						"When falling at least {@quantity 10|feet}, the dockmaster can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
 					]
 				},
 				{
@@ -644,7 +644,7 @@
 				{
 					"name": "Sneak Attack",
 					"entries": [
-						"Once per turn, the dockmaster deals an extra 3 ({@dice 1d6}) damage when they hit a target with a weapon attack and they have advantage on the attack roll, or when the target is within 5 ft. of an ally of the dockmaster that isn't {@condition incapacitated} and the dockmaster doesn't have disadvantage on the attack roll."
+						"Once per turn, the dockmaster deals an extra 3 ({@dice 1d6}) damage when they hit a target with a weapon attack and they have advantage on the attack roll, or when the target is within {@quantity 5|ft.} of an ally of the dockmaster that isn't {@condition incapacitated} and the dockmaster doesn't have disadvantage on the attack roll."
 					]
 				}
 			],
@@ -658,13 +658,13 @@
 				{
 					"name": "Saber",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) slashing damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}6 ({@damage 1d6 + 3}) slashing damage."
 					]
 				},
 				{
 					"name": "Dagger",
 					"entries": [
-						"{@atk mw,rw} {@hit 5} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}5 ({@damage 1d4 + 3}) piercing damage."
+						"{@atk mw,rw} {@hit 5} to hit, reach {@quantity 5|ft.} or range {@quantity 20/60|ft.}, one target. {@h}5 ({@damage 1d4 + 3}) piercing damage."
 					]
 				}
 			],
@@ -746,7 +746,7 @@
 				{
 					"name": "Glide",
 					"entries": [
-						"When falling at least 10 feet, the farmer can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
+						"When falling at least {@quantity 10|feet}, the farmer can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
 					]
 				}
 			],
@@ -754,7 +754,7 @@
 				{
 					"name": "Pitchfork",
 					"entries": [
-						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}2 ({@damage 1d4}) slashing damage."
+						"{@atk mw} {@hit 2} to hit, reach {@quantity 5|ft.}, one target. {@h}2 ({@damage 1d4}) slashing damage."
 					]
 				}
 			],
@@ -827,7 +827,7 @@
 				{
 					"name": "Glide",
 					"entries": [
-						"When falling at least 10 feet, the guard can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects or heavy weapons, (though they can drop any held items as part of their reaction)."
+						"When falling at least {@quantity 10|feet}, the guard can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects or heavy weapons, (though they can drop any held items as part of their reaction)."
 					]
 				}
 			],
@@ -835,7 +835,7 @@
 				{
 					"name": "Spear",
 					"entries": [
-						"{@atk mw,rw} {@hit 3} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}4 ({@damage 1d6 + 1}) piercing damage, or 5 ({@damage 1d8 + 1}) piercing damage if used with two hands to make a melee attack."
+						"{@atk mw,rw} {@hit 3} to hit, reach {@quantity 5|ft.} or range {@quantity 20/60|ft.}, one target. {@h}4 ({@damage 1d6 + 1}) piercing damage, or 5 ({@damage 1d8 + 1}) piercing damage if used with two hands to make a melee attack."
 					]
 				}
 			],
@@ -907,7 +907,7 @@
 				{
 					"name": "Glide",
 					"entries": [
-						"When falling at least 10 feet, the militia can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as ",
+						"When falling at least {@quantity 10|feet}, the militia can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as ",
 						"part of their reaction)."
 					]
 				}
@@ -916,7 +916,7 @@
 				{
 					"name": "Mace",
 					"entries": [
-						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d6 + 1}) bludgeoning damage."
+						"{@atk mw} {@hit 3} to hit, reach {@quantity 5|ft.}, one target. {@h}4 ({@damage 1d6 + 1}) bludgeoning damage."
 					]
 				}
 			],
@@ -989,7 +989,7 @@
 				{
 					"name": "Glide",
 					"entries": [
-						"When falling at least 10 feet, the sailor can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
+						"When falling at least {@quantity 10|feet}, the sailor can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
 					]
 				}
 			],
@@ -997,13 +997,13 @@
 				{
 					"name": "Shortsword",
 					"entries": [
-						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
+						"{@atk mw} {@hit 3} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
 					]
 				},
 				{
 					"name": "Light Crossbow",
 					"entries": [
-						"{@atk rw} {@hit 3} to hit, range 80/320 ft., one target. {@h}5 ({@damage 1d8 + 2}) piercing damage."
+						"{@atk rw} {@hit 3} to hit, range {@quantity 80/320|ft.}, one target. {@h}5 ({@damage 1d8 + 2}) piercing damage."
 					]
 				}
 			],
@@ -1062,7 +1062,7 @@
 			"wis": 8,
 			"cha": 3,
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 9,
 			"immune": [
@@ -1092,13 +1092,13 @@
 				{
 					"name": "Shortsword",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
 					]
 				},
 				{
 					"name": "Talons",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d4 + 2}) piercing damage."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}4 ({@damage 1d4 + 2}) piercing damage."
 					]
 				}
 			],
@@ -1177,7 +1177,7 @@
 				{
 					"name": "Glide",
 					"entries": [
-						"When falling at least 10 feet, the skirmisher can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
+						"When falling at least {@quantity 10|feet}, the skirmisher can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
 					]
 				},
 				{
@@ -1191,7 +1191,7 @@
 				{
 					"name": "Spear",
 					"entries": [
-						"{@atk mw,rw} {@hit 4} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage, or 6 ({@damage 1d8 + 2}) piercing damage if used with two hands to make a melee attack."
+						"{@atk mw,rw} {@hit 4} to hit, reach {@quantity 5|ft.} or range {@quantity 20/60|ft.}, one target. {@h}5 ({@damage 1d6 + 2}) piercing damage, or 6 ({@damage 1d8 + 2}) piercing damage if used with two hands to make a melee attack."
 					]
 				}
 			],
@@ -1271,7 +1271,7 @@
 				{
 					"name": "Glide",
 					"entries": [
-						"When falling at least 10 feet, Bita can spend a reaction to fly up to her speed in one direction as she descends. She lands in an unoccupied space at the end of her movement, and takes no falling damage. She cannot glide while carrying heavy objects, heavy weapons, or shields (though she can drop any held items as part of her reaction)."
+						"When falling at least {@quantity 10|feet}, Bita can spend a reaction to fly up to her speed in one direction as she descends. She lands in an unoccupied space at the end of her movement, and takes no falling damage. She cannot glide while carrying heavy objects, heavy weapons, or shields (though she can drop any held items as part of her reaction)."
 					]
 				},
 				{
@@ -1291,7 +1291,7 @@
 				{
 					"name": "Rapier",
 					"entries": [
-						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d8 + 1}) piercing damage."
+						"{@atk mw} {@hit 3} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d8 + 1}) piercing damage."
 					]
 				}
 			],
@@ -1365,7 +1365,7 @@
 			"wis": 10,
 			"cha": 10,
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 10,
 			"languages": [
@@ -1377,7 +1377,7 @@
 				{
 					"name": "Glide",
 					"entries": [
-						"When falling at least 10 feet, Cara Stormsinger can spend a reaction to fly up to her speed in one direction as she descends. She lands in an unoccupied space at the end of her movement, and takes no falling damage. She cannot glide while carrying heavy objects, heavy weapons, or shields (though she can drop any held items as part of her reaction)."
+						"When falling at least {@quantity 10|feet}, Cara Stormsinger can spend a reaction to fly up to her speed in one direction as she descends. She lands in an unoccupied space at the end of her movement, and takes no falling damage. She cannot glide while carrying heavy objects, heavy weapons, or shields (though she can drop any held items as part of her reaction)."
 					]
 				},
 				{
@@ -1397,13 +1397,13 @@
 				{
 					"name": "Talons",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d4 + 2}) piercing damage."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}4 ({@damage 1d4 + 2}) piercing damage."
 					]
 				},
 				{
 					"name": "Mace",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) bludgeoning damage."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d6 + 2}) bludgeoning damage."
 					]
 				}
 			],
@@ -1455,7 +1455,7 @@
 			"wis": 6,
 			"cha": 1,
 			"senses": [
-				"blindsight 60 ft. (blind beyond this radius)"
+				"blindsight {@quantity 60|ft.} (blind beyond this radius)"
 			],
 			"passive": 8,
 			"immune": [
@@ -1474,7 +1474,7 @@
 				{
 					"name": "Amorphous",
 					"entries": [
-						"The Caustic Slime can move through a space as narrow as 1 inch wide without squeezing."
+						"The Caustic Slime can move through a space as narrow as {@quantity 1|inch} wide without squeezing."
 					]
 				},
 				{
@@ -1486,7 +1486,7 @@
 				{
 					"name": "Caustic",
 					"entries": [
-						"Any creature that touches the slime or hits it with a melee attack while within 5 feet of it must succeed on a {@dc 12} Dexterity saving throw or take 2 ({@dice 1d4}) points of acid damage."
+						"Any creature that touches the slime or hits it with a melee attack while within {@quantity 5|feet} of it must succeed on a {@dc 12} Dexterity saving throw or take 2 ({@dice 1d4}) points of acid damage."
 					]
 				}
 			],
@@ -1494,7 +1494,7 @@
 				{
 					"name": "Psuedopod",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) acid damage."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d6 + 2}) acid damage."
 					]
 				}
 			],
@@ -1589,7 +1589,7 @@
 				{
 					"name": "Standing Leap",
 					"entries": [
-						"The general's long jump is 30 feet, and their base high jump is 15 feet, with or without a running start."
+						"The general's long jump is {@quantity 30|feet}, and their base high jump is {@quantity 15|feet}, with or without a running start."
 					]
 				}
 			],
@@ -1603,13 +1603,13 @@
 				{
 					"name": "Scimitar",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) slashing damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}6 ({@damage 1d6 + 3}) slashing damage."
 					]
 				},
 				{
 					"name": "Dagger",
 					"entries": [
-						"{@atk mw,rw} {@hit 5} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}5 ({@damage 1d4 + 3}) piercing damage."
+						"{@atk mw,rw} {@hit 5} to hit, reach {@quantity 5|ft.} or range {@quantity 20/60|ft.}, one target. {@h}5 ({@damage 1d4 + 3}) piercing damage."
 					]
 				}
 			],
@@ -1734,7 +1734,7 @@
 				{
 					"name": "Charge",
 					"entries": [
-						"If the priest moves at least 20 feet in a straight line towards an enemy, their antler attack deals an extra 3 ({@dice 1d6}) points of piercing damage. If the target of the charge is Large or smaller, they must make a {@dc 11} Strength saving throw or be pushed 10 feet away from the priest."
+						"If the priest moves at least {@quantity 20|feet} in a straight line towards an enemy, their antler attack deals an extra 3 ({@dice 1d6}) points of piercing damage. If the target of the charge is Large or smaller, they must make a {@dc 11} Strength saving throw or be pushed {@quantity 10|feet} away from the priest."
 					]
 				}
 			],
@@ -1742,13 +1742,13 @@
 				{
 					"name": "Antlers",
 					"entries": [
-						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d6 + 1}) piercing damage."
+						"{@atk mw} {@hit 3} to hit, reach {@quantity 5|ft.}, one target. {@h}4 ({@damage 1d6 + 1}) piercing damage."
 					]
 				},
 				{
 					"name": "Quarterstaff",
 					"entries": [
-						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d6 + 1}) bludgeoning damage, or 5 ({@damage 1d8 + 1}) bludgeoning damage if being held in both hands."
+						"{@atk mw} {@hit 3} to hit, reach {@quantity 5|ft.}, one target. {@h}4 ({@damage 1d6 + 1}) bludgeoning damage, or 5 ({@damage 1d8 + 1}) bludgeoning damage if being held in both hands."
 					]
 				}
 			],
@@ -1821,7 +1821,7 @@
 				"wis": "+2"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 9,
 			"immune": [
@@ -1857,13 +1857,13 @@
 				{
 					"name": "Claw",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}8 ({@damage 1d4 + 4}) piercing damage."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}8 ({@damage 1d4 + 4}) piercing damage."
 					]
 				},
 				{
 					"name": "Grab",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}The target is {@condition grappled} (escape {@dc 15}). The cobblefright can grapple up to 2 targets at once. Once at the start of its turn for each target it has {@condition grappled} the cobblefright can squeeze its victim. The target must make a {@dc 15} Strength saving throw, taking 13 ({@damage 2d8 + 4}) bludgeoning damage on a failed save."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}The target is {@condition grappled} (escape {@dc 15}). The cobblefright can grapple up to 2 targets at once. Once at the start of its turn for each target it has {@condition grappled} the cobblefright can squeeze its victim. The target must make a {@dc 15} Strength saving throw, taking 13 ({@damage 2d8 + 4}) bludgeoning damage on a failed save."
 					]
 				},
 				{
@@ -2020,7 +2020,7 @@
 				{
 					"name": "Glide",
 					"entries": [
-						"When falling at least 10 feet, Corvax Revayne can spend a reaction to fly up to his speed in one direction as he descends. Corvax lands in an unoccupied space at the end of his movement, and takes no falling damage. Corvax cannot glide while carrying heavy objects, heavy weapons, or shields (though he can drop any held items as part of his reaction)."
+						"When falling at least {@quantity 10|feet}, Corvax Revayne can spend a reaction to fly up to his speed in one direction as he descends. Corvax lands in an unoccupied space at the end of his movement, and takes no falling damage. Corvax cannot glide while carrying heavy objects, heavy weapons, or shields (though he can drop any held items as part of his reaction)."
 					]
 				},
 				{
@@ -2040,7 +2040,7 @@
 				{
 					"name": "Talons",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d4 + 2}) slashing damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}4 ({@damage 1d4 + 2}) slashing damage."
 					]
 				}
 			],
@@ -2126,7 +2126,7 @@
 				{
 					"name": "Glide",
 					"entries": [
-						"When falling at least 10 feet, the assassin can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
+						"When falling at least {@quantity 10|feet}, the assassin can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
 					]
 				},
 				{
@@ -2144,7 +2144,7 @@
 				{
 					"name": "Sneak Attack",
 					"entries": [
-						"Once per turn, the assassin deals an extra 10 ({@dice 3d6}) damage when they hit a target with a weapon attack and have advantage on the attack roll, or when the target is within 5 feet of an ally of the assassin that isn't {@condition incapacitated} and the assassin doesn't have disadvantage on the attack roll."
+						"Once per turn, the assassin deals an extra 10 ({@dice 3d6}) damage when they hit a target with a weapon attack and have advantage on the attack roll, or when the target is within {@quantity 5|feet} of an ally of the assassin that isn't {@condition incapacitated} and the assassin doesn't have disadvantage on the attack roll."
 					]
 				},
 				{
@@ -2164,19 +2164,19 @@
 				{
 					"name": "Talons",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d4 + 3}) slashing damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d4 + 3}) slashing damage."
 					]
 				},
 				{
 					"name": "Shortsword",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 3}) piercing damage, and the target must make a {@dc 13} Constitution saving throw, taking 10 ({@damage 3d6}) poison damage on a failed save, or half as much damage on a successful one. "
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d6 + 3}) piercing damage, and the target must make a {@dc 13} Constitution saving throw, taking 10 ({@damage 3d6}) poison damage on a failed save, or half as much damage on a successful one. "
 					]
 				},
 				{
 					"name": "Dagger",
 					"entries": [
-						"{@atk mw,rw} {@hit 5} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}5 ({@damage 1d4 + 3}) piercing damage, and the target must make a {@dc 13} Constitution saving throw, taking 10 ({@damage 3d6}) poison damage on a failed save, or half as much damage on a successful one. "
+						"{@atk mw,rw} {@hit 5} to hit, reach {@quantity 5|ft.} or range {@quantity 20/60|ft.}, one target. {@h}5 ({@damage 1d4 + 3}) piercing damage, and the target must make a {@dc 13} Constitution saving throw, taking 10 ({@damage 3d6}) poison damage on a failed save, or half as much damage on a successful one. "
 					]
 				}
 			],
@@ -2330,7 +2330,7 @@
 				{
 					"name": "Glide",
 					"entries": [
-						"When falling at least 10 feet, the diviner can spend a reaction to fly up to their speed in one direction as they descend. The diviner lands in an unoccupied space at the end of their movement, and takes no falling damage. The diviner cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
+						"When falling at least {@quantity 10|feet}, the diviner can spend a reaction to fly up to their speed in one direction as they descend. The diviner lands in an unoccupied space at the end of their movement, and takes no falling damage. The diviner cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
 					]
 				},
 				{
@@ -2350,7 +2350,7 @@
 				{
 					"name": "Talons",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d4 + 2}) slashing damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}4 ({@damage 1d4 + 2}) slashing damage."
 					]
 				}
 			],
@@ -2497,7 +2497,7 @@
 				{
 					"name": "Glide",
 					"entries": [
-						"When falling at least 10 feet, the necromancer can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
+						"When falling at least {@quantity 10|feet}, the necromancer can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
 					]
 				},
 				{
@@ -2523,13 +2523,13 @@
 				{
 					"name": "Staff",
 					"entries": [
-						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}2 ({@damage 1d6 - 1}) bludgeoning damage, or 3 ({@damage 1d8 - 1}) bludgeoning damage if wielded with both hands."
+						"{@atk mw} {@hit 2} to hit, reach {@quantity 5|ft.}, one target. {@h}2 ({@damage 1d6 - 1}) bludgeoning damage, or 3 ({@damage 1d8 - 1}) bludgeoning damage if wielded with both hands."
 					]
 				},
 				{
 					"name": "Talons",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d4 + 2}) slashing damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}4 ({@damage 1d4 + 2}) slashing damage."
 					]
 				}
 			],
@@ -2606,7 +2606,7 @@
 				{
 					"name": "Club",
 					"entries": [
-						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}2 ({@damage 1d4}) bludgeoning damage."
+						"{@atk mw} {@hit 2} to hit, reach {@quantity 5|ft.}, one target. {@h}2 ({@damage 1d4}) bludgeoning damage."
 					]
 				}
 			],
@@ -2653,7 +2653,7 @@
 			"wis": 12,
 			"cha": 5,
 			"senses": [
-				"blindsight 60 ft."
+				"blindsight {@quantity 60|ft.}"
 			],
 			"passive": 11,
 			"cr": "0",
@@ -2673,7 +2673,7 @@
 				{
 					"name": "Ember Flame",
 					"entries": [
-						"The emberbat can create a flame from its nose at will. It sheds bright light in a 5-foot-radius and dim light in another 5 feet beyond this. This effect lasts until it is dismissed, which the emberbat can do at anytime. When lit, the flame also provides a small damage boost to the emberbat's bite (already included in stat block)."
+						"The emberbat can create a flame from its nose at will. It sheds bright light in a {@quantity 5|-foot}-radius and dim light in another {@quantity 5|feet} beyond this. This effect lasts until it is dismissed, which the emberbat can do at anytime. When lit, the flame also provides a small damage boost to the emberbat's bite (already included in stat block)."
 					]
 				}
 			],
@@ -2681,7 +2681,7 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 0} to hit, reach 5 ft., one target. {@h}1 piercing damage plus 1 fire damage."
+						"{@atk mw} {@hit 0} to hit, reach {@quantity 5|ft.}, one target. {@h}1 piercing damage plus 1 fire damage."
 					]
 				}
 			],
@@ -2748,7 +2748,7 @@
 				{
 					"name": "Standing Leap",
 					"entries": [
-						"A jerbeen's long jump is 30 feet, and their base high jump is 15 feet, with or without a running start."
+						"A jerbeen's long jump is {@quantity 30|feet}, and their base high jump is {@quantity 15|feet}, with or without a running start."
 					]
 				},
 				{
@@ -2762,7 +2762,7 @@
 				{
 					"name": "Club",
 					"entries": [
-						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}2 ({@damage 1d4}) bludgeoning damage."
+						"{@atk mw} {@hit 2} to hit, reach {@quantity 5|ft.}, one target. {@h}2 ({@damage 1d4}) bludgeoning damage."
 					]
 				}
 			],
@@ -2818,7 +2818,7 @@
 				"stealth": "+6"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 14,
 			"cr": "4",
@@ -2832,7 +2832,7 @@
 				{
 					"name": "Pounce",
 					"entries": [
-						"If the Forest Prowler moves at least 10 feet straight toward a creature and then hits it with a claw attack on the same turn, that target must succeed on a {@dc 14} Strength saving throw or be knocked {@condition prone}. The prowler can use its bonus action to make another claw attack against this target."
+						"If the Forest Prowler moves at least {@quantity 10|feet} straight toward a creature and then hits it with a claw attack on the same turn, that target must succeed on a {@dc 14} Strength saving throw or be knocked {@condition prone}. The prowler can use its bonus action to make another claw attack against this target."
 					]
 				},
 				{
@@ -2852,13 +2852,13 @@
 				{
 					"name": "Claw",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}8 ({@damage 1d8 + 4}) slashing damage,."
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 5|ft.}, one target. {@h}8 ({@damage 1d8 + 4}) slashing damage,."
 					]
 				},
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}13 ({@damage 2d8 + 4}) piercing damage. If the target of the bite attack is {@condition prone}, it takes an additional 4 ({@damage 1d8}) piercing damage. "
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 5|ft.}, one target. {@h}13 ({@damage 2d8 + 4}) piercing damage. If the target of the bite attack is {@condition prone}, it takes an additional 4 ({@damage 1d8}) piercing damage. "
 					]
 				}
 			],
@@ -2935,7 +2935,7 @@
 				"perception": "+4"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 14,
 			"languages": [
@@ -2961,19 +2961,19 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
 					]
 				},
 				{
 					"name": "Short sword",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
 					]
 				},
 				{
 					"name": "Short bow",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, range 80/320 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
+						"{@atk mw} {@hit 4} to hit, range {@quantity 80/320|ft.}, one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
 					]
 				}
 			],
@@ -3126,7 +3126,7 @@
 				{
 					"name": "Glide",
 					"entries": [
-						"When falling at least 10 feet, Gabe can spend a reaction to fly up to his speed in one direction as he descends. He lands in an unoccupied space at the end of his movement, and takes no falling damage. He cannot glide while carrying heavy objects, heavy weapons, or shields (though he can drop any held items as part of his reaction)."
+						"When falling at least {@quantity 10|feet}, Gabe can spend a reaction to fly up to his speed in one direction as he descends. He lands in an unoccupied space at the end of his movement, and takes no falling damage. He cannot glide while carrying heavy objects, heavy weapons, or shields (though he can drop any held items as part of his reaction)."
 					]
 				},
 				{
@@ -3152,7 +3152,7 @@
 				{
 					"name": "Staff",
 					"entries": [
-						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}2 ({@damage 1d6 - 1}) bludgeoning damage."
+						"{@atk mw} {@hit 2} to hit, reach {@quantity 5|ft.}, one target. {@h}2 ({@damage 1d6 - 1}) bludgeoning damage."
 					]
 				}
 			],
@@ -3294,7 +3294,7 @@
 				{
 					"name": "Glide",
 					"entries": [
-						"When falling at least 10 feet, the druid can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
+						"When falling at least {@quantity 10|feet}, the druid can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
 					]
 				},
 				{
@@ -3312,7 +3312,7 @@
 				{
 					"name": "Spirit Totem (Recharges after a Short or Long Rest)",
 					"entries": [
-						"As a bonus action, the druid calls forth a nature spirit. The spirit appears at a point the druid can see within 60 feet. The spirit creates a 30-foot-radius aura. The spirit is neither an object nor a creature, but is a spectral beast. As a bonus action, the druid can move the spirit to another location within 60 feet. The spirit lasts for 1 minute.",
+						"As a bonus action, the druid calls forth a nature spirit. The spirit appears at a point the druid can see within {@quantity 60|feet}. The spirit creates a {@quantity 30|-foot}-radius aura. The spirit is neither an object nor a creature, but is a spectral beast. As a bonus action, the druid can move the spirit to another location within {@quantity 60|feet}. The spirit lasts for 1 minute.",
 						{
 							"name": "Bear Spirit",
 							"entries": [
@@ -3341,7 +3341,7 @@
 				{
 					"name": "Staff",
 					"entries": [
-						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d6 + 1}) bludgeoning damage."
+						"{@atk mw} {@hit 3} to hit, reach {@quantity 5|ft.}, one target. {@h}4 ({@damage 1d6 + 1}) bludgeoning damage."
 					]
 				}
 			],
@@ -3432,7 +3432,7 @@
 				{
 					"name": "Glide",
 					"entries": [
-						"When falling at least 10 feet, the monk can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
+						"When falling at least {@quantity 10|feet}, the monk can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
 					]
 				},
 				{
@@ -3458,19 +3458,19 @@
 				{
 					"name": "Unarmed Attack",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d6 + 4}) bludgeoning damage."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 1d6 + 4}) bludgeoning damage."
 					]
 				},
 				{
 					"name": "Dart",
 					"entries": [
-						"{@atk rw} {@hit 7} to hit, range 20/60 ft., one target. {@h}6 ({@damage 1d4 + 4}) piercing damage."
+						"{@atk rw} {@hit 7} to hit, range {@quantity 20/60|ft.}, one target. {@h}6 ({@damage 1d4 + 4}) piercing damage."
 					]
 				},
 				{
 					"name": "Graceful Step",
 					"entries": [
-						"The monk moves 40 feet. This movement does not provoke {@action opportunity attack|phb|opportunity attacks}."
+						"The monk moves {@quantity 40|feet}. This movement does not provoke {@action opportunity attack|phb|opportunity attacks}."
 					]
 				},
 				{
@@ -3624,7 +3624,7 @@
 				{
 					"name": "Glide",
 					"entries": [
-						"When falling at least 10 feet, the necromancer can spend a reaction to fly up to their speed in one direction as they descend. The necromancer lands in an unoccupied space at the end of their movement, and takes no falling damage. The necromancer cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
+						"When falling at least {@quantity 10|feet}, the necromancer can spend a reaction to fly up to their speed in one direction as they descend. The necromancer lands in an unoccupied space at the end of their movement, and takes no falling damage. The necromancer cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
 					]
 				},
 				{
@@ -3644,7 +3644,7 @@
 				{
 					"name": "Staff",
 					"entries": [
-						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}2 ({@damage 1d6 - 1}) bludgeoning damage, or 3 ({@damage 1d8 - 1}) bludgeoning damage if used with both hands."
+						"{@atk mw} {@hit 2} to hit, reach {@quantity 5|ft.}, one target. {@h}2 ({@damage 1d6 - 1}) bludgeoning damage, or 3 ({@damage 1d8 - 1}) bludgeoning damage if used with both hands."
 					]
 				}
 			],
@@ -3797,7 +3797,7 @@
 				{
 					"name": "Glide",
 					"entries": [
-						"When falling at least 10 feet, Glinda can spend a reaction to fly up to her speed in one direction as she descends. Glinda lands in an unoccupied space at the end of her movement, and takes no falling damage. Glinda cannot glide while carrying heavy objects, heavy weapons, or shields (though she can drop any held items as part of her reaction)."
+						"When falling at least {@quantity 10|feet}, Glinda can spend a reaction to fly up to her speed in one direction as she descends. Glinda lands in an unoccupied space at the end of her movement, and takes no falling damage. Glinda cannot glide while carrying heavy objects, heavy weapons, or shields (though she can drop any held items as part of her reaction)."
 					]
 				},
 				{
@@ -3817,7 +3817,7 @@
 				{
 					"name": "Staff",
 					"entries": [
-						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}2 ({@damage 1d6 - 1}) bludgeoning damage, or 3 ({@damage 1d8 - 1}) bludgeoning damage if used with both hands."
+						"{@atk mw} {@hit 2} to hit, reach {@quantity 5|ft.}, one target. {@h}2 ({@damage 1d6 - 1}) bludgeoning damage, or 3 ({@damage 1d8 - 1}) bludgeoning damage if used with both hands."
 					]
 				}
 			],
@@ -3909,7 +3909,7 @@
 				{
 					"name": "Glide",
 					"entries": [
-						"When falling at least 10 feet, Gregor can spend a reaction to fly up to his speed in one direction as he descends. He lands in an unoccupied space at the end of his movement, and takes no falling damage. He cannot glide while carrying heavy objects, heavy weapons, or shields (though he can drop any held items as part of his reaction)."
+						"When falling at least {@quantity 10|feet}, Gregor can spend a reaction to fly up to his speed in one direction as he descends. He lands in an unoccupied space at the end of his movement, and takes no falling damage. He cannot glide while carrying heavy objects, heavy weapons, or shields (though he can drop any held items as part of his reaction)."
 					]
 				},
 				{
@@ -3941,7 +3941,7 @@
 				{
 					"name": "Rapier",
 					"entries": [
-						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d8 + 1}) piercing damage."
+						"{@atk mw} {@hit 3} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d8 + 1}) piercing damage."
 					]
 				}
 			],
@@ -4071,7 +4071,7 @@
 				{
 					"name": "Glide",
 					"entries": [
-						"When falling at least 10 feet, Havel can spend a reaction to fly up to his speed in one direction as he descends. He lands in an unoccupied space at the end of his movement, and takes no falling damage. Havel cannot glide while carrying heavy objects, heavy weapons, or shields (though he can drop any held items as part of their reaction)."
+						"When falling at least {@quantity 10|feet}, Havel can spend a reaction to fly up to his speed in one direction as he descends. He lands in an unoccupied space at the end of his movement, and takes no falling damage. Havel cannot glide while carrying heavy objects, heavy weapons, or shields (though he can drop any held items as part of their reaction)."
 					]
 				},
 				{
@@ -4200,7 +4200,7 @@
 				{
 					"name": "Taunt (2/Day)",
 					"entries": [
-						"The bard can use a bonus action on their turn to target one creature within 30 feet of them. If the target can hear the bard, the target must succeed on a {@dc 13} Charisma saving throw or have disadvantage on ability checks, attack rolls, and saving throws until the start of the bard's next turn"
+						"The bard can use a bonus action on their turn to target one creature within {@quantity 30|feet} of them. If the target can hear the bard, the target must succeed on a {@dc 13} Charisma saving throw or have disadvantage on ability checks, attack rolls, and saving throws until the start of the bard's next turn"
 					]
 				}
 			],
@@ -4214,13 +4214,13 @@
 				{
 					"name": "Rapier",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
 					]
 				},
 				{
 					"name": "Dagger",
 					"entries": [
-						"{@atk mw,rw} {@hit 4} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}4 ({@damage 1d4 + 2}) piercing damage."
+						"{@atk mw,rw} {@hit 4} to hit, reach {@quantity 5|ft.} or range {@quantity 20/60|ft.}, one target. {@h}4 ({@damage 1d4 + 2}) piercing damage."
 					]
 				},
 				{
@@ -4364,7 +4364,7 @@
 				{
 					"name": "Repelling Blast",
 					"entries": [
-						"When the witch hits a creature with eldritch blast, they can push the creature up to 10 feet away in a straight line."
+						"When the witch hits a creature with eldritch blast, they can push the creature up to {@quantity 10|feet} away in a straight line."
 					]
 				}
 			],
@@ -4372,13 +4372,13 @@
 				{
 					"name": "Staff",
 					"entries": [
-						"{@atk mw} {@hit 1} to hit, reach 5 ft., one target. {@h}2 ({@damage 1d6 - 1}) bludgeoning damage."
+						"{@atk mw} {@hit 1} to hit, reach {@quantity 5|ft.}, one target. {@h}2 ({@damage 1d6 - 1}) bludgeoning damage."
 					]
 				},
 				{
 					"name": "Dagger",
 					"entries": [
-						"{@atk mw,rw} {@hit 4} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}4 ({@damage 1d4 + 2}) piercing damage."
+						"{@atk mw,rw} {@hit 4} to hit, reach {@quantity 5|ft.} or range {@quantity 20/60|ft.}, one target. {@h}4 ({@damage 1d4 + 2}) piercing damage."
 					]
 				},
 				{
@@ -4490,7 +4490,7 @@
 				{
 					"name": "Club",
 					"entries": [
-						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}2 ({@damage 1d4}) bludgeoning damage."
+						"{@atk mw} {@hit 2} to hit, reach {@quantity 5|ft.}, one target. {@h}2 ({@damage 1d4}) bludgeoning damage."
 					]
 				}
 			],
@@ -4569,7 +4569,7 @@
 				{
 					"name": "Standing Leap",
 					"entries": [
-						"The swashbuckler's base long jump is 30 feet, and their base high jump is 15 feet, with or without a running start."
+						"The swashbuckler's base long jump is {@quantity 30|feet}, and their base high jump is {@quantity 15|feet}, with or without a running start."
 					]
 				},
 				{
@@ -4595,13 +4595,13 @@
 				{
 					"name": "Dagger",
 					"entries": [
-						"{@atk mw,rw} {@hit 6} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}6 ({@damage 1d4 + 4}) piercing damage."
+						"{@atk mw,rw} {@hit 6} to hit, reach {@quantity 5|ft.} or range {@quantity 20/60|ft.}, one target. {@h}6 ({@damage 1d4 + 4}) piercing damage."
 					]
 				},
 				{
 					"name": "Rapier",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}8 ({@damage 1d8 + 4}) piercing damage."
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 5|ft.}, one target. {@h}8 ({@damage 1d8 + 4}) piercing damage."
 					]
 				}
 			],
@@ -4686,7 +4686,7 @@
 				{
 					"name": "Standing Leap",
 					"entries": [
-						"The thief's long jump is up to 30 feet and their high jump is up to 15 feet, with or without a running start."
+						"The thief's long jump is up to {@quantity 30|feet} and their high jump is up to {@quantity 15|feet}, with or without a running start."
 					]
 				},
 				{
@@ -4706,7 +4706,7 @@
 				{
 					"name": "Dagger",
 					"entries": [
-						"{@atk mw,rw} {@hit 4} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}4 ({@damage 1d4 + 2}) piercing damage."
+						"{@atk mw,rw} {@hit 4} to hit, reach {@quantity 5|ft.} or range {@quantity 20/60|ft.}, one target. {@h}4 ({@damage 1d4 + 2}) piercing damage."
 					]
 				}
 			],
@@ -4782,7 +4782,7 @@
 				{
 					"name": "Glide",
 					"entries": [
-						"When falling at least 10 feet, Kenna can spend a reaction to fly up to her speed in one direction as she descends. Kenna lands in an unoccupied space at the end of her movement, and takes no falling damage. Kenna cannot glide while carrying heavy objects, heavy weapons, or shields (though she can drop any held items as part of her reaction)."
+						"When falling at least {@quantity 10|feet}, Kenna can spend a reaction to fly up to her speed in one direction as she descends. Kenna lands in an unoccupied space at the end of her movement, and takes no falling damage. Kenna cannot glide while carrying heavy objects, heavy weapons, or shields (though she can drop any held items as part of her reaction)."
 					]
 				},
 				{
@@ -4808,13 +4808,13 @@
 				{
 					"name": "Club",
 					"entries": [
-						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}2 ({@damage 1d4}) bludgeoning damage."
+						"{@atk mw} {@hit 2} to hit, reach {@quantity 5|ft.}, one target. {@h}2 ({@damage 1d4}) bludgeoning damage."
 					]
 				},
 				{
 					"name": "Talons",
 					"entries": [
-						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}2 ({@damage 1d4}) slashing damage."
+						"{@atk mw} {@hit 2} to hit, reach {@quantity 5|ft.}, one target. {@h}2 ({@damage 1d4}) slashing damage."
 					]
 				}
 			],
@@ -4888,7 +4888,7 @@
 				"persuasion": "+4"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 12,
 			"resist": [
@@ -4923,13 +4923,13 @@
 				{
 					"name": "Rapier",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d8 + 3}) piercing damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 1d8 + 3}) piercing damage."
 					]
 				},
 				{
 					"name": "Parrying Dagger",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, range 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) piercing damage."
+						"{@atk mw} {@hit 5} to hit, range {@quantity 5|ft.}, one target. {@h}6 ({@damage 1d6 + 3}) piercing damage."
 					]
 				}
 			],
@@ -5001,7 +5001,7 @@
 			"wis": 8,
 			"cha": 3,
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 9,
 			"resist": [
@@ -5031,19 +5031,19 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
 					]
 				},
 				{
 					"name": "Claws",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}7 ({@damage 2d4 + 2}) slashing damage."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 2d4 + 2}) slashing damage."
 					]
 				},
 				{
 					"name": "Foul Odor (1/day)",
 					"entries": [
-						"The demon emits a cloud of poisonous gas that fills a 20-foot sphere and persists for 1 minute until it disperses into the surrounding air. The cloud spreads around corners, and the affected area is heavily obscured. Any creature that is completely within the cloud at the start of its turn must make a {@dc 11} Constitution saving throw against the poison. On a failed save, the creature spends its action on that turn retching and reeling. Creatures immune to poison are immune to this effect. A moderate wind (at least 10 miles per hour) disperses the cloud after 4 rounds. A strong wind (at least 20 miles per hour) will disperse it after 1 round."
+						"The demon emits a cloud of poisonous gas that fills a {@quantity 20|-foot} sphere and persists for 1 minute until it disperses into the surrounding air. The cloud spreads around corners, and the affected area is heavily obscured. Any creature that is completely within the cloud at the start of its turn must make a {@dc 11} Constitution saving throw against the poison. On a failed save, the creature spends its action on that turn retching and reeling. Creatures immune to poison are immune to this effect. A moderate wind (at least {@quantity 10|miles} per hour) disperses the cloud after 4 rounds. A strong wind (at least {@quantity 20|miles} per hour) will disperse it after 1 round."
 					]
 				}
 			],
@@ -5166,7 +5166,7 @@
 				{
 					"name": "Glide",
 					"entries": [
-						"When falling at least 10 feet, the cleric can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, or heavy weapons, or shields (though they can drop any held items as part of their reaction)."
+						"When falling at least {@quantity 10|feet}, the cleric can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, or heavy weapons, or shields (though they can drop any held items as part of their reaction)."
 					]
 				},
 				{
@@ -5186,13 +5186,13 @@
 				{
 					"name": "Staff",
 					"entries": [
-						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d6}) bludgeoning damage, or 4 ({@damage 1d8}) bludgeoning damage if used with both hands."
+						"{@atk mw} {@hit 2} to hit, reach {@quantity 5|ft.}, one target. {@h}3 ({@damage 1d6}) bludgeoning damage, or 4 ({@damage 1d8}) bludgeoning damage if used with both hands."
 					]
 				},
 				{
 					"name": "Ardea's Vigor (1/Day)",
 					"entries": [
-						"The cleric calls on the powers of Ardea to imbue their allies with her protective life force. The luma cleric and up to 3 allies within 30 feet gain 5 ({@dice 2d4}) temporary hit points. For one minute, anyone under this effect gains 5 temporary hit points at the start of each of their turns."
+						"The cleric calls on the powers of Ardea to imbue their allies with her protective life force. The luma cleric and up to 3 allies within {@quantity 30|feet} gain 5 ({@dice 2d4}) temporary hit points. For one minute, anyone under this effect gains 5 temporary hit points at the start of each of their turns."
 					]
 				},
 				{
@@ -5348,7 +5348,7 @@
 				{
 					"name": "Glide",
 					"entries": [
-						"When falling at least 10 feet, the wizard can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
+						"When falling at least {@quantity 10|feet}, the wizard can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
 					]
 				},
 				{
@@ -5374,7 +5374,7 @@
 				{
 					"name": "Staff",
 					"entries": [
-						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}2 ({@damage 1d6 - 1}) bludgeoning damage."
+						"{@atk mw} {@hit 2} to hit, reach {@quantity 5|ft.}, one target. {@h}2 ({@damage 1d6 - 1}) bludgeoning damage."
 					]
 				}
 			],
@@ -5458,7 +5458,7 @@
 			"wis": 12,
 			"cha": 12,
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 11,
 			"resist": [
@@ -5487,13 +5487,13 @@
 				{
 					"name": "Shortsword",
 					"entries": [
-						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d6 + 1}) piercing damage."
+						"{@atk mw} {@hit 3} to hit, reach {@quantity 5|ft.}, one target. {@h}4 ({@damage 1d6 + 1}) piercing damage."
 					]
 				},
 				{
 					"name": "Shortbow",
 					"entries": [
-						"{@atk rw} {@hit 3} to hit, range 80/320 ft., one target. {@h}4 ({@damage 1d6 + 1}) piercing damage."
+						"{@atk rw} {@hit 3} to hit, range {@quantity 80/320|ft.}, one target. {@h}4 ({@damage 1d6 + 1}) piercing damage."
 					]
 				}
 			],
@@ -5566,7 +5566,7 @@
 				"persuasion": "+4"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 12,
 			"resist": [
@@ -5601,13 +5601,13 @@
 				{
 					"name": "Rapier",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d8 + 3}) piercing damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 1d8 + 3}) piercing damage."
 					]
 				},
 				{
 					"name": "Parrying Dagger",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, range 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) piercing damage."
+						"{@atk mw} {@hit 5} to hit, range {@quantity 5|ft.}, one target. {@h}6 ({@damage 1d6 + 3}) piercing damage."
 					]
 				}
 			],
@@ -5675,7 +5675,7 @@
 			"wis": 12,
 			"cha": 10,
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 11,
 			"resist": [
@@ -5704,7 +5704,7 @@
 				{
 					"name": "Dagger",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, range 5 ft., one target. {@h}4 ({@damage 1d4 + 2}) piercing damage."
+						"{@atk mw} {@hit 4} to hit, range {@quantity 5|ft.}, one target. {@h}4 ({@damage 1d4 + 2}) piercing damage."
 					]
 				},
 				{
@@ -5715,28 +5715,28 @@
 							"type": "entries",
 							"name": "1. Cogwork Bird",
 							"entries": [
-								"The tinkerer winds and releases a small mechanical bird that flies to a target creature within 30 feet and distracts it. The next attack against that creature is made with advantage."
+								"The tinkerer winds and releases a small mechanical bird that flies to a target creature within {@quantity 30|feet} and distracts it. The next attack against that creature is made with advantage."
 							]
 						},
 						{
 							"type": "entries",
 							"name": "2. Flash-bangs",
 							"entries": [
-								"The tinkerer targets a space up to 10 ft. away, and throws some small explosive shells that flare up in a blinding light. All creatures within 10 ft. of the target space must make a {@dc 11} Constitution saving throw or be {@condition blinded} until the start of the tinkerer's next turn."
+								"The tinkerer targets a space up to {@quantity 10|ft.} away, and throws some small explosive shells that flare up in a blinding light. All creatures within {@quantity 10|ft.} of the target space must make a {@dc 11} Constitution saving throw or be {@condition blinded} until the start of the tinkerer's next turn."
 							]
 						},
 						{
 							"type": "entries",
 							"name": "3. Nettle Gun",
 							"entries": [
-								"The tinkerer turns the crank on a small gadget that sprays nettles at a target. {@atk rw} {@hit 4} to hit, range 10/20 ft., one target. {@h}4 ({@damage 1d4 + 2}) piercing damage. All creatures within 5 ft. of the target must make a {@dc 11} Dexterity saving throw or take 5 ({@damage 1d10}) piercing damage."
+								"The tinkerer turns the crank on a small gadget that sprays nettles at a target. {@atk rw} {@hit 4} to hit, range {@quantity 10/20|ft.}, one target. {@h}4 ({@damage 1d4 + 2}) piercing damage. All creatures within {@quantity 5|ft.} of the target must make a {@dc 11} Dexterity saving throw or take 5 ({@damage 1d10}) piercing damage."
 							]
 						},
 						{
 							"type": "entries",
 							"name": "4. Grease Balloon",
 							"entries": [
-								"The tinkerer targets a 10-foot by 10-foot area up to 15 feet away, and makes it slick with grease. The area is considered difficult terrain, and each creature standing in the area must succeed on a {@dc 11} Dexterity saving throw or fall {@condition prone}. A creature that enters the area or ends its turn there must also succeed on a {@dc 11} Dexterity saving throw or fall {@condition prone}."
+								"The tinkerer targets a {@quantity 10|-foot} by {@quantity 10|-foot} area up to {@quantity 15|feet} away, and makes it slick with grease. The area is considered difficult terrain, and each creature standing in the area must succeed on a {@dc 11} Dexterity saving throw or fall {@condition prone}. A creature that enters the area or ends its turn there must also succeed on a {@dc 11} Dexterity saving throw or fall {@condition prone}."
 							]
 						}
 					]
@@ -5803,7 +5803,7 @@
 			"wis": 10,
 			"cha": 10,
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 10,
 			"languages": [
@@ -5829,13 +5829,13 @@
 				{
 					"name": "Club",
 					"entries": [
-						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d4 + 1}) bludgeoning damage."
+						"{@atk mw} {@hit 3} to hit, reach {@quantity 5|ft.}, one target. {@h}3 ({@damage 1d4 + 1}) bludgeoning damage."
 					]
 				},
 				{
 					"name": "Talons",
 					"entries": [
-						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d4 + 1}) slashing damage."
+						"{@atk mw} {@hit 3} to hit, reach {@quantity 5|ft.}, one target. {@h}3 ({@damage 1d4 + 1}) slashing damage."
 					]
 				}
 			],
@@ -5910,7 +5910,7 @@
 				{
 					"name": "Pounce (Lion)",
 					"entries": [
-						"If the Mountain Lion moves at least 20 feet toward a creature and then hits it with a claw attack on the same turn, that target must succeed on a {@dc 13} Strength saving throw or be knocked {@condition prone}. The mountain lion can make a bite attack against a {@condition prone} target as a bonus action."
+						"If the Mountain Lion moves at least {@quantity 20|feet} toward a creature and then hits it with a claw attack on the same turn, that target must succeed on a {@dc 13} Strength saving throw or be knocked {@condition prone}. The mountain lion can make a bite attack against a {@condition prone} target as a bonus action."
 					]
 				}
 			],
@@ -5918,19 +5918,19 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}8 ({@damage 1d10 + 3}) piercing damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}8 ({@damage 1d10 + 3}) piercing damage."
 					]
 				},
 				{
 					"name": "Claw",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d8 + 3}) slashing damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 1d8 + 3}) slashing damage."
 					]
 				},
 				{
 					"name": "Call Avalanche (Recharges after a Short or Long Rest)",
 					"entries": [
-						"With a mystic roar, the mountain lion can call down the very rocks. So long as it is in mountainous terrain, it can use its action to cause a rockslide to fall within a 15-foot-radius of a space it can see within 60 feet. Creatures in this area must make a {@dc 12} Dexterity saving throw, taking 13 ({@damage 3d8}) bludgeoning damage on a failure and half as much on a success."
+						"With a mystic roar, the mountain lion can call down the very rocks. So long as it is in mountainous terrain, it can use its action to cause a rockslide to fall within a {@quantity 15|-foot}-radius of a space it can see within {@quantity 60|feet}. Creatures in this area must make a {@dc 12} Dexterity saving throw, taking 13 ({@damage 3d8}) bludgeoning damage on a failure and half as much on a success."
 					]
 				}
 			],
@@ -6028,19 +6028,19 @@
 				{
 					"name": "Slam",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}16 ({@damage 3d6 + 5}) fire damage."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 5|ft.}, one target. {@h}16 ({@damage 3d6 + 5}) fire damage."
 					]
 				},
 				{
 					"name": "Rock",
 					"entries": [
-						"{@atk rw} {@hit 8} to hit, range 60/180 ft., one target. {@h}28 ({@damage 4d10 + 5}) bludgeoning damage."
+						"{@atk rw} {@hit 8} to hit, range {@quantity 60/180|ft.}, one target. {@h}28 ({@damage 4d10 + 5}) bludgeoning damage."
 					]
 				},
 				{
 					"name": "Animate Trees (1/Day)",
 					"entries": [
-						"Oakheart magically animates one or two trees he can see within 60 feet of him. These trees have the same statistics as Oakheart, except they have Intelligence and Charisma scores of 1, they can't speak, and they have only the Slam action option. An animated tree acts as an ally of Oakheart. The tree remains animate for 1 day or until it dies; until Oakheart dies or is more than 120 feet from the tree; or until Oakheart takes a bonus action to turn him back into an inanimate tree. The tree then takes root if possible."
+						"Oakheart magically animates one or two trees he can see within {@quantity 60|feet} of him. These trees have the same statistics as Oakheart, except they have Intelligence and Charisma scores of 1, they can't speak, and they have only the Slam action option. An animated tree acts as an ally of Oakheart. The tree remains animate for 1 day or until it dies; until Oakheart dies or is more than {@quantity 120|feet} from the tree; or until Oakheart takes a bonus action to turn him back into an inanimate tree. The tree then takes root if possible."
 					]
 				}
 			],
@@ -6189,7 +6189,7 @@
 				{
 					"name": "Glide",
 					"entries": [
-						"When falling at least 10 feet, Odwald can spend a reaction to fly up to his speed in one direction as he descends. Odwald lands in an unoccupied space at the end of his movement, and takes no falling damage. Odwald cannot glide while carrying heavy objects, heavy weapons, or shields (though he can drop any held items as part of his reaction)."
+						"When falling at least {@quantity 10|feet}, Odwald can spend a reaction to fly up to his speed in one direction as he descends. Odwald lands in an unoccupied space at the end of his movement, and takes no falling damage. Odwald cannot glide while carrying heavy objects, heavy weapons, or shields (though he can drop any held items as part of his reaction)."
 					]
 				},
 				{
@@ -6215,13 +6215,13 @@
 				{
 					"name": "Staff",
 					"entries": [
-						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}2 ({@damage 1d6 - 1}) bludgeoning damage, or 3 ({@damage 1d8 - 1}) bludgeoning damage if wielded with both hands."
+						"{@atk mw} {@hit 2} to hit, reach {@quantity 5|ft.}, one target. {@h}2 ({@damage 1d6 - 1}) bludgeoning damage, or 3 ({@damage 1d8 - 1}) bludgeoning damage if wielded with both hands."
 					]
 				},
 				{
 					"name": "Talons",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d4 + 2}) slashing damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}4 ({@damage 1d4 + 2}) slashing damage."
 					]
 				}
 			],
@@ -6310,7 +6310,7 @@
 				{
 					"name": "Glide",
 					"entries": [
-						"When falling at least 10 feet, the explorer can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
+						"When falling at least {@quantity 10|feet}, the explorer can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
 					]
 				},
 				{
@@ -6348,19 +6348,19 @@
 				{
 					"name": "Talons",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d4 + 2}) piercing damage. "
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}4 ({@damage 1d4 + 2}) piercing damage. "
 					]
 				},
 				{
 					"name": "Saber",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) slashing damage. "
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d6 + 2}) slashing damage. "
 					]
 				},
 				{
 					"name": "Hand Crossbow",
 					"entries": [
-						"{@atk rw} {@hit 4} to hit, range 30/120 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
+						"{@atk rw} {@hit 4} to hit, range {@quantity 30/120|ft.}, one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
 					]
 				}
 			],
@@ -6468,7 +6468,7 @@
 				{
 					"name": "Glide",
 					"entries": [
-						"When falling at least 10 feet, the ranger can spend ",
+						"When falling at least {@quantity 10|feet}, the ranger can spend ",
 						"a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
 					]
 				},
@@ -6513,19 +6513,19 @@
 				{
 					"name": "Red-Feather Bow",
 					"entries": [
-						"{@atk rw} {@hit 6} to hit, range 80/320 ft., one target. {@h}6 ({@damage 1d6 + 4}) piercing damage."
+						"{@atk rw} {@hit 6} to hit, range {@quantity 80/320|ft.}, one target. {@h}6 ({@damage 1d6 + 4}) piercing damage."
 					]
 				},
 				{
 					"name": "Dagger",
 					"entries": [
-						"{@atk mw, rw} {@hit 5} to hit, reach 5 ft., range 20/60 ft., one target. {@h}5 ({@damage 1d4 + 3}) piercing damage. "
+						"{@atk mw, rw} {@hit 5} to hit, reach {@quantity 5|ft.}, range {@quantity 20/60|ft.}, one target. {@h}5 ({@damage 1d4 + 3}) piercing damage. "
 					]
 				},
 				{
 					"name": "Talons",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d4 + 3}) piercing damage. "
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d4 + 3}) piercing damage. "
 					]
 				}
 			],
@@ -6621,13 +6621,13 @@
 				{
 					"name": "Club",
 					"entries": [
-						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}2 ({@damage 1d4}) bludgeoning damage."
+						"{@atk mw} {@hit 2} to hit, reach {@quantity 5|ft.}, one target. {@h}2 ({@damage 1d4}) bludgeoning damage."
 					]
 				},
 				{
 					"name": "Talons",
 					"entries": [
-						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d4 + 1}) slashing damage."
+						"{@atk mw} {@hit 3} to hit, reach {@quantity 5|ft.}, one target. {@h}3 ({@damage 1d4 + 1}) slashing damage."
 					]
 				}
 			],
@@ -6697,7 +6697,7 @@
 				"wis": "+4"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 11,
 			"languages": [
@@ -6709,7 +6709,7 @@
 				{
 					"name": "Glide",
 					"entries": [
-						"When falling at least 10 feet, Riffin can spend a reaction to fly up to his speed in one direction as he descends. He lands in an unoccupied space at the end of his movement, and takes no falling damage. He cannot glide while carrying heavy objects, heavy weapons, or shields (though he can drop any held items as part of his reaction)."
+						"When falling at least {@quantity 10|feet}, Riffin can spend a reaction to fly up to his speed in one direction as he descends. He lands in an unoccupied space at the end of his movement, and takes no falling damage. He cannot glide while carrying heavy objects, heavy weapons, or shields (though he can drop any held items as part of his reaction)."
 					]
 				},
 				{
@@ -6721,7 +6721,7 @@
 				{
 					"name": "Maneuver (2/Day)",
 					"entries": [
-						"When Riffin hits with an attack, he can choose to maneuver the enemy out of position, granting an ally within 5 feet of the target the opportunity to use their reaction to move away from this enemy at half their movement speed without provoking an {@action opportunity attack|phb|attack of opportunity}."
+						"When Riffin hits with an attack, he can choose to maneuver the enemy out of position, granting an ally within {@quantity 5|feet} of the target the opportunity to use their reaction to move away from this enemy at half their movement speed without provoking an {@action opportunity attack|phb|attack of opportunity}."
 					]
 				}
 			],
@@ -6735,13 +6735,13 @@
 				{
 					"name": "Short Sword",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) piercing damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}6 ({@damage 1d6 + 3}) piercing damage."
 					]
 				},
 				{
 					"name": "Talons",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d4 + 3}) piercing damage. The knight can choose to grapple a target hit by this attack as a bonus action."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d4 + 3}) piercing damage. The knight can choose to grapple a target hit by this attack as a bonus action."
 					]
 				},
 				{
@@ -6800,7 +6800,7 @@
 			"wis": 6,
 			"cha": 1,
 			"senses": [
-				"blindsight 60 ft. (blind beyond this radius)"
+				"blindsight {@quantity 60|ft.} (blind beyond this radius)"
 			],
 			"passive": 8,
 			"immune": [
@@ -6821,7 +6821,7 @@
 				{
 					"name": "Amorphous",
 					"entries": [
-						"The Caustic Slime can move through a space as narrow as 1 inch wide without squeezing."
+						"The Caustic Slime can move through a space as narrow as {@quantity 1|inch} wide without squeezing."
 					]
 				},
 				{
@@ -6835,7 +6835,7 @@
 				{
 					"name": "Psuedopod",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) acid damage. The target is {@condition grappled} (escape {@dc 13}). Until this grapple ends, the target is {@condition restrained} and the shifting slime can't make a pseudopod attack against another target."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d6 + 2}) acid damage. The target is {@condition grappled} (escape {@dc 13}). Until this grapple ends, the target is {@condition restrained} and the shifting slime can't make a pseudopod attack against another target."
 					]
 				},
 				{
@@ -6987,7 +6987,7 @@
 				"religion": "+5"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 13,
 			"languages": [
@@ -7056,13 +7056,13 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
 					]
 				},
 				{
 					"name": "Mace",
 					"entries": [
-						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d6}) bludgeoning damage."
+						"{@atk mw} {@hit 2} to hit, reach {@quantity 5|ft.}, one target. {@h}3 ({@damage 1d6}) bludgeoning damage."
 					]
 				}
 			],
@@ -7129,7 +7129,7 @@
 			"wis": 6,
 			"cha": 1,
 			"senses": [
-				"blindsight 60 ft. (blind beyond this radius)"
+				"blindsight {@quantity 60|ft.} (blind beyond this radius)"
 			],
 			"passive": 8,
 			"resist": [
@@ -7150,7 +7150,7 @@
 				{
 					"name": "Amorphous",
 					"entries": [
-						"The Caustic Slime can move through a space as narrow as 1 inch wide without squeezing."
+						"The Caustic Slime can move through a space as narrow as {@quantity 1|inch} wide without squeezing."
 					]
 				},
 				{
@@ -7170,7 +7170,7 @@
 				{
 					"name": "Psuedopod",
 					"entries": [
-						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d4 + 1}) bludgeoning damage."
+						"{@atk mw} {@hit 3} to hit, reach {@quantity 5|ft.}, one target. {@h}3 ({@damage 1d4 + 1}) bludgeoning damage."
 					]
 				}
 			],
@@ -7243,7 +7243,7 @@
 				"wis": "+4"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 11,
 			"languages": [
@@ -7255,7 +7255,7 @@
 				{
 					"name": "Glide",
 					"entries": [
-						"When falling at least 10 feet, the knight can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
+						"When falling at least {@quantity 10|feet}, the knight can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
 					]
 				},
 				{
@@ -7267,7 +7267,7 @@
 				{
 					"name": "Maneuver (2/Day)",
 					"entries": [
-						"When the knight hits with an attack, they can choose to maneuver the enemy out of position, granting an ally within 5 feet of the target the opportunity to use their reaction to move away from this enemy at half their movement speed without provoking an {@action opportunity attack|phb|attack of opportunity}."
+						"When the knight hits with an attack, they can choose to maneuver the enemy out of position, granting an ally within {@quantity 5|feet} of the target the opportunity to use their reaction to move away from this enemy at half their movement speed without provoking an {@action opportunity attack|phb|attack of opportunity}."
 					]
 				}
 			],
@@ -7281,13 +7281,13 @@
 				{
 					"name": "Short Sword",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) piercing damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}6 ({@damage 1d6 + 3}) piercing damage."
 					]
 				},
 				{
 					"name": "Talons",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d4 + 3}) piercing damage. The knight can choose to grapple a target hit by this attack as a bonus action."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d4 + 3}) piercing damage. The knight can choose to grapple a target hit by this attack as a bonus action."
 					]
 				},
 				{
@@ -7362,7 +7362,7 @@
 				"survival": "+4"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 14,
 			"languages": [
@@ -7395,7 +7395,7 @@
 				{
 					"name": "Glide",
 					"entries": [
-						"When falling at least 10 feet, the tracker can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
+						"When falling at least {@quantity 10|feet}, the tracker can spend a reaction to fly up to their speed in one direction as they descend. They land in an unoccupied space at the end of their movement, and take no falling damage. They cannot glide while carrying heavy objects, heavy weapons, or shields (though they can drop any held items as part of their reaction)."
 					]
 				},
 				{
@@ -7427,19 +7427,19 @@
 				{
 					"name": "Longsword",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d8 + 3}) slashing damage or 8 ({@damage 1d10 + 3}) slashing damage if wielding with both hands."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 1d8 + 3}) slashing damage or 8 ({@damage 1d10 + 3}) slashing damage if wielding with both hands."
 					]
 				},
 				{
 					"name": "Hand Axe",
 					"entries": [
-						"{@atk mw,rw} {@hit 5} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}6 ({@damage 1d6 + 3}) slashing damage."
+						"{@atk mw,rw} {@hit 5} to hit, reach {@quantity 5|ft.} or range {@quantity 20/60|ft.}, one target. {@h}6 ({@damage 1d6 + 3}) slashing damage."
 					]
 				},
 				{
 					"name": "Talons",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d4 + 3}) piercing damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d4 + 3}) piercing damage."
 					]
 				}
 			],
@@ -7563,7 +7563,7 @@
 				{
 					"name": "Repelling Blast",
 					"entries": [
-						"When Susan hits a creature with eldritch blast, she can push the creature up to 10 feet away in a straight line."
+						"When Susan hits a creature with eldritch blast, she can push the creature up to {@quantity 10|feet} away in a straight line."
 					]
 				}
 			],
@@ -7571,13 +7571,13 @@
 				{
 					"name": "Staff",
 					"entries": [
-						"{@atk mw} {@hit 1} to hit, reach 5 ft., one target. {@h}2 ({@damage 1d6 - 1}) bludgeoning damage."
+						"{@atk mw} {@hit 1} to hit, reach {@quantity 5|ft.}, one target. {@h}2 ({@damage 1d6 - 1}) bludgeoning damage."
 					]
 				},
 				{
 					"name": "Dagger",
 					"entries": [
-						"{@atk mw,rw} {@hit 4} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}4 ({@damage 1d4 + 2}) piercing damage."
+						"{@atk mw,rw} {@hit 4} to hit, reach {@quantity 5|ft.} or range {@quantity 20/60|ft.}, one target. {@h}4 ({@damage 1d4 + 2}) piercing damage."
 					]
 				},
 				{
@@ -7662,7 +7662,7 @@
 			"wis": 10,
 			"cha": 5,
 			"senses": [
-				"blindsight 60 ft."
+				"blindsight {@quantity 60|ft.}"
 			],
 			"passive": 10,
 			"resist": [
@@ -7697,7 +7697,7 @@
 				{
 					"name": "Flame Essence",
 					"entries": [
-						"Any creature that starts their turn within 5 feet of the emberbat swarm must make a {@dc 10} Constitution saving throw, taking 2 ({@dice 1d4}) points of fire damage on a failure."
+						"Any creature that starts their turn within {@quantity 5|feet} of the emberbat swarm must make a {@dc 10} Constitution saving throw, taking 2 ({@dice 1d4}) points of fire damage on a failure."
 					]
 				},
 				{
@@ -7711,7 +7711,7 @@
 				{
 					"name": "Bites",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 0 ft., one creature in the swarm's space. {@h}5 ({@damage 2d4}) piercing damage, or 2 ({@damage 1d4}) piercing damage if the swarm has half of its hit points or fewer."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 0|ft.}, one creature in the swarm's space. {@h}5 ({@damage 2d4}) piercing damage, or 2 ({@damage 1d4}) piercing damage if the swarm has half of its hit points or fewer."
 					]
 				}
 			],
@@ -7792,7 +7792,7 @@
 				{
 					"name": "Glide",
 					"entries": [
-						"When falling at least 10 feet, Tevor can spend a reaction to fly up to his speed in one direction as he descends. He lands in an unoccupied space at the end of his movement, and takes no falling damage. He cannot glide while carrying heavy objects, heavy weapons, or shields (though he can drop any held items as part of his reaction)."
+						"When falling at least {@quantity 10|feet}, Tevor can spend a reaction to fly up to his speed in one direction as he descends. He lands in an unoccupied space at the end of his movement, and takes no falling damage. He cannot glide while carrying heavy objects, heavy weapons, or shields (though he can drop any held items as part of his reaction)."
 					]
 				},
 				{
@@ -7824,7 +7824,7 @@
 				{
 					"name": "Spear",
 					"entries": [
-						"{@atk mw,rw} {@hit 4} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage or 6 ({@damage 1d8 + 2}) piercing damage if used with both hands."
+						"{@atk mw,rw} {@hit 4} to hit, reach {@quantity 5|ft.} or range {@quantity 20/60|ft.}, one target. {@h}5 ({@damage 1d6 + 2}) piercing damage or 6 ({@damage 1d8 + 2}) piercing damage if used with both hands."
 					]
 				},
 				{
@@ -7899,7 +7899,7 @@
 				"perception": "+4"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 14,
 			"languages": [
@@ -7925,19 +7925,19 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
 					]
 				},
 				{
 					"name": "Short sword",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
 					]
 				},
 				{
 					"name": "Short bow",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, range 80/320 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
+						"{@atk mw} {@hit 4} to hit, range {@quantity 80/320|ft.}, one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
 					]
 				}
 			],
@@ -8011,7 +8011,7 @@
 				"persuasion": "+5"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 11,
 			"languages": [
@@ -8031,13 +8031,13 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d6 + 1}) piercing damage."
+						"{@atk mw} {@hit 3} to hit, reach {@quantity 5|ft.}, one target. {@h}4 ({@damage 1d6 + 1}) piercing damage."
 					]
 				},
 				{
 					"name": "Short sword",
 					"entries": [
-						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d6 + 1}) piercing damage."
+						"{@atk mw} {@hit 3} to hit, reach {@quantity 5|ft.}, one target. {@h}4 ({@damage 1d6 + 1}) piercing damage."
 					]
 				}
 			],
@@ -8107,7 +8107,7 @@
 				"religion": "+5"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 13,
 			"languages": [
@@ -8176,13 +8176,13 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
 					]
 				},
 				{
 					"name": "Mace",
 					"entries": [
-						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d6}) bludgeoning damage."
+						"{@atk mw} {@hit 2} to hit, reach {@quantity 5|ft.}, one target. {@h}3 ({@damage 1d6}) bludgeoning damage."
 					]
 				}
 			],
@@ -8273,19 +8273,19 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 20 ft., one target. {@h}15 ({@damage 3d6 + 5}) piercing damage. The target must succeed on a {@dc 16} Strength saving throw or be {@condition grappled} (escape {@dc 16}). The wakewyrm can only grapple one creature at a time, and cannot make bite attacks against other creatures while it has a creature {@condition grappled}."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 20|ft.}, one target. {@h}15 ({@damage 3d6 + 5}) piercing damage. The target must succeed on a {@dc 16} Strength saving throw or be {@condition grappled} (escape {@dc 16}). The wakewyrm can only grapple one creature at a time, and cannot make bite attacks against other creatures while it has a creature {@condition grappled}."
 					]
 				},
 				{
 					"name": "Tail",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 25 ft., one target. {@h}18 ({@damage 3d8 + 5}) bludgeoning damage."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 25|ft.}, one target. {@h}18 ({@damage 3d8 + 5}) bludgeoning damage."
 					]
 				},
 				{
 					"name": "Swallow",
 					"entries": [
-						"The wakewyrm makes a bite attack against a Large or smaller creature it is grappling, and if the attack hits the target is swallowed, and the grapple ends. The swallowed target is {@condition blinded} and {@condition restrained}, it has {@quickref Cover||3||total cover} against attacks and other effects outside the wakewyrm, and it takes 11 ({@damage 3d6}) acid damage at the start of each of the wakewyrm's turns. If the wakewyrm takes 18 or more points of damage from a creature inside of it, the wakewyrm must succeed on a {@dc 15} Constitution saving throw at the end of that turn or regurgitate all swallowed creatures, which fall {@condition prone} in a space within 10 feet of the wakewyrm. If the wakewyrm dies, a swallowed creature is no longer {@condition restrained} by it, and it can escape from the corpse using 20 feet of movement. After death, internal gasses keep the wakewyrm's body afloat for several hours, before it begins to sink gradually to a watery grave."
+						"The wakewyrm makes a bite attack against a Large or smaller creature it is grappling, and if the attack hits the target is swallowed, and the grapple ends. The swallowed target is {@condition blinded} and {@condition restrained}, it has {@quickref Cover||3||total cover} against attacks and other effects outside the wakewyrm, and it takes 11 ({@damage 3d6}) acid damage at the start of each of the wakewyrm's turns. If the wakewyrm takes 18 or more points of damage from a creature inside of it, the wakewyrm must succeed on a {@dc 15} Constitution saving throw at the end of that turn or regurgitate all swallowed creatures, which fall {@condition prone} in a space within {@quantity 10|feet} of the wakewyrm. If the wakewyrm dies, a swallowed creature is no longer {@condition restrained} by it, and it can escape from the corpse using {@quantity 20|feet} of movement. After death, internal gasses keep the wakewyrm's body afloat for several hours, before it begins to sink gradually to a watery grave."
 					]
 				}
 			],
@@ -8374,7 +8374,7 @@
 				{
 					"name": "Glide",
 					"entries": [
-						"When falling at least 10 feet, Bita can spend a reaction to fly up to her speed in one direction as she descends. She lands in an unoccupied space at the end of her movement, and takes no falling damage. She cannot glide while carrying heavy objects, heavy weapons, or shields (though she can drop any held items as part of her reaction)."
+						"When falling at least {@quantity 10|feet}, Bita can spend a reaction to fly up to her speed in one direction as she descends. She lands in an unoccupied space at the end of her movement, and takes no falling damage. She cannot glide while carrying heavy objects, heavy weapons, or shields (though she can drop any held items as part of her reaction)."
 					]
 				},
 				{
@@ -8400,13 +8400,13 @@
 				{
 					"name": "Rapier",
 					"entries": [
-						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d8 + 1}) piercing damage."
+						"{@atk mw} {@hit 3} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d8 + 1}) piercing damage."
 					]
 				},
 				{
 					"name": "Talons",
 					"entries": [
-						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d4 + 1}) piercing damage."
+						"{@atk mw} {@hit 3} to hit, reach {@quantity 5|ft.}, one target. {@h}3 ({@damage 1d4 + 1}) piercing damage."
 					]
 				}
 			],

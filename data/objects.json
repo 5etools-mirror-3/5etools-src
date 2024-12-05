@@ -29,7 +29,7 @@
 							"type": "attack",
 							"attackType": "RW",
 							"attackEntries": [
-								"{@hit +6} to hit, range 120/480 ft., one target."
+								"{@hit +6} to hit, range {@quantity 120/480|ft.}, one target."
 							],
 							"hitEntries": [
 								"16 ({@damage 3d10}) piercing damage."
@@ -58,7 +58,7 @@
 					"type": "entries",
 					"name": "Ballista Bolt (Requires Load and Aim)",
 					"entries": [
-						"{@atkr r} {@hit 6}, range 120/480 ft. {@h}16 ({@damage 3d10}) Piercing damage."
+						"{@atkr r} {@hit 6}, range {@quantity 120/480|ft}. {@h}16 ({@damage 3d10}) Piercing damage."
 					]
 				}
 			]
@@ -85,14 +85,14 @@
 					"type": "entries",
 					"name": "Flames",
 					"entries": [
-						"The boilerdrak expels flames in a 60-foot cone. Each creature in that area must make a {@dc 15} Dexterity saving throw, taking 27 ({@dice 5d10}) fire damage on a failed save, or half as much damage on a successful one."
+						"The boilerdrak expels flames in a {@quantity 60|-foot} cone. Each creature in that area must make a {@dc 15} Dexterity saving throw, taking 27 ({@dice 5d10}) fire damage on a failed save, or half as much damage on a successful one."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Explosion",
 					"entries": [
-						"The boilerdrak explodes in a 30-foot-radius sphere and is destroyed. Each creature in that area must make a {@dc 15} Dexterity saving throw, taking 27 ({@dice 5d10}) fire damage on a failed save, or half as much damage on a successful one."
+						"The boilerdrak explodes in a {@quantity 30|-foot}-radius sphere and is destroyed. Each creature in that area must make a {@dc 15} Dexterity saving throw, taking 27 ({@dice 5d10}) fire damage on a failed save, or half as much damage on a successful one."
 					]
 				}
 			],
@@ -129,7 +129,7 @@
 							"type": "attack",
 							"attackType": "RW",
 							"attackEntries": [
-								"{@hit +6} to hit, range 600/2,400 ft., one target."
+								"{@hit +6} to hit, range {@quantity 600/2,400|ft.}, one target."
 							],
 							"hitEntries": [
 								"44 ({@damage 8d10}) bludgeoning damage."
@@ -158,7 +158,7 @@
 					"type": "entries",
 					"name": "Cannonball (Requires Load and Aim)",
 					"entries": [
-						"{@atkr r} {@hit 6}, range 600/2,400 ft. {@h}44 ({@damage 8d10}) Bludgeoning damage."
+						"{@atkr r} {@hit 6}, range {@quantity 600/2,400|ft}. {@h}44 ({@damage 8d10}) Bludgeoning damage."
 					]
 				}
 			]
@@ -181,7 +181,7 @@
 			"wis": 3,
 			"cha": 1,
 			"senses": [
-				"blindsight 30 ft. (blind beyond this radius)"
+				"blindsight {@quantity 30|ft.} (blind beyond this radius)"
 			],
 			"immune": [
 				"poison",
@@ -196,7 +196,7 @@
 							"type": "attack",
 							"attackType": "RW",
 							"attackEntries": [
-								"{@hit +5} to hit, range 30 ft., one target."
+								"{@hit +5} to hit, range {@quantity 30|ft.}, one target."
 							],
 							"hitEntries": [
 								"3 ({@damage 1d6}) bludgeoning damage."
@@ -256,7 +256,7 @@
 					"type": "entries",
 					"name": "Flamethrower",
 					"entries": [
-						"The cannon exhales fire in an adjacent 15-foot cone that you designate. Each creature in that area must make a Dexterity saving throw against your spell save DC, taking {@damage 2d8} fire damage on a failed save or half as much damage on a successful one. The fire ignites any flammable objects in the area that aren't being worn or carried."
+						"The cannon exhales fire in an adjacent {@quantity 15|-foot} cone that you designate. Each creature in that area must make a Dexterity saving throw against your spell save DC, taking {@damage 2d8} fire damage on a failed save or half as much damage on a successful one. The fire ignites any flammable objects in the area that aren't being worn or carried."
 					]
 				}
 			],
@@ -310,7 +310,7 @@
 					"type": "entries",
 					"name": "Force Ballista",
 					"entries": [
-						"Make a ranged spell attack, originating from the cannon, at one creature or object within 120 feet of it. On a hit, the target takes {@damage 2d8} force damage, and if the target is a creature, it is pushed up to 5 feet away from the cannon."
+						"Make a ranged spell attack, originating from the cannon, at one creature or object within {@quantity 120|feet} of it. On a hit, the target takes {@damage 2d8} force damage, and if the target is a creature, it is pushed up to {@quantity 5|feet} away from the cannon."
 					]
 				}
 			],
@@ -364,7 +364,7 @@
 					"type": "entries",
 					"name": "Protector",
 					"entries": [
-						"The cannon emits a burst of positive energy that grants itself and each creature of your choice within 10 feet of it a number of temporary hit points equal to {@damage 1d8} + your Intelligence modifier (minimum of +1)."
+						"The cannon emits a burst of positive energy that grants itself and each creature of your choice within {@quantity 10|feet} of it a number of temporary hit points equal to {@damage 1d8} + your Intelligence modifier (minimum of +1)."
 					]
 				}
 			],
@@ -383,14 +383,14 @@
 			"entries": [
 				"Powered by magic, this iron coach has a flamethrower turret mounted atop it.",
 				"The coach can accommodate up to two Medium creatures. An iron hatch in the vehicle's underbelly grants access. Narrow slits in the front, sides, and back of the coach allow its occupants to see outside. A creature in the coach has {@table Cover|XPHB|Three-Quarters Cover} against attacks and other effects that originate outside it.",
-				"The coach is designed for a crew of two: a driver and a gunner. The driver can take the {@action Utilize|XPHB} action to move and turn the coach, which has a Speed of 30 feet, using levers and pedals inside. The gunner can use the Flamethrower action to aim and fire it."
+				"The coach is designed for a crew of two: a driver and a gunner. The driver can take the {@action Utilize|XPHB} action to move and turn the coach, which has a Speed of {@quantity 30|feet}, using levers and pedals inside. The gunner can use the Flamethrower action to aim and fire it."
 			],
 			"actionEntries": [
 				{
 					"type": "entries",
 					"name": "Flamethrower",
 					"entries": [
-						"{@actSave dex} {@dc 15}, each creature in a 60-foot-long, 5-foot-wide {@variantrule Line [Area of Effect]|XPHB|Line}. {@actSaveFail} 14 ({@damage 4d6}) Fire damage, and the creature starts burning. {@actSaveSuccess} Half damage only."
+						"{@actSave dex} {@dc 15}, each creature in a {@quantity 60|-foot}-long, {@quantity 5|-foot}-wide {@variantrule Line [Area of Effect]|XPHB|Line}. {@actSaveFail} 14 ({@damage 4d6}) Fire damage, and the creature starts burning. {@actSaveSuccess} Half damage only."
 					]
 				}
 			]
@@ -506,7 +506,7 @@
 											"18 (4d8)"
 										],
 										[
-											"Large (cart, 10-ft.-by-10-ft. window)",
+											"Large (cart, {@quantity 10|-ft}.-by-{@quantity 10|-ft.} window)",
 											"5 (1d10)",
 											"27 (5d10)"
 										]
@@ -556,15 +556,15 @@
 			],
 			"entries": [
 				"The gnomeflinger is a catapult designed to hurl creatures, instead of projectiles, in a high arc. The gnomeflinger was designed in conjunction with the {@item narycrash|DSotDQ} (see the {@area \"Adventuring Gear\"|498|x} section) to hasten transportation. The device can hold one Medium or smaller creature. Before it can be used, the gnomeflinger must be loaded and aimed. It takes 1 action to load the gnomeflinger, 1 action to aim it, and 1 action to fire it.",
-				"While taking an action to aim the gnomeflinger, you set the maximum horizontal distance of the Fling Personnel action to 60 feet, 150 feet, or 300 feet."
+				"While taking an action to aim the gnomeflinger, you set the maximum horizontal distance of the Fling Personnel action to {@quantity 60|feet}, {@quantity 150|feet}, or {@quantity 300|feet}."
 			],
 			"actionEntries": [
 				{
 					"type": "entries",
 					"name": "Fling Personnel",
 					"entries": [
-						"The gnomeflinger catapults a Medium or smaller creature at least 60 feet away horizontally, with a maximum horizontal distance of 60 feet, 150 feet, or 300 feet, depending on the option chosen when the catapult was aimed. During this trajectory, the creature always reaches a height of 60 feet vertically.",
-						"A creature that collides with another creature or an object during this trajectory takes 3 ({@dice 1d6}) bludgeoning damage for every 10 feet away from the gnomeflinger it is."
+						"The gnomeflinger catapults a Medium or smaller creature at least {@quantity 60|feet} away horizontally, with a maximum horizontal distance of {@quantity 60|feet}, {@quantity 150|feet}, or {@quantity 300|feet}, depending on the option chosen when the catapult was aimed. During this trajectory, the creature always reaches a height of {@quantity 60|feet} vertically.",
+						"A creature that collides with another creature or an object during this trajectory takes 3 ({@dice 1d6}) bludgeoning damage for every {@quantity 10|feet} away from the gnomeflinger it is."
 					]
 				}
 			],
@@ -687,7 +687,7 @@
 					"type": "entries",
 					"name": "Toxic Keg (Requires Load and Aim)",
 					"entries": [
-						"{@actSave con} {@dc 15}, each creature in a 20-foot-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on a point 30 to 300 feet from the launcher. {@actSaveFail} 14 ({@damage 4d6}) Poison damage. {@actSaveSuccess} Half damage."
+						"{@actSave con} {@dc 15}, each creature in a {@quantity 20|-foot}-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on a point {@quantity 30 to 300|feet} from the launcher. {@actSaveFail} 14 ({@damage 4d6}) Poison damage. {@actSaveSuccess} Half damage."
 					]
 				}
 			],
@@ -712,7 +712,7 @@
 					"type": "entries",
 					"name": "Lightning Ball (Requires Aim)",
 					"entries": [
-						"{@atkr r} {@hit 6}, range 300/1,200 ft. {@h}22 ({@damage 4d10}) Lightning damage."
+						"{@atkr r} {@hit 6}, range {@quantity 300/1,200|ft}. {@h}22 ({@damage 4d10}) Lightning damage."
 					]
 				}
 			]
@@ -747,7 +747,7 @@
 							"type": "attack",
 							"attackType": "RW",
 							"attackEntries": [
-								"{@hit +5} to hit, range 200/800 ft. (can't hit targets within 60 feet of it), one target."
+								"{@hit +5} to hit, range {@quantity 200/800|ft.} (can't hit targets within {@quantity 60|feet} of it), one target."
 							],
 							"hitEntries": [
 								"27 ({@damage 5d10}) bludgeoning damage."
@@ -776,7 +776,7 @@
 					"type": "entries",
 					"name": "Mangonel Stone (Requires Load and Aim)",
 					"entries": [
-						"{@atkr r} {@hit 5}, range 200/800 ft. (can't hit targets within 60 feet of itself). {@h}27 ({@damage 5d10}) Bludgeoning damage."
+						"{@atkr r} {@hit 5}, range {@quantity 200/800|ft.} (can't hit targets within {@quantity 60|feet} of itself). {@h}27 ({@damage 5d10}) Bludgeoning damage."
 					]
 				}
 			],
@@ -814,7 +814,7 @@
 							"type": "attack",
 							"attackType": "MW",
 							"attackEntries": [
-								"{@hit +8} to hit, reach 5 ft., one object."
+								"{@hit +8} to hit, reach {@quantity 5|ft.}, one object."
 							],
 							"hitEntries": [
 								"16 ({@damage 3d10}) bludgeoning damage."
@@ -844,7 +844,7 @@
 					"type": "entries",
 					"name": "Ram (Requires Position)",
 					"entries": [
-						"{@atkr m} {@hit 8}, reach 5 ft. {@h}16 ({@damage 3d10}) Bludgeoning damage."
+						"{@atkr m} {@hit 8}, reach {@quantity 5|ft}. {@h}16 ({@damage 3d10}) Bludgeoning damage."
 					]
 				}
 			]
@@ -867,7 +867,7 @@
 				"psychic"
 			],
 			"entries": [
-				"A siege tower is a mobile wooden structure with a beam frame and slats in its walls. Large wooden wheels or rollers allow the tower to be pushed or pulled by soldiers or beasts of burden. Medium or smaller creatures can use the siege tower to reach the top of walls up to 40 feet high. A creature in the tower has {@quickref Cover||3||total cover} from attacks outside the tower."
+				"A siege tower is a mobile wooden structure with a beam frame and slats in its walls. Large wooden wheels or rollers allow the tower to be pushed or pulled by soldiers or beasts of burden. Medium or smaller creatures can use the siege tower to reach the top of walls up to {@quantity 40|feet} high. A creature in the tower has {@quickref Cover||3||total cover} from attacks outside the tower."
 			],
 			"hasToken": true
 		},
@@ -882,7 +882,7 @@
 			"ac": 15,
 			"hp": 200,
 			"entries": [
-				"A Siege Tower is a mobile wooden structure with a beam frame and slats in its walls. Large wooden wheels or rollers allow the tower to be pushed or pulled by soldiers or beasts of burden. Medium or smaller creatures can use the Siege Tower to reach the top of walls up to 40 feet high. A creature in the tower has {@table Cover|XPHB|Total Cover} against attacks and other effects that originate outside it."
+				"A Siege Tower is a mobile wooden structure with a beam frame and slats in its walls. Large wooden wheels or rollers allow the tower to be pushed or pulled by soldiers or beasts of burden. Medium or smaller creatures can use the Siege Tower to reach the top of walls up to {@quantity 40|feet} high. A creature in the tower has {@table Cover|XPHB|Total Cover} against attacks and other effects that originate outside it."
 			]
 		},
 		{
@@ -936,7 +936,7 @@
 					"type": "entries",
 					"name": "Boiling Oil",
 					"entries": [
-						"The cauldron pours boiling oil onto a 10-foot-square area directly below it. Any creature in the area must make a DC 15 Dexterity saving throw, taking 10 ({@damage 3d6}) fire damage on a failed save, or half as much damage on a successful one."
+						"The cauldron pours boiling oil onto a {@quantity 10|-foot}-square area directly below it. Any creature in the area must make a DC 15 Dexterity saving throw, taking 10 ({@damage 3d6}) fire damage on a failed save, or half as much damage on a successful one."
 					]
 				}
 			],
@@ -961,7 +961,7 @@
 					"type": "entries",
 					"name": "Spill (Requires a Full Cauldron)",
 					"entries": [
-						"{@actSave dex} {@dc 15}, each creature in a 10-foot square directly below the cauldron. {@actSaveFail} 10 ({@damage 3d6}) Fire damage. {@actSaveSuccess} Half damage."
+						"{@actSave dex} {@dc 15}, each creature in a {@quantity 10|-foot} square directly below the cauldron. {@actSaveFail} 10 ({@damage 3d6}) Fire damage. {@actSaveSuccess} Half damage."
 					]
 				}
 			]
@@ -1019,7 +1019,7 @@
 							"type": "attack",
 							"attackType": "RW",
 							"attackEntries": [
-								"{@hit +5} to hit, range 300/1,200 ft. (can't hit targets within 60 feet of it), one target."
+								"{@hit +5} to hit, range {@quantity 300/1,200|ft.} (can't hit targets within {@quantity 60|feet} of it), one target."
 							],
 							"hitEntries": [
 								"44 ({@damage 8d10}) bludgeoning damage."
@@ -1048,7 +1048,7 @@
 					"type": "entries",
 					"name": "Trebuchet Stone (Requires Load and Aim)",
 					"entries": [
-						"{@atkr r} {@hit 5}, range 300/1,200 ft. (can't hit targets within 60 feet of itself). {@h}44 ({@damage 8d10}) Bludgeoning damage."
+						"{@atkr r} {@hit 5}, range {@quantity 300/1,200|ft.} (can't hit targets within {@quantity 60|feet} of itself). {@h}44 ({@damage 8d10}) Bludgeoning damage."
 					]
 				}
 			]

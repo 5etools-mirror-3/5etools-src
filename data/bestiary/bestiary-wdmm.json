@@ -68,7 +68,7 @@
 			"wis": 3,
 			"cha": 1,
 			"senses": [
-				"blindsight 120 ft. (blind beyond this radius)"
+				"blindsight {@quantity 120|ft.} (blind beyond this radius)"
 			],
 			"passive": 6,
 			"immune": [
@@ -88,7 +88,7 @@
 				{
 					"name": "Magic Bolt",
 					"entries": [
-						"{@atk rw} {@hit 6} to hit, range 120 ft., one target. {@h}16 ({@damage 3d10}) fire damage"
+						"{@atk rw} {@hit 6} to hit, range {@quantity 120|ft.}, one target. {@h}16 ({@damage 3d10}) fire damage"
 					]
 				}
 			],
@@ -159,7 +159,7 @@
 			"wis": 14,
 			"cha": 10,
 			"senses": [
-				"blindsight 60 ft. (blind beyond this radius)"
+				"blindsight {@quantity 60|ft.} (blind beyond this radius)"
 			],
 			"passive": 12,
 			"resist": [
@@ -190,7 +190,7 @@
 				{
 					"name": "Staff",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}7 ({@damage 2d6}) bludgeoning damage plus 1 cold damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 2d6}) bludgeoning damage plus 1 cold damage."
 					]
 				}
 			],
@@ -290,7 +290,7 @@
 			"wis": 3,
 			"cha": 1,
 			"senses": [
-				"blindsight 30 ft. (blind beyond this radius)"
+				"blindsight {@quantity 30|ft.} (blind beyond this radius)"
 			],
 			"passive": 6,
 			"cr": "3",
@@ -298,13 +298,13 @@
 				{
 					"name": "Slam",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}11 ({@damage 2d8 + 2}) bludgeoning damage."
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 5|ft.}, one target. {@h}11 ({@damage 2d8 + 2}) bludgeoning damage."
 					]
 				},
 				{
 					"name": "Belch Fire {@recharge 4}",
 					"entries": [
-						"The stove belches fire in a 15-foot cone. Each creature in the area must make a {@dc 10} Dexterity saving throw, taking 22 ({@damage 4d10}) fire damage on a failed save, or half as much damage on a successful one."
+						"The stove belches fire in a {@quantity 15|-foot} cone. Each creature in the area must make a {@dc 10} Dexterity saving throw, taking 22 ({@damage 4d10}) fire damage on a failed save, or half as much damage on a successful one."
 					]
 				}
 			],
@@ -754,13 +754,13 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}22 ({@damage 5d6 + 5}) piercing damage."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 5|ft.}, one target. {@h}22 ({@damage 5d6 + 5}) piercing damage."
 					]
 				},
 				{
 					"name": "Claw",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 10 ft., one target. {@h}9 ({@damage 1d8 + 5}) slashing damage."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 10|ft.}, one target. {@h}9 ({@damage 1d8 + 5}) slashing damage."
 					]
 				}
 			],
@@ -808,8 +808,8 @@
 				"wis": "+4"
 			},
 			"senses": [
-				"blindsight 30 ft.",
-				"tremorsense 60 ft."
+				"blindsight {@quantity 30|ft.}",
+				"tremorsense {@quantity 60|ft.}"
 			],
 			"passive": 9,
 			"immune": [
@@ -841,7 +841,7 @@
 				{
 					"name": "Tunneler",
 					"entries": [
-						"The worm can burrow through solid rock at half its burrow speed and leaves a 10-foot-diameter tunnel in its wake."
+						"The worm can burrow through solid rock at half its burrow speed and leaves a {@quantity 10|-foot}-diameter tunnel in its wake."
 					]
 				},
 				{
@@ -861,13 +861,13 @@
 				{
 					"name": "Grinding Jaws",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 10 ft., one target. {@h}22 ({@damage 3d8 + 9}) slashing damage."
+						"{@atk mw} {@hit 9} to hit, reach {@quantity 10|ft.}, one target. {@h}22 ({@damage 3d8 + 9}) slashing damage."
 					]
 				},
 				{
 					"name": "Tail Stinger",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 10 ft., one creature. {@h}19 ({@damage 3d6 + 9}) piercing damage, and the target must make a {@dc 19} Constitution saving throw, taking 42 ({@damage 12d6}) poison damage on a failed save, or half as much damage on a successful one."
+						"{@atk mw} {@hit 9} to hit, reach {@quantity 10|ft.}, one creature. {@h}19 ({@damage 3d6 + 9}) piercing damage, and the target must make a {@dc 19} Constitution saving throw, taking 42 ({@damage 12d6}) poison damage on a failed save, or half as much damage on a successful one."
 					]
 				}
 			],
@@ -963,13 +963,13 @@
 				{
 					"name": "Tentacles",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 10 ft., one creature. {@h}4 ({@damage 1d4 + 2}) poison damage, and the target must succeed on a {@dc 13} Constitution saving throw or be {@condition poisoned} for 1 minute. Until this poison ends, the target is {@condition paralyzed}. The target can repeat the saving throw at the end of each of its turns, ending the poison on itself on a success."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 10|ft.}, one creature. {@h}4 ({@damage 1d4 + 2}) poison damage, and the target must succeed on a {@dc 13} Constitution saving throw or be {@condition poisoned} for 1 minute. Until this poison ends, the target is {@condition paralyzed}. The target can repeat the saving throw at the end of each of its turns, ending the poison on itself on a success."
 					]
 				},
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}7 ({@damage 2d4 + 2}) piercing damage."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 2d4 + 2}) piercing damage."
 					]
 				}
 			],
@@ -1239,7 +1239,7 @@
 				{
 					"name": "Battleaxe",
 					"entries": [
-						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d8 + 1}) slashing damage."
+						"{@atk mw} {@hit 3} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d8 + 1}) slashing damage."
 					]
 				}
 			],
@@ -1265,13 +1265,13 @@
 							{
 								"name": "Illumination",
 								"entries": [
-									"The golem magically sheds bright light in a 30-foot radius and dim light for an additional 30 feet. This light goes out when the golem is destroyed."
+									"The golem magically sheds bright light in a {@quantity 30|-foot} radius and dim light for an additional {@quantity 30|feet}. This light goes out when the golem is destroyed."
 								]
 							},
 							{
 								"name": "Light Intensity",
 								"entries": [
-									"Any creature that starts its turn within 10 feet of the illuminated golem and can see the golem must succeed on a DC 17 Wisdom saving throw or be {@condition blinded} until the start of the creature's next turn.",
+									"Any creature that starts its turn within {@quantity 10|feet} of the illuminated golem and can see the golem must succeed on a DC 17 Wisdom saving throw or be {@condition blinded} until the start of the creature's next turn.",
 									"A creature can avert its eyes to avoid the saving throw at the start of its turn. If the creature does so, it can't see the golem until the start of its next turn, when it can avert its eyes again. If the creature looks at the golem in the meantime, it must immediately make the save."
 								]
 							}
@@ -1355,7 +1355,7 @@
 							{
 								"name": "Warp Reality",
 								"entries": [
-									"As a bonus action on her turn, Dezmyr can warp reality, undoing damage dealt to herself or another creature that she can see within 20 feet of her. The beneficiary of this warped reality instantly regains 10 hit points."
+									"As a bonus action on her turn, Dezmyr can warp reality, undoing damage dealt to herself or another creature that she can see within {@quantity 20|feet} of her. The beneficiary of this warped reality instantly regains 10 hit points."
 								]
 							}
 						]
@@ -1443,7 +1443,7 @@
 						"items": {
 							"name": "Summon Demon (1/Day)",
 							"entries": [
-								"Drivvin magically summons a {@filter demon of challenge rating 6 or lower|bestiary|challenge rating=[&0;&6]|tag=demon|miscellaneous=!swarm}. The summoned demon appears in an unoccupied space within 60 feet of him, acts as his ally, and can't summon other demons. The summoned demon remains until Drivvin dismisses it as an action or until the demon is reduced to 0 hit points."
+								"Drivvin magically summons a {@filter demon of challenge rating 6 or lower|bestiary|challenge rating=[&0;&6]|tag=demon|miscellaneous=!swarm}. The summoned demon appears in an unoccupied space within {@quantity 60|feet} of him, acts as his ally, and can't summon other demons. The summoned demon remains until Drivvin dismisses it as an action or until the demon is reduced to 0 hit points."
 							]
 						}
 					}
@@ -1501,7 +1501,7 @@
 						"items": {
 							"name": "Hurl Fire",
 							"entries": [
-								"{@atk rw} {@hit 11} to hit, range 60/240 ft., one target. {@h}29 ({@damage 4d10 + 7}) fire damage."
+								"{@atk rw} {@hit 11} to hit, range {@quantity 60/240|ft.}, one target. {@h}29 ({@damage 4d10 + 7}) fire damage."
 							]
 						}
 					}
@@ -1760,7 +1760,7 @@
 						"items": {
 							"name": "Trident",
 							"entries": [
-								"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d8 + 1}) piercing damage."
+								"{@atk mw} {@hit 3} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d8 + 1}) piercing damage."
 							]
 						}
 					}
@@ -1828,7 +1828,7 @@
 				"E"
 			],
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"languages": [
 				"Elvish",
@@ -1920,7 +1920,7 @@
 								"entries": [
 									"The mummy lord magically turns {@condition invisible} for up to 1 hour or until it attacks, it casts a spell, it uses its Enlarge, or its {@status concentration} is broken (as if {@status concentration||concentrating} on a spell). Any equipment the mummy lord wears or carries is {@condition invisible} with it.",
 									"The stalagmite in the northwest alcove is hollow and serves as Gorka Tharn's sarcophagus. The mummy lord is lodged inside the stalagmite's funnel-shaped interior. When it awakens, the mummy lord uses a {@spell stone shape} spell to create an opening large enough for it to emerge. It destroys any intruders in its lair, then returns to its sarcophagus and its slumber.",
-									"At the bottom of the stalagmite's hollow cavity, four 1-foot-tall clay urns contain Gorka Tharn's preserved internal organs, including the mummy lord's shriveled heart. Only by destroying the heart can the characters prevent the mummy lord from rejuvenating. The heart is a Tiny object with AC 5, 25 hit points, and immunity to all damage except fire."
+									"At the bottom of the stalagmite's hollow cavity, four {@quantity 1|-foot}-tall clay urns contain Gorka Tharn's preserved internal organs, including the mummy lord's shriveled heart. Only by destroying the heart can the characters prevent the mummy lord from rejuvenating. The heart is a Tiny object with AC 5, 25 hit points, and immunity to all damage except fire."
 								]
 							}
 						]
@@ -2029,7 +2029,7 @@
 							"items": {
 								"name": "Longsword",
 								"entries": [
-									"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d8 + 2}) slashing damage, or 7 ({@damage 1d10 + 2}) slashing damage if used with two hands."
+									"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}6 ({@damage 1d8 + 2}) slashing damage, or 7 ({@damage 1d10 + 2}) slashing damage if used with two hands."
 								]
 							}
 						}
@@ -2103,7 +2103,7 @@
 				"perception": "+11"
 			},
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 21,
 			"resist": [
@@ -2237,7 +2237,7 @@
 				{
 					"name": "Special Equipment",
 					"entries": [
-						"Halaster wears a {@item robe of eyes} that lets him see in all directions, gives him darkvision out to a range of 120 feet, grants advantage on Wisdom ({@skill Perception}) checks that rely on sight, and allows him to see {@condition invisible} creatures and objects, as well as into the Ethereal Plane, out to a range of 120 feet.",
+						"Halaster wears a {@item robe of eyes} that lets him see in all directions, gives him darkvision out to a range of {@quantity 120|feet}, grants advantage on Wisdom ({@skill Perception}) checks that rely on sight, and allows him to see {@condition invisible} creatures and objects, as well as into the Ethereal Plane, out to a range of {@quantity 120|feet}.",
 						"Halaster wields a blast scepter (a very rare magic item that requires attunement). It can be used as an arcane focus. Whoever is attuned to the blast scepter gains resistance to fire and lightning damage and can, as an action, use it to cast {@spell thunderwave} as a 4th-level spell (save {@dc 16}) without expending a spell slot.",
 						"Halaster also wears a horned ring (a very rare magic item that requires attunement), which allows an attuned wearer to ignore Undermountain's magical restrictions (see \"Alterations to Magic\")."
 					]
@@ -2265,7 +2265,7 @@
 				{
 					"name": "Blast Scepter",
 					"entries": [
-						"Halaster uses his blast scepter to cast {@spell thunderwave} as a 4th-level spell. Each creature in a 15-foot cube originating from him must make a {@dc 16} Constitution saving throw. On a failed save, a creature takes {@dice 5d8} thunder damage and is pushed 10 feet away. On a successful save, the creature takes half as much damage and isn't pushed"
+						"Halaster uses his blast scepter to cast {@spell thunderwave} as a 4th-level spell. Each creature in a {@quantity 15|-foot} cube originating from him must make a {@dc 16} Constitution saving throw. On a failed save, a creature takes {@dice 5d8} thunder damage and is pushed {@quantity 10|feet} away. On a successful save, the creature takes half as much damage and isn't pushed"
 					]
 				}
 			],
@@ -2379,7 +2379,7 @@
 				{
 					"name": "Staff",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}8 ({@damage 1d8 + 4}) bludgeoning damage."
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 5|ft.}, one target. {@h}8 ({@damage 1d8 + 4}) bludgeoning damage."
 					]
 				}
 			],
@@ -2479,7 +2479,7 @@
 				{
 					"name": "Salt Sensitivity",
 					"entries": [
-						"A pound of salt thrown onto the snail's skin deals {@dice 1d6} acid damage to the creature."
+						"{@quantity A|pound} of salt thrown onto the snail's skin deals {@dice 1d6} acid damage to the creature."
 					]
 				},
 				{
@@ -2577,7 +2577,7 @@
 				{
 					"name": "Pseudopod",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}21 ({@damage 6d6}) acid damage, or 42 ({@damage 12d6}) acid damage while the ooze is enlarged. If the target is wearing nonmagical metal armor, its armor is partly corroded and takes a permanent and cumulative \u22121 penalty to the AC it offers. The armor is destroyed if the penalty reduces its AC to 10."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}21 ({@damage 6d6}) acid damage, or 42 ({@damage 12d6}) acid damage while the ooze is enlarged. If the target is wearing nonmagical metal armor, its armor is partly corroded and takes a permanent and cumulative \u22121 penalty to the AC it offers. The armor is destroyed if the penalty reduces its AC to 10."
 					]
 				},
 				{
@@ -2686,7 +2686,7 @@
 			"wis": 3,
 			"cha": 1,
 			"senses": [
-				"blindsight 60 ft. (blind beyond this radius)"
+				"blindsight {@quantity 60|ft.} (blind beyond this radius)"
 			],
 			"passive": 6,
 			"immune": [
@@ -2697,7 +2697,7 @@
 				{
 					"name": "Web Cable",
 					"entries": [
-						"The iron spider shoots out a 6-inch-thick web cable up to 50 feet long, attaching the far end of the cable to a solid surface up to 50 feet away from it. As a bonus action, it can detach the other end of the cable from itself and attach it to a solid surface within 10 feet of it. Once it creates 200 feet of web cable, the spider can't produce any more cable until the next dawn."
+						"The iron spider shoots out a {@quantity 6|-inch}-thick web cable up to {@quantity 50|feet} long, attaching the far end of the cable to a solid surface up to {@quantity 50|feet} away from it. As a bonus action, it can detach the other end of the cable from itself and attach it to a solid surface within {@quantity 10|feet} of it. Once it creates {@quantity 200|feet} of web cable, the spider can't produce any more cable until the next dawn."
 					]
 				}
 			],
@@ -2933,7 +2933,7 @@
 							"items": {
 								"name": "Sparring Sword",
 								"entries": [
-									"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d4 + 2}) bludgeoning damage."
+									"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}6 ({@damage 1d4 + 2}) bludgeoning damage."
 								]
 							}
 						}
@@ -3006,7 +3006,7 @@
 				"survival": "+2"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 10,
 			"immune": [
@@ -3044,13 +3044,13 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}11 ({@damage 2d6 + 4}) piercing damage."
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 5|ft.}, one target. {@h}11 ({@damage 2d6 + 4}) piercing damage."
 					]
 				},
 				{
 					"name": "Claws",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d6 + 4}) slashing damage."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 1d6 + 4}) slashing damage."
 					]
 				}
 			],
@@ -3126,7 +3126,7 @@
 				"canHover": true
 			},
 			"senses": [
-				"blindsight 60 ft. (blind beyond this radius)"
+				"blindsight {@quantity 60|ft.} (blind beyond this radius)"
 			],
 			"conditionImmune": [
 				"blinded",
@@ -3166,7 +3166,7 @@
 				"stealth": "+4"
 			},
 			"senses": [
-				"blindsight 60 ft. (blind beyond this radius)"
+				"blindsight {@quantity 60|ft.} (blind beyond this radius)"
 			],
 			"passive": 12,
 			"immune": [
@@ -3195,7 +3195,7 @@
 				{
 					"name": "Slam",
 					"entries": [
-						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}1 bludgeoning damage."
+						"{@atk mw} {@hit 2} to hit, reach {@quantity 5|ft.}, one target. {@h}1 bludgeoning damage."
 					]
 				}
 			],
@@ -3232,7 +3232,7 @@
 						"items": {
 							"name": "Slam",
 							"entries": [
-								"{@atk mw} {@hit 10} to hit, reach 5 ft., one target. {@h}24 ({@damage 4d8 + 6}) bludgeoning damage."
+								"{@atk mw} {@hit 10} to hit, reach {@quantity 5|ft.}, one target. {@h}24 ({@damage 4d8 + 6}) bludgeoning damage."
 							]
 						}
 					}
@@ -3288,7 +3288,7 @@
 						"items": {
 							"name": "Bite",
 							"entries": [
-								"{@atk mw} {@hit 4} to hit, reach 5 ft., one creature. {@h}{@damage 2d6 + 2} piercing damage, and the target must succeed on a DC 10 Constitution saving throw or be {@condition poisoned} for 1 minute. If the saving throw fails by 5 or more, the target is instead {@condition poisoned} for 5 ({@dice 1d10}) minutes and {@condition unconscious} while {@condition poisoned} in this way."
+								"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one creature. {@h}{@damage 2d6 + 2} piercing damage, and the target must succeed on a DC 10 Constitution saving throw or be {@condition poisoned} for 1 minute. If the saving throw fails by 5 or more, the target is instead {@condition poisoned} for 5 ({@dice 1d10}) minutes and {@condition unconscious} while {@condition poisoned} in this way."
 							]
 						}
 					}
@@ -3458,7 +3458,7 @@
 				}
 			],
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"immune": [
 				"poison",
@@ -3497,7 +3497,7 @@
 						"items": {
 							"name": "Blind Eye",
 							"entries": [
-								"Due to poor depth perception, Mobar has disadvantage on any attack roll against a target more than 30 feet away."
+								"Due to poor depth perception, Mobar has disadvantage on any attack roll against a target more than {@quantity 30|feet} away."
 							]
 						}
 					}
@@ -3555,7 +3555,7 @@
 				"stealth": "+5"
 			},
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 16,
 			"languages": [
@@ -3658,13 +3658,13 @@
 				{
 					"name": "Longsword",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}13 ({@damage 2d8 + 4}) slashing damage, or 15 ({@damage 2d10 + 4}) slashing damage if used with two hands."
+						"{@atk mw} {@hit 9} to hit, reach {@quantity 5|ft.}, one target. {@h}13 ({@damage 2d8 + 4}) slashing damage, or 15 ({@damage 2d10 + 4}) slashing damage if used with two hands."
 					]
 				},
 				{
 					"name": "Sting",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 10 ft., one creature. {@h}9 ({@damage 1d10 + 4}) piercing damage. The target must make a {@dc 16} Constitution saving throw, taking 27 ({@damage 6d8}) poison damage on a failed save, or half as much damage on a successful one."
+						"{@atk mw} {@hit 9} to hit, reach {@quantity 10|ft.}, one creature. {@h}9 ({@damage 1d10 + 4}) piercing damage. The target must make a {@dc 16} Constitution saving throw, taking 27 ({@damage 6d8}) poison damage on a failed save, or half as much damage on a successful one."
 					]
 				}
 			],
@@ -3678,7 +3678,7 @@
 				{
 					"name": "Lunging Attack (Costs 2 Actions)",
 					"entries": [
-						"Muiral makes one longsword attack that has a reach of 10 feet."
+						"Muiral makes one longsword attack that has a reach of {@quantity 10|feet}."
 					]
 				},
 				{
@@ -3763,7 +3763,7 @@
 						"items": {
 							"name": "Eye Ray",
 							"entries": [
-								"The zombie uses a random magical eye ray, choosing a target that it can see within 60 feet of it.",
+								"The zombie uses a random magical eye ray, choosing a target that it can see within {@quantity 60|feet} of it.",
 								{
 									"type": "list",
 									"style": "list-hang-notitle",
@@ -3790,7 +3790,7 @@
 											"type": "item",
 											"name": "4. Telekinetic Ray",
 											"style": "italic",
-											"entry": "If the target is a creature, it must succeed on a DC 14 Strength saving throw, or the zombie moves it up to 30 feet in any direction. It is restrained by the ray's telekinetic grip until the start of the zombie's next turn or until the zombie is incapacitated. If the target is an object weighing 300 pounds or less that isn't being worn or carried, it is moved up to 30 feet in any direction. The zombie can also exert fine control on objects with this ray, such as manipulating a simple tool or opening a door or container."
+											"entry": "If the target is a creature, it must succeed on a DC 14 Strength saving throw, or the zombie moves it up to {@quantity 30|feet} in any direction. It is restrained by the ray's telekinetic grip until the start of the zombie's next turn or until the zombie is incapacitated. If the target is an object weighing {@quantity 300|pounds} or less that isn't being worn or carried, it is moved up to {@quantity 30|feet} in any direction. The zombie can also exert fine control on objects with this ray, such as manipulating a simple tool or opening a door or container."
 										}
 									]
 								}
@@ -3851,7 +3851,7 @@
 			},
 			"type": "undead",
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"languages": [
 				"Auran",
@@ -3930,7 +3930,7 @@
 						"items": {
 							"name": "Bite",
 							"entries": [
-								"{@atk mw} {@hit 7} to hit, reach 5 ft., one creature. {@h}{@damage 2d6 + 4} piercing damage."
+								"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one creature. {@h}{@damage 2d6 + 4} piercing damage."
 							]
 						}
 					}
@@ -3982,7 +3982,7 @@
 							"items": {
 								"name": "Magic Dart",
 								"entries": [
-									"The generator hurls a magic dart at a target it can see up to 60 feet away from it. The dart hits its target automatically (no attack roll required) for 5 ({@damage 2d4}) force damage."
+									"The generator hurls a magic dart at a target it can see up to {@quantity 60|feet} away from it. The dart hits its target automatically (no attack roll required) for 5 ({@damage 2d4}) force damage."
 								]
 							}
 						}
@@ -4123,7 +4123,7 @@
 				"N"
 			],
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"languages": [
 				"Common",
@@ -4135,7 +4135,7 @@
 				{
 					"name": "Eye Rays",
 					"entries": [
-						"As a bonus action or a reaction, Preeta can shoot one of the following eye rays at one target she can see within 120 feet of her:",
+						"As a bonus action or a reaction, Preeta can shoot one of the following eye rays at one target she can see within {@quantity 120|feet} of her:",
 						{
 							"type": "list",
 							"style": "list-hang-notitle",
@@ -4275,7 +4275,7 @@
 			"wis": 12,
 			"cha": 1,
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 11,
 			"resist": [
@@ -4311,7 +4311,7 @@
 				{
 					"name": "Scaladar Link",
 					"entries": [
-						"The scaladar knows the location of other scaladar within 100 feet of it, and it can sense when any of them take damage."
+						"The scaladar knows the location of other scaladar within {@quantity 100|feet} of it, and it can sense when any of them take damage."
 					]
 				}
 			],
@@ -4325,13 +4325,13 @@
 				{
 					"name": "Claw",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 10 ft., one target. {@h}10 ({@damage 1d12 + 4}) bludgeoning damage, and the target is {@condition grappled} (escape {@dc 15}). The scaladar has two claws, each of which can grapple one target."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 10|ft.}, one target. {@h}10 ({@damage 1d12 + 4}) bludgeoning damage, and the target is {@condition grappled} (escape {@dc 15}). The scaladar has two claws, each of which can grapple one target."
 					]
 				},
 				{
 					"name": "Sting",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 10 ft., one target. {@h}9 ({@damage 1d10 + 4}) piercing damage plus 11 ({@damage 2d10}) lightning damage."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 10|ft.}, one target. {@h}9 ({@damage 1d10 + 4}) piercing damage plus 11 ({@damage 2d10}) lightning damage."
 					]
 				}
 			],
@@ -4397,7 +4397,7 @@
 				"stealth": "+12"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 19,
 			"resist": [
@@ -4441,7 +4441,7 @@
 				{
 					"name": "Amorphous",
 					"entries": [
-						"The assassin can move through a space as narrow as 1 inch wide without squeezing."
+						"The assassin can move through a space as narrow as {@quantity 1|inch} wide without squeezing."
 					]
 				},
 				{
@@ -4467,7 +4467,7 @@
 				{
 					"name": "Shadow Blade",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d6 + 4}) piercing damage plus 10 ({@damage 3d6}) necrotic damage. Unless the target is immune to necrotic damage, the target's Strength score is reduced by {@dice 1d4} each time it is hit by this attack. The target dies if its Strength is reduced to 0. The reduction lasts until the target finishes a short or long rest. If a non-evil humanoid dies from this attack, a shadow (see the Monster Manual) rises from the corpse {@dice 1d4} hours later."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 1d6 + 4}) piercing damage plus 10 ({@damage 3d6}) necrotic damage. Unless the target is immune to necrotic damage, the target's Strength score is reduced by {@dice 1d4} each time it is hit by this attack. The target dies if its Strength is reduced to 0. The reduction lasts until the target finishes a short or long rest. If a non-evil humanoid dies from this attack, a shadow (see the Monster Manual) rises from the corpse {@dice 1d4} hours later."
 					]
 				}
 			],
@@ -4550,7 +4550,7 @@
 			"wis": 1,
 			"cha": 1,
 			"senses": [
-				"blindsight 60 ft. (blind beyond this radius)"
+				"blindsight {@quantity 60|ft.} (blind beyond this radius)"
 			],
 			"passive": 5,
 			"immune": [
@@ -4570,7 +4570,7 @@
 				{
 					"name": "Disable",
 					"entries": [
-						"When a leg drops to 0 hit points, it is disabled, and Shockerstomper can use a reaction to detach it from its main body. Whenever one of its legs is disabled, Shockerstomper's walking speed is reduced by 10 feet. The whole contraption topples over and shuts down if four of its seven legs are disabled."
+						"When a leg drops to 0 hit points, it is disabled, and Shockerstomper can use a reaction to detach it from its main body. Whenever one of its legs is disabled, Shockerstomper's walking speed is reduced by {@quantity 10|feet}. The whole contraption topples over and shuts down if four of its seven legs are disabled."
 					]
 				},
 				{
@@ -4588,13 +4588,13 @@
 				{
 					"name": "Control Module",
 					"entries": [
-						"A creature atop or above Shockerstomper's platform can locate its control module with a successful {@dc 15} Intelligence ({@skill Investigation}) check or Wisdom ({@skill Perception}) check. As an action, a character can try to open the control module's access panel, either by tearing it off with a successful {@dc 25} Strength ({@skill Athletics}) check or by dislodging it with thieves' tools and a successful {@dc 25} Dexterity check. Behind the panel, embedded in the floor of the control module, is a 5-foot-diameter pulsating crystal hemisphere with AC 10, 25 hit points, and immunity to poison and psychic damage. Destroying the crystal hemisphere shuts down Shockerstomper."
+						"A creature atop or above Shockerstomper's platform can locate its control module with a successful {@dc 15} Intelligence ({@skill Investigation}) check or Wisdom ({@skill Perception}) check. As an action, a character can try to open the control module's access panel, either by tearing it off with a successful {@dc 25} Strength ({@skill Athletics}) check or by dislodging it with thieves' tools and a successful {@dc 25} Dexterity check. Behind the panel, embedded in the floor of the control module, is a {@quantity 5|-foot}-diameter pulsating crystal hemisphere with AC 10, 25 hit points, and immunity to poison and psychic damage. Destroying the crystal hemisphere shuts down Shockerstomper."
 					]
 				},
 				{
 					"name": "Lightning Turret",
 					"entries": [
-						"A character can try to plug the nozzle of a lightning turret with a 10-pound rock or similar object, doing so with a successful {@dc 15} Strength ({@skill Athletics}) check. A plugged turret can't shoot lightning until a creature uses an action to try to clear the obstruction, which requires another successful {@dc 15} Strength ({@skill Athletics}) check. Shockerstomper has no ability to clear an obstruction itself."
+						"A character can try to plug the nozzle of a lightning turret with a {@quantity 10|-pound} rock or similar object, doing so with a successful {@dc 15} Strength ({@skill Athletics}) check. A plugged turret can't shoot lightning until a creature uses an action to try to clear the obstruction, which requires another successful {@dc 15} Strength ({@skill Athletics}) check. Shockerstomper has no ability to clear an obstruction itself."
 					]
 				}
 			],
@@ -4608,13 +4608,13 @@
 				{
 					"name": "Lightning Turret",
 					"entries": [
-						"The turret shoots a magical lightning bolt at one creature within 60 feet of Shockerstomper. The target must make a {@dc 15} Dexterity saving throw, taking 44 ({@damage 8d10}) lightning damage on a failed save, or half as much damage on a successful one."
+						"The turret shoots a magical lightning bolt at one creature within {@quantity 60|feet} of Shockerstomper. The target must make a {@dc 15} Dexterity saving throw, taking 44 ({@damage 8d10}) lightning damage on a failed save, or half as much damage on a successful one."
 					]
 				},
 				{
 					"name": "Stomp",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 10 ft., one creature. {@h}22 ({@damage 3d10 + 6}) bludgeoning damage."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 10|ft.}, one creature. {@h}22 ({@damage 3d10 + 6}) bludgeoning damage."
 					]
 				}
 			],
@@ -4754,12 +4754,12 @@
 										{
 											"type": "item",
 											"name": "Acid Breath",
-											"entry": "The dragon exhales acid in a 60-foot line that is 5 feet wide. Each creature in that line must make a DC 18 Dexterity saving throw, taking 58 ({@damage 13d8}) acid damage on a failed save, or half as much damage on a successful one."
+											"entry": "The dragon exhales acid in a {@quantity 60|-foot} line that is {@quantity 5|feet} wide. Each creature in that line must make a DC 18 Dexterity saving throw, taking 58 ({@damage 13d8}) acid damage on a failed save, or half as much damage on a successful one."
 										},
 										{
 											"type": "item",
 											"name": "Paralyzing Breath",
-											"entry": "The dragon exhales paralyzing gas in a 60-foot cone. Each creature in that area must succeed on a DC 20 Constitution saving throw or be {@condition paralyzed} for 1 minute. A creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+											"entry": "The dragon exhales paralyzing gas in a {@quantity 60|-foot} cone. Each creature in that area must succeed on a DC 20 Constitution saving throw or be {@condition paralyzed} for 1 minute. A creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
 										}
 									]
 								}
@@ -4810,7 +4810,7 @@
 						"items": {
 							"name": "Magic Theft",
 							"entries": [
-								"As a bonus action, the golem targets one creature it can see within 30 feet of it. The target must succeed on a DC 17 Charisma saving throw, or all magic items in its possession are teleported to the bottom of the pit in {@adventure area 31|WDMM|15|31. Hall of Embers}."
+								"As a bonus action, the golem targets one creature it can see within {@quantity 30|feet} of it. The target must succeed on a DC 17 Charisma saving throw, or all magic items in its possession are teleported to the bottom of the pit in {@adventure area 31|WDMM|15|31. Hall of Embers}."
 							]
 						}
 					}
@@ -4887,7 +4887,7 @@
 				"E"
 			],
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"languages": [
 				"Common",
@@ -4942,7 +4942,7 @@
 							"items": {
 								"name": "Maul",
 								"entries": [
-									"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}12 ({@damage 2d6 + 5}) bludgeoning damage, plus 7 ({@damage 2d6}) bludgeoning damage if Thwad has more than half of his total hit points remaining."
+									"{@atk mw} {@hit 9} to hit, reach {@quantity 5|ft.}, one target. {@h}12 ({@damage 2d6 + 5}) bludgeoning damage, plus 7 ({@damage 2d6}) bludgeoning damage if Thwad has more than half of his total hit points remaining."
 								]
 							}
 						}
@@ -5083,7 +5083,7 @@
 				{
 					"name": "Fire Ray",
 					"entries": [
-						"{@atk rs} {@hit 5} to hit, range 30 ft., one target. {@h}10 ({@damage 3d6}) lightning damage."
+						"{@atk rs} {@hit 5} to hit, range {@quantity 30|ft.}, one target. {@h}10 ({@damage 3d6}) lightning damage."
 					]
 				}
 			],
@@ -5423,7 +5423,7 @@
 				"E"
 			],
 			"senses": [
-				"blindsight 60 ft. (blind beyond this radius)"
+				"blindsight {@quantity 60|ft.} (blind beyond this radius)"
 			],
 			"languages": [
 				"Abyssal",
@@ -5473,7 +5473,7 @@
 			"speed": {
 				"walk": {
 					"number": 30,
-					"condition": "(climb 30 ft. fly 60 ft. in bat or hybrid form)"
+					"condition": "(climb {@quantity 30|ft.} fly {@quantity 60|ft.} in bat or hybrid form)"
 				}
 			},
 			"str": 8,
@@ -5487,7 +5487,7 @@
 				"stealth": "+5"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 13,
 			"immune": [
@@ -5515,7 +5515,7 @@
 				{
 					"name": "Echolocation (Bat or Hybrid Form Only)",
 					"entries": [
-						"The werebat has blindsight out to a range of 60 feet as long as it's not {@condition deafened}."
+						"The werebat has blindsight out to a range of {@quantity 60|feet} as long as it's not {@condition deafened}."
 					]
 				},
 				{
@@ -5547,19 +5547,19 @@
 				{
 					"name": "Bite (Bat or Hybrid Form Only)",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one creature. {@h}6 ({@damage 1d6 + 3}) piercing damage, and the werebat gains temporary hit points equal to the damage dealt. If the target is a humanoid, it must succeed on a {@dc 10} Constitution saving throw or be cursed with werebat lycanthropy."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one creature. {@h}6 ({@damage 1d6 + 3}) piercing damage, and the werebat gains temporary hit points equal to the damage dealt. If the target is a humanoid, it must succeed on a {@dc 10} Constitution saving throw or be cursed with werebat lycanthropy."
 					]
 				},
 				{
 					"name": "Scimitar (Humanoid or Hybrid Form Only)",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) slashing damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}6 ({@damage 1d6 + 3}) slashing damage."
 					]
 				},
 				{
 					"name": "Shortbow (Humanoid or Hybrid Form Only)",
 					"entries": [
-						"{@atk rw} {@hit 5} to hit, range 80/320 ft., one target. {@h}6 ({@damage 1d6 + 3}) piercing damage."
+						"{@atk rw} {@hit 5} to hit, range {@quantity 80/320|ft.}, one target. {@h}6 ({@damage 1d6 + 3}) piercing damage."
 					]
 				}
 			],
@@ -5618,7 +5618,7 @@
 			},
 			"type": "construct",
 			"senses": [
-				"blindsight 30 ft. (blind beyond this radius)"
+				"blindsight {@quantity 30|ft.} (blind beyond this radius)"
 			],
 			"immune": [
 				"poison"
@@ -5726,7 +5726,7 @@
 						"items": {
 							"name": "Nine Lives Stealer Longsword",
 							"entries": [
-								"{@atk mw} {@hit 13} to hit, reach 5 ft., one target. {@h}11 ({@damage 1d8 + 7}) slashing damage, or 12 ({@damage 1d10 + 7}) slashing damage if used with two hands, plus 18 ({@damage 4d8}) necrotic damage."
+								"{@atk mw} {@hit 13} to hit, reach {@quantity 5|ft.}, one target. {@h}11 ({@damage 1d8 + 7}) slashing damage, or 12 ({@damage 1d10 + 7}) slashing damage if used with two hands, plus 18 ({@damage 4d8}) necrotic damage."
 							]
 						}
 					}
@@ -5794,7 +5794,7 @@
 				"stealth": "+9"
 			},
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 17,
 			"resist": [
@@ -5826,8 +5826,8 @@
 					"name": "Shapechanger",
 					"entries": [
 						"If Zorak isn't in sunlight or running water, he can use his action to polymorph into a Tiny bat or a Medium cloud of mist, or back into his true form.",
-						"While in bat form, Zorak can't speak, his walking speed is 5 feet, and he has a flying speed of 30 feet. His statistics, other than his size and speed, are unchanged. Anything he is wearing transforms with it, but nothing he is carrying does. He reverts to his true form if he dies.",
-						"While in mist form, Zorak can't take any actions, speak, or manipulate objects. He is weightless, has a flying speed of 20 feet, can hover, and can enter a hostile creature's space and stop there. In addition, if air can pass through a space, the mist can do so without squeezing, and he can't pass through water. He has advantage on Strength, Dexterity, and Constitution saving throws, and he is immune to all nonmagical damage, except the damage he takes from sunlight."
+						"While in bat form, Zorak can't speak, his walking speed is {@quantity 5|feet}, and he has a flying speed of {@quantity 30|feet}. His statistics, other than his size and speed, are unchanged. Anything he is wearing transforms with it, but nothing he is carrying does. He reverts to his true form if he dies.",
+						"While in mist form, Zorak can't take any actions, speak, or manipulate objects. He is weightless, has a flying speed of {@quantity 20|feet}, can hover, and can enter a hostile creature's space and stop there. In addition, if air can pass through a space, the mist can do so without squeezing, and he can't pass through water. He has advantage on Strength, Dexterity, and Constitution saving throws, and he is immune to all nonmagical damage, except the damage he takes from sunlight."
 					]
 				},
 				{
@@ -5876,7 +5876,7 @@
 				{
 					"name": "Dwarven Thrower",
 					"entries": [
-						"{@atk mw,rw} {@hit 12} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}11 ({@damage 1d8 + 7}) bludgeoning damage, or 12 ({@damage 1d10 + 7}) bludgeoning damage when used with two hands to make a melee attack. On a ranged attack that hits, the hammer deals an extra {@dice 1d8} bludgeoning damage ({@dice 2d8} if the target is a giant). {@i Hit or Miss:} If thrown, the weapon flies back to Zorak's hand after the attack."
+						"{@atk mw,rw} {@hit 12} to hit, reach {@quantity 5|ft.} or range {@quantity 20/60|ft.}, one target. {@h}11 ({@damage 1d8 + 7}) bludgeoning damage, or 12 ({@damage 1d10 + 7}) bludgeoning damage when used with two hands to make a melee attack. On a ranged attack that hits, the hammer deals an extra {@dice 1d8} bludgeoning damage ({@dice 2d8} if the target is a giant). {@i Hit or Miss:} If thrown, the weapon flies back to Zorak's hand after the attack."
 					]
 				},
 				{
@@ -5888,19 +5888,19 @@
 				{
 					"name": "Unarmed Strike (Vampire Form Only)",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 5 ft., one creature. {@h}8 ({@damage 1d8 + 4}) bludgeoning damage. Instead of dealing damage, Zorak can grapple the target (escape {@dc 18})."
+						"{@atk mw} {@hit 9} to hit, reach {@quantity 5|ft.}, one creature. {@h}8 ({@damage 1d8 + 4}) bludgeoning damage. Instead of dealing damage, Zorak can grapple the target (escape {@dc 18})."
 					]
 				},
 				{
 					"name": "Bite (Bat or Vampire Form Only)",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 5 ft., one willing creature, or a creature that is {@condition grappled} by Zorak, {@condition incapacitated}, or {@condition restrained}. {@h}7 ({@damage 1d6 + 4}) piercing damage plus 10 ({@damage 3d6}) necrotic damage. The target's hit point maximum is reduced by an amount equal to the necrotic damage taken, and Zorak regains hit points equal to that amount. The reduction lasts until the target finishes a long rest. The target dies if this effect reduces his hit point maximum to 0. A humanoid slain in this way and then buried in the ground rises the following night as a {@creature vampire spawn} under Zorak's control."
+						"{@atk mw} {@hit 9} to hit, reach {@quantity 5|ft.}, one willing creature, or a creature that is {@condition grappled} by Zorak, {@condition incapacitated}, or {@condition restrained}. {@h}7 ({@damage 1d6 + 4}) piercing damage plus 10 ({@damage 3d6}) necrotic damage. The target's hit point maximum is reduced by an amount equal to the necrotic damage taken, and Zorak regains hit points equal to that amount. The reduction lasts until the target finishes a long rest. The target dies if this effect reduces his hit point maximum to 0. A humanoid slain in this way and then buried in the ground rises the following night as a {@creature vampire spawn} under Zorak's control."
 					]
 				},
 				{
 					"name": "Charm",
 					"entries": [
-						"Zorak targets one humanoid he can see within 30 feet of it. If the target can see Zorak, the target must succeed on a {@dc 17} Wisdom saving throw against this magic or be {@condition charmed} by Zorak. The {@condition charmed} target regards Zorak as a trusted friend to be heeded and protected. Although the target isn't under Zorak's control, it takes Zorak's requests or actions in the most favorable way it can, and it is a willing target for Zorak's bite attack.",
+						"Zorak targets one humanoid he can see within {@quantity 30|feet} of it. If the target can see Zorak, the target must succeed on a {@dc 17} Wisdom saving throw against this magic or be {@condition charmed} by Zorak. The {@condition charmed} target regards Zorak as a trusted friend to be heeded and protected. Although the target isn't under Zorak's control, it takes Zorak's requests or actions in the most favorable way it can, and it is a willing target for Zorak's bite attack.",
 						"Each time Zorak or Zorak's companions do anything harmful to the target, it can repeat the saving throw, ending the effect on itself on a success. Otherwise, the effect lasts 24 hours or until Zorak is destroyed, is on a different plane of existence than the target, or takes a bonus action to end the effect."
 					]
 				},
