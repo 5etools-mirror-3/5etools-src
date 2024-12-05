@@ -1949,7 +1949,12 @@ globalThis.Renderer = function () {
 				const [value, unitStr] = Renderer.splitTagByPipe(text);
 				const isAdjective = unitStr.includes("-");
 				let quantity = { value, unit: unitStr.replace("-", "") };
-				if (VetoolsConfig.get("localization", "isMetric")) quantity = Parser.quantity.getMetric(quantity, isAdjective);
+
+				if (VetoolsConfig.get("localization", "isMetric")) {
+					quantity = Parser.quantity.getMetric(quantity, isAdjective);
+					quantity.value = NumberUtil.toFixedNumber(quantity.value, 2);
+				}
+				
 				textStack[0] += `${quantity.value}${isAdjective ? "-" : " "}${quantity.unit}`;
 				break;
 			}
