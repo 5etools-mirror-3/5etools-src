@@ -38,7 +38,9 @@ export class UtilsEntityBackground {
 	static _GENERIC_FEAT_ONE = [
 		{
 			"anyFromCategory": {
-				"category": "O",
+				"category": [
+					"O",
+				],
 				"count": 1,
 			},
 		},

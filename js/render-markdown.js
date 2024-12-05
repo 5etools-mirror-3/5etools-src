@@ -712,6 +712,7 @@ class RendererMarkdown {
 			case "@actSave": textStack[0] += `*${Parser.attAbvToFull(text)} Saving Throw:*`; break;
 			case "@actSaveSuccess": textStack[0] += `*Success:*`; break;
 			case "@actSaveFail": textStack[0] += `*Failure:*`; break;
+			case "@actSaveSuccessOrFail": textStack[0] += `*Failure or Success:*`; break;
 			case "@actTrigger": textStack[0] += `*Trigger:*`; break;
 			case "@actResponse": textStack[0] += `*Response:*`; break;
 			case "@h": textStack[0] += `*Hit:* `; break;
@@ -871,6 +872,7 @@ RendererMarkdown.monster = class {
 		const abilityScorePart = RendererMarkdown.utils.compact.getRenderedAbilityScores(mon, {prefix: ">"});
 		const savePart = mon.save ? `\n>- **Saving Throws** ${Object.keys(mon.save).sort(SortUtil.ascSortAtts).map(it => RendererMarkdown.monster.getSave(it, mon.save[it])).join(", ")}` : "";
 		const skillPart = mon.skill ? `\n>- **Skills** ${RendererMarkdown.monster.getSkillsString(mon)}` : "";
+		const toolPart = mon.tool ? `\n>- **Tools** ${RendererMarkdown.monster.getToolsString(mon)}` : "";
 		const damVulnPart = mon.vulnerable ? `\n>- **Damage Vulnerabilities** ${Parser.getFullImmRes(mon.vulnerable, {isPlainText: true})}` : "";
 		const damResPart = mon.resist ? `\n>- **Damage Resistances** ${Parser.getFullImmRes(mon.resist, {isPlainText: true})}` : "";
 		const damImmPart = mon.immune ? `\n>- **Damage Immunities** ${Parser.getFullImmRes(mon.immune, {isPlainText: true})}` : "";
@@ -915,7 +917,7 @@ RendererMarkdown.monster = class {
 >- **Speed** ${Parser.getSpeedString(mon)}
 >___
 ${abilityScorePart}
->___${savePart}${skillPart}${damVulnPart}${damResPart}${damImmPart}${condImmPart}${sensePart}${languagePart}
+>___${savePart}${skillPart}${toolPart}${damVulnPart}${damResPart}${damImmPart}${condImmPart}${sensePart}${languagePart}
 >- **Challenge** ${Renderer.monster.getChallengeRatingPart(mon, {style: "classic", isPlainText: true})}
 ${pbPart ? `>- **Proficiency Bonus** ${pbPart}` : ""}
 >___`;
@@ -969,6 +971,16 @@ ${pbPart ? `>- **Proficiency Bonus** ${pbPart}` : ""}
 			const special = mon.skill.special && Renderer.stripTags(mon.skill.special);
 			return [skills, others, special].filter(Boolean).join(", ");
 		} else return skills;
+	}
+
+	static getToolsString (mon) {
+		if (!mon.tool) return "";
+		return Object.entries(mon.tool)
+			.map(([uid, bonus]) => {
+				const {name} = DataUtil.proxy.unpackUid("item", uid, "item");
+				return `${name.toTitleCase()} ${bonus}`;
+			})
+			.join(", ");
 	}
 
 	static getRenderedSection ({arr, ent, prop, title, meta, prefix = ""}) {

@@ -811,6 +811,18 @@ class LootDataCheck extends GenericDataCheck {
 LootDataCheck.file = `data/loot.json`;
 
 class ClassDataCheck extends GenericDataCheck {
+	static _doCheckClassRef ({logIdentOriginal, uidOriginal, file, name, source}) {
+		const uidClass = DataUtil.proxy.getUid("class", {name, source}, {isMaintainCase: true});
+		const urlClass = getEncoded(uidClass, "class");
+		if (!TagTestUrlLookup.hasUrl(urlClass)) this._addMessage(`Missing class in ${logIdentOriginal}: ${uidOriginal} in file ${file} class part, "${uidClass}"\n${TagTestUtil.getLogPtSimilarUrls({urlClass})}`);
+	}
+
+	static _doCheckSubclassRef ({logIdentOriginal, uidOriginal, file, shortName, source, className, classSource}) {
+		const uidSubclass = DataUtil.proxy.getUid("subclass", {name: shortName, shortName, source, className, classSource}, {isMaintainCase: true});
+		const urlSubclass = getEncodedSubclass(uidSubclass, "subclass");
+		if (!TagTestUrlLookup.hasUrl(urlSubclass)) this._addMessage(`Missing subclass in ${logIdentOriginal}: ${uidOriginal} in file ${file} subclass part, "${uidSubclass}"\n${TagTestUtil.getLogPtSimilarUrls({urlSubclass})}`);
+	}
+
 	static _doCheckClass (file, data, cls) {
 		// region Check `classFeatures` -> `classFeature` links
 		const featureLookup = {};
@@ -824,6 +836,14 @@ class ClassDataCheck extends GenericDataCheck {
 			const unpacked = DataUtil.class.unpackUidClassFeature(uid, {isLower: true});
 			const hash = UrlUtil.URL_TO_HASH_BUILDER["classFeature"](unpacked);
 			if (!featureLookup[hash]) this._addMessage(`Missing class feature: ${uid} in file ${file} not found in the files "classFeature" array\n`);
+
+			this._doCheckClassRef({
+				logIdentOriginal: `"classFeature" array`,
+				uidOriginal: uid,
+				file,
+				name: unpacked.className,
+				source: unpacked.classSource,
+			});
 		});
 
 		const handlersNestedRefsClass = {
@@ -836,6 +856,14 @@ class ClassDataCheck extends GenericDataCheck {
 					const hash = UrlUtil.URL_TO_HASH_BUILDER["classFeature"](unpacked);
 
 					if (!featureLookup[hash]) this._addMessage(`Missing class feature: ${uid} in file ${file} not found in the files "classFeature" array\n`);
+
+					this._doCheckClassRef({
+						logIdentOriginal: `"refClassFeature"`,
+						uidOriginal: uid,
+						file,
+						name: unpacked.className,
+						source: unpacked.classSource,
+					});
 				});
 				return arr;
 			},
@@ -934,7 +962,25 @@ class ClassDataCheck extends GenericDataCheck {
 					const unpacked = DataUtil.class.unpackUidSubclassFeature(uid, {isLower: true});
 					const hash = UrlUtil.URL_TO_HASH_BUILDER["subclassFeature"](unpacked);
 
-					if (!subclassFeatureLookup[hash]) this._addMessage(`Missing subclass feature in "refSubclassFeature": ${it.subclassFeature} in file ${filename} not found in the files "subclassFeature" array\n`);
+					if (!subclassFeatureLookup[hash]) this._addMessage(`Missing subclass feature in "refSubclassFeature": ${uid} in file ${filename} not found in the files "subclassFeature" array\n`);
+
+					this._doCheckClassRef({
+						logIdentOriginal: `"refClassFeature"`,
+						uidOriginal: uid,
+						file: filename,
+						name: unpacked.className,
+						source: unpacked.classSource,
+					});
+
+					this._doCheckSubclassRef({
+						logIdentOriginal: `"refSubclassFeature"`,
+						uidOriginal: uid,
+						file: filename,
+						shortName: unpacked.subclassShortName,
+						source: unpacked.subclassSource,
+						className: unpacked.className,
+						classSource: unpacked.classSource,
+					});
 				});
 				return arr;
 			},

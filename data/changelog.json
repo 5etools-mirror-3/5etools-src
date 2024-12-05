@@ -2851,7 +2851,7 @@
 		"date": "2024-11-18",
 		"title": "My Home Is My Castle",
 		"titleAlt": "Castle Doctrine",
-		"txt": "- Added Dungeon Master's Guide (2024) content\n  - Added book/items/traps/hazards/etc.\n  - Added Bastions page <https://5e.tools/bastions.html>\n  - Added DMG'24 random magic item tables to Loot Generator page, and allowed generated loot to benefit from '24 redirects _[note that some spell scroll/enspelled items do not yet generate attached spells correctly]_\n- Improved loading performance of various pages _[some more than others; the items page got a 300ms speedup on my machine]_\n- Sorting a list page by \"Source\" now uses sorts by \"source\" -> \"page\" -> \"name\", rather than \"source\" -> \"name\"\n- The Classes page \"Show Subclass Sources\" option is now enabled by default\n- Switched to transparent background for 600+ Bestiary images (thanks @ anon)\n- Fixed Vehicles page tokens persisting when changing statblock\n- (Brew) Improved Text Converter handling of entries after lists\n- (Brew) Improved Item Text Converter handling of various '24 item conventions\n- (Brew) Improved Creature Text Converter handling of '24 ability scores; initiative\n- (Brew) Added `\"itemsHidden\"` on `\"itemGroup\"`s, allowing the \"Multiple variations of this item exist ...\" text to be hidden\n- (Brew) Fixed \"Export Prerelease Content/Homebrew List as URL\" always exporting a blank URL\n- (Fixed typos/added tags)"
+		"txt": "- Added Dungeon Master's Guide (2024) content\n  - Added book/items/traps/hazards/etc.\n  - Added Bastions page <https://5e.tools/bastions.html>\n  - Added DMG'24 random magic item tables to Loot Generator page, and allowed generated loot to benefit from '24 redirects _[note that some spell scroll/enspelled items do not yet generate attached spells correctly]_\n- Improved loading performance of various pages _[some more than others; the items page got a 300ms speedup on my machine]_\n- Sorting a list page by \"Source\" now uses sorts by \"source\" -> \"page\" -> \"name\", rather than \"source\" -> \"name\"\n- The Classes page \"Show Subclass Sources\" option is now enabled by default\n- Switched to transparent background for 600+ Bestiary images (thanks @ anon)\n- Fixed Vehicles page tokens persisting when changing statblock\n- (Brew) Improved Text Converter handling of entries after lists\n- (Brew) Improved Item Text Converter handling of various '24 item conventions\n- (Brew) Improved Creature Text Converter handling of '24 ability scores; initiative\n- (Brew) Added `\"itemsHidden\"` on `\"itemGroup\"`s, allowing the \"Multiple variations of this item exist...\" text to be hidden\n- (Brew) Fixed \"Export Prerelease Content/Homebrew List as URL\" always exporting a blank URL\n- (Fixed typos/added tags)"
 	},
 	{
 		"ver": "2.5.1",
@@ -2862,5 +2862,15 @@
 		"ver": "2.5.2",
 		"date": "2024-11-19",
 		"txt": "- Fixed Bastion page \"Type\" filter\n- Switched to transparent background for DMG'24 items (thanks @ anon)\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "2.5.3",
+		"date": "2024-11-23",
+		"txt": "- Switched to transparent background and/or higher-resolution images for many entities (thanks @ anon)\n- Added experimental workaround for large-image performance issues to Maps page\n- Fixed \"Party Loot\" Loot Generator failing to roll most items by default\n- Fixed Omnisearch `source:...` requiring internal source, rater than source abbreviation\n- (Fixed typos/added tags)"
+	},
+	{
+		"ver": "2.5.4",
+		"date": "2024-12-02",
+		"txt": "- Added middle-click support to \"Popout Window\" list page button, as a shortcut for the popout window -> browser window flow\n- Switched to transparent background and/or higher-resolution images for many entities; book covers (thanks @ anon)\n- Added \"Reduced Threat\" Miscellaneous filter to Bestiary\n- (Brew) Improved Creature Text Converter handling of missing alignment; Item Text Converter handling of missing text; Species Text Converter handling of more ability score/speed formats\n- (Brew) Homebrew may now define `\"featCategories\"` (similar to existing `\"optionalFeatureTypes\"`)\n- (Brew) Added rudimentary `\"tool\"` support for creatures\n- (Brew) Added `\"culture\"` prerequisite support\n- (Brew) Automatic '14 spell list migration now also applies to `\"fromClassListVariant\"` spells\n- (Brew) Automatic '14 spell list migration is now applied to `class` `\"classSpells\"`; `subclass` `\"subclassSpells\"`\n- (Brew) Fixed rendering of non-PHB skills in Backgrounds page list; fixed rendering of non-PHB skills in Classes page sidebar\n- (Brew) Fixed '24 spells and armor being produced by Creature Text Converter when using '14 mode\n- (Fixed typos/added tags)"
 	}
 ]

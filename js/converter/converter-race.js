@@ -318,7 +318,7 @@ export class ConverterRace extends ConverterFeatureBase {
 
 		const text = entry.entries[0];
 
-		const mSimple = /^Your (?:base )?(?:walking )?speed is (?<speed>\d+) feet\.?$/.exec(text);
+		const mSimple = /Your (?:base )?(?:walking )?speed is (?<speed>\d+) feet\.?$/.exec(text);
 		if (mSimple) {
 			race.speed = Number(mSimple.groups.speed);
 

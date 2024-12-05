@@ -6,6 +6,8 @@ export class BrewDocContentMigrator {
 		this._mutMakeCompatible_trap(json);
 		this._mutMakeCompatible_object(json);
 		this._mutMakeCompatible_subclass(json);
+		this._mutMakeCompatible_class_classSpells(json);
+		this._mutMakeCompatible_subclass_subclassSpells(json);
 		this._mutMakeCompatible_spell(json);
 	}
 
@@ -150,8 +152,8 @@ export class BrewDocContentMigrator {
 				const [scfRefsLowLevel, scfRefsOther] = (sc.subclassFeatures || [])
 					.segregate(scfRef => {
 						const uid = scfRef.subclassFeature || scfRef;
-						const unpacked = DataUtil.class.unpackUidSubclassFeature(uid);
-						return unpacked.level < this._MIN_SUBCLASS_FEATURE_LEVEL;
+						const unpacked = DataUtil.class.unpackUidSubclassFeature(uid, {isLower: true});
+						return unpacked.level < this._MIN_SUBCLASS_FEATURE_LEVEL && unpacked.classSource !== VeCt.STR_GENERIC.toLowerCase();
 					});
 
 				outSubclasses.push(scNxt);
@@ -220,6 +222,52 @@ export class BrewDocContentMigrator {
 
 	/* ----- */
 
+	static _mutMakeCompatible_classSubclassSpells_getMigrated (arr) {
+		return arr
+			.filter(uid => typeof uid === "string")
+			.map(uid => DataUtil.proxy.unpackUid("spell", uid, "spell", {isLower: true}))
+			.filter(unpacked => unpacked.source === Parser.SRC_PHB.toLowerCase())
+			.map(unpacked => DataUtil.proxy.getUid("spell", {...unpacked, source: Parser.SRC_XPHB}));
+	}
+
+	/**
+	 * @since 2024-11-28
+	 * As a temporary measure, for classes which have `classSpells`, make XPHB copies of PHB spell entries.
+	 * @deprecated TODO(Future) remove/rework when moving to a better solution for homebrew spell sources
+	 */
+	static _mutMakeCompatible_class_classSpells (json) {
+		if (!json.class) return false;
+
+		json.class
+			.forEach(cls => {
+				if (!cls.classSpells) return;
+				cls.classSpells = [...cls.classSpells, ...this._mutMakeCompatible_classSubclassSpells_getMigrated(cls.classSpells)];
+			});
+	}
+
+	/**
+	 * @since 2024-11-28
+	 * As a temporary measure, for subclasses which have `subclassSpells`, make XPHB copies of PHB spell entries.
+	 * @deprecated TODO(Future) remove/rework when moving to a better solution for homebrew spell sources
+	 */
+	static _mutMakeCompatible_subclass_subclassSpells (json) {
+		if (!json.subclass) return false;
+
+		json.subclass
+			.forEach(sc => {
+				if (sc.subclassSpells) sc.subclassSpells = [...sc.subclassSpells, ...this._mutMakeCompatible_classSubclassSpells_getMigrated(sc.subclassSpells)];
+
+				if (sc.subSubclassSpells) {
+					Object.entries(sc.subSubclassSpells)
+						.forEach(([k, arr]) => {
+							sc.subSubclassSpells[k] = [...arr, ...this._mutMakeCompatible_classSubclassSpells_getMigrated(arr)];
+						});
+				}
+			});
+	}
+
+	/* ----- */
+
 	/**
 	 * @since 2024-10-06
 	 * As a temporary measure, for spells which have `classes.fromClassList`, make XPHB copies of PHB class entries.
@@ -228,14 +276,19 @@ export class BrewDocContentMigrator {
 	static _mutMakeCompatible_spell (json) {
 		if (!json.spell) return false;
 
+		this._mutMakeCompatible_spell_classProp({json, prop: "fromClassList"});
+		this._mutMakeCompatible_spell_classProp({json, prop: "fromClassListVariant"});
+	}
+
+	static _mutMakeCompatible_spell_classProp ({json, prop}) {
 		json.spell
 			.forEach(ent => {
-				if (!ent?.classes?.fromClassList?.length) return;
+				if (!ent?.classes?.[prop]?.length) return;
 
 				const phbNames = {};
 				const xphbNames = {};
 
-				ent.classes.fromClassList
+				ent.classes[prop]
 					.forEach(classMeta => {
 						if (classMeta.source === Parser.SRC_PHB) phbNames[classMeta.name] = classMeta;
 						if (classMeta.source === Parser.SRC_XPHB) xphbNames[classMeta.name] = true;
@@ -244,7 +297,7 @@ export class BrewDocContentMigrator {
 				Object.keys(xphbNames).forEach(name => delete xphbNames[name]);
 
 				Object.values(phbNames)
-					.forEach(classMeta => ent.classes.fromClassList.push({...classMeta, source: Parser.SRC_XPHB}));
+					.forEach(classMeta => ent.classes[prop].push({...classMeta, source: Parser.SRC_XPHB}));
 			});
 	}
 }

@@ -149,6 +149,7 @@ class _RenderBestiaryImplBase {
 			htmlPtAbilityScores: this._getHtmlParts_abilityScores({mon, renderer}),
 
 			htmlPtSkills: this._getCommonHtmlParts_skills({mon, renderer}),
+			htmlPtTools: this._getCommonHtmlParts_tools({mon, renderer}),
 			htmlPtVulnerabilities: this._getCommonHtmlParts_vulnerabilities({mon}),
 			htmlPtResistances: this._getCommonHtmlParts_resistances({mon}),
 			htmlPtSenses: this._getCommonHtmlParts_senses({mon}),
@@ -226,6 +227,10 @@ class _RenderBestiaryImplBase {
 		return mon.skill ? `<tr><td colspan="6"><strong>Skills</strong> ${Renderer.monster.getSkillsString(renderer, mon)}</td></tr>` : "";
 	}
 
+	_getCommonHtmlParts_tools ({mon, renderer}) {
+		return mon.tool ? `<tr><td colspan="6"><strong>Tools</strong> ${Renderer.monster.getToolsString(renderer, mon)}</td></tr>` : "";
+	}
+
 	_getCommonHtmlParts_vulnerabilities ({mon}) {
 		const label = this._style === "classic" ? "Damage Vulnerabilities" : "Vulnerabilities";
 		return mon.vulnerable ? `<tr><td colspan="6"><strong>${label}</strong> ${Parser.getFullImmRes(mon.vulnerable, {isTitleCase: this._style !== "classic"})}</td></tr>` : "";
@@ -237,7 +242,8 @@ class _RenderBestiaryImplBase {
 	}
 
 	_getCommonHtmlParts_senses ({mon}) {
-		return `<tr><td colspan="6"><strong>Senses</strong> ${Renderer.monster.getSensesPart(mon, {isTitleCase: this._style !== "classic"})}</td></tr>`;
+		const pt = Renderer.monster.getSensesPart(mon, {isTitleCase: this._style !== "classic"});
+		return pt ? `<tr><td colspan="6"><strong>Senses</strong> ${pt}</td></tr>` : "";
 	}
 
 	_getCommonHtmlParts_languages ({mon}) {
@@ -439,6 +445,7 @@ class _RenderBestiaryImplClassic extends _RenderBestiaryImplBase {
 			htmlPtAbilityScores,
 
 			htmlPtSkills,
+			htmlPtTools,
 			htmlPtVulnerabilities,
 			htmlPtResistances,
 			htmlPtSenses,
@@ -509,6 +516,7 @@ class _RenderBestiaryImplClassic extends _RenderBestiaryImplBase {
 
 		${htmlPtSavingThrows}
 		${htmlPtSkills}
+		${htmlPtTools}
 		${htmlPtVulnerabilities}
 		${htmlPtResistances}
 		${htmlPtDamageImmunities}
@@ -631,6 +639,7 @@ class _RenderBestiaryImplOne extends _RenderBestiaryImplBase {
 			htmlPtAbilityScores,
 
 			htmlPtSkills,
+			htmlPtTools,
 			htmlPtVulnerabilities,
 			htmlPtResistances,
 			htmlPtSenses,
@@ -697,6 +706,7 @@ class _RenderBestiaryImplOne extends _RenderBestiaryImplBase {
 
 		${htmlPtSavingThrows}
 		${htmlPtSkills}
+		${htmlPtTools}
 		${htmlPtVulnerabilities}
 		${htmlPtResistances}
 		${htmlPtImmunities}
