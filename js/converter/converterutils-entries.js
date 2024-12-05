@@ -1280,10 +1280,10 @@ export class QuantityTag {
 		const textAfterMatch = m.input.slice(m.indices.groups.unit[1]);
 		
 		/* A dot after a unit should be considered part of the unit word if:
-			- the quantity appears alone (no text before or after), e.g. "5 ft."
+			- the quantity is not part of a sentence, e.g. "5 ft., darkvision 20 ft."
 			- the text following the unit word is part of the same sentence, e.g. "the creature has a 5 ft. reach" */
 		const dotIsPartOfUnit
-			= (textBeforeMatch === "" && textAfterMatch === "")
+			= (textBeforeMatch.match(/^(tremorsense|blindsight|truesight|darkvision|telepathy)?/i) && textAfterMatch === "")
 			|| textAfterMatch.match(/^\s*(?:[a-z(),]|Cone|Cube|Cylinder|Emanation|Line|Sphere)/);
 
 		if (!dotIsPartOfUnit) {
