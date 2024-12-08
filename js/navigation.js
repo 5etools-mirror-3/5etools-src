@@ -403,7 +403,7 @@ class NavBar {
 			li.onmouseenter = function () { NavBar._handleSideItemMouseEnter(this); };
 		} else {
 			li.onmouseenter = function () { NavBar._handleItemMouseEnter(this); };
-			li.onclick = function () { NavBar._dropdowns.forEach(ele => ele.classList.remove("open")); };
+			li.onclick = function () { NavBar._dropdowns.forEach(ele => NavBar._closeDropdownElement(ele)); };
 		}
 
 		const a = document.createElement("a");
@@ -483,7 +483,7 @@ class NavBar {
 		parentNode.children[category] = node;
 	}
 
-	static _addElement_getDatePrefix ({date, isAddDateSpacer}) { return `${(date != null || isAddDateSpacer) ? `<div class="ve-small mr-2 page__nav-date inline-block ve-text-right inline-block">${date || ""}</div>` : ""}`; }
+	static _addElement_getDatePrefix ({date, isAddDateSpacer}) { return `${(date != null || isAddDateSpacer) ? `<div class="ve-small mr-2 page__nav-date inline-block ve-text-right inline-block" aria-hidden="true">${date || ""}</div>` : ""}`; }
 	static _addElement_getSourcePrefix ({source}) { return `${source != null ? `<div class="nav2-list__disp-source ${Parser.sourceJsonToSourceClassname(source)}" ${Parser.sourceJsonToStyle(source)}></div>` : ""}`; }
 
 	static _addElement_getSourceSuffix ({source}) {
@@ -535,14 +535,25 @@ class NavBar {
 		a.className = "ve-dropdown-toggle";
 		a.href = "#";
 		a.setAttribute("role", "button");
+		a.setAttribute("aria-haspopup", "true");
 		a.onclick = function (event) { NavBar._handleDropdownClick(this, event, isSide); };
 		if (isSide) {
 			a.onmouseenter = function () { NavBar._handleSideDropdownMouseEnter(this); };
 			a.onmouseleave = function () { NavBar._handleSideDropdownMouseLeave(this); };
+			a
+				.addEventListener("keydown", evt => {
+					if (evt.key !== "Enter") return;
+
+					if (NavBar._isDropdownOpen(a)) NavBar._closeDropdown(a);
+					else NavBar._openDropdown(a);
+				});
+
+			a.setAttribute("aria-haspopup", "true");
 		}
 		a.innerHTML = `${category} <span class="caret ${isSide ? "caret--right" : ""}"></span>`;
 
 		const ul = document.createElement("ul");
+		ul.setAttribute("role", "menu");
 		ul.className = `ve-dropdown-menu ${isSide ? "ve-dropdown-menu--side" : "ve-dropdown-menu--top"}`;
 		ul.onclick = function (event) { event.stopPropagation(); };
 
@@ -675,33 +686,57 @@ class NavBar {
 		event.preventDefault();
 		event.stopPropagation();
 		if (isSide) return;
-		const isOpen = ele.parentNode.classList.contains("open");
-		if (isOpen) NavBar._dropdowns.forEach(ele => ele.classList.remove("open"));
+		const isOpen = this._isDropdownOpen(ele);
+		if (isOpen) NavBar._dropdowns.forEach(ele => NavBar._closeDropdownElement(ele));
 		else NavBar._openDropdown(ele);
 	}
 
-	static _closeAllDropdowns () {
-		NavBar._dropdowns.forEach(ele => ele.classList.remove("open"));
+	/* -------------------------------------------- */
+
+	static _isDropdownOpen (ele) {
+		return ele.parentNode.classList.contains("open");
 	}
+
+	/* -------------------------------------------- */
+
+	static _closeDropdown (ele) {
+		this._closeDropdownElement(ele.parentNode);
+	}
+
+	static _closeDropdownElement (ele) {
+		ele.classList.remove("open");
+		ele.firstChild.setAttribute("aria-expanded", "false");
+	}
+
+	static _closeAllDropdowns () {
+		NavBar._dropdowns.forEach(ele => NavBar._closeDropdownElement(ele));
+	}
+
+	/* -------------------------------------------- */
 
 	static _openDropdown (ele) {
 		const lisOpen = [];
 
 		let parent = ele.parentNode;
-		parent.classList.add("open");
+		NavBar._openDropdownElement(parent);
 		lisOpen.push(parent);
 
 		do {
 			parent = parent.parentNode;
 			if (parent.nodeName === "LI") {
-				parent.classList.add("open");
+				NavBar._openDropdownElement(parent);
 				lisOpen.push(parent);
 			}
 		} while (parent.nodeName !== "NAV");
 
-		NavBar._dropdowns.filter(ele => !lisOpen.includes(ele)).forEach(ele => ele.classList.remove("open"));
+		NavBar._dropdowns.filter(ele => !lisOpen.includes(ele)).forEach(ele => NavBar._closeDropdownElement(ele));
 
 		this._openDropdown_mutAlignment({liNavbar: lisOpen.slice(-1)[0]});
+	}
+
+	static _openDropdownElement (ele) {
+		ele.classList.add("open");
+		ele.firstChild.setAttribute("aria-expanded", "true");
 	}
 
 	/**
@@ -721,6 +756,8 @@ class NavBar {
 			ul.style.left = isForceRightAlign ? `${-Math.round(ul.getBoundingClientRect().width) + ul.parentNode.getBoundingClientRect().width}px` : "";
 		});
 	}
+
+	/* -------------------------------------------- */
 
 	static _handleItemMouseEnter (ele) {
 		const $ele = $(ele);
@@ -742,11 +779,11 @@ class NavBar {
 							NavBar._timerMousePos[timerId] = [EventUtil._mouseX, EventUtil._mouseY];
 							NavBar._timersClose[timerId] = setTimeout(() => getTimeoutFn(), NavBar._DROP_TIME / 2);
 						} else {
-							$ele.removeClass("open");
+							NavBar._closeDropdownElement($ele[0]);
 							delete NavBar._timersClose[timerId];
 						}
 					} else {
-						$ele.removeClass("open");
+						NavBar._closeDropdownElement($ele[0]);
 						delete NavBar._timersClose[timerId];
 					}
 				};

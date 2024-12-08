@@ -493,6 +493,10 @@ class ItemDataCheck extends GenericDataCheck {
 			ItemDataCheck._checkArrayDuplicates(file, name, source, root.mastery, "mastery", "itemMastery");
 			ItemDataCheck._checkArrayItemsExist(file, name, source, root.mastery, "mastery", "itemMastery");
 		}
+
+		if (root.lootTables) {
+			ItemDataCheck._checkArrayItemsExist(file, name, source, root.lootTables, "lootTables", "table");
+		}
 	}
 
 	static pRun () {
@@ -996,6 +1000,7 @@ class RaceDataCheck extends GenericDataCheck {
 		this._testAdditionalSpells(file, rsr);
 		this._testAdditionalFeats(file, rsr);
 		this._testReprintedAs(file, rsr, "race");
+		this._testStartingEquipment(file, rsr);
 	}
 
 	static pRun () {

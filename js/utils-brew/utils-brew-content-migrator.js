@@ -225,6 +225,8 @@ export class BrewDocContentMigrator {
 	static _mutMakeCompatible_classSubclassSpells_getMigrated (arr) {
 		return arr
 			.filter(uid => typeof uid === "string")
+			.map(it => it.trim())
+			.filter(Boolean)
 			.map(uid => DataUtil.proxy.unpackUid("spell", uid, "spell", {isLower: true}))
 			.filter(unpacked => unpacked.source === Parser.SRC_PHB.toLowerCase())
 			.map(unpacked => DataUtil.proxy.getUid("spell", {...unpacked, source: Parser.SRC_XPHB}));

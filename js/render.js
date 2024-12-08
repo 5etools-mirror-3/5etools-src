@@ -924,7 +924,7 @@ globalThis.Renderer = function () {
 
 	this._getPagePart = function (entry, isInset) {
 		if (!Renderer.utils.isDisplayPage(entry.page)) return "";
-		return ` <span class="rd__title-link ${isInset ? `rd__title-link--inset` : ""}">${entry.source ? `<span class="help-subtle" title="${Parser.sourceJsonToFull(entry.source)}">${Parser.sourceJsonToAbv(entry.source)}</span> ` : ""}p${entry.page}</span>`;
+		return ` <span class="rd__title-link ${isInset ? `rd__title-link--inset` : ""}">${entry.source ? `<span class="help-subtle" title="${Parser.sourceJsonToFull(entry.source)}">${Parser.sourceJsonToAbv(entry.source)}</span> ` : ""}<span title="Page ${entry.page}">p${entry.page}</span></span>`;
 	};
 
 	this._renderEntriesSubtypes = function (entry, textStack, meta, options, incDepth) {
@@ -7135,10 +7135,10 @@ Renderer.spell = class {
 				itm,
 				className,
 				classSource,
-				subclassShortName,
-				subclassName,
-				subclassSource,
-				subSubclassName,
+				subclassShortName = null,
+				subclassName = null,
+				subclassSource = null,
+				subSubclassName = null,
 			},
 		) {
 			if (itm.groupName) return;
@@ -7194,7 +7194,7 @@ Renderer.spell = class {
 				subclassName,
 				subclassSource,
 				subSubclassName,
-				schools,
+				schools = null,
 			},
 		) {
 			if (subclassShortName) {
@@ -7205,7 +7205,7 @@ Renderer.spell = class {
 				if (subSubclassName) toAdd.subclass.subSubclass = subSubclassName;
 				if (schools) toAdd.schools = schools;
 
-				tgt.fromSubclass = tgt.fromSubclass || [];
+				tgt.fromSubclass ||= [];
 				tgt.fromSubclass.push(toAdd);
 				return;
 			}
@@ -7213,7 +7213,7 @@ Renderer.spell = class {
 			const toAdd = {name: className, source: classSource};
 			if (schools) toAdd.schools = schools;
 
-			tgt.fromClassList = tgt.fromClassList || [];
+			tgt.fromClassList ||= [];
 			tgt.fromClassList.push(toAdd);
 		}
 
@@ -7222,10 +7222,10 @@ Renderer.spell = class {
 				itm,
 				className,
 				classSource,
-				subclassShortName,
-				subclassName,
-				subclassSource,
-				subSubclassName,
+				subclassShortName = null,
+				subclassName = null,
+				subclassSource = null,
+				subSubclassName = null,
 			},
 		) {
 			if (!itm.groupName) return;
@@ -7286,20 +7286,20 @@ Renderer.spell = class {
 			if (!this._cache?.classes) return;
 
 			if (this._cache.classes.spell?.[lowSource]?.[lowName]?.fromClassList?.length) {
-				sp._tmpClasses.fromClassList = sp._tmpClasses.fromClassList || [];
+				sp._tmpClasses.fromClassList ||= [];
 				sp._tmpClasses.fromClassList.push(...this._cache.classes.spell[lowSource][lowName].fromClassList);
 			}
 
 			if (this._cache.classes.spell?.[lowSource]?.[lowName]?.fromSubclass?.length) {
-				sp._tmpClasses.fromSubclass = sp._tmpClasses.fromSubclass || [];
+				sp._tmpClasses.fromSubclass ||= [];
 				sp._tmpClasses.fromSubclass.push(...this._cache.classes.spell[lowSource][lowName].fromSubclass);
 			}
 
 			if (this._cache.classes.class && sp.classes?.fromClassList) {
-				(sp._tmpClasses = sp._tmpClasses || {}).fromClassList = sp._tmpClasses.fromClassList || [];
+				(sp._tmpClasses ||= {}).fromClassList ||= [];
 
 				// speed over safety
-				outer: for (const srcLower in this._cache.classes.class) {
+				for (const srcLower in this._cache.classes.class) {
 					const searchForClasses = this._cache.classes.class[srcLower];
 
 					for (const clsLowName in searchForClasses) {
@@ -7313,12 +7313,9 @@ Renderer.spell = class {
 						}
 
 						if (fromDetails.fromSubclass) {
-							sp._tmpClasses.fromSubclass = sp._tmpClasses.fromSubclass || [];
+							sp._tmpClasses.fromSubclass ||= [];
 							sp._tmpClasses.fromSubclass.push(...this._mutateSpell_getListFilteredBySchool({sp, arr: fromDetails.fromSubclass}));
 						}
-
-						// Only add it once regardless of how many classes match
-						break outer;
 					}
 				}
 			}
@@ -7326,10 +7323,10 @@ Renderer.spell = class {
 			if (this._cache.classes.group && (sp.groups?.length || sp._tmpGroups?.length)) {
 				const groups = Renderer.spell.getCombinedGeneric(sp, {propSpell: "groups"});
 
-				(sp._tmpClasses = sp._tmpClasses || {}).fromClassList = sp._tmpClasses.fromClassList || [];
+				(sp._tmpClasses ||= {}).fromClassList ||= [];
 
 				// speed over safety
-				outer: for (const srcLower in this._cache.classes.group) {
+				for (const srcLower in this._cache.classes.group) {
 					const searchForGroups = this._cache.classes.group[srcLower];
 
 					for (const groupLowName in searchForGroups) {
@@ -7343,12 +7340,9 @@ Renderer.spell = class {
 						}
 
 						if (fromDetails.fromSubclass) {
-							sp._tmpClasses.fromSubclass = sp._tmpClasses.fromSubclass || [];
+							sp._tmpClasses.fromSubclass ||= [];
 							sp._tmpClasses.fromSubclass.push(...this._mutateSpell_getListFilteredBySchool({sp, arr: fromDetails.fromSubclass}));
 						}
-
-						// Only add it once regardless of how many classes match
-						break outer;
 					}
 				}
 			}
@@ -7375,13 +7369,13 @@ Renderer.spell = class {
 
 			// If a precise spell has been specified
 			if (this._cache[propSpell]?.spell?.[lowSource]?.[lowName]?.length) {
-				(sp[propTmp] = sp[propTmp] || [])
+				(sp[propTmp] ||= [])
 					.push(...this._cache[propSpell].spell[lowSource][lowName]);
 			}
 
 			// If we have a copy of an existing entity's spells
 			if (this._cache?.[propSpell]?.[prop] && sp[propSpell]) {
-				sp[propTmp] = sp[propTmp] || [];
+				sp[propTmp] ||= [];
 
 				// speed over safety
 				outer: for (const srcLower in this._cache[propSpell][prop]) {
@@ -7517,7 +7511,7 @@ Renderer.spell = class {
 			|| (subclassDefinedInSource != null && ExcludeUtil.isExcluded("*", "subclassFeature", subclassDefinedInSource, {isNoCount: true}));
 	}
 
-	static getCombinedGeneric (sp, {propSpell, prop}) {
+	static getCombinedGeneric (sp, {propSpell, prop = null}) {
 		const propSpellTmp = `_tmp${propSpell.uppercaseFirst()}`;
 		return [
 			...(sp[propSpell] || []),
@@ -9080,7 +9074,7 @@ class _RenderCompactBestiaryImplBase {
 	}
 
 	_getCommonHtmlParts_tools ({mon, renderer}) {
-		return mon.tool ? `<p><b>Tools</b> ${Renderer.monster.getToolsString(renderer, mon)}</p>` : "";
+		return mon.tool ? `<p><b>Tools</b> ${Renderer.monster.getToolsString(renderer, mon, {styleHint: this._style})}</p>` : "";
 	}
 
 	_getCommonHtmlParts_vulnerabilities ({mon}) {
@@ -9884,7 +9878,7 @@ Renderer.monster = class {
 	}
 
 	static _getInitiativeBonus ({mon}) {
-		if (mon.initiative == null && mon.dex == null) return null;
+		if (mon.initiative == null && (mon.dex == null || mon.dex.special)) return null;
 		if (mon.initiative == null) return Parser.getAbilityModNumber(mon.dex);
 		if (typeof mon.initiative === "number") return mon.initiative;
 		if (typeof mon.initiative !== "object") return null;
@@ -9985,7 +9979,7 @@ Renderer.monster = class {
 
 	static _getChallengeRatingPart_one ({mon, isPlainText = false} = {}) {
 		const crBase = mon.cr?.cr ?? mon.cr;
-		const xpBase = mon.cr?.xp ?? (crBase ? Parser.crToXpNumber(crBase) : 0);
+		const xpBase = mon.cr?.xp ?? (Parser.crToNumber(crBase) < VeCt.CR_CUSTOM ? Parser.crToXpNumber(crBase) : 0);
 
 		const ptsXp = Parser.crToNumber(mon.cr) >= VeCt.CR_CUSTOM
 			? [
@@ -10355,13 +10349,36 @@ Renderer.monster = class {
 		return skills;
 	}
 
-	static getToolsString (renderer, mon) {
+	static _TOOL_PROF_TO_SOURCE__CLASSIC = {
+		"vehicles": false,
+		"vehicles (air)": false,
+		"vehicles (land)": false,
+		"vehicles (water)": false,
+		"vehicles (space)": false,
+	};
+
+	static _TOOL_PROF_TO_SOURCE__ONE = {
+		"playing card set": {name: "Playing Cards"},
+	};
+
+	static getToolsString (renderer, mon, {styleHint = null} = {}) {
 		if (!mon.tool) return "";
+
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
 		return Object.entries(mon.tool)
 			.map(([uid, bonus]) => {
-				const {name, source} = DataUtil.proxy.unpackUid("item", uid, "item");
-				return `${renderer.render(`{@item ${name.toTitleCase()}|${source}}`)} ${bonus}`;
+				if (uid.includes("|")) {
+					const {name, source} = DataUtil.proxy.unpackUid("item", uid, "item");
+					return `${renderer.render(`{@item ${name.toTitleCase()}|${source}} {@d20 ${bonus}||${name.toTitleCase()}}`)}`;
+				}
+
+				const mapping = Renderer.monster._TOOL_PROF_TO_SOURCE__CLASSIC[uid] ?? Renderer.monster._TOOL_PROF_TO_SOURCE__ONE[uid];
+				if (mapping === false) return `${uid.toTitleCase()} ${renderer.render(`{@d20 ${bonus}||${uid.toTitleCase()}}`)}`;
+
+				const itemFaux = {name: uid.toTitleCase(), source: styleHint === "one" ? Parser.SRC_XPHB : Parser.SRC_PHB, ...(mapping || {})};
+
+				return `${renderer.render(`{@item ${itemFaux.name.toTitleCase()}|${itemFaux.source}} {@d20 ${bonus}||${itemFaux.name.toTitleCase()}}`)}`;
 			})
 			.join(", ");
 	}
@@ -11277,6 +11294,7 @@ Renderer.item = class {
 	}
 
 	static addPrereleaseBrewPropertiesAndTypesFrom ({data}) {
+		if (data == null) return;
 		(data.itemProperty || [])
 			.forEach(it => Renderer.item._addProperty(it));
 		(data.itemType || [])
@@ -15420,7 +15438,7 @@ Renderer.hover = class {
 	}
 	// endregion
 
-	static getGenericCompactRenderedString (entry, depth = null) {
+	static getGenericCompactRenderedString (entry, {depth = null} = {}) {
 		if (entry.header != null) depth = Math.max(0, entry.header - 1);
 		if (depth == null) depth = 0;
 
@@ -15607,7 +15625,7 @@ Renderer.hover = class {
 		opts = opts || {};
 
 		const name = toRender._displayName || toRender.name;
-		return $$`<table class="w-100 stats ${opts.isBookContent || opts.isLargeBookContent ? "stats--book" : ""} ${opts.isLargeBookContent ? "stats--book-large" : ""}" ${name ? `data-roll-name-ancestor-roller="${Renderer.stripTags(name).qq()}"` : ""}>${Renderer.hover.getGenericCompactRenderedString(toRender, opts.depth || 0)}</table>`;
+		return $$`<table class="w-100 stats ${opts.isBookContent || opts.isLargeBookContent ? "stats--book" : ""} ${opts.isLargeBookContent ? "stats--book-large" : ""}" ${name ? `data-roll-name-ancestor-roller="${Renderer.stripTags(name).qq()}"` : ""}>${Renderer.hover.getGenericCompactRenderedString(toRender, {depth: opts.depth || 0})}</table>`;
 	}
 
 	/**

@@ -2573,14 +2573,25 @@ Parser.ATK_TYPE_TO_FULL = {};
 Parser.ATK_TYPE_TO_FULL["MW"] = "Melee Weapon Attack";
 Parser.ATK_TYPE_TO_FULL["RW"] = "Ranged Weapon Attack";
 
-Parser.bookOrdinalToAbv = (ordinal, preNoSuff) => {
+Parser.bookOrdinalToAbv = (ordinal, {isPreNoSuff = false, isPlainText = false} = {}) => {
 	if (ordinal === undefined) return "";
 	switch (ordinal.type) {
-		case "part": return `${preNoSuff ? " " : ""}Part ${ordinal.identifier}${preNoSuff ? "" : " \u2014 "}`;
-		case "chapter": return `${preNoSuff ? " " : ""}Ch. ${ordinal.identifier}${preNoSuff ? "" : ": "}`;
-		case "episode": return `${preNoSuff ? " " : ""}Ep. ${ordinal.identifier}${preNoSuff ? "" : ": "}`;
-		case "appendix": return `${preNoSuff ? " " : ""}App.${ordinal.identifier != null ? ` ${ordinal.identifier}` : ""}${preNoSuff ? "" : ": "}`;
-		case "level": return `${preNoSuff ? " " : ""}Level ${ordinal.identifier}${preNoSuff ? "" : ": "}`;
+		case "part": return `${isPreNoSuff ? " " : ""}${Parser._bookOrdinalToAbv_getPt({ordinal, isPlainText})} ${ordinal.identifier}${isPreNoSuff ? "" : " \u2014 "}`;
+		case "chapter": return `${isPreNoSuff ? " " : ""}${Parser._bookOrdinalToAbv_getPt({ordinal, isPlainText})} ${ordinal.identifier}${isPreNoSuff ? "" : ": "}`;
+		case "episode": return `${isPreNoSuff ? " " : ""}${Parser._bookOrdinalToAbv_getPt({ordinal, isPlainText})} ${ordinal.identifier}${isPreNoSuff ? "" : ": "}`;
+		case "appendix": return `${isPreNoSuff ? " " : ""}${Parser._bookOrdinalToAbv_getPt({ordinal, isPlainText})}${ordinal.identifier != null ? ` ${ordinal.identifier}` : ""}${isPreNoSuff ? "" : ": "}`;
+		case "level": return `${isPreNoSuff ? " " : ""}${Parser._bookOrdinalToAbv_getPt({ordinal, isPlainText})} ${ordinal.identifier}${isPreNoSuff ? "" : ": "}`;
+		default: throw new Error(`Unhandled ordinal type "${ordinal.type}"`);
+	}
+};
+
+Parser._bookOrdinalToAbv_getPt = ({ordinal, isPlainText = false}) => {
+	switch (ordinal.type) {
+		case "part": return `Part`;
+		case "chapter": return isPlainText ? `Ch.` : `<span title="Chapter">Ch.</span>`;
+		case "episode": return isPlainText ? `Ep.` : `<span title="Episode">Ep.</span>`;
+		case "appendix": return isPlainText ? `App.` : `<span title="Appendix">App.</span>`;
+		case "level": return `Level`;
 		default: throw new Error(`Unhandled ordinal type "${ordinal.type}"`);
 	}
 };

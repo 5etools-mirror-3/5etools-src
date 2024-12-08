@@ -103,7 +103,7 @@ class Omnisearch {
 			tag: "input",
 			clazz: "form-control search omni__input",
 			placeholder: this._PLACEHOLDER_TEXT,
-			title: `Hotkey: F. Disclaimer: unlikely to search everywhere. Use with caution.`,
+			title: `Search Everywhere. Hotkey: F. Disclaimer: unlikely to search everywhere. Use with caution.`,
 			type: "search",
 		})
 			.disableSpellcheck();
