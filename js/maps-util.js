@@ -16,7 +16,7 @@ class MapsUtil {
 			const chapter = body[i];
 
 			const outChapter = {
-				name: `${Parser.bookOrdinalToAbv(contentsItem.ordinal)}${contentsItem.name}`,
+				name: `${Parser.bookOrdinalToAbv(contentsItem.ordinal, {isPlainText: true})}${contentsItem.name}`,
 				ix: i,
 				images: [],
 			};

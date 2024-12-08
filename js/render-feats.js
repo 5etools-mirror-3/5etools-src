@@ -20,6 +20,8 @@ class _RenderFeatsImplBase extends RenderPageImplBase {
 		return {
 			...super._getCommonHtmlParts({ent, renderer, opts}),
 
+			htmlPtRepeatable: this._getCommonHtmlParts_repeatable({ent}),
+
 			htmlPtEntries: this._getCommonHtmlParts_entries({ent, renderer}),
 		};
 	}
@@ -32,6 +34,13 @@ class _RenderFeatsImplBase extends RenderPageImplBase {
 			Renderer.utils.prerequisite.getHtml(ent.prerequisite, {styleHint: this._style}),
 		);
 		return ptCategoryPrerequisite ? `<tr><td colspan="6" class="pb-2 pt-0"><i>${ptCategoryPrerequisite}</i></td></tr>` : "";
+	}
+
+	/* ----- */
+
+	_getCommonHtmlParts_repeatable ({ent}) {
+		const ptRepeatable = Renderer.utils.getRepeatableHtml(ent);
+		return ptRepeatable ? `<tr><td colspan="6">${ptRepeatable}</td></tr>` : "";
 	}
 
 	/* ----- */
@@ -51,45 +60,18 @@ class _RenderFeatsImplClassic extends _RenderFeatsImplBase {
 
 	/* -------------------------------------------- */
 
-	_getHtmlParts (
-		{
-			ent,
-			opts,
-			renderer,
-		},
-	) {
-		return {
-			htmlPtRepeatable: this._getCommonHtmlParts_repeatable({ent}),
-		};
-	}
-
-	/* ----- */
-
-	_getCommonHtmlParts_repeatable ({ent}) {
-		const ptRepeatable = Renderer.utils.getRepeatableHtml(ent);
-		return ptRepeatable ? `<tr><td colspan="6">${ptRepeatable}</td></tr>` : "";
-	}
-
-	/* -------------------------------------------- */
-
 	_getRendered ({ent, opts, renderer}) {
 		const {
 			htmlPtIsExcluded,
 			htmlPtName,
 
 			htmlPtPrerequisites,
+			htmlPtRepeatable,
 
 			htmlPtEntries,
 
 			htmlPtPage,
 		} = this._getCommonHtmlParts({
-			ent,
-			opts,
-			renderer,
-		});
-		const {
-			htmlPtRepeatable,
-		} = this._getHtmlParts({
 			ent,
 			opts,
 			renderer,
@@ -127,6 +109,7 @@ class _RenderFeatsImplOne extends _RenderFeatsImplBase {
 			htmlPtName,
 
 			htmlPtPrerequisites,
+			htmlPtRepeatable,
 
 			htmlPtEntries,
 
@@ -144,6 +127,7 @@ class _RenderFeatsImplOne extends _RenderFeatsImplBase {
 			${htmlPtName}
 			
 			${htmlPtPrerequisites}
+			${htmlPtRepeatable}
 			
 			<tr><td colspan="6">
 				${htmlPtEntries}

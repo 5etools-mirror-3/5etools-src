@@ -228,7 +228,7 @@ class _RenderBestiaryImplBase {
 	}
 
 	_getCommonHtmlParts_tools ({mon, renderer}) {
-		return mon.tool ? `<tr><td colspan="6"><strong>Tools</strong> ${Renderer.monster.getToolsString(renderer, mon)}</td></tr>` : "";
+		return mon.tool ? `<tr><td colspan="6"><strong>Tools</strong> ${Renderer.monster.getToolsString(renderer, mon, {styleHint: this._style})}</td></tr>` : "";
 	}
 
 	_getCommonHtmlParts_vulnerabilities ({mon}) {

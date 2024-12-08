@@ -385,7 +385,7 @@ class BookUtil {
 
 						const contentsInfo = this.curRender.fromIndex.contents[this.curRender.chapter];
 						DataUtil.userDownloadText(
-							`${this.curRender.fromIndex.name} - ${Parser.bookOrdinalToAbv(contentsInfo.ordinal).replace(/:/g, "")}${contentsInfo.name}.md`,
+							`${this.curRender.fromIndex.name} - ${Parser.bookOrdinalToAbv(contentsInfo.ordinal, {isPlainText: true}).replace(/:/g, "")}${contentsInfo.name}.md`,
 							RendererMarkdown.get().render(this.curRender.data[this.curRender.chapter]),
 						);
 					},

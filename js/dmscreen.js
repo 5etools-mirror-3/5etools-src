@@ -370,7 +370,7 @@ class Board {
 					p: i,
 					id: bookOrAdventureId++,
 				};
-				if (chap.ordinal) chapDoc.o = Parser.bookOrdinalToAbv(chap.ordinal, true);
+				if (chap.ordinal) chapDoc.o = Parser.bookOrdinalToAbv(chap.ordinal, {isPreNoSuff: true, isPlainText: true});
 				if (isBrew) chapDoc.w = true;
 
 				indexStorage.ALL.addDoc(chapDoc);
