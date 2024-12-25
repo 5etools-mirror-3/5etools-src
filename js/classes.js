@@ -384,6 +384,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		await this._pInitAndRunRender();
 
 		ListPage._checkShowAllExcluded(this._dataList, this._$pgContent);
+		this._initLinkRedirectors();
 		this._initLinkGrabbers();
 		this._initScrollToSubclassSelection();
 		this._bindLinkExportButton({$btn: $(`#btn-link-export`)});
@@ -695,6 +696,69 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			stateHash,
 		].filter(Boolean);
 		return Hist.util.getCleanHash(hashParts.join(HASH_PART_SEP));
+	}
+
+	/**
+	 * Override handling for class/subclass feature tag links, i.e.:
+	 * ```
+	 * {@classFeature Infuse Item|Artificer|TCE|2}"
+	 * {@subclassFeature Experimental Elixir|Artificer|TCE|Alchemist|TCE|3}"
+	 * ```
+	 * if they would otherwise negatively mutate the current page state.
+	 */
+	_initLinkRedirectors () {
+		const getIsAltViewActive = () => {
+			return this._state.isViewActiveScComp
+			|| this._state.isViewActiveBook;
+		};
+
+		const handleClickFeature = (evt) => {
+			if (getIsAltViewActive()) return;
+
+			const cls = this.activeClassRaw;
+			if (!cls) return;
+
+			const {page, source, hash} = Renderer.hover.getLinkElementData(evt.target);
+
+			const hashState = UrlUtil.unpackClassesPageStatePart(evt.target.href);
+
+			let {name, className, classSource, subclassShortName, subclassSource, level} = UrlUtil.autoDecodeHash(hash, {page});
+			className = className.toLowerCase();
+			classSource = classSource.toLowerCase();
+
+			// Approximate scroll position with feature scroll ID -- not always accurate,
+			//   but the best we can do in a sync context
+			const featureIndex = hashState?.feature || `${level - 1}-0`;
+
+			if (subclassShortName) subclassShortName = subclassShortName.toLowerCase();
+			if (subclassSource) subclassSource = subclassSource.toLowerCase();
+
+			if (
+				cls.name.toLowerCase() !== className.toLowerCase()
+				|| cls.source.toLowerCase() !== classSource.toLowerCase()
+			) {
+				return;
+			}
+
+			evt.preventDefault();
+
+			const wrpLevelFeatures = document.querySelector(`[data-scroll-id="${featureIndex}"]`);
+			if (!wrpLevelFeatures) return;
+
+			if (subclassShortName) {
+				const stateKey = UrlUtil.getStateKeySubclass({shortName: subclassShortName, source: subclassSource});
+				if (!this._state[stateKey]) this._state[stateKey] = true;
+			} else {
+				if (this._state.isHideFeatures) this._state.isHideFeatures = false;
+			}
+
+			wrpLevelFeatures.scrollIntoView({block: "start", inline: "nearest"});
+		};
+
+		document.body.addEventListener("click", evt => {
+			if (evt.target.matches(`a[data-vet-page="classfeature"]`)) return handleClickFeature(evt);
+			if (evt.target.matches(`a[data-vet-page="subclassfeature"]`)) return handleClickFeature(evt);
+		});
 	}
 
 	_initLinkGrabbers () {
@@ -2158,6 +2222,8 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				Renderer.get().removePlugins("entries_namePrefix");
 
 				this._trackOutlineScData(stateKey, ixLvl + 1, ixScFeature, depthArr);
+
+				if (ixScFeature) return;
 
 				const depthArrSubclassFluff = [];
 				const {hasEntries, rendered: rdScFluff} = UtilClassesPage.getRenderedSubclassFluff({sc, scFluff, depthArr: depthArrSubclassFluff});

@@ -37,7 +37,7 @@
 					"type": "entries",
 					"name": "Cantrip Upgrade",
 					"entries": [
-						"The damage increases by {@dice 1d6} when you reach levels 5 ({@damage 2d6}), 11 ({@damage 3d6}), and 17 ({@damage 4d6})."
+						"The damage increases by {@damage 1d6} when you reach levels 5 ({@damage 2d6}), 11 ({@damage 3d6}), and 17 ({@damage 4d6})."
 					]
 				}
 			],
@@ -2594,12 +2594,12 @@
 					"type": "entries",
 					"name": "Cantrip Upgrade",
 					"entries": [
-						"The damage increases by {@dice 1d10} when you reach levels 5 ({@damage 2d10}), 11 ({@damage 3d10}), and 17 ({@damage 4d10})."
+						"The damage increases by {@damage 1d10} when you reach levels 5 ({@damage 2d10}), 11 ({@damage 3d10}), and 17 ({@damage 4d10})."
 					]
 				}
 			],
 			"scalingLevelDice": {
-				"label": "necrotic damage",
+				"label": "Necrotic damage",
 				"scaling": {
 					"1": "1d10",
 					"5": "2d10",
@@ -7708,12 +7708,12 @@
 					"type": "entries",
 					"name": "Cantrip Upgrade",
 					"entries": [
-						"The damage increases by {@dice 1d10} when you reach levels 5 ({@damage 2d10}), 11 ({@damage 3d10}), and 17 ({@damage 4d10})."
+						"The damage increases by {@damage 1d10} when you reach levels 5 ({@damage 2d10}), 11 ({@damage 3d10}), and 17 ({@damage 4d10})."
 					]
 				}
 			],
 			"scalingLevelDice": {
-				"label": "fire damage",
+				"label": "Fire damage",
 				"scaling": {
 					"1": "1d10",
 					"5": "2d10",
@@ -9920,7 +9920,7 @@
 					"type": "entries",
 					"name": "Using a Higher-Level Spell Slot",
 					"entries": [
-						"The healing increases by 10 for each spell slot level above 6."
+						"The healing increases by {@scaledice 70|6-9|10} for each spell slot level above 6."
 					]
 				}
 			],
@@ -9968,7 +9968,7 @@
 					"type": "entries",
 					"name": "Using a Higher-Level Spell Slot",
 					"entries": [
-						"The healing increases by {@scaledamage 2d4|1-9|2d4} for each spell slot level above 1."
+						"The healing increases by {@scaledice 2d4|1-9|2d4} for each spell slot level above 1."
 					]
 				}
 			],
@@ -12504,6 +12504,9 @@
 				"The target can take a {@action Study|XPHB} action to try to escape. When it does so, it makes a DC 20 Intelligence ({@skill Investigation|XPHB}) check. If it succeeds, it escapes, and the spell ends.",
 				"When the spell ends, the target reappears in the space it left or, if that space is occupied, in the nearest unoccupied space."
 			],
+			"abilityCheck": [
+				"intelligence"
+			],
 			"miscTags": [
 				"SGT"
 			],
@@ -12817,7 +12820,7 @@
 					"type": "entries",
 					"name": "Cantrip Upgrade",
 					"entries": [
-						"The damage increases by {@dice 1d6} when you reach levels 5 ({@damage 2d6}), 11 ({@damage 3d6}), and 17 ({@damage 4d6})."
+						"The damage increases by {@damage 1d6} when you reach levels 5 ({@damage 2d6}), 11 ({@damage 3d6}), and 17 ({@damage 4d6})."
 					]
 				}
 			],
@@ -14272,7 +14275,7 @@
 					"type": "entries",
 					"name": "Cantrip Upgrade",
 					"entries": [
-						"The damage increases by {@dice 1d12} when you reach levels 5 ({@damage 2d12}), 11 ({@damage 3d12}), and 17 ({@damage 4d12})."
+						"The damage increases by {@damage 1d12} when you reach levels 5 ({@damage 2d12}), 11 ({@damage 3d12}), and 17 ({@damage 4d12})."
 					]
 				}
 			],
@@ -14891,12 +14894,12 @@
 					"type": "entries",
 					"name": "Cantrip Upgrade",
 					"entries": [
-						"The damage increases by {@dice 1d8} when you reach levels 5 ({@damage 2d8}), 11 ({@damage 3d8}), and 17 ({@damage 4d8})."
+						"The damage increases by {@damage 1d8} when you reach levels 5 ({@damage 2d8}), 11 ({@damage 3d8}), and 17 ({@damage 4d8})."
 					]
 				}
 			],
 			"scalingLevelDice": {
-				"label": "fire damage",
+				"label": "Fire damage",
 				"scaling": {
 					"1": "1d8",
 					"5": "2d8",
@@ -15389,7 +15392,7 @@
 					"type": "entries",
 					"name": "Cantrip Upgrade",
 					"entries": [
-						"The damage increases by {@dice 1d8} when you reach levels 5 ({@damage 2d8}), 11 ({@damage 3d8}), and 17 ({@damage 4d8})."
+						"The damage increases by {@damage 1d8} when you reach levels 5 ({@damage 2d8}), 11 ({@damage 3d8}), and 17 ({@damage 4d8})."
 					]
 				}
 			],
@@ -15912,7 +15915,7 @@
 					"type": "entries",
 					"name": "Cantrip Upgrade",
 					"entries": [
-						"The damage increases by {@dice 1d8} when you reach levels 5 ({@damage 2d8}), 11 ({@damage 3d8}), and 17 ({@damage 4d8})."
+						"The damage increases by {@damage 1d8} when you reach levels 5 ({@damage 2d8}), 11 ({@damage 3d8}), and 17 ({@damage 4d8})."
 					]
 				}
 			],
@@ -16706,7 +16709,7 @@
 					"type": "entries",
 					"name": "Cantrip Upgrade",
 					"entries": [
-						"The damage increases by {@dice 1d8} when you reach levels 5 ({@damage 2d8}), 11 ({@damage 3d8}), and 17 ({@damage 4d8})."
+						"The damage increases by {@damage 1d8} when you reach levels 5 ({@damage 2d8}), 11 ({@damage 3d8}), and 17 ({@damage 4d8})."
 					]
 				}
 			],
@@ -17072,7 +17075,7 @@
 					"type": "entries",
 					"name": "Cantrip Upgrade",
 					"entries": [
-						"The damage increases by {@dice 1d8} when you reach levels 5 ({@damage 2d8}), 11 ({@damage 3d8}), and 17 ({@damage 4d8})."
+						"The damage increases by {@damage 1d8} when you reach levels 5 ({@damage 2d8}), 11 ({@damage 3d8}), and 17 ({@damage 4d8})."
 					]
 				}
 			],
@@ -17604,7 +17607,7 @@
 					"type": "entries",
 					"name": "Cantrip Upgrade",
 					"entries": [
-						"The damage increases by {@dice 1d8} when you reach levels 5 ({@damage 2d8}), 11 ({@damage 3d8}), and 17 ({@damage 4d8})."
+						"The damage increases by {@damage 1d8} when you reach levels 5 ({@damage 2d8}), 11 ({@damage 3d8}), and 17 ({@damage 4d8})."
 					]
 				}
 			],
@@ -19353,7 +19356,7 @@
 					"type": "entries",
 					"name": "Cantrip Upgrade",
 					"entries": [
-						"The damage increases by {@dice 1d6} when you reach levels 5 ({@damage 2d6}), 11 ({@damage 3d6}), and 17 ({@damage 4d6})."
+						"The damage increases by {@damage 1d6} when you reach levels 5 ({@damage 2d6}), 11 ({@damage 3d6}), and 17 ({@damage 4d6})."
 					]
 				}
 			],
@@ -19415,7 +19418,7 @@
 					"type": "entries",
 					"name": "Cantrip Upgrade",
 					"entries": [
-						"The damage increases by {@dice 1d6} when you reach levels 5 ({@damage 2d6}), 11 ({@damage 3d6}), and 17 ({@damage 4d6})."
+						"The damage increases by {@damage 1d6} when you reach levels 5 ({@damage 2d6}), 11 ({@damage 3d6}), and 17 ({@damage 4d6})."
 					]
 				}
 			],
@@ -19624,7 +19627,7 @@
 			],
 			"scalingLevelDice": [
 				{
-					"label": "necrotic damage",
+					"label": "Necrotic damage",
 					"scaling": {
 						"1": "1d8",
 						"5": "2d8",
@@ -19633,7 +19636,7 @@
 					}
 				},
 				{
-					"label": "necrotic damage to wounded creature",
+					"label": "Necrotic damage to wounded creature",
 					"scaling": {
 						"1": "1d12",
 						"5": "2d12",
@@ -19987,7 +19990,7 @@
 			],
 			"scalingLevelDice": [
 				{
-					"label": "extra radiant damage",
+					"label": "extra Radiant damage",
 					"scaling": {
 						"5": "1d6",
 						"11": "2d6",
@@ -20199,12 +20202,12 @@
 					"type": "entries",
 					"name": "Cantrip Upgrade",
 					"entries": [
-						"The damage increases by {@dice 1d6} when you reach levels 5 ({@damage 2d6}), 11 ({@damage 3d6}), and 17 ({@damage 4d6})."
+						"The damage increases by {@damage 1d6} when you reach levels 5 ({@damage 2d6}), 11 ({@damage 3d6}), and 17 ({@damage 4d6})."
 					]
 				}
 			],
 			"scalingLevelDice": {
-				"label": "psychic damage",
+				"label": "Psychic damage",
 				"scaling": {
 					"1": "1d6",
 					"5": "2d6",
@@ -20890,7 +20893,7 @@
 			"entries": [
 				"A wall of strong wind rises from the ground at a point you choose within range. You can make the wall up to 50 feet long, 15 feet high, and 1 foot thick. You can shape the wall in any way you choose so long as it makes one continuous path along the ground. The wall lasts for the duration.",
 				"When the wall appears, each creature in its area makes a Strength saving throw, taking {@damage 4d8} Bludgeoning damage on a failed save or half as much damage on a successful one.",
-				"The strong wind keeps fog, smoke, and other gases at bay. Small or smaller flying creatures or objects can't pass through the wall. Loose, lightweight materials brought into the wall fly upward. Arrows, bolts, and other ordinary projectiles launched at targets behind the wall are deflected upward and miss automatically. Boulders hurled by Giants or siege engines, and similar projectiles, are unaffected. Creatures in gaseous form can't pass through it."
+				"The strong wind keeps fog, smoke, and other gases at bay. Small or smaller flying creatures or objects can't pass through the wall. Loose, lightweight materials brought into the wall fly upward. Arrows, bolts, and other ordinary projectiles launched at targets behind the wall are deflected upward and miss automatically. Boulders hurled by Giants or siege engines, and similar projectiles, are unaffected. Creatures in {@spell gaseous form|XPHB} can't pass through it."
 			],
 			"damageInflict": [
 				"bludgeoning"
@@ -21112,7 +21115,7 @@
 					"type": "entries",
 					"name": "Cantrip Upgrade",
 					"entries": [
-						"The damage increases by {@dice 1d6} when you reach levels 5 ({@damage 2d6}), 11 ({@damage 3d6}), and 17 ({@damage 4d6})."
+						"The damage increases by {@damage 1d6} when you reach levels 5 ({@damage 2d6}), 11 ({@damage 3d6}), and 17 ({@damage 4d6})."
 					]
 				}
 			],

@@ -517,35 +517,35 @@ export class DiceConvert {
 	}
 
 	static _getConvertedEntry ({entry, isTagHits = false}) {
-		if (!DiceConvert._walker) {
-			DiceConvert._walker = MiscUtil.getWalker({
-				keyBlocklist: new Set([
-					...MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST,
-					"dmg1",
-					"dmg2",
-					"area",
-					"path",
-				]),
-			});
-			DiceConvert._walkerHandlers = {
-				string: (str) => {
-					const ptrStack = {_: ""};
-					TaggerUtils.walkerStringHandler(
-						["@dice", "@hit", "@damage", "@scaledice", "@scaledamage", "@d20"],
-						ptrStack,
-						0,
-						0,
-						str,
-						{
-							fnTag: str => this._walkerStringHandler({str, isTagHits}),
-						},
-					);
-					return ptrStack._;
-				},
-			};
-		}
-		entry = MiscUtil.copy(entry);
-		return DiceConvert._walker.walk(entry, DiceConvert._walkerHandlers);
+		DiceConvert._walker ||= MiscUtil.getWalker({
+			keyBlocklist: new Set([
+				...MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST,
+				"dmg1",
+				"dmg2",
+				"area",
+				"path",
+			]),
+		});
+
+		const walkerHandlers = {
+			string: (str) => {
+				const ptrStack = {_: ""};
+				TaggerUtils.walkerStringHandler(
+					["@dice", "@hit", "@damage", "@scaledice", "@scaledamage", "@d20"],
+					ptrStack,
+					0,
+					0,
+					str,
+					{
+						fnTag: str => this._walkerStringHandler({str, isTagHits}),
+					},
+				);
+				return ptrStack._;
+			},
+		};
+
+		entry = MiscUtil.copyFast(entry);
+		return DiceConvert._walker.walk(entry, walkerHandlers);
 	}
 
 	static _RE_NO_FORMAT_STRINGS = /(\b(?:plus|minus|PB)\b)/;

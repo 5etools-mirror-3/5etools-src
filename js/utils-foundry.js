@@ -105,6 +105,8 @@ export class UtilsFoundryItem {
 		// Try to process various equipment-sounding item names as equipment (e.g. gloves, bracers)
 		if (this._ITEM_EQUIPMENT_NAME_RES.some(it => it.test(item.name))) return this._TYPE_EQUIPMENT;
 
+		if (item.miscTags?.includes("CNS")) return this._TYPE_CONSUMABLE;
+
 		// Treat everything else as loot
 		return this._TYPE_LOOT;
 	}

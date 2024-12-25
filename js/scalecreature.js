@@ -2769,7 +2769,10 @@ globalThis.ScaleClassSummonedCreature = class extends globalThis.ScaleSummonedCr
 	static _scale_getConvertedPbString (state, str, {isBonus = false} = {}) {
 		let out = str
 			.replace(/\bplus\b/gi, "+")
-			.replace(/(\b|[-+])PB\b/g, `$1${state.proficiencyBonus}`)
+			.replace(/\btimes\b/, "*")
+			.replace(/(\b|[-+/*])PB\b/g, `$1${state.proficiencyBonus}`)
+			// eslint-disable-next-line no-eval
+			.replace(/\b\d+\s*[/*]\s*\d+\b/g, (...n) => eval(n[0]))
 			// eslint-disable-next-line no-eval
 			.replace(/[-+]\s*\d+\s*[-+]\s*\d+\b/g, (...n) => eval(n[0]))
 		;

@@ -6,94 +6,107 @@ import "../js/render.js";
 import * as ut from "../node/util.js";
 import {listFiles} from "../node/util.js";
 
-class _TestTokenImages {
-	static _IS_CLEAN_EXTRAS = false;
-	static _IS_MOVE_EXTRAS = false;
-	static _SOURCES_CLEAN_EXTRAS = [
-		Parser.SRC_MM,
-		Parser.SRC_MPMM,
-		Parser.SRC_BAM,
-		Parser.SRC_VRGR,
-	];
+/**
+ * @abstract
+ */
+class _TestTokenImagesBase {
+	_IS_CLEAN_EXTRAS = false;
+	_IS_MOVE_EXTRAS = false;
 
-	static _PATH_BASE = `./img/bestiary/tokens`;
-	static _EXT = "webp";
+	/* -------------------------------------------- */
 
-	static _IGNORED_PREFIXES = [
+	_PATH_BASE;
+	_PROP;
+	_NAME;
+
+	_SOURCES_CLEAN_EXTRAS = [];
+
+	/* -------------------------------------------- */
+
+	_EXT = "webp";
+
+	_IGNORED_PREFIXES = [
 		".",
 		"_",
 	];
 
-	static _expected = new Set();
-	static _expectedDirs = {};
-	static _existing = new Set();
-	static _expectedFromHashToken = {};
+	_expected = new Set();
+	_expectedDirs = {};
+	_existing = new Set();
+	_expectedFromHashToken = {};
 
-	static _existingSourceTokens = null;
+	_existingSourceTokens = null;
 
-	static _isExistingSourceToken ({filename, src}) {
+	/* -------------------------------------------- */
+
+	_isExistingSourceToken ({filename, src}) {
 		(this._existingSourceTokens ||= {})[src] ||= fs.readdirSync(`${this._PATH_BASE}/${src}`).mergeMap(it => ({[it]: true}));
 		return !!this._existingSourceTokens[src][filename.split("/").last()];
 	}
 
-	static _readBestiaryJson () {
-		const jsonIndex = ut.readJson(`./data/bestiary/index.json`);
+	/**
+	 * @abstract
+	 */
+	_getFileInfos () {
+		throw new Error("Unimplemented!");
+	}
 
-		Object.entries(jsonIndex)
-			.forEach(([source, file]) => {
-				const json = ut.readJson(`./data/bestiary/${file}`);
+	_processFileInfos ({fileInfos}) {
+		const sourcesImplicit = new Set();
 
-				json.monster
-					.forEach(m => {
-						m.__prop = "monster";
+		fileInfos
+			.forEach(json => {
+				json[this._PROP]
+					.forEach(ent => {
+						ent.__prop = this._PROP;
 
-						const implicitTokenPath = `${this._PATH_BASE}/${m.source}/${Parser.nameToTokenName(m.name)}.${this._EXT}`;
+						const implicitTokenPath = `${this._PATH_BASE}/${ent.source}/${Parser.nameToTokenName(ent.name)}.${this._EXT}`;
 
-						if (m.hasToken) this._expectedFromHashToken[implicitTokenPath] = true;
+						if (ent.hasToken) this._expectedFromHashToken[implicitTokenPath] = true;
 
-						if (!fs.existsSync(`${this._PATH_BASE}/${m.source}`)) {
-							this._expectedDirs[m.source] = true;
-							return;
-						}
-
-						if (m.token) {
-							const explicitTokenUrl = Renderer.monster.getTokenUrl(m);
+						if (ent.token) {
+							const explicitTokenUrl = Renderer[this._PROP].getTokenUrl(ent);
 							const explicitTokenPath = `${this._PATH_BASE}/${explicitTokenUrl.split("/").slice(3).join("/")}`;
 							this._expected.add(explicitTokenPath);
 						} else {
 							this._expected.add(implicitTokenPath);
+							sourcesImplicit.add(ent.source);
 						}
 
 						// add tokens specified as part of variants
-						if (m.variant) {
-							m.variant
+						if (ent.variant) {
+							ent.variant
 								.filter(it => it.token)
 								.forEach(entry => this._expected.add(`${this._PATH_BASE}/${entry.token.source}/${Parser.nameToTokenName(entry.token.name)}.${this._EXT}`));
 						}
 
 						// add tokens specified as part of versions
-						const versions = DataUtil.proxy.getVersions(m.__prop, m, {isExternalApplicationIdentityOnly: true});
+						const versions = DataUtil.proxy.getVersions(ent.__prop, ent, {isExternalApplicationIdentityOnly: true});
 						versions
-							.forEach(mVer => {
-								if (!Renderer.monster.hasToken(mVer)) return;
-								this._expected.add(`${this._PATH_BASE}/${mVer.source}/${Parser.nameToTokenName(mVer.name)}.${this._EXT}`);
+							.forEach(entVer => {
+								if (!Renderer[this._PROP].hasToken(entVer)) return;
+								this._expected.add(`${this._PATH_BASE}/${entVer.source}/${Parser.nameToTokenName(entVer.name)}.${this._EXT}`);
 							});
 
 						// add tokens specified as alt art
-						if (m.altArt) {
-							m.altArt
+						if (ent.altArt) {
+							ent.altArt
 								.forEach(alt => this._expected.add(`${this._PATH_BASE}/${alt.source}/${Parser.nameToTokenName(alt.name)}.${this._EXT}`));
 						}
 					});
+			});
 
-				// If every token in the file references another token, we don't expect this file to have a matching dir
-				if (json.monster.every(mon => mon.token)) {
-					delete this._expectedDirs[source];
-				}
+		if (!sourcesImplicit.size) return;
+
+		sourcesImplicit
+			.forEach(src => {
+				if (fs.existsSync(`${this._PATH_BASE}/${src}`)) return;
+
+				this._expectedDirs[src] = true;
 			});
 	}
 
-	static _readImageDirs () {
+	_readImageDirs () {
 		fs.readdirSync(this._PATH_BASE)
 			.filter(file => !(this._IGNORED_PREFIXES.some(it => file.startsWith(it))))
 			.forEach(dir => {
@@ -104,7 +117,7 @@ class _TestTokenImages {
 			});
 	}
 
-	static _getIsError () {
+	_getIsError () {
 		let isError = false;
 		const results = [];
 		this._expected.forEach((img) => {
@@ -136,12 +149,12 @@ class _TestTokenImages {
 			}
 		});
 
-		Object.keys(this._expectedDirs).forEach(k => results.push(`Directory ${k} doesn't exist!`));
+		Object.keys(this._expectedDirs).forEach(k => results.push(`Directory ${this._PATH_BASE}/${k} doesn't exist!`));
 		results
 			.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()))
 			.forEach((img) => console.warn(img));
 
-		if (Object.keys(this._expectedFromHashToken).length) console.warn(`Declared in Bestiary data but not found:`);
+		if (Object.keys(this._expectedFromHashToken).length) console.warn(`Declared in ${this._NAME} data but not found:`);
 		Object.keys(this._expectedFromHashToken).forEach(img => console.warn(`[MISMATCH] ${img}`));
 
 		if (!this._expected.size && !Object.keys(this._expectedFromHashToken).length) console.log("Tokens are as expected.");
@@ -149,13 +162,56 @@ class _TestTokenImages {
 		return isError;
 	}
 
-	static run () {
-		console.log(`##### Reconciling the PNG tokens against the bestiary JSON #####`);
+	run () {
+		console.log(`##### Reconciling tokens against ${this._NAME} data #####`);
 
-		this._readBestiaryJson();
+		const fileInfos = this._getFileInfos();
+		this._processFileInfos({fileInfos});
 		this._readImageDirs();
 
 		return this._getIsError();
+	}
+}
+
+class _TestTokenImagesBestiary extends _TestTokenImagesBase {
+	_PATH_BASE = `./img/bestiary/tokens`;
+	_PROP = "monster";
+	_NAME = "bestiary";
+
+	_SOURCES_CLEAN_EXTRAS = [
+		Parser.SRC_MM,
+		Parser.SRC_MPMM,
+		Parser.SRC_BAM,
+		Parser.SRC_VRGR,
+	];
+
+	_getFileInfos () {
+		const jsonIndex = ut.readJson(`./data/bestiary/index.json`);
+
+		return Object.entries(jsonIndex)
+			.map(([, file]) => {
+				return ut.readJson(`./data/bestiary/${file}`);
+			});
+	}
+}
+
+class _TestTokenImagesObjects extends _TestTokenImagesBase {
+	_PATH_BASE = `./img/objects/tokens`;
+	_PROP = "object";
+	_NAME = "objects";
+
+	_getFileInfos () {
+		return [ut.readJson(`./data/objects.json`)];
+	}
+}
+
+class _TestTokenImagesVehicles extends _TestTokenImagesBase {
+	_PATH_BASE = `./img/vehicles/tokens`;
+	_PROP = "vehicle";
+	_NAME = "vehicles";
+
+	_getFileInfos () {
+		return [ut.readJson(`./data/vehicles.json`)];
 	}
 }
 
@@ -203,7 +259,9 @@ class _TestAdventureBookImages {
 function main () {
 	if (!fs.existsSync("./img")) return true;
 
-	if (_TestTokenImages.run()) return false;
+	if (new _TestTokenImagesBestiary().run()) return false;
+	if (new _TestTokenImagesObjects().run()) return false;
+	if (new _TestTokenImagesVehicles().run()) return false;
 	if (_TestAdventureBookImages.run()) return false;
 
 	return true;
