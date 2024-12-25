@@ -34,12 +34,14 @@ export class EquipmentBreakdown {
 		this._WALKER ||= MiscUtil.getWalker({isNoModification: true, isBreakOnReturn: true});
 
 		const entryEquipment = ConverterBackgroundUtil.getEquipmentEntry(bg);
-		if (!entryEquipment.entry) throw new Error(`Unimplemented!`);
-
 		if (!entryEquipment) return;
+
+		const entry = entryEquipment.entry || entryEquipment.entries[0];
+		if (!entry) throw new Error(`Unimplemented!`);
+
 		this._convert({
 			bg,
-			entry: entryEquipment.entry,
+			entry,
 			mappingsManual,
 			allowlistOrEnds,
 			blocklistSplits,
@@ -712,10 +714,8 @@ export class BackgroundSkillToolLanguageTag {
 	}
 
 	static _getLanguageTags ({langProf}) {
-		langProf.entry = langProf.entry
-			.replace(/\bElven\b/, "Elvish");
-
-		let str = langProf.entry
+		let str = (langProf.entry || langProf.entries[0])
+			.replace(/\bElven\b/, "Elvish")
 			.replace(/\([^)]+ recommended\)$/, "")
 			.trim();
 

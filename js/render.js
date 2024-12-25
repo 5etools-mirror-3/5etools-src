@@ -4019,6 +4019,7 @@ Renderer.utils = class {
 	}
 
 	static getRepeatableHtml (ent, {isListMode = false} = {}) {
+		if (ent.repeatableHidden) return "";
 		const entryRepeatable = Renderer.utils.getRepeatableEntry(ent);
 		if (entryRepeatable == null) return isListMode ? "\u2014" : "";
 		return Renderer.get().render(entryRepeatable);
@@ -4224,7 +4225,7 @@ Renderer.utils = class {
 
 					if (displayText) fauxEntry.displayText = displayText;
 					else {
-						if (tag === "@ability") fauxEntry.displayText = `${scoreOrMod} (${mod})`;
+						if (tag === "@ability") fauxEntry.displayText = `${scoreOrMod}\u00A0(${mod})`;
 						else fauxEntry.displayText = mod;
 					}
 
@@ -4368,7 +4369,7 @@ Renderer.utils = class {
 			case "@subclassFeature": {
 				const unpacked = DataUtil.class.unpackUidSubclassFeature(text);
 
-				const classPageHash = `${UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CLASSES]({name: unpacked.className, source: unpacked.classSource})}${HASH_PART_SEP}${UrlUtil.getClassesPageStatePart({feature: {ixLevel: unpacked.level - 1, ixFeature: 0}})}`;
+				const classPageHash = `${UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CLASSES]({name: unpacked.className, source: unpacked.classSource})}${HASH_PART_SEP}${UrlUtil.getClassesPageStatePart({feature: {ixLevel: unpacked.level - 1, ixFeature: 0}, subclass: {shortName: unpacked.subclassShortName, source: unpacked.subclassSource}})}`;
 
 				return {
 					name: unpacked.name,
@@ -6444,6 +6445,7 @@ Renderer.class = class {
 			ptsArmor.joinConjunct(", ", " and "),
 			...ptsOther,
 		]
+			.filter(Boolean)
 			.joinConjunct(", ", " and ");
 	}
 
@@ -8486,7 +8488,7 @@ Renderer.object = class {
 				? `{@b Speed:} ${Parser.getSpeedString(ent)}`
 				: null,
 			entryAbilityScores: Parser.ABIL_ABVS.some(ab => ent[ab] != null)
-				? `{@b Ability Scores:} ${Parser.ABIL_ABVS.filter(ab => ent[ab] != null).map(ab => `${ab.toUpperCase()} ${Renderer.utils.getAbilityRollerEntry(ent, ab)}`).join(", ")}`
+				? `{@b Ability Scores:} ${Parser.ABIL_ABVS.filter(ab => ent[ab] != null).map(ab => `${ab.toUpperCase()}\u00A0${Renderer.utils.getAbilityRollerEntry(ent, ab)}`).join(", ")}`
 				: null,
 			entryDamageImmunities: ent.immune != null
 				? `{@b Damage Immunities:} ${Parser.getFullImmRes(ent.immune)}`
@@ -8523,7 +8525,9 @@ Renderer.object = class {
 
 		const ptAttribs = Renderer.object.RENDERABLE_ENTRIES_PROP_ORDER__ATTRIBUTES
 			.filter(prop => entriesMeta[prop])
-			.map(prop => `${Renderer.get().render(entriesMeta[prop])}<br>`)
+			.map((prop, i) => {
+				return `<div ${i < 3 && !opts.isCompact ? `class="stats__wrp-avoid-token"` : ""}>${Renderer.get().render(entriesMeta[prop])}</div>`;
+			})
 			.join("");
 
 		return `
@@ -10122,10 +10126,15 @@ Renderer.monster = class {
 		return `${maxStr ? `<span title="${maxStr}" class="help-subtle">` : ""}${res.value}${maxStr ? "</span>" : ""} ${Renderer.get().render(`({@dice ${res.formula}|${res.formula}|${res.name}})`)}`;
 	}
 
-	static getSafeAbilityScore (mon, abil, {isDefaultTen = false} = {}) {
-		if (!mon || abil == null) return isDefaultTen ? 10 : 0;
-		if (mon[abil] == null) return isDefaultTen ? 10 : 0;
-		return typeof mon[abil] === "number" ? mon[abil] : (isDefaultTen ? 10 : 0);
+	/**
+	 * @param {object} mon
+	 * @param {string} abil
+	 * @param {?number} defaultScore
+	 */
+	static getSafeAbilityScore (mon, abil, {defaultScore = 0} = {}) {
+		if (!mon || abil == null) return defaultScore;
+		if (mon[abil] == null) return defaultScore;
+		return typeof mon[abil] === "number" ? mon[abil] : (defaultScore);
 	}
 
 	/* -------------------------------------------- */
@@ -10806,10 +10815,10 @@ Renderer.item = class {
 
 		// armor
 		if (item.ac != null) {
-			const dexterityMax = (itemTypeAbv === Parser.ITM_TYP_ABV__MEDIUM_ARMOR && item.dexterityMax == null)
+			const dexterityMax = (itemTypeAbv === Parser.ITM_TYP_ABV__MEDIUM_ARMOR && item.dexterityMax === undefined)
 				? 2
 				: item.dexterityMax;
-			const isAddDex = item.dexterityMax != null || ![Parser.ITM_TYP_ABV__HEAVY_ARMOR, Parser.ITM_TYP_ABV__SHIELD].includes(itemTypeAbv);
+			const isAddDex = item.dexterityMax !== undefined || ![Parser.ITM_TYP_ABV__HEAVY_ARMOR, Parser.ITM_TYP_ABV__SHIELD].includes(itemTypeAbv);
 
 			const prefix = itemTypeAbv === Parser.ITM_TYP_ABV__SHIELD ? "+" : "";
 			const suffix = isAddDex ? ` + Dex${dexterityMax ? ` (max ${dexterityMax})` : ""}` : "";

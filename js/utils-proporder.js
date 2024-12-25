@@ -386,15 +386,16 @@ PropOrder._FOUNDRY_GENERIC_FEATURE = [
 	"name",
 	"source",
 
-	"isIgnored",
-
 	"type",
 	"system",
 	"actorDataMod",
 	"effects",
-	"ignoreSrdEffects",
 	"flags",
 	"img",
+
+	"isIgnored",
+	"ignoreSrdActivities",
+	"ignoreSrdEffects",
 
 	"entries",
 
@@ -1018,6 +1019,7 @@ PropOrder._FOUNDRY_CLASS = [
 	"isChooseSystemRenderEntries",
 	"isChooseFlagsRenderEntries",
 	"isIgnored",
+	"ignoreSrdActivities",
 	"ignoreSrdEffects",
 	"actorDataMod",
 	"actorTokenMod",
@@ -1121,6 +1123,7 @@ PropOrder._FOUNDRY_SUBCLASS = [
 	"isChooseSystemRenderEntries",
 	"isChooseFlagsRenderEntries",
 	"isIgnored",
+	"ignoreSrdActivities",
 	"ignoreSrdEffects",
 	"actorDataMod",
 	"actorTokenMod",
@@ -1275,6 +1278,7 @@ PropOrder._FOUNDRY_CLASS_FEATURE = [
 	"isChooseSystemRenderEntries",
 	"isChooseFlagsRenderEntries",
 	"isIgnored",
+	"ignoreSrdActivities",
 	"ignoreSrdEffects",
 	"actorDataMod",
 	"actorTokenMod",
@@ -1308,6 +1312,7 @@ PropOrder._FOUNDRY_SUBCLASS_FEATURE = [
 	"isChooseSystemRenderEntries",
 	"isChooseFlagsRenderEntries",
 	"isIgnored",
+	"ignoreSrdActivities",
 	"ignoreSrdEffects",
 	"actorDataMod",
 	"actorTokenMod",
@@ -1557,6 +1562,7 @@ PropOrder._FEAT = [
 
 	"repeatable",
 	"repeatableNote",
+	"repeatableHidden",
 
 	"ability",
 
