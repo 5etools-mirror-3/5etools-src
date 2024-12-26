@@ -1,4 +1,6 @@
 "use strict";
+// import TRANSLATE_DICT from "./translations_pt-br.js";
+
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
@@ -6170,17 +6172,64 @@ globalThis.DataUtil = {
 				};
 			})();
 		}
+		
+		
+		static async translateTexts(text) {
+			// Função recursiva para traduzir textos em "entries"
+			const TRANSLATE_DICT = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/translations_pt-br.json`);
+			function translateEntries(entries) { 
+				
+				var m_entries = entries.map(entry => {
+					if (typeof entry === "string") {
+						// Substituir pelo valor traduzido, se existir no dicionário
+						return TRANSLATE_DICT[entry] || entry;
+					} else if (typeof entry === "object" && entry.entries) {
+						// Caso seja um objeto com "entries", traduzir recursivamente
+						return { ...entry, entries: translateEntries(entry.entries) };
+					}
+					return entry; // Retornar outros casos sem alteração
+				});
+				return m_entries
+			}
 
+			function printEntriesAsPlainText(entries) {
+				// Função recursiva para extrair texto plano de todas as entradas
+				entries.forEach(entry => {
+					if (typeof entry === "string") {
+						console.log(entry); // Imprime strings diretamente
+					} else if (typeof entry === "object") {
+						if (entry.type === "list" && entry.items) {
+							// Para listas, imprime cada item
+							entry.items.forEach(item => console.log(item));
+						} else if (entry.entries) {
+							// Recorre em "entries"
+							printEntriesAsPlainText(entry.entries);
+						}
+					}
+				});
+			}
+			
+			// Traduzir cada `classFeature`
+			return text.map(description => {
+				if (description.entries) {
+					const translatedEntries = translateEntries(description.entries);
+					printEntriesAsPlainText(translatedEntries);
+					return { ...description, entries: translateEntries(description.entries) };
+				}
+				return description; // Retornar outros casos sem alteração
+			});
+		}
+	
 		static loadRawJSON () {
 			return DataUtil.class._pLoadRawJson = DataUtil.class._pLoadRawJson || (async () => {
 				const index = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/class/index.json`);
 				const allData = await Promise.all(Object.values(index).map(it => DataUtil.loadJSON(`${Renderer.get().baseUrl}data/class/${it}`)));
-
+				
 				return {
 					class: MiscUtil.copyFast(allData.map(it => it.class || []).flat()),
 					subclass: MiscUtil.copyFast(allData.map(it => it.subclass || []).flat()),
-					classFeature: allData.map(it => it.classFeature || []).flat(),
-					subclassFeature: allData.map(it => it.subclassFeature || []).flat(),
+					classFeature: await this.translateTexts(allData.map(it => it.classFeature || []).flat()),
+					subclassFeature: await this.translateTexts(allData.map(it => it.subclassFeature || []).flat()),
 				};
 			})();
 		}
