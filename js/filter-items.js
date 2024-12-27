@@ -98,11 +98,6 @@ class PageFilterEquipment extends PageFilterBase {
 			return;
 		}
 
-		if (item._valueFromRarity) {
-			item._l_value = Parser.itemValueToFullMultiCurrency({value: item._valueFromRarity, currencyConversion: item.currencyConversion}, {isShortForm: true}).replace(/ +/g, "\u00A0");
-			return;
-		}
-
 		item._l_value = "\u2014";
 	}
 
