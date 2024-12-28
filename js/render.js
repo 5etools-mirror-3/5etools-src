@@ -1544,7 +1544,7 @@ globalThis.Renderer = function () {
 	this._renderItemSub = function (entry, textStack, meta, options) {
 		this._renderPrefix(entry, textStack, meta, options);
 		const isAddPeriod = entry.name && entry.nameDot !== false && !Renderer._INLINE_HEADER_TERMINATORS.has(entry.name[entry.name.length - 1]);
-		this._recursiveRender(entry.entry, textStack, meta, {prefix: `<p class="rd__p-list-item" ${entry.name ? `data-roll-name-ancestor="${Renderer.stripTags(entry.name).qq()}"` : ""}>${entry.name ? `<span class="italic rd__list-item-name">${entry.name}${isAddPeriod ? "." : ""}</span> ` : ""}`, suffix: "</p>"});
+		this._recursiveRender(entry.entry, textStack, meta, {prefix: `<p class="rd__p-list-item" ${entry.name ? `data-roll-name-ancestor="${Renderer.stripTags(entry.name).qq()}"` : ""}>${entry.name ? `<span class="italic rd__list-item-name">${this.render(entry.name)}${isAddPeriod ? "." : ""}</span> ` : ""}`, suffix: "</p>"});
 		this._renderSuffix(entry, textStack, meta, options);
 	};
 

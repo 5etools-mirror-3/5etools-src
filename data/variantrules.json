@@ -462,9 +462,9 @@
 			"page": 239,
 			"ruleType": "VO",
 			"entries": [
-				"Sometimes the randomness of a {@dice d20} roll leads to ludicrous results. Let's say a door requires a DC 15 Strength check to batter down. A fighter with Strength 20 might helplessly flail against the door due to bad die rolls. Meanwhile, the rogue with a 10 Strength rolls a natural 20 on her first check and knocks the door from its hinges.",
+				"Sometimes the randomness of a {@dice d20} roll leads to ludicrous results. Let's say a door requires a {@dc 15} Strength check to batter down. A fighter with Strength 20 might helplessly flail against the door due to bad die rolls. Meanwhile, the rogue with a 10 Strength rolls a natural 20 on her first check and knocks the door from its hinges.",
 				"If such results bother you, allow automatic success on checks for characters with high ability scores. Under this optional rule, a character automatically succeeds on any ability check with a DC less than or equal to the relevant ability score minus 5. So in the above example, the fighter would automatically kick in the door. This rule doesn't apply to contests, saving throws, or attack rolls.",
-				"The downside of this approach is its predictability. Once a character's ability score reaches 20, checks of DC 15 and lower using that ability become automatic successes. Smart players will then always try to match the character with the highest ability score against any given check. If you want some risk of failure, you need to set higher DCs. Doing this, though, can merely aggravate the problem you're trying to solve: higher DCs require higher die rolls, and thus rely even more on luck.",
+				"The downside of this approach is its predictability. Once a character's ability score reaches 20, checks of {@dc 15} and lower using that ability become automatic successes. Smart players will then always try to match the character with the highest ability score against any given check. If you want some risk of failure, you need to set higher DCs. Doing this, though, can merely aggravate the problem you're trying to solve: higher DCs require higher die rolls, and thus rely even more on luck.",
 				"You can modify this rule to account for proficiencies using an additional option. If a character can apply a proficiency bonus to the check, he or she automatically succeeds if its DC is less than or equal to the relevant ability score. If you don't mind predictability, and you can resist the temptation to increase DCs, you might find that this variant speeds up play and focuses attention on truly difficult, tense situations."
 			]
 		},
@@ -781,19 +781,20 @@
 					"style": "list-hang-notitle",
 					"columns": 3,
 					"items": [
-						"{@condition Grappled|XPHB}",
-						"{@condition Poisoned|XPHB}",
+						"{@condition Blinded|XPHB}",
 						"{@condition Charmed|XPHB}",
-						"{@condition Incapacitated|XPHB}",
-						"{@condition Prone|XPHB}",
 						"{@condition Deafened|XPHB}",
-						"{@condition Invisible|XPHB}",
-						"{@condition Restrained|XPHB}",
 						"{@condition Exhaustion|XPHB}",
-						"{@condition Paralyzed|XPHB}",
-						"{@condition Stunned|XPHB}",
 						"{@condition Frightened|XPHB}",
+						"{@condition Grappled|XPHB}",
+						"{@condition Incapacitated|XPHB}",
+						"{@condition Invisible|XPHB}",
+						"{@condition Paralyzed|XPHB}",
 						"{@condition Petrified|XPHB}",
+						"{@condition Poisoned|XPHB}",
+						"{@condition Prone|XPHB}",
+						"{@condition Restrained|XPHB}",
+						"{@condition Stunned|XPHB}",
 						"{@condition Unconscious|XPHB}"
 					]
 				},
@@ -2578,7 +2579,7 @@
 			"page": 187,
 			"entries": [
 				"You can use downtime between adventures to recover from a debilitating injury, disease, or poison.",
-				"After three days of downtime spent recuperating, you can make a DC 15 Constitution saving throw. On a successful save, you can choose one of the following results:",
+				"After three days of downtime spent recuperating, you can make a {@dc 15} Constitution saving throw. On a successful save, you can choose one of the following results:",
 				{
 					"type": "list",
 					"items": [
@@ -3162,7 +3163,7 @@
 			"entries": [
 				"Few people can afford to buy a magic item, and fewer still know how to find one. Adventurers are exceptional in this regard due to the nature of their profession.",
 				"A character who comes into possession of a common, uncommon, rare, or very rare magic item that he or she wants to sell can spend downtime searching for a buyer. This downtime activity can be performed only in a city or another location where one can find wealthy individuals interested in buying magic items. Legendary magic items and priceless artifacts can't be sold during downtime. Finding someone to buy such an item can be the substance of an adventure or quest.",
-				"For each salable item, the character makes a DC 20 Intelligence ({@skill Investigation}) check to find buyers. Another character can use his or her downtime to assist with the search, granting advantage on the checks. On a failed check, no buyer for the item is found after a search that lasts 10 days. On a successful check, a buyer for the item is found after a number of days based on the item's rarity, as shown in the Salable Magic Item table.",
+				"For each salable item, the character makes a {@dc 20} Intelligence ({@skill Investigation}) check to find buyers. Another character can use his or her downtime to assist with the search, granting advantage on the checks. On a failed check, no buyer for the item is found after a search that lasts 10 days. On a successful check, a buyer for the item is found after a number of days based on the item's rarity, as shown in the Salable Magic Item table.",
 				"A character can attempt to find buyers for multiple magic items at once. Although this requires multiple Intelligence ({@skill Investigation}) checks, the searches are occurring simultaneously, and the results of multiple failures or successes aren't added together. For example, if the character finds a buyer for a common magic item in 2 days and a buyer for an uncommon item in 5 days, but fails to find a buyer for a rare item up for grabs, the entire search takes 10 days.",
 				"For each item a character wishes to sell, the player rolls percentile dice and consults the Selling a Magic Item table, applying a modifier based on the item's rarity, as shown in the Salable Magic Items table. The character also makes a Charisma ({@skill Persuasion}) check and adds that check's total to the roll. The subsequent total determines what a buyer offers to pay for the item.",
 				"You determine a buyer's identity. Buyers sometimes procure rare and very rare items through proxies to ensure that their identities remain unknown. If the buyer is shady, it's up to you whether the sale creates legal complications for the party later.",
@@ -3281,7 +3282,7 @@
 						]
 					]
 				},
-				"The character must spend 1 gp per day to cover the cost of drinks, social appearances, and the like. At the end of the time spent sowing the rumor, the character must make a DC 15 Charisma ({@skill Deception} or {@skill Persuasion}) check. If the check succeeds, the community's prevailing attitude toward the subject shifts one step toward friendly or hostile, as the character wishes. If the check fails, the rumor gains no traction, and further attempts to propagate it fail.",
+				"The character must spend 1 gp per day to cover the cost of drinks, social appearances, and the like. At the end of the time spent sowing the rumor, the character must make a {@dc 15} Charisma ({@skill Deception} or {@skill Persuasion}) check. If the check succeeds, the community's prevailing attitude toward the subject shifts one step toward friendly or hostile, as the character wishes. If the check fails, the rumor gains no traction, and further attempts to propagate it fail.",
 				"Shifting a community's general attitude toward a person or organization doesn't affect everyone in the community. Individuals might hold to their own opinions, particularly if they have personal experience in dealing with the subject of the rumors."
 			]
 		},
@@ -5448,7 +5449,7 @@
 					"type": "entries",
 					"name": "Bomb",
 					"entries": [
-						"As an action, a character can light this bomb and throw it at a point up to 60 feet away. Each creature within 5 feet of that point must succeed on a DC 12 Dexterity saving throw or take {@dice 3d6} fire damage."
+						"As an action, a character can light this bomb and throw it at a point up to 60 feet away. Each creature within 5 feet of that point must succeed on a {@dc 12} Dexterity saving throw or take {@dice 3d6} fire damage."
 					]
 				},
 				{
@@ -5456,14 +5457,14 @@
 					"name": "Gunpowder",
 					"entries": [
 						"Gunpowder is chiefly used to propel a bullet out of the barrel of a pistol or rifle, or it is formed into a bomb. Gunpowder is sold in small wooden kegs and in water-resistant powder horns.",
-						"Setting fire to a container full of gunpowder can cause it to explode, dealing fire damage to creatures within 10 feet of it ({@dice 3d6} for a powder horn, {@dice 7d6} for a keg). A successful DC 12 Dexterity saving throw halves the damage. Setting fire to an ounce of gunpowder causes it to flare for 1 round, shedding bright light in a 30-foot radius and dim light for an additional 30 feet."
+						"Setting fire to a container full of gunpowder can cause it to explode, dealing fire damage to creatures within 10 feet of it ({@dice 3d6} for a powder horn, {@dice 7d6} for a keg). A successful {@dc 12} Dexterity saving throw halves the damage. Setting fire to an ounce of gunpowder causes it to flare for 1 round, shedding bright light in a 30-foot radius and dim light for an additional 30 feet."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Dynamite",
 					"entries": [
-						"As an action, a creature can light a stick of dynamite and throw it at a point up to 60 feet away. Each creature within 5 feet of that point must make a DC 12 Dexterity saving throw, taking {@dice 3d6} bludgeoning damage on a failed save, or half as much damage on a successful one.",
+						"As an action, a creature can light a stick of dynamite and throw it at a point up to 60 feet away. Each creature within 5 feet of that point must make a {@dc 12} Dexterity saving throw, taking {@dice 3d6} bludgeoning damage on a failed save, or half as much damage on a successful one.",
 						"A character can bind sticks of dynamite together so they explode at the same time. Each additional stick increases the damage by {@dice 1d6} (to a maximum of {@dice 10d6}) and the burst radius by 5 feet (to a maximum of 20 feet).",
 						"Dynamite can be rigged with a longer fuse to explode after a set amount of time, usually 1 to 6 rounds. Roll initiative for the dynamite. After the set number of rounds goes by, the dynamite explodes on that initiative."
 					]
@@ -5473,7 +5474,7 @@
 					"name": "Grenades",
 					"entries": [
 						"As an action, a character can throw a grenade at a point up to 60 feet away. With a grenade launcher, the character can propel the grenade up to 120 feet away.",
-						"Each creature within 20 feet of an exploding fragmentation grenade must make a DC 15 Dexterity saving throw, taking {@dice 5d6} piercing damage on a failed save, or half as much damage on a successful one.",
+						"Each creature within 20 feet of an exploding fragmentation grenade must make a {@dc 15} Dexterity saving throw, taking {@dice 5d6} piercing damage on a failed save, or half as much damage on a successful one.",
 						"One round after a smoke grenade lands, it emits a cloud of smoke that creates a heavily obscured area in a 20-foot radius. A moderate wind (at least 10 miles per hour) disperses the smoke in 4 rounds; a strong wind (20 or more miles per hour) disperses it in 1 round."
 					]
 				}
@@ -5659,7 +5660,7 @@
 					"type": "entries",
 					"name": "Fear",
 					"entries": [
-						"An overwhelming foe or horrid monster doesn't need magic or some supernatural ability to strike fear into the most stalwart adventurers. During any frightful encounter, you can call on a character to make a saving throw to resist being scared. The character must succeed on a DC 15 Wisdom saving throw or become {@condition frightened} until the end of their next turn.",
+						"An overwhelming foe or horrid monster doesn't need magic or some supernatural ability to strike fear into the most stalwart adventurers. During any frightful encounter, you can call on a character to make a saving throw to resist being scared. The character must succeed on a {@dc 15} Wisdom saving throw or become {@condition frightened} until the end of their next turn.",
 						"Any of the following circumstances might be reasons to have one or more characters make saving throws to resist being {@condition frightened}:",
 						{
 							"type": "list",
@@ -5746,7 +5747,7 @@
 							"type": "entries",
 							"name": "Burst Fire",
 							"entries": [
-								"A weapon that has the burst fire property can make a normal single-target attack, or it can spray a 10-foot-cube area within normal range with shots. Each creature in the area must succeed on a DC 15 Dexterity saving throw or take the weapon's normal damage. This action uses ten pieces of ammunition."
+								"A weapon that has the burst fire property can make a normal single-target attack, or it can spray a 10-foot-cube area within normal range with shots. Each creature in the area must succeed on a {@dc 15} Dexterity saving throw or take the weapon's normal damage. This action uses ten pieces of ammunition."
 							]
 						},
 						{
@@ -5890,8 +5891,8 @@
 							"name": "Danse Macabre",
 							"entries": [
 								"{@i Haunt Bonus +4}",
-								"This haunted trap affects a 20-foot-radius sphere centered on an ancient but pristine instrument. When a creature enters the area, the trap's emanation manifests as the sound of distant, mournful music. A round later, a phantom performer appears and begins playing the instrument for the next minute. While the performer plays, any creature that enters or starts its turn in the haunted trap's area must succeed on a DC 14 Wisdom saving throw or float 20 feet into the air and be affected by the spell {@spell Otto's irresistible dance}. There they are joined by illusory dancers as they dance for the remainder of the performer's song. As an action, a dancing creature can repeat the saving throw to end the effect on itself, whereupon it falls 20 feet and takes {@dice 2d6} bludgeoning damage. If a creature's saving throw to resist the trap or to stop dancing is successful, the creature is immune to the haunted trap for the next 24 hours.",
-								"While the phantom performer plays, any creature within the haunted trap's area can use an action to try to convince the performer to stop playing, doing so with a successful DC 14 Charisma ({@skill Persuasion}) check. When the performer stops playing, all creatures affected by the haunted trap are freed from its effects and float to the ground safely."
+								"This haunted trap affects a 20-foot-radius sphere centered on an ancient but pristine instrument. When a creature enters the area, the trap's emanation manifests as the sound of distant, mournful music. A round later, a phantom performer appears and begins playing the instrument for the next minute. While the performer plays, any creature that enters or starts its turn in the haunted trap's area must succeed on a {@dc 14} Wisdom saving throw or float 20 feet into the air and be affected by the spell {@spell Otto's irresistible dance}. There they are joined by illusory dancers as they dance for the remainder of the performer's song. As an action, a dancing creature can repeat the saving throw to end the effect on itself, whereupon it falls 20 feet and takes {@dice 2d6} bludgeoning damage. If a creature's saving throw to resist the trap or to stop dancing is successful, the creature is immune to the haunted trap for the next 24 hours.",
+								"While the phantom performer plays, any creature within the haunted trap's area can use an action to try to convince the performer to stop playing, doing so with a successful {@dc 14} Charisma ({@skill Persuasion}) check. When the performer stops playing, all creatures affected by the haunted trap are freed from its effects and float to the ground safely."
 							]
 						},
 						{
@@ -5899,7 +5900,7 @@
 							"name": "Faceless Malice",
 							"entries": [
 								"{@i Haunt Bonus +2}",
-								"This haunted trap affects a 15-foot-cube in front of an ornate mirror hanging on a wall. When a visible creature enters the area, the trap's emanation manifests as the creature's distorted reflection in the mirror. If that creature is still in the area at the start of its next turn, it must succeed on a DC 12 Wisdom saving throw or be {@condition blinded}, {@condition deafened}, and rendered unable to speak for 1 minute. Additionally, an illusion makes it appear that the creature has had its face erased. The {@spell remove curse} spell ends this effect, as does destroying the mirror. The mirror has AC 12, 10 hit points, vulnerability to bludgeoning damage, and immunity to poison and psychic damage. After a creature fails its saving throw against the trap, the trap won't activate again for 24 hours.",
+								"This haunted trap affects a 15-foot-cube in front of an ornate mirror hanging on a wall. When a visible creature enters the area, the trap's emanation manifests as the creature's distorted reflection in the mirror. If that creature is still in the area at the start of its next turn, it must succeed on a {@dc 12} Wisdom saving throw or be {@condition blinded}, {@condition deafened}, and rendered unable to speak for 1 minute. Additionally, an illusion makes it appear that the creature has had its face erased. The {@spell remove curse} spell ends this effect, as does destroying the mirror. The mirror has AC 12, 10 hit points, vulnerability to bludgeoning damage, and immunity to poison and psychic damage. After a creature fails its saving throw against the trap, the trap won't activate again for 24 hours.",
 								{
 									"type": "image",
 									"href": {
@@ -5918,7 +5919,7 @@
 							"name": "Icon of the Lower Aerial Kingdoms",
 							"entries": [
 								"{@i Haunt Bonus +6}",
-								"This haunted trap is tied to the 10-foot-radius sphere surrounding an ominous, 1-foot-tall statue of a menacing, four-winged, birdlike figure. Once per day, when a creature enters the area, the trap's emanation manifests as the sound of distant flapping wings and a rush of warm air. If that creature is still in the area at the start of its next turn, it must succeed on a DC 16 Wisdom saving throw or be {@condition charmed} and {@condition incapacitated} for 1 minute. These conditions last until the creature is damaged or someone else uses an action to shake the creature. If the affected creature remains {@condition charmed} for the full minute, they are then affected as per the spell {@spell magic jar}, their soul entering the statue and being replaced by the spirit of a disembodied fiend. This effect ends when {@spell dispel evil and good} or a similar spell is cast on the affected creature, or when the statue is destroyed. The statue has AC 17, 15 hit points, and immunity to poison and psychic damage.",
+								"This haunted trap is tied to the 10-foot-radius sphere surrounding an ominous, 1-foot-tall statue of a menacing, four-winged, birdlike figure. Once per day, when a creature enters the area, the trap's emanation manifests as the sound of distant flapping wings and a rush of warm air. If that creature is still in the area at the start of its next turn, it must succeed on a {@dc 16} Wisdom saving throw or be {@condition charmed} and {@condition incapacitated} for 1 minute. These conditions last until the creature is damaged or someone else uses an action to shake the creature. If the affected creature remains {@condition charmed} for the full minute, they are then affected as per the spell {@spell magic jar}, their soul entering the statue and being replaced by the spirit of a disembodied fiend. This effect ends when {@spell dispel evil and good} or a similar spell is cast on the affected creature, or when the statue is destroyed. The statue has AC 17, 15 hit points, and immunity to poison and psychic damage.",
 								"This haunted trap manifests as the result of a fiendish influence. Casting {@spell dispel evil and good} on the statue permanently disarms the haunted trap."
 							]
 						},
@@ -5927,7 +5928,7 @@
 							"name": "Morbid Memory",
 							"entries": [
 								"{@i Haunt Bonus +0}",
-								"A morbid memory trap presents little danger, but it proves useful in revealing important and unsettling glimpses into an area's past. This haunted trap affects a single room or 30-foot-square area. When a creature enters the area, the trap's emanation manifests as faint, disembodied whispers. If that creature is still in the area at the start of its next turn, an illusory scene plays out, repeating some terrible event that happened in the area. This vision typically lasts 1 minute. When the vision ends, all creatures in the area that saw the illusion must succeed on a DC 10 Wisdom saving throw or become {@condition frightened} of the area for the next {@dice 1d4} rounds. {@condition Frightened} creatures must take the {@action Dash} action and move away from the haunted area by the safest available route on each of their turns, unless there is nowhere else to move. After the haunted trap is activated, it won't activate again for 24 hours."
+								"A morbid memory trap presents little danger, but it proves useful in revealing important and unsettling glimpses into an area's past. This haunted trap affects a single room or 30-foot-square area. When a creature enters the area, the trap's emanation manifests as faint, disembodied whispers. If that creature is still in the area at the start of its next turn, an illusory scene plays out, repeating some terrible event that happened in the area. This vision typically lasts 1 minute. When the vision ends, all creatures in the area that saw the illusion must succeed on a {@dc 10} Wisdom saving throw or become {@condition frightened} of the area for the next {@dice 1d4} rounds. {@condition Frightened} creatures must take the {@action Dash} action and move away from the haunted area by the safest available route on each of their turns, unless there is nowhere else to move. After the haunted trap is activated, it won't activate again for 24 hours."
 							]
 						}
 					]
@@ -6535,11 +6536,11 @@
 						],
 						[
 							"4",
-							"{@bold Limp.} Your speed on foot is reduced by 5 feet. You must make a DC 10 Dexterity saving throw after using the {@action Dash} action. If you fail the save, you fall {@condition prone}. Magical healing removes the limp."
+							"{@bold Limp.} Your speed on foot is reduced by 5 feet. You must make a {@dc 10} Dexterity saving throw after using the {@action Dash} action. If you fail the save, you fall {@condition prone}. Magical healing removes the limp."
 						],
 						[
 							"5-7",
-							"{@bold Internal Injury.} Whenever you attempt an action in combat, you must make a DC 15 Constitution saving throw. On a failed save, you lose your action and can't use reactions until the start of your next turn. The injury heals if you receive magical healing or if you spend ten days doing nothing but resting."
+							"{@bold Internal Injury.} Whenever you attempt an action in combat, you must make a {@dc 15} Constitution saving throw. On a failed save, you lose your action and can't use reactions until the start of your next turn. The injury heals if you receive magical healing or if you spend ten days doing nothing but resting."
 						],
 						[
 							"8-10",
@@ -6551,7 +6552,7 @@
 						],
 						[
 							"14-16",
-							"{@bold Festering Wound.} Your hit point maximum is reduced by 1 every 24 hours the wound persists. If your hit point maximum drops to 0, you die. The wound heals if you receive magical healing. Alternatively, someone can tend to the wound and make a DC 15 Wisdom ({@skill Medicine}) check once every 24 hours. After ten successes, the wound heals."
+							"{@bold Festering Wound.} Your hit point maximum is reduced by 1 every 24 hours the wound persists. If your hit point maximum drops to 0, you die. The wound heals if you receive magical healing. Alternatively, someone can tend to the wound and make a {@dc 15} Wisdom ({@skill Medicine}) check once every 24 hours. After ten successes, the wound heals."
 						],
 						[
 							"17-20",
@@ -6991,7 +6992,7 @@
 								],
 								[
 									"86-90",
-									"Whenever the character takes damage, he or she must succeed on a DC 15 Wisdom saving throw or be affected as though he or she failed a saving throw against the {@spell confusion} spell. The confusion effect lasts for 1 minute."
+									"Whenever the character takes damage, he or she must succeed on a {@dc 15} Wisdom saving throw or be affected as though he or she failed a saving throw against the {@spell confusion} spell. The confusion effect lasts for 1 minute."
 								],
 								[
 									"91-95",
@@ -7093,7 +7094,7 @@
 			"ruleType": "O",
 			"entries": [
 				"This optional rule makes it easier for a creature to be felled by massive damage.",
-				"When a creature takes damage from a single source equal to or greater than half its hit point maximum, it must succeed on a DC 15 Constitution saving throw or suffer a random effect determined by a roll on the System Shock table. For example, a creature that has a hit point maximum of 30 must make that Constitution save if it takes 15 damage or more from a single source.",
+				"When a creature takes damage from a single source equal to or greater than half its hit point maximum, it must succeed on a {@dc 15} Constitution saving throw or suffer a random effect determined by a roll on the System Shock table. For example, a creature that has a hit point maximum of 30 must make that Constitution save if it takes 15 damage or more from a single source.",
 				{
 					"type": "table",
 					"caption": "System Shock",
@@ -7256,7 +7257,7 @@
 						"The group is reduced to half its original size with no losses on the opposing side."
 					]
 				},
-				"To determine whether a creature or group of creatures flees, make a DC 10 Wisdom saving throw for the creature or the group's leader. If the opposition is overwhelming, the saving throw is made with disadvantage, or you can decide that the save fails automatically. If a group's leader can't make the saving throw for whatever reason, have the creature in the group with the next highest Charisma score make the saving throw instead.",
+				"To determine whether a creature or group of creatures flees, make a {@dc 10} Wisdom saving throw for the creature or the group's leader. If the opposition is overwhelming, the saving throw is made with disadvantage, or you can decide that the save fails automatically. If a group's leader can't make the saving throw for whatever reason, have the creature in the group with the next highest Charisma score make the saving throw instead.",
 				"On a failed save, the affected creature or group flees by the most expeditious route. If escape is impossible, the creature or group surrenders. If a creature or group that surrenders is attacked by its conquerors, the battle might resume, and it's unlikely that further attempts to flee or surrender will be made.",
 				"A failed saving throw isn't always to the adventurers' benefit. For example, an ogre that flees from combat might put the rest of the dungeon on alert or run off with treasure that the characters had hoped to plunder."
 			]
@@ -8005,15 +8006,15 @@
 										],
 										[
 											"4",
-											"When a creature that isn't an inhabitant of the island completes a long rest there, it must succeed on a DC 15 Wisdom saving throw or be {@condition blinded} for 8 hours."
+											"When a creature that isn't an inhabitant of the island completes a long rest there, it must succeed on a {@dc 15} Wisdom saving throw or be {@condition blinded} for 8 hours."
 										],
 										[
 											"5",
-											"Creatures must succeed on a DC 10 Constitution saving throw at the end of each hour they spend on the island. If they fail, they gain a 1-inch scar in a random place on their body. Only a {@spell remove curse} spell or similar magic removes the scar."
+											"Creatures must succeed on a {@dc 10} Constitution saving throw at the end of each hour they spend on the island. If they fail, they gain a 1-inch scar in a random place on their body. Only a {@spell remove curse} spell or similar magic removes the scar."
 										],
 										[
 											"6",
-											"When a creature that isn't an inhabitant of the island completes a long rest there, it must succeed on a DC 15 Wisdom saving throw or gain a random form of long-term madness (see \"{@book Madness|DMG|8|Madness}\" in chapter 8, \"{@book Running the Game|DMG|8|Running the Game},\" of the {@book Dungeon Master's Guide|DMG})."
+											"When a creature that isn't an inhabitant of the island completes a long rest there, it must succeed on a {@dc 15} Wisdom saving throw or gain a random form of long-term madness (see \"{@book Madness|DMG|8|Madness}\" in chapter 8, \"{@book Running the Game|DMG|8|Running the Game},\" of the {@book Dungeon Master's Guide|DMG})."
 										]
 									]
 								},
@@ -9080,7 +9081,7 @@
 							"type": "entries",
 							"name": "Ghost Fog",
 							"entries": [
-								"Ghost fog contains the souls of murder victims whose bodies were thrown into the sea. A DC 15 Intelligence ({@skill Arcana}) check reveals that this mist is ghost fog.",
+								"Ghost fog contains the souls of murder victims whose bodies were thrown into the sea. A {@dc 15} Intelligence ({@skill Arcana}) check reveals that this mist is ghost fog.",
 								"The souls of the dead want the living to join them. Every hour a ship is immersed in ghost fog, roll any die. On an even number, {@dice 2d4} hostile {@creature Specter||specters} appear and attack those on the ship. If a humanoid creature dies in ghost fog, its spirit rises as a specter that is hostile toward all creatures that aren't undead.",
 								"All non-undead creatures immersed in ghost fog are vulnerable to necrotic damage."
 							]
@@ -9089,7 +9090,7 @@
 							"type": "entries",
 							"name": "Shadowfell Fog",
 							"entries": [
-								"Shadowfell fog seeps into the Material Plane at thin points in the boundary between the two planes. A DC 15 Intelligence ({@skill Arcana}) check reveals that this mist is Shadowfell fog.",
+								"Shadowfell fog seeps into the Material Plane at thin points in the boundary between the two planes. A {@dc 15} Intelligence ({@skill Arcana}) check reveals that this mist is Shadowfell fog.",
 								"When a vessel travels through this oppressive, shadow-haunted miasma, its crew and passengers feel despair. Each hour a vessel is immersed in the fog, the crew must make a quality score check by rolling a {@dice d20} and adding their quality score to the number. The DC for this check is 10 + the number of hours the ship has been immersed in the Shadowfell fog. If the crew fails this check, their quality score decreases by 1 while within the Shadowfell fog and for 1 day afterward."
 							]
 						},
@@ -9097,7 +9098,7 @@
 							"type": "entries",
 							"name": "Wild Magic Fog",
 							"entries": [
-								"Few know the origins of wild magic fog, with some claiming it is the creation of capricious gods while others believe it is the result of magical experimentation gone wrong. A DC 15 Intelligence ({@skill Arcana}) check reveals that this mist is wild magic fog.",
+								"Few know the origins of wild magic fog, with some claiming it is the creation of capricious gods while others believe it is the result of magical experimentation gone wrong. A {@dc 15} Intelligence ({@skill Arcana}) check reveals that this mist is wild magic fog.",
 								"Whenever a creature in wild magic fog casts a spell of 1st level or higher, roll on the {@table Wild Magic Surge|PHB} table in chapter 3, \"{@book Classes|PHB|3},\" of the {@book Player's Handbook|PHB} to create a magical effect."
 							]
 						}
@@ -9116,7 +9117,7 @@
 					"name": "Kraken's Grave",
 					"entries": [
 						"When krakens die, their bodies often rot on the seafloor. In such cases, the ground absorbs the decaying kraken's supernatural energy, marking the area with a dark stain in the shape of the kraken's body. This stain is called a kraken's grave.",
-						"When a creature moves within 30 feet of a kraken's grave or starts its turn there, that creature must succeed on a DC 14 Dexterity ({@skill Stealth}) check or it disturbs the grave. If a creature disturbs the grave, a tendril made of lightning stretches from the ground and attacks the creature with a +7 bonus to hit. On a hit, the target takes 10 ({@dice 3d6}) lightning damage, and it must succeed on a DC 14 Constitution saving throw or become {@condition blinded} for the next {@dice 2d4} hours."
+						"When a creature moves within 30 feet of a kraken's grave or starts its turn there, that creature must succeed on a {@dc 14} Dexterity ({@skill Stealth}) check or it disturbs the grave. If a creature disturbs the grave, a tendril made of lightning stretches from the ground and attacks the creature with a +7 bonus to hit. On a hit, the target takes 10 ({@dice 3d6}) lightning damage, and it must succeed on a {@dc 14} Constitution saving throw or become {@condition blinded} for the next {@dice 2d4} hours."
 					]
 				},
 				{
@@ -9124,7 +9125,7 @@
 					"name": "Lure Lights",
 					"entries": [
 						"When aboleths die, their souls sometimes gather in clusters called lure lights. These 100-foot-diameter collections of pale, yellow lights are found in the deep ocean below depths of 1,000 feet. They glow with bright light in a 100-foot radius and dim light for another 100 feet.",
-						"Any creature that can see the lure lights must succeed on a DC 14 Wisdom saving throw or be {@condition charmed} by the lights for 24 hours or until the lights are destroyed. A creature that succeeds on the saving throw is immune to the effect of the lure lights for 24 hours.",
+						"Any creature that can see the lure lights must succeed on a {@dc 14} Wisdom saving throw or be {@condition charmed} by the lights for 24 hours or until the lights are destroyed. A creature that succeeds on the saving throw is immune to the effect of the lure lights for 24 hours.",
 						"While {@condition charmed} by the lights, a creature can't willingly move out of line of sight of them and defends them to the death. If forcibly moved away from the lights, the creature tries to find its way back to them. The creature can't take a short or long rest while under this effect. After 24 hours, the {@condition charmed} creature gains one level of {@condition exhaustion} and must repeat the saving throw if it is within line of sight of the lights, ending the effect on itself on a success. If the lights aren't within line of sight at this time, the creature succeeds automatically.",
 						"Each cluster of lure lights has AC 17, 100 hit points, and immunity to necrotic and poison damage."
 					]
@@ -9283,7 +9284,7 @@
 					"name": "Sapping Snow",
 					"entries": [
 						"Sapping snow\u2014that's what aquatic explorers call the powdery remains of dead organisms that cover the ocean floor. When this substance is imbued with necromantic magic, it becomes a life-leeching detritus.",
-						"Whenever a creature starts its turn touching sapping snow, that creature must succeed on a DC 15 Constitution saving throw or take 10 ({@dice 3d6}) necrotic damage. The creature's hit point maximum decreases by an amount equal to the necrotic damage taken. This reduction lasts until the creature finishes a long rest. If this effect reduces the creature's hit point maximum to 0, the creature dies, and its body immediately crumbles into sapping snow."
+						"Whenever a creature starts its turn touching sapping snow, that creature must succeed on a {@dc 15} Constitution saving throw or take 10 ({@dice 3d6}) necrotic damage. The creature's hit point maximum decreases by an amount equal to the necrotic damage taken. This reduction lasts until the creature finishes a long rest. If this effect reduces the creature's hit point maximum to 0, the creature dies, and its body immediately crumbles into sapping snow."
 					]
 				},
 				{
@@ -9648,7 +9649,7 @@
 							"type": "entries",
 							"name": "Memory Loss",
 							"entries": [
-								"A creature that leaves the Feywild must make a DC 10 Wisdom saving throw. Fey creatures automatically succeed on the saving throw, as do any creatures, like elves, that have the Fey Ancestry trait. A creature that fails the saving throw remembers nothing from its time spent in the Feywild. On a successful save, the creature's memories remain intact but are a little hazy. Any spell that can end a curse can restore the creature's lost memories."
+								"A creature that leaves the Feywild must make a {@dc 10} Wisdom saving throw. Fey creatures automatically succeed on the saving throw, as do any creatures, like elves, that have the Fey Ancestry trait. A creature that fails the saving throw remembers nothing from its time spent in the Feywild. On a successful save, the creature's memories remain intact but are a little hazy. Any spell that can end a curse can restore the creature's lost memories."
 							]
 						},
 						{
@@ -9704,7 +9705,7 @@
 					"name": "Shadowfell: Shadowfell Despair",
 					"entries": [
 						"A melancholic atmosphere pervades the Shadowfell. Extended forays to this plane can afflict characters with despair, as reflected in this optional rule.",
-						"When you deem it appropriate, though usually not more than once per day, you can require a character not native to the Shadowfell to make a DC 10 Wisdom saving throw. On a failure, the character is affected by despair. Roll a {@dice d6} to determine the effects, using the Shadowfell Despair table. You can substitute different despair effects of your own creation.",
+						"When you deem it appropriate, though usually not more than once per day, you can require a character not native to the Shadowfell to make a {@dc 10} Wisdom saving throw. On a failure, the character is affected by despair. Roll a {@dice d6} to determine the effects, using the Shadowfell Despair table. You can substitute different despair effects of your own creation.",
 						{
 							"type": "table",
 							"caption": "Shadowfell Despair",
@@ -9731,7 +9732,7 @@
 								]
 							]
 						},
-						"If a character is already suffering a despair effect and fails the saving throw, the new despair effect replaces the old one. After finishing a long rest, a character can attempt to overcome the despair with a DC 15 Wisdom saving throw. (The DC is higher because it's harder to shake off despair once it has taken hold.) On a successful save, the despair effect ends for that character.",
+						"If a character is already suffering a despair effect and fails the saving throw, the new despair effect replaces the old one. After finishing a long rest, a character can attempt to overcome the despair with a {@dc 15} Wisdom saving throw. (The DC is higher because it's harder to shake off despair once it has taken hold.) On a successful save, the despair effect ends for that character.",
 						"A {@spell calm emotions} spell removes despair, as does any spell or other magical effect that removes a curse."
 					]
 				},
@@ -9739,7 +9740,7 @@
 					"type": "entries",
 					"name": "Outer Planes: Psychic Dissonance",
 					"entries": [
-						"Each of the Outer Planes emanates a psychic dissonance that affects visitors of an incompatible alignment\u2014good creatures on the Lower Planes, evil ones on the Upper Planes\u2014if they spend too much time on the plane. You can reflect this dissonance with this optional rule. At the end of a long rest spent on an incompatible plane, a visitor must make a DC 10 Constitution saving throw. On a failed save, the creature gains one level of {@condition exhaustion}. Incompatibility between lawful and chaotic alignments doesn't have the same effect, so Mechanus and Limbo lack this quality."
+						"Each of the Outer Planes emanates a psychic dissonance that affects visitors of an incompatible alignment\u2014good creatures on the Lower Planes, evil ones on the Upper Planes\u2014if they spend too much time on the plane. You can reflect this dissonance with this optional rule. At the end of a long rest spent on an incompatible plane, a visitor must make a {@dc 10} Constitution saving throw. On a failed save, the creature gains one level of {@condition exhaustion}. Incompatibility between lawful and chaotic alignments doesn't have the same effect, so Mechanus and Limbo lack this quality."
 					]
 				},
 				{
@@ -9753,14 +9754,14 @@
 					"type": "entries",
 					"name": "Bytopia: Pervasive Goodwill",
 					"entries": [
-						"At the end of each long rest taken on this plane, a visitor that is neither lawful good nor neutral good must make a DC 10 Wisdom saving throw. On a failed save, the creature's alignment changes to lawful good or neutral good (whichever is closer to the creature's current alignment). The change becomes permanent if the creature doesn't leave the plane within {@dice 1d4} days. Otherwise, the creature's alignment reverts to normal after one day spent on a plane other than Bytopia. Casting the {@spell dispel evil and good} spell on the creature also restores its original alignment."
+						"At the end of each long rest taken on this plane, a visitor that is neither lawful good nor neutral good must make a {@dc 10} Wisdom saving throw. On a failed save, the creature's alignment changes to lawful good or neutral good (whichever is closer to the creature's current alignment). The change becomes permanent if the creature doesn't leave the plane within {@dice 1d4} days. Otherwise, the creature's alignment reverts to normal after one day spent on a plane other than Bytopia. Casting the {@spell dispel evil and good} spell on the creature also restores its original alignment."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Elysium: Overwhelming Joy",
 					"entries": [
-						"Visitors spending any time on this plane risk becoming trapped by overwhelming sensations of contentment and happiness. At the end of each long rest taken on this plane, a visitor must make a DC 10 Wisdom saving throw. On a failed save, the creature is unwilling to leave the plane before taking another long rest. After three failed saving throws, the creature never willingly leaves the plane and, if forcibly removed, does everything in its power to return to the plane. A {@spell dispel evil and good} spell removes this effect from the creature."
+						"Visitors spending any time on this plane risk becoming trapped by overwhelming sensations of contentment and happiness. At the end of each long rest taken on this plane, a visitor must make a {@dc 10} Wisdom saving throw. On a failed save, the creature is unwilling to leave the plane before taking another long rest. After three failed saving throws, the creature never willingly leaves the plane and, if forcibly removed, does everything in its power to return to the plane. A {@spell dispel evil and good} spell removes this effect from the creature."
 					]
 				},
 				{
@@ -9774,7 +9775,7 @@
 					"type": "entries",
 					"name": "The Beastlands: Beast Transformation",
 					"entries": [
-						"Whenever a visitor slays a beast native to the plane, the slayer must succeed on a DC 10 Charisma saving throw or become transformed (as the {@spell polymorph} spell) into the type of beast that was slain. In this form, the creature retains its intelligence and ability to speak. At the end of each long rest, the polymorphed creature can repeat the saving throw. On a successful saving throw, the creature returns to its true form. After three failed saving throws. the transformation can be undone only by a {@spell remove curse} spell or similar magic. "
+						"Whenever a visitor slays a beast native to the plane, the slayer must succeed on a {@dc 10} Charisma saving throw or become transformed (as the {@spell polymorph} spell) into the type of beast that was slain. In this form, the creature retains its intelligence and ability to speak. At the end of each long rest, the polymorphed creature can repeat the saving throw. On a successful saving throw, the creature returns to its true form. After three failed saving throws. the transformation can be undone only by a {@spell remove curse} spell or similar magic. "
 					]
 				},
 				{
@@ -9795,8 +9796,8 @@
 					"type": "entries",
 					"name": "Limbo: Power of the Mind",
 					"entries": [
-						"As an action, a creature on Limbo can make an Intelligence check to mentally move an object on the plane that it can see within 30 feet of it. The DC depends on the object's size: DC 5 for Tiny, DC 10 for Small, DC 15 for Medium, DC 20 for Large, and DC 25 for Huge or larger. On a successful check, the creature moves the object 5 feet plus 1 foot for every point by which it beat the DC.",
-						"A creature can also use an action to make an Intelligence check to alter a nonmagical object that isn't being worn or carried. The same rules for distance apply, and the DC is based on the object's size: DC 10 for Tiny, DC 15 for Small, DC 20 for Medium, and DC 25 for Large or larger. On a success, the creature changes the object into another nonliving form of the same size, such as turning a boulder into a ball of fire.",
+						"As an action, a creature on Limbo can make an Intelligence check to mentally move an object on the plane that it can see within 30 feet of it. The DC depends on the object's size: {@dc 5} for Tiny, {@dc 10} for Small, {@dc 15} for Medium, {@dc 20} for Large, and {@dc 25} for Huge or larger. On a successful check, the creature moves the object 5 feet plus 1 foot for every point by which it beat the DC.",
+						"A creature can also use an action to make an Intelligence check to alter a nonmagical object that isn't being worn or carried. The same rules for distance apply, and the DC is based on the object's size: {@dc 10} for Tiny, {@dc 15} for Small, {@dc 20} for Medium, and {@dc 25} for Large or larger. On a success, the creature changes the object into another nonliving form of the same size, such as turning a boulder into a ball of fire.",
 						"Finally, a creature can use an action to make an Intelligence check to stabilize a spherical area centered on the creature. The DC depends on the radius of the sphere. The base DC is 5 for a 10-foot-radius sphere; each additional 10 feet added to the radius increases the DC by 5. On a successful check, the creature prevents the area from being altered by the plane for 24 hours, or until the creature uses this ability again."
 					]
 				},
@@ -9804,15 +9805,15 @@
 					"type": "entries",
 					"name": "Pandemonium: Mad Winds",
 					"entries": [
-						"A visitor must make a DC 10 Wisdom saving throw after each hour spent among the howling winds. On a failed save, the creature gains one level of {@condition exhaustion}. A creature that reaches six levels of {@condition exhaustion} while on this plane doesn't die. Instead, the creature gains a random form of indefinite madness, as described in chapter 8, \"Running the Game.\" Finishing a long rest doesn't reduce a creature's {@condition exhaustion} level unless the creature can somehow escape the maddening winds."
+						"A visitor must make a {@dc 10} Wisdom saving throw after each hour spent among the howling winds. On a failed save, the creature gains one level of {@condition exhaustion}. A creature that reaches six levels of {@condition exhaustion} while on this plane doesn't die. Instead, the creature gains a random form of indefinite madness, as described in chapter 8, \"Running the Game.\" Finishing a long rest doesn't reduce a creature's {@condition exhaustion} level unless the creature can somehow escape the maddening winds."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "The Abyss: Abyssal Corruption",
 					"entries": [
-						"A non-evil visitor that finishes a long rest in the Abyss must make a DC 10 Charisma saving throw. On a failure, the creature becomes corrupted. Refer to the Abyssal Corruption table to determine the effects of this corruption. You can substitute different corruption effects of your own creation.",
-						"After finishing a long rest, a corrupted creature can make a DC 15 Charisma saving throw. On a successful save, the corruption effect ends. A {@spell dispel evil and good} spell or any magic that removes a curse also ends the effect.",
+						"A non-evil visitor that finishes a long rest in the Abyss must make a {@dc 10} Charisma saving throw. On a failure, the creature becomes corrupted. Refer to the Abyssal Corruption table to determine the effects of this corruption. You can substitute different corruption effects of your own creation.",
+						"After finishing a long rest, a corrupted creature can make a {@dc 15} Charisma saving throw. On a successful save, the corruption effect ends. A {@spell dispel evil and good} spell or any magic that removes a curse also ends the effect.",
 						"If a corrupted creature doesn't leave the plane within {@dice 1d4 + 2} days, its alignment changes to chaotic evil. Casting the {@spell dispel evil and good} spell on the creature restores its original alignment.",
 						{
 							"type": "table",
@@ -9840,7 +9841,7 @@
 								],
 								[
 									"10",
-									"{@bold Demonic Possession.} The character is possessed by a demonic entity until freed by {@spell dispel evil and good} or similar magic. Whenever the possessed character rolls a 1 on an attack roll, ability check, or saving throw, the demon takes control of the character and determines the character's behavior. At the end of each of the possessed character's turns, he or she can make a DC 15 Charisma saving throw. On a success, the character regains control until he or she rolls another 1."
+									"{@bold Demonic Possession.} The character is possessed by a demonic entity until freed by {@spell dispel evil and good} or similar magic. Whenever the possessed character rolls a 1 on an attack roll, ability check, or saving throw, the demon takes control of the character and determines the character's behavior. At the end of each of the possessed character's turns, he or she can make a {@dc 15} Charisma saving throw. On a success, the character regains control until he or she rolls another 1."
 								]
 							]
 						}
@@ -9858,7 +9859,7 @@
 					"type": "entries",
 					"name": "Hades: Vile Transformation",
 					"entries": [
-						"At the end of each long rest taken on the plane, a visitor must make a DC 10 Wisdom saving throw. On a failed save, the creature gains one level of {@condition exhaustion}, which can't be removed while the creature remains in Hades. If the creature reaches six levels of {@condition exhaustion}, it doesn't die. Instead, the creature permanently transforms into a larva, whereupon all levels of {@condition exhaustion} afflicting the creature are removed.",
+						"At the end of each long rest taken on the plane, a visitor must make a {@dc 10} Wisdom saving throw. On a failed save, the creature gains one level of {@condition exhaustion}, which can't be removed while the creature remains in Hades. If the creature reaches six levels of {@condition exhaustion}, it doesn't die. Instead, the creature permanently transforms into a larva, whereupon all levels of {@condition exhaustion} afflicting the creature are removed.",
 						"A larva is a miserable fiend that retains the facial features of its previous form but has the body of a fat worm. A larva has only a few faint memories of its previous life and the statistics in the {@creature larva|dmg} stat block. Hades is crawling with larvae. Night hags, liches, and rakshasas harvest them for use in vile rituals. Other fiends like to feed on them."
 					]
 				},
@@ -9866,14 +9867,14 @@
 					"type": "entries",
 					"name": "Gehenna: Cruel Hindrance",
 					"entries": [
-						"The plane's cruel nature makes it difficult for visitors to help one another. Whenever a visitor casts a spell with a beneficial effect, including a spell that restores hit points or removes a condition, the caster must first make a DC 10 Charisma saving throw. On a failed save, the spell fails, the spell slot is expended, and the action is wasted."
+						"The plane's cruel nature makes it difficult for visitors to help one another. Whenever a visitor casts a spell with a beneficial effect, including a spell that restores hit points or removes a condition, the caster must first make a {@dc 10} Charisma saving throw. On a failed save, the spell fails, the spell slot is expended, and the action is wasted."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "The Nine Hells: Pervasive Evil",
 					"entries": [
-						"Evil pervades the Nine Hells, and visitors to this plane feel its influence. At the end of each long rest taken on this plane, a visitor that isn't evil must make a DC 10 Wisdom saving throw. On a failed save, the creature's alignment changes to lawful evil. The change becomes permanent if the creature doesn't leave the plane within {@dice 1d4} days. Otherwise, the creature's alignment reverts to normal after one day spent on a plane other than the Nine Hells. Casting the {@spell dispel evil and good} spell on the creature also restores its original alignment."
+						"Evil pervades the Nine Hells, and visitors to this plane feel its influence. At the end of each long rest taken on this plane, a visitor that isn't evil must make a {@dc 10} Wisdom saving throw. On a failed save, the creature's alignment changes to lawful evil. The change becomes permanent if the creature doesn't leave the plane within {@dice 1d4} days. Otherwise, the creature's alignment reverts to normal after one day spent on a plane other than the Nine Hells. Casting the {@spell dispel evil and good} spell on the creature also restores its original alignment."
 					]
 				},
 				{
@@ -9894,7 +9895,7 @@
 					"type": "entries",
 					"name": "Mechanus: Imposing Order",
 					"entries": [
-						"At the end of each long rest taken on this plane, a visitor that isn't lawful neutral must make a DC 10 Wisdom saving throw. On a failed save, the creature's alignment changes to lawful neutral. The creature's alignment reverts to normal after one day spent on a plane other than Mechanus. Casting the {@spell dispel evil and good} spell on the creature also restores its original alignment."
+						"At the end of each long rest taken on this plane, a visitor that isn't lawful neutral must make a {@dc 10} Wisdom saving throw. On a failed save, the creature's alignment changes to lawful neutral. The creature's alignment reverts to normal after one day spent on a plane other than Mechanus. Casting the {@spell dispel evil and good} spell on the creature also restores its original alignment."
 					]
 				},
 				{
@@ -9936,7 +9937,7 @@
 			],
 			"entries": [
 				"A character who becomes a lycanthrope retains his or her statistics except as specified by lycanthrope type. The character gains the lycanthrope's speeds in non-humanoid form, damage immunities, traits, and actions that don't involve equipment. The character is proficient with the lycanthrope's natural attacks, such as its bite or claws, which deal damage as shown in the lycanthrope's statistics. The character can't speak while in animal form.",
-				"A non-lycanthrope humanoid hit by an attack that carries the curse of lycanthropy must succeed on a Constitution saving throw (DC 8 + the lycanthrope's proficiency bonus + the lycanthrope's Constitution modifier) or be cursed. If the character embraces the curse, his or her alignment becomes the one defined for the lycanthrope. The DM is free to decide that a change in alignment places the character under DM control until the curse of lycanthropy is removed.",
+				"A non-lycanthrope humanoid hit by an attack that carries the curse of lycanthropy must succeed on a Constitution saving throw ({@dc 8} + the lycanthrope's proficiency bonus + the lycanthrope's Constitution modifier) or be cursed. If the character embraces the curse, his or her alignment becomes the one defined for the lycanthrope. The DM is free to decide that a change in alignment places the character under DM control until the curse of lycanthropy is removed.",
 				"The following information applies to specific lycanthropes.",
 				{
 					"type": "entries",
@@ -10001,7 +10002,7 @@
 							"page": 237,
 							"entries": [
 								"A Humanoid who succumbs to a loup garou's lycanthropy becomes a {@creature werewolf} (see above). This form of lycanthropy can't be removed while the loup garou that inflicted the curse lives.",
-								"Once a loup garou is slain, a {@spell remove curse} spell cast during the night of a full moon on any afflicted werewolf it created forces the target to make a DC 17 Constitution saving throw. On a success, the curse is broken, and the target returns to its normal form and gains 3 levels of {@condition exhaustion}. On a failure, the curse remains, and the target automatically fails any saving throw made to break this curse for 1 month."
+								"Once a loup garou is slain, a {@spell remove curse} spell cast during the night of a full moon on any afflicted werewolf it created forces the target to make a {@dc 17} Constitution saving throw. On a success, the curse is broken, and the target returns to its normal form and gains 3 levels of {@condition exhaustion}. On a failure, the curse remains, and the target automatically fails any saving throw made to break this curse for 1 month."
 							]
 						}
 					]
@@ -11138,7 +11139,7 @@
 			"page": 140,
 			"ruleType": "V",
 			"entries": [
-				"A creature who tries and fails to cast a spell from a {@item spell scroll} must make a DC 10 Intelligence saving throw. If the saving throw fails, roll on the Scroll Mishap table.",
+				"A creature who tries and fails to cast a spell from a {@item spell scroll} must make a {@dc 10} Intelligence saving throw. If the saving throw fails, roll on the Scroll Mishap table.",
 				{
 					"type": "table",
 					"caption": "Scroll Mishap",
@@ -11745,7 +11746,7 @@
 					"name": "Crashing a Ship",
 					"entries": [
 						"If a ship moves into the space occupied by a creature or an object, the ship might crash. A ship avoids crashing if the creature or object is at least two sizes smaller than it.",
-						"When a ship crashes, it must immediately make a DC 10 Constitution saving throw. On a failed save, it takes damage to its hull based on the size of the creature or object it crashed into, as shown on the Crash Damage table. It also stops moving if the object or creature is one size smaller than it or larger. Otherwise the ship continues moving and the creature or object collided with moves to the nearest unoccupied space that isn't in the ship's path. At the DM's discretion, an object that is forced to move but is fixed in place is instead destroyed.",
+						"When a ship crashes, it must immediately make a {@dc 10} Constitution saving throw. On a failed save, it takes damage to its hull based on the size of the creature or object it crashed into, as shown on the Crash Damage table. It also stops moving if the object or creature is one size smaller than it or larger. Otherwise the ship continues moving and the creature or object collided with moves to the nearest unoccupied space that isn't in the ship's path. At the DM's discretion, an object that is forced to move but is fixed in place is instead destroyed.",
 						"A creature struck by a ship must make a Dexterity saving throw with a DC equal to 10 + the ship's Strength modifier, taking damage based on the ship's size (as shown on the Crash Damage table) on a failed save, or half as much damage on a successful one.",
 						{
 							"type": "table",
@@ -12402,7 +12403,7 @@
 					"name": "Going without a Long Rest",
 					"entries": [
 						"A long rest is never mandatory, but going without sleep does have its consequences. If you want to account for the effects of sleep deprivation on characters and creatures, use these rules.",
-						"Whenever you end a 24-hour period without finishing a long rest, you must succeed on a DC 10 Constitution saving throw or suffer one level of {@condition exhaustion}.",
+						"Whenever you end a 24-hour period without finishing a long rest, you must succeed on a {@dc 10} Constitution saving throw or suffer one level of {@condition exhaustion}.",
 						"It becomes harder to fight off {@condition exhaustion} if you stay awake for multiple days. After the first 24 hours, the DC increases by 5 for each consecutive 24-hour period without a long rest. The DC resets to 10 when you finish a long rest."
 					]
 				}
@@ -15126,7 +15127,7 @@
 							"type": "entries",
 							"name": "Raise Morale (First Mate Only)",
 							"entries": [
-								"The first mate can manage the crew's time to grant extended breaks, provide instruction, and generally improve the quality of life on the ship. Once every 24 hours, if the crew's quality score is 3 or lower, the first mate can make a DC 15 Charisma ({@skill Persuasion}) check. On a successful check, the crew's quality score increases by 1."
+								"The first mate can manage the crew's time to grant extended breaks, provide instruction, and generally improve the quality of life on the ship. Once every 24 hours, if the crew's quality score is 3 or lower, the first mate can make a {@dc 15} Charisma ({@skill Persuasion}) check. On a successful check, the crew's quality score increases by 1."
 							]
 						},
 						{

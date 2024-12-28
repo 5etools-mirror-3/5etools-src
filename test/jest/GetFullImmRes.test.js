@@ -106,3 +106,32 @@ describe("Nested rendering", () => {
 		).toBe("While bloodied: acid, bludgeoning; cold from nonmagical attacks");
 	});
 });
+
+describe(`"special" rendering`, () => {
+	it("Should render special resistances", () => {
+		expect(
+			Parser.getFullImmRes(
+				[
+					{
+						"special": "damage of the type matching the animated breath's form (acid, cold, fire, lightning, or poison)",
+					},
+				],
+			),
+		).toBe("damage of the type matching the animated breath's form (acid, cold, fire, lightning, or poison)");
+
+		expect(
+			Parser.getFullImmRes(
+				[
+					{
+						resist: [
+							"acid",
+						],
+					},
+					{
+						"special": "damage of the type matching the animated breath's form (cold, fire, lightning, or poison)",
+					},
+				],
+			),
+		).toBe("acid; damage of the type matching the animated breath's form (cold, fire, lightning, or poison)");
+	});
+});

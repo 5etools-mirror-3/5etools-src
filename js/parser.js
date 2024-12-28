@@ -1905,7 +1905,7 @@ Parser._getFullImmRes_getRenderedArray = (values, {isPlainText = false, isTitleC
 			const isSimpleCur = Parser._getFullImmRes_isSimpleTerm(val);
 
 			const rendCur = isSimpleCur
-				? Parser._getFullImmRes_getRenderedString(val, {isPlainText, isTitleCase})
+				? Parser._getFullImmRes_getRenderedString(val.special || val, {isPlainText, isTitleCase})
 				: Parser._getFullImmRes_getRenderedObject(val, {isPlainText, isTitleCase});
 
 			if (i === arr.length - 1) return rendCur;
