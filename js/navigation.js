@@ -103,14 +103,7 @@ class NavBar {
 		this._addElement_divider(NavBar._CAT_UTILITIES);
 		this._addElement_li(NavBar._CAT_UTILITIES, "blocklist.html", "Content Blocklist");
 		this._addElement_li(NavBar._CAT_UTILITIES, "manageprerelease.html", "Prerelease Content Manager");
-		this._addElement_li(NavBar._CAT_UTILITIES, "makebrew.html", "Homebrew Builder");
 		this._addElement_li(NavBar._CAT_UTILITIES, "managebrew.html", "Homebrew Manager");
-		this._addElement_divider(NavBar._CAT_UTILITIES);
-		this._addElement_li(NavBar._CAT_UTILITIES, "img", "Browse Local Images");
-		this._addElement_li(NavBar._CAT_UTILITIES, "prerelease", "Browse Local Prerelease Content");
-		this._addElement_li(NavBar._CAT_UTILITIES, "homebrew", "Browse Local Homebrew");
-		this._addElement_li(NavBar._CAT_UTILITIES, "_img", "Browse Local Homebrew Images");
-		this._addElement_li(NavBar._CAT_UTILITIES, "_img-brew", "Browse Local Homebrew Asset Repo");
 		this._addElement_buttonSplit(
 			NavBar._CAT_UTILITIES,
 			{
@@ -139,6 +132,15 @@ class NavBar {
 			},
 		);
 		this._addElement_divider(NavBar._CAT_UTILITIES);
+		// region Custom Modifications
+		this._addElement_label(NavBar._CAT_UTILITIES, `<p>Custom Additions.</p>`);
+		this._addElement_li(NavBar._CAT_UTILITIES, "img", "Browse Local SiteImages");
+		this._addElement_li(NavBar._CAT_UTILITIES, "prerelease", "Browse Local Prerelease Content");
+		this._addElement_li(NavBar._CAT_UTILITIES, "homebrew", "Browse Local Homebrew");
+		this._addElement_li(NavBar._CAT_UTILITIES, "_img", "Browse Local Homebrew Images");
+		this._addElement_li(NavBar._CAT_UTILITIES, "_img-brew", "Browse Local Homebrew Asset Repo");
+		this._addElement_divider(NavBar._CAT_UTILITIES);
+		// endregion
 		this._addElement_li(NavBar._CAT_UTILITIES, "inittrackerplayerview.html", "Initiative Tracker Player View");
 		this._addElement_divider(NavBar._CAT_UTILITIES);
 		this._addElement_li(NavBar._CAT_UTILITIES, "renderdemo.html", "Renderer Demo");
