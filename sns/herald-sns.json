@@ -1,0 +1,1378 @@
+{
+  "_meta": {
+    "optionalFeatureTypes": {
+      "DL": "Divine Lesson"
+    }
+  },
+  "class": [
+    {
+      "name": "Herald",
+      "source": "sns",
+      "hd": {
+        "number": 1,
+        "faces": 10
+      },
+      "defences": {
+        "wil": 4
+      },
+      "spellcastingAbility": "cha",
+      "casterProgression": "1/2",
+      "preparedSpells": "<$level$> / 2 + <$cha_mod$>",
+      "startingProficiencies": {
+        "armor": [
+          "light",
+          "medium",
+          "heavy",
+          "shields"
+        ],
+        "weapons": [
+          "simple",
+          "martial"
+        ],
+        "skills": [
+          {
+            "choose": {
+              "from": [
+                "athletics",
+                "acrobatics",
+                "brawn",
+                "history",
+                "insight",
+                "intimidation",
+                "medicine",
+                "persuasion",
+                "religion"
+              ],
+              "count": 2
+            }
+          }
+        ]
+      },
+      "classTableGroups": [
+        {
+          "colLabels": [
+            "{@filter Lessons Known|optionalfeatures|feature type=dl}",
+            "Smite Damage",
+            "{@filter Maneuvers Known|spells|Subschool=sanguine knot;spirited steed;tempered iron}",
+            "Maneuver Degree",
+            "{@filter Cantrips Known|spells|level=0|class=Paladin;Herald}"
+          ],
+          "rows": [
+            [
+              0,
+              0,
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              "{@dice 1d8}",
+              2,
+              "{@filter 1st|spells|Subschool=sanguine knot;spirited steed;tempered iron|level=1}",
+              2
+            ],
+            [
+              1,
+              "{@dice 1d8}",
+              2,
+              "{@filter 1st|spells|Subschool=sanguine knot;spirited steed;tempered iron|level=1}",
+              2
+            ],
+            [
+              1,
+              "{@dice 1d8}",
+              3,
+              "{@filter 1st|spells|Subschool=sanguine knot;spirited steed;tempered iron|level=1}",
+              2
+            ],
+            [
+              2,
+              "{@dice 2d8}",
+              3,
+              "{@filter 1st|spells|Subschool=sanguine knot;spirited steed;tempered iron|level=1}",
+              3
+            ],
+            [
+              2,
+              "{@dice 2d8}",
+              3,
+              "{@filter 1st|spells|Subschool=sanguine knot;spirited steed;tempered iron|level=1}",
+              3
+            ],
+            [
+              3,
+              "{@dice 2d8}",
+              4,
+              "{@filter 2nd|spells|Subschool=sanguine knot;spirited steed;tempered iron|level=2}",
+              3
+            ],
+            [
+              3,
+              "{@dice 2d8}",
+              4,
+              "{@filter 2nd|spells|Subschool=sanguine knot;spirited steed;tempered iron|level=2}",
+              3
+            ],
+            [
+              4,
+              "{@dice 3d8}",
+              4,
+              "{@filter 2nd|spells|Subschool=sanguine knot;spirited steed;tempered iron|level=2}",
+              4
+            ],
+            [
+              4,
+              "{@dice 3d8}",
+              5,
+              "{@filter 2nd|spells|Subschool=sanguine knot;spirited steed;tempered iron|level=2}",
+              4
+            ],
+            [
+              5,
+              "{@dice 3d8}",
+              5,
+              "{@filter 2nd|spells|Subschool=sanguine knot;spirited steed;tempered iron|level=2}",
+              4
+            ],
+            [
+              5,
+              "{@dice 3d8}",
+              5,
+              "{@filter 2nd|spells|Subschool=sanguine knot;spirited steed;tempered iron|level=2}",
+              4
+            ],
+            [
+              5,
+              "{@dice 4d8}",
+              6,
+              "{@filter 3rd|spells|Subschool=sanguine knot;spirited steed;tempered iron|level=3}",
+              4
+            ],
+            [
+              6,
+              "{@dice 4d8}",
+              6,
+              "{@filter 3rd|spells|Subschool=sanguine knot;spirited steed;tempered iron|level=3}",
+              4
+            ],
+            [
+              6,
+              "{@dice 4d8}",
+              6,
+              "{@filter 3rd|spells|Subschool=sanguine knot;spirited steed;tempered iron|level=3}",
+              4
+            ],
+            [
+              6,
+              "{@dice 4d8}",
+              7,
+              "{@filter 3rd|spells|Subschool=sanguine knot;spirited steed;tempered iron|level=3}",
+              4
+            ],
+            [
+              6,
+              "{@dice 5d8}",
+              7,
+              "{@filter 3rd|spells|Subschool=sanguine knot;spirited steed;tempered iron|level=3}",
+              4
+            ],
+            [
+              6,
+              "{@dice 5d8}",
+              7,
+              "{@filter 3rd|spells|Subschool=sanguine knot;spirited steed;tempered iron|level=3}",
+              4
+            ],
+            [
+              7,
+              "{@dice 6d8}",
+              8,
+              "{@filter 4th|spells|Subschool=sanguine knot;spirited steed;tempered iron|level=4}",
+              4
+            ],
+            [
+              7,
+              "{@dice 6d8}",
+              8,
+              "{@filter 4th|spells|Subschool=sanguine knot;spirited steed;tempered iron|level=4}",
+              4
+            ]
+          ]
+        },
+        {
+          "title": "Spell Slots per Spell Level",
+          "colLabels": [
+            "{@filter 1st|spells|level=1|class=Paladin;Herald}",
+            "{@filter 2nd|spells|level=2|class=Paladin;Herald}",
+            "{@filter 3rd|spells|level=3|class=Paladin;Herald}",
+            "{@filter 4th|spells|level=4|class=Paladin;Herald}",
+            "{@filter 5th|spells|level=5|class=Paladin;Herald}"
+          ],
+          "rowsSpellProgression": [
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              2,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              3,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              3,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              2,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              2,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              2,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              2,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              1,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              1,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              2,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              2,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              1
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              1
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              2
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              2
+            ]
+          ]
+        }
+      ],
+      "classFeatures": [
+        {
+          "classFeature": "First Subclass Tier 1|Herald|sns|1|sns",
+          "gainSubclassFeature": true
+        },
+        "Divine Sense|Herald|sns|1|sns",
+        "Lay on Hands|Herald|sns|1|sns",
+        "Spellcasting|Herald|sns|1|sns",
+        "Combat Maneuvers|Herald|sns|2|sns",
+        "Divine Smite|Herald|sns|2|sns",
+        "Divine Lessons|Herald|sns|3|sns",
+        {
+          "classFeature": "First Subclass Tier 2|Herald|sns|3|sns",
+          "gainSubclassFeature": true
+        },
+        "Ability Score Improvement|Herald|sns|4|sns",
+        "Empowered Smite|Herald|sns|4|sns",
+        "Extra Attack|Herald|sns|5|sns",
+        "Heraldic Sermon|Herald|sns|5|sns",
+        {
+          "classFeature": "First Subclass Tier 3|Herald|sns|5|sns",
+          "gainSubclassFeature": true
+        },
+        "Sacred Aura|Herald|sns|6|sns",
+        {
+          "classFeature": "First Subclass Tier 4|Herald|sns|7|sns",
+          "gainSubclassFeature": true
+        },
+        "Ability Score Improvement|Herald|sns|8|sns",
+        "Greater Empowered Smite|Herald|sns|8|sns",
+        "Inspiring Devotion|Herald|sns|9|sns",
+        {
+          "classFeature": "First Subclass Tier 5|Herald|sns|9|sns",
+          "gainSubclassFeature": true
+        },
+        "Improved Sacred Aura|Herald|sns|10|sns",
+        "Divine Warrior|Herald|sns|11|sns",
+        "Second Subclass Tier 1|Herald|sns|11|sns",
+        "Ability Score Improvement|Herald|sns|12|sns",
+        "Divine Recovery|Herald|sns|12|sns",
+        "Second Subclass Tier 2|Herald|sns|13|sns",
+        "Infectious Resolve|Herald|sns|14|sns",
+        "Second Subclass Tier 3|Herald|sns|15|sns",
+        "Ability Score Improvement|Herald|sns|16|sns",
+        "Second Subclass Tier 4|Herald|sns|17|sns",
+        "Aura Improvements|Herald|sns|18|sns",
+        "Ability Score Improvement|Herald|sns|19|sns",
+        "Second Subclass Tier 5|Herald|sns|19|sns",
+        "Holy Exemplar|Herald|sns|20|sns"
+      ],
+      "subclassTitle": "Herald Subclass"
+    }
+  ],
+  "subclass": [
+    {
+      "name": "Oath of Devotion",
+      "shortName": "Devotion",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "additionalSpells": [
+        {
+          "prepared": {
+            "3": [
+              "protection from evil and good|sns",
+              "sanctuary|sns"
+            ],
+            "5": [
+              "lesser restoration|sns",
+              "zone of truth|sns"
+            ],
+            "9": [
+              "beacon of hope|sns",
+              "dispel magic|sns"
+            ],
+            "13": [
+              "freedom of movement|sns",
+              "guardian of faith|sns"
+            ],
+            "17": [
+              "commune|sns",
+              "flame strike|sns"
+            ]
+          }
+        }
+      ],
+      "subclassFeatures": [
+        "Oath of Devotion|Herald|sns|Devotion|sns|1",
+        "New minor feature|Herald|sns|Devotion|sns|3",
+        "Aura of Devotion|Herald|sns|Devotion|sns|5",
+        "Purity of Spirit|Herald|sns|Devotion|sns|7",
+        "Holy Nimbus|Herald|sns|Devotion|sns|9"
+      ]
+    }
+  ],
+  "classFeature": [
+    {
+      "name": "Divine Sense",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "level": 1,
+      "entries": [
+        "Choose one of the following sets of enemies: 'celestials and fiends', 'fey and elementals', or 'aberrations and undead'. You can always sense when a creature of your chosen types is within 30 feet of you, but cannot determine their number, type, or location. As a bonus action, you can briefly enhance your senses to learn the location, number, and type of any creatures of your chosen types within 30 feet of you. When you do so, make a will attack against creatures of those types that are within range, with disadvantage if the creature's CR is higher than your herald level. This attack has the following outcomes:",
+        {
+          "type": "list",
+          "items": [
+            {
+              "type": "item",
+              "name": "Minor success",
+              "entries": [
+                "You learn the target's CR."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Standard success",
+              "entries": [
+                "You learn the target's identity and its CR."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Critical success",
+              "entries": [
+                "As standard success, and you may ask the DM 3 questions about the target's game statistics."
+              ]
+            }
+          ]
+        },
+        "Within the same radius, you also detect any locations that have been consecrated or desecrated, as with the {@spell hallow|sns} spell.",
+        "You can active this feature a number of times equal to your Charisma modifier, and regain spent uses upon finishing a long rest. Upon finishing a long rest, you may also swap your chosen set of creature types for another."
+      ]
+    },
+    {
+      "name": "Lay on Hands",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "level": 1,
+      "entries": [
+        "Your blessed touch can heal wounds. You have a pool of healing power that replenishes when you take a long rest. With that pool, you can restore a total number of hit points equal to your herald level x 6.",
+        "As an action, you can touch a creature and draw power from the pool to restore a number of hit points to that creature, up to the maximum amount remaining in your pool.",
+        "Alternatively, you can expend 6 hit points from your pool of healing to cure the target of one disease or neutralise one poison affecting it. You can cure multiple diseases and neutralise multiple poisons with a single use of Lay on Hands, expending hit points separately for each one.",
+        "This feature has no effect on undead and constructs."
+      ]
+    },
+    {
+      "name": "Spellcasting",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "level": 1,
+      "entries": [
+        "You have learned to draw on divine magic through meditation and devotion to your oath.",
+        {
+          "type": "entries",
+          "name": "Preparing and Casting Spells",
+          "entries": [
+            "The Herald table shows how many spell slots you have to cast your {@filter herald spells|spells|class=paladin;herald}. To cast one of your herald spells of 1st level or higher, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.",
+            "You prepare the list of herald spells that are available for you to cast, choosing from the herald spell list. When you do so, choose a number of herald spells equal to your Charisma modifier + half your herald level, rounded down (minimum of one spell). The spells must be of a level for which you have spell slots.",
+            "For example, if you are a 5th-level herald, you have four 1st-level and two 2nd-level spell slots. With a Charisma of 14, your list of prepared spells can include four spells of 1st or 2nd-level, in any combination. If you prepare the 1st-level spell {@spell cure wounds|sns}, you can cast it using a 1st-level or a 2nd-level slot. Casting the spell doesn't remove it from your list of prepared spells.",
+            "You can change your list of prepared spells when you finish a long rest. Preparing a new list of herald spells requires time spent in prayer and meditation: at least 1 minute per spell level for each spell on your list."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Spellcasting Ability",
+          "entries": [
+            "Charisma is your spellcasting ability for your herald spells, since their power derives from the strength of your convictions. You use your Charisma whenever a spell refers to your spellcasting ability."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Spellcasting Focus",
+          "entries": [
+            "You can use a {@item holy symbol|phb} as a spellcasting focus for your herald spells."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Combat Maneuvers",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "level": 2,
+      "entries": [
+        "At 2nd level, you gain the ability to use combat maneuvers. You gain proficiency in two combat traditions from the following list: {@filter Sanguine Knot|spells|Subschool=sanguine knot|}, {@filter Spirited Steed|spells|Subschool=spirited steed|}, or {@filter Tempered Iron|spells|Subschool=tempered iron|}. You learn two maneuvers of your choice from traditions you are proficient with.",
+        "You use your maneuvers by spending exertion points, but you do not gain an exertion pool. Instead, at the start of each of your turns you can expend spell slots of 1st-level or higher to gain exertion points that go into a temporary exertion pool which lasts until you start your next long rest. You gain 2 exertion points for a 1st-level spell slot, and 2 more for each spell slot level above 1st. Only spell slots gained from the herald class can be expended this way.",
+        "The Maneuvers Known column of the Herald table shows when you learn more maneuvers from a tradition you are proficient with, while the Maneuver Degree column shows the highest degree you can select maneuvers from at a given level.",
+        "Additionally, whenever you finish a long rest, you can choose one of the maneuvers you know and replace it with another maneuver of the same degree from a tradition you are proficient with."
+      ]
+    },
+    {
+      "name": "Divine Smite",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "level": 2,
+      "entries": [
+        "Starting at 2nd level, whenever you hit a creature wtih a weapon attack you can choose to deliver a divine smite that deals an additional {@dice 1d8} radiant damage. The amount of extra damage increases as you gain levels in this class, as shown in the Smite Damage column of the Herald Table.",
+        "You can use this feature a number of times equal to your proficiency bonus, and regain spent uses upon finishing a long rest."
+      ]
+    },
+    {
+      "name": "Divine Lessons",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "level": 3,
+      "entries": [
+        "In preparing to take your oath, you have learned a number of skills and tricks that can help you during your adventures. At 3rd level, you gain a {@filter divine lesson|optionalfeatures|feature type=dl} of your choice. The Lessons Known column of the Herald table shows when you learn more divine lessons."
+      ]
+    },
+    {
+      "name": "First Subclass Tier 1",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "level": 1,
+      "entries": [
+        "At 1st level, you gain the tier 1 feature from your first subclass"
+      ]
+    },
+    {
+      "name": "First Subclass Tier 2",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "level": 3,
+      "entries": [
+        "At 3rd level, you gain the tier 2 feature from your first subclass"
+      ]
+    },
+    {
+      "name": "First Subclass Tier 3",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "level": 5,
+      "entries": [
+        "At 5th level, you gain the tier 3 feature from your first subclass"
+      ]
+    },
+    {
+      "name": "First Subclass Tier 4",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "level": 7,
+      "entries": [
+        "At 7th level, you gain the tier 4 feature from your first subclass"
+      ]
+    },
+    {
+      "name": "First Subclass Tier 5",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "level": 9,
+      "entries": [
+        "At 9th level, you gain the tier 5 feature from your first subclass"
+      ]
+    },
+    {
+      "name": "Second Subclass Tier 1",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "level": 11,
+      "entries": [
+        "At 11th level, you gain the tier 1 feature from your second subclass"
+      ]
+    },
+    {
+      "name": "Second Subclass Tier 2",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "level": 13,
+      "entries": [
+        "At 13th level, you gain the tier 2 feature from your second subclass"
+      ]
+    },
+    {
+      "name": "Second Subclass Tier 3",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "level": 15,
+      "entries": [
+        "At 15th level, you gain the tier 3 feature from your second subclass"
+      ]
+    },
+    {
+      "name": "Second Subclass Tier 4",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "level": 17,
+      "entries": [
+        "At 17th level, you gain the tier 4 feature from your second subclass"
+      ]
+    },
+    {
+      "name": "Second Subclass Tier 5",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "level": 19,
+      "entries": [
+        "At 19th level, you gain the tier 5 feature from your second subclass"
+      ]
+    },
+    {
+      "name": "Empowered Smite",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "level": 4,
+      "entries": [
+        "At 4th level, you are able to manipulate magic to add extra power to your smites. Whenever you would use your Divine Smite feature, you can choose one of the following effects. Once you have used this feature you cannot do so again until you finish a long rest. Alternatively, you can empower a smite by expending a spell slot of 1st-level or higher.",
+        {
+          "type": "entries",
+          "name": "Igniting Smite",
+          "entries": [
+            "Your smite instead deals fire damage, and if the triggering attack scored a major success, the target takes {@dice 1d6} ongoing fire damage until it passes a passive save. The fire can also be put out as an action or by the environment, and exstinguishes itself after 1 minute."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Marking Smite",
+          "entries": [
+            "Your smite causes the target to shed bright light for 5 feet, and dim light for an additional 5 feet. The effect lasts for up to 1 minute, or until you target another creature with a weapon attack. As long as the effect lasts, the target gains no benefit from {@condition invisible|sns|invisibility} and has disadvantage on checks made to hide."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Repelling Smite",
+          "entries": [
+            "Your smite instead deals force damage, and if the triggering attack scored a major success, the target is pushed back 10 feet and knocked {@condition prone|sns}. On a standard success, the target is knocked back only 5 feet and is not knocked {@condition prone|sns}."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Ability Score Improvement",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "level": 4,
+      "entries": [
+        "When you reach 4th level, you can increase one ability score of your choice by 1. As normal, you can't increase an ability score above 20 using this feature. Additionally, you gain a feat."
+      ]
+    },
+    {
+      "name": "Ability Score Improvement",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "level": 8,
+      "entries": [
+        "At 8th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
+      ]
+    },
+    {
+      "name": "Ability Score Improvement",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "level": 12,
+      "entries": [
+        "At 12th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
+      ]
+    },
+    {
+      "name": "Ability Score Improvement",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "level": 16,
+      "entries": [
+        "At 16th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
+      ]
+    },
+    {
+      "name": "Ability Score Improvement",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "level": 19,
+      "entries": [
+        "At 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
+      ]
+    },
+    {
+      "name": "Empowered Attack",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "level": 5,
+      "entries": [
+        "From 5th level, when you use the Attack action, your main hand weapon's base damage is doubled. For example, a weapon with a damage of {@dice 1d6} + your Strength modifier deals {@dice 2d6} + double your Strength modifier instead."
+      ]
+    },
+    {
+      "name": "Heraldic Sermon",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "level": 5,
+      "entries": [
+        "Also at 5th level, your oath has so inspired you that your words seem to be imbued with magic when you talk about it. Choose one of the following features.",
+        {
+          "type": "entries",
+          "name": "Devout",
+          "entries": [
+            "You gain proficiency in the Persuasion skill. You have advantage when using this skill to influence others by discussing your oath or deity, and witnesses that hear your words are inspired to share any useful or important information they might have. This affects the Pray journey activity."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Evangelism",
+          "entries": [
+            "You gain proficiency in the Performance skill. You have advantage when using this skill to convert others through preaching about your oath or deity, and witnesses that hear your words are inspired to donate to your cause. This affects the Busk journey activity, but not Entertain."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Fearmonger",
+          "entries": [
+            "You gain proficiency in the Intimidation skill. You have advantage when using this skill and your faith to intimidate others, and witnesses with opposing views make obvious efforts to avoid you. This affects the Rob journey activity."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Sacred Aura",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "level": 6,
+      "entries": [
+        "At 6th level, you are able to manifest an aura that aids you and your allies. Each aura has a radius of 15 feet, is centred on you, and you must be conscious for your and your allies to benefit from it. You can have only one of the following auras active at a time, and can change which aura is active whenever you finish a long rest. At 18th level, the range of all auras increases to 30 feet.",
+        {
+          "type": "entries",
+          "name": "Aura of Courage",
+          "entries": [
+            "You and creatures of your choice within range cannot be {@condition frightened|sns}."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Aura of Resistance",
+          "entries": [
+            "You and creatures of your choice within range gain a bonus to non-armour defences equal to half your Charisma modifier (minimum 0)."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Aura of Willpower",
+          "entries": [
+            "You and creatures of your choice within range cannot be {@condition charmed|sns}."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Aura Improvements",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "level": 18,
+      "entries": [
+        "At 18th level, the range of all your Sacred Auras and Improved Sacred Auras increases to 30 feet."
+      ]
+    },
+    {
+      "name": "Greater Empowered Smite",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "level": 8,
+      "entries": [
+        "At 8th level you learn the following new empowerments for your smites, and can use this feature twice at no cost in between long rests. Alternatively, you can use an empowered smite by expending a spell slot of 1st-level or higher.",
+        {
+          "type": "entries",
+          "name": "Blinding Smite",
+          "entries": [
+            "If the triggering attack scored a major success, the target is {@condition blinded|sns} for 1 minute, or until it passes a passive save."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Disorienting Smite",
+          "entries": [
+            "Your smite instead deals psychic damage and if the triggering attack scored a major success, the target has disadvantage on armour attack rolls for 1 minute, or until it passes a passive save."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Taunting Smite",
+          "entries": [
+            "If the triggering attack scored a major success, the target takes an additional {@dice 1d6} radiant damage when making an armour attack against a creature other than you and cannot make opportunity attacks against anyone but you. This effect lasts up to 1 minute, or until the target passes a passive save."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Inspiring Devotion",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "level": 9,
+      "entries": [
+        "At 9th level, you can draw upon your oath for extra assistance in social situations. Choose one of the following features.",
+        {
+          "type": "entries",
+          "name": "Lend Faith",
+          "entries": [
+            "When an ally within 30 feet that can see and hear you would make an ability check you can inspire them with your faith, adding your Charisma modifier to the roll. Once you have used this feature you cannot do so again until you finish a short rest."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Reveal Heresy",
+          "entries": [
+            "You gain proficiency in the Insight skill, and gain an expertise die on Insight checks. Whenever a creature is lying to you, it makes a deception check against a DC equal to 10 + your Insight bonus. This check is made with disadvantage and done in secret by the DM. On a failure, you get a strong sense that they are being untruthful."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Truth of Conviction",
+          "entries": [
+            "Whenever you or an ally are telling the truth and make any Charisma ability check to do so, you can use this feature to treat any roll of 10 or less as an 11 for that roll. Once you have used this feature you cannot do so again until you finish a short rest."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Improved Sacred Aura",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "level": 10,
+      "entries": [
+        "At 10th level, you gain a more powerful aura that is active alongside your Sacred Aura. The range of this aura is the same, and you can only have one Improved Sacred Aura active at a time. You can swap your active improved aura upon finishing a long rest.",
+        {
+          "type": "entries",
+          "name": "Aura of Healing",
+          "entries": [
+            "Whenever you or an ally cast a spell to heal yourself or another ally while both a within your aura, both the spellcaster and target gain additional hit points equal to your Charisma modifier plus your proficiency bonus."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Aura of Overcoming",
+          "entries": [
+            "Weapon armour attacks made by allies within your aura ignore bludgeoning, piercing, and slashing resistances and immunities."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Aura of Smiting",
+          "entries": [
+            "Whenever an ally within your aura scores a critical hit with a weapon armour attack, they deal additional radiant damage equal to half your herald level."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Divine Warrior",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "level": 11,
+      "entries": [
+        "Beginning at 11th level, each of your strikes is infused with divine might. Whenever you hit a creature with a melee weapon attack, you deal an extra {@dice 1d8} radiant damage."
+      ]
+    },
+    {
+      "name": "Divine Recovery",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "level": 12,
+      "entries": [
+        "At 12th level, you can transform divine energy into more easily manipulated magics. You can use a bonus action to recite a short prayer or mantra and expend a use of Channel Divinity to regain a spell slot of 3rd-level or less.",
+        "Once you have used this feature three times, you cannot do so again until you finish a long rest."
+      ]
+    },
+    {
+      "name": "Infectious Resolve",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "level": 14,
+      "entries": [
+        "Starting at 14th level, you can use your action to touch one willing creature (or yourself) and choose one of the following effects.",
+        {
+          "type": "list",
+          "items": [
+            {
+              "type": "item",
+              "name": "All In",
+              "entries": [
+                "The target gains advantage on its next weapon armour attack, and deals an extra {@dice 1d8} radiant damage on a hit."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Iron Will",
+              "entries": [
+                "For the next minute, as long as you are conscious, will spell attacks against the target have advantage."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Walk It Off",
+              "entries": [
+                "One spell or condition of the target's choice affecting them ends"
+              ]
+            }
+          ]
+        },
+        "Once you have used this feature a number of times equal to your Charisma modifier, you cannot do so again until you finish a long rest."
+      ]
+    },
+    {
+      "name": "Holy Exemplar",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "level": 20,
+      "entries": [
+        "At 20th level, your deity constantly watches over you. Even death cannot touch you as you recover from mortal wounds in a flash of holy light, a sudden swelling of unnatural darkness, or another expression of potent divine power. When you die after being reduced to 0 hit points by an attack or spell, after {@dice 1d4} rounds you return to life with 112 hit points. Once you have used this feature, you cannot do so again until you finish a long rest."
+      ]
+    }
+  ],
+  "subclassFeature": [
+    {
+      "name": "Oath of Devotion",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "subclassShortName": "Devotion",
+      "subclassSource": "sns",
+      "level": 1,
+      "entries": [
+        "The Oath of Devotion binds a paladin to the loftiest ideals of justice, virtue, and order. Sometimes called cavaliers, white knights, or holy warriors, these paladins meet the ideal of the knight in shining armor, acting with honor in pursuit of justice and the greater good. They hold themselves to the highest standards of conduct, and some, for better or worse, hold the rest of the world to the same standards. Many who swear this oath are devoted to gods of law and good and use their gods' tenets as the measure of their devotion. They hold angels\u2014the perfect servants of good\u2014as their ideals, and incorporate images of angelic wings into their helmets or coats of arms.",
+        {
+          "type": "refSubclassFeature",
+          "subclassFeature": "Tenets of Devotion|Herald|sns|Devotion|sns|1"
+        },
+        {
+          "type": "refSubclassFeature",
+          "subclassFeature": "Oath Spells|Herald|sns|Devotion|sns|1"
+        },
+        {
+          "type": "refSubclassFeature",
+          "subclassFeature": "Channel Divinity: Sacred Weapon|Herald|sns|Devotion|sns|1"
+        },
+        {
+          "type": "refSubclassFeature",
+          "subclassFeature": "Channel Divinity: Turn the Unholy|Herald|sns|Devotion|sns|1"
+        }
+      ]
+    },
+    {
+      "name": "Channel Divinity: Sacred Weapon",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "subclassShortName": "Devotion",
+      "subclassSource": "sns",
+      "level": 1,
+      "header": 1,
+      "consumes": {
+        "name": "Channel Divinity"
+      },
+      "entries": [
+        "As an action, you can imbue one weapon that you are holding with positive energy, using your Channel Divinity. For 1 minute, you add your Charisma modifier to attack rolls made with that weapon (with a minimum bonus of +1). The weapon also emits bright light in a 20-foot radius and dim light 20 feet beyond that. If the weapon is not already magical, it becomes magical for the duration.",
+        "You can end this effect on your turn as part of any other action. If you are no longer holding or carrying this weapon, or if you fall {@condition unconscious}, this effect ends."
+      ]
+    },
+    {
+      "name": "Channel Divinity: Turn the Unholy",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "subclassShortName": "Devotion",
+      "subclassSource": "sns",
+      "level": 1,
+      "header": 1,
+      "consumes": {
+        "name": "Channel Divinity"
+      },
+      "entries": [
+        "As an action, you present your holy symbol and speak a prayer censuring fiends and undead, using your Channel Divinity. Each fiend or undead that can see or hear you within 30 feet of you must make a Wisdom saving throw. If the creature fails its saving throw, it is turned for 1 minute or until it takes damage.",
+        "A turned creature must spend its turns trying to move as far away from you as it can, and it can't willingly move to a space within 30 feet of you. It also can't take reactions. For its action, it can use only the {@action Dash} action or try to escape from an effect that prevents it from moving. If there's nowhere to move, the creature can use the {@action Dodge} action."
+      ]
+    },
+    {
+      "name": "Oath Spells",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "subclassShortName": "Devotion",
+      "subclassSource": "sns",
+      "level": 1,
+      "header": 1,
+      "entries": [
+        "You gain oath spells at the paladin levels listed.",
+        {
+          "type": "table",
+          "caption": "Oath of Devotion Spells",
+          "colLabels": [
+            "Paladin Level",
+            "Spells"
+          ],
+          "colStyles": [
+            "col-2 text-center",
+            "col-10"
+          ],
+          "rows": [
+            [
+              "3rd",
+              "{@spell protection from evil and good|sns}, {@spell sanctuary|sns}"
+            ],
+            [
+              "5th",
+              "{@spell lesser restoration|sns}, {@spell zone of truth|sns}"
+            ],
+            [
+              "9th",
+              "{@spell beacon of hope|sns}, {@spell dispel magic|sns}"
+            ],
+            [
+              "13th",
+              "{@spell freedom of movement|sns}, {@spell guardian of faith|sns}"
+            ],
+            [
+              "17th",
+              "{@spell commune|sns}, {@spell flame strike|sns}"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Tenets of Devotion",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "subclassShortName": "Devotion",
+      "subclassSource": "sns",
+      "level": 1,
+      "header": 1,
+      "entries": [
+        "Though the exact words and strictures of the Oath of Devotion vary, paladins of this oath share these tenets.",
+        {
+          "type": "entries",
+          "entries": [
+            {
+              "type": "entries",
+              "name": "Honesty",
+              "entries": [
+                "Don't lie or cheat. Let your word be your promise."
+              ]
+            }
+          ]
+        },
+        {
+          "type": "entries",
+          "entries": [
+            {
+              "type": "entries",
+              "name": "Courage",
+              "entries": [
+                "Never fear to act, though caution is wise."
+              ]
+            }
+          ]
+        },
+        {
+          "type": "entries",
+          "entries": [
+            {
+              "type": "entries",
+              "name": "Compassion",
+              "entries": [
+                "Aid others, protect the weak, and punish those who threaten them. Show mercy to your foes, but temper it with wisdom."
+              ]
+            }
+          ]
+        },
+        {
+          "type": "entries",
+          "entries": [
+            {
+              "type": "entries",
+              "name": "Honor",
+              "entries": [
+                "Treat others with fairness, and let your honorable deeds be an example to them. Do as much good as possible while causing the least amount of harm."
+              ]
+            }
+          ]
+        },
+        {
+          "type": "entries",
+          "entries": [
+            {
+              "type": "entries",
+              "name": "Duty",
+              "entries": [
+                "Be responsible for your actions and their consequences, protect those entrusted to your care, and obey those who have just authority over you."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "New minor feature",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "subclassShortName": "Devotion",
+      "subclassSource": "sns",
+      "level": 3,
+      "header": 2,
+      "entries": [
+        "?"
+      ]
+    },
+    {
+      "name": "Aura of Devotion",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "subclassShortName": "Devotion",
+      "subclassSource": "sns",
+      "level": 5,
+      "header": 2,
+      "entries": [
+        "Starting at 7th level, you and friendly creatures within 10 feet of you can't be {@condition charmed} while you are conscious.",
+        "At 18th level, the range of this aura increases to 30 feet."
+      ]
+    },
+    {
+      "name": "Purity of Spirit",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "subclassShortName": "Devotion",
+      "subclassSource": "sns",
+      "level": 7,
+      "header": 2,
+      "entries": [
+        "Beginning at 15th level, you are always under the effects of a {@spell protection from evil and good} spell."
+      ]
+    },
+    {
+      "name": "Holy Nimbus",
+      "source": "sns",
+      "className": "Herald",
+      "classSource": "sns",
+      "subclassShortName": "Devotion",
+      "subclassSource": "sns",
+      "level": 9,
+      "header": 2,
+      "entries": [
+        "At 20th level, as an action, you can emanate an aura of sunlight. For 1 minute, bright light shines from you in a 30-foot radius, and dim light shines 30 feet beyond that.",
+        "Whenever an enemy creature starts its turn in the bright light, the creature takes 10 radiant damage.",
+        "In addition, for the duration, you have advantage on saving throws against spells cast by fiends or undead.",
+        "Once you use this feature, you can't use it again until you finish a long rest."
+      ]
+    }
+  ],
+  "optionalfeature": [
+    {
+      "name": "Bestowed Understanding",
+      "source": "sns",
+      "featureType": [
+        "DL"
+      ],
+      "entries": [
+        "When attempting to understand a language with which you are not proficient (whether spoken or written), you can make a DC 15 Insight check to understand the basic message. If the language is considered forgotten, you roll with disadvantage. You can do so a number of times equal to your Wisdom modifier, and regain spent uses upon finishing a long rest."
+      ]
+    },
+    {
+      "name": "Divine Health",
+      "source": "sns",
+      "featureType": [
+        "DL"
+      ],
+      "entries": [
+        "You are immune to disease and have advantage on saves made to resist the {@condition poisoned} condition."
+      ]
+    },
+    {
+      "name": "Divine Vision",
+      "source": "sns",
+      "featureType": [
+        "DL"
+      ],
+      "entries": [
+        "You gain 60 feet of darkvision. In addition, you always have the {@spell See Invisibility|sns} spell prepared and can use this feature once per long rest to cast it withuot expending a spell slot."
+      ]
+    },
+    {
+      "name": "Do Without",
+      "source": "sns",
+      "featureType": [
+        "DL"
+      ],
+      "entries": [
+        "Your divine connection and years of training combine to allow you to ignore the first level of {@condition fatigue|sns} you would gain, effectively increasing the number of fatigue levels you can track by 1."
+      ]
+    },
+    {
+      "name": "Exemplary",
+      "source": "sns",
+      "featureType": [
+        "DL"
+      ],
+      "entries": [
+        "You gain an expertise die on Acrobatics and Athletics checks made to climb, jump, run, and swim. This affects the Chronicle and Seek Shelter journey activities, but no others. When your party makes a group Acrobatics or Athletics check, you may apply the results of your roll to yourself and one ally. You can choose which ally to apply your result to after everyone has rolled, but must do so before the DM says whether you succeed or fail. This part of the lesson does not affect journey activities."
+      ]
+    },
+    {
+      "name": "Glorious Purpose",
+      "source": "sns",
+      "featureType": [
+        "DL"
+      ],
+      "entries": [
+        "When you agree to undertake a quest that specifically fulfills the tenets of your herald subclass, you gain proficiency with a skill that will be crucial to completing that quest. The skill is chosen by the DM. If you are already proficient with the skill, you gain an expertise die instead. The benefits of this divine lesson do not change until the quest has been completed."
+      ]
+    },
+    {
+      "name": "Heraldic Order",
+      "source": "sns",
+      "featureType": [
+        "DL"
+      ],
+      "entries": [
+        "Whenever you take a long rest in a major city, roll {@dice 1d6}. On a result of 4 or higher the merchants who you purchase your default supplies from recognise you as a herald of an order they either fear or respect and charge you nothing, resulting in you retaining 1gp. If you insist on paying, and therefore foregoing this gold, they may offer you information about individuals or places that might be of interest to your heraldic order."
+      ]
+    },
+    {
+      "name": "Miraculous Discovery",
+      "source": "sns",
+      "featureType": [
+        "DL"
+      ],
+      "entries": [
+        "You gain an expertise die on Investigation checks. Additionally, you can always choose to use your Charisma when making Investigation checks."
+      ]
+    },
+    {
+      "name": "Naturalist",
+      "source": "sns",
+      "featureType": [
+        "DL"
+      ],
+      "entries": [
+        "Choose one type of terrain: arctic, coast, desert, forest, grassland, mountain, subterranean, or swamp. You gain an expertise die on Nature and Survival checks made in this terrain. In addition, once each week, you may cure yourself of 1 level of {@condition fatigue|sns}."
+      ]
+    },
+    {
+      "name": "Prophetic Protection",
+      "source": "sns",
+      "featureType": [
+        "DL"
+      ],
+      "entries": [
+        "Whenever you would trigger a trap, the DM makes a secret Charisma (Perception) check for you against the DC to spot the trap. On a success, you do not spot the trap but get a strong sense that moving any further will put you in danger."
+      ]
+    },
+    {
+      "name": "Seek Truths",
+      "source": "sns",
+      "featureType": [
+        "DL"
+      ],
+      "entries": [
+        "You gain an expertise die on Insight checks made to discern the truth. This affects the Gossip journey activity. In addition, after you have made a successful Insight check opposed by a creature's Deception check, you have advantage on Insight checks made against it for 24 hours."
+      ]
+    },
+    {
+      "name": "Sense Import",
+      "source": "sns",
+      "featureType": [
+        "DL"
+      ],
+      "entries": [
+        "Your Divine Sense extends to detect whenever you enter a place that is or once was of great holy or unholy significance, and you learn basic information about why or to whom it was important. Additionally, you have advantage on checks made to learn more information about the area while you are there."
+      ]
+    },
+    {
+      "name": "Silvered Tongue",
+      "source": "sns",
+      "featureType": [
+        "DL"
+      ],
+      "entries": [
+        "You gain an expertise die on Intimidation and Persuasion checks. In addition, when you successfully intimidate or persuade a creature, you have advantage on Intimidation and Persuasion checks made against it for the next 24 hours."
+      ]
+    },
+    {
+      "name": "Undaunted",
+      "source": "sns",
+      "featureType": [
+        "DL"
+      ],
+      "entries": [
+        "While exploring a place which you have never been to before, you can use your reaction to gain advantage on ability checks and armour attack rolls until the end of your next turn. You can do so a number of times equal to your Wisdom modifier, and regain spent uses upon finishing a long rest."
+      ]
+    }
+  ]
+}
