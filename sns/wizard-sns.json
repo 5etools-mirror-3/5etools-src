@@ -1,0 +1,1122 @@
+{
+  "_meta": {
+    "optionalFeatureTypes": {
+      "ES": "Elective Studies"
+    }
+  },
+  "class": [
+    {
+      "name": "Wizard",
+      "source": "sns",
+      "hd": {
+        "number": 1,
+        "faces": 6
+      },
+      "defences": {
+        "ref": 2,
+        "wil": 2
+      },
+      "spellcastingAbility": "int",
+      "casterProgression": "full",
+      "preparedSpells": "<$level$> + <$int_mod$>",
+      "cantripProgression": [
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "startingProficiencies": {
+        "weapons": [
+          "simple knife weapons",
+          "blowguns",
+          "slings"
+        ],
+        "skills": [
+          {
+            "choose": {
+              "from": [
+                "arcana",
+                "history",
+                "insight",
+                "investigation",
+                "medicine",
+                "religion"
+              ],
+              "count": 2
+            }
+          }
+        ]
+      },
+      "classTableGroups": [
+        {
+          "colLabels": [
+            "{@filter Studies Known|optionalfeatures|feature type=es}",
+            "{@filter Cantrips Known|spells|level=0|class=Wizard}"
+          ],
+          "rows": [
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              5
+            ]
+          ]
+        },
+        {
+          "title": "Spell Slots per Spell Level",
+          "colLabels": [
+            "{@filter 1st|spells|level=1|class=Wizard}",
+            "{@filter 2nd|spells|level=2|class=Wizard}",
+            "{@filter 3rd|spells|level=3|class=Wizard}",
+            "{@filter 4th|spells|level=4|class=Wizard}",
+            "{@filter 5th|spells|level=5|class=Wizard}",
+            "{@filter 6th|spells|level=6|class=Wizard}",
+            "{@filter 7th|spells|level=7|class=Wizard}",
+            "{@filter 8th|spells|level=8|class=Wizard}",
+            "{@filter 9th|spells|level=9|class=Wizard}"
+          ],
+          "rowsSpellProgression": [
+            [
+              2,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              3,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              2,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              2,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              2,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              2,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              2,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              2,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              2,
+              1,
+              1,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              2,
+              1,
+              1,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              2,
+              1,
+              1,
+              1,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              2,
+              1,
+              1,
+              1,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              2,
+              1,
+              1,
+              1,
+              1
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              3,
+              1,
+              1,
+              1,
+              1
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              3,
+              2,
+              1,
+              1,
+              1
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              3,
+              2,
+              2,
+              1,
+              1
+            ]
+          ]
+        }
+      ],
+      "classFeatures": [
+        {
+          "classFeature": "First Subclass Tier 1|Wizard|sns|1|sns",
+          "gainSubclassFeature": true
+        },
+        "Spellcasting|Wizard|sns|1|sns",
+        "Arcane Recovery|Wizard|sns|1|sns",
+        "Elective Studies|Wizard|sns|2|sns",
+        {
+          "classFeature": "First Subclass Tier 2|Wizard|sns|3|sns",
+          "gainSubclassFeature": true
+        },
+        "Ability Score Improvement|Wizard|sns|4|sns",
+        "Signature Spell (1st-level)|Wizard|sns|5|sns",
+        {
+          "classFeature": "First Subclass Tier 3|Wizard|sns|5|sns",
+          "gainSubclassFeature": true
+        },
+        "Spell Study|Wizard|sns|6|sns",
+        {
+          "classFeature": "First Subclass Tier 4|Wizard|sns|7|sns",
+          "gainSubclassFeature": true
+        },
+        "Ability Score Improvement|Wizard|sns|8|sns",
+        "Wizard's Flair|Wizard|sns|9|sns",
+        {
+          "classFeature": "First Subclass Tier 5|Wizard|sns|9|sns",
+          "gainSubclassFeature": true
+        },
+        "Signature Spell (2nd-level)|Wizard|sns|10|sns",
+        "Second Subclass Tier 1|Wizard|sns|11|sns",
+        "Ability Score Improvement|Wizard|sns|12|sns",
+        "Second Subclass Tier 2|Wizard|sns|13|sns",
+        "Arcane Defences|Wizard|sns|14|sns",
+        "Second Subclass Tier 3|Wizard|sns|15|sns",
+        "Ability Score Improvement|Wizard|sns|16|sns",
+        "Signature Spell (3rd-level)|Wizard|sns|17|sns",
+        "Second Subclass Tier 4|Wizard|sns|17|sns",
+        "Spell Intensity|Wizard|sns|18|sns",
+        "Ability Score Improvement|Wizard|sns|19|sns",
+        "Second Subclass Tier 5|Wizard|sns|19|sns",
+        "Archmage|Wizard|sns|20|sns"
+      ],
+      "subclassTitle": "Wizard Subclass"
+    }
+  ],
+  "subclass": [
+    {
+      "name": "School of Abjuration",
+      "shortName": "Abjuration",
+      "source": "sns",
+      "className": "Wizard",
+      "classSource": "sns",
+      "subclassFeatures": [
+        "School of Abjuration|Wizard|sns|Abjuration|sns|1",
+        "Projected Ward|Wizard|sns|Abjuration|sns|3",
+        "New major feature|Wizard|sns|Abjuration|sns|5",
+        "Improved Abjuration|Wizard|sns|Abjuration|sns|7",
+        "Spell Resistance|Wizard|sns|Abjuration|sns|9"
+      ]
+    }
+  ],
+  "classFeature": [
+    {
+      "name": "First Subclass Tier 1",
+      "source": "sns",
+      "className": "Wizard",
+      "classSource": "sns",
+      "level": 1,
+      "entries": [
+        "At 1st level, you gain the tier 1 feature from your first subclass"
+      ]
+    },
+    {
+      "name": "First Subclass Tier 2",
+      "source": "sns",
+      "className": "Wizard",
+      "classSource": "sns",
+      "level": 3,
+      "entries": [
+        "At 3rd level, you gain the tier 2 feature from your first subclass"
+      ]
+    },
+    {
+      "name": "First Subclass Tier 3",
+      "source": "sns",
+      "className": "Wizard",
+      "classSource": "sns",
+      "level": 5,
+      "entries": [
+        "At 5th level, you gain the tier 3 feature from your first subclass"
+      ]
+    },
+    {
+      "name": "First Subclass Tier 4",
+      "source": "sns",
+      "className": "Wizard",
+      "classSource": "sns",
+      "level": 7,
+      "entries": [
+        "At 7th level, you gain the tier 4 feature from your first subclass"
+      ]
+    },
+    {
+      "name": "First Subclass Tier 5",
+      "source": "sns",
+      "className": "Wizard",
+      "classSource": "sns",
+      "level": 9,
+      "entries": [
+        "At 9th level, you gain the tier 5 feature from your first subclass"
+      ]
+    },
+    {
+      "name": "Second Subclass Tier 1",
+      "source": "sns",
+      "className": "Wizard",
+      "classSource": "sns",
+      "level": 11,
+      "entries": [
+        "At 11th level, you gain the tier 1 feature from your second subclass"
+      ]
+    },
+    {
+      "name": "Second Subclass Tier 2",
+      "source": "sns",
+      "className": "Wizard",
+      "classSource": "sns",
+      "level": 13,
+      "entries": [
+        "At 13th level, you gain the tier 2 feature from your second subclass"
+      ]
+    },
+    {
+      "name": "Second Subclass Tier 3",
+      "source": "sns",
+      "className": "Wizard",
+      "classSource": "sns",
+      "level": 15,
+      "entries": [
+        "At 15th level, you gain the tier 3 feature from your second subclass"
+      ]
+    },
+    {
+      "name": "Second Subclass Tier 4",
+      "source": "sns",
+      "className": "Wizard",
+      "classSource": "sns",
+      "level": 17,
+      "entries": [
+        "At 17th level, you gain the tier 4 feature from your second subclass"
+      ]
+    },
+    {
+      "name": "Second Subclass Tier 5",
+      "source": "sns",
+      "className": "Wizard",
+      "classSource": "sns",
+      "level": 19,
+      "entries": [
+        "At 19th level, you gain the tier 5 feature from your second subclass"
+      ]
+    },
+    {
+      "name": "Spellcasting",
+      "source": "LevelUp",
+      "className": "Wizard",
+      "classSource": "sns",
+      "level": 1,
+      "entries": [
+        "As a student of arcane magic, you have a spellbook containing spells that show the first glimmerings of your true power.",
+        {
+          "type": "entries",
+          "name": "Cantrips",
+          "entries": [
+            "At 1st level, you know three cantrips of your choice from the {@filter wizard spell list|spells|level=0|class=wizard}. You learn additional wizard cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Wizard table."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Preparing and Casting Spells",
+          "entries": [
+            "The Wizard table shows how many spell slots you have to cast your wizard spells of 1st level and higher. To cast one of these spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.",
+            "You prepare the list of wizard spells that are available for you to cast. To do so, choose a number of wizard spells from the {@filter wizard spell list|spells|class=wizard} equal to your Intelligence modifier + your wizard level (minimum of one spell). The spells must be of a level for which you have spell slots.",
+            "For example, if you're a 3rd-level wizard, you have four 1st-level and two 2nd-level spell slots. With an Intelligence of 16, your list of prepared spells can include six spells of 1st or 2nd level, in any combination, chosen from the wizard spell list. If you prepare the 1st-level spell {@spell magic missile|sns}, you can cast it using a 1st-level or a 2nd-level slot. Casting the spell doesn't remove it from your list of prepared spells.",
+            "You can change your list of prepared spells when you finish a long rest."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Spellcasting Ability",
+          "entries": [
+            "Intelligence is your spellcasting ability for your wizard spells, since you learn your wizard spells through dedicated study and memorization. You use your Intelligence whenever a spell refers to your spellcasting ability."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Spellcasting Focus",
+          "entries": [
+            "You can use an {@item arcane focus|phb} as a spellcasting focus for your wizard spells."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Arcane Recovery",
+      "source": "sns",
+      "className": "Wizard",
+      "classSource": "sns",
+      "level": 1,
+      "entries": [
+        "From 1st level, once per day when you finish a short rest, you can choose expended spell slots to recover. The spell slots can have a combined level that is equal to or less than half your wizard level (rounded up), and none of the slots can be 6th-level or higher."
+      ]
+    },
+    {
+      "name": "Elective Studies",
+      "source": "sns",
+      "className": "Wizard",
+      "classSource": "sns",
+      "level": 2,
+      "entries": [
+        "Your study of magic has uncovered unique ways to explore the world. At 2nd level you gain one {@filter elective study|optionalfeatures|feature type=es} of your choice. The Studies Known column of the Wizard table shows when you learn more elective studies. Unless otherwise noted, you can gain each study only once."
+      ]
+    },
+    {
+      "name": "Ability Score Improvement",
+      "source": "sns",
+      "className": "Wizard",
+      "classSource": "sns",
+      "level": 4,
+      "entries": [
+        "When you reach 4th level, you can increase one ability score of your choice by 1. As normal, you can't increase an ability score above 20 using this feature. Additionally, you gain a feat."
+      ]
+    },
+    {
+      "name": "Ability Score Improvement",
+      "source": "sns",
+      "className": "Wizard",
+      "classSource": "sns",
+      "level": 8,
+      "entries": [
+        "When you reach 8th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
+      ]
+    },
+    {
+      "name": "Ability Score Improvement",
+      "source": "sns",
+      "className": "Wizard",
+      "classSource": "sns",
+      "level": 12,
+      "entries": [
+        "When you reach 12th level, you can increase one ability score of your choice by 2, or your can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
+      ]
+    },
+    {
+      "name": "Ability Score Improvement",
+      "source": "sns",
+      "className": "Wizard",
+      "classSource": "sns",
+      "level": 16,
+      "entries": [
+        "When you reach 16th level, you can increase one ability score of your choice by 2, or your can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
+      ]
+    },
+    {
+      "name": "Ability Score Improvement",
+      "source": "sns",
+      "className": "Wizard",
+      "classSource": "sns",
+      "level": 19,
+      "entries": [
+        "When you reach 19th level, you can increase one ability score of your choice by 2, or your can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
+      ]
+    },
+    {
+      "name": "Signature Spell (1st-level)",
+      "source": "sns",
+      "className": "Wizard",
+      "classSource": "sns",
+      "level": 5,
+      "entries": [
+        "At 5th level, you have developed your spellcasting skill and honed it into spells that you consider to be your Signature Spells.",
+        "Choose one {@filter 1st-level wizard spell|spells|level=1|class=Wizard}. You always have this spell prepared, it doesn't count toward your maximum prepared spells, and you can cast this spell at its lowest level without expending a spell slot. Once you have cast a signature spell in this way, you must finish a short or long rest before you can do so again.",
+        "At higher levels, you gain additional Signature Spells, each of which you can cast once between rests. At 10th level, you can choose one 2nd-level Signature spell. At 17th level, you can choose one 3rd-level Signature Spell. Each time you complete a long rest, you can replace one of your Signature Spells with another of the same level."
+      ]
+    },
+    {
+      "name": "Signature Spell (2nd-level)",
+      "source": "sns",
+      "className": "Wizard",
+      "classSource": "sns",
+      "level": 10,
+      "entries": [
+        "At 10th level, you learn another Signature Spell, which must be a {@filter 2nd-level wizard spell|spells|level=2|class=Wizard}."
+      ]
+    },
+    {
+      "name": "Signature Spell (3rd-level)",
+      "source": "sns",
+      "className": "Wizard",
+      "classSource": "sns",
+      "level": 17,
+      "entries": [
+        "At 17th level, you learn another Signature Spell, which must be a {@filter 3rd-level wizard spell|spells|level=3|class=Wizard}."
+      ]
+    },
+    {
+      "name": "Spell Study",
+      "source": "sns",
+      "className": "Wizard",
+      "classSource": "sns",
+      "level": 6,
+      "entries": [
+        "At 6th level, you learn to hone your magic and spells to new power levels thanks to your dedicated studies. Choose one Spell Study that reflects what you have dedicated your arcane studies to.",
+        {
+          "type": "entries",
+          "name": "Arcane Objects",
+          "entries": [
+            "When you touch a magic item, either willingly or when hit by it, you are immediately aware that it is magical. If you hold such an item in your hand, you can cast {@spell identify|sns} on it as an action without spending a spell slot, even if you don't have the spell prepared.",
+            "In addition, when you cast {@spell identify|sns} using a spell slot or as a ritual, you also learn if the item is cursed, and the DM will give you a hint as to the curse's effects (which may be cryptic and vague, but must not be a lie)."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Detective Spell Study",
+          "entries": [
+            "You are adept at sensing magic and its effects. If there are active magical effects near you, such as a spell effect on an object or a spell effect in an area, you automatically sense its presence. You don't know what spell effects there are or where they are, but you can automatically sense the effect of magic in a 20-foot radius around you.",
+            "In addition, you have honed your detection spells. Add {@spell detect magic|sns} and {@spell detect thoughts|sns} to your spellbook if they weren't already there. Whenever you cast {@spell detect magic|sns}, the range that you can sense magic is increased to 60 feet. Whenever you cast {@spell detect thoughts|sns}, the range of creatures that you can read thoughts from is increased to 60 feet."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Fauna and Flora",
+          "entries": [
+            "Your research into plants, wildlife, and the natural workings of magic grants you superior insights into the magic of living creatures and flora. Whenever you make a non-armour attack against a plant or beast with a spell that you cast, the attack has advantage."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Wizard's Flair",
+      "source": "sns",
+      "className": "Wizard",
+      "classSource": "sns",
+      "level": 9,
+      "entries": [
+        "At 9th level, you have created a flair that you use when casting spells. Choose a flair from the options below. When you finish a long rest, you may replace your flair with another.",
+        "Whenever you cast a spell of 1st-level or higher, you can choose to cast it with your flair. You can do so again when you finish a short or long rest.",
+        {
+          "type": "entries",
+          "name": "Awe and Wonder",
+          "entries": [
+            "Choose one creature affected by the spell. It must succeed on a save or be {@condition charmed|sns} by you until the end of its next turn. While charmed in this way, it is {@condition unconscious|sns}, has a movement speed of 0, and does nothing but stare blankly at the dazzling effects of your magic. This unconscious effect ends if the target is attacked. Additionally, if the unconscious effect ends, so does the charm."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Terror",
+          "entries": [
+            "Choose one creature within 30 feet that can see you when you cast the spell. It must succeed on a save or become {@condition frightened|sns} of you until the end of its next turn. While frightened in this way, it starts its turn by using a free action to move its full speed (without consuming movement) to get away from you in the most direct manner possible, avoiding obvious hazards along the way."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Brilliance",
+          "entries": [
+            "Choose one creature within 30 feet that can see you when you cast the spell. It must succeed on a save or be {@condition blinded|sns} until the end of its next turn."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Warding",
+          "entries": [
+            "After casting the spell, until the start of your next turn, a creature who attempts to make an armour attack against you must make a save. On a failure, it must choose a new target. The creature can choose to move up to their speed before choosing the attack's new target."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Arcane Defences",
+      "source": "sns",
+      "className": "Wizard",
+      "classSource": "sns",
+      "level": 14,
+      "entries": [
+        "At 14th level, your training has granted you certain protections against magic. Choose one of the following:",
+        {
+          "type": "entries",
+          "name": "Mental Discipline",
+          "entries": [
+            "Your mind is sheltered from intrusion. When a will attack is made against you, you can choose to reduce its success tier by 1. You can't do so again until you finish a short or long rest."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Mystic Mantle",
+          "entries": [
+            "Magic layers upon you into a defensive ward that you can extend to even protect your allies. You and creatures within 10 feet of you have 50% resistance to spell damage."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Superior Countermagic",
+          "entries": [
+            "When you make an ability check as part of casting {@spell counterspell|sns} or {@spell dispel magic|sns}, you add your proficiency bonus to the roll.",
+            "In addition, when you cast one of these spells, treat the spell slot level of the spell as one level higher than the actual slot you spent. The slot you use to cast the spell must still be at least 3rd-level."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Spell Intensity",
+      "source": "sns",
+      "className": "Wizard",
+      "classSource": "sns",
+      "level": 18,
+      "entries": [
+        "At 18th level, you gain new ways to intensify the power of your spells, sometimes at cost to yourself. Choose one of the following features, which can be used to augment your wizard spells of 5th-level or lower. You must choose whether or not to augment the spell when you declare you're casting it, before any rolls are made.",
+        "The first time you use this feature to augment a spell, you suffer no adverse effect. If you use this feature again before finishing a long rest, your current and maximum hit points are both reduced by {@dice 2d6} per level of the spell augmented (cantrips count as 1st-level spells for this purpose). This reduction lasts until you finish a long rest.",
+        {
+          "type": "entries",
+          "name": "Binding",
+          "entries": [
+            "After you have affected a creature with a spell that has a duration and it is able to end the spell's effect on itself with a passive save, it must succeed on that passive save twice to end the effect."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Burn",
+          "entries": [
+            "Any creature that takes damage from the spell takes that damage again at the start of your next turn, unless a {@spell dispel magic|sns} spell of any level is cast on it before then or it's in an {@spell antimagic field|sns} at the time."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Chain",
+          "entries": [
+            "When you cast a spell that can normally only target a single creature, it can also target up to 2 more creatures within 15 feet of the initial target."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Duality",
+          "entries": [
+            "When you cast a spell that requires concentration while already concentrating on another spell, you can maintain concentration on both spells simultaneously. If you lose concentration on one spell, you lose concentration on both."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Overchannel",
+          "entries": [
+            "When you would roll damage for a spell, you instead deal maximum damage with that spell."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Swift Signature",
+      "source": "sns",
+      "className": "Wizard",
+      "classSource": "sns",
+      "level": 19,
+      "entries": [
+        "At 19th level, you're especially efficient with your Signature Spells. When you cast a spell that has a casting time of 1 action using your Signature Spell feature, you can cast it as a bonus action instead."
+      ]
+    },
+    {
+      "name": "Archmage",
+      "source": "sns",
+      "className": "Wizard",
+      "classSource": "sns",
+      "level": 20,
+      "entries": [
+        "At 20th level, you have achieved a rare level of achievement and prestige, gaining the following features.",
+        {
+          "type": "entries",
+          "name": "Magesight",
+          "entries": [
+            "Your eyes become attuned to the supernatural. You cannot be {@condition blinded|sns}, and you can see normally in darkness, both magical and non-magical, to a distance of 120 feet.",
+            "When you can see a creature cast a spell you instinctively know what spell is being cast before the casting is complete. This does not tell you what level spell slot is being used to cast the spell."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "True Magician",
+          "entries": [
+            "When you have a 1st-level wizard spell prepared, you are able to cast it as a 1st-level spell without expending a spell slot."
+          ]
+        }
+      ]
+    }
+  ],
+  "subclassFeature": [
+    {
+      "name": "School of Abjuration",
+      "source": "sns",
+      "className": "Wizard",
+      "classSource": "sns",
+      "subclassShortName": "Abjuration",
+      "subclassSource": "sns",
+      "level": 1,
+      "entries": [
+        "The School of Abjuration emphasizes magic that blocks, banishes, or protects. Detractors of this school say that its tradition is about denial, negation rather than positive assertion. You understand, however, that ending harmful effects, protecting the weak, and banishing evil influences is anything but a philosophical void. It is a proud and respected vocation.",
+        "Called abjurers, members of this school are sought when baleful spirits require exorcism, when important locations must be guarded against magical spying, and when portals to other planes of existence must be closed.",
+        {
+          "type": "refSubclassFeature",
+          "subclassFeature": "Abjuration Savant|Wizard|sns|Abjuration|sns|1"
+        },
+        {
+          "type": "refSubclassFeature",
+          "subclassFeature": "Arcane Ward|Wizard|sns|Abjuration|sns|1"
+        }
+      ]
+    },
+    {
+      "name": "Abjuration Savant",
+      "source": "sns",
+      "className": "Wizard",
+      "classSource": "sns",
+      "subclassShortName": "Abjuration",
+      "subclassSource": "sns",
+      "level": 1,
+      "header": 1,
+      "entries": [
+        "Beginning when you select this school at 2nd level, the gold and time you must spend to copy an abjuration spell into your spellbook is halved."
+      ]
+    },
+    {
+      "name": "Arcane Ward",
+      "source": "sns",
+      "className": "Wizard",
+      "classSource": "sns",
+      "subclassShortName": "Abjuration",
+      "subclassSource": "sns",
+      "level": 1,
+      "header": 1,
+      "entries": [
+        "Starting at 2nd level, you can weave magic around yourself for protection. When you cast an {@filter abjuration spell of 1st level or higher|spells|school=A|level=!0}, you can simultaneously use a strand of the spell's magic to create a magical ward on yourself that lasts until you finish a long rest. The ward has a hit point maximum equal to twice your wizard level + your Intelligence modifier. Whenever you take damage, the ward takes the damage instead. If this damage reduces the ward to 0 hit points, you take any remaining damage.",
+        "While the ward has 0 hit points, it can't absorb damage, but its magic remains. Whenever you cast an {@filter abjuration spell of 1st level or higher|spells|school=A|level=!0}, the ward regains a number of hit points equal to twice the level of the spell.",
+        "Once you create the ward, you can't create it again until you finish a long rest."
+      ]
+    },
+    {
+      "name": "Projected Ward",
+      "source": "sns",
+      "className": "Wizard",
+      "classSource": "sns",
+      "subclassShortName": "Abjuration",
+      "subclassSource": "sns",
+      "level": 3,
+      "header": 2,
+      "entries": [
+        "Starting at 6th level, when a creature that you can see within 30 feet of you takes damage, you can use your reaction to cause your Arcane Ward to absorb that damage. If this damage reduces the ward to 0 hit points, the warded creature takes any remaining damage."
+      ]
+    },
+    {
+      "name": "New major feature",
+      "source": "sns",
+      "className": "Wizard",
+      "classSource": "sns",
+      "subclassShortName": "Abjuration",
+      "subclassSource": "sns",
+      "level": 5,
+      "header": 2,
+      "entries": [
+        "?"
+      ]
+    },
+    {
+      "name": "Improved Abjuration",
+      "source": "sns",
+      "className": "Wizard",
+      "classSource": "sns",
+      "subclassShortName": "Abjuration",
+      "subclassSource": "sns",
+      "level": 7,
+      "header": 2,
+      "entries": [
+        "Beginning at 10th level, when you cast an abjuration spell that requires you to make an ability check as a part of casting that spell (as in {@spell counterspell} and {@spell dispel magic}), you add your proficiency bonus to that ability check."
+      ]
+    },
+    {
+      "name": "Spell Resistance",
+      "source": "sns",
+      "className": "Wizard",
+      "classSource": "sns",
+      "subclassShortName": "Abjuration",
+      "subclassSource": "sns",
+      "level": 9,
+      "header": 2,
+      "entries": [
+        "Starting at 14th level, you have advantage on saving throws against spells.",
+        "Furthermore, you have resistance against the damage of spells."
+      ]
+    }
+  ],
+  "optionalfeature": [
+    {
+      "name": "Air Lift",
+      "source": "sns",
+      "featureType": [
+        "ES"
+      ],
+      "entries": [
+        "You can use an action to increase your vertical jump distance to 15 feet until the end of your turn. When you jump in this way, you can also glide with the updraft, allowing you to move 10 feet horizontally for every 5 feet you descend vertically."
+      ]
+    },
+    {
+      "name": "Detect Magic Savant",
+      "source": "sns",
+      "featureType": [
+        "ES"
+      ],
+      "prerequisite": [
+        {
+          "spell": [
+            "detect magic|sns"
+          ]
+        }
+      ],
+      "entries": [
+        "Whenever you cast {@spell detect magic|sns}, you can choose one of the following benefits to amplify the spell.",
+        {
+          "type": "list",
+          "items": [
+            "Lengthened Detect Magic: The duration of {@spell detect magic|sns} is increased by 10 minutes.",
+            "Extended Detect Magic: The detection radius of {@spell detect magic|sns} is increased by 30 feet.",
+            "Penetrating Detect Magic: The spell can penetrate most barriers, and it is only blocked by 2 feet of stone, 2 inches of common metal, a 1-inch sheet of lead, or 6 feet of wood or dirt."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Eidetic Memory",
+      "source": "sns",
+      "featureType": [
+        "ES"
+      ],
+      "entries": [
+        "Your memory is nearly perfect. You can accurately recall anything you've read or seen in the past month. Additionally, when retreading a travel route you've traveled in the past month, you have advantage on ability checks made against environmental hazards on that route, unless the landscape has been significantly altered in that time."
+      ]
+    },
+    {
+      "name": "Illusion Detective",
+      "source": "sns",
+      "featureType": [
+        "ES"
+      ],
+      "prerequisite": [
+        {
+          "other": "At least one illusion spell in your spellbook."
+        }
+      ],
+      "entries": [
+        "You have advantage on Investigation checks made against illusion, and attacks made against you by illusion have disadvantage. When you succeed on an ability check to see through an illusion, or an attack from one fails to score a standard or higher success, all allies within 30 feet of you gain advantage on checks to see through that illusion for the next minute."
+      ]
+    },
+    {
+      "name": "Loremaster of Creatures",
+      "source": "sns",
+      "featureType": [
+        "ES"
+      ],
+      "entries": [
+        "You are well-studied on naturally occurring creatures of the world. When you choose this study, choose one creature type: beasts, constructs, dragons, elementals, fey, fiends, giants, oozes, plants, or undead. This creature type becomes your Loremaster Creature Specialty. When you encounter a creature of the same type as your Loremaster Creature Specialty, you automatically know any history, legends, or myths related to it."
+      ]
+    },
+    {
+      "name": "Loremaster of Travel",
+      "source": "sns",
+      "featureType": [
+        "ES"
+      ],
+      "entries": [
+        "You are well-travelled and well-studied. You have advantage on History checks to recall information relating to myths and legends that are location-based. In addition, when you arrive at a settlement for the first time, choose one of the following subjects: culture, etiquette, government, or populace. The DM will give you a useful fact about that subject. You can take an expertise die on ability checks related to that subject in this settlement."
+      ]
+    },
+    {
+      "name": "Persistent Mending",
+      "source": "sns",
+      "featureType": [
+        "ES"
+      ],
+      "prerequisite": [
+        {
+          "spell": [
+            "mending|sns"
+          ]
+        }
+      ],
+      "entries": [
+        "WHen you finish a long rest, choose up to 6 creatures who rested with you, including yourself. Choose one of the following pieces of their equipment to enchant with a persistent mending effect. The chosen item instantly fixes itself if it becomes damaged. Each item also grants an additional benefit. This effect lasts for 12 hours.",
+        {
+          "type": "list",
+          "items": [
+            "Coat: Choose either hot or cold weather. The creature ignores the penalties of that kind of weather on their journey activities.",
+            "Goggles: The creature's vision can never be reduced to less than 20 feet due to inclement weather. This also prevents them from being led astray on journeys, always travelling where they intend to travel to.",
+            "Shoes: The creature gains an expertise die on ability checks made for the Scout journey activity."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Presto, Prestidigitation!",
+      "source": "sns",
+      "featureType": [
+        "ES"
+      ],
+      "prerequisite": [
+        {
+          "spell": [
+            "prestidigitation|sns"
+          ]
+        }
+      ],
+      "entries": [
+        "If you are not actively casting {@spell prestidigitation|sns} or concentrating on a spell, the magic of {@spell prestidigitation|sns} is always keeping you, your clothes, and your gear sparkling clean.",
+        "The following effects are added to the list of options you can choose from when you cast {@spell prestidigitation|sns}.",
+        {
+          "type": "list",
+          "items": [
+            "You transmute a small piece of string in your hands into a sturdy 30-foot long rope. For the duration, it functions as a regular hempen rope.",
+            "Using the heads side of a coin like a lens, you can hold the coin over one of your closed eyes and see through it. While looking through the coin in this way, you gain darkvision to a range of 30 feet. The coin's darkvision effect ends when the spell ends.",
+            "A pebble you touch becomes a sensor that you can use to see through. For the duration as long as you are within 10 feet of the pebble, you can use an action to see through the pebble to a range of 30 feet. While seeing through the pebble, you are {@condition blinded|sns} and {@condition deafened|sns} with regard to your own senses.",
+            "On a piece of parchment or paper, you can create an exact copy of another piece of parchment or paper, including any writing, drawings, or other markings that appear on the original. The paper does not change size to accommodate any differences in size between the two. The copy you create lasts for the duration of this spell, and disappears when the spell ends."
+          ]
+        }
+      ]
+    }
+  ]
+}
