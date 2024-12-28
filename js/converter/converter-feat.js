@@ -230,7 +230,6 @@ export class ConverterFeat extends ConverterFeatureBase {
 						"from": [
 							"str",
 							"dex",
-							"con",
 							"int",
 							"wis",
 							"cha",
@@ -244,7 +243,6 @@ export class ConverterFeat extends ConverterFeatureBase {
 						"from": [
 							"str",
 							"dex",
-							"con",
 							"int",
 							"wis",
 							"cha",

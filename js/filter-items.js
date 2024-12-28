@@ -250,7 +250,6 @@ class PageFilterItems extends PageFilterEquipment {
 
 						case "str":
 						case "dex":
-						case "con":
 						case "int":
 						case "wis":
 						case "cha": out.push(`${Parser.attAbvToFull(prop)}: ${val} or Higher`); break;

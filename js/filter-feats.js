@@ -18,7 +18,6 @@ class PageFilterFeats extends PageFilterBase {
 			items: [
 				"str",
 				"dex",
-				"con",
 				"int",
 				"wis",
 				"cha",

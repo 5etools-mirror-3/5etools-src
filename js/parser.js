@@ -2380,7 +2380,7 @@ Parser.pageCategoryToProp = function (catId) {
 	return Parser._parse_aToB(Parser.CAT_ID_TO_PROP, catId);
 };
 
-Parser.ABIL_ABVS = ["str", "dex", "con", "int", "wis", "cha"];
+Parser.ABIL_ABVS = ["str", "dex", "int", "wis", "cha"];
 
 Parser.spClassesToCurrentAndLegacy = function (fromClassList) {
 	const current = [];
@@ -2638,7 +2638,6 @@ Parser.SP_SCHOOL_ABV_TO_SHORT[Parser.SKL_ABV_PSI] = "Psi.";
 Parser.ATB_ABV_TO_FULL = {
 	"str": "Strength",
 	"dex": "Dexterity",
-	"con": "Constitution",
 	"int": "Intelligence",
 	"wis": "Wisdom",
 	"cha": "Charisma",
