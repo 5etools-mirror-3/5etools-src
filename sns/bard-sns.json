@@ -1,0 +1,1420 @@
+{
+  "_meta": {
+    "optionalFeatureTypes": {
+      "AT": "Adventuring Trick"
+    }
+  },
+  "class": [
+    {
+      "name": "Bard",
+      "source": "sns",
+      "hd": {
+        "number": 1,
+        "faces": 8
+      },
+      "defences": {
+        "ref": 2,
+        "wil": 2
+      },
+      "spellcastingAbility": "cha",
+      "casterProgression": "full",
+      "cantripProgression": [
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "spellsKnownProgression": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "startingProficiencies": {
+        "armor": [
+          "light"
+        ],
+        "weapons": [
+          "simple",
+          "{@item hand crossbow|phb|hand crossbows}",
+          "{@item longsword|phb|longswords}",
+          "{@item rapier|phb|rapiers}",
+          "{@item shortsword|phb|shortswords}"
+        ],
+        "tools": [
+          "two {@item musical instrument|PHB|musical instruments} of your choice, or 1 musical instrument and any other tool"
+        ],
+        "skills": [
+          {
+            "any": 3
+          }
+        ]
+      },
+      "classTableGroups": [
+        {
+          "colLabels": [
+            "Battle Hymns",
+            "{@filter Tricks Known|optionalfeatures|feature type=at}",
+            "{@filter Cantrips Known|spells|level=0|class=bard}",
+            "{@filter Spells Known|spells|class=bard}"
+          ],
+          "rows": [
+            [
+              1,
+              0,
+              2,
+              4
+            ],
+            [
+              1,
+              1,
+              2,
+              5
+            ],
+            [
+              1,
+              1,
+              2,
+              6
+            ],
+            [
+              2,
+              1,
+              3,
+              7
+            ],
+            [
+              2,
+              1,
+              3,
+              8
+            ],
+            [
+              2,
+              2,
+              3,
+              9
+            ],
+            [
+              3,
+              2,
+              3,
+              10
+            ],
+            [
+              3,
+              2,
+              3,
+              11
+            ],
+            [
+              3,
+              3,
+              3,
+              12
+            ],
+            [
+              4,
+              3,
+              4,
+              13
+            ],
+            [
+              4,
+              3,
+              4,
+              14
+            ],
+            [
+              4,
+              3,
+              4,
+              15
+            ],
+            [
+              5,
+              4,
+              4,
+              16
+            ],
+            [
+              5,
+              4,
+              4,
+              17
+            ],
+            [
+              5,
+              4,
+              4,
+              18
+            ],
+            [
+              6,
+              5,
+              4,
+              19
+            ],
+            [
+              6,
+              5,
+              4,
+              20
+            ],
+            [
+              6,
+              5,
+              4,
+              21
+            ],
+            [
+              7,
+              5,
+              4,
+              22
+            ],
+            [
+              8,
+              6,
+              4,
+              23
+            ]
+          ]
+        },
+        {
+          "title": "Spell Slots per Spell Level",
+          "colLabels": [
+            "{@filter 1st|spells|level=1|class=bard}",
+            "{@filter 2nd|spells|level=2|class=bard}",
+            "{@filter 3rd|spells|level=3|class=bard}",
+            "{@filter 4th|spells|level=4|class=bard}",
+            "{@filter 5th|spells|level=5|class=bard}",
+            "{@filter 6th|spells|level=6|class=bard}",
+            "{@filter 7th|spells|level=7|class=bard}",
+            "{@filter 8th|spells|level=8|class=bard}",
+            "{@filter 9th|spells|level=9|class=bard}"
+          ],
+          "rows": [
+            [
+              2,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              3,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              2,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              2,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              2,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              2,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              2,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              2,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              2,
+              1,
+              1,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              2,
+              1,
+              1,
+              0,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              2,
+              1,
+              1,
+              1,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              2,
+              1,
+              1,
+              1,
+              0
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              2,
+              1,
+              1,
+              1,
+              1
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              3,
+              1,
+              1,
+              1,
+              1
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              3,
+              2,
+              1,
+              1,
+              1
+            ],
+            [
+              4,
+              3,
+              3,
+              3,
+              3,
+              2,
+              2,
+              1,
+              1
+            ]
+          ]
+        }
+      ],
+      "classFeatures": [
+        {
+          "classFeature": "First Subclass Tier 1|Bard|sns|1|sns",
+          "gainSubclassFeature": true
+        },
+        "Art Speciality|Bard|sns|1|sns",
+        "Bardic Inspiration|Bard|sns|1|sns",
+        "Battle Hymn|Bard|sns|1|sns",
+        "Spellcasting|Bard|sns|1|sns",
+        "Adventuring Tricks|Bard|sns|2|sns",
+        "Jack-of-All-Trades|Bard|sns|2|sns",
+        "Varied Expertise|Bard|sns|2|sns",
+        {
+          "classFeature": "First Subclass Tier 2|Bard|sns|3|sns",
+          "gainSubclassFeature": true
+        },
+        "Ability Score Improvement|Bard|sns|4|sns",
+        "Bardic Legend (1st)|Bard|sns|4|sns",
+        "Battle Hymn Focus|Bard|sns|4|sns",
+        "Bardic Inspiration (d8)|Bard|sns|5|sns",
+        {
+          "classFeature": "First Subclass Tier 3|Bard|sns|5|sns",
+          "gainSubclassFeature": true
+        },
+        "Prestigious|Bard|sns|6|sns",
+        "Varied Expertise|Bard|sns|6|sns",
+        "Bardic Legend (2nd)|Bard|sns|7|sns",
+        "Maestro|Bard|sns|7|sns",
+        {
+          "classFeature": "First Subclass Tier 4|Bard|sns|7|sns",
+          "gainSubclassFeature": true
+        },
+        "Ability Score Improvement|Bard|sns|8|sns",
+        "Battle Hymn Specialization|Bard|sns|8|sns",
+        {
+          "classFeature": "First Subclass Tier 5|Bard|sns|9|sns",
+          "gainSubclassFeature": true
+        },
+        "Bardic Inspiration (d10)|Bard|sns|10|sns",
+        "Varied Expertise|Bard|sns|10|sns",
+        "Art Mastery|Bard|sns|11|sns",
+        "Bardic Legend (3rd)|Bard|sns|11|sns",
+        "Second Subclass Tier 1|Bard|sns|11|sns",
+        "Ability Score Improvement|Bard|sns|12|sns",
+        "Universal Trick|Bard|sns|13|sns",
+        "Second Subclass Tier 2|Bard|sns|13|sns",
+        "Varied Expertise|Bard|sns|14|sns",
+        "Bardic Inspiration (d12)|Bard|sns|15|sns",
+        "Second Subclass Tier 3|Bard|sns|15|sns",
+        "Ability Score Improvement|Bard|sns|16|sns",
+        "Universal Trick|Bard|sns|16|sns",
+        "Second Subclass Tier 4|Bard|sns|17|sns",
+        "Varied Expertise|Bard|sns|18|sns",
+        "Ability Score Improvement|Bard|sns|19|sns",
+        "Universal Trick|Bard|sns|19|sns",
+        "Second Subclass Tier 5|Bard|sns|19|sns",
+        "Virtuoso|Bard|sns|20|sns"
+      ],
+      "subclassTitle": "Bard Subclass"
+    }
+  ],
+  "subclass": [
+    {
+      "name": "College of Valor",
+      "shortName": "Valor",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "shs",
+      "subclassFeatures": [
+        "College of Valor|Bard|sns|Valor|sns|1",
+        "New minor feature|Bard|sns|Valor|sns|3",
+        "New major feature|Bard|sns|Valor|sns|5",
+        "Extra Attack|Bard|sns|Valor|sns|7",
+        "Battle Magic|Bard|sns|Valor|sns|9"
+      ]
+    }
+  ],
+  "classFeature": [
+    {
+      "name": "Art Speciality",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 1,
+      "entries": [
+        "No bard is complete without their instrument. Be it a flute, a lute, or even your own voice, starting at 1st level you learn how to make art your greatest weapon for influencing the battlefield. For the purposes of spellcasting, any musical instrument that you have proficiency with counts as a spell focus. Although spells can be cast without these instruments, only targets that are able to perceive your performance can benefit from this feature. Whenever you finish a short or long rest, choose one of the following to be your Art Specialty.",
+        {
+          "type": "list",
+          "items": [
+            "Percussion (Casabas, Castanets, Drums, Maracas): Any instrument played by being struck or scraped (either by other instruments or against each other) qualifies as a percussion instrument. When using this musical art as a spell focus, you double the ranges of {@filter bard spells from the sound school|spells|Subschool=sound|class=Bard}. A sound spell that has a range of Touch increases its range to 30 feet.",
+            "String Instruments (Dulcimer, Harp, Lute, Lyre, Violin): String instruments are played by plucking and twanging strings. When using this musical art as a spell focus, whenever you cast a bard spell from the {@filter movement or teleportation|spells|Subschool=movement;teleportation|class=Bard} school you can target an additional creature within 15 feet of you.",
+            "Visual (Calligraphy, Dance, Light Manipulation, Shapes): There are many ways to undertake a visual performance whether through illustration, illusion magic, or legerdemain. When using this art as a spell focus, whenever you cast a bard spell you may choose to make an ally able to see you the point of origin of that spell. You must be able to see any targets of the spell to do this.",
+            "Voice (Humming, Insults, Oration, Singing): Whenever you would lose concentration on a bard spell while using this musical art as a spell focus, including when reduced to 0 hit points, make a save. On a success, you do not lose concentration on that spell.",
+            "Wind Instruments (Bagpipes, Flute, Horn, Ocarina, Trombone): Any instrument played by passing air through it qualifies as a wind instrument. When using this musical art as a spell focus, whenever you cast a bard spell you can make a Deception or Performance check. Any observers with a passive Insight score equal to or less than the result of your check do not see or hear you cast the spell. Once you have used this feature three times, you cannot do so again until you finish a long rest."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Bardic Inspiration",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 1,
+      "entries": [
+        "You have a preternatural ability to inspire those around you. You can use a bonus action to choose one creature other than yourself within 60 feet of you who can hear or see you. That creature gains one Bardic Inspiration die, a {@dice d6}.",
+        "Once within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check or attack roll it makes. The creature can wait until after it rolls the {@dice d20} before deciding to use the Bardic Inspiration die, but must decide before the DM says whether the roll succeeds or fails. Once the Bardic Inspiration die is rolled, it is lost. A creature can have only one Bardic Inspiration die at a time.",
+        "You can use this feature a number of times equal to your Charisma modifier (minimum once). You regain any expended uses when you finish a long rest.",
+        "At 5th level your Bardic Inspiration die increases to {@dice d8}, at 10th level it increases to {@dice d10}, and at 15th level it increases to {@dice d12}."
+      ]
+    },
+    {
+      "name": "Battle Hymn",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 1,
+      "entries": [
+        "Like music, battle can be wild and chaotic, and through the sensible use of formula and talent order can be brought with a dedicated change of tune. At 1st level, you learn a battle hymn. It can be expressed in any way you like — a special leitmotif in your music, a change in pitch, or even a more advanced version of your favorite art.",
+        "Once at the start of your turn, you can activate a battle hymn by expending a use of Bardic Inspiration (no action is required). Performing a battle hymn requires your concentration, as though you were casting a spell. Once activated, a battle hymn continues until you lose concentration or the start of your next turn.",
+        "The number of battle hymns you know are listed in the Battle Hymns Known column of the Bard table. Whenever you gain a bard level, you may swap one battle hymn you know for a new battle hymn.",
+        {
+          "type": "entries",
+          "name": "Audience",
+          "entries": [
+            "Unless stated otherwise a battle hymn does not have a target until you choose one, and each targets a single creature within 30 feet. You may choose to target a creature at any point, but after targeting a battle hymn its target cannot be changed."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Sustained Song",
+          "entries": [
+            "When you have an activated battle hymn but have not chosen a creature to benefit from it yet, at the start of your turn when it would end you can instead choose to sustain the battle hymn until the start of your next turn without expending a use of Bardic Inspiration."
+          ]
+        },
+        {
+          "type": "table",
+          "caption": "Battle Hymns",
+          "colLabels": [
+            "Bard Level",
+            "Battle Hymn"
+          ],
+          "colStyles": [
+            "col-2 text-center",
+            "col-10"
+          ],
+          "rows": [
+            [
+              "1st-4th",
+              {
+                "type": "list",
+                "items": [
+                  {
+                    "type": "item",
+                    "name": "Harmony of Pain",
+                    "entries": [
+                      "The creature gains a number of temporary hit points equal to your Bardic Inspiration plus your proficiency bonus."
+                    ]
+                  },
+                  {
+                    "type": "item",
+                    "name": "Overbearing Rhythm",
+                    "entries": [
+                      "An attacker targeting the creature with an armour attack has disadvantage on its attack roll."
+                    ]
+                  },
+                  {
+                    "type": "item",
+                    "name": "Song of Clarity",
+                    "entries": [
+                      "At the start of the creature's turn, if it is not at 0 hit points the creature may expend and roll one of its hit dice to regain hit points equal to the roll plus your proficiency bonus."
+                    ]
+                  }
+                ]
+              }
+            ],
+            [
+              "5th-8th",
+              {
+                "type": "list",
+                "items": [
+                  {
+                    "type": "item",
+                    "name": "Bastions of Justice",
+                    "entries": [
+                      "The creature gains a bonus to saves equal to half your Charisma modifier (minimum 0)."
+                    ]
+                  },
+                  {
+                    "type": "item",
+                    "name": "Call to Arms",
+                    "entries": [
+                      "The creature can roll one additional weapon damage die on its weapon attacks."
+                    ]
+                  },
+                  {
+                    "type": "item",
+                    "name": "Placid Tones",
+                    "entries": [
+                      "The creature gains an expertise die on Intelligence, Wisdom, and Charisma checks."
+                    ]
+                  }
+                ]
+              }
+            ],
+            [
+              "9th-12th",
+              {
+                "type": "list",
+                "items": [
+                  {
+                    "type": "item",
+                    "name": "Heaven's Blessing",
+                    "entries": [
+                      "When the creature benefits from your Bardic Inspiration, it rolls the Bardic Inspiration die twice and uses the higher result."
+                    ]
+                  },
+                  {
+                    "type": "item",
+                    "name": "Ode of Blood",
+                    "entries": [
+                      "If the creature is dying, it continues making death saving throws but stops being {@condition incapacitated|sns} for up to 3 rounds. The creature becomes {@condition incapacitated|sns} if it takes any damage, and it dies if it fails its last death saving throw. Once a creature has benefited from this battle hymn, it can't benefit from it again until it finishes a short or long rest."
+                    ]
+                  },
+                  {
+                    "type": "item",
+                    "name": "Willful Serenade",
+                    "entries": [
+                      "Until the end of the combat, the creature ignores up to 4 levels of {@condition strife|sns} it is suffering from (how much to ignore is determined by the creature)."
+                    ]
+                  }
+                ]
+              }
+            ],
+            [
+              "13th-16th",
+              {
+                "type": "list",
+                "items": [
+                  {
+                    "type": "item",
+                    "name": "Doomsayer",
+                    "entries": [
+                      "The creature takes a -{@dice 1d8} penalty on armour attack rolls."
+                    ]
+                  },
+                  {
+                    "type": "item",
+                    "name": "Onward to Battle",
+                    "entries": [
+                      "The creature gains a 40 foot increase to Speed."
+                    ]
+                  },
+                  {
+                    "type": "item",
+                    "name": "Rise and Fight",
+                    "entries": [
+                      "A dying creature regains hit points equal to your Bardic Inspiration die plus your proficiency bonus. Once a creature has benefited from this battle hymn, it can't benefit from it again until it finishes a long rest."
+                    ]
+                  }
+                ]
+              }
+            ],
+            [
+              "17th-20th",
+              {
+                "type": "list",
+                "items": [
+                  {
+                    "type": "item",
+                    "name": "Bring Low the Foe",
+                    "entries": [
+                      "The creature takes a -{@dice 1d4} penalty on saves. In addition, it is {@condition rattled|sns} for {@dice 1d4} rounds after the battle hymn ends."
+                    ]
+                  },
+                  {
+                    "type": "item",
+                    "name": "Carry the Spirit",
+                    "entries": [
+                      "The creature gains advantage on saves."
+                    ]
+                  },
+                  {
+                    "type": "item",
+                    "name": "Inspiring Crescendo",
+                    "entries": [
+                      "The creature gains a {@dice d6} expertise die on ability checks."
+                    ]
+                  }
+                ]
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Spellcasting",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 1,
+      "entries": [
+        "You have developed a talent for creating magic through artistic expression, whether that be a melody made enchanted or a dance that unlocks power from beyond the mortal realms.",
+        {
+          "type": "entries",
+          "name": "Cantrips",
+          "entries": [
+            "You know two cantrips of your choice from the {@filter bard spell list|spells|level=0|class=bard}. You learn additional bard cantrips of your choice at higher levels, learning a 3rd cantrip at 4th level and a 4th at 10th level."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Spell Slots",
+          "entries": [
+            "The Bard table shows how many spell slots you have to cast your {@filter bard spells|spells|class=bard} of 1st level and higher. To cast one of these spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.",
+            "For example, if you know the 1st-level spell {@spell cure wounds|sns} and have a 1st-level and a 2nd-level spell slot available, you can cast {@spell cure wounds|sns} using either slot."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Spells Known of 1st Level and Higher",
+          "entries": [
+            "You know four 1st-level spells of your choice from the bard spell list.",
+            "You learn an additional bard spell of your choice at each level. Each of these spells must be of a level for which you have spell slots. For instance, when you reach 3rd level in this class, you can learn one new spell of 1st or 2nd level.",
+            "Additionally, whenever you complete a long rest, you can choose any of the bard spells you know and replace them with the same number of spells from the bard spell list, which also must be of a level for which you have spell slots."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Spellcasting Ability",
+          "entries": [
+            "Charisma is your spellcasting ability for your bard spells. Your magic comes from the heart and soul you pour into the performance of your music or oration. You use your Charisma whenever a spell refers to your spellcasting ability."
+          ]
+        },
+        {
+          "type": "entries",
+          "name": "Spellcasting Focus",
+          "entries": [
+            "You can use a {@item musical instrument|PHB} as a spellcasting focus for your bard spells."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Adventuring Tricks",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 2,
+      "entries": [
+        "Even when abroad you are most at home when surrounded by those who love you — or at least tolerate you. At 2nd level, you learn one adventuring trick of your choice. Adventuring tricks are detailed in the {@filter Optional Features|optionalfeatures|Feature Type=AT} page. The Tricks Known column of the Bard table shows when you learn more adventuring tricks."
+      ]
+    },
+    {
+      "name": "Jack-of-All-Trades",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 2,
+      "entries": [
+        "Starting at 2nd Level, whenever you make an ability check with a skill or tool you are not proficient with, you add half your proficiency bonus."
+      ]
+    },
+    {
+      "name": "Varied Expertise",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 2,
+      "entries": [
+        "Also at 2nd level, choose one skill or tool you are proficient with. You gain an expertise die on checks made using the chosen skill or tool. At 6th level, and again at 10th, 14th, and 18th level, choose an additional skill or tool."
+      ]
+    },
+    {
+      "name": "First Subclass Tier 1",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 1,
+      "entries": [
+        "At 1st level, you gain the tier 1 feature from your first subclass"
+      ]
+    },
+    {
+      "name": "First Subclass Tier 2",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 3,
+      "entries": [
+        "At 3rd level, you gain the tier 2 feature from your first subclass"
+      ]
+    },
+    {
+      "name": "First Subclass Tier 3",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 5,
+      "entries": [
+        "At 5th level, you gain the tier 3 feature from your first subclass"
+      ]
+    },
+    {
+      "name": "First Subclass Tier 4",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 7,
+      "entries": [
+        "At 7th level, you gain the tier 4 feature from your first subclass"
+      ]
+    },
+    {
+      "name": "First Subclass Tier 5",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 9,
+      "entries": [
+        "At 9th level, you gain the tier 5 feature from your first subclass"
+      ]
+    },
+    {
+      "name": "Second Subclass Tier 1",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 11,
+      "entries": [
+        "At 11th level, you gain the tier 1 feature from your second subclass"
+      ]
+    },
+    {
+      "name": "Second Subclass Tier 2",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 13,
+      "entries": [
+        "At 13th level, you gain the tier 2 feature from your second subclass"
+      ]
+    },
+    {
+      "name": "Second Subclass Tier 3",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 15,
+      "entries": [
+        "At 15th level, you gain the tier 3 feature from your second subclass"
+      ]
+    },
+    {
+      "name": "Second Subclass Tier 4",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 17,
+      "entries": [
+        "At 17th level, you gain the tier 4 feature from your second subclass"
+      ]
+    },
+    {
+      "name": "Second Subclass Tier 5",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 19,
+      "entries": [
+        "At 19th level, you gain the tier 5 feature from your second subclass"
+      ]
+    },
+    {
+      "name": "Ability Score Improvement",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 4,
+      "entries": [
+        "When you reach 4th level, you can increase one ability score of your choice by 1. As normal, you can't increase an ability score above 20 using this feature. Additionally, you gain a feat."
+      ]
+    },
+    {
+      "name": "Bardic Legend (1st)",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 4,
+      "entries": [
+        "No one is a true artist until others appreciate their work. Through the course of your career as a bard your talent can attract to your doorstep both the most curious of fans and also the vilest of enemies.",
+        "At 4th level you write a bardic tale of your adventures. Your bardic legend takes whatever form you like. When you enter a settlement and spend a day playing or recounting the tale, the reputation of you and your allies starts to grow. In addition to receiving local quests suited to the exploits detailed in your bardic legend, when you rest in a settlement that knows your bardic legend you and your allies treat that location as a super-haven. In addition, you gain an expertise die on History checks made in the settlement."
+      ]
+    },
+    {
+      "name": "Battle Hymn Focus",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 4,
+      "entries": [
+        "Also at 4th level, as soon as battle commences your mind focuses on inspiring your allies. At the end of another creature's turn, you can use your reaction to activate a battle hymn. This battle hymn replaces any currently activated battle hymns. Replacing an activated battle hymn does not require expending a use of Bardic Inspiration if it has no target yet.",
+        "In addition, choose one of the following.",
+        {
+          "type": "list",
+          "items": [
+            "Your battle hymns no longer require concentration.",
+            "Your battle hymns can affect a number of additional creatures equal to your Charisma modifier (minimum 1).",
+            "You learn an additional battle hymn that does not count against the number of battle hymns you can know. When choosing this battle hymn, you are treated as having 4 more bard levels for the purpose of meeting its prerequisites. If you change this Battle Hymn Focus, you forget the additional battle hymn."
+          ]
+        },
+        "Whenever you complete a long rest, you may change your Battle Hymn Focus."
+      ]
+    },
+    {
+      "name": "Bardic Inspiration (d8)",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 5,
+      "entries": [
+        "At 5th level, your Bardic Inspiration die changes to a {@dice d8}."
+      ]
+    },
+    {
+      "name": "Prestigious",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 6,
+      "entries": [
+        "Beginning at 6th level, you cannot help but draw attention and spread your reputation. Your prestige in all factions familiar with you increases such that they generally consider you friendly at a base level. When you reach 11th level, these settlements instead generally revere you at a base level."
+      ]
+    },
+    {
+      "name": "Varied Expertise",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 6,
+      "entries": [
+        "At 6th level, choose an additional skill or tool."
+      ]
+    },
+    {
+      "name": "Bardic Legend (2nd)",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 7,
+      "entries": [
+        "Starting at 7th level, you craft a second bardic legend. Commoners are either more amenable or afraid of you depending on the type of bardic legend you create. Choose one of the following skills: Deception, Insight, Intimidation, or Persuasion. You gain advantage on checks made using the chosen skill against any commoner that has heard your bardic legend. This affects the Gossip and Rob journey activities, but no others."
+      ]
+    },
+    {
+      "name": "Maestro",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 7,
+      "entries": [
+        "At 7th level you become so perfect in your craft that your style begins to bleed over into all your other workings. Choose one type of Art Speciality. You always gain the benefits of that Art Speciality no matter what instrument or art you are using."
+      ]
+    },
+    {
+      "name": "Ability Score Improvement",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 8,
+      "entries": [
+        "When you reach 8th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
+      ]
+    },
+    {
+      "name": "Battle Hymn Specialization",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 8,
+      "entries": [
+        "At 8th level, the energy and focus you bring to battle make your presence in combat a crucial factor for victory. The range of your battle hymns increases to 60 feet.",
+        "In addition, choose one of the following.",
+        {
+          "type": "list",
+          "items": [
+            "You can expend 2 uses of Bardic Inspiration to activate two Battle Hymns at the same time. Losing concentration or changing battle hymns deactivates both.",
+            "Pick three spells of 4th-level or lower that have only vocalized components. These spells may be from any class spell list. You may spend 2 uses of Bardic Inspiration to cast one of the chosen spells at the start of your turn with no action required (instead of activating a battle hymn).",
+            "When you expend a use of Bardic Inspiration to activate a battle hymn, you may also grant a Bardic Inspiration die to a creature within 60 feet."
+          ]
+        },
+        "Whenever you complete a long rest, you may change your Battle Hymn Specialization."
+      ]
+    },
+    {
+      "name": "Bardic Inspiration (d10)",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 10,
+      "entries": [
+        "At 10th level, your Bardic Inspiration die changes to a {@dice d10}."
+      ]
+    },
+    {
+      "name": "Varied Expertise",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 10,
+      "entries": [
+        "At 10th level, choose an additional skill or tool."
+      ]
+    },
+    {
+      "name": "Art Mastery",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 11,
+      "entries": [
+        "At 11th level, the use of your art specialty has transcended into something beyond majestic. You gain one of the following art masteries.",
+        {
+          "type": "list",
+          "items": [
+            "Percussion (Rolling Rhythm): You can throw a spell's magic, rebounding it from one place to another. When using this musical art as a spell focus, if you cast a spell that targets only one creature, you can target an additional creature within range of the first (as if the first was casting the spell). Once you have used this feature a number of times equal to half your proficiency bonus, you can't do so again until you finish a short rest.",
+            "String Instruments (Melody for All): The melodies you pluck spread like gusts of wind. You gain a number of melody charges equal to your Charisma modifier, which you regain whenever you finish a long rest. When using this musical art as a spell focus, if you cast a spell that targets only one creature you can spend a melody charge to target an additional creature within the spell's range.",
+            "Visual (Dual Masterpiece): Your magic resonates through the air. When using this musical art as a spell focus, after casting a bard spell that used an ally as its point of origin on your last turn, if you cast the same spell normally its spell level increases by 2. Once you have used this feature a number of times equal to your proficiency bonus, you can't do so again until you finish a long rest.",
+            "Voice (Everlasting Song): The spells you cast resound upon themselves. When concentrating on a bard spell, you automatically succeed on saves made to maintain concentration while you are using this musical art as a spell focus.",
+            "Wind Instruments (Perfect Pitch): While using this musical art as a spell focus, you gain advantage on Deception and Performance checks to conceal the casting of bard spells."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Bardic Legend (3rd)",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 11,
+      "entries": [
+        "Beginning at 11th level, you craft a third bardic legend that is able to spawn other tales. Whenever you enter a settlement, you can name a new bardic legend of your choice. Allies that are part of the tale gain Inspiration when they finish a long rest in that settlement. Any other creatures that are part of that tale have their reputations ruined — either they confront you directly to stop the rumor, or they are unable to hide or deal in that town for the length of time you are in it. Once you have used this feature in a settlement, you cannot do so again until you finish a long rest."
+      ]
+    },
+    {
+      "name": "Ability Score Improvement",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 12,
+      "entries": [
+        "When you reach 12th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
+      ]
+    },
+    {
+      "name": "Universal Trick",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 13,
+      "entries": [
+        "Whether from watching your fellow adventurers work, from tales of your predecessors, or simply because you are just that talented, you have taken to adopting the techniques of your peers.",
+        "At 13th level, and again at 16th and 19th level, you learn a {@filter developed talent|optionalfeatures|Feature Type=DT} from the berserker class, a {@filter sign of faith|optionalfeatures|Feature Type=SF} from the cleric class, a {@filter soldiering knack|optionalfeatures|Feature Type=SK} from the fighter class, or an {@filter elective study|optionalfeatures|Feature Type=ES} from the wizard class. You may only learn one Universal Trick from any individual class."
+      ]
+    },
+    {
+      "name": "Varied Expertise",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 14,
+      "entries": [
+        "At 14th level, choose an additional skill or tool."
+      ]
+    },
+    {
+      "name": "Bardic Inspiration (d12)",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 15,
+      "entries": [
+        "At 15th level, your Bardic Inspiration die changes to a {@dice d12}."
+      ]
+    },
+    {
+      "name": "Ability Score Improvement",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 16,
+      "entries": [
+        "When you reach 16th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
+      ]
+    },
+    {
+      "name": "Universal Trick",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 16,
+      "entries": [
+        "At 16th level, gain an additional universal trick."
+      ]
+    },
+    {
+      "name": "Varied Expertise",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 18,
+      "entries": [
+        "At 18th level, choose an additional skill or tool."
+      ]
+    },
+    {
+      "name": "Ability Score Improvement",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 19,
+      "entries": [
+        "When you reach 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
+      ]
+    },
+    {
+      "name": "Universal Trick",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 19,
+      "entries": [
+        "At 19th level, gain an additional universal trick."
+      ]
+    },
+    {
+      "name": "Virtuoso",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "level": 20,
+      "entries": [
+        "At 20th level, your capacity for drawing a crowd reaches dizzying new heights. As an action, you can expend a use of Bardic Inspiration to start an epic performance that lasts for {@dice 1d4} rounds. During that time, you can choose up to 50 creatures that are within 120 feet of you. Each creature able to hear or see your Epic Performance makes a save. If a creature fails its save, it is {@condition charmed|sns} by you for the duration plus 6 days, or until you or your companions do anything harmful to it. A {@condition charmed|sns} creature regards you as a friendly acquaintance.",
+        "The performance ends early if you become {@condition incapacitated|sns} or silenced, or if you voluntarily end it (no action required). At the end of the duration, you can expend an additional use of Bardic Inspiration to extend the duration by {@dice 1d4} rounds.",
+        "When your Epic Performance lasts at least 1 minute, at the end of the duration you can target each {@condition charmed|sns} creature as if using the {@spell mass suggestion|sns} spell cast at 9th-level. Instead of making an attack roll as part of this casting, always use the standard success outcome. The commands you give a {@condition charmed|sns} creature are not obvious, and other creatures must make an Insight check opposed by your Performance check to understand that you are doing anything more than giving a performance. You can give each creature its own set of commands, but can only give out 6 different sets of commands.",
+        "Once you use this feature, you can't use it again until you finish a long rest."
+      ]
+    }
+  ],
+  "subclassFeature": [
+    {
+      "name": "College of Valor",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "subclassShortName": "Valor",
+      "subclassSource": "sns",
+      "level": 1,
+      "entries": [
+        "Bards of the College of Valor are daring skalds whose tales keep alive the memory of the great heroes of the past, and thereby inspire a new generation of heroes. These bards gather in mead halls or around great bonfires to sing the deeds of the mighty, both past and present. They travel the land to witness great events firsthand and to ensure that the memory of those events doesn't pass from the world. With their songs, they inspire others to reach the same heights of accomplishment as the heroes of old.",
+        {
+          "type": "refSubclassFeature",
+          "subclassFeature": "Bonus Proficiencies|Bard|sns|Valor|sns|1"
+        },
+        {
+          "type": "refSubclassFeature",
+          "subclassFeature": "Combat Inspiration|Bard|sns|Valor|sns|1"
+        }
+      ]
+    },
+    {
+      "name": "Bonus Proficiencies",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "subclassShortName": "Valor",
+      "subclassSource": "sns",
+      "level": 1,
+      "header": 1,
+      "entries": [
+        "When you join the College of Valor at 3rd level, you gain proficiency with medium armor, shields, and martial weapons."
+      ]
+    },
+    {
+      "name": "Combat Inspiration",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "subclassShortName": "Valor",
+      "subclassSource": "sns",
+      "level": 1,
+      "header": 1,
+      "entries": [
+        "Also at 3rd level, you learn to inspire others in battle. A creature that has a Bardic Inspiration die from you can roll that die and add the number rolled to a weapon damage roll it just made. Alternatively, when an attack roll is made against the creature, it can use its reaction to roll the Bardic Inspiration die and add the number rolled to its AC against that attack, after seeing the roll but before knowing whether it hits or misses."
+      ]
+    },
+    {
+      "name": "New minor feature",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "subclassShortName": "Valor",
+      "subclassSource": "sns",
+      "level": 3,
+      "header": 2,
+      "entries": [
+        "?"
+      ]
+    },
+    {
+      "name": "New major feature",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "subclassShortName": "Valor",
+      "subclassSource": "sns",
+      "level": 5,
+      "header": 2,
+      "entries": [
+        "?"
+      ]
+    },
+    {
+      "name": "Extra Attack",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "subclassShortName": "Valor",
+      "subclassSource": "sns",
+      "level": 7,
+      "header": 2,
+      "entries": [
+        "Starting at 6th level, you can attack twice, instead of once, whenever you take the {@action Attack} action on your turn."
+      ]
+    },
+    {
+      "name": "Battle Magic",
+      "source": "sns",
+      "className": "Bard",
+      "classSource": "sns",
+      "subclassShortName": "Valor",
+      "subclassSource": "sns",
+      "level": 9,
+      "header": 2,
+      "entries": [
+        "At 14th level, you have mastered the art of weaving spellcasting and weapon use into a single harmonious act. When you use your action to cast a bard spell, you can make one weapon attack as a bonus action."
+      ]
+    }
+  ],
+  "optionalfeature": [
+    {
+      "name": "Bewitching Companion",
+      "source": "sns",
+      "featureType": [
+        "AT"
+      ],
+      "entries": [
+        "Choose one skill you are proficient with. You gain an expertise die on checks made using the chosen skill.",
+        "In addition, you gain an expertise die on checks made to influence anyone accompanying you on a journey."
+      ]
+    },
+    {
+      "name": "Brutish Confrontation",
+      "source": "sns",
+      "featureType": [
+        "AT"
+      ],
+      "entries": [
+        "Choose one skill you are proficient with. You gain an expertise die on checks made using the chosen skill.",
+        "In addition, you gain advantage on ability checks made to prepare an ambush."
+      ]
+    },
+    {
+      "name": "Improvised Engineering",
+      "source": "sns",
+      "featureType": [
+        "AT"
+      ],
+      "entries": [
+        "You gain proficiency with History. If you are already proficient with History, you instead gain an expertise die. In addition, you gain advantage on Engineering checks made to build a temporary construction (such as a bridge or ladder) and shore up existing structures (like the wall of a collapsing building). This does not affect the Experiment journey activity."
+      ]
+    },
+    {
+      "name": "Marching Song",
+      "source": "sns",
+      "featureType": [
+        "AT"
+      ],
+      "entries": [
+        "You know how to inspire and motivate your companions as they travel. The length of journeys your party embarks on are reduced by 1 day, to minimum of 1."
+      ]
+    },
+    {
+      "name": "Profitable",
+      "source": "sns",
+      "featureType": [
+        "AT"
+      ],
+      "entries": [
+        "You gain proficiency with Performance. If you are already proficient with Performance, you instead gain an expertise die. Whenever you make a Performance check to earn coins, you gain twice as much as normal. This affects the Busk journey activity but no others."
+      ]
+    },
+    {
+      "name": "Resonance",
+      "source": "sns",
+      "featureType": [
+        "AT"
+      ],
+      "entries": [
+        "Choose one skill you are proficient with. You gain an expertise die on checks made using the chosen skill.",
+        "In addition, when either you or a companion casts a ritual spell, its duration is doubled and it affects twice the usual number of targets."
+      ]
+    },
+    {
+      "name": "Sly Confidant",
+      "source": "sns",
+      "featureType": [
+        "AT"
+      ],
+      "entries": [
+        "Choose one skill you are proficient with. You gain an expertise die on checks made using the chosen skill.",
+        "In addition, when you succeed on an opposed Intelligence, Wisdom, or Charisma check, you gain advantage on your next opposed Intelligence, Wisdom, or Charisma check against the same creature."
+      ]
+    },
+    {
+      "name": "Song of Rest",
+      "source": "sns",
+      "featureType": [
+        "AT"
+      ],
+      "entries": [
+        "Any creatures able to perceive you performing your art while taking a short rest regain an additional {@dice 2d4} hit points."
+      ]
+    },
+    {
+      "name": "Showoff",
+      "source": "sns",
+      "featureType": [
+        "AT"
+      ],
+      "entries": [
+        "Choose one skill you are proficient with. You gain an expertise die on checks made using the chosen skill.",
+        "In addition, when you succeed on an Acrobatics or Athletics check to climb, balance, leap over danger, or otherwise physically overcome an obstacle, a number of allies equal to your proficiency bonus gain advantage on the same check made to overcome the same obstacle. This affects the Chronicle and Seek Shelter journey activities, but no others."
+      ]
+    },
+    {
+      "name": "Townie",
+      "source": "sns",
+      "featureType": [
+        "AT"
+      ],
+      "entries": [
+        "Choose one skill you are proficient with. You gain an expertise die on checks made using the chosen skill. As long as you have a positive reputation in a town or city, all goods you would spend gold on cost 1/3rd less."
+      ]
+    },
+    {
+      "name": "Widely Known",
+      "source": "sns",
+      "featureType": [
+        "AT"
+      ],
+      "entries": [
+        "Your minimum level of prestige in any settlement is always at least somewhat known."
+      ]
+    }
+  ]
+}
