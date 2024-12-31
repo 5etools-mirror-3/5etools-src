@@ -5,6 +5,7 @@ import {RaceImmResVulnTag, RaceLanguageTag, RaceTraitTag} from "./converterutils
 import {EntryCoalesceEntryLists, EntryCoalesceRawLines} from "./converterutils-entrycoalesce.js";
 import {ConverterFeatureBase} from "./converter-feature.js";
 import {SITE_STYLE__CLASSIC, SITE_STYLE__ONE} from "../consts.js";
+import {PropOrder} from "../utils-proporder.js";
 
 class _ConversionStateTextRace extends ConversionStateTextBase {
 

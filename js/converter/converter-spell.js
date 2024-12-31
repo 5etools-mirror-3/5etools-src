@@ -6,6 +6,7 @@ import {ConverterConst} from "./converterutils-const.js";
 import {TagJsons} from "./converterutils-entries.js";
 import {SITE_STYLE__CLASSIC} from "../consts.js";
 import {EntryCoalesceEntryLists, EntryCoalesceRawLines} from "./converterutils-entrycoalesce.js";
+import {PropOrder} from "../utils-proporder.js";
 
 export class ConverterSpell extends ConverterBase {
 	static _RE_START_RANGE = "Range";

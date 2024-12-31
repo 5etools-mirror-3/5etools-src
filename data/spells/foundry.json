@@ -1,34 +1,25 @@
 {
 	"spell": [
 		{
-			"name": "Abi-Dalzim's Horrid Wilting",
-			"source": "XGE",
-			"system": {
-				"target.value": 30,
-				"target.units": "ft",
-				"target.type": "cube"
-			}
-		},
-		{
-			"name": "Arcane Gate",
-			"source": "PHB",
-			"system": {
-				"target.value": 10,
-				"target.units": "ft",
-				"target.type": "wall"
-			}
-		},
-		{
 			"name": "Armor of Agathys",
 			"source": "PHB",
 			"system": {
-				"damage.parts": [
-					[
-						"5",
-						"temphp"
-					]
+				"activities": [
+					{
+						"type": "heal",
+						"damage.parts": [
+							{
+								"custom.enabled": true,
+								"custom.formula": "5",
+								"types": [
+									"temphp"
+								]
+							}
+						]
+					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Blade Ward",
@@ -59,512 +50,236 @@
 						"rounds": 1
 					}
 				}
-			]
-		},
-		{
-			"name": "Bones of the Earth",
-			"source": "XGE",
-			"system": {
-				"target.value": 3,
-				"target.units": "ft",
-				"target.type": "radius"
-			}
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Booming Blade",
 			"source": "TCE",
 			"system": {
-				"actionType": "mwak",
-				"target.value": 1,
-				"target.units": "",
-				"target.type": "creature",
-				"damage.parts": [
-					[
-						"(floor(((@details.level + @details.spellLevel) + 1) / 6))d8[on hit]",
-						"thunder"
-					]
-				],
-				"damage.versatile": "(floor(((@details.level + @details.spellLevel) + 1) / 6) + 1)d8[on willing movement]",
-				"scaling.mode": "none",
-				"scaling.formula": ""
-			}
-		},
-		{
-			"name": "Chaos Bolt",
-			"source": "XGE",
-			"system": {
-				"damage.parts": [
-					[
-						"2d8 + 1d6",
-						""
-					]
-				],
-				"formula": ""
-			}
-		},
-		{
-			"name": "Cloud of Daggers",
-			"source": "PHB",
-			"system": {
-				"target.value": 5,
-				"target.units": "ft",
-				"target.type": "cube"
-			}
-		},
-		{
-			"name": "Conjure Volley",
-			"source": "PHB",
-			"system": {
-				"target.value": 40,
-				"target.units": "ft",
-				"target.type": "cylinder"
-			}
-		},
-		{
-			"name": "Control Flames",
-			"source": "XGE",
-			"system": {
-				"target.value": 5,
-				"target.units": "ft",
-				"target.type": "cube"
-			}
-		},
-		{
-			"name": "Control Winds",
-			"source": "XGE",
-			"system": {
-				"target.value": 100,
-				"target.units": "ft",
-				"target.type": "cube"
-			}
-		},
-		{
-			"name": "Cordon of Arrows",
-			"source": "PHB",
-			"system": {
-				"target.value": 30,
-				"target.units": "ft",
-				"target.type": "sphere"
-			}
-		},
-		{
-			"name": "Create Bonfire",
-			"source": "XGE",
-			"system": {
-				"target.value": 5,
-				"target.units": "ft",
-				"target.type": "cube"
-			}
-		},
-		{
-			"name": "Dawn",
-			"source": "XGE",
-			"system": {
-				"target.value": 30,
-				"target.units": "ft",
-				"target.type": "cylinder"
-			}
-		},
-		{
-			"name": "Dust Devil",
-			"source": "XGE",
-			"system": {
-				"target.value": 5,
-				"target.units": "ft",
-				"target.type": "cube"
-			}
-		},
-		{
-			"name": "Erupting Earth",
-			"source": "XGE",
-			"system": {
-				"target.value": 20,
-				"target.units": "ft",
-				"target.type": "cube"
-			}
+				"activities": [
+					{
+						"type": "damage",
+						"target.affects.count": "1",
+						"target.template.units": "",
+						"target.affects.type": "creature",
+						"damage.parts": [
+							{
+								"custom.enabled": true,
+								"custom.formula": "(floor(((@details.level + @details.spellLevel) + 1) / 6))d8[on hit]",
+								"types": [
+									"thunder"
+								]
+							}
+						]
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Flame Blade",
 			"source": "PHB",
 			"system": {
-				"damage.parts": [
-					[
-						"(floor((@item.level) / 2) + 2)d6",
-						"fire"
-					]
-				],
-				"scaling.mode": "none",
-				"scaling.formula": ""
-			}
-		},
-		{
-			"name": "Frostbite",
-			"source": "XGE",
-			"system": {
-				"target.value": 1,
-				"target.units": "",
-				"target.type": "creature"
-			}
+				"activities": [
+					{
+						"type": "damage",
+						"damage.parts": [
+							{
+								"custom.enabled": true,
+								"custom.formula": "(floor((@item.level) / 2) + 2)d6",
+								"types": [
+									"fire"
+								]
+							}
+						]
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Green-Flame Blade",
 			"source": "TCE",
 			"system": {
-				"actionType": "mwak",
-				"target.value": 1,
-				"target.units": "",
-				"target.type": "creature",
-				"damage.parts": [
-					[
-						"(floor(((@details.level + @details.spellLevel) + 1) / 6))d8[on hit]",
-						"fire"
-					],
-					[
-						"@mod + (floor(((@details.level + @details.spellLevel) + 1) / 6))d8[splash]",
-						"fire"
-					]
-				],
-				"scaling.mode": "none",
-				"scaling.formula": ""
-			}
-		},
-		{
-			"name": "Gust",
-			"source": "XGE",
-			"system": {
-				"target.value": 1,
-				"target.units": "",
-				"target.type": "creature"
-			}
-		},
-		{
-			"name": "Healing Spirit",
-			"source": "XGE",
-			"system": {
-				"target.value": 5,
-				"target.units": "ft",
-				"target.type": "cube"
-			}
-		},
-		{
-			"name": "Hex",
-			"source": "PHB",
-			"system": {
-				"target.value": 1,
-				"target.units": null,
-				"target.type": "creature"
-			}
-		},
-		{
-			"name": "Hunger of Hadar",
-			"source": "PHB",
-			"system": {
-				"target.value": 20,
-				"target.units": "ft",
-				"target.type": "sphere"
-			}
-		},
-		{
-			"name": "Ice Knife",
-			"source": "XGE",
-			"system": {
-				"damage.parts": [
-					[
-						"1d10[to target]",
-						"piercing"
-					],
-					[
-						"(floor(@item.level + 1))d6[splash]",
-						"cold"
-					]
-				],
-				"scaling.mode": "none",
-				"scaling.formula": ""
-			}
-		},
-		{
-			"name": "Illusory Dragon",
-			"source": "XGE",
-			"system": {
-				"target.value": 60,
-				"target.units": "ft",
-				"target.type": "cone"
-			}
-		},
-		{
-			"name": "Immolation",
-			"source": "XGE",
-			"system": {
-				"target.value": 30,
-				"target.units": "ft",
-				"target.type": "radius"
-			}
-		},
-		{
-			"name": "Infestation",
-			"source": "XGE",
-			"system": {
-				"target.value": 1,
-				"target.units": "",
-				"target.type": "creature"
-			}
-		},
-		{
-			"name": "Lightning Arrow",
-			"source": "PHB",
-			"system": {
-				"damage.parts": [
-					[
-						"((@item.level) + 1)[on hit]",
-						"lightning"
-					],
-					[
-						"((@item.level) - 1)d8[area]",
-						"lightning"
-					]
-				],
-				"scaling.mode": "none",
-				"scaling.formula": ""
-			}
-		},
-		{
-			"name": "Lightning Lure",
-			"source": "TCE",
-			"system": {
-				"target.value": 1,
-				"target.units": "",
-				"target.type": "creature"
-			}
-		},
-		{
-			"name": "Maddening Darkness",
-			"source": "XGE",
-			"system": {
-				"target.value": 60,
-				"target.units": "ft",
-				"target.type": "sphere"
-			}
-		},
-		{
-			"name": "Maelstrom",
-			"source": "XGE",
-			"system": {
-				"target.value": 30,
-				"target.units": "ft",
-				"target.type": "radius"
-			}
+				"activities": [
+					{
+						"type": "damage",
+						"target.affects.count": "1",
+						"target.template.units": "",
+						"target.affects.type": "creature",
+						"damage.parts": [
+							{
+								"custom.enabled": true,
+								"custom.formula": "(floor(((@details.level + @details.spellLevel) + 1) / 6))d8[on hit]",
+								"types": [
+									"fire"
+								]
+							},
+							{
+								"custom.enabled": true,
+								"custom.formula": "@mod + (floor(((@details.level + @details.spellLevel) + 1) / 6))d8[splash]",
+								"types": [
+									"fire"
+								]
+							}
+						]
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Magic Missile",
 			"source": "PHB",
 			"system": {
-				"damage.parts": [
-					[
-						"(1d4 + 1) * (2 + @item.level)",
-						"force"
-					]
+				"activities": [
+					{
+						"type": "damage",
+						"damage.parts": [
+							{
+								"custom.enabled": true,
+								"custom.formula": "(1d4 + 1) * (2 + @item.level)",
+								"types": [
+									"force"
+								]
+							}
+						]
+					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Magic Stone",
 			"source": "XGE",
 			"system": {
-				"activation.cost": 1,
-				"activation.type": "action",
-				"target.value": 1,
-				"target.units": "",
-				"target.type": "creature",
 				"range.value": 60,
 				"range.units": "ft",
-				"damage.parts": [
-					[
-						"1d6 + @mod",
-						"bludgeoning"
-					]
+				"activities": [
+					{
+						"type": "damage",
+						"activation.value": 1,
+						"activation.type": "action",
+						"target.affects.count": "1",
+						"target.template.units": "",
+						"target.affects.type": "creature",
+						"damage.parts": [
+							{
+								"custom.enabled": true,
+								"custom.formula": "1d6 + @mod",
+								"types": [
+									"bludgeoning"
+								]
+							}
+						]
+					}
 				]
-			}
-		},
-		{
-			"name": "Maximilian's Earthen Grasp",
-			"source": "XGE",
-			"system": {
-				"damage.parts": [
-					[
-						"2d6",
-						"bludgeoning"
-					]
-				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Melf's Acid Arrow",
 			"source": "PHB",
 			"system": {
-				"damage.parts": [
-					[
-						"4d4[immediate]",
-						"acid"
-					],
-					[
-						"(@item.level)d4[end of turn]",
-						"acid"
-					]
-				],
-				"scaling.mode": "none",
-				"scaling.formula": ""
-			}
-		},
-		{
-			"name": "Mind Sliver",
-			"source": "TCE",
-			"system": {
-				"target.value": 1,
-				"target.units": "",
-				"target.type": "creature"
-			}
-		},
-		{
-			"name": "Mold Earth",
-			"source": "XGE",
-			"system": {
-				"target.value": 5,
-				"target.units": "ft",
-				"target.type": "cube"
-			}
-		},
-		{
-			"name": "Phantasmal Force",
-			"source": "PHB",
-			"system": {
-				"target.value": 10,
-				"target.units": "ft",
-				"target.type": "cube"
-			}
-		},
-		{
-			"name": "Pyrotechnics",
-			"source": "XGE",
-			"system": {
-				"target.value": 5,
-				"target.units": "ft",
-				"target.type": "cube"
-			}
-		},
-		{
-			"name": "Sapping Sting",
-			"source": "EGW",
-			"system": {
-				"target.value": 1,
-				"target.units": "",
-				"target.type": "creature"
-			}
-		},
-		{
-			"name": "Shape Water",
-			"source": "XGE",
-			"system": {
-				"target.value": 5,
-				"target.units": "ft",
-				"target.type": "cube"
-			}
-		},
-		{
-			"name": "Sickening Radiance",
-			"source": "XGE",
-			"system": {
-				"target.value": 30,
-				"target.units": "ft",
-				"target.type": "sphere"
-			}
-		},
-		{
-			"name": "Snilloc's Snowball Swarm",
-			"source": "XGE",
-			"system": {
-				"target.value": 5,
-				"target.units": "ft",
-				"target.type": "sphere"
-			}
+				"activities": [
+					{
+						"type": "attack",
+						"damage.parts": [
+							{
+								"custom.enabled": true,
+								"custom.formula": "4d4[immediate]",
+								"types": [
+									"acid"
+								]
+							},
+							{
+								"custom.enabled": true,
+								"custom.formula": "(@item.level)d4[end of turn]",
+								"types": [
+									"acid"
+								]
+							}
+						]
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Spirit of Death",
 			"source": "BMT",
 			"system": {
-				"summons": {
-					"profiles": [
-						{
-							"name": "Reaper Spirit",
-							"uuid": "@creature[reaper spirit|bmt]"
-						}
-					]
-				}
-			}
+				"summons.profiles": [
+					{
+						"name": "Reaper Spirit",
+						"uuid": "@creature[reaper spirit|bmt]"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Spirit Shroud",
 			"source": "TCE",
 			"system": {
-				"damage.parts": [],
-				"scaling.mode": "none",
-				"scaling.formula": "",
-				"formula": "(floor(((@item.level) - 1) / 2))d8"
-			}
+				"activities": [
+					{
+						"type": "damage",
+						"roll.formula": "(floor(((@item.level) - 1) / 2))d8",
+						"damage.parts": []
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Spiritual Weapon",
 			"source": "PHB",
 			"system": {
-				"damage.parts": [
-					[
-						"(floor((@item.level) / 2))d8 + @mod",
-						"force"
-					]
-				],
-				"scaling.mode": "none",
-				"scaling.formula": ""
-			}
-		},
-		{
-			"name": "Storm Sphere",
-			"source": "XGE",
-			"system": {
-				"target.value": 20,
-				"target.units": "ft",
-				"target.type": "sphere"
-			}
+				"activities": [
+					{
+						"type": "damage",
+						"damage.parts": [
+							{
+								"custom.enabled": true,
+								"custom.formula": "(floor((@item.level) / 2))d8 + @mod",
+								"types": [
+									"force"
+								]
+							}
+						]
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Summon Aberration",
 			"source": "TCE",
 			"system": {
-				"summons": {
-					"match": {
-						"proficiency": true,
-						"attacks": true,
-						"saves": true
+				"summons.match.proficiency": true,
+				"summons.match.attacks": true,
+				"summons.match.saves": true,
+				"summons.bonuses.ac": "@item.level",
+				"summons.bonuses.hp": "(@item.level - 4) * 10",
+				"summons.bonuses.attackDamage": "@item.level",
+				"summons.profiles": [
+					{
+						"name": "Beholderkin",
+						"uuid": "@creature[aberrant spirit (beholderkin)|tce]"
 					},
-					"bonuses": {
-						"ac": "@item.level",
-						"hp": "(@item.level - 4) * 10",
-						"attackDamage": "@item.level"
+					{
+						"name": "Slaad",
+						"uuid": "@creature[aberrant spirit (slaad)|tce]"
 					},
-					"profiles": [
-						{
-							"name": "Beholderkin",
-							"uuid": "@creature[aberrant spirit (beholderkin)|tce]"
-						},
-						{
-							"name": "Slaad",
-							"uuid": "@creature[aberrant spirit (slaad)|tce]"
-						},
-						{
-							"name": "Star Spawn",
-							"uuid": "@creature[aberrant spirit (star spawn)|tce]"
-						}
-					]
-				}
-			}
+					{
+						"name": "Star Spawn",
+						"uuid": "@creature[aberrant spirit (star spawn)|tce]"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Summon Aberration",
@@ -599,475 +314,264 @@
 						]
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Summon Beast",
 			"source": "TCE",
 			"system": {
-				"summons": {
-					"bonuses": {
-						"ac": "@item.level",
-						"hp": "(@item.level - 2) * 5",
-						"attackDamage": "@item.level"
+				"summons.bonuses.ac": "@item.level",
+				"summons.bonuses.hp": "(@item.level - 2) * 5",
+				"summons.bonuses.attackDamage": "@item.level",
+				"summons.match.proficiency": true,
+				"summons.match.attacks": true,
+				"summons.profiles": [
+					{
+						"name": "Air",
+						"uuid": "@creature[bestial spirit (air)|tce]"
 					},
-					"match": {
-						"proficiency": true,
-						"attacks": true
+					{
+						"name": "Land",
+						"uuid": "@creature[bestial spirit (land)|tce]"
 					},
-					"profiles": [
-						{
-							"name": "Air",
-							"uuid": "@creature[bestial spirit (air)|tce]"
-						},
-						{
-							"name": "Land",
-							"uuid": "@creature[bestial spirit (land)|tce]"
-						},
-						{
-							"name": "Water",
-							"uuid": "@creature[bestial spirit (water)|tce]"
-						}
-					]
-				}
-			}
+					{
+						"name": "Water",
+						"uuid": "@creature[bestial spirit (water)|tce]"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Summon Celestial",
 			"source": "TCE",
 			"system": {
-				"summons": {
-					"match": {
-						"proficiency": true,
-						"attacks": true
+				"summons.match.proficiency": true,
+				"summons.match.attacks": true,
+				"summons.bonuses.ac": "@item.level",
+				"summons.bonuses.hp": "(@item.level - 5) * 10",
+				"summons.bonuses.attackDamage": "@item.level",
+				"summons.bonuses.healing": "@item.level",
+				"summons.profiles": [
+					{
+						"name": "Avenger",
+						"uuid": "@creature[celestial spirit (avenger)|tce]"
 					},
-					"bonuses": {
-						"ac": "@item.level",
-						"hp": "(@item.level - 5) * 10",
-						"attackDamage": "@item.level",
-						"healing": "@item.level"
-					},
-					"profiles": [
-						{
-							"name": "Avenger",
-							"uuid": "@creature[celestial spirit (avenger)|tce]"
-						},
-						{
-							"name": "Defender",
-							"uuid": "@creature[celestial spirit (defender)|tce]"
-						}
-					]
-				}
-			}
+					{
+						"name": "Defender",
+						"uuid": "@creature[celestial spirit (defender)|tce]"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Summon Construct",
 			"source": "TCE",
 			"system": {
-				"summons": {
-					"bonuses": {
-						"ac": "@item.level",
-						"hp": "(@item.level - 4) * 15",
-						"attackDamage": "@item.level"
+				"summons.bonuses.ac": "@item.level",
+				"summons.bonuses.hp": "(@item.level - 4) * 15",
+				"summons.bonuses.attackDamage": "@item.level",
+				"summons.match.proficiency": true,
+				"summons.match.attacks": true,
+				"summons.match.saves": true,
+				"summons.profiles": [
+					{
+						"name": "Clay",
+						"uuid": "@creature[construct spirit (clay)|tce]"
 					},
-					"match": {
-						"proficiency": true,
-						"attacks": true,
-						"saves": true
+					{
+						"name": "Metal",
+						"uuid": "@creature[construct spirit (metal)|tce]"
 					},
-					"profiles": [
-						{
-							"name": "Clay",
-							"uuid": "@creature[construct spirit (clay)|tce]"
-						},
-						{
-							"name": "Metal",
-							"uuid": "@creature[construct spirit (metal)|tce]"
-						},
-						{
-							"name": "Stone",
-							"uuid": "@creature[construct spirit (stone)|tce]"
-						}
-					]
-				}
-			}
+					{
+						"name": "Stone",
+						"uuid": "@creature[construct spirit (stone)|tce]"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Summon Draconic Spirit",
 			"source": "FTD",
 			"system": {
-				"summons": {
-					"profiles": [
-						{
-							"name": "Chromatic",
-							"uuid": "@creature[draconic spirit (chromatic)|ftd]"
-						},
-						{
-							"name": "Gem",
-							"uuid": "@creature[draconic spirit (gem)|ftd]"
-						},
-						{
-							"name": "Metallic",
-							"uuid": "@creature[draconic spirit (metallic)|ftd]"
-						}
-					]
-				}
-			}
+				"summons.profiles": [
+					{
+						"name": "Chromatic",
+						"uuid": "@creature[draconic spirit (chromatic)|ftd]"
+					},
+					{
+						"name": "Gem",
+						"uuid": "@creature[draconic spirit (gem)|ftd]"
+					},
+					{
+						"name": "Metallic",
+						"uuid": "@creature[draconic spirit (metallic)|ftd]"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Summon Elemental",
 			"source": "TCE",
 			"system": {
-				"summons": {
-					"bonuses": {
-						"ac": "@item.level",
-						"hp": "(@item.level - 4) * 10",
-						"attackDamage": "@item.level"
+				"summons.bonuses.ac": "@item.level",
+				"summons.bonuses.hp": "(@item.level - 4) * 10",
+				"summons.bonuses.attackDamage": "@item.level",
+				"summons.match.proficiency": true,
+				"summons.match.attacks": true,
+				"summons.profiles": [
+					{
+						"name": "Air",
+						"uuid": "@creature[elemental spirit (air)|tce]"
 					},
-					"match": {
-						"proficiency": true,
-						"attacks": true
+					{
+						"name": "Earth",
+						"uuid": "@creature[elemental spirit (earth)|tce]"
 					},
-					"profiles": [
-						{
-							"name": "Air",
-							"uuid": "@creature[elemental spirit (air)|tce]"
-						},
-						{
-							"name": "Earth",
-							"uuid": "@creature[elemental spirit (earth)|tce]"
-						},
-						{
-							"name": "Fire",
-							"uuid": "@creature[elemental spirit (fire)|tce]"
-						},
-						{
-							"name": "Water",
-							"uuid": "@creature[elemental spirit (water)|tce]"
-						}
-					]
-				}
-			}
+					{
+						"name": "Fire",
+						"uuid": "@creature[elemental spirit (fire)|tce]"
+					},
+					{
+						"name": "Water",
+						"uuid": "@creature[elemental spirit (water)|tce]"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Summon Fey",
 			"source": "TCE",
 			"system": {
-				"summons": {
-					"bonuses": {
-						"ac": "@item.level",
-						"hp": "(@item.level - 3) * 10",
-						"attackDamage": "@item.level"
+				"summons.bonuses.ac": "@item.level",
+				"summons.bonuses.hp": "(@item.level - 3) * 10",
+				"summons.bonuses.attackDamage": "@item.level",
+				"summons.match.proficiency": true,
+				"summons.match.attacks": true,
+				"summons.match.saves": true,
+				"summons.profiles": [
+					{
+						"name": "Fuming",
+						"uuid": "@creature[fey spirit (fuming)|tce]"
 					},
-					"match": {
-						"proficiency": true,
-						"attacks": true,
-						"saves": true
+					{
+						"name": "Mirthful",
+						"uuid": "@creature[fey spirit (mirthful)|tce]"
 					},
-					"profiles": [
-						{
-							"name": "Fuming",
-							"uuid": "@creature[fey spirit (fuming)|tce]"
-						},
-						{
-							"name": "Mirthful",
-							"uuid": "@creature[fey spirit (mirthful)|tce]"
-						},
-						{
-							"name": "Tricksy",
-							"uuid": "@creature[fey spirit (tricksy)|tce]"
-						}
-					]
-				}
-			}
+					{
+						"name": "Tricksy",
+						"uuid": "@creature[fey spirit (tricksy)|tce]"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Summon Fiend",
 			"source": "TCE",
 			"system": {
-				"summons": {
-					"bonuses": {
-						"ac": "@item.level",
-						"hp": "15 * @item.level",
-						"attackDamage": "@item.level",
-						"saveDamage": "@item.level"
+				"summons.bonuses.ac": "@item.level",
+				"summons.bonuses.hp": "15 * @item.level",
+				"summons.bonuses.attackDamage": "@item.level",
+				"summons.bonuses.saveDamage": "@item.level",
+				"summons.match.attacks": true,
+				"summons.match.proficiency": true,
+				"summons.match.saves": true,
+				"summons.profiles": [
+					{
+						"name": "Demon",
+						"uuid": "@creature[fiendish spirit (demon)|tce]"
 					},
-					"match": {
-						"attacks": true,
-						"proficiency": true,
-						"saves": true
+					{
+						"name": "Devil",
+						"uuid": "@creature[fiendish spirit (devil)|tce]"
 					},
-					"profiles": [
-						{
-							"name": "Demon",
-							"uuid": "@creature[fiendish spirit (demon)|tce]"
-						},
-						{
-							"name": "Devil",
-							"uuid": "@creature[fiendish spirit (devil)|tce]"
-						},
-						{
-							"name": "Yugoloth",
-							"uuid": "@creature[fiendish spirit (yugoloth)|tce]"
-						}
-					]
-				}
-			}
+					{
+						"name": "Yugoloth",
+						"uuid": "@creature[fiendish spirit (yugoloth)|tce]"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Summon Shadowspawn",
 			"source": "TCE",
 			"system": {
-				"summons": {
-					"match": {
-						"attacks": true,
-						"saves": true
+				"summons.match.attacks": true,
+				"summons.match.saves": true,
+				"summons.bonuses.ac": "@item.level",
+				"summons.bonuses.hp": "(@item.level - 3) * 15",
+				"summons.bonuses.attackDamage": "@item.level",
+				"summons.profiles": [
+					{
+						"name": "Fury",
+						"uuid": "@creature[shadow spirit (fury)|tce]"
 					},
-					"bonuses": {
-						"ac": "@item.level",
-						"hp": "(@item.level - 3) * 15",
-						"attackDamage": "@item.level"
+					{
+						"name": "Despair",
+						"uuid": "@creature[shadow spirit (despair)|tce]"
 					},
-					"profiles": [
-						{
-							"name": "Fury",
-							"uuid": "@creature[shadow spirit (fury)|tce]"
-						},
-						{
-							"name": "Despair",
-							"uuid": "@creature[shadow spirit (despair)|tce]"
-						},
-						{
-							"name": "Fear",
-							"uuid": "@creature[shadow spirit (fear)|tce]"
-						}
-					]
-				}
-			}
+					{
+						"name": "Fear",
+						"uuid": "@creature[shadow spirit (fear)|tce]"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Summon Undead",
 			"source": "TCE",
 			"system": {
-				"summons": {
-					"bonuses": {
-						"ac": "@item.level",
-						"hp": "(@item.level - 3) * 10",
-						"attackDamage": "@item.level"
+				"summons.bonuses.ac": "@item.level",
+				"summons.bonuses.hp": "(@item.level - 3) * 10",
+				"summons.bonuses.attackDamage": "@item.level",
+				"summons.match.attacks": true,
+				"summons.match.proficiency": true,
+				"summons.match.saves": true,
+				"summons.profiles": [
+					{
+						"name": "Ghostly",
+						"uuid": "@creature[undead spirit (ghostly)|tce]"
 					},
-					"match": {
-						"attacks": true,
-						"proficiency": true,
-						"saves": true
+					{
+						"name": "Putrid",
+						"uuid": "@creature[undead spirit (putrid)|tce]"
 					},
-					"profiles": [
-						{
-							"name": "Ghostly",
-							"uuid": "@creature[undead spirit (ghostly)|tce]"
-						},
-						{
-							"name": "Putrid",
-							"uuid": "@creature[undead spirit (putrid)|tce]"
-						},
-						{
-							"name": "Skeletal",
-							"uuid": "@creature[undead spirit (skeletal)|tce]"
-						}
-					]
-				}
-			}
-		},
-		{
-			"name": "Sword Burst",
-			"source": "TCE",
-			"system": {
-				"target.value": 5,
-				"target.units": "ft",
-				"target.type": "creature",
-				"range.units": "special"
-			}
-		},
-		{
-			"name": "Synaptic Static",
-			"source": "XGE",
-			"system": {
-				"target.value": 20,
-				"target.units": "ft",
-				"target.type": "sphere"
-			}
-		},
-		{
-			"name": "Temple of the Gods",
-			"source": "XGE",
-			"system": {
-				"target.value": 120,
-				"target.units": "ft",
-				"target.type": "cube"
-			}
-		},
-		{
-			"name": "Thorn Whip",
-			"source": "PHB",
-			"system": {
-				"target.value": 1,
-				"target.units": "",
-				"target.type": "creature"
-			}
-		},
-		{
-			"name": "Thunder Step",
-			"source": "XGE",
-			"system": {
-				"target.value": 10,
-				"target.units": "ft",
-				"target.type": "sphere"
-			}
-		},
-		{
-			"name": "Thunderclap",
-			"source": "XGE",
-			"system": {
-				"target.value": 5,
-				"target.units": "ft",
-				"target.type": "creature",
-				"range.units": "special"
-			}
-		},
-		{
-			"name": "Tidal Wave",
-			"source": "XGE",
-			"system": {
-				"target.value": 30,
-				"target.units": "ft",
-				"target.type": "wall"
-			}
-		},
-		{
-			"name": "Toll the Dead",
-			"source": "XGE",
-			"system": {
-				"target.value": 1,
-				"target.units": "",
-				"target.type": "creature",
-				"damage.parts": [
-					[
-						"(floor(((@details.level + @details.spellLevel) + 1) / 6) + 1)d8[if uninjured]",
-						"necrotic"
-					]
-				],
-				"damage.versatile": "(floor(((@details.level + @details.spellLevel) + 1) / 6) + 1)d12[if injured]",
-				"scaling.mode": "none",
-				"scaling.formula": ""
-			}
-		},
-		{
-			"name": "Transmute Rock",
-			"source": "XGE",
-			"system": {
-				"target.value": 40,
-				"target.units": "ft",
-				"target.type": "cube"
-			}
-		},
-		{
-			"name": "Vitriolic Sphere",
-			"source": "XGE",
-			"system": {
-				"target.value": 20,
-				"target.units": "ft",
-				"target.type": "sphere",
-				"damage.parts": [
-					[
-						"10d4",
-						"acid"
-					]
-				],
-				"formula": "5d4[acid]"
-			}
-		},
-		{
-			"name": "Wall of Light",
-			"source": "XGE",
-			"system": {
-				"target.value": 60,
-				"target.units": "ft",
-				"target.type": "wall"
-			}
-		},
-		{
-			"name": "Wall of Sand",
-			"source": "XGE",
-			"system": {
-				"target.value": 30,
-				"target.units": "ft",
-				"target.type": "wall"
-			}
-		},
-		{
-			"name": "Wall of Water",
-			"source": "XGE",
-			"system": {
-				"target.value": 30,
-				"target.units": "ft",
-				"target.type": "wall"
-			}
-		},
-		{
-			"name": "Watery Sphere",
-			"source": "XGE",
-			"system": {
-				"target.value": 5,
-				"target.units": "ft",
-				"target.type": "radius"
-			}
-		},
-		{
-			"name": "Whirlwind",
-			"source": "XGE",
-			"system": {
-				"target.value": 10,
-				"target.units": "ft",
-				"target.type": "cylinder"
-			}
+					{
+						"name": "Skeletal",
+						"uuid": "@creature[undead spirit (skeletal)|tce]"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Witch Bolt",
 			"source": "PHB",
 			"system": {
-				"damage.parts": [
-					[
-						"1d12",
-						"lightning"
-					]
+				"activities": [
+					{
+						"type": "damage",
+						"damage.parts": [
+							{
+								"custom.enabled": true,
+								"custom.formula": "1d12",
+								"types": [
+									"lightning"
+								]
+							}
+						]
+					}
 				]
-			}
-		},
-		{
-			"name": "Wither and Bloom",
-			"source": "SCC",
-			"system": {
-				"target.value": 10,
-				"target.units": "ft",
-				"target.type": "radius"
-			}
-		},
-		{
-			"name": "Word of Radiance",
-			"source": "XGE",
-			"system": {
-				"target.value": 5,
-				"target.units": "ft",
-				"target.type": "sphere"
-			}
-		},
-		{
-			"name": "Wrath of Nature",
-			"source": "XGE",
-			"system": {
-				"target.value": 60,
-				"target.units": "ft",
-				"target.type": "cube"
-			}
+			},
+			"migrationVersion": 3
 		}
 	]
 }

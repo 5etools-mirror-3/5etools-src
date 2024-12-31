@@ -2,7 +2,7 @@ import fs from "fs";
 import * as ut from "../util.js";
 import "../../js/parser.js";
 import "../../js/utils.js";
-import "../../js/utils-proporder.js";
+import {PropOrder} from "../../js/utils-proporder.js";
 
 const FILE_BLOCKLIST = new Set([
 	"loot.json",

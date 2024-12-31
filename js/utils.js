@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.5.9"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.5.10"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -51,7 +51,7 @@ globalThis.VeCt = {
 
 	SYM_UTIL_TIMEOUT: Symbol("timeout"),
 
-	LOC_ORIGIN_CANCER: "https://5e.tools",
+	LOC_HOSTNAME_CANCER: "5e.tools",
 
 	URL_BREW: `https://github.com/revilowaldow/homebrew`,
 	URL_ROOT_BREW: `https://raw.githubusercontent.com/revilowaldow/homebrew/master/`, // N.b. must end with a slash
@@ -8381,7 +8381,7 @@ if (!IS_VTT && typeof window !== "undefined") {
 		Renderer.events.bindGeneric();
 	});
 
-	if (location.origin === VeCt.LOC_ORIGIN_CANCER) {
+	if (location.hostname.endsWith(VeCt.LOC_HOSTNAME_CANCER)) {
 		const ivsCancer = [];
 
 		window.addEventListener("load", () => {

@@ -1,6 +1,7 @@
 import {BuilderUi, PageUiUtil} from "./makebrew-builderui.js";
 import {VetoolsConfig} from "../utils-config/utils-config-config.js";
 import {SITE_STYLE__CLASSIC, SITE_STYLE_DISPLAY} from "../consts.js";
+import {PropOrder} from "../utils-proporder.js";
 
 class SidemenuRenderCache {
 	constructor ({$lastStageSaved, $lastWrpBtnLoadExisting}) {
