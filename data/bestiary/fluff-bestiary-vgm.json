@@ -3169,7 +3169,7 @@
 										{
 											"name": "Innate Spellcasting (Psionics)",
 											"entries": [
-												"The lich's innate spellcasting ability is Intelligence (spell save DC 20). It can innately cast the following spells, requiring no components."
+												"The lich's innate spellcasting ability is Intelligence (spell save {@dc 20}). It can innately cast the following spells, requiring no components."
 											],
 											"type": "entries"
 										}
@@ -3182,7 +3182,7 @@
 										{
 											"name": "Tentacles",
 											"entries": [
-												"Melee Weapon Attack: +12 to hit, reach 5 ft., one creature. Hit: 21 ({@damage 3d10 + 5}) psychic damage. If the target is Large or smaller, it is {@condition grappled} (escape DC 15) and must succeed on a DC 20 Intelligence saving throw or be {@condition stunned} until this grapple ends."
+												"Melee Weapon Attack: +12 to hit, reach 5 ft., one creature. Hit: 21 ({@damage 3d10 + 5}) psychic damage. If the target is Large or smaller, it is {@condition grappled} (escape {@dc 15}) and must succeed on a {@dc 20} Intelligence saving throw or be {@condition stunned} until this grapple ends."
 											],
 											"type": "entries"
 										},
@@ -3196,7 +3196,7 @@
 										{
 											"name": "Mind Blast {@recharge 5}",
 											"entries": [
-												"The lich magically emits psychic energy in a 60-foot cone. Each creature in that area must succeed on a DC 18 Intelligence saving throw or take 27 ({@damage 5d8 + 5}) psychic damage and be {@condition stunned} for 1 minute. A creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+												"The lich magically emits psychic energy in a 60-foot cone. Each creature in that area must succeed on a {@dc 18} Intelligence saving throw or take 27 ({@damage 5d8 + 5}) psychic damage and be {@condition stunned} for 1 minute. A creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
 											],
 											"type": "entries"
 										}
@@ -4253,7 +4253,7 @@
 									"name": "Nilbogism",
 									"entries": [
 										"A nilbog is an invisible spirit that possesses only goblins. Bereft of a host, the spirit has a flying speed of 30 feet and can't speak or be attacked. The only action it can take is to attempt to possess a goblin within 5 feet of it.",
-										"A goblin targeted by the spirit must succeed on a DC 15 Charisma saving throw or become possessed. While possessed by the spirit, the goblin's alignment becomes chaotic evil, its Charisma becomes 15 (unless it was already higher), and it gains the nilbog's Innate Spellcasting and Nilbogism traits, as well as its Reversal of Fortune reaction. If the save succeeds, the spirit can't possess that goblin for 24 hours. If its host is killed or the possession is ended by a spell such as hallow, magic circle, or protection from evil and good, the spirit searches for another goblin to possess. The spirit can leave its host at any time, but it won't do so willingly unless it knows there's another potential host nearby. A goblin stripped of its nilbog spirit reverts to its normal statistics and loses the traits it gained while possessed."
+										"A goblin targeted by the spirit must succeed on a {@dc 15} Charisma saving throw or become possessed. While possessed by the spirit, the goblin's alignment becomes chaotic evil, its Charisma becomes 15 (unless it was already higher), and it gains the nilbog's Innate Spellcasting and Nilbogism traits, as well as its Reversal of Fortune reaction. If the save succeeds, the spirit can't possess that goblin for 24 hours. If its host is killed or the possession is ended by a spell such as hallow, magic circle, or protection from evil and good, the spirit searches for another goblin to possess. The spirit can leave its host at any time, but it won't do so willingly unless it knows there's another potential host nearby. A goblin stripped of its nilbog spirit reverts to its normal statistics and loses the traits it gained while possessed."
 									]
 								}
 							]
@@ -5124,7 +5124,7 @@
 									"type": "entries",
 									"entries": [
 										"Rot grubs are finger-sized maggots that eat living or dead flesh, although they can survive on plant matter. They infest corpses and piles of decaying matter and attack living creatures that disturb them. After burrowing into the flesh of a living creature, a rot grub instinctively chews its way toward the heart in order to kill its host.",
-										"Rot grubs pose a threat both singly and as a swarm. See the accompanying stat block for the mechanics of a swarm of rot grubs. A single rot grub has no stat block. Any creature that comes into contact with it must make a DC 10 Dexterity saving throw. On a failed save, the rot grub burrows into the creature's flesh and deals 3 ({@damage 1d6}) piercing damage at the start of each of the host creature's turns. Applying fire to the wound before the end of the host creature's next turn deals 1 fire damage to the host and kills the infesting rot grub. After this time, the rot grub is too far under the host creature's skin to be burned. If a creature infested by one or more rot grubs ends its turn with 0 hit points, it dies as the grubs burrow into its heart and kill it. Any effect that cures disease kills all rot grubs infesting the target. Burning a body kills any rot grubs infesting it."
+										"Rot grubs pose a threat both singly and as a swarm. See the accompanying stat block for the mechanics of a swarm of rot grubs. A single rot grub has no stat block. Any creature that comes into contact with it must make a {@dc 10} Dexterity saving throw. On a failed save, the rot grub burrows into the creature's flesh and deals 3 ({@damage 1d6}) piercing damage at the start of each of the host creature's turns. Applying fire to the wound before the end of the host creature's next turn deals 1 fire damage to the host and kills the infesting rot grub. After this time, the rot grub is too far under the host creature's skin to be burned. If a creature infested by one or more rot grubs ends its turn with 0 hit points, it dies as the grubs burrow into its heart and kill it. Any effect that cures disease kills all rot grubs infesting the target. Burning a body kills any rot grubs infesting it."
 									]
 								}
 							]
@@ -5246,8 +5246,8 @@
 									"type": "entries",
 									"name": "Russet Mold",
 									"entries": [
-										"The fungus known as russet mold is reddish-brown in color and found only in places that are dark, warm, and wet. Russet mold that spreads out across a metal object can be mistaken for natural rust, and a successful DC 15 Intelligence ({@skill Nature}) or Wisdom ({@skill Survival}) check is required to identify it accurately by sight in such a case.",
-										"Any creature that comes within 5 feet of russet mold must make a DC 13 Constitution saving throw as the mold emits a puff of spores. On a failed save, the creature becomes {@condition poisoned}. While {@condition poisoned} in this way, the creature takes 7 ({@damage 2d6}) poison damage at the start of each of its turns, sprouting mold as it takes damage. The creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success. Any magic that neutralizes poison or cures disease kills the infestation. A creature reduced to 0 hit points by the mold's poison damage dies. If the dead creature is a beast, a giant, or a humanoid, one or more newborn vegepygmies emerge from its body 24 hours later: one newborn from a Small corpse, two from a Medium corpse, four from a Large corpse, eight from a Huge corpse, or sixteen from a Gargantuan corpse.",
+										"The fungus known as russet mold is reddish-brown in color and found only in places that are dark, warm, and wet. Russet mold that spreads out across a metal object can be mistaken for natural rust, and a successful {@dc 15} Intelligence ({@skill Nature}) or Wisdom ({@skill Survival}) check is required to identify it accurately by sight in such a case.",
+										"Any creature that comes within 5 feet of russet mold must make a {@dc 13} Constitution saving throw as the mold emits a puff of spores. On a failed save, the creature becomes {@condition poisoned}. While {@condition poisoned} in this way, the creature takes 7 ({@damage 2d6}) poison damage at the start of each of its turns, sprouting mold as it takes damage. The creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success. Any magic that neutralizes poison or cures disease kills the infestation. A creature reduced to 0 hit points by the mold's poison damage dies. If the dead creature is a beast, a giant, or a humanoid, one or more newborn vegepygmies emerge from its body 24 hours later: one newborn from a Small corpse, two from a Medium corpse, four from a Large corpse, eight from a Huge corpse, or sixteen from a Gargantuan corpse.",
 										"Russet mold can be hard to kill, since weapons and most types of damage do it no harm. Effects that deal acid, necrotic, or radiant damage kill 1 square foot of russet mold per 1 damage dealt. A pound of salt, a gallon of alcohol, or a magical effect that cures disease kills russet mold in a square area that is 10 feet on a side. Sunlight kills any russet mold in the light's area."
 									]
 								}
@@ -5555,8 +5555,8 @@
 									"type": "entries",
 									"name": "Russet Mold",
 									"entries": [
-										"The fungus known as russet mold is reddish-brown in color and found only in places that are dark, warm, and wet. Russet mold that spreads out across a metal object can be mistaken for natural rust, and a successful DC 15 Intelligence ({@skill Nature}) or Wisdom ({@skill Survival}) check is required to identify it accurately by sight in such a case.",
-										"Any creature that comes within 5 feet of russet mold must make a DC 13 Constitution saving throw as the mold emits a puff of spores. On a failed save, the creature becomes {@condition poisoned}. While {@condition poisoned} in this way, the creature takes 7 ({@damage 2d6}) poison damage at the start of each of its turns, sprouting mold as it takes damage. The creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success. Any magic that neutralizes poison or cures disease kills the infestation. A creature reduced to 0 hit points by the mold's poison damage dies. If the dead creature is a beast, a giant, or a humanoid, one or more newborn vegepygmies emerge from its body 24 hours later: one newborn from a Small corpse, two from a Medium corpse, four from a Large corpse, eight from a Huge corpse, or sixteen from a Gargantuan corpse.",
+										"The fungus known as russet mold is reddish-brown in color and found only in places that are dark, warm, and wet. Russet mold that spreads out across a metal object can be mistaken for natural rust, and a successful {@dc 15} Intelligence ({@skill Nature}) or Wisdom ({@skill Survival}) check is required to identify it accurately by sight in such a case.",
+										"Any creature that comes within 5 feet of russet mold must make a {@dc 13} Constitution saving throw as the mold emits a puff of spores. On a failed save, the creature becomes {@condition poisoned}. While {@condition poisoned} in this way, the creature takes 7 ({@damage 2d6}) poison damage at the start of each of its turns, sprouting mold as it takes damage. The creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success. Any magic that neutralizes poison or cures disease kills the infestation. A creature reduced to 0 hit points by the mold's poison damage dies. If the dead creature is a beast, a giant, or a humanoid, one or more newborn vegepygmies emerge from its body 24 hours later: one newborn from a Small corpse, two from a Medium corpse, four from a Large corpse, eight from a Huge corpse, or sixteen from a Gargantuan corpse.",
 										"Russet mold can be hard to kill, since weapons and most types of damage do it no harm. Effects that deal acid, necrotic, or radiant damage kill 1 square foot of russet mold per 1 damage dealt. A pound of salt, a gallon of alcohol, or a magical effect that cures disease kills russet mold in a square area that is 10 feet on a side. Sunlight kills any russet mold in the light's area."
 									]
 								}
@@ -5613,8 +5613,8 @@
 									"type": "entries",
 									"name": "Russet Mold",
 									"entries": [
-										"The fungus known as russet mold is reddish-brown in color and found only in places that are dark, warm, and wet. Russet mold that spreads out across a metal object can be mistaken for natural rust, and a successful DC 15 Intelligence ({@skill Nature}) or Wisdom ({@skill Survival}) check is required to identify it accurately by sight in such a case.",
-										"Any creature that comes within 5 feet of russet mold must make a DC 13 Constitution saving throw as the mold emits a puff of spores. On a failed save, the creature becomes {@condition poisoned}. While {@condition poisoned} in this way, the creature takes 7 ({@damage 2d6}) poison damage at the start of each of its turns, sprouting mold as it takes damage. The creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success. Any magic that neutralizes poison or cures disease kills the infestation. A creature reduced to 0 hit points by the mold's poison damage dies. If the dead creature is a beast, a giant, or a humanoid, one or more newborn vegepygmies emerge from its body 24 hours later: one newborn from a Small corpse, two from a Medium corpse, four from a Large corpse, eight from a Huge corpse, or sixteen from a Gargantuan corpse.",
+										"The fungus known as russet mold is reddish-brown in color and found only in places that are dark, warm, and wet. Russet mold that spreads out across a metal object can be mistaken for natural rust, and a successful {@dc 15} Intelligence ({@skill Nature}) or Wisdom ({@skill Survival}) check is required to identify it accurately by sight in such a case.",
+										"Any creature that comes within 5 feet of russet mold must make a {@dc 13} Constitution saving throw as the mold emits a puff of spores. On a failed save, the creature becomes {@condition poisoned}. While {@condition poisoned} in this way, the creature takes 7 ({@damage 2d6}) poison damage at the start of each of its turns, sprouting mold as it takes damage. The creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success. Any magic that neutralizes poison or cures disease kills the infestation. A creature reduced to 0 hit points by the mold's poison damage dies. If the dead creature is a beast, a giant, or a humanoid, one or more newborn vegepygmies emerge from its body 24 hours later: one newborn from a Small corpse, two from a Medium corpse, four from a Large corpse, eight from a Huge corpse, or sixteen from a Gargantuan corpse.",
 										"Russet mold can be hard to kill, since weapons and most types of damage do it no harm. Effects that deal acid, necrotic, or radiant damage kill 1 square foot of russet mold per 1 damage dealt. A pound of salt, a gallon of alcohol, or a magical effect that cures disease kills russet mold in a square area that is 10 feet on a side. Sunlight kills any russet mold in the light's area."
 									]
 								}
@@ -6134,7 +6134,7 @@
 									"type": "entries",
 									"name": "Making a Broodguard",
 									"entries": [
-										"Yuan-ti create broodguards from captured humanoids. Each subject is fed a special potion that immediately renders it {@condition incapacitated} and transforms it into a broodguard over the next {@dice 1d6 + 6} days. A subject forced to imbibe the brew can make a DC 15 Constitution saving throw; on a success, it takes 14 ({@damage 4d6}) poison damage and isn't otherwise affected.",
+										"Yuan-ti create broodguards from captured humanoids. Each subject is fed a special potion that immediately renders it {@condition incapacitated} and transforms it into a broodguard over the next {@dice 1d6 + 6} days. A subject forced to imbibe the brew can make a {@dc 15} Constitution saving throw; on a success, it takes 14 ({@damage 4d6}) poison damage and isn't otherwise affected.",
 										"A spell such as lesser restoration or remove curse can end the transformation process at any time before it runs its course. After the process is complete, only a {@spell wish} spell can reverse the effect."
 									]
 								}

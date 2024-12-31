@@ -14,7 +14,8 @@
 						}
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Dual Wielder",
@@ -31,7 +32,8 @@
 						}
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Elven Accuracy",
@@ -47,20 +49,30 @@
 						}
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Lucky",
 			"source": "PHB",
 			"system": {
-				"activation.type": "none",
-				"activation.cost": 0,
-				"uses.value": 3,
 				"uses.max": 3,
-				"uses.per": "lr",
-				"actionType": "other",
-				"formula": "1d20"
-			}
+				"uses.recovery": [
+					{
+						"period": "lr",
+						"type": "recoverAll"
+					}
+				],
+				"activities": [
+					{
+						"type": "utility",
+						"activation.type": "none",
+						"activation.value": 0,
+						"roll.formula": "1d20"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Mobile",
@@ -77,7 +89,8 @@
 						}
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Observant",
@@ -93,7 +106,8 @@
 						}
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Squat Nimbleness",
@@ -110,7 +124,8 @@
 						}
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Tavern Brawler",
@@ -126,7 +141,8 @@
 						}
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Tough",
@@ -143,7 +159,8 @@
 						}
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "War Caster",
@@ -159,7 +176,8 @@
 						}
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		}
 	]
 }

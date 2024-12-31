@@ -111,3 +111,48 @@ export class UtilsFoundryItem {
 		return this._TYPE_LOOT;
 	}
 }
+
+/**
+ * Ports/re-implementations of Foundry utilities.
+ */
+export class UtilsFoundry {
+	static getType (val) {
+		if (val === null) return "null";
+		const to = typeof val;
+		if (to !== "object") return to;
+		if (val instanceof Array) return "Array";
+		return "Object";
+	}
+
+	static isEmpty (val) {
+		if (val == null) return true;
+		switch (this.getType(val)) {
+			case "Array": return !val.length;
+			case "Object": return !Object.keys(val).length;
+		}
+		return false;
+	}
+
+	static flattenObject (obj) {
+		const out = {};
+
+		for (const [k, v] of Object.entries(obj)) {
+			if (this.getType(v) !== "Object") {
+				out[k] = v;
+				continue;
+			}
+
+			if (this.isEmpty(v)) {
+				out[k] = v;
+				continue;
+			}
+
+			Object.entries(this.flattenObject(v))
+				.forEach(([k2, v2]) => {
+					out[`${k}.${k2}`] = v2;
+				});
+		}
+
+		return out;
+	}
+}

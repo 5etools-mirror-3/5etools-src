@@ -375,7 +375,7 @@ Parser.crToNumber = function (cr, opts = {}) {
 	if (cr === "Unknown" || cr === "\u2014" || cr == null) return isDefaultNull ? null : VeCt.CR_UNKNOWN;
 	if (cr.cr) return Parser.crToNumber(cr.cr, opts);
 
-	const parts = cr.trim().split("/");
+	const parts = cr.trim().split("/").filter(Boolean);
 	if (!parts.length || parts.length >= 3) return isDefaultNull ? null : VeCt.CR_CUSTOM;
 	if (isNaN(parts[0])) return isDefaultNull ? null : VeCt.CR_CUSTOM;
 
@@ -397,10 +397,11 @@ Parser.numberToCr = function (number, safe) {
 };
 
 Parser.crToPb = function (cr) {
-	if (cr === "Unknown" || cr == null) return 0;
-	cr = cr.cr || cr;
-	if (Parser.crToNumber(cr) < 5) return 2;
-	return Math.ceil(cr / 4) + 1;
+	const crNumber = Parser.crToNumber(cr);
+	if (crNumber === VeCt.CR_UNKNOWN) return 0;
+	if (crNumber === VeCt.CR_CUSTOM || crNumber < 0) return null;
+	if (crNumber < 5) return 2;
+	return Math.ceil(crNumber / 4) + 1;
 };
 
 Parser.levelToPb = function (level) {

@@ -1,4 +1,4 @@
-import {UtilsFoundryItem} from "./utils-foundry.js";
+import {UtilsFoundryItem} from "./foundry/foundry-utils.js";
 
 class FoundryOmnidexerUtils {
 	static getPackedFoundryExtras ({prop, ent}) {
