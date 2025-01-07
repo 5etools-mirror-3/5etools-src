@@ -231,9 +231,27 @@
 					"name": "Horrid Gnashing",
 					"entries": [
 						"The nullifier's mouths gnash incoherently while it can see any enemies. Each creature that starts its turn within 20 feet of the nullifier and can hear it must make a {@dc 16} Wisdom saving throw. Unless the save succeeds, the creature rolls a {@dice d8} to determine what it does during the current turn:",
-						"1-4: The creature is {@condition stunned} until the end of the turn.",
-						"5-6: The creature is {@condition frightened} until the end of the turn and uses its movement to get as far as possible from the nullifier.",
-						"7-8: The creature doesn't move, and it uses its action to make one melee attack against a random creature (other than itself) if one is within reach. It otherwise does nothing."
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "1-4:",
+									"entry": "The creature is {@condition stunned} until the end of the turn."
+								},
+								{
+									"type": "item",
+									"name": "5-6:",
+									"entry": "The creature is {@condition frightened} until the end of the turn and uses its movement to get as far as possible from the nullifier."
+								},
+								{
+									"type": "item",
+									"name": "7-8:",
+									"entry": "The creature doesn't move, and it uses its action to make one melee attack against a random creature (other than itself) if one is within reach. It otherwise does nothing"
+								}
+							]
+						}
 					]
 				},
 				{

@@ -16,12 +16,12 @@ class PageFilterRecipes extends PageFilterBase {
 
 		this._typeFilter = new Filter({
 			header: "Category",
-			displayFn: StrUtil.toTitleCase,
+			displayFn: StrUtil.toTitleCase.bind(StrUtil),
 			itemSortFn: SortUtil.ascSortLower,
 		});
 		this._dishTypeFilter = new Filter({
 			header: "Dish Type",
-			displayFn: StrUtil.toTitleCase,
+			displayFn: StrUtil.toTitleCase.bind(StrUtil),
 			itemSortFn: SortUtil.ascSortLower,
 		});
 		this._servesFilter = new RangeFilter({header: "Serves", min: 1, max: 1});
@@ -39,7 +39,7 @@ class PageFilterRecipes extends PageFilterBase {
 		});
 		this._allergensFilter = new Filter({
 			header: "Allergens",
-			displayFn: StrUtil.toTitleCase,
+			displayFn: StrUtil.toTitleCase.bind(StrUtil),
 			itemSortFn: SortUtil.ascSortLower,
 		});
 		this._miscFilter = new Filter({

@@ -140,6 +140,8 @@ export class ConverterSpell extends ConverterBase {
 		if (missingProps.length) options.cbWarning(`${statsOut.name ? `(${statsOut.name}) ` : ""}Missing properties: ${missingProps.join(", ")}`);
 
 		options.cbOutput(statsOut, options.isAppend);
+
+		return statsOut;
 	}
 
 	static _getCleanInput (ipt, options = null) {

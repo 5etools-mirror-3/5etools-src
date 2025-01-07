@@ -1303,19 +1303,25 @@
 					"entries": [
 						"Immediately after a creature within 30 feet of the gremishka casts a spell, the gremishka can spontaneously react to the magic. Roll a {@dice d6} to determine the effect:",
 						{
-							"type": "item",
-							"name": "1-2",
-							"entry": "The gremishka emanates magical energy. Each creature within 30 feet of the gremishka must succeed on a {@dc 10} Constitution saving throw or take 3 ({@damage 1d6}) force damage."
-						},
-						{
-							"type": "item",
-							"name": "3-4",
-							"entry": "The gremishka surges with magical energy and regains 3 ({@dice 1d6}) hit points."
-						},
-						{
-							"type": "item",
-							"name": "5-6",
-							"entry": "The gremishka explodes and dies, and one swarm of gremishkas instantly appears in the space where this gremishka died. The swarm uses the gremishka's initiative."
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "1-2",
+									"entry": "The gremishka emanates magical energy. Each creature within 30 feet of the gremishka must succeed on a {@dc 10} Constitution saving throw or take 3 ({@damage 1d6}) force damage."
+								},
+								{
+									"type": "item",
+									"name": "3-4",
+									"entry": "The gremishka surges with magical energy and regains 3 ({@dice 1d6}) hit points."
+								},
+								{
+									"type": "item",
+									"name": "5-6",
+									"entry": "The gremishka explodes and dies, and one swarm of gremishkas instantly appears in the space where this gremishka died. The swarm uses the gremishka's initiative."
+								}
+							]
 						}
 					]
 				}
@@ -1583,7 +1589,7 @@
 				{
 					"name": "Silver Longsword",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}8 ({@damage 1d8 + 4}) slashing damage, or 9 ({@dice 1d10 + 4}) if used with two hands, plus 18 ({@damage 4d8}) force damage."
+						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}8 ({@damage 1d8 + 4}) slashing damage, or 9 ({@damage 1d10 + 4}) if used with two hands, plus 18 ({@damage 4d8}) force damage."
 					]
 				}
 			],
@@ -1724,7 +1730,7 @@
 				{
 					"name": "Silver Longsword",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}8 ({@damage 1d8 + 4}) slashing damage, or 9 ({@dice 1d10 + 4}) if used with two hands, plus 18 ({@damage 4d8}) force damage."
+						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}8 ({@damage 1d8 + 4}) slashing damage, or 9 ({@damage 1d10 + 4}) if used with two hands, plus 18 ({@damage 4d8}) force damage."
 					]
 				},
 				{
@@ -2943,7 +2949,7 @@
 										"type": "entries",
 										"name": "Spectral",
 										"entries": [
-											"The priest now appears wraithlike, and its challenge rating increases by 1. It gains resistance to all damage but force, radiant, and psychic, and it is vulnerable to radiant damage. It can also move through creatures and objects as if they were {@quickref difficult terrain||3}, but it takes 5 ({@dice 1d10}) force damage if it ends its turn inside a creature or an object."
+											"The priest now appears wraithlike, and its challenge rating increases by 1. It gains resistance to all damage but force, radiant, and psychic, and it is vulnerable to radiant damage. It can also move through creatures and objects as if they were {@quickref difficult terrain||3}, but it takes 5 ({@damage 1d10}) force damage if it ends its turn inside a creature or an object."
 										]
 									}
 								],
@@ -2958,7 +2964,7 @@
 												"type": "entries",
 												"name": "Circle of Death (Spell; {@recharge 5|m})",
 												"entries": [
-													"Each creature in a 60-foot-radius sphere centered on a point the priest can see within 150 feet of it must make a {@dc 15} Constitution saving throw, taking 28 ({@dice 8d6}) necrotic damage on a failed save, or half as much damage on a successful one.)"
+													"Each creature in a 60-foot-radius sphere centered on a point the priest can see within 150 feet of it must make a {@dc 15} Constitution saving throw, taking 28 ({@damage 8d6}) necrotic damage on a failed save, or half as much damage on a successful one.)"
 												]
 											}
 										]
@@ -3019,7 +3025,7 @@
 							"items": {
 								"name": "Circle of Death (Spell; {@recharge 5|m})",
 								"entries": [
-									"Each creature in a 60-foot-radius sphere centered on a point the priest can see within 150 feet of it must make a {@dc 15} Constitution saving throw, taking 28 ({@dice 8d6}) necrotic damage on a failed save, or half as much damage on a successful one.)"
+									"Each creature in a 60-foot-radius sphere centered on a point the priest can see within 150 feet of it must make a {@dc 15} Constitution saving throw, taking 28 ({@damage 8d6}) necrotic damage on a failed save, or half as much damage on a successful one.)"
 								]
 							}
 						}
@@ -3093,7 +3099,7 @@
 							"items": {
 								"name": "Spectral Boon",
 								"entries": [
-									"The priest now appears wraithlike, and its challenge rating increases by 1. It gains resistance to all damage but force, radiant, and psychic, and it is vulnerable to radiant damage. It can also move through creatures and objects as if they were {@quickref difficult terrain||3}, but it takes 5 ({@dice 1d10}) force damage if it ends its turn inside a creature or an object."
+									"The priest now appears wraithlike, and its challenge rating increases by 1. It gains resistance to all damage but force, radiant, and psychic, and it is vulnerable to radiant damage. It can also move through creatures and objects as if they were {@quickref difficult terrain||3}, but it takes 5 ({@damage 1d10}) force damage if it ends its turn inside a creature or an object."
 								]
 							}
 						}
@@ -3355,7 +3361,7 @@
 				{
 					"name": "Slasher's Knife",
 					"entries": [
-						"{@atk mw,rw} {@hit 7} to hit, reach 5 ft. or range 30/60 ft., one target. {@h}6 ({@damage 1d4 + 4}) slashing damage plus 21 ({@damage 6d6}) necrotic damage. If the target is a creature, it suffers a lingering wound that causes it to take 7 ({@damage 2d6}) necrotic damage at the start of each of its turns. Each time the slasher hits the wounded target with this attack, the damage dealt by the wound increases by 3 ({@dice 1d6}). The wound ends if the target regains hit points or if a creature uses an action to stanch the wound, which requires a successful {@dc 15} Wisdom ({@skill Medicine}) check."
+						"{@atk mw,rw} {@hit 7} to hit, reach 5 ft. or range 30/60 ft., one target. {@h}6 ({@damage 1d4 + 4}) slashing damage plus 21 ({@damage 6d6}) necrotic damage. If the target is a creature, it suffers a lingering wound that causes it to take 7 ({@damage 2d6}) necrotic damage at the start of each of its turns. Each time the slasher hits the wounded target with this attack, the damage dealt by the wound increases by 3 ({@damage 1d6}). The wound ends if the target regains hit points or if a creature uses an action to stanch the wound, which requires a successful {@dc 15} Wisdom ({@skill Medicine}) check."
 					]
 				}
 			],
@@ -4152,7 +4158,7 @@
 										"type": "entries",
 										"name": "Beguiling Hex {@recharge 5}",
 										"entries": [
-											"The horror expels a wave of mind-altering magic. Each creature within 30 feet of the horror must make a {@dc 15} Wisdom saving throw, taking 33 ({@dice 6d10}) psychic damage and being {@condition incapacitated} until the end of the creature's next turn on a failed save, or taking half as much damage on a successful one."
+											"The horror expels a wave of mind-altering magic. Each creature within 30 feet of the horror must make a {@dc 15} Wisdom saving throw, taking 33 ({@damage 6d10}) psychic damage and being {@condition incapacitated} until the end of the creature's next turn on a failed save, or taking half as much damage on a successful one."
 										]
 									}
 								],
@@ -4162,7 +4168,7 @@
 										"type": "entries",
 										"name": "Bile Hex {@recharge 5}",
 										"entries": [
-											"The horror expels acidic bile in a 60-foot line that is 5 feet wide. Each creature in that line must succeed on a {@dc 15} Dexterity saving throw or be covered in bile. A creature covered in bile takes 31 ({@dice 7d8}) acid damage at the start of each of its turns until it or another creature uses its action to scrape or wash off the bile that covers it."
+											"The horror expels acidic bile in a 60-foot line that is 5 feet wide. Each creature in that line must succeed on a {@dc 15} Dexterity saving throw or be covered in bile. A creature covered in bile takes 31 ({@damage 7d8}) acid damage at the start of each of its turns until it or another creature uses its action to scrape or wash off the bile that covers it."
 										]
 									}
 								],
@@ -4172,7 +4178,7 @@
 										"type": "entries",
 										"name": "Petrifying Hex {@recharge 5}",
 										"entries": [
-											"The horror expels petrifying gas in a 30-foot cone. Each creature in that area must succeed on a {@dc 15} Constitution saving throw or take 14 ({@dice 4d6}) necrotic damage and be {@condition restrained} as it begins to turn to stone. A {@condition restrained} creature must repeat the saving throw at the end of its next turn. On a success, the effect ends on the target. On a failure, the target is {@condition petrified} until freed by the {@spell greater restoration} spell or other magic."
+											"The horror expels petrifying gas in a 30-foot cone. Each creature in that area must succeed on a {@dc 15} Constitution saving throw or take 14 ({@damage 4d6}) necrotic damage and be {@condition restrained} as it begins to turn to stone. A {@condition restrained} creature must repeat the saving throw at the end of its next turn. On a success, the effect ends on the target. On a failure, the target is {@condition petrified} until freed by the {@spell greater restoration} spell or other magic."
 										]
 									}
 								],
@@ -4182,7 +4188,7 @@
 										"type": "entries",
 										"name": "Reality-Stealing Hex {@recharge 5}",
 										"entries": [
-											"The horror expels a wave of perception-distorting energy. Each creature within 30 feet of the horror must make a {@dc 15} Wisdom saving throw. On a failed save, the target takes 22 ({@dice 5d8}) psychic damage and is {@condition deafened} until the end of its next turn. If the saving throw fails by 5 or more, the target is also {@condition blinded} until the end of its next turn."
+											"The horror expels a wave of perception-distorting energy. Each creature within 30 feet of the horror must make a {@dc 15} Wisdom saving throw. On a failed save, the target takes 22 ({@damage 5d8}) psychic damage and is {@condition deafened} until the end of its next turn. If the saving throw fails by 5 or more, the target is also {@condition blinded} until the end of its next turn."
 										]
 									}
 								]
@@ -4216,7 +4222,7 @@
 										"type": "entries",
 										"name": "Corrosive Pseudopod",
 										"entries": [
-											"The horror's limb attack deals an extra 9 ({@dice 2d8}) acid damage."
+											"The horror's limb attack deals an extra 9 ({@damage 2d8}) acid damage."
 										]
 									}
 								],
@@ -4236,7 +4242,7 @@
 										"type": "entries",
 										"name": "Poisonous Limb",
 										"entries": [
-											"The horror's limb deals piercing damage instead of bludgeoning damage. In addition, when the horror hits a creature with this limb, the creature must succeed on a {@dc 15} Constitution saving throw or take 7 ({@dice 2d6}) poison damage and be {@condition poisoned} until the end of its next turn."
+											"The horror's limb deals piercing damage instead of bludgeoning damage. In addition, when the horror hits a creature with this limb, the creature must succeed on a {@dc 15} Constitution saving throw or take 7 ({@damage 2d6}) poison damage and be {@condition poisoned} until the end of its next turn."
 										]
 									}
 								]

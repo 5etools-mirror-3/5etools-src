@@ -443,7 +443,7 @@ class PageFilterSpells extends PageFilterBase {
 		this._affectsCreatureTypeFilter = new Filter({
 			header: "Affects Creature Types",
 			items: [...Parser.MON_TYPES],
-			displayFn: StrUtil.toTitleCase,
+			displayFn: StrUtil.toTitleCase.bind(StrUtil),
 		});
 	}
 

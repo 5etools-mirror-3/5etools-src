@@ -238,7 +238,7 @@ export class AbilityScoreFilter extends FilterBase {
 			tag: "div",
 			clazz: `fltr__mini-pill ${this._filterBox.isMinisHidden(this.header) ? "ve-hidden" : ""}`,
 			text: item.getMiniPillDisplayText(),
-			title: `Filter: ${this.header}`,
+			title: `Filter: ${this._getHeaderDisplayName()}`,
 			click: () => {
 				this._state[item.uid] = PILL_STATE__IGNORE;
 				this._filterBox.fireChangeEvent();
@@ -579,7 +579,7 @@ export class AbilityScoreFilter extends FilterBase {
 	}
 
 	handleSearch (searchTerm) {
-		const isHeaderMatch = this.header.toLowerCase().includes(searchTerm);
+		const isHeaderMatch = this._getHeaderDisplayName().toLowerCase().includes(searchTerm);
 
 		if (isHeaderMatch) {
 			Object.values(this.__wrpPillsRows).forEach(meta => meta.row.removeClass("fltr__hidden--search"));
@@ -702,7 +702,7 @@ export class AbilityScoreFilter extends FilterBase {
 			.join(", ");
 
 		if (!ptState) {
-			if (isPlainText) return [`${this.header}: (cleared)`];
+			if (isPlainText) return [`${this._getHeaderDisplayName()}: (cleared)`];
 			return [
 				`${this._getDisplayStatePart_getHeader({isPlainText})}<span class="italic fltr__disp-state fltr__disp-state--ignore">(cleared)</span>`,
 			];

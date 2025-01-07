@@ -274,7 +274,7 @@ Parser.getSpeedString = (ent, {isMetric = false, isSkipZeroWalk = false, isLongF
 
 		if (ent.speed.choose && !ent.speed.hidden?.includes("choose")) {
 			joiner = "; ";
-			stack.push(`${ent.speed.choose.from.sort().joinConjunct(", ", " or ")} ${ent.speed.choose.amount} ${unit}${ent.speed.choose.note ? ` ${ent.speed.choose.note}` : ""}`);
+			stack.push(`${ent.speed.choose.from.sort().map(prop => Parser._getSpeedString_getSpeedName({prop, styleHint})).joinConjunct(", ", " or ")} ${ent.speed.choose.amount} ${unit}${ent.speed.choose.note ? ` ${ent.speed.choose.note}` : ""}`);
 		}
 
 		return stack.join(joiner) + (ent.speed.note ? ` ${ent.speed.note}` : "");
@@ -288,7 +288,7 @@ Parser._getSpeedString_addSpeedMode = ({ent, prop, stack, isMetric, isSkipZeroWa
 	if (ent.speed.alternate && ent.speed.alternate[prop]) ent.speed.alternate[prop].forEach(speed => Parser._getSpeedString_addSpeed({prop, speed, isMetric, unit, stack, styleHint}));
 };
 Parser._getSpeedString_addSpeed = ({prop, speed, isMetric, unit, stack, styleHint}) => {
-	const ptName = prop === "walk" ? "" : `${prop[styleHint === "classic" ? "toString" : "toTitleCase"]()} `;
+	const ptName = Parser._getSpeedString_getSpeedName({prop, styleHint});
 	const ptValue = Parser._getSpeedString_getVal({prop, speed, isMetric});
 	const ptUnit = speed === true ? "" : ` ${unit}`;
 	const ptCondition = Parser._getSpeedString_getCondition({speed});
@@ -304,6 +304,7 @@ Parser._getSpeedString_getVal = ({prop, speed, isMetric}) => {
 	return isMetric ? Parser.metric.getMetricNumber({originalValue: num, originalUnit: Parser.UNT_FEET}) : num;
 };
 Parser._getSpeedString_getCondition = ({speed}) => speed.condition ? ` ${Renderer.get().render(speed.condition)}` : "";
+Parser._getSpeedString_getSpeedName = ({prop, styleHint}) => prop === "walk" ? "" : `${prop[styleHint === "classic" ? "toString" : "toTitleCase"]()} `;
 
 Parser.SPEED_MODES = ["walk", "burrow", "climb", "fly", "swim"];
 
@@ -1906,7 +1907,9 @@ Parser._getFullImmRes_getRenderedArray = (values, {isPlainText = false, isTitleC
 			const isSimpleCur = Parser._getFullImmRes_isSimpleTerm(val);
 
 			const rendCur = isSimpleCur
-				? Parser._getFullImmRes_getRenderedString(val.special || val, {isPlainText, isTitleCase})
+				? val.special
+					? Parser._getFullImmRes_getRenderedString(val.special, {isPlainText, isTitleCase: false})
+					: Parser._getFullImmRes_getRenderedString(val, {isPlainText, isTitleCase})
 				: Parser._getFullImmRes_getRenderedObject(val, {isPlainText, isTitleCase});
 
 			if (i === arr.length - 1) return rendCur;
@@ -2036,6 +2039,161 @@ Parser.monLanguageTagToFull = function (tag) {
 };
 
 Parser.ENVIRONMENTS = ["arctic", "coastal", "desert", "forest", "grassland", "hill", "mountain", "swamp", "underdark", "underwater", "urban"];
+
+Parser.ENVIRONMENT__PLANAR_FEYWILD = "planar, feywild";
+Parser.ENVIRONMENT__PLANAR_SHADOWFELL = "planar, shadowfell";
+
+Parser.ENVIRONMENT__PLANAR_WATER = "planar, water";
+Parser.ENVIRONMENT__PLANAR_EARTH = "planar, earth";
+Parser.ENVIRONMENT__PLANAR_FIRE = "planar, fire";
+Parser.ENVIRONMENT__PLANAR_AIR = "planar, air";
+
+Parser.ENVIRONMENT__PLANAR_OOZE = "planar, ooze";
+Parser.ENVIRONMENT__PLANAR_MAGMA = "planar, magma";
+Parser.ENVIRONMENT__PLANAR_ASH = "planar, ash";
+Parser.ENVIRONMENT__PLANAR_ICE = "planar, ice";
+
+Parser.ENVIRONMENT__PLANAR_ETHEREAL = "planar, ethereal";
+Parser.ENVIRONMENT__PLANAR_ASTRAL = "planar, astral";
+
+Parser.ENVIRONMENT__PLANAR_ARBOREA = "planar, arborea";
+Parser.ENVIRONMENT__PLANAR_ARCADIA = "planar, arcadia";
+Parser.ENVIRONMENT__PLANAR_BEASTLANDS = "planar, beastlands";
+Parser.ENVIRONMENT__PLANAR_BYTOPIA = "planar, bytopia";
+Parser.ENVIRONMENT__PLANAR_ELYSIUM = "planar, elysium";
+Parser.ENVIRONMENT__PLANAR_MOUNT_CELESTIA = "planar, mount celestia";
+Parser.ENVIRONMENT__PLANAR_YSGARD = "planar, ysgard";
+
+Parser.ENVIRONMENT__PLANAR_ABYSS = "planar, abyss";
+Parser.ENVIRONMENT__PLANAR_ACHERON = "planar, acheron";
+Parser.ENVIRONMENT__PLANAR_CARCERI = "planar, carceri";
+Parser.ENVIRONMENT__PLANAR_GEHENNA = "planar, gehenna";
+Parser.ENVIRONMENT__PLANAR_HADES = "planar, hades";
+Parser.ENVIRONMENT__PLANAR_NINE_HELLS = "planar, nine hells";
+Parser.ENVIRONMENT__PLANAR_PANDEMONIUM = "planar, pandemonium";
+
+Parser.ENVIRONMENT__PLANAR_LIMBO = "planar, limbo";
+Parser.ENVIRONMENT__PLANAR_MECHANUS = "planar, mechanus";
+Parser.ENVIRONMENT__PLANAR_OUTLANDS = "planar, outlands";
+
+Parser.ENVIRONMENT__GROUP_PLANAR = "planar";
+Parser.ENVIRONMENT__GROUP_PLANAR_TRANSITIVE = "planar, transitive";
+Parser.ENVIRONMENT__GROUP_PLANAR_ELEMENTAL = "planar, elemental";
+Parser.ENVIRONMENT__GROUP_PLANAR_INNER = "planar, inner";
+Parser.ENVIRONMENT__GROUP_PLANAR_UPPER = "planar, upper";
+Parser.ENVIRONMENT__GROUP_PLANAR_LOWER = "planar, lower";
+
+Parser.ENVIRONMENT_GROUPS = {
+	[Parser.ENVIRONMENT__GROUP_PLANAR_TRANSITIVE]: [
+		Parser.ENVIRONMENT__PLANAR_ETHEREAL,
+		Parser.ENVIRONMENT__PLANAR_ASTRAL,
+	],
+	[Parser.ENVIRONMENT__GROUP_PLANAR_ELEMENTAL]: [
+		Parser.ENVIRONMENT__PLANAR_WATER,
+		Parser.ENVIRONMENT__PLANAR_EARTH,
+		Parser.ENVIRONMENT__PLANAR_FIRE,
+		Parser.ENVIRONMENT__PLANAR_AIR,
+	],
+	[Parser.ENVIRONMENT__GROUP_PLANAR_INNER]: [
+		Parser.ENVIRONMENT__PLANAR_WATER,
+		Parser.ENVIRONMENT__PLANAR_EARTH,
+		Parser.ENVIRONMENT__PLANAR_FIRE,
+		Parser.ENVIRONMENT__PLANAR_AIR,
+
+		Parser.ENVIRONMENT__PLANAR_OOZE,
+		Parser.ENVIRONMENT__PLANAR_MAGMA,
+		Parser.ENVIRONMENT__PLANAR_ASH,
+		Parser.ENVIRONMENT__PLANAR_ICE,
+	],
+	[Parser.ENVIRONMENT__GROUP_PLANAR_UPPER]: [
+		Parser.ENVIRONMENT__PLANAR_ARBOREA,
+		Parser.ENVIRONMENT__PLANAR_ARCADIA,
+		Parser.ENVIRONMENT__PLANAR_BEASTLANDS,
+		Parser.ENVIRONMENT__PLANAR_BYTOPIA,
+		Parser.ENVIRONMENT__PLANAR_ELYSIUM,
+		Parser.ENVIRONMENT__PLANAR_MOUNT_CELESTIA,
+		Parser.ENVIRONMENT__PLANAR_YSGARD,
+	],
+	[Parser.ENVIRONMENT__GROUP_PLANAR_LOWER]: [
+		Parser.ENVIRONMENT__PLANAR_ABYSS,
+		Parser.ENVIRONMENT__PLANAR_ACHERON,
+		Parser.ENVIRONMENT__PLANAR_CARCERI,
+		Parser.ENVIRONMENT__PLANAR_GEHENNA,
+		Parser.ENVIRONMENT__PLANAR_HADES,
+		Parser.ENVIRONMENT__PLANAR_NINE_HELLS,
+		Parser.ENVIRONMENT__PLANAR_PANDEMONIUM,
+	],
+};
+Parser.ENVIRONMENT_GROUPS[Parser.ENVIRONMENT__GROUP_PLANAR] = [
+	...Parser.ENVIRONMENT_GROUPS[Parser.ENVIRONMENT__GROUP_PLANAR_TRANSITIVE],
+	...Parser.ENVIRONMENT_GROUPS[Parser.ENVIRONMENT__GROUP_PLANAR_INNER],
+	...Parser.ENVIRONMENT_GROUPS[Parser.ENVIRONMENT__GROUP_PLANAR_UPPER],
+	...Parser.ENVIRONMENT_GROUPS[Parser.ENVIRONMENT__GROUP_PLANAR_LOWER],
+	Parser.ENVIRONMENT__PLANAR_LIMBO,
+	Parser.ENVIRONMENT__PLANAR_MECHANUS,
+	Parser.ENVIRONMENT__PLANAR_OUTLANDS,
+];
+
+Parser.getExpandedEnvironments = function (env) {
+	if (!Parser.ENVIRONMENT_GROUPS[env]) return env;
+	return [...Parser.ENVIRONMENT_GROUPS[env]];
+};
+
+Parser.ENVIRONMENT_DISPLAY_NAMES = {
+	[Parser.ENVIRONMENT__PLANAR_FEYWILD]: "Planar (Feywild)",
+	[Parser.ENVIRONMENT__PLANAR_SHADOWFELL]: "Planar (Shadowfell)",
+
+	[Parser.ENVIRONMENT__PLANAR_WATER]: "Planar (Elemental Plane of Water)",
+	[Parser.ENVIRONMENT__PLANAR_EARTH]: "Planar (Elemental Plane of Earth)",
+	[Parser.ENVIRONMENT__PLANAR_FIRE]: "Planar (Elemental Plane of Fire)",
+	[Parser.ENVIRONMENT__PLANAR_AIR]: "Planar (Elemental Plane of Air)",
+
+	[Parser.ENVIRONMENT__PLANAR_OOZE]: "Planar (Para-elemental Plane of Ooze)",
+	[Parser.ENVIRONMENT__PLANAR_MAGMA]: "Planar (Para-elemental Plane of Magma)",
+	[Parser.ENVIRONMENT__PLANAR_ASH]: "Planar (Para-elemental Plane of Ash)",
+	[Parser.ENVIRONMENT__PLANAR_ICE]: "Planar (Para-elemental Plane of Ice)",
+
+	[Parser.ENVIRONMENT__PLANAR_ETHEREAL]: "Planar (Ethereal Plane)",
+	[Parser.ENVIRONMENT__PLANAR_ASTRAL]: "Planar (Astral Plane)",
+
+	[Parser.ENVIRONMENT__PLANAR_ARBOREA]: "Planar (Arborea)",
+	[Parser.ENVIRONMENT__PLANAR_ARCADIA]: "Planar (Arcadia)",
+	[Parser.ENVIRONMENT__PLANAR_BEASTLANDS]: "Planar (Beastlands)",
+	[Parser.ENVIRONMENT__PLANAR_BYTOPIA]: "Planar (Bytopia)",
+	[Parser.ENVIRONMENT__PLANAR_ELYSIUM]: "Planar (Elysium)",
+	[Parser.ENVIRONMENT__PLANAR_MOUNT_CELESTIA]: "Planar (Mount Celestia)",
+	[Parser.ENVIRONMENT__PLANAR_YSGARD]: "Planar (Ysgard)",
+
+	[Parser.ENVIRONMENT__PLANAR_ABYSS]: "Planar (Abyss)",
+	[Parser.ENVIRONMENT__PLANAR_ACHERON]: "Planar (Acheron)",
+	[Parser.ENVIRONMENT__PLANAR_CARCERI]: "Planar (Carceri)",
+	[Parser.ENVIRONMENT__PLANAR_GEHENNA]: "Planar (Gehenna)",
+	[Parser.ENVIRONMENT__PLANAR_HADES]: "Planar (Hades)",
+	[Parser.ENVIRONMENT__PLANAR_NINE_HELLS]: "Planar (Nine Hells)",
+	[Parser.ENVIRONMENT__PLANAR_PANDEMONIUM]: "Planar (Pandemonium)",
+
+	[Parser.ENVIRONMENT__PLANAR_LIMBO]: "Planar (Limbo)",
+	[Parser.ENVIRONMENT__PLANAR_MECHANUS]: "Planar (Mechanus)",
+
+	[Parser.ENVIRONMENT__PLANAR_OUTLANDS]: "Planar (Outlands)",
+
+	[Parser.ENVIRONMENT__GROUP_PLANAR_TRANSITIVE]: "Planar (Transitive Planes)",
+	[Parser.ENVIRONMENT__GROUP_PLANAR_ELEMENTAL]: "Planar (Elemental Planes)",
+	[Parser.ENVIRONMENT__GROUP_PLANAR_INNER]: "Planar (Inner Planes)",
+	[Parser.ENVIRONMENT__GROUP_PLANAR_UPPER]: "Planar (Upper Planes)",
+	[Parser.ENVIRONMENT__GROUP_PLANAR_LOWER]: "Planar (Lower Planes)",
+};
+
+Parser.getEnvironmentDisplayName = function (env) {
+	return Parser.ENVIRONMENT_DISPLAY_NAMES[env] || env.toTitleCase();
+};
+
+Parser.TREASURE_TYPES = ["arcana", "armaments", "implements", "relics"];
+
+Parser.getTreasureTypeEntry = function (typ) {
+	if (Parser.TREASURE_TYPES.includes(typ)) return `{@table Random Magic Items - ${typ.toTitleCase()}|${Parser.SRC_XDMG}|${typ.toTitleCase()}}`;
+	return typ.toTitleCase();
+};
 
 // psi-prefix functions are for parsing psionic data, and shared with the roll20 script
 Parser.PSI_ABV_TYPE_TALENT = "T";
@@ -2281,6 +2439,29 @@ Parser.CAT_ID_DECK = 52;
 Parser.CAT_ID_CARD = 53;
 Parser.CAT_ID_ITEM_MASTERY = 54;
 Parser.CAT_ID_FACILITY = 55;
+
+Parser.CAT_ID_GROUPS = {
+	"optionalfeature": [
+		Parser.CAT_ID_ELDRITCH_INVOCATION,
+		Parser.CAT_ID_METAMAGIC,
+		Parser.CAT_ID_MANEUVER_BATTLEMASTER,
+		Parser.CAT_ID_MANEUVER_CAVALIER,
+		Parser.CAT_ID_ARCANE_SHOT,
+		Parser.CAT_ID_OPTIONAL_FEATURE_OTHER,
+		Parser.CAT_ID_FIGHTING_STYLE,
+		Parser.CAT_ID_PACT_BOON,
+		Parser.CAT_ID_ELEMENTAL_DISCIPLINE,
+		Parser.CAT_ID_ARTIFICER_INFUSION,
+		Parser.CAT_ID_ONOMANCY_RESONANT,
+		Parser.CAT_ID_RUNE_KNIGHT_RUNE,
+		Parser.CAT_ID_ALCHEMICAL_FORMULA,
+		Parser.CAT_ID_MANEUVER,
+	],
+	"vehicleUpgrade": [
+		Parser.CAT_ID_SHIP_UPGRADE,
+		Parser.CAT_ID_INFERNAL_WAR_MACHINE_UPGRADE,
+	],
+};
 
 Parser.CAT_ID_TO_FULL = {};
 Parser.CAT_ID_TO_FULL[Parser.CAT_ID_CREATURE] = "Bestiary";

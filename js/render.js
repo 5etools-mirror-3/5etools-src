@@ -1281,18 +1281,37 @@ globalThis.Renderer = function () {
 		this._subVariant = false;
 	};
 
+	/* -------------------------------------------- */
+
+	this._SPELLCASTING_PROPS = [
+		"constant",
+		"will",
+		"recharge",
+		"charges",
+		"rest",
+		"restLong",
+		"daily",
+		"weekly",
+		"monthly",
+		"yearly",
+		"ritual",
+		"legendar",
+	];
+
 	this._renderSpellcasting_getEntries = function (entry) {
 		const hidden = new Set(entry.hidden || []);
 		const toRender = [{type: "entries", name: entry.name, entries: entry.headerEntries ? MiscUtil.copyFast(entry.headerEntries) : []}];
 
-		if (entry.constant || entry.will || entry.recharge || entry.charges || entry.rest || entry.daily || entry.weekly || entry.monthly || entry.yearly || entry.ritual) {
+		if (this._SPELLCASTING_PROPS.some(prop => entry[prop])) {
 			const tempList = {type: "list", style: "list-hang-notitle", items: [], data: {isSpellList: true}};
 			if (entry.constant && !hidden.has("constant")) tempList.items.push({type: "itemSpell", name: `Constant:`, entry: this._renderSpellcasting_getRenderableList(entry.constant).join(", ")});
 			if (entry.will && !hidden.has("will")) tempList.items.push({type: "itemSpell", name: `At will:`, entry: this._renderSpellcasting_getRenderableList(entry.will).join(", ")});
 
 			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "recharge", fnGetDurationText: num => `{@recharge ${num}|m}`, isSkipPrefix: true});
+			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "legendary", fnGetDurationText: num => ` legendary action${num === 1 ? "" : "s"}`});
 			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "charges", fnGetDurationText: num => ` charge${num === 1 ? "" : "s"}`});
 			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "rest", durationText: "/rest"});
+			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "restLong", durationText: "/long rest"});
 			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "daily", durationText: "/day"});
 			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "weekly", durationText: "/week"});
 			this._renderSpellcasting_getEntries_procPerDuration({entry, tempList, hidden, prop: "monthly", durationText: "/month"});
@@ -1366,6 +1385,8 @@ globalThis.Renderer = function () {
 		if (!toRender?.[0].entries?.length) return;
 		this._recursiveRender({type: "entries", entries: toRender}, textStack, meta);
 	};
+
+	/* -------------------------------------------- */
 
 	this._renderQuote = function (entry, textStack, meta, options) {
 		textStack[0] += `<div class="${this._renderList_getQuoteCssClasses(entry, textStack, meta, options)}">`;
@@ -1953,6 +1974,7 @@ globalThis.Renderer = function () {
 			case "@actResponse": textStack[0] += `<i>Response:</i>`; break;
 			case "@h": textStack[0] += `<i>Hit:</i> `; break;
 			case "@m": textStack[0] += `<i>Miss:</i> `; break;
+			case "@hom": textStack[0] += `<i>Hit or Miss:</i> `; break;
 			case "@color": {
 				const [toDisplay, color] = Renderer.splitTagByPipe(text);
 				const ptColor = this._renderString_renderTag_getBrewColorPart(color);
@@ -3450,8 +3472,6 @@ Renderer.utils = class {
 		if (pFnPostProcess) return pFnPostProcess(fluff);
 		return fluff;
 	}
-
-	static _TITLE_SKIP_TYPES = new Set(["entries", "section"]);
 	/**
 	 * @param isImageTab True if this is the "Images" tab, false otherwise
 	 * @param $content The statblock wrapper
@@ -3474,31 +3494,74 @@ Renderer.utils = class {
 		$td.fastSetHtml(Renderer.utils.getFluffTabContent({entity, fluff, isImageTab}));
 	}
 
-	static getFluffTabContent ({entity, fluff, isImageTab = false}) {
-		Renderer.get().setFirstSection(true);
-		return (fluff[isImageTab ? "images" : "entries"] || []).map((ent, i) => {
-			if (isImageTab) return Renderer.get().render(ent);
-
-			// If the first entry has a name, and it matches the name of the statblock, remove it to avoid having two
-			//   of the same title stacked on top of each other.
-			if (i === 0 && ent.name && entity.name && (Renderer.utils._TITLE_SKIP_TYPES).has(ent.type)) {
-				const entryLowName = ent.name.toLowerCase().trim();
-				const entityLowName = entity.name.toLowerCase().trim();
-
-				if (entryLowName.includes(entityLowName) || entityLowName.includes(entryLowName)) {
-					const cpy = MiscUtil.copyFast(ent);
-					delete cpy.name;
-					return Renderer.get().render(cpy);
-				} else return Renderer.get().render(ent);
-			} else {
-				if (typeof ent === "string") return `<p>${Renderer.get().render(ent)}</p>`;
-				else return Renderer.get().render(ent);
-			}
-		}).join("");
-	}
-
 	static HTML_NO_INFO = "<i>No information available.</i>";
 	static HTML_NO_IMAGES = "<i>No images available.</i>";
+
+	/* ----- */
+
+	static _TITLE_SKIP_TYPES = new Set(["entries", "section"]);
+
+	static _getFluffTabContent_getSkippableEntryName (name) {
+		return name
+			.toLowerCase()
+			.trim()
+			.split(/\s+/g)
+			.filter(Boolean)
+			.map(tk => tk.toSingle())
+			.join(" ");
+	}
+
+	/**
+	 * If the first entry has a name, and it matches the name of the statblock, remove it to avoid
+	 *   having two of the same title stacked on top of each other.
+	 */
+	static _getFluffTabContent_isSkipEntryName (
+		{
+			entity,
+			fluff,
+			ix,
+			fluffEntry,
+		},
+	) {
+		if (fluff.preserveName) return false;
+
+		if (ix) return false;
+		if (!entity.name || !fluffEntry.name) return false;
+		if (!Renderer.utils._TITLE_SKIP_TYPES.has(fluffEntry.type)) return false;
+
+		const fluffEntrySkippableName = Renderer.utils._getFluffTabContent_getSkippableEntryName(fluffEntry.name);
+		const entitySkippableName = Renderer.utils._getFluffTabContent_getSkippableEntryName(entity.name);
+
+		return fluffEntrySkippableName.includes(entitySkippableName) || entitySkippableName.includes(fluffEntrySkippableName);
+	}
+
+	static getFluffTabContent ({entity, fluff, isImageTab = false}) {
+		Renderer.get().setFirstSection(true);
+
+		return (fluff[isImageTab ? "images" : "entries"] || [])
+			.map((fluffEntry, ix) => {
+				if (isImageTab) return Renderer.get().render(fluffEntry);
+
+				if (
+					Renderer.utils._getFluffTabContent_isSkipEntryName({
+						entity,
+						fluff,
+						ix,
+						fluffEntry,
+					})
+				) {
+					const cpy = MiscUtil.copyFast(fluffEntry);
+					delete cpy.name;
+					return Renderer.get().render(cpy);
+				}
+
+				if (typeof fluffEntry === "string") return `<p>${Renderer.get().render(fluffEntry)}</p>`;
+				else return Renderer.get().render(fluffEntry);
+			})
+			.join("");
+	}
+
+	/* ----- */
 
 	static prerequisite = class {
 		static _WEIGHTS = [
@@ -5025,6 +5088,12 @@ Renderer.tag = class {
 		_getStripped (tag, text) { return "Miss: "; }
 	};
 
+	static TagHitOrMissText = class extends this._TagBaseAt {
+		tagName = "hom";
+
+		_getStripped (tag, text) { return "Hit or Miss: "; } // I guess they never miss
+	};
+
 	static TagAtk = class extends this._TagBaseAt {
 		tagName = "atk";
 
@@ -5593,6 +5662,7 @@ Renderer.tag = class {
 
 		new this.TagHitText(),
 		new this.TagMissText(),
+		new this.TagHitOrMissText(),
 
 		new this.TagAtk(),
 		new this.TagAtkr(),
@@ -8933,6 +9003,8 @@ class _RenderCompactBestiaryImplBase {
 			entsAction,
 			entsBonusAction,
 			entsReaction,
+			entsLegendaryAction,
+			entsMythicAction,
 			legGroup,
 		},
 	) {
@@ -8958,8 +9030,8 @@ class _RenderCompactBestiaryImplBase {
 			htmlPtActions: this._getCommonHtmlParts_actions({mon, renderer, entsAction}),
 			htmlPtBonusActions: this._getCommonHtmlParts_bonusActions({mon, renderer, entsBonusAction}),
 			htmlPtReactions: this._getCommonHtmlParts_reactions({mon, renderer, entsReaction}),
-			htmlPtLegendaryActions: this._getCommonHtmlParts_legendaryActions({mon, renderer}),
-			htmlPtMythicActions: this._getCommonHtmlParts_mythicActions({mon, renderer}),
+			htmlPtLegendaryActions: this._getCommonHtmlParts_legendaryActions({mon, renderer, entsLegendaryAction}),
+			htmlPtMythicActions: this._getCommonHtmlParts_mythicActions({mon, renderer, entsMythicAction}),
 
 			htmlPtLairActions: this._getCommonHtmlParts_lairActions({renderer, legGroup}),
 			htmlPtRegionalEffects: this._getCommonHtmlParts_regionalEffects({renderer, legGroup}),
@@ -9108,33 +9180,84 @@ class _RenderCompactBestiaryImplBase {
 	/* ----- */
 
 	_getCommonHtmlParts_actions ({mon, renderer, entsAction}) {
-		return Renderer.monster.getCompactRenderedStringSection({...mon, action: entsAction}, renderer, "Actions", "action", 2);
+		return Renderer.monster.getCompactRenderedStringSection({
+			ent: {...mon, action: entsAction},
+			renderer,
+			title: "Actions",
+			key: "action",
+			depth: 2,
+			styleHint: this._style,
+		});
 	}
 
 	_getCommonHtmlParts_bonusActions ({mon, renderer, entsBonusAction}) {
-		return Renderer.monster.getCompactRenderedStringSection({...mon, bonus: entsBonusAction}, renderer, "Bonus Actions", "bonus", 2);
+		return Renderer.monster.getCompactRenderedStringSection({
+			ent: {...mon, bonus: entsBonusAction},
+			renderer,
+			title: "Bonus Actions",
+			key: "bonus",
+			depth: 2,
+			styleHint: this._style,
+		});
 	}
 
 	_getCommonHtmlParts_reactions ({mon, renderer, entsReaction}) {
-		return Renderer.monster.getCompactRenderedStringSection({...mon, reaction: entsReaction}, renderer, "Reactions", "reaction", 2);
+		return Renderer.monster.getCompactRenderedStringSection({
+			ent: {...mon, reaction: entsReaction},
+			renderer,
+			title: "Reactions",
+			key: "reaction",
+			depth: 2,
+			styleHint: this._style,
+		});
 	}
 
-	_getCommonHtmlParts_legendaryActions ({mon, renderer}) {
-		return Renderer.monster.getCompactRenderedStringSection(mon, renderer, "Legendary Actions", "legendary", 2);
+	_getCommonHtmlParts_legendaryActions ({mon, renderer, entsLegendaryAction}) {
+		return Renderer.monster.getCompactRenderedStringSection({
+			ent: {...mon, legendary: entsLegendaryAction},
+			renderer,
+			title: "Legendary Actions",
+			key: "legendary",
+			depth: 2,
+			styleHint: this._style,
+		});
 	}
 
-	_getCommonHtmlParts_mythicActions ({mon, renderer}) {
-		return Renderer.monster.getCompactRenderedStringSection(mon, renderer, "Mythic Actions", "mythic", 2);
+	_getCommonHtmlParts_mythicActions ({mon, renderer, entsMythicAction}) {
+		return Renderer.monster.getCompactRenderedStringSection({
+			ent: {...mon, mythic: entsMythicAction},
+			renderer,
+			title: "Mythic Actions",
+			key: "mythic",
+			depth: 2,
+			styleHint: this._style,
+		});
 	}
 
 	/* ----- */
 
 	_getCommonHtmlParts_lairActions ({renderer, legGroup}) {
-		return legGroup && legGroup.lairActions ? Renderer.monster.getCompactRenderedStringSection(legGroup, renderer, "Lair Actions", "lairActions", 1) : "";
+		if (!legGroup?.lairActions) return "";
+		return Renderer.monster.getCompactRenderedStringSection({
+			ent: legGroup,
+			renderer,
+			title: "Lair Actions",
+			key: "lairActions",
+			depth: 1,
+			styleHint: this._style,
+		});
 	}
 
 	_getCommonHtmlParts_regionalEffects ({renderer, legGroup}) {
-		return legGroup && legGroup.regionalEffects ? Renderer.monster.getCompactRenderedStringSection(legGroup, renderer, "Regional Effects", "regionalEffects", 1) : "";
+		if (!legGroup?.regionalEffects) return "";
+		return Renderer.monster.getCompactRenderedStringSection({
+			ent: legGroup,
+			renderer,
+			title: "Regional Effects",
+			key: "regionalEffects",
+			depth: 1,
+			styleHint: this._style,
+		});
 	}
 
 	/* ----- */
@@ -9214,6 +9337,8 @@ class _RenderCompactBestiaryImplClassic extends _RenderCompactBestiaryImplBase {
 			entsAction,
 			entsBonusAction,
 			entsReaction,
+			entsLegendaryAction,
+			entsMythicAction,
 			legGroup,
 		} = Renderer.monster.getSubEntries(mon, {renderer});
 
@@ -9260,6 +9385,8 @@ class _RenderCompactBestiaryImplClassic extends _RenderCompactBestiaryImplBase {
 			entsAction,
 			entsBonusAction,
 			entsReaction,
+			entsLegendaryAction,
+			entsMythicAction,
 			legGroup,
 		});
 
@@ -9364,7 +9491,14 @@ class _RenderCompactBestiaryImplOne extends _RenderCompactBestiaryImplBase {
 	/* ----- */
 
 	_getHtmlParts_traits ({mon, renderer, entsTrait}) {
-		return Renderer.monster.getCompactRenderedStringSection({...mon, trait: entsTrait}, renderer, "Traits", "trait", 2);
+		return Renderer.monster.getCompactRenderedStringSection({
+			ent: {...mon, trait: entsTrait},
+			renderer,
+			title: "Traits",
+			key: "trait",
+			depth: 2,
+			styleHint: this._style,
+		});
 	}
 
 	/* -------------------------------------------- */
@@ -9383,6 +9517,8 @@ class _RenderCompactBestiaryImplOne extends _RenderCompactBestiaryImplBase {
 			entsAction,
 			entsBonusAction,
 			entsReaction,
+			entsLegendaryAction,
+			entsMythicAction,
 			legGroup,
 		} = Renderer.monster.getSubEntries(mon, {renderer});
 
@@ -9429,6 +9565,8 @@ class _RenderCompactBestiaryImplOne extends _RenderCompactBestiaryImplBase {
 			entsAction,
 			entsBonusAction,
 			entsReaction,
+			entsLegendaryAction,
+			entsMythicAction,
 			legGroup,
 		});
 
@@ -9490,6 +9628,8 @@ class _RenderCompactBestiaryImplOne extends _RenderCompactBestiaryImplBase {
 Renderer.monster = class {
 	static CHILD_PROPS = ["action", "bonus", "reaction", "trait", "legendary", "mythic", "variant", "spellcasting"];
 
+	/* -------------------------------------------- */
+
 	static getShortName (mon, {isTitleCase = false, isSentenceCase = false, isUseDisplayName = false} = {}) {
 		const name = isUseDisplayName ? (mon._displayName ?? mon.name) : mon.name;
 		const shortName = isUseDisplayName ? (mon._displayShortName ?? mon.shortName) : mon.shortName;
@@ -9510,20 +9650,42 @@ Renderer.monster = class {
 		return out;
 	}
 
-	static getLegendaryActionIntro (mon, {renderer = Renderer.get(), isUseDisplayName = false} = {}) {
+	/* -------------------------------------------- */
+
+	static getPronounSubject (mon) { return mon.isNamedCreature ? "they" : "it"; }
+	static getPronounObject (mon) { return mon.isNamedCreature ? "them" : "its"; }
+	static getPronounPossessive (mon) { return mon.isNamedCreature ? "their" : "its"; }
+
+	/* -------------------------------------------- */
+
+	static getLegendaryActionIntro (mon, {renderer = Renderer.get(), isUseDisplayName = false, styleHint = null} = {}) {
 		return renderer.render(Renderer.monster.getLegendaryActionIntroEntry(mon, {isUseDisplayName}));
 	}
 
-	static getLegendaryActionIntroEntry (mon, {isUseDisplayName = false} = {}) {
+	static getLegendaryActionIntroEntry (mon, {isUseDisplayName = false, styleHint = null} = {}) {
 		if (mon.legendaryHeader) {
 			return {entries: mon.legendaryHeader};
 		}
 
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
 		const legendaryActions = mon.legendaryActions || 3;
+		const legendaryActionsLair = mon.legendaryActionsLair || legendaryActions;
 		const legendaryNameTitle = Renderer.monster.getShortName(mon, {isTitleCase: true, isUseDisplayName});
+		const proPossessive = Renderer.monster.getPronounPossessive(mon);
+
+		if (styleHint === "classic") {
+			return {
+				entries: [
+					`${legendaryNameTitle} can take ${legendaryActions} legendary action${legendaryActions > 1 ? "s" : ""}${legendaryActionsLair !== legendaryActions ? ` (or ${legendaryActionsLair} when in ${proPossessive} lair)` : ""}, choosing from the options below. Only one legendary action can be used at a time and only at the end of another creature's turn. ${legendaryNameTitle} regains spent legendary actions at the start of ${proPossessive} turn.`,
+				],
+			};
+		}
+
+		const legendaryNameSentence = Renderer.monster.getShortName(mon, {isSentenceCase: true, isUseDisplayName});
 		return {
 			entries: [
-				`${legendaryNameTitle} can take ${legendaryActions} legendary action${legendaryActions > 1 ? "s" : ""}, choosing from the options below. Only one legendary action can be used at a time and only at the end of another creature's turn. ${legendaryNameTitle} regains spent legendary actions at the start of its turn.`,
+				`{@note Legendary Action Uses: ${legendaryActions}${legendaryActionsLair !== legendaryActions ? ` (${legendaryActionsLair} in Lair)` : ""}. Immediately after another creature's turn, ${legendaryNameSentence} can expend a use to take one of the following actions. ${legendaryNameTitle} regains all expended uses at the start of each of ${proPossessive} turns.}`,
 			],
 		};
 	}
@@ -9844,21 +10006,32 @@ Renderer.monster = class {
 		});
 	}
 
-	static getCompactRenderedStringSection (mon, renderer, title, key, depth) {
-		if (!mon[key]) return "";
+	static getCompactRenderedStringSection (
+		{
+			ent,
+			renderer,
+			title,
+			key,
+			depth,
+			styleHint,
+		},
+	) {
+		if (!ent[key]) return "";
+
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
 		const noteKey = `${key}Note`;
 
 		const toRender = key === "lairActions" || key === "regionalEffects"
-			? [{type: "entries", entries: mon[key]}]
-			: mon[key];
+			? [{type: "entries", entries: ent[key]}]
+			: ent[key];
 
-		const ptHeader = mon[key] ? Renderer.monster.getSectionIntro(mon, {prop: key}) : "";
+		const ptHeader = ent[key] ? Renderer.monster.getSectionIntro(ent, {prop: key}) : "";
 		const isNonStatblock = key === "lairActions" || key === "regionalEffects";
 
-		return `<tr><td colspan="6"><h3 class="stats__sect-header-inner ${isNonStatblock ? "stats__sect-header-inner--non-statblock" : ""}">${title}${mon[noteKey] ? ` (<span class="ve-small">${mon[noteKey]}</span>)` : ""}</h3></td></tr>
+		return `<tr><td colspan="6"><h3 class="stats__sect-header-inner ${isNonStatblock ? "stats__sect-header-inner--non-statblock" : ""}">${title}${ent[noteKey] ? ` (<span class="ve-small">${ent[noteKey]}</span>)` : ""}</h3></td></tr>
 		<tr><td colspan="6" class="pt-2 pb-2">
-		${key === "legendary" && mon.legendary ? Renderer.monster.getLegendaryActionIntro(mon) : ""}
+		${key === "legendary" && Renderer.monster.hasLegendaryActions(ent) ? Renderer.monster.getLegendaryActionIntro(ent, {styleHint}) : ""}
 		${ptHeader ? `<p>${ptHeader}</p>` : ""}
 		${toRender.map(it => it.rendered || renderer.render(it, depth)).join("")}
 		</td></tr>`;
@@ -9973,9 +10146,9 @@ Renderer.monster = class {
 	static _getChallengeRatingPart_classic ({mon, isPlainText = false} = {}) {
 		if (mon.cr == null) return "\u2014";
 
-		if (typeof mon.cr === "string") return this._getChallengeRatingPart_classic_getBasicCrRender({cr: mon.cr, isMythic: !!mon.mythic});
+		if (typeof mon.cr === "string") return this._getChallengeRatingPart_classic_getBasicCrRender({cr: mon.cr, isMythic: Renderer.monster.hasMythicActions(mon)});
 
-		const stack = [this._getChallengeRatingPart_classic_getBasicCrRender({cr: mon.cr.cr, xp: mon.cr.xp, isMythic: !!mon.mythic})];
+		const stack = [this._getChallengeRatingPart_classic_getBasicCrRender({cr: mon.cr.cr, xp: mon.cr.xp, isMythic: Renderer.monster.hasMythicActions(mon)})];
 		if (mon.cr.lair || mon.cr.xpLair) stack.push(`${this._getChallengeRatingPart_classic_getBasicCrRender({cr: mon.cr.lair, xp: mon.cr.xpLair})} when encountered in lair`);
 		if (mon.cr.coven || mon.cr.xpCoven) stack.push(`${this._getChallengeRatingPart_classic_getBasicCrRender({cr: mon.cr.coven, xp: mon.cr.xpCoven})} when part of a coven`);
 		return stack
@@ -9994,7 +10167,7 @@ Renderer.monster = class {
 			// TODO(ODND) speculative text; revise
 			: [
 				xpBase ? xpBase.toLocaleString() : null,
-				mon.mythic ? `${(xpBase * 2).toLocaleString()} as a mythic encounter` : null,
+				Renderer.monster.hasMythicActions(mon) ? `${(xpBase * 2).toLocaleString()} as a mythic encounter` : null,
 			]
 				.filter(Boolean);
 
@@ -10144,15 +10317,18 @@ Renderer.monster = class {
 	/**
 	 * @param {object} mon
 	 * @param {?Renderer} renderer
+	 * @param {?Function} fnGetSpellTraits
 	 */
-	static getSubEntries (mon, {renderer = null} = {}) {
+	static getSubEntries (mon, {renderer = null, fnGetSpellTraits = null} = {}) {
 		renderer ||= Renderer.get();
 
-		const fnGetSpellTraits = Renderer.monster.getSpellcastingRenderedTraits.bind(Renderer.monster, renderer);
+		fnGetSpellTraits ||= Renderer.monster.getSpellcastingRenderedTraits.bind(Renderer.monster, renderer);
 		const entsTrait = Renderer.monster.getOrderedTraits(mon, {fnGetSpellTraits});
 		const entsAction = Renderer.monster.getOrderedActions(mon, {fnGetSpellTraits});
 		const entsBonusAction = Renderer.monster.getOrderedBonusActions(mon, {fnGetSpellTraits});
 		const entsReaction = Renderer.monster.getOrderedReactions(mon, {fnGetSpellTraits});
+		const entsLegendaryAction = Renderer.monster.getOrderedLegendaryActions(mon, {fnGetSpellTraits});
+		const entsMythicAction = Renderer.monster.getOrderedMythicActions(mon, {fnGetSpellTraits});
 		const legGroup = DataUtil.monster.getLegendaryGroup(mon);
 
 		return {
@@ -10160,6 +10336,8 @@ Renderer.monster = class {
 			entsAction,
 			entsBonusAction,
 			entsReaction,
+			entsLegendaryAction,
+			entsMythicAction,
 			legGroup,
 		};
 	}
@@ -10312,6 +10490,8 @@ Renderer.monster = class {
 	static getOrderedActions (mon, {fnGetSpellTraits} = {}) { return Renderer.monster._getOrderedActionsBonusActions({mon, fnGetSpellTraits, prop: "action"}); }
 	static getOrderedBonusActions (mon, {fnGetSpellTraits} = {}) { return Renderer.monster._getOrderedActionsBonusActions({mon, fnGetSpellTraits, prop: "bonus"}); }
 	static getOrderedReactions (mon, {fnGetSpellTraits} = {}) { return Renderer.monster._getOrderedActionsBonusActions({mon, fnGetSpellTraits, prop: "reaction"}); }
+	static getOrderedLegendaryActions (mon, {fnGetSpellTraits} = {}) { return Renderer.monster._getOrderedActionsBonusActions({mon, fnGetSpellTraits, prop: "legendary"}); }
+	static getOrderedMythicActions (mon, {fnGetSpellTraits} = {}) { return Renderer.monster._getOrderedActionsBonusActions({mon, fnGetSpellTraits, prop: "mythic"}); }
 
 	static _getOrderedActionsBonusActions ({mon, fnGetSpellTraits, prop} = {}) {
 		let actions = mon[prop] ? MiscUtil.copyFast(mon[prop]) : null;
@@ -10403,15 +10583,33 @@ Renderer.monster = class {
 	}
 
 	static postProcessFluff (mon, fluff) {
+		const thisGroup = DataUtil.monster.getLegendaryGroup(mon);
+		if (!thisGroup) return fluff;
+
 		const cpy = MiscUtil.copyFast(fluff);
+		cpy.entries ||= [];
+
+		const walker = MiscUtil.getWalker({isNoModification: true});
 
 		// TODO is this good enough? Should additionally check for lair blocks which are not the last, and tag them with
 		//   "data": {"lairRegionals": true}, and insert the lair/regional text there if available (do the current "append" otherwise)
-		const thisGroup = DataUtil.monster.getLegendaryGroup(mon);
-		const handleGroupProp = (prop, name) => {
-			if (thisGroup && thisGroup[prop]) {
-				cpy.entries = cpy.entries || [];
-				cpy.entries.push({
+		const entsLair = [];
+		walker.walk(cpy.entries, {object: obj => {
+			if (!["entries", "section"].includes(obj.type)) return;
+			if (!obj.name || !obj.entries) return;
+			if (!/\bLairs?\b/i.test(obj.name)) return;
+			entsLair.push(obj);
+		}});
+
+		const tgtLair = entsLair.length === 1 ? entsLair[0].entries : cpy.entries;
+		const isAddName = thisGroup.mythicEncounter
+			|| [thisGroup.lairActions, thisGroup.regionalEffects].filter(Boolean).length !== 1;
+
+		const handleGroupProp = (tgt, prop, name) => {
+			if (!thisGroup[prop]) return;
+
+			if (isAddName) {
+				return tgt.push({
 					type: "entries",
 					entries: [
 						{
@@ -10422,11 +10620,13 @@ Renderer.monster = class {
 					],
 				});
 			}
+
+			tgt.push(...MiscUtil.copyFast(thisGroup[prop]));
 		};
 
-		handleGroupProp("lairActions", "Lair Actions");
-		handleGroupProp("regionalEffects", "Regional Effects");
-		handleGroupProp("mythicEncounter", `${mon.name} as a Mythic Encounter`);
+		handleGroupProp(tgtLair, "lairActions", "Lair Actions");
+		handleGroupProp(tgtLair, "regionalEffects", "Regional Effects");
+		handleGroupProp(cpy.entries, "mythicEncounter", `${mon.name} as a Mythic Encounter`);
 
 		return cpy;
 	}
@@ -10477,7 +10677,36 @@ Renderer.monster = class {
 		return rStack.join("");
 	}
 
-	static getRenderedEnvironment (envs) { return (envs || []).sort(SortUtil.ascSortLower).map(it => it.toTitleCase()).join(", "); }
+	static getRenderedEnvironment (envs) {
+		if (!envs?.length) return "";
+
+		const ptEntry = envs
+			.map(env => `{@filter ${Parser.getEnvironmentDisplayName(env)}|bestiary|environment=${env}}`)
+			.sort(SortUtil.ascSortLower)
+			.join(", ");
+
+		return Renderer.get().render(ptEntry);
+	}
+
+	static getRenderedTreasure (treasure) {
+		if (!treasure?.length) return "";
+
+		const ptEntry = treasure
+			.map(treasure => Parser.getTreasureTypeEntry(treasure))
+			.sort(SortUtil.ascSortLower)
+			.join(", ");
+
+		return Renderer.get().render(ptEntry);
+	}
+
+	/* -------------------------------------------- */
+
+	static hasReactions (mon) { return !!(mon.reaction?.length || mon.spellcasting?.some(ent => ent.displayAs === "reaction")); }
+	static hasBonusActions (mon) { return !!(mon.bonus?.length || mon.spellcasting?.some(ent => ent.displayAs === "bonus")); }
+	static hasLegendaryActions (mon) { return !!(mon.legendary?.length || mon.spellcasting?.some(ent => ent.displayAs === "legendary")); }
+	static hasMythicActions (mon) { return !!(mon.mythic?.length || mon.spellcasting?.some(ent => ent.displayAs === "mythic")); }
+
+	/* -------------------------------------------- */
 
 	static pGetFluff (mon) {
 		return Renderer.utils.pGetFluff({
@@ -10486,6 +10715,8 @@ Renderer.monster = class {
 			fluffProp: "monsterFluff",
 		});
 	}
+
+	/* -------------------------------------------- */
 
 	// region Custom hash ID packing/unpacking
 	static getCustomHashId (mon) {
@@ -12443,6 +12674,7 @@ Renderer.vehicle = class {
 
 	static getRenderedString (ent, opts) {
 		opts = opts || {};
+		opts.styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
 		if (ent.upgradeType) return Renderer.vehicleUpgrade.getCompactRenderedString(ent, opts);
 
@@ -12881,6 +13113,23 @@ Renderer.vehicle = class {
 
 		const isInlinedToken = !opts.isCompact && Renderer.vehicle.hasToken(ent);
 
+		const ptActionStation = Renderer.monster.getCompactRenderedStringSection({
+			ent,
+			renderer,
+			title: "Action Stations",
+			key: "actionStation",
+			depth: 2,
+			styleHint: opts.styleHint,
+		});
+		const ptReaction = Renderer.monster.getCompactRenderedStringSection({
+			ent,
+			renderer,
+			title: "Reactions",
+			key: "reaction",
+			depth: 2,
+			styleHint: opts.styleHint,
+		});
+
 		return `
 			${Renderer.utils.getExcludedTr({entity: ent, datProp: "vehicle", page: UrlUtil.PG_VEHICLES})}
 			${Renderer.utils.getNameTr(ent, {isInlinedToken, page: UrlUtil.PG_VEHICLES})}
@@ -12892,8 +13141,8 @@ Renderer.vehicle = class {
 			${Renderer.vehicle._getAbilitySection(ent)}
 			${Renderer.vehicle._getResImmVulnSection(ent, {entriesMeta})}
 			${Renderer.vehicle._getTraitSection(renderer, ent)}
-			${Renderer.monster.getCompactRenderedStringSection(ent, renderer, "Action Stations", "actionStation", 2)}
-			${Renderer.monster.getCompactRenderedStringSection(ent, renderer, "Reactions", "reaction", 2)}
+			${ptActionStation}
+			${ptReaction}
 		`;
 	}
 

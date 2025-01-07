@@ -478,11 +478,13 @@ PropOrder._MONSTER = [
 			"constant",
 			"will",
 			"rest",
+			"restLong",
 			"daily",
 			"weekly",
 			"monthly",
 			"yearly",
 			"recharge",
+			"legendary",
 			"charges",
 
 			"ritual",
@@ -510,6 +512,7 @@ PropOrder._MONSTER = [
 	"reaction",
 	"legendaryHeader",
 	"legendaryActions",
+	"legendaryActionsLair",
 	"legendary",
 	"mythicHeader",
 	"mythic",
@@ -518,6 +521,7 @@ PropOrder._MONSTER = [
 	"footer",
 
 	"environment",
+	"treasure",
 	"familiar",
 	"dragonCastingColor",
 	"dragonAge",
@@ -645,6 +649,9 @@ PropOrder._FOUNDRY_MONSTER = [
 ];
 PropOrder._GENERIC_FLUFF = [
 	"name",
+
+	"preserveName",
+
 	"source",
 
 	"_copy",

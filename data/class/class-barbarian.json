@@ -367,6 +367,9 @@
 							},
 							{
 								"item": "explorer's pack|xphb"
+							},
+							{
+								"value": 1500
 							}
 						],
 						"B": [
@@ -1828,7 +1831,7 @@
 			"classSource": "XPHB",
 			"level": 17,
 			"entries": [
-				"The extra damage of your Brutal Strike increases to {@dice 2d10}. In addition, you can use two different Brutal Strike effects whenever you use your Brutal Strike feature."
+				"The extra damage of your Brutal Strike increases to {@damage 2d10}. In addition, you can use two different Brutal Strike effects whenever you use your Brutal Strike feature."
 			]
 		},
 		{
@@ -1944,7 +1947,7 @@
 			"entries": [
 				"{@i 6th-Level Path of the Giant Feature}",
 				"Your bond with the elemental might of giants grows, and you learn to infuse weapons with primordial energy.",
-				"When you enter your rage, you can choose one weapon that you are holding and infuse it with one of the following damage types: acid, cold, fire, thunder, or lightning. While you wield the infused weapon during your rage, the weapon's damage type changes to the chosen type, it deals an extra {@dice 1d6} damage of the chosen type when it hits, and it gains the thrown property, with a normal range of 20 feet and a long range of 60 feet. If you throw the weapon, it reappears in your hand the instant after it hits or misses a target. The infused weapon's benefits are suppressed while a creature other than you wields it.",
+				"When you enter your rage, you can choose one weapon that you are holding and infuse it with one of the following damage types: acid, cold, fire, thunder, or lightning. While you wield the infused weapon during your rage, the weapon's damage type changes to the chosen type, it deals an extra {@damage 1d6} damage of the chosen type when it hits, and it gains the thrown property, with a normal range of 20 feet and a long range of 60 feet. If you throw the weapon, it reappears in your hand the instant after it hits or misses a target. The infused weapon's benefits are suppressed while a creature other than you wields it.",
 				"While raging and holding the infused weapon, you can use a bonus action to change the infused weapon's current damage type to another one from the damage type options above."
 			]
 		},
@@ -2356,7 +2359,7 @@
 			"subclassSource": "PHB",
 			"level": 14,
 			"entries": [
-				"While raging, you can use a bonus action during your move to pass through the space of a Large or smaller creature. That creature must succeed on a Strength saving throw ({@dc 8} + your Strength bonus + your proficiency bonus) or be knocked {@condition prone} and take bludgeoning damage equal to {@dice 1d12} + your Strength modifier."
+				"While raging, you can use a bonus action during your move to pass through the space of a Large or smaller creature. That creature must succeed on a Strength saving throw ({@dc 8} + your Strength bonus + your proficiency bonus) or be knocked {@condition prone} and take bludgeoning damage equal to {@damage 1d12} + your Strength modifier."
 			]
 		},
 		{
@@ -2765,7 +2768,9 @@
 						]
 					],
 					"data": {
-						"tableInclude": true
+						"genTables": {
+							"tableInclude": true
+						}
 					}
 				}
 			]
@@ -3071,7 +3076,7 @@
 			"subclassSource": "XGE",
 			"level": 3,
 			"entries": [
-				"When this effect is activated, you can choose one other creature you can see in your aura. The target must make a Dexterity saving throw. The target takes {@damage 1d6} lightning damage on a failed save, or half as much damage on a successful one. The damage increases when you reach certain levels in this class, increasing to {@dice 2d6} at 10th level, {@dice 3d6} at 15th level, and {@dice 4d6} at 20th level."
+				"When this effect is activated, you can choose one other creature you can see in your aura. The target must make a Dexterity saving throw. The target takes {@damage 1d6} lightning damage on a failed save, or half as much damage on a successful one. The damage increases when you reach certain levels in this class, increasing to {@damage 2d6} at 10th level, {@damage 3d6} at 15th level, and {@damage 4d6} at 20th level."
 			]
 		},
 		{
@@ -3307,7 +3312,7 @@
 			"level": 3,
 			"header": 1,
 			"entries": [
-				"Starting when you choose this path at 3rd level, you can channel divine fury into your weapon strikes. While you're raging, the first creature you hit on each of your turns with a weapon attack takes extra damage equal to {@dice 1d6} + half your barbarian level. The extra damage is necrotic or radiant; you choose the type of damage when you gain this feature."
+				"Starting when you choose this path at 3rd level, you can channel divine fury into your weapon strikes. While you're raging, the first creature you hit on each of your turns with a weapon attack takes extra damage equal to {@damage 1d6} + half your barbarian level. The extra damage is necrotic or radiant; you choose the type of damage when you gain this feature."
 			]
 		},
 		{

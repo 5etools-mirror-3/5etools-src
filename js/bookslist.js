@@ -94,6 +94,7 @@ class AdventuresBooksList {
 		$("#reset").click(() => {
 			this._list.reset();
 			this._listAlt.reset();
+			$iptSearch.val("");
 
 			this._list.items.forEach(li => {
 				if (li.data.$btnToggleExpand.text() === "[\u2212]") li.data.$btnToggleExpand.click();

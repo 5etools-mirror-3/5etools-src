@@ -275,7 +275,7 @@ export class Filter extends FilterBase {
 			.join(", ");
 
 		if (!ptState) {
-			if (isPlainText) return [`${this.header}: (cleared)`];
+			if (isPlainText) return [`${this._getHeaderDisplayName()}: (cleared)`];
 			return [
 				`${this._getDisplayStatePart_getHeader({isPlainText})}<span class="italic fltr__disp-state fltr__disp-state--ignore">(cleared)</span>`,
 			];
@@ -325,7 +325,7 @@ export class Filter extends FilterBase {
 
 		return [
 			`<div class="ve-flex-col my-1">
-				<h5 class="mt-0 mb-1">${this.header}</h5>
+				<h5 class="mt-0 mb-1">${this._getHeaderDisplayName()}</h5>
 				<div class="ve-flex-wrap w-100">
 					${ptWithItems}${ptWithoutItems}
 				</div>
@@ -538,7 +538,7 @@ export class Filter extends FilterBase {
 			tag: "div",
 			clazz: `fltr__mini-pill ${this._filterBox.isMinisHidden(this.header) ? "ve-hidden" : ""} ${this._deselFn && this._deselFn(item.item) ? "fltr__mini-pill--default-desel" : ""} ${this._selFn && this._selFn(item.item) ? "fltr__mini-pill--default-sel" : ""}`,
 			html: toDisplay,
-			title: `${this._displayFnTitle ? `${this._displayFnTitle(item.item, item)} (` : ""}Filter: ${this.header}${this._displayFnTitle ? ")" : ""}`,
+			title: `${this._displayFnTitle ? `${this._displayFnTitle(item.item, item)} (` : ""}Filter: ${this._getHeaderDisplayName()}${this._displayFnTitle ? ")" : ""}`,
 			click: () => {
 				this._state[item.item] = PILL_STATE__IGNORE;
 				this._filterBox.fireChangeEvent();
@@ -1223,7 +1223,7 @@ export class Filter extends FilterBase {
 	}
 
 	handleSearch (searchTerm) {
-		const isHeaderMatch = this.header.toLowerCase().includes(searchTerm);
+		const isHeaderMatch = this._getHeaderDisplayName().toLowerCase().includes(searchTerm);
 
 		if (isHeaderMatch) {
 			this._items.forEach(it => {

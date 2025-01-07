@@ -76,10 +76,10 @@ class _RenderBestiaryImplBase {
 	 * @param prop
 	 * @param entries
 	 * @param depth
-	 * @param fnGetHeader
+	 * @param {?string} ptHeader
 	 * @return {string}
 	 */
-	_getRenderedSection ({mon = null, prop, entries, depth = 1, fnGetHeader = null}) {
+	_getRenderedSection ({mon = null, prop, entries, depth = 1, ptHeader = null}) {
 		const renderer = Renderer.get();
 		const renderStack = [];
 
@@ -112,9 +112,7 @@ class _RenderBestiaryImplBase {
 			}
 		}
 
-		const ptHeader = mon
-			? (fnGetHeader ? fnGetHeader(mon) : Renderer.monster.getSectionIntro(mon, {prop}))
-			: "";
+		ptHeader ||= mon ? Renderer.monster.getSectionIntro(mon, {prop}) : "";
 
 		return `${ptHeader ? `<tr><td colspan="6" class="stats__sect-row-inner">${ptHeader}</td></tr>` : ""}
 			<tr><td colspan="6" class="stats__sect-row-inner">${renderStack.join("")}</td></tr>`;
@@ -134,6 +132,8 @@ class _RenderBestiaryImplBase {
 			entsAction,
 			entsBonusAction,
 			entsReaction,
+			entsLegendaryAction,
+			entsMythicAction,
 			legGroup,
 		},
 	) {
@@ -158,8 +158,8 @@ class _RenderBestiaryImplBase {
 			htmlPtActions: this._getCommonHtmlParts_actions({mon, entsAction}),
 			htmlPtBonusActions: this._getCommonHtmlParts_bonusActions({mon, entsBonusAction}),
 			htmlPtReactions: this._getCommonHtmlParts_reactions({mon, entsReaction}),
-			htmlPtLegendaryActions: this._getCommonHtmlParts_legendaryActions({mon}),
-			htmlPtMythicActions: this._getCommonHtmlParts_mythicActions({mon}),
+			htmlPtLegendaryActions: this._getCommonHtmlParts_legendaryActions({mon, entsLegendaryAction}),
+			htmlPtMythicActions: this._getCommonHtmlParts_mythicActions({mon, entsMythicAction}),
 
 			htmlPtLairActions: this._getCommonHtmlParts_lairActions({legGroup}),
 			htmlPtRegionalEffects: this._getCommonHtmlParts_regionalEffects({legGroup}),
@@ -267,14 +267,17 @@ class _RenderBestiaryImplBase {
 		${this._getRenderedSection({mon, prop: "reaction", entries: entsReaction})}` : ""}`;
 	}
 
-	_getCommonHtmlParts_legendaryActions ({mon}) {
-		return `${mon.legendary ? `${this._getRenderedSectionHeader({mon, title: "Legendary Actions", prop: "legendary"})}
-		${this._getRenderedSection({mon, prop: "legendary", entries: mon.legendary, fnGetHeader: Renderer.monster.getLegendaryActionIntro.bind(Renderer.monster)})}` : ""}`;
+	_getCommonHtmlParts_legendaryActions ({mon, entsLegendaryAction}) {
+		if (!entsLegendaryAction?.length) return "";
+		const ptHeader = Renderer.monster.getLegendaryActionIntro(mon, {styleHint: this._style});
+		return `${this._getRenderedSectionHeader({mon, title: "Legendary Actions", prop: "legendary"})}
+		${this._getRenderedSection({mon, prop: "legendary", entries: entsLegendaryAction, ptHeader})}`;
 	}
 
-	_getCommonHtmlParts_mythicActions ({mon}) {
-		return `${mon.mythic ? `${this._getRenderedSectionHeader({mon, title: "Mythic Actions", prop: "mythic"})}
-		${this._getRenderedSection({mon, prop: "mythic", entries: mon.mythic})}` : ""}`;
+	_getCommonHtmlParts_mythicActions ({mon, entsMythicAction}) {
+		if (!entsMythicAction?.length) return "";
+		return `${this._getRenderedSectionHeader({mon, title: "Mythic Actions", prop: "mythic"})}
+		${this._getRenderedSection({mon, prop: "mythic", entries: entsMythicAction})}`;
 	}
 
 	/* ----- */
@@ -294,21 +297,24 @@ class _RenderBestiaryImplBase {
 	_getCommonHtmlParts_footerExtended ({mon, renderer, legGroup}) {
 		const renderedVariants = Renderer.monster.getRenderedVariants(mon, {renderer});
 
-		const htmlSourceAndEnvironment = this._getHtmlPartsourceAndEnvironment(mon, legGroup);
+		const ptSource = this._getHtmlPartSource(mon, legGroup);
+		const ptEnvironment = this._getHtmlPtEnvironment(mon);
+		const ptTreasure = this._getHtmlPtTreasure(mon);
 
 		const ptVariants = renderedVariants ? `<tr><td colspan="6">${renderedVariants}</td></tr>` : "";
 
 		const ptFooter = `${mon.footer ? `<tr><td colspan="6" class="stats__sect-row-inner">${renderer.render({entries: mon.footer})}</td></tr>` : ""}
 		${mon.summonedBySpell ? `<tr><td colspan="6"><b>Summoned By:</b> ${renderer.render(`{@spell ${mon.summonedBySpell}}`)}</td></tr>` : ""}
-		${htmlSourceAndEnvironment.length === 2 ? `<tr><td colspan="6">${htmlSourceAndEnvironment[1]}</td></tr>` : ""}
-		<tr><td colspan="6">${htmlSourceAndEnvironment[0]}</td></tr>`.trim();
+		${ptEnvironment ? `<tr><td colspan="6">${ptEnvironment}</td></tr>` : ""}
+		${ptTreasure ? `<tr><td colspan="6">${ptTreasure}</td></tr>` : ""}
+		<tr><td colspan="6">${ptSource}</td></tr>`.trim();
 
 		return `${ptVariants}
 		${ptFooter.length ? `<tr><td colspan="6" class="p-0 pt-3"></td></tr>` : ""}
 		${ptFooter}`;
 	}
 
-	_getHtmlPartsourceAndEnvironment (mon, legGroup) {
+	_getHtmlPartSource (mon, legGroup) {
 		const srcCpy = {
 			source: mon.source,
 			page: mon.page,
@@ -339,7 +345,20 @@ class _RenderBestiaryImplBase {
 
 		const pageTrInner = Renderer.utils.getSourceAndPageTrHtml(srcCpy);
 		if (!mon.environment?.length) return [pageTrInner];
-		return [pageTrInner, `<div><b>Environment:</b> ${Renderer.monster.getRenderedEnvironment(mon.environment)}</div>`];
+		return [
+			pageTrInner,
+
+		];
+	}
+
+	_getHtmlPtEnvironment (mon) {
+		if (!mon.environment?.length) return "";
+		return `<div><b>${this._style === "classic" ? "Environment" : "Habitat"}:</b> ${Renderer.monster.getRenderedEnvironment(mon.environment)}</div>`;
+	}
+
+	_getHtmlPtTreasure (mon) {
+		if (!mon.treasure?.length) return "";
+		return `<div><b>Treasure:</b> ${Renderer.monster.getRenderedTreasure(mon.treasure)}</div>`;
 	}
 
 	/* -------------------------------------------- */
@@ -430,6 +449,8 @@ class _RenderBestiaryImplClassic extends _RenderBestiaryImplBase {
 			entsAction,
 			entsBonusAction,
 			entsReaction,
+			entsLegendaryAction,
+			entsMythicAction,
 			legGroup,
 		} = Renderer.monster.getSubEntries(mon, {renderer});
 
@@ -472,6 +493,8 @@ class _RenderBestiaryImplClassic extends _RenderBestiaryImplBase {
 			entsAction,
 			entsBonusAction,
 			entsReaction,
+			entsLegendaryAction,
+			entsMythicAction,
 			legGroup,
 		});
 
@@ -624,6 +647,8 @@ class _RenderBestiaryImplOne extends _RenderBestiaryImplBase {
 			entsAction,
 			entsBonusAction,
 			entsReaction,
+			entsLegendaryAction,
+			entsMythicAction,
 			legGroup,
 		} = Renderer.monster.getSubEntries(mon, {renderer});
 
@@ -666,6 +691,8 @@ class _RenderBestiaryImplOne extends _RenderBestiaryImplBase {
 			entsAction,
 			entsBonusAction,
 			entsReaction,
+			entsLegendaryAction,
+			entsMythicAction,
 			legGroup,
 		});
 

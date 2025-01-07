@@ -3,9 +3,9 @@ import "../js/parser.js";
 import "../js/utils.js";
 import "../js/render.js";
 import * as ut from "./util.js";
-import "../js/utils-generate-tables-data.js";
 import "../js/utils-dataloader.js";
 import "../js/hist.js";
+import {UtilGenTables} from "../js/generate-tables-data/generate-tables-data-utils.js";
 
 class GenTables {
 	static _GenState = class {

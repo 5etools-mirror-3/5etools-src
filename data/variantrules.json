@@ -845,15 +845,15 @@
 					"rows": [
 						[
 							"Large",
-							"{@dice 4d10}"
+							"{@damage 4d10}"
 						],
 						[
 							"Huge",
-							"{@dice 8d10}"
+							"{@damage 8d10}"
 						],
 						[
 							"Gargantuan",
-							"{@dice 16d10}"
+							"{@damage 16d10}"
 						]
 					]
 				}
@@ -5449,7 +5449,7 @@
 					"type": "entries",
 					"name": "Bomb",
 					"entries": [
-						"As an action, a character can light this bomb and throw it at a point up to 60 feet away. Each creature within 5 feet of that point must succeed on a {@dc 12} Dexterity saving throw or take {@dice 3d6} fire damage."
+						"As an action, a character can light this bomb and throw it at a point up to 60 feet away. Each creature within 5 feet of that point must succeed on a {@dc 12} Dexterity saving throw or take {@damage 3d6} fire damage."
 					]
 				},
 				{
@@ -5464,8 +5464,8 @@
 					"type": "entries",
 					"name": "Dynamite",
 					"entries": [
-						"As an action, a creature can light a stick of dynamite and throw it at a point up to 60 feet away. Each creature within 5 feet of that point must make a {@dc 12} Dexterity saving throw, taking {@dice 3d6} bludgeoning damage on a failed save, or half as much damage on a successful one.",
-						"A character can bind sticks of dynamite together so they explode at the same time. Each additional stick increases the damage by {@dice 1d6} (to a maximum of {@dice 10d6}) and the burst radius by 5 feet (to a maximum of 20 feet).",
+						"As an action, a creature can light a stick of dynamite and throw it at a point up to 60 feet away. Each creature within 5 feet of that point must make a {@dc 12} Dexterity saving throw, taking {@damage 3d6} bludgeoning damage on a failed save, or half as much damage on a successful one.",
+						"A character can bind sticks of dynamite together so they explode at the same time. Each additional stick increases the damage by {@damage 1d6} (to a maximum of {@damage 10d6}) and the burst radius by 5 feet (to a maximum of 20 feet).",
 						"Dynamite can be rigged with a longer fuse to explode after a set amount of time, usually 1 to 6 rounds. Roll initiative for the dynamite. After the set number of rounds goes by, the dynamite explodes on that initiative."
 					]
 				},
@@ -5474,7 +5474,7 @@
 					"name": "Grenades",
 					"entries": [
 						"As an action, a character can throw a grenade at a point up to 60 feet away. With a grenade launcher, the character can propel the grenade up to 120 feet away.",
-						"Each creature within 20 feet of an exploding fragmentation grenade must make a {@dc 15} Dexterity saving throw, taking {@dice 5d6} piercing damage on a failed save, or half as much damage on a successful one.",
+						"Each creature within 20 feet of an exploding fragmentation grenade must make a {@dc 15} Dexterity saving throw, taking {@damage 5d6} piercing damage on a failed save, or half as much damage on a successful one.",
 						"One round after a smoke grenade lands, it emits a cloud of smoke that creates a heavily obscured area in a 20-foot radius. A moderate wind (at least 10 miles per hour) disperses the smoke in 4 rounds; a strong wind (20 or more miles per hour) disperses it in 1 round."
 					]
 				}
@@ -5507,7 +5507,7 @@
 			"ruleType": "O",
 			"type": "section",
 			"entries": [
-				"Falling from a great height is a significant risk for adventurers and their foes. The rule given in the {@book Player's Handbook|PHB|8|Falling} is simple: at the end of a fall, you take {@dice 1d6} bludgeoning damage for every 10 feet you fell, to a maximum of {@dice 20d6}. You also land {@condition prone}, unless you somehow avoid taking damage from the fall. Here are two optional rules that expand on that simple rule.",
+				"Falling from a great height is a significant risk for adventurers and their foes. The rule given in the {@book Player's Handbook|PHB|8|Falling} is simple: at the end of a fall, you take {@damage 1d6} bludgeoning damage for every 10 feet you fell, to a maximum of {@damage 20d6}. You also land {@condition prone}, unless you somehow avoid taking damage from the fall. Here are two optional rules that expand on that simple rule.",
 				{
 					"type": "entries",
 					"name": "Rate of Falling",
@@ -5891,7 +5891,7 @@
 							"name": "Danse Macabre",
 							"entries": [
 								"{@i Haunt Bonus +4}",
-								"This haunted trap affects a 20-foot-radius sphere centered on an ancient but pristine instrument. When a creature enters the area, the trap's emanation manifests as the sound of distant, mournful music. A round later, a phantom performer appears and begins playing the instrument for the next minute. While the performer plays, any creature that enters or starts its turn in the haunted trap's area must succeed on a {@dc 14} Wisdom saving throw or float 20 feet into the air and be affected by the spell {@spell Otto's irresistible dance}. There they are joined by illusory dancers as they dance for the remainder of the performer's song. As an action, a dancing creature can repeat the saving throw to end the effect on itself, whereupon it falls 20 feet and takes {@dice 2d6} bludgeoning damage. If a creature's saving throw to resist the trap or to stop dancing is successful, the creature is immune to the haunted trap for the next 24 hours.",
+								"This haunted trap affects a 20-foot-radius sphere centered on an ancient but pristine instrument. When a creature enters the area, the trap's emanation manifests as the sound of distant, mournful music. A round later, a phantom performer appears and begins playing the instrument for the next minute. While the performer plays, any creature that enters or starts its turn in the haunted trap's area must succeed on a {@dc 14} Wisdom saving throw or float 20 feet into the air and be affected by the spell {@spell Otto's irresistible dance}. There they are joined by illusory dancers as they dance for the remainder of the performer's song. As an action, a dancing creature can repeat the saving throw to end the effect on itself, whereupon it falls 20 feet and takes {@damage 2d6} bludgeoning damage. If a creature's saving throw to resist the trap or to stop dancing is successful, the creature is immune to the haunted trap for the next 24 hours.",
 								"While the phantom performer plays, any creature within the haunted trap's area can use an action to try to convince the performer to stop playing, doing so with a successful {@dc 14} Charisma ({@skill Persuasion}) check. When the performer stops playing, all creatures affected by the haunted trap are freed from its effects and float to the ground safely."
 							]
 						},
@@ -6318,7 +6318,7 @@
 							"type": "entries",
 							"name": "Damage",
 							"entries": [
-								"On a hit, the weapon deals {@dice 1d4} damage of a type the DM thinks is appropriate for the object."
+								"On a hit, the weapon deals {@damage 1d4} damage of a type the DM thinks is appropriate for the object."
 							]
 						},
 						{
@@ -7188,7 +7188,7 @@
 					"rows": [
 						[
 							"01",
-							"The mixture creates a magical explosion, dealing {@dice 6d10} force damage to the mixer and {@dice 1d10} force damage to each creature within 5 feet of the mixer."
+							"The mixture creates a magical explosion, dealing {@damage 6d10} force damage to the mixer and {@damage 1d10} force damage to each creature within 5 feet of the mixer."
 						],
 						[
 							"02-08",
@@ -8874,7 +8874,7 @@
 					"name": "Coral Reefs",
 					"entries": [
 						"Coral reefs grow all over the ocean floor, though most are found within depths of less than 150 feet near the shoreline. Reefs range from a few feet to over 1,000 miles in length and width. These colorful ecosystems house small fish, crustaceans, and mollusks. As a result, predators come to reefs looking for prey.",
-						"Uneven and sharp, coral reefs can harm those forced into them. A creature forcibly moved on the reef\u2014without using the creature's action, bonus action, or reaction\u2014takes 3 ({@dice 1d6}) slashing damage per 5 feet of reef that it is pushed over."
+						"Uneven and sharp, coral reefs can harm those forced into them. A creature forcibly moved on the reef\u2014without using the creature's action, bonus action, or reaction\u2014takes 3 ({@damage 1d6}) slashing damage per 5 feet of reef that it is pushed over."
 					]
 				},
 				{
@@ -9117,7 +9117,7 @@
 					"name": "Kraken's Grave",
 					"entries": [
 						"When krakens die, their bodies often rot on the seafloor. In such cases, the ground absorbs the decaying kraken's supernatural energy, marking the area with a dark stain in the shape of the kraken's body. This stain is called a kraken's grave.",
-						"When a creature moves within 30 feet of a kraken's grave or starts its turn there, that creature must succeed on a {@dc 14} Dexterity ({@skill Stealth}) check or it disturbs the grave. If a creature disturbs the grave, a tendril made of lightning stretches from the ground and attacks the creature with a +7 bonus to hit. On a hit, the target takes 10 ({@dice 3d6}) lightning damage, and it must succeed on a {@dc 14} Constitution saving throw or become {@condition blinded} for the next {@dice 2d4} hours."
+						"When a creature moves within 30 feet of a kraken's grave or starts its turn there, that creature must succeed on a {@dc 14} Dexterity ({@skill Stealth}) check or it disturbs the grave. If a creature disturbs the grave, a tendril made of lightning stretches from the ground and attacks the creature with a +7 bonus to hit. On a hit, the target takes 10 ({@damage 3d6}) lightning damage, and it must succeed on a {@dc 14} Constitution saving throw or become {@condition blinded} for the next {@dice 2d4} hours."
 					]
 				},
 				{
@@ -9213,7 +9213,7 @@
 							"type": "entries",
 							"name": "Evocation",
 							"entries": [
-								"These ferocious storms are wracked with thunderbolts, driving sheets of acid rain, exploding meteors, and other dangers. After each day of the storm, every component aboard the ship takes {@dice 1d10} fire, {@dice 1d10} acid, and {@dice 1d10} lightning damage. In addition, roll a {@dice d20} and add the crew's quality. On a 10 or less, the crew's quality decreases by 1, and {@dice 1d6} members of the crew are killed."
+								"These ferocious storms are wracked with thunderbolts, driving sheets of acid rain, exploding meteors, and other dangers. After each day of the storm, every component aboard the ship takes {@damage 1d10} fire, {@damage 1d10} acid, and {@damage 1d10} lightning damage. In addition, roll a {@damage d20} and add the crew's quality. On a 10 or less, the crew's quality decreases by 1, and {@dice 1d6} members of the crew are killed."
 							]
 						},
 						{
@@ -9234,7 +9234,7 @@
 							"type": "entries",
 							"name": "Transmutation",
 							"entries": [
-								"These violently unpredictable storms cause the waves to warp and twist. The storm transforms the water around the ship into an amalgamation of ice, stone, and stranger materials, making travel difficult and damaging the ship. The ship's hull takes {@dice 4d10} bludgeoning damage, and the ship's speed decreases by half during the storm."
+								"These violently unpredictable storms cause the waves to warp and twist. The storm transforms the water around the ship into an amalgamation of ice, stone, and stranger materials, making travel difficult and damaging the ship. The ship's hull takes {@damage 4d10} bludgeoning damage, and the ship's speed decreases by half during the storm."
 							]
 						}
 					]
@@ -9284,7 +9284,7 @@
 					"name": "Sapping Snow",
 					"entries": [
 						"Sapping snow\u2014that's what aquatic explorers call the powdery remains of dead organisms that cover the ocean floor. When this substance is imbued with necromantic magic, it becomes a life-leeching detritus.",
-						"Whenever a creature starts its turn touching sapping snow, that creature must succeed on a {@dc 15} Constitution saving throw or take 10 ({@dice 3d6}) necrotic damage. The creature's hit point maximum decreases by an amount equal to the necrotic damage taken. This reduction lasts until the creature finishes a long rest. If this effect reduces the creature's hit point maximum to 0, the creature dies, and its body immediately crumbles into sapping snow."
+						"Whenever a creature starts its turn touching sapping snow, that creature must succeed on a {@dc 15} Constitution saving throw or take 10 ({@damage 3d6}) necrotic damage. The creature's hit point maximum decreases by an amount equal to the necrotic damage taken. This reduction lasts until the creature finishes a long rest. If this effect reduces the creature's hit point maximum to 0, the creature dies, and its body immediately crumbles into sapping snow."
 					]
 				},
 				{
@@ -9888,7 +9888,7 @@
 					"type": "entries",
 					"name": "Mechanus: Law of Averages",
 					"entries": [
-						"While on Mechanus, creatures always use the average damage result for attacks and spells. For example, an attack that normally deals {@dice 1d10 + 5} damage always deals 10 damage on Mechanus."
+						"While on Mechanus, creatures always use the average damage result for attacks and spells. For example, an attack that normally deals {@damage 1d10 + 5} damage always deals 10 damage on Mechanus."
 					]
 				},
 				{
@@ -10621,7 +10621,7 @@
 									"items": [
 										"The ship has resistance to the following damage types: acid, fire, lightning, and thunder, as well as bludgeoning, piercing, and slashing from nonmagical attacks.",
 										"The ship is immune to cold, necrotic, poison, and psychic damage.",
-										"The ship can move through other creatures and objects as if they were {@quickref difficult terrain||3}. It takes 5 ({@dice 1d10}) force damage if it ends its turn inside an object."
+										"The ship can move through other creatures and objects as if they were {@quickref difficult terrain||3}. It takes 5 ({@damage 1d10}) force damage if it ends its turn inside an object."
 									]
 								},
 								"Crew members and officers on good and neutral ghost ships are {@creature Ghost||ghosts}. On evil ghost ships, the crew members are 90 percent {@creature Skeleton||skeletons} and {@creature Zombie||zombies} (even mix of each), 10 percent are {@creature Specter||specters}, and the officers are {@creature Wraith||wraiths}."
@@ -11154,7 +11154,7 @@
 					"rows": [
 						[
 							"1",
-							"A surge of magical energy deals the caster {@dice 1d6} force damage per level of the spell."
+							"A surge of magical energy deals the caster {@damage 1d6} force damage per level of the spell."
 						],
 						[
 							"2",
@@ -11422,7 +11422,9 @@
 								]
 							],
 							"data": {
-								"tableInclude": true
+								"genTables": {
+									"tableInclude": true
+								}
 							}
 						},
 						{
@@ -11464,7 +11466,9 @@
 								]
 							],
 							"data": {
-								"tableInclude": true
+								"genTables": {
+									"tableInclude": true
+								}
 							}
 						},
 						{
@@ -11762,23 +11766,23 @@
 							"rows": [
 								[
 									"Small",
-									"{@dice 1d6}"
+									"{@damage 1d6}"
 								],
 								[
 									"Medium",
-									"{@dice 1d10}"
+									"{@damage 1d10}"
 								],
 								[
 									"Large",
-									"{@dice 4d10}"
+									"{@damage 4d10}"
 								],
 								[
 									"Huge",
-									"{@dice 8d10}"
+									"{@damage 8d10}"
 								],
 								[
 									"Gargantuan",
-									"{@dice 16d10}"
+									"{@damage 16d10}"
 								]
 							]
 						}
@@ -12946,7 +12950,7 @@
 							"type": "entries",
 							"name": "Damage Notation",
 							"entries": [
-								"A stat block usually provides both a static number and a die expression for each instance of damage. For example, an attack might deal 4 ({@dice 1d4 + 2}) damage on a hit. The DM determines whether you use the static number or the die expression in parentheses; you don't use both."
+								"A stat block usually provides both a static number and a die expression for each instance of damage. For example, an attack might deal 4 ({@damage 1d4 + 2}) damage on a hit. The DM determines whether you use the static number or the die expression in parentheses; you don't use both."
 							]
 						}
 					]
@@ -15428,15 +15432,15 @@
 										],
 										[
 											"Success",
-											"The fire is extinguished, but the hull and {@dice 1d3} other random components take {@dice 6d6} fire damage."
+											"The fire is extinguished, but the hull and {@dice 1d3} other random components take {@damage 6d6} fire damage."
 										],
 										[
 											"Failure",
-											"The hull and {@dice 1d3} other random components take {@dice 6d6} fire damage, and the fire continues. Make another set of checks."
+											"The hull and {@dice 1d3} other random components take {@damage 6d6} fire damage, and the fire continues. Make another set of checks."
 										],
 										[
 											"Total Failure",
-											"The crew's quality score decreases by 1 due to injuries, while the hull and {@dice 1d3} other random components take {@dice 6d6} fire damage. The fire continues. Make another set of checks."
+											"The crew's quality score decreases by 1 due to injuries, while the hull and {@dice 1d3} other random components take {@damage 6d6} fire damage. The fire continues. Make another set of checks."
 										]
 									]
 								}
@@ -15721,11 +15725,11 @@
 										],
 										[
 											"Failure",
-											"The ship's components each take {@dice 4d10} bludgeoning damage. The crew's quality score decreases by 1. The ship struggles, moving at half speed that day."
+											"The ship's components each take {@damage 4d10} bludgeoning damage. The crew's quality score decreases by 1. The ship struggles, moving at half speed that day."
 										],
 										[
 											"Total Failure",
-											"The ship's components each take {@dice 10d10} bludgeoning damage. The crew's quality score decreases by 2, and 10 percent of the crew is washed overboard and lost. The ship is blown off course and struggles to recover its bearings, moving in a random direction."
+											"The ship's components each take {@damage 10d10} bludgeoning damage. The crew's quality score decreases by 2, and 10 percent of the crew is washed overboard and lost. The ship is blown off course and struggles to recover its bearings, moving in a random direction."
 										]
 									]
 								}

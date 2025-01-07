@@ -32,6 +32,15 @@ export class ConverterTaggerInitializable extends ConverterTaggerBase {
 		throw new Error("Unimplemented!");
 	}
 
+	/* ----- */
+
+	static tryRunProps (ent, props, ...rest) {
+		props
+			.filter(prop => ent[prop])
+			.forEach(prop => ent[prop] = ent[prop].map(subEnt => this.tryRun(subEnt, ...rest)));
+		return ent;
+	}
+
 	/* -------------------------------------------- */
 
 	static tryRunStrictCapsWords (...args) {
@@ -42,5 +51,14 @@ export class ConverterTaggerInitializable extends ConverterTaggerBase {
 	/** @abstract */
 	static _tryRunStrictCapsWords (...args) {
 		throw new Error("Unimplemented!");
+	}
+
+	/* ----- */
+
+	static tryRunPropsStrictCapsWords (ent, props, ...rest) {
+		props
+			.filter(prop => ent[prop])
+			.forEach(prop => ent[prop] = ent[prop].map(subEnt => this.tryRunStrictCapsWords(subEnt, ...rest)));
+		return ent;
 	}
 }
