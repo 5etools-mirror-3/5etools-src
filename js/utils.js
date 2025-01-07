@@ -6186,6 +6186,9 @@ globalThis.DataUtil = {
 					} else if (typeof entry === "object" && entry.entries) {
 						// Caso seja um objeto com "entries", traduzir recursivamente
 						return { ...entry, entries: translateEntries(entry.entries) };
+					} else if (entry.type === "list" && entry.items) {
+						// Caso seja um objeto com "items", traduzir cada item
+						return { ...entry, items: entry.items.map(item => TRANSLATE_DICT[item] || item) };
 					}
 					return entry; // Retornar outros casos sem alteração
 				});
