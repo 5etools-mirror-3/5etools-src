@@ -4,7 +4,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.5.6"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.5.10"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -53,7 +53,7 @@ globalThis.VeCt = {
 
 	SYM_UTIL_TIMEOUT: Symbol("timeout"),
 
-	LOC_ORIGIN_CANCER: "https://5e.tools",
+	LOC_HOSTNAME_CANCER: "5e.tools",
 
 	URL_BREW: `https://github.com/TheGiddyLimit/homebrew`,
 	URL_ROOT_BREW: `https://raw.githubusercontent.com/TheGiddyLimit/homebrew/master/`, // N.b. must end with a slash
@@ -1948,6 +1948,311 @@ globalThis.MiscUtil = class {
 	static GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST = new Set(["caption", "type", "colLabels", "colLabelRows", "name", "colStyles", "style", "shortName", "subclassShortName", "id", "path", "source"]);
 
 	/**
+	 * @abstract
+	 */
+	static _WalkerBase = class {
+		/**
+		 * @param [opts]
+		 * @param [opts.keyBlocklist]
+		 * @param [opts.isAllowDeleteObjects] If returning `undefined` from an object handler should be treated as a delete.
+		 * @param [opts.isAllowDeleteArrays] If returning `undefined` from an array handler should be treated as a delete.
+		 * @param [opts.isAllowDeleteBooleans] (Unimplemented) // TODO
+		 * @param [opts.isAllowDeleteNumbers] (Unimplemented) // TODO
+		 * @param [opts.isAllowDeleteStrings] (Unimplemented) // TODO
+		 * @param [opts.isDepthFirst] If array/object recursion should occur before array/object primitive handling.
+		 * @param [opts.isNoModification] If the walker should not attempt to modify the data.
+		 * @param [opts.isBreakOnReturn] If the walker should fast-exist on any handler returning a value.
+		 */
+		constructor (
+			{
+				keyBlocklist,
+				isAllowDeleteObjects,
+				isAllowDeleteArrays,
+				isAllowDeleteBooleans,
+				isAllowDeleteNumbers,
+				isAllowDeleteStrings,
+				isDepthFirst,
+				isNoModification,
+				isBreakOnReturn,
+			} = {},
+		) {
+			this._keyBlocklist = keyBlocklist || new Set();
+			this._isAllowDeleteObjects = isAllowDeleteObjects;
+			this._isAllowDeleteArrays = isAllowDeleteArrays;
+			this._isAllowDeleteBooleans = isAllowDeleteBooleans;
+			this._isAllowDeleteNumbers = isAllowDeleteNumbers;
+			this._isAllowDeleteStrings = isAllowDeleteStrings;
+			this._isDepthFirst = isDepthFirst;
+			this._isNoModification = isNoModification;
+			this._isBreakOnReturn = isBreakOnReturn;
+
+			if (isBreakOnReturn && !isNoModification) throw new Error(`"isBreakOnReturn" may only be used in "isNoModification" mode!`);
+		}
+	};
+
+	static _WalkerSync = class extends this._WalkerBase {
+		_applyHandlers ({handlers, obj, lastKey, stack}) {
+			handlers = handlers instanceof Array ? handlers : [handlers];
+			const didBreak = handlers.some(h => {
+				const out = h(obj, lastKey, stack);
+				if (this._isBreakOnReturn && out) return true;
+				if (!this._isNoModification) obj = out;
+			});
+			if (didBreak) return VeCt.SYM_WALKER_BREAK;
+			return obj;
+		}
+
+		_runHandlers ({handlers, obj, lastKey, stack}) {
+			handlers = handlers instanceof Array ? handlers : [handlers];
+			handlers.forEach(h => h(obj, lastKey, stack));
+		}
+
+		_doObjectRecurse (obj, primitiveHandlers, stack) {
+			for (const k of Object.keys(obj)) {
+				if (this._keyBlocklist.has(k)) continue;
+
+				const out = this.walk(obj[k], primitiveHandlers, k, stack);
+				if (out === VeCt.SYM_WALKER_BREAK) return VeCt.SYM_WALKER_BREAK;
+				if (!this._isNoModification) obj[k] = out;
+			}
+		}
+
+		_getMappedPrimitive (obj, primitiveHandlers, lastKey, stack, prop, propPre, propPost) {
+			if (primitiveHandlers[propPre]) this._runHandlers({handlers: primitiveHandlers[propPre], obj, lastKey, stack});
+			if (primitiveHandlers[prop]) {
+				const out = this._applyHandlers({handlers: primitiveHandlers[prop], obj, lastKey, stack});
+				if (out === VeCt.SYM_WALKER_BREAK) return out;
+				if (!this._isNoModification) obj = out;
+			}
+			if (primitiveHandlers[propPost]) this._runHandlers({handlers: primitiveHandlers[propPost], obj, lastKey, stack});
+			return obj;
+		}
+
+		_getMappedArray (obj, primitiveHandlers, lastKey, stack) {
+			if (primitiveHandlers.preArray) this._runHandlers({handlers: primitiveHandlers.preArray, obj, lastKey, stack});
+			if (this._isDepthFirst) {
+				if (stack) stack.push(obj);
+				const out = new Array(obj.length);
+				for (let i = 0, len = out.length; i < len; ++i) {
+					out[i] = this.walk(obj[i], primitiveHandlers, lastKey, stack);
+					if (out[i] === VeCt.SYM_WALKER_BREAK) return out[i];
+				}
+				if (!this._isNoModification) obj = out;
+				if (stack) stack.pop();
+
+				if (primitiveHandlers.array) {
+					const out = this._applyHandlers({handlers: primitiveHandlers.array, obj, lastKey, stack});
+					if (out === VeCt.SYM_WALKER_BREAK) return out;
+					if (!this._isNoModification) obj = out;
+				}
+				if (obj == null) {
+					if (!this._isAllowDeleteArrays) throw new Error(`Array handler(s) returned null!`);
+				}
+			} else {
+				if (primitiveHandlers.array) {
+					const out = this._applyHandlers({handlers: primitiveHandlers.array, obj, lastKey, stack});
+					if (out === VeCt.SYM_WALKER_BREAK) return out;
+					if (!this._isNoModification) obj = out;
+				}
+				if (obj != null) {
+					const out = new Array(obj.length);
+					for (let i = 0, len = out.length; i < len; ++i) {
+						if (stack) stack.push(obj);
+						out[i] = this.walk(obj[i], primitiveHandlers, lastKey, stack);
+						if (stack) stack.pop();
+						if (out[i] === VeCt.SYM_WALKER_BREAK) return out[i];
+					}
+					if (!this._isNoModification) obj = out;
+				} else {
+					if (!this._isAllowDeleteArrays) throw new Error(`Array handler(s) returned null!`);
+				}
+			}
+			if (primitiveHandlers.postArray) this._runHandlers({handlers: primitiveHandlers.postArray, obj, lastKey, stack});
+			return obj;
+		}
+
+		_getMappedObject (obj, primitiveHandlers, lastKey, stack) {
+			if (primitiveHandlers.preObject) this._runHandlers({handlers: primitiveHandlers.preObject, obj, lastKey, stack});
+			if (this._isDepthFirst) {
+				if (stack) stack.push(obj);
+				const flag = this._doObjectRecurse(obj, primitiveHandlers, stack);
+				if (stack) stack.pop();
+				if (flag === VeCt.SYM_WALKER_BREAK) return flag;
+
+				if (primitiveHandlers.object) {
+					const out = this._applyHandlers({handlers: primitiveHandlers.object, obj, lastKey, stack});
+					if (out === VeCt.SYM_WALKER_BREAK) return out;
+					if (!this._isNoModification) obj = out;
+				}
+				if (obj == null) {
+					if (!this._isAllowDeleteObjects) throw new Error(`Object handler(s) returned null!`);
+				}
+			} else {
+				if (primitiveHandlers.object) {
+					const out = this._applyHandlers({handlers: primitiveHandlers.object, obj, lastKey, stack});
+					if (out === VeCt.SYM_WALKER_BREAK) return out;
+					if (!this._isNoModification) obj = out;
+				}
+				if (obj == null) {
+					if (!this._isAllowDeleteObjects) throw new Error(`Object handler(s) returned null!`);
+				} else {
+					if (stack) stack.push(obj);
+					const flag = this._doObjectRecurse(obj, primitiveHandlers, stack);
+					if (stack) stack.pop();
+					if (flag === VeCt.SYM_WALKER_BREAK) return flag;
+				}
+			}
+			if (primitiveHandlers.postObject) this._runHandlers({handlers: primitiveHandlers.postObject, obj, lastKey, stack});
+			return obj;
+		}
+
+		walk (obj, primitiveHandlers, lastKey, stack) {
+			if (obj === null) return this._getMappedPrimitive(obj, primitiveHandlers, lastKey, stack, "null", "preNull", "postNull");
+
+			switch (typeof obj) {
+				case "undefined": return this._getMappedPrimitive(obj, primitiveHandlers, lastKey, stack, "undefined", "preUndefined", "postUndefined");
+				case "boolean": return this._getMappedPrimitive(obj, primitiveHandlers, lastKey, stack, "boolean", "preBoolean", "postBoolean");
+				case "number": return this._getMappedPrimitive(obj, primitiveHandlers, lastKey, stack, "number", "preNumber", "postNumber");
+				case "string": return this._getMappedPrimitive(obj, primitiveHandlers, lastKey, stack, "string", "preString", "postString");
+				case "object": {
+					if (obj instanceof Array) return this._getMappedArray(obj, primitiveHandlers, lastKey, stack);
+					return this._getMappedObject(obj, primitiveHandlers, lastKey, stack);
+				}
+				default: throw new Error(`Unhandled type "${typeof obj}"`);
+			}
+		}
+	};
+
+	// TODO refresh to match sync version
+	static _WalkerAsync = class extends this._WalkerBase {
+		async _pApplyHandlers ({handlers, obj, lastKey, stack}) {
+			handlers = handlers instanceof Array ? handlers : [handlers];
+			await handlers.pSerialAwaitMap(async pH => {
+				const out = await pH(obj, lastKey, stack);
+				if (!this._isNoModification) obj = out;
+			});
+			return obj;
+		}
+
+		async _pRunHandlers ({handlers, obj, lastKey, stack}) {
+			handlers = handlers instanceof Array ? handlers : [handlers];
+			await handlers.pSerialAwaitMap(pH => pH(obj, lastKey, stack));
+		}
+
+		async pWalk (obj, primitiveHandlers, lastKey, stack) {
+			if (obj == null) {
+				if (primitiveHandlers.null) return this._pApplyHandlers({handlers: primitiveHandlers.null, obj, lastKey, stack});
+				return obj;
+			}
+
+			const pDoObjectRecurse = async () => {
+				await Object.keys(obj).pSerialAwaitMap(async k => {
+					const v = obj[k];
+					if (this._keyBlocklist.has(k)) return;
+					const out = await this.pWalk(v, primitiveHandlers, k, stack);
+					if (!this._isNoModification) obj[k] = out;
+				});
+			};
+
+			const to = typeof obj;
+			switch (to) {
+				case undefined:
+					if (primitiveHandlers.preUndefined) await this._pRunHandlers({handlers: primitiveHandlers.preUndefined, obj, lastKey, stack});
+					if (primitiveHandlers.undefined) {
+						const out = await this._pApplyHandlers({handlers: primitiveHandlers.undefined, obj, lastKey, stack});
+						if (!this._isNoModification) obj = out;
+					}
+					if (primitiveHandlers.postUndefined) await this._pRunHandlers({handlers: primitiveHandlers.postUndefined, obj, lastKey, stack});
+					return obj;
+				case "boolean":
+					if (primitiveHandlers.preBoolean) await this._pRunHandlers({handlers: primitiveHandlers.preBoolean, obj, lastKey, stack});
+					if (primitiveHandlers.boolean) {
+						const out = await this._pApplyHandlers({handlers: primitiveHandlers.boolean, obj, lastKey, stack});
+						if (!this._isNoModification) obj = out;
+					}
+					if (primitiveHandlers.postBoolean) await this._pRunHandlers({handlers: primitiveHandlers.postBoolean, obj, lastKey, stack});
+					return obj;
+				case "number":
+					if (primitiveHandlers.preNumber) await this._pRunHandlers({handlers: primitiveHandlers.preNumber, obj, lastKey, stack});
+					if (primitiveHandlers.number) {
+						const out = await this._pApplyHandlers({handlers: primitiveHandlers.number, obj, lastKey, stack});
+						if (!this._isNoModification) obj = out;
+					}
+					if (primitiveHandlers.postNumber) await this._pRunHandlers({handlers: primitiveHandlers.postNumber, obj, lastKey, stack});
+					return obj;
+				case "string":
+					if (primitiveHandlers.preString) await this._pRunHandlers({handlers: primitiveHandlers.preString, obj, lastKey, stack});
+					if (primitiveHandlers.string) {
+						const out = await this._pApplyHandlers({handlers: primitiveHandlers.string, obj, lastKey, stack});
+						if (!this._isNoModification) obj = out;
+					}
+					if (primitiveHandlers.postString) await this._pRunHandlers({handlers: primitiveHandlers.postString, obj, lastKey, stack});
+					return obj;
+				case "object": {
+					if (obj instanceof Array) {
+						if (primitiveHandlers.preArray) await this._pRunHandlers({handlers: primitiveHandlers.preArray, obj, lastKey, stack});
+						if (this._isDepthFirst) {
+							if (stack) stack.push(obj);
+							const out = await obj.pSerialAwaitMap(it => this.pWalk(it, primitiveHandlers, lastKey, stack));
+							if (!this._isNoModification) obj = out;
+							if (stack) stack.pop();
+
+							if (primitiveHandlers.array) {
+								const out = await this._pApplyHandlers({handlers: primitiveHandlers.array, obj, lastKey, stack});
+								if (!this._isNoModification) obj = out;
+							}
+							if (obj == null) {
+								if (!this._isAllowDeleteArrays) throw new Error(`Array handler(s) returned null!`);
+							}
+						} else {
+							if (primitiveHandlers.array) {
+								const out = await this._pApplyHandlers({handlers: primitiveHandlers.array, obj, lastKey, stack});
+								if (!this._isNoModification) obj = out;
+							}
+							if (obj != null) {
+								const out = await obj.pSerialAwaitMap(it => this.pWalk(it, primitiveHandlers, lastKey, stack));
+								if (!this._isNoModification) obj = out;
+							} else {
+								if (!this._isAllowDeleteArrays) throw new Error(`Array handler(s) returned null!`);
+							}
+						}
+						if (primitiveHandlers.postArray) await this._pRunHandlers({handlers: primitiveHandlers.postArray, obj, lastKey, stack});
+						return obj;
+					} else {
+						if (primitiveHandlers.preObject) await this._pRunHandlers({handlers: primitiveHandlers.preObject, obj, lastKey, stack});
+						if (this._isDepthFirst) {
+							if (stack) stack.push(obj);
+							await pDoObjectRecurse();
+							if (stack) stack.pop();
+
+							if (primitiveHandlers.object) {
+								const out = await this._pApplyHandlers({handlers: primitiveHandlers.object, obj, lastKey, stack});
+								if (!this._isNoModification) obj = out;
+							}
+							if (obj == null) {
+								if (!this._isAllowDeleteObjects) throw new Error(`Object handler(s) returned null!`);
+							}
+						} else {
+							if (primitiveHandlers.object) {
+								const out = await this._pApplyHandlers({handlers: primitiveHandlers.object, obj, lastKey, stack});
+								if (!this._isNoModification) obj = out;
+							}
+							if (obj == null) {
+								if (!this._isAllowDeleteObjects) throw new Error(`Object handler(s) returned null!`);
+							} else {
+								await pDoObjectRecurse();
+							}
+						}
+						if (primitiveHandlers.postObject) await this._pRunHandlers({handlers: primitiveHandlers.postObject, obj, lastKey, stack});
+						return obj;
+					}
+				}
+				default: throw new Error(`Unhandled type "${to}"`);
+			}
+		}
+	};
+
+	/**
 	 * @param [opts]
 	 * @param [opts.keyBlocklist]
 	 * @param [opts.isAllowDeleteObjects] If returning `undefined` from an object handler should be treated as a delete.
@@ -1960,143 +2265,8 @@ globalThis.MiscUtil = class {
 	 * @param [opts.isBreakOnReturn] If the walker should fast-exist on any handler returning a value.
 	 */
 	static getWalker (opts) {
-		opts = opts || {};
-
-		if (opts.isBreakOnReturn && !opts.isNoModification) throw new Error(`"isBreakOnReturn" may only be used in "isNoModification" mode!`);
-
-		const keyBlocklist = opts.keyBlocklist || new Set();
-
-		const getMappedPrimitive = (obj, primitiveHandlers, lastKey, stack, prop, propPre, propPost) => {
-			if (primitiveHandlers[propPre]) MiscUtil._getWalker_runHandlers({handlers: primitiveHandlers[propPre], obj, lastKey, stack});
-			if (primitiveHandlers[prop]) {
-				const out = MiscUtil._getWalker_applyHandlers({opts, handlers: primitiveHandlers[prop], obj, lastKey, stack});
-				if (out === VeCt.SYM_WALKER_BREAK) return out;
-				if (!opts.isNoModification) obj = out;
-			}
-			if (primitiveHandlers[propPost]) MiscUtil._getWalker_runHandlers({handlers: primitiveHandlers[propPost], obj, lastKey, stack});
-			return obj;
-		};
-
-		const doObjectRecurse = (obj, primitiveHandlers, stack) => {
-			for (const k of Object.keys(obj)) {
-				if (keyBlocklist.has(k)) continue;
-
-				const out = fn(obj[k], primitiveHandlers, k, stack);
-				if (out === VeCt.SYM_WALKER_BREAK) return VeCt.SYM_WALKER_BREAK;
-				if (!opts.isNoModification) obj[k] = out;
-			}
-		};
-
-		const fn = (obj, primitiveHandlers, lastKey, stack) => {
-			if (obj === null) return getMappedPrimitive(obj, primitiveHandlers, lastKey, stack, "null", "preNull", "postNull");
-
-			switch (typeof obj) {
-				case "undefined": return getMappedPrimitive(obj, primitiveHandlers, lastKey, stack, "undefined", "preUndefined", "postUndefined");
-				case "boolean": return getMappedPrimitive(obj, primitiveHandlers, lastKey, stack, "boolean", "preBoolean", "postBoolean");
-				case "number": return getMappedPrimitive(obj, primitiveHandlers, lastKey, stack, "number", "preNumber", "postNumber");
-				case "string": return getMappedPrimitive(obj, primitiveHandlers, lastKey, stack, "string", "preString", "postString");
-				case "object": {
-					// region Array
-					if (obj instanceof Array) {
-						if (primitiveHandlers.preArray) MiscUtil._getWalker_runHandlers({handlers: primitiveHandlers.preArray, obj, lastKey, stack});
-						if (opts.isDepthFirst) {
-							if (stack) stack.push(obj);
-							const out = new Array(obj.length);
-							for (let i = 0, len = out.length; i < len; ++i) {
-								out[i] = fn(obj[i], primitiveHandlers, lastKey, stack);
-								if (out[i] === VeCt.SYM_WALKER_BREAK) return out[i];
-							}
-							if (!opts.isNoModification) obj = out;
-							if (stack) stack.pop();
-
-							if (primitiveHandlers.array) {
-								const out = MiscUtil._getWalker_applyHandlers({opts, handlers: primitiveHandlers.array, obj, lastKey, stack});
-								if (out === VeCt.SYM_WALKER_BREAK) return out;
-								if (!opts.isNoModification) obj = out;
-							}
-							if (obj == null) {
-								if (!opts.isAllowDeleteArrays) throw new Error(`Array handler(s) returned null!`);
-							}
-						} else {
-							if (primitiveHandlers.array) {
-								const out = MiscUtil._getWalker_applyHandlers({opts, handlers: primitiveHandlers.array, obj, lastKey, stack});
-								if (out === VeCt.SYM_WALKER_BREAK) return out;
-								if (!opts.isNoModification) obj = out;
-							}
-							if (obj != null) {
-								const out = new Array(obj.length);
-								for (let i = 0, len = out.length; i < len; ++i) {
-									if (stack) stack.push(obj);
-									out[i] = fn(obj[i], primitiveHandlers, lastKey, stack);
-									if (stack) stack.pop();
-									if (out[i] === VeCt.SYM_WALKER_BREAK) return out[i];
-								}
-								if (!opts.isNoModification) obj = out;
-							} else {
-								if (!opts.isAllowDeleteArrays) throw new Error(`Array handler(s) returned null!`);
-							}
-						}
-						if (primitiveHandlers.postArray) MiscUtil._getWalker_runHandlers({handlers: primitiveHandlers.postArray, obj, lastKey, stack});
-						return obj;
-					}
-					// endregion
-
-					// region Object
-					if (primitiveHandlers.preObject) MiscUtil._getWalker_runHandlers({handlers: primitiveHandlers.preObject, obj, lastKey, stack});
-					if (opts.isDepthFirst) {
-						if (stack) stack.push(obj);
-						const flag = doObjectRecurse(obj, primitiveHandlers, stack);
-						if (stack) stack.pop();
-						if (flag === VeCt.SYM_WALKER_BREAK) return flag;
-
-						if (primitiveHandlers.object) {
-							const out = MiscUtil._getWalker_applyHandlers({opts, handlers: primitiveHandlers.object, obj, lastKey, stack});
-							if (out === VeCt.SYM_WALKER_BREAK) return out;
-							if (!opts.isNoModification) obj = out;
-						}
-						if (obj == null) {
-							if (!opts.isAllowDeleteObjects) throw new Error(`Object handler(s) returned null!`);
-						}
-					} else {
-						if (primitiveHandlers.object) {
-							const out = MiscUtil._getWalker_applyHandlers({opts, handlers: primitiveHandlers.object, obj, lastKey, stack});
-							if (out === VeCt.SYM_WALKER_BREAK) return out;
-							if (!opts.isNoModification) obj = out;
-						}
-						if (obj == null) {
-							if (!opts.isAllowDeleteObjects) throw new Error(`Object handler(s) returned null!`);
-						} else {
-							if (stack) stack.push(obj);
-							const flag = doObjectRecurse(obj, primitiveHandlers, stack);
-							if (stack) stack.pop();
-							if (flag === VeCt.SYM_WALKER_BREAK) return flag;
-						}
-					}
-					if (primitiveHandlers.postObject) MiscUtil._getWalker_runHandlers({handlers: primitiveHandlers.postObject, obj, lastKey, stack});
-					return obj;
-					// endregion
-				}
-				default: throw new Error(`Unhandled type "${typeof obj}"`);
-			}
-		};
-
-		return {walk: fn};
-	}
-
-	static _getWalker_applyHandlers ({opts, handlers, obj, lastKey, stack}) {
-		handlers = handlers instanceof Array ? handlers : [handlers];
-		const didBreak = handlers.some(h => {
-			const out = h(obj, lastKey, stack);
-			if (opts.isBreakOnReturn && out) return true;
-			if (!opts.isNoModification) obj = out;
-		});
-		if (didBreak) return VeCt.SYM_WALKER_BREAK;
-		return obj;
-	}
-
-	static _getWalker_runHandlers ({handlers, obj, lastKey, stack}) {
-		handlers = handlers instanceof Array ? handlers : [handlers];
-		handlers.forEach(h => h(obj, lastKey, stack));
+		opts ||= {};
+		return new MiscUtil._WalkerSync(opts);
 	}
 
 	/**
@@ -2112,136 +2282,8 @@ globalThis.MiscUtil = class {
 	 * @param [opts.isNoModification] If the walker should not attempt to modify the data.
 	 */
 	static getAsyncWalker (opts) {
-		opts = opts || {};
-		const keyBlocklist = opts.keyBlocklist || new Set();
-
-		const pFn = async (obj, primitiveHandlers, lastKey, stack) => {
-			if (obj == null) {
-				if (primitiveHandlers.null) return MiscUtil._getAsyncWalker_pApplyHandlers({opts, handlers: primitiveHandlers.null, obj, lastKey, stack});
-				return obj;
-			}
-
-			const pDoObjectRecurse = async () => {
-				await Object.keys(obj).pSerialAwaitMap(async k => {
-					const v = obj[k];
-					if (keyBlocklist.has(k)) return;
-					const out = await pFn(v, primitiveHandlers, k, stack);
-					if (!opts.isNoModification) obj[k] = out;
-				});
-			};
-
-			const to = typeof obj;
-			switch (to) {
-				case undefined:
-					if (primitiveHandlers.preUndefined) await MiscUtil._getAsyncWalker_pRunHandlers({handlers: primitiveHandlers.preUndefined, obj, lastKey, stack});
-					if (primitiveHandlers.undefined) {
-						const out = await MiscUtil._getAsyncWalker_pApplyHandlers({opts, handlers: primitiveHandlers.undefined, obj, lastKey, stack});
-						if (!opts.isNoModification) obj = out;
-					}
-					if (primitiveHandlers.postUndefined) await MiscUtil._getAsyncWalker_pRunHandlers({handlers: primitiveHandlers.postUndefined, obj, lastKey, stack});
-					return obj;
-				case "boolean":
-					if (primitiveHandlers.preBoolean) await MiscUtil._getAsyncWalker_pRunHandlers({handlers: primitiveHandlers.preBoolean, obj, lastKey, stack});
-					if (primitiveHandlers.boolean) {
-						const out = await MiscUtil._getAsyncWalker_pApplyHandlers({opts, handlers: primitiveHandlers.boolean, obj, lastKey, stack});
-						if (!opts.isNoModification) obj = out;
-					}
-					if (primitiveHandlers.postBoolean) await MiscUtil._getAsyncWalker_pRunHandlers({handlers: primitiveHandlers.postBoolean, obj, lastKey, stack});
-					return obj;
-				case "number":
-					if (primitiveHandlers.preNumber) await MiscUtil._getAsyncWalker_pRunHandlers({handlers: primitiveHandlers.preNumber, obj, lastKey, stack});
-					if (primitiveHandlers.number) {
-						const out = await MiscUtil._getAsyncWalker_pApplyHandlers({opts, handlers: primitiveHandlers.number, obj, lastKey, stack});
-						if (!opts.isNoModification) obj = out;
-					}
-					if (primitiveHandlers.postNumber) await MiscUtil._getAsyncWalker_pRunHandlers({handlers: primitiveHandlers.postNumber, obj, lastKey, stack});
-					return obj;
-				case "string":
-					if (primitiveHandlers.preString) await MiscUtil._getAsyncWalker_pRunHandlers({handlers: primitiveHandlers.preString, obj, lastKey, stack});
-					if (primitiveHandlers.string) {
-						const out = await MiscUtil._getAsyncWalker_pApplyHandlers({opts, handlers: primitiveHandlers.string, obj, lastKey, stack});
-						if (!opts.isNoModification) obj = out;
-					}
-					if (primitiveHandlers.postString) await MiscUtil._getAsyncWalker_pRunHandlers({handlers: primitiveHandlers.postString, obj, lastKey, stack});
-					return obj;
-				case "object": {
-					if (obj instanceof Array) {
-						if (primitiveHandlers.preArray) await MiscUtil._getAsyncWalker_pRunHandlers({handlers: primitiveHandlers.preArray, obj, lastKey, stack});
-						if (opts.isDepthFirst) {
-							if (stack) stack.push(obj);
-							const out = await obj.pSerialAwaitMap(it => pFn(it, primitiveHandlers, lastKey, stack));
-							if (!opts.isNoModification) obj = out;
-							if (stack) stack.pop();
-
-							if (primitiveHandlers.array) {
-								const out = await MiscUtil._getAsyncWalker_pApplyHandlers({opts, handlers: primitiveHandlers.array, obj, lastKey, stack});
-								if (!opts.isNoModification) obj = out;
-							}
-							if (obj == null) {
-								if (!opts.isAllowDeleteArrays) throw new Error(`Array handler(s) returned null!`);
-							}
-						} else {
-							if (primitiveHandlers.array) {
-								const out = await MiscUtil._getAsyncWalker_pApplyHandlers({opts, handlers: primitiveHandlers.array, obj, lastKey, stack});
-								if (!opts.isNoModification) obj = out;
-							}
-							if (obj != null) {
-								const out = await obj.pSerialAwaitMap(it => pFn(it, primitiveHandlers, lastKey, stack));
-								if (!opts.isNoModification) obj = out;
-							} else {
-								if (!opts.isAllowDeleteArrays) throw new Error(`Array handler(s) returned null!`);
-							}
-						}
-						if (primitiveHandlers.postArray) await MiscUtil._getAsyncWalker_pRunHandlers({handlers: primitiveHandlers.postArray, obj, lastKey, stack});
-						return obj;
-					} else {
-						if (primitiveHandlers.preObject) await MiscUtil._getAsyncWalker_pRunHandlers({handlers: primitiveHandlers.preObject, obj, lastKey, stack});
-						if (opts.isDepthFirst) {
-							if (stack) stack.push(obj);
-							await pDoObjectRecurse();
-							if (stack) stack.pop();
-
-							if (primitiveHandlers.object) {
-								const out = await MiscUtil._getAsyncWalker_pApplyHandlers({opts, handlers: primitiveHandlers.object, obj, lastKey, stack});
-								if (!opts.isNoModification) obj = out;
-							}
-							if (obj == null) {
-								if (!opts.isAllowDeleteObjects) throw new Error(`Object handler(s) returned null!`);
-							}
-						} else {
-							if (primitiveHandlers.object) {
-								const out = await MiscUtil._getAsyncWalker_pApplyHandlers({opts, handlers: primitiveHandlers.object, obj, lastKey, stack});
-								if (!opts.isNoModification) obj = out;
-							}
-							if (obj == null) {
-								if (!opts.isAllowDeleteObjects) throw new Error(`Object handler(s) returned null!`);
-							} else {
-								await pDoObjectRecurse();
-							}
-						}
-						if (primitiveHandlers.postObject) await MiscUtil._getAsyncWalker_pRunHandlers({handlers: primitiveHandlers.postObject, obj, lastKey, stack});
-						return obj;
-					}
-				}
-				default: throw new Error(`Unhandled type "${to}"`);
-			}
-		};
-
-		return {pWalk: pFn};
-	}
-
-	static async _getAsyncWalker_pApplyHandlers ({opts, handlers, obj, lastKey, stack}) {
-		handlers = handlers instanceof Array ? handlers : [handlers];
-		await handlers.pSerialAwaitMap(async pH => {
-			const out = await pH(obj, lastKey, stack);
-			if (!opts.isNoModification) obj = out;
-		});
-		return obj;
-	}
-
-	static async _getAsyncWalker_pRunHandlers ({handlers, obj, lastKey, stack}) {
-		handlers = handlers instanceof Array ? handlers : [handlers];
-		await handlers.pSerialAwaitMap(pH => pH(obj, lastKey, stack));
+		opts ||= {};
+		return new MiscUtil._WalkerAsync(opts);
 	}
 
 	static pDefer (fn) {
@@ -2888,6 +2930,16 @@ globalThis.UrlUtil = {
 			return {name, pantheon, source};
 		}
 
+		if (page?.toLowerCase() === "classfeature") {
+			const [name, className, classSource, levelRaw, source] = parts;
+			return {name, className, classSource, level: Number(levelRaw) || 0, source};
+		}
+
+		if (page?.toLowerCase() === "subclassfeature") {
+			const [name, className, classSource, subclassShortName, subclassSource, levelRaw, source] = parts;
+			return {name, className, classSource, subclassShortName, subclassSource, level: Number(levelRaw) || 0, source};
+		}
+
 		// TODO(Future) this is broken for docs where the id != the source
 		//   consider indexing
 		//   + homebrew
@@ -3138,6 +3190,25 @@ globalThis.UrlUtil = {
 
 	_getClassesPageStatePart_subclass (sc) { return `${UrlUtil.getStateKeySubclass(sc)}=${UrlUtil.mini.compress(true)}`; },
 	_getClassesPageStatePart_feature (feature) { return `feature=${UrlUtil.mini.compress(`${feature.ixLevel}-${feature.ixFeature}`)}`; },
+
+	unpackClassesPageStatePart (href) {
+		const [, ...subs] = Hist.util.getHashParts(href);
+		const unpackeds = subs.map(sub => UrlUtil.unpackSubHash(sub));
+		const unpackedState = unpackeds.find(it => it.state)?.state;
+		if (!unpackedState) return null;
+
+		const out = {};
+		unpackedState
+			.forEach(pt => {
+				const [k, v] = pt.split("=");
+
+				if (k === "feature") return out.feature = UrlUtil.mini.decompress(v);
+
+				(out.stateKeysSubclass ||= []).push(k);
+			});
+
+		return out;
+	},
 };
 
 UrlUtil.PG_BESTIARY = "bestiary.html";
@@ -6766,9 +6837,10 @@ globalThis.RollerUtil = {
 		return `{@dice ${m[1]}${m[2]}#$prompt_number:title=Enter a ${m[3].trim()}$#|${lbl}}`;
 	},
 
-	_DICE_REGEX_STR: "((([1-9]\\d*)?d([1-9]\\d*)(\\s*?[-+×x*÷/]\\s*?(\\d,\\d|\\d)+(\\.\\d+)?)?))+?",
+	_DICE_REGEX_STR: /((?:\s*?(?<opLeading>[-+×x*÷/])\s*?)?((?<diceCount>[1-9]\d*)?d(?<diceFace>[1-9]\d*)(?<bonus>(\s*?[-+×x*÷/]\s*?(\d,\d|\d)+(\.\d+)?(?!d))*)))+?/.source,
 };
 RollerUtil.DICE_REGEX = new RegExp(RollerUtil._DICE_REGEX_STR, "g");
+RollerUtil.DICE_REGEX_FULLMATCH = new RegExp(`^\\s*${RollerUtil._DICE_REGEX_STR}\\s*$`);
 RollerUtil.REGEX_DAMAGE_DICE = /(?<average>\d+)(?<prefix> \((?:{@dice |{@damage ))(?<diceExp>[-+0-9d ]*)(?<suffix>}\)(?:\s*\+\s*the spell's level)? [a-z]+( \([-a-zA-Z0-9 ]+\))?( or [a-z]+( \([-a-zA-Z0-9 ]+\))?)? damage)/gi;
 RollerUtil.REGEX_DAMAGE_FLAT = /(?<prefix>Hit: |{@h})(?<flatVal>[0-9]+)(?<suffix> [a-z]+( \([-a-zA-Z0-9 ]+\))?( or [a-z]+( \([-a-zA-Z0-9 ]+\))?)? damage)/gi;
 RollerUtil._REGEX_ROLLABLE_COL_LABEL = /^(.*?\d)(\s*[-+/*^×÷]\s*)([a-zA-Z0-9 ]+)$/;
@@ -8360,7 +8432,7 @@ if (!IS_VTT && typeof window !== "undefined") {
 		Renderer.events.bindGeneric();
 	});
 
-	if (location.origin === VeCt.LOC_ORIGIN_CANCER) {
+	if (location.hostname.endsWith(VeCt.LOC_HOSTNAME_CANCER)) {
 		const ivsCancer = [];
 
 		window.addEventListener("load", () => {

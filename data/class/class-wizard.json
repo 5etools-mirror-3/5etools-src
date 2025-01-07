@@ -1735,6 +1735,60 @@
 			"classSource": "XPHB",
 			"page": 173,
 			"edition": "one",
+			"additionalSpells": [
+				{
+					"innate": {
+						"10": [
+							"see invisibility|xphb"
+						]
+					},
+					"known": {
+						"3": [
+							{
+								"choose": "level=0;1;2|class=Wizard|school=D"
+							},
+							{
+								"choose": "level=0;1;2|class=Wizard|school=D"
+							}
+						],
+						"5": [
+							{
+								"choose": "level=0;1;2;3|class=Wizard|school=D"
+							}
+						],
+						"7": [
+							{
+								"choose": "level=0;1;2;3;4|class=Wizard|school=D"
+							}
+						],
+						"9": [
+							{
+								"choose": "level=0;1;2;3;4;5|class=Wizard|school=D"
+							}
+						],
+						"11": [
+							{
+								"choose": "level=0;1;2;3;4;5;6|class=Wizard|school=D"
+							}
+						],
+						"13": [
+							{
+								"choose": "level=0;1;2;3;4;5;6;7|class=Wizard|school=D"
+							}
+						],
+						"15": [
+							{
+								"choose": "level=0;1;2;3;4;5;6;7;8|class=Wizard|school=D"
+							}
+						],
+						"17": [
+							{
+								"choose": "level=0;1;2;3;4;5;6;7;8;9|class=Wizard|school=D"
+							}
+						]
+					}
+				}
+			],
 			"subclassFeatures": [
 				"Diviner|Wizard|XPHB|Diviner|XPHB|3",
 				"Expert Divination|Wizard|XPHB|Diviner|XPHB|6",
@@ -4288,7 +4342,7 @@
 			"level": 10,
 			"header": 2,
 			"entries": [
-				"You always have the {@spell Counterspell|XPHB} and {@spell Dispel Magic|XPHB} spells prepared. In addition, you can cast {@spell Dispel Magic|XPHB} as a {@variantrule Bonus Action|XPHB}, and you can add your {@variantrule Proficiency|XPHB} Bonus to its ability check.",
+				"You always have the {@spell Counterspell|XPHB} and {@spell Dispel Magic|XPHB} spells prepared. In addition, you can cast {@spell Dispel Magic|XPHB} as a {@variantrule Bonus Action|XPHB}, and you can add your {@variantrule Proficiency|XPHB|Proficiency Bonus} to its ability check.",
 				"When you cast either spell with a spell slot, that slot isn't expended if the spell fails to stop a spell."
 			]
 		},
@@ -4339,8 +4393,8 @@
 			"level": 3,
 			"header": 1,
 			"entries": [
-				"Choose two Wizard spells from the Divination school, each of which must be no higher than level 2, and add them to your spellbook for free.",
-				"In addition, whenever you gain access to a new level of spell slots in this class, you can add one Wizard spell from the Divination school to your spellbook for free. The chosen spell must be of a level for which you have spell slots."
+				"Choose two {@filter Wizard spells from the Divination school|spells|level=0;1;2|class=Wizard|school=D}, each of which must be no higher than level 2, and add them to your spellbook for free.",
+				"In addition, whenever you gain access to a new level of spell slots in this class, you can add one {@filter Wizard spell from the Divination school|spells|class=Wizard|school=D} to your spellbook for free. The chosen spell must be of a level for which you have spell slots."
 			]
 		},
 		{

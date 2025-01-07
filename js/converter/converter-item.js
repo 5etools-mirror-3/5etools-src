@@ -5,6 +5,7 @@ import {TagJsons} from "./converterutils-entries.js";
 import {ConverterUtils} from "./converterutils-utils.js";
 import {EntryCoalesceEntryLists, EntryCoalesceRawLines} from "./converterutils-entrycoalesce.js";
 import {SITE_STYLE__CLASSIC, SITE_STYLE__ONE} from "../consts.js";
+import {PropOrder} from "../utils-proporder.js";
 
 export class ConverterItem extends ConverterBase {
 	static _ALL_ITEMS = null;

@@ -350,7 +350,7 @@ class _RenderClassesSidebarImplClassic extends _RenderClassesSidebarImplBase {
 
 		return ee`<table class="w-100 stats shadow-big cls__stats">
 			<tr><th class="ve-tbl-border" colspan="6"></th></tr>
-			
+
 			${eleName}
 			${eleAuthors}
 
@@ -440,7 +440,7 @@ class _RenderClassesSidebarImplOne extends _RenderClassesSidebarImplBase {
 
 		return ee`<table class="w-100 stats shadow-big cls__stats">
 			<tr><th class="ve-tbl-border" colspan="6"></th></tr>
-			
+
 			${eleName}
 			${eleAuthors}
 

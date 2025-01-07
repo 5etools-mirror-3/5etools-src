@@ -7,7 +7,8 @@
 				"armor.type": "heavy",
 				"armor.dex": 0,
 				"armor.value": 18
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Barrier Tattoo (Medium)",
@@ -16,7 +17,8 @@
 				"armor.type": "medium",
 				"armor.dex": 2,
 				"armor.value": 15
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Barrier Tattoo (Small)",
@@ -24,7 +26,8 @@
 			"system": {
 				"armor.type": "light",
 				"armor.value": 12
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Bracers of Archery",
@@ -51,7 +54,8 @@
 						}
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Butcher's Bib",
@@ -68,12 +72,14 @@
 						}
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Dynamite",
 			"source": "TDCSR",
-			"img": "icons/weapons/thrown/bomb-timer.webp"
+			"img": "icons/weapons/thrown/bomb-timer.webp",
+			"migrationVersion": 3
 		},
 		{
 			"name": "Gloves of Thievery",
@@ -90,50 +96,84 @@
 						}
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Gluebomb",
 			"source": "TDCSR",
-			"img": "icons/weapons/thrown/bomb-metal-brown.webp"
+			"img": "icons/weapons/thrown/bomb-metal-brown.webp",
+			"migrationVersion": 3
 		},
 		{
 			"name": "Gnomengarde Grenade",
 			"source": "DC",
-			"type": "consumable"
+			"type": "consumable",
+			"migrationVersion": 3
 		},
 		{
 			"name": "Hazirawn",
 			"source": "HotDQ",
 			"system": {
 				"magicalBonus": "+1",
-				"attack.bonus": "+1",
-				"damage.parts": [
-					[
-						"2d6+1",
-						"slashing"
-					],
-					[
-						"1d6",
-						"necrotic"
-					]
+				"activities": [
+					{
+						"type": "attack",
+						"attack.bonus": "+1",
+						"damage.parts": [
+							{
+								"custom.enabled": true,
+								"custom.formula": "2d6+1",
+								"types": [
+									"slashing"
+								]
+							},
+							{
+								"custom.enabled": true,
+								"custom.formula": "1d6",
+								"types": [
+									"necrotic"
+								]
+							}
+						]
+					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Oversized Longbow",
 			"source": "WDH",
 			"system": {
-				"damage.parts": [
-					"2d6 + @abilities.str.mod",
-					"piercing"
+				"activities": [
+					{
+						"type": "damage",
+						"damage.parts": [
+							{
+								"custom.enabled": true,
+								"custom.formula": "2",
+								"types": [
+									"d"
+								]
+							},
+							{
+								"custom.enabled": true,
+								"custom.formula": "p",
+								"types": [
+									"i"
+								]
+							}
+						]
+					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Plainscow",
 			"source": "TDCSR",
-			"img": "icons/creatures/mammals/livestock-cow-green.webp"
+			"img": "icons/creatures/mammals/livestock-cow-green.webp",
+			"migrationVersion": 3
 		},
 		{
 			"name": "Robe of the Archmagi",
@@ -158,7 +198,8 @@
 			],
 			"_merge": {
 				"effects": true
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Sentinel Shield",
@@ -175,17 +216,20 @@
 						}
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Stink Bomb",
 			"source": "TDCSR",
-			"img": "icons/weapons/thrown/bomb-purple.webp"
+			"img": "icons/weapons/thrown/bomb-purple.webp",
+			"migrationVersion": 3
 		},
 		{
 			"name": "Tangler Grenade",
 			"source": "WDMM",
-			"type": "consumable"
+			"type": "consumable",
+			"migrationVersion": 3
 		}
 	],
 	"magicvariant": [
@@ -207,7 +251,8 @@
 			],
 			"_merge": {
 				"effects": true
-			}
+			},
+			"migrationVersion": 3
 		}
 	]
 }

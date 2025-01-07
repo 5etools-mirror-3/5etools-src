@@ -15,25 +15,22 @@
 						}
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Arcane Propulsion Armor",
 			"source": "TCE",
 			"system": {
-				"activation": {
-					"type": "special"
-				},
-				"actionType": "ench",
-				"type": {
-					"value": "enchantment",
-					"subtype": "artificerInfusion"
-				},
-				"enchantment": {
-					"restrictions": {
-						"type": "equipment"
+				"type.value": "enchantment",
+				"type.subtype": "artificerInfusion",
+				"enchantment.restrictions.type": "equipment",
+				"activities": [
+					{
+						"type": "utility",
+						"activation.type": "special"
 					}
-				}
+				]
 			},
 			"effects": [
 				{
@@ -96,25 +93,22 @@
 						}
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Armor of Magical Strength",
 			"source": "TCE",
 			"system": {
-				"activation": {
-					"type": "special"
-				},
-				"actionType": "ench",
-				"type": {
-					"value": "enchantment",
-					"subtype": "artificerInfusion"
-				},
-				"enchantment": {
-					"restrictions": {
-						"type": "equipment"
+				"type.value": "enchantment",
+				"type.subtype": "artificerInfusion",
+				"enchantment.restrictions.type": "equipment",
+				"activities": [
+					{
+						"type": "utility",
+						"activation.type": "special"
 					}
-				}
+				]
 			},
 			"effects": [
 				{
@@ -173,65 +167,87 @@
 					],
 					"type": "enchantment"
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Armor of Shadows",
 			"source": "PHB",
 			"system": {
-				"activation.type": null,
-				"activation.cost": null
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"activation.value": null
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Ascendant Step",
 			"source": "PHB",
 			"system": {
-				"activation.type": null,
-				"activation.cost": null
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"activation.value": null
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Beast Speech",
 			"source": "PHB",
 			"system": {
-				"activation.type": null,
-				"activation.cost": null
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"activation.value": null
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Bewitching Whispers",
 			"source": "PHB",
 			"system": {
-				"activation.type": null,
-				"activation.cost": null
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"activation.value": null
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Book of Ancient Secrets",
 			"source": "PHB",
 			"system": {
-				"activation.type": null,
-				"activation.cost": null
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"activation.value": null
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Boots of the Winding Path",
 			"source": "TCE",
 			"system": {
-				"activation": {
-					"type": "none"
-				},
-				"actionType": "ench",
-				"type": {
-					"value": "enchantment",
-					"subtype": "artificerInfusion"
-				},
-				"enchantment": {
-					"restrictions": {
-						"type": "equipment"
+				"type.value": "enchantment",
+				"type.subtype": "artificerInfusion",
+				"enchantment.restrictions.type": "equipment",
+				"activities": [
+					{
+						"type": "utility",
+						"activation.type": "none"
 					}
-				}
+				]
 			},
 			"effects": [
 				{
@@ -275,28 +291,36 @@
 					],
 					"type": "enchantment"
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Chains of Carceri",
 			"source": "PHB",
 			"system": {
-				"activation.type": null,
-				"activation.cost": null
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"activation.value": null
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Cloud Rune",
 			"source": "TCE",
 			"system": {
-				"activation": {
-					"type": "reaction"
-				},
-				"type": {
-					"value": "enchantment",
-					"subtype": "rune"
-				}
-			}
+				"type.value": "enchantment",
+				"type.subtype": "rune",
+				"activities": [
+					{
+						"type": "utility",
+						"activation.type": "reaction"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Devil's Sight",
@@ -318,15 +342,21 @@
 						}
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Dreadful Word",
 			"source": "PHB",
 			"system": {
-				"activation.type": null,
-				"activation.cost": null
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"activation.value": null
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Eldritch Mind",
@@ -342,33 +372,35 @@
 						}
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Eldritch Sight",
 			"source": "PHB",
 			"system": {
-				"activation.type": null,
-				"activation.cost": null
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"activation.value": null
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Enhanced Arcane Focus",
 			"source": "TCE",
 			"system": {
-				"activation": {
-					"type": "none"
-				},
-				"actionType": "ench",
-				"type": {
-					"value": "enchantment",
-					"subtype": "artificerInfusion"
-				},
-				"enchantment": {
-					"restrictions": {
-						"type": "weapon"
+				"type.value": "enchantment",
+				"type.subtype": "artificerInfusion",
+				"enchantment.restrictions.type": "weapon",
+				"activities": [
+					{
+						"type": "utility",
+						"activation.type": "none"
 					}
-				}
+				]
 			},
 			"effects": [
 				{
@@ -459,25 +491,22 @@
 					"enchantmentRiderParent": "I4qB050rdgSsoIEd",
 					"transfer": true
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Enhanced Defense",
 			"source": "TCE",
 			"system": {
-				"activation": {
-					"type": "none"
-				},
-				"actionType": "ench",
-				"type": {
-					"value": "enchantment",
-					"subtype": "artificerInfusion"
-				},
-				"enchantment": {
-					"restrictions": {
-						"type": "equipment"
+				"type.value": "enchantment",
+				"type.subtype": "artificerInfusion",
+				"enchantment.restrictions.type": "equipment",
+				"activities": [
+					{
+						"type": "utility",
+						"activation.type": "none"
 					}
-				}
+				]
 			},
 			"effects": [
 				{
@@ -532,25 +561,22 @@
 					],
 					"type": "enchantment"
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Enhanced Weapon",
 			"source": "TCE",
 			"system": {
-				"activation": {
-					"type": "none"
-				},
-				"actionType": "ench",
-				"type": {
-					"value": "enchantment",
-					"subtype": "artificerInfusion"
-				},
-				"enchantment": {
-					"restrictions": {
-						"type": "weapon"
+				"type.value": "enchantment",
+				"type.subtype": "artificerInfusion",
+				"enchantment.restrictions.type": "weapon",
+				"activities": [
+					{
+						"type": "utility",
+						"activation.type": "none"
 					}
-				}
+				]
 			},
 			"effects": [
 				{
@@ -605,28 +631,34 @@
 					],
 					"type": "enchantment"
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Fiendish Vigor",
 			"source": "PHB",
 			"system": {
-				"activation.type": null,
-				"activation.cost": null
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"activation.value": null
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Fire Rune",
 			"source": "TCE",
 			"system": {
-				"activation": {
-					"type": "none"
-				},
-				"actionType": "other",
-				"type": {
-					"value": "enchantment",
-					"subtype": "rune"
-				}
+				"type.value": "enchantment",
+				"type.subtype": "rune",
+				"activities": [
+					{
+						"type": "utility",
+						"activation.type": "none"
+					}
+				]
 			},
 			"effects": [
 				{
@@ -638,19 +670,21 @@
 						"restrained"
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Frost Rune",
 			"source": "TCE",
 			"system": {
-				"activation": {
-					"type": "bonus"
-				},
-				"type": {
-					"value": "enchantment",
-					"subtype": "rune"
-				}
+				"type.value": "enchantment",
+				"type.subtype": "rune",
+				"activities": [
+					{
+						"type": "utility",
+						"activation.type": "bonus"
+					}
+				]
 			},
 			"effects": [
 				{
@@ -683,25 +717,22 @@
 					],
 					"transfer": true
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Helm of Awareness",
 			"source": "TCE",
 			"system": {
-				"activation": {
-					"type": "none"
-				},
-				"actionType": "ench",
-				"type": {
-					"value": "enchantment",
-					"subtype": "artificerInfusion"
-				},
-				"enchantment": {
-					"restrictions": {
-						"type": "equipment"
+				"type.value": "enchantment",
+				"type.subtype": "artificerInfusion",
+				"enchantment.restrictions.type": "equipment",
+				"activities": [
+					{
+						"type": "utility",
+						"activation.type": "none"
 					}
-				}
+				]
 			},
 			"effects": [
 				{
@@ -746,19 +777,21 @@
 					],
 					"transfer": true
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Hill Rune",
 			"source": "TCE",
 			"system": {
-				"activation": {
-					"type": "bonus"
-				},
-				"type": {
-					"value": "enchantment",
-					"subtype": "rune"
-				}
+				"type.value": "enchantment",
+				"type.subtype": "rune",
+				"activities": [
+					{
+						"type": "utility",
+						"activation.type": "bonus"
+					}
+				]
 			},
 			"effects": [
 				{
@@ -786,55 +819,63 @@
 					],
 					"transfer": true
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Homunculus Servant",
 			"source": "TCE",
 			"system": {
-				"activation": {
-					"type": "action"
-				},
-				"actionType": "summ",
-				"type": {
-					"value": "enchantment",
-					"subtype": "artificerInfusion"
-				}
-			}
+				"type.value": "enchantment",
+				"type.subtype": "artificerInfusion",
+				"activities": [
+					{
+						"type": "utility",
+						"activation.type": "action"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Mask of Many Faces",
 			"source": "PHB",
 			"system": {
-				"activation.type": null,
-				"activation.cost": null
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"activation.value": null
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Master of Myriad Forms",
 			"source": "PHB",
 			"system": {
-				"activation.type": null,
-				"activation.cost": null
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"activation.value": null
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Mind Sharpener",
 			"source": "TCE",
 			"system": {
-				"activation": {
-					"type": "none"
-				},
-				"actionType": "ench",
-				"type": {
-					"value": "enchantment",
-					"subtype": "artificerInfusion"
-				},
-				"enchantment": {
-					"restrictions": {
-						"type": "equipment"
+				"type.value": "enchantment",
+				"type.subtype": "artificerInfusion",
+				"enchantment.restrictions.type": "equipment",
+				"activities": [
+					{
+						"type": "utility",
+						"activation.type": "none"
 					}
-				}
+				]
 			},
 			"effects": [
 				{
@@ -888,65 +929,88 @@
 					],
 					"type": "enchantment"
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Minions of Chaos",
 			"source": "PHB",
 			"system": {
-				"activation.type": null,
-				"activation.cost": null
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"activation.value": null
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Mire the Mind",
 			"source": "PHB",
 			"system": {
-				"activation.type": null,
-				"activation.cost": null
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"activation.value": null
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Misty Visions",
 			"source": "PHB",
 			"system": {
-				"activation.type": null,
-				"activation.cost": null
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"activation.value": null
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Otherworldly Leap",
 			"source": "PHB",
 			"system": {
-				"activation.type": null,
-				"activation.cost": null
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"activation.value": null
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Pact of the Blade",
 			"source": "PHB",
 			"system": {
-				"activation.type": "action",
-				"activation.cost": 1
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"activation.type": "action",
+						"activation.value": 1
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Radiant Weapon",
 			"source": "TCE",
 			"system": {
-				"activation": {
-					"type": "none"
-				},
-				"actionType": "ench",
-				"type": {
-					"value": "enchantment",
-					"subtype": "artificerInfusion"
-				},
-				"enchantment": {
-					"restrictions": {
-						"type": "weapon"
+				"type.value": "enchantment",
+				"type.subtype": "artificerInfusion",
+				"enchantment.restrictions.type": "weapon",
+				"activities": [
+					{
+						"type": "utility",
+						"activation.type": "none"
 					}
-				}
+				]
 			},
 			"effects": [
 				{
@@ -1010,25 +1074,22 @@
 					],
 					"type": "enchantment"
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Repeating Shot",
 			"source": "TCE",
 			"system": {
-				"activation": {
-					"type": "none"
-				},
-				"actionType": "ench",
-				"type": {
-					"value": "enchantment",
-					"subtype": "artificerInfusion"
-				},
-				"enchantment": {
-					"restrictions": {
-						"type": "weapon"
+				"type.value": "enchantment",
+				"type.subtype": "artificerInfusion",
+				"enchantment.restrictions.type": "weapon",
+				"activities": [
+					{
+						"type": "utility",
+						"activation.type": "none"
 					}
-				}
+				]
 			},
 			"effects": [
 				{
@@ -1067,20 +1128,21 @@
 					],
 					"type": "enchantment"
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Replicate Magic Item",
 			"source": "TCE",
 			"system": {
-				"activation": {
-					"type": "none"
-				},
-				"actionType": "ench",
-				"type": {
-					"value": "enchantment",
-					"subtype": "artificerInfusion"
-				}
+				"type.value": "enchantment",
+				"type.subtype": "artificerInfusion",
+				"activities": [
+					{
+						"type": "utility",
+						"activation.type": "none"
+					}
+				]
 			},
 			"effects": [
 				{
@@ -1094,25 +1156,22 @@
 					],
 					"type": "enchantment"
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Repulsion Shield",
 			"source": "TCE",
 			"system": {
-				"activation": {
-					"type": "none"
-				},
-				"actionType": "ench",
-				"type": {
-					"value": "enchantment",
-					"subtype": "artificerInfusion"
-				},
-				"enchantment": {
-					"restrictions": {
-						"type": "equipment"
+				"type.value": "enchantment",
+				"type.subtype": "artificerInfusion",
+				"enchantment.restrictions.type": "equipment",
+				"activities": [
+					{
+						"type": "utility",
+						"activation.type": "none"
 					}
-				}
+				]
 			},
 			"effects": [
 				{
@@ -1176,25 +1235,22 @@
 					],
 					"type": "enchantment"
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Resistant Armor",
 			"source": "TCE",
 			"system": {
-				"activation": {
-					"type": "none"
-				},
-				"actionType": "ench",
-				"type": {
-					"value": "enchantment",
-					"subtype": "artificerInfusion"
-				},
-				"enchantment": {
-					"restrictions": {
-						"type": "equipment"
+				"type.value": "enchantment",
+				"type.subtype": "artificerInfusion",
+				"enchantment.restrictions.type": "equipment",
+				"activities": [
+					{
+						"type": "utility",
+						"activation.type": "none"
 					}
-				}
+				]
 			},
 			"effects": [
 				{
@@ -1537,25 +1593,22 @@
 					"transfer": true,
 					"enchantmentRiderParent": "53ofZQaLsaqm16Wv"
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Returning Weapon",
 			"source": "TCE",
 			"system": {
-				"activation": {
-					"type": "none"
-				},
-				"actionType": "ench",
-				"type": {
-					"value": "enchantment",
-					"subtype": "artificerInfusion"
-				},
-				"enchantment": {
-					"restrictions": {
-						"type": "weapon"
+				"type.value": "enchantment",
+				"type.subtype": "artificerInfusion",
+				"enchantment.restrictions.type": "weapon",
+				"activities": [
+					{
+						"type": "utility",
+						"activation.type": "none"
 					}
-				}
+				]
 			},
 			"effects": [
 				{
@@ -1589,41 +1642,48 @@
 					],
 					"type": "enchantment"
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Sculptor of Flesh",
 			"source": "PHB",
 			"system": {
-				"activation.type": null,
-				"activation.cost": null
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"activation.value": null
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Sign of Ill Omen",
 			"source": "PHB",
 			"system": {
-				"activation.type": null,
-				"activation.cost": null
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"activation.value": null
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Spell-Refueling Ring",
 			"source": "TCE",
 			"system": {
-				"activation": {
-					"type": "none"
-				},
-				"actionType": "ench",
-				"type": {
-					"value": "enchantment",
-					"subtype": "artificerInfusion"
-				},
-				"enchantment": {
-					"restrictions": {
-						"type": "equipment"
+				"type.value": "enchantment",
+				"type.subtype": "artificerInfusion",
+				"enchantment.restrictions.type": "equipment",
+				"activities": [
+					{
+						"type": "utility",
+						"activation.type": "none"
 					}
-				}
+				]
 			},
 			"effects": [
 				{
@@ -1672,20 +1732,21 @@
 					],
 					"type": "enchantment"
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Stone Rune",
 			"source": "TCE",
 			"system": {
-				"activation": {
-					"type": "reaction"
-				},
-				"actionType": "save",
-				"type": {
-					"value": "enchantment",
-					"subtype": "rune"
-				}
+				"type.value": "enchantment",
+				"type.subtype": "rune",
+				"activities": [
+					{
+						"type": "utility",
+						"activation.type": "reaction"
+					}
+				]
 			},
 			"effects": [
 				{
@@ -1709,44 +1770,62 @@
 						"incapacitated"
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Storm Rune",
 			"source": "TCE",
 			"system": {
-				"activation": {
-					"type": "bonus"
-				},
-				"type": {
-					"value": "enchantment",
-					"subtype": "rune"
-				}
-			}
+				"type.value": "enchantment",
+				"type.subtype": "rune",
+				"activities": [
+					{
+						"type": "utility",
+						"activation.type": "bonus"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Thief of Five Fates",
 			"source": "PHB",
 			"system": {
-				"activation.type": null,
-				"activation.cost": null
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"activation.value": null
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Visions of Distant Realms",
 			"source": "PHB",
 			"system": {
-				"activation.type": null,
-				"activation.cost": null
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"activation.value": null
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Whispers of the Grave",
 			"source": "PHB",
 			"system": {
-				"activation.type": null,
-				"activation.cost": null
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"activation.value": null
+					}
+				]
+			},
+			"migrationVersion": 3
 		}
 	]
 }

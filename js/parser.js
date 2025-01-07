@@ -375,7 +375,7 @@ Parser.crToNumber = function (cr, opts = {}) {
 	if (cr === "Unknown" || cr === "\u2014" || cr == null) return isDefaultNull ? null : VeCt.CR_UNKNOWN;
 	if (cr.cr) return Parser.crToNumber(cr.cr, opts);
 
-	const parts = cr.trim().split("/");
+	const parts = cr.trim().split("/").filter(Boolean);
 	if (!parts.length || parts.length >= 3) return isDefaultNull ? null : VeCt.CR_CUSTOM;
 	if (isNaN(parts[0])) return isDefaultNull ? null : VeCt.CR_CUSTOM;
 
@@ -397,10 +397,11 @@ Parser.numberToCr = function (number, safe) {
 };
 
 Parser.crToPb = function (cr) {
-	if (cr === "Unknown" || cr == null) return 0;
-	cr = cr.cr || cr;
-	if (Parser.crToNumber(cr) < 5) return 2;
-	return Math.ceil(cr / 4) + 1;
+	const crNumber = Parser.crToNumber(cr);
+	if (crNumber === VeCt.CR_UNKNOWN) return 0;
+	if (crNumber === VeCt.CR_CUSTOM || crNumber < 0) return null;
+	if (crNumber < 5) return 2;
+	return Math.ceil(crNumber / 4) + 1;
 };
 
 Parser.levelToPb = function (level) {
@@ -1867,57 +1868,65 @@ Parser.monTypeFromPlural = function (type) {
 	return Parser._parse_bToA(Parser.MON_TYPE_TO_PLURAL, type);
 };
 
-Parser.getFullImmRes = function (toParse, {isPlainText = false, isTitleCase = false} = {}) {
-	if (!toParse?.length) return "";
+/* -------------------------------------------- */
 
-	let maxDepth = 0;
-
-	const renderString = (str, {isTitleCase = false} = {}) => {
-		if (isTitleCase) str = str.toTitleCase();
-		return isPlainText ? Renderer.stripTags(`${str}`) : Renderer.get().render(`${str}`);
-	};
-
-	const render = (val, depth = 0) => {
-		maxDepth = Math.max(maxDepth, depth);
-		if (typeof val === "string") return renderString(val, {isTitleCase});
-
-		if (val.special) return renderString(val.special);
-
-		const stack = [];
-
-		if (val.preNote) stack.push(renderString(val.preNote));
-
-		const prop = val.immune ? "immune" : val.resist ? "resist" : val.vulnerable ? "vulnerable" : null;
-		if (prop) {
-			const toJoin = val[prop].length === Parser.DMG_TYPES.length && CollectionUtil.deepEquals(Parser.DMG_TYPES, val[prop])
-				? ["all damage"[isTitleCase ? "toTitleCase" : "toString"]()]
-				: val[prop].map(nxt => render(nxt, depth + 1));
-			stack.push(renderString(depth ? toJoin.join(maxDepth ? "; " : ", ") : toJoin.joinConjunct(", ", " and ")));
-		}
-
-		if (val.note) stack.push(renderString(val.note));
-
-		return stack.join(" ");
-	};
-
-	const arr = toParse.map(it => render(it));
-
-	if (arr.length <= 1) return arr.join("");
-
-	let out = "";
-	for (let i = 0; i < arr.length - 1; ++i) {
-		const it = arr[i];
-		const nxt = arr[i + 1];
-
-		const orig = toParse[i];
-		const origNxt = toParse[i + 1];
-
-		out += it;
-		out += (it.includes(",") || nxt.includes(",") || (orig && orig.cond) || (origNxt && origNxt.cond)) ? "; " : ", ";
-	}
-	out += arr.last();
-	return out;
+Parser._getFullImmRes_isSimpleTerm = val => {
+	if (typeof val === "string" || val.special) return true;
+	const prop = Parser._getFullImmRes_getNextProp(val);
+	return prop == null;
 };
+
+Parser._getFullImmRes_getNextProp = obj => obj.immune ? "immune" : obj.resist ? "resist" : obj.vulnerable ? "vulnerable" : null;
+
+Parser._getFullImmRes_getRenderedString = (str, {isPlainText = false, isTitleCase = false} = {}) => {
+	if (isTitleCase) str = str.toTitleCase();
+	return isPlainText ? Renderer.stripTags(`${str}`) : Renderer.get().render(`${str}`);
+};
+
+Parser._getFullImmRes_getRenderedObject = (obj, {isPlainText = false, isTitleCase = false} = {}) => {
+	const stack = [];
+
+	if (obj.preNote) stack.push(Parser._getFullImmRes_getRenderedString(obj.preNote, {isPlainText}));
+
+	const prop = Parser._getFullImmRes_getNextProp(obj);
+	if (prop) stack.push(Parser._getFullImmRes_getRenderedArray(obj[prop], {isPlainText, isTitleCase, isGroup: true}));
+
+	if (obj.note) stack.push(Parser._getFullImmRes_getRenderedString(obj.note, {isPlainText}));
+
+	return stack.join(" ");
+};
+
+Parser._getFullImmRes_getRenderedArray = (values, {isPlainText = false, isTitleCase = false, isGroup = false} = {}) => {
+	if (values.length === Parser.DMG_TYPES.length && CollectionUtil.deepEquals(Parser.DMG_TYPES, values)) {
+		return "all damage"[isTitleCase ? "toTitleCase" : "toString"]();
+	}
+
+	return values
+		.map((val, i, arr) => {
+			const isSimpleCur = Parser._getFullImmRes_isSimpleTerm(val);
+
+			const rendCur = isSimpleCur
+				? Parser._getFullImmRes_getRenderedString(val.special || val, {isPlainText, isTitleCase})
+				: Parser._getFullImmRes_getRenderedObject(val, {isPlainText, isTitleCase});
+
+			if (i === arr.length - 1) return rendCur;
+
+			const isSimpleNxt = Parser._getFullImmRes_isSimpleTerm(arr[i + 1]);
+
+			if (!isSimpleCur || !isSimpleNxt) return `${rendCur}; `;
+			if (!isGroup || i !== arr.length - 2 || arr.length < 2) return `${rendCur}, `;
+			if (arr.length === 2) return `${rendCur} and `;
+			return `${rendCur}, and `;
+		})
+		.join("");
+};
+
+Parser.getFullImmRes = function (values, {isPlainText = false, isTitleCase = false} = {}) {
+	if (!values?.length) return "";
+	return Parser._getFullImmRes_getRenderedArray(values, {isPlainText, isTitleCase});
+};
+
+/* -------------------------------------------- */
 
 Parser.getFullCondImm = function (condImm, {isPlainText = false, isEntry = false, isTitleCase = false} = {}) {
 	if (isPlainText && isEntry) throw new Error(`Options "isPlainText" and "isEntry" are mutually exclusive!`);

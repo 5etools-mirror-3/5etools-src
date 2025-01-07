@@ -313,7 +313,7 @@ export class CreatureBuilder extends BuilderBase {
 			if (state.s.save) {
 				const pb = this._getProfBonus();
 				Object.entries(state.s.save).forEach(([prop, val]) => {
-					const expected = Parser.getAbilityModNumber(Renderer.monster.getSafeAbilityScore(this._state, prop, {isDefaultTen: true})) + pb;
+					const expected = Parser.getAbilityModNumber(Renderer.monster.getSafeAbilityScore(this._state, prop, {defaultScore: 10})) + pb;
 					if (Number(val) === Number(expected)) state.m.profSave[prop] = 1;
 				});
 			}
@@ -324,7 +324,7 @@ export class CreatureBuilder extends BuilderBase {
 				const pb = this._getProfBonus();
 				Object.entries(state.s.skill).forEach(([prop, val]) => {
 					const abilProp = Parser.skillToAbilityAbv(prop);
-					const abilMod = Parser.getAbilityModNumber(Renderer.monster.getSafeAbilityScore(this._state, abilProp, {isDefaultTen: true}));
+					const abilMod = Parser.getAbilityModNumber(Renderer.monster.getSafeAbilityScore(this._state, abilProp, {defaultScore: 10}));
 
 					const expectedProf = abilMod + pb;
 					if (Number(val) === Number(expectedProf)) return state.m.profSkill[prop] = 1;
@@ -1311,7 +1311,7 @@ export class CreatureBuilder extends BuilderBase {
 			if (!this._meta.autoCalc.hpModifier) return;
 
 			const num = Number($selSimpleNum.val());
-			const mod = Parser.getAbilityModNumber(Renderer.monster.getSafeAbilityScore(this._state, "con", {isDefaultTen: true}));
+			const mod = Parser.getAbilityModNumber(Renderer.monster.getSafeAbilityScore(this._state, "con", {defaultScore: 10}));
 			const total = num * mod;
 			$iptSimpleMod.val(total ?? null);
 			hpSimpleAverageHook();
@@ -1570,7 +1570,7 @@ export class CreatureBuilder extends BuilderBase {
 				});
 
 			const _setFromAbility = () => {
-				const total = Parser.getAbilityModNumber(Renderer.monster.getSafeAbilityScore(this._state, prop, {isDefaultTen: true})) + this._getProfBonus();
+				const total = Parser.getAbilityModNumber(Renderer.monster.getSafeAbilityScore(this._state, prop, {defaultScore: 10})) + this._getProfBonus();
 				(this._state.save = this._state.save || {})[prop] = total < 0 ? `${total}` : `+${total}`;
 				$iptVal.val(total);
 				cb();
@@ -1626,7 +1626,7 @@ export class CreatureBuilder extends BuilderBase {
 				});
 
 			const _setFromAbility = (isExpert) => {
-				const total = Parser.getAbilityModNumber(Renderer.monster.getSafeAbilityScore(this._state, abilProp, {isDefaultTen: true}))
+				const total = Parser.getAbilityModNumber(Renderer.monster.getSafeAbilityScore(this._state, abilProp, {defaultScore: 10}))
 					+ (this._getProfBonus() * (2 - !isExpert));
 
 				const nextSkills = {...(this._state.skill || {})}; // regenerate the object to allow hooks to fire
@@ -1717,7 +1717,7 @@ export class CreatureBuilder extends BuilderBase {
 			if (this._meta.autoCalc.passivePerception) {
 				const pp = Math.round((() => {
 					if (this._state.skill && this._state.skill.perception && this._state.skill.perception.trim()) return Number(this._state.skill.perception);
-					else return Parser.getAbilityModNumber(Renderer.monster.getSafeAbilityScore(this._state, "wis", {isDefaultTen: true}));
+					else return Parser.getAbilityModNumber(Renderer.monster.getSafeAbilityScore(this._state, "wis", {defaultScore: 10}));
 				})() + 10);
 
 				$iptPerception.val(pp);
@@ -2829,7 +2829,7 @@ export class CreatureBuilder extends BuilderBase {
 								const getFormData = () => {
 									const pb = this._getProfBonus();
 									const isDex = $cbFinesse.prop("checked") || ($cbRanged.prop("checked") && !$cbMelee.prop("checked"));
-									const abilMod = Parser.getAbilityModNumber(Renderer.monster.getSafeAbilityScore(this._state, isDex ? "dex" : "str", {isDefaultTen: true}));
+									const abilMod = Parser.getAbilityModNumber(Renderer.monster.getSafeAbilityScore(this._state, isDex ? "dex" : "str", {defaultScore: 10}));
 									const [melee, ranged] = [$cbMelee.prop("checked") ? "mw" : false, $cbRanged.prop("checked") ? "rw" : false];
 
 									const ptAtk = `{@atk ${[melee ? "mw" : null, ranged ? "rw" : null].filter(Boolean).join(",")}}`;

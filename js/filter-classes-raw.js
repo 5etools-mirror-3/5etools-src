@@ -427,7 +427,22 @@ class ModalFilterClasses extends ModalFilterBase {
 				if (!sc.className) continue; // Subclass class name is required
 				sc.classSource = sc.classSource || Parser.SRC_PHB;
 
-				let cls = data.class.find(it => (it.name || "").toLowerCase() === sc.className.toLowerCase() && (it.source || Parser.SRC_PHB).toLowerCase() === sc.classSource.toLowerCase());
+				const entFaux = {
+					name: sc.className.toLowerCase(),
+					source: sc.classSource.toLowerCase(),
+				};
+
+				// Avoid finding/creating parent class if it would be excluded
+				if (
+					ExcludeUtil.isExcluded(
+						UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CLASSES](entFaux),
+						"class",
+						SourceUtil.getEntitySource(entFaux),
+						{isNoCount: true},
+					)
+				) continue;
+
+				let cls = data.class.find(it => (it.name || "").toLowerCase() === entFaux.name && (it.source || Parser.SRC_PHB).toLowerCase() === entFaux.source);
 
 				if (!cls) {
 					cls = await this._pGetParentClass(sc);

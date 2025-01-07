@@ -6,7 +6,6 @@ import * as ut from "./util.js";
 import "../js/parser.js";
 import "../js/utils.js";
 import "../js/utils-ui.js";
-import "../js/utils-proporder.js";
 import "../js/filter.js";
 import "../js/filter-spells.js";
 import "../js/utils-dataloader.js";

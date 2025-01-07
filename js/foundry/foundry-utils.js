@@ -105,7 +105,54 @@ export class UtilsFoundryItem {
 		// Try to process various equipment-sounding item names as equipment (e.g. gloves, bracers)
 		if (this._ITEM_EQUIPMENT_NAME_RES.some(it => it.test(item.name))) return this._TYPE_EQUIPMENT;
 
+		if (item.miscTags?.includes("CNS")) return this._TYPE_CONSUMABLE;
+
 		// Treat everything else as loot
 		return this._TYPE_LOOT;
+	}
+}
+
+/**
+ * Ports/re-implementations of Foundry utilities.
+ */
+export class UtilsFoundry {
+	static getType (val) {
+		if (val === null) return "null";
+		const to = typeof val;
+		if (to !== "object") return to;
+		if (val instanceof Array) return "Array";
+		return "Object";
+	}
+
+	static isEmpty (val) {
+		if (val == null) return true;
+		switch (this.getType(val)) {
+			case "Array": return !val.length;
+			case "Object": return !Object.keys(val).length;
+		}
+		return false;
+	}
+
+	static flattenObject (obj) {
+		const out = {};
+
+		for (const [k, v] of Object.entries(obj)) {
+			if (this.getType(v) !== "Object") {
+				out[k] = v;
+				continue;
+			}
+
+			if (this.isEmpty(v)) {
+				out[k] = v;
+				continue;
+			}
+
+			Object.entries(this.flattenObject(v))
+				.forEach(([k2, v2]) => {
+					out[`${k}.${k2}`] = v2;
+				});
+		}
+
+		return out;
 	}
 }

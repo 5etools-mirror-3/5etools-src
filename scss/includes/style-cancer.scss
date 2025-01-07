@@ -77,6 +77,18 @@
 		display: flex;
 		flex-direction: column;
 	}
+
+	&anchor {
+		pointer-events: none;
+	}
+
+	&wrp-interactive {
+		pointer-events: none;
+
+		> * {
+			pointer-events: auto;
+		}
+	}
 }
 
 .cancer__sidebar-rhs-inner--scrolling-page .cancer__sidebar-rhs-inner {

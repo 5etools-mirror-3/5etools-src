@@ -379,7 +379,7 @@ class PageFilterBestiary extends PageFilterBase {
 	/* -------------------------------------------- */
 
 	static _getInitWalker () {
-		return PageFilterBestiary._WALKER = PageFilterBestiary._WALKER || MiscUtil.getWalker({isNoModification: true});
+		return PageFilterBestiary._WALKER ||= MiscUtil.getWalker({isNoModification: true});
 	}
 
 	/* -------------------------------------------- */
@@ -432,6 +432,7 @@ class PageFilterBestiary extends PageFilterBase {
 
 	/* -------------------------------------------- */
 
+	// TODO(ESM) switch to using `UtilsEntityCreature.getEquipmentUids`
 	static _getEquipmentList (mon) {
 		if (mon.gear) {
 			return mon.gear

@@ -71,7 +71,8 @@
 					},
 					"title": "Sorcery Points"
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Artificer",
@@ -127,7 +128,8 @@
 					},
 					"title": "Infusions Known"
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Sorcerer",
@@ -200,12 +202,14 @@
 					},
 					"title": "Sorcery Points"
 				}
-			]
+			],
+			"migrationVersion": 3
 		}
 	],
 	"subclass": [
 		{
 			"name": "Nature Domain",
+			"shortName": "Nature",
 			"source": "PHB",
 			"className": "Cleric",
 			"classSource": "PHB",
@@ -228,10 +232,12 @@
 					},
 					"title": "Divine Strike"
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Trickery Domain",
+			"shortName": "Trickery",
 			"source": "PHB",
 			"className": "Cleric",
 			"classSource": "PHB",
@@ -254,10 +260,12 @@
 					},
 					"title": "Divine Strike"
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Death Domain",
+			"shortName": "Death",
 			"source": "DMG",
 			"className": "Cleric",
 			"classSource": "PHB",
@@ -280,10 +288,12 @@
 					},
 					"title": "Divine Strike"
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "College of Whispers",
+			"shortName": "Whispers",
 			"source": "XGE",
 			"className": "Bard",
 			"classSource": "PHB",
@@ -314,10 +324,12 @@
 					},
 					"title": "Psychic Blades"
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Forge Domain",
+			"shortName": "Forge",
 			"source": "XGE",
 			"className": "Cleric",
 			"classSource": "PHB",
@@ -340,10 +352,12 @@
 					},
 					"title": "Divine Strike"
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Alchemist",
+			"shortName": "Alchemist",
 			"source": "TCE",
 			"className": "Artificer",
 			"classSource": "TCE",
@@ -367,10 +381,12 @@
 					},
 					"title": "Max Elixir Creations"
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Order Domain",
+			"shortName": "Order",
 			"source": "TCE",
 			"className": "Cleric",
 			"classSource": "PHB",
@@ -393,7 +409,8 @@
 					},
 					"title": "Divine Strike"
 				}
-			]
+			],
+			"migrationVersion": 3
 		}
 	],
 	"classFeature": [
@@ -403,7 +420,8 @@
 			"className": "Barbarian",
 			"classSource": "PHB",
 			"level": 1,
-			"ignoreSrdEffects": true
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Primal Knowledge",
@@ -426,7 +444,8 @@
 						}
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Fast Movement",
@@ -446,7 +465,8 @@
 					]
 				}
 			],
-			"ignoreSrdEffects": true
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Brutal Critical (1 die)",
@@ -465,7 +485,8 @@
 						}
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Brutal Critical (2 dice)",
@@ -484,7 +505,8 @@
 						}
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Brutal Critical (3 dice)",
@@ -503,7 +525,8 @@
 						}
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Primal Champion",
@@ -527,7 +550,8 @@
 						}
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Jack of All Trades",
@@ -546,7 +570,8 @@
 						}
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Expertise",
@@ -560,7 +585,8 @@
 						"anyProficientSkill": 2
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Expertise",
@@ -574,7 +600,8 @@
 						"anyProficientSkill": 2
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Channel Divinity: Harness Divine Power",
@@ -583,10 +610,15 @@
 			"classSource": "PHB",
 			"level": 2,
 			"system": {
-				"uses.per": "day",
-				"uses.value": 1,
-				"uses.max": "1 + min(floor(@classes.cleric.levels / 6), 1) + min(floor(@classes.cleric.levels / 18), 1)"
-			}
+				"uses.max": "1 + min(floor(@classes.cleric.levels / 6), 1) + min(floor(@classes.cleric.levels / 18), 1)",
+				"uses.recovery": [
+					{
+						"period": "day",
+						"type": "recoverAll"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Channel Divinity",
@@ -594,7 +626,8 @@
 			"className": "Cleric",
 			"classSource": "PHB",
 			"level": 6,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Channel Divinity",
@@ -602,7 +635,8 @@
 			"className": "Cleric",
 			"classSource": "PHB",
 			"level": 18,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Druidic",
@@ -616,7 +650,8 @@
 						"druidic": true
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Fighting Style",
@@ -624,7 +659,8 @@
 			"className": "Fighter",
 			"classSource": "PHB",
 			"level": 1,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Martial Arts",
@@ -664,7 +700,8 @@
 						}
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Unarmored Defense",
@@ -672,7 +709,8 @@
 			"className": "Monk",
 			"classSource": "PHB",
 			"level": 1,
-			"ignoreSrdEffects": true
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Unarmored Movement",
@@ -713,7 +751,8 @@
 					]
 				}
 			],
-			"ignoreSrdEffects": true
+			"ignoreSrdEffects": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Diamond Soul",
@@ -731,7 +770,8 @@
 						}
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Fighting Style",
@@ -739,7 +779,8 @@
 			"className": "Paladin",
 			"classSource": "PHB",
 			"level": 2,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Divine Health",
@@ -759,7 +800,8 @@
 						}
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Deft Explorer",
@@ -778,7 +820,8 @@
 						"anyProficientSkill": 1
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Favored Enemy",
@@ -792,7 +835,8 @@
 						"any": 1
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Fighting Style",
@@ -800,7 +844,8 @@
 			"className": "Ranger",
 			"classSource": "PHB",
 			"level": 2,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Favored Enemy and Natural Explorer improvements",
@@ -814,7 +859,8 @@
 						"any": 1
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Favored Enemy improvement",
@@ -828,7 +874,8 @@
 						"any": 1
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Expertise",
@@ -846,7 +893,8 @@
 						"thieves' tools": true
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Thieves' Cant",
@@ -860,7 +908,8 @@
 						"thieves' cant": true
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Expertise",
@@ -878,7 +927,8 @@
 						"thieves' tools": true
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Reliable Talent",
@@ -897,7 +947,8 @@
 						}
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Blindsense",
@@ -911,7 +962,8 @@
 						"blindsight": 10
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Slippery Mind",
@@ -925,7 +977,8 @@
 						"wis": true
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Font of Magic",
@@ -934,11 +987,9 @@
 			"classSource": "PHB",
 			"level": 2,
 			"system": {
-				"activation.type": null,
-				"uses.per": null,
-				"uses.value": null,
 				"uses.max": null
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Sorcery Points",
@@ -947,10 +998,16 @@
 			"classSource": "PHB",
 			"level": 2,
 			"system": {
-				"uses.per": "lr",
-				"uses.max": "@scale.sorcerer.sorcery-points"
+				"uses.max": "@scale.sorcerer.sorcery-points",
+				"uses.recovery": [
+					{
+						"period": "lr",
+						"type": "recoverAll"
+					}
+				]
 			},
-			"img": "icons/magic/control/silhouette-hold-change-blue.webp"
+			"img": "icons/magic/control/silhouette-hold-change-blue.webp",
+			"migrationVersion": 3
 		},
 		{
 			"name": "Metamagic",
@@ -961,7 +1018,8 @@
 			"entries": [
 				"At 3rd level, you gain the ability to twist your spells to suit your needs. You gain two Metamagic options of your choice. You gain another one at 10th and 17th level.",
 				"You can use only one Metamagic option on a spell when you cast it, unless otherwise noted."
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Metamagic Options",
@@ -969,7 +1027,8 @@
 			"className": "Sorcerer",
 			"classSource": "PHB",
 			"level": 3,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Metamagic",
@@ -977,7 +1036,8 @@
 			"className": "Sorcerer",
 			"classSource": "PHB",
 			"level": 10,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Metamagic",
@@ -985,7 +1045,8 @@
 			"className": "Sorcerer",
 			"classSource": "PHB",
 			"level": 17,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Eldritch Invocations",
@@ -998,7 +1059,8 @@
 				"At 2nd level, you gain two eldritch invocations of your choice. Your invocation options are detailed at the end of the class description. When you gain certain warlock levels, you gain additional invocations of your choice, as shown in the Invocations Known column of the Warlock table.",
 				"Additionally, when you gain a level in this class, you can choose one of the invocations you know and replace it with another invocation that you could learn at that level.",
 				"If an eldritch invocation has prerequisites, you must meet them to learn it. You can learn the invocation at the same time that you meet its prerequisites. A level prerequisite refers to your level in this class."
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Pact Boon",
@@ -1006,7 +1068,8 @@
 			"className": "Warlock",
 			"classSource": "PHB",
 			"level": 3,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Infuse Item",
@@ -1015,13 +1078,23 @@
 			"classSource": "TCE",
 			"level": 2,
 			"system": {
-				"target.value": "1",
-				"target.type": "object",
 				"range.units": "touch",
-				"uses.value": 0,
 				"uses.max": "@scale.artificer.infused",
-				"uses.per": "charges"
-			}
+				"uses.recovery": [
+					{
+						"period": "charges",
+						"type": "recoverAll"
+					}
+				],
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "1",
+						"target.affects.type": "object"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Infusions Known",
@@ -1029,7 +1102,8 @@
 			"className": "Artificer",
 			"classSource": "TCE",
 			"level": 2,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Bonus Proficiencies",
@@ -1060,7 +1134,8 @@
 						}
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Expertise",
@@ -1074,7 +1149,8 @@
 						"anyProficientSkill": 2
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Expertise",
@@ -1088,7 +1164,8 @@
 						"anyProficientSkill": 2
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Bonus Proficiencies",
@@ -1131,7 +1208,8 @@
 						}
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Bonus Proficiencies",
@@ -1175,7 +1253,8 @@
 						}
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Primal Knowledge",
@@ -1198,7 +1277,8 @@
 						}
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Epic Boon",
@@ -1206,7 +1286,8 @@
 			"className": "Barbarian",
 			"classSource": "XPHB",
 			"level": 19,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Expertise",
@@ -1220,7 +1301,8 @@
 						"anyProficientSkill": 2
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Expertise",
@@ -1234,7 +1316,8 @@
 						"anyProficientSkill": 2
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Epic Boon",
@@ -1242,7 +1325,8 @@
 			"className": "Bard",
 			"classSource": "XPHB",
 			"level": 19,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Protector",
@@ -1261,7 +1345,8 @@
 						"heavy": true
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Thaumaturge",
@@ -1282,7 +1367,8 @@
 						}
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Epic Boon",
@@ -1290,7 +1376,8 @@
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"level": 19,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Druidic",
@@ -1304,7 +1391,8 @@
 						"druidic": true
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Magician",
@@ -1325,7 +1413,8 @@
 						}
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Warden",
@@ -1344,7 +1433,8 @@
 						"medium": true
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Epic Boon",
@@ -1352,7 +1442,8 @@
 			"className": "Druid",
 			"classSource": "XPHB",
 			"level": 19,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Epic Boon",
@@ -1360,7 +1451,8 @@
 			"className": "Fighter",
 			"classSource": "XPHB",
 			"level": 19,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Epic Boon",
@@ -1368,7 +1460,8 @@
 			"className": "Monk",
 			"classSource": "XPHB",
 			"level": 19,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Fighting Style",
@@ -1376,7 +1469,8 @@
 			"className": "Paladin",
 			"classSource": "XPHB",
 			"level": 2,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Epic Boon",
@@ -1384,7 +1478,8 @@
 			"className": "Paladin",
 			"classSource": "XPHB",
 			"level": 19,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Deft Explorer",
@@ -1403,7 +1498,8 @@
 						"anyProficientSkill": 2
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Fighting Style",
@@ -1411,7 +1507,8 @@
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"level": 2,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Expertise",
@@ -1425,7 +1522,8 @@
 						"anyProficientSkill": 2
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Epic Boon",
@@ -1433,7 +1531,8 @@
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"level": 19,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Expertise",
@@ -1447,7 +1546,8 @@
 						"anyProficientSkill": 2
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Thieves' Cant",
@@ -1461,7 +1561,8 @@
 						"thieves' cant": true
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Expertise",
@@ -1475,7 +1576,8 @@
 						"anyProficientSkill": 2
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Slippery Mind",
@@ -1490,7 +1592,8 @@
 						"cha": true
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Epic Boon",
@@ -1498,7 +1601,8 @@
 			"className": "Rogue",
 			"classSource": "XPHB",
 			"level": 19,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Font of Magic",
@@ -1506,10 +1610,26 @@
 			"className": "Sorcerer",
 			"classSource": "XPHB",
 			"level": 2,
-			"system": {
-				"uses.per": "lr",
-				"uses.max": "@scale.sorcerer.points"
-			}
+			"subEntities": {
+				"classFeature": [
+					{
+						"name": "Sorcery Points",
+						"source": "XPHB",
+						"page": 140,
+						"className": "Sorcerer",
+						"classSource": "XPHB",
+						"level": 2,
+						"entries": [
+							"You have 2 Sorcery Points, and you gain more as you reach higher levels, as shown in the Sorcery Points column of the Sorcerer Features table. You can't have more Sorcery Points than the number shown in the table for your level. You regain all expended Sorcery Points when you finish a {@variantrule Long Rest|XPHB}."
+						],
+						"foundrySystem": {
+							"uses.per": "lr",
+							"uses.max": "@scale.sorcerer.sorcery-points"
+						}
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Metamagic Options",
@@ -1517,7 +1637,8 @@
 			"className": "Sorcerer",
 			"classSource": "XPHB",
 			"level": 2,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Epic Boon",
@@ -1525,7 +1646,8 @@
 			"className": "Sorcerer",
 			"classSource": "XPHB",
 			"level": 19,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Eldritch Invocation Options",
@@ -1533,7 +1655,8 @@
 			"className": "Warlock",
 			"classSource": "XPHB",
 			"level": 1,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Epic Boon",
@@ -1541,7 +1664,8 @@
 			"className": "Warlock",
 			"classSource": "XPHB",
 			"level": 19,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Scholar",
@@ -1555,7 +1679,8 @@
 						"anyProficientSkill": 1
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Epic Boon",
@@ -1563,7 +1688,8 @@
 			"className": "Wizard",
 			"classSource": "XPHB",
 			"level": 19,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		}
 	],
 	"subclassFeature": [
@@ -1576,9 +1702,15 @@
 			"subclassSource": "PHB",
 			"level": 3,
 			"system": {
-				"activation.type": "bonus",
-				"activation.cost": 1
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"activation.type": "bonus",
+						"activation.value": 1
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Tiger",
@@ -1602,7 +1734,8 @@
 						}
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Call the Hunt",
@@ -1613,9 +1746,15 @@
 			"subclassSource": "TCE",
 			"level": 14,
 			"system": {
-				"target.value": 30,
-				"target.units": "ft"
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"target.template.size": "30",
+						"target.template.units": "ft"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Magic Awareness",
@@ -1626,9 +1765,15 @@
 			"subclassSource": "TCE",
 			"level": 3,
 			"system": {
-				"target.value": 60,
-				"target.units": "ft"
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"target.template.size": "60",
+						"target.template.units": "ft"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Divine Fury",
@@ -1639,8 +1784,13 @@
 			"subclassSource": "XGE",
 			"level": 3,
 			"system": {
-				"activation.type": "special",
-				"activation.condition": "While you're raging, the first creature you hit on each of your turns with a weapon attack"
+				"activities": [
+					{
+						"type": "utility",
+						"activation.type": "special",
+						"activation.condition": "While you're raging, the first creature you hit on each of your turns with a weapon attack"
+					}
+				]
 			},
 			"chooseSystem": [
 				{
@@ -1666,7 +1816,8 @@
 					}
 				}
 			],
-			"isChooseSystemRenderEntries": true
+			"isChooseSystemRenderEntries": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Bonus Proficiencies",
@@ -1682,7 +1833,8 @@
 						"any": 3
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Bonus Proficiencies",
@@ -1704,7 +1856,8 @@
 						"shield": true
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Performance of Creation",
@@ -1715,11 +1868,17 @@
 			"subclassSource": "TCE",
 			"level": 3,
 			"system": {
-				"target.value": 1,
-				"target.type": "object",
 				"range.value": 10,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "1",
+						"target.affects.type": "object"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Animating Performance",
@@ -1730,12 +1889,17 @@
 			"subclassSource": "TCE",
 			"level": 6,
 			"system": {
-				"target.value": 1,
-				"target.type": "object",
 				"range.value": 30,
 				"range.units": "ft",
-				"actionType": "summ"
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "1",
+						"target.affects.type": "object"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Unsettling Words",
@@ -1746,11 +1910,17 @@
 			"subclassSource": "TCE",
 			"level": 3,
 			"system": {
-				"target.value": 1,
-				"target.type": "creature",
 				"range.value": 60,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "1",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Universal Speech",
@@ -1761,10 +1931,16 @@
 			"subclassSource": "TCE",
 			"level": 6,
 			"system": {
-				"target.type": "creature",
 				"range.value": 60,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Infectious Inspiration",
@@ -1775,11 +1951,17 @@
 			"subclassSource": "TCE",
 			"level": 14,
 			"system": {
-				"target.value": 1,
-				"target.type": "creature",
 				"range.value": 60,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "1",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Tales from Beyond",
@@ -1790,11 +1972,17 @@
 			"subclassSource": "VRGR",
 			"level": 3,
 			"system": {
-				"target.value": 1,
-				"target.type": "creature",
 				"range.value": 30,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "1",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Enthralling Performance",
@@ -1805,12 +1993,18 @@
 			"subclassSource": "XGE",
 			"level": 3,
 			"system": {
-				"activation.type": "minute",
-				"activation.cost": 1,
-				"target.value": 60,
-				"target.units": "ft",
-				"target.type": "sphere"
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"activation.type": "minute",
+						"activation.value": 1,
+						"target.template.size": "60",
+						"target.template.units": "ft",
+						"target.template.type": "sphere"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Bonus Proficiencies",
@@ -1831,7 +2025,8 @@
 						"medium": true
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Fighting Style",
@@ -1841,7 +2036,8 @@
 			"subclassShortName": "Swords",
 			"subclassSource": "XGE",
 			"level": 3,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Psychic Blades",
@@ -1852,15 +2048,24 @@
 			"subclassSource": "XGE",
 			"level": 3,
 			"system": {
-				"activation.type": "special",
-				"activation.condition": "When you hit a creature with a weapon attack",
-				"damage.parts": [
-					[
-						"@scale.college-of-whispers.psychic-blades",
-						"psychic"
-					]
+				"activities": [
+					{
+						"type": "damage",
+						"activation.type": "special",
+						"activation.condition": "When you hit a creature with a weapon attack",
+						"damage.parts": [
+							{
+								"custom.enabled": true,
+								"custom.formula": "@scale.college-of-whispers.psychic-blades",
+								"types": [
+									"psychic"
+								]
+							}
+						]
+					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Words of Terror",
@@ -1871,11 +2076,17 @@
 			"subclassSource": "XGE",
 			"level": 3,
 			"system": {
-				"activation.type": "minute",
-				"activation.cost": 1,
-				"target.value": 1,
-				"target.type": "creature"
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"activation.type": "minute",
+						"activation.value": 1,
+						"target.affects.count": "1",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Mantle of Whispers",
@@ -1886,10 +2097,16 @@
 			"subclassSource": "XGE",
 			"level": 6,
 			"system": {
-				"target.value": 30,
-				"target.units": "ft",
-				"target.type": "creature"
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "30",
+						"target.template.units": "ft",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Shadow Lore",
@@ -1900,10 +2117,16 @@
 			"subclassSource": "XGE",
 			"level": 14,
 			"system": {
-				"target.value": 30,
-				"target.units": "ft",
-				"target.type": "creature"
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "30",
+						"target.template.units": "ft",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Channel Divinity: Touch of Death",
@@ -1914,15 +2137,24 @@
 			"subclassSource": "DMG",
 			"level": 2,
 			"system": {
-				"activation.type": "special",
-				"activation.condition": "When the cleric hits a creature with a melee attack",
-				"damage.parts": [
-					[
-						"5 + (2 * @classes.cleric.levels)",
-						"necrotic"
-					]
+				"activities": [
+					{
+						"type": "damage",
+						"activation.type": "special",
+						"activation.condition": "When the cleric hits a creature with a melee attack",
+						"damage.parts": [
+							{
+								"custom.enabled": true,
+								"custom.formula": "5 + (2 * @classes.cleric.levels)",
+								"types": [
+									"necrotic"
+								]
+							}
+						]
+					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Divine Strike",
@@ -1933,13 +2165,22 @@
 			"subclassSource": "DMG",
 			"level": 8,
 			"system": {
-				"damage.parts": [
-					[
-						"@scale.death-domain.divine-strike",
-						"necrotic"
-					]
+				"activities": [
+					{
+						"type": "damage",
+						"damage.parts": [
+							{
+								"custom.enabled": true,
+								"custom.formula": "@scale.death-domain.divine-strike",
+								"types": [
+									"necrotic"
+								]
+							}
+						]
+					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Blessings of Knowledge",
@@ -1968,7 +2209,8 @@
 						}
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Channel Divinity: Knowledge of the Ages",
@@ -1981,7 +2223,8 @@
 			"system": {
 				"duration.value": 10,
 				"duration.units": "minute"
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Channel Divinity: Read Thoughts",
@@ -1992,11 +2235,17 @@
 			"subclassSource": "PHB",
 			"level": 6,
 			"system": {
-				"target.value": 1,
-				"target.type": "creature",
 				"range.value": 60,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "1",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Visions of the Past",
@@ -2007,9 +2256,15 @@
 			"subclassSource": "PHB",
 			"level": 17,
 			"system": {
-				"activation.type": "minute",
-				"activation.cost": 1
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"activation.type": "minute",
+						"activation.value": 1
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Bonus Proficiency",
@@ -2025,7 +2280,8 @@
 						"heavy": true
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Disciple of Life",
@@ -2047,7 +2303,8 @@
 						}
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Channel Divinity: Radiance of the Dawn",
@@ -2058,17 +2315,25 @@
 			"subclassSource": "PHB",
 			"level": 2,
 			"system": {
-				"target.value": 30,
-				"target.units": "ft",
-				"target.type": "sphere",
-				"damage.parts": [
-					[
-						"2d10 + @classes.cleric.levels",
-						"radiant"
-					]
-				],
-				"formula": ""
-			}
+				"activities": [
+					{
+						"type": "damage",
+						"target.template.size": "30",
+						"target.template.units": "ft",
+						"target.template.type": "sphere",
+						"damage.parts": [
+							{
+								"custom.enabled": true,
+								"custom.formula": "2d10 + @classes.cleric.levels",
+								"types": [
+									"radiant"
+								]
+							}
+						]
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Corona of Light",
@@ -2079,10 +2344,16 @@
 			"subclassSource": "PHB",
 			"level": 17,
 			"system": {
-				"target.value": 60,
-				"target.units": "ft",
-				"target.type": "sphere"
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"target.template.size": "60",
+						"target.template.units": "ft",
+						"target.template.type": "sphere"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Acolyte of Nature",
@@ -2104,7 +2375,8 @@
 						}
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Bonus Proficiency",
@@ -2120,7 +2392,8 @@
 						"heavy": true
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Channel Divinity: Charm Animals and Plants",
@@ -2131,16 +2404,25 @@
 			"subclassSource": "PHB",
 			"level": 2,
 			"system": {
-				"target.value": 30,
-				"target.units": "ft",
-				"target.type": "sphere",
-				"damage.parts": [
-					[
-						"2d10 + @classes.cleric.levels",
-						"radiant"
-					]
+				"activities": [
+					{
+						"type": "damage",
+						"target.template.size": "30",
+						"target.template.units": "ft",
+						"target.template.type": "sphere",
+						"damage.parts": [
+							{
+								"custom.enabled": true,
+								"custom.formula": "2d10 + @classes.cleric.levels",
+								"types": [
+									"radiant"
+								]
+							}
+						]
+					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Divine Strike",
@@ -2151,21 +2433,36 @@
 			"subclassSource": "PHB",
 			"level": 8,
 			"system": {
-				"damage.parts": [
-					[
-						"@scale.nature-domain.divine-strike",
-						"cold"
-					],
-					[
-						"@scale.nature-domain.divine-strike",
-						"fire"
-					],
-					[
-						"@scale.nature-domain.divine-strike",
-						"lightning"
-					]
+				"activities": [
+					{
+						"type": "damage",
+						"damage.parts": [
+							{
+								"custom.enabled": true,
+								"custom.formula": "@scale.nature-domain.divine-strike",
+								"types": [
+									"cold"
+								]
+							},
+							{
+								"custom.enabled": true,
+								"custom.formula": "@scale.nature-domain.divine-strike",
+								"types": [
+									"fire"
+								]
+							},
+							{
+								"custom.enabled": true,
+								"custom.formula": "@scale.nature-domain.divine-strike",
+								"types": [
+									"lightning"
+								]
+							}
+						]
+					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Bonus Proficiencies",
@@ -2186,7 +2483,8 @@
 						"heavy": true
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Channel Divinity: Invoke Duplicity",
@@ -2197,11 +2495,17 @@
 			"subclassSource": "PHB",
 			"level": 2,
 			"system": {
-				"target.value": 1,
-				"target.type": "space",
 				"range.value": 30,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.template.size": "1",
+						"target.template.type": "space"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Divine Strike",
@@ -2212,13 +2516,22 @@
 			"subclassSource": "PHB",
 			"level": 8,
 			"system": {
-				"damage.parts": [
-					[
-						"@scale.order-domain.divine-strike",
-						"poison"
-					]
+				"activities": [
+					{
+						"type": "damage",
+						"damage.parts": [
+							{
+								"custom.enabled": true,
+								"custom.formula": "@scale.order-domain.divine-strike",
+								"types": [
+									"poison"
+								]
+							}
+						]
+					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Bonus Proficiencies",
@@ -2239,7 +2552,8 @@
 						"heavy": true
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Acolyte of Strength",
@@ -2262,7 +2576,8 @@
 						}
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Arcane Initiate",
@@ -2278,7 +2593,8 @@
 						"arcana": true
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Channel Divinity: Arcane Abjuration",
@@ -2289,11 +2605,17 @@
 			"subclassSource": "SCAG",
 			"level": 2,
 			"system": {
-				"target.value": 1,
-				"target.type": "creature",
 				"range.value": 30,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "1",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Bonus Proficiencies",
@@ -2319,7 +2641,8 @@
 						"heavy": true
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Channel Divinity: Order's Demand",
@@ -2330,10 +2653,16 @@
 			"subclassSource": "TCE",
 			"level": 2,
 			"system": {
-				"target.value": 30,
-				"target.units": "ft",
-				"target.type": "sphere"
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"target.template.size": "30",
+						"target.template.units": "ft",
+						"target.template.type": "sphere"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Divine Strike",
@@ -2344,13 +2673,22 @@
 			"subclassSource": "TCE",
 			"level": 8,
 			"system": {
-				"damage.parts": [
-					[
-						"@scale.order-domain.divine-strike",
-						"psychic"
-					]
+				"activities": [
+					{
+						"type": "damage",
+						"damage.parts": [
+							{
+								"custom.enabled": true,
+								"custom.formula": "@scale.order-domain.divine-strike",
+								"types": [
+									"psychic"
+								]
+							}
+						]
+					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Emboldening Bond",
@@ -2361,10 +2699,16 @@
 			"subclassSource": "TCE",
 			"level": 1,
 			"system": {
-				"target.type": "creature",
 				"range.value": 30,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Implement of Peace",
@@ -2386,7 +2730,8 @@
 						}
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Bonus Proficiencies",
@@ -2407,7 +2752,8 @@
 						"heavy": true
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Eyes of Night",
@@ -2418,9 +2764,14 @@
 			"subclassSource": "TCE",
 			"level": 1,
 			"system": {
-				"target.type": "creature",
 				"range.value": 10,
-				"range.units": "ft"
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.type": "creature"
+					}
+				]
 			},
 			"actorTokenMod": {
 				"dimSight": [
@@ -2429,7 +2780,8 @@
 						"value": 300
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Bonus Proficiencies",
@@ -2445,7 +2797,8 @@
 						"martial": true
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Bonus Proficiency",
@@ -2466,7 +2819,8 @@
 						"smith's tools": true
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Divine Strike",
@@ -2477,13 +2831,22 @@
 			"subclassSource": "XGE",
 			"level": 8,
 			"system": {
-				"damage.parts": [
-					[
-						"@scale.forge-domain.divine-strike",
-						"fire"
-					]
+				"activities": [
+					{
+						"type": "damage",
+						"damage.parts": [
+							{
+								"custom.enabled": true,
+								"custom.formula": "@scale.forge-domain.divine-strike",
+								"types": [
+									"fire"
+								]
+							}
+						]
+					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Saint of Forge and Fire",
@@ -2497,7 +2860,8 @@
 				"immune": [
 					"fire"
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Channel Divinity: Path to the Grave",
@@ -2508,11 +2872,17 @@
 			"subclassSource": "XGE",
 			"level": 2,
 			"system": {
-				"target.value": 1,
-				"target.type": "creature",
 				"range.value": 30,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "1",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Sentinel at Death's Door",
@@ -2523,11 +2893,17 @@
 			"subclassSource": "XGE",
 			"level": 6,
 			"system": {
-				"target.value": 1,
-				"target.type": "creature",
 				"range.value": 30,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "1",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Keeper of Souls",
@@ -2538,11 +2914,17 @@
 			"subclassSource": "XGE",
 			"level": 17,
 			"system": {
-				"target.value": 1,
-				"target.type": "creature",
 				"range.value": 60,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "1",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Nature's Ward",
@@ -2560,7 +2942,8 @@
 					"disease",
 					"poisoned"
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Halo of Spores",
@@ -2571,11 +2954,17 @@
 			"subclassSource": "TCE",
 			"level": 2,
 			"system": {
-				"target.value": 10,
-				"target.units": "ft",
-				"target.type": "sphere",
-				"range.units": "self"
-			}
+				"range.units": "self",
+				"activities": [
+					{
+						"type": "utility",
+						"target.template.size": "10",
+						"target.template.units": "ft",
+						"target.template.type": "sphere"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Fungal Infestation",
@@ -2585,9 +2974,8 @@
 			"subclassShortName": "Spores",
 			"subclassSource": "TCE",
 			"level": 6,
-			"system": {
-				"actionType": "summ"
-			}
+			"system": {},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Spreading Spores",
@@ -2598,14 +2986,20 @@
 			"subclassSource": "TCE",
 			"level": 10,
 			"system": {
-				"target.value": 10,
-				"target.units": "ft",
-				"target.type": "cube",
 				"range.value": 30,
 				"range.units": "ft",
 				"duration.value": 1,
-				"duration.units": "minute"
-			}
+				"duration.units": "minute",
+				"activities": [
+					{
+						"type": "utility",
+						"target.template.size": "10",
+						"target.template.units": "ft",
+						"target.template.type": "cube"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Fungal Body",
@@ -2622,7 +3016,8 @@
 					"frightened",
 					"poisoned"
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Summon Wildfire Spirit",
@@ -2633,11 +3028,16 @@
 			"subclassSource": "TCE",
 			"level": 2,
 			"system": {
-				"target.type": "space",
 				"range.value": 30,
 				"range.units": "ft",
-				"actionType": "summ"
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"target.template.type": "space"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Call of the Shadowseeds",
@@ -2647,9 +3047,8 @@
 			"subclassShortName": "Blighted",
 			"subclassSource": "TDCSR",
 			"level": 6,
-			"system": {
-				"actionType": "summ"
-			}
+			"system": {},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Incarnation of Corruption",
@@ -2663,7 +3062,8 @@
 				"resist": [
 					"necrotic"
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Balm of the Summer Court",
@@ -2674,17 +3074,25 @@
 			"subclassSource": "XGE",
 			"level": 2,
 			"system": {
-				"target.value": 1,
-				"target.type": "creature",
 				"range.value": 120,
 				"range.units": "ft",
-				"uses.per": "charges",
-				"uses.value": 2,
 				"uses.max": "@classes.druid.levels",
-				"uses.recovery": "@classes.druid.levels",
-				"formula": "1d6",
-				"actionType": "healing"
-			}
+				"uses.recovery": [
+					{
+						"period": "charges",
+						"type": "recoverAll"
+					}
+				],
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "1",
+						"target.affects.type": "creature",
+						"roll.formula": "1d6"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Hearth of Moonlight and Shadow",
@@ -2695,10 +3103,16 @@
 			"subclassSource": "XGE",
 			"level": 6,
 			"system": {
-				"target.value": 30,
-				"target.units": "ft",
-				"target.type": "sphere"
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"target.template.size": "30",
+						"target.template.units": "ft",
+						"target.template.type": "sphere"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Hidden Paths",
@@ -2709,11 +3123,17 @@
 			"subclassSource": "XGE",
 			"level": 10,
 			"system": {
-				"target.value": 1,
-				"target.type": "space",
 				"range.value": 60,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.template.size": "1",
+						"target.template.type": "space"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Speech of the Woods",
@@ -2729,7 +3149,8 @@
 						"sylvan": true
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Spirit Totem",
@@ -2740,11 +3161,17 @@
 			"subclassSource": "XGE",
 			"level": 2,
 			"system": {
-				"target.value": 1,
-				"target.type": "space",
 				"range.value": 60,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.template.size": "1",
+						"target.template.type": "space"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Unleash Incarnation",
@@ -2755,10 +3182,16 @@
 			"subclassSource": "EGW",
 			"level": 3,
 			"system": {
-				"activation.type": "special",
-				"activation.condition": "Whenever you take the Attack action",
-				"activation.cost": 1
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"activation.type": "special",
+						"activation.condition": "Whenever you take the Attack action",
+						"activation.value": 1
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Combat Superiority",
@@ -2769,8 +3202,6 @@
 			"subclassSource": "PHB",
 			"level": 3,
 			"system": {
-				"activation.type": null,
-				"uses.value": null,
 				"uses.max": null
 			},
 			"entryData": {
@@ -2784,7 +3215,8 @@
 						"faces": "8 + (sign(ceil((<$level$> - 2) / 8) - 1) * 2)"
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Maneuver Options",
@@ -2794,7 +3226,8 @@
 			"subclassShortName": "Battle Master",
 			"subclassSource": "PHB",
 			"level": 3,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Maneuvers",
@@ -2804,7 +3237,8 @@
 			"subclassShortName": "Battle Master",
 			"subclassSource": "PHB",
 			"level": 3,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Student of War",
@@ -2820,7 +3254,8 @@
 						"anyArtisansTool": 1
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Additional Maneuvers",
@@ -2830,7 +3265,8 @@
 			"subclassShortName": "Battle Master",
 			"subclassSource": "PHB",
 			"level": 7,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Additional Superiority Die",
@@ -2840,7 +3276,8 @@
 			"subclassShortName": "Battle Master",
 			"subclassSource": "PHB",
 			"level": 7,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Additional Maneuvers",
@@ -2850,7 +3287,8 @@
 			"subclassShortName": "Battle Master",
 			"subclassSource": "PHB",
 			"level": 10,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Improved Combat Superiority (d10)",
@@ -2860,7 +3298,8 @@
 			"subclassShortName": "Battle Master",
 			"subclassSource": "PHB",
 			"level": 10,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Additional Maneuvers",
@@ -2870,7 +3309,8 @@
 			"subclassShortName": "Battle Master",
 			"subclassSource": "PHB",
 			"level": 15,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Additional Superiority Die",
@@ -2880,7 +3320,8 @@
 			"subclassShortName": "Battle Master",
 			"subclassSource": "PHB",
 			"level": 15,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Improved Combat Superiority (d12)",
@@ -2890,7 +3331,8 @@
 			"subclassShortName": "Battle Master",
 			"subclassSource": "PHB",
 			"level": 18,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Improved Critical",
@@ -2911,7 +3353,8 @@
 						}
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Remarkable Athlete",
@@ -2932,7 +3375,8 @@
 						}
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Additional Fighting Style",
@@ -2942,7 +3386,8 @@
 			"subclassShortName": "Champion",
 			"subclassSource": "PHB",
 			"level": 10,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Arcane Charge",
@@ -2953,11 +3398,17 @@
 			"subclassSource": "PHB",
 			"level": 15,
 			"system": {
-				"target.value": 1,
-				"target.type": "space",
 				"range.value": 30,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.template.size": "1",
+						"target.template.type": "space"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Rallying Cry",
@@ -2968,11 +3419,17 @@
 			"subclassSource": "SCAG",
 			"level": 3,
 			"system": {
-				"target.value": 3,
-				"target.type": "creature",
 				"range.value": 60,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "3",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Royal Envoy",
@@ -3001,7 +3458,8 @@
 						"persuasion": true
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Inspiring Surge",
@@ -3012,11 +3470,17 @@
 			"subclassSource": "SCAG",
 			"level": 10,
 			"system": {
-				"target.value": 1,
-				"target.type": "ally",
 				"range.value": 60,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.template.size": "1",
+						"target.template.type": "ally"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Psionic Power",
@@ -3037,7 +3501,8 @@
 						"faces": "(6 + ((ceil((<$level$> + 2) / 6) - 1) * 2))"
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Guarded Mind",
@@ -3051,7 +3516,8 @@
 				"resist": [
 					"psychic"
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Bulwark of Force",
@@ -3062,10 +3528,16 @@
 			"subclassSource": "TCE",
 			"level": 15,
 			"system": {
-				"target.type": "creature",
 				"range.value": 30,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Bonus Proficiencies",
@@ -3086,7 +3558,8 @@
 						"smith's tools": true
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Rune Carver",
@@ -3131,7 +3604,8 @@
 					]
 				},
 				"If a rune has a level requirement, you must be at least that level in this class to learn the rune. If a rune requires a saving throw, your Rune Magic save DC equals 8 + your proficiency bonus + your Constitution modifier."
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Additional Rune Known",
@@ -3172,7 +3646,8 @@
 						}
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Runic Shield",
@@ -3183,11 +3658,17 @@
 			"subclassSource": "TCE",
 			"level": 7,
 			"system": {
-				"target.value": 1,
-				"target.type": "creature",
 				"range.value": 60,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "1",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Additional Rune Known",
@@ -3228,7 +3709,8 @@
 						}
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Additional Rune Known",
@@ -3269,7 +3751,8 @@
 						}
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Arcane Archer Lore",
@@ -3290,7 +3773,8 @@
 						}
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Arcane Shot",
@@ -3301,10 +3785,15 @@
 			"subclassSource": "XGE",
 			"level": 3,
 			"system": {
-				"uses.per": "sr",
-				"uses.value": 2,
-				"uses.max": 2
-			}
+				"uses.max": 2,
+				"uses.recovery": [
+					{
+						"period": "sr",
+						"type": "recoverAll"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Arcane Shot Options",
@@ -3324,7 +3813,8 @@
 						"int"
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Additional Arcane Shot Option",
@@ -3334,7 +3824,8 @@
 			"subclassShortName": "Arcane Archer",
 			"subclassSource": "XGE",
 			"level": 7,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Additional Arcane Shot Option",
@@ -3344,7 +3835,8 @@
 			"subclassShortName": "Arcane Archer",
 			"subclassSource": "XGE",
 			"level": 10,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Additional Arcane Shot Option",
@@ -3354,7 +3846,8 @@
 			"subclassShortName": "Arcane Archer",
 			"subclassSource": "XGE",
 			"level": 15,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Additional Arcane Shot Option",
@@ -3364,7 +3857,8 @@
 			"subclassShortName": "Arcane Archer",
 			"subclassSource": "XGE",
 			"level": 18,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Bonus Proficiency",
@@ -3388,7 +3882,8 @@
 						}
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Bonus Proficiency",
@@ -3411,7 +3906,8 @@
 						}
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Elegant Courtier",
@@ -3435,7 +3931,8 @@
 						}
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Draconic Disciple",
@@ -3451,7 +3948,8 @@
 						"any": 1
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Elemental Disciplines",
@@ -3461,7 +3959,8 @@
 			"subclassShortName": "Four Elements",
 			"subclassSource": "PHB",
 			"level": 3,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Extra Elemental Discipline",
@@ -3471,7 +3970,8 @@
 			"subclassShortName": "Four Elements",
 			"subclassSource": "PHB",
 			"level": 6,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Extra Elemental Discipline",
@@ -3481,7 +3981,8 @@
 			"subclassShortName": "Four Elements",
 			"subclassSource": "PHB",
 			"level": 11,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Extra Elemental Discipline",
@@ -3491,7 +3992,8 @@
 			"subclassShortName": "Four Elements",
 			"subclassSource": "PHB",
 			"level": 17,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Shadow Step",
@@ -3502,10 +4004,16 @@
 			"subclassSource": "PHB",
 			"level": 6,
 			"system": {
-				"target.value": 60,
-				"target.units": "ft",
-				"target.type": "space"
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"target.template.size": "60",
+						"target.template.units": "ft",
+						"target.template.type": "space"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Hour of Reaping",
@@ -3516,10 +4024,16 @@
 			"subclassSource": "SCAG",
 			"level": 6,
 			"system": {
-				"target.value": 30,
-				"target.units": "ft",
-				"target.type": "sphere"
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"target.template.size": "30",
+						"target.template.units": "ft",
+						"target.template.type": "sphere"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Implements of Mercy",
@@ -3541,7 +4055,8 @@
 						"herbalism kit": true
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Mystical Erudition",
@@ -3571,7 +4086,8 @@
 						}
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Mystical Erudition (11th Level)",
@@ -3601,7 +4117,8 @@
 						}
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Mystical Erudition (17th Level)",
@@ -3631,7 +4148,8 @@
 						}
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Bonus Proficiencies",
@@ -3652,7 +4170,8 @@
 						"brewer's supplies": true
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Path of the Kensei",
@@ -3673,7 +4192,8 @@
 						}
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Radiant Sun Bolt",
@@ -3709,7 +4229,8 @@
 						}
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Searing Sunburst",
@@ -3720,12 +4241,18 @@
 			"subclassSource": "XGE",
 			"level": 11,
 			"system": {
-				"target.value": 20,
-				"target.units": "ft",
-				"target.type": "sphere",
 				"range.value": 150,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.template.size": "20",
+						"target.template.units": "ft",
+						"target.template.type": "sphere"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Sun Shield",
@@ -3736,10 +4263,16 @@
 			"subclassSource": "XGE",
 			"level": 17,
 			"system": {
-				"target.value": 60,
-				"target.units": "ft",
-				"target.type": "radius"
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"target.template.size": "60",
+						"target.template.units": "ft",
+						"target.template.type": "radius"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Control Undead",
@@ -3750,10 +4283,16 @@
 			"subclassSource": "DMG",
 			"level": 3,
 			"system": {
-				"target.value": 30,
-				"target.units": "ft",
-				"target.type": "creature"
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "30",
+						"target.template.units": "ft",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Dreadful Aspect",
@@ -3764,10 +4303,16 @@
 			"subclassSource": "DMG",
 			"level": 3,
 			"system": {
-				"target.value": 30,
-				"target.units": "ft",
-				"target.type": "creature"
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "30",
+						"target.template.units": "ft",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Nature's Wrath",
@@ -3778,11 +4323,17 @@
 			"subclassSource": "PHB",
 			"level": 3,
 			"system": {
-				"target.value": 1,
-				"target.type": "creature",
 				"range.value": 10,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "1",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Turn the Faithless",
@@ -3793,10 +4344,16 @@
 			"subclassSource": "PHB",
 			"level": 3,
 			"system": {
-				"target.value": 30,
-				"target.units": "ft",
-				"target.type": "creature"
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "30",
+						"target.template.units": "ft",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Sacred Weapon",
@@ -3807,10 +4364,16 @@
 			"subclassSource": "PHB",
 			"level": 3,
 			"system": {
-				"target.value": 40,
-				"target.units": "ft",
-				"target.type": "radius"
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"target.template.size": "40",
+						"target.template.units": "ft",
+						"target.template.type": "radius"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Turn the Unholy",
@@ -3821,10 +4384,16 @@
 			"subclassSource": "PHB",
 			"level": 3,
 			"system": {
-				"target.value": 30,
-				"target.units": "ft",
-				"target.type": "creature"
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "30",
+						"target.template.units": "ft",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Holy Nimbus",
@@ -3835,10 +4404,16 @@
 			"subclassSource": "PHB",
 			"level": 20,
 			"system": {
-				"target.value": 60,
-				"target.units": "ft",
-				"target.type": "radius"
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"target.template.size": "60",
+						"target.template.units": "ft",
+						"target.template.type": "radius"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Abjure Enemy",
@@ -3851,7 +4426,8 @@
 			"system": {
 				"range.value": 60,
 				"range.units": "ft"
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Vow of Enmity",
@@ -3864,7 +4440,8 @@
 			"system": {
 				"range.value": 10,
 				"range.units": "ft"
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Champion Challenge",
@@ -3875,10 +4452,16 @@
 			"subclassSource": "SCAG",
 			"level": 3,
 			"system": {
-				"target.value": 30,
-				"target.units": "ft",
-				"target.type": "creature"
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "30",
+						"target.template.units": "ft",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Turn the Tide",
@@ -3889,10 +4472,16 @@
 			"subclassSource": "SCAG",
 			"level": 3,
 			"system": {
-				"target.value": 30,
-				"target.units": "ft",
-				"target.type": "creature"
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "30",
+						"target.template.units": "ft",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Inspiring Smite",
@@ -3903,10 +4492,16 @@
 			"subclassSource": "TCE",
 			"level": 3,
 			"system": {
-				"target.value": 30,
-				"target.units": "ft",
-				"target.type": "creature"
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "30",
+						"target.template.units": "ft",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Glorious Defense",
@@ -3919,7 +4514,8 @@
 			"system": {
 				"range.value": 10,
 				"range.units": "ft"
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Vigilant Rebuke",
@@ -3930,11 +4526,17 @@
 			"subclassSource": "TCE",
 			"level": 15,
 			"system": {
-				"target.value": 1,
-				"target.type": "creature",
 				"range.value": 30,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "1",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Conquering Presence",
@@ -3945,10 +4547,16 @@
 			"subclassSource": "XGE",
 			"level": 3,
 			"system": {
-				"target.value": 30,
-				"target.units": "ft",
-				"target.type": "creature"
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "30",
+						"target.template.units": "ft",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Rebuke the Violent",
@@ -3961,7 +4569,8 @@
 			"system": {
 				"range.value": 30,
 				"range.units": "ft"
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Draconic Gift",
@@ -3977,7 +4586,8 @@
 						"any": 1
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Drake Companion",
@@ -3987,9 +4597,8 @@
 			"subclassShortName": "Drakewarden",
 			"subclassSource": "FTD",
 			"level": 3,
-			"system": {
-				"actionType": "summ"
-			}
+			"system": {},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Primal Companion",
@@ -3999,9 +4608,8 @@
 			"subclassShortName": "Beast Master",
 			"subclassSource": "PHB",
 			"level": 3,
-			"system": {
-				"actionType": "summ"
-			}
+			"system": {},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Ranger's Companion",
@@ -4011,9 +4619,8 @@
 			"subclassShortName": "Beast Master",
 			"subclassSource": "PHB",
 			"level": 3,
-			"system": {
-				"actionType": "summ"
-			}
+			"system": {},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Otherworldly Glamour",
@@ -4035,7 +4642,8 @@
 						}
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Beguiling Twist",
@@ -4046,11 +4654,17 @@
 			"subclassSource": "TCE",
 			"level": 7,
 			"system": {
-				"target.value": 1,
-				"target.type": "creature",
 				"range.value": 120,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "1",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Umbral Sight",
@@ -4089,7 +4703,8 @@
 						]
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Iron Mind",
@@ -4113,7 +4728,8 @@
 						}
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Hunter's Sense",
@@ -4126,7 +4742,8 @@
 			"system": {
 				"range.value": 60,
 				"range.units": "ft"
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Slayer's Prey",
@@ -4139,7 +4756,8 @@
 			"system": {
 				"range.value": 60,
 				"range.units": "ft"
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Magic-User's Nemesis",
@@ -4152,7 +4770,8 @@
 			"system": {
 				"range.value": 60,
 				"range.units": "ft"
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Bonus Proficiencies",
@@ -4169,7 +4788,8 @@
 						"poisoner's kit": true
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Wails from the Grave",
@@ -4180,11 +4800,17 @@
 			"subclassSource": "TCE",
 			"level": 3,
 			"system": {
-				"target.value": 1,
-				"target.type": "creature",
 				"range.value": 30,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "1",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Psionic Power",
@@ -4205,7 +4831,8 @@
 						"faces": "(6 + (ceil((<$level$> + 2) / 6) - 1) * 2)"
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Master of Intrigue",
@@ -4228,7 +4855,8 @@
 						"anyGamingSet": 1
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Master of Tactics",
@@ -4241,7 +4869,8 @@
 			"system": {
 				"range.value": 30,
 				"range.units": "ft"
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Survivalist",
@@ -4258,7 +4887,8 @@
 						"survival": true
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Superior Mobility",
@@ -4280,7 +4910,8 @@
 						}
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Draconic Resilience",
@@ -4313,7 +4944,8 @@
 						}
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Dragon Ancestor",
@@ -4329,7 +4961,8 @@
 						"draconic": true
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Dragon Wings",
@@ -4351,7 +4984,8 @@
 						}
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Draconic Presence",
@@ -4362,10 +4996,16 @@
 			"subclassSource": "PHB",
 			"level": 18,
 			"system": {
-				"target.value": 60,
-				"target.units": "ft",
-				"target.type": "sphere"
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"target.template.size": "60",
+						"target.template.units": "ft",
+						"target.template.type": "sphere"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Telepathic Speech",
@@ -4376,11 +5016,17 @@
 			"subclassSource": "TCE",
 			"level": 1,
 			"system": {
-				"target.value": 1,
-				"target.type": "creature",
 				"range.value": 30,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "1",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Warping Implosion",
@@ -4391,11 +5037,17 @@
 			"subclassSource": "TCE",
 			"level": 18,
 			"system": {
-				"target.value": 1,
-				"target.type": "space",
 				"range.value": 120,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.template.size": "1",
+						"target.template.type": "space"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Restore Balance",
@@ -4406,11 +5058,17 @@
 			"subclassSource": "TCE",
 			"level": 1,
 			"system": {
-				"target.value": 1,
-				"target.type": "creature",
 				"range.value": 60,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "1",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Bastion of Law",
@@ -4421,11 +5079,17 @@
 			"subclassSource": "TCE",
 			"level": 6,
 			"system": {
-				"target.value": 1,
-				"target.type": "creature",
 				"range.value": 30,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "1",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Clockwork Cavalcade",
@@ -4436,10 +5100,16 @@
 			"subclassSource": "TCE",
 			"level": 18,
 			"system": {
-				"target.value": 30,
-				"target.units": "ft",
-				"target.type": "cube"
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"target.template.size": "30",
+						"target.template.units": "ft",
+						"target.template.type": "cube"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Hound of Ill Omen",
@@ -4450,12 +5120,17 @@
 			"subclassSource": "XGE",
 			"level": 6,
 			"system": {
-				"actionType": "summ",
-				"target.value": 1,
-				"target.type": "creature",
 				"range.value": 120,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "1",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Shadow Walk",
@@ -4466,11 +5141,17 @@
 			"subclassSource": "XGE",
 			"level": 14,
 			"system": {
-				"target.value": 1,
-				"target.type": "space",
 				"range.value": 120,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.template.size": "1",
+						"target.template.type": "space"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Wind Speaker",
@@ -4486,7 +5167,8 @@
 						"primordial": true
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Heart of the Storm",
@@ -4497,16 +5179,22 @@
 			"subclassSource": "XGE",
 			"level": 6,
 			"system": {
-				"target.value": 10,
-				"target.units": "ft",
-				"target.type": "sphere"
+				"activities": [
+					{
+						"type": "utility",
+						"target.template.size": "10",
+						"target.template.units": "ft",
+						"target.template.type": "sphere"
+					}
+				]
 			},
 			"entryData": {
 				"resist": [
 					"lightning",
 					"thunder"
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Wind Soul",
@@ -4521,7 +5209,8 @@
 					"lightning",
 					"thunder"
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Fey Presence",
@@ -4532,10 +5221,16 @@
 			"subclassSource": "PHB",
 			"level": 1,
 			"system": {
-				"target.value": 10,
-				"target.units": "ft",
-				"target.type": "cube"
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"target.template.size": "10",
+						"target.template.units": "ft",
+						"target.template.type": "cube"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Misty Escape",
@@ -4546,11 +5241,17 @@
 			"subclassSource": "PHB",
 			"level": 6,
 			"system": {
-				"target.value": 1,
-				"target.type": "space",
 				"range.value": 60,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.template.size": "1",
+						"target.template.type": "space"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Beguiling Defenses",
@@ -4564,7 +5265,8 @@
 				"conditionImmune": [
 					"charmed"
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Dark Delirium",
@@ -4575,11 +5277,17 @@
 			"subclassSource": "PHB",
 			"level": 14,
 			"system": {
-				"target.value": 1,
-				"target.type": "creature",
 				"range.value": 60,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "1",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Awakened Mind",
@@ -4590,10 +5298,16 @@
 			"subclassSource": "PHB",
 			"level": 1,
 			"system": {
-				"target.value": 30,
-				"target.units": "ft",
-				"target.type": "sphere"
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"target.template.size": "30",
+						"target.template.units": "ft",
+						"target.template.type": "sphere"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Thought Shield",
@@ -4607,7 +5321,8 @@
 				"resist": [
 					"psychic"
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Gift of the Sea",
@@ -4629,7 +5344,8 @@
 						}
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Tentacle of the Deeps",
@@ -4640,11 +5356,17 @@
 			"subclassSource": "TCE",
 			"level": 1,
 			"system": {
-				"target.value": 1,
-				"target.type": "space",
 				"range.value": 60,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.template.size": "1",
+						"target.template.type": "space"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Oceanic Soul",
@@ -4658,7 +5380,8 @@
 				"resist": [
 					"cold"
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Fathomless Plunge",
@@ -4669,12 +5392,18 @@
 			"subclassSource": "TCE",
 			"level": 14,
 			"system": {
-				"target.value": 30,
-				"target.units": "ft",
-				"target.type": "radius",
 				"range.value": 1,
-				"range.units": "mi"
-			}
+				"range.units": "mi",
+				"activities": [
+					{
+						"type": "utility",
+						"target.template.size": "30",
+						"target.template.units": "ft",
+						"target.template.type": "radius"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Sanctuary Vessel",
@@ -4685,11 +5414,17 @@
 			"subclassSource": "TCE",
 			"level": 10,
 			"system": {
-				"target.value": 5,
-				"target.type": "creature",
 				"range.value": 30,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "5",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Necrotic Husk",
@@ -4700,15 +5435,21 @@
 			"subclassSource": "VRGR",
 			"level": 10,
 			"system": {
-				"target.value": 30,
-				"target.units": "ft",
-				"target.type": "radius"
+				"activities": [
+					{
+						"type": "utility",
+						"target.template.size": "30",
+						"target.template.units": "ft",
+						"target.template.type": "radius"
+					}
+				]
 			},
 			"entryData": {
 				"resist": [
 					"necrotic"
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Radiant Soul",
@@ -4722,7 +5463,8 @@
 				"resist": [
 					"radiant"
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Searing Vengeance",
@@ -4733,10 +5475,16 @@
 			"subclassSource": "XGE",
 			"level": 14,
 			"system": {
-				"target.value": 30,
-				"target.units": "ft",
-				"target.type": "sphere"
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"target.template.size": "30",
+						"target.template.units": "ft",
+						"target.template.type": "sphere"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Hex Warrior",
@@ -4758,7 +5506,8 @@
 						"medium": true
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Accursed Specter",
@@ -4768,9 +5517,8 @@
 			"subclassShortName": "Hexblade",
 			"subclassSource": "XGE",
 			"level": 6,
-			"system": {
-				"actionType": "summ"
-			}
+			"system": {},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Chronal Shift",
@@ -4783,7 +5531,8 @@
 			"system": {
 				"range.value": 30,
 				"range.units": "ft"
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Temporal Awareness",
@@ -4804,7 +5553,8 @@
 						}
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Momentary Stasis",
@@ -4817,7 +5567,8 @@
 			"system": {
 				"range.value": 60,
 				"range.units": "ft"
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Convergent Future",
@@ -4830,7 +5581,8 @@
 			"system": {
 				"range.value": 60,
 				"range.units": "ft"
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Adjust Density",
@@ -4841,11 +5593,17 @@
 			"subclassSource": "EGW",
 			"level": 2,
 			"system": {
-				"target.value": 1,
-				"target.type": "creature",
 				"range.value": 30,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "1",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Violent Attraction",
@@ -4856,11 +5614,17 @@
 			"subclassSource": "EGW",
 			"level": 10,
 			"system": {
-				"target.value": 1,
-				"target.type": "creature",
 				"range.value": 60,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "1",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Event Horizon",
@@ -4871,10 +5635,16 @@
 			"subclassSource": "EGW",
 			"level": 14,
 			"system": {
-				"target.value": 30,
-				"target.units": "ft",
-				"target.type": "sphere"
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"target.template.size": "30",
+						"target.template.units": "ft",
+						"target.template.type": "sphere"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Arcane Ward",
@@ -4885,11 +5655,16 @@
 			"subclassSource": "PHB",
 			"level": 2,
 			"system": {
-				"activation.type": "special",
-				"activation.cost": null,
-				"uses.per": null,
-				"uses.max": "2 * @classes.wizard.levels + floor((@abilities.int.value - 10) / 2)"
-			}
+				"uses.max": "2 * @classes.wizard.levels + floor((@abilities.int.value - 10) / 2)",
+				"activities": [
+					{
+						"type": "utility",
+						"activation.type": "special",
+						"activation.value": null
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Projected Ward",
@@ -4900,10 +5675,16 @@
 			"subclassSource": "PHB",
 			"level": 6,
 			"system": {
-				"target.value": 30,
-				"target.units": "ft",
-				"target.type": "sphere"
-			}
+				"activities": [
+					{
+						"type": "utility",
+						"target.template.size": "30",
+						"target.template.units": "ft",
+						"target.template.type": "sphere"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Benign Transposition",
@@ -4914,11 +5695,17 @@
 			"subclassSource": "PHB",
 			"level": 6,
 			"system": {
-				"target.value": 1,
-				"target.type": "space",
 				"range.value": 30,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.template.size": "1",
+						"target.template.type": "space"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Hypnotic Gaze",
@@ -4929,11 +5716,17 @@
 			"subclassSource": "PHB",
 			"level": 2,
 			"system": {
-				"target.value": 1,
-				"target.type": "creature",
 				"range.value": 5,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "1",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Instinctive Charm",
@@ -4944,11 +5737,17 @@
 			"subclassSource": "PHB",
 			"level": 6,
 			"system": {
-				"target.value": 1,
-				"target.type": "creature",
 				"range.value": 30,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "1",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Inured to Undeath",
@@ -4962,7 +5761,8 @@
 				"resist": [
 					"necrotic"
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Command Undead",
@@ -4973,11 +5773,17 @@
 			"subclassSource": "PHB",
 			"level": 14,
 			"system": {
-				"target.value": 1,
-				"target.type": "creature",
 				"range.value": 60,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "1",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Training in War and Song (Bladesinging)",
@@ -5005,7 +5811,8 @@
 						"light": true
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Deflecting Shroud",
@@ -5016,11 +5823,17 @@
 			"subclassSource": "XGE",
 			"level": 14,
 			"system": {
-				"target.value": 3,
-				"target.type": "creature",
 				"range.value": 60,
-				"range.units": "ft"
-			}
+				"range.units": "ft",
+				"activities": [
+					{
+						"type": "utility",
+						"target.affects.count": "3",
+						"target.affects.type": "creature"
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Tool Proficiency",
@@ -5039,7 +5852,8 @@
 						"anyArtisansTool": 1
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Chemical Mastery",
@@ -5057,7 +5871,8 @@
 				"conditionImmune": [
 					"poisoned"
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Armor Model",
@@ -5068,10 +5883,9 @@
 			"subclassSource": "TCE",
 			"level": 3,
 			"system": {
-				"uses.value": null,
-				"uses.max": null,
-				"uses.per": null
-			}
+				"uses.max": null
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Defensive Field",
@@ -5082,14 +5896,22 @@
 			"subclassSource": "TCE",
 			"level": 3,
 			"system": {
-				"actionType": "heal",
-				"damage.parts": [
-					[
-						"@classes.artificer.levels",
-						"temphp"
-					]
+				"activities": [
+					{
+						"type": "damage",
+						"damage.parts": [
+							{
+								"custom.enabled": true,
+								"custom.formula": "@classes.artificer.levels",
+								"types": [
+									"temphp"
+								]
+							}
+						]
+					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Lightning Launcher",
@@ -5121,7 +5943,8 @@
 						}
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Powered Steps",
@@ -5144,7 +5967,8 @@
 					],
 					"disabled": true
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Thunder Gauntlets",
@@ -5175,7 +5999,8 @@
 						}
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Tools of the Trade",
@@ -5199,7 +6024,8 @@
 						"anyArtisansTool": 1
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Eldritch Cannon",
@@ -5210,18 +6036,30 @@
 			"subclassSource": "TCE",
 			"level": 3,
 			"system": {
-				"damage.parts": [
-					[
-						"2d8",
-						"fire"
-					],
-					[
-						"2d8",
-						"force"
-					]
-				],
-				"formula": "1d8 + @abilities.int.mod"
-			}
+				"activities": [
+					{
+						"type": "damage",
+						"roll.formula": "1d8 + @abilities.int.mod",
+						"damage.parts": [
+							{
+								"custom.enabled": true,
+								"custom.formula": "2d8",
+								"types": [
+									"fire"
+								]
+							},
+							{
+								"custom.enabled": true,
+								"custom.formula": "2d8",
+								"types": [
+									"force"
+								]
+							}
+						]
+					}
+				]
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Tool Proficiency",
@@ -5240,7 +6078,8 @@
 						"anyArtisansTool": 1
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Arcane Firearm",
@@ -5266,7 +6105,8 @@
 						}
 					]
 				}
-			]
+			],
+			"migrationVersion": 3
 		},
 		{
 			"name": "Battle Ready",
@@ -5282,7 +6122,8 @@
 						"martial": true
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Steel Defender",
@@ -5292,9 +6133,8 @@
 			"subclassShortName": "Battle Smith",
 			"subclassSource": "TCE",
 			"level": 3,
-			"system": {
-				"actionType": "summ"
-			}
+			"system": {},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Tool Proficiency",
@@ -5313,7 +6153,8 @@
 						"anyArtisansTool": 1
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Bonus Proficiencies",
@@ -5329,7 +6170,8 @@
 						"any": 3
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Martial Training",
@@ -5351,7 +6193,8 @@
 						"shield": true
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Nature's Ward",
@@ -5377,7 +6220,8 @@
 				"immune": [
 					"poison"
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Combat Superiority",
@@ -5398,7 +6242,8 @@
 						"faces": "8 + (sign(ceil((<$level$> - 2) / 8) - 1) * 2)"
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Maneuver Options",
@@ -5408,7 +6253,8 @@
 			"subclassShortName": "Battle Master",
 			"subclassSource": "XPHB",
 			"level": 3,
-			"isIgnored": true
+			"isIgnored": true,
+			"migrationVersion": 3
 		},
 		{
 			"name": "Student of War",
@@ -5441,7 +6287,8 @@
 						"anyArtisansTool": 1
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Psionic Power",
@@ -5462,7 +6309,8 @@
 						"faces": "(6 + ((ceil((<$level$> + 2) / 6) - 1) * 2))"
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Guarded Mind",
@@ -5476,7 +6324,8 @@
 				"resist": [
 					"psychic"
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Otherworldly Glamour",
@@ -5498,7 +6347,8 @@
 						}
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Umbral Sight",
@@ -5537,7 +6387,8 @@
 						]
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Iron Mind",
@@ -5561,7 +6412,8 @@
 						}
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Assassin's Tools",
@@ -5578,7 +6430,8 @@
 						"poisoner's kit": true
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Psionic Power",
@@ -5599,7 +6452,8 @@
 						"faces": "(6 + (ceil((<$level$> + 2) / 6) - 1) * 2)"
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Psychic Defenses",
@@ -5613,7 +6467,8 @@
 				"resist": [
 					"psychic"
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Radiant Soul",
@@ -5627,7 +6482,8 @@
 				"resist": [
 					"radiant"
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Thought Shield",
@@ -5641,7 +6497,8 @@
 				"resist": [
 					"psychic"
 				]
-			}
+			},
+			"migrationVersion": 3
 		}
 	]
 }

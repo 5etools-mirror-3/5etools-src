@@ -560,8 +560,10 @@
 			],
 			"additionalSpells": [
 				{
-					"name": "Wild Companion",
 					"prepared": {
+						"1": [
+							"speak with animals|xphb"
+						],
 						"2": [
 							"find familiar|xphb"
 						]
@@ -1991,7 +1993,7 @@
 			"classSource": "PHB",
 			"level": 1,
 			"entries": [
-				"You know {@language Druidic}, the secret language of druids. You can speak the language and use it to leave hidden messages. You and others who know this language automatically spot such a message. Others spot the message's presence with a successful DC 15 Wisdom ({@skill Perception}) check but can't decipher it without magic."
+				"You know {@language Druidic}, the secret language of druids. You can speak the language and use it to leave hidden messages. You and others who know this language automatically spot such a message. Others spot the message's presence with a successful {@dc 15} Wisdom ({@skill Perception}) check but can't decipher it without magic."
 			]
 		},
 		{
@@ -2540,7 +2542,7 @@
 											"type": "item",
 											"name": "Game Statistics",
 											"entries": [
-												"Your game statistics are replaced by the Beast's stat block, but you retain your creature type; {@variantrule Hit Points|XPHB}; {@variantrule Hit Point Dice|XPHB}; Intelligence, Wisdom, and Charisma scores; class features; languages; and feats. You also retain your skill and saving throw proficiencies and use your {@variantrule Proficiency|XPHB} Bonus for them, in addition to gaining the proficiencies of the creature. If a skill or saving throw modifier in the Beast's stat block is higher than yours, use the one in the stat block."
+												"Your game statistics are replaced by the Beast's stat block, but you retain your creature type; {@variantrule Hit Points|XPHB}; {@variantrule Hit Point Dice|XPHB}; Intelligence, Wisdom, and Charisma scores; class features; languages; and feats. You also retain your skill and saving throw proficiencies and use your {@variantrule Proficiency|XPHB|Proficiency Bonus} for them, in addition to gaining the proficiencies of the creature. If a skill or saving throw modifier in the Beast's stat block is higher than yours, use the one in the stat block."
 											]
 										},
 										{
@@ -2707,7 +2709,7 @@
 							"type": "entries",
 							"name": "Primal Strike",
 							"entries": [
-								"The extra damage of your Primal Strike increases to {@dice 2d8}."
+								"The extra damage of your Primal Strike increases to {@damage 2d8}."
 							]
 						}
 					]
@@ -3603,26 +3605,59 @@
 				"While in your starry form, you retain your game statistics, but your body becomes luminous; your joints glimmer like stars, and glowing lines connect them as on a star chart. This form sheds bright light in a 10-foot radius and dim light for an additional 10 feet. The form lasts for 10 minutes. It ends early if you dismiss it (no action required), are {@condition incapacitated}, die, or use this feature again.",
 				"Whenever you assume your starry form, choose which of the following constellations glimmers on your body; your choice gives you certain benefits while in the form:",
 				{
-					"type": "entries",
-					"name": "Archer",
-					"entries": [
-						"A constellation of an archer appears on you. When you activate this form, and as a bonus action on your subsequent turns while it lasts, you can make a ranged spell attack, hurling a luminous arrow that targets one creature within 60 feet of you. On a hit, the attack deals radiant damage equal to {@dice 1d8} + your Wisdom modifier."
-					]
+					"type": "refSubclassFeature",
+					"subclassFeature": "Archer|Druid||Stars|TCE|2"
 				},
 				{
-					"type": "entries",
-					"name": "Chalice",
-					"entries": [
-						"A constellation of a life-giving goblet appears on you. Whenever you cast a spell using a spell slot that restores hit points to a creature, you or another creature within 30 feet of you can regain hit points equal to {@dice 1d8} + your Wisdom modifier."
-					]
+					"type": "refSubclassFeature",
+					"subclassFeature": "Chalice|Druid||Stars|TCE|2"
 				},
 				{
-					"type": "entries",
-					"name": "Dragon",
-					"entries": [
-						"A constellation of a wise dragon appears on you. When you make an Intelligence or a Wisdom check or a Constitution saving throw to maintain {@status concentration} on a spell, you can treat a roll of 9 or lower on the {@dice d20} as a 10."
-					]
+					"type": "refSubclassFeature",
+					"subclassFeature": "Dragon|Druid||Stars|TCE|2"
 				}
+			]
+		},
+		{
+			"name": "Archer",
+			"source": "TCE",
+			"page": 38,
+			"className": "Druid",
+			"classSource": "PHB",
+			"subclassShortName": "Stars",
+			"subclassSource": "TCE",
+			"level": 2,
+			"header": 2,
+			"entries": [
+				"A constellation of an archer appears on you. When you activate this form, and as a bonus action on your subsequent turns while it lasts, you can make a ranged spell attack, hurling a luminous arrow that targets one creature within 60 feet of you. On a hit, the attack deals radiant damage equal to {@damage 1d8} + your Wisdom modifier."
+			]
+		},
+		{
+			"name": "Chalice",
+			"source": "TCE",
+			"page": 38,
+			"className": "Druid",
+			"classSource": "PHB",
+			"subclassShortName": "Stars",
+			"subclassSource": "TCE",
+			"level": 2,
+			"header": 2,
+			"entries": [
+				"A constellation of a life-giving goblet appears on you. Whenever you cast a spell using a spell slot that restores hit points to a creature, you or another creature within 30 feet of you can regain hit points equal to {@dice 1d8} + your Wisdom modifier."
+			]
+		},
+		{
+			"name": "Dragon",
+			"source": "TCE",
+			"page": 38,
+			"className": "Druid",
+			"classSource": "PHB",
+			"subclassShortName": "Stars",
+			"subclassSource": "TCE",
+			"level": 2,
+			"header": 2,
+			"entries": [
+				"A constellation of a wise dragon appears on you. When you make an Intelligence or a Wisdom check or a Constitution saving throw to maintain {@status concentration} on a spell, you can treat a roll of 9 or lower on the {@dice d20} as a 10."
 			]
 		},
 		{
@@ -3669,7 +3704,7 @@
 			"header": 2,
 			"entries": [
 				"{@i 10th-level Circle of the Stars feature}",
-				"The constellations of your Starry Form improve. The {@dice 1d8} of the Archer and the Chalice becomes {@dice 2d8}, and while the Dragon is active, you have a flying speed of 20 feet and can hover.",
+				"The constellations of your Starry Form improve. The {@damage 1d8} of the Archer and the Chalice becomes {@damage 2d8}, and while the Dragon is active, you have a flying speed of 20 feet and can hover.",
 				"Moreover, at the start of each of your turns while in your Starry Form, you can change which constellation glimmers on your body."
 			]
 		},
@@ -5049,26 +5084,59 @@
 				"While in your starry form, you retain your game statistics, but your body becomes luminous, your joints glimmer like stars, and glowing lines connect them as on a star chart. This form sheds {@variantrule Bright Light|XPHB} in a 10-foot radius and {@variantrule Dim Light|XPHB} for an additional 10 feet. The form lasts for 10 minutes. It ends early if you dismiss it (no action required), have the {@condition Incapacitated|XPHB} condition, or use this feature again.",
 				"Whenever you assume your starry form, choose which of the following constellations glimmers on your body; your choice gives you certain benefits while in the form.",
 				{
-					"type": "entries",
-					"name": "Archer",
-					"entries": [
-						"A constellation of an archer appears on you. When you activate this form and as a {@variantrule Bonus Action|XPHB} on your subsequent turns while it lasts, you can make a ranged spell attack, hurling a luminous arrow that targets one creature within 60 feet of yourself. On a hit, the attack deals Radiant damage equal to {@dice 1d8} plus your Wisdom modifier."
-					]
+					"type": "refSubclassFeature",
+					"subclassFeature": "Archer|Druid|XPHB|Stars|XPHB|3"
 				},
 				{
-					"type": "entries",
-					"name": "Chalice",
-					"entries": [
-						"A constellation of a life-giving goblet appears on you. Whenever you cast a spell using a spell slot that restores {@variantrule Hit Points|XPHB} to a creature, you or another creature within 30 feet of you can regain {@variantrule Hit Points|XPHB} equal to {@dice 1d8} plus your Wisdom modifier."
-					]
+					"type": "refSubclassFeature",
+					"subclassFeature": "Chalice|Druid|XPHB|Stars|XPHB|3"
 				},
 				{
-					"type": "entries",
-					"name": "Dragon",
-					"entries": [
-						"A constellation of a wise dragon appears on you. When you make an Intelligence or a Wisdom check or a Constitution saving throw to maintain {@status Concentration|XPHB}, you can treat a roll of 9 or lower on the {@dice d20} as a 10."
-					]
+					"type": "refSubclassFeature",
+					"subclassFeature": "Dragon|Druid|XPHB|Stars|XPHB|3"
 				}
+			]
+		},
+		{
+			"name": "Archer",
+			"source": "XPHB",
+			"page": 88,
+			"className": "Druid",
+			"classSource": "XPHB",
+			"subclassShortName": "Stars",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"entries": [
+				"A constellation of an archer appears on you. When you activate this form and as a {@variantrule Bonus Action|XPHB} on your subsequent turns while it lasts, you can make a ranged spell attack, hurling a luminous arrow that targets one creature within 60 feet of yourself. On a hit, the attack deals Radiant damage equal to {@damage 1d8} plus your Wisdom modifier."
+			]
+		},
+		{
+			"name": "Chalice",
+			"source": "XPHB",
+			"page": 88,
+			"className": "Druid",
+			"classSource": "XPHB",
+			"subclassShortName": "Stars",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"entries": [
+				"A constellation of a life-giving goblet appears on you. Whenever you cast a spell using a spell slot that restores {@variantrule Hit Points|XPHB} to a creature, you or another creature within 30 feet of you can regain {@variantrule Hit Points|XPHB} equal to {@dice 1d8} plus your Wisdom modifier."
+			]
+		},
+		{
+			"name": "Dragon",
+			"source": "XPHB",
+			"page": 88,
+			"className": "Druid",
+			"classSource": "XPHB",
+			"subclassShortName": "Stars",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"header": 2,
+			"entries": [
+				"A constellation of a wise dragon appears on you. When you make an Intelligence or a Wisdom check or a Constitution saving throw to maintain {@status Concentration|XPHB}, you can treat a roll of 9 or lower on the {@dice d20} as a 10."
 			]
 		},
 		{
@@ -5117,7 +5185,7 @@
 			"level": 10,
 			"header": 2,
 			"entries": [
-				"The constellations of your Starry Form improve. The {@dice 1d8} of the Archer and the Chalice becomes {@dice 2d8}, and while the Dragon is active, you have a {@variantrule Fly Speed|XPHB} of 20 feet and can hover.",
+				"The constellations of your Starry Form improve. The {@damage 1d8} of the Archer and the Chalice becomes {@damage 2d8}, and while the Dragon is active, you have a {@variantrule Fly Speed|XPHB} of 20 feet and can hover.",
 				"Moreover, at the start of each of your turns while in your Starry Form, you can change which constellation glimmers on your body."
 			]
 		},
