@@ -6192,28 +6192,28 @@ globalThis.DataUtil = {
 				return m_entries
 			}
 
-			function printEntriesAsPlainText(entries) {
-				// Função recursiva para extrair texto plano de todas as entradas
-				entries.forEach(entry => {
-					if (typeof entry === "string") {
-						console.log(entry); // Imprime strings diretamente
-					} else if (typeof entry === "object") {
-						if (entry.type === "list" && entry.items) {
-							// Para listas, imprime cada item
-							entry.items.forEach(item => console.log(item));
-						} else if (entry.entries) {
-							// Recorre em "entries"
-							printEntriesAsPlainText(entry.entries);
-						}
-					}
-				});
-			}
+			// function printEntriesAsPlainText(entries) {
+			// 	// Função recursiva para extrair texto plano de todas as entradas
+			// 	entries.forEach(entry => {
+			// 		if (typeof entry === "string") {
+			// 			console.log(entry); // Imprime strings diretamente
+			// 		} else if (typeof entry === "object") {
+			// 			if (entry.type === "list" && entry.items) {
+			// 				// Para listas, imprime cada item
+			// 				entry.items.forEach(item => console.log(item));
+			// 			} else if (entry.entries) {
+			// 				// Recorre em "entries"
+			// 				printEntriesAsPlainText(entry.entries);
+			// 			}
+			// 		}
+			// 	});
+			// }
 			
 			// Traduzir cada `classFeature`
 			return text.map(description => {
 				if (description.entries) {
 					const translatedEntries = translateEntries(description.entries);
-					printEntriesAsPlainText(translatedEntries);
+					// printEntriesAsPlainText(translatedEntries);
 					return { ...description, entries: translateEntries(description.entries) };
 				}
 				return description; // Retornar outros casos sem alteração
