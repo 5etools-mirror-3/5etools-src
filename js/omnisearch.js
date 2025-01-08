@@ -250,81 +250,77 @@ class Omnisearch {
 
 	/* -------------------------------------------- */
 
+	static _RE_SYNTAX__SOURCE = /\bsource:(?<source>.*)\b/i;
+	static _RE_SYNTAX__PAGE = /\bpage:\s*(?<pageStart>\d+)\s*(?:-\s*(?<pageEnd>\d+)\s*)?\b/i;
+
 	static async pGetResults (searchTerm) {
 		searchTerm = (searchTerm || "").toAscii();
 
 		await this.pInit();
 
-		const basicTokens = searchTerm.split(/\s+/g);
+		const syntaxMetasCategory = [];
+		const syntaxMetasSource = [];
+		const syntaxMetasPageRange = [];
 
-		const tokenMetas = [];
-		// Filter out any special tokens
-		const filteredBasicTokens = basicTokens.filter(t => {
-			t = t.toLowerCase().trim();
-
-			let category = Object.keys(this._CATEGORY_COUNTS)
-				.map(k => k.toLowerCase())
-				.find(k => (`in:${k}` === t || `in:${k}s` === t));
-
-			// Alias categories
-			if (!category) {
-				if (t === "in:creature" || t === "in:creatures" || t === "in:monster" || t === "in:monsters") category = "bestiary";
-			}
-
-			const mSource = /^source:(.*)$/.exec(t);
-			const mPage = /^page:\s*(\d+)\s*(-\s*(\d+)\s*)?$/.exec(t);
-
-			if (category || mSource || mPage) {
-				tokenMetas.push({
-					token: t,
-					hasCategory: !!category,
-					hasSource: !!mSource,
-					hasPageRange: !!mPage,
-					category,
-					source: mSource ? mSource[1].trim() : null,
-					pageRange: mPage ? [Number(mPage[1]), mPage[3] ? Number(mPage[3]) : Number(mPage[1])] : null,
+		searchTerm = searchTerm
+			.replace(this._RE_SYNTAX__SOURCE, (...m) => {
+				const {source} = m.at(-1);
+				syntaxMetasSource.push({
+					source: source.trim().toLowerCase(),
 				});
-				return false;
-			}
-			return true;
+				return "";
+			})
+			.replace(this._RE_SYNTAX__PAGE, (...m) => {
+				const {pageStart, pageEnd} = m.at(-1);
+				syntaxMetasPageRange.push({
+					pageRange: [
+						Number(pageStart),
+						pageEnd ? Number(pageEnd) : Number(pageStart),
+					],
+				});
+				return "";
+			})
+			.replace(this._RE_SYNTAX__IN_CATEGORY, (...m) => {
+				let {category} = m.at(-1);
+				category = category.toLowerCase().trim();
+
+				const categories = (
+					this._IN_CATEGORY_ALIAS[category]
+					|| this._IN_CATEGORY_ALIAS_SHORT[category]
+					|| [category]
+				)
+					.map(it => it.toLowerCase());
+
+				syntaxMetasCategory.push({categories});
+				return "";
+			})
+			.replace(/\s+/g, " ")
+			.trim();
+
+		const results = await this._pGetResults_pGetBaseResults({
+			searchTerm,
+			syntaxMetasCategory,
+			syntaxMetasSource,
+			syntaxMetasPageRange,
 		});
 
-		let results;
+		return this.pGetFilteredResults(results, {isApplySrdFilter: true, isApplyPartneredFilter: true});
+	}
 
-		const specialTokenMetasCategory = tokenMetas.filter(it => it.hasCategory);
-		const specialTokenMetasSource = tokenMetas.filter(it => it.hasSource);
-		const specialTokenMetasPageRange = tokenMetas.filter(it => it.hasPageRange);
+	static _pGetResults_pGetBaseResults (
+		{
+			searchTerm,
+			syntaxMetasCategory,
+			syntaxMetasSource,
+			syntaxMetasPageRange,
+		},
+	) {
 		if (
-			(specialTokenMetasCategory.length === 1 || specialTokenMetasSource.length >= 1 || specialTokenMetasPageRange.length >= 1)
-			&& (specialTokenMetasCategory.length <= 1) // Sanity constraints--on an invalid search, run the default search
+			!syntaxMetasCategory.length
+			&& !syntaxMetasSource.length
+			&& !syntaxMetasPageRange.length
 		) {
-			const categoryTerm = specialTokenMetasCategory.length ? specialTokenMetasCategory[0].category.toLowerCase() : null;
-			const sourceTerms = specialTokenMetasSource.map(it => it.source);
-			const pageRanges = specialTokenMetasPageRange.map(it => it.pageRange);
-			// Glue the remaining tokens back together, and pass them to search lib
-			const searchTerm = filteredBasicTokens.join(" ");
-
-			results = searchTerm
-				? this._searchIndex
-					.search(
-						searchTerm,
-						{
-							fields: {
-								n: {boost: 5, expand: true},
-								s: {expand: true},
-							},
-							bool: "AND",
-							expand: true,
-						},
-					)
-				: Object.values(this._searchIndex.documentStore.docs).map(it => ({doc: it}));
-
-			results = results
-				.filter(r => !categoryTerm || (r.doc.cf.toLowerCase() === categoryTerm))
-				.filter(r => !sourceTerms.length || (r.doc.s && sourceTerms.includes(Parser.sourceJsonToAbv(r.doc.s).toLowerCase())))
-				.filter(r => !pageRanges.length || (r.doc.p && pageRanges.some(range => r.doc.p >= range[0] && r.doc.p <= range[1])));
-		} else {
-			results = this._searchIndex.search(
+			return this._searchIndex.search(
 				searchTerm,
 				{
 					fields: {
@@ -337,8 +333,32 @@ class Omnisearch {
 			);
 		}
 
-		return this.pGetFilteredResults(results, {isApplySrdFilter: true, isApplyPartneredFilter: true});
+		const categoryTerms = syntaxMetasCategory.flatMap(it => it.categories);
+		const sourceTerms = syntaxMetasSource.map(it => it.source);
+		const pageRanges = syntaxMetasPageRange.map(it => it.pageRange);
+
+		const resultsUnfiltered = searchTerm
+			? this._searchIndex
+				.search(
+					searchTerm,
+					{
+						fields: {
+							n: {boost: 5, expand: true},
+							s: {expand: true},
+						},
+						bool: "AND",
+						expand: true,
+					},
+				)
+			: Object.values(this._searchIndex.documentStore.docs).map(it => ({doc: it}));
+
+		return resultsUnfiltered
+			.filter(r => !categoryTerms.length || (categoryTerms.includes(r.doc.cf.toLowerCase())))
+			.filter(r => !sourceTerms.length || (r.doc.s && sourceTerms.includes(Parser.sourceJsonToAbv(r.doc.s).toLowerCase())))
+			.filter(r => !pageRanges.length || (r.doc.p && pageRanges.some(range => r.doc.p >= range[0] && r.doc.p <= range[1])));
 	}
+
+	/* -------------------------------------------- */
 
 	// region Search
 	static async _pDoSearch () {
@@ -621,6 +641,8 @@ class Omnisearch {
 	static get isShowLegacy () { return this._state.isShowLegacy; }
 	static get isShowBlocklisted () { return this._state.isShowBlocklisted; }
 
+	/* -------------------------------------------- */
+
 	static async _pDoSearchLoad () {
 		elasticlunr.clearStopWords();
 		this._searchIndex = elasticlunr(function () {
@@ -664,6 +686,8 @@ class Omnisearch {
 				if (it.c === Parser.CAT_ID_ADVENTURE || it.c === Parser.CAT_ID_BOOK) this._adventureBookLookup[it.s.toLowerCase()] = it.c;
 			});
 		});
+
+		this._initReInCategory();
 	}
 
 	static _maxId = null;
@@ -674,6 +698,75 @@ class Omnisearch {
 		else this._CATEGORY_COUNTS[d.cf]++;
 		this._searchIndex.addDoc(d);
 	}
+
+	static _IN_CATEGORY_ALIAS = null;
+	static _IN_CATEGORY_ALIAS_SHORT = null;
+	static _RE_SYNTAX__IN_CATEGORY = null;
+
+	static _initReInCategory () {
+		if (this._RE_SYNTAX__IN_CATEGORY) return;
+
+		const inCategoryAlias = {
+			"creature": [Parser.pageCategoryToFull(Parser.CAT_ID_CREATURE)],
+			"monster": [Parser.pageCategoryToFull(Parser.CAT_ID_CREATURE)],
+
+			[new Renderer.tag.TagQuickref().tagName]: [Parser.pageCategoryToFull(Parser.CAT_ID_QUICKREF)],
+			[new Renderer.tag.TagRace().tagName]: [Parser.pageCategoryToFull(Parser.CAT_ID_RACE)],
+			[new Renderer.tag.TagReward().tagName]: [Parser.pageCategoryToFull(Parser.CAT_ID_OTHER_REWARD)],
+			[new Renderer.tag.TagOptfeature().tagName]: Parser.CAT_ID_GROUPS["optionalfeature"].map(catId => Parser.pageCategoryToFull(catId)),
+			[new Renderer.tag.TagClassFeature().tagName]: [Parser.pageCategoryToFull(Parser.CAT_ID_CLASS_FEATURE)],
+			[new Renderer.tag.TagSubclassFeature().tagName]: [Parser.pageCategoryToFull(Parser.CAT_ID_SUBCLASS_FEATURE)],
+			[new Renderer.tag.TagVehupgrade().tagName]: Parser.CAT_ID_GROUPS["vehicleUpgrade"].map(catId => Parser.pageCategoryToFull(catId)),
+			[new Renderer.tag.TagLegroup().tagName]: [Parser.pageCategoryToFull(Parser.CAT_ID_LEGENDARY_GROUP)],
+			[new Renderer.tag.TagCharoption().tagName]: [Parser.pageCategoryToFull(Parser.CAT_ID_CHAR_CREATION_OPTIONS)],
+			[new Renderer.tag.TagItemMastery().tagName]: [Parser.pageCategoryToFull(Parser.CAT_ID_ITEM_MASTERY)],
+		};
+
+		inCategoryAlias["optionalfeature"] = inCategoryAlias["optfeature"];
+		inCategoryAlias["mastery"] = inCategoryAlias["itemMastery"];
+
+		const inCategoryAliasShort = {
+			"sp": [Parser.pageCategoryToFull(Parser.CAT_ID_SPELL)],
+			"bg": [Parser.pageCategoryToFull(Parser.CAT_ID_BACKGROUND)],
+			"itm": [Parser.pageCategoryToFull(Parser.CAT_ID_ITEM)],
+			"tbl": [Parser.pageCategoryToFull(Parser.CAT_ID_TABLE)],
+			"bk": [Parser.pageCategoryToFull(Parser.CAT_ID_BOOK)],
+			"adv": [Parser.pageCategoryToFull(Parser.CAT_ID_ADVENTURE)],
+			"ft": [Parser.pageCategoryToFull(Parser.CAT_ID_FEAT)],
+			"con": [Parser.pageCategoryToFull(Parser.CAT_ID_CONDITION)],
+			"veh": [Parser.pageCategoryToFull(Parser.CAT_ID_VEHICLE)],
+			"obj": [Parser.pageCategoryToFull(Parser.CAT_ID_OBJECT)],
+			"god": [Parser.pageCategoryToFull(Parser.CAT_ID_DEITY)],
+			"rcp": [Parser.pageCategoryToFull(Parser.CAT_ID_RECIPES)], // :^)
+
+			"cf": inCategoryAlias["classFeature"],
+			"scf": inCategoryAlias["subclassFeature"],
+			"mon": inCategoryAlias["monster"],
+			"opf": inCategoryAlias["optfeature"],
+		};
+
+		const getLowercaseKeyed = obj => {
+			return Object.fromEntries(
+				Object.entries(obj)
+					.map(([k, v]) => [k.toLowerCase(), v]),
+			);
+		};
+
+		this._IN_CATEGORY_ALIAS = getLowercaseKeyed(inCategoryAlias);
+		this._IN_CATEGORY_ALIAS_SHORT = getLowercaseKeyed(inCategoryAliasShort);
+
+		// Order is important; approx longest first
+		const ptCategory = [
+			...Object.keys(this._CATEGORY_COUNTS).map(it => it.toLowerCase().escapeRegexp()),
+			...Object.keys(this._IN_CATEGORY_ALIAS),
+			...Object.keys(this._IN_CATEGORY_ALIAS_SHORT),
+		]
+			.join("|");
+
+		this._RE_SYNTAX__IN_CATEGORY = new RegExp(`\\bin:(?<category>${ptCategory})s?\\b`, "i");
+	}
+
+	/* -------------------------------------------- */
 
 	static handleLinkKeyDown (evt, $ele) {
 		Renderer.hover.cleanTempWindows();
@@ -741,17 +834,39 @@ class Omnisearch {
 	}
 
 	static doShowHelp () {
+		this._initReInCategory();
+
 		const {$modalInner} = UiUtil.getShowModal({
 			title: "Help",
 			isMinHeight0: true,
+			isUncappedHeight: true,
+			isMaxWidth640p: true,
 		});
+
+		const ptCategoriesShort = Object.entries(this._IN_CATEGORY_ALIAS_SHORT)
+			.sort(([shortA], [shortB]) => SortUtil.ascSortLower(shortA, shortB))
+			.map(([short, longs]) => {
+				return `<li class="ve-flex">
+					<span class="ve-inline-block min-w-60p ve-text-right"><code>in:${short}</code></span>
+					<span class="mx-2">&rarr;</span>
+					<span class="ve-flex-wrap">${longs.map(long => `<code>in:${long.toLowerCase()}</code>`).join("/")}</span>
+				</li>`;
+			})
+			.join("");
 
 		$modalInner.append(`
 			<p>The following search syntax is available:</p>
 			<ul>
-				<li><code>in:&lt;category&gt;</code> where <code>&lt;category&gt;</code> can be &quot;spell&quot;, &quot;item&quot;, &quot;bestiary&quot;, etc.</li>
 				<li><code>source:&lt;abbreviation&gt;</code> where <code>&lt;abbreviation&gt;</code> is an abbreviated source/book name (&quot;PHB&quot;, &quot;MM&quot;, etc.)</li>
 				<li><code>page:&lt;number&gt;</code> or <code>page:&lt;rangeStart&gt;-&lt;rangeEnd&gt;</code></li>
+				<li>
+					<code>in:&lt;category&gt;</code> where <code>&lt;category&gt;</code> can be &quot;spell&quot;, &quot;item&quot;, &quot;bestiary&quot;, etc.
+					<br>
+					The following short-hand <code>&lt;category&gt;</code> values are available:
+				</li>
+				<ul>
+					${ptCategoriesShort}
+				</ul>
 			</ul>
 		`);
 	}

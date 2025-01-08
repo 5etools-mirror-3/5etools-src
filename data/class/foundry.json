@@ -132,9 +132,891 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Barbarian",
+			"source": "XPHB",
+			"advancement": [
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"identifier": "rage-damage",
+						"type": "number",
+						"scale": {
+							"1": {
+								"value": 2
+							},
+							"9": {
+								"value": 3
+							},
+							"16": {
+								"value": 4
+							}
+						}
+					},
+					"title": "Rage Damage"
+				},
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"type": "dice",
+						"scale": {
+							"9": {
+								"number": 1,
+								"faces": 10
+							},
+							"17": {
+								"number": 2,
+								"faces": 10
+							}
+						}
+					},
+					"title": "Brutal Strike"
+				},
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"type": "string",
+						"scale": {
+							"1": {
+								"value": "2"
+							},
+							"3": {
+								"value": "3"
+							},
+							"6": {
+								"value": "4"
+							},
+							"12": {
+								"value": "5"
+							},
+							"16": {
+								"value": "6"
+							}
+						}
+					},
+					"title": "Rages"
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Bard",
+			"source": "XPHB",
+			"advancement": [
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"identifier": "prepared-max",
+						"type": "number",
+						"scale": {
+							"1": {
+								"value": 4
+							},
+							"2": {
+								"value": 5
+							},
+							"3": {
+								"value": 6
+							},
+							"4": {
+								"value": 7
+							},
+							"5": {
+								"value": 9
+							},
+							"6": {
+								"value": 10
+							},
+							"7": {
+								"value": 11
+							},
+							"8": {
+								"value": 12
+							},
+							"9": {
+								"value": 14
+							},
+							"10": {
+								"value": 15
+							},
+							"11": {
+								"value": 16
+							},
+							"13": {
+								"value": 17
+							},
+							"15": {
+								"value": 18
+							},
+							"17": {
+								"value": 19
+							},
+							"18": {
+								"value": 20
+							},
+							"19": {
+								"value": 21
+							},
+							"20": {
+								"value": 22
+							}
+						}
+					},
+					"title": "Max Prepared Spells"
+				},
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"identifier": "inspiration",
+						"type": "dice",
+						"scale": {
+							"1": {
+								"faces": 6
+							},
+							"5": {
+								"faces": 8
+							},
+							"10": {
+								"faces": 10
+							},
+							"15": {
+								"faces": 12
+							}
+						}
+					},
+					"title": "Inspiration Die"
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Cleric",
+			"source": "XPHB",
+			"advancement": [
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"identifier": "channel-divinity",
+						"type": "number",
+						"scale": {
+							"2": {
+								"value": 2
+							},
+							"6": {
+								"value": 3
+							},
+							"18": {
+								"value": 4
+							}
+						}
+					},
+					"title": "Channel Divinity Uses"
+				},
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"identifier": "prepared-max",
+						"type": "number",
+						"scale": {
+							"1": {
+								"value": 4
+							},
+							"2": {
+								"value": 5
+							},
+							"3": {
+								"value": 6
+							},
+							"4": {
+								"value": 7
+							},
+							"5": {
+								"value": 9
+							},
+							"6": {
+								"value": 10
+							},
+							"7": {
+								"value": 11
+							},
+							"8": {
+								"value": 12
+							},
+							"9": {
+								"value": 14
+							},
+							"10": {
+								"value": 15
+							},
+							"11": {
+								"value": 16
+							},
+							"13": {
+								"value": 17
+							},
+							"15": {
+								"value": 18
+							},
+							"17": {
+								"value": 19
+							},
+							"18": {
+								"value": 20
+							},
+							"19": {
+								"value": 21
+							},
+							"20": {
+								"value": 22
+							}
+						}
+					},
+					"title": "Max Prepared Spells"
+				},
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"type": "dice",
+						"scale": {
+							"7": {
+								"number": 1,
+								"faces": 8
+							},
+							"14": {
+								"number": 2,
+								"faces": 8
+							}
+						}
+					},
+					"title": "Divine Strike"
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Druid",
+			"source": "XPHB",
+			"advancement": [
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"identifier": "prepared-max",
+						"type": "number",
+						"scale": {
+							"1": {
+								"value": 4
+							},
+							"2": {
+								"value": 5
+							},
+							"3": {
+								"value": 6
+							},
+							"4": {
+								"value": 7
+							},
+							"5": {
+								"value": 9
+							},
+							"6": {
+								"value": 10
+							},
+							"7": {
+								"value": 11
+							},
+							"8": {
+								"value": 12
+							},
+							"9": {
+								"value": 14
+							},
+							"10": {
+								"value": 15
+							},
+							"11": {
+								"value": 16
+							},
+							"13": {
+								"value": 17
+							},
+							"15": {
+								"value": 18
+							},
+							"17": {
+								"value": 19
+							},
+							"18": {
+								"value": 20
+							},
+							"19": {
+								"value": 21
+							},
+							"20": {
+								"value": 22
+							}
+						}
+					},
+					"title": "Max Prepared Spells"
+				},
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"identifier": "wild-shape",
+						"type": "cr",
+						"scale": {
+							"2": {
+								"value": 0.25
+							},
+							"4": {
+								"value": 0.5
+							},
+							"8": {
+								"value": 1
+							}
+						}
+					},
+					"title": "Wild Shape CR"
+				},
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"type": "number",
+						"scale": {
+							"2": {
+								"value": 2
+							},
+							"6": {
+								"value": 3
+							},
+							"17": {
+								"value": 4
+							}
+						}
+					},
+					"title": "Wild Shape Uses"
+				},
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"type": "number",
+						"scale": {
+							"2": {
+								"value": 4
+							},
+							"4": {
+								"value": 6
+							},
+							"8": {
+								"value": 8
+							}
+						}
+					},
+					"title": "Known Forms"
+				},
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"type": "dice",
+						"scale": {
+							"7": {
+								"number": 1,
+								"faces": 8
+							},
+							"15": {
+								"number": 2,
+								"faces": 8
+							}
+						}
+					},
+					"title": "Elemental Fury"
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Fighter",
+			"source": "XPHB",
+			"advancement": [
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"type": "number",
+						"scale": {
+							"2": {
+								"value": 1
+							},
+							"17": {
+								"value": 2
+							}
+						}
+					},
+					"title": "Action Surge"
+				},
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"type": "number",
+						"scale": {
+							"9": {
+								"value": 1
+							},
+							"13": {
+								"value": 2
+							},
+							"17": {
+								"value": 3
+							}
+						}
+					},
+					"title": "Indomitable"
+				},
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"type": "number",
+						"scale": {
+							"1": {
+								"value": 2
+							},
+							"4": {
+								"value": 3
+							},
+							"10": {
+								"value": 4
+							}
+						}
+					},
+					"title": "Second Wind"
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Monk",
+			"source": "XPHB",
+			"advancement": [
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"identifier": "die",
+						"type": "dice",
+						"scale": {
+							"1": {
+								"faces": 6
+							},
+							"5": {
+								"faces": 8
+							},
+							"11": {
+								"faces": 10
+							},
+							"17": {
+								"faces": 12
+							}
+						}
+					},
+					"title": "Martial Arts Die"
+				},
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"type": "distance",
+						"distance": {
+							"units": "ft"
+						},
+						"scale": {
+							"2": {
+								"value": 10
+							},
+							"6": {
+								"value": 15
+							},
+							"10": {
+								"value": 20
+							},
+							"14": {
+								"value": 25
+							},
+							"18": {
+								"value": 30
+							}
+						}
+					},
+					"title": "Unarmored Movement"
+				},
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"identifier": "focus",
+						"type": "number",
+						"scale": {
+							"1": {
+								"value": 1
+							},
+							"2": {
+								"value": 2
+							},
+							"3": {
+								"value": 3
+							},
+							"4": {
+								"value": 4
+							},
+							"5": {
+								"value": 5
+							},
+							"6": {
+								"value": 6
+							},
+							"7": {
+								"value": 7
+							},
+							"8": {
+								"value": 8
+							},
+							"9": {
+								"value": 9
+							},
+							"10": {
+								"value": 10
+							},
+							"11": {
+								"value": 11
+							},
+							"12": {
+								"value": 12
+							},
+							"13": {
+								"value": 13
+							},
+							"14": {
+								"value": 14
+							},
+							"15": {
+								"value": 15
+							},
+							"16": {
+								"value": 16
+							},
+							"17": {
+								"value": 17
+							},
+							"18": {
+								"value": 18
+							},
+							"19": {
+								"value": 19
+							},
+							"20": {
+								"value": 20
+							}
+						}
+					},
+					"title": "Focus Points"
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Paladin",
+			"source": "XPHB",
+			"advancement": [
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"identifier": "aura",
+						"type": "distance",
+						"scale": {
+							"6": {
+								"value": 10
+							},
+							"18": {
+								"value": 30
+							}
+						}
+					},
+					"title": "Aura Distance"
+				},
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"identifier": "prepared-max",
+						"type": "number",
+						"scale": {
+							"1": {
+								"value": 2
+							},
+							"2": {
+								"value": 3
+							},
+							"3": {
+								"value": 4
+							},
+							"4": {
+								"value": 5
+							},
+							"5": {
+								"value": 6
+							},
+							"7": {
+								"value": 7
+							},
+							"9": {
+								"value": 9
+							},
+							"11": {
+								"value": 10
+							},
+							"13": {
+								"value": 11
+							},
+							"15": {
+								"value": 12
+							},
+							"17": {
+								"value": 14
+							},
+							"19": {
+								"value": 15
+							}
+						}
+					},
+					"title": "Max Prepared Spells"
+				},
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"identifier": "channel-divinity",
+						"type": "number",
+						"scale": {
+							"3": {
+								"value": 2
+							},
+							"11": {
+								"value": 3
+							}
+						}
+					},
+					"title": "Channel Divinity Uses"
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Ranger",
+			"source": "XPHB",
+			"advancement": [
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"type": "number",
+						"scale": {
+							"1": {
+								"value": 2
+							},
+							"5": {
+								"value": 3
+							},
+							"9": {
+								"value": 4
+							},
+							"13": {
+								"value": 5
+							},
+							"17": {
+								"value": 6
+							}
+						}
+					},
+					"title": "Favored Enemy"
+				},
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"identifier": "mark",
+						"type": "dice",
+						"scale": {
+							"1": {
+								"number": 1,
+								"faces": 6
+							},
+							"20": {
+								"number": 1,
+								"faces": 10
+							}
+						}
+					},
+					"title": "Hunter's Mark Damage"
+				},
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"identifier": "max-prepared",
+						"type": "number",
+						"scale": {
+							"1": {
+								"value": 2
+							},
+							"2": {
+								"value": 3
+							},
+							"3": {
+								"value": 4
+							},
+							"4": {
+								"value": 5
+							},
+							"5": {
+								"value": 6
+							},
+							"7": {
+								"value": 7
+							},
+							"9": {
+								"value": 9
+							},
+							"11": {
+								"value": 10
+							},
+							"13": {
+								"value": 11
+							},
+							"15": {
+								"value": 12
+							},
+							"17": {
+								"value": 14
+							},
+							"19": {
+								"value": 15
+							}
+						}
+					},
+					"title": "Max Prepared Spells"
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Rogue",
+			"source": "XPHB",
+			"advancement": [
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"type": "dice",
+						"scale": {
+							"1": {
+								"number": 1,
+								"faces": 6
+							},
+							"3": {
+								"number": 2,
+								"faces": 6
+							},
+							"5": {
+								"number": 3,
+								"faces": 6
+							},
+							"7": {
+								"number": 4,
+								"faces": 6
+							},
+							"9": {
+								"number": 5,
+								"faces": 6
+							},
+							"11": {
+								"number": 6,
+								"faces": 6
+							},
+							"13": {
+								"number": 7,
+								"faces": 6
+							},
+							"15": {
+								"number": 8,
+								"faces": 6
+							},
+							"17": {
+								"number": 9,
+								"faces": 6
+							},
+							"19": {
+								"number": 10,
+								"faces": 6
+							}
+						}
+					},
+					"title": "Sneak Attack"
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Sorcerer",
 			"source": "XPHB",
 			"advancement": [
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"identifier": "prepared-max",
+						"type": "number",
+						"scale": {
+							"1": {
+								"value": 2
+							},
+							"2": {
+								"value": 4
+							},
+							"3": {
+								"value": 6
+							},
+							"4": {
+								"value": 7
+							},
+							"5": {
+								"value": 9
+							},
+							"6": {
+								"value": 10
+							},
+							"7": {
+								"value": 11
+							},
+							"8": {
+								"value": 12
+							},
+							"9": {
+								"value": 14
+							},
+							"10": {
+								"value": 15
+							},
+							"11": {
+								"value": 16
+							},
+							"13": {
+								"value": 17
+							},
+							"15": {
+								"value": 18
+							},
+							"17": {
+								"value": 19
+							},
+							"18": {
+								"value": 20
+							},
+							"19": {
+								"value": 21
+							},
+							"20": {
+								"value": 22
+							}
+						}
+					},
+					"title": "Max Prepared Spells"
+				},
 				{
 					"type": "ScaleValue",
 					"configuration": {
@@ -201,6 +1083,139 @@
 						}
 					},
 					"title": "Sorcery Points"
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Warlock",
+			"source": "XPHB",
+			"advancement": [
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"identifier": "prepared-max",
+						"type": "number",
+						"scale": {
+							"1": {
+								"value": 2
+							},
+							"2": {
+								"value": 3
+							},
+							"3": {
+								"value": 4
+							},
+							"4": {
+								"value": 5
+							},
+							"5": {
+								"value": 6
+							},
+							"6": {
+								"value": 7
+							},
+							"7": {
+								"value": 8
+							},
+							"8": {
+								"value": 9
+							},
+							"9": {
+								"value": 10
+							},
+							"11": {
+								"value": 11
+							},
+							"13": {
+								"value": 12
+							},
+							"15": {
+								"value": 13
+							},
+							"17": {
+								"value": 14
+							},
+							"19": {
+								"value": 15
+							}
+						}
+					},
+					"title": "Max Pact Magic Spells"
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Wizard",
+			"source": "XPHB",
+			"advancement": [
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"identifier": "max-prepared",
+						"type": "number",
+						"scale": {
+							"1": {
+								"value": 4
+							},
+							"2": {
+								"value": 5
+							},
+							"3": {
+								"value": 6
+							},
+							"4": {
+								"value": 7
+							},
+							"5": {
+								"value": 9
+							},
+							"6": {
+								"value": 10
+							},
+							"7": {
+								"value": 11
+							},
+							"8": {
+								"value": 12
+							},
+							"9": {
+								"value": 14
+							},
+							"10": {
+								"value": 15
+							},
+							"11": {
+								"value": 16
+							},
+							"13": {
+								"value": 17
+							},
+							"14": {
+								"value": 18
+							},
+							"15": {
+								"value": 19
+							},
+							"16": {
+								"value": 21
+							},
+							"17": {
+								"value": 22
+							},
+							"18": {
+								"value": 23
+							},
+							"19": {
+								"value": 24
+							},
+							"20": {
+								"value": 25
+							}
+						}
+					},
+					"title": "Max Prepared Spells"
 				}
 			],
 			"migrationVersion": 3
@@ -408,6 +1423,392 @@
 						}
 					},
 					"title": "Divine Strike"
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Arcane Trickster",
+			"shortName": "Arcane Trickster",
+			"source": "XPHB",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"advancement": [
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"identifier": "max-prepared",
+						"type": "number",
+						"scale": {
+							"3": {
+								"value": 3
+							},
+							"4": {
+								"value": 4
+							},
+							"7": {
+								"value": 5
+							},
+							"8": {
+								"value": 6
+							},
+							"10": {
+								"value": 7
+							},
+							"11": {
+								"value": 8
+							},
+							"13": {
+								"value": 9
+							},
+							"14": {
+								"value": 10
+							},
+							"16": {
+								"value": 11
+							},
+							"19": {
+								"value": 12
+							},
+							"20": {
+								"value": 13
+							}
+						}
+					},
+					"title": "Max Prepared Spells"
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Battle Master",
+			"shortName": "Battle Master",
+			"source": "XPHB",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"advancement": [
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"identifier": "superiority",
+						"type": "dice",
+						"scale": {
+							"3": {
+								"number": 4,
+								"faces": 8
+							},
+							"7": {
+								"number": 5,
+								"faces": 8
+							},
+							"10": {
+								"number": 5,
+								"faces": 10
+							},
+							"15": {
+								"number": 6,
+								"faces": 10
+							},
+							"18": {
+								"number": 6,
+								"faces": 12
+							}
+						}
+					},
+					"title": "Superiority Dice"
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Circle of the Land",
+			"shortName": "Land",
+			"source": "XPHB",
+			"className": "Druid",
+			"classSource": "XPHB",
+			"advancement": [
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"identifier": "lands-aid",
+						"type": "dice",
+						"scale": {
+							"3": {
+								"number": 2,
+								"faces": 6
+							},
+							"10": {
+								"number": 3,
+								"faces": 6
+							},
+							"14": {
+								"number": 4,
+								"faces": 6
+							}
+						}
+					},
+					"title": "Lands Aid Damage"
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Circle of the Sea",
+			"shortName": "Sea",
+			"source": "XPHB",
+			"className": "Druid",
+			"classSource": "XPHB",
+			"advancement": [
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"identifier": "wrath-range",
+						"type": "distance",
+						"distance": {
+							"units": "ft"
+						},
+						"scale": {
+							"3": {
+								"value": 5
+							},
+							"6": {
+								"value": 10
+							}
+						}
+					},
+					"title": "Wrath of the Sea Range"
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Circle of the Stars",
+			"shortName": "Stars",
+			"source": "XPHB",
+			"className": "Druid",
+			"classSource": "XPHB",
+			"advancement": [
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"identifier": "die",
+						"type": "dice",
+						"scale": {
+							"3": {
+								"number": 1,
+								"faces": 8
+							},
+							"10": {
+								"number": 2,
+								"faces": 8
+							}
+						}
+					},
+					"title": "Starry Form Die"
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Eldritch Knight",
+			"shortName": "Eldritch Knight",
+			"source": "XPHB",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"advancement": [
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"type": "number",
+						"scale": {
+							"3": {
+								"value": 2
+							},
+							"10": {
+								"value": 3
+							}
+						}
+					},
+					"title": "Cantrips"
+				},
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"identifier": "prepared",
+						"type": "number",
+						"scale": {
+							"3": {
+								"value": 3
+							},
+							"4": {
+								"value": 4
+							},
+							"7": {
+								"value": 5
+							},
+							"8": {
+								"value": 6
+							},
+							"10": {
+								"value": 7
+							},
+							"11": {
+								"value": 8
+							},
+							"13": {
+								"value": 9
+							},
+							"14": {
+								"value": 10
+							},
+							"17": {
+								"value": 11
+							},
+							"19": {
+								"value": 12
+							},
+							"20": {
+								"value": 13
+							}
+						}
+					},
+					"title": "Prepared Spells"
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Fey Wanderer",
+			"shortName": "Fey Wanderer",
+			"source": "XPHB",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"advancement": [
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"identifier": "dreadful-strike",
+						"type": "dice",
+						"scale": {
+							"3": {
+								"number": 1,
+								"faces": 4
+							},
+							"11": {
+								"number": 1,
+								"faces": 6
+							}
+						}
+					},
+					"title": "Dreadful Strike Damage"
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Gloom Stalker",
+			"shortName": "Gloom Stalker",
+			"source": "XPHB",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"advancement": [
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"identifier": "dreadful-strike",
+						"type": "dice",
+						"scale": {
+							"3": {
+								"number": 2,
+								"faces": 6
+							},
+							"11": {
+								"number": 2,
+								"faces": 8
+							}
+						}
+					},
+					"title": "Dreadful Strike Damage"
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Path of the Zealot",
+			"shortName": "Zealot",
+			"source": "XPHB",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"advancement": [
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"identifier": "pool",
+						"type": "dice",
+						"scale": {
+							"3": {
+								"number": 4,
+								"faces": 12
+							},
+							"6": {
+								"number": 5,
+								"faces": 12
+							},
+							"12": {
+								"number": 6,
+								"faces": 12
+							},
+							"17": {
+								"number": 7,
+								"faces": 12
+							}
+						}
+					},
+					"title": "Warrior of the Gods: Pool Size"
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Soulknife",
+			"shortName": "Soulknife",
+			"source": "XPHB",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"advancement": [
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"identifier": "die",
+						"type": "dice",
+						"scale": {
+							"3": {
+								"number": 4,
+								"faces": 6
+							},
+							"5": {
+								"number": 6,
+								"faces": 8
+							},
+							"9": {
+								"number": 8,
+								"faces": 8
+							},
+							"11": {
+								"number": 8,
+								"faces": 10
+							},
+							"13": {
+								"number": 10,
+								"faces": 10
+							},
+							"17": {
+								"number": 12,
+								"faces": 12
+							}
+						}
+					},
+					"title": "Psionic Power"
 				}
 			],
 			"migrationVersion": 3
@@ -1624,7 +3025,7 @@
 						],
 						"foundrySystem": {
 							"uses.per": "lr",
-							"uses.max": "@scale.sorcerer.sorcery-points"
+							"uses.max": "@scale.sorcerer.points"
 						}
 					}
 				]

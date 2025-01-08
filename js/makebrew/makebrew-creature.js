@@ -510,6 +510,15 @@ export class CreatureBuilder extends BuilderBase {
 			},
 			"legendaryActions",
 		).appendTo(abilTab.$wrpTab);
+		BuilderUi.$getStateIptNumber(
+			"Legendary Action (Lair) Count",
+			cb,
+			this._state,
+			{
+				title: "If specified, this will override the default number (3) of legendary actions available for the creature when in its lair.",
+			},
+			"legendaryActionsLair",
+		).appendTo(abilTab.$wrpTab);
 		BuilderUi.$getStateIptBoolean(
 			"Name is Proper Noun",
 			cb,
@@ -1713,17 +1722,28 @@ export class CreatureBuilder extends BuilderBase {
 	__$getPassivePerceptionInput (cb) {
 		const [$row, $rowInner] = BuilderUi.getLabelledRowTuple("Passive Perception");
 
-		const hook = () => {
-			if (this._meta.autoCalc.passivePerception) {
-				const pp = Math.round((() => {
-					if (this._state.skill && this._state.skill.perception && this._state.skill.perception.trim()) return Number(this._state.skill.perception);
-					else return Parser.getAbilityModNumber(Renderer.monster.getSafeAbilityScore(this._state, "wis", {defaultScore: 10}));
-				})() + 10);
+		const getAutoPassivePerception = () => {
+			if (!this._meta.autoCalc.passivePerception) return null;
 
-				$iptPerception.val(pp);
-				this._state.passive = pp;
-				cb();
+			if (this._state.skill?.perception?.trim()) {
+				if (isNaN(this._state.skill.perception)) return null;
+
+				return Math.round(Number(this._state.skill.perception) + 10);
 			}
+
+			const wisScore = Renderer.monster.getSafeAbilityScore(this._state, "wis", {defaultScore: null});
+			if (wisScore == null) return null;
+
+			return Parser.getAbilityModNumber(wisScore) + 10;
+		};
+
+		const hook = () => {
+			const pp = getAutoPassivePerception();
+			if (pp == null) return;
+
+			$iptPerception.val(pp);
+			this._state.passive = pp;
+			cb();
 		};
 		this._addHook("state", "wis", hook);
 		this._addHook("state", "skill", hook);
@@ -1734,7 +1754,8 @@ export class CreatureBuilder extends BuilderBase {
 					$btnAuto.removeClass("active");
 					this._meta.autoCalc.passivePerception = false;
 				}
-				this._state.passive = UiUtil.strToInt($iptPerception.val());
+				const val = $iptPerception.val();
+				this._state.passive = isNaN(val) ? val : UiUtil.strToInt($iptPerception.val());
 				cb();
 			})
 			.val(this._state.passive || 0);
@@ -2344,6 +2365,11 @@ export class CreatureBuilder extends BuilderBase {
 				mode: "frequency",
 			},
 			{
+				display: "\uD835\uDC65/long rest (/each) spells",
+				type: "restLong",
+				mode: "frequency",
+			},
+			{
 				display: "\uD835\uDC65/week (/each) spells",
 				type: "weekly",
 				mode: "frequency",
@@ -2356,6 +2382,12 @@ export class CreatureBuilder extends BuilderBase {
 			{
 				display: "\uD835\uDC65/year (/each) spells",
 				type: "yearly",
+				mode: "frequency",
+			},
+			null,
+			{
+				display: "\uD835\uDC65/legendary action(s) (/each) spells",
+				type: "legendary",
 				mode: "frequency",
 			},
 		];
@@ -2441,9 +2473,11 @@ export class CreatureBuilder extends BuilderBase {
 			if (trait.will) doAddSpellRow({mode: "basic", type: "will"}, trait.will);
 			if (trait.daily) handleFrequency("daily");
 			if (trait.rest) handleFrequency("rest");
+			if (trait.restLong) handleFrequency("restLong");
 			if (trait.weekly) handleFrequency("weekly");
 			if (trait.monthly) handleFrequency("monthly");
 			if (trait.yearly) handleFrequency("yearly");
+			if (trait.legendary) handleFrequency("legendary");
 			if (trait.spells) {
 				Object.entries(trait.spells).forEach(([k, v]) => {
 					const level = Number(k);
@@ -2542,9 +2576,11 @@ export class CreatureBuilder extends BuilderBase {
 						switch (meta.type) {
 							case "daily": return "/Day";
 							case "rest": return "/Rest";
+							case "restLong": return "/Long Rest";
 							case "weekly": return "/Week";
 							case "monthly": return "/Month";
 							case "yearly": return "/Year";
+							case "legendary": return "/Legendary Action(s)";
 						}
 					})();
 

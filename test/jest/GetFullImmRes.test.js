@@ -123,6 +123,32 @@ describe(`"special" rendering`, () => {
 			Parser.getFullImmRes(
 				[
 					{
+						"special": "damage of the type matching the animated breath's form (acid, cold, fire, lightning, or poison)",
+					},
+				],
+				{
+					isTitleCase: true,
+				},
+			),
+		).toBe("damage of the type matching the animated breath's form (acid, cold, fire, lightning, or poison)");
+
+		expect(
+			Parser.getFullImmRes(
+				[
+					{
+						"special": "Damage of the type matching the animated breath's form (Acid, Cold, Fire, Lightning, or Poison)",
+					},
+				],
+				{
+					isTitleCase: true,
+				},
+			),
+		).toBe("Damage of the type matching the animated breath's form (Acid, Cold, Fire, Lightning, or Poison)");
+
+		expect(
+			Parser.getFullImmRes(
+				[
+					{
 						resist: [
 							"acid",
 						],

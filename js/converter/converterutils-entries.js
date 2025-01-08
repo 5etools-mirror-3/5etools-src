@@ -51,12 +51,12 @@ export class TagJsons {
 							if (lastKey != null && !LAST_KEY_ALLOWLIST.has(lastKey)) return obj;
 
 							obj = TagCondition.tryRun(obj, {styleHint});
-							obj = SkillTag.tryRun(obj, {styleHint});
+							obj = SkillTag.tryRunStrictCapsWords(obj, {styleHint});
 							obj = SenseTag.tryRun(obj, {styleHint});
 							obj = SpellTag.tryRun(obj, {styleHint});
 							// items > actions, as "Hide Armor" can be mis-tagged as "Hide"
 							obj = ItemTag.tryRun(obj, {styleHint});
-							obj = ActionTag.tryRun(obj, {styleHint});
+							obj = ActionTag.tryRunStrictCapsWords(obj, {styleHint});
 							obj = TableTag.tryRun(obj, {styleHint});
 							obj = TrapTag.tryRun(obj, {styleHint});
 							obj = HazardTag.tryRun(obj, {styleHint});
@@ -153,11 +153,13 @@ export class SpellTag extends ConverterTaggerInitializable {
 		this._SPELL_NAME_REGEX_SPELL = new RegExp(`\\b(${spellNamesFiltered.map(it => it.escapeRegexp()).join("|")}) (spell|cantrip)`, "gi");
 		this._SPELL_NAME_REGEX_AND = new RegExp(`\\b(${spellNamesFiltered.map(it => it.escapeRegexp()).join("|")}) (and {@spell)`, "gi");
 		this._SPELL_NAME_REGEX_CAST = new RegExp(`(?<prefix>casts?(?: the(?: spell)?)? )(?<spell>${spellNamesFiltered.map(it => it.escapeRegexp()).join("|")})\\b`, "gi");
-		this._SPELL_NAME_REGEX_STRICT = new RegExp(`^(${Object.keys(this._SPELL_NAMES).map(it => it.escapeRegexp()).join("|")})$`, "gi");
+		this._SPELL_NAME_REGEX_STRICT = new RegExp(`^(${Object.values(this._SPELL_NAMES).map(it => it.name.escapeRegexp()).join("|")})$`, "g");
 	}
 
-	static _tryRun (ent, {styleHint = null} = {}) {
+	static _tryRun (ent, {styleHint = null, blocklistNames = null} = {}) {
 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
+		if (blocklistNames) blocklistNames = blocklistNames.getWithBlocklistIgnore([ent.name]);
 
 		return TagJsons.WALKER.walk(
 			ent,
@@ -171,7 +173,7 @@ export class SpellTag extends ConverterTaggerInitializable {
 						0,
 						str,
 						{
-							fnTag: (strMod) => this._fnTag({strMod, styleHint}),
+							fnTag: (strMod) => this._fnTag({strMod, styleHint, blocklistNames}),
 						},
 					);
 					return ptrStack._;
@@ -186,12 +188,13 @@ export class SpellTag extends ConverterTaggerInitializable {
 		return this._SPELL_NAMES_LEGACY[name];
 	}
 
-	static _fnTag ({strMod, styleHint}) {
+	static _fnTag ({strMod, styleHint, blocklistNames}) {
 		if (TagJsons.OPTIMISTIC) {
 			strMod = strMod
 				.replace(this._SPELL_NAME_REGEX_SPELL, (...m) => {
 					const spellMeta = this._getSpellMeta({name: m[1], styleHint});
 					if (!spellMeta) return m[0];
+					if (blocklistNames?.isBlocked(spellMeta.name)) return m[0];
 					return `{@spell ${m[1]}${spellMeta.source !== Parser.SRC_PHB ? `|${spellMeta.source}` : ""}} ${m[2]}`;
 				});
 		}
@@ -201,6 +204,7 @@ export class SpellTag extends ConverterTaggerInitializable {
 			.replace(/\b(antimagic field|dispel magic)\b/gi, (...m) => {
 				const spellMeta = this._getSpellMeta({name: m[1], styleHint});
 				if (!spellMeta) return m[0];
+				if (blocklistNames?.isBlocked(spellMeta.name)) return m[0];
 				return `{@spell ${m[1]}${spellMeta.source !== Parser.SRC_PHB ? `|${spellMeta.source}` : ""}}`;
 			});
 
@@ -208,6 +212,7 @@ export class SpellTag extends ConverterTaggerInitializable {
 			.replace(this._SPELL_NAME_REGEX_CAST, (...m) => {
 				const spellMeta = this._getSpellMeta({name: m.last().spell, styleHint});
 				if (!spellMeta) return m[0];
+				if (blocklistNames?.isBlocked(spellMeta.name)) return m[0];
 				return `${m.last().prefix}{@spell ${m.last().spell}${spellMeta.source !== Parser.SRC_PHB ? `|${spellMeta.source}` : ""}}`;
 			});
 
@@ -215,19 +220,22 @@ export class SpellTag extends ConverterTaggerInitializable {
 			.replace(this._SPELL_NAME_REGEX_AND, (...m) => {
 				const spellMeta = this._getSpellMeta({name: m[1], styleHint});
 				if (!spellMeta) return m[0];
+				if (blocklistNames?.isBlocked(spellMeta.name)) return m[0];
 				return `{@spell ${m[1]}${spellMeta.source !== Parser.SRC_PHB ? `|${spellMeta.source}` : ""}} ${m[2]}`;
 			})
-			.replace(/(spells(?:|[^.!?:{]*): )([^.!?]+)/gi, (...m) => {
-				const spellPart = m[2].replace(this._SPELL_NAME_REGEX, (...n) => {
-					const spellMeta = this._getSpellMeta({name: n[1], styleHint});
+			.replace(/(spells(?:|[^.!?:{]*): )([^.!?]+)/gi, (...mOuter) => {
+				const spellPart = mOuter[2].replace(this._SPELL_NAME_REGEX, (...m) => {
+					const spellMeta = this._getSpellMeta({name: m[1], styleHint});
 					if (!spellMeta) return m[0];
-					return `{@spell ${n[1]}${spellMeta.source !== Parser.SRC_PHB ? `|${spellMeta.source}` : ""}}`;
+					if (blocklistNames?.isBlocked(spellMeta.name)) return m[0];
+					return `{@spell ${m[1]}${spellMeta.source !== Parser.SRC_PHB ? `|${spellMeta.source}` : ""}}`;
 				});
-				return `${m[1]}${spellPart}`;
+				return `${mOuter[1]}${spellPart}`;
 			})
 			.replace(this._SPELL_NAME_REGEX_CAST, (...m) => {
 				const spellMeta = this._getSpellMeta({name: m.last().spell, styleHint});
 				if (!spellMeta) return m[0];
+				if (blocklistNames?.isBlocked(spellMeta.name)) return m[0];
 				return `${m.last().prefix}{@spell ${m.last().spell}${spellMeta.source !== Parser.SRC_PHB ? `|${spellMeta.source}` : ""}}`;
 			})
 		;
@@ -235,8 +243,10 @@ export class SpellTag extends ConverterTaggerInitializable {
 
 	/* -------------------------------------------- */
 
-	static _tryRunStrictCapsWords (ent, {styleHint = null} = {}) {
+	static _tryRunStrictCapsWords (ent, {styleHint = null, blocklistNames = null} = {}) {
 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
+		if (blocklistNames) blocklistNames = blocklistNames.getWithBlocklistIgnore([ent.name]);
 
 		return TagJsons.WALKER.walk(
 			ent,
@@ -248,22 +258,29 @@ export class SpellTag extends ConverterTaggerInitializable {
 						ptrStack,
 						str,
 						{
-							fnTag: (strMod) => this._fnTagStrict({strMod, styleHint}),
+							fnTag: (strMod) => this._fnTagStrict({strMod, styleHint, blocklistNames}),
 						},
 					);
-					return ptrStack._;
+					return ptrStack._
+						.replace(/{@spell (Resistance)\|XPHB}( to)/g, "$1$2")
+						.replace(/{@spell (Darkvision)\|XPHB}( can't| \d+ (?:ft\.|feet))/g, "$1$2")
+						.replace(/(magical ){@spell (Darkness)\|XPHB}/g, "$1$2")
+						.replace(/{@spell (Fly)\|XPHB}( \d+ (?:ft\.|feet))/g, "$1$2")
+					;
 				},
 			},
 		);
 	}
 
-	static _fnTagStrict ({strMod, styleHint}) {
+	static _fnTagStrict ({strMod, styleHint, blocklistNames}) {
 		return strMod
 			.replace(this._SPELL_NAME_REGEX_STRICT, (...m) => {
 				const spellMeta = this._getSpellMeta({name: m[1], styleHint});
 				if (!spellMeta) return m[0];
+				if (blocklistNames?.isBlocked(spellMeta.name)) return m[0];
 				return `{@spell ${m[1]}|${spellMeta.source}}`;
-			});
+			})
+		;
 	}
 }
 
@@ -982,7 +999,9 @@ export class CoreRuleTag extends ConverterTaggerInitializable {
 							fnTag: this._fnTag.bind(this),
 						},
 					);
-					return ptrStack._;
+					return ptrStack._
+						.replace(/{@dice D20} Test(?<plural>s?)/g, (...m) => `{@variantrule D20 Test|XPHB${m.at(-1).plural ? `|D20 Tests` : ""}}`)
+					;
 				},
 			},
 		);
@@ -1011,6 +1030,8 @@ export class CoreRuleTag extends ConverterTaggerInitializable {
 			.replace(/\b(Friendly|Hostile|Indifferent)\b/g, (...m) => {
 				return `{@variantrule ${m[1]} [Attitude]|XPHB|${m[1]}}`;
 			})
+			.replace(/\b(Legendary) {@variantrule Action\|XPHB}/g, "$1 Action")
+			.replace(/{@variantrule Flying\|XPHB} (Sword)/g, "Flying $1")
 		;
 	}
 }

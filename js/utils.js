@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.5.10"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.5.11"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -68,7 +68,6 @@ globalThis.VeCt = {
 	SPELL_LEVEL_MAX: 9,
 	LEVEL_MAX: 20,
 
-	ENTDATA_TABLE_INCLUDE: "tableInclude",
 	ENTDATA_ITEM_MERGED_ENTRY_TAG: "item__mergedEntryTag",
 
 	DRAG_TYPE_IMPORT: "ve-Import",
@@ -93,25 +92,7 @@ String.prototype.lowercaseFirst = String.prototype.lowercaseFirst || function ()
 };
 
 String.prototype.toTitleCase = String.prototype.toTitleCase || function () {
-	// region Initialize regexed
-	StrUtil._TITLE_RE_INITIAL ??= /(\w+[^-\u2014\s/]*) */g;
-	StrUtil._TITLE_RE_SPLIT_PUNCT ??= /([;:?!.])/g;
-	StrUtil._TITLE_RE_POST_PUNCT ??= /^(\s*)(\S)/;
-
-	// Require space surrounded, as title-case requires a full word on either side
-	StrUtil._TITLE_LOWER_WORDS_RE ??= RegExp(`\\s(${StrUtil.TITLE_LOWER_WORDS.join("|")})(?=\\s)`, "gi");
-	StrUtil._TITLE_UPPER_WORDS_RE ??= RegExp(`\\b(${StrUtil.TITLE_UPPER_WORDS.join("|")})\\b`, "g");
-	StrUtil._TITLE_UPPER_WORDS_PLURAL_RE ??= RegExp(`\\b(${StrUtil.TITLE_UPPER_WORDS_PLURAL.join("|")})\\b`, "g");
-	// endregion
-
-	return this
-		.replace(StrUtil._TITLE_RE_INITIAL, m0 => m0.charAt(0).toUpperCase() + m0.substring(1).toLowerCase())
-		.replace(StrUtil._TITLE_LOWER_WORDS_RE, (...m) => m[0].toLowerCase())
-		.replace(StrUtil._TITLE_UPPER_WORDS_RE, (...m) => m[0].toUpperCase())
-		.replace(StrUtil._TITLE_UPPER_WORDS_PLURAL_RE, (...m) => `${m[0].slice(0, -1).toUpperCase()}${m[0].slice(-1).toLowerCase()}`)
-		.split(StrUtil._TITLE_RE_SPLIT_PUNCT)
-		.map(pt => pt.replace(StrUtil._TITLE_RE_POST_PUNCT, (...m) => `${m[1]}${m[2].toUpperCase()}`))
-		.join("");
+	return StrUtil.toTitleCase(this);
 };
 
 String.prototype.toSentenceCase = String.prototype.toSentenceCase || function () {
@@ -139,20 +120,11 @@ String.prototype.toCamelCase = String.prototype.toCamelCase || function () {
 };
 
 String.prototype.toSingle = String.prototype.toSingle || function () {
-	return this.replace(/i?e?s$/i, "");
+	return StrUtil.toSingle(this);
 };
 
 String.prototype.toPlural = String.prototype.toPlural || function () {
-	let plural;
-	if (StrUtil.IRREGULAR_PLURAL_WORDS[this.toLowerCase()]) plural = StrUtil.IRREGULAR_PLURAL_WORDS[this.toLowerCase()];
-	else if (/(s|x|z|ch|sh)$/i.test(this)) plural = `${this}es`;
-	else if (/[bcdfghjklmnpqrstvwxyz]y$/i.test(this)) plural = this.replace(/y$/i, "ies");
-	else plural = `${this}s`;
-
-	if (this.toLowerCase() === this) return plural;
-	if (this.toUpperCase() === this) return plural.toUpperCase();
-	if (this.toTitleCase() === this) return plural.toTitleCase();
-	return plural;
+	return StrUtil.toPlural(this);
 };
 
 String.prototype.escapeQuotes = String.prototype.escapeQuotes || function () {
@@ -283,49 +255,60 @@ Array.prototype.joinConjunct || Object.defineProperty(Array.prototype, "joinConj
 	},
 });
 
-globalThis.StrUtil = {
-	COMMAS_NOT_IN_PARENTHESES_REGEX: /,\s?(?![^(]*\))/g,
-	COMMA_SPACE_NOT_IN_PARENTHESES_REGEX: /, (?![^(]*\))/g,
-	SEMICOLON_SPACE_NOT_IN_PARENTHESES_REGEX: /; (?![^(]*\))/g,
+globalThis.StrUtil = class {
+	static COMMAS_NOT_IN_PARENTHESES_REGEX = /,\s?(?![^(]*\))/g;
+	static COMMA_SPACE_NOT_IN_PARENTHESES_REGEX = /, (?![^(]*\))/g;
+	static SEMICOLON_SPACE_NOT_IN_PARENTHESES_REGEX = /; (?![^(]*\))/g;
 
-	uppercaseFirst: function (string) {
+	static uppercaseFirst (string) {
 		return string.uppercaseFirst();
-	},
+	}
+
+	/* -------------------------------------------- */
+
 	// Certain minor words should be left lowercase unless they are the first or last words in the string
-	TITLE_LOWER_WORDS: ["a", "an", "the", "and", "but", "or", "for", "nor", "as", "at", "by", "for", "from", "in", "into", "near", "of", "on", "onto", "to", "with", "over", "von", "between", "per"],
+	static TITLE_LOWER_WORDS = ["a", "an", "the", "and", "but", "or", "for", "nor", "as", "at", "by", "for", "from", "in", "into", "near", "of", "on", "onto", "to", "with", "over", "von", "between", "per", "beyond", "among"];
 	// Certain words such as initialisms or acronyms should be left uppercase
-	TITLE_UPPER_WORDS: ["Id", "Tv", "Dm", "Ok", "Npc", "Pc", "Tpk", "Wip", "Dc", "D&d"],
-	TITLE_UPPER_WORDS_PLURAL: ["Ids", "Tvs", "Dms", "Oks", "Npcs", "Pcs", "Tpks", "Wips", "Dcs"], // (Manually pluralize, to avoid infinite loop)
+	static TITLE_UPPER_WORDS = ["Id", "Tv", "Dm", "Ok", "Npc", "Pc", "Tpk", "Wip", "Dc", "D&d"];
+	static TITLE_UPPER_WORDS_PLURAL = ["Ids", "Tvs", "Dms", "Oks", "Npcs", "Pcs", "Tpks", "Wips", "Dcs"]; // (Manually pluralize, to avoid infinite loop)
 
-	IRREGULAR_PLURAL_WORDS: {
-		"cactus": "cacti",
-		"child": "children",
-		"die": "dice",
-		"djinni": "djinn",
-		"dwarf": "dwarves",
-		"efreeti": "efreet",
-		"elf": "elves",
-		"erinyes": "erinyes",
-		"fey": "fey",
-		"foot": "feet",
-		"goose": "geese",
-		"ki": "ki",
-		"man": "men",
-		"mouse": "mice",
-		"ox": "oxen",
-		"person": "people",
-		"sheep": "sheep",
-		"slaad": "slaadi",
-		"tooth": "teeth",
-		"undead": "undead",
-		"woman": "women",
-	},
+	static _TITLE_RE_INITIAL = /(\w+[^-\u2014\s/]*) */g;
+	static _TITLE_RE_SPLIT_PUNCT = /([;:?!.])/g;
+	static _TITLE_RE_COMPOUND_LOWER = /([a-z]-(?:Like|Kreen|Toa))/g;
+	static _TITLE_RE_POST_PUNCT = /^(\s*)(\S)/;
 
-	padNumber: (n, len, padder) => {
+	static _TITLE_LOWER_WORDS_RE = null;
+	static _TITLE_UPPER_WORDS_RE = null;
+	static _TITLE_UPPER_WORDS_PLURAL_RE = null;
+
+	static _toTitleCase_init () {
+		// Require space surrounded, as title-case requires a full word on either side
+		this._TITLE_LOWER_WORDS_RE ??= RegExp(`\\s(${this.TITLE_LOWER_WORDS.join("|")})(?=\\s)`, "gi");
+		this._TITLE_UPPER_WORDS_RE ??= RegExp(`\\b(${this.TITLE_UPPER_WORDS.join("|")})\\b`, "g");
+		this._TITLE_UPPER_WORDS_PLURAL_RE ??= RegExp(`\\b(${this.TITLE_UPPER_WORDS_PLURAL.join("|")})\\b`, "g");
+	}
+
+	static toTitleCase (str) {
+		this._toTitleCase_init();
+
+		return str
+			.replace(this._TITLE_RE_INITIAL, m0 => m0.charAt(0).toUpperCase() + m0.substring(1).toLowerCase())
+			.replace(this._TITLE_LOWER_WORDS_RE, (...m) => m[0].toLowerCase())
+			.replace(this._TITLE_UPPER_WORDS_RE, (...m) => m[0].toUpperCase())
+			.replace(this._TITLE_UPPER_WORDS_PLURAL_RE, (...m) => `${m[0].slice(0, -1).toUpperCase()}${m[0].slice(-1).toLowerCase()}`)
+			.replace(this._TITLE_RE_COMPOUND_LOWER, (...m) => m[0].toLowerCase())
+			.split(this._TITLE_RE_SPLIT_PUNCT)
+			.map(pt => pt.replace(this._TITLE_RE_POST_PUNCT, (...m) => `${m[1]}${m[2].toUpperCase()}`))
+			.join("");
+	}
+
+	/* -------------------------------------------- */
+
+	static padNumber (n, len, padder) {
 		return String(n).padStart(len, padder);
-	},
+	}
 
-	elipsisTruncate (str, atLeastPre = 5, atLeastSuff = 0, maxLen = 20) {
+	static elipsisTruncate (str, atLeastPre = 5, atLeastSuff = 0, maxLen = 20) {
 		if (maxLen >= str.length) return str;
 
 		maxLen = Math.max(atLeastPre + atLeastSuff + 3, maxLen);
@@ -339,19 +322,90 @@ globalThis.StrUtil = {
 		if (remain < 0) out += "...";
 		out += str.substring(str.length - atLeastSuff, str.length);
 		return out;
-	},
+	}
 
-	toTitleCase (str) { return str.toTitleCase(); },
-	qq (str) { return (str = str || "").qq(); },
+	/* -------------------------------------------- */
 
-	getNextDuplicateName (str) {
+	static qq (str) { return (str = str || "").qq(); }
+
+	static getNextDuplicateName (str) {
 		if (str == null) return null;
 
 		// Get the root name without trailing numbers, e.g. "Goblin (2)" -> "Goblin"
 		const m = /^(?<name>.*?) \((?<ordinal>\d+)\)$/.exec(str.trim());
 		if (!m) return `${str} (1)`;
 		return `${m.groups.name} (${Number(m.groups.ordinal) + 1})`;
-	},
+	}
+
+	/* -------------------------------------------- */
+
+	static _IRREGULAR_PLURAL_WORDS = {
+		"aarakocra": "aarakocra",
+		"cactus": "cacti",
+		"child": "children",
+		"die": "dice",
+		"djinni": "djinn",
+		"dwarf": "dwarves",
+		"efreeti": "efreet",
+		"elf": "elves",
+		"erinyes": "erinyes",
+		"fey": "fey",
+		"foot": "feet",
+		"goose": "geese",
+		"incubus": "incubi",
+		"ki": "ki",
+		"man": "men",
+		"mouse": "mice",
+		"oni": "oni",
+		"ox": "oxen",
+		"person": "people",
+		"sheep": "sheep",
+		"slaad": "slaadi",
+		"succubus": "succubi",
+		"tooth": "teeth",
+		"undead": "undead",
+		"wolf": "wolves",
+		"woman": "women",
+		"yuan-ti": "yuan-ti",
+	};
+
+	static _IRREGULAR_SINGLE_WORDS = {
+		...Object.fromEntries(Object.entries(this._IRREGULAR_PLURAL_WORDS).map(([k, v]) => [v, k])),
+	};
+
+	static _IRREGULAR_SINGLE_PATTERNS = [
+		[/(axe)s$/i, "$1"],
+	];
+
+	static toSingle (str) {
+		if (this._IRREGULAR_SINGLE_WORDS[str.toLowerCase()]) return this._getMatchedCase(str, this._IRREGULAR_SINGLE_WORDS[str.toLowerCase()]);
+		const single = this._IRREGULAR_SINGLE_PATTERNS
+			.first(([re, repl]) => {
+				if (re.test(str)) return str.replace(re, repl);
+			});
+		if (single) return single;
+
+		if (/(s|x|z|ch|sh)es$/i.test(str)) return str.slice(0, -2);
+		if (/[bcdfghjklmnpqrstvwxyz]ies$/i.test(str)) return `${str.slice(0, -3)}y`;
+		return str.replace(/s$/i, "");
+	}
+
+	static toPlural (str) {
+		let plural;
+		if (this._IRREGULAR_PLURAL_WORDS[str.toLowerCase()]) plural = this._IRREGULAR_PLURAL_WORDS[str.toLowerCase()];
+		else if (/(s|x|z|ch|sh)$/i.test(str)) plural = `${str}es`;
+		else if (/[bcdfghjklmnpqrstvwxyz]y$/i.test(str)) plural = str.replace(/y$/i, "ies");
+		else plural = `${str}s`;
+
+		return this._getMatchedCase(str, plural);
+	}
+
+	static _getMatchedCase (strOriginal, strOther) {
+		if (strOriginal.toLowerCase() === strOriginal) return strOther;
+		if (strOriginal.toUpperCase() === strOriginal) return strOther.toUpperCase();
+		if (strOriginal.toTitleCase() === strOriginal) return strOther.toTitleCase();
+		return strOther;
+	}
 };
 
 globalThis.NumberUtil = class {
@@ -4851,7 +4905,7 @@ globalThis.DataUtil = {
 					modInfo[prop].forEach(sp => (spellcasting[prop] = spellcasting[prop] || []).push(sp));
 				});
 
-				["recharge", "charges", "rest", "daily", "weekly", "monthly", "yearly"].forEach(prop => {
+				["recharge", "legendary", "charges", "rest", "restLong", "daily", "weekly", "monthly", "yearly"].forEach(prop => {
 					if (!modInfo[prop]) return;
 
 					for (let i = 1; i <= 9; ++i) {
@@ -4934,7 +4988,7 @@ globalThis.DataUtil = {
 					spellcasting[prop].filter(it => !modInfo[prop].includes(it));
 				});
 
-				["recharge", "charges", "rest", "daily", "weekly", "monthly", "yearly"].forEach(prop => {
+				["recharge", "legendary", "charges", "rest", "restLong", "daily", "weekly", "monthly", "yearly"].forEach(prop => {
 					if (!modInfo[prop]) return;
 
 					for (let i = 1; i <= 9; ++i) {
@@ -6791,7 +6845,7 @@ globalThis.RollerUtil = {
 RollerUtil.DICE_REGEX = new RegExp(RollerUtil._DICE_REGEX_STR, "g");
 RollerUtil.DICE_REGEX_FULLMATCH = new RegExp(`^\\s*${RollerUtil._DICE_REGEX_STR}\\s*$`);
 RollerUtil.REGEX_DAMAGE_DICE = /(?<average>\d+)(?<prefix> \((?:{@dice |{@damage ))(?<diceExp>[-+0-9d ]*)(?<suffix>}\)(?:\s*\+\s*the spell's level)? [a-z]+( \([-a-zA-Z0-9 ]+\))?( or [a-z]+( \([-a-zA-Z0-9 ]+\))?)? damage)/gi;
-RollerUtil.REGEX_DAMAGE_FLAT = /(?<prefix>Hit: |{@h})(?<flatVal>[0-9]+)(?<suffix> [a-z]+( \([-a-zA-Z0-9 ]+\))?( or [a-z]+( \([-a-zA-Z0-9 ]+\))?)? damage)/gi;
+RollerUtil.REGEX_DAMAGE_FLAT = /(?<prefix>Hit(?: or Miss)?: |Miss: |{@hom}|{@h}|{@m})(?<flatVal>[0-9]+)(?<suffix> [a-z]+( \([-a-zA-Z0-9 ]+\))?( or [a-z]+( \([-a-zA-Z0-9 ]+\))?)? damage)/gi;
 RollerUtil._REGEX_ROLLABLE_COL_LABEL = /^(.*?\d)(\s*[-+/*^×÷]\s*)([a-zA-Z0-9 ]+)$/;
 RollerUtil.ROLL_COL_NONE = 0;
 RollerUtil.ROLL_COL_STANDARD = 1;
@@ -8381,12 +8435,13 @@ if (!IS_VTT && typeof window !== "undefined") {
 		Renderer.events.bindGeneric();
 	});
 
+	// region Cancer
 	if (location.hostname.endsWith(VeCt.LOC_HOSTNAME_CANCER)) {
 		const ivsCancer = [];
+		let anyFound = false;
 
 		window.addEventListener("load", () => {
 			let isPadded = false;
-			let anyFound = false;
 			[
 				"div-gpt-ad-5etools35927", // main banner
 				"div-gpt-ad-5etools35930", // side banner
@@ -8421,13 +8476,12 @@ if (!IS_VTT && typeof window !== "undefined") {
 			ivsCancer.push(ivPad);
 		});
 
-		// Hack to lock the ad space at original size--prevents the screen from shifting around once loaded
+		// Hack to lock the ad space at a fixed size--prevents the screen from shifting around once loaded
 		setTimeout(() => {
 			const $wrp = $(`.cancer__wrp-leaderboard-inner`);
-			const h = $wrp.outerHeight();
-			$wrp.css({height: h});
+			if (anyFound) $wrp.css({height: 90});
 			ivsCancer.forEach(iv => clearInterval(iv));
-		}, 5000);
+		}, 6500);
 	} else {
 		window.addEventListener("load", () => $(`.cancer__anchor`).remove());
 	}
@@ -8436,4 +8490,5 @@ if (!IS_VTT && typeof window !== "undefined") {
 	// 	$(`.cancer__sidebar-rhs-inner--top`).append(`<div class="TEST_RHS_TOP"></div>`)
 	// 	$(`.cancer__sidebar-rhs-inner--bottom`).append(`<div class="TEST_RHS_BOTTOM"></div>`)
 	// });
+	// endregion
 }

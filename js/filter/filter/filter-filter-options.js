@@ -279,7 +279,7 @@ export class OptionsFilter extends FilterBase {
 		const displayText = this._displayFnMini ? this._displayFnMini(key) : this._displayFn(key);
 
 		const $btnMini = $(`<div class="fltr__mini-pill ${this._filterBox.isMinisHidden(this.header) ? "ve-hidden" : ""}" data-state="${PILL_STATES[this._defaultState[key] === this._state[key] ? 0 : this._state[key] ? 1 : 2]}">${displayText}</div>`)
-			.title(`${displayTextFull ? `${displayTextFull} (` : ""}Filter: ${this.header}${displayTextFull ? ")" : ""}`)
+			.title(`${displayTextFull ? `${displayTextFull} (` : ""}Filter: ${this._getHeaderDisplayName()}${displayTextFull ? ")" : ""}`)
 			.click(() => {
 				this._state[key] = this._defaultState[key];
 				this._filterBox.fireChangeEvent();
@@ -370,7 +370,7 @@ export class OptionsFilter extends FilterBase {
 	handleSearch (searchTerm) {
 		if (this.__$wrpFilter == null) return;
 
-		const isVisible = this.header.toLowerCase().includes(searchTerm)
+		const isVisible = this._getHeaderDisplayName().toLowerCase().includes(searchTerm)
 			|| Object.keys(this._defaultState).map(it => this._displayFn(it).toLowerCase()).some(it => it.includes(searchTerm));
 
 		this.__$wrpFilter.toggleClass("fltr__hidden--search", !isVisible);

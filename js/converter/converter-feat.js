@@ -56,6 +56,8 @@ export class ConverterFeat extends ConverterFeatureBase {
 		const statsOut = this._getFinalState(state, options);
 
 		options.cbOutput(statsOut, options.isAppend);
+
+		return statsOut;
 	}
 
 	static _doParseText_stepName (state) {

@@ -96,7 +96,7 @@ ${img ? `<meta property="og:image" content="${BASE_SITE_URL}${img}">` : ""}
 <script type="module" src="/js/utils-config.js"></script>
 <script type="text/javascript" defer src="/js/render.js"></script>
 <script type="text/javascript" defer src="/js/render-dice.js"></script>
-<script type="text/javascript" defer src="/js/scalecreature.js"></script>
+<script type="module" src="/js/shim-esmodules.js"></script>
 <script type="text/javascript" defer src="/js/hist.js"></script>
 <script type="module" defer src="/js/seo-loader.js"></script></body></html>`;
 

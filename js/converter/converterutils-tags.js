@@ -3,11 +3,11 @@ import {VetoolsConfig} from "../utils-config/utils-config-config.js";
 import {ConverterTaggerInitializable} from "./converterutils-taggerbase.js";
 
 export class TagUtil {
-	static _NONE_EMPTY_REGEX = /^(([-\u2014\u2013\u2221])+|none)$/gi;
+	static _NONE_EMPTY_REGEX = /^(([-\u2014\u2013\u2221])+|none)$/i;
 
 	static isNoneOrEmpty (str) {
 		if (!str || !str.trim()) return false;
-		return !!this._NONE_EMPTY_REGEX.exec(str);
+		return this._NONE_EMPTY_REGEX.test(str);
 	}
 }
 
@@ -100,11 +100,11 @@ export class TaggerUtils {
 	static walkerStringHandlerStrictCapsWords (targetTags, ptrStack, str, meta) {
 		const tagSplit = Renderer.splitByTags(str);
 
-		const reTokenStr = `([ .!?:;,])`;
+		const reTokenStr = /([ .!?:;,()])/.source;
 		const reTokenSplit = new RegExp(reTokenStr, "g");
 		const reTokenCheck = new RegExp(reTokenStr);
 
-		const reCapsFirst = /^[A-Z]+[a-z]*$/;
+		const reCapsFirst = /^[A-Z]+[a-z']*$/;
 
 		const setLower = new Set(StrUtil.TITLE_LOWER_WORDS);
 		const setUpper = new Set([...StrUtil.TITLE_UPPER_WORDS, ...StrUtil.TITLE_UPPER_WORDS_PLURAL].map(it => it.toUpperCase()));
@@ -643,7 +643,7 @@ export class ArtifactPropertiesTag {
 
 export class SkillTag extends ConverterTaggerInitializable {
 	static _RE_BASIC_XPHB = null;
-	static _RE_BASIC = /\b(?<name>Acrobatics|Animal Handling|Arcana|Athletics|Deception|History|Insight|Intimidation|Investigation|Medicine|Nature|Perception|Performance|Persuasion|Religion|Sleight of Hand|Stealth|Survival)\b/g;
+	static _RE_BASIC = /^(?<name>Acrobatics|Animal Handling|Arcana|Athletics|Deception|History|Insight|Intimidation|Investigation|Medicine|Nature|Perception|Performance|Persuasion|Religion|Sleight of Hand|Stealth|Survival)$/g;
 
 	static async _pInit () {
 		const skillData = await DataLoader.pCacheAndGetAllSite("skill");
@@ -651,14 +651,14 @@ export class SkillTag extends ConverterTaggerInitializable {
 		const coreSKills = [...skillData]
 			.filter(skill => skill.source === Parser.SRC_XPHB);
 
-		this._RE_BASIC_XPHB = new RegExp(`\\b(?<name>${(coreSKills.map(skill => skill.name).join("|"))})\\b`, "g");
+		this._RE_BASIC_XPHB = new RegExp(`^(?<name>${(coreSKills.map(skill => skill.name).join("|"))})$`, "g");
 	}
 
 	/**
 	 * @param ent
 	 * @param {"classic" | "one" | null} styleHint
 	 */
-	static _tryRun (ent, {styleHint = null} = {}) {
+	static _tryRunStrictCapsWords (ent, {styleHint = null} = {}) {
 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
 		const walker = MiscUtil.getWalker({keyBlocklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST});
@@ -669,14 +669,12 @@ export class SkillTag extends ConverterTaggerInitializable {
 					const ptrStack = {_: ""};
 
 					if (styleHint === SITE_STYLE__ONE) {
-						TaggerUtils.walkerStringHandler(
+						TaggerUtils.walkerStringHandlerStrictCapsWords(
 							["@skill"],
 							ptrStack,
-							0,
-							0,
 							str,
 							{
-								fnTag: this._fnTag_one.bind(this),
+								fnTag: strMod => this._fnTagStrict_one(strMod),
 							},
 						);
 
@@ -684,14 +682,12 @@ export class SkillTag extends ConverterTaggerInitializable {
 						ptrStack._ = "";
 					}
 
-					TaggerUtils.walkerStringHandler(
+					TaggerUtils.walkerStringHandlerStrictCapsWords(
 						["@skill"],
 						ptrStack,
-						0,
-						0,
 						str,
 						{
-							fnTag: this._fnTag_classic.bind(this),
+							fnTag: strMod => this._fnTagStrict_classic(strMod),
 						},
 					);
 
@@ -701,31 +697,23 @@ export class SkillTag extends ConverterTaggerInitializable {
 		);
 	}
 
-	static _fnTag_one (strMod) {
+	static _fnTagStrict_one (strMod) {
 		return strMod
 			.replace(this._RE_BASIC_XPHB, (...m) => `{@skill ${m.at(-1).name}|${Parser.SRC_XPHB}}`)
 		;
 	}
 
-	static _fnTag_classic (strMod) {
+	static _fnTagStrict_classic (strMod) {
 		return strMod.replace(this._RE_BASIC, (...m) => {
 			const {name} = m.at(-1);
 			return `{@skill ${name}}`;
 		});
 	}
-
-	static tryRunProps (ent, {props, styleHint = null} = {}) {
-		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
-
-		props
-			.filter(prop => ent[prop])
-			.forEach(prop => this.tryRun(ent[prop], {styleHint}));
-	}
 }
 
 export class ActionTag extends ConverterTaggerInitializable {
 	static _RE_BASIC_XPHB = null;
-	static _RE_BASIC_CLASSIC = /\b(Attack|Dash|Disengage|Dodge|Help|Hide|Ready|Search|Use an Object|shove a creature)\b/g;
+	static _RE_BASIC_CLASSIC = /^(Attack|Dash|Disengage|Dodge|Help|Hide|Ready|Search|Use an Object|shove a creature)$/g;
 
 	static async _pInit () {
 		const actionData = await DataUtil.action.loadJSON();
@@ -733,10 +721,10 @@ export class ActionTag extends ConverterTaggerInitializable {
 		const coreActions = [...actionData.action]
 			.filter(action => action.source === Parser.SRC_XPHB);
 
-		this._RE_BASIC_XPHB = new RegExp(`\\b(?<name>${(coreActions.map(action => action.name).join("|"))})\\b`, "g");
+		this._RE_BASIC_XPHB = new RegExp(`^(?<name>${(coreActions.map(action => action.name).join("|"))})$`, "g");
 	}
 
-	static _tryRun (it) {
+	static _tryRunStrictCapsWords (it) {
 		const walker = MiscUtil.getWalker({keyBlocklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST});
 		return walker.walk(
 			it,
@@ -744,34 +732,26 @@ export class ActionTag extends ConverterTaggerInitializable {
 				string: (str) => {
 					const ptrStack = {_: ""};
 
-					TaggerUtils.walkerStringHandler(
+					TaggerUtils.walkerStringHandlerStrictCapsWords(
 						["@action"],
 						ptrStack,
-						0,
-						0,
 						str,
 						{
-							fnTag: this._fnTag_one.bind(this),
+							fnTag: strMod => this._fnTagStrict_one(strMod),
 						},
 					);
 
 					str = ptrStack._;
 					ptrStack._ = "";
 
-					TaggerUtils.walkerStringHandler(
+					TaggerUtils.walkerStringHandlerStrictCapsWords(
 						["@action"],
 						ptrStack,
-						0,
-						0,
 						str,
 						{
-							fnTag: this._fnTag_classic.bind(this),
+							fnTag: strMod => this._fnTagStrict_classic(strMod),
 						},
 					);
-
-					ptrStack._ = ptrStack._
-						.replace(/(Extra|Sneak|Weapon|Spell) {@action Attack}/g, (...m) => `${m[1]} Attack`)
-					;
 
 					return ptrStack._;
 				},
@@ -779,13 +759,13 @@ export class ActionTag extends ConverterTaggerInitializable {
 		);
 	}
 
-	static _fnTag_one (strMod) {
+	static _fnTagStrict_one (strMod) {
 		return strMod
 			.replace(this._RE_BASIC_XPHB, (...m) => `{@action ${m.at(-1).name}|${Parser.SRC_XPHB}}`)
 		;
 	}
 
-	static _fnTag_classic (strMod) {
+	static _fnTagStrict_classic (strMod) {
 		// Avoid tagging text within titles
 		if (strMod.toTitleCase() === strMod) return strMod;
 

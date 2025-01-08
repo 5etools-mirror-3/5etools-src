@@ -544,16 +544,16 @@ export class RangeFilter extends FilterBase {
 
 				this._$btnMiniEq
 					.attr("data-state", this._isAtDefaultPosition() ? PILL_STATES[PILL_STATE__IGNORE] : PILL_STATES[PILL_STATE__YES])
-					.text(`${this.header} = ${this._getDisplayText(this._state.curMin, {isBeyondMax: this._isAllowGreater && this._state.curMin === this._state.max})}`);
+					.text(`${this._getHeaderDisplayName()} = ${this._getDisplayText(this._state.curMin, {isBeyondMax: this._isAllowGreater && this._state.curMin === this._state.max})}`);
 			} else {
 				if (this._state.min !== this._state.curMin) {
 					this._$btnMiniGt.attr("data-state", PILL_STATES[PILL_STATE__YES])
-						.text(`${this.header} ≥ ${this._getDisplayText(this._state.curMin)}`);
+						.text(`${this._getHeaderDisplayName()} ≥ ${this._getDisplayText(this._state.curMin)}`);
 				} else this._$btnMiniGt.attr("data-state", PILL_STATES[PILL_STATE__IGNORE]);
 
 				if (this._state.max !== this._state.curMax) {
 					this._$btnMiniLt.attr("data-state", PILL_STATES[PILL_STATE__YES])
-						.text(`${this.header} ≤ ${this._getDisplayText(this._state.curMax)}`);
+						.text(`${this._getHeaderDisplayName()} ≤ ${this._getDisplayText(this._state.curMax)}`);
 				} else this._$btnMiniLt.attr("data-state", PILL_STATES[PILL_STATE__IGNORE]);
 
 				this._$btnMiniEq.attr("data-state", PILL_STATES[PILL_STATE__IGNORE]);
@@ -730,7 +730,7 @@ export class RangeFilter extends FilterBase {
 	handleSearch (searchTerm) {
 		if (this.__$wrpFilter == null) return;
 
-		const isVisible = this.header.toLowerCase().includes(searchTerm)
+		const isVisible = this._getHeaderDisplayName().toLowerCase().includes(searchTerm)
 			|| (this._labelSearchCache != null
 				? this._labelSearchCache.includes(searchTerm)
 				: [...new Array(this._state.max - this._state.min)].map((_, n) => n + this._state.min).join(" -- ").includes(searchTerm));

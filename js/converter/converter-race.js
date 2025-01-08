@@ -73,6 +73,8 @@ export class ConverterRace extends ConverterFeatureBase {
 		const raceOut = this._getFinalEntity(entity, options);
 
 		options.cbOutput(raceOut, options.isAppend);
+
+		return raceOut;
 	}
 
 	static _doParseText_stepName (state) {
@@ -137,6 +139,8 @@ export class ConverterRace extends ConverterFeatureBase {
 		const raceOut = this._getFinalEntity(entity, options);
 
 		options.cbOutput(raceOut, options.isAppend);
+
+		return raceOut;
 	}
 
 	static _doParseMarkdown_stepName (state) {

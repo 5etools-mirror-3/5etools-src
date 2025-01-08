@@ -81,6 +81,7 @@ export class ConverterTable extends ConverterBase {
 
 			MarkdownConverter.postProcessTable(tbl);
 			options.cbOutput(tbl, options.isAppend);
+			return tbl;
 		};
 
 		const $input = $(inText);
@@ -134,5 +135,6 @@ export class ConverterTable extends ConverterBase {
 				else options.cbOutput(out, true);
 			}
 		});
+		return toOutput;
 	}
 }
