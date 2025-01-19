@@ -889,16 +889,21 @@ MakeCards.utils = class {
 
 		if (item.property) {
 			item.property.forEach(p => {
-				const {abbreviation, source} = DataUtil.itemProperty.unpackUid(p, {isLower: true});
+				const uid = p?.uid || p;
+				const {abbreviation, source} = DataUtil.itemProperty.unpackUid(uid, {isLower: true});
+
 				const fromCustom = MiscUtil.get(MakeCards.utils._itemPropertyMap, source, abbreviation);
 				if (fromCustom) {
 					if (fromCustom.entries) {
 						Renderer.item._initFullEntries(item);
 						fromCustom.entries.forEach(e => item._fullEntries.push(e));
 					}
-				} else if (Renderer.item.getProperty(p)?.entries) {
+					return;
+				}
+
+				if (Renderer.item.getProperty(uid)?.entries) {
 					Renderer.item._initFullEntries(item);
-					Renderer.item.getProperty(p).entries.forEach(e => item._fullEntries.push(e));
+					Renderer.item.getProperty(uid).entries.forEach(e => item._fullEntries.push(e));
 				}
 			});
 		}

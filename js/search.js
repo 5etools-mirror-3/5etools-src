@@ -11,6 +11,7 @@ class SearchPage {
 		SearchPage._isAllExpanded = (await StorageUtil.pGetForPage(SearchPage._STORAGE_KEY_IS_EXPANDED)) || false;
 		SearchPage._$wrp = $(`#main_content`).empty();
 		this._render();
+		window.dispatchEvent(new Event("toolsLoaded"));
 	}
 
 	/* -------------------------------------------- */

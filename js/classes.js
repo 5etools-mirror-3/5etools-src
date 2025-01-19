@@ -1655,7 +1655,22 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				${$dispName}
 				${$dispSource}
 			</button>`
-			.click(() => this._state[stateKey] = !this._state[stateKey])
+			.click(evt => {
+				if (evt.shiftKey) {
+					this._proxyAssignSimple(
+						"state",
+						Object.fromEntries(
+							cls.subclasses
+								.map(sc => {
+									const stateKeySc = UrlUtil.getStateKeySubclass(sc);
+									return [stateKeySc, stateKeySc === stateKey];
+								}),
+						),
+					);
+					return;
+				}
+				this._state[stateKey] = !this._state[stateKey];
+			})
 			.contextmenu(evt => {
 				evt.preventDefault();
 				this._state[stateKey] = !this._state[stateKey];

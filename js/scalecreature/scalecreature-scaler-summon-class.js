@@ -4,17 +4,17 @@ export class ScaleClassSummonedCreature extends ScaleSummonedCreature {
 	static async scale (mon, toClassLevel) {
 		mon = MiscUtil.copyFast(mon);
 
-		if (!mon.summonedByClass || toClassLevel < 1) return mon;
+		if ((!mon.summonedByClass && !mon.summonedScaleByPlayerLevel) || toClassLevel < 1) return mon;
 
 		ScaleClassSummonedCreature._WALKER = ScaleClassSummonedCreature._WALKER || MiscUtil.getWalker({keyBlocklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST});
 
-		const className = mon.summonedByClass.split("|")[0].toTitleCase();
+		const className = mon.summonedByClass ? mon.summonedByClass.split("|")[0].toTitleCase() : null;
 		const state = new ScaleClassSummonedCreature._State({
 			className,
 			proficiencyBonus: Parser.levelToPb(toClassLevel),
 		});
 
-		mon._displayName = `${mon.name} (Level ${toClassLevel} ${className})`;
+		mon._displayName = `${mon.name} (Level ${toClassLevel}${className ? ` ${className}` : ""})`;
 
 		this._scale_ac(mon, toClassLevel, state);
 		this._scale_hp(mon, toClassLevel, state);
@@ -188,6 +188,14 @@ export class ScaleClassSummonedCreature extends ScaleSummonedCreature {
 						// "add your proficiency bonus"
 						.replace(/add your proficiency bonus/gi, (...m) => {
 							return `${m[0]} (${UiUtil.intToBonus(state.proficiencyBonus)})`;
+						})
+						// Merge " plus PB" into DC/dice tags, where simple
+						.replace(/{@(?<tag>dice|damage|hit|d20|dc) (?<text>[^}]+)}(?<suffix> plus PB\b)/g, (...m) => {
+							const {tag, text, suffix} = m.last();
+							const [, ...ptsRest] = text.split("|");
+							if (ptsRest.length) return m[0];
+
+							return `{@${tag} ${text} ${suffix}}`;
 						})
 						// "{@damage 1d8 + 2 + PB}"
 						.replace(/{@(?<tag>dice|damage|hit|d20|dc) (?<text>[^}]+)}/g, (...m) => {

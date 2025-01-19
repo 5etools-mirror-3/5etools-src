@@ -67,6 +67,8 @@ class StyleSwitcher {
 			},
 		});
 
+		if (StyleSwitcher.storage.getItem(StyleSwitcher._STORAGE_WIDE) === "true") cbWide.checked = true;
+
 		return cbWide;
 	}
 
@@ -221,8 +223,12 @@ try {
 	StyleSwitcher.storage = window.localStorage;
 } catch (e) { // cookies are disabled
 	StyleSwitcher.storage = {
-		getItem () {
-			return StyleSwitcher._STYLE_DAY;
+		getItem (k) {
+			switch (k) {
+				case StyleSwitcher._STORAGE_DAY_NIGHT: return StyleSwitcher._getDefaultStyleDayNight();
+				case StyleSwitcher._STORAGE_WIDE: return false;
+			}
+			return null;
 		},
 
 		setItem (k, v) {},

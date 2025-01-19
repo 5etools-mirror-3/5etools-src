@@ -519,7 +519,7 @@ class BestiaryPage extends ListPageMultiSource {
 			}
 		} else if (scaledClassSummonHash) {
 			const scaleTo = Number(UrlUtil.unpackSubHash(scaledClassSummonHash)[VeCt.HASH_SCALED_CLASS_SUMMON][0]);
-			if (mon.summonedByClass != null && scaleTo > 0 && scaleTo !== this._lastRender.entity._summonedByClass_level) {
+			if ((mon.summonedByClass != null || mon.summonedScaleByPlayerLevel) && scaleTo > 0 && scaleTo !== this._lastRender.entity._summonedByClass_level) {
 				ScaleClassSummonedCreature.scale(mon, scaleTo)
 					.then(monScaled => this._renderStatblock(monScaled, {isScaledClassSummon: true}));
 			}
@@ -816,7 +816,7 @@ class BestiaryPage extends ListPageMultiSource {
 			Renderer.get().addPlugin("string_@dc", pluginDc);
 			Renderer.get().addPlugin("dice", pluginDice);
 
-			this._$pgContent.empty().append(RenderBestiary.$getRenderedCreature(mon, {$btnScaleCr, $btnResetScaleCr, selSummonSpellLevel, selSummonClassLevel}));
+			this._$pgContent.empty().append(RenderBestiary.$getRenderedCreature(mon, {$btnScaleCr, $btnResetScaleCr, selSummonSpellLevel, selSummonClassLevel, classLevelScalerClass: mon.summonedByClass}));
 		} finally {
 			Renderer.get().removePlugin("dice", pluginDice);
 			Renderer.get().removePlugin("string_@dc", pluginDc);

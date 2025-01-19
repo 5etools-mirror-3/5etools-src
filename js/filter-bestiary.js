@@ -40,20 +40,6 @@ class PageFilterBestiary extends PageFilterBase {
 		return SortUtil.ascSortLower(a, b);
 	}
 
-	static getAllImmRest (toParse, key) {
-		const out = [];
-		for (const it of toParse) this._getAllImmRest_recurse(it, key, out); // Speed > safety
-		return out;
-	}
-
-	static _getAllImmRest_recurse (it, key, out, conditional) {
-		if (typeof it === "string") {
-			out.push(conditional ? `${it} (Conditional)` : it);
-		} else if (it[key]) {
-			it[key].forEach(nxt => this._getAllImmRest_recurse(nxt, key, out, !!it.cond));
-		}
-	}
-
 	static _getDamageTagDisplayText (tag) { return Parser.dmgTypeToFull(tag).toTitleCase(); }
 	static _getConditionDisplayText (uid) { return uid.split("|")[0].toTitleCase(); }
 	static _getAbilitySaveDisplayText (abl) { return `${abl.uppercaseFirst()} Save`; }
@@ -264,6 +250,10 @@ class PageFilterBestiary extends PageFilterBase {
 			items: [...Parser.TREASURE_TYPES],
 			displayFn: StrUtil.toTitleCase.bind(StrUtil),
 		});
+		this._groupFilter = new Filter({
+			header: "Group",
+			items: [],
+		});
 	}
 
 	static mutateForFilters (mon) {
@@ -288,10 +278,8 @@ class PageFilterBestiary extends PageFilterBase {
 		} else {
 			mon._fAlign = ["No Alignment"];
 		}
-		mon._fVuln = mon.vulnerable ? PageFilterBestiary.getAllImmRest(mon.vulnerable, "vulnerable") : [];
-		mon._fRes = mon.resist ? PageFilterBestiary.getAllImmRest(mon.resist, "resist") : [];
-		mon._fImm = mon.immune ? PageFilterBestiary.getAllImmRest(mon.immune, "immune") : [];
-		mon._fCondImm = mon.conditionImmune ? PageFilterBestiary.getAllImmRest(mon.conditionImmune, "conditionImmune") : [];
+		FilterCommon.mutateForFilters_damageVulnResImmune(mon);
+		FilterCommon.mutateForFilters_conditionImmune(mon);
 		mon._fSave = mon.save ? Object.keys(mon.save) : [];
 		mon._fSkill = mon.skill ? Object.keys(mon.skill) : [];
 		mon._fPassive = !isNaN(mon.passive) ? Number(mon.passive) : null;
@@ -531,6 +519,7 @@ class PageFilterBestiary extends PageFilterBase {
 		this._dragonAgeFilter.addItem(mon.dragonAge);
 		this._dragonCastingColorFilter.addItem(mon.dragonCastingColor);
 		this._treasureFilter.addItem(mon.treasure);
+		this._groupFilter.addItem(mon.group);
 	}
 
 	async _pPopulateBoxOptions (opts) {
@@ -546,6 +535,7 @@ class PageFilterBestiary extends PageFilterBase {
 			this._tagFilter,
 			this._sidekickTypeFilter,
 			this._sidekickTagFilter,
+			this._groupFilter,
 			this._environmentFilter,
 			this._defenseFilter,
 			this._conditionImmuneFilter,
@@ -586,6 +576,7 @@ class PageFilterBestiary extends PageFilterBase {
 			m._pTypes.tags,
 			m._pTypes.typeSidekick,
 			m._pTypes.tagsSidekick,
+			m.group,
 			m._fEnvironment,
 			[
 				m._fVuln,

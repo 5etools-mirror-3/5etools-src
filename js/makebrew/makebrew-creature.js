@@ -126,10 +126,10 @@ export class CreatureBuilder extends BuilderBase {
 				delete scaled._displayName;
 				this.setStateFromLoaded({s: scaled, m: meta});
 			} else this.setStateFromLoaded({s: creature, m: meta});
-		} else if (creature.summonedByClass && !opts.isForce) {
+		} else if ((creature.summonedByClass || creature.summonedScaleByPlayerLevel) && !opts.isForce) {
 			const fauxSel = Renderer.monster.getSelSummonClassLevel(creature);
 			const values = [...fauxSel.options].map(it => it.value === "-1" ? "\u2014" : Number(it.value));
-			const scaleTo = await InputUiUtil.pGetUserEnum({values: values, title: "At Class Level...", default: values[0], isResolveItem: true});
+			const scaleTo = await InputUiUtil.pGetUserEnum({values: values, title: creature.summonedByClass ? `At Class Level...` : `At Player Level...`, default: values[0], isResolveItem: true});
 
 			if (scaleTo != null) {
 				const scaled = await ScaleClassSummonedCreature.scale(creature, scaleTo);
@@ -231,7 +231,7 @@ export class CreatureBuilder extends BuilderBase {
 						? `${itemTypeAbv === Parser.ITM_TYP_ABV__MELEE_WEAPON ? `reach 5 ft. or ` : ""}range ${item.range} ft.`
 						: "reach 5 ft.";
 					const dmgAvg = Number(mDice.groups.count) * ((Number(mDice.groups.face) + 1) / 2);
-					const isFinesse = (item?.property || []).some(uid => DataUtil.itemProperty.unpackUid(uid).abbreviation === Parser.ITM_PROP_ABV__FINESSE);
+					const isFinesse = (item?.property || []).some(property => DataUtil.itemProperty.unpackUid(property?.uid || property).abbreviation === Parser.ITM_PROP_ABV__FINESSE);
 
 					return {
 						name: item.name,

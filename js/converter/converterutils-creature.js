@@ -616,6 +616,12 @@ export class TagCreatureSubEntryInto {
 					{
 						string: (str) => {
 							return str
+								// "Trigger: ..."
+								.replace(/^(Trigger:)(?= )/g, (...m) => `{@actTrigger}`)
+								// "Response: ..."
+								.replace(/(?<=^|[.!?;] )(Response:)(?= )/g, (...m) => `{@actResponse}`)
+								.replace(/(?<=^|[.!?;] )(Response[-\u2012-\u2014])(?=[A-Z])/g, (...m) => `{@actResponse d}`)
+
 								// "Melee Weapon Attack: ..."
 								// "Melee Attack Roll: ..."
 								.replace(/^(?<text>(?:(?:[A-Z][a-z]*|or) )*Attack(?: Roll)?:)(?= )/g, (...m) => {
@@ -639,11 +645,10 @@ export class TagCreatureSubEntryInto {
 								// "Success: ..."
 								.replace(/(?<=^|[.!?;] )(Success:)(?= )/g, (...m) => `{@actSaveSuccess}`)
 								// "Failure: ..."
+								.replace(/(?<=^|[.!?;] )(?<ordinal>First|Second|Third|Fourth|Fifth|Sixth|Seventh|Eighth|Ninth|Tenth) (?:Failure:)(?= )/g, (...m) => {
+									return `{@actSaveFail ${Parser.textToNumber(m.at(-1).ordinal)}}`;
+								})
 								.replace(/(?<=^|[.!?;] )(Failure:)(?= )/g, (...m) => `{@actSaveFail}`)
-								// "Trigger: ..."
-								.replace(/^(Trigger:)(?= )/g, (...m) => `{@actTrigger}`)
-								// "Response: ..."
-								.replace(/(?<=^|[.!?;] )(Response:)(?= )/g, (...m) => `{@actResponse}`)
 							;
 						},
 					},
@@ -1335,7 +1340,7 @@ export class MiscTag {
 			.map(it => new RegExp(`(^|\\W)(${it.name.escapeRegexp()})(\\W|$)`, "gi"));
 
 		this._THROWN_WEAPON_MATCHERS = weaponsBase
-			.filter(it => (it.property || []).some(uid => DataUtil.itemProperty.unpackUid(uid).abbreviation === Parser.ITM_PROP_ABV__THROWN))
+			.filter(it => (it.property || []).some(property => DataUtil.itemProperty.unpackUid(property?.uid || property).abbreviation === Parser.ITM_PROP_ABV__THROWN))
 			.map(it => new RegExp(`(^|\\W)(${it.name.escapeRegexp()})(\\W|$)`, "gi"));
 	}
 

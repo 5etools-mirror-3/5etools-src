@@ -78,7 +78,7 @@ export class ConverterBase {
 			// Connect together save effect starts
 			.replace(/\s(?:(First|Second|Third|Fourth|Fifth)\s+)?(?:Failure\s+or\s+Success|Failure|Success):\s/g, (...m) => m[0].replace(this._RE_WHITESPACE, " "))
 			// Connect trigger/response
-			.replace(/\s(Trigger|Response):\s/g, (...m) => m[0].replace(this._RE_WHITESPACE, " "))
+			.replace(/\s(Trigger|Response)[-:\u2012-\u2014]\s/g, (...m) => m[0].replace(this._RE_WHITESPACE, " "))
 			// Connect areas, e.g. "10-foot-radius Sphere"
 			.replace(/\s\d+-foot-\w+\s[A-Z][a-z]+/g, (...m) => m[0].replace(this._RE_WHITESPACE, " "))
 			// Connect together likely word pairs

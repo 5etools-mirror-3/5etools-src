@@ -711,10 +711,15 @@ class RendererMarkdown {
 				break;
 			case "@actSave": textStack[0] += `*${Parser.attAbvToFull(text)} Saving Throw:*`; break;
 			case "@actSaveSuccess": textStack[0] += `*Success:*`; break;
-			case "@actSaveFail": textStack[0] += `*Failure:*`; break;
+			case "@actSaveFail": {
+				const [ordinal] = Renderer.splitTagByPipe(text);
+				if (ordinal) textStack[0] += `*${Parser.numberToText(ordinal, {isOrdinalForm: true}).toTitleCase()} Failure:*`;
+				else textStack[0] += `*Failure:*`;
+				break;
+			}
 			case "@actSaveSuccessOrFail": textStack[0] += `*Failure or Success:*`; break;
 			case "@actTrigger": textStack[0] += `*Trigger:*`; break;
-			case "@actResponse": textStack[0] += `*Response:*`; break;
+			case "@actResponse": textStack[0] += `*Response${text.includes("d") ? "\u2014" : ":"}*`; break;
 			case "@h": textStack[0] += `*Hit:* `; break;
 			case "@m": textStack[0] += `*Miss:* `; break;
 			case "@hom": textStack[0] += `*Hit or Miss:* `; break;

@@ -31,82 +31,106 @@ Parser.attrChooseToFull = function (attList) {
 	}
 };
 
-Parser.numberToText = function (number) {
+Parser.numberToText = function (number, {isOrdinalForm = false} = {}) {
 	if (number == null) throw new TypeError(`undefined or null object passed to parser`);
-	if (Math.abs(number) >= 100) return `${number}`;
+	if (Math.abs(number) >= 100) return isOrdinalForm ? Parser.getOrdinalForm(number) : `${number}`;
 
-	return `${number < 0 ? "negative " : ""}${Parser.numberToText._getPositiveNumberAsText(Math.abs(number))}`;
+	return `${number < 0 ? "negative " : ""}${Parser.numberToText._getPositiveNumberAsText({number: Math.abs(number), isOrdinalForm})}`;
 };
 
-Parser.numberToText._getPositiveNumberAsText = num => {
-	const [preDotRaw, postDotRaw] = `${num}`.split(".");
+Parser.numberToText._getPositiveNumberAsText = ({number, isOrdinalForm}) => {
+	const [preDotRaw, postDotRaw] = `${number}`.split(".");
 
-	if (!postDotRaw) return Parser.numberToText._getPositiveIntegerAsText(num);
+	if (!postDotRaw) return Parser.numberToText._getPositiveIntegerAsText({number, isOrdinalForm});
 
-	let preDot = preDotRaw === "0" ? "" : `${Parser.numberToText._getPositiveIntegerAsText(Math.trunc(num))} and `;
+	if (isOrdinalForm) return `${preDotRaw}.${Parser.getOrdinalForm(postDotRaw)}`;
 
+	const {str: strPostDot, isPretty: isPrettyPostDot} = Parser.numberToText._getPostDot({postDotRaw});
+
+	if (!isPrettyPostDot) return `${number}`;
+
+	return preDotRaw === "0"
+		? strPostDot
+		: `${Parser.numberToText._getPositiveIntegerAsText({number: Math.trunc(number), isOrdinalForm})} and ${strPostDot}`;
+};
+
+Parser.numberToText._getPostDot = ({postDotRaw}) => {
 	// See also: `Parser.numberToVulgar`
 	switch (postDotRaw) {
-		case "125": return `${preDot}one-eighth`;
-		case "2": return `${preDot}one-fifth`;
-		case "25": return `${preDot}one-quarter`;
-		case "375": return `${preDot}three-eighths`;
-		case "4": return `${preDot}two-fifths`;
-		case "5": return `${preDot}one-half`;
-		case "6": return `${preDot}three-fifths`;
-		case "625": return `${preDot}five-eighths`;
-		case "75": return `${preDot}three-quarters`;
-		case "8": return `${preDot}four-fifths`;
-		case "875": return `${preDot}seven-eighths`;
+		case "125": return {str: `one-eighth`, isPretty: true};
+		case "2": return {str: `one-fifth`, isPretty: true};
+		case "25": return {str: `one-quarter`, isPretty: true};
+		case "375": return {str: `three-eighths`, isPretty: true};
+		case "4": return {str: `two-fifths`, isPretty: true};
+		case "5": return {str: `one-half`, isPretty: true};
+		case "6": return {str: `three-fifths`, isPretty: true};
+		case "625": return {str: `five-eighths`, isPretty: true};
+		case "75": return {str: `three-quarters`, isPretty: true};
+		case "8": return {str: `four-fifths`, isPretty: true};
+		case "875": return {str: `seven-eighths`, isPretty: true};
 
 		default: {
 			// Handle recursive
 			const asNum = Number(`0.${postDotRaw}`);
 
-			if (asNum.toFixed(2) === (1 / 3).toFixed(2)) return `${preDot}one-third`;
-			if (asNum.toFixed(2) === (2 / 3).toFixed(2)) return `${preDot}two-thirds`;
+			if (asNum.toFixed(2) === (1 / 3).toFixed(2)) return {str: `one-third`, isPretty: true};
+			if (asNum.toFixed(2) === (2 / 3).toFixed(2)) return {str: `two-thirds`, isPretty: true};
 
-			if (asNum.toFixed(2) === (1 / 6).toFixed(2)) return `${preDot}one-sixth`;
-			if (asNum.toFixed(2) === (5 / 6).toFixed(2)) return `${preDot}five-sixths`;
+			if (asNum.toFixed(2) === (1 / 6).toFixed(2)) return {str: `one-sixth`, isPretty: true};
+			if (asNum.toFixed(2) === (5 / 6).toFixed(2)) return {str: `five-sixths`, isPretty: true};
+
+			return {str: `${postDotRaw}`, isPretty: false};
 		}
 	}
 };
 
-Parser.numberToText._getPositiveIntegerAsText = num => {
-	switch (num) {
-		case 0: return "zero";
-		case 1: return "one";
-		case 2: return "two";
-		case 3: return "three";
-		case 4: return "four";
-		case 5: return "five";
-		case 6: return "six";
-		case 7: return "seven";
-		case 8: return "eight";
-		case 9: return "nine";
-		case 10: return "ten";
-		case 11: return "eleven";
-		case 12: return "twelve";
-		case 13: return "thirteen";
-		case 14: return "fourteen";
-		case 15: return "fifteen";
-		case 16: return "sixteen";
-		case 17: return "seventeen";
-		case 18: return "eighteen";
-		case 19: return "nineteen";
-		case 20: return "twenty";
-		case 30: return "thirty";
-		case 40: return "forty";
-		case 50: return "fifty";
-		case 60: return "sixty";
-		case 70: return "seventy";
-		case 80: return "eighty";
-		case 90: return "ninety";
+Parser.numberToText._getPositiveIntegerAsText = ({number, isOrdinalForm}) => {
+	switch (number) {
+		case 0: return Parser.numberToText._getOptionallyOrdinal({number, str: "zero", isOrdinalForm});
+		case 1: return Parser.numberToText._getOptionallyOrdinal({number, str: "one", isOrdinalForm});
+		case 2: return Parser.numberToText._getOptionallyOrdinal({number, str: "two", isOrdinalForm});
+		case 3: return Parser.numberToText._getOptionallyOrdinal({number, str: "three", isOrdinalForm});
+		case 4: return Parser.numberToText._getOptionallyOrdinal({number, str: "four", isOrdinalForm});
+		case 5: return Parser.numberToText._getOptionallyOrdinal({number, str: "five", isOrdinalForm});
+		case 6: return Parser.numberToText._getOptionallyOrdinal({number, str: "six", isOrdinalForm});
+		case 7: return Parser.numberToText._getOptionallyOrdinal({number, str: "seven", isOrdinalForm});
+		case 8: return Parser.numberToText._getOptionallyOrdinal({number, str: "eight", isOrdinalForm});
+		case 9: return Parser.numberToText._getOptionallyOrdinal({number, str: "nine", isOrdinalForm});
+		case 10: return Parser.numberToText._getOptionallyOrdinal({number, str: "ten", isOrdinalForm});
+		case 11: return Parser.numberToText._getOptionallyOrdinal({number, str: "eleven", isOrdinalForm});
+		case 12: return Parser.numberToText._getOptionallyOrdinal({number, str: "twelve", isOrdinalForm});
+		case 13: return Parser.numberToText._getOptionallyOrdinal({number, str: "thirteen", isOrdinalForm});
+		case 14: return Parser.numberToText._getOptionallyOrdinal({number, str: "fourteen", isOrdinalForm});
+		case 15: return Parser.numberToText._getOptionallyOrdinal({number, str: "fifteen", isOrdinalForm});
+		case 16: return Parser.numberToText._getOptionallyOrdinal({number, str: "sixteen", isOrdinalForm});
+		case 17: return Parser.numberToText._getOptionallyOrdinal({number, str: "seventeen", isOrdinalForm});
+		case 18: return Parser.numberToText._getOptionallyOrdinal({number, str: "eighteen", isOrdinalForm});
+		case 19: return Parser.numberToText._getOptionallyOrdinal({number, str: "nineteen", isOrdinalForm});
+		case 20: return Parser.numberToText._getOptionallyOrdinal({number, str: "twenty", isOrdinalForm});
+		case 30: return Parser.numberToText._getOptionallyOrdinal({number, str: "thirty", isOrdinalForm});
+		case 40: return Parser.numberToText._getOptionallyOrdinal({number, str: "forty", isOrdinalForm});
+		case 50: return Parser.numberToText._getOptionallyOrdinal({number, str: "fifty", isOrdinalForm});
+		case 60: return Parser.numberToText._getOptionallyOrdinal({number, str: "sixty", isOrdinalForm});
+		case 70: return Parser.numberToText._getOptionallyOrdinal({number, str: "seventy", isOrdinalForm});
+		case 80: return Parser.numberToText._getOptionallyOrdinal({number, str: "eighty", isOrdinalForm});
+		case 90: return Parser.numberToText._getOptionallyOrdinal({number, str: "ninety", isOrdinalForm});
 		default: {
-			const str = String(num);
-			return `${Parser.numberToText._getPositiveIntegerAsText(Number(`${str[0]}0`))}-${Parser.numberToText._getPositiveIntegerAsText(Number(str[1]))}`;
+			const str = String(number);
+			return `${Parser.numberToText._getPositiveIntegerAsText({number: Number(`${str[0]}0`)})}-${Parser.numberToText._getPositiveIntegerAsText({number: Number(str[1]), isOrdinalForm})}`;
 		}
 	}
+};
+
+Parser.numberToText._getOptionallyOrdinal = ({number, str, isOrdinalForm}) => {
+	if (!isOrdinalForm) return str;
+	switch (number) {
+		case 1: return "first";
+		case 2: return "second";
+		case 3: return "third";
+	}
+	if (str.endsWith("y")) return `${str.slice(0, -1)}ieth`;
+	if (str.endsWith("ve")) return `${str.slice(0, -2)}fth`;
+	return `${str}th`;
 };
 
 Parser.textToNumber = function (str) {
@@ -114,16 +138,16 @@ Parser.textToNumber = function (str) {
 	if (!isNaN(str)) return Number(str);
 	switch (str) {
 		case "zero": return 0;
-		case "one": case "a": case "an": return 1;
-		case "two": case "double": return 2;
-		case "three": case "triple": return 3;
-		case "four": case "quadruple": return 4;
-		case "five": return 5;
-		case "six": return 6;
-		case "seven": return 7;
-		case "eight": return 8;
-		case "nine": return 9;
-		case "ten": return 10;
+		case "one": case "a": case "an": case "first": return 1;
+		case "two": case "double": case "second": return 2;
+		case "three": case "triple": case "third": return 3;
+		case "four": case "quadruple": case "fourth": return 4;
+		case "five": case "fifth": return 5;
+		case "six": case "sixth": return 6;
+		case "seven": case "seventh": return 7;
+		case "eight": case "eighth": return 8;
+		case "nine": case "ninth": return 9;
+		case "ten": case "tenth": return 10;
 		case "eleven": return 11;
 		case "twelve": return 12;
 		case "thirteen": return 13;
@@ -2721,17 +2745,18 @@ Parser.trapHazTypeToFull = function (type) {
 };
 
 Parser.TRAP_HAZARD_TYPE_TO_FULL = {
-	MECH: "Mechanical Trap",
-	MAG: "Magical Trap",
-	SMPL: "Simple Trap",
-	CMPX: "Complex Trap",
-	HAZ: "Hazard",
-	WTH: "Weather",
-	ENV: "Environmental Hazard",
-	WLD: "Wilderness Hazard",
-	GEN: "Generic",
-	EST: "Eldritch Storm",
-	TRP: "Trap",
+	"MECH": "Mechanical Trap",
+	"MAG": "Magical Trap",
+	"SMPL": "Simple Trap",
+	"CMPX": "Complex Trap",
+	"HAZ": "Hazard",
+	"WTH": "Weather",
+	"ENV": "Environmental Hazard",
+	"WLD": "Wilderness Hazard",
+	"GEN": "Generic",
+	"EST": "Eldritch Storm",
+	"TRP": "Trap",
+	"HAUNT": "Haunted Trap",
 };
 
 Parser._TIER_TO_LEVEL_RANGE = {

@@ -249,7 +249,8 @@ $rgb-inset-border: #656565;
 			margin: 0;
 		}
 
-		&list-hang-notitle {
+		&list-hang-notitle,
+		&list-caption {
 			padding: 0;
 			list-style: none;
 
@@ -275,6 +276,14 @@ $rgb-inset-border: #656565;
 				> ul {
 					text-indent: initial;
 				}
+			}
+		}
+
+		&list-caption {
+			> .rd__list-name {
+				font-variant: small-caps;
+				font-weight: bold;
+				font-size: 1.08em;
 			}
 		}
 

@@ -342,7 +342,6 @@ export class FilterBox extends ProxyBase {
 		</div>
 		<hr class="w-100 m-0 mb-2">
 
-		<hr class="mt-1 mb-1">
 		<div class="ui-modal__scroller smooth-scroll px-1">
 			${$children}
 		</div>

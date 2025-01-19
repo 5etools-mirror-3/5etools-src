@@ -234,6 +234,7 @@ class _PageGeneratorLootgen extends PageGeneratorGeneric {
 
 	_scriptsUtilsAdditional = [
 		"utils-generate.js",
+		"filter-common.js",
 		"filter-items.js",
 		"filter-spells.js",
 	];
