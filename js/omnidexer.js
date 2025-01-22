@@ -588,7 +588,7 @@ class IndexableFileMagicVariants extends IndexableFile {
 			additionalIndexes: {
 				item: async (indexer, rawVariants) => {
 					const specVars = await (async () => {
-						const baseItemJson = await DataUtil.loadJSON(`data/items-base.json`);
+						const baseItemJson = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/items-base.json`);
 						const rawBaseItems = {...baseItemJson, baseitem: [...baseItemJson.baseitem]};
 
 						const prerelease = typeof PrereleaseUtil !== "undefined" ? await PrereleaseUtil.pGetBrewProcessed() : {};

@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.5.11"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.5.12"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -1152,11 +1152,11 @@ globalThis.JqueryUtil = {
 
 if (typeof window !== "undefined") window.addEventListener("load", JqueryUtil.initEnhancements);
 
-globalThis.ElementUtil = {
-	_ATTRS_NO_FALSY: new Set([
+class ElementUtil {
+	static _ATTRS_NO_FALSY = new Set([
 		"checked",
 		"disabled",
-	]),
+	]);
 
 	/**
 	 * @typedef {HTMLElement} HTMLElementModified
@@ -1198,7 +1198,7 @@ globalThis.ElementUtil = {
 	 *
 	 * @return {HTMLElementModified}
 	 */
-	getOrModify ({
+	static getOrModify ({
 		tag,
 		clazz,
 		style,
@@ -1276,6 +1276,7 @@ globalThis.ElementUtil = {
 		ele.appends = ele.appends || ElementUtil._appends.bind(ele);
 		ele.appendTo = ele.appendTo || ElementUtil._appendTo.bind(ele);
 		ele.prependTo = ele.prependTo || ElementUtil._prependTo.bind(ele);
+		ele.aftere = ele.aftere || ElementUtil._aftere.bind(ele);
 		ele.insertAfter = ele.insertAfter || ElementUtil._insertAfter.bind(ele);
 		ele.addClass = ele.addClass || ElementUtil._addClass.bind(ele);
 		ele.removeClass = ele.removeClass || ElementUtil._removeClass.bind(ele);
@@ -1298,11 +1299,13 @@ globalThis.ElementUtil = {
 		ele.onKeydown = ele.onKeydown || ElementUtil._onX.bind(ele, "keydown");
 		ele.onKeyup = ele.onKeyup || ElementUtil._onX.bind(ele, "keyup");
 		ele.first = ele.first || ElementUtil._first.bind(ele);
+		ele.closeste = ele.closeste || ElementUtil._closeste.bind(ele);
+		ele.childrene = ele.childrene || ElementUtil._childrene.bind(ele);
 
 		return ele;
-	},
+	}
 
-	_getOrModify_getEle (
+	static _getOrModify_getEle (
 		{
 			ele,
 			outer,
@@ -1319,105 +1322,133 @@ globalThis.ElementUtil = {
 			return {ele: eleId, isSetId: false};
 		}
 		throw new Error(`Could not find or create element!`);
-	},
+	}
 
-	_appends (child) {
+	/** @this {HTMLElementModified} */
+	static _appends (child) {
+		if (typeof child === "string") child = ee`${child}`;
 		this.appendChild(child);
 		return this;
-	},
+	}
 
-	_appendTo (parent) {
+	/** @this {HTMLElementModified} */
+	static _appendTo (parent) {
 		parent.appendChild(this);
 		return this;
-	},
+	}
 
-	_prependTo (parent) {
+	/** @this {HTMLElementModified} */
+	static _prependTo (parent) {
 		parent.prepend(this);
 		return this;
-	},
+	}
 
-	_insertAfter (parent) {
+	/** @this {HTMLElementModified} */
+	static _aftere (other) {
+		if (typeof other === "string") other = ee`${other}`;
+		this.after(other);
+		return this;
+	}
+
+	/** @this {HTMLElementModified} */
+	static _insertAfter (parent) {
 		parent.after(this);
 		return this;
-	},
+	}
 
-	_addClass (clazz) {
+	/** @this {HTMLElementModified} */
+	static _addClass (clazz) {
 		this.classList.add(clazz);
 		return this;
-	},
+	}
 
-	_removeClass (clazz) {
+	/** @this {HTMLElementModified} */
+	static _removeClass (clazz) {
 		this.classList.remove(clazz);
 		return this;
-	},
+	}
 
-	_toggleClass (clazz, isActive) {
+	/** @this {HTMLElementModified} */
+	static _toggleClass (clazz, isActive) {
 		if (isActive == null) this.classList.toggle(clazz);
 		else if (isActive) this.classList.add(clazz);
 		else this.classList.remove(clazz);
 		return this;
-	},
+	}
 
-	_showVe () {
+	/** @this {HTMLElementModified} */
+	static _showVe () {
 		this.classList.remove("ve-hidden");
 		return this;
-	},
+	}
 
-	_hideVe () {
+	/** @this {HTMLElementModified} */
+	static _hideVe () {
 		this.classList.add("ve-hidden");
 		return this;
-	},
+	}
 
-	_toggleVe (isActive) {
+	/** @this {HTMLElementModified} */
+	static _toggleVe (isActive) {
 		this.toggleClass("ve-hidden", isActive == null ? isActive : !isActive);
 		return this;
-	},
+	}
 
-	_empty () {
+	/** @this {HTMLElementModified} */
+	static _empty () {
 		this.innerHTML = "";
 		return this;
-	},
+	}
 
-	_detach () {
+	/** @this {HTMLElementModified} */
+	static _detach () {
 		if (this.parentElement) this.parentElement.removeChild(this);
 		return this;
-	},
+	}
 
-	_attr (name, value) {
+	/** @this {HTMLElementModified} */
+	static _attr (name, value) {
+		if (value === undefined) return this.getAttribute(name);
 		this.setAttribute(name, value);
 		return this;
-	},
+	}
 
-	_html (html) {
+	/** @this {HTMLElementModified} */
+	static _html (html) {
 		if (html === undefined) return this.innerHTML;
 		this.innerHTML = html;
 		return this;
-	},
+	}
 
-	_txt (txt) {
+	/** @this {HTMLElementModified} */
+	static _txt (txt) {
 		if (txt === undefined) return this.innerText;
 		this.innerText = txt;
 		return this;
-	},
+	}
 
-	_tooltip (title) {
+	/** @this {HTMLElementModified} */
+	static _tooltip (title) {
 		return this.attr("title", title);
-	},
+	}
 
-	_disableSpellcheck () {
+	/** @this {HTMLElementModified} */
+	static _disableSpellcheck () {
 		// avoid setting input type to "search" as it visually offsets the contents of the input
 		return this
 			.attr("autocomplete", "new-password")
 			.attr("autocapitalize", "off")
 			.attr("spellcheck", "false");
-	},
+	}
 
-	_onX (evtName, fn) {
+	/** @this {HTMLElementModified} */
+	static _onX (evtName, fn) {
 		this.addEventListener(evtName, fn);
 		return this;
-	},
+	}
 
-	_val (val, {isSetAttribute = false} = {}) {
+	/** @this {HTMLElementModified} */
+	static _val (val, {isSetAttribute = false} = {}) {
 		if (val !== undefined) {
 			switch (this.tagName) {
 				case "SELECT": {
@@ -1445,16 +1476,51 @@ globalThis.ElementUtil = {
 
 			default: return this.value;
 		}
-	},
+	}
 
-	_first (selector) {
+	/** @this {HTMLElementModified} */
+	static _first (selector) {
 		const child = this.querySelector(selector);
 		if (!child) return child;
 		return e_({ele: child});
-	},
+	}
+
+	/** @this {HTMLElementModified} */
+	static _closeste (selector) {
+		const sibling = this.closest(selector);
+		if (!sibling) return sibling;
+		return e_({ele: sibling});
+	}
+
+	/** @this {HTMLElementModified} */
+	static _childrene (selector) {
+		if (!selector) return [...this.children].map(child => e_({ele: child}));
+		return em(selector, this);
+	}
+
+	/* -------------------------------------------- */
+
+	/**
+	 * @return {?HTMLElementModified}
+	 */
+	static getBySelector (selector, parent) {
+		const ele = (parent || document).querySelector(selector);
+		if (!ele) return null;
+		return e_({ele});
+	}
+
+	/**
+	 * @return {Array<HTMLElementModified>}
+	 */
+	static getBySelectorMulti (selector, parent) {
+		return [...(parent || document).querySelectorAll(selector)]
+			.map(ele => e_({ele}));
+	}
+
+	/* -------------------------------------------- */
 
 	// region "Static"
-	getIndexPathToParent (parent, child) {
+	static getIndexPathToParent (parent, child) {
 		if (!parent.contains(child)) return null; // Should never occur
 
 		const path = [];
@@ -1471,20 +1537,26 @@ globalThis.ElementUtil = {
 		}
 
 		return path.reverse();
-	},
+	}
 
-	getChildByIndexPath (parent, indexPath) {
+	static getChildByIndexPath (parent, indexPath) {
 		for (let i = 0; i < indexPath.length; ++i) {
 			const ix = indexPath[i];
 			parent = parent.children[ix];
 			if (!parent) return null;
 		}
 		return parent;
-	},
+	}
 	// endregion
-};
+}
 
-if (typeof window !== "undefined") window.e_ = ElementUtil.getOrModify;
+globalThis.ElementUtil = ElementUtil;
+
+if (typeof window !== "undefined") {
+	window.e_ = ElementUtil.getOrModify.bind(ElementUtil);
+	window.es = ElementUtil.getBySelector.bind(ElementUtil);
+	window.em = ElementUtil.getBySelectorMulti.bind(ElementUtil);
+}
 
 globalThis.ObjUtil = {
 	async pForEachDeep (source, pCallback, options = {depth: Infinity, callEachLevel: false}) {
@@ -8487,8 +8559,8 @@ if (!IS_VTT && typeof window !== "undefined") {
 	}
 
 	// window.addEventListener("load", () => {
-	// 	$(`.cancer__sidebar-rhs-inner--top`).append(`<div class="TEST_RHS_TOP"></div>`)
-	// 	$(`.cancer__sidebar-rhs-inner--bottom`).append(`<div class="TEST_RHS_BOTTOM"></div>`)
+	// 	$(`.cancer__sidebar-inner--top`).append(`<div style="width: 300px; height: 600px; background: #f0f;"></div>`);
+	// 	$(`.cancer__sidebar-inner--bottom`).append(`<div style="width: 300px; height: 600px; background: #f0f;"></div>`);
 	// });
 	// endregion
 }

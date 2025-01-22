@@ -101,7 +101,7 @@ export class PageFilterBase {
 		});
 	}
 
-	static _isReprinted (ent) {
+	static isReprinted (ent) {
 		if (!ent?.reprintedAs?.length) return false;
 		return ent.reprintedAs
 			.some(it => {
@@ -138,7 +138,7 @@ export class PageFilterBase {
 		if (this._hasFluff(ent)) ent._fMisc.push("Has Info");
 		if (this._hasFluffImages(ent)) ent._fMisc.push("Has Images");
 
-		if (this._isReprinted(ent)) ent._fMisc.push("Reprinted");
+		if (this.isReprinted(ent)) ent._fMisc.push("Reprinted");
 	}
 	// endregion
 }

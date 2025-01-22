@@ -430,6 +430,7 @@ PropOrder._MONSTER = [
 	"summonedBySpell",
 	"summonedBySpellLevel",
 	"summonedByClass",
+	"summonedScaleByPlayerLevel",
 
 	"_isCopy",
 	PropOrder._ObjectKey.getCopyKey({fnGetModOrder: () => PropOrder._MONSTER__COPY_MOD}),
@@ -2391,6 +2392,8 @@ PropOrder._TRAP = [
 	"trapHazType",
 
 	"rating",
+
+	"hauntBonus",
 
 	"effect",
 

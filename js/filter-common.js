@@ -3,7 +3,7 @@
 class FilterCommon {
 	static getDamageVulnerableFilter () {
 		return this._getDamageResistVulnImmuneFilter({
-			header: "Vulnerabilities",
+			header: "Vulnerability",
 			headerShort: "Vuln.",
 		});
 	}
@@ -71,47 +71,33 @@ class FilterCommon {
 
 	/* -------------------------------------------- */
 
-	static mutateForFilters_damageVulnResImmune_player (ent) {
-		this.mutateForFilters_damageVuln_player(ent);
-		this.mutateForFilters_damageRes_player(ent);
-		this.mutateForFilters_damageImm_player(ent);
+	static mutateForFilters_damageVulnResImmune (ent) {
+		ent._fVuln = this._getAllImmRes(ent.vulnerable, "vulnerable");
+		ent._fRes = this._getAllImmRes(ent.resist, "resist");
+		ent._fImm = this._getAllImmRes(ent.immune, "immune");
 	}
 
-	static mutateForFilters_damageVuln_player (ent) {
-		if (!ent.vulnerable) return;
-
-		const out = new Set();
-		ent.vulnerable.forEach(it => this._recurseResVulnImm(out, it));
-		ent._fVuln = [...out];
+	static _getAllImmRes (val, key) {
+		if (!val) return [];
+		const out = [];
+		for (const valSub of val) this._getAllImmRes_recurse(valSub, key, out);
+		return out;
 	}
 
-	static mutateForFilters_damageRes_player (ent) {
-		if (!ent.resist) return;
+	static _getAllImmRes_recurse (val, key, out, isConditional) {
+		if (val[key]) {
+			val[key].forEach(nxt => this._getAllImmRes_recurse(nxt, key, out, !!val.cond));
+			return;
+		}
 
-		const out = new Set();
-		ent.resist.forEach(it => this._recurseResVulnImm(out, it));
-		ent._fRes = [...out];
+		if (val.special) return out.push("Other");
+
+		if (typeof val !== "string") return;
+		out.push(isConditional ? `${val} (Conditional)` : val);
 	}
 
-	static mutateForFilters_damageImm_player (ent) {
-		if (!ent.immune) return;
-
-		const out = new Set();
-		ent.immune.forEach(iti => this._recurseResVulnImm(out, iti));
-		ent._fImm = [...out];
-	}
-
-	static mutateForFilters_conditionImmune_player (ent) {
-		if (!ent.conditionImmune) return;
-
-		const out = new Set();
-		ent.conditionImmune.forEach(it => this._recurseResVulnImm(out, it));
-		ent._fCondImm = [...out];
-	}
-
-	static _recurseResVulnImm (allSet, it) {
-		if (typeof it === "string") return allSet.add(it);
-		if (it.choose?.from) it.choose?.from.forEach(itSub => this._recurseResVulnImm(allSet, itSub));
+	static mutateForFilters_conditionImmune (ent) {
+		ent._fCondImm = this._getAllImmRes(ent.conditionImmune, "immune");
 	}
 
 	/* -------------------------------------------- */

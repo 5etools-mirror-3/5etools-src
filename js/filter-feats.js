@@ -103,8 +103,8 @@ class PageFilterFeats extends PageFilterBase {
 		feat._slAbility = ability.asTextShort || VeCt.STR_NONE;
 		feat._slPrereq = prereqText;
 
-		FilterCommon.mutateForFilters_damageVulnResImmune_player(feat);
-		FilterCommon.mutateForFilters_conditionImmune_player(feat);
+		FilterCommon.mutateForFilters_damageVulnResImmune(feat);
+		FilterCommon.mutateForFilters_conditionImmune(feat);
 	}
 
 	addToFilters (feat, isExcluded) {

@@ -1,10 +1,10 @@
 import {ScaleCreatureUtils} from "./scalecreature-utils.js";
-import {ScaleCreatureConsts} from "./scalecreature-consts.js";
 import {ScaleCreatureState} from "./scalecreature-scaler-cr/scalecreature-scaler-cr-state.js";
 import {CrScalerArmorClass} from "./scalecreature-scaler-cr/scalecreature-scaler-cr-armorclass.js";
 import {CrScalerUtils} from "./scalecreature-scaler-cr/scalecreature-scaler-cr-utils.js";
 import {CrScalerHitSave} from "./scalecreature-scaler-cr/scalecreature-scaler-cr-hitsave.js";
 import {CrScalerDpr} from "./scalecreature-scaler-cr/scalecreature-scaler-cr-dpr.js";
+import {CrScalerHp} from "./scalecreature-scaler-cr/scalecreature-scaler-cr-hp.js";
 
 /**
  * Scale a creature based on the "Creating Quick Monster Stats" "Monster Statistics by Challenge Rating" table
@@ -17,48 +17,6 @@ export class ScaleCreature {
 		const xpVal = Parser.XP_CHART_ALT[mon.cr?.cr ?? mon.cr];
 		return xpVal != null;
 	}
-
-	// calculated as the mean modifier for each CR,
-	// -/+ the mean absolute deviation,
-	// rounded to the nearest integer
-	static _CR_TO_ESTIMATED_CON_MOD_RANGE = {
-		"0": [-1, 2],
-		"0.125": [-1, 1],
-		"0.25": [0, 2],
-		"0.5": [0, 2],
-		"1": [0, 2],
-		"2": [0, 3],
-		"3": [1, 3],
-		"4": [1, 4],
-		"5": [2, 4],
-		"6": [2, 5],
-		"7": [1, 5],
-		"8": [1, 5],
-		"9": [2, 5],
-		"10": [2, 5],
-		"11": [2, 6],
-		"12": [1, 5],
-		"13": [3, 6],
-		"14": [3, 6],
-		"15": [3, 6],
-		"16": [4, 7],
-		"17": [3, 7],
-		"18": [1, 7],
-		"19": [4, 6],
-		"20": [5, 9],
-		"21": [3, 8],
-		"22": [4, 9],
-		"23": [5, 9],
-		"24": [5, 9],
-		"25": [7, 9],
-		"26": [7, 9],
-		// no creatures for these CRs; use 26
-		"27": [7, 9],
-		"28": [7, 9],
-		"29": [7, 9],
-		// end
-		"30": [10, 10],
-	};
 
 	static _CASTER_LEVEL_AND_CLASS_CANTRIPS = {
 		artificer: [2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4],
@@ -139,7 +97,7 @@ export class ScaleCreature {
 
 		if (pbIn !== pbOut) this._applyPb(mon, pbIn, pbOut);
 
-		this._adjustHp({mon, crInNumber, crOutNumber, state});
+		new CrScalerHp({mon, crInNumber, crOutNumber, pbIn, pbOut, state}).doAdjust();
 		new CrScalerHitSave({mon, crInNumber, crOutNumber, pbIn, pbOut, state}).doAdjust();
 		new CrScalerDpr({mon, crInNumber, crOutNumber, pbIn, pbOut, state}).doAdjust();
 		this._adjustSpellcasting(mon, crInNumber, crOutNumber);
@@ -249,125 +207,6 @@ export class ScaleCreature {
 
 			if (skill === "perception" && mon.passive != null) mon.passive = 10 + Number(monSkill[skill]);
 		});
-	}
-
-	static _adjustHp ({mon, crInNumber, crOutNumber, state}) {
-		if (mon.hp.special) return; // could be anything; best to just leave it
-
-		const hpInAvg = ScaleCreatureConsts.CR_HP_RANGES[crInNumber].mean();
-		const hpOutRange = ScaleCreatureConsts.CR_HP_RANGES[crOutNumber];
-		const hpOutAvg = hpOutRange.mean();
-		const targetHpOut = ScaleCreatureUtils.getScaledToRatio(mon.hp.average, hpInAvg, hpOutAvg);
-		const targetHpDeviation = (hpOutRange[1] - hpOutRange[0]) / 2;
-		const targetHpRange = [Math.floor(targetHpOut - targetHpDeviation), Math.ceil(targetHpOut + targetHpDeviation)];
-
-		const origFormula = mon.hp.formula.replace(/\s*/g, "");
-
-		// if it's not a well-known formula, convert our scaled "average" to a "special" and bail out
-		if (!/^\d+d\d+(?:[-+]\d+)?$/.test(origFormula)) {
-			const hpOutClamped = Math.floor(Math.max(1, targetHpOut));
-
-			delete mon.hp.average;
-			delete mon.hp.formula;
-			mon.hp.special = hpOutClamped;
-
-			return;
-		}
-
-		const fSplit = origFormula.split(/([-+])/);
-		const mDice = /(\d+)d(\d+)/i.exec(fSplit[0]);
-		const hdFaces = Number(mDice[2]);
-		const hdAvg = (hdFaces + 1) / 2;
-		const numHd = Number(mDice[1]);
-		const modTotal = fSplit.length === 3 ? Number(`${fSplit[1]}${fSplit[2]}`) : 0;
-		const modPerHd = Math.floor(modTotal / numHd);
-
-		const getAdjustedConMod = () => {
-			const outRange = this._CR_TO_ESTIMATED_CON_MOD_RANGE[crOutNumber];
-			if (outRange[0] === outRange[1]) return outRange[0]; // handle CR 30, which is always 10
-			return ScaleCreatureUtils.interpAndTranslateToSpace(modPerHd, this._CR_TO_ESTIMATED_CON_MOD_RANGE[crInNumber], outRange);
-		};
-
-		let numHdOut = numHd;
-		let hpModOut = getAdjustedConMod();
-
-		const getAvg = (numHd = numHdOut, hpMod = hpModOut) => {
-			return (numHd * hdAvg) + (numHd * hpMod);
-		};
-
-		const inRange = (num) => {
-			return num >= targetHpRange[0] && num <= targetHpRange[1];
-		};
-
-		let loops = 0;
-		while (1) {
-			if (inRange(getAvg(numHdOut))) break;
-			if (loops > 100) throw new Error(`Failed to find new HP! Current formula is: ${numHd}d${hpModOut}`);
-
-			const tryAdjustNumDice = () => {
-				let numDiceTemp = numHdOut;
-				let tempTotalHp = getAvg();
-				let found = false;
-
-				if (tempTotalHp > targetHpRange[1]) { // too high
-					while (numDiceTemp > 1) {
-						numDiceTemp -= 1;
-						tempTotalHp -= hdAvg;
-
-						if (inRange(getAvg(numDiceTemp))) {
-							found = true;
-							break;
-						}
-					}
-				} else { // too low
-					while (tempTotalHp <= targetHpRange[1]) {
-						numDiceTemp += 1;
-						tempTotalHp += hdAvg;
-
-						if (inRange(getAvg(numDiceTemp))) {
-							found = true;
-							break;
-						}
-					}
-				}
-
-				if (found) {
-					numHdOut = numDiceTemp;
-					return true;
-				}
-				return false;
-			};
-
-			const tryAdjustMod = () => {
-				// alternating sequence, going further from origin each time.
-				// E.g. original modOut == 0 => 1, -1, 2, -2, 3, -3, ... modOut+n, modOut-n
-				hpModOut += (1 - ((loops % 2) * 2)) * (loops + 1);
-			};
-
-			// order of preference for scaling:
-			// - adjusting number of dice
-			// - adjusting modifier
-			if (tryAdjustNumDice()) break;
-			tryAdjustMod();
-
-			loops++;
-		}
-
-		mon.hp.average = Math.floor(getAvg(numHdOut));
-		const outModTotal = numHdOut * hpModOut;
-		mon.hp.formula = `${numHdOut}d${hdFaces}${outModTotal === 0 ? "" : `${outModTotal >= 0 ? "+" : ""}${outModTotal}`}`
-			.replace(/([-+])\s*(\d+)$/g, " $1 $2"); // add spaces around the operator
-
-		if (hpModOut !== modPerHd) {
-			const conOut = CrScalerUtils.calcNewAbility(mon, "con", hpModOut);
-			if (conOut !== mon.con && mon.save && mon.save.con) {
-				const conDelta = Parser.getAbilityModifier(conOut) - Parser.getAbilityModifier(mon.con);
-				const conSaveOut = Number(mon.save.con) + conDelta;
-				mon.save.con = `${conSaveOut >= 0 ? "+" : ""}${conSaveOut}`;
-			}
-			if (conOut !== mon.con) state.setHasModifiedAbilityScore("con");
-			mon.con = conOut;
-		}
 	}
 
 	static _handleUpdateAbilityScoresSkillsSaves ({mon, state}) {

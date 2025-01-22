@@ -31,11 +31,10 @@
 		display: none;
 	}
 
-	&wrp-sidebar-rhs {
+	&wrp-sidebar {
 		position: fixed;
 		z-index: 1;
 		top: 160px;
-		right: calc((50vw - (1170px / 2)) - 300px);
 		width: 300px;
 		height: 100%;
 
@@ -57,7 +56,15 @@
 		}
 	}
 
-	&sidebar-rhs-inner {
+	&wrp-sidebar-lhs {
+		left: calc((50vw - (1170px / 2)) - 300px);
+	}
+
+	&wrp-sidebar-rhs {
+		right: calc((50vw - (1170px / 2)) - 300px);
+	}
+
+	&sidebar-inner {
 		position: sticky;
 
 		&--top {
@@ -91,7 +98,8 @@
 	}
 }
 
-.cancer__sidebar-rhs-inner--scrolling-page .cancer__sidebar-rhs-inner {
+.cancer__sidebar-inner--scrolling-page .cancer__sidebar-inner,
+.cancer__sidebar-inner--scrolling-page .cancer__sidebar-inner {
 	&--top {
 		top: 20px;
 	}
