@@ -135,7 +135,7 @@ class CounterRow extends CounterComponent {
 				removeRow(this);
 			});
 
-		this._$row = $$`<div class="ve-flex-v-center w-100 my-1">
+		this._$row = $$`<div class="ve-flex-v-center w-100 py-1">
 			${$iptName}
 			<div class="relative ve-flex-vh-center">
 				${$iptCur}

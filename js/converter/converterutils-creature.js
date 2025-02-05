@@ -47,16 +47,18 @@ export class AcConvert {
 			// region Handle alternates of the form:
 			//   - `natural armor; 22 in shield form`
 			//   - `natural armor; 16 while flying`
+			//   - `natural armor; 16 when flying`
 			//   - `natural armor; 18 with hardened by flame`
 			//   - `shield; ac 12 without shield`
 			fromClean = fromClean
-				.replace(/^(?<from>.+); (?:(?:ac )?(?<nxtVal>\d+) (?<nxtCond>in .*? form|while .*?|includes .*?|without .*?|with .*?))$/i, (...m) => {
+				.replace(/^(?:(?<from>.+); )?(?:(?:ac )?(?<nxtVal>\d+) (?<nxtCond>in .*? form|while .*?|when .*?|includes .*?|without .*?|with .*?))$/i, (...m) => {
+					const {from, nxtVal, nxtCond} = m.at(-1);
 					nuAcTail.push({
-						ac: Number(m.last().nxtVal),
-						condition: m.last().nxtCond,
+						ac: Number(nxtVal),
+						condition: nxtCond,
 						braces: true,
 					});
-					return m.last().from;
+					return from || "";
 				});
 			// endregion
 
@@ -105,9 +107,9 @@ export class AcConvert {
 				.trim();
 			// endregion
 
-			// region Handle "while ..." parts
+			// region Handle "while ..."/"when ..." parts
 			fromClean = fromClean
-				.replace(/^while .*$/, (...m) => {
+				.replace(/^(while|when) .*$/, (...m) => {
 					if (cur.condition) throw new Error(`Multiple AC conditions! "${cur.condition}" and "${m[0]}"`);
 					cur.condition = m[0].trim().toLowerCase();
 					return "";
@@ -286,6 +288,9 @@ export class AcConvert {
 			case "psionic power armor":
 			case "precog reflexes":
 			case "pathfinder's boots":
+				return fromLow;
+			// Humblewood Tales
+			case "shadowed leather armor":
 				return fromLow;
 				// endregion
 

@@ -1,17 +1,28 @@
+import {Command} from "commander";
 import "../js/parser.js";
 import "../js/utils.js";
+import "../js/utils-ui.js";
 import "../js/render.js";
 import "../js/render-dice.js";
 import "../js/hist.js";
 import "../js/utils-dataloader.js";
 import "../js/utils-config.js";
+import "../js/filter.js";
+import "../js/utils-brew.js";
 import * as utS from "../node/util-search-index.js";
 import "../js/omnidexer.js";
 import * as ut from "../node/util.js";
 import {DataTesterBase, DataTester, ObjectWalker, BraceCheck, EscapeCharacterCheck} from "5etools-utils";
+import {readJsonSync} from "5etools-utils/lib/UtilFs.js";
 
-// TODO(Future) make this an arg/add Commander
-const _IS_LOG_SIMILAR = false;
+const program = new Command()
+	.option("--log-similar", `If, when logging a missing link, a list of potentially-similar links should additionally be logged.`)
+	.option("--file-additional <filepath>", `An additional file (e.g. homebrew JSON) to load/check [WIP/unstable].`)
+	.option("--skip-non-additional", `If checking non-additional files (i.e., the "data" directory) should be skipped [WIP/unstable].`)
+;
+
+program.parse(process.argv);
+const params = program.opts();
 
 const TIME_TAG = "\tRun duration";
 console.time(TIME_TAG);
@@ -75,6 +86,7 @@ class TagTestUtil {
 
 	static async pInit () {
 		await this._pInit_pPopulateUrls();
+		await this._pInit_pPopulateUrlsAdditionalFluff();
 		await this._pInit_pPopulateClassSubclassIndex();
 	}
 
@@ -82,10 +94,15 @@ class TagTestUtil {
 		const primaryIndex = Omnidexer.decompressIndex(await utS.UtilSearchIndex.pGetIndex({doLogging: false, noFilter: true}));
 		primaryIndex
 			.forEach(indexItem => TagTestUrlLookup.addIndexItem(indexItem));
-		const highestId = primaryIndex.last().id;
-		const secondaryIndexItem = Omnidexer.decompressIndex(await utS.UtilSearchIndex.pGetIndexAdditionalItem({baseIndex: highestId + 1, doLogging: false}));
+		const secondaryIndexItem = Omnidexer.decompressIndex(await utS.UtilSearchIndex.pGetIndexAdditionalItem({baseIndex: primaryIndex.last().id + 1, doLogging: false}));
 		secondaryIndexItem
 			.forEach(indexItem => TagTestUrlLookup.addIndexItem(indexItem));
+
+		if (params.fileAdditional) {
+			const brewIndexItems = Omnidexer.decompressIndex(await utS.UtilSearchIndex.pGetIndexLocalHomebrew({baseIndex: secondaryIndexItem.last().id + 1, filepath: params.fileAdditional}));
+			brewIndexItems
+				.forEach(indexItem => TagTestUrlLookup.addIndexItem(indexItem));
+		}
 
 		(await DataLoader.pCacheAndGetAllSite("itemProperty"))
 			.forEach(ent => TagTestUrlLookup.addEntityItem(ent, "itemProperty"));
@@ -93,6 +110,12 @@ class TagTestUtil {
 		(await DataLoader.pCacheAndGetAllSite("feat"))
 			.filter(ent => ent._versionBase_isVersion)
 			.forEach(ent => TagTestUrlLookup.addEntityItem(ent, UrlUtil.PG_FEATS));
+	}
+
+	static async _pInit_pPopulateUrlsAdditionalFluff () {
+		// TODO(Future) revise/expand
+		(await DataUtil.monsterFluff.pLoadAll())
+			.forEach(ent => TagTestUrlLookup.addEntityItem(ent, "monsterFluff"));
 	}
 
 	static async _pInit_pPopulateClassSubclassIndex () {
@@ -141,7 +164,7 @@ class TagTestUtil {
 	}
 
 	static getLogPtSimilarUrls ({url}) {
-		if (!_IS_LOG_SIMILAR) return "";
+		if (!params.logSimilar) return "";
 
 		const ptSimilarUrls = TagTestUrlLookup.getSimilarUrls(url);
 		if (!ptSimilarUrls) return "";
@@ -314,36 +337,42 @@ class LinkCheck extends DataTesterBase {
 		parsedJsonChecker.addPrimitiveHandler("object", this._checkObject.bind(this));
 	}
 
-	static _checkString (str, {filePath, isStatblock = false}) {
+	static _checkString (str, {filePath}) {
 		let match;
 		while ((match = LinkCheck.RE.exec(str))) {
-			const [, tag, text] = match;
-
-			let encoded;
-			switch (tag) {
-				// FIXME(Future)
-				case "classFeature": {
-					const {name, source, className, classSource, level} = DataUtil.class.unpackUidClassFeature(text);
-					encoded = UrlUtil.encodeForHash([name, className, classSource, level, source]);
-					break;
-				}
-				// FIXME(Future)
-				case "subclassFeature": {
-					const {name, source, className, classSource, subclassShortName, subclassSource, level} = DataUtil.class.unpackUidSubclassFeature(text);
-					encoded = UrlUtil.encodeForHash([name, className, classSource, subclassShortName, subclassSource, level, source]);
-					break;
-				}
-				default: {
-					encoded = Renderer.utils.getTagMeta(`@${tag}`, text).hash;
-					break;
-				}
-			}
-
-			const url = `${Renderer.tag.getPage(tag)}#${encoded}`.toLowerCase().trim();
-			if (TagTestUrlLookup.hasUrl(url)) continue;
-
-			this._addMessage(`Missing link: ${isStatblock ? `(as "statblock" entry) ` : ""}${match[0]} in file ${filePath} (evaluates to "${url}")\n${TagTestUtil.getLogPtSimilarUrls({url})}`);
+			const [original, tag, text] = match;
+			this._checkTagText({original, tag, text, filePath});
 		}
+	}
+
+	static _checkTagText ({original, tag, text, filePath, isStatblock = false}) {
+		let encoded;
+		let page;
+		switch (tag) {
+			// FIXME(Future)
+			case "classFeature": {
+				const {name, source, className, classSource, level} = DataUtil.class.unpackUidClassFeature(text);
+				encoded = UrlUtil.encodeForHash([name, className, classSource, level, source]);
+				break;
+			}
+			// FIXME(Future)
+			case "subclassFeature": {
+				const {name, source, className, classSource, subclassShortName, subclassSource, level} = DataUtil.class.unpackUidSubclassFeature(text);
+				encoded = UrlUtil.encodeForHash([name, className, classSource, subclassShortName, subclassSource, level, source]);
+				break;
+			}
+			default: {
+				const tagMeta = Renderer.utils.getTagMeta(`@${tag}`, text);
+				encoded = tagMeta.hash;
+				page = tagMeta.page;
+				break;
+			}
+		}
+
+		const url = `${page || Renderer.tag.getPage(tag)}#${encoded}`.toLowerCase().trim();
+		if (TagTestUrlLookup.hasUrl(url)) return;
+
+		this._addMessage(`Missing link: ${isStatblock ? `(as "statblock" entry) ` : ""}${original} in file ${filePath} (evaluates to "${url}")\n${TagTestUtil.getLogPtSimilarUrls({url})}`);
 	}
 
 	static _checkObject (obj, {filePath}) {
@@ -351,10 +380,22 @@ class LinkCheck extends DataTesterBase {
 
 		const prop = obj.prop || Parser.getTagProps(obj.tag)[0];
 		const tag = obj.tag || Parser.getPropTag(prop);
+
+		if (!tag && prop?.endsWith("Fluff")) {
+			const tagNonFluff = Parser.getPropTag(prop.replace(/Fluff$/, ""));
+			const tagFaux = `${tagNonFluff}Fluff`;
+
+			const sourceDefault = Renderer.tag.TAG_LOOKUP[tagNonFluff].defaultSource;
+			const uid = DataUtil.proxy.getUid(prop, {...obj, source: obj.source || sourceDefault});
+
+			this._checkTagText({original: JSON.stringify(obj), tag: tagFaux, text: uid, filePath, isStatblock: true});
+
+			return obj;
+		}
+
 		const sourceDefault = Renderer.tag.TAG_LOOKUP[tag].defaultSource;
 		const uid = DataUtil.proxy.getUid(prop, {...obj, source: obj.source || sourceDefault});
-		const asStr = `{@${tag} ${uid}}`;
-		this._checkString(asStr, {filePath, isStatblock: true});
+		this._checkTagText({original: JSON.stringify(obj), tag, text: uid, filePath, isStatblock: true});
 
 		return obj;
 	}
@@ -562,6 +603,9 @@ class FilterCheck extends DataTesterBase {
 			const missingEq = [];
 			for (let i = 2; i < spl.length; ++i) {
 				const part = spl[i];
+
+				if (part === "preserve") continue;
+
 				if (!part.includes("=")) {
 					missingEq.push(part);
 				}
@@ -1572,6 +1616,8 @@ class AdventureBookTagCheck extends DataTesterBase {
 	static _ADV_BOOK_LOOKUP = {};
 
 	static registerParsedPrimitiveHandlers (parsedJsonChecker) {
+		const jsonAdditional = params.fileAdditional ? readJsonSync(params.fileAdditional) : null;
+
 		[
 			{
 				path: "./data/adventures.json",
@@ -1586,6 +1632,11 @@ class AdventureBookTagCheck extends DataTesterBase {
 		].forEach(({path, prop, tag}) => {
 			const json = ut.readJson(path);
 			this._ADV_BOOK_LOOKUP[tag] = json[prop].mergeMap(({id}) => ({[id.toLowerCase()]: true}));
+
+			if (!jsonAdditional?.[prop]) return;
+
+			jsonAdditional[prop]
+				.forEach(({id}) => this._ADV_BOOK_LOOKUP[tag][id.toLowerCase()] = true);
 		});
 
 		parsedJsonChecker.addPrimitiveHandler("string", this._checkString.bind(this));
@@ -1656,13 +1707,19 @@ async function main () {
 	];
 	DataTester.register({ClazzDataTesters});
 
-	await DataTester.pRun(
-		"./data",
-		ClazzDataTesters,
-		{
-			fnIsIgnoredFile: filePath => filePath.endsWith("changelog.json") || filePath.includes("/generated/"),
-		},
-	);
+	if (!params.skipNonAdditional) {
+		await DataTester.pRun(
+			"./data",
+			ClazzDataTesters,
+			{
+				fnIsIgnoredFile: filePath => filePath.endsWith("changelog.json") || filePath.includes("/generated/"),
+			},
+		);
+	}
+
+	if (params.fileAdditional) {
+		await DataTester.pRun(params.fileAdditional, ClazzDataTesters);
+	}
 
 	ut.unpatchLoadJson();
 

@@ -5,6 +5,7 @@ class BlocklistUtil {
 		"_meta",
 		"_test",
 		"linkedLootTables",
+		"$schema",
 
 		// `items-base.json`
 		"itemProperty",

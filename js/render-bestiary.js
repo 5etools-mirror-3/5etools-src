@@ -10,8 +10,8 @@ class _RenderBestiaryImplBase {
 	 * @param [opts]
 	 * @param {jQuery} [opts.$btnScaleCr]
 	 * @param {jQuery} [opts.$btnResetScaleCr]
-	 * @param {HTMLElementModified} [opts.selSummonSpellLevel]
-	 * @param {HTMLElementModified} [opts.selSummonClassLevel]
+	 * @param {HTMLElementExtended} [opts.selSummonSpellLevel]
+	 * @param {HTMLElementExtended} [opts.selSummonClassLevel]
 	 * @param {boolean} [opts.isSkipExcludesRender]
 	 * @param {boolean} [opts.isSkipTokenRender]
 	 *
@@ -37,8 +37,8 @@ class _RenderBestiaryImplBase {
 	 * @param opts
 	 * @param {jQuery} [opts.$btnScaleCr]
 	 * @param {jQuery} [opts.$btnResetScaleCr]
-	 * @param {HTMLElementModified} [opts.selSummonSpellLevel]
-	 * @param {HTMLElementModified} [opts.selSummonClassLevel]
+	 * @param {HTMLElementExtended} [opts.selSummonSpellLevel]
+	 * @param {HTMLElementExtended} [opts.selSummonClassLevel]
 	 * @param {boolean} [opts.isSkipExcludesRender]
 	 * @param {boolean} [opts.isSkipTokenRender]
 	 * @param {Renderer} renderer

@@ -56,9 +56,12 @@ export class ScaleClassSummonedCreature extends ScaleSummonedCreature {
 
 	static _scale_getConvertedPbString (state, str, {isBonus = false} = {}) {
 		let out = str
+			.replace(/\b(?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)\b/gi, (...m) => Parser.textToNumber(m[0]))
 			.replace(/\bplus\b/gi, "+")
 			.replace(/\btimes\b/, "*")
+			.replace(/\b×\b/, "*")
 			.replace(/(\b|[-+/*])PB\b/g, `$1${state.proficiencyBonus}`)
+			.replace(/\bPB(d\d+)/g, `${state.proficiencyBonus}$1`)
 			// eslint-disable-next-line no-eval
 			.replace(/\b\d+\s*[/*]\s*\d+\b/g, (...n) => eval(n[0]))
 			// eslint-disable-next-line no-eval
@@ -154,18 +157,35 @@ export class ScaleClassSummonedCreature extends ScaleSummonedCreature {
 				const numTimes = isNaN(m.last().perLevel) ? Parser.textToNumber(m.last().perLevel) : Number(m.last().perLevel);
 				return `${Parser.getAbilityModNumber(mon.con) + (numTimes * toClassLevel)}`;
 			})
+			// "Eight times their level"
+			.replace(/\btheir level\b/gi, toClassLevel)
+			// "7 + seven times caregiver's level"
+			.replace(/\bcaregiver's level\b/gi, toClassLevel)
 		;
 
 		basePart = this._scale_getConvertedPbString(state, basePart);
 
-		// "the beast has a number of Hit Dice [d8s] equal to your ranger level"
 		if (hdPart) {
-			hdPart = hdPart.replace(/(?<intro>.*) a number of hit dice \[d(?<hdSides>\d+)s?] equal to your (?:(?<className>[^(]*) )?level/i, (...m) => {
-				const hdFormula = `${toClassLevel}d${m.last().hdSides}`;
-				if (!yourAbilModPart) return hdFormula;
+			hdPart = hdPart
+				// "the beast has a number of Hit Dice [d8s] equal to your ranger level"
+				.replace(/(?<intro>.*) a number of hit dice \[d(?<hdSides>\d+)s?] equal to (?:your (?:(?<className>[^(]*) )?|their caregiver's |their )level/i, (...m) => {
+					const {intro, hdSides, className} = m.at(-1);
 
-				return `${m.last().intro} {@dice ${hdFormula}} Hit Dice`;
-			});
+					const hdFormula = `${toClassLevel}d${hdSides}`;
+					if (!yourAbilModPart) return hdFormula;
+
+					return `${intro} {@dice ${hdFormula}} Hit Dice`;
+				})
+				// "(number of d8 Hit Dice equal to their caregiver's level)"
+				.replace(/number of d(?<hdSides>\d+)s? hit dice equal to (?:your (?:(?<className>[^(]*) )?|their caregiver's |their )level/i, (...m) => {
+					const {hdSides, className} = m.at(-1);
+
+					const hdFormula = `${toClassLevel}d${hdSides}`;
+					if (!yourAbilModPart) return hdFormula;
+
+					return `{@dice ${hdFormula}} Hit Dice`;
+				})
+			;
 		}
 
 		// If there is an ability modifier part, we cannot scale purely by level--display an expression instead.
@@ -206,6 +226,18 @@ export class ScaleClassSummonedCreature extends ScaleSummonedCreature {
 
 							return `{@${tag} ${[ptNumberOut, ...ptsRest].join("|")}}`;
 						})
+						.replace(/(?<factor>\d+)\s*[×*]\s*PB\b/g, (...m) => {
+							const {factor} = m.at(-1);
+							return `${factor * state.proficiencyBonus}`;
+						})
+						.replace(/\bPB\s*[×*]\s*(?<factor>\d+)/g, (...m) => {
+							const {factor} = m.at(-1);
+							return `${factor * state.proficiencyBonus}`;
+						})
+						.replace(/\b(?<ptOp>\+\s*)?PB\b/g, (...m) => {
+							const {ptOp} = m.at(-1);
+							return `${(ptOp || "").trim()}${state.proficiencyBonus}`;
+						})
 					;
 
 					return str;
@@ -222,7 +254,8 @@ export class ScaleClassSummonedCreature extends ScaleSummonedCreature {
 	static _scale_pbNote (mon, toClassLevel, state) {
 		if (!mon.pbNote) return;
 
-		mon.pbNote = mon.pbNote.replace(/equals your bonus\b/, (...m) => `${m[0]} (${UiUtil.intToBonus(state.proficiencyBonus, {isPretty: true})})`);
+		mon.pbNote = mon.pbNote
+			.replace(/equals (?:your|the mentor's|the caregiver's) (?:Proficiency )?bonus\b/i, (...m) => `${m[0]} [${UiUtil.intToBonus(state.proficiencyBonus, {isPretty: true})}]`);
 	}
 
 	static _State = class {
