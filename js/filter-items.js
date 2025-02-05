@@ -10,6 +10,8 @@ class PageFilterEquipment extends PageFilterBase {
 		"Reprinted",
 		"Disadvantage on Stealth",
 		"Strength Requirement",
+		"Emits Light, Bright",
+		"Emits Light, Dim",
 	];
 
 	static _RE_FOUNDRY_ATTR = /(?:[-+*/]\s*)?@[a-z0-9.]+/gi;
@@ -112,6 +114,8 @@ class PageFilterEquipment extends PageFilterBase {
 		if (item.miscTags) item._fMisc.push(...item.miscTags.map(Parser.itemMiscTagToFull));
 		if (item.stealth) item._fMisc.push("Disadvantage on Stealth");
 		if (item.strength != null) item._fMisc.push("Strength Requirement");
+		if (item.light?.some(l => l.bright)) item._fMisc.push("Emits Light, Bright");
+		if (item.light?.some(l => l.dim)) item._fMisc.push("Emits Light, Dim");
 
 		const itemTypeAbv = item.type ? DataUtil.itemType.unpackUid(item.type).abbreviation : null;
 		if (item.focus || item.name === "Thieves' Tools" || itemTypeAbv === Parser.ITM_TYP_ABV__INSTRUMENT || itemTypeAbv === Parser.ITM_TYP_ABV__SPELLCASTING_FOCUS || itemTypeAbv === Parser.ITM_TYP_ABV__ARTISAN_TOOL) {

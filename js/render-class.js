@@ -14,7 +14,7 @@ class _RenderClassesSidebarImplBase {
 	/**
 	 * @abstract
 	 *
-	 * @return {HTMLElementModified}
+	 * @return {HTMLElementExtended}
 	 */
 	_getRenderedClassSidebar ({comp, cls, renderer}) {
 		throw new Error("Unimplemented!");

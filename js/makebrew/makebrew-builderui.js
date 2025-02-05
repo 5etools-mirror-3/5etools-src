@@ -340,7 +340,7 @@ export class BuilderUi {
 			const ixRow = rows.indexOf(myRow);
 
 			rows.forEach((row, i) => {
-				const dimensions = {w: row.$ele.outerWidth(true), h: row.$ele.outerHeight(true)};
+				const dimensions = {w: row.$ele.outerWidth(), h: row.$ele.outerHeight()};
 				const $dummy = $(`<div class="${i === ixRow ? "ui-drag__wrp-drag-dummy--highlight" : "ui-drag__wrp-drag-dummy--lowlight"}"></div>`)
 					.width(dimensions.w).height(dimensions.h)
 					.mouseup(() => {

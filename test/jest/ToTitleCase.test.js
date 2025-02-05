@@ -34,4 +34,12 @@ describe("Title-case strings", () => {
 	it("Should handle ending in a lower-case word", () => {
 		expect("the place between".toTitleCase()).toBe("The Place Between");
 	});
+
+	it("Should handle modern book rules", () => {
+		// XMM
+		expect("bull-like guardians with petrifying breath".toTitleCase()).toBe("Bull-like Guardians with Petrifying Breath");
+		expect("tyrants among corpses".toTitleCase()).toBe("Tyrants among Corpses");
+		expect("beholder beyond death".toTitleCase()).toBe("Beholder beyond Death");
+		expect("vengeance from beyond the grave".toTitleCase()).toBe("Vengeance from beyond the Grave");
+	});
 });

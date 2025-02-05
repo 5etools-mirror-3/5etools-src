@@ -185,7 +185,7 @@ export class ConverterFeatureBase extends ConverterBase {
 				return;
 			}
 
-			const mAbility = new RegExp(`^${Object.entries(Parser.ATB_ABV_TO_FULL).map(([abv, full]) => `(?:or )?(?<${abv}>${full})?(?:,? )?`).join("")} (?<score>\\d+)\\+$`).exec(pt);
+			const mAbility = new RegExp(`^${Object.entries(Parser.ATB_ABV_TO_FULL).map(([abv, full]) => `(?:or )?(?<${abv}>${full})?(?:,? )?`).join("")} (?:score of )?(?<score>\\d+)(?:\\+| or higher)$`).exec(pt);
 			if (mAbility) {
 				// Expect only one ability score threshold (i.e. no "str 15 OR dex 13")
 				if (preAbilsMeta.score) {

@@ -820,7 +820,7 @@
 				}
 			],
 			"excludes": {
-				"name": "Energy Cell"
+				"cellEnergy": true
 			},
 			"ammo": true,
 			"entries": [
@@ -2041,13 +2041,8 @@
 				}
 			],
 			"excludes": {
-				"name": [
-					"Energy Cell",
-					"Modern Bullet",
-					"Modern Bullets (10)",
-					"Renaissance Bullet",
-					"Renaissance Bullets (10)"
-				]
+				"cellEnergy": true,
+				"bulletFirearm": true
 			},
 			"ammo": true,
 			"entries": [
@@ -2233,34 +2228,6 @@
 					}
 				]
 			}
-		},
-		{
-			"name": "Blade of the Wood",
-			"type": "GV|DMG",
-			"requires": [
-				{
-					"sword": true
-				}
-			],
-			"inherits": {
-				"nameSuffix": " of the Wood",
-				"source": "HWCS",
-				"page": 213,
-				"rarity": "rare",
-				"reqAttune": true,
-				"bonusWeapon": "+1",
-				"charges": 2,
-				"entries": [
-					"A finely crafted sword with delicate etchings, it resonates with a faint hum of life.",
-					"You gain a {=bonusWeapon} bonus to attack and damage rolls made with this magic weapon.",
-					"The sword has 2 charges. You can expend a charge and speak the command word to cast {@spell spike growth} (save {@dc 16}) centered on yourself. You can pass through this terrain unaffected.",
-					"The sword regains one charge each day at dawn."
-				],
-				"attachedSpells": [
-					"spike growth"
-				]
-			},
-			"hasFluffImages": true
 		},
 		{
 			"name": "Bloodseeker Ammunition",
@@ -2517,6 +2484,15 @@
 					"This magic sword's blade is fashioned from a horn or spine from a crystal dragon. When you hit with an attack roll using this sword, the target takes an extra {@damage 1d8} radiant damage.",
 					"The sword has 3 charges and regains {@dice 1d3} expended charges daily at dawn. When you hit a creature with an attack roll using the sword, you can expend 1 charge to regain a number of hit points equal to the extra radiant damage the sword dealt.",
 					"While you're holding the sword, you can use a bonus action to cause it to shed bright light in a 30-foot radius and dim light for an additional 30 feet, to cause it to shed dim light in a 10-foot radius, or to douse the light."
+				],
+				"light": [
+					{
+						"bright": 30,
+						"dim": 60
+					},
+					{
+						"dim": 10
+					}
 				]
 			}
 		},
@@ -2890,7 +2866,7 @@
 				}
 			],
 			"excludes": {
-				"name": "Energy Cell"
+				"cellEnergy": true
 			},
 			"ammo": true,
 			"inherits": {
@@ -3160,6 +3136,12 @@
 							"As a {@action Magic|XPHB} action, you can loose a flurry of energy arrows from this weapon at a wall up to 60 feet away from yourself. The arrows become glowing rungs that stick out of the wall, forming a magical {@item ladder|XPHB} up to 60 feet long on the wall. This ladder lasts for 1 minute before disappearing."
 						]
 					}
+				],
+				"light": [
+					{
+						"bright": 20,
+						"dim": 40
+					}
 				]
 			}
 		},
@@ -3207,6 +3189,12 @@
 						"entries": [
 							"As a {@action Magic|XPHB} action, you can loose a flurry of energy arrows from this weapon at a wall up to 60 feet away from yourself. The arrows become glowing rungs that stick out of the wall, forming a magical ladder up to 60 feet long on the wall. This ladder lasts for 1 minute before disappearing."
 						]
+					}
+				],
+				"light": [
+					{
+						"bright": 20,
+						"dim": 40
 					}
 				],
 				"lootTables": [
@@ -3828,6 +3816,12 @@
 				"entries": [
 					"You can use a bonus action to speak this magic sword's command word, causing flames to erupt from the blade. These flames shed bright light in a 40-foot radius and dim light for an additional 40 feet. While the sword is ablaze, it deals an extra {@damage 2d6} fire damage to any target it hits. The flames last until you use a bonus action to speak the command word again or until you drop or sheathe the sword."
 				],
+				"light": [
+					{
+						"bright": 40,
+						"dim": 80
+					}
+				],
 				"lootTables": [
 					"Magic Item Table G"
 				]
@@ -3851,6 +3845,12 @@
 				"reqAttune": true,
 				"entries": [
 					"While holding this magic weapon, you can take a {@variantrule Bonus Action|XPHB} and use a command word to cause flames to engulf the damage-dealing part of the weapon. These flames shed {@variantrule Bright Light|XPHB} in a 40-foot radius and {@variantrule Dim Light|XPHB} for an additional 40 feet. While the weapon is ablaze, it deals an extra {@damage 2d6} Fire damage on a hit. The flames last until you take a {@variantrule Bonus Action|XPHB} to issue the command again or until you drop, stow, or sheathe the weapon."
+				],
+				"light": [
+					{
+						"bright": 40,
+						"dim": 80
+					}
 				],
 				"lootTables": [
 					"Armaments - Rare|XDMG"
@@ -3947,6 +3947,12 @@
 					"In freezing temperatures, the blade sheds bright light in a 10-foot radius and dim light for an additional 10 feet.",
 					"When you draw this weapon, you can extinguish all nonmagical flames within 30 feet of you. This property can be used no more than once per hour."
 				],
+				"light": [
+					{
+						"bright": 10,
+						"dim": 20
+					}
+				],
 				"lootTables": [
 					"Magic Item Table H"
 				]
@@ -3993,6 +3999,12 @@
 					"When you hit with an attack roll using this magic weapon, the target takes an extra {@damage 1d6} Cold damage. In addition, while you hold the weapon, you have {@variantrule Resistance|XPHB} to Fire damage.",
 					"In freezing temperatures, the weapon sheds {@variantrule Bright Light|XPHB} in a 10-foot radius and {@variantrule Dim Light|XPHB} for an additional 10 feet.",
 					"When you draw this weapon, you can extinguish all nonmagical flames within 30 feet of yourself. Once used, this property can't be used again for 1 hour."
+				],
+				"light": [
+					{
+						"bright": 10,
+						"dim": 20
+					}
 				],
 				"lootTables": [
 					"Armaments - Very Rare|XDMG"
@@ -4259,6 +4271,11 @@
 				"entries": [
 					"This weapon is fashioned from infernal iron and traced with veins of hellfire that shed dim light in a 5-foot-radius.",
 					"Any humanoid killed by an attack made with this weapon has its soul funneled into the River Styx, where it's reborn instantly as a {@creature lemure} devil."
+				],
+				"light": [
+					{
+						"dim": 5
+					}
 				]
 			},
 			"hasFluffImages": true
@@ -5095,6 +5112,12 @@
 				"rarity": "common",
 				"entries": [
 					"In darkness, the unsheathed blade of this sword sheds moonlight, creating bright light in a 15-foot radius and dim light for an additional 15 feet."
+				],
+				"light": [
+					{
+						"bright": 15,
+						"dim": 30
+					}
 				]
 			}
 		},
@@ -5113,6 +5136,12 @@
 				"rarity": "common",
 				"entries": [
 					"In {@variantrule Darkness|XPHB}, the unsheathed blade of this weapon sheds moonlight, creating {@variantrule Bright Light|XPHB} in a 15-foot radius and {@variantrule Dim Light|XPHB} for an additional 15 feet."
+				],
+				"light": [
+					{
+						"bright": 15,
+						"dim": 30
+					}
 				],
 				"lootTables": [
 					"Armaments - Common|XDMG",
@@ -5791,30 +5820,6 @@
 			}
 		},
 		{
-			"name": "Red-Feather Bow",
-			"type": "GV|DMG",
-			"requires": [
-				{
-					"bow": true
-				}
-			],
-			"inherits": {
-				"namePrefix": "Red-Feather ",
-				"source": "HWCS",
-				"page": 214,
-				"rarity": "uncommon",
-				"reqAttune": true,
-				"bonusWeapon": "+1",
-				"charges": 3,
-				"entries": [
-					"A prized hunting weapon among mistral raptors, this bow is imbued with magic to help the wielder see their prey from afar.",
-					"You gain a {=bonusWeapon} bonus to attack and damage rolls made with this magic weapon.",
-					"The bow has 3 charges. When you fire an arrow from this bow, you can speak the command word and use a charge to see through the arrow as a bonus action. You can see from the point your arrow lands as if you were there for 1 minute. If the arrow strikes a creature, you see what they see for the same duration."
-				]
-			},
-			"hasFluffImages": true
-		},
-		{
 			"name": "Ruidium Armor",
 			"type": "GV|DMG",
 			"requires": [
@@ -5948,7 +5953,7 @@
 				}
 			],
 			"excludes": {
-				"name": "Energy Cell"
+				"cellEnergy": true
 			},
 			"ammo": true,
 			"entries": [
@@ -6364,6 +6369,12 @@
 					"When you attack a creature with this weapon and roll a 20 on the attack roll, that target takes an extra 14 slashing damage. Then roll another {@dice d20}. If you roll a 20, you lop off one of the target's limbs, with the effect of such loss determined by the DM. If the creature has no limb to sever, you lop off a portion of its body instead.",
 					"{@note Note: According to the SRD, it is an extra {@damage 4d6} slashing damage, although {@link this is incorrect|https://rpg.stackexchange.com/a/174522/53884}}.",
 					"In addition, you can speak the sword's command to cause the blade to shed bright light in a 10-foot radius and dim light for an additional 10 feet. Speaking the command word again or sheathing the sword puts out the light."
+				],
+				"light": [
+					{
+						"bright": 10,
+						"dim": 20
+					}
 				],
 				"lootTables": [
 					"Magic Item Table H"
@@ -7061,7 +7072,7 @@
 				}
 			],
 			"excludes": {
-				"name": "Energy Cell"
+				"cellEnergy": true
 			},
 			"ammo": true,
 			"inherits": {

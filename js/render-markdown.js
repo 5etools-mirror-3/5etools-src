@@ -2539,6 +2539,15 @@ class MarkdownConverter {
 			});
 		})();
 
+		(function normalizeRanges () {
+			tbl.rows.forEach(row => {
+				if (!row[0] || typeof row[0] !== "string") return;
+
+				// Collapse "1 - 2" to "1-2"
+				row[0] = row[0].replace(/^(\d+)\s+([-\u2012-\u2014\u2212])\s+(\d+)$/, "$1$2$3");
+			});
+		})();
+
 		let isDiceCol0 = true;
 		(function doCheckDiceOrNumericCol0 () {
 			// check if first column is all strictly number-like

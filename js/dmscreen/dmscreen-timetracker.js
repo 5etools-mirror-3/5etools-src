@@ -3057,7 +3057,7 @@ class TimeTrackerRoot_Settings_Day extends RenderableCollectionTimeTracker {
 		const $btnRemove = $(`<button class="ve-btn ve-btn-xs ve-btn-danger no-shrink" title="Delete Day"><span class="glyphicon glyphicon-trash"></span></button>`)
 			.click(() => this._comp._state.days = this._comp._state.days.filter(it => it !== entity));
 
-		const $wrpRow = $$`<div class="ve-flex my-1 dm-time__row-delete">
+		const $wrpRow = $$`<div class="ve-flex py-1 dm-time__row-delete">
 			${$iptName}
 			${$padDrag}
 			${$btnRemove}
@@ -3092,7 +3092,7 @@ class TimeTrackerRoot_Settings_Month extends RenderableCollectionTimeTracker {
 		const $btnRemove = $(`<button class="ve-btn ve-btn-xs ve-btn-danger no-shrink" title="Delete Month"><span class="glyphicon glyphicon-trash"></span></button>`)
 			.click(() => this._comp._state.months = this._comp._state.months.filter(it => it !== entity));
 
-		const $wrpRow = $$`<div class="ve-flex my-1 dm-time__row-delete">
+		const $wrpRow = $$`<div class="ve-flex py-1 dm-time__row-delete">
 			${$iptName}
 			${$iptDays}
 			${$padDrag}

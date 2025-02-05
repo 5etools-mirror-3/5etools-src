@@ -522,7 +522,7 @@ export class BuilderBase extends ProxyBase {
 		};
 
 		const $wrpRowsOuter = $(`<div class="relative"></div>`);
-		const $wrpRows = $(`<div class="ve-flex-col"></div>`).appendTo($wrpRowsOuter);
+		const $wrpRows = $(`<div class="ve-flex-col mb-1 mt-n1"></div>`).appendTo($wrpRowsOuter);
 
 		const rowOptions = {$wrpRowsOuter};
 
@@ -597,7 +597,7 @@ export class BuilderBase extends ProxyBase {
 			$wrpRowsOuter: options.$wrpRowsOuter,
 		});
 
-		out.$ele = $$`<div class="ve-flex-v-center mb-2 mkbru__wrp-rows--removable">${$iptUrl}${$btnPreview}${$btnRemove}${$dragOrder}</div>`;
+		out.$ele = $$`<div class="ve-flex-v-center py-1 mkbru__wrp-rows--removable">${$iptUrl}${$btnPreview}${$btnRemove}${$dragOrder}</div>`;
 		out.getState = getState;
 		imageRows.push(out);
 

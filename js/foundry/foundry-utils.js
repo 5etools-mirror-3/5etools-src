@@ -107,6 +107,9 @@ export class UtilsFoundryItem {
 
 		if (item.miscTags?.includes("CNS")) return this._TYPE_CONSUMABLE;
 
+		// Classify light-producing items as "equipment", which can be equipped
+		if (item.light?.length) return this._TYPE_EQUIPMENT;
+
 		// Treat everything else as loot
 		return this._TYPE_LOOT;
 	}

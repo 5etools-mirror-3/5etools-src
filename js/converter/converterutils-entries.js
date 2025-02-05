@@ -1,7 +1,7 @@
 import {ActionTag, DiceConvert, SenseTag, SkillTag, TagCondition, TaggerUtils} from "./converterutils-tags.js";
 import {VetoolsConfig} from "../utils-config/utils-config-config.js";
 import {ConverterTaggerInitializable} from "./converterutils-taggerbase.js";
-import {SITE_STYLE__ONE} from "../consts.js";
+import {SITE_STYLE__CLASSIC, SITE_STYLE__ONE} from "../consts.js";
 
 const LAST_KEY_ALLOWLIST = new Set([
 	"entries",
@@ -983,7 +983,9 @@ export class CoreRuleTag extends ConverterTaggerInitializable {
 		this._RE_BASIC_XPHB = new RegExp(`\\b(?<ruleName>${(Object.keys(this._LOOKUP_XPHB).join("|"))})\\b`, "g");
 	}
 
-	static _tryRun (it) {
+	static _tryRun (it, {styleHint = null} = {}) {
+		if (styleHint === SITE_STYLE__CLASSIC) return it;
+
 		return TagJsons.WALKER.walk(
 			it,
 			{

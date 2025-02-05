@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.5.12"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.6.0"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -26,6 +26,7 @@ globalThis.VeCt = {
 	HASH_SCALED_CLASS_SUMMON: "scaledclasssummon",
 
 	FILTER_BOX_SUB_HASH_SEARCH_PREFIX: "fbsr",
+	FILTER_BOX_SUB_HASH_FLAG_IS_PRESERVE_EXISTING: "fbpe",
 
 	JSON_PRERELEASE_INDEX: `prerelease/index.json`,
 	JSON_BREW_INDEX: `homebrew/index.json`,
@@ -852,7 +853,7 @@ class TemplateUtil {
 		 * Template strings which can contain DOM elements.
 		 * Usage: ee`<div>Press this button: ${ve-btn}</div>`
 		 * or:    ee(ele)`<div>Press this button: ${ve-btn}</div>`
-		 * @return {HTMLElementModified}
+		 * @return {HTMLElementExtended}
 		 */
 		globalThis.ee = (parts, ...args) => {
 			if (parts instanceof Node) {
@@ -1159,44 +1160,51 @@ class ElementUtil {
 	]);
 
 	/**
-	 * @typedef {HTMLElement} HTMLElementModified
+	 * @typedef {HTMLElement} HTMLElementExtended
 	 * @extends {HTMLElement}
 	 *
-	 * @property {function(HTMLElement): HTMLElementModified} appends
-	 * @property {function(HTMLElement): HTMLElementModified} appendTo
-	 * @property {function(HTMLElement): HTMLElementModified} prependTo
-	 * @property {function(HTMLElement): HTMLElementModified} insertAfter
+	 * @property {function(HTMLElement|string): HTMLElementExtended} appends
+	 * @property {function(HTMLElement): HTMLElementExtended} appendTo
+	 * @property {function(HTMLElement): HTMLElementExtended} prependTo
+	 * @property {function(HTMLElement|string): HTMLElementExtended} aftere
+	 * @property {function(HTMLElement): HTMLElementExtended} insertAfter
 	 *
-	 * @property {function(string): HTMLElementModified} addClass
-	 * @property {function(string): HTMLElementModified} removeClass
-	 * @property {function(string, ?boolean): HTMLElementModified} toggleClass
+	 * @property {function(string): HTMLElementExtended} addClass
+	 * @property {function(string): HTMLElementExtended} removeClass
+	 * @property {function(string, ?boolean): HTMLElementExtended} toggleClass
 	 *
-	 * @property {function(): HTMLElementModified} showVe
-	 * @property {function(): HTMLElementModified} hideVe
-	 * @property {function(?boolean): HTMLElementModified} toggleVe
+	 * @property {function(): HTMLElementExtended} showVe
+	 * @property {function(): HTMLElementExtended} hideVe
+	 * @property {function(?boolean): HTMLElementExtended} toggleVe
 	 *
-	 * @property {function(): HTMLElementModified} empty
-	 * @property {function(): HTMLElementModified} detach
+	 * @property {function(): HTMLElementExtended} empty
+	 * @property {function(): HTMLElementExtended} detach
 	 *
-	 * @property {function(string, string): HTMLElementModified} attr
-	 * @property {function(*=, ?object): *} val
+	 * @property {function(string, string=): HTMLElementExtended} attr
+	 * @property {function(string, *=): HTMLElementExtended} prop
+	 * @property {function(*=): *} val
 	 *
-	 * @property {function(?string): (HTMLElementModified|string)} html
-	 * @property {function(?string): (HTMLElementModified|string)} txt
+	 * @property {function(string=): (HTMLElementExtended|string)} html
+	 * @property {function(string=): (HTMLElementExtended|string)} txt
 	 *
-	 * @property {function(string): HTMLElementModified} tooltip
-	 * @property {function(): HTMLElementModified} disableSpellcheck
+	 * @property {function(string): HTMLElementExtended} tooltip
+	 * @property {function(): HTMLElementExtended} disableSpellcheck
 	 *
-	 * @property {function(string, function): HTMLElementModified} onn
-	 * @property {function(function): HTMLElementModified} onClick
-	 * @property {function(function): HTMLElementModified} onContextmenu
-	 * @property {function(function): HTMLElementModified} onChange
-	 * @property {function(function): HTMLElementModified} onKeydown
-	 * @property {function(function): HTMLElementModified} onKeyup
+	 * @property {function(string, function): HTMLElementExtended} onn
+	 * @property {function(function): HTMLElementExtended} onClick
+	 * @property {function(function): HTMLElementExtended} onContextmenu
+	 * @property {function(function): HTMLElementExtended} onChange
+	 * @property {function(function): HTMLElementExtended} onKeydown
+	 * @property {function(function): HTMLElementExtended} onKeyup
 	 *
-	 * @property {function(string): HTMLElementModified} first
+	 * @property {function(string): HTMLElementExtended} trigger
 	 *
-	 * @return {HTMLElementModified}
+	 * @property {function(string): HTMLElementExtended} first
+	 * @property {function(string): HTMLElementExtended} closeste
+	 * @property {function(string): Array<HTMLElementExtended>} childrene
+	 * @property {function(string): Array<HTMLElementExtended>} siblings
+	 *
+	 * @return {HTMLElementExtended}
 	 */
 	static getOrModify ({
 		tag,
@@ -1287,20 +1295,26 @@ class ElementUtil {
 		ele.empty = ele.empty || ElementUtil._empty.bind(ele);
 		ele.detach = ele.detach || ElementUtil._detach.bind(ele);
 		ele.attr = ele.attr || ElementUtil._attr.bind(ele);
+		ele.prop = ele.prop || ElementUtil._prop.bind(ele);
 		ele.val = ele.val || ElementUtil._val.bind(ele);
 		ele.html = ele.html || ElementUtil._html.bind(ele);
 		ele.txt = ele.txt || ElementUtil._txt.bind(ele);
 		ele.tooltip = ele.tooltip || ElementUtil._tooltip.bind(ele);
 		ele.disableSpellcheck = ele.disableSpellcheck || ElementUtil._disableSpellcheck.bind(ele);
 		ele.onn = ele.onn || ElementUtil._onX.bind(ele);
+		ele.off = ele.off || ElementUtil._offX.bind(ele);
 		ele.onClick = ele.onClick || ElementUtil._onX.bind(ele, "click");
 		ele.onContextmenu = ele.onContextmenu || ElementUtil._onX.bind(ele, "contextmenu");
 		ele.onChange = ele.onChange || ElementUtil._onX.bind(ele, "change");
 		ele.onKeydown = ele.onKeydown || ElementUtil._onX.bind(ele, "keydown");
 		ele.onKeyup = ele.onKeyup || ElementUtil._onX.bind(ele, "keyup");
+		ele.trigger = ele.trigger || ElementUtil._trigger.bind(ele);
 		ele.first = ele.first || ElementUtil._first.bind(ele);
 		ele.closeste = ele.closeste || ElementUtil._closeste.bind(ele);
 		ele.childrene = ele.childrene || ElementUtil._childrene.bind(ele);
+		ele.siblings = ele.siblings || ElementUtil._siblings.bind(ele);
+		ele.outerWidthe = ele.outerWidthe || ElementUtil._outerWidthe.bind(ele);
+		ele.outerHeighte = ele.outerHeighte || ElementUtil._outerHeighte.bind(ele);
 
 		return ele;
 	}
@@ -1324,51 +1338,51 @@ class ElementUtil {
 		throw new Error(`Could not find or create element!`);
 	}
 
-	/** @this {HTMLElementModified} */
+	/** @this {HTMLElementExtended} */
 	static _appends (child) {
 		if (typeof child === "string") child = ee`${child}`;
 		this.appendChild(child);
 		return this;
 	}
 
-	/** @this {HTMLElementModified} */
+	/** @this {HTMLElementExtended} */
 	static _appendTo (parent) {
 		parent.appendChild(this);
 		return this;
 	}
 
-	/** @this {HTMLElementModified} */
+	/** @this {HTMLElementExtended} */
 	static _prependTo (parent) {
 		parent.prepend(this);
 		return this;
 	}
 
-	/** @this {HTMLElementModified} */
+	/** @this {HTMLElementExtended} */
 	static _aftere (other) {
 		if (typeof other === "string") other = ee`${other}`;
 		this.after(other);
 		return this;
 	}
 
-	/** @this {HTMLElementModified} */
+	/** @this {HTMLElementExtended} */
 	static _insertAfter (parent) {
 		parent.after(this);
 		return this;
 	}
 
-	/** @this {HTMLElementModified} */
+	/** @this {HTMLElementExtended} */
 	static _addClass (clazz) {
 		this.classList.add(clazz);
 		return this;
 	}
 
-	/** @this {HTMLElementModified} */
+	/** @this {HTMLElementExtended} */
 	static _removeClass (clazz) {
 		this.classList.remove(clazz);
 		return this;
 	}
 
-	/** @this {HTMLElementModified} */
+	/** @this {HTMLElementExtended} */
 	static _toggleClass (clazz, isActive) {
 		if (isActive == null) this.classList.toggle(clazz);
 		else if (isActive) this.classList.add(clazz);
@@ -1376,63 +1390,70 @@ class ElementUtil {
 		return this;
 	}
 
-	/** @this {HTMLElementModified} */
+	/** @this {HTMLElementExtended} */
 	static _showVe () {
 		this.classList.remove("ve-hidden");
 		return this;
 	}
 
-	/** @this {HTMLElementModified} */
+	/** @this {HTMLElementExtended} */
 	static _hideVe () {
 		this.classList.add("ve-hidden");
 		return this;
 	}
 
-	/** @this {HTMLElementModified} */
+	/** @this {HTMLElementExtended} */
 	static _toggleVe (isActive) {
 		this.toggleClass("ve-hidden", isActive == null ? isActive : !isActive);
 		return this;
 	}
 
-	/** @this {HTMLElementModified} */
+	/** @this {HTMLElementExtended} */
 	static _empty () {
 		this.innerHTML = "";
 		return this;
 	}
 
-	/** @this {HTMLElementModified} */
+	/** @this {HTMLElementExtended} */
 	static _detach () {
 		if (this.parentElement) this.parentElement.removeChild(this);
 		return this;
 	}
 
-	/** @this {HTMLElementModified} */
+	/** @this {HTMLElementExtended} */
 	static _attr (name, value) {
 		if (value === undefined) return this.getAttribute(name);
 		this.setAttribute(name, value);
 		return this;
 	}
 
-	/** @this {HTMLElementModified} */
+	/** @this {HTMLElementExtended} */
+	static _prop (name, value) {
+		if (value === undefined) return this[name];
+		this[name] = value;
+		return this;
+	}
+
+	/** @this {HTMLElementExtended} */
 	static _html (html) {
 		if (html === undefined) return this.innerHTML;
 		this.innerHTML = html;
 		return this;
 	}
 
-	/** @this {HTMLElementModified} */
+	/** @this {HTMLElementExtended} */
 	static _txt (txt) {
 		if (txt === undefined) return this.innerText;
 		this.innerText = txt;
 		return this;
 	}
 
-	/** @this {HTMLElementModified} */
+	/** @this {HTMLElementExtended} */
 	static _tooltip (title) {
 		return this.attr("title", title);
 	}
 
-	/** @this {HTMLElementModified} */
+	/** @this {HTMLElementExtended} */
 	static _disableSpellcheck () {
 		// avoid setting input type to "search" as it visually offsets the contents of the input
 		return this
@@ -1441,13 +1462,25 @@ class ElementUtil {
 			.attr("spellcheck", "false");
 	}
 
-	/** @this {HTMLElementModified} */
+	/** @this {HTMLElementExtended} */
 	static _onX (evtName, fn) {
 		this.addEventListener(evtName, fn);
 		return this;
 	}
 
-	/** @this {HTMLElementModified} */
+	/** @this {HTMLElementExtended} */
+	static _offX (evtName, fn) {
+		this.removeEventListener(evtName, fn);
+		return this;
+	}
+
+	/** @this {HTMLElementExtended} */
+	static _trigger (evtName) {
+		this.dispatchEvent(new Event(evtName));
+		return this;
+	}
+
+	/** @this {HTMLElementExtended} */
 	static _val (val, {isSetAttribute = false} = {}) {
 		if (val !== undefined) {
 			switch (this.tagName) {
@@ -1478,30 +1511,49 @@ class ElementUtil {
 		}
 	}
 
-	/** @this {HTMLElementModified} */
+	/** @this {HTMLElementExtended} */
 	static _first (selector) {
 		const child = this.querySelector(selector);
 		if (!child) return child;
 		return e_({ele: child});
 	}
 
-	/** @this {HTMLElementModified} */
+	/** @this {HTMLElementExtended} */
 	static _closeste (selector) {
 		const sibling = this.closest(selector);
 		if (!sibling) return sibling;
 		return e_({ele: sibling});
 	}
 
-	/** @this {HTMLElementModified} */
+	/** @this {HTMLElementExtended} */
 	static _childrene (selector) {
 		if (!selector) return [...this.children].map(child => e_({ele: child}));
 		return em(selector, this);
 	}
 
+	/** @this {HTMLElementExtended} */
+	static _siblings (selector) {
+		if (!selector) {
+			return [...this.parentNode.children]
+				.filter(ele => ele !== this)
+				.map(ele => e_({ele: ele}));
+		}
+
+		return [...this.parentNode.querySelectorAll(`:scope > ${selector}`)]
+			.filter(ele => ele !== this)
+			.map(ele => e_({ele: ele}));
+	}
+
+	/** @this {HTMLElementExtended} */
+	static _outerWidthe () { return this.getBoundingClientRect().width; }
+
+	/** @this {HTMLElementExtended} */
+	static _outerHeighte () { return this.getBoundingClientRect().height; }
+
 	/* -------------------------------------------- */
 
 	/**
-	 * @return {?HTMLElementModified}
+	 * @return {?HTMLElementExtended}
 	 */
 	static getBySelector (selector, parent) {
 		const ele = (parent || document).querySelector(selector);
@@ -1510,7 +1562,7 @@ class ElementUtil {
 	}
 
 	/**
-	 * @return {Array<HTMLElementModified>}
+	 * @return {Array<HTMLElementExtended>}
 	 */
 	static getBySelectorMulti (selector, parent) {
 		return [...(parent || document).querySelectorAll(selector)]
@@ -1553,8 +1605,19 @@ class ElementUtil {
 globalThis.ElementUtil = ElementUtil;
 
 if (typeof window !== "undefined") {
+	/**
+	 * @return {HTMLElementExtended}
+	 */
 	window.e_ = ElementUtil.getOrModify.bind(ElementUtil);
+
+	/**
+	 * @return {HTMLElementExtended}
+	 */
 	window.es = ElementUtil.getBySelector.bind(ElementUtil);
+
+	/**
+	 * @return {Array<HTMLElementExtended>}
+	 */
 	window.em = ElementUtil.getBySelectorMulti.bind(ElementUtil);
 }
 
@@ -3436,7 +3499,7 @@ UrlUtil.URL_TO_HASH_BUILDER["background"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.
 UrlUtil.URL_TO_HASH_BUILDER["item"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS];
 UrlUtil.URL_TO_HASH_BUILDER["itemGroup"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS];
 UrlUtil.URL_TO_HASH_BUILDER["baseitem"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS];
-UrlUtil.URL_TO_HASH_BUILDER["magicvariant"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS];
+UrlUtil.URL_TO_HASH_BUILDER["magicvariant"] = (it) => UrlUtil.encodeArrayForHash(it.name, SourceUtil.getEntitySource(it));
 UrlUtil.URL_TO_HASH_BUILDER["class"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CLASSES];
 UrlUtil.URL_TO_HASH_BUILDER["condition"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CONDITIONS_DISEASES];
 UrlUtil.URL_TO_HASH_BUILDER["disease"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CONDITIONS_DISEASES];
@@ -4262,7 +4325,10 @@ globalThis.DataUtil = {
 
 					const isHasInternalCopies = (data._meta.internalCopies || []).includes(dataProp);
 
-					const dependencyData = await Promise.all(sourceIds.map(sourceId => DataUtil.pLoadByMeta(dataProp, sourceId)));
+					const dependencyData = await Promise.all(
+						DataUtil._getLoadGroupedSourceIds({prop: dataProp, sourceIds})
+							.map(sourceId => DataUtil.pLoadByMeta(dataProp, sourceId)),
+					);
 
 					const flatDependencyData = dependencyData.map(dd => dd[dataProp]).flat().filter(Boolean);
 					await Promise.all(data[dataProp].map(entry => DataUtil._pDoMetaMerge_handleCopyProp(dataProp, flatDependencyData, entry, {...options, isErrorOnMissing: !isHasInternalCopies})));
@@ -4490,16 +4556,17 @@ globalThis.DataUtil = {
 			// region Special
 			case "item":
 			case "itemGroup":
-			case "baseitem": {
+			case "baseitem":
+			case "magicvariant": {
 				const data = await DataUtil.item.loadRawJSON();
-				if (data[prop] && data[prop].some(it => it.source === source)) return data;
+				if (SourceUtil.isSiteSource(source)) return data;
 				return DataUtil._pLoadByMeta_pGetPrereleaseBrew(source);
 			}
 			case "race": {
 				// FIXME(Future) this should really `loadRawJSON`, but this breaks existing brew.
 				//   Consider a large-scale migration in future.
 				const data = await DataUtil.race.loadJSON({isAddBaseRaces: true});
-				if (data[prop] && data[prop].some(it => it.source === source)) return data;
+				if (SourceUtil.isSiteSource(source)) return data;
 				return DataUtil._pLoadByMeta_pGetPrereleaseBrew(source);
 			}
 			// endregion
@@ -4509,7 +4576,7 @@ globalThis.DataUtil = {
 				const impl = DataUtil[prop];
 				if (impl && (impl.getDataUrl || impl.loadJSON)) {
 					const data = await (impl.loadJSON ? impl.loadJSON() : DataUtil.loadJSON(impl.getDataUrl()));
-					if (data[prop] && data[prop].some(it => it.source === source)) return data;
+					if (SourceUtil.isSiteSource(source)) return data;
 
 					return DataUtil._pLoadByMeta_pGetPrereleaseBrew(source);
 				}
@@ -4528,6 +4595,24 @@ globalThis.DataUtil = {
 		if (fromBrew) return fromBrew;
 
 		throw new Error(`Could not find prerelease/brew URL for source "${source}"`);
+	},
+
+	/* -------------------------------------------- */
+
+	_getLoadGroupedSourceIds ({prop, sourceIds}) {
+		if (DataUtil._MULTI_SOURCE_PROP_TO_DIR[prop]) return sourceIds;
+
+		let siteSourceFirst = null;
+
+		const nonSiteSources = sourceIds
+			.filter(sourceId => {
+				const isSiteSource = SourceUtil.isSiteSource(sourceId);
+				if (isSiteSource && siteSourceFirst == null) siteSourceFirst = sourceId;
+				return !isSiteSource;
+			});
+
+		if (!siteSourceFirst) return sourceIds;
+		return [siteSourceFirst, ...nonSiteSources];
 	},
 
 	/* -------------------------------------------- */
@@ -4633,25 +4718,25 @@ globalThis.DataUtil = {
 
 			if (hashCurrent === hash) throw new Error(`${hashCurrent} _copy self-references! This is a bug!`);
 
-			const it = (impl._mergeCache = impl._mergeCache || {})[hash] || DataUtil.generic._pMergeCopy_search(impl, page, entryList, entry, options);
+			const entParent = (impl._mergeCache = impl._mergeCache || {})[hash] || DataUtil.generic._pMergeCopy_search(impl, page, entryList, entry, options);
 
-			if (!it) {
+			if (!entParent) {
 				if (options.isErrorOnMissing) {
 					throw new Error(`Could not find "${page}" entity "${entry._copy.name}" ("${entry._copy.source}") to copy in copier "${entry.name}" ("${entry.source}")`);
 				}
 				return;
 			}
 
-			if (DataUtil.dbg.isTrackCopied) it.dbg_isCopied = true;
+			if (DataUtil.dbg.isTrackCopied) entParent.dbg_isCopied = true;
 			// Handle recursive copy
-			if (it._copy) await DataUtil.generic._pMergeCopy(impl, page, entryList, it, options);
+			if (entParent._copy) await DataUtil.generic._pMergeCopy(impl, page, entryList, entParent, options);
 
 			// Preload templates, if required
 			// TODO(Template) allow templates for other entity types
 			const templateData = entry._copy?._templates
 				? (await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/bestiary/template.json`))
 				: null;
-			return DataUtil.generic.copyApplier.getCopy(impl, MiscUtil.copyFast(it), entry, templateData, options);
+			return DataUtil.generic.copyApplier.getCopy(impl, MiscUtil.copyFast(entParent), entry, templateData, options);
 		},
 
 		_pMergeCopy_search (impl, page, entryList, entry, options) {
@@ -4699,25 +4784,28 @@ globalThis.DataUtil = {
 				return split.join("");
 			}
 
-			static _doMod_appendStr ({copyTo, copyFrom, modInfo, msgPtFailed, prop}) {
-				if (copyTo[prop]) copyTo[prop] = `${copyTo[prop]}${modInfo.joiner || ""}${modInfo.str}`;
-				else copyTo[prop] = modInfo.str;
+			static _doMod_appendStr ({copyTo, copyFrom, modInfo, msgPtFailed, propPath}) {
+				const valExisting = MiscUtil.get(copyTo, ...propPath);
+				if (valExisting) MiscUtil.set(copyTo, ...propPath, `${valExisting}${modInfo.joiner || ""}${modInfo.str}`);
+				else MiscUtil.set(copyTo, ...propPath, modInfo.str);
 			}
 
-			static _doMod_replaceName ({copyTo, copyFrom, modInfo, msgPtFailed, prop}) {
-				if (!copyTo[prop]) return;
+			static _doMod_replaceName ({copyTo, copyFrom, modInfo, msgPtFailed, propPath}) {
+				const ents = MiscUtil.get(copyTo, ...propPath);
+				if (!ents) return;
 
 				DataUtil.generic._walker_replaceTxt = DataUtil.generic._walker_replaceTxt || MiscUtil.getWalker();
 				const re = this._getRegexFromReplaceModInfo({replace: modInfo.replace, flags: modInfo.flags});
 				const handlers = {string: this._doReplaceStringHandler.bind(null, {re: re, withStr: modInfo.with})};
 
-				copyTo[prop].forEach(it => {
-					if (it.name) it.name = DataUtil.generic._walker_replaceTxt.walk(it.name, handlers);
+				ents.forEach(ent => {
+					if (ent.name) ent.name = DataUtil.generic._walker_replaceTxt.walk(ent.name, handlers);
 				});
 			}
 
-			static _doMod_replaceTxt ({copyTo, copyFrom, modInfo, msgPtFailed, prop}) {
-				if (!copyTo[prop]) return;
+			static _doMod_replaceTxt ({copyTo, copyFrom, modInfo, msgPtFailed, propPath}) {
+				const ents = MiscUtil.get(copyTo, ...propPath);
+				if (!ents) return;
 
 				DataUtil.generic._walker_replaceTxt = DataUtil.generic._walker_replaceTxt || MiscUtil.getWalker();
 				const re = this._getRegexFromReplaceModInfo({replace: modInfo.replace, flags: modInfo.flags});
@@ -4728,105 +4816,112 @@ globalThis.DataUtil = {
 
 				if (props.includes(null)) {
 					// Handle any pure strings, e.g. `"legendaryHeader"`
-					copyTo[prop] = copyTo[prop].map(it => {
+					MiscUtil.set(copyTo, ...propPath, ents.map(it => {
 						if (typeof it !== "string") return it;
 						return DataUtil.generic._walker_replaceTxt.walk(it, handlers);
-					});
+					}));
 				}
 
-				copyTo[prop].forEach(it => {
+				ents.forEach(ent => {
 					props.forEach(prop => {
 						if (prop == null) return;
-						if (it[prop]) it[prop] = DataUtil.generic._walker_replaceTxt.walk(it[prop], handlers);
+						if (ent[prop]) ent[prop] = DataUtil.generic._walker_replaceTxt.walk(ent[prop], handlers);
 					});
 				});
 			}
 
-			static _doMod_prependArr ({copyTo, copyFrom, modInfo, msgPtFailed, prop}) {
+			static _doMod_prependArr ({copyTo, copyFrom, modInfo, msgPtFailed, propPath}) {
 				this._doEnsureArray({obj: modInfo, prop: "items"});
-				copyTo[prop] = copyTo[prop] ? modInfo.items.concat(copyTo[prop]) : modInfo.items;
+				const valExisting = MiscUtil.get(copyTo, ...propPath);
+				MiscUtil.set(copyTo, ...propPath, valExisting ? modInfo.items.concat(valExisting) : modInfo.items);
 			}
 
-			static _doMod_appendArr ({copyTo, copyFrom, modInfo, msgPtFailed, prop}) {
+			static _doMod_appendArr ({copyTo, copyFrom, modInfo, msgPtFailed, propPath}) {
 				this._doEnsureArray({obj: modInfo, prop: "items"});
-				copyTo[prop] = copyTo[prop] ? copyTo[prop].concat(modInfo.items) : modInfo.items;
+				const valExisting = MiscUtil.get(copyTo, ...propPath);
+				MiscUtil.set(copyTo, ...propPath, valExisting ? valExisting.concat(modInfo.items) : modInfo.items);
 			}
 
-			static _doMod_appendIfNotExistsArr ({copyTo, copyFrom, modInfo, msgPtFailed, prop}) {
+			static _doMod_appendIfNotExistsArr ({copyTo, copyFrom, modInfo, msgPtFailed, propPath}) {
 				this._doEnsureArray({obj: modInfo, prop: "items"});
-				if (!copyTo[prop]) return copyTo[prop] = modInfo.items;
-				copyTo[prop] = copyTo[prop].concat(modInfo.items.filter(it => !copyTo[prop].some(x => CollectionUtil.deepEquals(it, x))));
+				const valExisting = MiscUtil.get(copyTo, ...propPath);
+				if (!valExisting) return MiscUtil.set(copyTo, ...propPath, modInfo.items);
+				MiscUtil.set(copyTo, ...propPath, valExisting.concat(modInfo.items.filter(it => !valExisting.some(x => CollectionUtil.deepEquals(it, x)))));
 			}
 
-			static _doMod_replaceArr ({copyTo, copyFrom, modInfo, msgPtFailed, prop, isThrow = true}) {
+			static _doMod_replaceArr ({copyTo, copyFrom, modInfo, msgPtFailed, propPath, isThrow = true}) {
 				this._doEnsureArray({obj: modInfo, prop: "items"});
 
-				if (!copyTo[prop]) {
-					if (isThrow) throw new Error(`${msgPtFailed} Could not find "${prop}" array`);
+				const valExisting = MiscUtil.get(copyTo, ...propPath);
+				if (!valExisting) {
+					if (isThrow) throw new Error(`${msgPtFailed} Could not find "${propPath.join(".")}" array`);
 					return false;
 				}
 
 				let ixOld;
 				if (modInfo.replace.regex) {
 					const re = new RegExp(modInfo.replace.regex, modInfo.replace.flags || "");
-					ixOld = copyTo[prop].findIndex(it => it.name ? re.test(it.name) : typeof it === "string" ? re.test(it) : false);
+					ixOld = valExisting.findIndex(it => it.name ? re.test(it.name) : typeof it === "string" ? re.test(it) : false);
 				} else if (modInfo.replace.index != null) {
 					ixOld = modInfo.replace.index;
 				} else {
-					ixOld = copyTo[prop].findIndex(it => it.name ? it.name === modInfo.replace : it === modInfo.replace);
+					ixOld = valExisting.findIndex(it => it.name ? it.name === modInfo.replace : it === modInfo.replace);
 				}
 
 				if (~ixOld) {
-					copyTo[prop].splice(ixOld, 1, ...modInfo.items);
+					valExisting.splice(ixOld, 1, ...modInfo.items);
 					return true;
-				} else if (isThrow) throw new Error(`${msgPtFailed} Could not find "${prop}" item with name "${modInfo.replace}" to replace`);
+				} else if (isThrow) throw new Error(`${msgPtFailed} Could not find "${propPath.join(".")}" item with name "${modInfo.replace}" to replace`);
 				return false;
 			}
 
-			static _doMod_replaceOrAppendArr ({copyTo, copyFrom, modInfo, msgPtFailed, prop}) {
-				const didReplace = this._doMod_replaceArr({copyTo, copyFrom, modInfo, msgPtFailed, prop, isThrow: false});
-				if (!didReplace) this._doMod_appendArr({copyTo, copyFrom, modInfo, msgPtFailed, prop});
+			static _doMod_replaceOrAppendArr ({copyTo, copyFrom, modInfo, msgPtFailed, propPath}) {
+				const didReplace = this._doMod_replaceArr({copyTo, copyFrom, modInfo, msgPtFailed, propPath, isThrow: false});
+				if (!didReplace) this._doMod_appendArr({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
 			}
 
-			static _doMod_insertArr ({copyTo, copyFrom, modInfo, msgPtFailed, prop}) {
+			static _doMod_insertArr ({copyTo, copyFrom, modInfo, msgPtFailed, propPath}) {
 				this._doEnsureArray({obj: modInfo, prop: "items"});
-				if (!copyTo[prop]) throw new Error(`${msgPtFailed} Could not find "${prop}" array`);
-				copyTo[prop].splice(~modInfo.index ? modInfo.index : copyTo[prop].length, 0, ...modInfo.items);
+				const valExisting = MiscUtil.get(copyTo, ...propPath);
+				if (!valExisting) throw new Error(`${msgPtFailed} Could not find "${valExisting.join(".")}" array`);
+				valExisting.splice(~modInfo.index ? modInfo.index : valExisting.length, 0, ...modInfo.items);
 			}
 
-			static _doMod_removeArr ({copyTo, copyFrom, modInfo, msgPtFailed, prop}) {
+			static _doMod_removeArr ({copyTo, copyFrom, modInfo, msgPtFailed, propPath}) {
+				const valExisting = MiscUtil.get(copyTo, ...propPath);
 				if (modInfo.names) {
 					this._doEnsureArray({obj: modInfo, prop: "names"});
 					modInfo.names.forEach(nameToRemove => {
-						const ixOld = copyTo[prop].findIndex(it => it.name === nameToRemove);
-						if (~ixOld) copyTo[prop].splice(ixOld, 1);
+						const ixOld = valExisting.findIndex(it => it.name === nameToRemove);
+						if (~ixOld) valExisting.splice(ixOld, 1);
 						else {
-							if (!modInfo.force) throw new Error(`${msgPtFailed} Could not find "${prop}" item with name "${nameToRemove}" to remove`);
+							if (!modInfo.force) throw new Error(`${msgPtFailed} Could not find "${propPath.join(".")}" item with name "${nameToRemove}" to remove`);
 						}
 					});
 				} else if (modInfo.items) {
 					this._doEnsureArray({obj: modInfo, prop: "items"});
 					modInfo.items.forEach(itemToRemove => {
-						const ixOld = copyTo[prop].findIndex(it => it === itemToRemove);
-						if (~ixOld) copyTo[prop].splice(ixOld, 1);
-						else throw new Error(`${msgPtFailed} Could not find "${prop}" item "${itemToRemove}" to remove`);
+						const ixOld = valExisting.findIndex(it => it === itemToRemove);
+						if (~ixOld) valExisting.splice(ixOld, 1);
+						else throw new Error(`${msgPtFailed} Could not find "${propPath.join(".")}" item "${itemToRemove}" to remove`);
 					});
 				} else throw new Error(`${msgPtFailed} One of "names" or "items" must be provided!`);
 			}
 
-			static _doMod_renameArr ({copyTo, copyFrom, modInfo, msgPtFailed, prop, isThrow = true}) {
+			static _doMod_renameArr ({copyTo, copyFrom, modInfo, msgPtFailed, propPath, isThrow = true}) {
 				this._doEnsureArray({obj: modInfo, prop: "renames"});
 
-				if (!copyTo[prop]) {
-					if (isThrow) throw new Error(`${msgPtFailed} Could not find "${prop}" array`);
+				const valExisting = MiscUtil.get(copyTo, ...propPath);
+				if (!valExisting) {
+					if (isThrow) throw new Error(`${msgPtFailed} Could not find "${propPath.join(".")}" array`);
 					return;
 				}
 
 				modInfo.renames
 					.forEach(rename => {
-						const ent = copyTo[prop].find(ent => ent?.name === rename.rename);
+						const ent = valExisting.find(ent => ent?.name === rename.rename);
 						if (!ent) {
-							if (isThrow) throw new Error(`${msgPtFailed} Could not find "${prop}" item with name "${rename.rename}" to rename`);
+							if (isThrow) throw new Error(`${msgPtFailed} Could not find "${propPath.join(".")}" item with name "${rename.rename}" to rename`);
 							return;
 						}
 
@@ -4834,8 +4929,8 @@ globalThis.DataUtil = {
 					});
 			}
 
-			static _doMod_calculateProp ({copyTo, copyFrom, modInfo, msgPtFailed, prop}) {
-				copyTo[prop] = copyTo[prop] || {};
+			static _doMod_calculateProp ({copyTo, copyFrom, modInfo, msgPtFailed, propPath}) {
+				const tgt = MiscUtil.getOrSet(copyTo, ...propPath, {});
 				const toExec = modInfo.formula.replace(/<\$([^$]+)\$>/g, (...m) => {
 					switch (m[1]) {
 						case "prof_bonus": return Parser.crToPb(copyTo.cr);
@@ -4845,31 +4940,35 @@ globalThis.DataUtil = {
 				});
 				// TODO(Future) add option to format as bonus
 				// eslint-disable-next-line no-eval
-				copyTo[prop][modInfo.prop] = eval(DataUtil.generic.variableResolver.getCleanMathExpression(toExec));
+				tgt[modInfo.prop] = eval(DataUtil.generic.variableResolver.getCleanMathExpression(toExec));
 			}
 
-			static _doMod_scalarAddProp ({copyTo, copyFrom, modInfo, msgPtFailed, prop}) {
+			static _doMod_scalarAddProp ({copyTo, copyFrom, modInfo, msgPtFailed, propPath}) {
+				const tgt = MiscUtil.get(copyTo, ...propPath);
+				if (!tgt) return;
+
 				const applyTo = (k) => {
-					const out = Number(copyTo[prop][k]) + modInfo.scalar;
-					const isString = typeof copyTo[prop][k] === "string";
-					copyTo[prop][k] = isString ? `${out >= 0 ? "+" : ""}${out}` : out;
+					const out = Number(tgt[k]) + modInfo.scalar;
+					const isString = typeof tgt[k] === "string";
+					tgt[k] = isString ? `${out >= 0 ? "+" : ""}${out}` : out;
 				};
 
-				if (!copyTo[prop]) return;
-				if (modInfo.prop === "*") Object.keys(copyTo[prop]).forEach(k => applyTo(k));
+				if (modInfo.prop === "*") Object.keys(tgt).forEach(k => applyTo(k));
 				else applyTo(modInfo.prop);
 			}
 
-			static _doMod_scalarMultProp ({copyTo, copyFrom, modInfo, msgPtFailed, prop}) {
+			static _doMod_scalarMultProp ({copyTo, copyFrom, modInfo, msgPtFailed, propPath}) {
+				const tgt = MiscUtil.get(copyTo, ...propPath);
+				if (!tgt) return;
+
 				const applyTo = (k) => {
-					let out = Number(copyTo[prop][k]) * modInfo.scalar;
+					let out = Number(tgt[k]) * modInfo.scalar;
 					if (modInfo.floor) out = Math.floor(out);
-					const isString = typeof copyTo[prop][k] === "string";
-					copyTo[prop][k] = isString ? `${out >= 0 ? "+" : ""}${out}` : out;
+					const isString = typeof tgt[k] === "string";
+					tgt[k] = isString ? `${out >= 0 ? "+" : ""}${out}` : out;
 				};
 
-				if (!copyTo[prop]) return;
-				if (modInfo.prop === "*") Object.keys(copyTo[prop]).forEach(k => applyTo(k));
+				if (modInfo.prop === "*") Object.keys(tgt).forEach(k => applyTo(k));
 				else applyTo(modInfo.prop);
 			}
 
@@ -5079,33 +5178,43 @@ globalThis.DataUtil = {
 				});
 			}
 
-			static _doMod_scalarAddHit ({copyTo, copyFrom, modInfo, msgPtFailed, prop}) {
-				if (!copyTo[prop]) return;
+			static _doMod_scalarAddHit ({copyTo, copyFrom, modInfo, msgPtFailed, propPath}) {
+				const valExisting = MiscUtil.get(copyTo, ...propPath);
+				if (!valExisting) return;
 
 				const re = /{@hit ([-+]?\d+)}/g;
-				copyTo[prop] = this._WALKER.walk(
-					copyTo[prop],
-					{
-						string: (str) => {
-							return str
-								.replace(re, (m0, m1) => `{@hit ${Number(m1) + modInfo.scalar}}`);
+				MiscUtil.set(
+					copyTo,
+					...propPath,
+					this._WALKER.walk(
+						valExisting,
+						{
+							string: (str) => {
+								return str
+									.replace(re, (m0, m1) => `{@hit ${Number(m1) + modInfo.scalar}}`);
+							},
 						},
-					},
+					),
 				);
 			}
 
-			static _doMod_scalarAddDc ({copyTo, copyFrom, modInfo, msgPtFailed, prop}) {
-				if (!copyTo[prop]) return;
+			static _doMod_scalarAddDc ({copyTo, copyFrom, modInfo, msgPtFailed, propPath}) {
+				const valExisting = MiscUtil.get(copyTo, ...propPath);
+				if (!valExisting) return;
 
 				const re = /{@dc (\d+)(?:\|[^}]+)?}/g;
-				copyTo[prop] = this._WALKER.walk(
-					copyTo[prop],
-					{
-						string: (str) => {
-							return str
-								.replace(re, (m0, m1) => `{@dc ${Number(m1) + modInfo.scalar}}`);
+				MiscUtil.set(
+					copyTo,
+					...propPath,
+					this._WALKER.walk(
+						valExisting,
+						{
+							string: (str) => {
+								return str
+									.replace(re, (m0, m1) => `{@dc ${Number(m1) + modInfo.scalar}}`);
+							},
 						},
-					},
+					),
 				);
 			}
 
@@ -5138,61 +5247,63 @@ globalThis.DataUtil = {
 				}
 			}
 
-			static _doMod_setProp ({copyTo, copyFrom, modInfo, msgPtFailed, prop}) {
-				const propPath = modInfo.prop.split(".");
-				if (prop != null && prop !== "*") propPath.unshift(prop);
-				MiscUtil.set(copyTo, ...propPath, MiscUtil.copyFast(modInfo.value));
+			static _doMod_setProp ({copyTo, copyFrom, modInfo, msgPtFailed, propPath}) {
+				const propPathCombined = modInfo.prop ? modInfo.prop.split(".") : [];
+				if (propPath != null && !CollectionUtil.deepEquals(propPath, ["*"])) propPathCombined.unshift(...propPath);
+				MiscUtil.set(copyTo, ...propPathCombined, MiscUtil.copyFast(modInfo.value));
 			}
 
-			static _doMod_prefixSuffixStringProp ({copyTo, copyFrom, modInfo, msgPtFailed, prop}) {
-				const propPath = modInfo.prop.split(".");
-				if (prop != null && prop !== "*") propPath.unshift(prop);
-				const str = MiscUtil.get(copyTo, ...propPath);
+			static _doMod_prefixSuffixStringProp ({copyTo, copyFrom, modInfo, msgPtFailed, propPath}) {
+				const propPathCombined = modInfo.prop ? modInfo.prop.split(".") : [];
+				if (propPath != null && !CollectionUtil.deepEquals(propPath, ["*"])) propPathCombined.unshift(...propPath);
+				const str = MiscUtil.get(copyTo, ...propPathCombined);
 				if (str == null || !(typeof str === "string")) return;
-				MiscUtil.set(copyTo, ...propPath, `${modInfo.prefix || ""}${str}${modInfo.suffix || ""}`);
+				MiscUtil.set(copyTo, ...propPathCombined, `${modInfo.prefix || ""}${str}${modInfo.suffix || ""}`);
 			}
 
 			static _doMod_handleProp ({copyTo, copyFrom, modInfos, msgPtFailed, prop = null}) {
+				const propPath = prop ? prop.split(".") : null;
+
 				modInfos.forEach(modInfo => {
 					if (typeof modInfo === "string") {
 						switch (modInfo) {
 							case "remove": return delete copyTo[prop];
 							default: throw new Error(`${msgPtFailed} Unhandled mode: ${modInfo}`);
 						}
-					} else {
-						switch (modInfo.mode) {
-							case "appendStr": return this._doMod_appendStr({copyTo, copyFrom, modInfo, msgPtFailed, prop});
-							case "replaceName": return this._doMod_replaceName({copyTo, copyFrom, modInfo, msgPtFailed, prop});
-							case "replaceTxt": return this._doMod_replaceTxt({copyTo, copyFrom, modInfo, msgPtFailed, prop});
-							case "prependArr": return this._doMod_prependArr({copyTo, copyFrom, modInfo, msgPtFailed, prop});
-							case "appendArr": return this._doMod_appendArr({copyTo, copyFrom, modInfo, msgPtFailed, prop});
-							case "replaceArr": return this._doMod_replaceArr({copyTo, copyFrom, modInfo, msgPtFailed, prop});
-							case "replaceOrAppendArr": return this._doMod_replaceOrAppendArr({copyTo, copyFrom, modInfo, msgPtFailed, prop});
-							case "appendIfNotExistsArr": return this._doMod_appendIfNotExistsArr({copyTo, copyFrom, modInfo, msgPtFailed, prop});
-							case "insertArr": return this._doMod_insertArr({copyTo, copyFrom, modInfo, msgPtFailed, prop});
-							case "removeArr": return this._doMod_removeArr({copyTo, copyFrom, modInfo, msgPtFailed, prop});
-							case "renameArr": return this._doMod_renameArr({copyTo, copyFrom, modInfo, msgPtFailed, prop});
-							case "calculateProp": return this._doMod_calculateProp({copyTo, copyFrom, modInfo, msgPtFailed, prop});
-							case "scalarAddProp": return this._doMod_scalarAddProp({copyTo, copyFrom, modInfo, msgPtFailed, prop});
-							case "scalarMultProp": return this._doMod_scalarMultProp({copyTo, copyFrom, modInfo, msgPtFailed, prop});
-							case "setProp": return this._doMod_setProp({copyTo, copyFrom, modInfo, msgPtFailed, prop});
-							case "prefixSuffixStringProp": return this._doMod_prefixSuffixStringProp({copyTo, copyFrom, modInfo, msgPtFailed, prop});
-							// region Bestiary specific
-							case "addSenses": return this._doMod_addSenses({copyTo, copyFrom, modInfo, msgPtFailed});
-							case "addSaves": return this._doMod_addSaves({copyTo, copyFrom, modInfo, msgPtFailed});
-							case "addSkills": return this._doMod_addSkills({copyTo, copyFrom, modInfo, msgPtFailed});
-							case "addAllSaves": return this._doMod_addAllSaves({copyTo, copyFrom, modInfo, msgPtFailed});
-							case "addAllSkills": return this._doMod_addAllSkills({copyTo, copyFrom, modInfo, msgPtFailed});
-							case "addSpells": return this._doMod_addSpells({copyTo, copyFrom, modInfo, msgPtFailed});
-							case "replaceSpells": return this._doMod_replaceSpells({copyTo, copyFrom, modInfo, msgPtFailed});
-							case "removeSpells": return this._doMod_removeSpells({copyTo, copyFrom, modInfo, msgPtFailed});
-							case "maxSize": return this._doMod_maxSize({copyTo, copyFrom, modInfo, msgPtFailed});
-							case "scalarMultXp": return this._doMod_scalarMultXp({copyTo, copyFrom, modInfo, msgPtFailed});
-							case "scalarAddHit": return this._doMod_scalarAddHit({copyTo, copyFrom, modInfo, msgPtFailed, prop});
-							case "scalarAddDc": return this._doMod_scalarAddDc({copyTo, copyFrom, modInfo, msgPtFailed, prop});
-							// endregion
-							default: throw new Error(`${msgPtFailed} Unhandled mode: ${modInfo.mode}`);
-						}
+					}
+
+					switch (modInfo.mode) {
+						case "appendStr": return this._doMod_appendStr({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
+						case "replaceName": return this._doMod_replaceName({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
+						case "replaceTxt": return this._doMod_replaceTxt({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
+						case "prependArr": return this._doMod_prependArr({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
+						case "appendArr": return this._doMod_appendArr({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
+						case "replaceArr": return this._doMod_replaceArr({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
+						case "replaceOrAppendArr": return this._doMod_replaceOrAppendArr({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
+						case "appendIfNotExistsArr": return this._doMod_appendIfNotExistsArr({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
+						case "insertArr": return this._doMod_insertArr({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
+						case "removeArr": return this._doMod_removeArr({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
+						case "renameArr": return this._doMod_renameArr({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
+						case "calculateProp": return this._doMod_calculateProp({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
+						case "scalarAddProp": return this._doMod_scalarAddProp({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
+						case "scalarMultProp": return this._doMod_scalarMultProp({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
+						case "setProp": return this._doMod_setProp({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
+						case "prefixSuffixStringProp": return this._doMod_prefixSuffixStringProp({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
+						// region Bestiary specific
+						case "addSenses": return this._doMod_addSenses({copyTo, copyFrom, modInfo, msgPtFailed});
+						case "addSaves": return this._doMod_addSaves({copyTo, copyFrom, modInfo, msgPtFailed});
+						case "addSkills": return this._doMod_addSkills({copyTo, copyFrom, modInfo, msgPtFailed});
+						case "addAllSaves": return this._doMod_addAllSaves({copyTo, copyFrom, modInfo, msgPtFailed});
+						case "addAllSkills": return this._doMod_addAllSkills({copyTo, copyFrom, modInfo, msgPtFailed});
+						case "addSpells": return this._doMod_addSpells({copyTo, copyFrom, modInfo, msgPtFailed});
+						case "replaceSpells": return this._doMod_replaceSpells({copyTo, copyFrom, modInfo, msgPtFailed});
+						case "removeSpells": return this._doMod_removeSpells({copyTo, copyFrom, modInfo, msgPtFailed});
+						case "maxSize": return this._doMod_maxSize({copyTo, copyFrom, modInfo, msgPtFailed});
+						case "scalarMultXp": return this._doMod_scalarMultXp({copyTo, copyFrom, modInfo, msgPtFailed});
+						case "scalarAddHit": return this._doMod_scalarAddHit({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
+						case "scalarAddDc": return this._doMod_scalarAddDc({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
+						// endregion
+						default: throw new Error(`${msgPtFailed} Unhandled mode: ${modInfo.mode}`);
 					}
 				});
 			}
@@ -6068,6 +6179,16 @@ globalThis.DataUtil = {
 		static _PAGE = UrlUtil.PG_ITEMS;
 
 		static async pMergeCopy (...args) { return DataUtil.item.pMergeCopy(...args); }
+		static async loadRawJSON (...args) { return DataUtil.item.loadRawJSON(...args); }
+	},
+
+	magicvariant: class extends _DataUtilPropConfig {
+		static _MERGE_REQUIRES_PRESERVE = {
+			lootTables: true,
+			tier: true,
+		};
+		static _PAGE = "magicvariant";
+
 		static async loadRawJSON (...args) { return DataUtil.item.loadRawJSON(...args); }
 	},
 
@@ -7429,10 +7550,6 @@ globalThis.CollectionUtil = {
 		if (a.size !== b.size) return false;
 		for (const it of a) if (!b.has(it)) return false;
 		return true;
-	},
-
-	setDiff (set1, set2) {
-		return new Set([...set1].filter(it => !set2.has(it)));
 	},
 
 	objectDiff (obj1, obj2) {

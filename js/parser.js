@@ -1468,6 +1468,25 @@ Parser.UNT_INCHES = "inches";
 Parser.UNT_FEET = "feet";
 Parser.UNT_YARDS = "yards";
 Parser.UNT_MILES = "miles";
+
+Parser.UNT_CUBIC_FEET = "cubic feet";
+
+Parser.getNormalizedUnit = function (unit) {
+	if (unit == null) return unit;
+
+	unit = unit.toLowerCase().trim();
+
+	switch (unit) {
+		case "inch": case "in.": case "in": case Parser.UNT_INCHES: return Parser.UNT_INCHES;
+		case "foot": case "ft.": case "ft": case Parser.UNT_FEET: return Parser.UNT_FEET;
+		case "yard": case "yd.": case "yd": case Parser.UNT_YARDS: return Parser.UNT_YARDS;
+		case "mile": case "mi.": case "mi": case Parser.UNT_MILES: return Parser.UNT_MILES;
+
+		case "pound": case "pounds": case "lbs.": case "lb.": case "lb": case Parser.UNT_LBS: return Parser.UNT_LBS;
+		default: return unit;
+	}
+};
+
 Parser.SP_DIST_TYPE_TO_FULL = {
 	[Parser.UNT_INCHES]: "Inches",
 	[Parser.UNT_FEET]: "Feet",
@@ -2077,6 +2096,8 @@ Parser.ENVIRONMENT__PLANAR_MAGMA = "planar, magma";
 Parser.ENVIRONMENT__PLANAR_ASH = "planar, ash";
 Parser.ENVIRONMENT__PLANAR_ICE = "planar, ice";
 
+Parser.ENVIRONMENT__PLANAR_ELEMENTAL_CHAOS = "planar, elemental chaos";
+
 Parser.ENVIRONMENT__PLANAR_ETHEREAL = "planar, ethereal";
 Parser.ENVIRONMENT__PLANAR_ASTRAL = "planar, astral";
 
@@ -2128,6 +2149,8 @@ Parser.ENVIRONMENT_GROUPS = {
 		Parser.ENVIRONMENT__PLANAR_MAGMA,
 		Parser.ENVIRONMENT__PLANAR_ASH,
 		Parser.ENVIRONMENT__PLANAR_ICE,
+
+		Parser.ENVIRONMENT__PLANAR_ELEMENTAL_CHAOS,
 	],
 	[Parser.ENVIRONMENT__GROUP_PLANAR_UPPER]: [
 		Parser.ENVIRONMENT__PLANAR_ARBOREA,
@@ -2176,6 +2199,8 @@ Parser.ENVIRONMENT_DISPLAY_NAMES = {
 	[Parser.ENVIRONMENT__PLANAR_MAGMA]: "Planar (Para-elemental Plane of Magma)",
 	[Parser.ENVIRONMENT__PLANAR_ASH]: "Planar (Para-elemental Plane of Ash)",
 	[Parser.ENVIRONMENT__PLANAR_ICE]: "Planar (Para-elemental Plane of Ice)",
+
+	[Parser.ENVIRONMENT__PLANAR_ELEMENTAL_CHAOS]: "Planar (Elemental Chaos)",
 
 	[Parser.ENVIRONMENT__PLANAR_ETHEREAL]: "Planar (Ethereal Plane)",
 	[Parser.ENVIRONMENT__PLANAR_ASTRAL]: "Planar (Astral Plane)",
@@ -3162,8 +3187,6 @@ Parser.SRC_QftIS = "QftIS";
 Parser.SRC_VEoR = "VEoR";
 Parser.SRC_GHLoE = "GHLoE";
 Parser.SRC_DoDk = "DoDk";
-Parser.SRC_HWCS = "HWCS";
-Parser.SRC_HWAitW = "HWAitW";
 Parser.SRC_ToB1_2023 = "ToB1-2023";
 Parser.SRC_XPHB = "XPHB";
 Parser.SRC_XDMG = "XDMG";
@@ -3352,8 +3375,6 @@ Parser.SOURCE_JSON_TO_FULL[Parser.SRC_QftIS] = "Quests from the Infinite Stairca
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_VEoR] = "Vecna: Eve of Ruin";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_GHLoE] = "Grim Hollow: Lairs of Etharis";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_DoDk] = "Dungeons of Drakkenheim";
-Parser.SOURCE_JSON_TO_FULL[Parser.SRC_HWCS] = "Humblewood Campaign Setting";
-Parser.SOURCE_JSON_TO_FULL[Parser.SRC_HWAitW] = "Humblewood: Adventure in the Wood";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_ToB1_2023] = "Tome of Beasts 1 (2023 Edition)";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_XPHB] = "Player's Handbook (2024)";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_XDMG] = "Dungeon Master's Guide (2024)";
@@ -3517,8 +3538,6 @@ Parser.SOURCE_JSON_TO_ABV[Parser.SRC_QftIS] = "QftIS";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_VEoR] = "VEoR";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_GHLoE] = "GHLoE";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_DoDk] = "DoDk";
-Parser.SOURCE_JSON_TO_ABV[Parser.SRC_HWCS] = "HWCS";
-Parser.SOURCE_JSON_TO_ABV[Parser.SRC_HWAitW] = "HWAitW";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_ToB1_2023] = "ToB1'23";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_XPHB] = "PHB'24";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_XDMG] = "DMG'24";
@@ -3681,8 +3700,6 @@ Parser.SOURCE_JSON_TO_DATE[Parser.SRC_QftIS] = "2024-07-16";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_VEoR] = "2024-05-21";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_GHLoE] = "2023-11-30";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DoDk] = "2023-12-21";
-Parser.SOURCE_JSON_TO_DATE[Parser.SRC_HWCS] = "2019-06-17";
-Parser.SOURCE_JSON_TO_DATE[Parser.SRC_HWAitW] = "2019-06-17";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_ToB1_2023] = "2023-05-31";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_XPHB] = "2024-09-17";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_XDMG] = "2024-11-12";
@@ -3826,7 +3843,6 @@ Parser.SOURCES_ADVENTURES = new Set([
 	Parser.SRC_HFStCM,
 	Parser.SRC_GHLoE,
 	Parser.SRC_DoDk,
-	Parser.SRC_HWAitW,
 
 	Parser.SRC_AWM,
 ]);
@@ -3890,8 +3906,6 @@ Parser.SOURCES_PARTNERED_WOTC = new Set([
 	Parser.SRC_HftT,
 	Parser.SRC_GHLoE,
 	Parser.SRC_DoDk,
-	Parser.SRC_HWCS,
-	Parser.SRC_HWAitW,
 	Parser.SRC_ToB1_2023,
 	Parser.SRC_TD,
 	Parser.SRC_LRDT,
@@ -3899,7 +3913,7 @@ Parser.SOURCES_PARTNERED_WOTC = new Set([
 Parser.SOURCES_LEGACY_WOTC = new Set([
 	Parser.SRC_PHB,
 	Parser.SRC_DMG,
-	// Parser.SRC_MM, // TODO(XMM)
+	Parser.SRC_MM,
 	Parser.SRC_SCREEN,
 	Parser.SRC_EEPC,
 	Parser.SRC_VGM,
@@ -3993,8 +4007,6 @@ Parser.SOURCES_NON_FR = new Set([
 	Parser.SRC_LK,
 	Parser.SRC_GHLoE,
 	Parser.SRC_DoDk,
-	Parser.SRC_HWCS,
-	Parser.SRC_HWAitW,
 	Parser.SRC_ToB1_2023,
 	Parser.SRC_LRDT,
 	Parser.SRC_UtHftLH,
@@ -4041,7 +4053,6 @@ Parser.SOURCES_AVAILABLE_DOCS_BOOK = {};
 	Parser.SRC_PaF,
 	Parser.SRC_BMT,
 	Parser.SRC_DMTCRG,
-	Parser.SRC_HWCS,
 	Parser.SRC_ToB1_2023,
 	Parser.SRC_XPHB,
 	Parser.SRC_XMM,
@@ -4142,7 +4153,6 @@ Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE = {};
 	Parser.SRC_HFStCM,
 	Parser.SRC_GHLoE,
 	Parser.SRC_DoDk,
-	Parser.SRC_HWAitW,
 	Parser.SRC_QftIS,
 	Parser.SRC_LRDT,
 	Parser.SRC_VEoR,
@@ -4176,6 +4186,7 @@ Parser.PROP_TO_TAG = {
 };
 Parser.getPropTag = function (prop) {
 	if (Parser.PROP_TO_TAG[prop]) return Parser.PROP_TO_TAG[prop];
+	if (prop?.endsWith("Fluff")) return null;
 	return prop;
 };
 
@@ -4262,7 +4273,13 @@ Parser.metric = {
 	POUNDS_TO_KILOGRAMS: 0.5, // 2 lb = 1 kg
 	// Other additions
 	INCHES_TO_CENTIMETERS: 2.5, // 1 in = 2.5 cm
+	CUBIC_FEET_TO_LIBRES: 28, // 1 ft³ = 28 L
 
+	/**
+	 * @param {number} originalValue
+	 * @param {string} originalUnit
+	 * @param {?boolean} toFixed
+	 */
 	getMetricNumber ({originalValue, originalUnit, toFixed = null}) {
 		if (originalValue == null || isNaN(originalValue)) return originalValue;
 
@@ -4270,25 +4287,32 @@ Parser.metric = {
 		if (!originalValue) return originalValue;
 
 		let out = null;
-		switch (originalUnit) {
-			case "in.": case "in": case Parser.UNT_INCHES: out = originalValue * Parser.metric.INCHES_TO_CENTIMETERS; break;
-			case "ft.": case "ft": case Parser.UNT_FEET: out = originalValue * Parser.metric.FEET_TO_METRES; break;
-			case "yd.": case "yd": case Parser.UNT_YARDS: out = originalValue * Parser.metric.YARDS_TO_METRES; break;
-			case "mi.": case "mi": case Parser.UNT_MILES: out = originalValue * Parser.metric.MILES_TO_KILOMETRES; break;
-			case "lb.": case "lb": case Parser.UNT_LBS: out = originalValue * Parser.metric.POUNDS_TO_KILOGRAMS; break;
+		switch (Parser.getNormalizedUnit(originalUnit)) {
+			case Parser.UNT_INCHES: out = originalValue * Parser.metric.INCHES_TO_CENTIMETERS; break;
+			case Parser.UNT_FEET: out = originalValue * Parser.metric.FEET_TO_METRES; break;
+			case Parser.UNT_YARDS: out = originalValue * Parser.metric.YARDS_TO_METRES; break;
+			case Parser.UNT_MILES: out = originalValue * Parser.metric.MILES_TO_KILOMETRES; break;
+			case Parser.UNT_LBS: out = originalValue * Parser.metric.POUNDS_TO_KILOGRAMS; break;
+			case Parser.UNT_CUBIC_FEET: out = originalValue * Parser.metric.CUBIC_FEET_TO_LIBRES; break;
 			default: return originalValue;
 		}
 		if (toFixed != null) return NumberUtil.toFixedNumber(out, toFixed);
 		return out;
 	},
 
+	/**
+	 * @param {number} originalValue
+	 * @param {boolean} isShortForm
+	 * @param {isPlural} isShortForm
+	 */
 	getMetricUnit ({originalUnit, isShortForm = false, isPlural = true}) {
-		switch (originalUnit) {
-			case "in.": case "in": case Parser.UNT_INCHES: return isShortForm ? "cm" : `centimeter`[isPlural ? "toPlural" : "toString"]();
-			case "ft.": case "ft": case Parser.UNT_FEET: return isShortForm ? "m" : `meter`[isPlural ? "toPlural" : "toString"]();
-			case "yd.": case "yd": case Parser.UNT_YARDS: return isShortForm ? "m" : `meter`[isPlural ? "toPlural" : "toString"]();
-			case "mi.": case "mi": case Parser.UNT_MILES: return isShortForm ? "km" : `kilometre`[isPlural ? "toPlural" : "toString"]();
-			case "lb.": case "lb": case Parser.UNT_LBS: return isShortForm ? "kg" : `kilogram`[isPlural ? "toPlural" : "toString"]();
+		switch (Parser.getNormalizedUnit(originalUnit)) {
+			case Parser.UNT_INCHES: return isShortForm ? "cm" : `centimeter`[isPlural ? "toPlural" : "toString"]();
+			case Parser.UNT_FEET: return isShortForm ? "m" : `meter`[isPlural ? "toPlural" : "toString"]();
+			case Parser.UNT_YARDS: return isShortForm ? "m" : `meter`[isPlural ? "toPlural" : "toString"]();
+			case Parser.UNT_MILES: return isShortForm ? "km" : `kilometer`[isPlural ? "toPlural" : "toString"]();
+			case Parser.UNT_LBS: return isShortForm ? "kg" : `kilogram`[isPlural ? "toPlural" : "toString"]();
+			case Parser.UNT_CUBIC_FEET: return isShortForm ? "L" : `liter`[isPlural ? "toPlural" : "toString"]();
 			default: return originalUnit;
 		}
 	},

@@ -84,7 +84,9 @@ export class ConverterBase {
 			// Connect together likely word pairs
 			.replace(/\b(?<start>hit) *\n* *(?<end>points)\b/gi, (...m) => `${m.last().start} ${m.last().end}`)
 			.replace(/\b(?<start>save) *\n* *(?<end>DC)\b/gi, (...m) => `${m.last().start} ${m.last().end}`)
-			.replace(/\b(moved\s+\d+\+?\s+feet|attacks\.\s+[a-zA-Z]+\s+can\s+replace|\d+\s+Hit\s+Points?)\b/gi, (...m) => m[0].replace(this._RE_WHITESPACE, " "))
+			.replace(/\b(moved\s+\d+\+?\s+feet|attacks\.\s+[a-zA-Z]+\s+can\s+replace|(?<!Armor Class )\d+\s+Hit\s+Points?)\b/gi, (...m) => m[0].replace(this._RE_WHITESPACE, " "))
+			.replace(/\b(Difficult *\n* *Terrain)\b/gi, (...m) => m[0].replace(this._RE_WHITESPACE, " "))
+			.replace(/\b(\d+- *\n* *foot- *\n* *(?:wide|long|high))\b/gi, (...m) => m[0].replace(this._RE_WHITESPACE, ""))
 		;
 
 		if (options) {

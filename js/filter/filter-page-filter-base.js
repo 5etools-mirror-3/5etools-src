@@ -101,10 +101,15 @@ export class PageFilterBase {
 		});
 	}
 
-	static isReprinted (ent) {
+	static isReprinted (ent, {fnMissingBuilder = null} = {}) {
 		if (!ent?.reprintedAs?.length) return false;
 		return ent.reprintedAs
 			.some(it => {
+				if (!UrlUtil.URL_TO_HASH_BUILDER[ent.__prop]) {
+					if (fnMissingBuilder) fnMissingBuilder(ent);
+					return false;
+				}
+
 				const unpacked = DataUtil.proxy.unpackUid(ent.__prop, it?.uid ?? it, Parser.getPropTag(ent.__prop));
 				const hash = UrlUtil.URL_TO_HASH_BUILDER[ent.__prop](unpacked);
 				return !ExcludeUtil.isExcluded(hash, ent.__prop, unpacked.source, {isNoCount: true});

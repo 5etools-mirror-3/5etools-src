@@ -1278,7 +1278,7 @@ export class ConverterCreature extends ConverterBase {
 					isMultiple,
 					fnIsMatchCurEntry: cur => /\b(?:following( effects)?|their effects follow|subjected to the [^.!?]+ effect)[^.!?]*:/.test(cur.entries.last().trim()),
 					fnIsMatchNxtStr: ({entryNxt, entryNxtStr}) => {
-						if (/\bthe target\b/i.test(entryNxtStr) && !entryNxt.name?.includes("(")) return true;
+						if (/\b(?:the target|all targeted)\b/i.test(entryNxtStr) && !entryNxt.name?.includes("(")) return true;
 						if (entryNxt.name && / Only\)$/.test(entryNxt.name)) return true;
 						return false;
 					},
@@ -2237,7 +2237,6 @@ export class ConverterCreature extends ConverterBase {
 
 		const out = [];
 
-		// TODO(Future; XMM) refine
 		lineGear
 			.split(StrUtil.COMMA_SPACE_NOT_IN_PARENTHESES_REGEX)
 			.forEach(pt => {
@@ -2282,47 +2281,71 @@ export class ConverterCreature extends ConverterBase {
 		const tempSenses = [];
 
 		senses
-			.split(StrUtil.COMMA_SPACE_NOT_IN_PARENTHESES_REGEX)
-			.forEach(pt => {
-				pt = pt.trim();
-				if (!pt) return;
+			.split(StrUtil.SEMICOLON_SPACE_NOT_IN_PARENTHESES_REGEX)
+			.forEach(tkOuter => {
+				if (!tkOuter?.trim()) return;
 
-				if (!pt.toLowerCase().includes("passive perception")) return tempSenses.push(pt.toLowerCase());
+				tkOuter.split(StrUtil.COMMA_SPACE_NOT_IN_PARENTHESES_REGEX)
+					.forEach(pt => {
+						pt = pt.trim();
+						if (!pt) return;
 
-				let ptPassive = pt.split(/passive perception/i)[1].trim();
-				if (!isNaN(ptPassive)) return stats.passive = this._tryConvertNumber(ptPassive);
+						if (!pt.toLowerCase().includes("passive perception")) return tempSenses.push(pt.toLowerCase());
 
-				if (
-					!/^\d+\s+(?:plus|\+)\s+PB$/i.test(ptPassive)
-					&& !/^\d+\s+(?:plus|\+)\s+\(PB\s*(?:×|\*|x|times)\s*\d+\)$/i.test(ptPassive)
-				) return cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Passive perception "${ptPassive}" requires manual conversion`);
+						let ptPassive = pt.replace(/^passive perception/i, "").trim();
+						if (!isNaN(ptPassive)) return stats.passive = this._tryConvertNumber(ptPassive);
 
-				// Handle e.g. "10 plus PB"
-				stats.passive = ptPassive;
+						if (
+							!/^\d+\s+(?:plus|\+)\s+PB$/i.test(ptPassive)
+							&& !/^\d+\s+(?:plus|\+)\s+\(PB\s*(?:×|\*|x|times)\s*\d+\)$/i.test(ptPassive)
+						) return cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Passive perception "${ptPassive}" requires manual conversion`);
+
+						// Handle e.g. "10 plus PB"
+						stats.passive = ptPassive;
+					});
 			});
 
-		if (tempSenses.length) stats.senses = tempSenses;
-		else delete stats.senses;
+		if (!tempSenses.length) return delete stats.senses;
+		stats.senses = tempSenses;
 	}
 
 	static _setCleanLanguages (stats, line) {
 		stats.languages = ConverterUtils.getStatblockLineHeaderText({reStartStr: this._RE_START_LANGUAGES, line});
-		if (stats.languages && /^([-–‒—]|\\u201\d)+$/.exec(stats.languages.trim())) delete stats.languages;
-		else {
-			stats.languages = stats.languages
-				// Clean caps words
-				.split(/(\W)/g)
-				.map(s => {
-					return s
-						.replace(/Telepathy/g, "telepathy")
-						.replace(/All/g, "all")
-						.replace(/Understands/g, "understands")
-						.replace(/Cant/g, "cant")
-						.replace(/Can/g, "can");
-				})
-				.join("")
-				.split(StrUtil.COMMA_SPACE_NOT_IN_PARENTHESES_REGEX);
-		}
+		if (stats.languages && /^([-–‒—]|\\u201\d)+$/.exec(stats.languages.trim())) return delete stats.languages;
+
+		stats.languages = stats.languages
+			// Clean caps words
+			.split(/(\W)/g)
+			.map(s => {
+				return s
+					.replace(/Telepathy/g, "telepathy")
+					.replace(/All/g, "all")
+					.replace(/Understands/g, "understands")
+					.replace(/Cant/g, "cant")
+					.replace(/Can/g, "can");
+			})
+			.join("")
+			.split(StrUtil.COMMA_SPACE_NOT_IN_PARENTHESES_REGEX);
+
+		// "Telepathy" is semicolon-separated
+		stats.languages = stats.languages.reduce(
+			(accum, str) => {
+				if (!accum.length || typeof str !== "string" || typeof accum.at(-1) !== "string") {
+					accum.push(str);
+					return accum;
+				}
+
+				if (!/^telepathy/i.test(str)) {
+					accum.push(str);
+					return accum;
+				}
+
+				accum[accum.length - 1] = [accum.at(-1), str].join("; ");
+
+				return accum;
+			},
+			[],
+		);
 	}
 
 	static _setCleanCr (stats, meta, {cbWarning, header = "Challenge"} = {}) {
