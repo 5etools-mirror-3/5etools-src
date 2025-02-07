@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.6.0"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.7.0"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -949,12 +949,6 @@ globalThis.JqueryUtil = {
 				return this;
 			},
 
-			blurOnEsc: function () {
-				return this.keydown(evt => {
-					if (evt.which === 27) this.blur(); // escape
-				});
-			},
-
 			hideVe: function () { return this.addClass("ve-hidden"); },
 			showVe: function () { return this.removeClass("ve-hidden"); },
 			toggleVe: function (val) {
@@ -1189,6 +1183,8 @@ class ElementUtil {
 	 * @property {function(string): HTMLElementExtended} tooltip
 	 * @property {function(): HTMLElementExtended} disableSpellcheck
 	 *
+	 * @property {function(object): HTMLElementExtended} css
+	 *
 	 * @property {function(string, function): HTMLElementExtended} onn
 	 * @property {function(function): HTMLElementExtended} onClick
 	 * @property {function(function): HTMLElementExtended} onContextmenu
@@ -1300,6 +1296,7 @@ class ElementUtil {
 		ele.txt = ele.txt || ElementUtil._txt.bind(ele);
 		ele.tooltip = ele.tooltip || ElementUtil._tooltip.bind(ele);
 		ele.disableSpellcheck = ele.disableSpellcheck || ElementUtil._disableSpellcheck.bind(ele);
+		ele.css = ele.css || ElementUtil._css.bind(ele);
 		ele.onn = ele.onn || ElementUtil._onX.bind(ele);
 		ele.off = ele.off || ElementUtil._offX.bind(ele);
 		ele.onClick = ele.onClick || ElementUtil._onX.bind(ele, "click");
@@ -1462,6 +1459,13 @@ class ElementUtil {
 	}
 
 	/** @this {HTMLElementExtended} */
+	static _css (obj) {
+		Object.entries(obj)
+			.forEach(([k, v]) => this.style[k] = v);
+		return this;
+	}
+
+	/** @this {HTMLElementExtended} */
 	static _onX (evtName, fn) {
 		this.addEventListener(evtName, fn);
 		return this;
@@ -1474,8 +1478,9 @@ class ElementUtil {
 	}
 
 	/** @this {HTMLElementExtended} */
-	static _trigger (evtName) {
-		this.dispatchEvent(new Event(evtName));
+	static _trigger (evtOrEvtName) {
+		const evt = evtOrEvtName instanceof Event ? evtOrEvtName : new Event(evtOrEvtName);
+		this.dispatchEvent(evt);
 		return this;
 	}
 

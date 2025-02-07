@@ -1,7 +1,9 @@
 export class ConverterUtils {
+	static _RE_SPLIT_CONJUNCT = /(?:,? (?:and|or) |, )/gi;
+
 	static splitConjunct (str) {
 		return str
-			.split(/(?:,? (?:and|or) |, )/gi)
+			.split(this._RE_SPLIT_CONJUNCT)
 			.map(it => it.trim())
 			.filter(Boolean)
 		;

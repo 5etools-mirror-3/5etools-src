@@ -10603,14 +10603,23 @@ Renderer.monster = class {
 
 	static getSpellcastingRenderedTraits (renderer, mon, displayAsProp = "trait") {
 		const out = [];
-		(mon.spellcasting || []).filter(it => (it.displayAs || "trait") === displayAsProp).forEach(entry => {
-			entry.type = entry.type || "spellcasting";
-			const renderStack = [];
-			renderer.recursiveRender(entry, renderStack, {depth: 2});
-			const rendered = renderStack.join("");
-			if (!rendered.length) return;
-			out.push({name: entry.name, rendered});
-		});
+		(mon.spellcasting || [])
+			.filter(it => (it.displayAs || "trait") === displayAsProp)
+			.forEach(entry => {
+				const isLegendaryMythic = ["legendary", "mythic"].includes(displayAsProp);
+
+				// For legendary/mythic, assume list-item format
+				if (isLegendaryMythic) {
+					if (!entry.headerEntries?.length) return;
+					out.push({type: "item", name: entry.name, entries: entry.headerEntries});
+					return;
+				}
+
+				entry.type = entry.type || "spellcasting";
+				const rendered = renderer.render(entry, 2);
+				if (!rendered.length) return;
+				out.push({name: entry.name, rendered});
+			});
 		return out;
 	}
 

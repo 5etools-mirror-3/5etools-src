@@ -2004,6 +2004,7 @@ export class SpellcastingTraitHiddenConvert {
 
 	static _getSpellUidsExisting ({stats}) {
 		const spellUidsExisting = new Set();
+		if (!stats.spellcasting?.length) return spellUidsExisting;
 
 		this._WALKER.walk(stats.spellcasting, {string: str => {
 			[...str.matchAll(this._RE_SPELL)]
@@ -2013,20 +2014,38 @@ export class SpellcastingTraitHiddenConvert {
 		return spellUidsExisting;
 	}
 
+	static _mutStatblockProp_getSpellcastingSameAbility ({stats, entSub}) {
+		let spellcastingTraitNameLower = null;
+		this._WALKER.walk(entSub.entries, {string: str => {
+			const mUsesTheSame = /using the same spellcasting ability as (?<name>[^.!?]+)/i.exec(str);
+			if (mUsesTheSame) return spellcastingTraitNameLower = mUsesTheSame.groups.name.trim().toLowerCase();
+		}});
+		if (!spellcastingTraitNameLower) return null;
+
+		return stats.spellcasting?.find(entExisting => entExisting.name.toLowerCase().trim() === spellcastingTraitNameLower);
+	}
+
+	static _mutStatblockProp_getOtherAbility ({stats, entSub}) {
+		let abil = null;
+		this._WALKER.walk(entSub.entries, {string: str => {
+			const mUsing = /using (?<abilRaw>\w+) as the spellcasting ability/i.exec(str);
+			if (!mUsing) return;
+
+			return abil = mUsing.groups.abilRaw.toLowerCase().slice(0, 3);
+		}});
+		return abil;
+	}
+
 	static _mutStatblockProp ({stats, prop, spellUidsExisting}) {
 		stats[prop] = stats[prop]
 			.map(entSub => {
 				if (!entSub.name || !entSub.entries?.length) return entSub;
 
-				let spellcastingTraitNameLower = null;
-				this._WALKER.walk(entSub.entries, {string: str => {
-					const mUsesTheSame = /using the same spellcasting ability as (?<name>[^.!?]+)/i.exec(str);
-					if (mUsesTheSame) return spellcastingTraitNameLower = mUsesTheSame.groups.name.trim().toLowerCase();
-				}});
-				if (!spellcastingTraitNameLower) return entSub;
+				const entSpellcastingTraitAbility = this._mutStatblockProp_getSpellcastingSameAbility({stats, entSub});
+				const abilityOther = this._mutStatblockProp_getOtherAbility({stats, entSub});
 
-				const abilitySpellcastingTrait = stats.spellcasting.find(entExisting => entExisting.name.toLowerCase().trim() === spellcastingTraitNameLower);
-				if (!abilitySpellcastingTrait) return entSub;
+				if (!entSpellcastingTraitAbility && !abilityOther) return entSub;
+				const ability = entSpellcastingTraitAbility?.ability || abilityOther;
 
 				const spellTags = [];
 
@@ -2047,7 +2066,7 @@ export class SpellcastingTraitHiddenConvert {
 					type: "spellcasting",
 					name: entSub.name,
 					headerEntries: entSub.entries,
-					ability: abilitySpellcastingTrait.ability,
+					ability,
 					displayAs: prop,
 				};
 
@@ -2056,15 +2075,15 @@ export class SpellcastingTraitHiddenConvert {
 				entSpellcasting.hidden = [usagePath[0]];
 				MiscUtil.set(entSpellcasting, ...usagePath, spellTags.unique());
 
-				stats.spellcasting.push(entSpellcasting);
+				(stats.spellcasting ||= []).push(entSpellcasting);
 
 				return null;
 			})
 			.filter(Boolean);
 	}
 
-	static mutStatblock ({stats, props}) {
-		if (!stats.spellcasting?.length) return;
+	static mutStatblock ({stats, props, styleHint}) {
+		if (styleHint === SITE_STYLE__CLASSIC && !stats.spellcasting?.length) return;
 
 		this._WALKER ||= MiscUtil.getWalker({isNoModification: true, isBreakOnReturn: true});
 

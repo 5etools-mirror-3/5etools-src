@@ -642,7 +642,11 @@ class UiUtil {
 		return out;
 	}
 
-	static bindTypingEnd ({$ipt, fnKeyup, fnKeypress, fnKeydown, fnClick, timeout} = {}) {
+	static bindTypingEnd ({ipt, $ipt, fnKeyup, fnKeypress, fnKeydown, fnClick, timeout} = {}) {
+		if (!ipt && !$ipt?.length) throw new Error(`"ipt" or "$ipt" must be provided!`);
+
+		$ipt = $ipt || $(ipt);
+
 		let timerTyping;
 		$ipt
 			.on("keyup search paste", evt => {
@@ -1650,7 +1654,7 @@ class SearchWidget {
 	}
 
 	/**
-	 * @param $iptSearch input element
+	 * @param iptOr$iptSearch input element
 	 * @param opts Options object.
 	 * @param opts.fnSearch Function which runs the search.
 	 * @param opts.pFnSearch Function which runs the search.
@@ -1661,8 +1665,10 @@ class SearchWidget {
 	 * @param opts.flags.doClickFirst Flag tracking "should first result get clicked"
 	 * @param opts.$ptrRows Pointer to array of rows.
 	 */
-	static bindAutoSearch ($iptSearch, opts) {
+	static bindAutoSearch (iptOr$iptSearch, opts) {
 		if (opts.fnSearch && opts.pFnSearch) throw new Error(`Options "fnSearch" and "pFnSearch" are mutually exclusive!`);
+
+		const $iptSearch = $(iptOr$iptSearch);
 
 		// Chain each search from the previous, to ensure the last search wins
 		let pSearching = null;
