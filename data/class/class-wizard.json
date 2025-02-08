@@ -1716,6 +1716,51 @@
 							"counterspell|xphb",
 							"dispel magic|xphb"
 						]
+					},
+					"known": {
+						"3": [
+							{
+								"choose": "level=0;1;2|class=Wizard|school=A"
+							},
+							{
+								"choose": "level=0;1;2|class=Wizard|school=A"
+							}
+						],
+						"5": [
+							{
+								"choose": "level=0;1;2;3|class=Wizard|school=A"
+							}
+						],
+						"7": [
+							{
+								"choose": "level=0;1;2;3;4|class=Wizard|school=A"
+							}
+						],
+						"9": [
+							{
+								"choose": "level=0;1;2;3;4;5|class=Wizard|school=A"
+							}
+						],
+						"11": [
+							{
+								"choose": "level=0;1;2;3;4;5;6|class=Wizard|school=A"
+							}
+						],
+						"13": [
+							{
+								"choose": "level=0;1;2;3;4;5;6;7|class=Wizard|school=A"
+							}
+						],
+						"15": [
+							{
+								"choose": "level=0;1;2;3;4;5;6;7;8|class=Wizard|school=A"
+							}
+						],
+						"17": [
+							{
+								"choose": "level=0;1;2;3;4;5;6;7;8;9|class=Wizard|school=A"
+							}
+						]
 					}
 				}
 			],
@@ -1806,6 +1851,55 @@
 			"page": 174,
 			"freeRules2024": true,
 			"edition": "one",
+			"additionalSpells": [
+				{
+					"known": {
+						"3": [
+							{
+								"choose": "level=0;1;2|class=Wizard|school=V"
+							},
+							{
+								"choose": "level=0;1;2|class=Wizard|school=V"
+							}
+						],
+						"5": [
+							{
+								"choose": "level=0;1;2;3|class=Wizard|school=V"
+							}
+						],
+						"7": [
+							{
+								"choose": "level=0;1;2;3;4|class=Wizard|school=V"
+							}
+						],
+						"9": [
+							{
+								"choose": "level=0;1;2;3;4;5|class=Wizard|school=V"
+							}
+						],
+						"11": [
+							{
+								"choose": "level=0;1;2;3;4;5;6|class=Wizard|school=V"
+							}
+						],
+						"13": [
+							{
+								"choose": "level=0;1;2;3;4;5;6;7|class=Wizard|school=V"
+							}
+						],
+						"15": [
+							{
+								"choose": "level=0;1;2;3;4;5;6;7;8|class=Wizard|school=V"
+							}
+						],
+						"17": [
+							{
+								"choose": "level=0;1;2;3;4;5;6;7;8;9|class=Wizard|school=V"
+							}
+						]
+					}
+				}
+			],
 			"subclassFeatures": [
 				"Evoker|Wizard|XPHB|Evoker|XPHB|3",
 				"Sculpt Spells|Wizard|XPHB|Evoker|XPHB|6",
@@ -1826,7 +1920,48 @@
 				{
 					"known": {
 						"3": [
-							"minor illusion|xphb#c"
+							"minor illusion|xphb#c",
+							{
+								"choose": "level=0;1;2|class=Wizard|school=I"
+							},
+							{
+								"choose": "level=0;1;2|class=Wizard|school=I"
+							}
+						],
+						"5": [
+							{
+								"choose": "level=0;1;2;3|class=Wizard|school=I"
+							}
+						],
+						"7": [
+							{
+								"choose": "level=0;1;2;3;4|class=Wizard|school=I"
+							}
+						],
+						"9": [
+							{
+								"choose": "level=0;1;2;3;4;5|class=Wizard|school=I"
+							}
+						],
+						"11": [
+							{
+								"choose": "level=0;1;2;3;4;5;6|class=Wizard|school=I"
+							}
+						],
+						"13": [
+							{
+								"choose": "level=0;1;2;3;4;5;6;7|class=Wizard|school=I"
+							}
+						],
+						"15": [
+							{
+								"choose": "level=0;1;2;3;4;5;6;7;8|class=Wizard|school=I"
+							}
+						],
+						"17": [
+							{
+								"choose": "level=0;1;2;3;4;5;6;7;8;9|class=Wizard|school=I"
+							}
 						]
 					},
 					"prepared": {
@@ -4297,7 +4432,7 @@
 			"level": 3,
 			"header": 1,
 			"entries": [
-				"Choose two Wizard spells from the Abjuration school, each of which must be no higher than level 2, and add them to your spellbook for free.",
+				"Choose two {@filter Wizard spells from the Abjuration school|spells|level=0;1;2|class=Wizard|school=A}, each of which must be no higher than level 2, and add them to your spellbook for free.",
 				"In addition, whenever you gain access to a new level of spell slots in this class, you can add one Wizard spell from the Abjuration school to your spellbook for free. The chosen spell must be of a level for which you have spell slots."
 			]
 		},
@@ -4515,7 +4650,7 @@
 			"level": 3,
 			"header": 1,
 			"entries": [
-				"Choose two Wizard spells from the Evocation school, each of which must be no higher than level 2, and add them to your spellbook for free.",
+				"Choose two {@filter Wizard spells from the Evocation school|spells|level=0;1;2|class=Wizard|school=V}, each of which must be no higher than level 2, and add them to your spellbook for free.",
 				"In addition, whenever you gain access to a new level of spell slots in this class, you can add one Wizard spell from the Evocation school to your spellbook for free. The chosen spell must be of a level for which you have spell slots."
 			]
 		},
@@ -4614,7 +4749,7 @@
 			"level": 3,
 			"header": 1,
 			"entries": [
-				"Choose two Wizard spells from the Illusion school, each of which must be no higher than level 2, and add them to your spellbook for free.",
+				"Choose two {@filter Wizard spells from the Illusion school|spells|level=0;1;2|class=Wizard|school=I}, each of which must be no higher than level 2, and add them to your spellbook for free.",
 				"In addition, whenever you gain access to a new level of spell slots in this class, you can add one Wizard spell from the Illusion school to your spellbook for free. The chosen spell must be of a level for which you have spell slots."
 			]
 		},

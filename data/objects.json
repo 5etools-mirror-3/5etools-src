@@ -1,6 +1,28 @@
 {
 	"object": [
 		{
+			"name": "Automatic Ballista",
+			"source": "HBTD",
+			"size": [
+				"L"
+			],
+			"objectType": "SW",
+			"ac": 15,
+			"hp": 50,
+			"entries": [
+				"Aiming the Automatic Ballista requires the {@action Utilize|XPHB} action. Then a creature can take the Ballista Bolt action."
+			],
+			"actionEntries": [
+				{
+					"type": "entries",
+					"name": "Ballista Bolt (Requires Aim)",
+					"entries": [
+						"{@atkr r} {@hit 6}, range 120/480 ft. {@h}22 ({@damage 4d10}) Piercing damage."
+					]
+				}
+			]
+		},
+		{
 			"name": "Ballista",
 			"source": "DMG",
 			"page": 255,
@@ -213,6 +235,50 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Clockwork Trebuchet",
+			"source": "HBTD",
+			"size": [
+				"H"
+			],
+			"objectType": "SW",
+			"ac": 15,
+			"hp": 150,
+			"entries": [
+				"Pulling a lever of the Clockwork Trebuchet requires the {@action Utilize|XPHB} action. Then a creature can take the Trebuchet Stone action."
+			],
+			"actionEntries": [
+				{
+					"type": "entries",
+					"name": "Trebuchet Stone (Requires Lever Pull)",
+					"entries": [
+						"{@atkr r} {@hit 5}, range 200/800 ft. (can't hit targets within 30 feet of itself). Hit: 27 ({@damage 5d10}) Bludgeoning damage."
+					]
+				}
+			]
+		},
+		{
+			"name": "Decrepit Mangonel",
+			"source": "HBTD",
+			"size": [
+				"L"
+			],
+			"objectType": "SW",
+			"ac": 12,
+			"hp": 30,
+			"entries": [
+				"Loading a Decrepit Mangonel requires two {@action Utilize|XPHB} actions, and aiming it requires one {@action Utilize|XPHB} action. Then a creature can take the Sack of Hands action."
+			],
+			"actionEntries": [
+				{
+					"type": "entries",
+					"name": "Sack of Hands (Requires Load and Aim)",
+					"entries": [
+						"A launched sack of writhing hands lands in a space 30 to 100 feet away from the mangonel. A {@creature Swarm of Crawling Claws|XMM} appears where the sack lands."
+					]
+				}
+			]
+		},
+		{
 			"name": "Eldritch Cannon, Flamethrower",
 			"source": "TCE",
 			"page": 17,
@@ -387,6 +453,28 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Enchanted Ballista",
+			"source": "HBTD",
+			"size": [
+				"L"
+			],
+			"objectType": "SW",
+			"ac": 15,
+			"hp": 50,
+			"entries": [
+				"Loading the Enchanted Ballista requires the {@action Utilize|XPHB} action. Then a creature can take the Ballista Bolt action."
+			],
+			"actionEntries": [
+				{
+					"type": "entries",
+					"name": "Ballista Bolt (Requires Load)",
+					"entries": [
+						"{@atkr r} {@hit 6}, range 120/480 ft. {@h}22 ({@damage 4d10}) Piercing damage."
+					]
+				}
+			]
+		},
+		{
 			"name": "Flamethrower Coach",
 			"source": "XDMG",
 			"page": 96,
@@ -412,6 +500,28 @@
 			],
 			"tokenCredit": "Ruane Manning",
 			"hasToken": true
+		},
+		{
+			"name": "Forge Launcher",
+			"source": "HBTD",
+			"size": [
+				"L"
+			],
+			"objectType": "SW",
+			"ac": 15,
+			"hp": 30,
+			"entries": [
+				"Aiming the Forge Launcher requires the {@action Utilize|XPHB} action. Then a creature can take the Fiery Canister action."
+			],
+			"actionEntries": [
+				{
+					"type": "entries",
+					"name": "Fiery Canister (Requires Aim)",
+					"entries": [
+						"{@actSave dex} {@dc 15}, each creature in a 20-foot-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on a point 30 to 300 feet from the launcher. {@actSaveFail} 14 ({@damage 4d6}) Fire damage. {@actSaveSuccess} Half damage."
+					]
+				}
+			]
 		},
 		{
 			"name": "Generic Object",
@@ -935,6 +1045,28 @@
 			],
 			"hasToken": true,
 			"hasFluffImages": true
+		},
+		{
+			"name": "Storm Cannon",
+			"source": "HBTD",
+			"size": [
+				"M"
+			],
+			"objectType": "SW",
+			"ac": 18,
+			"hp": 30,
+			"entries": [
+				"Aiming a Storm Cannon requires the {@action Utilize|XPHB} action, then a creature can take the Lightning Ball action."
+			],
+			"actionEntries": [
+				{
+					"type": "entries",
+					"name": "Lightning Ball (Requires Aim)",
+					"entries": [
+						"{@atkr r} {@hit 6}, range 600/800 ft. {@h}22 ({@damage 4d10}) Lightning damage."
+					]
+				}
+			]
 		},
 		{
 			"name": "Suspended Cauldron",

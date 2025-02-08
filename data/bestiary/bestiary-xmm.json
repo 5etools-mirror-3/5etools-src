@@ -2561,6 +2561,25 @@
 				"cr": "13",
 				"xpLair": 11500
 			},
+			"spellcasting": [
+				{
+					"name": "Frightful Presence",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The dragon casts {@spell Fear|XPHB}, requiring no Material components and using Charisma as the spellcasting ability (spell save {@dc 14}). The dragon can't take this action again until the start of its next turn."
+					],
+					"legendary": {
+						"1": [
+							"{@spell Fear|XPHB}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "legendary",
+					"hidden": [
+						"legendary"
+					]
+				}
+			],
 			"trait": [
 				{
 					"name": "Ice Walk",
@@ -2601,12 +2620,6 @@
 					"name": "Freezing Burst",
 					"entries": [
 						"{@actSave con} {@dc 14}, each creature in a 30-foot-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on a point the dragon can see within 120 feet. {@actSaveFail} 7 ({@damage 2d6}) Cold damage, and the target's {@variantrule Speed|XPHB} is 0 until the end of the target's next turn. {@actSaveSuccessOrFail} The dragon can't take this action again until the start of its next turn."
-					]
-				},
-				{
-					"name": "Frightful Presence",
-					"entries": [
-						"The dragon casts {@spell Fear|XPHB}, requiring no Material components and using Charisma as the spellcasting ability (spell save {@dc 14}). The dragon can't take this action again until the start of its next turn."
 					]
 				},
 				{
@@ -2654,10 +2667,19 @@
 				"C",
 				"S"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"AOE",
 				"MA",
 				"RCH"
+			],
+			"conditionInflictSpell": [
+				"frightened"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
 			],
 			"hasFluff": true,
 			"hasFluffImages": true
@@ -4774,6 +4796,25 @@
 				"cr": "20",
 				"xpLair": 33000
 			},
+			"spellcasting": [
+				{
+					"name": "Frightful Presence",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The dragon casts {@spell Fear|XPHB}, requiring no Material components and using Charisma as the spellcasting ability (spell save {@dc 18}). The dragon can't take this action again until the start of its next turn."
+					],
+					"legendary": {
+						"1": [
+							"{@spell Fear|XPHB}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "legendary",
+					"hidden": [
+						"legendary"
+					]
+				}
+			],
 			"trait": [
 				{
 					"name": "Ice Walk",
@@ -4867,10 +4908,19 @@
 				"C",
 				"S"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"AOE",
 				"MA",
 				"RCH"
+			],
+			"conditionInflictSpell": [
+				"frightened"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
 			],
 			"hasFluff": true,
 			"hasFluffImages": true
@@ -12084,6 +12134,9 @@
 				{
 					"source": "XPHB",
 					"page": 347
+				},
+				{
+					"source": "HBTD"
 				}
 			],
 			"size": [
@@ -13278,6 +13331,23 @@
 				"Undercommon"
 			],
 			"cr": "8",
+			"spellcasting": [
+				{
+					"name": "Phantasms (Recharge after a Short or Long Rest)",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The cloaker casts the {@spell Mirror Image|XPHB} spell, requiring no spell components and using Wisdom as the spellcasting ability. The spell ends early if the cloaker starts or ends its turn in {@variantrule Bright Light|XPHB}."
+					],
+					"will": [
+						"{@spell Mirror Image|XPHB}"
+					],
+					"ability": "wis",
+					"displayAs": "bonus",
+					"hidden": [
+						"will"
+					]
+				}
+			],
 			"trait": [
 				{
 					"name": "Light Sensitivity",
@@ -13313,12 +13383,6 @@
 					"entries": [
 						"{@actSave wis} {@dc 13}, each creature in a 60-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the cloaker. {@actSaveFail} The target has the {@condition Frightened|XPHB} condition until the end of the cloaker's next turn. {@actSaveSuccess} The target is immune to this cloaker's Moan for the next 24 hours."
 					]
-				},
-				{
-					"name": "Phantasms (Recharge after a Short or Long Rest)",
-					"entries": [
-						"The cloaker casts the {@spell Mirror Image|XPHB} spell, requiring no spell components and using Wisdom as the spellcasting ability. The spell ends early if the cloaker starts or ends its turn in {@variantrule Bright Light|XPHB}."
-					]
 				}
 			],
 			"environment": [
@@ -13351,6 +13415,9 @@
 			"damageTags": [
 				"P",
 				"S"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"miscTags": [
 				"MA",
@@ -13948,6 +14015,9 @@
 				{
 					"source": "XPHB",
 					"page": 348
+				},
+				{
+					"source": "HBTD"
 				}
 			],
 			"size": [
@@ -17325,6 +17395,11 @@
 			"name": "Doppelganger",
 			"source": "XMM",
 			"page": 100,
+			"otherSources": [
+				{
+					"source": "HBTD"
+				}
+			],
 			"size": [
 				"M"
 			],
@@ -17363,6 +17438,23 @@
 				"Common plus three other languages"
 			],
 			"cr": "3",
+			"spellcasting": [
+				{
+					"name": "Read Thoughts",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The doppelganger casts {@spell Detect Thoughts|XPHB}, requiring no spell components and using Charisma as the spellcasting ability (spell save {@dc 12})."
+					],
+					"will": [
+						"{@spell Detect Thoughts|XPHB}"
+					],
+					"ability": "cha",
+					"displayAs": "action",
+					"hidden": [
+						"will"
+					]
+				}
+			],
 			"action": [
 				{
 					"name": "Multiattack",
@@ -17374,12 +17466,6 @@
 					"name": "Slam",
 					"entries": [
 						"{@atkr m} {@hit 6} (with {@variantrule Advantage|XPHB} during the first round of each combat), reach 5 ft. {@h}11 ({@damage 2d6 + 4}) Bludgeoning damage."
-					]
-				},
-				{
-					"name": "Read Thoughts",
-					"entries": [
-						"The doppelganger casts {@spell Detect Thoughts|XPHB}, requiring no spell components and using Charisma as the spellcasting ability (spell save {@dc 12})."
 					]
 				},
 				{
@@ -17424,11 +17510,17 @@
 			"damageTags": [
 				"B"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MA"
 			],
 			"conditionInflict": [
 				"frightened"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
 			],
 			"hasFluff": true,
 			"hasFluffImages": true
@@ -17972,6 +18064,27 @@
 				"Undercommon"
 			],
 			"cr": "6",
+			"spellcasting": [
+				{
+					"name": "Magic of the Spider Queen {@recharge 5}",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The drider casts {@spell Darkness|XPHB}, {@spell Faerie Fire|XPHB}, or {@spell Web|XPHB}, requiring no Material components and using Wisdom as the spellcasting ability (spell save {@dc 14})."
+					],
+					"recharge": {
+						"5": [
+							"{@spell Darkness|XPHB}",
+							"{@spell Faerie Fire|XPHB}",
+							"{@spell Web|XPHB}"
+						]
+					},
+					"ability": "wis",
+					"displayAs": "bonus",
+					"hidden": [
+						"recharge"
+					]
+				}
+			],
 			"trait": [
 				{
 					"name": "Spider Climb",
@@ -18012,14 +18125,6 @@
 					]
 				}
 			],
-			"bonus": [
-				{
-					"name": "Magic of the Spider Queen {@recharge 5}",
-					"entries": [
-						"The drider casts {@spell Darkness|XPHB}, {@spell Faerie Fire|XPHB}, or {@spell Web|XPHB}, requiring no Material components and using Wisdom as the spellcasting ability (spell save {@dc 14})."
-					]
-				}
-			],
 			"environment": [
 				"forest",
 				"underdark"
@@ -18054,10 +18159,22 @@
 				"I",
 				"P"
 			],
+			"damageTagsSpell": [
+				"F"
+			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MA",
 				"RA",
 				"RCH"
+			],
+			"conditionInflictSpell": [
+				"restrained"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity"
 			],
 			"hasFluff": true,
 			"hasFluffImages": true
@@ -18406,6 +18523,25 @@
 				"Primordial (Auran, Terran)"
 			],
 			"cr": "1/2",
+			"spellcasting": [
+				{
+					"name": "Sleep (1/Day)",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The mephit casts the {@spell Sleep|XPHB} spell, requiring no spell components and using Charisma as the spellcasting ability (spell save {@dc 10})."
+					],
+					"daily": {
+						"1": [
+							"{@spell Sleep|XPHB}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action",
+					"hidden": [
+						"daily"
+					]
+				}
+			],
 			"trait": [
 				{
 					"name": "Death Burst",
@@ -18425,12 +18561,6 @@
 					"name": "Blinding Breath {@recharge}",
 					"entries": [
 						"{@actSave dex} {@dc 10}, each creature in a 15-foot {@variantrule Cone [Area of Effect]|XPHB|Cone}. {@actSaveFail} The target has the {@condition Blinded|XPHB} condition until the end of the mephit's next turn."
-					]
-				},
-				{
-					"name": "Sleep (1/Day)",
-					"entries": [
-						"The mephit casts the {@spell Sleep|XPHB} spell, requiring no spell components and using Charisma as the spellcasting ability (spell save {@dc 10})."
 					]
 				}
 			],
@@ -18463,11 +18593,21 @@
 				"B",
 				"S"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MA"
 			],
 			"conditionInflict": [
 				"blinded"
+			],
+			"conditionInflictSpell": [
+				"incapacitated",
+				"unconscious"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
 			],
 			"hasFluff": true,
 			"hasFluffImages": true
@@ -18914,6 +19054,23 @@
 				"Primordial"
 			],
 			"cr": "22",
+			"spellcasting": [
+				{
+					"name": "Control Weather",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The cataclysm casts the {@spell Control Weather|XPHB} spell, requiring no spell components and using Constitution as the spellcasting ability."
+					],
+					"will": [
+						"{@spell Control Weather|XPHB}"
+					],
+					"ability": "con",
+					"displayAs": "action",
+					"hidden": [
+						"will"
+					]
+				}
+			],
 			"trait": [
 				{
 					"name": "Earth Glide",
@@ -18986,12 +19143,6 @@
 							]
 						}
 					]
-				},
-				{
-					"name": "Control Weather",
-					"entries": [
-						"The cataclysm casts the {@spell Control Weather|XPHB} spell, requiring no spell components and using Constitution as the spellcasting ability."
-					]
 				}
 			],
 			"legendary": [
@@ -19031,6 +19182,9 @@
 				"F",
 				"L",
 				"T"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"miscTags": [
 				"AOE",
@@ -19171,6 +19325,9 @@
 				{
 					"source": "XPHB",
 					"page": 349
+				},
+				{
+					"source": "HBTD"
 				}
 			],
 			"size": [
@@ -22337,6 +22494,23 @@
 				"Common plus one other language"
 			],
 			"cr": "4",
+			"spellcasting": [
+				{
+					"name": "Etherealness",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The ghost casts the {@spell Etherealness|XPHB} spell, requiring no spell components and using Charisma as the spellcasting ability. The ghost is visible on the Material Plane while on the Border Ethereal and vice versa, but it can't affect or be affected by anything on the other plane."
+					],
+					"will": [
+						"{@spell Etherealness|XPHB}"
+					],
+					"ability": "cha",
+					"displayAs": "action",
+					"hidden": [
+						"will"
+					]
+				}
+			],
 			"trait": [
 				{
 					"name": "Ethereal Sight",
@@ -22362,12 +22536,6 @@
 					"name": "Withering Touch",
 					"entries": [
 						"{@atkr m} {@hit 5}, reach 5 ft. {@h}19 ({@damage 3d10 + 3}) Necrotic damage."
-					]
-				},
-				{
-					"name": "Etherealness",
-					"entries": [
-						"The ghost casts the {@spell Etherealness|XPHB} spell, requiring no spell components and using Charisma as the spellcasting ability. The ghost is visible on the Material Plane while on the Border Ethereal and vice versa, but it can't affect or be affected by anything on the other plane."
 					]
 				},
 				{
@@ -22416,6 +22584,12 @@
 				"N",
 				"O",
 				"Y"
+			],
+			"damageTagsSpell": [
+				"O"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"miscTags": [
 				"MA"
@@ -31602,6 +31776,25 @@
 				"Infernal; telepathy 120 ft."
 			],
 			"cr": "14",
+			"spellcasting": [
+				{
+					"name": "Ice Wall {@recharge}",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The devil casts {@spell Wall of Ice|XPHB} (level 8 version), requiring no spell components and using Intelligence as the spellcasting ability (spell save {@dc 17})."
+					],
+					"recharge": {
+						"6": [
+							"{@spell Wall of Ice|XPHB} (level 8 version)"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action",
+					"hidden": [
+						"recharge"
+					]
+				}
+			],
 			"trait": [
 				{
 					"name": "Diabolical Restoration",
@@ -31633,12 +31826,6 @@
 					"name": "Tail",
 					"entries": [
 						"{@atkr m} {@hit 10}, reach 10 ft. {@h}15 ({@damage 3d6 + 5}) Bludgeoning damage plus 18 ({@damage 4d8}) Cold damage."
-					]
-				},
-				{
-					"name": "Ice Wall {@recharge}",
-					"entries": [
-						"The devil casts {@spell Wall of Ice|XPHB} (level 8 version), requiring no spell components and using Intelligence as the spellcasting ability (spell save {@dc 17})."
 					]
 				}
 			],
@@ -31674,12 +31861,22 @@
 				"C",
 				"P"
 			],
+			"damageTagsSpell": [
+				"C"
+			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MA",
 				"MLW",
 				"RA",
 				"RCH",
 				"THW"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity"
 			],
 			"hasFluff": true,
 			"hasFluffImages": true
@@ -31736,6 +31933,25 @@
 				"Primordial (Aquan, Auran)"
 			],
 			"cr": "1/2",
+			"spellcasting": [
+				{
+					"name": "Fog Cloud (1/Day)",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The mephit casts {@spell Fog Cloud|XPHB}, requiring no spell components and using Charisma as the spellcasting ability."
+					],
+					"daily": {
+						"1": [
+							"{@spell Fog Cloud|XPHB}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action",
+					"hidden": [
+						"daily"
+					]
+				}
+			],
 			"trait": [
 				{
 					"name": "Death Burst",
@@ -31749,12 +31965,6 @@
 					"name": "Claw",
 					"entries": [
 						"{@atkr m} {@hit 3}, reach 5 ft. {@h}3 ({@damage 1d4 + 1}) Slashing damage plus 2 ({@damage 1d4}) Cold damage."
-					]
-				},
-				{
-					"name": "Fog Cloud (1/Day)",
-					"entries": [
-						"The mephit casts {@spell Fog Cloud|XPHB}, requiring no spell components and using Charisma as the spellcasting ability."
 					]
 				},
 				{
@@ -31792,6 +32002,9 @@
 			"damageTags": [
 				"C",
 				"S"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"miscTags": [
 				"MA"
@@ -31866,6 +32079,23 @@
 				"Infernal"
 			],
 			"cr": "1",
+			"spellcasting": [
+				{
+					"name": "Invisibility",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The imp casts {@spell Invisibility|XPHB} on itself, requiring no spell components and using Charisma as the spellcasting ability."
+					],
+					"will": [
+						"{@spell Invisibility|XPHB}"
+					],
+					"ability": "cha",
+					"displayAs": "action",
+					"hidden": [
+						"will"
+					]
+				}
+			],
 			"trait": [
 				{
 					"name": "Magic Resistance",
@@ -31879,12 +32109,6 @@
 					"name": "Sting",
 					"entries": [
 						"{@atkr m} {@hit 5}, reach 5 ft. {@h}6 ({@damage 1d6 + 3}) Piercing damage plus 7 ({@damage 2d6}) Poison damage."
-					]
-				},
-				{
-					"name": "Invisibility",
-					"entries": [
-						"The imp casts {@spell Invisibility|XPHB} on itself, requiring no spell components and using Charisma as the spellcasting ability."
 					]
 				},
 				{
@@ -31915,8 +32139,14 @@
 				"I",
 				"P"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MA"
+			],
+			"conditionInflictSpell": [
+				"invisible"
 			],
 			"hasToken": true,
 			"hasFluff": true,
@@ -32839,6 +33069,25 @@
 				"Primordial (Auran)"
 			],
 			"cr": "1/4",
+			"spellcasting": [
+				{
+					"name": "Eldritch Lantern {@recharge 4}",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The kenku casts {@spell Faerie Fire|XPHB}, using Intelligence as the spellcasting ability (spell save {@dc 10})."
+					],
+					"recharge": {
+						"4": [
+							"{@spell Faerie Fire|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "bonus",
+					"hidden": [
+						"recharge"
+					]
+				}
+			],
 			"trait": [
 				{
 					"name": "Mimicry",
@@ -32852,14 +33101,6 @@
 					"name": "Shadow Blade",
 					"entries": [
 						"{@atkr m,r} {@hit 5}, reach 5 ft. or range 60 ft. {@h}6 ({@damage 1d6 + 3}) Necrotic damage. {@hom}The blade magically returns to the kenku's hand immediately after a ranged attack."
-					]
-				}
-			],
-			"bonus": [
-				{
-					"name": "Eldritch Lantern {@recharge 4}",
-					"entries": [
-						"The kenku casts {@spell Faerie Fire|XPHB}, using Intelligence as the spellcasting ability (spell save {@dc 10})."
 					]
 				}
 			],
@@ -32894,9 +33135,15 @@
 			"damageTags": [
 				"N"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MA",
 				"RA"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity"
 			],
 			"hasFluff": true,
 			"hasFluffImages": true
@@ -32986,6 +33233,9 @@
 			"otherSources": [
 				{
 					"source": "ScoEE"
+				},
+				{
+					"source": "HBTD"
 				}
 			],
 			"size": [
@@ -33593,11 +33843,11 @@
 					"name": "Shield of Faith (2/Day)",
 					"type": "spellcasting",
 					"headerEntries": [
-						"The kuo-toa casts {@spell Shield|XPHB} of Faith, using the same spellcasting ability as Spellcasting."
+						"The kuo-toa casts {@spell Shield of Faith|XPHB}, using the same spellcasting ability as Spellcasting."
 					],
 					"daily": {
 						"2": [
-							"{@spell Shield|XPHB}"
+							"{@spell Shield of Faith|XPHB}"
 						]
 					},
 					"ability": "wis",
@@ -33843,6 +34093,25 @@
 				"Undercommon"
 			],
 			"cr": "1",
+			"spellcasting": [
+				{
+					"name": "Shield of Faith (2/Day)",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The kuo-toa casts {@spell Shield of Faith|XPHB}, using Wisdom as the spellcasting ability."
+					],
+					"daily": {
+						"2": [
+							"{@spell Shield of Faith|XPHB}"
+						]
+					},
+					"ability": "wis",
+					"displayAs": "bonus",
+					"hidden": [
+						"daily"
+					]
+				}
+			],
 			"trait": [
 				{
 					"name": "Amphibious",
@@ -33868,14 +34137,6 @@
 					"name": "Conjure Slimy Glob",
 					"entries": [
 						"{@atkr r} {@hit 4}, range 60 ft. {@h}9 ({@damage 3d4 + 2}) Acid damage."
-					]
-				}
-			],
-			"bonus": [
-				{
-					"name": "Shield of Faith (2/Day)",
-					"entries": [
-						"The kuo-toa casts {@spell Shield|XPHB} of Faith, using Wisdom as the spellcasting ability."
 					]
 				}
 			],
@@ -33908,6 +34169,9 @@
 			"damageTags": [
 				"A",
 				"P"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"miscTags": [
 				"MA",
@@ -38180,6 +38444,9 @@
 				{
 					"source": "XPHB",
 					"page": 353
+				},
+				{
+					"source": "HBTD"
 				}
 			],
 			"size": [
@@ -40312,6 +40579,11 @@
 			"name": "Ogre Zombie",
 			"source": "XMM",
 			"page": 346,
+			"otherSources": [
+				{
+					"source": "HBTD"
+				}
+			],
 			"size": [
 				"L"
 			],
@@ -42281,11 +42553,12 @@
 					"name": "Hellfire Spellcasting {@recharge 4}",
 					"type": "spellcasting",
 					"headerEntries": [
-						"The pit fiend casts {@spell Fireball|XPHB} (level 5 version) twice, requiring no Material components and using Charisma as the spellcasting ability (spell save {@dc 21}). It can replace one Fireball with Hold Monster (level 7 version) or {@spell Wall of Fire|XPHB}."
+						"The pit fiend casts {@spell Fireball|XPHB} (level 5 version) twice, requiring no Material components and using Charisma as the spellcasting ability (spell save {@dc 21}). It can replace one {@spell Fireball|XPHB} with {@spell Hold Monster|XPHB} (level 7 version) or {@spell Wall of Fire|XPHB}."
 					],
 					"recharge": {
 						"4": [
 							"{@spell Fireball|XPHB} (level 5 version)",
+							"{@spell Hold Monster|XPHB} (level 7 version)",
 							"{@spell Wall of Fire|XPHB}"
 						]
 					},
@@ -42398,8 +42671,12 @@
 				"frightened",
 				"poisoned"
 			],
+			"conditionInflictSpell": [
+				"paralyzed"
+			],
 			"savingThrowForcedSpell": [
-				"dexterity"
+				"dexterity",
+				"wisdom"
 			],
 			"hasFluff": true,
 			"hasFluffImages": true
@@ -44334,6 +44611,23 @@
 				"Common"
 			],
 			"cr": "1",
+			"spellcasting": [
+				{
+					"name": "Invisibility",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The quasit casts {@spell Invisibility|XPHB} on itself, requiring no spell components and using Charisma as the spellcasting ability."
+					],
+					"will": [
+						"{@spell Invisibility|XPHB}"
+					],
+					"ability": "cha",
+					"displayAs": "action",
+					"hidden": [
+						"will"
+					]
+				}
+			],
 			"trait": [
 				{
 					"name": "Magic Resistance",
@@ -44347,12 +44641,6 @@
 					"name": "Rend",
 					"entries": [
 						"{@atkr m} {@hit 5}, reach 5 ft. {@h}5 ({@damage 1d4 + 3}) Slashing damage, and the target has the {@condition Poisoned|XPHB} condition until the start of the quasit's next turn."
-					]
-				},
-				{
-					"name": "Invisibility",
-					"entries": [
-						"The quasit casts {@spell Invisibility|XPHB} on itself, requiring no spell components and using Charisma as the spellcasting ability."
 					]
 				},
 				{
@@ -44388,12 +44676,18 @@
 			"damageTags": [
 				"S"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MA"
 			],
 			"conditionInflict": [
 				"frightened",
 				"poisoned"
+			],
+			"conditionInflictSpell": [
+				"invisible"
 			],
 			"hasToken": true,
 			"hasFluff": true,
@@ -47086,6 +47380,11 @@
 			"name": "Scout",
 			"source": "XMM",
 			"page": 270,
+			"otherSources": [
+				{
+					"source": "HBTD"
+				}
+			],
 			"size": [
 				"S",
 				"M"
@@ -47349,6 +47648,21 @@
 					"hidden": [
 						"restLong"
 					]
+				},
+				{
+					"name": "Illusory Appearance",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The hag casts {@spell Disguise Self|XPHB}, using Constitution as the spellcasting ability (spell save {@dc 13}). The spell's duration is 24 hours."
+					],
+					"will": [
+						"{@spell Disguise Self|XPHB}"
+					],
+					"ability": "con",
+					"displayAs": "action",
+					"hidden": [
+						"will"
+					]
 				}
 			],
 			"trait": [
@@ -47376,12 +47690,6 @@
 					"name": "Death Glare {@recharge 5}",
 					"entries": [
 						"{@actSave wis} {@dc 11}, one {@condition Frightened|XPHB} creature the hag can see within 30 feet. {@actSaveFail} If the target has 20 {@variantrule Hit Points|XPHB} or fewer, it drops to 0 {@variantrule Hit Points|XPHB}. Otherwise, the target takes 13 ({@damage 3d8}) Psychic damage."
-					]
-				},
-				{
-					"name": "Illusory Appearance",
-					"entries": [
-						"The hag casts {@spell Disguise Self|XPHB}, using Constitution as the spellcasting ability (spell save {@dc 13}). The spell's duration is 24 hours."
 					]
 				}
 			],
@@ -47496,6 +47804,11 @@
 			"name": "Shadow",
 			"source": "XMM",
 			"page": 272,
+			"otherSources": [
+				{
+					"source": "HBTD"
+				}
+			],
 			"size": [
 				"M"
 			],
@@ -48360,6 +48673,9 @@
 				{
 					"source": "XPHB",
 					"page": 356
+				},
+				{
+					"source": "HBTD"
 				}
 			],
 			"size": [
@@ -49043,6 +49359,11 @@
 			"name": "Specter",
 			"source": "XMM",
 			"page": 290,
+			"otherSources": [
+				{
+					"source": "HBTD"
+				}
+			],
 			"size": [
 				"M"
 			],
@@ -50233,6 +50554,23 @@
 				"Sylvan"
 			],
 			"cr": "1/4",
+			"spellcasting": [
+				{
+					"name": "Invisibility",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The sprite casts {@spell Invisibility|XPHB} on itself, requiring no spell components and using Charisma as the spellcasting ability."
+					],
+					"will": [
+						"{@spell Invisibility|XPHB}"
+					],
+					"ability": "cha",
+					"displayAs": "action",
+					"hidden": [
+						"will"
+					]
+				}
+			],
 			"action": [
 				{
 					"name": "Needle Sword",
@@ -50250,12 +50588,6 @@
 					"name": "Heart Sight",
 					"entries": [
 						"{@actSave cha} {@dc 10}, one creature within 5 feet the sprite can see (Celestials, Fiends, and Undead automatically fail the save). {@actSaveFail} The sprite knows the target's emotions and alignment."
-					]
-				},
-				{
-					"name": "Invisibility",
-					"entries": [
-						"The sprite casts {@spell Invisibility|XPHB} on itself, requiring no spell components and using Charisma as the spellcasting ability."
 					]
 				}
 			],
@@ -50278,12 +50610,18 @@
 			"damageTags": [
 				"P"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MA",
 				"RA"
 			],
 			"conditionInflict": [
 				"charmed"
+			],
+			"conditionInflictSpell": [
+				"invisible"
 			],
 			"hasToken": true,
 			"hasFluff": true,
@@ -51251,6 +51589,11 @@
 			"name": "Swarm of Bats",
 			"source": "XMM",
 			"page": 370,
+			"otherSources": [
+				{
+					"source": "HBTD"
+				}
+			],
 			"size": [
 				"L"
 			],
@@ -51343,6 +51686,11 @@
 			"name": "Swarm of Crawling Claws",
 			"source": "XMM",
 			"page": 83,
+			"otherSources": [
+				{
+					"source": "HBTD"
+				}
+			],
 			"size": [
 				"M"
 			],
@@ -53613,6 +53961,7 @@
 			"miscTags": [
 				"MA"
 			],
+			"hasFluff": true,
 			"hasFluffImages": true
 		},
 		{
@@ -54388,6 +54737,42 @@
 				"cr": "13",
 				"xpLair": 11500
 			},
+			"spellcasting": [
+				{
+					"name": "Charm {@recharge 5}",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The vampire casts {@spell Charm Person|XPHB}, requiring no spell components and using Charisma as the spellcasting ability (spell save {@dc 17}), and the duration is 24 hours. The Charmed target is a willing recipient of the vampire's Bite, the damage of which doesn't end the spell. When the spell ends, the target is unaware it was Charmed by the vampire."
+					],
+					"recharge": {
+						"5": [
+							"{@spell Charm Person|XPHB}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "bonus",
+					"hidden": [
+						"recharge"
+					]
+				},
+				{
+					"name": "Beguile",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The vampire casts {@spell Command|XPHB}, requiring no spell components and using Charisma as the spellcasting ability (spell save {@dc 17}). The vampire can't take this action again until the start of its next turn."
+					],
+					"legendary": {
+						"1": [
+							"{@spell Command|XPHB}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "legendary",
+					"hidden": [
+						"legendary"
+					]
+				}
+			],
 			"trait": [
 				{
 					"name": "Legendary Resistance (3/Day, or 4/Day in Lair)",
@@ -54471,12 +54856,6 @@
 			],
 			"bonus": [
 				{
-					"name": "Charm {@recharge 5}",
-					"entries": [
-						"The vampire casts {@spell Charm Person|XPHB}, requiring no spell components and using Charisma as the spellcasting ability (spell save {@dc 17}), and the duration is 24 hours. The {@condition Charmed|XPHB} target is a willing recipient of the vampire's Bite, the damage of which doesn't end the spell. When the spell ends, the target is unaware it was {@condition Charmed|XPHB} by the vampire."
-					]
-				},
-				{
 					"name": "Shape-Shift",
 					"entries": [
 						"If the vampire isn't in sunlight or running water, it shape-shifts into a Tiny bat ({@variantrule Speed|XPHB} 5 ft., {@variantrule Fly Speed|XPHB} 30 ft.) or a Medium cloud of mist ({@variantrule Speed|XPHB} 5 ft., {@variantrule Fly Speed|XPHB} 20 ft. [hover]), or it returns to its vampire form. Anything it is wearing transforms with it.",
@@ -54487,12 +54866,6 @@
 			],
 			"legendaryActionsLair": 4,
 			"legendary": [
-				{
-					"name": "Beguile",
-					"entries": [
-						"The vampire casts {@spell Command|XPHB}, requiring no spell components and using Charisma as the spellcasting ability (spell save {@dc 17}). The vampire can't take this action again until the start of its next turn."
-					]
-				},
 				{
 					"name": "Deathless Strike",
 					"entries": [
@@ -54536,6 +54909,9 @@
 				"P",
 				"R"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MA"
 			],
@@ -54544,6 +54920,13 @@
 				"grappled",
 				"incapacitated",
 				"paralyzed"
+			],
+			"conditionInflictSpell": [
+				"charmed",
+				"prone"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
 			],
 			"hasFluff": true,
 			"hasFluffImages": true
@@ -55045,6 +55428,42 @@
 				"cr": "15",
 				"xpLair": 15000
 			},
+			"spellcasting": [
+				{
+					"name": "Hunger of Hadar {@recharge 5}",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The vampire casts {@spell Hunger of Hadar|XPHB} (level 5 version), requiring no spell components and using Charisma as the spellcasting ability (spell save {@dc 18})."
+					],
+					"recharge": {
+						"5": [
+							"{@spell Hunger of Hadar|XPHB} (level 5 version)"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action",
+					"hidden": [
+						"recharge"
+					]
+				},
+				{
+					"name": "Beguile",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The vampire casts {@spell Command|XPHB}, requiring no spell components and using Charisma as the spellcasting ability (spell save {@dc 18}). The vampire can't take this action again until the start of its next turn."
+					],
+					"legendary": {
+						"1": [
+							"{@spell Command|XPHB}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "legendary",
+					"hidden": [
+						"legendary"
+					]
+				}
+			],
 			"trait": [
 				{
 					"name": "Legendary Resistance (3/Day, or 4/Day in Lair)",
@@ -55117,12 +55536,6 @@
 					"entries": [
 						"{@atkr r} {@hit 10}, range 120 ft. {@h}16 ({@damage 2d10 + 5}) Necrotic damage, and the target has the {@condition Poisoned|XPHB} condition until the start of the vampire's next turn."
 					]
-				},
-				{
-					"name": "Hunger of Hadar {@recharge 5}",
-					"entries": [
-						"The vampire casts {@spell Hunger of Hadar|XPHB} (level 5 version), requiring no spell components and using Charisma as the spellcasting ability (spell save {@dc 18})."
-					]
 				}
 			],
 			"bonus": [
@@ -55135,12 +55548,6 @@
 			],
 			"legendaryActionsLair": 4,
 			"legendary": [
-				{
-					"name": "Beguile",
-					"entries": [
-						"The vampire casts {@spell Command|XPHB}, requiring no spell components and using Charisma as the spellcasting ability (spell save {@dc 18}). The vampire can't take this action again until the start of its next turn."
-					]
-				},
 				{
 					"name": "Umbral Strike",
 					"entries": [
@@ -55177,6 +55584,13 @@
 				"R",
 				"S"
 			],
+			"damageTagsSpell": [
+				"A",
+				"C"
+			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MA",
 				"RA"
@@ -55185,6 +55599,14 @@
 				"incapacitated",
 				"paralyzed",
 				"poisoned"
+			],
+			"conditionInflictSpell": [
+				"blinded",
+				"prone"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity",
+				"wisdom"
 			],
 			"hasFluff": true,
 			"hasFluffImages": true
@@ -55302,17 +55724,30 @@
 				"Common"
 			],
 			"cr": "1/2",
+			"spellcasting": [
+				{
+					"name": "Entangling Plants {@recharge 5}",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The blight casts the {@spell Entangle|XPHB} spell, using Constitution as the spellcasting ability (spell save {@dc 12})."
+					],
+					"recharge": {
+						"5": [
+							"{@spell Entangle|XPHB}"
+						]
+					},
+					"ability": "con",
+					"displayAs": "action",
+					"hidden": [
+						"recharge"
+					]
+				}
+			],
 			"action": [
 				{
 					"name": "Constricting Vine",
 					"entries": [
 						"{@atkr m} {@hit 4}, reach 10 ft. {@h}6 ({@damage 1d8 + 2}) Bludgeoning damage. If the target is a Large or smaller creature, it has the {@condition Grappled|XPHB} condition (escape {@dc 12}). Until the grapple ends, the target takes 4 ({@damage 1d8}) Bludgeoning damage at the start of each of its turns, and the blight can't make Constricting Vine attacks."
-					]
-				},
-				{
-					"name": "Entangling Plants {@recharge 5}",
-					"entries": [
-						"The blight casts the {@spell Entangle|XPHB} spell, using Constitution as the spellcasting ability (spell save {@dc 12})."
 					]
 				}
 			],
@@ -55336,12 +55771,21 @@
 			"damageTags": [
 				"B"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MA",
 				"RCH"
 			],
 			"conditionInflict": [
 				"grappled"
+			],
+			"conditionInflictSpell": [
+				"restrained"
+			],
+			"savingThrowForcedSpell": [
+				"strength"
 			],
 			"hasFluff": true,
 			"hasFluffImages": true
@@ -57950,6 +58394,11 @@
 			"name": "Wraith",
 			"source": "XMM",
 			"page": 336,
+			"otherSources": [
+				{
+					"source": "HBTD"
+				}
+			],
 			"size": [
 				"S",
 				"M"
@@ -60788,6 +61237,9 @@
 				{
 					"source": "XPHB",
 					"page": 359
+				},
+				{
+					"source": "HBTD"
 				}
 			],
 			"size": [

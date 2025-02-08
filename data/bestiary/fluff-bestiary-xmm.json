@@ -6926,7 +6926,16 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/XMM/Empyrean.webp"
-					}
+					},
+					"title": "Celestial empyrean "
+				},
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/XMM/Empyrean 2.webp"
+					},
+					"title": "Fiendish empyrean"
 				}
 			]
 		},
@@ -21214,15 +21223,24 @@
 		{
 			"name": "Troll Limb",
 			"source": "XMM",
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "bestiary/XMM/Troll Limb.webp"
+			"_copy": {
+				"name": "Troll",
+				"source": "XMM",
+				"_mod": {
+					"images": {
+						"mode": "prependArr",
+						"items": [
+							{
+								"type": "image",
+								"href": {
+									"type": "internal",
+									"path": "bestiary/XMM/Troll Limb.webp"
+								}
+							}
+						]
 					}
 				}
-			]
+			}
 		},
 		{
 			"name": "Twig Blight",

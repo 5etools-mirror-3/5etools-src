@@ -839,7 +839,7 @@ export class LightTag {
 		return new RegExp(`\\b${lightType} light in a (?<${radiusName}>\\d+)-foot[- ](?<shape>radius|cone)\\b`, "gi");
 	}
 	static _getSingleRegex_lightOutTo ({lightType, radiusName}) {
-		return new RegExp(`\\b${lightType} light out to (?<${radiusName}>\\d+) feet\\b`, "gi");
+		return new RegExp(`\\b${lightType} light out to (?:a range of )?(?<${radiusName}>\\d+) feet\\b`, "gi");
 	}
 	static _getSingleRegex_shapeOfLight ({lightType, radiusName}) {
 		return new RegExp(`\\b(?<${radiusName}>\\d+)-foot[- ](?<shape>radius|cone) of ${lightType} light\\b`, "gi");

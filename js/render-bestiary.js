@@ -92,13 +92,11 @@ class _RenderBestiaryImplBase {
 
 			case "legendary":
 			case "mythic": {
-				const cpy = MiscUtil.copy(entries).map(it => {
-					if (it.name && it.entries) {
-						it.name = `${it.name}.`;
-						it.type = it.type || "item";
-					}
-					return it;
-				});
+				const cpy = MiscUtil.copy(entries)
+					.map(it => {
+						if (it.name && it.entries) it.type ||= "item";
+						return it;
+					});
 				const toRender = {type: "list", style: "list-hang-notitle", items: cpy};
 				renderer.setFirstSection(true).recursiveRender(toRender, renderStack, {depth: depth});
 				break;

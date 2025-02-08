@@ -3629,7 +3629,7 @@ class AddMenuSearchTab extends AddMenuTab {
 				await this._pDoSearch();
 			});
 
-			const $srch = $(`<input class="ui-search__ipt-search search form-control" autocomplete="off" placeholder="Search...">`).blurOnEsc().appendTo($wrpCtrls);
+			const $srch = $(`<input class="ui-search__ipt-search search form-control" autocomplete="off" placeholder="Search...">`).appendTo($wrpCtrls);
 			const $results = $(`<div class="ui-search__wrp-results"></div>`).appendTo($tab);
 
 			SearchWidget.bindAutoSearch($srch, {
