@@ -16,6 +16,7 @@
 	<!--	</div>-->
 </div>
 
+{{> "adLhsScrollingPage" }}
 {{> "adRhsScrollingPage" }}
 
 <div class="home__stripe">
@@ -171,16 +172,19 @@ Unearthed Arcana content can be accessed by cycling the &quot;All Sources&quot; 
 	</div>
 </main>
 <footer class="container">
-	<p class="ve-text-center">
-		Version
-		<a id="version_number" href="#">?</a>
-		| <span style="text-decoration: red line-through">&nbsp;&copy;&nbsp;</span><span id="current_year">2019</span> 5etools
-		| <a href="privacy-policy.html">Privacy Policy</a>
-		<a id='unic-gdpr' onclick='__tcfapi("openunic");return false;' style='display:none;cursor:pointer;'>Change Ad Consent</a>
-		<a id='unic-ccpa' onclick="window.__uspapi('openunic')" style='display:none;cursor:pointer;'>Do not sell my data</a>
-		<br>
-		<i>5etools&reg; is a Registered Trademark of The Norr Group Ltd. All rights reserved.</i>
-	</p>
+	<div class="ve-text-center">
+		<div>
+			Version
+			<a id="version_number" href="#">?</a>
+			| <span style="text-decoration: red line-through">&nbsp;&copy;&nbsp;</span><span id="current_year">2025</span> 5etools
+			| <a href="privacy-policy.html">Privacy Policy</a>
+			<div id=consent-box style=display:none>| <button onclick='window.__cmp("showModal")' class="ve-btn ve-btn-default ve-btn-xs">Update Cookie Preferences</button></div><script>if (window["nitroAds"] && window["nitroAds"].loaded) { document.getElementById("consent-box").style.display = window["__tcfapi"] ? "inline-block" : "none"; } else { document.addEventListener( "nitroAds.loaded", () => (document.getElementById("consent-box").style.display = window["__tcfapi"] ? "inline-block" : "none") ); }</script>
+			<span data-ccpa-link="1"></span>
+		</div>
+		<div class="mt-2">
+			<i>5etools&reg; is a Registered Trademark of The Norr Group Ltd. All rights reserved.</i>
+		</div>
+	</div>
 </footer>
 <div class="cancer__footer-pad"></div>
 

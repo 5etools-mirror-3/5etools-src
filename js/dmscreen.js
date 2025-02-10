@@ -370,7 +370,7 @@ class Board {
 					p: i,
 					id: bookOrAdventureId++,
 				};
-				if (chap.ordinal) chapDoc.o = Parser.bookOrdinalToAbv(chap.ordinal, true);
+				if (chap.ordinal) chapDoc.o = Parser.bookOrdinalToAbv(chap.ordinal, {isPreNoSuff: true, isPlainText: true});
 				if (isBrew) chapDoc.w = true;
 
 				indexStorage.ALL.addDoc(chapDoc);
@@ -1215,7 +1215,7 @@ class Panel {
 			$contentStats.append(fn(it));
 
 			const fnBind = Renderer.hover.getFnBindListenersCompact(page);
-			if (fnBind) fnBind(it, $contentInner[0]);
+			if (fnBind) fnBind(it, $contentStats[0]);
 
 			this._stats_bindCrScaleClickHandler(it, meta, $contentInner, $contentStats);
 			this._stats_bindSummonScaleClickHandler(it, meta, $contentInner, $contentStats);
@@ -3629,7 +3629,7 @@ class AddMenuSearchTab extends AddMenuTab {
 				await this._pDoSearch();
 			});
 
-			const $srch = $(`<input class="ui-search__ipt-search search form-control" autocomplete="off" placeholder="Search...">`).blurOnEsc().appendTo($wrpCtrls);
+			const $srch = $(`<input class="ui-search__ipt-search search form-control" autocomplete="off" placeholder="Search...">`).appendTo($wrpCtrls);
 			const $results = $(`<div class="ui-search__wrp-results"></div>`).appendTo($tab);
 
 			SearchWidget.bindAutoSearch($srch, {

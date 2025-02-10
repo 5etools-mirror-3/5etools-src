@@ -374,7 +374,7 @@ export class MultiFilter extends FilterBase {
 	addItem () { throw new Error(`Cannot add item to MultiFilter! Add the item to a child filter instead.`); }
 
 	handleSearch (searchTerm) {
-		const isHeaderMatch = this.header.toLowerCase().includes(searchTerm);
+		const isHeaderMatch = this._getHeaderDisplayName().toLowerCase().includes(searchTerm);
 
 		if (isHeaderMatch) {
 			if (this.__$wrpFilter) this.__$wrpFilter.toggleClass("fltr__hidden--search", false);

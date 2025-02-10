@@ -19,6 +19,9 @@ export class ConverterBase {
 
 	/* -------------------------------------------- */
 
+	static _RE_WHITESPACE = /\s+/g;
+	static _RE_PT_APPROX_GENERIC_JOINER = /(?:the|a|a cumulative|an|this|that|these|those|its|his|her|their|they|have|extra|and|or|as|on|uses|to|at|using|reduced|effect|reaches|with|of|includes?|does(?:n't)?|can('t)?|random|gains?|from|between|against)/.source;
+
 	static _getCleanInput (ipt, options = null) {
 		let iptClean = ipt
 			.replace(/\n\r/g, "\n")
@@ -46,27 +49,44 @@ export class ConverterBase {
 
 		// Connect lines ending in, or starting in, a comma
 		iptClean = iptClean
-			.replace(/, *\n+ */g, ", ")
-			.replace(/ *\n+, */g, ", ");
+			.replace(/, *\n */g, ", ")
+			.replace(/ *\n, */g, ", ");
 
 		iptClean = iptClean
 			// Connect together e.g. `5d10\nForce damage`
-			.replace(new RegExp(`(?<start>\\d+) *\\n+(?<end>${ConverterConst.STR_RE_DAMAGE_TYPE} damage)\\b`, "gi"), (...m) => `${m.last().start} ${m.last().end}`)
+			.replace(new RegExp(`(?<start>\\d+) *\\n(?<end>${ConverterConst.STR_RE_DAMAGE_TYPE} damage)\\b`, "gi"), (...m) => `${m.last().start} ${m.last().end}`)
 			// Connect together likely determiners/conjunctions/etc.
-			.replace(/(?<start>\b(the|a|a cumulative|an|this|that|these|those|its|his|her|their|they|have|extra|and|or|as|on|uses|to|at|using|reduced|effect|reaches|with|of) *)\n+\s*/g, (...m) => `${m.last().start} `)
+			.replace(new RegExp(`\\s+${this._RE_PT_APPROX_GENERIC_JOINER}\\n`, "g"), (...m) => m[0].replace(this._RE_WHITESPACE, " "))
+			.replace(new RegExp(`\\n${this._RE_PT_APPROX_GENERIC_JOINER}\\s+`, "g"), (...m) => m[0].replace(this._RE_WHITESPACE, " "))
+			// Connect together likely infinitives
+			.replace(/(?<start>\b(uses Spellcasting to cast) *)\n\s*(?=[a-zA-Z])/g, (...m) => `${m.last().start} `)
 			// Connect together e.g.:
 			//  - `+5\nto hit`, `your Spell Attack Modifier\nto hit`
 			//  - `your Wisdom\nmodifier`
-			.replace(/(?<start>[a-z0-9]) *\n+ *(?<end>to hit|modifier)\b/g, (...m) => `${m.last().start} ${m.last().end}`)
+			.replace(/(?<start>[a-z0-9]) *\n *(?<end>to hit|modifier)\b/g, (...m) => `${m.last().start} ${m.last().end}`)
 			// Connect together `<ability> (<skill>)`
-			.replace(new RegExp(`\\b(?<start>${Object.values(Parser.ATB_ABV_TO_FULL).join("|")}) *\\n+ *(?<end>\\((?:${Object.keys(Parser.SKILL_TO_ATB_ABV).join("|")})\\))`, "gi"), (...m) => `${m.last().start.trim()} ${m.last().end.trim()}`)
+			.replace(new RegExp(`\\b(?<start>${Object.values(Parser.ATB_ABV_TO_FULL).join("|")}) *\\n *(?<end>\\((?:${Object.keys(Parser.SKILL_TO_ATB_ABV).join("|")})\\))`, "gi"), (...m) => `${m.last().start.trim()} ${m.last().end.trim()}`)
+			// Connect together `<ability> saving throw`
+			.replace(new RegExp(`\\b(?<start>${Object.values(Parser.ATB_ABV_TO_FULL).join("|")})\\s+(?<saving>saving)\\s+(?<throw>throw)`, "gi"), (...m) => `${m.last().start.trim()} ${m.last().saving.trim()} ${m.last().throw.trim()}`)
 			// Connect together e.g. `increases by\n1d6 when`
-			.replace(/(?<start>[a-z0-9]) *\n+ *(?<end>\d+d\d+( *[-+] *\d+)?,? [a-z]+)/g, (...m) => `${m.last().start} ${m.last().end}`)
-			// Connect together e.g. `2d4\n+PB`
-			.replace(/(?<start>(?:\d+)?d\d+) *\n *(?<end>[-+] *(?:\d+|PB) [a-z]+)/g, (...m) => `${m.last().start} ${m.last().end}`)
+			.replace(/(?<start>[a-z0-9]) *\n *(?<end>\d+d\d+( *[-+] *\d+)?,? [a-z]+)/g, (...m) => `${m.last().start} ${m.last().end}`)
+			// Connect together e.g. `2d4\nPB`
+			.replace(/(?<start>(?:\d+)?d\d+) *\n *(?<end>[-+] *(?:\d+|PB) [a-z]+)/g, (...m) => `${m.at(-1).start} ${m.at(-1).end}`)
+			// Connect together attack starts
+			.replace(/(?:Melee|Ranged|Spell)(?:\s+Weapon)?\s+Attack(?:\s+Roll)?:\s+/g, (...m) => m[0].replace(this._RE_WHITESPACE, " "))
+			.replace(/\sHit(?:\s+or\s+Miss)?:\s/g, (...m) => m[0].replace(this._RE_WHITESPACE, " "))
+			// Connect together save effect starts
+			.replace(/\s(?:(First|Second|Third|Fourth|Fifth)\s+)?(?:Failure\s+or\s+Success|Failure|Success):\s/g, (...m) => m[0].replace(this._RE_WHITESPACE, " "))
+			// Connect trigger/response
+			.replace(/\s(Trigger|Response)[-:\u2012-\u2014]\s/g, (...m) => m[0].replace(this._RE_WHITESPACE, " "))
+			// Connect areas, e.g. "10-foot-radius Sphere"
+			.replace(/\s\d+-foot-\w+\s[A-Z][a-z]+/g, (...m) => m[0].replace(this._RE_WHITESPACE, " "))
 			// Connect together likely word pairs
 			.replace(/\b(?<start>hit) *\n* *(?<end>points)\b/gi, (...m) => `${m.last().start} ${m.last().end}`)
 			.replace(/\b(?<start>save) *\n* *(?<end>DC)\b/gi, (...m) => `${m.last().start} ${m.last().end}`)
+			.replace(/\b(moved\s+\d+\+?\s+feet|attacks\.\s+[a-zA-Z]+\s+can\s+replace|(?<!Armor Class )\d+\s+Hit\s+Points?)\b/gi, (...m) => m[0].replace(this._RE_WHITESPACE, " "))
+			.replace(/\b(Difficult *\n* *Terrain)\b/gi, (...m) => m[0].replace(this._RE_WHITESPACE, " "))
+			.replace(/\b(\d+- *\n* *foot- *\n* *(?:wide|long|high))\b/gi, (...m) => m[0].replace(this._RE_WHITESPACE, ""))
 		;
 
 		if (options) {

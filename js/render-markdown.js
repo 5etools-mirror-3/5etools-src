@@ -711,11 +711,18 @@ class RendererMarkdown {
 				break;
 			case "@actSave": textStack[0] += `*${Parser.attAbvToFull(text)} Saving Throw:*`; break;
 			case "@actSaveSuccess": textStack[0] += `*Success:*`; break;
-			case "@actSaveFail": textStack[0] += `*Failure:*`; break;
+			case "@actSaveFail": {
+				const [ordinal] = Renderer.splitTagByPipe(text);
+				if (ordinal) textStack[0] += `*${Parser.numberToText(ordinal, {isOrdinalForm: true}).toTitleCase()} Failure:*`;
+				else textStack[0] += `*Failure:*`;
+				break;
+			}
 			case "@actSaveSuccessOrFail": textStack[0] += `*Failure or Success:*`; break;
 			case "@actTrigger": textStack[0] += `*Trigger:*`; break;
-			case "@actResponse": textStack[0] += `*Response:*`; break;
+			case "@actResponse": textStack[0] += `*Response${text.includes("d") ? "\u2014" : ":"}*`; break;
 			case "@h": textStack[0] += `*Hit:* `; break;
+			case "@m": textStack[0] += `*Miss:* `; break;
+			case "@hom": textStack[0] += `*Hit or Miss:* `; break;
 
 			// DCs /////////////////////////////////////////////////////////////////////////////////////////////
 			case "@dc": {
@@ -851,6 +858,8 @@ ${prefix}|${Parser.ABIL_ABVS.map(ab => ent[ab] == null ? `\u2014|` : `${ent[ab]}
 
 RendererMarkdown.monster = class {
 	static getCompactRenderedString (mon, opts = {}) {
+		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
+
 		const legendaryGroup = opts.legendaryGroup;
 		const meta = opts.meta || {};
 
@@ -883,24 +892,29 @@ RendererMarkdown.monster = class {
 		const pbPart = Renderer.monster.getPbPart(mon, {isPlainText: true});
 
 		const fnGetSpellTraits = RendererMarkdown.monster.getSpellcastingRenderedTraits.bind(RendererMarkdown.monster, meta);
-		const traitArray = Renderer.monster.getOrderedTraits(mon, {fnGetSpellTraits});
-		const actionArray = Renderer.monster.getOrderedActions(mon, {fnGetSpellTraits});
-		const bonusActionArray = Renderer.monster.getOrderedBonusActions(mon, {fnGetSpellTraits});
-		const reactionArray = Renderer.monster.getOrderedReactions(mon, {fnGetSpellTraits});
 
-		const traitsPart = traitArray?.length
-			? `\n${RendererMarkdown.monster._getRenderedSection({prop: "trait", entries: traitArray, depth: 1, meta, prefix: ">"})}`
+		const {
+			entsTrait,
+			entsAction,
+			entsBonusAction,
+			entsReaction,
+			entsLegendaryAction,
+			entsMythicAction,
+		} = Renderer.monster.getSubEntries(mon, {renderer: RendererMarkdown.get(), fnGetSpellTraits});
+
+		const traitsPart = entsTrait?.length
+			? `\n${RendererMarkdown.monster._getRenderedSection({prop: "trait", entries: entsTrait, depth: 1, meta, prefix: ">"})}`
 			: "";
 
-		const actionsPart = RendererMarkdown.monster.getRenderedSection({arr: actionArray, ent: mon, prop: "action", title: "Actions", meta, prefix: ">"});
-		const bonusActionsPart = RendererMarkdown.monster.getRenderedSection({arr: bonusActionArray, ent: mon, prop: "bonus", title: "Bonus Actions", meta, prefix: ">"});
-		const reactionsPart = RendererMarkdown.monster.getRenderedSection({arr: reactionArray, ent: mon, prop: "reaction", title: "Reactions", meta, prefix: ">"});
+		const actionsPart = RendererMarkdown.monster.getRenderedSection({arr: entsAction, ent: mon, prop: "action", title: "Actions", meta, prefix: ">"});
+		const bonusActionsPart = RendererMarkdown.monster.getRenderedSection({arr: entsBonusAction, ent: mon, prop: "bonus", title: "Bonus Actions", meta, prefix: ">"});
+		const reactionsPart = RendererMarkdown.monster.getRenderedSection({arr: entsReaction, ent: mon, prop: "reaction", title: "Reactions", meta, prefix: ">"});
 
-		const legendaryActionsPart = mon.legendary
-			? `${RendererMarkdown.monster._getRenderedSectionHeader({mon, title: "Legendary Actions", prop: "legendary", prefix: ">"})}>${Renderer.monster.getLegendaryActionIntro(mon, {renderer: RendererMarkdown.get()})}\n>\n${RendererMarkdown.monster._getRenderedLegendarySection(mon.legendary, 1, meta)}`
+		const legendaryActionsPart = entsLegendaryAction?.length
+			? `${RendererMarkdown.monster._getRenderedSectionHeader({mon, title: "Legendary Actions", prop: "legendary", prefix: ">"})}>${Renderer.monster.getLegendaryActionIntro(mon, {renderer: RendererMarkdown.get(), styleHint})}\n>\n${RendererMarkdown.monster._getRenderedLegendarySection(entsLegendaryAction, 1, meta)}`
 			: "";
-		const mythicActionsPart = mon.mythic
-			? `${RendererMarkdown.monster._getRenderedSectionHeader({mon, title: "Mythic Actions", prop: "mythic", prefix: ">"})}>${Renderer.monster.getSectionIntro(mon, {renderer: RendererMarkdown.get(), prop: "mythic"})}\n>\n${RendererMarkdown.monster._getRenderedLegendarySection(mon.mythic, 1, meta)}`
+		const mythicActionsPart = entsMythicAction?.length
+			? `${RendererMarkdown.monster._getRenderedSectionHeader({mon, title: "Mythic Actions", prop: "mythic", prefix: ">"})}>${Renderer.monster.getSectionIntro(mon, {renderer: RendererMarkdown.get(), prop: "mythic"})}\n>\n${RendererMarkdown.monster._getRenderedLegendarySection(entsMythicAction, 1, meta)}`
 			: "";
 
 		const legendaryGroupLairPart = legendaryGroup?.lairActions ? `\n>### Lair Actions\n${RendererMarkdown.monster._getRenderedSection({prop: "lairaction", entries: legendaryGroup.lairActions, depth: -1, meta, prefix: ">"})}` : "";
@@ -2522,6 +2536,15 @@ class MarkdownConverter {
 			const maxWidth = Math.max((tbl.colLabels || []).length, ...tbl.rows.map(it => it.length));
 			tbl.rows.forEach(row => {
 				while (row.length < maxWidth) row.push("");
+			});
+		})();
+
+		(function normalizeRanges () {
+			tbl.rows.forEach(row => {
+				if (!row[0] || typeof row[0] !== "string") return;
+
+				// Collapse "1 - 2" to "1-2"
+				row[0] = row[0].replace(/^(\d+)\s+([-\u2012-\u2014\u2212])\s+(\d+)$/, "$1$2$3");
 			});
 		})();
 

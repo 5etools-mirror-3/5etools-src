@@ -16,7 +16,7 @@ class PageFilterRewards extends PageFilterBase {
 			header: "Rarity",
 			items: ["unknown", ...Parser.RARITIES],
 			itemSortFn: null,
-			displayFn: StrUtil.toTitleCase,
+			displayFn: StrUtil.toTitleCase.bind(StrUtil),
 		});
 		this._miscFilter = new Filter({
 			header: "Miscellaneous",

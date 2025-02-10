@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.5.4"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.7.0"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -26,6 +26,7 @@ globalThis.VeCt = {
 	HASH_SCALED_CLASS_SUMMON: "scaledclasssummon",
 
 	FILTER_BOX_SUB_HASH_SEARCH_PREFIX: "fbsr",
+	FILTER_BOX_SUB_HASH_FLAG_IS_PRESERVE_EXISTING: "fbpe",
 
 	JSON_PRERELEASE_INDEX: `prerelease/index.json`,
 	JSON_BREW_INDEX: `homebrew/index.json`,
@@ -51,7 +52,7 @@ globalThis.VeCt = {
 
 	SYM_UTIL_TIMEOUT: Symbol("timeout"),
 
-	LOC_ORIGIN_CANCER: "https://5e.tools",
+	LOC_HOSTNAME_CANCER: "5e.tools",
 
 	URL_BREW: `https://github.com/TheGiddyLimit/homebrew`,
 	URL_ROOT_BREW: `https://raw.githubusercontent.com/TheGiddyLimit/homebrew/master/`, // N.b. must end with a slash
@@ -67,7 +68,6 @@ globalThis.VeCt = {
 	SPELL_LEVEL_MAX: 9,
 	LEVEL_MAX: 20,
 
-	ENTDATA_TABLE_INCLUDE: "tableInclude",
 	ENTDATA_ITEM_MERGED_ENTRY_TAG: "item__mergedEntryTag",
 
 	DRAG_TYPE_IMPORT: "ve-Import",
@@ -92,25 +92,7 @@ String.prototype.lowercaseFirst = String.prototype.lowercaseFirst || function ()
 };
 
 String.prototype.toTitleCase = String.prototype.toTitleCase || function () {
-	// region Initialize regexed
-	StrUtil._TITLE_RE_INITIAL ??= /(\w+[^-\u2014\s/]*) */g;
-	StrUtil._TITLE_RE_SPLIT_PUNCT ??= /([;:?!.])/g;
-	StrUtil._TITLE_RE_POST_PUNCT ??= /^(\s*)(\S)/;
-
-	// Require space surrounded, as title-case requires a full word on either side
-	StrUtil._TITLE_LOWER_WORDS_RE ??= RegExp(`\\s(${StrUtil.TITLE_LOWER_WORDS.join("|")})(?=\\s)`, "gi");
-	StrUtil._TITLE_UPPER_WORDS_RE ??= RegExp(`\\b(${StrUtil.TITLE_UPPER_WORDS.join("|")})\\b`, "g");
-	StrUtil._TITLE_UPPER_WORDS_PLURAL_RE ??= RegExp(`\\b(${StrUtil.TITLE_UPPER_WORDS_PLURAL.join("|")})\\b`, "g");
-	// endregion
-
-	return this
-		.replace(StrUtil._TITLE_RE_INITIAL, m0 => m0.charAt(0).toUpperCase() + m0.substring(1).toLowerCase())
-		.replace(StrUtil._TITLE_LOWER_WORDS_RE, (...m) => m[0].toLowerCase())
-		.replace(StrUtil._TITLE_UPPER_WORDS_RE, (...m) => m[0].toUpperCase())
-		.replace(StrUtil._TITLE_UPPER_WORDS_PLURAL_RE, (...m) => `${m[0].slice(0, -1).toUpperCase()}${m[0].slice(-1).toLowerCase()}`)
-		.split(StrUtil._TITLE_RE_SPLIT_PUNCT)
-		.map(pt => pt.replace(StrUtil._TITLE_RE_POST_PUNCT, (...m) => `${m[1]}${m[2].toUpperCase()}`))
-		.join("");
+	return StrUtil.toTitleCase(this);
 };
 
 String.prototype.toSentenceCase = String.prototype.toSentenceCase || function () {
@@ -138,20 +120,11 @@ String.prototype.toCamelCase = String.prototype.toCamelCase || function () {
 };
 
 String.prototype.toSingle = String.prototype.toSingle || function () {
-	return this.replace(/i?e?s$/i, "");
+	return StrUtil.toSingle(this);
 };
 
 String.prototype.toPlural = String.prototype.toPlural || function () {
-	let plural;
-	if (StrUtil.IRREGULAR_PLURAL_WORDS[this.toLowerCase()]) plural = StrUtil.IRREGULAR_PLURAL_WORDS[this.toLowerCase()];
-	else if (/(s|x|z|ch|sh)$/i.test(this)) plural = `${this}es`;
-	else if (/[bcdfghjklmnpqrstvwxyz]y$/i.test(this)) plural = this.replace(/y$/i, "ies");
-	else plural = `${this}s`;
-
-	if (this.toLowerCase() === this) return plural;
-	if (this.toUpperCase() === this) return plural.toUpperCase();
-	if (this.toTitleCase() === this) return plural.toTitleCase();
-	return plural;
+	return StrUtil.toPlural(this);
 };
 
 String.prototype.escapeQuotes = String.prototype.escapeQuotes || function () {
@@ -282,49 +255,60 @@ Array.prototype.joinConjunct || Object.defineProperty(Array.prototype, "joinConj
 	},
 });
 
-globalThis.StrUtil = {
-	COMMAS_NOT_IN_PARENTHESES_REGEX: /,\s?(?![^(]*\))/g,
-	COMMA_SPACE_NOT_IN_PARENTHESES_REGEX: /, (?![^(]*\))/g,
-	SEMICOLON_SPACE_NOT_IN_PARENTHESES_REGEX: /; (?![^(]*\))/g,
+globalThis.StrUtil = class {
+	static COMMAS_NOT_IN_PARENTHESES_REGEX = /,\s?(?![^(]*\))/g;
+	static COMMA_SPACE_NOT_IN_PARENTHESES_REGEX = /, (?![^(]*\))/g;
+	static SEMICOLON_SPACE_NOT_IN_PARENTHESES_REGEX = /; (?![^(]*\))/g;
 
-	uppercaseFirst: function (string) {
+	static uppercaseFirst (string) {
 		return string.uppercaseFirst();
-	},
+	}
+
+	/* -------------------------------------------- */
+
 	// Certain minor words should be left lowercase unless they are the first or last words in the string
-	TITLE_LOWER_WORDS: ["a", "an", "the", "and", "but", "or", "for", "nor", "as", "at", "by", "for", "from", "in", "into", "near", "of", "on", "onto", "to", "with", "over", "von", "between", "per"],
+	static TITLE_LOWER_WORDS = ["a", "an", "the", "and", "but", "or", "for", "nor", "as", "at", "by", "for", "from", "in", "into", "near", "of", "on", "onto", "to", "with", "over", "von", "between", "per", "beyond", "among"];
 	// Certain words such as initialisms or acronyms should be left uppercase
-	TITLE_UPPER_WORDS: ["Id", "Tv", "Dm", "Ok", "Npc", "Pc", "Tpk", "Wip", "Dc", "D&d"],
-	TITLE_UPPER_WORDS_PLURAL: ["Ids", "Tvs", "Dms", "Oks", "Npcs", "Pcs", "Tpks", "Wips", "Dcs"], // (Manually pluralize, to avoid infinite loop)
+	static TITLE_UPPER_WORDS = ["Id", "Tv", "Dm", "Ok", "Npc", "Pc", "Tpk", "Wip", "Dc", "D&d"];
+	static TITLE_UPPER_WORDS_PLURAL = ["Ids", "Tvs", "Dms", "Oks", "Npcs", "Pcs", "Tpks", "Wips", "Dcs"]; // (Manually pluralize, to avoid infinite loop)
 
-	IRREGULAR_PLURAL_WORDS: {
-		"cactus": "cacti",
-		"child": "children",
-		"die": "dice",
-		"djinni": "djinn",
-		"dwarf": "dwarves",
-		"efreeti": "efreet",
-		"elf": "elves",
-		"erinyes": "erinyes",
-		"fey": "fey",
-		"foot": "feet",
-		"goose": "geese",
-		"ki": "ki",
-		"man": "men",
-		"mouse": "mice",
-		"ox": "oxen",
-		"person": "people",
-		"sheep": "sheep",
-		"slaad": "slaadi",
-		"tooth": "teeth",
-		"undead": "undead",
-		"woman": "women",
-	},
+	static _TITLE_RE_INITIAL = /(\w+[^-\u2014\s/]*) */g;
+	static _TITLE_RE_SPLIT_PUNCT = /([;:?!.])/g;
+	static _TITLE_RE_COMPOUND_LOWER = /([a-z]-(?:Like|Kreen|Toa))/g;
+	static _TITLE_RE_POST_PUNCT = /^(\s*)(\S)/;
 
-	padNumber: (n, len, padder) => {
+	static _TITLE_LOWER_WORDS_RE = null;
+	static _TITLE_UPPER_WORDS_RE = null;
+	static _TITLE_UPPER_WORDS_PLURAL_RE = null;
+
+	static _toTitleCase_init () {
+		// Require space surrounded, as title-case requires a full word on either side
+		this._TITLE_LOWER_WORDS_RE ??= RegExp(`\\s(${this.TITLE_LOWER_WORDS.join("|")})(?=\\s)`, "gi");
+		this._TITLE_UPPER_WORDS_RE ??= RegExp(`\\b(${this.TITLE_UPPER_WORDS.join("|")})\\b`, "g");
+		this._TITLE_UPPER_WORDS_PLURAL_RE ??= RegExp(`\\b(${this.TITLE_UPPER_WORDS_PLURAL.join("|")})\\b`, "g");
+	}
+
+	static toTitleCase (str) {
+		this._toTitleCase_init();
+
+		return str
+			.replace(this._TITLE_RE_INITIAL, m0 => m0.charAt(0).toUpperCase() + m0.substring(1).toLowerCase())
+			.replace(this._TITLE_LOWER_WORDS_RE, (...m) => m[0].toLowerCase())
+			.replace(this._TITLE_UPPER_WORDS_RE, (...m) => m[0].toUpperCase())
+			.replace(this._TITLE_UPPER_WORDS_PLURAL_RE, (...m) => `${m[0].slice(0, -1).toUpperCase()}${m[0].slice(-1).toLowerCase()}`)
+			.replace(this._TITLE_RE_COMPOUND_LOWER, (...m) => m[0].toLowerCase())
+			.split(this._TITLE_RE_SPLIT_PUNCT)
+			.map(pt => pt.replace(this._TITLE_RE_POST_PUNCT, (...m) => `${m[1]}${m[2].toUpperCase()}`))
+			.join("");
+	}
+
+	/* -------------------------------------------- */
+
+	static padNumber (n, len, padder) {
 		return String(n).padStart(len, padder);
-	},
+	}
 
-	elipsisTruncate (str, atLeastPre = 5, atLeastSuff = 0, maxLen = 20) {
+	static elipsisTruncate (str, atLeastPre = 5, atLeastSuff = 0, maxLen = 20) {
 		if (maxLen >= str.length) return str;
 
 		maxLen = Math.max(atLeastPre + atLeastSuff + 3, maxLen);
@@ -338,19 +322,90 @@ globalThis.StrUtil = {
 		if (remain < 0) out += "...";
 		out += str.substring(str.length - atLeastSuff, str.length);
 		return out;
-	},
+	}
 
-	toTitleCase (str) { return str.toTitleCase(); },
-	qq (str) { return (str = str || "").qq(); },
+	/* -------------------------------------------- */
 
-	getNextDuplicateName (str) {
+	static qq (str) { return (str = str || "").qq(); }
+
+	static getNextDuplicateName (str) {
 		if (str == null) return null;
 
 		// Get the root name without trailing numbers, e.g. "Goblin (2)" -> "Goblin"
 		const m = /^(?<name>.*?) \((?<ordinal>\d+)\)$/.exec(str.trim());
 		if (!m) return `${str} (1)`;
 		return `${m.groups.name} (${Number(m.groups.ordinal) + 1})`;
-	},
+	}
+
+	/* -------------------------------------------- */
+
+	static _IRREGULAR_PLURAL_WORDS = {
+		"aarakocra": "aarakocra",
+		"cactus": "cacti",
+		"child": "children",
+		"die": "dice",
+		"djinni": "djinn",
+		"dwarf": "dwarves",
+		"efreeti": "efreet",
+		"elf": "elves",
+		"erinyes": "erinyes",
+		"fey": "fey",
+		"foot": "feet",
+		"goose": "geese",
+		"incubus": "incubi",
+		"ki": "ki",
+		"man": "men",
+		"mouse": "mice",
+		"oni": "oni",
+		"ox": "oxen",
+		"person": "people",
+		"sheep": "sheep",
+		"slaad": "slaadi",
+		"succubus": "succubi",
+		"tooth": "teeth",
+		"undead": "undead",
+		"wolf": "wolves",
+		"woman": "women",
+		"yuan-ti": "yuan-ti",
+	};
+
+	static _IRREGULAR_SINGLE_WORDS = {
+		...Object.fromEntries(Object.entries(this._IRREGULAR_PLURAL_WORDS).map(([k, v]) => [v, k])),
+	};
+
+	static _IRREGULAR_SINGLE_PATTERNS = [
+		[/(axe)s$/i, "$1"],
+	];
+
+	static toSingle (str) {
+		if (this._IRREGULAR_SINGLE_WORDS[str.toLowerCase()]) return this._getMatchedCase(str, this._IRREGULAR_SINGLE_WORDS[str.toLowerCase()]);
+		const single = this._IRREGULAR_SINGLE_PATTERNS
+			.first(([re, repl]) => {
+				if (re.test(str)) return str.replace(re, repl);
+			});
+		if (single) return single;
+
+		if (/(s|x|z|ch|sh)es$/i.test(str)) return str.slice(0, -2);
+		if (/[bcdfghjklmnpqrstvwxyz]ies$/i.test(str)) return `${str.slice(0, -3)}y`;
+		return str.replace(/s$/i, "");
+	}
+
+	static toPlural (str) {
+		let plural;
+		if (this._IRREGULAR_PLURAL_WORDS[str.toLowerCase()]) plural = this._IRREGULAR_PLURAL_WORDS[str.toLowerCase()];
+		else if (/(s|x|z|ch|sh)$/i.test(str)) plural = `${str}es`;
+		else if (/[bcdfghjklmnpqrstvwxyz]y$/i.test(str)) plural = str.replace(/y$/i, "ies");
+		else plural = `${str}s`;
+
+		return this._getMatchedCase(str, plural);
+	}
+
+	static _getMatchedCase (strOriginal, strOther) {
+		if (strOriginal.toLowerCase() === strOriginal) return strOther;
+		if (strOriginal.toUpperCase() === strOriginal) return strOther.toUpperCase();
+		if (strOriginal.toTitleCase() === strOriginal) return strOther.toTitleCase();
+		return strOther;
+	}
 };
 
 globalThis.NumberUtil = class {
@@ -802,7 +857,7 @@ class TemplateUtil {
 		 * Template strings which can contain DOM elements.
 		 * Usage: ee`<div>Press this button: ${ve-btn}</div>`
 		 * or:    ee(ele)`<div>Press this button: ${ve-btn}</div>`
-		 * @return {HTMLElementModified}
+		 * @return {HTMLElementExtended}
 		 */
 		globalThis.ee = (parts, ...args) => {
 			if (parts instanceof Node) {
@@ -897,12 +952,6 @@ globalThis.JqueryUtil = {
 				}
 				tgt.innerHTML = html;
 				return this;
-			},
-
-			blurOnEsc: function () {
-				return this.keydown(evt => {
-					if (evt.which === 27) this.blur(); // escape
-				});
 			},
 
 			hideVe: function () { return this.addClass("ve-hidden"); },
@@ -1102,53 +1151,62 @@ globalThis.JqueryUtil = {
 
 if (typeof window !== "undefined") window.addEventListener("load", JqueryUtil.initEnhancements);
 
-globalThis.ElementUtil = {
-	_ATTRS_NO_FALSY: new Set([
+class ElementUtil {
+	static _ATTRS_NO_FALSY = new Set([
 		"checked",
 		"disabled",
-	]),
+	]);
 
 	/**
-	 * @typedef {HTMLElement} HTMLElementModified
+	 * @typedef {HTMLElement} HTMLElementExtended
 	 * @extends {HTMLElement}
 	 *
-	 * @property {function(HTMLElement): HTMLElementModified} appends
-	 * @property {function(HTMLElement): HTMLElementModified} appendTo
-	 * @property {function(HTMLElement): HTMLElementModified} prependTo
-	 * @property {function(HTMLElement): HTMLElementModified} insertAfter
+	 * @property {function(HTMLElement|string): HTMLElementExtended} appends
+	 * @property {function(HTMLElement): HTMLElementExtended} appendTo
+	 * @property {function(HTMLElement): HTMLElementExtended} prependTo
+	 * @property {function(HTMLElement|string): HTMLElementExtended} aftere
+	 * @property {function(HTMLElement): HTMLElementExtended} insertAfter
 	 *
-	 * @property {function(string): HTMLElementModified} addClass
-	 * @property {function(string): HTMLElementModified} removeClass
-	 * @property {function(string, ?boolean): HTMLElementModified} toggleClass
+	 * @property {function(string): HTMLElementExtended} addClass
+	 * @property {function(string): HTMLElementExtended} removeClass
+	 * @property {function(string, ?boolean): HTMLElementExtended} toggleClass
 	 *
-	 * @property {function(): HTMLElementModified} showVe
-	 * @property {function(): HTMLElementModified} hideVe
-	 * @property {function(?boolean): HTMLElementModified} toggleVe
+	 * @property {function(): HTMLElementExtended} showVe
+	 * @property {function(): HTMLElementExtended} hideVe
+	 * @property {function(?boolean): HTMLElementExtended} toggleVe
 	 *
-	 * @property {function(): HTMLElementModified} empty
-	 * @property {function(): HTMLElementModified} detach
+	 * @property {function(): HTMLElementExtended} empty
+	 * @property {function(): HTMLElementExtended} detach
 	 *
-	 * @property {function(string, string): HTMLElementModified} attr
-	 * @property {function(*=, ?object): *} val
+	 * @property {function(string, string=): HTMLElementExtended} attr
+	 * @property {function(string, *=): HTMLElementExtended} prop
+	 * @property {function(*=): *} val
 	 *
-	 * @property {function(?string): (HTMLElementModified|string)} html
-	 * @property {function(?string): (HTMLElementModified|string)} txt
+	 * @property {function(string=): (HTMLElementExtended|string)} html
+	 * @property {function(string=): (HTMLElementExtended|string)} txt
 	 *
-	 * @property {function(string): HTMLElementModified} tooltip
-	 * @property {function(): HTMLElementModified} disableSpellcheck
+	 * @property {function(string): HTMLElementExtended} tooltip
+	 * @property {function(): HTMLElementExtended} disableSpellcheck
 	 *
-	 * @property {function(string, function): HTMLElementModified} onn
-	 * @property {function(function): HTMLElementModified} onClick
-	 * @property {function(function): HTMLElementModified} onContextmenu
-	 * @property {function(function): HTMLElementModified} onChange
-	 * @property {function(function): HTMLElementModified} onKeydown
-	 * @property {function(function): HTMLElementModified} onKeyup
+	 * @property {function(object): HTMLElementExtended} css
 	 *
-	 * @property {function(string): HTMLElementModified} first
+	 * @property {function(string, function): HTMLElementExtended} onn
+	 * @property {function(function): HTMLElementExtended} onClick
+	 * @property {function(function): HTMLElementExtended} onContextmenu
+	 * @property {function(function): HTMLElementExtended} onChange
+	 * @property {function(function): HTMLElementExtended} onKeydown
+	 * @property {function(function): HTMLElementExtended} onKeyup
 	 *
-	 * @return {HTMLElementModified}
+	 * @property {function(string): HTMLElementExtended} trigger
+	 *
+	 * @property {function(string): HTMLElementExtended} first
+	 * @property {function(string): HTMLElementExtended} closeste
+	 * @property {function(string): Array<HTMLElementExtended>} childrene
+	 * @property {function(string): Array<HTMLElementExtended>} siblings
+	 *
+	 * @return {HTMLElementExtended}
 	 */
-	getOrModify ({
+	static getOrModify ({
 		tag,
 		clazz,
 		style,
@@ -1226,6 +1284,7 @@ globalThis.ElementUtil = {
 		ele.appends = ele.appends || ElementUtil._appends.bind(ele);
 		ele.appendTo = ele.appendTo || ElementUtil._appendTo.bind(ele);
 		ele.prependTo = ele.prependTo || ElementUtil._prependTo.bind(ele);
+		ele.aftere = ele.aftere || ElementUtil._aftere.bind(ele);
 		ele.insertAfter = ele.insertAfter || ElementUtil._insertAfter.bind(ele);
 		ele.addClass = ele.addClass || ElementUtil._addClass.bind(ele);
 		ele.removeClass = ele.removeClass || ElementUtil._removeClass.bind(ele);
@@ -1236,23 +1295,32 @@ globalThis.ElementUtil = {
 		ele.empty = ele.empty || ElementUtil._empty.bind(ele);
 		ele.detach = ele.detach || ElementUtil._detach.bind(ele);
 		ele.attr = ele.attr || ElementUtil._attr.bind(ele);
+		ele.prop = ele.prop || ElementUtil._prop.bind(ele);
 		ele.val = ele.val || ElementUtil._val.bind(ele);
 		ele.html = ele.html || ElementUtil._html.bind(ele);
 		ele.txt = ele.txt || ElementUtil._txt.bind(ele);
 		ele.tooltip = ele.tooltip || ElementUtil._tooltip.bind(ele);
 		ele.disableSpellcheck = ele.disableSpellcheck || ElementUtil._disableSpellcheck.bind(ele);
+		ele.css = ele.css || ElementUtil._css.bind(ele);
 		ele.onn = ele.onn || ElementUtil._onX.bind(ele);
+		ele.off = ele.off || ElementUtil._offX.bind(ele);
 		ele.onClick = ele.onClick || ElementUtil._onX.bind(ele, "click");
 		ele.onContextmenu = ele.onContextmenu || ElementUtil._onX.bind(ele, "contextmenu");
 		ele.onChange = ele.onChange || ElementUtil._onX.bind(ele, "change");
 		ele.onKeydown = ele.onKeydown || ElementUtil._onX.bind(ele, "keydown");
 		ele.onKeyup = ele.onKeyup || ElementUtil._onX.bind(ele, "keyup");
+		ele.trigger = ele.trigger || ElementUtil._trigger.bind(ele);
 		ele.first = ele.first || ElementUtil._first.bind(ele);
+		ele.closeste = ele.closeste || ElementUtil._closeste.bind(ele);
+		ele.childrene = ele.childrene || ElementUtil._childrene.bind(ele);
+		ele.siblings = ele.siblings || ElementUtil._siblings.bind(ele);
+		ele.outerWidthe = ele.outerWidthe || ElementUtil._outerWidthe.bind(ele);
+		ele.outerHeighte = ele.outerHeighte || ElementUtil._outerHeighte.bind(ele);
 
 		return ele;
-	},
+	}
 
-	_getOrModify_getEle (
+	static _getOrModify_getEle (
 		{
 			ele,
 			outer,
@@ -1269,105 +1337,160 @@ globalThis.ElementUtil = {
 			return {ele: eleId, isSetId: false};
 		}
 		throw new Error(`Could not find or create element!`);
-	},
+	}
 
-	_appends (child) {
+	/** @this {HTMLElementExtended} */
+	static _appends (child) {
+		if (typeof child === "string") child = ee`${child}`;
 		this.appendChild(child);
 		return this;
-	},
+	}
 
-	_appendTo (parent) {
+	/** @this {HTMLElementExtended} */
+	static _appendTo (parent) {
 		parent.appendChild(this);
 		return this;
-	},
+	}
 
-	_prependTo (parent) {
+	/** @this {HTMLElementExtended} */
+	static _prependTo (parent) {
 		parent.prepend(this);
 		return this;
-	},
+	}
 
-	_insertAfter (parent) {
+	/** @this {HTMLElementExtended} */
+	static _aftere (other) {
+		if (typeof other === "string") other = ee`${other}`;
+		this.after(other);
+		return this;
+	}
+
+	/** @this {HTMLElementExtended} */
+	static _insertAfter (parent) {
 		parent.after(this);
 		return this;
-	},
+	}
 
-	_addClass (clazz) {
+	/** @this {HTMLElementExtended} */
+	static _addClass (clazz) {
 		this.classList.add(clazz);
 		return this;
-	},
+	}
 
-	_removeClass (clazz) {
+	/** @this {HTMLElementExtended} */
+	static _removeClass (clazz) {
 		this.classList.remove(clazz);
 		return this;
-	},
+	}
 
-	_toggleClass (clazz, isActive) {
+	/** @this {HTMLElementExtended} */
+	static _toggleClass (clazz, isActive) {
 		if (isActive == null) this.classList.toggle(clazz);
 		else if (isActive) this.classList.add(clazz);
 		else this.classList.remove(clazz);
 		return this;
-	},
+	}
 
-	_showVe () {
+	/** @this {HTMLElementExtended} */
+	static _showVe () {
 		this.classList.remove("ve-hidden");
 		return this;
-	},
+	}
 
-	_hideVe () {
+	/** @this {HTMLElementExtended} */
+	static _hideVe () {
 		this.classList.add("ve-hidden");
 		return this;
-	},
+	}
 
-	_toggleVe (isActive) {
+	/** @this {HTMLElementExtended} */
+	static _toggleVe (isActive) {
 		this.toggleClass("ve-hidden", isActive == null ? isActive : !isActive);
 		return this;
-	},
+	}
 
-	_empty () {
+	/** @this {HTMLElementExtended} */
+	static _empty () {
 		this.innerHTML = "";
 		return this;
-	},
+	}
 
-	_detach () {
+	/** @this {HTMLElementExtended} */
+	static _detach () {
 		if (this.parentElement) this.parentElement.removeChild(this);
 		return this;
-	},
+	}
 
-	_attr (name, value) {
+	/** @this {HTMLElementExtended} */
+	static _attr (name, value) {
+		if (value === undefined) return this.getAttribute(name);
 		this.setAttribute(name, value);
 		return this;
-	},
+	}
 
-	_html (html) {
+	/** @this {HTMLElementExtended} */
+	static _prop (name, value) {
+		if (value === undefined) return this[name];
+		this[name] = value;
+		return this;
+	}
+
+	/** @this {HTMLElementExtended} */
+	static _html (html) {
 		if (html === undefined) return this.innerHTML;
 		this.innerHTML = html;
 		return this;
-	},
+	}
 
-	_txt (txt) {
+	/** @this {HTMLElementExtended} */
+	static _txt (txt) {
 		if (txt === undefined) return this.innerText;
 		this.innerText = txt;
 		return this;
-	},
+	}
 
-	_tooltip (title) {
+	/** @this {HTMLElementExtended} */
+	static _tooltip (title) {
 		return this.attr("title", title);
-	},
+	}
 
-	_disableSpellcheck () {
+	/** @this {HTMLElementExtended} */
+	static _disableSpellcheck () {
 		// avoid setting input type to "search" as it visually offsets the contents of the input
 		return this
 			.attr("autocomplete", "new-password")
 			.attr("autocapitalize", "off")
 			.attr("spellcheck", "false");
-	},
+	}
 
-	_onX (evtName, fn) {
+	/** @this {HTMLElementExtended} */
+	static _css (obj) {
+		Object.entries(obj)
+			.forEach(([k, v]) => this.style[k] = v);
+		return this;
+	}
+
+	/** @this {HTMLElementExtended} */
+	static _onX (evtName, fn) {
 		this.addEventListener(evtName, fn);
 		return this;
-	},
+	}
 
-	_val (val, {isSetAttribute = false} = {}) {
+	/** @this {HTMLElementExtended} */
+	static _offX (evtName, fn) {
+		this.removeEventListener(evtName, fn);
+		return this;
+	}
+
+	/** @this {HTMLElementExtended} */
+	static _trigger (evtOrEvtName) {
+		const evt = evtOrEvtName instanceof Event ? evtOrEvtName : new Event(evtOrEvtName);
+		this.dispatchEvent(evt);
+		return this;
+	}
+
+	/** @this {HTMLElementExtended} */
+	static _val (val, {isSetAttribute = false} = {}) {
 		if (val !== undefined) {
 			switch (this.tagName) {
 				case "SELECT": {
@@ -1395,16 +1518,70 @@ globalThis.ElementUtil = {
 
 			default: return this.value;
 		}
-	},
+	}
 
-	_first (selector) {
+	/** @this {HTMLElementExtended} */
+	static _first (selector) {
 		const child = this.querySelector(selector);
 		if (!child) return child;
 		return e_({ele: child});
-	},
+	}
+
+	/** @this {HTMLElementExtended} */
+	static _closeste (selector) {
+		const sibling = this.closest(selector);
+		if (!sibling) return sibling;
+		return e_({ele: sibling});
+	}
+
+	/** @this {HTMLElementExtended} */
+	static _childrene (selector) {
+		if (!selector) return [...this.children].map(child => e_({ele: child}));
+		return em(selector, this);
+	}
+
+	/** @this {HTMLElementExtended} */
+	static _siblings (selector) {
+		if (!selector) {
+			return [...this.parentNode.children]
+				.filter(ele => ele !== this)
+				.map(ele => e_({ele: ele}));
+		}
+
+		return [...this.parentNode.querySelectorAll(`:scope > ${selector}`)]
+			.filter(ele => ele !== this)
+			.map(ele => e_({ele: ele}));
+	}
+
+	/** @this {HTMLElementExtended} */
+	static _outerWidthe () { return this.getBoundingClientRect().width; }
+
+	/** @this {HTMLElementExtended} */
+	static _outerHeighte () { return this.getBoundingClientRect().height; }
+
+	/* -------------------------------------------- */
+
+	/**
+	 * @return {?HTMLElementExtended}
+	 */
+	static getBySelector (selector, parent) {
+		const ele = (parent || document).querySelector(selector);
+		if (!ele) return null;
+		return e_({ele});
+	}
+
+	/**
+	 * @return {Array<HTMLElementExtended>}
+	 */
+	static getBySelectorMulti (selector, parent) {
+		return [...(parent || document).querySelectorAll(selector)]
+			.map(ele => e_({ele}));
+	}
+
+	/* -------------------------------------------- */
 
 	// region "Static"
-	getIndexPathToParent (parent, child) {
+	static getIndexPathToParent (parent, child) {
 		if (!parent.contains(child)) return null; // Should never occur
 
 		const path = [];
@@ -1421,20 +1598,37 @@ globalThis.ElementUtil = {
 		}
 
 		return path.reverse();
-	},
+	}
 
-	getChildByIndexPath (parent, indexPath) {
+	static getChildByIndexPath (parent, indexPath) {
 		for (let i = 0; i < indexPath.length; ++i) {
 			const ix = indexPath[i];
 			parent = parent.children[ix];
 			if (!parent) return null;
 		}
 		return parent;
-	},
+	}
 	// endregion
-};
+}
 
-if (typeof window !== "undefined") window.e_ = ElementUtil.getOrModify;
+globalThis.ElementUtil = ElementUtil;
+
+if (typeof window !== "undefined") {
+	/**
+	 * @return {HTMLElementExtended}
+	 */
+	window.e_ = ElementUtil.getOrModify.bind(ElementUtil);
+
+	/**
+	 * @return {HTMLElementExtended}
+	 */
+	window.es = ElementUtil.getBySelector.bind(ElementUtil);
+
+	/**
+	 * @return {Array<HTMLElementExtended>}
+	 */
+	window.em = ElementUtil.getBySelectorMulti.bind(ElementUtil);
+}
 
 globalThis.ObjUtil = {
 	async pForEachDeep (source, pCallback, options = {depth: Infinity, callEachLevel: false}) {
@@ -1951,6 +2145,311 @@ globalThis.MiscUtil = class {
 	static GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST = new Set(["caption", "type", "colLabels", "colLabelRows", "name", "colStyles", "style", "shortName", "subclassShortName", "id", "path", "source"]);
 
 	/**
+	 * @abstract
+	 */
+	static _WalkerBase = class {
+		/**
+		 * @param [opts]
+		 * @param [opts.keyBlocklist]
+		 * @param [opts.isAllowDeleteObjects] If returning `undefined` from an object handler should be treated as a delete.
+		 * @param [opts.isAllowDeleteArrays] If returning `undefined` from an array handler should be treated as a delete.
+		 * @param [opts.isAllowDeleteBooleans] (Unimplemented) // TODO
+		 * @param [opts.isAllowDeleteNumbers] (Unimplemented) // TODO
+		 * @param [opts.isAllowDeleteStrings] (Unimplemented) // TODO
+		 * @param [opts.isDepthFirst] If array/object recursion should occur before array/object primitive handling.
+		 * @param [opts.isNoModification] If the walker should not attempt to modify the data.
+		 * @param [opts.isBreakOnReturn] If the walker should fast-exist on any handler returning a value.
+		 */
+		constructor (
+			{
+				keyBlocklist,
+				isAllowDeleteObjects,
+				isAllowDeleteArrays,
+				isAllowDeleteBooleans,
+				isAllowDeleteNumbers,
+				isAllowDeleteStrings,
+				isDepthFirst,
+				isNoModification,
+				isBreakOnReturn,
+			} = {},
+		) {
+			this._keyBlocklist = keyBlocklist || new Set();
+			this._isAllowDeleteObjects = isAllowDeleteObjects;
+			this._isAllowDeleteArrays = isAllowDeleteArrays;
+			this._isAllowDeleteBooleans = isAllowDeleteBooleans;
+			this._isAllowDeleteNumbers = isAllowDeleteNumbers;
+			this._isAllowDeleteStrings = isAllowDeleteStrings;
+			this._isDepthFirst = isDepthFirst;
+			this._isNoModification = isNoModification;
+			this._isBreakOnReturn = isBreakOnReturn;
+
+			if (isBreakOnReturn && !isNoModification) throw new Error(`"isBreakOnReturn" may only be used in "isNoModification" mode!`);
+		}
+	};
+
+	static _WalkerSync = class extends this._WalkerBase {
+		_applyHandlers ({handlers, obj, lastKey, stack}) {
+			handlers = handlers instanceof Array ? handlers : [handlers];
+			const didBreak = handlers.some(h => {
+				const out = h(obj, lastKey, stack);
+				if (this._isBreakOnReturn && out) return true;
+				if (!this._isNoModification) obj = out;
+			});
+			if (didBreak) return VeCt.SYM_WALKER_BREAK;
+			return obj;
+		}
+
+		_runHandlers ({handlers, obj, lastKey, stack}) {
+			handlers = handlers instanceof Array ? handlers : [handlers];
+			handlers.forEach(h => h(obj, lastKey, stack));
+		}
+
+		_doObjectRecurse (obj, primitiveHandlers, stack) {
+			for (const k of Object.keys(obj)) {
+				if (this._keyBlocklist.has(k)) continue;
+
+				const out = this.walk(obj[k], primitiveHandlers, k, stack);
+				if (out === VeCt.SYM_WALKER_BREAK) return VeCt.SYM_WALKER_BREAK;
+				if (!this._isNoModification) obj[k] = out;
+			}
+		}
+
+		_getMappedPrimitive (obj, primitiveHandlers, lastKey, stack, prop, propPre, propPost) {
+			if (primitiveHandlers[propPre]) this._runHandlers({handlers: primitiveHandlers[propPre], obj, lastKey, stack});
+			if (primitiveHandlers[prop]) {
+				const out = this._applyHandlers({handlers: primitiveHandlers[prop], obj, lastKey, stack});
+				if (out === VeCt.SYM_WALKER_BREAK) return out;
+				if (!this._isNoModification) obj = out;
+			}
+			if (primitiveHandlers[propPost]) this._runHandlers({handlers: primitiveHandlers[propPost], obj, lastKey, stack});
+			return obj;
+		}
+
+		_getMappedArray (obj, primitiveHandlers, lastKey, stack) {
+			if (primitiveHandlers.preArray) this._runHandlers({handlers: primitiveHandlers.preArray, obj, lastKey, stack});
+			if (this._isDepthFirst) {
+				if (stack) stack.push(obj);
+				const out = new Array(obj.length);
+				for (let i = 0, len = out.length; i < len; ++i) {
+					out[i] = this.walk(obj[i], primitiveHandlers, lastKey, stack);
+					if (out[i] === VeCt.SYM_WALKER_BREAK) return out[i];
+				}
+				if (!this._isNoModification) obj = out;
+				if (stack) stack.pop();
+
+				if (primitiveHandlers.array) {
+					const out = this._applyHandlers({handlers: primitiveHandlers.array, obj, lastKey, stack});
+					if (out === VeCt.SYM_WALKER_BREAK) return out;
+					if (!this._isNoModification) obj = out;
+				}
+				if (obj == null) {
+					if (!this._isAllowDeleteArrays) throw new Error(`Array handler(s) returned null!`);
+				}
+			} else {
+				if (primitiveHandlers.array) {
+					const out = this._applyHandlers({handlers: primitiveHandlers.array, obj, lastKey, stack});
+					if (out === VeCt.SYM_WALKER_BREAK) return out;
+					if (!this._isNoModification) obj = out;
+				}
+				if (obj != null) {
+					const out = new Array(obj.length);
+					for (let i = 0, len = out.length; i < len; ++i) {
+						if (stack) stack.push(obj);
+						out[i] = this.walk(obj[i], primitiveHandlers, lastKey, stack);
+						if (stack) stack.pop();
+						if (out[i] === VeCt.SYM_WALKER_BREAK) return out[i];
+					}
+					if (!this._isNoModification) obj = out;
+				} else {
+					if (!this._isAllowDeleteArrays) throw new Error(`Array handler(s) returned null!`);
+				}
+			}
+			if (primitiveHandlers.postArray) this._runHandlers({handlers: primitiveHandlers.postArray, obj, lastKey, stack});
+			return obj;
+		}
+
+		_getMappedObject (obj, primitiveHandlers, lastKey, stack) {
+			if (primitiveHandlers.preObject) this._runHandlers({handlers: primitiveHandlers.preObject, obj, lastKey, stack});
+			if (this._isDepthFirst) {
+				if (stack) stack.push(obj);
+				const flag = this._doObjectRecurse(obj, primitiveHandlers, stack);
+				if (stack) stack.pop();
+				if (flag === VeCt.SYM_WALKER_BREAK) return flag;
+
+				if (primitiveHandlers.object) {
+					const out = this._applyHandlers({handlers: primitiveHandlers.object, obj, lastKey, stack});
+					if (out === VeCt.SYM_WALKER_BREAK) return out;
+					if (!this._isNoModification) obj = out;
+				}
+				if (obj == null) {
+					if (!this._isAllowDeleteObjects) throw new Error(`Object handler(s) returned null!`);
+				}
+			} else {
+				if (primitiveHandlers.object) {
+					const out = this._applyHandlers({handlers: primitiveHandlers.object, obj, lastKey, stack});
+					if (out === VeCt.SYM_WALKER_BREAK) return out;
+					if (!this._isNoModification) obj = out;
+				}
+				if (obj == null) {
+					if (!this._isAllowDeleteObjects) throw new Error(`Object handler(s) returned null!`);
+				} else {
+					if (stack) stack.push(obj);
+					const flag = this._doObjectRecurse(obj, primitiveHandlers, stack);
+					if (stack) stack.pop();
+					if (flag === VeCt.SYM_WALKER_BREAK) return flag;
+				}
+			}
+			if (primitiveHandlers.postObject) this._runHandlers({handlers: primitiveHandlers.postObject, obj, lastKey, stack});
+			return obj;
+		}
+
+		walk (obj, primitiveHandlers, lastKey, stack) {
+			if (obj === null) return this._getMappedPrimitive(obj, primitiveHandlers, lastKey, stack, "null", "preNull", "postNull");
+
+			switch (typeof obj) {
+				case "undefined": return this._getMappedPrimitive(obj, primitiveHandlers, lastKey, stack, "undefined", "preUndefined", "postUndefined");
+				case "boolean": return this._getMappedPrimitive(obj, primitiveHandlers, lastKey, stack, "boolean", "preBoolean", "postBoolean");
+				case "number": return this._getMappedPrimitive(obj, primitiveHandlers, lastKey, stack, "number", "preNumber", "postNumber");
+				case "string": return this._getMappedPrimitive(obj, primitiveHandlers, lastKey, stack, "string", "preString", "postString");
+				case "object": {
+					if (obj instanceof Array) return this._getMappedArray(obj, primitiveHandlers, lastKey, stack);
+					return this._getMappedObject(obj, primitiveHandlers, lastKey, stack);
+				}
+				default: throw new Error(`Unhandled type "${typeof obj}"`);
+			}
+		}
+	};
+
+	// TODO refresh to match sync version
+	static _WalkerAsync = class extends this._WalkerBase {
+		async _pApplyHandlers ({handlers, obj, lastKey, stack}) {
+			handlers = handlers instanceof Array ? handlers : [handlers];
+			await handlers.pSerialAwaitMap(async pH => {
+				const out = await pH(obj, lastKey, stack);
+				if (!this._isNoModification) obj = out;
+			});
+			return obj;
+		}
+
+		async _pRunHandlers ({handlers, obj, lastKey, stack}) {
+			handlers = handlers instanceof Array ? handlers : [handlers];
+			await handlers.pSerialAwaitMap(pH => pH(obj, lastKey, stack));
+		}
+
+		async pWalk (obj, primitiveHandlers, lastKey, stack) {
+			if (obj == null) {
+				if (primitiveHandlers.null) return this._pApplyHandlers({handlers: primitiveHandlers.null, obj, lastKey, stack});
+				return obj;
+			}
+
+			const pDoObjectRecurse = async () => {
+				await Object.keys(obj).pSerialAwaitMap(async k => {
+					const v = obj[k];
+					if (this._keyBlocklist.has(k)) return;
+					const out = await this.pWalk(v, primitiveHandlers, k, stack);
+					if (!this._isNoModification) obj[k] = out;
+				});
+			};
+
+			const to = typeof obj;
+			switch (to) {
+				case undefined:
+					if (primitiveHandlers.preUndefined) await this._pRunHandlers({handlers: primitiveHandlers.preUndefined, obj, lastKey, stack});
+					if (primitiveHandlers.undefined) {
+						const out = await this._pApplyHandlers({handlers: primitiveHandlers.undefined, obj, lastKey, stack});
+						if (!this._isNoModification) obj = out;
+					}
+					if (primitiveHandlers.postUndefined) await this._pRunHandlers({handlers: primitiveHandlers.postUndefined, obj, lastKey, stack});
+					return obj;
+				case "boolean":
+					if (primitiveHandlers.preBoolean) await this._pRunHandlers({handlers: primitiveHandlers.preBoolean, obj, lastKey, stack});
+					if (primitiveHandlers.boolean) {
+						const out = await this._pApplyHandlers({handlers: primitiveHandlers.boolean, obj, lastKey, stack});
+						if (!this._isNoModification) obj = out;
+					}
+					if (primitiveHandlers.postBoolean) await this._pRunHandlers({handlers: primitiveHandlers.postBoolean, obj, lastKey, stack});
+					return obj;
+				case "number":
+					if (primitiveHandlers.preNumber) await this._pRunHandlers({handlers: primitiveHandlers.preNumber, obj, lastKey, stack});
+					if (primitiveHandlers.number) {
+						const out = await this._pApplyHandlers({handlers: primitiveHandlers.number, obj, lastKey, stack});
+						if (!this._isNoModification) obj = out;
+					}
+					if (primitiveHandlers.postNumber) await this._pRunHandlers({handlers: primitiveHandlers.postNumber, obj, lastKey, stack});
+					return obj;
+				case "string":
+					if (primitiveHandlers.preString) await this._pRunHandlers({handlers: primitiveHandlers.preString, obj, lastKey, stack});
+					if (primitiveHandlers.string) {
+						const out = await this._pApplyHandlers({handlers: primitiveHandlers.string, obj, lastKey, stack});
+						if (!this._isNoModification) obj = out;
+					}
+					if (primitiveHandlers.postString) await this._pRunHandlers({handlers: primitiveHandlers.postString, obj, lastKey, stack});
+					return obj;
+				case "object": {
+					if (obj instanceof Array) {
+						if (primitiveHandlers.preArray) await this._pRunHandlers({handlers: primitiveHandlers.preArray, obj, lastKey, stack});
+						if (this._isDepthFirst) {
+							if (stack) stack.push(obj);
+							const out = await obj.pSerialAwaitMap(it => this.pWalk(it, primitiveHandlers, lastKey, stack));
+							if (!this._isNoModification) obj = out;
+							if (stack) stack.pop();
+
+							if (primitiveHandlers.array) {
+								const out = await this._pApplyHandlers({handlers: primitiveHandlers.array, obj, lastKey, stack});
+								if (!this._isNoModification) obj = out;
+							}
+							if (obj == null) {
+								if (!this._isAllowDeleteArrays) throw new Error(`Array handler(s) returned null!`);
+							}
+						} else {
+							if (primitiveHandlers.array) {
+								const out = await this._pApplyHandlers({handlers: primitiveHandlers.array, obj, lastKey, stack});
+								if (!this._isNoModification) obj = out;
+							}
+							if (obj != null) {
+								const out = await obj.pSerialAwaitMap(it => this.pWalk(it, primitiveHandlers, lastKey, stack));
+								if (!this._isNoModification) obj = out;
+							} else {
+								if (!this._isAllowDeleteArrays) throw new Error(`Array handler(s) returned null!`);
+							}
+						}
+						if (primitiveHandlers.postArray) await this._pRunHandlers({handlers: primitiveHandlers.postArray, obj, lastKey, stack});
+						return obj;
+					} else {
+						if (primitiveHandlers.preObject) await this._pRunHandlers({handlers: primitiveHandlers.preObject, obj, lastKey, stack});
+						if (this._isDepthFirst) {
+							if (stack) stack.push(obj);
+							await pDoObjectRecurse();
+							if (stack) stack.pop();
+
+							if (primitiveHandlers.object) {
+								const out = await this._pApplyHandlers({handlers: primitiveHandlers.object, obj, lastKey, stack});
+								if (!this._isNoModification) obj = out;
+							}
+							if (obj == null) {
+								if (!this._isAllowDeleteObjects) throw new Error(`Object handler(s) returned null!`);
+							}
+						} else {
+							if (primitiveHandlers.object) {
+								const out = await this._pApplyHandlers({handlers: primitiveHandlers.object, obj, lastKey, stack});
+								if (!this._isNoModification) obj = out;
+							}
+							if (obj == null) {
+								if (!this._isAllowDeleteObjects) throw new Error(`Object handler(s) returned null!`);
+							} else {
+								await pDoObjectRecurse();
+							}
+						}
+						if (primitiveHandlers.postObject) await this._pRunHandlers({handlers: primitiveHandlers.postObject, obj, lastKey, stack});
+						return obj;
+					}
+				}
+				default: throw new Error(`Unhandled type "${to}"`);
+			}
+		}
+	};
+
+	/**
 	 * @param [opts]
 	 * @param [opts.keyBlocklist]
 	 * @param [opts.isAllowDeleteObjects] If returning `undefined` from an object handler should be treated as a delete.
@@ -1963,143 +2462,8 @@ globalThis.MiscUtil = class {
 	 * @param [opts.isBreakOnReturn] If the walker should fast-exist on any handler returning a value.
 	 */
 	static getWalker (opts) {
-		opts = opts || {};
-
-		if (opts.isBreakOnReturn && !opts.isNoModification) throw new Error(`"isBreakOnReturn" may only be used in "isNoModification" mode!`);
-
-		const keyBlocklist = opts.keyBlocklist || new Set();
-
-		const getMappedPrimitive = (obj, primitiveHandlers, lastKey, stack, prop, propPre, propPost) => {
-			if (primitiveHandlers[propPre]) MiscUtil._getWalker_runHandlers({handlers: primitiveHandlers[propPre], obj, lastKey, stack});
-			if (primitiveHandlers[prop]) {
-				const out = MiscUtil._getWalker_applyHandlers({opts, handlers: primitiveHandlers[prop], obj, lastKey, stack});
-				if (out === VeCt.SYM_WALKER_BREAK) return out;
-				if (!opts.isNoModification) obj = out;
-			}
-			if (primitiveHandlers[propPost]) MiscUtil._getWalker_runHandlers({handlers: primitiveHandlers[propPost], obj, lastKey, stack});
-			return obj;
-		};
-
-		const doObjectRecurse = (obj, primitiveHandlers, stack) => {
-			for (const k of Object.keys(obj)) {
-				if (keyBlocklist.has(k)) continue;
-
-				const out = fn(obj[k], primitiveHandlers, k, stack);
-				if (out === VeCt.SYM_WALKER_BREAK) return VeCt.SYM_WALKER_BREAK;
-				if (!opts.isNoModification) obj[k] = out;
-			}
-		};
-
-		const fn = (obj, primitiveHandlers, lastKey, stack) => {
-			if (obj === null) return getMappedPrimitive(obj, primitiveHandlers, lastKey, stack, "null", "preNull", "postNull");
-
-			switch (typeof obj) {
-				case "undefined": return getMappedPrimitive(obj, primitiveHandlers, lastKey, stack, "undefined", "preUndefined", "postUndefined");
-				case "boolean": return getMappedPrimitive(obj, primitiveHandlers, lastKey, stack, "boolean", "preBoolean", "postBoolean");
-				case "number": return getMappedPrimitive(obj, primitiveHandlers, lastKey, stack, "number", "preNumber", "postNumber");
-				case "string": return getMappedPrimitive(obj, primitiveHandlers, lastKey, stack, "string", "preString", "postString");
-				case "object": {
-					// region Array
-					if (obj instanceof Array) {
-						if (primitiveHandlers.preArray) MiscUtil._getWalker_runHandlers({handlers: primitiveHandlers.preArray, obj, lastKey, stack});
-						if (opts.isDepthFirst) {
-							if (stack) stack.push(obj);
-							const out = new Array(obj.length);
-							for (let i = 0, len = out.length; i < len; ++i) {
-								out[i] = fn(obj[i], primitiveHandlers, lastKey, stack);
-								if (out[i] === VeCt.SYM_WALKER_BREAK) return out[i];
-							}
-							if (!opts.isNoModification) obj = out;
-							if (stack) stack.pop();
-
-							if (primitiveHandlers.array) {
-								const out = MiscUtil._getWalker_applyHandlers({opts, handlers: primitiveHandlers.array, obj, lastKey, stack});
-								if (out === VeCt.SYM_WALKER_BREAK) return out;
-								if (!opts.isNoModification) obj = out;
-							}
-							if (obj == null) {
-								if (!opts.isAllowDeleteArrays) throw new Error(`Array handler(s) returned null!`);
-							}
-						} else {
-							if (primitiveHandlers.array) {
-								const out = MiscUtil._getWalker_applyHandlers({opts, handlers: primitiveHandlers.array, obj, lastKey, stack});
-								if (out === VeCt.SYM_WALKER_BREAK) return out;
-								if (!opts.isNoModification) obj = out;
-							}
-							if (obj != null) {
-								const out = new Array(obj.length);
-								for (let i = 0, len = out.length; i < len; ++i) {
-									if (stack) stack.push(obj);
-									out[i] = fn(obj[i], primitiveHandlers, lastKey, stack);
-									if (stack) stack.pop();
-									if (out[i] === VeCt.SYM_WALKER_BREAK) return out[i];
-								}
-								if (!opts.isNoModification) obj = out;
-							} else {
-								if (!opts.isAllowDeleteArrays) throw new Error(`Array handler(s) returned null!`);
-							}
-						}
-						if (primitiveHandlers.postArray) MiscUtil._getWalker_runHandlers({handlers: primitiveHandlers.postArray, obj, lastKey, stack});
-						return obj;
-					}
-					// endregion
-
-					// region Object
-					if (primitiveHandlers.preObject) MiscUtil._getWalker_runHandlers({handlers: primitiveHandlers.preObject, obj, lastKey, stack});
-					if (opts.isDepthFirst) {
-						if (stack) stack.push(obj);
-						const flag = doObjectRecurse(obj, primitiveHandlers, stack);
-						if (stack) stack.pop();
-						if (flag === VeCt.SYM_WALKER_BREAK) return flag;
-
-						if (primitiveHandlers.object) {
-							const out = MiscUtil._getWalker_applyHandlers({opts, handlers: primitiveHandlers.object, obj, lastKey, stack});
-							if (out === VeCt.SYM_WALKER_BREAK) return out;
-							if (!opts.isNoModification) obj = out;
-						}
-						if (obj == null) {
-							if (!opts.isAllowDeleteObjects) throw new Error(`Object handler(s) returned null!`);
-						}
-					} else {
-						if (primitiveHandlers.object) {
-							const out = MiscUtil._getWalker_applyHandlers({opts, handlers: primitiveHandlers.object, obj, lastKey, stack});
-							if (out === VeCt.SYM_WALKER_BREAK) return out;
-							if (!opts.isNoModification) obj = out;
-						}
-						if (obj == null) {
-							if (!opts.isAllowDeleteObjects) throw new Error(`Object handler(s) returned null!`);
-						} else {
-							if (stack) stack.push(obj);
-							const flag = doObjectRecurse(obj, primitiveHandlers, stack);
-							if (stack) stack.pop();
-							if (flag === VeCt.SYM_WALKER_BREAK) return flag;
-						}
-					}
-					if (primitiveHandlers.postObject) MiscUtil._getWalker_runHandlers({handlers: primitiveHandlers.postObject, obj, lastKey, stack});
-					return obj;
-					// endregion
-				}
-				default: throw new Error(`Unhandled type "${typeof obj}"`);
-			}
-		};
-
-		return {walk: fn};
-	}
-
-	static _getWalker_applyHandlers ({opts, handlers, obj, lastKey, stack}) {
-		handlers = handlers instanceof Array ? handlers : [handlers];
-		const didBreak = handlers.some(h => {
-			const out = h(obj, lastKey, stack);
-			if (opts.isBreakOnReturn && out) return true;
-			if (!opts.isNoModification) obj = out;
-		});
-		if (didBreak) return VeCt.SYM_WALKER_BREAK;
-		return obj;
-	}
-
-	static _getWalker_runHandlers ({handlers, obj, lastKey, stack}) {
-		handlers = handlers instanceof Array ? handlers : [handlers];
-		handlers.forEach(h => h(obj, lastKey, stack));
+		opts ||= {};
+		return new MiscUtil._WalkerSync(opts);
 	}
 
 	/**
@@ -2115,136 +2479,8 @@ globalThis.MiscUtil = class {
 	 * @param [opts.isNoModification] If the walker should not attempt to modify the data.
 	 */
 	static getAsyncWalker (opts) {
-		opts = opts || {};
-		const keyBlocklist = opts.keyBlocklist || new Set();
-
-		const pFn = async (obj, primitiveHandlers, lastKey, stack) => {
-			if (obj == null) {
-				if (primitiveHandlers.null) return MiscUtil._getAsyncWalker_pApplyHandlers({opts, handlers: primitiveHandlers.null, obj, lastKey, stack});
-				return obj;
-			}
-
-			const pDoObjectRecurse = async () => {
-				await Object.keys(obj).pSerialAwaitMap(async k => {
-					const v = obj[k];
-					if (keyBlocklist.has(k)) return;
-					const out = await pFn(v, primitiveHandlers, k, stack);
-					if (!opts.isNoModification) obj[k] = out;
-				});
-			};
-
-			const to = typeof obj;
-			switch (to) {
-				case undefined:
-					if (primitiveHandlers.preUndefined) await MiscUtil._getAsyncWalker_pRunHandlers({handlers: primitiveHandlers.preUndefined, obj, lastKey, stack});
-					if (primitiveHandlers.undefined) {
-						const out = await MiscUtil._getAsyncWalker_pApplyHandlers({opts, handlers: primitiveHandlers.undefined, obj, lastKey, stack});
-						if (!opts.isNoModification) obj = out;
-					}
-					if (primitiveHandlers.postUndefined) await MiscUtil._getAsyncWalker_pRunHandlers({handlers: primitiveHandlers.postUndefined, obj, lastKey, stack});
-					return obj;
-				case "boolean":
-					if (primitiveHandlers.preBoolean) await MiscUtil._getAsyncWalker_pRunHandlers({handlers: primitiveHandlers.preBoolean, obj, lastKey, stack});
-					if (primitiveHandlers.boolean) {
-						const out = await MiscUtil._getAsyncWalker_pApplyHandlers({opts, handlers: primitiveHandlers.boolean, obj, lastKey, stack});
-						if (!opts.isNoModification) obj = out;
-					}
-					if (primitiveHandlers.postBoolean) await MiscUtil._getAsyncWalker_pRunHandlers({handlers: primitiveHandlers.postBoolean, obj, lastKey, stack});
-					return obj;
-				case "number":
-					if (primitiveHandlers.preNumber) await MiscUtil._getAsyncWalker_pRunHandlers({handlers: primitiveHandlers.preNumber, obj, lastKey, stack});
-					if (primitiveHandlers.number) {
-						const out = await MiscUtil._getAsyncWalker_pApplyHandlers({opts, handlers: primitiveHandlers.number, obj, lastKey, stack});
-						if (!opts.isNoModification) obj = out;
-					}
-					if (primitiveHandlers.postNumber) await MiscUtil._getAsyncWalker_pRunHandlers({handlers: primitiveHandlers.postNumber, obj, lastKey, stack});
-					return obj;
-				case "string":
-					if (primitiveHandlers.preString) await MiscUtil._getAsyncWalker_pRunHandlers({handlers: primitiveHandlers.preString, obj, lastKey, stack});
-					if (primitiveHandlers.string) {
-						const out = await MiscUtil._getAsyncWalker_pApplyHandlers({opts, handlers: primitiveHandlers.string, obj, lastKey, stack});
-						if (!opts.isNoModification) obj = out;
-					}
-					if (primitiveHandlers.postString) await MiscUtil._getAsyncWalker_pRunHandlers({handlers: primitiveHandlers.postString, obj, lastKey, stack});
-					return obj;
-				case "object": {
-					if (obj instanceof Array) {
-						if (primitiveHandlers.preArray) await MiscUtil._getAsyncWalker_pRunHandlers({handlers: primitiveHandlers.preArray, obj, lastKey, stack});
-						if (opts.isDepthFirst) {
-							if (stack) stack.push(obj);
-							const out = await obj.pSerialAwaitMap(it => pFn(it, primitiveHandlers, lastKey, stack));
-							if (!opts.isNoModification) obj = out;
-							if (stack) stack.pop();
-
-							if (primitiveHandlers.array) {
-								const out = await MiscUtil._getAsyncWalker_pApplyHandlers({opts, handlers: primitiveHandlers.array, obj, lastKey, stack});
-								if (!opts.isNoModification) obj = out;
-							}
-							if (obj == null) {
-								if (!opts.isAllowDeleteArrays) throw new Error(`Array handler(s) returned null!`);
-							}
-						} else {
-							if (primitiveHandlers.array) {
-								const out = await MiscUtil._getAsyncWalker_pApplyHandlers({opts, handlers: primitiveHandlers.array, obj, lastKey, stack});
-								if (!opts.isNoModification) obj = out;
-							}
-							if (obj != null) {
-								const out = await obj.pSerialAwaitMap(it => pFn(it, primitiveHandlers, lastKey, stack));
-								if (!opts.isNoModification) obj = out;
-							} else {
-								if (!opts.isAllowDeleteArrays) throw new Error(`Array handler(s) returned null!`);
-							}
-						}
-						if (primitiveHandlers.postArray) await MiscUtil._getAsyncWalker_pRunHandlers({handlers: primitiveHandlers.postArray, obj, lastKey, stack});
-						return obj;
-					} else {
-						if (primitiveHandlers.preObject) await MiscUtil._getAsyncWalker_pRunHandlers({handlers: primitiveHandlers.preObject, obj, lastKey, stack});
-						if (opts.isDepthFirst) {
-							if (stack) stack.push(obj);
-							await pDoObjectRecurse();
-							if (stack) stack.pop();
-
-							if (primitiveHandlers.object) {
-								const out = await MiscUtil._getAsyncWalker_pApplyHandlers({opts, handlers: primitiveHandlers.object, obj, lastKey, stack});
-								if (!opts.isNoModification) obj = out;
-							}
-							if (obj == null) {
-								if (!opts.isAllowDeleteObjects) throw new Error(`Object handler(s) returned null!`);
-							}
-						} else {
-							if (primitiveHandlers.object) {
-								const out = await MiscUtil._getAsyncWalker_pApplyHandlers({opts, handlers: primitiveHandlers.object, obj, lastKey, stack});
-								if (!opts.isNoModification) obj = out;
-							}
-							if (obj == null) {
-								if (!opts.isAllowDeleteObjects) throw new Error(`Object handler(s) returned null!`);
-							} else {
-								await pDoObjectRecurse();
-							}
-						}
-						if (primitiveHandlers.postObject) await MiscUtil._getAsyncWalker_pRunHandlers({handlers: primitiveHandlers.postObject, obj, lastKey, stack});
-						return obj;
-					}
-				}
-				default: throw new Error(`Unhandled type "${to}"`);
-			}
-		};
-
-		return {pWalk: pFn};
-	}
-
-	static async _getAsyncWalker_pApplyHandlers ({opts, handlers, obj, lastKey, stack}) {
-		handlers = handlers instanceof Array ? handlers : [handlers];
-		await handlers.pSerialAwaitMap(async pH => {
-			const out = await pH(obj, lastKey, stack);
-			if (!opts.isNoModification) obj = out;
-		});
-		return obj;
-	}
-
-	static async _getAsyncWalker_pRunHandlers ({handlers, obj, lastKey, stack}) {
-		handlers = handlers instanceof Array ? handlers : [handlers];
-		await handlers.pSerialAwaitMap(pH => pH(obj, lastKey, stack));
+		opts ||= {};
+		return new MiscUtil._WalkerAsync(opts);
 	}
 
 	static pDefer (fn) {
@@ -2891,6 +3127,16 @@ globalThis.UrlUtil = {
 			return {name, pantheon, source};
 		}
 
+		if (page?.toLowerCase() === "classfeature") {
+			const [name, className, classSource, levelRaw, source] = parts;
+			return {name, className, classSource, level: Number(levelRaw) || 0, source};
+		}
+
+		if (page?.toLowerCase() === "subclassfeature") {
+			const [name, className, classSource, subclassShortName, subclassSource, levelRaw, source] = parts;
+			return {name, className, classSource, subclassShortName, subclassSource, level: Number(levelRaw) || 0, source};
+		}
+
 		// TODO(Future) this is broken for docs where the id != the source
 		//   consider indexing
 		//   + homebrew
@@ -3141,6 +3387,25 @@ globalThis.UrlUtil = {
 
 	_getClassesPageStatePart_subclass (sc) { return `${UrlUtil.getStateKeySubclass(sc)}=${UrlUtil.mini.compress(true)}`; },
 	_getClassesPageStatePart_feature (feature) { return `feature=${UrlUtil.mini.compress(`${feature.ixLevel}-${feature.ixFeature}`)}`; },
+
+	unpackClassesPageStatePart (href) {
+		const [, ...subs] = Hist.util.getHashParts(href);
+		const unpackeds = subs.map(sub => UrlUtil.unpackSubHash(sub));
+		const unpackedState = unpackeds.find(it => it.state)?.state;
+		if (!unpackedState) return null;
+
+		const out = {};
+		unpackedState
+			.forEach(pt => {
+				const [k, v] = pt.split("=");
+
+				if (k === "feature") return out.feature = UrlUtil.mini.decompress(v);
+
+				(out.stateKeysSubclass ||= []).push(k);
+			});
+
+		return out;
+	},
 };
 
 UrlUtil.PG_BESTIARY = "bestiary.html";
@@ -3243,7 +3508,7 @@ UrlUtil.URL_TO_HASH_BUILDER["background"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.
 UrlUtil.URL_TO_HASH_BUILDER["item"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS];
 UrlUtil.URL_TO_HASH_BUILDER["itemGroup"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS];
 UrlUtil.URL_TO_HASH_BUILDER["baseitem"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS];
-UrlUtil.URL_TO_HASH_BUILDER["magicvariant"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS];
+UrlUtil.URL_TO_HASH_BUILDER["magicvariant"] = (it) => UrlUtil.encodeArrayForHash(it.name, SourceUtil.getEntitySource(it));
 UrlUtil.URL_TO_HASH_BUILDER["class"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CLASSES];
 UrlUtil.URL_TO_HASH_BUILDER["condition"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CONDITIONS_DISEASES];
 UrlUtil.URL_TO_HASH_BUILDER["disease"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CONDITIONS_DISEASES];
@@ -4069,7 +4334,10 @@ globalThis.DataUtil = {
 
 					const isHasInternalCopies = (data._meta.internalCopies || []).includes(dataProp);
 
-					const dependencyData = await Promise.all(sourceIds.map(sourceId => DataUtil.pLoadByMeta(dataProp, sourceId)));
+					const dependencyData = await Promise.all(
+						DataUtil._getLoadGroupedSourceIds({prop: dataProp, sourceIds})
+							.map(sourceId => DataUtil.pLoadByMeta(dataProp, sourceId)),
+					);
 
 					const flatDependencyData = dependencyData.map(dd => dd[dataProp]).flat().filter(Boolean);
 					await Promise.all(data[dataProp].map(entry => DataUtil._pDoMetaMerge_handleCopyProp(dataProp, flatDependencyData, entry, {...options, isErrorOnMissing: !isHasInternalCopies})));
@@ -4297,16 +4565,17 @@ globalThis.DataUtil = {
 			// region Special
 			case "item":
 			case "itemGroup":
-			case "baseitem": {
+			case "baseitem":
+			case "magicvariant": {
 				const data = await DataUtil.item.loadRawJSON();
-				if (data[prop] && data[prop].some(it => it.source === source)) return data;
+				if (SourceUtil.isSiteSource(source)) return data;
 				return DataUtil._pLoadByMeta_pGetPrereleaseBrew(source);
 			}
 			case "race": {
 				// FIXME(Future) this should really `loadRawJSON`, but this breaks existing brew.
 				//   Consider a large-scale migration in future.
 				const data = await DataUtil.race.loadJSON({isAddBaseRaces: true});
-				if (data[prop] && data[prop].some(it => it.source === source)) return data;
+				if (SourceUtil.isSiteSource(source)) return data;
 				return DataUtil._pLoadByMeta_pGetPrereleaseBrew(source);
 			}
 			// endregion
@@ -4316,7 +4585,7 @@ globalThis.DataUtil = {
 				const impl = DataUtil[prop];
 				if (impl && (impl.getDataUrl || impl.loadJSON)) {
 					const data = await (impl.loadJSON ? impl.loadJSON() : DataUtil.loadJSON(impl.getDataUrl()));
-					if (data[prop] && data[prop].some(it => it.source === source)) return data;
+					if (SourceUtil.isSiteSource(source)) return data;
 
 					return DataUtil._pLoadByMeta_pGetPrereleaseBrew(source);
 				}
@@ -4335,6 +4604,24 @@ globalThis.DataUtil = {
 		if (fromBrew) return fromBrew;
 
 		throw new Error(`Could not find prerelease/brew URL for source "${source}"`);
+	},
+
+	/* -------------------------------------------- */
+
+	_getLoadGroupedSourceIds ({prop, sourceIds}) {
+		if (DataUtil._MULTI_SOURCE_PROP_TO_DIR[prop]) return sourceIds;
+
+		let siteSourceFirst = null;
+
+		const nonSiteSources = sourceIds
+			.filter(sourceId => {
+				const isSiteSource = SourceUtil.isSiteSource(sourceId);
+				if (isSiteSource && siteSourceFirst == null) siteSourceFirst = sourceId;
+				return !isSiteSource;
+			});
+
+		if (!siteSourceFirst) return sourceIds;
+		return [siteSourceFirst, ...nonSiteSources];
 	},
 
 	/* -------------------------------------------- */
@@ -4440,25 +4727,25 @@ globalThis.DataUtil = {
 
 			if (hashCurrent === hash) throw new Error(`${hashCurrent} _copy self-references! This is a bug!`);
 
-			const it = (impl._mergeCache = impl._mergeCache || {})[hash] || DataUtil.generic._pMergeCopy_search(impl, page, entryList, entry, options);
+			const entParent = (impl._mergeCache = impl._mergeCache || {})[hash] || DataUtil.generic._pMergeCopy_search(impl, page, entryList, entry, options);
 
-			if (!it) {
+			if (!entParent) {
 				if (options.isErrorOnMissing) {
 					throw new Error(`Could not find "${page}" entity "${entry._copy.name}" ("${entry._copy.source}") to copy in copier "${entry.name}" ("${entry.source}")`);
 				}
 				return;
 			}
 
-			if (DataUtil.dbg.isTrackCopied) it.dbg_isCopied = true;
+			if (DataUtil.dbg.isTrackCopied) entParent.dbg_isCopied = true;
 			// Handle recursive copy
-			if (it._copy) await DataUtil.generic._pMergeCopy(impl, page, entryList, it, options);
+			if (entParent._copy) await DataUtil.generic._pMergeCopy(impl, page, entryList, entParent, options);
 
 			// Preload templates, if required
 			// TODO(Template) allow templates for other entity types
 			const templateData = entry._copy?._templates
 				? (await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/bestiary/template.json`))
 				: null;
-			return DataUtil.generic.copyApplier.getCopy(impl, MiscUtil.copyFast(it), entry, templateData, options);
+			return DataUtil.generic.copyApplier.getCopy(impl, MiscUtil.copyFast(entParent), entry, templateData, options);
 		},
 
 		_pMergeCopy_search (impl, page, entryList, entry, options) {
@@ -4506,25 +4793,28 @@ globalThis.DataUtil = {
 				return split.join("");
 			}
 
-			static _doMod_appendStr ({copyTo, copyFrom, modInfo, msgPtFailed, prop}) {
-				if (copyTo[prop]) copyTo[prop] = `${copyTo[prop]}${modInfo.joiner || ""}${modInfo.str}`;
-				else copyTo[prop] = modInfo.str;
+			static _doMod_appendStr ({copyTo, copyFrom, modInfo, msgPtFailed, propPath}) {
+				const valExisting = MiscUtil.get(copyTo, ...propPath);
+				if (valExisting) MiscUtil.set(copyTo, ...propPath, `${valExisting}${modInfo.joiner || ""}${modInfo.str}`);
+				else MiscUtil.set(copyTo, ...propPath, modInfo.str);
 			}
 
-			static _doMod_replaceName ({copyTo, copyFrom, modInfo, msgPtFailed, prop}) {
-				if (!copyTo[prop]) return;
+			static _doMod_replaceName ({copyTo, copyFrom, modInfo, msgPtFailed, propPath}) {
+				const ents = MiscUtil.get(copyTo, ...propPath);
+				if (!ents) return;
 
 				DataUtil.generic._walker_replaceTxt = DataUtil.generic._walker_replaceTxt || MiscUtil.getWalker();
 				const re = this._getRegexFromReplaceModInfo({replace: modInfo.replace, flags: modInfo.flags});
 				const handlers = {string: this._doReplaceStringHandler.bind(null, {re: re, withStr: modInfo.with})};
 
-				copyTo[prop].forEach(it => {
-					if (it.name) it.name = DataUtil.generic._walker_replaceTxt.walk(it.name, handlers);
+				ents.forEach(ent => {
+					if (ent.name) ent.name = DataUtil.generic._walker_replaceTxt.walk(ent.name, handlers);
 				});
 			}
 
-			static _doMod_replaceTxt ({copyTo, copyFrom, modInfo, msgPtFailed, prop}) {
-				if (!copyTo[prop]) return;
+			static _doMod_replaceTxt ({copyTo, copyFrom, modInfo, msgPtFailed, propPath}) {
+				const ents = MiscUtil.get(copyTo, ...propPath);
+				if (!ents) return;
 
 				DataUtil.generic._walker_replaceTxt = DataUtil.generic._walker_replaceTxt || MiscUtil.getWalker();
 				const re = this._getRegexFromReplaceModInfo({replace: modInfo.replace, flags: modInfo.flags});
@@ -4535,105 +4825,112 @@ globalThis.DataUtil = {
 
 				if (props.includes(null)) {
 					// Handle any pure strings, e.g. `"legendaryHeader"`
-					copyTo[prop] = copyTo[prop].map(it => {
+					MiscUtil.set(copyTo, ...propPath, ents.map(it => {
 						if (typeof it !== "string") return it;
 						return DataUtil.generic._walker_replaceTxt.walk(it, handlers);
-					});
+					}));
 				}
 
-				copyTo[prop].forEach(it => {
+				ents.forEach(ent => {
 					props.forEach(prop => {
 						if (prop == null) return;
-						if (it[prop]) it[prop] = DataUtil.generic._walker_replaceTxt.walk(it[prop], handlers);
+						if (ent[prop]) ent[prop] = DataUtil.generic._walker_replaceTxt.walk(ent[prop], handlers);
 					});
 				});
 			}
 
-			static _doMod_prependArr ({copyTo, copyFrom, modInfo, msgPtFailed, prop}) {
+			static _doMod_prependArr ({copyTo, copyFrom, modInfo, msgPtFailed, propPath}) {
 				this._doEnsureArray({obj: modInfo, prop: "items"});
-				copyTo[prop] = copyTo[prop] ? modInfo.items.concat(copyTo[prop]) : modInfo.items;
+				const valExisting = MiscUtil.get(copyTo, ...propPath);
+				MiscUtil.set(copyTo, ...propPath, valExisting ? modInfo.items.concat(valExisting) : modInfo.items);
 			}
 
-			static _doMod_appendArr ({copyTo, copyFrom, modInfo, msgPtFailed, prop}) {
+			static _doMod_appendArr ({copyTo, copyFrom, modInfo, msgPtFailed, propPath}) {
 				this._doEnsureArray({obj: modInfo, prop: "items"});
-				copyTo[prop] = copyTo[prop] ? copyTo[prop].concat(modInfo.items) : modInfo.items;
+				const valExisting = MiscUtil.get(copyTo, ...propPath);
+				MiscUtil.set(copyTo, ...propPath, valExisting ? valExisting.concat(modInfo.items) : modInfo.items);
 			}
 
-			static _doMod_appendIfNotExistsArr ({copyTo, copyFrom, modInfo, msgPtFailed, prop}) {
+			static _doMod_appendIfNotExistsArr ({copyTo, copyFrom, modInfo, msgPtFailed, propPath}) {
 				this._doEnsureArray({obj: modInfo, prop: "items"});
-				if (!copyTo[prop]) return copyTo[prop] = modInfo.items;
-				copyTo[prop] = copyTo[prop].concat(modInfo.items.filter(it => !copyTo[prop].some(x => CollectionUtil.deepEquals(it, x))));
+				const valExisting = MiscUtil.get(copyTo, ...propPath);
+				if (!valExisting) return MiscUtil.set(copyTo, ...propPath, modInfo.items);
+				MiscUtil.set(copyTo, ...propPath, valExisting.concat(modInfo.items.filter(it => !valExisting.some(x => CollectionUtil.deepEquals(it, x)))));
 			}
 
-			static _doMod_replaceArr ({copyTo, copyFrom, modInfo, msgPtFailed, prop, isThrow = true}) {
+			static _doMod_replaceArr ({copyTo, copyFrom, modInfo, msgPtFailed, propPath, isThrow = true}) {
 				this._doEnsureArray({obj: modInfo, prop: "items"});
 
-				if (!copyTo[prop]) {
-					if (isThrow) throw new Error(`${msgPtFailed} Could not find "${prop}" array`);
+				const valExisting = MiscUtil.get(copyTo, ...propPath);
+				if (!valExisting) {
+					if (isThrow) throw new Error(`${msgPtFailed} Could not find "${propPath.join(".")}" array`);
 					return false;
 				}
 
 				let ixOld;
 				if (modInfo.replace.regex) {
 					const re = new RegExp(modInfo.replace.regex, modInfo.replace.flags || "");
-					ixOld = copyTo[prop].findIndex(it => it.name ? re.test(it.name) : typeof it === "string" ? re.test(it) : false);
+					ixOld = valExisting.findIndex(it => it.name ? re.test(it.name) : typeof it === "string" ? re.test(it) : false);
 				} else if (modInfo.replace.index != null) {
 					ixOld = modInfo.replace.index;
 				} else {
-					ixOld = copyTo[prop].findIndex(it => it.name ? it.name === modInfo.replace : it === modInfo.replace);
+					ixOld = valExisting.findIndex(it => it.name ? it.name === modInfo.replace : it === modInfo.replace);
 				}
 
 				if (~ixOld) {
-					copyTo[prop].splice(ixOld, 1, ...modInfo.items);
+					valExisting.splice(ixOld, 1, ...modInfo.items);
 					return true;
-				} else if (isThrow) throw new Error(`${msgPtFailed} Could not find "${prop}" item with name "${modInfo.replace}" to replace`);
+				} else if (isThrow) throw new Error(`${msgPtFailed} Could not find "${propPath.join(".")}" item with name "${modInfo.replace}" to replace`);
 				return false;
 			}
 
-			static _doMod_replaceOrAppendArr ({copyTo, copyFrom, modInfo, msgPtFailed, prop}) {
-				const didReplace = this._doMod_replaceArr({copyTo, copyFrom, modInfo, msgPtFailed, prop, isThrow: false});
-				if (!didReplace) this._doMod_appendArr({copyTo, copyFrom, modInfo, msgPtFailed, prop});
+			static _doMod_replaceOrAppendArr ({copyTo, copyFrom, modInfo, msgPtFailed, propPath}) {
+				const didReplace = this._doMod_replaceArr({copyTo, copyFrom, modInfo, msgPtFailed, propPath, isThrow: false});
+				if (!didReplace) this._doMod_appendArr({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
 			}
 
-			static _doMod_insertArr ({copyTo, copyFrom, modInfo, msgPtFailed, prop}) {
+			static _doMod_insertArr ({copyTo, copyFrom, modInfo, msgPtFailed, propPath}) {
 				this._doEnsureArray({obj: modInfo, prop: "items"});
-				if (!copyTo[prop]) throw new Error(`${msgPtFailed} Could not find "${prop}" array`);
-				copyTo[prop].splice(~modInfo.index ? modInfo.index : copyTo[prop].length, 0, ...modInfo.items);
+				const valExisting = MiscUtil.get(copyTo, ...propPath);
+				if (!valExisting) throw new Error(`${msgPtFailed} Could not find "${valExisting.join(".")}" array`);
+				valExisting.splice(~modInfo.index ? modInfo.index : valExisting.length, 0, ...modInfo.items);
 			}
 
-			static _doMod_removeArr ({copyTo, copyFrom, modInfo, msgPtFailed, prop}) {
+			static _doMod_removeArr ({copyTo, copyFrom, modInfo, msgPtFailed, propPath}) {
+				const valExisting = MiscUtil.get(copyTo, ...propPath);
 				if (modInfo.names) {
 					this._doEnsureArray({obj: modInfo, prop: "names"});
 					modInfo.names.forEach(nameToRemove => {
-						const ixOld = copyTo[prop].findIndex(it => it.name === nameToRemove);
-						if (~ixOld) copyTo[prop].splice(ixOld, 1);
+						const ixOld = valExisting.findIndex(it => it.name === nameToRemove);
+						if (~ixOld) valExisting.splice(ixOld, 1);
 						else {
-							if (!modInfo.force) throw new Error(`${msgPtFailed} Could not find "${prop}" item with name "${nameToRemove}" to remove`);
+							if (!modInfo.force) throw new Error(`${msgPtFailed} Could not find "${propPath.join(".")}" item with name "${nameToRemove}" to remove`);
 						}
 					});
 				} else if (modInfo.items) {
 					this._doEnsureArray({obj: modInfo, prop: "items"});
 					modInfo.items.forEach(itemToRemove => {
-						const ixOld = copyTo[prop].findIndex(it => it === itemToRemove);
-						if (~ixOld) copyTo[prop].splice(ixOld, 1);
-						else throw new Error(`${msgPtFailed} Could not find "${prop}" item "${itemToRemove}" to remove`);
+						const ixOld = valExisting.findIndex(it => it === itemToRemove);
+						if (~ixOld) valExisting.splice(ixOld, 1);
+						else throw new Error(`${msgPtFailed} Could not find "${propPath.join(".")}" item "${itemToRemove}" to remove`);
 					});
 				} else throw new Error(`${msgPtFailed} One of "names" or "items" must be provided!`);
 			}
 
-			static _doMod_renameArr ({copyTo, copyFrom, modInfo, msgPtFailed, prop, isThrow = true}) {
+			static _doMod_renameArr ({copyTo, copyFrom, modInfo, msgPtFailed, propPath, isThrow = true}) {
 				this._doEnsureArray({obj: modInfo, prop: "renames"});
 
-				if (!copyTo[prop]) {
-					if (isThrow) throw new Error(`${msgPtFailed} Could not find "${prop}" array`);
+				const valExisting = MiscUtil.get(copyTo, ...propPath);
+				if (!valExisting) {
+					if (isThrow) throw new Error(`${msgPtFailed} Could not find "${propPath.join(".")}" array`);
 					return;
 				}
 
 				modInfo.renames
 					.forEach(rename => {
-						const ent = copyTo[prop].find(ent => ent?.name === rename.rename);
+						const ent = valExisting.find(ent => ent?.name === rename.rename);
 						if (!ent) {
-							if (isThrow) throw new Error(`${msgPtFailed} Could not find "${prop}" item with name "${rename.rename}" to rename`);
+							if (isThrow) throw new Error(`${msgPtFailed} Could not find "${propPath.join(".")}" item with name "${rename.rename}" to rename`);
 							return;
 						}
 
@@ -4641,8 +4938,8 @@ globalThis.DataUtil = {
 					});
 			}
 
-			static _doMod_calculateProp ({copyTo, copyFrom, modInfo, msgPtFailed, prop}) {
-				copyTo[prop] = copyTo[prop] || {};
+			static _doMod_calculateProp ({copyTo, copyFrom, modInfo, msgPtFailed, propPath}) {
+				const tgt = MiscUtil.getOrSet(copyTo, ...propPath, {});
 				const toExec = modInfo.formula.replace(/<\$([^$]+)\$>/g, (...m) => {
 					switch (m[1]) {
 						case "prof_bonus": return Parser.crToPb(copyTo.cr);
@@ -4652,31 +4949,35 @@ globalThis.DataUtil = {
 				});
 				// TODO(Future) add option to format as bonus
 				// eslint-disable-next-line no-eval
-				copyTo[prop][modInfo.prop] = eval(DataUtil.generic.variableResolver.getCleanMathExpression(toExec));
+				tgt[modInfo.prop] = eval(DataUtil.generic.variableResolver.getCleanMathExpression(toExec));
 			}
 
-			static _doMod_scalarAddProp ({copyTo, copyFrom, modInfo, msgPtFailed, prop}) {
+			static _doMod_scalarAddProp ({copyTo, copyFrom, modInfo, msgPtFailed, propPath}) {
+				const tgt = MiscUtil.get(copyTo, ...propPath);
+				if (!tgt) return;
+
 				const applyTo = (k) => {
-					const out = Number(copyTo[prop][k]) + modInfo.scalar;
-					const isString = typeof copyTo[prop][k] === "string";
-					copyTo[prop][k] = isString ? `${out >= 0 ? "+" : ""}${out}` : out;
+					const out = Number(tgt[k]) + modInfo.scalar;
+					const isString = typeof tgt[k] === "string";
+					tgt[k] = isString ? `${out >= 0 ? "+" : ""}${out}` : out;
 				};
 
-				if (!copyTo[prop]) return;
-				if (modInfo.prop === "*") Object.keys(copyTo[prop]).forEach(k => applyTo(k));
+				if (modInfo.prop === "*") Object.keys(tgt).forEach(k => applyTo(k));
 				else applyTo(modInfo.prop);
 			}
 
-			static _doMod_scalarMultProp ({copyTo, copyFrom, modInfo, msgPtFailed, prop}) {
+			static _doMod_scalarMultProp ({copyTo, copyFrom, modInfo, msgPtFailed, propPath}) {
+				const tgt = MiscUtil.get(copyTo, ...propPath);
+				if (!tgt) return;
+
 				const applyTo = (k) => {
-					let out = Number(copyTo[prop][k]) * modInfo.scalar;
+					let out = Number(tgt[k]) * modInfo.scalar;
 					if (modInfo.floor) out = Math.floor(out);
-					const isString = typeof copyTo[prop][k] === "string";
-					copyTo[prop][k] = isString ? `${out >= 0 ? "+" : ""}${out}` : out;
+					const isString = typeof tgt[k] === "string";
+					tgt[k] = isString ? `${out >= 0 ? "+" : ""}${out}` : out;
 				};
 
-				if (!copyTo[prop]) return;
-				if (modInfo.prop === "*") Object.keys(copyTo[prop]).forEach(k => applyTo(k));
+				if (modInfo.prop === "*") Object.keys(tgt).forEach(k => applyTo(k));
 				else applyTo(modInfo.prop);
 			}
 
@@ -4784,7 +5085,7 @@ globalThis.DataUtil = {
 					modInfo[prop].forEach(sp => (spellcasting[prop] = spellcasting[prop] || []).push(sp));
 				});
 
-				["recharge", "charges", "rest", "daily", "weekly", "monthly", "yearly"].forEach(prop => {
+				["recharge", "legendary", "charges", "rest", "restLong", "daily", "weekly", "monthly", "yearly"].forEach(prop => {
 					if (!modInfo[prop]) return;
 
 					for (let i = 1; i <= 9; ++i) {
@@ -4867,7 +5168,7 @@ globalThis.DataUtil = {
 					spellcasting[prop].filter(it => !modInfo[prop].includes(it));
 				});
 
-				["recharge", "charges", "rest", "daily", "weekly", "monthly", "yearly"].forEach(prop => {
+				["recharge", "legendary", "charges", "rest", "restLong", "daily", "weekly", "monthly", "yearly"].forEach(prop => {
 					if (!modInfo[prop]) return;
 
 					for (let i = 1; i <= 9; ++i) {
@@ -4886,33 +5187,43 @@ globalThis.DataUtil = {
 				});
 			}
 
-			static _doMod_scalarAddHit ({copyTo, copyFrom, modInfo, msgPtFailed, prop}) {
-				if (!copyTo[prop]) return;
+			static _doMod_scalarAddHit ({copyTo, copyFrom, modInfo, msgPtFailed, propPath}) {
+				const valExisting = MiscUtil.get(copyTo, ...propPath);
+				if (!valExisting) return;
 
 				const re = /{@hit ([-+]?\d+)}/g;
-				copyTo[prop] = this._WALKER.walk(
-					copyTo[prop],
-					{
-						string: (str) => {
-							return str
-								.replace(re, (m0, m1) => `{@hit ${Number(m1) + modInfo.scalar}}`);
+				MiscUtil.set(
+					copyTo,
+					...propPath,
+					this._WALKER.walk(
+						valExisting,
+						{
+							string: (str) => {
+								return str
+									.replace(re, (m0, m1) => `{@hit ${Number(m1) + modInfo.scalar}}`);
+							},
 						},
-					},
+					),
 				);
 			}
 
-			static _doMod_scalarAddDc ({copyTo, copyFrom, modInfo, msgPtFailed, prop}) {
-				if (!copyTo[prop]) return;
+			static _doMod_scalarAddDc ({copyTo, copyFrom, modInfo, msgPtFailed, propPath}) {
+				const valExisting = MiscUtil.get(copyTo, ...propPath);
+				if (!valExisting) return;
 
 				const re = /{@dc (\d+)(?:\|[^}]+)?}/g;
-				copyTo[prop] = this._WALKER.walk(
-					copyTo[prop],
-					{
-						string: (str) => {
-							return str
-								.replace(re, (m0, m1) => `{@dc ${Number(m1) + modInfo.scalar}}`);
+				MiscUtil.set(
+					copyTo,
+					...propPath,
+					this._WALKER.walk(
+						valExisting,
+						{
+							string: (str) => {
+								return str
+									.replace(re, (m0, m1) => `{@dc ${Number(m1) + modInfo.scalar}}`);
+							},
 						},
-					},
+					),
 				);
 			}
 
@@ -4945,61 +5256,63 @@ globalThis.DataUtil = {
 				}
 			}
 
-			static _doMod_setProp ({copyTo, copyFrom, modInfo, msgPtFailed, prop}) {
-				const propPath = modInfo.prop.split(".");
-				if (prop != null && prop !== "*") propPath.unshift(prop);
-				MiscUtil.set(copyTo, ...propPath, MiscUtil.copyFast(modInfo.value));
+			static _doMod_setProp ({copyTo, copyFrom, modInfo, msgPtFailed, propPath}) {
+				const propPathCombined = modInfo.prop ? modInfo.prop.split(".") : [];
+				if (propPath != null && !CollectionUtil.deepEquals(propPath, ["*"])) propPathCombined.unshift(...propPath);
+				MiscUtil.set(copyTo, ...propPathCombined, MiscUtil.copyFast(modInfo.value));
 			}
 
-			static _doMod_prefixSuffixStringProp ({copyTo, copyFrom, modInfo, msgPtFailed, prop}) {
-				const propPath = modInfo.prop.split(".");
-				if (prop != null && prop !== "*") propPath.unshift(prop);
-				const str = MiscUtil.get(copyTo, ...propPath);
+			static _doMod_prefixSuffixStringProp ({copyTo, copyFrom, modInfo, msgPtFailed, propPath}) {
+				const propPathCombined = modInfo.prop ? modInfo.prop.split(".") : [];
+				if (propPath != null && !CollectionUtil.deepEquals(propPath, ["*"])) propPathCombined.unshift(...propPath);
+				const str = MiscUtil.get(copyTo, ...propPathCombined);
 				if (str == null || !(typeof str === "string")) return;
-				MiscUtil.set(copyTo, ...propPath, `${modInfo.prefix || ""}${str}${modInfo.suffix || ""}`);
+				MiscUtil.set(copyTo, ...propPathCombined, `${modInfo.prefix || ""}${str}${modInfo.suffix || ""}`);
 			}
 
 			static _doMod_handleProp ({copyTo, copyFrom, modInfos, msgPtFailed, prop = null}) {
+				const propPath = prop ? prop.split(".") : null;
+
 				modInfos.forEach(modInfo => {
 					if (typeof modInfo === "string") {
 						switch (modInfo) {
 							case "remove": return delete copyTo[prop];
 							default: throw new Error(`${msgPtFailed} Unhandled mode: ${modInfo}`);
 						}
-					} else {
-						switch (modInfo.mode) {
-							case "appendStr": return this._doMod_appendStr({copyTo, copyFrom, modInfo, msgPtFailed, prop});
-							case "replaceName": return this._doMod_replaceName({copyTo, copyFrom, modInfo, msgPtFailed, prop});
-							case "replaceTxt": return this._doMod_replaceTxt({copyTo, copyFrom, modInfo, msgPtFailed, prop});
-							case "prependArr": return this._doMod_prependArr({copyTo, copyFrom, modInfo, msgPtFailed, prop});
-							case "appendArr": return this._doMod_appendArr({copyTo, copyFrom, modInfo, msgPtFailed, prop});
-							case "replaceArr": return this._doMod_replaceArr({copyTo, copyFrom, modInfo, msgPtFailed, prop});
-							case "replaceOrAppendArr": return this._doMod_replaceOrAppendArr({copyTo, copyFrom, modInfo, msgPtFailed, prop});
-							case "appendIfNotExistsArr": return this._doMod_appendIfNotExistsArr({copyTo, copyFrom, modInfo, msgPtFailed, prop});
-							case "insertArr": return this._doMod_insertArr({copyTo, copyFrom, modInfo, msgPtFailed, prop});
-							case "removeArr": return this._doMod_removeArr({copyTo, copyFrom, modInfo, msgPtFailed, prop});
-							case "renameArr": return this._doMod_renameArr({copyTo, copyFrom, modInfo, msgPtFailed, prop});
-							case "calculateProp": return this._doMod_calculateProp({copyTo, copyFrom, modInfo, msgPtFailed, prop});
-							case "scalarAddProp": return this._doMod_scalarAddProp({copyTo, copyFrom, modInfo, msgPtFailed, prop});
-							case "scalarMultProp": return this._doMod_scalarMultProp({copyTo, copyFrom, modInfo, msgPtFailed, prop});
-							case "setProp": return this._doMod_setProp({copyTo, copyFrom, modInfo, msgPtFailed, prop});
-							case "prefixSuffixStringProp": return this._doMod_prefixSuffixStringProp({copyTo, copyFrom, modInfo, msgPtFailed, prop});
-							// region Bestiary specific
-							case "addSenses": return this._doMod_addSenses({copyTo, copyFrom, modInfo, msgPtFailed});
-							case "addSaves": return this._doMod_addSaves({copyTo, copyFrom, modInfo, msgPtFailed});
-							case "addSkills": return this._doMod_addSkills({copyTo, copyFrom, modInfo, msgPtFailed});
-							case "addAllSaves": return this._doMod_addAllSaves({copyTo, copyFrom, modInfo, msgPtFailed});
-							case "addAllSkills": return this._doMod_addAllSkills({copyTo, copyFrom, modInfo, msgPtFailed});
-							case "addSpells": return this._doMod_addSpells({copyTo, copyFrom, modInfo, msgPtFailed});
-							case "replaceSpells": return this._doMod_replaceSpells({copyTo, copyFrom, modInfo, msgPtFailed});
-							case "removeSpells": return this._doMod_removeSpells({copyTo, copyFrom, modInfo, msgPtFailed});
-							case "maxSize": return this._doMod_maxSize({copyTo, copyFrom, modInfo, msgPtFailed});
-							case "scalarMultXp": return this._doMod_scalarMultXp({copyTo, copyFrom, modInfo, msgPtFailed});
-							case "scalarAddHit": return this._doMod_scalarAddHit({copyTo, copyFrom, modInfo, msgPtFailed, prop});
-							case "scalarAddDc": return this._doMod_scalarAddDc({copyTo, copyFrom, modInfo, msgPtFailed, prop});
-							// endregion
-							default: throw new Error(`${msgPtFailed} Unhandled mode: ${modInfo.mode}`);
-						}
+					}
+
+					switch (modInfo.mode) {
+						case "appendStr": return this._doMod_appendStr({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
+						case "replaceName": return this._doMod_replaceName({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
+						case "replaceTxt": return this._doMod_replaceTxt({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
+						case "prependArr": return this._doMod_prependArr({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
+						case "appendArr": return this._doMod_appendArr({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
+						case "replaceArr": return this._doMod_replaceArr({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
+						case "replaceOrAppendArr": return this._doMod_replaceOrAppendArr({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
+						case "appendIfNotExistsArr": return this._doMod_appendIfNotExistsArr({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
+						case "insertArr": return this._doMod_insertArr({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
+						case "removeArr": return this._doMod_removeArr({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
+						case "renameArr": return this._doMod_renameArr({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
+						case "calculateProp": return this._doMod_calculateProp({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
+						case "scalarAddProp": return this._doMod_scalarAddProp({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
+						case "scalarMultProp": return this._doMod_scalarMultProp({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
+						case "setProp": return this._doMod_setProp({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
+						case "prefixSuffixStringProp": return this._doMod_prefixSuffixStringProp({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
+						// region Bestiary specific
+						case "addSenses": return this._doMod_addSenses({copyTo, copyFrom, modInfo, msgPtFailed});
+						case "addSaves": return this._doMod_addSaves({copyTo, copyFrom, modInfo, msgPtFailed});
+						case "addSkills": return this._doMod_addSkills({copyTo, copyFrom, modInfo, msgPtFailed});
+						case "addAllSaves": return this._doMod_addAllSaves({copyTo, copyFrom, modInfo, msgPtFailed});
+						case "addAllSkills": return this._doMod_addAllSkills({copyTo, copyFrom, modInfo, msgPtFailed});
+						case "addSpells": return this._doMod_addSpells({copyTo, copyFrom, modInfo, msgPtFailed});
+						case "replaceSpells": return this._doMod_replaceSpells({copyTo, copyFrom, modInfo, msgPtFailed});
+						case "removeSpells": return this._doMod_removeSpells({copyTo, copyFrom, modInfo, msgPtFailed});
+						case "maxSize": return this._doMod_maxSize({copyTo, copyFrom, modInfo, msgPtFailed});
+						case "scalarMultXp": return this._doMod_scalarMultXp({copyTo, copyFrom, modInfo, msgPtFailed});
+						case "scalarAddHit": return this._doMod_scalarAddHit({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
+						case "scalarAddDc": return this._doMod_scalarAddDc({copyTo, copyFrom, modInfo, msgPtFailed, propPath});
+						// endregion
+						default: throw new Error(`${msgPtFailed} Unhandled mode: ${modInfo.mode}`);
 					}
 				});
 			}
@@ -5878,6 +6191,16 @@ globalThis.DataUtil = {
 		static async loadRawJSON (...args) { return DataUtil.item.loadRawJSON(...args); }
 	},
 
+	magicvariant: class extends _DataUtilPropConfig {
+		static _MERGE_REQUIRES_PRESERVE = {
+			lootTables: true,
+			tier: true,
+		};
+		static _PAGE = "magicvariant";
+
+		static async loadRawJSON (...args) { return DataUtil.item.loadRawJSON(...args); }
+	},
+
 	itemFluff: class extends _DataUtilPropConfigSingleSource {
 		static _PAGE = UrlUtil.PG_ITEMS;
 		static _FILENAME = "fluff-items.json";
@@ -6067,6 +6390,10 @@ globalThis.DataUtil = {
 			out.forEach(it => it.__prop = "race");
 			return {race: out};
 		}
+	},
+
+	subrace: class extends _DataUtilPropConfig {
+		static _PAGE = "subrace";
 	},
 
 	raceFluff: class extends _DataUtilPropConfigSingleSource {
@@ -6715,11 +7042,12 @@ globalThis.RollerUtil = {
 		return `{@dice ${m[1]}${m[2]}#$prompt_number:title=Enter a ${m[3].trim()}$#|${lbl}}`;
 	},
 
-	_DICE_REGEX_STR: "((([1-9]\\d*)?d([1-9]\\d*)(\\s*?[-+×x*÷/]\\s*?(\\d,\\d|\\d)+(\\.\\d+)?)?))+?",
+	_DICE_REGEX_STR: /((?:\s*?(?<opLeading>[-+×x*÷/])\s*?)?((?<diceCount>[1-9]\d*)?d(?<diceFace>[1-9]\d*)(?<bonus>(\s*?[-+×x*÷/]\s*?(\d,\d|\d)+(\.\d+)?(?!d))*)))+?/.source,
 };
 RollerUtil.DICE_REGEX = new RegExp(RollerUtil._DICE_REGEX_STR, "g");
+RollerUtil.DICE_REGEX_FULLMATCH = new RegExp(`^\\s*${RollerUtil._DICE_REGEX_STR}\\s*$`);
 RollerUtil.REGEX_DAMAGE_DICE = /(?<average>\d+)(?<prefix> \((?:{@dice |{@damage ))(?<diceExp>[-+0-9d ]*)(?<suffix>}\)(?:\s*\+\s*the spell's level)? [a-z]+( \([-a-zA-Z0-9 ]+\))?( or [a-z]+( \([-a-zA-Z0-9 ]+\))?)? damage)/gi;
-RollerUtil.REGEX_DAMAGE_FLAT = /(?<prefix>Hit: |{@h})(?<flatVal>[0-9]+)(?<suffix> [a-z]+( \([-a-zA-Z0-9 ]+\))?( or [a-z]+( \([-a-zA-Z0-9 ]+\))?)? damage)/gi;
+RollerUtil.REGEX_DAMAGE_FLAT = /(?<prefix>Hit(?: or Miss)?: |Miss: |{@hom}|{@h}|{@m})(?<flatVal>[0-9]+)(?<suffix> [a-z]+( \([-a-zA-Z0-9 ]+\))?( or [a-z]+( \([-a-zA-Z0-9 ]+\))?)? damage)/gi;
 RollerUtil._REGEX_ROLLABLE_COL_LABEL = /^(.*?\d)(\s*[-+/*^×÷]\s*)([a-zA-Z0-9 ]+)$/;
 RollerUtil.ROLL_COL_NONE = 0;
 RollerUtil.ROLL_COL_STANDARD = 1;
@@ -7231,10 +7559,6 @@ globalThis.CollectionUtil = {
 		if (a.size !== b.size) return false;
 		for (const it of a) if (!b.has(it)) return false;
 		return true;
-	},
-
-	setDiff (set1, set2) {
-		return new Set([...set1].filter(it => !set2.has(it)));
 	},
 
 	objectDiff (obj1, obj2) {
@@ -8309,12 +8633,13 @@ if (!IS_VTT && typeof window !== "undefined") {
 		Renderer.events.bindGeneric();
 	});
 
-	if (location.origin === VeCt.LOC_ORIGIN_CANCER) {
+	// region Cancer
+	if (location.hostname.endsWith(VeCt.LOC_HOSTNAME_CANCER)) {
 		const ivsCancer = [];
+		let anyFound = false;
 
 		window.addEventListener("load", () => {
 			let isPadded = false;
-			let anyFound = false;
 			[
 				"div-gpt-ad-5etools35927", // main banner
 				"div-gpt-ad-5etools35930", // side banner
@@ -8349,19 +8674,19 @@ if (!IS_VTT && typeof window !== "undefined") {
 			ivsCancer.push(ivPad);
 		});
 
-		// Hack to lock the ad space at original size--prevents the screen from shifting around once loaded
+		// Hack to lock the ad space at a fixed size--prevents the screen from shifting around once loaded
 		setTimeout(() => {
 			const $wrp = $(`.cancer__wrp-leaderboard-inner`);
-			const h = $wrp.outerHeight();
-			$wrp.css({height: h});
+			if (anyFound) $wrp.css({height: 90});
 			ivsCancer.forEach(iv => clearInterval(iv));
-		}, 5000);
+		}, 6500);
 	} else {
 		window.addEventListener("load", () => $(`.cancer__anchor`).remove());
 	}
 
 	// window.addEventListener("load", () => {
-	// 	$(`.cancer__sidebar-rhs-inner--top`).append(`<div class="TEST_RHS_TOP"></div>`)
-	// 	$(`.cancer__sidebar-rhs-inner--bottom`).append(`<div class="TEST_RHS_BOTTOM"></div>`)
+	// 	$(`.cancer__sidebar-inner--top`).append(`<div style="width: 300px; height: 600px; background: #f0f;"></div>`);
+	// 	$(`.cancer__sidebar-inner--bottom`).append(`<div style="width: 300px; height: 600px; background: #f0f;"></div>`);
 	// });
+	// endregion
 }

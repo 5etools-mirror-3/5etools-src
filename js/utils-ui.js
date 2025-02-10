@@ -488,6 +488,9 @@ class UiUtil {
 			$modal: $(modal),
 			$modalInner: $(wrpScroller),
 			$modalFooter: $(modalFooter),
+			eleModal: modal,
+			eleModalInner: wrpScroller,
+			eleModalFooter: modalFooter,
 			doClose: pHandleCloseClick,
 			doTeardown,
 			pGetResolved: () => pResolveModal,
@@ -639,7 +642,11 @@ class UiUtil {
 		return out;
 	}
 
-	static bindTypingEnd ({$ipt, fnKeyup, fnKeypress, fnKeydown, fnClick, timeout} = {}) {
+	static bindTypingEnd ({ipt, $ipt, fnKeyup, fnKeypress, fnKeydown, fnClick, timeout} = {}) {
+		if (!ipt && !$ipt?.length) throw new Error(`"ipt" or "$ipt" must be provided!`);
+
+		$ipt = $ipt || $(ipt);
+
 		let timerTyping;
 		$ipt
 			.on("keyup search paste", evt => {
@@ -1647,7 +1654,7 @@ class SearchWidget {
 	}
 
 	/**
-	 * @param $iptSearch input element
+	 * @param iptOr$iptSearch input element
 	 * @param opts Options object.
 	 * @param opts.fnSearch Function which runs the search.
 	 * @param opts.pFnSearch Function which runs the search.
@@ -1658,8 +1665,10 @@ class SearchWidget {
 	 * @param opts.flags.doClickFirst Flag tracking "should first result get clicked"
 	 * @param opts.$ptrRows Pointer to array of rows.
 	 */
-	static bindAutoSearch ($iptSearch, opts) {
+	static bindAutoSearch (iptOr$iptSearch, opts) {
 		if (opts.fnSearch && opts.pFnSearch) throw new Error(`Options "fnSearch" and "pFnSearch" are mutually exclusive!`);
+
+		const $iptSearch = $(iptOr$iptSearch);
 
 		// Chain each search from the previous, to ensure the last search wins
 		let pSearching = null;
@@ -3565,7 +3574,7 @@ class DragReorderUiUtil {
 			const ixRow = $children.indexOf($fnGetRow());
 
 			$children.forEach(($child, i) => {
-				const dimensions = {w: $child.outerWidth(true), h: $child.outerHeight(true)};
+				const dimensions = {w: $child.outerWidth(), h: $child.outerHeight()};
 				const $dummy = $(`<div class="no-shrink ${i === ixRow ? "ui-drag__wrp-drag-dummy--highlight" : "ui-drag__wrp-drag-dummy--lowlight"}"></div>`)
 					.width(dimensions.w).height(dimensions.h)
 					.mouseup(() => {
@@ -5120,7 +5129,7 @@ class ComponentUiUtil {
 	 * @param [opts.isTreatIndeterminateNullAsPositive]
 	 * @param [opts.stateName] State name.
 	 * @param [opts.stateProp] State prop.
-	 * @return {(HTMLElementModified | Object)}
+	 * @return {(HTMLElementExtended | Object)}
 	 */
 	static getCbBool (component, prop, opts) {
 		opts = opts || {};

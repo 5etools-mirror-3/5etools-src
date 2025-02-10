@@ -8819,7 +8819,7 @@
 				{
 					"name": "Battleaxe",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}8 ({@dice 1d8 + 4}) slashing damage, or 9 ({@damage 1d10 + 4}) slashing damage if used with two hands."
+						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}8 ({@damage 1d8 + 4}) slashing damage, or 9 ({@damage 1d10 + 4}) slashing damage if used with two hands."
 					]
 				},
 				{
@@ -11947,7 +11947,7 @@
 				{
 					"name": "Stomping Foot",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}10 ({@damage 1d10 + 5}) bludgeoning damage, or 21 ({@dice 3d10 + 5}) to a {@condition prone} target."
+						"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}10 ({@damage 1d10 + 5}) bludgeoning damage, or 21 ({@damage 3d10 + 5}) to a {@condition prone} target."
 					]
 				},
 				{
@@ -21855,7 +21855,7 @@
 				{
 					"name": "Dragon's Resistance",
 					"entries": [
-						"The kobold has resistance to a type of damage based on the color of dragon that invested it with power (choose or roll a {@dice d10}): 1\u20132, acid (black or copper); 3\u20134, cold (silver or white); 5\u20136, fire (brass, gold, or red); 7\u20138, lightning (blue or bronze); 9\u201310, poison (green)."
+						"The kobold has resistance to a type of damage based on the color of dragon that invested it with power (choose or roll a {@damage d10}): 1\u20132, acid (black or copper); 3\u20134, cold (silver or white); 5\u20136, fire (brass, gold, or red); 7\u20138, lightning (blue or bronze); 9\u201310, poison (green)."
 					]
 				},
 				{
@@ -22562,7 +22562,7 @@
 				{
 					"name": "Thunderbolt",
 					"entries": [
-						"{@atk rs} {@hit 5} to hit, range 60 ft., one target. {@h}11 ({@damage 2d10}) lightning damage plus 11 ({@dice 2d10}) thunder damage, and the target is knocked {@condition prone}."
+						"{@atk rs} {@hit 5} to hit, range 60 ft., one target. {@h}11 ({@damage 2d10}) lightning damage plus 11 ({@damage 2d10}) thunder damage, and the target is knocked {@condition prone}."
 					]
 				},
 				{
@@ -25553,7 +25553,7 @@
 				{
 					"name": "Tentacles",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 15 ft., one target. {@h}15 ({@damage 3d8 + 2}) bludgeoning damage, and the target is {@condition grappled} (escape {@dc 14}) if it is a Large or smaller creature. Until this grapple ends, the target is {@condition restrained} and takes 15 ({@dice 3d8 + 2}) bludgeoning damage at the start of each of its turns, and the morkoth can't use its tentacles on another target."
+						"{@atk mw} {@hit 6} to hit, reach 15 ft., one target. {@h}15 ({@damage 3d8 + 2}) bludgeoning damage, and the target is {@condition grappled} (escape {@dc 14}) if it is a Large or smaller creature. Until this grapple ends, the target is {@condition restrained} and takes 15 ({@damage 3d8 + 2}) bludgeoning damage at the start of each of its turns, and the morkoth can't use its tentacles on another target."
 					]
 				},
 				{
@@ -28402,6 +28402,9 @@
 				"name": "Orcus",
 				"source": "MPMM"
 			},
+			"attachedItems": [
+				"wand of orcus|dmg"
+			],
 			"traitTags": [
 				"Legendary Resistances",
 				"Magic Resistance"
@@ -30246,7 +30249,7 @@
 				{
 					"name": "Shadow Spear",
 					"entries": [
-						"{@atk mw,rw} {@hit 8} to hit, reach 5 ft. or range 30/120, one target. {@h}7 ({@damage 1d6 + 4}) piercing damage plus 26 ({@damage 4d12}) necrotic damage. Hit or Miss: The spear magically returns to the shadar-kai's hand immediately after a ranged attack."
+						"{@atk mw,rw} {@hit 8} to hit, reach 5 ft. or range 30/120, one target. {@h}7 ({@damage 1d6 + 4}) piercing damage plus 26 ({@damage 4d12}) necrotic damage. {@hom}The spear magically returns to the shadar-kai's hand immediately after a ranged attack."
 					]
 				}
 			],
@@ -30595,7 +30598,7 @@
 				{
 					"name": "Shadow Dagger",
 					"entries": [
-						"{@atk mw,rw} {@hit 7} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}13 ({@damage 4d4 + 3}) piercing damage plus 19 ({@damage 3d12}) necrotic damage, and the target has disadvantage on saving throws until the end of the shadar-kai's next turn. Hit or Miss: The dagger magically returns to the shadar-kai's hand immediately after a ranged attack."
+						"{@atk mw,rw} {@hit 7} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}13 ({@damage 4d4 + 3}) piercing damage plus 19 ({@damage 3d12}) necrotic damage, and the target has disadvantage on saving throws until the end of the shadar-kai's next turn. {@hom}The dagger magically returns to the shadar-kai's hand immediately after a ranged attack."
 					]
 				},
 				{
@@ -35698,7 +35701,7 @@
 								{
 									"type": "item",
 									"name": "Resistance",
-									"entry": "Resistance. The transmuter has resistance to acid, cold, fire, lightning, or thunder damage (transmuter's choice whenever choosing this benefit)."
+									"entry": "The transmuter has resistance to acid, cold, fire, lightning, or thunder damage (transmuter's choice whenever choosing this benefit)."
 								},
 								{
 									"type": "item",
@@ -37600,7 +37603,7 @@
 				{
 					"name": "Command Ally",
 					"entries": [
-						"The warlord targets one ally it can see within 30 feet of it. if the target can see and hear the warlord, the target can make one weapon attack as a reaction and gains advantage on the attack roll."
+						"The warlord targets one ally it can see within 30 feet of it. If the target can see and hear the warlord, the target can make one weapon attack as a reaction and gains advantage on the attack roll."
 					]
 				},
 				{
@@ -38607,7 +38610,7 @@
 				{
 					"name": "Shortsword",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@dice 1d6 + 2}) piercing damage. If at least one of the xvart's allies is within 5 feet of the target, the xvart can push the target 5 feet if the target is a Medium or smaller creature."
+						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage. If at least one of the xvart's allies is within 5 feet of the target, the xvart can push the target 5 feet if the target is a Medium or smaller creature."
 					]
 				},
 				{
@@ -38750,7 +38753,7 @@
 				{
 					"name": "Scimitar",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@dice 1d6 + 2}) slashing damage."
+						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) slashing damage."
 					]
 				},
 				{
@@ -39067,7 +39070,7 @@
 			"str": 29,
 			"dex": 16,
 			"con": 26,
-			"int": 26,
+			"int": 16,
 			"wis": 24,
 			"cha": 15,
 			"save": {

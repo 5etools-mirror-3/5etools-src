@@ -342,7 +342,6 @@ export class FilterBox extends ProxyBase {
 		</div>
 		<hr class="w-100 m-0 mb-2">
 
-		<hr class="mt-1 mb-1">
 		<div class="ui-modal__scroller smooth-scroll px-1">
 			${$children}
 		</div>
@@ -503,6 +502,7 @@ export class FilterBox extends ProxyBase {
 		const urlHeadersUpdated = new Set();
 		const subHashesConsumed = new Set();
 		let filterInitialSearch;
+		let isPreserveExisting = false;
 
 		const filterBoxState = {};
 		const statePerFilter = {};
@@ -522,9 +522,17 @@ export class FilterBox extends ProxyBase {
 				}
 
 				if (Object.values(FilterBox._SUB_HASH_PREFIXES).includes(prefix)) {
-					// special case for the search """state"""
-					if (prefix === VeCt.FILTER_BOX_SUB_HASH_SEARCH_PREFIX) filterInitialSearch = data.clean[0];
-					else filterBoxState[prefix] = data.clean;
+					switch (prefix) {
+						case VeCt.FILTER_BOX_SUB_HASH_SEARCH_PREFIX:
+							filterInitialSearch = data.clean[0];
+							break;
+						case VeCt.FILTER_BOX_SUB_HASH_FLAG_IS_PRESERVE_EXISTING:
+							isPreserveExisting = true;
+							break;
+						default:
+							filterBoxState[prefix] = data.clean;
+					}
+
 					subHashesConsumed.add(data.raw);
 					return;
 				}
@@ -542,6 +550,7 @@ export class FilterBox extends ProxyBase {
 			unpacked,
 			subHashesConsumed,
 			filterInitialSearch,
+			isPreserveExisting,
 		};
 	}
 
@@ -549,12 +558,6 @@ export class FilterBox extends ProxyBase {
 		const unpackedSubhashes = this.unpackSubHashes(subHashes, {force});
 
 		if (unpackedSubhashes == null) return subHashes;
-
-		const {
-			unpacked,
-			subHashesConsumed,
-			filterInitialSearch,
-		} = unpackedSubhashes;
 
 		// region Update filter state
 		const {box: nxtStateBox, filters: nxtStatesFilters} = this.getNextStateFromSubHashes({unpackedSubhashes});
@@ -569,6 +572,12 @@ export class FilterBox extends ProxyBase {
 			.filter(filter => nxtStatesFilters[filter.header])
 			.forEach(filter => filter.setStateFromNextState(nxtStatesFilters));
 		// endregion
+
+		const {
+			unpacked,
+			subHashesConsumed,
+			filterInitialSearch,
+		} = unpackedSubhashes;
 
 		// region Update search input value
 		if (filterInitialSearch && ($iptSearch || this._$iptSearch)) ($iptSearch || this._$iptSearch).val(filterInitialSearch).change().keydown().keyup().trigger("instantKeyup");
@@ -597,6 +606,7 @@ export class FilterBox extends ProxyBase {
 			filterBoxState,
 			statePerFilter,
 			urlHeadersUpdated,
+			isPreserveExisting,
 		} = unpackedSubhashes;
 
 		const nxtStateBox = this._getNextBoxStateFromSubHashes(urlHeaderToFilter, filterBoxState);
@@ -610,12 +620,14 @@ export class FilterBox extends ProxyBase {
 			});
 
 		// reset any other state/meta state/etc
-		Object.keys(urlHeaderToFilter)
-			.filter(k => !urlHeadersUpdated.has(k))
-			.forEach(k => {
-				const filter = urlHeaderToFilter[k];
-				Object.assign(nxtStateFilters, filter.getNextStateFromSubhashState(null));
-			});
+		if (!isPreserveExisting) {
+			Object.keys(urlHeaderToFilter)
+				.filter(k => !urlHeadersUpdated.has(k))
+				.forEach(k => {
+					const filter = urlHeaderToFilter[k];
+					Object.assign(nxtStateFilters, filter.getNextStateFromSubhashState(null));
+				});
+		}
 
 		return {box: nxtStateBox, filters: nxtStateFilters};
 	}
@@ -859,6 +871,7 @@ FilterBox._SUB_HASH_PREFIXES = {
 	minisHidden: FilterBox._SUB_HASH_BOX_MINIS_HIDDEN_PREFIX,
 	combineAs: FilterBox._SUB_HASH_BOX_COMBINE_AS_PREFIX,
 	search: VeCt.FILTER_BOX_SUB_HASH_SEARCH_PREFIX,
+	flagIsPreserveExisting: VeCt.FILTER_BOX_SUB_HASH_FLAG_IS_PRESERVE_EXISTING,
 };
 
 FilterRegistry.registerSubhashes(Object.values(FilterBox._SUB_HASH_PREFIXES));

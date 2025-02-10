@@ -69,7 +69,7 @@ class _InitiativeTrackerMonsterAddCustomizer extends BaseComponent {
 	_render_$getRowScaler () {
 		const isShowCrScaler = Parser.crToNumber(this._mon.cr) !== VeCt.CR_UNKNOWN;
 		const isShowSpellLevelScaler = !isShowCrScaler && this._mon.summonedBySpellLevel != null;
-		const isShowClassLevelScaler = !isShowSpellLevelScaler && this._mon.summonedByClass != null;
+		const isShowClassLevelScaler = !isShowSpellLevelScaler && (this._mon.summonedByClass != null || this._mon.summonedScaleByPlayerLevel);
 
 		if (!isShowCrScaler && !isShowSpellLevelScaler && !isShowClassLevelScaler) return null;
 
@@ -98,7 +98,7 @@ class _InitiativeTrackerMonsterAddCustomizer extends BaseComponent {
 				});
 
 			return $$`<label class="split-v-center mb-2">
-				<span class="w-200p ve-text-right no-shrink mr-2 bold">Class Level:</span>
+				<span class="w-200p ve-text-right no-shrink mr-2 bold">${this._mon.summonedByClass != null ? "Class Level" : "Level"}:</span>
 				${sel}
 			</label>`;
 		}
@@ -234,8 +234,7 @@ export class InitiativeTrackerMonsterAdd extends BaseComponent {
 		const {$modalInner, doClose, pGetResolved} = UiUtil.getShowModal();
 		rdState.cbDoClose = doClose;
 
-		const $iptSearch = $(`<input class="ui-search__ipt-search search form-control" autocomplete="off" placeholder="Search...">`)
-			.blurOnEsc();
+		const $iptSearch = $(`<input class="ui-search__ipt-search search form-control" autocomplete="off" placeholder="Search...">`);
 
 		$$`<div class="split no-shrink">
 			${$iptSearch}

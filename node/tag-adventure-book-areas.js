@@ -1,13 +1,14 @@
-import fs from "fs";
 import * as ut from "./util.js";
 import "../js/parser.js";
 import "../js/utils.js";
 import "../js/render.js";
+import {Command} from "commander";
+import {getAllJson} from "./util-json-files.js";
+import {writeJsonSync} from "5etools-utils/lib/UtilFs.js";
 
 class AreaTagger {
-	constructor (filePath) {
-		this._filePath = filePath;
-		this._data = ut.readJson(filePath);
+	constructor (json) {
+		this._json = json;
 
 		this._maxTag = 0;
 		this._existingTags = null;
@@ -25,7 +26,7 @@ class AreaTagger {
 	}
 
 	_doPopulateExistingTags () {
-		const map = Renderer.adventureBook.getEntryIdLookup(this._data.data, "populateExistingIds");
+		const map = Renderer.adventureBook.getEntryIdLookup(this._json.data);
 		this._existingTags = new Set(Object.keys(map));
 	}
 
@@ -52,34 +53,62 @@ class AreaTagger {
 			},
 		};
 
-		this._data.data.forEach(chap => MiscUtil.getWalker().walk(chap, handlers));
-	}
-
-	_doWrite () {
-		const outStr = CleanUtil.getCleanJson(this._data);
-		fs.writeFileSync(this._filePath, outStr, "utf-8");
+		this._json.data.forEach(chap => MiscUtil.getWalker().walk(chap, handlers));
 	}
 
 	run () {
 		this._doPopulateExistingTags();
 		this._addNewTags();
-		this._doWrite();
 	}
 }
 
+const program = new Command()
+	.option("--file <file...>", `Input files`)
+	.option("--dir <dir...>", `Input directories`)
+;
+
+program.parse(process.argv);
+const params = program.opts();
+
+const dirs = [...(params.dir || [])];
+const files = [...(params.file || [])];
+
+// If no options specified, use default selection
+if (!dirs.length && !files.length) {
+	[
+		{
+			index: ut.readJson("./data/adventures.json"),
+			type: "adventure",
+		},
+		{
+			index: ut.readJson("./data/books.json"),
+			type: "book",
+		},
+	]
+		.forEach(({index, type}) => {
+			index[type]
+				.forEach(meta => {
+					files.push(`./data/${type}/${type}-${meta.id.toLowerCase()}.json`);
+				});
+		});
+}
+
 console.log(`Running area tagging pass...`);
-const adventureIndex = ut.readJson("./data/adventures.json");
-const bookIndex = ut.readJson("./data/books.json");
 
-const doPass = (arr, type) => {
-	arr.forEach(meta => {
-		const areaTagger = new AreaTagger(`./data/${type}/${type}-${meta.id.toLowerCase()}.json`);
-		areaTagger.run();
-		console.log(`\tTagged ${meta.id}...`);
+getAllJson({dirs, files})
+	.forEach(({path, json}) => {
+		if (json.data) {
+			new AreaTagger(json).run();
+		} else {
+			(json.adventureData || [])
+				.forEach(corpus => new AreaTagger(corpus).run());
+			(json.bookData || [])
+				.forEach(corpus => new AreaTagger(corpus).run());
+		}
+
+		writeJsonSync(path, json, {isClean: true});
+
+		console.log(`\tTagged "${path}"...`);
 	});
-};
-
-doPass(adventureIndex.adventure, "adventure");
-doPass(bookIndex.book, "book");
 
 console.log(`Area tagging complete.`);

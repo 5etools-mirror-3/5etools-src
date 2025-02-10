@@ -1,10 +1,11 @@
-import {AttachedSpellTag, BasicTextClean, BonusTag, ChargeTag, ConditionImmunityTag, DamageImmunityTag, DamageResistanceTag, DamageVulnerabilityTag, ItemMiscTag, ItemOtherTagsTag, ItemSpellcastingFocusTag, RechargeAmountTag, RechargeTypeTag, ReqAttuneTagTag} from "./converterutils-item.js";
+import {AttachedSpellTag, BasicTextClean, BonusTag, ChargeTag, ConditionImmunityTag, DamageImmunityTag, DamageResistanceTag, DamageVulnerabilityTag, ItemMiscTag, ItemOtherTagsTag, ItemSpellcastingFocusTag, LightTag, RechargeAmountTag, RechargeTypeTag, ReqAttuneTagTag} from "./converterutils-item.js";
 import {ConverterBase} from "./converter-base.js";
 import {ArtifactPropertiesTag, TagCondition} from "./converterutils-tags.js";
 import {TagJsons} from "./converterutils-entries.js";
 import {ConverterUtils} from "./converterutils-utils.js";
 import {EntryCoalesceEntryLists, EntryCoalesceRawLines} from "./converterutils-entrycoalesce.js";
 import {SITE_STYLE__CLASSIC, SITE_STYLE__ONE} from "../consts.js";
+import {PropOrder} from "../utils-proporder.js";
 
 export class ConverterItem extends ConverterBase {
 	static _ALL_ITEMS = null;
@@ -97,6 +98,7 @@ export class ConverterItem extends ConverterBase {
 
 		const statsOut = this._getFinalState(item, options);
 		options.cbOutput(statsOut, options.isAppend);
+		return statsOut;
 	}
 
 	static _getFinalState (item, options) {
@@ -141,6 +143,7 @@ export class ConverterItem extends ConverterBase {
 		ConditionImmunityTag.tryRun(stats, {cbMan: () => options.cbWarning(`${manName}Condition immunity tagging requires manual conversion`)});
 		ReqAttuneTagTag.tryRun(stats, {cbMan: () => options.cbWarning(`${manName}Attunement requirement tagging requires manual conversion`)});
 		AttachedSpellTag.tryRun(stats);
+		LightTag.tryRun(stats);
 
 		// TODO
 		//  - tag damage type?
@@ -208,6 +211,7 @@ export class ConverterItem extends ConverterBase {
 				case "rod": stats.type = options.styleHint === SITE_STYLE__ONE ? Parser.ITM_TYP__ODND_ROD : Parser.ITM_TYP__ROD; continue;
 				case "wand": stats.type = options.styleHint === SITE_STYLE__ONE ? Parser.ITM_TYP__ODND_WAND : Parser.ITM_TYP__WAND; continue;
 				case "scroll": stats.type = options.styleHint === SITE_STYLE__ONE ? Parser.ITM_TYP__ODND_SCROLL : Parser.ITM_TYP__SCROLL; continue;
+				case "adventuring gear": stats.type = options.styleHint === SITE_STYLE__ONE ? Parser.ITM_TYP__ODND_ADVENTURING_GEAR : Parser.ITM_TYP__ADVENTURING_GEAR; continue;
 			}
 			// endregion
 
@@ -297,7 +301,7 @@ export class ConverterItem extends ConverterBase {
 					continue;
 				}
 
-				if (options.styleHint === SITE_STYLE__CLASSIC) throw new Error(`Multiple base item(s) for "${mBaseWeapon.groups.ptParens}"`);
+				if (options.styleHint === SITE_STYLE__CLASSIC) options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Multiple base item(s) for "${mBaseWeapon.groups.ptParens}"`);
 
 				// e.g. XDMG items have broken down "any sword" into a specific list of items
 				(stats.requires ||= [])
@@ -610,6 +614,7 @@ export class ConverterItem extends ConverterBase {
 
 		stats.__prop = "magicvariant";
 		stats.type = options.styleHint === SITE_STYLE__ONE ? Parser.ITM_TYP__ODND_GENERIC_VARIANT : Parser.ITM_TYP__GENERIC_VARIANT;
+		if (options.styleHint === SITE_STYLE__CLASSIC) stats.edition = SITE_STYLE__CLASSIC;
 	}
 
 	static _setWeight (stats, options) {
@@ -680,6 +685,14 @@ export class ConverterItem extends ConverterBase {
 			needleBlowgun: true,
 			weapon: true,
 		})
+			.forEach(prop => delete stats[prop]);
+		// endregion
+
+		// region other props
+		[
+			"reprintedAs",
+			"edition",
+		]
 			.forEach(prop => delete stats[prop]);
 		// endregion
 	}

@@ -318,7 +318,7 @@ class InitiativeTrackerStatColumn_LegendaryActions extends _InitiativeTrackerSta
 
 	_getInitialCellObj ({mon, fluff}) {
 		if (!mon) return {current: null, max: null};
-		const cnt = mon.legendaryActions ?? (mon.legendary ? 3 : null);
+		const cnt = mon.legendaryActions ?? (Renderer.monster.hasLegendaryActions(mon) ? 3 : null);
 		return {
 			current: cnt,
 			max: cnt,

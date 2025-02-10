@@ -5,6 +5,7 @@ class BlocklistUtil {
 		"_meta",
 		"_test",
 		"linkedLootTables",
+		"$schema",
 
 		// `items-base.json`
 		"itemProperty",
@@ -115,6 +116,7 @@ class BlocklistUi {
 		this._data = data;
 		this._isCompactUi = !!isCompactUi;
 		this._isAutoSave = !!isAutoSave;
+		this._isRequireSave = false; // (For Foundry use)
 
 		this._excludes = ExcludeUtil.getList();
 
@@ -131,10 +133,18 @@ class BlocklistUi {
 		this._metaSelName = null;
 	}
 
+	async _pDoPersist (nxtList) {
+		nxtList ||= MiscUtil.copy(this._excludes);
+
+		if (this._isAutoSave) return ExcludeUtil.pSetList(nxtList);
+
+		this._isRequireSave = true;
+	}
+
 	_addExclude (displayName, hash, category, source) {
 		if (!this._excludes.find(row => row.source === source && row.category === category && row.hash === hash)) {
 			this._excludes.push({displayName, hash, category, source});
-			if (this._isAutoSave) ExcludeUtil.pSetList(MiscUtil.copy(this._excludes)).then(null);
+			this._pDoPersist().then(null);
 			return true;
 		}
 		return false;
@@ -144,13 +154,13 @@ class BlocklistUi {
 		const ix = this._excludes.findIndex(row => row.source === source && row.category === category && row.hash === hash);
 		if (~ix) {
 			this._excludes.splice(ix, 1);
-			if (this._isAutoSave) ExcludeUtil.pSetList(MiscUtil.copy(this._excludes)).then(null);
+			this._pDoPersist().then(null);
 		}
 	}
 
 	_resetExcludes () {
 		this._excludes = [];
-		if (this._isAutoSave) ExcludeUtil.pSetList(MiscUtil.copy(this._excludes)).then(null);
+		this._pDoPersist().then(null);
 	}
 
 	async _pInitSubBlocklistEntries () {
@@ -300,25 +310,30 @@ class BlocklistUi {
 
 	_pInit_render () {
 		// region Helper controls
-		const $btnExcludeAllUa = $(this._getBtnHtml_addToBlocklist())
-			.click(() => this._addAllUa());
-		const $btnIncludeAllUa = $(this._getBtnHtml_removeFromBlocklist())
-			.click(() => this._removeAllUa());
+		const btnExcludeAllUa = this._getBtn_addToBlocklist()
+			.onn("click", () => this._addAllUa());
+		const btnIncludeAllUa = this._getBtn_removeFromBlocklist()
+			.onn("click", () => this._removeAllUa());
 
-		const $btnExcludeAllSources = $(this._getBtnHtml_addToBlocklist())
-			.click(() => this._addAllSources());
-		const $btnIncludeAllSources = $(this._getBtnHtml_removeFromBlocklist())
-			.click(() => this._removeAllSources());
+		const btnExcludeAllSources = this._getBtn_addToBlocklist()
+			.onn("click", () => this._addAllSources());
+		const btnIncludeAllSources = this._getBtn_removeFromBlocklist()
+			.onn("click", () => this._removeAllSources());
 
-		const $btnExcludeAllComedySources = $(this._getBtnHtml_addToBlocklist())
-			.click(() => this._addAllComedySources());
-		const $btnIncludeAllComedySources = $(this._getBtnHtml_removeFromBlocklist())
-			.click(() => this._removeAllComedySources());
+		const btnExcludeAllComedySources = this._getBtn_addToBlocklist()
+			.onn("click", () => this._addAllComedySources());
+		const btnIncludeAllComedySources = this._getBtn_removeFromBlocklist()
+			.onn("click", () => this._removeAllComedySources());
 
-		const $btnExcludeAllNonForgottenRealmsSources = $(this._getBtnHtml_addToBlocklist())
-			.click(() => this._addAllNonForgottenRealms());
-		const $btnIncludeAllNonForgottenRealmsSources = $(this._getBtnHtml_removeFromBlocklist())
-			.click(() => this._removeAllNonForgottenRealms());
+		const btnExcludeAllNonForgottenRealmsSources = this._getBtn_addToBlocklist()
+			.onn("click", () => this._addAllNonForgottenRealms());
+		const btnIncludeAllNonForgottenRealmsSources = this._getBtn_removeFromBlocklist()
+			.onn("click", () => this._removeAllNonForgottenRealms());
+
+		const btnExcludeModernSources = this._getBtn_addToBlocklist()
+			.onn("click", () => this._addAllNonModernSources());
+		const btnIncludeModernSources = this._getBtn_removeFromBlocklist()
+			.onn("click", () => this._removeAllModernSources());
 		// endregion
 
 		// region Primary controls
@@ -386,32 +401,40 @@ class BlocklistUi {
 			<div class="ve-flex-vh-center mr-4 mobile__mr-0 mobile__mb-2">
 				<div class="mr-2">UA/Etc. Sources</div>
 				<div class="ve-flex-v-center ve-btn-group">
-					${$btnExcludeAllUa}
-					${$btnIncludeAllUa}
+					${btnExcludeAllUa}
+					${btnIncludeAllUa}
 				</div>
 			</div>
 
 			<div class="ve-flex-vh-center mr-3 mobile__mr-0 mobile__mb-2">
 				<div class="mr-2">Comedy Sources</div>
 				<div class="ve-flex-v-center ve-btn-group">
-					${$btnExcludeAllComedySources}
-					${$btnIncludeAllComedySources}
+					${btnExcludeAllComedySources}
+					${btnIncludeAllComedySources}
 				</div>
 			</div>
 
 			<div class="ve-flex-vh-center mr-3 mobile__mr-0 mobile__mb-2">
 				<div class="mr-2">Non-<i>Forgotten Realms</i></div>
 				<div class="ve-flex-v-center ve-btn-group">
-					${$btnExcludeAllNonForgottenRealmsSources}
-					${$btnIncludeAllNonForgottenRealmsSources}
+					${btnExcludeAllNonForgottenRealmsSources}
+					${btnIncludeAllNonForgottenRealmsSources}
+				</div>
+			</div>
+
+			<div class="ve-flex-vh-center mr-3 mobile__mr-0 mobile__mb-2">
+				<div class="mr-2">&apos;24 Sources</div>
+				<div class="ve-flex-v-center ve-btn-group">
+					${btnExcludeModernSources}
+					${btnIncludeModernSources}
 				</div>
 			</div>
 
 			<div class="ve-flex-vh-center mr-3 mobile__mr-0 mobile__mb-2">
 				<div class="mr-2">All Sources</div>
 				<div class="ve-flex-v-center ve-btn-group">
-					${$btnExcludeAllSources}
-					${$btnIncludeAllSources}
+					${btnExcludeAllSources}
+					${btnIncludeAllSources}
 				</div>
 			</div>
 		</div>
@@ -449,12 +472,12 @@ class BlocklistUi {
 		</div>`.appendTo(this._$wrpControls.empty());
 	}
 
-	_getBtnHtml_addToBlocklist () {
-		return `<button class="ve-btn ve-btn-danger ve-btn-xs w-20p h-21p ve-flex-vh-center" title="Add to Blocklist"><span class="glyphicon glyphicon-trash"></span></button>`;
+	_getBtn_addToBlocklist () {
+		return ee`<button class="ve-btn ve-btn-danger ve-btn-xs w-20p h-21p ve-flex-vh-center" title="Add to Blocklist"><span class="glyphicon glyphicon-trash"></span></button>`;
 	}
 
-	_getBtnHtml_removeFromBlocklist () {
-		return `<button class="ve-btn ve-btn-success ve-btn-xs w-20p h-21p ve-flex-vh-center" title="Remove from Blocklist"><span class="glyphicon glyphicon-thumbs-up"></span></button>`;
+	_getBtn_removeFromBlocklist () {
+		return ee`<button class="ve-btn ve-btn-success ve-btn-xs w-20p h-21p ve-flex-vh-center" title="Remove from Blocklist"><span class="glyphicon glyphicon-thumbs-up"></span></button>`;
 	}
 
 	_doHandleSourceCategorySelChange () {
@@ -677,6 +700,9 @@ class BlocklistUi {
 	_addAllNonForgottenRealms () { this._addMassSources({fnFilter: source => Parser.SOURCES_NON_FR.has(source)}); }
 	_removeAllNonForgottenRealms () { this._removeMassSources({fnFilter: source => Parser.SOURCES_NON_FR.has(source)}); }
 
+	_addAllNonModernSources () { this._addMassSources({fnFilter: source => !SourceUtil.isClassicSource(source)}); }
+	_removeAllModernSources () { this._removeMassSources({fnFilter: source => !SourceUtil.isClassicSource(source)}); }
+
 	_remove (ix, hash, category, source, {isSkipListUpdate = false} = {}) {
 		this._removeExclude(hash, category, source);
 		this._list.removeItemByIndex(ix);
@@ -714,7 +740,7 @@ class BlocklistUi {
 			? MiscUtil.copy(this._excludes).concat(json.blocklist || json.blacklist || [])
 			: json.blocklist || json.blacklist || [];
 		this._excludes = nxtList;
-		if (this._isAutoSave) await ExcludeUtil.pSetList(nxtList);
+		this._pDoPersist(nxtList).then(null);
 
 		// render list display
 		this._renderList();

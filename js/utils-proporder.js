@@ -1,4 +1,4 @@
-"use strict";
+import {PROPS_FOUNDRY_DATA_INLINE} from "./foundry/foundry-consts.js";
 
 function getFnListSort (prop) {
 	switch (prop) {
@@ -130,7 +130,7 @@ function getFnListSort (prop) {
 	}
 }
 
-class PropOrder {
+export class PropOrder {
 	static _getKeyProp (keyInfo) {
 		return typeof keyInfo === "string" ? keyInfo : keyInfo.key;
 	}
@@ -239,7 +239,7 @@ class PropOrder {
 			});
 
 		// ensure any non-orderable keys are maintained
-		const otherKeys = CollectionUtil.setDiff(keySet, seenKeys);
+		const otherKeys = keySet.difference(seenKeys);
 		[...otherKeys].forEach(prop => {
 			out[prop] = obj[prop];
 			if (!opts.fnUnhandledKey) return;
@@ -330,13 +330,6 @@ PropOrder._IgnoredKey = class {
 	}
 };
 
-PropOrder._PROPS_FOUNDRY_DATA = [
-	"foundrySystem",
-	"foundryFlags",
-	"foundryEffects",
-	"foundryImg",
-];
-
 PropOrder._META = [
 	"sources",
 
@@ -381,20 +374,23 @@ PropOrder._FOUNDRY_GENERIC = [
 	}),
 
 	"_merge",
+
+	"migrationVersion",
 ];
 PropOrder._FOUNDRY_GENERIC_FEATURE = [
 	"name",
 	"source",
 
-	"isIgnored",
-
 	"type",
 	"system",
 	"actorDataMod",
 	"effects",
-	"ignoreSrdEffects",
 	"flags",
 	"img",
+
+	"isIgnored",
+	"ignoreSrdActivities",
+	"ignoreSrdEffects",
 
 	"entries",
 
@@ -407,6 +403,8 @@ PropOrder._FOUNDRY_GENERIC_FEATURE = [
 	}),
 
 	"_merge",
+
+	"migrationVersion",
 ];
 PropOrder._MONSTER = [
 	"name",
@@ -432,6 +430,7 @@ PropOrder._MONSTER = [
 	"summonedBySpell",
 	"summonedBySpellLevel",
 	"summonedByClass",
+	"summonedScaleByPlayerLevel",
 
 	"_isCopy",
 	PropOrder._ObjectKey.getCopyKey({fnGetModOrder: () => PropOrder._MONSTER__COPY_MOD}),
@@ -480,11 +479,13 @@ PropOrder._MONSTER = [
 			"constant",
 			"will",
 			"rest",
+			"restLong",
 			"daily",
 			"weekly",
 			"monthly",
 			"yearly",
 			"recharge",
+			"legendary",
 			"charges",
 
 			"ritual",
@@ -512,6 +513,7 @@ PropOrder._MONSTER = [
 	"reaction",
 	"legendaryHeader",
 	"legendaryActions",
+	"legendaryActionsLair",
 	"legendary",
 	"mythicHeader",
 	"mythic",
@@ -520,6 +522,7 @@ PropOrder._MONSTER = [
 	"footer",
 
 	"environment",
+	"treasure",
 	"familiar",
 	"dragonCastingColor",
 	"dragonAge",
@@ -529,11 +532,8 @@ PropOrder._MONSTER = [
 	"tokenHref",
 	"tokenCredit",
 	"soundClip",
-	"foundryImg",
-	"foundryTokenScale",
-	"foundryPrototypeToken",
-	"foundryTokenSubjectHref",
-	"foundryTokenSubjectScale",
+
+	...PROPS_FOUNDRY_DATA_INLINE,
 
 	"altArt",
 
@@ -645,9 +645,14 @@ PropOrder._FOUNDRY_MONSTER = [
 	"effects",
 	"flags",
 	"img",
+
+	"migrationVersion",
 ];
 PropOrder._GENERIC_FLUFF = [
 	"name",
+
+	"preserveName",
+
 	"source",
 
 	"_copy",
@@ -720,7 +725,7 @@ PropOrder._SPELL = [
 
 	"fluff",
 
-	...PropOrder._PROPS_FOUNDRY_DATA,
+	...PROPS_FOUNDRY_DATA_INLINE,
 
 	new PropOrder._ObjectKey("roll20Spell", {
 		order: PropOrder._ROLL20_SPELL,
@@ -901,11 +906,7 @@ PropOrder._BACKGROUND = [
 
 	"fluff",
 
-	"foundrySystem",
-	"foundryFlags",
-	"foundryEffects",
-	"foundryAdvancement",
-	"foundryImg",
+	...PROPS_FOUNDRY_DATA_INLINE,
 ];
 PropOrder._BACKGROUND__COPY_MOD = [
 	"*",
@@ -998,10 +999,7 @@ PropOrder._CLASS = [
 
 	"fluff",
 
-	"foundrySystem",
-	"foundryFlags",
-	"foundryAdvancement",
-	"foundryImg",
+	...PROPS_FOUNDRY_DATA_INLINE,
 ];
 PropOrder._FOUNDRY_CLASS = [
 	"name",
@@ -1018,9 +1016,12 @@ PropOrder._FOUNDRY_CLASS = [
 	"isChooseSystemRenderEntries",
 	"isChooseFlagsRenderEntries",
 	"isIgnored",
+	"ignoreSrdActivities",
 	"ignoreSrdEffects",
 	"actorDataMod",
 	"actorTokenMod",
+
+	"migrationVersion",
 ];
 PropOrder._SUBCLASS = [
 	"name",
@@ -1083,10 +1084,7 @@ PropOrder._SUBCLASS = [
 
 	"fluff",
 
-	"foundrySystem",
-	"foundryFlags",
-	"foundryAdvancement",
-	"foundryImg",
+	...PROPS_FOUNDRY_DATA_INLINE,
 ];
 PropOrder._SUBCLASS__COPY_MOD = [
 	"*",
@@ -1107,6 +1105,7 @@ PropOrder._SUBCLASS_FLUFF = [
 ];
 PropOrder._FOUNDRY_SUBCLASS = [
 	"name",
+	"shortName",
 	"source",
 	"className",
 	"classSource",
@@ -1121,9 +1120,12 @@ PropOrder._FOUNDRY_SUBCLASS = [
 	"isChooseSystemRenderEntries",
 	"isChooseFlagsRenderEntries",
 	"isIgnored",
+	"ignoreSrdActivities",
 	"ignoreSrdEffects",
 	"actorDataMod",
 	"actorTokenMod",
+
+	"migrationVersion",
 ];
 PropOrder._ENTRY_DATA_OBJECT = [
 	"languageProficiencies",
@@ -1187,9 +1189,7 @@ PropOrder._CLASS_FEATURE = [
 
 	"entries",
 
-	"foundrySystem",
-	"foundryFlags",
-	"foundryImg",
+	...PROPS_FOUNDRY_DATA_INLINE,
 ];
 PropOrder._CLASS_FEATURE__COPY_MOD = [
 	"*",
@@ -1243,9 +1243,7 @@ PropOrder._SUBCLASS_FEATURE = [
 
 	"entries",
 
-	"foundrySystem",
-	"foundryFlags",
-	"foundryImg",
+	...PROPS_FOUNDRY_DATA_INLINE,
 ];
 PropOrder._SUBCLASS_FEATURE__COPY_MOD = [
 	"*",
@@ -1275,6 +1273,7 @@ PropOrder._FOUNDRY_CLASS_FEATURE = [
 	"isChooseSystemRenderEntries",
 	"isChooseFlagsRenderEntries",
 	"isIgnored",
+	"ignoreSrdActivities",
 	"ignoreSrdEffects",
 	"actorDataMod",
 	"actorTokenMod",
@@ -1282,6 +1281,8 @@ PropOrder._FOUNDRY_CLASS_FEATURE = [
 	new PropOrder._ObjectKey("subEntities", {
 		fnGetOrder: () => PropOrder._ROOT,
 	}),
+
+	"migrationVersion",
 ];
 PropOrder._FOUNDRY_SUBCLASS_FEATURE = [
 	"name",
@@ -1308,6 +1309,7 @@ PropOrder._FOUNDRY_SUBCLASS_FEATURE = [
 	"isChooseSystemRenderEntries",
 	"isChooseFlagsRenderEntries",
 	"isIgnored",
+	"ignoreSrdActivities",
 	"ignoreSrdEffects",
 	"actorDataMod",
 	"actorTokenMod",
@@ -1315,6 +1317,8 @@ PropOrder._FOUNDRY_SUBCLASS_FEATURE = [
 	new PropOrder._ObjectKey("subEntities", {
 		fnGetOrder: () => PropOrder._ROOT,
 	}),
+
+	"migrationVersion",
 ];
 PropOrder._LANGUAGE = [
 	"name",
@@ -1407,7 +1411,7 @@ PropOrder._DISEASE = [
 
 	"fluff",
 
-	...PropOrder._PROPS_FOUNDRY_DATA,
+	...PROPS_FOUNDRY_DATA_INLINE,
 ];
 PropOrder._STATUS = [
 	"name",
@@ -1529,7 +1533,7 @@ PropOrder._DEITY = [
 
 	"entries",
 
-	"foundryImg",
+	...PROPS_FOUNDRY_DATA_INLINE,
 ];
 PropOrder._DEITY__COPY_MOD = [
 	"*",
@@ -1557,6 +1561,7 @@ PropOrder._FEAT = [
 
 	"repeatable",
 	"repeatableNote",
+	"repeatableHidden",
 
 	"ability",
 
@@ -1580,6 +1585,7 @@ PropOrder._FEAT = [
 
 	"additionalSpells",
 
+	"featProgression",
 	"optionalfeatureProgression",
 
 	"entries",
@@ -1589,7 +1595,7 @@ PropOrder._FEAT = [
 
 	"fluff",
 
-	...PropOrder._PROPS_FOUNDRY_DATA,
+	...PROPS_FOUNDRY_DATA_INLINE,
 
 	new PropOrder._ArrayKey("_versions", {
 		fnGetOrder: () => [
@@ -1683,13 +1689,7 @@ PropOrder._VEHICLE = [
 
 	"fluff",
 
-	"foundrySystem",
-	"foundryFlags",
-	"foundryImg",
-	"foundryTokenScale",
-	"foundryPrototypeToken",
-	"foundryTokenSubjectHref",
-	"foundryTokenSubjectScale",
+	...PROPS_FOUNDRY_DATA_INLINE,
 ];
 PropOrder._VEHICLE_UPGRADE = [
 	"name",
@@ -1847,6 +1847,7 @@ PropOrder._ITEM = [
 	"bow",
 	"bulletFirearm",
 	"bulletSling",
+	"cellEnergy",
 	"club",
 	"crossbow",
 	"dagger",
@@ -1879,6 +1880,8 @@ PropOrder._ITEM = [
 	"atomicPackContents",
 	"containerCapacity",
 
+	"light",
+
 	"optionalfeatures",
 	"attachedSpells",
 	"spellScrollLevel",
@@ -1898,8 +1901,7 @@ PropOrder._ITEM = [
 
 	"fluff",
 
-	"foundryType",
-	...PropOrder._PROPS_FOUNDRY_DATA,
+	...PROPS_FOUNDRY_DATA_INLINE,
 ];
 PropOrder._ITEM__COPY_MOD = [
 	"*",
@@ -2080,10 +2082,7 @@ PropOrder._OBJECT = [
 
 	"fluff",
 
-	"foundryTokenScale",
-	"foundryPrototypeToken",
-	"foundryTokenSubjectHref",
-	"foundryTokenSubjectScale",
+	...PROPS_FOUNDRY_DATA_INLINE,
 ];
 PropOrder._OPTIONALFEATURE = [
 	"name",
@@ -2137,7 +2136,7 @@ PropOrder._OPTIONALFEATURE = [
 
 	"fluff",
 
-	...PropOrder._PROPS_FOUNDRY_DATA,
+	...PROPS_FOUNDRY_DATA_INLINE,
 ];
 PropOrder._OPTIONALFEATURE__COPY_MOD = [
 	"*",
@@ -2178,7 +2177,7 @@ PropOrder._REWARD = [
 
 	"fluff",
 
-	...PropOrder._PROPS_FOUNDRY_DATA,
+	...PROPS_FOUNDRY_DATA_INLINE,
 ];
 PropOrder._VARIANTRULE = [
 	"name",
@@ -2199,7 +2198,7 @@ PropOrder._VARIANTRULE = [
 	"type",
 	"entries",
 
-	"foundryImg",
+	...PROPS_FOUNDRY_DATA_INLINE,
 ];
 PropOrder._RACE_SUBRACE = [
 	"page",
@@ -2213,7 +2212,15 @@ PropOrder._RACE_SUBRACE = [
 
 	"edition",
 
-	PropOrder._ObjectKey.getCopyKey({fnGetModOrder: () => PropOrder._RACE__COPY_MOD}),
+	PropOrder._ObjectKey.getCopyKey({
+		identKeys: [
+			"name",
+			"source",
+			"raceName",
+			"raceSource",
+		],
+		fnGetModOrder: () => PropOrder._RACE__COPY_MOD,
+	}),
 
 	"lineage",
 	"creatureTypes",
@@ -2246,6 +2253,8 @@ PropOrder._RACE_SUBRACE = [
 
 	"soundClip",
 
+	"startingEquipment",
+
 	"additionalSpells",
 
 	"abilityEntry",
@@ -2262,12 +2271,14 @@ PropOrder._RACE_SUBRACE = [
 
 	"fluff",
 
-	...PropOrder._PROPS_FOUNDRY_DATA,
+	...PROPS_FOUNDRY_DATA_INLINE,
 
 	new PropOrder._ArrayKey("_versions", {
 		fnGetOrder: () => [
 			"name",
 			"source",
+			"raceName",
+			"raceSource",
 			new PropOrder._ObjectKey("_mod", {
 				fnGetOrder: () => PropOrder._RACE__COPY_MOD,
 			}),
@@ -2325,6 +2336,8 @@ PropOrder._FOUNDRY_RACE_FEATURE = [
 	"effects",
 	"flags",
 	"img",
+
+	"migrationVersion",
 ];
 PropOrder._FOUNDRY_RACE_FEATURE__COPY_MOD = [
 	"*",
@@ -2382,6 +2395,8 @@ PropOrder._TRAP = [
 	"trapHazType",
 
 	"rating",
+
+	"hauntBonus",
 
 	"effect",
 
@@ -2601,6 +2616,8 @@ PropOrder._FOUNDRY_MAP = [
 
 	"lights",
 	"walls",
+
+	"migrationVersion",
 ];
 
 PropOrder._FACILITY = [
@@ -2902,5 +2919,3 @@ PropOrder._ROOT = [
 	new PropOrder._IgnoredKey("data"),
 	// endregion
 ];
-
-globalThis.PropOrder = PropOrder;

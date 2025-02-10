@@ -1,7 +1,9 @@
 export class ConverterUtils {
+	static _RE_SPLIT_CONJUNCT = /(?:,? (?:and|or) |, )/gi;
+
 	static splitConjunct (str) {
 		return str
-			.split(/(?:,? (?:and|or) |, )/gi)
+			.split(this._RE_SPLIT_CONJUNCT)
 			.map(it => it.trim())
 			.filter(Boolean)
 		;
@@ -74,14 +76,12 @@ export class ConverterUtils {
 		if (/^\d+(\/\d+)*\s+/.test(cleanLine) && !opts.noNumber) return this.CONT_LINE_YES;
 		// Opening brackets (e.g. damage; "(1d6 + 2)")
 		if (/^\(/.test(cleanLine) && !opts.noParenthesis) return this.CONT_LINE_YES;
-		// An ability score name followed by "saving throw"
-		if (/^(Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma)\s+saving throw/.test(cleanLine) && !opts.noSavingThrow) return this.CONT_LINE_YES;
 		// An ability score name
 		if (/^(Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma)\s/.test(cleanLine) && !opts.noAbilityName) return this.CONT_LINE_YES;
 		// "Hit:" e.g. inside creature attacks
-		if (/^Hit:/.test(cleanLine) && !opts.noHit) return this.CONT_LINE_YES;
 		if (/^(Intelligence|Wisdom|Charisma)\s+\(/.test(cleanLine) && !opts.noSpellcastingAbility) return this.CONT_LINE_YES;
 		if (/^DC\s+/.test(cleanLine) && !opts.noDc) return this.CONT_LINE_YES;
+		if (/^(?:Additionally, |Its )/.test(cleanLine)) return this.CONT_LINE_YES;
 
 		return this.CONT_LINE_MAYBE;
 	}
@@ -183,7 +183,7 @@ export class ConverterUtils {
 			spl.length > 3
 			&& (
 				// Handle e.g. "1. Freezing Ray. ..."
-				/^\d+$/.test(spl[0])
+				/^\d+(?:-\d+)?$/.test(spl[0])
 				// Handle e.g. "1-10: "All Fine Here!" ..."
 				|| /^\d+-\d+:?$/.test(spl[0])
 				// Handle e.g. "Action 1: Close In. ...

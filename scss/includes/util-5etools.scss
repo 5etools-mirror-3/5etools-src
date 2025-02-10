@@ -1,5 +1,21 @@
 @use "../vars/vars";
 
+// region Fix Chrome
+input[type="checkbox"]:checked,
+input[type="checkbox"]:indeterminate {
+	accent-color: vars.$rgb-cb-grey;
+}
+
+input[type="radio"]:checked,
+input[type="radio"]:indeterminate {
+	accent-color: vars.$rgb-cb-grey;
+}
+
+input[type="range"] {
+	accent-color: vars.$rgb-cb-grey;
+}
+// endregion
+
 .clickable {
 	&--link {
 		color: vars.$rgb-link-blue !important;

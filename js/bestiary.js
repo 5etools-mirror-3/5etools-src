@@ -344,8 +344,16 @@ class BestiaryPage extends ListPageMultiSource {
 						transform: mon => BestiaryPage._tableView_getEntryPropTransform({mon, fnGet: Renderer.monster.getOrderedReactions}),
 						flex: 3,
 					},
-					legendary: {name: "Legendary Actions", transform: it => (it || []).map(x => Renderer.get().render(x, 2)).join(""), flex: 3},
-					mythic: {name: "Mythic Actions", transform: it => (it || []).map(x => Renderer.get().render(x, 2)).join(""), flex: 3},
+					_legendary: {
+						name: "Legendary Actions",
+						transform: mon => BestiaryPage._tableView_getEntryPropTransform({mon, fnGet: Renderer.monster.getOrderedLegendaryActions}),
+						flex: 3,
+					},
+					_mythic: {
+						name: "Mythic Actions",
+						transform: mon => BestiaryPage._tableView_getEntryPropTransform({mon, fnGet: Renderer.monster.getOrderedMythicActions}),
+						flex: 3,
+					},
 					_lairActions: {
 						name: "Lair Actions",
 						transform: mon => {
@@ -365,6 +373,7 @@ class BestiaryPage extends ListPageMultiSource {
 						flex: 3,
 					},
 					environment: {name: "Environment", transform: it => Renderer.monster.getRenderedEnvironment(it)},
+					treasure: {name: "Treasure", transform: it => Renderer.monster.getRenderedTreasure(it)},
 				},
 			},
 			propEntryData: "monster",
@@ -510,7 +519,7 @@ class BestiaryPage extends ListPageMultiSource {
 			}
 		} else if (scaledClassSummonHash) {
 			const scaleTo = Number(UrlUtil.unpackSubHash(scaledClassSummonHash)[VeCt.HASH_SCALED_CLASS_SUMMON][0]);
-			if (mon.summonedByClass != null && scaleTo > 0 && scaleTo !== this._lastRender.entity._summonedByClass_level) {
+			if ((mon.summonedByClass != null || mon.summonedScaleByPlayerLevel) && scaleTo > 0 && scaleTo !== this._lastRender.entity._summonedByClass_level) {
 				ScaleClassSummonedCreature.scale(mon, scaleTo)
 					.then(monScaled => this._renderStatblock(monScaled, {isScaledClassSummon: true}));
 			}
@@ -807,7 +816,7 @@ class BestiaryPage extends ListPageMultiSource {
 			Renderer.get().addPlugin("string_@dc", pluginDc);
 			Renderer.get().addPlugin("dice", pluginDice);
 
-			this._$pgContent.empty().append(RenderBestiary.$getRenderedCreature(mon, {$btnScaleCr, $btnResetScaleCr, selSummonSpellLevel, selSummonClassLevel}));
+			this._$pgContent.empty().append(RenderBestiary.$getRenderedCreature(mon, {$btnScaleCr, $btnResetScaleCr, selSummonSpellLevel, selSummonClassLevel, classLevelScalerClass: mon.summonedByClass}));
 		} finally {
 			Renderer.get().removePlugin("dice", pluginDice);
 			Renderer.get().removePlugin("string_@dc", pluginDc);

@@ -59,6 +59,10 @@
 				"bonusWeapon": "+1",
 				"entries": [
 					"You have a {=bonusWeapon} bonus to attack and damage rolls made with this piece of magic ammunition. Once it hits a target, the ammunition is no longer magical."
+				],
+				"lootTables": [
+					"Armaments - Uncommon|XDMG",
+					"Implements - Uncommon|XDMG"
 				]
 			}
 		},
@@ -111,6 +115,10 @@
 				"bonusAc": "+1",
 				"entries": [
 					"You have a {=bonusAc} bonus to AC while wearing this armor."
+				],
+				"lootTables": [
+					"Armaments - Rare|XDMG",
+					"Relics - Rare|XDMG"
 				]
 			}
 		},
@@ -167,6 +175,9 @@
 				"bonusAc": "+1",
 				"entries": [
 					"While holding this Shield, you have a {=bonusAc} bonus to {@variantrule Armor Class|XPHB}, in addition to the Shield's normal bonus to AC."
+				],
+				"lootTables": [
+					"Armaments - Uncommon|XDMG"
 				]
 			}
 		},
@@ -219,6 +230,9 @@
 				"bonusWeapon": "+1",
 				"entries": [
 					"You have a {=bonusWeapon} bonus to attack and damage rolls made with this magic weapon."
+				],
+				"lootTables": [
+					"Armaments - Uncommon|XDMG"
 				]
 			}
 		},
@@ -301,6 +315,10 @@
 				"bonusWeapon": "+2",
 				"entries": [
 					"You have a {=bonusWeapon} bonus to attack and damage rolls made with this piece of magic ammunition. Once it hits a target, the ammunition is no longer magical."
+				],
+				"lootTables": [
+					"Armaments - Rare|XDMG",
+					"Implements - Rare|XDMG"
 				]
 			}
 		},
@@ -353,6 +371,10 @@
 				"bonusAc": "+2",
 				"entries": [
 					"You have a {=bonusAc} bonus to AC while wearing this armor."
+				],
+				"lootTables": [
+					"Armaments - Very Rare|XDMG",
+					"Relics - Very Rare|XDMG"
 				]
 			}
 		},
@@ -409,6 +431,9 @@
 				"bonusAc": "+2",
 				"entries": [
 					"While holding this Shield, you have a {=bonusAc} bonus to {@variantrule Armor Class|XPHB}, in addition to the Shield's normal bonus to AC."
+				],
+				"lootTables": [
+					"Armaments - Rare|XDMG"
 				]
 			}
 		},
@@ -461,6 +486,9 @@
 				"bonusWeapon": "+2",
 				"entries": [
 					"You have a {=bonusWeapon} bonus to attack and damage rolls made with this magic weapon."
+				],
+				"lootTables": [
+					"Armaments - Rare|XDMG"
 				]
 			}
 		},
@@ -543,6 +571,10 @@
 				"bonusWeapon": "+3",
 				"entries": [
 					"You have a {=bonusWeapon} bonus to attack and damage rolls made with this piece of magic ammunition. Once it hits a target, the ammunition is no longer magical."
+				],
+				"lootTables": [
+					"Armaments - Very Rare|XDMG",
+					"Implements - Very Rare|XDMG"
 				]
 			}
 		},
@@ -595,6 +627,10 @@
 				"bonusAc": "+3",
 				"entries": [
 					"You have a {=bonusAc} bonus to AC while wearing this armor."
+				],
+				"lootTables": [
+					"Armaments - Legendary|XDMG",
+					"Relics - Legendary|XDMG"
 				]
 			}
 		},
@@ -651,6 +687,9 @@
 				"bonusAc": "+3",
 				"entries": [
 					"While holding this Shield, you have a {=bonusAc} bonus to {@variantrule Armor Class|XPHB}, in addition to the Shield's normal bonus to AC."
+				],
+				"lootTables": [
+					"Armaments - Very Rare|XDMG"
 				]
 			}
 		},
@@ -703,6 +742,9 @@
 				"bonusWeapon": "+3",
 				"entries": [
 					"You have a {=bonusWeapon} bonus to attack and damage rolls made with this magic weapon."
+				],
+				"lootTables": [
+					"Armaments - Very Rare|XDMG"
 				]
 			}
 		},
@@ -778,7 +820,7 @@
 				}
 			],
 			"excludes": {
-				"name": "Energy Cell"
+				"cellEnergy": true
 			},
 			"ammo": true,
 			"entries": [
@@ -854,6 +896,9 @@
 				"rarity": "uncommon",
 				"entries": [
 					"This suit of armor is reinforced with adamantine, one of the hardest substances in existence. While you're wearing it, any {@variantrule Critical Hit|XPHB} against you becomes a normal hit."
+				],
+				"lootTables": [
+					"Armaments - Uncommon|XDMG"
 				]
 			}
 		},
@@ -909,6 +954,9 @@
 				"rarity": "uncommon",
 				"entries": [
 					"This weapon or piece of ammunition is made of adamantine, one of the hardest substances in existence. Whenever this weapon or piece of ammunition hits an object, the hit is a {@variantrule Critical Hit|XPHB}."
+				],
+				"lootTables": [
+					"Armaments - Uncommon|XDMG"
 				]
 			}
 		},
@@ -930,7 +978,7 @@
 				"page": 228,
 				"rarity": "very rare",
 				"entries": [
-					"This magic ammunition is meant to slay creatures of a particular type, which the DM chooses or determines randomly by rolling on the table below. If a creature of that type takes damage from the ammunition, the creature makes a DC 17 Constitution saving throw, taking an extra {@damage 6d10} Force damage on a failed save or half as much extra damage on a successful one.",
+					"This magic ammunition is meant to slay creatures of a particular type, which the DM chooses or determines randomly by rolling on the table below. If a creature of that type takes damage from the ammunition, the creature makes a {@dc 17} Constitution saving throw, taking an extra {@damage 6d10} Force damage on a failed save or half as much extra damage on a successful one.",
 					"After dealing its extra damage to a creature, the ammunition becomes nonmagical.",
 					{
 						"type": "table",
@@ -1001,6 +1049,9 @@
 							]
 						]
 					}
+				],
+				"lootTables": [
+					"Armaments - Very Rare|XDMG"
 				]
 			},
 			"hasFluffImages": true
@@ -1331,7 +1382,7 @@
 				"page": 65,
 				"rarity": "uncommon",
 				"entries": [
-					"While wearing this armor, you can take a bonus action to make the armor emit poisonous spores, which fill a 10-foot-radius sphere centered on yourself. Each creature in that area must succeed on a DC 15 Constitution saving throw or have the poisoned condition until the end of your next turn. Once this property is used, it can't be used again until the next dawn."
+					"While wearing this armor, you can take a bonus action to make the armor emit poisonous spores, which fill a 10-foot-radius sphere centered on yourself. Each creature in that area must succeed on a {@dc 15} Constitution saving throw or have the poisoned condition until the end of your next turn. Once this property is used, it can't be used again until the next dawn."
 				]
 			},
 			"hasFluffImages": true
@@ -1389,6 +1440,9 @@
 				"rarity": "common",
 				"entries": [
 					"This armor never gets dirty."
+				],
+				"lootTables": [
+					"Armaments - Common|XDMG"
 				]
 			}
 		},
@@ -1987,18 +2041,13 @@
 				}
 			],
 			"excludes": {
-				"name": [
-					"Energy Cell",
-					"Modern Bullet",
-					"Modern Bullets (10)",
-					"Renaissance Bullet",
-					"Renaissance Bullets (10)"
-				]
+				"cellEnergy": true,
+				"bulletFirearm": true
 			},
 			"ammo": true,
 			"entries": [
 				"{@note * This generic variant has the same name and source as the item {@item arrow of slaying}}.",
-				"An {@i arrow of slaying} is a magic weapon meant to slay a particular kind of creature. Some are more focused than others; for example, there are both {@i arrows of dragon slaying} and {@i arrows of blue dragon slaying}. If a creature belonging to the type, race, or group associated with an {@i arrow of slaying} takes damage from the arrow, the creature must make a DC 17 Constitution saving throw, taking an extra {@dice 6d10} piercing damage on a failed save, or half as much extra damage on a successful one.",
+				"An {@i arrow of slaying} is a magic weapon meant to slay a particular kind of creature. Some are more focused than others; for example, there are both {@i arrows of dragon slaying} and {@i arrows of blue dragon slaying}. If a creature belonging to the type, race, or group associated with an {@i arrow of slaying} takes damage from the arrow, the creature must make a {@dc 17} Constitution saving throw, taking an extra {@damage 6d10} piercing damage on a failed save, or half as much extra damage on a successful one.",
 				"Once an {@i arrow of slaying} deals its extra damage to a creature, it becomes a nonmagical arrow.",
 				"Other types of magic ammunition of this kind exist, such as bolts of slaying meant for a crossbow, though arrows are most common."
 			],
@@ -2013,7 +2062,7 @@
 				"tier": "minor",
 				"rarity": "very rare",
 				"entries": [
-					"{=baseName/at} {=baseName/l} of slaying is a magic weapon meant to slay a particular kind of creature. Some are more focused than others; for example, there are both {@i {=baseName/l}s of dragon slaying} and {@i {=baseName/l}s of blue dragon slaying}. If a creature belonging to the type, race, or group associated with {=baseName/a} {=baseName/l} of slaying takes damage from the {=baseName/l}, the creature must make a DC 17 Constitution saving throw, taking an extra {@dice 6d10} piercing damage on a failed save, or half as much extra damage on a successful one.",
+					"{=baseName/at} {=baseName/l} of slaying is a magic weapon meant to slay a particular kind of creature. Some are more focused than others; for example, there are both {@i {=baseName/l}s of dragon slaying} and {@i {=baseName/l}s of blue dragon slaying}. If a creature belonging to the type, race, or group associated with {=baseName/a} {=baseName/l} of slaying takes damage from the {=baseName/l}, the creature must make a {@dc 17} Constitution saving throw, taking an extra {@damage 6d10} piercing damage on a failed save, or half as much extra damage on a successful one.",
 					"Once {=baseName/a} {=baseName/l} of slaying deals its extra damage to a creature, it becomes a nonmagical {=baseName/l}."
 				]
 			},
@@ -2038,7 +2087,7 @@
 					"This weapon is decorated with dragon heads, claws, wings, scales, or Draconic letters. When it steeps in a dragon's hoard, it absorbs the energy of the dragon's breath weapon and deals damage of that type with its special properties.",
 					"Whenever you roll a 20 on your attack roll with this weapon, each creature of your choice within 5 feet of the target takes 5 damage of the type dealt by the dragon's breath weapon.",
 					"You gain a {=bonusWeapon} bonus to attack and damage rolls made using the weapon. On a hit, the weapon deals an extra {@damage 3d6} damage of the type dealt by the dragon's breath weapon.",
-					"As an action, you can unleash a 60-foot cone of destructive energy from the weapon. Each creature in that area must make a DC 18 Dexterity saving throw, taking {@damage 12d6} damage of the type dealt by the dragon's breath weapon on a failed save, or half as much damage on a successful one. Once this action is used, it can't be used again until the next dawn."
+					"As an action, you can unleash a 60-foot cone of destructive energy from the weapon. Each creature in that area must make a {@dc 18} Dexterity saving throw, taking {@damage 12d6} damage of the type dealt by the dragon's breath weapon on a failed save, or half as much damage on a successful one. Once this action is used, it can't be used again until the next dawn."
 				]
 			}
 		},
@@ -2100,7 +2149,7 @@
 							"This axe is cursed, and becoming attuned to it extends the curse to you. As long as you remain cursed, you are unwilling to part with the axe, keeping it within reach at all times. You also have disadvantage on attack rolls with weapons other than this one, unless no foe is within 60 feet of you that you can see or hear."
 						]
 					},
-					"Whenever a hostile creature damages you while the axe is in your possession, you must succeed on a DC 15 Wisdom saving throw or go berserk. While berserk, you must use your action each round to attack the creature nearest to you with the axe. If you can make extra attacks as part of the {@action Attack} action, you use those extra attacks, moving to attack the next nearest creature after you fell your current target. If you have multiple possible targets, you attack one at random. You are berserk until you start your turn with no creatures within 60 feet of you that you can see or hear."
+					"Whenever a hostile creature damages you while the axe is in your possession, you must succeed on a {@dc 15} Wisdom saving throw or go berserk. While berserk, you must use your action each round to attack the creature nearest to you with the axe. If you can make extra attacks as part of the {@action Attack} action, you use those extra attacks, moving to attack the next nearest creature after you fell your current target. If you have multiple possible targets, you attack one at random. You are berserk until you start your turn with no creatures within 60 feet of you that you can see or hear."
 				],
 				"lootTables": [
 					"Magic Item Table G"
@@ -2141,10 +2190,13 @@
 						"name": "Curse",
 						"entries": [
 							"This weapon is cursed, and becoming attuned to it extends the curse to you. As long as you remain cursed, you are unwilling to part with the weapon, keeping it within reach at all times. You also have {@variantrule Disadvantage|XPHB} on attack rolls with weapons other than this one.",
-							"Whenever another creature damages you while the weapon is in your possession, you must succeed on a DC 15 Wisdom saving throw or go berserk. This berserk state ends when you start your turn and there are no creatures within 60 feet of you that you can see or hear.",
+							"Whenever another creature damages you while the weapon is in your possession, you must succeed on a {@dc 15} Wisdom saving throw or go berserk. This berserk state ends when you start your turn and there are no creatures within 60 feet of you that you can see or hear.",
 							"While berserk, you regard the creature nearest to you that you can see or hear as your enemy. If there are multiple possible creatures, choose one at random. On each of your turns, you must move as close to the creature as possible and take the {@action Attack|XPHB} action, targeting the creature. If you're unable to get close enough to the creature to attack it with the weapon, your turn ends after you've used up all your available movement. If the creature dies or can no longer be seen or heard by you, the next nearest creature that you can see or hear becomes your new target."
 						]
 					}
+				],
+				"lootTables": [
+					"Armaments - Rare|XDMG"
 				]
 			},
 			"hasFluffImages": true
@@ -2165,45 +2217,17 @@
 				"reqAttune": true,
 				"curse": true,
 				"entries": [
-					"When you attack a creature with this magic weapon and roll a 20 on the attack roll, the creature must make a DC 15 Constitution saving throw in addition to suffering the attack's normal effects. On a failed save, the creature is restrained and must make another Constitution saving throw at the end of each of its turns. If it successfully saves against this effect three times, the effect ends. If it fails its saves three times, it is turned to stone and subjected to the {@condition petrified} condition for 1 hour.",
+					"When you attack a creature with this magic weapon and roll a 20 on the attack roll, the creature must make a {@dc 15} Constitution saving throw in addition to suffering the attack's normal effects. On a failed save, the creature is restrained and must make another Constitution saving throw at the end of each of its turns. If it successfully saves against this effect three times, the effect ends. If it fails its saves three times, it is turned to stone and subjected to the {@condition petrified} condition for 1 hour.",
 					"A creature is immune to this effect if it is immune to damage of the weapon's type, does not have a body made of flesh, or has legendary actions.",
 					{
 						"name": "Curse",
 						"type": "entries",
 						"entries": [
-							"This weapon is cursed, and becoming attuned to it extends the curse to you. Until the curse is broken with a {@spell remove curse} spell or similar magic, you are unwilling to part with the weapon. Whenever you attack a creature with this weapon and roll a 1 on the attack roll, you must succeed on a DC 15 Constitution saving throw or be {@condition restrained} and forced to make additional saves against being {@condition petrified}, as above."
+							"This weapon is cursed, and becoming attuned to it extends the curse to you. Until the curse is broken with a {@spell remove curse} spell or similar magic, you are unwilling to part with the weapon. Whenever you attack a creature with this weapon and roll a 1 on the attack roll, you must succeed on a {@dc 15} Constitution saving throw or be {@condition restrained} and forced to make additional saves against being {@condition petrified}, as above."
 						]
 					}
 				]
 			}
-		},
-		{
-			"name": "Blade of the Wood",
-			"type": "GV|DMG",
-			"requires": [
-				{
-					"sword": true
-				}
-			],
-			"inherits": {
-				"nameSuffix": " of the Wood",
-				"source": "HWCS",
-				"page": 213,
-				"rarity": "rare",
-				"reqAttune": true,
-				"bonusWeapon": "+1",
-				"charges": 2,
-				"entries": [
-					"A finely crafted sword with delicate etchings, it resonates with a faint hum of life.",
-					"You gain a {=bonusWeapon} bonus to attack and damage rolls made with this magic weapon.",
-					"The sword has 2 charges. You can expend a charge and speak the command word to cast {@spell spike growth} (save DC 16) centered on yourself. You can pass through this terrain unaffected.",
-					"The sword regains one charge each day at dawn."
-				],
-				"attachedSpells": [
-					"spike growth"
-				]
-			},
-			"hasFluffImages": true
 		},
 		{
 			"name": "Bloodseeker Ammunition",
@@ -2361,6 +2385,9 @@
 				"rarity": "common",
 				"entries": [
 					"You can doff this armor as a {@action Magic|XPHB} action."
+				],
+				"lootTables": [
+					"Armaments - Common|XDMG"
 				]
 			}
 		},
@@ -2410,7 +2437,7 @@
 				"rarity": "very rare",
 				"reqAttune": true,
 				"entries": [
-					"The head of this bludgeoning weapon is made from a massive delerium crystal that crackles with arcane energies. When you hit with an attack using this weapon, the target takes an extra ({@dice 3d6}) necrotic damage.",
+					"The head of this bludgeoning weapon is made from a massive delerium crystal that crackles with arcane energies. When you hit with an attack using this weapon, the target takes an extra ({@damage 3d6}) necrotic damage.",
 					"When you roll a 20 on an attack roll made with this weapon, it unleashes an arcane anomaly (see Dungeons of Drakkenheim). You can roll twice on the table and choose either result."
 				]
 			}
@@ -2457,6 +2484,15 @@
 					"This magic sword's blade is fashioned from a horn or spine from a crystal dragon. When you hit with an attack roll using this sword, the target takes an extra {@damage 1d8} radiant damage.",
 					"The sword has 3 charges and regains {@dice 1d3} expended charges daily at dawn. When you hit a creature with an attack roll using the sword, you can expend 1 charge to regain a number of hit points equal to the extra radiant damage the sword dealt.",
 					"While you're holding the sword, you can use a bonus action to cause it to shed bright light in a 30-foot radius and dim light for an additional 30 feet, to cause it to shed dim light in a 10-foot radius, or to douse the light."
+				],
+				"light": [
+					{
+						"bright": 30,
+						"dim": 60
+					},
+					{
+						"dim": 10
+					}
 				]
 			}
 		},
@@ -2510,6 +2546,10 @@
 					"You can take a {@variantrule Bonus Action|XPHB} to toss this magic weapon into the air. When you do so, the weapon begins to hover, flies up to 30 feet, and attacks one creature of your choice within 5 feet of itself. The weapon uses your attack roll and adds your ability modifier to damage rolls.",
 					"While the weapon hovers, you can take a {@variantrule Bonus Action|XPHB} to cause it to fly up to 30 feet to another spot within 30 feet of you. As part of the same {@variantrule Bonus Action|XPHB}, you can cause the weapon to attack one creature within 5 feet of the weapon.",
 					"After the hovering weapon attacks for the fourth time, it flies back to you and tries to return to your hand. If you have no hand free, the weapon falls to the ground in your space. If the weapon has no unobstructed path to you, it moves as close to you as it can and then falls to the ground. It also ceases to hover if you grasp it or are more than 30 feet away from it."
+				],
+				"lootTables": [
+					"Arcana - Very Rare|XDMG",
+					"Armaments - Very Rare|XDMG"
 				]
 			},
 			"hasFluffImages": true
@@ -2565,6 +2605,9 @@
 				"entries": [
 					"You gain a +3 bonus to attack rolls and damage rolls made with this magic weapon.",
 					"The first time you attack with the weapon on each of your turns, you can transfer some or all of the weapon's bonus to your {@variantrule Armor Class|XPHB}. For example, you could reduce the bonus to your attack rolls and damage rolls to {=bonusAc} and gain a +2 bonus to {@variantrule Armor Class|XPHB}. The adjusted bonuses remain in effect until the start of your next turn, although you must hold the weapon to gain a bonus to AC from it."
+				],
+				"lootTables": [
+					"Armaments - Legendary|XDMG"
 				]
 			},
 			"hasFluffImages": true
@@ -2587,7 +2630,7 @@
 					"This sword has a small delerium sliver encased in glass and set in the hilt like a gemstone. The blade is made of meteoric iron infused with delerium dust, which causes it to softly glow with octarine light.",
 					"You gain a {=bonusWeapon} bonus to attack and damage rolls made with this weapon.",
 					"When you make an attack with this weapon, you can use your spellcasting ability modifier, instead of Strength or Dexterity, for the attack and damage rolls. In addition, you can use this weapon as a spellcasting focus.",
-					"When you roll a 20 on an attack roll made with this weapon against a humanoid, the humanoid must succeed on a DC 15 Constitution saving throw or take an extra ({@dice 3d6}) necrotic damage and gain one {@adventure level of contamination|DoDk|12}."
+					"When you roll a 20 on an attack roll made with this weapon against a humanoid, the humanoid must succeed on a {@dc 15} Constitution saving throw or take an extra ({@damage 3d6}) necrotic damage and gain one {@adventure level of contamination|DoDk|12}."
 				]
 			},
 			"hasFluffImages": true
@@ -2624,6 +2667,9 @@
 							"Once you don this cursed armor, you can't doff it unless you are targeted by a {@spell Remove Curse|XPHB} spell or similar magic. While wearing the armor, you have {@variantrule Disadvantage|XPHB} on attack rolls against demons and on saving throws against their spells and special abilities."
 						]
 					}
+				],
+				"lootTables": [
+					"Armaments - Very Rare|XDMG"
 				]
 			},
 			"hasFluffImages": true
@@ -2679,8 +2725,8 @@
 						"name": "Curse",
 						"entries": [
 							"You're unwilling to part with this weapon while attuned to it. While attuned, you have disadvantage on attack rolls with weapons other than this one.",
-							"Whenever a hostile creature damages you, you must succeed on a DC 15 Wisdom saving throw or go berserk. While berserk, you must use your action on each of your turns to attack the creature nearest to you with the weapon. If you can make extra attacks as part of the {@action Attack} action, you use those extra attacks, moving to attack the next nearest creature after you fell your current target. If you have multiple possible targets, you attack one at random.",
-							"You're berserk until you start your turn with no creatures within 60 feet of you that you can see or hear. Alternatively, an ally can use an action to make a DC 15 Charisma ({@skill Persuasion}) check and if successful, you're no longer berserk. Only the {@spell Remove Curse} spell allows you to end attunement to this item."
+							"Whenever a hostile creature damages you, you must succeed on a {@dc 15} Wisdom saving throw or go berserk. While berserk, you must use your action on each of your turns to attack the creature nearest to you with the weapon. If you can make extra attacks as part of the {@action Attack} action, you use those extra attacks, moving to attack the next nearest creature after you fell your current target. If you have multiple possible targets, you attack one at random.",
+							"You're berserk until you start your turn with no creatures within 60 feet of you that you can see or hear. Alternatively, an ally can use an action to make a {@dc 15} Charisma ({@skill Persuasion}) check and if successful, you're no longer berserk. Only the {@spell Remove Curse} spell allows you to end attunement to this item."
 						]
 					},
 					{
@@ -2715,7 +2761,7 @@
 				"bonusWeapon": "+1",
 				"entries": [
 					"You gain a +1 bonus to attack and damage rolls made with this magic weapon.",
-					"When you hit a dragon with this weapon, the dragon takes an extra {@dice 3d6} damage of the weapon's type. For the purpose of this weapon, \"dragon\" refers to any creature with the dragon type, including dragon turtles and wyverns."
+					"When you hit a dragon with this weapon, the dragon takes an extra {@damage 3d6} damage of the weapon's type. For the purpose of this weapon, \"dragon\" refers to any creature with the dragon type, including dragon turtles and wyverns."
 				],
 				"lootTables": [
 					"Magic Item Table G"
@@ -2743,6 +2789,9 @@
 				"entries": [
 					"You gain a +1 bonus to attack rolls and damage rolls made with this magic weapon.",
 					"The weapon deals an extra {@damage 3d6} damage of the weapon's type if the target is a Dragon."
+				],
+				"lootTables": [
+					"Armaments - Rare|XDMG"
 				]
 			},
 			"hasFluffImages": true
@@ -2817,7 +2866,7 @@
 				}
 			],
 			"excludes": {
-				"name": "Energy Cell"
+				"cellEnergy": true
 			},
 			"ammo": true,
 			"inherits": {
@@ -2975,6 +3024,9 @@
 				"bonusAc": "+2",
 				"entries": [
 					"While wearing this armor, you gain a {=bonusAc} bonus to {@variantrule Armor Class|XPHB}. In addition, if an effect moves you against your will along the ground, you can take a {@variantrule Reaction|XPHB} to reduce the distance you are moved by up to 10 feet."
+				],
+				"lootTables": [
+					"Armaments - Very Rare|XDMG"
 				]
 			},
 			"hasFluffImages": true
@@ -3005,6 +3057,9 @@
 				"bonusAc": "+3",
 				"entries": [
 					"While wearing this armor, you gain a {=bonusAc} bonus to {@variantrule Armor Class|XPHB}, you have {@variantrule Immunity|XPHB} to Fire damage, and you know Primordial. In addition, you can stand on and move across molten rock as if it were solid ground."
+				],
+				"lootTables": [
+					"Armaments - Legendary|XDMG"
 				]
 			},
 			"hasFluffImages": true
@@ -3032,54 +3087,12 @@
 				"bonusAc": "+1",
 				"entries": [
 					"You gain a {=bonusAc} bonus to {@variantrule Armor Class|XPHB} while you wear this armor. You are considered trained with this armor even if you lack training with Medium or Heavy armor."
+				],
+				"lootTables": [
+					"Armaments - Rare|XDMG"
 				]
 			},
 			"hasFluffImages": true
-		},
-		{
-			"name": "Energy Bow",
-			"edition": "classic",
-			"type": "GV|XDMG",
-			"requires": [
-				{
-					"bow": true
-				}
-			],
-			"inherits": {
-				"namePrefix": "Energy ",
-				"source": "UtHftLH",
-				"reprintedAs": [
-					"Energy Bow|XDMG"
-				],
-				"rarity": "very rare",
-				"reqAttune": true,
-				"bonusWeapon": "+1",
-				"entries": [
-					"You gain a +1 bonus to attack rolls and damage rolls made with this magic weapon, which has no string. Each time you pull your arm back in a firing motion, a magical arrow made of golden energy appears nocked and ready to fire. An arrow produced by this weapon deals Force damage instead of Piercing damage on a hit, and it disappears after it hits or misses its target. Until it disappears, the arrow emits {@variantrule Bright Light|XPHB} in a 20-foot radius and {@variantrule Dim Light|XPHB} for an additional 20 feet.",
-					"This weapon has the following additional properties.",
-					{
-						"type": "entries",
-						"name": "Arrow of Restraint",
-						"entries": [
-							"Whenever you use this weapon to make a ranged attack against a creature, you can try to restrain the target instead of dealing damage to it. If the arrow hits, the target must succeed on a DC 15 Strength saving throw or have the {@condition Restrained|XPHB} condition for 1 minute. As an action, a creature {@condition Restrained|XPHB} by an arrow can make a DC 20 Strength ({@skill Athletics|XPHB}) check to try to break the restraint, ending the effect on itself on a successful check."
-						]
-					},
-					{
-						"type": "entries",
-						"name": "Arrow of Transport",
-						"entries": [
-							"As a {@action Magic|XPHB} action, you can fire one energy arrow from this weapon at a target you can see within 60 feet of yourself. The target can be either a willing Medium or smaller creature or an object that isn't being worn or carried, provided the object is small enough to fit inside a 5-foot {@variantrule Cube [Area of Effect]|XPHB|Cube}. The arrow teleports the target to an unoccupied space you can see within 10 feet of you."
-						]
-					},
-					{
-						"type": "entries",
-						"name": "Energy Ladder",
-						"entries": [
-							"As a {@action Magic|XPHB} action, you can loose a flurry of energy arrows from this weapon at a wall up to 60 feet away from yourself. The arrows become glowing rungs that stick out of the wall, forming a magical {@item ladder|XPHB} up to 60 feet long on the wall. This ladder lasts for 1 minute before disappearing."
-						]
-					}
-				]
-			}
 		},
 		{
 			"name": "Energy Bow",
@@ -3099,6 +3112,11 @@
 				"source": "XDMG",
 				"page": 257,
 				"freeRules2024": true,
+				"otherSources": [
+					{
+						"source": "UtHftLH"
+					}
+				],
 				"rarity": "very rare",
 				"reqAttune": true,
 				"bonusWeapon": "+1",
@@ -3109,7 +3127,7 @@
 						"type": "entries",
 						"name": "Arrow of Restraint",
 						"entries": [
-							"Whenever you use this weapon to make a ranged attack against a creature, you can try to restrain the target instead of dealing damage to it. If the arrow hits, the target must succeed on a DC 15 Strength saving throw or have the {@condition Restrained|XPHB} condition for 1 minute. As an action, a creature {@condition Restrained|XPHB} by an arrow can make a DC 20 Strength ({@skill Athletics|XPHB}) check to try to break the restraint, ending the effect on itself on a successful check."
+							"Whenever you use this weapon to make a ranged attack against a creature, you can try to restrain the target instead of dealing damage to it. If the arrow hits, the target must succeed on a {@dc 15} Strength saving throw or have the {@condition Restrained|XPHB} condition for 1 minute. As an action, a creature {@condition Restrained|XPHB} by an arrow can make a {@dc 20} Strength ({@skill Athletics|XPHB}) check to try to break the restraint, ending the effect on itself on a successful check."
 						]
 					},
 					{
@@ -3126,6 +3144,15 @@
 							"As a {@action Magic|XPHB} action, you can loose a flurry of energy arrows from this weapon at a wall up to 60 feet away from yourself. The arrows become glowing rungs that stick out of the wall, forming a magical ladder up to 60 feet long on the wall. This ladder lasts for 1 minute before disappearing."
 						]
 					}
+				],
+				"light": [
+					{
+						"bright": 20,
+						"dim": 40
+					}
+				],
+				"lootTables": [
+					"Armaments - Very Rare|XDMG"
 				]
 			}
 		},
@@ -3414,7 +3441,7 @@
 				"namePrefix": "Enspelled (Cantrip) ",
 				"source": "XDMG",
 				"page": 258,
-				"rarity": "varies",
+				"rarity": "uncommon",
 				"reqAttune": true,
 				"recharge": "dawn",
 				"rechargeAmount": "{@dice 1d6}",
@@ -3672,6 +3699,9 @@
 				"entries": [
 					"You gain a +1 bonus to attack rolls and damage rolls made with this magic weapon.",
 					"Any Humanoid you hit with the weapon takes an extra {@damage 2d6} Slashing damage, and you gain {@variantrule Temporary Hit Points|XPHB} equal to the extra damage dealt."
+				],
+				"lootTables": [
+					"Armaments - Very Rare|XDMG"
 				]
 			}
 		},
@@ -3710,7 +3740,7 @@
 				"entries": [
 					"This colorful, flowery armor was forged in the Feywild and is infused with that plane's captivating magic.",
 					"While wearing this armor, you have advantage on saving throws you make to avoid or end the {@condition charmed} condition on yourself.",
-					"This armor has 3 charges. You can use an action to expend a charge to cast the {@spell Compulsion} spell (save DC 15) from this armor. The armor regains {@dice 1d3} expended charges daily at dawn."
+					"This armor has 3 charges. You can use an action to expend a charge to cast the {@spell Compulsion} spell (save {@dc 15}) from this armor. The armor regains {@dice 1d3} expended charges daily at dawn."
 				],
 				"attachedSpells": [
 					"compulsion"
@@ -3738,7 +3768,13 @@
 				"rarity": "rare",
 				"reqAttune": true,
 				"entries": [
-					"You can use a bonus action to speak this magic sword's command word, causing flames to erupt from the blade. These flames shed bright light in a 40-foot radius and dim light for an additional 40 feet. While the sword is ablaze, it deals an extra {@dice 2d6} fire damage to any target it hits. The flames last until you use a bonus action to speak the command word again or until you drop or sheathe the sword."
+					"You can use a bonus action to speak this magic sword's command word, causing flames to erupt from the blade. These flames shed bright light in a 40-foot radius and dim light for an additional 40 feet. While the sword is ablaze, it deals an extra {@damage 2d6} fire damage to any target it hits. The flames last until you use a bonus action to speak the command word again or until you drop or sheathe the sword."
+				],
+				"light": [
+					{
+						"bright": 40,
+						"dim": 80
+					}
 				],
 				"lootTables": [
 					"Magic Item Table G"
@@ -3763,6 +3799,15 @@
 				"reqAttune": true,
 				"entries": [
 					"While holding this magic weapon, you can take a {@variantrule Bonus Action|XPHB} and use a command word to cause flames to engulf the damage-dealing part of the weapon. These flames shed {@variantrule Bright Light|XPHB} in a 40-foot radius and {@variantrule Dim Light|XPHB} for an additional 40 feet. While the weapon is ablaze, it deals an extra {@damage 2d6} Fire damage on a hit. The flames last until you take a {@variantrule Bonus Action|XPHB} to issue the command again or until you drop, stow, or sheathe the weapon."
+				],
+				"light": [
+					{
+						"bright": 40,
+						"dim": 80
+					}
+				],
+				"lootTables": [
+					"Armaments - Rare|XDMG"
 				]
 			},
 			"hasFluffImages": true
@@ -3800,7 +3845,7 @@
 								"type": "item",
 								"name": "Misdirect",
 								"entries": [
-									"When a creature within 60 feet of you targets you with an attack roll, you can use your reaction to require that creature to make a DC 15 Intelligence saving throw. On a failed save, the attack instead targets another creature of your choice that is within the attacker's reach. Once this reaction has been used, it can't be used again until the next dawn."
+									"When a creature within 60 feet of you targets you with an attack roll, you can use your reaction to require that creature to make a {@dc 15} Intelligence saving throw. On a failed save, the attack instead targets another creature of your choice that is within the attacker's reach. Once this reaction has been used, it can't be used again until the next dawn."
 								]
 							}
 						]
@@ -3852,9 +3897,15 @@
 				"rarity": "very rare",
 				"reqAttune": true,
 				"entries": [
-					"When you hit with an attack using this magic sword, the target takes an extra {@dice 1d6} cold damage. In addition, while you hold the sword, you have resistance to fire damage.",
+					"When you hit with an attack using this magic sword, the target takes an extra {@damage 1d6} cold damage. In addition, while you hold the sword, you have resistance to fire damage.",
 					"In freezing temperatures, the blade sheds bright light in a 10-foot radius and dim light for an additional 10 feet.",
 					"When you draw this weapon, you can extinguish all nonmagical flames within 30 feet of you. This property can be used no more than once per hour."
+				],
+				"light": [
+					{
+						"bright": 10,
+						"dim": 20
+					}
 				],
 				"lootTables": [
 					"Magic Item Table H"
@@ -3902,6 +3953,15 @@
 					"When you hit with an attack roll using this magic weapon, the target takes an extra {@damage 1d6} Cold damage. In addition, while you hold the weapon, you have {@variantrule Resistance|XPHB} to Fire damage.",
 					"In freezing temperatures, the weapon sheds {@variantrule Bright Light|XPHB} in a 10-foot radius and {@variantrule Dim Light|XPHB} for an additional 10 feet.",
 					"When you draw this weapon, you can extinguish all nonmagical flames within 30 feet of yourself. Once used, this property can't be used again for 1 hour."
+				],
+				"light": [
+					{
+						"bright": 10,
+						"dim": 20
+					}
+				],
+				"lootTables": [
+					"Armaments - Very Rare|XDMG"
 				]
 			},
 			"hasFluffImages": true
@@ -3958,7 +4018,7 @@
 				"bonusWeapon": "+1",
 				"entries": [
 					"You gain a +1 bonus to attack and damage rolls made with this magic weapon.",
-					"When you hit a giant with it, the giant takes an extra {@dice 2d6} damage of the weapon's type and must succeed on a DC 15 Strength saving throw or fall {@condition prone}. For the purpose of this weapon, \"giant\" refers to any creature with the giant type, including ettins and trolls."
+					"When you hit a giant with it, the giant takes an extra {@damage 2d6} damage of the weapon's type and must succeed on a {@dc 15} Strength saving throw or fall {@condition prone}. For the purpose of this weapon, \"giant\" refers to any creature with the giant type, including ettins and trolls."
 				],
 				"lootTables": [
 					"Magic Item Table G"
@@ -3986,7 +4046,10 @@
 				"bonusWeapon": "+1",
 				"entries": [
 					"You gain a +1 bonus to attack rolls and damage rolls made with this magic weapon.",
-					"When you hit a Giant with this weapon, the Giant takes an extra {@damage 2d6} damage of the weapon's type and must succeed on a DC 15 Strength saving throw or have the {@condition Prone|XPHB} condition."
+					"When you hit a Giant with this weapon, the Giant takes an extra {@damage 2d6} damage of the weapon's type and must succeed on a {@dc 15} Strength saving throw or have the {@condition Prone|XPHB} condition."
+				],
+				"lootTables": [
+					"Armaments - Rare|XDMG"
 				]
 			},
 			"hasFluffImages": true
@@ -4053,7 +4116,7 @@
 				"entries": [
 					"This intricate grayscale armor was forged in the Shadowfell and is infused with that plane's gloom.",
 					"While you're wearing this armor, you have advantage on saving throws you make to avoid or end the frightened condition on yourself.",
-					"This armor has 3 charges. You can expend a charge to cast the {@spell Calm Emotions} spell (save DC 15) from the armor. This armor regains {@dice 1d3} expended charges daily at dawn."
+					"This armor has 3 charges. You can expend a charge to cast the {@spell Calm Emotions} spell (save {@dc 15}) from the armor. This armor regains {@dice 1d3} expended charges daily at dawn."
 				],
 				"attachedSpells": [
 					"calm emotions"
@@ -4089,7 +4152,7 @@
 				"entries": [
 					"You gain a +1 bonus to attack rolls and damage rolls made with this magic weapon.",
 					"The weapon has 5 charges. You can expend 1 charge and make a ranged attack with the weapon, hurling it as if it had {@itemProperty T|XPHB|Thrown} with a normal range of 20 feet and a long range of 60 feet.",
-					"If the attack hits, the weapon unleashes a thunderclap audible out to 300 feet. The target and every creature within 30 feet of it other than you must succeed on a DC 17 Constitution saving throw or have the {@condition Stunned|XPHB} condition until the end of your next turn. Immediately after hitting or missing, the weapon flies back to your hand. The weapon regains {@dice 1d4 + 1} expended charges daily at dawn.",
+					"If the attack hits, the weapon unleashes a thunderclap audible out to 300 feet. The target and every creature within 30 feet of it other than you must succeed on a {@dc 17} Constitution saving throw or have the {@condition Stunned|XPHB} condition until the end of your next turn. Immediately after hitting or missing, the weapon flies back to your hand. The weapon regains {@dice 1d4 + 1} expended charges daily at dawn.",
 					{
 						"type": "entries",
 						"name": "Giant's Bane",
@@ -4103,7 +4166,7 @@
 										"type": "item",
 										"name": "Giants' Bane",
 										"entries": [
-											"When you roll a 20 on the {@dice d20} for an attack roll made with this weapon against a Giant, the creature must succeed on a DC 17 Constitution saving throw or die."
+											"When you roll a 20 on the {@dice d20} for an attack roll made with this weapon against a Giant, the creature must succeed on a {@dc 17} Constitution saving throw or die."
 										]
 									},
 									{
@@ -4117,6 +4180,9 @@
 							}
 						]
 					}
+				],
+				"lootTables": [
+					"Armaments - Legendary|XDMG"
 				]
 			},
 			"hasFluffImages": true
@@ -4138,7 +4204,7 @@
 				"page": 230,
 				"rarity": "rare",
 				"entries": [
-					"This piece of ammunition has a refined delerium arrowtip. A creature hit by a ranged attack using one of these arrows takes an extra ({@dice 3d6}) necrotic damage and must succeed on a DC 15 Constitution saving throw or gain one {@adventure level of contamination|DoDk|12}. Once it hits a target, the delerium tip crumbles to dust and the arrow becomes nonmagical."
+					"This piece of ammunition has a refined delerium arrowtip. A creature hit by a ranged attack using one of these arrows takes an extra ({@damage 3d6}) necrotic damage and must succeed on a {@dc 15} Constitution saving throw or gain one {@adventure level of contamination|DoDk|12}. Once it hits a target, the delerium tip crumbles to dust and the arrow becomes nonmagical."
 				]
 			},
 			"hasFluffImages": true
@@ -4159,6 +4225,11 @@
 				"entries": [
 					"This weapon is fashioned from infernal iron and traced with veins of hellfire that shed dim light in a 5-foot-radius.",
 					"Any humanoid killed by an attack made with this weapon has its soul funneled into the River Styx, where it's reborn instantly as a {@creature lemure} devil."
+				],
+				"light": [
+					{
+						"dim": 5
+					}
 				]
 			},
 			"hasFluffImages": true
@@ -4190,7 +4261,7 @@
 				],
 				"bonusWeapon": "+3",
 				"entries": [
-					"You gain a +3 bonus to attack and damage rolls made with this magic weapon. When you hit a fiend or an undead with it, that creature takes an extra {@dice 2d10} radiant damage.",
+					"You gain a +3 bonus to attack and damage rolls made with this magic weapon. When you hit a fiend or an undead with it, that creature takes an extra {@damage 2d10} radiant damage.",
 					"While you hold the drawn sword, it creates an aura in a 10-foot radius around you. You and all creatures friendly to you in the aura have advantage on saving throws against spells and other magical effects. If you have 17 or more levels in the paladin class, the radius of the aura increases to 30 feet."
 				],
 				"lootTables": [
@@ -4225,6 +4296,10 @@
 				"entries": [
 					"You gain a +3 bonus to attack rolls and damage rolls made with this magic weapon. When you hit a Fiend or an Undead with it, that creature takes an extra {@damage 2d10} Radiant damage.",
 					"While you hold the drawn weapon, it creates a 10-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from you. You and all creatures {@variantrule Friendly [Attitude]|XPHB|Friendly} to you in the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} have {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects. If you have 17 or more levels in the Paladin class, the size of the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} increases to 30 feet."
+				],
+				"lootTables": [
+					"Armaments - Legendary|XDMG",
+					"Relics - Legendary|XDMG"
 				]
 			},
 			"hasFluffImages": true
@@ -4509,7 +4584,7 @@
 				"bonusAc": "+1",
 				"entries": [
 					"You have a {=bonusAc} bonus to AC while wearing this armor, which shimmers softly.",
-					"If you die while wearing the armor, it is destroyed, and each celestial, fey, and fiend within 30 feet of you must succeed on a DC 15 Charisma saving throw or be banished to its home plane of existence, unless it is already there."
+					"If you die while wearing the armor, it is destroyed, and each celestial, fey, and fiend within 30 feet of you must succeed on a {@dc 15} Charisma saving throw or be banished to its home plane of existence, unless it is already there."
 				]
 			}
 		},
@@ -4674,6 +4749,9 @@
 				],
 				"attachedSpells": [
 					"wish|xphb"
+				],
+				"lootTables": [
+					"Armaments - Legendary|XDMG"
 				]
 			},
 			"hasFluffImages": true
@@ -4694,7 +4772,7 @@
 				"bonusWeapon": "+2",
 				"entries": [
 					"Made from the claws, teeth, and bones of lycanthropes, these weapons are particularly effective against other lycanthropes or vampires. You gain a {=bonusWeapon} bonus to attack and damage rolls made with this weapon.",
-					"Additionally, on a successful attack against a lycanthrope, the target is forced back into its human form unless it succeeds on a DC 10 Charisma saving throw. Also, damage done to vampires with lycan weapons cannot be regenerated until the creature finishes a short rest."
+					"Additionally, on a successful attack against a lycanthrope, the target is forced back into its human form unless it succeeds on a {@dc 10} Charisma saving throw. Also, damage done to vampires with lycan weapons cannot be regenerated until the creature finishes a short rest."
 				]
 			}
 		},
@@ -4751,6 +4829,10 @@
 				"entries": [
 					"While wearing this armor, you have a {@variantrule Swim Speed|XPHB} equal to your {@variantrule Speed|XPHB}. In addition, if you start your turn underwater with 0 {@variantrule Hit Points|XPHB}, you immediately regain {@dice 1d4} {@variantrule Hit Points|XPHB}. The armor can't heal anyone again until the next dawn.",
 					"The armor is decorated with fish and shell motifs."
+				],
+				"lootTables": [
+					"Armaments - Uncommon|XDMG",
+					"Relics - Uncommon|XDMG"
 				]
 			},
 			"hasFluffImages": true
@@ -4770,7 +4852,7 @@
 				"rarity": "rare",
 				"reqAttune": "by a specific individual",
 				"entries": [
-					"Mind flayers can turn any nonmagical sword into a mind blade. Only one creature can attune to it: either a specific mind flayer or one of its thralls. In the hands of any other creature, the mind blade functions as a normal sword of its kind. In the hands of its intended wielder, the mind blade is a magic weapon that deals an extra {@dice 2d6} psychic damage to any target it hits."
+					"Mind flayers can turn any nonmagical sword into a mind blade. Only one creature can attune to it: either a specific mind flayer or one of its thralls. In the hands of any other creature, the mind blade functions as a normal sword of its kind. In the hands of its intended wielder, the mind blade is a magic weapon that deals an extra {@damage 2d6} psychic damage to any target it hits."
 				]
 			}
 		},
@@ -4894,6 +4976,10 @@
 				"entries": [
 					"Mithral is a light, flexible metal. A mithral chain shirt or breastplate can be worn under normal clothes.",
 					"If the armor normally imposes disadvantage on Dexterity ({@skill Stealth|XPHB}) checks or has a Strength requirement, the mithral version of the armor doesn't."
+				],
+				"lootTables": [
+					"Arcana - Uncommon|XDMG",
+					"Armaments - Uncommon|XDMG"
 				]
 			}
 		},
@@ -4980,6 +5066,12 @@
 				"rarity": "common",
 				"entries": [
 					"In darkness, the unsheathed blade of this sword sheds moonlight, creating bright light in a 15-foot radius and dim light for an additional 15 feet."
+				],
+				"light": [
+					{
+						"bright": 15,
+						"dim": 30
+					}
 				]
 			}
 		},
@@ -4998,6 +5090,16 @@
 				"rarity": "common",
 				"entries": [
 					"In {@variantrule Darkness|XPHB}, the unsheathed blade of this weapon sheds moonlight, creating {@variantrule Bright Light|XPHB} in a 15-foot radius and {@variantrule Dim Light|XPHB} for an additional 15 feet."
+				],
+				"light": [
+					{
+						"bright": 15,
+						"dim": 30
+					}
+				],
+				"lootTables": [
+					"Armaments - Common|XDMG",
+					"Implements - Common|XDMG"
 				]
 			},
 			"hasFluffImages": true
@@ -5037,7 +5139,7 @@
 				"bonusWeapon": "+1",
 				"entries": [
 					"Of all the magic items created by elves, one of the most prized and jealously guarded is a Moonblade. In ancient times, nearly all elven noble houses claimed one such weapon. Over the centuries, some of these weapons have faded from the world, their magic lost as family lines have become extinct. Others have vanished with their bearers during great quests. Thus, only a few of these weapons remain.",
-					"Every Moonblade longs for a bearer whose disposition and goals are compatible with its own. If you try to attune to a Moonblade that doesn't want you as its bearer, the weapon not only rejects you but also places a curse on you, causing you to make {@dice D20} Tests with {@variantrule Disadvantage|XPHB} for 24 hours or until the curse is ended by a {@spell Remove Curse|XPHB} spell or similar magic. If you're accepted by the weapon and try to attune to it, you become attuned to it instantly, and a new rune appears on it. You remain attuned to the weapon until you die or the weapon is destroyed. A Moonblade functions like a nonmagical weapon of its kind for anyone other than its chosen bearer.",
+					"Every Moonblade longs for a bearer whose disposition and goals are compatible with its own. If you try to attune to a Moonblade that doesn't want you as its bearer, the weapon not only rejects you but also places a curse on you, causing you to make {@variantrule D20 Test|XPHB|D20 Tests} with {@variantrule Disadvantage|XPHB} for 24 hours or until the curse is ended by a {@spell Remove Curse|XPHB} spell or similar magic. If you're accepted by the weapon and try to attune to it, you become attuned to it instantly, and a new rune appears on it. You remain attuned to the weapon until you die or the weapon is destroyed. A Moonblade functions like a nonmagical weapon of its kind for anyone other than its chosen bearer.",
 					"A Moonblade has one rune on it for each bearer it has willingly served (typically {@dice 1d6 + 1}). The first rune grants a +1 bonus to attack rolls and damage rolls made with this magic weapon. Each rune beyond the first grants the Moonblade an additional property. The DM chooses each property or determines it randomly by rolling on the Moonblade Properties table.",
 					{
 						"type": "entries",
@@ -5079,7 +5181,7 @@
 							],
 							[
 								"61-75",
-								"When you hit with an attack roll using the {@i Moonblade}, you deal an extra {@damage 1d6} Force damage. Each time the weapon gains this property after the first, the extra damage increases by {@dice 1d6}, to a maximum of {@dice 3d6}. Reroll if the {@i Moonblade} already deals an extra {@damage 3d6} Force damage on a hit."
+								"When you hit with an attack roll using the {@i Moonblade}, you deal an extra {@damage 1d6} Force damage. Each time the weapon gains this property after the first, the extra damage increases by {@damage 1d6}, to a maximum of {@damage 3d6}. Reroll if the {@i Moonblade} already deals an extra {@damage 3d6} Force damage on a hit."
 							],
 							[
 								"76-80",
@@ -5091,7 +5193,7 @@
 							],
 							[
 								"86-95",
-								"You can take a {@variantrule Bonus Action|XPHB} to cause the {@i Moonblade} to flash brightly. Each other creature that is within 30 feet of you and not behind {@variantrule Cover|XPHB|Total Cover} must succeed on a DC 15 Constitution saving throw or have the {@condition Blinded|XPHB} condition for 1 minute. A creature repeats the save at the end of each of its turns, ending the effect on itself on a success. You can't use this property again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
+								"You can take a {@variantrule Bonus Action|XPHB} to cause the {@i Moonblade} to flash brightly. Each other creature that is within 30 feet of you and not behind {@variantrule Cover|XPHB|Total Cover} must succeed on a {@dc 15} Constitution saving throw or have the {@condition Blinded|XPHB} condition for 1 minute. A creature repeats the save at the end of each of its turns, ending the effect on itself on a success. You can't use this property again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
 							],
 							[
 								"96-99",
@@ -5103,6 +5205,9 @@
 							]
 						]
 					}
+				],
+				"lootTables": [
+					"Armaments - Legendary|XDMG"
 				]
 			},
 			"hasFluffImages": true
@@ -5131,7 +5236,7 @@
 				"charges": "{@dice 1d8 + 1}",
 				"entries": [
 					"You gain a +2 bonus to attack and damage rolls made with this magic weapon.",
-					"The sword has {@dice 1d8 + 1} charges. If you score a critical hit against a creature that has fewer than 100 hit points, it must succeed on a DC 15 Constitution saving throw or be slain instantly as the sword tears its life force from its body (a construct or an undead is immune). The sword loses 1 charge if the creature is slain. When the sword has no charges remaining, it loses this property."
+					"The sword has {@dice 1d8 + 1} charges. If you score a critical hit against a creature that has fewer than 100 hit points, it must succeed on a {@dc 15} Constitution saving throw or be slain instantly as the sword tears its life force from its body (a construct or an undead is immune). The sword loses 1 charge if the creature is slain. When the sword has no charges remaining, it loses this property."
 				],
 				"lootTables": [
 					"Magic Item Table H"
@@ -5165,9 +5270,12 @@
 						"type": "entries",
 						"name": "Life Stealing",
 						"entries": [
-							"The weapon has {@dice 1d8 + 1} charges. When you attack a creature that has fewer than 100 {@variantrule Hit Points|XPHB} with this weapon and roll a 20 on the {@dice d20} for the attack roll, the creature must succeed on a DC 15 Constitution saving throw or be slain instantly as the sword tears its life force from its body. Constructs and Undead succeed on the save automatically. The weapon loses 1 charge if the creature is slain. When the weapon has no charges remaining, it loses this property."
+							"The weapon has {@dice 1d8 + 1} charges. When you attack a creature that has fewer than 100 {@variantrule Hit Points|XPHB} with this weapon and roll a 20 on the {@dice d20} for the attack roll, the creature must succeed on a {@dc 15} Constitution saving throw or be slain instantly as the sword tears its life force from its body. Constructs and Undead succeed on the save automatically. The weapon loses 1 charge if the creature is slain. When the weapon has no charges remaining, it loses this property."
 						]
 					}
+				],
+				"lootTables": [
+					"Armaments - Very Rare|XDMG"
 				]
 			},
 			"hasFluffImages": true
@@ -5196,6 +5304,9 @@
 					"When you nock an arrow on this bow, it whispers in Elvish, \"Swift defeat to my enemies.\" When you use this weapon to make a ranged attack, you can utter or sign the following command words: \"Swift death to you who have wronged me.\" The target of your attack becomes your sworn enemy until it dies or until dawn 7 days later. You can have only one such sworn enemy at a time. When your sworn enemy dies, you can choose a new one after the next dawn.",
 					"When you make a ranged attack roll with this weapon against your sworn enemy, you have {@variantrule Advantage|XPHB} on the roll. In addition, your target gains no benefit from {@variantrule Cover|XPHB|Half Cover} or {@variantrule Cover|XPHB|Three-Quarters Cover}, and you suffer no {@variantrule Disadvantage|XPHB} due to long range. If the attack hits, your sworn enemy takes an extra {@damage 3d6} Piercing damage.",
 					"While your sworn enemy lives, you have {@variantrule Disadvantage|XPHB} on attack rolls with all other weapons."
+				],
+				"lootTables": [
+					"Armaments - Very Rare|XDMG"
 				]
 			},
 			"hasFluffImages": true
@@ -5507,7 +5618,7 @@
 			}
 		},
 		{
-			"name": "Plate Armor of Etherealness",
+			"name": "Plate Armor of Etherealness (*)",
 			"type": "GV|XDMG",
 			"requires": [
 				{
@@ -5519,8 +5630,12 @@
 					"source": "XPHB"
 				}
 			],
+			"entries": [
+				"{@note * This generic variant has the same name and source as the item {@item Plate Armor of Etherealness|XDMG}}.",
+				"While you're wearing this armor, you can take a {@action Magic|XPHB} action and use a command word to gain the effect of the {@spell Etherealness|XPHB} spell. The spell ends immediately if you remove the armor or take a {@action Magic|XPHB} action to repeat the command word. This property of the armor can't be used again until the next dawn."
+			],
 			"inherits": {
-				"namePrefix": " of Etherealness",
+				"nameSuffix": " of Etherealness",
 				"source": "XDMG",
 				"page": 286,
 				"rarity": "legendary",
@@ -5530,6 +5645,9 @@
 				],
 				"attachedSpells": [
 					"etherealness|xphb"
+				],
+				"lootTables": [
+					"Armaments - Legendary|XDMG"
 				]
 			}
 		},
@@ -5549,7 +5667,7 @@
 				"reqAttune": true,
 				"curse": true,
 				"entries": [
-					"When you attack a creature with this magic weapon and roll a 20 on the attack roll, the creature must make a DC 15 Wisdom saving throw in addition to suffering the attack's normal effects. On a failed save, the creature also suffers the effects of a {@spell polymorph} spell. Roll a d20 and consult the following table to determine the form the target creature is transformed into.",
+					"When you attack a creature with this magic weapon and roll a 20 on the attack roll, the creature must make a {@dc 15} Wisdom saving throw in addition to suffering the attack's normal effects. On a failed save, the creature also suffers the effects of a {@spell polymorph} spell. Roll a d20 and consult the following table to determine the form the target creature is transformed into.",
 					{
 						"type": "table",
 						"caption": "",
@@ -5656,30 +5774,6 @@
 			}
 		},
 		{
-			"name": "Red-Feather Bow",
-			"type": "GV|DMG",
-			"requires": [
-				{
-					"bow": true
-				}
-			],
-			"inherits": {
-				"namePrefix": "Red-Feather ",
-				"source": "HWCS",
-				"page": 214,
-				"rarity": "uncommon",
-				"reqAttune": true,
-				"bonusWeapon": "+1",
-				"charges": 3,
-				"entries": [
-					"A prized hunting weapon among mistral raptors, this bow is imbued with magic to help the wielder see their prey from afar.",
-					"You gain a {=bonusWeapon} bonus to attack and damage rolls made with this magic weapon.",
-					"The bow has 3 charges. When you fire an arrow from this bow, you can speak the command word and use a charge to see through the arrow as a bonus action. You can see from the point your arrow lands as if you were there for 1 minute. If the arrow strikes a creature, you see what they see for the same duration."
-				]
-			},
-			"hasFluffImages": true
-		},
-		{
 			"name": "Ruidium Armor",
 			"type": "GV|DMG",
 			"requires": [
@@ -5728,7 +5822,7 @@
 						"type": "entries",
 						"name": "Ruidium Corruption",
 						"entries": [
-							"When you roll a 1 on a saving throw while wearing this armor, you must make a DC 15 Charisma saving throw. On a failed save, you gain 1 level of {@condition exhaustion}. If you are not already suffering from ruidium corruption, you become corrupted when you fail this save."
+							"When you roll a 1 on a saving throw while wearing this armor, you must make a {@dc 15} Charisma saving throw. On a failed save, you gain 1 level of {@condition exhaustion}. If you are not already suffering from ruidium corruption, you become corrupted when you fail this save."
 						]
 					},
 					{
@@ -5781,7 +5875,7 @@
 						"type": "entries",
 						"name": "Ruidium Corruption",
 						"entries": [
-							"When you roll a 1 on an attack roll made with this weapon, you must make a DC 20 Charisma saving throw. On a failed save, you gain 1 level of {@condition exhaustion}. If you are not already suffering from ruidium corruption, you become corrupted when you fail this save."
+							"When you roll a 1 on an attack roll made with this weapon, you must make a {@dc 20} Charisma saving throw. On a failed save, you gain 1 level of {@condition exhaustion}. If you are not already suffering from ruidium corruption, you become corrupted when you fail this save."
 						]
 					},
 					{
@@ -5813,7 +5907,7 @@
 				}
 			],
 			"excludes": {
-				"name": "Energy Cell"
+				"cellEnergy": true
 			},
 			"ammo": true,
 			"entries": [
@@ -5874,6 +5968,9 @@
 				"rarity": "common",
 				"entries": [
 					"An alchemical process has bonded silver to this magic weapon. When you score a {@variantrule Critical Hit|XPHB} with it against a creature that is shape-shifted, the weapon deals one additional die of damage."
+				],
+				"lootTables": [
+					"Armaments - Common|XDMG"
 				]
 			}
 		},
@@ -5941,6 +6038,10 @@
 				"rarity": "common",
 				"entries": [
 					"Wisps of harmless, odorless smoke rise from this armor while it is worn."
+				],
+				"lootTables": [
+					"Armaments - Common|XDMG",
+					"Relics - Common|XDMG"
 				]
 			}
 		},
@@ -5967,7 +6068,7 @@
 				"charges": 3,
 				"entries": [
 					"This magical bow or crossbow has an intricate arrangement of delerium shards and focusing lenses along the stock where a bolt would normally be loaded, and instead magically conjures its own projectiles. You gain a {=bonusWeapon} bonus to attack and damage rolls made with this weapon, which deals radiant damage instead of piercing damage and ignores the ammunition and loading properties.",
-					"The weapon has 3 charges, which are regained each day at dawn. When you hit with a ranged attack using it, you can cause the bolt to explode in a brilliant flash of light. The target you hit and any creatures within 10 feet of it must succeed on a DC 15 Constitution saving throw or become blinded until the end of your next turn."
+					"The weapon has 3 charges, which are regained each day at dawn. When you hit with a ranged attack using it, you can cause the bolt to explode in a brilliant flash of light. The target you hit and any creatures within 10 feet of it must succeed on a {@dc 15} Constitution saving throw or become blinded until the end of your next turn."
 				]
 			}
 		},
@@ -6108,7 +6209,7 @@
 				"reqAttune": true,
 				"entries": [
 					"When you attack a creature with this magic weapon and roll a 20 on the attack roll, that target takes an extra 10 necrotic damage if it isn't a construct or an undead. You also gain 10 temporary hit points.",
-					"{@note Note: According to the SRD, it is an extra {@dice 3d6} necrotic damage, although {@link this is incorrect|https://rpg.stackexchange.com/a/174522/53884}.}"
+					"{@note Note: According to the SRD, it is an extra {@damage 3d6} necrotic damage, although {@link this is incorrect|https://rpg.stackexchange.com/a/174522/53884}.}"
 				],
 				"lootTables": [
 					"Magic Item Table G"
@@ -6153,6 +6254,9 @@
 				"reqAttune": true,
 				"entries": [
 					"When you attack a creature with this magic weapon and roll a 20 on the {@dice d20} for the attack roll, that target takes an extra 15 Necrotic damage if it isn't a Construct or an Undead, and you gain {@variantrule Temporary Hit Points|XPHB} equal to the amount of Necrotic damage taken."
+				],
+				"lootTables": [
+					"Armaments - Rare|XDMG"
 				]
 			},
 			"hasFluffImages": true
@@ -6180,7 +6284,7 @@
 						"name": "Curse",
 						"entries": [
 							"You're unwilling to part with this weapon while attuned to it. While attuned to this weapon, you also have disadvantage on attack rolls made with weapons other than this one.",
-							"The vengeful spirit possessing the sword shares its history and lust for vengeance with the wielder. After each successful long rest, you experience nightmares of the spirit's past, culminating in its death. When you wake, you must make a DC 11 Constitution saving throw. On a failed save, you only gain the benefits of a short rest. Only the {@spell Remove Curse} spell allows you to end attunement to this item."
+							"The vengeful spirit possessing the sword shares its history and lust for vengeance with the wielder. After each successful long rest, you experience nightmares of the spirit's past, culminating in its death. When you wake, you must make a {@dc 11} Constitution saving throw. On a failed save, you only gain the benefits of a short rest. Only the {@spell Remove Curse} spell allows you to end attunement to this item."
 						]
 					},
 					{
@@ -6217,8 +6321,14 @@
 				"entries": [
 					"When you attack an object with this magic sword and hit, maximize your weapon damage dice against the target.",
 					"When you attack a creature with this weapon and roll a 20 on the attack roll, that target takes an extra 14 slashing damage. Then roll another {@dice d20}. If you roll a 20, you lop off one of the target's limbs, with the effect of such loss determined by the DM. If the creature has no limb to sever, you lop off a portion of its body instead.",
-					"{@note Note: According to the SRD, it is an extra {@dice 4d6} slashing damage, although {@link this is incorrect|https://rpg.stackexchange.com/a/174522/53884}}.",
+					"{@note Note: According to the SRD, it is an extra {@damage 4d6} slashing damage, although {@link this is incorrect|https://rpg.stackexchange.com/a/174522/53884}}.",
 					"In addition, you can speak the sword's command to cause the blade to shed bright light in a 10-foot radius and dim light for an additional 10 feet. Speaking the command word again or sheathing the sword puts out the light."
+				],
+				"light": [
+					{
+						"bright": 10,
+						"dim": 20
+					}
 				],
 				"lootTables": [
 					"Magic Item Table H"
@@ -6256,6 +6366,9 @@
 				"entries": [
 					"When you attack an object with this magic weapon and hit, maximize your weapon damage dice against the target.",
 					"When you attack a creature with this weapon and roll a 20 on the {@dice d20} for the attack roll, that target takes an extra 14 Slashing damage and gains 1 {@condition Exhaustion|XPHB} level."
+				],
+				"lootTables": [
+					"Armaments - Very Rare|XDMG"
 				]
 			},
 			"hasFluffImages": true
@@ -6312,7 +6425,7 @@
 						"type": "entries",
 						"entries": [
 							"This sword is cursed and possessed by a vengeful spirit. Becoming attuned to it extends the curse to you. As long as you remain cursed, you are unwilling to part with the sword, keeping it on your person at all times. While attuned to this weapon, you have disadvantage on attack rolls made with weapons other than this one.",
-							"In addition, while the sword is on your person, you must succeed on a DC 15 Wisdom saving throw whenever you take damage in combat. On a failed save you must attack the creature that damaged you until you drop to 0 hit points or it does, or until you can't reach the creature to make a melee attack against it.",
+							"In addition, while the sword is on your person, you must succeed on a {@dc 15} Wisdom saving throw whenever you take damage in combat. On a failed save you must attack the creature that damaged you until you drop to 0 hit points or it does, or until you can't reach the creature to make a melee attack against it.",
 							"You can break the curse in the usual ways. Alternatively, casting {@spell banishment} on the sword forces the vengeful spirit to leave it. The sword then becomes a +1 weapon with no other properties."
 						]
 					}
@@ -6366,10 +6479,13 @@
 						"name": "Curse",
 						"entries": [
 							"This weapon is cursed and possessed by a vengeful spirit. Becoming attuned to it extends the curse to you. As long as you remain cursed, you are unwilling to part with the weapon, keeping it on your person at all times. While attuned to this weapon, you have {@variantrule Disadvantage|XPHB} on attack rolls made with weapons other than this one.",
-							"In addition, while the weapon is on your person, you must succeed on a DC 15 Wisdom saving throw whenever you take damage from another creature in combat. On a failed save, you must attack the creature that damaged you until you drop to 0 {@variantrule Hit Points|XPHB} or it does or until you can't reach the creature to make a melee attack against it.",
+							"In addition, while the weapon is on your person, you must succeed on a {@dc 15} Wisdom saving throw whenever you take damage from another creature in combat. On a failed save, you must attack the creature that damaged you until you drop to 0 {@variantrule Hit Points|XPHB} or it does or until you can't reach the creature to make a melee attack against it.",
 							"You can break the curse in the usual ways. Alternatively, casting {@spell Banishment|XPHB} on the weapon forces the vengeful spirit to leave it. The weapon then becomes a +1 Weapon with no other properties."
 						]
 					}
+				],
+				"lootTables": [
+					"Armaments - Uncommon|XDMG"
 				]
 			}
 		},
@@ -6395,7 +6511,7 @@
 				"reqAttune": true,
 				"entries": [
 					"Hit points lost to this weapon's damage can be regained only through a short or long rest, rather than by regeneration, magic, or any other means.",
-					"Once per turn, when you hit a creature with an attack using this magic weapon, you can wound the target. At the start of each of the wounded creature's turns, it takes {@dice 1d4} necrotic damage for each time you've wounded it, and it can then make a DC 15 Constitution saving throw, ending the effect of all such wounds on itself on a success. Alternatively, the wounded creature, or a creature within 5 feet of it, can use an action to make a DC 15 Wisdom ({@skill Medicine}) check, ending the effect of such wounds on it on a success."
+					"Once per turn, when you hit a creature with an attack using this magic weapon, you can wound the target. At the start of each of the wounded creature's turns, it takes {@damage 1d4} necrotic damage for each time you've wounded it, and it can then make a {@dc 15} Constitution saving throw, ending the effect of all such wounds on itself on a success. Alternatively, the wounded creature, or a creature within 5 feet of it, can use an action to make a {@dc 15} Wisdom ({@skill Medicine}) check, ending the effect of such wounds on it on a success."
 				],
 				"lootTables": [
 					"Magic Item Table G"
@@ -6438,7 +6554,10 @@
 				"rarity": "rare",
 				"reqAttune": true,
 				"entries": [
-					"When you hit a creature with an attack using this magic weapon, the target takes an extra {@damage 2d6} Necrotic damage and must succeed on a DC 15 Constitution saving throw or be unable to regain {@variantrule Hit Points|XPHB} for 1 hour. The target repeats the save at the end of each of its turns, ending the effect on itself on a success."
+					"When you hit a creature with an attack using this magic weapon, the target takes an extra {@damage 2d6} Necrotic damage and must succeed on a {@dc 15} Constitution saving throw or be unable to regain {@variantrule Hit Points|XPHB} for 1 hour. The target repeats the save at the end of each of its turns, ending the effect on itself on a success."
+				],
+				"lootTables": [
+					"Armaments - Rare|XDMG"
 				]
 			}
 		},
@@ -6489,6 +6608,10 @@
 				],
 				"attachedSpells": [
 					"message|xphb"
+				],
+				"lootTables": [
+					"Armaments - Common|XDMG",
+					"Implements - Common|XDMG"
 				]
 			},
 			"hasFluffImages": true
@@ -6506,7 +6629,7 @@
 			},
 			"entries": [
 				"When you roll a 20 with this magic weapon, the target takes an extra 7 damage of the weapon's type.",
-				"{@note Note: According to the SRD, it is an extra {@dice 2d6} damage, although {@link this is incorrect|https://rpg.stackexchange.com/a/174522/53884}.}"
+				"{@note Note: According to the SRD, it is an extra {@damage 2d6} damage, although {@link this is incorrect|https://rpg.stackexchange.com/a/174522/53884}.}"
 			],
 			"inherits": {
 				"namePrefix": "Vicious +1 ",
@@ -6517,7 +6640,7 @@
 				"entries": [
 					"You have a {=bonusWeapon} bonus to attack and damage rolls made with this weapon.",
 					"When you roll a 20 with this magic weapon, the target takes an extra 7 {=dmgType} damage.",
-					"{@note Note: According to the SRD, it is an extra {@dice 2d6} {=dmgType} damage, although {@link this is incorrect|https://rpg.stackexchange.com/a/174522/53884}.}"
+					"{@note Note: According to the SRD, it is an extra {@damage 2d6} {=dmgType} damage, although {@link this is incorrect|https://rpg.stackexchange.com/a/174522/53884}.}"
 				]
 			}
 		},
@@ -6535,7 +6658,7 @@
 			},
 			"entries": [
 				"When you roll a 20 with this magic weapon, the target takes an extra 7 damage of the weapon's type.",
-				"{@note Note: According to the SRD, it is an extra {@dice 2d6} damage, although {@link this is incorrect|https://rpg.stackexchange.com/a/174522/53884}.}"
+				"{@note Note: According to the SRD, it is an extra {@damage 2d6} damage, although {@link this is incorrect|https://rpg.stackexchange.com/a/174522/53884}.}"
 			],
 			"inherits": {
 				"namePrefix": "Vicious ",
@@ -6549,7 +6672,7 @@
 				"rarity": "rare",
 				"entries": [
 					"When you roll a 20 with this magic weapon, the target takes an extra 7 {=dmgType} damage.",
-					"{@note Note: According to the SRD, it is an extra {@dice 2d6} {=dmgType} damage, although {@link this is incorrect|https://rpg.stackexchange.com/a/174522/53884}.}"
+					"{@note Note: According to the SRD, it is an extra {@damage 2d6} {=dmgType} damage, although {@link this is incorrect|https://rpg.stackexchange.com/a/174522/53884}.}"
 				],
 				"lootTables": [
 					"Magic Item Table G"
@@ -6575,6 +6698,9 @@
 				"rarity": "rare",
 				"entries": [
 					"This magic weapon deals an extra {@damage 2d6} damage to any creature it hits. This extra damage is of the same type as the weapon's normal damage."
+				],
+				"lootTables": [
+					"Armaments - Rare|XDMG"
 				]
 			},
 			"hasFluffImages": true
@@ -6603,7 +6729,7 @@
 				"bonusWeapon": "+3",
 				"entries": [
 					"You gain a +3 bonus to attack and damage rolls made with this magic weapon. In addition, the weapon ignores resistance to slashing damage.",
-					"When you attack a creature that has at least one head with this weapon and roll a 20 on the attack roll, you cut off one of the creature's heads. The creature dies if it can't survive without the lost head. A creature is immune to this effect if it is immune to slashing damage, doesn't have or need a head, has legendary actions, or the DM decides that the creature is too big for its head to be cut off with this weapon. Such a creature instead takes an extra {@dice 6d8} slashing damage from the hit."
+					"When you attack a creature that has at least one head with this weapon and roll a 20 on the attack roll, you cut off one of the creature's heads. The creature dies if it can't survive without the lost head. A creature is immune to this effect if it is immune to slashing damage, doesn't have or need a head, has legendary actions, or the DM decides that the creature is too big for its head to be cut off with this weapon. Such a creature instead takes an extra {@damage 6d8} slashing damage from the hit."
 				],
 				"lootTables": [
 					"Magic Item Table I"
@@ -6642,6 +6768,9 @@
 				"entries": [
 					"You gain a +3 bonus to attack rolls and damage rolls made with this magic weapon. In addition, the weapon ignores {@variantrule Resistance|XPHB} to Slashing damage.",
 					"When you use this weapon to attack a creature that has at least one head and roll a 20 on the {@dice d20} for the attack roll, you cut off one of the creature's heads. The creature dies if it can't survive without the lost head. A creature is immune to this effect if it has {@variantrule Immunity|XPHB} to Slashing damage, if it doesn't have or need a head, or if the DM decides that the creature is too big for its head to be cut off with this weapon. Such a creature instead takes an extra 30 Slashing damage from the hit. If the creature has Legendary {@variantrule Resistance|XPHB}, it can expend one daily use of that trait to avoid losing its head, taking the extra damage instead."
+				],
+				"lootTables": [
+					"Armaments - Legendary|XDMG"
 				]
 			},
 			"hasFluffImages": true
@@ -6665,7 +6794,7 @@
 					"This weapon is decorated with dragon heads, claws, wings, scales, or Draconic letters. When it steeps in a dragon's hoard, it absorbs the energy of the dragon's breath weapon and deals damage of that type with its special properties.",
 					"Whenever you roll a 20 on your attack roll with this weapon, each creature of your choice within 5 feet of the target takes 5 damage of the type dealt by the dragon's breath weapon.",
 					"You gain a {=bonusWeapon} bonus to attack and damage rolls made using the weapon. On a hit, the weapon deals an extra {@damage 2d6} damage of the type dealt by the dragon's breath weapon.",
-					"As an action, you can unleash a 30-foot cone of destructive energy from the weapon. Each creature in that area must make a DC 16 Dexterity saving throw, taking {@damage 8d6} damage of the type dealt by the dragon's breath weapon on a failed save, or half as much damage on a successful one. Once this action is used, it can't be used again until the next dawn."
+					"As an action, you can unleash a 30-foot cone of destructive energy from the weapon. Each creature in that area must make a {@dc 16} Dexterity saving throw, taking {@damage 8d6} damage of the type dealt by the dragon's breath weapon on a failed save, or half as much damage on a successful one. Once this action is used, it can't be used again until the next dawn."
 				]
 			}
 		},
@@ -6698,7 +6827,7 @@
 				"tier": "minor",
 				"rarity": "common",
 				"entries": [
-					" This ammunition packs a wallop. A creature hit by the ammunition must succeed on a DC 10 Strength saving throw or be knocked {@condition prone}."
+					" This ammunition packs a wallop. A creature hit by the ammunition must succeed on a {@dc 10} Strength saving throw or be knocked {@condition prone}."
 				]
 			}
 		},
@@ -6720,7 +6849,11 @@
 				"page": 318,
 				"rarity": "common",
 				"entries": [
-					"A creature hit by this ammunition must succeed on a DC 10 Strength saving throw or have the {@condition Prone|XPHB} condition."
+					"A creature hit by this ammunition must succeed on a {@dc 10} Strength saving throw or have the {@condition Prone|XPHB} condition."
+				],
+				"lootTables": [
+					"Armaments - Common|XDMG",
+					"Implements - Common|XDMG"
 				]
 			}
 		},
@@ -6793,7 +6926,7 @@
 						"type": "entries",
 						"name": "Spellcasting",
 						"entries": [
-							"The weapon has 5 charges. You can use a bonus action and expend 1 or more of its charges to cast one of the following spells (save DC 16): {@spell Command} (1 charge), {@spell Zone of Truth} (2 charges), {@spell Compulsion} (4 charges), {@spell Banishment} (4 charges), or {@spell Dominate Person} (5 charges).",
+							"The weapon has 5 charges. You can use a bonus action and expend 1 or more of its charges to cast one of the following spells (save {@dc 16}): {@spell Command} (1 charge), {@spell Zone of Truth} (2 charges), {@spell Compulsion} (4 charges), {@spell Banishment} (4 charges), or {@spell Dominate Person} (5 charges).",
 							"The weapon regains {@dice 1d4} expended charges daily at dawn."
 						]
 					}
@@ -6868,6 +7001,9 @@
 							"Each subject has {@variantrule Advantage|XPHB} on its {@variantrule Initiative|XPHB} rolls."
 						]
 					}
+				],
+				"lootTables": [
+					"Armaments - Uncommon|XDMG"
 				]
 			},
 			"hasFluffImages": true
@@ -6890,7 +7026,7 @@
 				}
 			],
 			"excludes": {
-				"name": "Energy Cell"
+				"cellEnergy": true
 			},
 			"ammo": true,
 			"inherits": {
@@ -6927,7 +7063,7 @@
 						"type": "entries",
 						"name": "Invoking the Rune",
 						"entries": [
-							"As an action, you can invoke the armor's rune to cast the {@spell wind wall} spell (save DC 15) with it. Once the rune has been invoked, it can't be invoked again until the next dawn."
+							"As an action, you can invoke the armor's rune to cast the {@spell wind wall} spell (save {@dc 15}) with it. Once the rune has been invoked, it can't be invoked again until the next dawn."
 						]
 					}
 				],

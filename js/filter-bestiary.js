@@ -6,14 +6,6 @@ class PageFilterBestiary extends PageFilterBase {
 	static _RE_SPELL_TAG = /{@spell ([^}]+)}/g;
 	static _RE_ITEM_TAG = /{@item ([^}]+)}/g;
 	static _WALKER = null;
-	static _BASIC_ENTRY_PROPS = [
-		"trait",
-		"action",
-		"bonus",
-		"reaction",
-		"legendary",
-		"mythic",
-	];
 	static _DRAGON_AGES = ["wyrmling", "young", "adult", "ancient", "greatwyrm", "aspect"];
 
 	// region static
@@ -48,20 +40,6 @@ class PageFilterBestiary extends PageFilterBase {
 		return SortUtil.ascSortLower(a, b);
 	}
 
-	static getAllImmRest (toParse, key) {
-		const out = [];
-		for (const it of toParse) this._getAllImmRest_recurse(it, key, out); // Speed > safety
-		return out;
-	}
-
-	static _getAllImmRest_recurse (it, key, out, conditional) {
-		if (typeof it === "string") {
-			out.push(conditional ? `${it} (Conditional)` : it);
-		} else if (it[key]) {
-			it[key].forEach(nxt => this._getAllImmRest_recurse(nxt, key, out, !!it.cond));
-		}
-	}
-
 	static _getDamageTagDisplayText (tag) { return Parser.dmgTypeToFull(tag).toTitleCase(); }
 	static _getConditionDisplayText (uid) { return uid.split("|")[0].toTitleCase(); }
 	static _getAbilitySaveDisplayText (abl) { return `${abl.uppercaseFirst()} Save`; }
@@ -69,6 +47,8 @@ class PageFilterBestiary extends PageFilterBase {
 
 	constructor (opts) {
 		super(opts);
+
+		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
 
 		this._crFilter = new RangeFilter({
 			header: "Challenge Rating",
@@ -116,17 +96,17 @@ class PageFilterBestiary extends PageFilterBase {
 		this._typeFilter = new Filter({
 			header: "Type",
 			items: [...Parser.MON_TYPES],
-			displayFn: StrUtil.toTitleCase,
+			displayFn: StrUtil.toTitleCase.bind(StrUtil),
 			itemSortFn: SortUtil.ascSortLower,
 		});
-		this._tagFilter = new Filter({header: "Tag", displayFn: StrUtil.toTitleCase});
+		this._tagFilter = new Filter({header: "Tag", displayFn: StrUtil.toTitleCase.bind(StrUtil)});
 		this._sidekickTypeFilter = new Filter({
 			header: "Sidekick Type",
 			items: ["expert", "spellcaster", "warrior"],
-			displayFn: StrUtil.toTitleCase,
+			displayFn: StrUtil.toTitleCase.bind(StrUtil),
 			itemSortFn: SortUtil.ascSortLower,
 		});
-		this._sidekickTagFilter = new Filter({header: "Sidekick Tag", displayFn: StrUtil.toTitleCase});
+		this._sidekickTagFilter = new Filter({header: "Sidekick Tag", displayFn: StrUtil.toTitleCase.bind(StrUtil)});
 		this._alignmentFilter = new Filter({
 			header: "Alignment",
 			items: ["L", "NX", "C", "G", "NY", "E", "N", "U", "A", "No Alignment"],
@@ -219,8 +199,9 @@ class PageFilterBestiary extends PageFilterBase {
 		});
 		this._environmentFilter = new Filter({
 			header: "Environment",
-			items: ["arctic", "coastal", "desert", "forest", "grassland", "hill", "mountain", "none", "swamp", "underdark", "underwater", "urban"],
-			displayFn: StrUtil.uppercaseFirst,
+			headerDisplayName: styleHint === "classic" ? "Environment" : "Habitat",
+			items: [...Parser.ENVIRONMENTS],
+			displayFn: Parser.getEnvironmentDisplayName,
 		});
 		this._vulnerableFilter = FilterCommon.getDamageVulnerableFilter();
 		this._resistFilter = FilterCommon.getDamageResistFilter();
@@ -264,12 +245,21 @@ class PageFilterBestiary extends PageFilterBase {
 			header: "Dragon Age",
 			items: [...PageFilterBestiary._DRAGON_AGES],
 			itemSortFn: PageFilterBestiary._ascSortDragonAgeFilter,
-			displayFn: (it) => it.toTitleCase(),
+			displayFn: StrUtil.toTitleCase.bind(StrUtil),
 		});
-		this._dragonCastingColor = new Filter({
+		this._dragonCastingColorFilter = new Filter({
 			header: "Dragon Casting Color",
 			items: [...Renderer.monster.dragonCasterVariant.getAvailableColors()],
-			displayFn: (it) => it.toTitleCase(),
+			displayFn: StrUtil.toTitleCase.bind(StrUtil),
+		});
+		this._treasureFilter = new Filter({
+			header: "Treasure",
+			items: [...Parser.TREASURE_TYPES],
+			displayFn: StrUtil.toTitleCase.bind(StrUtil),
+		});
+		this._groupFilter = new Filter({
+			header: "Group",
+			items: [],
 		});
 	}
 
@@ -279,6 +269,7 @@ class PageFilterBestiary extends PageFilterBase {
 		this._mutateForFilters_commonSources(mon);
 
 		this._mutateForFilters_speed(mon);
+		this._mutateForFilters_environment(mon);
 
 		mon._fAc = (mon.ac || []).map(it => it.special ? null : (it.ac || it)).filter(it => it !== null);
 		if (!mon._fAc.length) mon._fAc = null;
@@ -294,11 +285,8 @@ class PageFilterBestiary extends PageFilterBase {
 		} else {
 			mon._fAlign = ["No Alignment"];
 		}
-		mon._fEnvironment = mon.environment || ["none"];
-		mon._fVuln = mon.vulnerable ? PageFilterBestiary.getAllImmRest(mon.vulnerable, "vulnerable") : [];
-		mon._fRes = mon.resist ? PageFilterBestiary.getAllImmRest(mon.resist, "resist") : [];
-		mon._fImm = mon.immune ? PageFilterBestiary.getAllImmRest(mon.immune, "immune") : [];
-		mon._fCondImm = mon.conditionImmune ? PageFilterBestiary.getAllImmRest(mon.conditionImmune, "conditionImmune") : [];
+		FilterCommon.mutateForFilters_damageVulnResImmune(mon);
+		FilterCommon.mutateForFilters_conditionImmune(mon);
 		mon._fSave = mon.save ? Object.keys(mon.save) : [];
 		mon._fSkill = mon.skill ? Object.keys(mon.skill) : [];
 		mon._fPassive = !isNaN(mon.passive) ? Number(mon.passive) : null;
@@ -321,7 +309,10 @@ class PageFilterBestiary extends PageFilterBase {
 			if (it.from.some(x => x.startsWith("{@item "))) mon._fMisc.push("AC from Item(s)");
 			if (!mon._fMisc.includes("AC from Unarmored Defense") && it.from.includes("Unarmored Defense")) mon._fMisc.push("AC from Unarmored Defense");
 		}
-		if (mon.legendary) mon._fMisc.push("Legendary");
+		if (Renderer.monster.hasLegendaryActions(mon)) mon._fMisc.push("Legendary");
+		if (Renderer.monster.hasMythicActions(mon)) mon._fMisc.push("Mythic");
+		if (Renderer.monster.hasReactions(mon)) mon._fMisc.push("Reactions");
+		if (Renderer.monster.hasBonusActions(mon)) mon._fMisc.push("Bonus Actions");
 		if (mon.familiar) mon._fMisc.push("Familiar");
 		if (mon.type.swarmSize) mon._fMisc.push("Swarm");
 		if (mon.spellcasting) {
@@ -337,13 +328,10 @@ class PageFilterBestiary extends PageFilterBase {
 			if (legGroup.lairActions) mon._fMisc.push("Lair Actions");
 			if (legGroup.regionalEffects) mon._fMisc.push("Regional Effects");
 		}
-		if (mon.reaction) mon._fMisc.push("Reactions");
-		if (mon.bonus) mon._fMisc.push("Bonus Actions");
 		if (mon.variant) mon._fMisc.push("Has Variants");
 		if (mon._isCopy) mon._fMisc.push("Modified Copy");
 		if (mon.altArt) mon._fMisc.push("Has Alternate Token");
 		if (Renderer.monster.hasToken(mon)) mon._fMisc.push("Has Token");
-		if (mon.mythic) mon._fMisc.push("Mythic");
 		if (this._hasFluff(mon)) mon._fMisc.push("Has Info");
 		if (this._hasFluffImages(mon)) mon._fMisc.push("Has Images");
 		if (this._hasRecharge(mon)) mon._fMisc.push("Has Recharge");
@@ -378,15 +366,21 @@ class PageFilterBestiary extends PageFilterBase {
 		}
 
 		mon._fSpeedType = Object.keys(mon.speed).filter(k => mon.speed[k]);
-		if (mon._fSpeedType.length) mon._fSpeed = mon._fSpeedType.map(k => mon.speed[k].number || mon.speed[k]).filter(it => !isNaN(it)).sort((a, b) => SortUtil.ascSort(b, a))[0];
+		if (mon._fSpeedType.length) mon._fSpeed = Math.max(...Object.values(mon.speed).map(v => v.number || (isNaN(v) ? 0 : v)));
 		else mon._fSpeed = 0;
 		if (mon.speed.canHover) mon._fSpeedType.push("hover");
+	}
+
+	static _mutateForFilters_environment (mon) {
+		if (!mon.environment) return mon._fEnvironment = ["none"];
+		mon._fEnvironment = mon.environment
+			.flatMap(env => Parser.getExpandedEnvironments(env));
 	}
 
 	/* -------------------------------------------- */
 
 	static _getInitWalker () {
-		return PageFilterBestiary._WALKER = PageFilterBestiary._WALKER || MiscUtil.getWalker({isNoModification: true});
+		return PageFilterBestiary._WALKER ||= MiscUtil.getWalker({isNoModification: true});
 	}
 
 	/* -------------------------------------------- */
@@ -426,8 +420,18 @@ class PageFilterBestiary extends PageFilterBase {
 
 	/* -------------------------------------------- */
 
+	static _RECHARGE_ENTRY_PROPS = [
+		"trait",
+		"action",
+		"bonus",
+		"reaction",
+		"legendary",
+		"mythic",
+	];
+
 	static _hasRecharge (mon) {
-		for (const prop of PageFilterBestiary._BASIC_ENTRY_PROPS) {
+		if (mon.spellcasting?.some(ent => ent.recharge)) return true;
+		for (const prop of PageFilterBestiary._RECHARGE_ENTRY_PROPS) {
 			if (!mon[prop]) continue;
 			for (const ent of mon[prop]) {
 				if (!ent?.name) continue;
@@ -439,6 +443,7 @@ class PageFilterBestiary extends PageFilterBase {
 
 	/* -------------------------------------------- */
 
+	// TODO(ESM) switch to using `UtilsEntityCreature.getEquipmentUids`
 	static _getEquipmentList (mon) {
 		if (mon.gear) {
 			return mon.gear
@@ -519,7 +524,9 @@ class PageFilterBestiary extends PageFilterBase {
 		this._savingThrowForcedFilterLegendary.addItem(mon.savingThrowForcedLegendary);
 		this._savingThrowForcedFilterSpells.addItem(mon.savingThrowForcedSpell);
 		this._dragonAgeFilter.addItem(mon.dragonAge);
-		this._dragonCastingColor.addItem(mon.dragonCastingColor);
+		this._dragonCastingColorFilter.addItem(mon.dragonCastingColor);
+		this._treasureFilter.addItem(mon.treasure);
+		this._groupFilter.addItem(mon.group);
 	}
 
 	async _pPopulateBoxOptions (opts) {
@@ -535,6 +542,7 @@ class PageFilterBestiary extends PageFilterBase {
 			this._tagFilter,
 			this._sidekickTypeFilter,
 			this._sidekickTagFilter,
+			this._groupFilter,
 			this._environmentFilter,
 			this._defenseFilter,
 			this._conditionImmuneFilter,
@@ -556,11 +564,12 @@ class PageFilterBestiary extends PageFilterBase {
 			this._conditionsInflictedFilter,
 			this._savingThrowForcedFilter,
 			this._dragonAgeFilter,
-			this._dragonCastingColor,
+			this._dragonCastingColorFilter,
 			this._acFilter,
 			this._averageHpFilter,
 			this._abilityScoreFilter,
 			this._spellKnownFilter,
+			this._treasureFilter,
 			this._equipmentFilter,
 		];
 	}
@@ -574,6 +583,7 @@ class PageFilterBestiary extends PageFilterBase {
 			m._pTypes.tags,
 			m._pTypes.typeSidekick,
 			m._pTypes.tagsSidekick,
+			m.group,
 			m._fEnvironment,
 			[
 				m._fVuln,
@@ -623,6 +633,7 @@ class PageFilterBestiary extends PageFilterBase {
 				m._fCha,
 			],
 			m._fSpellsKnown,
+			m.treasure,
 			m._fEquipment,
 		);
 	}

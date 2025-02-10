@@ -465,7 +465,7 @@ export class AffectedCreatureTypeTagger {
 		]);
 		if (!setAffectedOut.size) Parser.MON_TYPES.forEach(it => setAffectedOut.add(it));
 
-		sp.affectsCreatureType = [...CollectionUtil.setDiff(setAffectedOut, setNotAffected)].sort(SortUtil.ascSortLower);
+		sp.affectsCreatureType = [...setAffectedOut.difference(setNotAffected)].sort(SortUtil.ascSortLower);
 		if (!sp.affectsCreatureType.length) delete sp.affectsCreatureType;
 	}
 

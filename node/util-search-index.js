@@ -3,6 +3,8 @@ import "../js/utils-dataloader.js";
 import "../js/render.js";
 import "../js/omnidexer.js";
 import * as ut from "./util.js";
+import {readJsonSync} from "5etools-utils/lib/UtilFs.js";
+import path from "path";
 
 export class UtilSearchIndex {
 	/**
@@ -135,6 +137,30 @@ export class UtilSearchIndex {
 
 		// TODO(Future) add `PrereleaseUtil` index as required
 		const out = await BrewUtil2.pGetSearchIndex({
+			isDecompress: false,
+			isIncludeExtendedSourceInfo: true,
+		});
+
+		ut.unpatchLoadJson();
+
+		return out;
+	}
+
+	// TODO(Future) expand support; follow dependencies
+	static async pGetIndexLocalHomebrew ({baseIndex = 0, filepath}) {
+		ut.patchLoadJson();
+
+		const filename = path.basename(filepath);
+
+		await BrewUtil2.pAddBrewsFromFiles([
+			{
+				json: readJsonSync(filepath),
+				filename: filename,
+			},
+		]);
+
+		const out = await BrewUtil2.pGetSearchIndex({
+			id: baseIndex,
 			isDecompress: false,
 			isIncludeExtendedSourceInfo: true,
 		});

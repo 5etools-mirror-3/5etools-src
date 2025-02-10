@@ -440,11 +440,15 @@ class MakeCards extends BaseComponent {
 
 	static _getCardContents_creature (mon) {
 		const renderer = RendererCard.get();
-		const fnGetSpellTraits = Renderer.monster.getSpellcastingRenderedTraits.bind(Renderer.monster, renderer);
-		const allTraits = Renderer.monster.getOrderedTraits(mon, {fnGetSpellTraits});
-		const allActions = Renderer.monster.getOrderedActions(mon, {fnGetSpellTraits});
-		const allBonusActions = Renderer.monster.getOrderedBonusActions(mon, {fnGetSpellTraits});
-		const allReactions = Renderer.monster.getOrderedReactions(mon, {fnGetSpellTraits});
+
+		const {
+			entsTrait,
+			entsAction,
+			entsBonusAction,
+			entsReaction,
+			entsLegendaryAction,
+			entsMythicAction,
+		} = Renderer.monster.getSubEntries(mon, {renderer});
 
 		return [
 			this._ct_subtitle(Renderer.monster.getTypeAlignmentPart(mon)),
@@ -467,19 +471,19 @@ class MakeCards extends BaseComponent {
 			this._ct_property("Languages", this._ct_htmlToText(Renderer.monster.getRenderedLanguages(mon.languages))),
 			this._ct_property("Challenge", this._ct_htmlToText(Renderer.monster.getChallengeRatingPart(mon))),
 			this._ct_rule(),
-			...(allTraits?.length ? this._ct_renderEntries(allTraits, 2) : []),
-			allActions?.length ? this._ct_section("Actions") : null,
-			...(allActions?.length ? this._ct_renderEntries(allActions, 2) : []),
-			allBonusActions?.length ? this._ct_section("Bonus Actions") : null,
-			...(allBonusActions?.length ? this._ct_renderEntries(allBonusActions, 2) : []),
-			allReactions?.length ? this._ct_section("Reactions") : null,
-			...(allReactions?.length ? this._ct_renderEntries(mon.reaction, 2) : []),
-			mon.legendary ? this._ct_section("Legendary Actions") : null,
-			mon.legendary ? this._ct_text(this._ct_htmlToText(Renderer.monster.getLegendaryActionIntro(mon, {renderer}))) : null,
-			...(mon.legendary ? this._ct_renderEntries(mon.legendary, 2) : []),
-			mon.mythic ? this._ct_section("Mythic Actions") : null,
-			mon.mythic ? this._ct_text(this._ct_htmlToText(Renderer.monster.getSectionIntro(mon, {renderer, prop: "mythic"}))) : null,
-			...(mon.mythic ? this._ct_renderEntries(mon.mythic, 2) : []),
+			...(entsTrait?.length ? this._ct_renderEntries(entsTrait, 2) : []),
+			entsAction?.length ? this._ct_section("Actions") : null,
+			...(entsAction?.length ? this._ct_renderEntries(entsAction, 2) : []),
+			entsBonusAction?.length ? this._ct_section("Bonus Actions") : null,
+			...(entsBonusAction?.length ? this._ct_renderEntries(entsBonusAction, 2) : []),
+			entsReaction?.length ? this._ct_section("Reactions") : null,
+			...(entsReaction?.length ? this._ct_renderEntries(entsReaction, 2) : []),
+			entsLegendaryAction?.length ? this._ct_section("Legendary Actions") : null,
+			entsLegendaryAction?.length ? this._ct_text(this._ct_htmlToText(Renderer.monster.getLegendaryActionIntro(mon, {renderer}))) : null,
+			...(entsLegendaryAction?.length ? this._ct_renderEntries(entsLegendaryAction, 2) : []),
+			entsMythicAction?.length ? this._ct_section("Mythic Actions") : null,
+			entsMythicAction ? this._ct_text(this._ct_htmlToText(Renderer.monster.getSectionIntro(mon, {renderer, prop: "mythic"}))) : null,
+			...(entsMythicAction?.length ? this._ct_renderEntries(entsMythicAction, 2) : []),
 		].filter(Boolean);
 	}
 
@@ -885,16 +889,21 @@ MakeCards.utils = class {
 
 		if (item.property) {
 			item.property.forEach(p => {
-				const {abbreviation, source} = DataUtil.itemProperty.unpackUid(p, {isLower: true});
+				const uid = p?.uid || p;
+				const {abbreviation, source} = DataUtil.itemProperty.unpackUid(uid, {isLower: true});
+
 				const fromCustom = MiscUtil.get(MakeCards.utils._itemPropertyMap, source, abbreviation);
 				if (fromCustom) {
 					if (fromCustom.entries) {
 						Renderer.item._initFullEntries(item);
 						fromCustom.entries.forEach(e => item._fullEntries.push(e));
 					}
-				} else if (Renderer.item.getProperty(p)?.entries) {
+					return;
+				}
+
+				if (Renderer.item.getProperty(uid)?.entries) {
 					Renderer.item._initFullEntries(item);
-					Renderer.item.getProperty(p).entries.forEach(e => item._fullEntries.push(e));
+					Renderer.item.getProperty(uid).entries.forEach(e => item._fullEntries.push(e));
 				}
 			});
 		}

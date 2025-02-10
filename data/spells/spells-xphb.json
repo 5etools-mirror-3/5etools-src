@@ -37,7 +37,7 @@
 					"type": "entries",
 					"name": "Cantrip Upgrade",
 					"entries": [
-						"The damage increases by {@dice 1d6} when you reach levels 5 ({@damage 2d6}), 11 ({@damage 3d6}), and 17 ({@damage 4d6})."
+						"The damage increases by {@damage 1d6} when you reach levels 5 ({@damage 2d6}), 11 ({@damage 3d6}), and 17 ({@damage 4d6})."
 					]
 				}
 			],
@@ -447,7 +447,7 @@
 				}
 			],
 			"entries": [
-				"Choose a pile of bones or a corpse of a Medium or Small Humanoid within range. The target becomes an Undead creature: a {@creature Skeleton|XPHB} if you chose bones or a {@creature Zombie|XPHB} if you chose a corpse.",
+				"Choose a pile of bones or a corpse of a Medium or Small Humanoid within range. The target becomes an Undead creature: a {@creature Skeleton|XMM} if you chose bones or a {@creature Zombie|XMM} if you chose a corpse.",
 				"On each of your turns, you can take a {@variantrule Bonus Action|XPHB} to mentally command any creature you made with this spell if the creature is within 60 feet of you (if you control multiple creatures, you can command any of them at the same time, issuing the same command to each one). You decide what action the creature will take and where it will move on its next turn, or you can issue a general command, such as to guard a chamber or corridor. If you issue no commands, the creature takes the {@action Dodge|XPHB} action and moves only to avoid harm. Once given an order, the creature continues to follow it until its task is complete.",
 				"The creature is under your control for 24 hours, after which it stops obeying any command you've given it. To maintain control of the creature for another 24 hours, you must cast this spell on the creature again before the current 24-hour period ends. This use of the spell reasserts your control over up to four creatures you have animated with this spell rather than animating a new creature."
 			],
@@ -513,7 +513,7 @@
 					"type": "entries",
 					"name": "Using a Higher-Level Spell Slot",
 					"entries": [
-						"The creature's Slam damage increases by {@dice 1d4} (Medium or smaller), {@dice 1d6} (Large), or {@dice 1d12} (Huge) for each spell slot level above 5."
+						"The creature's Slam damage increases by {@damage 1d4} (Medium or smaller), {@damage 1d6} (Large), or {@damage 1d12} (Huge) for each spell slot level above 5."
 					]
 				}
 			],
@@ -1637,7 +1637,6 @@
 				"intelligence"
 			],
 			"miscTags": [
-				"HL",
 				"SGT"
 			],
 			"areaTags": [
@@ -2300,7 +2299,7 @@
 				"A storm cloud appears at a point within range that you can see above yourself. It takes the shape of a Cylinder that is 10 feet tall with a 60-foot radius.",
 				"When you cast the spell, choose a point you can see under the cloud. A lightning bolt shoots from the cloud to that point. Each creature within 5 feet of that point makes a Dexterity saving throw, taking {@damage 3d10} Lightning damage on a failed save or half as much damage on a successful one.",
 				"Until the spell ends, you can take a {@action Magic|XPHB} action to call down lightning in that way again, targeting the same point or a different one.",
-				"If you're outdoors in a storm when you cast this spell, the spell gives you control over that storm instead of creating a new one. Under such conditions, the spell's damage increases by {@dice 1d10}."
+				"If you're outdoors in a storm when you cast this spell, the spell gives you control over that storm instead of creating a new one. Under such conditions, the spell's damage increases by {@damage 1d10}."
 			],
 			"entriesHigherLevel": [
 				{
@@ -2595,12 +2594,12 @@
 					"type": "entries",
 					"name": "Cantrip Upgrade",
 					"entries": [
-						"The damage increases by {@dice 1d10} when you reach levels 5 ({@damage 2d10}), 11 ({@damage 3d10}), and 17 ({@damage 4d10})."
+						"The damage increases by {@damage 1d10} when you reach levels 5 ({@damage 2d10}), 11 ({@damage 3d10}), and 17 ({@damage 4d10})."
 					]
 				}
 			],
 			"scalingLevelDice": {
-				"label": "necrotic damage",
+				"label": "Necrotic damage",
 				"scaling": {
 					"1": "1d10",
 					"5": "2d10",
@@ -4015,7 +4014,7 @@
 				"ritual": true
 			},
 			"entries": [
-				"You mentally contact a demigod, the spirit of a long-dead sage, or some other knowledgeable entity from another plane. Contacting this otherworldly intelligence can break your mind. When you cast this spell, make a DC 15 Intelligence saving throw. On a successful save, you can ask the entity up to five questions. You must ask your questions before the spell ends. The DM answers each question with one word, such as \"yes,\" \"no,\" \"maybe,\" \"never,\" \"irrelevant,\" or \"unclear\" (if the entity doesn't know the answer to the question). If a one-word answer would be misleading, the DM might instead offer a short phrase as an answer.",
+				"You mentally contact a demigod, the spirit of a long-dead sage, or some other knowledgeable entity from another plane. Contacting this otherworldly intelligence can break your mind. When you cast this spell, make a {@dc 15} Intelligence saving throw. On a successful save, you can ask the entity up to five questions. You must ask your questions before the spell ends. The DM answers each question with one word, such as \"yes,\" \"no,\" \"maybe,\" \"never,\" \"irrelevant,\" or \"unclear\" (if the entity doesn't know the answer to the question). If a one-word answer would be misleading, the DM might instead offer a short phrase as an answer.",
 				"On a failed save, you take {@damage 6d6} Psychic damage and have the {@condition Incapacitated|XPHB} condition until you finish a {@variantrule Long Rest|XPHB}. A {@spell Greater Restoration|XPHB} spell cast on you ends this effect."
 			],
 			"damageInflict": [
@@ -5124,7 +5123,7 @@
 			],
 			"entries": [
 				"A beam of yellow light flashes from you, then condenses at a chosen point within range as a glowing bead for the duration. When the spell ends, the bead explodes, and each creature in a 20-foot-radius Sphere centered on that point makes a Dexterity saving throw. A creature takes Fire damage equal to the total accumulated damage on a failed save or half as much damage on a successful one.",
-				"The spell's base damage is {@damage 12d6}, and the damage increases by {@dice 1d6} whenever your turn ends and the spell hasn't ended.",
+				"The spell's base damage is {@damage 12d6}, and the damage increases by {@damage 1d6} whenever your turn ends and the spell hasn't ended.",
 				"If a creature touches the glowing bead before the spell ends, that creature makes a Dexterity saving throw. On a failed save, the spell ends, causing the bead to explode. On a successful save, the creature can throw the bead up to 40 feet. If the thrown bead enters a creature's space or collides with a solid object, the spell ends, and the bead explodes.",
 				"When the bead explodes, flammable objects in the explosion that aren't being worn or carried start {@hazard burning|XPHB}."
 			],
@@ -5675,7 +5674,7 @@
 				}
 			],
 			"entries": [
-				"Choose one creature, object, or magical effect within range. Any ongoing spell of level 3 or lower on the target ends. For each ongoing spell of level 4 or higher on the target, make an ability check using your spellcasting ability (DC 10 plus that spell's level). On a successful check, the spell ends."
+				"Choose one creature, object, or magical effect within range. Any ongoing spell of level 3 or lower on the target ends. For each ongoing spell of level 4 or higher on the target, make an ability check using your spellcasting ability ({@dc 10} plus that spell's level). On a successful check, the spell ends."
 			],
 			"entriesHigherLevel": [
 				{
@@ -5858,7 +5857,7 @@
 				}
 			],
 			"entries": [
-				"The target takes an extra {@damage 2d8} Radiant damage from the attack. The damage increases by {@dice 1d8} if the target is a Fiend or an Undead."
+				"The target takes an extra {@damage 2d8} Radiant damage from the attack. The damage increases by {@damage 1d8} if the target is a Fiend or an Undead."
 			],
 			"entriesHigherLevel": [
 				{
@@ -6409,7 +6408,7 @@
 					"name": "Structures",
 					"entries": [
 						"The tremor deals 50 Bludgeoning damage to any structure in contact with the ground in the area when you cast the spell and at the end of each of your turns until the spell ends. If a structure drops to 0 {@variantrule Hit Points|XPHB}, it collapses.",
-						"A creature within a distance from a collapsing structure equal to half the structure's height makes a Dexterity saving throw. On a failed save, the creature takes {@damage 12d6} Bludgeoning damage, has the {@condition Prone|XPHB} condition, and is buried in the rubble, requiring a DC 20 Strength ({@skill Athletics|XPHB}) check as an action to escape. On a successful save, the creature takes half as much damage only."
+						"A creature within a distance from a collapsing structure equal to half the structure's height makes a Dexterity saving throw. On a failed save, the creature takes {@damage 12d6} Bludgeoning damage, has the {@condition Prone|XPHB} condition, and is buried in the rubble, requiring a {@dc 20} Strength ({@skill Athletics|XPHB}) check as an action to escape. On a successful save, the creature takes half as much damage only."
 					]
 				}
 			],
@@ -7447,7 +7446,7 @@
 				"ritual": true
 			},
 			"entries": [
-				"You gain the service of a familiar, a spirit that takes an animal form you choose: {@creature Bat|XPHB}, {@creature Cat|XPHB}, {@creature Frog|XPHB}, {@creature Hawk|XPHB}, {@creature Lizard|XPHB}, {@creature Octopus|XPHB}, {@creature Owl|XPHB}, {@creature Rat|XPHB}, {@creature Raven|XPHB}, {@creature Spider|XPHB}, {@creature Weasel|XPHB}, or another Beast that has a {@filter Challenge Rating of 0|bestiary|challenge rating=[&0]|type=beast|miscellaneous=!swarm}. Appearing in an unoccupied space within range, the familiar has the statistics of the chosen form, though it is a Celestial, Fey, or Fiend (your choice) instead of a Beast. Your familiar acts independently of you, but it obeys your commands.",
+				"You gain the service of a familiar, a spirit that takes an animal form you choose: {@creature Bat|XMM}, {@creature Cat|XMM}, {@creature Frog|XMM}, {@creature Hawk|XMM}, {@creature Lizard|XMM}, {@creature Octopus|XMM}, {@creature Owl|XMM}, {@creature Rat|XMM}, {@creature Raven|XMM}, {@creature Spider|XMM}, {@creature Weasel|XMM}, or another Beast that has a {@filter Challenge Rating of 0|bestiary|challenge rating=[&0]|type=beast|miscellaneous=!swarm}. Appearing in an unoccupied space within range, the familiar has the statistics of the chosen form, though it is a Celestial, Fey, or Fiend (your choice) instead of a Beast. Your familiar acts independently of you, but it obeys your commands.",
 				{
 					"type": "entries",
 					"name": "Telepathic Connection",
@@ -7655,7 +7654,7 @@
 			],
 			"entries": [
 				"You unleash negative energy toward a creature you can see within range. The target makes a Constitution saving throw, taking {@damage 7d8 + 30} Necrotic damage on a failed save or half as much damage on a successful one.",
-				"A Humanoid killed by this spell rises at the start of your next turn as a {@creature Zombie|XPHB} that follows your verbal orders."
+				"A Humanoid killed by this spell rises at the start of your next turn as a {@creature Zombie|XMM} that follows your verbal orders."
 			],
 			"damageInflict": [
 				"necrotic"
@@ -7709,12 +7708,12 @@
 					"type": "entries",
 					"name": "Cantrip Upgrade",
 					"entries": [
-						"The damage increases by {@dice 1d10} when you reach levels 5 ({@damage 2d10}), 11 ({@damage 3d10}), and 17 ({@damage 4d10})."
+						"The damage increases by {@damage 1d10} when you reach levels 5 ({@damage 2d10}), 11 ({@damage 3d10}), and 17 ({@damage 4d10})."
 					]
 				}
 			],
 			"scalingLevelDice": {
-				"label": "fire damage",
+				"label": "Fire damage",
 				"scaling": {
 					"1": "1d10",
 					"5": "2d10",
@@ -9921,7 +9920,7 @@
 					"type": "entries",
 					"name": "Using a Higher-Level Spell Slot",
 					"entries": [
-						"The healing increases by 10 for each spell slot level above 6."
+						"The healing increases by {@scaledice 70|6-9|10} for each spell slot level above 6."
 					]
 				}
 			],
@@ -9969,7 +9968,7 @@
 					"type": "entries",
 					"name": "Using a Higher-Level Spell Slot",
 					"entries": [
-						"The healing increases by {@scaledamage 2d4|1-9|2d4} for each spell slot level above 1."
+						"The healing increases by {@scaledice 2d4|1-9|2d4} for each spell slot level above 1."
 					]
 				}
 			],
@@ -12502,8 +12501,11 @@
 			],
 			"entries": [
 				"You banish a creature that you can see within range into a labyrinthine demiplane. The target remains there for the duration or until it escapes the maze.",
-				"The target can take a {@action Study|XPHB} action to try to escape. When it does so, it makes a DC 20 Intelligence ({@skill Investigation|XPHB}) check. If it succeeds, it escapes, and the spell ends.",
+				"The target can take a {@action Study|XPHB} action to try to escape. When it does so, it makes a {@dc 20} Intelligence ({@skill Investigation|XPHB}) check. If it succeeds, it escapes, and the spell ends.",
 				"When the spell ends, the target reappears in the space it left or, if that space is occupied, in the nearest unoccupied space."
+			],
+			"abilityCheck": [
+				"intelligence"
 			],
 			"miscTags": [
 				"SGT"
@@ -12818,7 +12820,7 @@
 					"type": "entries",
 					"name": "Cantrip Upgrade",
 					"entries": [
-						"The damage increases by {@dice 1d6} when you reach levels 5 ({@damage 2d6}), 11 ({@damage 3d6}), and 17 ({@damage 4d6})."
+						"The damage increases by {@damage 1d6} when you reach levels 5 ({@damage 2d6}), 11 ({@damage 3d6}), and 17 ({@damage 4d6})."
 					]
 				}
 			],
@@ -14022,7 +14024,7 @@
 			},
 			"entries": [
 				"A Large, quasi-real, horselike creature appears on the ground in an unoccupied space of your choice within range. You decide the creature's appearance, and it is equipped with a saddle, bit, and bridle. Any of the equipment created by the spell vanishes in a puff of smoke if it is carried more than 10 feet away from the steed.",
-				"For the duration, you or a creature you choose can ride the steed. The steed uses the {@creature Riding Horse|XPHB} stat block, except it has a {@variantrule Speed|XPHB} of 100 feet and can travel 13 miles in an hour. When the spell ends, the steed gradually fades, giving the rider 1 minute to dismount. The spell ends early if the steed takes any damage."
+				"For the duration, you or a creature you choose can ride the steed. The steed uses the {@creature Riding Horse|XMM} stat block, except it has a {@variantrule Speed|XPHB} of 100 feet and can travel 13 miles in an hour. When the spell ends, the steed gradually fades, giving the rider 1 minute to dismount. The spell ends early if the steed takes any damage."
 			],
 			"miscTags": [
 				"SMN"
@@ -14273,7 +14275,7 @@
 					"type": "entries",
 					"name": "Cantrip Upgrade",
 					"entries": [
-						"The damage increases by {@dice 1d12} when you reach levels 5 ({@damage 2d12}), 11 ({@damage 3d12}), and 17 ({@damage 4d12})."
+						"The damage increases by {@damage 1d12} when you reach levels 5 ({@damage 2d12}), 11 ({@damage 3d12}), and 17 ({@damage 4d12})."
 					]
 				}
 			],
@@ -14892,12 +14894,12 @@
 					"type": "entries",
 					"name": "Cantrip Upgrade",
 					"entries": [
-						"The damage increases by {@dice 1d8} when you reach levels 5 ({@damage 2d8}), 11 ({@damage 3d8}), and 17 ({@damage 4d8})."
+						"The damage increases by {@damage 1d8} when you reach levels 5 ({@damage 2d8}), 11 ({@damage 3d8}), and 17 ({@damage 4d8})."
 					]
 				}
 			],
 			"scalingLevelDice": {
-				"label": "fire damage",
+				"label": "Fire damage",
 				"scaling": {
 					"1": "1d8",
 					"5": "2d8",
@@ -15390,7 +15392,7 @@
 					"type": "entries",
 					"name": "Cantrip Upgrade",
 					"entries": [
-						"The damage increases by {@dice 1d8} when you reach levels 5 ({@damage 2d8}), 11 ({@damage 3d8}), and 17 ({@damage 4d8})."
+						"The damage increases by {@damage 1d8} when you reach levels 5 ({@damage 2d8}), 11 ({@damage 3d8}), and 17 ({@damage 4d8})."
 					]
 				}
 			],
@@ -15600,7 +15602,8 @@
 							"{@race Tiefling|XPHB}"
 						]
 					]
-				}
+				},
+				"The reincarnated creature makes any choices that a species' description offers, and the creature recalls its former life. It retains the capabilities it had in its original form, except it loses the traits of its previous species and gains the traits of its new one."
 			],
 			"affectsCreatureType": [
 				"humanoid"
@@ -15913,7 +15916,7 @@
 					"type": "entries",
 					"name": "Cantrip Upgrade",
 					"entries": [
-						"The damage increases by {@dice 1d8} when you reach levels 5 ({@damage 2d8}), 11 ({@damage 3d8}), and 17 ({@damage 4d8})."
+						"The damage increases by {@damage 1d8} when you reach levels 5 ({@damage 2d8}), 11 ({@damage 3d8}), and 17 ({@damage 4d8})."
 					]
 				}
 			],
@@ -16707,7 +16710,7 @@
 					"type": "entries",
 					"name": "Cantrip Upgrade",
 					"entries": [
-						"The damage increases by {@dice 1d8} when you reach levels 5 ({@damage 2d8}), 11 ({@damage 3d8}), and 17 ({@damage 4d8})."
+						"The damage increases by {@damage 1d8} when you reach levels 5 ({@damage 2d8}), 11 ({@damage 3d8}), and 17 ({@damage 4d8})."
 					]
 				}
 			],
@@ -17073,7 +17076,7 @@
 					"type": "entries",
 					"name": "Cantrip Upgrade",
 					"entries": [
-						"The damage increases by {@dice 1d8} when you reach levels 5 ({@damage 2d8}), 11 ({@damage 3d8}), and 17 ({@damage 4d8})."
+						"The damage increases by {@damage 1d8} when you reach levels 5 ({@damage 2d8}), 11 ({@damage 3d8}), and 17 ({@damage 4d8})."
 					]
 				}
 			],
@@ -17605,7 +17608,7 @@
 					"type": "entries",
 					"name": "Cantrip Upgrade",
 					"entries": [
-						"The damage increases by {@dice 1d8} when you reach levels 5 ({@damage 2d8}), 11 ({@damage 3d8}), and 17 ({@damage 4d8})."
+						"The damage increases by {@damage 1d8} when you reach levels 5 ({@damage 2d8}), 11 ({@damage 3d8}), and 17 ({@damage 4d8})."
 					]
 				}
 			],
@@ -19354,7 +19357,7 @@
 					"type": "entries",
 					"name": "Cantrip Upgrade",
 					"entries": [
-						"The damage increases by {@dice 1d6} when you reach levels 5 ({@damage 2d6}), 11 ({@damage 3d6}), and 17 ({@damage 4d6})."
+						"The damage increases by {@damage 1d6} when you reach levels 5 ({@damage 2d6}), 11 ({@damage 3d6}), and 17 ({@damage 4d6})."
 					]
 				}
 			],
@@ -19416,7 +19419,7 @@
 					"type": "entries",
 					"name": "Cantrip Upgrade",
 					"entries": [
-						"The damage increases by {@dice 1d6} when you reach levels 5 ({@damage 2d6}), 11 ({@damage 3d6}), and 17 ({@damage 4d6})."
+						"The damage increases by {@damage 1d6} when you reach levels 5 ({@damage 2d6}), 11 ({@damage 3d6}), and 17 ({@damage 4d6})."
 					]
 				}
 			],
@@ -19625,7 +19628,7 @@
 			],
 			"scalingLevelDice": [
 				{
-					"label": "necrotic damage",
+					"label": "Necrotic damage",
 					"scaling": {
 						"1": "1d8",
 						"5": "2d8",
@@ -19634,7 +19637,7 @@
 					}
 				},
 				{
-					"label": "necrotic damage to wounded creature",
+					"label": "Necrotic damage to wounded creature",
 					"scaling": {
 						"1": "1d12",
 						"5": "2d12",
@@ -19988,7 +19991,7 @@
 			],
 			"scalingLevelDice": [
 				{
-					"label": "extra radiant damage",
+					"label": "extra Radiant damage",
 					"scaling": {
 						"5": "1d6",
 						"11": "2d6",
@@ -20200,12 +20203,12 @@
 					"type": "entries",
 					"name": "Cantrip Upgrade",
 					"entries": [
-						"The damage increases by {@dice 1d6} when you reach levels 5 ({@damage 2d6}), 11 ({@damage 3d6}), and 17 ({@damage 4d6})."
+						"The damage increases by {@damage 1d6} when you reach levels 5 ({@damage 2d6}), 11 ({@damage 3d6}), and 17 ({@damage 4d6})."
 					]
 				}
 			],
 			"scalingLevelDice": {
-				"label": "psychic damage",
+				"label": "Psychic damage",
 				"scaling": {
 					"1": "1d6",
 					"5": "2d6",
@@ -20891,7 +20894,7 @@
 			"entries": [
 				"A wall of strong wind rises from the ground at a point you choose within range. You can make the wall up to 50 feet long, 15 feet high, and 1 foot thick. You can shape the wall in any way you choose so long as it makes one continuous path along the ground. The wall lasts for the duration.",
 				"When the wall appears, each creature in its area makes a Strength saving throw, taking {@damage 4d8} Bludgeoning damage on a failed save or half as much damage on a successful one.",
-				"The strong wind keeps fog, smoke, and other gases at bay. Small or smaller flying creatures or objects can't pass through the wall. Loose, lightweight materials brought into the wall fly upward. Arrows, bolts, and other ordinary projectiles launched at targets behind the wall are deflected upward and miss automatically. Boulders hurled by Giants or siege engines, and similar projectiles, are unaffected. Creatures in gaseous form can't pass through it."
+				"The strong wind keeps fog, smoke, and other gases at bay. Small or smaller flying creatures or objects can't pass through the wall. Loose, lightweight materials brought into the wall fly upward. Arrows, bolts, and other ordinary projectiles launched at targets behind the wall are deflected upward and miss automatically. Boulders hurled by Giants or siege engines, and similar projectiles, are unaffected. Creatures in {@spell gaseous form|XPHB} can't pass through it."
 			],
 			"damageInflict": [
 				"bludgeoning"
@@ -21113,7 +21116,7 @@
 					"type": "entries",
 					"name": "Cantrip Upgrade",
 					"entries": [
-						"The damage increases by {@dice 1d6} when you reach levels 5 ({@damage 2d6}), 11 ({@damage 3d6}), and 17 ({@damage 4d6})."
+						"The damage increases by {@damage 1d6} when you reach levels 5 ({@damage 2d6}), 11 ({@damage 3d6}), and 17 ({@damage 4d6})."
 					]
 				}
 			],

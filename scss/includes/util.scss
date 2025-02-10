@@ -1,21 +1,5 @@
 @use "../vars/vars";
 
-// region Fix Chrome
-input[type="checkbox"]:checked,
-input[type="checkbox"]:indeterminate {
-	filter: grayscale(100%) contrast(200%);
-}
-
-input[type="radio"]:checked,
-input[type="radio"]:indeterminate {
-	filter: grayscale(100%) contrast(200%);
-}
-
-input[type="range"] {
-	filter: grayscale(100%) contrast(200%);
-}
-// endregion
-
 // region Font
 .code {
 	font-family: monospace !important;
@@ -435,6 +419,10 @@ i > i {
 
 .min-w-20p {
 	min-width: 20px !important;
+}
+
+.min-w-60p {
+	min-width: 60px !important;
 }
 
 .min-w-100p {

@@ -18,7 +18,7 @@ class PageFilterBackgrounds extends PageFilterBase {
 		super();
 
 		this._asiFilter = new AbilityScoreFilter({header: "Ability Scores"});
-		this._skillFilter = new Filter({header: "Skill Proficiencies", displayFn: StrUtil.toTitleCase});
+		this._skillFilter = new Filter({header: "Skill Proficiencies", displayFn: StrUtil.toTitleCase.bind(StrUtil)});
 		this._prereqFilter = new Filter({
 			header: "Prerequisite",
 			items: [...FilterCommon.PREREQ_FILTER_ITEMS],

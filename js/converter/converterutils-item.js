@@ -93,13 +93,13 @@ export class RechargeTypeTag {
 		const mLongRest = /All charges are restored when you finish a long rest/i.test(strEntries);
 		if (mLongRest) return obj.recharge = "restLong";
 
-		const mDawn = /charges? at dawn|charges? daily (?:at|in the twilight before) dawn|charges?(?:, which (?:are|you) regain(?:ed)?)? each day at dawn|charges and regains all of them at dawn|charges and regains[^.]+each dawn|recharging them all each dawn|charges that are replenished each dawn/gi.exec(strEntries);
+		const mDawn = /charges? at dawn|charges? (?:daily|nightly),? (?:at|in the twilight before) dawn|charges?(?:, which (?:are|you) regain(?:ed)?)? each day at dawn|charges and regains all of them at dawn|charges and regains[^.]+each dawn|recharging them all each dawn|charges that are replenished each dawn/gi.exec(strEntries);
 		if (mDawn) return obj.recharge = "dawn";
 
-		const mDusk = /charges? daily at dusk|charges? each (?:day at dusk|nightfall)|regains all charges at dusk/gi.exec(strEntries);
+		const mDusk = /charges? (?:daily|nightly),? at dusk|charges? each (?:(?:day|night) at dusk|nightfall)|regains all charges at dusk/gi.exec(strEntries);
 		if (mDusk) return obj.recharge = "dusk";
 
-		const mMidnight = /charges? daily at midnight|Each night at midnight[^.]+charges/gi.exec(strEntries);
+		const mMidnight = /charges? (?:daily|nightly),? at midnight|Each night at midnight[^.]+charges/gi.exec(strEntries);
 		if (mMidnight) return obj.recharge = "midnight";
 
 		const mDecade = /regains [^ ]+ expended charge every ten years/gi.exec(strEntries);
@@ -126,7 +126,7 @@ export class RechargeAmountTag {
 		// region Dawn
 		[
 			"(?<charges>",
-			")[^.]*?\\b(?:charges? (?:at|each) dawn|charges? daily (?:at|in the twilight before) dawn|charges?(?:, which (?:are|you) regain(?:ed)?)? each day at dawn)",
+			")[^.]*?\\b(?:charges? (?:at|each) dawn|charges? (?:daily|nightly),? (?:at|in the twilight before) dawn|charges?(?:, which (?:are|you) regain(?:ed)?)? each day at dawn)",
 		],
 		[
 			"charges and regains (?<charges>",
@@ -137,14 +137,14 @@ export class RechargeAmountTag {
 		// region Dusk
 		[
 			"(?<charges>",
-			")[^.]*?\\b(?:charges? daily at dusk|charges? each (?:day at dusk|nightfall))",
+			")[^.]*?\\b(?:charges? (?:daily|nightly),? at dusk|charges? each (?:(?:day|night) at dusk|nightfall))",
 		],
 		// endregion
 
 		// region Midnight
 		[
 			"(?<charges>",
-			")[^.]*?\\b(?:charges? daily at midnight)",
+			")[^.]*?\\b(?:charges? (?:daily|nightly),? at midnight)",
 		],
 		[
 			"Each night at midnight[^.]+regains (?<charges>",
@@ -833,3 +833,67 @@ ReqAttuneTagTag._EBERRON_MARK_RACES = {
 	"Mark of Passage": ["Human (Mark of Passage)|ERLW"],
 	"Mark of Sentinel": ["Human (Mark of Sentinel)|ERLW"],
 };
+
+export class LightTag {
+	static _getSingleRegex_lightInShape ({lightType, radiusName}) {
+		return new RegExp(`\\b${lightType} light in a (?<${radiusName}>\\d+)-foot[- ](?<shape>radius|cone)\\b`, "gi");
+	}
+	static _getSingleRegex_lightOutTo ({lightType, radiusName}) {
+		return new RegExp(`\\b${lightType} light out to (?:a range of )?(?<${radiusName}>\\d+) feet\\b`, "gi");
+	}
+	static _getSingleRegex_shapeOfLight ({lightType, radiusName}) {
+		return new RegExp(`\\b(?<${radiusName}>\\d+)-foot[- ](?<shape>radius|cone) of ${lightType} light\\b`, "gi");
+	}
+
+	static _checkAndTag (obj, opts) {
+		if (obj.light?.length) return;
+
+		const light = [];
+
+		MiscUtil.getWalker({isNoModification: true}).walk(obj.entries, {string: str => {
+			let strStrippedTmp = Renderer.stripTags(str);
+			[
+				// Bright and dim
+				/\bbright light in a (?<rBright>\d+)-foot[- ](?<shape>radius|cone) and dim light for an (?<isAdditional>additional) (?<rDim>\d+) (?:feet|foot|ft\.)\b/gi,
+				/\blight in a \d+-foot[- ](?<shape>radius|cone); the (?<isAdditional>closest) (?<rBright>\d+) feet is bright light, and the farthest (?<rDim>\d+) feet is dim light\b/gi,
+				/\bbright light in a (?<shape>radius|cone) of your choice up to (?<rBrightDim>\d+) feet and dim light for the (?<isAdditional>same) distance beyond that\b/gi,
+
+				// Bright only
+				this._getSingleRegex_lightInShape({lightType: "bright", radiusName: "rBright"}),
+				this._getSingleRegex_lightOutTo({lightType: "bright", radiusName: "rBright"}),
+				this._getSingleRegex_shapeOfLight({lightType: "bright", radiusName: "rBright"}),
+
+				// Dim only
+				this._getSingleRegex_lightInShape({lightType: "dim", radiusName: "rDim"}),
+				this._getSingleRegex_lightOutTo({lightType: "dim", radiusName: "rDim"}),
+				this._getSingleRegex_shapeOfLight({lightType: "dim", radiusName: "rDim"}),
+			]
+				.forEach(re => {
+					strStrippedTmp = strStrippedTmp
+						.replace(re, (...m) => {
+							const {rBright, rDim, rBrightDim, shape, isAdditional} = m.at(-1);
+
+							const rBrightNum = rBright ? Number(rBright) : rBrightDim ? Number(rBrightDim) : null;
+							const rDimNum = rDim ? Number(rDim) : rBrightDim ? Number(rBrightDim) : null;
+							const shapeClean = shape ? shape.toLowerCase().trim() : null;
+
+							const out = {};
+							if (rBrightNum) out.bright = rBrightNum;
+							if (rDimNum) out.dim = isAdditional && rBrightNum ? (rBrightNum + rDimNum) : rDimNum;
+
+							// Treat "radius" as the default
+							if (shapeClean && shapeClean !== "radius") out.shape = shapeClean;
+
+							light.push(out);
+						});
+				});
+		}});
+
+		if (light.length) obj.light = light;
+	}
+
+	static tryRun (ent, opts) {
+		if (ent.entries) this._checkAndTag(ent, opts);
+		if (ent.inherits && ent.inherits.entries) this._checkAndTag(ent.inherits, opts);
+	}
+}

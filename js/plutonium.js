@@ -5,6 +5,7 @@ class PlutoniumPage {
 			BrewUtil2.pInit(),
 		]);
 		ExcludeUtil.pInitialise().then(null); // don't await, as this is only used for search
+		window.dispatchEvent(new Event("toolsLoaded"));
 	}
 
 	static _IMAGES = [

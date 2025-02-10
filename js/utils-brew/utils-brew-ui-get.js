@@ -73,7 +73,7 @@ export class GetBrewUi {
 					"deprecated",
 					"invalid",
 				],
-				displayFn: StrUtil.toTitleCase,
+				displayFn: StrUtil.toTitleCase.bind(StrUtil),
 				itemSortFn: null,
 				deselFn: it => this.constructor._STATUS_FILTER_DEFAULT_DESELECTED.has(it),
 			});

@@ -21,6 +21,13 @@ async function main () {
 	await (await import("./test-adventure-book-map-grids-parents.js")).default; // don't fail on missing map grids
 	if (!(await (await import("./test-foundry.js")).default)) handleFail();
 	process.exit(0);
+
+	// region Manual tests
+	// - `test-adventure-book-credits.js`
+	// - `test-adventure-book-pages.js`
+	// - `test-page-generator.js`
+	// - `test-tag-source-versions.js`
+	// endregion
 }
 
 main()

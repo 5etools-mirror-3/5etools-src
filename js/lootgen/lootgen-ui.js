@@ -171,7 +171,7 @@ export class LootGenUi extends BaseComponent {
 			.flatMap(theme => {
 				return ["Common", "Uncommon", "Rare", "Very Rare", "Legendary"]
 					.map(rarity => ({
-						name: `${theme} Tables; ${theme} - ${rarity}`,
+						name: `${theme} - ${rarity}`,
 						type: `${theme.toLowerCase()}.${rarity.toLowerCase()}`,
 						theme,
 						rarity,
@@ -237,7 +237,7 @@ export class LootGenUi extends BaseComponent {
 					rarity,
 					tableEntry,
 					table: this._data.magicItems.find(it => it.type === type),
-					tag: `{@table ${theme} Tables; ${theme} - ${rarity}|XDMG|${theme} - ${rarity}}`,
+					tag: `{@table ${theme} - ${rarity}|XDMG|${theme} - ${rarity}}`,
 				};
 			}),
 			...tablesMagicItemsDmg.map(({type, tableEntry}) => {

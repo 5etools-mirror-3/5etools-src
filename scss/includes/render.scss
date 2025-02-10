@@ -249,7 +249,8 @@ $rgb-inset-border: #656565;
 			margin: 0;
 		}
 
-		&list-hang-notitle {
+		&list-hang-notitle,
+		&list-caption {
 			padding: 0;
 			list-style: none;
 
@@ -275,6 +276,14 @@ $rgb-inset-border: #656565;
 				> ul {
 					text-indent: initial;
 				}
+			}
+		}
+
+		&list-caption {
+			> .rd__list-name {
+				font-variant: small-caps;
+				font-weight: bold;
+				font-size: 1.08em;
 			}
 		}
 
@@ -430,6 +439,7 @@ $rgb-inset-border: #656565;
 			border-top: 2px solid $rgb-inset-border;
 			border-bottom: 2px solid $rgb-inset-border;
 			background-color: #e9ecda;
+			text-indent: initial;
 
 			> *:last-child {
 				margin-bottom: 0;
@@ -452,7 +462,7 @@ $rgb-inset-border: #656565;
 			border: 3px solid vars.$rgb-border-yellow--statblock;
 			border-left-width: 1px;
 			border-right-width: 1px;
-			margin: 5px;
+			margin: 15px 5px;
 			width: calc(100% - 12px);
 			table-layout: fixed;
 
@@ -460,6 +470,16 @@ $rgb-inset-border: #656565;
 				box-shadow: 0 0 4px 0 rgb(152 142 124);
 				border: 1px solid $rgb-inset-border;
 				background-color: rgb(156 150 120 / 10%);
+			}
+
+			&--narrow {
+				max-width: 600px;
+				margin: 15px auto;
+
+				@media screen and (width <= #{vars.$width-screen-sm}) {
+					max-width: initial;
+					margin: 15px 5px;
+				}
 			}
 		}
 
@@ -470,18 +490,25 @@ $rgb-inset-border: #656565;
 		&data-embed {
 			&-header {
 				cursor: pointer;
-				font-family: "Times New Roman", serif;
-				font-variant: small-caps;
-				text-transform: uppercase;
-				font-weight: bold;
 
 				&:hover {
 					background: rgb(100 100 100 / 8%);
 				}
 			}
 
+			&-name {
+				font-family: "Times New Roman", serif;
+				font-variant: small-caps;
+				text-transform: uppercase;
+				font-weight: bold;
+			}
+
+			&-name-expanded {
+				font-weight: normal;
+				font-size: 90%;
+			}
+
 			&-toggle {
-				font-family: Arial, sans-serif;
 				float: right;
 			}
 		}

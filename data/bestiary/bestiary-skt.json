@@ -62,7 +62,7 @@
 				{
 					"name": "Dive Attack",
 					"entries": [
-						"If the aarakocra is flying and dives at least 30 feet straight toward a target and then hits it with a melee weapon attack, the attack deals an extra 3 ({@dice 1d6}) damage to the target."
+						"If the aarakocra is flying and dives at least 30 feet straight toward a target and then hits it with a melee weapon attack, the attack deals an extra 3 ({@damage 1d6}) damage to the target."
 					]
 				},
 				{
@@ -1016,7 +1016,7 @@
 				{
 					"name": "Fling",
 					"entries": [
-						"Sansuri tries to throw a Small or Medium creature within 10 feet of her. The target must succeed on a {@dc 20} Dexterity saving throw or be hurled up to 60 feet horizontally in a direction of Sansuri's choice and land {@condition prone}, taking {@dice 1d8} bludgeoning damage for every 10 feet it was thrown."
+						"Sansuri tries to throw a Small or Medium creature within 10 feet of her. The target must succeed on a {@dc 20} Dexterity saving throw or be hurled up to 60 feet horizontally in a direction of Sansuri's choice and land {@condition prone}, taking {@damage 1d8} bludgeoning damage for every 10 feet it was thrown."
 					]
 				},
 				{
@@ -1398,7 +1398,7 @@
 				{
 					"name": "Sneak Attack (1/Turn)",
 					"entries": [
-						"Darz deals an extra 7 ({@dice 2d6}) damage when he hits a target with a weapon attack and has advantage on the attack roll, or when the target is within 5 feet of an ally of Darz that isn't {@condition incapacitated} and Darz doesn't have disadvantage on the attack roll."
+						"Darz deals an extra 7 ({@damage 2d6}) damage when he hits a target with a weapon attack and has advantage on the attack roll, or when the target is within 5 feet of an ally of Darz that isn't {@condition incapacitated} and Darz doesn't have disadvantage on the attack roll."
 					]
 				},
 				{
@@ -1817,7 +1817,7 @@
 							"items": {
 								"name": "Possession {@recharge}",
 								"entries": [
-									"One humanoid or giant that the ghost can see within 5 feet of it must succeed on a DC 13 Charisma saving throw or be possessed by the ghost; the ghost then disappears, and the target is {@condition incapacitated} and loses control of its body. The ghost now controls the body but doesn't deprive the target of awareness. The ghost can't be targeted by any attack, spell, or other effect, except ones that turn undead, and it retains its alignment, Intelligence, Wisdom, Charisma, and immunity to being {@condition charmed} and {@condition frightened}. It otherwise uses the possessed target's statistics, but doesn't gain access to the target's knowledge, class features, or proficiencies.",
+									"One humanoid or giant that the ghost can see within 5 feet of it must succeed on a {@dc 13} Charisma saving throw or be possessed by the ghost; the ghost then disappears, and the target is {@condition incapacitated} and loses control of its body. The ghost now controls the body but doesn't deprive the target of awareness. The ghost can't be targeted by any attack, spell, or other effect, except ones that turn undead, and it retains its alignment, Intelligence, Wisdom, Charisma, and immunity to being {@condition charmed} and {@condition frightened}. It otherwise uses the possessed target's statistics, but doesn't gain access to the target's knowledge, class features, or proficiencies.",
 									"The possession lasts until the body drops to 0 hit points, the ghost ends it as a bonus action, or the ghost is turned or forced out by an effect like the {@spell dispel evil and good} spell. When the possession ends, the ghost reappears in an unoccupied space within 5 feet of the body. The target is immune to this ghost's Possession for 24 hours after succeeding on the saving throw or after the possession ends. If a creature possessed by the ghost is forcibly removed from the Eye of Annam, the ghost is expelled from its host and re-forms in the middle of this room."
 								]
 							}
@@ -2047,7 +2047,7 @@
 				{
 					"name": "Giant Slayer",
 					"entries": [
-						"Any weapon attack that Ghelryn makes against a giant deals an extra 7 ({@dice 2d6}) damage on a hit."
+						"Any weapon attack that Ghelryn makes against a giant deals an extra 7 ({@damage 2d6}) damage on a hit."
 					]
 				},
 				{
@@ -2461,7 +2461,7 @@
 						"items": {
 							"name": "Icy Web {@recharge 5}",
 							"entries": [
-								"{@atk rw} {@hit 5} to hit, range 30/60 ft., one creature. {@h}The target is {@condition restrained} by webbing, and takes 1 cold damage at the start of each of its turns. As an action, the {@condition restrained} target can make a DC 12 Strength check, bursting the webbing on a success. The webbing can also be attacked and destroyed (AC 10; hp 5; vulnerability to fire damage; immunity to poison, and psychic damage)."
+								"{@atk rw} {@hit 5} to hit, range 30/60 ft., one creature. {@h}The target is {@condition restrained} by webbing, and takes 1 cold damage at the start of each of its turns. As an action, the {@condition restrained} target can make a {@dc 12} Strength check, bursting the webbing on a success. The webbing can also be attacked and destroyed (AC 10; hp 5; vulnerability to fire damage; immunity to poison, and psychic damage)."
 							]
 						}
 					}
@@ -2500,7 +2500,7 @@
 						"items": {
 							"name": "Icy Web {@recharge 5}",
 							"entries": [
-								"{@atk rw} {@hit 5} to hit, range 30/60 ft., one creature. {@h}The target is {@condition restrained} by webbing, and takes 2 ({@damage 1d4}) cold damage at the start of each of its turns. As an action, the {@condition restrained} target can make a DC 12 Strength check, bursting the webbing on a success. The webbing can also be attacked and destroyed (AC 10; hp 5; vulnerability to fire damage; immunity to poison, and psychic damage)."
+								"{@atk rw} {@hit 5} to hit, range 30/60 ft., one creature. {@h}The target is {@condition restrained} by webbing, and takes 2 ({@damage 1d4}) cold damage at the start of each of its turns. As an action, the {@condition restrained} target can make a {@dc 12} Strength check, bursting the webbing on a success. The webbing can also be attacked and destroyed (AC 10; hp 5; vulnerability to fire damage; immunity to poison, and psychic damage)."
 							]
 						}
 					}
@@ -4605,7 +4605,7 @@
 						"items": {
 							"name": "Goblin Projectile",
 							"entries": [
-								"{@atk rw} {@hit 3} to hit, range 150/600 ft. (can't hit targets within 30 feet of the hucker), one target. Hit: 5 ({@damage 2d4}) bludgeoning damage, or 10 ({@damage 4d4}) piercing damage if the projectile is wearing a spiked helmet. {@i Hit or Miss:} The goblin projectile takes {@damage 1d6} bludgeoning damage per 10 feet it travels through the air (maximum {@damage 20d6})."
+								"{@atk rw} {@hit 3} to hit, range 150/600 ft. (can't hit targets within 30 feet of the hucker), one target. Hit: 5 ({@damage 2d4}) bludgeoning damage, or 10 ({@damage 4d4}) piercing damage if the projectile is wearing a spiked helmet. {@hom}The goblin projectile takes {@damage 1d6} bludgeoning damage per 10 feet it travels through the air (maximum {@damage 20d6})."
 							]
 						}
 					}
@@ -5483,7 +5483,7 @@
 				{
 					"name": "Sneak Attack (1/Turn)",
 					"entries": [
-						"Shalvus deals an extra 7 ({@dice 2d6}) damage when he hits a target with a weapon attack and has advantage on the attack roll, or when the target is within 5 feet of an ally of Shalvus that isn't {@condition incapacitated} and Shalvus doesn't have disadvantage on the attack roll."
+						"Shalvus deals an extra 7 ({@damage 2d6}) damage when he hits a target with a weapon attack and has advantage on the attack roll, or when the target is within 5 feet of an ally of Shalvus that isn't {@condition incapacitated} and Shalvus doesn't have disadvantage on the attack roll."
 					]
 				},
 				{
@@ -6423,7 +6423,7 @@
 				{
 					"name": "Fling",
 					"entries": [
-						"The giant tries to throw a Small or Medium creature within 10 feet of it. The target must succeed on a {@dc 17} Dexterity saving throw or be hurled up to 60 feet horizontally in a direction of the giant's choice. and land {@condition prone}, taking {@dice 1d6} bludgeoning damage for every 10 feet it was thrown."
+						"The giant tries to throw a Small or Medium creature within 10 feet of it. The target must succeed on a {@dc 17} Dexterity saving throw or be hurled up to 60 feet horizontally in a direction of the giant's choice. and land {@condition prone}, taking {@damage 1d6} bludgeoning damage for every 10 feet it was thrown."
 					]
 				},
 				{
@@ -6753,7 +6753,7 @@
 				{
 					"name": "Familiar",
 					"entries": [
-						"With the DM's permission, a person who casts the {@spell find familiar} spell can choose to conjure a tressym in stead of a normal cat."
+						"With the DM's permission, a person who casts the {@spell find familiar} spell can choose to conjure a tressym instead of a normal cat."
 					]
 				}
 			],
@@ -6924,7 +6924,7 @@
 				{
 					"name": "Giant Slayer",
 					"entries": [
-						"Any weapon attack that Urgala makes against a giant deals an extra 7 ({@dice 2d6}) damage on a hit."
+						"Any weapon attack that Urgala makes against a giant deals an extra 7 ({@damage 2d6}) damage on a hit."
 					]
 				},
 				{
@@ -8046,7 +8046,7 @@
 				{
 					"name": "Fling",
 					"entries": [
-						"Zephyros tries to throw a Small or Medium creature within 10 feet of it. The target must succeed on a {@dc 20} Dexterity saving throw or be hurled up to 60 feet horizontally in a direction of Zephyros's choice and land {@condition prone}, taking {@dice 1d8} bludgeoning damage for every 10 feet it was thrown."
+						"Zephyros tries to throw a Small or Medium creature within 10 feet of it. The target must succeed on a {@dc 20} Dexterity saving throw or be hurled up to 60 feet horizontally in a direction of Zephyros's choice and land {@condition prone}, taking {@damage 1d8} bludgeoning damage for every 10 feet it was thrown."
 					]
 				},
 				{

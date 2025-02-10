@@ -462,8 +462,8 @@ class SublistManager {
 	}
 
 	async _pHandleJsonDownload () {
-		const entities = await this.getPinnedEntities();
-		entities.forEach(ent => DataUtil.cleanJson(MiscUtil.copyFast(ent)));
+		const entities = (await this.getPinnedEntities()).map(ent => MiscUtil.copyFast(ent));
+		entities.forEach(ent => DataUtil.cleanJson(ent));
 		DataUtil.userDownload(`${this._getDownloadName()}-data`, entities);
 	}
 
@@ -1309,7 +1309,7 @@ class ListPage {
 		return {
 			name: "Open Page",
 			type: "link",
-			fn: () => `${location.origin}/${slugPage}/${UrlUtil.getSluggedHash(fnGetHash())}`,
+			fn: () => `${location.origin}/${slugPage}/${UrlUtil.getSluggedHash(fnGetHash())}.html`,
 		};
 	}
 

@@ -76,8 +76,10 @@ ${img ? `<meta property="og:image" content="${BASE_SITE_URL}${img}">` : ""}
 <script>globalThis._SEO_PAGE="${page}";globalThis._SEO_SOURCE="${source}";globalThis._SEO_HASH="${hash}";globalThis._SEO_STYLE=${textStyle};globalThis._SEO_FLUFF=${isFluff}</script>
 </head>
 <body>
-<div class="cancer__wrp-sidebar-rhs cancer__anchor"><div class="cancer__disp-cancer"></div><div class="cancer__sidebar-rhs-inner cancer__sidebar-rhs-inner--top"><!--5ETOOLS_AD_RIGHT_1--></div><div class="cancer__sidebar-rhs-inner cancer__sidebar-rhs-inner--bottom"><!--5ETOOLS_AD_RIGHT_2--></div></div>
-<div class="cancer__wrp-leaderboard cancer__anchor"><div class="cancer__disp-cancer"></div><div class="cancer__wrp-leaderboard-inner"><!--5ETOOLS_AD_LEADERBOARD--></div></div>
+
+<div class="cancer__wrp-sidebar cancer__wrp-sidebar-lhs cancer__anchor"><div class="cancer__disp-cancer"></div><div class="cancer__sidebar-inner cancer__sidebar-inner--top cancer__wrp-interactive"><!--5ETOOLS_AD_LEFT_1--></div><div class="cancer__sidebar-inner cancer__sidebar-inner--bottom cancer__wrp-interactive"><!--5ETOOLS_AD_LEFT_2--></div></div>
+<div class="cancer__wrp-sidebar cancer__wrp-sidebar-rhs cancer__anchor"><div class="cancer__disp-cancer"></div><div class="cancer__sidebar-inner cancer__sidebar-inner--top cancer__wrp-interactive"><!--5ETOOLS_AD_RIGHT_1--></div><div class="cancer__sidebar-inner cancer__sidebar-inner--bottom cancer__wrp-interactive"><!--5ETOOLS_AD_RIGHT_2--></div></div>
+<div class="cancer__wrp-leaderboard cancer__anchor"><div class="cancer__disp-cancer"></div><div class="cancer__wrp-leaderboard-inner cancer__wrp-interactive"><!--5ETOOLS_AD_LEADERBOARD--></div></div>
 
 <header class="hidden-xs hidden-sm page__header"><div class="container ve-flex-v-baseline"><h1 class="page__title no-wrap my-0"></h1></div></header><nav class="container page__nav" id="navigation"><ul class="nav nav-pills page__nav-inner" id="navbar"></ul></nav>
 
@@ -96,7 +98,7 @@ ${img ? `<meta property="og:image" content="${BASE_SITE_URL}${img}">` : ""}
 <script type="module" src="/js/utils-config.js"></script>
 <script type="text/javascript" defer src="/js/render.js"></script>
 <script type="text/javascript" defer src="/js/render-dice.js"></script>
-<script type="text/javascript" defer src="/js/scalecreature.js"></script>
+<script type="module" src="/js/shim-esmodules.js"></script>
 <script type="text/javascript" defer src="/js/hist.js"></script>
 <script type="module" defer src="/js/seo-loader.js"></script></body></html>`;
 
