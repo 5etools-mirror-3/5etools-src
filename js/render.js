@@ -2031,7 +2031,7 @@ globalThis.Renderer = function () {
 					quantity = Parser.quantity.getMetric(quantity, isAdjective);
 					quantity.value = NumberUtil.toFixedNumber(quantity.value, 2);
 				}
-				
+
 				textStack[0] += `${quantity.value}${isAdjective ? "-" : " "}${quantity.unit}`;
 				break;
 			}
@@ -5108,7 +5108,7 @@ Renderer.tag = class {
 			const [value, unitStr] = Renderer.splitTagByPipe(text);
 			return `${value} ${unitStr}`;
 		};
-	}
+	};
 
 	static TagActSave = class extends this._TagBaseAt {
 		tagName = "actSave";
@@ -8129,9 +8129,9 @@ Renderer.race = class {
 		}
 
 		return [
-			isMetric 
-			? "You may roll for your character's height and weight on the Random Height and Weight table. To get a height (in centimeters), add the dice roll given in the Height Modifier column to the base height, and multiply the result by 2.5. To get a weight (in kilograms), multiply the number your rolled for height by the roll in the Weight Modifier column, add the result to the base weight, and divide the total by 2."
-			: "You may roll for your character's height and weight on the Random Height and Weight table. The roll in the Height Modifier column adds a number (in inches) to the character's base height. To get a weight, multiply the number you rolled for height by the roll in the Weight Modifier column and add the result (in pounds) to the base weight.",
+			isMetric
+				? "You may roll for your character's height and weight on the Random Height and Weight table. To get a height (in centimeters), add the dice roll given in the Height Modifier column to the base height, and multiply the result by 2.5. To get a weight (in kilograms), multiply the number your rolled for height by the roll in the Weight Modifier column, add the result to the base weight, and divide the total by 2."
+				: "You may roll for your character's height and weight on the Random Height and Weight table. The roll in the Height Modifier column adds a number (in inches) to the character's base height. To get a weight, multiply the number you rolled for height by the roll in the Weight Modifier column and add the result (in pounds) to the base weight.",
 			{
 				type: "table",
 				caption: "Random Height and Weight",
@@ -11278,7 +11278,7 @@ Renderer.item = class {
 			let speed = { value: item.speed, unit: "ft." };
 			if (VetoolsConfig.get("localization", "isMetric")) speed = Parser.quantity.getMetric(speed);
 			damageParts.push(`Speed: ${speed.value} ${speed.unit}`);
-		} 
+		}
 		if (item.carryingCapacity) {
 			let capacity = { value: item.carryingCapacity, unit: "lb." };
 			if (VetoolsConfig.get("localization", "isMetric")) capacity = Parser.quantity.getMetric(capacity);
@@ -11288,8 +11288,8 @@ Renderer.item = class {
 		// vehicles
 		if (item.vehSpeed || item.capCargo || item.capPassenger || item.crew || item.crewMin || item.crewMax || item.vehAc || item.vehHp || item.vehDmgThresh || item.travelCost || item.shippingCost) {
 			let speed = { value: item.vehSpeed, unit: "mph" };
-			VetoolsConfig.get("localization", "isMetric") 
-				? speed = Parser.quantity.getMetric(speed) 
+			VetoolsConfig.get("localization", "isMetric")
+				? speed = Parser.quantity.getMetric(speed)
 				: speed.value = Parser.numberToVulgar(speed.value); // only use vulgar for imperial
 
 			const vehPartUpper = item.vehSpeed ? `Speed: ${speed.value} ${speed.unit}` : null;

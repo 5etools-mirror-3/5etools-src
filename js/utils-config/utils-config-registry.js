@@ -53,7 +53,7 @@ const settingsGroupLocalization = new ConfigSettingsGroup({
 			isRowLabel: true,
 			isReloadRequired: true,
 			default: false,
-		})
+		}),
 	],
 });
 

@@ -1230,44 +1230,43 @@ export class QuantityTag {
 	static NUMBERS_TENS = ["twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
 
 	static PREPOSITIONS = [
-    "of",
-    "down",
-    "up",
-    "off",
-    "wide",
-    "tall",
-    "long",
-    "deep",
-    "high",
-    "thick",
-    "above",
-    "below",
-    "away",
-    "across",
-    "back",
-    "forward",
-    "in",
-    "out",
-    "inside",
-    "outside",
-    "behind",
-    "before",
-    "after",
-    "between",
-    "among",
-    "around",
-    "over",
-    "under",
-    "through",
-    "onto",
-    "into"
+		"of",
+		"down",
+		"up",
+		"off",
+		"wide",
+		"tall",
+		"long",
+		"deep",
+		"high",
+		"thick",
+		"above",
+		"below",
+		"away",
+		"across",
+		"back",
+		"forward",
+		"in",
+		"out",
+		"inside",
+		"outside",
+		"behind",
+		"before",
+		"after",
+		"between",
+		"among",
+		"around",
+		"over",
+		"under",
+		"through",
+		"onto",
+		"into",
 	];
 
 	static RE = this.getRegex();
 
-	static getRegex() {
+	static getRegex () {
 		const numAsDigits = `(\\d{1,3},\\d{3}|\\d+)`;	// 1, 1,000, etc.
-
 
 		const digits = `(${this.NUMBERS_ONES.join("|")})\\b`; // words for numbers 0-9
 		const teens = `(${this.NUMBERS_TEENS.join("|")})\\b`; // words for numbers 10-19
@@ -1283,7 +1282,7 @@ export class QuantityTag {
 		const rangeSeparator = `(-|\\/|\\sto\\s|\\sby\\s|-by-)`;
 		const range = `((${numAsDigits}${rangeSeparator}${numAsDigits})|(${numAsText}${rangeSeparator}${numAsText}))\\b`; // 5-10, 5/10, 5 to 10, five-by-ten, etc.
 
-		const value = `(${numAsDigits}|${numAsText}|${fraction}|${quantifier}|${indefinite}|${range})`; 
+		const value = `(${numAsDigits}|${numAsText}|${fraction}|${quantifier}|${indefinite}|${range})`;
 		const sep = `(\\s|-)`;
 		const unitFull = `((${this.UNIT_WORDS_FULL.join("|")})\\b)`;
 		const unitAbbr = `(${this.UNIT_WORDS_ABBR.join("|").replaceAll(".", "\\.")})`;
@@ -1315,7 +1314,7 @@ export class QuantityTag {
 
 	static _fnTag (strMod) {
 		let m;
-		while((m = this.RE.exec(strMod)) !== null) {
+		while ((m = this.RE.exec(strMod)) !== null) {
 			m = this._handleAbbreviationDot(m);
 			const tag = `{@quantity ${m.groups.value}|${m.groups.sep === "-" ? "-" : ""}${m.groups.unit}}`;
 			strMod = strMod.slice(0, m.indices.groups.value[0]) + tag + strMod.slice(m.indices.groups.unit[1]); // replace the matched text with the tag
@@ -1328,12 +1327,12 @@ export class QuantityTag {
 
 		const textBeforeMatch = m.input.slice(0, m.index);
 		const textAfterMatch = m.input.slice(m.indices.groups.unit[1]);
-		
+
 		/* A dot after a unit should be considered part of the unit word if:
 			- the quantity is not part of a sentence, e.g. "5 ft., darkvision 20 ft."
 			- the text following the unit word is part of the same sentence, e.g. "the creature has a 5 ft. reach" */
-		const dotIsPartOfUnit
-			= (textBeforeMatch.match(/^(tremorsense|blindsight|truesight|darkvision|telepathy)?/i) && textAfterMatch === "")
+		const dotIsPartOfUnit =
+			(textBeforeMatch.match(/^(tremorsense|blindsight|truesight|darkvision|telepathy)?/i) && textAfterMatch === "")
 			|| textAfterMatch.match(/^\s*(?:[a-z(),]|Cone|Cube|Cylinder|Emanation|Line|Sphere)/);
 
 		if (!dotIsPartOfUnit) {

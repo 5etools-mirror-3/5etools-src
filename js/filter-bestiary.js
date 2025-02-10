@@ -76,7 +76,7 @@ class PageFilterBestiary extends PageFilterBase {
 			min: 30,
 			max: 30,
 			displayFn: (it) => VetoolsConfig.get("localization", "isMetric")
-				? `${NumberUtil.toHalfPoint(it*Parser.quantity.FEET_TO_METRES)} m`
+				? `${NumberUtil.toHalfPoint(it * Parser.quantity.FEET_TO_METRES)} m`
 				: `${it} ft`,
 		});
 		this._speedTypeFilter = new Filter({header: "Speed Type", items: [...Parser.SPEED_MODES, "hover"], displayFn: StrUtil.uppercaseFirst});

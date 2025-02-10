@@ -140,16 +140,31 @@ Parser.textToNumber = function (str) {
 
 	const numberWords = {
 		"zero": 0,
-		"one": 1, "a": 1, "an": 1, "first": 1,
-		"two": 2, "double": 2, "second": 2,
-		"three": 3, "triple": 3, "third": 3,
-		"four": 4, "quadruple": 4, "fourth": 4,
-		"five": 5, "fifth": 5,
-		"six": 6, "sixth": 6,
-		"seven": 7, "seventh": 7,
-		"eight": 8, "eighth": 8,
-		"nine": 9, "ninth": 9,
-		"ten": 10, "tenth": 10,
+		"one": 1,
+		"a": 1,
+		"an": 1,
+		"first": 1,
+		"two": 2,
+		"double": 2,
+		"second": 2,
+		"three": 3,
+		"triple": 3,
+		"third": 3,
+		"four": 4,
+		"quadruple": 4,
+		"fourth": 4,
+		"five": 5,
+		"fifth": 5,
+		"six": 6,
+		"sixth": 6,
+		"seven": 7,
+		"seventh": 7,
+		"eight": 8,
+		"eighth": 8,
+		"nine": 9,
+		"ninth": 9,
+		"ten": 10,
+		"tenth": 10,
 		"eleven": 11,
 		"twelve": 12,
 		"thirteen": 13,
@@ -168,7 +183,7 @@ Parser.textToNumber = function (str) {
 		"eighty": 80,
 		"ninety": 90,
 		"hundred": 100,
-		"thousand": 1000
+		"thousand": 1000,
 	};
 
 	const parts = str.split(/[\s-]+/);
@@ -177,35 +192,40 @@ Parser.textToNumber = function (str) {
 
 	for (const part of parts) {
 		if (numberWords[part] === 1000) {
-				total += current * 1000;
-				current = 0;
+			total += current * 1000;
+			current = 0;
 		} else if (numberWords[part] === 100) {
-				current *= 100;
+			current *= 100;
 		} else if (numberWords[part] !== undefined) {
-				current += numberWords[part];
+			current += numberWords[part];
 		} else if (part === "and") {
 			continue;
 		} else {
-				return NaN;
+			return NaN;
 		}
 	};
 
 	return total + current;
 };
 
-Parser.FRACTION_WORDS_TO_NUMBER = {		
-	"one-eighth": 1/8,
-	"one-fifth": 1/5,
-	"one-quarter": 1/4, "a quarter": 1/4,
-	"three-eighths": 3/8,
-	"two-fifths": 2/5,
-	"two-thirds": 2/3,
-	"one-half": 1/2, "a half": 1/2, "half": 1/2, "half a": 1/2, "half an": 1/2,
-	"three-fifths": 3/5,
-	"five-eighths": 5/8,
-	"three-quarters": 3/4,
-	"four-fifths": 4/5,
-	"seven-eighths": 7/8,
+Parser.FRACTION_WORDS_TO_NUMBER = {
+	"one-eighth": 1 / 8,
+	"one-fifth": 1 / 5,
+	"one-quarter": 1 / 4,
+	"a quarter": 1 / 4,
+	"three-eighths": 3 / 8,
+	"two-fifths": 2 / 5,
+	"two-thirds": 2 / 3,
+	"one-half": 1 / 2,
+	"a half": 1 / 2,
+	"half": 1 / 2,
+	"half a": 1 / 2,
+	"half an": 1 / 2,
+	"three-fifths": 3 / 5,
+	"five-eighths": 5 / 8,
+	"three-quarters": 3 / 4,
+	"four-fifths": 4 / 5,
+	"seven-eighths": 7 / 8,
 };
 
 Parser.fractionTextToNumber = function (str) {
@@ -252,7 +272,7 @@ Parser.numberToVulgar = function (number, {isFallbackOnFractional = true} = {}) 
 	return isFallbackOnFractional ? Parser.numberToFractional(number) : null;
 };
 
-Parser.VULGAR_GLYPHS = ["⅛","¼","⅜","½","⅝","¾","⅞","⅓","⅔","⅙","⅚"]
+Parser.VULGAR_GLYPHS = ["⅛", "¼", "⅜", "½", "⅝", "¾", "⅞", "⅓", "⅔", "⅙", "⅚"];
 
 Parser.vulgarToNumber = function (str) {
 	const vulgarRe = new RegExp(`^(\\d+)?([${Parser.VULGAR_GLYPHS.join("")}])?$`);
@@ -952,9 +972,9 @@ Parser.itemWeightToFull = function (item, isShortForm) {
 		return `${(item.weight < 1 ? item.weight * 16 : item.weight).toLocaleString(undefined, {maximumFractionDigits: 5})} ${item.weight < 1 ? "oz" : "lb"}.${(item.weightNote ? ` ${item.weightNote}` : "")}`;
 	}
 	if (item.weightMult) {
-		const mult = VetoolsConfig.get("localization", "isMetric") ? item.weightMult*Parser.quantity.POUNDS_TO_KILOGRAMS : item.weightMult;
+		const mult = VetoolsConfig.get("localization", "isMetric") ? item.weightMult * Parser.quantity.POUNDS_TO_KILOGRAMS : item.weightMult;
 		return isShortForm ? `×${mult}` : `base weight ×${mult}`;
-	} 
+	}
 	return "";
 };
 
@@ -4456,7 +4476,7 @@ Parser.quantity = {
 		if (metricNums.some(n => n === null)) return { value, unit };
 
 		// ensure the unit is in the right form
-		metricUnit = !isAdjective && metricNums.some(n => n > 1) 
+		metricUnit = !isAdjective && metricNums.some(n => n > 1)
 			? this.UNIT_PLURAL_MAP[metricUnit] ?? metricUnit
 			: metricUnit = Object.keys(this.UNIT_PLURAL_MAP).find(key => this.UNIT_PLURAL_MAP[key] === metricUnit) ?? metricUnit;
 
@@ -4473,7 +4493,7 @@ Parser.quantity = {
 				const nums = val.split(sep).map(n => this.getNumber(n));
 				if (nums.some(n => isNaN(n))) return null;
 				return sep === "/" && nums[0] < 5 && nums[1] <= 10 // the value is a fraction, not a range
-					? { nums: [nums[0] / nums[1]] } 
+					? { nums: [nums[0] / nums[1]] }
 					: { nums, sep };
 			}
 		}
@@ -4486,7 +4506,7 @@ Parser.quantity = {
 		// clean the string
 		str = str.trim().toLowerCase();
 		str = str.replace(/of\san?/, "").trim();
-		str = str.replace(/(?<=\d)(\s|,)(?=\d{3})/g, "") // remove thousand separators
+		str = str.replace(/(?<=\d)(\s|,)(?=\d{3})/g, ""); // remove thousand separators
 
 		if (str === "") return NaN;
 		if (!isNaN(str)) return Number(str);
@@ -4500,8 +4520,7 @@ Parser.quantity = {
 
 		const glyphRe = new RegExp(`[${Parser.VULGAR_GLYPHS.join("")}]`);
 		if (str.match(glyphRe)) {
-			try {return Parser.vulgarToNumber(str);}
-			catch (e) {return NaN;}
+			try { return Parser.vulgarToNumber(str); } catch (e) { return NaN; }
 		}
 
 		return NaN; // failed to convert to number

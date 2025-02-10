@@ -20,7 +20,7 @@ class PageFilterVehicles extends PageFilterBase {
 		this._speedFilter = new RangeFilter({
 			header: "Speed",
 			displayFn: (it) => VetoolsConfig.get("localization", "isMetric")
-				? `${NumberUtil.toHalfPoint(it*Parser.quantity.FEET_TO_METRES)} m`
+				? `${NumberUtil.toHalfPoint(it * Parser.quantity.FEET_TO_METRES)} m`
 				: `${it} ft.`,
 		});
 		this._acFilter = new RangeFilter({header: "Armor Class"});

@@ -78,7 +78,7 @@ class PageFilterEquipment extends PageFilterBase {
 			max: 100,
 			isAllowGreater: true,
 			displayFn: (it) => VetoolsConfig.get("localization", "isMetric")
-				? `${NumberUtil.toFixedNumber(it*Parser.quantity.POUNDS_TO_KILOGRAMS, 0)} kg`
+				? `${NumberUtil.toFixedNumber(it * Parser.quantity.POUNDS_TO_KILOGRAMS, 0)} kg`
 				: `${it} lb.`,
 		});
 		this._focusFilter = new Filter({header: "Spellcasting Focus", items: [...Parser.ITEM_SPELLCASTING_FOCUS_CLASSES]});
