@@ -48,7 +48,7 @@
 				"perception": "+8"
 			},
 			"senses": [
-				"blindsight 60 ft."
+				"blindsight {@quantity 60|ft.}"
 			],
 			"passive": 18,
 			"immune": [
@@ -81,13 +81,13 @@
 				{
 					"name": "Hoof",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}12 ({@damage 2d6 + 5}) bludgeoning damage."
+						"{@atk mw} {@hit 9} to hit, reach {@quantity 5|ft.}, one target. {@h}12 ({@damage 2d6 + 5}) bludgeoning damage."
 					]
 				},
 				{
 					"name": "Tail Thump",
 					"entries": [
-						"Coral slams her tail down, unleashing a burst of magical force toward one creature she can see within 60 feet of her. The target must make a {@dc 16} Dexterity saving throw. On a failed save, the target takes 22 ({@damage 4d10}) force damage and has the {@condition prone} condition. On a successful save, the target takes half as much damage only. If this damage reduces the target to 0 hit points, the target dies, and its body is reduced to fine dust."
+						"Coral slams her tail down, unleashing a burst of magical force toward one creature she can see within {@quantity 60|feet} of her. The target must make a {@dc 16} Dexterity saving throw. On a failed save, the target takes 22 ({@damage 4d10}) force damage and has the {@condition prone} condition. On a successful save, the target takes half as much damage only. If this damage reduces the target to 0 hit points, the target dies, and its body is reduced to fine dust."
 					]
 				}
 			],
@@ -95,7 +95,7 @@
 				{
 					"name": "Bubbles of Whimsy (2/Day)",
 					"entries": [
-						"Coral produces a stream of magical bubbles from her horn. These bubbles float toward a creature Coral can see within 60 feet of herself. Roll a {@dice d6} to determine the bubbles' effect:",
+						"Coral produces a stream of magical bubbles from her horn. These bubbles float toward a creature Coral can see within {@quantity 60|feet} of herself. Roll a {@dice d6} to determine the bubbles' effect:",
 						{
 							"type": "list",
 							"items": [
@@ -110,7 +110,7 @@
 									"name": "3-4: Sparkle Burst",
 									"type": "item",
 									"entries": [
-										"The bubbles transform into glitter that swirls around the target before bursting outward. Each creature within 5 feet of the target must succeed on a {@dc 16} Constitution saving throw or have the {@condition blinded} condition until the start of Coral's next turn."
+										"The bubbles transform into glitter that swirls around the target before bursting outward. Each creature within {@quantity 5|feet} of the target must succeed on a {@dc 16} Constitution saving throw or have the {@condition blinded} condition until the start of Coral's next turn."
 									]
 								},
 								{
@@ -127,7 +127,7 @@
 				{
 					"name": "Gift of Speech (1/Day)",
 					"entries": [
-						"Coral targets one Beast she can see within 10 feet of herself. The target gains the ability to understand and speak Common or Sylvan (Coral's choice) for 10 minutes."
+						"Coral targets one Beast she can see within {@quantity 10|feet} of herself. The target gains the ability to understand and speak Common or Sylvan (Coral's choice) for 10 minutes."
 					]
 				}
 			],
@@ -204,7 +204,7 @@
 				"survival": "+6"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 16,
 			"languages": [
@@ -247,7 +247,7 @@
 				{
 					"name": "Pack Tactics",
 					"entries": [
-						"The dandylion has advantage on an attack roll against a creature if at least one of the dandylion's allies is within 5 feet of the creature and the ally doesn't have the {@condition incapacitated} condition."
+						"The dandylion has advantage on an attack roll against a creature if at least one of the dandylion's allies is within {@quantity 5|feet} of the creature and the ally doesn't have the {@condition incapacitated} condition."
 					]
 				}
 			],
@@ -261,19 +261,19 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}13 ({@damage 2d6 + 6}) piercing damage."
+						"{@atk mw} {@hit 9} to hit, reach {@quantity 5|ft.}, one target. {@h}13 ({@damage 2d6 + 6}) piercing damage."
 					]
 				},
 				{
 					"name": "Claws",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}20 ({@damage 4d6 + 6}) slashing damage. If the dandylion moved at least 20 feet straight toward the target immediately before the hit, the target must succeed on a {@dc 17} Strength saving throw or have the {@condition prone} condition. If the target has the {@condition prone} condition, the dandylion can make one Bite attack against it as a bonus action."
+						"{@atk mw} {@hit 9} to hit, reach {@quantity 5|ft.}, one target. {@h}20 ({@damage 4d6 + 6}) slashing damage. If the dandylion moved at least {@quantity 20|feet} straight toward the target immediately before the hit, the target must succeed on a {@dc 17} Strength saving throw or have the {@condition prone} condition. If the target has the {@condition prone} condition, the dandylion can make one Bite attack against it as a bonus action."
 					]
 				},
 				{
 					"name": "Rejuvenating Seedpods (2/Day)",
 					"entries": [
-						"The dandylion releases a burst of seedpods from its tail, filling a 10-foot-radius sphere centered on itself. Each creature of the dandylion's choice in the sphere can immediately end one of the following conditions on itself (creature's choice): {@condition blinded}, {@condition deafened}, {@condition paralyzed}, or {@condition poisoned}. In addition, all soil in the sphere's area is enriched, restoring withered vegetation in the area to full health and causing all crops in the area to produce twice the normal harvest for the next year."
+						"The dandylion releases a burst of seedpods from its tail, filling a {@quantity 10|-foot}-radius sphere centered on itself. Each creature of the dandylion's choice in the sphere can immediately end one of the following conditions on itself (creature's choice): {@condition blinded}, {@condition deafened}, {@condition paralyzed}, or {@condition poisoned}. In addition, all soil in the sphere's area is enriched, restoring withered vegetation in the area to full health and causing all crops in the area to produce twice the normal harvest for the next year."
 					]
 				}
 			],
@@ -281,7 +281,7 @@
 				{
 					"name": "Roar of Pride",
 					"entries": [
-						"When a creature within 60 feet of the dandylion hits it with an attack roll, the dandylion can unleash a furious roar. The creature that triggered this reaction must succeed on a {@dc 15} Wisdom saving throw or have the {@condition frightened} condition until the end of the dandylion's next turn."
+						"When a creature within {@quantity 60|feet} of the dandylion hits it with an attack roll, the dandylion can unleash a furious roar. The creature that triggered this reaction must succeed on a {@dc 15} Wisdom saving throw or have the {@condition frightened} condition until the end of the dandylion's next turn."
 					]
 				}
 			],
@@ -403,7 +403,7 @@
 				{
 					"name": "Fiery Wings",
 					"entries": [
-						"Rain's wings are made of flame, and they shed bright light out to 15 feet and dim light for an additional 15 feet. At the start of each of Rain's turns, each creature of Rain's choice within 5 feet of her takes 3 ({@damage 1d6}) fire damage. A creature that hits Rain with a melee attack takes 3 ({@damage 1d6}) fire damage."
+						"Rain's wings are made of flame, and they shed bright light out to {@quantity 15|feet} and dim light for an additional {@quantity 15|feet}. At the start of each of Rain's turns, each creature of Rain's choice within {@quantity 5|feet} of her takes 3 ({@damage 1d6}) fire damage. A creature that hits Rain with a melee attack takes 3 ({@damage 1d6}) fire damage."
 					]
 				},
 				{
@@ -423,7 +423,7 @@
 				{
 					"name": "Hoof",
 					"entries": [
-						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}5 ({@damage 2d4}) bludgeoning damage."
+						"{@atk mw} {@hit 3} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 2d4}) bludgeoning damage."
 					]
 				},
 				{
@@ -435,13 +435,13 @@
 				{
 					"name": "Glitterstorm",
 					"entries": [
-						"Rain emits a rainbow beam in a 30-foot line that is 5 feet wide. Each creature in that area must make a {@dc 15} Dexterity saving throw, taking 21 ({@damage 6d6}) radiant damage on a failed saving throw, or half as much damage on a successful one; creatures of evil alignment have disadvantage on this saving throw. If the damage from this effect reduces a creature to 0 hit points, the creature dies, and its body turns into glittery flowers."
+						"Rain emits a rainbow beam in a {@quantity 30|-foot} line that is {@quantity 5|feet} wide. Each creature in that area must make a {@dc 15} Dexterity saving throw, taking 21 ({@damage 6d6}) radiant damage on a failed saving throw, or half as much damage on a successful one; creatures of evil alignment have disadvantage on this saving throw. If the damage from this effect reduces a creature to 0 hit points, the creature dies, and its body turns into glittery flowers."
 					]
 				},
 				{
 					"name": "Healing Rainbows",
 					"entries": [
-						"Rain releases a wave of rejuvenating multicolored light in a 30-foot cone. Each creature of Rain's choice in that area regains 18 ({@dice 4d8}) hit points."
+						"Rain releases a wave of rejuvenating multicolored light in a {@quantity 30|-foot} cone. Each creature of Rain's choice in that area regains 18 ({@dice 4d8}) hit points."
 					]
 				}
 			],
@@ -515,7 +515,7 @@
 				"perception": "+6"
 			},
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 16,
 			"resist": [
@@ -541,7 +541,7 @@
 				{
 					"name": "Electrified Chassis",
 					"entries": [
-						"A creature that hits the scrapper with a melee attack while within 5 feet of it takes 19 ({@damage 3d12}) lightning damage."
+						"A creature that hits the scrapper with a melee attack while within {@quantity 5|feet} of it takes 19 ({@damage 3d12}) lightning damage."
 					]
 				}
 			],
@@ -555,19 +555,19 @@
 				{
 					"name": "Spike Punch",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}14 ({@damage 2d8 + 5}) bludgeoning damage plus 5 ({@damage 1d10}) piercing damage."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 5|ft.}, one target. {@h}14 ({@damage 2d8 + 5}) bludgeoning damage plus 5 ({@damage 1d10}) piercing damage."
 					]
 				},
 				{
 					"name": "Wires",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 20 ft., one Large or smaller creature. {@h}The target has the {@condition grappled} condition (escape {@dc 16}) and must succeed on a {@dc 16} Strength saving throw or be pulled into an unoccupied space within 5 feet of the scrapper and take 19 ({@damage 3d12}) lightning damage. The scrapper can have only one creature {@condition grappled} in this way at a time."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 20|ft.}, one Large or smaller creature. {@h}The target has the {@condition grappled} condition (escape {@dc 16}) and must succeed on a {@dc 16} Strength saving throw or be pulled into an unoccupied space within {@quantity 5|feet} of the scrapper and take 19 ({@damage 3d12}) lightning damage. The scrapper can have only one creature {@condition grappled} in this way at a time."
 					]
 				},
 				{
 					"name": "Eye Beam {@recharge 5}",
 					"entries": [
-						"The scrapper shoots a magical beam from its extended eye at one creature it can see within 120 feet of itself. The target must make a {@dc 16} Dexterity saving throw, taking 44 ({@damage 8d10}) force damage on a failed save, or half as much damage on a successful one."
+						"The scrapper shoots a magical beam from its extended eye at one creature it can see within {@quantity 120|feet} of itself. The target must make a {@dc 16} Dexterity saving throw, taking 44 ({@damage 8d10}) force damage on a failed save, or half as much damage on a successful one."
 					]
 				}
 			],
@@ -637,8 +637,8 @@
 				"stealth": "+11"
 			},
 			"senses": [
-				"blindsight 30 ft.",
-				"darkvision 120 ft."
+				"blindsight {@quantity 30|ft.}",
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 16,
 			"resist": [
@@ -683,19 +683,19 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 11} to hit, reach 10 ft., one target. {@h}10 ({@damage 1d6 + 7}) piercing damage plus 9 ({@damage 2d8}) cold damage."
+						"{@atk mw} {@hit 11} to hit, reach {@quantity 10|ft.}, one target. {@h}10 ({@damage 1d6 + 7}) piercing damage plus 9 ({@damage 2d8}) cold damage."
 					]
 				},
 				{
 					"name": "Claw",
 					"entries": [
-						"{@atk mw} {@hit 11} to hit, reach 5 ft., one target. {@h}14 ({@damage 2d6 + 7}) slashing damage."
+						"{@atk mw} {@hit 11} to hit, reach {@quantity 5|ft.}, one target. {@h}14 ({@damage 2d6 + 7}) slashing damage."
 					]
 				},
 				{
 					"name": "Riptide Breath {@recharge 5}",
 					"entries": [
-						"Seth exhales a torrent of frigid water in a 30-foot cone. Each creature in that area must make a {@dc 16} Constitution saving throw. On a failed save, the creature takes 36 ({@damage 8d8}) cold damage and has the {@condition incapacitated} condition until the end of its next turn. On a successful save, the creature takes half as much damage only."
+						"Seth exhales a torrent of frigid water in a {@quantity 30|-foot} cone. Each creature in that area must make a {@dc 16} Constitution saving throw. On a failed save, the creature takes 36 ({@damage 8d8}) cold damage and has the {@condition incapacitated} condition until the end of its next turn. On a successful save, the creature takes half as much damage only."
 					]
 				}
 			],
@@ -797,8 +797,8 @@
 				"performance": "+6"
 			},
 			"senses": [
-				"blindsight 30 ft.",
-				"darkvision 120 ft."
+				"blindsight {@quantity 30|ft.}",
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 12,
 			"resist": [
@@ -808,7 +808,7 @@
 			"languages": [
 				"Common",
 				"Draconic",
-				"telepathy 120 ft."
+				"telepathy {@quantity 120|ft.}"
 			],
 			"cr": "7",
 			"spellcasting": [
@@ -850,19 +850,19 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d6 + 4}) piercing damage plus 4 ({@damage 1d8}) psychic damage."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 1d6 + 4}) piercing damage plus 4 ({@damage 1d8}) psychic damage."
 					]
 				},
 				{
 					"name": "Blueberry Fling",
 					"entries": [
-						"{@atk rw} {@hit 7} to hit, range 30 ft., one creature. {@h}11 ({@damage 2d6 + 4}) blueberry damage."
+						"{@atk rw} {@hit 7} to hit, range {@quantity 30|ft.}, one creature. {@h}11 ({@damage 2d6 + 4}) blueberry damage."
 					]
 				},
 				{
 					"name": "Jetstream Breath {@recharge 5}",
 					"entries": [
-						"Sheldon exhales a line of magical wind that is 60 feet long and 5 feet wide. Each creature in that area must make a {@dc 15} Strength saving throw. On a failed save, the creature takes 21 ({@damage 6d6}) force damage, is pushed 15 feet away from Sheldon, and has the {@condition prone} condition. On a successful save, the creature takes half as much damage only."
+						"Sheldon exhales a line of magical wind that is {@quantity 60|feet} long and {@quantity 5|feet} wide. Each creature in that area must make a {@dc 15} Strength saving throw. On a failed save, the creature takes 21 ({@damage 6d6}) force damage, is pushed {@quantity 15|feet} away from Sheldon, and has the {@condition prone} condition. On a successful save, the creature takes half as much damage only."
 					]
 				}
 			],
@@ -870,7 +870,7 @@
 				{
 					"name": "Wind Dash (2/Day)",
 					"entries": [
-						"Sheldon summons a powerful gust of wind and flies up to his speed. This movement doesn't provoke opportunity attacks. At the end of this movement, each creature within 5 feet of Sheldon must succeed on a {@dc 15} Strength saving throw or have the {@condition prone} condition, as the wind bursts around Sheldon."
+						"Sheldon summons a powerful gust of wind and flies up to his speed. This movement doesn't provoke opportunity attacks. At the end of this movement, each creature within {@quantity 5|feet} of Sheldon must succeed on a {@dc 15} Strength saving throw or have the {@condition prone} condition, as the wind bursts around Sheldon."
 					]
 				}
 			],
