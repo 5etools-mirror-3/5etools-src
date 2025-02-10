@@ -107,6 +107,28 @@ export class TagJsons {
 				)._;
 			});
 	}
+
+	static mutTagObjectQuantity (json, {keySet = null, styleHint = null} = {}) {
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
+		Object.keys(json)
+			.forEach(k => {
+				if (keySet != null && !keySet.has(k)) return;
+
+				json[k] = TagJsons.WALKER.walk(
+					{_: json[k]},
+					{
+						object: (obj, lastKey) => {
+							if (lastKey != null && !LAST_KEY_ALLOWLIST.has(lastKey)) return obj;
+
+							obj = QuantityTag.tryRun(obj, {styleHint});
+
+							return obj;
+						},
+					},
+				)._;
+			});
+	}
 }
 
 TagJsons.OPTIMISTIC = true;
