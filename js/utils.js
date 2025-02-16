@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.7.0"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.7.1"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -7014,11 +7014,26 @@ globalThis.RollerUtil = {
 
 		colLabel = mDice ? mDice.groups.exp : Renderer.stripTags(colLabel);
 
-		if (Renderer.dice.lang.getTree3(colLabel)) return RollerUtil.ROLL_COL_STANDARD;
+		const pts = mDice
+			? colLabel
+				.split(";")
+				.map(it => it.trim())
+				.filter(Boolean)
+			: [colLabel];
+
+		if (pts.every(pt => !!Renderer.dice.lang.getTree3(pt))) return RollerUtil.ROLL_COL_STANDARD;
 
 		// Remove trailing variables, if they exist
-		colLabel = colLabel.replace(RollerUtil._REGEX_ROLLABLE_COL_LABEL, "$1");
-		if (Renderer.dice.lang.getTree3(colLabel)) return RollerUtil.ROLL_COL_VARIABLE;
+		if (
+			pts
+				.every(pt => {
+					return !!Renderer.dice.lang.getTree3(
+						pt
+							.replace(RollerUtil._REGEX_ROLLABLE_COL_LABEL, "$1")
+							.replace(RollerUtil._REGEX_ROLLABLE_COL_TRAILING_VARIABLE, "$1"),
+					);
+				})
+		) return RollerUtil.ROLL_COL_VARIABLE;
 
 		return RollerUtil.ROLL_COL_NONE;
 	},
@@ -7044,6 +7059,7 @@ RollerUtil.DICE_REGEX_FULLMATCH = new RegExp(`^\\s*${RollerUtil._DICE_REGEX_STR}
 RollerUtil.REGEX_DAMAGE_DICE = /(?<average>\d+)(?<prefix> \((?:{@dice |{@damage ))(?<diceExp>[-+0-9d ]*)(?<suffix>}\)(?:\s*\+\s*the spell's level)? [a-z]+( \([-a-zA-Z0-9 ]+\))?( or [a-z]+( \([-a-zA-Z0-9 ]+\))?)? damage)/gi;
 RollerUtil.REGEX_DAMAGE_FLAT = /(?<prefix>Hit(?: or Miss)?: |Miss: |{@hom}|{@h}|{@m})(?<flatVal>[0-9]+)(?<suffix> [a-z]+( \([-a-zA-Z0-9 ]+\))?( or [a-z]+( \([-a-zA-Z0-9 ]+\))?)? damage)/gi;
 RollerUtil._REGEX_ROLLABLE_COL_LABEL = /^(.*?\d)(\s*[-+/*^×÷]\s*)([a-zA-Z0-9 ]+)$/;
+RollerUtil._REGEX_ROLLABLE_COL_TRAILING_VARIABLE = /^(.*?\d)(\s*[-+/*^×÷]\s*)(#\$.*?\$#)$/;
 RollerUtil.ROLL_COL_NONE = 0;
 RollerUtil.ROLL_COL_STANDARD = 1;
 RollerUtil.ROLL_COL_VARIABLE = 2;
@@ -8629,6 +8645,8 @@ if (!IS_VTT && typeof window !== "undefined") {
 	});
 
 	// region Cancer
+	const isDbgCancer = false;
+
 	if (location.hostname.endsWith(VeCt.LOC_HOSTNAME_CANCER)) {
 		const ivsCancer = [];
 		let anyFound = false;
@@ -8676,12 +8694,14 @@ if (!IS_VTT && typeof window !== "undefined") {
 			ivsCancer.forEach(iv => clearInterval(iv));
 		}, 6500);
 	} else {
-		window.addEventListener("load", () => $(`.cancer__anchor`).remove());
+		if (!isDbgCancer) window.addEventListener("load", () => $(`.cancer__anchor`).remove());
 	}
 
-	// window.addEventListener("load", () => {
-	// 	$(`.cancer__sidebar-inner--top`).append(`<div style="width: 300px; height: 600px; background: #f0f;"></div>`);
-	// 	$(`.cancer__sidebar-inner--bottom`).append(`<div style="width: 300px; height: 600px; background: #f0f;"></div>`);
-	// });
+	if (isDbgCancer) {
+		window.addEventListener("load", () => {
+			$(`.cancer__sidebar-inner--top`).append(`<div style="width: 300px; height: 600px; background: #f0f;"></div>`);
+			$(`.cancer__sidebar-inner--bottom`).append(`<div style="width: 300px; height: 600px; background: #f0f;"></div>`);
+		});
+	}
 	// endregion
 }

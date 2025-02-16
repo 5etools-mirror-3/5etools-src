@@ -3339,6 +3339,9 @@
 				"Each creature of your choice that you can see within range must succeed on a Wisdom saving throw or have the {@condition Charmed|XPHB} condition until the spell ends.",
 				"For the duration, you can take a {@variantrule Bonus Action|XPHB} to designate a direction that is horizontal to you. Each {@condition Charmed|XPHB} target must use as much of its movement as possible to move in that direction on its next turn, taking the safest route. After moving in this way, a target repeats the save, ending the spell on itself on a success."
 			],
+			"conditionInflict": [
+				"charmed"
+			],
 			"savingThrow": [
 				"wisdom"
 			],
@@ -3660,13 +3663,13 @@
 							"type": "item",
 							"name": "Searing Light",
 							"entries": [
-								"The target makes a Dexterity saving throw, taking {@damage 6d12} Radiant damage on a failed save or half as much damage on a successful one.",
-								"Until the spell ends, {@variantrule Bright Light|XPHB} fills the Cylinder, and when you move on your turn, you can also move the Cylinder up to 30 feet.",
-								"Whenever the Cylinder moves into the space of a creature you can see and whenever a creature you can see enters the Cylinder or ends its turn there, you can bathe it in one of the lights. A creature can be affected by this spell only once per turn."
+								"The target makes a Dexterity saving throw, taking {@damage 6d12} Radiant damage on a failed save or half as much damage on a successful one."
 							]
 						}
 					]
-				}
+				},
+				"Until the spell ends, {@variantrule Bright Light|XPHB} fills the Cylinder, and when you move on your turn, you can also move the Cylinder up to 30 feet.",
+				"Whenever the Cylinder moves into the space of a creature you can see and whenever a creature you can see enters the Cylinder or ends its turn there, you can bathe it in one of the lights. A creature can be affected by this spell only once per turn."
 			],
 			"entriesHigherLevel": [
 				{
@@ -10898,15 +10901,15 @@
 							"entries": [
 								"The target has the {@condition Unconscious|XPHB} condition and can't be awoken."
 							]
-						},
-						{
-							"type": "item",
-							"name": "Ending the Spell",
-							"entries": [
-								"When you cast the spell, specify a trigger that will end it. The trigger can be as simple or as elaborate as you choose, but the DM must agree that it has a high likelihood of happening within the next decade. The trigger must be an observable action, such as someone making a particular offering at the temple of your god, saving your true love, or defeating a specific monster.",
-								"A {@spell Dispel Magic|XPHB} spell can end the spell only if it is cast with a level 9 spell slot, targeting either the prison or the component used to create it."
-							]
 						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Ending the Spell",
+					"entries": [
+						"When you cast the spell, specify a trigger that will end it. The trigger can be as simple or as elaborate as you choose, but the DM must agree that it has a high likelihood of happening within the next decade. The trigger must be an observable action, such as someone making a particular offering at the temple of your god, saving your true love, or defeating a specific monster.",
+						"A {@spell Dispel Magic|XPHB} spell can end the spell only if it is cast with a level 9 spell slot, targeting either the prison or the component used to create it."
 					]
 				}
 			],
@@ -11630,10 +11633,9 @@
 				}
 			],
 			"range": {
-				"type": "line",
+				"type": "point",
 				"distance": {
-					"type": "feet",
-					"amount": 100
+					"type": "self"
 				}
 			},
 			"components": {
@@ -18477,10 +18479,9 @@
 				}
 			],
 			"range": {
-				"type": "line",
+				"type": "point",
 				"distance": {
-					"type": "feet",
-					"amount": 60
+					"type": "self"
 				}
 			},
 			"components": {
@@ -20987,12 +20988,12 @@
 							"type": "item",
 							"name": "Reshape Reality",
 							"entries": [
-								"You may wish for something not included in any of the other effects. To do so, state your wish to the DM as precisely as possible. The DM has great latitude in ruling what occurs in such an instance; the greater the wish, the greater the likelihood that something goes wrong. This spell might simply fail, the effect you desire might be achieved only in part, or you might suffer an unforeseen consequence as a result of how you worded the wish. For example, wishing that a villain were dead might propel you forward in time to a period when that villain is no longer alive, effectively removing you from the game. Similarly, wishing for a Legendary magic item or an Artifact might instantly transport you to the presence of the item's current owner. If your wish is granted and its effects have consequences for a whole community, region, or world, you are likely to attract powerful foes. If your wish would affect a god, the god's divine servants might instantly intervene to prevent it or to encourage you to craft the wish in a particular way. If your wish would undo the multiverse itself, threaten the City of Sigil, or affect the Lady of Pain in any way, you see an image of her in your mind for a moment; she shakes her head, and your wish fails.",
-								"The stress of casting Wish to produce any effect other than duplicating another spell weakens you. After enduring that stress, each time you cast a spell until you finish a {@variantrule Long Rest|XPHB}, you take {@damage 1d10} Necrotic damage per level of that spell. This damage can't be reduced or prevented in any way. In addition, your Strength score becomes 3 for {@dice 2d4} days. For each of those days that you spend resting and doing nothing more than light activity, your remaining recovery time decreases by 2 days. Finally, there is a {@chance 33|||Unable to cast again!|Able to cast again} chance that you are unable to cast {@spell Wish|XPHB} ever again if you suffer this stress."
+								"You may wish for something not included in any of the other effects. To do so, state your wish to the DM as precisely as possible. The DM has great latitude in ruling what occurs in such an instance; the greater the wish, the greater the likelihood that something goes wrong. This spell might simply fail, the effect you desire might be achieved only in part, or you might suffer an unforeseen consequence as a result of how you worded the wish. For example, wishing that a villain were dead might propel you forward in time to a period when that villain is no longer alive, effectively removing you from the game. Similarly, wishing for a Legendary magic item or an Artifact might instantly transport you to the presence of the item's current owner. If your wish is granted and its effects have consequences for a whole community, region, or world, you are likely to attract powerful foes. If your wish would affect a god, the god's divine servants might instantly intervene to prevent it or to encourage you to craft the wish in a particular way. If your wish would undo the multiverse itself, threaten the City of Sigil, or affect the Lady of Pain in any way, you see an image of her in your mind for a moment; she shakes her head, and your wish fails."
 							]
 						}
 					]
-				}
+				},
+				"The stress of casting Wish to produce any effect other than duplicating another spell weakens you. After enduring that stress, each time you cast a spell until you finish a {@variantrule Long Rest|XPHB}, you take {@damage 1d10} Necrotic damage per level of that spell. This damage can't be reduced or prevented in any way. In addition, your Strength score becomes 3 for {@dice 2d4} days. For each of those days that you spend resting and doing nothing more than light activity, your remaining recovery time decreases by 2 days. Finally, there is a {@chance 33|||Unable to cast again!|Able to cast again} chance that you are unable to cast {@spell Wish|XPHB} ever again if you suffer this stress."
 			],
 			"damageResist": [
 				"acid",
