@@ -21,7 +21,34 @@
 	$rgb-source-PHB: vars-night.$rgb-subclass--night;
 	$rgb-source-DMG: #ba1eba;
 	$rgb-source-SADS: #4f63f5;
+	$rgb-source-CoS: #be11be;
+	$rgb-source-OGA: #b44f18;
+	$rgb-source-MTF: #2a8c9c;
+	$rgb-source-WDMM: #cc2c2b;
+	$rgb-source-AZfyT: #5071b1;
+	$rgb-source-GoS: #508170;
+	$rgb-source-BGDIA: #c33b27;
+	$rgb-source-LR: #846b44;
+	$rgb-source-ERLW: #bb4838;
+	$rgb-source-EGW: #9b6b81;
+	$rgb-source-MOT: #657e38;
+	$rgb-source-VRGR: #d02634;
+	$rgb-source-RtG: #9f5f7a;
+	$rgb-source-AitFR: #816ec9;
+	$rgb-source-MaBJoV: #be3c82;
+	$rgb-source-FTD: #cc311a;
+	$rgb-source-SAiS: #0b80b3;
+	$rgb-source-DSotDQ: #b9484b;
+	$rgb-source-TDCSR: #a1557e;
+	$rgb-source-PAitM: #b8419c;
+	$rgb-source-BMT: #846481;
+	$rgb-source-DoDk: #9661ab;
+	$rgb-source-HAT: #2985ac;
+	$rgb-source-CoA: #be4e20;
 	$rgb-source-PSA: #eec276;
+	$rgb-source-PSI: #7b64b3;
+	$rgb-source-PSX: #cb3631;
+	$rgb-source-XMtS: #be3e8d;
 	$rgb-source-XPHB: #d98d2a;
 
 	// region Categories
@@ -71,12 +98,143 @@
 			@include mix-source-color($rgb-source-DMG);
 		}
 
+		&OGA {
+			@include mix-source-color($rgb-source-OGA);
+		}
+
+		&XMtS {
+			@include mix-source-color($rgb-source-XMtS);
+		}
+
+		&CoS {
+			@include mix-source-color($rgb-source-CoS);
+		}
+
+		&MTF {
+			@include mix-source-color($rgb-source-MTF);
+		}
+
+		&WDMM {
+			@include mix-source-color($rgb-source-WDMM);
+		}
+
+		&AZfyT {
+			@include mix-source-color($rgb-source-AZfyT);
+		}
+
+		&GoS {
+			@include mix-source-color($rgb-source-GoS);
+		}
+
+		&BGDIA {
+			@include mix-source-color($rgb-source-BGDIA);
+		}
+
+		&ERLW,
+		&EFR {
+			@include mix-source-color($rgb-source-ERLW);
+		}
+
+		&LR {
+			@include mix-source-color($rgb-source-LR);
+		}
+
 		&SADS {
 			@include mix-source-color($rgb-source-SADS);
 		}
 
+		&EGW,
+		&FS,
+		&DD,
+		&US,
+		&ToR {
+			@include mix-source-color($rgb-source-EGW);
+		}
+
+		&MOT {
+			@include mix-source-color($rgb-source-MOT);
+		}
+
+		&VRGR,
+		&HoL {
+			@include mix-source-color($rgb-source-VRGR);
+		}
+
+		&RtG {
+			@include mix-source-color($rgb-source-RtG);
+		}
+
+		&AitFR {
+			@include mix-source-color($rgb-source-AitFR);
+
+			&-ISF,
+			&-THP,
+			&-AVT,
+			&-DN,
+			&-FCD {
+				@include mix-source-color($rgb-source-AitFR);
+			}
+		}
+
+		&MaBJoV {
+			@include mix-source-color($rgb-source-MaBJoV);
+		}
+
+		&FTD {
+			@include mix-source-color($rgb-source-FTD);
+		}
+
+		&SjA,
+		&SAiS,
+		&AAG,
+		&BAM,
+		&LoX {
+			@include mix-source-color($rgb-source-SAiS);
+		}
+
+		&DSotDQ {
+			@include mix-source-color($rgb-source-DSotDQ);
+		}
+
 		&PSA {
 			@include mix-source-color($rgb-source-PSA);
+		}
+
+		&PSI {
+			@include mix-source-color($rgb-source-PSI);
+		}
+
+		&PSX {
+			@include mix-source-color($rgb-source-PSX);
+		}
+
+		&HAT-TG,
+		&HAT-LMI {
+			@include mix-source-color($rgb-source-HAT);
+		}
+
+		&TDCSR {
+			@include mix-source-color($rgb-source-TDCSR);
+		}
+
+		&PAitM,
+		&SatO,
+		&ToFW,
+		&MPP {
+			@include mix-source-color($rgb-source-PAitM);
+		}
+
+		&CoA {
+			@include mix-source-color($rgb-source-CoA);
+		}
+
+		&BMT,
+		&DMTCRG {
+			@include mix-source-color($rgb-source-BMT);
+		}
+
+		&DoDk {
+			@include mix-source-color($rgb-source-DoDk);
 		}
 
 		&XPHB {

@@ -126,6 +126,10 @@ $rgb-inset-border: #656565;
 			&--bg-dark {
 				background: vars.$rgb-off-black;
 			}
+
+			> a {
+				display: block;
+			}
 		}
 
 		&image {
@@ -153,7 +157,11 @@ $rgb-inset-border: #656565;
 
 		&wrp-gallery-image {
 			padding: 0 10px 10px;
-			max-width: 33%;
+			width: 33%;
+
+			@media screen and (width <= #{vars.$width-screen-md}) {
+				width: 50%;
+			}
 		}
 
 		&gallery-name {
@@ -377,7 +385,6 @@ $rgb-inset-border: #656565;
 
 			&-no-name {
 				justify-content: flex-end;
-				float: right;
 			}
 		}
 
@@ -453,6 +460,14 @@ $rgb-inset-border: #656565;
 				background-color: #eef0f3;
 			}
 
+			&--comic-speaker {
+				&::after {
+					content: "";
+					display: block;
+					clear: both;
+				}
+			}
+
 			&-inner {
 				margin-top: 10px;
 			}
@@ -506,10 +521,6 @@ $rgb-inset-border: #656565;
 			&-name-expanded {
 				font-weight: normal;
 				font-size: 90%;
-			}
-
-			&-toggle {
-				float: right;
 			}
 		}
 
@@ -609,8 +620,8 @@ $rgb-inset-border: #656565;
 
 				&::after {
 					content: "";
-					clear: both;
 					display: block;
+					clear: both;
 				}
 			}
 		}

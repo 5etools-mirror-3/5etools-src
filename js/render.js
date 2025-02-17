@@ -566,8 +566,6 @@ globalThis.Renderer = function () {
 	this._renderImage = function (entry, textStack, meta, options) {
 		if (entry.title) this._handleTrackTitles(entry.title, {isImage: true});
 
-		textStack[0] += `<div class="float-clear"></div>`;
-
 		if (entry.imageType === "map" || entry.imageType === "mapPlayer") textStack[0] += `<div class="rd__wrp-map">`;
 		textStack[0] += `<div class="${meta._typeStack.includes("gallery") ? "rd__wrp-gallery-image" : ""}">`;
 
@@ -1157,9 +1155,30 @@ globalThis.Renderer = function () {
 		return `<span class="rd__h-toggle ml-2 clickable no-select no-print lst-is-exporting-image__hidden" data-rd-h-special-toggle-button="true" title="Toggle Visibility (CTRL to Toggle All)">[\u2013]</span>`;
 	};
 
+	/* -------------------------------------------- */
+
+	this._renderInset_getCssClasses = function (entry, textStack, meta, options) {
+		const out = ["rd__b-special", "rd__b-inset"];
+		if (entry.type === "insetReadaloud") out.push("rd__b-inset--readaloud");
+		if (entry.style) {
+			out.push(
+				...entry.style.split(" ")
+					.map(pt => {
+						if (pt === "comic-speaker") return "rd__b-inset--comic-speaker";
+
+						const mutGeneric = this._getMutatedStyleString(pt);
+						if (mutGeneric !== pt) return mutGeneric;
+
+						return pt;
+					}),
+			);
+		}
+		return out.join(" ");
+	};
+
 	this._renderInset = function (entry, textStack, meta, options) {
 		const dataString = this._renderEntriesSubtypes_getDataString(entry);
-		textStack[0] += `<${this.wrapperTag} class="rd__b-special rd__b-inset ${this._getMutatedStyleString(entry.style || "")}" ${dataString}>`;
+		textStack[0] += `<${this.wrapperTag} class="${this._renderInset_getCssClasses(entry, textStack, meta, options)}" ${dataString}>`;
 
 		const cachedLastDepthTrackerProps = MiscUtil.copyFast(this._lastDepthTrackerInheritedProps);
 		this._handleTrackDepth(entry, 1);
@@ -1184,7 +1203,6 @@ globalThis.Renderer = function () {
 				meta.depth = cacheDepth;
 			}
 		}
-		textStack[0] += `<div class="float-clear"></div>`;
 		textStack[0] += `</${this.wrapperTag}>`;
 
 		this._lastDepthTrackerInheritedProps = cachedLastDepthTrackerProps;
@@ -1192,7 +1210,7 @@ globalThis.Renderer = function () {
 
 	this._renderInsetReadaloud = function (entry, textStack, meta, options) {
 		const dataString = this._renderEntriesSubtypes_getDataString(entry);
-		textStack[0] += `<${this.wrapperTag} class="rd__b-special rd__b-inset rd__b-inset--readaloud ${this._getMutatedStyleString(entry.style || "")}" ${dataString}>`;
+		textStack[0] += `<${this.wrapperTag} class="${this._renderInset_getCssClasses(entry, textStack, meta, options)}" ${dataString}>`;
 
 		const cachedLastDepthTrackerProps = MiscUtil.copyFast(this._lastDepthTrackerInheritedProps);
 		this._handleTrackDepth(entry, 1);
@@ -1215,7 +1233,6 @@ globalThis.Renderer = function () {
 			this._recursiveRender(entry.entries[i], textStack, meta, {prefix: "<p>", suffix: "</p>"});
 			meta.depth = cacheDepth;
 		}
-		textStack[0] += `<div class="float-clear"></div>`;
 		textStack[0] += `</${this.wrapperTag}>`;
 
 		this._lastDepthTrackerInheritedProps = cachedLastDepthTrackerProps;
@@ -1774,7 +1791,6 @@ globalThis.Renderer = function () {
 				meta.depth = cacheDepth;
 			}
 		}
-		textStack[0] += `<div class="float-clear"></div>`;
 		textStack[0] += `</${this.wrapperTag}>`;
 
 		this._lastDepthTrackerInheritedProps = cachedLastDepthTrackerProps;
@@ -4253,7 +4269,7 @@ Renderer.utils = class {
 						fauxEntry.toRoll = rollText;
 
 						if (!fauxEntry.displayText && (rollText || "").includes(";")) fauxEntry.displayText = rollText.replace(/;/g, "/");
-						if ((!fauxEntry.displayText && (rollText || "").includes("#$")) || (fauxEntry.displayText && fauxEntry.displayText.includes("#$"))) fauxEntry.displayText = (fauxEntry.displayText || rollText).replace(/#\$prompt_number[^$]*\$#/g, "(n)");
+						if ((!fauxEntry.displayText && (rollText || "").includes("#$")) || (fauxEntry.displayText && fauxEntry.displayText.includes("#$"))) fauxEntry.displayText = (fauxEntry.displayText || rollText).replace(/#\$prompt_number[^$]*\$#/g, "(𝑛)");
 						fauxEntry.displayText = fauxEntry.displayText || fauxEntry.toRoll;
 
 						if (tag === "@damage") {
@@ -5929,12 +5945,6 @@ Renderer.events = class {
 		let eleNxt = ele.closest(".rd__h").nextElementSibling;
 
 		while (eleNxt) {
-			// Never hide float-fixing elements
-			if (eleNxt.classList.contains("float-clear")) {
-				eleNxt = eleNxt.nextElementSibling;
-				continue;
-			}
-
 			// For special sections, always collapse the whole thing.
 			if (selector !== `[data-rd-h-special-toggle-button]`) {
 				const eleToCheck = Renderer.events._handleClick_headerToggleButton_getEleToCheck(eleNxt);
@@ -14887,14 +14897,17 @@ Renderer.hover = class {
 					break;
 				}
 			}
+			this._pHandleLinkMouseOver_doVerifyToRender({toRender, page, source, hash, preloadId, customHashId, isFluff: meta.isFluff});
 		} else if (customHashId) {
 			toRender = await DataLoader.pCacheAndGet(page, source, hash);
 			toRender = await Renderer.hover.pApplyCustomHashId(page, toRender, customHashId);
+			this._pHandleLinkMouseOver_doVerifyToRender({toRender, page, source, hash, preloadId, customHashId, isFluff: meta.isFluff});
+		} else if (meta.isFluff) {
+			toRender = await Renderer.hover.pGetHoverableFluff(page, source, hash);
 		} else {
-			if (meta.isFluff) toRender = await Renderer.hover.pGetHoverableFluff(page, source, hash);
-			else toRender = await DataLoader.pCacheAndGet(page, source, hash);
+			toRender = await DataLoader.pCacheAndGet(page, source, hash);
+			this._pHandleLinkMouseOver_doVerifyToRender({toRender, page, source, hash, preloadId, customHashId, isFluff: meta.isFluff});
 		}
-		if (!toRender) throw new Error(`Failed to load renderable content for: page="${page}" source="${source}" hash="${hash}" preloadId="${preloadId}" customHashId="${customHashId}" isFluff="${meta.isFluff}"`);
 
 		meta.isLoading = false;
 
@@ -14937,7 +14950,7 @@ Renderer.hover = class {
 			$content,
 			Renderer.hover.getWindowPositionFromEvent(tmpEvt || evt, {isPreventFlicker: !meta.isPermanent}),
 			{
-				title: toRender ? toRender.name : "",
+				title: toRender?.name || "",
 				isPermanent: meta.isPermanent,
 				pageUrl: isFauxPage ? null : `${Renderer.get().baseUrl}${page}#${hash}`,
 				cbClose: () => meta.isHovered = meta.isPermanent = meta.isLoading = meta.isFluff = false,
@@ -14949,7 +14962,7 @@ Renderer.hover = class {
 
 		if (!meta.isFluff && !win?._IS_POPOUT) {
 			const fnBind = Renderer.hover.getFnBindListenersCompact(page);
-			if (fnBind) fnBind(toRender, $content);
+			if (fnBind && toRender) fnBind(toRender, $content);
 		}
 	}
 
@@ -14958,6 +14971,11 @@ Renderer.hover = class {
 		if (VetoolsConfig.get("styleSwitcher", "style") === "classic") return null;
 
 		return Renderer.redirect.pGetRedirectByHash(page, hash);
+	}
+
+	static _pHandleLinkMouseOver_doVerifyToRender ({toRender, page, source, hash, preloadId, customHashId, isFluff}) {
+		if (toRender) return;
+		throw new Error(`Failed to load renderable content for: page="${page}" source="${source}" hash="${hash}" preloadId="${preloadId}" customHashId="${customHashId}" isFluff="${isFluff}"`);
 	}
 
 	// (Baked into render strings)

@@ -1795,7 +1795,7 @@ export class ConverterCreature extends ConverterBase {
 		TagCreatureSubEntryInto.tryRun(stats, (atk) => options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Manual attack tagging required for "${atk}"`));
 		TagHit.tryTagHits(stats);
 		TagDc.tryTagDcs(stats);
-		TagCondition.tryTagConditions(stats, {isTagInflicted: true, styleHint: options.styleHint});
+		TagCondition.tryTagConditions(stats, {isTagInflicted: true, styleHint: options.styleHint, blocklistNames: subEntryNameBlocklist});
 		TagCondition.tryTagConditionsSpells(
 			stats,
 			{

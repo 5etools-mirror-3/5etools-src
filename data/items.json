@@ -1592,7 +1592,7 @@
 			"weight": 1,
 			"value": 5000,
 			"entries": [
-				"When you take the {@action Attack|XPHB} action, you can replace one of your attacks with throwing a flask of Alchemist's Fire. Target one creature or object you can see within {@quantity 20|feet} of yourself. The target must succeed on a Dexterity saving throw ({@dc 8} plus your Dexterity modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus}) or take {@damage 1d4} Fire damage and start burning."
+				"When you take the {@action Attack|XPHB} action, you can replace one of your attacks with throwing a flask of Alchemist's Fire. Target one creature or object you can see within {@quantity 20|feet} of yourself. The target must succeed on a Dexterity saving throw ({@dc 8} plus your Dexterity modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus}) or take {@damage 1d4} Fire damage and start {@hazard burning|XPHB}."
 			],
 			"miscTags": [
 				"CNS"
@@ -20697,7 +20697,7 @@
 			"wondrous": true,
 			"entries": [
 				"Found in a small container, this powder resembles {@item Dust of Disappearance|XDMG}, and {@spell Identify|XPHB} reveals it to be such. There is enough of it for one use.",
-				"As a {@action Utilize|XPHB} action, you can throw the dust into the air, forcing yourself and every creature in a 30- foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from you to make a {@dc 15} Constitution saving throw. Constructs, Elementals, Oozes, Plants, and Undead succeed on the save automatically.",
+				"As a {@action Utilize|XPHB} action, you can throw the dust into the air, forcing yourself and every creature in a {@quantity 30|-foot} {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from you to make a {@dc 15} Constitution saving throw. Constructs, Elementals, Oozes, Plants, and Undead succeed on the save automatically.",
 				"On a failed save, a creature begins sneezing uncontrollably; it has the {@condition Incapacitated|XPHB} condition and is suffocating. The creature repeats the save at the end of each of its turns, ending the effect on itself on a success. The effect also ends on any creature targeted by a {@spell Lesser Restoration|XPHB} spell."
 			],
 			"lootTables": [
@@ -68978,6 +68978,7 @@
 			"page": 319,
 			"type": "WD|XDMG",
 			"rarity": "rare",
+			"reqAttune": true,
 			"weight": 1,
 			"recharge": "dawn",
 			"rechargeAmount": "{@dice 1d6 + 1}",
