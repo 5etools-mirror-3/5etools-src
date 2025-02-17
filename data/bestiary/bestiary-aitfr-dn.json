@@ -40,8 +40,8 @@
 				"stealth": "+6"
 			},
 			"senses": [
-				"blindsight 15 ft.",
-				"darkvision 60 ft."
+				"blindsight {@quantity 15|ft.}",
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 15,
 			"vulnerable": [
@@ -72,13 +72,13 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 10 ft., one target. {@h}17 ({@damage 3d8 + 4}) piercing damage, and the target must make a {@dc 15} Constitution saving throw, taking 17 ({@damage 5d6}) poison damage on a failed save, or half as much damage on a successful one."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 10|ft.}, one target. {@h}17 ({@damage 3d8 + 4}) piercing damage, and the target must make a {@dc 15} Constitution saving throw, taking 17 ({@damage 5d6}) poison damage on a failed save, or half as much damage on a successful one."
 					]
 				},
 				{
 					"name": "Constrict",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}17 ({@damage 3d8 + 4}) bludgeoning damage, and the target is {@condition grappled} (escape {@dc 16}). Until this grapple ends, the creature is {@condition restrained} and the snake cannot constrict another target."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}17 ({@damage 3d8 + 4}) bludgeoning damage, and the target is {@condition grappled} (escape {@dc 16}). Until this grapple ends, the creature is {@condition restrained} and the snake cannot constrict another target."
 					]
 				}
 			],
@@ -169,13 +169,13 @@
 				{
 					"name": "Axe",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}17 ({@damage 2d10 + 6}) slashing damage."
+						"{@atk mw} {@hit 9} to hit, reach {@quantity 5|ft.}, one target. {@h}17 ({@damage 2d10 + 6}) slashing damage."
 					]
 				},
 				{
 					"name": "Rock",
 					"entries": [
-						"{@atk rw} {@hit 9} to hit, range 60/240 ft., one target. {@h}17 ({@damage 2d10 + 6}) bludgeoning damage."
+						"{@atk rw} {@hit 9} to hit, range {@quantity 60/240|ft.}, one target. {@h}17 ({@damage 2d10 + 6}) bludgeoning damage."
 					]
 				}
 			],
@@ -253,7 +253,7 @@
 				"stealth": "+7"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 16,
 			"resist": [
@@ -295,9 +295,9 @@
 				{
 					"name": "Petrifying Gaze",
 					"entries": [
-						"When a creature that can see Kyrilla's eyes starts its turn within 30 feet of her, Kyrilla can force it to make a {@dc 14} Constitution saving throw if Kyrilla isn't {@condition incapacitated} and can see the creature. If the saving throw fails by 5 or more, the creature is instantly {@condition petrified}. Otherwise, a creature that fails the save begins to turn to stone and is {@condition restrained}. The {@condition restrained} creature must repeat the saving throw at the end of its next turn, becoming {@condition petrified} on a failure or ending the effect on a success. The petrification lasts until the creature is freed by the {@spell greater restoration} spell or other magic.",
+						"When a creature that can see Kyrilla's eyes starts its turn within {@quantity 30|feet} of her, Kyrilla can force it to make a {@dc 14} Constitution saving throw if Kyrilla isn't {@condition incapacitated} and can see the creature. If the saving throw fails by 5 or more, the creature is instantly {@condition petrified}. Otherwise, a creature that fails the save begins to turn to stone and is {@condition restrained}. The {@condition restrained} creature must repeat the saving throw at the end of its next turn, becoming {@condition petrified} on a failure or ending the effect on a success. The petrification lasts until the creature is freed by the {@spell greater restoration} spell or other magic.",
 						"Unless {@status surprised}, a creature can avert its eyes to avoid the saving throw at the start of its turn. If the creature does so, it can't see Kyrilla until the start of its next turn, when it can avert its eyes again. If the creature looks at Kyrilla in the meantime, it must immediately make the save.",
-						"Kyrilla's accursed gaze does not affect undead or constructs. If Kyrilla sees herself reflected on a polished surface within 30 feet of her and in an area of bright light, she is, due to her curse, affected by her own gaze."
+						"Kyrilla's accursed gaze does not affect undead or constructs. If Kyrilla sees herself reflected on a polished surface within {@quantity 30|feet} of her and in an area of bright light, she is, due to her curse, affected by her own gaze."
 					]
 				},
 				{
@@ -317,25 +317,25 @@
 				{
 					"name": "Claw",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}13 ({@damage 3d6 + 3}) slashing damage."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}13 ({@damage 3d6 + 3}) slashing damage."
 					]
 				},
 				{
 					"name": "Constrict",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 10 ft., one target. {@h}10 ({@damage 3d6}) bludgeoning damage, and the target is {@condition grappled} (escape {@dc 13}) if it is a Large or smaller creature. Until this grapple ends, the target is {@condition restrained}, and Kyrilla can't constrict another target."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 10|ft.}, one target. {@h}10 ({@damage 3d6}) bludgeoning damage, and the target is {@condition grappled} (escape {@dc 13}) if it is a Large or smaller creature. Until this grapple ends, the target is {@condition restrained}, and Kyrilla can't constrict another target."
 					]
 				},
 				{
 					"name": "Longbow",
 					"entries": [
-						"{@atk rw} {@hit 7} to hit, range 150/600 ft., one target. {@h}16 ({@damage 3d8 + 3}) piercing damage."
+						"{@atk rw} {@hit 7} to hit, range {@quantity 150/600|ft.}, one target. {@h}16 ({@damage 3d8 + 3}) piercing damage."
 					]
 				},
 				{
 					"name": "Summon Swarm of Poisonous Snakes {@recharge 5}",
 					"entries": [
-						"Kyrilla conjures a swarm of poisonous snakes into an empty space within 10 feet of her. The swarm is under Kyrilla's control and acts on her turn, immediately after her in the initiative order.",
+						"Kyrilla conjures a swarm of poisonous snakes into an empty space within {@quantity 10|feet} of her. The swarm is under Kyrilla's control and acts on her turn, immediately after her in the initiative order.",
 						"It remains in existence for up to 1 hour. She can summon no more than three swarms per day. Kyrilla can banish any or all of her summoned swarms with a bonus action."
 					]
 				}
@@ -447,7 +447,7 @@
 				"perception": "+3"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 16,
 			"immune": [
@@ -471,13 +471,13 @@
 				{
 					"name": "Claw",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}19 ({@damage 3d10 + 3}) slashing damage."
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 5|ft.}, one target. {@h}19 ({@damage 3d10 + 3}) slashing damage."
 					]
 				},
 				{
 					"name": "Wave of Bones {@recharge 5}",
 					"entries": [
-						"The horror crashes into foes like a wave before quickly reforming. Each creature within 10 feet of the horror must make a {@dc 15} Dexterity saving throw, taking 18 ({@damage 4d8}) bludgeoning damage on a failed save, or half as much damage on a successful one. A creature that fails this saving throw is also knocked {@condition prone}."
+						"The horror crashes into foes like a wave before quickly reforming. Each creature within {@quantity 10|feet} of the horror must make a {@dc 15} Dexterity saving throw, taking 18 ({@damage 4d8}) bludgeoning damage on a failed save, or half as much damage on a successful one. A creature that fails this saving throw is also knocked {@condition prone}."
 					]
 				}
 			],

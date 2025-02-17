@@ -92,19 +92,19 @@
 				{
 					"name": "Shortsword",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d6 + 4}) piercing damage."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 1d6 + 4}) piercing damage."
 					]
 				},
 				{
 					"name": "Dagger",
 					"entries": [
-						"{@atk mw,rw} {@hit 8} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}6 ({@damage 1d4 + 4}) piercing damage."
+						"{@atk mw,rw} {@hit 8} to hit, reach {@quantity 5|ft.} or range {@quantity 20/60|ft.}, one target. {@h}6 ({@damage 1d4 + 4}) piercing damage."
 					]
 				},
 				{
 					"name": "Shortbow",
 					"entries": [
-						"{@atk rw} {@hit 8} to hit, range 80/320 ft., one target. {@h}7 ({@damage 1d6 + 4}) piercing damage."
+						"{@atk rw} {@hit 8} to hit, range {@quantity 80/320|ft.}, one target. {@h}7 ({@damage 1d6 + 4}) piercing damage."
 					]
 				}
 			],
@@ -164,7 +164,7 @@
 				"perception": "+3"
 			},
 			"senses": [
-				"blindsight 60 ft."
+				"blindsight {@quantity 60|ft.}"
 			],
 			"passive": 13,
 			"immune": [
@@ -190,7 +190,7 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}22 ({@damage 3d10 + 6}) piercing damage."
+						"{@atk mw} {@hit 9} to hit, reach {@quantity 5|ft.}, one target. {@h}22 ({@damage 3d10 + 6}) piercing damage."
 					]
 				}
 			],
@@ -254,8 +254,8 @@
 				"stealth": "+5"
 			},
 			"senses": [
-				"blindsight 60 ft.",
-				"darkvision 120 ft."
+				"blindsight {@quantity 60|ft.}",
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 22,
 			"immune": [
@@ -362,25 +362,25 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 12} to hit, reach 10 ft., one target. {@h}18 ({@damage 2d10 + 7}) piercing damage."
+						"{@atk mw} {@hit 12} to hit, reach {@quantity 10|ft.}, one target. {@h}18 ({@damage 2d10 + 7}) piercing damage."
 					]
 				},
 				{
 					"name": "Claw",
 					"entries": [
-						"{@atk mw} {@hit 12} to hit, reach 5 ft., one target. {@h}14 ({@damage 2d6 + 7}) slashing damage."
+						"{@atk mw} {@hit 12} to hit, reach {@quantity 5|ft.}, one target. {@h}14 ({@damage 2d6 + 7}) slashing damage."
 					]
 				},
 				{
 					"name": "Tail",
 					"entries": [
-						"{@atk mw} {@hit 12} to hit, reach 15 ft., one target. {@h}16 ({@damage 2d8 + 7}) bludgeoning damage."
+						"{@atk mw} {@hit 12} to hit, reach {@quantity 15|ft.}, one target. {@h}16 ({@damage 2d8 + 7}) bludgeoning damage."
 					]
 				},
 				{
 					"name": "Frightful Presence",
 					"entries": [
-						"Each creature of Lhammaruntosz's choice that is within 120 feet of her and aware of her must succeed on a {@dc 17} Wisdom saving throw or become {@condition frightened} for 1 minute. A creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success. If a creature's saving throw is successful or the effect ends for it, the creature is immune to Lhammaruntosz's Frightful Presence for the next 24 hours."
+						"Each creature of Lhammaruntosz's choice that is within {@quantity 120|feet} of her and aware of her must succeed on a {@dc 17} Wisdom saving throw or become {@condition frightened} for 1 minute. A creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success. If a creature's saving throw is successful or the effect ends for it, the creature is immune to Lhammaruntosz's Frightful Presence for the next 24 hours."
 					]
 				},
 				{
@@ -392,13 +392,13 @@
 				{
 					"name": "Lightning Breath",
 					"entries": [
-						"Lhammaruntosz exhales lightning in a 90-foot line that is 5 feet wide. Each creature in that line must make a {@dc 19} Dexterity saving throw, taking 66 ({@damage 12d10}) lightning damage on a failed save, or half as much damage on a successful one."
+						"Lhammaruntosz exhales lightning in a {@quantity 90|-foot} line that is {@quantity 5|feet} wide. Each creature in that line must make a {@dc 19} Dexterity saving throw, taking 66 ({@damage 12d10}) lightning damage on a failed save, or half as much damage on a successful one."
 					]
 				},
 				{
 					"name": "Repulsion Breath",
 					"entries": [
-						"Lhammaruntosz exhales repulsion energy in a 30-foot cone. Each creature in that area must succeed on a {@dc 19} Strength saving throw. On a failed save, the creature is pushed 60 feet away from the dragon."
+						"Lhammaruntosz exhales repulsion energy in a {@quantity 30|-foot} cone. Each creature in that area must succeed on a {@dc 19} Strength saving throw. On a failed save, the creature is pushed {@quantity 60|feet} away from the dragon."
 					]
 				},
 				{
@@ -425,7 +425,7 @@
 				{
 					"name": "Wing Attack (Costs 2 Actions)",
 					"entries": [
-						"Lhammaruntosz beats its wings. Each creature within 10 feet of Lhammaruntosz must succeed on a {@dc 20} Dexterity saving throw or take 14 ({@damage 2d6 + 7}) bludgeoning damage and be knocked {@condition prone}. Lhammaruntosz can then fly up to half her flying speed."
+						"Lhammaruntosz beats its wings. Each creature within {@quantity 10|feet} of Lhammaruntosz must succeed on a {@dc 20} Dexterity saving throw or take 14 ({@damage 2d6 + 7}) bludgeoning damage and be knocked {@condition prone}. Lhammaruntosz can then fly up to half her flying speed."
 					]
 				}
 			],
@@ -618,7 +618,7 @@
 				{
 					"name": "Quarterstaff",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d6}) bludgeoning damage, or 4 ({@damage 1d8}) bludgeoning damage if used with two hands."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}3 ({@damage 1d6}) bludgeoning damage, or 4 ({@damage 1d8}) bludgeoning damage if used with two hands."
 					]
 				}
 			],
@@ -766,7 +766,7 @@
 				{
 					"name": "Quarterstaff",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d6}) bludgeoning damage, or 4 ({@damage 1d8}) bludgeoning damage if used with two hands."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}3 ({@damage 1d6}) bludgeoning damage, or 4 ({@damage 1d8}) bludgeoning damage if used with two hands."
 					]
 				}
 			],
@@ -913,13 +913,13 @@
 				{
 					"name": "Longsword",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}8 ({@damage 1d8 + 4}) slashing damage, or 9 ({@damage 1d10 + 4}) slashing damage if used with two hands."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 5|ft.}, one target. {@h}8 ({@damage 1d8 + 4}) slashing damage, or 9 ({@damage 1d10 + 4}) slashing damage if used with two hands."
 					]
 				},
 				{
 					"name": "Longbow",
 					"entries": [
-						"{@atk rw} {@hit 6} to hit, range 150/600 ft., one target. {@h}6 ({@damage 1d8 + 2}) piercing damage."
+						"{@atk rw} {@hit 6} to hit, range {@quantity 150/600|ft.}, one target. {@h}6 ({@damage 1d8 + 2}) piercing damage."
 					]
 				}
 			],
@@ -927,7 +927,7 @@
 				{
 					"name": "Protection (Defender Only)",
 					"entries": [
-						"When a creature the warrior can see attacks a target other than the warrior that is within 5 feet of the warrior, the warrior can use their reaction to impose disadvantage on the attack roll. The warrior must be wielding a shield."
+						"When a creature the warrior can see attacks a target other than the warrior that is within {@quantity 5|feet} of the warrior, the warrior can use their reaction to impose disadvantage on the attack roll. The warrior must be wielding a shield."
 					]
 				}
 			],

@@ -240,7 +240,7 @@
 							"18 ({@dice 4d8})"
 						],
 						[
-							"Large ({@item cart|phb}, 10-ft.-by-10-ft. window)",
+							"Large ({@item cart|phb}, {@quantity 10|-ft}.-by-{@quantity 10|-ft.} window)",
 							"5 ({@dice 1d10})",
 							"27 ({@dice 5d10})"
 						]
@@ -336,7 +336,7 @@
 					"type": "entries",
 					"name": "Long Jump",
 					"entries": [
-						"Move 10+ feet, and jump a number of feet up to your Strength score. When you make a standing long jump, you can leap only half that distance."
+						"Move 10+ feet, and jump {@quantity a number of|feet} up to your Strength score. When you make a standing long jump, you can leap only half that distance."
 					],
 					"id": "001"
 				},
@@ -344,7 +344,7 @@
 					"type": "entries",
 					"name": "High Jump",
 					"entries": [
-						"Move 10+ feet, and jump a number of feet equal to 3 + your Strength modifier. When you make a standing high jump, you can jump only half that distance."
+						"Move 10+ feet, and jump {@quantity a number of|feet} equal to 3 + your Strength modifier. When you make a standing high jump, you can jump only half that distance."
 					],
 					"id": "002"
 				},
@@ -828,23 +828,23 @@
 					"rows": [
 						[
 							"Fast",
-							"400 feet",
-							"4 miles",
-							"30 miles",
+							"{@quantity 400|feet}",
+							"{@quantity 4|miles}",
+							"{@quantity 30|miles}",
 							"-5 penalty to passive Wisdom ({@skill Perception}) scores"
 						],
 						[
 							"Normal",
-							"300 feet",
-							"3 miles",
-							"24 miles",
+							"{@quantity 300|feet}",
+							"{@quantity 3|miles}",
+							"{@quantity 24|miles}",
 							"-"
 						],
 						[
 							"Slow",
-							"200 feet",
-							"2 miles",
-							"18 miles",
+							"{@quantity 200|feet}",
+							"{@quantity 2|miles}",
+							"{@quantity 18|miles}",
 							"Able to use stealth"
 						]
 					]
@@ -893,26 +893,26 @@
 					"rows": [
 						[
 							"{@item Candle|phb}",
-							"5 ft.",
-							"+ 5 ft.",
+							"{@quantity 5|ft.}",
+							"+ {@quantity 5|ft.}",
 							"1 hour"
 						],
 						[
 							"{@item Lamp|phb}",
-							"15 ft.",
-							"+ 30 ft.",
+							"{@quantity 15|ft.}",
+							"+ {@quantity 30|ft.}",
 							"6 hours"
 						],
 						[
 							"{@item Bullseye Lantern|phb|Lantern, bullseye}",
-							"60 ft. cone",
-							"+ 60 ft.",
+							"{@quantity 60|ft.} cone",
+							"+ {@quantity 60|ft.}",
 							"6 hours"
 						],
 						[
 							"{@item Hooded Lantern|phb|Lantern, hooded}",
-							"30 ft.",
-							"+ 30 ft.",
+							"{@quantity 30|ft.}",
+							"+ {@quantity 30|ft.}",
 							"6 hours"
 						],
 						{
@@ -921,14 +921,14 @@
 							"row": [
 								"Lowered hood",
 								"\u2014",
-								"+ 5 ft.",
+								"+ {@quantity 5|ft.}",
 								"\u2014"
 							]
 						},
 						[
 							"{@item Torch|phb}",
-							"20 ft.",
-							"+ 20 ft.",
+							"{@quantity 20|ft.}",
+							"+ {@quantity 20|ft.}",
 							"1 hour"
 						]
 					]
@@ -1007,15 +1007,15 @@
 					"rows": [
 						[
 							"Clear day, no obstructions",
-							"2 miles"
+							"{@quantity 2|miles}"
 						],
 						[
 							"Rain",
-							"1 mile"
+							"{@quantity 1|mile}"
 						],
 						[
 							"Fog",
-							"100 to 300 feet"
+							"{@quantity 100 to 300|feet}"
 						],
 						[
 							"From a height",
