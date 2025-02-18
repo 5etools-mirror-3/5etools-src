@@ -232,8 +232,8 @@ class PageFilterBestiary extends PageFilterBase {
 			max: 9,
 			displayFn: it => Parser.getOrdinalForm(it),
 		});
-		this._spellKnownFilter = new SearchableFilter({header: "Spells Known", displayFn: (it) => it.split("|")[0].toTitleCase(), itemSortFn: SortUtil.ascSortLower});
-		this._equipmentFilter = new SearchableFilter({header: "Equipment", displayFn: (it) => it.split("|")[0].toTitleCase(), itemSortFn: SortUtil.ascSortLower});
+		this._spellKnownFilter = new SearchableFilter({header: "Spells Known", displayFn: (it) => it.toTitleCase(), itemSortFn: SortUtil.ascSortLower});
+		this._equipmentFilter = new SearchableFilter({header: "Equipment", displayFn: (it) => it.toTitleCase(), itemSortFn: SortUtil.ascSortLower});
 		this._dragonAgeFilter = new Filter({
 			header: "Dragon Age",
 			items: [...PageFilterBestiary._DRAGON_AGES],
@@ -404,9 +404,7 @@ class PageFilterBestiary extends PageFilterBase {
 
 	static _getSpellcasterMeta_stringHandler (spellSet, str) {
 		str.replace(PageFilterBestiary._RE_SPELL_TAG, (...m) => {
-			const parts = m[1].split("|").slice(0, 2);
-			parts[1] = parts[1] || Parser.SRC_PHB;
-			spellSet.add(parts.join("|").toLowerCase());
+			spellSet.add(DataUtil.proxy.unpackUid("spell", m[1], "spell", {isLower: true}).name);
 			return "";
 		});
 	}
@@ -469,8 +467,7 @@ class PageFilterBestiary extends PageFilterBase {
 	static _getEquipmentList_stringHandler (itemSet, str) {
 		str
 			.replace(PageFilterBestiary._RE_ITEM_TAG, (...m) => {
-				const unpacked = DataUtil.proxy.unpackUid("item", m[1], "item", {isLower: true});
-				itemSet.add(DataUtil.proxy.getUid("item", unpacked));
+				itemSet.add(DataUtil.proxy.unpackUid("item", m[1], "item", {isLower: true}).name);
 				return "";
 			});
 	}

@@ -244,15 +244,17 @@ Renderer.dice = {
 					{isDisabled: true},
 				),
 				null,
-				...options.map(it => new ContextUtil.Action(
-					`Roll ${it}`,
-					evt => {
-						shiftKey = shiftKey || evt.shiftKey;
-						ctrlKey = ctrlKey || (EventUtil.isCtrlMetaKey(evt));
-						cpyRollData.toRoll = it;
-						return cpyRollData;
-					},
-				)),
+				...options.map(rollOption => {
+					return new ContextUtil.Action(
+						`Roll ${rollOption.replace(/#\$prompt_number[^$]*\$#/g, "(𝑛)")}`,
+						evt => {
+							shiftKey = shiftKey || evt.shiftKey;
+							ctrlKey = ctrlKey || (EventUtil.isCtrlMetaKey(evt));
+							cpyRollData.toRoll = rollOption;
+							return cpyRollData;
+						},
+					);
+				}),
 			]);
 
 			chosenRollData = await ContextUtil.pOpenMenu(evt, menu);

@@ -140,6 +140,17 @@ class _FoundryEntityMigratorOneToTwo extends _FoundryEntityMigratorBase {
 			entDiscrete.system = entDiscrete.data;
 			delete entDiscrete.data;
 		}
+
+		if (entDiscrete.effects) {
+			entDiscrete.effects
+				.forEach(eff => {
+					(eff.changes || [])
+						.forEach(change => {
+							if (!change.key) return;
+							change.key = change.key.replace(/^data\./, "system.");
+						});
+				});
+		}
 	}
 }
 
@@ -434,7 +445,7 @@ export class FoundryDataMigrator {
 							propSite,
 							propFoundry,
 							isInline,
-							ent,
+							ent: entMigrated,
 							entLinked,
 						});
 					}, ent);
