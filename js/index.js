@@ -10,15 +10,15 @@ class IndexPage {
 	}
 
 	static _pOnLoad_initElements () {
-		$(`#current_year`).text((new Date()).getFullYear());
+		es(`#current_year`).txt((new Date()).getFullYear());
 
-		$(`#version_number`).text(VERSION_NUMBER).attr("href", `https://github.com/5etools-mirror-3/5etools-src/releases/latest`);
+		es(`#version_number`).txt(VERSION_NUMBER).attr("href", `https://github.com/5etools-mirror-3/5etools-src/releases/latest`);
 
-		$(`#wrp-patreon`)
+		es(`#wrp-patreon`)
 			.html(`<a href="https://www.patreon.com/bePatron?u=22018559" rel="noopener noreferrer"><img src="${Renderer.get().getMediaUrl("img", "patreon.webp")}" alt="Become a Patron" style="width: 217px; height: 51px"></a>`);
 
-		const $lnkB20 = $(`#betteR20_link`);
-		$lnkB20.attr("href", `${$lnkB20.attr("href")}?v=${VERSION_NUMBER}_${Date.now()}`);
+		const lnkB20 = es(`#betteR20_link`);
+		lnkB20.attr("href", `${lnkB20.attr("href")}?v=${VERSION_NUMBER}_${Date.now()}`);
 
 		window.__cmp2 = () => {
 			alert("This only works on a live version of the site!");

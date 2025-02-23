@@ -104,7 +104,8 @@ class _SpellSourceUtil {
 		switch (rechargeType) {
 			case "rest":
 			case "daily":
-			case "resource": {
+			case "resource":
+			case "limited": {
 				Object.values(levelMetaInner)
 					.forEach(spellList => {
 						spellList.forEach(spellItem => this._getSpellUids_doProcessSpellItem({...opts, spellItem}));

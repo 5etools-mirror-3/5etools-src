@@ -1300,7 +1300,7 @@ class TabUiUtilBase {
 					...it,
 					ix: i,
 					$btnTab,
-					btnTab: $btnTab[0],
+					btnTab: $btnTab?.[0], // No button if `isSingleTab`
 					$wrpTab,
 					wrpTab: $wrpTab[0],
 				};
