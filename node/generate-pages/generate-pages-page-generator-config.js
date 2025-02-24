@@ -126,7 +126,7 @@ class _PageGeneratorCrcalculator extends PageGeneratorGeneric {
 		"crcalculator",
 	];
 
-	_scripts = [
+	_scriptsModules = [
 		"crcalculator.js",
 	];
 }

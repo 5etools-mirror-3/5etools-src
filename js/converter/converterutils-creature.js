@@ -2211,18 +2211,30 @@ export class SpeedConvert {
 
 			prevSpeed = mode;
 			if (condition) {
+				if (out[mode]) {
+					// e.g. Werebear (XMM)
+					return ((out.alternate ||= {})[mode] ||= []).push({
+						number: feet,
+						condition: condition.trim(),
+					});
+				}
+
 				return out[mode] = {
 					number: feet,
 					condition: condition.trim(),
 				};
 			}
+
+			if (out[mode] && out.alternate?.[mode]) return setByHand();
+			if (out[mode]) return ((out.alternate ||= {})[mode] ||= []).push(feet);
 			return out[mode] = feet;
 		});
 
 		// flag speed as invalid
 		if (
-			Object.values(out)
-				.filter(s => {
+			Object.entries(out)
+				.filter(([k, s]) => {
+					if (k === "alternate") return false;
 					const val = s.number ?? s.amount ?? s;
 					return val % 5 !== 0;
 				}).length

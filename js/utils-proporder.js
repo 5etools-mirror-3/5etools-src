@@ -365,6 +365,7 @@ PropOrder._FOUNDRY_GENERIC = [
 
 	"type",
 	"system",
+	"activities",
 	"effects",
 	"flags",
 	"img",
@@ -383,6 +384,7 @@ PropOrder._FOUNDRY_GENERIC_FEATURE = [
 
 	"type",
 	"system",
+	"activities",
 	"actorDataMod",
 	"effects",
 	"flags",
@@ -1007,6 +1009,7 @@ PropOrder._FOUNDRY_CLASS = [
 	"source",
 
 	"system",
+	"activities",
 	"effects",
 	"flags",
 	"img",
@@ -1111,6 +1114,7 @@ PropOrder._FOUNDRY_SUBCLASS = [
 	"classSource",
 
 	"system",
+	"activities",
 	"effects",
 	"flags",
 	"img",
@@ -1259,6 +1263,7 @@ PropOrder._FOUNDRY_CLASS_FEATURE = [
 	"level",
 
 	"system",
+	"activities",
 	"effects",
 	"flags",
 	"img",
@@ -1295,6 +1300,7 @@ PropOrder._FOUNDRY_SUBCLASS_FEATURE = [
 	"level",
 
 	"system",
+	"activities",
 	"effects",
 	"flags",
 	"img",
@@ -2170,6 +2176,8 @@ PropOrder._REWARD = [
 
 	"rarity",
 
+	"additionalSpells",
+
 	"entries",
 
 	"hasFluff",
@@ -2333,6 +2341,7 @@ PropOrder._FOUNDRY_RACE_FEATURE = [
 	}),
 
 	"system",
+	"activities",
 	"effects",
 	"flags",
 	"img",

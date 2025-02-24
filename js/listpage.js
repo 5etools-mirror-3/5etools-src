@@ -1326,8 +1326,11 @@ class ListPage {
 				this.primaryLists.forEach(list => {
 					list.visibleItems.forEach(listItem => {
 						const {btnToggleExpand, dispExpandedOuter, dispExpandedInner} = this._getPreviewEles(listItem);
-						if (isExpand) this._doPreviewExpand({listItem, dispExpandedOuter, btnToggleExpand, dispExpandedInner});
-						else this._doPreviewCollapse({dispExpandedOuter, btnToggleExpand, dispExpandedInner});
+
+						if (!isExpand) return this._doPreviewCollapse({dispExpandedOuter, btnToggleExpand, dispExpandedInner});
+
+						if (btnToggleExpand.innerHTML !== `[+]`) return;
+						this._doPreviewExpand({listItem, dispExpandedOuter, btnToggleExpand, dispExpandedInner});
 					});
 				});
 			});

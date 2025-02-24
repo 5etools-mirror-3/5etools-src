@@ -845,8 +845,11 @@ export class BrewUtil2Base {
 
 		if (!isSilent) JqueryUtil.doToast(`Found ${brewInfos.length} partnered ${brewInfos.length === 1 ? this.DISPLAY_NAME : this.DISPLAY_NAME_PLURAL}; loading...`);
 
-		await brewInfos
-			.pMap(brewInfo => this.pAddBrewFromUrl(brewInfo.urlDownload, {isLazy: true}));
+		(
+			await brewInfos
+				.pMap(brewInfo => this.pAddBrewFromUrl(brewInfo.urlDownload, {isLazy: true}))
+		)
+			.sort((a, b) => SortUtil.ascSortLower(a._brewName, b._brewName));
 
 		const brewDocsAdded = await this.pAddBrewsLazyFinalize();
 
