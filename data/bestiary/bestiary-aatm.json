@@ -43,7 +43,7 @@
 			"wis": 11,
 			"cha": 3,
 			"senses": [
-				"blindsight 60 ft. (can't see beyond this radius)"
+				"blindsight {@quantity 60|ft.} (can't see beyond this radius)"
 			],
 			"passive": 10,
 			"immune": [
@@ -88,13 +88,13 @@
 				{
 					"name": "Slam",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}12 ({@damage 2d8 + 3}) bludgeoning damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}12 ({@damage 2d8 + 3}) bludgeoning damage."
 					]
 				},
 				{
 					"name": "Entrap",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one Large or smaller creature. {@h}The target has the {@condition grappled} condition (escape {@dc 13}). Until this grapple ends, if the target is not an Undead, the target has the {@condition restrained} condition and takes 14 ({@damage 4d6}) piercing damage at the start of each of its turns. The animated coffin can grapple only one creature at a time."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one Large or smaller creature. {@h}The target has the {@condition grappled} condition (escape {@dc 13}). Until this grapple ends, if the target is not an Undead, the target has the {@condition restrained} condition and takes 14 ({@damage 4d6}) piercing damage at the start of each of its turns. The animated coffin can grapple only one creature at a time."
 					]
 				}
 			],
@@ -176,7 +176,7 @@
 				"perception": "+8"
 			},
 			"senses": [
-				"truesight 120 ft."
+				"truesight {@quantity 120|ft.}"
 			],
 			"passive": 18,
 			"resist": [
@@ -239,7 +239,7 @@
 				{
 					"name": "Aura of Death",
 					"entries": [
-						"Creatures within 30 feet of Skall have disadvantage on death saving throws."
+						"Creatures within {@quantity 30|feet} of Skall have disadvantage on death saving throws."
 					]
 				},
 				{
@@ -257,7 +257,7 @@
 				{
 					"name": "Rejuvenation",
 					"entries": [
-						"If Skall dies, he turns to dust. If his orrery of souls hasn't been destroyed, Skall re-forms within the Mortuary in {@dice 1d10} days. He appears within 5 feet of the orrery."
+						"If Skall dies, he turns to dust. If his orrery of souls hasn't been destroyed, Skall re-forms within the Mortuary in {@dice 1d10} days. He appears within {@quantity 5|feet} of the orrery."
 					]
 				},
 				{
@@ -277,19 +277,19 @@
 				{
 					"name": "Withering Touch",
 					"entries": [
-						"{@atk ms} {@hit 11} to hit, reach 5 ft., one target. {@h}32 ({@damage 6d8 + 5}) cold damage plus 31 ({@damage 7d8}) necrotic damage, and if the target is a creature, it can't regain hit points until the start of Skall's next turn."
+						"{@atk ms} {@hit 11} to hit, reach {@quantity 5|ft.}, one target. {@h}32 ({@damage 6d8 + 5}) cold damage plus 31 ({@damage 7d8}) necrotic damage, and if the target is a creature, it can't regain hit points until the start of Skall's next turn."
 					]
 				},
 				{
 					"name": "Death Knell",
 					"entries": [
-						"Skall points his finger at a creature he can see within 120 feet of himself, filling the target's mind with visions of death and the plangent toll of an iron bell. The target must succeed on a {@dc 19} Wisdom saving throw or take 14 ({@damage 4d6}) psychic damage and have the {@condition frightened} condition until the start of Skall's next turn."
+						"Skall points his finger at a creature he can see within {@quantity 120|feet} of himself, filling the target's mind with visions of death and the plangent toll of an iron bell. The target must succeed on a {@dc 19} Wisdom saving throw or take 14 ({@damage 4d6}) psychic damage and have the {@condition frightened} condition until the start of Skall's next turn."
 					]
 				},
 				{
 					"name": "Fog of Death (1/Day)",
 					"entries": [
-						"Skall exudes a killing fog in a 30-foot-radius sphere centered on himself. The sphere spreads around corners, and its area is heavily obscured. The fog lasts until the start of Skall's next turn, and it can't be dispersed by wind. It does not move with him.",
+						"Skall exudes a killing fog in a {@quantity 30|-foot}-radius sphere centered on himself. The sphere spreads around corners, and its area is heavily obscured. The fog lasts until the start of Skall's next turn, and it can't be dispersed by wind. It does not move with him.",
 						"Each creature that enters the fog for the first time on a turn or starts its turn there must make a {@dc 19} Constitution saving throw, taking 28 ({@damage 8d6}) necrotic damage and 28 ({@damage 8d6}) poison damage on a failed save, or half as much damage on a successful one. A Medium or smaller Humanoid killed by this damage becomes a zombie under Skall's control. The zombie acts on Skall's initiative but immediately after his turn. Absent any other command, the zombie tries to kill any non-Undead creature it encounters."
 					]
 				}
@@ -301,13 +301,13 @@
 				{
 					"name": "Baleful Counterspell",
 					"entries": [
-						"Skall chatters his teeth to interrupt a creature he can see within 60 feet of himself that is casting a spell. If the spell is 4th level or lower, it fails and has no effect. If the spell is 5th level or higher, Skall makes an Intelligence check ({@dc 10} + the spell's level). On a successful check, the spell fails and has no effect. Whatever the spell's level, the caster takes 10 ({@damage 3d6}) necrotic damage if the spell fails."
+						"Skall chatters his teeth to interrupt a creature he can see within {@quantity 60|feet} of himself that is casting a spell. If the spell is 4th level or lower, it fails and has no effect. If the spell is 5th level or higher, Skall makes an Intelligence check ({@dc 10} + the spell's level). On a successful check, the spell fails and has no effect. Whatever the spell's level, the caster takes 10 ({@damage 3d6}) necrotic damage if the spell fails."
 					]
 				},
 				{
 					"name": "Near-Death Experience",
 					"entries": [
-						"In response to being hit by an attack, Skall teleports, along with any equipment he is wearing or carrying, up to 30 feet to an unoccupied space he can see."
+						"In response to being hit by an attack, Skall teleports, along with any equipment he is wearing or carrying, up to {@quantity 30|feet} to an unoccupied space he can see."
 					]
 				}
 			],
@@ -402,7 +402,7 @@
 				"religion": "+6"
 			},
 			"senses": [
-				"truesight 60 ft."
+				"truesight {@quantity 60|ft.}"
 			],
 			"passive": 15,
 			"resist": [
@@ -461,13 +461,13 @@
 				{
 					"name": "Grave Burst",
 					"entries": [
-						"{@atk ms,rs} {@hit 6} to hit, reach 5 ft. or range 120 ft., one target. {@h}19 ({@damage 3d10 + 3}) necrotic or radiant damage (exorcist's choice)."
+						"{@atk ms,rs} {@hit 6} to hit, reach {@quantity 5|ft.} or range {@quantity 120|ft.}, one target. {@h}19 ({@damage 3d10 + 3}) necrotic or radiant damage (exorcist's choice)."
 					]
 				},
 				{
 					"name": "Admit Entity {@recharge 5}",
 					"entries": [
-						"The exorcist thins the veil of death for a creature it can see within 60 feet of itself, exposing the target to malevolent entities. The target must make a {@dc 14} Charisma saving throw. On a failed save, the target takes 36 ({@damage 8d8}) psychic damage and has the {@condition incapacitated} condition for 1 minute, during which time it retches and babbles incoherently in a voice that is not its own. On a successful save, the target takes half as much damage only. An {@condition incapacitated} target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+						"The exorcist thins the veil of death for a creature it can see within {@quantity 60|feet} of itself, exposing the target to malevolent entities. The target must make a {@dc 14} Charisma saving throw. On a failed save, the target takes 36 ({@damage 8d8}) psychic damage and has the {@condition incapacitated} condition for 1 minute, during which time it retches and babbles incoherently in a voice that is not its own. On a successful save, the target takes half as much damage only. An {@condition incapacitated} target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
 					]
 				}
 			],

@@ -43,7 +43,7 @@
 				"perception": "+9"
 			},
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 19,
 			"resist": [
@@ -97,13 +97,13 @@
 				{
 					"name": "Hooves",
 					"entries": [
-						"{@atk mw} {@hit 11} to hit, reach 5 ft., one target. {@h}20 ({@damage 4d6 + 6}) bludgeoning damage plus 10 ({@damage 3d6}) radiant damage. If the target is a Medium or smaller creature, it must succeed on a {@dc 19} Strength saving throw or have the {@condition prone} condition."
+						"{@atk mw} {@hit 11} to hit, reach {@quantity 5|ft.}, one target. {@h}20 ({@damage 4d6 + 6}) bludgeoning damage plus 10 ({@damage 3d6}) radiant damage. If the target is a Medium or smaller creature, it must succeed on a {@dc 19} Strength saving throw or have the {@condition prone} condition."
 					]
 				},
 				{
 					"name": "Radiant Lance",
 					"entries": [
-						"{@atk mw} {@hit 11} to hit, reach 10 ft., one target. {@h}12 ({@damage 1d12 + 6}) piercing damage plus 28 ({@damage 8d6}) radiant damage, and the target is marked until the start of the archon's next turn. While it is marked, the target has disadvantage on attack rolls against creatures other than the archon."
+						"{@atk mw} {@hit 11} to hit, reach {@quantity 10|ft.}, one target. {@h}12 ({@damage 1d12 + 6}) piercing damage plus 28 ({@damage 8d6}) radiant damage, and the target is marked until the start of the archon's next turn. While it is marked, the target has disadvantage on attack rolls against creatures other than the archon."
 					]
 				}
 			],
@@ -114,13 +114,13 @@
 				{
 					"name": "Archon's Pursuit",
 					"entries": [
-						"When a creature marked by the archon's Radiant Lance ends its turn within 120 feet of the archon, the archon teleports to an unoccupied space it can see within 5 feet of the creature."
+						"When a creature marked by the archon's Radiant Lance ends its turn within {@quantity 120|feet} of the archon, the archon teleports to an unoccupied space it can see within {@quantity 5|feet} of the creature."
 					]
 				},
 				{
 					"name": "Haunting Radiance",
 					"entries": [
-						"Immediately after a creature within 120 feet of the archon forces it to make a saving throw, the archon responds with a burst of light. The creature must succeed on a {@dc 17} Constitution saving throw or have the {@condition blinded} condition until the end of the creature's next turn."
+						"Immediately after a creature within {@quantity 120|feet} of the archon forces it to make a saving throw, the archon responds with a burst of light. The creature must succeed on a {@dc 17} Constitution saving throw or have the {@condition blinded} condition until the end of the creature's next turn."
 					]
 				},
 				{
@@ -241,8 +241,8 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 14} to hit, reach 15 ft., one target. {@h}30 ({@damage 5d8 + 8}) piercing damage. If the target is a Large or smaller creature, it must succeed on a {@dc 22} Dexterity saving throw or be swallowed by the wurm. A swallowed creature has the {@condition restrained} condition, has {@quickref Cover||3||total cover} against attacks and other effects outside the wurm, and takes 28 ({@damage 8d6}) piercing damage at the start of each of the wurm's turns from thorns in the wurm's gullet.",
-						"The wurm's stomach can hold up to two creatures at a time. If the wurm takes 30 damage or more on a single turn from a creature inside it, the wurm must succeed on a {@dc 22} Constitution saving throw at the end of that turn or regurgitate all swallowed creatures, each of which falls in a space within 10 feet of the wurm and has the {@condition prone} condition. If the wurm dies, a swallowed creature no longer has the {@condition restrained} condition and can escape from the corpse by using 10 feet of movement, exiting with the {@condition prone} condition."
+						"{@atk mw} {@hit 14} to hit, reach {@quantity 15|ft.}, one target. {@h}30 ({@damage 5d8 + 8}) piercing damage. If the target is a Large or smaller creature, it must succeed on a {@dc 22} Dexterity saving throw or be swallowed by the wurm. A swallowed creature has the {@condition restrained} condition, has {@quickref Cover||3||total cover} against attacks and other effects outside the wurm, and takes 28 ({@damage 8d6}) piercing damage at the start of each of the wurm's turns from thorns in the wurm's gullet.",
+						"The wurm's stomach can hold up to two creatures at a time. If the wurm takes 30 damage or more on a single turn from a creature inside it, the wurm must succeed on a {@dc 22} Constitution saving throw at the end of that turn or regurgitate all swallowed creatures, each of which falls in a space within {@quantity 10|feet} of the wurm and has the {@condition prone} condition. If the wurm dies, a swallowed creature no longer has the {@condition restrained} condition and can escape from the corpse by using {@quantity 10|feet} of movement, exiting with the {@condition prone} condition."
 					]
 				}
 			],
@@ -313,7 +313,7 @@
 				"perception": "+1"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 11,
 			"resist": [
@@ -354,13 +354,13 @@
 				{
 					"name": "Axe",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}13 ({@damage 2d8 + 4}) slashing damage."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}13 ({@damage 2d8 + 4}) slashing damage."
 					]
 				},
 				{
 					"name": "Fell Glare",
 					"entries": [
-						"The rider gazes at a creature within 30 feet of itself. The creature must succeed on a {@dc 13} Wisdom saving throw or have the {@condition frightened} condition for 1 minute. The {@condition frightened} creature can repeat the saving throw at the end of each of its turns, with disadvantage if it can see the rider, ending the condition on itself on a success."
+						"The rider gazes at a creature within {@quantity 30|feet} of itself. The creature must succeed on a {@dc 13} Wisdom saving throw or have the {@condition frightened} condition for 1 minute. The {@condition frightened} creature can repeat the saving throw at the end of each of its turns, with disadvantage if it can see the rider, ending the condition on itself on a success."
 					]
 				}
 			],
@@ -482,19 +482,19 @@
 				{
 					"name": "Poison Dagger",
 					"entries": [
-						"{@atk mw,rw} {@hit 5} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}4 ({@damage 1d4 + 2}) piercing damage plus 21 ({@damage 6d6}) poison damage."
+						"{@atk mw,rw} {@hit 5} to hit, reach {@quantity 5|ft.} or range {@quantity 20/60|ft.}, one target. {@h}4 ({@damage 1d4 + 2}) piercing damage plus 21 ({@damage 6d6}) poison damage."
 					]
 				},
 				{
 					"name": "Polymorph Concoction (1/Day)",
 					"entries": [
-						"The witch hurls a bottle of liquid at a point up to 20 feet away from itself, which shatters into a cloud of magical smoke that fills a 10-foot-radius sphere. Each creature in that area must succeed on a {@dc 16} Wisdom saving throw or transform into a creature, as if under the effects of a {@spell polymorph} spell, transforming into one of the following forms (roll a {@dice d4}): 1, bat; 2, frog; 3, lizard; or 4, rat. This transformation lasts for 1 hour or until the creature drops to 0 hit points in its new form."
+						"The witch hurls a bottle of liquid at a point up to {@quantity 20|feet} away from itself, which shatters into a cloud of magical smoke that fills a {@quantity 10|-foot}-radius sphere. Each creature in that area must succeed on a {@dc 16} Wisdom saving throw or transform into a creature, as if under the effects of a {@spell polymorph} spell, transforming into one of the following forms (roll a {@dice d4}): 1, bat; 2, frog; 3, lizard; or 4, rat. This transformation lasts for 1 hour or until the creature drops to 0 hit points in its new form."
 					]
 				},
 				{
 					"name": "Shattered Shards",
 					"entries": [
-						"The witch targets a point it can see within 30 feet of itself. The air there magically solidifies into a mirrorlike pane, then shatters in a 15-foot cone originating from that point. Each creature in that area must make a {@dc 16} Dexterity saving throw, taking 25 ({@damage 10d4}) force damage on a failed save, or half as much damage on a successful one."
+						"The witch targets a point it can see within {@quantity 30|feet} of itself. The air there magically solidifies into a mirrorlike pane, then shatters in a {@quantity 15|-foot} cone originating from that point. Each creature in that area must make a {@dc 16} Dexterity saving throw, taking 25 ({@damage 10d4}) force damage on a failed save, or half as much damage on a successful one."
 					]
 				}
 			],
@@ -610,13 +610,13 @@
 				{
 					"name": "Needle Blade",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d4 + 5}) piercing damage."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 1d4 + 5}) piercing damage."
 					]
 				},
 				{
 					"name": "Magic Mockery",
 					"entries": [
-						"The faerie hurls magical taunts at one creature it can see within 60 feet of itself. The creature must succeed on a {@dc 13} Wisdom saving throw or take 3 ({@damage 1d6}) psychic damage and have disadvantage on attack rolls and ability checks until the start of the faerie's next turn."
+						"The faerie hurls magical taunts at one creature it can see within {@quantity 60|feet} of itself. The creature must succeed on a {@dc 13} Wisdom saving throw or take 3 ({@damage 1d6}) psychic damage and have disadvantage on attack rolls and ability checks until the start of the faerie's next turn."
 					]
 				}
 			],
@@ -721,7 +721,7 @@
 				{
 					"name": "Faerie Illumination",
 					"entries": [
-						"The faerie sheds dim light in a 15-foot radius."
+						"The faerie sheds dim light in a {@quantity 15|-foot} radius."
 					]
 				}
 			],
@@ -735,7 +735,7 @@
 				{
 					"name": "Shining Strike",
 					"entries": [
-						"{@atk ms,rs} {@hit 6} to hit, reach 5 ft. or range 30 ft., one target. {@h}7 ({@damage 2d6}) radiant damage, and if the target is a creature, it must succeed on a {@dc 14} Dexterity saving throw or be wreathed in light until the end of the faerie's next turn. While a creature is wreathed in light, attack rolls against the creature have advantage, and the creature can't benefit from the {@condition invisible} condition."
+						"{@atk ms,rs} {@hit 6} to hit, reach {@quantity 5|ft.} or range {@quantity 30|ft.}, one target. {@h}7 ({@damage 2d6}) radiant damage, and if the target is a creature, it must succeed on a {@dc 14} Dexterity saving throw or be wreathed in light until the end of the faerie's next turn. While a creature is wreathed in light, attack rolls against the creature have advantage, and the creature can't benefit from the {@condition invisible} condition."
 					]
 				}
 			],
@@ -743,8 +743,8 @@
 				{
 					"name": "Guiding Light (2/Day)",
 					"entries": [
-						"The faerie summons a 30-foot-radius sphere of magical light centered on itself, which lasts for 1 minute or until the faerie has the {@condition incapacitated} condition. Each creature of the faerie's choice (other than the faerie) that starts its turn in that area gains 5 temporary hit points and has advantage on Wisdom saving throws and Wisdom checks until the start of its next turn.",
-						"The sphere is bright light, sheds dim light for an additional 30 feet, and moves with the faerie. If any of the sphere's area overlaps with an area of darkness created by a spell of 3rd level or lower, the spell that created the darkness is dispelled."
+						"The faerie summons a {@quantity 30|-foot}-radius sphere of magical light centered on itself, which lasts for 1 minute or until the faerie has the {@condition incapacitated} condition. Each creature of the faerie's choice (other than the faerie) that starts its turn in that area gains 5 temporary hit points and has advantage on Wisdom saving throws and Wisdom checks until the start of its next turn.",
+						"The sphere is bright light, sheds dim light for an additional {@quantity 30|feet}, and moves with the faerie. If any of the sphere's area overlaps with an area of darkness created by a spell of 3rd level or lower, the spell that created the darkness is dispelled."
 					]
 				}
 			],
@@ -810,7 +810,7 @@
 				"stealth": "+7"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 13,
 			"languages": [
@@ -842,13 +842,13 @@
 				{
 					"name": "Stingblade",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) slashing damage plus 5 ({@damage 2d4}) poison damage. If the faerie had advantage on the attack roll, the target takes an additional 3 ({@damage 1d6}) slashing damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}6 ({@damage 1d6 + 3}) slashing damage plus 5 ({@damage 2d4}) poison damage. If the faerie had advantage on the attack roll, the target takes an additional 3 ({@damage 1d6}) slashing damage."
 					]
 				},
 				{
 					"name": "Theft of Nerves (1/Day)",
 					"entries": [
-						"The faerie unleashes a burst of mind-muddling magic in a 15-foot cone. Each creature in that area must succeed on a {@dc 12} Intelligence saving throw or have the {@condition frightened} condition for 1 minute. A {@condition frightened} creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+						"The faerie unleashes a burst of mind-muddling magic in a {@quantity 15|-foot} cone. Each creature in that area must succeed on a {@dc 12} Intelligence saving throw or have the {@condition frightened} condition for 1 minute. A {@condition frightened} creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
 					]
 				}
 			],
@@ -962,13 +962,13 @@
 				{
 					"name": "Fork",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d4 + 4}) piercing damage."
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 5|ft.}, one target. {@h}6 ({@damage 1d4 + 4}) piercing damage."
 					]
 				},
 				{
 					"name": "Gumdrop Slingshot",
 					"entries": [
-						"{@atk rw} {@hit 6} to hit, range 30/120 ft., one target. {@h}6 ({@damage 1d4 + 4}) bludgeoning damage."
+						"{@atk rw} {@hit 6} to hit, range {@quantity 30/120|ft.}, one target. {@h}6 ({@damage 1d4 + 4}) bludgeoning damage."
 					]
 				}
 			],
@@ -1024,7 +1024,7 @@
 				"perception": "+10"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 20,
 			"conditionImmune": [
@@ -1073,19 +1073,19 @@
 				{
 					"name": "Beak",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 10 ft., one target. {@h}6 ({@damage 1d6 + 3}) bludgeoning damage."
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 10|ft.}, one target. {@h}6 ({@damage 1d6 + 3}) bludgeoning damage."
 					]
 				},
 				{
 					"name": "Wing",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 10 ft., one target. {@h}9 ({@damage 1d12 + 3}) bludgeoning damage. If the target is a Large or smaller creature, it must succeed on a {@dc 15} Strength saving throw or have the {@condition prone} condition."
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 10|ft.}, one target. {@h}9 ({@damage 1d12 + 3}) bludgeoning damage. If the target is a Large or smaller creature, it must succeed on a {@dc 15} Strength saving throw or have the {@condition prone} condition."
 					]
 				},
 				{
 					"name": "Lullaby of Honks {@recharge 5}",
 					"entries": [
-						"The Goose Mother's heads honk a discordant lullaby. Each creature of the Goose Mother's choice within 10 feet of it must make a {@dc 15} Constitution saving throw. On a failed save, a creature takes 7 ({@damage 2d6}) thunder damage and falls into a magical slumber. On a successful save, the target takes half as much damage only. The honks can be heard up to 300 feet away.",
+						"The Goose Mother's heads honk a discordant lullaby. Each creature of the Goose Mother's choice within {@quantity 10|feet} of it must make a {@dc 15} Constitution saving throw. On a failed save, a creature takes 7 ({@damage 2d6}) thunder damage and falls into a magical slumber. On a successful save, the target takes half as much damage only. The honks can be heard up to {@quantity 300|feet} away.",
 						"A creature under magical slumber has the {@condition unconscious} condition for 8 hours. This effect ends early for a creature if it takes damage or another creature uses an action to shake it awake."
 					]
 				}
@@ -1156,7 +1156,7 @@
 				"stealth": "+13"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 13,
 			"resist": [
@@ -1214,13 +1214,13 @@
 				{
 					"name": "Fae Blade",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}18 ({@damage 3d8 + 5}) force damage."
+						"{@atk mw} {@hit 9} to hit, reach {@quantity 5|ft.}, one target. {@h}18 ({@damage 3d8 + 5}) force damage."
 					]
 				},
 				{
 					"name": "Vexing Prank",
 					"entries": [
-						"The high fae targets one creature it can see within 60 feet of itself with a magical trick. The target must make a {@dc 18} Wisdom saving throw. On a failed save, the target takes 21 ({@damage 6d6}) psychic damage and has the {@condition frightened} condition until the start of the high fae's next turn. On a successful save, the target takes half as much damage only."
+						"The high fae targets one creature it can see within {@quantity 60|feet} of itself with a magical trick. The target must make a {@dc 18} Wisdom saving throw. On a failed save, the target takes 21 ({@damage 6d6}) psychic damage and has the {@condition frightened} condition until the start of the high fae's next turn. On a successful save, the target takes half as much damage only."
 					]
 				}
 			],
@@ -1314,7 +1314,7 @@
 				"perception": "+7"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 17,
 			"resist": [
@@ -1357,13 +1357,13 @@
 				{
 					"name": "Fae Claymore",
 					"entries": [
-						"{@atk mw} {@hit 10} to hit, reach 10 ft., one target. {@h}20 ({@damage 4d6 + 6}) force damage, and the target's speed is reduced by 10 feet, to a minimum speed of 5 feet. The reduction lasts until the start of the high fae's next turn."
+						"{@atk mw} {@hit 10} to hit, reach {@quantity 10|ft.}, one target. {@h}20 ({@damage 4d6 + 6}) force damage, and the target's speed is reduced by {@quantity 10|feet}, to a minimum speed of {@quantity 5|feet}. The reduction lasts until the start of the high fae's next turn."
 					]
 				},
 				{
 					"name": "Tripping Feint",
 					"entries": [
-						"The high fae targets one Large or smaller creature it can see within 10 feet of itself. The target must succeed on a {@dc 18} Dexterity saving throw or have the {@condition prone} condition."
+						"The high fae targets one Large or smaller creature it can see within {@quantity 10|feet} of itself. The target must succeed on a {@dc 18} Dexterity saving throw or have the {@condition prone} condition."
 					]
 				}
 			],
@@ -1465,7 +1465,7 @@
 				"nature": "+7"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 12,
 			"resist": [
@@ -1526,13 +1526,13 @@
 				{
 					"name": "Elemental Strike",
 					"entries": [
-						"{@atk ms,rs} {@hit 11} to hit, reach 5 ft. or range 60 ft., one target. {@h}18 ({@damage 2d10 + 7}) acid, cold, fire, force, lightning, or thunder damage (the high fae's choice)."
+						"{@atk ms,rs} {@hit 11} to hit, reach {@quantity 5|ft.} or range {@quantity 60|ft.}, one target. {@h}18 ({@damage 2d10 + 7}) acid, cold, fire, force, lightning, or thunder damage (the high fae's choice)."
 					]
 				},
 				{
 					"name": "Negotiate Life {@recharge 5}",
 					"entries": [
-						"The high fae enacts a magical bargain, siphoning energy from its opponents to heal its wounds. The high fae targets up to three creatures it can see within 60 feet of itself. Each target must make a {@dc 19} Constitution saving throw, taking 26 ({@damage 4d12}) necrotic damage on a failed save, or half as much damage on a successful one. The high fae then regains 30 hit points."
+						"The high fae enacts a magical bargain, siphoning energy from its opponents to heal its wounds. The high fae targets up to three creatures it can see within {@quantity 60|feet} of itself. Each target must make a {@dc 19} Constitution saving throw, taking 26 ({@damage 4d12}) necrotic damage on a failed save, or half as much damage on a successful one. The high fae then regains 30 hit points."
 					]
 				}
 			],
@@ -1619,7 +1619,7 @@
 				"perception": "+9"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 19,
 			"resist": [
@@ -1641,7 +1641,7 @@
 			"languages": [
 				"Common",
 				"Sylvan",
-				"telepathy 120 ft."
+				"telepathy {@quantity 120|ft.}"
 			],
 			"cr": "13",
 			"spellcasting": [
@@ -1670,7 +1670,7 @@
 				{
 					"name": "Aura of Overwhelming Splendor",
 					"entries": [
-						"The high fae radiates dazzling and mollifying magic. Each creature of the high fae's choice that starts its turn within 5 feet of the high fae must succeed on a {@dc 19} Wisdom saving throw or have the {@condition charmed} condition until the start of its next turn. While {@condition charmed}, the creature also has the {@condition incapacitated} condition."
+						"The high fae radiates dazzling and mollifying magic. Each creature of the high fae's choice that starts its turn within {@quantity 5|feet} of the high fae must succeed on a {@dc 19} Wisdom saving throw or have the {@condition charmed} condition until the start of its next turn. While {@condition charmed}, the creature also has the {@condition incapacitated} condition."
 					]
 				},
 				{
@@ -1696,13 +1696,13 @@
 				{
 					"name": "Fae Blade",
 					"entries": [
-						"{@atk mw} {@hit 12} to hit, reach 5 ft., one target. {@h}20 ({@damage 3d8 + 7}) force damage."
+						"{@atk mw} {@hit 12} to hit, reach {@quantity 5|ft.}, one target. {@h}20 ({@damage 3d8 + 7}) force damage."
 					]
 				},
 				{
 					"name": "Stunning Soliloquy {@recharge 5}",
 					"entries": [
-						"The high fae unleashes a string of magical words. Each creature of the high fae's choice within 30 feet of itself must succeed on a {@dc 19} Wisdom saving throw or have the {@condition stunned} condition for 1 minute. A {@condition stunned} creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+						"The high fae unleashes a string of magical words. Each creature of the high fae's choice within {@quantity 30|feet} of itself must succeed on a {@dc 19} Wisdom saving throw or have the {@condition stunned} condition for 1 minute. A {@condition stunned} creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
 					]
 				}
 			],
@@ -1713,7 +1713,7 @@
 				{
 					"name": "Capricious Step",
 					"entries": [
-						"Immediately after taking damage, the high fae magically has the {@condition invisible} condition and teleports, along with any equipment it is wearing or carrying, to an unoccupied space it can see within 30 feet of itself. The invisibility lasts until the end of the high fae's next turn."
+						"Immediately after taking damage, the high fae magically has the {@condition invisible} condition and teleports, along with any equipment it is wearing or carrying, to an unoccupied space it can see within {@quantity 30|feet} of itself. The invisibility lasts until the end of the high fae's next turn."
 					]
 				},
 				{
@@ -1858,19 +1858,19 @@
 				{
 					"name": "Lance",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 10 ft., one target. {@h}9 ({@damage 1d12 + 3}) piercing damage plus 9 ({@damage 2d8}) radiant damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 10|ft.}, one target. {@h}9 ({@damage 1d12 + 3}) piercing damage plus 9 ({@damage 2d8}) radiant damage."
 					]
 				},
 				{
 					"name": "Longsword",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d8 + 3}) slashing damage, or 8 ({@damage 1d10 + 3}) slashing damage if used with two hands, plus 9 ({@damage 2d8}) radiant damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 1d8 + 3}) slashing damage, or 8 ({@damage 1d10 + 3}) slashing damage if used with two hands, plus 9 ({@damage 2d8}) radiant damage."
 					]
 				},
 				{
 					"name": "Heavy Crossbow",
 					"entries": [
-						"{@atk rw} {@hit 3} to hit, range 100/400 ft., one target. {@h}6 ({@damage 1d10 + 1}) piercing damage plus 9 ({@damage 2d8}) radiant damage."
+						"{@atk rw} {@hit 3} to hit, range {@quantity 100/400|ft.}, one target. {@h}6 ({@damage 1d10 + 1}) piercing damage plus 9 ({@damage 2d8}) radiant damage."
 					]
 				}
 			],
@@ -1927,7 +1927,7 @@
 			"wis": 12,
 			"cha": 17,
 			"senses": [
-				"blindsight 120 ft. (can't see beyond this radius)"
+				"blindsight {@quantity 120|ft.} (can't see beyond this radius)"
 			],
 			"passive": 11,
 			"immune": [
@@ -1941,7 +1941,7 @@
 			],
 			"languages": [
 				"Deep Speech",
-				"telepathy 120 ft."
+				"telepathy {@quantity 120|ft.}"
 			],
 			"cr": "5",
 			"trait": [
@@ -1954,7 +1954,7 @@
 				{
 					"name": "Somnophage",
 					"entries": [
-						"At the start of its turn, the nightmare haunt gains a number of temporary hit points equal to 5 times the number of {@condition unconscious} creatures within 30 feet of itself."
+						"At the start of its turn, the nightmare haunt gains a number of temporary hit points equal to 5 times the number of {@condition unconscious} creatures within {@quantity 30|feet} of itself."
 					]
 				}
 			],
@@ -1968,13 +1968,13 @@
 				{
 					"name": "Claw",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) slashing damage plus 9 ({@damage 2d8}) psychic damage."
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 5|ft.}, one target. {@h}6 ({@damage 1d6 + 3}) slashing damage plus 9 ({@damage 2d8}) psychic damage."
 					]
 				},
 				{
 					"name": "Tendrils of Slumber {@recharge 5}",
 					"entries": [
-						"The nightmare haunt creates spectral tendrils that cover the ground in a 20-foot square that it can see within 30 feet of itself for 1 minute or until it uses this action again. When a creature other than the nightmare haunt enters the affected area for the first time or starts its turn there, the creature must succeed on a {@dc 14} Strength saving throw or take 11 ({@damage 2d10}) necrotic damage and have the {@condition restrained} condition. The affected ground is also considered difficult terrain for creatures other than the nightmare haunt for the duration of its effect.",
+						"The nightmare haunt creates spectral tendrils that cover the ground in a {@quantity 20|-foot} square that it can see within {@quantity 30|feet} of itself for 1 minute or until it uses this action again. When a creature other than the nightmare haunt enters the affected area for the first time or starts its turn there, the creature must succeed on a {@dc 14} Strength saving throw or take 11 ({@damage 2d10}) necrotic damage and have the {@condition restrained} condition. The affected ground is also considered difficult terrain for creatures other than the nightmare haunt for the duration of its effect.",
 						"A creature that starts its turn in the area and is already {@condition restrained} by the tendrils must repeat the saving throw. On a failed save, it has the {@condition unconscious} condition and instead of the {@condition restrained} condition caused by the tendrils. On a successful save, the effect ends on the creature. An {@condition unconscious} creature remains asleep until it is no longer in the area with tendrils, takes any damage, or is targeted by a {@spell remove curse} spell or similar magic."
 					]
 				}
@@ -2062,7 +2062,7 @@
 				"nature": "+1"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 11,
 			"languages": [
@@ -2110,13 +2110,13 @@
 				{
 					"name": "Club",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}15 ({@damage 2d10 + 4}) bludgeoning damage."
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 5|ft.}, one target. {@h}15 ({@damage 2d10 + 4}) bludgeoning damage."
 					]
 				},
 				{
 					"name": "Rat-Tail Whip",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 10 ft., one target. {@h}13 ({@damage 2d8 + 4}) slashing damage, and if the target is Large or smaller, it is pulled 5 feet toward the ogre."
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 10|ft.}, one target. {@h}13 ({@damage 2d8 + 4}) slashing damage, and if the target is Large or smaller, it is pulled {@quantity 5|feet} toward the ogre."
 					]
 				}
 			],
@@ -2124,7 +2124,7 @@
 				{
 					"name": "Call Rats (1/Day)",
 					"entries": [
-						"The ogre magically calls {@dice 1d4} giant rats. Each rat appears in an unoccupied space within 30 feet of the ogre that the ogre can see. The rats act as the ogre's allies, obey its spoken commands, and take their turns immediately after the ogre's turn on the same initiative count. The rats remain for 1 hour, until the ogre dies, or until the ogre dismisses them as a bonus action."
+						"The ogre magically calls {@dice 1d4} giant rats. Each rat appears in an unoccupied space within {@quantity 30|feet} of the ogre that the ogre can see. The rats act as the ogre's allies, obey its spoken commands, and take their turns immediately after the ogre's turn on the same initiative count. The rats remain for 1 hour, until the ogre dies, or until the ogre dismisses them as a bonus action."
 					]
 				}
 			],
@@ -2189,7 +2189,7 @@
 			"speed": {
 				"walk": {
 					"number": 30,
-					"condition": "(in elf form; 40 ft. in fox and hybrid form)"
+					"condition": "(in elf form; {@quantity 40|ft.} in fox and hybrid form)"
 				}
 			},
 			"str": 16,
@@ -2204,7 +2204,7 @@
 				"survival": "+3"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 15,
 			"languages": [
@@ -2222,19 +2222,19 @@
 				{
 					"name": "Bite (Fox or Hybrid Form Only)",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}8 ({@damage 1d10 + 3}) piercing damage. If the werefox moved at least 20 feet straight toward the target immediately before the hit and the target is a Medium or smaller creature, the target must succeed on a {@dc 13} Strength saving throw or have the {@condition prone} condition."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}8 ({@damage 1d10 + 3}) piercing damage. If the werefox moved at least {@quantity 20|feet} straight toward the target immediately before the hit and the target is a Medium or smaller creature, the target must succeed on a {@dc 13} Strength saving throw or have the {@condition prone} condition."
 					]
 				},
 				{
 					"name": "Lance (Elf or Hybrid Form Only)",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 10 ft., one target. {@h}9 ({@damage 1d12 + 3}) piercing damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 10|ft.}, one target. {@h}9 ({@damage 1d12 + 3}) piercing damage."
 					]
 				},
 				{
 					"name": "Entangling Arrow (Elf or Hybrid Form Only)",
 					"entries": [
-						"{@atk rw} {@hit 5} to hit, range 150/600 ft., one target. {@h}10 ({@damage 2d6 + 3}) piercing damage, and the target must succeed on a {@dc 11} Dexterity saving throw or have the {@condition restrained} condition until the start of the werefox's next turn."
+						"{@atk rw} {@hit 5} to hit, range {@quantity 150/600|ft.}, one target. {@h}10 ({@damage 2d6 + 3}) piercing damage, and the target must succeed on a {@dc 11} Dexterity saving throw or have the {@condition restrained} condition until the start of the werefox's next turn."
 					]
 				}
 			],
@@ -2326,7 +2326,7 @@
 				"stealth": "+3"
 			},
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 15,
 			"immune": [
@@ -2337,7 +2337,7 @@
 			],
 			"languages": [
 				"Infernal",
-				"telepathy 30 ft."
+				"telepathy {@quantity 30|ft.}"
 			],
 			"cr": "2",
 			"trait": [
@@ -2352,13 +2352,13 @@
 				{
 					"name": "Rancid Bite",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}8 ({@damage 1d8 + 4}) piercing damage plus 7 ({@damage 2d6}) acid damage. If the target is a creature, it must succeed on a {@dc 12} Constitution saving throw or have the {@condition poisoned} condition until the start of the sewer king's next turn."
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 5|ft.}, one target. {@h}8 ({@damage 1d8 + 4}) piercing damage plus 7 ({@damage 2d6}) acid damage. If the target is a creature, it must succeed on a {@dc 12} Constitution saving throw or have the {@condition poisoned} condition until the start of the sewer king's next turn."
 					]
 				},
 				{
 					"name": "Summon Swarm (1/Day)",
 					"entries": [
-						"The sewer king chitters and summons a swarm of rats to its aid. The swarm appears in an unoccupied space within 30 feet of the sewer king that the sewer king can see. It acts as the sewer king's ally, obeys the sewer king's commands, and takes its turn immediately after the sewer king's. The swarm remains until it dies, the sewer king dies, or until the sewer king dismisses it as an action."
+						"The sewer king chitters and summons a swarm of rats to its aid. The swarm appears in an unoccupied space within {@quantity 30|feet} of the sewer king that the sewer king can see. It acts as the sewer king's ally, obeys the sewer king's commands, and takes its turn immediately after the sewer king's. The swarm remains until it dies, the sewer king dies, or until the sewer king dismisses it as an action."
 					]
 				}
 			],
@@ -2427,7 +2427,7 @@
 				"perception": "+11"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 21,
 			"conditionImmune": [
@@ -2476,7 +2476,7 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 10 ft., one target. {@h}14 ({@damage 2d8 + 5}) piercing damage."
+						"{@atk mw} {@hit 9} to hit, reach {@quantity 10|ft.}, one target. {@h}14 ({@damage 2d8 + 5}) piercing damage."
 					]
 				},
 				{
@@ -2548,7 +2548,7 @@
 				"perception": "+5"
 			},
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 15,
 			"resist": [
@@ -2589,20 +2589,20 @@
 				{
 					"name": "Hooves",
 					"entries": [
-						"{@atk mw} {@hit 10} to hit, reach 10 ft., one target. {@h}16 ({@damage 3d6 + 6}) bludgeoning damage plus 28 ({@damage 8d6}) necrotic damage. If the target is a Medium or smaller creature, it must succeed on a {@dc 18} Strength saving throw or have the {@condition prone} condition."
+						"{@atk mw} {@hit 10} to hit, reach {@quantity 10|ft.}, one target. {@h}16 ({@damage 3d6 + 6}) bludgeoning damage plus 28 ({@damage 8d6}) necrotic damage. If the target is a Medium or smaller creature, it must succeed on a {@dc 18} Strength saving throw or have the {@condition prone} condition."
 					]
 				},
 				{
 					"name": "Mournful Keening {@recharge}",
 					"entries": [
-						"The specter utters a keening wail, calling to those close to death. Each non-Undead creature within 120 feet of the specter must make a {@dc 15} Constitution saving throw. On a failure, the creature hears the wail and is marked for death.",
+						"The specter utters a keening wail, calling to those close to death. Each non-Undead creature within {@quantity 120|feet} of the specter must make a {@dc 15} Constitution saving throw. On a failure, the creature hears the wail and is marked for death.",
 						"A creature marked for death can't regain hit points, has disadvantage on death saving throws, and all attack rolls against it are made with advantage. This effect lasts for 1 minute or until the creature is targeted by a {@spell remove curse} spell or similar magic."
 					]
 				},
 				{
 					"name": "Reaping Scythe",
 					"entries": [
-						"{@atk mw} {@hit 10} to hit, reach 10 ft., one target. {@h}12 ({@damage 1d12 + 6}) slashing damage plus 28 ({@damage 8d6}) necrotic damage. If the target is a creature, it must succeed on a {@dc 15} Constitution saving throw or gain a level of {@condition exhaustion}."
+						"{@atk mw} {@hit 10} to hit, reach {@quantity 10|ft.}, one target. {@h}12 ({@damage 1d12 + 6}) slashing damage plus 28 ({@damage 8d6}) necrotic damage. If the target is a creature, it must succeed on a {@dc 15} Constitution saving throw or gain a level of {@condition exhaustion}."
 					]
 				}
 			],
@@ -2669,7 +2669,7 @@
 			"wis": 8,
 			"cha": 12,
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 9,
 			"immune": [
@@ -2688,7 +2688,7 @@
 				{
 					"name": "Caramelization",
 					"entries": [
-						"If the horror takes fire damage, it releases a sweet, mesmerizing scent. Each creature within 30 feet of the horror must succeed on a {@dc 11} Wisdom saving throw or have the {@condition charmed} condition. A {@condition charmed} creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+						"If the horror takes fire damage, it releases a sweet, mesmerizing scent. Each creature within {@quantity 30|feet} of the horror must succeed on a {@dc 11} Wisdom saving throw or have the {@condition charmed} condition. A {@condition charmed} creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
 					]
 				},
 				{
@@ -2708,13 +2708,13 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}11 ({@damage 2d6 + 4}) piercing damage plus 10 ({@damage 3d6}) acid damage."
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 5|ft.}, one target. {@h}11 ({@damage 2d6 + 4}) piercing damage plus 10 ({@damage 3d6}) acid damage."
 					]
 				},
 				{
 					"name": "Candy Cane",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 10 ft., one target. {@h}8 ({@damage 1d8 + 4}) bludgeoning damage. If the target is a Large or smaller creature, the horror can choose to deal no damage; instead, the target has the {@condition prone} condition, and the horror can pull the target up to 5 feet toward itself."
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 10|ft.}, one target. {@h}8 ({@damage 1d8 + 4}) bludgeoning damage. If the target is a Large or smaller creature, the horror can choose to deal no damage; instead, the target has the {@condition prone} condition, and the horror can pull the target up to {@quantity 5|feet} toward itself."
 					]
 				}
 			],
@@ -2816,13 +2816,13 @@
 				{
 					"name": "Lightning Antlers",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 15 ft., one target. {@h}16 ({@damage 2d10 + 5}) lightning damage. If the target is a creature, it must succeed on a {@dc 16} Constitution saving throw or have the {@condition stunned} condition until the start of the hart's next turn."
+						"{@atk mw} {@hit 9} to hit, reach {@quantity 15|ft.}, one target. {@h}16 ({@damage 2d10 + 5}) lightning damage. If the target is a creature, it must succeed on a {@dc 16} Constitution saving throw or have the {@condition stunned} condition until the start of the hart's next turn."
 					]
 				},
 				{
 					"name": "Thunder Hooves",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}14 ({@damage 2d8 + 5}) thunder damage."
+						"{@atk mw} {@hit 9} to hit, reach {@quantity 5|ft.}, one target. {@h}14 ({@damage 2d8 + 5}) thunder damage."
 					]
 				}
 			],
@@ -2833,13 +2833,13 @@
 				{
 					"name": "Entangling Growth",
 					"entries": [
-						"Immediately after a creature the hart can see within 120 feet of itself hits it with an attack roll, the hart reduces the damage to itself by half. The attacker must immediately make a {@dc 16} Strength saving throw as beanstalks coil around it in its space. On a failed save, the creature has the {@condition grappled} condition (escape {@dc 16}) and has the {@condition restrained} condition as long as it is {@condition grappled}. The beanstalks vanish after 1 minute, if the hart has the {@condition incapacitated} condition, or when the hart dies."
+						"Immediately after a creature the hart can see within {@quantity 120|feet} of itself hits it with an attack roll, the hart reduces the damage to itself by half. The attacker must immediately make a {@dc 16} Strength saving throw as beanstalks coil around it in its space. On a failed save, the creature has the {@condition grappled} condition (escape {@dc 16}) and has the {@condition restrained} condition as long as it is {@condition grappled}. The beanstalks vanish after 1 minute, if the hart has the {@condition incapacitated} condition, or when the hart dies."
 					]
 				},
 				{
 					"name": "Lightning Call",
 					"entries": [
-						"In response to making a saving throw, the hart calls down a bolt of lightning that targets a creature it can see within 120 feet of itself. The target must make a {@dc 16} Dexterity saving throw, taking 19 ({@damage 3d12}) lightning damage on a failed save, or half as much damage on a successful one."
+						"In response to making a saving throw, the hart calls down a bolt of lightning that targets a creature it can see within {@quantity 120|feet} of itself. The target must make a {@dc 16} Dexterity saving throw, taking 19 ({@damage 3d12}) lightning damage on a failed save, or half as much damage on a successful one."
 					]
 				}
 			],
@@ -2916,7 +2916,7 @@
 				"perception": "+9"
 			},
 			"senses": [
-				"blindsight 30 ft."
+				"blindsight {@quantity 30|ft.}"
 			],
 			"passive": 19,
 			"resist": [
@@ -2966,7 +2966,7 @@
 				{
 					"name": "Tree Stride",
 					"entries": [
-						"Once on each of its turns, the treefolk can use 10 feet of its movement to step magically into one living tree within 5 feet of itself and emerge from a second living tree within 60 feet of itself that it can see, appearing in an unoccupied space within 5 feet of the second tree. Both trees must be at least as large as the treefolk."
+						"Once on each of its turns, the treefolk can use {@quantity 10|feet} of its movement to step magically into one living tree within {@quantity 5|feet} of itself and emerge from a second living tree within {@quantity 60|feet} of itself that it can see, appearing in an unoccupied space within {@quantity 5|feet} of the second tree. Both trees must be at least as large as the treefolk."
 					]
 				}
 			],
@@ -2980,13 +2980,13 @@
 				{
 					"name": "Crushing Vine",
 					"entries": [
-						"{@atk mw} {@hit 10} to hit, reach 10 ft., one target. {@h}25 ({@damage 3d12 + 6}) bludgeoning damage. If the target is a creature, it has the {@condition grappled} condition (escape {@dc 18}). While {@condition grappled}, the creature also has the {@condition restrained} condition. The treefolk can grapple up to six creatures this way."
+						"{@atk mw} {@hit 10} to hit, reach {@quantity 10|ft.}, one target. {@h}25 ({@damage 3d12 + 6}) bludgeoning damage. If the target is a creature, it has the {@condition grappled} condition (escape {@dc 18}). While {@condition grappled}, the creature also has the {@condition restrained} condition. The treefolk can grapple up to six creatures this way."
 					]
 				},
 				{
 					"name": "Nightshade Bolt",
 					"entries": [
-						"{@atk rs} {@hit 9} to hit, range 60 ft., one target. {@h}33 ({@damage 6d10}) poison damage."
+						"{@atk rs} {@hit 9} to hit, range {@quantity 60|ft.}, one target. {@h}33 ({@damage 6d10}) poison damage."
 					]
 				}
 			],
@@ -2994,7 +2994,7 @@
 				{
 					"name": "Oaken Boon",
 					"entries": [
-						"The treefolk blesses one creature other than itself that it can see within 60 feet of itself with the might and wisdom of the forest. While blessed in this way, a creature can use the treefolk's Tree Stride trait and gains 5 ({@dice 2d4}) temporary hit points at the start of each of its turns. This blessing lasts for 1 minute, until the treefolk has the {@condition incapacitated} condition, or until the treefolk uses this bonus action again."
+						"The treefolk blesses one creature other than itself that it can see within {@quantity 60|feet} of itself with the might and wisdom of the forest. While blessed in this way, a creature can use the treefolk's Tree Stride trait and gains 5 ({@dice 2d4}) temporary hit points at the start of each of its turns. This blessing lasts for 1 minute, until the treefolk has the {@condition incapacitated} condition, or until the treefolk uses this bonus action again."
 					]
 				}
 			],
@@ -3081,7 +3081,7 @@
 				"stealth": "+5"
 			},
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 18,
 			"resist": [
@@ -3133,13 +3133,13 @@
 				{
 					"name": "Rend",
 					"entries": [
-						"{@atk mw} {@hit 11} to hit, reach 10 ft., one target. {@h}16 ({@damage 3d6 + 6}) slashing damage."
+						"{@atk mw} {@hit 11} to hit, reach {@quantity 10|ft.}, one target. {@h}16 ({@damage 3d6 + 6}) slashing damage."
 					]
 				},
 				{
 					"name": "Malevolent Flare",
 					"entries": [
-						"The witchkite spits magical, green-tinged flame at one creature it can see within 60 feet of itself. The target must make a {@dc 17} Dexterity saving throw. On a failed save, the target takes 22 ({@damage 5d8}) fire damage and suffers one of the following effects of the witchkite's choice:",
+						"The witchkite spits magical, green-tinged flame at one creature it can see within {@quantity 60|feet} of itself. The target must make a {@dc 17} Dexterity saving throw. On a failed save, the target takes 22 ({@damage 5d8}) fire damage and suffers one of the following effects of the witchkite's choice:",
 						{
 							"type": "list",
 							"items": [
@@ -3158,7 +3158,7 @@
 				{
 					"name": "Enchanting Gaze",
 					"entries": [
-						"When a creature the witchkite can see moves within 10 feet of it, the witchkite emits an enchanting gaze at the creature. The creature must succeed on a {@dc 17} Wisdom saving throw or take 10 ({@damage 3d6}) psychic damage and have the {@condition charmed} condition until the end of its next turn."
+						"When a creature the witchkite can see moves within {@quantity 10|feet} of it, the witchkite emits an enchanting gaze at the creature. The creature must succeed on a {@dc 17} Wisdom saving throw or take 10 ({@damage 3d6}) psychic damage and have the {@condition charmed} condition until the end of its next turn."
 					]
 				},
 				{
@@ -3247,7 +3247,7 @@
 				"stealth": "+6"
 			},
 			"senses": [
-				"truesight 60 ft."
+				"truesight {@quantity 60|ft.}"
 			],
 			"passive": 17,
 			"languages": [
@@ -3264,7 +3264,7 @@
 				{
 					"name": "Smell Magic",
 					"entries": [
-						"The witchstalker can sense the presence and location of magic within 120 feet of itself. It also has advantage on attack rolls against creatures that have cast a spell since the end of the witchstalker's last turn."
+						"The witchstalker can sense the presence and location of magic within {@quantity 120|feet} of itself. It also has advantage on attack rolls against creatures that have cast a spell since the end of the witchstalker's last turn."
 					]
 				}
 			],
@@ -3278,13 +3278,13 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}14 ({@damage 3d6 + 4}) piercing damage. If the target is a Large or smaller creature, it must succeed on a {@dc 15} Strength saving throw or have the {@condition prone} condition."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}14 ({@damage 3d6 + 4}) piercing damage. If the target is a Large or smaller creature, it must succeed on a {@dc 15} Strength saving throw or have the {@condition prone} condition."
 					]
 				},
 				{
 					"name": "Mind-Wracking Howl {@recharge 5}",
 					"entries": [
-						"The witchstalker unleashes a terrible howl, and each creature within 30 feet of it that isn't a Monstrosity must make a {@dc 13} Wisdom saving throw. On a failed save, a creature takes 24 ({@damage 7d6}) psychic damage and has disadvantage on Constitution saving throws to maintain {@status concentration} on spells until the end of its next turn. On a successful save, a creature takes half as much damage only."
+						"The witchstalker unleashes a terrible howl, and each creature within {@quantity 30|feet} of it that isn't a Monstrosity must make a {@dc 13} Wisdom saving throw. On a failed save, a creature takes 24 ({@damage 7d6}) psychic damage and has disadvantage on Constitution saving throws to maintain {@status concentration} on spells until the end of its next turn. On a successful save, a creature takes half as much damage only."
 					]
 				}
 			],
@@ -3292,7 +3292,7 @@
 				{
 					"name": "Spell Stalk",
 					"entries": [
-						"Immediately after a creature within 120 feet of the witchstalker casts a spell, the witchstalker magically teleports to an unoccupied space within 5 feet of the creature and can make one Bite attack against the creature."
+						"Immediately after a creature within {@quantity 120|feet} of the witchstalker casts a spell, the witchstalker magically teleports to an unoccupied space within {@quantity 5|feet} of the creature and can make one Bite attack against the creature."
 					]
 				}
 			],

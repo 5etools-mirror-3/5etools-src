@@ -619,7 +619,7 @@
 									"name": "Birthplace",
 									"page": 62,
 									"entries": [
-										"After establishing your parentage, you can determine where you were born by using the Birthplace table. (Modify the result or roll again if you get a result that's inconsistent with what you know about your parents.) Once you have a result, roll percentile dice. On a roll of 00, a strange event coincided with your birth: the moon briefly turning red, all the milk within a mile spoiling, the water in the area freezing solid in midsummer, all the iron in the home rusting or turning to silver, or some other unusual event of your choice.",
+										"After establishing your parentage, you can determine where you were born by using the Birthplace table. (Modify the result or roll again if you get a result that's inconsistent with what you know about your parents.) Once you have a result, roll percentile dice. On a roll of 00, a strange event coincided with your birth: the moon briefly turning red, all the milk within {@quantity a|mile} spoiling, the water in the area freezing solid in midsummer, all the iron in the home rusting or turning to silver, or some other unusual event of your choice.",
 										{
 											"type": "table",
 											"caption": "Birthplace",
@@ -3264,14 +3264,14 @@
 					"name": "Falling",
 					"page": 77,
 					"entries": [
-						"Falling from a great height is a significant risk for adventurers and their foes. The rule given in the player's handbook is simple: at the end of a fall, you take {@dice 1d6} bludgeoning damage for every 10 feet you fell, to a maximum of {@dice 20d6}. You also land {@condition prone}, unless you somehow avoid taking damage from the fall. Here are two optional rules that expand on that simple rule.",
+						"Falling from a great height is a significant risk for adventurers and their foes. The rule given in the player's handbook is simple: at the end of a fall, you take {@dice 1d6} bludgeoning damage for every {@quantity 10|feet} you fell, to a maximum of {@dice 20d6}. You also land {@condition prone}, unless you somehow avoid taking damage from the fall. Here are two optional rules that expand on that simple rule.",
 						{
 							"type": "entries",
 							"name": "Rate of Falling",
 							"page": 77,
 							"entries": [
 								"The rule for falling assumes that a creature immediately drops the entire distance when it falls. But what if a creature is at a high altitude when it falls, perhaps on the back of a {@creature griffon} or on board an {@item airship}? Realistically, a fall from such a height can take more than a few seconds, extending past the end of the turn when the fall occurred. If you'd like high-altitude falls to be properly time-consuming, use the following optional rule.",
-								"When you fall from a great height, you instantly descend up to 500 feet. If you're still falling on your next turn, you descend up to 500 feet at the end of that turn. This process continues until the fall ends, either because you hit the ground or the fall is otherwise halted."
+								"When you fall from a great height, you instantly descend up to {@quantity 500|feet}. If you're still falling on your next turn, you descend up to {@quantity 500|feet} at the end of that turn. This process continues until the fall ends, either because you hit the ground or the fall is otherwise halted."
 							],
 							"id": "030"
 						},
@@ -3280,9 +3280,9 @@
 							"name": "Flying Creatures and Falling",
 							"page": 77,
 							"entries": [
-								"A flying creature in flight falls if it is knocked {@condition prone}, if its speed is reduced to 0 feet, or if it otherwise loses the ability to move, unless it can hover or it is being held aloft by magic, such as the {@spell fly} spell.",
-								"If you'd like a flying creature to have a better chance of surviving a fall than a non-flying creature does, use this rule: subtract the creature's current flying speed from the distance it fell before calculating falling damage. This rule is helpful to a flier that is knocked {@condition prone} but is still conscious and has a current flying speed that is greater than 0 feet. The rule is designed to simulate the creature flapping its wings furiously or taking similar measures to slow the velocity of its fall.",
-								"If you use the rule for rate of falling in the previous section, a flying creature descends 500 feet on the turn when it falls, just as other creatures do. But if that creature starts any of its later turns still falling and is {@condition prone}, it can halt the fall on its turn by spending half its flying speed to counter the {@condition prone} condition (as if it were standing up in midair)."
+								"A flying creature in flight falls if it is knocked {@condition prone}, if its speed is reduced to {@quantity 0|feet}, or if it otherwise loses the ability to move, unless it can hover or it is being held aloft by magic, such as the {@spell fly} spell.",
+								"If you'd like a flying creature to have a better chance of surviving a fall than a non-flying creature does, use this rule: subtract the creature's current flying speed from the distance it fell before calculating falling damage. This rule is helpful to a flier that is knocked {@condition prone} but is still conscious and has a current flying speed that is greater than {@quantity 0|feet}. The rule is designed to simulate the creature flapping its wings furiously or taking similar measures to slow the velocity of its fall.",
+								"If you use the rule for rate of falling in the previous section, a flying creature descends {@quantity 500|feet} on the turn when it falls, just as other creatures do. But if that creature starts any of its later turns still falling and is {@condition prone}, it can halt the fall on its turn by spending half its flying speed to counter the {@condition prone} condition (as if it were standing up in midair)."
 							],
 							"id": "031"
 						}
@@ -3304,7 +3304,7 @@
 							"page": 77,
 							"entries": [
 								"A creature that is naturally sleeping, as opposed to being in a magically or chemically induced sleep, wakes up if it takes any damage or if someone else uses an action to shake or slap the creature awake. A sudden loud noise-such as yelling, thunder, or a ringing bell-also awakens someone that is sleeping naturally.",
-								"Whispers don't disturb sleep, unless a sleeper's passive Wisdom ({@skill Perception}) score is 20 or higher and the whispers are within 10 feet of the sleeper. Speech at a normal volume awakens a sleeper if the environment is otherwise silent (no wind, birdsong, crickets, street sounds, or the like) and the sleeper has a passive Wisdom ({@skill Perception}) score of 15 or higher."
+								"Whispers don't disturb sleep, unless a sleeper's passive Wisdom ({@skill Perception}) score is 20 or higher and the whispers are within {@quantity 10|feet} of the sleeper. Speech at a normal volume awakens a sleeper if the environment is otherwise silent (no wind, birdsong, crickets, street sounds, or the like) and the sleeper has a passive Wisdom ({@skill Perception}) score of 15 or higher."
 							],
 							"id": "033"
 						},
@@ -3516,7 +3516,7 @@
 											"name": "Making a Template",
 											"page": 86,
 											"entries": [
-												"Making a template is simple. Get a piece of paper or card stock, and cut it in the shape of the area of effect you're using. Every 5 feet of the area equals 1 inch of the template's size. For example, the 20-foot-radius sphere of the fireball spell, which has a 40-foot diameter, would translate into a circular template with an 8-inch diameter."
+												"Making a template is simple. Get a piece of paper or card stock, and cut it in the shape of the area of effect you're using. Every {@quantity 5|feet} of the area equals {@quantity 1|inch} of the template's size. For example, the {@quantity 20|-foot}-radius sphere of the fireball spell, which has a {@quantity 40|-foot} diameter, would translate into a circular template with an {@quantity 8|-inch} diameter."
 											],
 											"id": "048"
 										},
@@ -3556,7 +3556,7 @@
 											"name": "Using Tokens",
 											"page": 87,
 											"entries": [
-												"Every 5-foot square of an area of effect becomes a die or other token that you place on the grid. Each token goes inside a square, not at an intersection of lines. If an area's token is in a square, that square is included in the area of effect. It's that simple.",
+												"Every {@quantity 5|-foot} square of an area of effect becomes a die or other token that you place on the grid. Each token goes inside a square, not at an intersection of lines. If an area's token is in a square, that square is included in the area of effect. It's that simple.",
 												"Diagrams 2.3 through 2.6 show this method in action, using dice as the tokens.",
 												{
 													"type": "image",
@@ -3584,7 +3584,7 @@
 											"name": "Circles",
 											"page": 87,
 											"entries": [
-												"This method depicts everything using squares, and a circular area of effect becomes square in it, whether the area is a sphere, cylinder, or radius. For instance, the 10-foot radius of flame strike, which has a diameter of 20 feet, is expressed as a square that is 20 feet on a side, as shown in diagram 2.3. Diagram 2.4 shows that area with {@quickref Cover||3||total cover} inside it."
+												"This method depicts everything using squares, and a circular area of effect becomes square in it, whether the area is a sphere, cylinder, or radius. For instance, the {@quantity 10|-foot} radius of flame strike, which has a diameter of {@quantity 20|feet}, is expressed as a square that is {@quantity 20|feet} on a side, as shown in diagram 2.3. Diagram 2.4 shows that area with {@quickref Cover||3||total cover} inside it."
 											],
 											"id": "04c"
 										},
@@ -3593,7 +3593,7 @@
 											"name": "Cones",
 											"page": 87,
 											"entries": [
-												"A cone is represented by rows of tokens on the grid, extending from the cone's point of origin. In the rows, the squares are adjoining side by side or corner to corner, as shown in diagram 2.5. To determine the number of rows a cone contains, divide its length by 5. For example, a 30-foot cone contains six rows.",
+												"A cone is represented by rows of tokens on the grid, extending from the cone's point of origin. In the rows, the squares are adjoining side by side or corner to corner, as shown in diagram 2.5. To determine the number of rows a cone contains, divide its length by 5. For example, a {@quantity 30|-foot} cone contains six rows.",
 												"Here's how to create the rows. Starting with a square adjacent to the cone's point of origin, place one token. The square can be orthogonally or diagonally adjacent to the point of origin. In every row beyond that one, place as many tokens as you placed in the previous row, plus one more token. Place this row's tokens so that their squares each share a side with a square in the previous row. If the cone is orthogonally adjacent to the point of origin, you'll have one more token to place in the row; place it on one end or the other of the row you just created (you don't have to pick the side chosen in diagram 2.5). Keep placing tokens in this way until you've created all of the cone's rows."
 											],
 											"id": "04d"
@@ -4786,7 +4786,7 @@
 											"name": "Delay",
 											"page": 115,
 											"entries": [
-												"Some traps are designed to slow down enemies, giving a dungeon's inhabitants time to mount a defense or flee. The hidden pit is a classic example of this kind of trap. A 10-foot-deep pit usually deals little damage and is easy to escape, but it serves its purpose by impeding intruders. Other examples of delaying traps include collapsing walls, a portcullis that drops from the ceiling, and a locking mechanism that shuts and bars a door.",
+												"Some traps are designed to slow down enemies, giving a dungeon's inhabitants time to mount a defense or flee. The hidden pit is a classic example of this kind of trap. A {@quantity 10|-foot}-deep pit usually deals little damage and is easy to escape, but it serves its purpose by impeding intruders. Other examples of delaying traps include collapsing walls, a portcullis that drops from the ceiling, and a locking mechanism that shuts and bars a door.",
 												"If a delaying trap has moving parts that directly threaten characters when they operate, the characters are usually required to make Dexterity saving throws to avoid harm."
 											],
 											"id": "06a"
@@ -5197,7 +5197,7 @@
 									"name": "Map",
 									"page": 121,
 									"entries": [
-										"A complex trap has multiple parts, typically relies on the characters' positions to resolve some of its effects, and can bring several effects to bear in each round. The traps are called complex for a reason! To begin the design process, consider drawing a map of the area to be affected by the trap on graph paper, using a scale of 5 feet per square. This level of detail allows you to develop a clear idea of what the trap can do and how each of its parts interact. Your map is the starting point and context for the rest of the design process.",
+										"A complex trap has multiple parts, typically relies on the characters' positions to resolve some of its effects, and can bring several effects to bear in each round. The traps are called complex for a reason! To begin the design process, consider drawing a map of the area to be affected by the trap on graph paper, using a scale of {@quantity 5|feet} per square. This level of detail allows you to develop a clear idea of what the trap can do and how each of its parts interact. Your map is the starting point and context for the rest of the design process.",
 										"Don't limit yourself to one room. Look at the passages and rooms around the area of the trap and think about the role they can play. The trap might cause doors to lock and barriers to fall into place to prevent escape. It could cause darts to fire from the walls in one area, forcing characters to enter rooms where other devices trigger and threaten them.",
 										"Consider how terrain and furniture can add to the trap's danger. A chasm or a pit might create a buffer that allows a trap to send bolts of magic at the characters, while making it difficult or even impossible for them to reach the runes they must deface to foil that attack.",
 										"Think of your map like a script. Where do the characters want to go? What does the trap protect? How can the characters get there? What are their likely escape routes? Answering these questions tells you where the trap's various elements should be placed."

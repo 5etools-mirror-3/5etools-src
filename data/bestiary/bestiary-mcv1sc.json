@@ -48,8 +48,8 @@
 				"stealth": "+5"
 			},
 			"senses": [
-				"blindsight 120 ft. while the spider's eyes are closed",
-				"darkvision 120 ft."
+				"blindsight {@quantity 120|ft.} while the spider's eyes are closed",
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 21,
 			"cr": "15",
@@ -83,19 +83,19 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 13} to hit, reach 10 ft., one target. {@h}21 ({@damage 3d8 + 8}) piercing damage plus 10 ({@damage 3d6}) acid damage."
+						"{@atk mw} {@hit 13} to hit, reach {@quantity 10|ft.}, one target. {@h}21 ({@damage 3d8 + 8}) piercing damage plus 10 ({@damage 3d6}) acid damage."
 					]
 				},
 				{
 					"name": "Web Strand",
 					"entries": [
-						"{@atk rw} {@hit 13} to hit, reach 120 ft., one creature. {@h}The target is {@condition grappled} (escape {@dc 18}). The web strand can be attacked and destroyed (AC 12; 20 hit points; vulnerability to fire damage; immunity to bludgeoning, poison, and psychic damage). The spider can grapple up to six creatures at a time using its web strands."
+						"{@atk rw} {@hit 13} to hit, reach {@quantity 120|ft.}, one creature. {@h}The target is {@condition grappled} (escape {@dc 18}). The web strand can be attacked and destroyed (AC 12; 20 hit points; vulnerability to fire damage; immunity to bludgeoning, poison, and psychic damage). The spider can grapple up to six creatures at a time using its web strands."
 					]
 				},
 				{
 					"name": "Reel",
 					"entries": [
-						"The spider pulls each creature {@condition grappled} by it up to 60 feet straight toward itself."
+						"The spider pulls each creature {@condition grappled} by it up to {@quantity 60|feet} straight toward itself."
 					]
 				}
 			],
@@ -103,7 +103,7 @@
 				{
 					"name": "Snare Ship (1/Day)",
 					"entries": [
-						"The spider weaves a magical web around a spelljamming ship it can see within 120 feet of itself. The web lasts for 1 minute and suppresses the magic of any spelljamming helm aboard the ship. Decks and other surfaces of the ship that aren't enclosed become difficult terrain until the effect ends. The web is impervious to damage but is destroyed by a successful casting of {@spell dispel magic} ({@dc 18})."
+						"The spider weaves a magical web around a spelljamming ship it can see within {@quantity 120|feet} of itself. The web lasts for 1 minute and suppresses the magic of any spelljamming helm aboard the ship. Decks and other surfaces of the ship that aren't enclosed become difficult terrain until the effect ends. The web is impervious to damage but is destroyed by a successful casting of {@spell dispel magic} ({@dc 18})."
 					]
 				}
 			],
@@ -178,7 +178,7 @@
 				"perception": "+6"
 			},
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 16,
 			"immune": [
@@ -224,25 +224,25 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d8 + 2}) piercing damage."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}6 ({@damage 1d8 + 2}) piercing damage."
 					]
 				},
 				{
 					"name": "Rotating Saw",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d4 + 2}) slashing damage."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}4 ({@damage 1d4 + 2}) slashing damage."
 					]
 				},
 				{
 					"name": "Lightning Jolt",
 					"entries": [
-						"{@atk rs} {@hit 4} to hit, range 120 ft., one target. {@h}7 ({@damage 1d10 + 2}) lightning damage."
+						"{@atk rs} {@hit 4} to hit, range {@quantity 120|ft.}, one target. {@h}7 ({@damage 1d10 + 2}) lightning damage."
 					]
 				},
 				{
 					"name": "Spelljamming Helm Interface",
 					"entries": [
-						"The horror attaches to a spelljamming helm it can see within 5 feet of itself and attunes to the helm instantly. If another creature is already attuned to the helm, that creature's attunement to the helm ends when the horror's attunement begins. The horror can operate the helm even though it isn't a spellcaster. The horror can detach from the helm as a bonus action, which ends its attunement to the helm."
+						"The horror attaches to a spelljamming helm it can see within {@quantity 5|feet} of itself and attunes to the helm instantly. If another creature is already attuned to the helm, that creature's attunement to the helm ends when the horror's attunement begins. The horror can operate the helm even though it isn't a spellcaster. The horror can detach from the helm as a bonus action, which ends its attunement to the helm."
 					]
 				}
 			],
@@ -335,7 +335,7 @@
 			"languages": [
 				"Common",
 				"Deep Speech",
-				"telepathy 120 ft."
+				"telepathy {@quantity 120|ft.}"
 			],
 			"cr": "15",
 			"spellcasting": [
@@ -396,13 +396,13 @@
 				{
 					"name": "Parasitic Tentacle",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 10 ft., one creature. {@h}25 ({@damage 6d6 + 4}) piercing damage plus 25 ({@damage 6d6 + 4}) necrotic damage. The target must succeed on a {@dc 17} Constitution saving throw or be {@condition poisoned}. The {@condition poisoned} target can repeat the save at the end of each of its turns, ending the effect on itself on a success. The third time the target fails the save, the target dies and dissolves into a {@creature gibbering mouther} that obeys the lich and uses the target's initiative."
+						"{@atk mw} {@hit 9} to hit, reach {@quantity 10|ft.}, one creature. {@h}25 ({@damage 6d6 + 4}) piercing damage plus 25 ({@damage 6d6 + 4}) necrotic damage. The target must succeed on a {@dc 17} Constitution saving throw or be {@condition poisoned}. The {@condition poisoned} target can repeat the save at the end of each of its turns, ending the effect on itself on a success. The third time the target fails the save, the target dies and dissolves into a {@creature gibbering mouther} that obeys the lich and uses the target's initiative."
 					]
 				},
 				{
 					"name": "Psychic Whisper",
 					"entries": [
-						"The lich targets one creature it can see within 120 feet of itself. The target must succeed on a {@dc 17} Wisdom saving throw or take 25 ({@damage 6d6 + 4}) psychic damage and be {@condition stunned} until the end of the lich's next turn as incomprehensible whispers fill the target's mind."
+						"The lich targets one creature it can see within {@quantity 120|feet} of itself. The target must succeed on a {@dc 17} Wisdom saving throw or take 25 ({@damage 6d6 + 4}) psychic damage and be {@condition stunned} until the end of the lich's next turn as incomprehensible whispers fill the target's mind."
 					]
 				}
 			],
@@ -410,7 +410,7 @@
 				{
 					"name": "Far Realm Step",
 					"entries": [
-						"Immediately after taking damage, the lich, along with any equipment it is wearing or carrying, magically teleports up to 60 feet to an unoccupied space it can see."
+						"Immediately after taking damage, the lich, along with any equipment it is wearing or carrying, magically teleports up to {@quantity 60|feet} to an unoccupied space it can see."
 					]
 				}
 			],
@@ -508,7 +508,7 @@
 				"perception": "+8"
 			},
 			"senses": [
-				"blindsight 360 ft. (blind beyond this radius)"
+				"blindsight {@quantity 360|ft.} (blind beyond this radius)"
 			],
 			"passive": 18,
 			"conditionImmune": [
@@ -536,7 +536,7 @@
 				{
 					"name": "Scrying Focus",
 					"entries": [
-						"A spellcaster can use the fractine as a substitute focus when casting the {@spell scrying} spell or similar magic, provided the spellcaster and the fractine are within 5 feet of each other."
+						"A spellcaster can use the fractine as a substitute focus when casting the {@spell scrying} spell or similar magic, provided the spellcaster and the fractine are within {@quantity 5|feet} of each other."
 					]
 				},
 				{
@@ -556,7 +556,7 @@
 				{
 					"name": "Extradimensional Touch",
 					"entries": [
-						"{@atk ms} {@hit 5} to hit, reach 5 ft., one target. {@h}24 ({@damage 8d6}) force damage."
+						"{@atk ms} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}24 ({@damage 8d6}) force damage."
 					]
 				}
 			],
@@ -574,7 +574,7 @@
 				{
 					"name": "Mirrored Damage",
 					"entries": [
-						"In response to being damaged by a creature it can see within 120 feet of itself, the fractine forces that creature to make a {@dc 16} Constitution saving throw. On a failed save, the creature takes 24 ({@damage 8d6}) force damage. On a successful save, the creature takes half as much damage."
+						"In response to being damaged by a creature it can see within {@quantity 120|feet} of itself, the fractine forces that creature to make a {@dc 16} Constitution saving throw. On a failed save, the creature takes 24 ({@damage 8d6}) force damage. On a successful save, the creature takes half as much damage."
 					]
 				},
 				{
@@ -640,7 +640,7 @@
 			"wis": 6,
 			"cha": 1,
 			"senses": [
-				"blindsight 10 ft. (blind beyond this radius)"
+				"blindsight {@quantity 10|ft.} (blind beyond this radius)"
 			],
 			"passive": 8,
 			"vulnerable": [
@@ -680,13 +680,13 @@
 				{
 					"name": "Branch",
 					"entries": [
-						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d4 + 1}) slashing damage."
+						"{@atk mw} {@hit 3} to hit, reach {@quantity 5|ft.}, one target. {@h}3 ({@damage 1d4 + 1}) slashing damage."
 					]
 				},
 				{
 					"name": "Wrap",
 					"entries": [
-						"The gadabout enters the space of a willing Medium or Small creature within 5 feet of itself and gently wraps its branches around the target. The target is {@condition grappled} (escape {@dc 0}). Any attempt by the target to escape the grapple causes the gadabout to use its reaction to move into the nearest unoccupied space. While {@condition grappled} by the gadabout, the target determines where the gadabout moves on the gadabout's turns and accompanies the gadabout wherever it goes."
+						"The gadabout enters the space of a willing Medium or Small creature within {@quantity 5|feet} of itself and gently wraps its branches around the target. The target is {@condition grappled} (escape {@dc 0}). Any attempt by the target to escape the grapple causes the gadabout to use its reaction to move into the nearest unoccupied space. While {@condition grappled} by the gadabout, the target determines where the gadabout moves on the gadabout's turns and accompanies the gadabout wherever it goes."
 					]
 				}
 			],
@@ -750,7 +750,7 @@
 				"perception": "+6"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 16,
 			"vulnerable": [
@@ -764,7 +764,7 @@
 				{
 					"name": "Burst",
 					"entries": [
-						"The goon balloon bursts when it drops to 0 hit points, releasing noxious gas in a 10-foot-radius sphere centered on itself. Creatures in that area must succeed on a {@dc 12} Constitution saving throw or be {@condition poisoned} for 1 minute. A {@condition poisoned} creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+						"The goon balloon bursts when it drops to 0 hit points, releasing noxious gas in a {@quantity 10|-foot}-radius sphere centered on itself. Creatures in that area must succeed on a {@dc 12} Constitution saving throw or be {@condition poisoned} for 1 minute. A {@condition poisoned} creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
 					]
 				},
 				{
@@ -784,13 +784,13 @@
 				{
 					"name": "Claw",
 					"entries": [
-						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d6}) slashing damage."
+						"{@atk mw} {@hit 2} to hit, reach {@quantity 5|ft.}, one target. {@h}3 ({@damage 1d6}) slashing damage."
 					]
 				},
 				{
 					"name": "Scintillating Eye",
 					"entries": [
-						"Magical, kaleidoscopic light emanates from one of the goon balloon's eyes as the goon balloon targets one creature it can see within 30 feet of itself. The target must make a {@dc 12} Wisdom saving throw, taking 6 ({@damage 1d12}) psychic damage on a failed save, or half as much damage on a successful one."
+						"Magical, kaleidoscopic light emanates from one of the goon balloon's eyes as the goon balloon targets one creature it can see within {@quantity 30|feet} of itself. The target must make a {@dc 12} Wisdom saving throw, taking 6 ({@damage 1d12}) psychic damage on a failed save, or half as much damage on a successful one."
 					]
 				}
 			],
@@ -798,7 +798,7 @@
 				{
 					"name": "Float",
 					"entries": [
-						"The goon balloon moves up to 20 feet vertically in one direction without provoking opportunity attacks. If it ends this movement suspended in the air, it hovers in place. It can't be knocked {@condition prone} while airborne."
+						"The goon balloon moves up to {@quantity 20|feet} vertically in one direction without provoking opportunity attacks. If it ends this movement suspended in the air, it hovers in place. It can't be knocked {@condition prone} while airborne."
 					]
 				}
 			],
@@ -870,7 +870,7 @@
 			"wis": 12,
 			"cha": 15,
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 11,
 			"languages": [
@@ -901,19 +901,19 @@
 				{
 					"name": "Claw",
 					"entries": [
-						"{@atk mw} {@hit 13} to hit, reach 15 ft., one target. {@h}14 ({@damage 1d12 + 8}) slashing damage, and if the target is a creature, it must succeed on a {@dc 21} Strength saving throw or be knocked {@condition prone}."
+						"{@atk mw} {@hit 13} to hit, reach {@quantity 15|ft.}, one target. {@h}14 ({@damage 1d12 + 8}) slashing damage, and if the target is a creature, it must succeed on a {@dc 21} Strength saving throw or be knocked {@condition prone}."
 					]
 				},
 				{
 					"name": "Tusk",
 					"entries": [
-						"{@atk mw} {@hit 13} to hit, reach 15 ft., one target. {@h}17 ({@damage 2d8 + 8}) slashing damage."
+						"{@atk mw} {@hit 13} to hit, reach {@quantity 15|ft.}, one target. {@h}17 ({@damage 2d8 + 8}) slashing damage."
 					]
 				},
 				{
 					"name": "Disintegration Gaze {@recharge 5}",
 					"entries": [
-						"The beast targets one creature it can see within 60 feet of itself. The target must make a {@dc 18} Constitution saving throw, taking 70 ({@damage 10d6 + 40}) force damage on a failed save, or half as much damage on a successful one. If this magical effect reduces the target to 0 hit points, the target is disintegrated and leaves nothing behind, except a pile of ashes plus whatever equipment it was wearing or carrying."
+						"The beast targets one creature it can see within {@quantity 60|feet} of itself. The target must make a {@dc 18} Constitution saving throw, taking 70 ({@damage 10d6 + 40}) force damage on a failed save, or half as much damage on a successful one. If this magical effect reduces the target to 0 hit points, the target is disintegrated and leaves nothing behind, except a pile of ashes plus whatever equipment it was wearing or carrying."
 					]
 				}
 			],
@@ -921,7 +921,7 @@
 				{
 					"name": "Teleport (2/Day)",
 					"entries": [
-						"The beast magically teleports, along with any equipment it is wearing or carrying, up to 120 feet to an unoccupied space it can see."
+						"The beast magically teleports, along with any equipment it is wearing or carrying, up to {@quantity 120|feet} to an unoccupied space it can see."
 					]
 				}
 			],
@@ -941,7 +941,7 @@
 				{
 					"name": "Frightful Howl (Costs 2 Actions)",
 					"entries": [
-						"The beast howls as it exhales a cloud of magical fear gas in a 120-foot cone. Any creature in that area must succeed on a {@dc 18} Wisdom saving throw or be {@condition frightened} of the beast for 1 minute. A creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+						"The beast howls as it exhales a cloud of magical fear gas in a {@quantity 120|-foot} cone. Any creature in that area must succeed on a {@dc 18} Wisdom saving throw or be {@condition frightened} of the beast for 1 minute. A creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
 					]
 				}
 			],
@@ -1028,7 +1028,7 @@
 				"stealth": "+4"
 			},
 			"senses": [
-				"blindsight 60 ft. (blind beyond this radius)"
+				"blindsight {@quantity 60|ft.} (blind beyond this radius)"
 			],
 			"passive": 10,
 			"resist": [
@@ -1045,7 +1045,7 @@
 				"poisoned"
 			],
 			"languages": [
-				"telepathy 30 ft."
+				"telepathy {@quantity 30|ft.}"
 			],
 			"cr": "3",
 			"trait": [
@@ -1060,7 +1060,7 @@
 				{
 					"name": "Cling",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one creature. {@h}12 ({@damage 3d6 + 2}) necrotic damage, and the parasite attaches to the target. While attached, the parasite can't make Cling attacks. The parasite can detach itself by spending 5 feet of its movement. As an action, a creature within reach of the parasite can try to detach it, doing so with a successful {@dc 14} Strength check."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one creature. {@h}12 ({@damage 3d6 + 2}) necrotic damage, and the parasite attaches to the target. While attached, the parasite can't make Cling attacks. The parasite can detach itself by spending {@quantity 5|feet} of its movement. As an action, a creature within reach of the parasite can try to detach it, doing so with a successful {@dc 14} Strength check."
 					]
 				},
 				{
@@ -1145,7 +1145,7 @@
 			],
 			"languages": [
 				"Celestial",
-				"telepathy 120 ft."
+				"telepathy {@quantity 120|ft.}"
 			],
 			"cr": "2",
 			"trait": [
@@ -1160,7 +1160,7 @@
 				{
 					"name": "Horn",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d6 + 4}) piercing damage. If the star lancer moved at least 20 feet straight toward the target immediately before the hit, the target takes an extra 10 ({@damage 3d6}) piercing damage."
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 1d6 + 4}) piercing damage. If the star lancer moved at least {@quantity 20|feet} straight toward the target immediately before the hit, the target takes an extra 10 ({@damage 3d6}) piercing damage."
 					]
 				},
 				{
@@ -1228,7 +1228,7 @@
 			"wis": 10,
 			"cha": 3,
 			"senses": [
-				"blindsight 120 ft. (blind beyond this radius)"
+				"blindsight {@quantity 120|ft.} (blind beyond this radius)"
 			],
 			"passive": 10,
 			"resist": [
@@ -1283,13 +1283,13 @@
 				{
 					"name": "Root",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 20 ft., one target. {@h}12 ({@damage 2d6 + 5}) bludgeoning damage, and if the target is a creature, it is {@condition grappled} (escape {@dc 15}). The yggdrasti has four roots, each of which can grapple one target."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 20|ft.}, one target. {@h}12 ({@damage 2d6 + 5}) bludgeoning damage, and if the target is a creature, it is {@condition grappled} (escape {@dc 15}). The yggdrasti has four roots, each of which can grapple one target."
 					]
 				},
 				{
 					"name": "Lightning Discharge (3/Day)",
 					"entries": [
-						"The yggdrasti shoots lightning at one creature within 120 feet of itself. The target must make a {@dc 13} Dexterity saving throw, taking 31 ({@damage 7d8}) lightning damage on a failed save, or half as much damage on a successful one."
+						"The yggdrasti shoots lightning at one creature within {@quantity 120|feet} of itself. The target must make a {@dc 13} Dexterity saving throw, taking 31 ({@damage 7d8}) lightning damage on a failed save, or half as much damage on a successful one."
 					]
 				}
 			],

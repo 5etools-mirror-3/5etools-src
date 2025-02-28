@@ -41,7 +41,9 @@
 		"spellcheck:check-data": "echo \"This can take a few minutes.\" && npx cspell --no-progress --show-context --show-suggestions \"data/**/*.json\"",
 		"spellcheck:check-data-quick": "git diff --name-only | grep -P \"^data/[^.]+.json\" | npx cspell --no-progress --show-context --show-suggestions --file-list stdin",
 		"spellcheck:trust-data": "echo \"This can take a few minutes.\" && echo \"# new words on $(date)\" >> spellcheck/dnd-words.txt && npx cspell --words-only --unique \"./data/**/*.json\" | sort --ignore-case >> spellcheck/dnd-words.txt",
-		"prettier:css": "prettier scss/**/*.scss --log-level warn"
+		"prettier:css": "prettier scss/**/*.scss --log-level warn",
+		"tag:quantity": "node node/tag-jsons.js --quantity --inplace"
+
 	},
 	"repository": {
 		"type": "git",

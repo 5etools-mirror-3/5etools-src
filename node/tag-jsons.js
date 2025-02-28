@@ -16,6 +16,7 @@ const program = new Command()
 	.option("--bestiary-file [bestiaryFile]", `A linked bestiary JSON to use when producing named creature tags (e.g. "./data/my-file.json")`)
 	.option("--style-hint", `A hint for converters with multiple input style options`)
 	.option("--strict", `If only strict/caps taggers should be used`)
+	.option("--quantity", `If only quantity tagger should be used`)
 ;
 
 program.parse(process.argv);
@@ -34,6 +35,7 @@ async function main () {
 		bestiaryFile: params.bestiaryFile,
 		styleHint: params.styleHint,
 		strict: params.strict,
+		quantity: params.quantity,
 	});
 	teardown();
 	console.log("Run complete.");
