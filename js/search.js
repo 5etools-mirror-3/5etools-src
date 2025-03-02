@@ -1,4 +1,8 @@
 import {UtilsOmnisearch} from "./utils-omnisearch.js";
+import {OmnisearchConsts} from "./omnisearch/omnisearch-consts.js";
+import {OmnisearchState} from "./omnisearch/omnisearch-state.js";
+import {OmnisearchBacking} from "./omnisearch/omnisearch-backing.js";
+import {OmnisearchUtilsUi} from "./omnisearch/omnisearch-utils-ui.js";
 
 class SearchPage {
 	static async pInit () {
@@ -31,31 +35,21 @@ class SearchPage {
 
 	/* -------------------------------------------- */
 
-	static _render_$getBtnToggleFilter (
-		{
-			propOmnisearch,
-			fnAddHookOmnisearch,
-			fnDoToggleOmnisearch,
-			title,
-			text,
-		},
-	) {
-		const $btn = $(`<button class="ve-btn ve-btn-default" title="${title.qq()}">${text.qq()}</button>`)
-			.click(() => Omnisearch[fnDoToggleOmnisearch]());
+	static _render_$getBtnToggleFilter ({btnMeta}) {
+		const $btn = $(`<button class="ve-btn ve-btn-default" title="${btnMeta.title.qq()}">${btnMeta.text.qq()}</button>`)
+			.click(() => OmnisearchState[btnMeta.fnDoToggleOmnisearch]());
 		const hkBrew = (val) => {
-			$btn.toggleClass("active", Omnisearch[propOmnisearch]);
+			$btn.toggleClass("active", OmnisearchState[btnMeta.propOmnisearch]);
 			if (val == null) return;
 			this._doSearch();
 		};
-		Omnisearch[fnAddHookOmnisearch](hkBrew);
+		OmnisearchState[btnMeta.fnAddHookOmnisearch](hkBrew);
 		hkBrew();
 
 		return $btn;
 	}
 
 	static _render () {
-		Omnisearch.initState();
-
 		const $iptSearch = $(`<input class="form-control pg-search__ipt" placeholder="Search everywhere..." title="Disclaimer: unlikely to search everywhere. Use with caution.">`)
 			.keydown(evt => {
 				if (evt.key !== "Enter") return;
@@ -71,55 +65,17 @@ class SearchPage {
 			});
 
 		const $btnHelp = $(`<button class="ve-btn ve-btn-default mr-2 mobile__hidden" title="Help"><span class="glyphicon glyphicon-info-sign"></span></button>`)
-			.click(() => Omnisearch.doShowHelp());
+			.click(() => OmnisearchUtilsUi.doShowHelp());
 
-		const $btnTogglePartnered = this._render_$getBtnToggleFilter({
-			propOmnisearch: "isShowPartnered",
-			fnAddHookOmnisearch: "addHookPartnered",
-			fnDoToggleOmnisearch: "doTogglePartnered",
-			title: "Include Partnered",
-			text: "Partnered",
-		});
-
-		const $btnToggleBrew = this._render_$getBtnToggleFilter({
-			propOmnisearch: "isShowBrew",
-			fnAddHookOmnisearch: "addHookBrew",
-			fnDoToggleOmnisearch: "doToggleBrew",
-			title: "Include Homebrew",
-			text: "Homebrew",
-		});
-
-		const $btnToggleUa = this._render_$getBtnToggleFilter({
-			propOmnisearch: "isShowUa",
-			fnAddHookOmnisearch: "addHookUa",
-			fnDoToggleOmnisearch: "doToggleUa",
-			title: "Include Unearthed Arcana and other unofficial source results",
-			text: "UA/Etc.",
-		});
-
-		const $btnToggleBlocklisted = this._render_$getBtnToggleFilter({
-			propOmnisearch: "isShowBlocklisted",
-			fnAddHookOmnisearch: "addHookBlocklisted",
-			fnDoToggleOmnisearch: "doToggleBlocklisted",
-			title: "Include blocklisted content results",
-			text: "Blocklisted",
-		});
-
-		const $btnToggleLegacy = this._render_$getBtnToggleFilter({
-			propOmnisearch: "isShowLegacy",
-			fnAddHookOmnisearch: "addHookLegacy",
-			fnDoToggleOmnisearch: "doToggleLegacy",
-			title: "Include legacy content results",
-			text: "Legacy",
-		});
-
-		const $btnToggleSrd = this._render_$getBtnToggleFilter({
-			propOmnisearch: "isSrdOnly",
-			fnAddHookOmnisearch: "addHookSrdOnly",
-			fnDoToggleOmnisearch: "doToggleSrdOnly",
-			title: "Exclude non- Systems Reference Document results",
-			text: "SRD",
-		});
+		const [
+			btnTogglePartnered,
+			btnToggleBrew,
+			btnToggleUa,
+			btnToggleBlocklisted,
+			btnToggleLegacy,
+			btnToggleSrd,
+		] = OmnisearchConsts.BTN_METAS
+			.map(btnMeta => this._render_$getBtnToggleFilter({btnMeta}));
 
 		const handleMassExpandCollapse = mode => {
 			SearchPage._isAllExpanded = mode;
@@ -147,16 +103,16 @@ class SearchPage {
 					${$btnHelp}
 					<div class="mr-2 ml-1 mobile__ml-0 mobile__mb-2 italic">Include</div>
 					<div class="ve-flex-v-center ve-btn-group mr-2 mobile__mb-2 mobile__mr-0">
-						${$btnTogglePartnered}
-						${$btnToggleBrew}
-						${$btnToggleUa}
+						${btnTogglePartnered}
+						${btnToggleBrew}
+						${btnToggleUa}
 					</div>
 					<div class="ve-flex-v-center ve-btn-group mr-2 mobile__mb-2 mobile__mr-0">
-						${$btnToggleBlocklisted}
-						${$btnToggleLegacy}
+						${btnToggleBlocklisted}
+						${btnToggleLegacy}
 					</div>
 					<div class="ve-flex-v-center mr-2 mobile__mb-2 mobile__mr-0">
-						${$btnToggleSrd}
+						${btnToggleSrd}
 					</div>
 					<div class="ve-btn-group ve-flex-v-center">
 						${$btnCollapseAll}
@@ -196,7 +152,7 @@ class SearchPage {
 			return;
 		}
 
-		Omnisearch.pGetResults(params[this._PARAM_QUERY])
+		OmnisearchBacking.pGetResults(params[this._PARAM_QUERY])
 			.then(results => {
 				SearchPage._$wrpResults.empty();
 
@@ -207,7 +163,7 @@ class SearchPage {
 
 				if (this._PARAM_LUCKY in params) {
 					const [href] = results
-						.map(res => Omnisearch.getResultHref(res.doc))
+						.map(res => OmnisearchUtilsUi.getResultHref(res.doc))
 						.filter(Boolean);
 
 					if (href) {
@@ -219,7 +175,7 @@ class SearchPage {
 				SearchPage._rowMetas = results.map(result => {
 					const r = result.doc;
 
-					const $link = Omnisearch.$getResultLink(r);
+					const lnk = OmnisearchUtilsUi.getResultLink(r);
 
 					const {
 						source,
@@ -261,7 +217,7 @@ class SearchPage {
 						<div class="ve-flex-v-center mobile__mb-2 w-100">
 							${$dispImage}
 							<div class="ve-flex-col ve-flex-h-center mr-auto">
-								<div class="mb-2">${$link}</div>
+								<div class="mb-2">${lnk}</div>
 								<div>${ptSource}${ptPage ? `, ${ptPage}` : ""}</div>
 							</div>
 						</div>

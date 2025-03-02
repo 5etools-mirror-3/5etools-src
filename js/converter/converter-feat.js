@@ -138,6 +138,7 @@ export class ConverterFeat extends ConverterFeatureBase {
 
 		EntryCoalesceEntryLists.mutCoalesce(state, "entries", {styleHint: options.styleHint});
 		this._doPostProcess_setPrerequisites(state, options);
+		TagJsons.mutTagObjectStrictCapsWords(state.entity, {keySet: new Set(["entries"]), styleHint: options.styleHint});
 		TagJsons.mutTagObject(state.entity, {keySet: new Set(["entries"]), isOptimistic: false, styleHint: options.styleHint});
 	}
 

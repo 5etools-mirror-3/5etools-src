@@ -1,4 +1,4 @@
-"use strict";
+import {AdventuresBooksList} from "./bookslist.js";
 
 class AdventuresList extends AdventuresBooksList {
 	static _getLevelsStr (adv) {
@@ -33,9 +33,9 @@ class AdventuresList extends AdventuresBooksList {
 
 const adventuresList = new AdventuresList();
 
-window.addEventListener("load", () => adventuresList.pOnPageLoad());
-
 function handleBrew (homebrew) {
 	adventuresList.addData(homebrew);
 	return Promise.resolve();
 }
+
+window.addEventListener("load", () => adventuresList.pOnPageLoad({handleBrew}));

@@ -2441,10 +2441,15 @@ export class CreatureSavingThrowTagger extends _PrimaryLegendarySpellsTaggerBase
 	static _PROP_LEGENDARY = "savingThrowForcedLegendary";
 
 	static _handleString ({m = null, str, outSet}) {
-		str.replace(/{@dc (?<save>[^|}]+)(?:\|[^}]+)?}\s+(?<abil>Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma) saving throw/i, (...m) => {
-			outSet.add(m.last().abil.toLowerCase());
-			return "";
-		});
+		str
+			.replace(/{@dc (?<save>[^|}]+)(?:\|[^}]+)?}\s+(?<abil>Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma) saving throw/i, (...m) => {
+				outSet.add(m.last().abil.toLowerCase());
+				return "";
+			})
+			.replace(/{@actSave (?<abil>str|dex|con|int|wis|cha)}/g, (...m) => {
+				outSet.add(Parser.attAbvToFull(m.at(-1).abil.toLowerCase()).toLowerCase());
+			})
+		;
 	}
 
 	static _handleSpell ({spell, outSet}) {
