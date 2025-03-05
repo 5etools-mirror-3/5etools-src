@@ -1,4 +1,4 @@
-"use strict";
+import {BookUtil} from "./bookutils.js";
 
 const JSON_URL = "data/books.json";
 

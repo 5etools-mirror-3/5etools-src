@@ -18,6 +18,10 @@ class _DataLoaderConst {
 
 	static ENTITY_NULL = Symbol("ENTITY_NULL");
 
+	static LOADSPACE_SITE = Symbol("LOADSPACE_SITE");
+	static LOADSPACE_PRERELEASE = Symbol("LOADSPACE_PRERELEASE");
+	static LOADSPACE_BREW = Symbol("LOADSPACE_BREW");
+
 	static _SOURCES_ALL_NON_SITE = new Set([
 		this.SOURCE_PRERELEASE_ALL_CURRENT,
 		this.SOURCE_BREW_ALL_CURRENT,
@@ -120,17 +124,25 @@ class _DataLoaderDereferencerBase {
 	_preloadingPrereleaseLastIdent = null;
 	_preloadingBrewLastIdent = null;
 
-	async pPreloadRefContent () {
-		await (this._pPreloadingRefContentSite = this._pPreloadingRefContentSite || this._pPreloadRefContentSite());
+	async pPreloadRefContent ({loadspace = null} = {}) {
+		if (
+			(loadspace || _DataLoaderConst.LOADSPACE_SITE) === _DataLoaderConst.LOADSPACE_SITE
+		) await (this._pPreloadingRefContentSite = this._pPreloadingRefContentSite || this._pPreloadRefContentSite());
 
-		if (typeof PrereleaseUtil !== "undefined") {
+		if (
+			(loadspace || _DataLoaderConst.LOADSPACE_PRERELEASE) === _DataLoaderConst.LOADSPACE_PRERELEASE
+			&& typeof PrereleaseUtil !== "undefined"
+		) {
 			const identPrerelease = PrereleaseUtil.getCacheIteration();
 			if (identPrerelease !== this._preloadingPrereleaseLastIdent) this._pPreloadingRefContentPrerelease = null;
 			this._preloadingPrereleaseLastIdent = identPrerelease;
 			await (this._pPreloadingRefContentPrerelease = this._pPreloadingRefContentPrerelease || this._pPreloadRefContentPrerelease());
 		}
 
-		if (typeof BrewUtil2 !== "undefined") {
+		if (
+			(loadspace || _DataLoaderConst.LOADSPACE_BREW) === _DataLoaderConst.LOADSPACE_BREW
+			&& typeof BrewUtil2 !== "undefined"
+		) {
 			const identBrew = BrewUtil2.getCacheIteration();
 			if (identBrew !== this._preloadingBrewLastIdent) this._pPreloadingRefContentBrew = null;
 			this._preloadingBrewLastIdent = identBrew;
@@ -310,6 +322,7 @@ class _DataLoaderDereferencer {
 	 * @param {string} page
 	 * @param {string} propEntries
 	 * @param {string} propIsRef
+	 * @param {_DataLoaderConst.LOADSPACE_SITE | _DataLoaderConst.LOADSPACE_BREW | _DataLoaderConst.LOADSPACE_PRERELEASE | null} loadspace
 	 */
 	static async pGetDereferenced (
 		entities,
@@ -317,6 +330,7 @@ class _DataLoaderDereferencer {
 		{
 			propEntries = "entries",
 			propIsRef = null,
+			loadspace = null,
 		} = {},
 	) {
 		if (page.toLowerCase().endsWith(".html")) throw new Error(`Could not dereference "${page}" content. Dereferencing is only supported for props!`);
@@ -336,7 +350,7 @@ class _DataLoaderDereferencer {
 			entriesWithoutRefs,
 		});
 
-		await this._pGetDereferenced_pDoDereference({propEntries, entriesWithRefs, entriesWithoutRefs});
+		await this._pGetDereferenced_pDoDereference({propEntries, entriesWithRefs, entriesWithoutRefs, loadspace});
 		this._pGetDereferenced_doNotifyFailed({entriesWithRefs, entities});
 		this._pGetDereferenced_doPopulateOutput({page, out, entriesWithoutRefs, entriesWithRefs});
 
@@ -381,7 +395,7 @@ class _DataLoaderDereferencer {
 
 	static _MAX_DEREFERENCE_LOOPS = 25; // conservatively avoid infinite looping
 
-	static async _pGetDereferenced_pDoDereference ({propEntries, entriesWithRefs, entriesWithoutRefs}) {
+	static async _pGetDereferenced_pDoDereference ({propEntries, entriesWithRefs, entriesWithoutRefs, loadspace}) {
 		for (let i = 0; i < this._MAX_DEREFERENCE_LOOPS; ++i) {
 			if (!Object.keys(entriesWithRefs).length) break;
 
@@ -395,7 +409,7 @@ class _DataLoaderDereferencer {
 
 					for (const {type} of toReplaceMetas) {
 						if (!this._REF_TYPE_TO_DEREFERENCER[type]) continue;
-						await this._REF_TYPE_TO_DEREFERENCER[type].pPreloadRefContent();
+						await this._REF_TYPE_TO_DEREFERENCER[type].pPreloadRefContent({loadspace});
 					}
 
 					let cntReplaces = 0;
@@ -719,12 +733,20 @@ class _DataTypeLoader {
 
 	async pGetPostCacheData ({siteData = null, prereleaseData = null, brewData = null, lockToken2}) { /* Implement as required */ }
 
-	async _pGetPostCacheData_obj_withCache ({obj, propCache, lockToken2}) {
-		this._cache_pPostCaches[propCache] = this._cache_pPostCaches[propCache] || this._pGetPostCacheData_obj({obj, lockToken2});
+	async _pGetPostCacheData_obj_withCache ({obj, propCache, lockToken2, loadspace}) {
+		this._cache_pPostCaches[propCache] = this._cache_pPostCaches[propCache] || this._pGetPostCacheData_obj({obj, lockToken2, loadspace});
 		return this._cache_pPostCaches[propCache];
 	}
 
-	async _pGetPostCacheData_obj ({obj, lockToken2}) { throw new Error("Unimplemented!"); }
+	/**
+	 * @param obj
+	 * @param lockToken2
+	 * @param {_DataLoaderConst.LOADSPACE_SITE | _DataLoaderConst.LOADSPACE_BREW | _DataLoaderConst.LOADSPACE_PRERELEASE | null} loadspace
+	 *   Limit loading to a specific loadspace. Note that this is only used for site data,
+	 *   as we expect site data to never depend on prerelease content/homebrew, but prerelease content/homebrew
+	 *   may inter-depend and/or depend on site data.
+	 */
+	async _pGetPostCacheData_obj ({obj, lockToken2, loadspace}) { throw new Error("Unimplemented!"); }
 
 	hasCustomCacheStrategy ({obj}) { return false; }
 
@@ -914,14 +936,6 @@ class _DataTypeLoaderItemFluff extends _DataTypeLoaderSingleSource {
 	_filename = "fluff-items.json";
 }
 
-class _DataTypeLoaderRaceFluff extends _DataTypeLoaderSingleSource {
-	static PROPS = ["raceFluff"];
-	static PAGE = UrlUtil.PG_RACES;
-	static IS_FLUFF = true;
-
-	_filename = "fluff-races.json";
-}
-
 class _DataTypeLoaderLanguageFluff extends _DataTypeLoaderSingleSource {
 	static PROPS = ["languageFluff"];
 	static PAGE = UrlUtil.PG_LANGUAGES;
@@ -1017,6 +1031,14 @@ class _DataTypeLoaderRace extends _DataTypeLoaderPredefined {
 	_loadJsonArgs = {isAddBaseRaces: true};
 	_loadPrereleaseArgs = {isAddBaseRaces: true};
 	_loadBrewArgs = {isAddBaseRaces: true};
+}
+
+class _DataTypeLoaderRaceFluff extends _DataTypeLoaderPredefined {
+	static PROPS = ["raceFluff"];
+	static PAGE = UrlUtil.PG_RACES;
+	static IS_FLUFF = true;
+
+	_loader = "raceFluff";
 }
 
 class _DataTypeLoaderDeity extends _DataTypeLoaderPredefined {
@@ -1186,7 +1208,7 @@ class _DataTypeLoaderCustomClassesSubclass extends _DataTypeLoaderCustomRawable 
 
 	async _pGetRawSiteData () { return DataUtil.class.loadRawJSON(); }
 
-	async _pGetPostCacheData_obj ({obj, lockToken2}) {
+	async _pGetPostCacheData_obj ({obj, lockToken2, loadspace}) {
 		if (!obj) return null;
 
 		const out = {};
@@ -1344,20 +1366,25 @@ class _DataTypeLoaderCustomClassSubclassFeature extends _DataTypeLoader {
 		return this.constructor._getAsRawPrefixed(prereleaseBrew, {propsRaw: this.constructor._PROPS_RAWABLE});
 	}
 
-	async _pGetPostCacheData_obj ({obj, lockToken2}) {
+	async _pGetPostCacheData_obj ({obj, lockToken2, loadspace}) {
 		if (!obj) return null;
 
 		const out = {};
 
-		if (obj.raw_classFeature?.length) out.classFeature = (await _DataLoaderDereferencer.pGetDereferenced(obj.raw_classFeature, "classFeature"))?.classFeature || [];
-		if (obj.raw_subclassFeature?.length) out.subclassFeature = (await _DataLoaderDereferencer.pGetDereferenced(obj.raw_subclassFeature, "subclassFeature"))?.subclassFeature || [];
+		if (obj.raw_classFeature?.length) out.classFeature = (await _DataLoaderDereferencer.pGetDereferenced(obj.raw_classFeature, "classFeature", {loadspace}))?.classFeature || [];
+		if (obj.raw_subclassFeature?.length) out.subclassFeature = (await _DataLoaderDereferencer.pGetDereferenced(obj.raw_subclassFeature, "subclassFeature", {loadspace}))?.subclassFeature || [];
 
 		return out;
 	}
 
 	async pGetPostCacheData ({siteData = null, prereleaseData = null, brewData = null, lockToken2}) {
 		return {
-			siteDataPostCache: await this._pGetPostCacheData_obj_withCache({obj: siteData, lockToken2, propCache: "site"}),
+			siteDataPostCache: await this._pGetPostCacheData_obj_withCache({
+				obj: siteData,
+				lockToken2,
+				propCache: "site",
+				loadspace: _DataLoaderConst.LOADSPACE_SITE,
+			}),
 			prereleaseDataPostCache: await this._pGetPostCacheData_obj({obj: prereleaseData, lockToken2}),
 			brewDataPostCache: await this._pGetPostCacheData_obj({obj: brewData, lockToken2}),
 		};
@@ -1400,14 +1427,14 @@ class _DataTypeLoaderCustomItem extends _DataTypeLoader {
 		Renderer.item.addPrereleaseBrewPropertiesAndTypesFrom({data});
 	}
 
-	async _pGetPostCacheData_obj ({siteData, obj, lockToken2}) {
+	async _pGetPostCacheData_obj ({siteData, obj, lockToken2, loadspace}) {
 		if (!obj) return null;
 
 		const out = {};
 
 		if (obj.item?.length) {
-			out.item = (await _DataLoaderDereferencer.pGetDereferenced(obj.item, "item", {propEntries: "entries", propIsRef: "hasRefs"}))?.item || [];
-			out.item = (await _DataLoaderDereferencer.pGetDereferenced(out.item, "item", {propEntries: "_fullEntries", propIsRef: "hasRefs"}))?.item || [];
+			out.item = (await _DataLoaderDereferencer.pGetDereferenced(obj.item, "item", {propEntries: "entries", propIsRef: "hasRefs", loadspace}))?.item || [];
+			out.item = (await _DataLoaderDereferencer.pGetDereferenced(out.item, "item", {propEntries: "_fullEntries", propIsRef: "hasRefs", loadspace}))?.item || [];
 		}
 
 		return out;
@@ -1415,7 +1442,13 @@ class _DataTypeLoaderCustomItem extends _DataTypeLoader {
 
 	async pGetPostCacheData ({siteData = null, prereleaseData = null, brewData = null, lockToken2}) {
 		return {
-			siteDataPostCache: await this._pGetPostCacheData_obj_withCache({obj: siteData, lockToken2, propCache: "site"}),
+			siteDataPostCache: await this._pGetPostCacheData_obj_withCache({
+				obj:
+				siteData,
+				lockToken2,
+				propCache: "site",
+				loadspace: _DataLoaderConst.LOADSPACE_SITE,
+			}),
 			prereleaseDataPostCache: await this._pGetPostCacheData_obj({obj: prereleaseData, lockToken2}),
 			brewDataPostCache: await this._pGetPostCacheData_obj({obj: brewData, lockToken2}),
 		};

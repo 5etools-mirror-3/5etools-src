@@ -37,6 +37,8 @@ import {
 	PanelContentManagerFactory,
 } from "./dmscreen/dmscreen-panels.js";
 
+import {OmnisearchBacking} from "./omnisearch/omnisearch-backing.js";
+
 const UP = "UP";
 const RIGHT = "RIGHT";
 const LEFT = "LEFT";
@@ -3551,7 +3553,7 @@ class AddMenuSearchTab extends AddMenuTab {
 			let results = index.search(srch, searchOptions);
 
 			if (this.subType === "content") {
-				results = await Omnisearch.pGetFilteredResults(results);
+				results = await OmnisearchBacking.pGetFilteredResults(results);
 			}
 
 			const resultCount = results.length ? results.length : index.documentStore.length;

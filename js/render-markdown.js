@@ -31,7 +31,8 @@ class RendererMarkdown {
 
 	static _fnPostProcess (str) {
 		return str
-			.trim()
+			.replace(/^\s+/, "")
+			.replace(/\n+$/, "\n")
 			.replace(/\n\n+/g, "\n\n")
 			.replace(/(>\n>\n)+/g, ">\n");
 	}
@@ -878,6 +879,7 @@ RendererMarkdown.monster = class {
 				.map(res => `\n>- **${res.name}** ${Renderer.monster.getRenderedResource(res, true)}`)
 				.join("")
 			: "";
+		const initiativePart = styleHint === "classic" ? "" : `\n>- **Initiative** ${Renderer.monster.getInitiativePart(mon, {isPlainText: true})}`;
 		const abilityScorePart = RendererMarkdown.utils.compact.getRenderedAbilityScores(mon, {prefix: ">"});
 		const savePart = mon.save ? `\n>- **Saving Throws** ${Object.keys(mon.save).sort(SortUtil.ascSortAtts).map(it => RendererMarkdown.monster.getSave(it, mon.save[it])).join(", ")}` : "";
 		const skillPart = mon.skill ? `\n>- **Skills** ${RendererMarkdown.monster.getSkillsString(mon)}` : "";
@@ -919,6 +921,7 @@ RendererMarkdown.monster = class {
 
 		const legendaryGroupLairPart = legendaryGroup?.lairActions ? `\n>### Lair Actions\n${RendererMarkdown.monster._getRenderedSection({prop: "lairaction", entries: legendaryGroup.lairActions, depth: -1, meta, prefix: ">"})}` : "";
 		const legendaryGroupRegionalPart = legendaryGroup?.regionalEffects ? `\n>### Regional Effects\n${RendererMarkdown.monster._getRenderedSection({prop: "regionaleffect", entries: legendaryGroup.regionalEffects, depth: -1, meta, prefix: ">"})}` : "";
+		const variantsPart = Renderer.monster.getRenderedVariants(mon, {renderer: RendererMarkdown.get()});
 
 		const footerPart = mon.footer ? `\n${RendererMarkdown.monster._getRenderedSectionEntries({sectionEntries: mon.footer, sectionDepth: 0, meta, prefix: ">"})}` : "";
 
@@ -928,7 +931,7 @@ RendererMarkdown.monster = class {
 >___
 >- **Armor Class** ${acPart}
 >- **Hit Points** ${mon.hp == null ? "\u2014" : Renderer.monster.getRenderedHp(mon.hp, {isPlainText: true})}${resourcePart}
->- **Speed** ${Parser.getSpeedString(mon)}
+>- **Speed** ${Parser.getSpeedString(mon)}${initiativePart}
 >___
 ${abilityScorePart}
 >___${savePart}${skillPart}${toolPart}${damVulnPart}${damResPart}${damImmPart}${condImmPart}${sensePart}${languagePart}
@@ -936,7 +939,7 @@ ${abilityScorePart}
 ${pbPart ? `>- **Proficiency Bonus** ${pbPart}` : ""}
 >___`;
 
-		let breakablePart = `${traitsPart}${actionsPart}${bonusActionsPart}${reactionsPart}${legendaryActionsPart}${mythicActionsPart}${legendaryGroupLairPart}${legendaryGroupRegionalPart}${footerPart}`;
+		let breakablePart = `${traitsPart}${actionsPart}${bonusActionsPart}${reactionsPart}${legendaryActionsPart}${mythicActionsPart}${legendaryGroupLairPart}${legendaryGroupRegionalPart}${variantsPart}${footerPart}`;
 
 		if (VetoolsConfig.get("markdown", "isAddColumnBreaks")) {
 			let charAllowanceFirstCol = 2200 - unbreakablePart.length;
@@ -1205,6 +1208,18 @@ RendererMarkdown.item = class {
 			item.tier ? `${item.tier} tier` : "",
 		];
 	}
+};
+
+RendererMarkdown.baseitem = class {
+	static getCompactRenderedString (...args) { return RendererMarkdown.item.getCompactRenderedString(...args); }
+};
+
+RendererMarkdown.magicvariant = class {
+	static getCompactRenderedString (...args) { return RendererMarkdown.item.getCompactRenderedString(...args); }
+};
+
+RendererMarkdown.itemGroup = class {
+	static getCompactRenderedString (...args) { return RendererMarkdown.item.getCompactRenderedString(...args); }
 };
 
 RendererMarkdown.legendaryGroup = class {

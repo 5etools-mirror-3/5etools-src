@@ -1,4 +1,4 @@
-"use strict";
+import {BookUtil} from "./bookutils.js";
 
 const CONTENTS_URL = "data/adventures.json";
 

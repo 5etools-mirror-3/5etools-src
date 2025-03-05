@@ -1886,7 +1886,7 @@ class SearchWidget {
 		const searchInput = this._$iptSearch.val().trim();
 
 		const index = this._indexes[this._cat];
-		const results = await Omnisearch.pGetFilteredResults(index.search(searchInput, this.__getSearchOptions()));
+		const results = await globalThis.OmnisearchBacking.pGetFilteredResults(index.search(searchInput, this.__getSearchOptions()));
 
 		const {toProcess, resultCount} = (() => {
 			if (results.length) {

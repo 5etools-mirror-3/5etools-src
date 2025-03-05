@@ -2082,6 +2082,9 @@ PropOrder._OBJECT = [
 	"token",
 	"tokenHref",
 	"tokenCredit",
+
+	"altArt",
+
 	"hasToken",
 	"hasFluff",
 	"hasFluffImages",

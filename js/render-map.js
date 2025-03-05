@@ -1,6 +1,4 @@
-"use strict";
-
-class RenderMap {
+export class RenderMap {
 	static _ZOOM_ADJUSTMENT_FACTOR = 1.5;
 
 	// See:
@@ -359,12 +357,12 @@ class RenderMap {
 				const area = await RenderMap._pGetArea(intersectedRegion.area, mapData);
 
 				// When in book mode, shift-click a region to navigate to it
-				if (evt.shiftKey && typeof BookUtil !== "undefined") {
+				if (evt.shiftKey && globalThis.BookUtil) {
 					const oldHash = location.hash;
-					location.hash = `#${BookUtil.curRender.curBookId},${area.chapter},${UrlUtil.encodeForHash(area.entry.name)},0`;
+					location.hash = `#${globalThis.BookUtil.curRender.curBookId},${area.chapter},${UrlUtil.encodeForHash(area.entry.name)},0`;
 					if (oldHash.toLowerCase() === location.hash.toLowerCase()) {
-						BookUtil.isHashReload = true;
-						BookUtil.booksHashChange();
+						globalThis.BookUtil.isHashReload = true;
+						globalThis.BookUtil.booksHashChange();
 					}
 					return;
 				}
@@ -525,7 +523,7 @@ class RenderMap {
 
 	static async _pGetArea (areaId, mapData) {
 		// When in book mode, we already have the area info cached
-		if (typeof BookUtil !== "undefined") return BookUtil.curRender.headerMap[areaId] || {entry: {name: ""}};
+		if (globalThis.BookUtil) return globalThis.BookUtil.curRender.headerMap[areaId] || {entry: {name: ""}};
 
 		if (mapData.page && mapData.source && mapData.hash) {
 			const fromCache = MiscUtil.get(RenderMap._AREA_CACHE, mapData.source, mapData.hash, areaId);
@@ -577,3 +575,5 @@ class RenderMap {
 		}
 	}
 }
+
+globalThis.RenderMap = RenderMap;

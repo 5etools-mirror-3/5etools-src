@@ -751,17 +751,43 @@ export class SkillTag extends ConverterTaggerInitializable {
 		);
 	}
 
+	static _getStrStrictReplaced_one (str) {
+		return str
+			.replace(this._RE_BASIC_XPHB, (...m) => `{@skill ${m.at(-1).name}|${Parser.SRC_XPHB}}`);
+	}
+
 	static _fnTagStrict_one (strMod) {
-		return strMod
-			.replace(this._RE_BASIC_XPHB, (...m) => `{@skill ${m.at(-1).name}|${Parser.SRC_XPHB}}`)
-		;
+		const strModOut = this._getStrStrictReplaced_one(strMod);
+
+		if (strMod !== strModOut) return strModOut;
+
+		const pts = this._getCapsWordConjunctionTokens(strMod);
+		if (pts.length === 1) return strMod;
+
+		return pts
+			.map(pt => this._getStrStrictReplaced_one(pt))
+			.join(" ");
+	}
+
+	static _getStrStrictReplaced_classic (str) {
+		return str
+			.replace(this._RE_BASIC, (...m) => {
+				const {name} = m.at(-1);
+				return `{@skill ${name}}`;
+			});
 	}
 
 	static _fnTagStrict_classic (strMod) {
-		return strMod.replace(this._RE_BASIC, (...m) => {
-			const {name} = m.at(-1);
-			return `{@skill ${name}}`;
-		});
+		const strModOut = this._getStrStrictReplaced_classic(strMod);
+
+		if (strMod !== strModOut) return strModOut;
+
+		const pts = this._getCapsWordConjunctionTokens(strMod);
+		if (pts.length === 1) return strMod;
+
+		return pts
+			.map(pt => this._getStrStrictReplaced_classic(pt))
+			.join(" ");
 	}
 }
 
