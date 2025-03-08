@@ -61,4 +61,13 @@ export class ConverterTaggerInitializable extends ConverterTaggerBase {
 			.forEach(prop => ent[prop] = ent[prop].map(subEnt => this.tryRunStrictCapsWords(subEnt, ...rest)));
 		return ent;
 	}
+
+	/* -------------------------------------------- */
+
+	static _getCapsWordConjunctionTokens (strMod) {
+		return strMod
+			.split(/(,? (?:and|or|with) |, )/g)
+			.map(it => it.trim())
+			.filter(Boolean);
+	}
 }

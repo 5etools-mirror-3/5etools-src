@@ -2658,6 +2658,79 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Rage",
+			"source": "XPHB",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 1,
+			"system": {
+				"uses.max": "@scale.barbarian.rages"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "bonus",
+						"value": 1
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"effects": [
+						{
+							"foundryId": "rage"
+						}
+					],
+					"range": {
+						"units": "self"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "rage",
+					"disabled": true,
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.bonuses.mwak.damage",
+							"mode": "ADD",
+							"value": "+@scale.barbarian.rage-damage"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "slashing"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "piercing"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "bludgeoning"
+						}
+					],
+					"duration": {
+						"seconds": 600
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Primal Knowledge",
 			"source": "XPHB",
 			"className": "Barbarian",
@@ -2896,7 +2969,7 @@
 				],
 				"expertise": [
 					{
-						"anyProficientSkill": 2
+						"anyProficientSkill": 1
 					}
 				]
 			},

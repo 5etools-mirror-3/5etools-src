@@ -2211,18 +2211,30 @@ export class SpeedConvert {
 
 			prevSpeed = mode;
 			if (condition) {
+				if (out[mode]) {
+					// e.g. Werebear (XMM)
+					return ((out.alternate ||= {})[mode] ||= []).push({
+						number: feet,
+						condition: condition.trim(),
+					});
+				}
+
 				return out[mode] = {
 					number: feet,
 					condition: condition.trim(),
 				};
 			}
+
+			if (out[mode] && out.alternate?.[mode]) return setByHand();
+			if (out[mode]) return ((out.alternate ||= {})[mode] ||= []).push(feet);
 			return out[mode] = feet;
 		});
 
 		// flag speed as invalid
 		if (
-			Object.values(out)
-				.filter(s => {
+			Object.entries(out)
+				.filter(([k, s]) => {
+					if (k === "alternate") return false;
 					const val = s.number ?? s.amount ?? s;
 					return val % 5 !== 0;
 				}).length
@@ -2429,10 +2441,15 @@ export class CreatureSavingThrowTagger extends _PrimaryLegendarySpellsTaggerBase
 	static _PROP_LEGENDARY = "savingThrowForcedLegendary";
 
 	static _handleString ({m = null, str, outSet}) {
-		str.replace(/{@dc (?<save>[^|}]+)(?:\|[^}]+)?}\s+(?<abil>Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma) saving throw/i, (...m) => {
-			outSet.add(m.last().abil.toLowerCase());
-			return "";
-		});
+		str
+			.replace(/{@dc (?<save>[^|}]+)(?:\|[^}]+)?}\s+(?<abil>Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma) saving throw/i, (...m) => {
+				outSet.add(m.last().abil.toLowerCase());
+				return "";
+			})
+			.replace(/{@actSave (?<abil>str|dex|con|int|wis|cha)}/g, (...m) => {
+				outSet.add(Parser.attAbvToFull(m.at(-1).abil.toLowerCase()).toLowerCase());
+			})
+		;
 	}
 
 	static _handleSpell ({spell, outSet}) {

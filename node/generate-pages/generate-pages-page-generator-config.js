@@ -16,13 +16,13 @@ class _PageGeneratorMaps extends PageGeneratorGeneric {
 		"maps",
 	];
 
-	_scriptsRenderAdditional = [
-		"render-map.js",
-	];
-
 	_scripts = [
 		"maps-util.js",
 		"maps.js",
+	];
+
+	_scriptsModules = [
+		"render-map.js",
 	];
 }
 
@@ -49,11 +49,8 @@ class _PageGeneratorDmscreen extends PageGeneratorGeneric {
 		"utils-p2p.js",
 	];
 
-	_scriptsRenderAdditional = [
-		"render-map.js",
-	];
-
 	_scriptsModules = [
+		"render-map.js",
 		"dmscreen.js",
 	];
 }
@@ -126,7 +123,7 @@ class _PageGeneratorCrcalculator extends PageGeneratorGeneric {
 		"crcalculator",
 	];
 
-	_scripts = [
+	_scriptsModules = [
 		"crcalculator.js",
 	];
 }

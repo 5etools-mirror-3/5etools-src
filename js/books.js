@@ -1,4 +1,4 @@
-"use strict";
+import {AdventuresBooksList} from "./bookslist.js";
 
 class BooksList extends AdventuresBooksList {
 	constructor () {
@@ -25,9 +25,9 @@ class BooksList extends AdventuresBooksList {
 
 const booksList = new BooksList();
 
-window.addEventListener("load", () => booksList.pOnPageLoad());
-
 function handleBrew (homebrew) {
 	booksList.addData(homebrew);
 	return Promise.resolve();
 }
+
+window.addEventListener("load", () => booksList.pOnPageLoad({handleBrew}));

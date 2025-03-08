@@ -236,6 +236,7 @@ class GenericDataCheck extends DataTesterBase {
 										case "daily":
 										case "rest":
 										case "resource":
+										case "limited":
 											Object.values(val).forEach(spellList => spellList.forEach(sp => this._testAdditionalSpells_testSpellExists(file, sp)));
 											break;
 										case "will":
@@ -1229,6 +1230,7 @@ class RewardsDataCheck extends GenericDataCheck {
 		json.reward
 			.forEach(ent => {
 				this._testReprintedAs(this._FILE, ent, "reward");
+				this._testAdditionalSpells(this._FILE, ent);
 			});
 	}
 }
