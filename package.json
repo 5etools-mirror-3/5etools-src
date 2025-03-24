@@ -1,7 +1,7 @@
 {
 	"name": "5etools",
 	"author": "TheGiddyLimit",
-	"version": "2.7.3",
+	"version": "2.7.4",
 	"license": "MIT",
 	"description": "A site dedicated to making playing games with your friends as easy as possible.",
 	"type": "module",
@@ -36,8 +36,8 @@
 		"build": "npm run clean-jsons && npm run gen && npm run build:css && npm run build:sw:prod",
 		"preversion": "npm test",
 		"version": "node node/version-bump.js",
-		"serve:dev": "http-server -c-1 --cors --port 5000",
-		"serve:dev:tls": "http-server -c-1 --cors --port 5001 --tls --cert certs/cert.pem --key certs/key.pem",
+		"serve:dev": "http-server -c-1 --cors --port 5050",
+		"serve:dev:tls": "http-server -c-1 --cors --port 5051 --tls --cert certs/cert.pem --key certs/key.pem",
 		"spellcheck:check-data": "echo \"This can take a few minutes.\" && npx cspell --no-progress --show-context --show-suggestions \"data/**/*.json\"",
 		"spellcheck:check-data-quick": "git diff --name-only | grep -P \"^data/[^.]+.json\" | npx cspell --no-progress --show-context --show-suggestions --file-list stdin",
 		"spellcheck:trust-data": "echo \"This can take a few minutes.\" && echo \"# new words on $(date)\" >> spellcheck/dnd-words.txt && npx cspell --words-only --unique \"./data/**/*.json\" | sort --ignore-case >> spellcheck/dnd-words.txt",
@@ -48,7 +48,7 @@
 		"url": "git+https://github.com/5etools-mirror-3/5etools-src"
 	},
 	"devDependencies": {
-		"5etools-utils": "^0.13.5",
+		"5etools-utils": "^0.13.10",
 		"ajv": "^8.12.0",
 		"ajv-formats": "^2.1.1",
 		"commander": "^12.0.0",

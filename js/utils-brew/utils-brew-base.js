@@ -26,6 +26,7 @@ export class BrewUtil2Base {
 	DEFAULT_AUTHOR;
 	STYLE_BTN;
 	IS_PREFER_DATE_ADDED;
+	IS_ADD_BTN_ALL_PARTNERED;
 
 	_LOCK = new VeLock({name: this.constructor.name});
 
@@ -237,7 +238,7 @@ export class BrewUtil2Base {
 
 	async _pGetBrew_pGetLocalBrew ({lockToken} = {}) {
 		if (this._cache_brewsLocal) return this._cache_brewsLocal;
-		if (IS_VTT || IS_DEPLOYED || typeof window === "undefined") return this._cache_brewsLocal = [];
+		if (globalThis.IS_VTT || IS_DEPLOYED || typeof window === "undefined") return this._cache_brewsLocal = [];
 
 		try {
 			await this._LOCK.pLock({token: lockToken});
@@ -1022,7 +1023,7 @@ export class BrewUtil2Base {
 	}
 
 	_getBrewPage (page) {
-		return page || (IS_VTT ? this.PAGE_MANAGE : UrlUtil.getCurrentPage());
+		return page || (globalThis.IS_VTT ? this.PAGE_MANAGE : UrlUtil.getCurrentPage());
 	}
 
 	getDirProp (dir) {

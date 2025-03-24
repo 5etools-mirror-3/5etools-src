@@ -18,6 +18,7 @@ window.addEventListener("load", async () => {
 
 async function initDemo (data, rendererType) {
 	const defaultJson = data.data[0];
+	delete defaultJson.__prop;
 
 	let renderer;
 

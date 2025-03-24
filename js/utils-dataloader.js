@@ -734,6 +734,8 @@ class _DataTypeLoader {
 	async pGetPostCacheData ({siteData = null, prereleaseData = null, brewData = null, lockToken2}) { /* Implement as required */ }
 
 	async _pGetPostCacheData_obj_withCache ({obj, propCache, lockToken2, loadspace}) {
+		if (obj == null) return null;
+
 		this._cache_pPostCaches[propCache] = this._cache_pPostCaches[propCache] || this._pGetPostCacheData_obj({obj, lockToken2, loadspace});
 		return this._cache_pPostCaches[propCache];
 	}
@@ -1427,7 +1429,7 @@ class _DataTypeLoaderCustomItem extends _DataTypeLoader {
 		Renderer.item.addPrereleaseBrewPropertiesAndTypesFrom({data});
 	}
 
-	async _pGetPostCacheData_obj ({siteData, obj, lockToken2, loadspace}) {
+	async _pGetPostCacheData_obj ({obj, lockToken2, loadspace}) {
 		if (!obj) return null;
 
 		const out = {};
@@ -1443,8 +1445,7 @@ class _DataTypeLoaderCustomItem extends _DataTypeLoader {
 	async pGetPostCacheData ({siteData = null, prereleaseData = null, brewData = null, lockToken2}) {
 		return {
 			siteDataPostCache: await this._pGetPostCacheData_obj_withCache({
-				obj:
-				siteData,
+				obj: siteData,
 				lockToken2,
 				propCache: "site",
 				loadspace: _DataLoaderConst.LOADSPACE_SITE,

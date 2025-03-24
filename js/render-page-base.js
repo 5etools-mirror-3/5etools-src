@@ -31,7 +31,7 @@ export class RenderPageImplBase {
 	) {
 		return {
 			htmlPtIsExcluded: this._getCommonHtmlParts_isExcluded({ent, opts}),
-			htmlPtName: this._getCommonHtmlParts_name({ent}),
+			htmlPtName: this._getCommonHtmlParts_name({ent, opts}),
 
 			htmlPtPrerequisites: this._getCommonHtmlParts_prerequisites({ent}),
 

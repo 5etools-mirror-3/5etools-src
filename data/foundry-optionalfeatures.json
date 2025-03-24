@@ -35,18 +35,20 @@
 			"effects": [
 				{
 					"name": "Arcane Propulsion Armor",
+					"enchantmentRiderParent": "XY7pERdPxxb8bjlq",
+					"transfer": true,
 					"changes": [
 						{
 							"key": "system.attributes.movement.walk",
 							"mode": "ADD",
 							"value": "5"
 						}
-					],
-					"enchantmentRiderParent": "XY7pERdPxxb8bjlq",
-					"transfer": true
+					]
 				},
 				{
+					"foundryId": "XY7pERdPxxb8bjlq",
 					"name": "Arcane Propulsion",
+					"type": "enchantment",
 					"changes": [
 						{
 							"key": "name",
@@ -63,9 +65,7 @@
 							"mode": "ADD",
 							"value": "mgc"
 						}
-					],
-					"type": "enchantment",
-					"foundryId": "XY7pERdPxxb8bjlq"
+					]
 				}
 			],
 			"subEntities": {
@@ -113,6 +113,7 @@
 			"effects": [
 				{
 					"name": "Armor of Magical Strength",
+					"type": "enchantment",
 					"changes": [
 						{
 							"key": "name",
@@ -164,8 +165,7 @@
 							"mode": "ADD",
 							"value": "mgc"
 						}
-					],
-					"type": "enchantment"
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -252,6 +252,7 @@
 			"effects": [
 				{
 					"name": "Boots of the Winding Path",
+					"type": "enchantment",
 					"changes": [
 						{
 							"key": "name",
@@ -288,8 +289,7 @@
 							"mode": "ADD",
 							"value": "mgc"
 						}
-					],
-					"type": "enchantment"
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -404,7 +404,9 @@
 			},
 			"effects": [
 				{
+					"foundryId": "syx3ZXUoQwVJUZxP",
 					"name": "Enhanced Arcane Focus",
+					"type": "enchantment",
 					"changes": [
 						{
 							"key": "name",
@@ -426,12 +428,12 @@
 							"mode": "OVERRIDE",
 							"value": "required"
 						}
-					],
-					"type": "enchantment",
-					"foundryId": "syx3ZXUoQwVJUZxP"
+					]
 				},
 				{
+					"foundryId": "I4qB050rdgSsoIEd",
 					"name": "Enhanced Arcane Focus +2",
+					"type": "enchantment",
 					"changes": [
 						{
 							"key": "name",
@@ -453,29 +455,29 @@
 							"mode": "OVERRIDE",
 							"value": "required"
 						}
-					],
-					"type": "enchantment",
-					"foundryId": "I4qB050rdgSsoIEd"
+					]
 				},
 				{
 					"name": "Enhanced Arcane Focus",
-					"changes": [
-						{
-							"key": "system.bonuses.msak.attack",
-							"mode": "ADD",
-							"value": "1"
-						},
-						{
-							"key": "system.bonuses.rsak.attack",
-							"mode": "ADD",
-							"value": "1"
-						}
-					],
 					"enchantmentRiderParent": "syx3ZXUoQwVJUZxP",
-					"transfer": true
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.bonuses.msak.attack",
+							"mode": "ADD",
+							"value": "1"
+						},
+						{
+							"key": "system.bonuses.rsak.attack",
+							"mode": "ADD",
+							"value": "1"
+						}
+					]
 				},
 				{
 					"name": "Enhanced Arcane Focus +2",
+					"enchantmentRiderParent": "I4qB050rdgSsoIEd",
+					"transfer": true,
 					"changes": [
 						{
 							"key": "system.bonuses.msak.attack",
@@ -487,9 +489,7 @@
 							"mode": "ADD",
 							"value": "2"
 						}
-					],
-					"enchantmentRiderParent": "I4qB050rdgSsoIEd",
-					"transfer": true
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -511,6 +511,7 @@
 			"effects": [
 				{
 					"name": "Enhanced Defense",
+					"type": "enchantment",
 					"changes": [
 						{
 							"key": "name",
@@ -532,11 +533,11 @@
 							"mode": "ADD",
 							"value": "1"
 						}
-					],
-					"type": "enchantment"
+					]
 				},
 				{
 					"name": "Enhanced Defense +2",
+					"type": "enchantment",
 					"changes": [
 						{
 							"key": "name",
@@ -558,8 +559,7 @@
 							"mode": "ADD",
 							"value": "2"
 						}
-					],
-					"type": "enchantment"
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -581,6 +581,7 @@
 			"effects": [
 				{
 					"name": "Enhanced Weapon",
+					"type": "enchantment",
 					"changes": [
 						{
 							"key": "name",
@@ -602,11 +603,11 @@
 							"mode": "ADD",
 							"value": "1"
 						}
-					],
-					"type": "enchantment"
+					]
 				},
 				{
 					"name": "Enhanced Weapon +2",
+					"type": "enchantment",
 					"changes": [
 						{
 							"key": "name",
@@ -628,8 +629,7 @@
 							"mode": "ADD",
 							"value": "2"
 						}
-					],
-					"type": "enchantment"
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -689,6 +689,7 @@
 			"effects": [
 				{
 					"name": "Sturdy",
+					"transfer": true,
 					"duration": {
 						"rounds": 1,
 						"seconds": 600
@@ -714,8 +715,7 @@
 							"mode": "ADD",
 							"value": "+2"
 						}
-					],
-					"transfer": true
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -737,6 +737,7 @@
 			"effects": [
 				{
 					"name": "Helm of Awareness",
+					"type": "enchantment",
 					"changes": [
 						{
 							"key": "name",
@@ -758,11 +759,11 @@
 							"mode": "ADD",
 							"value": "mgc"
 						}
-					],
-					"type": "enchantment"
+					]
 				},
 				{
 					"name": "Helm of Awareness",
+					"transfer": true,
 					"changes": [
 						{
 							"key": "system.traits.ci.value",
@@ -774,8 +775,7 @@
 							"mode": "OVERRIDE",
 							"value": "true"
 						}
-					],
-					"transfer": true
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -796,6 +796,7 @@
 			"effects": [
 				{
 					"name": "Resilience",
+					"transfer": true,
 					"duration": {
 						"rounds": 1,
 						"seconds": 60
@@ -816,8 +817,7 @@
 							"mode": "ADD",
 							"value": "slashing"
 						}
-					],
-					"transfer": true
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -880,6 +880,7 @@
 			"effects": [
 				{
 					"name": "Mind Sharpener",
+					"type": "enchantment",
 					"changes": [
 						{
 							"key": "name",
@@ -926,8 +927,7 @@
 							"mode": "ADD",
 							"value": "mgc"
 						}
-					],
-					"type": "enchantment"
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -1015,6 +1015,7 @@
 			"effects": [
 				{
 					"name": "Radiant Weapon",
+					"type": "enchantment",
 					"changes": [
 						{
 							"key": "name",
@@ -1071,8 +1072,7 @@
 							"mode": "OVERRIDE",
 							"value": "required"
 						}
-					],
-					"type": "enchantment"
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -1094,6 +1094,7 @@
 			"effects": [
 				{
 					"name": "Repeating Shot",
+					"type": "enchantment",
 					"changes": [
 						{
 							"key": "name",
@@ -1125,8 +1126,7 @@
 							"mode": "OVERRIDE",
 							"value": "required"
 						}
-					],
-					"type": "enchantment"
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -1147,14 +1147,14 @@
 			"effects": [
 				{
 					"name": "Replicated Magic Item",
+					"type": "enchantment",
 					"changes": [
 						{
 							"key": "name",
 							"mode": "ADD",
 							"value": ", Replicated"
 						}
-					],
-					"type": "enchantment"
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -1176,6 +1176,7 @@
 			"effects": [
 				{
 					"name": "Repulsion Shield",
+					"type": "enchantment",
 					"changes": [
 						{
 							"key": "name",
@@ -1232,8 +1233,7 @@
 							"mode": "ADD",
 							"value": "mgc"
 						}
-					],
-					"type": "enchantment"
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -1254,7 +1254,9 @@
 			},
 			"effects": [
 				{
+					"foundryId": "ufnjdkye4AwCNw3y",
 					"name": "Acid Resistance",
+					"type": "enchantment",
 					"changes": [
 						{
 							"key": "name",
@@ -1271,12 +1273,12 @@
 							"mode": "OVERRIDE",
 							"value": "required"
 						}
-					],
-					"type": "enchantment",
-					"foundryId": "ufnjdkye4AwCNw3y"
+					]
 				},
 				{
+					"foundryId": "IwMxrYsS7HFjX4Oi",
 					"name": "Cold Resistance",
+					"type": "enchantment",
 					"changes": [
 						{
 							"key": "name",
@@ -1293,12 +1295,12 @@
 							"mode": "OVERRIDE",
 							"value": "required"
 						}
-					],
-					"type": "enchantment",
-					"foundryId": "IwMxrYsS7HFjX4Oi"
+					]
 				},
 				{
+					"foundryId": "BaA8aaeV86SWrjFp",
 					"name": "Fire Resistance",
+					"type": "enchantment",
 					"changes": [
 						{
 							"key": "name",
@@ -1315,12 +1317,12 @@
 							"mode": "OVERRIDE",
 							"value": "required"
 						}
-					],
-					"type": "enchantment",
-					"foundryId": "BaA8aaeV86SWrjFp"
+					]
 				},
 				{
+					"foundryId": "hCI4vspbQZLRR92W",
 					"name": "Force Resistance",
+					"type": "enchantment",
 					"changes": [
 						{
 							"key": "name",
@@ -1337,12 +1339,12 @@
 							"mode": "OVERRIDE",
 							"value": "required"
 						}
-					],
-					"type": "enchantment",
-					"foundryId": "hCI4vspbQZLRR92W"
+					]
 				},
 				{
+					"foundryId": "6a8ZKAYbgRClp31A",
 					"name": "Lightning Resistance",
+					"type": "enchantment",
 					"changes": [
 						{
 							"key": "name",
@@ -1359,12 +1361,12 @@
 							"mode": "OVERRIDE",
 							"value": "required"
 						}
-					],
-					"type": "enchantment",
-					"foundryId": "6a8ZKAYbgRClp31A"
+					]
 				},
 				{
+					"foundryId": "sUfuFKyLRr8SHrW1",
 					"name": "Necrotic Resistance",
+					"type": "enchantment",
 					"changes": [
 						{
 							"key": "name",
@@ -1381,12 +1383,12 @@
 							"mode": "OVERRIDE",
 							"value": "required"
 						}
-					],
-					"type": "enchantment",
-					"foundryId": "sUfuFKyLRr8SHrW1"
+					]
 				},
 				{
+					"foundryId": "urJlfLzdn7EMQVeI",
 					"name": "Poison Resistance",
+					"type": "enchantment",
 					"changes": [
 						{
 							"key": "name",
@@ -1403,12 +1405,12 @@
 							"mode": "OVERRIDE",
 							"value": "required"
 						}
-					],
-					"type": "enchantment",
-					"foundryId": "urJlfLzdn7EMQVeI"
+					]
 				},
 				{
+					"foundryId": "PMg1xUSzmdfkehmk",
 					"name": "Psychic Resistance",
+					"type": "enchantment",
 					"changes": [
 						{
 							"key": "name",
@@ -1425,12 +1427,12 @@
 							"mode": "OVERRIDE",
 							"value": "required"
 						}
-					],
-					"type": "enchantment",
-					"foundryId": "PMg1xUSzmdfkehmk"
+					]
 				},
 				{
+					"foundryId": "d91sC1CVni1UqvD9",
 					"name": "Radiant Resistance",
+					"type": "enchantment",
 					"changes": [
 						{
 							"key": "name",
@@ -1447,12 +1449,12 @@
 							"mode": "OVERRIDE",
 							"value": "required"
 						}
-					],
-					"type": "enchantment",
-					"foundryId": "d91sC1CVni1UqvD9"
+					]
 				},
 				{
+					"foundryId": "53ofZQaLsaqm16Wv",
 					"name": "Thunder Resistance",
+					"type": "enchantment",
 					"changes": [
 						{
 							"key": "name",
@@ -1469,129 +1471,127 @@
 							"mode": "OVERRIDE",
 							"value": "required"
 						}
-					],
-					"type": "enchantment",
-					"foundryId": "53ofZQaLsaqm16Wv"
+					]
 				},
 				{
 					"name": "Acid Resistance",
+					"enchantmentRiderParent": "ufnjdkye4AwCNw3y",
+					"transfer": true,
 					"changes": [
 						{
 							"key": "system.traits.dr.value",
 							"mode": "ADD",
 							"value": "acid"
 						}
-					],
-					"transfer": true,
-					"enchantmentRiderParent": "ufnjdkye4AwCNw3y"
+					]
 				},
 				{
 					"name": "Cold Resistance",
+					"enchantmentRiderParent": "IwMxrYsS7HFjX4Oi",
+					"transfer": true,
 					"changes": [
 						{
 							"key": "system.traits.dr.value",
 							"mode": "ADD",
 							"value": "cold"
 						}
-					],
-					"transfer": true,
-					"enchantmentRiderParent": "IwMxrYsS7HFjX4Oi"
+					]
 				},
 				{
 					"name": "Fire Resistance",
+					"enchantmentRiderParent": "BaA8aaeV86SWrjFp",
+					"transfer": true,
 					"changes": [
 						{
 							"key": "system.traits.dr.value",
 							"mode": "ADD",
 							"value": "fire"
 						}
-					],
-					"transfer": true,
-					"enchantmentRiderParent": "BaA8aaeV86SWrjFp"
+					]
 				},
 				{
 					"name": "Force Resistance",
+					"enchantmentRiderParent": "hCI4vspbQZLRR92W",
+					"transfer": true,
 					"changes": [
 						{
 							"key": "system.traits.dr.value",
 							"mode": "ADD",
 							"value": "force"
 						}
-					],
-					"transfer": true,
-					"enchantmentRiderParent": "hCI4vspbQZLRR92W"
+					]
 				},
 				{
 					"name": "Lightning Resistance",
+					"enchantmentRiderParent": "6a8ZKAYbgRClp31A",
+					"transfer": true,
 					"changes": [
 						{
 							"key": "system.traits.dr.value",
 							"mode": "ADD",
 							"value": "lightning"
 						}
-					],
-					"transfer": true,
-					"enchantmentRiderParent": "6a8ZKAYbgRClp31A"
+					]
 				},
 				{
 					"name": "Necrotic Resistance",
+					"enchantmentRiderParent": "sUfuFKyLRr8SHrW1",
+					"transfer": true,
 					"changes": [
 						{
 							"key": "system.traits.dr.value",
 							"mode": "ADD",
 							"value": "necrotic"
 						}
-					],
-					"transfer": true,
-					"enchantmentRiderParent": "sUfuFKyLRr8SHrW1"
+					]
 				},
 				{
 					"name": "Poison Resistance",
+					"enchantmentRiderParent": "urJlfLzdn7EMQVeI",
+					"transfer": true,
 					"changes": [
 						{
 							"key": "system.traits.dr.value",
 							"mode": "ADD",
 							"value": "poison"
 						}
-					],
-					"transfer": true,
-					"enchantmentRiderParent": "urJlfLzdn7EMQVeI"
+					]
 				},
 				{
 					"name": "Psychic Resistance",
+					"enchantmentRiderParent": "PMg1xUSzmdfkehmk",
+					"transfer": true,
 					"changes": [
 						{
 							"key": "system.traits.dr.value",
 							"mode": "ADD",
 							"value": "psychic"
 						}
-					],
-					"transfer": true,
-					"enchantmentRiderParent": "PMg1xUSzmdfkehmk"
+					]
 				},
 				{
 					"name": "Radiant Resistance",
+					"enchantmentRiderParent": "d91sC1CVni1UqvD9",
+					"transfer": true,
 					"changes": [
 						{
 							"key": "system.traits.dr.value",
 							"mode": "ADD",
 							"value": "radiant"
 						}
-					],
-					"transfer": true,
-					"enchantmentRiderParent": "d91sC1CVni1UqvD9"
+					]
 				},
 				{
 					"name": "Thunder Resistance",
+					"enchantmentRiderParent": "53ofZQaLsaqm16Wv",
+					"transfer": true,
 					"changes": [
 						{
 							"key": "system.traits.dr.value",
 							"mode": "ADD",
 							"value": "thunder"
 						}
-					],
-					"transfer": true,
-					"enchantmentRiderParent": "53ofZQaLsaqm16Wv"
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -1613,6 +1613,7 @@
 			"effects": [
 				{
 					"name": "Returning Weapon",
+					"type": "enchantment",
 					"changes": [
 						{
 							"key": "name",
@@ -1639,8 +1640,7 @@
 							"mode": "ADD",
 							"value": "ret"
 						}
-					],
-					"type": "enchantment"
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -1688,6 +1688,7 @@
 			"effects": [
 				{
 					"name": "Spell-Refueling Ring",
+					"type": "enchantment",
 					"changes": [
 						{
 							"key": "name",
@@ -1729,8 +1730,7 @@
 							"mode": "OVERRIDE",
 							"value": "required"
 						}
-					],
-					"type": "enchantment"
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -1751,14 +1751,14 @@
 			"effects": [
 				{
 					"name": "Judiciousness",
+					"transfer": true,
 					"changes": [
 						{
 							"key": "system.attributes.senses.darkvision",
 							"mode": "UPGRADE",
 							"value": "120"
 						}
-					],
-					"transfer": true
+					]
 				},
 				{
 					"name": "Judged",

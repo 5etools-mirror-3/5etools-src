@@ -97,7 +97,14 @@ class StatGenPage {
 						html: `<span class="glyphicon glyphicon-refresh"></span>`,
 						title: "Reset All",
 						type: "danger",
-						pFnClick: () => this._statGenUi.doResetAll(),
+						pFnClick: async () => {
+							if (!await InputUiUtil.pGetUserBoolean({
+								title: "Reset All",
+								htmlDescription: `<div>This will reset all inputs in all tabs.<br>Are you sure?</div>`,
+							})) return;
+
+							this._statGenUi.doResetAll();
+						},
 					},
 				],
 			}),
