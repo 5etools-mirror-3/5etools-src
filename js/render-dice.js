@@ -2270,6 +2270,6 @@ Renderer.dice.parsed = {
 	},
 };
 
-if (!IS_VTT && typeof window !== "undefined") {
+if (!globalThis.IS_VTT && typeof window !== "undefined") {
 	window.addEventListener("load", Renderer.dice._pInit);
 }

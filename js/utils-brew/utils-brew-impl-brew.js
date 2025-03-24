@@ -26,6 +26,7 @@ export class BrewUtil2_ extends BrewUtil2Base {
 	DEFAULT_AUTHOR = "";
 	STYLE_BTN = "ve-btn-info";
 	IS_PREFER_DATE_ADDED = true;
+	IS_ADD_BTN_ALL_PARTNERED = true;
 
 	/* -------------------------------------------- */
 

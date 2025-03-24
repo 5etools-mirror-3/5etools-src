@@ -349,7 +349,10 @@ export class StatGenUiCompAsi extends BaseComponent {
 
 					$stgSelectAbilitySet.showVe().append(metaChooseAbilitySet.$sel);
 					metaChooseAbilitySet.$sel.change(() => this._doPulseThrottled());
-					fnsCleanupFeat.push(() => metaChooseAbilitySet.unhook());
+					fnsCleanupFeat.push(() => {
+						metaChooseAbilitySet.unhook();
+						metaChooseAbilitySet.$sel.remove();
+					});
 				}
 
 				const hkAbilitySet = () => {

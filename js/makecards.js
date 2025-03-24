@@ -380,7 +380,7 @@ class MakeCards extends BaseComponent {
 
 		const $ele = $$`<label class="ve-flex-v-center my-1 w-100 lst__row lst__row-border lst__row-inner">
 			<div class="ve-col-1 mr-2 ve-flex-vh-center">${$cbSel}</div>
-			<div class="ve-col-3 mr-2 ve-flex-v-center">${loaded.name}</div>
+			<div class="ve-col-3 mr-2 ve-flex-v-center">${Renderer.get().render(`{@${Parser.getPropTag(cardMeta.entityType)} ${DataUtil.proxy.getUid(loaded.__prop, loaded, {isMaintainCase: true})}}`)}</div>
 			<div class="ve-col-1-5 mr-2 ve-flex-vh-center ${Parser.sourceJsonToSourceClassname(loaded.source)}" title="${Parser.sourceJsonToFull(loaded.source)}" ${Parser.sourceJsonToStyle(loaded.source)}>${Parser.sourceJsonToAbv(loaded.source)}</div>
 			<div class="ve-col-1-5 mr-2 ve-flex-vh-center">${Parser.getPropDisplayName(cardMeta.entityType)}</div>
 			<div class="ve-col-1-1 mr-2 ve-flex-vh-center">${$iptRgb}</div>
@@ -564,11 +564,14 @@ class MakeCards extends BaseComponent {
 	}
 
 	static _getCardContents_feat (feat) {
-		const prerequisite = Renderer.utils.prerequisite.getHtml(feat.prerequisite, {isListMode: true});
+		const prerequisite = Renderer.feat.getJoinedCategoryPrerequisites(
+			feat.category,
+			Renderer.utils.prerequisite.getHtml(feat.prerequisite, {isListMode: true}),
+		);
 		const ptRepeatable = Renderer.utils.getRepeatableHtml(feat, {isListMode: true});
 		Renderer.feat.initFullEntries(feat);
 		return [
-			(prerequisite && prerequisite !== "\u2014") ? this._ct_property("Prerequisites", prerequisite) : null,
+			(prerequisite && prerequisite !== "\u2014") ? this._ct_property("Type/Prerequisites", prerequisite) : null,
 			(ptRepeatable && ptRepeatable !== "\u2014") ? this._ct_property("Repeatable", ptRepeatable) : null,
 			(prerequisite || ptRepeatable) ? this._ct_rule() : null,
 			...this._ct_renderEntries(feat._fullEntries || feat.entries, 2),

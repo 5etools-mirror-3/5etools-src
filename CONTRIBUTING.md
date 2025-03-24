@@ -126,7 +126,7 @@ Avoid binding ALT-modified events, as these are not available under MacOS or var
 
 ### Dev Server
 
-Do `npm run serve:dev` to launch a local dev server that serves the project files on [`http://localhost:5000/index.html`](http://localhost:8080/index.html).
+Do `npm run serve:dev` to launch a local dev server that serves the project files on [`http://localhost:5050/index.html`](http://localhost:5050/index.html).
 
 ### Version bump
 

@@ -53,7 +53,7 @@ class OmnisearchUi {
 	/* -------------------------------------------- */
 
 	static render () {
-		if (IS_VTT) return;
+		if (globalThis.IS_VTT) return;
 
 		const rdState = this._render_getElements();
 		this._render_doBindElementListeners({rdState});

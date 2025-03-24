@@ -26,7 +26,7 @@ export class LootGenOutput {
 	}
 
 	_$getEleTitleSplit () {
-		const $btnRivet = !IS_VTT && ExtensionUtil.ACTIVE
+		const $btnRivet = !globalThis.IS_VTT && ExtensionUtil.ACTIVE
 			? $(`<button title="Send to Foundry (SHIFT for Temporary Import)" class="ve-btn ve-btn-xs ve-btn-default"><span class="glyphicon glyphicon-send"></span></button>`)
 				.click(evt => this._pDoSendToFoundry({isTemp: !!evt.shiftKey}))
 			: null;
@@ -64,7 +64,7 @@ export class LootGenOutput {
 		</div>`
 			.prependTo($parent);
 
-		(IS_VTT ? this._$wrp : $dispTitle)
+		(globalThis.IS_VTT ? this._$wrp : $dispTitle)
 			.attr("draggable", true)
 			.on("dragstart", evt => {
 				const meta = {

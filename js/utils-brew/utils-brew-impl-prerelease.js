@@ -24,6 +24,7 @@ export class PrereleaseUtil_ extends BrewUtil2Base {
 	DEFAULT_AUTHOR = "Wizards of the Coast";
 	STYLE_BTN = "ve-btn-primary";
 	IS_PREFER_DATE_ADDED = false;
+	IS_ADD_BTN_ALL_PARTNERED = false;
 
 	/* -------------------------------------------- */
 

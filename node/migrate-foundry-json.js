@@ -10,8 +10,7 @@ import {getAllJson} from "./util-json-files.js";
 import {listJsonFiles, writeJsonSync} from "5etools-utils/lib/UtilFs.js";
 import * as ut from "./util.js";
 import {FoundryDataMigrator, UNHANDLED_KEYS} from "../js/foundry/foundry-migrate-data.js";
-
-const isSiteFoundryFile = filename => /\/foundry(?:-[^/]+)?\.json$/.test(filename);
+import {isSiteFoundryFile} from "./util.js";
 
 const program = new Command()
 	.option("--file <file...>", `Input files`)

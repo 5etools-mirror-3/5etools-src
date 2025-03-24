@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.7.3"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.7.4"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -1602,6 +1602,26 @@ class ElementUtil {
 			if (!parent) return null;
 		}
 		return parent;
+	}
+
+	static _IFRAME_SANDBOX_ATTRIBUTES = [
+		"allow-forms",
+		"allow-modals",
+		"allow-orientation-lock",
+		"allow-pointer-lock",
+		"allow-popups",
+		"allow-popups-to-escape-sandbox",
+		"allow-presentation",
+		"allow-same-origin",
+		"allow-scripts",
+		"allow-top-navigation-by-user-activation",
+
+		// Prevent top-level navigation
+		// "allow-top-navigation",
+	];
+
+	static getIframeSandboxAttribute () {
+		return `sandbox="${this._IFRAME_SANDBOX_ATTRIBUTES.join(" ")}"`;
 	}
 	// endregion
 }
@@ -3733,13 +3753,26 @@ UrlUtil.PAGE_TO_PROPS = {};
 UrlUtil.PAGE_TO_PROPS[UrlUtil.PG_SPELLS] = ["spell"];
 UrlUtil.PAGE_TO_PROPS[UrlUtil.PG_ITEMS] = ["item", "itemGroup", "itemType", "itemEntry", "itemProperty", "itemTypeAdditionalEntries", "itemMastery", "baseitem", "magicvariant"];
 UrlUtil.PAGE_TO_PROPS[UrlUtil.PG_RACES] = ["race", "subrace"];
+UrlUtil.PAGE_TO_PROPS[UrlUtil.PG_ACTIONS] = ["action"];
+UrlUtil.PAGE_TO_PROPS[UrlUtil.PG_BACKGROUNDS] = ["background"];
+UrlUtil.PAGE_TO_PROPS[UrlUtil.PG_BESTIARY] = ["monster"];
+UrlUtil.PAGE_TO_PROPS[UrlUtil.PG_CLASSES] = ["class", "subclass", "classFeature", "subclassFeature"];
+UrlUtil.PAGE_TO_PROPS[UrlUtil.PG_CONDITIONS_DISEASES] = ["condition", "disease", "status"];
+UrlUtil.PAGE_TO_PROPS[UrlUtil.PG_CULTS_BOONS] = ["cult", "boon"];
+UrlUtil.PAGE_TO_PROPS[UrlUtil.PG_FEATS] = ["feat"];
+UrlUtil.PAGE_TO_PROPS[UrlUtil.PG_LANGUAGES] = ["language"];
+UrlUtil.PAGE_TO_PROPS[UrlUtil.PG_OBJECTS] = ["object"];
+UrlUtil.PAGE_TO_PROPS[UrlUtil.PG_OPT_FEATURES] = ["optionalfeature"];
+UrlUtil.PAGE_TO_PROPS[UrlUtil.PG_REWARDS] = ["reward"];
+UrlUtil.PAGE_TO_PROPS[UrlUtil.PG_TRAPS_HAZARDS] = ["trap", "hazard"];
+UrlUtil.PAGE_TO_PROPS[UrlUtil.PG_VARIANTRULES] = ["variantrule"];
 
 UrlUtil.PROP_TO_PAGE = {};
 UrlUtil.PROP_TO_PAGE["spell"] = UrlUtil.PG_SPELLS;
 UrlUtil.PROP_TO_PAGE["item"] = UrlUtil.PG_ITEMS;
 UrlUtil.PROP_TO_PAGE["baseitem"] = UrlUtil.PG_ITEMS;
 
-if (!IS_DEPLOYED && !IS_VTT && typeof window !== "undefined") {
+if (!IS_DEPLOYED && !globalThis.IS_VTT && typeof window !== "undefined") {
 	// for local testing, hotkey to get a link to the current page on the main site
 	window.addEventListener("keypress", (e) => {
 		if (EventUtil.noModifierKeys(e) && typeof d20 === "undefined") {
@@ -6660,6 +6693,9 @@ globalThis.DataUtil = {
 		static _PAGE = "classFeature";
 		static _DIR = "class";
 		static _PROP = "classFeature";
+
+		static unpackUid (uid, tag, opts) { return DataUtil.class.unpackUidClassFeature(uid, opts); }
+		static getUid (ent, opts) { return DataUtil.class.packUidClassFeature(ent, opts); }
 	},
 
 	classFluff: class extends _DataUtilPropConfigMultiSource {
@@ -6691,6 +6727,9 @@ globalThis.DataUtil = {
 		static _PAGE = "subclassFeature";
 		static _DIR = "class";
 		static _PROP = "subclassFeature";
+
+		static unpackUid (uid, tag, opts) { return DataUtil.class.unpackUidSubclassFeature(uid, opts); }
+		static getUid (ent, opts) { return DataUtil.class.packUidSubclassFeature(ent, opts); }
 	},
 
 	subclassFluff: class extends _DataUtilPropConfigMultiSource {
@@ -8624,7 +8663,7 @@ globalThis.BrowserUtil = class {
 };
 
 // MISC WEBPAGE ONLOADS ================================================================================================
-if (!IS_VTT && typeof window !== "undefined") {
+if (!globalThis.IS_VTT && typeof window !== "undefined") {
 	window.addEventListener("load", () => {
 		const docRoot = document.querySelector(":root");
 
