@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.7.4"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.7.5"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -1620,7 +1620,26 @@ class ElementUtil {
 		// "allow-top-navigation",
 	];
 
-	static getIframeSandboxAttribute () {
+	static getIframeSandboxAttribute ({url, isAllowPdf = false} = {}) {
+		if (!url || !isAllowPdf) return this._getIframeSandboxAttribute();
+
+		// Allow "PDFs" (approximately detected by ".pdf" in the filename; this is not intended
+		//   as a security feature) if explicitly requested. Sandbox attributes otherwise block
+		//   these in e.g. Chrome.
+		// See: https://github.com/whatwg/html/issues/3958
+
+		let parsedUrl;
+		try {
+			parsedUrl = new URL(url);
+		} catch (e) {
+			return this._getIframeSandboxAttribute();
+		}
+
+		if (/\.pdf$/i.test(parsedUrl.pathName)) return this._getIframeSandboxAttribute();
+		return "";
+	}
+
+	static _getIframeSandboxAttribute () {
 		return `sandbox="${this._IFRAME_SANDBOX_ATTRIBUTES.join(" ")}"`;
 	}
 	// endregion

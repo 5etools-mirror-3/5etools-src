@@ -1565,7 +1565,9 @@ Parser.spRangeToShortHtml._getAreaStyleString = function (range) {
 	return `<span class="fas fa-fw ${Parser.spRangeTypeToIcon(range.type)} help-subtle" title="${Parser.spRangeTypeToFull(range.type)}"></span>`;
 };
 
-Parser.spRangeToFull = function (range) {
+Parser.spRangeToFull = function (range, {styleHint, isDisplaySelfArea = false} = {}) {
+	styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
 	switch (range.type) {
 		case Parser.RNG_SPECIAL: return Parser.spRangeTypeToFull(range.type);
 		case Parser.RNG_POINT: return Parser.spRangeToFull._renderPoint(range);
@@ -1577,7 +1579,7 @@ Parser.spRangeToFull = function (range) {
 		case Parser.RNG_SPHERE:
 		case Parser.RNG_HEMISPHERE:
 		case Parser.RNG_CYLINDER:
-			return Parser.spRangeToFull._renderArea(range);
+			return Parser.spRangeToFull._renderArea({range, styleHint, isDisplaySelfArea});
 	}
 };
 Parser.spRangeToFull._renderPoint = function (range) {
@@ -1597,7 +1599,8 @@ Parser.spRangeToFull._renderPoint = function (range) {
 			return `${dist.amount} ${dist.amount === 1 ? Parser.getSingletonUnit(dist.type) : dist.type}`;
 	}
 };
-Parser.spRangeToFull._renderArea = function (range) {
+Parser.spRangeToFull._renderArea = function ({range, styleHint, isDisplaySelfArea = false}) {
+	if (styleHint !== "classic" && !isDisplaySelfArea) return "Self";
 	const size = range.distance;
 	return `Self (${size.amount}-${Parser.getSingletonUnit(size.type)}${Parser.spRangeToFull._getAreaStyleString(range)}${range.type === Parser.RNG_CYLINDER ? `${size.amountSecondary != null && size.typeSecondary != null ? `, ${size.amountSecondary}-${Parser.getSingletonUnit(size.typeSecondary)}-high` : ""} cylinder` : ""})`;
 };

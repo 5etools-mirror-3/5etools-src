@@ -23,19 +23,28 @@
 			"source": "TCE",
 			"system": {
 				"type.value": "enchantment",
-				"type.subtype": "artificerInfusion",
-				"enchantment.restrictions.type": "equipment",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "special"
-					}
-				]
+				"type.subtype": "artificerInfusion"
 			},
+			"activities": [
+				{
+					"type": "enchant",
+					"activation": {
+						"type": "special"
+					},
+					"restrictions": {
+						"type": "equipment"
+					},
+					"effects": [
+						{
+							"foundryId": "arcanePropulsion"
+						}
+					]
+				}
+			],
 			"effects": [
 				{
 					"name": "Arcane Propulsion Armor",
-					"enchantmentRiderParent": "XY7pERdPxxb8bjlq",
+					"enchantmentRiderParent": "arcanePropulsion",
 					"transfer": true,
 					"changes": [
 						{
@@ -46,7 +55,7 @@
 					]
 				},
 				{
-					"foundryId": "XY7pERdPxxb8bjlq",
+					"foundryId": "arcanePropulsion",
 					"name": "Arcane Propulsion",
 					"type": "enchantment",
 					"changes": [
@@ -101,17 +110,27 @@
 			"source": "TCE",
 			"system": {
 				"type.value": "enchantment",
-				"type.subtype": "artificerInfusion",
-				"enchantment.restrictions.type": "equipment",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "special"
-					}
-				]
+				"type.subtype": "artificerInfusion"
 			},
+			"activities": [
+				{
+					"type": "enchant",
+					"activation": {
+						"type": "special"
+					},
+					"restrictions": {
+						"type": "equipment"
+					},
+					"effects": [
+						{
+							"foundryId": "armorOfMagicalSt"
+						}
+					]
+				}
+			],
 			"effects": [
 				{
+					"foundryId": "armorOfMagicalSt",
 					"name": "Armor of Magical Strength",
 					"type": "enchantment",
 					"changes": [
@@ -240,17 +259,27 @@
 			"source": "TCE",
 			"system": {
 				"type.value": "enchantment",
-				"type.subtype": "artificerInfusion",
-				"enchantment.restrictions.type": "equipment",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "none"
-					}
-				]
+				"type.subtype": "artificerInfusion"
 			},
+			"activities": [
+				{
+					"type": "enchant",
+					"activation": {
+						"type": "special"
+					},
+					"restrictions": {
+						"type": "equipment"
+					},
+					"effects": [
+						{
+							"foundryId": "bootsOfTheWindin"
+						}
+					]
+				}
+			],
 			"effects": [
 				{
+					"foundryId": "bootsOfTheWindin",
 					"name": "Boots of the Winding Path",
 					"type": "enchantment",
 					"changes": [
@@ -393,18 +422,43 @@
 			"source": "TCE",
 			"system": {
 				"type.value": "enchantment",
-				"type.subtype": "artificerInfusion",
-				"enchantment.restrictions.type": "weapon",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "none"
-					}
-				]
+				"type.subtype": "artificerInfusion"
 			},
+			"activities": [
+				{
+					"name": "Enhanced Arcane Focus",
+					"type": "enchant",
+					"activation": {
+						"type": "special"
+					},
+					"restrictions": {
+						"type": "weapon"
+					},
+					"effects": [
+						{
+							"foundryId": "enhancedArcaneFo"
+						}
+					]
+				},
+				{
+					"name": "Enhanced Arcane Focus +2",
+					"type": "enchant",
+					"activation": {
+						"type": "special"
+					},
+					"restrictions": {
+						"type": "weapon"
+					},
+					"effects": [
+						{
+							"foundryId": "enhancedArcaneF2"
+						}
+					]
+				}
+			],
 			"effects": [
 				{
-					"foundryId": "syx3ZXUoQwVJUZxP",
+					"foundryId": "enhancedArcaneFo",
 					"name": "Enhanced Arcane Focus",
 					"type": "enchantment",
 					"changes": [
@@ -431,7 +485,7 @@
 					]
 				},
 				{
-					"foundryId": "I4qB050rdgSsoIEd",
+					"foundryId": "enhancedArcaneF2",
 					"name": "Enhanced Arcane Focus +2",
 					"type": "enchantment",
 					"changes": [
@@ -459,7 +513,7 @@
 				},
 				{
 					"name": "Enhanced Arcane Focus",
-					"enchantmentRiderParent": "syx3ZXUoQwVJUZxP",
+					"enchantmentRiderParent": "enhancedArcaneFo",
 					"transfer": true,
 					"changes": [
 						{
@@ -476,7 +530,7 @@
 				},
 				{
 					"name": "Enhanced Arcane Focus +2",
-					"enchantmentRiderParent": "I4qB050rdgSsoIEd",
+					"enchantmentRiderParent": "enhancedArcaneF2",
 					"transfer": true,
 					"changes": [
 						{
@@ -499,17 +553,43 @@
 			"source": "TCE",
 			"system": {
 				"type.value": "enchantment",
-				"type.subtype": "artificerInfusion",
-				"enchantment.restrictions.type": "equipment",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "none"
-					}
-				]
+				"type.subtype": "artificerInfusion"
 			},
+			"activities": [
+				{
+					"name": "Enhanced Defense",
+					"type": "enchant",
+					"activation": {
+						"type": "special"
+					},
+					"restrictions": {
+						"type": "equipment"
+					},
+					"effects": [
+						{
+							"foundryId": "enhancedDefense"
+						}
+					]
+				},
+				{
+					"name": "Enhanced Defense +2",
+					"type": "enchant",
+					"activation": {
+						"type": "special"
+					},
+					"restrictions": {
+						"type": "equipment"
+					},
+					"effects": [
+						{
+							"foundryId": "enhancedDefense2"
+						}
+					]
+				}
+			],
 			"effects": [
 				{
+					"foundryId": "enhancedDefense",
 					"name": "Enhanced Defense",
 					"type": "enchantment",
 					"changes": [
@@ -536,6 +616,7 @@
 					]
 				},
 				{
+					"foundryId": "enhancedDefense2",
 					"name": "Enhanced Defense +2",
 					"type": "enchantment",
 					"changes": [
@@ -569,17 +650,43 @@
 			"source": "TCE",
 			"system": {
 				"type.value": "enchantment",
-				"type.subtype": "artificerInfusion",
-				"enchantment.restrictions.type": "weapon",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "none"
-					}
-				]
+				"type.subtype": "artificerInfusion"
 			},
+			"activities": [
+				{
+					"name": "Enhanced Weapon",
+					"type": "enchant",
+					"activation": {
+						"type": "special"
+					},
+					"restrictions": {
+						"type": "weapon"
+					},
+					"effects": [
+						{
+							"foundryId": "enhancedWeapon"
+						}
+					]
+				},
+				{
+					"name": "Enhanced Weapon +2",
+					"type": "enchant",
+					"activation": {
+						"type": "special"
+					},
+					"restrictions": {
+						"type": "weapon"
+					},
+					"effects": [
+						{
+							"foundryId": "enhancedWeapon2"
+						}
+					]
+				}
+			],
 			"effects": [
 				{
+					"foundryId": "enhancedWeapon",
 					"name": "Enhanced Weapon",
 					"type": "enchantment",
 					"changes": [
@@ -606,6 +713,7 @@
 					]
 				},
 				{
+					"foundryId": "enhancedWeapon2",
 					"name": "Enhanced Weapon +2",
 					"type": "enchantment",
 					"changes": [
@@ -725,17 +833,27 @@
 			"source": "TCE",
 			"system": {
 				"type.value": "enchantment",
-				"type.subtype": "artificerInfusion",
-				"enchantment.restrictions.type": "equipment",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "none"
-					}
-				]
+				"type.subtype": "artificerInfusion"
 			},
+			"activities": [
+				{
+					"type": "enchant",
+					"activation": {
+						"type": "special"
+					},
+					"restrictions": {
+						"type": "equipment"
+					},
+					"effects": [
+						{
+							"foundryId": "helmOfAwareness"
+						}
+					]
+				}
+			],
 			"effects": [
 				{
+					"foundryId": "helmOfAwareness",
 					"name": "Helm of Awareness",
 					"type": "enchantment",
 					"changes": [
@@ -827,14 +945,16 @@
 			"source": "TCE",
 			"system": {
 				"type.value": "enchantment",
-				"type.subtype": "artificerInfusion",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "action"
-					}
-				]
+				"type.subtype": "artificerInfusion"
 			},
+			"activities": [
+				{
+					"type": "enchant",
+					"activation": {
+						"type": "special"
+					}
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -868,17 +988,27 @@
 			"source": "TCE",
 			"system": {
 				"type.value": "enchantment",
-				"type.subtype": "artificerInfusion",
-				"enchantment.restrictions.type": "equipment",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "none"
-					}
-				]
+				"type.subtype": "artificerInfusion"
 			},
+			"activities": [
+				{
+					"type": "enchant",
+					"activation": {
+						"type": "special"
+					},
+					"restrictions": {
+						"type": "equipment"
+					},
+					"effects": [
+						{
+							"foundryId": "mindSharpener"
+						}
+					]
+				}
+			],
 			"effects": [
 				{
+					"foundryId": "mindSharpener",
 					"name": "Mind Sharpener",
 					"type": "enchantment",
 					"changes": [
@@ -1003,17 +1133,27 @@
 			"source": "TCE",
 			"system": {
 				"type.value": "enchantment",
-				"type.subtype": "artificerInfusion",
-				"enchantment.restrictions.type": "weapon",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "none"
-					}
-				]
+				"type.subtype": "artificerInfusion"
 			},
+			"activities": [
+				{
+					"type": "enchant",
+					"activation": {
+						"type": "special"
+					},
+					"restrictions": {
+						"type": "weapon"
+					},
+					"effects": [
+						{
+							"foundryId": "radiantWeapon"
+						}
+					]
+				}
+			],
 			"effects": [
 				{
+					"foundryId": "radiantWeapon",
 					"name": "Radiant Weapon",
 					"type": "enchantment",
 					"changes": [
@@ -1082,17 +1222,27 @@
 			"source": "TCE",
 			"system": {
 				"type.value": "enchantment",
-				"type.subtype": "artificerInfusion",
-				"enchantment.restrictions.type": "weapon",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "none"
-					}
-				]
+				"type.subtype": "artificerInfusion"
 			},
+			"activities": [
+				{
+					"type": "enchant",
+					"activation": {
+						"type": "special"
+					},
+					"restrictions": {
+						"type": "weapon"
+					},
+					"effects": [
+						{
+							"foundryId": "repeatingShot"
+						}
+					]
+				}
+			],
 			"effects": [
 				{
+					"foundryId": "repeatingShot",
 					"name": "Repeating Shot",
 					"type": "enchantment",
 					"changes": [
@@ -1136,16 +1286,24 @@
 			"source": "TCE",
 			"system": {
 				"type.value": "enchantment",
-				"type.subtype": "artificerInfusion",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "none"
-					}
-				]
+				"type.subtype": "artificerInfusion"
 			},
+			"activities": [
+				{
+					"type": "enchant",
+					"activation": {
+						"type": "special"
+					},
+					"effects": [
+						{
+							"foundryId": "replicatedMagicI"
+						}
+					]
+				}
+			],
 			"effects": [
 				{
+					"foundryId": "replicatedMagicI",
 					"name": "Replicated Magic Item",
 					"type": "enchantment",
 					"changes": [
@@ -1164,17 +1322,27 @@
 			"source": "TCE",
 			"system": {
 				"type.value": "enchantment",
-				"type.subtype": "artificerInfusion",
-				"enchantment.restrictions.type": "equipment",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "none"
-					}
-				]
+				"type.subtype": "artificerInfusion"
 			},
+			"activities": [
+				{
+					"type": "enchant",
+					"activation": {
+						"type": "special"
+					},
+					"restrictions": {
+						"type": "equipment"
+					},
+					"effects": [
+						{
+							"foundryId": "repulsionShield"
+						}
+					]
+				}
+			],
 			"effects": [
 				{
+					"foundryId": "repulsionShield",
 					"name": "Repulsion Shield",
 					"type": "enchantment",
 					"changes": [
@@ -1243,18 +1411,163 @@
 			"source": "TCE",
 			"system": {
 				"type.value": "enchantment",
-				"type.subtype": "artificerInfusion",
-				"enchantment.restrictions.type": "equipment",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "none"
-					}
-				]
+				"type.subtype": "artificerInfusion"
 			},
+			"activities": [
+				{
+					"name": "Acid Resistance",
+					"type": "enchant",
+					"activation": {
+						"type": "special"
+					},
+					"restrictions": {
+						"type": "equipment"
+					},
+					"effects": [
+						{
+							"foundryId": "arResistanceAcid"
+						}
+					]
+				},
+				{
+					"name": "Cold Resistance",
+					"type": "enchant",
+					"activation": {
+						"type": "special"
+					},
+					"restrictions": {
+						"type": "equipment"
+					},
+					"effects": [
+						{
+							"foundryId": "arResistanceCold"
+						}
+					]
+				},
+				{
+					"name": "Fire Resistance",
+					"type": "enchant",
+					"activation": {
+						"type": "special"
+					},
+					"restrictions": {
+						"type": "equipment"
+					},
+					"effects": [
+						{
+							"foundryId": "arResistanceFire"
+						}
+					]
+				},
+				{
+					"name": "Force Resistance",
+					"type": "enchant",
+					"activation": {
+						"type": "special"
+					},
+					"restrictions": {
+						"type": "equipment"
+					},
+					"effects": [
+						{
+							"foundryId": "arResistanceForc"
+						}
+					]
+				},
+				{
+					"name": "Lightning Resistance",
+					"type": "enchant",
+					"activation": {
+						"type": "special"
+					},
+					"restrictions": {
+						"type": "equipment"
+					},
+					"effects": [
+						{
+							"foundryId": "arResistanceLigh"
+						}
+					]
+				},
+				{
+					"name": "Necrotic Resistance",
+					"type": "enchant",
+					"activation": {
+						"type": "special"
+					},
+					"restrictions": {
+						"type": "equipment"
+					},
+					"effects": [
+						{
+							"foundryId": "arResistanceNecr"
+						}
+					]
+				},
+				{
+					"name": "Poison Resistance",
+					"type": "enchant",
+					"activation": {
+						"type": "special"
+					},
+					"restrictions": {
+						"type": "equipment"
+					},
+					"effects": [
+						{
+							"foundryId": "arResistancePois"
+						}
+					]
+				},
+				{
+					"name": "Psychic Resistance",
+					"type": "enchant",
+					"activation": {
+						"type": "special"
+					},
+					"restrictions": {
+						"type": "equipment"
+					},
+					"effects": [
+						{
+							"foundryId": "arResistancePsyc"
+						}
+					]
+				},
+				{
+					"name": "Radiant Resistance",
+					"type": "enchant",
+					"activation": {
+						"type": "special"
+					},
+					"restrictions": {
+						"type": "equipment"
+					},
+					"effects": [
+						{
+							"foundryId": "arResistanceRadi"
+						}
+					]
+				},
+				{
+					"name": "Thunder Resistance",
+					"type": "enchant",
+					"activation": {
+						"type": "special"
+					},
+					"restrictions": {
+						"type": "equipment"
+					},
+					"effects": [
+						{
+							"foundryId": "arResistanceThun"
+						}
+					]
+				}
+			],
 			"effects": [
 				{
-					"foundryId": "ufnjdkye4AwCNw3y",
+					"foundryId": "arResistanceAcid",
 					"name": "Acid Resistance",
 					"type": "enchantment",
 					"changes": [
@@ -1276,7 +1589,7 @@
 					]
 				},
 				{
-					"foundryId": "IwMxrYsS7HFjX4Oi",
+					"foundryId": "arResistanceCold",
 					"name": "Cold Resistance",
 					"type": "enchantment",
 					"changes": [
@@ -1298,7 +1611,7 @@
 					]
 				},
 				{
-					"foundryId": "BaA8aaeV86SWrjFp",
+					"foundryId": "arResistanceFire",
 					"name": "Fire Resistance",
 					"type": "enchantment",
 					"changes": [
@@ -1320,7 +1633,7 @@
 					]
 				},
 				{
-					"foundryId": "hCI4vspbQZLRR92W",
+					"foundryId": "arResistanceForc",
 					"name": "Force Resistance",
 					"type": "enchantment",
 					"changes": [
@@ -1342,7 +1655,7 @@
 					]
 				},
 				{
-					"foundryId": "6a8ZKAYbgRClp31A",
+					"foundryId": "arResistanceLigh",
 					"name": "Lightning Resistance",
 					"type": "enchantment",
 					"changes": [
@@ -1364,7 +1677,7 @@
 					]
 				},
 				{
-					"foundryId": "sUfuFKyLRr8SHrW1",
+					"foundryId": "arResistanceNecr",
 					"name": "Necrotic Resistance",
 					"type": "enchantment",
 					"changes": [
@@ -1386,7 +1699,7 @@
 					]
 				},
 				{
-					"foundryId": "urJlfLzdn7EMQVeI",
+					"foundryId": "arResistancePois",
 					"name": "Poison Resistance",
 					"type": "enchantment",
 					"changes": [
@@ -1408,7 +1721,7 @@
 					]
 				},
 				{
-					"foundryId": "PMg1xUSzmdfkehmk",
+					"foundryId": "arResistancePsyc",
 					"name": "Psychic Resistance",
 					"type": "enchantment",
 					"changes": [
@@ -1430,7 +1743,7 @@
 					]
 				},
 				{
-					"foundryId": "d91sC1CVni1UqvD9",
+					"foundryId": "arResistanceRadi",
 					"name": "Radiant Resistance",
 					"type": "enchantment",
 					"changes": [
@@ -1452,7 +1765,7 @@
 					]
 				},
 				{
-					"foundryId": "53ofZQaLsaqm16Wv",
+					"foundryId": "arResistanceThun",
 					"name": "Thunder Resistance",
 					"type": "enchantment",
 					"changes": [
@@ -1475,7 +1788,7 @@
 				},
 				{
 					"name": "Acid Resistance",
-					"enchantmentRiderParent": "ufnjdkye4AwCNw3y",
+					"enchantmentRiderParent": "arResistanceAcid",
 					"transfer": true,
 					"changes": [
 						{
@@ -1487,7 +1800,7 @@
 				},
 				{
 					"name": "Cold Resistance",
-					"enchantmentRiderParent": "IwMxrYsS7HFjX4Oi",
+					"enchantmentRiderParent": "arResistanceCold",
 					"transfer": true,
 					"changes": [
 						{
@@ -1499,7 +1812,7 @@
 				},
 				{
 					"name": "Fire Resistance",
-					"enchantmentRiderParent": "BaA8aaeV86SWrjFp",
+					"enchantmentRiderParent": "arResistanceFire",
 					"transfer": true,
 					"changes": [
 						{
@@ -1511,7 +1824,7 @@
 				},
 				{
 					"name": "Force Resistance",
-					"enchantmentRiderParent": "hCI4vspbQZLRR92W",
+					"enchantmentRiderParent": "arResistanceForc",
 					"transfer": true,
 					"changes": [
 						{
@@ -1523,7 +1836,7 @@
 				},
 				{
 					"name": "Lightning Resistance",
-					"enchantmentRiderParent": "6a8ZKAYbgRClp31A",
+					"enchantmentRiderParent": "arResistanceLigh",
 					"transfer": true,
 					"changes": [
 						{
@@ -1535,7 +1848,7 @@
 				},
 				{
 					"name": "Necrotic Resistance",
-					"enchantmentRiderParent": "sUfuFKyLRr8SHrW1",
+					"enchantmentRiderParent": "arResistanceNecr",
 					"transfer": true,
 					"changes": [
 						{
@@ -1547,7 +1860,7 @@
 				},
 				{
 					"name": "Poison Resistance",
-					"enchantmentRiderParent": "urJlfLzdn7EMQVeI",
+					"enchantmentRiderParent": "arResistancePois",
 					"transfer": true,
 					"changes": [
 						{
@@ -1559,7 +1872,7 @@
 				},
 				{
 					"name": "Psychic Resistance",
-					"enchantmentRiderParent": "PMg1xUSzmdfkehmk",
+					"enchantmentRiderParent": "arResistancePsyc",
 					"transfer": true,
 					"changes": [
 						{
@@ -1571,7 +1884,7 @@
 				},
 				{
 					"name": "Radiant Resistance",
-					"enchantmentRiderParent": "d91sC1CVni1UqvD9",
+					"enchantmentRiderParent": "arResistanceRadi",
 					"transfer": true,
 					"changes": [
 						{
@@ -1583,7 +1896,7 @@
 				},
 				{
 					"name": "Thunder Resistance",
-					"enchantmentRiderParent": "53ofZQaLsaqm16Wv",
+					"enchantmentRiderParent": "arResistanceThun",
 					"transfer": true,
 					"changes": [
 						{
@@ -1601,17 +1914,27 @@
 			"source": "TCE",
 			"system": {
 				"type.value": "enchantment",
-				"type.subtype": "artificerInfusion",
-				"enchantment.restrictions.type": "weapon",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "none"
-					}
-				]
+				"type.subtype": "artificerInfusion"
 			},
+			"activities": [
+				{
+					"type": "enchant",
+					"activation": {
+						"type": "special"
+					},
+					"restrictions": {
+						"type": "weapon"
+					},
+					"effects": [
+						{
+							"foundryId": "returningWeapon"
+						}
+					]
+				}
+			],
 			"effects": [
 				{
+					"foundryId": "returningWeapon",
 					"name": "Returning Weapon",
 					"type": "enchantment",
 					"changes": [
@@ -1676,17 +1999,27 @@
 			"source": "TCE",
 			"system": {
 				"type.value": "enchantment",
-				"type.subtype": "artificerInfusion",
-				"enchantment.restrictions.type": "equipment",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "none"
-					}
-				]
+				"type.subtype": "artificerInfusion"
 			},
+			"activities": [
+				{
+					"type": "enchant",
+					"activation": {
+						"type": "special"
+					},
+					"restrictions": {
+						"type": "equipment"
+					},
+					"effects": [
+						{
+							"foundryId": "spellRefuelingRi"
+						}
+					]
+				}
+			],
 			"effects": [
 				{
+					"foundryId": "spellRefuelingRi",
 					"name": "Spell-Refueling Ring",
 					"type": "enchantment",
 					"changes": [

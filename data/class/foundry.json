@@ -3065,7 +3065,7 @@
 							},
 							{
 								"type": "itemUses",
-								"value": "-@scale.barbarian.rage",
+								"value": "-@scale.barbarian.rages",
 								"target": {
 									"prop": "classFeature",
 									"uid": "Rage|Barbarian|XPHB|1"
@@ -3200,6 +3200,10 @@
 			"className": "Bard",
 			"classSource": "XPHB",
 			"level": 5,
+			"system": {
+				"uses.max": 0,
+				"uses.recovery": []
+			},
 			"activities": [
 				{
 					"name": "Recharge with Spell Slot",
@@ -3340,6 +3344,28 @@
 								}
 							]
 						}
+					}
+				]
+			},
+			"migrationVersion": 3
+		},
+		{
+			"name": "Channel Divinity",
+			"source": "XPHB",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"level": 2,
+			"system": {
+				"uses.max": "@scale.cleric.channel-divinity",
+				"uses.recovery": [
+					{
+						"period": "lr",
+						"type": "recoverAll"
+					},
+					{
+						"period": "sr",
+						"type": "formula",
+						"formula": "1"
 					}
 				]
 			},
@@ -3584,6 +3610,70 @@
 						"frightened",
 						"incapacitated"
 					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Divine Strike",
+			"source": "XPHB",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"level": 7,
+			"activities": [
+				{
+					"name": "Necrotic Divine Strike",
+					"type": "damage",
+					"activation": {
+						"type": ""
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature",
+							"special": "When you a hit a creature with an attack roll using a weapon once per turn"
+						}
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@scale.cleric.divine-strike"
+								},
+								"types": [
+									"necrotic"
+								]
+							}
+						]
+					}
+				},
+				{
+					"name": "Radiant Divine Strike",
+					"type": "damage",
+					"activation": {
+						"type": ""
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature",
+							"special": "When you a hit a creature with an attack roll using a weapon once per turn"
+						}
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@scale.cleric.divine-strike"
+								},
+								"types": [
+									"radiant"
+								]
+							}
+						]
+					}
 				}
 			],
 			"migrationVersion": 3
@@ -3852,6 +3942,9 @@
 			"className": "Druid",
 			"classSource": "XPHB",
 			"level": 2,
+			"system": {
+				"uses.max": "@scale.druid.wild-shape"
+			},
 			"activities": [
 				{
 					"name": "Wild Shape",
@@ -3965,6 +4058,46 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Primal Strike",
+			"source": "XPHB",
+			"className": "Druid",
+			"classSource": "XPHB",
+			"level": 7,
+			"activities": [
+				{
+					"name": "Primal Strike",
+					"type": "damage",
+					"activation": {
+						"type": ""
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature",
+							"special": "When you hit a creature with an attack roll using a weapon or a Beast form's attack in Wild Shape"
+						}
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@scale.druid.elemental-fury"
+								},
+								"types": [
+									"cold",
+									"fire",
+									"lightning",
+									"thunder"
+								]
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Epic Boon",
 			"source": "XPHB",
 			"className": "Druid",
@@ -4058,6 +4191,9 @@
 			"className": "Fighter",
 			"classSource": "XPHB",
 			"level": 1,
+			"system": {
+				"uses.max": "@scale.fighter.second-wind"
+			},
 			"activities": [
 				{
 					"type": "heal",
@@ -4098,6 +4234,9 @@
 			"className": "Fighter",
 			"classSource": "XPHB",
 			"level": 2,
+			"system": {
+				"uses.max": "@scale.fighter.action-surge"
+			},
 			"activities": [
 				{
 					"type": "utility",
@@ -4161,6 +4300,9 @@
 			"className": "Fighter",
 			"classSource": "XPHB",
 			"level": 9,
+			"system": {
+				"uses.max": "@scale.fighter.indomitable"
+			},
 			"activities": [
 				{
 					"type": "utility",
@@ -4572,7 +4714,7 @@
 						{
 							"key": "system.attributes.movement.walk",
 							"mode": "ADD",
-							"value": 10
+							"value": "@scale.monk.unarmored-movement"
 						}
 					]
 				}
@@ -5260,6 +5402,28 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Channel Divinity",
+			"source": "XPHB",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"level": 3,
+			"system": {
+				"uses.max": "@scale.paladin.channel-divinity",
+				"uses.recovery": [
+					{
+						"period": "lr",
+						"type": "recoverAll"
+					},
+					{
+						"period": "sr",
+						"type": "formula",
+						"formula": "1"
+					}
+				]
+			},
+			"migrationVersion": 3
+		},
+		{
 			"name": "Divine Sense",
 			"source": "XPHB",
 			"className": "Paladin",
@@ -5505,6 +5669,23 @@
 			"classSource": "XPHB",
 			"level": 19,
 			"isIgnored": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Favored Enemy",
+			"source": "XPHB",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 1,
+			"system": {
+				"uses.max": "@scale.ranger.favored-enemy",
+				"uses.recovery": [
+					{
+						"period": "lr",
+						"type": "recoverAll"
+					}
+				]
+			},
 			"migrationVersion": 3
 		},
 		{
