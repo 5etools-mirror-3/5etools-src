@@ -7188,7 +7188,7 @@ class _RenderCompactSpellsImplBase extends _RenderCompactImplBase {
 	}
 
 	_getHtmlParts_range ({ent}) {
-		return Renderer.spell.getHtmlPtRange(ent);
+		return Renderer.spell.getHtmlPtRange(ent, {styleHint: this._style});
 	}
 
 	_getHtmlParts_components ({ent}) {
@@ -7259,7 +7259,7 @@ Renderer.spell = class {
 		return `<b>Casting Time:</b> ${Parser.spTimeListToFull(spell.time, spell.meta, {styleHint})}`;
 	}
 
-	static getHtmlPtRange (spell) { return `<b>Range:</b> ${Parser.spRangeToFull(spell.range)}`; }
+	static getHtmlPtRange (spell, {styleHint = null} = {}) { return `<b>Range:</b> ${Parser.spRangeToFull(spell.range, {styleHint})}`; }
 	static getHtmlPtComponents (spell) { return `<b>Components:</b> ${Parser.spComponentsToFull(spell.components, spell.level)}`; }
 	static getHtmlPtDuration (spell, {styleHint = null} = {}) { return `<b>Duration:</b> ${Parser.spDurationToFull(spell.duration, {styleHint})}`; }
 

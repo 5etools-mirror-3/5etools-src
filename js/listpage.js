@@ -288,6 +288,7 @@ class SublistManager {
 				? new ContextUtil.Action(
 					"Send to Foundry",
 					() => this._pDoSendSublistToFoundry(),
+					{title: "A Rivet import will be run for each entry."},
 				)
 				: undefined,
 			null,

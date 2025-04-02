@@ -40,7 +40,7 @@ class SpellsSublistManager extends SublistManager {
 		const school = Parser.spSchoolAndSubschoolsAbvsShort(spell.school, spell.subschools);
 		const time = PageFilterSpells.getTblTimeStr(spell.time[0]);
 		const concentration = spell._isConc ? "×" : "";
-		const range = Parser.spRangeToFull(spell.range);
+		const range = Parser.spRangeToFull(spell.range, {isDisplaySelfArea: true});
 
 		const cellsText = [
 			spell.name,
@@ -312,7 +312,7 @@ class SpellsPage extends ListPageMultiSource {
 		const time = PageFilterSpells.getTblTimeStr(spell.time[0]);
 		const school = Parser.spSchoolAndSubschoolsAbvsShort(spell.school, spell.subschools);
 		const concentration = spell._isConc ? "×" : "";
-		const range = Parser.spRangeToFull(spell.range);
+		const range = Parser.spRangeToFull(spell.range, {isDisplaySelfArea: true});
 
 		const eleLi = e_({
 			tag: "div",
