@@ -400,8 +400,7 @@
 					"duration": {
 						"type": "hour",
 						"amount": 24
-					},
-					"concentration": true
+					}
 				}
 			],
 			"entries": [
@@ -1253,7 +1252,7 @@
 		{
 			"name": "Awaken",
 			"source": "XPHB",
-			"page": 245,
+			"page": 244,
 			"freeRules2024": true,
 			"level": 5,
 			"school": "T",
@@ -1713,7 +1712,7 @@
 		{
 			"name": "Bigby's Hand",
 			"source": "XPHB",
-			"page": 245,
+			"page": 246,
 			"freeRules2024": true,
 			"level": 5,
 			"school": "V",
@@ -3116,6 +3115,7 @@
 				"wisdom"
 			],
 			"miscTags": [
+				"SCT",
 				"SGT"
 			],
 			"areaTags": [
@@ -3125,7 +3125,7 @@
 		{
 			"name": "Commune",
 			"source": "XPHB",
-			"page": 252,
+			"page": 251,
 			"freeRules2024": true,
 			"level": 5,
 			"school": "D",
@@ -5650,7 +5650,7 @@
 		{
 			"name": "Dispel Magic",
 			"source": "XPHB",
-			"page": 265,
+			"page": 264,
 			"freeRules2024": true,
 			"level": 3,
 			"school": "A",
@@ -6494,7 +6494,7 @@
 		{
 			"name": "Elemental Weapon",
 			"source": "XPHB",
-			"page": 268,
+			"page": 267,
 			"level": 3,
 			"school": "T",
 			"time": [
@@ -6845,6 +6845,9 @@
 			"abilityCheck": [
 				"strength"
 			],
+			"miscTags": [
+				"DFT"
+			],
 			"areaTags": [
 				"Q"
 			],
@@ -7004,6 +7007,7 @@
 				"strength"
 			],
 			"miscTags": [
+				"DFT",
 				"SGT"
 			],
 			"areaTags": [
@@ -7522,7 +7526,7 @@
 					"type": "entries",
 					"name": "Combat",
 					"entries": [
-						"The steed is an ally to you and your allies. In combat, it shares your {@variantrule Initiative|XPHB} count, and it functions as a controlled mount while you ride it (as defined in the rules on mounted combat). If you have the {@condition Incapacitated|XPHB} condition, the steed takes its turn immediately after yours and acts independently, focusing on protecting you."
+						"The steed is an ally to you and your allies. In combat, it shares your {@variantrule Initiative|XPHB} count, and it functions as a controlled mount while you ride it (as defined in the rules on {@book mounted combat|XPHB|1|Mounted Combat}). If you have the {@condition Incapacitated|XPHB} condition, the steed takes its turn immediately after yours and acts independently, focusing on protecting you."
 					]
 				},
 				{
@@ -10732,6 +10736,9 @@
 			"savingThrow": [
 				"dexterity"
 			],
+			"miscTags": [
+				"DFT"
+			],
 			"areaTags": [
 				"Y"
 			]
@@ -11408,9 +11415,10 @@
 				}
 			],
 			"range": {
-				"type": "point",
+				"type": "emanation",
 				"distance": {
-					"type": "self"
+					"type": "feet",
+					"amount": 10
 				}
 			},
 			"components": {
@@ -11636,9 +11644,10 @@
 				}
 			],
 			"range": {
-				"type": "point",
+				"type": "line",
 				"distance": {
-					"type": "self"
+					"type": "feet",
+					"amount": 100
 				}
 			},
 			"components": {
@@ -13001,6 +13010,9 @@
 				"Similarly, you can alter the appearance of structures or add them where none are present. The spell doesn't disguise, conceal, or add creatures.",
 				"The illusion includes audible, visual, tactile, and olfactory elements, so it can turn clear ground into {@variantrule Difficult Terrain|XPHB} (or vice versa) or otherwise impede movement through the area. Any piece of the illusory terrain (such as a rock or stick) that is removed from the spell's area disappears immediately.",
 				"Creatures with {@sense Truesight|XPHB} can see through the illusion to the terrain's true form; however, all other elements of the illusion remain, so while the creature is aware of the illusion's presence, the creature can still physically interact with the illusion."
+			],
+			"miscTags": [
+				"DFT"
 			]
 		},
 		{
@@ -13838,7 +13850,7 @@
 		{
 			"name": "Passwall",
 			"source": "XPHB",
-			"page": 303,
+			"page": 304,
 			"freeRules2024": true,
 			"level": 5,
 			"school": "T",
@@ -14178,9 +14190,6 @@
 			"entries": [
 				"You and up to eight willing creatures who link hands in a circle are transported to a different plane of existence. You can specify a target destination in general terms, such as the City of Brass on the Elemental Plane of Fire or the palace of Dispater on the second level of the Nine Hells, and you appear in or near that destination, as determined by the DM.",
 				"Alternatively, if you know the sigil sequence of a teleportation circle on another plane of existence, this spell can take you to that circle. If the teleportation circle is too small to hold all the creatures you transported, they appear in the closest unoccupied spaces next to the circle."
-			],
-			"spellAttack": [
-				"M"
 			],
 			"miscTags": [
 				"PS",
@@ -15996,7 +16005,7 @@
 		{
 			"name": "Scorching Ray",
 			"source": "XPHB",
-			"page": 314,
+			"page": 313,
 			"freeRules2024": true,
 			"level": 2,
 			"school": "V",
@@ -16048,7 +16057,7 @@
 		{
 			"name": "Scrying",
 			"source": "XPHB",
-			"page": 314,
+			"page": 313,
 			"freeRules2024": true,
 			"level": 5,
 			"school": "D",
@@ -17263,7 +17272,7 @@
 		{
 			"name": "Speak with Plants",
 			"source": "XPHB",
-			"page": 318,
+			"page": 319,
 			"freeRules2024": true,
 			"level": 3,
 			"school": "T",
@@ -17274,9 +17283,10 @@
 				}
 			],
 			"range": {
-				"type": "point",
+				"type": "emanation",
 				"distance": {
-					"type": "self"
+					"type": "feet",
+					"amount": 30
 				}
 			},
 			"components": {
@@ -17300,12 +17310,15 @@
 			],
 			"affectsCreatureType": [
 				"plant"
+			],
+			"miscTags": [
+				"DFT"
 			]
 		},
 		{
 			"name": "Spider Climb",
 			"source": "XPHB",
-			"page": 318,
+			"page": 319,
 			"freeRules2024": true,
 			"level": 2,
 			"school": "T",
@@ -17355,7 +17368,7 @@
 		{
 			"name": "Spike Growth",
 			"source": "XPHB",
-			"page": 318,
+			"page": 319,
 			"freeRules2024": true,
 			"level": 2,
 			"school": "T",
@@ -17407,7 +17420,7 @@
 		{
 			"name": "Spirit Guardians",
 			"source": "XPHB",
-			"page": 318,
+			"page": 319,
 			"freeRules2024": true,
 			"level": 3,
 			"school": "C",
@@ -17466,7 +17479,7 @@
 		{
 			"name": "Spiritual Weapon",
 			"source": "XPHB",
-			"page": 318,
+			"page": 319,
 			"freeRules2024": true,
 			"level": 2,
 			"school": "V",
@@ -17527,7 +17540,7 @@
 		{
 			"name": "Staggering Smite",
 			"source": "XPHB",
-			"page": 319,
+			"page": 320,
 			"level": 4,
 			"school": "E",
 			"time": [
@@ -17644,7 +17657,7 @@
 		{
 			"name": "Steel Wind Strike",
 			"source": "XPHB",
-			"page": 319,
+			"page": 320,
 			"level": 5,
 			"school": "C",
 			"time": [
@@ -17693,7 +17706,7 @@
 		{
 			"name": "Stinking Cloud",
 			"source": "XPHB",
-			"page": 320,
+			"page": 321,
 			"freeRules2024": true,
 			"level": 3,
 			"school": "C",
@@ -17742,7 +17755,7 @@
 		{
 			"name": "Stone Shape",
 			"source": "XPHB",
-			"page": 320,
+			"page": 321,
 			"freeRules2024": true,
 			"level": 4,
 			"school": "T",
@@ -17778,7 +17791,7 @@
 		{
 			"name": "Stoneskin",
 			"source": "XPHB",
-			"page": 320,
+			"page": 321,
 			"freeRules2024": true,
 			"level": 4,
 			"school": "T",
@@ -17828,7 +17841,7 @@
 		{
 			"name": "Storm of Vengeance",
 			"source": "XPHB",
-			"page": 320,
+			"page": 321,
 			"freeRules2024": true,
 			"level": 9,
 			"school": "C",
@@ -17917,7 +17930,7 @@
 		{
 			"name": "Suggestion",
 			"source": "XPHB",
-			"page": 320,
+			"page": 321,
 			"freeRules2024": true,
 			"level": 2,
 			"school": "E",
@@ -18114,7 +18127,7 @@
 				}
 			],
 			"entries": [
-				"You call forth a Celestial spirit. It manifests in an angelic form in an unoccupied space that you can see within range and uses the {@creature Celestial Spirit|XPHB} stat block. When you cast the spell, choose Avenger or {@item Defender|XDMG}. Your choice determines certain details in its stat block. The creature disappears when it drops to 0 {@variantrule Hit Points|XPHB} or when the spell ends.",
+				"You call forth a Celestial spirit. It manifests in an angelic form in an unoccupied space that you can see within range and uses the {@creature Celestial Spirit|XPHB} stat block. When you cast the spell, choose Avenger or Defender. Your choice determines certain details in its stat block. The creature disappears when it drops to 0 {@variantrule Hit Points|XPHB} or when the spell ends.",
 				"The creature is an ally to you and your allies. In combat, the creature shares your {@variantrule Initiative|XPHB} count, but it takes its turn immediately after yours. It obeys your verbal commands (no action required by you). If you don't issue any, it takes the {@action Dodge|XPHB} action and uses its movement to avoid danger."
 			],
 			"entriesHigherLevel": [
@@ -18482,9 +18495,10 @@
 				}
 			],
 			"range": {
-				"type": "point",
+				"type": "line",
 				"distance": {
-					"type": "self"
+					"type": "feet",
+					"amount": 60
 				}
 			},
 			"components": {
@@ -21253,9 +21267,10 @@
 				}
 			],
 			"range": {
-				"type": "point",
+				"type": "emanation",
 				"distance": {
-					"type": "self"
+					"type": "feet",
+					"amount": 10
 				}
 			},
 			"components": {

@@ -2668,10 +2668,15 @@
 			},
 			"activities": [
 				{
+					"name": "Expend Rage",
 					"type": "utility",
 					"activation": {
 						"type": "bonus",
 						"value": 1
+					},
+					"duration": {
+						"value": "10",
+						"units": "minute"
 					},
 					"consumption": {
 						"targets": [
@@ -2681,19 +2686,16 @@
 							}
 						]
 					},
-					"effects": [
-						{
-							"foundryId": "rage"
-						}
-					],
-					"range": {
-						"units": "self"
-					},
 					"target": {
 						"affects": {
 							"type": "self"
 						}
-					}
+					},
+					"effects": [
+						{
+							"foundryId": "rage"
+						}
+					]
 				}
 			],
 			"effects": [
@@ -2701,6 +2703,10 @@
 					"foundryId": "rage",
 					"disabled": true,
 					"transfer": true,
+					"duration": {
+						"rounds": 10,
+						"seconds": 600
+					},
 					"changes": [
 						{
 							"key": "system.bonuses.mwak.damage",
@@ -2722,10 +2728,24 @@
 							"mode": "ADD",
 							"value": "bludgeoning"
 						}
-					],
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Reckless Attack",
+			"source": "XPHB",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 2,
+			"effects": [
+				{
+					"disabled": true,
 					"duration": {
-						"seconds": 600
-					}
+						"rounds": 1
+					},
+					"changes": []
 				}
 			],
 			"migrationVersion": 3
@@ -2736,6 +2756,37 @@
 			"className": "Barbarian",
 			"classSource": "XPHB",
 			"level": 3,
+			"effects": [
+				{
+					"changes": [
+						{
+							"key": "system.skills.acr.bonuses.check",
+							"mode": "ADD",
+							"value": "max(0, @abilities.str.mod - @mod)"
+						},
+						{
+							"key": "system.skills.itm.bonuses.check",
+							"mode": "ADD",
+							"value": "max(0, @abilities.str.mod - @mod)"
+						},
+						{
+							"key": "system.skills.prc.bonuses.check",
+							"mode": "ADD",
+							"value": "max(0, @abilities.str.mod - @mod)"
+						},
+						{
+							"key": "system.skills.ste.bonuses.check",
+							"mode": "ADD",
+							"value": "max(0, @abilities.str.mod - @mod)"
+						},
+						{
+							"key": "system.skills.sur.bonuses.check",
+							"mode": "ADD",
+							"value": "max(0, @abilities.str.mod - @mod)"
+						}
+					]
+				}
+			],
 			"entryData": {
 				"skillProficiencies": [
 					{
@@ -2755,12 +2806,357 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Fast Movement",
+			"source": "XPHB",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 5,
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.attributes.movement.walk",
+							"mode": "ADD",
+							"value": 10
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Feral Instinct",
+			"source": "XPHB",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 7,
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "flags.dnd5e.initiativeAdv",
+							"mode": "OVERRIDE",
+							"value": true
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Brutal Strike",
+			"source": "XPHB",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 9,
+			"activities": [
+				{
+					"name": "Brutal Strike",
+					"type": "damage",
+					"activation": {
+						"type": "special"
+					},
+					"target": {
+						"affects": {
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@scale.barbarian.brutal-strike"
+								},
+								"types": [
+									"acid",
+									"bludgeoning",
+									"cold",
+									"fire",
+									"force",
+									"lightning",
+									"necrotic",
+									"piercing",
+									"poison",
+									"psychic",
+									"radiant",
+									"slashing",
+									"thunder"
+								]
+							}
+						]
+					},
+					"effects": [
+						{
+							"foundryId": "brutalStrike"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "brutalStrike",
+					"name": "Hamstrung",
+					"duration": {
+						"turns": 1
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.walk",
+							"mode": "ADD",
+							"value": -15
+						}
+					],
+					"description": "Hit by a hamstring blow, this character's Speed has been reduced by 15 feet until the start of the attacker's next turn."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Relentless Rage",
+			"source": "XPHB",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 11,
+			"activities": [
+				{
+					"type": "save",
+					"activation": {
+						"type": ""
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"damage": {
+						"onSave": "half"
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"formula": "10 + (@item.uses.spent * 5)"
+						}
+					}
+				},
+				{
+					"type": "heal",
+					"activation": {
+						"type": ""
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "@classes.barbarian.levels * 2"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Improved Brutal Strike",
+			"source": "XPHB",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 13,
+			"activities": [
+				{
+					"name": "Sundering Blow",
+					"type": "utility",
+					"activation": {
+						"type": ""
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"img": "systems/dnd5e/icons/svg/properties/magical.svg",
+					"effects": [
+						{
+							"foundryId": "improvedBrutalSt"
+						}
+					]
+				},
+				{
+					"name": "Staggering Blow",
+					"type": "utility",
+					"activation": {
+						"type": ""
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"img": "systems/dnd5e/icons/svg/damage/bludgeoning.svg",
+					"effects": [
+						{
+							"foundryId": "improvedBrutalS1"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "improvedBrutalS1",
+					"name": "Staggered",
+					"duration": {
+						"turns": 1
+					},
+					"description": "Hit by a staggering blow, this character has Disadvantage on the next Saving Throw it makes, and it can't make Opportunity Attacks until the start of the attacker's next turn."
+				},
+				{
+					"foundryId": "improvedBrutalSt",
+					"name": "Sundered",
+					"duration": {
+						"turns": 1
+					},
+					"description": "Hit by a sundering blow, the next attack roll made by another creature against the target gains a +5 bonus to the roll."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Persistent Rage",
+			"source": "XPHB",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 15,
+			"activities": [
+				{
+					"name": "Recharge Rage on Initiative",
+					"type": "utility",
+					"activation": {
+						"type": "",
+						"condition": "When you roll initiative"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							},
+							{
+								"type": "itemUses",
+								"value": "-@scale.barbarian.rages",
+								"target": {
+									"prop": "classFeature",
+									"uid": "Rage|Barbarian|XPHB|1"
+								}
+							}
+						]
+					},
+					"uses": {
+						"recovery": [
+							{
+								"period": "lr",
+								"type": "recoverAll"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Epic Boon",
 			"source": "XPHB",
 			"className": "Barbarian",
 			"classSource": "XPHB",
 			"level": 19,
 			"isIgnored": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Bardic Inspiration",
+			"source": "XPHB",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"level": 1,
+			"activities": [
+				{
+					"name": "Inspire",
+					"type": "utility",
+					"activation": {
+						"type": "bonus",
+						"value": 1
+					},
+					"duration": {
+						"value": "1",
+						"units": "hour"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"range": {
+						"value": "60",
+						"units": "ft"
+					},
+					"roll": {
+						"formula": "@scale.bard.inspiration",
+						"name": "Bardic Inspiration",
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "bardicInspiratio"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "bardicInspiratio",
+					"name": "Inspired",
+					"duration": {
+						"seconds": 3600
+					},
+					"description": "You have received Bardic Inspiration. Once within the next hour when you fail a D20 Test, you can roll the Bardic Inspiration die and add the number rolled to the d20, potentially turning the failure into a success. A Bardic Inspiration die is expended when it's rolled."
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -2776,6 +3172,97 @@
 					}
 				]
 			},
+			"migrationVersion": 3
+		},
+		{
+			"name": "Jack of All Trades",
+			"source": "XPHB",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"level": 2,
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "flags.dnd5e.jackOfAllTrades",
+							"mode": "OVERRIDE",
+							"value": true
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Font of Inspiration",
+			"source": "XPHB",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"level": 5,
+			"system": {
+				"uses.max": 0,
+				"uses.recovery": []
+			},
+			"activities": [
+				{
+					"name": "Recharge with Spell Slot",
+					"type": "utility",
+					"activation": {
+						"type": ""
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "-1",
+								"target": {
+									"prop": "classFeature",
+									"uid": "Bardic Inspiration|Bard|XPHB|1"
+								}
+							},
+							{
+								"type": "spellSlots",
+								"value": "1",
+								"target": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Countercharm",
+			"source": "XPHB",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"level": 7,
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "reaction",
+						"value": 1,
+						"condition": "You or a creature within 30 feet of you fails a saving throw against an effect that applies the Charmed or Frightened condition"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"range": {
+						"value": "30",
+						"units": "ft"
+					}
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -2828,6 +3315,24 @@
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"level": 1,
+			"effects": [
+				{
+					"name": "Thaumaturge",
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.skills.arc.bonuses.check",
+							"mode": "ADD",
+							"value": "(max(1,@abilities.wis.mod))"
+						},
+						{
+							"key": "system.skills.rel.bonuses.check",
+							"mode": "ADD",
+							"value": "(max(1,@abilities.wis.mod))"
+						}
+					]
+				}
+			],
 			"entryData": {
 				"additionalSpells": [
 					{
@@ -2845,12 +3350,434 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Channel Divinity",
+			"source": "XPHB",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"level": 2,
+			"system": {
+				"uses.max": "@scale.cleric.channel-divinity",
+				"uses.recovery": [
+					{
+						"period": "lr",
+						"type": "recoverAll"
+					},
+					{
+						"period": "sr",
+						"type": "formula",
+						"formula": "1"
+					}
+				]
+			},
+			"migrationVersion": 3
+		},
+		{
+			"name": "Divine Spark",
+			"source": "XPHB",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"level": 2,
+			"activities": [
+				{
+					"name": "Divine Spark: Heal",
+					"type": "heal",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Channel Divinity"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "30"
+					},
+					"healing": {
+						"number": 1,
+						"denomination": 8,
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"bonus": "@abilities.wis.mod"
+					}
+				},
+				{
+					"name": "Divine Spark: Save",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Channel Divinity"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "30"
+					},
+					"damage": {
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 8,
+								"bonus": "@abilities.wis.mod",
+								"types": [
+									"necrotic",
+									"radiant"
+								]
+							}
+						],
+						"onSave": "half"
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Turn Undead",
+			"source": "XPHB",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"level": 2,
+			"activities": [
+				{
+					"name": "Turn Undead",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Channel Divinity"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creature",
+							"special": "Undead of your choice"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "30"
+					},
+					"effects": [
+						{
+							"foundryId": "turnUndead"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "turnUndead",
+					"name": "Turned",
+					"duration": {
+						"seconds": 60
+					},
+					"statuses": [
+						"frightened",
+						"incapacitated"
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Sear Undead",
+			"source": "XPHB",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"level": 5,
+			"activities": [
+				{
+					"name": "Channel Divinity: Turn Undead",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Channel Divinity"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"template": {
+							"units": "ft",
+							"type": "radius",
+							"size": "30"
+						},
+						"affects": {
+							"choice": true,
+							"type": "creature",
+							"special": "Undead"
+						}
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "(@abilities.wis.mod)d8"
+								},
+								"types": [
+									"radiant"
+								]
+							}
+						],
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"wis"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "searUndead"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "searUndead",
+					"name": "Turn Undead",
+					"duration": {
+						"seconds": 60
+					},
+					"statuses": [
+						"frightened",
+						"incapacitated"
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Divine Strike",
+			"source": "XPHB",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"level": 7,
+			"activities": [
+				{
+					"name": "Necrotic Divine Strike",
+					"type": "damage",
+					"activation": {
+						"type": ""
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature",
+							"special": "When you a hit a creature with an attack roll using a weapon once per turn"
+						}
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@scale.cleric.divine-strike"
+								},
+								"types": [
+									"necrotic"
+								]
+							}
+						]
+					}
+				},
+				{
+					"name": "Radiant Divine Strike",
+					"type": "damage",
+					"activation": {
+						"type": ""
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature",
+							"special": "When you a hit a creature with an attack roll using a weapon once per turn"
+						}
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@scale.cleric.divine-strike"
+								},
+								"types": [
+									"radiant"
+								]
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Divine Intervention",
+			"source": "XPHB",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"level": 10,
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"value": 1
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Improved Blessed Strikes",
+			"source": "XPHB",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"level": 14,
+			"activities": [
+				{
+					"name": "Potent Spellcasting: Heal",
+					"type": "heal",
+					"activation": {
+						"type": "",
+						"condition": "When you cast a Cleric cantrip and deal damage to a creature with it"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "60"
+					},
+					"healing": {
+						"types": [
+							"temphp"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "2 * @abilities.wis.mod"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Epic Boon",
 			"source": "XPHB",
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"level": 19,
 			"isIgnored": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Greater Divine Intervention",
+			"source": "XPHB",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"level": 20,
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"prop": "classFeature",
+									"uid": "Divine Intervention|Cleric|XPHB|10"
+								}
+							}
+						]
+					}
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -2874,6 +3801,24 @@
 			"className": "Druid",
 			"classSource": "XPHB",
 			"level": 1,
+			"effects": [
+				{
+					"name": "Magician",
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.skills.arc.bonuses.check",
+							"mode": "ADD",
+							"value": "(max(1,@abilities.wis.mod))"
+						},
+						{
+							"key": "system.skills.nat.bonuses.check",
+							"mode": "ADD",
+							"value": "(max(1,@abilities.wis.mod))"
+						}
+					]
+				}
+			],
 			"entryData": {
 				"additionalSpells": [
 					{
@@ -2911,11 +3856,527 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Wild Companion",
+			"source": "XPHB",
+			"className": "Druid",
+			"classSource": "XPHB",
+			"level": 2,
+			"activities": [
+				{
+					"name": "Summon with Spell Slot",
+					"type": "summon",
+					"activation": {
+						"type": "action",
+						"value": 1
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "spellSlots",
+								"value": "1",
+								"target": "1",
+								"scaling": {
+									"mode": "level"
+								}
+							}
+						],
+						"scaling": {
+							"allowed": true
+						}
+					},
+					"profiles": [
+						{
+							"cr": "0",
+							"types": [
+								"beast"
+							]
+						}
+					],
+					"summon": {
+						"mode": "cr"
+					},
+					"creatureTypes": [
+						"fey"
+					]
+				},
+				{
+					"name": "Summon with Wild Shape",
+					"type": "summon",
+					"activation": {
+						"type": "action",
+						"value": 1
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"prop": "classFeature",
+									"uid": "Wild Shape|Druid|XPHB|2"
+								}
+							}
+						]
+					},
+					"profiles": [
+						{
+							"cr": "0",
+							"types": [
+								"beast"
+							]
+						}
+					],
+					"summon": {
+						"mode": "cr"
+					},
+					"creatureTypes": [
+						"fey"
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Wild Shape",
+			"source": "XPHB",
+			"className": "Druid",
+			"classSource": "XPHB",
+			"level": 2,
+			"system": {
+				"uses.max": "@scale.druid.wild-shape"
+			},
+			"activities": [
+				{
+					"name": "Wild Shape",
+					"type": "utility",
+					"activation": {
+						"type": "bonus",
+						"value": 1
+					},
+					"duration": {
+						"value": "(floor(@classes.druid.levels / 2))",
+						"units": "hour"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Wild Resurgence",
+			"source": "XPHB",
+			"className": "Druid",
+			"classSource": "XPHB",
+			"level": 5,
+			"activities": [
+				{
+					"name": "Regain Spell Slot",
+					"type": "utility",
+					"activation": {
+						"type": "",
+						"condition": "Once on each of your turns"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							},
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"prop": "classFeature",
+									"uid": "Wild Shape|Druid|XPHB|2"
+								}
+							},
+							{
+								"type": "spellSlots",
+								"value": "-1",
+								"target": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"img": "systems/dnd5e/icons/svg/trait.svg"
+				},
+				{
+					"name": "Regain Wild Shape",
+					"type": "utility",
+					"activation": {
+						"type": "",
+						"condition": "Once on each of your turns"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "-1",
+								"target": {
+									"prop": "classFeature",
+									"uid": "Wild Shape|Druid|XPHB|2"
+								}
+							},
+							{
+								"type": "spellSlots",
+								"value": "1",
+								"target": "1",
+								"scaling": {
+									"mode": "level"
+								}
+							}
+						],
+						"scaling": {
+							"allowed": true,
+							"max": "9"
+						}
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"img": "systems/dnd5e/icons/svg/abilities/intelligence.svg"
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Primal Strike",
+			"source": "XPHB",
+			"className": "Druid",
+			"classSource": "XPHB",
+			"level": 7,
+			"activities": [
+				{
+					"name": "Primal Strike",
+					"type": "damage",
+					"activation": {
+						"type": ""
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature",
+							"special": "When you hit a creature with an attack roll using a weapon or a Beast form's attack in Wild Shape"
+						}
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@scale.druid.elemental-fury"
+								},
+								"types": [
+									"cold",
+									"fire",
+									"lightning",
+									"thunder"
+								]
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Epic Boon",
 			"source": "XPHB",
 			"className": "Druid",
 			"classSource": "XPHB",
 			"level": 19,
+			"isIgnored": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Archdruid",
+			"source": "XPHB",
+			"className": "Druid",
+			"classSource": "XPHB",
+			"level": 20,
+			"activities": [
+				{
+					"name": "Nature Magician",
+					"type": "utility",
+					"activation": {
+						"type": ""
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							},
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"prop": "classFeature",
+									"uid": "Wild Shape|Druid|XPHB|2"
+								},
+								"scaling": {
+									"mode": "amount"
+								}
+							},
+							{
+								"type": "spellSlots",
+								"value": "-1",
+								"target": "2",
+								"scaling": {
+									"mode": "level",
+									"formula": "2"
+								}
+							}
+						],
+						"scaling": {
+							"allowed": true,
+							"max": "@scale.druid.wild-shape-uses"
+						}
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					}
+				},
+				{
+					"name": "Recharge on Initiative",
+					"type": "utility",
+					"activation": {
+						"type": ""
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "-1",
+								"target": {
+									"prop": "classFeature",
+									"uid": "Wild Shape|Druid|XPHB|2"
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"img": "systems/dnd5e/icons/svg/trait-weapon-proficiencies.svg"
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Second Wind",
+			"source": "XPHB",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 1,
+			"system": {
+				"uses.max": "@scale.fighter.second-wind"
+			},
+			"activities": [
+				{
+					"type": "heal",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"number": 1,
+						"denomination": 10,
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"bonus": "@classes.fighter.levels"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Action Surge",
+			"source": "XPHB",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 2,
+			"system": {
+				"uses.max": "@scale.fighter.action-surge"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "special"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Tactical Mind",
+			"source": "XPHB",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 2,
+			"activities": [
+				{
+					"name": "Expend Second Wind",
+					"type": "utility",
+					"activation": {
+						"type": "",
+						"condition": "When you fail an ability check"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"prop": "classFeature",
+									"uid": "Second Wind|Fighter|XPHB|1"
+								}
+							}
+						]
+					},
+					"roll": {
+						"formula": "1d10",
+						"name": "Bonus"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Indomitable",
+			"source": "XPHB",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 9,
+			"system": {
+				"uses.max": "@scale.fighter.indomitable"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"roll": {
+						"name": "Bonus",
+						"formula": "@classes.fighter.levels"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Tactical Master",
+			"source": "XPHB",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 9,
+			"effects": [
+				{
+					"name": "Tactial Master",
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.traits.weaponProf.mastery.bonus",
+							"mode": "ADD",
+							"value": "push"
+						},
+						{
+							"key": "system.traits.weaponProf.mastery.bonus",
+							"mode": "ADD",
+							"value": "sap"
+						},
+						{
+							"key": "system.traits.weaponProf.mastery.bonus",
+							"mode": "ADD",
+							"value": "slow"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Indomitable",
+			"source": "XPHB",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 13,
+			"isIgnored": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Action Surge",
+			"source": "XPHB",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 17,
+			"isIgnored": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Indomitable",
+			"source": "XPHB",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"level": 17,
 			"isIgnored": true,
 			"migrationVersion": 3
 		},
@@ -2929,12 +4390,1006 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Martial Arts",
+			"source": "XPHB",
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 1,
+			"activities": [
+				{
+					"name": "Master Simple Weapon",
+					"type": "enchant",
+					"activation": {
+						"type": ""
+					},
+					"target": {
+						"affects": {
+							"type": "object"
+						}
+					},
+					"restrictions": {
+						"allowMagical": true,
+						"categories": [
+							"simpleM"
+						],
+						"type": "weapon"
+					},
+					"effects": [
+						{
+							"foundryId": "martialArts",
+							"riders": {
+								"activity": [
+									{
+										"foundryId": "martialArts"
+									}
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Master Light Martial Weapon",
+					"type": "enchant",
+					"activation": {
+						"type": ""
+					},
+					"target": {
+						"affects": {
+							"type": "object"
+						}
+					},
+					"restrictions": {
+						"allowMagical": true,
+						"categories": [
+							"martialM"
+						],
+						"properties": [
+							"lgt"
+						],
+						"type": "weapon"
+					},
+					"effects": [
+						{
+							"foundryId": "martialArts",
+							"riders": {
+								"activity": [
+									{
+										"foundryId": "martialArts"
+									}
+								]
+							}
+						}
+					]
+				},
+				{
+					"foundryId": "martialArts",
+					"name": "Monk Attack",
+					"type": "attack",
+					"activation": {
+						"type": "action",
+						"value": 1
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"range": {
+						"value": "5",
+						"units": "ft"
+					},
+					"attack": {
+						"ability": "dex",
+						"type": {
+							"value": "melee",
+							"classification": "weapon"
+						}
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@scale.monk.die + @mod"
+								}
+							}
+						]
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "martialArts",
+					"type": "enchantment",
+					"disabled": true,
+					"transfer": true
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Flurry of Blows",
+			"source": "XPHB",
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 2,
+			"activities": [
+				{
+					"name": "Flurry of Blows",
+					"type": "attack",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Focus Point"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"attack": {
+						"type": {
+							"value": "melee",
+							"classification": "unarmed"
+						},
+						"ability": "dex"
+					},
+					"damage": {
+						"includeBase": true,
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@scale.monk.die + @mod"
+								},
+								"types": [
+									"bludgeoning"
+								]
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Monk's Focus",
+			"source": "XPHB",
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 2,
+			"entryData": {
+				"resources": [
+					{
+						"name": "Focus Point",
+						"type": "pointPool",
+						"recharge": "restShort",
+						"count": "@scale.monk.focus"
+					}
+				]
+			}
+		},
+		{
+			"name": "Patient Defense",
+			"source": "XPHB",
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 2,
+			"activities": [
+				{
+					"name": "Patient Defense (Focus Point)",
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Focus Point"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"img": "systems/dnd5e/icons/svg/trait-damage-resistances.svg",
+					"effects": [
+						{
+							"foundryId": "patientDefense"
+						}
+					]
+				},
+				{
+					"name": "Patient Defense",
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"img": "systems/dnd5e/icons/svg/trait-damage-resistances.svg",
+					"effects": [
+						{
+							"foundryId": "patientDefense1"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "patientDefense",
+					"name": "Patient Defense (Focus Point)",
+					"duration": {
+						"turns": 1
+					},
+					"statuses": [
+						"dodging"
+					]
+				},
+				{
+					"foundryId": "patientDefense1",
+					"name": "Disengaged",
+					"duration": {
+						"turns": 1
+					},
+					"description": "Your movement doesn't provoke Opportunity Attacks for the rest of the current turn."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Step of the Wind",
+			"source": "XPHB",
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 2,
+			"activities": [
+				{
+					"name": "Step of the Wind",
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Focus Point"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "stepOfTheWind"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Unarmored Movement",
+			"source": "XPHB",
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 2,
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.attributes.movement.walk",
+							"mode": "ADD",
+							"value": "@scale.monk.unarmored-movement"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Uncanny Metabolism",
+			"source": "XPHB",
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 2,
+			"activities": [
+				{
+					"name": "Uncanny Metabolism",
+					"type": "heal",
+					"activation": {
+						"type": "",
+						"condition": "When you roll initiative"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "-@classes.monk.levels",
+								"target": {
+									"consumes": {
+										"name": "Focus Point"
+									}
+								}
+							},
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "@scale.monk.die + @classes.monk.levels"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Deflect Attacks",
+			"source": "XPHB",
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 3,
+			"activities": [
+				{
+					"name": "Reduce",
+					"type": "heal",
+					"activation": {
+						"type": "reaction",
+						"condition": "When an attack roll hits you and its damage includes Bludgeoning, Piercing, or Slashing damage"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"number": 1,
+						"denomination": 10,
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"bonus": "@abilities.dex.mod + @classes.monk.levels"
+					}
+				},
+				{
+					"name": "Redirect",
+					"type": "save",
+					"activation": {
+						"type": "",
+						"condition": "If you reduce the damage to 0"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Focus Point"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature",
+							"special": "Isn't behind Total Cover"
+						}
+					},
+					"range": {
+						"special": "5 feet for melee attacks or 60 feet for ranged attacks"
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "2@scale.monk.die + @abilities.dex.mod"
+								},
+								"types": [
+									"bludgeoning",
+									"piercing",
+									"slashing"
+								]
+							}
+						],
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "wis"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Slow Fall",
+			"source": "XPHB",
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 4,
+			"activities": [
+				{
+					"name": "Reduce",
+					"type": "heal",
+					"activation": {
+						"type": "reaction"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "5 * @classes.monk.levels"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Stunning Strike",
+			"source": "XPHB",
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 5,
+			"activities": [
+				{
+					"type": "save",
+					"activation": {
+						"type": "",
+						"condition": "Once per turn when you hit a creature with a Monk weapon or an Unarmed Strike"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Focus Point"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"onSave": "half"
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "wis"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "stunningStrike"
+						},
+						{
+							"foundryId": "stunningStrike1"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "stunningStrike",
+					"name": "Stunned",
+					"duration": {
+						"turns": 1
+					},
+					"statuses": [
+						"stunned"
+					]
+				},
+				{
+					"foundryId": "stunningStrike1",
+					"name": "Slowed",
+					"duration": {
+						"turns": 1
+					},
+					"description": "The target's Speed is halved until the start of your next turn, and the next attack roll made against the target before then has Advantage"
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Empowered Strikes",
+			"source": "XPHB",
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 6,
+			"activities": [
+				{
+					"name": "Empowered Strike",
+					"type": "attack",
+					"activation": {
+						"type": "action"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"attack": {
+						"type": {
+							"value": "melee",
+							"classification": "unarmed"
+						},
+						"ability": "dex"
+					},
+					"damage": {
+						"includeBase": true,
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@scale.monk.die + @mod"
+								},
+								"types": [
+									"bludgeoning",
+									"force"
+								]
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Heightened Focus",
+			"source": "XPHB",
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 10,
+			"activities": [
+				{
+					"name": "Flurry of Blows",
+					"type": "utility",
+					"activation": {
+						"type": ""
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Focus Point"
+									}
+								}
+							}
+						]
+					}
+				},
+				{
+					"name": "Patient Defense",
+					"type": "heal",
+					"activation": {
+						"type": "",
+						"condition": "When you expend a Focus Point to use Patient Defense"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "2@scale.monk.die"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Deflect Energy",
+			"source": "XPHB",
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 13,
+			"activities": [
+				{
+					"name": "Reduce",
+					"type": "heal",
+					"activation": {
+						"type": "reaction",
+						"condition": "When an attack roll hits you and its damage includes Bludgeoning, Piercing, or Slashing damage"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"number": 1,
+						"denomination": 10,
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"bonus": "@abilities.dex.mod + @classes.monk.levels"
+					}
+				},
+				{
+					"name": "Redirect",
+					"type": "save",
+					"activation": {
+						"type": "",
+						"condition": "If you reduce the damage to 0"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Focus Point"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature",
+							"special": "Isn't behind Total Cover"
+						}
+					},
+					"range": {
+						"special": "5 feet for melee attacks or 60 feet for ranged attacks"
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "2@scale.monk.die + @abilities.dex.mod"
+								},
+								"types": [
+									"acid",
+									"bludgeoning",
+									"cold",
+									"fire",
+									"force",
+									"lightning",
+									"necrotic",
+									"piercing",
+									"poison",
+									"psychic",
+									"radiant",
+									"slashing",
+									"thunder"
+								]
+							}
+						],
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "wis"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Disciplined Survivor",
+			"source": "XPHB",
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 14,
+			"activities": [
+				{
+					"name": "Consume Focus Point",
+					"type": "utility",
+					"activation": {
+						"type": ""
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Focus Point"
+									}
+								}
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Superior Defense",
+			"source": "XPHB",
+			"className": "Monk",
+			"classSource": "XPHB",
+			"level": 18,
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "",
+						"condition": "At the start of your turn"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "3",
+								"target": {
+									"consumes": {
+										"name": "Focus Point"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "superiorDefense"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "superiorDefense",
+					"duration": {
+						"seconds": 60
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "acid"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "bludgeoning"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "cold"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "fire"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "lightning"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "necrotic"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "piercing"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "poison"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "psychic"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "radiant"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "slashing"
+						},
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "thunder"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Epic Boon",
 			"source": "XPHB",
 			"className": "Monk",
 			"classSource": "XPHB",
 			"level": 19,
 			"isIgnored": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Lay on Hands",
+			"source": "XPHB",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"level": 1,
+			"system": {
+				"uses.max": "5 * @classes.paladin.levels"
+			},
+			"activities": [
+				{
+					"type": "heal",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"scaling": {
+							"allowed": true,
+							"max": "5 * @classes.paladin.levels - @item.uses.spent"
+						},
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"scaling": {
+									"mode": "amount"
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "@scaling"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				},
+				{
+					"name": "Remove Poison",
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "5"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					}
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -2947,12 +5402,290 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Channel Divinity",
+			"source": "XPHB",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"level": 3,
+			"system": {
+				"uses.max": "@scale.paladin.channel-divinity",
+				"uses.recovery": [
+					{
+						"period": "lr",
+						"type": "recoverAll"
+					},
+					{
+						"period": "sr",
+						"type": "formula",
+						"formula": "1"
+					}
+				]
+			},
+			"migrationVersion": 3
+		},
+		{
+			"name": "Divine Sense",
+			"source": "XPHB",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"level": 3,
+			"activities": [
+				{
+					"name": "Divine Sense",
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Channel Divinity"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "60"
+					},
+					"effects": [
+						{
+							"foundryId": "divineSense"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "divineSense",
+					"duration": {
+						"seconds": 600
+					},
+					"description": "You know the location of any creature of those types within 60 feet of yourself, and you know its creature type. Within the same radius, you also detect the presence of any place or object that has been consecrated or desecrated, as with the Hallow spell."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Aura of Protection",
+			"source": "XPHB",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"level": 6,
+			"effects": [
+				{
+					"name": "Protected",
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.bonuses.abilities.save",
+							"mode": "ADD",
+							"value": "@abilities.cha.mod"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Abjure Foes",
+			"source": "XPHB",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"level": 9,
+			"activities": [
+				{
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Channel Divinity"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "(max(1,@abilities.cha.mod))",
+							"type": "creature",
+							"special": "That you can see"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "60"
+					},
+					"damage": {
+						"onSave": "half"
+					},
+					"save": {
+						"ability": [
+							"wis"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "abjureFoes"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "abjureFoes",
+					"name": "Abjured",
+					"duration": {
+						"seconds": 60
+					},
+					"statuses": [
+						"frightened"
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Aura of Courage",
+			"source": "XPHB",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"level": 10,
+			"activities": [
+				{
+					"name": "Aura of Courage",
+					"type": "utility",
+					"activation": {
+						"type": ""
+					},
+					"target": {
+						"template": {
+							"units": "ft",
+							"type": "radius",
+							"size": "@scale.paladin.aura"
+						},
+						"affects": {
+							"type": "ally"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "auraOfCourage"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "auraOfCourage",
+					"name": "Courageous",
+					"description": "You and your allies have Immunity to the Frightened condition while in your Aura of Protection."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Radiant Strikes",
+			"source": "XPHB",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"level": 11,
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.bonuses.mwak.damage",
+							"mode": "ADD",
+							"value": "1d8[radiant]"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Restoring Touch",
+			"source": "XPHB",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"level": 14,
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"scaling": {
+							"allowed": true,
+							"max": "@classes.paladin.levels"
+						},
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "5 * @scaling",
+								"target": {
+									"prop": "classFeature",
+									"uid": "Lay on Hands|Paladin|XPHB|1"
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Epic Boon",
 			"source": "XPHB",
 			"className": "Paladin",
 			"classSource": "XPHB",
 			"level": 19,
 			"isIgnored": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Favored Enemy",
+			"source": "XPHB",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 1,
+			"system": {
+				"uses.max": "@scale.ranger.favored-enemy",
+				"uses.recovery": [
+					{
+						"period": "lr",
+						"type": "recoverAll"
+					}
+				]
+			},
 			"migrationVersion": 3
 		},
 		{
@@ -2985,6 +5718,26 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Roving",
+			"source": "XPHB",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 6,
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.attributes.movement.walk",
+							"mode": "ADD",
+							"value": 10
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Expertise",
 			"source": "XPHB",
 			"className": "Ranger",
@@ -3000,12 +5753,184 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Tireless",
+			"source": "XPHB",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 10,
+			"activities": [
+				{
+					"name": "Temporary Hit Points",
+					"type": "heal",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "activityUses",
+								"value": "1"
+							}
+						]
+					},
+					"uses": {
+						"recovery": [
+							{
+								"period": "lr",
+								"type": "recoverAll"
+							}
+						],
+						"max": "(max(1,@abilities.wis.mod))"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"number": 1,
+						"denomination": 8,
+						"types": [
+							"temphp"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"bonus": "(max(1,@abilities.wis.mod))"
+					}
+				},
+				{
+					"name": "Decrease Exhaustion",
+					"type": "utility",
+					"activation": {
+						"type": "",
+						"condition": "Whenever you finish a Short Rest"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "attribute",
+								"value": "1",
+								"target": "attributes.exhaustion"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Nature's Veil",
+			"source": "XPHB",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 14,
+			"activities": [
+				{
+					"name": "Veil",
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "naturesVeil"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "naturesVeil",
+					"name": "Veiled",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"turns": 1
+					},
+					"statuses": [
+						"invisible"
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Feral Senses",
+			"source": "XPHB",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 18,
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.attributes.senses.blindsight",
+							"mode": "UPGRADE",
+							"value": 30
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Epic Boon",
 			"source": "XPHB",
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"level": 19,
 			"isIgnored": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Foe Slayer",
+			"source": "XPHB",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"level": 20,
+			"activities": [
+				{
+					"name": "Improved Hunter's Mark Damage",
+					"type": "damage",
+					"activation": {
+						"type": ""
+					},
+					"range": {
+						"units": "any"
+					},
+					"damage": {
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 10,
+								"types": [
+									"force"
+								]
+							}
+						]
+					}
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -3021,6 +5946,59 @@
 					}
 				]
 			},
+			"migrationVersion": 3
+		},
+		{
+			"name": "Sneak Attack",
+			"source": "XPHB",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 1,
+			"activities": [
+				{
+					"type": "damage",
+					"activation": {
+						"type": ""
+					},
+					"uses": {
+						"max": "1"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"critical": {
+							"allow": true
+						},
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@scale.rogue.sneak-attack"
+								},
+								"types": [
+									"acid",
+									"bludgeoning",
+									"cold",
+									"fire",
+									"force",
+									"lightning",
+									"necrotic",
+									"piercing",
+									"poison",
+									"psychic",
+									"radiant",
+									"slashing",
+									"thunder"
+								]
+							}
+						]
+					}
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -3039,6 +6017,272 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Cunning Action",
+			"source": "XPHB",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 2,
+			"activities": [
+				{
+					"name": "Dash",
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					}
+				},
+				{
+					"name": "Disengage",
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					}
+				},
+				{
+					"name": "Hide",
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "cunningAction"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "cunningAction",
+					"name": "Hiding",
+					"statuses": [
+						"hiding"
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Steady Aim",
+			"source": "XPHB",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 3,
+			"activities": [
+				{
+					"name": "Steady Aim",
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Cunning Strike",
+			"source": "XPHB",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 5,
+			"activities": [
+				{
+					"name": "Cunning Sneak Attack",
+					"type": "damage",
+					"activation": {
+						"type": "",
+						"condition": "When you deal Sneak Attack damage"
+					},
+					"consumption": {
+						"scaling": {
+							"allowed": true,
+							"max": "@scale.rogue.sneak-attack.number"
+						}
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "(@scale.rogue.sneak-attack.number - @scaling)d6"
+								},
+								"types": [
+									"acid",
+									"bludgeoning",
+									"cold",
+									"fire",
+									"force",
+									"lightning",
+									"necrotic",
+									"piercing",
+									"poison",
+									"psychic",
+									"radiant",
+									"slashing",
+									"thunder"
+								]
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Poison (Cost: 1d6)",
+			"source": "XPHB",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 5,
+			"activities": [
+				{
+					"name": "Poison",
+					"type": "save",
+					"activation": {
+						"type": "",
+						"condition": "When you deal Sneak Attack damage"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"onSave": "half"
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "dex"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "poisonCost1d6"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "poisonCost1d6",
+					"name": "Cunning Strike: Poisoned",
+					"duration": {
+						"seconds": 60
+					},
+					"statuses": [
+						"poisoned"
+					],
+					"description": "On a failed save, the target has the Poisoned condition for 1 minute."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Trip (Cost: 1d6)",
+			"source": "XPHB",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 5,
+			"activities": [
+				{
+					"name": "Trip",
+					"type": "save",
+					"activation": {
+						"type": "",
+						"condition": "When you deal Snack Attack damage"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature",
+							"special": "Larger or smaller"
+						}
+					},
+					"damage": {
+						"onSave": "half"
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "dex"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "tripCost1d6"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "tripCost1d6",
+					"name": "Cunning Strike: Tripped",
+					"statuses": [
+						"prone"
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Uncanny Dodge",
+			"source": "XPHB",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 5,
+			"activities": [
+				{
+					"name": "Uncanny Dodge",
+					"type": "utility",
+					"activation": {
+						"type": "reaction",
+						"condition": "When an attacker that you can see hits you with an attack roll"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Withdraw (Cost: 1d6)",
+			"source": "XPHB",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 5,
+			"activities": [
+				{
+					"name": "Withdraw",
+					"type": "utility",
+					"activation": {
+						"type": "",
+						"condition": "When you deal Sneak Attack damage"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Expertise",
 			"source": "XPHB",
 			"className": "Rogue",
@@ -3051,6 +6295,182 @@
 					}
 				]
 			},
+			"migrationVersion": 3
+		},
+		{
+			"name": "Reliable Talent",
+			"source": "XPHB",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 7,
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "flags.dnd5e.reliableTalent",
+							"mode": "OVERRIDE",
+							"value": true
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Daze (Cost: 2d6)",
+			"source": "XPHB",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 14,
+			"activities": [
+				{
+					"name": "Daze",
+					"type": "save",
+					"activation": {
+						"type": "",
+						"condition": "When you deal Sneak Attack damage"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"onSave": "half"
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "dex"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "dazeCost2d6"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "dazeCost2d6",
+					"name": "Devious Strikes: Dazed",
+					"duration": {
+						"turns": 1
+					},
+					"description": "On its next turn, the target can do only one of the following: move or take an action or a Bonus Action."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Knock Out (Cost: 6d6)",
+			"source": "XPHB",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 14,
+			"activities": [
+				{
+					"name": "Knock Out",
+					"type": "save",
+					"activation": {
+						"type": "",
+						"condition": "When you deal Sneak Attack damage"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"onSave": "half"
+					},
+					"save": {
+						"ability": [
+							"con"
+						],
+						"dc": {
+							"calculation": "dex"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "knockOutCost6d6"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "knockOutCost6d6",
+					"name": "Devious Strikes: Knocked Out",
+					"duration": {
+						"seconds": 60
+					},
+					"statuses": [
+						"unconscious"
+					],
+					"description": "The target has the Unconscious condition for 1 minute or until it takes any damage. The Unconscious target repeats the save at the end of each of its turns, ending the effect on itself on a success."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Obscure (Cost: 3d6)",
+			"source": "XPHB",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 14,
+			"activities": [
+				{
+					"name": "Obscure",
+					"type": "save",
+					"activation": {
+						"type": "",
+						"condition": "When you deal Sneak Attack damage"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"onSave": "half"
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "dex"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "obscureCost3d6"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "obscureCost3d6",
+					"name": "Devious Strikes: Blinded",
+					"duration": {
+						"turns": 1
+					},
+					"statuses": [
+						"blinded"
+					],
+					"description": "The target has the Blinded condition until the end of its next turn"
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -3079,11 +6499,161 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Stroke of Luck",
+			"source": "XPHB",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"level": 20,
+			"activities": [
+				{
+					"name": "Stroke of Luck",
+					"type": "utility",
+					"activation": {
+						"type": "",
+						"condition": "When you fail a D20 Test"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Innate Sorcery",
+			"source": "XPHB",
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"level": 1,
+			"activities": [
+				{
+					"name": "Innate Sorcery",
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "innateSorcery"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "innateSorcery",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"seconds": 60
+					},
+					"changes": [
+						{
+							"key": "system.bonuses.spell.dc",
+							"mode": "ADD",
+							"value": 1
+						}
+					],
+					"description": "The spell save DC of your Sorcerer spells increases by 1. You have Advantage on the attack rolls of Sorcerer spells you cast."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Font of Magic",
 			"source": "XPHB",
 			"className": "Sorcerer",
 			"classSource": "XPHB",
 			"level": 2,
+			"activities": [
+				{
+					"name": "Regain Spell Slot",
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"scaling": {
+							"allowed": true,
+							"max": "5"
+						},
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1 + @scaling + floor(@scaling / 3)",
+								"target": {
+									"consumes": {
+										"name": "Sorcery Point"
+									}
+								}
+							},
+							{
+								"type": "spellSlots",
+								"value": "-1",
+								"target": "1",
+								"scaling": {
+									"mode": "level"
+								}
+							}
+						]
+					},
+					"img": "systems/dnd5e/icons/svg/damage/force.svg"
+				},
+				{
+					"name": "Regain Sorcery Points",
+					"type": "utility",
+					"activation": {
+						"type": ""
+					},
+					"consumption": {
+						"scaling": {
+							"allowed": true,
+							"max": "9"
+						},
+						"targets": [
+							{
+								"type": "spellSlots",
+								"value": "1",
+								"target": "1",
+								"scaling": {
+									"mode": "level"
+								}
+							},
+							{
+								"type": "itemUses",
+								"value": "0 - @scaling",
+								"scaling": {
+									"mode": "amount"
+								},
+								"target": {
+									"consumes": {
+										"name": "Sorcery Point"
+									}
+								}
+							}
+						]
+					},
+					"img": "systems/dnd5e/icons/svg/activity/heal.svg"
+				}
+			],
 			"subEntities": {
 				"classFeature": [
 					{
@@ -3115,6 +6685,96 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Sorcerous Restoration",
+			"source": "XPHB",
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"level": 5,
+			"activities": [
+				{
+					"name": "Restore Sorcery Points",
+					"type": "utility",
+					"activation": {
+						"type": ""
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							},
+							{
+								"type": "itemUses",
+								"value": "-(floor(@classes.sorcerer.levels / 2))",
+								"target": {
+									"consumes": {
+										"name": "Sorcery Point"
+									}
+								}
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Sorcery Incarnate",
+			"source": "XPHB",
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"level": 7,
+			"activities": [
+				{
+					"name": "Restore Innate Sorcery",
+					"type": "utility",
+					"activation": {
+						"type": ""
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "2",
+								"target": {
+									"consumes": {
+										"name": "Sorcery Point"
+									}
+								}
+							},
+							{
+								"type": "itemUses",
+								"value": "-1",
+								"target": {
+									"prop": "classFeature",
+									"uid": "Innate Sorcery|Sorcerer|XPHB|1"
+								}
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Metamagic",
+			"source": "XPHB",
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"level": 10,
+			"isIgnored": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Metamagic",
+			"source": "XPHB",
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"level": 17,
+			"isIgnored": true,
+			"migrationVersion": 3
+		},
+		{
 			"name": "Epic Boon",
 			"source": "XPHB",
 			"className": "Sorcerer",
@@ -3133,12 +6793,105 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Magical Cunning",
+			"source": "XPHB",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"level": 2,
+			"activities": [
+				{
+					"name": "Regain Pact Spell Slots",
+					"type": "utility",
+					"activation": {
+						"type": "minute",
+						"value": 1
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							},
+							{
+								"type": "attribute",
+								"value": "-(ceil(@spells.pact.max / 2))",
+								"target": "spells.pact.value"
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Mystic Arcanum",
+			"source": "XPHB",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"level": 13,
+			"isIgnored": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Mystic Arcanum",
+			"source": "XPHB",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"level": 15,
+			"isIgnored": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Mystic Arcanum",
+			"source": "XPHB",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"level": 17,
+			"isIgnored": true,
+			"migrationVersion": 3
+		},
+		{
 			"name": "Epic Boon",
 			"source": "XPHB",
 			"className": "Warlock",
 			"classSource": "XPHB",
 			"level": 19,
 			"isIgnored": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Eldritch Master",
+			"source": "XPHB",
+			"className": "Warlock",
+			"classSource": "XPHB",
+			"level": 20,
+			"activities": [
+				{
+					"name": "Eldritch Master",
+					"type": "utility",
+					"activation": {
+						"type": "",
+						"condition": "When you use Magical Cunning"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"prop": "classFeature",
+									"uid": "Magical Cunning|Warlock|XPHB|2"
+								}
+							},
+							{
+								"type": "attribute",
+								"value": "-(@spells.pact.max)",
+								"target": "spells.pact.value"
+							}
+						]
+					}
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -3157,12 +6910,153 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Spell Mastery",
+			"source": "XPHB",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"level": 18,
+			"activities": [
+				{
+					"name": "Master Spell",
+					"type": "enchant",
+					"activation": {
+						"type": ""
+					},
+					"restrictions": {
+						"allowMagical": true
+					},
+					"effects": [
+						{
+							"foundryId": "spellMastery"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "spellMastery",
+					"name": "Mastered",
+					"type": "enchantment",
+					"disabled": true,
+					"transfer": true,
+					"changes": [
+						{
+							"key": "name",
+							"mode": "ADD",
+							"value": ", Mastered"
+						},
+						{
+							"key": "system.preparation.mode",
+							"mode": "OVERRIDE",
+							"value": "always"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Epic Boon",
 			"source": "XPHB",
 			"className": "Wizard",
 			"classSource": "XPHB",
 			"level": 19,
 			"isIgnored": true,
+			"migrationVersion": 3
+		},
+		{
+			"name": "Signature Spells",
+			"source": "XPHB",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"level": 20,
+			"activities": [
+				{
+					"name": "Make Signature",
+					"type": "enchant",
+					"activation": {
+						"type": ""
+					},
+					"restrictions": {
+						"allowMagical": true
+					},
+					"effects": [
+						{
+							"foundryId": "signatureSpells"
+						}
+					]
+				},
+				{
+					"name": "Expend First Spell",
+					"type": "utility",
+					"activation": {
+						"type": ""
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "activityUses",
+								"value": "1"
+							}
+						]
+					},
+					"uses": {
+						"recovery": [
+							{
+								"period": "sr",
+								"type": "recoverAll"
+							}
+						],
+						"max": "1"
+					}
+				},
+				{
+					"name": "Expend Second Spell",
+					"type": "utility",
+					"activation": {
+						"type": ""
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "activityUses",
+								"value": "1"
+							}
+						]
+					},
+					"uses": {
+						"recovery": [
+							{
+								"period": "sr",
+								"type": "recoverAll"
+							}
+						],
+						"max": "1"
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "signatureSpells",
+					"name": "Signature",
+					"type": "enchantment",
+					"disabled": true,
+					"transfer": true,
+					"changes": [
+						{
+							"key": "name",
+							"mode": "ADD",
+							"value": ", Signature"
+						},
+						{
+							"key": "system.preparation.mode",
+							"mode": "OVERRIDE",
+							"value": "always"
+						}
+					],
+					"description": "Choose two level 3 spells in your spellbook as your signature spells. You always have these spells prepared, and you can cast each of them once at level 3 without expending a spell slot. When you do so, you can't cast them in this way again until you finish a Short or Long Rest. To cast either spell at a higher level, you must expend a spell slot."
+				}
+			],
 			"migrationVersion": 3
 		}
 	],
@@ -7431,6 +11325,7 @@
 			"effects": [
 				{
 					"name": "Powered Steps",
+					"disabled": true,
 					"transfer": true,
 					"changes": [
 						{
@@ -7438,8 +11333,7 @@
 							"mode": "ADD",
 							"value": "+ 5"
 						}
-					],
-					"disabled": true
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -7628,6 +11522,200 @@
 					}
 				]
 			},
+			"migrationVersion": 3
+		},
+		{
+			"name": "Frenzy",
+			"source": "XPHB",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Berserker",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"activities": [
+				{
+					"type": "damage",
+					"activation": {
+						"type": ""
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "(@scale.barbarian.rage-damage)d6"
+								},
+								"types": [
+									"acid",
+									"bludgeoning",
+									"cold",
+									"fire",
+									"force",
+									"lightning",
+									"necrotic",
+									"piercing",
+									"poison",
+									"psychic",
+									"radiant",
+									"slashing",
+									"thunder"
+								]
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Mindless Rage",
+			"source": "XPHB",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Berserker",
+			"subclassSource": "XPHB",
+			"level": 6,
+			"effects": [
+				{
+					"disabled": true,
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.traits.ci.value",
+							"mode": "ADD",
+							"value": "charmed"
+						},
+						{
+							"key": "system.traits.ci.value",
+							"mode": "ADD",
+							"value": "frightened"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Retaliation",
+			"source": "XPHB",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Berserker",
+			"subclassSource": "XPHB",
+			"level": 10,
+			"activities": [
+				{
+					"name": "Retaliate",
+					"type": "utility",
+					"activation": {
+						"type": "reaction",
+						"value": 1,
+						"condition": "When you take damage from a creature within 5 feet of you"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Intimidating Presence",
+			"source": "XPHB",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"subclassShortName": "Berserker",
+			"subclassSource": "XPHB",
+			"level": 14,
+			"activities": [
+				{
+					"type": "save",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"template": {
+							"units": "ft",
+							"type": "radius",
+							"size": "30"
+						},
+						"affects": {
+							"choice": true,
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"onSave": "half"
+					},
+					"save": {
+						"ability": [
+							"wis"
+						],
+						"dc": {
+							"calculation": "custom",
+							"formula": "8 + @abilities.str.mod + @prof"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "intimidatingPres"
+						}
+					]
+				},
+				{
+					"name": "Recharge with Rage",
+					"type": "utility",
+					"activation": {
+						"type": ""
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"prop": "classFeature",
+									"uid": "Rage|Barbarian|XPHB|1"
+								}
+							},
+							{
+								"type": "itemUses",
+								"value": "-1"
+							}
+						]
+					},
+					"img": "systems/dnd5e/icons/svg/trait-damage-immunities.svg"
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "intimidatingPres",
+					"name": "Intimidated",
+					"duration": {
+						"rounds": 1
+					},
+					"statuses": [
+						"frightened"
+					]
+				}
+			],
 			"migrationVersion": 3
 		},
 		{

@@ -887,6 +887,10 @@ export class TraitActionTag {
 		});
 	}
 
+	static _doTagDeepRoot_trait ({m, tags, allowlist}) {
+		if (m.senses?.some(s => /\bunimpeded by magical darkness\b/i.test(Renderer.stripTags(s)))) return this._doAdd({tags, tag: "Devil's Sight", allowlist});
+	}
+
 	static _isTraits (prop) { return prop === "trait"; }
 	static _isActions (prop) { return prop === "action"; }
 
@@ -900,6 +904,8 @@ export class TraitActionTag {
 		this._doTag({m, cbMan, prop: "bonus", tags: actionTags, allowlist: allowlistActionTags});
 
 		this._doTagDeep({m, prop: "action", tags: actionTags, allowlist: allowlistActionTags});
+
+		this._doTagDeepRoot_trait({m, tags: traitTags, allowlist: allowlistTraitTags});
 
 		if (traitTags.size) m.traitTags = [...traitTags].sort(SortUtil.ascSortLower);
 		if (actionTags.size) m.actionTags = [...actionTags].sort(SortUtil.ascSortLower);

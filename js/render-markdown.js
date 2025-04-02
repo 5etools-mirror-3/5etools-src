@@ -330,7 +330,7 @@ class RendererMarkdown {
 
 	_renderInset (entry, textStack, meta, options) {
 		textStack[0] += "\n";
-		if (entry.name != null) textStack[0] += `> ##### ${entry.name}\n>\n`;
+		if (entry.name != null) textStack[0] += `> ##### ${Renderer.stripTags(entry.name)}\n>\n`;
 		if (entry.entries) {
 			const len = entry.entries.length;
 			for (let i = 0; i < len; ++i) {
@@ -345,7 +345,7 @@ class RendererMarkdown {
 
 	_renderInsetReadaloud (entry, textStack, meta, options) {
 		textStack[0] += "\n";
-		if (entry.name != null) textStack[0] += `>> ##### ${entry.name}\n>>\n`;
+		if (entry.name != null) textStack[0] += `>> ##### ${Renderer.stripTags(entry.name)}\n>>\n`;
 		if (entry.entries) {
 			const len = entry.entries.length;
 			for (let i = 0; i < len; ++i) {
@@ -360,7 +360,7 @@ class RendererMarkdown {
 
 	_renderVariant (entry, textStack, meta, options) {
 		textStack[0] += "\n";
-		if (entry.name != null) textStack[0] += `> ##### Variant: ${entry.name}\n>\n`;
+		if (entry.name != null) textStack[0] += `> ##### Variant: ${Renderer.stripTags(entry.name)}\n>\n`;
 		if (entry.entries) {
 			const len = entry.entries.length;
 			for (let i = 0; i < len; ++i) {
@@ -375,7 +375,7 @@ class RendererMarkdown {
 	}
 
 	_renderVariantSub (entry, textStack, meta, options) {
-		if (entry.name) textStack[0] += `*${entry.name}.* `;
+		if (entry.name) textStack[0] += `*${Renderer.stripTags(entry.name)}.* `;
 
 		if (entry.entries) {
 			const len = entry.entries.length;

@@ -382,7 +382,7 @@ class BlocklistUi {
 		// endregion
 
 		// Utility controls
-		const $btnSendToFoundry = !IS_VTT && ExtensionUtil.ACTIVE
+		const $btnSendToFoundry = !globalThis.IS_VTT && ExtensionUtil.ACTIVE
 			? $(`<button title="Send to Foundry" class="ve-btn ve-btn-xs ve-btn-default mr-2"><span class="glyphicon glyphicon-send"></span></button>`)
 				.click(evt => this._pDoSendToFoundry({isTemp: !!evt.shiftKey}))
 			: null;

@@ -5104,9 +5104,10 @@ class ComponentUiUtil {
 				const btnDown = ee`<button class="ve-btn ve-btn-default ui-ideco__btn-ticker p-0 bold no-select">\u2212</button>`
 					.onn("click", () => handleClick(-1));
 
-				return ee`<div class="ui-ideco__wrp ui-ideco__wrp--${side} ve-flex-vh-center ve-flex-col">
-					${btnUp}
+				// Reverse flex column to stack "+" button as higher z-index
+				return ee`<div class="ui-ideco__wrp ui-ideco__wrp--${side} ve-flex-vh-center ve-flex-col-reverse">
 					${btnDown}
+					${btnUp}
 				</div>`;
 			}
 			case "spacer": {

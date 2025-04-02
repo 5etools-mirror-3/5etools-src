@@ -87,7 +87,7 @@ export class UtilsAdditionalSpells {
 			case "daily":
 			case "resource":
 			case "limited": {
-				Object.entries(levelMetaInner)
+				await Object.entries(levelMetaInner)
 					.pSerialAwaitMap(async ([rechargeKey, spellList]) => {
 						levelMetaInner[rechargeKey] = await spellList.pSerialAwaitMap(spellItem => this._pGetMigratedBlock_pGetMigratedSpellItem({spellItem}));
 					});

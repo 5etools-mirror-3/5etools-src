@@ -28,13 +28,13 @@ const onLoadSeo = async () => {
 	});
 
 	switch (globalThis._SEO_PAGE) {
-		case "spells": $content.append(RenderSpells.$getRenderedSpell(it)); break;
+		case "spells": $content.append(RenderSpells.$getRenderedSpell(it, {isSkipExcludesRender: true})); break;
 		case "bestiary": {
 			Renderer.utils.bindPronounceButtons();
-			$content.append(RenderBestiary.$getRenderedCreature(it, {isSkipTokenRender: true}));
+			$content.append(RenderBestiary.$getRenderedCreature(it, {isSkipTokenRender: true, isSkipExcludesRender: true}));
 			break;
 		}
-		case "items": $content.append(RenderItems.$getRenderedItem(it)); break;
+		case "items": $content.append(RenderItems.$getRenderedItem(it, {isSkipExcludesRender: true})); break;
 
 		// TODO expand this as required
 		// case "races": {
@@ -54,7 +54,5 @@ const onLoadSeo = async () => {
 };
 
 window.addEventListener("load", () => {
-	// Attempt to sneak this in before the navigation onload fires
-	Renderer.get().setBaseUrl("/");
 	onLoadSeo().then(null);
 });

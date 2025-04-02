@@ -1994,7 +1994,7 @@ export class CreatureBuilder extends BuilderBase {
 		if (this._state.senses && this._state.senses.length) $iptSenses.val(this._state.senses.join(", "));
 
 		const menu = ContextUtil.getMenu(
-			Parser.SENSES
+			Parser.getSenses()
 				.map(({name: sense}) => {
 					return new ContextUtil.Action(
 						sense.uppercaseFirst(),

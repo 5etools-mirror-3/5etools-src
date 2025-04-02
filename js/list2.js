@@ -199,7 +199,7 @@ class List {
 	_handleKeydown_enter (evt) {
 		if (this._isSkipSearchKeybindingEnter) return;
 
-		if (IS_VTT) return;
+		if (globalThis.IS_VTT) return;
 		if (!EventUtil.noModifierKeys(evt)) return;
 
 		const firstVisibleItem = this.visibleItems[0];

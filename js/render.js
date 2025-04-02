@@ -21,6 +21,10 @@ globalThis.Renderer = function () {
 	this.baseUrl = "";
 	this.baseMediaUrls = {};
 
+	if (globalThis.RENDERER_BASE_URL) {
+		this.baseUrl = globalThis.RENDERER_BASE_URL;
+	}
+
 	if (globalThis.DEPLOYED_IMG_ROOT) {
 		this.baseMediaUrls["img"] = globalThis.DEPLOYED_IMG_ROOT;
 	}
@@ -588,7 +592,7 @@ globalThis.Renderer = function () {
 
 			textStack[0] += `<div class="rd__image-title">`;
 
-			const isDynamicViewer = entry.mapRegions && !IS_VTT;
+			const isDynamicViewer = entry.mapRegions && !globalThis.IS_VTT;
 
 			if (entry.title && !isDynamicViewer) textStack[0] += `<div class="rd__image-title-inner">${this.render(entry.title)}</div>`;
 
@@ -1062,12 +1066,13 @@ globalThis.Renderer = function () {
 		pagePart = "",
 		partPageExpandCollapse = "",
 		isAddPeriod = false,
+		isInset = false,
 	}) {
 		if (!displayName) return "";
 
 		const type = entry.type || "entries";
 
-		const headerClass = `rd__h--${meta.depth + 1}`; // adjust as the CSS is 0..4 rather than -1..3
+		const headerClass = `rd__h--${meta.depth + 1}${isInset ? "-inset" : ""}`; // adjust as the CSS is 0..4 rather than -1..3
 		const pluginDataNamePrefix = this._applyPlugins_getAll(`${type}_namePrefix`, {textStack, meta, options}, {input: entry});
 
 		const ptText = `${pluginDataNamePrefix.join("")}${this.render({type: "inline", entries: [displayName]})}${isAddPeriod ? "." : ""}`;
@@ -1189,7 +1194,23 @@ globalThis.Renderer = function () {
 
 		if (entry.name != null) {
 			if (Renderer.ENTRIES_WITH_ENUMERATED_TITLES_LOOKUP[entry.type]) this._handleTrackTitles(entry.name);
-			textStack[0] += `<span class="rd__h rd__h--2-inset" data-title-index="${this._headerIndex++}" ${this._getEnumeratedTitleRel(entry.name)}><h4 class="entry-title-inner">${entry.name}</h4>${partPageExpandCollapse}</span>`;
+
+			const cacheDepth = meta.depth;
+			meta.depth = 1;
+			const headerSpan = this._renderEntriesSubtypes_getHeaderSpan({
+				entry,
+				textStack,
+				meta,
+				options,
+				displayName: entry.name,
+				headerTag: `h4`,
+				pagePart,
+				partPageExpandCollapse,
+				isInset: true,
+			});
+			meta.depth = cacheDepth;
+
+			textStack[0] += headerSpan;
 		} else {
 			textStack[0] += `<span class="rd__h rd__h--2-inset rd__h--2-inset-no-name">${partPageExpandCollapse}</span>`;
 		}
@@ -1221,7 +1242,23 @@ globalThis.Renderer = function () {
 
 		if (entry.name != null) {
 			if (Renderer.ENTRIES_WITH_ENUMERATED_TITLES_LOOKUP[entry.type]) this._handleTrackTitles(entry.name);
-			textStack[0] += `<span class="rd__h rd__h--2-inset" data-title-index="${this._headerIndex++}" ${this._getEnumeratedTitleRel(entry.name)}><h4 class="entry-title-inner">${entry.name}</h4>${this._getPagePart(entry, true)}</span>`;
+
+			const cacheDepth = meta.depth;
+			meta.depth = 1;
+			const headerSpan = this._renderEntriesSubtypes_getHeaderSpan({
+				entry,
+				textStack,
+				meta,
+				options,
+				displayName: entry.name,
+				headerTag: `h4`,
+				pagePart,
+				partPageExpandCollapse,
+				isInset: true,
+			});
+			meta.depth = cacheDepth;
+
+			textStack[0] += headerSpan;
 		} else {
 			textStack[0] += `<span class="rd__h rd__h--2-inset rd__h--2-inset-no-name">${partPageExpandCollapse}</span>`;
 		}
@@ -1250,7 +1287,24 @@ globalThis.Renderer = function () {
 		const partPageExpandCollapse = `<span class="ve-flex-vh-center">${[pagePart, partExpandCollapse].filter(Boolean).join("")}</span>`;
 
 		textStack[0] += `<${this.wrapperTag} class="rd__b-special rd__b-inset" ${dataString}>`;
-		textStack[0] += `<span class="rd__h rd__h--2-inset" data-title-index="${this._headerIndex++}" ${this._getEnumeratedTitleRel(entry.name)}><h4 class="entry-title-inner">Variant: ${entry.name}</h4>${partPageExpandCollapse}</span>`;
+
+		const cacheDepth = meta.depth;
+		meta.depth = 1;
+		const headerSpan = this._renderEntriesSubtypes_getHeaderSpan({
+			entry,
+			textStack,
+			meta,
+			options,
+			displayName: entry.name ? `Variant: ${entry.name}` : "Variant",
+			headerTag: `h4`,
+			pagePart,
+			partPageExpandCollapse,
+			isInset: true,
+		});
+		meta.depth = cacheDepth;
+
+		textStack[0] += headerSpan;
+
 		const len = entry.entries.length;
 		for (let i = 0; i < len; ++i) {
 			const cacheDepth = meta.depth;
@@ -3158,7 +3212,7 @@ Renderer.utils = class {
 					<div class="ve-flex-v-center">
 						<h1 class="stats__h-name copyable m-0" onmousedown="event.preventDefault()" onclick="Renderer.utils._pHandleNameClick(this)">${opts.prefix || ""}${name}${opts.suffix || ""}</h1>
 						${opts.controlRhs || ""}
-						${!IS_VTT && ExtensionUtil.ACTIVE && opts.page ? Renderer.utils.getBtnSendToFoundryHtml() : ""}
+						${!globalThis.IS_VTT && ExtensionUtil.ACTIVE && opts.page ? Renderer.utils.getBtnSendToFoundryHtml() : ""}
 					</div>
 					<div class="stats__wrp-h-source ${opts.isInlinedToken ? `stats__wrp-h-source--token` : ""} ve-flex-v-baseline">
 						${tagPartSourceStart} class="help-subtle stats__h-source-abbreviation ${ent.source ? `${Parser.sourceJsonToSourceClassname(ent.source)}" title="${Parser.sourceJsonToFull(ent.source)}${Renderer.utils.getSourceSubText(ent)}` : ""}" ${Parser.sourceJsonToStyle(ent.source)}>${ent.source ? Parser.sourceJsonToAbv(ent.source) : ""}${tagPartSourceEnd}
@@ -4160,7 +4214,7 @@ Renderer.utils = class {
 
 		if (!Renderer.utils._FN_TAG_SENSES) {
 			Renderer.utils._SENSE_TAG_METAS = [
-				...MiscUtil.copyFast(Parser.SENSES),
+				...MiscUtil.copyFast(Parser.getSenses()),
 				...(PrereleaseUtil.getBrewProcessedFromCache("sense") || []),
 				...(BrewUtil2.getBrewProcessedFromCache("sense") || []),
 			];
@@ -7134,7 +7188,7 @@ class _RenderCompactSpellsImplBase extends _RenderCompactImplBase {
 	}
 
 	_getHtmlParts_range ({ent}) {
-		return Renderer.spell.getHtmlPtRange(ent);
+		return Renderer.spell.getHtmlPtRange(ent, {styleHint: this._style});
 	}
 
 	_getHtmlParts_components ({ent}) {
@@ -7205,7 +7259,7 @@ Renderer.spell = class {
 		return `<b>Casting Time:</b> ${Parser.spTimeListToFull(spell.time, spell.meta, {styleHint})}`;
 	}
 
-	static getHtmlPtRange (spell) { return `<b>Range:</b> ${Parser.spRangeToFull(spell.range)}`; }
+	static getHtmlPtRange (spell, {styleHint = null} = {}) { return `<b>Range:</b> ${Parser.spRangeToFull(spell.range, {styleHint})}`; }
 	static getHtmlPtComponents (spell) { return `<b>Components:</b> ${Parser.spComponentsToFull(spell.components, spell.level)}`; }
 	static getHtmlPtDuration (spell, {styleHint = null} = {}) { return `<b>Duration:</b> ${Parser.spDurationToFull(spell.duration, {styleHint})}`; }
 
@@ -11191,8 +11245,8 @@ Renderer.item = class {
 					"prop_name_lower": pFull.name.replace(/-/g, "\u2011").toLowerCase(),
 				},
 				mapCustomFns: {
-					"item.dmg1": () => Renderer.item._getTaggedDamage(item.dmg1),
-					"item.dmg2": () => Renderer.item._getTaggedDamage(item.dmg2),
+					"item.dmg1": () => Renderer.item._getTaggedDamage(item.dmg1, {renderer}),
+					"item.dmg2": () => Renderer.item._getTaggedDamage(item.dmg2, {renderer}),
 
 					"item.ammoType": () => {
 						if (!item.ammoType) return "";
@@ -11838,6 +11892,8 @@ Renderer.item = class {
 	static _createSpecificVariants (baseItems, genericVariants, opts) {
 		opts = opts || {};
 
+		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
+
 		const genericAndSpecificVariants = [];
 		baseItems.forEach((curBaseItem) => {
 			curBaseItem._category = "Basic";
@@ -11846,7 +11902,7 @@ Renderer.item = class {
 			if (curBaseItem.packContents) return; // e.g. "Arrows (20)"
 
 			genericVariants.forEach((curGenericVariant) => {
-				if (!Renderer.item._createSpecificVariants_isEditionMatch({curBaseItem, curGenericVariant})) return;
+				if (!Renderer.item._createSpecificVariants_isEditionMatch({curBaseItem, curGenericVariant, styleHint})) return;
 
 				if (!Renderer.item._createSpecificVariants_hasRequiredProperty(curBaseItem, curGenericVariant)) return;
 				if (Renderer.item._createSpecificVariants_hasExcludedProperty(curBaseItem, curGenericVariant)) return;
@@ -11875,8 +11931,16 @@ Renderer.item = class {
 	 *
 	 * This aims to minimize spamming near-duplicates, while preserving as many '14 items as possible.
 	 */
-	static _createSpecificVariants_isEditionMatch ({curBaseItem, curGenericVariant}) {
+	static _createSpecificVariants_isEditionMatch ({curBaseItem, curGenericVariant, styleHint}) {
 		if (MiscUtil.isNearStrictlyEqual(curBaseItem.edition, curGenericVariant.edition)) return true;
+
+		// For e.g. Plutonium use, at the user's preference, invert the filter and prefer "classic" edition
+		if (globalThis.IS_VTT && styleHint === "classic") {
+			if (curBaseItem.edition === "one") return false;
+			if (curBaseItem.edition == null) return true;
+			if (curBaseItem.edition === "classic") return curGenericVariant.edition !== "one";
+		}
+
 		if (curBaseItem.edition === "classic") return false;
 		if (curBaseItem.edition == null) return true;
 		if (curBaseItem.edition === "one") return curGenericVariant.edition !== "classic";
@@ -14636,7 +14700,11 @@ Renderer.redirect = class {
 		const hashNxt = fromLookup.hash || fromLookup;
 		const pageNxt = fromLookup.page || page;
 		const decodedNxt = await UrlUtil.pAutoDecodeHash(hashNxt, {page: pageNxt});
-		return {page: pageNxt, hash: hashNxt, source: decodedNxt.source || source, name: decodedNxt.name};
+
+		const pagePropsNxt = UrlUtil.PAGE_TO_PROPS[pageNxt] || [pageNxt];
+		if (pagePropsNxt.some(prop => ExcludeUtil.isExcluded(hashNxt, prop, decodedNxt.source, {isNoCount: true}))) return null;
+
+		return {page: pageNxt, hash: hashNxt, source: decodedNxt.source, name: decodedNxt.name};
 	}
 
 	static async pGetRedirectByUid (prop, uid) {

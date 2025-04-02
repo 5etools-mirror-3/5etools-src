@@ -1516,9 +1516,9 @@ Parser.SP_RANGE_TO_ICON = {
 	[Parser.RNG_CYLINDER]: "fa-database",
 	[Parser.RNG_SELF]: "fa-street-view",
 	[Parser.RNG_SIGHT]: "fa-eye",
-	[Parser.RNG_UNLIMITED_SAME_PLANE]: "fa-globe-americas",
+	[Parser.RNG_UNLIMITED_SAME_PLANE]: "fa-earth-americas",
 	[Parser.RNG_UNLIMITED]: "fa-infinity",
-	[Parser.RNG_TOUCH]: "fa-hand-paper",
+	[Parser.RNG_TOUCH]: "fa-hand",
 };
 
 Parser.spRangeTypeToIcon = function (range) {
@@ -1565,7 +1565,9 @@ Parser.spRangeToShortHtml._getAreaStyleString = function (range) {
 	return `<span class="fas fa-fw ${Parser.spRangeTypeToIcon(range.type)} help-subtle" title="${Parser.spRangeTypeToFull(range.type)}"></span>`;
 };
 
-Parser.spRangeToFull = function (range) {
+Parser.spRangeToFull = function (range, {styleHint, isDisplaySelfArea = false} = {}) {
+	styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
 	switch (range.type) {
 		case Parser.RNG_SPECIAL: return Parser.spRangeTypeToFull(range.type);
 		case Parser.RNG_POINT: return Parser.spRangeToFull._renderPoint(range);
@@ -1577,7 +1579,7 @@ Parser.spRangeToFull = function (range) {
 		case Parser.RNG_SPHERE:
 		case Parser.RNG_HEMISPHERE:
 		case Parser.RNG_CYLINDER:
-			return Parser.spRangeToFull._renderArea(range);
+			return Parser.spRangeToFull._renderArea({range, styleHint, isDisplaySelfArea});
 	}
 };
 Parser.spRangeToFull._renderPoint = function (range) {
@@ -1597,7 +1599,8 @@ Parser.spRangeToFull._renderPoint = function (range) {
 			return `${dist.amount} ${dist.amount === 1 ? Parser.getSingletonUnit(dist.type) : dist.type}`;
 	}
 };
-Parser.spRangeToFull._renderArea = function (range) {
+Parser.spRangeToFull._renderArea = function ({range, styleHint, isDisplaySelfArea = false}) {
+	if (styleHint !== "classic" && !isDisplaySelfArea) return "Self";
 	const size = range.distance;
 	return `Self (${size.amount}-${Parser.getSingletonUnit(size.type)}${Parser.spRangeToFull._getAreaStyleString(range)}${range.type === Parser.RNG_CYLINDER ? `${size.amountSecondary != null && size.typeSecondary != null ? `, ${size.amountSecondary}-${Parser.getSingletonUnit(size.typeSecondary)}-high` : ""} cylinder` : ""})`;
 };
@@ -4263,12 +4266,22 @@ Parser.DMGTYPE_JSON_TO_FULL = {
 Parser.DMG_TYPES = ["acid", "bludgeoning", "cold", "fire", "force", "lightning", "necrotic", "piercing", "poison", "psychic", "radiant", "slashing", "thunder"];
 Parser.CONDITIONS = ["blinded", "charmed", "deafened", "exhaustion", "frightened", "grappled", "incapacitated", "invisible", "paralyzed", "petrified", "poisoned", "prone", "restrained", "stunned", "unconscious"];
 
-Parser.SENSES = [
+Parser._SENSES_LEGACY = [
 	{"name": "blindsight", "source": Parser.SRC_PHB},
 	{"name": "darkvision", "source": Parser.SRC_PHB},
 	{"name": "tremorsense", "source": Parser.SRC_MM},
 	{"name": "truesight", "source": Parser.SRC_PHB},
 ];
+Parser._SENSES_MODERN = [
+	{"name": "blindsight", "source": Parser.SRC_XPHB},
+	{"name": "darkvision", "source": Parser.SRC_XPHB},
+	{"name": "tremorsense", "source": Parser.SRC_XPHB},
+	{"name": "truesight", "source": Parser.SRC_XPHB},
+];
+Parser.getSenses = function ({styleHint = null} = {}) {
+	styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+	return styleHint === "classic" ? Parser._SENSES_LEGACY : Parser._SENSES_MODERN;
+};
 
 Parser.NUMBERS_ONES = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
 Parser.NUMBERS_TENS = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];

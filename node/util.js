@@ -176,6 +176,8 @@ class Timer {
 export const patchLoadJson = PatchLoadJson.patchLoadJson.bind(PatchLoadJson);
 export const unpatchLoadJson = PatchLoadJson.unpatchLoadJson.bind(PatchLoadJson);
 
+export const isSiteFoundryFile = filename => /\/foundry(?:-[^/]+)?\.json$/.test(filename);
+
 export {
 	readJson,
 	listFiles,

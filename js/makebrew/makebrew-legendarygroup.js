@@ -180,6 +180,6 @@ export class LegendaryGroupBuilder extends BuilderBase {
 		$tblData.append(Renderer.utils.getBorderTr());
 	}
 
-	async pDoPostSave () { await ui.creatureBuilder.pUpdateLegendaryGroups(); }
-	async pDoPostDelete () { await ui.creatureBuilder.pUpdateLegendaryGroups(); }
+	async pDoPostSave () { await this._ui.creatureBuilder.pUpdateLegendaryGroups(); }
+	async pDoPostDelete () { await this._ui.creatureBuilder.pUpdateLegendaryGroups(); }
 }

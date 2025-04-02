@@ -49,9 +49,11 @@ function addMonsterFeatures (mfData) {
 		calculateCr();
 	});
 
-	es("#hd, #con").onChange(function () {
-		es("#hp").val(calculateHp());
-		calculateCr();
+	em("#hd, #con").map(ele => {
+		ele.onChange(function () {
+			es("#hp").val(calculateHp());
+			calculateCr();
+		});
 	});
 
 	// when clicking a row in the "Monster Statistics by Challenge Rating" table
