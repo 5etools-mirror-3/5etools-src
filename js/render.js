@@ -1132,7 +1132,7 @@ globalThis.Renderer = function () {
 			const tag = entry.start != null ? "ol" : "ul";
 			const cssClasses = this._renderList_getListCssClasses(entry, textStack, meta, options);
 			textStack[0] += `<${tag} ${cssClasses ? `class="${cssClasses}"` : ""} ${entry.start != null ? `start="${entry.start}"` : ""}>`;
-			if (entry.name) textStack[0] += `<li class="rd__list-name">${entry.name}</li>`;
+			if (entry.name) textStack[0] += `<li class="rd__list-name">${this.render({type: "inline", entries: [entry.name]})}</li>`;
 			const isListHang = entry.style && entry.style.split(" ").includes("list-hang");
 			const len = entry.items.length;
 			for (let i = 0; i < len; ++i) {
@@ -2047,6 +2047,11 @@ globalThis.Renderer = function () {
 				const [ordinal] = Renderer.splitTagByPipe(text);
 				if (ordinal) textStack[0] += `<i>${Parser.numberToText(ordinal, {isOrdinalForm: true}).toTitleCase()} Failure:</i>`;
 				else textStack[0] += `<i>Failure:</i>`;
+				break;
+			}
+			case "@actSaveFailBy": {
+				const [amount] = Renderer.splitTagByPipe(text);
+				textStack[0] += `<i>Failure by ${amount} or More:</i>`;
 				break;
 			}
 			case "@actSaveSuccessOrFail": textStack[0] += `<i>Failure or Success:</i>`; break;
@@ -3509,7 +3514,7 @@ Renderer.utils = class {
 		if (entry.fluff[mappedProp]) {
 			const fromList = await DataLoader.pCacheAndGet(
 				fluffProp,
-				entry.source,
+				SourceUtil.getEntitySource(entry),
 				UrlUtil.URL_TO_HASH_BUILDER[fluffProp](entry.fluff[mappedProp]),
 				{
 					lockToken2,
@@ -3524,7 +3529,7 @@ Renderer.utils = class {
 		if (entry.fluff[mappedPropAppend]) {
 			const fromList = await DataLoader.pCacheAndGet(
 				fluffProp,
-				entry.source,
+				SourceUtil.getEntitySource(entry),
 				UrlUtil.URL_TO_HASH_BUILDER[fluffProp](entry.fluff[mappedPropAppend]),
 				{
 					lockToken2,
@@ -3542,23 +3547,29 @@ Renderer.utils = class {
 			}
 		}
 
+		if (fluff.entries?.length || fluff.images?.length) {
+			fluff.name = entry.name;
+			fluff.source = SourceUtil.getEntitySource(entry);
+		}
+
 		return fluff;
 	}
 
 	static async _pGetImplicitFluff ({entity, fluffProp, lockToken2} = {}) {
-		if (!entity.hasFluff && !entity.hasFluffImages) return null;
+		if (
+			!entity.hasFluff
+			&& !entity.hasFluffImages
+			&& (!entity._versionBase_isVersion || (!entity._versionBase_hasFluff && !entity._versionBase_hasFluffImages))
+		) return null;
 
-		const fluffEntity = await DataLoader.pCacheAndGet(fluffProp, entity.source, UrlUtil.URL_TO_HASH_BUILDER[fluffProp](entity), {lockToken2});
+		const fluffEntity = await DataLoader.pCacheAndGet(fluffProp, SourceUtil.getEntitySource(entity), UrlUtil.URL_TO_HASH_BUILDER[fluffProp](entity), {lockToken2});
 		if (fluffEntity) return fluffEntity;
 
-		if (entity._versionBase_name && entity._versionBase_source) {
+		if (entity._versionBase_isVersion && (entity._versionBase_hasFluff || entity._versionBase_hasFluffImages)) {
 			return DataLoader.pCacheAndGet(
 				fluffProp,
-				entity.source,
-				UrlUtil.URL_TO_HASH_BUILDER[fluffProp]({
-					name: entity._versionBase_name,
-					source: entity._versionBase_source,
-				}),
+				SourceUtil.getEntitySource(entity),
+				entity._versionBase_hash,
 				{
 					lockToken2,
 				},
@@ -3566,6 +3577,19 @@ Renderer.utils = class {
 		}
 
 		return null;
+	}
+
+	static async pGetProxyFluff ({entity, prop = null}) {
+		prop ||= entity?.__prop;
+		switch (prop) {
+			case "monster":
+				return Renderer.monster.pGetFluff(entity);
+			case "item":
+			case "magivariant":
+			case "baseitem":
+				return Renderer.item.pGetFluff(entity);
+			default: return Renderer.utils.pGetFluff({entity, fluffProp: `${prop}Fluff`});
+		}
 	}
 
 	// TODO(Future) move into `DataLoader`; cleanup `lockToken2` usage
@@ -5175,6 +5199,15 @@ Renderer.tag = class {
 		}
 	};
 
+	static TagActSaveFailureBy = class extends this._TagBaseAt {
+		tagName = "actSaveFailBy";
+
+		_getStripped (tag, text) {
+			const [amount] = Renderer.splitTagByPipe(text);
+			return `Failure by ${amount} or More:`;
+		}
+	};
+
 	static TagActSaveSuccessOrFailure = class extends this._TagBaseAt {
 		tagName = "actSaveSuccessOrFail";
 
@@ -5773,6 +5806,7 @@ Renderer.tag = class {
 		new this.TagActSave(),
 		new this.TagActSaveSuccess(),
 		new this.TagActSaveFailure(),
+		new this.TagActSaveFailureBy(),
 		new this.TagActSaveSuccessOrFailure(),
 		new this.TagActTrigger(),
 		new this.TagActResponse(),
@@ -10327,7 +10361,7 @@ Renderer.monster = class {
 	static getSavesPart (mon) { return `${Object.keys(mon.save || {}).sort(SortUtil.ascSortAtts).map(s => Renderer.monster.getSave(Renderer.get(), s, mon.save[s])).join(", ")}`; }
 
 	static getSensesPart (mon, {isTitleCase = false, isForcePassive = false} = {}) {
-		const passive = mon.passive ?? (typeof mon.wis === "number" ? (10 + Parser.attAbvToFull(mon.wis)) : null);
+		const passive = mon.passive ?? (typeof mon.wis === "number" ? (10 + Parser.getAbilityModNumber(mon.wis)) : null);
 
 		const pts = [
 			mon.senses ? Renderer.utils.getRenderedSenses(mon.senses, {isTitleCase}) : "",
@@ -12655,6 +12689,45 @@ Renderer.item = class {
 		return false;
 	}
 
+	/* -------------------------------------------- */
+
+	static getFlatAttachedSpells (item) {
+		if (!item.attachedSpells) return null;
+		if (item.attachedSpells instanceof Array) return item.attachedSpells;
+		const out = [];
+		Object.entries(item.attachedSpells)
+			.forEach(([useType, v]) => {
+				switch (useType) {
+					case "will":
+					case "ritual":
+					case "other": {
+						v.forEach(uid => {
+							if (!out.includes(uid)) out.push(uid);
+						});
+						break;
+					}
+
+					case "rest":
+					case "daily":
+					case "limited":
+					case "charges": {
+						Object.values(v)
+							.forEach(arr => {
+								arr.forEach(uid => {
+									if (!out.includes(uid)) out.push(uid);
+								});
+							});
+						break;
+					}
+
+					default: throw new Error(`Unhandled "attachedSpells" key "${useType}"!`);
+				}
+			});
+		return out;
+	}
+
+	/* -------------------------------------------- */
+
 	static async pGetFluff (item) {
 		const fluffItem = await Renderer.utils.pGetFluff({
 			entity: item,
@@ -14917,7 +14990,7 @@ Renderer.hover = class {
 		let meta = Renderer.hover._handleGenericMouseOverStart({evt, ele});
 		if (meta == null) return;
 
-		if ((EventUtil.isCtrlMetaKey(evt)) && Renderer.hover._pageToFluffFn(page)) meta.isFluff = true;
+		if (EventUtil.isCtrlMetaKey(evt)) meta.isFluff = true;
 
 		let toRender;
 		if (preloadId != null) { // FIXME(Future) remove in favor of `customHashId`
@@ -14942,7 +15015,8 @@ Renderer.hover = class {
 			toRender = await Renderer.hover.pApplyCustomHashId(page, toRender, customHashId);
 			this._pHandleLinkMouseOver_doVerifyToRender({toRender, page, source, hash, preloadId, customHashId, isFluff: meta.isFluff});
 		} else if (meta.isFluff) {
-			toRender = await Renderer.hover.pGetHoverableFluff(page, source, hash);
+			const entity = await DataLoader.pCacheAndGet(page, source, hash);
+			if (entity) toRender = await Renderer.utils.pGetProxyFluff({entity});
 		} else {
 			toRender = await DataLoader.pCacheAndGet(page, source, hash);
 			this._pHandleLinkMouseOver_doVerifyToRender({toRender, page, source, hash, preloadId, customHashId, isFluff: meta.isFluff});
@@ -15058,33 +15132,6 @@ Renderer.hover = class {
 				sourceData: entry,
 			},
 		);
-	}
-
-	static async pGetHoverableFluff (page, source, hash, opts) {
-		// Try to fetch the fluff directly
-		let toRender = await DataLoader.pCacheAndGet(`${page}Fluff`, source, hash, opts);
-
-		if (!toRender) {
-			// Fall back on fluff attached to the object itself
-			const entity = await DataLoader.pCacheAndGet(page, source, hash, opts);
-
-			const pFnGetFluff = Renderer.hover._pageToFluffFn(page);
-			if (!pFnGetFluff && opts?.isSilent) return null;
-
-			toRender = await pFnGetFluff(entity);
-		}
-
-		if (!toRender) return toRender;
-
-		// For inline homebrew fluff, populate the name/source
-		if (toRender && (!toRender.name || !toRender.source)) {
-			const toRenderParent = await DataLoader.pCacheAndGet(page, source, hash, opts);
-			toRender = MiscUtil.copyFast(toRender);
-			toRender.name = toRenderParent.name;
-			toRender.source = toRenderParent.source;
-		}
-
-		return toRender;
 	}
 
 	// (Baked into render strings)
@@ -16075,27 +16122,6 @@ Renderer.hover = class {
 		switch (page) {
 			case UrlUtil.PG_BESTIARY: return Renderer.monster.bindListenersCompact.bind(Renderer.monster);
 			case UrlUtil.PG_RACES: return Renderer.race.bindListenersCompact.bind(Renderer.race);
-			default: return null;
-		}
-	}
-
-	static _pageToFluffFn (page) {
-		switch (page) {
-			case UrlUtil.PG_BESTIARY: return Renderer.monster.pGetFluff.bind(Renderer.monster);
-			case UrlUtil.PG_ITEMS: return Renderer.item.pGetFluff.bind(Renderer.item);
-			case UrlUtil.PG_CONDITIONS_DISEASES: return Renderer.conditionDisease.pGetFluff.bind(Renderer.conditionDisease);
-			case UrlUtil.PG_SPELLS: return Renderer.spell.pGetFluff.bind(Renderer.spell);
-			case UrlUtil.PG_RACES: return Renderer.race.pGetFluff.bind(Renderer.race);
-			case UrlUtil.PG_BACKGROUNDS: return Renderer.background.pGetFluff.bind(Renderer.background);
-			case UrlUtil.PG_FEATS: return Renderer.feat.pGetFluff.bind(Renderer.feat);
-			case UrlUtil.PG_OPT_FEATURES: return Renderer.optionalfeature.pGetFluff.bind(Renderer.optionalfeature);
-			case UrlUtil.PG_LANGUAGES: return Renderer.language.pGetFluff.bind(Renderer.language);
-			case UrlUtil.PG_VEHICLES: return Renderer.vehicle.pGetFluff.bind(Renderer.vehicle);
-			case UrlUtil.PG_CHAR_CREATION_OPTIONS: return Renderer.charoption.pGetFluff.bind(Renderer.charoption);
-			case UrlUtil.PG_RECIPES: return Renderer.recipe.pGetFluff.bind(Renderer.recipe);
-			case UrlUtil.PG_TRAPS_HAZARDS: return Renderer.traphazard.pGetFluff.bind(Renderer.traphazard);
-			case UrlUtil.PG_CLASSES: return Renderer.classSubclass.pGetFluff.bind(Renderer.classSubclass);
-			case UrlUtil.PG_BASTIONS: return Renderer.bastion.pGetFluff.bind(Renderer.UrlUtil.PG_BASTIONS);
 			default: return null;
 		}
 	}

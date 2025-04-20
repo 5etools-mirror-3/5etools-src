@@ -180,6 +180,7 @@ export class AdventuresBooksList {
 				{
 					source: Parser.sourceJsonToAbv(it.source),
 					alias: (it.alias || []).map(it => `"${it}"`).join(","),
+					storyline: it.storyline || "",
 				},
 				{
 					$btnToggleExpand,

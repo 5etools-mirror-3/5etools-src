@@ -98,7 +98,7 @@ class RendererMarkdown {
 
 		const listDepth = Math.max(meta._typeStack.filter(it => it === "list").length - 1, 0);
 
-		if (entry.name) textStack[0] += `##### ${entry.name}`;
+		if (entry.name) textStack[0] += `##### ${Renderer.stripTags(entry.name)}`;
 		const indentSpaces = "  ".repeat(listDepth);
 		const len = entry.items.length;
 
@@ -716,6 +716,11 @@ class RendererMarkdown {
 				const [ordinal] = Renderer.splitTagByPipe(text);
 				if (ordinal) textStack[0] += `*${Parser.numberToText(ordinal, {isOrdinalForm: true}).toTitleCase()} Failure:*`;
 				else textStack[0] += `*Failure:*`;
+				break;
+			}
+			case "@actSaveFailBy": {
+				const [amount] = Renderer.splitTagByPipe(text);
+				textStack[0] += `*Failure by ${amount} or More:*`;
 				break;
 			}
 			case "@actSaveSuccessOrFail": textStack[0] += `*Failure or Success:*`; break;

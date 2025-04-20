@@ -134,28 +134,39 @@ class _RecursiveSearchStateBase {
 			case "class":
 			case "classFluff": {
 				table.parentEntity = {
-					type: table._tmpMeta.metaType = "class",
-					name: table._tmpMeta.className,
-					source: table._tmpMeta.classSource,
+					prop: "class",
+					uid: DataUtil.proxy.getUid("class", {name: table._tmpMeta.className, source: table._tmpMeta.classSource}, {isMaintainCase: true}),
 				};
 				break;
 			}
 			case "subclass": {
 				table.parentEntity = {
-					type: table._tmpMeta.metaType,
-					name: table._tmpMeta.subclassName,
-					shortName: table._tmpMeta.subclassShortName,
-					source: table._tmpMeta.subclassSource,
-					className: table._tmpMeta.className,
-					classSource: table._tmpMeta.classSource,
+					prop: table._tmpMeta.metaType,
+					uid: DataUtil.proxy.getUid(
+						table._tmpMeta.metaType,
+						{
+							name: table._tmpMeta.subclassName,
+							shortName: table._tmpMeta.subclassShortName,
+							source: table._tmpMeta.subclassSource,
+							className: table._tmpMeta.className,
+							classSource: table._tmpMeta.classSource,
+						},
+						{isMaintainCase: true},
+					),
 				};
 				break;
 			}
 			default: {
 				table.parentEntity = {
-					type: table._tmpMeta.metaType,
-					name: table._tmpMeta.name,
-					source: table._tmpMeta.source,
+					prop: table._tmpMeta.metaType,
+					uid: DataUtil.proxy.getUid(
+						table._tmpMeta.metaType,
+						{
+							name: table._tmpMeta.name,
+							source: table._tmpMeta.source,
+						},
+						{isMaintainCase: true},
+					),
 				};
 			}
 		}

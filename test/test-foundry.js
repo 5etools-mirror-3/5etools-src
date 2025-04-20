@@ -106,15 +106,7 @@ class TestFoundry {
 				]),
 				[Parser.SRC_XPHB]: new Set([
 					// TODO(Future) utilize these
-					"@scale.bard.prepared-max",
-					"@scale.cleric.prepared-max",
-					"@scale.druid.prepared-max",
-					"@scale.paladin.prepared-max",
-					"@scale.ranger.max-prepared",
-					"@scale.sorcerer.prepared-max",
-					"@scale.warlock.prepared-max",
-					"@scale.wizard.max-prepared",
-
+					"@scale.druid.wild-shape",
 					"@scale.druid.known-forms",
 					"@scale.ranger.mark",
 				]),
@@ -171,6 +163,8 @@ class TestFoundry {
 
 				const {propsChild, ignoresNotFound, ignoresNeverUsed} = scaleValueMeta;
 
+				const walker = MiscUtil.getWalker({isNoModification: true});
+
 				arr
 					.filter(ent => ent.advancement?.length)
 					.forEach(ent => {
@@ -182,36 +176,30 @@ class TestFoundry {
 
 								MiscUtil.set(sourceToScaleValues, ent.source, Parser.stringToSlug(ent.name), identifier, 0);
 							});
-					});
 
-				const walker = MiscUtil.getWalker({isNoModification: true});
+						this._pTestFile_testScaleValueUtilization_entity({
+							walker,
+							ent,
+							ignoresNotFound,
+							errors,
+							sourceToScaleValues,
+							prop,
+						});
+					});
 
 				propsChild
 					.filter(propChild => foundryData[propChild]?.length)
 					.forEach(propChild => {
 						foundryData[propChild]
 							.forEach(entChild => {
-								walker
-									.walk(
-										entChild,
-										{
-											string: (str) => {
-												[...str.matchAll(/@scale\.(?<nameSlug>[-a-z]+)\.(?<scaleValueIdentifier>[-a-z]+)/g)]
-													.forEach(m => {
-														if (ignoresNotFound?.[entChild.source]?.has(m[0])) return;
-
-														const {nameSlug, scaleValueIdentifier} = m.groups;
-
-														const valCur = MiscUtil.get(sourceToScaleValues, entChild.source, nameSlug, scaleValueIdentifier);
-														if (valCur == null) {
-															return errors.push(`\t"${prop}" ${entChild.name} (${entChild.source}) scale reference "${m[0]}" not found in parent entity!`);
-														}
-
-														MiscUtil.set(sourceToScaleValues, entChild.source, nameSlug, scaleValueIdentifier, valCur + 1);
-													});
-											},
-										},
-									);
+								this._pTestFile_testScaleValueUtilization_entity({
+									walker,
+									ent: entChild,
+									ignoresNotFound,
+									errors,
+									sourceToScaleValues,
+									prop,
+								});
 							});
 					});
 
@@ -231,6 +219,39 @@ class TestFoundry {
 							});
 					});
 			});
+	}
+
+	static _pTestFile_testScaleValueUtilization_entity (
+		{
+			walker,
+			ent,
+			ignoresNotFound,
+			errors,
+			sourceToScaleValues,
+			prop,
+		},
+	) {
+		walker
+			.walk(
+				ent,
+				{
+					string: (str) => {
+						[...str.matchAll(/@scale\.(?<nameSlug>[-a-z]+)\.(?<scaleValueIdentifier>[-a-z]+)/g)]
+							.forEach(m => {
+								if (ignoresNotFound?.[ent.source]?.has(m[0])) return;
+
+								const {nameSlug, scaleValueIdentifier} = m.groups;
+
+								const valCur = MiscUtil.get(sourceToScaleValues, ent.source, nameSlug, scaleValueIdentifier);
+								if (valCur == null) {
+									return errors.push(`\t"${prop}" ${ent.name} (${ent.source}) scale reference "${m[0]}" not found in parent entity!`);
+								}
+
+								MiscUtil.set(sourceToScaleValues, ent.source, nameSlug, scaleValueIdentifier, valCur + 1);
+							});
+					},
+				},
+			);
 	}
 
 	static async pTestFile ({foundryPath, foundryData, originalDatas, errors}) {

@@ -55,6 +55,8 @@ export class UtilGenTables {
 		});
 
 		doc[opts.bodyProp].data.forEach((chapter, ixChapter) => {
+			if (!doc[opts.headProp].contents[ixChapter]) return; // tolerate e.g. mismatched chapters vs. contents in homebrew
+
 			const tmpMeta = MiscUtil.copy(doc[opts.headProp].contents[ixChapter]);
 			tmpMeta.index = ixChapter;
 			tmpMeta.metaType = "adventure-book";

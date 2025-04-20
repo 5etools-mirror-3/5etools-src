@@ -406,7 +406,7 @@
 			"entries": [
 				"Choose any number of willing creatures that you can see within range. Each target shape-shifts into a Large or smaller Beast of your choice that has a {@variantrule Challenge Rating|XPHB} of 4 or lower. You can choose a different form for each target. On later turns, you can take a {@action Magic|XPHB} action to transform the targets again.",
 				"A target's game statistics are replaced by the chosen Beast's statistics, but the target retains its creature type; {@variantrule Hit Points|XPHB}; {@variantrule Hit Point Dice|XPHB}; alignment; ability to communicate; and Intelligence, Wisdom, and Charisma scores. The target's actions are limited by the Beast form's anatomy, and it can't cast spells. The target's equipment melds into the new form, and the target can't use any of that equipment while in that form.",
-				"The target gains a number of {@variantrule Temporary Hit Points|XPHB} equal to the Beast form's {@variantrule Hit Points|XPHB}. The transformation lasts for the duration for each target, until the target has no {@variantrule Temporary Hit Points|XPHB}, or until the target leaves the form as a {@variantrule Bonus Action|XPHB}."
+				"The target gains a number of {@variantrule Temporary Hit Points|XPHB} equal to the Hit Points of the first form into which it shape-shifts. These {@variantrule Temporary Hit Points|XPHB} vanish if any remain when the spell ends. The transformation lasts for the duration or until the target ends it as a {@variantrule Bonus Action|XPHB}."
 			],
 			"miscTags": [
 				"SGT"
@@ -3737,7 +3737,7 @@
 					"type": "entries",
 					"name": "Using a Higher-Level Spell Slot",
 					"entries": [
-						"The damage increases by {@scaledamage 8d8;4d8|5-9|2d8} for each spell slot level above 5."
+						"The damage increases by {@scaledamage 8d8;4d8|5-9|1d8} for each spell slot level above 5."
 					]
 				}
 			],
@@ -3800,7 +3800,7 @@
 					"type": "entries",
 					"name": "Using a Higher-Level Spell Slot",
 					"entries": [
-						"The damage increases by {@scaledamage 3d12|6-9|2d12} for each spell slot level above 6."
+						"The damage increases by {@scaledamage 3d12|6-9|1d12} for each spell slot level above 6."
 					]
 				}
 			],
@@ -3858,7 +3858,7 @@
 					"type": "entries",
 					"name": "Using a Higher-Level Spell Slot",
 					"entries": [
-						"The damage increases by {@scaledamage 2d8|4-9|2d8} for each spell slot level above 4."
+						"The damage increases by {@scaledamage 2d8|4-9|1d8} for each spell slot level above 4."
 					]
 				}
 			],
@@ -14352,7 +14352,7 @@
 			],
 			"entries": [
 				"You attempt to transform a creature that you can see within range into a Beast. The target must succeed on a Wisdom saving throw or shape-shift into Beast form for the duration. That form can be any {@filter Beast|bestiary|type=beast|miscellaneous=!swarm} you choose that has a {@variantrule Challenge Rating|XPHB} equal to or less than the target's (or the target's level if it doesn't have a {@variantrule Challenge Rating|XPHB}). The target's game statistics are replaced by the stat block of the chosen Beast, but the target retains its alignment, personality, creature type, {@variantrule Hit Points|XPHB}, and {@variantrule Hit Point Dice|XPHB}.",
-				"The target gains a number of {@variantrule Temporary Hit Points|XPHB} equal to the {@variantrule Hit Points|XPHB} of the Beast form. The spell ends early on the target if it has no {@variantrule Temporary Hit Points|XPHB} left.",
+				"The target gains a number of {@variantrule Temporary Hit Points|XPHB} equal to the {@variantrule Hit Points|XPHB} of the Beast form. These {@variantrule Temporary Hit Points|XPHB} vanish if any remain when the spell ends. The spell ends early on the target if it has no {@variantrule Temporary Hit Points|XPHB} left. ",
 				"The target is limited in the actions it can perform by the anatomy of its new form, and it can't speak or cast spells.",
 				"The target's gear melds into the new form. The creature can't use or otherwise benefit from any of that equipment."
 			],
@@ -16421,7 +16421,7 @@
 			],
 			"entries": [
 				"You shape-shift into another creature for the duration or until you take a {@action Magic|XPHB} action to shape-shift into a different eligible form. The new form must be of a creature that has a {@variantrule Challenge Rating|XPHB} no higher than your level or {@variantrule Challenge Rating|XPHB}. You must have seen the sort of creature before, and it can't be a Construct or an Undead.",
-				"When you shape-shift, you gain a number of {@variantrule Temporary Hit Points|XPHB} equal to the {@variantrule Hit Points|XPHB} of the form. The spell ends early if you have no {@variantrule Temporary Hit Points|XPHB} left.",
+				"When you cast the spell, you gain a number of {@variantrule Temporary Hit Points|XPHB} equal to the Hit Points of the first form into which you shape-shift. These {@variantrule Temporary Hit Points|XPHB} vanish if any remain when the spell ends.",
 				"Your game statistics are replaced by the stat block of the chosen form, but you retain your creature type; alignment; personality; Intelligence, Wisdom, and Charisma scores; {@variantrule Hit Points|XPHB}; {@variantrule Hit Point Dice|XPHB}; proficiencies; and ability to communicate. If you have the Spellcasting feature, you retain it too.",
 				"Upon shape-shifting, you determine whether your equipment drops to the ground or changes in size and shape to fit the new form while you're in it."
 			],
@@ -19843,7 +19843,7 @@
 					"name": "Creature into Creature",
 					"entries": [
 						"If you turn a creature into another kind of creature, the new form can be any kind you choose that has a {@variantrule Challenge Rating|XPHB} equal to or less than the target's {@variantrule Challenge Rating|XPHB} or level. The target's game statistics are replaced by the stat block of the new form, but it retains its {@variantrule Hit Points|XPHB}, {@variantrule Hit Point Dice|XPHB}, alignment, and personality.",
-						"The target gains a number of {@variantrule Temporary Hit Points|XPHB} equal to the {@variantrule Hit Points|XPHB} of the new form. The spell ends early on the target if it has no {@variantrule Temporary Hit Points|XPHB} left.",
+						"The target gains a number of {@variantrule Temporary Hit Points|XPHB} equal to the {@variantrule Hit Points|XPHB} of the new form. These {@variantrule Temporary Hit Points|XPHB} vanish if any remain when the spell ends. The spell ends early on the target if it has no {@variantrule Temporary Hit Points|XPHB} left.",
 						"The target is limited in the actions it can perform by the anatomy of its new form, and it can't speak or cast spells.",
 						"The target's gear melds into the new form. The creature can't use or otherwise benefit from any of that equipment."
 					]

@@ -653,6 +653,10 @@ export class TagCreatureSubEntryInto {
 								.replace(/(?<=^|[.!?;] )(?<ordinal>First|Second|Third|Fourth|Fifth|Sixth|Seventh|Eighth|Ninth|Tenth) (?:Failure:)(?= )/g, (...m) => {
 									return `{@actSaveFail ${Parser.textToNumber(m.at(-1).ordinal)}}`;
 								})
+								// "Failure by X or More: ..."
+								.replace(/(?<=^|[.!?;] ) (?:Failure by (?<amount>\d+) or More:)(?= )/g, (...m) => {
+									return `{@actSaveFailBy ${m.at(-1).amount}}`;
+								})
 								.replace(/(?<=^|[.!?;] )(Failure:)(?= )/g, (...m) => `{@actSaveFail}`)
 							;
 						},

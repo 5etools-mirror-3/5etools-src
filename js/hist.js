@@ -121,6 +121,14 @@ class Hist {
 			});
 	}
 
+	/* -------------------------------------------- */
+
+	static _PRE_LOCATION_RELOAD_SUBHASH_SOURCE_PROVIDERS = [];
+
+	static registerPreLocationReloadSubhashSourceProvider (provider) {
+		this._PRE_LOCATION_RELOAD_SUBHASH_SOURCE_PROVIDERS.push(provider);
+	}
+
 	/**
 	 * Avoid "stuck brew" loops which can occur via:
 	 *  - user is viewing a homebrew statblock; hash has homebrew source
@@ -129,25 +137,36 @@ class Hist {
 	 *  - user is presented with the same statblock, from the source they just tried to delete.
 	 */
 	static doPreLocationReload () {
-		const [link] = this.getHashParts();
+		const [link, ...subs] = this.getHashParts();
 		if (link === HASH_BLANK) return;
 
-		const {source} = UrlUtil.autoDecodeHash(link);
-		if (!source) return;
+		const sources = [
+			UrlUtil.autoDecodeHash(link)?.source,
+			...Object.values(this._PRE_LOCATION_RELOAD_SUBHASH_SOURCE_PROVIDERS)
+				.flatMap(provider => provider([link, ...subs])),
+		]
+			.filter(Boolean);
 
-		// If the hash has a site source, do nothing; site data is always present...
-		if (Parser.hasSourceJson(source)) return;
+		if (!sources.length) return;
 
-		// ...if the hash has a prerelease/homebrew source, and that source exists, do nothing...
+		// If the hash has only site sources, do nothing; site data is always present...
+		if (sources.every(source => Parser.hasSourceJson(source))) return;
+
+		// ...if each source is a prerelease/homebrew source, and that source exists, do nothing...
 		if (
-			[PrereleaseUtil, BrewUtil2]
-				.some(brewUtil => brewUtil.hasSourceJson(source))
+			sources
+				.every(source => {
+					return [PrereleaseUtil, BrewUtil2]
+						.some(brewUtil => brewUtil.hasSourceJson(source));
+				})
 		) return;
 
 		// ...otherwise, the hash must be from a prerelease/homebrew source which does not exist (i.e. the user just deleted it); wipe the hash.
 		// If the source does not exist for some other reason, this is still fine, as we assume that the hash is un-loadable anyway.
 		window.location.hash = "";
 	}
+
+	/* -------------------------------------------- */
 
 	static cleanSetHash (toSet) {
 		window.location.hash = Hist.util.getCleanHash(toSet);
