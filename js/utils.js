@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.7.5"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.8.0"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -340,33 +340,53 @@ globalThis.StrUtil = class {
 
 	/* -------------------------------------------- */
 
+	// See e.g.:
+	//  - https://www.dmsguild.com/product/267467/DMs-Guild-Creator-Resource--Style-Guide-Resources
+	//    (House Style Guide; Forgotten Realms Style Guide)
 	static _IRREGULAR_PLURAL_WORDS = {
 		"aarakocra": "aarakocra",
 		"cactus": "cacti",
 		"child": "children",
+		"dao": "dao",
 		"die": "dice",
 		"djinni": "djinn",
+		"drow": "drow",
+		"duergar": "duergar",
 		"dwarf": "dwarves",
 		"efreeti": "efreet",
+		"el'tael": "el'tael",
+		"eladrin": "eladrin",
 		"elf": "elves",
 		"erinyes": "erinyes",
 		"fey": "fey",
 		"foot": "feet",
+		"foulspawn": "foulspawn",
+		"genasi": "genasi",
 		"goose": "geese",
 		"incubus": "incubi",
 		"ki": "ki",
+		"kenku": "kenku",
+		"larva": "larvae",
+		"lizardfolk": "lizardfolk",
 		"man": "men",
+		"merfolk": "merfolk",
+		"merrow": "merrow",
 		"mouse": "mice",
 		"oni": "oni",
 		"ox": "oxen",
 		"person": "people",
+		"sahuagin": "sahuagin",
 		"sheep": "sheep",
 		"slaad": "slaadi",
 		"succubus": "succubi",
+		"svirfneblin": "svirfneblin",
+		"tael": "tael",
+		"thri-kreen": "thri-kreen",
 		"tooth": "teeth",
 		"undead": "undead",
 		"wolf": "wolves",
 		"woman": "women",
+		"xorn": "xorn",
 		"yuan-ti": "yuan-ti",
 	};
 
@@ -890,6 +910,8 @@ class TemplateUtil {
 			eleTmpTemplate.innerHTML = raw.trim();
 			const {content: eleTmp} = eleTmpTemplate;
 
+			if (!eleTmp.children.length) throw new Error(`Failed to create HTML element(s) from "${raw}"!`);
+
 			Array.from(eleTmp.querySelectorAll(`[data-r="true"]`))
 				.forEach((node, i) => node.replaceWith(eles[i]));
 
@@ -1157,6 +1179,9 @@ class ElementUtil {
 	 * @typedef {HTMLElement} HTMLElementExtended
 	 * @extends {HTMLElement}
 	 *
+	 * @property {function(string): ?HTMLElementExtended} find
+	 * @property {function(string): Array<HTMLElementExtended>} findAll
+	 *
 	 * @property {function(HTMLElement|string): HTMLElementExtended} appends
 	 * @property {function(HTMLElement): HTMLElementExtended} appendTo
 	 * @property {function(HTMLElement): HTMLElementExtended} prependTo
@@ -1186,7 +1211,7 @@ class ElementUtil {
 	 *
 	 * @property {function(object): HTMLElementExtended} css
 	 *
-	 * @property {function(string, function): HTMLElementExtended} onn
+	 * @property {function(string, function, object=): HTMLElementExtended} onn
 	 * @property {function(function): HTMLElementExtended} onClick
 	 * @property {function(function): HTMLElementExtended} onContextmenu
 	 * @property {function(function): HTMLElementExtended} onChange
@@ -1202,38 +1227,44 @@ class ElementUtil {
 	 *
 	 * @return {HTMLElementExtended}
 	 */
-	static getOrModify ({
-		tag,
-		clazz,
-		style,
-		click,
-		contextmenu,
-		change,
-		mousedown,
-		mouseup,
-		mousemove,
-		pointerdown,
-		pointerup,
-		keydown,
-		html,
-		text,
-		txt,
-		ele,
-		children,
-		outer,
+	static getOrModify (opts) {
+		if (opts instanceof Element) opts = {ele: opts};
 
-		id,
-		name,
-		title,
-		val,
-		href,
-		type,
-		tabindex,
-		value,
-		placeholder,
-		attrs,
-		data,
-	}) {
+		const {
+			tag,
+			clazz,
+			style,
+			click,
+			contextmenu,
+			change,
+			mousedown,
+			mouseup,
+			mousemove,
+			pointerdown,
+			pointerup,
+			keydown,
+			html,
+			text,
+			txt,
+			children,
+			outer,
+
+			id,
+			name,
+			title,
+			val,
+			href,
+			type,
+			tabindex,
+			value,
+			placeholder,
+			attrs,
+			data,
+		} = opts;
+		let {
+			ele,
+		} = opts;
+
 		const metaEle = ElementUtil._getOrModify_getEle({
 			ele,
 			outer,
@@ -1277,6 +1308,8 @@ class ElementUtil {
 
 		if (children) for (let i = 0, len = children.length; i < len; ++i) if (children[i] != null) ele.append(children[i]);
 
+		ele.find = ele.find || ElementUtil._find.bind(ele);
+		ele.findAll = ele.findAll || ElementUtil._findAll.bind(ele);
 		ele.appends = ele.appends || ElementUtil._appends.bind(ele);
 		ele.appendTo = ele.appendTo || ElementUtil._appendTo.bind(ele);
 		ele.prependTo = ele.prependTo || ElementUtil._prependTo.bind(ele);
@@ -1333,6 +1366,19 @@ class ElementUtil {
 			return {ele: eleId, isSetId: false};
 		}
 		throw new Error(`Could not find or create element!`);
+	}
+
+	/** @this {HTMLElementExtended} */
+	static _find (selector) {
+		const eles = ElementUtil.getBySelectorMulti(selector, this);
+		if (!eles.length) return null;
+		if (eles.length > 1) throw new Error(`Single-select "find" found multiple elements! Consider using "findAll" instead`);
+		return eles[0];
+	}
+
+	/** @this {HTMLElementExtended} */
+	static _findAll (selector) {
+		return ElementUtil.getBySelectorMulti(selector, this);
 	}
 
 	/** @this {HTMLElementExtended} */
@@ -1420,7 +1466,8 @@ class ElementUtil {
 	/** @this {HTMLElementExtended} */
 	static _attr (name, value) {
 		if (value === undefined) return this.getAttribute(name);
-		this.setAttribute(name, value);
+		if (!value && ElementUtil._ATTRS_NO_FALSY.has(name)) this.removeAttribute(name);
+		else this.setAttribute(name, value);
 		return this;
 	}
 
@@ -1467,8 +1514,9 @@ class ElementUtil {
 	}
 
 	/** @this {HTMLElementExtended} */
-	static _onX (evtName, fn) {
-		this.addEventListener(evtName, fn);
+	static _onX (evtName, fn, opts) {
+		if (opts) this.addEventListener(evtName, fn, opts);
+		else this.addEventListener(evtName, fn);
 		return this;
 	}
 
@@ -1486,33 +1534,35 @@ class ElementUtil {
 	}
 
 	/** @this {HTMLElementExtended} */
-	static _val (val, {isSetAttribute = false} = {}) {
-		if (val !== undefined) {
+	static _val (...args) {
+		if (!args.length) {
 			switch (this.tagName) {
-				case "SELECT": {
-					let selectedIndexNxt = -1;
-					for (let i = 0, len = this.options.length; i < len; ++i) {
-						if (this.options[i]?.value === val) {
-							selectedIndexNxt = i;
-							if (isSetAttribute) this.options[i].setAttribute("selected", "selected");
-							break;
-						}
-					}
-					this.selectedIndex = selectedIndexNxt;
-					return this;
-				}
+				case "SELECT": return this.options[this.selectedIndex]?.value;
 
-				default: {
-					this.value = val;
-					return this;
-				}
+				default: return this.value;
 			}
 		}
 
-		switch (this.tagName) {
-			case "SELECT": return this.options[this.selectedIndex]?.value;
+		const [val, {isSetAttribute = false} = {}] = args;
 
-			default: return this.value;
+		switch (this.tagName) {
+			case "SELECT": {
+				let selectedIndexNxt = -1;
+				for (let i = 0, len = this.options.length; i < len; ++i) {
+					if (this.options[i]?.value === val) {
+						selectedIndexNxt = i;
+						if (isSetAttribute) this.options[i].setAttribute("selected", "selected");
+						break;
+					}
+				}
+				this.selectedIndex = selectedIndexNxt;
+				return this;
+			}
+
+			default: {
+				this.value = val;
+				return this;
+			}
 		}
 	}
 
@@ -3398,7 +3448,17 @@ globalThis.UrlUtil = {
 		},
 	},
 
-	getStateKeySubclass (sc) { return Parser.stringToSlug(`sub ${sc.shortName || sc.name} ${sc.source}`); },
+	getStateKeySubclass (sc) {
+		return UrlUtil.encodeArrayForHash(["sub", sc.shortName || sc.name, sc.source]);
+	},
+
+	unpackStateKeySubclass (str) {
+		const [, shortName, source] = UrlUtil.decodeHash(str);
+		return {
+			shortName,
+			source,
+		};
+	},
 
 	/**
 	 * @param opts Options object.
@@ -3500,7 +3560,7 @@ UrlUtil.URL_TO_HASH_BUILDER = {};
 UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BESTIARY] = UrlUtil.URL_TO_HASH_GENERIC;
 UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_SPELLS] = UrlUtil.URL_TO_HASH_GENERIC;
 UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BACKGROUNDS] = UrlUtil.URL_TO_HASH_GENERIC;
-UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS] = UrlUtil.URL_TO_HASH_GENERIC;
+UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS] = it => UrlUtil.encodeArrayForHash(it.name, SourceUtil.getEntitySource(it));
 UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CLASSES] = UrlUtil.URL_TO_HASH_GENERIC;
 UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CONDITIONS_DISEASES] = UrlUtil.URL_TO_HASH_GENERIC;
 UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_FEATS] = UrlUtil.URL_TO_HASH_GENERIC;
@@ -3543,7 +3603,7 @@ UrlUtil.URL_TO_HASH_BUILDER["background"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.
 UrlUtil.URL_TO_HASH_BUILDER["item"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS];
 UrlUtil.URL_TO_HASH_BUILDER["itemGroup"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS];
 UrlUtil.URL_TO_HASH_BUILDER["baseitem"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS];
-UrlUtil.URL_TO_HASH_BUILDER["magicvariant"] = (it) => UrlUtil.encodeArrayForHash(it.name, SourceUtil.getEntitySource(it));
+UrlUtil.URL_TO_HASH_BUILDER["magicvariant"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS];
 UrlUtil.URL_TO_HASH_BUILDER["class"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CLASSES];
 UrlUtil.URL_TO_HASH_BUILDER["condition"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CONDITIONS_DISEASES];
 UrlUtil.URL_TO_HASH_BUILDER["disease"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CONDITIONS_DISEASES];
@@ -5749,6 +5809,7 @@ globalThis.DataUtil = {
 				_versionBase_isVersion: true,
 				_versionBase_name: parentEntity.name,
 				_versionBase_source: parentEntity.source,
+				_versionBase_hash: UrlUtil.URL_TO_HASH_BUILDER[parentEntity.__prop](parentEntity),
 				_versionBase_hasToken: parentEntity.hasToken,
 				_versionBase_hasFluff: parentEntity.hasFluff,
 				_versionBase_hasFluffImages: parentEntity.hasFluffImages,

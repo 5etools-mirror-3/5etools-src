@@ -18,4 +18,4 @@ async function main () {
 	await (await import("./generate-search-index.js")).default;
 }
 
-main().catch(e => { throw e; });
+await main();

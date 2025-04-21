@@ -29,6 +29,9 @@ export const PROPORDER_FOUNDRY_ACTIVITIES = new ArrayKey("activities", {
 		"name",
 		"type",
 
+		"img",
+		"description",
+
 		"activation",
 		"duration",
 		"consumption",
@@ -41,13 +44,21 @@ export const PROPORDER_FOUNDRY_ACTIVITIES = new ArrayKey("activities", {
 		"healing",
 		"roll",
 
+		// "check"-type
+		"check",
+
+		// "cast"-type"
+		"spell",
+
+		// "summon"-type
 		"profiles",
 		"summon",
 		"creatureTypes",
+		"bonuses",
+		"match",
 
+		// "enchant"-type
 		"restrictions",
-
-		"img",
 
 		"effects",
 	],
@@ -72,6 +83,7 @@ export const PROPORDER_FOUNDRY_EFFECTS = new ArrayKey("effects", {
 		"changes",
 
 		"description",
+		"descriptionEntries",
 		"img",
 	],
 });

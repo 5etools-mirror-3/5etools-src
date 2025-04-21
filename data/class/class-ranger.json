@@ -682,7 +682,7 @@
 				},
 				{
 					"colLabels": [
-						"Prepared Spells"
+						"{@filter Prepared Spells|spells|level=!0|class=Ranger}"
 					],
 					"rows": [
 						[
@@ -2043,7 +2043,7 @@
 			"level": 1,
 			"entries": [
 				"You always have the {@spell Hunter's Mark|XPHB} spell prepared. You can cast it twice without expending a spell slot, and you regain all expended uses of this ability when you finish a {@variantrule Long Rest|XPHB}.",
-				"The number of times you can cast the spell without a spell slot increases when you reach certain Ranger levels, as shown in the Favored {@variantrule Enemy|XPHB} column of the Ranger Features table."
+				"The number of times you can cast the spell without a spell slot increases when you reach certain Ranger levels, as shown in the Favored Enemy column of the Ranger Features table."
 			]
 		},
 		{
@@ -2249,16 +2249,21 @@
 				"Primal forces now help fuel you on your journeys, granting you the following benefits.",
 				{
 					"type": "entries",
-					"name": "Temporary Hit Points",
 					"entries": [
-						"As a {@action Magic|XPHB} action, you can give yourself a number of {@variantrule Temporary Hit Points|XPHB} equal to {@dice 1d8} plus your Wisdom modifier (minimum of 1). You can use this action a number of times equal to your Wisdom modifier (minimum of once), and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
-					]
-				},
-				{
-					"type": "entries",
-					"name": "Decrease Exhaustion",
-					"entries": [
-						"Whenever you finish a {@variantrule Short Rest|XPHB}, your {@condition Exhaustion|XPHB} level, if any, decreases by 1."
+						{
+							"type": "entries",
+							"name": "Temporary Hit Points",
+							"entries": [
+								"As a {@action Magic|XPHB} action, you can give yourself a number of {@variantrule Temporary Hit Points|XPHB} equal to {@dice 1d8} plus your Wisdom modifier (minimum of 1). You can use this action a number of times equal to your Wisdom modifier (minimum of once), and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Decrease Exhaustion",
+							"entries": [
+								"Whenever you finish a {@variantrule Short Rest|XPHB}, your {@condition Exhaustion|XPHB} level, if any, decreases by 1."
+							]
+						}
 					]
 				}
 			]

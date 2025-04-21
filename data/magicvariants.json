@@ -1101,9 +1101,13 @@
 					"While wearing this armor, you can use your reaction to give yourself advantage on a saving throw you make against a spell. Once this property is used, it can't be used again until the next dawn.",
 					"In addition, while you wear this armor, you can use it to cast {@spell Antimagic Field}, requiring no spell components. Once this property is used, it can't be used again until the next dawn."
 				],
-				"attachedSpells": [
-					"antimagic field"
-				]
+				"attachedSpells": {
+					"daily": {
+						"1e": [
+							"antimagic field"
+						]
+					}
+				}
 			}
 		},
 		{
@@ -1781,9 +1785,13 @@
 						]
 					}
 				],
-				"attachedSpells": [
-					"beacon of hope"
-				]
+				"attachedSpells": {
+					"daily": {
+						"1e": [
+							"beacon of hope"
+						]
+					}
+				}
 			}
 		},
 		{
@@ -2034,10 +2042,16 @@
 					"This armor has 5 charges. While you wear it, you can use a bonus action to expend 1 or more charges to cast one of the following spells from the armor, targeting yourself: {@spell Jump} (1 charge) or {@spell Levitate} (2 charges).",
 					"This armor regains {@dice 1d4 + 1} expended charges daily at dawn."
 				],
-				"attachedSpells": [
-					"jump",
-					"levitate"
-				]
+				"attachedSpells": {
+					"charges": {
+						"1": [
+							"jump"
+						],
+						"2": [
+							"levitate"
+						]
+					}
+				}
 			}
 		},
 		{
@@ -3754,9 +3768,13 @@
 					"While wearing this armor, you have advantage on saving throws you make to avoid or end the {@condition charmed} condition on yourself.",
 					"This armor has 3 charges. You can use an action to expend a charge to cast the {@spell Compulsion} spell (save {@dc 15}) from this armor. The armor regains {@dice 1d3} expended charges daily at dawn."
 				],
-				"attachedSpells": [
-					"compulsion"
-				]
+				"attachedSpells": {
+					"charges": {
+						"1": [
+							"compulsion"
+						]
+					}
+				}
 			}
 		},
 		{
@@ -4130,9 +4148,13 @@
 					"While you're wearing this armor, you have advantage on saving throws you make to avoid or end the frightened condition on yourself.",
 					"This armor has 3 charges. You can expend a charge to cast the {@spell Calm Emotions} spell (save {@dc 15}) from the armor. This armor regains {@dice 1d3} expended charges daily at dawn."
 				],
-				"attachedSpells": [
-					"calm emotions"
-				]
+				"attachedSpells": {
+					"charges": {
+						"1": [
+							"calm emotions"
+						]
+					}
+				}
 			}
 		},
 		{
@@ -4691,9 +4713,13 @@
 						]
 					}
 				],
-				"attachedSpells": [
-					"wish"
-				],
+				"attachedSpells": {
+					"charges": {
+						"1": [
+							"wish"
+						]
+					}
+				},
 				"lootTables": [
 					"Magic Item Table I"
 				]
@@ -4759,9 +4785,13 @@
 						]
 					}
 				],
-				"attachedSpells": [
-					"wish|xphb"
-				],
+				"attachedSpells": {
+					"charges": {
+						"1": [
+							"wish|xphb"
+						]
+					}
+				},
 				"lootTables": [
 					"Armaments - Legendary|XDMG"
 				]
@@ -5360,9 +5390,13 @@
 					"This elegant weapon is adorned with engravings depicting leaping dolphins and drifting jellyfish. You gain a {=bonusWeapon} bonus to attack and damage rolls made with this magic weapon, and you ignore {@quickref Underwater Combat|PHB|3|0|the normal penalties on ranged weapon attacks while using this weapon underwater}. While holding the weapon in front of you with both hands, you have a swimming speed of 30 feet.",
 					"Additionally, while you hold the weapon, you can use an action to cast the {@spell water breathing} spell. Once this property is used, it can't be used again until the next dawn."
 				],
-				"attachedSpells": [
-					"water breathing"
-				]
+				"attachedSpells": {
+					"daily": {
+						"1e": [
+							"water breathing"
+						]
+					}
+				}
 			}
 		},
 		{
@@ -5655,9 +5689,13 @@
 				"entries": [
 					"While you're wearing this armor, you can take a {@action Magic|XPHB} action and use a command word to gain the effect of the {@spell Etherealness|XPHB} spell. The spell ends immediately if you remove the armor or take a {@action Magic|XPHB} action to repeat the command word. This property of the armor can't be used again until the next dawn."
 				],
-				"attachedSpells": [
-					"etherealness|xphb"
-				],
+				"attachedSpells": {
+					"daily": {
+						"1e": [
+							"etherealness|xphb"
+						]
+					}
+				},
 				"lootTables": [
 					"Armaments - Legendary|XDMG"
 				]
@@ -6618,9 +6656,13 @@
 						]
 					}
 				],
-				"attachedSpells": [
-					"message|xphb"
-				],
+				"attachedSpells": {
+					"daily": {
+						"1e": [
+							"message|xphb"
+						]
+					}
+				},
 				"lootTables": [
 					"Armaments - Common|XDMG",
 					"Implements - Common|XDMG"
@@ -6943,13 +6985,23 @@
 						]
 					}
 				],
-				"attachedSpells": [
-					"command",
-					"zone of truth",
-					"compulsion",
-					"banishment",
-					"dominate person"
-				]
+				"attachedSpells": {
+					"charges": {
+						"1": [
+							"command"
+						],
+						"2": [
+							"zone of truth"
+						],
+						"4": [
+							"banishment",
+							"compulsion"
+						],
+						"5": [
+							"dominate person"
+						]
+					}
+				}
 			}
 		},
 		{
@@ -7079,9 +7131,13 @@
 						]
 					}
 				],
-				"attachedSpells": [
-					"wind wall"
-				]
+				"attachedSpells": {
+					"daily": {
+						"1e": [
+							"wind wall"
+						]
+					}
+				}
 			}
 		}
 	],

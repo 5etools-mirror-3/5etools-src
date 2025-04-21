@@ -1219,9 +1219,14 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"move earth"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1": [
+						"fabricate",
+						"move earth"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -1517,14 +1522,18 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"animate objects",
-				"heat metal",
-				"fabricate",
-				"magic weapon",
-				"mending",
-				"shatter"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"animate objects",
+						"heat metal",
+						"fabricate",
+						"magic weapon",
+						"mending",
+						"shatter"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -2201,9 +2210,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"reverse gravity"
-			]
+			"attachedSpells": {
+				"charges": {
+					"3": [
+						"reverse gravity"
+					]
+				}
+			}
 		},
 		{
 			"name": "Amulet",
@@ -3289,9 +3302,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"command"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"command"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -3863,10 +3880,16 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"conjure elemental",
-				"teleport"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"conjure elemental"
+					]
+				},
+				"other": [
+					"teleport"
+				]
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -3996,9 +4019,11 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"teleport|xphb"
-			],
+			"attachedSpells": {
+				"other": [
+					"teleport|xphb"
+				]
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -4015,9 +4040,13 @@
 				"This ring, adorned with the symbol of Azorius, allows you to cast {@spell ensnaring strike}. A guild signet is sometimes awarded to a guild member whose renown score in that guild is 5 or higher, as a reward for performing special services for the guild. Aside from its magical properties, the ring is also an indicator of Azorius's recognition and favor.",
 				"A signet has 3 charges, and it regains {@dice 1d3} expended charges daily at dawn. While wearing it, you can expend 1 charge to cast the associated spell (save {@dc 13})."
 			],
-			"attachedSpells": [
-				"ensnaring strike"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"ensnaring strike"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -4102,9 +4131,6 @@
 					"bright": 30,
 					"dim": 60
 				}
-			],
-			"attachedSpells": [
-				"shield"
 			]
 		},
 		{
@@ -5007,9 +5033,11 @@
 			"entries": [
 				"This scale bears celestial symbols on one pan and fiendish symbols on the other. You can use the scale to cast {@spell detect evil and good} as a ritual. Doing so requires you to place the scale on a solid surface, then sprinkle the pans with holy water or place a transparent gem worth 100 gp in each pan. The scale remains motionless if it detects nothing, tips to one side or the other for good (consecrated) or evil (desecrated), and fluctuates slightly if it detects a creature appropriate to the spell but neither good nor evil. By touching the scales after casting the ritual, you instantly learn any information the spell can normally convey, and then the effect ends."
 			],
-			"attachedSpells": [
-				"detect evil and good"
-			]
+			"attachedSpells": {
+				"ritual": [
+					"detect evil and good"
+				]
+			}
 		},
 		{
 			"name": "Baleful Talon",
@@ -5096,10 +5124,14 @@
 				"When either spell ends, the balloon slowly deflates as the elemental spirit escapes and returns to the Elemental Plane of Air. As the balloon deflates, you descend gently toward the ground for up to 60 feet. If you are still in the air at the end of this distance, you fall if you have no other means of staying aloft.",
 				"After the spirit departs, the backpack's property is unusable unless the backpack is recharged for 1 hour in an elemental air node, which binds another spirit to the backpack."
 			],
-			"attachedSpells": [
-				"levitate",
-				"feather fall"
-			]
+			"attachedSpells": {
+				"limited": {
+					"1": [
+						"levitate",
+						"feather fall"
+					]
+				}
+			}
 		},
 		{
 			"name": "Banded Agate",
@@ -5887,18 +5919,32 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"charm person",
-				"disintegrate",
-				"fear",
-				"finger of death",
-				"flesh to stone",
-				"hold person",
-				"ray of enfeeblement",
-				"sleep",
-				"slow",
-				"telekinesis"
-			]
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"charm person",
+						"sleep"
+					],
+					"2": [
+						"hold person",
+						"ray of enfeeblement"
+					],
+					"3": [
+						"fear",
+						"slow"
+					],
+					"5": [
+						"telekinesis"
+					],
+					"6": [
+						"disintegrate",
+						"flesh to stone"
+					],
+					"7": [
+						"finger of death"
+					]
+				}
+			}
 		},
 		{
 			"name": "Bell",
@@ -5958,9 +6004,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"protection from evil and good"
-			]
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"protection from evil and good"
+					]
+				}
+			}
 		},
 		{
 			"name": "Belt of Cloud Giant Strength",
@@ -6392,10 +6442,16 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"mage hand",
-				"Bigby's hand"
-			],
+			"attachedSpells": {
+				"will": [
+					"mage hand"
+				],
+				"daily": {
+					"1": [
+						"bigby's hand#9"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -6457,10 +6513,14 @@
 				"Any creature that attunes to the tablet must make a {@dc 20} Wisdom saving throw at the end of its next long rest. On a failed save, the creature becomes afflicted with a random form of long-term madness (see \"{@book Madness|dmg|8|Madness}\" in chapter 8 of the {@book Dungeon Master's Guide|dmg}).",
 				"As an action, a creature attuned to the Black Crystal Tablet can use it to cast {@spell eyebite} or {@spell gate} (the portal created by this spell links to the Far Realm only). After the tablet is used to cast a spell, it cannot be used again until the next dawn."
 			],
-			"attachedSpells": [
-				"eyebite",
-				"gate"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1": [
+						"eyebite",
+						"gate"
+					]
+				}
+			}
 		},
 		{
 			"name": "Black Dragon Mask",
@@ -6771,9 +6831,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"haste"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1": [
+						"haste"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -6841,9 +6905,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"haste|xphb"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1": [
+						"haste|xphb"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -6977,18 +7045,28 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"cone of cold",
-				"fireball",
-				"globe of invulnerability",
-				"hold monster",
-				"levitate",
-				"lightning bolt",
-				"magic missile",
-				"ray of enfeeblement",
-				"wall of force",
-				"dispel magic"
-			]
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"dispel magic",
+						"magic missile",
+						"ray of enfeeblement"
+					],
+					"2": [
+						"levitate"
+					],
+					"5": [
+						"cone of cold",
+						"fireball#5",
+						"hold monster",
+						"lightning bolt#5",
+						"wall of force"
+					],
+					"6": [
+						"globe of invulnerability"
+					]
+				}
+			}
 		},
 		{
 			"name": "Blade of Avernus",
@@ -7083,12 +7161,16 @@
 				}
 			},
 			"bonusWeapon": "+2",
-			"attachedSpells": [
-				"fabricate",
-				"hallucinatory terrain",
-				"major image",
-				"phantasmal killer"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"fabricate",
+						"hallucinatory terrain",
+						"major image",
+						"phantasmal killer"
+					]
+				}
+			}
 		},
 		{
 			"name": "Blade of Broken Mirrors (Dormant)",
@@ -7235,9 +7317,11 @@
 				"The Blast Scepter can be used as an arcane focus.",
 				"Whoever is attuned to the Blast Scepter gains resistance to fire and lightning damage and can, as an action, use it to cast {@spell thunderwave} as a 4th-level spell (save {@dc 16}) without expending a spell slot."
 			],
-			"attachedSpells": [
-				"thunderwave"
-			]
+			"attachedSpells": {
+				"will": [
+					"thunderwave#4"
+				]
+			}
 		},
 		{
 			"name": "Blasted Goggles",
@@ -8094,9 +8178,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"dominate monster"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1": [
+						"dominate monster"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -8203,12 +8291,16 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"animate dead|xphb",
-				"circle of death|xphb",
-				"dominate monster|xphb",
-				"finger of death|xphb"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"animate dead|xphb",
+						"circle of death|xphb",
+						"dominate monster|xphb",
+						"finger of death|xphb"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -8296,10 +8388,14 @@
 					"dim": 40
 				}
 			],
-			"attachedSpells": [
-				"dimension door",
-				"compulsion"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"dimension door",
+						"compulsion"
+					]
+				}
+			}
 		},
 		{
 			"name": "Boomerang Shield",
@@ -8398,9 +8494,13 @@
 			"entries": [
 				"While you wear these boots, you can click your heels together to cast the {@spell haste} spell on yourself as a bonus action. You don't suffer from lethargy when the spell ends when cast using these boots. Once this property is used, it can't be used again until next dawn."
 			],
-			"attachedSpells": [
-				"haste"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1": [
+						"haste"
+					]
+				}
+			}
 		},
 		{
 			"name": "Boots of Levitation",
@@ -8420,9 +8520,11 @@
 			"optionalfeatures": [
 				"replicate magic item|tce"
 			],
-			"attachedSpells": [
-				"levitate"
-			],
+			"attachedSpells": {
+				"will": [
+					"levitate"
+				]
+			},
 			"lootTables": [
 				"Magic Item Table G"
 			]
@@ -8441,9 +8543,11 @@
 			"optionalfeatures": [
 				"replicate magic item|tce"
 			],
-			"attachedSpells": [
-				"levitate|xphb"
-			],
+			"attachedSpells": {
+				"will": [
+					"levitate|xphb"
+				]
+			},
 			"lootTables": [
 				"Implements - Rare|XDMG"
 			]
@@ -8649,9 +8753,13 @@
 				"This ring, adorned with the symbol of Boros, allows you to cast {@spell heroism}. A guild signet is sometimes awarded to a guild member whose renown score in that guild is 5 or higher, as a reward for performing special services for the guild. Aside from its magical properties, the ring is also an indicator of Boros' recognition and favor.",
 				"A signet has 3 charges, and it regains {@dice 1d3} expended charges daily at dawn. While wearing it, you can expend 1 charge to cast the associated spell (save {@dc 13})."
 			],
-			"attachedSpells": [
-				"heroism"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"heroism"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -8749,9 +8857,13 @@
 				"While this bowl is filled with water, you can use an action to speak the bowl's command word and summon a {@creature water elemental}, as if you had cast the {@spell conjure elemental} spell. The bowl can't be used this way again until the next dawn.",
 				"The bowl is about 1 foot in diameter and half as deep. It weighs 3 pounds and holds about 3 gallons."
 			],
-			"attachedSpells": [
-				"conjure elemental"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1": [
+						"conjure elemental"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table G"
 			],
@@ -8812,10 +8924,16 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"flesh to stone",
-				"stone shape"
-			]
+			"attachedSpells": {
+				"limited": {
+					"3": [
+						"flesh to stone"
+					],
+					"13": [
+						"stone shape"
+					]
+				}
+			}
 		},
 		{
 			"name": "Bracer of Flying Daggers",
@@ -9060,9 +9178,13 @@
 				"While a fire burns in this brass brazier, you can use an action to speak the brazier's command word and summon a {@creature fire elemental}, as if you had cast the {@spell conjure elemental} spell. The brazier can't be used this way again until the next dawn.",
 				"The brazier weighs 5 pounds."
 			],
-			"attachedSpells": [
-				"conjure elemental"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1": [
+						"conjure elemental"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table G"
 			],
@@ -9134,9 +9256,13 @@
 				"The armor regains {@dice 1d4} expended charges daily at dawn.",
 				"This armor consists of a fitted metal chest piece worn with supple leather. Although it leaves the legs and arms relatively unprotected, this armor provides good protection for the wearer's vital organs while leaving the wearer relatively unencumbered."
 			],
-			"attachedSpells": [
-				"lesser restoration"
-			]
+			"attachedSpells": {
+				"charges": {
+					"2": [
+						"lesser restoration"
+					]
+				}
+			}
 		},
 		{
 			"name": "Breathing Bubble",
@@ -9288,9 +9414,13 @@
 				"This fine leather bridle tugs at the hand when first held, as though it longs to reach out for a beast nearby. When you hold one end of the bridle, you can use an action to speak its command word, causing the other end to lash out at a beast you can see within 20 feet of you. The target must succeed on a {@dc 17} Charisma saving throw or have the bridle tie itself around its neck, then fall under your command as if subjected to the {@spell dominate beast} spell. Once the targeted is affected, you do not need to hold the other end of the bridle to command it. With a successful saving throw, the target becomes immune to the bridle's power until the next dawn.",
 				"A creature controlled by the bridle can be released by the creature that bound it as a bonus action. A creature controlled by the bridle can make a {@dc 17} Charisma check each day at dawn. On a success, the creature is no longer affected by the bridle."
 			],
-			"attachedSpells": [
-				"dominate beast"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"dominate beast"
+					]
+				}
+			}
 		},
 		{
 			"name": "Bronze crown",
@@ -10155,9 +10285,13 @@
 					"dim": 30
 				}
 			],
-			"attachedSpells": [
-				"gate"
-			],
+			"attachedSpells": {
+				"limited": {
+					"1": [
+						"gate"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table H"
 			],
@@ -10260,9 +10394,13 @@
 					"dim": 30
 				}
 			],
-			"attachedSpells": [
-				"gate|xphb"
-			],
+			"attachedSpells": {
+				"limited": {
+					"1": [
+						"gate|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Relics - Very Rare|XDMG"
 			],
@@ -10452,9 +10590,13 @@
 				"This cape smells faintly of brimstone. While wearing it, you can use it to cast the {@spell dimension door} spell as an action. This property of the cape can't be used again until the next dawn.",
 				"When you disappear, you leave behind a cloud of smoke, and you appear in a similar cloud of smoke at your destination. The smoke lightly obscures the space you left and the space you appear in, and it dissipates at the end of your next turn. A light or stronger wind disperses the smoke."
 			],
-			"attachedSpells": [
-				"dimension door"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1": [
+						"dimension door"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table G"
 			],
@@ -10470,9 +10612,13 @@
 				"This cape smells faintly of brimstone. While wearing it, you can use it to cast {@spell Dimension Door|XPHB} as a {@action Magic|XPHB} action. This property can't be used again until the next dawn.",
 				"When you teleport with that spell, you leave behind a cloud of smoke. The space you left is {@variantrule Lightly Obscured|XPHB} by that smoke until the end of your next turn."
 			],
-			"attachedSpells": [
-				"dimension door|xphb"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1": [
+						"dimension door|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Arcana - Rare|XDMG"
 			],
@@ -10507,9 +10653,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"spray of cards|bmt"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"spray of cards|bmt"
+					]
+				}
+			}
 		},
 		{
 			"name": "Carnelian",
@@ -11291,9 +11441,13 @@
 				"While incense is burning in this censer, you can use an action to speak the censer's command word and summon an {@creature air elemental}, as if you had cast the {@spell conjure elemental} spell. The censer can't be used this way again until the next dawn.",
 				"This 6-inch-wide, 1-foot-high vessel resembles a chalice with a decorated lid. It weighs 1 pound."
 			],
-			"attachedSpells": [
-				"conjure elemental"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"conjure elemental"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table G"
 			],
@@ -11425,11 +11579,15 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"detect thoughts",
-				"sending",
-				"rary's telepathic bond"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"detect thoughts",
+						"rary's telepathic bond",
+						"sending"
+					]
+				}
+			}
 		},
 		{
 			"name": "Chariot",
@@ -11637,9 +11795,13 @@
 			"entries": [
 				"This silver chime is engraved with delicate magic sigils. While holding the chime, you can use an action to cast the {@spell Banishment} spell (spell save {@dc 20}). If the target of the spell has 50 hit points or fewer, it automatically fails its saving throw. Once the chime has been used to cast the spell, it can't be used this way again until the next dawn."
 			],
-			"attachedSpells": [
-				"banishment"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"banishment"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -11983,9 +12145,13 @@
 			"entries": [
 				"While wearing this circlet, you can use an action to cast the {@spell scorching ray} spell with it. When you make the spell's attacks, you do so with an attack bonus of {@hit 5}. The circlet can't be used this way again until the next dawn."
 			],
-			"attachedSpells": [
-				"scorching ray"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"scorching ray"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table F"
 			],
@@ -12001,9 +12167,13 @@
 			"entries": [
 				"While wearing this circlet, you can cast {@spell Scorching Ray|XPHB} with it ({@hit 5} to hit). The circlet can't cast this spell again until the next dawn."
 			],
-			"attachedSpells": [
-				"scorching ray|xphb"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"scorching ray|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Arcana - Uncommon|XDMG"
 			],
@@ -12195,9 +12365,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"web"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"web"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table H"
 			]
@@ -12249,9 +12423,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"web|xphb"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"web|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Arcana - Very Rare|XDMG"
 			]
@@ -12503,9 +12681,13 @@
 			"optionalfeatures": [
 				"replicate magic item|tce"
 			],
-			"attachedSpells": [
-				"polymorph"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"polymorph"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table G"
 			]
@@ -12525,9 +12707,13 @@
 			"optionalfeatures": [
 				"replicate magic item|tce"
 			],
-			"attachedSpells": [
-				"polymorph|xphb"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"polymorph|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Arcana - Rare|XDMG"
 			]
@@ -13112,9 +13298,13 @@
 				"This item is an ordinary, albeit rather large, conch shell that has been inscribed with the uvar rune. The conch measures 2½ feet long and weighs 20 pounds.",
 				"As an action, you can cast the {@spell teleport} spell by blowing into the shell. The destination is fixed, and there is no chance of either a mishap or the spell being off target. Anyone teleported by the conch appears in a specific location designated by the item's creator at the time the uvar rune is inscribed on the conch. It doesn't allow teleportation to any other destination. Once its spell is cast, the conch can't be used again until the next dawn."
 			],
-			"attachedSpells": [
-				"teleport"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"teleport"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -13863,14 +14053,26 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"aura of life",
-				"aura of purity",
-				"banishment",
-				"beacon of hope",
-				"gate",
-				"mass cure wounds"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"banishment",
+						"beacon of hope"
+					],
+					"2": [
+						"aura of life",
+						"aura of purity"
+					],
+					"3": [
+						"mass cure wounds"
+					]
+				},
+				"limited": {
+					"1": [
+						"gate"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -14022,9 +14224,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"fear"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"fear"
+					]
+				}
+			}
 		},
 		{
 			"name": "Crown of Westemär",
@@ -14145,9 +14351,13 @@
 					"dim": 30
 				}
 			],
-			"attachedSpells": [
-				"crusader's mantle"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"crusader's mantle"
+					]
+				}
+			}
 		},
 		{
 			"name": "Crystal Ball",
@@ -14251,10 +14461,16 @@
 				"This {@item crystal ball} is about 6 inches in diameter. While touching it, you can cast the {@spell scrying} spell (save {@dc 17}) with it.",
 				"While {@spell scrying} with the {@item crystal ball}, you can communicate telepathically with creatures you can see within 30 feet of the spell's sensor. You can also use an action to cast the {@spell suggestion} spell (save {@dc 17}) through the sensor on one of those creatures. You don't need to concentrate on this suggestion to maintain it during its duration, but it ends if {@spell scrying} ends. Once used, the suggestion power of the {@item crystal ball} can't be used again until the next dawn."
 			],
-			"attachedSpells": [
-				"scrying",
-				"suggestion"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"suggestion"
+					]
+				},
+				"will": [
+					"scrying"
+				]
+			},
 			"lootTables": [
 				"Magic Item Table I"
 			]
@@ -14271,10 +14487,16 @@
 			"entries": [
 				"While touching this crystal orb, you can cast {@spell Scrying|XPHB} (save {@dc 17}) with it. In addition, you can communicate telepathically with creatures you can see within 30 feet of the spell's sensor. You can also cast {@spell Suggestion|XPHB} (save {@dc 17}) through the sensor on one of those creatures. You don't need to concentrate on this {@spell Suggestion|XPHB} to maintain it during its duration, but it ends if {@spell Scrying|XPHB} ends. You can't cast {@spell Suggestion|XPHB} in this way again until the next dawn."
 			],
-			"attachedSpells": [
-				"scrying|xphb",
-				"suggestion|xphb"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"suggestion|xphb"
+					]
+				},
+				"will": [
+					"scrying|xphb"
+				]
+			},
 			"lootTables": [
 				"Arcana - Legendary|XDMG"
 			]
@@ -14522,14 +14744,24 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"mage armor|xphb",
-				"shield|xphb",
-				"leomund's tiny hut|xphb",
-				"mordenkainen's private sanctum|xphb",
-				"otiluke's resilient sphere|xphb",
-				"wall of force|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"mage armor|xphb",
+						"shield|xphb"
+					],
+					"3": [
+						"leomund's tiny hut|xphb"
+					],
+					"4": [
+						"mordenkainen's private sanctum|xphb",
+						"otiluke's resilient sphere|xphb"
+					],
+					"5": [
+						"wall of force|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Arcana - Rare|XDMG"
 			],
@@ -15248,9 +15480,13 @@
 					"dim": 30
 				}
 			],
-			"attachedSpells": [
-				"lesser restoration"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"lesser restoration"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -17860,9 +18096,13 @@
 				"The illustrations on this deck of oracle cards move or change subtly when viewed indirectly. When you finish a long rest, you can spend 10 minutes consulting the cards for an omen of the coming day. Roll a {@dice d20} and record the number rolled. Once in the next 8 hours, immediately after a creature within 60 feet of you makes an ability check, an attack roll, or a saving throw, you can use your reaction to discard the {@dice d20} roll; the creature must use the number you rolled in place of its roll.",
 				"Additionally, while holding the cards, you can cast {@spell Divination} from them. Once this property is used, it can't be used again until the next dawn."
 			],
-			"attachedSpells": [
-				"divination"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"divination"
+					]
+				}
+			}
 		},
 		{
 			"name": "Deck of Several Things",
@@ -19008,15 +19248,25 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"magic circle",
-				"magic jar",
-				"planar ally",
-				"planar binding",
-				"plane shift",
-				"summon fiend|tce",
-				"tasha's hideous laughter"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"magic circle"
+					],
+					"2": [
+						"planar binding"
+					],
+					"3": [
+						"magic jar",
+						"planar ally",
+						"plane shift",
+						"summon fiend|tce"
+					]
+				},
+				"will": [
+					"tasha's hideous laughter"
+				]
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -19132,15 +19382,25 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"magic circle|xphb",
-				"magic jar|xphb",
-				"planar ally|xphb",
-				"planar binding|xphb",
-				"plane shift|xphb",
-				"summon fiend|xphb",
-				"tasha's hideous laughter|xphb"
-			]
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"magic circle|xphb"
+					],
+					"2": [
+						"planar binding|xphb"
+					],
+					"3": [
+						"magic jar|xphb",
+						"planar ally|xphb",
+						"plane shift|xphb",
+						"summon fiend|xphb"
+					]
+				},
+				"will": [
+					"tasha's hideous laughter|xphb"
+				]
+			}
 		},
 		{
 			"name": "Detailed, life-sized dragonborn skull cast in electrum",
@@ -19441,9 +19701,13 @@
 				"This ring, adorned with the symbol of Dimir, allows you to cast {@spell disguise self}. A guild signet is sometimes awarded to a guild member whose renown score in that guild is 5 or higher, as a reward for performing special services for the guild. Aside from its magical properties, the ring is also an indicator of Dimir's recognition and favor.",
 				"A signet has 3 charges, and it regains {@dice 1d3} expended charges daily at dawn. While wearing it, you can expend 1 charge to cast the associated spell (save {@dc 13})."
 			],
-			"attachedSpells": [
-				"disguise self"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"disguise self"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -19763,10 +20027,12 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"detect evil and good",
-				"detect magic"
-			]
+			"attachedSpells": {
+				"will": [
+					"detect evil and good",
+					"detect magic"
+				]
+			}
 		},
 		{
 			"name": "Documancy Satchel",
@@ -19792,9 +20058,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"comprehend languages"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"comprehend languages"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -19844,12 +20114,14 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"light",
-				"ray of frost",
-				"shocking grasp",
-				"darkness"
-			]
+			"attachedSpells": {
+				"other": [
+					"light",
+					"ray of frost",
+					"shocking grasp",
+					"darkness"
+				]
+			}
 		},
 		{
 			"name": "Dogsled",
@@ -20141,9 +20413,13 @@
 			"entries": [
 				"This spear is enchanted with 10 charges of a {@spell daylight} spell for use in twilight or dark forest underbrush. The command phrase is \"Tiamat's eyes shine,\" written in Draconic runes on the spear's crossguard."
 			],
-			"attachedSpells": [
-				"daylight"
-			]
+			"attachedSpells": {
+				"limited": {
+					"10": [
+						"daylight"
+					]
+				}
+			}
 		},
 		{
 			"name": "Dragonguard",
@@ -20201,9 +20477,13 @@
 				"A creature of the dragon type that you touch with the staff can move through the city of Waterdeep, ignoring Ahghairon's dragonward (see \"Ahghairon's Dragonward,\" in the Introduction). This effect lasts until the creature is touched again by the staff or until a time you proclaim when you confer the benefit.",
 				"The staff has 10 charges. While holding it, you can expend 1 charge as an action to cast the {@spell command} spell. If you target a dragon with this casting, the dragon has disadvantage on its saving throw. The staff regains {@dice 1d10} charges daily at dawn."
 			],
-			"attachedSpells": [
-				"command"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"command"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -20300,10 +20580,16 @@
 				"This small sphere of thick glass weighs 1 pound. If you are within 60 feet of it, you can speak its command word and cause it to emanate the {@spell light} or {@spell daylight} spell. Once used, the {@spell daylight} effect can't be used again until the next dawn.",
 				"You can speak another command word as an action to make the illuminated globe rise into the air and float no more than 5 feet off the ground. The globe hovers in this way until you or another creature grasps it. If you move more than 60 feet from the hovering globe, it follows you until it is within 60 feet of you. It takes the shortest route to do so. If prevented from moving, the globe sinks gently to the ground and becomes inactive, and its light winks out."
 			],
-			"attachedSpells": [
-				"light",
-				"daylight"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"daylight"
+					]
+				},
+				"will": [
+					"light"
+				]
+			},
 			"lootTables": [
 				"Magic Item Table A",
 				"Magic Item Table B"
@@ -20321,10 +20607,16 @@
 				"This small sphere of thick glass weighs 1 pound. If you are within 60 feet of it, you can command it to emanate light equivalent to that of the {@spell Light|XPHB} or {@spell Daylight|XPHB} spell (your choice). Once used, the Daylight effect can't be used again until the next dawn.",
 				"You can issue another command as a {@action Magic|XPHB} action to make the illuminated globe rise into the air and float no more than 5 feet off the ground. The globe hovers in this way until you or another creature grasps it. If you move more than 60 feet from the hovering globe, it follows you until it is within 60 feet of you. It takes the shortest route to do so. If prevented from moving, the globe sinks gently to the ground and becomes inactive, and its light winks out."
 			],
-			"attachedSpells": [
-				"light|xphb",
-				"daylight|xphb"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"daylight|xphb"
+					]
+				},
+				"will": [
+					"light|xphb"
+				]
+			},
 			"lootTables": [
 				"Arcana - Uncommon|XDMG",
 				"Implements - Uncommon|XDMG"
@@ -20409,9 +20701,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"dominate monster"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"dominate monster"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -20568,9 +20864,13 @@
 					"dim": 30
 				}
 			],
-			"attachedSpells": [
-				"sunbeam"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"sunbeam"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -20967,9 +21267,13 @@
 			"entries": [
 				"The blue crystal of this earring is wrapped with delicate copper wire. The earring has 5 charges. While wearing it, you can use an action to expend 1 charge and cast the {@spell message} spell. The earring regains {@dice 1d4 + 1} expended charges daily at dawn."
 			],
-			"attachedSpells": [
-				"message"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"message"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -21029,10 +21333,16 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"dissonant whispers",
-				"detect thoughts"
-			]
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"dissonant whispers"
+					],
+					"2": [
+						"detect thoughts"
+					]
+				}
+			}
 		},
 		{
 			"name": "Echo Stone",
@@ -21085,9 +21395,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"wish"
-			],
+			"attachedSpells": {
+				"limited": {
+					"3": [
+						"wish"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table H"
 			],
@@ -21128,9 +21442,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"wish|xphb"
-			],
+			"attachedSpells": {
+				"limited": {
+					"3": [
+						"wish|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Arcana - Very Rare|XDMG"
 			],
@@ -21457,9 +21775,13 @@
 			"entries": [
 				"This gem contains a mote of elemental energy. When you use an action to break the gem, an {@creature air elemental} is summoned as if you had cast the {@spell conjure elemental} spell, and the gem's magic is lost."
 			],
-			"attachedSpells": [
-				"conjure elemental"
-			]
+			"attachedSpells": {
+				"limited": {
+					"1": [
+						"conjure elemental"
+					]
+				}
+			}
 		},
 		{
 			"name": "Elemental Gem, Blue Sapphire",
@@ -21486,9 +21808,13 @@
 			"entries": [
 				"This gem contains a mote of elemental energy. When you use an action to break the gem, a {@creature water elemental} is summoned as if you had cast the {@spell conjure elemental} spell, and the gem's magic is lost."
 			],
-			"attachedSpells": [
-				"conjure elemental"
-			]
+			"attachedSpells": {
+				"limited": {
+					"1": [
+						"conjure elemental"
+					]
+				}
+			}
 		},
 		{
 			"name": "Elemental Gem, Emerald",
@@ -21515,9 +21841,13 @@
 			"entries": [
 				"This gem contains a mote of elemental energy. When you use an action to break the gem, a {@creature fire elemental} is summoned as if you had cast the {@spell conjure elemental} spell, and the gem's magic is lost."
 			],
-			"attachedSpells": [
-				"conjure elemental"
-			]
+			"attachedSpells": {
+				"limited": {
+					"1": [
+						"conjure elemental"
+					]
+				}
+			}
 		},
 		{
 			"name": "Elemental Gem, Red Corundum",
@@ -21544,9 +21874,13 @@
 			"entries": [
 				"This gem contains a mote of elemental energy. When you use an action to break the gem, an {@creature earth elemental} is summoned as if you had cast the {@spell conjure elemental} spell, and the gem's magic is lost."
 			],
-			"attachedSpells": [
-				"conjure elemental"
-			]
+			"attachedSpells": {
+				"limited": {
+					"1": [
+						"conjure elemental"
+					]
+				}
+			}
 		},
 		{
 			"name": "Elemental Gem, Yellow Diamond",
@@ -21853,9 +22187,11 @@
 			"entries": [
 				"This pen is tipped with an emerald nib and requires no ink to write. While holding this pen, you can cast {@spell illusory script} at will, requiring no material components."
 			],
-			"attachedSpells": [
-				"illusory script"
-			]
+			"attachedSpells": {
+				"will": [
+					"illusory script"
+				]
+			}
 		},
 		{
 			"name": "Enchanted Three-Dragon Ante Set",
@@ -22335,35 +22671,41 @@
 					"type": "entries",
 					"name": "Arrows of the Seasons",
 					"entries": [
-						"The four arrows\u2014each associated with a season\u2014that accompany this bow can be fired only from it. Each arrow disappears immediately after it's used, and it reappears in the quiver at the next dusk. The save DC against spells cast with the arrows is 18. Each arrow has a unique property:"
-					]
-				},
-				{
-					"type": "entries",
-					"name": "Spring",
-					"entries": [
-						"As an action, you can fire this arrow, targeting a beast or a plant creature you can see within 320 feet of you. On a hit, the arrow deals no damage, and the target gains the benefits of the {@spell awaken} spell for 8 hours."
-					]
-				},
-				{
-					"type": "entries",
-					"name": "Summer",
-					"entries": [
-						"As an action, you can fire this arrow at an unoccupied space on the ground that you can see within 320 feet of you, no attack roll required. A Nyxborn lynx is summoned in that space (use the stat block for a {@creature tiger} with the {@book Nyxborn traits|MOT|6|Nyxborn Creatures} from chapter 6). The lynx understands your verbal commands and obeys them as best it can, and it takes its turns immediately after yours. The emissary remains for 1 hour before fading away."
-					]
-				},
-				{
-					"type": "entries",
-					"name": "Autumn",
-					"entries": [
-						"As an action, you can fire this arrow at a space on the ground that you can see within 320 feet of you, no attack roll required, casting the {@spell wall of thorns} spell there."
-					]
-				},
-				{
-					"type": "entries",
-					"name": "Winter",
-					"entries": [
-						"As an action, you can fire this arrow at a space that you can see within 320 feet of you, no attack roll required, casting the {@spell ice storm} spell there."
+						"The four arrows\u2014each associated with a season\u2014that accompany this bow can be fired only from it. Each arrow disappears immediately after it's used, and it reappears in the quiver at the next dusk. The save DC against spells cast with the arrows is 18. Each arrow has a unique property:",
+						{
+							"type": "list",
+							"style": "list-hang",
+							"items": [
+								{
+									"type": "item",
+									"name": "Spring",
+									"entries": [
+										"As an action, you can fire this arrow, targeting a beast or a plant creature you can see within 320 feet of you. On a hit, the arrow deals no damage, and the target gains the benefits of the {@spell awaken} spell for 8 hours."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Summer",
+									"entries": [
+										"As an action, you can fire this arrow at an unoccupied space on the ground that you can see within 320 feet of you, no attack roll required. A Nyxborn lynx is summoned in that space (use the stat block for a {@creature tiger} with the {@book Nyxborn traits|MOT|6|Nyxborn Creatures} from chapter 6). The lynx understands your verbal commands and obeys them as best it can, and it takes its turns immediately after yours. The emissary remains for 1 hour before fading away."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Autumn",
+									"entries": [
+										"As an action, you can fire this arrow at a space on the ground that you can see within 320 feet of you, no attack roll required, casting the {@spell wall of thorns} spell there."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Winter",
+									"entries": [
+										"As an action, you can fire this arrow at a space that you can see within 320 feet of you, no attack roll required, casting the {@spell ice storm} spell there."
+									]
+								}
+							]
+						}
 					]
 				},
 				{
@@ -22375,11 +22717,15 @@
 				}
 			],
 			"ammoType": "arrow|phb",
-			"attachedSpells": [
-				"awaken",
-				"wall of thorns",
-				"ice storm"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"awaken",
+						"wall of thorns",
+						"ice storm"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -22511,11 +22857,15 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"lesser restoration",
-				"locate creature",
-				"transport via plants"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"lesser restoration",
+						"locate creature",
+						"transport via plants"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -22792,14 +23142,26 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"wish",
-				"clairvoyance",
-				"crown of madness",
-				"disintegrate",
-				"dominate monster",
-				"eyebite"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"crown of madness"
+					],
+					"2": [
+						"clairvoyance"
+					],
+					"4": [
+						"disintegrate",
+						"eyebite"
+					],
+					"5": [
+						"dominate monster"
+					]
+				},
+				"other": [
+					"wish"
+				]
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -22914,13 +23276,23 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"clairvoyance|xphb",
-				"crown of madness|xphb",
-				"disintegrate|xphb",
-				"dominate monster|xphb",
-				"eyebite|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"crown of madness|xphb"
+					],
+					"2": [
+						"clairvoyance|xphb"
+					],
+					"4": [
+						"disintegrate|xphb",
+						"eyebite|xphb"
+					],
+					"5": [
+						"dominate monster|xphb"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -22971,9 +23343,13 @@
 			"optionalfeatures": [
 				"replicate magic item|tce"
 			],
-			"attachedSpells": [
-				"charm person"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"charm person"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table F"
 			],
@@ -22995,9 +23371,13 @@
 			"optionalfeatures": [
 				"replicate magic item|tce"
 			],
-			"attachedSpells": [
-				"charm person|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"charm person|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Arcana - Uncommon|XDMG"
 			],
@@ -23163,10 +23543,14 @@
 				"For 1 charge, you cast the 3rd-level version of the spell. You can increase the spell slot level by one for each additional charge you expend.",
 				"The wand regains {@dice 1d6 + 1} expended charges daily at dawn. If you expend the wand's last charge, roll a {@dice d20}. On a 1, the wand crumbles into ashes and is destroyed."
 			],
-			"attachedSpells": [
-				"fireball",
-				"lightning bolt"
-			]
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"fireball",
+						"lightning bolt"
+					]
+				}
+			}
 		},
 		{
 			"name": "Falkir's Helm of Pigheadedness",
@@ -23247,10 +23631,14 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"conjure celestial",
-				"bane"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"bane",
+						"conjure celestial"
+					]
+				}
+			}
 		},
 		{
 			"name": "Far Realm Shard",
@@ -24479,9 +24867,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"locate creature"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"locate creature"
+					]
+				}
+			}
 		},
 		{
 			"name": "Fine Clothes",
@@ -24699,9 +25091,13 @@
 				"Once per day, you can pour a vial of alchemist's fire into the tank. When you do, it regains all expended charges. It otherwise does not regain charges on its own.",
 				"You have disadvantage when you use a lance to attack a target within 5 feet of you. Also, a lance requires two hands to wield when you aren't mounted."
 			],
-			"attachedSpells": [
-				"burning hands"
-			]
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"burning hands"
+					]
+				}
+			}
 		},
 		{
 			"name": "Flame Tongue Shortsword of Greed",
@@ -24780,10 +25176,16 @@
 					"dim": 120
 				}
 			],
-			"attachedSpells": [
-				"produce flame",
-				"burning hands"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1": [
+						"burning hands#3"
+					]
+				},
+				"will": [
+					"produce flame"
+				]
+			},
 			"hasFluff": true
 		},
 		{
@@ -25408,10 +25810,16 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"fog cloud",
-				"misty step"
-			]
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"fog cloud"
+					],
+					"2": [
+						"misty step"
+					]
+				}
+			}
 		},
 		{
 			"name": "Galley",
@@ -26441,9 +26849,13 @@
 				"These leather-framed goggles feature purple crystal lenses. While wearing the goggles, you have advantage on Intelligence ({@skill Arcana}) checks made to reveal information about a creature or object you can see.",
 				"In addition, you can cast the {@spell identify} spell using the googles. Once you do so, you can't do so again until the next dawn."
 			],
-			"attachedSpells": [
-				"identify"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"identify"
+					]
+				}
+			}
 		},
 		{
 			"name": "Gold",
@@ -26858,9 +27270,13 @@
 				"This ring, adorned with the symbol of Golgari, allows you to cast {@spell entangle}. A guild signet is sometimes awarded to a guild member whose renown score in that guild is 5 or higher, as a reward for performing special services for the guild. Aside from its magical properties, the ring is also an indicator of Golgari's recognition and favor.",
 				"A signet has 3 charges, and it regains {@dice 1d3} expended charges daily at dawn. While wearing it, you can expend 1 charge to cast the associated spell (save {@dc 13})."
 			],
-			"attachedSpells": [
-				"entangle"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"entangle"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -27477,11 +27893,15 @@
 				}
 			},
 			"bonusWeapon": "+3",
-			"attachedSpells": [
-				"earthquake",
-				"meld into stone",
-				"stone shape"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1": [
+						"earthquake",
+						"meld into stone",
+						"stone shape"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -27498,9 +27918,13 @@
 				"This ring, adorned with the symbol of Gruul, allows you to cast {@spell compelled duel}. A guild signet is sometimes awarded to a guild member whose renown score in that guild is 5 or higher, as a reward for performing special services for the guild. Aside from its magical properties, the ring is also an indicator of Gruul's recognition and favor.",
 				"A signet has 3 charges, and it regains {@dice 1d3} expended charges daily at dawn. While wearing it, you can expend 1 charge to cast the associated spell (save {@dc 13})."
 			],
-			"attachedSpells": [
-				"compelled duel"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"compelled duel"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -27690,9 +28114,13 @@
 				"The axe sheds light as a torch when the temperature around it drops below 0 degrees Fahrenheit. The light can't be shut off in these conditions.",
 				"As an action, you can cast a version of the {@spell heat metal} spell (save {@dc 13}) that deals cold damage instead of fire damage. Once this power is used, it can't be used again until the next dawn."
 			],
-			"attachedSpells": [
-				"heat metal"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"heat metal"
+					]
+				}
+			}
 		},
 		{
 			"name": "Hag Eye",
@@ -27734,10 +28162,14 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"darkvision|xphb",
-				"see invisibility|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"darkvision|xphb",
+						"see invisibility|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Arcana - Uncommon|XDMG",
 				"Implements - Uncommon|XDMG"
@@ -27944,13 +28376,25 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"wish",
-				"finger of death",
-				"sleep",
-				"slow",
-				"teleport"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"sleep"
+					],
+					"2": [
+						"slow"
+					],
+					"3": [
+						"teleport"
+					],
+					"5": [
+						"finger of death"
+					]
+				},
+				"other": [
+					"wish"
+				]
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -28066,12 +28510,22 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"finger of death|xphb",
-				"sleep|xphb",
-				"slow|xphb",
-				"teleport|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"sleep|xphb"
+					],
+					"2": [
+						"slow|xphb"
+					],
+					"3": [
+						"teleport|xphb"
+					],
+					"5": [
+						"finger of death|xphb"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -28156,10 +28610,16 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"heroes' feast",
-				"calm emotions"
-			]
+			"attachedSpells": {
+				"daily": {
+					"5e": [
+						"calm emotions"
+					]
+				},
+				"other": [
+					"heroes' feast"
+				]
+			}
 		},
 		{
 			"name": "Hat of Disguise",
@@ -28179,9 +28639,11 @@
 			"optionalfeatures": [
 				"replicate magic item|tce"
 			],
-			"attachedSpells": [
-				"disguise self"
-			],
+			"attachedSpells": {
+				"will": [
+					"disguise self"
+				]
+			},
 			"lootTables": [
 				"Magic Item Table F"
 			]
@@ -28200,9 +28662,11 @@
 			"optionalfeatures": [
 				"replicate magic item|tce"
 			],
-			"attachedSpells": [
-				"disguise self|xphb"
-			],
+			"attachedSpells": {
+				"will": [
+					"disguise self|xphb"
+				]
+			},
 			"lootTables": [
 				"Arcana - Uncommon|XDMG"
 			],
@@ -28506,11 +28970,17 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"detect magic",
-				"detect evil and good",
-				"detect thoughts"
-			]
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"detect evil and good",
+						"detect magic"
+					],
+					"2": [
+						"detect thoughts"
+					]
+				}
+			}
 		},
 		{
 			"name": "Headband of Intellect",
@@ -28709,12 +29179,22 @@
 					"dim": 20
 				}
 			],
-			"attachedSpells": [
-				"daylight",
-				"fireball",
-				"prismatic spray",
-				"wall of fire"
-			],
+			"attachedSpells": {
+				"limited": {
+					"10": [
+						"prismatic spray"
+					],
+					"20": [
+						"wall of fire"
+					],
+					"30": [
+						"fireball"
+					],
+					"40": [
+						"daylight"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table H"
 			],
@@ -28775,12 +29255,22 @@
 					"dim": 20
 				}
 			],
-			"attachedSpells": [
-				"daylight|xphb",
-				"fireball|xphb",
-				"prismatic spray|xphb",
-				"wall of fire|xphb"
-			],
+			"attachedSpells": {
+				"limited": {
+					"10": [
+						"prismatic spray|xphb"
+					],
+					"20": [
+						"wall of fire|xphb"
+					],
+					"30": [
+						"fireball|xphb"
+					],
+					"40": [
+						"daylight|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Arcana - Very Rare|XDMG"
 			],
@@ -28800,9 +29290,11 @@
 			"entries": [
 				"While wearing this helm, you can use an action to cast the {@spell comprehend languages} spell from it at will."
 			],
-			"attachedSpells": [
-				"comprehend languages"
-			],
+			"attachedSpells": {
+				"will": [
+					"comprehend languages"
+				]
+			},
 			"lootTables": [
 				"Magic Item Table B"
 			],
@@ -28818,9 +29310,11 @@
 			"entries": [
 				"While wearing this helm, you can cast {@spell Comprehend Languages|XPHB} from it."
 			],
-			"attachedSpells": [
-				"comprehend languages|xphb"
-			],
+			"attachedSpells": {
+				"will": [
+					"comprehend languages|xphb"
+				]
+			},
 			"lootTables": [
 				"Arcana - Uncommon|XDMG",
 				"Implements - Uncommon|XDMG"
@@ -28847,9 +29341,13 @@
 				"The helm has 3 charges. As an action, you can expend 1 charge to cast {@spell dominate monster} (save {@dc 21}), which affects devils only. (The spell fails and the charge is wasted if you target any creature that's not a devil.) If a devil can see you when you cast this spell on it, the devil knows you tried to charm it. The helm regains all its charges 24 hours after its last charge is expended.",
 				"If you are not a devil, using the helm's {@spell dominate monster} property in the Nine Hells has a {@chance 20} chance of attracting a {@creature narzugon|MTF}, which arrives on the back of a {@creature nightmare} mount in {@dice 1d4} hours. The narzugon tries to recover the helm, killing you if necessary to obtain it. If it gets the helm, the narzugon tries to deliver it to its infernal master."
 			],
-			"attachedSpells": [
-				"dominate monster"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"dominate monster"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -28916,9 +29414,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"heal"
-			]
+			"attachedSpells": {
+				"daily": {
+					"3": [
+						"heal"
+					]
+				}
+			}
 		},
 		{
 			"name": "Helm of Perfect Potential",
@@ -28969,13 +29471,25 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"elemental weapon",
-				"call lightning",
-				"wall of fire",
-				"conjure elemental",
-				"tsunami"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"elemental weapon"
+					],
+					"2": [
+						"call lightning"
+					],
+					"3": [
+						"wall of fire"
+					],
+					"4": [
+						"conjure elemental"
+					],
+					"5": [
+						"tsunami"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -28997,10 +29511,16 @@
 			"optionalfeatures": [
 				"replicate magic item|tce"
 			],
-			"attachedSpells": [
-				"detect thoughts",
-				"suggestion"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"suggestion"
+					]
+				},
+				"will": [
+					"detect thoughts"
+				]
+			},
 			"lootTables": [
 				"Magic Item Table F"
 			],
@@ -29019,10 +29539,16 @@
 			"optionalfeatures": [
 				"replicate magic item|tce"
 			],
-			"attachedSpells": [
-				"detect thoughts|xphb",
-				"suggestion|xphb"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"suggestion|xphb"
+					]
+				},
+				"will": [
+					"detect thoughts|xphb"
+				]
+			},
 			"lootTables": [
 				"Arcana - Uncommon|XDMG"
 			],
@@ -29046,9 +29572,13 @@
 			"entries": [
 				"This helm has 3 charges. While wearing it, you can use an action and expend 1 charge to cast the {@spell teleport} spell from it. The helm regains {@dice 1d3} expended charges daily at dawn."
 			],
-			"attachedSpells": [
-				"teleport"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"teleport"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table G"
 			],
@@ -29068,9 +29598,13 @@
 			"entries": [
 				"This helm has 3 charges. While wearing it, you can expend 1 charge to cast {@spell Teleport|XPHB} from it. The helm regains {@dice 1d3} expended charges daily at dawn."
 			],
-			"attachedSpells": [
-				"teleport|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"teleport|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Arcana - Rare|XDMG"
 			],
@@ -29472,11 +30006,19 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"detect evil and good",
-				"fly",
-				"true seeing"
-			]
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"detect evil and good"
+					],
+					"2": [
+						"fly"
+					],
+					"3": [
+						"true seeing"
+					]
+				}
+			}
 		},
 		{
 			"name": "Hew",
@@ -29711,9 +30253,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"polymorph"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"polymorph"
+					]
+				}
+			}
 		},
 		{
 			"name": "Hide of the Feral Guardian (Exalted)",
@@ -31119,10 +31665,16 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"protection from evil and good",
-				"augury"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"augury"
+					]
+				},
+				"will": [
+					"protection from evil and good"
+				]
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -31242,12 +31794,16 @@
 				"You can use an action to blow this horn to cast one of the following spells from it: {@spell Arms of Hadar}, {@spell Fog Cloud}, {@spell Gust of Wind}, or {@spell Web}. If the spell requires a saving throw, the spell save DC is 13.",
 				"Once the horn has been used to cast a spell, it can't be used to cast that spell again until the next dawn."
 			],
-			"attachedSpells": [
-				"arms of Hadar",
-				"fog cloud",
-				"gust of wind",
-				"web"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1": [
+						"arms of Hadar",
+						"fog cloud",
+						"gust of wind",
+						"web"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -31302,9 +31858,13 @@
 					"dim": 80
 				}
 			],
-			"attachedSpells": [
-				"heal"
-			]
+			"attachedSpells": {
+				"daily": {
+					"3": [
+						"heal"
+					]
+				}
+			}
 		},
 		{
 			"name": "Illuminator's Tattoo",
@@ -31545,12 +32105,16 @@
 				}
 			},
 			"bonusWeapon": "+2",
-			"attachedSpells": [
-				"alter self",
-				"invisibility",
-				"knock",
-				"pass without trace"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"alter self",
+						"invisibility",
+						"knock",
+						"pass without trace"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -31616,15 +32180,19 @@
 				}
 			},
 			"bonusWeapon": "+3",
-			"attachedSpells": [
-				"alter self",
-				"invisibility",
-				"knock",
-				"pass without trace",
-				"dimension door",
-				"gaseous form",
-				"mislead"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"alter self",
+						"invisibility",
+						"knock",
+						"pass without trace",
+						"dimension door",
+						"gaseous form",
+						"mislead"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -31775,23 +32343,39 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"haste",
-				"slow",
-				"arcane eye",
-				"dimension door",
-				"bigby's hand",
-				"wall of force",
-				"disintegrate",
-				"reverse gravity",
-				"maze",
-				"detect magic",
-				"tenser's floating disk",
-				"mage armor",
-				"mending",
-				"message",
-				"misty step"
-			],
+			"attachedSpells": {
+				"charges": {
+					"3": [
+						"haste",
+						"slow"
+					],
+					"4": [
+						"arcane eye",
+						"dimension door"
+					],
+					"5": [
+						"bigby's hand",
+						"wall of force"
+					],
+					"6": [
+						"disintegrate"
+					],
+					"7": [
+						"reverse gravity"
+					],
+					"8": [
+						"maze"
+					]
+				},
+				"will": [
+					"detect magic",
+					"mage armor",
+					"mending",
+					"message",
+					"misty step",
+					"tenser's floating disk"
+				]
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -31931,15 +32515,19 @@
 				"All instruments of the bards can be used to cast the following spells: {@spell fly}, {@spell invisibility}, {@spell levitate}, and {@spell protection from evil and good}.",
 				"In addition, the Anstruth harp can be used to cast {@spell control weather}, {@spell cure wounds} (5th level), and {@spell wall of thorns}."
 			],
-			"attachedSpells": [
-				"control weather",
-				"fly",
-				"invisibility",
-				"levitate",
-				"protection from evil and good",
-				"cure wounds",
-				"wall of thorns"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"control weather",
+						"fly",
+						"invisibility",
+						"levitate",
+						"protection from evil and good",
+						"cure wounds#5",
+						"wall of thorns"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table H"
 			],
@@ -31961,15 +32549,19 @@
 				"An Instrument of the Bards is superior to an ordinary instrument in every way. Seven types of these instruments exist, each named after a bard college. A creature that attempts to play the instrument without being attuned to it must succeed on a {@dc 15} Wisdom saving throw or take {@damage 2d4} Psychic damage.",
 				"You can play Anstruth Harp to cast one of the following spells: {@spell Fly|XPHB}, {@spell Invisibility|XPHB}, {@spell Levitate|XPHB}, {@spell Protection from Evil and Good|XPHB}, {@spell Cure Wounds|XPHB} (level 5), {@spell Ice Storm|XPHB}, and {@spell Wall of Thorns|XPHB}. Once the Anstruth Harp has been used to cast a spell, it can't be used to cast that spell again until the next dawn. The spells use your spellcasting ability and spell save DC."
 			],
-			"attachedSpells": [
-				"fly|xphb",
-				"invisibility|xphb",
-				"levitate|xphb",
-				"protection from evil and good|xphb",
-				"cure wounds|xphb",
-				"ice storm|xphb",
-				"wall of thorns|xphb"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"cure wounds|xphb",
+						"fly|xphb",
+						"ice storm|xphb",
+						"invisibility|xphb",
+						"levitate|xphb",
+						"protection from evil and good|xphb",
+						"wall of thorns|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Implements - Very Rare|XDMG"
 			],
@@ -32000,15 +32592,19 @@
 				"All instruments of the bards can be used to cast the following spells: {@spell fly}, {@spell invisibility}, {@spell levitate}, and {@spell protection from evil and good}.",
 				"In addition, the Canaith mandolin can be used to cast {@spell cure wounds} (3rd level), {@spell dispel magic}, and {@spell protection from energy} (lightning only)."
 			],
-			"attachedSpells": [
-				"cure wounds",
-				"fly",
-				"invisibility",
-				"levitate",
-				"protection from evil and good",
-				"dispel magic",
-				"protection from energy"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"cure wounds#3",
+						"fly",
+						"invisibility",
+						"levitate",
+						"protection from evil and good",
+						"dispel magic",
+						"protection from energy"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table G"
 			],
@@ -32030,15 +32626,19 @@
 				"An Instrument of the Bards is superior to an ordinary instrument in every way. Seven types of these instruments exist, each named after a bard college. A creature that attempts to play the instrument without being attuned to it must succeed on a {@dc 15} Wisdom saving throw or take {@damage 2d4} Psychic damage.",
 				"You can play the Canaith Mandolin to cast one of the following spells: {@spell Fly|XPHB}, {@spell Invisibility|XPHB}, {@spell Levitate|XPHB}, {@spell Protection from Evil and Good|XPHB}, {@spell Cure Wounds|XPHB} (level 3), {@spell Dispel Magic|XPHB}, and {@spell Protection from Energy|XPHB} (Lightning damage only). Once the Canaith Mandolin has been used to cast a spell, it can't be used to cast that spell again until the next dawn. The spells use your spellcasting ability and spell save DC."
 			],
-			"attachedSpells": [
-				"fly|xphb",
-				"invisibility|xphb",
-				"levitate|xphb",
-				"protection from evil and good|xphb",
-				"cure wounds|xphb",
-				"dispel magic|xphb",
-				"protection from energy|xphb"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"cure wounds|xphb",
+						"dispel magic|xphb",
+						"fly|xphb",
+						"invisibility|xphb",
+						"levitate|xphb",
+						"protection from energy|xphb",
+						"protection from evil and good|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Implements - Rare|XDMG"
 			],
@@ -32069,15 +32669,19 @@
 				"All instruments of the bards can be used to cast the following spells: {@spell fly}, {@spell invisibility}, {@spell levitate}, and {@spell protection from evil and good}.",
 				"In addition, the Cli lyre can be used to cast {@spell stone shape}, {@spell wall of fire}, and {@spell wind wall}."
 			],
-			"attachedSpells": [
-				"stone shape",
-				"fly",
-				"invisibility",
-				"levitate",
-				"protection from evil and good",
-				"wall of fire",
-				"wind wall"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"stone shape",
+						"fly",
+						"invisibility",
+						"levitate",
+						"protection from evil and good",
+						"wall of fire",
+						"wind wall"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table G"
 			],
@@ -32099,15 +32703,19 @@
 				"An Instrument of the Bards is superior to an ordinary instrument in every way. Seven types of these instruments exist, each named after a bard college. A creature that attempts to play the instrument without being attuned to it must succeed on a {@dc 15} Wisdom saving throw or take {@damage 2d4} Psychic damage.",
 				"You can play the Cli {@item Lyre|XPHB} to cast one of the following spells: {@spell Fly|XPHB}, {@spell Invisibility|XPHB}, {@spell Levitate|XPHB}, {@spell Protection from Evil and Good|XPHB}, {@spell Stone Shape|XPHB}, {@spell Wall of Fire|XPHB}, and {@spell Wind Wall|XPHB}. Once the Cli {@item Lyre|XPHB} has been used to cast a spell, it can't be used to cast that spell again until the next dawn. The spells use your spellcasting ability and spell save DC."
 			],
-			"attachedSpells": [
-				"fly|xphb",
-				"invisibility|xphb",
-				"levitate|xphb",
-				"protection from evil and good|xphb",
-				"stone shape|xphb",
-				"wall of fire|xphb",
-				"wind wall|xphb"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"fly|xphb",
+						"invisibility|xphb",
+						"levitate|xphb",
+						"protection from evil and good|xphb",
+						"stone shape|xphb",
+						"wall of fire|xphb",
+						"wind wall|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Implements - Rare|XDMG"
 			],
@@ -32138,15 +32746,19 @@
 				"All instruments of the bards can be used to cast the following spells: {@spell fly}, {@spell invisibility}, {@spell levitate}, and {@spell protection from evil and good}.",
 				"In addition, the Doss lute can be used to cast {@spell animal friendship}, {@spell protection from energy} (fire only), and {@spell protection from poison}."
 			],
-			"attachedSpells": [
-				"animal friendship",
-				"fly",
-				"invisibility",
-				"levitate",
-				"protection from evil and good",
-				"protection from energy",
-				"protection from poison"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"animal friendship",
+						"fly",
+						"invisibility",
+						"levitate",
+						"protection from evil and good",
+						"protection from energy",
+						"protection from poison"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table F"
 			],
@@ -32168,15 +32780,19 @@
 				"An Instrument of the Bards is superior to an ordinary instrument in every way. Seven types of these instruments exist, each named after a bard college. A creature that attempts to play the instrument without being attuned to it must succeed on a {@dc 15} Wisdom saving throw or take {@damage 2d4} Psychic damage.",
 				"You can play the Doss {@item Lute|XPHB} to cast one of the following spells: {@spell Fly|XPHB}, {@spell Invisibility|XPHB}, {@spell Levitate|XPHB}, {@spell Protection from Evil and Good|XPHB}, {@spell Animal Friendship|XPHB}, {@spell Protection from Energy|XPHB} (Fire damage only), and {@spell Protection from Poison|XPHB}. Once the Doss {@item Lute|XPHB} has been used to cast a spell, it can't be used to cast that spell again until the next dawn. The spells use your spellcasting ability and spell save DC."
 			],
-			"attachedSpells": [
-				"fly|xphb",
-				"invisibility|xphb",
-				"levitate|xphb",
-				"protection from evil and good|xphb",
-				"animal friendship|xphb",
-				"protection from energy|xphb",
-				"protection from poison|xphb"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"animal friendship|xphb",
+						"fly|xphb",
+						"invisibility|xphb",
+						"levitate|xphb",
+						"protection from energy|xphb",
+						"protection from evil and good|xphb",
+						"protection from poison|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Implements - Uncommon|XDMG"
 			],
@@ -32207,16 +32823,20 @@
 				"All instruments of the bards can be used to cast the following spells: {@spell fly}, {@spell invisibility}, {@spell levitate}, and {@spell protection from evil and good}.",
 				"In addition, the Fochlucan bandore can be used to cast {@spell entangle}, {@spell faerie fire}, {@spell shillelagh}, and {@spell speak with animals}."
 			],
-			"attachedSpells": [
-				"entangle",
-				"fly",
-				"invisibility",
-				"levitate",
-				"protection from evil and good",
-				"faerie fire",
-				"shillelagh",
-				"speak with animals"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"entangle",
+						"fly",
+						"invisibility",
+						"levitate",
+						"protection from evil and good",
+						"faerie fire",
+						"shillelagh",
+						"speak with animals"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table F"
 			],
@@ -32238,16 +32858,20 @@
 				"An Instrument of the Bards is superior to an ordinary instrument in every way. Seven types of these instruments exist, each named after a bard college. A creature that attempts to play the instrument without being attuned to it must succeed on a {@dc 15} Wisdom saving throw or take {@damage 2d4} Psychic damage.",
 				"You can play the Fochlucan Bandore to cast one of the following spells: {@spell Fly|XPHB}, {@spell Invisibility|XPHB}, {@spell Levitate|XPHB}, {@spell Protection from Evil and Good|XPHB}, {@spell Entangle|XPHB}, {@spell Faerie Fire|XPHB}, {@spell Shillelagh|XPHB}, and {@spell Speak with Animals|XPHB}. Once the Fochlucan Bandore has been used to cast a spell, it can't be used to cast that spell again until the next dawn. The spells use your spellcasting ability and spell save DC."
 			],
-			"attachedSpells": [
-				"fly|xphb",
-				"invisibility|xphb",
-				"levitate|xphb",
-				"protection from evil and good|xphb",
-				"entangle|xphb",
-				"faerie fire|xphb",
-				"shillelagh|xphb",
-				"speak with animals|xphb"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"entangle|xphb",
+						"faerie fire|xphb",
+						"fly|xphb",
+						"invisibility|xphb",
+						"levitate|xphb",
+						"protection from evil and good|xphb",
+						"shillelagh|xphb",
+						"speak with animals|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Implements - Uncommon|XDMG"
 			],
@@ -32278,15 +32902,19 @@
 				"All instruments of the bards can be used to cast the following spells: {@spell fly}, {@spell invisibility}, {@spell levitate}, and {@spell protection from evil and good}.",
 				"In addition, the Mac-Fuirmidh cittern can be used to cast {@spell barkskin}, {@spell cure wounds}, and {@spell fog cloud}."
 			],
-			"attachedSpells": [
-				"barkskin",
-				"fly",
-				"invisibility",
-				"levitate",
-				"protection from evil and good",
-				"cure wounds",
-				"fog cloud"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"barkskin",
+						"fly",
+						"invisibility",
+						"levitate",
+						"protection from evil and good",
+						"cure wounds",
+						"fog cloud"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table F"
 			],
@@ -32308,15 +32936,19 @@
 				"An Instrument of the Bards is superior to an ordinary instrument in every way. Seven types of these instruments exist, each named after a bard college. A creature that attempts to play the instrument without being attuned to it must succeed on a {@dc 15} Wisdom saving throw or take {@damage 2d4} Psychic damage.",
 				"You can play the Mac-Fuirmidh Cittern to cast one of the following spells: {@spell Fly|XPHB}, {@spell Invisibility|XPHB}, {@spell Levitate|XPHB}, {@spell Protection from Evil and Good|XPHB}, {@spell Barkskin|XPHB}, {@spell Cure Wounds|XPHB}, and {@spell Fog Cloud|XPHB}. Once the Mac-Fuirmidh Cittern has been used to cast a spell, it can't be used to cast that spell again until the next dawn. The spells use your spellcasting ability and spell save DC."
 			],
-			"attachedSpells": [
-				"fly|xphb",
-				"invisibility|xphb",
-				"levitate|xphb",
-				"protection from evil and good|xphb",
-				"barkskin|xphb",
-				"cure wounds|xphb",
-				"fog cloud|xphb"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"barkskin|xphb",
+						"cure wounds|xphb",
+						"fly|xphb",
+						"fog cloud|xphb",
+						"invisibility|xphb",
+						"levitate|xphb",
+						"protection from evil and good|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Implements - Uncommon|XDMG"
 			],
@@ -32347,15 +32979,19 @@
 				"All instruments of the bards can be used to cast the following spells: {@spell fly}, {@spell invisibility}, {@spell levitate}, and {@spell protection from evil and good}.",
 				"In addition, the Ollamh harp can be used to cast {@spell confusion}, {@spell control weather}, and {@spell fire storm}."
 			],
-			"attachedSpells": [
-				"confusion",
-				"fly",
-				"invisibility",
-				"levitate",
-				"protection from evil and good",
-				"control weather",
-				"fire storm"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"confusion",
+						"fly",
+						"invisibility",
+						"levitate",
+						"protection from evil and good",
+						"control weather",
+						"fire storm"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table I"
 			],
@@ -32377,15 +33013,19 @@
 				"An Instrument of the Bards is superior to an ordinary instrument in every way. Seven types of these instruments exist, each named after a bard college. A creature that attempts to play the instrument without being attuned to it must succeed on a {@dc 15} Wisdom saving throw or take {@damage 2d4} Psychic damage.",
 				"You can play the Ollamh Harp to cast one of the following spells: {@spell Fly|XPHB}, {@spell Invisibility|XPHB}, {@spell Levitate|XPHB}, {@spell Protection from Evil and Good|XPHB}, {@spell Confusion|XPHB}, {@spell Control Weather|XPHB}, and {@spell Fire Storm|XPHB}. Once the Ollamh Harp has been used to cast a spell, it can't be used to cast that spell again until the next dawn. The spells use your spellcasting ability and spell save DC."
 			],
-			"attachedSpells": [
-				"fly|xphb",
-				"invisibility|xphb",
-				"levitate|xphb",
-				"protection from evil and good|xphb",
-				"confusion|xphb",
-				"control weather|xphb",
-				"fire storm|xphb"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"confusion|xphb",
+						"control weather|xphb",
+						"fire storm|xphb",
+						"fly|xphb",
+						"invisibility|xphb",
+						"levitate|xphb",
+						"protection from evil and good|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Implements - Legendary|XDMG"
 			],
@@ -33635,10 +34275,18 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"dominate monster",
-				"shatter"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"dominate monster"
+					]
+				},
+				"charges": {
+					"3": [
+						"shatter"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -33675,9 +34323,13 @@
 				"This ring, adorned with the symbol of Izzet, allows you to cast {@spell chaos bolt|XGE}. A guild signet is sometimes awarded to a guild member whose renown score in that guild is 5 or higher, as a reward for performing special services for the guild. Aside from its magical properties, the ring is also an indicator of Izzet's recognition and favor.",
 				"A signet has 3 charges, and it regains {@dice 1d3} expended charges daily at dawn. While wearing it, you can expend 1 charge to cast the associated spell (save {@dc 13})."
 			],
-			"attachedSpells": [
-				"chaos bolt|XGE"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"chaos bolt|XGE"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -33969,9 +34621,13 @@
 			"entries": [
 				"As an action, you can brandish this card and use it to cast the {@spell Otto's Irresistible Dance} spell (save {@dc 17}), and you have advantage on Constitution saving throws to maintain {@status concentration} on it. Once this property is used, it can't be used again until the next dawn."
 			],
-			"attachedSpells": [
-				"Otto's irresistible dance"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"otto's irresistible dance"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -34134,9 +34790,13 @@
 					"dim": 30
 				}
 			],
-			"attachedSpells": [
-				"invisibility"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"invisibility"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -34538,9 +35198,13 @@
 			"entries": [
 				"As an action, you can brandish this card and use it to cast the {@spell Knock} spell, with no sound made by the spell. This property can be used five times, and it regains all expended uses at dawn."
 			],
-			"attachedSpells": [
-				"knock"
-			],
+			"attachedSpells": {
+				"daily": {
+					"5e": [
+						"knock"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -34768,11 +35432,19 @@
 					"dim": 60
 				}
 			],
-			"attachedSpells": [
-				"guiding bolt",
-				"sunbeam",
-				"daylight"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"guiding bolt"
+					],
+					"3": [
+						"daylight"
+					],
+					"6": [
+						"sunbeam"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -34884,9 +35556,13 @@
 			],
 			"bonusSavingThrow": "+2",
 			"recharge": "restLong",
-			"attachedSpells": [
-				"blink"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"blink"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -35059,10 +35735,16 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"sending",
-				"teleport"
-			]
+			"attachedSpells": {
+				"charges": {
+					"2": [
+						"sending"
+					],
+					"3": [
+						"teleport"
+					]
+				}
+			}
 		},
 		{
 			"name": "Kyrzin's Ooze",
@@ -36245,11 +36927,19 @@
 				}
 			],
 			"ammoType": "arrow|phb",
-			"attachedSpells": [
-				"create food and water",
-				"warding bond",
-				"guardian of faith"
-			]
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"create food and water"
+					],
+					"2": [
+						"warding bond"
+					],
+					"3": [
+						"guardian of faith"
+					]
+				}
+			}
 		},
 		{
 			"name": "Longship",
@@ -36632,14 +37322,18 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"comprehend languages",
-				"detect evil and good",
-				"detect magic",
-				"detect poison and disease",
-				"locate object",
-				"scrying"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"comprehend languages",
+						"detect evil and good",
+						"detect magic",
+						"detect poison and disease",
+						"locate object",
+						"scrying"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -36673,10 +37367,16 @@
 				}
 			],
 			"ammoType": "renaissance bullet",
-			"attachedSpells": [
-				"dancing lights",
-				"sunbeam"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"sunbeam"
+					]
+				},
+				"will": [
+					"dancing lights"
+				]
+			}
 		},
 		{
 			"name": "Luminous War Pick",
@@ -36695,9 +37395,13 @@
 				"The haft of this war pick is inlaid with crushed pearlescent stones that imbue the weapon with a faint luminescence. You gain a +1 bonus to attack and damage rolls made with this war pick.",
 				"While wielding the war pick, you can use a bonus action to cast the {@spell daylight} spell, choosing a point on the war pick. Once you use this bonus action, it can't be used again until the next dawn."
 			],
-			"attachedSpells": [
-				"daylight"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"daylight"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -36798,13 +37502,19 @@
 				"While holding this {@item lyre|PHB}, you can cast {@spell mending} as an action. You can also play the {@item lyre|PHB} as a reaction when an object or a structure you can see within 300 feet of you takes damage, causing it to be immune to that damage and any further damage of the same type until the start of your next turn.",
 				"In addition, you can play the {@item lyre|PHB} as an action to cast {@spell fabricate}, {@spell move earth}, {@spell passwall}, or {@spell summon construct|TCE}, and that spell can't be cast from it again until the next dawn."
 			],
-			"attachedSpells": [
-				"fabricate",
-				"mending",
-				"move earth",
-				"passwall",
-				"summon construct|tce"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"fabricate",
+						"move earth",
+						"passwall",
+						"summon construct|tce"
+					]
+				},
+				"will": [
+					"mending"
+				]
+			}
 		},
 		{
 			"name": "Mace of Disruption",
@@ -37182,9 +37892,13 @@
 				"If you hit a creature with an attack using this weapon, you can cast the {@spell dispel magic} spell from the sword against the target as part of the attack. Alternatively, you can use an action to cast {@spell dispel magic} from the sword against a target of your choice. If you need to make a check with your spellcasting ability modifier as part of casting the spell, you make this check with a +3 modifier or your own spellcasting ability modifier, whichever is higher.",
 				"Once you cast {@spell dispel magic} using this weapon, you can't do so again until the next dawn."
 			],
-			"attachedSpells": [
-				"dispel magic"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"dispel magic"
+					]
+				}
+			}
 		},
 		{
 			"name": "Magnifying Glass",
@@ -37693,9 +38407,13 @@
 			"entries": [
 				"This wooden mask is shaped in the likeness of a beast's visage and has 3 charges. While wearing the mask you can expend 1 charge and use the mask to cast the {@spell animal friendship} spell as an action. The mask regains all expended charges at dawn."
 			],
-			"attachedSpells": [
-				"animal friendship"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"animal friendship"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -37845,9 +38563,13 @@
 			"entries": [
 				"A masque charm is a small silver pin. While wearing this charm, you can use an action to cast the {@spell disguise self} spell ({@dc 13} to discern the disguise). Once the spell is cast, it can't be cast from the charm again until the next sunset. When casting the spell, you can have the spell last for its normal 1 hour duration or for 6 hours. If you choose the 6-hour duration, the charm becomes nonmagical when the spell ends. In either case, the spell ends if the charm is removed from you."
 			],
-			"attachedSpells": [
-				"disguise self"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"disguise self"
+					]
+				}
+			}
 		},
 		{
 			"name": "Masquerade Tattoo",
@@ -37882,9 +38604,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"disguise self"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"disguise self"
+					]
+				}
+			}
 		},
 		{
 			"name": "Master's Amulet",
@@ -38144,9 +38870,13 @@
 			"optionalfeatures": [
 				"replicate magic item|tce"
 			],
-			"attachedSpells": [
-				"detect thoughts"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"detect thoughts"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table F"
 			],
@@ -38170,9 +38900,13 @@
 			"optionalfeatures": [
 				"replicate magic item|tce"
 			],
-			"attachedSpells": [
-				"detect thoughts|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"detect thoughts|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Arcana - Uncommon|XDMG"
 			],
@@ -38322,9 +39056,6 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"knock"
-			],
 			"hasFluffImages": true
 		},
 		{
@@ -38384,9 +39115,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"legend lore"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"legend lore"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -38768,9 +39503,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"sleet storm"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"sleet storm"
+					]
+				}
+			}
 		},
 		{
 			"name": "Mizzium Apparatus",
@@ -39474,9 +40213,11 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"suggestion"
-			]
+			"attachedSpells": {
+				"will": [
+					"suggestion"
+				]
+			}
 		},
 		{
 			"name": "Muroosa Balm",
@@ -39914,9 +40655,13 @@
 				"This necklace has {@dice 1d6 + 3} beads hanging from it. You can use an action to detach a bead and throw it up to 60 feet away. When it reaches the end of its trajectory, the bead detonates as a 3rd-level {@spell fireball} spell (save {@dc 15}).",
 				"You can hurl multiple beads, or even the whole necklace, as one action. When you do so, increase the level of the {@spell fireball} by 1 for each bead beyond the first."
 			],
-			"attachedSpells": [
-				"fireball"
-			],
+			"attachedSpells": {
+				"limited": {
+					"9": [
+						"fireball"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table C"
 			],
@@ -39933,9 +40678,13 @@
 				"This necklace has {@dice 1d6 + 3} beads hanging from it. You can take a {@action Magic|XPHB} action to detach a bead and throw it up to 60 feet away. When it reaches the end of its trajectory, the bead detonates as a level 3 {@spell Fireball|XPHB} (save {@dc 15}).",
 				"You can hurl multiple beads, or even the whole necklace, at one time. When you do so, increase the damage of the Fireball by {@damage 1d6} for each bead after the first (maximum {@dice 12d6})."
 			],
-			"attachedSpells": [
-				"fireball|xphb"
-			],
+			"attachedSpells": {
+				"limited": {
+					"9": [
+						"fireball|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Arcana - Rare|XDMG"
 			],
@@ -40022,15 +40771,17 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"bless",
-				"cure wounds",
-				"lesser restoration",
-				"greater restoration",
-				"branding smite",
-				"planar ally",
-				"wind walk"
-			],
+			"attachedSpells": {
+				"other": [
+					"bless",
+					"cure wounds",
+					"lesser restoration",
+					"greater restoration",
+					"branding smite",
+					"planar ally",
+					"wind walk"
+				]
+			},
 			"lootTables": [
 				"Magic Item Table G"
 			],
@@ -40104,14 +40855,16 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"bless|xphb",
-				"cure wounds|xphb",
-				"greater restoration|xphb",
-				"shining smite|xphb",
-				"guardian of faith|xphb",
-				"wind walk|xphb"
-			],
+			"attachedSpells": {
+				"other": [
+					"bless|xphb",
+					"cure wounds|xphb",
+					"greater restoration|xphb",
+					"shining smite|xphb",
+					"guardian of faith|xphb",
+					"wind walk|xphb"
+				]
+			},
 			"lootTables": [
 				"Relics - Rare|XDMG"
 			],
@@ -40176,9 +40929,11 @@
 				"This weapon is a magic dagger disguised as a sewing needle. When you hold it and use a bonus action to speak its command word, it transforms into a dagger or back into a needle.",
 				"You gain a +1 bonus to attack and damage rolls made with the dagger. While holding it, you can use an action to cast the {@spell mending} cantrip from it."
 			],
-			"attachedSpells": [
-				"mending"
-			]
+			"attachedSpells": {
+				"will": [
+					"mending"
+				]
+			}
 		},
 		{
 			"name": "Needler Pistol",
@@ -40314,9 +41069,11 @@
 				"If you blow the whistle in darkness or under the night sky, it allows you to cast the {@spell animate dead} spell. The target can be affected through up to 10 feet of soft earth or similar material, and if it is, it takes 1 minute to claw its way to the surface to serve you. Once the whistle has animated an undead creature, it can't do so again until 7 days have passed.",
 				"Once every 24 hours, you can blow the whistle to reassert control over one or two creatures you animated with it."
 			],
-			"attachedSpells": [
-				"animate dead"
-			]
+			"attachedSpells": {
+				"other": [
+					"animate dead"
+				]
+			}
 		},
 		{
 			"name": "Nightbringer",
@@ -40432,9 +41189,13 @@
 			"entries": [
 				"This Mace has 6 charges and regains {@dice 1d6} expended charges daily at dawn. While holding the Mace, you can expend 1 of its charges to cast {@spell Summon Celestial|XPHB} (+9 to hit with spell attacks)."
 			],
-			"attachedSpells": [
-				"summon celestial|xphb"
-			]
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"summon celestial|xphb"
+					]
+				}
+			}
 		},
 		{
 			"name": "Nimblewright Detector",
@@ -40719,9 +41480,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"augury"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"augury"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -41206,13 +41971,23 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"detect magic",
-				"cure wounds",
-				"daylight",
-				"death ward",
-				"scrying"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"daylight"
+					],
+					"2": [
+						"death ward"
+					],
+					"3": [
+						"cure wounds#5",
+						"scrying"
+					]
+				},
+				"will": [
+					"detect magic"
+				]
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -41303,13 +42078,25 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"cure wounds|xphb",
-				"daylight|xphb",
-				"death ward|xphb",
-				"detect magic|xphb",
-				"scrying|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"daylight|xphb"
+					],
+					"2": [
+						"death ward|xphb"
+					],
+					"3": [
+						"scrying|xphb"
+					],
+					"4": [
+						"cure wounds|xphb#9"
+					]
+				},
+				"will": [
+					"detect magic|xphb"
+				]
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -41421,9 +42208,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"meld into stone"
-			]
+			"attachedSpells": {
+				"rest": {
+					"1e": [
+						"meld into stone"
+					]
+				}
+			}
 		},
 		{
 			"name": "Orb of the Veil",
@@ -41663,13 +42454,23 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"contact other plane",
-				"demiplane",
-				"gate",
-				"plane shift",
-				"teleportation circle"
-			],
+			"attachedSpells": {
+				"charges": {
+					"3": [
+						"contact other plane",
+						"teleportation circle"
+					],
+					"5": [
+						"plane shift"
+					],
+					"6": [
+						"demiplane"
+					],
+					"7": [
+						"gate"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -41686,9 +42487,13 @@
 				"This ring, adorned with the symbol of Orzhov, allows you to cast {@spell command}. A guild signet is sometimes awarded to a guild member whose renown score in that guild is 5 or higher, as a reward for performing special services for the guild. Aside from its magical properties, the ring is also an indicator of Orzhov's recognition and favor.",
 				"A signet has 3 charges, and it regains {@dice 1d3} expended charges daily at dawn. While wearing it, you can expend 1 charge to cast the associated spell (save {@dc 13})."
 			],
-			"attachedSpells": [
-				"command"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"command"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -42415,10 +43220,14 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"levitate",
-				"feather fall"
-			]
+			"attachedSpells": {
+				"rest": {
+					"1e": [
+						"levitate",
+						"feather fall"
+					]
+				}
+			}
 		},
 		{
 			"name": "Pepper",
@@ -43044,9 +43853,13 @@
 				"A planar key begins existence with {@dice 1d4 + 1} charges and cannot regain charges. When the key's last charge is expended, the key's sigils and magic fade away, but the key remains.",
 				"While touching the key, you can use your action to expend 1 charge and have the key cast {@spell plane shift} limited to the key's predefined destination only. Each planar key links to a single destination defined when the key is made."
 			],
-			"attachedSpells": [
-				"plane shift"
-			]
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"plane shift"
+					]
+				}
+			}
 		},
 		{
 			"name": "Planar Philosopher Trinket",
@@ -43160,9 +43973,13 @@
 			"entries": [
 				"While you're wearing this armor, you can speak its command word as an action to gain the effect of the {@spell etherealness} spell, which lasts for 10 minutes or until you remove the armor or use an action to speak the command word again. This property of the armor can't be used again until the next dawn."
 			],
-			"attachedSpells": [
-				"etherealness"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"etherealness"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table I"
 			]
@@ -46469,9 +47286,11 @@
 				"A Professor Orb has extensive knowledge of four narrow academic subjects. When making an Intelligence check to recall lore from any of its areas of expertise, the orb has a +9 bonus to its roll (including its Intelligence modifier).",
 				"In addition to the knowledge it possesses, a professor orb can cast the {@spell mage hand} cantrip at will. It uses the spell only to transport itself. Its spellcasting ability is Intelligence."
 			],
-			"attachedSpells": [
-				"mage hand"
-			]
+			"attachedSpells": {
+				"will": [
+					"mage hand"
+				]
+			}
 		},
 		{
 			"name": "Professor Skant",
@@ -46721,9 +47540,13 @@
 			"entries": [
 				"Once per day while holding this rod, you can use an action to cast {@spell purge contamination|DoDk}. After casting the spell, roll {@dice 1d20}. On a 1, the rod melts into sludge."
 			],
-			"attachedSpells": [
-				"purge contamination|dodk"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"purge contamination|dodk"
+					]
+				}
+			}
 		},
 		{
 			"name": "Purple Worm Poison",
@@ -46817,9 +47640,13 @@
 			},
 			"bonusWeaponAttack": "+2",
 			"recharge": "restShort",
-			"attachedSpells": [
-				"burning hands"
-			],
+			"attachedSpells": {
+				"rest": {
+					"1e": [
+						"burning hands#2"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -47520,9 +48347,13 @@
 					"dim": 5
 				}
 			],
-			"attachedSpells": [
-				"enhance ability"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"enhance ability"
+					]
+				}
+			}
 		},
 		{
 			"name": "Radiant Absorbing Tattoo",
@@ -47567,9 +48398,13 @@
 				"This ring, adorned with the symbol of Rakdos, allows you to cast {@spell hellish rebuke}. A guild signet is sometimes awarded to a guild member whose renown score in that guild is 5 or higher, as a reward for performing special services for the guild. Aside from its magical properties, the ring is also an indicator of Rakdos' recognition and favor.",
 				"A signet has 3 charges, and it regains {@dice 1d3} expended charges daily at dawn. While wearing it, you can expend 1 charge to cast the associated spell (save {@dc 13})."
 			],
-			"attachedSpells": [
-				"hellish rebuke"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"hellish rebuke"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -47937,9 +48772,6 @@
 				"Forged by Red Wizards using a secret process known only to them, this grim steel dagger draws its power from the Negative Plane. When you hit a creature with a melee attack using this magic dagger, the target takes an extra {@damage 3d12} necrotic damage.",
 				"A creature reduced to 0 hit points by this weapon dies and can't be raised from the dead except by a deity or by a creature using a {@item tablet of reawakening|HAT-LMI} to cast the {@spell true resurrection} spell."
 			],
-			"attachedSpells": [
-				"true resurrection"
-			],
 			"hasFluffImages": true
 		},
 		{
@@ -47968,6 +48800,9 @@
 			],
 			"attachedSpells": [
 				"reincarnate"
+			],
+			"miscTags": [
+				"CNS"
 			]
 		},
 		{
@@ -48074,9 +48909,13 @@
 				"While holding this concertina, you gain a +2 bonus to the saving throw DC of your bard spells.",
 				"As an action, you can use the concertina to cast {@spell Otto's irresistible dance} from the item. This property of the concertina can't be used again until the next dawn."
 			],
-			"attachedSpells": [
-				"otto's irresistible dance"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"otto's irresistible dance"
+					]
+				}
+			}
 		},
 		{
 			"name": "Rhodochrosite",
@@ -48231,12 +49070,20 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"dominate monster",
-				"chain lightning",
-				"gust of wind",
-				"wind wall"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"wind wall"
+					],
+					"2": [
+						"dominate monster",
+						"gust of wind"
+					],
+					"3": [
+						"chain lightning"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table I"
 			],
@@ -48289,11 +49136,15 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"animal friendship",
-				"fear",
-				"speak with animals"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"animal friendship",
+						"fear",
+						"speak with animals"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table G"
 			],
@@ -48319,11 +49170,15 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"animal friendship|xphb",
-				"fear|xphb",
-				"speak with animals|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"animal friendship|xphb",
+						"fear|xphb",
+						"speak with animals|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Relics - Rare|XDMG"
 			],
@@ -48377,9 +49232,13 @@
 			"entries": [
 				"While wearing this ring you can use it to cast the {@spell Leomund's Tiny Hut} spell as an action. Once this property is used, it can't be used again until the next dawn. Additionally, as a bonus action, you can use the ring to disintegrate any nonmagical piece of art (drawing, painting, or sculpture) within 60 feet that is no larger than Medium-sized. That art now appears inside the tiny hut, for you to appreciate whenever you desire. If you try to remove this art from the tiny hut, it vanishes forever. You can steadily improve this space, but only be denying such beauty to the rest of the world. For every 1,000 gp of art acquired, the tiny hut increases in size by adding another foot to its radius and lasts one additional hour."
 			],
-			"attachedSpells": [
-				"Leomund's tiny hut"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"leomund's tiny hut"
+					]
+				}
+			}
 		},
 		{
 			"name": "Ring of Djinni Summoning",
@@ -48453,12 +49312,18 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"dominate monster",
-				"stone shape",
-				"stoneskin",
-				"wall of stone"
-			],
+			"attachedSpells": {
+				"charges": {
+					"2": [
+						"dominate monster",
+						"stone shape"
+					],
+					"3": [
+						"stoneskin",
+						"wall of stone"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table I"
 			]
@@ -48530,12 +49395,22 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"chain lightning|xphb",
-				"feather fall|xphb",
-				"gust of wind|xphb",
-				"wind wall|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"0": [
+						"feather fall|xphb"
+					],
+					"1": [
+						"wind wall|xphb"
+					],
+					"2": [
+						"gust of wind|xphb"
+					],
+					"3": [
+						"chain lightning|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Arcana - Legendary|XDMG"
 			],
@@ -48603,12 +49478,20 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"earthquake|xphb",
-				"stone shape|xphb",
-				"stoneskin|xphb",
-				"wall of stone|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"2": [
+						"stone shape|xphb"
+					],
+					"3": [
+						"stoneskin|xphb",
+						"wall of stone|xphb"
+					],
+					"5": [
+						"earthquake|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Arcana - Legendary|XDMG"
 			]
@@ -48678,12 +49561,22 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"burning hands|xphb",
-				"fireball|xphb",
-				"fire storm|xphb",
-				"wall of fire|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"burning hands|xphb"
+					],
+					"2": [
+						"fireball|xphb"
+					],
+					"3": [
+						"wall of fire|xphb"
+					],
+					"4": [
+						"fire storm|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Arcana - Legendary|XDMG"
 			]
@@ -48747,13 +49640,23 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"create or destroy water|xphb",
-				"ice storm|xphb",
-				"tsunami|xphb",
-				"wall of ice|xphb",
-				"water walk|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"create or destroy water|xphb"
+					],
+					"2": [
+						"ice storm|xphb",
+						"water walk|xphb"
+					],
+					"3": [
+						"wall of ice|xphb"
+					],
+					"5": [
+						"tsunami|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Arcana - Legendary|XDMG"
 			]
@@ -48871,12 +49774,20 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"dominate monster",
-				"burning hands",
-				"fireball",
-				"wall of fire"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"burning hands"
+					],
+					"2": [
+						"dominate monster",
+						"fireball"
+					],
+					"3": [
+						"wall of fire"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table I"
 			]
@@ -49053,9 +49964,11 @@
 			"optionalfeatures": [
 				"replicate magic item|tce"
 			],
-			"attachedSpells": [
-				"jump"
-			],
+			"attachedSpells": {
+				"will": [
+					"jump"
+				]
+			},
 			"lootTables": [
 				"Magic Item Table F"
 			]
@@ -49074,9 +49987,11 @@
 			"optionalfeatures": [
 				"replicate magic item|tce"
 			],
-			"attachedSpells": [
-				"jump|xphb"
-			],
+			"attachedSpells": {
+				"will": [
+					"jump|xphb"
+				]
+			},
 			"lootTables": [
 				"Implements - Uncommon|XDMG"
 			]
@@ -49215,9 +50130,13 @@
 			"entries": [
 				"This band of iron resembles a skull and is cold to the touch. It has 3 charges and regains {@dice 1d3} expended charges daily at dawn. As an action while wearing the ring, you can expend 1 of its charges to cast the {@spell fog cloud} spell from it, with the following changes: the cloud is centered on you when it first appears, and the spell lasts for 1 minute (no {@status concentration} required)."
 			],
-			"attachedSpells": [
-				"fog cloud"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"fog cloud"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -49532,11 +50451,17 @@
 					"dim": 30
 				}
 			],
-			"attachedSpells": [
-				"dancing lights",
-				"faerie fire",
-				"light"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"faerie fire"
+					]
+				},
+				"will": [
+					"dancing lights",
+					"light"
+				]
+			},
 			"lootTables": [
 				"Magic Item Table H"
 			],
@@ -49613,11 +50538,17 @@
 					"dim": 30
 				}
 			],
-			"attachedSpells": [
-				"dancing lights|xphb",
-				"faerie fire|xphb",
-				"light|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"faerie fire|xphb"
+					]
+				},
+				"will": [
+					"dancing lights|xphb",
+					"light|xphb"
+				]
+			},
 			"lootTables": [
 				"Arcana - Very Rare|XDMG"
 			],
@@ -49756,9 +50687,11 @@
 			"entries": [
 				"While wearing this ring, you can cast the {@spell telekinesis} spell at will, but you can target only objects that aren't being worn or carried."
 			],
-			"attachedSpells": [
-				"telekinesis"
-			],
+			"attachedSpells": {
+				"will": [
+					"telekinesis"
+				]
+			},
 			"lootTables": [
 				"Magic Item Table H"
 			],
@@ -49774,9 +50707,11 @@
 			"entries": [
 				"While wearing this ring, you can cast {@spell Telekinesis|XPHB} from it."
 			],
-			"attachedSpells": [
-				"telekinesis|xphb"
-			],
+			"attachedSpells": {
+				"will": [
+					"telekinesis|xphb"
+				]
+			},
 			"lootTables": [
 				"Arcana - Very Rare|XDMG"
 			],
@@ -49882,9 +50817,13 @@
 			"entries": [
 				"While wearing this ring, you can use an action to expend 1 of its 3 charges to cast the {@spell wish} spell from it. The ring becomes nonmagical when you use the last charge."
 			],
-			"attachedSpells": [
-				"wish"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"wish"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table I"
 			],
@@ -49900,9 +50839,13 @@
 			"entries": [
 				"While wearing this ring, you can expend 1 of its 3 charges to cast {@spell Wish|XPHB} from it. The ring becomes nonmagical when you use the last charge."
 			],
-			"attachedSpells": [
-				"wish|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"wish|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Arcana - Legendary|XDMG"
 			],
@@ -50042,13 +50985,21 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"dominate monster",
-				"create or destroy water",
-				"control water",
-				"ice storm",
-				"wall of ice"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"create or destroy water"
+					],
+					"2": [
+						"dominate monster",
+						"ice storm"
+					],
+					"3": [
+						"control water",
+						"wall of ice"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table I"
 			]
@@ -50088,9 +51039,11 @@
 			"optionalfeatures": [
 				"replicate magic item|tce"
 			],
-			"attachedSpells": [
-				"water walk|xphb"
-			],
+			"attachedSpells": {
+				"will": [
+					"water walk|xphb"
+				]
+			},
 			"lootTables": [
 				"Relics - Uncommon|XDMG"
 			],
@@ -50172,16 +51125,24 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"cone of cold",
-				"ice storm",
-				"Otiluke's freezing sphere",
-				"sleet storm",
-				"wall of ice",
-				"Bigby's hand",
-				"flesh to stone",
-				"spike growth"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"spike growth",
+						"sleet storm"
+					],
+					"2": [
+						"bigby's hand",
+						"cone of cold",
+						"ice storm",
+						"wall of ice"
+					],
+					"3": [
+						"flesh to stone",
+						"otiluke's freezing sphere"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -50420,14 +51381,20 @@
 			"reqAttune": true,
 			"wondrous": true,
 			"bonusSavingThrow": "+1",
+			"rechargeAmount": "{@dice 1d6}",
+			"charges": 6,
 			"entries": [
 				"This black or dark blue robe is embroidered with small white or silver stars. You gain a +1 bonus to saving throws while you wear it.",
 				"Six stars, located on the robe's upper front portion, are particularly large. While wearing this robe, you can use an action to pull off one of the stars and use it to cast {@spell magic missile} as a 5th-level spell. Daily at dusk, {@dice 1d6} removed stars reappear on the robe.",
 				"While you wear the robe, you can use an action to enter the Astral Plane along with everything you are wearing and carrying. You remain there until you use an action to return to the plane you were on. You reappear in the last space you occupied, or if that space is occupied, the nearest unoccupied space."
 			],
-			"attachedSpells": [
-				"magic missile"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"magic missile#5"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table H"
 			],
@@ -50441,14 +51408,20 @@
 			"reqAttune": true,
 			"wondrous": true,
 			"bonusSavingThrow": "+1",
+			"rechargeAmount": "{@dice 1d6}",
+			"charges": 6,
 			"entries": [
 				"This black or dark-blue robe is embroidered with small white or silver stars. You gain a +1 bonus to saving throws while you wear it.",
 				"Six stars, located on the robe's upper-front portion, are particularly large. While wearing this robe, you can take a {@action Magic|XPHB} action to remove one of the stars and expend it to cast the level 5 version of {@spell Magic Missile|XPHB}. Daily at dusk, {@dice 1d6} removed stars reappear on the robe.",
 				"While you wear the robe, you can take a {@action Magic|XPHB} action to enter the Astral Plane along with everything you are wearing and carrying. You remain there until you take a {@action Magic|XPHB} action to return to the plane you were on. You reappear in the last space you occupied or, if that space is occupied, the nearest unoccupied space."
 			],
-			"attachedSpells": [
-				"magic missile|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"magic missile|xphb#5"
+					]
+				}
+			},
 			"lootTables": [
 				"Arcana - Very Rare|XDMG"
 			],
@@ -50891,12 +51864,14 @@
 					"dim": 120
 				}
 			],
-			"attachedSpells": [
-				"detect evil and good",
-				"detect magic",
-				"detect poison and disease",
-				"see invisibility"
-			],
+			"attachedSpells": {
+				"will": [
+					"detect evil and good",
+					"detect magic",
+					"detect poison and disease",
+					"see invisibility"
+				]
+			},
 			"lootTables": [
 				"Magic Item Table H"
 			]
@@ -50944,12 +51919,14 @@
 					"dim": 120
 				}
 			],
-			"attachedSpells": [
-				"detect evil and good|xphb",
-				"detect magic|xphb",
-				"detect poison and disease|xphb",
-				"see invisibility|xphb"
-			],
+			"attachedSpells": {
+				"will": [
+					"detect evil and good|xphb",
+					"detect magic|xphb",
+					"detect poison and disease|xphb",
+					"see invisibility|xphb"
+				]
+			},
 			"lootTables": [
 				"Relics - Very Rare|XDMG"
 			]
@@ -51001,9 +51978,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"hellish rebuke"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"hellish rebuke"
+					]
+				}
+			}
 		},
 		{
 			"name": "Rod of Lordly Might",
@@ -51202,10 +52183,16 @@
 				"The rod has 5 charges. While you hold it, you can use an action to cast one of the following spells from it: {@spell heal} (expends 1 charge) or {@spell resurrection} (expends 5 charges).",
 				"The rod regains 1 expended charge daily at dawn. If the rod is reduced to 0 charges, roll a {@dice d20}. On a 1, the rod disappears in a burst of radiance."
 			],
-			"attachedSpells": [
-				"heal",
-				"resurrection"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"heal"
+					],
+					"5": [
+						"resurrection"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table I"
 			],
@@ -51238,10 +52225,16 @@
 				"The rod has 5 charges. While you hold it, you can cast one of the following spells from it: {@spell Heal|XPHB} (expends 1 charge) or {@spell Resurrection|XPHB} (expends 5 charges).",
 				"The rod regains 1 expended charge daily at dawn. If you expend the last charge, roll {@dice 1d20}. On a 1, the rod disappears in a harmless burst of radiance."
 			],
-			"attachedSpells": [
-				"heal|xphb",
-				"resurrection|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"heal|xphb"
+					],
+					"5": [
+						"resurrection|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Relics - Legendary|XDMG"
 			],
@@ -51447,16 +52440,20 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"commune",
-				"arcane gate",
-				"reverse gravity",
-				"regenerate",
-				"find the path",
-				"mirage arcane",
-				"simulacrum",
-				"detect evil and good"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"commune",
+						"arcane gate",
+						"reverse gravity",
+						"regenerate",
+						"find the path",
+						"mirage arcane",
+						"simulacrum",
+						"detect evil and good"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -51474,9 +52471,13 @@
 				"The {@creature fire giant} Duke Zalto hired a wizard to craft several of these adamantine rods. Each measures 4 feet long, weighs 100 pounds, and is sized to fit comfortably in a {@creature fire giant||fire giant's} hand. The rod has two prongs at one end and a molded handle grip on the opposite end.",
 				"The rod has 10 charges and regains {@dice 1d6 + 4} of its expended charges daily at dawn. As an action, you can grasp it by the handle and expend 1 charge to cast the {@spell locate object} spell from it. When the rod is used to detect objects made of adamantine, such as fragments of the Vonindod construct, its range increases to 10 miles."
 			],
-			"attachedSpells": [
-				"locate object"
-			]
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"locate object"
+					]
+				}
+			}
 		},
 		{
 			"name": "Rogue Card",
@@ -51527,9 +52528,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"antagonize|bmt"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"antagonize|bmt"
+					]
+				}
+			}
 		},
 		{
 			"name": "Rope",
@@ -51865,10 +52870,16 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"lesser restoration",
-				"greater restoration"
-			],
+			"attachedSpells": {
+				"charges": {
+					"3": [
+						"lesser restoration"
+					],
+					"12": [
+						"greater restoration"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -51966,9 +52977,13 @@
 			"entries": [
 				"As an action, you can brandish this card and use it to cast the {@spell Disintegrate} spell (save {@dc 17}). Once this property is used, it can't be used again until the next dawn."
 			],
-			"attachedSpells": [
-				"disintegrate"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"disintegrate"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -52166,10 +53181,16 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"blight",
-				"disintegrate"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"blight"
+					]
+				},
+				"other": [
+					"disintegrate"
+				]
+			}
 		},
 		{
 			"name": "Ruinous Flail",
@@ -52330,9 +53351,13 @@
 			"entries": [
 				"As an action, you can brandish this card and use it to cast the {@spell Contact Other Plane} spell. When you cast the spell in this way, your questions are answered by the mysterious figure depicted on the card. Once this property is used, it can't be used again until the next dawn."
 			],
-			"attachedSpells": [
-				"contact other plane"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"contact other plane"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -52355,10 +53380,14 @@
 				},
 				"With each use, it is apparent that the information gleaned from the mirror comes from a chamber in the Nine Hells where sages and scholars are tortured for the answers to each question."
 			],
-			"attachedSpells": [
-				"find the path",
-				"legend lore"
-			]
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"find the path",
+						"legend lore"
+					]
+				}
+			}
 		},
 		{
 			"name": "Sage's Signet (Bear)",
@@ -52376,11 +53405,15 @@
 				"This gilded ring bears a beautiful engraving and is imbued with powers of keen wisdom and foresight. While wearing this ring, you can use an action to cast the {@spell Augury} spell from the ring. Once you use the ring to cast the spell, the ring can't cast the spell again until the next dawn.",
 				"While wearing the Sage's Signet, you can cast the {@spell Enlarge/Reduce} and {@spell Polymorph} once each from the ring using your Intelligence as the spellcasting ability. Once you cast each spell from the ring, the ring can't cast the spell again until the next dawn."
 			],
-			"attachedSpells": [
-				"augury",
-				"enlarge/reduce",
-				"polymorph"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"augury",
+						"enlarge/reduce",
+						"polymorph"
+					]
+				}
+			}
 		},
 		{
 			"name": "Sage's Signet (Hart)",
@@ -52398,11 +53431,15 @@
 				"This gilded ring bears a beautiful engraving and is imbued with powers of keen wisdom and foresight. While wearing this ring, you can use an action to cast the {@spell Augury} spell from the ring. Once you use the ring to cast the spell, the ring can't cast the spell again until the next dawn.",
 				"While wearing the Sage's Signet, you can cast the {@spell Aura of Vitality} and {@spell Mass Cure Wounds} once each from the ring using your Intelligence as the spellcasting ability. Once you cast each spell from the ring, the ring can't cast the spell again until the next dawn."
 			],
-			"attachedSpells": [
-				"augury",
-				"aura of vitality",
-				"mass cure wounds"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"augury",
+						"aura of vitality",
+						"mass cure wounds"
+					]
+				}
+			}
 		},
 		{
 			"name": "Sage's Signet (Lion)",
@@ -52420,11 +53457,15 @@
 				"This gilded ring bears a beautiful engraving and is imbued with powers of keen wisdom and foresight. While wearing this ring, you can use an action to cast the {@spell Augury} spell from the ring. Once you use the ring to cast the spell, the ring can't cast the spell again until the next dawn.",
 				"While wearing the Sage's Signet, you can cast the {@spell Destructive Wave} and {@spell Fireball} once each from the ring using your Intelligence as the spellcasting ability. Once you cast each spell from the ring, the ring can't cast the spell again until the next dawn."
 			],
-			"attachedSpells": [
-				"augury",
-				"destructive wave",
-				"fireball"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"augury",
+						"destructive wave",
+						"fireball"
+					]
+				}
+			}
 		},
 		{
 			"name": "Sage's Signet (Serpent)",
@@ -52442,11 +53483,15 @@
 				"This gilded ring bears a beautiful engraving and is imbued with powers of keen wisdom and foresight. While wearing this ring, you can use an action to cast the {@spell Augury} spell from the ring. Once you use the ring to cast the spell, the ring can't cast the spell again until the next dawn.",
 				"While wearing the Sage's Signet, you can cast the {@spell Fear} and {@spell Hex} once each from the ring using your Intelligence as the spellcasting ability. Once you cast each spell from the ring, the ring can't cast the spell again until the next dawn."
 			],
-			"attachedSpells": [
-				"augury",
-				"fear",
-				"hex"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"augury",
+						"fear",
+						"hex"
+					]
+				}
+			}
 		},
 		{
 			"name": "Sage's Signet (Songbird)",
@@ -52464,11 +53509,15 @@
 				"This gilded ring bears a beautiful engraving and is imbued with powers of keen wisdom and foresight. While wearing this ring, you can use an action to cast the {@spell Augury} spell from the ring. Once you use the ring to cast the spell, the ring can't cast the spell again until the next dawn.",
 				"While wearing the Sage's Signet, you can cast the {@spell Charm Person} and {@spell Hypnotic Pattern} once each from the ring using your Intelligence as the spellcasting ability. Once you cast each spell from the ring, the ring can't cast the spell again until the next dawn."
 			],
-			"attachedSpells": [
-				"augury",
-				"charm person",
-				"hypnotic pattern"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"augury",
+						"charm person",
+						"hypnotic pattern"
+					]
+				}
+			}
 		},
 		{
 			"name": "Sage's Signet (Wolf)",
@@ -52486,11 +53535,15 @@
 				"This gilded ring bears a beautiful engraving and is imbued with powers of keen wisdom and foresight. While wearing this ring, you can use an action to cast the {@spell Augury} spell from the ring. Once you use the ring to cast the spell, the ring can't cast the spell again until the next dawn.",
 				"While wearing the Sage's Signet, you can cast the {@spell Freedom of Movement} and {@spell Pass without Trace} once each from the ring using your Intelligence as the spellcasting ability. Once you cast each spell from the ring, the ring can't cast the spell again until the next dawn."
 			],
-			"attachedSpells": [
-				"augury",
-				"freedom of movement",
-				"pass without trace"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"augury",
+						"freedom of movement",
+						"pass without trace"
+					]
+				}
+			}
 		},
 		{
 			"name": "Sailing Ship",
@@ -52601,14 +53654,20 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"heal",
-				"bless",
-				"death ward",
-				"greater restoration",
-				"prayer of healing",
-				"revivify"
-			]
+			"attachedSpells": {
+				"daily": {
+					"3": [
+						"heal"
+					],
+					"1e": [
+						"bless",
+						"death ward",
+						"greater restoration",
+						"prayer of healing",
+						"revivify"
+					]
+				}
+			}
 		},
 		{
 			"name": "Salt",
@@ -52655,9 +53714,11 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"spare the dying"
-			]
+			"attachedSpells": {
+				"will": [
+					"spare the dying"
+				]
+			}
 		},
 		{
 			"name": "Sapphire Buckler",
@@ -52870,12 +53931,24 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"heal",
-				"guiding bolt",
-				"flaming sphere",
-				"flame strike"
-			],
+			"attachedSpells": {
+				"daily": {
+					"3": [
+						"heal"
+					]
+				},
+				"charges": {
+					"1": [
+						"guiding bolt"
+					],
+					"2": [
+						"flaming sphere"
+					],
+					"5": [
+						"flame strike"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -53788,9 +54861,13 @@
 				"This ring, adorned with the symbol of Selesnya, allows you to cast {@spell charm person}. A guild signet is sometimes awarded to a guild member whose renown score in that guild is 5 or higher, as a reward for performing special services for the guild. Aside from its magical properties, the ring is also an indicator of Selesnya's recognition and favor.",
 				"A signet has 3 charges, and it regains {@dice 1d3} expended charges daily at dawn. While wearing it, you can expend 1 charge to cast the associated spell (save {@dc 13})."
 			],
-			"attachedSpells": [
-				"charm person"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"charm person"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -53902,9 +54979,13 @@
 			"optionalfeatures": [
 				"replicate magic item|tce"
 			],
-			"attachedSpells": [
-				"sending"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"sending"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table C"
 			],
@@ -53929,9 +55010,13 @@
 			"optionalfeatures": [
 				"replicate magic item|tce"
 			],
-			"attachedSpells": [
-				"sending|xphb"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"sending|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Arcana - Uncommon|XDMG",
 				"Relics - Uncommon|XDMG"
@@ -54211,9 +55296,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"sleet storm"
-			]
+			"attachedSpells": {
+				"rest": {
+					"1e": [
+						"sleet storm"
+					]
+				}
+			}
 		},
 		{
 			"name": "Shard of Xeluan",
@@ -54319,12 +55408,20 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"mirror image",
-				"banishment",
-				"blight",
-				"finger of death"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"mirror image"
+					],
+					"3": [
+						"banishment",
+						"blight"
+					],
+					"6": [
+						"finger of death"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -54355,12 +55452,20 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"mirror image",
-				"banishment",
-				"ice storm",
-				"simulacrum"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"mirror image"
+					],
+					"3": [
+						"banishment",
+						"ice storm"
+					],
+					"6": [
+						"simulacrum"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -54391,12 +55496,22 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"mirror image",
-				"banishment",
-				"fireball",
-				"fire storm"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"mirror image"
+					],
+					"2": [
+						"fireball"
+					],
+					"3": [
+						"banishment"
+					],
+					"6": [
+						"fire storm"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -54427,12 +55542,22 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"mirror image",
-				"banishment",
-				"prismatic spray",
-				"water breathing"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"mirror image"
+					],
+					"2": [
+						"water breathing"
+					],
+					"3": [
+						"banishment"
+					],
+					"6": [
+						"prismatic spray"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -54463,12 +55588,22 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"mirror image",
-				"banishment",
-				"fly",
-				"teleport"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"mirror image"
+					],
+					"2": [
+						"fly"
+					],
+					"3": [
+						"banishment"
+					],
+					"6": [
+						"teleport"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -54793,10 +55928,16 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"fireball",
-				"wall of fire"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"fireball"
+					],
+					"2": [
+						"wall of fire"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -54887,9 +56028,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"bane"
-			]
+			"attachedSpells": {
+				"rest": {
+					"1e": [
+						"bane"
+					]
+				}
+			}
 		},
 		{
 			"name": "Shiftweave",
@@ -55097,12 +56242,16 @@
 				}
 			},
 			"bonusWeapon": "+2",
-			"attachedSpells": [
-				"cloudkill",
-				"darkness",
-				"levitate",
-				"web"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"cloudkill",
+						"darkness",
+						"levitate",
+						"web"
+					]
+				}
+			}
 		},
 		{
 			"name": "Silken Spite (Dormant)",
@@ -55558,9 +56707,13 @@
 				"This ring, adorned with the symbol of Simic, allows you to cast {@spell expeditious retreat}. A guild signet is sometimes awarded to a guild member whose renown score in that guild is 5 or higher, as a reward for performing special services for the guild. Aside from its magical properties, the ring is also an indicator of Simic's recognition and favor.",
 				"A signet has 3 charges, and it regains {@dice 1d3} expended charges daily at dawn. While wearing it, you can expend 1 charge to cast the associated spell (save {@dc 13})."
 			],
-			"attachedSpells": [
-				"expeditious retreat"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"expeditious retreat"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -55610,12 +56763,16 @@
 				"You can use an action to play this lyre and cast one of the following spells from it: {@spell animal friendship}, {@spell charm person}, {@spell enthrall}, {@spell suggestion}. If the spell requires a saving throw, the spell save DC is 13.",
 				"Once the instrument has been used to cast a spell, it can't be used to cast that spell again until the next dawn."
 			],
-			"attachedSpells": [
-				"animal friendship",
-				"charm person",
-				"enthrall",
-				"suggestion"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"animal friendship",
+						"charm person",
+						"enthrall",
+						"suggestion"
+					]
+				}
+			}
 		},
 		{
 			"name": "Skull Card",
@@ -55627,9 +56784,13 @@
 			"entries": [
 				"As an action, you can brandish this card and use it to cast {@spell Spirit of Death|BMT} (see {@book chapter 7|BMT|6|Spirit of Death}) as a 6th-level spell (spell attack bonus {@hit 9}, save {@dc 17}). Once this property is used, it can't be used again until the next dawn."
 			],
-			"attachedSpells": [
-				"spirit of death|bmt"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"spirit of death|bmt"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -55648,9 +56809,13 @@
 				"While wearing this skull-shaped helm, you have resistance to cold, poison, and necrotic damage.",
 				"Additionally, while wearing the helm, you can cast {@spell Spirit of Death|BMT} from it without requiring material components. Once you use the helm to cast the spell, the helm can't cast this spell again until the next dawn."
 			],
-			"attachedSpells": [
-				"spirit of death|bmt"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"spirit of death|bmt"
+					]
+				}
+			}
 		},
 		{
 			"name": "Skull of Selfish Knowledge",
@@ -55752,9 +56917,13 @@
 				"The spell ends if you lose physical contact with the skysail. Once this property is used, it can't be used again until the next dawn, or unless the skysail is immersed in powerful magic of elemental air. (This includes magic such as that found at the top of the {@book Summit Peaks|TDCSR|3|Summit Peaks} near the rift of air in {@book Zephrah|TDCSR|3|Zephrah}, or on the Elemental Plane of Air).",
 				"When the skysail is not in use, its wings can be retracted, and its pole can be used as a {@item quarterstaff|PHB}."
 			],
-			"attachedSpells": [
-				"fly"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"fly"
+					]
+				}
+			},
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -57943,10 +59112,16 @@
 				"The staff has 10 charges, which are used to fuel the spells within it. With the staff in hand, you can use your action to cast one of the following spells from the staff if the spell is on your class's spell list: {@spell spider climb} (1 charge) or {@spell web} (2 charges, spell save {@dc 15}). No components are required.",
 				"The staff regains {@dice 1d6 + 4} expended charges each day at dusk. If you expend the staff's last charge, roll a {@dice d20}. On a 1, the staff crumbles to dust and is destroyed."
 			],
-			"attachedSpells": [
-				"spider climb",
-				"web"
-			]
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"spider climb"
+					],
+					"2": [
+						"web"
+					]
+				}
+			}
 		},
 		{
 			"name": "Spider Staff",
@@ -57992,10 +59167,16 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"spider climb",
-				"web"
-			]
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"spider climb"
+					],
+					"2": [
+						"web"
+					]
+				}
+			}
 		},
 		{
 			"name": "Spies' Murmur",
@@ -58127,12 +59308,22 @@
 			},
 			"rechargeAmount": "{@dice 1d6 + 2}",
 			"charges": 12,
-			"attachedSpells": [
-				"burning hands",
-				"fireball",
-				"conjure elemental",
-				"ice storm"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"burning hands"
+					],
+					"3": [
+						"fireball"
+					],
+					"4": [
+						"ice storm"
+					],
+					"5": [
+						"conjure elemental"
+					]
+				}
+			},
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -58176,10 +59367,16 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"burning hands",
-				"fireball"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"burning hands"
+					],
+					"3": [
+						"fireball"
+					]
+				}
+			},
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -58224,14 +59421,28 @@
 			"bonusSpellSaveDc": "+2",
 			"rechargeAmount": "{@dice 1d6 + 4}",
 			"charges": 20,
-			"attachedSpells": [
-				"burning hands",
-				"fireball",
-				"conjure elemental",
-				"ice storm",
-				"chain lightning",
-				"fire storm"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"burning hands"
+					],
+					"3": [
+						"fireball"
+					],
+					"4": [
+						"ice storm"
+					],
+					"5": [
+						"conjure elemental"
+					],
+					"6": [
+						"chain lightning"
+					],
+					"7": [
+						"fire storm"
+					]
+				}
+			},
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -58269,10 +59480,16 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"augury|xphb",
-				"commune|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"augury|xphb"
+					],
+					"3": [
+						"commune|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Relics - Very Rare|XDMG"
 			],
@@ -58360,9 +59577,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"disguise self"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"disguise self"
+					]
+				}
+			}
 		},
 		{
 			"name": "Squid Ship",
@@ -58567,11 +59788,15 @@
 				"If you are holding the staff and fail a saving throw against an enchantment spell that targets only you, you can turn your failed save into a successful one. You can't use this property of the staff again until the next dawn. If you succeed on a save against an enchantment spell that targets only you, with or without the staff's intervention, you can use your reaction to expend 1 charge from the staff and turn the spell back on its caster as if you had cast the spell.",
 				"The staff regains {@dice 1d8 + 2} expended charges daily at dawn. If you expend the last charge, roll a {@dice d20}. On a 1, the staff becomes a nonmagical quarterstaff."
 			],
-			"attachedSpells": [
-				"charm person",
-				"command",
-				"comprehend languages"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"charm person",
+						"command",
+						"comprehend languages"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table G"
 			],
@@ -58656,11 +59881,15 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"charm person|xphb",
-				"command|xphb",
-				"comprehend languages|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"charm person|xphb",
+						"command|xphb",
+						"comprehend languages|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Arcana - Rare|XDMG",
 				"Relics - Rare|XDMG"
@@ -58708,14 +59937,28 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"delerium orb|dodk",
-				"warp bolt|dodk",
-				"ride the rifts|dodk",
-				"delerium blast|dodk",
-				"conjure the deep haze|dodk",
-				"ray of contamination|dodk"
-			]
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"delerium orb|dodk"
+					],
+					"2": [
+						"warp bolt|dodk"
+					],
+					"3": [
+						"ride the rifts|dodk"
+					],
+					"4": [
+						"delerium blast|dodk"
+					],
+					"5": [
+						"conjure the deep haze|dodk"
+					],
+					"6": [
+						"ray of contamination|dodk"
+					]
+				}
+			}
 		},
 		{
 			"name": "Staff of Defense",
@@ -58745,10 +59988,16 @@
 				"The staff has 10 charges, which are used to fuel the spells within it. With the staff in hand, you can use your action to cast one of the following spells from the staff if the spell is on your class's spell list: {@spell mage armor} (1 charge) or {@spell shield} (2 charges). No components are required.",
 				"The staff regains {@dice 1d6 + 4} expended charges each day at dawn. If you expend the staff's last charge, roll a {@dice d20}. On a 1, the staff shatters and is destroyed."
 			],
-			"attachedSpells": [
-				"mage armor",
-				"shield"
-			]
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"mage armor"
+					],
+					"2": [
+						"shield"
+					]
+				}
+			}
 		},
 		{
 			"name": "Staff of Defense",
@@ -58795,10 +60044,16 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"mage armor",
-				"shield"
-			]
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"mage armor"
+					],
+					"2": [
+						"shield"
+					]
+				}
+			}
 		},
 		{
 			"name": "Staff of Dunamancy",
@@ -58834,11 +60089,19 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"fortune's favor|egw",
-				"pulse wave|egw",
-				"gravity sinkhole|egw"
-			]
+			"attachedSpells": {
+				"charges": {
+					"2": [
+						"fortune's favor|egw"
+					],
+					"3": [
+						"pulse wave|egw"
+					],
+					"4": [
+						"gravity sinkhole|egw"
+					]
+				}
+			}
 		},
 		{
 			"name": "Staff of Fate",
@@ -58917,11 +60180,19 @@
 				"The staff has 10 charges. While holding it, you can use an action to expend 1 or more of its charges to cast one of the following spells from it, using your spell save DC: {@spell burning hands} (1 charge), {@spell fireball} (3 charges), or {@spell wall of fire} (4 charges).",
 				"The staff regains {@dice 1d6 + 4} expended charges daily at dawn. If you expend the last charge, roll a {@dice d20}. On a 1, the staff blackens, crumbles into cinders, and is destroyed."
 			],
-			"attachedSpells": [
-				"burning hands",
-				"fireball",
-				"wall of fire"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"burning hands"
+					],
+					"3": [
+						"fireball"
+					],
+					"4": [
+						"wall of fire"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table H"
 			],
@@ -59008,11 +60279,19 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"burning hands|xphb",
-				"fireball|xphb",
-				"wall of fire|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"burning hands|xphb"
+					],
+					"3": [
+						"fireball|xphb"
+					],
+					"4": [
+						"wall of fire|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Arcana - Very Rare|XDMG",
 				"Relics - Very Rare|XDMG"
@@ -59126,12 +60405,20 @@
 				"The staff has 10 charges. While holding it, you can use an action to expend 1 or more of its charges to cast one of the following spells from it, using your spell save DC: {@spell cone of cold} (5 charges), {@spell fog cloud} (1 charge), {@spell ice storm} (4 charges), or {@spell wall of ice} (4 charges).",
 				"The staff regains {@dice 1d6 + 4} expended charges daily at dawn. If you expend the last charge, roll a {@dice d20}. On a 1. the staff turns to water and is destroyed."
 			],
-			"attachedSpells": [
-				"cone of cold",
-				"fog cloud",
-				"ice storm",
-				"wall of ice"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"fog cloud"
+					],
+					"4": [
+						"ice storm",
+						"wall of ice"
+					],
+					"5": [
+						"cone of cold"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table H"
 			],
@@ -59222,12 +60509,20 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"cone of cold|xphb",
-				"fog cloud|xphb",
-				"ice storm|xphb",
-				"wall of ice|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"fog cloud|xphb"
+					],
+					"4": [
+						"ice storm|xphb",
+						"wall of ice|xphb"
+					],
+					"5": [
+						"cone of cold|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Arcana - Very Rare|XDMG",
 				"Relics - Very Rare|XDMG"
@@ -59272,11 +60567,19 @@
 				"This staff has 10 charges. While holding it, you can use an action to expend 1 or more of its charges to cast one of the following spells from it, using your spell save DC and spellcasting ability modifier: {@spell cure wounds} (1 charge per spell level, up to 4th), {@spell lesser restoration} (2 charges). or {@spell mass cure wounds} (5 charges).",
 				"The staff regains {@dice 1d6 + 4} expended charges daily at dawn. If you expend the last charge, roll a {@dice d20}. On a 1. the staff vanishes in a flash of light, lost forever."
 			],
-			"attachedSpells": [
-				"lesser restoration",
-				"mass cure wounds",
-				"cure wounds"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"cure wounds"
+					],
+					"2": [
+						"lesser restoration"
+					],
+					"5": [
+						"mass cure wounds"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table G"
 			],
@@ -59350,11 +60653,19 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"cure wounds|xphb",
-				"lesser restoration|xphb",
-				"mass cure wounds|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"2": [
+						"lesser restoration|xphb"
+					],
+					"5": [
+						"mass cure wounds|xphb"
+					]
+				},
+				"will": [
+					"cure wounds|xphb"
+				]
+			},
 			"lootTables": [
 				"Implements - Rare|XDMG",
 				"Relics - Rare|XDMG"
@@ -59450,17 +60761,27 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"cone of cold",
-				"fireball",
-				"globe of invulnerability",
-				"hold monster",
-				"levitate",
-				"lightning bolt",
-				"magic missile",
-				"ray of enfeeblement",
-				"wall of force"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"magic missile",
+						"ray of enfeeblement"
+					],
+					"2": [
+						"levitate"
+					],
+					"5": [
+						"cone of cold",
+						"fireball#5",
+						"hold monster",
+						"lightning bolt#5",
+						"wall of force"
+					],
+					"6": [
+						"globe of invulnerability"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table H"
 			],
@@ -59576,17 +60897,27 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"cone of cold|xphb",
-				"fireball|xphb",
-				"globe of invulnerability|xphb",
-				"hold monster|xphb",
-				"levitate|xphb",
-				"lightning bolt|xphb",
-				"magic missile|xphb",
-				"ray of enfeeblement|xphb",
-				"wall of force|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"magic missile|xphb",
+						"ray of enfeeblement|xphb"
+					],
+					"2": [
+						"levitate|xphb"
+					],
+					"5": [
+						"cone of cold|xphb",
+						"fireball|xphb",
+						"hold monster|xphb",
+						"lightning bolt|xphb",
+						"wall of force|xphb"
+					],
+					"6": [
+						"globe of invulnerability|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Arcana - Very Rare|XDMG"
 			]
@@ -59767,10 +61098,16 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"giant insect",
-				"insect plague"
-			],
+			"attachedSpells": {
+				"charges": {
+					"4": [
+						"giant insect"
+					],
+					"5": [
+						"insect plague"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table G"
 			],
@@ -59863,10 +61200,16 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"giant insect|xphb",
-				"insect plague|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"4": [
+						"giant insect|xphb"
+					],
+					"5": [
+						"insect plague|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Arcana - Rare|XDMG",
 				"Relics - Rare|XDMG"
@@ -60127,27 +61470,41 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"conjure elemental",
-				"dispel magic",
-				"fireball",
-				"flaming sphere",
-				"ice storm",
-				"invisibility",
-				"knock",
-				"lightning bolt",
-				"passwall",
-				"plane shift",
-				"telekinesis",
-				"wall of fire",
-				"web",
-				"arcane lock",
-				"detect magic",
-				"enlarge/reduce",
-				"light",
-				"mage hand",
-				"protection from evil and good"
-			],
+			"attachedSpells": {
+				"charges": {
+					"2": [
+						"flaming sphere",
+						"invisibility",
+						"knock",
+						"web"
+					],
+					"3": [
+						"dispel magic"
+					],
+					"4": [
+						"ice storm",
+						"wall of fire"
+					],
+					"5": [
+						"passwall",
+						"telekinesis"
+					],
+					"7": [
+						"conjure elemental",
+						"fireball#7",
+						"lightning bolt#7",
+						"plane shift"
+					]
+				},
+				"will": [
+					"arcane lock",
+					"detect magic",
+					"enlarge/reduce",
+					"light",
+					"mage hand",
+					"protection from evil and good"
+				]
+			},
 			"lootTables": [
 				"Magic Item Table I"
 			],
@@ -60308,27 +61665,41 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"arcane lock|xphb",
-				"conjure elemental|xphb",
-				"detect magic|xphb",
-				"dispel magic|xphb",
-				"enlarge/reduce|xphb",
-				"fireball|xphb",
-				"flaming sphere|xphb",
-				"ice storm|xphb",
-				"invisibility|xphb",
-				"knock|xphb",
-				"light|xphb",
-				"lightning bolt|xphb",
-				"mage hand|xphb",
-				"passwall|xphb",
-				"plane shift|xphb",
-				"protection from evil and good|xphb",
-				"telekinesis|xphb",
-				"wall of fire|xphb",
-				"web|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"0": [
+						"arcane lock|xphb",
+						"detect magic|xphb",
+						"enlarge/reduce|xphb",
+						"light|xphb",
+						"mage hand|xphb",
+						"protection from evil and good|xphb"
+					],
+					"2": [
+						"flaming sphere|xphb",
+						"invisibility|xphb",
+						"knock|xphb",
+						"web|xphb"
+					],
+					"3": [
+						"dispel magic|xphb"
+					],
+					"4": [
+						"ice storm|xphb",
+						"wall of fire|xphb"
+					],
+					"5": [
+						"passwall|xphb",
+						"telekinesis|xphb"
+					],
+					"7": [
+						"conjure elemental|xphb",
+						"fireball|xphb",
+						"lightning bolt|xphb",
+						"plane shift|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Arcana - Legendary|XDMG"
 			],
@@ -60435,9 +61806,14 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"hold person"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1": [
+						"hold person",
+						"speak with plants"
+					]
+				}
+			}
 		},
 		{
 			"name": "Staff of the Woodlands",
@@ -60488,16 +61864,30 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"pass without trace",
-				"animal friendship",
-				"awaken",
-				"barkskin",
-				"locate animals or plants",
-				"speak with animals",
-				"speak with plants",
-				"wall of thorns"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"animal friendship",
+						"speak with animals"
+					],
+					"2": [
+						"barkskin",
+						"locate animals or plants"
+					],
+					"3": [
+						"speak with plants"
+					],
+					"5": [
+						"awaken"
+					],
+					"6": [
+						"wall of thorns"
+					]
+				},
+				"will": [
+					"pass without trace"
+				]
+			},
 			"lootTables": [
 				"Magic Item Table G"
 			],
@@ -60601,16 +61991,28 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"animal friendship|xphb",
-				"awaken|xphb",
-				"barkskin|xphb",
-				"locate animals or plants|xphb",
-				"pass without trace|xphb",
-				"speak with animals|xphb",
-				"speak with plants|xphb",
-				"wall of thorns|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"animal friendship|xphb",
+						"speak with animals|xphb"
+					],
+					"2": [
+						"barkskin|xphb",
+						"locate animals or plants|xphb",
+						"pass without trace|xphb"
+					],
+					"3": [
+						"speak with plants|xphb"
+					],
+					"5": [
+						"awaken|xphb"
+					],
+					"6": [
+						"wall of thorns|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Relics - Rare|XDMG"
 			],
@@ -60902,10 +62304,16 @@
 				}
 			},
 			"bonusWeapon": "+2",
-			"attachedSpells": [
-				"faerie fire",
-				"see invisibility"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"faerie fire"
+					]
+				},
+				"will": [
+					"see invisibility"
+				]
+			},
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -60954,9 +62362,13 @@
 					"dim": 40
 				}
 			],
-			"attachedSpells": [
-				"faerie fire"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"faerie fire"
+					]
+				}
+			},
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -60998,11 +62410,17 @@
 				}
 			},
 			"bonusWeapon": "+3",
-			"attachedSpells": [
-				"faerie fire",
-				"see invisibility",
-				"fly"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"faerie fire"
+					]
+				},
+				"will": [
+					"see invisibility",
+					"fly"
+				]
+			},
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -61148,9 +62566,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"revivify"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"revivify"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -61186,16 +62608,22 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"mage hand",
-				"animate objects",
-				"create food and water",
-				"dispel magic",
-				"telekinesis",
-				"prestidigitation",
-				"purify food and drink",
-				"unseen servant"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"animate objects",
+						"create food and water",
+						"dispel magic",
+						"telekinesis"
+					]
+				},
+				"will": [
+					"mage hand",
+					"prestidigitation",
+					"purify food and drink",
+					"unseen servant"
+				]
+			}
 		},
 		{
 			"name": "Stink Bomb",
@@ -61304,9 +62732,13 @@
 			"entries": [
 				"If the stone is touching the ground, you can use an action to speak its command word and summon an {@creature earth elemental}, as if you had cast the {@spell conjure elemental} spell. The stone can't be used this way again until the next dawn. The stone weighs 5 pounds."
 			],
-			"attachedSpells": [
-				"conjure elemental"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"conjure elemental"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table G"
 			],
@@ -61461,9 +62893,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"legend lore"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"legend lore"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -61562,9 +62998,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"wall of stone"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"wall of stone"
+					]
+				}
+			}
 		},
 		{
 			"name": "Stonemaker War Pick",
@@ -61603,9 +63043,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"meld into stone"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"meld into stone"
+					]
+				}
+			}
 		},
 		{
 			"name": "Stonespeaker Crystal",
@@ -61623,11 +63067,19 @@
 				"When you cast a {@filter divination|spells|school=D} spell, you can use the crystal in place of one material component that would normally be consumed by the spell, at a cost of 1 charge per level of the spell. The crystal is not consumed when used in this way.",
 				"The crystal regains {@dice 1d6 + 4} expended charges daily at dawn. If you expend the crystal's last charge, roll a {@dice d20}. On a 1, the crystal vanishes, lost forever."
 			],
-			"attachedSpells": [
-				"speak with animals",
-				"speak with dead",
-				"speak with plants"
-			],
+			"attachedSpells": {
+				"charges": {
+					"2": [
+						"speak with animals"
+					],
+					"3": [
+						"speak with plants"
+					],
+					"4": [
+						"speak with dead"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -61641,9 +63093,11 @@
 				"While wearing this ring, you can cast the {@spell telekinesis} spell at will, but you can target only objects that aren't being worn or carried.",
 				"Any character who attunes to the ring gains control of Stonky's creations, though the {@creature skitterwidget|cm|skitterwidgets} ignore commands spoken more than 30 feet away from them."
 			],
-			"attachedSpells": [
-				"telekinesis"
-			]
+			"attachedSpells": {
+				"will": [
+					"telekinesis"
+				]
+			}
 		},
 		{
 			"name": "Storm Boomerang",
@@ -61764,9 +63218,13 @@
 					"hasFluffImages": true
 				}
 			},
-			"attachedSpells": [
-				"control weather"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"control weather"
+					]
+				}
+			}
 		},
 		{
 			"name": "Stormrider Boots",
@@ -61845,9 +63303,13 @@
 				"This beautiful golden blade appears to bend and flex like a reed with your movements. You gain a +1 bonus to attack and damage rolls made with this magic weapon.",
 				"Additionally, the scimitar has 3 charges and regains 1 expended charge daily at dawn. While wielding this {@item scimitar|PHB}, you can expend 1 charge as a bonus action to cast the {@spell misty step} spell."
 			],
-			"attachedSpells": [
-				"misty step"
-			]
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"misty step"
+					]
+				}
+			}
 		},
 		{
 			"name": "Sun",
@@ -61967,9 +63429,13 @@
 			"entries": [
 				"As an action, you can brandish this card and use it to cast the {@spell Sunbeam} spell (save {@dc 17}), projecting the light from the card's face. Once this property is used, it can't be used again until the next dawn."
 			],
-			"attachedSpells": [
-				"sunbeam"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"sunbeam"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -62571,11 +64037,15 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"call lightning",
-				"divine word",
-				"finger of death"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"call lightning",
+						"divine word",
+						"finger of death"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -62706,11 +64176,15 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"call lightning|xphb",
-				"divine word|xphb",
-				"finger of death|xphb"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"call lightning|xphb",
+						"divine word|xphb",
+						"finger of death|xphb"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -63440,11 +64914,19 @@
 					"dim": 20
 				}
 			],
-			"attachedSpells": [
-				"fly",
-				"polymorph",
-				"transport via plants"
-			]
+			"attachedSpells": {
+				"charges": {
+					"2": [
+						"fly"
+					],
+					"3": [
+						"polymorph"
+					],
+					"4": [
+						"transport via plants"
+					]
+				}
+			}
 		},
 		{
 			"name": "Teeth of Dahlver-Nar",
@@ -63640,11 +65122,20 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"sanctuary",
-				"counterspell",
-				"dominate monster"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"counterspell#9",
+						"create undead",
+						"dominate monster",
+						"evard's black tentacles",
+						"eyebite"
+					]
+				},
+				"other": [
+					"sanctuary"
+				]
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -63876,11 +65367,15 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"charm person",
-				"dominate person",
-				"fear"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"charm person",
+						"dominate person",
+						"fear"
+					]
+				}
+			}
 		},
 		{
 			"name": "The Bloody End (Exalted)",
@@ -64540,40 +66035,47 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"conjure animals",
-				"summon lesser demons|XGE",
-				"conjure minor elementals",
-				"conjure woodland beings",
-				"summon greater demon|XGE",
-				"conjure elemental",
-				"conjure fey",
-				"wish",
-				"speak with animals",
-				"legend lore",
-				"Mordenkainen's faithful hound",
-				"gaseous form",
-				"raise dead",
-				"nondetection",
-				"mage hand",
-				"speak with plants",
-				"goodberry",
-				"prestidigitation",
-				"detect thoughts",
-				"misty step",
-				"daylight",
-				"light",
-				"divination",
-				"invisibility",
-				"teleport",
-				"haste",
-				"slow",
-				"healing word",
-				"modify memory",
-				"unseen servant",
-				"comprehend languages",
-				"zone of truth"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"conjure animals",
+						"summon lesser demons|XGE"
+					]
+				},
+				"will": [
+					"wish"
+				],
+				"other": [
+					"conjure minor elementals",
+					"conjure woodland beings",
+					"summon greater demon|XGE",
+					"conjure elemental",
+					"conjure fey",
+					"legend lore",
+					"Mordenkainen's faithful hound",
+					"gaseous form",
+					"raise dead",
+					"nondetection",
+					"mage hand",
+					"speak with plants",
+					"goodberry",
+					"prestidigitation",
+					"detect thoughts",
+					"misty step",
+					"daylight",
+					"light",
+					"divination",
+					"invisibility",
+					"teleport",
+					"haste",
+					"slow",
+					"healing word",
+					"modify memory",
+					"unseen servant",
+					"comprehend languages",
+					"zone of truth"
+				]
+			}
 		},
 		{
 			"name": "The Shield of Sacred Flame",
@@ -64599,10 +66101,18 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"counterspell",
-				"heal"
-			]
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"counterspell"
+					]
+				},
+				"daily": {
+					"3e": [
+						"heal"
+					]
+				}
+			}
 		},
 		{
 			"name": "Theki Root",
@@ -64823,9 +66333,13 @@
 			"entries": [
 				"As an action, you can speak a command word while holding this card to gain advantage on Charisma ({@skill Intimidation} or {@skill Persuasion}) checks for 1 minute. In addition, for that duration, you can use this card to cast the {@spell Command} spell (save {@dc 17}) as an action. Once this property is used, it can't be used again until the next dawn."
 			],
-			"attachedSpells": [
-				"command"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"command"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -64950,10 +66464,16 @@
 				"You gain a +2 bonus to attack and damage rolls made with this magic trident. You also have advantage on attack rolls made with this weapon while underwater.",
 				"This trident has 3 charges. You can expend 1 charge to cast {@spell Control Water} (save {@dc 15}) from the trident or 3 charges to cast {@spell Tsunami} (save {@dc 15}) from it instead. The trident regains {@dice 1d3} expended charges daily at dawn."
 			],
-			"attachedSpells": [
-				"control water",
-				"tsunami"
-			]
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"control water"
+					],
+					"3": [
+						"tsunami"
+					]
+				}
+			}
 		},
 		{
 			"name": "Tiger Eye",
@@ -65013,10 +66533,16 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"longstrider",
-				"teleport"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"teleport"
+					]
+				},
+				"will": [
+					"longstrider"
+				]
+			}
 		},
 		{
 			"name": "Tinderbox",
@@ -65104,9 +66630,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"dominate monster"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"dominate monster"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -65300,9 +66830,13 @@
 				}
 			},
 			"recharge": "restLong",
-			"attachedSpells": [
-				"enlarge/reduce"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"enlarge/reduce"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -65620,9 +67154,13 @@
 				"The weapon has a normal range of 100 feet and a long range of 300 feet, and it has the two-handed property. It deals {@damage 2d6} necrotic damage on a hit. If this damage reduces a creature or object to 0 hit points, the target is reduced to dust. A creature reduced to dust can be restored to life only by a {@spell true resurrection} or {@spell wish} spell.",
 				"While the weapon is on your person, you can use an action to cast the {@spell disintegrate} spell (save {@dc 18}). Once this property is used, it can't be used again until the next dawn."
 			],
-			"attachedSpells": [
-				"disintegrate"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"disintegrate"
+					]
+				}
+			}
 		},
 		{
 			"name": "Torch",
@@ -65825,9 +67363,13 @@
 			"entries": [
 				"This trident is a magic weapon. It has 3 charges. While you carry it, you can use an action and expend 1 charge to cast {@spell dominate beast} (save {@dc 15}) from it on a beast that has an innate swimming speed. The trident regains {@dice 1d3} expended charges daily at dawn."
 			],
-			"attachedSpells": [
-				"dominate beast"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"dominate beast"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table F"
 			],
@@ -65861,9 +67403,13 @@
 			"entries": [
 				"This magic weapon has 3 charges, and it regains {@dice 1d3} expended charges daily at dawn. While you carry it, you can expend 1 charge to cast {@spell Dominate Beast|XPHB} (save {@dc 15}) from it on a Beast that has a {@variantrule Swim Speed|XPHB}."
 			],
-			"attachedSpells": [
-				"dominate beast|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"dominate beast|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Armaments - Uncommon|XDMG"
 			],
@@ -67871,7 +69417,7 @@
 					"name": "Omniscient",
 					"entries": [
 						"You can use the True-Ice Shards to cast a variety of divination spells. {@spell Locate Animals or Plants}, {@spell Locate Creature}, and {@spell Locate Object} may be cast at will, and don't have a maximum range. Other limitations of the spells still apply, and they can't detect subjects on other planes of existence.",
-						"Additionally, you may cast {@spell Scrying} (with a spell save DC of 20) and Find the Path. Once either spell is cast, you must finish a long rest before casting either of them again."
+						"Additionally, you may cast {@spell Scrying} (with a spell save DC of 20) and {@spell Find the Path}. Once either spell is cast, you must finish a long rest before casting either of them again."
 					]
 				},
 				{
@@ -67882,13 +69428,20 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"detect thoughts",
-				"locate animals or plants",
-				"locate creature",
-				"locate object",
-				"scrying"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"scrying",
+						"find the path"
+					]
+				},
+				"will": [
+					"detect thoughts",
+					"locate animals or plants",
+					"locate creature",
+					"locate object"
+				]
+			}
 		},
 		{
 			"name": "True-Ice Shards (Rapier)",
@@ -67963,13 +69516,20 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"detect thoughts",
-				"locate animals or plants",
-				"locate creature",
-				"locate object",
-				"scrying"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"scrying",
+						"find the path"
+					]
+				},
+				"will": [
+					"detect thoughts",
+					"locate animals or plants",
+					"locate creature",
+					"locate object"
+				]
+			}
 		},
 		{
 			"name": "Truth Serum",
@@ -68238,9 +69798,13 @@
 			"optionalfeatures": [
 				"replicate magic item|tce"
 			],
-			"attachedSpells": [
-				"gust of wind"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"gust of wind"
+					]
+				}
+			}
 		},
 		{
 			"name": "Verminshroud (Awakened)",
@@ -68277,10 +69841,14 @@
 			"resist": [
 				"poison"
 			],
-			"attachedSpells": [
-				"polymorph",
-				"insect plague"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"polymorph",
+						"insect plague"
+					]
+				}
+			}
 		},
 		{
 			"name": "Verminshroud (Dormant)",
@@ -68312,9 +69880,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"polymorph"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"polymorph"
+					]
+				}
+			}
 		},
 		{
 			"name": "Verminshroud (Exalted)",
@@ -68353,10 +69925,14 @@
 					"climb": "walk"
 				}
 			},
-			"attachedSpells": [
-				"polymorph",
-				"insect plague"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"polymorph",
+						"insect plague"
+					]
+				}
+			}
 		},
 		{
 			"name": "Veteran's Cane",
@@ -68511,9 +70087,13 @@
 				"At rank 4, your voting kit becomes a common magic item that conceals an extradimensional space. As a bonus action, you can place one tool kit that you are proficient with into the voting kit, or can remove it. No other type of object can be placed into the extradimensional space. A creature searching the voting kit finds and extracts the tool kit with a successful {@dc 20} Intelligence ({@skill Investigation}) or Wisdom ({@skill Perception}) check.",
 				"Additionally, you can use the voting kit to cast {@spell charm person} (save {@dc 15}). This property of the kit can't be used again until the next dawn."
 			],
-			"attachedSpells": [
-				"charm person"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"charm person"
+					]
+				}
+			}
 		},
 		{
 			"name": "Vox Seeker",
@@ -68555,13 +70135,25 @@
 				"This staff has 10 charges. While holding it, you can use an action to expend 1 or more of the staff's charges to cast one of the following spells from it, using your spell save DC: {@spell banishment} (4 charges), {@spell blink} (3 charges), {@spell misty step} (2 charges), {@spell passwall} (5 charges), or {@spell teleport} (7 charges).",
 				"The staff regains {@dice 1d6 + 4} expended charges daily at dawn. If you expend the last charge, roll a {@dice d20}. On a 1, the staff vanishes forever."
 			],
-			"attachedSpells": [
-				"banishment",
-				"blink",
-				"misty step",
-				"passwall",
-				"teleport"
-			]
+			"attachedSpells": {
+				"charges": {
+					"2": [
+						"misty step"
+					],
+					"3": [
+						"blink"
+					],
+					"4": [
+						"banishment"
+					],
+					"5": [
+						"passwall"
+					],
+					"7": [
+						"teleport"
+					]
+				}
+			}
 		},
 		{
 			"name": "Wagon",
@@ -68674,14 +70266,18 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"hold monster",
-				"rime's binding ice|ftd",
-				"rary's telepathic bond",
-				"raulothim's psychic lance|ftd",
-				"fizban's platinum shield|ftd",
-				"legend lore"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"hold monster",
+						"rime's binding ice|ftd",
+						"rary's telepathic bond",
+						"raulothim's psychic lance|ftd",
+						"fizban's platinum shield|ftd",
+						"legend lore"
+					]
+				}
+			}
 		},
 		{
 			"name": "Wakened Scaled Ornament",
@@ -68738,10 +70334,16 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"hold monster",
-				"hold person"
-			],
+			"attachedSpells": {
+				"charges": {
+					"2": [
+						"hold person"
+					],
+					"5": [
+						"hold monster"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table G"
 			],
@@ -68796,10 +70398,16 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"hold monster|xphb",
-				"hold person|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"2": [
+						"hold person|xphb"
+					],
+					"5": [
+						"hold monster|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Arcana - Rare|XDMG"
 			]
@@ -68920,9 +70528,13 @@
 				"This wand has 7 charges. While holding it, you can use an action to expend 1 of its charges to cast the {@spell entangle} spell (save {@dc 13}) from it.",
 				"The wand regains {@dice 1d6 + 1} expended charges daily at dawn. If you expend the wand's last charge, roll a {@dice d20}. On a 1, the wand crumbles into ashes and is destroyed."
 			],
-			"attachedSpells": [
-				"entangle"
-			]
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"entangle"
+					]
+				}
+			}
 		},
 		{
 			"name": "Wand of Fear",
@@ -68957,9 +70569,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"command"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"command"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table G"
 			],
@@ -69014,10 +70630,16 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"command|xphb",
-				"fear|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"command|xphb"
+					],
+					"3": [
+						"fear|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Arcana - Rare|XDMG"
 			],
@@ -69048,9 +70670,13 @@
 				"This wand has 7 charges. While holding it, you can use an action to expend 1 or more of its charges to cast the {@spell fireball} spell (save {@dc 15}) from it. For 1 charge, you cast the 3rd-level version of the spell. You can increase the spell slot level by one for each additional charge you expend.",
 				"The wand regains {@dice 1d6 + 1} expended charges daily at dawn. If you expend the wand's last charge, roll a {@dice d20}. On a 1, the wand crumbles into ashes and is destroyed."
 			],
-			"attachedSpells": [
-				"fireball"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"fireball"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table G"
 			],
@@ -69082,9 +70708,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"fireball|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"fireball|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Arcana - Rare|XDMG"
 			],
@@ -69115,9 +70745,13 @@
 				"This wand has 7 charges. While holding it, you can use an action to expend 1 or more of its charges to cast the {@spell lightning bolt} spell (save {@dc 15}) from it. For 1 charge, you cast the 3rd-level version of the spell. You can increase the spell slot level by one for each additional charge you expend.",
 				"The wand regains {@dice 1d6 + 1} expended charges daily at dawn. If you expend the wand's last charge, roll a {@dice d20}. On a 1, the wand crumbles into ashes and is destroyed."
 			],
-			"attachedSpells": [
-				"lightning bolt"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"lightning bolt"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table G"
 			],
@@ -69149,9 +70783,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"lightning bolt|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"lightning bolt|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Arcana - Rare|XDMG"
 			],
@@ -69179,9 +70817,13 @@
 			"optionalfeatures": [
 				"replicate magic item|tce"
 			],
-			"attachedSpells": [
-				"detect magic"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"detect magic"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table B"
 			],
@@ -69203,9 +70845,13 @@
 			"optionalfeatures": [
 				"replicate magic item|tce"
 			],
-			"attachedSpells": [
-				"detect magic|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"detect magic|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Arcana - Uncommon|XDMG",
 				"Relics - Uncommon|XDMG"
@@ -69232,9 +70878,13 @@
 				"This wand has 7 charges. While holding it, you can use an action to expend 1 or more of its charges to cast the {@spell magic missile} spell from it. For 1 charge, you cast the 1st-level version of the spell. You can increase the spell slot level by one for each additional charge you expend.",
 				"The wand regains {@dice 1d6 + 1} expended charges daily at dawn. If you expend the wand's last charge, roll a {@dice d20}. On a 1, the wand crumbles into ashes and is destroyed."
 			],
-			"attachedSpells": [
-				"magic missile"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"magic missile"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table F"
 			],
@@ -69261,9 +70911,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"magic missile|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"magic missile|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Arcana - Uncommon|XDMG"
 			],
@@ -69360,14 +71014,24 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"animate dead",
-				"blight",
-				"circle of death",
-				"finger of death",
-				"power word kill",
-				"speak with dead"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"animate dead",
+						"speak with dead"
+					],
+					"2": [
+						"blight"
+					],
+					"3": [
+						"circle of death",
+						"finger of death"
+					],
+					"4": [
+						"power word kill"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -69502,14 +71166,24 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"animate dead|xphb",
-				"blight|xphb",
-				"circle of death|xphb",
-				"finger of death|xphb",
-				"power word kill|xphb",
-				"speak with dead|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"animate dead|xphb",
+						"speak with dead|xphb"
+					],
+					"2": [
+						"blight|xphb"
+					],
+					"3": [
+						"circle of death|xphb",
+						"finger of death|xphb"
+					],
+					"4": [
+						"power word kill|xphb"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -69598,9 +71272,13 @@
 				"This wand has 7 charges. While holding it, you can use an action to expend 1 of its charges to cast the {@spell polymorph} spell (save {@dc 15}) from it.",
 				"The wand regains {@dice 1d6 + 1} expended charges daily at dawn. If you expend the wand's last charge, roll a {@dice d20}. On a 1, the wand crumbles into ashes and is destroyed."
 			],
-			"attachedSpells": [
-				"polymorph"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"polymorph"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table H"
 			],
@@ -69632,9 +71310,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"polymorph|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"polymorph|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Arcana - Very Rare|XDMG"
 			],
@@ -69766,9 +71448,13 @@
 			"entries": [
 				"This wand has 7 charges. While holding it, you can use an action to expend 1 charge to cast the {@spell silence} spell (save {@dc 15}). The wand regains {@dice 1d6 + 1} expended charges daily at dawn. If you expend the wand's last charge, roll a {@dice d20}. On a 1, the wand crumbles into ashes and is destroyed."
 			],
-			"attachedSpells": [
-				"silence"
-			]
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"silence"
+					]
+				}
+			}
 		},
 		{
 			"name": "Wand of Smiles",
@@ -69829,9 +71515,13 @@
 				"This wand has 7 charges. While holding it, you can use an action to expend 1 of its charges to cast the {@spell web} spell (save {@dc 15}) from it.",
 				"The wand regains {@dice 1d6 + 1} expended charges daily at dawn. If you expend the wand's last charge, roll a {@dice d20}. On a 1, the wand crumbles into ashes and is destroyed."
 			],
-			"attachedSpells": [
-				"web"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"web"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table F"
 			],
@@ -69863,9 +71553,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"web|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"web|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Arcana - Uncommon|XDMG"
 			],
@@ -69892,11 +71586,19 @@
 				"This wand looks and feels like an icicle. You must be attuned to the wand to use it.",
 				"The wand has 7 charges, which are used to fuel the spells within it. With the wand in hand, you can use your action to cast one of the following spells from the wand, even if you are incapable of casting spells: {@spell ray of frost} (no charges, or 1 charge to cast at 5th level; +5 to hit with ranged spell attack), {@spell sleet storm} (3 charges; spell save {@dc 15}), or {@spell ice storm} (4 charges; spell save {@dc 15}). No components are required. The wand regains {@dice 1d6 + 1} expended charges each day at dawn. If you expend the wand's last charge, roll a {@dice d20}. On a 20, the wand melts away, forever destroyed."
 			],
-			"attachedSpells": [
-				"ray of frost",
-				"sleet storm",
-				"ice storm"
-			],
+			"attachedSpells": {
+				"charges": {
+					"3": [
+						"sleet storm"
+					],
+					"4": [
+						"ice storm"
+					]
+				},
+				"will": [
+					"ray of frost"
+				]
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -70027,18 +71729,22 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"slow",
-				"faerie fire",
-				"gust of wind",
-				"detect thoughts",
-				"stinking cloud",
-				"lightning bolt",
-				"enlarge/reduce",
-				"darkness",
-				"fireball",
-				"invisibility"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"slow",
+						"faerie fire",
+						"gust of wind",
+						"detect thoughts",
+						"stinking cloud",
+						"lightning bolt",
+						"enlarge/reduce",
+						"darkness",
+						"fireball",
+						"invisibility"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table G"
 			],
@@ -70151,19 +71857,23 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"darkness|xphb",
-				"faerie fire|xphb",
-				"fireball|xphb",
-				"slow|xphb",
-				"stinking cloud|xphb",
-				"gust of wind|xphb",
-				"lightning bolt|xphb",
-				"enlarge/reduce|xphb",
-				"invisibility|xphb",
-				"polymorph|xphb",
-				"greater restoration|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"darkness|xphb",
+						"faerie fire|xphb",
+						"fireball|xphb",
+						"slow|xphb",
+						"stinking cloud|xphb",
+						"gust of wind|xphb",
+						"lightning bolt|xphb",
+						"enlarge/reduce|xphb",
+						"invisibility|xphb",
+						"polymorph|xphb",
+						"greater restoration|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Arcana - Rare|XDMG"
 			],
@@ -70260,9 +71970,11 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"knock"
-			],
+			"attachedSpells": {
+				"will": [
+					"knock"
+				]
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -70340,9 +72052,13 @@
 				"While you wear this helm, you gain a +1 bonus to AC and remain aware of your surroundings even while you're asleep, and you have advantage on Wisdom ({@skill Perception}) checks that rely on sight.",
 				"As a bonus action, you can cast the {@spell see invisibility} spell from the helm. Once this property of the helm is used, it can't be used again until the next dawn."
 			],
-			"attachedSpells": [
-				"see invisibility"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"see invisibility"
+					]
+				}
+			}
 		},
 		{
 			"name": "Waterskin",
@@ -70518,9 +72234,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"dominate beast|xphb"
-			]
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"dominate beast|xphb"
+					]
+				}
+			}
 		},
 		{
 			"name": "Wayfarer's Boots",
@@ -70539,9 +72259,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"expeditious retreat"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"expeditious retreat"
+					]
+				}
+			}
 		},
 		{
 			"name": "Waythe",
@@ -70817,13 +72541,19 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"dancing lights",
-				"guidance",
-				"message",
-				"fly",
-				"levitate"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"fly",
+						"levitate"
+					]
+				},
+				"will": [
+					"dancing lights",
+					"guidance",
+					"message"
+				]
+			}
 		},
 		{
 			"name": "Wheel of Wind and Water",
@@ -70904,10 +72634,14 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"detect evil and good",
-				"locate object"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"detect evil and good",
+						"locate object"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -70985,10 +72719,14 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"detect evil and good|xphb",
-				"locate object|xphb"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"detect evil and good|xphb",
+						"locate object|xphb"
+					]
+				}
+			}
 		},
 		{
 			"name": "Whetstone",
@@ -71190,14 +72928,18 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"detect evil and good",
-				"detect magic",
-				"detect poison and disease",
-				"find traps",
-				"identify",
-				"locate animals or plants"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1": [
+						"detect evil and good",
+						"detect magic",
+						"detect poison and disease",
+						"find traps",
+						"identify",
+						"locate animals or plants"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -71594,9 +73336,13 @@
 			"entries": [
 				"While holding this fan, you can use an action to cast the {@spell gust of wind} spell (save {@dc 13}) from it. Once used, the fan shouldn't be used again until the next dawn. Each time it is used again before then, it has a cumulative {@chance 20} chance of not working and tearing into useless, nonmagical tatters."
 			],
-			"attachedSpells": [
-				"gust of wind"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"gust of wind"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table F"
 			],
@@ -71611,9 +73357,13 @@
 			"entries": [
 				"While holding this fan, you can cast {@spell Gust of Wind|XPHB} (save {@dc 13}) from it. Each subsequent time the fan is used before the next dawn, it has a cumulative {@chance 20} chance of not working; if the fan fails to work, it tears into useless, nonmagical tatters."
 			],
-			"attachedSpells": [
-				"gust of wind|xphb"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"gust of wind|xphb"
+					]
+				}
+			},
 			"lootTables": [
 				"Arcana - Uncommon|XDMG"
 			],
@@ -71676,9 +73426,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"dominate monster"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"dominate monster"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -71872,9 +73626,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"dancing lights"
-			],
+			"attachedSpells": {
+				"other": [
+					"dancing lights",
+					"polymorph",
+					"ray of frost"
+				]
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -71909,9 +73667,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"fire bolt"
-			]
+			"attachedSpells": {
+				"other": [
+					"fire bolt",
+					"invisibility",
+					"message"
+				]
+			}
 		},
 		{
 			"name": "Witherbloom Primer",
@@ -72162,9 +73924,13 @@
 			},
 			"bonusWeapon": "+2",
 			"recharge": "special",
-			"attachedSpells": [
-				"misty step"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"misty step"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -72289,9 +74055,11 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"dominate monster"
-			],
+			"attachedSpells": {
+				"other": [
+					"dominate monster"
+				]
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -72431,10 +74199,13 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"searing smite",
-				"dispel evil and good"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"searing smite#6"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -72525,10 +74296,16 @@
 					]
 				}
 			],
-			"attachedSpells": [
-				"lightning bolt",
-				"globe of invulnerability"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"lightning bolt#9"
+					],
+					"2": [
+						"globe of invulnerability"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -72751,9 +74528,11 @@
 					"dim": 600
 				}
 			],
-			"attachedSpells": [
-				"control weather"
-			]
+			"attachedSpells": {
+				"will": [
+					"control weather"
+				]
+			}
 		},
 		{
 			"name": "Zabou",
@@ -73195,9 +74974,13 @@
 				"Armor of the Valiant Soul (Awakened)|TDCSR",
 				"Armor of the Valiant Soul (Exalted)|TDCSR"
 			],
-			"attachedSpells": [
-				"command"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"command"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -73974,9 +75757,13 @@
 				"Elemental Gem, Red Corundum",
 				"Elemental Gem, Yellow Diamond"
 			],
-			"attachedSpells": [
-				"conjure elemental"
-			],
+			"attachedSpells": {
+				"limited": {
+					"1": [
+						"conjure elemental"
+					]
+				}
+			},
 			"lootTables": [
 				"Magic Item Table B"
 			],
@@ -74205,18 +75992,32 @@
 				"Eye of Vecna|DMG",
 				"Hand of Vecna|DMG"
 			],
-			"attachedSpells": [
-				"wish",
-				"finger of death",
-				"sleep",
-				"slow",
-				"teleport",
-				"clairvoyance",
-				"crown of madness",
-				"disintegrate",
-				"dominate monster",
-				"eyebite"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"crown of madness",
+						"sleep"
+					],
+					"2": [
+						"clairvoyance",
+						"slow"
+					],
+					"3": [
+						"teleport"
+					],
+					"4": [
+						"disintegrate",
+						"eyebite"
+					],
+					"5": [
+						"dominate monster",
+						"finger of death"
+					]
+				},
+				"other": [
+					"wish"
+				]
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -74457,18 +76258,32 @@
 				"Hand of Vecna|XDMG"
 			],
 			"itemsHidden": true,
-			"attachedSpells": [
-				"wish|xphb",
-				"clairvoyance|xphb",
-				"crown of madness|xphb",
-				"disintegrate|xphb",
-				"dominate monster|xphb",
-				"eyebite|xphb",
-				"finger of death|xphb",
-				"sleep|xphb",
-				"slow|xphb",
-				"teleport|xphb"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"crown of madness|xphb",
+						"sleep|xphb"
+					],
+					"2": [
+						"clairvoyance|xphb",
+						"slow|xphb"
+					],
+					"3": [
+						"teleport|xphb"
+					],
+					"4": [
+						"disintegrate|xphb",
+						"eyebite|xphb"
+					],
+					"5": [
+						"dominate monster|xphb",
+						"finger of death|xphb"
+					]
+				},
+				"other": [
+					"wish|xphb"
+				]
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -74725,9 +76540,13 @@
 				"Hide of the Feral Guardian (Awakened)|EGW",
 				"Hide of the Feral Guardian (Exalted)|EGW"
 			],
-			"attachedSpells": [
-				"polymorph"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"polymorph"
+					]
+				}
+			}
 		},
 		{
 			"name": "Holy Symbol",
@@ -75002,12 +76821,16 @@
 				"Instrument of the Bards, Mac-Fuirmidh Cittern",
 				"Instrument of the Bards, Ollamh Harp"
 			],
-			"attachedSpells": [
-				"fly",
-				"invisibility",
-				"levitate",
-				"protection from evil and good"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"fly",
+						"invisibility",
+						"levitate",
+						"protection from evil and good"
+					]
+				}
+			}
 		},
 		{
 			"name": "Instrument of the Bards",
@@ -75035,12 +76858,16 @@
 				"Instrument of the Bards, Mac-Fuirmidh Cittern|XDMG",
 				"Instrument of the Bards, Ollamh Harp|XDMG"
 			],
-			"attachedSpells": [
-				"fly|xphb",
-				"invisibility|xphb",
-				"levitate|xphb",
-				"protection from evil and good|xphb"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"fly|xphb",
+						"invisibility|xphb",
+						"levitate|xphb",
+						"protection from evil and good|xphb"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -75138,9 +76965,13 @@
 				"Jewel of Three Prayers (Awakened)|CRCotN",
 				"Jewel of Three Prayers (Exalted)|CRCotN"
 			],
-			"attachedSpells": [
-				"invisibility"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"invisibility"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -75165,9 +76996,13 @@
 				"Kiss of the Changebringer (Awakened)|TDCSR",
 				"Kiss of the Changebringer (Exalted)|TDCSR"
 			],
-			"attachedSpells": [
-				"blink"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"blink"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -75809,9 +77644,13 @@
 				"Pyremaul (Awakened)|TDCSR",
 				"Pyremaul (Exalted)|TDCSR"
 			],
-			"attachedSpells": [
-				"burning hands"
-			],
+			"attachedSpells": {
+				"rest": {
+					"1e": [
+						"burning hands#2"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -76311,9 +78150,13 @@
 				"Sage's Signet (Songbird)|BMT",
 				"Sage's Signet (Wolf)|BMT"
 			],
-			"attachedSpells": [
-				"augury"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"augury"
+					]
+				}
+			}
 		},
 		{
 			"name": "Scaled Ornament",
@@ -76607,10 +78450,29 @@
 				"Shard Solitaire (Rainbow Pearl)|KftGV",
 				"Shard Solitaire (Ruby)|KftGV"
 			],
-			"attachedSpells": [
-				"mirror image",
-				"banishment"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"mirror image"
+					],
+					"2": [
+						"fireball",
+						"fly",
+						"water breathing"
+					],
+					"3": [
+						"banishment",
+						"blight",
+						"ice storm"
+					],
+					"6": [
+						"finger of death",
+						"fire storm",
+						"prismatic spray",
+						"teleport"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -76775,14 +78637,28 @@
 				"Spire of Conflux (Awakened)|TDCSR",
 				"Spire of Conflux (Exalted)|TDCSR"
 			],
-			"attachedSpells": [
-				"burning hands",
-				"fireball",
-				"conjure elemental",
-				"ice storm",
-				"chain lightning",
-				"fire storm"
-			],
+			"attachedSpells": {
+				"charges": {
+					"1": [
+						"burning hands"
+					],
+					"3": [
+						"fireball"
+					],
+					"4": [
+						"ice storm"
+					],
+					"5": [
+						"conjure elemental"
+					],
+					"6": [
+						"chain lightning"
+					],
+					"7": [
+						"fire storm"
+					]
+				}
+			},
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -76815,11 +78691,17 @@
 				"Star Razor (Awakened)|TDCSR",
 				"Star Razor (Exalted)|TDCSR"
 			],
-			"attachedSpells": [
-				"faerie fire",
-				"see invisibility",
-				"fly"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"faerie fire"
+					]
+				},
+				"will": [
+					"see invisibility",
+					"fly"
+				]
+			},
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -76935,11 +78817,15 @@
 				"The Bloody End (Awakened)|EGW",
 				"The Bloody End (Exalted)|EGW"
 			],
-			"attachedSpells": [
-				"charm person",
-				"dominate person",
-				"fear"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"charm person",
+						"dominate person",
+						"fear"
+					]
+				}
+			}
 		},
 		{
 			"name": "Titanstone Knuckles",
@@ -76970,9 +78856,13 @@
 				"Titanstone Knuckles (Awakened)|TDCSR",
 				"Titanstone Knuckles (Exalted)|TDCSR"
 			],
-			"attachedSpells": [
-				"enlarge/reduce"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"enlarge/reduce"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -77046,13 +78936,20 @@
 				"True-Ice Shards (Rapier)|CoA",
 				"True-Ice Shards (Dagger)|CoA"
 			],
-			"attachedSpells": [
-				"detect thoughts",
-				"locate animals or plants",
-				"locate creature",
-				"locate object",
-				"scrying"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"scrying",
+						"find the path"
+					]
+				},
+				"will": [
+					"detect thoughts",
+					"locate animals or plants",
+					"locate creature",
+					"locate object"
+				]
+			}
 		},
 		{
 			"name": "Verminshroud",
@@ -77075,9 +78972,14 @@
 				"Verminshroud (Awakened)|EGW",
 				"Verminshroud (Exalted)|EGW"
 			],
-			"attachedSpells": [
-				"polymorph"
-			]
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"polymorph",
+						"insect plague"
+					]
+				}
+			}
 		},
 		{
 			"name": "Wand of the War Mage",
@@ -77202,9 +79104,13 @@
 				"Wraps of Dyamak (Awakened)|TDCSR",
 				"Wraps of Dyamak (Exalted)|TDCSR"
 			],
-			"attachedSpells": [
-				"misty step"
-			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"misty step"
+					]
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -77252,9 +79158,11 @@
 				"Wreath of the Prism (Awakened)|EGW",
 				"Wreath of the Prism (Exalted)|EGW"
 			],
-			"attachedSpells": [
-				"dominate monster"
-			],
+			"attachedSpells": {
+				"other": [
+					"dominate monster"
+				]
+			},
 			"hasFluffImages": true
 		}
 	]

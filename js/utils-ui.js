@@ -998,7 +998,7 @@ class ListUiUtil {
 			return;
 		}
 
-		Renderer.hover.pGetHoverableFluff(page, entity.source, UrlUtil.URL_TO_HASH_BUILDER[page](entity))
+		Renderer.utils.pGetProxyFluff({entity})
 			.then(fluffEntity => {
 				// Avoid clobbering existing elements, as other events might have updated the preview area while we were
 				//  loading the fluff.
