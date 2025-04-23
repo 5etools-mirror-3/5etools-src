@@ -142,42 +142,42 @@ export class OmnisearchBacking {
 
 	static async pGetFilteredResults (results, {isApplySrdFilter = false, isApplyPartneredFilter = false} = {}) {
 		if (isApplySrdFilter && OmnisearchState.isSrdOnly) {
-			results = results.filter(r => r.doc.r);
+			results = results.filter(res => res.doc.r || res.doc.r2);
 		}
 
 		if (isApplyPartneredFilter && !OmnisearchState.isShowPartnered) {
-			results = results.filter(r => !r.doc.s || !r.doc.dP);
+			results = results.filter(res => !res.doc.s || !res.doc.dP);
 		}
 
 		if (!OmnisearchState.isShowBrew) {
 			// Always filter in partnered, as these are handled by the more specific filter, above
-			results = results.filter(r => !r.doc.s || r.doc.dP || !BrewUtil2.hasSourceJson(r.doc.s));
+			results = results.filter(res => !res.doc.s || res.doc.dP || !BrewUtil2.hasSourceJson(res.doc.s));
 		}
 
 		if (!OmnisearchState.isShowUa) {
-			results = results.filter(r => !r.doc.s || !SourceUtil.isNonstandardSourceWotc(r.doc.s));
+			results = results.filter(res => !res.doc.s || !SourceUtil.isNonstandardSourceWotc(res.doc.s));
 		}
 
 		if (!OmnisearchState.isShowLegacy) {
-			results = results.filter(r => !r.doc.s || !SourceUtil.isLegacySourceWotc(r.doc.s));
+			results = results.filter(res => !res.doc.s || !SourceUtil.isLegacySourceWotc(res.doc.s));
 		}
 
 		if (!OmnisearchState.isShowBlocklisted && ExcludeUtil.getList().length) {
 			const resultsNxt = [];
-			for (const r of results) {
-				if (r.doc.c === Parser.CAT_ID_QUICKREF || r.doc.c === Parser.CAT_ID_PAGE) {
-					resultsNxt.push(r);
+			for (const res of results) {
+				if (res.doc.c === Parser.CAT_ID_QUICKREF || res.doc.c === Parser.CAT_ID_PAGE) {
+					resultsNxt.push(res);
 					continue;
 				}
 
-				const bCat = Parser.pageCategoryToProp(r.doc.c);
+				const bCat = Parser.pageCategoryToProp(res.doc.c);
 				if (bCat !== "item") {
-					if (!ExcludeUtil.isExcluded(r.doc.u, bCat, r.doc.s, {isNoCount: true})) resultsNxt.push(r);
+					if (!ExcludeUtil.isExcluded(res.doc.u, bCat, res.doc.s, {isNoCount: true})) resultsNxt.push(res);
 					continue;
 				}
 
-				const item = await DataLoader.pCacheAndGetHash(UrlUtil.PG_ITEMS, r.doc.u);
-				if (!Renderer.item.isExcluded(item, {hash: r.doc.u})) resultsNxt.push(r);
+				const item = await DataLoader.pCacheAndGetHash(UrlUtil.PG_ITEMS, res.doc.u);
+				if (!Renderer.item.isExcluded(item, {hash: res.doc.u})) resultsNxt.push(res);
 			}
 			results = resultsNxt;
 		}
@@ -295,9 +295,9 @@ export class OmnisearchBacking {
 			: Object.values(this._searchIndex.documentStore.docs).map(it => ({doc: it}));
 
 		return resultsUnfiltered
-			.filter(r => !categoryTerms.length || (categoryTerms.includes(r.doc.cf.toLowerCase())))
-			.filter(r => !sourceTerms.length || (r.doc.s && sourceTerms.includes(Parser.sourceJsonToAbv(r.doc.s).toLowerCase())))
-			.filter(r => !pageRanges.length || (r.doc.p && pageRanges.some(range => r.doc.p >= range[0] && r.doc.p <= range[1])));
+			.filter(res => !categoryTerms.length || (categoryTerms.includes(res.doc.cf.toLowerCase())))
+			.filter(res => !sourceTerms.length || (res.doc.s && sourceTerms.includes(Parser.sourceJsonToAbv(res.doc.s).toLowerCase())))
+			.filter(res => !pageRanges.length || (res.doc.p && pageRanges.some(range => res.doc.p >= range[0] && res.doc.p <= range[1])));
 	}
 
 	/* -------------------------------------------- */

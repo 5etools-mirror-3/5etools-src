@@ -193,6 +193,10 @@ class GenericDataCheck extends DataTesterBase {
 		});
 	}
 
+	static _getCleanSpellUid (spellUid) {
+		return spellUid.split("#")[0]; // An optional "cast at spell level" can be added with a "#"; remove it
+	}
+
 	static _testAdditionalSpells_testSpellExists (file, spellOrObj) {
 		if (typeof spellOrObj === "object") {
 			if (spellOrObj.choose != null || spellOrObj.all != null) {
@@ -203,8 +207,7 @@ class GenericDataCheck extends DataTesterBase {
 			throw new Error(`Unhandled additionalSpells special object in "${file}": ${JSON.stringify(spellOrObj)}`);
 		}
 
-		spellOrObj = spellOrObj.split("#")[0]; // An optional "cast at spell level" can be added with a "#", remove it
-		const url = getEncoded(spellOrObj, "spell");
+		const url = getEncoded(this._getCleanSpellUid(spellOrObj), "spell");
 
 		if (!TagTestUrlLookup.hasUrl(url)) {
 			this._addMessage(`Missing link: ${url} in file ${file} (evaluates to "${url}") in "additionalSpells"\n${TagTestUtil.getLogPtSimilarUrls({url})}`);
@@ -488,6 +491,8 @@ class ItemDataCheck extends GenericDataCheck {
 			if (it.uid) it = it.uid;
 			if (it.special) return;
 
+			if (tag === "spell") it = this._getCleanSpellUid(it);
+
 			const url = getEncoded(it, tag);
 			if (!TagTestUrlLookup.hasUrl(url)) this._addMessage(`Missing link: ${it} in file ${file} (evaluates to "${url}") in "${prop}"\n${TagTestUtil.getLogPtSimilarUrls({url})}`);
 		});
@@ -515,8 +520,7 @@ class ItemDataCheck extends GenericDataCheck {
 		if (!root) return;
 
 		if (root.attachedSpells) {
-			ItemDataCheck._checkArrayDuplicates(file, name, source, root.attachedSpells, "attachedSpells", "spell");
-			ItemDataCheck._checkArrayItemsExist(file, name, source, root.attachedSpells, "attachedSpells", "spell");
+			ItemDataCheck._checkArrayItemsExist(file, name, source, Renderer.item.getFlatAttachedSpells(root), "attachedSpells", "spell");
 		}
 
 		if (root.optionalfeatures) {

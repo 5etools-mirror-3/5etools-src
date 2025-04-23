@@ -45,7 +45,7 @@ export class RenderableCollectionSnapshots extends RenderableCollectionFilterSna
 			${cbSel}
 		</label>`;
 
-		const btnToggleExpand = this.constructor._getBtnToggleExpand(comp);
+		const btnToggleExpand = this.constructor._getBtnToggleExpand(comp, {isSibling: true});
 
 		const $iptName = ComponentUiUtil.$getIptStr(comp, "manager_name", {placeholder: "Name"});
 
@@ -72,6 +72,12 @@ export class RenderableCollectionSnapshots extends RenderableCollectionFilterSna
 
 		const btnDelete = this._utils.getBtnDelete({entity});
 
+		const btnApply = ee`<button class="ve-btn ve-btn-xs ve-btn-primary" title="Apply as Filters"><span class="glyphicon glyphicon-ok"></span></button>`
+			.onn("click", async () => {
+				this._comp.doSetFiltersFromBoxSnapshot_(entity.entity);
+				JqueryUtil.doToast("Applied Snapshot as Filters!");
+			});
+
 		const btnAddToDeck = ee`<button class="ve-btn ve-btn-xs ve-btn-default mr-2">Add to Snapshot Deck</button>`
 			.onn("click", async () => {
 				if (!this._comp._state.boxSnapshotDecks.length) return JqueryUtil.doToast({content: `No snapshot decks available! Please create one first.`, type: "warning"});
@@ -83,7 +89,7 @@ export class RenderableCollectionSnapshots extends RenderableCollectionFilterSna
 					...boxSnapshotDeck.entity.boxSnapshotIds || [],
 					this._comp.getNewBoxSnapshotId({
 						boxSnapshotId: entity.id,
-						_manager_name: entity.manager_name,
+						_manager_name: entity.entity?.manager_name,
 					}),
 				]
 					.unique(entityInfo => entityInfo.entity.boxSnapshotId);
@@ -96,11 +102,12 @@ export class RenderableCollectionSnapshots extends RenderableCollectionFilterSna
 		const stgHeader = ee`<div class="ve-flex-v-center w-100 py-1 lst__row lst__row-border lst__row-inner">
 			${wrpCbSel}
 
-			<div class="ve-flex-vh-center ve-col-0-5">
+			<div class="ve-flex-vh-center ve-col-1">
 				${btnToggleExpand}
+				${btnApply}
 			</div>
 
-			<div class="ve-flex-v-center ve-col-9 px-1">
+			<div class="ve-flex-v-center ve-col-8-5 px-1">
 				${$iptName[0]}
 			</div>
 

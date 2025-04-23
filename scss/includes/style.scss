@@ -730,6 +730,11 @@ th {
 
 	&wrp-bookshelf-item--legacy {
 		filter: grayscale(1);
+		transition: vars.$time-5-frames filter linear;
+
+		&:hover {
+			filter: initial;
+		}
 	}
 
 	&bookshelf-item-name {

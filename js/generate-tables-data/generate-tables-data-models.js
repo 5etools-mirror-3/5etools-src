@@ -134,28 +134,39 @@ class _RecursiveSearchStateBase {
 			case "class":
 			case "classFluff": {
 				table.parentEntity = {
-					type: table._tmpMeta.metaType = "class",
-					name: table._tmpMeta.className,
-					source: table._tmpMeta.classSource,
+					prop: "class",
+					uid: DataUtil.proxy.getUid("class", {name: table._tmpMeta.className, source: table._tmpMeta.classSource}, {isMaintainCase: true}),
 				};
 				break;
 			}
 			case "subclass": {
 				table.parentEntity = {
-					type: table._tmpMeta.metaType,
-					name: table._tmpMeta.subclassName,
-					shortName: table._tmpMeta.subclassShortName,
-					source: table._tmpMeta.subclassSource,
-					className: table._tmpMeta.className,
-					classSource: table._tmpMeta.classSource,
+					prop: table._tmpMeta.metaType,
+					uid: DataUtil.proxy.getUid(
+						table._tmpMeta.metaType,
+						{
+							name: table._tmpMeta.subclassName,
+							shortName: table._tmpMeta.subclassShortName,
+							source: table._tmpMeta.subclassSource,
+							className: table._tmpMeta.className,
+							classSource: table._tmpMeta.classSource,
+						},
+						{isMaintainCase: true},
+					),
 				};
 				break;
 			}
 			default: {
 				table.parentEntity = {
-					type: table._tmpMeta.metaType,
-					name: table._tmpMeta.name,
-					source: table._tmpMeta.source,
+					prop: table._tmpMeta.metaType,
+					uid: DataUtil.proxy.getUid(
+						table._tmpMeta.metaType,
+						{
+							name: table._tmpMeta.name,
+							source: table._tmpMeta.source,
+						},
+						{isMaintainCase: true},
+					),
 				};
 			}
 		}
@@ -303,7 +314,7 @@ export class RecursiveSearchStateClass extends _RecursiveSearchStateBase {
 			it.srd = !!this._cls.srd;
 			it.srd52 = !!this._cls.srd52;
 			it.basicRules = !!this._cls.basicRules;
-			it.freeRules2024 = !!this._cls.freeRules2024;
+			it.basicRules2024 = !!this._cls.basicRules2024;
 
 			this._getStacks_mutDataAddPage(it);
 			this._getStacks_mutCleanTableOrGroup(it);
@@ -337,7 +348,7 @@ export class RecursiveSearchStateSubclass extends _RecursiveSearchStateBase {
 			it.srd = !!this._sc.srd;
 			it.srd52 = !!this._sc.srd52;
 			it.basicRules = !!this._sc.basicRules;
-			it.freeRules2024 = !!this._sc.freeRules2024;
+			it.basicRules2024 = !!this._sc.basicRules2024;
 
 			this._getStacks_mutDataAddPage(it);
 			this._getStacks_mutCleanTableOrGroup(it);

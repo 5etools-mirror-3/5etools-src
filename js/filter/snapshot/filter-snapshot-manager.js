@@ -381,6 +381,20 @@ export class FilterSnapshotManager extends BaseComponent {
 
 	/* -------------------------------------------- */
 
+	doSetFiltersFromBoxSnapshot_ (boxSnapshot) {
+		const filterSnapshotsCurrent = this._filters
+			.flatMap(filter => filter.getSnapshots());
+
+		const filterSnapshotsEntity = boxSnapshot.filterSnapshots;
+
+		this._filterBox.reset({
+			snapshots: [
+				...filterSnapshotsCurrent,
+				...filterSnapshotsEntity,
+			],
+		});
+	}
+
 	doSetFiltersFromBoxSnapshotDeck_ (boxSnapshotDeck) {
 		const snapshots = this.getSnapshots({boxSnapshotDeck});
 		this._filterBox.reset({snapshots});

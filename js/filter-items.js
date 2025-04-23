@@ -103,6 +103,13 @@ class PageFilterEquipment extends PageFilterBase {
 		item._l_value = "\u2014";
 	}
 
+	static _mutateForFilters_getFilterAttachedSpells (item) {
+		const flat = Renderer.item.getFlatAttachedSpells(item);
+		if (!flat) return flat;
+		return flat
+			.map(it => it.toLowerCase().split("#")[0].split("|")[0]);
+	}
+
 	static mutateForFilters (item) {
 		this._mutateForFilters_commonSources(item);
 
@@ -157,6 +164,8 @@ class PageFilterEquipment extends PageFilterBase {
 			: null;
 
 		item._fAc = this._mutateForFilters_getFilterAc(item);
+
+		item._fAttachedSpells = this._mutateForFilters_getFilterAttachedSpells(item);
 
 		item._l_weight = Parser.itemWeightToFull(item, true) || "\u2014";
 		this._mutateForFilters_mutFilterValue(item);
@@ -405,7 +414,7 @@ class PageFilterItems extends PageFilterEquipment {
 
 		this._sourceFilter.addItem(item.source);
 		this._tierFilter.addItem(item._fTier);
-		this._attachedSpellsFilter.addItem(item.attachedSpells);
+		this._attachedSpellsFilter.addItem(item._fAttachedSpells);
 		this._lootTableFilter.addItem(item.lootTables);
 		this._baseItemFilter.addItem(item._fBaseItem);
 		this._baseSourceFilter.addItem(item._baseSource);
@@ -481,7 +490,7 @@ class PageFilterItems extends PageFilterEquipment {
 			it._fBaseItemAll,
 			it._baseSource,
 			it.optionalfeatures,
-			it.attachedSpells,
+			it._fAttachedSpells,
 		);
 	}
 }

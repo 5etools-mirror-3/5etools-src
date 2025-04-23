@@ -17,8 +17,8 @@ class IndexPage {
 		es(`#wrp-patreon`)
 			.html(`<a href="https://www.patreon.com/bePatron?u=22018559" rel="noopener noreferrer"><img src="${Renderer.get().getMediaUrl("img", "patreon.webp")}" alt="Become a Patron" style="width: 217px; height: 51px"></a>`);
 
-		const lnkB20 = es(`#betteR20_link`);
-		lnkB20.attr("href", `${lnkB20.attr("href")}?v=${VERSION_NUMBER}_${Date.now()}`);
+		em(`[data-link-type="better20"]`)
+			.forEach(lnk => lnk.attr("href", `${lnk.attr("href")}?v=${VERSION_NUMBER}_${Date.now()}`));
 
 		window.__cmp2 = () => {
 			alert("This only works on a live version of the site!");

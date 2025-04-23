@@ -30,9 +30,11 @@ import {
 	TagImmResVulnConditional,
 	TraitActionTag,
 } from "./converterutils-creature.js";
-import {CoreRuleTag, SpellTag} from "./converterutils-entries.js";
+import {CoreRuleTag, HazardTag, SpellTag} from "./converterutils-entries.js";
 import {PropOrder} from "../utils-proporder.js";
 import {ConverterStringBlocklist} from "./converterutils-utils-blocklist.js";
+import {VetoolsConfig} from "../utils-config/utils-config-config.js";
+import {SITE_STYLE__CLASSIC} from "../consts.js";
 
 class _ConversionStateTextCreature extends ConversionStateTextBase {
 	constructor (
@@ -383,7 +385,7 @@ export class ConverterCreature extends ConverterBase {
 			if (ConverterUtils.isStatblockLineHeaderStart({reStartStr: this._RE_START_SENSES, line: meta.curLine})) {
 				// noinspection StatementWithEmptyBodyJS
 				while (this._absorbBrokenLine({meta}));
-				this._setCleanSenses({stats, line: meta.curLine, cbWarning: options.cbWarning});
+				this._setCleanSenses({stats, line: meta.curLine, cbWarning: options.cbWarning, styleHint: options.styleHint});
 				continue;
 			}
 
@@ -1566,7 +1568,7 @@ export class ConverterCreature extends ConverterBase {
 
 				// senses
 				if (~meta.curLine.indexOf("Senses")) {
-					this._setCleanSenses({stats, line: ConverterUtilsMarkdown.getNoDashStarStar(meta.curLine), cbWarning: options.cbWarning});
+					this._setCleanSenses({stats, line: ConverterUtilsMarkdown.getNoDashStarStar(meta.curLine), cbWarning: options.cbWarning, styleHint: options.styleHint});
 					continue;
 				}
 
@@ -1827,6 +1829,7 @@ export class ConverterCreature extends ConverterBase {
 		TagImmResVulnConditional.tryRun(stats);
 		DragonAgeTag.tryRun(stats);
 		if (!stats.gear) AttachedItemTag.tryRun(stats);
+		HazardTag.tryRunPropsStrictCapsWords(stats, Renderer.monster.CHILD_PROPS_EXTENDED, {styleHint: options.styleHint});
 		CoreRuleTag.tryRunProps(stats, Renderer.monster.CHILD_PROPS_EXTENDED, {styleHint: options.styleHint});
 		this._doStatblockPostProcess_doCleanup(stats, options);
 		this._doStatblockPostProcess_doVerify(stats, options);
@@ -2276,7 +2279,9 @@ export class ConverterCreature extends ConverterBase {
 		stats.gear = out;
 	}
 
-	static _setCleanSenses ({stats, line, cbWarning}) {
+	static _setCleanSenses ({stats, line, cbWarning, styleHint}) {
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
 		const senses = ConverterUtils.getStatblockLineHeaderText({reStartStr: this._RE_START_SENSES, line});
 		const tempSenses = [];
 
@@ -2290,7 +2295,14 @@ export class ConverterCreature extends ConverterBase {
 						pt = pt.trim();
 						if (!pt) return;
 
-						if (!pt.toLowerCase().includes("passive perception")) return tempSenses.push(pt.toLowerCase());
+						if (!pt.toLowerCase().includes("passive perception")) {
+							if (styleHint === SITE_STYLE__CLASSIC) return tempSenses.push(pt.toLowerCase());
+
+							return tempSenses.push(
+								pt
+									.replace(/magical Darkness/g, `magical {@variantrule Darkness|XPHB}`),
+							);
+						}
 
 						let ptPassive = pt.replace(/^passive perception/i, "").trim();
 						if (!isNaN(ptPassive)) return stats.passive = this._tryConvertNumber(ptPassive);

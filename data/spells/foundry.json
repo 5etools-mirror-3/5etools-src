@@ -3,22 +3,20 @@
 		{
 			"name": "Armor of Agathys",
 			"source": "PHB",
-			"system": {
-				"activities": [
-					{
-						"type": "heal",
-						"damage.parts": [
-							{
-								"custom.enabled": true,
-								"custom.formula": "5",
-								"types": [
-									"temphp"
-								]
-							}
+			"activities": [
+				{
+					"type": "heal",
+					"healing": {
+						"custom": {
+							"enabled": true,
+							"formula": "5"
+						},
+						"types": [
+							"temphp"
 						]
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -56,98 +54,120 @@
 		{
 			"name": "Booming Blade",
 			"source": "TCE",
-			"system": {
-				"activities": [
-					{
-						"type": "damage",
-						"target.affects.count": "1",
-						"target.template.units": "",
-						"target.affects.type": "creature",
-						"damage.parts": [
+			"activities": [
+				{
+					"type": "damage",
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						},
+						"template": {
+							"units": ""
+						}
+					},
+					"damage": {
+						"parts": [
 							{
-								"custom.enabled": true,
-								"custom.formula": "(floor(((@details.level + @details.spellLevel) + 1) / 6))d8[on hit]",
+								"custom": {
+									"enabled": true,
+									"formula": "(floor(((@details.level + @details.spellLevel) + 1) / 6))d8[on hit]"
+								},
 								"types": [
 									"thunder"
 								]
 							}
 						]
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
 			"name": "Flame Blade",
 			"source": "PHB",
-			"system": {
-				"activities": [
-					{
-						"type": "damage",
-						"damage.parts": [
+			"activities": [
+				{
+					"type": "damage",
+					"damage": {
+						"parts": [
 							{
-								"custom.enabled": true,
-								"custom.formula": "(floor((@item.level) / 2) + 2)d6",
+								"custom": {
+									"enabled": true,
+									"formula": "(floor((@item.level) / 2) + 2)d6"
+								},
 								"types": [
 									"fire"
 								]
 							}
 						]
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
 			"name": "Green-Flame Blade",
 			"source": "TCE",
-			"system": {
-				"activities": [
-					{
-						"type": "damage",
-						"target.affects.count": "1",
-						"target.template.units": "",
-						"target.affects.type": "creature",
-						"damage.parts": [
+			"activities": [
+				{
+					"type": "damage",
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						},
+						"template": {
+							"units": ""
+						}
+					},
+					"damage": {
+						"parts": [
 							{
-								"custom.enabled": true,
-								"custom.formula": "(floor(((@details.level + @details.spellLevel) + 1) / 6))d8[on hit]",
+								"custom": {
+									"enabled": true,
+									"formula": "(floor(((@details.level + @details.spellLevel) + 1) / 6))d8[on hit]"
+								},
 								"types": [
 									"fire"
 								]
 							},
 							{
-								"custom.enabled": true,
-								"custom.formula": "@mod + (floor(((@details.level + @details.spellLevel) + 1) / 6))d8[splash]",
+								"custom": {
+									"enabled": true,
+									"formula": "@mod + (floor(((@details.level + @details.spellLevel) + 1) / 6))d8[splash]"
+								},
 								"types": [
 									"fire"
 								]
 							}
 						]
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
 			"name": "Magic Missile",
 			"source": "PHB",
-			"system": {
-				"activities": [
-					{
-						"type": "damage",
-						"damage.parts": [
+			"activities": [
+				{
+					"type": "damage",
+					"damage": {
+						"parts": [
 							{
-								"custom.enabled": true,
-								"custom.formula": "(1d4 + 1) * (2 + @item.level)",
+								"custom": {
+									"enabled": true,
+									"formula": "(1d4 + 1) * (2 + @item.level)"
+								},
 								"types": [
 									"force"
 								]
 							}
 						]
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -155,422 +175,511 @@
 			"source": "XGE",
 			"system": {
 				"range.value": 60,
-				"range.units": "ft",
-				"activities": [
-					{
-						"type": "damage",
-						"activation.value": 1,
-						"activation.type": "action",
-						"target.affects.count": "1",
-						"target.template.units": "",
-						"target.affects.type": "creature",
-						"damage.parts": [
+				"range.units": "ft"
+			},
+			"activities": [
+				{
+					"type": "damage",
+					"activation": {
+						"value": 1,
+						"type": "action"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						},
+						"template": {
+							"units": ""
+						}
+					},
+					"damage": {
+						"parts": [
 							{
-								"custom.enabled": true,
-								"custom.formula": "1d6 + @mod",
+								"custom": {
+									"enabled": true,
+									"formula": "1d6 + @mod"
+								},
 								"types": [
 									"bludgeoning"
 								]
 							}
 						]
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
 			"name": "Melf's Acid Arrow",
 			"source": "PHB",
-			"system": {
-				"activities": [
-					{
-						"type": "attack",
-						"damage.parts": [
+			"activities": [
+				{
+					"type": "attack",
+					"damage": {
+						"parts": [
 							{
-								"custom.enabled": true,
-								"custom.formula": "4d4[immediate]",
+								"custom": {
+									"enabled": true,
+									"formula": "4d4[immediate]"
+								},
 								"types": [
 									"acid"
 								]
 							},
 							{
-								"custom.enabled": true,
-								"custom.formula": "(@item.level)d4[end of turn]",
+								"custom": {
+									"enabled": true,
+									"formula": "(@item.level)d4[end of turn]"
+								},
 								"types": [
 									"acid"
 								]
 							}
 						]
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
 			"name": "Spirit of Death",
 			"source": "BMT",
-			"system": {
-				"summons.profiles": [
-					{
-						"name": "Reaper Spirit",
-						"uuid": "@creature[reaper spirit|bmt]"
-					}
-				]
-			},
+			"activities": [
+				{
+					"type": "summon",
+					"profiles": [
+						{
+							"name": "Reaper Spirit",
+							"uuid": "@creature[reaper spirit|bmt]"
+						}
+					]
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
 			"name": "Spirit Shroud",
 			"source": "TCE",
-			"system": {
-				"activities": [
-					{
-						"type": "damage",
-						"roll.formula": "(floor(((@item.level) - 1) / 2))d8",
-						"damage.parts": []
+			"activities": [
+				{
+					"type": "damage",
+					"damage": {
+						"parts": []
+					},
+					"roll": {
+						"formula": "(floor(((@item.level) - 1) / 2))d8"
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
 			"name": "Spiritual Weapon",
 			"source": "PHB",
-			"system": {
-				"activities": [
-					{
-						"type": "damage",
-						"damage.parts": [
+			"activities": [
+				{
+					"type": "damage",
+					"damage": {
+						"parts": [
 							{
-								"custom.enabled": true,
-								"custom.formula": "(floor((@item.level) / 2))d8 + @mod",
+								"custom": {
+									"enabled": true,
+									"formula": "(floor((@item.level) / 2))d8 + @mod"
+								},
 								"types": [
 									"force"
 								]
 							}
 						]
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
 			"name": "Summon Aberration",
 			"source": "TCE",
-			"system": {
-				"summons.match.proficiency": true,
-				"summons.match.attacks": true,
-				"summons.match.saves": true,
-				"summons.bonuses.ac": "@item.level",
-				"summons.bonuses.hp": "(@item.level - 4) * 10",
-				"summons.bonuses.attackDamage": "@item.level",
-				"summons.profiles": [
-					{
-						"name": "Beholderkin",
-						"uuid": "@creature[aberrant spirit (beholderkin)|tce]"
+			"activities": [
+				{
+					"type": "summon",
+					"profiles": [
+						{
+							"name": "Beholderkin",
+							"uuid": "@creature[aberrant spirit (beholderkin)|tce]"
+						},
+						{
+							"name": "Slaad",
+							"uuid": "@creature[aberrant spirit (slaad)|tce]"
+						},
+						{
+							"name": "Star Spawn",
+							"uuid": "@creature[aberrant spirit (star spawn)|tce]"
+						}
+					],
+					"bonuses": {
+						"ac": "@item.level",
+						"hp": "(@item.level - 4) * 10",
+						"attackDamage": "@item.level"
 					},
-					{
-						"name": "Slaad",
-						"uuid": "@creature[aberrant spirit (slaad)|tce]"
-					},
-					{
-						"name": "Star Spawn",
-						"uuid": "@creature[aberrant spirit (star spawn)|tce]"
+					"match": {
+						"proficiency": true,
+						"attacks": true,
+						"saves": true
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
 			"name": "Summon Aberration",
 			"source": "XPHB",
-			"system": {
-				"activities": [
-					{
-						"type": "summon",
-						"bonuses": {
-							"ac": "@item.level",
-							"hp": "10 * (@item.level - 4)",
-							"attackDamage": "@item.level"
+			"activities": [
+				{
+					"type": "summon",
+					"profiles": [
+						{
+							"name": "Beholderkin",
+							"uuid": "@creature[aberrant spirit (beholderkin)|xphb]"
 						},
-						"match": {
-							"proficiency": true,
-							"attacks": true,
-							"saves": true
+						{
+							"name": "Slaad",
+							"uuid": "@creature[aberrant spirit (slaad)|xphb]"
 						},
-						"profiles": [
-							{
-								"name": "Beholderkin",
-								"uuid": "@creature[aberrant spirit (beholderkin)|xphb]"
-							},
-							{
-								"name": "Slaad",
-								"uuid": "@creature[aberrant spirit (slaad)|xphb]"
-							},
-							{
-								"name": "Star Spawn",
-								"uuid": "@creature[aberrant spirit (star spawn)|xphb]"
-							}
-						]
+						{
+							"name": "Star Spawn",
+							"uuid": "@creature[aberrant spirit (star spawn)|xphb]"
+						}
+					],
+					"bonuses": {
+						"ac": "@item.level",
+						"hp": "10 * (@item.level - 4)",
+						"attackDamage": "@item.level"
+					},
+					"match": {
+						"proficiency": true,
+						"attacks": true,
+						"saves": true
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
 			"name": "Summon Beast",
 			"source": "TCE",
-			"system": {
-				"summons.bonuses.ac": "@item.level",
-				"summons.bonuses.hp": "(@item.level - 2) * 5",
-				"summons.bonuses.attackDamage": "@item.level",
-				"summons.match.proficiency": true,
-				"summons.match.attacks": true,
-				"summons.profiles": [
-					{
-						"name": "Air",
-						"uuid": "@creature[bestial spirit (air)|tce]"
+			"activities": [
+				{
+					"type": "summon",
+					"profiles": [
+						{
+							"name": "Air",
+							"uuid": "@creature[bestial spirit (air)|tce]"
+						},
+						{
+							"name": "Land",
+							"uuid": "@creature[bestial spirit (land)|tce]"
+						},
+						{
+							"name": "Water",
+							"uuid": "@creature[bestial spirit (water)|tce]"
+						}
+					],
+					"bonuses": {
+						"ac": "@item.level",
+						"hp": "(@item.level - 2) * 5",
+						"attackDamage": "@item.level"
 					},
-					{
-						"name": "Land",
-						"uuid": "@creature[bestial spirit (land)|tce]"
-					},
-					{
-						"name": "Water",
-						"uuid": "@creature[bestial spirit (water)|tce]"
+					"match": {
+						"proficiency": true,
+						"attacks": true
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
 			"name": "Summon Celestial",
 			"source": "TCE",
-			"system": {
-				"summons.match.proficiency": true,
-				"summons.match.attacks": true,
-				"summons.bonuses.ac": "@item.level",
-				"summons.bonuses.hp": "(@item.level - 5) * 10",
-				"summons.bonuses.attackDamage": "@item.level",
-				"summons.bonuses.healing": "@item.level",
-				"summons.profiles": [
-					{
-						"name": "Avenger",
-						"uuid": "@creature[celestial spirit (avenger)|tce]"
+			"activities": [
+				{
+					"type": "summon",
+					"profiles": [
+						{
+							"name": "Avenger",
+							"uuid": "@creature[celestial spirit (avenger)|tce]"
+						},
+						{
+							"name": "Defender",
+							"uuid": "@creature[celestial spirit (defender)|tce]"
+						}
+					],
+					"bonuses": {
+						"ac": "@item.level",
+						"hp": "(@item.level - 5) * 10",
+						"attackDamage": "@item.level",
+						"healing": "@item.level"
 					},
-					{
-						"name": "Defender",
-						"uuid": "@creature[celestial spirit (defender)|tce]"
+					"match": {
+						"proficiency": true,
+						"attacks": true
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
 			"name": "Summon Construct",
 			"source": "TCE",
-			"system": {
-				"summons.bonuses.ac": "@item.level",
-				"summons.bonuses.hp": "(@item.level - 4) * 15",
-				"summons.bonuses.attackDamage": "@item.level",
-				"summons.match.proficiency": true,
-				"summons.match.attacks": true,
-				"summons.match.saves": true,
-				"summons.profiles": [
-					{
-						"name": "Clay",
-						"uuid": "@creature[construct spirit (clay)|tce]"
+			"activities": [
+				{
+					"type": "summon",
+					"profiles": [
+						{
+							"name": "Clay",
+							"uuid": "@creature[construct spirit (clay)|tce]"
+						},
+						{
+							"name": "Metal",
+							"uuid": "@creature[construct spirit (metal)|tce]"
+						},
+						{
+							"name": "Stone",
+							"uuid": "@creature[construct spirit (stone)|tce]"
+						}
+					],
+					"bonuses": {
+						"ac": "@item.level",
+						"hp": "(@item.level - 4) * 15",
+						"attackDamage": "@item.level"
 					},
-					{
-						"name": "Metal",
-						"uuid": "@creature[construct spirit (metal)|tce]"
-					},
-					{
-						"name": "Stone",
-						"uuid": "@creature[construct spirit (stone)|tce]"
+					"match": {
+						"proficiency": true,
+						"attacks": true,
+						"saves": true
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
 			"name": "Summon Draconic Spirit",
 			"source": "FTD",
-			"system": {
-				"summons.profiles": [
-					{
-						"name": "Chromatic",
-						"uuid": "@creature[draconic spirit (chromatic)|ftd]"
-					},
-					{
-						"name": "Gem",
-						"uuid": "@creature[draconic spirit (gem)|ftd]"
-					},
-					{
-						"name": "Metallic",
-						"uuid": "@creature[draconic spirit (metallic)|ftd]"
-					}
-				]
-			},
+			"activities": [
+				{
+					"type": "summon",
+					"profiles": [
+						{
+							"name": "Chromatic",
+							"uuid": "@creature[draconic spirit (chromatic)|ftd]"
+						},
+						{
+							"name": "Gem",
+							"uuid": "@creature[draconic spirit (gem)|ftd]"
+						},
+						{
+							"name": "Metallic",
+							"uuid": "@creature[draconic spirit (metallic)|ftd]"
+						}
+					]
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
 			"name": "Summon Elemental",
 			"source": "TCE",
-			"system": {
-				"summons.bonuses.ac": "@item.level",
-				"summons.bonuses.hp": "(@item.level - 4) * 10",
-				"summons.bonuses.attackDamage": "@item.level",
-				"summons.match.proficiency": true,
-				"summons.match.attacks": true,
-				"summons.profiles": [
-					{
-						"name": "Air",
-						"uuid": "@creature[elemental spirit (air)|tce]"
+			"activities": [
+				{
+					"type": "summon",
+					"profiles": [
+						{
+							"name": "Air",
+							"uuid": "@creature[elemental spirit (air)|tce]"
+						},
+						{
+							"name": "Earth",
+							"uuid": "@creature[elemental spirit (earth)|tce]"
+						},
+						{
+							"name": "Fire",
+							"uuid": "@creature[elemental spirit (fire)|tce]"
+						},
+						{
+							"name": "Water",
+							"uuid": "@creature[elemental spirit (water)|tce]"
+						}
+					],
+					"bonuses": {
+						"ac": "@item.level",
+						"hp": "(@item.level - 4) * 10",
+						"attackDamage": "@item.level"
 					},
-					{
-						"name": "Earth",
-						"uuid": "@creature[elemental spirit (earth)|tce]"
-					},
-					{
-						"name": "Fire",
-						"uuid": "@creature[elemental spirit (fire)|tce]"
-					},
-					{
-						"name": "Water",
-						"uuid": "@creature[elemental spirit (water)|tce]"
+					"match": {
+						"proficiency": true,
+						"attacks": true
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
 			"name": "Summon Fey",
 			"source": "TCE",
-			"system": {
-				"summons.bonuses.ac": "@item.level",
-				"summons.bonuses.hp": "(@item.level - 3) * 10",
-				"summons.bonuses.attackDamage": "@item.level",
-				"summons.match.proficiency": true,
-				"summons.match.attacks": true,
-				"summons.match.saves": true,
-				"summons.profiles": [
-					{
-						"name": "Fuming",
-						"uuid": "@creature[fey spirit (fuming)|tce]"
+			"activities": [
+				{
+					"type": "summon",
+					"profiles": [
+						{
+							"name": "Fuming",
+							"uuid": "@creature[fey spirit (fuming)|tce]"
+						},
+						{
+							"name": "Mirthful",
+							"uuid": "@creature[fey spirit (mirthful)|tce]"
+						},
+						{
+							"name": "Tricksy",
+							"uuid": "@creature[fey spirit (tricksy)|tce]"
+						}
+					],
+					"bonuses": {
+						"ac": "@item.level",
+						"hp": "(@item.level - 3) * 10",
+						"attackDamage": "@item.level"
 					},
-					{
-						"name": "Mirthful",
-						"uuid": "@creature[fey spirit (mirthful)|tce]"
-					},
-					{
-						"name": "Tricksy",
-						"uuid": "@creature[fey spirit (tricksy)|tce]"
+					"match": {
+						"proficiency": true,
+						"attacks": true,
+						"saves": true
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
 			"name": "Summon Fiend",
 			"source": "TCE",
-			"system": {
-				"summons.bonuses.ac": "@item.level",
-				"summons.bonuses.hp": "15 * @item.level",
-				"summons.bonuses.attackDamage": "@item.level",
-				"summons.bonuses.saveDamage": "@item.level",
-				"summons.match.attacks": true,
-				"summons.match.proficiency": true,
-				"summons.match.saves": true,
-				"summons.profiles": [
-					{
-						"name": "Demon",
-						"uuid": "@creature[fiendish spirit (demon)|tce]"
+			"activities": [
+				{
+					"type": "summon",
+					"profiles": [
+						{
+							"name": "Demon",
+							"uuid": "@creature[fiendish spirit (demon)|tce]"
+						},
+						{
+							"name": "Devil",
+							"uuid": "@creature[fiendish spirit (devil)|tce]"
+						},
+						{
+							"name": "Yugoloth",
+							"uuid": "@creature[fiendish spirit (yugoloth)|tce]"
+						}
+					],
+					"bonuses": {
+						"ac": "@item.level",
+						"hp": "15 * @item.level",
+						"attackDamage": "@item.level",
+						"saveDamage": "@item.level"
 					},
-					{
-						"name": "Devil",
-						"uuid": "@creature[fiendish spirit (devil)|tce]"
-					},
-					{
-						"name": "Yugoloth",
-						"uuid": "@creature[fiendish spirit (yugoloth)|tce]"
+					"match": {
+						"attacks": true,
+						"proficiency": true,
+						"saves": true
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
 			"name": "Summon Shadowspawn",
 			"source": "TCE",
-			"system": {
-				"summons.match.attacks": true,
-				"summons.match.saves": true,
-				"summons.bonuses.ac": "@item.level",
-				"summons.bonuses.hp": "(@item.level - 3) * 15",
-				"summons.bonuses.attackDamage": "@item.level",
-				"summons.profiles": [
-					{
-						"name": "Fury",
-						"uuid": "@creature[shadow spirit (fury)|tce]"
+			"activities": [
+				{
+					"type": "summon",
+					"profiles": [
+						{
+							"name": "Fury",
+							"uuid": "@creature[shadow spirit (fury)|tce]"
+						},
+						{
+							"name": "Despair",
+							"uuid": "@creature[shadow spirit (despair)|tce]"
+						},
+						{
+							"name": "Fear",
+							"uuid": "@creature[shadow spirit (fear)|tce]"
+						}
+					],
+					"bonuses": {
+						"ac": "@item.level",
+						"hp": "(@item.level - 3) * 15",
+						"attackDamage": "@item.level"
 					},
-					{
-						"name": "Despair",
-						"uuid": "@creature[shadow spirit (despair)|tce]"
-					},
-					{
-						"name": "Fear",
-						"uuid": "@creature[shadow spirit (fear)|tce]"
+					"match": {
+						"attacks": true,
+						"saves": true
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
 			"name": "Summon Undead",
 			"source": "TCE",
-			"system": {
-				"summons.bonuses.ac": "@item.level",
-				"summons.bonuses.hp": "(@item.level - 3) * 10",
-				"summons.bonuses.attackDamage": "@item.level",
-				"summons.match.attacks": true,
-				"summons.match.proficiency": true,
-				"summons.match.saves": true,
-				"summons.profiles": [
-					{
-						"name": "Ghostly",
-						"uuid": "@creature[undead spirit (ghostly)|tce]"
+			"activities": [
+				{
+					"type": "summon",
+					"profiles": [
+						{
+							"name": "Ghostly",
+							"uuid": "@creature[undead spirit (ghostly)|tce]"
+						},
+						{
+							"name": "Putrid",
+							"uuid": "@creature[undead spirit (putrid)|tce]"
+						},
+						{
+							"name": "Skeletal",
+							"uuid": "@creature[undead spirit (skeletal)|tce]"
+						}
+					],
+					"bonuses": {
+						"ac": "@item.level",
+						"hp": "(@item.level - 3) * 10",
+						"attackDamage": "@item.level"
 					},
-					{
-						"name": "Putrid",
-						"uuid": "@creature[undead spirit (putrid)|tce]"
-					},
-					{
-						"name": "Skeletal",
-						"uuid": "@creature[undead spirit (skeletal)|tce]"
+					"match": {
+						"attacks": true,
+						"proficiency": true,
+						"saves": true
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
 			"name": "Witch Bolt",
 			"source": "PHB",
-			"system": {
-				"activities": [
-					{
-						"type": "damage",
-						"damage.parts": [
+			"activities": [
+				{
+					"type": "damage",
+					"damage": {
+						"parts": [
 							{
-								"custom.enabled": true,
-								"custom.formula": "1d12",
+								"custom": {
+									"enabled": true,
+									"formula": "1d12"
+								},
 								"types": [
 									"lightning"
 								]
 							}
 						]
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		}
 	]

@@ -894,6 +894,98 @@ export class LightTag {
 
 	static tryRun (ent, opts) {
 		if (ent.entries) this._checkAndTag(ent, opts);
-		if (ent.inherits && ent.inherits.entries) this._checkAndTag(ent.inherits, opts);
+		if (ent.inherits?.entries) this._checkAndTag(ent.inherits, opts);
+	}
+}
+
+export class AttachedSpellChargesTag {
+	static _getSpellUid (spell) {
+		return spell.toLowerCase().trim().replace(/\|phb$/, "");
+	}
+
+	static _checkAndTag (obj, opts) {
+		if (!(obj.attachedSpells instanceof Array)) return;
+
+		const spellsOther = new Set(obj.attachedSpells.map(it => it.toLowerCase().replace(/\|phb$/, "")));
+		const spellsByCharge = {};
+		const spellsByDaily = {};
+
+		MiscUtil.getWalker({isNoModification: true}).walk(
+			obj.entries,
+			{
+				string: str => {
+					str = str.replace(/{@spell (?<spell>[^}]+)} \(((?<lvl>\d+)..[- ]level version, )?(?<cntCharges>\d+) charges?\)/gi, (...m) => {
+						const {spell, lvl, cntCharges} = m.at(-1);
+						const spellUid = this._getSpellUid(spell);
+						spellsOther.delete(spellUid);
+						const spellUidWithLevel = lvl
+							? `${spellUid}#${lvl}`
+							: spellUid;
+						(spellsByCharge[cntCharges] ||= new Set()).add(spellUidWithLevel);
+					});
+
+					str = str.replace(/expend (?:no more than )?(?<cntCharges>\d+) (?:of its )?charges? to cast {@spell (?<spell>[^}]+)}( \(((?<lvl>\d+)..[- ]level version)?\))?/gi, (...m) => {
+						const {spell, lvl, cntCharges} = m.at(-1);
+						const spellUid = this._getSpellUid(spell);
+						spellsOther.delete(spellUid);
+						const spellUidWithLevel = lvl
+							? `${spellUid}#${lvl}`
+							: spellUid;
+						(spellsByCharge[cntCharges] ||= new Set()).add(spellUidWithLevel);
+					});
+
+					if (/\buntil the next dawn\b/i.test(str)) {
+						str = str.replace(/{@spell (?<spell>[^}]+)}/gi, (...m) => {
+							const {spell} = m.at(-1);
+							const spellUid = this._getSpellUid(spell);
+							spellsOther.delete(spellUid);
+							(spellsByDaily["1e"] ||= new Set()).add(spellUid);
+						});
+					}
+				},
+				object: obj => {
+					if (obj.type !== "table") return;
+					if (obj.colLabels?.length !== 2) return;
+					if (typeof obj.colLabels[1] !== "string" || !/\bcharges?\b/i.test(obj.colLabels[1])) return;
+					if (!obj.rows?.length) return;
+					obj.rows
+						.forEach(([c1, c2]) => {
+							if (typeof c1 !== "string") return;
+							if (isNaN(c2)) return;
+
+							c1.replace(/{@spell (?<spell>[^}]+)}/gi, (...m) => {
+								const {spell} = m.at(-1);
+								const spellUid = this._getSpellUid(spell);
+								spellsOther.delete(spellUid);
+								(spellsByCharge[c2] ||= new Set()).add(spellUid);
+							});
+						});
+				},
+			},
+		);
+
+		if (!Object.keys(spellsByCharge).length && !Object.keys(spellsByDaily).length) return;
+
+		if (spellsOther.size && opts.isSkipUnknown) return;
+
+		obj.attachedSpells = {};
+		if (Object.keys(spellsByCharge).length) {
+			obj.attachedSpells.charges = Object.fromEntries(
+				Object.entries(spellsByCharge)
+					.map(([cnt, set]) => [cnt, [...set].sort(SortUtil.ascSortLower)]),
+			);
+		}
+		if (Object.keys(spellsByDaily).length) {
+			obj.attachedSpells.daily = Object.fromEntries(
+				Object.entries(spellsByDaily)
+					.map(([cnt, set]) => [cnt, [...set].sort(SortUtil.ascSortLower)]),
+			);
+		}
+		if (spellsOther.size) obj.attachedSpells.other = [...spellsOther].sort(SortUtil.ascSortLower);
+	}
+
+	static tryRun (ent, opts) {
+		if (ent.entries && ent.attachedSpells) this._checkAndTag(ent, opts);
+		if (ent.inherits?.entries && ent.inherits?.attachedSpells) this._checkAndTag(ent.inherits, opts);
 	}
 }
