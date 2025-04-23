@@ -2,7 +2,6 @@ import {ActionTag, DiceConvert, SenseTag, SkillTag, TagCondition, TaggerUtils} f
 import {VetoolsConfig} from "../utils-config/utils-config-config.js";
 import {ConverterTaggerInitializable} from "./converterutils-taggerbase.js";
 import {SITE_STYLE__CLASSIC, SITE_STYLE__ONE} from "../consts.js";
-import {ConverterUtils} from "./converterutils-utils.js";
 
 const LAST_KEY_ALLOWLIST = new Set([
 	"entries",
@@ -60,6 +59,7 @@ export class TagJsons {
 							obj = ActionTag.tryRunStrictCapsWords(obj, {styleHint});
 							obj = TableTag.tryRun(obj, {styleHint});
 							obj = TrapTag.tryRun(obj, {styleHint});
+							obj = HazardTag.tryRunStrictCapsWords(obj, {styleHint});
 							obj = HazardTag.tryRun(obj, {styleHint});
 							obj = ChanceTag.tryRun(obj, {styleHint});
 							obj = QuickrefTag.tryRun(obj, {styleHint});
@@ -833,6 +833,40 @@ export class HazardTag extends ConverterTaggerInitializable {
 				const {name, suffix} = m.at(-1);
 				return `{@hazard ${name}}${suffix}`;
 			})
+		;
+	}
+
+	static _tryRunStrictCapsWords (ent, {styleHint = null} = {}) {
+		if (styleHint === "classic") return ent;
+
+		const walker = MiscUtil.getWalker({keyBlocklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST});
+		return walker.walk(
+			ent,
+			{
+				string: (str) => {
+					const ptrStack = {_: ""};
+
+					TaggerUtils.walkerStringHandlerStrictCapsWords(
+						["@hazard"],
+						ptrStack,
+						str,
+						{
+							fnTag: strMod => this._fnTagStrict_one(strMod),
+						},
+					);
+
+					return ptrStack._
+						.replace(/(?<prefix>\bstarts )burning\b/g, (...m) => {
+							return `${m.at(-1).prefix}{@hazard burning|XPHB}`;
+						});
+				},
+			},
+		);
+	}
+
+	static _fnTagStrict_one (strMod) {
+		return strMod
+			.replace(this._RE_BASIC_XPHB, (...m) => `{@hazard ${m.at(-1).name}|${Parser.SRC_XPHB}}`)
 		;
 	}
 }

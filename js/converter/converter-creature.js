@@ -30,7 +30,7 @@ import {
 	TagImmResVulnConditional,
 	TraitActionTag,
 } from "./converterutils-creature.js";
-import {CoreRuleTag, SpellTag} from "./converterutils-entries.js";
+import {CoreRuleTag, HazardTag, SpellTag} from "./converterutils-entries.js";
 import {PropOrder} from "../utils-proporder.js";
 import {ConverterStringBlocklist} from "./converterutils-utils-blocklist.js";
 import {VetoolsConfig} from "../utils-config/utils-config-config.js";
@@ -1829,6 +1829,7 @@ export class ConverterCreature extends ConverterBase {
 		TagImmResVulnConditional.tryRun(stats);
 		DragonAgeTag.tryRun(stats);
 		if (!stats.gear) AttachedItemTag.tryRun(stats);
+		HazardTag.tryRunPropsStrictCapsWords(stats, Renderer.monster.CHILD_PROPS_EXTENDED, {styleHint: options.styleHint});
 		CoreRuleTag.tryRunProps(stats, Renderer.monster.CHILD_PROPS_EXTENDED, {styleHint: options.styleHint});
 		this._doStatblockPostProcess_doCleanup(stats, options);
 		this._doStatblockPostProcess_doVerify(stats, options);

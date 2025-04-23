@@ -179,7 +179,7 @@ export class FilterSnapshotUiTabSnapshots {
 
 		const isEveryExpanded = boxSnapshots => boxSnapshots.every(boxSnapshot => boxSnapshot.entity.manager_loader_isExpanded);
 
-		const btnExpandCollapseAll = ee`<button class="ve-btn ve-btn-default ve-btn-xs px-1 ve-flex-vh-center h-100 no-shrink ve-col-0-5 no-select">[+]</button>`
+		const btnExpandCollapseAll = ee`<button class="ve-btn ve-btn-default ve-btn-xs px-1 ve-flex-vh-center h-100 no-shrink ve-col-1 no-select">[+]</button>`
 			.onn("click", () => {
 				if (!this._compManager._state.boxSnapshots.length) return;
 
@@ -203,7 +203,7 @@ export class FilterSnapshotUiTabSnapshots {
 				${cbMulti}
 			</label>
 			${btnExpandCollapseAll}
-			<button class="ve-btn ve-btn-default ve-btn-xs ve-col-9" disabled>&nbsp;</button>
+			<button class="ve-btn ve-btn-default ve-btn-xs ve-col-8-5" disabled>&nbsp;</button>
 			<button class="ve-btn ve-btn-default ve-btn-xs ve-grow" disabled>&nbsp;</button>
 		</div>`;
 

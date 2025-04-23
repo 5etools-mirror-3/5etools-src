@@ -1400,7 +1400,10 @@ class IndexableSpecialPages extends IndexableSpecial {
 				n: name,
 				c: Parser.CAT_ID_PAGE,
 				u: page,
-				r: 1, // Consider basic pages to be "SRD friendly"
+				// region Consider basic pages to be "SRD friendly"
+				r: 1,
+				r2: 1,
+				// endregion
 			}));
 	}
 }

@@ -20,8 +20,6 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 		this._sourceFilter.addItem(cls.source);
 		this._miscFilter.addItem(cls._fMisc);
 
-		if (cls.fluff) cls.fluff.forEach(it => this._addEntrySourcesToFilter(it));
-
 		cls.subclasses.forEach(sc => {
 			const isScExcluded = subclassExclusions[sc.source]?.[sc.name] || false;
 			if (isScExcluded) return;

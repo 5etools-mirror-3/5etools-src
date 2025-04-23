@@ -401,9 +401,9 @@ class OmnisearchUi {
 		const rowMetas = results
 			.slice(ixSliceStart, ixSliceStart + this._MAX_RESULTS)
 			.map((result, ixInPage) => {
-				const r = result.doc;
+				const resultDoc = result.doc;
 
-				const lnk = OmnisearchUtilsUi.getResultLink(r)
+				const lnk = OmnisearchUtilsUi.getResultLink(resultDoc)
 					.onn("keydown", evt => this._handleKeydown_link({rdState, evt, results, ixPage, rowMetas, ixInPage}));
 
 				const {
@@ -415,7 +415,7 @@ class OmnisearchUi {
 					ptStyle,
 					sourceAbv,
 					sourceFull,
-				} = UtilsOmnisearch.getUnpackedSearchResult(r);
+				} = UtilsOmnisearch.getUnpackedSearchResult(resultDoc);
 
 				const ptPageInner = page ? `p${page}` : "";
 				const adventureBookSourceHref = SourceUtil.getAdventureBookSourceHref(source, page);

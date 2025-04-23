@@ -1,23 +1,23 @@
 import {OmnisearchBacking} from "./omnisearch-backing.js";
 
 export class OmnisearchUtilsUi {
-	static _isFauxPage (r) {
-		return !!r.hx;
+	static _isFauxPage (resultDoc) {
+		return !!resultDoc.hx;
 	}
 
-	static getResultHref (r) {
-		const isFauxPage = this._isFauxPage(r);
+	static getResultHref (resultDoc) {
+		const isFauxPage = this._isFauxPage(resultDoc);
 		if (isFauxPage) return null;
-		return r.c === Parser.CAT_ID_PAGE ? r.u : `${Renderer.get().baseUrl}${UrlUtil.categoryToPage(r.c)}#${r.uh || r.u}`;
+		return resultDoc.c === Parser.CAT_ID_PAGE ? resultDoc.u : `${Renderer.get().baseUrl}${UrlUtil.categoryToPage(resultDoc.c)}#${resultDoc.uh || resultDoc.u}`;
 	}
 
-	static getResultLink (r) {
-		const isFauxPage = this._isFauxPage(r);
+	static getResultLink (resultDoc) {
+		const isFauxPage = this._isFauxPage(resultDoc);
 
-		if (isFauxPage) return ee`<span tabindex="0" ${r.h ? this._getResultLink_getHoverString(r.c, r.u, r.s, {isFauxPage}) : ""} class="omni__lnk-name help">${r.cf}: ${r.n}</span>`;
+		if (isFauxPage) return ee`<span tabindex="0" ${resultDoc.h ? this._getResultLink_getHoverString(resultDoc.c, resultDoc.u, resultDoc.s, {isFauxPage}) : ""} class="omni__lnk-name help">${resultDoc.cf}: ${resultDoc.n}</span>`;
 
-		const href = this.getResultHref(r);
-		return ee`<a href="${href}" ${r.h ? this._getResultLink_getHoverString(r.c, r.u, r.s, {isFauxPage}) : ""} class="omni__lnk-name">${r.cf}: ${r.n}</a>`;
+		const href = this.getResultHref(resultDoc);
+		return ee`<a href="${href}" ${resultDoc.h ? this._getResultLink_getHoverString(resultDoc.c, resultDoc.u, resultDoc.s, {isFauxPage}) : ""} class="omni__lnk-name">${resultDoc.cf}: ${resultDoc.n}</a>`;
 	}
 
 	static _getResultLink_getHoverString (category, url, src, {isFauxPage = false} = {}) {

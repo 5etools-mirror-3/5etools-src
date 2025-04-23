@@ -314,7 +314,7 @@ export class RecursiveSearchStateClass extends _RecursiveSearchStateBase {
 			it.srd = !!this._cls.srd;
 			it.srd52 = !!this._cls.srd52;
 			it.basicRules = !!this._cls.basicRules;
-			it.freeRules2024 = !!this._cls.freeRules2024;
+			it.basicRules2024 = !!this._cls.basicRules2024;
 
 			this._getStacks_mutDataAddPage(it);
 			this._getStacks_mutCleanTableOrGroup(it);
@@ -348,7 +348,7 @@ export class RecursiveSearchStateSubclass extends _RecursiveSearchStateBase {
 			it.srd = !!this._sc.srd;
 			it.srd52 = !!this._sc.srd52;
 			it.basicRules = !!this._sc.basicRules;
-			it.freeRules2024 = !!this._sc.freeRules2024;
+			it.basicRules2024 = !!this._sc.basicRules2024;
 
 			this._getStacks_mutDataAddPage(it);
 			this._getStacks_mutCleanTableOrGroup(it);
