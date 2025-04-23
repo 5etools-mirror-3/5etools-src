@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.8.0"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.8.1"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -4772,7 +4772,7 @@ globalThis.DataUtil = {
 			srd: true,
 			srd52: true,
 			basicRules: true,
-			freeRules2024: true,
+			basicRules2024: true,
 			reprintedAs: true,
 			hasFluff: true,
 			hasFluffImages: true,
@@ -5853,7 +5853,7 @@ globalThis.DataUtil = {
 		 * @param [opts.isLower]
 		 */
 		static unpackUid (prop, uid, tag, opts) {
-			if (DataUtil[prop]?.unpackUid) return DataUtil[prop]?.unpackUid(uid, tag, opts);
+			if (DataUtil[prop]?.unpackUid) return DataUtil[prop]?.unpackUid(uid, opts);
 			return DataUtil.generic.unpackUid(uid, tag, opts);
 		}
 
@@ -6774,7 +6774,7 @@ globalThis.DataUtil = {
 		static _DIR = "class";
 		static _PROP = "classFeature";
 
-		static unpackUid (uid, tag, opts) { return DataUtil.class.unpackUidClassFeature(uid, opts); }
+		static unpackUid (uid, opts) { return DataUtil.class.unpackUidClassFeature(uid, opts); }
 		static getUid (ent, opts) { return DataUtil.class.packUidClassFeature(ent, opts); }
 	},
 
@@ -6808,7 +6808,7 @@ globalThis.DataUtil = {
 		static _DIR = "class";
 		static _PROP = "subclassFeature";
 
-		static unpackUid (uid, tag, opts) { return DataUtil.class.unpackUidSubclassFeature(uid, opts); }
+		static unpackUid (uid, opts) { return DataUtil.class.unpackUidSubclassFeature(uid, opts); }
 		static getUid (ent, opts) { return DataUtil.class.packUidSubclassFeature(ent, opts); }
 	},
 

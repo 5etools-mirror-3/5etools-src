@@ -3318,12 +3318,12 @@ Renderer.utils = class {
 		const externalSourceText = Renderer.utils._getAltSourceHtmlOrText(it, "externalSources", "External sources:", isText);
 
 		const srdText = it.srd52
-			? `${isText ? "" : `the <span title="Systems Reference Document (5.2)">`}SRD${isText ? "" : `</span>`}${typeof it.srd === "string" ? ` (as &quot;${it.srd}&quot;)` : ""}`
+			? `${isText ? "" : `the <span title="Systems Reference Document (5.2)">`}SRD 5.2${isText ? "" : `</span>`}${typeof it.srd === "string" ? ` (as &quot;${it.srd}&quot;)` : ""}`
 			: it.srd
-				? `${isText ? "" : `the <span title="Systems Reference Document (5.1)">`}SRD${isText ? "" : `</span>`}${typeof it.srd === "string" ? ` (as &quot;${it.srd}&quot;)` : ""}`
+				? `${isText ? "" : `the <span title="Systems Reference Document (5.1)">`}SRD 5.1${isText ? "" : `</span>`}${typeof it.srd === "string" ? ` (as &quot;${it.srd}&quot;)` : ""}`
 				: "";
-		const basicRulesText = it.freeRules2024
-			? `the Free Rules (2024)${typeof it.freeRules2024 === "string" ? ` (as &quot;${it.freeRules2024}&quot;)` : ""}`
+		const basicRulesText = it.basicRules2024
+			? `the Basic Rules (2024)${typeof it.basicRules2024 === "string" ? ` (as &quot;${it.basicRules2024}&quot;)` : ""}`
 			: it.basicRules
 				? `the Basic Rules (2014)${typeof it.basicRules === "string" ? ` (as &quot;${it.basicRules}&quot;)` : ""}`
 				: "";
@@ -8388,12 +8388,12 @@ Renderer.race = class {
 		cpy._baseSrd = cpy.srd;
 		cpy._baseSrd52 = cpy.srd52;
 		cpy._baseBasicRules = cpy.basicRules;
-		cpy._baseFreeRules2024 = cpy.freeRules2024;
+		cpy._baseFreeRules2024 = cpy.basicRules2024;
 		delete cpy.subraces;
 		delete cpy.srd;
 		delete cpy.srd52;
 		delete cpy.basicRules;
-		delete cpy.freeRules2024;
+		delete cpy.basicRules2024;
 		delete cpy._versions;
 		delete cpy.hasFluff;
 		delete cpy.hasFluffImages;
@@ -12035,7 +12035,7 @@ Renderer.item = class {
 		specificVariant._baseSrd = baseItem.srd;
 		specificVariant._baseSrd52 = baseItem.srd52;
 		specificVariant._baseBasicRules = baseItem.basicRules;
-		specificVariant._baseFreeRules2024 = baseItem.freeRules2024;
+		specificVariant._baseFreeRules2024 = baseItem.basicRules2024;
 		if (baseItem.source !== inherits.source) specificVariant._baseSource = baseItem.source;
 
 		specificVariant._variantName = genericVariant.name;
@@ -12048,7 +12048,7 @@ Renderer.item = class {
 		delete specificVariant.srd;
 		delete specificVariant.srd52;
 		delete specificVariant.basicRules;
-		delete specificVariant.freeRules2024;
+		delete specificVariant.basicRules2024;
 		delete specificVariant.page;
 
 		// Remove fluff specifiers

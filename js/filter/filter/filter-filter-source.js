@@ -1,6 +1,6 @@
 import {FilterItem} from "../filter-item.js";
 import {Filter} from "./filter-filter-generic.js";
-import {MISC_FILTER_VALUE__BASIC_RULES_2014, MISC_FILTER_VALUE__FREE_RULES_2024, MISC_FILTER_VALUE__SRD_5_1, MISC_FILTER_VALUE__SRD_5_2, PILL_STATE__IGNORE, PILL_STATE__YES, SOURCE_HEADER} from "../filter-constants.js";
+import {MISC_FILTER_VALUE__BASIC_RULES_2014, MISC_FILTER_VALUE__BASIC_RULES_2024, MISC_FILTER_VALUE__SRD_5_1, MISC_FILTER_VALUE__SRD_5_2, PILL_STATE__IGNORE, PILL_STATE__YES, SOURCE_HEADER} from "../filter-constants.js";
 import {PageFilterBase} from "../filter-page-filter-base.js";
 
 export class SourceFilterItem extends FilterItem {
@@ -290,7 +290,7 @@ export class SourceFilter extends Filter {
 		const basicRulesFilter = this._filterBox.filters.find(it => it.isBasicRulesFilter);
 		if (basicRulesFilter) {
 			basicRulesFilter.setValue(MISC_FILTER_VALUE__BASIC_RULES_2014, PILL_STATE__IGNORE);
-			basicRulesFilter.setValue(MISC_FILTER_VALUE__FREE_RULES_2024, PILL_STATE__IGNORE);
+			basicRulesFilter.setValue(MISC_FILTER_VALUE__BASIC_RULES_2024, PILL_STATE__IGNORE);
 		}
 
 		// also disable "Reprinted" otherwise some Deities are missing
@@ -306,7 +306,7 @@ export class SourceFilter extends Filter {
 		const basicRulesFilter = this._filterBox.filters.find(it => it.isBasicRulesFilter);
 		if (basicRulesFilter) {
 			basicRulesFilter.setValue(MISC_FILTER_VALUE__BASIC_RULES_2014, PILL_STATE__YES);
-			basicRulesFilter.setValue(MISC_FILTER_VALUE__FREE_RULES_2024, PILL_STATE__YES);
+			basicRulesFilter.setValue(MISC_FILTER_VALUE__BASIC_RULES_2024, PILL_STATE__YES);
 		}
 
 		const srdFilter = this._filterBox.filters.find(it => it.isSrdFilter);

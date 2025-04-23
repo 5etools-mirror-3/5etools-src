@@ -906,7 +906,7 @@ export class AttachedSpellChargesTag {
 	static _checkAndTag (obj, opts) {
 		if (!(obj.attachedSpells instanceof Array)) return;
 
-		const spellsWill = new Set(obj.attachedSpells.map(it => it.toLowerCase().replace(/\|phb$/, "")));
+		const spellsOther = new Set(obj.attachedSpells.map(it => it.toLowerCase().replace(/\|phb$/, "")));
 		const spellsByCharge = {};
 		const spellsByDaily = {};
 
@@ -914,31 +914,31 @@ export class AttachedSpellChargesTag {
 			obj.entries,
 			{
 				string: str => {
-					str = str.replace(/{@spell (?<spell>[^}]+)} \(((?<lvl>\d+)..[- ]level version, )?(?<cntCharges>\d+) charges?\)/g, (...m) => {
+					str = str.replace(/{@spell (?<spell>[^}]+)} \(((?<lvl>\d+)..[- ]level version, )?(?<cntCharges>\d+) charges?\)/gi, (...m) => {
 						const {spell, lvl, cntCharges} = m.at(-1);
 						const spellUid = this._getSpellUid(spell);
-						spellsWill.delete(spellUid);
+						spellsOther.delete(spellUid);
 						const spellUidWithLevel = lvl
 							? `${spellUid}#${lvl}`
 							: spellUid;
 						(spellsByCharge[cntCharges] ||= new Set()).add(spellUidWithLevel);
 					});
 
-					str = str.replace(/expend (?:no more than )?(?<cntCharges>\d+) (?:of its )?charges? to cast {@spell (?<spell>[^}]+)}( \(((?<lvl>\d+)..[- ]level version)?\))?/g, (...m) => {
+					str = str.replace(/expend (?:no more than )?(?<cntCharges>\d+) (?:of its )?charges? to cast {@spell (?<spell>[^}]+)}( \(((?<lvl>\d+)..[- ]level version)?\))?/gi, (...m) => {
 						const {spell, lvl, cntCharges} = m.at(-1);
 						const spellUid = this._getSpellUid(spell);
-						spellsWill.delete(spellUid);
+						spellsOther.delete(spellUid);
 						const spellUidWithLevel = lvl
 							? `${spellUid}#${lvl}`
 							: spellUid;
 						(spellsByCharge[cntCharges] ||= new Set()).add(spellUidWithLevel);
 					});
 
-					if (/\buntil the next dawn\b/.test(str)) {
-						str = str.replace(/{@spell (?<spell>[^}]+)}/g, (...m) => {
+					if (/\buntil the next dawn\b/i.test(str)) {
+						str = str.replace(/{@spell (?<spell>[^}]+)}/gi, (...m) => {
 							const {spell} = m.at(-1);
 							const spellUid = this._getSpellUid(spell);
-							spellsWill.delete(spellUid);
+							spellsOther.delete(spellUid);
 							(spellsByDaily["1e"] ||= new Set()).add(spellUid);
 						});
 					}
@@ -953,10 +953,10 @@ export class AttachedSpellChargesTag {
 							if (typeof c1 !== "string") return;
 							if (isNaN(c2)) return;
 
-							c1.replace(/{@spell (?<spell>[^}]+)}/g, (...m) => {
+							c1.replace(/{@spell (?<spell>[^}]+)}/gi, (...m) => {
 								const {spell} = m.at(-1);
 								const spellUid = this._getSpellUid(spell);
-								spellsWill.delete(spellUid);
+								spellsOther.delete(spellUid);
 								(spellsByCharge[c2] ||= new Set()).add(spellUid);
 							});
 						});
@@ -965,6 +965,8 @@ export class AttachedSpellChargesTag {
 		);
 
 		if (!Object.keys(spellsByCharge).length && !Object.keys(spellsByDaily).length) return;
+
+		if (spellsOther.size && opts.isSkipUnknown) return;
 
 		obj.attachedSpells = {};
 		if (Object.keys(spellsByCharge).length) {
@@ -979,7 +981,7 @@ export class AttachedSpellChargesTag {
 					.map(([cnt, set]) => [cnt, [...set].sort(SortUtil.ascSortLower)]),
 			);
 		}
-		if (spellsWill.size) obj.attachedSpells.will = [...spellsWill].sort(SortUtil.ascSortLower);
+		if (spellsOther.size) obj.attachedSpells.other = [...spellsOther].sort(SortUtil.ascSortLower);
 	}
 
 	static tryRun (ent, opts) {

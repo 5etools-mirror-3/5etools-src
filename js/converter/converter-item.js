@@ -487,7 +487,7 @@ export class ConverterItem extends ConverterBase {
 			"source",
 			"srd",
 			"basicRules",
-			"freeRules2024",
+			"basicRules2024",
 			"srd52",
 			"page",
 			"hasFluff",
@@ -647,7 +647,7 @@ export class ConverterItem extends ConverterBase {
 		delete cpyStatsQuarterstaff.srd;
 		delete cpyStatsQuarterstaff.srd52;
 		delete cpyStatsQuarterstaff.basicRules;
-		delete cpyStatsQuarterstaff.freeRules2024;
+		delete cpyStatsQuarterstaff.basicRules2024;
 		delete cpyStatsQuarterstaff.reprintedAs;
 
 		Object.entries(cpyStatsQuarterstaff)
