@@ -94,7 +94,20 @@ class UtilsTableview {
 			.filter(({isSelected}) => isSelected);
 
 		const parser = new DOMParser();
-		const rows = rdState.rows.map(row => headersActive.map(({ix}) => parser.parseFromString(`<div>${row[ix]}</div>`, "text/html").documentElement.textContent));
+		const rows = rdState.rows
+			.map(row => {
+				return headersActive
+					.map(({ix}) => {
+						const asText = parser.parseFromString(`<div>${row[ix]}</div>`, "text/html").documentElement.textContent || "";
+						return asText
+							.trim()
+							.split("\n")
+							.map(it => it.trim())
+							.join("\n")
+							.replace(/\n\n+/g, "\n\n")
+						;
+					});
+			});
 		return DataUtil.getCsv(headersActive.map(({name}) => name), rows);
 	}
 
