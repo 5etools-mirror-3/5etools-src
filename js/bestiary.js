@@ -273,7 +273,7 @@ class BestiaryPage extends ListPageMultiSource {
 	static _tableView_getEntryPropTransform ({mon, fnGet}) {
 		const fnGetSpellTraits = Renderer.monster.getSpellcastingRenderedTraits.bind(Renderer.monster, Renderer.get());
 		const allEntries = fnGet(mon, {fnGetSpellTraits});
-		return (allEntries || []).map(it => it.rendered || Renderer.get().render(it, 2)).join("");
+		return (allEntries || []).map(it => it.rendered || Renderer.get().render(it, 2)).join("\n");
 	}
 
 	constructor () {

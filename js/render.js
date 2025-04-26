@@ -10331,14 +10331,14 @@ Renderer.monster = class {
 	}
 
 	static getInitiativePart (mon, {isPlainText = false} = {}) {
-		const initBonus = this._getInitiativeBonus({mon});
+		const initBonus = this.getInitiativeBonusNumber({mon});
 		const initPassive = this._getInitiativePassive({mon, initBonus});
 		if (initBonus == null || initPassive == null) return "\u2014";
 		const entry = `{@initiative ${initBonus}} (${this._getInitiativePart_passive({mon, initPassive})})`;
 		return isPlainText ? Renderer.stripTags(entry) : Renderer.get().render(entry);
 	}
 
-	static _getInitiativeBonus ({mon}) {
+	static getInitiativeBonusNumber ({mon}) {
 		if (mon.initiative == null && (mon.dex == null || mon.dex.special)) return null;
 		if (mon.initiative == null) return Parser.getAbilityModNumber(mon.dex);
 		if (typeof mon.initiative === "number") return mon.initiative;

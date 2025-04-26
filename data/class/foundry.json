@@ -2139,22 +2139,56 @@
 							{
 								"type": "quote",
 								"entries": [
-									"Tether even a roasted chicken."
+									"Fish will not live where the water is too clear."
 								],
 								"by": "Yamamoto Tsunetomo",
 								"from": "Hagakure Kikigaki"
 							}
 						],
 						"foundrySystem": {
-							"equipped": true,
-							"damage.parts": [
-								[
-									"@scale.monk.die + @mod",
-									"bludgeoning"
-								]
-							],
-							"ability": "dex"
-						}
+							"equipped": true
+						},
+						"foundryActivities": [
+							{
+								"foundryId": "martialArts",
+								"name": "Monk Attack",
+								"type": "attack",
+								"activation": {
+									"type": "action",
+									"value": 1
+								},
+								"target": {
+									"affects": {
+										"count": "1",
+										"type": "creature"
+									}
+								},
+								"range": {
+									"value": "5",
+									"units": "ft"
+								},
+								"attack": {
+									"ability": "dex",
+									"type": {
+										"value": "melee",
+										"classification": "weapon"
+									}
+								},
+								"damage": {
+									"parts": [
+										{
+											"custom": {
+												"enabled": true,
+												"formula": "@scale.monk.die + @mod"
+											},
+											"types": [
+												"bludgeoning"
+											]
+										}
+									]
+								}
+							}
+						]
 					}
 				]
 			},
@@ -4566,6 +4600,73 @@
 					"transfer": true
 				}
 			],
+			"subEntities": {
+				"item": [
+					{
+						"name": "Unarmed Strike (Monk)",
+						"source": "XPHB",
+						"page": 100,
+						"srd52": true,
+						"type": "M",
+						"rarity": "none",
+						"weaponCategory": "simple",
+						"entries": [
+							{
+								"type": "quote",
+								"entries": [
+									"Tether even a roasted chicken."
+								],
+								"by": "Yamamoto Tsunetomo",
+								"from": "Hagakure Kikigaki"
+							}
+						],
+						"foundrySystem": {
+							"equipped": true
+						},
+						"foundryActivities": [
+							{
+								"foundryId": "martialArts",
+								"name": "Monk Attack",
+								"type": "attack",
+								"activation": {
+									"type": "action",
+									"value": 1
+								},
+								"target": {
+									"affects": {
+										"count": "1",
+										"type": "creature"
+									}
+								},
+								"range": {
+									"value": "5",
+									"units": "ft"
+								},
+								"attack": {
+									"ability": "dex",
+									"type": {
+										"value": "melee",
+										"classification": "weapon"
+									}
+								},
+								"damage": {
+									"parts": [
+										{
+											"custom": {
+												"enabled": true,
+												"formula": "@scale.monk.die + @mod"
+											},
+											"types": [
+												"bludgeoning"
+											]
+										}
+									]
+								}
+							}
+						]
+					}
+				]
+			},
 			"migrationVersion": 3
 		},
 		{
@@ -9820,15 +9921,49 @@
 							"When you take the {@action Attack} action on your turn and use this special attack as part of it, you can spend 1 ki point to make this special attack twice as a bonus action. When you gain the Extra Attack feature, this special attack can be used for any of the attacks you make as part of the {@action Attack} action."
 						],
 						"foundrySystem": {
-							"equipped": true,
-							"damage.parts": [
-								[
-									"@scale.monk.die + @mod",
-									"radiant"
-								]
-							],
-							"ability": "dex"
-						}
+							"equipped": true
+						},
+						"foundryActivities": [
+							{
+								"foundryId": "martialArts",
+								"name": "Monk Attack",
+								"type": "attack",
+								"activation": {
+									"type": "action",
+									"value": 1
+								},
+								"target": {
+									"affects": {
+										"count": "1",
+										"type": "creature"
+									}
+								},
+								"range": {
+									"value": "30",
+									"units": "ft"
+								},
+								"attack": {
+									"ability": "dex",
+									"type": {
+										"value": "ranged",
+										"classification": "spell"
+									}
+								},
+								"damage": {
+									"parts": [
+										{
+											"custom": {
+												"enabled": true,
+												"formula": "@scale.monk.die + @mod"
+											},
+											"types": [
+												"radiant"
+											]
+										}
+									]
+								}
+							}
+						]
 					}
 				]
 			},
@@ -11691,10 +11826,7 @@
 						"entries": [
 							"This weapon is part of the Infiltrator armor model. When you attack with that weapon, you can add your Intelligence modifier, instead of Strength or Dexterity, to the attack and damage rolls.",
 							"Once on each of your turns when you hit a creature with the launcher, you can deal an extra {@damage 1d6} lightning damage to that target."
-						],
-						"foundrySystem": {
-							"ability": "int"
-						}
+						]
 					}
 				]
 			},
@@ -11747,10 +11879,7 @@
 						"entries": [
 							"This weapon is part of the Guardian armor model. When you attack with that weapon, you can add your Intelligence modifier, instead of Strength or Dexterity, to the attack and damage rolls.",
 							"A creature hit by the gauntlet has disadvantage on attack rolls against targets other than you until the start of your next turn, as the armor magically emits a distracting pulse when the creature attacks someone else."
-						],
-						"foundrySystem": {
-							"ability": "int"
-						}
+						]
 					}
 				]
 			},
