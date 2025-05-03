@@ -5,803 +5,909 @@
 @use "includes/classes-table";
 @use "includes/classes-table-night";
 
-// region class
-.cls__ {
-	&list {
-		max-height: 400px;
-	}
-
-	&stats {
-		font-family: Arial, sans-serif;
-	}
-
-	&squash_header {
-		overflow: hidden;
-		max-height: 32px;
-		display: block;
-		width: min-content;
-		margin: 0 auto;
-	}
-
-	&btn-toggle-sidebar {
-		cursor: pointer;
-		font-size: initial;
-		color: vars.$rgb-off-black;
-	}
-
-	// region buttons
-	&btn-cf {
-		&--active {
-			color: #fff;
-			background: vars.$rgb-name-red;
-
-			&:active,
-			&:focus,
-			&:hover,
-			&:active:focus,
-			&:active:hover {
-				color: #fff;
-				background: color.adjust(vars.$rgb-name-red, $lightness: - vars.$pct-darken-active);
-			}
-		}
-	}
-
-	&btn-sc {
-		&--reprinted {
-			color: #777;
+@layer vetools {
+	// region class
+	.cls__ {
+		&list {
+			max-height: 400px;
 		}
 
-		&--active-fresh {
-			color: #fff;
-			background: vars.$rgb-subclass;
-			border-color: color.adjust(vars.$rgb-subclass, $lightness: - vars.$pct-darken-border);
-
-			&:active,
-			&:focus,
-			&:hover,
-			&:active:focus,
-			&:active:hover {
-				color: #fff;
-				background: color.adjust(vars.$rgb-subclass, $lightness: - vars.$pct-darken-active);
-				border-color: color.adjust(vars.$rgb-subclass, $lightness: - vars.$pct-darken-border--active);
-			}
+		&stats {
+			font-family: Arial, sans-serif;
 		}
 
-		&--active-reprinted {
-			color: #fff;
-			background: vars.$rgb-subclass--stale;
-			border-color: color.adjust(vars.$rgb-subclass--stale, $lightness: - vars.$pct-darken-border);
-
-			&:active,
-			&:focus,
-			&:hover,
-			&:active:focus,
-			&:active:hover {
-				color: #fff;
-				background: color.adjust(vars.$rgb-subclass--stale, $lightness: - vars.$pct-darken-active);
-				border-color: color.adjust(vars.$rgb-subclass--stale, $lightness: - vars.$pct-darken-border--active);
-			}
+		&squash_header {
+			overflow: hidden;
+			max-height: 32px;
+			display: block;
+			width: min-content;
+			margin: 0 auto;
 		}
 
-		&--active-spicy {
-			color: #fff;
-			background: vars.$rgb-subclass-ua;
-			border-color: color.adjust(vars.$rgb-subclass-ua, $lightness: - vars.$pct-darken-border);
-
-			&:active,
-			&:focus,
-			&:hover,
-			&:active:focus,
-			&:active:hover {
-				color: #fff;
-				background: color.adjust(vars.$rgb-subclass-ua, $lightness: - vars.$pct-darken-active);
-				border-color: color.adjust(vars.$rgb-subclass-ua, $lightness: - vars.$pct-darken-border--active);
-			}
-		}
-
-		&--active-stale {
-			color: #fff;
-			background: vars.$rgb-subclass-ua--stale;
-			border-color: color.adjust(vars.$rgb-subclass-ua--stale, $lightness: - vars.$pct-darken-border);
-
-			&:active,
-			&:focus,
-			&:hover,
-			&:active:focus,
-			&:active:hover {
-				color: #fff;
-				background: color.adjust(vars.$rgb-subclass-ua--stale, $lightness: - vars.$pct-darken-active);
-				border-color: color.adjust(vars.$rgb-subclass-ua--stale, $lightness: - vars.$pct-darken-border--active);
-			}
-		}
-
-		&--active-brew {
-			color: #fff;
-			background: vars.$rgb-class-brew;
-			border-color: color.adjust(vars.$rgb-class-brew, $lightness: - vars.$pct-darken-border);
-
-			&:active,
-			&:focus,
-			&:hover,
-			&:active:focus,
-			&:active:hover {
-				color: #fff;
-				background: color.adjust(vars.$rgb-class-brew, $lightness: - vars.$pct-darken-active);
-				border-color: color.adjust(vars.$rgb-class-brew, $lightness: - vars.$pct-darken-border--active);
-			}
-		}
-
-		&--active-rebrewed {
-			color: #fff;
-			background: vars.$rgb-class-variant-brew;
-			border-color: color.adjust(vars.$rgb-class-variant-brew, $lightness: - vars.$pct-darken-border);
-
-			&:active,
-			&:focus,
-			&:hover,
-			&:active:focus,
-			&:active:hover {
-				color: #fff;
-				background: color.adjust(vars.$rgb-class-variant-brew, $lightness: - vars.$pct-darken-active);
-				border-color: color.adjust(vars.$rgb-class-variant-brew, $lightness: - vars.$pct-darken-border--active);
-			}
-		}
-	}
-	// endregion
-
-	// region Header coloring
-	// `feature-<variant>-<ua|brew>-<subclass>-<reprint>`
-	// See: `_getColorStyleClasses`
-	&feature-variant-subclass {
-		.rd__h--0,
-		.rd__h--1,
-		.rd__h--2 {
-			color: vars.$rgb-class-variant;
-			border-bottom-color: vars.$rgb-class-variant;
-		}
-	}
-
-	&feature-variant-ua-subclass {
-		.rd__h--0,
-		.rd__h--1,
-		.rd__h--2 {
-			color: vars.$rgb-class-ua;
-			border-bottom-color: vars.$rgb-class-ua;
-		}
-	}
-
-	&feature-variant-brew-subclass {
-		.rd__h--0,
-		.rd__h--1,
-		.rd__h--2 {
-			color: vars.$rgb-class-variant-brew;
-			border-bottom-color: vars.$rgb-class-variant-brew;
-		}
-	}
-
-	&feature-subclass-reprint {
-		.rd__h--0,
-		.rd__h--1,
-		.rd__h--2 {
-			color: vars.$rgb-subclass--stale;
-			border-bottom-color: vars.$rgb-subclass--stale;
-		}
-	}
-
-	&feature-ua-subclass-reprint {
-		.rd__h--0,
-		.rd__h--1,
-		.rd__h--2 {
-			color: vars.$rgb-subclass-ua--stale;
-			border-bottom-color: vars.$rgb-subclass-ua--stale;
-		}
-	}
-
-	&feature-brew-subclass-reprint {
-		.rd__h--0,
-		.rd__h--1,
-		.rd__h--2 {
-			color: vars.$rgb-class-variant-brew;
-			border-bottom-color: vars.$rgb-class-variant-brew;
-		}
-	}
-
-	&feature-subclass {
-		.rd__h--0,
-		.rd__h--1,
-		.rd__h--2 {
-			color: vars.$rgb-subclass;
-			border-bottom-color: vars.$rgb-subclass;
-		}
-	}
-
-	&feature-ua-subclass {
-		.rd__h--0,
-		.rd__h--1,
-		.rd__h--2 {
-			color: vars.$rgb-subclass-ua;
-			border-bottom-color: vars.$rgb-subclass-ua;
-		}
-	}
-
-	&feature-brew-subclass {
-		.rd__h--0,
-		.rd__h--1,
-		.rd__h--2 {
-			color: vars.$rgb-class-brew;
-			border-bottom-color: vars.$rgb-class-brew;
-		}
-	}
-
-	&feature-variant {
-		.rd__h--0,
-		.rd__h--1,
-		.rd__h--2 {
-			color: vars.$rgb-class-variant;
-			border-bottom-color: vars.$rgb-class-variant;
-		}
-	}
-
-	&feature-variant-ua {
-		.rd__h--0,
-		.rd__h--1,
-		.rd__h--2 {
-			color: vars.$rgb-class-ua;
-			border-bottom-color: vars.$rgb-class-ua;
-		}
-	}
-
-	&feature-variant-brew {
-		.rd__h--0,
-		.rd__h--1,
-		.rd__h--2 {
-			color: vars.$rgb-class-variant-brew;
-			border-bottom-color: vars.$rgb-class-variant-brew;
-		}
-	}
-
-	&feature-ua {
-		.rd__h--0,
-		.rd__h--1,
-		.rd__h--2 {
-			color: vars.$rgb-class-ua;
-			border-bottom-color: vars.$rgb-class-ua;
-		}
-	}
-
-	&feature-brew {
-		.rd__h--0,
-		.rd__h--1,
-		.rd__h--2 {
-			color: vars.$rgb-class-brew;
-			border-bottom-color: vars.$rgb-class-brew;
-		}
-	}
-	// endregion
-}
-
-.ve-night-mode .cls__ {
-	&btn-toggle-sidebar {
-		color: #bbb;
-	}
-
-	// region buttons
-	&btn-cf {
-		&--active {
+		&btn-toggle-sidebar {
+			cursor: pointer;
+			font-size: initial;
 			color: vars.$rgb-off-black;
-			background: vars-night.$rgb-name-red--night;
+		}
 
-			&:active,
-			&:focus,
-			&:hover,
-			&:active:focus,
-			&:active:hover {
+		// region buttons
+		&btn-cf {
+			&--active {
+				color: #fff;
+				background: vars.$rgb-name-red;
+
+				&:active,
+				&:focus,
+				&:hover,
+				&:active:focus,
+				&:active:hover {
+					color: #fff;
+					background: color.adjust(vars.$rgb-name-red, $lightness: - vars.$pct-darken-active);
+				}
+			}
+		}
+
+		&btn-sc {
+			&--reprinted {
+				color: #777;
+			}
+
+			&--active-fresh {
+				color: #fff;
+				background: vars.$rgb-subclass;
+				border-color: color.adjust(vars.$rgb-subclass, $lightness: - vars.$pct-darken-border);
+
+				&:active,
+				&:focus,
+				&:hover,
+				&:active:focus,
+				&:active:hover {
+					color: #fff;
+					background: color.adjust(vars.$rgb-subclass, $lightness: - vars.$pct-darken-active);
+					border-color: color.adjust(vars.$rgb-subclass, $lightness: - vars.$pct-darken-border--active);
+				}
+			}
+
+			&--active-reprinted {
+				color: #fff;
+				background: vars.$rgb-subclass--stale;
+				border-color: color.adjust(vars.$rgb-subclass--stale, $lightness: - vars.$pct-darken-border);
+
+				&:active,
+				&:focus,
+				&:hover,
+				&:active:focus,
+				&:active:hover {
+					color: #fff;
+					background: color.adjust(vars.$rgb-subclass--stale, $lightness: - vars.$pct-darken-active);
+					border-color: color.adjust(vars.$rgb-subclass--stale, $lightness: - vars.$pct-darken-border--active);
+				}
+			}
+
+			&--active-spicy {
+				color: #fff;
+				background: vars.$rgb-subclass-ua;
+				border-color: color.adjust(vars.$rgb-subclass-ua, $lightness: - vars.$pct-darken-border);
+
+				&:active,
+				&:focus,
+				&:hover,
+				&:active:focus,
+				&:active:hover {
+					color: #fff;
+					background: color.adjust(vars.$rgb-subclass-ua, $lightness: - vars.$pct-darken-active);
+					border-color: color.adjust(vars.$rgb-subclass-ua, $lightness: - vars.$pct-darken-border--active);
+				}
+			}
+
+			&--active-stale {
+				color: #fff;
+				background: vars.$rgb-subclass-ua--stale;
+				border-color: color.adjust(vars.$rgb-subclass-ua--stale, $lightness: - vars.$pct-darken-border);
+
+				&:active,
+				&:focus,
+				&:hover,
+				&:active:focus,
+				&:active:hover {
+					color: #fff;
+					background: color.adjust(vars.$rgb-subclass-ua--stale, $lightness: - vars.$pct-darken-active);
+					border-color: color.adjust(vars.$rgb-subclass-ua--stale, $lightness: - vars.$pct-darken-border--active);
+				}
+			}
+
+			&--active-brew {
+				color: #fff;
+				background: vars.$rgb-class-brew;
+				border-color: color.adjust(vars.$rgb-class-brew, $lightness: - vars.$pct-darken-border);
+
+				&:active,
+				&:focus,
+				&:hover,
+				&:active:focus,
+				&:active:hover {
+					color: #fff;
+					background: color.adjust(vars.$rgb-class-brew, $lightness: - vars.$pct-darken-active);
+					border-color: color.adjust(vars.$rgb-class-brew, $lightness: - vars.$pct-darken-border--active);
+				}
+			}
+
+			&--active-rebrewed {
+				color: #fff;
+				background: vars.$rgb-class-variant-brew;
+				border-color: color.adjust(vars.$rgb-class-variant-brew, $lightness: - vars.$pct-darken-border);
+
+				&:active,
+				&:focus,
+				&:hover,
+				&:active:focus,
+				&:active:hover {
+					color: #fff;
+					background: color.adjust(vars.$rgb-class-variant-brew, $lightness: - vars.$pct-darken-active);
+					border-color: color.adjust(vars.$rgb-class-variant-brew, $lightness: - vars.$pct-darken-border--active);
+				}
+			}
+		}
+		// endregion
+
+		// region Header coloring
+		// `feature-<variant>-<ua|brew>-<subclass>-<reprint>`
+		// See: `_getColorStyleClasses`
+		&feature-variant-subclass {
+			.rd__h--0,
+			.rd__h--1,
+			.rd__h--2 {
+				color: vars.$rgb-class-variant;
+				border-bottom-color: vars.$rgb-class-variant;
+			}
+		}
+
+		&feature-variant-ua-subclass {
+			.rd__h--0,
+			.rd__h--1,
+			.rd__h--2 {
+				color: vars.$rgb-class-ua;
+				border-bottom-color: vars.$rgb-class-ua;
+			}
+		}
+
+		&feature-variant-brew-subclass {
+			.rd__h--0,
+			.rd__h--1,
+			.rd__h--2 {
+				color: vars.$rgb-class-variant-brew;
+				border-bottom-color: vars.$rgb-class-variant-brew;
+			}
+		}
+
+		&feature-subclass-reprint {
+			.rd__h--0,
+			.rd__h--1,
+			.rd__h--2 {
+				color: vars.$rgb-subclass--stale;
+				border-bottom-color: vars.$rgb-subclass--stale;
+			}
+		}
+
+		&feature-ua-subclass-reprint {
+			.rd__h--0,
+			.rd__h--1,
+			.rd__h--2 {
+				color: vars.$rgb-subclass-ua--stale;
+				border-bottom-color: vars.$rgb-subclass-ua--stale;
+			}
+		}
+
+		&feature-brew-subclass-reprint {
+			.rd__h--0,
+			.rd__h--1,
+			.rd__h--2 {
+				color: vars.$rgb-class-variant-brew;
+				border-bottom-color: vars.$rgb-class-variant-brew;
+			}
+		}
+
+		&feature-subclass {
+			.rd__h--0,
+			.rd__h--1,
+			.rd__h--2 {
+				color: vars.$rgb-subclass;
+				border-bottom-color: vars.$rgb-subclass;
+			}
+		}
+
+		&feature-ua-subclass {
+			.rd__h--0,
+			.rd__h--1,
+			.rd__h--2 {
+				color: vars.$rgb-subclass-ua;
+				border-bottom-color: vars.$rgb-subclass-ua;
+			}
+		}
+
+		&feature-brew-subclass {
+			.rd__h--0,
+			.rd__h--1,
+			.rd__h--2 {
+				color: vars.$rgb-class-brew;
+				border-bottom-color: vars.$rgb-class-brew;
+			}
+		}
+
+		&feature-variant {
+			.rd__h--0,
+			.rd__h--1,
+			.rd__h--2 {
+				color: vars.$rgb-class-variant;
+				border-bottom-color: vars.$rgb-class-variant;
+			}
+		}
+
+		&feature-variant-ua {
+			.rd__h--0,
+			.rd__h--1,
+			.rd__h--2 {
+				color: vars.$rgb-class-ua;
+				border-bottom-color: vars.$rgb-class-ua;
+			}
+		}
+
+		&feature-variant-brew {
+			.rd__h--0,
+			.rd__h--1,
+			.rd__h--2 {
+				color: vars.$rgb-class-variant-brew;
+				border-bottom-color: vars.$rgb-class-variant-brew;
+			}
+		}
+
+		&feature-ua {
+			.rd__h--0,
+			.rd__h--1,
+			.rd__h--2 {
+				color: vars.$rgb-class-ua;
+				border-bottom-color: vars.$rgb-class-ua;
+			}
+		}
+
+		&feature-brew {
+			.rd__h--0,
+			.rd__h--1,
+			.rd__h--2 {
+				color: vars.$rgb-class-brew;
+				border-bottom-color: vars.$rgb-class-brew;
+			}
+		}
+		// endregion
+	}
+
+	.ve-night-mode .cls__ {
+		&btn-toggle-sidebar {
+			color: #bbb;
+		}
+
+		// region buttons
+		&btn-cf {
+			&--active {
 				color: vars.$rgb-off-black;
-				background: color.adjust(vars-night.$rgb-name-red--night, $lightness: - vars.$pct-darken-active);
+				background: vars-night.$rgb-name-red--night;
+
+				&:active,
+				&:focus,
+				&:hover,
+				&:active:focus,
+				&:active:hover {
+					color: vars.$rgb-off-black;
+					background: color.adjust(vars-night.$rgb-name-red--night, $lightness: - vars.$pct-darken-active);
+				}
 			}
 		}
-	}
 
-	&btn-sc {
-		&--reprinted {
-			color: #888;
-		}
+		&btn-sc {
+			&--reprinted {
+				color: #888;
+			}
 
-		&--active-fresh {
-			color: #fff;
-			background: vars-night.$rgb-subclass--night;
-			border-color: color.adjust(vars-night.$rgb-subclass--night, $lightness: - vars.$pct-darken-border);
-
-			&:active,
-			&:focus,
-			&:hover,
-			&:active:focus,
-			&:active:hover {
+			&--active-fresh {
 				color: #fff;
-				background: color.adjust(vars-night.$rgb-subclass--night, $lightness: - vars.$pct-darken-active);
-				border-color: color.adjust(vars-night.$rgb-subclass--night, $lightness: - vars.$pct-darken-border--active);
+				background: vars-night.$rgb-subclass--night;
+				border-color: color.adjust(vars-night.$rgb-subclass--night, $lightness: - vars.$pct-darken-border);
+
+				&:active,
+				&:focus,
+				&:hover,
+				&:active:focus,
+				&:active:hover {
+					color: #fff;
+					background: color.adjust(vars-night.$rgb-subclass--night, $lightness: - vars.$pct-darken-active);
+					border-color: color.adjust(vars-night.$rgb-subclass--night, $lightness: - vars.$pct-darken-border--active);
+				}
 			}
-		}
 
-		&--active-reprinted {
-			color: #fff;
-			background: vars-night.$rgb-subclass--night-stale;
-			border-color: color.adjust(vars-night.$rgb-subclass--night-stale, $lightness: - vars.$pct-darken-border);
-
-			&:active,
-			&:focus,
-			&:hover,
-			&:active:focus,
-			&:active:hover {
+			&--active-reprinted {
 				color: #fff;
-				background: color.adjust(vars-night.$rgb-subclass--night-stale, $lightness: - vars.$pct-darken-active);
-				border-color: color.adjust(vars-night.$rgb-subclass--night-stale, $lightness: - vars.$pct-darken-border--active);
+				background: vars-night.$rgb-subclass--night-stale;
+				border-color: color.adjust(vars-night.$rgb-subclass--night-stale, $lightness: - vars.$pct-darken-border);
+
+				&:active,
+				&:focus,
+				&:hover,
+				&:active:focus,
+				&:active:hover {
+					color: #fff;
+					background: color.adjust(vars-night.$rgb-subclass--night-stale, $lightness: - vars.$pct-darken-active);
+					border-color: color.adjust(vars-night.$rgb-subclass--night-stale, $lightness: - vars.$pct-darken-border--active);
+				}
 			}
-		}
 
-		&--active-spicy {
-			color: #fff;
-			background: vars-night.$rgb-subclass-ua--night;
-			border-color: color.adjust(vars-night.$rgb-subclass-ua--night, $lightness: - vars.$pct-darken-border);
-
-			&:active,
-			&:focus,
-			&:hover,
-			&:active:focus,
-			&:active:hover {
+			&--active-spicy {
 				color: #fff;
-				background: color.adjust(vars-night.$rgb-subclass-ua--night, $lightness: - vars.$pct-darken-active);
-				border-color: color.adjust(vars-night.$rgb-subclass-ua--night, $lightness: - vars.$pct-darken-border--active);
+				background: vars-night.$rgb-subclass-ua--night;
+				border-color: color.adjust(vars-night.$rgb-subclass-ua--night, $lightness: - vars.$pct-darken-border);
+
+				&:active,
+				&:focus,
+				&:hover,
+				&:active:focus,
+				&:active:hover {
+					color: #fff;
+					background: color.adjust(vars-night.$rgb-subclass-ua--night, $lightness: - vars.$pct-darken-active);
+					border-color: color.adjust(vars-night.$rgb-subclass-ua--night, $lightness: - vars.$pct-darken-border--active);
+				}
 			}
-		}
 
-		&--active-stale {
-			color: #fff;
-			background: vars-night.$rgb-subclass-ua--night-stale;
-			border-color: color.adjust(vars-night.$rgb-subclass-ua--night-stale, $lightness: - vars.$pct-darken-border);
-
-			&:active,
-			&:focus,
-			&:hover,
-			&:active:focus,
-			&:active:hover {
+			&--active-stale {
 				color: #fff;
-				background: color.adjust(vars-night.$rgb-subclass-ua--night-stale, $lightness: - vars.$pct-darken-active);
-				border-color: color.adjust(vars-night.$rgb-subclass-ua--night-stale, $lightness: - vars.$pct-darken-border--active);
+				background: vars-night.$rgb-subclass-ua--night-stale;
+				border-color: color.adjust(vars-night.$rgb-subclass-ua--night-stale, $lightness: - vars.$pct-darken-border);
+
+				&:active,
+				&:focus,
+				&:hover,
+				&:active:focus,
+				&:active:hover {
+					color: #fff;
+					background: color.adjust(vars-night.$rgb-subclass-ua--night-stale, $lightness: - vars.$pct-darken-active);
+					border-color: color.adjust(vars-night.$rgb-subclass-ua--night-stale, $lightness: - vars.$pct-darken-border--active);
+				}
 			}
-		}
 
-		&--active-brew {
-			color: #fff;
-			background: vars-night.$rgb-class-brew--night;
-			border-color: color.adjust(vars-night.$rgb-class-brew--night, $lightness: - vars.$pct-darken-border);
-
-			&:active,
-			&:focus,
-			&:hover,
-			&:active:focus,
-			&:active:hover {
+			&--active-brew {
 				color: #fff;
-				background: color.adjust(vars-night.$rgb-class-brew--night, $lightness: - vars.$pct-darken-active);
-				border-color: color.adjust(vars-night.$rgb-class-brew--night, $lightness: - vars.$pct-darken-border--active);
+				background: vars-night.$rgb-class-brew--night;
+				border-color: color.adjust(vars-night.$rgb-class-brew--night, $lightness: - vars.$pct-darken-border);
+
+				&:active,
+				&:focus,
+				&:hover,
+				&:active:focus,
+				&:active:hover {
+					color: #fff;
+					background: color.adjust(vars-night.$rgb-class-brew--night, $lightness: - vars.$pct-darken-active);
+					border-color: color.adjust(vars-night.$rgb-class-brew--night, $lightness: - vars.$pct-darken-border--active);
+				}
 			}
-		}
 
-		&--active-rebrewed {
-			color: #fff;
-			background: vars-night.$rgb-class-variant-brew--night;
-			border-color: color.adjust(vars-night.$rgb-class-variant-brew--night, $lightness: - vars.$pct-darken-border);
-
-			&:active,
-			&:focus,
-			&:hover,
-			&:active:focus,
-			&:active:hover {
+			&--active-rebrewed {
 				color: #fff;
-				background: color.adjust(vars-night.$rgb-class-variant-brew--night, $lightness: - vars.$pct-darken-active);
-				border-color: color.adjust(vars-night.$rgb-class-variant-brew--night, $lightness: - vars.$pct-darken-border--active);
+				background: vars-night.$rgb-class-variant-brew--night;
+				border-color: color.adjust(vars-night.$rgb-class-variant-brew--night, $lightness: - vars.$pct-darken-border);
+
+				&:active,
+				&:focus,
+				&:hover,
+				&:active:focus,
+				&:active:hover {
+					color: #fff;
+					background: color.adjust(vars-night.$rgb-class-variant-brew--night, $lightness: - vars.$pct-darken-active);
+					border-color: color.adjust(vars-night.$rgb-class-variant-brew--night, $lightness: - vars.$pct-darken-border--active);
+				}
 			}
 		}
+		// endregion
+
+		// region Header coloring
+		// `feature-<variant>-<ua|brew>-<subclass>-<reprint>`
+		&feature-variant-subclass {
+			.rd__h--0,
+			.rd__h--1,
+			.rd__h--2 {
+				color: vars-night.$rgb-class-variant--night;
+				border-bottom-color: vars-night.$rgb-class-variant--night;
+			}
+		}
+
+		&feature-variant-ua-subclass {
+			.rd__h--0,
+			.rd__h--1,
+			.rd__h--2 {
+				color: vars-night.$rgb-class-ua--night;
+				border-bottom-color: vars-night.$rgb-class-ua--night;
+			}
+		}
+
+		&feature-subclass-reprint {
+			.rd__h--0,
+			.rd__h--1,
+			.rd__h--2 {
+				color: vars-night.$rgb-subclass--night-stale;
+				border-bottom-color: vars-night.$rgb-subclass--night-stale;
+			}
+		}
+
+		&feature-ua-subclass-reprint {
+			.rd__h--0,
+			.rd__h--1,
+			.rd__h--2 {
+				color: vars-night.$rgb-subclass-ua--night-stale;
+				border-bottom-color: vars-night.$rgb-subclass-ua--night-stale;
+			}
+		}
+
+		&feature-subclass {
+			.rd__h--0,
+			.rd__h--1,
+			.rd__h--2 {
+				color: vars-night.$rgb-subclass--night;
+				border-bottom-color: vars-night.$rgb-subclass--night;
+			}
+		}
+
+		&feature-ua-subclass {
+			.rd__h--0,
+			.rd__h--1,
+			.rd__h--2 {
+				color: vars-night.$rgb-subclass-ua--night;
+				border-bottom-color: vars-night.$rgb-subclass-ua--night;
+			}
+		}
+
+		&feature-brew-subclass {
+			.rd__h--0,
+			.rd__h--1,
+			.rd__h--2 {
+				color: vars-night.$rgb-class-brew--night;
+				border-bottom-color: vars-night.$rgb-class-brew--night;
+			}
+		}
+
+		&feature-brew-subclass-reprint {
+			.rd__h--0,
+			.rd__h--1,
+			.rd__h--2 {
+				color: vars-night.$rgb-class-variant-brew--night;
+				border-bottom-color: vars-night.$rgb-class-variant-brew--night;
+			}
+		}
+
+		&feature-variant-brew-subclass {
+			.rd__h--0,
+			.rd__h--1,
+			.rd__h--2 {
+				color: vars-night.$rgb-class-variant-brew--night;
+				border-bottom-color: vars-night.$rgb-class-variant-brew--night;
+			}
+		}
+
+		&feature-variant {
+			.rd__h--0,
+			.rd__h--1,
+			.rd__h--2 {
+				color: vars-night.$rgb-class-variant--night;
+				border-bottom-color: vars-night.$rgb-class-variant--night;
+			}
+		}
+
+		&feature-variant-ua {
+			.rd__h--0,
+			.rd__h--1,
+			.rd__h--2 {
+				color: vars-night.$rgb-class-ua--night;
+				border-bottom-color: vars-night.$rgb-class-ua--night;
+			}
+		}
+
+		&feature-variant-brew {
+			.rd__h--0,
+			.rd__h--1,
+			.rd__h--2 {
+				color: vars-night.$rgb-class-variant-brew--night;
+				border-bottom-color: vars-night.$rgb-class-variant-brew--night;
+			}
+		}
+
+		&feature-ua {
+			.rd__h--0,
+			.rd__h--1,
+			.rd__h--2 {
+				color: vars-night.$rgb-class-ua--night;
+				border-bottom-color: vars-night.$rgb-class-ua--night;
+			}
+		}
+
+		&feature-brew {
+			.rd__h--0,
+			.rd__h--1,
+			.rd__h--2 {
+				color: vars-night.$rgb-class-brew--night;
+				border-bottom-color: vars-night.$rgb-class-brew--night;
+			}
+		}
+		// endregion
 	}
 	// endregion
 
-	// region Header coloring
-	// `feature-<variant>-<ua|brew>-<subclass>-<reprint>`
-	&feature-variant-subclass {
-		.rd__h--0,
-		.rd__h--1,
-		.rd__h--2 {
-			color: vars-night.$rgb-class-variant--night;
-			border-bottom-color: vars-night.$rgb-class-variant--night;
-		}
-	}
-
-	&feature-variant-ua-subclass {
-		.rd__h--0,
-		.rd__h--1,
-		.rd__h--2 {
-			color: vars-night.$rgb-class-ua--night;
-			border-bottom-color: vars-night.$rgb-class-ua--night;
-		}
-	}
-
-	&feature-subclass-reprint {
-		.rd__h--0,
-		.rd__h--1,
-		.rd__h--2 {
-			color: vars-night.$rgb-subclass--night-stale;
-			border-bottom-color: vars-night.$rgb-subclass--night-stale;
-		}
-	}
-
-	&feature-ua-subclass-reprint {
-		.rd__h--0,
-		.rd__h--1,
-		.rd__h--2 {
-			color: vars-night.$rgb-subclass-ua--night-stale;
-			border-bottom-color: vars-night.$rgb-subclass-ua--night-stale;
-		}
-	}
-
-	&feature-subclass {
-		.rd__h--0,
-		.rd__h--1,
-		.rd__h--2 {
-			color: vars-night.$rgb-subclass--night;
-			border-bottom-color: vars-night.$rgb-subclass--night;
-		}
-	}
-
-	&feature-ua-subclass {
-		.rd__h--0,
-		.rd__h--1,
-		.rd__h--2 {
-			color: vars-night.$rgb-subclass-ua--night;
-			border-bottom-color: vars-night.$rgb-subclass-ua--night;
-		}
-	}
-
-	&feature-brew-subclass {
-		.rd__h--0,
-		.rd__h--1,
-		.rd__h--2 {
-			color: vars-night.$rgb-class-brew--night;
-			border-bottom-color: vars-night.$rgb-class-brew--night;
-		}
-	}
-
-	&feature-brew-subclass-reprint {
-		.rd__h--0,
-		.rd__h--1,
-		.rd__h--2 {
-			color: vars-night.$rgb-class-variant-brew--night;
-			border-bottom-color: vars-night.$rgb-class-variant-brew--night;
-		}
-	}
-
-	&feature-variant-brew-subclass {
-		.rd__h--0,
-		.rd__h--1,
-		.rd__h--2 {
-			color: vars-night.$rgb-class-variant-brew--night;
-			border-bottom-color: vars-night.$rgb-class-variant-brew--night;
-		}
-	}
-
-	&feature-variant {
-		.rd__h--0,
-		.rd__h--1,
-		.rd__h--2 {
-			color: vars-night.$rgb-class-variant--night;
-			border-bottom-color: vars-night.$rgb-class-variant--night;
-		}
-	}
-
-	&feature-variant-ua {
-		.rd__h--0,
-		.rd__h--1,
-		.rd__h--2 {
-			color: vars-night.$rgb-class-ua--night;
-			border-bottom-color: vars-night.$rgb-class-ua--night;
-		}
-	}
-
-	&feature-variant-brew {
-		.rd__h--0,
-		.rd__h--1,
-		.rd__h--2 {
-			color: vars-night.$rgb-class-variant-brew--night;
-			border-bottom-color: vars-night.$rgb-class-variant-brew--night;
-		}
-	}
-
-	&feature-ua {
-		.rd__h--0,
-		.rd__h--1,
-		.rd__h--2 {
-			color: vars-night.$rgb-class-ua--night;
-			border-bottom-color: vars-night.$rgb-class-ua--night;
-		}
-	}
-
-	&feature-brew {
-		.rd__h--0,
-		.rd__h--1,
-		.rd__h--2 {
-			color: vars-night.$rgb-class-brew--night;
-			border-bottom-color: vars-night.$rgb-class-brew--night;
-		}
-	}
-	// endregion
-}
-// endregion
-
-// region sidebar
-.cls-side__ {
-	&name {
-		font-size: 1.8em;
-		font-family: "Times New Roman", serif;
-		font-variant: small-caps;
-		font-weight: 500;
-	}
-
-	&btn-toggle {
-		cursor: pointer;
-		font-size: initial;
-		font-weight: initial;
-		color: vars.$rgb-off-black;
-	}
-
-	&section {
-		font-size: 0.8em;
-		padding: 4px 7px;
-	}
-
-	&section-head {
-		font-family: serif;
-		font-weight: 500;
-		font-size: 1.5em;
-		margin-top: 4px;
-		margin-bottom: 3px;
-	}
-}
-
-.ve-night-mode {
+	// region sidebar
 	.cls-side__ {
+		&name {
+			font-size: 1.8em;
+			font-family: "Times New Roman", serif;
+			font-variant: small-caps;
+			font-weight: 500;
+		}
+
 		&btn-toggle {
-			color: vars-night.$rgb-font--night;
+			cursor: pointer;
+			font-size: initial;
+			font-weight: initial;
+			color: vars.$rgb-off-black;
+		}
+
+		&section {
+			font-size: 0.8em;
+			padding: 4px 7px;
+		}
+
+		&section-head {
+			font-family: serif;
+			font-weight: 500;
+			font-size: 1.5em;
+			margin-top: 4px;
+			margin-bottom: 3px;
 		}
 	}
-}
-// endregion
 
-// region subclass tabs
-.cls-tabs__ {
-	&wrp {
-		align-items: baseline;
+	.ve-night-mode {
+		.cls-side__ {
+			&btn-toggle {
+				color: vars-night.$rgb-font--night;
+			}
+		}
+	}
+	// endregion
 
-		@media screen and (width <= #{vars.$width-screen-md}) {
-			flex-direction: column !important;
+	// region subclass tabs
+	.cls-tabs__ {
+		&wrp {
+			align-items: baseline;
+
+			@media screen and (width <= #{vars.$width-screen-md}) {
+				flex-direction: column !important;
+			}
+		}
+
+		&sc-not-shown {
+			font-size: 10px;
+		}
+
+		&sel-preset {
+			width: 80px;
+		}
+	}
+	// endregion
+
+	// region main text
+	.cls-main__ {
+		&msg-no-content {
+			height: 40px;
+			color: vars.$rgb-name-red;
+			font-family: "Times New Roman", serif;
+			font-variant: small-caps;
+			font-weight: 500;
+			line-height: 2.3em;
+			text-align: center;
+			font-size: 1.8em;
+		}
+
+		&linked-titles {
+			@include vars.linked-titles-base;
+
+			> td > * > .rd__h .entry-title-inner {
+				@include vars.linked-titles-base-inner;
+			}
 		}
 	}
 
-	&sc-not-shown {
-		font-size: 10px;
+	.ve-night-mode .cls-main__ {
+		&msg-no-content {
+			color: vars-night.$rgb-name-red--night;
+		}
+	}
+	// endregion
+
+	// region comparison view
+	.cls-comp__wrp-features {
+		width: 400px;
+		max-width: calc(100vw - #{2 * vars.$spacer});
+	}
+	// endregion
+
+	// region class book view
+	.cls-bkmv__ {
+		&wrp-tabs {
+			background-color: #eee;
+			border-bottom: 1px solid vars.$rgb-border-grey;
+		}
+
+		&btn-tab {
+			font-size: 0.8em;
+			margin-top: 2px;
+			padding: 2px 6px;
+			cursor: pointer;
+			user-select: none;
+			border-right: 1px solid vars.$rgb-border-grey;
+			border-left: 1px solid vars.$rgb-border-grey;
+			border-top: 1px solid vars.$rgb-border-grey;
+			border-top-right-radius: 4px;
+			border-top-left-radius: 4px;
+		}
+
+		&wrp-level {
+			z-index: 1;
+			left: -1px;
+			background: vars.$rgb-bg--alt;
+		}
+
+		&disp-level {
+			transform: rotate(180deg);
+			writing-mode: vertical-rl;
+		}
+
+		// region TODO are these used?
+		&btn-tab.active {
+			background: vars.$rgb-active-blue;
+			color: #fff;
+		}
+
+		&btn-tab.active {
+			border-color: color.adjust(vars.$rgb-active-blue, $lightness: - vars.$pct-darken-border);
+		}
+
+		&btn-tab.active.spicy-sauce {
+			background: vars.$rgb-subclass-ua;
+			color: #fff;
+		}
+
+		&btn-tab.active.spicy-sauce {
+			border-color: color.adjust(vars.$rgb-subclass-ua, $lightness: - vars.$pct-darken-border);
+		}
+
+		&btn-tab.active.refreshing-brew {
+			background: vars.$rgb-class-brew;
+			color: #fff;
+		}
+
+		&btn-tab.active.refreshing-brew {
+			border-color: color.adjust(vars.$rgb-class-brew, $lightness: - vars.$pct-darken-border);
+		}
+		// endregion
 	}
 
-	&sel-preset {
-		width: 80px;
-	}
-}
-// endregion
+	.ve-night-mode .cls-bkmv__ {
+		&wrp-tabs {
+			background-color: #222;
+			border-color: vars-night.$rgb-border-grey--night;
+		}
 
-// region main text
-.cls-main__ {
-	&msg-no-content {
-		height: 40px;
-		color: vars.$rgb-name-red;
+		&btn-tab {
+			border-color: vars-night.$rgb-border-grey--night;
+		}
+
+		&wrp-level {
+			background: vars-night.$rgb-bg--alt-night;
+		}
+	}
+	// endregion
+
+	// region outline
+	.cls-nav {
+		width: 100%;
+		position: sticky;
+		top: 15px;
+		overflow-y: hidden;
+		margin-top: 15px;
+		max-height: calc(100vh - 30px);
+		padding-right: 9px;
+		padding-left: 9px;
 		font-family: "Times New Roman", serif;
 		font-variant: small-caps;
 		font-weight: 500;
-		line-height: 2.3em;
-		text-align: center;
-		font-size: 1.8em;
-	}
 
-	&linked-titles {
-		@include vars.linked-titles-base;
+		&:hover {
+			overflow-y: scroll;
+			padding-right: 0;
+		}
 
-		> td > * > .rd__h .entry-title-inner {
-			@include vars.linked-titles-base-inner;
+		&__ {
+			&head {
+				color: #00000020;
+
+				&--active,
+				&:hover {
+					color: inherit;
+				}
+			}
+
+			&disp-toggle {
+				&::after {
+					content: " [+]";
+					font-weight: initial;
+				}
+
+				&--active::after {
+					content: "[\2212]";
+					font-weight: initial;
+				}
+			}
+
+			&head-inner {
+				font-weight: bold;
+				cursor: pointer;
+			}
+
+			&hr {
+				margin: 2px;
+			}
+
+			&item {
+				@include vars.mix-overflow-dots;
+
+				cursor: pointer;
+				user-select: none;
+				max-height: 20px;
+				color: vars.$rgb-name-red;
+
+				&:hover {
+					background: #d3d3d3;
+				}
+
+				&:active {
+					color: #e0e0e0;
+				}
+
+				// region Header coloring
+				// `feature-<variant>-<ua|brew>-<subclass>-<reprint>`
+				&--feature-variant-subclass {
+					color: vars.$rgb-class-variant;
+				}
+
+				&--feature-variant-ua-subclass {
+					color: vars.$rgb-class-ua;
+				}
+
+				&--feature-subclass-reprint {
+					color: vars.$rgb-subclass--stale;
+				}
+
+				&--feature-ua-subclass-reprint {
+					color: vars.$rgb-subclass-ua--stale;
+				}
+
+				&--feature-subclass {
+					color: vars.$rgb-subclass;
+				}
+
+				&--feature-ua-subclass {
+					color: vars.$rgb-subclass-ua;
+				}
+
+				&--feature-brew-subclass {
+					color: vars.$rgb-class-brew;
+				}
+
+				&--feature-brew-subclass-reprint {
+					color: vars.$rgb-class-variant-brew;
+				}
+
+				&--feature-variant-brew-subclass {
+					color: vars.$rgb-class-variant-brew;
+				}
+
+				&--feature-variant {
+					color: vars.$rgb-class-variant;
+				}
+
+				&--feature-variant-ua {
+					color: vars.$rgb-class-ua;
+				}
+
+				&--feature-variant-brew {
+					color: vars.$rgb-class-variant-brew;
+				}
+
+				&--feature-ua {
+					color: vars.$rgb-class-ua;
+				}
+
+				&--feature-brew {
+					color: vars.$rgb-class-brew;
+				}
+				// endregion
+
+				// Section name
+				&--depth-0 {
+					font-weight: bold;
+					font-size: 110%;
+				}
+
+				&--depth-2 {
+					padding-left: 10px;
+
+					&::before {
+						content: "\2022  ";
+					}
+				}
+			}
 		}
 	}
-}
 
-.ve-night-mode .cls-main__ {
-	&msg-no-content {
-		color: vars-night.$rgb-name-red--night;
-	}
-}
-// endregion
-
-// region comparison view
-.cls-comp__wrp-features {
-	width: 400px;
-	max-width: calc(100vw - #{2 * vars.$spacer});
-}
-// endregion
-
-// region class book view
-.cls-bkmv__ {
-	&wrp-tabs {
-		background-color: #eee;
-		border-bottom: 1px solid vars.$rgb-border-grey;
-	}
-
-	&btn-tab {
-		font-size: 0.8em;
-		margin-top: 2px;
-		padding: 2px 6px;
-		cursor: pointer;
-		user-select: none;
-		border-right: 1px solid vars.$rgb-border-grey;
-		border-left: 1px solid vars.$rgb-border-grey;
-		border-top: 1px solid vars.$rgb-border-grey;
-		border-top-right-radius: 4px;
-		border-top-left-radius: 4px;
-	}
-
-	&wrp-level {
-		z-index: 1;
-		left: -1px;
-		background: vars.$rgb-bg--alt;
-	}
-
-	&disp-level {
-		transform: rotate(180deg);
-		writing-mode: vertical-rl;
-	}
-
-	// region TODO are these used?
-	&btn-tab.active {
-		background: vars.$rgb-active-blue;
-		color: #fff;
-	}
-
-	&btn-tab.active {
-		border-color: color.adjust(vars.$rgb-active-blue, $lightness: - vars.$pct-darken-border);
-	}
-
-	&btn-tab.active.spicy-sauce {
-		background: vars.$rgb-subclass-ua;
-		color: #fff;
-	}
-
-	&btn-tab.active.spicy-sauce {
-		border-color: color.adjust(vars.$rgb-subclass-ua, $lightness: - vars.$pct-darken-border);
-	}
-
-	&btn-tab.active.refreshing-brew {
-		background: vars.$rgb-class-brew;
-		color: #fff;
-	}
-
-	&btn-tab.active.refreshing-brew {
-		border-color: color.adjust(vars.$rgb-class-brew, $lightness: - vars.$pct-darken-border);
-	}
-	// endregion
-}
-
-.ve-night-mode .cls-bkmv__ {
-	&wrp-tabs {
-		background-color: #222;
-		border-color: vars-night.$rgb-border-grey--night;
-	}
-
-	&btn-tab {
-		border-color: vars-night.$rgb-border-grey--night;
-	}
-
-	&wrp-level {
-		background: vars-night.$rgb-bg--alt-night;
-	}
-}
-// endregion
-
-// region outline
-.cls-nav {
-	width: 100%;
-	position: sticky;
-	top: 15px;
-	overflow-y: hidden;
-	margin-top: 15px;
-	max-height: calc(100vh - 30px);
-	padding-right: 9px;
-	padding-left: 9px;
-	font-family: "Times New Roman", serif;
-	font-variant: small-caps;
-	font-weight: 500;
-
-	&:hover {
-		overflow-y: scroll;
-		padding-right: 0;
-	}
-
-	&__ {
+	.ve-night-mode .cls-nav__ {
 		&head {
-			color: #00000020;
+			color: #bbbbbb40;
 
 			&--active,
 			&:hover {
-				color: inherit;
+				color: vars-night.$rgb-font--night;
 			}
-		}
-
-		&disp-toggle {
-			&::after {
-				content: " [+]";
-				font-weight: initial;
-			}
-
-			&--active::after {
-				content: "[\2212]";
-				font-weight: initial;
-			}
-		}
-
-		&head-inner {
-			font-weight: bold;
-			cursor: pointer;
-		}
-
-		&hr {
-			margin: 2px;
 		}
 
 		&item {
-			@include vars.mix-overflow-dots;
-
-			cursor: pointer;
-			user-select: none;
-			max-height: 20px;
-			color: vars.$rgb-name-red;
+			color: vars-night.$rgb-name-red--night;
 
 			&:hover {
-				background: #d3d3d3;
+				background: vars.$rgb-off-black;
 			}
 
 			&:active {
-				color: #e0e0e0;
+				color: #fff;
 			}
 
 			// region Header coloring
 			// `feature-<variant>-<ua|brew>-<subclass>-<reprint>`
 			&--feature-variant-subclass {
-				color: vars.$rgb-class-variant;
+				color: vars-night.$rgb-class-variant--night;
 			}
 
 			&--feature-variant-ua-subclass {
-				color: vars.$rgb-class-ua;
+				color: vars-night.$rgb-class-ua--night;
 			}
 
 			&--feature-subclass-reprint {
-				color: vars.$rgb-subclass--stale;
+				color: vars-night.$rgb-subclass--night-stale;
+			}
+
+			&--feature-ua-subclass-reprint {
+				color: vars-night.$rgb-subclass-ua--night-stale;
+			}
+
+			&--feature-brew-subclass-reprint {
+				color: vars-night.$rgb-class-variant-brew--night;
+			}
+
+			&--feature-subclass {
+				color: vars-night.$rgb-subclass--night;
+			}
+
+			&--feature-ua-subclass {
+				color: vars-night.$rgb-subclass-ua--night;
 			}
 
 			&--feature-ua-subclass-reprint {
 				color: vars.$rgb-subclass-ua--stale;
 			}
 
-			&--feature-subclass {
-				color: vars.$rgb-subclass;
-			}
-
-			&--feature-ua-subclass {
-				color: vars.$rgb-subclass-ua;
-			}
-
 			&--feature-brew-subclass {
-				color: vars.$rgb-class-brew;
+				color: vars-night.$rgb-class-brew--night;
 			}
 
 			&--feature-brew-subclass-reprint {
@@ -809,134 +915,30 @@
 			}
 
 			&--feature-variant-brew-subclass {
-				color: vars.$rgb-class-variant-brew;
+				color: vars-night.$rgb-class-variant-brew--night;
 			}
 
 			&--feature-variant {
-				color: vars.$rgb-class-variant;
+				color: vars-night.$rgb-class-variant--night;
 			}
 
 			&--feature-variant-ua {
-				color: vars.$rgb-class-ua;
+				color: vars-night.$rgb-class-ua--night;
 			}
 
 			&--feature-variant-brew {
-				color: vars.$rgb-class-variant-brew;
+				color: vars-night.$rgb-class-variant-brew--night;
 			}
 
 			&--feature-ua {
-				color: vars.$rgb-class-ua;
+				color: vars-night.$rgb-class-ua--night;
 			}
 
 			&--feature-brew {
-				color: vars.$rgb-class-brew;
+				color: vars-night.$rgb-class-brew--night;
 			}
 			// endregion
-
-			// Section name
-			&--depth-0 {
-				font-weight: bold;
-				font-size: 110%;
-			}
-
-			&--depth-2 {
-				padding-left: 10px;
-
-				&::before {
-					content: "\2022  ";
-				}
-			}
 		}
 	}
+	// endregion
 }
-
-.ve-night-mode .cls-nav__ {
-	&head {
-		color: #bbbbbb40;
-
-		&--active,
-		&:hover {
-			color: vars-night.$rgb-font--night;
-		}
-	}
-
-	&item {
-		color: vars-night.$rgb-name-red--night;
-
-		&:hover {
-			background: vars.$rgb-off-black;
-		}
-
-		&:active {
-			color: #fff;
-		}
-
-		// region Header coloring
-		// `feature-<variant>-<ua|brew>-<subclass>-<reprint>`
-		&--feature-variant-subclass {
-			color: vars-night.$rgb-class-variant--night;
-		}
-
-		&--feature-variant-ua-subclass {
-			color: vars-night.$rgb-class-ua--night;
-		}
-
-		&--feature-subclass-reprint {
-			color: vars-night.$rgb-subclass--night-stale;
-		}
-
-		&--feature-ua-subclass-reprint {
-			color: vars-night.$rgb-subclass-ua--night-stale;
-		}
-
-		&--feature-brew-subclass-reprint {
-			color: vars-night.$rgb-class-variant-brew--night;
-		}
-
-		&--feature-subclass {
-			color: vars-night.$rgb-subclass--night;
-		}
-
-		&--feature-ua-subclass {
-			color: vars-night.$rgb-subclass-ua--night;
-		}
-
-		&--feature-ua-subclass-reprint {
-			color: vars.$rgb-subclass-ua--stale;
-		}
-
-		&--feature-brew-subclass {
-			color: vars-night.$rgb-class-brew--night;
-		}
-
-		&--feature-brew-subclass-reprint {
-			color: vars.$rgb-class-variant-brew;
-		}
-
-		&--feature-variant-brew-subclass {
-			color: vars-night.$rgb-class-variant-brew--night;
-		}
-
-		&--feature-variant {
-			color: vars-night.$rgb-class-variant--night;
-		}
-
-		&--feature-variant-ua {
-			color: vars-night.$rgb-class-ua--night;
-		}
-
-		&--feature-variant-brew {
-			color: vars-night.$rgb-class-variant-brew--night;
-		}
-
-		&--feature-ua {
-			color: vars-night.$rgb-class-ua--night;
-		}
-
-		&--feature-brew {
-			color: vars-night.$rgb-class-brew--night;
-		}
-		// endregion
-	}
-}
-// endregion

@@ -4,787 +4,789 @@ Renderer
 
 @use "../vars/vars";
 
-$rgb-inset-border: #656565;
+@layer vetools {
+	$rgb-inset-border: #656565;
 
-:root {
-	--sz-font-h0: 1.8em;
-	--sz-font-h1: 1.5em;
-	--sz-font-h2: 1.35em;
+	:root {
+		--sz-font-h0: 1.8em;
+		--sz-font-h1: 1.5em;
+		--sz-font-h2: 1.35em;
 
-	--h-mb-p: 5px;
-	--h-mb-p-inline: 0;
-	--h-mb-quote-line: 5px;
-	--h-mb-quote-line-last: 5px;
-	--h-mb-li: 3px;
-	--w-text-indent-inline-p: 0.7em;
-	--w-text-indent-li-hang: 1.1em;
-	--w-text-indent-li-hang--inv: calc(-1 * var(--w-text-indent-li-hang));
-	--w-pl-list: 24px;
-	--w-pl-list-no-bullets: 10px;
-}
-
-@mixin rd__h--large () {
-	color: vars.$rgb-name-red;
-	font-family: "Times New Roman", serif;
-	font-variant: small-caps;
-	font-weight: 500;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-
-@keyframes rd__spin {
-	from {
-		transform: rotate(0deg);
+		--h-mb-p: 5px;
+		--h-mb-p-inline: 0;
+		--h-mb-quote-line: 5px;
+		--h-mb-quote-line-last: 5px;
+		--h-mb-li: 3px;
+		--w-text-indent-inline-p: 0.7em;
+		--w-text-indent-li-hang: 1.1em;
+		--w-text-indent-li-hang--inv: calc(-1 * var(--w-text-indent-li-hang));
+		--w-pl-list: 24px;
+		--w-pl-list-no-bullets: 10px;
 	}
 
-	to {
-		transform: rotate(360deg);
+	@mixin rd__h--large () {
+		color: vars.$rgb-name-red;
+		font-family: "Times New Roman", serif;
+		font-variant: small-caps;
+		font-weight: 500;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 	}
-}
 
-.rd {
-	&__ {
-		&b {
-			p {
+	@keyframes rd__spin {
+		from {
+			transform: rotate(0deg);
+		}
+
+		to {
+			transform: rotate(360deg);
+		}
+	}
+
+	.rd {
+		&__ {
+			&b {
+				p {
+					margin-bottom: var(--h-mb-p);
+				}
+			}
+
+			&b--0,
+			&b--1,
+			&b--2,
+			&b--3,
+			&b--4 {
+				margin-bottom: var(--h-mb-p);
+
+				&:last-child {
+					margin-bottom: 0;
+				}
+
+				> *:last-child {
+					margin-bottom: 0;
+				}
+			}
+
+			&hr {
+				border-color: #aaa6;
+				margin: 17px 0 5px;
+
+				&--section {
+					margin: 30px 0 5px;
+				}
+			}
+
+			&list {
+				margin-top: 0;
+				margin-bottom: var(--h-mb-p);
+				padding-left: var(--w-pl-list);
+
+				> .rd__list:last-child {
+					margin-bottom: 0;
+				}
+
+				> .rd__list-name {
+					margin-left: calc(-1 * var(--w-pl-list));
+				}
+			}
+
+			&list-name {
+				margin: 0 0 var(--h-mb-li);
+				font-weight: bold;
+				list-style-type: none;
+			}
+
+			&li {
 				margin-bottom: var(--h-mb-p);
 			}
-		}
 
-		&b--0,
-		&b--1,
-		&b--2,
-		&b--3,
-		&b--4 {
-			margin-bottom: var(--h-mb-p);
-
-			&:last-child {
-				margin-bottom: 0;
-			}
-
-			> *:last-child {
-				margin-bottom: 0;
-			}
-		}
-
-		&hr {
-			border-color: #aaa6;
-			margin: 17px 0 5px;
-
-			&--section {
-				margin: 30px 0 5px;
-			}
-		}
-
-		&list {
-			margin-top: 0;
-			margin-bottom: var(--h-mb-p);
-			padding-left: var(--w-pl-list);
-
-			> .rd__list:last-child {
-				margin-bottom: 0;
-			}
-
-			> .rd__list-name {
-				margin-left: calc(-1 * var(--w-pl-list));
-			}
-		}
-
-		&list-name {
-			margin: 0 0 var(--h-mb-li);
-			font-weight: bold;
-			list-style-type: none;
-		}
-
-		&li {
-			margin-bottom: var(--h-mb-p);
-		}
-
-		&title-link {
-			opacity: 0.3;
-			font-size: 12px;
-			font-weight: normal;
-
-			&--inset {
+			&title-link {
+				opacity: 0.3;
 				font-size: 12px;
-			}
-		}
-
-		&wrp-image {
-			margin: 5px auto 0;
-			text-align: center;
-
-			&--bg {
-				border-radius: 5px;
-				padding: 7px;
-			}
-
-			&--bg-light {
-				background: vars.$rgb-bg;
-			}
-
-			&--bg-dark {
-				background: vars.$rgb-off-black;
-			}
-
-			> a {
-				display: block;
-			}
-		}
-
-		&image {
-			// N.b. this width/height should be reflected in the renderer image styling
-			max-width: 100%;
-			max-height: 60vh;
-			cursor: zoom-in;
-		}
-
-		&cvs-image {
-			background: #ccc3;
-		}
-
-		&wrp-map {
-			max-width: 33%;
-			margin: 0 auto;
-		}
-
-		&wrp-gallery {
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: center;
-			align-items: flex-end;
-		}
-
-		&wrp-gallery-image {
-			padding: 0 10px 10px;
-			width: 33%;
-
-			@media screen and (width <= #{vars.$width-screen-md}) {
-				width: 50%;
-			}
-		}
-
-		&gallery-name {
-			font-style: italic;
-			text-decoration: underline;
-		}
-
-		&quote {
-			&-line {
-				margin-bottom: var(--h-mb-quote-line);
-
-				&--last {
-					margin-bottom: var(--h-mb-quote-line-last);
-				}
-			}
-
-			&-by {
-				width: 100%;
-				text-align: right;
-				display: block;
-			}
-		}
-
-		&wrp-centered-ability {
-			text-align: center;
-			margin-bottom: var(--h-mb-p);
-		}
-
-		&p-list-item {
-			// This prevents e.g. "italic" on the list item name from affecting the list item"s text.
-			font-style: initial;
-		}
-
-		&p-cont-indent {
-			display: block;
-			text-indent: var(--w-text-indent-inline-p);
-		}
-
-		&tab-indent {
-			width: 1em;
-			display: inline-block;
-		}
-
-		&image-title {
-			width: 100%;
-			text-align: center;
-			font-style: italic;
-			margin-top: 3px;
-		}
-
-		&image-title-inner {
-			display: inline-block;
-			text-decoration: underline;
-			margin: 2px 0; // Align with map viewer buttons, which are padded + bordered on all sides
-		}
-
-		&image-btn-viewer {
-			// Style the button text to match normal image title labels
-			font-style: initial;
-			white-space: normal;
-			font-size: inherit;
-			line-height: 1.7;
-		}
-
-		&image-credit {
-			font-size: 80%;
-		}
-
-		// Thicker scrollbars for viewer
-		&scroller-viewer {
-			scrollbar-width: auto;
-
-			&--bg-light {
-				background: vars.$rgb-bg;
-			}
-
-			&--bg-dark {
-				background: vars.$rgb-off-black;
-			}
-
-			&::-webkit-scrollbar {
-				width: 15px;
-				height: 15px;
-			}
-		}
-
-		&prerequisite {
-			font-style: italic;
-			display: block;
-		}
-
-		&li-spell {
-			margin: 0;
-		}
-
-		&list-hang-notitle,
-		&list-caption {
-			padding: 0;
-			list-style: none;
-
-			> .rd__list-name {
-				margin-left: 0;
-			}
-
-			> .rd__li {
-				margin-bottom: var(--h-mb-li);
-				text-indent: var(--w-text-indent-li-hang--inv);
-				margin-left: var(--w-text-indent-li-hang);
-
-				a,
-				span {
-					text-indent: initial;
-				}
-
-				> * {
-					margin: 0 0 var(--h-mb-li);
-				}
-
-				// fixme?
-				> ul {
-					text-indent: initial;
-				}
-			}
-		}
-
-		&list-caption {
-			> .rd__list-name {
-				font-variant: small-caps;
-				font-weight: bold;
-				font-size: 1.08em;
-			}
-		}
-
-		&list-hang {
-			list-style: none;
-
-			> .rd__list-name {
-				margin-left: calc(-1 * var(--w-pl-list));
-			}
-
-			// Firefox workaround; list bullets are pseudo-elements "::marker"
-			> li > *:not(::marker) {
-				text-indent: var(--w-text-indent-li-hang--inv);
-				margin-left: var(--w-text-indent-li-hang);
-			}
-		}
-
-		&list-decimal {
-			list-style: decimal;
-		}
-
-		&list-lower-roman {
-			list-style: lower-roman;
-		}
-
-		&list-upper-roman {
-			list-style: upper-roman;
-		}
-
-		&list-no-bullets {
-			list-style: none;
-			padding: 0 0 0 var(--w-pl-list-no-bullets);
-
-			> .rd__list-name {
-				margin-left: calc(-1 * var(--w-pl-list-no-bullets));
-			}
-		}
-
-		&list-italic {
-			font-style: italic;
-		}
-
-		&quote {
-			&-pull {
-				padding: 10px 15px;
-				text-align: center;
-				font-size: 125%;
-			}
-		}
-
-		// section headers
-		&h {
-			margin: 0;
-			line-height: inherit;
-		}
-
-		// statsBlockSectionHead
-		&h--0 {
-			@include rd__h--large;
-
-			font-size: var(--sz-font-h0);
-		}
-
-		// underline headers
-		// statsBlockHead
-		&h--1 {
-			@include rd__h--large;
-
-			font-size: var(--sz-font-h1);
-			border-bottom: 1px solid vars.$rgb-name-red;
-			margin: 0 0 0.2em;
-		}
-
-		// basic headers
-		// statsBlockSubHead
-		&h--2 {
-			@include rd__h--large;
-
-			font-size: var(--sz-font-h2);
-		}
-
-		// inset headers
-		// statsBlockInset and statsBlockInsetReadaloud
-		&h--2-inset {
-			font-variant: small-caps;
-			font-weight: bolder;
-			font-size: 1.1em;
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-
-			&-no-name {
-				justify-content: flex-end;
-			}
-		}
-
-		&h--2-flow-block {
-			display: block;
-			font-variant: small-caps;
-			font-weight: bolder;
-			font-size: 1.1em;
-			text-align: center;
-		}
-
-		&h--2-inset > h4,
-		&h--2-flow-block > h4 {
-			font-size: inherit;
-			font-weight: inherit;
-			line-height: vars.$font-line-height;
-			margin: 0;
-		}
-
-		// inline headers
-		// statsInlineHead
-		&h--3 {
-			font-weight: bold;
-			font-style: italic;
-		}
-
-		// sub-inline headers (only seen in monster variant)
-		// statsInlineHeadSubVariant
-		&h--4 {
-			font-style: italic;
-		}
-
-		&h-toggle {
-			font-family: Arial, sans-serif;
-			font-size: 12px;
-			opacity: 0.3;
-			font-weight: normal;
-		}
-
-		&ele-toggled-hidden {
-			display: none !important;
-		}
-
-		&b--3 > p,
-		&b--4 > p {
-			margin-bottom: var(--h-mb-p-inline);
-		}
-
-		&b--3 > p + p,
-		&b-inset > p + p {
-			text-indent: var(--w-text-indent-inline-p);
-		}
-
-		&b-inset {
-			margin: 7px 15px;
-			padding: 5px 10px;
-			box-shadow: 0 0 4px 0 rgb(152 142 124);
-			border: 1px solid $rgb-inset-border;
-			border-top: 2px solid $rgb-inset-border;
-			border-bottom: 2px solid $rgb-inset-border;
-			background-color: #e9ecda;
-			text-indent: initial;
-
-			> *:last-child {
-				margin-bottom: 0;
-			}
-
-			&--readaloud {
-				box-shadow: 0 0 4px 0 rgb(152 142 124);
-				border: 1px solid $rgb-inset-border;
-				border-left: 2px solid $rgb-inset-border;
-				border-right: 2px solid $rgb-inset-border;
-				background-color: #eef0f3;
-			}
-
-			&--comic-speaker {
-				&::after {
-					content: "";
-					display: block;
-					clear: both;
-				}
-			}
-
-			&-inner {
-				margin-top: 10px;
-			}
-		}
-
-		&b-data {
-			border: 3px solid vars.$rgb-border-yellow--statblock;
-			border-left-width: 1px;
-			border-right-width: 1px;
-			margin: 15px 5px;
-			width: calc(100% - 12px);
-			table-layout: fixed;
-
-			&--inset {
-				box-shadow: 0 0 4px 0 rgb(152 142 124);
-				border: 1px solid $rgb-inset-border;
-				background-color: rgb(156 150 120 / 10%);
-			}
-
-			&--narrow {
-				max-width: 600px;
-				margin: 15px auto;
-
-				@media screen and (width <= #{vars.$width-screen-sm}) {
-					max-width: initial;
-					margin: 15px 5px;
-				}
-			}
-		}
-
-		&li > .rd__b-data {
-			margin: 0;
-		}
-
-		&data-embed {
-			&-header {
-				cursor: pointer;
-
-				&:hover {
-					background: rgb(100 100 100 / 8%);
-				}
-			}
-
-			&-name {
-				font-family: "Times New Roman", serif;
-				font-variant: small-caps;
-				text-transform: uppercase;
-				font-weight: bold;
-			}
-
-			&-name-expanded {
 				font-weight: normal;
-				font-size: 90%;
+
+				&--inset {
+					font-size: 12px;
+				}
 			}
-		}
 
-		&wrp-loadbrew--ready {
-			cursor: pointer;
-			text-decoration: underline;
-		}
+			&wrp-image {
+				margin: 5px auto 0;
+				text-align: center;
 
-		&loadbrew-icon {
-			text-indent: 0;
-			margin-left: 2px;
-			transition-property: transform;
-			transition-duration: 1s;
+				&--bg {
+					border-radius: 5px;
+					padding: 7px;
+				}
 
-			&--active {
-				animation-name: rd__spin;
-				animation-duration: 1.2s;
-				animation-iteration-count: infinite;
-				animation-timing-function: linear;
-			}
-		}
+				&--bg-light {
+					background: vars.$rgb-bg;
+				}
 
-		&table {
-			width: 100%;
-			margin-bottom: var(--h-mb-p);
-			// Avoid outer `white-space: pre` inflating cells when embedded in e.g. a Markdown render
-			white-space: initial;
+				&--bg-dark {
+					background: vars.$rgb-off-black;
+				}
 
-			> caption {
-				text-align: left;
-				margin-left: 5px;
-				padding: 0;
-				font-weight: bold;
-				font-size: 1.08em;
-			}
-		}
-
-		&th {
-			text-align: left;
-
-			&-skewer {
-				&::after {
-					position: relative;
-					bottom: 3px;
-					left: 0;
-					margin: 0 auto;
-					padding: 0;
+				> a {
 					display: block;
-					content: "";
-					height: 3px;
-					width: 96%;
-					border-bottom: 1px solid vars.$rgb-border-grey;
 				}
 			}
-		}
 
-		&comic {
-			font-family: "Blambot Casual", sans-serif;
-			color: #1942be;
-
-			&--h1 {
-				font-size: 140%;
-				font-variant: small-caps;
+			&image {
+				// N.b. this width/height should be reflected in the renderer image styling
+				max-width: 100%;
+				max-height: 60vh;
+				cursor: zoom-in;
 			}
 
-			&--h2 {
-				font-size: 130%;
+			&cvs-image {
+				background: #ccc3;
 			}
 
-			&--h3 {
-				font-size: 120%;
+			&wrp-map {
+				max-width: 33%;
+				margin: 0 auto;
 			}
 
-			&--h4 {
-				font-size: 110%;
+			&wrp-gallery {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				align-items: flex-end;
 			}
 
-			&--note {
-				opacity: 0.7;
+			&wrp-gallery-image {
+				padding: 0 10px 10px;
+				width: 33%;
+
+				@media screen and (width <= #{vars.$width-screen-md}) {
+					width: 50%;
+				}
 			}
 
-			&-img-speaker {
-				margin-top: -5px;
-				margin-bottom: -5px;
+			&gallery-name {
+				font-style: italic;
+				text-decoration: underline;
+			}
 
-				&--left {
-					float: left;
-					margin-right: 0;
-					margin-left: -20px;
+			&quote {
+				&-line {
+					margin-bottom: var(--h-mb-quote-line);
+
+					&--last {
+						margin-bottom: var(--h-mb-quote-line-last);
+					}
 				}
 
-				&--right {
-					float: right;
-					margin-right: -20px;
+				&-by {
+					width: 100%;
+					text-align: right;
+					display: block;
+				}
+			}
+
+			&wrp-centered-ability {
+				text-align: center;
+				margin-bottom: var(--h-mb-p);
+			}
+
+			&p-list-item {
+				// This prevents e.g. "italic" on the list item name from affecting the list item"s text.
+				font-style: initial;
+			}
+
+			&p-cont-indent {
+				display: block;
+				text-indent: var(--w-text-indent-inline-p);
+			}
+
+			&tab-indent {
+				width: 1em;
+				display: inline-block;
+			}
+
+			&image-title {
+				width: 100%;
+				text-align: center;
+				font-style: italic;
+				margin-top: 3px;
+			}
+
+			&image-title-inner {
+				display: inline-block;
+				text-decoration: underline;
+				margin: 2px 0; // Align with map viewer buttons, which are padded + bordered on all sides
+			}
+
+			&image-btn-viewer {
+				// Style the button text to match normal image title labels
+				font-style: initial;
+				white-space: normal;
+				font-size: inherit;
+				line-height: 1.7;
+			}
+
+			&image-credit {
+				font-size: 80%;
+			}
+
+			// Thicker scrollbars for viewer
+			&scroller-viewer {
+				scrollbar-width: auto;
+
+				&--bg-light {
+					background: vars.$rgb-bg;
+				}
+
+				&--bg-dark {
+					background: vars.$rgb-off-black;
+				}
+
+				&::-webkit-scrollbar {
+					width: 15px;
+					height: 15px;
+				}
+			}
+
+			&prerequisite {
+				font-style: italic;
+				display: block;
+			}
+
+			&li-spell {
+				margin: 0;
+			}
+
+			&list-hang-notitle,
+			&list-caption {
+				padding: 0;
+				list-style: none;
+
+				> .rd__list-name {
 					margin-left: 0;
 				}
 
-				&::after {
-					content: "";
-					display: block;
-					clear: both;
+				> .rd__li {
+					margin-bottom: var(--h-mb-li);
+					text-indent: var(--w-text-indent-li-hang--inv);
+					margin-left: var(--w-text-indent-li-hang);
+
+					a,
+					span {
+						text-indent: initial;
+					}
+
+					> * {
+						margin: 0 0 var(--h-mb-li);
+					}
+
+					// fixme?
+					> ul {
+						text-indent: initial;
+					}
+				}
+			}
+
+			&list-caption {
+				> .rd__list-name {
+					font-variant: small-caps;
+					font-weight: bold;
+					font-size: 1.08em;
+				}
+			}
+
+			&list-hang {
+				list-style: none;
+
+				> .rd__list-name {
+					margin-left: calc(-1 * var(--w-pl-list));
+				}
+
+				// Firefox workaround; list bullets are pseudo-elements "::marker"
+				> li > *:not(::marker) {
+					text-indent: var(--w-text-indent-li-hang--inv);
+					margin-left: var(--w-text-indent-li-hang);
+				}
+			}
+
+			&list-decimal {
+				list-style: decimal;
+			}
+
+			&list-lower-roman {
+				list-style: lower-roman;
+			}
+
+			&list-upper-roman {
+				list-style: upper-roman;
+			}
+
+			&list-no-bullets {
+				list-style: none;
+				padding: 0 0 0 var(--w-pl-list-no-bullets);
+
+				> .rd__list-name {
+					margin-left: calc(-1 * var(--w-pl-list-no-bullets));
+				}
+			}
+
+			&list-italic {
+				font-style: italic;
+			}
+
+			&quote {
+				&-pull {
+					padding: 10px 15px;
+					text-align: center;
+					font-size: 125%;
+				}
+			}
+
+			// section headers
+			&h {
+				margin: 0;
+				line-height: inherit;
+			}
+
+			// statsBlockSectionHead
+			&h--0 {
+				@include rd__h--large;
+
+				font-size: var(--sz-font-h0);
+			}
+
+			// underline headers
+			// statsBlockHead
+			&h--1 {
+				@include rd__h--large;
+
+				font-size: var(--sz-font-h1);
+				border-bottom: 1px solid vars.$rgb-name-red;
+				margin: 0 0 0.2em;
+			}
+
+			// basic headers
+			// statsBlockSubHead
+			&h--2 {
+				@include rd__h--large;
+
+				font-size: var(--sz-font-h2);
+			}
+
+			// inset headers
+			// statsBlockInset and statsBlockInsetReadaloud
+			&h--2-inset {
+				font-variant: small-caps;
+				font-weight: bolder;
+				font-size: 1.1em;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+
+				&-no-name {
+					justify-content: flex-end;
+				}
+			}
+
+			&h--2-flow-block {
+				display: block;
+				font-variant: small-caps;
+				font-weight: bolder;
+				font-size: 1.1em;
+				text-align: center;
+			}
+
+			&h--2-inset > h4,
+			&h--2-flow-block > h4 {
+				font-size: inherit;
+				font-weight: inherit;
+				line-height: vars.$font-line-height;
+				margin: 0;
+			}
+
+			// inline headers
+			// statsInlineHead
+			&h--3 {
+				font-weight: bold;
+				font-style: italic;
+			}
+
+			// sub-inline headers (only seen in monster variant)
+			// statsInlineHeadSubVariant
+			&h--4 {
+				font-style: italic;
+			}
+
+			&h-toggle {
+				font-family: Arial, sans-serif;
+				font-size: 12px;
+				opacity: 0.3;
+				font-weight: normal;
+			}
+
+			&ele-toggled-hidden {
+				display: none !important;
+			}
+
+			&b--3 > p,
+			&b--4 > p {
+				margin-bottom: var(--h-mb-p-inline);
+			}
+
+			&b--3 > p + p,
+			&b-inset > p + p {
+				text-indent: var(--w-text-indent-inline-p);
+			}
+
+			&b-inset {
+				margin: 7px 15px;
+				padding: 5px 10px;
+				box-shadow: 0 0 4px 0 rgb(152 142 124);
+				border: 1px solid $rgb-inset-border;
+				border-top: 2px solid $rgb-inset-border;
+				border-bottom: 2px solid $rgb-inset-border;
+				background-color: #e9ecda;
+				text-indent: initial;
+
+				> *:last-child {
+					margin-bottom: 0;
+				}
+
+				&--readaloud {
+					box-shadow: 0 0 4px 0 rgb(152 142 124);
+					border: 1px solid $rgb-inset-border;
+					border-left: 2px solid $rgb-inset-border;
+					border-right: 2px solid $rgb-inset-border;
+					background-color: #eef0f3;
+				}
+
+				&--comic-speaker {
+					&::after {
+						content: "";
+						display: block;
+						clear: both;
+					}
+				}
+
+				&-inner {
+					margin-top: 10px;
+				}
+			}
+
+			&b-data {
+				border: 3px solid vars.$rgb-border-yellow--statblock;
+				border-left-width: 1px;
+				border-right-width: 1px;
+				margin: 15px 5px;
+				width: calc(100% - 12px);
+				table-layout: fixed;
+
+				&--inset {
+					box-shadow: 0 0 4px 0 rgb(152 142 124);
+					border: 1px solid $rgb-inset-border;
+					background-color: rgb(156 150 120 / 10%);
+				}
+
+				&--narrow {
+					max-width: 600px;
+					margin: 15px auto;
+
+					@media screen and (width <= #{vars.$width-screen-sm}) {
+						max-width: initial;
+						margin: 15px 5px;
+					}
+				}
+			}
+
+			&li > .rd__b-data {
+				margin: 0;
+			}
+
+			&data-embed {
+				&-header {
+					cursor: pointer;
+
+					&:hover {
+						background: rgb(100 100 100 / 8%);
+					}
+				}
+
+				&-name {
+					font-family: "Times New Roman", serif;
+					font-variant: small-caps;
+					text-transform: uppercase;
+					font-weight: bold;
+				}
+
+				&-name-expanded {
+					font-weight: normal;
+					font-size: 90%;
+				}
+			}
+
+			&wrp-loadbrew--ready {
+				cursor: pointer;
+				text-decoration: underline;
+			}
+
+			&loadbrew-icon {
+				text-indent: 0;
+				margin-left: 2px;
+				transition-property: transform;
+				transition-duration: 1s;
+
+				&--active {
+					animation-name: rd__spin;
+					animation-duration: 1.2s;
+					animation-iteration-count: infinite;
+					animation-timing-function: linear;
+				}
+			}
+
+			&table {
+				width: 100%;
+				margin-bottom: var(--h-mb-p);
+				// Avoid outer `white-space: pre` inflating cells when embedded in e.g. a Markdown render
+				white-space: initial;
+
+				> caption {
+					text-align: left;
+					margin-left: 5px;
+					padding: 0;
+					font-weight: bold;
+					font-size: 1.08em;
+				}
+			}
+
+			&th {
+				text-align: left;
+
+				&-skewer {
+					&::after {
+						position: relative;
+						bottom: 3px;
+						left: 0;
+						margin: 0 auto;
+						padding: 0;
+						display: block;
+						content: "";
+						height: 3px;
+						width: 96%;
+						border-bottom: 1px solid vars.$rgb-border-grey;
+					}
+				}
+			}
+
+			&comic {
+				font-family: "Blambot Casual", sans-serif;
+				color: #1942be;
+
+				&--h1 {
+					font-size: 140%;
+					font-variant: small-caps;
+				}
+
+				&--h2 {
+					font-size: 130%;
+				}
+
+				&--h3 {
+					font-size: 120%;
+				}
+
+				&--h4 {
+					font-size: 110%;
+				}
+
+				&--note {
+					opacity: 0.7;
+				}
+
+				&-img-speaker {
+					margin-top: -5px;
+					margin-bottom: -5px;
+
+					&--left {
+						float: left;
+						margin-right: 0;
+						margin-left: -20px;
+					}
+
+					&--right {
+						float: right;
+						margin-right: -20px;
+						margin-left: 0;
+					}
+
+					&::after {
+						content: "";
+						display: block;
+						clear: both;
+					}
+				}
+			}
+
+			&img {
+				&-small {
+					max-width: 25vw;
+					max-height: 25vh;
+				}
+			}
+
+			&s-v-flow {
+				height: 15px;
+				width: 0;
+				border-left: 1px solid $rgb-inset-border;
+				border-right: 1px solid $rgb-inset-border;
+				margin: 0 auto;
+			}
+
+			&b-flow {
+				margin: 0 15px;
+				padding: 5px 10px;
+				box-shadow: 0 0 4px 0 rgb(152 142 124);
+				border: 1px solid $rgb-inset-border;
+				border-top: 2px solid $rgb-inset-border;
+				border-bottom: 2px solid $rgb-inset-border;
+				background-color: #ece4da;
+
+				> *:last-child {
+					margin-bottom: 0;
+				}
+			}
+
+			&stats-name-page {
+				font-family: Convergence, Arial, sans-serif;
+				font-size: 12px;
+				color: vars.$rgb-off-black;
+				font-weight: 100;
+			}
+
+			&stats-name-brew-link {
+				font-size: 13px;
+				font-weight: initial;
+			}
+
+			&pre-wrap {
+				white-space: pre-wrap;
+			}
+
+			&highlight {
+				background-color: vars.$rgb-bg-highlight;
+			}
+
+			&color {
+				a {
+					color: inherit !important;
 				}
 			}
 		}
 
-		&img {
-			&-small {
-				max-width: 25vw;
-				max-height: 25vh;
+		&-item__ {
+			&type-rarity-attunement {
+				color: vars.$rgb-off-black;
 			}
 		}
 
-		&s-v-flow {
-			height: 15px;
-			width: 0;
-			border-left: 1px solid $rgb-inset-border;
-			border-right: 1px solid $rgb-inset-border;
-			margin: 0 auto;
-		}
+		&-ability-icon {
+			max-width: 100px;
 
-		&b-flow {
-			margin: 0 15px;
-			padding: 5px 10px;
-			box-shadow: 0 0 4px 0 rgb(152 142 124);
-			border: 1px solid $rgb-inset-border;
-			border-top: 2px solid $rgb-inset-border;
-			border-bottom: 2px solid $rgb-inset-border;
-			background-color: #ece4da;
+			&__ {
+				&fill-primary {
+					fill: vars.$rgb-off-black;
+				}
 
-			> *:last-child {
-				margin-bottom: 0;
+				&fill-bg {
+					fill: vars.$rgb-bg;
+				}
+
+				&stroke-bg {
+					stroke: vars.$rgb-bg;
+				}
 			}
 		}
 
-		&stats-name-page {
-			font-family: Convergence, Arial, sans-serif;
-			font-size: 12px;
-			color: vars.$rgb-off-black;
-			font-weight: 100;
-		}
+		&-homebrew__ {
+			&b {
+				background-color: vars.$rgb-bg-homebrew;
+				clear: both;
+			}
 
-		&stats-name-brew-link {
-			font-size: 13px;
-			font-weight: initial;
-		}
+			&wrp-notice {
+				float: right;
+				border: 1px dotted;
+				margin-bottom: 5px;
+				margin-left: 5px;
+				padding-right: 2px;
+				padding-left: 2px;
+				text-indent: 0;
+			}
 
-		&pre-wrap {
-			white-space: pre-wrap;
-		}
+			&disp-notice {
+				&::before {
+					content: "Homebrew";
+				}
+			}
 
-		&highlight {
-			background-color: vars.$rgb-bg-highlight;
-		}
+			&disp-old-content {
+				color: #a00;
+				margin-left: 5px;
+			}
 
-		&color {
-			a {
-				color: inherit !important;
+			&disp-inline {
+				background-color: vars.$rgb-bg-homebrew;
+				text-decoration: underline dotted;
 			}
 		}
 	}
 
-	&-item__ {
-		&type-rarity-attunement {
-			color: vars.$rgb-off-black;
-		}
+	// Entries embedded in tables
+	td > .rd__b:last-child {
+		margin-bottom: 0;
 	}
 
-	&-ability-icon {
-		max-width: 100px;
+	/* ****************************************************************************************************************** */
+	/* Entity-specific styling                                                                                            */
+	/* ****************************************************************************************************************** */
 
+	// region Recipes
+	.rd-recipes {
 		&__ {
-			&fill-primary {
-				fill: vars.$rgb-off-black;
+			&wrp-recipe {
+				--w-text-indent-inline-p: 0;
 			}
 
-			&fill-bg {
-				fill: vars.$rgb-bg;
+			&wrp-instructions {
+				.rd__h--3 {
+					font-style: initial;
+					font-variant: small-caps;
+				}
+
+				.rd__b--3 > p,
+				.rd__b--4 > p {
+					margin-bottom: 10px;
+				}
+
+				.rd__b--3 > p:nth-of-type(2),
+				.rd__b--4 > p:nth-of-type(2) {
+					margin-top: 10px;
+				}
 			}
 
-			&stroke-bg {
-				stroke: vars.$rgb-bg;
-			}
-		}
-	}
+			&wrp-ingredients {
+				.rd__h--2 {
+					font-size: 1em;
+					font-family: Roboto, Helvetica, sans-serif;
+					color: inherit;
+					font-weight: bold;
+				}
 
-	&-homebrew__ {
-		&b {
-			background-color: vars.$rgb-bg-homebrew;
-			clear: both;
-		}
-
-		&wrp-notice {
-			float: right;
-			border: 1px dotted;
-			margin-bottom: 5px;
-			margin-left: 5px;
-			padding-right: 2px;
-			padding-left: 2px;
-			text-indent: 0;
-		}
-
-		&disp-notice {
-			&::before {
-				content: "Homebrew";
-			}
-		}
-
-		&disp-old-content {
-			color: #a00;
-			margin-left: 5px;
-		}
-
-		&disp-inline {
-			background-color: vars.$rgb-bg-homebrew;
-			text-decoration: underline dotted;
-		}
-	}
-}
-
-// Entries embedded in tables
-td > .rd__b:last-child {
-	margin-bottom: 0;
-}
-
-/* ****************************************************************************************************************** */
-/* Entity-specific styling                                                                                            */
-/* ****************************************************************************************************************** */
-
-// region Recipes
-.rd-recipes {
-	&__ {
-		&wrp-recipe {
-			--w-text-indent-inline-p: 0;
-		}
-
-		&wrp-instructions {
-			.rd__h--3 {
-				font-style: initial;
-				font-variant: small-caps;
-			}
-
-			.rd__b--3 > p,
-			.rd__b--4 > p {
-				margin-bottom: 10px;
-			}
-
-			.rd__b--3 > p:nth-of-type(2),
-			.rd__b--4 > p:nth-of-type(2) {
-				margin-top: 10px;
-			}
-		}
-
-		&wrp-ingredients {
-			.rd__h--2 {
-				font-size: 1em;
-				font-family: Roboto, Helvetica, sans-serif;
-				color: inherit;
-				font-weight: bold;
-			}
-
-			.rd__b p {
-				margin-bottom: 0;
+				.rd__b p {
+					margin-bottom: 0;
+				}
 			}
 		}
 	}
+	// endregion
 }
-// endregion

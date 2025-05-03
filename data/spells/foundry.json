@@ -71,7 +71,7 @@
 							{
 								"custom": {
 									"enabled": true,
-									"formula": "(floor(((@details.level + @details.spellLevel) + 1) / 6))d8[on hit]"
+									"formula": "(floor(((@details.level + @attributes.spell.level) + 1) / 6))d8[on hit]"
 								},
 								"types": [
 									"thunder"
@@ -126,7 +126,7 @@
 							{
 								"custom": {
 									"enabled": true,
-									"formula": "(floor(((@details.level + @details.spellLevel) + 1) / 6))d8[on hit]"
+									"formula": "(floor(((@details.level + @attributes.spell.level) + 1) / 6))d8[on hit]"
 								},
 								"types": [
 									"fire"
@@ -135,7 +135,7 @@
 							{
 								"custom": {
 									"enabled": true,
-									"formula": "@mod + (floor(((@details.level + @details.spellLevel) + 1) / 6))d8[splash]"
+									"formula": "@mod + (floor(((@details.level + @attributes.spell.level) + 1) / 6))d8[splash]"
 								},
 								"types": [
 									"fire"

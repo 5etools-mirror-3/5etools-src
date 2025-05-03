@@ -1,4 +1,4 @@
-import {ArrayKey, IgnoredKey, ObjectKey} from "./utils-proporder/utils-proporder-models.js";
+import {ArrayKey, IgnoredKey, ObjectKey, ObjectOrArrayKey} from "./utils-proporder/utils-proporder-models.js";
 import {PROPORDER_PROP_TO_LIST, PROPORDER_ROOT} from "./utils-proporder/utils-proporder-config.js";
 
 export class PropOrder {
@@ -81,21 +81,29 @@ export class PropOrder {
 					isNoSortRootArrays: false,
 				};
 
-				if (keyInfo instanceof ObjectKey) {
+				const keyInfoObj = keyInfo instanceof ObjectKey
+					? keyInfo
+					: keyInfo instanceof ObjectOrArrayKey && obj[propMod]?.constructor === Object ? keyInfo.objectKey : null;
+
+				if (keyInfoObj) {
 					const logPathNxt = `${logPath}.${prop}${propMod !== prop ? ` (${propMod})` : ""}`;
-					if (keyInfo.fnGetOrder) out[propMod] = this._getOrdered(obj[propMod], keyInfo.fnGetOrder(obj[propMod]), optsNxt, logPathNxt);
-					else if (keyInfo.order) out[propMod] = this._getOrdered(obj[propMod], keyInfo.order, optsNxt, logPathNxt);
+					if (keyInfoObj.fnGetOrder) out[propMod] = this._getOrdered(obj[propMod], keyInfoObj.fnGetOrder(obj[propMod]), optsNxt, logPathNxt);
+					else if (keyInfoObj.order) out[propMod] = this._getOrdered(obj[propMod], keyInfoObj.order, optsNxt, logPathNxt);
 					else out[propMod] = obj[propMod];
 					return;
 				}
 
-				if (keyInfo instanceof ArrayKey) {
+				const keyInfoArray = keyInfo instanceof ArrayKey
+					? keyInfo
+					: (keyInfo instanceof ObjectOrArrayKey && obj[propMod] instanceof Array) ? keyInfo.arrayKey : null;
+
+				if (keyInfoArray) {
 					const logPathNxt = `${logPath}[n].${prop}${propMod !== prop ? ` (${propMod})` : ""}`;
-					if (keyInfo.fnGetOrder) out[propMod] = obj[propMod].map(it => this._getOrdered(it, keyInfo.fnGetOrder(obj[propMod]), optsNxt, logPathNxt));
-					else if (keyInfo.order) out[propMod] = obj[propMod].map(it => this._getOrdered(it, keyInfo.order, optsNxt, logPathNxt));
+					if (keyInfoArray.fnGetOrder) out[propMod] = obj[propMod].map(it => this._getOrdered(it, keyInfoArray.fnGetOrder(obj[propMod]), optsNxt, logPathNxt));
+					else if (keyInfoArray.order) out[propMod] = obj[propMod].map(it => this._getOrdered(it, keyInfoArray.order, optsNxt, logPathNxt));
 					else out[propMod] = obj[propMod];
 
-					if (!opts.isNoSortRootArrays && keyInfo.fnSort && out[propMod] instanceof Array) out[propMod].sort(keyInfo.fnSort);
+					if (!opts.isNoSortRootArrays && keyInfoArray.fnSort && out[propMod] instanceof Array) out[propMod].sort(keyInfoArray.fnSort);
 
 					return;
 				}

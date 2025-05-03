@@ -1,120 +1,122 @@
 @use "../vars/vars-night";
 
-.ve-night-mode .rd {
-	&__ {
-		&wrp-image {
-			&--bg-light {
-				background-color: vars-night.$rgb-font--night;
+@layer vetools {
+	.ve-night-mode .rd {
+		&__ {
+			&wrp-image {
+				&--bg-light {
+					background-color: vars-night.$rgb-font--night;
+				}
+
+				&--bg-dark {
+					background-color: vars-night.$rgb-bg--alt-night;
+				}
 			}
 
-			&--bg-dark {
-				background-color: vars-night.$rgb-bg--alt-night;
+			&h--0,
+			&h--1,
+			&h--2 {
+				color: vars-night.$rgb-name-red--night;
 			}
-		}
 
-		&h--0,
-		&h--1,
-		&h--2 {
-			color: vars-night.$rgb-name-red--night;
-		}
-
-		&h--1 {
-			border-bottom-color: vars-night.$rgb-name-red--night;
-		}
-
-		&h--4 {
-			color: vars-night.$rgb-name-alt--night;
-		}
-
-		&h--3 {
-			color: vars-night.$rgb-name-alt--night;
-		}
-
-		&-image-title-inner {
-			border-color: vars-night.$rgb-border-grey--night;
-		}
-
-		&b-inset {
-			background-color: #323431;
-
-			&--readaloud {
-				background-color: #28303a;
+			&h--1 {
+				border-bottom-color: vars-night.$rgb-name-red--night;
 			}
-		}
 
-		&th {
-			&-skewer {
-				&::after {
-					border-color: vars-night.$rgb-border-grey--night;
+			&h--4 {
+				color: vars-night.$rgb-name-alt--night;
+			}
+
+			&h--3 {
+				color: vars-night.$rgb-name-alt--night;
+			}
+
+			&-image-title-inner {
+				border-color: vars-night.$rgb-border-grey--night;
+			}
+
+			&b-inset {
+				background-color: #323431;
+
+				&--readaloud {
+					background-color: #28303a;
+				}
+			}
+
+			&th {
+				&-skewer {
+					&::after {
+						border-color: vars-night.$rgb-border-grey--night;
+					}
+				}
+			}
+
+			&b-data {
+				border-color: vars-night.$rgb-border-grey--statblock-night;
+			}
+
+			&b-flow {
+				background-color: #38352f;
+			}
+
+			&comic {
+				color: #95aaea;
+			}
+
+			&stats-name-page {
+				color: vars-night.$rgb-font--night;
+			}
+
+			&highlight {
+				background-color: vars-night.$rgb-bg-highlight--night;
+				color: vars-night.$rgb-bg--night;
+			}
+
+			&scroller-viewer {
+				&--bg-light {
+					background-color: vars-night.$rgb-font--night;
+				}
+
+				&--bg-dark {
+					background-color: vars-night.$rgb-bg--alt-night;
 				}
 			}
 		}
 
-		&b-data {
-			border-color: vars-night.$rgb-border-grey--statblock-night;
-		}
-
-		&b-flow {
-			background-color: #38352f;
-		}
-
-		&comic {
-			color: #95aaea;
-		}
-
-		&stats-name-page {
-			color: vars-night.$rgb-font--night;
-		}
-
-		&highlight {
-			background-color: vars-night.$rgb-bg-highlight--night;
-			color: vars-night.$rgb-bg--night;
-		}
-
-		&scroller-viewer {
-			&--bg-light {
-				background-color: vars-night.$rgb-font--night;
-			}
-
-			&--bg-dark {
-				background-color: vars-night.$rgb-bg--alt-night;
+		&-item__ {
+			&type-rarity-attunement {
+				color: vars-night.$rgb-font--night;
 			}
 		}
-	}
 
-	&-item__ {
-		&type-rarity-attunement {
-			color: vars-night.$rgb-font--night;
-		}
-	}
+		&-ability-icon {
+			&__ {
+				&fill-primary {
+					fill: vars-night.$rgb-font--night;
+				}
 
-	&-ability-icon {
-		&__ {
-			&fill-primary {
-				fill: vars-night.$rgb-font--night;
-			}
+				&fill-bg {
+					fill: vars-night.$rgb-bg--night;
+				}
 
-			&fill-bg {
-				fill: vars-night.$rgb-bg--night;
-			}
-
-			&stroke-bg {
-				stroke: vars-night.$rgb-bg--night;
+				&stroke-bg {
+					stroke: vars-night.$rgb-bg--night;
+				}
 			}
 		}
-	}
 
-	&-homebrew__ {
-		&b {
-			background-color: vars-night.$rgb-bg-homebrew--night;
-		}
+		&-homebrew__ {
+			&b {
+				background-color: vars-night.$rgb-bg-homebrew--night;
+			}
 
-		&disp-old-content {
-			color: #f99;
-		}
+			&disp-old-content {
+				color: #f99;
+			}
 
-		&disp-inline {
-			background-color: vars-night.$rgb-bg-homebrew--night;
+			&disp-inline {
+				background-color: vars-night.$rgb-bg-homebrew--night;
+			}
 		}
 	}
 }

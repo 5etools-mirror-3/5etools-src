@@ -1,20 +1,22 @@
 @use "../vars/vars";
 @use "../vars/vars-night";
 
-.ve-night-mode .lst__ {
-	&row {
-		background: vars-night.$rgb-bg--night;
+@layer vetools {
+	.ve-night-mode .lst__ {
+		&row {
+			background: vars-night.$rgb-bg--night;
 
-		&:hover {
-			background: vars.$rgb-off-black;
-		}
+			&:hover {
+				background: vars.$rgb-off-black;
+			}
 
-		&-inner {
-			color: inherit;
-		}
+			&-inner {
+				color: inherit;
+			}
 
-		&-border {
-			border-color: vars-night.$rgb-border-grey--list-row-night;
+			&-border {
+				border-color: vars-night.$rgb-border-grey--list-row-night;
+			}
 		}
 	}
 }
