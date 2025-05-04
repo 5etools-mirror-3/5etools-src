@@ -8707,6 +8707,9 @@ globalThis.EditorUtil = {
 	initEditor (id, additionalOpts = null) {
 		additionalOpts = additionalOpts || {};
 
+		// Enable autocompletion
+		ace.require("ace/ext/language_tools");
+
 		const editor = ace.edit(id);
 		editor.setOptions({
 			theme: EditorUtil.getTheme(),
@@ -8714,8 +8717,28 @@ globalThis.EditorUtil = {
 			showPrintMargin: false,
 			tabSize: 2,
 			useWorker: false,
+			enableBasicAutocompletion: true,
+			enableLiveAutocompletion: true,
 			...additionalOpts,
 		});
+
+		// When in the rendererdemo
+		if (id === "jsoninput") {
+			// Create a language provider from CDN
+			let provider = LanguageProvider.fromCdn("https://www.unpkg.com/ace-linters@latest/build/");
+			// Register the editor with the language provider
+			provider.registerEditor(editor);
+			provider.setGlobalOptions("json", {
+				schemas: [
+					{
+						uri: "https://raw.githubusercontent.com/TheGiddyLimit/5etools-utils/master/schema/site/entry.json",
+					},
+				],
+			});
+			provider.setSessionOptions(editor.session, {
+				schemaUri: "https://raw.githubusercontent.com/TheGiddyLimit/5etools-utils/master/schema/site/entry.json",
+			});
+		}
 
 		if (additionalOpts.mode === "ace/mode/json") {
 			// Escape backslashes when pasting JSON, unless CTRL+SHIFT are pressed
