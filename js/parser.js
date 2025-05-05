@@ -2825,6 +2825,7 @@ Parser.bookOrdinalToAbv = (ordinal, {isPreNoSuff = false, isPlainText = false} =
 		case "episode": return `${isPreNoSuff ? " " : ""}${Parser._bookOrdinalToAbv_getPt({ordinal, isPlainText})} ${ordinal.identifier}${isPreNoSuff ? "" : ": "}`;
 		case "appendix": return `${isPreNoSuff ? " " : ""}${Parser._bookOrdinalToAbv_getPt({ordinal, isPlainText})}${ordinal.identifier != null ? ` ${ordinal.identifier}` : ""}${isPreNoSuff ? "" : ": "}`;
 		case "level": return `${isPreNoSuff ? " " : ""}${Parser._bookOrdinalToAbv_getPt({ordinal, isPlainText})} ${ordinal.identifier}${isPreNoSuff ? "" : ": "}`;
+		case "section": return `${isPreNoSuff ? " " : ""}${Parser._bookOrdinalToAbv_getPt({ordinal, isPlainText})} ${ordinal.identifier}${isPreNoSuff ? "" : ": "}`;
 		default: throw new Error(`Unhandled ordinal type "${ordinal.type}"`);
 	}
 };
@@ -2835,6 +2836,7 @@ Parser._bookOrdinalToAbv_getPt = ({ordinal, isPlainText = false}) => {
 		case "chapter": return isPlainText ? `Ch.` : `<span title="Chapter">Ch.</span>`;
 		case "episode": return isPlainText ? `Ep.` : `<span title="Episode">Ep.</span>`;
 		case "appendix": return isPlainText ? `App.` : `<span title="Appendix">App.</span>`;
+		case "section": return isPlainText ? `Sec.` : `<span title="Section">Sec.</span>`;
 		case "level": return `Level`;
 		default: throw new Error(`Unhandled ordinal type "${ordinal.type}"`);
 	}

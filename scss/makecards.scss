@@ -1,55 +1,57 @@
-.cards {
-	&__ {
-		&btn-choose-icon {
-			width: 26px;
-			height: 26px;
-			padding: 0;
+@layer vetools {
+	.cards {
+		&__ {
+			&btn-choose-icon {
+				width: 26px;
+				height: 26px;
+				padding: 0;
+			}
+
+			&disp-btn-icon {
+				width: 24px;
+				height: 24px;
+				background-repeat: no-repeat;
+				background-size: 24px 24px;
+				filter: invert(1);
+			}
+
+			&disp-typeahead-icon {
+				width: 24px;
+				height: 24px;
+				background-repeat: no-repeat;
+				background-size: 24px 24px;
+				display: inline-block;
+			}
 		}
 
-		&disp-btn-icon {
-			width: 24px;
-			height: 24px;
-			background-repeat: no-repeat;
-			background-size: 24px 24px;
-			filter: invert(1);
+		&-cfg__ {
+			&ipt-color {
+				width: 40px;
+			}
 		}
+	}
 
-		&disp-typeahead-icon {
-			width: 24px;
-			height: 24px;
-			background-repeat: no-repeat;
-			background-size: 24px 24px;
-			display: inline-block;
+	.ve-night-mode {
+		.cards__ {
+			&disp-btn-icon {
+				filter: initial;
+			}
+
+			&disp-typeahead-img {
+				filter: invert(1);
+			}
 		}
 	}
 
-	&-cfg__ {
-		&ipt-color {
-			width: 40px;
-		}
+	label {
+		margin-bottom: 0;
+		display: block;
 	}
-}
 
-.ve-night-mode {
-	.cards__ {
-		&disp-btn-icon {
-			filter: initial;
-		}
-
-		&disp-typeahead-img {
-			filter: invert(1);
-		}
+	/* region typeahead */
+	ul.typeahead li a {
+		display: flex;
+		align-items: center;
 	}
+	/* endregion */
 }
-
-label {
-	margin-bottom: 0;
-	display: block;
-}
-
-/* region typeahead */
-ul.typeahead li a {
-	display: flex;
-	align-items: center;
-}
-/* endregion */

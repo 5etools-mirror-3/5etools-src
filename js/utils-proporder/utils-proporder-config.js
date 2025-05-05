@@ -1,4 +1,4 @@
-import {ArrayKey, IgnoredKey, ObjectKey} from "./utils-proporder-models.js";
+import {ArrayKey, IgnoredKey, ObjectKey, ObjectOrArrayKey} from "./utils-proporder-models.js";
 import {PROPS_FOUNDRY_DATA_INLINE} from "../foundry/foundry-consts.js";
 import {getFnRootPropListSort} from "./utils-proporder-sort.js";
 import {PROPORDER_ENTRY_DATA_OBJECT, PROPORDER_FOUNDRY_ACTIVITIES, PROPORDER_FOUNDRY_EFFECTS} from "./utils-proporder-config-shared.js";
@@ -1541,7 +1541,29 @@ const PROPORDER_ITEM = [
 	"light",
 
 	"optionalfeatures",
-	"attachedSpells",
+	new ObjectOrArrayKey({
+		objectKey: new ObjectKey("attachedSpells", {
+			fnGetOrder: () => [
+				...[
+					"will",
+				].map(k => new ArrayKey(k, {fnSort: SortUtil.ascSortLower})),
+
+				ObjectKey.getAttachedSpellFrequencyKey("charges"),
+
+				ObjectKey.getAttachedSpellFrequencyKey("rest"),
+				ObjectKey.getAttachedSpellFrequencyKey("daily"),
+				ObjectKey.getAttachedSpellFrequencyKey("limited"),
+
+				...[
+					"ritual",
+					"other",
+				].map(k => new ArrayKey(k, {fnSort: SortUtil.ascSortLower})),
+
+				"ability",
+			],
+		}),
+		arrayKey: new ArrayKey("attachedSpells", {fnSort: SortUtil.ascSortLower}),
+	}),
 	"spellScrollLevel",
 	"lootTables",
 
@@ -1571,6 +1593,8 @@ const PROPORDER_MAGICVARIANT = [
 	"alias",
 	"source",
 
+	ObjectKey.getCopyKey({fnGetModOrder: () => PROPORDER_MAGICVARIANT__COPY_MOD}),
+
 	"edition",
 
 	"type",
@@ -1592,6 +1616,11 @@ const PROPORDER_MAGICVARIANT = [
 	"hasFluffImages",
 
 	"fluff",
+];
+const PROPORDER_MAGICVARIANT__COPY_MOD = [
+	"*",
+	"_",
+	...PROPORDER_MAGICVARIANT,
 ];
 const PROPORDER_ITEM_MASTERY = [
 	"name",

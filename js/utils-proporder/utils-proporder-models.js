@@ -38,6 +38,23 @@ export class ObjectKey {
 			],
 		});
 	}
+
+	static getAttachedSpellFrequencyKey (key) {
+		return new this(key, {
+			fnGetOrder: (obj) => {
+				return Object.keys(obj)
+					.sort((a, b) => {
+						const isEachA = a.at(-1) === "e";
+						const isEachB = b.at(-1) === "e";
+						if (isEachA !== isEachB) return Number(isEachA) - Number(isEachB);
+						a = isEachA ? Number(a.slice(0, -1)) : Number(a);
+						b = isEachB ? Number(b.slice(0, -1)) : Number(b);
+						return a - b;
+					})
+					.map(k => new ArrayKey(k, {fnSort: SortUtil.ascSortLower}));
+			},
+		});
+	}
 }
 
 export class ArrayKey {
@@ -66,6 +83,15 @@ export class ArrayKey {
 				fnSort: getFnRootPropListSort(prop),
 			},
 		);
+	}
+}
+
+export class ObjectOrArrayKey {
+	constructor ({objectKey, arrayKey}) {
+		this.key = objectKey.key;
+		if (arrayKey.key !== this.key) throw new Error(`Expected both "objectKey" and "arrayKey" to have the same key!`);
+		this.objectKey = objectKey;
+		this.arrayKey = arrayKey;
 	}
 }
 

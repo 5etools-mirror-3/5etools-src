@@ -6,6 +6,7 @@ export const PROPORDER_ENTRY_DATA_OBJECT = [
 	"weaponProficiencies",
 	"armorProficiencies",
 	"toolProficiencies",
+	"skillToolLanguageProficiencies",
 	"savingThrowProficiencies",
 
 	"expertise",
