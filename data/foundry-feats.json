@@ -18,6 +18,23 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Alert",
+			"source": "XPHB",
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "flags.dnd5e.initiativeAlert",
+							"mode": "OVERRIDE",
+							"value": true
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Dual Wielder",
 			"source": "PHB",
 			"effects": [
@@ -79,6 +96,34 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Lucky",
+			"source": "XPHB",
+			"system": {
+				"uses.max": 3,
+				"uses.recovery": [
+					{
+						"period": "lr",
+						"type": "recoverAll"
+					}
+				]
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "special"
+					},
+					"consumption.targets": [
+						{
+							"type": "itemUses",
+							"vaule": 1
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Mobile",
 			"source": "PHB",
 			"effects": [
@@ -107,6 +152,24 @@
 							"key": "flags.dnd5e.observantFeat",
 							"mode": "OVERRIDE",
 							"value": true
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Speedy",
+			"source": "XPHB",
+			"effects": [
+				{
+					"name": "Movement Speed Increase",
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.attributes.movement.walk",
+							"mode": "ADD",
+							"value": "+ 10"
 						}
 					]
 				}
@@ -149,6 +212,69 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Tavern Brawler",
+			"source": "XPHB",
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "flags.dnd5e.tavernBrawlerFeat",
+							"mode": "OVERRIDE",
+							"value": true
+						}
+					]
+				},
+				{
+					"name": "Enhanced Unarmed Strike",
+					"foundryId": "tbEnhUnarmed",
+					"changes": [
+						{
+							"key": "system.damage.base.custom.formula",
+							"mode": "OVERRIDE",
+							"value": "1d4r1"
+						}
+					],
+					"type": "enchantment"
+				},
+				{
+					"name": "Damage Rerolls",
+					"foundryId": "tbDamageReroll",
+					"changes": [
+						{
+							"key": "system.damage.base.custom.formula",
+							"mode": "OVERRIDE",
+							"value": "{}r1"
+						}
+					],
+					"type": "enchantment"
+				}
+			],
+			"activities": [
+				{
+					"name": "Enhanced Unarmed Strike",
+					"activation.type": "none",
+					"effects": [
+						{
+							"foundryId": "tbEnhUnarmed"
+						}
+					],
+					"type": "enchant"
+				},
+				{
+					"name": "Damage Rerolls ONLY",
+					"activation.type": "none",
+					"effects": [
+						{
+							"foundryId": "tbDamageReroll"
+						}
+					],
+					"type": "enchant"
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Tough",
 			"source": "PHB",
 			"effects": [
@@ -157,9 +283,27 @@
 					"transfer": true,
 					"changes": [
 						{
-							"key": "system.attributes.hp.bonuses.overall",
+							"key": "system.attributes.hp.bonuses.level",
 							"mode": "ADD",
-							"value": "+(2 * @details.level)"
+							"value": "2"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Tough",
+			"source": "XPHB",
+			"effects": [
+				{
+					"name": "HP Increase",
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.attributes.hp.bonuses.level",
+							"mode": "ADD",
+							"value": "2"
 						}
 					]
 				}
@@ -169,6 +313,23 @@
 		{
 			"name": "War Caster",
 			"source": "PHB",
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.attributes.concentration.roll.mode",
+							"mode": "OVERRIDE",
+							"value": "1"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		}
+		{
+			"name": "War Caster",
+			"source": "XPHB",
 			"effects": [
 				{
 					"transfer": true,
