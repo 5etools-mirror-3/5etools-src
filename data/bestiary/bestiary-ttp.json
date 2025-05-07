@@ -51,7 +51,7 @@
 				"stealth": "+4"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 12,
 			"cr": "4",
@@ -65,13 +65,13 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one creature {@condition grappled} by the decapus. {@h}7 ({@damage 2d4 + 2}) piercing damage."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one creature {@condition grappled} by the decapus. {@h}7 ({@damage 2d4 + 2}) piercing damage."
 					]
 				},
 				{
 					"name": "Tentacles",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 10 ft., one target. {@h}24 ({@damage 9d4 + 2}) bludgeoning damage or 14 ({@damage 5d4 + 2}) bludgeoning damage if the decapus is grappling a creature other than the target or if the decapus is on the ground or floor. The target is also {@condition grappled} (escape {@dc 14}) unless the decapus is already grappling a creature. Until this grapple ends, the target is {@condition restrained}."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 10|ft.}, one target. {@h}24 ({@damage 9d4 + 2}) bludgeoning damage or 14 ({@damage 5d4 + 2}) bludgeoning damage if the decapus is grappling a creature other than the target or if the decapus is on the ground or floor. The target is also {@condition grappled} (escape {@dc 14}) unless the decapus is already grappling a creature. Until this grapple ends, the target is {@condition restrained}."
 					]
 				}
 			],
@@ -135,8 +135,8 @@
 				"stealth": "+2"
 			},
 			"senses": [
-				"darkvision 60 ft.",
-				"tremorsense 30 ft."
+				"darkvision {@quantity 60|ft.}",
+				"tremorsense {@quantity 30|ft.}"
 			],
 			"passive": 14,
 			"cr": "1/4",
@@ -152,13 +152,13 @@
 				{
 					"name": "Club",
 					"entries": [
-						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d4 + 1}) bludgeoning damage."
+						"{@atk mw} {@hit 3} to hit, reach {@quantity 5|ft.}, one target. {@h}3 ({@damage 1d4 + 1}) bludgeoning damage."
 					]
 				},
 				{
 					"name": "Stone Tell",
 					"entries": [
-						"The geonid touches a stone object or surface and knows what types of creatures have been within 10 feet of that stone in the past 24 hours. The geonid can also determine the number of creatures of each type, but not their identities."
+						"The geonid touches a stone object or surface and knows what types of creatures have been within {@quantity 10|feet} of that stone in the past 24 hours. The geonid can also determine the number of creatures of each type, but not their identities."
 					]
 				}
 			],
@@ -217,7 +217,7 @@
 				"perception": "+3"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 13,
 			"languages": [
@@ -267,13 +267,13 @@
 				{
 					"name": "Tentacles",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 10 ft., one creature. {@h}4 ({@damage 1d4 + 2}) poison damage, and the target must succeed on a {@dc 13} Constitution saving throw or be {@condition poisoned} for 1 minute. Until this poison ends, the target is {@condition paralyzed}. The target can repeat the saving throw at the end of each of its turns, ending the poison on itself on a success."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 10|ft.}, one creature. {@h}4 ({@damage 1d4 + 2}) poison damage, and the target must succeed on a {@dc 13} Constitution saving throw or be {@condition poisoned} for 1 minute. Until this poison ends, the target is {@condition paralyzed}. The target can repeat the saving throw at the end of each of its turns, ending the poison on itself on a success."
 					]
 				},
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}7 ({@damage 2d4 + 2}) piercing damage."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 2d4 + 2}) piercing damage."
 					]
 				}
 			],
@@ -281,7 +281,7 @@
 				{
 					"name": "Animate Tentacle",
 					"entries": [
-						"When the slug takes damage in this cave ({@adventure Shrine of Umberlee|ttp|3|24. Shrine of Umberlee}), it can use its reaction to animate one of the tentacles of the kraken statue and cause it to   make a melee weapon attack ({@hit 3} to hit) against one creature within 20 feet of the statue that the slug can see. The tentacle deals 8 ({@damage 1d8 + 4}) bludgeoning damage on a hit."
+						"When the slug takes damage in this cave ({@adventure Shrine of Umberlee|ttp|3|24. Shrine of Umberlee}), it can use its reaction to animate one of the tentacles of the kraken statue and cause it to   make a melee weapon attack ({@hit 3} to hit) against one creature within {@quantity 20|feet} of the statue that the slug can see. The tentacle deals 8 ({@damage 1d8 + 4}) bludgeoning damage on a hit."
 					]
 				}
 			],
@@ -363,7 +363,7 @@
 			"wis": 10,
 			"cha": 5,
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 10,
 			"resist": [
@@ -397,7 +397,7 @@
 				{
 					"name": "Venomous Claws",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d4 + 2}) slashing damage plus 2 ({@damage 1d4}) poison damage, and the target must succeed on a {@dc 11} Constitution saving throw or be {@condition poisoned} until the end of the target's next turn."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}4 ({@damage 1d4 + 2}) slashing damage plus 2 ({@damage 1d4}) poison damage, and the target must succeed on a {@dc 11} Constitution saving throw or be {@condition poisoned} until the end of the target's next turn."
 					]
 				}
 			],

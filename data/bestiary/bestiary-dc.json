@@ -44,7 +44,7 @@
 			"wis": 12,
 			"cha": 17,
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 11,
 			"resist": [
@@ -86,7 +86,7 @@
 				{
 					"name": "Ethereal Sight",
 					"entries": [
-						"Ebondeath can see 60 feet into the Ethereal Plane when it is on the Material Plane, and vice versa."
+						"Ebondeath can see {@quantity 60|feet} into the Ethereal Plane when it is on the Material Plane, and vice versa."
 					]
 				},
 				{
@@ -106,7 +106,7 @@
 				{
 					"name": "Withering Touch",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}17 ({@damage 4d6 + 3}) necrotic damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}17 ({@damage 4d6 + 3}) necrotic damage."
 					]
 				},
 				{
@@ -118,14 +118,14 @@
 				{
 					"name": "Horrifying Visage",
 					"entries": [
-						"Each non-undead creature within 60 feet of Ebondeath that can see it must succeed on a {@dc 13} Wisdom saving throw or be {@condition frightened} for 1 minute. If the save fails by 5 or more, the target also ages {@dice 1d4 × 10} years. A {@condition frightened} target can repeat the saving throw at the end of each of its turns, ending the {@condition frightened} condition on itself on a success. If a target's saving throw is successful or the effect ends for it, the target is immune to this Ebondeath's Horrifying Visage for the next 24 hours. The aging effect can be reversed with a {@spell greater restoration} spell, but only within 24 hours of it occurring."
+						"Each non-undead creature within {@quantity 60|feet} of Ebondeath that can see it must succeed on a {@dc 13} Wisdom saving throw or be {@condition frightened} for 1 minute. If the save fails by 5 or more, the target also ages {@dice 1d4 × 10} years. A {@condition frightened} target can repeat the saving throw at the end of each of its turns, ending the {@condition frightened} condition on itself on a success. If a target's saving throw is successful or the effect ends for it, the target is immune to this Ebondeath's Horrifying Visage for the next 24 hours. The aging effect can be reversed with a {@spell greater restoration} spell, but only within 24 hours of it occurring."
 					]
 				},
 				{
 					"name": "Possession {@recharge}",
 					"entries": [
-						"One humanoid that Ebondeath can see within 5 feet of it must succeed on a {@dc 20} Charisma saving throw or be possessed by Ebondeath; Ebondeath then disappears, and the target is {@condition incapacitated} and loses control of its body. Ebondeath now controls the body but doesn't deprive the target of awareness. Ebondeath can't be targeted by any attack, spell, or other effect, except ones that turn undead, and it retains its alignment, Intelligence, Wisdom, Charisma, and immunity to being {@condition charmed} and {@condition frightened}. It otherwise uses the possessed target's statistics, including gaining access to the target's knowledge, class features, and proficiencies.",
-						"The possession lasts until the body drops to 0 hit points, Ebondeath ends it as a bonus action, or Ebondeath is turned or forced out by an effect like the {@spell dispel evil and good} spell. When the possession ends, Ebondeath reappears in an unoccupied space within 5 feet of the body. The target is immune to Ebondeath Possession for 24 hours after succeeding on the saving throw or after the possession ends."
+						"One humanoid that Ebondeath can see within {@quantity 5|feet} of it must succeed on a {@dc 20} Charisma saving throw or be possessed by Ebondeath; Ebondeath then disappears, and the target is {@condition incapacitated} and loses control of its body. Ebondeath now controls the body but doesn't deprive the target of awareness. Ebondeath can't be targeted by any attack, spell, or other effect, except ones that turn undead, and it retains its alignment, Intelligence, Wisdom, Charisma, and immunity to being {@condition charmed} and {@condition frightened}. It otherwise uses the possessed target's statistics, including gaining access to the target's knowledge, class features, and proficiencies.",
+						"The possession lasts until the body drops to 0 hit points, Ebondeath ends it as a bonus action, or Ebondeath is turned or forced out by an effect like the {@spell dispel evil and good} spell. When the possession ends, Ebondeath reappears in an unoccupied space within {@quantity 5|feet} of the body. The target is immune to Ebondeath Possession for 24 hours after succeeding on the saving throw or after the possession ends."
 					]
 				}
 			],
@@ -241,19 +241,19 @@
 				{
 					"name": "Shortsword",
 					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}8 ({@damage 1d6 + 5}) piercing damage."
+						"{@atk mw} {@hit 9} to hit, reach {@quantity 5|ft.}, one target. {@h}8 ({@damage 1d6 + 5}) piercing damage."
 					]
 				},
 				{
 					"name": "Dagger",
 					"entries": [
-						"{@atk mw,rw} {@hit 9} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}7 ({@damage 1d4 + 5}) piercing damage."
+						"{@atk mw,rw} {@hit 9} to hit, reach {@quantity 5|ft.} or range {@quantity 20/60|ft.}, one target. {@h}7 ({@damage 1d4 + 5}) piercing damage."
 					]
 				},
 				{
 					"name": "Shortbow",
 					"entries": [
-						"{@atk rw} {@hit 9} to hit, range 80/320 ft., one target. {@h}8 ({@damage 1d6 + 5}) piercing damage."
+						"{@atk rw} {@hit 9} to hit, range {@quantity 80/320|ft.}, one target. {@h}8 ({@damage 1d6 + 5}) piercing damage."
 					]
 				}
 			],
@@ -407,7 +407,7 @@
 				{
 					"name": "Quarterstaff",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d6}) bludgeoning damage, or 4 ({@damage 1d8}) bludgeoning damage if used with two hands."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}3 ({@damage 1d6}) bludgeoning damage, or 4 ({@damage 1d8}) bludgeoning damage if used with two hands."
 					]
 				}
 			],
@@ -569,7 +569,7 @@
 				{
 					"name": "Quarterstaff",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d6}) bludgeoning damage, or 4 ({@damage 1d8}) bludgeoning damage if used with two hands."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}3 ({@damage 1d6}) bludgeoning damage, or 4 ({@damage 1d8}) bludgeoning damage if used with two hands."
 					]
 				}
 			],
@@ -724,13 +724,13 @@
 				{
 					"name": "Longsword",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}8 ({@damage 1d8 + 4}) slashing damage, or 9 ({@damage 1d10 + 4}) slashing damage if used with two hands."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 5|ft.}, one target. {@h}8 ({@damage 1d8 + 4}) slashing damage, or 9 ({@damage 1d10 + 4}) slashing damage if used with two hands."
 					]
 				},
 				{
 					"name": "Longbow",
 					"entries": [
-						"{@atk rw} {@hit 6} to hit, range 150/600 ft., one target. {@h}6 ({@damage 1d8 + 2}) piercing damage."
+						"{@atk rw} {@hit 6} to hit, range {@quantity 150/600|ft.}, one target. {@h}6 ({@damage 1d8 + 2}) piercing damage."
 					]
 				}
 			],
@@ -738,7 +738,7 @@
 				{
 					"name": "Protection (Defender Only)",
 					"entries": [
-						"When a creature the warrior can see attacks a target other than the warrior that is within 5 feet of the warrior, the warrior can use their reaction to impose disadvantage on the attack roll. The warrior must be wielding a shield."
+						"When a creature the warrior can see attacks a target other than the warrior that is within {@quantity 5|feet} of the warrior, the warrior can use their reaction to impose disadvantage on the attack roll. The warrior must be wielding a shield."
 					]
 				}
 			],

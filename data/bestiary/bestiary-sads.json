@@ -49,8 +49,8 @@
 				"stealth": "+8"
 			},
 			"senses": [
-				"blindsight 60 ft.",
-				"darkvision 120 ft."
+				"blindsight {@quantity 60|ft.}",
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 23,
 			"immune": [
@@ -60,7 +60,7 @@
 				"frightened"
 			],
 			"languages": [
-				"telepathy 120 ft.",
+				"telepathy {@quantity 120|ft.}",
 				"Common",
 				"Draconic"
 			],
@@ -98,7 +98,7 @@
 				{
 					"name": "Tunneler",
 					"entries": [
-						"The dragon can burrow through solid rock at half its burrow speed and can choose to leave a 10-foot-diameter tunnel in its wake."
+						"The dragon can burrow through solid rock at half its burrow speed and can choose to leave a {@quantity 10|-foot}-diameter tunnel in its wake."
 					]
 				}
 			],
@@ -112,31 +112,31 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 11} to hit, reach 10 ft., one target. {@h}17 ({@damage 2d10 + 6}) piercing damage plus 3 ({@damage 1d6}) thunder damage."
+						"{@atk mw} {@hit 11} to hit, reach {@quantity 10|ft.}, one target. {@h}17 ({@damage 2d10 + 6}) piercing damage plus 3 ({@damage 1d6}) thunder damage."
 					]
 				},
 				{
 					"name": "Claws",
 					"entries": [
-						"{@atk mw} {@hit 11} to hit, reach 10 ft., one target. {@h}19 ({@damage 3d8 + 6}) slashing damage."
+						"{@atk mw} {@hit 11} to hit, reach {@quantity 10|ft.}, one target. {@h}19 ({@damage 3d8 + 6}) slashing damage."
 					]
 				},
 				{
 					"name": "Tail",
 					"entries": [
-						"{@atk mw} {@hit 11} to hit, reach 10 ft., one target. {@h}15 ({@damage 2d8 + 6}) bludgeoning damage."
+						"{@atk mw} {@hit 11} to hit, reach {@quantity 10|ft.}, one target. {@h}15 ({@damage 2d8 + 6}) bludgeoning damage."
 					]
 				},
 				{
 					"name": "Frightful Presence",
 					"entries": [
-						"Each creature of the dragon's choice that is within 120 feet of the dragon and aware of it must succeed on a {@dc 17} Wisdom saving throw or become {@condition frightened} for 1 minute. A creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success. If a creature's saving throw is successful or the effect ends for it, the creature is immune to the dragon's Frightful Presence for the next 24 hours."
+						"Each creature of the dragon's choice that is within {@quantity 120|feet} of the dragon and aware of it must succeed on a {@dc 17} Wisdom saving throw or become {@condition frightened} for 1 minute. A creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success. If a creature's saving throw is successful or the effect ends for it, the creature is immune to the dragon's Frightful Presence for the next 24 hours."
 					]
 				},
 				{
 					"name": "Debilitating Breath {@recharge 5}",
 					"entries": [
-						"The dragon exhales a pulse of high-pitched, nearly inaudible sound in a 60-foot-cone. Each creature in that cone must make a {@dc 18} Constitution saving throw. On a failed save, the creature takes 45 ({@damage 13d6}) thunder damage and is {@condition incapacitated} until the end of its next turn. On a successful save, the creature takes half as much damage and isn't {@condition incapacitated}."
+						"The dragon exhales a pulse of high-pitched, nearly inaudible sound in a {@quantity 60|-foot}-cone. Each creature in that cone must make a {@dc 18} Constitution saving throw. On a failed save, the creature takes 45 ({@damage 13d6}) thunder damage and is {@condition incapacitated} until the end of its next turn. On a successful save, the creature takes half as much damage and isn't {@condition incapacitated}."
 					]
 				}
 			],
@@ -150,13 +150,13 @@
 				{
 					"name": "Telekinetic Fling",
 					"entries": [
-						"The dragon chooses a Small or smaller object that isn't being worn or carried that it can see within 60 feet of it, and magically hurls the object at a creature it can see within 60 feet of the object. The target must succeed on a {@dc 17} Dexterity saving throw or take 15 ({@damage 4d6}) bludgeoning damage."
+						"The dragon chooses a Small or smaller object that isn't being worn or carried that it can see within {@quantity 60|feet} of it, and magically hurls the object at a creature it can see within {@quantity 60|feet} of the object. The target must succeed on a {@dc 17} Dexterity saving throw or take 15 ({@damage 4d6}) bludgeoning damage."
 					]
 				},
 				{
 					"name": "Teleport (Costs 2 Actions)",
 					"entries": [
-						"The dragon magically teleports to an unoccupied space it can see within 30 feet of it."
+						"The dragon magically teleports to an unoccupied space it can see within {@quantity 30|feet} of it."
 					]
 				}
 			],
@@ -232,7 +232,7 @@
 											"name": "Rejuvenation",
 											"entries": [
 												"You might decide that dragons in your campaign, being an essential part of the Material Plane, are nearly impossible to destroy. A dragon's life essence might be preserved in the egg from which it first emerged, in its hoard, or in a cavernous hall at the center of the world, just as a lich's essence is hidden in a phylactery.",
-												"If it has an essence-preserving object, a destroyed dragon gains a new body in {@dice 1d10} days, regaining all its hit points and becoming active again. The new body appears within 5 feet of the object."
+												"If it has an essence-preserving object, a destroyed dragon gains a new body in {@dice 1d10} days, regaining all its hit points and becoming active again. The new body appears within {@quantity 5|feet} of the object."
 											]
 										},
 										{

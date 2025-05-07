@@ -33,7 +33,7 @@
 				"stealth": "+11"
 			},
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 17,
 			"vulnerable": [
@@ -65,7 +65,7 @@
 				{
 					"name": "Shadow Stride",
 					"entries": [
-						"As a bonus action, the horror can step into a shadow within 5 feet of it and magically appear in an unoccupied space within 5 feet of a second shadow that is up to 60 feet away. Both shadows must be cast by a Medium or larger creature or object."
+						"As a bonus action, the horror can step into a shadow within {@quantity 5|feet} of it and magically appear in an unoccupied space within {@quantity 5|feet} of a second shadow that is up to {@quantity 60|feet} away. Both shadows must be cast by a Medium or larger creature or object."
 					]
 				},
 				{
@@ -85,19 +85,19 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}21 ({@damage 4d8 + 3}) piercing damage."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}21 ({@damage 4d8 + 3}) piercing damage."
 					]
 				},
 				{
 					"name": "Claw",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}17 ({@damage 4d6 + 3}) slashing damage, and the target must succeed on a {@dc 16} Wisdom saving throw or be {@condition frightened} of the horror until the end of the target's next turn."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}17 ({@damage 4d6 + 3}) slashing damage, and the target must succeed on a {@dc 16} Wisdom saving throw or be {@condition frightened} of the horror until the end of the target's next turn."
 					]
 				},
 				{
 					"name": "Lashing Shadows {@recharge 5}",
 					"entries": [
-						"Each creature within 60 feet of the horror, except other horrors, must succeed on a {@dc 16} Dexterity saving throw or take 36 ({@damage 8d8}) necrotic damage."
+						"Each creature within {@quantity 60|feet} of the horror, except other horrors, must succeed on a {@dc 16} Dexterity saving throw or take 36 ({@damage 8d8}) necrotic damage."
 					]
 				}
 			],
@@ -111,13 +111,13 @@
 				{
 					"name": "Glide",
 					"entries": [
-						"The horror moves up to 20 feet without provoking opportunity attacks."
+						"The horror moves up to {@quantity 20|feet} without provoking opportunity attacks."
 					]
 				},
 				{
 					"name": "Frighten Foe (Costs 2 Actions)",
 					"entries": [
-						"The horror targets one enemy it can see within 30 feet of it. If the target can see and hear it, the target must succeed on a {@dc 16} Wisdom saving throw or be {@condition frightened} until the end of horror's next turn."
+						"The horror targets one enemy it can see within {@quantity 30|feet} of it. If the target can see and hear it, the target must succeed on a {@dc 16} Wisdom saving throw or be {@condition frightened} until the end of horror's next turn."
 					]
 				}
 			],
@@ -264,7 +264,7 @@
 				{
 					"name": "Quarterstaff",
 					"entries": [
-						"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}2 (1d6-1) bludgeoning damage, or 3 (1d8-1) bludgeoning damage if used with two hands."
+						"{@atk mw} {@hit 2} to hit, reach {@quantity 5|ft.}, one target. {@h}2 (1d6-1) bludgeoning damage, or 3 (1d8-1) bludgeoning damage if used with two hands."
 					]
 				}
 			],
@@ -272,7 +272,7 @@
 				{
 					"name": "Instinctive Charm (Recharges after Morwena Casts an Enchantment Spell of 1st Level or Higher)",
 					"entries": [
-						"Morwena tries to magically divert an attack made against her, provided that the attacker is within 30 feet of her and visible to her. She must decide to do so before the attack hits or misses.",
+						"Morwena tries to magically divert an attack made against her, provided that the attacker is within {@quantity 30|feet} of her and visible to her. She must decide to do so before the attack hits or misses.",
 						"The attacker must make a {@dc 15} Wisdom saving throw. On a failed save, the attacker targets the creature closest to it, other than Morwena or itself. If multiple creatures are closest, the attacker chooses which one to target."
 					]
 				}
@@ -357,7 +357,7 @@
 				"stealth": "+5"
 			},
 			"senses": [
-				"darkvision 100 ft."
+				"darkvision {@quantity 100|ft.}"
 			],
 			"passive": 18,
 			"resist": [
@@ -373,7 +373,7 @@
 			],
 			"languages": [
 				"all",
-				"telepathy 30 ft."
+				"telepathy {@quantity 30|ft.}"
 			],
 			"cr": "5",
 			"spellcasting": [
@@ -415,13 +415,13 @@
 				{
 					"name": "Claws",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}7 (2d4 + 2) slashing damage plus 11 (2d6 + 4) psychic damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}7 (2d4 + 2) slashing damage plus 11 (2d6 + 4) psychic damage."
 					]
 				},
 				{
 					"name": "Personal Insight",
 					"entries": [
-						"The usagt targets one creature it can see within 30 feet of it. The target must contest its Charisma ({@skill Deception}) check against the usagt's Wisdom ({@skill Insight}) check.",
+						"The usagt targets one creature it can see within {@quantity 30|feet} of it. The target must contest its Charisma ({@skill Deception}) check against the usagt's Wisdom ({@skill Insight}) check.",
 						"The target has advantage on the roll if it is immune to being {@condition charmed}. A target can choose to fail this check.",
 						"If the usagt wins, it magically learns the identity of a creature from the target's past, someone the target wishes it could speak to again or with whom the target has left something unsaid. If somehow no such creature exists in the target's past, the usagt learns that instead."
 					]
@@ -431,7 +431,7 @@
 				{
 					"name": "Invisibility Response (Recharges When the Usagt Uses Its Shapechanger Ability)",
 					"entries": [
-						"When the usagt takes damage, it can choose to revert to its default, {@condition invisible} form and move up to 15 feet without provoking opportunity attacks."
+						"When the usagt takes damage, it can choose to revert to its default, {@condition invisible} form and move up to {@quantity 15|feet} without provoking opportunity attacks."
 					]
 				}
 			],

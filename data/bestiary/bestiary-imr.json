@@ -64,7 +64,7 @@
 				"perception": "+3"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 13,
 			"languages": [
@@ -96,31 +96,31 @@
 				{
 					"name": "Battleaxe",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}14 ({@damage 2d8 + 5}) slashing damage."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 5|ft.}, one target. {@h}14 ({@damage 2d8 + 5}) slashing damage."
 					]
 				},
 				{
 					"name": "Morningstar",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}14 ({@damage 2d8 + 5}) piercing damage."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 5|ft.}, one target. {@h}14 ({@damage 2d8 + 5}) piercing damage."
 					]
 				},
 				{
 					"name": "Fire Breath {@recharge 5}",
 					"entries": [
-						"The ettin's right head exhales fire in a 30-foot cone. Each creature in that area must make a {@dc 14} Dexterity saving throw, taking 45 ({@damage 10d8}) fire damage on a failed save, or half as much damage on a successful one."
+						"The ettin's right head exhales fire in a {@quantity 30|-foot} cone. Each creature in that area must make a {@dc 14} Dexterity saving throw, taking 45 ({@damage 10d8}) fire damage on a failed save, or half as much damage on a successful one."
 					]
 				},
 				{
 					"name": "Cold Breath {@recharge 5}",
 					"entries": [
-						"The ettin's left head exhales an icy blast in a 30-foot cone. Each creature in that area must make a {@dc 14} Constitution saving throw, taking 45 ({@damage 10d8}) cold damage on a failed save, or half as much damage on a successful one."
+						"The ettin's left head exhales an icy blast in a {@quantity 30|-foot} cone. Each creature in that area must make a {@dc 14} Constitution saving throw, taking 45 ({@damage 10d8}) cold damage on a failed save, or half as much damage on a successful one."
 					]
 				},
 				{
 					"name": "Gaze",
 					"entries": [
-						"The ettin turns its magical gaze toward one creature that it can see within 120 feet of it. That target must make a {@dc 14} Wisdom saving throw. Unless the target is {@condition incapacitated}, it can avert its eyes to avoid the gaze and to automatically succeed on the save. If the target does so, it can't see the ettin until the start of the ettin's next turn. If the target looks at the ettin in the meantime, it must immediately make the save.",
+						"The ettin turns its magical gaze toward one creature that it can see within {@quantity 120|feet} of it. That target must make a {@dc 14} Wisdom saving throw. Unless the target is {@condition incapacitated}, it can avert its eyes to avoid the gaze and to automatically succeed on the save. If the target does so, it can't see the ettin until the start of the ettin's next turn. If the target looks at the ettin in the meantime, it must immediately make the save.",
 						"If the target fails the save, it suffers one of the following effects of the ettin's choice or at random:"
 					]
 				},
@@ -214,7 +214,7 @@
 							"items": {
 								"name": "Shortsword",
 								"entries": [
-									"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) piercing damage, and the target must succeed on a {@dc 11} Constitution saving throw or be cursed with wererat lycanthropy."
+									"{@atk mw} {@hit 6} to hit, reach {@quantity 5|ft.}, one target. {@h}6 ({@damage 1d6 + 3}) piercing damage, and the target must succeed on a {@dc 11} Constitution saving throw or be cursed with wererat lycanthropy."
 								]
 							}
 						},
@@ -224,7 +224,7 @@
 							"items": {
 								"name": "Light Crossbow",
 								"entries": [
-									"{@atk rw} {@hit 6} to hit, range 80/320 ft., one target. {@h}7 ({@damage 1d8 + 3}) piercing damage, and the target must succeed on a {@dc 11} Constitution saving throw or be cursed with wererat lycanthropy."
+									"{@atk rw} {@hit 6} to hit, range {@quantity 80/320|ft.}, one target. {@h}7 ({@damage 1d8 + 3}) piercing damage, and the target must succeed on a {@dc 11} Constitution saving throw or be cursed with wererat lycanthropy."
 								]
 							}
 						}
@@ -388,19 +388,19 @@
 				{
 					"name": "Bone Shortsword",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) piercing damage."
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 5|ft.}, one target. {@h}6 ({@damage 1d6 + 3}) piercing damage."
 					]
 				},
 				{
 					"name": "Light Crossbow",
 					"entries": [
-						"{@atk rw} {@hit 6} to hit, range 80/320 ft., one target. {@h}7 ({@damage 1d8 + 3}) piercing damage, and the target must succeed on a {@dc 13} Constitution saving throw or be {@condition poisoned} for 1 hour. If the saving throw fails by 5 or more, the target is also {@condition unconscious}. The target regains consciousness if it takes damage or if another creature takes an action to shake it."
+						"{@atk rw} {@hit 6} to hit, range {@quantity 80/320|ft.}, one target. {@h}7 ({@damage 1d8 + 3}) piercing damage, and the target must succeed on a {@dc 13} Constitution saving throw or be {@condition poisoned} for 1 hour. If the saving throw fails by 5 or more, the target is also {@condition unconscious}. The target regains consciousness if it takes damage or if another creature takes an action to shake it."
 					]
 				},
 				{
 					"name": "Cloak Sweep",
 					"entries": [
-						"Barbatos corrodes a nonmagical ferrous metal object he can see within 5 feet of himself. If the object isn't being worn or carried, the touch destroys a 1-foot cube of it. If the object is being worn or carried by a creature, the creature can make a {@dc 12} Dexterity saving throw to avoid Barbatos's touch.",
+						"Barbatos corrodes a nonmagical ferrous metal object he can see within {@quantity 5|feet} of himself. If the object isn't being worn or carried, the touch destroys a {@quantity 1|-foot} cube of it. If the object is being worn or carried by a creature, the creature can make a {@dc 12} Dexterity saving throw to avoid Barbatos's touch.",
 						"If the object touched is either metal armor or a metal shield being worn or carried, it takes a permanent and cumulative 1 penalty to the AC it offers. Armor reduced to an AC of 10 or a shield that drops to a +0 bonus is destroyed. If the object touched is a held metal weapon, it rusts as described in Barbatos's Rust Monster Cloak trait."
 					]
 				}
@@ -509,7 +509,7 @@
 				{
 					"name": "Pick or Hammer",
 					"entries": [
-						"{@atk mw} {@hit 3} to hit, reach 5 ft., one creature. {@h}4 ({@damage 1d6 + 1}) bludgeoning or piercing damage."
+						"{@atk mw} {@hit 3} to hit, reach {@quantity 5|ft.}, one creature. {@h}4 ({@damage 1d6 + 1}) bludgeoning or piercing damage."
 					]
 				}
 			],
@@ -536,7 +536,7 @@
 				"source": "MM"
 			},
 			"senses": [
-				"truesight 120 ft."
+				"truesight {@quantity 120|ft.}"
 			],
 			"spellcasting": [
 				{
@@ -559,9 +559,9 @@
 				{
 					"name": "Petrifying Gaze",
 					"entries": [
-						"When a creature that can see the medusa's eyes starts its turn within 30 feet of the medusa, the medusa can force it to make a {@dc 14} Constitution saving throw if the medusa isn't {@condition incapacitated} and can see the creature. If the saving throw fails by 5 or more, the creature is instantly {@condition petrified}. Otherwise, a creature that fails the save begins to turn to metal, wood, or porcelain (the medusa's choice) and is {@condition restrained}. The {@condition restrained} creature must repeat the saving throw at the end of its next turn, becoming {@condition petrified} on a failure or ending the effect on a success. The petrification lasts until the creature is freed by the  {@spell greater restoration} spell or other magic.",
+						"When a creature that can see the medusa's eyes starts its turn within {@quantity 30|feet} of the medusa, the medusa can force it to make a {@dc 14} Constitution saving throw if the medusa isn't {@condition incapacitated} and can see the creature. If the saving throw fails by 5 or more, the creature is instantly {@condition petrified}. Otherwise, a creature that fails the save begins to turn to metal, wood, or porcelain (the medusa's choice) and is {@condition restrained}. The {@condition restrained} creature must repeat the saving throw at the end of its next turn, becoming {@condition petrified} on a failure or ending the effect on a success. The petrification lasts until the creature is freed by the  {@spell greater restoration} spell or other magic.",
 						"Unless {@status surprised}, a creature can avert its eyes to avoid the saving throw at the start of its turn. If the creature does so, it can't see the medusa until the start of its next turn, when it can avert its eyes again. If the creature looks at the medusa in the meantime, it must immediately make the save.",
-						"If the medusa sees itself reflected on a polished surface within 30 feet of it and in an area of bright light, the medusa is, due to its curse, affected by its own gaze."
+						"If the medusa sees itself reflected on a polished surface within {@quantity 30|feet} of it and in an area of bright light, the medusa is, due to its curse, affected by its own gaze."
 					]
 				}
 			],
@@ -601,7 +601,7 @@
 						"items": {
 							"name": "Pacifying Spores (3/Day)",
 							"entries": [
-								"Grandfather Oak ejects spores at one creature it can see within 5 feet of it. The target must succeed on a {@dc 17} Constitution saving throw or be {@condition stunned} for 1 minute. The target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+								"Grandfather Oak ejects spores at one creature it can see within {@quantity 5|feet} of it. The target must succeed on a {@dc 17} Constitution saving throw or be {@condition stunned} for 1 minute. The target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
 							]
 						}
 					}
@@ -656,7 +656,7 @@
 				"cha": "+7"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 13,
 			"resist": [
@@ -733,7 +733,7 @@
 				{
 					"name": "Shortsword",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d6 + 4}) piercing damage."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 1d6 + 4}) piercing damage."
 					]
 				}
 			],
@@ -895,7 +895,7 @@
 				{
 					"name": "Artificial Mind",
 					"entries": [
-						"Moghadam can manifest an artificial mind as a floating spectral image of a {@creature demilich}'s jeweled skull. Moghadam can communicate telepathically with this mind, send it up to 300 feet away from him, and see and hear through it."
+						"Moghadam can manifest an artificial mind as a floating spectral image of a {@creature demilich}'s jeweled skull. Moghadam can communicate telepathically with this mind, send it up to {@quantity 300|feet} away from him, and see and hear through it."
 					]
 				},
 				{
@@ -909,7 +909,7 @@
 				{
 					"name": "Ruinblade",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}9 ({@damage 2d6 + 2}) slashing damage."
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 5|ft.}, one target. {@h}9 ({@damage 2d6 + 2}) slashing damage."
 					]
 				},
 				{
@@ -927,7 +927,7 @@
 				{
 					"name": "Information Overload {@recharge 5}",
 					"entries": [
-						"Moghadam overloads the thoughts of one creature within 5 feet of either himself or his artificial mind. The target must succeed on a {@dc 16} Intelligence saving throw or take 22 ({@damage 4d8 + 4}) psychic damage, and the next attack roll made against the target before the end of Moghadam's next turn has advantage."
+						"Moghadam overloads the thoughts of one creature within {@quantity 5|feet} of either himself or his artificial mind. The target must succeed on a {@dc 16} Intelligence saving throw or take 22 ({@damage 4d8 + 4}) psychic damage, and the next attack roll made against the target before the end of Moghadam's next turn has advantage."
 					]
 				}
 			],
@@ -1002,7 +1002,7 @@
 				"con": "+9"
 			},
 			"senses": [
-				"darkvision 120 ft."
+				"darkvision {@quantity 120|ft.}"
 			],
 			"passive": 11,
 			"conditionImmune": [
@@ -1035,7 +1035,7 @@
 				{
 					"name": "Limited Telepathy",
 					"entries": [
-						"The otyugh can magically transmit simple messages and images to any creature within 120 feet of it that can understand a language. This form of telepathy doesn't allow the receiving creature to telepathically respond."
+						"The otyugh can magically transmit simple messages and images to any creature within {@quantity 120|feet} of it that can understand a language. This form of telepathy doesn't allow the receiving creature to telepathically respond."
 					]
 				}
 			],
@@ -1049,13 +1049,13 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 10 ft., one target. {@h}16 ({@damage 2d10 + 5}) piercing damage. If the target is a creature, it must succeed on a {@dc 17} Constitution saving throw against disease or become {@condition poisoned} until the disease is cured. Every 24 hours that elapse, the target must repeat the saving throw, reducing its hit point maximum by 5 ({@dice 1d10}) on a failure. The disease is cured on a success. The target dies if the disease reduces its hit point maximum to 0. This reduction to the target's hit point maximum lasts until the disease is cured."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 10|ft.}, one target. {@h}16 ({@damage 2d10 + 5}) piercing damage. If the target is a creature, it must succeed on a {@dc 17} Constitution saving throw against disease or become {@condition poisoned} until the disease is cured. Every 24 hours that elapse, the target must repeat the saving throw, reducing its hit point maximum by 5 ({@dice 1d10}) on a failure. The disease is cured on a success. The target dies if the disease reduces its hit point maximum to 0. This reduction to the target's hit point maximum lasts until the disease is cured."
 					]
 				},
 				{
 					"name": "Tentacle",
 					"entries": [
-						"{@atk mw} {@hit 8} to hit, reach 15 ft., one target. {@h}10 ({@damage 1d10 + 5}) bludgeoning damage. If the target is Large or smaller, it is {@condition grappled} (escape {@dc 16}) and {@condition restrained} until the grapple ends. The neo-otyugh has two tentacles, each of which can grapple one target."
+						"{@atk mw} {@hit 8} to hit, reach {@quantity 15|ft.}, one target. {@h}10 ({@damage 1d10 + 5}) bludgeoning damage. If the target is Large or smaller, it is {@condition grappled} (escape {@dc 16}) and {@condition restrained} until the grapple ends. The neo-otyugh has two tentacles, each of which can grapple one target."
 					]
 				},
 				{
@@ -1136,7 +1136,7 @@
 							{
 								"name": "Treasure Sense",
 								"entries": [
-									"Seodra can pinpoint, by scent, the location of precious metals and stones, such as coins and gems, within 60 feet of her."
+									"Seodra can pinpoint, by scent, the location of precious metals and stones, such as coins and gems, within {@quantity 60|feet} of her."
 								]
 							}
 						]
@@ -1250,19 +1250,19 @@
 				{
 					"name": "Claw",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}11 ({@damage 2d6 + 4}) slashing damage."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}11 ({@damage 2d6 + 4}) slashing damage."
 					]
 				},
 				{
 					"name": "Spear",
 					"entries": [
-						"{@atk mw,rw} {@hit 7} to hit, reach 5 ft. and range 20/60 ft., one target. {@h}11 ({@damage 2d6 + 4}) piercing damage, or 13 ({@damage 2d8 + 4}) piercing damage if used with two hands to make a melee attack."
+						"{@atk mw,rw} {@hit 7} to hit, reach {@quantity 5|ft.} and range {@quantity 20/60|ft.}, one target. {@h}11 ({@damage 2d6 + 4}) piercing damage, or 13 ({@damage 2d8 + 4}) piercing damage if used with two hands to make a melee attack."
 					]
 				},
 				{
 					"name": "Shield Bash",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}9 ({@damage 2d4 + 4}) bludgeoning damage, and if the target is a Medium or smaller creature, it must succeed on a {@dc 15} Strength saving throw or be knocked {@condition prone}."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}9 ({@damage 2d4 + 4}) bludgeoning damage, and if the target is a Medium or smaller creature, it must succeed on a {@dc 15} Strength saving throw or be knocked {@condition prone}."
 					]
 				}
 			],
@@ -1422,7 +1422,7 @@
 				{
 					"name": "Talons",
 					"entries": [
-						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}8 ({@damage 2d6 + 1}) slashing damage."
+						"{@atk mw} {@hit 3} to hit, reach {@quantity 5|ft.}, one target. {@h}8 ({@damage 2d6 + 1}) slashing damage."
 					]
 				}
 			],
@@ -1456,7 +1456,7 @@
 						"items": {
 							"name": "Fist of Retribution",
 							"entries": [
-								"{@atk mw} {@hit 14} to hit, reach 10 ft., one target. {@h}13 ({@damage 2d4 + 8}) bludgeoning damage plus 7 ({@damage 2d6}) fire damage."
+								"{@atk mw} {@hit 14} to hit, reach {@quantity 10|ft.}, one target. {@h}13 ({@damage 2d4 + 8}) bludgeoning damage plus 7 ({@damage 2d6}) fire damage."
 							]
 						}
 					}
@@ -1625,7 +1625,7 @@
 				{
 					"name": "Dagger",
 					"entries": [
-						"{@atk mw,rw} {@hit 5} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}3 ({@damage 1d4 + 1}) piercing damage, and the target must succeed on a {@dc 15} Constitution saving throw. On a failed save, the target is affected as if by the {@spell polymorph} spell, transforming into a random {@filter beast|bestiary|type=beast|miscellaneous=!swarm} or a creature it has seen within the last 24 hours (as chosen by the DM). This effect lasts until the target finishes a long rest."
+						"{@atk mw,rw} {@hit 5} to hit, reach {@quantity 5|ft.} or range {@quantity 20/60|ft.}, one target. {@h}3 ({@damage 1d4 + 1}) piercing damage, and the target must succeed on a {@dc 15} Constitution saving throw. On a failed save, the target is affected as if by the {@spell polymorph} spell, transforming into a random {@filter beast|bestiary|type=beast|miscellaneous=!swarm} or a creature it has seen within the last 24 hours (as chosen by the DM). This effect lasts until the target finishes a long rest."
 					]
 				}
 			],
@@ -1684,7 +1684,7 @@
 						"items": {
 							"name": "Acidic Spittle",
 							"entries": [
-								"{@atk rw} {@hit 4} to hit, range 30 ft., one target. {@h}5 ({@damage 1d6 + 2}) acid damage."
+								"{@atk rw} {@hit 4} to hit, range {@quantity 30|ft.}, one target. {@h}5 ({@damage 1d6 + 2}) acid damage."
 							]
 						}
 					}
@@ -1761,7 +1761,7 @@
 				{
 					"name": "Claws",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}1 slashing damage, and the target must succeed on a {@dc 10} Constitution saving throw or be {@condition poisoned} for 1 minute. If the saving throw fails by 5 or more, the target is instead {@condition poisoned} for 5 ({@dice 1d10}) minutes and {@condition unconscious} while {@condition poisoned} in this way."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}1 slashing damage, and the target must succeed on a {@dc 10} Constitution saving throw or be {@condition poisoned} for 1 minute. If the saving throw fails by 5 or more, the target is instead {@condition poisoned} for 5 ({@dice 1d10}) minutes and {@condition unconscious} while {@condition poisoned} in this way."
 					]
 				}
 			],
@@ -1835,7 +1835,7 @@
 				"wis": "+7"
 			},
 			"senses": [
-				"truesight 120 ft."
+				"truesight {@quantity 120|ft.}"
 			],
 			"passive": 12,
 			"immune": [
@@ -1860,7 +1860,7 @@
 				"Celestial",
 				"Infernal",
 				"and Primordial but can't speak",
-				"telepathy 120 ft."
+				"telepathy {@quantity 120|ft.}"
 			],
 			"cr": "14",
 			"trait": [
@@ -1873,7 +1873,7 @@
 				{
 					"name": "Freedom of Movement",
 					"entries": [
-						"The thessalkraken ignores {@quickref difficult terrain||3}, and magical effects can't reduce its speed or cause it to be {@condition restrained}. It can spend 5 feet of movement to escape from nonmagical restraints or being {@condition grappled}."
+						"The thessalkraken ignores {@quickref difficult terrain||3}, and magical effects can't reduce its speed or cause it to be {@condition restrained}. It can spend {@quantity 5|feet} of movement to escape from nonmagical restraints or being {@condition grappled}."
 					]
 				}
 			],
@@ -1887,26 +1887,26 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 12} to hit, reach 5 ft., one target. {@h}20 ({@damage 3d8 + 7}) piercing damage plus 5 ({@damage 1d10}) acid damage. If the target is a Medium or smaller creature {@condition grappled} by the thessalkraken, that creature is swallowed, and the grapple ends. While swallowed, the creature is {@condition blinded} and {@condition restrained}, it has {@quickref Cover||3||total cover} against attacks and other effects outside the thessalkraken, and it takes 21 ({@damage 6d6}) acid damage at the start of each of the thessalkraken's turns.",
-						"If the thessalkraken takes 35 damage or more on a single turn from a creature inside it, it must succeed on a {@dc 23} Constitution saving throw at the end of that turn or regurgitate all swallowed creatures, which fall {@condition prone} in a space within 10 feet of the thessalkraken. If the thessalkraken dies, a swallowed creature is no longer {@condition restrained} by it and can escape from the corpse using 10 feet of movement, exiting {@condition prone}."
+						"{@atk mw} {@hit 12} to hit, reach {@quantity 5|ft.}, one target. {@h}20 ({@damage 3d8 + 7}) piercing damage plus 5 ({@damage 1d10}) acid damage. If the target is a Medium or smaller creature {@condition grappled} by the thessalkraken, that creature is swallowed, and the grapple ends. While swallowed, the creature is {@condition blinded} and {@condition restrained}, it has {@quickref Cover||3||total cover} against attacks and other effects outside the thessalkraken, and it takes 21 ({@damage 6d6}) acid damage at the start of each of the thessalkraken's turns.",
+						"If the thessalkraken takes 35 damage or more on a single turn from a creature inside it, it must succeed on a {@dc 23} Constitution saving throw at the end of that turn or regurgitate all swallowed creatures, which fall {@condition prone} in a space within {@quantity 10|feet} of the thessalkraken. If the thessalkraken dies, a swallowed creature is no longer {@condition restrained} by it and can escape from the corpse using {@quantity 10|feet} of movement, exiting {@condition prone}."
 					]
 				},
 				{
 					"name": "Tentacle",
 					"entries": [
-						"{@atk mw} {@hit 12} to hit, reach 20 ft., one target. {@h}17 ({@damage 3d6 + 7}) slashing damage, and the target is {@condition grappled} (escape {@dc 16}). Until this grapple ends, the target is {@condition restrained}. The thessalkraken has ten tentacles, each of which can grapple one target."
+						"{@atk mw} {@hit 12} to hit, reach {@quantity 20|ft.}, one target. {@h}17 ({@damage 3d6 + 7}) slashing damage, and the target is {@condition grappled} (escape {@dc 16}). Until this grapple ends, the target is {@condition restrained}. The thessalkraken has ten tentacles, each of which can grapple one target."
 					]
 				},
 				{
 					"name": "Fling",
 					"entries": [
-						"One Medium or smaller object held or creature {@condition grappled} by the thessalkraken is thrown up to 40 feet in a random direction and knocked {@condition prone}. If a thrown target strikes a solid surface, the target takes 3 ({@damage 1d6}) bludgeoning damage for every 10 feet it was thrown. If the target is thrown at another creature, that creature must succeed on a {@dc 16} Dexterity saving throw or take the same damage and be knocked {@condition prone}."
+						"One Medium or smaller object held or creature {@condition grappled} by the thessalkraken is thrown up to {@quantity 40|feet} in a random direction and knocked {@condition prone}. If a thrown target strikes a solid surface, the target takes 3 ({@damage 1d6}) bludgeoning damage for every {@quantity 10|feet} it was thrown. If the target is thrown at another creature, that creature must succeed on a {@dc 16} Dexterity saving throw or take the same damage and be knocked {@condition prone}."
 					]
 				},
 				{
 					"name": "Acid Saliva {@recharge 5}",
 					"entries": [
-						"The thessalkraken spits a glob of acid at a point it can see within 60 feet of it. Each creature within 10 feet of that point must make a {@dc 18} Dexterity saving throw, taking 22 ({@damage 4d10}) acid damage on a failed save, or half as much damage on a successful one."
+						"The thessalkraken spits a glob of acid at a point it can see within {@quantity 60|feet} of it. Each creature within {@quantity 10|feet} of that point must make a {@dc 18} Dexterity saving throw, taking 22 ({@damage 4d10}) acid damage on a failed save, or half as much damage on a successful one."
 					]
 				}
 			],
@@ -1926,7 +1926,7 @@
 				{
 					"name": "Ink Cloud (Costs 3 Actions)",
 					"entries": [
-						"While underwater, the thessalkraken expels an ink cloud in a 60-foot radius. The cloud spreads around corners, and that area is heavily obscured to creatures other than the thessalkraken. Each creature other than the thessalkraken that ends its turn there must succeed on a {@dc 18} Constitution saving throw, taking 16 ({@damage 3d10}) poison damage on a failed save, or half as much damage on a successful one. A strong current disperses the cloud, which otherwise disappears at the end of the thessalkraken's next turn."
+						"While underwater, the thessalkraken expels an ink cloud in a {@quantity 60|-foot} radius. The cloud spreads around corners, and that area is heavily obscured to creatures other than the thessalkraken. Each creature other than the thessalkraken that ends its turn there must succeed on a {@dc 18} Constitution saving throw, taking 16 ({@damage 3d10}) poison damage on a failed save, or half as much damage on a successful one. A strong current disperses the cloud, which otherwise disappears at the end of the thessalkraken's next turn."
 					]
 				}
 			],
@@ -2085,7 +2085,7 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d10 + 2}) piercing damage, and the target is {@condition grappled} (escape {@dc 12}). Until this grapple ends, the target is {@condition restrained}, and that head of the crocodile can't bite another target."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 1d10 + 2}) piercing damage, and the target is {@condition grappled} (escape {@dc 12}). Until this grapple ends, the target is {@condition restrained}, and that head of the crocodile can't bite another target."
 					]
 				}
 			],
@@ -2171,13 +2171,13 @@
 				{
 					"name": "Beak",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}10 ({@damage 1d10 + 5}) piercing damage."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}10 ({@damage 1d10 + 5}) piercing damage."
 					]
 				},
 				{
 					"name": "Claws",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}14 ({@damage 2d8 + 5}) slashing damage."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}14 ({@damage 2d8 + 5}) slashing damage."
 					]
 				}
 			],
