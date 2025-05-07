@@ -98,7 +98,7 @@ class RendererMarkdown {
 
 		const listDepth = Math.max(meta._typeStack.filter(it => it === "list").length - 1, 0);
 
-		if (entry.name) textStack[0] += `##### ${entry.name}`;
+		if (entry.name) textStack[0] += `##### ${Renderer.stripTags(entry.name)}`;
 		const indentSpaces = "  ".repeat(listDepth);
 		const len = entry.items.length;
 
@@ -330,7 +330,7 @@ class RendererMarkdown {
 
 	_renderInset (entry, textStack, meta, options) {
 		textStack[0] += "\n";
-		if (entry.name != null) textStack[0] += `> ##### ${entry.name}\n>\n`;
+		if (entry.name != null) textStack[0] += `> ##### ${Renderer.stripTags(entry.name)}\n>\n`;
 		if (entry.entries) {
 			const len = entry.entries.length;
 			for (let i = 0; i < len; ++i) {
@@ -345,7 +345,7 @@ class RendererMarkdown {
 
 	_renderInsetReadaloud (entry, textStack, meta, options) {
 		textStack[0] += "\n";
-		if (entry.name != null) textStack[0] += `>> ##### ${entry.name}\n>>\n`;
+		if (entry.name != null) textStack[0] += `>> ##### ${Renderer.stripTags(entry.name)}\n>>\n`;
 		if (entry.entries) {
 			const len = entry.entries.length;
 			for (let i = 0; i < len; ++i) {
@@ -360,7 +360,7 @@ class RendererMarkdown {
 
 	_renderVariant (entry, textStack, meta, options) {
 		textStack[0] += "\n";
-		if (entry.name != null) textStack[0] += `> ##### Variant: ${entry.name}\n>\n`;
+		if (entry.name != null) textStack[0] += `> ##### Variant: ${Renderer.stripTags(entry.name)}\n>\n`;
 		if (entry.entries) {
 			const len = entry.entries.length;
 			for (let i = 0; i < len; ++i) {
@@ -375,7 +375,7 @@ class RendererMarkdown {
 	}
 
 	_renderVariantSub (entry, textStack, meta, options) {
-		if (entry.name) textStack[0] += `*${entry.name}.* `;
+		if (entry.name) textStack[0] += `*${Renderer.stripTags(entry.name)}.* `;
 
 		if (entry.entries) {
 			const len = entry.entries.length;
@@ -716,6 +716,11 @@ class RendererMarkdown {
 				const [ordinal] = Renderer.splitTagByPipe(text);
 				if (ordinal) textStack[0] += `*${Parser.numberToText(ordinal, {isOrdinalForm: true}).toTitleCase()} Failure:*`;
 				else textStack[0] += `*Failure:*`;
+				break;
+			}
+			case "@actSaveFailBy": {
+				const [amount] = Renderer.splitTagByPipe(text);
+				textStack[0] += `*Failure by ${amount} or More:*`;
 				break;
 			}
 			case "@actSaveSuccessOrFail": textStack[0] += `*Failure or Success:*`; break;

@@ -5,7 +5,7 @@ export class InitiativeTrackerRoller {
 
 	async pGetRollInitiative ({mon, name, initiativeModifier}) {
 		name ??= mon?.name;
-		initiativeModifier ??= mon ? Parser.getAbilityModifier(mon.dex) : 0;
+		initiativeModifier ??= mon ? Renderer.monster.getInitiativeBonusNumber({mon}) : 0;
 
 		return Renderer.dice.pRoll2(`1d20${UiUtil.intToBonus(initiativeModifier)}`, {
 			isUser: false,

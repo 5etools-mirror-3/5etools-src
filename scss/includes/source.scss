@@ -2,650 +2,652 @@
 
 @use "../vars/vars";
 
-@mixin mix-source-color ($rgb) {
-	color: $rgb !important;
-	border-color: $rgb !important;
-	text-decoration-color: $rgb !important;
-}
-
-.source {
-	$rgb-source-category-site: #e50711;
-	$rgb-source-category-extras: #9d4c4f;
-	$rgb-source-category-prerelease: vars.$rgb-subclass-ua;
-	$rgb-source-category-prerelease--local: #54ce19;
-	$rgb-source-category-homebrew: vars.$rgb-class-brew;
-	$rgb-source-category-homebrew--local: #4b40ed;
-	$rgb-source-category-homebrew--partnered: #963b4f;
-
-	$rgb-source-PHB: #4a6898;
-	$rgb-source-DMG: #800080;
-	$rgb-source-MM: #008000;
-	$rgb-source-SCAG: #76af76;
-	$rgb-source-VGM: #808080;
-	$rgb-source-OGA: #933d0f;
-	$rgb-source-XGE: #ba7c00;
-	$rgb-source-XMtS: #830051;
-	$rgb-source-HotDQ: #ad8eba;
-	$rgb-source-RoT: #ff2900;
-	$rgb-source-CoS: #800080;
-	$rgb-source-OotA: #808080;
-	$rgb-source-SKT: #008b8b;
-	$rgb-source-PotA: #57b6c6;
-	$rgb-source-LMoP: #8da851;
-	$rgb-source-TftYP: #c94029;
-	$rgb-source-ToA: #666f30;
-	$rgb-source-MTF: #1f6e7b;
-	$rgb-source-WDH: #d4af37;
-	$rgb-source-GGR: #bfa76c;
-	$rgb-source-WDMM: #a2201f;
-	$rgb-source-LLK: #6e7a71;
-	$rgb-source-AZfyT: #4667a7;
-	$rgb-source-GoS: #3d695a;
-	$rgb-source-AI: #5baf04;
-	$rgb-source-ESK: #6b909a;
-	$rgb-source-BGDIA: #752418;
-	$rgb-source-ERLW: #983426;
-	$rgb-source-RMR: #5c7c27;
-	$rgb-source-MFF: #92817f;
-	$rgb-source-LR: #78613c;
-	$rgb-source-IMR: #a19364;
-	$rgb-source-SADS: #333bab;
-	$rgb-source-EGW: #855a6e;
-	$rgb-source-MOT: #556b2e;
-	$rgb-source-IDRotF: #8fb8c0;
-	$rgb-source-TCE: #a24d08;
-	$rgb-source-AL: $rgb-source-category-site;
-	$rgb-source-HF: #ac9544;
-	$rgb-source-CM: #e6585e;
-	$rgb-source-VRGR: #bd000f;
-	$rgb-source-RtG: #8a536a;
-	$rgb-source-AitFR: #6e5ab9;
-	$rgb-source-WBtW: #7151b6;
-	$rgb-source-DoD: #fe4935;
-	$rgb-source-MaBJoV: #7a2854;
-	$rgb-source-FTD: #b82a15;
-	$rgb-source-NRH: #bd335b;
-	$rgb-source-SCC: #be9c56;
-	$rgb-source-MPMM: #5c758d;
-	$rgb-source-CRCotN: #ac4a70;
-	$rgb-source-JttRC: #cf48e2;
-	$rgb-source-SAiS: #056b97;
-	$rgb-source-DoSI: #478bb8;
-	$rgb-source-DSotDQ: #851e20;
-	$rgb-source-PSA: #d76404;
-	$rgb-source-PSD: #5db7da;
-	$rgb-source-PSI: #5d4696;
-	$rgb-source-PSK: #a27135;
-	$rgb-source-PSX: #bb2722;
-	$rgb-source-PSZ: #6f8a2d;
-	$rgb-source-KftGV: #876e38;
-	$rgb-source-HAT: #a24545;
-	$rgb-source-BGG: #469cb7;
-	$rgb-source-TDCSR: #642e4b;
-	$rgb-source-PaBTSO: #b2b34e;
-	$rgb-source-PAitM: #a23087;
-	$rgb-source-CoA: #a13a0f;
-	$rgb-source-HFFotM: #7b702c;
-	$rgb-source-BMT: #694165;
-	$rgb-source-QftIS: #6191ae;
-	$rgb-source-VEoR: #b74c62;
-	$rgb-source-GHLoE: #c07e4e;
-	$rgb-source-DoDk: #825494;
-	$rgb-source-ToB1-2023: #917792;
-	$rgb-source-TD: #bb9528;
-	$rgb-source-PaF: #5d7993;
-	$rgb-source-XPHB: #ed7c00;
-	$rgb-source-XDMG: #c43c4c;
-	$rgb-source-XMM: #5686b6;
-	$rgb-source-HFDoMM: #00817f;
-
-	// region Categories
-
-	&-category- {
-		&site {
-			@include mix-source-color($rgb-source-category-site);
-		}
-
-		&extras {
-			@include mix-source-color($rgb-source-category-extras);
-		}
-
-		&homebrew {
-			@include mix-source-color($rgb-source-category-homebrew);
-
-			&--partnered {
-				@include mix-source-color($rgb-source-category-homebrew--partnered);
-			}
-
-			&--local {
-				@include mix-source-color($rgb-source-category-homebrew--local);
-			}
-		}
-
-		&spicy {
-			@include mix-source-color($rgb-source-category-prerelease);
-
-			&--partnered {
-				@include mix-source-color(#ff00ff); // (Should never occur)
-			}
-
-			&--local {
-				@include mix-source-color($rgb-source-category-prerelease--local);
-			}
-		}
+@layer vetools {
+	@mixin mix-source-color ($rgb) {
+		color: $rgb !important;
+		border-color: $rgb !important;
+		text-decoration-color: $rgb !important;
 	}
 
-	// endregion
+	.source {
+		$rgb-source-category-site: #e50711;
+		$rgb-source-category-extras: #9d4c4f;
+		$rgb-source-category-prerelease: vars.$rgb-subclass-ua;
+		$rgb-source-category-prerelease--local: #54ce19;
+		$rgb-source-category-homebrew: vars.$rgb-class-brew;
+		$rgb-source-category-homebrew--local: #4b40ed;
+		$rgb-source-category-homebrew--partnered: #963b4f;
 
-	// region Specific sources
-	&__ {
-		&PHB {
-			@include mix-source-color($rgb-source-PHB);
+		$rgb-source-PHB: #4a6898;
+		$rgb-source-DMG: #800080;
+		$rgb-source-MM: #008000;
+		$rgb-source-SCAG: #76af76;
+		$rgb-source-VGM: #808080;
+		$rgb-source-OGA: #933d0f;
+		$rgb-source-XGE: #ba7c00;
+		$rgb-source-XMtS: #830051;
+		$rgb-source-HotDQ: #ad8eba;
+		$rgb-source-RoT: #ff2900;
+		$rgb-source-CoS: #800080;
+		$rgb-source-OotA: #808080;
+		$rgb-source-SKT: #008b8b;
+		$rgb-source-PotA: #57b6c6;
+		$rgb-source-LMoP: #8da851;
+		$rgb-source-TftYP: #c94029;
+		$rgb-source-ToA: #666f30;
+		$rgb-source-MTF: #1f6e7b;
+		$rgb-source-WDH: #d4af37;
+		$rgb-source-GGR: #bfa76c;
+		$rgb-source-WDMM: #a2201f;
+		$rgb-source-LLK: #6e7a71;
+		$rgb-source-AZfyT: #4667a7;
+		$rgb-source-GoS: #3d695a;
+		$rgb-source-AI: #5baf04;
+		$rgb-source-ESK: #6b909a;
+		$rgb-source-BGDIA: #752418;
+		$rgb-source-ERLW: #983426;
+		$rgb-source-RMR: #5c7c27;
+		$rgb-source-MFF: #92817f;
+		$rgb-source-LR: #78613c;
+		$rgb-source-IMR: #a19364;
+		$rgb-source-SADS: #333bab;
+		$rgb-source-EGW: #855a6e;
+		$rgb-source-MOT: #556b2e;
+		$rgb-source-IDRotF: #8fb8c0;
+		$rgb-source-TCE: #a24d08;
+		$rgb-source-AL: $rgb-source-category-site;
+		$rgb-source-HF: #ac9544;
+		$rgb-source-CM: #e6585e;
+		$rgb-source-VRGR: #bd000f;
+		$rgb-source-RtG: #8a536a;
+		$rgb-source-AitFR: #6e5ab9;
+		$rgb-source-WBtW: #7151b6;
+		$rgb-source-DoD: #fe4935;
+		$rgb-source-MaBJoV: #7a2854;
+		$rgb-source-FTD: #b82a15;
+		$rgb-source-NRH: #bd335b;
+		$rgb-source-SCC: #be9c56;
+		$rgb-source-MPMM: #5c758d;
+		$rgb-source-CRCotN: #ac4a70;
+		$rgb-source-JttRC: #cf48e2;
+		$rgb-source-SAiS: #056b97;
+		$rgb-source-DoSI: #478bb8;
+		$rgb-source-DSotDQ: #851e20;
+		$rgb-source-PSA: #d76404;
+		$rgb-source-PSD: #5db7da;
+		$rgb-source-PSI: #5d4696;
+		$rgb-source-PSK: #a27135;
+		$rgb-source-PSX: #bb2722;
+		$rgb-source-PSZ: #6f8a2d;
+		$rgb-source-KftGV: #876e38;
+		$rgb-source-HAT: #a24545;
+		$rgb-source-BGG: #469cb7;
+		$rgb-source-TDCSR: #642e4b;
+		$rgb-source-PaBTSO: #b2b34e;
+		$rgb-source-PAitM: #a23087;
+		$rgb-source-CoA: #a13a0f;
+		$rgb-source-HFFotM: #7b702c;
+		$rgb-source-BMT: #694165;
+		$rgb-source-QftIS: #6191ae;
+		$rgb-source-VEoR: #b74c62;
+		$rgb-source-GHLoE: #c07e4e;
+		$rgb-source-DoDk: #825494;
+		$rgb-source-ToB1-2023: #917792;
+		$rgb-source-TD: #bb9528;
+		$rgb-source-PaF: #5d7993;
+		$rgb-source-XPHB: #ed7c00;
+		$rgb-source-XDMG: #c43c4c;
+		$rgb-source-XMM: #5686b6;
+		$rgb-source-HFDoMM: #00817f;
+
+		// region Categories
+
+		&-category- {
+			&site {
+				@include mix-source-color($rgb-source-category-site);
+			}
+
+			&extras {
+				@include mix-source-color($rgb-source-category-extras);
+			}
+
+			&homebrew {
+				@include mix-source-color($rgb-source-category-homebrew);
+
+				&--partnered {
+					@include mix-source-color($rgb-source-category-homebrew--partnered);
+				}
+
+				&--local {
+					@include mix-source-color($rgb-source-category-homebrew--local);
+				}
+			}
+
+			&spicy {
+				@include mix-source-color($rgb-source-category-prerelease);
+
+				&--partnered {
+					@include mix-source-color(#ff00ff); // (Should never occur)
+				}
+
+				&--local {
+					@include mix-source-color($rgb-source-category-prerelease--local);
+				}
+			}
 		}
 
-		&DMG {
-			@include mix-source-color($rgb-source-DMG);
-		}
+		// endregion
 
-		&MM {
-			@include mix-source-color($rgb-source-MM);
-		}
+		// region Specific sources
+		&__ {
+			&PHB {
+				@include mix-source-color($rgb-source-PHB);
+			}
 
-		&SCAG {
-			@include mix-source-color($rgb-source-SCAG);
-		}
+			&DMG {
+				@include mix-source-color($rgb-source-DMG);
+			}
 
-		&VGM {
-			@include mix-source-color($rgb-source-VGM);
-		}
+			&MM {
+				@include mix-source-color($rgb-source-MM);
+			}
 
-		&OGA {
-			@include mix-source-color($rgb-source-OGA);
-		}
+			&SCAG {
+				@include mix-source-color($rgb-source-SCAG);
+			}
 
-		&XGE,
+			&VGM {
+				@include mix-source-color($rgb-source-VGM);
+			}
+
+			&OGA {
+				@include mix-source-color($rgb-source-OGA);
+			}
+
+			&XGE,
 			// Tortles are counted as an XGE race for AL
 		&TTP {
-			@include mix-source-color($rgb-source-XGE);
-		}
+				@include mix-source-color($rgb-source-XGE);
+			}
 
-		&XMtS {
-			@include mix-source-color($rgb-source-XMtS);
-		}
+			&XMtS {
+				@include mix-source-color($rgb-source-XMtS);
+			}
 
-		&HotDQ {
-			@include mix-source-color($rgb-source-HotDQ);
-		}
+			&HotDQ {
+				@include mix-source-color($rgb-source-HotDQ);
+			}
 
-		&RoT {
-			@include mix-source-color($rgb-source-RoT);
-		}
+			&RoT {
+				@include mix-source-color($rgb-source-RoT);
+			}
 
-		&CoS {
-			@include mix-source-color($rgb-source-CoS);
-		}
+			&CoS {
+				@include mix-source-color($rgb-source-CoS);
+			}
 
-		&OotA {
-			@include mix-source-color($rgb-source-OotA);
-		}
+			&OotA {
+				@include mix-source-color($rgb-source-OotA);
+			}
 
-		&SKT {
-			@include mix-source-color($rgb-source-SKT);
-		}
+			&SKT {
+				@include mix-source-color($rgb-source-SKT);
+			}
 
-		&PotA,
-		&EEPC {
-			@include mix-source-color($rgb-source-PotA);
-		}
+			&PotA,
+			&EEPC {
+				@include mix-source-color($rgb-source-PotA);
+			}
 
-		&LMoP {
-			@include mix-source-color($rgb-source-LMoP);
-		}
+			&LMoP {
+				@include mix-source-color($rgb-source-LMoP);
+			}
 
-		&TftYP {
-			@include mix-source-color($rgb-source-TftYP);
-
-			&-AtG,
-			&-DiT,
-			&-TFoF,
-			&-THSoT,
-			&-TSC,
-			&-ToH,
-			&-WPM {
+			&TftYP {
 				@include mix-source-color($rgb-source-TftYP);
+
+				&-AtG,
+				&-DiT,
+				&-TFoF,
+				&-THSoT,
+				&-TSC,
+				&-ToH,
+				&-WPM {
+					@include mix-source-color($rgb-source-TftYP);
+				}
 			}
-		}
 
-		&ToA {
-			@include mix-source-color($rgb-source-ToA);
-		}
+			&ToA {
+				@include mix-source-color($rgb-source-ToA);
+			}
 
-		&MTF {
-			@include mix-source-color($rgb-source-MTF);
-		}
+			&MTF {
+				@include mix-source-color($rgb-source-MTF);
+			}
 
-		&WDH {
-			@include mix-source-color($rgb-source-WDH);
-		}
+			&WDH {
+				@include mix-source-color($rgb-source-WDH);
+			}
 
-		&GGR,
-		&KKW {
-			@include mix-source-color($rgb-source-GGR);
-		}
+			&GGR,
+			&KKW {
+				@include mix-source-color($rgb-source-GGR);
+			}
 
-		&WDMM {
-			@include mix-source-color($rgb-source-WDMM);
-		}
+			&WDMM {
+				@include mix-source-color($rgb-source-WDMM);
+			}
 
-		&LLK {
-			@include mix-source-color($rgb-source-LLK);
-		}
+			&LLK {
+				@include mix-source-color($rgb-source-LLK);
+			}
 
-		&AZfyT {
-			@include mix-source-color($rgb-source-AZfyT);
-		}
+			&AZfyT {
+				@include mix-source-color($rgb-source-AZfyT);
+			}
 
-		&GoS {
-			@include mix-source-color($rgb-source-GoS);
-		}
+			&GoS {
+				@include mix-source-color($rgb-source-GoS);
+			}
 
-		&AI,
-		&OoW {
-			@include mix-source-color($rgb-source-AI);
-		}
+			&AI,
+			&OoW {
+				@include mix-source-color($rgb-source-AI);
+			}
 
-		// These are all from the same family
-		&ESK,
-		&DIP,
-		&DC,
-		&SDW,
-		&SLW {
-			@include mix-source-color($rgb-source-ESK);
-		}
+			// These are all from the same family
+			&ESK,
+			&DIP,
+			&DC,
+			&SDW,
+			&SLW {
+				@include mix-source-color($rgb-source-ESK);
+			}
 
-		&BGDIA {
-			@include mix-source-color($rgb-source-BGDIA);
-		}
+			&BGDIA {
+				@include mix-source-color($rgb-source-BGDIA);
+			}
 
-		&ERLW,
-		&EFR {
-			@include mix-source-color($rgb-source-ERLW);
-		}
+			&ERLW,
+			&EFR {
+				@include mix-source-color($rgb-source-ERLW);
+			}
 
-		&RMR,
-		&RMBRE {
-			@include mix-source-color($rgb-source-RMR);
-		}
+			&RMR,
+			&RMBRE {
+				@include mix-source-color($rgb-source-RMR);
+			}
 
-		&MFF {
-			@include mix-source-color($rgb-source-MFF);
-		}
+			&MFF {
+				@include mix-source-color($rgb-source-MFF);
+			}
 
-		&LR {
-			@include mix-source-color($rgb-source-LR);
-		}
+			&LR {
+				@include mix-source-color($rgb-source-LR);
+			}
 
-		&IMR {
-			@include mix-source-color($rgb-source-IMR);
-		}
+			&IMR {
+				@include mix-source-color($rgb-source-IMR);
+			}
 
-		&SADS {
-			@include mix-source-color($rgb-source-SADS);
-		}
+			&SADS {
+				@include mix-source-color($rgb-source-SADS);
+			}
 
-		&EGW,
-		&FS,
-		&DD,
-		&US,
-		&ToR {
-			@include mix-source-color($rgb-source-EGW);
-		}
+			&EGW,
+			&FS,
+			&DD,
+			&US,
+			&ToR {
+				@include mix-source-color($rgb-source-EGW);
+			}
 
-		&MOT {
-			@include mix-source-color($rgb-source-MOT);
-		}
+			&MOT {
+				@include mix-source-color($rgb-source-MOT);
+			}
 
-		&IDRotF {
-			@include mix-source-color($rgb-source-IDRotF);
-		}
+			&IDRotF {
+				@include mix-source-color($rgb-source-IDRotF);
+			}
 
-		&TCE {
-			@include mix-source-color($rgb-source-TCE);
-		}
+			&TCE {
+				@include mix-source-color($rgb-source-TCE);
+			}
 
-		&AL {
-			@include mix-source-color($rgb-source-AL);
-		}
+			&AL {
+				@include mix-source-color($rgb-source-AL);
+			}
 
-		&HF {
-			@include mix-source-color($rgb-source-HF);
-		}
+			&HF {
+				@include mix-source-color($rgb-source-HF);
+			}
 
-		&CM {
-			@include mix-source-color($rgb-source-CM);
-		}
+			&CM {
+				@include mix-source-color($rgb-source-CM);
+			}
 
-		&VRGR,
-		&HoL {
-			@include mix-source-color($rgb-source-VRGR);
-		}
+			&VRGR,
+			&HoL {
+				@include mix-source-color($rgb-source-VRGR);
+			}
 
-		&RtG {
-			@include mix-source-color($rgb-source-RtG);
-		}
+			&RtG {
+				@include mix-source-color($rgb-source-RtG);
+			}
 
-		&AitFR {
-			@include mix-source-color($rgb-source-AitFR);
-
-			&-ISF,
-			&-THP,
-			&-AVT,
-			&-DN,
-			&-FCD {
+			&AitFR {
 				@include mix-source-color($rgb-source-AitFR);
+
+				&-ISF,
+				&-THP,
+				&-AVT,
+				&-DN,
+				&-FCD {
+					@include mix-source-color($rgb-source-AitFR);
+				}
 			}
-		}
 
-		&WBtW {
-			@include mix-source-color($rgb-source-WBtW);
-		}
+			&WBtW {
+				@include mix-source-color($rgb-source-WBtW);
+			}
 
-		&DoD {
-			@include mix-source-color($rgb-source-DoD);
-		}
+			&DoD {
+				@include mix-source-color($rgb-source-DoD);
+			}
 
-		&MaBJoV {
-			@include mix-source-color($rgb-source-MaBJoV);
-		}
+			&MaBJoV {
+				@include mix-source-color($rgb-source-MaBJoV);
+			}
 
-		&FTD {
-			@include mix-source-color($rgb-source-FTD);
-		}
+			&FTD {
+				@include mix-source-color($rgb-source-FTD);
+			}
 
-		&NRH {
-			@include mix-source-color($rgb-source-NRH);
-
-			&-TCMC,
-			&-AVitW,
-			&-ASS,
-			&-CoI,
-			&-TLT,
-			&-AWoL,
-			&-AT {
+			&NRH {
 				@include mix-source-color($rgb-source-NRH);
+
+				&-TCMC,
+				&-AVitW,
+				&-ASS,
+				&-CoI,
+				&-TLT,
+				&-AWoL,
+				&-AT {
+					@include mix-source-color($rgb-source-NRH);
+				}
 			}
-		}
 
-		&SCC {
-			@include mix-source-color($rgb-source-SCC);
-
-			&-CK,
-			&-HfMT,
-			&-TMM,
-			&-ARiR {
+			&SCC {
 				@include mix-source-color($rgb-source-SCC);
+
+				&-CK,
+				&-HfMT,
+				&-TMM,
+				&-ARiR {
+					@include mix-source-color($rgb-source-SCC);
+				}
+			}
+
+			&MPMM {
+				@include mix-source-color($rgb-source-MPMM);
+			}
+
+			&CRCotN {
+				@include mix-source-color($rgb-source-CRCotN);
+			}
+
+			&JttRC {
+				@include mix-source-color($rgb-source-JttRC);
+			}
+
+			&SjA,
+			&SAiS,
+			&AAG,
+			&BAM,
+			&LoX {
+				@include mix-source-color($rgb-source-SAiS);
+			}
+
+			&DoSI {
+				@include mix-source-color($rgb-source-DoSI);
+			}
+
+			&DSotDQ {
+				@include mix-source-color($rgb-source-DSotDQ);
+			}
+
+			&PSA {
+				@include mix-source-color($rgb-source-PSA);
+			}
+
+			&PSD {
+				@include mix-source-color($rgb-source-PSD);
+			}
+
+			&PSI {
+				@include mix-source-color($rgb-source-PSI);
+			}
+
+			&PSK {
+				@include mix-source-color($rgb-source-PSK);
+			}
+
+			&PSX {
+				@include mix-source-color($rgb-source-PSX);
+			}
+
+			&PSZ {
+				@include mix-source-color($rgb-source-PSZ);
+			}
+
+			&KftGV {
+				@include mix-source-color($rgb-source-KftGV);
+			}
+
+			&HAT-TG,
+			&HAT-LMI {
+				@include mix-source-color($rgb-source-HAT);
+			}
+
+			&BGG {
+				@include mix-source-color($rgb-source-BGG);
+			}
+
+			&TDCSR {
+				@include mix-source-color($rgb-source-TDCSR);
+			}
+
+			&PaBTSO {
+				@include mix-source-color($rgb-source-PaBTSO);
+			}
+
+			&PAitM,
+			&SatO,
+			&ToFW,
+			&MPP {
+				@include mix-source-color($rgb-source-PAitM);
+			}
+
+			&CoA {
+				@include mix-source-color($rgb-source-CoA);
+			}
+
+			&HFFotM {
+				@include mix-source-color($rgb-source-HFFotM);
+			}
+
+			&BMT,
+			&DMTCRG {
+				@include mix-source-color($rgb-source-BMT);
+			}
+
+			&QftIS,
+			&DitLCoT {
+				@include mix-source-color($rgb-source-QftIS);
+			}
+
+			&VEoR,
+			&VNotEE {
+				@include mix-source-color($rgb-source-VEoR);
+			}
+
+			&GHLoE {
+				@include mix-source-color($rgb-source-GHLoE);
+			}
+
+			&DoDk {
+				@include mix-source-color($rgb-source-DoDk);
+			}
+
+			&ToB1-2023 {
+				@include mix-source-color($rgb-source-ToB1-2023);
+			}
+
+			&TD {
+				@include mix-source-color($rgb-source-TD);
+			}
+
+			&PaF {
+				@include mix-source-color($rgb-source-PaF);
+			}
+
+			&XPHB {
+				@include mix-source-color($rgb-source-XPHB);
+			}
+
+			&XDMG {
+				@include mix-source-color($rgb-source-XDMG);
+			}
+
+			&XMM {
+				@include mix-source-color($rgb-source-XMM);
+			}
+
+			&HFDoMM {
+				@include mix-source-color($rgb-source-HFDoMM);
 			}
 		}
-
-		&MPMM {
-			@include mix-source-color($rgb-source-MPMM);
-		}
-
-		&CRCotN {
-			@include mix-source-color($rgb-source-CRCotN);
-		}
-
-		&JttRC {
-			@include mix-source-color($rgb-source-JttRC);
-		}
-
-		&SjA,
-		&SAiS,
-		&AAG,
-		&BAM,
-		&LoX {
-			@include mix-source-color($rgb-source-SAiS);
-		}
-
-		&DoSI {
-			@include mix-source-color($rgb-source-DoSI);
-		}
-
-		&DSotDQ {
-			@include mix-source-color($rgb-source-DSotDQ);
-		}
-
-		&PSA {
-			@include mix-source-color($rgb-source-PSA);
-		}
-
-		&PSD {
-			@include mix-source-color($rgb-source-PSD);
-		}
-
-		&PSI {
-			@include mix-source-color($rgb-source-PSI);
-		}
-
-		&PSK {
-			@include mix-source-color($rgb-source-PSK);
-		}
-
-		&PSX {
-			@include mix-source-color($rgb-source-PSX);
-		}
-
-		&PSZ {
-			@include mix-source-color($rgb-source-PSZ);
-		}
-
-		&KftGV {
-			@include mix-source-color($rgb-source-KftGV);
-		}
-
-		&HAT-TG,
-		&HAT-LMI {
-			@include mix-source-color($rgb-source-HAT);
-		}
-
-		&BGG {
-			@include mix-source-color($rgb-source-BGG);
-		}
-
-		&TDCSR {
-			@include mix-source-color($rgb-source-TDCSR);
-		}
-
-		&PaBTSO {
-			@include mix-source-color($rgb-source-PaBTSO);
-		}
-
-		&PAitM,
-		&SatO,
-		&ToFW,
-		&MPP {
-			@include mix-source-color($rgb-source-PAitM);
-		}
-
-		&CoA {
-			@include mix-source-color($rgb-source-CoA);
-		}
-
-		&HFFotM {
-			@include mix-source-color($rgb-source-HFFotM);
-		}
-
-		&BMT,
-		&DMTCRG {
-			@include mix-source-color($rgb-source-BMT);
-		}
-
-		&QftIS,
-		&DitLCoT {
-			@include mix-source-color($rgb-source-QftIS);
-		}
-
-		&VEoR,
-		&VNotEE {
-			@include mix-source-color($rgb-source-VEoR);
-		}
-
-		&GHLoE {
-			@include mix-source-color($rgb-source-GHLoE);
-		}
-
-		&DoDk {
-			@include mix-source-color($rgb-source-DoDk);
-		}
-
-		&ToB1-2023 {
-			@include mix-source-color($rgb-source-ToB1-2023);
-		}
-
-		&TD {
-			@include mix-source-color($rgb-source-TD);
-		}
-
-		&PaF {
-			@include mix-source-color($rgb-source-PaF);
-		}
-
-		&XPHB {
-			@include mix-source-color($rgb-source-XPHB);
-		}
-
-		&XDMG {
-			@include mix-source-color($rgb-source-XDMG);
-		}
-
-		&XMM {
-			@include mix-source-color($rgb-source-XMM);
-		}
-
-		&HFDoMM {
-			@include mix-source-color($rgb-source-HFDoMM);
-		}
-	}
-	// endregion
-}
-
-.sp__ {
-	&school- {
-		&A {
-			color: #00b921;
-		}
-
-		&V {
-			color: #bb0100;
-		}
-
-		&E {
-			color: #b30083;
-		}
-
-		&I {
-			color: #006dbd;
-		}
-
-		&D {
-			color: #00adb3;
-		}
-
-		&N {
-			color: #6c00cc;
-		}
-
-		&T {
-			color: #ccbe00;
-		}
-
-		&C {
-			color: #bd0044;
-		}
-	}
-}
-
-// (Unused)
-.itm__ {
-	&rarity-alt- {
-		&common {
-			color: color.adjust(vars.$rgb-font, $lightness: 15%);
-		}
-
-		&uncommon {
-			color: #5c9659;
-		}
-
-		&rare {
-			color: #5c84b3;
-		}
-
-		// Scuffed, but performant
-		&very {
-			color: #b83b94;
-		}
-
-		&legendary {
-			color: #de993f;
-		}
-
-		&artifact {
-			color: #b61a1a;
-		}
-	}
-}
-
-.itm__ {
-	&rarity- {
-		&common {
-			color: color.adjust(vars.$rgb-font, $lightness: 15%);
-		}
-
-		&uncommon {
-			color: #c27341;
-		}
-
-		&rare {
-			color: #ac99d3;
-		}
-
-		// Scuffed, but performant
-		&very {
-			color: #de993f;
-		}
-
-		&legendary {
-			color: #6dcff7;
-		}
-
-		&artifact {
-			color: #b61a1a;
-		}
-	}
-}
-
-.ve-source-marker {
-	position: relative;
-	font-size: 80%;
-	display: inline-block;
-	margin-left: 1px;
-	align-self: start;
-
-	&--list {
-		left: 1px;
-		margin-top: 1px;
-		margin-left: -20px;
-		padding-left: 20px;
-		line-height: 8px;
-		height: 8px;
-		width: 8px;
+		// endregion
 	}
 
-	&--partnered {
-		color: #00c797;
+	.sp__ {
+		&school- {
+			&A {
+				color: #00b921;
+			}
+
+			&V {
+				color: #bb0100;
+			}
+
+			&E {
+				color: #b30083;
+			}
+
+			&I {
+				color: #006dbd;
+			}
+
+			&D {
+				color: #00adb3;
+			}
+
+			&N {
+				color: #6c00cc;
+			}
+
+			&T {
+				color: #ccbe00;
+			}
+
+			&C {
+				color: #bd0044;
+			}
+		}
 	}
 
-	&--legacy {
-		color: vars.$rgb-font--muted;
+	// (Unused)
+	.itm__ {
+		&rarity-alt- {
+			&common {
+				color: color.adjust(vars.$rgb-font, $lightness: 15%);
+			}
+
+			&uncommon {
+				color: #5c9659;
+			}
+
+			&rare {
+				color: #5c84b3;
+			}
+
+			// Scuffed, but performant
+			&very {
+				color: #b83b94;
+			}
+
+			&legendary {
+				color: #de993f;
+			}
+
+			&artifact {
+				color: #b61a1a;
+			}
+		}
+	}
+
+	.itm__ {
+		&rarity- {
+			&common {
+				color: color.adjust(vars.$rgb-font, $lightness: 15%);
+			}
+
+			&uncommon {
+				color: #c27341;
+			}
+
+			&rare {
+				color: #ac99d3;
+			}
+
+			// Scuffed, but performant
+			&very {
+				color: #de993f;
+			}
+
+			&legendary {
+				color: #6dcff7;
+			}
+
+			&artifact {
+				color: #b61a1a;
+			}
+		}
+	}
+
+	.ve-source-marker {
+		position: relative;
+		font-size: 80%;
+		display: inline-block;
+		margin-left: 1px;
+		align-self: start;
+
+		&--list {
+			left: 1px;
+			margin-top: 1px;
+			margin-left: -20px;
+			padding-left: 20px;
+			line-height: 8px;
+			height: 8px;
+			width: 8px;
+		}
+
+		&--partnered {
+			color: #00c797;
+		}
+
+		&--legacy {
+			color: vars.$rgb-font--muted;
+		}
 	}
 }

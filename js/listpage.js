@@ -288,6 +288,7 @@ class SublistManager {
 				? new ContextUtil.Action(
 					"Send to Foundry",
 					() => this._pDoSendSublistToFoundry(),
+					{title: "A Rivet import will be run for each entry."},
 				)
 				: undefined,
 			null,
@@ -1974,6 +1975,14 @@ class ListPage {
 		return this._pHandleUnknownHash_doSourceReload({source});
 	}
 
+	_pHandleUnknownHash_isRequireReload ({source}) {
+		return [
+			PrereleaseUtil,
+			BrewUtil2,
+		]
+			.some(brewUtil => brewUtil.hasSourceJson(source) && brewUtil.isReloadRequired());
+	}
+
 	_pHandleUnknownHash_doSourceReload ({source}) {
 		return [
 			PrereleaseUtil,
@@ -1981,8 +1990,7 @@ class ListPage {
 		]
 			.some(brewUtil => {
 				if (
-					brewUtil.hasSourceJson(source)
-					&& brewUtil.isReloadRequired()
+					this._pHandleUnknownHash_isRequireReload({source})
 				) {
 					brewUtil.doLocationReload();
 					return true;

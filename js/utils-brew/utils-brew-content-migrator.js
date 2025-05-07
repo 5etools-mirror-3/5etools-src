@@ -100,6 +100,9 @@ export class BrewDocContentMigrator {
 	 * @since 2024-09-20
 	 * Copy subclasses (and subclass features, if they are below level 3) from reprinted 2014-era classes to
 	 *   their 2024-era counterparts
+	 *
+	 * @see 5ET-BUG-176 -- if subclass features below level 3, then `subclassFeature` `_copy` generated, which
+	 * breaks if referenced `subclassFeature` is missing in the brew.
 	 */
 	static _mutMakeCompatible_subclass_oneSubclassCopies (json) {
 		const hasCopies = (json.subclass || []).some(sc => sc.source !== Parser.SRC_XPHB && sc.classSource === Parser.SRC_PHB);
@@ -206,7 +209,7 @@ export class BrewDocContentMigrator {
 			});
 
 		if (outSubclasses.length) json.subclass.push(...outSubclasses);
-		if (outSubclassFeatures.length) json.subclassFeature.push(...outSubclassFeatures);
+		if (outSubclassFeatures.length) (json.subclassFeature ||= []).push(...outSubclassFeatures);
 
 		if (outSubclassFeatures.length && !internalCopies.includes("subclassFeature")) internalCopies.push("subclassFeature");
 

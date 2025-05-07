@@ -441,6 +441,8 @@
 			"name": "Ranger",
 			"source": "XPHB",
 			"page": 118,
+			"srd52": true,
+			"basicRules2024": true,
 			"edition": "one",
 			"primaryAbility": [
 				{
@@ -682,7 +684,7 @@
 				},
 				{
 					"colLabels": [
-						"Prepared Spells"
+						"{@filter Prepared Spells|spells|level=!0|class=Ranger}"
 					],
 					"rows": [
 						[
@@ -1486,6 +1488,8 @@
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"page": 127,
+			"srd52": true,
+			"basicRules2024": true,
 			"edition": "one",
 			"subclassFeatures": [
 				"Hunter|Ranger|XPHB|Hunter|XPHB|3",
@@ -2038,18 +2042,22 @@
 			"name": "Favored Enemy",
 			"source": "XPHB",
 			"page": 120,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"level": 1,
 			"entries": [
 				"You always have the {@spell Hunter's Mark|XPHB} spell prepared. You can cast it twice without expending a spell slot, and you regain all expended uses of this ability when you finish a {@variantrule Long Rest|XPHB}.",
-				"The number of times you can cast the spell without a spell slot increases when you reach certain Ranger levels, as shown in the Favored {@variantrule Enemy|XPHB} column of the Ranger Features table."
+				"The number of times you can cast the spell without a spell slot increases when you reach certain Ranger levels, as shown in the Favored Enemy column of the Ranger Features table."
 			]
 		},
 		{
 			"name": "Spellcasting",
 			"source": "XPHB",
 			"page": 119,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"level": 1,
@@ -2103,6 +2111,8 @@
 			"name": "Weapon Mastery",
 			"source": "XPHB",
 			"page": 120,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"level": 1,
@@ -2115,6 +2125,8 @@
 			"name": "Deft Explorer",
 			"source": "XPHB",
 			"page": 120,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"level": 2,
@@ -2145,6 +2157,8 @@
 			"name": "Fighting Style",
 			"source": "XPHB",
 			"page": 120,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"level": 2,
@@ -2165,6 +2179,8 @@
 			"name": "Ranger Subclass",
 			"source": "XPHB",
 			"page": 120,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"level": 3,
@@ -2176,6 +2192,8 @@
 			"name": "Ability Score Improvement",
 			"source": "XPHB",
 			"page": 120,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"level": 4,
@@ -2187,6 +2205,8 @@
 			"name": "Extra Attack",
 			"source": "XPHB",
 			"page": 120,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"level": 5,
@@ -2198,6 +2218,8 @@
 			"name": "Roving",
 			"source": "XPHB",
 			"page": 121,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"level": 6,
@@ -2209,6 +2231,8 @@
 			"name": "Subclass Feature",
 			"source": "XPHB",
 			"page": 121,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"level": 7,
@@ -2220,6 +2244,8 @@
 			"name": "Ability Score Improvement",
 			"source": "XPHB",
 			"page": 121,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"level": 8,
@@ -2231,6 +2257,8 @@
 			"name": "Expertise",
 			"source": "XPHB",
 			"page": 121,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"level": 9,
@@ -2242,6 +2270,8 @@
 			"name": "Tireless",
 			"source": "XPHB",
 			"page": 121,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"level": 10,
@@ -2249,16 +2279,21 @@
 				"Primal forces now help fuel you on your journeys, granting you the following benefits.",
 				{
 					"type": "entries",
-					"name": "Temporary Hit Points",
 					"entries": [
-						"As a {@action Magic|XPHB} action, you can give yourself a number of {@variantrule Temporary Hit Points|XPHB} equal to {@dice 1d8} plus your Wisdom modifier (minimum of 1). You can use this action a number of times equal to your Wisdom modifier (minimum of once), and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
-					]
-				},
-				{
-					"type": "entries",
-					"name": "Decrease Exhaustion",
-					"entries": [
-						"Whenever you finish a {@variantrule Short Rest|XPHB}, your {@condition Exhaustion|XPHB} level, if any, decreases by 1."
+						{
+							"type": "entries",
+							"name": "Temporary Hit Points",
+							"entries": [
+								"As a {@action Magic|XPHB} action, you can give yourself a number of {@variantrule Temporary Hit Points|XPHB} equal to {@dice 1d8} plus your Wisdom modifier (minimum of 1). You can use this action a number of times equal to your Wisdom modifier (minimum of once), and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Decrease Exhaustion",
+							"entries": [
+								"Whenever you finish a {@variantrule Short Rest|XPHB}, your {@condition Exhaustion|XPHB} level, if any, decreases by 1."
+							]
+						}
 					]
 				}
 			]
@@ -2267,6 +2302,8 @@
 			"name": "Subclass Feature",
 			"source": "XPHB",
 			"page": 121,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"level": 11,
@@ -2278,6 +2315,8 @@
 			"name": "Ability Score Improvement",
 			"source": "XPHB",
 			"page": 121,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"level": 12,
@@ -2289,6 +2328,8 @@
 			"name": "Relentless Hunter",
 			"source": "XPHB",
 			"page": 121,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"level": 13,
@@ -2300,6 +2341,8 @@
 			"name": "Nature's Veil",
 			"source": "XPHB",
 			"page": 121,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"level": 14,
@@ -2312,6 +2355,8 @@
 			"name": "Subclass Feature",
 			"source": "XPHB",
 			"page": 121,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"level": 15,
@@ -2323,6 +2368,8 @@
 			"name": "Ability Score Improvement",
 			"source": "XPHB",
 			"page": 121,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"level": 16,
@@ -2334,6 +2381,8 @@
 			"name": "Precise Hunter",
 			"source": "XPHB",
 			"page": 121,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"level": 17,
@@ -2345,6 +2394,8 @@
 			"name": "Feral Senses",
 			"source": "XPHB",
 			"page": 121,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"level": 18,
@@ -2356,6 +2407,8 @@
 			"name": "Epic Boon",
 			"source": "XPHB",
 			"page": 121,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"level": 19,
@@ -2367,6 +2420,8 @@
 			"name": "Foe Slayer",
 			"source": "XPHB",
 			"page": 121,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"level": 20,
@@ -4283,6 +4338,8 @@
 			"name": "Hunter",
 			"source": "XPHB",
 			"page": 127,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"subclassShortName": "Hunter",
@@ -4305,6 +4362,8 @@
 			"name": "Hunter's Lore",
 			"source": "XPHB",
 			"page": 127,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"subclassShortName": "Hunter",
@@ -4318,6 +4377,8 @@
 			"name": "Hunter's Prey",
 			"source": "XPHB",
 			"page": 127,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"subclassShortName": "Hunter",
@@ -4350,6 +4411,8 @@
 			"name": "Defensive Tactics",
 			"source": "XPHB",
 			"page": 127,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"subclassShortName": "Hunter",
@@ -4383,6 +4446,8 @@
 			"name": "Superior Hunter's Prey",
 			"source": "XPHB",
 			"page": 127,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"subclassShortName": "Hunter",
@@ -4397,6 +4462,8 @@
 			"name": "Superior Hunter's Defense",
 			"source": "XPHB",
 			"page": 127,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"subclassShortName": "Hunter",

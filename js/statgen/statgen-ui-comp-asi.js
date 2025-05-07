@@ -349,7 +349,10 @@ export class StatGenUiCompAsi extends BaseComponent {
 
 					$stgSelectAbilitySet.showVe().append(metaChooseAbilitySet.$sel);
 					metaChooseAbilitySet.$sel.change(() => this._doPulseThrottled());
-					fnsCleanupFeat.push(() => metaChooseAbilitySet.unhook());
+					fnsCleanupFeat.push(() => {
+						metaChooseAbilitySet.unhook();
+						metaChooseAbilitySet.$sel.remove();
+					});
 				}
 
 				const hkAbilitySet = () => {
@@ -468,8 +471,9 @@ export class StatGenUiCompAsi extends BaseComponent {
 
 		const $stgBackground = $getStgEntity({title: "Background", $wrpRows: $wrpRowsBackground, propEntity: "background", propIxEntity: "common_ixBackground"});
 
-		const $iptCountFeatsCustom = ComponentUiUtil.$getIptInt(this._parent, "common_cntFeatsCustom", 0, {min: 0, max: MAX_CUSTOM_FEATS})
-			.addClass("w-100p ve-text-center");
+		const {ipt: iptCountFeatsCustom, wrp: wrpCountFeatsCustom} = ComponentUiUtil.getIptInt(this._parent, "common_cntFeatsCustom", 0, {min: 0, max: MAX_CUSTOM_FEATS, asMeta: true, decorationLeft: "spacer", decorationRight: "ticker"});
+		iptCountFeatsCustom.removeClass("ve-text-right").addClass("ve-text-center");
+		wrpCountFeatsCustom.addClass("w-100p");
 
 		$$($wrpAsi)`
 			<h4 class="my-2 bold">Ability Score Increases</h4>
@@ -483,7 +487,7 @@ export class StatGenUiCompAsi extends BaseComponent {
 			<hr class="hr-3 hr--dotted">
 			<h4 class="my-2 bold">Additional Feats</h4>
 			<label class="w-100 ve-flex-v-center mb-2">
-				<div class="mr-2 no-shrink">Number of additional feats:</div>${$iptCountFeatsCustom}
+				<div class="mr-2 no-shrink">Number of additional feats:</div>${wrpCountFeatsCustom}
 			</label>
 			${$wrpRowsCustom}
 		`;
@@ -491,9 +495,10 @@ export class StatGenUiCompAsi extends BaseComponent {
 
 	_render_$getStageCntAsi () {
 		if (!this._parent.isCharacterMode) {
-			const $iptCountAsi = ComponentUiUtil.$getIptInt(this._parent, "common_cntAsi", 0, {min: 0, max: 20})
-				.addClass("w-100p ve-text-center");
-			return $$`<label class="w-100 ve-flex-v-center mb-2"><div class="mr-2 no-shrink">Number of Ability Score Increases to apply:</div>${$iptCountAsi}</label>`;
+			const {ipt: iptCountAsi, wrp: wrpCountAsi} = ComponentUiUtil.getIptInt(this._parent, "common_cntAsi", 0, {min: 0, max: 20, asMeta: true, decorationLeft: "spacer", decorationRight: "ticker"});
+			iptCountAsi.removeClass("ve-text-right").addClass("ve-text-center");
+			wrpCountAsi.addClass("w-100p");
+			return $$`<label class="w-100 ve-flex-v-center mb-2"><div class="mr-2 no-shrink">Number of Ability Score Increases to apply:</div>${wrpCountAsi}</label>`;
 		}
 
 		const $out = $$`<div class="w-100 ve-flex-v-center mb-2 italic ve-muted">No ability score increases available.</div>`;

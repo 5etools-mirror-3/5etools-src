@@ -1,9 +1,12 @@
 export class RaceTraitTag {
 	static _RE_ITEMS_BASE_WEAPON = null;
+	static _RE_SKILLS = null;
 
 	static init ({itemsRaw}) {
 		const itemsBaseWeapon = itemsRaw.baseitem.filter(it => it.type && [Parser.ITM_TYP_ABV__MELEE_WEAPON, Parser.ITM_TYP_ABV__RANGED_WEAPON].includes(DataUtil.itemType.unpackUid(it.type).abbreviation));
 		this._RE_ITEMS_BASE_WEAPON = new RegExp(`\\b(${itemsBaseWeapon.map(it => it.name)})\\b`, "gi");
+
+		this._RE_SKILLS = new RegExp(`\\b(${Object.keys(Parser.SKILL_TO_ATB_ABV).map(it => it.toTitleCase())})\\b`, "gi");
 	}
 
 	static tryRun (race, {cbWarning}) {
@@ -49,7 +52,7 @@ export class RaceTraitTag {
 							) {
 								let found = false;
 
-								if (/\bskills?\b/i.test(str)) {
+								if (/\bskills?\b/i.test(str) || this._RE_SKILLS.test(str)) {
 									traitTags.add("Skill Proficiency");
 									found = true;
 								}

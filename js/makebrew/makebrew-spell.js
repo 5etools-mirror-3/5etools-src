@@ -71,7 +71,7 @@ export class SpellBuilder extends BuilderBase {
 		delete spell.srd;
 		delete spell.srd52;
 		delete spell.basicRules;
-		delete spell.freeRules2024;
+		delete spell.basicRules2024;
 		delete spell.uniqueId;
 		delete spell.reprintedAs;
 
@@ -612,7 +612,6 @@ export class SpellBuilder extends BuilderBase {
 
 			doUpdateState();
 		});
-		$$``.appendTo($rowInner);
 
 		$$`<div>
 			<div class="ve-flex-v-center mb-2"><div class="mr-2 mkbru__sub-name--33">Verbal</div>${$cbVerbal}</div>

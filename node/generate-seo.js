@@ -73,7 +73,7 @@ ${img ? `<meta property="og:image" content="${BASE_SITE_URL}${img}">` : ""}
 <script type="text/javascript" defer src="/js/styleswitch.js"></script>
 <script type="text/javascript" defer src="/js/navigation.js"></script>
 <script type="module" defer src="/js/browsercheck.js"></script>
-<script>globalThis._SEO_PAGE="${page}";globalThis._SEO_SOURCE="${source}";globalThis._SEO_HASH="${hash}";globalThis._SEO_STYLE=${textStyle};globalThis._SEO_FLUFF=${isFluff}</script>
+<script>globalThis._SEO_PAGE="${page}";globalThis._SEO_SOURCE="${source}";globalThis._SEO_HASH="${hash}";globalThis._SEO_STYLE=${textStyle};globalThis._SEO_FLUFF=${isFluff};globalThis.RENDERER_BASE_URL="/"</script>
 </head>
 <body>
 

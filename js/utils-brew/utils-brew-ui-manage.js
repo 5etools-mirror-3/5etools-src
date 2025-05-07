@@ -274,15 +274,19 @@ export class ManageBrewUi {
 				await this.constructor.pOnClickBtnExportListAsUrl({ele: evt.originalEvent.currentTarget});
 			});
 
+		const $wrpBtnLoadAll = this._brewUtil.IS_ADD_BTN_ALL_PARTNERED
+			? $$`<div class="ve-flex-v-center ve-btn-group mr-2">
+				${btnLoadPartnered}
+			</div>`
+			: null;
+
 		const $wrpBtns = $$`<div class="ve-flex-v-center no-shrink mobile__ve-flex-col">
 			<div class="ve-flex-v-center mobile__mb-2">
 				<div class="ve-flex-v-center ve-btn-group mr-2">
 					${$btnGet}
 					${$btnCustomUrl}
 				</div>
-				<div class="ve-flex-v-center ve-btn-group mr-2">
-					${btnLoadPartnered}
-				</div>
+				${$wrpBtnLoadAll}
 				<div class="ve-flex-v-center ve-btn-group mr-2">
 					${$btnLoadFromFile}
 					${$btnLoadFromUrl}

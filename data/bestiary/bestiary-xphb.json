@@ -39,6 +39,9 @@
 				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 10,
+			"immune": [
+				"psychic"
+			],
 			"languages": [
 				"Deep Speech",
 				"understands the languages you know"
@@ -292,7 +295,7 @@
 				{
 					"name": "Slam",
 					"entries": [
-						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}. {@h}Force damage equal to {@damage 1d4 + 3} + your spellcasting ability modifier (Medium or smaller), {@damage 2d6 + 3} + your spellcasting ability modifier (Large), or {@damage 2d12 + 3} + your spellcasting ability modifier (Huge)."
+						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. {@h}Force damage equal to {@damage 1d4 + 3}, {@damage 2d6 + 3} + your spellcasting ability modifier (Large), or {@damage 2d12 + 3} + your spellcasting ability modifier (Huge)."
 					]
 				}
 			],
@@ -1665,7 +1668,7 @@
 				{
 					"name": "Magic Resistance",
 					"entries": [
-						"The spirit has Advantage on saving throws against spells and other magical eff ects."
+						"The spirit has Advantage on saving throws against spells and other magical effects."
 					]
 				}
 			],
@@ -1865,6 +1868,7 @@
 			"name": "Giant Insect",
 			"source": "XPHB",
 			"page": 279,
+			"srd52": true,
 			"summonedBySpell": "Giant Insect|XPHB",
 			"summonedBySpellLevel": 4,
 			"size": [

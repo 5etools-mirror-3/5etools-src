@@ -661,7 +661,7 @@ class ModalFilterSpells extends ModalFilterBase {
 		const time = PageFilterSpells.getTblTimeStr(spell.time[0]);
 		const school = Parser.spSchoolAndSubschoolsAbvsShort(spell.school, spell.subschools);
 		const concentration = spell._isConc ? "×" : "";
-		const range = Parser.spRangeToFull(spell.range);
+		const range = Parser.spRangeToFull(spell.range, {isDisplaySelfArea: true});
 
 		eleRow.innerHTML = `<div class="w-100 ve-flex-vh-center lst__row-border veapp__list-row no-select lst__wrp-cells">
 			<div class="ve-col-0-5 pl-0 ve-flex-vh-center">${this._isRadio ? `<input type="radio" name="radio" class="no-events">` : `<input type="checkbox" class="no-events">`}</div>

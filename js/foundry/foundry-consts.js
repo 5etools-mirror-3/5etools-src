@@ -3,6 +3,8 @@ export const PROPS_FOUNDRY_DATA_INLINE = [
 
 	"foundrySystem",
 
+	"foundryActivities",
+
 	"foundryFlags",
 
 	"foundryEffects",

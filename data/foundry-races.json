@@ -27,6 +27,7 @@
 			"effects": [
 				{
 					"name": "Carapace",
+					"disabled": true,
 					"transfer": true,
 					"changes": [
 						{
@@ -34,8 +35,7 @@
 							"mode": "ADD",
 							"value": "+ 1"
 						}
-					],
-					"disabled": true
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -72,25 +72,35 @@
 			"raceSource": "EGW",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "action",
-						"activation.value": 1,
-						"target.template.size": "30",
-						"target.template.units": "ft",
-						"target.template.type": "line"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"value": 1
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "30",
+							"units": "ft",
+							"type": "line"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"dex"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -100,25 +110,35 @@
 			"raceSource": "EGW",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "action",
-						"activation.value": 1,
-						"target.template.size": "30",
-						"target.template.units": "ft",
-						"target.template.type": "line"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"value": 1
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "30",
+							"units": "ft",
+							"type": "line"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"dex"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -128,25 +148,35 @@
 			"raceSource": "EGW",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "action",
-						"activation.value": 1,
-						"target.template.size": "30",
-						"target.template.units": "ft",
-						"target.template.type": "line"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"value": 1
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "30",
+							"units": "ft",
+							"type": "line"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"dex"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -156,25 +186,35 @@
 			"raceSource": "EGW",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "action",
-						"activation.value": 1,
-						"target.template.size": "30",
-						"target.template.units": "ft",
-						"target.template.type": "line"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"value": 1
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "30",
+							"units": "ft",
+							"type": "line"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"dex"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -184,25 +224,35 @@
 			"raceSource": "EGW",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "action",
-						"activation.value": 1,
-						"target.template.size": "30",
-						"target.template.units": "ft",
-						"target.template.type": "line"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"value": 1
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "30",
+							"units": "ft",
+							"type": "line"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"dex"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -212,25 +262,35 @@
 			"raceSource": "EGW",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "action",
-						"activation.value": 1,
-						"target.template.size": "15",
-						"target.template.units": "ft",
-						"target.template.type": "cone"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"value": 1
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "15",
+							"units": "ft",
+							"type": "cone"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"dex"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -240,25 +300,35 @@
 			"raceSource": "EGW",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "action",
-						"activation.value": 1,
-						"target.template.size": "15",
-						"target.template.units": "ft",
-						"target.template.type": "cone"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"value": 1
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "15",
+							"units": "ft",
+							"type": "cone"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"con"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -268,25 +338,35 @@
 			"raceSource": "EGW",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "action",
-						"activation.value": 1,
-						"target.template.size": "15",
-						"target.template.units": "ft",
-						"target.template.type": "cone"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"value": 1
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "15",
+							"units": "ft",
+							"type": "cone"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"dex"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -296,25 +376,35 @@
 			"raceSource": "EGW",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "action",
-						"activation.value": 1,
-						"target.template.size": "15",
-						"target.template.units": "ft",
-						"target.template.type": "cone"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"value": 1
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "15",
+							"units": "ft",
+							"type": "cone"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"con"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -324,25 +414,35 @@
 			"raceSource": "EGW",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "action",
-						"activation.value": 1,
-						"target.template.size": "15",
-						"target.template.units": "ft",
-						"target.template.type": "cone"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"value": 1
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "15",
+							"units": "ft",
+							"type": "cone"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"con"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -352,25 +452,35 @@
 			"raceSource": "EGW",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "action",
-						"activation.value": 1,
-						"target.template.size": "30",
-						"target.template.units": "ft",
-						"target.template.type": "line"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"value": 1
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "30",
+							"units": "ft",
+							"type": "line"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"dex"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -380,25 +490,35 @@
 			"raceSource": "EGW",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "action",
-						"activation.value": 1,
-						"target.template.size": "30",
-						"target.template.units": "ft",
-						"target.template.type": "line"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"value": 1
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "30",
+							"units": "ft",
+							"type": "line"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"dex"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -408,25 +528,35 @@
 			"raceSource": "EGW",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "action",
-						"activation.value": 1,
-						"target.template.size": "30",
-						"target.template.units": "ft",
-						"target.template.type": "line"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"value": 1
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "30",
+							"units": "ft",
+							"type": "line"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"dex"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -436,25 +566,35 @@
 			"raceSource": "EGW",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "action",
-						"activation.value": 1,
-						"target.template.size": "30",
-						"target.template.units": "ft",
-						"target.template.type": "line"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"value": 1
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "30",
+							"units": "ft",
+							"type": "line"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"dex"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -464,25 +604,35 @@
 			"raceSource": "EGW",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "action",
-						"activation.value": 1,
-						"target.template.size": "30",
-						"target.template.units": "ft",
-						"target.template.type": "line"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"value": 1
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "30",
+							"units": "ft",
+							"type": "line"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"dex"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -492,25 +642,35 @@
 			"raceSource": "EGW",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "action",
-						"activation.value": 1,
-						"target.template.size": "15",
-						"target.template.units": "ft",
-						"target.template.type": "cone"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"value": 1
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "15",
+							"units": "ft",
+							"type": "cone"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"dex"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -520,25 +680,35 @@
 			"raceSource": "EGW",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "action",
-						"activation.value": 1,
-						"target.template.size": "15",
-						"target.template.units": "ft",
-						"target.template.type": "cone"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"value": 1
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "15",
+							"units": "ft",
+							"type": "cone"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"con"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -548,25 +718,35 @@
 			"raceSource": "EGW",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "action",
-						"activation.value": 1,
-						"target.template.size": "15",
-						"target.template.units": "ft",
-						"target.template.type": "cone"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"value": 1
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "15",
+							"units": "ft",
+							"type": "cone"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"dex"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -576,25 +756,35 @@
 			"raceSource": "EGW",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "action",
-						"activation.value": 1,
-						"target.template.size": "15",
-						"target.template.units": "ft",
-						"target.template.type": "cone"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"value": 1
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "15",
+							"units": "ft",
+							"type": "cone"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"con"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -604,25 +794,35 @@
 			"raceSource": "EGW",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "action",
-						"activation.value": 1,
-						"target.template.size": "15",
-						"target.template.units": "ft",
-						"target.template.type": "cone"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"value": 1
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "15",
+							"units": "ft",
+							"type": "cone"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"con"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -632,24 +832,34 @@
 			"raceSource": "FTD",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "special",
-						"target.template.size": "30",
-						"target.template.units": "ft",
-						"target.template.type": "line"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "special"
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "30",
+							"units": "ft",
+							"type": "line"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"dex"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -659,24 +869,34 @@
 			"raceSource": "FTD",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "special",
-						"target.template.size": "30",
-						"target.template.units": "ft",
-						"target.template.type": "line"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "special"
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "30",
+							"units": "ft",
+							"type": "line"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"dex"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -686,24 +906,34 @@
 			"raceSource": "FTD",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "special",
-						"target.template.size": "30",
-						"target.template.units": "ft",
-						"target.template.type": "line"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "special"
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "30",
+							"units": "ft",
+							"type": "line"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"dex"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -713,24 +943,34 @@
 			"raceSource": "FTD",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "special",
-						"target.template.size": "30",
-						"target.template.units": "ft",
-						"target.template.type": "line"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "special"
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "30",
+							"units": "ft",
+							"type": "line"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"dex"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -740,24 +980,34 @@
 			"raceSource": "FTD",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "special",
-						"target.template.size": "30",
-						"target.template.units": "ft",
-						"target.template.type": "line"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "special"
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "30",
+							"units": "ft",
+							"type": "line"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"dex"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -767,24 +1017,34 @@
 			"raceSource": "FTD",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "special",
-						"target.template.size": "15",
-						"target.template.units": "ft",
-						"target.template.type": "cone"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "special"
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "15",
+							"units": "ft",
+							"type": "cone"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"dex"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -794,24 +1054,34 @@
 			"raceSource": "FTD",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "special",
-						"target.template.size": "15",
-						"target.template.units": "ft",
-						"target.template.type": "cone"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "special"
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "15",
+							"units": "ft",
+							"type": "cone"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"dex"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -821,24 +1091,34 @@
 			"raceSource": "FTD",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "special",
-						"target.template.size": "15",
-						"target.template.units": "ft",
-						"target.template.type": "cone"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "special"
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "15",
+							"units": "ft",
+							"type": "cone"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"dex"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -848,24 +1128,34 @@
 			"raceSource": "FTD",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "special",
-						"target.template.size": "15",
-						"target.template.units": "ft",
-						"target.template.type": "cone"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "special"
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "15",
+							"units": "ft",
+							"type": "cone"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"dex"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -875,24 +1165,34 @@
 			"raceSource": "FTD",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "special",
-						"target.template.size": "15",
-						"target.template.units": "ft",
-						"target.template.type": "cone"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "special"
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "15",
+							"units": "ft",
+							"type": "cone"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"dex"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -902,24 +1202,34 @@
 			"raceSource": "FTD",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "special",
-						"target.template.size": "15",
-						"target.template.units": "ft",
-						"target.template.type": "cone"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "special"
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "15",
+							"units": "ft",
+							"type": "cone"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"dex"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -929,24 +1239,34 @@
 			"raceSource": "FTD",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "special",
-						"target.template.size": "15",
-						"target.template.units": "ft",
-						"target.template.type": "cone"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "special"
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "15",
+							"units": "ft",
+							"type": "cone"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"dex"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -956,24 +1276,34 @@
 			"raceSource": "FTD",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "special",
-						"target.template.size": "15",
-						"target.template.units": "ft",
-						"target.template.type": "cone"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "special"
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "15",
+							"units": "ft",
+							"type": "cone"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"dex"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -983,24 +1313,34 @@
 			"raceSource": "FTD",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "special",
-						"target.template.size": "15",
-						"target.template.units": "ft",
-						"target.template.type": "cone"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "special"
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "15",
+							"units": "ft",
+							"type": "cone"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"dex"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -1010,24 +1350,34 @@
 			"raceSource": "FTD",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "special",
-						"target.template.size": "15",
-						"target.template.units": "ft",
-						"target.template.type": "cone"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "special"
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "15",
+							"units": "ft",
+							"type": "cone"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"dex"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -1037,25 +1387,35 @@
 			"raceSource": "PHB",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "action",
-						"activation.value": 1,
-						"target.template.size": "30",
-						"target.template.units": "ft",
-						"target.template.type": "line"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"value": 1
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "30",
+							"units": "ft",
+							"type": "line"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"dex"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -1065,25 +1425,35 @@
 			"raceSource": "PHB",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "action",
-						"activation.value": 1,
-						"target.template.size": "30",
-						"target.template.units": "ft",
-						"target.template.type": "line"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"value": 1
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "30",
+							"units": "ft",
+							"type": "line"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"dex"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -1093,25 +1463,35 @@
 			"raceSource": "PHB",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "action",
-						"activation.value": 1,
-						"target.template.size": "30",
-						"target.template.units": "ft",
-						"target.template.type": "line"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"value": 1
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "30",
+							"units": "ft",
+							"type": "line"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"dex"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -1121,25 +1501,35 @@
 			"raceSource": "PHB",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "action",
-						"activation.value": 1,
-						"target.template.size": "30",
-						"target.template.units": "ft",
-						"target.template.type": "line"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"value": 1
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "30",
+							"units": "ft",
+							"type": "line"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"dex"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -1149,25 +1539,35 @@
 			"raceSource": "PHB",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "action",
-						"activation.value": 1,
-						"target.template.size": "30",
-						"target.template.units": "ft",
-						"target.template.type": "line"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"value": 1
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "30",
+							"units": "ft",
+							"type": "line"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"dex"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -1177,25 +1577,35 @@
 			"raceSource": "PHB",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "action",
-						"activation.value": 1,
-						"target.template.size": "15",
-						"target.template.units": "ft",
-						"target.template.type": "cone"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"value": 1
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "15",
+							"units": "ft",
+							"type": "cone"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"dex"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -1205,25 +1615,35 @@
 			"raceSource": "PHB",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "action",
-						"activation.value": 1,
-						"target.template.size": "15",
-						"target.template.units": "ft",
-						"target.template.type": "cone"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"value": 1
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "15",
+							"units": "ft",
+							"type": "cone"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"con"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -1233,25 +1653,35 @@
 			"raceSource": "PHB",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "action",
-						"activation.value": 1,
-						"target.template.size": "15",
-						"target.template.units": "ft",
-						"target.template.type": "cone"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"value": 1
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "15",
+							"units": "ft",
+							"type": "cone"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"dex"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -1261,25 +1691,35 @@
 			"raceSource": "PHB",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "action",
-						"activation.value": 1,
-						"target.template.size": "15",
-						"target.template.units": "ft",
-						"target.template.type": "cone"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"value": 1
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "15",
+							"units": "ft",
+							"type": "cone"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"con"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -1289,25 +1729,35 @@
 			"raceSource": "PHB",
 			"system": {
 				"range.units": "self",
-				"duration.units": "instantaneous",
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "action",
-						"activation.value": 1,
-						"target.template.size": "15",
-						"target.template.units": "ft",
-						"target.template.type": "cone"
+				"duration.units": "instantaneous"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"value": 1
 					},
-					{
-						"type": "save",
-						"save.ability": [
+					"target": {
+						"template": {
+							"size": "15",
+							"units": "ft",
+							"type": "cone"
+						}
+					}
+				},
+				{
+					"type": "save",
+					"save": {
+						"ability": [
 							"con"
 						],
-						"save.dc.calculation": "con"
+						"dc": {
+							"calculation": "con"
+						}
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -1406,22 +1856,24 @@
 			"source": "MPMM",
 			"raceName": "Aasimar",
 			"raceSource": "MPMM",
-			"system": {
-				"activities": [
-					{
-						"type": "damage",
-						"damage.parts": [
+			"activities": [
+				{
+					"type": "damage",
+					"damage": {
+						"parts": [
 							{
-								"custom.enabled": true,
-								"custom.formula": "(@attributes.prof)d4",
+								"custom": {
+									"enabled": true,
+									"formula": "(@attributes.prof)d4"
+								},
 								"types": [
 									"healing"
 								]
 							}
 						]
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -1429,22 +1881,24 @@
 			"source": "VGM",
 			"raceName": "Aasimar",
 			"raceSource": "VGM",
-			"system": {
-				"activities": [
-					{
-						"type": "damage",
-						"damage.parts": [
+			"activities": [
+				{
+					"type": "damage",
+					"damage": {
+						"parts": [
 							{
-								"custom.enabled": true,
-								"custom.formula": "@details.level",
+								"custom": {
+									"enabled": true,
+									"formula": "@details.level"
+								},
 								"types": [
 									"healing"
 								]
 							}
 						]
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -1452,15 +1906,15 @@
 			"source": "GGR",
 			"raceName": "Centaur",
 			"raceSource": "GGR",
-			"system": {
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "action",
-						"activation.value": 1
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"value": 1
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -1628,15 +2082,15 @@
 			"source": "VGM",
 			"raceName": "Aasimar (Protector)",
 			"raceSource": "VGM",
-			"system": {
-				"activities": [
-					{
-						"type": "utility",
-						"activation.type": "action",
-						"activation.value": 1
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"value": 1
 					}
-				]
-			},
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -1647,6 +2101,7 @@
 			"effects": [
 				{
 					"name": "Natural Armor",
+					"disabled": true,
 					"transfer": true,
 					"changes": [
 						{
@@ -1654,8 +2109,7 @@
 							"mode": "ADD",
 							"value": "+ 4"
 						}
-					],
-					"disabled": true
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -1668,6 +2122,7 @@
 			"effects": [
 				{
 					"name": "Natural Armor",
+					"disabled": true,
 					"transfer": true,
 					"changes": [
 						{
@@ -1675,8 +2130,7 @@
 							"mode": "ADD",
 							"value": "+ 1"
 						}
-					],
-					"disabled": true
+					]
 				}
 			],
 			"migrationVersion": 3

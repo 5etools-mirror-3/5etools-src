@@ -9,6 +9,7 @@ import "../js/utils-ui.js";
 import "../js/filter.js";
 import "../js/filter-spells.js";
 import "../js/utils-dataloader.js";
+import "../js/utils-brew.js";
 import "../js/render.js";
 import "../js/hist.js";
 import {SpellSourceLookupBuilder} from "../js/converter/converterutils-spell-sources.js";

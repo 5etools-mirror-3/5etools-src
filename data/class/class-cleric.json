@@ -507,7 +507,8 @@
 			"name": "Cleric",
 			"source": "XPHB",
 			"page": 68,
-			"freeRules2024": true,
+			"srd52": true,
+			"basicRules2024": true,
 			"edition": "one",
 			"primaryAbility": [
 				{
@@ -2772,7 +2773,8 @@
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"page": 73,
-			"freeRules2024": true,
+			"srd52": true,
+			"basicRules2024": true,
 			"edition": "one",
 			"additionalSpells": [
 				{
@@ -3322,6 +3324,8 @@
 			"name": "Divine Order",
 			"source": "XPHB",
 			"page": 70,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"level": 1,
@@ -3347,6 +3351,8 @@
 			"name": "Protector",
 			"source": "XPHB",
 			"page": 70,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"level": 1,
@@ -3358,6 +3364,8 @@
 			"name": "Spellcasting",
 			"source": "XPHB",
 			"page": 70,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"level": 1,
@@ -3420,6 +3428,8 @@
 			"name": "Thaumaturge",
 			"source": "XPHB",
 			"page": 70,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"level": 1,
@@ -3431,6 +3441,8 @@
 			"name": "Channel Divinity",
 			"source": "XPHB",
 			"page": 70,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"level": 2,
@@ -3457,6 +3469,8 @@
 			"name": "Divine Spark",
 			"source": "XPHB",
 			"page": 70,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"level": 2,
@@ -3473,6 +3487,8 @@
 			"name": "Turn Undead",
 			"source": "XPHB",
 			"page": 70,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"level": 2,
@@ -3488,6 +3504,8 @@
 			"name": "Cleric Subclass",
 			"source": "XPHB",
 			"page": 71,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"level": 3,
@@ -3499,6 +3517,8 @@
 			"name": "Ability Score Improvement",
 			"source": "XPHB",
 			"page": 71,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"level": 4,
@@ -3510,6 +3530,8 @@
 			"name": "Sear Undead",
 			"source": "XPHB",
 			"page": 71,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"level": 5,
@@ -3521,6 +3543,8 @@
 			"name": "Subclass Feature",
 			"source": "XPHB",
 			"page": 71,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"level": 6,
@@ -3532,6 +3556,8 @@
 			"name": "Blessed Strikes",
 			"source": "XPHB",
 			"page": 71,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"level": 7,
@@ -3541,27 +3567,51 @@
 					"type": "entries",
 					"entries": [
 						{
-							"type": "entries",
-							"name": "Divine Strike",
-							"entries": [
-								"Once on each of your turns when you hit a creature with an attack roll using a weapon, you can cause the target to take an extra {@damage 1d8} Necrotic or Radiant damage (your choice)."
-							]
+							"type": "refClassFeature",
+							"classFeature": "Divine Strike|Cleric|XPHB|7"
 						},
 						{
-							"type": "entries",
-							"name": "Potent Spellcasting",
-							"entries": [
-								"Add your Wisdom modifier to the damage you deal with any Cleric cantrip."
-							]
+							"type": "refClassFeature",
+							"classFeature": "Potent Spellcasting|Cleric|XPHB|7"
 						}
 					]
 				}
 			]
 		},
 		{
+			"name": "Divine Strike",
+			"source": "XPHB",
+			"page": 71,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"Once on each of your turns when you hit a creature with an attack roll using a weapon, you can cause the target to take an extra {@damage 1d8} Necrotic or Radiant damage (your choice)."
+			]
+		},
+		{
+			"name": "Potent Spellcasting",
+			"source": "XPHB",
+			"page": 71,
+			"srd52": true,
+			"basicRules2024": true,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"Add your Wisdom modifier to the damage you deal with any Cleric cantrip."
+			]
+		},
+		{
 			"name": "Ability Score Improvement",
 			"source": "XPHB",
 			"page": 71,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"level": 8,
@@ -3573,6 +3623,8 @@
 			"name": "Divine Intervention",
 			"source": "XPHB",
 			"page": 71,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"level": 10,
@@ -3584,6 +3636,8 @@
 			"name": "Ability Score Improvement",
 			"source": "XPHB",
 			"page": 71,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"level": 12,
@@ -3595,6 +3649,8 @@
 			"name": "Improved Blessed Strikes",
 			"source": "XPHB",
 			"page": 71,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"level": 14,
@@ -3625,6 +3681,8 @@
 			"name": "Ability Score Improvement",
 			"source": "XPHB",
 			"page": 71,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"level": 16,
@@ -3636,6 +3694,8 @@
 			"name": "Subclass Feature",
 			"source": "XPHB",
 			"page": 71,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"level": 17,
@@ -3647,6 +3707,8 @@
 			"name": "Epic Boon",
 			"source": "XPHB",
 			"page": 71,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"level": 19,
@@ -3658,6 +3720,8 @@
 			"name": "Greater Divine Intervention",
 			"source": "XPHB",
 			"page": 71,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"level": 20,
@@ -7330,7 +7394,9 @@
 				"subclassSource": "PHB",
 				"level": 2,
 				"_preserve": {
-					"page": true
+					"page": true,
+					"srd": true,
+					"basicRules": true
 				}
 			}
 		},
@@ -7351,7 +7417,9 @@
 				"subclassSource": "PHB",
 				"level": 1,
 				"_preserve": {
-					"page": true
+					"page": true,
+					"srd": true,
+					"basicRules": true
 				}
 			}
 		},
@@ -8094,7 +8162,8 @@
 			"name": "Life Domain",
 			"source": "XPHB",
 			"page": 73,
-			"freeRules2024": true,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"subclassShortName": "Life",
@@ -8122,7 +8191,8 @@
 			"name": "Disciple of Life",
 			"source": "XPHB",
 			"page": 73,
-			"freeRules2024": true,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"subclassShortName": "Life",
@@ -8137,7 +8207,8 @@
 			"name": "Life Domain Spells",
 			"source": "XPHB",
 			"page": 73,
-			"freeRules2024": true,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"subclassShortName": "Life",
@@ -8182,7 +8253,8 @@
 			"name": "Preserve Life",
 			"source": "XPHB",
 			"page": 73,
-			"freeRules2024": true,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"subclassShortName": "Life",
@@ -8200,7 +8272,8 @@
 			"name": "Blessed Healer",
 			"source": "XPHB",
 			"page": 74,
-			"freeRules2024": true,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"subclassShortName": "Life",
@@ -8215,7 +8288,8 @@
 			"name": "Supreme Healing",
 			"source": "XPHB",
 			"page": 74,
-			"freeRules2024": true,
+			"srd52": true,
+			"basicRules2024": true,
 			"className": "Cleric",
 			"classSource": "XPHB",
 			"subclassShortName": "Life",

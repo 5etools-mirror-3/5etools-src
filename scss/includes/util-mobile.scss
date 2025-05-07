@@ -1,494 +1,496 @@
 @use "../vars/vars";
 
-@mixin mix-mobile-styles ($width-screen) {
-	@media screen and (width > #{$width-screen}) {
-		&visible {
-			display: none !important;
+@layer vetools {
+	@mixin mix-mobile-styles ($width-screen) {
+		@media screen and (width > #{$width-screen}) {
+			&visible {
+				display: none !important;
+			}
+		}
+
+		@media screen and (width <= #{$width-screen}) {
+			&hidden {
+				display: none !important;
+			}
+
+			&text-center {
+				text-align: center !important;
+			}
+
+			&text-clip-ellipsis {
+				white-space: nowrap !important;
+				text-overflow: ellipsis !important;
+				overflow: hidden !important;
+			}
+
+			&ve-flex-col {
+				display: flex !important;
+				flex-direction: column !important;
+			}
+
+			&ve-flex-row {
+				display: flex !important;
+				flex-direction: row !important;
+			}
+
+			&ve-flex-col-reverse {
+				display: flex !important;
+				flex-direction: column-reverse !important;
+			}
+
+			&ve-flex-ai-start {
+				align-items: flex-start !important;
+			}
+
+			&ve-flex-wrap {
+				display: flex !important;
+				flex-wrap: wrap !important;
+			}
+
+			&ve-overflow-x-auto {
+				overflow-x: auto;
+			}
+
+			&w-100 {
+				width: 100% !important;
+			}
+
+			&max-w-100 {
+				max-width: 100% !important;
+			}
+
+			&h-initial {
+				height: initial !important;
+			}
+
+			// region util-spacing port
+			&m-auto {
+				margin: auto !important;
+			}
+
+			&m-0 {
+				margin: 0 !important;
+			}
+
+			&m-1 {
+				margin: (vars.$spacer * 0.25) !important;
+			}
+
+			&m-2 {
+				margin: (vars.$spacer * 0.5) !important;
+			}
+
+			&m-3 {
+				margin: vars.$spacer !important;
+			}
+
+			&m-4 {
+				margin: (vars.$spacer * 1.5) !important;
+			}
+
+			&m-5 {
+				margin: (vars.$spacer * 3) !important;
+			}
+
+			&mt-auto {
+				margin-top: auto !important;
+			}
+
+			&mt-0 {
+				margin-top: 0 !important;
+			}
+
+			&mt-1 {
+				margin-top: (vars.$spacer * 0.25) !important;
+			}
+
+			&mt-2 {
+				margin-top: (vars.$spacer * 0.5) !important;
+			}
+
+			&mt-3 {
+				margin-top: vars.$spacer !important;
+			}
+
+			&mt-4 {
+				margin-top: (vars.$spacer * 1.5) !important;
+			}
+
+			&mt-5 {
+				margin-top: (vars.$spacer * 3) !important;
+			}
+
+			&mr-auto {
+				margin-right: auto !important;
+			}
+
+			&mr-0 {
+				margin-right: 0 !important;
+			}
+
+			&mr-1 {
+				margin-right: (vars.$spacer * 0.25) !important;
+			}
+
+			&mr-2 {
+				margin-right: (vars.$spacer * 0.5) !important;
+			}
+
+			&mr-3 {
+				margin-right: vars.$spacer !important;
+			}
+
+			&mr-4 {
+				margin-right: (vars.$spacer * 1.5) !important;
+			}
+
+			&mr-5 {
+				margin-right: (vars.$spacer * 3) !important;
+			}
+
+			&mb-auto {
+				margin-bottom: auto !important;
+			}
+
+			&mb-0 {
+				margin-bottom: 0 !important;
+			}
+
+			&mb-1 {
+				margin-bottom: (vars.$spacer * 0.25) !important;
+			}
+
+			&mb-2 {
+				margin-bottom: (vars.$spacer * 0.5) !important;
+			}
+
+			&mb-3 {
+				margin-bottom: vars.$spacer !important;
+			}
+
+			&mb-4 {
+				margin-bottom: (vars.$spacer * 1.5) !important;
+			}
+
+			&mb-5 {
+				margin-bottom: (vars.$spacer * 3) !important;
+			}
+
+			&ml-auto {
+				margin-left: auto !important;
+			}
+
+			&ml-0 {
+				margin-left: 0 !important;
+			}
+
+			&ml-1 {
+				margin-left: (vars.$spacer * 0.25) !important;
+			}
+
+			&ml-2 {
+				margin-left: (vars.$spacer * 0.5) !important;
+			}
+
+			&ml-3 {
+				margin-left: vars.$spacer !important;
+			}
+
+			&ml-4 {
+				margin-left: (vars.$spacer * 1.5) !important;
+			}
+
+			&ml-5 {
+				margin-left: (vars.$spacer * 3) !important;
+			}
+
+			&my-auto {
+				margin-top: auto !important;
+				margin-bottom: auto !important;
+			}
+
+			&my-0 {
+				margin-top: 0 !important;
+				margin-bottom: 0 !important;
+			}
+
+			&my-1 {
+				margin-top: (vars.$spacer * 0.25) !important;
+				margin-bottom: (vars.$spacer * 0.25) !important;
+			}
+
+			&my-2 {
+				margin-top: (vars.$spacer * 0.5) !important;
+				margin-bottom: (vars.$spacer * 0.5) !important;
+			}
+
+			&my-3 {
+				margin-top: vars.$spacer !important;
+				margin-bottom: vars.$spacer !important;
+			}
+
+			&my-4 {
+				margin-top: (vars.$spacer * 1.5) !important;
+				margin-bottom: (vars.$spacer * 1.5) !important;
+			}
+
+			&my-5 {
+				margin-top: (vars.$spacer * 3) !important;
+				margin-bottom: (vars.$spacer * 3) !important;
+			}
+
+			&mx-auto {
+				margin-right: auto !important;
+				margin-left: auto !important;
+			}
+
+			&mx-0 {
+				margin-right: 0 !important;
+				margin-left: 0 !important;
+			}
+
+			&mx-1 {
+				margin-right: (vars.$spacer * 0.25) !important;
+				margin-left: (vars.$spacer * 0.25) !important;
+			}
+
+			&mx-2 {
+				margin-right: (vars.$spacer * 0.5) !important;
+				margin-left: (vars.$spacer * 0.5) !important;
+			}
+
+			&mx-3 {
+				margin-right: vars.$spacer !important;
+				margin-left: vars.$spacer !important;
+			}
+
+			&mx-4 {
+				margin-right: (vars.$spacer * 1.5) !important;
+				margin-left: (vars.$spacer * 1.5) !important;
+			}
+
+			&mx-5 {
+				margin-right: (vars.$spacer * 3) !important;
+				margin-left: (vars.$spacer * 3) !important;
+			}
+
+			&p-0 {
+				padding: 0 !important;
+			}
+
+			&p-1 {
+				padding: (vars.$spacer * 0.25) !important;
+			}
+
+			&p-2 {
+				padding: (vars.$spacer * 0.5) !important;
+			}
+
+			&p-3 {
+				padding: vars.$spacer !important;
+			}
+
+			&p-4 {
+				padding: (vars.$spacer * 1.5) !important;
+			}
+
+			&p-5 {
+				padding: (vars.$spacer * 3) !important;
+			}
+
+			&p-1p {
+				padding: 1px !important;
+			}
+
+			&pt-0 {
+				padding-top: 0 !important;
+			}
+
+			&pt-1 {
+				padding-top: (vars.$spacer * 0.25) !important;
+			}
+
+			&pt-2 {
+				padding-top: (vars.$spacer * 0.5) !important;
+			}
+
+			&pt-3 {
+				padding-top: vars.$spacer !important;
+			}
+
+			&pt-4 {
+				padding-top: (vars.$spacer * 1.5) !important;
+			}
+
+			&pt-5 {
+				padding-top: (vars.$spacer * 3) !important;
+			}
+
+			&pt-1p {
+				padding-top: 1px !important;
+			}
+
+			&pr-0 {
+				padding-right: 0 !important;
+			}
+
+			&pr-1 {
+				padding-right: (vars.$spacer * 0.25) !important;
+			}
+
+			&pr-2 {
+				padding-right: (vars.$spacer * 0.5) !important;
+			}
+
+			&pr-3 {
+				padding-right: vars.$spacer !important;
+			}
+
+			&pr-4 {
+				padding-right: (vars.$spacer * 1.5) !important;
+			}
+
+			&pr-5 {
+				padding-right: (vars.$spacer * 3) !important;
+			}
+
+			&pr-1p {
+				padding-right: 1px !important;
+			}
+
+			&pb-0 {
+				padding-bottom: 0 !important;
+			}
+
+			&pb-1 {
+				padding-bottom: (vars.$spacer * 0.25) !important;
+			}
+
+			&pb-2 {
+				padding-bottom: (vars.$spacer * 0.5) !important;
+			}
+
+			&pb-3 {
+				padding-bottom: vars.$spacer !important;
+			}
+
+			&pb-4 {
+				padding-bottom: (vars.$spacer * 1.5) !important;
+			}
+
+			&pb-5 {
+				padding-bottom: (vars.$spacer * 3) !important;
+			}
+
+			&pb-1p {
+				padding-bottom: 1px !important;
+			}
+
+			&pl-0 {
+				padding-left: 0 !important;
+			}
+
+			&pl-1 {
+				padding-left: (vars.$spacer * 0.25) !important;
+			}
+
+			&pl-2 {
+				padding-left: (vars.$spacer * 0.5) !important;
+			}
+
+			&pl-3 {
+				padding-left: vars.$spacer !important;
+			}
+
+			&pl-4 {
+				padding-left: (vars.$spacer * 1.5) !important;
+			}
+
+			&pl-5 {
+				padding-left: (vars.$spacer * 3) !important;
+			}
+
+			&pl-1p {
+				padding-left: 1px !important;
+			}
+
+			&py-0 {
+				padding-top: 0 !important;
+				padding-bottom: 0 !important;
+			}
+
+			&py-1 {
+				padding-top: (vars.$spacer * 0.25) !important;
+				padding-bottom: (vars.$spacer * 0.25) !important;
+			}
+
+			&py-2 {
+				padding-top: (vars.$spacer * 0.5) !important;
+				padding-bottom: (vars.$spacer * 0.5) !important;
+			}
+
+			&py-3 {
+				padding-top: vars.$spacer !important;
+				padding-bottom: vars.$spacer !important;
+			}
+
+			&py-4 {
+				padding-top: (vars.$spacer * 1.5) !important;
+				padding-bottom: (vars.$spacer * 1.5) !important;
+			}
+
+			&py-5 {
+				padding-top: (vars.$spacer * 3) !important;
+				padding-bottom: (vars.$spacer * 3) !important;
+			}
+
+			&px-0 {
+				padding-right: 0 !important;
+				padding-left: 0 !important;
+			}
+
+			&px-1 {
+				padding-right: (vars.$spacer * 0.25) !important;
+				padding-left: (vars.$spacer * 0.25) !important;
+			}
+
+			&px-2 {
+				padding-right: (vars.$spacer * 0.5) !important;
+				padding-left: (vars.$spacer * 0.5) !important;
+			}
+
+			&px-3 {
+				padding-right: vars.$spacer !important;
+				padding-left: vars.$spacer !important;
+			}
+
+			&px-4 {
+				padding-right: (vars.$spacer * 1.5) !important;
+				padding-left: (vars.$spacer * 1.5) !important;
+			}
+
+			&px-5 {
+				padding-right: (vars.$spacer * 3) !important;
+				padding-left: (vars.$spacer * 3) !important;
+			}
+
+			&py-1p {
+				padding-top: 1px !important;
+				padding-bottom: 1px !important;
+			}
+			// endregion
 		}
 	}
 
-	@media screen and (width <= #{$width-screen}) {
-		&hidden {
-			display: none !important;
-		}
-
-		&text-center {
-			text-align: center !important;
-		}
-
-		&text-clip-ellipsis {
-			white-space: nowrap !important;
-			text-overflow: ellipsis !important;
-			overflow: hidden !important;
-		}
-
-		&ve-flex-col {
-			display: flex !important;
-			flex-direction: column !important;
-		}
-
-		&ve-flex-row {
-			display: flex !important;
-			flex-direction: row !important;
-		}
-
-		&ve-flex-col-reverse {
-			display: flex !important;
-			flex-direction: column-reverse !important;
-		}
-
-		&ve-flex-ai-start {
-			align-items: flex-start !important;
-		}
-
-		&ve-flex-wrap {
-			display: flex !important;
-			flex-wrap: wrap !important;
-		}
-
-		&ve-overflow-x-auto {
-			overflow-x: auto;
-		}
-
-		&w-100 {
-			width: 100% !important;
-		}
-
-		&max-w-100 {
-			max-width: 100% !important;
-		}
-
-		&h-initial {
-			height: initial !important;
-		}
-
-		// region util-spacing port
-		&m-auto {
-			margin: auto !important;
-		}
-
-		&m-0 {
-			margin: 0 !important;
-		}
-
-		&m-1 {
-			margin: (vars.$spacer * 0.25) !important;
-		}
-
-		&m-2 {
-			margin: (vars.$spacer * 0.5) !important;
-		}
-
-		&m-3 {
-			margin: vars.$spacer !important;
-		}
-
-		&m-4 {
-			margin: (vars.$spacer * 1.5) !important;
-		}
-
-		&m-5 {
-			margin: (vars.$spacer * 3) !important;
-		}
-
-		&mt-auto {
-			margin-top: auto !important;
-		}
-
-		&mt-0 {
-			margin-top: 0 !important;
-		}
-
-		&mt-1 {
-			margin-top: (vars.$spacer * 0.25) !important;
-		}
-
-		&mt-2 {
-			margin-top: (vars.$spacer * 0.5) !important;
-		}
-
-		&mt-3 {
-			margin-top: vars.$spacer !important;
-		}
-
-		&mt-4 {
-			margin-top: (vars.$spacer * 1.5) !important;
-		}
-
-		&mt-5 {
-			margin-top: (vars.$spacer * 3) !important;
-		}
-
-		&mr-auto {
-			margin-right: auto !important;
-		}
-
-		&mr-0 {
-			margin-right: 0 !important;
-		}
-
-		&mr-1 {
-			margin-right: (vars.$spacer * 0.25) !important;
-		}
-
-		&mr-2 {
-			margin-right: (vars.$spacer * 0.5) !important;
-		}
-
-		&mr-3 {
-			margin-right: vars.$spacer !important;
-		}
-
-		&mr-4 {
-			margin-right: (vars.$spacer * 1.5) !important;
-		}
-
-		&mr-5 {
-			margin-right: (vars.$spacer * 3) !important;
-		}
-
-		&mb-auto {
-			margin-bottom: auto !important;
-		}
-
-		&mb-0 {
-			margin-bottom: 0 !important;
-		}
-
-		&mb-1 {
-			margin-bottom: (vars.$spacer * 0.25) !important;
-		}
-
-		&mb-2 {
-			margin-bottom: (vars.$spacer * 0.5) !important;
-		}
-
-		&mb-3 {
-			margin-bottom: vars.$spacer !important;
-		}
-
-		&mb-4 {
-			margin-bottom: (vars.$spacer * 1.5) !important;
-		}
-
-		&mb-5 {
-			margin-bottom: (vars.$spacer * 3) !important;
-		}
-
-		&ml-auto {
-			margin-left: auto !important;
-		}
-
-		&ml-0 {
-			margin-left: 0 !important;
-		}
-
-		&ml-1 {
-			margin-left: (vars.$spacer * 0.25) !important;
-		}
-
-		&ml-2 {
-			margin-left: (vars.$spacer * 0.5) !important;
-		}
-
-		&ml-3 {
-			margin-left: vars.$spacer !important;
-		}
-
-		&ml-4 {
-			margin-left: (vars.$spacer * 1.5) !important;
-		}
-
-		&ml-5 {
-			margin-left: (vars.$spacer * 3) !important;
-		}
-
-		&my-auto {
-			margin-top: auto !important;
-			margin-bottom: auto !important;
-		}
-
-		&my-0 {
-			margin-top: 0 !important;
-			margin-bottom: 0 !important;
-		}
-
-		&my-1 {
-			margin-top: (vars.$spacer * 0.25) !important;
-			margin-bottom: (vars.$spacer * 0.25) !important;
-		}
-
-		&my-2 {
-			margin-top: (vars.$spacer * 0.5) !important;
-			margin-bottom: (vars.$spacer * 0.5) !important;
-		}
-
-		&my-3 {
-			margin-top: vars.$spacer !important;
-			margin-bottom: vars.$spacer !important;
-		}
-
-		&my-4 {
-			margin-top: (vars.$spacer * 1.5) !important;
-			margin-bottom: (vars.$spacer * 1.5) !important;
-		}
-
-		&my-5 {
-			margin-top: (vars.$spacer * 3) !important;
-			margin-bottom: (vars.$spacer * 3) !important;
-		}
-
-		&mx-auto {
-			margin-right: auto !important;
-			margin-left: auto !important;
-		}
-
-		&mx-0 {
-			margin-right: 0 !important;
-			margin-left: 0 !important;
-		}
-
-		&mx-1 {
-			margin-right: (vars.$spacer * 0.25) !important;
-			margin-left: (vars.$spacer * 0.25) !important;
-		}
-
-		&mx-2 {
-			margin-right: (vars.$spacer * 0.5) !important;
-			margin-left: (vars.$spacer * 0.5) !important;
-		}
-
-		&mx-3 {
-			margin-right: vars.$spacer !important;
-			margin-left: vars.$spacer !important;
-		}
-
-		&mx-4 {
-			margin-right: (vars.$spacer * 1.5) !important;
-			margin-left: (vars.$spacer * 1.5) !important;
-		}
-
-		&mx-5 {
-			margin-right: (vars.$spacer * 3) !important;
-			margin-left: (vars.$spacer * 3) !important;
-		}
-
-		&p-0 {
-			padding: 0 !important;
-		}
-
-		&p-1 {
-			padding: (vars.$spacer * 0.25) !important;
-		}
-
-		&p-2 {
-			padding: (vars.$spacer * 0.5) !important;
-		}
-
-		&p-3 {
-			padding: vars.$spacer !important;
-		}
-
-		&p-4 {
-			padding: (vars.$spacer * 1.5) !important;
-		}
-
-		&p-5 {
-			padding: (vars.$spacer * 3) !important;
-		}
-
-		&p-1p {
-			padding: 1px !important;
-		}
-
-		&pt-0 {
-			padding-top: 0 !important;
-		}
-
-		&pt-1 {
-			padding-top: (vars.$spacer * 0.25) !important;
-		}
-
-		&pt-2 {
-			padding-top: (vars.$spacer * 0.5) !important;
-		}
-
-		&pt-3 {
-			padding-top: vars.$spacer !important;
-		}
-
-		&pt-4 {
-			padding-top: (vars.$spacer * 1.5) !important;
-		}
-
-		&pt-5 {
-			padding-top: (vars.$spacer * 3) !important;
-		}
-
-		&pt-1p {
-			padding-top: 1px !important;
-		}
-
-		&pr-0 {
-			padding-right: 0 !important;
-		}
-
-		&pr-1 {
-			padding-right: (vars.$spacer * 0.25) !important;
-		}
-
-		&pr-2 {
-			padding-right: (vars.$spacer * 0.5) !important;
-		}
-
-		&pr-3 {
-			padding-right: vars.$spacer !important;
-		}
-
-		&pr-4 {
-			padding-right: (vars.$spacer * 1.5) !important;
-		}
-
-		&pr-5 {
-			padding-right: (vars.$spacer * 3) !important;
-		}
-
-		&pr-1p {
-			padding-right: 1px !important;
-		}
-
-		&pb-0 {
-			padding-bottom: 0 !important;
-		}
-
-		&pb-1 {
-			padding-bottom: (vars.$spacer * 0.25) !important;
-		}
-
-		&pb-2 {
-			padding-bottom: (vars.$spacer * 0.5) !important;
-		}
-
-		&pb-3 {
-			padding-bottom: vars.$spacer !important;
-		}
-
-		&pb-4 {
-			padding-bottom: (vars.$spacer * 1.5) !important;
-		}
-
-		&pb-5 {
-			padding-bottom: (vars.$spacer * 3) !important;
-		}
-
-		&pb-1p {
-			padding-bottom: 1px !important;
-		}
-
-		&pl-0 {
-			padding-left: 0 !important;
-		}
-
-		&pl-1 {
-			padding-left: (vars.$spacer * 0.25) !important;
-		}
-
-		&pl-2 {
-			padding-left: (vars.$spacer * 0.5) !important;
-		}
-
-		&pl-3 {
-			padding-left: vars.$spacer !important;
-		}
-
-		&pl-4 {
-			padding-left: (vars.$spacer * 1.5) !important;
-		}
-
-		&pl-5 {
-			padding-left: (vars.$spacer * 3) !important;
-		}
-
-		&pl-1p {
-			padding-left: 1px !important;
-		}
-
-		&py-0 {
-			padding-top: 0 !important;
-			padding-bottom: 0 !important;
-		}
-
-		&py-1 {
-			padding-top: (vars.$spacer * 0.25) !important;
-			padding-bottom: (vars.$spacer * 0.25) !important;
-		}
-
-		&py-2 {
-			padding-top: (vars.$spacer * 0.5) !important;
-			padding-bottom: (vars.$spacer * 0.5) !important;
-		}
-
-		&py-3 {
-			padding-top: vars.$spacer !important;
-			padding-bottom: vars.$spacer !important;
-		}
-
-		&py-4 {
-			padding-top: (vars.$spacer * 1.5) !important;
-			padding-bottom: (vars.$spacer * 1.5) !important;
-		}
-
-		&py-5 {
-			padding-top: (vars.$spacer * 3) !important;
-			padding-bottom: (vars.$spacer * 3) !important;
-		}
-
-		&px-0 {
-			padding-right: 0 !important;
-			padding-left: 0 !important;
-		}
-
-		&px-1 {
-			padding-right: (vars.$spacer * 0.25) !important;
-			padding-left: (vars.$spacer * 0.25) !important;
-		}
-
-		&px-2 {
-			padding-right: (vars.$spacer * 0.5) !important;
-			padding-left: (vars.$spacer * 0.5) !important;
-		}
-
-		&px-3 {
-			padding-right: vars.$spacer !important;
-			padding-left: vars.$spacer !important;
-		}
-
-		&px-4 {
-			padding-right: (vars.$spacer * 1.5) !important;
-			padding-left: (vars.$spacer * 1.5) !important;
-		}
-
-		&px-5 {
-			padding-right: (vars.$spacer * 3) !important;
-			padding-left: (vars.$spacer * 3) !important;
-		}
-
-		&py-1p {
-			padding-top: 1px !important;
-			padding-bottom: 1px !important;
-		}
-		// endregion
+	.mobile-lg__ {
+		@include mix-mobile-styles(vars.$width-screen-lg);
 	}
-}
 
-.mobile-lg__ {
-	@include mix-mobile-styles(vars.$width-screen-lg);
-}
+	.mobile-md__ {
+		@include mix-mobile-styles(vars.$width-screen-md);
+	}
 
-.mobile-md__ {
-	@include mix-mobile-styles(vars.$width-screen-md);
-}
-
-.mobile__ {
-	@include mix-mobile-styles(vars.$width-screen-sm);
+	.mobile__ {
+		@include mix-mobile-styles(vars.$width-screen-sm);
+	}
 }

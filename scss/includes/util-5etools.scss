@@ -1,82 +1,84 @@
 @use "../vars/vars";
 
-// region Fix Chrome
-input[type="checkbox"]:checked,
-input[type="checkbox"]:indeterminate {
-	accent-color: vars.$rgb-cb-grey;
-}
-
-input[type="radio"]:checked,
-input[type="radio"]:indeterminate {
-	accent-color: vars.$rgb-cb-grey;
-}
-
-input[type="range"] {
-	accent-color: vars.$rgb-cb-grey;
-}
-// endregion
-
-.clickable {
-	&--link {
-		color: vars.$rgb-link-blue !important;
+@layer vetools {
+	// region Fix Chrome
+	input[type="checkbox"]:checked,
+	input[type="checkbox"]:indeterminate {
+		accent-color: vars.$rgb-cb-grey;
 	}
-}
 
-.plain {
-	font-weight: initial !important;
-	font-style: initial !important;
-	text-decoration: none !important;
-}
+	input[type="radio"]:checked,
+	input[type="radio"]:indeterminate {
+		accent-color: vars.$rgb-cb-grey;
+	}
 
-.fade {
-	transition: opacity vars.$time-3-frames linear;
-}
+	input[type="range"] {
+		accent-color: vars.$rgb-cb-grey;
+	}
+	// endregion
 
-.stripe- {
-	&even {
-		&:nth-child(even) {
-			background: vars.$rgb-stripe-grey;
-		}
-
-		&--faint:nth-child(even) {
-			background: vars.$rgb-stripe-grey--faint;
+	.clickable {
+		&--link {
+			color: vars.$rgb-link-blue !important;
 		}
 	}
 
-	&odd {
-		&:nth-child(odd) {
-			background: vars.$rgb-stripe-grey;
-		}
-
-		&--faint:nth-child(odd) {
-			background: vars.$rgb-stripe-grey--faint;
-		}
+	.plain {
+		font-weight: initial !important;
+		font-style: initial !important;
+		text-decoration: none !important;
 	}
 
-	&child- {
-		&even-first {
-			&:nth-child(even) > :first-child {
+	.fade {
+		transition: opacity vars.$time-3-frames linear;
+	}
+
+	.stripe- {
+		&even {
+			&:nth-child(even) {
 				background: vars.$rgb-stripe-grey;
 			}
-		}
-	}
-}
 
-.veapp {
-	&__ {
-		&ele-hoverable {
-			&:hover {
-				background: vars.$rgb-bg--alt;
+			&--faint:nth-child(even) {
+				background: vars.$rgb-stripe-grey--faint;
+			}
+		}
+
+		&odd {
+			&:nth-child(odd) {
+				background: vars.$rgb-stripe-grey;
+			}
+
+			&--faint:nth-child(odd) {
+				background: vars.$rgb-stripe-grey--faint;
+			}
+		}
+
+		&child- {
+			&even-first {
+				&:nth-child(even) > :first-child {
+					background: vars.$rgb-stripe-grey;
+				}
 			}
 		}
 	}
-}
 
-.last-mr-0:last-child {
-	margin-right: 0 !important;
-}
+	.veapp {
+		&__ {
+			&ele-hoverable {
+				&:hover {
+					background: vars.$rgb-bg--alt;
+				}
+			}
+		}
+	}
 
-// redefine this here to ensure it overrides all the important display types above
-.hidden {
-	display: none !important;
+	.last-mr-0:last-child {
+		margin-right: 0 !important;
+	}
+
+	// redefine this here to ensure it overrides all the important display types above
+	.hidden {
+		display: none !important;
+	}
 }

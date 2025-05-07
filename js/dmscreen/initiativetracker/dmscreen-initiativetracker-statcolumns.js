@@ -278,7 +278,7 @@ class InitiativeTrackerStatColumn_Initiative extends _InitiativeTrackerStatColum
 	_getInitialCellObj ({mon, fluff}) {
 		if (!mon) return {value: null};
 		return {
-			value: Parser.getAbilityModifier(mon.dex),
+			value: Renderer.monster.getInitiativeBonusNumber({mon}),
 		};
 	}
 

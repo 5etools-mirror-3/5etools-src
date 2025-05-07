@@ -19,47 +19,6 @@ class TestFoundry {
 		}
 	}
 
-	static testClasses ({errors}) {
-		const classIndex = ut.readJson("./data/class/index.json");
-		const classFiles = Object.values(classIndex)
-			.map(file => ut.readJson(`./data/class/${file}`));
-
-		const uidsClass = new Set();
-		const uidsClassFeature = new Set();
-		const uidsSubclassFeature = new Set();
-
-		classFiles.forEach(data => {
-			(data.class || []).forEach(cls => {
-				const uid = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CLASSES](cls);
-				uidsClass.add(uid);
-			});
-
-			(data.classFeature || []).forEach(cf => {
-				const uid = UrlUtil.URL_TO_HASH_BUILDER["classFeature"](cf);
-				uidsClassFeature.add(uid);
-			});
-
-			(data.subclassFeature || []).forEach(scf => {
-				const uid = UrlUtil.URL_TO_HASH_BUILDER["subclassFeature"](scf);
-				uidsSubclassFeature.add(uid);
-			});
-		});
-
-		const foundryData = ut.readJson("./data/class/foundry.json");
-		(foundryData.class || []).forEach(cls => {
-			const uid = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CLASSES](cls);
-			if (!uidsClass.has(uid)) errors.push(`\tClass "${uid}" not found!`);
-		});
-		(foundryData.classFeature || []).forEach(fcf => {
-			const uid = UrlUtil.URL_TO_HASH_BUILDER["classFeature"](fcf);
-			if (!uidsClassFeature.has(uid)) errors.push(`\tClass feature "${uid}" not found!`);
-		});
-		(foundryData.subclassFeature || []).forEach(fscf => {
-			const uid = UrlUtil.URL_TO_HASH_BUILDER["subclassFeature"](fscf);
-			if (!uidsSubclassFeature.has(uid)) errors.push(`\tSubclass feature "${uid}" not found!`);
-		});
-	}
-
 	static async pTestDir ({errors, dir}) {
 		const FOUNDRY_FILE = "foundry.json";
 
@@ -124,12 +83,62 @@ class TestFoundry {
 
 	static doCompareData ({prop, foundryData, originalDatas, errors}) {
 		foundryData[prop].forEach(it => {
-			const match = originalDatas.first(variants => variants[prop].find(og => og.name === it.name && (og?.inherits?.source ?? og.source) === it.source));
+			const match = originalDatas.first(variants => variants[prop]?.find(og => og.name === it.name && (og?.inherits?.source ?? og.source) === it.source));
 			if (!match) errors.push(`\t"${prop}" ${it.name} (${it.source}) not found!`);
 		});
 	}
 
-	static async pTestFile ({foundryPath, foundryData, originalDatas, errors}) {
+	/* -------------------------------------------- */
+
+	static _SCALE_VALUE_METAS = {
+		"class": {
+			propsChild: ["classFeature"],
+			ignoresNotFound: {
+				[Parser.SRC_PHB]: new Set([
+					// From the SRD
+					"@scale.monk.die",
+					"@scale.monk.unarmored-movement",
+				]),
+			},
+			ignoresNeverUsed: {
+				[Parser.SRC_TCE]: new Set([
+					"@scale.artificer.infusions",
+				]),
+				[Parser.SRC_XPHB]: new Set([
+					// TODO(Future) utilize these
+					"@scale.druid.wild-shape",
+					"@scale.druid.known-forms",
+					"@scale.ranger.mark",
+				]),
+			},
+		},
+		// TODO(Future) enable/refine
+		/*
+		"subclass": {
+			propsChild: ["subclassFeature"],
+			ignoresNotFound: {
+				[Parser.SRC_PHB]: new Set([
+					// From the SRD
+					"@scale.order-domain.divine-strike",
+					"@scale.monk.die",
+				]),
+				[Parser.SRC_XGE]: new Set([
+					// From the SRD
+					"@scale.monk.die",
+				]),
+			},
+			ignoresNeverUsed: {
+				[Parser.SRC_TCE]: new Set([
+					"@scale.alchemist.elixir",
+				]),
+			},
+		},
+		*/
+	};
+
+	/* -------------------------------------------- */
+
+	static async _pTestFile_pTestMatchingEntitiesExist ({foundryPath, foundryData, originalDatas, errors}) {
 		Object.entries(foundryData)
 			.forEach(([prop, arr]) => {
 				if (SPECIAL_PROPS[prop]) return SPECIAL_PROPS[prop]({foundryPath, foundryData, originalDatas, errors});
@@ -139,6 +148,115 @@ class TestFoundry {
 
 				this.doCompareData({prop, foundryData, originalDatas, errors});
 			});
+	}
+
+	static _pTestFile_testScaleValueUtilization ({foundryPath, foundryData, originalDatas, errors}) {
+		Object.entries(foundryData)
+			.forEach(([prop, arr]) => {
+				if (!(arr instanceof Array)) return;
+
+				const scaleValueMeta = this._SCALE_VALUE_METAS[prop];
+
+				if (!scaleValueMeta) return;
+
+				const sourceToScaleValues = {};
+
+				const {propsChild, ignoresNotFound, ignoresNeverUsed} = scaleValueMeta;
+
+				const walker = MiscUtil.getWalker({isNoModification: true});
+
+				arr
+					.filter(ent => ent.advancement?.length)
+					.forEach(ent => {
+						ent.advancement
+							.filter(advancement => ["ScaleValue"].includes(advancement.type))
+							.forEach(advancement => {
+								const identifier = advancement.configuration?.identifier || Parser.stringToSlug(advancement.title);
+								if (!identifier) throw new Error(`Expected "ScaleValue" to include "configuration.identifier" or "title"!`);
+
+								MiscUtil.set(sourceToScaleValues, ent.source, Parser.stringToSlug(ent.name), identifier, 0);
+							});
+
+						this._pTestFile_testScaleValueUtilization_entity({
+							walker,
+							ent,
+							ignoresNotFound,
+							errors,
+							sourceToScaleValues,
+							prop,
+						});
+					});
+
+				propsChild
+					.filter(propChild => foundryData[propChild]?.length)
+					.forEach(propChild => {
+						foundryData[propChild]
+							.forEach(entChild => {
+								this._pTestFile_testScaleValueUtilization_entity({
+									walker,
+									ent: entChild,
+									ignoresNotFound,
+									errors,
+									sourceToScaleValues,
+									prop,
+								});
+							});
+					});
+
+				Object.entries(sourceToScaleValues)
+					.forEach(([source, slugNameTo]) => {
+						Object.entries(slugNameTo)
+							.forEach(([slugName, scaleValueIdentifierTo]) => {
+								Object.entries(scaleValueIdentifierTo)
+									.filter(([, count]) => !count)
+									.forEach(([scaleValueIdentifier]) => {
+										const varName = `@scale.${slugName}.${scaleValueIdentifier}`;
+
+										if (ignoresNeverUsed?.[source]?.has(varName)) return;
+
+										errors.push(`\t"${prop}" scale value "${varName}" (${source}) is never used!`);
+									});
+							});
+					});
+			});
+	}
+
+	static _pTestFile_testScaleValueUtilization_entity (
+		{
+			walker,
+			ent,
+			ignoresNotFound,
+			errors,
+			sourceToScaleValues,
+			prop,
+		},
+	) {
+		walker
+			.walk(
+				ent,
+				{
+					string: (str) => {
+						[...str.matchAll(/@scale\.(?<nameSlug>[-a-z]+)\.(?<scaleValueIdentifier>[-a-z]+)/g)]
+							.forEach(m => {
+								if (ignoresNotFound?.[ent.source]?.has(m[0])) return;
+
+								const {nameSlug, scaleValueIdentifier} = m.groups;
+
+								const valCur = MiscUtil.get(sourceToScaleValues, ent.source, nameSlug, scaleValueIdentifier);
+								if (valCur == null) {
+									return errors.push(`\t"${prop}" ${ent.name} (${ent.source}) scale reference "${m[0]}" not found in parent entity!`);
+								}
+
+								MiscUtil.set(sourceToScaleValues, ent.source, nameSlug, scaleValueIdentifier, valCur + 1);
+							});
+					},
+				},
+			);
+	}
+
+	static async pTestFile ({foundryPath, foundryData, originalDatas, errors}) {
+		await this._pTestFile_pTestMatchingEntitiesExist({foundryPath, foundryData, originalDatas, errors});
+		this._pTestFile_testScaleValueUtilization({foundryPath, foundryData, originalDatas, errors});
 	}
 }
 
@@ -150,14 +268,13 @@ const SPECIAL_PROPS = {
 async function main () {
 	const errors = [];
 
-	TestFoundry.testClasses({errors});
+	await TestFoundry.pTestDir({dir: "class", errors});
 	await TestFoundry.pTestDir({dir: "spells", errors});
 	await TestFoundry.pTestRoot({errors});
 
 	if (!errors.length) console.log("##### Foundry Tests Passed #####");
 	else {
-		console.error("Foundry data errors:");
-		errors.forEach(err => console.error(err));
+		console.error(`Foundry data errors:\n${errors.map(err => err).join("\n")}`);
 	}
 	return !errors.length;
 }

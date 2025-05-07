@@ -95,8 +95,8 @@ export class MiscTagsTagger {
 		tags.add(tag);
 	}
 
-	static _mutTags_SGT ({tags, str, options}) {
-		if (/you can see/ig.test(str)) this._addTag({tags, tag: "SGT", options});
+	static _mutTags_SGT ({tags, str, stripped, options}) {
+		if (/you can see/ig.test(stripped)) this._addTag({tags, tag: "SGT", options});
 	}
 
 	static tryRun (sp, options) {
@@ -109,52 +109,52 @@ export class MiscTagsTagger {
 				string: (str) => {
 					const stripped = Renderer.stripTags(str);
 
-					if (/becomes permanent/ig.test(str)) this._addTag({tags, tag: "PRM", options});
-					if (/when you reach/ig.test(str)) this._addTag({tags, tag: "SCL", options});
-					if ((/regain|restore/ig.test(str) && /hit point/ig.test(str)) || /heal/ig.test(str)) this._addTag({tags, tag: "HL", options});
-					if (/temporary hit points/ig.test(str)) this._addTag({tags, tag: "THP", options});
-					if (/you summon/ig.test(str) || /creature shares your initiative count/ig.test(str)) this._addTag({tags, tag: "SMN", options});
-					this._mutTags_SGT({tags, str, options});
-					if (/you (?:can then )?teleport/i.test(str) || /instantly (?:transports you|teleport)/i.test(str) || /enters(?:[^.]+)portal instantly/i.test(str) || /entering the portal exits from the other portal/i.test(str)) this._addTag({tags, tag: "TP", options});
+					if (/becomes permanent/ig.test(stripped)) this._addTag({tags, tag: "PRM", options});
+					if (/when you reach/ig.test(stripped)) this._addTag({tags, tag: "SCL", options});
+					if ((/regain|restore/ig.test(stripped) && /hit point/ig.test(stripped)) || /heal/ig.test(stripped)) this._addTag({tags, tag: "HL", options});
+					if (/temporary hit points/ig.test(stripped)) this._addTag({tags, tag: "THP", options});
+					if (/you summon/ig.test(stripped) || /creature shares your initiative count/ig.test(stripped)) this._addTag({tags, tag: "SMN", options});
+					this._mutTags_SGT({tags, str, stripped, options});
+					if (/you (?:can then )?teleport/i.test(stripped) || /instantly (?:transports you|teleport)/i.test(stripped) || /enters(?:[^.]+)portal instantly/i.test(stripped) || /entering the portal exits from the other portal/i.test(stripped)) this._addTag({tags, tag: "TP", options});
 
-					if ((str.includes("bonus") || str.includes("penalty")) && str.includes("AC")) this._addTag({tags, tag: "MAC", options});
-					if (/target's (?:base )?AC becomes/.exec(str)) this._addTag({tags, tag: "MAC", options});
-					if (/target's AC can't be less than/.exec(str)) this._addTag({tags, tag: "MAC", options});
+					if ((stripped.includes("bonus") || stripped.includes("penalty")) && stripped.includes("AC")) this._addTag({tags, tag: "MAC", options});
+					if (/target's (?:base )?AC becomes/.exec(stripped)) this._addTag({tags, tag: "MAC", options});
+					if (/target's AC can't be less than/.exec(stripped)) this._addTag({tags, tag: "MAC", options});
 
-					if (/(?:^|\W)(?:pull(?:|ed|s)|push(?:|ed|s)) [^.!?:]*\d+\s+(?:ft|feet|foot|mile|square)/ig.test(str)) this._addTag({tags, tag: "FMV", options});
+					if (/(?:^|\W)(?:pull(?:|ed|s)|push(?:|ed|s)) [^.!?:]*\d+\s+(?:ft|feet|foot|mile|square)/ig.test(stripped)) this._addTag({tags, tag: "FMV", options});
 
 					if (/rolls? (?:a )?{@dice [^}]+} and consults? the table/.test(str)) this._addTag({tags, tag: "RO", options});
 
-					if ((/\bbright light\b/i.test(str) || /\bdim light\b/i.test(str)) && /\b\d+[- ]foot[- ]radius\b/i.test(str)) {
-						if (/\bsunlight\b/.test(str)) this._addTag({tags, tag: "LGTS", options});
+					if ((/\bbright light\b/i.test(stripped) || /\bdim light\b/i.test(stripped)) && /\b\d+[- ]foot[- ]radius\b/i.test(stripped)) {
+						if (/\bsunlight\b/.test(stripped)) this._addTag({tags, tag: "LGTS", options});
 						else this._addTag({tags, tag: "LGT", options});
 					}
 
-					if (/\bbonus action\b/i.test(str)) this._addTag({tags, tag: "UBA", options});
+					if (/\bbonus action\b/i.test(stripped)) this._addTag({tags, tag: "UBA", options});
 
-					if (/\b(?:lightly|heavily) obscured\b/i.test(str)) this._addTag({tags, tag: "OBS", options});
+					if (/\b(?:lightly|heavily) obscured\b/i.test(stripped)) this._addTag({tags, tag: "OBS", options});
 
-					if (/\b(?:is|creates an area of|becomes?) difficult terrain\b/i.test(Renderer.stripTags(str)) || /spends? \d+ (?:feet|foot) of movement for every 1 foot/.test(str)) this._addTag({tags, tag: "DFT", options});
+					if (/\b(?:is|creates an area of|becomes?|into) difficult terrain\b/i.test(Renderer.stripTags(stripped)) || /spends? \d+ (?:feet|foot) of movement for every 1 foot/.test(stripped)) this._addTag({tags, tag: "DFT", options});
 
 					if (
-						/\battacks? deals? an extra\b[^.!?]+\bdamage\b/.test(str)
-						|| /\bdeals? an extra\b[^.!?]+\bdamage\b[^.!?]+\b(?:weapon attack|when it hits)\b/.test(str)
-						|| /weapon attacks?\b[^.!?]+\b(?:takes an extra|deal an extra)\b[^.!?]+\bdamage/.test(str)
+						/\battacks? deals? an extra\b[^.!?]+\bdamage\b/.test(stripped)
+						|| /\bdeals? an extra\b[^.!?]+\bdamage\b[^.!?]+\b(?:weapon attack|when it hits)\b/.test(stripped)
+						|| /weapon attacks?\b[^.!?]+\b(?:takes an extra|deal an extra)\b[^.!?]+\bdamage/.test(stripped)
 					) this._addTag({tags, tag: "AAD", options});
 
 					if (
-						/\b(?:any|one|a) creatures? or objects?\b/i.test(str)
-						|| /\b(?:flammable|nonmagical|metal|unsecured) objects?\b/.test(str)
-						|| /\bobjects?\b[^.!?]+\b(?:created by magic|(?:that )?you touch|that is neither held nor carried)\b/.test(str)
-						|| /\bobject\b[^.!?]+\bthat isn't being worn or carried\b/.test(str)
-						|| /\bobjects? (?:of your choice|that is familiar to you|of (?:Tiny|Small|Medium|Large|Huge|Gargantuan) size)\b/.test(str)
-						|| /\b(?:Tiny|Small|Medium|Large|Huge|Gargantuan) or smaller object\b/.test(str)
-						|| /\baffected by this spell, the object is\b/.test(str)
-						|| /\ball creatures and objects\b/i.test(str)
-						|| /\ba(?:ny|n)? (?:(?:willing|visible|affected) )?(?:creature|place) or an object\b/i.test(str)
-						|| /\bone creature, object, or magical effect\b/i.test(str)
-						|| /\ba person, place, or object\b/i.test(str)
-						|| /\b(choose|touch|manipulate|soil) (an|one) object\b/i.test(str)
+						/\b(?:any|one|a) creatures? or objects?\b/i.test(stripped)
+						|| /\b(?:flammable|nonmagical|metal|unsecured) objects?\b/.test(stripped)
+						|| /\bobjects?\b[^.!?]+\b(?:created by magic|(?:that )?you touch|that is neither held nor carried)\b/.test(stripped)
+						|| /\bobject\b[^.!?]+\bthat isn't being worn or carried\b/.test(stripped)
+						|| /\bobjects? (?:of your choice|that is familiar to you|of (?:Tiny|Small|Medium|Large|Huge|Gargantuan) size)\b/.test(stripped)
+						|| /\b(?:Tiny|Small|Medium|Large|Huge|Gargantuan) or smaller object\b/.test(stripped)
+						|| /\baffected by this spell, the object is\b/.test(stripped)
+						|| /\ball creatures and objects\b/i.test(stripped)
+						|| /\ba(?:ny|n)? (?:(?:willing|visible|affected) )?(?:creature|place) or an object\b/i.test(stripped)
+						|| /\bone creature, object, or magical effect\b/i.test(stripped)
+						|| /\ba person, place, or object\b/i.test(stripped)
+						|| /\b(choose|touch|manipulate|soil) (an|one) object\b/i.test(stripped)
 					) this._addTag({tags, tag: "OBJ", options});
 
 					if (
@@ -183,7 +183,7 @@ export class MiscTagsTagger {
 					const stripped = Renderer.stripTags(str);
 
 					if (
-						new RegExp(`you can target [^.]+ additional (?:creature|${Parser.MON_TYPES.join("|")}) for each spell slot level`, "ig").test(stripped)
+						new RegExp(`you can (?:target|affect) [^.]+ additional (?:creature|${Parser.MON_TYPES.join("|")}) for each spell slot level`, "ig").test(stripped)
 						|| new RegExp(`you can (?:target|affect) [^.]+ additional [^.]*(?:creature|${Parser.MON_TYPES.join("|")}) for each slot level above`, "ig").test(stripped)
 					) this._addTag({tags, tag: "SCT", options});
 				},
@@ -193,7 +193,7 @@ export class MiscTagsTagger {
 		(sp.time || [])
 			.forEach(time => {
 				if (!time.condition) return;
-				this._mutTags_SGT({tags, str: time.condition, options});
+				this._mutTags_SGT({tags, str: time.condition, stripped: Renderer.stripTags(time.condition), options});
 			});
 
 		sp.miscTags = [...tags].sort(SortUtil.ascSortLower);

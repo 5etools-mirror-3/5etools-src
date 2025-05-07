@@ -1598,9 +1598,9 @@ Parser.SP_RANGE_TO_ICON = {
 	[Parser.RNG_CYLINDER]: "fa-database",
 	[Parser.RNG_SELF]: "fa-street-view",
 	[Parser.RNG_SIGHT]: "fa-eye",
-	[Parser.RNG_UNLIMITED_SAME_PLANE]: "fa-globe-americas",
+	[Parser.RNG_UNLIMITED_SAME_PLANE]: "fa-earth-americas",
 	[Parser.RNG_UNLIMITED]: "fa-infinity",
-	[Parser.RNG_TOUCH]: "fa-hand-paper",
+	[Parser.RNG_TOUCH]: "fa-hand",
 };
 
 Parser.spRangeTypeToIcon = function (range) {
@@ -1647,7 +1647,9 @@ Parser.spRangeToShortHtml._getAreaStyleString = function (range) {
 	return `<span class="fas fa-fw ${Parser.spRangeTypeToIcon(range.type)} help-subtle" title="${Parser.spRangeTypeToFull(range.type)}"></span>`;
 };
 
-Parser.spRangeToFull = function (range) {
+Parser.spRangeToFull = function (range, {styleHint, isDisplaySelfArea = false} = {}) {
+	styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
 	switch (range.type) {
 		case Parser.RNG_SPECIAL: return Parser.spRangeTypeToFull(range.type);
 		case Parser.RNG_POINT: return Parser.spRangeToFull._renderPoint(range);
@@ -1659,7 +1661,7 @@ Parser.spRangeToFull = function (range) {
 		case Parser.RNG_SPHERE:
 		case Parser.RNG_HEMISPHERE:
 		case Parser.RNG_CYLINDER:
-			return Parser.spRangeToFull._renderArea(range);
+			return Parser.spRangeToFull._renderArea({range, styleHint, isDisplaySelfArea});
 	}
 };
 Parser.spRangeToFull._renderPoint = function (range) {
@@ -1683,16 +1685,17 @@ Parser.spRangeToFull._renderPoint = function (range) {
 			return `${dist.amount} ${dist.amount === 1 ? Parser.getSingletonUnit(dist.type) : dist.type}`;
 	}
 };
-Parser.spRangeToFull._renderArea = function (range) {
+Parser.spRangeToFull._renderArea = function ({range, styleHint, isDisplaySelfArea = false}) {
+	if (styleHint !== "classic" && !isDisplaySelfArea) return "Self";
+
 	let size = { value: range.distance.amount, unit: range.distance.type };
 	let secondarySize = range.type === Parser.RNG_CYLINDER ? { value: range.distance.amountSecondary, unit: range.distance.typeSecondary } : null;
-	// const size = range.distance;
 	if (VetoolsConfig.get("localization", "isMetric")) {
 		size = Parser.quantity.getMetric(size, true);
 		if (secondarySize) secondarySize = Parser.quantity.getMetric(secondarySize, true);
 	}
 
-	return `Self (${size.value}-${Parser.getSingletonUnit(size.unit)}${Parser.spRangeToFull._getAreaStyleString(range)}${range.type === Parser.RNG_CYLINDER ? `${secondarySize.value != null && secondarySize.unit != null ? `, ${secondarySize.value}-${Parser.getSingletonUnit(secondarySize.unit)}-high` : ""} cylinder` : ""})`;
+	return `Self (${size.amount}-${Parser.getSingletonUnit(size.type)}${Parser.spRangeToFull._getAreaStyleString(range)}${range.type === Parser.RNG_CYLINDER ? `${size.amountSecondary != null && size.typeSecondary != null ? `, ${size.amountSecondary}-${Parser.getSingletonUnit(size.typeSecondary)}-high` : ""} cylinder` : ""})`;
 };
 Parser.spRangeToFull._getAreaStyleString = function (range) {
 	switch (range.type) {
@@ -2915,6 +2918,7 @@ Parser.bookOrdinalToAbv = (ordinal, {isPreNoSuff = false, isPlainText = false} =
 		case "episode": return `${isPreNoSuff ? " " : ""}${Parser._bookOrdinalToAbv_getPt({ordinal, isPlainText})} ${ordinal.identifier}${isPreNoSuff ? "" : ": "}`;
 		case "appendix": return `${isPreNoSuff ? " " : ""}${Parser._bookOrdinalToAbv_getPt({ordinal, isPlainText})}${ordinal.identifier != null ? ` ${ordinal.identifier}` : ""}${isPreNoSuff ? "" : ": "}`;
 		case "level": return `${isPreNoSuff ? " " : ""}${Parser._bookOrdinalToAbv_getPt({ordinal, isPlainText})} ${ordinal.identifier}${isPreNoSuff ? "" : ": "}`;
+		case "section": return `${isPreNoSuff ? " " : ""}${Parser._bookOrdinalToAbv_getPt({ordinal, isPlainText})} ${ordinal.identifier}${isPreNoSuff ? "" : ": "}`;
 		default: throw new Error(`Unhandled ordinal type "${ordinal.type}"`);
 	}
 };
@@ -2925,6 +2929,7 @@ Parser._bookOrdinalToAbv_getPt = ({ordinal, isPlainText = false}) => {
 		case "chapter": return isPlainText ? `Ch.` : `<span title="Chapter">Ch.</span>`;
 		case "episode": return isPlainText ? `Ep.` : `<span title="Episode">Ep.</span>`;
 		case "appendix": return isPlainText ? `App.` : `<span title="Appendix">App.</span>`;
+		case "section": return isPlainText ? `Sec.` : `<span title="Section">Sec.</span>`;
 		case "level": return `Level`;
 		default: throw new Error(`Unhandled ordinal type "${ordinal.type}"`);
 	}
@@ -4356,12 +4361,26 @@ Parser.DMGTYPE_JSON_TO_FULL = {
 Parser.DMG_TYPES = ["acid", "bludgeoning", "cold", "fire", "force", "lightning", "necrotic", "piercing", "poison", "psychic", "radiant", "slashing", "thunder"];
 Parser.CONDITIONS = ["blinded", "charmed", "deafened", "exhaustion", "frightened", "grappled", "incapacitated", "invisible", "paralyzed", "petrified", "poisoned", "prone", "restrained", "stunned", "unconscious"];
 
-Parser.SENSES = [
+Parser._SENSES_LEGACY = [
 	{"name": "blindsight", "source": Parser.SRC_PHB},
 	{"name": "darkvision", "source": Parser.SRC_PHB},
 	{"name": "tremorsense", "source": Parser.SRC_MM},
 	{"name": "truesight", "source": Parser.SRC_PHB},
 ];
+Parser._SENSES_MODERN = [
+	{"name": "blindsight", "source": Parser.SRC_XPHB},
+	{"name": "darkvision", "source": Parser.SRC_XPHB},
+	{"name": "tremorsense", "source": Parser.SRC_XPHB},
+	{"name": "truesight", "source": Parser.SRC_XPHB},
+];
+Parser.getSenses = function ({styleHint = null} = {}) {
+	styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+	return styleHint === "classic" ? Parser._SENSES_LEGACY : Parser._SENSES_MODERN;
+};
+
+Parser.NUMBERS_ONES = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
+Parser.NUMBERS_TENS = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
+Parser.NUMBERS_TEENS = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
 
 // region Metric conversion
 Parser.quantity = {

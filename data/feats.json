@@ -117,7 +117,8 @@
 			"name": "Ability Score Improvement",
 			"source": "XPHB",
 			"page": 202,
-			"freeRules2024": true,
+			"srd52": true,
+			"basicRules2024": true,
 			"category": "G",
 			"prerequisite": [
 				{
@@ -494,7 +495,8 @@
 			"name": "Alert",
 			"source": "XPHB",
 			"page": 200,
-			"freeRules2024": true,
+			"srd52": true,
+			"basicRules2024": true,
 			"category": "O",
 			"entries": [
 				"You gain the following benefits.",
@@ -518,7 +520,8 @@
 			"name": "Archery",
 			"source": "XPHB",
 			"page": 209,
-			"freeRules2024": true,
+			"srd52": true,
+			"basicRules2024": true,
 			"category": "FS",
 			"prerequisite": [
 				{
@@ -762,7 +765,8 @@
 			"name": "Boon of Combat Prowess",
 			"source": "XPHB",
 			"page": 210,
-			"freeRules2024": true,
+			"srd52": true,
+			"basicRules2024": true,
 			"category": "EB",
 			"prerequisite": [
 				{
@@ -799,6 +803,8 @@
 			"name": "Boon of Dimensional Travel",
 			"source": "XPHB",
 			"page": 210,
+			"srd52": true,
+			"basicRules2024": true,
 			"category": "EB",
 			"prerequisite": [
 				{
@@ -896,7 +902,8 @@
 			"name": "Boon of Fate",
 			"source": "XPHB",
 			"page": 210,
-			"freeRules2024": true,
+			"srd52": true,
+			"basicRules2024": true,
 			"category": "EB",
 			"prerequisite": [
 				{
@@ -970,6 +977,8 @@
 			"name": "Boon of Irresistible Offense",
 			"source": "XPHB",
 			"page": 211,
+			"srd52": true,
+			"basicRules2024": true,
 			"category": "EB",
 			"prerequisite": [
 				{
@@ -1166,6 +1175,8 @@
 			"name": "Boon of Spell Recall",
 			"source": "XPHB",
 			"page": 211,
+			"srd52": true,
+			"basicRules2024": true,
 			"category": "EB",
 			"prerequisite": [
 				{
@@ -1200,7 +1211,8 @@
 			"name": "Boon of the Night Spirit",
 			"source": "XPHB",
 			"page": 211,
-			"freeRules2024": true,
+			"srd52": true,
+			"basicRules2024": true,
 			"category": "EB",
 			"prerequisite": [
 				{
@@ -1244,6 +1256,8 @@
 			"name": "Boon of Truesight",
 			"source": "XPHB",
 			"page": 211,
+			"srd52": true,
+			"basicRules2024": true,
 			"category": "EB",
 			"prerequisite": [
 				{
@@ -1834,7 +1848,8 @@
 			"name": "Defense",
 			"source": "XPHB",
 			"page": 209,
-			"freeRules2024": true,
+			"srd52": true,
+			"basicRules2024": true,
 			"category": "FS",
 			"prerequisite": [
 				{
@@ -2247,6 +2262,7 @@
 			"name": "Dueling",
 			"source": "XPHB",
 			"page": 209,
+			"srd52": true,
 			"category": "FS",
 			"prerequisite": [
 				{
@@ -3000,6 +3016,8 @@
 			"name": "Grappler",
 			"source": "XPHB",
 			"page": 204,
+			"srd52": true,
+			"basicRules2024": true,
 			"category": "G",
 			"prerequisite": [
 				{
@@ -3058,7 +3076,8 @@
 			"name": "Great Weapon Fighting",
 			"source": "XPHB",
 			"page": 209,
-			"freeRules2024": true,
+			"srd52": true,
+			"basicRules2024": true,
 			"category": "FS",
 			"prerequisite": [
 				{
@@ -4304,7 +4323,8 @@
 			"name": "Magic Initiate",
 			"source": "XPHB",
 			"page": 201,
-			"freeRules2024": true,
+			"srd52": true,
+			"basicRules2024": true,
 			"category": "O",
 			"repeatable": true,
 			"repeatableHidden": true,
@@ -4872,7 +4892,7 @@
 				"Mounted Combatant|XPHB"
 			],
 			"entries": [
-				"You are a dangerous foe to face while mounted. While you are mounted and aren't {@condition incapacitated}, you gain the following benefits:",
+				"You are a dangerous foe to face while {@book mounted|PHB|9|Mounted Combat}. While you are mounted and aren't {@condition incapacitated}, you gain the following benefits:",
 				{
 					"type": "list",
 					"items": [
@@ -4910,7 +4930,7 @@
 					"type": "entries",
 					"name": "Mounted Strike",
 					"entries": [
-						"While mounted, you have Advantage on attack rolls against any unmounted creature within {@quantity 5|feet} of your mount that is at least one size smaller than the mount."
+						"While {@book mounted|XPHB|1|Mounted Combat}, you have Advantage on attack rolls against any unmounted creature within 5 feet of your mount that is at least one size smaller than the mount."
 					]
 				},
 				{
@@ -4924,7 +4944,7 @@
 					"type": "entries",
 					"name": "Veer",
 					"entries": [
-						"While mounted, you can force an attack that hits your mount to hit you instead if you don't have the {@condition Incapacitated|XPHB} condition."
+						"While {@book mounted|XPHB|1|Mounted Combat}, you can force an attack that hits your mount to hit you instead if you don't have the {@condition Incapacitated|XPHB} condition."
 					]
 				}
 			]
@@ -5331,7 +5351,7 @@
 					"type": "entries",
 					"name": "Brew Poison",
 					"entries": [
-						"You gain proficiency with the Poisoner's Kit. With 1 hour of work using such a kit and expending 50 GP worth of materials, you can create a number of poison doses equal to your Proficiency Bonus. As a Bonus Action, you can apply a poison dose to a weapon or piece of ammunition. Once applied, the poison retains its potency for 1 minute or until you deal damage with the {@condition poisoned|XPHB} item, whichever is shorter. When a creature takes damage from the {@condition poisoned|XPHB} item, that creature must succeed on a Constitution saving throw ({@dc 8} plus the modifier of the ability increased by this feat and your Proficiency Bonus) or take {@damage 2d8} Poison damage and have the {@condition Poisoned|XPHB} condition until the end of your next turn."
+						"You gain proficiency with the Poisoner's Kit. With 1 hour of work using such a kit and expending 50 GP worth of materials, you can create a number of poison doses equal to your Proficiency Bonus. As a Bonus Action, you can apply a poison dose to a weapon or piece of ammunition. Once applied, the poison retains its potency for 1 minute or until you deal damage with the poisoned item, whichever is shorter. When a creature takes damage from the poisoned item, that creature must succeed on a Constitution saving throw ({@dc 8} plus the modifier of the ability increased by this feat and your Proficiency Bonus) or take {@damage 2d8} Poison damage and have the {@condition Poisoned|XPHB} condition until the end of your next turn."
 					]
 				}
 			],
@@ -5394,14 +5414,14 @@
 					"type": "entries",
 					"name": "Pole Strike",
 					"entries": [
-						"Immediately after you take the {@action Attack|XPHB} action and attack with a Quarterstaff , a Spear, or a weapon that has the Heavy and Reach properties, you can use a Bonus Action to make a melee attack with the opposite end of the weapon. The weapon deals Bludgeoning damage, and the weapon's damage die for this attack is a {@dice d4}."
+						"Immediately after you take the {@action Attack|XPHB} action and attack with a {@item Quarterstaff|XPHB}, a {@item Spear|XPHB}, or a {@filter weapon that has the Heavy and Reach properties|items|type=melee weapon;ranged weapon|property=heavy;reach}, you can use a Bonus Action to make a melee attack with the opposite end of the weapon. The weapon deals Bludgeoning damage, and the weapon's damage die for this attack is a {@dice d4}."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Reactive Strike",
 					"entries": [
-						"While you're holding a Quarterstaff, a Spear, or a weapon that has the Heavy and Reach properties, you can take a Reaction to make one melee attack against a creature that enters the reach you have with that weapon."
+						"While you're holding a {@item Quarterstaff|XPHB}, a {@item Spear|XPHB}, or a {@filter weapon that has the Heavy and Reach properties|items|type=melee weapon;ranged weapon|property=heavy;reach}, you can take a Reaction to make one melee attack against a creature that enters the reach you have with that weapon."
 					]
 				}
 			]
@@ -5476,6 +5496,7 @@
 			"name": "Protection",
 			"source": "XPHB",
 			"page": 209,
+			"srd52": true,
 			"category": "FS",
 			"prerequisite": [
 				{
@@ -5992,8 +6013,21 @@
 					"innate": {
 						"_": {
 							"daily": {
-								"1": [
-									"comprehend languages"
+								"1e": [
+									"comprehend languages",
+									"fog cloud",
+									"inflict wounds",
+									"chromatic orb",
+									"disguise self",
+									"burning hands",
+									"speak with animals",
+									"armor of agathys",
+									"goodberry",
+									"longstrider",
+									"command",
+									"entangle",
+									"sanctuary",
+									"thunderwave"
 								]
 							}
 						}
@@ -6106,7 +6140,8 @@
 			"name": "Savage Attacker",
 			"source": "XPHB",
 			"page": 201,
-			"freeRules2024": true,
+			"srd52": true,
+			"basicRules2024": true,
 			"category": "O",
 			"entries": [
 				"You've trained to deal particularly damaging strikes. Once per turn when you hit a target with a weapon, you can roll the weapon's damage dice twice and use either roll against the target."
@@ -6753,7 +6788,8 @@
 			"name": "Skilled",
 			"source": "XPHB",
 			"page": 201,
-			"freeRules2024": true,
+			"srd52": true,
+			"basicRules2024": true,
 			"category": "O",
 			"repeatable": true,
 			"repeatableHidden": true,
@@ -8252,7 +8288,8 @@
 			"name": "Two-Weapon Fighting",
 			"source": "XPHB",
 			"page": 210,
-			"freeRules2024": true,
+			"srd52": true,
+			"basicRules2024": true,
 			"category": "FS",
 			"prerequisite": [
 				{
