@@ -13909,7 +13909,7 @@ Renderer.recipe = class {
 									obj[k] = Math.round(base * scaleFactor * Renderer.recipe._SCALED_PRECISION_LIMIT) / Renderer.recipe._SCALED_PRECISION_LIMIT;
 								});
 
-							// region Attempt to singleize/pluralize units
+							// region Attempt to singularise/pluralize units
 							const amountsOriginal = Object.keys(objOriginal).filter(k => /^amount\d+$/.test(k)).map(k => objOriginal[k]);
 							const amountsScaled = Object.keys(obj).filter(k => /^amount\d+$/.test(k)).map(k => obj[k]);
 
@@ -13939,7 +13939,7 @@ Renderer.recipe = class {
 								}
 
 								if (isSingleToPlural) pt = Renderer.recipe._getPluralizedUnits(pt);
-								else if (isPluralToSingle) pt = Renderer.recipe._getSingleizedUnits(pt);
+								else if (isPluralToSingle) pt = Renderer.recipe._getSingularizedUnits(pt);
 								entryPartsOut.push(pt);
 							}
 
@@ -13999,7 +13999,7 @@ Renderer.recipe = class {
 	static _FNS_SINGLE_TO_PLURAL = [];
 	static _FNS_PLURAL_TO_SINGLE = [];
 
-	static _getSingleizedUnits (str) {
+	static _getSingularizedUnits (str) {
 		if (!Renderer.recipe._FNS_PLURAL_TO_SINGLE.length) {
 			Renderer.recipe._FNS_PLURAL_TO_SINGLE = [
 				...Renderer.recipe._UNITS_SINGLE_TO_PLURAL_S.map(word => str => str.replace(new RegExp(`\\b${word.escapeRegexp()}s\\b`, "gi"), (...m) => m[0].slice(0, -1))),
