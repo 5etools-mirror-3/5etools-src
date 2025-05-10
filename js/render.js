@@ -10147,9 +10147,9 @@ Renderer.monster = class {
 		}
 
 		static getHtml (dragon, {renderer = null} = {}) {
-			const variantEntrues = Renderer.monster.dragonCasterVariant.getVariantEntries(dragon);
-			if (!variantEntrues.length) return null;
-			return variantEntrues.map(it => renderer.render(it)).join("");
+			const variantEntries = Renderer.monster.dragonCasterVariant.getVariantEntries(dragon);
+			if (!variantEntries.length) return null;
+			return variantEntries.map(it => renderer.render(it)).join("");
 		}
 	};
 
