@@ -104,7 +104,7 @@ export class CrScalerDpr extends CrScalerBase {
 				return `${prefix}${adjDpr}${suffix}`;
 			});
 
-			// track attribute adjustment requirements (unused except for debugging)
+			// track attribute adjustment requirements (unused except for dbgging)
 			const reqAbilAdjust = [];
 
 			// pre-calculate enchanted weapon offsets

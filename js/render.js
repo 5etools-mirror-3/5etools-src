@@ -13909,7 +13909,7 @@ Renderer.recipe = class {
 									obj[k] = Math.round(base * scaleFactor * Renderer.recipe._SCALED_PRECISION_LIMIT) / Renderer.recipe._SCALED_PRECISION_LIMIT;
 								});
 
-							// region Attempt to singularise/pluralize units
+							// region Attempt to singularize/pluralize units
 							const amountsOriginal = Object.keys(objOriginal).filter(k => /^amount\d+$/.test(k)).map(k => objOriginal[k]);
 							const amountsScaled = Object.keys(obj).filter(k => /^amount\d+$/.test(k)).map(k => obj[k]);
 
