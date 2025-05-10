@@ -195,7 +195,7 @@ globalThis.Renderer = function () {
 
 	this.setPartPageExpandCollapseDisabled = function (val) { this._isPartPageExpandCollapseDisabled = !!val; return this; };
 
-	/** Bind function which apply exta CSS classes to entry/list renders.  */
+	/** Bind function which apply extra CSS classes to entry/list renders.  */
 	this.setFnGetStyleClasses = function (identifier, fn) {
 		if (fn == null) {
 			delete this._fnsGetStyleClasses[identifier];
@@ -4019,7 +4019,7 @@ Renderer.utils = class {
 		}
 
 		static _getHtml_ability ({v, isListMode, isTextOnly, styleHint}) {
-			// `v` is an array or objects with str/dex/... properties; array is "OR"'d togther, object is "AND"'d together
+			// `v` is an array or objects with str/dex/... properties; array is "OR"'d together, object is "AND"'d together
 
 			let hadMultipleInner = false;
 			let hadMultiMultipleInner = false;
@@ -15834,7 +15834,7 @@ Renderer.hover = class {
 
 				break;
 			}
-			default: throw new Error(`Positiong mode unimplemented: "${positionNxt.mode}"`);
+			default: throw new Error(`Positioning mode unimplemented: "${positionNxt.mode}"`);
 		}
 
 		Renderer.hover._getShowWindow_adjustPosition({$hov, $wrpContent, position});
@@ -16388,7 +16388,7 @@ Renderer.getRollableRow = function (row, opts) {
 		// format: "20 or lower"; "99 or higher"
 		const mLowHigh = /^(\d+) or (lower|higher)$/i.exec(cleanRow);
 		if (mLowHigh) {
-			row[0] = {type: "cell", entry: cleanRow}; // Preseve the original text
+			row[0] = {type: "cell", entry: cleanRow}; // Preserve the original text
 
 			if (mLowHigh[2].toLowerCase() === "lower") {
 				row[0].roll = {
