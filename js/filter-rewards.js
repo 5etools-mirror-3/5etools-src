@@ -36,7 +36,7 @@ class PageFilterRewards extends PageFilterBase {
 		this._mutateForFilters_commonSources(it);
 
 		it._fRarity = it.rarity || "unknown";
-		it._fBenifits = [
+		it._fBenefits = [
 			it.additionalSpells ? "Spellcasting" : null,
 		].filter(Boolean);
 
@@ -49,7 +49,7 @@ class PageFilterRewards extends PageFilterBase {
 		this._sourceFilter.addItem(ent._fSources);
 		this._typeFilter.addItem(ent.type);
 		this._rarityFilter.addItem(ent._fRarity);
-		this._benefitsFilter.addItem(ent._fBenifits);
+		this._benefitsFilter.addItem(ent._fBenefits);
 		this._miscFilter.addItem(ent._fMisc);
 	}
 
@@ -69,7 +69,7 @@ class PageFilterRewards extends PageFilterBase {
 			r.source,
 			r.type,
 			r._fRarity,
-			r._fBenifits,
+			r._fBenefits,
 			r._fMisc,
 		);
 	}

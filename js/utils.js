@@ -1953,7 +1953,7 @@ globalThis.MiscUtil = class {
 	/**
 	 * @param hex Original hex color.
 	 * @param [opts] Options object.
-	 * @param [opts.bw] True if the color should be returnes as black/white depending on contrast ratio.
+	 * @param [opts.bw] True if the color should be returned as black/white depending on contrast ratio.
 	 * @param [opts.dark] Color to return if a "dark" color would contrast best.
 	 * @param [opts.light] Color to return if a "light" color would contrast best.
 	 */
@@ -7121,7 +7121,7 @@ globalThis.RollerUtil = {
 	 * Result in range: 0 to (max-1); inclusive
 	 * e.g. roll(20) gives results ranging from 0 to 19
 	 * @param max range max (exclusive)
-	 * @param fn funciton to call to generate random numbers
+	 * @param fn function to call to generate random numbers
 	 * @returns {number} rolled
 	 */
 	roll (max, fn = Math.random) {

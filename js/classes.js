@@ -38,7 +38,7 @@ class UtilClassesPage {
 	/* -------------------------------------------- */
 
 	static setRenderFnGetStyleClasses (cls) {
-		// Add extra classses to our features as we render them
+		// Add extra classes to our features as we render them
 		Renderer.get()
 			.setFnGetStyleClasses(UrlUtil.PG_CLASSES, (entry) => {
 				if (typeof entry === "string") return null;
@@ -930,7 +930,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		//   re-render.
 		if (isFilterValueChange) {
 			this._doGenerateFilteredActiveClassData();
-			this._pDoSyncrinizedRender();
+			this._pDoSynchronisedRender();
 			return;
 		}
 
@@ -959,14 +959,14 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		// Use hookAll to allow us to reset temp hooks on the property itself
 		this._addHookAll("classId", async () => {
 			this._doGenerateFilteredActiveClassData();
-			await this._pDoSyncrinizedRender();
+			await this._pDoSynchronisedRender();
 		});
 
 		this._doGenerateFilteredActiveClassData();
 		await this._pDoRender();
 	}
 
-	async _pDoSyncrinizedRender () {
+	async _pDoSynchronisedRender () {
 		await this._pLock("render");
 		try {
 			await this._pDoRender();
@@ -1846,7 +1846,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 					});
 				});
 
-				// If there are out-of-sync subclass features (e.g. Stryxhaven subclasses), add a "fake" feature to compensate
+				// If there are out-of-sync subclass features (e.g. Strixhaven subclasses), add a "fake" feature to compensate
 				if (!ptrHasHandledSubclassFeatures._ && this.constructor._hasSubclassFeaturesAtLevel(this.activeClassRaw, ixLvl + 1)) {
 					this._render_renderOutline_renderFeature({
 						ixLvl,
@@ -2148,7 +2148,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				});
 			});
 
-			// If there are out-of-sync subclass features (e.g. Stryxhaven subclasses), add a "fake" feature to compensate
+			// If there are out-of-sync subclass features (e.g. Strixhaven subclasses), add a "fake" feature to compensate
 			if (!ptrHasHandledSubclassFeatures._ && this.constructor._hasSubclassFeaturesAtLevel(cls, ixLvl + 1)) {
 				this.constructor._hasSubclassFeaturesAtLevel(cls, ixLvl + 1);
 				await this._render_renderClassContent_pRenderFeature({
