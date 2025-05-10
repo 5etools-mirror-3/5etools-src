@@ -930,7 +930,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		//   re-render.
 		if (isFilterValueChange) {
 			this._doGenerateFilteredActiveClassData();
-			this._pDoSyncrinizedRender();
+			this._pDoSynchronisedRender();
 			return;
 		}
 
@@ -959,14 +959,14 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		// Use hookAll to allow us to reset temp hooks on the property itself
 		this._addHookAll("classId", async () => {
 			this._doGenerateFilteredActiveClassData();
-			await this._pDoSyncrinizedRender();
+			await this._pDoSynchronisedRender();
 		});
 
 		this._doGenerateFilteredActiveClassData();
 		await this._pDoRender();
 	}
 
-	async _pDoSyncrinizedRender () {
+	async _pDoSynchronisedRender () {
 		await this._pLock("render");
 		try {
 			await this._pDoRender();
