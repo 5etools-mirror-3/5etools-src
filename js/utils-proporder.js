@@ -54,8 +54,23 @@ export class PropOrder {
 
 	static _getOrdered (obj, order, opts, logPath) {
 		const out = {};
-		const keySet = new Set(Object.keys(obj));
+
+		const [keysComposite, keysStandard] = Object.keys(obj)
+			.segregate(k => k.includes("."));
+		const keySetStandard = new Set(keysStandard);
+		// Simplified sorting for composite keys, as composition breakpoints are unknown
+		// TODO(Future) consider recursive order?
+		//   - move composite keys to temp object; `expand` temp object; order temp object; ?reconstruct original keys?
+		const keyLookupComposite = keysComposite.sort(SortUtil.ascSortLower);
 		const seenKeys = new Set();
+
+		const handleCompositeKeys = () => {
+			keyLookupComposite
+				.forEach(keyComposite => {
+					out[keyComposite] = obj[keyComposite];
+					seenKeys.add(keyComposite);
+				});
+		};
 
 		order
 			.forEach(keyInfo => {
@@ -64,15 +79,23 @@ export class PropOrder {
 
 				if (opts.isFoundryPrefixProps && !prop.startsWith("_") && !prop.startsWith("foundry")) return;
 
-				if (!keySet.has(propMod)) return;
+				if (!keySetStandard.has(propMod)) {
+					handleCompositeKeys();
+					return;
+				}
 				seenKeys.add(propMod);
 
 				if (typeof keyInfo === "string") {
 					out[propMod] = obj[propMod];
+					handleCompositeKeys();
 					return;
 				}
 
-				if (!obj[propMod]) return out[propMod] = obj[propMod]; // Handle nulls
+				if (!obj[propMod]) { // Handle nulls
+					out[propMod] = obj[propMod];
+					handleCompositeKeys();
+					return;
+				}
 
 				const optsNxt = {
 					...opts,
@@ -87,9 +110,13 @@ export class PropOrder {
 
 				if (keyInfoObj) {
 					const logPathNxt = `${logPath}.${prop}${propMod !== prop ? ` (${propMod})` : ""}`;
+
 					if (keyInfoObj.fnGetOrder) out[propMod] = this._getOrdered(obj[propMod], keyInfoObj.fnGetOrder(obj[propMod]), optsNxt, logPathNxt);
 					else if (keyInfoObj.order) out[propMod] = this._getOrdered(obj[propMod], keyInfoObj.order, optsNxt, logPathNxt);
 					else out[propMod] = obj[propMod];
+
+					handleCompositeKeys();
+
 					return;
 				}
 
@@ -105,12 +132,14 @@ export class PropOrder {
 
 					if (!opts.isNoSortRootArrays && keyInfoArray.fnSort && out[propMod] instanceof Array) out[propMod].sort(keyInfoArray.fnSort);
 
+					handleCompositeKeys();
+
 					return;
 				}
 
 				if (keyInfo instanceof IgnoredKey) {
 					out[propMod] = obj[propMod];
-
+					handleCompositeKeys();
 					return;
 				}
 
@@ -118,7 +147,7 @@ export class PropOrder {
 			});
 
 		// ensure any non-orderable keys are maintained
-		const otherKeys = keySet.difference(seenKeys);
+		const otherKeys = new Set([...keySetStandard, ...keyLookupComposite]).difference(seenKeys);
 		[...otherKeys].forEach(prop => {
 			out[prop] = obj[prop];
 			if (!opts.fnUnhandledKey) return;

@@ -2155,7 +2155,9 @@ class ListPage {
 	static _OFFSET_WINDOW_EXPORT_AS_IMAGE = 17;
 
 	_pHandleClick_exportAsImage_mutOptions ({$ele, optsDomToImage}) {
-		// See: https://github.com/1904labs/dom-to-image-more/issues/146
+		// See:
+		//  - https://github.com/1904labs/dom-to-image-more/issues/146
+		//  - https://github.com/1904labs/dom-to-image-more/issues/160
 		if (BrowserUtil.isFirefox()) {
 			const bcr = $ele[0].getBoundingClientRect();
 			optsDomToImage.width = bcr.width;

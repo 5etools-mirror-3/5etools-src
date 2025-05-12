@@ -1,30 +1,11 @@
 import {ESLint} from "eslint";
-import simpleGit from "simple-git";
-import fs from "fs";
+import {pGetModifiedFiles} from "./util-git.js";
 
 /**
  * @see https://eslint.org/docs/latest/integrate/nodejs-api
  */
 const pDoLint = async () => {
-	const fileList = [
-		...(await simpleGit().diffSummary()).files
-			.map(file => file.file),
-
-		...(
-			await Promise.all(
-				[
-					"node_",
-				]
-					.map(async altDir => {
-						return fs.existsSync(altDir)
-							? (await simpleGit(altDir).diffSummary()).files
-								.map(file => `${altDir}/${file.file}`)
-							: [];
-					}),
-			)
-		)
-			.flat(),
-	]
+	const fileList = (await pGetModifiedFiles({additionalRoots: ["node_"]}))
 		.filter(file => /\.(js|cjs|mjs)$/.test(file));
 
 	if (!fileList.length) return console.warn(`Nothing to lint!`);

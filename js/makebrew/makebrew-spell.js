@@ -220,7 +220,17 @@ export class SpellBuilder extends BuilderBase {
 		this.__$getMetaInput(cb).appendTo(detailsTab.$wrpTab);
 		this.__$getDurationInput(cb).appendTo(detailsTab.$wrpTab);
 		BuilderUi.$getStateIptEntries("Text", cb, this._state, {fnPostProcess: BuilderUi.fnPostProcessDice}, "entries").appendTo(detailsTab.$wrpTab);
-		BuilderUi.$getStateIptEntries("&quot;At Higher Levels&quot; Text", cb, this._state, {nullable: true, withHeader: "At Higher Levels", fnPostProcess: BuilderUi.fnPostProcessDice}, "entriesHigherLevel").appendTo(detailsTab.$wrpTab);
+		BuilderUi.$getStateIptEntries(
+			"&quot;Higher-Level Spell Slot&quot; Text",
+			cb,
+			this._state,
+			{
+				nullable: true,
+				withHeader: this._meta.styleHint === "classic" ? "At Higher Levels" : "Using a Higher-Level Spell Slot",
+				fnPostProcess: BuilderUi.fnPostProcessDice,
+			},
+			"entriesHigherLevel",
+		).appendTo(detailsTab.$wrpTab);
 
 		// SOURCES
 		const [

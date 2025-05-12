@@ -83,6 +83,8 @@ export const PROPORDER_FOUNDRY_EFFECTS = new ArrayKey("effects", {
 
 		"changes",
 
+		"flags",
+
 		"description",
 		"descriptionEntries",
 		"img",

@@ -627,6 +627,8 @@ const PROPORDER_CLASS = [
 	"isSidekick",
 	"classGroup",
 
+	ObjectKey.getCopyKey({fnGetModOrder: () => PROPORDER_CLASS__COPY_MOD}),
+
 	"requirements",
 	"primaryAbility",
 	"hd",
@@ -675,6 +677,11 @@ const PROPORDER_CLASS = [
 	"fluff",
 
 	...PROPS_FOUNDRY_DATA_INLINE,
+];
+const PROPORDER_CLASS__COPY_MOD = [
+	"*",
+	"_",
+	...PROPORDER_CLASS,
 ];
 const PROPORDER_FOUNDRY_CLASS = [
 	"name",
@@ -1044,6 +1051,8 @@ const PROPORDER_CONDITION = [
 	"hasFluffImages",
 
 	"fluff",
+
+	...PROPS_FOUNDRY_DATA_INLINE,
 ];
 const PROPORDER_DISEASE = [
 	"name",
@@ -2071,6 +2080,8 @@ const PROPORDER_TABLE = [
 
 	"isNameGenerator",
 	"isStriped",
+
+	"parentEntity",
 ];
 const PROPORDER_TRAP = [
 	"name",
