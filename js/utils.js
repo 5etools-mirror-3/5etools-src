@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.8.3"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.8.4"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -1102,6 +1102,7 @@ globalThis.JqueryUtil = {
 						e_({
 							tag: "button",
 							clazz: "ve-btn toast__btn-close",
+							title: "Close (CTRL to Close All)",
 							children: [
 								e_({
 									tag: "span",
@@ -1119,8 +1120,8 @@ globalThis.JqueryUtil = {
 				evt.preventDefault();
 				JqueryUtil._doToastCleanup(toastMeta);
 
-				// Close all on SHIFT-click
-				if (!evt.shiftKey) return;
+				// Close all on CTRL-click
+				if (!EventUtil.isCtrlMetaKey(evt)) return;
 				[...JqueryUtil._ACTIVE_TOAST].forEach(toastMeta => JqueryUtil._doToastCleanup(toastMeta));
 			},
 		});
@@ -1906,6 +1907,42 @@ globalThis.MiscUtil = class {
 		return obj1;
 	}
 
+	static expand (obj) {
+		if (!obj) return obj;
+		if (Array.isArray(obj)) return obj.map(it => MiscUtil.expand(it));
+		if (typeof obj !== "object") return obj;
+		const out = {};
+		Object.entries(obj)
+			.forEach(([k, v]) => MiscUtil.setComposite(out, k, MiscUtil.expand(v)));
+		return out;
+	}
+
+	static flatten (obj) {
+		if (!obj) return obj;
+		if (Array.isArray(obj)) return obj.map(it => MiscUtil.flatten(it));
+		if (typeof obj !== "object") return obj;
+		if (!Object.keys(obj).length) return obj;
+
+		const out = {};
+		Object.entries(obj)
+			.forEach(([k, v]) => {
+				if (v == null || typeof v !== "object" || !Object.keys(v).length) return out[k] = v;
+				if (Array.isArray(v)) return out[k] = v.map(it => MiscUtil.flatten(it));
+
+				Object.entries(MiscUtil.flatten(v))
+					.forEach(([k2, v2]) => {
+						out[`${k}.${k2}`] = v2;
+					});
+			});
+		return out;
+	}
+
+	static setComposite (obj, path, val) {
+		if (!path) return val;
+		const parts = path.split(".");
+		return MiscUtil.set(obj, ...parts, val);
+	}
+
 	/**
 	 * @deprecated
 	 */
@@ -1954,7 +1991,7 @@ globalThis.MiscUtil = class {
 	/**
 	 * @param hex Original hex color.
 	 * @param [opts] Options object.
-	 * @param [opts.bw] True if the color should be returnes as black/white depending on contrast ratio.
+	 * @param [opts.bw] True if the color should be returned as black/white depending on contrast ratio.
 	 * @param [opts.dark] Color to return if a "dark" color would contrast best.
 	 * @param [opts.light] Color to return if a "light" color would contrast best.
 	 */
@@ -7122,7 +7159,7 @@ globalThis.RollerUtil = {
 	 * Result in range: 0 to (max-1); inclusive
 	 * e.g. roll(20) gives results ranging from 0 to 19
 	 * @param max range max (exclusive)
-	 * @param fn funciton to call to generate random numbers
+	 * @param fn function to call to generate random numbers
 	 * @returns {number} rolled
 	 */
 	roll (max, fn = Math.random) {

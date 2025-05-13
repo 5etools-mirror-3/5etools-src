@@ -81,11 +81,11 @@ class PageFilterBackgrounds extends PageFilterBase {
 		bg._fLangs = languages;
 
 		this._mutateForFilters_commonMisc(bg);
-		bg._fOtherBenifits = [];
-		if (bg.feats) bg._fOtherBenifits.push("Feat");
-		if (bg.additionalSpells) bg._fOtherBenifits.push("Additional Spells");
-		if (bg.armorProficiencies) bg._fOtherBenifits.push("Armor Proficiencies");
-		if (bg.weaponProficiencies) bg._fOtherBenifits.push("Weapon Proficiencies");
+		bg._fOtherBenefits = [];
+		if (bg.feats) bg._fOtherBenefits.push("Feat");
+		if (bg.additionalSpells) bg._fOtherBenefits.push("Additional Spells");
+		if (bg.armorProficiencies) bg._fOtherBenefits.push("Armor Proficiencies");
+		if (bg.weaponProficiencies) bg._fOtherBenefits.push("Weapon Proficiencies");
 		bg._skillDisplay = skillDisplay;
 
 		bg._slAbility = bg.ability
@@ -104,7 +104,7 @@ class PageFilterBackgrounds extends PageFilterBase {
 		this._skillFilter.addItem(bg._fSkills);
 		this._toolFilter.addItem(bg._fTools);
 		this._languageFilter.addItem(bg._fLangs);
-		this._otherBenefitsFilter.addItem(bg._fOtherBenifits);
+		this._otherBenefitsFilter.addItem(bg._fOtherBenefits);
 		this._miscFilter.addItem(bg._fMisc);
 		this._featsFilter.addItem(bg._fFeats);
 	}
@@ -132,7 +132,7 @@ class PageFilterBackgrounds extends PageFilterBase {
 			bg._fSkills,
 			bg._fTools,
 			bg._fLangs,
-			bg._fOtherBenifits,
+			bg._fOtherBenefits,
 			bg._fMisc,
 			bg._fFeats,
 		);

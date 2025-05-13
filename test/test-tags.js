@@ -717,6 +717,38 @@ class StripTagTest extends DataTesterBase {
 	}
 }
 
+class StandaloneTagTest extends DataTesterBase {
+	static registerParsedPrimitiveHandlers (parsedJsonChecker) {
+		parsedJsonChecker.addPrimitiveHandler("string", this._checkString.bind(this));
+	}
+
+	static _checkString (str, {filePath}) {
+		const tagSplit = Renderer.splitByTags(str);
+		const len = tagSplit.length;
+		for (let i = 0; i < len; ++i) {
+			const s = tagSplit[i];
+			if (!s) continue;
+
+			if (!s.startsWith("{@")) {
+				continue;
+			}
+
+			const [tag, text] = Renderer.splitFirstSpace(s.slice(1, -1));
+
+			const tagInfo = Renderer.tag.TAG_LOOKUP[tag];
+			if (!tagInfo) continue;
+
+			if (!tagInfo.isStandalone && !text) {
+				this._addMessage(`Empty non-standalone tag "${tag}" in "${str}" (${filePath})\n`);
+			}
+
+			const stripped = tagInfo.getStripped(tag, text);
+
+			this._checkString(stripped, {filePath});
+		}
+	}
+}
+
 class TableDiceTest extends DataTesterBase {
 	static registerParsedPrimitiveHandlers (parsedJsonChecker) {
 		parsedJsonChecker.addPrimitiveHandler("object", this._checkTable.bind(this));
@@ -1734,6 +1766,7 @@ async function main () {
 		FilterCheck,
 		ScaleDiceCheck,
 		StripTagTest,
+		StandaloneTagTest,
 		TableDiceTest,
 		AdventureBookTagCheck,
 		AreaCheck,

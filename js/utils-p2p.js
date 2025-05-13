@@ -273,7 +273,7 @@ class PeerUtilV0 {
 	 * Convenience wrapper to initialise multiple servers ad produce a textified version of their SDPs, suitable for
 	 *   text transmission.
 	 *
-	 * @param names An array of unique-when-sluggified names to give to each server.
+	 * @param names An array of unique-when-slugified names to give to each server.
 	 * @param msgHandler One copy used per server.
 	 * @param errHandler One copy used per server.
 	 * @return {Promise<Array<Object>>} An array of objects of the form `{name<String>, textifiedSdp<String>, server<PeerServerV0>}`.

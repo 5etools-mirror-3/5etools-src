@@ -481,7 +481,7 @@ class ModalFilterClasses extends ModalFilterBase {
 				.map(it => it.choose ? (it.choose.count || 1) : 0)
 				.reduce((a, b) => a + b, 0);
 
-			cls._cntStartingSkillChoicesMutliclass = (MiscUtil.get(cls, "multiclassing", "proficienciesGained", "skills") || [])
+			cls._cntStartingSkillChoicesMulticlass = (MiscUtil.get(cls, "multiclassing", "proficienciesGained", "skills") || [])
 				.map(it => it.choose ? (it.choose.count || 1) : 0)
 				.reduce((a, b) => a + b, 0);
 		});
