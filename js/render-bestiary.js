@@ -392,6 +392,7 @@ class _RenderBestiaryImplClassic extends _RenderBestiaryImplBase {
 		return {
 			htmlPtArmorClass: this._getHtmlParts_armorClass({mon, renderer, isInlinedToken}),
 
+			htmlPtInitiative: this._getHtmlParts_initiative({mon}),
 			htmlPtSavingThrows: this._getHtmlParts_savingThrows({mon}),
 			htmlPtDamageImmunities: this._getHtmlParts_damageImmunities({mon}),
 			htmlPtConditionImmunities: this._getHtmlParts_conditionImmunities({mon}),
@@ -409,6 +410,10 @@ class _RenderBestiaryImplClassic extends _RenderBestiaryImplBase {
 	}
 
 	/* ----- */
+
+	_getHtmlParts_initiative ({mon}) {
+		return mon.initiative ? `<tr><td colspan="6"><strong>Initiative</strong> ${Renderer.monster.getInitiativePart(mon)}</td></tr>` : "";
+	}
 
 	_getHtmlParts_savingThrows ({mon}) {
 		return mon.save ? `<tr><td colspan="6"><strong>Saving Throws</strong> ${Renderer.monster.getSavesPart(mon)}</td></tr>` : "";
@@ -499,6 +504,7 @@ class _RenderBestiaryImplClassic extends _RenderBestiaryImplBase {
 		const {
 			htmlPtArmorClass,
 
+			htmlPtInitiative,
 			htmlPtSavingThrows,
 			htmlPtDamageImmunities,
 			htmlPtConditionImmunities,
@@ -537,6 +543,7 @@ class _RenderBestiaryImplClassic extends _RenderBestiaryImplBase {
 
 		${htmlPtSavingThrows}
 		${htmlPtSkills}
+		${htmlPtInitiative}
 		${htmlPtTools}
 		${htmlPtVulnerabilities}
 		${htmlPtResistances}

@@ -1007,7 +1007,11 @@ Use <span class="out-roll-item-code">/macro list</span> to list saved macros.<br
 
 Renderer.dice.util = {
 	getReducedMeta (meta) {
-		return {pb: meta.pb};
+		return {
+			pb: meta.pb,
+			summonSpellLevel: meta.summonSpellLevel,
+			summonClassLevel: meta.summonClassLevel,
+		};
 	},
 };
 
@@ -2061,7 +2065,9 @@ Renderer.dice.parsed = {
 		}
 
 		_invoke_handlePart (fnName, meta, view, num, faces, isLast) {
-			const rolls = [...new Array(num)].map(() => ({val: Renderer.dice.parsed.Dice._facesToValue(faces, fnName)}));
+			const rolls = Array.from({length: num}, () => ({val: Renderer.dice.parsed.Dice._facesToValue(faces, fnName)}));
+			if (!rolls.length) rolls.push({val: 0});
+
 			let displayRolls;
 			let isSuccessMode = false;
 
