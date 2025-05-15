@@ -2458,7 +2458,7 @@ Parser.CAT_ID_CULT = 19;
 Parser.CAT_ID_BOON = 20;
 Parser.CAT_ID_DISEASE = 21;
 Parser.CAT_ID_METAMAGIC = 22;
-Parser.CAT_ID_MANEUVER_BATTLEMASTER = 23;
+Parser.CAT_ID_MANEUVER_BATTLE_MASTER = 23;
 Parser.CAT_ID_TABLE = 24;
 Parser.CAT_ID_TABLE_GROUP = 25;
 Parser.CAT_ID_MANEUVER_CAVALIER = 26;
@@ -2497,7 +2497,7 @@ Parser.CAT_ID_GROUPS = {
 	"optionalfeature": [
 		Parser.CAT_ID_ELDRITCH_INVOCATION,
 		Parser.CAT_ID_METAMAGIC,
-		Parser.CAT_ID_MANEUVER_BATTLEMASTER,
+		Parser.CAT_ID_MANEUVER_BATTLE_MASTER,
 		Parser.CAT_ID_MANEUVER_CAVALIER,
 		Parser.CAT_ID_ARCANE_SHOT,
 		Parser.CAT_ID_OPTIONAL_FEATURE_OTHER,
@@ -2539,7 +2539,7 @@ Parser.CAT_ID_TO_FULL[Parser.CAT_ID_CULT] = "Cult";
 Parser.CAT_ID_TO_FULL[Parser.CAT_ID_BOON] = "Boon";
 Parser.CAT_ID_TO_FULL[Parser.CAT_ID_DISEASE] = "Disease";
 Parser.CAT_ID_TO_FULL[Parser.CAT_ID_METAMAGIC] = "Metamagic";
-Parser.CAT_ID_TO_FULL[Parser.CAT_ID_MANEUVER_BATTLEMASTER] = "Maneuver; Battlemaster";
+Parser.CAT_ID_TO_FULL[Parser.CAT_ID_MANEUVER_BATTLE_MASTER] = "Maneuver; Battle Master";
 Parser.CAT_ID_TO_FULL[Parser.CAT_ID_TABLE] = "Table";
 Parser.CAT_ID_TO_FULL[Parser.CAT_ID_TABLE_GROUP] = "Table";
 Parser.CAT_ID_TO_FULL[Parser.CAT_ID_MANEUVER_CAVALIER] = "Maneuver; Cavalier";
@@ -2607,7 +2607,7 @@ Parser.CAT_ID_TO_PROP[Parser.CAT_ID_ARCANE_SHOT] = "optionalfeature";
 Parser.CAT_ID_TO_PROP[Parser.CAT_ID_OPTIONAL_FEATURE_OTHER] = "optionalfeature";
 Parser.CAT_ID_TO_PROP[Parser.CAT_ID_FIGHTING_STYLE] = "optionalfeature";
 Parser.CAT_ID_TO_PROP[Parser.CAT_ID_METAMAGIC] = "optionalfeature";
-Parser.CAT_ID_TO_PROP[Parser.CAT_ID_MANEUVER_BATTLEMASTER] = "optionalfeature";
+Parser.CAT_ID_TO_PROP[Parser.CAT_ID_MANEUVER_BATTLE_MASTER] = "optionalfeature";
 Parser.CAT_ID_TO_PROP[Parser.CAT_ID_PACT_BOON] = "optionalfeature";
 Parser.CAT_ID_TO_PROP[Parser.CAT_ID_ELEMENTAL_DISCIPLINE] = "optionalfeature";
 Parser.CAT_ID_TO_PROP[Parser.CAT_ID_ARTIFICER_INFUSION] = "optionalfeature";

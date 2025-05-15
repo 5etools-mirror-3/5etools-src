@@ -458,8 +458,6 @@ class ModalFilterClasses extends ModalFilterBase {
 
 				(cls.subclasses = cls.subclasses || []).push(sc);
 			}
-
-			delete data.subclass;
 		}
 
 		// Clean and initialise fields; sort arrays

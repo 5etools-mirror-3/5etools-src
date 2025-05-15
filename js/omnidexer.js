@@ -702,10 +702,10 @@ class IndexableFileOptFeatures_Metamagic extends IndexableFile {
 	}
 }
 
-class IndexableFileOptFeatures_ManeuverBattlemaster extends IndexableFile {
+class IndexableFileOptFeatures_ManeuverBattleMaster extends IndexableFile {
 	constructor () {
 		super({
-			category: Parser.CAT_ID_MANEUVER_BATTLEMASTER,
+			category: Parser.CAT_ID_MANEUVER_BATTLE_MASTER,
 			file: "optionalfeatures.json",
 			listProp: "optionalfeature",
 			baseUrl: "optionalfeatures.html",
@@ -1335,7 +1335,7 @@ Omnidexer.TO_INDEX = [
 
 	new IndexableFileOptFeatures_EldritchInvocations(),
 	new IndexableFileOptFeatures_Metamagic(),
-	new IndexableFileOptFeatures_ManeuverBattlemaster(),
+	new IndexableFileOptFeatures_ManeuverBattleMaster(),
 	new IndexableFileOptFeatures_ManeuverCavalier(),
 	new IndexableFileOptFeatures_ArcaneShot(),
 	new IndexableFileOptFeatures_Other(),

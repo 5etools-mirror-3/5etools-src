@@ -150,6 +150,40 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Healer's Kit",
+			"source": "XPHB",
+			"type": "consumable",
+			"system": {
+				"uses.max": "10",
+				"type.value": "trinket"
+			},
+			"activities": [
+				{
+					"name": "Stabilize",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature",
+							"special": "Unconscious"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Oversized Longbow",
 			"source": "WDH",
 			"activities": [

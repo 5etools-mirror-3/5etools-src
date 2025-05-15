@@ -9535,6 +9535,7 @@ class _RenderCompactBestiaryImplClassic extends _RenderCompactBestiaryImplBase {
 	) {
 		return {
 			htmlPtSavingThrows: this._getHtmlParts_savingThrows({mon}),
+			htmlPtInitiative: this._getHtmlParts_initiative({mon, renderer}),
 			htmlPtDamageImmunities: this._getHtmlParts_damageImmunities({mon}),
 			htmlPtConditionImmunities: this._getHtmlParts_conditionImmunities({mon}),
 
@@ -9546,6 +9547,10 @@ class _RenderCompactBestiaryImplClassic extends _RenderCompactBestiaryImplBase {
 
 	_getHtmlParts_savingThrows ({mon}) {
 		return mon.save ? `<p><b>Saving Throws</b> ${Renderer.monster.getSavesPart(mon)}</p>` : "";
+	}
+
+	_getHtmlParts_initiative ({mon, renderer}) {
+		return mon.initiative ? `<p><b>Initiative</b> ${Renderer.monster.getInitiativePart(mon, {renderer})}</p>` : "";
 	}
 
 	_getHtmlParts_damageImmunities ({mon}) {
@@ -9640,6 +9645,7 @@ class _RenderCompactBestiaryImplClassic extends _RenderCompactBestiaryImplBase {
 
 		const {
 			htmlPtSavingThrows,
+			htmlPtInitiative,
 			htmlPtDamageImmunities,
 			htmlPtConditionImmunities,
 
@@ -9672,6 +9678,7 @@ class _RenderCompactBestiaryImplClassic extends _RenderCompactBestiaryImplBase {
 					${htmlPtsResources.join("")}
 					${htmlPtSavingThrows}
 					${htmlPtSkills}
+					${htmlPtInitiative}
 					${htmlPtTools}
 					${htmlPtVulnerabilities}
 					${htmlPtResistances}
@@ -10343,12 +10350,12 @@ Renderer.monster = class {
 		return `<span title="${ptTitle.qq()}" class="help-subtle">${initPassive}</span>`;
 	}
 
-	static getInitiativePart (mon, {isPlainText = false} = {}) {
+	static getInitiativePart (mon, {isPlainText = false, renderer = null} = {}) {
 		const initBonus = this.getInitiativeBonusNumber({mon});
 		const initPassive = this._getInitiativePassive({mon, initBonus});
 		if (initBonus == null || initPassive == null) return "\u2014";
 		const entry = `{@initiative ${initBonus}} (${this._getInitiativePart_passive({mon, initPassive})})`;
-		return isPlainText ? Renderer.stripTags(entry) : Renderer.get().render(entry);
+		return isPlainText ? Renderer.stripTags(entry) : (renderer || Renderer.get()).render(entry);
 	}
 
 	static getInitiativeBonusNumber ({mon}) {
