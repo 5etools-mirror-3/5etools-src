@@ -44,7 +44,7 @@ const pMain = async () => {
 	// Preload config
 	const config = await loadConfig("cspell.json");
 
-	const tmpFile = "node/spellcheck-credits-temp.json";
+	const tmpFile = "spellcheck/spellcheck-credits-temp.json";
 	writeJsonSync(tmpFile, getJson(), {isClean: true});
 
 	const uri = pathToFileURL(resolve(tmpFile)).toString();
@@ -65,7 +65,7 @@ const pMain = async () => {
 			}
 		});
 
-	const filenameOut = "node/spellcheck-credits-words.txt";
+	const filenameOut = "spellcheck/credits-words.txt";
 	spellingErrors
 		.sort(SortUtil.ascSortLower);
 	fs.writeFileSync(filenameOut, spellingErrors.join("\n"), "utf-8");
