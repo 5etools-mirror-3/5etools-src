@@ -220,17 +220,23 @@ export class SpellBuilder extends BuilderBase {
 		this.__$getMetaInput(cb).appendTo(detailsTab.$wrpTab);
 		this.__$getDurationInput(cb).appendTo(detailsTab.$wrpTab);
 		BuilderUi.$getStateIptEntries("Text", cb, this._state, {fnPostProcess: BuilderUi.fnPostProcessDice}, "entries").appendTo(detailsTab.$wrpTab);
-		BuilderUi.$getStateIptEntries(
+		const iptEntriesHigherLevelMeta = BuilderUi.$getStateIptEntries(
 			"&quot;Higher-Level Spell Slot&quot; Text",
 			cb,
 			this._state,
 			{
 				nullable: true,
-				withHeader: this._meta.styleHint === "classic" ? "At Higher Levels" : "Using a Higher-Level Spell Slot",
+				fnGetHeader: state => {
+					if (this._meta.styleHint === "classic") return "At Higher Levels";
+					return state.level === 0 ? "Cantrip Upgrade" : "Using a Higher-Level Spell Slot";
+				},
 				fnPostProcess: BuilderUi.fnPostProcessDice,
+				asMeta: true,
 			},
 			"entriesHigherLevel",
-		).appendTo(detailsTab.$wrpTab);
+		);
+		this._addHook("state", "level", () => iptEntriesHigherLevelMeta.onChange());
+		iptEntriesHigherLevelMeta.$row.appendTo(detailsTab.$wrpTab);
 
 		// SOURCES
 		const [
