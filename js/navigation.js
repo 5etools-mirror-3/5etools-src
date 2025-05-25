@@ -907,6 +907,16 @@ NavBar.InteractionManager = class {
 
 	static async _pOnClick_button_addApp (evt) {
 		evt.preventDefault();
+
+		// Unavailable on Firefox
+		// See:
+		//  - https://developer.mozilla.org/en-US/docs/Web/API/BeforeInstallPromptEvent
+		//  - https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeinstallprompt_event
+		if (!NavBar._cachedInstallEvent) {
+			JqueryUtil.doToast({type: "warning", content: `Could not install app! Your browser may not support this feature.`});
+			return;
+		}
+
 		try {
 			NavBar._cachedInstallEvent.prompt();
 		} catch (e) {

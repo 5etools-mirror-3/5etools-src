@@ -2924,19 +2924,23 @@
 				{
 					"name": "Vampire Weaknesses",
 					"entries": [
-						"The vampire has the following flaws:"
-					]
-				},
-				{
-					"name": "Forbiddance",
-					"entries": [
-						"The vampire can't enter a residence without an invitation from one of the occupants."
-					]
-				},
-				{
-					"name": "Stake to the Heart",
-					"entries": [
-						"The vampire dies if a piercing weapon made of wood is driven into its heart while it is {@condition incapacitated} in its resting place."
+						"The vampire has the following flaws:",
+						{
+							"type": "list",
+							"style": "list-hang-subtrait",
+							"items": [
+								{
+									"type": "itemSub",
+									"name": "Forbiddance",
+									"entry": "The vampire can't enter a residence without an invitation from one of the occupants."
+								},
+								{
+									"type": "itemSub",
+									"name": "Stake to the Heart",
+									"entry": "The vampire dies if a piercing weapon made of wood is driven into its heart while it is {@condition incapacitated} in its resting place."
+								}
+							]
+						}
 					]
 				}
 			],

@@ -19,6 +19,36 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Ambush",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": ""
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Superiority Die"
+									}
+								}
+							}
+						]
+					},
+					"roll": {
+						"name": "Bonus",
+						"formula": "@scale.battle-master.superiority.die"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Arcane Propulsion Armor",
 			"source": "TCE",
 			"system": {
@@ -203,6 +233,56 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Armor of Shadows",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Mage Armor",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"duration": {
+						"units": "hour",
+						"value": "8"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"range": {
+						"units": "touch"
+					},
+					"effects": [
+						{
+							"foundryId": "armorOfShadows"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "armorOfShadows",
+					"name": "Mage Armor",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"seconds": 28800
+					},
+					"changes": [
+						{
+							"key": "system.attributes.ac.calc",
+							"mode": "OVERRIDE",
+							"value": "mage"
+						}
+					],
+					"description": "The target's base AC becomes 13 + its Dexterity modifier."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Ascendant Step",
 			"source": "PHB",
 			"activities": [
@@ -211,6 +291,308 @@
 					"activation": {
 						"value": null
 					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Ascendant Step",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"duration": {
+						"units": "minute",
+						"concentration": true,
+						"value": "10"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "ascendantStep"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "ascendantStep",
+					"name": "Levitating",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"seconds": 600
+					},
+					"description": "The target can move only by pushing or pulling against a fixed object or surface within reach (such as a wall or a ceiling), which allows it to move as if it were climbing."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Bait and Switch",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Switch Places",
+					"type": "utility",
+					"activation": {
+						"type": "",
+						"condition": "When you're within 5 feet of a creature on your turn"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Superiority Die"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "willing"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "5"
+					},
+					"roll": {
+						"name": "Armor Class Bonus",
+						"formula": "@scale.battle-master.superiority.die"
+					},
+					"effects": [
+						{
+							"foundryId": "baitAndSwitch"
+						},
+						{
+							"foundryId": "baitAndSwitch1"
+						},
+						{
+							"foundryId": "baitAndSwitch2"
+						},
+						{
+							"foundryId": "baitAndSwitch3"
+						},
+						{
+							"foundryId": "baitAndSwitch4"
+						},
+						{
+							"foundryId": "baitAndSwitch5"
+						},
+						{
+							"foundryId": "baitAndSwitch6"
+						},
+						{
+							"foundryId": "baitAndSwitch7"
+						},
+						{
+							"foundryId": "baitAndSwitch8"
+						},
+						{
+							"foundryId": "baitAndSwitch9"
+						},
+						{
+							"foundryId": "baitAndSwitch10"
+						},
+						{
+							"foundryId": "baitAndSwitch11"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "baitAndSwitch",
+					"name": "Baited AC +1",
+					"duration": {
+						"rounds": 1
+					},
+					"changes": [
+						{
+							"key": "system.attributes.ac.bonus",
+							"mode": "ADD",
+							"value": 1
+						}
+					],
+					"description": "Until the start of your next turn, you or the other creature (your choice) gains a bonus to AC equal to the number rolled."
+				},
+				{
+					"foundryId": "baitAndSwitch1",
+					"name": "Baited AC +2",
+					"duration": {
+						"rounds": 1
+					},
+					"changes": [
+						{
+							"key": "system.attributes.ac.bonus",
+							"mode": "ADD",
+							"value": 2
+						}
+					],
+					"description": "Until the start of your next turn, you or the other creature (your choice) gains a bonus to AC equal to the number rolled."
+				},
+				{
+					"foundryId": "baitAndSwitch2",
+					"name": "Baited AC +3",
+					"duration": {
+						"rounds": 1
+					},
+					"changes": [
+						{
+							"key": "system.attributes.ac.bonus",
+							"mode": "ADD",
+							"value": 3
+						}
+					],
+					"description": "Until the start of your next turn, you or the other creature (your choice) gains a bonus to AC equal to the number rolled."
+				},
+				{
+					"foundryId": "baitAndSwitch3",
+					"name": "Baited AC +4",
+					"duration": {
+						"rounds": 1
+					},
+					"changes": [
+						{
+							"key": "system.attributes.ac.bonus",
+							"mode": "ADD",
+							"value": 4
+						}
+					],
+					"description": "Until the start of your next turn, you or the other creature (your choice) gains a bonus to AC equal to the number rolled."
+				},
+				{
+					"foundryId": "baitAndSwitch4",
+					"name": "Baited AC +5",
+					"duration": {
+						"rounds": 1
+					},
+					"changes": [
+						{
+							"key": "system.attributes.ac.bonus",
+							"mode": "ADD",
+							"value": 5
+						}
+					],
+					"description": "Until the start of your next turn, you or the other creature (your choice) gains a bonus to AC equal to the number rolled."
+				},
+				{
+					"foundryId": "baitAndSwitch5",
+					"name": "Baited AC +6",
+					"duration": {
+						"rounds": 1
+					},
+					"changes": [
+						{
+							"key": "system.attributes.ac.bonus",
+							"mode": "ADD",
+							"value": 6
+						}
+					],
+					"description": "Until the start of your next turn, you or the other creature (your choice) gains a bonus to AC equal to the number rolled."
+				},
+				{
+					"foundryId": "baitAndSwitch6",
+					"name": "Baited AC +7",
+					"duration": {
+						"rounds": 1
+					},
+					"changes": [
+						{
+							"key": "system.attributes.ac.bonus",
+							"mode": "ADD",
+							"value": 7
+						}
+					],
+					"description": "Until the start of your next turn, you or the other creature (your choice) gains a bonus to AC equal to the number rolled."
+				},
+				{
+					"foundryId": "baitAndSwitch7",
+					"name": "Baited AC +8",
+					"duration": {
+						"rounds": 1
+					},
+					"changes": [
+						{
+							"key": "system.attributes.ac.bonus",
+							"mode": "ADD",
+							"value": 8
+						}
+					],
+					"description": "Until the start of your next turn, you or the other creature (your choice) gains a bonus to AC equal to the number rolled."
+				},
+				{
+					"foundryId": "baitAndSwitch8",
+					"name": "Baited AC +9",
+					"duration": {
+						"rounds": 1
+					},
+					"changes": [
+						{
+							"key": "system.attributes.ac.bonus",
+							"mode": "ADD",
+							"value": 9
+						}
+					],
+					"description": "Until the start of your next turn, you or the other creature (your choice) gains a bonus to AC equal to the number rolled."
+				},
+				{
+					"foundryId": "baitAndSwitch9",
+					"name": "Baited AC +10",
+					"duration": {
+						"rounds": 1
+					},
+					"changes": [
+						{
+							"key": "system.attributes.ac.bonus",
+							"mode": "ADD",
+							"value": 10
+						}
+					],
+					"description": "Until the start of your next turn, you or the other creature (your choice) gains a bonus to AC equal to the number rolled."
+				},
+				{
+					"foundryId": "baitAndSwitch10",
+					"name": "Baited AC +11",
+					"duration": {
+						"rounds": 1
+					},
+					"changes": [
+						{
+							"key": "system.attributes.ac.bonus",
+							"mode": "ADD",
+							"value": 11
+						}
+					],
+					"description": "Until the start of your next turn, you or the other creature (your choice) gains a bonus to AC equal to the number rolled."
+				},
+				{
+					"foundryId": "baitAndSwitch11",
+					"name": "Baited AC +12",
+					"duration": {
+						"rounds": 1
+					},
+					"changes": [
+						{
+							"key": "system.attributes.ac.bonus",
+							"mode": "ADD",
+							"value": 12
+						}
+					],
+					"description": "Until the start of your next turn, you or the other creature (your choice) gains a bonus to AC equal to the number rolled."
 				}
 			],
 			"migrationVersion": 3
@@ -324,6 +706,40 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Careful Spell",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Careful Spell",
+					"type": "utility",
+					"activation": {
+						"type": "",
+						"condition": "When you cast a spell that forces other creatures to make a saving throw"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Sorcery Point"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "@abilities.cha.mod",
+							"type": "creature"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Chains of Carceri",
 			"source": "PHB",
 			"activities": [
@@ -354,6 +770,97 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Commander's Strike",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Directed Attack",
+					"type": "damage",
+					"activation": {
+						"type": "",
+						"condition": "When you take the Attack action on your turn"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Superiority Die"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature",
+							"special": "Can see or hear you"
+						}
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@scale.battle-master.superiority.die"
+								},
+								"types": [
+									"acid",
+									"bludgeoning",
+									"cold",
+									"fire",
+									"force",
+									"lightning",
+									"necrotic",
+									"piercing",
+									"poison",
+									"psychic",
+									"radiant",
+									"slashing",
+									"thunder"
+								]
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Commanding Presence",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "",
+						"condition": "When you make a Charisma (Intimidation, Performance, or Persuasion) check"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Superiority Die"
+									}
+								}
+							}
+						]
+					},
+					"roll": {
+						"name": "Bonus",
+						"formula": "@scale.battle-master.superiority.die"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Devil's Sight",
 			"source": "PHB",
 			"effects": [
@@ -372,6 +879,189 @@
 							"value": "Devil's Sight"
 						}
 					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Devil's Sight",
+			"source": "XPHB",
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.attributes.senses.darkvision",
+							"mode": "UPGRADE",
+							"value": 120
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Disarming Attack",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "save",
+					"activation": {
+						"type": "",
+						"condition": "When you hit a creature with an attack roll"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Superiority Die"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@scale.battle-master.superiority.die"
+								},
+								"types": [
+									"acid",
+									"bludgeoning",
+									"cold",
+									"fire",
+									"force",
+									"lightning",
+									"necrotic",
+									"piercing",
+									"poison",
+									"psychic",
+									"radiant",
+									"slashing",
+									"thunder"
+								]
+							}
+						],
+						"onSave": "full"
+					},
+					"save": {
+						"ability": [
+							"str"
+						],
+						"dc": {
+							"formula": "8 + max(@abilities.dex.mod, @abilities.str.mod) + @prof"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Distant Spell",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Distant Spell",
+					"type": "utility",
+					"activation": {
+						"type": "",
+						"condition": "When you cast a spell that has a range of at least 5 feet or when you cast a spell that has a range of Touch"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Sorcery Point"
+									}
+								}
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Distracting Strike",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "damage",
+					"activation": {
+						"type": ""
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Superiority Die"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@scale.battle-master.superiority.die"
+								},
+								"types": [
+									"acid",
+									"bludgeoning",
+									"cold",
+									"fire",
+									"force",
+									"lightning",
+									"necrotic",
+									"piercing",
+									"poison",
+									"psychic",
+									"radiant",
+									"slashing",
+									"thunder"
+								]
+							}
+						]
+					},
+					"effects": [
+						{
+							"foundryId": "distractingStrik"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "distractingStrik",
+					"name": "Distracted",
+					"duration": {
+						"turns": 1
+					}
 				}
 			],
 			"migrationVersion": 3
@@ -414,6 +1104,119 @@
 					"type": "utility",
 					"activation": {
 						"value": null
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Eldritch Smite",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Smite",
+					"type": "damage",
+					"activation": {
+						"type": "",
+						"condition": "Hit a creature with your pact weapon"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "attribute",
+								"value": "1",
+								"target": "spells.pact.value"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "(1 + @spells.pact.level)d8"
+								},
+								"types": [
+									"force"
+								]
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Eldritch Spear",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Increase Range",
+					"type": "enchant",
+					"activation": {
+						"type": ""
+					},
+					"restrictions": {
+						"allowMagical": true
+					},
+					"effects": [
+						{
+							"foundryId": "eldritchSpear"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "eldritchSpear",
+					"type": "enchantment",
+					"disabled": true,
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.range.value",
+							"mode": "ADD",
+							"value": "@classes.warlock.levels * 30"
+						},
+						{
+							"key": "name",
+							"mode": "ADD",
+							"value": ", Eldritch Spear"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Empowered Spell",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Empowered Spell",
+					"type": "utility",
+					"activation": {
+						"type": "",
+						"condition": "When you roll damage for a spell"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Sorcery Point"
+									}
+								}
+							}
+						]
 					}
 				}
 			],
@@ -745,6 +1548,140 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Evasive Footwork",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Evade",
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Superiority Die"
+									}
+								}
+							}
+						]
+					},
+					"roll": {
+						"name": "AC Bonus",
+						"formula": "@scale.battle-master.superiority.die"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Extended Spell",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Extended Spell",
+					"type": "utility",
+					"activation": {
+						"type": "",
+						"condition": "When you cast a spell that has a duration of 1 minute or longer"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Sorcery Point"
+									}
+								}
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Feinting Attack",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "damage",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Superiority Die"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "5"
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@scale.battle-master.superiority.die"
+								},
+								"types": [
+									"acid",
+									"bludgeoning",
+									"cold",
+									"fire",
+									"force",
+									"lightning",
+									"necrotic",
+									"piercing",
+									"poison",
+									"psychic",
+									"radiant",
+									"slashing",
+									"thunder"
+								]
+							}
+						]
+					},
+					"effects": [
+						{
+							"foundryId": "feintingAttack"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "feintingAttack",
+					"name": "Feinted",
+					"duration": {
+						"turns": 1
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Fiendish Vigor",
 			"source": "PHB",
 			"activities": [
@@ -752,6 +1689,37 @@
 					"type": "utility",
 					"activation": {
 						"value": null
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Fiendish Vigor",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "False Life",
+					"type": "heal",
+					"activation": {
+						"type": "action"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"types": [
+							"temphp"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "8 + 4"
+						},
+						"scaling": {
+							"number": 1
+						}
 					}
 				}
 			],
@@ -830,6 +1798,269 @@
 							"value": "+2"
 						}
 					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Gaze of Two Minds",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Gaze of Two Minds",
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "willing",
+							"special": "Touch"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "60"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Gift of the Depths",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Gift Water Breathing",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"duration": {
+						"units": "hour",
+						"value": "24"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "10",
+							"type": "creature"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "30"
+					},
+					"effects": [
+						{
+							"foundryId": "giftOfTheDepths"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "giftOfTheDepths",
+					"name": "Water Breathing",
+					"duration": {
+						"seconds": 86400
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Gift of the Protectors",
+			"source": "XPHB",
+			"system": {
+				"uses.max": "(max(1,@abilities.cha.mod))"
+			},
+			"activities": [
+				{
+					"name": "Protect",
+					"type": "utility",
+					"img": "systems/dnd5e/icons/svg/activity/save.svg",
+					"activation": {
+						"type": "",
+						"condition": "When any creature whose name is on the page is reduced to 0 Hit Points but not killed outright"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "activityUses",
+								"value": "1"
+							}
+						]
+					},
+					"uses": {
+						"recovery": [
+							{
+								"period": "lr",
+								"type": "recoverAll"
+							}
+						],
+						"max": "1"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					}
+				},
+				{
+					"name": "Write Name",
+					"type": "utility",
+					"img": "systems/dnd5e/icons/svg/trait.svg",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					}
+				},
+				{
+					"name": "Erase Name",
+					"type": "utility",
+					"img": "systems/dnd5e/icons/svg/trait-languages.svg",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "-1"
+							}
+						]
+					},
+					"range": {
+						"units": "touch"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Goading Attack",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "save",
+					"activation": {
+						"type": "",
+						"condition": "When you hit a creature with an attack roll"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Superiority Die"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@scale.battle-master.superiority.die"
+								},
+								"types": [
+									"acid",
+									"bludgeoning",
+									"cold",
+									"fire",
+									"force",
+									"lightning",
+									"necrotic",
+									"piercing",
+									"poison",
+									"psychic",
+									"radiant",
+									"slashing",
+									"thunder"
+								]
+							}
+						],
+						"onSave": "full"
+					},
+					"save": {
+						"ability": [
+							"wis"
+						],
+						"dc": {
+							"formula": "8 + max(@abilities.dex.mod, @abilities.str.mod) + @prof"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "goadingAttack"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "goadingAttack",
+					"name": "Goaded",
+					"transfer": true,
+					"duration": {
+						"turns": 1
+					},
+					"description": "The target has Disadvantage on attack rolls against targets other than you until the end of your next turn."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Heightened Spell",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Heightened Spell",
+					"type": "utility",
+					"activation": {
+						"type": "",
+						"condition": "When you cast a spell that forces a creature to make a saving throw"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "2",
+								"target": {
+									"consumes": {
+										"name": "Sorcery Point"
+									}
+								}
+							}
+						]
+					}
 				}
 			],
 			"migrationVersion": 3
@@ -966,6 +2197,569 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Investment of the Chain Master",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Find Familiar with Flight",
+					"type": "summon",
+					"activation": {
+						"type": "hour",
+						"value": 1
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "attribute",
+								"value": "1",
+								"target": "spells.pact.value"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "space"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "10"
+					},
+					"profiles": [
+						{
+							"cr": "0",
+							"name": "CR 0 Beast",
+							"types": [
+								"beast"
+							]
+						}
+					],
+					"summon": {
+						"mode": "cr"
+					},
+					"creatureTypes": [
+						"celestial",
+						"fey",
+						"fiend"
+					],
+					"match": {
+						"saves": true
+					},
+					"effects": [
+						{
+							"foundryId": "investmentOfTheC"
+						}
+					]
+				},
+				{
+					"name": "Find Familiar with Swimming",
+					"type": "summon",
+					"activation": {
+						"type": "hour",
+						"value": 1
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "attribute",
+								"value": "1",
+								"target": "spells.pact.value"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "space"
+						}
+					},
+					"range": {
+						"value": "10",
+						"units": "ft"
+					},
+					"profiles": [
+						{
+							"cr": "0",
+							"name": "CR 0 Beast",
+							"types": [
+								"beast"
+							]
+						}
+					],
+					"summon": {
+						"mode": "cr"
+					},
+					"creatureTypes": [
+						"celestial",
+						"fey",
+						"fiend"
+					],
+					"match": {
+						"saves": true
+					},
+					"effects": [
+						{
+							"foundryId": "investmentOfTheC"
+						}
+					]
+				},
+				{
+					"name": "Invest with Resistance",
+					"type": "utility",
+					"img": "systems/dnd5e/icons/svg/trait-damage-resistances.svg",
+					"activation": {
+						"type": "reaction"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature",
+							"special": "Your familiar"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "investmentOfThe1"
+						},
+						{
+							"foundryId": "investmentOfThe2"
+						},
+						{
+							"foundryId": "investmentOfThe3"
+						},
+						{
+							"foundryId": "investmentOfThe4"
+						},
+						{
+							"foundryId": "investmentOfThe5"
+						},
+						{
+							"foundryId": "investmentOfThe6"
+						},
+						{
+							"foundryId": "investmentOfThe7"
+						},
+						{
+							"foundryId": "investmentOfThe8"
+						},
+						{
+							"foundryId": "investmentOfThe9"
+						},
+						{
+							"foundryId": "investmentOfTh10"
+						},
+						{
+							"foundryId": "investmentOfTh11"
+						},
+						{
+							"foundryId": "investmentOfTh12"
+						},
+						{
+							"foundryId": "investmentOfTh13"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "investmentOfTheC",
+					"name": "Investment of Flight",
+					"changes": [
+						{
+							"key": "system.attributes.movement.fly",
+							"mode": "UPGRADE",
+							"value": 40
+						}
+					]
+				},
+				{
+					"name": "Investment of Swimming",
+					"changes": [
+						{
+							"key": "system.attributes.movement.swim",
+							"mode": "UPGRADE",
+							"value": 40
+						}
+					]
+				},
+				{
+					"foundryId": "investmentOfThe1",
+					"name": "Resist Acid",
+					"duration": {
+						"turns": 1
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "acid"
+						}
+					]
+				},
+				{
+					"foundryId": "investmentOfThe2",
+					"name": "Resist Bludgeoning",
+					"duration": {
+						"turns": 1
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "bludgeoning"
+						}
+					]
+				},
+				{
+					"foundryId": "investmentOfThe3",
+					"name": "Resist Cold",
+					"duration": {
+						"turns": 1
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "cold"
+						}
+					]
+				},
+				{
+					"foundryId": "investmentOfThe4",
+					"name": "Resist Fire",
+					"duration": {
+						"turns": 1
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "fire"
+						}
+					]
+				},
+				{
+					"foundryId": "investmentOfThe5",
+					"name": "Resist Force",
+					"duration": {
+						"turns": 1
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "force"
+						}
+					]
+				},
+				{
+					"foundryId": "investmentOfThe6",
+					"name": "Resist Lightning",
+					"duration": {
+						"turns": 1
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "lightning"
+						}
+					]
+				},
+				{
+					"foundryId": "investmentOfThe7",
+					"name": "Resist Necrotic",
+					"duration": {
+						"turns": 1
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "necrotic"
+						}
+					]
+				},
+				{
+					"foundryId": "investmentOfThe8",
+					"name": "Resist Piercing",
+					"duration": {
+						"turns": 1
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "piercing"
+						}
+					]
+				},
+				{
+					"foundryId": "investmentOfThe9",
+					"name": "Resist Poison",
+					"duration": {
+						"turns": 1
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "poison"
+						}
+					]
+				},
+				{
+					"foundryId": "investmentOfTh10",
+					"name": "Resist Psychic",
+					"duration": {
+						"turns": 1
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "psychic"
+						}
+					]
+				},
+				{
+					"foundryId": "investmentOfTh11",
+					"name": "Resist Radiant",
+					"duration": {
+						"turns": 1
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "radiant"
+						}
+					]
+				},
+				{
+					"foundryId": "investmentOfTh12",
+					"name": "Resist Slashing",
+					"duration": {
+						"turns": 1
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "slashing"
+						}
+					]
+				},
+				{
+					"foundryId": "investmentOfTh13",
+					"name": "Resist Thunder",
+					"duration": {
+						"turns": 1
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "thunder"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Lifedrinker",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "damage",
+					"activation": {
+						"type": "",
+						"condition": "Once per turn when you hit a creature with your pact weapon"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 6,
+								"types": [
+									"necrotic",
+									"psychic",
+									"radiant"
+								]
+							}
+						]
+					}
+				},
+				{
+					"name": "Heal (Largest Hit Die)",
+					"type": "heal",
+					"activation": {
+						"type": "",
+						"condition": "Once per turn when you hit a creature with your pact weapon"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "hitDice",
+								"value": "1",
+								"target": "largest"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "@attributes.hd.largestAvailable + (max(1,@abilities.con.mod))"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				},
+				{
+					"name": "Heal (Smallest Hit Die)",
+					"type": "heal",
+					"activation": {
+						"type": "",
+						"condition": "Once per turn when you hit a creature with your pact weapon"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "hitDice",
+								"value": "1",
+								"target": "smallest"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "@attributes.hd.smallestAvailable + (max(1,@abilities.con.mod))"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Lunging Attack",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "damage",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Superiority Die"
+									}
+								}
+							}
+						]
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@scale.battle-master.superiority.die"
+								},
+								"types": [
+									"acid",
+									"bludgeoning",
+									"cold",
+									"fire",
+									"force",
+									"lightning",
+									"necrotic",
+									"piercing",
+									"poison",
+									"psychic",
+									"radiant",
+									"slashing",
+									"thunder"
+								]
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Maneuvering Attack",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Maneuver",
+					"type": "utility",
+					"activation": {
+						"type": "",
+						"condition": "When you hit a creature with an attack roll"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Superiority Die"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "willing",
+							"special": "Can see or hear you"
+						}
+					},
+					"roll": {
+						"name": "Attack Bonus",
+						"formula": "@scale.battle-master.superiority.die"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Mask of Many Faces",
 			"source": "PHB",
 			"activities": [
@@ -979,6 +2773,43 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Mask of Many Faces",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"duration": {
+						"units": "hour",
+						"value": "1"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "maskOfManyFaces"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "maskOfManyFaces",
+					"name": "Disguised",
+					"duration": {
+						"seconds": 3600
+					},
+					"description": "To discern that you are disguised, a creature must take the Study action to inspect your appearance and succeed on an [[/check ability=int skill=inv]] check against your spell save DC."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Master of Myriad Forms",
 			"source": "PHB",
 			"activities": [
@@ -987,6 +2818,291 @@
 					"activation": {
 						"value": null
 					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Master of Myriad Forms",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Aquatic Adaptation",
+					"type": "utility",
+					"img": "icons/creatures/fish/fish-bluefin-yellow-blue.webp",
+					"activation": {
+						"type": "action"
+					},
+					"duration": {
+						"units": "hour",
+						"concentration": true,
+						"value": "1"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "masterOfMyriadFo"
+						}
+					]
+				},
+				{
+					"name": "Change Appearance",
+					"type": "utility",
+					"img": "icons/creatures/magical/spirit-undead-ghost-blue.webp",
+					"activation": {
+						"type": "action"
+					},
+					"duration": {
+						"units": "hour",
+						"concentration": true,
+						"value": "1"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "masterOfMyriadF1"
+						}
+					]
+				},
+				{
+					"name": "Natural Weapons",
+					"type": "utility",
+					"img": "icons/creatures/abilities/fang-tooth-blood-red.webp",
+					"activation": {
+						"type": "action"
+					},
+					"duration": {
+						"units": "hour",
+						"concentration": true,
+						"value": "1"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "masterOfMyriadF2"
+						}
+					]
+				},
+				{
+					"name": "Attack: Claws",
+					"type": "attack",
+					"activation": {
+						"type": "action"
+					},
+					"range": {
+						"units": "ft",
+						"value": "5"
+					},
+					"attack": {
+						"type": {
+							"value": "melee",
+							"classification": "unarmed"
+						},
+						"ability": "spellcasting"
+					},
+					"damage": {
+						"includeBase": true,
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 6,
+								"bonus": "@mod",
+								"types": [
+									"slashing"
+								]
+							}
+						]
+					}
+				},
+				{
+					"name": "Attack: Fangs/Horns",
+					"type": "attack",
+					"activation": {
+						"type": "action"
+					},
+					"range": {
+						"value": "5",
+						"units": "ft"
+					},
+					"attack": {
+						"type": {
+							"value": "melee",
+							"classification": "unarmed"
+						},
+						"ability": "spellcasting"
+					},
+					"damage": {
+						"includeBase": true,
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 6,
+								"bonus": "@mod",
+								"types": [
+									"piercing"
+								]
+							}
+						]
+					}
+				},
+				{
+					"name": "Attack: Hooves",
+					"type": "attack",
+					"activation": {
+						"type": "action"
+					},
+					"range": {
+						"value": "5",
+						"units": "ft"
+					},
+					"attack": {
+						"type": {
+							"value": "melee",
+							"classification": "unarmed"
+						},
+						"ability": "spellcasting"
+					},
+					"damage": {
+						"includeBase": true,
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 6,
+								"bonus": "@mod",
+								"types": [
+									"bludgeoning"
+								]
+							}
+						]
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "masterOfMyriadFo",
+					"name": "Aquatic Adaptation",
+					"duration": {
+						"seconds": 3600
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.swim",
+							"mode": "UPGRADE",
+							"value": 1
+						}
+					],
+					"description": "You can breathe underwater and gain a Swim Speed equal to your Speed."
+				},
+				{
+					"foundryId": "masterOfMyriadF1",
+					"name": "Altered Appearance",
+					"duration": {
+						"seconds": 3600
+					}
+				},
+				{
+					"foundryId": "masterOfMyriadF2",
+					"name": "Natural Weapon",
+					"duration": {
+						"seconds": 3600
+					},
+					"description": "When you use your Unarmed Strike to deal damage with that new growth, it deals 1d6 damage of the type in parentheses instead of dealing the normal damage for your Unarmed Strike, and you use your spellcasting ability modifier for the attack and damage rolls rather than using Strength."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Menacing Attack",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "save",
+					"activation": {
+						"type": "",
+						"condition": "When you hit a creature with an attack roll"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Superiority Die"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@scale.battle-master.superiority.die"
+								},
+								"types": [
+									"acid",
+									"bludgeoning",
+									"cold",
+									"fire",
+									"force",
+									"lightning",
+									"necrotic",
+									"piercing",
+									"poison",
+									"psychic",
+									"radiant",
+									"slashing",
+									"thunder"
+								]
+							}
+						],
+						"onSave": "full"
+					},
+					"save": {
+						"ability": [
+							"wis"
+						],
+						"dc": {
+							"formula": "8 + max(@abilities.dex.mod, @abilities.str.mod) + @prof"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "menacingAttack"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "menacingAttack",
+					"name": "Menaced",
+					"duration": {
+						"turns": 1
+					},
+					"statuses": [
+						"frightened"
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -1110,6 +3226,50 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "One with Shadows",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"duration": {
+						"units": "hour",
+						"concentration": true,
+						"value": "1"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"range": {
+						"units": "touch"
+					},
+					"effects": [
+						{
+							"foundryId": "oneWithShadows"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "oneWithShadows",
+					"name": "Invisible",
+					"duration": {
+						"seconds": 3600
+					},
+					"statuses": [
+						"invisible"
+					],
+					"description": "The spell ends early immediately after the target makes an attack roll, deals damage, or casts a spell."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Otherworldly Leap",
 			"source": "PHB",
 			"activities": [
@@ -1123,6 +3283,47 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Otherworldly Leap",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					},
+					"duration": {
+						"units": "minute",
+						"value": "1"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"range": {
+						"units": "touch"
+					},
+					"effects": [
+						{
+							"foundryId": "otherworldlyLeap"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "otherworldlyLeap",
+					"name": "Jump",
+					"duration": {
+						"rounds": 1,
+						"seconds": 60
+					},
+					"description": "Once on each of its turns until the spell ends, that creature can jump up to 30 feet by spending 10 feet of movement."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Pact of the Blade",
 			"source": "PHB",
 			"activities": [
@@ -1131,6 +3332,394 @@
 					"activation": {
 						"type": "action",
 						"value": 1
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Pact of the Blade",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Forge Pact Weapon",
+					"type": "enchant",
+					"activation": {
+						"type": "bonus"
+					},
+					"restrictions": {
+						"allowMagical": true,
+						"categories": [
+							"simpleM",
+							"martialM"
+						],
+						"type": "weapon"
+					},
+					"effects": [
+						{
+							"foundryId": "pactOfTheBlade",
+							"riders": {
+								"activity": [
+									{
+										"foundryId": "pactOfTheBlade"
+									}
+								]
+							}
+						}
+					]
+				},
+				{
+					"foundryId": "pactOfTheBlade",
+					"name": "Spellcasting Attack",
+					"type": "attack",
+					"img": "systems/dnd5e/icons/svg/properties/magical.svg",
+					"activation": {
+						"type": "action"
+					},
+					"attack": {
+						"type": {
+							"value": "melee",
+							"classification": "weapon"
+						},
+						"ability": "spellcasting"
+					},
+					"damage": {
+						"includeBase": true
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "pactOfTheBlade",
+					"name": "Pact Weapon",
+					"type": "enchantment",
+					"disabled": true,
+					"transfer": true,
+					"changes": [
+						{
+							"key": "name",
+							"mode": "ADD",
+							"value": ", Pact Weapon"
+						},
+						{
+							"key": "system.proficient",
+							"mode": "OVERRIDE",
+							"value": 1
+						},
+						{
+							"key": "system.properties",
+							"mode": "ADD",
+							"value": "foc"
+						},
+						{
+							"key": "system.damage.base.types",
+							"mode": "ADD",
+							"value": "necrotic"
+						},
+						{
+							"key": "system.damage.base.types",
+							"mode": "ADD",
+							"value": "psychic"
+						},
+						{
+							"key": "system.damage.base.types",
+							"mode": "ADD",
+							"value": "radiant"
+						},
+						{
+							"key": "system.damage.versatile.types",
+							"mode": "ADD",
+							"value": "necrotic"
+						},
+						{
+							"key": "system.damage.versatile.types",
+							"mode": "ADD",
+							"value": "psychic"
+						},
+						{
+							"key": "system.damage.versatile.types",
+							"mode": "ADD",
+							"value": "radiant"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Pact of the Chain",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Find Familiar",
+					"type": "summon",
+					"activation": {
+						"type": "action",
+						"value": 1
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "attribute",
+								"value": "1",
+								"target": "spells.pact.value"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "space"
+						}
+					},
+					"range": {
+						"value": "10",
+						"units": "ft"
+					},
+					"profiles": [
+						{
+							"cr": "0",
+							"name": "CR 0 Beast",
+							"types": [
+								"beast"
+							]
+						}
+					],
+					"summon": {
+						"mode": "cr"
+					},
+					"creatureTypes": [
+						"celestial",
+						"fey",
+						"fiend"
+					]
+				},
+				{
+					"name": "Find Familiar (Expanded Options)",
+					"type": "summon",
+					"activation": {
+						"type": "action",
+						"value": 1
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "attribute",
+								"value": "1",
+								"target": "spells.pact.value"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "space"
+						}
+					},
+					"range": {
+						"value": "10",
+						"units": "ft"
+					},
+					"profiles": [
+						{
+							"uuid": "@creature[imp|xmm]"
+						},
+						{
+							"uuid": "@creature[pseudodragon|xmm]"
+						},
+						{
+							"uuid": "@creature[quasit|xmm]"
+						},
+						{
+							"uuid": "@creature[sphinx of wonder|xmm]"
+						},
+						{
+							"uuid": "@creature[skeleton|xmm]"
+						},
+						{
+							"uuid": "@creature[slaad tadpole|xmm]"
+						},
+						{
+							"uuid": "@creature[sprite|xmm]"
+						},
+						{
+							"uuid": "@creature[venomous snake|xmm]"
+						}
+					],
+					"creatureTypes": [
+						"celestial",
+						"fey",
+						"fiend"
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Parry",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "heal",
+					"activation": {
+						"type": "reaction",
+						"condition": "When another creature damages you with a melee attack roll"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Superiority Die"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "@scale.battle-master.superiority.die"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Precision Attack",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "",
+						"condition": "When you miss with an attack roll"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Superiority Die"
+									}
+								}
+							}
+						]
+					},
+					"roll": {
+						"name": "Bonus",
+						"formula": "@scale.battle-master.superiority.die"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Pushing Attack",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "save",
+					"activation": {
+						"type": "",
+						"condition": "When you hit a creature with an attack roll"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Superiority Die"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@scale.battle-master.superiority.die"
+								},
+								"types": [
+									"acid",
+									"bludgeoning",
+									"cold",
+									"fire",
+									"force",
+									"lightning",
+									"necrotic",
+									"piercing",
+									"poison",
+									"psychic",
+									"radiant",
+									"slashing",
+									"thunder"
+								]
+							}
+						],
+						"onSave": "full"
+					},
+					"save": {
+						"ability": [
+							"str"
+						],
+						"dc": {
+							"formula": "8 + max(@abilities.dex.mod, @abilities.str.mod) + @prof"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Quickened Spell",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Quickened Spell",
+					"type": "utility",
+					"activation": {
+						"type": "",
+						"condition": "When you cast a spell that has a casting time of an action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "2",
+								"target": {
+									"consumes": {
+										"name": "Sorcery Point"
+									}
+								}
+							}
+						]
 					}
 				}
 			],
@@ -1226,6 +3815,51 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Rally",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "heal",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Superiority Die"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "ally",
+							"special": "Can see or hear you"
+						}
+					},
+					"healing": {
+						"types": [
+							"temphp"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "@scale.battle-master.superiority.die + (floor(@classes.fighter.levels/2))"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Repeating Shot",
 			"source": "TCE",
 			"system": {
@@ -1285,6 +3919,44 @@
 							"value": "required"
 						}
 					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Repelling Blast",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Make Repelling",
+					"type": "enchant",
+					"activation": {
+						"type": ""
+					},
+					"restrictions": {
+						"allowMagical": true
+					},
+					"effects": [
+						{
+							"foundryId": "repellingBlast"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "repellingBlast",
+					"type": "enchantment",
+					"disabled": true,
+					"transfer": true,
+					"changes": [
+						{
+							"key": "name",
+							"mode": "ADD",
+							"value": ", Repelling"
+						}
+					],
+					"description": "Choose one of your known Warlock cantrips that requires an attack roll. When you hit a Large or smaller creature with that cantrip, you can push the creature up to 10 feet straight away from you."
 				}
 			],
 			"migrationVersion": 3
@@ -1977,6 +4649,65 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Riposte",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Riposte Damage",
+					"type": "damage",
+					"activation": {
+						"type": "reaction",
+						"condition": "When a creature misses you with a melee attack roll"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Superiority Die"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@scale.battle-master.superiority.die"
+								},
+								"types": [
+									"acid",
+									"bludgeoning",
+									"cold",
+									"fire",
+									"force",
+									"lightning",
+									"necrotic",
+									"piercing",
+									"poison",
+									"psychic",
+									"radiant",
+									"slashing",
+									"thunder"
+								]
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Sculptor of Flesh",
 			"source": "PHB",
 			"activities": [
@@ -1984,6 +4715,34 @@
 					"type": "utility",
 					"activation": {
 						"value": null
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Seeking Spell",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Seeking Spell",
+					"type": "utility",
+					"activation": {
+						"type": "",
+						"condition": "When you make an attack roll for a spell and miss"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Sorcery Point"
+									}
+								}
+							}
+						]
 					}
 				}
 			],
@@ -2134,6 +4893,123 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Subtle Spell",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Subtle Spell",
+					"type": "utility",
+					"activation": {
+						"type": "",
+						"condition": "When you cast a spell"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Sorcery Point"
+									}
+								}
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Sweeping Attack",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "damage",
+					"activation": {
+						"type": ""
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Superiority Die"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature",
+							"special": "Within 5 feet of the original target and within your reach"
+						}
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@scale.battle-master.superiority.die"
+								},
+								"types": [
+									"acid",
+									"bludgeoning",
+									"cold",
+									"fire",
+									"force",
+									"lightning",
+									"necrotic",
+									"piercing",
+									"poison",
+									"psychic",
+									"radiant",
+									"slashing",
+									"thunder"
+								]
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Tactical Assessment",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "",
+						"condition": "When you make an Intelligence (History or Investigation) check or a Wisdom (Insight) check"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Superiority Die"
+									}
+								}
+							}
+						]
+					},
+					"roll": {
+						"name": "Bonus",
+						"formula": "@scale.battle-master.superiority.die"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Thief of Five Fates",
 			"source": "PHB",
 			"activities": [
@@ -2141,6 +5017,130 @@
 					"type": "utility",
 					"activation": {
 						"value": null
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Transmuted Spell",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Transmuted Spell",
+					"type": "utility",
+					"activation": {
+						"type": "",
+						"condition": "When you cast a spell that deals Acid, Cold, Fire, Lightning, Poison, or Thunder damage"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Sorcery Point"
+									}
+								}
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Trip Attack",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "save",
+					"activation": {
+						"type": "",
+						"condition": "When you hit a creature with an attack roll"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Superiority Die"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@scale.battle-master.superiority.die"
+								},
+								"types": [
+									"acid",
+									"bludgeoning",
+									"cold",
+									"fire",
+									"force",
+									"lightning",
+									"necrotic",
+									"piercing",
+									"poison",
+									"psychic",
+									"radiant",
+									"slashing",
+									"thunder"
+								]
+							}
+						],
+						"onSave": "full"
+					},
+					"save": {
+						"ability": [
+							"str"
+						],
+						"dc": {
+							"formula": "8 + max(@abilities.dex.mod, @abilities.str.mod) + @prof"
+						}
+					}
+				}
+			],
+			"effects": [],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Twinned Spell",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Twinned Spell",
+					"type": "utility",
+					"activation": {
+						"type": "",
+						"condition": "When you cast a spell that can be upcast to target an additional creature"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Sorcery Point"
+									}
+								}
+							}
+						]
 					}
 				}
 			],
@@ -2168,6 +5168,48 @@
 					"activation": {
 						"value": null
 					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Whispers of the Grave",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Whisper",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"duration": {
+						"units": "minute",
+						"value": "10"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "object",
+							"special": "Corpse"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Witch Sight",
+			"source": "XPHB",
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.attributes.senses.truesight",
+							"mode": "UPGRADE",
+							"value": 30
+						}
+					]
 				}
 			],
 			"migrationVersion": 3

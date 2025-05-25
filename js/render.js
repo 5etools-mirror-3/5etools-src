@@ -1128,28 +1128,28 @@ globalThis.Renderer = function () {
 	};
 
 	this._renderList = function (entry, textStack, meta, options) {
-		if (entry.items) {
-			const tag = entry.start != null ? "ol" : "ul";
-			const cssClasses = this._renderList_getListCssClasses(entry, textStack, meta, options);
-			textStack[0] += `<${tag} ${cssClasses ? `class="${cssClasses}"` : ""} ${entry.start != null ? `start="${entry.start}"` : ""}>`;
-			if (entry.name) textStack[0] += `<li class="rd__list-name">${this.render({type: "inline", entries: [entry.name]})}</li>`;
-			const isListHang = entry.style && entry.style.split(" ").includes("list-hang");
-			const len = entry.items.length;
-			for (let i = 0; i < len; ++i) {
-				const item = entry.items[i];
-				// Special case for child lists -- avoid wrapping in LI tags to avoid double-bullet
-				if (item.type !== "list") {
-					const className = `${this._getStyleClass(entry.type, item)}${item.type === "itemSpell" ? " rd__li-spell" : ""}`;
-					textStack[0] += `<li class="rd__li ${className}">`;
-				}
-				// If it's a raw string in a hanging list, wrap it in a div to allow for the correct styling
-				if (isListHang && typeof item === "string") textStack[0] += "<div>";
-				this._recursiveRender(item, textStack, meta);
-				if (isListHang && typeof item === "string") textStack[0] += "</div>";
-				if (item.type !== "list") textStack[0] += "</li>";
+		if (!entry.items) return;
+
+		const tag = entry.start != null ? "ol" : "ul";
+		const cssClasses = this._renderList_getListCssClasses(entry, textStack, meta, options);
+		textStack[0] += `<${tag} ${cssClasses ? `class="${cssClasses}"` : ""} ${entry.start != null ? `start="${entry.start}"` : ""}>`;
+		if (entry.name) textStack[0] += `<li class="rd__list-name">${this.render({type: "inline", entries: [entry.name]})}</li>`;
+		const isListHang = entry.style && entry.style.split(" ").includes("list-hang");
+		const len = entry.items.length;
+		for (let i = 0; i < len; ++i) {
+			const item = entry.items[i];
+			// Special case for child lists -- avoid wrapping in LI tags to avoid double-bullet
+			if (item.type !== "list") {
+				const className = `${this._getStyleClass(entry.type, item)}${item.type === "itemSpell" ? " rd__li-spell" : ""}`;
+				textStack[0] += `<li class="rd__li ${className}">`;
 			}
-			textStack[0] += `</${tag}>`;
+			// If it's a raw string in a hanging list, wrap it in a div to allow for the correct styling
+			if (isListHang && typeof item === "string") textStack[0] += "<div>";
+			this._recursiveRender(item, textStack, meta);
+			if (isListHang && typeof item === "string") textStack[0] += "</div>";
+			if (item.type !== "list") textStack[0] += "</li>";
 		}
+		textStack[0] += `</${tag}>`;
 	};
 
 	this._getPtExpandCollapse = function () {
@@ -1614,11 +1614,11 @@ globalThis.Renderer = function () {
 		this._renderSuffix(entry, textStack, meta, options);
 	};
 
-	this._renderItem = function (entry, textStack, meta, options) {
+	this._renderItemSubtypes = function (entry, textStack, meta, options) {
 		this._renderPrefix(entry, textStack, meta, options);
 		textStack[0] += `<p class="rd__p-list-item" ${entry.name ? `data-roll-name-ancestor="${Renderer.stripTags(entry.name).qq()}"` : ""}>`;
 		if (entry.name) {
-			textStack[0] += `<span class="${this._getMutatedStyleString(entry.style) || "bold"} rd__list-item-name">${this.render(entry.name)}${this._renderItem_isAddPeriod(entry) ? "." : ""}</span> `;
+			textStack[0] += `<span class="${this._getMutatedStyleString(entry.style) || entry.type === "itemSub" ? "italic" : "bold"} rd__list-item-name">${this.render(entry.name)}${this._renderItemSubtypes_isAddPeriod(entry) ? "." : ""}</span> `;
 		}
 		if (entry.entry) this._recursiveRender(entry.entry, textStack, meta);
 		else if (entry.entries) {
@@ -1629,15 +1629,16 @@ globalThis.Renderer = function () {
 		this._renderSuffix(entry, textStack, meta, options);
 	};
 
-	this._renderItem_isAddPeriod = function (entry) {
+	this._renderItemSubtypes_isAddPeriod = function (entry) {
 		return entry.name && entry.nameDot !== false && !Renderer._INLINE_HEADER_TERMINATORS.has(entry.name[entry.name.length - 1]);
 	};
 
+	this._renderItem = function (entry, textStack, meta, options) {
+		this._renderItemSubtypes(entry, textStack, meta, options);
+	};
+
 	this._renderItemSub = function (entry, textStack, meta, options) {
-		this._renderPrefix(entry, textStack, meta, options);
-		const isAddPeriod = entry.name && entry.nameDot !== false && !Renderer._INLINE_HEADER_TERMINATORS.has(entry.name[entry.name.length - 1]);
-		this._recursiveRender(entry.entry, textStack, meta, {prefix: `<p class="rd__p-list-item" ${entry.name ? `data-roll-name-ancestor="${Renderer.stripTags(entry.name).qq()}"` : ""}>${entry.name ? `<span class="italic rd__list-item-name">${this.render(entry.name)}${isAddPeriod ? "." : ""}</span> ` : ""}`, suffix: "</p>"});
-		this._renderSuffix(entry, textStack, meta, options);
+		this._renderItemSubtypes(entry, textStack, meta, options);
 	};
 
 	this._renderItemSpell = function (entry, textStack, meta, options) {
