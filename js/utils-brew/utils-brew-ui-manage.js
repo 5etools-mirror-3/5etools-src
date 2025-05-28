@@ -84,6 +84,24 @@ export class ManageBrewUi {
 	}
 
 	static async pOnClickBtnLoadAllPartnered () {
+		const cntAvailable = (await Promise.all([
+			PrereleaseUtil.pGetCntBrewsPartnered({isSilent: true}),
+			BrewUtil2.pGetCntBrewsPartnered({isSilent: true}),
+		])).sum();
+		if (!cntAvailable) {
+			JqueryUtil.doToast({type: "warning", content: `No partnered content available!`});
+			return;
+		}
+
+		if (
+			!await InputUiUtil.pGetUserBoolean({
+				title: "Load Partnered Content",
+				htmlDescription: `<p>Are you sure you want to load all partnered content?<br>${cntAvailable} partnered content source${cntAvailable === 1 ? "" : "s"} will be loaded.</p>`,
+				textYes: "Yes",
+				textNo: "Cancel",
+			})
+		) return;
+
 		const brewDocs = [];
 		try {
 			const [brewDocsPrerelease, brewDocsHomebrew] = await Promise.all([

@@ -58,7 +58,6 @@ const PROPORDER_FOUNDRY_GENERIC_FEATURE = [
 	"type",
 	"system",
 	PROPORDER_FOUNDRY_ACTIVITIES,
-	"actorDataMod",
 	PROPORDER_FOUNDRY_EFFECTS,
 	"flags",
 	"img",
@@ -701,7 +700,6 @@ const PROPORDER_FOUNDRY_CLASS = [
 	"isIgnored",
 	"ignoreSrdActivities",
 	"ignoreSrdEffects",
-	"actorDataMod",
 	"actorTokenMod",
 
 	"migrationVersion",
@@ -806,7 +804,6 @@ const PROPORDER_FOUNDRY_SUBCLASS = [
 	"isIgnored",
 	"ignoreSrdActivities",
 	"ignoreSrdEffects",
-	"actorDataMod",
 	"actorTokenMod",
 
 	"migrationVersion",
@@ -939,7 +936,6 @@ const PROPORDER_FOUNDRY_CLASS_FEATURE = [
 	"isIgnored",
 	"ignoreSrdActivities",
 	"ignoreSrdEffects",
-	"actorDataMod",
 	"actorTokenMod",
 
 	new ObjectKey("subEntities", {
@@ -976,7 +972,6 @@ const PROPORDER_FOUNDRY_SUBCLASS_FEATURE = [
 	"isIgnored",
 	"ignoreSrdActivities",
 	"ignoreSrdEffects",
-	"actorDataMod",
 	"actorTokenMod",
 
 	new ObjectKey("subEntities", {

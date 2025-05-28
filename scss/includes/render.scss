@@ -288,6 +288,25 @@ Renderer
 				}
 			}
 
+			&list-hang-subtrait {
+				padding: 0;
+				list-style: none;
+
+				> .rd__li {
+					margin-bottom: var(--h-mb-li);
+					text-indent: var(--w-text-indent-li-hang);
+
+					a,
+					span {
+						text-indent: initial;
+					}
+
+					> * {
+						margin: 0 0 var(--h-mb-li);
+					}
+				}
+			}
+
 			&list-caption {
 				> .rd__list-name {
 					font-variant: small-caps;

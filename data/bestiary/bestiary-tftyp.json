@@ -6846,11 +6846,28 @@
 						"The vampire has the following flaws:",
 						{
 							"type": "list",
+							"style": "list-hang-subtrait",
 							"items": [
-								"Forbiddance. The vampire can't enter a residence without an invitation from one of the occupants.",
-								"Harmed by Running Water. The vampire takes 20 acid damage when it ends its turn in running water.",
-								"Stake to the Heart. The vampire is destroyed if a piercing weapon made of wood is driven into its heart while it is {@condition incapacitated} in its resting place.",
-								"Sunlight Hypersensitivity. The vampire takes 20 radiant damage when it starts its turn in sunlight. While in sunlight, it has disadvantage on attack rolls and ability checks."
+								{
+									"type": "itemSub",
+									"name": "Forbiddance",
+									"entry": "The vampire can't enter a residence without an invitation from one of the occupants."
+								},
+								{
+									"type": "itemSub",
+									"name": "Harmed by Running Water",
+									"entry": "The vampire takes 20 acid damage when it ends its turn in running water."
+								},
+								{
+									"type": "itemSub",
+									"name": "Stake to the Heart",
+									"entry": "The vampire is destroyed if a piercing weapon made of wood is driven into its heart while it is {@condition incapacitated} in its resting place."
+								},
+								{
+									"type": "itemSub",
+									"name": "Sunlight Hypersensitivity",
+									"entry": "The vampire takes 20 radiant damage when it starts its turn in sunlight. While in sunlight, it has disadvantage on attack rolls and ability checks."
+								}
 							]
 						}
 					]

@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.8.6"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.8.7"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -2782,32 +2782,32 @@ globalThis.AnimationUtil = class {
 };
 
 // CONTEXT MENUS =======================================================================================================
-globalThis.ContextUtil = {
-	_isInit: false,
-	_menus: [],
+globalThis.ContextUtil = class {
+	static _isInit = false;
+	static _menus = [];
 
-	_init () {
+	static _init () {
 		if (ContextUtil._isInit) return;
 		ContextUtil._isInit = true;
 
 		document.body.addEventListener("click", () => ContextUtil.closeAllMenus());
-	},
+	}
 
-	getMenu (actions) {
+	static getMenu (actions) {
 		ContextUtil._init();
 
 		const menu = new ContextUtil.Menu(actions);
 		ContextUtil._menus.push(menu);
 		return menu;
-	},
+	}
 
-	deleteMenu (menu) {
+	static deleteMenu (menu) {
 		if (!menu) return;
 
 		menu.remove();
 		const ix = ContextUtil._menus.findIndex(it => it === menu);
 		if (~ix) ContextUtil._menus.splice(ix, 1);
-	},
+	}
 
 	/**
 	 * @param evt
@@ -2815,7 +2815,7 @@ globalThis.ContextUtil = {
 	 * @param {?object} userData
 	 * @return {Promise<*>}
 	 */
-	pOpenMenu (evt, menu, {userData = null} = {}) {
+	static pOpenMenu (evt, menu, {userData = null} = {}) {
 		evt.preventDefault();
 		evt.stopPropagation();
 
@@ -2825,13 +2825,13 @@ globalThis.ContextUtil = {
 		ContextUtil._menus.filter(it => it !== menu).forEach(it => it.close());
 
 		return menu.pOpen(evt, {userData});
-	},
+	}
 
-	closeAllMenus () {
+	static closeAllMenus () {
 		ContextUtil._menus.forEach(menu => menu.close());
-	},
+	}
 
-	Menu: class {
+	static Menu = class {
 		constructor (actions) {
 			this._actions = actions;
 			this._pResult = null;
@@ -2927,11 +2927,11 @@ globalThis.ContextUtil = {
 			const posMouse = EventUtil[fnGetEventPos](evt);
 			const szWin = $(window)[fnWindowSize]();
 			const posScroll = $(window)[fnScrollDir]();
-			let position = posMouse + posScroll;
-
-			if (offset) position += offset;
-
+			const posMouseOffset = offset ? posMouse + offset : posMouse;
 			const szMenu = this[fnMenuSize]();
+
+			let position = posMouse + posScroll;
+			position += (offset || 0);
 
 			// region opening menu would violate bounds
 			if (bounds != null) {
@@ -2949,7 +2949,7 @@ globalThis.ContextUtil = {
 			// endregion
 
 			// opening menu would pass the side of the page
-			if (position + szMenu > szWin && szMenu < position) position -= szMenu;
+			if (posMouseOffset + szMenu > szWin && szMenu < posMouseOffset) position -= szMenu;
 
 			return position;
 		}
@@ -2963,7 +2963,7 @@ globalThis.ContextUtil = {
 				.filter(menuSub => menuSubExclude == null || menuSub !== menuSubExclude)
 				.forEach(menuSub => menuSub.close());
 		}
-	},
+	};
 
 	/**
 	 * @param text
@@ -2976,21 +2976,23 @@ globalThis.ContextUtil = {
 	 * @param [opts.textAlt] Text for the alt-action button
 	 * @param [opts.titleAlt] Title for the alt-action button
 	 */
-	Action: function (text, fnAction, opts) {
-		opts = opts || {};
+	static Action = class {
+		constructor (text, fnAction, opts) {
+			opts = opts || {};
 
-		this.text = text;
-		this.fnAction = fnAction;
+			this.text = text;
+			this.fnAction = fnAction;
 
-		this.isDisabled = opts.isDisabled;
-		this.title = opts.title;
-		this.style = opts.style;
+			this.isDisabled = opts.isDisabled;
+			this.title = opts.title;
+			this.style = opts.style;
 
-		this.fnActionAlt = opts.fnActionAlt;
-		this.textAlt = opts.textAlt;
-		this.titleAlt = opts.titleAlt;
+			this.fnActionAlt = opts.fnActionAlt;
+			this.textAlt = opts.textAlt;
+			this.titleAlt = opts.titleAlt;
+		}
 
-		this.render = function ({menu}) {
+		render ({menu}) {
 			const $btnAction = this._render_$btnAction({menu});
 			const $btnActionAlt = this._render_$btnActionAlt({menu});
 
@@ -2999,9 +3001,9 @@ globalThis.ContextUtil = {
 				$eleRow: $$`<div class="ui-ctx__row ve-flex-v-center ${this.style || ""}">${$btnAction}${$btnActionAlt}</div>`,
 				$eleBtn: $btnAction,
 			};
-		};
+		}
 
-		this._render_$btnAction = function ({menu}) {
+		_render_$btnAction ({menu}) {
 			const $btnAction = $(`<div class="w-100 min-w-0 ui-ctx__btn py-1 pl-5 ${this.fnActionAlt ? "" : "pr-5"}" ${this.isDisabled ? "disabled" : ""} tabindex="0">${this.text}</div>`)
 				.on("click", async evt => {
 					if (this.isDisabled) return;
@@ -3026,7 +3028,7 @@ globalThis.ContextUtil = {
 			return $btnAction;
 		};
 
-		this._render_$btnActionAlt = function ({menu}) {
+		_render_$btnActionAlt ({menu}) {
 			if (!this.fnActionAlt) return null;
 
 			const $btnActionAlt = $(`<div class="ui-ctx__btn ml-1 bl-1 py-1 px-4" ${this.isDisabled ? "disabled" : ""}>${this.textAlt ?? `<span class="glyphicon glyphicon-cog"></span>`}</div>`)
@@ -3047,45 +3049,49 @@ globalThis.ContextUtil = {
 			if (this.titleAlt) $btnActionAlt.title(this.titleAlt);
 
 			return $btnActionAlt;
-		};
+		}
 
-		this.update = function () { /* Implement as required */ };
-	},
+		update () { /* Implement as required */ };
+	};
 
-	ActionLink: function (text, fnHref, opts) {
-		ContextUtil.Action.call(this, text, null, opts);
+	static ActionLink = class extends this.Action {
+		constructor (text, fnHref, opts) {
+			super(text, null, opts);
 
-		this.fnHref = fnHref;
-		this._$btnAction = null;
+			this.fnHref = fnHref;
+			this._$btnAction = null;
+		}
 
-		this._render_$btnAction = function () {
+		_render_$btnAction () {
 			this._$btnAction = $(`<a href="${this.fnHref()}" class="w-100 min-w-0 ui-ctx__btn py-1 pl-5 ${this.fnActionAlt ? "" : "pr-5"}" ${this.isDisabled ? "disabled" : ""} tabindex="0">${this.text}</a>`);
 			if (this.title) this._$btnAction.title(this.title);
 
 			return this._$btnAction;
-		};
+		}
 
-		this.update = function () {
+		update () {
 			this._$btnAction.attr("href", this.fnHref());
-		};
-	},
+		}
+	};
 
-	ActionSelect: function (
-		{
-			values,
-			fnOnChange = null,
-			fnGetDisplayValue = null,
-		},
-	) {
-		this._values = values;
-		this._fnOnChange = fnOnChange;
-		this._fnGetDisplayValue = fnGetDisplayValue;
+	static ActionSelect = class {
+		constructor (
+			{
+				values,
+				fnOnChange = null,
+				fnGetDisplayValue = null,
+			},
+		) {
+			this._values = values;
+			this._fnOnChange = fnOnChange;
+			this._fnGetDisplayValue = fnGetDisplayValue;
 
-		this._sel = null;
+			this._sel = null;
 
-		this._ixInitial = null;
+			this._ixInitial = null;
+		}
 
-		this.render = function ({menu}) {
+		render ({menu}) {
 			this._sel = this._render_sel({menu});
 
 			if (this._ixInitial != null) {
@@ -3097,9 +3103,9 @@ globalThis.ContextUtil = {
 				action: this,
 				$eleRow: $$`<div class="ui-ctx__row ve-flex-v-center">${this._sel}</div>`,
 			};
-		};
+		}
 
-		this._render_sel = function ({menu}) {
+		_render_sel ({menu}) {
 			const sel = e_({
 				tag: "select",
 				clazz: "w-100 min-w-0 mx-5 py-1",
@@ -3132,18 +3138,18 @@ globalThis.ContextUtil = {
 			});
 
 			return sel;
-		};
+		}
 
-		this.setValue = function (val) {
+		setValue (val) {
 			const ix = this._values.indexOf(val);
 			if (!this._sel) return this._ixInitial = ix;
 			this._sel.val(`${ix}`);
-		};
+		}
 
-		this.update = function () { /* Implement as required */ };
-	},
+		update () { /* Implement as required */ }
+	};
 
-	ActionSubMenu: class {
+	static ActionSubMenu = class {
 		constructor (name, actions) {
 			this._name = name;
 			this._actions = actions;
@@ -3189,7 +3195,7 @@ globalThis.ContextUtil = {
 		}
 
 		update () { /* Implement as required */ }
-	},
+	};
 };
 
 // LIST AND SEARCH =====================================================================================================
@@ -4422,8 +4428,34 @@ globalThis.DataUtil = class {
 			 */
 			request.overrideMimeType("application/json");
 
+			const getRequestDetails = () => {
+				return [
+					"status",
+					"statusText",
+					"readyState",
+					"response",
+					"responseType",
+				]
+					.map(prop => `${prop}=${JSON.stringify(request[prop])}`)
+					.join(" ");
+			};
+
 			request.addEventListener("load", () => {
 				try {
+					if (request.status >= 400) {
+						this._REQUEST_LIMITERS.forEach(limiter => {
+							if (limiter.isMatch(url)) limiter.addFailure();
+						});
+
+						return resolve(
+							new this._OptionalJsonResponse({
+								url,
+								status: request.status,
+								error: `Error during JSON request: ${getRequestDetails()}`,
+							}),
+						);
+					}
+
 					resolve(
 						new this._OptionalJsonResponse({
 							url,
@@ -4447,16 +4479,6 @@ globalThis.DataUtil = class {
 			});
 
 			request.addEventListener("error", () => {
-				const ptDetail = [
-					"status",
-					"statusText",
-					"readyState",
-					"response",
-					"responseType",
-				]
-					.map(prop => `${prop}=${JSON.stringify(request[prop])}`)
-					.join(" ");
-
 				this._REQUEST_LIMITERS.forEach(limiter => {
 					if (limiter.isMatch(url)) limiter.addFailure();
 				});
@@ -4465,7 +4487,7 @@ globalThis.DataUtil = class {
 					new this._OptionalJsonResponse({
 						url,
 						status: request.status,
-						error: `Error during JSON request: ${ptDetail}`,
+						error: `Network error during JSON request: ${getRequestDetails()}`,
 					}),
 				);
 			});

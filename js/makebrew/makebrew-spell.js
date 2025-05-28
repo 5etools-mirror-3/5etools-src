@@ -3,6 +3,8 @@ import {BuilderBase} from "./makebrew-builder-base.js";
 import {BuilderUi} from "./makebrew-builderui.js";
 import {TagCondition} from "../converter/converterutils-tags.js";
 import {RenderSpells} from "../render-spells.js";
+import {SITE_STYLE__CLASSIC} from "../consts.js";
+import {VetoolsConfig} from "../utils-config/utils-config-config.js";
 
 const _SPELL_RANGE_TYPES = [
 	{type: Parser.RNG_POINT, hasDistance: true, isRequireAmount: false},
@@ -114,7 +116,7 @@ export class SpellBuilder extends BuilderBase {
 				fromClassList: [
 					{
 						name: "Wizard",
-						source: Parser.SRC_PHB,
+						source: VetoolsConfig.get("styleSwitcher", "style") === SITE_STYLE__CLASSIC ? Parser.SRC_PHB : Parser.SRC_XPHB,
 					},
 				],
 			},
@@ -135,22 +137,15 @@ export class SpellBuilder extends BuilderBase {
 	}
 
 	doHandleSourcesAdd () {
-		this._doHandleSourcesAdd_handleSelProp("$selClassSources");
-		this._doHandleSourcesAdd_handleSelProp("$selSubclassSources");
+		this._doHandleSourcesAdd_handleSelProp("classSources");
+		this._doHandleSourcesAdd_handleSelProp("subclassSources");
 	}
 
 	_doHandleSourcesAdd_handleSelProp (prop) {
-		(this._$eles[prop] || []).map($sel => {
-			const currSrcJson = $sel.val();
-			$sel.empty();
-			[...Object.keys(Parser.SOURCE_JSON_TO_FULL), ...this._ui.allSources]
-				.forEach(srcJson => $sel.append(`<option value="${srcJson.escapeQuotes()}">${Parser.sourceJsonToFull(srcJson).escapeQuotes()}</option>`));
-
-			if (this._ui.allSources.indexOf(currSrcJson)) $sel.val(currSrcJson);
-			else $sel.val(Parser.SRC_PHB);
-
-			return $sel;
-		}).forEach($sel => $sel.change());
+		(this._compsSource[prop] || [])
+			.forEach(comp => {
+				comp.onUpdateValues();
+			});
 	}
 
 	_renderInputImpl () {
@@ -386,7 +381,7 @@ export class SpellBuilder extends BuilderBase {
 
 	__$getOtherSourcesInput__getOtherSourceRow (doUpdateState, otherSourceRows, os) {
 		const getOtherSource = () => {
-			const out = {source: $selSource.val()};
+			const out = {source: compSelSource.getValue()};
 			const pageRaw = $iptPage.val();
 			if (pageRaw) {
 				const page = !isNaN(pageRaw) ? UiUtil.strToInt(pageRaw) : pageRaw;
@@ -402,13 +397,13 @@ export class SpellBuilder extends BuilderBase {
 			.change(() => doUpdateState())
 			.val(os && os.page ? os.page : null);
 
-		const $selSource = this._$getSelSource("$selOtherSourceSources", doUpdateState, os ? os.source.escapeQuotes() : Parser.SRC_PHB);
+		const compSelSource = this._getCompSelSource("otherSourceSources", doUpdateState, os ? os.source.escapeQuotes() : this._meta.styleHint === SITE_STYLE__CLASSIC ? Parser.SRC_PHB : Parser.SRC_XPHB);
 
 		const out = {getOtherSource};
 
 		const $wrpBtnRemove = $(`<div class="ve-text-right mb-2"></div>`);
 		const $wrp = $$`<div class="ve-flex-col mkbru__wrp-rows mkbru__wrp-rows--removable">
-			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Source</span>${$selSource}</div>
+			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Source</span>${compSelSource.$getWrp()}</div>
 			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Page</span>${$iptPage}</div>
 			${$wrpBtnRemove}
 		</div>`;
@@ -821,8 +816,12 @@ export class SpellBuilder extends BuilderBase {
 	}
 
 	__$getClassesInputs (cb) {
-		const DEFAULT_CLASS = {name: "Wizard", source: Parser.SRC_PHB};
-		const DEFAULT_SUBCLASS = {name: "Evocation", source: Parser.SRC_PHB};
+		const DEFAULT_CLASS = this._meta.styleHint === SITE_STYLE__CLASSIC
+			? {name: "Wizard", source: Parser.SRC_PHB}
+			: {name: "Wizard", source: Parser.SRC_XPHB};
+		const DEFAULT_SUBCLASS = this._meta.styleHint === SITE_STYLE__CLASSIC
+			? {name: "Evocation", source: Parser.SRC_PHB}
+			: {name: "Evoker", source: Parser.SRC_XPHB};
 
 		const [$rowCls, $rowInnerCls] = BuilderUi.getLabelledRowTuple("Classes", {isMarked: true});
 		const [$rowSc, $rowInnerSc] = BuilderUi.getLabelledRowTuple("Subclasses", {isMarked: true});
@@ -879,21 +878,21 @@ export class SpellBuilder extends BuilderBase {
 		const getClass = () => {
 			return {
 				name: $iptClass.val().trim(),
-				source: $selClassSource.val().unescapeQuotes(),
+				source: compSelSource.getValue(),
 			};
 		};
 
 		const $iptClass = $(`<input class="form-control form-control--minimal input-xs">`)
 			.change(() => doUpdateState())
 			.val(cls.name);
-		const $selClassSource = this._$getSelSource("$selClassSources", doUpdateState, cls.source.escapeQuotes());
+		const compSelSource = this._getCompSelSource("classSources", doUpdateState, cls.source);
 
 		const out = {getClass};
 
 		const $wrpBtnRemove = $(`<div class="ve-text-right mb-2"></div>`);
 		const $wrp = $$`<div class="ve-flex-col mkbru__wrp-rows mkbru__wrp-rows--removable">
 			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Class Name</span>${$iptClass}</div>
-			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Class Source</span>${$selClassSource}</div>
+			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Class Source</span>${compSelSource.$getWrp()}</div>
 			${$wrpBtnRemove}
 		</div>`;
 		this.constructor.$getBtnRemoveRow(doUpdateState, classRows, out, $wrp, "Class").appendTo($wrpBtnRemove);
@@ -912,12 +911,12 @@ export class SpellBuilder extends BuilderBase {
 			const out = {
 				class: {
 					name: className,
-					source: $selClassSource.val().unescapeQuotes(),
+					source: compSelSourceClass.getValue(),
 				},
 				subclass: {
 					name: $iptSubclass.val(),
 					shortName: $iptSubclassShort.val(),
-					source: $selSubclassSource.val().unescapeQuotes(),
+					source: compSelSourceSubclass.getValue(),
 				},
 			};
 			const subSubclassName = $iptSubSubclass.val().trim();
@@ -928,7 +927,7 @@ export class SpellBuilder extends BuilderBase {
 		const $iptClass = $(`<input class="form-control form-control--minimal input-xs">`)
 			.change(() => doUpdateState())
 			.val(subclass.class.name);
-		const $selClassSource = this._$getSelSource("$selClassSources", doUpdateState, subclass.class.source.escapeQuotes());
+		const compSelSourceClass = this._getCompSelSource("classSources", doUpdateState, subclass.class.source);
 
 		const $iptSubclass = $(`<input class="form-control form-control--minimal input-xs">`)
 			.change(() => doUpdateState())
@@ -936,7 +935,7 @@ export class SpellBuilder extends BuilderBase {
 		const $iptSubclassShort = $(`<input class="form-control form-control--minimal input-xs">`)
 			.change(() => doUpdateState())
 			.val(subclass.subclass.shortName);
-		const $selSubclassSource = this._$getSelSource("$selSubclassSources", doUpdateState, subclass.subclass.source.escapeQuotes());
+		const compSelSourceSubclass = this._getCompSelSource("subclassSources", doUpdateState, subclass.subclass.source);
 
 		const $iptSubSubclass = $(`<input class="form-control form-control--minimal input-xs">`)
 			.change(() => doUpdateState())
@@ -947,10 +946,10 @@ export class SpellBuilder extends BuilderBase {
 		const $wrpBtnRemove = $(`<div class="ve-text-right mb-2"></div>`);
 		const $wrp = $$`<div class="ve-flex-col mkbru__wrp-rows">
 			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Class Name</span>${$iptClass}</div>
-			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Class Source</span>${$selClassSource}</div>
+			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Class Source</span>${compSelSourceClass.$getWrp()}</div>
 			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Subclass Name</span>${$iptSubclass}</div>
 			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Subclass Short Name</span>${$iptSubclassShort}</div>
-			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Subclass Source</span>${$selSubclassSource}</div>
+			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Subclass Source</span>${compSelSourceSubclass.$getWrp()}</div>
 			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33 help" title="For example, for a Circle of the Coast Land Druid, enter &quot;Coast&quot;">Sub-Subclass Name</span>${$iptSubSubclass}</div>
 			${$wrpBtnRemove}
 		</div>`;
@@ -999,12 +998,12 @@ export class SpellBuilder extends BuilderBase {
 			if (raceName) {
 				const out = {
 					name: raceName,
-					source: $selSource.val().unescapeQuotes(),
+					source: compSelSource.getValue(),
 				};
 				const baseRaceName = $iptBaseRace.val().trim();
 				if (baseRaceName) {
 					out.baseName = baseRaceName;
-					out.baseSource = $selBaseSource.val().unescapeQuotes();
+					out.baseSource = compSelSourceBase.getValue();
 				}
 				return out;
 			} else return null;
@@ -1017,17 +1016,17 @@ export class SpellBuilder extends BuilderBase {
 			.change(() => doUpdateState())
 			.val(race ? race.baseName : null);
 
-		const $selSource = this._$getSelSource("$selRaceSources", doUpdateState, race ? race.source.escapeQuotes() : Parser.SRC_PHB);
-		const $selBaseSource = this._$getSelSource("$selBaseRaceSources", doUpdateState, race && race.baseSource ? race.baseSource.escapeQuotes() : Parser.SRC_PHB);
+		const compSelSource = this._getCompSelSource("raceSources", doUpdateState, race ? race.source : this._meta.styleHint === SITE_STYLE__CLASSIC ? Parser.SRC_PHB : Parser.SRC_XPHB);
+		const compSelSourceBase = this._getCompSelSource("baseRaceSources", doUpdateState, race && race.baseSource ? race.baseSource : this._meta.styleHint === SITE_STYLE__CLASSIC ? Parser.SRC_PHB : Parser.SRC_XPHB);
 
 		const out = {getRace};
 
 		const $wrpBtnRemove = $(`<div class="ve-text-right mb-2"></div>`);
 		const $wrp = $$`<div class="ve-flex-col mkbru__wrp-rows">
 			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Name</span>${$iptRace}</div>
-			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Source</span>${$selSource}</div>
+			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Source</span>${compSelSource.$getWrp()}</div>
 			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33 help" title="The name of the base race, e.g. &quot;Elf&quot;. This is used in filtering.">Base Name</span>${$iptBaseRace}</div>
-			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33 help" title="For example, the &quot;Elf&quot; base race has a source of &quot;${Parser.SRC_PHB}&quot;">Base Source</span>${$selBaseSource}</div>
+			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33 help" title="For example, the &quot;Elf&quot; base race has a source of &quot;${Parser.SRC_PHB}&quot;">Base Source</span>${compSelSourceBase.$getWrp()}</div>
 			${$wrpBtnRemove}
 		</div>`;
 		this.constructor.$getBtnRemoveRow(doUpdateState, raceRows, out, $wrp, "Species").appendTo($wrpBtnRemove);
@@ -1037,7 +1036,7 @@ export class SpellBuilder extends BuilderBase {
 		return out;
 	}
 
-	__$getSimpleSource ({cb, nameSingle, namePlural, prop, $propEles}) {
+	__$getSimpleSource ({cb, nameSingle, namePlural, prop, propTracker}) {
 		const [$row, $rowInner] = BuilderUi.getLabelledRowTuple(namePlural, {isMarked: true});
 
 		const doUpdateState = () => {
@@ -1047,7 +1046,7 @@ export class SpellBuilder extends BuilderBase {
 			cb();
 		};
 
-		const optsRow = {nameSingle, $propEles};
+		const optsRow = {nameSingle, propTracker};
 		const rows = [];
 
 		const $wrpRows = $(`<div></div>`).appendTo($rowInner);
@@ -1070,14 +1069,14 @@ export class SpellBuilder extends BuilderBase {
 		return {$row, doRefresh};
 	}
 
-	__$getSimpleSource__getIdentRow (doUpdateState, rows, identObj, {nameSingle, $propEles}) {
+	__$getSimpleSource__getIdentRow (doUpdateState, rows, identObj, {nameSingle, propTracker}) {
 		const getIdentObject = () => {
 			const name = $iptName.val().trim();
 			if (!name) return null;
 
 			return {
 				name: name,
-				source: $selSource.val().unescapeQuotes(),
+				source: compSelSource.getValue(),
 			};
 		};
 
@@ -1085,14 +1084,14 @@ export class SpellBuilder extends BuilderBase {
 			.change(() => doUpdateState())
 			.val(identObj ? identObj.name : null);
 
-		const $selSource = this._$getSelSource($propEles, doUpdateState, identObj ? identObj.source.escapeQuotes() : Parser.SRC_PHB);
+		const compSelSource = this._getCompSelSource(propTracker, doUpdateState, identObj ? identObj.source : this._meta.styleHint === SITE_STYLE__CLASSIC ? Parser.SRC_PHB : Parser.SRC_XPHB);
 
 		const out = {getIdentObject};
 
 		const $wrpBtnRemove = $(`<div class="ve-text-right mb-2"></div>`);
 		const $wrp = $$`<div class="ve-flex-col mkbru__wrp-rows">
 			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Name</span>${$iptName}</div>
-			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Source</span>${$selSource}</div>
+			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Source</span>${compSelSource.$getWrp()}</div>
 			${$wrpBtnRemove}
 		</div>`;
 		this.constructor.$getBtnRemoveRow(doUpdateState, rows, out, $wrp, nameSingle).appendTo($wrpBtnRemove);
@@ -1108,7 +1107,7 @@ export class SpellBuilder extends BuilderBase {
 			nameSingle: "Background",
 			namePlural: "Backgrounds",
 			prop: "backgrounds",
-			$propEles: "$selBackgroundSources",
+			propTracker: "backgroundSources",
 		});
 	}
 
@@ -1118,7 +1117,7 @@ export class SpellBuilder extends BuilderBase {
 			nameSingle: "Optional Feature",
 			namePlural: "Optional Features",
 			prop: "optionalfeatures",
-			$propEles: "$selOptionalfeatureSources",
+			propTracker: "optionalfeatureSources",
 		});
 	}
 
@@ -1128,7 +1127,7 @@ export class SpellBuilder extends BuilderBase {
 			nameSingle: "Feat",
 			namePlural: "Feats",
 			prop: "feats",
-			$propEles: "$selFeatSources",
+			propTracker: "featSources",
 		});
 	}
 
@@ -1138,7 +1137,7 @@ export class SpellBuilder extends BuilderBase {
 			nameSingle: "Character Creation Option",
 			namePlural: "Character Creation Options",
 			prop: "charoptions",
-			$propEles: "$selCharoptionSources",
+			propTracker: "charoptionSources",
 		});
 	}
 
@@ -1148,24 +1147,49 @@ export class SpellBuilder extends BuilderBase {
 			nameSingle: "Supernatural Gift/Reward",
 			namePlural: "Supernatural Gifts and Rewards",
 			prop: "rewards",
-			$propEles: "$selRewardSources",
+			propTracker: "rewardSources",
 		});
 	}
 
 	// TODO use this in creature builder (_$eles)
-	_$getSelSource (elesProp, doUpdateState, initialVal) {
-		const selSource = e_({
-			tag: "select",
-			clazz: "form-control input-xs",
-			children: [...Object.keys(Parser.SOURCE_JSON_TO_FULL), ...this._ui.allSources]
-				.map(srcJson => e_({tag: "option", val: srcJson, text: Parser.sourceJsonToFull(srcJson)})),
-		});
-		const $selSource = $(selSource)
-			.change(() => doUpdateState());
+	_getCompSelSource (propTracker, doUpdateState, initialVal) {
+		const comp = BaseComponent.fromObject({source: initialVal});
 
-		if (initialVal != null) $selSource.val(initialVal);
-		(this._$eles[elesProp] = this._$eles[elesProp] || []).push($selSource);
-		return $selSource;
+		const getValues = () => [
+			...Object.entries(Parser.SOURCE_JSON_TO_FULL)
+				.sort(([, vA], [, vB]) => SortUtil.ascSortLower(vA, vB))
+				.map(([k]) => k),
+			...this._ui.allSources,
+			// Allow selection of prerelease sources, as these are non-entity source selectors
+			...PrereleaseUtil.getSources()
+				.sort((a, b) => SortUtil.ascSortLower(a.full, b.full))
+				.map(it => it.json),
+		];
+
+		const meta = ComponentUiUtil.$getSelSearchable(
+			comp,
+			"source",
+			{
+				values: getValues(),
+				fnDisplay: val => Parser.sourceJsonToFull(val),
+				displayNullAs: "\u2014",
+				asMeta: true,
+			},
+		);
+
+		comp._addHookBase("source", () => doUpdateState());
+
+		comp.onUpdateValues = () => {
+			meta.setValues(getValues(), {isResetOnMissing: true});
+		};
+
+		(this._compsSource[propTracker] ||= []).push(comp);
+
+		comp.getValue = () => comp._state.source;
+
+		comp.$getWrp = () => meta.$wrp;
+
+		return comp;
 	}
 
 	__$getSourcesGenerated (cb, fnsDoRefreshSources) {

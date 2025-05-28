@@ -1308,6 +1308,22 @@ export class ConverterCreature extends ConverterBase {
 					cur,
 					ptrList,
 					isMultiple,
+					fnIsMatchCurEntry: cur => /\bVampire Weakness/i.test(cur.name || ""),
+					// Assume that this is the last trait, and that everything following should be part of the list
+					fnIsMatchNxtStr: ({entryNxt, entryNxtStr}) => true,
+					listStyle: "list-hang-subtrait",
+					listItemType: "itemSub",
+				})
+			) continue;
+
+			if (
+				this._doMergeHangingLists_generic({
+					stats,
+					prop,
+					ix: i,
+					cur,
+					ptrList,
+					isMultiple,
 					fnIsMatchCurEntry: cur => /\bhas these weaknesses:/.test(cur.entries.last().trim()),
 					// Assume that this is the last trait, and that everything following should be part of the list
 					fnIsMatchNxtStr: ({entryNxt, entryNxtStr}) => true,
@@ -1329,18 +1345,31 @@ export class ConverterCreature extends ConverterBase {
 		}
 	}
 
-	static _doMergeHangingLists_generic ({stats, prop, ix, cur, ptrList, isMultiple, fnIsMatchCurEntry, fnIsMatchNxtStr}) {
+	static _doMergeHangingLists_generic (
+		{
+			stats,
+			prop,
+			ix,
+			cur,
+			ptrList,
+			isMultiple,
+			fnIsMatchCurEntry,
+			fnIsMatchNxtStr,
+			listStyle = "list-hang-notitle",
+			listItemType = "item",
+		},
+	) {
 		if (!fnIsMatchCurEntry(cur)) return false;
 
 		let cnt = 0;
 
 		const doAdd = ({entryNxt}) => {
 			if (!ptrList._) {
-				ptrList._ = {type: "list", style: "list-hang-notitle", items: []};
+				ptrList._ = {type: "list", style: listStyle, items: []};
 				cur.entries.push(ptrList._);
 			}
 
-			ConverterUtils.mutSetEntryTypePretty({obj: entryNxt, type: "item"});
+			ConverterUtils.mutSetEntryTypePretty({obj: entryNxt, type: listItemType});
 			ptrList._.items.push(entryNxt);
 			stats[prop].splice(ix + 1, 1);
 			cnt++;
@@ -1361,7 +1390,7 @@ export class ConverterCreature extends ConverterBase {
 			doAdd({entryNxt});
 		}
 
-		return true;
+		return !!cnt;
 	}
 
 	/* -------------------------------------------- */
