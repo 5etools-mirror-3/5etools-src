@@ -28,10 +28,6 @@ export class PrereleaseUtil_ extends BrewUtil2Base {
 
 	/* -------------------------------------------- */
 
-	_pInit_doBindDragDrop () { /* No-op */ }
-
-	/* -------------------------------------------- */
-
 	async pGetSourceIndex (urlRoot) { return DataUtil.prerelease.pLoadSourceIndex(urlRoot); }
 
 	getFileUrl (path, urlRoot) { return DataUtil.prerelease.getFileUrl(path, urlRoot); }

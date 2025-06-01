@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.8.7"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.8.8"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -2792,10 +2792,10 @@ globalThis.ContextUtil = class {
 		document.body.addEventListener("click", () => ContextUtil.closeAllMenus());
 	}
 
-	static getMenu (actions) {
+	static getMenu (actions, {menuParent = null} = {}) {
 		ContextUtil._init();
 
-		const menu = new ContextUtil.Menu(actions);
+		const menu = new ContextUtil.Menu(actions, {menuParent});
 		ContextUtil._menus.push(menu);
 		return menu;
 	}
@@ -2831,27 +2831,29 @@ globalThis.ContextUtil = class {
 	}
 
 	static Menu = class {
-		constructor (actions) {
+		constructor (actions, {menuParent = null} = {}) {
 			this._actions = actions;
+			this._menuParent = menuParent;
+
 			this._pResult = null;
 			this.resolveResult_ = null;
 
 			this.userData = null;
 
-			this._$ele = null;
+			this._ele = null;
 			this._metasActions = [];
 
 			this._menusSub = [];
 		}
 
 		remove () {
-			if (!this._$ele) return;
-			this._$ele.remove();
-			this._$ele = null;
+			if (!this._ele) return;
+			this._ele.remove();
+			this._ele = null;
 		}
 
-		width () { return this._$ele ? this._$ele.width() : undefined; }
-		height () { return this._$ele ? this._$ele.height() : undefined; }
+		width () { return this._ele ? this._ele.outerWidthe() : undefined; }
+		height () { return this._ele ? this._ele.outerWidthe() : undefined; }
 
 		pOpen (evt, {userData = null, offsetY = null, boundsX = null} = {}) {
 			evt.stopPropagation();
@@ -2865,55 +2867,59 @@ globalThis.ContextUtil = class {
 			});
 			this.userData = userData;
 
-			this._$ele
+			this._ele
 				// Show as transparent/non-clickable first, so we can get an accurate width/height
 				.css({
-					left: 0,
-					top: 0,
-					opacity: 0,
+					left: `0px`,
+					top: `0px`,
+					opacity: `0px`,
 					pointerEvents: "none",
 				})
 				.showVe()
 				// Use the accurate width/height to set the final position, and remove our temp styling
 				.css({
-					left: this._getMenuPosition(evt, "x", {bounds: boundsX}),
-					top: this._getMenuPosition(evt, "y", {offset: offsetY}),
+					left: `${this._getMenuPosition(evt, "x", {bounds: boundsX})}px`,
+					top: `${this._getMenuPosition(evt, "y", {offset: offsetY})}px`,
 					opacity: "",
 					pointerEvents: "",
 				});
 
-			this._metasActions[0].$eleRow.focus();
+			this._metasActions[0].eleRow.focus();
 
 			return this._pResult;
 		}
 
-		close () {
-			if (!this._$ele) return;
-			this._$ele.hideVe();
+		/**
+		 * @param _isSkipSubMenus (Avoid infinite loops)
+		 * @param isSkipParentMenus
+		 */
+		close ({_isSkipSubMenus = false, isSkipParentMenus = false} = {}) {
+			if (this._ele) this._ele.hideVe();
 
-			this.closeSubMenus();
+			if (!_isSkipSubMenus) this.closeSubMenus();
+			if (!isSkipParentMenus) this._closeParentMenus();
 		}
 
 		isOpen () {
-			if (!this._$ele) return false;
-			return !this._$ele.hasClass("ve-hidden");
+			if (!this._ele) return false;
+			return !this._ele.classList.contains("ve-hidden");
 		}
 
 		_initLazy () {
-			if (this._$ele) {
+			if (this._ele) {
 				this._metasActions.forEach(meta => meta.action.update());
 				return;
 			}
 
-			const $elesAction = this._actions.map(it => {
-				if (it == null) return $(`<div class="my-1 w-100 ui-ctx__divider"></div>`);
+			const elesAction = this._actions.map(it => {
+				if (it == null) return ee`<div class="my-1 w-100 ui-ctx__divider"></div>`;
 
 				const rdMeta = it.render({menu: this});
 				this._metasActions.push(rdMeta);
-				return rdMeta.$eleRow;
+				return rdMeta.eleRow;
 			});
 
-			this._$ele = $$`<div class="ve-flex-col ui-ctx__wrp py-2 absolute">${$elesAction}</div>`
+			this._ele = ee`<div class="ve-flex-col ui-ctx__wrp py-2 absolute">${elesAction}</div>`
 				.hideVe()
 				.appendTo(document.body);
 		}
@@ -2960,7 +2966,12 @@ globalThis.ContextUtil = class {
 		closeSubMenus (menuSubExclude = null) {
 			this._menusSub
 				.filter(menuSub => menuSubExclude == null || menuSub !== menuSubExclude)
-				.forEach(menuSub => menuSub.close());
+				.forEach(menuSub => menuSub.close({isSkipParentMenus: true}));
+		}
+
+		_closeParentMenus () {
+			if (!this._menuParent) return;
+			this._menuParent.close({_isSkipSubMenus: true});
 		}
 	};
 
@@ -2992,46 +3003,48 @@ globalThis.ContextUtil = class {
 		}
 
 		render ({menu}) {
-			const $btnAction = this._render_$btnAction({menu});
-			const $btnActionAlt = this._render_$btnActionAlt({menu});
+			const btnAction = this._render_btnAction({menu});
+			const btnActionAlt = this._render_btnActionAlt({menu});
 
 			return {
 				action: this,
-				$eleRow: $$`<div class="ui-ctx__row ve-flex-v-center ${this.style || ""}">${$btnAction}${$btnActionAlt}</div>`,
-				$eleBtn: $btnAction,
+				eleRow: ee`<div class="ui-ctx__row ve-flex-v-center ${this.style || ""}">${btnAction}${btnActionAlt}</div>`,
+				eleBtn: btnAction,
 			};
 		}
 
-		_render_$btnAction ({menu}) {
-			const $btnAction = $(`<div class="w-100 min-w-0 ui-ctx__btn py-1 pl-5 ${this.fnActionAlt ? "" : "pr-5"}" ${this.isDisabled ? "disabled" : ""} tabindex="0">${this.text}</div>`)
-				.on("click", async evt => {
-					if (this.isDisabled) return;
+		_render_btnAction ({menu}) {
+			const pOnClick = async (evt) => {
+				if (this.isDisabled) return;
 
+				evt.preventDefault();
+				evt.stopPropagation();
+
+				menu.close();
+
+				const result = await this.fnAction(evt, {userData: menu.userData});
+				if (menu.resolveResult_) menu.resolveResult_(result);
+			};
+
+			const btnAction = ee`<div class="w-100 min-w-0 ui-ctx__btn py-1 pl-5 ${this.fnActionAlt ? "" : "pr-5"}" ${this.isDisabled ? "disabled" : ""} tabindex="0">${this.text}</div>`
+				.onn("click", evt => pOnClick(evt))
+				.onn("mousedown", evt => {
 					evt.preventDefault();
-					evt.stopPropagation();
-
-					menu.close();
-
-					const result = await this.fnAction(evt, {userData: menu.userData});
-					if (menu.resolveResult_) menu.resolveResult_(result);
 				})
-				.on("mousedown", evt => {
-					evt.preventDefault();
-				})
-				.keydown(evt => {
+				.onn("keydown", async evt => {
 					if (evt.key !== "Enter") return;
-					$btnAction.click();
+					await pOnClick(evt);
 				});
-			if (this.title) $btnAction.title(this.title);
+			if (this.title) btnAction.tooltip(this.title);
 
-			return $btnAction;
+			return btnAction;
 		};
 
-		_render_$btnActionAlt ({menu}) {
+		_render_btnActionAlt ({menu}) {
 			if (!this.fnActionAlt) return null;
 
-			const $btnActionAlt = $(`<div class="ui-ctx__btn ml-1 bl-1 py-1 px-4" ${this.isDisabled ? "disabled" : ""}>${this.textAlt ?? `<span class="glyphicon glyphicon-cog"></span>`}</div>`)
-				.on("click", async evt => {
+			const btnActionAlt = ee`<div class="ui-ctx__btn ml-1 bl-1 py-1 px-4" ${this.isDisabled ? "disabled" : ""}>${this.textAlt ?? `<span class="glyphicon glyphicon-cog"></span>`}</div>`
+				.onn("click", async evt => {
 					if (this.isDisabled) return;
 
 					evt.preventDefault();
@@ -3042,12 +3055,12 @@ globalThis.ContextUtil = class {
 					const result = await this.fnActionAlt(evt, {userData: menu.userData});
 					if (menu.resolveResult_) menu.resolveResult_(result);
 				})
-				.on("mousedown", evt => {
+				.onn("mousedown", evt => {
 					evt.preventDefault();
 				});
-			if (this.titleAlt) $btnActionAlt.title(this.titleAlt);
+			if (this.titleAlt) btnActionAlt.tooltip(this.titleAlt);
 
-			return $btnActionAlt;
+			return btnActionAlt;
 		}
 
 		update () { /* Implement as required */ };
@@ -3058,18 +3071,18 @@ globalThis.ContextUtil = class {
 			super(text, null, opts);
 
 			this.fnHref = fnHref;
-			this._$btnAction = null;
+			this._btnAction = null;
 		}
 
-		_render_$btnAction () {
-			this._$btnAction = $(`<a href="${this.fnHref()}" class="w-100 min-w-0 ui-ctx__btn py-1 pl-5 ${this.fnActionAlt ? "" : "pr-5"}" ${this.isDisabled ? "disabled" : ""} tabindex="0">${this.text}</a>`);
-			if (this.title) this._$btnAction.title(this.title);
+		_render_btnAction () {
+			this._btnAction = ee`<a href="${this.fnHref()}" class="w-100 min-w-0 ui-ctx__btn py-1 pl-5 ${this.fnActionAlt ? "" : "pr-5"}" ${this.isDisabled ? "disabled" : ""} tabindex="0">${this.text}</a>`;
+			if (this.title) this._btnAction.tooltip(this.title);
 
-			return this._$btnAction;
+			return this._btnAction;
 		}
 
 		update () {
-			this._$btnAction.attr("href", this.fnHref());
+			this._btnAction.attr("href", this.fnHref());
 		}
 	};
 
@@ -3100,7 +3113,7 @@ globalThis.ContextUtil = class {
 
 			return {
 				action: this,
-				$eleRow: $$`<div class="ui-ctx__row ve-flex-v-center">${this._sel}</div>`,
+				eleRow: ee`<div class="ui-ctx__row ve-flex-v-center">${this._sel}</div>`,
 			};
 		}
 
@@ -3155,20 +3168,20 @@ globalThis.ContextUtil = class {
 		}
 
 		render ({menu}) {
-			const menuSub = ContextUtil.getMenu(this._actions);
+			const menuSub = ContextUtil.getMenu(this._actions, {menuParent: menu});
 			menu.addSubMenu(menuSub);
 
-			const $eleRow = $$`<div class="ui-ctx__btn py-1 px-5 split-v-center">
+			const eleRow = ee`<div class="ui-ctx__btn py-1 px-5 split-v-center">
 				<div>${this._name}</div>
 				<div class="pl-4"><span class="caret caret--right"></span></div>
 			</div>`
-				.on("click", async evt => {
+				.onn("click", async evt => {
 					evt.stopPropagation();
-					if (menuSub.isOpen()) return menuSub.close();
+					if (menuSub.isOpen()) return menuSub.close({isSkipParentMenus: true});
 
 					menu.closeSubMenus(menuSub);
 
-					const bcr = $eleRow[0].getBoundingClientRect();
+					const bcr = eleRow.getBoundingClientRect();
 
 					await menuSub.pOpen(
 						evt,
@@ -3180,16 +3193,14 @@ globalThis.ContextUtil = class {
 							},
 						},
 					);
-
-					menu.close();
 				})
-				.on("mousedown", evt => {
+				.onn("mousedown", evt => {
 					evt.preventDefault();
 				});
 
 			return {
 				action: this,
-				$eleRow,
+				eleRow,
 			};
 		}
 
