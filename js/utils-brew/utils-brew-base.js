@@ -70,8 +70,72 @@ export class BrewUtil2Base {
 		return this._pActiveInit;
 	}
 
-	/** @abstract */
-	_pInit_doBindDragDrop () { throw new Error("Unimplemented!"); }
+	static _isPrereleaseDroppedJson (json) {
+		return json._meta?.sources?.every(src => SourceUtil.isPrereleaseSource(src?.json || ""));
+	}
+
+	static _IS_INIT_SHARED_DRAG_DROP = false;
+
+	static _initSharedDragDrop () {
+		if (this._IS_INIT_SHARED_DRAG_DROP) return;
+
+		document.body.addEventListener("drop", async evt => {
+			if (EventUtil.isInInput(evt)) return;
+
+			evt.stopPropagation();
+			evt.preventDefault();
+
+			const files = evt.dataTransfer?.files;
+			if (!files?.length) return;
+
+			const pFiles = [...files].map((file, i) => {
+				if (!/\.json$/i.test(file.name)) return null;
+
+				return new Promise(resolve => {
+					const reader = new FileReader();
+					reader.onload = () => {
+						let json;
+						try {
+							json = JSON.parse(reader.result);
+						} catch (ignored) {
+							return resolve(null);
+						}
+
+						resolve({name: file.name, json});
+					};
+
+					reader.readAsText(files[i]);
+				});
+			});
+
+			const fileMetas = (await Promise.allSettled(pFiles))
+				.filter(({status}) => status === "fulfilled")
+				.map(({value}) => value)
+				.filter(Boolean);
+
+			const [prereleaseFileMetas, brewFileMetas] = fileMetas.segregate(fileMeta => this._isPrereleaseDroppedJson(fileMeta.json));
+
+			if (prereleaseFileMetas.length) await PrereleaseUtil.pAddBrewsFromFiles(prereleaseFileMetas);
+			if (brewFileMetas.length) await BrewUtil2.pAddBrewsFromFiles(brewFileMetas);
+
+			[PrereleaseUtil, BrewUtil2]
+				.find(it => it.isReloadRequired())
+				?.doLocationReload();
+		});
+
+		document.body.addEventListener("dragover", evt => {
+			if (EventUtil.isInInput(evt)) return;
+
+			evt.stopPropagation();
+			evt.preventDefault();
+		});
+
+		this._IS_INIT_SHARED_DRAG_DROP = true;
+	}
+
+	_pInit_doBindDragDrop () {
+		this.constructor._initSharedDragDrop();
+	}
 
 	async _pInit_pDoLoadFonts () {
 		const fontFaces = Object.entries(

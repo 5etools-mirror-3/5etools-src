@@ -109,6 +109,15 @@ class GenVariantrules {
 					cpy.ruleType = variantRuleMeta.ruleType;
 					cpy.source = doc[opts.headProp].source;
 
+					[
+						"srd",
+						"basicRules",
+						"srd52",
+						"basicRules2024",
+					]
+						.filter(prop => variantRuleMeta[prop])
+						.forEach(prop => cpy[prop] = variantRuleMeta[prop]);
+
 					out.push(cpy);
 				},
 			},
