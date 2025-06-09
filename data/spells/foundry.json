@@ -1,6 +1,122 @@
 {
 	"spell": [
 		{
+			"name": "Absorb Elements",
+			"source": "XGE",
+			"system": {
+				"target.affects.type": "self"
+			},
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "reaction",
+						"condition": "which you take when you take acid, cold, fire, lightning, or thunder damage"
+					},
+					"effects": [
+						{
+							"foundryId": "absorbElements1"
+						},
+						{
+							"foundryId": "absorbElements2"
+						},
+						{
+							"foundryId": "absorbElements3"
+						},
+						{
+							"foundryId": "absorbElements4"
+						},
+						{
+							"foundryId": "absorbElements5"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "absorbElements1",
+					"name": "Acid Resistance",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"rounds": 1
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "acid"
+						}
+					]
+				},
+				{
+					"foundryId": "absorbElements2",
+					"name": "Cold Resistance",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"rounds": 1
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "cold"
+						}
+					]
+				},
+				{
+					"foundryId": "absorbElements3",
+					"name": "Fire Resistance",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"rounds": 1
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "fire"
+						}
+					]
+				},
+				{
+					"foundryId": "absorbElements4",
+					"name": "Lightning Resistance",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"rounds": 1
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "lightning"
+						}
+					]
+				},
+				{
+					"foundryId": "absorbElements5",
+					"name": "Thunder Resistance",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"rounds": 1
+					},
+					"changes": [
+						{
+							"key": "system.traits.dr.value",
+							"mode": "ADD",
+							"value": "thunder"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Aid",
 			"source": "XPHB",
 			"activities": [
@@ -6101,7 +6217,6 @@
 			"effects": [
 				{
 					"name": "Cataleptic",
-					"transfer": true,
 					"duration": {
 						"seconds": 3600
 					},

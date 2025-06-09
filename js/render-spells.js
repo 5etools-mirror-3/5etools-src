@@ -130,7 +130,7 @@ class _RenderSpellsImplBase extends RenderPageImplBase {
 	}
 
 	_getCommonHtmlParts_range ({ent}) {
-		return `<tr><td colspan="6">${Renderer.spell.getHtmlPtRange(ent)}</td></tr>`;
+		return `<tr><td colspan="6">${Renderer.spell.getHtmlPtRange(ent, {styleHint: this._style, isDisplaySelfArea: SourceUtil.isClassicSource(ent.source)})}</td></tr>`;
 	}
 
 	_getCommonHtmlParts_components ({ent}) {

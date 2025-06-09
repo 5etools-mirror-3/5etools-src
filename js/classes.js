@@ -515,6 +515,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			isBlankSourceFilter = !this._pageFilter.sourceFilter.getValues()._isActive;
 		}
 
+		const clsesUpdated = new Set();
 		data.subclass.forEach(sc => {
 			if (sc.className === VeCt.STR_GENERIC || sc.classSource === VeCt.STR_GENERIC) return;
 
@@ -527,13 +528,19 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				return;
 			}
 
-			const isExcludedClass = ExcludeUtil.isExcluded(UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CLASSES](cls), "class", cls.source);
+			clsesUpdated.add(cls);
 
 			(cls.subclasses = cls.subclasses || []).push(sc);
-			// Don't bother checking subclass exclusion for individually-added subclasses, as they should be from homebrew
-			this._pageFilter.mutateAndAddToFilters(cls, isExcludedClass);
-			cls.subclasses.sort(ClassesPage._ascSortSubclasses);
 		});
+
+		[...clsesUpdated]
+			.forEach(cls => {
+				const isExcludedClass = ExcludeUtil.isExcluded(UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CLASSES](cls), "class", cls.source);
+
+				// Don't bother checking subclass exclusion for individually-added subclasses, as they should be from homebrew
+				this._pageFilter.mutateAndAddToFilters(cls, isExcludedClass);
+				cls.subclasses.sort(ClassesPage._ascSortSubclasses);
+			});
 
 		// If we load a homebrew source when we have no source filters active, the homebrew source will set itself high
 		//   and force itself as the only visible source. Fix it in post.
@@ -921,6 +928,9 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				filterValues: f,
 			});
 		});
+
+		// Ensure the correct filter values are used, and reset badly-copied `FilterItem`s
+		this._pageFilter.constructor.mutateForFilters(cpyCls);
 
 		this._activeClassDataFiltered = cpyCls;
 	}
