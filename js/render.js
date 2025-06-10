@@ -3223,7 +3223,7 @@ Renderer.utils = class {
 					<div class="stats__wrp-h-source ${opts.isInlinedToken ? `stats__wrp-h-source--token` : ""} ve-flex-v-baseline">
 						${tagPartSourceStart} class="help-subtle stats__h-source-abbreviation ${ent.source ? `${Parser.sourceJsonToSourceClassname(ent.source)}" title="${Parser.sourceJsonToFull(ent.source)}${Renderer.utils.getSourceSubText(ent)}` : ""}" ${Parser.sourceJsonToStyle(ent.source)}>${ent.source ? Parser.sourceJsonToAbv(ent.source) : ""}${tagPartSourceEnd}
 
-						${Renderer.utils.isDisplayPage(ent.page) ? ` ${tagPartSourceStart} class="rd__stats-name-page ml-1" title="Page ${ent.page}">p${ent.page}${tagPartSourceEnd}` : ""}
+						${Renderer.utils.isDisplayPage(ent.page) ? ` ${tagPartSourceStart} class="rd__stats-name-page ml-1 lst-is-exporting-image__no-wrap" title="Page ${ent.page}">p${ent.page}${tagPartSourceEnd}` : ""}
 
 						${ptBrewSourceLink}
 					</div>
@@ -7236,7 +7236,7 @@ class _RenderCompactSpellsImplBase extends _RenderCompactImplBase {
 	}
 
 	_getHtmlParts_range ({ent}) {
-		return Renderer.spell.getHtmlPtRange(ent, {styleHint: this._style});
+		return Renderer.spell.getHtmlPtRange(ent, {styleHint: this._style, isDisplaySelfArea: SourceUtil.isClassicSource(ent.source)});
 	}
 
 	_getHtmlParts_components ({ent}) {
@@ -7307,7 +7307,7 @@ Renderer.spell = class {
 		return `<b>Casting Time:</b> ${Parser.spTimeListToFull(spell.time, spell.meta, {styleHint})}`;
 	}
 
-	static getHtmlPtRange (spell, {styleHint = null} = {}) { return `<b>Range:</b> ${Parser.spRangeToFull(spell.range, {styleHint})}`; }
+	static getHtmlPtRange (spell, {styleHint = null, isDisplaySelfArea = false} = {}) { return `<b>Range:</b> ${Parser.spRangeToFull(spell.range, {styleHint, isDisplaySelfArea})}`; }
 	static getHtmlPtComponents (spell) { return `<b>Components:</b> ${Parser.spComponentsToFull(spell.components, spell.level)}`; }
 	static getHtmlPtDuration (spell, {styleHint = null} = {}) { return `<b>Duration:</b> ${Parser.spDurationToFull(spell.duration, {styleHint})}`; }
 
@@ -10826,10 +10826,22 @@ Renderer.monster = class {
 		// Insert our spellcasting section into the "Other actions" part, in an alphabetically-appropriate place.
 
 		const ixLastAttack = actions.findLastIndex(it => it.entries && it.entries.length && typeof it.entries[0] === "string" && /\{@atkr? /.test(it.entries[0]));
-		const ixNext = actions.findIndex((act, ix) => ix > ixLastAttack && act.name && SortUtil.ascSortLower(act.name, "Spellcasting") >= 0);
-		if (~ixNext) actions.splice(ixNext, 0, ...spellActions);
-		else actions.push(...spellActions);
-		return actions;
+
+		const actionsAttack = ~ixLastAttack ? actions.slice(0, ixLastAttack) : [];
+		const actionsOther = ~ixLastAttack ? actions.slice(ixLastAttack) : actions;
+
+		// Weave spellcasting actions into the "other" actions block.
+		// This attempts to minimize re-ordering, which would otherwise occur if we were to use e.g. `sort`.
+		spellActions
+			.forEach(ent => {
+				if (!ent.name) return actionsOther.push(ent);
+
+				const ixInsert = actionsOther.findIndex((entAction, ix) => entAction.name && SortUtil.ascSortLower(entAction.name, ent.name) >= 0);
+				if (~ixInsert) actionsOther.splice(ixInsert, 0, ent);
+				else actionsOther.push(ent);
+			});
+
+		return [...actionsAttack, ...actionsOther];
 	}
 
 	static getSkillsString (renderer, mon) {
