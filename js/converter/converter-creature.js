@@ -1939,10 +1939,11 @@ export class ConverterCreature extends ConverterBase {
 	}
 
 	static _tryParseType ({stats, strType}) {
-		strType = strType.trim().toLowerCase();
+		strType = strType.trim();
+
 		const mSwarm = /^(?<prefix>.*)swarm of (?<size>\w+) (?<type>\w+)(?: \((?<tags>[^)]+)\))?$/i.exec(strType);
 		if (mSwarm) {
-			const swarmTypeSingular = Parser.monTypeFromPlural(mSwarm[3]);
+			const swarmTypeSingular = Parser.monTypeFromPlural(mSwarm.groups.type.toLowerCase());
 
 			const out = { // retain any leading junk, as we'll parse it out in a later step
 				type: `${mSwarm.groups.prefix}${swarmTypeSingular}`,
@@ -1954,17 +1955,26 @@ export class ConverterCreature extends ConverterBase {
 			return out;
 		}
 
-		const mParens = /^(.*?) (\(.*?\))\s*$/.exec(strType);
+		const mParens = /^(?<ptOutside>.*?) (?<ptInside>\(.*?\))\s*$/.exec(strType);
 		let type, tags, note;
 
 		if (mParens) {
 			// If there are multiple sizes, assume bracketed text is a note referring to this
-			if (stats.size.length > 1) {
-				note = mParens[2];
+			//   if it is more than a single word (e.g. "Wizard").
+			// See e.g.:
+			// - Archmage (MM'24)
+			const isParensSizeNote = stats.size.length > 1
+				&& mParens.groups.ptInside
+					.split(",")
+					.map(it => it.trim())
+					.some(it => it.split(" ").length > 1);
+
+			if (isParensSizeNote) {
+				note = mParens.groups.ptInside;
 			} else {
-				tags = this._tryParseType_getTags({str: mParens[2]});
+				tags = this._tryParseType_getTags({str: mParens.groups.ptInside});
 			}
-			strType = mParens[1];
+			strType = mParens.groups.ptOutside.toLowerCase();
 		}
 
 		if (/ or /.test(strType)) {

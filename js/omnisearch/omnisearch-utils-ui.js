@@ -84,6 +84,7 @@ export class OmnisearchUtilsUi {
 				</ul>
 			</ul>
 			${this._doShowHelp_getPtHotkeys({isIncludeHotkeys})}
+			<p>Syntax values may be inverted with a <code>!</code> prefix, for example <code>in:!bestiary</code>, or <code>page:!1-100</code>.</p>
 		`);
 	}
 

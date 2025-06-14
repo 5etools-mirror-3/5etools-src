@@ -1,6 +1,14 @@
 "use strict";
 
 class ListItem {
+	static getCommonValues (ent) {
+		return {
+			group: ent.group ? ent.group.join(",") : "",
+			alias: (ent.alias || []).map(it => `"${it}"`).join(","),
+			page: ent.page,
+		};
+	}
+
 	/**
 	 * @param ix External ID information (e.g. the location of the entry this ListItem represents in a list of entries)
 	 * @param ele An element, or jQuery element if the list is in jQuery mode.
@@ -52,11 +60,13 @@ class _ListSearch {
 
 	#term = null;
 	#fn = null;
+	#isNegate = false;
 	#items = null;
 
-	constructor ({term, fn, items}) {
+	constructor ({term, fn, isNegate = false, items}) {
 		this.#term = term;
 		this.#fn = fn;
+		this.#isNegate = isNegate;
 		this.#items = [...items];
 	}
 
@@ -66,7 +76,7 @@ class _ListSearch {
 		const out = [];
 		for (const item of this.#items) {
 			if (this.#isInterrupted) break;
-			if (await this.#fn(item, this.#term)) out.push(item);
+			if (!(await this.#fn(item, this.#term)) === this.#isNegate) out.push(item);
 		}
 		return {isInterrupted: this.#isInterrupted, searchedItems: out};
 	}
@@ -273,31 +283,46 @@ class List {
 	_doSearch_getMatchingSyntax () {
 		const [command, term] = this._searchTerm.split(/^([a-z]+):/).filter(Boolean);
 		if (!command || !term || !this._syntax?.[command]) return null;
-		return {term: this._doSearch_getSyntaxSearchTerm(term), syntax: this._syntax[command]};
+		const {term: termProc, isNegate} = this._doSearch_getSyntaxSearchTerm(term);
+		return {term: termProc, isNegate, syntax: this._syntax[command]};
 	}
+
+	static _RE_SYNTAX_SEARCH_TERM_REGEX = /^(?<isNegate>!)?\/(?<reTerm>.*)\/$/;
 
 	_doSearch_getSyntaxSearchTerm (term) {
-		if (!term.startsWith("/") || !term.endsWith("/")) return term;
-		try {
-			return new RegExp(term.slice(1, -1));
-		} catch (ignored) {
-			return term;
+		const mRegex = this.constructor._RE_SYNTAX_SEARCH_TERM_REGEX.exec(term);
+		if (!mRegex) {
+			const isNegate = term.startsWith("!");
+			term = isNegate ? term.slice(1) : term;
+			return {term, isNegate};
 		}
+
+		const {isNegate, reTerm} = mRegex.groups;
+
+		let re;
+		try {
+			re = new RegExp(reTerm);
+		} catch (ignored) {
+			return {term, isNegate: !!isNegate};
+		}
+
+		return {term: re, isNegate: !!isNegate};
 	}
 
-	_doSearch_doSearchTerm_syntax ({term, syntax: {fn, isAsync}}) {
+	_doSearch_doSearchTerm_syntax ({term, syntax: {fn, isAsync}, isNegate}) {
 		if (isAsync) return false;
 
-		this._searchedItems = this._items.filter(it => fn(it, term));
+		this._searchedItems = this._items.filter(it => !fn(it, term) === isNegate);
 		return true;
 	}
 
-	async _doSearch_doSearchTerm_pSyntax ({term, syntax: {fn, isAsync}}) {
+	async _doSearch_doSearchTerm_pSyntax ({term, syntax: {fn, isAsync}, isNegate}) {
 		if (!isAsync) return false;
 
 		this.#activeSearch = new _ListSearch({
 			term,
 			fn,
+			isNegate,
 			items: this._items,
 		});
 		const {isInterrupted, searchedItems} = await this.#activeSearch.pRun();
