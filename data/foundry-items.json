@@ -1,6 +1,260 @@
 {
 	"item": [
 		{
+			"name": "Acid",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Throw Acid",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creatureOrObject",
+							"special": "You can see"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "20"
+					},
+					"damage": {
+						"parts": [
+							{
+								"number": 2,
+								"denomination": 6,
+								"types": [
+									"acid"
+								]
+							}
+						],
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "dex"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Alchemist's Fire",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "creatureOrObject",
+							"count": "1"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "20"
+					},
+					"damage": {
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 4,
+								"types": [
+									"fire"
+								]
+							}
+						],
+						"onSave": "half"
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "dex"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "alchemistsFire"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "alchemistsFire",
+					"name": "Burning.",
+					"description": "Rules reference: &Reference[burning]."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Alchemist's Supplies",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "check",
+					"activation": {
+						"type": "action"
+					},
+					"check": {
+						"ability": "int",
+						"dc": {
+							"formula": "15"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Antitoxin",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "bonus",
+						"value": 1
+					},
+					"duration": {
+						"value": "1",
+						"units": "hour"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "antitoxin"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "antitoxin",
+					"duration": {
+						"seconds": 3600
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Ball Bearings",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Spill Ball Bearings",
+					"type": "save",
+					"activation": {
+						"type": "action",
+						"value": 1
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"template": {
+							"type": "square",
+							"size": "10",
+							"units": "ft"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "10"
+					},
+					"damage": {
+						"onSave": "half"
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"formula": "10"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "ballBearings"
+						}
+					]
+				},
+				{
+					"name": "Recover Ball Bearings",
+					"type": "utility",
+					"activation": {
+						"type": "minute",
+						"value": 10
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "-1"
+							}
+						]
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "ballBearings",
+					"name": "Tripped",
+					"statuses": [
+						"prone"
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Barrier Tattoo (Large)",
 			"source": "TCE",
 			"system": {
@@ -27,6 +281,42 @@
 				"armor.type": "light",
 				"armor.value": 12
 			},
+			"migrationVersion": 3
+		},
+		{
+			"name": "Basic Poison",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "damage",
+					"activation": {
+						"type": "bonus"
+					},
+					"duration": {
+						"units": "minute",
+						"value": "1"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"damage": {
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 4,
+								"types": [
+									"poison"
+								]
+							}
+						]
+					}
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -58,6 +348,39 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Bullseye Lantern",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"value": 1
+					},
+					"duration": {
+						"value": "6",
+						"units": "hour"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"template": {
+							"type": "cone",
+							"size": "120",
+							"units": "ft"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Butcher's Bib",
 			"source": "EGW",
 			"effects": [
@@ -71,6 +394,190 @@
 							"value": 19
 						}
 					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Caltrops",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "save",
+					"activation": {
+						"type": "action",
+						"value": 1
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"template": {
+							"type": "square",
+							"size": "5",
+							"units": "ft"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "5"
+					},
+					"damage": {
+						"onSave": "half",
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "1"
+								},
+								"types": [
+									"piercing"
+								]
+							}
+						]
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"formula": "15"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "caltrops"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "caltrops",
+					"name": "Slowed",
+					"duration": {
+						"turns": 1
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.walk",
+							"mode": "OVERRIDE",
+							"value": 0
+						},
+						{
+							"key": "system.attributes.movement.fly",
+							"mode": "OVERRIDE",
+							"value": 0
+						},
+						{
+							"key": "system.attributes.movement.swim",
+							"mode": "OVERRIDE",
+							"value": 0
+						},
+						{
+							"key": "system.attributes.movement.climb",
+							"mode": "OVERRIDE",
+							"value": 0
+						},
+						{
+							"key": "system.attributes.movement.burrow",
+							"mode": "OVERRIDE",
+							"value": 0
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Candle",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Light",
+					"type": "utility",
+					"activation": {
+						"type": ""
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Chain",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Wrap Chain Check",
+					"type": "check",
+					"activation": {
+						"type": "action",
+						"value": 1
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature",
+							"special": "Has the Grappled, Incapacitated, or Restrained condition"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "5"
+					},
+					"check": {
+						"dc": {
+							"formula": "13"
+						},
+						"associated": [
+							"ath"
+						]
+					}
+				},
+				{
+					"name": "Escape Check",
+					"type": "check",
+					"activation": {
+						"type": "action",
+						"value": 1
+					},
+					"check": {
+						"dc": {
+							"formula": "18"
+						},
+						"associated": [
+							"acr"
+						]
+					}
+				},
+				{
+					"name": "Burst Chain Check",
+					"type": "check",
+					"activation": {
+						"type": "action",
+						"value": 1
+					},
+					"check": {
+						"dc": {
+							"formula": "20"
+						},
+						"associated": [
+							"ath"
+						]
+					}
 				}
 			],
 			"migrationVersion": 3
@@ -109,6 +616,32 @@
 			"name": "Gnomengarde Grenade",
 			"source": "DC",
 			"type": "consumable",
+			"migrationVersion": 3
+		},
+		{
+			"name": "Grappling Hook",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Throw",
+					"type": "check",
+					"activation": {
+						"type": "action"
+					},
+					"range": {
+						"units": "ft",
+						"value": "50"
+					},
+					"check": {
+						"associated": [
+							"acr"
+						],
+						"dc": {
+							"formula": "13"
+						}
+					}
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -155,6 +688,7 @@
 			"type": "consumable",
 			"system": {
 				"uses.max": "10",
+				"uses.autoDestroy": true,
 				"type.value": "trinket"
 			},
 			"activities": [
@@ -178,6 +712,402 @@
 							"type": "creature",
 							"special": "Unconscious"
 						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Holy Water",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Throw",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "20"
+					},
+					"damage": {
+						"parts": [
+							{
+								"number": 2,
+								"denomination": 8,
+								"types": [
+									"radiant"
+								]
+							}
+						],
+						"onSave": "half"
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "dex"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Hooded Lantern",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"value": 1
+					},
+					"duration": {
+						"value": "6",
+						"units": "hour"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"template": {
+							"type": "radius",
+							"size": "60",
+							"units": "ft"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Hunting Trap",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "save",
+					"activation": {
+						"type": "",
+						"condition": "Steps on the plate"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"range": {
+						"units": "spec"
+					},
+					"damage": {
+						"parts": [
+							{
+								"number": 1,
+								"denomination": 4,
+								"types": [
+									"piercing"
+								]
+							}
+						],
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"formula": "13"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "huntingTrap"
+						}
+					]
+				},
+				{
+					"name": "Escape",
+					"type": "check",
+					"activation": {
+						"type": "action"
+					},
+					"check": {
+						"associated": [
+							"ath"
+						],
+						"dc": {
+							"formula": "13"
+						}
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "huntingTrap",
+					"name": "Trapped"
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Lamp",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Light",
+					"type": "utility",
+					"activation": {
+						"type": "action",
+						"value": 1
+					},
+					"duration": {
+						"value": "6",
+						"units": "hour"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"template": {
+							"type": "radius",
+							"size": "45",
+							"units": "ft"
+						},
+						"affects": {
+							"type": "self"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Manacles",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Bind",
+					"type": "check",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature",
+							"special": "Grappled, Incapacitated, or Restrained"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "5"
+					},
+					"check": {
+						"associated": [
+							"slt"
+						],
+						"dc": {
+							"formula": "13"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "manacles"
+						}
+					]
+				},
+				{
+					"name": "Escape Check",
+					"type": "check",
+					"activation": {
+						"type": "action"
+					},
+					"check": {
+						"associated": [
+							"slt"
+						],
+						"dc": {
+							"formula": "20"
+						}
+					}
+				},
+				{
+					"name": "Burst Check",
+					"type": "check",
+					"activation": {
+						"type": "action"
+					},
+					"check": {
+						"associated": [
+							"ath"
+						],
+						"dc": {
+							"formula": "25"
+						}
+					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "manacles",
+					"name": "Manacled"
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Net",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"range": {
+						"value": "15",
+						"units": "ft"
+					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "dex"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "net"
+						}
+					]
+				}
+			],
+			"effects": [],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Oil",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Throw",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "20"
+					},
+					"damage": {
+						"onSave": "half"
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "dex"
+						}
+					}
+				},
+				{
+					"name": "Douse Space",
+					"type": "damage",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"template": {
+							"units": "ft",
+							"type": "square",
+							"size": "5"
+						},
+						"affects": {
+							"count": "1",
+							"type": "space"
+						}
+					},
+					"range": {
+						"units": "ft",
+						"value": "5"
+					},
+					"damage": {
+						"parts": [
+							{
+								"bonus": "5",
+								"types": [
+									"fire"
+								]
+							}
+						]
 					}
 				}
 			],
@@ -248,6 +1178,66 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Rope",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Tie Knot",
+					"type": "check",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"check": {
+						"associated": [
+							"slt"
+						],
+						"dc": {
+							"formula": "10"
+						}
+					}
+				},
+				{
+					"name": "Burst Rope",
+					"type": "check",
+					"activation": {
+						"type": "action"
+					},
+					"check": {
+						"associated": [
+							"ath"
+						],
+						"dc": {
+							"formula": "20"
+						}
+					}
+				},
+				{
+					"name": "Escape Check",
+					"type": "check",
+					"activation": {
+						"type": "action"
+					},
+					"check": {
+						"associated": [
+							"acr"
+						],
+						"dc": {
+							"formula": "15"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Sentinel Shield",
 			"source": "DMG",
 			"effects": [
@@ -266,6 +1256,24 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Signal Whistle",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Whistle",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"range": {
+						"units": "ft",
+						"value": "600"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Stink Bomb",
 			"source": "TDCSR",
 			"img": "icons/weapons/thrown/bomb-purple.webp",
@@ -275,6 +1283,94 @@
 			"name": "Tangler Grenade",
 			"source": "WDMM",
 			"type": "consumable",
+			"migrationVersion": 3
+		},
+		{
+			"name": "Thieves' Tools",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Pick a Lock/Disarm a Trap",
+					"type": "check",
+					"activation": {
+						"type": "action"
+					},
+					"check": {
+						"ability": "dex",
+						"dc": {
+							"formula": "15"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Tinderbox",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Light",
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Torch",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "attack",
+					"activation": {
+						"type": "action",
+						"value": 1
+					},
+					"duration": {
+						"value": "1",
+						"units": "hour"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"template": {
+							"type": "radius",
+							"size": "40",
+							"units": "ft"
+						}
+					},
+					"attack": {
+						"ability": "str",
+						"type": {
+							"value": "melee",
+							"classification": "weapon"
+						}
+					},
+					"damage": {
+						"includeBase": true,
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "1"
+								},
+								"types": [
+									"fire"
+								]
+							}
+						]
+					}
+				}
+			],
 			"migrationVersion": 3
 		}
 	],

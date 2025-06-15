@@ -1384,6 +1384,7 @@ const PROPORDER_RACE_FLUFF = [
 const PROPORDER_ITEM = [
 	"name",
 	"alias",
+	"group",
 	"namePrefix",
 	"nameSuffix",
 	"nameRemove",
@@ -1595,6 +1596,7 @@ const PROPORDER_ITEM__COPY_MOD = [
 const PROPORDER_MAGICVARIANT = [
 	"name",
 	"alias",
+	"group",
 	"source",
 
 	ObjectKey.getCopyKey({fnGetModOrder: () => PROPORDER_MAGICVARIANT__COPY_MOD}),
@@ -1858,6 +1860,11 @@ const PROPORDER_REWARD = [
 
 	"source",
 	"page",
+	"srd",
+	"srd52",
+	"basicRules",
+	"basicRules2024",
+	"otherSources",
 	"reprintedAs",
 
 	"type",

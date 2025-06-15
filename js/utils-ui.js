@@ -1076,14 +1076,14 @@ class ListUiUtil {
 		build () {
 			return {
 				stats: {
-					help: `"stats:<text>" ("/text/" for regex) to search within stat blocks.`,
+					help: `"stats:<text>" ("/text/" for regex; "!text" and "!/text/" to invert) to search within stat blocks.`,
 					fn: (listItem, searchTerm) => {
 						if (listItem.data._textCacheStats == null) listItem.data._textCacheStats = this._getSearchCacheStats(this._dataList[listItem.ix]);
 						return this._listSyntax_isTextMatch(listItem.data._textCacheStats, searchTerm);
 					},
 				},
 				info: {
-					help: `"info:<text>" ("/text/" for regex) to search within info.`,
+					help: `"info:<text>" ("/text/" for regex; "!text" and "!/text/" to invert) to search within info.`,
 					fn: async (listItem, searchTerm) => {
 						if (listItem.data._textCacheFluff == null) listItem.data._textCacheFluff = await this._pGetSearchCacheFluff(this._dataList[listItem.ix]);
 						return this._listSyntax_isTextMatch(listItem.data._textCacheFluff, searchTerm);
@@ -1091,7 +1091,7 @@ class ListUiUtil {
 					isAsync: true,
 				},
 				text: {
-					help: `"text:<text>" ("/text/" for regex) to search within stat blocks plus info.`,
+					help: `"text:<text>" ("/text/" for regex; "!text" and "!/text/" to invert) to search within stat blocks plus info.`,
 					fn: async (listItem, searchTerm) => {
 						if (listItem.data._textCacheAll == null) {
 							const {textCacheStats, textCacheFluff, textCacheAll} = await this._pGetSearchCacheAll(this._dataList[listItem.ix], {textCacheStats: listItem.data._textCacheStats, textCacheFluff: listItem.data._textCacheFluff});

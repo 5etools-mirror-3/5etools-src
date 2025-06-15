@@ -5066,7 +5066,7 @@
 					"type": "entries",
 					"name": "Disfigured (Sanity 4\u20135)",
 					"entries": [
-						"In the third stage, the lips shrink away from the teeth, which can rot and fall out. Fingers and toes sometimes fuse together or start transforming into tentacles. Bleeding sores erupt on the skin, or bulbous growths can appear under the skin. Cultists in Nephalia often grow fin-like protrusions or pincerlike hands. At this stage, creatures might manifest improved natural armor or weapons, or simple benefits such as the Amphibious trait of a {@creature bullywug}, the Blind Senses of a {@creature grimlock}, Chameleon Skin like a {@creature troglodyte}, the Slippery trait of a {@creature kuo-toa}, or the Spider Climb trait of an {@creature ettercap}."
+						"In the third stage, the lips shrink away from the teeth, which can rot and fall out. Fingers and toes sometimes fuse together or start transforming into tentacles. Bleeding sores erupt on the skin, or bulbous growths can appear under the skin. Cultists in Nephalia often grow fin-like protrusions or pincer-like hands. At this stage, creatures might manifest improved natural armor or weapons, or simple benefits such as the Amphibious trait of a {@creature bullywug}, the Blind Senses of a {@creature grimlock}, Chameleon Skin like a {@creature troglodyte}, the Slippery trait of a {@creature kuo-toa}, or the Spider Climb trait of an {@creature ettercap}."
 					]
 				},
 				{
@@ -10246,6 +10246,214 @@
 							"+6",
 							"{@dice 1d12}"
 						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Prophet's Gambit",
+			"source": "CoS",
+			"ruleType": "O",
+			"entries": [
+				"{@note Game Designed by Sean Goodison, for 3\u20135 players, using the {@deck Tarokka Deck|CoS}.}",
+				{
+					"type": "entries",
+					"name": "How To Play",
+					"entries": [
+						{
+							"type": "list",
+							"name": "Set Up:",
+							"items": [
+								"Separate out the High Deck cards, marked with the Crown symbol. Shuffle them, and place this deck to one side.",
+								"Choose a Dealer to shuffle the remaining cards, called the Common Deck. The person to the Dealer's left then draws a card from this deck and places it face-up in the centre of the table. This is the Focus card.",
+								"The Dealer then places one card per player face-down around the Focus. These are the player's Fate cards. Players may look at their own Fate card at any time.",
+								"Each player is then dealt 6 cards and the Common Deck is placed within easy reach of all players. Discarded cards should be placed face-up, next to the Common Deck.",
+								"The goal of the game is to refine your hand down to 3 cards, which will be combined with the hidden Fate cards and shared Focus card to make the best hand possible."
+							]
+						},
+						{
+							"type": "list",
+							"name": "The Bid:",
+							"items": [
+								"Each player selects one card from their hand, these are all played face-up simultaneously."
+							]
+						},
+						{
+							"type": "list",
+							"name": "Round 1:",
+							"items": [
+								"The player with the highest numbered card in front of them may discard their Fate card and replace it with a new card from the deck. They then take the first turn this round.",
+								"Each player takes a turn (moving clockwise) to {@b Play} one card from their hand, covering their previously played card, or discard a card to {@b Risk} activating the top card of the High Deck.",
+								{
+									"type": "item",
+									"name": "Play:",
+									"entries": [
+										"If the card is a Master (an unnumbered Common Deck card) or has a number lower than that of the player to their right then the current player may draw a new card from the Common Deck before discarding one from their hand."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Risk:",
+									"entries": [
+										"Each card in the High Deck triggers a different special ability which is resolved immediately before being discarded. These abilities are detailed in the section titled 'High Deck Rules'."
+									]
+								},
+								"Once each player has had one turn a new round begins."
+							]
+						},
+						"Round 2 is the same as the first.",
+						{
+							"type": "list",
+							"name": "The Execution:",
+							"items": [
+								"After the second round the player who has the highest numbered card showing decides whether to 'kill' (discard) or 'save' (keep) the Focus card. If it is killed then the Focus card is out of play and players' final hands will now only be four-cards strong."
+							]
+						},
+						{
+							"type": "list",
+							"name": "The Reveal:",
+							"items": [
+								"Finally, players reveal their hand of cards and Fate cards. The player with the best combination of cards using their hand, Fate, and possibly Focus cards is the winner."
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Ties",
+					"entries": [
+						"In the case of two players being tied for anything the player closest to the dealer clockwise wins."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Order of Winning Hands (Strongest to Weakest)",
+					"entries": [
+						{
+							"type": "list",
+							"items": [
+								"Family (Five cards of the same suit, in numerical order)",
+								"Circle (four of a kind)",
+								"Fortune (a triple and a pair)",
+								"Village (five cards in numerical order)",
+								"Guild (five cards of one suit)",
+								"A triple",
+								"Two pairs",
+								"A pair",
+								"High card"
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "High Deck Rules",
+					"entries": [
+						"Revealing cards from the High Deck is risky as there's no telling what chaos you might unleash.",
+						{
+							"type": "list",
+							"style": "list-no-bullets",
+							"items": [
+								{
+									"type": "item",
+									"name": "{@card Artifact|Tarokka Deck|CoS}",
+									"entries": [
+										"Swap your Fate card with the Focus card."
+									]
+								},
+								{
+									"type": "item",
+									"name": "{@card Beast|Tarokka Deck|CoS}",
+									"entries": [
+										"Each player discards a card, then draws a card from the Common Deck."
+									]
+								},
+								{
+									"type": "item",
+									"name": "{@card Broken One|Tarokka Deck|CoS}",
+									"entries": [
+										"Discard all the remaining cards in your hand. Then draw a new card from the Common Deck for each one discarded."
+									]
+								},
+								{
+									"type": "item",
+									"name": "{@card Darklord|Tarokka Deck|CoS}",
+									"entries": [
+										"Choose another player. Look at their hand of cards and choose one for them to discard. Then they draw a card from the Common Deck."
+									]
+								},
+								{
+									"type": "item",
+									"name": "{@card Donjon|Tarokka Deck|CoS}",
+									"entries": [
+										"Each player must discard cards until they have three left in their hand. The game immediately advances to the Reveal."
+									]
+								},
+								{
+									"type": "item",
+									"name": "{@card Executioner|Tarokka Deck|CoS}",
+									"entries": [
+										"Keep this card on the table in front of you. Regardless of who wins the execution you decide whether to kill or save the Focus card."
+									]
+								},
+								{
+									"type": "item",
+									"name": "{@card Mists|Tarokka Deck|CoS}",
+									"entries": [
+										"Rotate the Fate cards one player clockwise."
+									]
+								},
+								{
+									"type": "item",
+									"name": "{@card Ghost|Tarokka Deck|CoS}",
+									"entries": [
+										"Take a card from the discard pile, then discard a card."
+									]
+								},
+								{
+									"type": "item",
+									"name": "{@card Horseman|Tarokka Deck|CoS}",
+									"entries": [
+										"Draw two cards from the Common Deck and then discard two cards."
+									]
+								},
+								{
+									"type": "item",
+									"name": "{@card Innocent|Tarokka Deck|CoS}",
+									"entries": [
+										"Keep this card on the table in front of you. You and your cards can't be affected by any future High Deck cards."
+									]
+								},
+								{
+									"type": "item",
+									"name": "{@card Marionette|Tarokka Deck|CoS}",
+									"entries": [
+										"Choose another player who hasn't had a turn this round. That player must either play their highest or lowest numbered card, as directed by you."
+									]
+								},
+								{
+									"type": "item",
+									"name": "{@card Raven|Tarokka Deck|CoS}",
+									"entries": [
+										"Each player chooses a card from their hand and passes it to the player on their left."
+									]
+								},
+								{
+									"type": "item",
+									"name": "{@card Seer|Tarokka Deck|CoS}",
+									"entries": [
+										"Look at all player's Fate cards once."
+									]
+								},
+								{
+									"type": "item",
+									"name": "{@card Tempter|Tarokka Deck|CoS}",
+									"entries": [
+										"Choose a card from your hand and a random card from another player's hand to swap."
+									]
+								}
+							]
+						}
 					]
 				}
 			]
