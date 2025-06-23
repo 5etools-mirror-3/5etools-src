@@ -18,7 +18,7 @@ globalThis.HASH_BLANK = "blankhash";
 globalThis.HASH_SUB_NONE = "null";
 
 globalThis.VeCt = {
-	STR_NONE: "None",
+	STR_NONE: "—",
 	STR_SEE_CONSOLE: "See the console (CTRL+SHIFT+J) for details.",
 
 	HASH_SCALED: "scaled",

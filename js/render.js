@@ -2644,7 +2644,7 @@ Renderer.attackTagToFull = function (tagStr, {isRoll = false} = {}) {
 			});
 		}
 	}
-	return `${tagGroups.map(it => renderTag(it)).join(" or ")}Attack${isRoll ? " Roll" : ""}:`;
+	return `${tagGroups.map(it => renderTag(it)).join(" o ")}Attack${isRoll ? " Roll" : ""}:`;
 };
 
 Renderer.splitFirstSpace = function (string) {
@@ -2996,26 +2996,26 @@ Renderer.getAbilityData._doRenderOuter = function (abObj) {
 
 		const amount = UiUtil.intToBonus(ch.amount ?? 1, {isPretty: true});
 
-		if (allAbilities) {
-			ptsLong.push("any");
-			ptsShort.push("Any");
-		} else if (allAbilitiesWithParent) {
-			ptsLong.push("any other");
-			ptsShort.push("Any other");
-		}
-
 		if (ch.count != null && ch.count > 1) {
 			ptsLong.push(Parser.numberToText(ch.count));
 			ptsShort.push(ch.count);
 		}
 
+		if (allAbilities) {
+			ptsLong.push("cualquiera");
+			ptsShort.push("Cualquiera");
+		} else if (allAbilitiesWithParent) {
+			ptsLong.push("cualquier otro");
+			ptsShort.push("Cualquier otro");
+		}
+
 		if (allAbilities || allAbilitiesWithParent) {
-			ptsLong.push(`${ch.count > 1 ? "unique " : ""}${amount}`);
+			ptsLong.push(`${ch.count > 1 ? "único " : ""}${amount}`);
 			ptsShort.push(amount);
 		} else {
 			const ptAbilsLong = ch.from
 				.map(abv => Parser.attAbvToFull(abv))
-				.joinConjunct(", ", " or ");
+				.joinConjunct(", ", " o ");
 			const ptAbilsShort = ch.from
 				.map(abv => abv.uppercaseFirst())
 				.join("/");
@@ -3023,7 +3023,7 @@ Renderer.getAbilityData._doRenderOuter = function (abObj) {
 			ptsShort.push(`${ptAbilsShort} ${amount}`);
 		}
 
-		if (ptsLong.length) toConvertToText.push(`Choose ${ptsLong.join(" ")}`);
+		if (ptsLong.length) toConvertToText.push(`Elige ${ptsLong.join(" ")}`);
 		if (ptsShort.length) toConvertToShortText.push(ptsShort.join(" "));
 	}
 
@@ -3267,7 +3267,7 @@ Renderer.utils = class {
 
 	static getSourceAndPageTrHtml (it) {
 		const html = Renderer.utils.getSourceAndPageHtml(it);
-		return html ? `<b>Source:</b> ${html}` : "";
+		return html ? `<b>Fuente:</b> ${html}` : "";
 	}
 
 	static _getAltSourceHtmlOrText (it, prop, introText, isText) {
@@ -3275,7 +3275,7 @@ Renderer.utils = class {
 
 		return `${introText} ${it[prop].map(as => {
 			if (as.entry) return (isText ? Renderer.stripTags : Renderer.get().render)(as.entry);
-			return `${isText ? "" : `<i class="help-subtle" title="${Parser.sourceJsonToFull(as.source).qq()}">`}${Parser.sourceJsonToAbv(as.source)}${isText ? "" : `</i>`}${Renderer.utils.isDisplayPage(as.page) ? `, page ${as.page}` : ""}`;
+			return `${isText ? "" : `<i class="help-subtle" title="${Parser.sourceJsonToFull(as.source).qq()}">`}${Parser.sourceJsonToAbv(as.source)}${isText ? "" : `</i>`}${Renderer.utils.isDisplayPage(as.page) ? `, pág. ${as.page}` : ""}`;
 		}).join("; ")}`;
 	}
 
@@ -3312,7 +3312,7 @@ Renderer.utils = class {
 
 	static _getSourceAndPageHtmlOrText (it, {isText} = {}) {
 		const sourceSub = Renderer.utils.getSourceSubText(it);
-		const baseText = `${isText ? `` : `<i title="${Parser.sourceJsonToFull(it.source)}${sourceSub}">`}${Parser.sourceJsonToAbv(it.source)}${sourceSub}${isText ? "" : `</i>`}${Renderer.utils.isDisplayPage(it.page) ? `, page ${it.page}` : ""}`;
+		const baseText = `${isText ? `` : `<i title="${Parser.sourceJsonToFull(it.source)}${sourceSub}">`}${Parser.sourceJsonToAbv(it.source)}${sourceSub}${isText ? "" : `</i>`}${Renderer.utils.isDisplayPage(it.page) ? `, pág. ${it.page}` : ""}`;
 		const reprintedAsText = Renderer.utils._getReprintedAsHtmlOrText(it, {isText});
 		const addSourceText = Renderer.utils._getAltSourceHtmlOrText(it, "additionalSources", "Additional information from", isText);
 		const otherSourceText = Renderer.utils._getAltSourceHtmlOrText(it, "otherSources", "Also found in", isText);
@@ -3328,7 +3328,7 @@ Renderer.utils = class {
 			: it.basicRules
 				? `the Basic Rules (2014)${typeof it.basicRules === "string" ? ` (as &quot;${it.basicRules}&quot;)` : ""}`
 				: "";
-		const srdAndBasicRulesText = (srdText || basicRulesText) ? `Available in ${[srdText, basicRulesText].filter(it => it).join(" and ")}` : "";
+		const srdAndBasicRulesText = (srdText || basicRulesText) ? `Disponible en SRD` : "";
 
 		return `${[baseText, addSourceText, reprintedAsText, otherSourceText, srdAndBasicRulesText, externalSourceText].filter(it => it).join(". ")}${baseText && (addSourceText || otherSourceText || srdAndBasicRulesText || externalSourceText) ? "." : ""}`;
 	}
@@ -3847,7 +3847,7 @@ Renderer.utils = class {
 			const joinedChoices = (
 				hasNote
 					? listOfChoicesTrimmed.join(" Or, ")
-					: listOfChoicesTrimmed.joinConjunct(listOfChoicesTrimmed.some(it => / or /.test(it)) ? "; " : ", ", " or ")
+					: listOfChoicesTrimmed.joinConjunct(listOfChoicesTrimmed.some(it => / or /.test(it)) ? "; " : ", ", " o ")
 			) + sharedSuffix;
 
 			const ptPrefix = isSkipPrefix ? "" : `Requisito${cntPrerequisites === 1 ? "" : "s"}: `;
@@ -3917,7 +3917,7 @@ Renderer.utils = class {
 					if (typeof sp === "string") return Parser.prereqSpellToFull(sp, {isTextOnly});
 					return isTextOnly ? Renderer.stripTags(sp.entry) : Renderer.get().render(`{@filter ${sp.entry}|spells|${sp.choose}}`);
 				})
-					.joinConjunct(", ", " or ");
+					.joinConjunct(", ", " o ");
 		}
 
 		static _getHtml_feat ({v, isListMode, isTextOnly, styleHint}) {
@@ -3937,20 +3937,20 @@ Renderer.utils = class {
 					const asTag = `{@${tag} ${uid}}`;
 					return isTextOnly ? Renderer.stripTags(asTag) : Renderer.get().render(asTag);
 				})
-				.joinConjunct(", ", " or ");
+				.joinConjunct(", ", " o ");
 		}
 
 		static _getHtml_feature ({v, isListMode, isTextOnly, styleHint}) {
 			if (isListMode) return v.map(x => Renderer.stripTags(x).toTitleCase()).join("/");
 
-			const ptNames = v.map(it => isTextOnly ? Renderer.stripTags(it) : Renderer.get().render(it)).joinConjunct(", ", " or ");
+			const ptNames = v.map(it => isTextOnly ? Renderer.stripTags(it) : Renderer.get().render(it)).joinConjunct(", ", " o ");
 
 			if (styleHint === "classic") return ptNames;
-			return `${ptNames} Feature${v.length === 1 ? "" : "s"}`;
+			return `Rasgo${v.length === 1 ? "" : "s"} ${ptNames}`;
 		}
 
 		static _getHtml_item ({v, isListMode}) {
-			return isListMode ? v.map(x => x.toTitleCase()).join("/") : v.joinConjunct(", ", " or ");
+			return isListMode ? v.map(x => x.toTitleCase()).join("/") : v.joinConjunct(", ", " o ");
 		}
 
 		static _getHtml_itemType ({v, isListMode}) {
@@ -4005,7 +4005,7 @@ Renderer.utils = class {
 					return `${raceName}${it.subrace != null ? ` (${it.subrace})` : ""}`;
 				}
 			});
-			return isListMode ? parts.join("/") : parts.joinConjunct(", ", " or ");
+			return isListMode ? parts.join("/") : parts.joinConjunct(", ", " o ");
 		}
 
 		static _getHtml_background ({v, isListMode, isTextOnly}) {
@@ -4016,7 +4016,7 @@ Renderer.utils = class {
 					return it.displayEntry ? (isTextOnly ? Renderer.stripTags(it.displayEntry) : Renderer.get().render(it.displayEntry)) : (i === 0 || styleHint !== "classic") ? it.name.toTitleCase() : it.name;
 				}
 			});
-			return isListMode ? parts.join("/") : parts.joinConjunct(", ", " or ");
+			return isListMode ? parts.join("/") : parts.joinConjunct(", ", " o ");
 		}
 
 		static _getHtml_ability ({v, isListMode, isTextOnly, styleHint}) {
@@ -4079,7 +4079,7 @@ Renderer.utils = class {
 			const isComplex = hadMultiMultipleInner || hadMultipleInner || allValuesEqual == null;
 			const joined = abilityOptions.joinConjunct(
 				hadMultiMultipleInner ? " - " : hadMultipleInner ? "; " : ", ",
-				isComplex ? (isTextOnly ? ` /or/ ` : ` <i>or</i> `) : " or ",
+				isComplex ? (isTextOnly ? ` /or/ ` : ` <i>or</i> `) : " o ",
 			);
 			const ptHigher = styleHint === "classic" ? " or higher" : "+";
 			return `${joined}${allValuesEqual != null ? ` ${allValuesEqual}${ptHigher}` : ""}`;
@@ -4108,7 +4108,7 @@ Renderer.utils = class {
 					}
 				});
 			});
-			return isListMode ? parts.join("/") : parts.joinConjunct(", ", " or ");
+			return isListMode ? parts.join("/") : parts.joinConjunct(", ", " o ");
 		}
 
 		static _getHtml_expertise ({v, isListMode, styleHint}) {
@@ -4124,7 +4124,7 @@ Renderer.utils = class {
 					}
 				});
 			});
-			return isListMode ? parts.join("/") : parts.joinConjunct(", ", " or ");
+			return isListMode ? parts.join("/") : parts.joinConjunct(", ", " o ");
 		}
 
 		static _getHtml_spellcasting ({v, isListMode}) {
@@ -4172,7 +4172,7 @@ Renderer.utils = class {
 					if (!this._SCF_TYPE_TO_NAME[scf]) return scf;
 					return `{@item ${this._SCF_TYPE_TO_NAME[scf]}${styleHint === "classic" ? "" : "|XPHB"}}`;
 				})
-				.joinConjunct(", ", " or ");
+				.joinConjunct(", ", " o ");
 
 			const ent = `Ability to use ${ptScf} as a ${ptScfSuffix}`;
 
@@ -4197,19 +4197,19 @@ Renderer.utils = class {
 		static _getHtml_campaign ({v, isListMode}) {
 			return isListMode
 				? v.join("/")
-				: `${v.joinConjunct(", ", " or ")} Campaign`;
+				: `${v.joinConjunct(", ", " o ")} Campaign`;
 		}
 
 		static _getHtml_culture ({v, isListMode}) {
 			return isListMode
 				? v.join("/")
-				: `${v.joinConjunct(", ", " or ")} Culture`;
+				: `${v.joinConjunct(", ", " o ")} Culture`;
 		}
 
 		static _getHtml_group ({v, isListMode}) {
 			return isListMode
 				? v.map(it => it.toTitleCase()).join("/")
-				: `${v.map(it => it.toTitleCase()).joinConjunct(", ", " or ")} Group`;
+				: `${v.map(it => it.toTitleCase()).joinConjunct(", ", " o ")} Group`;
 		}
 	};
 
@@ -4229,7 +4229,7 @@ Renderer.utils = class {
 		return [...(size ? [size].flat() : [])]
 			.sort(SortUtil.ascSortSize)
 			.map(sz => Parser.sizeAbvToFull(sz))
-			.joinConjunct(", ", " or ");
+			.joinConjunct(", ", " o ");
 	}
 
 	static _FN_TAG_SENSES = null;
@@ -4665,7 +4665,7 @@ Renderer.utils = class {
 			case "@creature": {
 				out.page = UrlUtil.PG_BESTIARY;
 
-				// "...|scaled=scaledCr}" or "...|scaledsummon=scaledSummonLevel}"
+				// "...|scaled=scaledCr}" o "...|scaledsummon=scaledSummonLevel}"
 				if (others.length) {
 					const [type, value] = others[0].split("=").map(it => it.trim().toLowerCase()).filter(Boolean);
 					if (type && value) {
@@ -6402,7 +6402,7 @@ Renderer.feat = class {
 				: `Increase one ability score of your choice by ${abilityObj.choose.amount ?? 1}, to a maximum of ${maxScore}.`;
 		}
 
-		const abbChoicesText = abilityObj.choose.from.map(it => Parser.attAbvToFull(it)).joinConjunct(", ", " or ");
+		const abbChoicesText = abilityObj.choose.from.map(it => Parser.attAbvToFull(it)).joinConjunct(", ", " o ");
 		return `Increase your ${abbChoicesText} by ${abilityObj.choose.amount ?? 1}, to a maximum of ${maxScore}.`;
 	}
 
@@ -6453,7 +6453,12 @@ Renderer.feat = class {
 	}
 
 	static getJoinedCategoryPrerequisites (category, rdPrereqs) {
-		const ptCategory = category ? `${Parser.featCategoryToFull(category)}${["EC:P", "EC:E"].includes(category) ? "" : ` Feat`}` : "";
+		var ptCategory = "Dote ";
+
+		if (category != "G")
+			ptCategory = ptCategory + "de ";
+
+		ptCategory = ptCategory + Parser.featCategoryToFull(category);
 
 		return ptCategory && rdPrereqs
 			? `${ptCategory} (${rdPrereqs})`
@@ -6788,7 +6793,7 @@ Renderer.class = class {
 					.map(([k]) => Parser.attAbvToFull(k))
 					.joinConjunct(", ", " and ");
 			})
-			.joinConjunct(", ", " or ");
+			.joinConjunct(", ", " o ");
 
 		return `<div><b>Primary Ability:</b> <span>${pts}</span></div>`;
 	}
@@ -9010,7 +9015,7 @@ Renderer.traphazard = class {
 					.join(" ");
 			})
 			.filter(Boolean)
-			.joinConjunct(", ", " or ");
+			.joinConjunct(", ", " o ");
 	}
 
 	static getRenderedTrapHazardRatingPart (rating, {styleHint} = {}) {
@@ -10456,7 +10461,7 @@ Renderer.monster = class {
 		if (mon.cr.coven || mon.cr.xpCoven) stack.push(`${this._getChallengeRatingPart_classic_getBasicCrRender({cr: mon.cr.coven, xp: mon.cr.xpCoven})} when part of a coven`);
 		return stack
 			.filter(Boolean)
-			.joinConjunct(", ", " or ");
+			.joinConjunct(", ", " o ");
 	}
 
 	static _getChallengeRatingPart_one ({mon, isPlainText = false} = {}) {
@@ -10849,7 +10854,7 @@ Renderer.monster = class {
 
 		function doSortMapJoinSkillKeys (obj, keys, joinWithOr) {
 			const toJoin = keys.sort(SortUtil.ascSort).map(s => `<span data-mon-skill="${s.toTitleCase()}|${obj[s]}">${renderer.render(`{@skill ${s.toTitleCase()}}`)} ${Renderer.get().render(`{@skillCheck ${s.replace(/ /g, "_")} ${obj[s]}}`)}</span>`);
-			return joinWithOr ? toJoin.joinConjunct(", ", " or ") : toJoin.join(", ");
+			return joinWithOr ? toJoin.joinConjunct(", ", " o ") : toJoin.join(", ");
 		}
 
 		const skills = doSortMapJoinSkillKeys(mon.skill, Object.keys(mon.skill).filter(k => k !== "other" && k !== "special"));
@@ -11557,7 +11562,7 @@ Renderer.item = class {
 			typeListText.push("firearm");
 		}
 		if (item.poison) {
-			typeHtml.push(`poison${item.poisonTypes ? ` (${item.poisonTypes.joinConjunct(", ", " or ")})` : ""}`);
+			typeHtml.push(`poison${item.poisonTypes ? ` (${item.poisonTypes.joinConjunct(", ", " o ")})` : ""}`);
 			typeListText.push("poison");
 		}
 		return [typeListText, typeHtml.join(", "), subTypeHtml.join(", ")];
@@ -12187,7 +12192,7 @@ Renderer.item = class {
 			Renderer.item._initFullEntries(specificVariant);
 			specificVariant._fullEntries.unshift({
 				type: "wrapper",
-				wrapped: `{@note The {@item ${baseItem.name}|${baseItem.source}|base item} can be found in ${Parser.sourceJsonToFull(baseItem.source)}${baseItem.page ? `, page ${baseItem.page}` : ""}.}`,
+				wrapped: `{@note The {@item ${baseItem.name}|${baseItem.source}|base item} can be found in ${Parser.sourceJsonToFull(baseItem.source)}${baseItem.page ? `, pág. ${baseItem.page}` : ""}.}`,
 				data: {
 					[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "note",
 				},
@@ -14217,7 +14222,7 @@ Renderer.facility = class {
 			entsList.push({type: "item", name: `Prerequisite:`, entry: "None"});
 		}
 
-		if (ent.space) entsList.push({type: "item", name: `Space:`, entry: ent.space.map(spc => Renderer.facility._getSpaceEntry(spc, {isIncludeCostTime: ent.facilityType === "basic"})).joinConjunct(", ", " or ")});
+		if (ent.space) entsList.push({type: "item", name: `Space:`, entry: ent.space.map(spc => Renderer.facility._getSpaceEntry(spc, {isIncludeCostTime: ent.facilityType === "basic"})).joinConjunct(", ", " o ")});
 
 		if (ent.hirelings) {
 			const ptHirelings = ent.hirelings
@@ -14231,12 +14236,12 @@ Renderer.facility = class {
 					return null;
 				})
 				.filter(Boolean)
-				.joinConjunct(", ", " or ");
+				.joinConjunct(", ", " o ");
 
 			if (ptHirelings) entsList.push({type: "item", name: `Hirelings:`, entry: ptHirelings});
 		}
 
-		if (ent.orders) entsList.push({type: "item", name: `Order${ent.orders.length !== 1 ? "s" : ""}:`, entry: ent.orders.map(it => it.toTitleCase()).joinConjunct(", ", " or ")});
+		if (ent.orders) entsList.push({type: "item", name: `Order${ent.orders.length !== 1 ? "s" : ""}:`, entry: ent.orders.map(it => it.toTitleCase()).joinConjunct(", ", " o ")});
 
 		return {
 			entriesDescription: [
@@ -14602,7 +14607,7 @@ Renderer.generic = class {
 								collectionSet.add(this._summariseProfs_getCollectionKey(s, anyAlt));
 								return this._summariseProfs_getEntry({str: s, isShort, hoverTag});
 							});
-						return `${isShort ? `${i === 0 ? "C" : "c"}hoose ` : ""}${v.count || 1} ${isShort ? `of` : `from`} ${chooseProfs.joinConjunct(", ", " or ")}`;
+						return `${isShort ? `${i === 0 ? "C" : "c"}hoose ` : ""}${v.count || 1} ${isShort ? `of` : `from`} ${chooseProfs.joinConjunct(", ", " o ")}`;
 					}
 
 					collectionSet.add(this._summariseProfs_getCollectionKey(k, anyAlt));
@@ -14771,13 +14776,13 @@ Renderer.generic = class {
 
 						const endsToJoin = duration.ends.map(m => Parser.spEndTypeToFull(m));
 						hasSubOr = hasSubOr || endsToJoin.length > 1;
-						return `Until ${endsToJoin.joinConjunct(", ", " or ")}${ptCondition}`;
+						return `Until ${endsToJoin.joinConjunct(", ", " o ")}${ptCondition}`;
 					}
 				}
 			});
 
 		return {
-			entryDuration: `${outParts.joinConjunct(hasSubOr ? "; " : ", ", " or ")}${durations.length > 1 ? " (see below)" : ""}`,
+			entryDuration: `${outParts.joinConjunct(hasSubOr ? "; " : ", ", " o ")}${durations.length > 1 ? " (see below)" : ""}`,
 		};
 	}
 
@@ -16445,7 +16450,7 @@ Renderer.getRollableRow = function (row, opts) {
 			return row;
 		}
 
-		// format: "95-00" or "12"
+		// format: "95-00" o "12"
 		// u2012 = figure dash; u2013 = en-dash; u2014 = em dash; u2212 = minus sign
 		const m = /^(\d+)([-\u2013-\u2014\u2212](\d+))?$/.exec(cleanRow);
 		if (m) {
