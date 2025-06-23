@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
 	<!--5ETOOLS_CMP-->
@@ -11,7 +11,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 	<meta name="mobile-web-app-capable" content="yes">
 
-	<title>Feats - 5etools</title>
+	<title>Dotes - 5etools</title>
 
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/main.css">
@@ -68,8 +68,8 @@
 
 	<header class="hidden-xs hidden-sm page__header">
 		<div class="container ve-flex-v-baseline">
-			<h1 class="page__title no-wrap my-0" id="page__title">Feats</h1>
-			<p class="page__subtitle no-wrap my-0" id="page__subtitle">Search by name on the left, click a name to display on the right.</p>
+			<h1 class="page__title no-wrap my-0" id="page__title">Dotes</h1>
+			<p class="page__subtitle no-wrap my-0" id="page__subtitle">Busca por nombre a la izquierda, selecciona un nombre para mostrarlo a la derecha.</p>
 		</div>
 	</header>
 
@@ -91,11 +91,11 @@
 
 				<div id="filtertools" class="input-group input-group--bottom ve-flex no-shrink">
 					<button type="button" class="ve-col-0-3 ve-btn ve-btn-default ve-btn-xs p-0 lst__btn-collapse-all-previews no-select" name="list-toggle-all-previews">[+]</button>
-					<button type="button" class="ve-col-3-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
-					<button type="button" class="ve-col-1-3 sort ve-btn ve-btn-default ve-btn-xs" data-sort="category">Category</button>
-					<button type="button" class="ve-col-2-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="ability">Ability</button>
-					<button type="button" class="ve-col-3 sort ve-btn ve-btn-default ve-btn-xs" data-sort="prerequisite">Prerequisite</button>
-					<button type="button" class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">Source</button>
+					<button type="button" class="ve-col-3-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Nombre</button>
+					<button type="button" class="ve-col-1-3 sort ve-btn ve-btn-default ve-btn-xs" data-sort="category">Categoría</button>
+					<button type="button" class="ve-col-2-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="ability">Característica</button>
+					<button type="button" class="ve-col-3 sort ve-btn ve-btn-default ve-btn-xs" data-sort="prerequisite">Requisitos</button>
+					<button type="button" class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">Fuente</button>
 				</div>
 
 				<div id="list" class="list list--stats"></div>
@@ -106,10 +106,10 @@
 			<div id="contentwrapper" class="view-col ve-flex-5">
 				<div id="sublistcontainer" class="sublist sublist--resizable no-print">
 					<div id="sublistsort" class="ve-btn-group sublist__wrp-cols">
-						<button type="button" class="ve-col-4 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
-						<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="ability">Category</button>
-						<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="ability">Ability</button>
-						<button type="button" class="ve-col-4 sort ve-btn ve-btn-default ve-btn-xs" data-sort="prerequisite">Prerequisite</button>
+						<button type="button" class="ve-col-4 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Nombre</button>
+						<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="ability">Categoría</button>
+						<button type="button" class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="ability">Característica</button>
+						<button type="button" class="ve-col-4 sort ve-btn ve-btn-default ve-btn-xs" data-sort="prerequisite">Requisitos</button>
 					</div>
 
 					<div id="sublist" class="list"></div>
@@ -122,15 +122,15 @@
 				<div id="wrp-pagecontent" class="relative wrp-stats-table">
 					<table id="pagecontent" class="w-100 stats">
 						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
-						<tr><td colspan="6" class="initial-message initial-message--med">Select an entry from the list to view it here</td></tr>
+						<tr><td colspan="6" class="initial-message initial-message--med">Selecciona una entrada de la lista para verla aqui</td></tr>
 						<tr><th class="ve-tbl-border" colspan="6"></th></tr>
 					</table>
 				</div>
 
 				<div class="ve-flex-vh-center mt-2 no-print">
-					<button type="button" class="ve-btn ve-btn-default ve-btn-xs mr-2" id="btn-book">Printer View</button>
+					<button type="button" class="ve-btn ve-btn-default ve-btn-xs mr-2" id="btn-book">Vista de impresión</button>
 					<div class="ve-flex-v-center ve-btn-group" id="btngroup-manager">
-						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">Manage Content</button>
+						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-content">Gestionar contenido</button>
 						<button type="button" class="ve-btn ve-btn-xs ve-btn-primary" name="manage-prerelease" title="Manage Prerelease Content"><span class="glyphicon glyphicon-wrench"></span></button>
 						<button type="button" class="ve-btn ve-btn-xs ve-btn-info" name="manage-brew" title="Manage Homebrew"><span class="glyphicon glyphicon-glass"></span></button>
 					</div>

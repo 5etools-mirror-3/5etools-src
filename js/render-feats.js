@@ -64,6 +64,7 @@ class _RenderFeatsImplClassic extends _RenderFeatsImplBase {
 		const {
 			htmlPtIsExcluded,
 			htmlPtName,
+			htmlPtOriginalname,
 
 			htmlPtPrerequisites,
 			htmlPtRepeatable,
@@ -82,6 +83,7 @@ class _RenderFeatsImplClassic extends _RenderFeatsImplBase {
 
 			${htmlPtIsExcluded}
 			${htmlPtName}
+			${htmlPtOriginalname}
 			
 			${htmlPtPrerequisites}
 			${htmlPtRepeatable}
@@ -107,6 +109,7 @@ class _RenderFeatsImplOne extends _RenderFeatsImplBase {
 		const {
 			htmlPtIsExcluded,
 			htmlPtName,
+			htmlPtOriginalname,
 
 			htmlPtPrerequisites,
 			htmlPtRepeatable,
@@ -125,6 +128,7 @@ class _RenderFeatsImplOne extends _RenderFeatsImplBase {
 
 			${htmlPtIsExcluded}
 			${htmlPtName}
+			${htmlPtOriginalname}
 			
 			${htmlPtPrerequisites}
 			${htmlPtRepeatable}

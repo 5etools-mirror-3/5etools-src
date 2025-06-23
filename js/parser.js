@@ -435,24 +435,24 @@ Parser.levelToPb = function (level) {
 };
 
 Parser.SKILL_TO_ATB_ABV = {
-	"athletics": "str",
-	"acrobatics": "dex",
-	"sleight of hand": "dex",
-	"stealth": "dex",
-	"arcana": "int",
-	"history": "int",
-	"investigation": "int",
-	"nature": "int",
-	"religion": "int",
-	"animal handling": "wis",
-	"insight": "wis",
-	"medicine": "wis",
-	"perception": "wis",
-	"survival": "wis",
-	"deception": "cha",
-	"intimidation": "cha",
-	"performance": "cha",
-	"persuasion": "cha",
+	"atletismo": "fue",
+	"acrobacias": "des",
+	"juego de manos": "des",
+	"sigilo": "des",
+	"conocimiento arcano": "int",
+	"historia": "int",
+	"investigación": "int",
+	"naturaleza": "int",
+	"religión": "int",
+	"trato animal": "sab",
+	"perspicacia": "sab",
+	"medicina": "sab",
+	"percepción": "sab",
+	"supervivencia": "sab",
+	"engaño": "car",
+	"intimidación": "car",
+	"interpretación": "car",
+	"persuasión": "car",
 };
 
 Parser.skillToAbilityAbv = function (skill) {
@@ -460,24 +460,24 @@ Parser.skillToAbilityAbv = function (skill) {
 };
 
 Parser.SKILL_TO_SHORT = {
-	"athletics": "ath",
-	"acrobatics": "acro",
-	"sleight of hand": "soh",
-	"stealth": "slth",
-	"arcana": "arc",
-	"history": "hist",
-	"investigation": "invn",
-	"nature": "natr",
-	"religion": "reli",
-	"animal handling": "hndl",
-	"insight": "ins",
-	"medicine": "med",
-	"perception": "perp",
-	"survival": "surv",
-	"deception": "decp",
-	"intimidation": "intm",
-	"performance": "perf",
-	"persuasion": "pers",
+	"atletismo": "ath",
+	"acrobacias": "acro",
+	"juego de manos": "soh",
+	"sigilo": "slth",
+	"conocimiento arcano": "arc",
+	"historia": "hist",
+	"investigación": "invn",
+	"naturaleza": "natr",
+	"religión": "reli",
+	"trato animal": "hndl",
+	"perspicacia": "ins",
+	"medicina": "med",
+	"percepción": "perp",
+	"supervivencia": "surv",
+	"engaño": "decp",
+	"intimidación": "intm",
+	"interpretación": "perf",
+	"persuasión": "pers",
 };
 
 Parser.skillToShort = function (skill) {
@@ -1757,9 +1757,9 @@ Parser._spSubclassItem = function ({fromSubclass, isTextOnly}) {
 	const text = `${sc.shortName}${sc.subSubclass ? ` (${sc.subSubclass})` : ""}`;
 	if (isTextOnly) return text;
 
-	const classPart = `<span title="Source: ${Parser.sourceJsonToFull(c.source)}${c.definedInSource ? ` From a class spell list defined in: ${Parser.sourceJsonToFull(c.definedInSource)}` : ""}">${Renderer.get().render(`{@class ${c.name}|${c.source}}`)}</span>`;
+	const classPart = `<span title="Fuente: ${Parser.sourceJsonToFull(c.source)}${c.definedInSource ? ` From a class spell list defined in: ${Parser.sourceJsonToFull(c.definedInSource)}` : ""}">${Renderer.get().render(`{@class ${c.name}|${c.source}}`)}</span>`;
 
-	return `<span class="italic" title="Source: ${Parser.sourceJsonToFull(fromSubclass.subclass.source)}">${Renderer.get().render(`{@class ${c.name}|${c.source}|${text}|${sc.shortName}|${sc.source}}`)}</span> ${classPart}`;
+	return `<span class="italic" title="Fuente: ${Parser.sourceJsonToFull(fromSubclass.subclass.source)}">${Renderer.get().render(`{@class ${c.name}|${c.source}|${text}|${sc.shortName}|${sc.source}}`)}</span> ${classPart}`;
 };
 
 Parser.SPELL_ATTACK_TYPE_TO_FULL = {};
@@ -2240,7 +2240,7 @@ Parser.getEnvironmentDisplayName = function (env) {
 	return Parser.ENVIRONMENT_DISPLAY_NAMES[env] || env.toTitleCase();
 };
 
-Parser.TREASURE_TYPES = ["arcana", "armaments", "implements", "relics"];
+Parser.TREASURE_TYPES = ["conocimiento arcano", "armaments", "implements", "relics"];
 
 Parser.getTreasureTypeEntry = function (typ) {
 	if (Parser.TREASURE_TYPES.includes(typ)) return `{@table Random Magic Items - ${typ.toTitleCase()}|${Parser.SRC_XDMG}|${typ.toTitleCase()}}`;
@@ -2295,11 +2295,11 @@ Parser.prereqPatronToShort = function (patron) {
 Parser.FEAT_CATEGORY_TO_FULL = {
 	"D": "Dragonmark",
 	"G": "General",
-	"O": "Origin",
-	"FS": "Fighting Style",
-	"FS:P": "Fighting Style Replacement (Paladin)",
-	"FS:R": "Fighting Style Replacement (Ranger)",
-	"EB": "Epic Boon",
+	"O": "Origen",
+	"EC": "Estilo de combate",
+	"EC:P": "Estilo de combate (Paladín)",
+	"EC:E": "Estilo de combate (Explorador)",
+	"DE": "Don épico",
 };
 
 Parser.featCategoryToFull = (category) => {
@@ -2523,7 +2523,7 @@ Parser.CAT_ID_TO_FULL[Parser.CAT_ID_BACKGROUND] = "Background";
 Parser.CAT_ID_TO_FULL[Parser.CAT_ID_ITEM] = "Item";
 Parser.CAT_ID_TO_FULL[Parser.CAT_ID_CLASS] = "Class";
 Parser.CAT_ID_TO_FULL[Parser.CAT_ID_CONDITION] = "Condition";
-Parser.CAT_ID_TO_FULL[Parser.CAT_ID_FEAT] = "Feat";
+Parser.CAT_ID_TO_FULL[Parser.CAT_ID_FEAT] = "Dote";
 Parser.CAT_ID_TO_FULL[Parser.CAT_ID_ELDRITCH_INVOCATION] = "Eldritch Invocation";
 Parser.CAT_ID_TO_FULL[Parser.CAT_ID_PSIONIC] = "Psionic";
 Parser.CAT_ID_TO_FULL[Parser.CAT_ID_RACE] = "Species";
@@ -2640,7 +2640,7 @@ Parser.pageCategoryToProp = function (catId) {
 	return Parser._parse_aToB(Parser.CAT_ID_TO_PROP, catId);
 };
 
-Parser.ABIL_ABVS = ["str", "dex", "con", "int", "wis", "cha"];
+Parser.ABIL_ABVS = ["fue", "des", "con", "int", "sab", "car"];
 
 Parser.spClassesToCurrentAndLegacy = function (fromClassList) {
 	const current = [];
@@ -2917,12 +2917,12 @@ Parser.SP_SCHOOL_ABV_TO_SHORT[Parser.SKL_ABV_CON] = "Conj.";
 Parser.SP_SCHOOL_ABV_TO_SHORT[Parser.SKL_ABV_PSI] = "Psi.";
 
 Parser.ATB_ABV_TO_FULL = {
-	"str": "Strength",
-	"dex": "Dexterity",
-	"con": "Constitution",
-	"int": "Intelligence",
-	"wis": "Wisdom",
-	"cha": "Charisma",
+	"fue": "Fuerza",
+	"des": "Destreza",
+	"con": "Constitución",
+	"int": "Inteligencia",
+	"sab": "Sabiduría",
+	"car": "Carisma",
 };
 
 Parser.TP_ABERRATION = "aberration";

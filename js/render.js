@@ -1077,7 +1077,7 @@ globalThis.Renderer = function () {
 
 		const ptText = `${pluginDataNamePrefix.join("")}${this.render({type: "inline", entries: [displayName]})}${isAddPeriod ? "." : ""}`;
 
-		return `<${headerTag} class="rd__h ${headerClass}" data-title-index="${this._headerIndex++}" ${this._getEnumeratedTitleRel(entry.name)}> <span class="entry-title-inner${!pagePart && entry.source ? ` help-subtle` : ""}"${!pagePart && entry.source ? ` title="Source: ${Parser.sourceJsonToFull(entry.source)}${entry.page ? `, p${entry.page}` : ""}"` : ""}>${ptText}</span>${partPageExpandCollapse}</${headerTag}> `;
+		return `<${headerTag} class="rd__h ${headerClass}" data-title-index="${this._headerIndex++}" ${this._getEnumeratedTitleRel(entry.name)}> <span class="entry-title-inner${!pagePart && entry.source ? ` help-subtle` : ""}"${!pagePart && entry.source ? ` title="Fuente: ${Parser.sourceJsonToFull(entry.source)}${entry.page ? `, p${entry.page}` : ""}"` : ""}>${ptText}</span>${partPageExpandCollapse}</${headerTag}> `;
 	};
 
 	this._renderEntriesSubtypes_renderPreReqText = function (entry, textStack, meta) {
@@ -3850,7 +3850,7 @@ Renderer.utils = class {
 					: listOfChoicesTrimmed.joinConjunct(listOfChoicesTrimmed.some(it => / or /.test(it)) ? "; " : ", ", " or ")
 			) + sharedSuffix;
 
-			const ptPrefix = isSkipPrefix ? "" : `Prerequisite${cntPrerequisites === 1 ? "" : "s"}: `;
+			const ptPrefix = isSkipPrefix ? "" : `Requisito${cntPrerequisites === 1 ? "" : "s"}: `;
 			const ptsSharedOther = [shared, joinedChoices].filter(Boolean);
 			if (ptsSharedOther.length < 2) return `${ptPrefix}${ptsSharedOther.join(", ")}`;
 
@@ -3863,17 +3863,17 @@ Renderer.utils = class {
 		static _getHtml_level ({v, isListMode, styleHint}) {
 			// a generic level requirement
 			if (typeof v === "number") {
-				if (isListMode) return `Lvl ${v}`;
+				if (isListMode) return `Nivel ${v}`;
 
-				if (styleHint === "classic") return `${Parser.getOrdinalForm(v)} level`;
-				return `Level ${v}+`;
+				if (styleHint === "classic") return `${Parser.getOrdinalForm(v)} nivel`;
+				return `Nivel ${v} o más`;
 			}
 
 			if (!v.class && !v.subclass) {
-				if (isListMode) return `Lvl ${v.level}`;
+				if (isListMode) return `Nivel ${v.level}`;
 
-				if (styleHint === "classic") return `${Parser.getOrdinalForm(v.level)} level`;
-				return `Level ${v.level}+`;
+				if (styleHint === "classic") return `${Parser.getOrdinalForm(v.level)} nivel`;
+				return `Nivel ${v.level} o más`;
 			}
 
 			const isLevelVisible = v.level !== 1; // Hide the "implicit" 1st level.
@@ -3892,8 +3892,8 @@ Renderer.utils = class {
 			const ptLevel = !isLevelVisible
 				? ""
 				: styleHint === "classic"
-					? `${Parser.getOrdinalForm(v.level)} level`
-					: `Level ${v.level}+`;
+					? `${Parser.getOrdinalForm(v.level)} nivel`
+					: `Nivel ${v.level} o más`;
 
 			return [ptLevel, classPart].filter(Boolean).join(" ");
 		}
@@ -4042,7 +4042,7 @@ Renderer.utils = class {
 				if (allValuesEqual) {
 					const abList = Object.keys(abMeta);
 					hadMultipleInner = hadMultipleInner || abList.length > 1;
-					return isListMode ? abList.map(ab => ab.uppercaseFirst()).join(", ") : abList.map(ab => Parser.attAbvToFull(ab)).joinConjunct(", ", " and ");
+					return isListMode ? abList.map(ab => ab.uppercaseFirst()).join(", ") : abList.map(ab => Parser.attAbvToFull(ab)).joinConjunct(", ", " y ");
 				} else {
 					const groups = {};
 
@@ -4059,15 +4059,15 @@ Renderer.utils = class {
 
 							abs = abs.sort(SortUtil.ascSortAtts);
 
-							if (isListMode) return `${abs.map(ab => ab.uppercaseFirst()).join(", ")} ${req}+`;
+							if (isListMode) return `${abs.map(ab => ab.uppercaseFirst()).join(", ")} ${req}`;
 
-							const ptHigher = styleHint === "classic" ? " or higher" : "+";
-							return `${abs.map(ab => Parser.attAbvToFull(ab)).joinConjunct(", ", " and ")} ${req}${ptHigher}`;
+							const ptHigher = styleHint === "classic" ? " o más" : "+";
+							return `${abs.map(ab => Parser.attAbvToFull(ab)).joinConjunct(", ", " y ")} ${req}${ptHigher}`;
 						});
 
 					return isListMode
 						? `${isMulti || byScore.length > 1 ? "(" : ""}${byScore.join(" & ")}${isMulti || byScore.length > 1 ? ")" : ""}`
-						: isMulti ? byScore.joinConjunct("; ", " and ") : byScore.joinConjunct(", ", " and ");
+						: isMulti ? byScore.joinConjunct("; ", " y ") : byScore.joinConjunct(", ", " y ");
 				}
 			});
 
@@ -6368,7 +6368,7 @@ Renderer.feat = class {
 	static _mergeAbilityIncrease_getListItemItem (abilityObj) {
 		return {
 			type: "item",
-			name: "Ability Score Increase.",
+			name: "Mejora de característica.",
 			entry: Renderer.feat._mergeAbilityIncrease_getText(abilityObj),
 		};
 	}
@@ -6379,7 +6379,7 @@ Renderer.feat = class {
 		if (!abilityObj.choose) {
 			return Object.keys(abilityObj)
 				.filter(k => k !== "max")
-				.map(ab => `Increase your ${Parser.attAbvToFull(ab)} score by ${abilityObj[ab]}, to a maximum of ${maxScore}.`)
+				.map(ab => `Aumenta tu puntuación de ${Parser.attAbvToFull(ab)} en ${abilityObj[ab]}, hasta un máximo de ${maxScore}.`)
 				.join(" ");
 		}
 
@@ -6431,7 +6431,7 @@ Renderer.feat = class {
 		if (~ixFirstEntry) {
 			feat._fullEntries.splice(ixFirstEntry, 0, {
 				"type": "entries",
-				"name": "Ability Score Increase",
+				"name": "Mejora de característica",
 				"entries": abilsToDisplay.map(abilObj => Renderer.feat._mergeAbilityIncrease_getListItemText(abilObj)),
 			});
 			return;
@@ -6453,7 +6453,7 @@ Renderer.feat = class {
 	}
 
 	static getJoinedCategoryPrerequisites (category, rdPrereqs) {
-		const ptCategory = category ? `${Parser.featCategoryToFull(category)}${["FS:P", "FS:R"].includes(category) ? "" : ` Feat`}` : "";
+		const ptCategory = category ? `${Parser.featCategoryToFull(category)}${["EC:P", "EC:E"].includes(category) ? "" : ` Feat`}` : "";
 
 		return ptCategory && rdPrereqs
 			? `${ptCategory} (${rdPrereqs})`
@@ -11732,6 +11732,10 @@ Renderer.item = class {
 		return ent.name || (ent.entries || ent.entriesTemplate)[0]?.name || "Unknown";
 	}
 
+	static getPropertyOriginalname (ent) {
+		return ent.originalname || (ent.entries || ent.entriesTemplate)[0]?.originalname || "Unknown";
+	}
+
 	static _propertyMap = {};
 	static _addProperty (ent) {
 		const abvLookup = (ent.abbreviation || "UNK").toLowerCase();
@@ -11741,6 +11745,7 @@ Renderer.item = class {
 
 		const cpy = MiscUtil.copyFast(ent);
 		cpy.name = Renderer.item.getPropertyName(ent);
+		cpy.originalname = Renderer.item.getPropertyOriginalname(ent);
 
 		MiscUtil.set(this._propertyMap, sourceLookup, abvLookup, cpy);
 

@@ -21,7 +21,7 @@ class RenderTables {
 
 			case "subclass": {
 				return `<tr><td colspan="6">
-						${Renderer.get().render(`{@note ${it.__prop === "table" ? `This table is` : "These tables are"} from the {@class ${unpacked.className}|${unpacked.classSource}|${unpacked.name}|${unpacked.shortName}|${unpacked.source}} <span title="Source: ${Parser.sourceJsonToFull(unpacked.classSource)}">${unpacked.className}</span> subclass.}`)}
+						${Renderer.get().render(`{@note ${it.__prop === "table" ? `This table is` : "These tables are"} from the {@class ${unpacked.className}|${unpacked.classSource}|${unpacked.name}|${unpacked.shortName}|${unpacked.source}} <span title="Fuente: ${Parser.sourceJsonToFull(unpacked.classSource)}">${unpacked.className}</span> subclass.}`)}
 					</td></tr>`;
 			}
 
