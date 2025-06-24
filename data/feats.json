@@ -1,6 +1,95 @@
 {
 	"feat": [
 		{
+			"name": "",
+			"originalname": "",
+			"source": "XPHB",
+			"page": 0,
+			"srd52": false,
+			"basicRules2024": false,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"car": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"des": 1
+				}
+			],
+			"entries": [
+				"",
+				{
+					"type": "entries",
+					"name": "",
+					"entries": [
+						""
+					]
+				},
+				{
+					"type": "entries",
+					"name": "",
+					"entries": [
+						""
+					]
+				}
+			]
+		},
+		{
+			"name": "Acechador",
+			"originalname": "Skulker",
+			"source": "XPHB",
+			"page": 202,
+			"srd52": false,
+			"basicRules2024": false,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"car": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"des": 1
+				}
+			],
+			"entries": [
+				"Obtienes los siguientes beneficios:",
+				{
+					"type": "entries",
+					"name": "Visión ciega",
+					"entries": [
+						"Tienes visión ciega hasta 10 pies."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Niebla de guerra",
+					"entries": [
+						"Aprovechas las distracciones de la batalla, lo que te da ventaja en las pruebas de Destreza ({@skill Sigilo|XPHB}) que hagas como parte de la acción de esconderse durante el combate."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "En la sombra",
+					"entries": [
+						"Si haces una tirada de ataque mientras estás escondido y no acierta, la tirada no revelará tu ubicación."
+					]
+				}
+			]
+		},
+		{
 			"name": "Actor",
 			"originalname": "Actor",
 			"source": "XPHB",
@@ -22,7 +111,7 @@
 				}
 			],
 			"entries": [
-				"Obtienes los siguientes beneficios.",
+				"Obtienes los siguientes beneficios:",
 				{
 					"type": "entries",
 					"name": "Suplantación",
@@ -46,7 +135,7 @@
 			"page": 200,
 			"category": "O",
 			"entries": [
-				"Obtienes los siguientes beneficios.",
+				"Obtienes los siguientes beneficios:",
 				{
 					"type": "entries",
 					"name": "Puntos de suerte",
@@ -97,6 +186,118 @@
 			]
 		},
 		{
+			"name": "Apresador",
+			"originalname": "Grappler",
+			"source": "XPHB",
+			"page": 202,
+			"srd52": false,
+			"basicRules2024": false,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"fue": 13
+						},
+						{
+							"des": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"fue",
+							"des"
+						]
+					}
+				}
+			],
+			"entries": [
+				"Obtienes los siguientes beneficios:",
+				{
+					"type": "entries",
+					"name": "",
+					"entries": [
+						""
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Golpear y agarrar",
+					"entries": [
+						"Cuando aciertes a una criatura con un ataque sin armas como parte de la acción de atacar en tu turno, puedes utilizar las opciones de daño y agarre. Solo puedes usar este beneficio una vez por turno."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Ventaja al atacar",
+					"entries": [
+						"Tienes ventaja en las tiradas de ataque contra una criatura a la que estés agarrando"
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Luchador rápido",
+					"entries": [
+						"No tienes que invertir movimiento adicional para mover a una criatura a la que estés agarrando si la criatura es de tu tamaño o más pequeña."
+					]
+				}
+			]
+		},
+		{
+			"name": "Atacante a la carga",
+			"originalname": "Charger",
+			"source": "XPHB",
+			"page": 203,
+			"srd52": false,
+			"basicRules2024": false,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"fue": 13
+						},
+						{
+							"des": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"fue",
+							"des"
+						]
+					}
+				}
+			],
+			"entries": [
+				"",
+				{
+					"type": "entries",
+					"name": "Carrera mejorada",
+					"entries": [
+						"Cuando realizas la acción de correr, tu velocidad aumenta 10 pies para esa acción."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Ataque con carga",
+					"entries": [
+						"Si te mueves al menos 10 pies en línea recta hacia un objetivo justo antes de acertarle con una tirada de ataque cuerpo a cuerpo como parte de la acción de atacar, elige uno de los siguientes efectos: consigues un 1d8 adicional en la tirada de daño del ataque o empujas al objetivo hasta 10 pies si su tamaño está, como mucho, una categoría por encima de la tuya. Puedes usar este beneficio solo una vez en cada uno de tus turnos."
+					]
+				}
+			]
+		},
+		{
 			"name": "Atacante salvaje",
 			"originalname": "Savage Attacker",
 			"source": "XPHB",
@@ -118,6 +319,248 @@
 			"category": "O",
 			"entries": [
 				"Tus puntos de golpe máximos aumentan en una cantidad igual al doble del nivel de tu personaje cuando adquieres esta dote. A partir de entonces, cada vez que subas de nivel de personaje, tus puntos de golpe máximos aumentan en 2 puntos de golpe adicionales."
+			]
+		},
+		{
+			"name": "Atleta",
+			"originalname": "Athlete",
+			"source": "XPHB",
+			"page": 203,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"fue": 13
+						},
+						{
+							"des": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"fue",
+							"des"
+						]
+					}
+				}
+			],
+			"entries": [
+				"Obtienes los siguientes beneficios:",
+				{
+					"type": "entries",
+					"name": "Velocidad trepando",
+					"entries": [
+						"Obtienes una velocidad trepando igual a tu velocidad."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Levantarse de un salto",
+					"entries": [
+						"Si tienes el estado de {@condition Derribado|XPHB}, puedes ponerte de pie con solo 5 pies de movimiento."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Saltar",
+					"entries": [
+						"Puedes hacer un salto de longitud o de altura con carrerilla tras moverte solo 5 pies."
+					]
+				}
+			]
+		},
+		{
+			"name": "Azote de magos",
+			"originalname": "Mage Slayer",
+			"source": "XPHB",
+			"page": 203,
+			"srd52": false,
+			"basicRules2024": false,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"fue",
+							"des"
+						]
+					}
+				}
+			],
+			"entries": [
+				"",
+				{
+					"type": "entries",
+					"name": "Anticoncentración",
+					"entries": [
+						"Cuando dañes a una criatura que se esté concentrando, tendrá desventaja en la tirada de salvación que haga para mantener la concentración."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Mente robusta",
+					"entries": [
+						"Si fallas una tirada de salvación de Inteligencia, Sabiduría o Carisma, puedes hacer que la superes. Cuando uses este beneficio, no podrás volver a hacerlo hasta que finalices un descanso corto o largo."
+					]
+				}
+			]
+		},
+		{
+			"name": "Centinela",
+			"originalname": "Sentinel",
+			"source": "XPHB",
+			"page": 203,
+			"srd52": false,
+			"basicRules2024": false,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"fue": 13
+						},
+						{
+							"des": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"fue",
+							"des"
+						]
+					}
+				}
+			],
+			"entries": [
+				"",
+				{
+					"type": "entries",
+					"name": "Guardián",
+					"entries": [
+						"Inmediatamente después de que una criatura que esté a 5 pies o menos de ti realice la acción de destrabarse o acierte a un objetivo que no seas tú con un ataque, podrás hacer un ataque de oportunidad contra a esa criatura."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Detener",
+					"entries": [
+						"Cuando aciertes a una criatura con un ataque de oportunidad, su velocidad pasará a ser O para el resto del turno actual."
+					]
+				}
+			]
+		},
+		{
+			"name": "Chef",
+			"originalname": "Chef",
+			"source": "XPHB",
+			"page": 203,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"con",
+							"sab"
+						]
+					}
+				}
+			],
+			"toolProficiencies": [
+				{
+					"cook's utensils": true
+				}
+			],
+			"entries": [
+				"Obtienes los siguientes beneficios:",
+				{
+					"type": "entries",
+					"name": "Útiles de cocinero",
+					"entries": [
+						"También obtienes competencia con útiles de cocinero si aún no la tienes."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Comida reconstituyente",
+					"entries": [
+						"Como parte de un descanso corto, puedes preparar una comida especial, siempre que tengas a mano los ingredientes y útiles de cocinero. Puedes preparar suficiente de esta comida como para una cantidad de criaturas igual a 4 más tu bonificador por competencia. Al final del descanso corto, cualquier criatura que coma la comida y gaste uno o más dados de golpe para recuperar puntos de golpe recuperará 1d8 puntos de golpe adicionales."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Tentempiés tonificantes.",
+					"entries": [
+						"Con 1 hora de trabajo o tras finalizar un descanso largo, puedes preparar una cantidad de tentempiés igual a tu bonificador por competencia si tienes ingredientes y útiles de cocinero a mano. Estos aperitivos especiales duran 8 horas una vez preparados. Una criatura puede usar una acción adicional para comerse uno de estos refrigerios y obtener una cantidad de puntos de golpe temporales igual a tu bonificador por competencia."
+					]
+				}
+			]
+		},
+		{
+			"name": "Combatiente con dos armas",
+			"original": "Dual Wielder",
+			"source": "XPHB",
+			"page": 203,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"fue": 13
+						},
+						{
+							"des": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"fue",
+							"des"
+						]
+					}
+				}
+			],
+			"entries": [
+				"Obtienes los siguientes beneficios:",
+				{
+					"type": "entries",
+					"name": "Manejo doble mejorado.",
+					"entries": [
+						"Cuando lleves a cabo la acción de atacar en tu turno y ataques con un arma que tenga la propiedad “ligera”, podrás realizar un ataque extra como acción adicional más adelante en el mismo turno con un arma distinta, que deberá ser un arma cuerpo a cuerpo sin la propiedad “a dos manos”. No sumarás tu modificador por característica al daño del ataque extra salvo que el modificador sea negativo."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Desenvainar rápido.",
+					"entries": [
+						"Desenvainas o envainas dos armas sin la propiedad “a dos manos” cuando normalmente solo podrías desenvainar o envainar una."
+					]
+				}
 			]
 		},
 		{
@@ -144,7 +587,7 @@
 				}
 			],
 			"entries": [
-				"Obtienes los siguientes beneficios.",
+				"Obtienes los siguientes beneficios:",
 				{
 					"type": "entries",
 					"name": "Competencia con herramientas",
@@ -242,7 +685,7 @@
 			"basicRules2024": true,
 			"category": "O",
 			"entries": [
-				"Obtienes los siguientes beneficios.",
+				"Obtienes los siguientes beneficios:",
 				{
 					"type": "entries",
 					"name": "Dos trucos",
@@ -282,7 +725,7 @@
 			"basicRules2024": true,
 			"category": "O",
 			"entries": [
-				"Obtienes los siguientes beneficios",
+				"Obtienes los siguientes beneficios:",
 				{
 					"type": "entries",
 					"name": "Ataque sin armas mejorado",
@@ -378,7 +821,7 @@
 			"basicRules2024": true,
 			"category": "O",
 			"entries": [
-				"Obtienes los siguientes beneficios",
+				"Obtienes los siguientes beneficios:",
 				{
 					"type": "entries",
 					"name": "Formación instrumental",
@@ -404,7 +847,7 @@
 			"basicRules2024": true,
 			"category": "O",
 			"entries": [
-				"Obtienes los siguientes beneficios",
+				"Obtienes los siguientes beneficios:",
 				{
 					"type": "entries",
 					"name": "Médico de batalla",

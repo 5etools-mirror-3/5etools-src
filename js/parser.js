@@ -4275,7 +4275,7 @@ Parser.DMGTYPE_JSON_TO_FULL = {
 };
 
 Parser.DMG_TYPES = ["acid", "bludgeoning", "cold", "fire", "force", "lightning", "necrotic", "piercing", "poison", "psychic", "radiant", "slashing", "thunder"];
-Parser.CONDITIONS = ["blinded", "charmed", "deafened", "exhaustion", "frightened", "grappled", "incapacitated", "invisible", "paralyzed", "petrified", "poisoned", "prone", "restrained", "stunned", "unconscious"];
+Parser.CONDITIONS = ["blinded", "charmed", "deafened", "exhaustion", "frightened", "grappled", "incapacitated", "invisible", "paralyzed", "petrified", "poisoned", "derribado", "restrained", "stunned", "unconscious"];
 
 Parser._SENSES_LEGACY = [
 	{"name": "blindsight", "source": Parser.SRC_PHB},

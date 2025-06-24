@@ -6403,7 +6403,7 @@ Renderer.feat = class {
 		}
 
 		const abbChoicesText = abilityObj.choose.from.map(it => Parser.attAbvToFull(it)).joinConjunct(", ", " o ");
-		return `Increase your ${abbChoicesText} by ${abilityObj.choose.amount ?? 1}, to a maximum of ${maxScore}.`;
+		return `Aumenta tu puntuación de ${abbChoicesText} en ${abilityObj.choose.amount ?? 1}, hasta un máximo de ${maxScore}.`;
 	}
 
 	static initFullEntries (feat) {
