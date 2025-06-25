@@ -467,7 +467,7 @@ export class ConverterFeatureBase extends ConverterBase {
 		}
 
 		// "Increase one ability score of your choice by 1, to a maximum of 30."
-		const mChooseOne = new RegExp(`^Increase one ability score of your choice by 1, to a maximum of (?<max>20|30)\\.?$`, "i").exec(ent);
+		const mChooseOne = new RegExp(`^Aumenta una puntuación de característica de tu elección en 1, hasta un máximo de (?<max>20|30)\\.?$`, "i").exec(ent);
 		if (mChooseOne) {
 			const asi = {
 				"choose": {

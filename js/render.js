@@ -6399,7 +6399,7 @@ Renderer.feat = class {
 		if (abilityObj.choose.from.length === 6) {
 			return abilityObj.choose.entry
 				? Renderer.get().render(abilityObj.choose.entry) // only used in "Resilient"
-				: `Increase one ability score of your choice by ${abilityObj.choose.amount ?? 1}, to a maximum of ${maxScore}.`;
+				: `Aumenta una puntuación de característica de tu elección en ${abilityObj.choose.amount ?? 1}, hasta un máximo de ${maxScore}.`;
 		}
 
 		const abbChoicesText = abilityObj.choose.from.map(it => Parser.attAbvToFull(it)).joinConjunct(", ", " o ");

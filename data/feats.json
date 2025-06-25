@@ -564,6 +564,266 @@
 			]
 		},
 		{
+			"name": "Combatiente montado",
+			"originalname": "Mounted Combatant",
+			"source": "XPHB",
+			"page": 204,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"fue",
+							"des",
+							"sab"
+						]
+					}
+				}
+			],
+			"entries": [
+				"Obtienes los siguientes beneficios:",
+				{
+					"type": "entries",
+					"name": "Golpe montado",
+					"entries": [
+						"Mientras estés montando, tienes ventaja en las tiradas de ataque contra las criaturas que no estén montando situadas a 5 pies o menos de tu montura si su tamaño es, al menos, una categoría inferior al de la montura."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Esquivar de un salto",
+					"entries": [
+						"Si tu montura sufre un efecto que le permita hacer una tirada de salvación de Destreza para sufrir solo la mitad de daño, no recibe ningún daño si la supera y solo sufre la mitad si la falla. Para que la montura consiga este beneficio, debes estar montándola y ninguno de los dos puede tener el estado de {@condition Incapacitado|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Girar bruscamente.",
+					"entries": [
+						"Mientras estés montando, puedes hacer que un ataque que acierte a tu montura te acierte a ti en su lugar si no tienes el estado de {@condition Incapacitado|XPHB}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Duelista defensivo",
+			"original": "Defensive Duelist",
+			"source": "XPHB",
+			"page": 204,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"des": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"des": 1
+				}
+			],
+			"entries": [
+				"Obtienes los siguientes beneficios:",
+				{
+					"type": "entries",
+					"name": "Parada",
+					"entries": [
+						"Si empuñas un arma sutil y otra criatura te acierta con un ataque cuerpo a cuerpo, puedes llevar a cabo una reacción para sumar tu bonificador por competencia a tu clase de armadura, lo que podría hacer que el ataque falle. Ganas este bonificador a tu CA contra los ataques cuerpo a cuerpo hasta el principio de tu siguiente turno."
+					]
+				}
+			]
+		},
+		{
+			"name": "Entrenamiento con armas marciales",
+			"originalname": "Martial Weapon Training",
+			"source": "XPHB",
+			"page": 204,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"fue",
+							"des"
+						]
+					}
+				}
+			],
+			"weaponProficiencies": [
+				{
+					"martial": true
+				}
+			],
+			"entries": [
+				"Obtienes los siguientes beneficios:",
+				{
+					"type": "entries",
+					"name": "Competencia con armas",
+					"entries": [
+						"Obtienes competencia con armas marciales."
+					]
+				}
+			]
+		},
+		{
+			"name": "Envenenador",
+			"originalname": "Poisoner",
+			"source": "XPHB",
+			"page": 204,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"des",
+							"int"
+						]
+					}
+				}
+			],
+			"toolProficiencies": [
+				{
+					"poisoner's kit": true
+				}
+			],
+			"entries": [
+				"Obtienes los siguientes beneficios:",
+				{
+					"type": "entries",
+					"name": "Veneno potente",
+					"entries": [
+						"Cuando hagas una tirada de daño que cause daño de veneno, esta ignorará la resistencia a ese daño."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Preparar veneno.",
+					"entries": [
+						"Ganas competencia con los útiles de envenenador. Con 1 hora de trabajo usando los útiles y gastando materiales por un valor de 50 po, puedes crear una cantidad de dosis de veneno igual a tu bonificador por competencia. Como acción adicional, puedes aplicar una dosis de veneno en un arma o unidad de munición.",
+						"Una vez aplicado el veneno, este conserva su potencia durante 1 minuto o hasta que inflijas daño con el objeto envenenado, lo que suceda antes. Cuando una criatura reciba daño del objeto envenenado, deberá superar una tirada de salvación de Constitución ({@dc 8} más el modificador de la característica aumentada por esta dote y tu bonificador por competencia) o recibirá {@damage 2d8} de daño de veneno y tendrá el estado de {@condition Envenenado|XPHB} hasta el final de tu siguiente turno."
+					]
+				}
+			]
+		},
+		{
+			"name": "Experto en ballestas",
+			"originalname": "Crossbow Expert",
+			"source": "XPHB",
+			"page": 204,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"des": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"des": 1
+				}
+			],
+			"entries": [
+				"Obtienes los siguientes beneficios:",
+				{
+					"type": "entries",
+					"name": "Ignorar la recarga",
+					"entries": [
+						"Ignoras la propiedad de recarga de las ballestas de mano, ballestas ligeras y ballestas pesadas (englobadas como “ballestas” en esta dote). Si empuñas una de ellas, puedes cargar una unidad de munición aunque no tengas ninguna mano libre."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Disparar cuerpo a cuerpo",
+					"entries": [
+						"Estar a 5 pies o menos de un enemigo no impone desventaja en tus tiradas de ataque con ballestas."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Manejo doble.",
+					"entries": [
+						"Cuando hagas el ataque extra de la propiedad “ligera”, puedes sumar tu modificador por característica al daño del ataque extra si lo realizas con una ballesta con la propiedad “ligera” y no lo estás sumando ya al daño."
+					]
+				}
+			]
+		},
+		{
+			"name": "Experto en habilidades",
+			"originalname": "Skill Expert",
+			"source": "XPHB",
+			"page": 204,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"fue",
+							"des",
+							"con",
+							"int",
+							"sab",
+							"car"
+						]
+					}
+				}
+			],
+			"skillProficiencies": [
+				{
+					"any": 1
+				}
+			],
+			"expertise": [
+				{
+					"anyProficientSkill": 1
+				}
+			],
+			"entries": [
+				"Obtienes los siguientes beneficios:",
+				{
+					"type": "entries",
+					"name": "Competencia en una habilidad",
+					"entries": [
+						"Ganas competencia en una habilidad de tu elección."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Pericia",
+					"entries": [
+						"Elige una habilidad en la que tengas competencia pero te falte pericia. Ganas pericia en dicha habilidad."
+					]
+				}
+			]
+		},
+		{
 			"name": "Fabricante",
 			"originalname": "Crafter",
 			"source": "XPHB",
