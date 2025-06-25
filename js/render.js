@@ -7309,12 +7309,12 @@ Renderer.spell = class {
 
 	static getHtmlPtCastingTime (spell, {styleHint = null} = {}) {
 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
-		return `<b>Casting Time:</b> ${Parser.spTimeListToFull(spell.time, spell.meta, {styleHint})}`;
+		return `<b>Tiempo de lanzamiento:</b> ${Parser.spTimeListToFull(spell.time, spell.meta, {styleHint})}`;
 	}
 
-	static getHtmlPtRange (spell, {styleHint = null, isDisplaySelfArea = false} = {}) { return `<b>Range:</b> ${Parser.spRangeToFull(spell.range, {styleHint, isDisplaySelfArea})}`; }
-	static getHtmlPtComponents (spell) { return `<b>Components:</b> ${Parser.spComponentsToFull(spell.components, spell.level)}`; }
-	static getHtmlPtDuration (spell, {styleHint = null} = {}) { return `<b>Duration:</b> ${Parser.spDurationToFull(spell.duration, {styleHint})}`; }
+	static getHtmlPtRange (spell, {styleHint = null, isDisplaySelfArea = false} = {}) { return `<b>Alcance:</b> ${Parser.spRangeToFull(spell.range, {styleHint, isDisplaySelfArea})}`; }
+	static getHtmlPtComponents (spell) { return `<b>Componentes:</b> ${Parser.spComponentsToFull(spell.components, spell.level)}`; }
+	static getHtmlPtDuration (spell, {styleHint = null} = {}) { return `<b>Duración:</b> ${Parser.spDurationToFull(spell.duration, {styleHint})}`; }
 
 	/* -------------------------------------------- */
 

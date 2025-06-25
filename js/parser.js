@@ -1276,15 +1276,15 @@ Parser.spMetaToFull = function (meta) {
 };
 
 Parser._spLevelSchoolMetaToFull_level = ({level, styleHint}) => {
-	if (styleHint === "classic") return level === 0 ? Parser.spLevelToFull(level).toLowerCase() : `${Parser.spLevelToFull(level)}-level`;
-	return level === 0 ? Parser.spLevelToFull(level) : `Level ${level}`;
+	if (styleHint === "classic") return level === 0 ? Parser.spLevelToFull(level).toLowerCase() : `${Parser.spLevelToFull(level)}-nivel`;
+	return level === 0 ? Parser.spLevelToFull(level) : `nivel ${level}`;
 };
 
 Parser._spLevelSchoolMetaToFull_levelSchool = ({level, school, styleHint, ptLevel}) => {
-	if (level === 0) return `${Parser.spSchoolAbvToFull(school)} ${ptLevel}`;
+	if (level === 0) return `Truco de ${Parser.spSchoolAbvToFull(school)}`;
 
 	if (styleHint === "classic") return `${ptLevel} ${Parser.spSchoolAbvToFull(school).toLowerCase()}`;
-	return `${ptLevel} ${Parser.spSchoolAbvToFull(school)}`;
+	return `${Parser.spSchoolAbvToFull(school)} de ${ptLevel} `;
 };
 
 Parser.spLevelSchoolMetaToFull = function (level, school, meta, subschools, {styleHint = null} = {}) {
@@ -1433,7 +1433,7 @@ Parser.RNG_RADIUS = "radius";
 Parser.RNG_SPHERE = "sphere";
 Parser.RNG_HEMISPHERE = "hemisphere";
 Parser.RNG_CYLINDER = "cylinder"; // homebrew only
-Parser.RNG_SELF = "self";
+Parser.RNG_SELF = "lanzador";
 Parser.RNG_SIGHT = "sight";
 Parser.RNG_UNLIMITED = "unlimited";
 Parser.RNG_UNLIMITED_SAME_PLANE = "plane";
@@ -1449,7 +1449,7 @@ Parser.SP_RANGE_TYPE_TO_FULL = {
 	[Parser.RNG_SPHERE]: "Sphere",
 	[Parser.RNG_HEMISPHERE]: "Hemisphere",
 	[Parser.RNG_CYLINDER]: "Cylinder",
-	[Parser.RNG_SELF]: "Self",
+	[Parser.RNG_SELF]: "Lanzador",
 	[Parser.RNG_SIGHT]: "Sight",
 	[Parser.RNG_UNLIMITED]: "Unlimited",
 	[Parser.RNG_UNLIMITED_SAME_PLANE]: "Unlimited on the same plane",
@@ -2883,14 +2883,14 @@ Parser.SKL_ABVS = [
 	Parser.SKL_ABV_TRA,
 ];
 
-Parser.SKL_ABJ = "Abjuration";
-Parser.SKL_EVO = "Evocation";
-Parser.SKL_ENC = "Enchantment";
-Parser.SKL_ILL = "Illusion";
-Parser.SKL_DIV = "Divination";
-Parser.SKL_NEC = "Necromancy";
-Parser.SKL_TRA = "Transmutation";
-Parser.SKL_CON = "Conjuration";
+Parser.SKL_ABJ = "Abjuración";
+Parser.SKL_EVO = "Evocación";
+Parser.SKL_ENC = "Encantamiento";
+Parser.SKL_ILL = "Ilusión";
+Parser.SKL_DIV = "Adivinación";
+Parser.SKL_NEC = "Nigromancia";
+Parser.SKL_TRA = "Transmutación";
+Parser.SKL_CON = "Conjuración";
 Parser.SKL_PSI = "Psionic";
 
 Parser.SP_SCHOOL_ABV_TO_FULL = {};
@@ -2907,10 +2907,10 @@ Parser.SP_SCHOOL_ABV_TO_FULL[Parser.SKL_ABV_PSI] = Parser.SKL_PSI;
 Parser.SP_SCHOOL_ABV_TO_SHORT = {};
 Parser.SP_SCHOOL_ABV_TO_SHORT[Parser.SKL_ABV_ABJ] = "Abj.";
 Parser.SP_SCHOOL_ABV_TO_SHORT[Parser.SKL_ABV_EVO] = "Evoc.";
-Parser.SP_SCHOOL_ABV_TO_SHORT[Parser.SKL_ABV_ENC] = "Ench.";
-Parser.SP_SCHOOL_ABV_TO_SHORT[Parser.SKL_ABV_ILL] = "Illu.";
-Parser.SP_SCHOOL_ABV_TO_SHORT[Parser.SKL_ABV_DIV] = "Divin.";
-Parser.SP_SCHOOL_ABV_TO_SHORT[Parser.SKL_ABV_NEC] = "Necro.";
+Parser.SP_SCHOOL_ABV_TO_SHORT[Parser.SKL_ABV_ENC] = "Enca.";
+Parser.SP_SCHOOL_ABV_TO_SHORT[Parser.SKL_ABV_ILL] = "Ilus.";
+Parser.SP_SCHOOL_ABV_TO_SHORT[Parser.SKL_ABV_DIV] = "Adiv.";
+Parser.SP_SCHOOL_ABV_TO_SHORT[Parser.SKL_ABV_NEC] = "Nigro.";
 Parser.SP_SCHOOL_ABV_TO_SHORT[Parser.SKL_ABV_TRA] = "Trans.";
 Parser.SP_SCHOOL_ABV_TO_SHORT[Parser.SKL_ABV_CON] = "Conj.";
 Parser.SP_SCHOOL_ABV_TO_SHORT[Parser.SKL_ABV_PSI] = "Psi.";
