@@ -3197,6 +3197,17 @@ Parser.SRC_ToB1_2023 = "ToB1-2023";
 Parser.SRC_XPHB = "XPHB";
 Parser.SRC_XDMG = "XDMG";
 Parser.SRC_XMM = "XMM";
+Parser.SRC_DrDe = "DrDe";
+Parser.SRC_DrDe_DaS = "DrDe-DaS";
+Parser.SRC_DrDe_BD = "DrDe-BD";
+Parser.SRC_DrDe_TWoO = "DrDe-TWoO";
+Parser.SRC_DrDe_FWtVC = "DrDe-FWtVC";
+Parser.SRC_DrDe_TDoN = "DrDe-TDoN";
+Parser.SRC_DrDe_TFV = "DrDe-TFV";
+Parser.SRC_DrDe_BtS = "DrDe-BtS";
+Parser.SRC_DrDe_SD = "DrDe-SD";
+Parser.SRC_DrDe_ACfaS = "DrDe-ACfaS";
+Parser.SRC_DrDe_DotS = "DrDe-DotSC";
 Parser.SRC_TD = "TD";
 Parser.SRC_SCREEN = "Screen";
 Parser.SRC_SCREEN_WILDERNESS_KIT = "ScreenWildernessKit";
@@ -3387,6 +3398,17 @@ Parser.SOURCE_JSON_TO_FULL[Parser.SRC_ToB1_2023] = "Tome of Beasts 1 (2023 Editi
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_XPHB] = "Player's Handbook (2024)";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_XDMG] = "Dungeon Master's Guide (2024)";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_XMM] = "Monster Manual (2025)";
+Parser.SOURCE_JSON_TO_FULL[Parser.SRC_DrDe] = "Dragon Delves";
+Parser.SOURCE_JSON_TO_FULL[Parser.SRC_DrDe_DaS] = "Death at Sunset";
+Parser.SOURCE_JSON_TO_FULL[Parser.SRC_DrDe_BD] = "Baker's Doesn't";
+Parser.SOURCE_JSON_TO_FULL[Parser.SRC_DrDe_TWoO] = "The Will of Orcus";
+Parser.SOURCE_JSON_TO_FULL[Parser.SRC_DrDe_FWtVC] = "For Whom the Void Calls";
+Parser.SOURCE_JSON_TO_FULL[Parser.SRC_DrDe_TDoN] = "The Dragon of Najkir";
+Parser.SOURCE_JSON_TO_FULL[Parser.SRC_DrDe_TFV] = "The Forbidden Vale";
+Parser.SOURCE_JSON_TO_FULL[Parser.SRC_DrDe_BtS] = "Before the Storm";
+Parser.SOURCE_JSON_TO_FULL[Parser.SRC_DrDe_SD] = "Shivering Death";
+Parser.SOURCE_JSON_TO_FULL[Parser.SRC_DrDe_ACfaS] = "A Copper for a Song";
+Parser.SOURCE_JSON_TO_FULL[Parser.SRC_DrDe_DotS] = "Dragons of the Sandstone City";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_TD] = "Tarot Deck";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_SCREEN] = "Dungeon Master's Screen";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_SCREEN_WILDERNESS_KIT] = "Dungeon Master's Screen: Wilderness Kit";
@@ -3552,6 +3574,17 @@ Parser.SOURCE_JSON_TO_ABV[Parser.SRC_ToB1_2023] = "ToB1'23";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_XPHB] = "PHB'24";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_XDMG] = "DMG'24";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_XMM] = "MM'25";
+Parser.SOURCE_JSON_TO_ABV[Parser.SRC_DrDe] = "DrDe";
+Parser.SOURCE_JSON_TO_ABV[Parser.SRC_DrDe_DaS] = "DrDe-DaS";
+Parser.SOURCE_JSON_TO_ABV[Parser.SRC_DrDe_BD] = "DrDe-BD";
+Parser.SOURCE_JSON_TO_ABV[Parser.SRC_DrDe_TWoO] = "DrDe-TWoO";
+Parser.SOURCE_JSON_TO_ABV[Parser.SRC_DrDe_FWtVC] = "DrDe-FWtVC";
+Parser.SOURCE_JSON_TO_ABV[Parser.SRC_DrDe_TDoN] = "DrDe-TDoN";
+Parser.SOURCE_JSON_TO_ABV[Parser.SRC_DrDe_TFV] = "DrDe-TFV";
+Parser.SOURCE_JSON_TO_ABV[Parser.SRC_DrDe_BtS] = "DrDe-BtS";
+Parser.SOURCE_JSON_TO_ABV[Parser.SRC_DrDe_SD] = "DrDe-SD";
+Parser.SOURCE_JSON_TO_ABV[Parser.SRC_DrDe_ACfaS] = "DrDe-ACfaS";
+Parser.SOURCE_JSON_TO_ABV[Parser.SRC_DrDe_DotS] = "DrDe-DotSC";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_TD] = "TD";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_SCREEN] = "Scr'14";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_SCREEN_WILDERNESS_KIT] = "ScrWild";
@@ -3716,6 +3749,17 @@ Parser.SOURCE_JSON_TO_DATE[Parser.SRC_ToB1_2023] = "2023-05-31";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_XPHB] = "2024-09-17";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_XDMG] = "2024-11-12";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_XMM] = "2025-02-18";
+Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe] = "2025-07-08";
+Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe_DaS] = Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe];
+Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe_BD] = Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe];
+Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe_TWoO] = Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe];
+Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe_FWtVC] = Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe];
+Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe_TDoN] = Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe];
+Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe_TFV] = Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe];
+Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe_BtS] = Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe];
+Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe_SD] = Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe];
+Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe_ACfaS] = Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe];
+Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe_DotS] = Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe];
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_TD] = "2022-05-24";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_SCREEN] = "2015-01-20";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_SCREEN_WILDERNESS_KIT] = "2020-11-17";
@@ -3859,6 +3903,17 @@ Parser.SOURCES_ADVENTURES = new Set([
 	Parser.SRC_DoDk,
 	Parser.SRC_HBTD,
 	Parser.SRC_BQGT,
+	Parser.SRC_DrDe,
+	Parser.SRC_DrDe_DaS,
+	Parser.SRC_DrDe_BD,
+	Parser.SRC_DrDe_TWoO,
+	Parser.SRC_DrDe_FWtVC,
+	Parser.SRC_DrDe_TDoN,
+	Parser.SRC_DrDe_TFV,
+	Parser.SRC_DrDe_BtS,
+	Parser.SRC_DrDe_SD,
+	Parser.SRC_DrDe_ACfaS,
+	Parser.SRC_DrDe_DotS,
 
 	Parser.SRC_AWM,
 ]);
@@ -4183,6 +4238,16 @@ Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE = {};
 	Parser.SRC_ScoEE,
 	Parser.SRC_HBTD,
 	Parser.SRC_BQGT,
+	Parser.SRC_DrDe_DaS,
+	Parser.SRC_DrDe_BD,
+	Parser.SRC_DrDe_TWoO,
+	Parser.SRC_DrDe_FWtVC,
+	Parser.SRC_DrDe_TDoN,
+	Parser.SRC_DrDe_TFV,
+	Parser.SRC_DrDe_BtS,
+	Parser.SRC_DrDe_SD,
+	Parser.SRC_DrDe_ACfaS,
+	Parser.SRC_DrDe_DotS,
 ].forEach(src => {
 	Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE[src] = src;
 	Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE[src.toLowerCase()] = src;

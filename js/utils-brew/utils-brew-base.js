@@ -1,6 +1,7 @@
 import {BrewUtilShared} from "./utils-brew-helpers.js";
 import {BrewDoc} from "./utils-brew-models.js";
 import {SITE_STYLE__CLASSIC, SITE_STYLE__ONE} from "../consts.js";
+import {FontManager} from "../utils-font.js";
 
 export class BrewUtil2Base {
 	_STORAGE_KEY_LEGACY;
@@ -138,29 +139,23 @@ export class BrewUtil2Base {
 	}
 
 	async _pInit_pDoLoadFonts () {
-		const fontFaces = Object.entries(
+		const fontMetas = Object.entries(
 			(this._getBrewMetas() || [])
 				.map(({_meta}) => _meta?.fonts || {})
 				.mergeMap(it => it),
 		)
-			.map(([family, fontUrl]) => new FontFace(family, `url("${fontUrl}")`));
+			.map(([fontId, fontUrl]) => ({fontId, fontUrl}));
+		if (!fontMetas.length) return;
 
-		const results = await Promise.allSettled(
-			fontFaces.map(async fontFace => {
-				await fontFace.load();
-				return document.fonts.add(fontFace);
-			}),
-		);
+		fontMetas
+			.forEach(({fontId, fontUrl}) => FontManager.addFontLazy({fontId, fontUrl}));
 
-		const errors = results
-			.filter(({status}) => status === "rejected")
-			.map(({reason}, i) => ({message: `Font "${fontFaces[i].family}" failed to load!`, reason}));
-		if (errors.length) {
-			errors.forEach(({message}) => JqueryUtil.doToast({type: "danger", content: message}));
-			setTimeout(() => { throw new Error(errors.map(({message, reason}) => [message, reason].join("\n")).join("\n\n")); });
-		}
+		const {errors} = await FontManager.pFinalizeLazy();
 
-		return document.fonts.ready;
+		if (!errors.length) return;
+
+		errors.forEach(({message}) => JqueryUtil.doToast({type: "danger", content: message}));
+		setTimeout(() => { throw new Error(errors.map(({message, reason}) => [message, reason].join("\n")).join("\n\n")); });
 	}
 
 	/* -------------------------------------------- */

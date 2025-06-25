@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.9.1"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.10.0"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -846,7 +846,7 @@ class TemplateUtil {
 					const parts2 = [...passed[0]];
 					const args2 = passed.slice(1);
 					parts2[0] = `<div>${parts2[0]}`;
-					parts2.last(`${parts2.last()}</div>`);
+					parts2.last(`${parts2.at(-1)}</div>`);
 
 					const eleParts = parts instanceof jQuery ? parts[0] : parts;
 					const $temp = $$(parts2, ...args2);
@@ -881,7 +881,7 @@ class TemplateUtil {
 					const parts2 = [...passed[0]];
 					const args2 = passed.slice(1);
 					parts2[0] = `<div>${parts2[0]}`;
-					parts2.last(`${parts2.last()}</div>`);
+					parts2.last(`${parts2.at(-1)}</div>`);
 
 					const eleTmp = ee(parts2, ...args2);
 					Array.from(eleTmp.childNodes).forEach(node => parts.appendChild(node));
@@ -1561,7 +1561,8 @@ class ElementUtil {
 			}
 
 			default: {
-				this.value = val;
+				if (val === undefined) this.value = null;
+				else this.value = val;
 				return this;
 			}
 		}
@@ -1859,7 +1860,7 @@ globalThis.MiscUtil = class {
 			object = object[path[i]];
 			if (object == null) return object;
 		}
-		return delete object[path.last()];
+		return delete object[path.at(-1)];
 	}
 
 	/** Delete a prop from a nested object, then all now-empty objects backwards from that point. */
@@ -1872,7 +1873,7 @@ globalThis.MiscUtil = class {
 			stack.push(object);
 			if (object === undefined) return object;
 		}
-		const out = delete object[path.last()];
+		const out = delete object[path.at(-1)];
 
 		for (let i = path.length - 1; i > 0; --i) {
 			if (!Object.keys(stack[i]).length) delete stack[i - 1][path[i - 1]];
@@ -3954,7 +3955,7 @@ globalThis.SortUtil = {
 
 		function popEndNumber (str) {
 			const spl = str.split(" ");
-			return spl.last().isNumeric() ? [spl.slice(0, -1).join(" "), Number(spl.last().replace(Parser._numberCleanRegexp, ""))] : [spl.join(" "), 0];
+			return spl.at(-1).isNumeric() ? [spl.slice(0, -1).join(" "), Number(spl.at(-1).replace(Parser._numberCleanRegexp, ""))] : [spl.join(" "), 0];
 		}
 
 		const [aStr, aNum] = popEndNumber(a.item || a);
@@ -5863,7 +5864,7 @@ globalThis.DataUtil = class {
 
 				_getResolved ({ent, detail}) {
 					const replaced = detail
-						.replace(/\b(?<abil>str|dex|con|int|wis|cha)\b/gi, (...m) => Parser.getAbilityModNumber(Number(ent[m.last().abil])))
+						.replace(/\b(?<abil>str|dex|con|int|wis|cha)\b/gi, (...m) => Parser.getAbilityModNumber(Number(ent[m.at(-1).abil])))
 						.replace(/\bsize_mult\b/g, () => this._getSizeMult(this._getSize({ent})));
 
 					// eslint-disable-next-line no-eval
@@ -5915,7 +5916,7 @@ globalThis.DataUtil = class {
 						obj,
 						{
 							string: str => str.replace(/<\$(?<variable>[^$]+)\$>/g, (...m) => {
-								const [mode, detail] = m.last().variable.split("__");
+								const [mode, detail] = m.at(-1).variable.split("__");
 
 								const resolver = this._MODE_LOOKUP[mode];
 								if (!resolver) return m[0];
@@ -5940,7 +5941,7 @@ globalThis.DataUtil = class {
 
 			static getHumanReadableString (str, {msgPtFailed = null} = {}) {
 				return str.replace(/<\$(?<variable>[^$]+)\$>/g, (...m) => {
-					const [mode, detail] = m.last().variable.split("__");
+					const [mode, detail] = m.at(-1).variable.split("__");
 
 					const resolver = this._MODE_LOOKUP[mode];
 					if (!resolver) return m[0];
@@ -7111,7 +7112,7 @@ globalThis.DataUtil = class {
 				data.deity.filter(it => it.source === src).forEach(it => inSource[src][it.reprintAlias || it.name] = it); // TODO need to handle similar names
 			});
 
-			const laterPrinting = [PRINT_ORDER.last()];
+			const laterPrinting = [PRINT_ORDER.at(-1)];
 			[...PRINT_ORDER].reverse().slice(1).forEach(src => {
 				laterPrinting.forEach(laterSrc => {
 					Object.keys(inSource[src]).forEach(name => {
@@ -8361,7 +8362,7 @@ Array.prototype.nextWrap || Object.defineProperty(Array.prototype, "nextWrap", {
 		if (~ix) {
 			if (ix + 1 < this.length) return this[ix + 1];
 			else return this[0];
-		} else return this.last();
+		} else return this.at(-1);
 	},
 });
 
@@ -8372,7 +8373,7 @@ Array.prototype.prevWrap || Object.defineProperty(Array.prototype, "prevWrap", {
 		const ix = this.indexOf(item);
 		if (~ix) {
 			if (ix - 1 >= 0) return this[ix - 1];
-			else return this.last();
+			else return this.at(-1);
 		} else return this[0];
 	},
 });

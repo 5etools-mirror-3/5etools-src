@@ -2165,6 +2165,8 @@ class ListPage {
 		}
 	}
 
+	// FIXME(Future)
+	//  - `table > caption` causes issues: https://github.com/1904labs/dom-to-image-more/issues/209
 	async _pHandleClick_exportAsImage ({evt, isFast, $eleCopyEffect}) {
 		if (typeof domtoimage === "undefined") await import("../lib/dom-to-image-more.min.js");
 

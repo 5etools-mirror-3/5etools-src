@@ -1,6 +1,7 @@
 import js from "@eslint/js";
 import globals from "globals";
 import {CONFIG_IGNORES} from "./test/eslint/eslint-config.js";
+import pluginVetJquery from "./test/eslint/plugin-jquery.js";
 
 export default [
 	js.configs.recommended,
@@ -10,6 +11,9 @@ export default [
 			"**/*.cjs",
 			"**/*.mjs",
 		],
+		plugins: {
+			"vet-jquery": pluginVetJquery,
+		},
 		languageOptions: {
 			ecmaVersion: "latest",
 			sourceType: "module",
@@ -18,6 +22,8 @@ export default [
 			},
 		},
 		"rules": {
+			"vet-jquery/jquery": "warn",
+
 			"accessor-pairs": "off",
 			"arrow-spacing": ["error", {"before": true, "after": true}],
 			"block-spacing": ["error", "always"],

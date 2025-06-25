@@ -99,6 +99,7 @@
 		$rgb-source-XDMG: #c43c4c;
 		$rgb-source-XMM: #5686b6;
 		$rgb-source-HFDoMM: #00817f;
+		$rgb-source-DrDe: #e46910;
 
 		// region Categories
 
@@ -525,6 +526,20 @@
 
 			&HFDoMM {
 				@include mix-source-color($rgb-source-HFDoMM);
+			}
+
+			&DrDe,
+			&DrDe-DaS,
+			&DrDe-BD,
+			&DrDe-TWoO,
+			&DrDe-FWtVC,
+			&DrDe-TDoN,
+			&DrDe-TFV,
+			&DrDe-BtS,
+			&DrDe-SD,
+			&DrDe-ACfaS,
+			&DrDe-DotSC {
+				@include mix-source-color($rgb-source-DrDe);
 			}
 		}
 		// endregion

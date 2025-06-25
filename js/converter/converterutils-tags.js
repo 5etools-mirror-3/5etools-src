@@ -842,6 +842,7 @@ export class ActionTag extends ConverterTaggerInitializable {
 	static _fnTagStrict_one (strMod) {
 		return strMod
 			.replace(this._RE_BASIC_XPHB, (...m) => `{@action ${m.at(-1).name}|${Parser.SRC_XPHB}}`)
+			.replace(/Opportunity Attacks?/g, (...m) => m[0].toLowerCase() === "Opportunity Attack" ? `{@action Opportunity Attack|XPHB}` : `{@action Opportunity Attack|XPHB|Opportunity Attacks}`)
 		;
 	}
 

@@ -249,7 +249,6 @@ export class GetBrewUi {
 			$iptSearch,
 			$wrpList: $wrpRows,
 			fnSort: this._sortUrlList.bind(this),
-			isUseJquery: true,
 			isFuzzy: true,
 			isSkipSearchKeybindingEnter: true,
 		});

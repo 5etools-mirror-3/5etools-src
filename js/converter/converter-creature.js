@@ -16,6 +16,7 @@ import {
 	DamageTypeTag,
 	DetectNamedCreature,
 	DragonAgeTag,
+	FamiliarTag,
 	LanguageTag,
 	MiscTag,
 	RechargeConvert,
@@ -1857,6 +1858,7 @@ export class ConverterCreature extends ConverterBase {
 		DetectNamedCreature.tryRun(stats);
 		TagImmResVulnConditional.tryRun(stats);
 		DragonAgeTag.tryRun(stats);
+		FamiliarTag.tryRun(stats);
 		if (!stats.gear) AttachedItemTag.tryRun(stats);
 		HazardTag.tryRunPropsStrictCapsWords(stats, Renderer.monster.CHILD_PROPS_EXTENDED, {styleHint: options.styleHint});
 		CoreRuleTag.tryRunProps(stats, Renderer.monster.CHILD_PROPS_EXTENDED, {styleHint: options.styleHint});
@@ -2117,21 +2119,34 @@ export class ConverterCreature extends ConverterBase {
 
 	static _setCleanSizeTypeAlignment_postProcess (stats, meta, options) {
 		const validTypes = new Set(Parser.MON_TYPES);
-		if (!stats.type.type?.choose && (!validTypes.has(stats.type.type || stats.type))) {
-			// check if the last word is a creature type
-			const curType = stats.type.type || stats.type;
-			let parts = curType.split(/(\W+)/g);
-			parts = parts.filter(Boolean);
-			if (validTypes.has(parts.last())) {
-				const note = parts.slice(0, -1);
-				if (stats.type.type) {
-					stats.type.type = parts.last();
-				} else {
-					stats.type = parts.last();
-				}
-				stats.sizeNote = note.join("").trim();
-			}
+
+		if (stats.type.type?.choose) {
+			stats.type.type.choose = stats.type.type
+				.choose.map(typ => typ.toLowerCase());
+			return;
 		}
+
+		const curType = stats.type.type || stats.type;
+		if (validTypes.has(curType)) return;
+
+		if (validTypes.has(curType.toLowerCase())) {
+			if (stats.type.type) stats.type.type = curType.toLowerCase();
+			else stats.type = curType.toLowerCase();
+			return;
+		}
+
+		// check if the last word is a creature type
+		let parts = curType.split(/(\W+)/g);
+		parts = parts.filter(Boolean);
+		if (!validTypes.has(parts.last())) return;
+
+		const note = parts.slice(0, -1);
+		if (stats.type.type) {
+			stats.type.type = parts.last();
+		} else {
+			stats.type = parts.last();
+		}
+		stats.sizeNote = note.join("").trim();
 	}
 
 	static _addExtraTypeTags (stats, meta) {

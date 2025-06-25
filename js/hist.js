@@ -111,12 +111,12 @@ class Hist {
 			.then(() => {
 				// defer this, in case the list needs to filter first
 				setTimeout(() => {
-					const goTo = $("#listcontainer").find(".list a").attr("href");
-					if (goTo) {
-						const parts = location.hash.split(HASH_PART_SEP);
-						const fullHash = `${goTo}${parts.length > 1 ? `${HASH_PART_SEP}${parts.slice(1).join(HASH_PART_SEP)}` : ""}`;
-						location.replace(fullHash);
-					}
+					const goTo = es("#listcontainer").findAll(".list a")[0]?.attr("href");
+					if (!goTo) return;
+
+					const parts = location.hash.split(HASH_PART_SEP);
+					const fullHash = `${goTo}${parts.length > 1 ? `${HASH_PART_SEP}${parts.slice(1).join(HASH_PART_SEP)}` : ""}`;
+					location.replace(fullHash);
 				}, 1);
 			});
 	}
