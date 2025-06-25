@@ -5140,19 +5140,32 @@ class ComponentUiUtil {
 	 * @param component An instance of a class which extends BaseComponent.
 	 * @param prop Component to hook on.
 	 * @param [opts] Options Object.
+	 * @param [opts.ele] Element to use.
+	 * @param [opts.html] HTML to convert to element to use.
+	 * @return {HTMLElementExtended}
+	 */
+	static getIptColor (component, prop, opts) {
+		opts = opts || {};
+
+		const ipt = (opts.ele || e_({outer: opts.html || `<input class="form-control input-xs form-control--minimal ui__ipt-color" type="color">`}))
+			.onn("change", () => component._state[prop] = ipt.val());
+		const hook = () => ipt.val(component._state[prop]);
+		component._addHookBase(prop, hook);
+		hook();
+		return ipt;
+	}
+
+	/**
+	 * @param component An instance of a class which extends BaseComponent.
+	 * @param prop Component to hook on.
+	 * @param [opts] Options Object.
 	 * @param [opts.$ele] Element to use.
 	 * @param [opts.html] HTML to convert to element to use.
 	 * @return {jQuery}
 	 */
 	static $getIptColor (component, prop, opts) {
-		opts = opts || {};
-
-		const $ipt = (opts.$ele || $(opts.html || `<input class="form-control input-xs form-control--minimal ui__ipt-color" type="color">`))
-			.change(() => component._state[prop] = $ipt.val());
-		const hook = () => $ipt.val(component._state[prop]);
-		component._addHookBase(prop, hook);
-		hook();
-		return $ipt;
+		const ipt = this.getIptColor(component, prop, opts);
+		return $(ipt);
 	}
 
 	/**

@@ -70,7 +70,7 @@ const getTemplate = ({page, name, source, hash, img, textStyle, isFluff}) => `<!
 <meta property="og:title" content="${name}">
 <meta property="og:url" content="${BASE_SITE_URL}${page}.html#${hash}">
 ${img ? `<meta property="og:image" content="${BASE_SITE_URL}${img}">` : ""}
-<script type="text/javascript" defer src="/js/styleswitch.js"></script>
+<script type="module" defer src="/js/styleswitch.js"></script>
 <script type="text/javascript" defer src="/js/navigation.js"></script>
 <script type="module" defer src="/js/browsercheck.js"></script>
 <script>globalThis._SEO_PAGE="${page}";globalThis._SEO_SOURCE="${source}";globalThis._SEO_HASH="${hash}";globalThis._SEO_STYLE=${textStyle};globalThis._SEO_FLUFF=${isFluff};globalThis.RENDERER_BASE_URL="/"</script>
@@ -94,6 +94,7 @@ ${img ? `<meta property="og:image" content="${BASE_SITE_URL}${img}">` : ""}
 <script type="module" src="/js/omnisearch.js"></script>
 <script type="module" src="/js/filter.js"></script>
 <script type="text/javascript" defer src="/js/utils-dataloader.js"></script>
+<script type="module" src="/js/utils-font.js"></script>
 <script type="module" src="/js/utils-brew.js"></script>
 <script type="module" src="/js/utils-config.js"></script>
 <script type="text/javascript" defer src="/js/render.js"></script>

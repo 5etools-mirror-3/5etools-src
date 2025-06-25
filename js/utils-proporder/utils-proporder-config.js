@@ -1115,7 +1115,7 @@ const PROPORDER_CULT = [
 
 	"goal",
 	"cultists",
-	"signaturespells",
+	"signatureSpells",
 
 	"entries",
 ];
@@ -1139,7 +1139,7 @@ const PROPORDER_BOON = [
 
 	"goal",
 	"cultists",
-	"signaturespells",
+	"signatureSpells",
 
 	"entries",
 ];

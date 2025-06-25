@@ -423,7 +423,6 @@ export class ManageBrewUi {
 		rdState.list = new List({
 			$iptSearch,
 			$wrpList,
-			isUseJquery: true,
 			isFuzzy: true,
 			sortByInitial: rdState.list ? rdState.list.sortBy : undefined,
 			sortDirInitial: rdState.list ? rdState.list.sortDir : undefined,

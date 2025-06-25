@@ -1,6 +1,7 @@
 import {ConfigSettingsGroup} from "./util-config-settings-group.js";
 import {ConfigSettingBoolean, ConfigSettingEnum, ConfigSettingExternal} from "./utils-config-setting-base.js";
 import {SITE_STYLE__CLASSIC, SITE_STYLE__ONE, SITE_STYLE_DISPLAY} from "../consts.js";
+import {StyleSwitcher} from "../styleswitch.js";
 
 const settingsGroupStyleSwitcher = new ConfigSettingsGroup({
 	groupId: "styleSwitcher",

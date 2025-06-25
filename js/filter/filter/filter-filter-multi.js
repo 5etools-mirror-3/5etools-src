@@ -276,14 +276,14 @@ export class MultiFilter extends FilterBase {
 
 	$render (opts) {
 		const btnAndOr = e_({
-			tag: "div",
-			clazz: `fltr__group-comb-toggle ve-muted`,
+			tag: "button",
+			clazz: `ve-btn ve-btn-default ve-btn-xxs italic w-70p`,
 			click: () => this._state.mode = this._state.mode === "and" ? "or" : "and",
 			contextmenu: () => this._state.mode = this._state.mode === "and" ? "or" : "and",
 			title: `"Group AND" requires all filters in this group to match. "Group OR" required any filter in this group to match.`,
 		});
 
-		const hookAndOr = () => btnAndOr.innerText = `(group ${this._state.mode.toUpperCase()})`;
+		const hookAndOr = () => btnAndOr.innerText = `Group ${this._state.mode.toUpperCase()}`;
 		this._addHook("state", "mode", hookAndOr);
 		hookAndOr();
 

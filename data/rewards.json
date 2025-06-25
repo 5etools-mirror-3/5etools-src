@@ -247,6 +247,30 @@
 			]
 		},
 		{
+			"name": "Blessing of the Lone Champion",
+			"source": "DrDe",
+			"type": "Blessing",
+			"entries": [
+				"You gain the following benefits:",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "Heroic Inspiration",
+							"entry": "You gain {@variantrule Heroic Inspiration|XPHB} when you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB} and whenever the DM has you roll Initiative."
+						},
+						{
+							"type": "item",
+							"name": "Temporary Hit Points",
+							"entry": "You gain a number of {@variantrule Temporary Hit Points|XPHB} equal to 10 times your level when you gain this blessing and when you gain a level."
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Blessing of the Morninglord",
 			"source": "IDRotF",
 			"page": 119,
@@ -986,6 +1010,49 @@
 			"entries": [
 				"{@note This charm can be bestowed by a {@creature chwinga|ToA} living in Icewind Dale or other cold regions by using their Magical Gift action.}",
 				"This charm allows you to give yourself resistance to cold damage as an action. This benefit lasts for 24 hours, after which the charm vanishes from you."
+			]
+		},
+		{
+			"name": "Charm of Cozmioko's Glory",
+			"source": "DrDe",
+			"type": "Charm",
+			"additionalSpells": [
+				{
+					"innate": {
+						"_": {
+							"limited": {
+								"1": [
+									"wall of fire|xphb#7"
+								]
+							}
+						}
+					}
+				}
+			],
+			"entries": [
+				"This charm infuses you with the righteous vengeance of the brass dragon Cozmioko. You can use it as a Magic action and choose one of the following effects:",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "Cozmioko's Fire",
+							"entry": "You cast the {@spell Wall of Fire|XPHB} spell (level 7 version, spell save {@dc 20}), requiring no spell components."
+						},
+						{
+							"type": "item",
+							"name": "Cozmioko's Light",
+							"entry": "You regain 28 ({@dice 8d6}) Hit Points."
+						},
+						{
+							"type": "item",
+							"name": "Cozmioko's Revenge",
+							"entry": "One Melee weapon you are holding is infused with supernatural might for 1 minute or until you aren't holding the weapon. Once per turn, when you hit a Dragon with this weapon, the Dragon takes an extra {@dice 3d6} damage of the weapon's type."
+						}
+					]
+				},
+				"Once you use the charm, it vanishes from you."
 			]
 		},
 		{

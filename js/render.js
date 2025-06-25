@@ -2020,8 +2020,10 @@ globalThis.Renderer = function () {
 				break;
 			}
 			case "@font": {
-				const [displayText, fontFamily] = Renderer.splitTagByPipe(text);
-				textStack[0] += `<span style="font-family: '${fontFamily}'">`;
+				const [displayText, fontDecl] = Renderer.splitTagByPipe(text);
+				const fontInfo = Renderer.tag.TagFont.getFontInfo(fontDecl);
+				if (fontInfo.fontUrl) FontManager.pAddFont({fontId: fontInfo.fontId, fontUrl: fontInfo.fontUrl}).then(null);
+				textStack[0] += `<span style="font-family: '${fontInfo.fontId}'">`;
 				this._recursiveRender(displayText, textStack, meta);
 				textStack[0] += `</span>`;
 				break;
@@ -5136,6 +5138,36 @@ Renderer.tag = class {
 
 	static TagFont = class extends this._TagTextStyle {
 		tagName = "font";
+
+		static getFontInfo (fontDecl) {
+			if (!fontDecl) {
+				return {
+					fontId: null,
+					fontUrl: null,
+				};
+			}
+
+			const spl = fontDecl.split("/");
+
+			if (spl.length === 1) {
+				return {
+					fontId: spl[0],
+					fontUrl: null,
+				};
+			}
+
+			const ptName = spl.at(-1);
+			const fontIdFaux = ptName.split(".")[0];
+
+			const fontUrl = /^https?:\/\//.test(fontDecl)
+				? fontDecl
+				: Renderer.get().getMediaUrl("fonts", fontDecl);
+
+			return {
+				fontId: fontIdFaux,
+				fontUrl,
+			};
+		}
 	};
 
 	static TagComic = class extends this._TagTextStyle {
@@ -9054,7 +9086,7 @@ Renderer.traphazard = class {
 
 Renderer.cultboon = class {
 	static getCultRenderableEntriesMeta (ent) {
-		if (!ent.goal && !ent.cultists && !ent.signaturespells) return null;
+		if (!ent.goal && !ent.cultists && !ent.signatureSpells) return null;
 
 		const fauxList = {
 			type: "list",
@@ -9077,11 +9109,11 @@ Renderer.cultboon = class {
 				entry: ent.cultists.entry,
 			});
 		}
-		if (ent.signaturespells) {
+		if (ent.signatureSpells) {
 			fauxList.items.push({
 				type: "item",
 				name: "Signature Spells:",
-				entry: ent.signaturespells.entry,
+				entry: ent.signatureSpells.entry,
 			});
 		}
 
@@ -9097,7 +9129,7 @@ Renderer.cultboon = class {
 	/* -------------------------------------------- */
 
 	static getBoonRenderableEntriesMeta (ent) {
-		if (!ent.ability && !ent.signaturespells) return null;
+		if (!ent.ability && !ent.signatureSpells) return null;
 
 		const benefits = {type: "list", style: "list-hang-notitle", items: []};
 
@@ -9109,11 +9141,11 @@ Renderer.cultboon = class {
 			});
 		}
 
-		if (ent.signaturespells) {
+		if (ent.signatureSpells) {
 			benefits.items.push({
 				type: "item",
 				name: "Signature Spells:",
-				entry: ent.signaturespells ? ent.signaturespells.entry : "None",
+				entry: ent.signatureSpells ? ent.signatureSpells.entry : "None",
 			});
 		}
 
@@ -12090,6 +12122,13 @@ Renderer.item = class {
 
 		specificVariant._category = "Specific Variant";
 		Object.entries(inherits)
+			// Always apply "remove"s first
+			// This allows for e.g.
+			//   - base item: "Very Rare Reagent"
+			//   - variant: "Poisonous Reagent"
+			//     `{"nameRemove": "Reagent", "nameSuffix": "Poisonous Reagent"}`
+			//   -> `"Very Rare Poisonous Reagent"`
+			.sort(([kA], [kB]) => kB.includes("Remove") - kA.includes("Remove"))
 			.forEach(([inheritedProperty, val]) => {
 				switch (inheritedProperty) {
 					case "namePrefix": specificVariant.name = `${val}${specificVariant.name}`; break;

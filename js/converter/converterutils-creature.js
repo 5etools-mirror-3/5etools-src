@@ -2485,3 +2485,17 @@ export class CreatureSpecialEquipmentTagger {
 			});
 	}
 }
+
+export class FamiliarTag {
+	static tryRun (mon, {styleHint = null} = {}) {
+		const type = mon.type?.type ?? mon.type;
+		if (type !== "beast") return;
+
+		const cr = mon.cr?.cr || mon.cr;
+		if (cr !== "0") return;
+
+		if (styleHint === "classic" && !mon.size?.includes(Parser.SZ_TINY)) return;
+
+		mon.familiar = true;
+	}
+}

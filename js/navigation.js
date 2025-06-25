@@ -863,21 +863,6 @@ NavBar._timerMousePos = {};
 NavBar._cachedInstallEvent = null;
 
 NavBar.InteractionManager = class {
-	static _onClick_button_dayNight (evt) {
-		evt.preventDefault();
-		styleSwitcher.cycleDayNightMode();
-	}
-
-	static _onContext_button_dayNight (evt) {
-		evt.preventDefault();
-		styleSwitcher.cycleDayNightMode(-1);
-	}
-
-	static _onClick_button_wideMode (evt) {
-		evt.preventDefault();
-		styleSwitcher.toggleWide();
-	}
-
 	static async _pOnClick_button_saveStateFile (evt) {
 		evt.preventDefault();
 		const sync = StorageUtil.syncGetDump();

@@ -389,7 +389,7 @@ class OmnisearchUi {
 		</div>`;
 
 		if (!results.length) {
-			$(rdState.dispSearchOutput).append(`<div class="ve-muted"><i>No results found.</i></div>`);
+			rdState.dispSearchOutput.appends(`<div class="ve-muted"><i>No results found.</i></div>`);
 			rdState.wrpSearchOutput.showVe();
 			return {rowMetas: [], results, ixPage};
 		}
@@ -430,7 +430,7 @@ class OmnisearchUi {
 					? ptSourceInner
 					: `<a href="${adventureBookSourceHref}">${ptSourceInner}</a>`;
 
-				$$`<div class="omni__row-result split-v-center stripe-odd">
+				ee`<div class="omni__row-result split-v-center stripe-odd">
 					${lnk}
 					<div class="ve-flex-v-center">
 						${ptSource}

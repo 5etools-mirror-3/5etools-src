@@ -756,6 +756,16 @@ class BlocklistUi {
 globalThis.BlocklistUi = BlocklistUi;
 
 BlocklistUi.Component = class extends BaseComponent {
+	constructor () {
+		super();
+
+		const hkNonNameChange = () => {
+			this._state.name = {hash: "*", name: "*", category: this._state.category};
+		};
+		this._addHookBase("source", hkNonNameChange);
+		this._addHookBase("category", hkNonNameChange);
+	}
+
 	get source () { return this._state.source; }
 	get category () { return this._state.category; }
 	get name () { return this._state.name; }

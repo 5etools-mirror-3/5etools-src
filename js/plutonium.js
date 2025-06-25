@@ -27,7 +27,7 @@ class PlutoniumPage {
 			.forEach(({path, id}) => {
 				const url = Renderer.get().getMediaUrl("img", path);
 
-				$(`#${id}`)
+				es(`#${id}`)
 					.html(`<img class="big-help-gif" src="${url}" loading="lazy">`)
 					.attr("href", url);
 			});

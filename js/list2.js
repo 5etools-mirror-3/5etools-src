@@ -1,5 +1,22 @@
 "use strict";
 
+class ListHelpers {
+	static getSearchText (text) {
+		return CleanUtil.getCleanString(text)
+			.toAscii()
+			.toLowerCase()
+		;
+	}
+
+	static _RE_SEARCH_CLEAN_APOS = /'/g;
+
+	static getNormalizedText (text) {
+		return text
+			.replace(this._RE_SEARCH_CLEAN_APOS, "")
+		;
+	}
+}
+
 class ListItem {
 	static getCommonValues (ent) {
 		return {
@@ -36,7 +53,7 @@ class ListItem {
 			if (!v) continue;
 			searchText += `${v} - `;
 		}
-		this.searchText = searchText.toAscii().toLowerCase();
+		this.searchText = ListHelpers.getNormalizedText(ListHelpers.getSearchText(searchText));
 	}
 
 	set isSelected (val) {
@@ -91,7 +108,9 @@ class List {
 	 * disable sorting.
 	 * @param [opts.fnSearch] Search function. Should accept `(li, searchTerm)` where `li` is a list item.
 	 * @param [opts.$iptSearch] Search input.
+	 * @param [opts.iptSearch] Search input.
 	 * @param opts.$wrpList List wrapper.
+	 * @param opts.wrpList List wrapper.
 	 * @param [opts.isUseJquery] If the list items are using jQuery elements. Significantly slower for large lists.
 	 * @param [opts.sortByInitial] Initial sortBy.
 	 * @param [opts.sortDirInitial] Initial sortDir.
@@ -103,8 +122,14 @@ class List {
 	constructor (opts) {
 		if (opts.fnSearch && opts.isFuzzy) throw new Error(`The options "fnSearch" and "isFuzzy" are mutually incompatible!`);
 
-		this._$iptSearch = opts.$iptSearch;
-		this._$wrpList = opts.$wrpList;
+		if (opts.$iptSearch && opts.iptSearch) throw new Error(`Only one of "$iptSearch" and "iptSearch" may be passed!`);
+		if (opts.$wrpList && opts.wrpList) throw new Error(`Only one of "$iptSearch" and "iptSearch" may be passed!`);
+
+		const iptSearch = opts.iptSearch || opts.$iptSearch?.[0];
+		const wrpList = opts.wrpList || opts.$wrpList?.[0];
+
+		this._iptSearch = iptSearch ? e_(iptSearch) : iptSearch;
+		this._wrpList = wrpList ? e_(wrpList) : wrpList;
 		this._fnSort = opts.fnSort === undefined ? SortUtil.listSort : opts.fnSort;
 		this._fnSearch = opts.fnSearch;
 		this._syntax = opts.syntax;
@@ -156,13 +181,13 @@ class List {
 		if (this._isInit) return;
 
 		// This should only be run after all the elements are ready from page load
-		if (this._$iptSearch) {
+		if (this._iptSearch) {
 			UiUtil.bindTypingEnd({
-				$ipt: this._$iptSearch,
-				fnKeyup: () => this.search(this._$iptSearch.val()),
+				ipt: this._iptSearch,
+				fnKeyup: () => this.search(this._iptSearch.val()),
 				timeout: isLazySearch ? UiUtil.TYPE_TIMEOUT_LAZY_MS : UiUtil.TYPE_TIMEOUT_MS,
 			});
-			this._searchTerm = List.getCleanSearchTerm(this._$iptSearch.val());
+			this._searchTerm = List.getCleanSearchTerm(this._iptSearch.val());
 			this._init_bindKeydowns();
 
 			// region Help text
@@ -173,7 +198,7 @@ class List {
 					.map(({help}) => help),
 			];
 
-			if (helpText.length) this._$iptSearch.title(helpText.join(" "));
+			if (helpText.length) this._iptSearch.tooltip(helpText.join(" "));
 			// endregion
 		}
 
@@ -182,8 +207,8 @@ class List {
 	}
 
 	_init_bindKeydowns () {
-		this._$iptSearch
-			.on("keydown", evt => {
+		this._iptSearch
+			.onn("keydown", evt => {
 				// Avoid handling the same event multiple times, if there are multiple lists bound to one input
 				if (evt._List__isHandled) return;
 
@@ -197,12 +222,12 @@ class List {
 	_handleKeydown_escape (evt) {
 		evt._List__isHandled = true;
 
-		if (!this._$iptSearch.val()) {
-			$(document.activeElement).blur();
+		if (!this._iptSearch.val()) {
+			document.activeElement?.blur();
 			return;
 		}
 
-		this._$iptSearch.val("");
+		this._iptSearch.val("");
 		this.search("");
 	}
 
@@ -217,7 +242,7 @@ class List {
 
 		evt._List__isHandled = true;
 
-		$(firstVisibleItem.ele).click();
+		e_(firstVisibleItem.ele).trigger("click");
 		if (firstVisibleItem.values.hash) window.location.hash = firstVisibleItem.values.hash;
 	}
 
@@ -270,7 +295,8 @@ class List {
 
 		if (this._fnSearch) return this._searchedItems = this._items.filter(it => this._fnSearch(it, this._searchTerm));
 
-		this._searchedItems = this._items.filter(it => this.constructor.isVisibleDefaultSearch(it, this._searchTerm));
+		const searchTermNormalized = ListHelpers.getNormalizedText(this._searchTerm);
+		this._searchedItems = this._items.filter(it => this.constructor.isVisibleDefaultSearch(it, searchTermNormalized));
 	}
 
 	_doSearch_doSearchTerm_preSyntax () {
@@ -395,13 +421,13 @@ class List {
 		const len = this._sortedItems.length;
 
 		if (this._isUseJquery) {
-			this._$wrpList.children().detach();
-			for (let i = 0; i < len; ++i) this._$wrpList.append(this._sortedItems[i].ele);
+			[...this._wrpList.children].forEach(child => child.parentElement.removeChild(child));
+			for (let i = 0; i < len; ++i) this._wrpList.append(this._sortedItems[i].ele[0]);
 		} else {
-			this._$wrpList[0].innerHTML = "";
+			this._wrpList.innerHTML = "";
 			const frag = document.createDocumentFragment();
 			for (let i = 0; i < len; ++i) frag.appendChild(this._sortedItems[i].ele);
-			this._$wrpList[0].appendChild(frag);
+			this._wrpList.appendChild(frag);
 		}
 
 		this._isDirty = false;
@@ -507,7 +533,7 @@ class List {
 	 * @param [opts.fnBindListeners] Function which binds event listeners to the list.
 	 */
 	doAbsorbItems (dataArr, opts) {
-		const children = [...this._$wrpList[0].children];
+		const children = [...this._wrpList.children];
 
 		const len = children.length;
 		if (len !== dataArr.length) throw new Error(`Data source length and list element length did not match!`);
@@ -632,8 +658,10 @@ class List {
 	}
 	// endregion
 
+	static _RE_SEARCH_CLEAN_WHITESPACE = /\s\s+/g;
+
 	static getCleanSearchTerm (str) {
-		return (str || "").toAscii().trim().toLowerCase().split(/\s+/g).join(" ");
+		return ListHelpers.getSearchText(str || "").trim().replace(this._RE_SEARCH_CLEAN_WHITESPACE, " ");
 	}
 }
 List._DEFAULTS = {
