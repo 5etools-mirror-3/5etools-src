@@ -5517,70 +5517,6 @@
 			]
 		},
 		{
-			"name": "Detectar pensamientos",
-			"originalname": "Detect thoughts",
-			"source": "XPHB",
-			"page": 271,
-			"srd52": true,
-			"basicRules2024": true,
-			"level": 2,
-			"school": "D",
-			"time": [
-				{
-					"number": 1,
-					"unit": "acción"
-				}
-			],
-			"range": {
-				"type": "point",
-				"distance": {
-					"type": "lanzador"
-				}
-			},
-			"components": {
-				"v": true,
-				"s": true,
-				"m": "1 pieza de cobre"
-			},
-			"duration": [
-				{
-					"type": "timed",
-					"duration": {
-						"type": "minuto",
-						"amount": 1
-					},
-					"concentration": true
-				}
-			],
-			"entries": [
-				"Activas uno de los siguientes efectos. Hasta que el conjuro termine, puedes activar cualquiera de ellos como acción de magia en tus siguientes turnos.",
-				{
-					"type": "entries",
-					"name": "Sentir pensamientos",
-					"entries": [
-						"Percibes la presencia de pensamientos que pertenecen a criaturas que conozcan idiomas o sean telepáticas a 30 pies (9 m) o menos de ti. No lees sus pensamientos, pero sabes que hay una criatura pensante cerca.",
-						"El conjuro no puede atravesar 30 cm de piedra, tierra o madera, 2,5 cm de metal o una lámina fina de plomo."
-					]
-				},
-				{
-					"type": "entries",
-					"name": "Leer pensamientos",
-					"entries": [
-						"Haces objetivo a una criatura que puedas ver a 9 m o menos de ti o a una criatura a 9 m o menos de ti que hayas detectado con la opción de sentir pensamientos y averiguas lo principal que ocupa su mente en ese momento. Si el objetivo no conoce ningún idioma o no es telepático, no descubres nada.",
-						"Como acción de magia en tu próximo turno, puedes intentar sondear en profundidad su mente. Si lo haces, el objetivo hará una tirada de salvación de Sabiduría. Si la falla, descubrirás su forma de razonar, sus emociones y algo que sea de gran importancia en su mente (una preocupación o algo que ame u odie). Si la supera, el conjuro terminará. De cualquier forma, el objetivo sabrá que estás sondeando su mente y, a menos que desplaces tu atención, podrá usar una acción en su turno para hacer una prueba de Inteligencia ({@skill Conocimiento arcano|XPHB}) contra tu CD de salvación de conjuros; si la supera, el conjuro terminará."					]
-				}
-			],
-			"savingThrow": [
-				"wisdom"
-			],
-			"abilityCheck": [
-				"intelligence"
-			],
-			"miscTags": [
-				"SGT"
-			]
-		},
-		{
 			"name": "Dimension Door",
 			"source": "XPHB",
 			"page": 262,
@@ -12160,10 +12096,9 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Mano de mago",
-			"originalname": "Mage Hand",
+			"name": "Mage Hand",
 			"source": "XPHB",
-			"page": 308,
+			"page": 293,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 0,
@@ -12171,13 +12106,13 @@
 			"time": [
 				{
 					"number": 1,
-					"unit": "acción"
+					"unit": "action"
 				}
 			],
 			"range": {
 				"type": "point",
 				"distance": {
-					"type": "pies",
+					"type": "feet",
 					"amount": 30
 				}
 			},
@@ -12189,16 +12124,16 @@
 				{
 					"type": "timed",
 					"duration": {
-						"type": "minuto",
+						"type": "minute",
 						"amount": 1
 					}
 				}
 			],
 			"entries": [
-				"Conjuras una mano espectral flotante en un punto de tu elección dentro del alcance. La mano dura hasta que el conjuro termine. Además, desaparecerá si en algún momento está a más de 30 pies de ti o si vuelves a lanzar este conjuro.",
-				"Cuando lances este conjuro, puedes utilizar la mano para manipular un objeto, abrir una puerta o un recipiente que no estén cerrados con llave, sacar un objeto de un recipiente abierto o guardarlo en él o verter el contenido de un vial.",
-				"Como acción de magia en tus siguientes turnos, puedes volver a controlar la mano de esta forma. Como parte de la acción, puedes mover la mano hasta 30 pies.",
-				"La mano no puede atacar, activar objetos mágicos ni llevar más de 10 libras (5 kg) de peso."
+				"A spectral, floating hand appears at a point you choose within range. The hand lasts for the duration. The hand vanishes if it is ever more than 30 feet away from you or if you cast this spell again.",
+				"When you cast the spell, you can use the hand to manipulate an object, open an unlocked door or container, stow or retrieve an item from an open container, or pour the contents out of a vial.",
+				"As a {@action Magic|XPHB} action on your later turns, you can control the hand thus again. As part of that action, you can move the hand up to 30 feet.",
+				"The hand can't attack, activate magic items, or carry more than 10 pounds."
 			],
 			"miscTags": [
 				"OBJ"

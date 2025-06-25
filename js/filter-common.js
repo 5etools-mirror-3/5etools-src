@@ -51,7 +51,7 @@ class FilterCommon {
 		"paralyzed",
 		"petrified",
 		"poisoned",
-		"prone",
+		"derribado",
 		"restrained",
 		"stunned",
 		"unconscious",
