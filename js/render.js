@@ -4090,13 +4090,13 @@ Renderer.utils = class {
 				return Object.entries(obj).map(([profType, prof]) => {
 					switch (profType) {
 						case "armor": {
-							if (prof === "shield") {
-								if (isListMode) return styleHint === "classic" ? `Prof ${prof}` : `${prof.toTitleCase()} Trai.`;
-								return styleHint === "classic" ? `Proficiency with ${prof}s` : `${prof.toTitleCase()} Training`;
+							if (prof === "escudo") {
+								if (isListMode) return styleHint === "classic" ? `Comp. ${prof}` : `Entr. ${prof}s`;
+								return styleHint === "classic" ? `Competencia con ${prof}s` : `entrenamiento con ${prof}s`;
 							}
 
-							if (isListMode) return styleHint === "classic" ? `Prof ${Parser.armorFullToAbv(prof)} armor` : `${Parser.armorFullToAbv(prof).toTitleCase()} Armor Trai.`;
-							return styleHint === "classic" ? `Proficiency with ${prof} armor` : `${prof.toTitleCase()} Armor Training`;
+							if (isListMode) return styleHint === "classic" ? `Comp. arm. ${Parser.armorFullToAbv(prof)}` : `Entr. arm. ${Parser.armorFullToAbv(prof)}`;
+							return styleHint === "classic" ? `Competencia con armadura ${prof}` : `entrenamiento con armaduras ${prof}s`;
 						}
 						case "weapon": {
 							return isListMode ? `Prof ${Parser.weaponFullToAbv(prof)} weapon` : `Proficiency with a ${prof} weapon`;
@@ -4128,20 +4128,20 @@ Renderer.utils = class {
 		}
 
 		static _getHtml_spellcasting ({v, isListMode}) {
-			return isListMode ? "Spellcasting" : "The ability to cast at least one spell";
+			return isListMode ? "Lanz. conjuros" : "The ability to cast at least one spell";
 		}
 
 		static _getHtml_spellcasting2020 ({v, isListMode, styleHint}) {
-			if (isListMode) return "Spellcasting";
-			return styleHint === "classic" ? "Spellcasting or Pact Magic feature" : "Spellcasting or Pact Magic Feature";
+			if (isListMode) return "Lanz. conjuros";
+			return styleHint === "classic" ? "rasgo Lanzamiento de conjuros o Magia del pacto" : "rasgo Lanzamiento de conjuros o Magia del pacto";
 		}
 
 		static _getHtml_spellcastingFeature ({v, isListMode}) {
-			return isListMode ? "Spellcasting" : "Spellcasting Feature";
+			return isListMode ? "Lanz. conjuros" : "rasgo Lanzamiento de conjuros";
 		}
 
 		static _getHtml_spellcastingPrepared ({v, isListMode}) {
-			return isListMode ? "Spellcasting" : "Spellcasting feature from a class that prepares spells";
+			return isListMode ? "Lanz. conjuros" : "Spellcasting feature from a class that prepares spells";
 		}
 
 		static _SCF_TYPE_TO_NAME = {

@@ -2293,7 +2293,6 @@ Parser.prereqPatronToShort = function (patron) {
 };
 
 Parser.FEAT_CATEGORY_TO_FULL = {
-	"D": "Dragonmark",
 	"G": "General",
 	"O": "Origen",
 	"EC": "Estilo de combate",

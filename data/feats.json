@@ -1,47 +1,6 @@
 {
 	"feat": [
 		{
-			"name": "",
-			"originalname": "",
-			"source": "XPHB",
-			"page": 0,
-			"srd52": false,
-			"basicRules2024": false,
-			"category": "G",
-			"prerequisite": [
-				{
-					"level": 4,
-					"ability": [
-						{
-							"car": 13
-						}
-					]
-				}
-			],
-			"ability": [
-				{
-					"des": 1
-				}
-			],
-			"entries": [
-				"",
-				{
-					"type": "entries",
-					"name": "",
-					"entries": [
-						""
-					]
-				},
-				{
-					"type": "entries",
-					"name": "",
-					"entries": [
-						""
-					]
-				}
-			]
-		},
-		{
 			"name": "Acechador",
 			"originalname": "Skulker",
 			"source": "XPHB",
@@ -517,6 +476,79 @@
 			]
 		},
 		{
+			"name": "Combate con armas a dos manos",
+			"originalname": "Great Weapon Fighting",
+			"source": "XPHB",
+			"page": 209,
+			"srd52": true,
+			"basicRules2024": true,
+			"category": "EC",
+			"prerequisite": [
+				{
+					"feature": [
+						"Estilo de combate"
+					]
+				}
+			],
+			"entries": [
+				"Cuando tires el daño para un ataque hecho con un arma cuerpo a cuerpo que empuñas con ambas manos, puedes tratar cualquier 1 o 2 en los dados de daño como un 3. Para obtener este beneficio, el arma debe poseer la propiedad “a dos manos” o “versátil”."
+			]
+		},
+		{
+			"name": "Combate con armas arrojadizas",
+			"originalname": "Thrown Weapon Fighting",
+			"source": "XPHB",
+			"page": 209,
+			"category": "EC",
+			"prerequisite": [
+				{
+					"feature": [
+						"Estilo de combate"
+					]
+				}
+			],
+			"entries": [
+				"Cuando aciertas con una tirada de ataque a distancia con un arma que tenga la propiedad “arrojadiza”, obtienes un bonificador de +2 a la tirada de daño."
+			]
+		},
+		{
+			"name": "Combate con dos armas",
+			"originalname": "Two-Weapon Fighting",
+			"source": "XPHB",
+			"page": 209,
+			"srd52": true,
+			"basicRules2024": true,
+			"category": "EC",
+			"prerequisite": [
+				{
+					"feature": [
+						"Estilo de combate"
+					]
+				}
+			],
+			"entries": [
+				"Cuando haces un ataque extra como resultado de utilizar un arma con la propiedad “ligera”, puedes sumar tu modificador por característica al daño de ese ataque si no lo estás sumando ya al daño."
+			]
+		},
+		{
+			"name": "Combate sin armas",
+			"originalname": "Unarmed Fighting",
+			"source": "XPHB",
+			"page": 209,
+			"category": "EC",
+			"prerequisite": [
+				{
+					"feature": [
+						"Estilo de combate"
+					]
+				}
+			],
+			"entries": [
+				"Cuando aciertes con tu ataque sin armas y causes daño, puedes infligir una cantidad de daño contundente igual a {@damage 1d6} más tu modificador por Fuerza en lugar del daño habitual de un ataque sin armas. Si no estás empuñando armas ni embrazando un escudo al hacer la tirada de ataque, el d6 se convierte en un {@dice d8}.",
+				"Al principio de cada uno de tus turnos, puedes infligir {@damage 1d4} de daño contundente a una criatura a la que tengas agarrada."
+			]
+		},
+		{
 			"name": "Combatiente con dos armas",
 			"original": "Dual Wielder",
 			"source": "XPHB",
@@ -611,6 +643,25 @@
 			]
 		},
 		{
+			"name": "Defensa",
+			"originalname": "Defense",
+			"source": "XPHB",
+			"page": 209,
+			"srd52": true,
+			"basicRules2024": true,
+			"category": "EC",
+			"prerequisite": [
+				{
+					"feature": [
+						"Estilo de combate"
+					]
+				}
+			],
+			"entries": [
+				"Mientras lleves puesta una armadura ligera, media o pesada, recibes un bonificador de +1 a la clase de armadura."
+			]
+		},
+		{
 			"name": "Duelista defensivo",
 			"original": "Defensive Duelist",
 			"source": "XPHB",
@@ -640,6 +691,24 @@
 						"Si empuñas un arma sutil y otra criatura te acierta con un ataque cuerpo a cuerpo, puedes llevar a cabo una reacción para sumar tu bonificador por competencia a tu clase de armadura, lo que podría hacer que el ataque falle. Ganas este bonificador a tu CA contra los ataques cuerpo a cuerpo hasta el principio de tu siguiente turno."
 					]
 				}
+			]
+		},
+		{
+			"name": "Duelo",
+			"originalname": "Dueling",
+			"source": "XPHB",
+			"page": 209,
+			"srd52": true,
+			"category": "EC",
+			"prerequisite": [
+				{
+					"feature": [
+						"Estilo de combate"
+					]
+				}
+			],
+			"entries": [
+				"Cuando empuñes un arma cuerpo a cuerpo con una mano y ninguna en la otra, recibes un bonificador de +2 a tus tiradas de daño con esa arma."
 			]
 		},
 		{
@@ -937,6 +1006,106 @@
 			]
 		},
 		{
+			"name": "Influencia feérica",
+			"originalname": "Fey-Touched",
+			"source": "XPHB",
+			"page": 205,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"sab",
+							"car"
+						]
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"ability": "inherit",
+					"innate": {
+						"_": {
+							"daily": {
+								"1e": [
+									"misty step|xphb",
+									{
+										"choose": "level=1|school=E;D"
+									}
+								]
+							}
+						}
+					}
+				}
+			],
+			"entries": [
+				"Tu exposición a la magia de los Parajes Feéricos te otorga los siguientes beneficios.",
+				{
+					"type": "entries",
+					"name": "Magia feérica",
+					"entries": [
+						"Elige un conjuro de nivel 1 de las escuelas mágicas de adivinación o encantamiento. Siempre tendrás ese conjuro y el conjuro paso brumoso preparados. Puedes lanzar cada uno de estos conjuros sin gastar un espacio de conjuro. Cuando lances cualquiera de esos conjuros de esta forma, no podrás volver a lanzar ese conjuro de este modo hasta que finalices un descanso largo. También puedes lanzar estos conjuros usando espacios de conjuro que tengas del nivel apropiado. La aptitud mágica de los conjuros es la característica aumentada por esta dote."
+					]
+				}
+			]
+		},
+		{
+			"name": "Influencia sombría",
+			"originalname": "Shadow-Touched",
+			"source": "XPHB",
+			"page": 205,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"sab",
+							"car"
+						]
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"ability": "inherit",
+					"innate": {
+						"_": {
+							"daily": {
+								"1e": [
+									"invisibility|xphb",
+									{
+										"choose": "level=1|school=I;N"
+									}
+								]
+							}
+						}
+					}
+				}
+			],
+			"entries": [
+				"Tu exposición a la magia del Páramo Sombrío te otorga los siguientes beneficios.",
+				{
+					"type": "entries",
+					"name": "Magia de las sombras",
+					"entries": [
+						"Elige un conjuro de nivel 1 de las escuelas mágicas de ilusionismo o nigromancia. Siempre tendrás ese conjuro y el conjuro invisibilidad preparados. Puedes lanzar cada uno de estos conjuros sin gastar un espacio de conjuro. Cuando lances cualquiera de esos conjuros de esta forma, no podrás volver a lanzar ese conjuro de este modo hasta que finalices un descanso largo. También puedes lanzar estos conjuros usando espacios de conjuro que tengas del nivel apropiado, La aptitud mágica de los conjuros es la característica aumentada por esta dote."
+					]
+				}
+			]
+		},
+		{
 			"name": "Iniciado en la magia",
 			"originalname": "Magic Initiate",
 			"source": "XPHB",
@@ -972,6 +1141,539 @@
 					"name": "Repetible",
 					"entries": [
 						"Puedes elegir esta dote más de una vez, pero debes elegir una lista de conjuros distinta cada vez."
+					]
+				}
+			]
+		},
+		{
+			"name": "Intercepción",
+			"originalname": "Interception",
+			"source": "XPHB",
+			"page": 209,
+			"category": "EC",
+			"prerequisite": [
+				{
+					"feature": [
+						"Estilo de combate"
+					]
+				}
+			],
+			"entries": [
+				"Cuando una criatura que puedas ver acierte a otra criatura que esté a 5 pies o menos de ti con una tirada de ataque, puedes llevar a cabo una reacción para reducir el daño causado al objetivo en 1d10 más tu bonificador por competencia. Para usar esta reacción, debes estar embrazando un escudo o empuñando un arma sencilla o marcial."
+			]
+		},
+		{
+			"name": "Lanzador en combate",
+			"originalname": "War Caster",
+			"source": "XPHB",
+			"page": 205,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"spellcasting2020": true
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"sab",
+							"car"
+						]
+					}
+				}
+			],
+			"entries": [
+				"Obtienes los siguientes beneficios:",
+				{
+					"type": "entries",
+					"name": "Concentración",
+					"entries": [
+						"Tienes ventaja en las tiradas de salvación de Constitución que realices para mantener la {@status Concentración|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Conjuro reactivo",
+					"entries": [
+						"Cuando una criatura provoque un ataque de oportunidad al salir de tu alcance, puedes llevar a cabo una reacción para lanzar un conjuro sobre la criatura en lugar de hacer un ataque de oportunidad. El conjuro debe tener un tiempo de lanzamiento de una acción y solo puede hacer objetivo a esa criatura."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Componentes somáticos",
+					"entries": [
+						"Puedes ejecutar los componentes somáticos de los conjuros incluso aunque tengas armas o un escudo en una o ambas manos."
+					]
+				}
+			]
+		},
+		{
+			"name": "Lanzador preciso",
+			"originalname": "Spell Sniper",
+			"source": "XPHB",
+			"page": 205,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"spellcasting2020": true
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"sab",
+							"car"
+						]
+					}
+				}
+			],
+			"entries": [
+				"Obtienes los siguientes beneficios:",
+				{
+					"type": "entries",
+					"name": "Sortear la cobertura",
+					"entries": [
+						"Tus tiradas de ataque con conjuros ignoran las coberturas media y tres cuartos."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Lanzar conjuros cuerpo a cuerpo",
+					"entries": [
+						"Estar a 5 pies o menos de un enemigo no impone desventaja en tus tiradas de ataque con conjuros."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Alcance aumentado",
+					"entries": [
+						"Cuando lances un conjuro que tenga un alcance de al menos 10 pies y requiera una tirada de ataque, puedes aumentar el alcance del conjuro en 60 pies."
+					]
+				}
+			]
+		},
+		{
+			"name": "Lanzador ritual",
+			"originalname": "Ritual Caster",
+			"source": "XPHB",
+			"page": 205,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"int": 13
+						},
+						{
+							"sab": 13
+						},
+						{
+							"car": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"sab",
+							"car"
+						]
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"prepared": {
+						"1": [
+							{
+								"choose": "level=1|components & miscellaneous=ritual",
+								"count": 2
+							}
+						],
+						"5": [
+							{
+								"choose": "level=1|components & miscellaneous=ritual",
+								"count": 1
+							}
+						],
+						"9": [
+							{
+								"choose": "level=1|components & miscellaneous=ritual",
+								"count": 1
+							}
+						],
+						"13": [
+							{
+								"choose": "level=1|components & miscellaneous=ritual",
+								"count": 1
+							}
+						],
+						"17": [
+							{
+								"choose": "level=1|components & miscellaneous=ritual",
+								"count": 1
+							}
+						]
+					}
+				}
+			],
+			"entries": [
+				"Obtienes los siguientes beneficios:",
+				{
+					"type": "entries",
+					"name": "Conjuros rituales",
+					"entries": [
+						"Elige una cantidad de conjuros igual a tu bonificador por competencia; deben ser de nivel 1 y estar marcados como “ritual”. Siempre tendrás esos conjuros preparados y podrás lanzarlos con cualquier espacio de conjuro que tengas. La aptitud mágica de los conjuros es la característica aumentada por esta dote. Siempre que tu bonificador por competencia aumente, puedes añadir otro conjuro de nivel 1 marcado como “ritual” a los conjuros que siempre tienes preparados con este rasgo."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Ritual rápido",
+					"entries": [
+						"Con este beneficio, puedes lanzar un conjuro ritual que tengas preparado usando su tiempo de lanzamiento habitual en lugar del plazo más largo para un ritual. Hacer esto no requiere un espacio de conjuro. Cuando lances el conjuro de esta forma, no podrás volver a utilizar este beneficio hasta que finalices un descanso largo."
+					]
+				}
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Líder inspirador",
+			"originalname": "Inspiring Leader",
+			"source": "XPHB",
+			"page": 205,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"sab": 13
+						},
+						{
+							"car": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"sab",
+							"car"
+						]
+					}
+				}
+			],
+			"entries": [
+				"Obtienes los siguientes beneficios:",
+				{
+					"type": "entries",
+					"name": "Interpretación fortalecedora",
+					"entries": [
+						"Tras finalizar un descanso corto o largo, puedes hacer una interpretación inspiradora: un discurso, una canción o un baile. Cuando lo hagas, elige hasta seis aliados (entre los que puedes estar tú) que estén a 30 pieso menos de ti y que hayan presenciado la interpretación. Las criaturas elegidas ganan una cantidad de puntos de golpe temporales igual a tu nivel de personaje más el modificador de la característica que has aumentado con esta dote."
+					]
+				}
+			]
+		},
+		{
+			"name": "Ligeramente acorazado",
+			"originalname": "Lightly Armored",
+			"source": "XPHB",
+			"page": 206,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"fue",
+							"des"
+						]
+					}
+				}
+			],
+			"armorProficiencies": [
+				{
+					"light": true,
+					"shield": true
+				}
+			],
+			"entries": [
+				"Obtienes los siguientes beneficios:",
+				{
+					"type": "entries",
+					"name": "Entrenamiento con armaduras",
+					"entries": [
+						"Obtienes entrenamiento con armaduras ligeras y escudos."
+					]
+				}
+			]
+		},
+		{
+			"name": "Lucha a ciegas",
+			"originalname": "Blind Fighting",
+			"source": "XPHB",
+			"page": 210,
+			"category": "EC",
+			"prerequisite": [
+				{
+					"feature": [
+						"Estilo de combate"
+					]
+				}
+			],
+			"senses": [
+				{
+					"blindsight": 10
+				}
+			],
+			"entries": [
+				"Tienes visión ciega hasta 10 pies."
+			]
+		},
+		{
+			"name": "Maestro de armas",
+			"originalname": "Weapon Master",
+			"source": "XPHB",
+			"page": 206,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"fue",
+							"des"
+						]
+					}
+				}
+			],
+			"entries": [
+				"Obtienes los siguientes beneficios:",
+				{
+					"type": "entries",
+					"name": "Propiedad de maestría",
+					"entries": [
+						"Tu entrenamiento con armas te permite utilizar la propiedad de maestría con un tipo de arma sencilla o marcial de tu elección, siempre que tengas competencia con ella. Tras finalizar un descanso largo, puedes cambiar el tipo de arma elegida por otra que cumpla el requisito."
+					]
+				}
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Maestro en armaduras medias",
+			"originalname": "Medium Armor Master",
+			"source": "XPHB",
+			"page": 206,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"proficiency": [
+						{
+							"armor": "media"
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"fue",
+							"des"
+						]
+					}
+				}
+			],
+			"entries": [
+				"Obtienes los siguientes beneficios:",
+				{
+					"type": "entries",
+					"name": "Portador diestro",
+					"entries": [
+						"Mientras lleves puesta una armadura media, puedes sumar 3 en lugar de 2 atu CA si tu puntuación de Destreza es de 16 o más."
+					]
+				}
+			]
+		},
+		{
+			"name": "Maestro en armaduras pesadas",
+			"originalname": "Heavy Armor Master",
+			"source": "XPHB",
+			"page": 206,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"proficiency": [
+						{
+							"armor": "pesada"
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"con",
+							"fue"
+						]
+					}
+				}
+			],
+			"entries": [
+				"Obtienes los siguientes beneficios:",
+				{
+					"type": "entries",
+					"name": "Reducción de daño",
+					"entries": [
+						"Cuando te acierte un ataque mientras lleves puesta una armadura pesada, cualquier daño contundente, cortante y perforante que recibas se reducirá en una cantidad igual a tu bonificador por competencia."
+					]
+				}
+			]
+		},
+		{
+			"name": "Maestro en armas de asta",
+			"originalname": "Polearm Master",
+			"source": "XPHB",
+			"page": 206,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"fue": 13
+						},
+						{
+							"des": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"des",
+							"fue"
+						]
+					}
+				}
+			],
+			"entries": [
+				"Obtienes los siguientes beneficios:",
+				{
+					"type": "entries",
+					"name": "Golpe con asta",
+					"entries": [
+						"Inmediatamente después de que realices la acción de atacar con un bastón, una lanza o un arma que tenga las propiedades “gran alcance” y “pesada”, puedes usar una acción adicional para hacer un ataque cuerpo a cuerpo con el otro extremo del arma. El arma causa daño contundente y su dado de daño para este ataque es un d4."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Golpe reactivo",
+					"entries": [
+						"Mientras empuñes un bastón, una lanza o un arma que tenga las propiedades “gran alcance” y “pesada”, podrás llevar a cabo una reacción para hacer un ataque cuerpo a cuerpo contra una criatura que entre dentro del alcance que tengas con esa arma."
+					]
+				}
+			]
+		},
+		{
+			"name": "Maestro en armas pesadas",
+			"originalname": "Great Weapon Master",
+			"source": "XPHB",
+			"page": 206,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"fue": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"fue": 1
+				}
+			],
+			"entries": [
+				"Obtienes los siguientes beneficios:",
+				{
+					"type": "entries",
+					"name": "Maestría con armas pesadas",
+					"entries": [
+						"Cuando golpeas a una criatura con un arma que tenga la propiedad “pesada” como parte de la acción de atacar en tu turno, puedes hacer que el arma cause daño adicional al objetivo. Este daño adicional es igual a tu bonificador por competencia."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Avasallar",
+					"entries": [
+						"Inmediatamente después de causar un crítico con un arma cuerpo a cuerpo o de reducir a una criatura a 0 puntos de golpe con una, puedes hacer un ataque con el mismo arma como acción adicional."
+					]
+				}
+			]
+		},
+		{
+			"name": "Maestro en escudos",
+			"originalname": "Shield Master",
+			"source": "XPHB",
+			"page": 207,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"proficiency": [
+						{
+							"armor": "escudo"
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"fue": 1
+				}
+			],
+			"entries": [
+				"Obtienes los siguientes beneficios:",
+				{
+					"type": "entries",
+					"name": "Golpe con escudo.",
+					"entries": [
+						"Si atacas a una criatura que esté a 5 pies o menos de ti como parte de la acción de atacar y le aciertas con un arma cuerpo a cuerpo, inmediatamente podrás golpearla con tu escudo si lo llevas equipado y obligarla a realizar una tirada de salvación de Fuerza ({@dc 8} más tu modificador por Fuerza y tu bonificador por competencia). Si la falla, podrás empujar al objetivo 5 pies respecto a ti o hacer que tenga el estado de {@condition Derribado|XPHB} (a tu elección). Puedes usar este beneficio solo una vez en cada uno de tus turnos."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Interponer escudo",
+					"entries": [
+						"Si sufres un efecto que te permita hacer una tirada de salvación de Destreza para sufrir solo la mitad de daño, podrás llevar a cabo una reacción para no recibir daño alguno si la superas y estás embrazando un escudo."
 					]
 				}
 			]
@@ -1073,6 +1775,142 @@
 			]
 		},
 		{
+			"name": "Mente aguda",
+			"originalname": "Keen Mind",
+			"source": "XPHB",
+			"page": 207,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"int": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"int": 1
+				}
+			],
+			"skillProficiencies": [
+				{
+					"choose": {
+						"from": [
+							"arcana",
+							"history",
+							"investigation",
+							"nature",
+							"religion"
+						]
+					}
+				}
+			],
+			"entries": [
+				"Obtienes los siguientes beneficios:",
+				{
+					"type": "entries",
+					"name": "Sabiduría popular.",
+					"entries": [
+						"Elige una de las siguientes habilidades: {@skill Conocimiento arcano|XPHB}, {@skill Historia|XPHB}, {@skill Investigación|XPHB}, {@skill Naturaleza|XPHB} o {@skill Religión|XPHB}. Si no tienes competencia en la habilidad elegida, la consigues, y si ya la tienes, ganas pericia en ella."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Estudio rápido",
+					"entries": [
+						"Puedes llevar a cabo la acción de {@action Estudiar|XPHB} como acción adicional."
+					]
+				}
+			]
+		},
+		{
+			"name": "Moderadamente acorazado",
+			"originalname": "Moderately Armored",
+			"source": "XPHB",
+			"page": 207,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"proficiency": [
+						{
+							"armor": "ligera"
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"fue",
+							"des"
+						]
+					}
+				}
+			],
+			"armorProficiencies": [
+				{
+					"medium": true
+				}
+			],
+			"entries": [
+				"Obtienes los siguientes beneficios:",
+				{
+					"type": "entries",
+					"name": "Entrenamiento con armaduras",
+					"entries": [
+						"Obtienes entrenamiento con armaduras medias."
+					]
+				}
+			]
+		},
+		{
+			"name": "Muy acorazado",
+			"originalname": "Heavily Armored",
+			"source": "XPHB",
+			"page": 207,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"proficiency": [
+						{
+							"armor": "media"
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"con",
+							"fue"
+						]
+					}
+				}
+			],
+			"armorProficiencies": [
+				{
+					"heavy": true
+				}
+			],
+			"entries": [
+				"Obtienes los siguientes beneficios:",
+				{
+					"type": "entries",
+					"name": "Entrenamiento con armaduras",
+					"entries": [
+						"Obtienes entrenamiento con armaduras pesadas."
+					]
+				}
+			]
+		},
+		{
 			"name": "Músico",
 			"originalname": "Musician",
 			"source": "XPHB",
@@ -1094,6 +1932,246 @@
 					"name": "Canción alentadora",
 					"entries": [
 						"Cuando termines un descanso corto o largo, puedes tocar una canción con un instrumento musical con el que seas competente y darles inspiración heroica a los aliados que te escuchen. La cantidad de aliados a los que puedas influir de esta forma es igual a tu bonificador por competencia."
+					]
+				}
+			]
+		},
+		{
+			"name": "Observador",
+			"originalname": "Observant",
+			"source": "XPHB",
+			"page": 207,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"int": 13
+						},
+						{
+							"sab": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"sab"
+						]
+					}
+				}
+			],
+			"skillProficiencies": [
+				{
+					"choose": {
+						"from": [
+							"insight",
+							"investigation",
+							"perception"
+						]
+					}
+				}
+			],
+			"entries": [
+				"Obtienes los siguientes beneficios:",
+				{
+					"type": "entries",
+					"name": "Observador perspicaz",
+					"entries": [
+						"Elige una de las siguientes habilidades: {@skill Investigación|XPHB}, {@skill Percepción|XPHB} o {@skill Perspicacia|XPHB}. Si no tienes competencia en la habilidad elegida, la consigues, y si ya la tienes, ganas pericia en ella."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Búsqueda rápida.",
+					"entries": [
+						"Puedes llevar a cabo la acción de buscar como acción adicional."
+					]
+				}
+			]
+		},
+		{
+			"name": "Perforador",
+			"originalname": "Piercer",
+			"source": "XPHB",
+			"page": 207,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"fue",
+							"des"
+						]
+					}
+				}
+			],
+			"entries": [
+				"Obtienes los siguientes beneficios:",
+				{
+					"type": "entries",
+					"name": "Horadar",
+					"entries": [
+						"Una vez por turno, cuando aciertes a una criatura con un ataque que cause daño perforante, podrás volver a tirar uno de los dados de daño del ataque y deberás utilizar el nuevo resultado."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Crítico potenciado",
+					"entries": [
+						"Cuando causes un crítico que inflija daño perforante a una criatura, podrás tirar un dado de daño más al determinar el daño perforante adicional que recibe el objetivo."
+					]
+				}
+			]
+		},
+		{
+			"name": "Protección",
+			"originalname": "Protection",
+			"source": "XPHB",
+			"page": 210,
+			"srd52": true,
+			"category": "EC",
+			"prerequisite": [
+				{
+					"feature": [
+						"Estilo de combate"
+					]
+				}
+			],
+			"entries": [
+				"Cuando una criatura que puedas ver ataque a un objetivo que no seas tú y esté a 5 pies o menos de ti, puedes llevar a cabo una reacción para interponer tu escudo si estás embrazando uno. Impones desventaja a la tirada de ataque ala que reaccionas y al resto de tiradas de ataque contra el objetivo hasta el principio de tu siguiente turno si permaneces a 5 pies o menos del objetivo."
+			]
+		},
+		{
+			"name": "Rebanador",
+			"originalname": "Slasher",
+			"source": "XPHB",
+			"page": 208,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"fue",
+							"des"
+						]
+					}
+				}
+			],
+			"entries": [
+				"Obtienes los siguientes beneficios:",
+				{
+					"type": "entries",
+					"name": "Lacerar",
+					"entries": [
+						"Una vez por turno, cuando aciertes a una criatura con un ataque que cause daño cortante, podrás reducir la velocidad del objetivo en 10 pies hasta el principio de tu siguiente turno."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Crítico potenciado.",
+					"entries": [
+						"Cuando causes un crítico que haga daño cortante a una criatura, esta tendrá desventaja en las tiradas de ataque hasta el principio de tu siguiente turno."
+					]
+				}
+			]
+		},
+		{
+			"name": "Resiliente",
+			"originalname": "Resilient",
+			"source": "XPHB",
+			"page": 208,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"fue",
+							"des",
+							"con",
+							"int",
+							"sab",
+							"car"
+						],
+						"amount": 1,
+						"entry": "Elige una característica en la que no tengas competencia en tiradas de salvación. Aumenta la puntuación de característica en 1, hasta un máximo de 20."
+					}
+				}
+			],
+			"savingThrowProficiencies": [
+				{
+					"choose": {
+						"from": [
+							"fue",
+							"des",
+							"con",
+							"int",
+							"sab",
+							"car"
+						]
+					}
+				}
+			],
+			"entries": [
+				"Obtienes los siguientes beneficios:",
+				{
+					"type": "entries",
+					"name": "Competencia en tiradas de salvación",
+					"entries": [
+						"Ganas competencia en las tiradas de salvación de la característica elegida."
+					]
+				}
+			]
+		},
+		{
+			"name": "Resistente",
+			"originalname": "Durable",
+			"source": "XPHB",
+			"page": 208,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"con": 1
+				}
+			],
+			"entries": [
+				"Obtienes los siguientes beneficios:",
+				{
+					"type": "entries",
+					"name": "Desafiar a la muerte",
+					"entries": [
+						"Tienes ventaja en las tiradas de salvación contra muerte."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Recuperación rápida",
+					"entries": [
+						"Como acción adicional, puedes gastar uno de tus dados de puntos de golpe, tirarlo y recuperar una cantidad de puntos de golpe igual al resultado."
 					]
 				}
 			]
@@ -1125,6 +2203,156 @@
 			]
 		},
 		{
+			"name": "Telepático",
+			"originalname": "Telepathic",
+			"source": "XPHB",
+			"page": 208,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"sab",
+							"car"
+						]
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"ability": "inherit",
+					"innate": {
+						"_": {
+							"daily": {
+								"1": [
+									"detect thoughts|xphb"
+								]
+							}
+						}
+					}
+				}
+			],
+			"entries": [
+				"Obtienes los siguientes beneficios:",
+				{
+					"type": "entries",
+					"name": "Habla telepática",
+					"entries": [
+						"Puedes hablarle telepáticamente a cualquier criatura que puedas ver a 60 pies o menos de ti. Hablas telepáticamente en un idioma que conoces y la criatura solo te entiende si también conoce dicho idioma. Tu comunicación no concede a la criatura la capacidad de responder telepáticamente."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Detectar pensamientos",
+					"entries": [
+						"Siempre tienes el conjuro  {@spell Detectar pensamientos|XPHB} preparado. Puedes lanzarlo sin gastar un espacio de conjuro ni componentes y debes finalizar un descanso largo antes de poder volver a lanzarlo de este modo. También puedes lanzarlo usando espacios de conjuro que tengas del nivel apropiado. La aptitud mágica del conjuro es la característica aumentada por esta dote."
+					]
+				}
+			]
+		},
+		{
+			"name": "Telequinético",
+			"originalname": "Telekinetic",
+			"source": "XPHB",
+			"page": 208,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"sab",
+							"car"
+						]
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"ability": "inherit",
+					"known": {
+						"_": [
+							"mage hand|xphb#c"
+						]
+					}
+				}
+			],
+			"entries": [
+				"Obtienes los siguientes beneficios:",
+				{
+					"type": "entries",
+					"name": "Telequinesis menor",
+					"entries": [
+						"Aprendes el conjuro <i>{@spell Mano de mago|XPHB}</i>. Puedes lanzarlo sin componentes verbales o somáticos, puedes hacer que la mano espectral sea {@condition Invisible|XPHB} y su alcance y la distancia a la que puede estar de ti aumentan en 30 piescuando lo lances. La aptitud mágica del conjuro es la característica aumentada por esta dote."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Empellón telequinético",
+					"entries": [
+						"Como acción adicional, puedes empujar telepáticamente a una criatura que puedas ver a 30 pies o menos de ti. Si lo haces, el objetivo deberá superar una tirada de salvación de Fuerza ({@dc 8} más tu modificador por característica de la puntuación aumentada por esta dota y tu bonificador por competencia) o se moverá 5 pies hacia ti o lejos de ti."
+					]
+				}
+			]
+		},
+		{
+			"name": "Tirador de primera",
+			"originalname": "Sharpshooter",
+			"source": "XPHB",
+			"page": 208,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"des": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"des": 1
+				}
+			],
+			"entries": [
+				"Obtienes los siguientes beneficios:",
+				{
+					"type": "entries",
+					"name": "Sortear la cobertura",
+					"entries": [
+						"Tus ataques a distancia con armas ignoran las coberturas media y tres cuartos."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Disparar cuerpo a cuerpo",
+					"entries": [
+						"Estar a 5 pies o menos de un enemigo no impone desventaja en tus tiradas de ataque con armas a distancia."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Tiros lejanos",
+					"entries": [
+						"Al atacar con alcance largo, tus tiradas de ataque no tendrán desventaja con las armas a distancia."
+					]
+				}
+			]
+		},
+		{
 			"name": "Tiro con arco",
 			"originalname": "Archery",
 			"source": "XPHB",
@@ -1141,6 +2369,142 @@
 			],
 			"entries": [
 				"Recibes un bonificador de +2 a las tiradas de ataque con armas a distancia."
+			]
+		},
+		{
+			"name": "Triturador",
+			"originalname": "Crusher",
+			"source": "XPHB",
+			"page": 208,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"fue",
+							"con"
+						]
+					}
+				}
+			],
+			"entries": [
+				"Obtienes los siguientes beneficios:",
+				{
+					"type": "entries",
+					"name": "Empujar",
+					"entries": [
+						"Una vez por turno, cuando aciertes a una criatura con un ataque que cause daño contundente, podrás moverla 5 pies a un espacio sin ocupar, siempre que el tamaño del objetivo esté, como mucho, una categoría por encima de la tuya."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Crítico potenciado",
+					"entries": [
+						"Cuando causes un crítico que inflija daño contundente a una criatura, las tiradas de ataque contra esa criatura tendrán ventaja hasta el principio de tu siguiente turno."
+					]
+				}
+			]
+		},
+		{
+			"name": "Veloz",
+			"originalname": "Speedy",
+			"source": "XPHB",
+			"page": 209,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"ability": [
+						{
+							"des": 13
+						},
+						{
+							"con": 13
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"des",
+							"con"
+						]
+					}
+				}
+			],
+			"entries": [
+				"Obtienes los siguientes beneficios:",
+				{
+					"type": "entries",
+					"name": "Aumento de velocidad",
+					"entries": [
+						"Tu velocidad aumenta en 10 pies."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Correr por terreno difícil",
+					"entries": [
+						"Cuando realizas la acción de correr en tu turno, el terreno difícil no te cuesta movimiento adicional durante el resto de ese turno."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Movimiento ágil",
+					"entries": [
+						"Los ataques de oportunidad tienen desventaja contra ti."
+					]
+				}
+			]
+		},
+		{
+			"name": "Versado en un elemento",
+			"originalname": "Elemental Adept",
+			"source": "XPHB",
+			"page": 209,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"spellcasting2020": true
+				}
+			],
+			"repeatable": true,
+			"repeatableHidden": true,
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"sab",
+							"car"
+						]
+					}
+				}
+			],
+			"entries": [
+				"Obtienes los siguientes beneficios:",
+				{
+					"type": "entries",
+					"name": "Dominio de la energía.",
+					"entries": [
+						"Elige uno de los siguientes tipos de daño: ácido, frío, fuego, relámpago o trueno. Los conjuros que lances ignoran la resistencia al daño del tipo que elijas. Además, cuando tires el daño de un conjuro que hayas lanzado y cause daño de ese tipo, podrás tratar cualquier 1 en los dados de daño como un 2."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Repetible",
+					"entries": [
+						"Puedes elegir esta dote más de una vez, pero debes elegir un tipo de daño distinto cada vez para el dominio de la energía."
+					]
+				}
 			]
 		}
 	]
