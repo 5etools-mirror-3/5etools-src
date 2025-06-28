@@ -2297,18 +2297,26 @@ class Panel {
 			this.doCloseTab(ix);
 		};
 
-		const $btnSelTab = $(`<span class="ve-btn ve-btn-default content-tab ve-flex ${tabCanRename ? "content-tab-can-rename" : ""}"><span class="content-tab-title ve-overflow-ellipsis" title="${title}">${title}</span></span>`)
-			.on("mousedown", (evt) => {
-				if (evt.which === 1) {
+		const btnCloseTab = ee`<span class="glyphicon glyphicon-remove content-tab-remove"></span>`
+			.onn("mousedown", (evt) => {
+				if (evt.button === 0) {
+					evt.stopPropagation();
+					doCloseTabWithConfirmation();
+				}
+			});
+
+		const btnSelTab = ee`<span class="ve-btn ve-btn-default content-tab ve-flex ${tabCanRename ? "content-tab-can-rename" : ""}"><span class="content-tab-title ve-overflow-ellipsis" title="${title}">${title}</span>${btnCloseTab}</span>`
+			.onn("mousedown", (evt) => {
+				if (evt.button === 0) {
 					this.setActiveTab(ix);
-				} else if (evt.which === 2) {
+				} else if (evt.button === 1) {
 					doCloseTabWithConfirmation();
 				}
 			})
-			.on("contextmenu", async (evt) => {
+			.onn("contextmenu", async (evt) => {
 				evt.stopPropagation();
 				evt.preventDefault();
-				if ($btnSelTab.hasClass("content-tab-can-rename")) {
+				if (btnSelTab.hasClass("content-tab-can-rename")) {
 					const existingTitle = this.getTabTitle(ix) || "";
 					const nuTitle = await InputUiUtil.pGetUserString({default: existingTitle, title: "Rename Tab"});
 					if (nuTitle && nuTitle.trim()) {
@@ -2316,14 +2324,8 @@ class Panel {
 					}
 				}
 			});
-		const $btnCloseTab = $(`<span class="glyphicon glyphicon-remove content-tab-remove"></span>`)
-			.on("mousedown", (evt) => {
-				if (evt.button === 0) {
-					evt.stopPropagation();
-					doCloseTabWithConfirmation();
-				}
-			}).appendTo($btnSelTab);
-		return $btnSelTab;
+
+		return $(btnSelTab);
 	}
 
 	getTabTitle (ix) {
@@ -3082,7 +3084,7 @@ class AddMenuVideoTab extends AddMenuTab {
 			const $wrpYT = $(`<div class="ui-modal__row"></div>`).appendTo($tab);
 			const $iptUrlYT = $(`<input class="form-control" placeholder="Paste YouTube URL">`)
 				.on("keydown", (e) => {
-					if (e.which === 13) $btnAddYT.click();
+					if (e.key === "Enter") $btnAddYT.click();
 				})
 				.appendTo($wrpYT);
 			const $btnAddYT = $(`<button class="ve-btn ve-btn-primary ve-btn-sm">Embed</button>`).appendTo($wrpYT);
@@ -3105,7 +3107,7 @@ class AddMenuVideoTab extends AddMenuTab {
 			const $wrpTwitch = $(`<div class="ui-modal__row"></div>`).appendTo($tab);
 			const $iptUrlTwitch = $(`<input class="form-control" placeholder="Paste Twitch URL">`)
 				.on("keydown", (e) => {
-					if (e.which === 13) $btnAddTwitch.click();
+					if (e.key === "Enter") $btnAddTwitch.click();
 				})
 				.appendTo($wrpTwitch);
 			const $btnAddTwitch = $(`<button class="ve-btn ve-btn-primary ve-btn-sm">Embed</button>`).appendTo($wrpTwitch);
@@ -3148,7 +3150,7 @@ class AddMenuVideoTab extends AddMenuTab {
 			const $wrpGeneric = $(`<div class="ui-modal__row"></div>`).appendTo($tab);
 			const $iptUrlGeneric = $(`<input class="form-control" placeholder="Paste any URL">`)
 				.on("keydown", (e) => {
-					if (e.which === 13) $iptUrlGeneric.click();
+					if (e.key === "Enter") $iptUrlGeneric.click();
 				})
 				.appendTo($wrpGeneric);
 			const $btnAddGeneric = $(`<button class="ve-btn ve-btn-primary ve-btn-sm">Embed</button>`).appendTo($wrpGeneric);
@@ -3237,7 +3239,7 @@ class AddMenuImageTab extends AddMenuTab {
 			const $wrpUtl = $(`<div class="ui-modal__row"></div>`).appendTo($tab);
 			const $iptUrl = $(`<input class="form-control" placeholder="Paste image URL">`)
 				.on("keydown", (e) => {
-					if (e.which === 13) $btnAddUrl.click();
+					if (e.key === "Enter") $btnAddUrl.click();
 				})
 				.appendTo($wrpUtl);
 			const $btnAddUrl = $(`<button class="ve-btn ve-btn-primary ve-btn-sm">Add</button>`).appendTo($wrpUtl);

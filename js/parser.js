@@ -3191,9 +3191,6 @@ Parser.SRC_BMT = "BMT";
 Parser.SRC_DMTCRG = "DMTCRG";
 Parser.SRC_QftIS = "QftIS";
 Parser.SRC_VEoR = "VEoR";
-Parser.SRC_GHLoE = "GHLoE";
-Parser.SRC_DoDk = "DoDk";
-Parser.SRC_ToB1_2023 = "ToB1-2023";
 Parser.SRC_XPHB = "XPHB";
 Parser.SRC_XDMG = "XDMG";
 Parser.SRC_XMM = "XMM";
@@ -3392,9 +3389,6 @@ Parser.SOURCE_JSON_TO_FULL[Parser.SRC_BMT] = "The Book of Many Things";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_DMTCRG] = "The Deck of Many Things: Card Reference Guide";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_QftIS] = "Quests from the Infinite Staircase";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_VEoR] = "Vecna: Eve of Ruin";
-Parser.SOURCE_JSON_TO_FULL[Parser.SRC_GHLoE] = "Grim Hollow: Lairs of Etharis";
-Parser.SOURCE_JSON_TO_FULL[Parser.SRC_DoDk] = "Dungeons of Drakkenheim";
-Parser.SOURCE_JSON_TO_FULL[Parser.SRC_ToB1_2023] = "Tome of Beasts 1 (2023 Edition)";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_XPHB] = "Player's Handbook (2024)";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_XDMG] = "Dungeon Master's Guide (2024)";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_XMM] = "Monster Manual (2025)";
@@ -3568,9 +3562,6 @@ Parser.SOURCE_JSON_TO_ABV[Parser.SRC_BMT] = "BMT";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_DMTCRG] = "DMTCRG";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_QftIS] = "QftIS";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_VEoR] = "VEoR";
-Parser.SOURCE_JSON_TO_ABV[Parser.SRC_GHLoE] = "GHLoE";
-Parser.SOURCE_JSON_TO_ABV[Parser.SRC_DoDk] = "DoDk";
-Parser.SOURCE_JSON_TO_ABV[Parser.SRC_ToB1_2023] = "ToB1'23";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_XPHB] = "PHB'24";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_XDMG] = "DMG'24";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_XMM] = "MM'25";
@@ -3743,9 +3734,6 @@ Parser.SOURCE_JSON_TO_DATE[Parser.SRC_BMT] = "2023-11-14";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DMTCRG] = "2023-11-14";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_QftIS] = "2024-07-16";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_VEoR] = "2024-05-21";
-Parser.SOURCE_JSON_TO_DATE[Parser.SRC_GHLoE] = "2023-11-30";
-Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DoDk] = "2023-12-21";
-Parser.SOURCE_JSON_TO_DATE[Parser.SRC_ToB1_2023] = "2023-05-31";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_XPHB] = "2024-09-17";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_XDMG] = "2024-11-12";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_XMM] = "2025-02-18";
@@ -3899,8 +3887,6 @@ Parser.SOURCES_ADVENTURES = new Set([
 	Parser.SRC_UtHftLH,
 	Parser.SRC_ScoEE,
 	Parser.SRC_HFStCM,
-	Parser.SRC_GHLoE,
-	Parser.SRC_DoDk,
 	Parser.SRC_HBTD,
 	Parser.SRC_BQGT,
 	Parser.SRC_DrDe,
@@ -3977,9 +3963,6 @@ Parser.SOURCES_PARTNERED_WOTC = new Set([
 	Parser.SRC_CRCotN,
 	Parser.SRC_TDCSR,
 	Parser.SRC_HftT,
-	Parser.SRC_GHLoE,
-	Parser.SRC_DoDk,
-	Parser.SRC_ToB1_2023,
 	Parser.SRC_TD,
 	Parser.SRC_LRDT,
 ]);
@@ -4080,9 +4063,6 @@ Parser.SOURCES_NON_FR = new Set([
 	Parser.SRC_MPP,
 	Parser.SRC_MCV4EC,
 	Parser.SRC_LK,
-	Parser.SRC_GHLoE,
-	Parser.SRC_DoDk,
-	Parser.SRC_ToB1_2023,
 	Parser.SRC_LRDT,
 	Parser.SRC_UtHftLH,
 	Parser.SRC_ScoEE,
@@ -4130,7 +4110,6 @@ Parser.SOURCES_AVAILABLE_DOCS_BOOK = {};
 	Parser.SRC_PaF,
 	Parser.SRC_BMT,
 	Parser.SRC_DMTCRG,
-	Parser.SRC_ToB1_2023,
 	Parser.SRC_XPHB,
 	Parser.SRC_XMM,
 	Parser.SRC_XDMG,
@@ -4228,8 +4207,6 @@ Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE = {};
 	Parser.SRC_PiP,
 	Parser.SRC_DitLCoT,
 	Parser.SRC_HFStCM,
-	Parser.SRC_GHLoE,
-	Parser.SRC_DoDk,
 	Parser.SRC_QftIS,
 	Parser.SRC_LRDT,
 	Parser.SRC_VEoR,

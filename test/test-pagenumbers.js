@@ -43,14 +43,6 @@ const BLOCKLIST_ENTITIES = {
 			"Merrow Extortionist",
 		]),
 	},
-	"feat": {
-		// Feats not in original PDF
-		[Parser.SRC_GHLoE]: new Set(["*"]),
-	},
-	"spell": {
-		// Feats not in original PDF
-		[Parser.SRC_GHLoE]: new Set(["*"]),
-	},
 };
 
 const isBlocklistedEntity = ({prop, ent}) => {

@@ -166,7 +166,12 @@ export class GetBrewUi {
 	}
 
 	async pInit () {
-		this._dataList = (await this._brewUtil.pGetCombinedIndexes()) || [];
+		this._dataList = ((await this._brewUtil.pGetCombinedIndexes()) || [])
+			.filter(info => this._isMatchingIndexInfo(info));
+	}
+
+	_isMatchingIndexInfo (info) {
+		return true;
 	}
 
 	async pHandlePreCloseModal ({rdState}) {

@@ -529,7 +529,7 @@ class UiUtil {
 		UiUtil._MODAL_STACK = [];
 
 		doc.addEventListener("keydown", evt => {
-			if (evt.which !== 27) return;
+			if (evt.key !== "Escape") return;
 			if (!UiUtil._MODAL_STACK.length) return;
 			if (EventUtil.isInInput(evt)) return;
 
@@ -1761,11 +1761,11 @@ class SearchWidget {
 	static bindRowHandlers ({result, $row, $ptrRows, fnHandleClick, $iptSearch}) {
 		return $row
 			.keydown(evt => {
-				switch (evt.which) {
-					case 13: { // enter
+				switch (evt.key) {
+					case "Enter": {
 						return fnHandleClick(result);
 					}
-					case 38: { // up
+					case "ArrowUp": {
 						evt.preventDefault();
 						const ixRow = $ptrRows._.indexOf($row);
 						const $prev = $ptrRows._[ixRow - 1];
@@ -1773,7 +1773,7 @@ class SearchWidget {
 						else $iptSearch.focus();
 						break;
 					}
-					case 40: { // down
+					case "ArrowDown": {
 						evt.preventDefault();
 						const ixRow = $ptrRows._.indexOf($row);
 						const $nxt = $ptrRows._[ixRow + 1];
@@ -1990,7 +1990,7 @@ class SearchWidget {
 			this._$iptSearch.keydown(evt => {
 				if (evt.key === "Escape") this._$iptSearch.blur();
 				if (!this._$iptSearch.val().trim().length) return;
-				if (evt.which !== 13) {
+				if (evt.key !== "Enter") {
 					if (lastSearchTerm === "") this.__showMsgWait();
 					lastSearchTerm = this._$iptSearch.val();
 				}
@@ -3302,8 +3302,7 @@ class InputUiUtil {
 				.appendTo($parent)
 				.keydown(evt => {
 					if (evt.key === "Escape") { $iptNum.blur(); return; }
-					// return key
-					if (evt.which === 13) doClose(true);
+					if (evt.key === "Enter") doClose(true);
 					evt.stopPropagation();
 				});
 			const $selFaces = ComponentUiUtil.$getSelEnum(this, "faces", {values: Renderer.dice.DICE})
@@ -3313,8 +3312,7 @@ class InputUiUtil {
 				.change(() => this._state.bonus = UiUtil.strToInt($iptBonus.val(), null, {fallbackOnNaN: null}))
 				.keydown(evt => {
 					if (evt.key === "Escape") { $iptBonus.blur(); return; }
-					// return key
-					if (evt.which === 13) doClose(true);
+					if (evt.key === "Enter") doClose(true);
 					evt.stopPropagation();
 				});
 			const hook = () => $iptBonus.val(this._state.bonus != null ? UiUtil.intToBonus(this._state.bonus) : this._state.bonus);

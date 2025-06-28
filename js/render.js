@@ -15555,7 +15555,7 @@ Renderer.hover = class {
 			});
 		const $wrpContent = $(`<div class="hwin__wrp-table"></div>`);
 		if (opts.height != null) $wrpContent.css("height", opts.height);
-		const $hovTitle = $(`<span class="window-title min-w-0 ve-overflow-ellipsis" title="${`${opts.title || ""}`.qq()}">${opts.title || ""}</span>`);
+		const hovTitle = ee`<span class="window-title min-w-0 ve-overflow-ellipsis" title="${`${opts.title || ""}`.qq()}">${opts.title || ""}</span>`;
 
 		const hoverWindow = {};
 		const hoverId = Renderer.hover._getNextId();
@@ -15565,42 +15565,51 @@ Renderer.hover = class {
 		const resizeId = `resize.${hoverId}`;
 		const drag = {};
 
-		const $brdrTopRightResize = $(`<div class="hoverborder__resize-ne"></div>`)
-			.on("mousedown touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 1, isResizeOnlyWidth}));
-		if (isResizeOnlyWidth) $brdrTopRightResize.hideVe();
+		const brdrTopRightResize = ee`<div class="hoverborder__resize-ne"></div>`
+			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 1, isResizeOnlyWidth}))
+			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 1, isResizeOnlyWidth}));
+		if (isResizeOnlyWidth) brdrTopRightResize.hideVe();
 
-		const $brdrRightResize = $(`<div class="hoverborder__resize-e"></div>`)
-			.on("mousedown touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 2, isResizeOnlyWidth}));
+		const brdrRightResize = ee`<div class="hoverborder__resize-e"></div>`
+			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 2, isResizeOnlyWidth}))
+			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 2, isResizeOnlyWidth}));
 
-		const $brdrBottomRightResize = $(`<div class="hoverborder__resize-se"></div>`)
-			.on("mousedown touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 3, isResizeOnlyWidth}));
-		if (isResizeOnlyWidth) $brdrBottomRightResize.hideVe();
+		const brdrBottomRightResize = ee`<div class="hoverborder__resize-se"></div>`
+			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 3, isResizeOnlyWidth}))
+			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 3, isResizeOnlyWidth}));
+		if (isResizeOnlyWidth) brdrBottomRightResize.hideVe();
 
-		const $brdrBtm = $(`<div class="hoverborder hoverborder--btm ${opts.isBookContent ? "hoverborder-book" : ""}"></div>`);
-		const $brdrBtmResize = $(`<div class="hoverborder__resize-s"></div>`)
-			.on("mousedown touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 4, isResizeOnlyWidth}))
-			.appendTo($brdrBtm);
-		if (isResizeOnlyWidth) $brdrBtmResize.hideVe();
-		if (isHideBottomBorder) $brdrBtm.hideVe();
+		const brdrBtmResize = ee`<div class="hoverborder__resize-s"></div>`
+			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 4, isResizeOnlyWidth}))
+			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 4, isResizeOnlyWidth}));
+		if (isResizeOnlyWidth) brdrBtmResize.hideVe();
 
-		const $brdrBtmLeftResize = $(`<div class="hoverborder__resize-sw"></div>`)
-			.on("mousedown touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 5, isResizeOnlyWidth}));
-		if (isResizeOnlyWidth) $brdrBtmLeftResize.hideVe();
+		const brdrBtm = ee`<div class="hoverborder hoverborder--btm ${opts.isBookContent ? "hoverborder-book" : ""}">${brdrBtmResize}</div>`;
+		if (isHideBottomBorder) brdrBtm.hideVe();
 
-		const $brdrLeftResize = $(`<div class="hoverborder__resize-w"></div>`)
-			.on("mousedown touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 6, isResizeOnlyWidth}));
+		const brdrBtmLeftResize = ee`<div class="hoverborder__resize-sw"></div>`
+			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 5, isResizeOnlyWidth}))
+			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 5, isResizeOnlyWidth}));
+		if (isResizeOnlyWidth) brdrBtmLeftResize.hideVe();
 
-		const $brdrTopLeftResize = $(`<div class="hoverborder__resize-nw"></div>`)
-			.on("mousedown touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 7, isResizeOnlyWidth}));
-		if (isResizeOnlyWidth) $brdrTopLeftResize.hideVe();
+		const brdrLeftResize = ee`<div class="hoverborder__resize-w"></div>`
+			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 6, isResizeOnlyWidth}))
+			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 6, isResizeOnlyWidth}));
 
-		const $brdrTopResize = $(`<div class="hoverborder__resize-n"></div>`)
-			.on("mousedown touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 8, isResizeOnlyWidth}));
-		if (isResizeOnlyWidth) $brdrTopResize.hideVe();
+		const brdrTopLeftResize = ee`<div class="hoverborder__resize-nw"></div>`
+			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 7, isResizeOnlyWidth}))
+			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 7, isResizeOnlyWidth}));
+		if (isResizeOnlyWidth) brdrTopLeftResize.hideVe();
 
-		const $brdrTop = $(`<div class="hoverborder hoverborder--top ${opts.isBookContent ? "hoverborder-book" : ""}" ${opts.isPermanent ? `data-perm="true"` : ""}></div>`)
-			.on("mousedown touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 9, isResizeOnlyWidth}))
-			.on("contextmenu", (evt) => {
+		const brdrTopResize = ee`<div class="hoverborder__resize-n"></div>`
+			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 8, isResizeOnlyWidth}))
+			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 8, isResizeOnlyWidth}));
+		if (isResizeOnlyWidth) brdrTopResize.hideVe();
+
+		const brdrTop = ee`<div class="hoverborder hoverborder--top ${opts.isBookContent ? "hoverborder-book" : ""}" ${opts.isPermanent ? `data-perm="true"` : ""}></div>`
+			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 9, isResizeOnlyWidth}))
+			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 9, isResizeOnlyWidth}))
+			.onn("contextmenu", (evt) => {
 				Renderer.hover._contextMenuLastClicked = {
 					hoverId,
 				};
@@ -15679,10 +15688,10 @@ Renderer.hover = class {
 			});
 		$(position.window).on(resizeId, () => Renderer.hover._getShowWindow_adjustPosition({$hov, $wrpContent, position}));
 
-		$brdrTop.attr("data-display-title", false);
-		$brdrTop.on("dblclick", () => Renderer.hover._getShowWindow_doToggleMinimizedMaximized({$brdrTop, $hov}));
-		$brdrTop.append($hovTitle);
-		const $brdTopRhs = $(`<div class="ve-flex ml-auto no-shrink"></div>`).appendTo($brdrTop);
+		brdrTop.attr("data-display-title", false);
+		brdrTop.onn("dblclick", () => Renderer.hover._getShowWindow_doToggleMinimizedMaximized({$brdrTop: brdrTop, $hov}));
+		brdrTop.appends(hovTitle);
+		const $brdTopRhs = $(`<div class="ve-flex ml-auto no-shrink"></div>`).appendTo(brdrTop);
 
 		if (opts.pageUrl && !position.window._IS_POPOUT && !Renderer.get().isInternalLinksDisabled()) {
 			const $btnGotoPage = $(`<a class="hwin__top-border-icon glyphicon glyphicon-modal-window" title="Go to Page" href="${opts.pageUrl}"></a>`)
@@ -15737,25 +15746,24 @@ Renderer.hover = class {
 
 		$wrpContent.append($content);
 
-		$hov.append($brdrTopResize).append($brdrTopRightResize).append($brdrRightResize).append($brdrBottomRightResize)
-			.append($brdrBtmLeftResize).append($brdrLeftResize).append($brdrTopLeftResize)
+		$hov.append(brdrTopResize).append(brdrTopRightResize).append(brdrRightResize).append(brdrBottomRightResize)
+			.append(brdrBtmLeftResize).append(brdrLeftResize).append(brdrTopLeftResize)
 
-			.append($brdrTop)
+			.append(brdrTop)
 			.append($wrpContent)
-			.append($brdrBtm);
+			.append(brdrBtm);
 
 		$body.append($hov);
 
 		Renderer.hover._getShowWindow_setPosition({$hov, $wrpContent, position}, position);
 
-		hoverWindow.$windowTitle = $hovTitle;
 		hoverWindow.zIndex = initialZIndex;
 		hoverWindow.setZIndex = Renderer.hover._getNextZIndex.bind(this, {$hov, hoverWindow});
 
 		hoverWindow.setPosition = Renderer.hover._getShowWindow_setPosition.bind(this, {$hov, $wrpContent, position});
-		hoverWindow.setIsPermanent = Renderer.hover._getShowWindow_setIsPermanent.bind(this, {opts, $brdrTop});
+		hoverWindow.setIsPermanent = Renderer.hover._getShowWindow_setIsPermanent.bind(this, {opts, $brdrTop: brdrTop});
 		hoverWindow.doClose = Renderer.hover._getShowWindow_doClose.bind(this, {$hov, position, mouseUpId, mouseMoveId, resizeId, hoverId, opts, hoverWindow});
-		hoverWindow.doMaximize = Renderer.hover._getShowWindow_doMaximize.bind(this, {$brdrTop, $hov});
+		hoverWindow.doMaximize = Renderer.hover._getShowWindow_doMaximize.bind(this, {$brdrTop: brdrTop, $hov});
 		hoverWindow.doZIndexToFront = Renderer.hover._getShowWindow_doZIndexToFront.bind(this, {$hov, hoverWindow, hoverId});
 
 		hoverWindow.getPosition = Renderer.hover._getShowWindow_getPosition.bind(this, {$hov, $wrpContent, position});
@@ -15779,7 +15787,8 @@ Renderer.hover = class {
 	}
 
 	static _getShowWindow_handleDragMousedown ({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type, isResizeOnlyWidth}) {
-		if (evt.which === 0 || evt.which === 1) evt.preventDefault();
+		if (evt.button === 0) evt.preventDefault();
+
 		hoverWindow.zIndex = Renderer.hover._getNextZIndex(hoverId);
 		$hov.css({
 			"z-index": hoverWindow.zIndex,

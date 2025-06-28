@@ -39,7 +39,7 @@ export class InitiativeTrackerPlayerUiV0 {
 	init () {
 		this._$iptServerToken.keydown(evt => {
 			this._$iptServerToken.removeClass("error-background");
-			if (evt.which === 13) this._$btnGenClientToken.click();
+			if (evt.key === "Enter") this._$btnGenClientToken.click();
 		});
 
 		this._$btnGenClientToken.click(async () => {

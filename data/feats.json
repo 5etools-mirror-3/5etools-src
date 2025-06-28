@@ -407,28 +407,6 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Adroit Crafter",
-			"source": "GHLoE",
-			"prerequisite": [
-				{
-					"otherSummary": {
-						"entry": "Proficiency in a skill or tool",
-						"entrySummary": "Prof skill/tool"
-					}
-				}
-			],
-			"entries": [
-				"You've trained in crafting items using a skill or tool that you're proficient with, and the steps in crafting have become second nature to you. You gain the following benefits:",
-				{
-					"type": "list",
-					"items": [
-						"The time it takes to create an item using your proficient skills or tools is halved.",
-						"If you fail to successfully craft the item and would lose the components, you retain the components instead."
-					]
-				}
-			]
-		},
-		{
 			"name": "Agent of Order",
 			"source": "SatO",
 			"page": 10,
@@ -1312,29 +1290,6 @@
 				"Your people have extraordinary luck, which you have learned to mystically lend to your companions when you see them falter. You're not sure how you do it; you just wish it, and it happens. Surely a sign of fortune's favor!",
 				"When an ally you can see within 30 feet of you rolls a 1 on the {@dice d20} for an attack roll, an ability check, or a saving throw, you can use your reaction to let the ally reroll the die. The ally must use the new roll.",
 				"When you use this ability, you can't use your Lucky racial trait before the end of your next turn."
-			]
-		},
-		{
-			"name": "Careful Crafter",
-			"source": "GHLoE",
-			"prerequisite": [
-				{
-					"otherSummary": {
-						"entry": "Proficiency in a skill or tool",
-						"entrySummary": "Prof skill/tool"
-					}
-				}
-			],
-			"entries": [
-				"You've trained in crafting items using a skill or tool that you're proficient with, and your creations are known for being well made and reliable. You gain the following benefits:",
-				{
-					"type": "list",
-					"items": [
-						"You make all ability checks for crafting with advantage.",
-						"Anyone assisting you in crafting an item gains advantage on their ability checks for crafting.",
-						"If you fail to successfully craft the item, the amount of time it took to complete the process is halved."
-					]
-				}
 			]
 		},
 		{
@@ -5155,6 +5110,20 @@
 							"cha"
 						],
 						"amount": 1
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"innate": {
+						"_": {
+							"daily": {
+								"1e": [
+									"misty step",
+									"tongues"
+								]
+							}
+						}
 					}
 				}
 			],
