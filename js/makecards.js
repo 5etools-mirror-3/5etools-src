@@ -938,7 +938,7 @@ MakeCards.utils = class {
 		if (itemTypeAbv === Parser.ITM_TYP_ABV__SPELLCASTING_FOCUS) {
 			if (item.scfType === "arcane") {
 				Renderer.item._initFullEntries(item);
-				item._fullEntries.push("A sorcerer, warlock, or wizard can use this item as a spellcasting focus.");
+				item._fullEntries.push("A hechicero, warlock, or wizard can use this item as a spellcasting focus.");
 			}
 			if (item.scfType === "druid") {
 				Renderer.item._initFullEntries(item);

@@ -30,28 +30,28 @@
 			]
 		},
 		{
-			"name": "Charmed",
+			"name": "Hechizado",
 			"source": "XPHB",
-			"page": 361,
+			"page": 368,
 			"srd52": true,
 			"basicRules2024": true,
 			"entries": [
-				"While you have the Charmed condition, you experience the following effects.",
+				"Mientras tengas el estado de hechizado, experimentarás los siguientes efectos:",
 				{
 					"type": "entries",
 					"entries": [
 						{
 							"type": "entries",
-							"name": "Can't Harm the Charmer",
+							"name": "No puedes dañar a quien te haya hechizado",
 							"entries": [
-								"You can't attack the charmer or target the charmer with damaging abilities or {@variantrule Magical Effect|XPHB|magical effects}."
+								"No puedes atacar ni elegir como objetivo de efectos dañinos o mágicos a quien te haya hechizado."
 							]
 						},
 						{
 							"type": "entries",
-							"name": "Social Advantage",
+							"name": "Ventaja social",
 							"entries": [
-								"The charmer has {@variantrule Advantage|XPHB} on any ability check to interact with you socially."
+								"Quien te haya hechizado tiene ventaja en las pruebas de característica para interactuar socialmente contigo."
 							]
 						}
 					]
@@ -60,95 +60,21 @@
 		},
 	
 		{
-			"name": "Deafened",
-			"source": "XPHB",
-			"page": 365,
-			"srd52": true,
-			"basicRules2024": true,
-			"entries": [
-				"While you have the Deafened condition, you experience the following effect.",
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"name": "Can't Hear",
-							"entries": [
-								"You can't hear and automatically fail any ability check that requires hearing."
-							]
-						}
-					]
-				}
-			]
-		},
-	
-		{
-			"name": "Exhaustion",
-			"source": "XPHB",
-			"page": 365,
-			"srd52": true,
-			"basicRules2024": true,
-			"entries": [
-				"While you have the Exhaustion condition, you experience the following effects.",
-				{
-					"type": "entries",
-					"entries": [
-						{
-							"type": "entries",
-							"name": "Exhaustion Levels",
-							"entries": [
-								"This condition is cumulative. Each time you receive it, you gain 1 Exhaustion level. You die if your Exhaustion level is 6."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "D20 Tests Affected",
-							"entries": [
-								"When you make a D20 Test the roll is reduced by 2 times your Exhaustion level."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Speed Reduced",
-							"entries": [
-								"Your {@variantrule Speed|XPHB} is reduced by a number of feet equal to 5 times your Exhaustion level."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Removing Exhaustion Levels",
-							"entries": [
-								"Finishing a {@variantrule Long Rest|XPHB} removes 1 of your Exhaustion levels. When your Exhaustion level reaches 0, the condition ends."
-							]
-						}
-					]
-				}
-			]
-		},
-	
-		{
-			"name": "Frightened",
+			"name": "Ensordecido",
 			"source": "XPHB",
 			"page": 367,
 			"srd52": true,
 			"basicRules2024": true,
 			"entries": [
-				"While you have the Frightened condition, you experience the following effects.",
+				"Mientras tengas el estado de ensordecido, experimentarás el siguiente efecto:",
 				{
 					"type": "entries",
 					"entries": [
 						{
 							"type": "entries",
-							"name": "Ability Checks and Attacks Affected",
+							"name": "No puedes oír",
 							"entries": [
-								"You have {@variantrule Disadvantage|XPHB} on ability checks and attack rolls while the source of fear is within line of sight."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Can't Approach",
-							"entries": [
-								"You can't willingly move closer to the source of fear."
+								"No puedes oír y fallas automáticamente cualquier prueba de característica que requiera el oído."
 							]
 						}
 					]
@@ -157,35 +83,109 @@
 		},
 	
 		{
-			"name": "Grappled",
+			"name": "Cansancio",
 			"source": "XPHB",
-			"page": 367,
+			"page": 363,
 			"srd52": true,
 			"basicRules2024": true,
 			"entries": [
-				"While you have the Grappled condition, you experience the following effects.",
+				"Mientras tengas el estado de cansancio, experimentarás los siguientes efectos:",
 				{
 					"type": "entries",
 					"entries": [
 						{
 							"type": "entries",
-							"name": "Speed 0",
+							"name": "Niveles de cansancio",
 							"entries": [
-								"Your {@variantrule Speed|XPHB} is 0 and can't increase."
+								"Este estado es acumulativo. Cada vez que lo recibas, suma 1 nivel de cansancio. Morirás si tu nivel de cansancio es 6."
 							]
 						},
 						{
 							"type": "entries",
-							"name": "Attacks Affected",
+							"name": "Pruebas con d20 afectadas",
 							"entries": [
-								"You have {@variantrule Disadvantage|XPHB} on attack rolls against any target other than the grappler."
+								"Cuando hagas una prueba con d20, el resultado se reduce en 2 x tu nivel de cansancio."
 							]
 						},
 						{
 							"type": "entries",
-							"name": "Movable",
+							"name": "Velocidad reducida",
 							"entries": [
-								"The grappler can drag or carry you when it moves, but every foot of movement costs it 1 extra foot unless you are Tiny or two or more sizes smaller than it."
+								"Tu velocidad se reduce en 5 pies(1,5 m) x tu nivel de cansancio."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Eliminar niveles de cansancio",
+							"entries": [
+								"Tras finalizar un descanso largo, resta 1 nivel de cansancio. Cuando tus niveles de cansancio se reduzcan a 0, el estado terminará."
+							]
+						}
+					]
+				}
+			]
+		},
+	
+		{
+			"name": "Asustado",
+			"source": "XPHB",
+			"page": 362,
+			"srd52": true,
+			"basicRules2024": true,
+			"entries": [
+				"Mientras tengas el estado de asustado, experimentarás los siguientes efectos:",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Pruebas de característica y ataques afectados",
+							"entries": [
+								"Tienes desventaja en las pruebas de característica y las tiradas de ataque mientras la fuente de tu miedo esté en tu línea de visión."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "No puedes acercarte",
+							"entries": [
+								"No puedes acercarte voluntariamente a la fuente de tu miedo."
+							]
+						}
+					]
+				}
+			]
+		},
+	
+		{
+			"name": "Agarrado",
+			"source": "XPHB",
+			"page": 367,
+			"srd52": true,
+			"basicRules2024": true,
+			"entries": [
+				"Mientras tengas el estado de agarrado, experimentarás los siguientes efectos:",
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Velocidad 0",
+							"entries": [
+								"Tu velocidad es 0 y no puede aumentar."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Ataques afectados",
+							"entries": [
+								"Tienes desventaja en las tiradas de ataque contra cualquier objetivo que no sea quien te agarra."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Desplazable",
+							"entries": [
+								"Quien te agarra puede arrastrarte o transportarte al moverse, pero cada metro de movimiento le cuesta 1 m adicional, salvo que seas Diminuto o tu tamaño sea dos o más categorías inferior al suyo."
 							]
 						}
 					]
@@ -275,49 +275,49 @@
 		},
 	
 		{
-			"name": "Paralyzed",
+			"name": "Paralizado",
 			"source": "XPHB",
 			"page": 371,
 			"srd52": true,
 			"basicRules2024": true,
 			"entries": [
-				"While you have the Paralyzed condition, you experience the following effects.",
+				"Mientras tengas el estado de paralizado, experimentarás los siguientes efectos:",
 				{
 					"type": "entries",
 					"entries": [
 						{
 							"type": "entries",
-							"name": "Incapacitated",
+							"name": "Incapacitado",
 							"entries": [
-								"You have the {@condition Incapacitated|XPHB} condition."
+								"Tienes el estado de {@condition incapacitado|XPHB}."
 							]
 						},
 						{
 							"type": "entries",
-							"name": "Speed 0",
+							"name": "Velocidad 0.",
 							"entries": [
-								"Your {@variantrule Speed|XPHB} is 0 and can't increase."
+								"Tu velocidad es 0 y no puede aumentar."
 							]
 						},
 						{
 							"type": "entries",
-							"name": "Saving Throws Affected",
+							"name": "Tiradas de salvación afectadas",
 							"entries": [
-								"You automatically fail Strength and Dexterity {@variantrule Saving Throw|XPHB|saving throws}."
+								"Fallas automáticamente las tiradas de salvación de Fuerza y Destreza."
 							]
 						},
 						{
 							"type": "entries",
-							"name": "Attacks Affected",
+							"name": "Ataques afectados",
 							"entries": [
-								"{@action Attack|XPHB} rolls against you have {@variantrule Advantage|XPHB}."
+								"Las tiradas de ataque contra ti tienen ventaja."
 							]
 						},
 						{
 							"type": "entries",
-							"name": "Automatic Critical Hits",
+							"name": "Críticos automáticos",
 							"entries": [
-								"Any attack roll that hits you is a {@variantrule Critical Hit|XPHB} if the attacker is within 5 feet of you."
+								"Cualquier tirada de ataque que te acierte es un crítico si el atacante está a 5 pies (1,5 m) o menos de ti."
 							]
 						}
 					]
@@ -326,63 +326,63 @@
 		},
 	
 		{
-			"name": "Petrified",
+			"name": "Petrificado",
 			"source": "XPHB",
 			"page": 372,
 			"srd52": true,
 			"basicRules2024": true,
 			"entries": [
-				"While you have the Petrified condition, you experience the following effects.",
+				"Mientras tengas el estado de petrificado, experimentarás los siguientes efectos:",
 				{
 					"type": "entries",
 					"entries": [
 						{
 							"type": "entries",
-							"name": "Turned to Inanimate Substance",
+							"name": "Transformación en sustancia inanimada",
 							"entries": [
-								"You are transformed, along with any nonmagical objects you are wearing and carrying, into a solid inanimate substance (usually stone). Your weight increases by a factor of ten, and you cease aging."
+								"Te transformas, junto con cualquier objeto no mágico que vistas o lleves contigo, en una sustancia sólida e inanimada (normalmente piedra). Tu peso se multiplica por diez y dejas de envejecer."
 							]
 						},
 						{
 							"type": "entries",
-							"name": "Incapacitated",
+							"name": "Incapacitado",
 							"entries": [
-								"You have the {@condition Incapacitated|XPHB} condition."
+								"Tienes el estado de {@condition incapacitado|XPHB}."
 							]
 						},
 						{
 							"type": "entries",
-							"name": "Speed 0",
+							"name": "Velocidad 0.",
 							"entries": [
-								"Your {@variantrule Speed|XPHB} is 0 and can't increase."
+								"Tu velocidad es 0 y no puede aumentar."
 							]
 						},
 						{
 							"type": "entries",
-							"name": "Attacks Affected",
+							"name": "Tiradas de salvación afectadas",
 							"entries": [
-								"{@action Attack|XPHB} rolls against you have {@variantrule Advantage|XPHB}."
+								"Fallas automáticamente las tiradas de salvación de Fuerza y Destreza."
 							]
 						},
 						{
 							"type": "entries",
-							"name": "Saving Throws Affected",
+							"name": "Ataques afectados",
 							"entries": [
-								"You automatically fail Strength and Dexterity {@variantrule Saving Throw|XPHB|saving throws}."
+								"Las tiradas de ataque contra ti tienen ventaja."
 							]
 						},
 						{
 							"type": "entries",
-							"name": "Resist Damage",
+							"name": "Resistencia al daño",
 							"entries": [
-								"You have {@variantrule Resistance|XPHB} to all damage."
+								"Tienes resistencia a todo el daño."
 							]
 						},
 						{
 							"type": "entries",
-							"name": "Poison Immunity",
+							"name": "Inmunidad al veneno",
 							"entries": [
-								"You have {@variantrule Immunity|XPHB} to the {@condition Envenenado|XPHB} condition."
+								"Tienes inmunidad al estado de {@condition Envenenado|XPHB}."
 							]
 						}
 					]
@@ -444,35 +444,35 @@
 		},
 
 		{
-			"name": "Restrained",
+			"name": "Apresado",
 			"source": "XPHB",
-			"page": 373,
+			"page": 361,
 			"srd52": true,
 			"basicRules2024": true,
 			"entries": [
-				"While you have the Restrained condition, you experience the following effects.",
+				"Mientras tengas el estado de apresado, experimentarás los siguientes efectos:",
 				{
 					"type": "entries",
 					"entries": [
 						{
 							"type": "entries",
-							"name": "Speed 0",
+							"name": "Velocidad 0.",
 							"entries": [
-								"Your {@variantrule Speed|XPHB} is 0 and can't increase."
+								"Tu velocidad es 0 y no puede aumentar."
 							]
 						},
 						{
 							"type": "entries",
-							"name": "Attacks Affected",
+							"name": "Ataques afectados",
 							"entries": [
-								"{@action Attack|XPHB} rolls against you have {@variantrule Advantage|XPHB}, and your attack rolls have {@variantrule Disadvantage|XPHB}."
+								"Las tiradas de ataque contra ti tienen ventaja y tus tiradas de ataque tienen desventaja."
 							]
 						},
 						{
 							"type": "entries",
-							"name": "Saving Throws Affected",
+							"name": "Tiradas de salvación afectadas",
 							"entries": [
-								"You have {@variantrule Disadvantage|XPHB} on Dexterity {@variantrule Saving Throw|XPHB|saving throws}."
+								"Tienes desventaja en las tiradas de salvación de Destreza."
 							]
 						}
 					]
@@ -481,35 +481,35 @@
 		},
 
 		{
-			"name": "Stunned",
+			"name": "Aturdido",
 			"source": "XPHB",
-			"page": 376,
+			"page": 362,
 			"srd52": true,
 			"basicRules2024": true,
 			"entries": [
-				"While you have the Stunned condition, you experience the following effects.",
+				"Mientras tengas el estado de aturdido, experimentarás los siguientes efectos:",
 				{
 					"type": "entries",
 					"entries": [
 						{
 							"type": "entries",
-							"name": "Incapacitated",
+							"name": "Incapacitado",
 							"entries": [
-								"You have the {@condition Incapacitated|XPHB} condition."
+								"Tienes el estado de {@condition incapacitado|XPHB}."
 							]
 						},
 						{
 							"type": "entries",
-							"name": "Saving Throws Affected",
+							"name": "Tiradas de salvación afectadas",
 							"entries": [
-								"You automatically fail Strength and Dexterity {@variantrule Saving Throw|XPHB|saving throws}."
+								"Fallas automáticamente las tiradas de salvación de Fuerza y Destreza."
 							]
 						},
 						{
 							"type": "entries",
-							"name": "Attacks Affected",
+							"name": "Ataques afectados",
 							"entries": [
-								"{@action Attack|XPHB} rolls against you have {@variantrule Advantage|XPHB}."
+								"Las tiradas de ataque contra ti tienen ventaja."
 							]
 						}
 					]
@@ -518,56 +518,56 @@
 		},
 
 		{
-			"name": "Unconscious",
+			"name": "Inconsciente",
 			"source": "XPHB",
-			"page": 376,
+			"page": 369,
 			"srd52": true,
 			"basicRules2024": true,
 			"entries": [
-				"While you have the Unconscious condition, you experience the following effects.",
+				"Mientras tengas el estado de inconsciente, experimentarás los siguientes efectos:",
 				{
 					"type": "entries",
 					"entries": [
 						{
 							"type": "entries",
-							"name": "Inert",
+							"name": "Inerte",
 							"entries": [
-								"You have the {@condition Incapacitated|XPHB} and {@condition Prone|XPHB} conditions, and you drop whatever you're holding. When this condition ends, you remain {@condition Prone|XPHB}."
+								"Tienes los estados de {@condition Derribado|XPHB} e {@condition Incapacitado|XPHB} y sueltas lo que estés sujetando. Cuando concluya este estado, permanecerás {@condition Derribado|XPHB}."
 							]
 						},
 						{
 							"type": "entries",
-							"name": "Speed 0",
+							"name": "Velocidad 0.",
 							"entries": [
-								"Your {@variantrule Speed|XPHB} is 0 and can't increase."
+								"Tu velocidad es 0 y no puede aumentar."
 							]
 						},
 						{
 							"type": "entries",
-							"name": "Attacks Affected",
+							"name": "Tiradas de salvación afectadas",
 							"entries": [
-								"{@action Attack|XPHB} rolls against you have {@variantrule Advantage|XPHB}."
+								"Fallas automáticamente las tiradas de salvación de Fuerza y Destreza."
 							]
 						},
 						{
 							"type": "entries",
-							"name": "Saving Throws Affected",
+							"name": "Ataques afectados",
 							"entries": [
-								"You automatically fail Strength and Dexterity {@variantrule Saving Throw|XPHB|saving throws}."
+								"Las tiradas de ataque contra ti tienen ventaja."
 							]
 						},
 						{
 							"type": "entries",
-							"name": "Automatic Critical Hits",
+							"name": "Críticos automáticos",
 							"entries": [
-								"Any attack roll that hits you is a {@variantrule Critical Hit|XPHB} if the attacker is within 5 feet of you."
+								"Cualquier tirada de ataque que te acierte es un crítico si el atacante está a 5 pies (1,5 m) o menos de ti."
 							]
 						},
 						{
 							"type": "entries",
-							"name": "Unaware",
+							"name": "Ignorante",
 							"entries": [
-								"You're unaware of your surroundings."
+								"No eres consciente de tu entorno."
 							]
 						}
 					]
@@ -624,7 +624,7 @@
 			],
 			"entries": [
 				"This disease targets humanoids, although gnomes are strangely immune. While in the grips of this disease, victims frequently succumb to fits of mad laughter, giving the disease its common name and its morbid nickname: \"the shrieks.\"",
-				"Symptoms manifest {@dice 1d4} hours after infection and include fever and disorientation. The infected creature gains one level of {@condition exhaustion} that can't be removed until the disease is cured.",
+				"Symptoms manifest {@dice 1d4} hours after infection and include fever and disorientation. The infected creature gains one level of {@condition cansancio} that can't be removed until the disease is cured.",
 				"Any event that causes the infected creature great stress\u2014including entering combat, taking damage, experiencing fear, or having a nightmare\u2014forces the creature to make a {@dc 13} Constitution saving throw.",
 				"On a failed save, the creature takes 5 ({@dice 1d10}) psychic damage and becomes {@condition incapacitated} with mad laughter for 1 minute. The creature can repeat the saving throw at the end of each of its turns, ending the mad laughter and the {@condition incapacitated} condition on a success. Any humanoid creature that starts its turn within 10 feet of an infected creature in the throes of mad laughter must succeed on a {@dc 10} Constitution saving throw or also become infected with the disease. Once a creature succeeds on this save, it is immune to the mad laughter of that particular infected creature for 24 hours.",
 				"At the end of each long rest, an infected creature can make a {@dc 13} Constitution saving throw. On a successful save, the DC for this save and for the save to avoid an attack of mad laughter drops by {@dice 1d6}. When the saving throw DC drops to 0, the creature recovers from the disease. A creature that fails three of these saving throws gains a randomly determined form of {@variantrule Madness|DMG|indefinite madness}."
@@ -645,12 +645,12 @@
 						{
 							"type": "item",
 							"name": "Fever",
-							"entry": "The creature gains 1 {@condition Exhaustion|XPHB} level, which lasts until the contagion ends on the creature."
+							"entry": "The creature gains 1 {@condition Cansancio|XPHB} level, which lasts until the contagion ends on the creature."
 						},
 						{
 							"type": "item",
 							"name": "Uncontrollable Laughter",
-							"entry": "While the creature has the {@condition Exhaustion|XPHB} condition, the creature makes a {@dc 13} Constitution saving throw each time it takes damage other than Psychic damage. On a failed save, the creature takes 5 ({@damage 1d10}) Psychic damage and has the {@condition Incapacitated|XPHB} condition as it laughs uncontrollably. At the end of each of its turns, the creature repeats the save, ending the effect on itself on a success. After 1 minute, it succeeds automatically."
+							"entry": "While the creature has the {@condition Cansancio|XPHB} condition, the creature makes a {@dc 13} Constitution saving throw each time it takes damage other than Psychic damage. On a failed save, the creature takes 5 ({@damage 1d10}) Psychic damage and has the {@condition Incapacitated|XPHB} condition as it laughs uncontrollably. At the end of each of its turns, the creature repeats the save, ending the effect on itself on a success. After 1 minute, it succeeds automatically."
 						}
 					]
 				},
@@ -717,9 +717,9 @@
 			"source": "OotA",
 			"page": 54,
 			"entries": [
-				"The constant smog in Gracklstugh causes grackle-lung in living, breathing creatures, resulting in persistent, wracking coughs and the spewing of thick, black phlegm. Whenever a living, breathing creature finishes a long rest in Gracklstugh, it must make a {@dc 11} Constitution saving throw. On each failed save, the creature gains one level of {@condition exhaustion} as its airways become increasingly clogged. A creature that reaches level 6 {@condition exhaustion} dies, as normal.",
-				"A creature with one or more levels of {@condition exhaustion} brought on by grackle-lung must succeed on a Constitution check to take the {@action Dash} action. If the check fails, the action cannot be attempted. If the creature attempts to cast a spell with a verbal component, it must succeed on a Constitution check or be unable to complete the spell, causing the spell to fail with no effect. The DC for each check is 10 + the creature's current {@condition exhaustion} level.",
-				"If a creature's {@condition exhaustion} level drops below 1, it no longer suffers the effects of grackle-lung and becomes immune to it for the next week. Duergar and derro are inured to grackle-lung, making Constitution checks against it with advantage. Any spell or effect that cures disease also cures grackle-lung, effectively removing all levels of {@condition exhaustion} brought on by the affliction."
+				"The constant smog in Gracklstugh causes grackle-lung in living, breathing creatures, resulting in persistent, wracking coughs and the spewing of thick, black phlegm. Whenever a living, breathing creature finishes a long rest in Gracklstugh, it must make a {@dc 11} Constitution saving throw. On each failed save, the creature gains one level of {@condition cansancio} as its airways become increasingly clogged. A creature that reaches level 6 {@condition cansancio} dies, as normal.",
+				"A creature with one or more levels of {@condition cansancio} brought on by grackle-lung must succeed on a Constitution check to take the {@action Dash} action. If the check fails, the action cannot be attempted. If the creature attempts to cast a spell with a verbal component, it must succeed on a Constitution check or be unable to complete the spell, causing the spell to fail with no effect. The DC for each check is 10 + the creature's current {@condition cansancio} level.",
+				"If a creature's {@condition cansancio} level drops below 1, it no longer suffers the effects of grackle-lung and becomes immune to it for the next week. Duergar and derro are inured to grackle-lung, making Constitution checks against it with advantage. Any spell or effect that cures disease also cures grackle-lung, effectively removing all levels of {@condition cansancio} brought on by the affliction."
 			]
 		},
 		{
@@ -745,7 +745,7 @@
 			"page": 253,
 			"entries": [
 				"Xanthoria's research into lichdom and her creation of a living phylactery led to the emergence of the plague spreading across the Sword Coast. Any beast or humanoid that comes within 10 feet of a creature infected by the saprophytic plague must succeed on a {@dc 20} Constitution saving throw or become infected as well. On a successful save, a creature is immune to the plague for 24 hours, and any creature that is immune to disease succeeds on the save automatically.",
-				"After a failed save, a creature experiences the first symptoms\u2014body aches, nausea, slurred speech, and uncontrollable drooling\u2014{@dice 1d4} hours later and gains 1 level of {@condition exhaustion}. Every 24 hours thereafter, the creature automatically gains another level of {@condition exhaustion}. Any creature killed by the saprophytic plague transforms into a lifeless magenta ooze.",
+				"After a failed save, a creature experiences the first symptoms\u2014body aches, nausea, slurred speech, and uncontrollable drooling\u2014{@dice 1d4} hours later and gains 1 level of {@condition cansancio}. Every 24 hours thereafter, the creature automatically gains another level of {@condition cansancio}. Any creature killed by the saprophytic plague transforms into a lifeless magenta ooze.",
 				"A creature infected by the saprophytic plague for at least 24 hours behaves like a zombie and seems barely aware of its surroundings, as fungal growths sprout from its head, body, and limbs. It feels an overriding urge to be around groups of uninfected creatures so that it can spread the contagion. This is the time when infected humanoids begin speaking the word \"Xanthoria\" over and over, with no understanding of what the word means. This behavior is the result of a mycelial network of spores that forms a tenuous connection between Xanthoria and humanoids that become infected by the plague.",
 				"Foodstuffs that are exposed to the plague's spores decay or go sour within {@dice 2d12} hours, leaving behind a lurid magenta mass of oozing fungi. Eating infected food requires a saving throw as above.",
 				"Any magic that cures a disease can rid a creature of the saprophytic plague. Casting {@spell purify food and drink} destroys the infection in foodstuffs."
@@ -771,9 +771,9 @@
 			"entries": [
 				"Sewer plague is a generic term for a broad category of illnesses that incubate in sewers, refuse heaps, and stagnant swamps, and which are sometimes transmitted by creatures that dwell in those areas, such as rats and otyughs.",
 				"When a humanoid creature is bitten by a creature that carries the disease, or when it comes into contact with filth or offal contaminated by the disease, the creature must succeed on a {@dc 11} Constitution saving throw or become infected.",
-				"It takes {@dice 1d4} days for sewer plague's symptoms to manifest in an infected creature. Symptoms include fatigue and cramps. The infected creature suffers one level of {@condition exhaustion}, and it regains only half the normal number of hit points from spending Hit Dice and no hit points from finishing a long rest.",
-				"At the end of each long rest, an infected creature must make a {@dc 11} Constitution saving throw. On a failed save, the character gains one level of {@condition exhaustion}.",
-				"On a successful save, the character's {@condition exhaustion} level decreases by one level. If a successful saving throw reduces the infected creature's level of {@condition exhaustion} below 1, the creature recovers from the disease."
+				"It takes {@dice 1d4} days for sewer plague's symptoms to manifest in an infected creature. Symptoms include fatigue and cramps. The infected creature suffers one level of {@condition cansancio}, and it regains only half the normal number of hit points from spending Hit Dice and no hit points from finishing a long rest.",
+				"At the end of each long rest, an infected creature must make a {@dc 11} Constitution saving throw. On a failed save, the character gains one level of {@condition cansancio}.",
+				"On a successful save, the character's {@condition cansancio} level decreases by one level. If a successful saving throw reduces the infected creature's level of {@condition cansancio} below 1, the creature recovers from the disease."
 			]
 		},
 		{
@@ -791,7 +791,7 @@
 						{
 							"type": "item",
 							"name": "Fatigue",
-							"entry": "The creature gains 1 {@condition Exhaustion|XPHB} level."
+							"entry": "The creature gains 1 {@condition Cansancio|XPHB} level."
 						},
 						{
 							"type": "item",
@@ -812,7 +812,7 @@
 							"type": "entries",
 							"name": "Fighting the Contagion",
 							"entries": [
-								"Daily at dawn, an infected creature makes a {@dc 11} Constitution saving throw. On a failed save, the creature gains 1 {@condition Exhaustion|XPHB} level as its fatigue worsens. On a successful save, the creature's Exhaustion level decreases by 1. If the creature's Exhaustion level is reduced to 0, the contagion ends on the creature."
+								"Daily at dawn, an infected creature makes a {@dc 11} Constitution saving throw. On a failed save, the creature gains 1 {@condition Cansancio|XPHB} level as its fatigue worsens. On a successful save, the creature's Exhaustion level decreases by 1. If the creature's Exhaustion level is reduced to 0, the contagion ends on the creature."
 							]
 						}
 					]
@@ -878,7 +878,7 @@
 			"source": "PHB",
 			"page": 227,
 			"entries": [
-				"The creature begins to bleed uncontrollably. The creature has disadvantage on Constitution checks and Constitution saving throws. In addition, whenever the creature takes damage, it is {@condition stunned} until the end of its next turn.",
+				"The creature begins to bleed uncontrollably. The creature has disadvantage on Constitution checks and Constitution saving throws. In addition, whenever the creature takes damage, it is {@condition aturdido} until the end of its next turn.",
 				"{@note This disease can be inflicted with the {@spell contagion} spell.}"
 			]
 		},
@@ -887,7 +887,7 @@
 			"source": "WDMM",
 			"page": 47,
 			"entries": [
-				"If the party is defeated, stabilized characters awaken after {@dice 1d4} hours to find themselves cocooned in sticky webs and suspended 10 feet off the floor, with spider eggs implanted in their bodies. A cocooned character is {@condition restrained} and can use its action to try to escape by making a successful {@dc 15} Strength check.",
+				"If the party is defeated, stabilized characters awaken after {@dice 1d4} hours to find themselves cocooned in sticky webs and suspended 10 feet off the floor, with spider eggs implanted in their bodies. A cocooned character is {@condition apresado} and can use its action to try to escape by making a successful {@dc 15} Strength check.",
 				"Spider eggs implanted in a host hatch in {@dice 2d12} hours, killing the host as the baby spiders chew their way out. This infestation functions like a disease. A {@spell lesser restoration} spell or similar magic cast upon the host kills the spider eggs, ending the threat."
 			]
 		},
@@ -926,7 +926,7 @@
 					"name": "Symptoms",
 					"page": 153,
 					"entries": [
-						"It takes {@dice 1d2} days for the Gnawing Plague's symptoms to manifest in an infected creature. The infected creature then gains 1 level of {@condition exhaustion}, regains only half the normal number of hit points from spending Hit Dice, and regains no hit points from finishing a long rest.",
+						"It takes {@dice 1d2} days for the Gnawing Plague's symptoms to manifest in an infected creature. The infected creature then gains 1 level of {@condition cansancio}, regains only half the normal number of hit points from spending Hit Dice, and regains no hit points from finishing a long rest.",
 						"The plague's symptoms include buboes, fatigue, splotchy rashes, sweats, and shaking, particularly facial tremors. Locals liken these twitches to the sniffing of rats. Sufferers often have scraps of leather placed in their mouths to prevent their teeth from clattering, though they inevitably gnaw through these scraps."
 					]
 				},
@@ -935,7 +935,7 @@
 					"name": "Recovery",
 					"page": 154,
 					"entries": [
-						"At the end of each long rest, an infected creature must make a {@dc 10} Constitution saving throw. On a failed save, the creature gains 1 level of {@condition exhaustion}. On a successful save, the creature's {@condition exhaustion} level decreases by 1. If a successful saving throw reduces the infected creature's level of {@condition exhaustion} below 1, the creature recovers from the disease."
+						"At the end of each long rest, an infected creature must make a {@dc 10} Constitution saving throw. On a failed save, the creature gains 1 level of {@condition cansancio}. On a successful save, the creature's {@condition cansancio} level decreases by 1. If a successful saving throw reduces the infected creature's level of {@condition cansancio} below 1, the creature recovers from the disease."
 					]
 				},
 				{
@@ -953,7 +953,7 @@
 			"source": "ToA",
 			"page": 40,
 			"entries": [
-				"Minuscule parasites known as throat leeches infect the water in Chult's forests, swamps, and rivers. Any giant or humanoid that swallows tainted water must succeed on a {@dc 12} Constitution saving throw or be infested with throat leeches. Immediate symptoms include throat inflammation and shortness of breath. After {@dice 1d6} hours, the infected character gains 1 level of {@condition exhaustion} that can't be removed (except as described below) until the disease is cured. At the end of each long rest, the infected creature must repeat the saving throw. On a failed save, the creature's {@condition exhaustion} increases by 1 level; on a successful save, the creature's {@condition exhaustion} decreases by 1 level. If a successful saving throw reduces the infected creature's level of {@condition exhaustion} below 1, the creature recovers from the disease.",
+				"Minuscule parasites known as throat leeches infect the water in Chult's forests, swamps, and rivers. Any giant or humanoid that swallows tainted water must succeed on a {@dc 12} Constitution saving throw or be infested with throat leeches. Immediate symptoms include throat inflammation and shortness of breath. After {@dice 1d6} hours, the infected character gains 1 level of {@condition cansancio} that can't be removed (except as described below) until the disease is cured. At the end of each long rest, the infected creature must repeat the saving throw. On a failed save, the creature's {@condition cansancio} increases by 1 level; on a successful save, the creature's {@condition cansancio} decreases by 1 level. If a successful saving throw reduces the infected creature's level of {@condition cansancio} below 1, the creature recovers from the disease.",
 				"Explorers can avoid contracting throat leeches by drinking only rainwater or water that's been boiled or magically purified."
 			]
 		}
@@ -966,7 +966,7 @@
 			"srd": true,
 			"basicRules": true,
 			"reprintedAs": [
-				"Concentration|XPHB"
+				"Concentración|XPHB"
 			],
 			"entries": [
 				"Some spells require you to maintain {@status concentration} in order to keep their magic active. If you lose {@status concentration}, such a spell ends.",
@@ -1020,13 +1020,13 @@
 			]
 		},
 		{
-			"name": "Surprised",
+			"name": "Sorpresa",
 			"source": "XPHB",
-			"page": 376,
+			"page": 375,
 			"srd52": true,
 			"basicRules2024": true,
 			"entries": [
-				"If a creature is caught unawares by the start of combat, that creature is surprised, which causes it to have {@variantrule Disadvantage|XPHB} on its {@variantrule Initiative|XPHB} roll."
+				"Si el comienzo de un combate pilla desprevenida a una criatura, estará sorprendida, lo que le hará tener desventaja en su tirada de iniciativa.."
 			]
 		}
 	]

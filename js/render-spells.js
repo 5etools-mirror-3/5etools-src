@@ -105,6 +105,8 @@ class _RenderSpellsImplBase extends RenderPageImplBase {
 		return {
 			...super._getCommonHtmlParts({ent, renderer, opts}),
 
+			htmlPtOriginalName: this._getCommonHtmlParts_originalName({ent}),
+
 			htmlPtLevelSchoolRitual: this._getCommonHtmlParts_levelSchoolRitual({ent}),
 
 			htmlPtCastingTime: this._getCommonHtmlParts_castingTime({ent}),
@@ -118,6 +120,10 @@ class _RenderSpellsImplBase extends RenderPageImplBase {
 	}
 
 	/* ----- */
+
+	_getCommonHtmlParts_originalName ({ent}) {
+		return `<tr><td style="font-size:95%; color:grey" colspan="6">${Renderer.spell.getHtmlPtOriginalName(ent, {styleHint: this._style})}</td></tr>`;
+	}
 
 	_getCommonHtmlParts_levelSchoolRitual ({ent}) {
 		return `<tr><td colspan="6">${Renderer.spell.getHtmlPtLevelSchoolRitual(ent, {styleHint: this._style})}</td></tr>`;
@@ -167,39 +173,42 @@ class _RenderSpellsImplBase extends RenderPageImplBase {
 		if (fromClassList.length) {
 			const [current, legacy] = Parser.spClassesToCurrentAndLegacy(fromClassList);
 			if (settings.isDisplayClasses) {
-				stackFroms.push(`<div><span class="bold">Classes: </span>${Parser.spMainClassesToFull(current)}</div>`);
+				stackFroms.push(`<div><span class="bold">Clases: </span>${Parser.spMainClassesToFull(current)}</div>`);
 			}
 			if (settings.isDisplayClassesLegacy && legacy.length) {
-				stackFroms.push(`<div class="ve-muted"><span class="bold">Classes (legacy): </span>${Parser.spMainClassesToFull(legacy)}</div>`);
+				stackFroms.push(`<div class="ve-muted"><span class="bold">Clases (legacy): </span>${Parser.spMainClassesToFull(legacy)}</div>`);
 			}
 		}
 
-		const fromSubclass = Renderer.spell.getCombinedClasses(ent, "fromSubclass");
-		if (fromSubclass.length) {
-			const [current, legacy] = Parser.spSubclassesToCurrentAndLegacyFull(ent, subclassLookup);
-			if (settings.isDisplaySubclasses) {
-				stackFroms.push(`<div><span class="bold">Subclasses: </span>${current}</div>`);
-			}
-			if (settings.isDisplaySubclassesLegacy && legacy.length) {
-				stackFroms.push(`<div class="ve-muted"><span class="bold">Subclasses (legacy): </span>${legacy}</div>`);
-			}
-		}
+		// DESCOMENTAR ESTO PARA QUE SE VEAN LAS SUBCLASES QUE TIENEN LOS CONJUROS
+		// const fromSubclass = Renderer.spell.getCombinedClasses(ent, "fromSubclass");
+		// if (fromSubclass.length) {
+		// 	const [current, legacy] = Parser.spSubclassesToCurrentAndLegacyFull(ent, subclassLookup);
+		// 	if (settings.isDisplaySubclasses) {
+		// 		stackFroms.push(`<div><span class="bold">Subclases: </span>${current}</div>`);
+		// 	}
+		// 	if (settings.isDisplaySubclassesLegacy && legacy.length) {
+		// 		stackFroms.push(`<div class="ve-muted"><span class="bold">Subclases (legacy): </span>${legacy}</div>`);
+		// 	}
+		// }
 
-		const fromClassListVariant = Renderer.spell.getCombinedClasses(ent, "fromClassListVariant");
-		if (fromClassListVariant.length) {
-			const [current, legacy] = Parser.spVariantClassesToCurrentAndLegacy(fromClassListVariant);
-			if (settings.isDisplayVariantClasses && current.length) {
-				stackFroms.push(`<div><span class="bold" title="&quot;Optional&quot; spells may be added to a campaign by the DM. &quot;Variant&quot; spells are generally available, but may be made available to a class by the DM.">Optional/Variant Classes: </span>${Parser.spMainClassesToFull(current)}</div>`);
-			}
-			if (settings.isDisplayVariantClassesLegacy && legacy.length) {
-				stackFroms.push(`<div class="ve-muted"><span class="bold" title="&quot;Optional&quot; spells may be added to a campaign by the DM. &quot;Variant&quot; spells are generally available, but may be made available to a class by the DM.">Optional/Variant Classes (legacy): </span>${Parser.spMainClassesToFull(legacy)}</div>`);
-			}
-		}
+		// AQUI ABAJO HAY OTRAS FUENTES DEL CONJURO COMO RAZAS, RASGOS, ETC.
 
-		if (settings.isDisplayRaces) this._mutStackPtSpellSource({ent, stackFroms, renderer, title: "Species", propSpell: "races", prop: "race", tag: "race"});
-		if (settings.isDisplayBackgrounds) this._mutStackPtSpellSource({ent, stackFroms, renderer, title: "Backgrounds", propSpell: "backgrounds", prop: "background", tag: "background"});
-		if (settings.isDisplayFeats) this._mutStackPtSpellSource({ent, stackFroms, renderer, title: "Feats", propSpell: "feats", prop: "feat", tag: "feat"});
-		if (settings.isDisplayOptionalfeatures) this._mutStackPtSpellSource({ent, stackFroms, renderer, title: "Other Options/Features", propSpell: "optionalfeatures", prop: "optionalfeature", tag: "optfeature"});
+		// const fromClassListVariant = Renderer.spell.getCombinedClasses(ent, "fromClassListVariant");
+		// if (fromClassListVariant.length) {
+		// 	const [current, legacy] = Parser.spVariantClassesToCurrentAndLegacy(fromClassListVariant);
+		// 	if (settings.isDisplayVariantClasses && current.length) {
+		// 		stackFroms.push(`<div><span class="bold" title="&quot;Optional&quot; spells may be added to a campaign by the DM. &quot;Variant&quot; spells are generally available, but may be made available to a class by the DM.">Optional/Variant Classes: </span>${Parser.spMainClassesToFull(current)}</div>`);
+		// 	}
+		// 	if (settings.isDisplayVariantClassesLegacy && legacy.length) {
+		// 		stackFroms.push(`<div class="ve-muted"><span class="bold" title="&quot;Optional&quot; spells may be added to a campaign by the DM. &quot;Variant&quot; spells are generally available, but may be made available to a class by the DM.">Optional/Variant Classes (legacy): </span>${Parser.spMainClassesToFull(legacy)}</div>`);
+		// 	}
+		// }
+
+		// if (settings.isDisplayRaces) this._mutStackPtSpellSource({ent, stackFroms, renderer, title: "Species", propSpell: "races", prop: "race", tag: "race"});
+		// if (settings.isDisplayBackgrounds) this._mutStackPtSpellSource({ent, stackFroms, renderer, title: "Backgrounds", propSpell: "backgrounds", prop: "background", tag: "background"});
+		// if (settings.isDisplayFeats) this._mutStackPtSpellSource({ent, stackFroms, renderer, title: "Feats", propSpell: "feats", prop: "feat", tag: "feat"});
+		// if (settings.isDisplayOptionalfeatures) this._mutStackPtSpellSource({ent, stackFroms, renderer, title: "Other Options/Features", propSpell: "optionalfeatures", prop: "optionalfeature", tag: "optfeature"});
 
 		if (
 			ent.level >= 5
@@ -237,6 +246,7 @@ class _RenderSpellsImplClassic extends _RenderSpellsImplBase {
 		const {
 			htmlPtIsExcluded,
 			htmlPtName,
+			htmlPtOriginalName,
 
 			htmlPtLevelSchoolRitual,
 
@@ -260,6 +270,7 @@ class _RenderSpellsImplClassic extends _RenderSpellsImplBase {
 
 			${htmlPtIsExcluded}
 			${htmlPtName}
+			${htmlPtOriginalName}
 
 			${htmlPtLevelSchoolRitual}
 
@@ -290,6 +301,7 @@ class _RenderSpellsImplOne extends _RenderSpellsImplBase {
 		const {
 			htmlPtIsExcluded,
 			htmlPtName,
+			htmlPtOriginalName,
 
 			htmlPtLevelSchoolRitual,
 
@@ -313,6 +325,7 @@ class _RenderSpellsImplOne extends _RenderSpellsImplBase {
 
 			${htmlPtIsExcluded}
 			${htmlPtName}
+			${htmlPtOriginalName}
 
 			${htmlPtLevelSchoolRitual}
 

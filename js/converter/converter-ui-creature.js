@@ -69,7 +69,7 @@ At will: charm person, detect magic, dispel magic, fabricate (Mammon can create 
 3/day each: animate objects, counterspell, creation, instant summons, legend lore, teleport
 1/day: imprisonment (minimus containment only, inside gems), sunburst
 Spellcasting. Mammon is a 6th level spellcaster. His spellcasting ability is Intelligence (spell save DC 13; +5 to hit with spell attacks). He has the following wizard spells prepared:
-Cantrips (at will): fire bolt, light, mage hand, prestidigitation
+Cantrips (at will): fire bolt, light, mano de mago, prestidigitación
 1st level (4 slots): mage armor, magic missile, shield
 2nd level (3 slots): misty step, suggestion
 3rd level (3 slots): fly, lightning bolt
@@ -114,7 +114,7 @@ CreatureConverterUi._SAMPLE_MARKDOWN =
 >
 >***Spellcasting.*** The lich is an 18th-level spellcaster. Its spellcasting ability is Intelligence (spell save DC 20, +12 to hit with spell attacks). The lich has the following wizard spells prepared:
 >
->• Cantrips (at will): mage hand, prestidigitation, ray of frost
+>• Cantrips (at will): mano de mago, prestidigitación, ray of frost
 >• 1st level (4 slots): detect magic, magic missile, shield, thunderwave
 >• 2nd level (3 slots): detect thoughts, invisibility, Melf's acid arrow, mirror image
 >• 3rd level (3 slots): animate dead, counterspell, dispel magic, fireball

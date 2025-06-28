@@ -1,7 +1,7 @@
 {
 	"class": [
 		{
-			"name": "Sorcerer",
+			"name": "Hechicero",
 			"source": "PHB",
 			"advancement": [
 				{
@@ -988,12 +988,12 @@
 			"migrationVersion": 3
 		},
 		{
-			"name": "Sorcerer",
+			"name": "Hechicero",
 			"source": "XPHB",
 			"system": {
 				"spellcasting": {
 					"preparation": {
-						"formula": "@scale.sorcerer.prepared-max"
+						"formula": "@scale.hechicero.prepared-max"
 					}
 				}
 			},
@@ -2518,7 +2518,7 @@
 		{
 			"name": "Font of Magic",
 			"source": "PHB",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "PHB",
 			"level": 2,
 			"system": {
@@ -2529,11 +2529,11 @@
 		{
 			"name": "Sorcery Points",
 			"source": "PHB",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "PHB",
 			"level": 2,
 			"system": {
-				"uses.max": "@scale.sorcerer.sorcery-points",
+				"uses.max": "@scale.hechicero.sorcery-points",
 				"uses.recovery": [
 					{
 						"period": "lr",
@@ -2547,7 +2547,7 @@
 		{
 			"name": "Metamagic",
 			"source": "PHB",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "PHB",
 			"level": 3,
 			"entries": [
@@ -2559,7 +2559,7 @@
 		{
 			"name": "Metamagic Options",
 			"source": "TCE",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "PHB",
 			"level": 3,
 			"isIgnored": true,
@@ -2568,7 +2568,7 @@
 		{
 			"name": "Metamagic",
 			"source": "PHB",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "PHB",
 			"level": 10,
 			"isIgnored": true,
@@ -2577,7 +2577,7 @@
 		{
 			"name": "Metamagic",
 			"source": "PHB",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "PHB",
 			"level": 17,
 			"isIgnored": true,
@@ -3663,7 +3663,7 @@
 						"seconds": 60
 					},
 					"statuses": [
-						"frightened",
+						"asustado",
 						"incapacitated"
 					]
 				}
@@ -3745,7 +3745,7 @@
 						"seconds": 60
 					},
 					"statuses": [
-						"frightened",
+						"asustado",
 						"incapacitated"
 					]
 				}
@@ -5157,12 +5157,12 @@
 			"effects": [
 				{
 					"foundryId": "stunningStrike",
-					"name": "Stunned",
+					"name": "Aturdido",
 					"duration": {
 						"turns": 1
 					},
 					"statuses": [
-						"stunned"
+						"aturdido"
 					]
 				},
 				{
@@ -5764,7 +5764,7 @@
 						"seconds": 60
 					},
 					"statuses": [
-						"frightened"
+						"asustado"
 					]
 				}
 			],
@@ -6618,7 +6618,7 @@
 						"seconds": 60
 					},
 					"statuses": [
-						"unconscious"
+						"inconsciente"
 					],
 					"description": "The target has the Unconscious condition for 1 minute or until it takes any damage. The Unconscious target repeats the save at the end of each of its turns, ending the effect on itself on a success."
 				}
@@ -6730,14 +6730,14 @@
 			"migrationVersion": 3
 		},
 		{
-			"name": "Innate Sorcery",
+			"name": "Hechicería innata",
 			"source": "XPHB",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "XPHB",
 			"level": 1,
 			"activities": [
 				{
-					"name": "Innate Sorcery",
+					"name": "Hechicería innata",
 					"type": "utility",
 					"activation": {
 						"type": "bonus"
@@ -6777,7 +6777,7 @@
 							"value": 1
 						}
 					],
-					"description": "The spell save DC of your Sorcerer spells increases by 1. You have Advantage on the attack rolls of Sorcerer spells you cast."
+					"description": "The spell save DC of your Hechicero spells increases by 1. You have Advantage on the attack rolls of Hechicero spells you cast."
 				}
 			],
 			"migrationVersion": 3
@@ -6785,7 +6785,7 @@
 		{
 			"name": "Font of Magic",
 			"source": "XPHB",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "XPHB",
 			"level": 2,
 			"system": {
@@ -6871,15 +6871,15 @@
 						"name": "Sorcery Points",
 						"source": "XPHB",
 						"page": 140,
-						"className": "Sorcerer",
+						"className": "Hechicero",
 						"classSource": "XPHB",
 						"level": 2,
 						"entries": [
-							"You have 2 Sorcery Points, and you gain more as you reach higher levels, as shown in the Sorcery Points column of the Sorcerer Features table. You can't have more Sorcery Points than the number shown in the table for your level. You regain all expended Sorcery Points when you finish a {@variantrule Long Rest|XPHB}."
+							"You have 2 Sorcery Points, and you gain more as you reach higher levels, as shown in the Sorcery Points column of the Hechicero Features table. You can't have more Sorcery Points than the number shown in the table for your level. You regain all expended Sorcery Points when you finish a {@variantrule Long Rest|XPHB}."
 						],
 						"foundrySystem": {
 							"uses.per": "lr",
-							"uses.max": "@scale.sorcerer.points"
+							"uses.max": "@scale.hechicero.points"
 						}
 					}
 				]
@@ -6889,7 +6889,7 @@
 		{
 			"name": "Metamagic Options",
 			"source": "XPHB",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "XPHB",
 			"level": 2,
 			"isIgnored": true,
@@ -6898,7 +6898,7 @@
 		{
 			"name": "Sorcerous Restoration",
 			"source": "XPHB",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "XPHB",
 			"level": 5,
 			"activities": [
@@ -6916,7 +6916,7 @@
 							},
 							{
 								"type": "itemUses",
-								"value": "-(floor(@classes.sorcerer.levels / 2))",
+								"value": "-(floor(@classes.hechicero.levels / 2))",
 								"target": {
 									"consumes": {
 										"name": "Sorcery Point"
@@ -6932,7 +6932,7 @@
 		{
 			"name": "Sorcery Incarnate",
 			"source": "XPHB",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "XPHB",
 			"level": 7,
 			"activities": [
@@ -6958,7 +6958,7 @@
 								"value": "-1",
 								"target": {
 									"prop": "classFeature",
-									"uid": "Innate Sorcery|Sorcerer|XPHB|1"
+									"uid": "Hechicería innata|Hechicero|XPHB|1"
 								}
 							}
 						]
@@ -6970,7 +6970,7 @@
 		{
 			"name": "Metamagic",
 			"source": "XPHB",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "XPHB",
 			"level": 10,
 			"isIgnored": true,
@@ -6979,7 +6979,7 @@
 		{
 			"name": "Metamagic",
 			"source": "XPHB",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "XPHB",
 			"level": 17,
 			"isIgnored": true,
@@ -6988,7 +6988,7 @@
 		{
 			"name": "Epic Boon",
 			"source": "XPHB",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "XPHB",
 			"level": 19,
 			"isIgnored": true,
@@ -7342,7 +7342,7 @@
 			"source": "TCE",
 			"className": "Barbarian",
 			"classSource": "PHB",
-			"subclassShortName": "Wild Magic",
+			"subclassShortName": "Magia salvaje",
 			"subclassSource": "TCE",
 			"level": 3,
 			"activities": [
@@ -7436,7 +7436,7 @@
 				"armorProficiencies": [
 					{
 						"medium": true,
-						"shield": true
+						"escudo": true
 					}
 				]
 			},
@@ -8713,8 +8713,8 @@
 			"entryData": {
 				"conditionImmune": [
 					"blinded",
-					"deafened",
-					"frightened",
+					"ensordecido",
+					"asustado",
 					"poisoned"
 				]
 			},
@@ -10627,9 +10627,9 @@
 			"migrationVersion": 3
 		},
 		{
-			"name": "Draconic Resilience",
+			"name": "Resistencia dracónica",
 			"source": "PHB",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "PHB",
 			"subclassShortName": "Draconic",
 			"subclassSource": "PHB",
@@ -10653,7 +10653,7 @@
 						{
 							"key": "system.attributes.hp.bonuses.overall",
 							"mode": "ADD",
-							"value": "+ @classes.sorcerer.levels"
+							"value": "+ @classes.hechicero.levels"
 						}
 					]
 				}
@@ -10663,7 +10663,7 @@
 		{
 			"name": "Dragon Ancestor",
 			"source": "PHB",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "PHB",
 			"subclassShortName": "Draconic",
 			"subclassSource": "PHB",
@@ -10678,9 +10678,9 @@
 			"migrationVersion": 3
 		},
 		{
-			"name": "Dragon Wings",
+			"name": "Alas de dragón",
 			"source": "PHB",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "PHB",
 			"subclassShortName": "Draconic",
 			"subclassSource": "PHB",
@@ -10703,7 +10703,7 @@
 		{
 			"name": "Draconic Presence",
 			"source": "PHB",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "PHB",
 			"subclassShortName": "Draconic",
 			"subclassSource": "PHB",
@@ -10723,9 +10723,9 @@
 			"migrationVersion": 3
 		},
 		{
-			"name": "Telepathic Speech",
+			"name": "Habla telepática",
 			"source": "TCE",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "PHB",
 			"subclassShortName": "Aberrant Mind",
 			"subclassSource": "TCE",
@@ -10748,9 +10748,9 @@
 			"migrationVersion": 3
 		},
 		{
-			"name": "Warping Implosion",
+			"name": "Implosión deformadora",
 			"source": "TCE",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "PHB",
 			"subclassShortName": "Aberrant Mind",
 			"subclassSource": "TCE",
@@ -10773,9 +10773,9 @@
 			"migrationVersion": 3
 		},
 		{
-			"name": "Restore Balance",
+			"name": "Restablecer equilibrio",
 			"source": "TCE",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "PHB",
 			"subclassShortName": "Clockwork Soul",
 			"subclassSource": "TCE",
@@ -10798,9 +10798,9 @@
 			"migrationVersion": 3
 		},
 		{
-			"name": "Bastion of Law",
+			"name": "Bastión de la ley",
 			"source": "TCE",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "PHB",
 			"subclassShortName": "Clockwork Soul",
 			"subclassSource": "TCE",
@@ -10823,9 +10823,9 @@
 			"migrationVersion": 3
 		},
 		{
-			"name": "Clockwork Cavalcade",
+			"name": "Cabalgata mecánica",
 			"source": "TCE",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "PHB",
 			"subclassShortName": "Clockwork Soul",
 			"subclassSource": "TCE",
@@ -10847,7 +10847,7 @@
 		{
 			"name": "Hound of Ill Omen",
 			"source": "XGE",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "PHB",
 			"subclassShortName": "Shadow",
 			"subclassSource": "XGE",
@@ -10872,7 +10872,7 @@
 		{
 			"name": "Shadow Walk",
 			"source": "XGE",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "PHB",
 			"subclassShortName": "Shadow",
 			"subclassSource": "XGE",
@@ -10897,7 +10897,7 @@
 		{
 			"name": "Wind Speaker",
 			"source": "XGE",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "PHB",
 			"subclassShortName": "Storm",
 			"subclassSource": "XGE",
@@ -10914,7 +10914,7 @@
 		{
 			"name": "Heart of the Storm",
 			"source": "XGE",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "PHB",
 			"subclassShortName": "Storm",
 			"subclassSource": "XGE",
@@ -10942,7 +10942,7 @@
 		{
 			"name": "Wind Soul",
 			"source": "XGE",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "PHB",
 			"subclassShortName": "Storm",
 			"subclassSource": "XGE",
@@ -11273,7 +11273,7 @@
 				],
 				"armorProficiencies": [
 					{
-						"shield": true,
+						"escudo": true,
 						"medium": true
 					}
 				]
@@ -12033,7 +12033,7 @@
 						{
 							"key": "system.traits.ci.value",
 							"mode": "ADD",
-							"value": "frightened"
+							"value": "asustado"
 						}
 					]
 				}
@@ -12151,7 +12151,7 @@
 						"rounds": 1
 					},
 					"statuses": [
-						"frightened"
+						"asustado"
 					]
 				}
 			],
@@ -13208,7 +13208,7 @@
 						"seconds": 60
 					},
 					"statuses": [
-						"frightened"
+						"asustado"
 					]
 				},
 				{
@@ -13562,7 +13562,7 @@
 				"armorProficiencies": [
 					{
 						"medium": true,
-						"shield": true
+						"escudo": true
 					}
 				]
 			},
@@ -17399,7 +17399,7 @@
 						"seconds": 60
 					},
 					"statuses": [
-						"restrained"
+						"apresado"
 					]
 				}
 			],
@@ -18166,12 +18166,12 @@
 				},
 				{
 					"foundryId": "avengingAngel1",
-					"name": "Frightened",
+					"name": "Asustado",
 					"duration": {
 						"seconds": 60
 					},
 					"statuses": [
-						"frightened"
+						"asustado"
 					]
 				}
 			],
@@ -19129,7 +19129,7 @@
 			"migrationVersion": 3
 		},
 		{
-			"name": "Mage Hand Legerdemain",
+			"name": "Mano de mago Legerdemain",
 			"source": "XPHB",
 			"className": "Rogue",
 			"classSource": "XPHB",
@@ -19143,7 +19143,7 @@
 						"type": "bonus"
 					},
 					"spell": {
-						"uuid": "@spell[mage hand|xphb]"
+						"uuid": "@spell[mano de mago|xphb]"
 					}
 				}
 			],
@@ -19861,7 +19861,7 @@
 						"seconds": 60
 					},
 					"statuses": [
-						"stunned"
+						"aturdido"
 					],
 					"description": "The target has the Stunned condition for 1 minute. The Stunned target repeats the save at the end of each of its turns, ending the effect on itself on a success."
 				}
@@ -19939,23 +19939,23 @@
 			"migrationVersion": 3
 		},
 		{
-			"name": "Telepathic Speech",
+			"name": "Habla telepática",
 			"source": "XPHB",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "XPHB",
-			"subclassShortName": "Aberrant",
+			"subclassShortName": "Aberrante",
 			"subclassSource": "XPHB",
 			"level": 3,
 			"activities": [
 				{
-					"name": "Telepathic Speech",
+					"name": "Habla telepática",
 					"type": "utility",
 					"activation": {
 						"type": "bonus"
 					},
 					"duration": {
 						"units": "minute",
-						"value": "@classes.sorcerer.levels"
+						"value": "@classes.hechicero.levels"
 					},
 					"target": {
 						"affects": {
@@ -19973,11 +19973,11 @@
 			"migrationVersion": 3
 		},
 		{
-			"name": "Psionic Sorcery",
+			"name": "Hechicería psionica",
 			"source": "XPHB",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "XPHB",
-			"subclassShortName": "Aberrant",
+			"subclassShortName": "Aberrante",
 			"subclassSource": "XPHB",
 			"level": 6,
 			"activities": [
@@ -19990,7 +19990,7 @@
 					"consumption": {
 						"scaling": {
 							"allowed": true,
-							"max": "@classes.sorcerer.levels"
+							"max": "@classes.hechicero.levels"
 						},
 						"targets": [
 							{
@@ -20009,11 +20009,11 @@
 			"migrationVersion": 3
 		},
 		{
-			"name": "Psychic Defenses",
+			"name": "Defensas psíquicas",
 			"source": "XPHB",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "XPHB",
-			"subclassShortName": "Aberrant",
+			"subclassShortName": "Aberrante",
 			"subclassSource": "XPHB",
 			"level": 6,
 			"entryData": {
@@ -20024,11 +20024,11 @@
 			"migrationVersion": 3
 		},
 		{
-			"name": "Revelation in Flesh",
+			"name": "Revelación en carne",
 			"source": "XPHB",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "XPHB",
-			"subclassShortName": "Aberrant",
+			"subclassShortName": "Aberrante",
 			"subclassSource": "XPHB",
 			"level": 14,
 			"activities": [
@@ -20128,16 +20128,16 @@
 			"migrationVersion": 3
 		},
 		{
-			"name": "Warping Implosion",
+			"name": "Implosión deformadora",
 			"source": "XPHB",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "XPHB",
-			"subclassShortName": "Aberrant",
+			"subclassShortName": "Aberrante",
 			"subclassSource": "XPHB",
 			"level": 18,
 			"activities": [
 				{
-					"name": "Warping Implosion",
+					"name": "Implosión deformadora",
 					"type": "save",
 					"activation": {
 						"type": "action"
@@ -20181,11 +20181,11 @@
 			"migrationVersion": 3
 		},
 		{
-			"name": "Restore Balance",
+			"name": "Restablecer equilibrio",
 			"source": "XPHB",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "XPHB",
-			"subclassShortName": "Clockwork",
+			"subclassShortName": "Mecánica",
 			"subclassSource": "XPHB",
 			"level": 3,
 			"system": {
@@ -20229,11 +20229,11 @@
 			"migrationVersion": 3
 		},
 		{
-			"name": "Bastion of Law",
+			"name": "Bastión de la ley",
 			"source": "XPHB",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "XPHB",
-			"subclassShortName": "Clockwork",
+			"subclassShortName": "Mecánica",
 			"subclassSource": "XPHB",
 			"level": 6,
 			"activities": [
@@ -20285,11 +20285,11 @@
 			"migrationVersion": 3
 		},
 		{
-			"name": "Trance of Order",
+			"name": "Trance de orden",
 			"source": "XPHB",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "XPHB",
-			"subclassShortName": "Clockwork",
+			"subclassShortName": "Mecánica",
 			"subclassSource": "XPHB",
 			"level": 14,
 			"activities": [
@@ -20373,11 +20373,11 @@
 			"migrationVersion": 3
 		},
 		{
-			"name": "Clockwork Cavalcade",
+			"name": "Cabalgata mecánica",
 			"source": "XPHB",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "XPHB",
-			"subclassShortName": "Clockwork",
+			"subclassShortName": "Mecánica",
 			"subclassSource": "XPHB",
 			"level": 18,
 			"activities": [
@@ -20466,16 +20466,16 @@
 			"migrationVersion": 3
 		},
 		{
-			"name": "Draconic Resilience",
+			"name": "Resistencia dracónica",
 			"source": "XPHB",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "XPHB",
 			"subclassShortName": "Draconic",
 			"subclassSource": "XPHB",
 			"level": 3,
 			"effects": [
 				{
-					"name": "Draconic Resilience: Armor",
+					"name": "Resistencia dracónica: Armor",
 					"transfer": true,
 					"changes": [
 						{
@@ -20486,13 +20486,13 @@
 					]
 				},
 				{
-					"name": "Draconic Resilience: HP",
+					"name": "Resistencia dracónica: HP",
 					"transfer": true,
 					"changes": [
 						{
 							"key": "system.attributes.hp.bonuses.overall",
 							"mode": "ADD",
-							"value": "@classes.sorcerer.levels"
+							"value": "@classes.hechicero.levels"
 						}
 					]
 				}
@@ -20500,9 +20500,9 @@
 			"migrationVersion": 3
 		},
 		{
-			"name": "Elemental Affinity",
+			"name": "Afinidad elemental",
 			"source": "XPHB",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "XPHB",
 			"subclassShortName": "Draconic",
 			"subclassSource": "XPHB",
@@ -20627,16 +20627,16 @@
 			"migrationVersion": 3
 		},
 		{
-			"name": "Dragon Wings",
+			"name": "Alas de dragón",
 			"source": "XPHB",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "XPHB",
 			"subclassShortName": "Draconic",
 			"subclassSource": "XPHB",
 			"level": 14,
 			"activities": [
 				{
-					"name": "Dragon Wings",
+					"name": "Alas de dragón",
 					"type": "utility",
 					"activation": {
 						"type": "bonus"
@@ -20711,9 +20711,9 @@
 			"migrationVersion": 3
 		},
 		{
-			"name": "Dragon Companion",
+			"name": "Compañero dragón",
 			"source": "XPHB",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "XPHB",
 			"subclassShortName": "Draconic",
 			"subclassSource": "XPHB",
@@ -20738,16 +20738,16 @@
 			"migrationVersion": 3
 		},
 		{
-			"name": "Bend Luck",
+			"name": "Doblegar la suerte",
 			"source": "XPHB",
-			"className": "Sorcerer",
+			"className": "Hechicero",
 			"classSource": "XPHB",
-			"subclassShortName": "Wild Magic",
+			"subclassShortName": "Magia salvaje",
 			"subclassSource": "XPHB",
 			"level": 6,
 			"activities": [
 				{
-					"name": "Bend Luck",
+					"name": "Doblegar la suerte",
 					"type": "utility",
 					"activation": {
 						"type": "reaction",

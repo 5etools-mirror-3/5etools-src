@@ -138,7 +138,7 @@ export class CrScalerArmorClass extends CrScalerBase {
 				tag: "shield|phb",
 				mod: 2,
 			},
-			...this._getEnchanted("shield", 2),
+			...this._getEnchanted("escudo", 2),
 		];
 
 		this._ALL_HEAVY_VARIANTS = this._ALL_HEAVY_VARIANTS || this._getAllVariants(this._HEAVY);
@@ -426,7 +426,7 @@ export class CrScalerArmorClass extends CrScalerBase {
 						const checkShields = (prop) => {
 							if (!this._mon[prop]) return false;
 							for (const it of this._mon[prop]) {
-								if (it.name && it.name.toLowerCase().includes("shield")) return true;
+								if (it.name && it.name.toLowerCase().includes("escudo")) return true;
 								if (it.entries && JSON.stringify(it.entries).match(/shield/i)) return true;
 							}
 						};

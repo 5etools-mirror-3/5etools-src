@@ -820,7 +820,7 @@
 						"type": "entries",
 						"name": "Disheartening Strike",
 						"entries": [
-							"When you hit a creature with an attack using this weapon, you can fill the target with unsettling dread: the target has disadvantage on the next saving throw it makes before the end of your next turn. The creature ignores this effect if it's immune to the {@condition frightened} condition. Once you use this property, you can't do so again until the next dusk."
+							"When you hit a creature with an attack using this weapon, you can fill the target with unsettling dread: the target has disadvantage on the next saving throw it makes before the end of your next turn. The creature ignores this effect if it's immune to the {@condition asustado} condition. Once you use this property, you can't do so again until the next dusk."
 						]
 					}
 				]
@@ -2073,7 +2073,7 @@
 				"attachedSpells": {
 					"charges": {
 						"1": [
-							"jump"
+							"salto"
 						],
 						"2": [
 							"levitate"
@@ -2272,13 +2272,13 @@
 				"reqAttune": true,
 				"curse": true,
 				"entries": [
-					"When you attack a creature with this magic weapon and roll a 20 on the attack roll, the creature must make a {@dc 15} Constitution saving throw in addition to suffering the attack's normal effects. On a failed save, the creature is restrained and must make another Constitution saving throw at the end of each of its turns. If it successfully saves against this effect three times, the effect ends. If it fails its saves three times, it is turned to stone and subjected to the {@condition petrified} condition for 1 hour.",
+					"When you attack a creature with this magic weapon and roll a 20 on the attack roll, the creature must make a {@dc 15} Constitution saving throw in addition to suffering the attack's normal effects. On a failed save, the creature is restrained and must make another Constitution saving throw at the end of each of its turns. If it successfully saves against this effect three times, the effect ends. If it fails its saves three times, it is turned to stone and subjected to the {@condition petrificado} condition for 1 hour.",
 					"A creature is immune to this effect if it is immune to damage of the weapon's type, does not have a body made of flesh, or has legendary actions.",
 					{
 						"name": "Curse",
 						"type": "entries",
 						"entries": [
-							"This weapon is cursed, and becoming attuned to it extends the curse to you. Until the curse is broken with a {@spell remove curse} spell or similar magic, you are unwilling to part with the weapon. Whenever you attack a creature with this weapon and roll a 1 on the attack roll, you must succeed on a {@dc 15} Constitution saving throw or be {@condition restrained} and forced to make additional saves against being {@condition petrified}, as above."
+							"This weapon is cursed, and becoming attuned to it extends the curse to you. Until the curse is broken with a {@spell remove curse} spell or similar magic, you are unwilling to part with the weapon. Whenever you attack a creature with this weapon and roll a 1 on the attack roll, you must succeed on a {@dc 15} Constitution saving throw or be {@condition apresado} and forced to make additional saves against being {@condition petrificado}, as above."
 						]
 					}
 				]
@@ -3192,7 +3192,7 @@
 						"type": "entries",
 						"name": "Arrow of Restraint",
 						"entries": [
-							"Whenever you use this weapon to make a ranged attack against a creature, you can try to restrain the target instead of dealing damage to it. If the arrow hits, the target must succeed on a {@dc 15} Strength saving throw or have the {@condition Restrained|XPHB} condition for 1 minute. As an action, a creature {@condition Restrained|XPHB} by an arrow can make a {@dc 20} Strength ({@skill Athletics|XPHB}) check to try to break the restraint, ending the effect on itself on a successful check."
+							"Whenever you use this weapon to make a ranged attack against a creature, you can try to restrain the target instead of dealing damage to it. If the arrow hits, the target must succeed on a {@dc 15} Strength saving throw or have the {@condition Apresado|XPHB} condition for 1 minute. As an action, a creature {@condition Apresado|XPHB} by an arrow can make a {@dc 20} Strength ({@skill Athletics|XPHB}) check to try to break the restraint, ending the effect on itself on a successful check."
 						]
 					},
 					{
@@ -4230,7 +4230,7 @@
 				"entries": [
 					"You gain a +1 bonus to attack rolls and damage rolls made with this magic weapon.",
 					"The weapon has 5 charges. You can expend 1 charge and make a ranged attack with the weapon, hurling it as if it had {@itemProperty T|XPHB|Thrown} with a normal range of 20 feet and a long range of 60 feet.",
-					"If the attack hits, the weapon unleashes a thunderclap audible out to 300 feet. The target and every creature within 30 feet of it other than you must succeed on a {@dc 17} Constitution saving throw or have the {@condition Stunned|XPHB} condition until the end of your next turn. Immediately after hitting or missing, the weapon flies back to your hand. The weapon regains {@dice 1d4 + 1} expended charges daily at dawn.",
+					"If the attack hits, the weapon unleashes a thunderclap audible out to 300 feet. The target and every creature within 30 feet of it other than you must succeed on a {@dc 17} Constitution saving throw or have the {@condition Aturdido|XPHB} condition until the end of your next turn. Immediately after hitting or missing, the weapon flies back to your hand. The weapon regains {@dice 1d4 + 1} expended charges daily at dawn.",
 					{
 						"type": "entries",
 						"name": "Giant's Bane",
@@ -4696,7 +4696,7 @@
 						"name": "Symbiotic Nature",
 						"entries": [
 							"The armor can't be removed from you while you're attuned to it, and you can't voluntarily end your attunement to it. If you're targeted by a spell that ends a curse, your attunement to the armor ends, and it detaches from you.",
-							"The armor requires fresh blood be fed to it. Immediately after you finish any long rest, you must either feed half of your remaining Hit Dice to the armor (round up) or take 1 level of {@condition exhaustion}."
+							"The armor requires fresh blood be fed to it. Immediately after you finish any long rest, you must either feed half of your remaining Hit Dice to the armor (round up) or take 1 level of {@condition cansancio}."
 						]
 					}
 				]
@@ -4964,7 +4964,7 @@
 				"rarity": "uncommon",
 				"reqAttune": "by a specific individual",
 				"entries": [
-					"Any nonmagical suit of heavy armor can be turned by mind flayers into mind carapace armor. Only one creature can attune to it: either a specific mind flayer or one of its thralls. While worn by any other creature, the mind carapace armor functions as normal armor of its kind. To its intended wearer, the armor grants advantage on Intelligence, Wisdom, and Charisma saving throws and makes its wearer immune to the {@condition frightened} condition."
+					"Any nonmagical suit of heavy armor can be turned by mind flayers into mind carapace armor. Only one creature can attune to it: either a specific mind flayer or one of its thralls. While worn by any other creature, the mind carapace armor functions as normal armor of its kind. To its intended wearer, the armor grants advantage on Intelligence, Wisdom, and Charisma saving throws and makes its wearer immune to the {@condition asustado} condition."
 				]
 			}
 		},
@@ -5925,7 +5925,7 @@
 						"type": "entries",
 						"name": "Ruidium Corruption",
 						"entries": [
-							"When you roll a 1 on a saving throw while wearing this armor, you must make a {@dc 15} Charisma saving throw. On a failed save, you gain 1 level of {@condition exhaustion}. If you are not already suffering from ruidium corruption, you become corrupted when you fail this save."
+							"When you roll a 1 on a saving throw while wearing this armor, you must make a {@dc 15} Charisma saving throw. On a failed save, you gain 1 level of {@condition cansancio}. If you are not already suffering from ruidium corruption, you become corrupted when you fail this save."
 						]
 					},
 					{
@@ -5978,7 +5978,7 @@
 						"type": "entries",
 						"name": "Ruidium Corruption",
 						"entries": [
-							"When you roll a 1 on an attack roll made with this weapon, you must make a {@dc 20} Charisma saving throw. On a failed save, you gain 1 level of {@condition exhaustion}. If you are not already suffering from ruidium corruption, you become corrupted when you fail this save."
+							"When you roll a 1 on an attack roll made with this weapon, you must make a {@dc 20} Charisma saving throw. On a failed save, you gain 1 level of {@condition cansancio}. If you are not already suffering from ruidium corruption, you become corrupted when you fail this save."
 						]
 					},
 					{
@@ -6472,7 +6472,7 @@
 				"reqAttune": true,
 				"entries": [
 					"When you attack an object with this magic weapon and hit, maximize your weapon damage dice against the target.",
-					"When you attack a creature with this weapon and roll a 20 on the {@dice d20} for the attack roll, that target takes an extra 14 Slashing damage and gains 1 {@condition Exhaustion|XPHB} level."
+					"When you attack a creature with this weapon and roll a 20 on the {@dice d20} for the attack roll, that target takes an extra 14 Slashing damage and gains 1 {@condition Cansancio|XPHB} level."
 				],
 				"lootTables": [
 					"Armaments - Very Rare|XDMG"
@@ -6711,7 +6711,7 @@
 						"type": "entries",
 						"name": "Secret Message",
 						"entries": [
-							"As a {@action Magic|XPHB} action, you can use the weapon to cast {@spell Message|XPHB}. Once this property is used, it can't be used again until the next dawn."
+							"As a {@action Magic|XPHB} action, you can use the weapon to cast {@spell Mensaje|XPHB}. Once this property is used, it can't be used again until the next dawn."
 						]
 					}
 				],
@@ -6993,7 +6993,7 @@
 				"reqAttune": true,
 				"bonusWeapon": "+3",
 				"entries": [
-					"You have a {=bonusWeapon} bonus to attack and damage rolls made with this magic weapon. When this weapon reduces a creature to 0 hit points, the creature doesn't die. Instead, infernal runes appear as if carved into their flesh and they're healed to 1 hit point. They now have the {@condition paralyzed} condition until the condition is removed by a {@spell Lesser Restoration} spell or similar magic. When the condition is removed, the runes disappear. At the start of each of their turns while they're {@condition paralyzed}, the creature suffers immense pain and gains a level of {@condition exhaustion}."
+					"You have a {=bonusWeapon} bonus to attack and damage rolls made with this magic weapon. When this weapon reduces a creature to 0 hit points, the creature doesn't die. Instead, infernal runes appear as if carved into their flesh and they're healed to 1 hit point. They now have the {@condition paralizado} condition until the condition is removed by a {@spell Lesser Restoration} spell or similar magic. When the condition is removed, the runes disappear. At the start of each of their turns while they're {@condition paralizado}, the creature suffers immense pain and gains a level of {@condition cansancio}."
 				]
 			}
 		},

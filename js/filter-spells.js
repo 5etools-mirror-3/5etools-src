@@ -21,7 +21,7 @@ class VariantClassFilter extends Filter {
 
 class MultiFilterClasses extends MultiFilter {
 	constructor (opts) {
-		super({header: "Classes", mode: "or", filters: [opts.classFilter, opts.subclassFilter, opts.variantClassFilter], ...opts});
+		super({header: "Clases", mode: "or", filters: [opts.classFilter, opts.subclassFilter, opts.variantClassFilter], ...opts});
 
 		this._classFilter = opts.classFilter;
 		this._subclassFilter = opts.subclassFilter;
@@ -301,7 +301,7 @@ class PageFilterSpells extends PageFilterBase {
 			: `${time.number ? `${time.number} ` : ""}${Parser.spTimeUnitToShort(time.unit).uppercaseFirst()}`;
 	}
 
-	static getTblLevelStr (spell) { return `${Parser.spLevelToFull(spell.level)}${spell.meta && spell.meta.ritual ? " (rit.)" : ""}${spell.meta && spell.meta.technomagic ? " (tec.)" : ""}`; }
+	static getTblLevelStr (spell) { return `${Parser.spLevelToFull(spell.level)}`; }
 
 	static getRaceFilterItem (r) {
 		const addSuffix = (
@@ -660,7 +660,7 @@ class ModalFilterSpells extends ModalFilterBase {
 		const levelText = PageFilterSpells.getTblLevelStr(spell);
 		const time = PageFilterSpells.getTblTimeStr(spell.time[0]);
 		const school = Parser.spSchoolAndSubschoolsAbvsShort(spell.school, spell.subschools);
-		const concentration = spell._isConc ? "×" : "";
+		const concentration = spell._isConc ? "C" : "";
 		const range = Parser.spRangeToFull(spell.range, {isDisplaySelfArea: true});
 
 		eleRow.innerHTML = `<div class="w-100 ve-flex-vh-center lst__row-border veapp__list-row no-select lst__wrp-cells">

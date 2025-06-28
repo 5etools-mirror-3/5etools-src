@@ -371,7 +371,7 @@ const LIFE_EVENTS_ADVENTURES = [
 const LIFE_EVENTS_ARCANE_MATTERS = [
 	{min: 1, result: "You were charmed or frightened by a spell."},
 	{min: 2, result: "You were injured by the effect of a spell."},
-	{min: 3, result: "You witnessed a powerful spell being cast by a cleric, a druid, a sorcerer, a warlock, or a wizard."},
+	{min: 3, result: "You witnessed a powerful spell being cast by a cleric, a druid, a hechicero, a warlock, or a wizard."},
 	{min: 4, result: "You drank a potion (of the DM's choice)."},
 	{min: 5, result: "You found a spell scroll (of the DM's choice) and succeeded in casting the spell it contained."},
 	{min: 6, result: "You were affected by teleportation magic."},
@@ -503,7 +503,7 @@ const SUPP_CLASS = [
 	{min: 59, max: 64, result: "Paladin"},
 	{min: 65, max: 70, result: "Ranger"},
 	{min: 71, max: 84, result: "Rogue"},
-	{min: 85, max: 89, result: "Sorcerer"},
+	{min: 85, max: 89, result: "Hechicero"},
 	{min: 90, max: 94, result: "Warlock"},
 	{min: 95, max: 100, result: "Wizard"},
 ];

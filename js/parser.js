@@ -718,7 +718,7 @@ Parser.stringToCasedSlug = function (str) {
 	return str.toAscii().replace(/[^\w ]+/g, "").replace(/ +/g, "-");
 };
 
-Parser.ITEM_SPELLCASTING_FOCUS_CLASSES = ["Artificer", "Bard", "Cleric", "Druid", "Paladin", "Ranger", "Sorcerer", "Warlock", "Wizard"];
+Parser.ITEM_SPELLCASTING_FOCUS_CLASSES = ["Artificer", "Bard", "Cleric", "Druid", "Paladin", "Ranger", "Hechicero", "Warlock", "Wizard"];
 
 Parser.itemValueToFull = function (item, opts = {isShortForm: false, isSmallUnits: false}) {
 	return Parser._moneyToFull(item, "value", "valueMult", opts);
@@ -1164,12 +1164,12 @@ Parser.skillProficienciesToFull = function (skillProficiencies, {styleHint = nul
 				const count = chObj.count ?? 1;
 				if (chObj.from.length === 18) {
 					ptChoose = styleHint === "classic"
-						? `choose any ${count === 1 ? "skill" : chObj.count}`
-						: `Choose ${chObj.count}`;
+						? `elige ${count === 1 ? "skill" : chObj.count}`
+						: `Elige ${chObj.count}`;
 				} else {
 					ptChoose = styleHint === "classic"
-						? `choose ${count} from ${chObj.from.map(it => getRenderedSkill(it)).joinConjunct(", ", " and ")}`
-						: Renderer.get().render(`{@i Choose ${count}:} ${chObj.from.map(it => getRenderedSkill(it)).joinConjunct(", ", " or ")}`);
+						? `elige ${count} de ${chObj.from.map(it => getRenderedSkill(it)).joinConjunct(", ", " y ")}`
+						: Renderer.get().render(`{@i Elige ${count}:} ${chObj.from.map(it => getRenderedSkill(it)).joinConjunct(", ", " o ")}`);
 				}
 			}
 
@@ -1232,16 +1232,12 @@ Parser._spSchoolAbvToStylePart_prereleaseBrew = function ({school, brewUtil}) {
 Parser.getOrdinalForm = function (i) {
 	i = Number(i);
 	if (isNaN(i)) return "";
-	const j = i % 10; const k = i % 100;
-	if (j === 1 && k !== 11) return `${i}st`;
-	if (j === 2 && k !== 12) return `${i}nd`;
-	if (j === 3 && k !== 13) return `${i}rd`;
-	return `${i}th`;
+	return `${i}º`;
 };
 
 Parser.spLevelToFull = function (level) {
-	if (level === 0) return "Cantrip";
-	else return Parser.getOrdinalForm(level);
+	if (level === 0) return "Truco";
+	else return level;
 };
 
 Parser.getArticle = function (str) {
@@ -1315,17 +1311,17 @@ Parser.spLevelSchoolMetaToFull = function (level, school, meta, subschools, {sty
 };
 
 Parser.SP_TM_ACTION = "action";
-Parser.SP_TM_B_ACTION = "bonus";
-Parser.SP_TM_REACTION = "reaction";
+Parser.SP_TM_B_ACTION = "adicional";
+Parser.SP_TM_REACTION = "reacción";
 Parser.SP_TM_ROUND = "round";
-Parser.SP_TM_MINS = "minute";
+Parser.SP_TM_MINS = "minuto";
 Parser.SP_TM_HRS = "hour";
 Parser.SP_TM_SPECIAL = "special";
 Parser.SP_TIME_SINGLETONS = [Parser.SP_TM_ACTION, Parser.SP_TM_B_ACTION, Parser.SP_TM_REACTION, Parser.SP_TM_ROUND];
 Parser.SP_TIME_TO_FULL = {
 	[Parser.SP_TM_ACTION]: "Action",
-	[Parser.SP_TM_B_ACTION]: "Bonus Action",
-	[Parser.SP_TM_REACTION]: "Reaction",
+	[Parser.SP_TM_B_ACTION]: "Acción adicional",
+	[Parser.SP_TM_REACTION]: "Reacción",
 	[Parser.SP_TM_ROUND]: "Rounds",
 	[Parser.SP_TM_MINS]: "Minutes",
 	[Parser.SP_TM_HRS]: "Hours",
@@ -1382,7 +1378,7 @@ Parser.spTimeListToFull = function (times, meta, {isStripTags = false, styleHint
 				.filter(Boolean)
 				.join("");
 		})
-		.joinConjunct(", ", " or ");
+		.joinConjunct(", ", " o ");
 };
 
 Parser._TIME_UNITS_SHORTHAND = new Set([
@@ -1404,7 +1400,7 @@ Parser.getTimeToFull = function (time, {styleHint = null} = {}) {
 	styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
 	const ptNumber = Parser._getTimeToFull_number({time, styleHint});
-	const ptUnit = (time.unit === Parser.SP_TM_B_ACTION ? "bonus action" : time.unit)[(styleHint === "classic" || ptNumber) ? "toString" : "uppercaseFirst"]();
+	const ptUnit = (time.unit === Parser.SP_TM_B_ACTION ? "acción adicional" : time.unit)[(styleHint === "classic" || ptNumber) ? "toString" : "uppercaseFirst"]();
 	return `${ptNumber}${ptUnit}${time.number > 1 ? "s" : ""}`;
 };
 
@@ -1416,35 +1412,35 @@ Parser.getMinutesToFull = function (mins, {isShort = false} = {}) {
 	mins = mins % 60;
 
 	return [
-		days ? `${days} ${isShort ? `d` : `day${days > 1 ? "s" : ""}`}` : null,
-		hours ? `${hours} ${isShort ? `h` : `hour${hours > 1 ? "s" : ""}`}` : null,
-		mins ? `${mins} ${isShort ? `m` : `minute${mins > 1 ? "s" : ""}`}` : null,
+		days ? `${days} ${isShort ? `d` : `dia${days > 1 ? "s" : ""}`}` : null,
+		hours ? `${hours} ${isShort ? `h` : `hora${hours > 1 ? "s" : ""}`}` : null,
+		mins ? `${mins} ${isShort ? `m` : `minuto${mins > 1 ? "s" : ""}`}` : null,
 	].filter(Boolean)
 		.join(" ");
 };
 
 Parser.RNG_SPECIAL = "special";
-Parser.RNG_POINT = "point";
-Parser.RNG_LINE = "line";
-Parser.RNG_CUBE = "cube";
-Parser.RNG_CONE = "cone";
-Parser.RNG_EMANATION = "emanation";
-Parser.RNG_RADIUS = "radius";
-Parser.RNG_SPHERE = "sphere";
+Parser.RNG_POINT = "punto";
+Parser.RNG_LINE = "línea";
+Parser.RNG_CUBE = "cubo";
+Parser.RNG_CONE = "cono";
+Parser.RNG_EMANATION = "emanación";
+Parser.RNG_RADIUS = "radio";
+Parser.RNG_SPHERE = "esfera";
 Parser.RNG_HEMISPHERE = "hemisphere";
 Parser.RNG_CYLINDER = "cylinder"; // homebrew only
 Parser.RNG_SELF = "lanzador";
 Parser.RNG_SIGHT = "sight";
 Parser.RNG_UNLIMITED = "unlimited";
 Parser.RNG_UNLIMITED_SAME_PLANE = "plane";
-Parser.RNG_TOUCH = "touch";
+Parser.RNG_TOUCH = "toque";
 Parser.SP_RANGE_TYPE_TO_FULL = {
 	[Parser.RNG_SPECIAL]: "Special",
 	[Parser.RNG_POINT]: "Point",
-	[Parser.RNG_LINE]: "Line",
-	[Parser.RNG_CUBE]: "Cube",
-	[Parser.RNG_CONE]: "Cone",
-	[Parser.RNG_EMANATION]: "Emanation",
+	[Parser.RNG_LINE]: "Línea",
+	[Parser.RNG_CUBE]: "Cubo",
+	[Parser.RNG_CONE]: "Cono",
+	[Parser.RNG_EMANATION]: "Emanación",
 	[Parser.RNG_RADIUS]: "Radius",
 	[Parser.RNG_SPHERE]: "Sphere",
 	[Parser.RNG_HEMISPHERE]: "Hemisphere",
@@ -1453,7 +1449,7 @@ Parser.SP_RANGE_TYPE_TO_FULL = {
 	[Parser.RNG_SIGHT]: "Sight",
 	[Parser.RNG_UNLIMITED]: "Unlimited",
 	[Parser.RNG_UNLIMITED_SAME_PLANE]: "Unlimited on the same plane",
-	[Parser.RNG_TOUCH]: "Touch",
+	[Parser.RNG_TOUCH]: "Toque",
 };
 
 Parser.spRangeTypeToFull = function (range) {
@@ -1600,13 +1596,13 @@ Parser.spRangeToFull._renderPoint = function (range) {
 	}
 };
 Parser.spRangeToFull._renderArea = function ({range, styleHint, isDisplaySelfArea = false}) {
-	if (styleHint !== "classic" && !isDisplaySelfArea) return "Self";
+	if (styleHint !== "classic" && !isDisplaySelfArea) return "Lanzador";
 	const size = range.distance;
 	return `Self (${size.amount}-${Parser.getSingletonUnit(size.type)}${Parser.spRangeToFull._getAreaStyleString(range)}${range.type === Parser.RNG_CYLINDER ? `${size.amountSecondary != null && size.typeSecondary != null ? `, ${size.amountSecondary}-${Parser.getSingletonUnit(size.typeSecondary)}-high` : ""} cylinder` : ""})`;
 };
 Parser.spRangeToFull._getAreaStyleString = function (range) {
 	switch (range.type) {
-		case Parser.RNG_SPHERE: return " radius";
+		case Parser.RNG_SPHERE: return " radio";
 		case Parser.RNG_HEMISPHERE: return `-radius ${range.type}`;
 		case Parser.RNG_CYLINDER: return "-radius";
 		default: return ` ${range.type}`;
@@ -1684,7 +1680,7 @@ Parser.spDurationToFull = function (durations, {isPlainText = false, styleHint} 
 };
 
 Parser.DURATION_TYPES = [
-	{type: "instant", full: "Instantaneous"},
+	{type: "instant", full: "Instantáneo"},
 	{type: "timed", hasAmount: true},
 	{type: "permanent", hasEnds: true},
 	{type: "special"},
@@ -1693,7 +1689,7 @@ Parser.DURATION_TYPES = [
 Parser.DURATION_AMOUNT_TYPES = [
 	"turn",
 	"round",
-	"minute",
+	"minuto",
 	"hour",
 	"day",
 	"week",
@@ -2022,7 +2018,7 @@ Parser.MON_SPELLCASTING_TAG_TO_FULL = {
 	"CD": "Class, Druid",
 	"CP": "Class, Paladin",
 	"CR": "Class, Ranger",
-	"CS": "Class, Sorcerer",
+	"CS": "Class, Hechicero",
 	"CL": "Class, Warlock",
 	"CW": "Class, Wizard",
 };
@@ -3019,7 +3015,7 @@ Parser.ARMOR_ABV_TO_FULL = {
 	"l.": "light",
 	"m.": "medium",
 	"h.": "heavy",
-	"s.": "shield",
+	"s.": "escudo",
 };
 
 Parser.WEAPON_ABV_TO_FULL = {
@@ -3030,19 +3026,19 @@ Parser.WEAPON_ABV_TO_FULL = {
 Parser.CONDITION_TO_COLOR = {
 	"Blinded": "#525252",
 	"Charmed": "#f01789",
-	"Deafened": "#ababab",
+	"Ensordecido": "#ababab",
 	"Exhausted": "#947a47",
-	"Frightened": "#c9ca18",
-	"Grappled": "#8784a0",
+	"Asustado": "#c9ca18",
+	"Agarrado": "#8784a0",
 	"Incapacitated": "#3165a0",
 	"Invisible": "#7ad2d6",
-	"Paralyzed": "#c00900",
-	"Petrified": "#a0a0a0",
+	"Paralizado": "#c00900",
+	"Petrificado": "#a0a0a0",
 	"Poisoned": "#4dc200",
 	"Prone": "#5e60a0",
-	"Restrained": "#d98000",
-	"Stunned": "#a23bcb",
-	"Unconscious": "#3a40ad",
+	"Apresado": "#d98000",
+	"Aturdido": "#a23bcb",
+	"Inconsciente": "#3a40ad",
 
 	"Concentration": "#009f7a",
 };
@@ -4239,7 +4235,7 @@ Parser.PROP_TO_DISPLAY_NAME = {
 	"makebrewCreatureTrait": "Homebrew Builder Creature Trait",
 	"charoption": "Other Character Creation Option",
 
-	"bonus": "Bonus Action",
+	"bonus": "Acción adicional",
 	"legendary": "Legendary Action",
 	"mythic": "Mythic Action",
 	"lairActions": "Lair Action",
@@ -4274,7 +4270,7 @@ Parser.DMGTYPE_JSON_TO_FULL = {
 };
 
 Parser.DMG_TYPES = ["acid", "bludgeoning", "cold", "fire", "force", "lightning", "necrotic", "piercing", "poison", "psychic", "radiant", "slashing", "thunder"];
-Parser.CONDITIONS = ["blinded", "charmed", "deafened", "exhaustion", "frightened", "grappled", "incapacitated", "invisible", "paralyzed", "petrified", "poisoned", "derribado", "restrained", "stunned", "unconscious"];
+Parser.CONDITIONS = ["blinded", "charmed", "ensordecido", "cansancio", "asustado", "agarrado", "incapacitated", "invisible", "paralizado", "petrificado", "poisoned", "derribado", "apresado", "aturdido", "inconsciente"];
 
 Parser._SENSES_LEGACY = [
 	{"name": "blindsight", "source": Parser.SRC_PHB},

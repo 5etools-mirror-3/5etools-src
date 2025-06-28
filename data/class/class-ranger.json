@@ -61,7 +61,7 @@
 				"armor": [
 					"light",
 					"medium",
-					"shield"
+					"escudo"
 				],
 				"weapons": [
 					"simple",
@@ -142,7 +142,7 @@
 					"armor": [
 						"light",
 						"medium",
-						"shield"
+						"escudo"
 					],
 					"skills": [
 						{
@@ -517,7 +517,7 @@
 				"armor": [
 					"light",
 					"medium",
-					"shield"
+					"escudo"
 				],
 				"weapons": [
 					"simple",
@@ -593,7 +593,7 @@
 					"armor": [
 						"light",
 						"medium",
-						"shield"
+						"escudo"
 					],
 					"skills": [
 						{
@@ -1039,7 +1039,7 @@
 				{
 					"known": {
 						"3": [
-							"disguise self"
+							"Disfrazarse"
 						],
 						"5": [
 							"rope trick"
@@ -1282,7 +1282,7 @@
 				{
 					"known": {
 						"3": [
-							"mage hand#c",
+							"mano de mago#c",
 							"faerie fire"
 						],
 						"5": [
@@ -1885,7 +1885,7 @@
 					"name": "Tireless",
 					"entries": [
 						"As an action, you can give yourself a number of temporary hit points equal to {@dice 1d8} + your Wisdom modifier (minimum of 1 temporary hit point). You can use this action a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
-						"In addition, whenever you finish a short rest, your {@condition exhaustion} level, if any, is decreased by 1."
+						"In addition, whenever you finish a short rest, your {@condition cansancio} level, if any, is decreased by 1."
 					]
 				}
 			]
@@ -2012,7 +2012,7 @@
 			"classSource": "PHB",
 			"level": 18,
 			"entries": [
-				"At 18th level, you gain preternatural senses that help you fight creatures you can't see. When you attack a creature you can't see, your inability to see it doesn't impose disadvantage on your attack rolls against it. You are also aware of the location of any {@condition invisible} creature within 30 feet of you, provided that the creature isn't hidden from you and you aren't {@condition blinded} or {@condition deafened}."
+				"At 18th level, you gain preternatural senses that help you fight creatures you can't see. When you attack a creature you can't see, your inability to see it doesn't impose disadvantage on your attack rolls against it. You are also aware of the location of any {@condition invisible} creature within 30 feet of you, provided that the creature isn't hidden from you and you aren't {@condition blinded} or {@condition ensordecido}."
 			]
 		},
 		{
@@ -2171,7 +2171,7 @@
 					"entries": [
 						{
 							"type": "refFeat",
-							"feat": "Druidic Warrior|XPHB"
+							"feat": "Guerrero druídico|XPHB"
 						}
 					]
 				}
@@ -2293,7 +2293,7 @@
 							"type": "entries",
 							"name": "Decrease Exhaustion",
 							"entries": [
-								"Whenever you finish a {@variantrule Short Rest|XPHB}, your {@condition Exhaustion|XPHB} level, if any, decreases by 1."
+								"Whenever you finish a {@variantrule Short Rest|XPHB}, your {@condition Cansancio|XPHB} level, if any, decreases by 1."
 							]
 						}
 					]
@@ -2916,7 +2916,7 @@
 			"level": 7,
 			"header": 2,
 			"entries": [
-				"You have advantage on saving throws against being {@condition frightened}."
+				"You have advantage on saving throws against being {@condition asustado}."
 			]
 		},
 		{
@@ -3213,8 +3213,8 @@
 			"header": 2,
 			"entries": [
 				"{@i 7th-level Fey Wanderer feature}",
-				"The magic of the Feywild guards your mind. You have advantage on saving throws against being {@condition charmed} or {@condition frightened}.",
-				"In addition, whenever you or a creature you can see within 120 feet of you succeeds on a saving throw against being {@condition charmed} or {@condition frightened}, you can use your reaction to force a different creature you can see within 120 feet of you to make a Wisdom saving throw against your spell save DC. If the save fails, the target is {@condition charmed} or {@condition frightened} by you (your choice) for 1 minute. The target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a successful save."
+				"The magic of the Feywild guards your mind. You have advantage on saving throws against being {@condition charmed} or {@condition asustado}.",
+				"In addition, whenever you or a creature you can see within 120 feet of you succeeds on a saving throw against being {@condition charmed} or {@condition asustado}, you can use your reaction to force a different creature you can see within 120 feet of you to make a Wisdom saving throw against your spell save DC. If the save fails, the target is {@condition charmed} or {@condition asustado} by you (your choice) for 1 minute. The target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a successful save."
 			]
 		},
 		{
@@ -3344,7 +3344,7 @@
 			"header": 1,
 			"entries": [
 				"{@i 3rd-level Swarmkeeper feature}",
-				"You learn the {@spell mage hand} cantrip if you don't already know it. When you cast it, the hand takes the form of your swarming nature spirits.",
+				"You learn the {@spell mano de mago} cantrip if you don't already know it. When you cast it, the hand takes the form of your swarming nature spirits.",
 				"You also learn an additional spell of 1st level or higher when you reach certain levels in this class, as shown in the Swarmkeeper Spells table. Each spell counts as a ranger spell for you, but it doesn't count against the number of ranger spells you know.",
 				{
 					"type": "table",
@@ -4125,8 +4125,8 @@
 			"level": 7,
 			"header": 2,
 			"entries": [
-				"The magic of the Feywild guards your mind. You have {@variantrule Advantage|XPHB} on saving throws to avoid or end the {@condition Charmed|XPHB} or {@condition Frightened|XPHB} condition.",
-				"In addition, whenever you or a creature you can see within 120 feet of you succeeds on a saving throw to avoid or end the {@condition Charmed|XPHB} or {@condition Frightened|XPHB} condition, you can take a {@variantrule Reaction|XPHB} to force a different creature you can see within 120 feet of yourself to make a Wisdom save against your spell save DC. On a failed save, the target is {@condition Charmed|XPHB} or {@condition Frightened|XPHB} (your choice) for 1 minute. The target repeats the save at the end of each of its turns, ending the effect on itself on a success."
+				"The magic of the Feywild guards your mind. You have {@variantrule Advantage|XPHB} on saving throws to avoid or end the {@condition Hechizado|XPHB} or {@condition Asustado|XPHB} condition.",
+				"In addition, whenever you or a creature you can see within 120 feet of you succeeds on a saving throw to avoid or end the {@condition Hechizado|XPHB} or {@condition Asustado|XPHB} condition, you can take a {@variantrule Reaction|XPHB} to force a different creature you can see within 120 feet of yourself to make a Wisdom save against your spell save DC. On a failed save, the target is {@condition Hechizado|XPHB} or {@condition Asustado|XPHB} (your choice) for 1 minute. The target repeats the save at the end of each of its turns, ending the effect on itself on a success."
 			]
 		},
 		{
@@ -4317,7 +4317,7 @@
 					"type": "entries",
 					"name": "Mass Fear",
 					"entries": [
-						"The target and each creature within 10 feet of it must make a Wisdom saving throw against your spell save DC. On a failed save, a creature has the {@condition Frightened|XPHB} condition until the start of your next turn."
+						"The target and each creature within 10 feet of it must make a Wisdom saving throw against your spell save DC. On a failed save, a creature has the {@condition Asustado|XPHB} condition until the start of your next turn."
 					]
 				}
 			]

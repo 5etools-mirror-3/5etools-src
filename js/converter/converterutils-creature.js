@@ -163,7 +163,7 @@ export class AcConvert {
 								if (!numMatch) throw new Error("Spell AC but no leading number?");
 
 								let spell = null;
-								if (numMatch[2] === "mage armor") spell = `{@spell mage armor}`;
+								if (numMatch[2] === "Armadura de mago") spell = `{@spell mage armor}`;
 								else if (numMatch[2] === "barkskin") spell = `{@spell barkskin}`;
 								else throw new Error(`Unhandled spell! ${numMatch[2]}`);
 
@@ -304,7 +304,7 @@ export class AcConvert {
 			// region spells
 			case "foresight bonus": return `{@spell foresight} bonus`;
 			case "natural barkskin": return `natural {@spell barkskin}`;
-			case "mage armor": return "{@spell mage armor}";
+			case "Armadura de mago": return "{@spell mage armor}";
 			// endregion
 
 			// region armor (mostly handled by the item lookup; these are mis-named exceptions (usually for homebrew))
@@ -1124,7 +1124,7 @@ SpellcastingTypeTag.CLASSES = {
 	"CD": /(^|[^a-zA-Z])druid([^a-zA-Z]|$)/gi,
 	"CP": /(^|[^a-zA-Z])paladin([^a-zA-Z]|$)/gi,
 	"CR": /(^|[^a-zA-Z])ranger([^a-zA-Z]|$)/gi,
-	"CS": /(^|[^a-zA-Z])sorcerer([^a-zA-Z]|$)/gi,
+	"CS": /(^|[^a-zA-Z])hechicero([^a-zA-Z]|$)/gi,
 	"CL": /(^|[^a-zA-Z])warlock([^a-zA-Z]|$)/gi,
 	"CW": /(^|[^a-zA-Z])wizard([^a-zA-Z]|$)/gi,
 };
@@ -1946,7 +1946,7 @@ export class SpellcastingTraitConvert {
 	/**
 	 * Add other actions/reactions with names such as:
 	 * - "Fire Storm (7th-Level Spell; 1/Day)"
-	 * - "Shocking Grasp (Cantrip)"
+	 * - "Agarre electrizante (Cantrip)"
 	 * - "Shield (1st-Level Spell; 3/Day)"
 	 * as hidden spells (if they don't already exist). */
 	static _addSplitOutSpells ({spellcastingEntry, arrayOther, styleHint}) {

@@ -36,7 +36,7 @@
 					"name": "Arduous Rally",
 					"page": 213,
 					"entries": [
-						"If fudging game mechanics to support the campaign's narrative doesn't feel right for your group, the characters can potentially make use of the option to take an arduous rally instead of a {@quickref resting|PHB|2|0|short rest}. This involves one or more characters spending 5 minutes to rally their resolve in the face of coming peril, letting their adrenaline fuel the need to push on. A character who undertakes an arduous rally gains the benefit of a {@quickref resting|PHB|2|0|short rest}, but any hit points restored by spending Hit Dice are halved. Moreover, the character gains one level of {@condition exhaustion}."
+						"If fudging game mechanics to support the campaign's narrative doesn't feel right for your group, the characters can potentially make use of the option to take an arduous rally instead of a {@quickref resting|PHB|2|0|short rest}. This involves one or more characters spending 5 minutes to rally their resolve in the face of coming peril, letting their adrenaline fuel the need to push on. A character who undertakes an arduous rally gains the benefit of a {@quickref resting|PHB|2|0|short rest}, but any hit points restored by spending Hit Dice are halved. Moreover, the character gains one level of {@condition cansancio}."
 					]
 				}
 			]
@@ -808,23 +808,23 @@
 					"columns": 3,
 					"items": [
 						"{@condition Blinded|XPHB}",
-						"{@condition Charmed|XPHB}",
-						"{@condition Deafened|XPHB}",
-						"{@condition Exhaustion|XPHB}",
-						"{@condition Frightened|XPHB}",
-						"{@condition Grappled|XPHB}",
+						"{@condition Hechizado|XPHB}",
+						"{@condition Ensordecido|XPHB}",
+						"{@condition Cansancio|XPHB}",
+						"{@condition Asustado|XPHB}",
+						"{@condition Agarrado|XPHB}",
 						"{@condition Incapacitated|XPHB}",
 						"{@condition Invisible|XPHB}",
-						"{@condition Paralyzed|XPHB}",
-						"{@condition Petrified|XPHB}",
+						"{@condition Paralizado|XPHB}",
+						"{@condition Petrificado|XPHB}",
 						"{@condition Envenenado|XPHB}",
 						"{@condition Prone|XPHB}",
-						"{@condition Restrained|XPHB}",
-						"{@condition Stunned|XPHB}",
-						"{@condition Unconscious|XPHB}"
+						"{@condition Apresado|XPHB}",
+						"{@condition Aturdido|XPHB}",
+						"{@condition Inconsciente|XPHB}"
 					]
 				},
-				"A condition doesn't stack with itself; a recipient either has a condition or doesn't. The {@condition Exhaustion|XPHB} condition is an exception to that rule."
+				"A condition doesn't stack with itself; a recipient either has a condition or doesn't. The {@condition Cansancio|XPHB} condition is an exception to that rule."
 			]
 		},
 		{
@@ -1336,7 +1336,7 @@
 			"ruleType": "C",
 			"entries": [
 				"A dead creature has no {@variantrule Hit Points|XPHB} and can't regain them unless it is first revived by magic such as the {@spell Raise Dead|XPHB} or {@spell Revivify|XPHB} spell. When such a spell is cast, the spirit knows who is casting it and can refuse. The spirit of a dead creature has left the body and departed for the Outer Planes, and reviving the creature requires calling the spirit back.",
-				"If the creature returns to life, the revival effect determines the creature's current {@variantrule Hit Points|XPHB}. Unless otherwise stated, the creature returns to life with any {@variantrule Condition|XPHB|conditions}, magical contagions, or curses that were affecting it at death if the durations of those effects are still ongoing. If the creature died with any {@condition Exhaustion|XPHB} levels, it returns with 1 fewer level. If the creature had {@variantrule Attunement|XPHB} to one or more magic items, it is no longer attuned to them."
+				"If the creature returns to life, the revival effect determines the creature's current {@variantrule Hit Points|XPHB}. Unless otherwise stated, the creature returns to life with any {@variantrule Condition|XPHB|conditions}, magical contagions, or curses that were affecting it at death if the durations of those effects are still ongoing. If the creature died with any {@condition Cansancio|XPHB} levels, it returns with 1 fewer level. If the creature had {@variantrule Attunement|XPHB} to one or more magic items, it is no longer attuned to them."
 			]
 		},
 		{
@@ -3184,7 +3184,7 @@
 								],
 								[
 									"4",
-									"A sorcerer claims your item as a birthright and demands you hand it over."
+									"A hechicero claims your item as a birthright and demands you hand it over."
 								],
 								[
 									"5",
@@ -5611,7 +5611,7 @@
 					"name": "Fear",
 					"type": "entries",
 					"entries": [
-						"When adventurers confront threats they have no hope of overcoming, you can call for them to make a Wisdom saving throw. Set the DC according to the circumstances. A character who fails the save becomes {@condition frightened} for 1 minute. The character can repeat the saving throw at the end of each of his or her turns, ending the effect on the character on a successful save."
+						"When adventurers confront threats they have no hope of overcoming, you can call for them to make a Wisdom saving throw. Set the DC according to the circumstances. A character who fails the save becomes {@condition asustado} for 1 minute. The character can repeat the saving throw at the end of each of his or her turns, ending the effect on the character on a successful save."
 					]
 				},
 				{
@@ -5713,8 +5713,8 @@
 					"type": "entries",
 					"name": "Fear",
 					"entries": [
-						"An overwhelming foe or horrid monster doesn't need magic or some supernatural ability to strike fear into the most stalwart adventurers. During any frightful encounter, you can call on a character to make a saving throw to resist being scared. The character must succeed on a {@dc 15} Wisdom saving throw or become {@condition frightened} until the end of their next turn.",
-						"Any of the following circumstances might be reasons to have one or more characters make saving throws to resist being {@condition frightened}:",
+						"An overwhelming foe or horrid monster doesn't need magic or some supernatural ability to strike fear into the most stalwart adventurers. During any frightful encounter, you can call on a character to make a saving throw to resist being scared. The character must succeed on a {@dc 15} Wisdom saving throw or become {@condition asustado} until the end of their next turn.",
+						"Any of the following circumstances might be reasons to have one or more characters make saving throws to resist being {@condition asustado}:",
 						{
 							"type": "list",
 							"items": [
@@ -5750,7 +5750,7 @@
 							"name": "Reducing Stress",
 							"entries": [
 								"A character who spends an entire day relaxing or in otherwise calm circumstances reduces their Stress Score by 1 when they finish their next long rest.",
-								"The {@spell calm emotions} spell effect used to suppress the {@condition charmed} and {@condition frightened} conditions also suppresses the effects of one's Stress Score for the spell's duration.",
+								"The {@spell calm emotions} spell effect used to suppress the {@condition charmed} and {@condition asustado} conditions also suppresses the effects of one's Stress Score for the spell's duration.",
 								"A {@spell lesser restoration} spell reduces the target's Stress Score by 1, and a {@spell greater restoration} spell reduces a character's Stress Score to 0."
 							]
 						}
@@ -5893,7 +5893,7 @@
 							"type": "entries",
 							"name": "Grappled Condition",
 							"entries": [
-								"Successfully grappling a creature gives it the {@condition Grappled|XPHB} condition."
+								"Successfully grappling a creature gives it the {@condition Agarrado|XPHB} condition."
 							]
 						},
 						{
@@ -6281,7 +6281,7 @@
 					"page": 85,
 					"entries": [
 						"This root is typically {@item Oloore Root Teabag|TDCSR|sold in teabags} for 100 gp per dose. It was originally a ritualistic tool used by the followers of many gods, but now sees more recreational use. Oracles used it to enhance their divinations, for it helped them leave their physical bodies behind and become closer to gods and spirits. Drinking tea brewed from the root causes intense hallucinations, which feel like they have granted perfect clarity of mind to the imbiber.",
-						"After drinking {@item Oloore Root Teabag|TDCSR|oloore tea} as an action, you must succeed on a {@dc 19} Constitution {@quickref saving throws|PHB|2|1|saving throw} or experience vivid hallucinations for {@dice 1d4} hours. During this time, you have {@quickref Advantage and Disadvantage|PHB|2|0|disadvantage} on attack rolls and {@quickref ability checks|PHB|2|0}. If you fail the {@quickref saving throws|PHB|2|1|saving throw} by 10 or more, your hallucinations become horrific visions and you gain a level of {@condition exhaustion}. On a success, you gain preternatural clarity, allowing you to cast the {@spell scrying} spell once within the next {@dice 1d4} hours."
+						"After drinking {@item Oloore Root Teabag|TDCSR|oloore tea} as an action, you must succeed on a {@dc 19} Constitution {@quickref saving throws|PHB|2|1|saving throw} or experience vivid hallucinations for {@dice 1d4} hours. During this time, you have {@quickref Advantage and Disadvantage|PHB|2|0|disadvantage} on attack rolls and {@quickref ability checks|PHB|2|0}. If you fail the {@quickref saving throws|PHB|2|1|saving throw} by 10 or more, your hallucinations become horrific visions and you gain a level of {@condition cansancio}. On a success, you gain preternatural clarity, allowing you to cast the {@spell scrying} spell once within the next {@dice 1d4} hours."
 					]
 				},
 				{
@@ -6290,7 +6290,7 @@
 					"page": 85,
 					"entries": [
 						"Distilled from the ichor of demons, {@item zeal|TDCSR} was originally used by Tal'Dorei's ancient berserkers to grant them incredible strength and courage before battles. These days, it's most commonly used by criminal bruisers before a brawl. Most modern warriors stay well away from {@item zeal|TDCSR}, due both to its addictive nature and to the mental and physical degeneration it can cause over long periods of time. When prepared properly, {@item zeal|TDCSR} is a purple, ashy-tasting gel that typically costs 150 gp per dose.",
-						"After slathering {@item zeal|TDCSR} across your exposed skin as an action, you must make a {@dc 12} Constitution {@quickref saving throws|PHB|2|1|saving throw}. On a failure, you become {@condition paralyzed} for {@dice 1d4} rounds as your muscles lock up. On a success, your weapon attacks deal an additional {@damage 1d6} damage for the next minute. After this effect ends, you gain one level of {@condition exhaustion}."
+						"After slathering {@item zeal|TDCSR} across your exposed skin as an action, you must make a {@dc 12} Constitution {@quickref saving throws|PHB|2|1|saving throw}. On a failure, you become {@condition paralizado} for {@dice 1d4} rounds as your muscles lock up. On a success, your weapon attacks deal an additional {@damage 1d6} damage for the next minute. After this effect ends, you gain one level of {@condition cansancio}."
 					]
 				},
 				{
@@ -6299,9 +6299,9 @@
 					"page": 85,
 					"entries": [
 						"Exandria's most infamous drug, {@item suude|TDCSR} is a glittering powder made from {@book residuum|TDCSR|3|An Enchanting Export}. It was first developed by power-hungry archmages in the {@book Age of Arcanum|TDCSR|1|Age of Arcanum} as an incense burned to enhance focus during ritual spellcasting. The secret to its refinement has been lost and rediscovered a variety of times since the {@book Calamity|TDCSR|1|The Calamity}, and many different types of {@item suude|TDCSR} have been developed by arcanists in search of ever-greater power. It has terrible addictive and mentally degenerative properties, even when used sparingly.",
-						"After burning {@item suude|TDCSR} within a vessel and inhaling its fumes as an action, you take 22 ({@damage 4d10}) psychic damage and must make a {@dc 10} Constitution {@quickref saving throws|PHB|2|1|saving throw}. On a failure, you become {@condition poisoned} for 1 hour and fall {@condition unconscious} for 1 minute, or until you are shaken awake as an action. During this time, the world seems to move in slow motion, and your vision is twisted in kaleidoscopic colors\u2014yet your focus is never distorted. If one dose of {@item suude|TDCSR}, or more, is used within 1 hour of another, the DC of the Constitution {@quickref saving throws|PHB|2|1|saving throw} is increased by 5 per additional dose. If you fail this save by 10 or more, you instantly drop to 0 hit points.",
-						"On a success, you gain the ability to use one of the following Metamagic options as a sorcerer for the next minute, requiring no sorcery points. The type of Metamagic you gain access to depends on the type of {@item suude|TDCSR}, and once you use it, you can't use it again until you inhale {@item suude|TDCSR} again.",
-						"{@item Suude (Brown)|TDCSR|Brown suude} allows you to use the {@optfeature Extended Spell|PHB} Metamagic option, {@item Suude (blue)|TDCSR|blue suude} allows you to use {@optfeature Twinned Spell|PHB}, and {@item Suude (Brown)|TDCSR|red suude} grants {@optfeature Distant Spell|PHB}."
+						"After burning {@item suude|TDCSR} within a vessel and inhaling its fumes as an action, you take 22 ({@damage 4d10}) psychic damage and must make a {@dc 10} Constitution {@quickref saving throws|PHB|2|1|saving throw}. On a failure, you become {@condition poisoned} for 1 hour and fall {@condition inconsciente} for 1 minute, or until you are shaken awake as an action. During this time, the world seems to move in slow motion, and your vision is twisted in kaleidoscopic colors\u2014yet your focus is never distorted. If one dose of {@item suude|TDCSR}, or more, is used within 1 hour of another, the DC of the Constitution {@quickref saving throws|PHB|2|1|saving throw} is increased by 5 per additional dose. If you fail this save by 10 or more, you instantly drop to 0 hit points.",
+						"On a success, you gain the ability to use one of the following Metamagic options as a hechicero for the next minute, requiring no sorcery points. The type of Metamagic you gain access to depends on the type of {@item suude|TDCSR}, and once you use it, you can't use it again until you inhale {@item suude|TDCSR} again.",
+						"{@item Suude (Brown)|TDCSR|Brown suude} allows you to use the {@optfeature Conjuro extendido|PHB} Metamagic option, {@item Suude (blue)|TDCSR|blue suude} allows you to use {@optfeature Conjuro gemelo|PHB}, and {@item Suude (Brown)|TDCSR|red suude} grants {@optfeature Conjuro distante|PHB}."
 					]
 				}
 			]
@@ -6735,7 +6735,7 @@
 			"basicRules2024": true,
 			"ruleType": "C",
 			"entries": [
-				"When you would reduce a creature to 0 {@variantrule Hit Points|XPHB} with a melee attack, you can instead reduce the creature to 1 Hit Point. The creature then has the {@condition Unconscious|XPHB} condition and starts a {@variantrule Short Rest|XPHB}.",
+				"When you would reduce a creature to 0 {@variantrule Hit Points|XPHB} with a melee attack, you can instead reduce the creature to 1 Hit Point. The creature then has the {@condition Inconsciente|XPHB} condition and starts a {@variantrule Short Rest|XPHB}.",
 				"The creature remains Unconscious until it regains any {@variantrule Hit Points|XPHB} or until someone uses an action to administer first aid to it, which requires a successful {@dc 10} Wisdom ({@skill Medicine|XPHB}) check."
 			]
 		},
@@ -6807,7 +6807,7 @@
 			"ruleType": "C",
 			"entries": [
 				"A Long Rest is a period of extended downtime\u2014at least 8 hours\u2014available to any creature. During a Long Rest, you sleep for at least 6 hours and perform no more than 2 hours of light activity, such as reading, talking, eating, or standing watch.",
-				"During sleep, you have the {@condition Unconscious|XPHB} condition. After you finish a Long Rest, you must wait at least 16 hours before starting another one.",
+				"During sleep, you have the {@condition Inconsciente|XPHB} condition. After you finish a Long Rest, you must wait at least 16 hours before starting another one.",
 				{
 					"type": "entries",
 					"entries": [
@@ -6840,7 +6840,7 @@
 									"type": "item",
 									"name": "Exhaustion Reduced",
 									"entries": [
-										"If you have the {@condition Exhaustion|XPHB} condition, its level decreases by 1."
+										"If you have the {@condition Cansancio|XPHB} condition, its level decreases by 1."
 									]
 								},
 								{
@@ -6944,7 +6944,7 @@
 							"rows": [
 								[
 									"01-20",
-									"The character retreats into his or her mind and becomes {@condition paralyzed}. The effect ends if the character takes any damage."
+									"The character retreats into his or her mind and becomes {@condition paralizado}. The effect ends if the character takes any damage."
 								],
 								[
 									"21-30",
@@ -6952,7 +6952,7 @@
 								],
 								[
 									"31-40",
-									"The character becomes {@condition frightened} and must use his or her action and movement each round to flee from the source of the fear."
+									"The character becomes {@condition asustado} and must use his or her action and movement each round to flee from the source of the fear."
 								],
 								[
 									"41-50",
@@ -6976,11 +6976,11 @@
 								],
 								[
 									"81-90",
-									"The character is {@condition stunned}."
+									"The character is {@condition aturdido}."
 								],
 								[
 									"91-100",
-									"The character falls {@condition unconscious}."
+									"The character falls {@condition inconsciente}."
 								]
 							]
 						},
@@ -7022,7 +7022,7 @@
 								],
 								[
 									"56-65",
-									"The character is {@condition blinded} (25%) or {@condition deafened} (75%)."
+									"The character is {@condition blinded} (25%) or {@condition ensordecido} (75%)."
 								],
 								[
 									"66-75",
@@ -7042,7 +7042,7 @@
 								],
 								[
 									"96-100",
-									"The character falls {@condition unconscious}. No amount of jostling or damage can wake the character."
+									"The character falls {@condition inconsciente}. No amount of jostling or damage can wake the character."
 								]
 							]
 						},
@@ -7160,7 +7160,7 @@
 						],
 						[
 							"4-5",
-							"The creature is {@condition stunned} until the end of its next turn."
+							"The creature is {@condition aturdido} until the end of its next turn."
 						],
 						[
 							"6-7",
@@ -7379,7 +7379,7 @@
 									"Dexterity 13"
 								],
 								[
-									"{@class Sorcerer}",
+									"{@class Hechicero}",
 									"Charisma 13"
 								],
 								[
@@ -7470,7 +7470,7 @@
 									"Light armor, one skill from the class's skill list, {@item thieves' tools|PHB}"
 								],
 								[
-									"{@class Sorcerer}",
+									"{@class Hechicero}",
 									"\u2014"
 								],
 								[
@@ -7528,7 +7528,7 @@
 									"type": "entries",
 									"name": "Spell Slots",
 									"entries": [
-										"You determine your available spell slots by adding together all your levels in the bard, cleric, druid, sorcerer, and wizard classes, half your levels (rounded down) in the paladin and ranger classes, and a third of your fighter or rogue levels (rounded down) if you have the Eldritch Knight or the Arcane Trickster feature. Use this total to determine your spell slots by consulting the Multiclass Spellcaster table.",
+										"You determine your available spell slots by adding together all your levels in the bard, cleric, druid, hechicero, and wizard classes, half your levels (rounded down) in the paladin and ranger classes, and a third of your fighter or rogue levels (rounded down) if you have the Eldritch Knight or the Arcane Trickster feature. Use this total to determine your spell slots by consulting the Multiclass Spellcaster table.",
 										"If you have more than one spellcasting class, this table might give you spell slots of a level that is higher than the spells you know or can prepare. You can use those slots, but only to cast your lower-level spells. If a lower-level spell that you cast, like {@spell burning hands}, has an enhanced effect when cast using a higher-level slot, you can use the enhanced effect, even though you don't have any spells of that higher level.",
 										"For example, if you are the aforementioned ranger 4/wizard 3. you count as a 5th-level character when determining your spell slots: you have four 1st-level slots, three 2nd-level slots, and two 3rd-level slots. However, you don't know any 3rd-level spells, nor do you know any 2nd-level ranger spells. You can use the spell slots of those levels to cast the spells you do know\u2014and potentially enhance their effects."
 									]
@@ -8042,7 +8042,7 @@
 										],
 										[
 											"2",
-											"Creatures that aren't inhabitants of the island must succeed on a Constitution saving throw at the end of each hour they spend on the island. If they fail, they gain one level of {@condition exhaustion}. The DC for this check equals 10 + the number of hours spent on the island."
+											"Creatures that aren't inhabitants of the island must succeed on a Constitution saving throw at the end of each hour they spend on the island. If they fail, they gain one level of {@condition cansancio}. The DC for this check equals 10 + the number of hours spent on the island."
 										],
 										[
 											"3",
@@ -8944,7 +8944,7 @@
 							"type": "entries",
 							"name": "Currents and Travel",
 							"entries": [
-								"When a vessel or creature travels in the same direction as a current, that current's speed is added to the vessel or creature's travel pace. A creature or vessel traveling against a current has that current's speed subtracted from the vessel or creature's travel pace. If this results in a negative travel pace, the vessel or creature can let the current carry it. Alternatively, the crew of the vessel or the creature can fight against the current by rowing or swimming hard, moving at half the vessel or creature's normal pace. Vessels and creatures fighting against a current must make a Constitution saving throw at the end of every hour traveled, with a bonus equal to the crew's quality (if they have crew). Vessels that fail have their crew's quality score decreased by 1. Creatures that fail gain one level of {@condition exhaustion}. The DC for this saving throw is 10 + 1 for every consecutive hour spent fighting the current."
+								"When a vessel or creature travels in the same direction as a current, that current's speed is added to the vessel or creature's travel pace. A creature or vessel traveling against a current has that current's speed subtracted from the vessel or creature's travel pace. If this results in a negative travel pace, the vessel or creature can let the current carry it. Alternatively, the crew of the vessel or the creature can fight against the current by rowing or swimming hard, moving at half the vessel or creature's normal pace. Vessels and creatures fighting against a current must make a Constitution saving throw at the end of every hour traveled, with a bonus equal to the crew's quality (if they have crew). Vessels that fail have their crew's quality score decreased by 1. Creatures that fail gain one level of {@condition cansancio}. The DC for this saving throw is 10 + 1 for every consecutive hour spent fighting the current."
 							]
 						},
 						{
@@ -9146,7 +9146,7 @@
 							"name": "Wild Magic Fog",
 							"entries": [
 								"Few know the origins of wild magic fog, with some claiming it is the creation of capricious gods while others believe it is the result of magical experimentation gone wrong. A {@dc 15} Intelligence ({@skill Arcana}) check reveals that this mist is wild magic fog.",
-								"Whenever a creature in wild magic fog casts a spell of 1st level or higher, roll on the {@table Wild Magic Surge|PHB} table in chapter 3, \"{@book Classes|PHB|3},\" of the {@book Player's Handbook|PHB} to create a magical effect."
+								"Whenever a creature in wild magic fog casts a spell of 1st level or higher, roll on the {@table Sobrecarga de magia salvaje|PHB} table in chapter 3, \"{@book Classes|PHB|3},\" of the {@book Player's Handbook|PHB} to create a magical effect."
 							]
 						}
 					]
@@ -9173,7 +9173,7 @@
 					"entries": [
 						"When aboleths die, their souls sometimes gather in clusters called lure lights. These 100-foot-diameter collections of pale, yellow lights are found in the deep ocean below depths of 1,000 feet. They glow with bright light in a 100-foot radius and dim light for another 100 feet.",
 						"Any creature that can see the lure lights must succeed on a {@dc 14} Wisdom saving throw or be {@condition charmed} by the lights for 24 hours or until the lights are destroyed. A creature that succeeds on the saving throw is immune to the effect of the lure lights for 24 hours.",
-						"While {@condition charmed} by the lights, a creature can't willingly move out of line of sight of them and defends them to the death. If forcibly moved away from the lights, the creature tries to find its way back to them. The creature can't take a short or long rest while under this effect. After 24 hours, the {@condition charmed} creature gains one level of {@condition exhaustion} and must repeat the saving throw if it is within line of sight of the lights, ending the effect on itself on a success. If the lights aren't within line of sight at this time, the creature succeeds automatically.",
+						"While {@condition charmed} by the lights, a creature can't willingly move out of line of sight of them and defends them to the death. If forcibly moved away from the lights, the creature tries to find its way back to them. The creature can't take a short or long rest while under this effect. After 24 hours, the {@condition charmed} creature gains one level of {@condition cansancio} and must repeat the saving throw if it is within line of sight of the lights, ending the effect on itself on a success. If the lights aren't within line of sight at this time, the creature succeeds automatically.",
 						"Each cluster of lure lights has AC 17, 100 hit points, and immunity to necrotic and poison damage."
 					]
 				},
@@ -9456,7 +9456,7 @@
 									"height": 960,
 									"credit": "Slawomir Maniak"
 								},
-								"When a creature moves into a whirlpool or starts its turn there, it must make a Strength ({@skill Athletics}) check with a DC determined by the whirlpool's rank. On a success, the creature can move normally. On a failure, the creature is immediately moved toward the vortex's center at the whirlpool's velocity, and the creature is {@condition restrained} by the whirlpool until the start of its next turn. If the creature reaches the whirlpool's center, the creature is pulled under the surface and either appears at a special location (see \"{@adventure Whirlpool Destinations|GoS|8|Whirlpool Destinations}\" below) or plunges a number of feet underwater equal to the whirlpool's velocity."
+								"When a creature moves into a whirlpool or starts its turn there, it must make a Strength ({@skill Athletics}) check with a DC determined by the whirlpool's rank. On a success, the creature can move normally. On a failure, the creature is immediately moved toward the vortex's center at the whirlpool's velocity, and the creature is {@condition apresado} by the whirlpool until the start of its next turn. If the creature reaches the whirlpool's center, the creature is pulled under the surface and either appears at a special location (see \"{@adventure Whirlpool Destinations|GoS|8|Whirlpool Destinations}\" below) or plunges a number of feet underwater equal to the whirlpool's velocity."
 							]
 						},
 						{
@@ -9518,7 +9518,7 @@
 										],
 										[
 											"Failure",
-											"The vessel is immediately moved toward the vortex's center at the whirlpool's velocity, and the vessel is {@condition restrained} by the whirlpool until the start of its next turn."
+											"The vessel is immediately moved toward the vortex's center at the whirlpool's velocity, and the vessel is {@condition apresado} by the whirlpool until the start of its next turn."
 										],
 										[
 											"Total Failure",
@@ -9789,7 +9789,7 @@
 					"type": "entries",
 					"name": "Outer Planes: Psychic Dissonance",
 					"entries": [
-						"Each of the Outer Planes emanates a psychic dissonance that affects visitors of an incompatible alignment\u2014good creatures on the Lower Planes, evil ones on the Upper Planes\u2014if they spend too much time on the plane. You can reflect this dissonance with this optional rule. At the end of a long rest spent on an incompatible plane, a visitor must make a {@dc 10} Constitution saving throw. On a failed save, the creature gains one level of {@condition exhaustion}. Incompatibility between lawful and chaotic alignments doesn't have the same effect, so Mechanus and Limbo lack this quality."
+						"Each of the Outer Planes emanates a psychic dissonance that affects visitors of an incompatible alignment\u2014good creatures on the Lower Planes, evil ones on the Upper Planes\u2014if they spend too much time on the plane. You can reflect this dissonance with this optional rule. At the end of a long rest spent on an incompatible plane, a visitor must make a {@dc 10} Constitution saving throw. On a failed save, the creature gains one level of {@condition cansancio}. Incompatibility between lawful and chaotic alignments doesn't have the same effect, so Mechanus and Limbo lack this quality."
 					]
 				},
 				{
@@ -9854,7 +9854,7 @@
 					"type": "entries",
 					"name": "Pandemonium: Mad Winds",
 					"entries": [
-						"A visitor must make a {@dc 10} Wisdom saving throw after each hour spent among the howling winds. On a failed save, the creature gains one level of {@condition exhaustion}. A creature that reaches six levels of {@condition exhaustion} while on this plane doesn't die. Instead, the creature gains a random form of indefinite madness, as described in chapter 8, \"Running the Game.\" Finishing a long rest doesn't reduce a creature's {@condition exhaustion} level unless the creature can somehow escape the maddening winds."
+						"A visitor must make a {@dc 10} Wisdom saving throw after each hour spent among the howling winds. On a failed save, the creature gains one level of {@condition cansancio}. A creature that reaches six levels of {@condition cansancio} while on this plane doesn't die. Instead, the creature gains a random form of indefinite madness, as described in chapter 8, \"Running the Game.\" Finishing a long rest doesn't reduce a creature's {@condition cansancio} level unless the creature can somehow escape the maddening winds."
 					]
 				},
 				{
@@ -9908,7 +9908,7 @@
 					"type": "entries",
 					"name": "Hades: Vile Transformation",
 					"entries": [
-						"At the end of each long rest taken on the plane, a visitor must make a {@dc 10} Wisdom saving throw. On a failed save, the creature gains one level of {@condition exhaustion}, which can't be removed while the creature remains in Hades. If the creature reaches six levels of {@condition exhaustion}, it doesn't die. Instead, the creature permanently transforms into a larva, whereupon all levels of {@condition exhaustion} afflicting the creature are removed.",
+						"At the end of each long rest taken on the plane, a visitor must make a {@dc 10} Wisdom saving throw. On a failed save, the creature gains one level of {@condition cansancio}, which can't be removed while the creature remains in Hades. If the creature reaches six levels of {@condition cansancio}, it doesn't die. Instead, the creature permanently transforms into a larva, whereupon all levels of {@condition cansancio} afflicting the creature are removed.",
 						"A larva is a miserable fiend that retains the facial features of its previous form but has the body of a fat worm. A larva has only a few faint memories of its previous life and the statistics in the {@creature larva|dmg} stat block. Hades is crawling with larvae. Night hags, liches, and rakshasas harvest them for use in vile rituals. Other fiends like to feed on them."
 					]
 				},
@@ -9951,7 +9951,7 @@
 					"type": "entries",
 					"name": "Arcadia: Planar Vitality",
 					"entries": [
-						"While on this plane, creatures can't be {@condition frightened} or {@condition poisoned}, and they are immune to disease and poisons."
+						"While on this plane, creatures can't be {@condition asustado} or {@condition poisoned}, and they are immune to disease and poisons."
 					]
 				}
 			]
@@ -10052,7 +10052,7 @@
 							"page": 237,
 							"entries": [
 								"A Humanoid who succumbs to a loup garou's lycanthropy becomes a {@creature werewolf} (see above). This form of lycanthropy can't be removed while the loup garou that inflicted the curse lives.",
-								"Once a loup garou is slain, a {@spell remove curse} spell cast during the night of a full moon on any afflicted werewolf it created forces the target to make a {@dc 17} Constitution saving throw. On a success, the curse is broken, and the target returns to its normal form and gains 3 levels of {@condition exhaustion}. On a failure, the curse remains, and the target automatically fails any saving throw made to break this curse for 1 month."
+								"Once a loup garou is slain, a {@spell remove curse} spell cast during the night of a full moon on any afflicted werewolf it created forces the target to make a {@dc 17} Constitution saving throw. On a success, the curse is broken, and the target returns to its normal form and gains 3 levels of {@condition cansancio}. On a failure, the curse remains, and the target automatically fails any saving throw made to break this curse for 1 month."
 							]
 						}
 					]
@@ -11815,7 +11815,7 @@
 							"name": "Vulnerabilities, Resistances, and Immunities",
 							"entries": [
 								"A ship's vulnerabilities, resistances, and immunities apply to all its components, unless otherwise noted in the stat block.",
-								"Ships are typically immune to poison and psychic damage. Ships are also usually immune to the following conditions: {@condition blinded}, {@condition charmed}, {@condition deafened}, {@condition exhaustion}, {@condition frightened}, {@condition incapacitated}, {@condition paralyzed}, {@condition petrified}, {@condition poisoned}, {@condition prone}, {@condition stunned}, and {@condition unconscious}."
+								"Ships are typically immune to poison and psychic damage. Ships are also usually immune to the following conditions: {@condition blinded}, {@condition charmed}, {@condition ensordecido}, {@condition cansancio}, {@condition asustado}, {@condition incapacitated}, {@condition paralizado}, {@condition petrificado}, {@condition poisoned}, {@condition prone}, {@condition aturdido}, and {@condition inconsciente}."
 							]
 						}
 					]
@@ -12282,7 +12282,7 @@
 										"type": "entries",
 										"name": "Ability Score Improvement",
 										"entries": [
-											"The spellcaster's Int. (mage) or Wis. (healer) score increases by 2, raising the modifier by 1, so increase the following numbers by 1: the spellcaster's spell save DC and the bonus to hit of spell attacks, the bonuses in the Skills entry of the mage, the Wisdom saving throw bonus of the healer, and the passive {@skill Perception} of the healer. Spellcasting. The spellcaster learns another cantrip: {@spell resistance} (healer) or {@spell mage hand} (mage)."
+											"The spellcaster's Int. (mage) or Wis. (healer) score increases by 2, raising the modifier by 1, so increase the following numbers by 1: the spellcaster's spell save DC and the bonus to hit of spell attacks, the bonuses in the Skills entry of the mage, the Wisdom saving throw bonus of the healer, and the passive {@skill Perception} of the healer. Spellcasting. The spellcaster learns another cantrip: {@spell resistance} (healer) or {@spell mano de mago} (mage)."
 										]
 									}
 								],
@@ -12449,7 +12449,7 @@
 							"name": "Hit Points",
 							"entries": [
 								"Whenever the sidekick gains a level, it gains one Hit Die, and its hit point maximum increases. To determine the amount of the increase, roll the Hit Die (the type of die appears in the sidekick's stat block), and add its Constitution modifier. It gains a minimum of 1 hit point per level.",
-								"If the sidekick drops to 0 hit points and isn't killed outright, it falls {@condition unconscious} and subsequently makes death saving throws, just like a player character."
+								"If the sidekick drops to 0 hit points and isn't killed outright, it falls {@condition inconsciente} and subsequently makes death saving throws, just like a player character."
 							]
 						},
 						{
@@ -12580,7 +12580,7 @@
 									"Dexterity, Intelligence, Wisdom, or Charisma"
 								],
 								[
-									"{@class Sorcerer}",
+									"{@class Hechicero}",
 									"Intelligence or Charisma"
 								],
 								[
@@ -12650,13 +12650,13 @@
 			]
 		},
 		{
-			"name": "Sleep",
+			"name": "Dormir",
 			"source": "XGE",
 			"page": 77,
 			"ruleType": "O",
 			"type": "section",
 			"entries": [
-				"Just as in the real world, D&D characters spend many hours sleeping, most often as part of a long rest. Most monsters also need to sleep. While a creature sleeps, it is subjected to the {@condition unconscious} condition. Here are a few rules that expand on that basic fact.",
+				"Just as in the real world, D&D characters spend many hours sleeping, most often as part of a long rest. Most monsters also need to sleep. While a creature sleeps, it is subjected to the {@condition inconsciente} condition. Here are a few rules that expand on that basic fact.",
 				{
 					"type": "entries",
 					"name": "Waking Someone",
@@ -12670,7 +12670,7 @@
 					"name": "Sleeping in Armor",
 					"entries": [
 						"Sleeping in light armor has no adverse effect on the wearer, but sleeping in medium or heavy armor makes it difficult to recover fully during a long rest.",
-						"When you finish a long rest during which you slept in medium or heavy armor, you regain only one quarter of your spent Hit Dice (minimum of one die). If you have any levels of {@condition exhaustion}, the rest doesn't reduce your {@condition exhaustion} level."
+						"When you finish a long rest during which you slept in medium or heavy armor, you regain only one quarter of your spent Hit Dice (minimum of one die). If you have any levels of {@condition cansancio}, the rest doesn't reduce your {@condition cansancio} level."
 					]
 				},
 				{
@@ -12678,8 +12678,8 @@
 					"name": "Going without a Long Rest",
 					"entries": [
 						"A long rest is never mandatory, but going without sleep does have its consequences. If you want to account for the effects of sleep deprivation on characters and creatures, use these rules.",
-						"Whenever you end a 24-hour period without finishing a long rest, you must succeed on a {@dc 10} Constitution saving throw or suffer one level of {@condition exhaustion}.",
-						"It becomes harder to fight off {@condition exhaustion} if you stay awake for multiple days. After the first 24 hours, the DC increases by 5 for each consecutive 24-hour period without a long rest. The DC resets to 10 when you finish a long rest."
+						"Whenever you end a 24-hour period without finishing a long rest, you must succeed on a {@dc 10} Constitution saving throw or suffer one level of {@condition cansancio}.",
+						"It becomes harder to fight off {@condition cansancio} if you stay awake for multiple days. After the first 24 hours, the DC increases by 5 for each consecutive 24-hour period without a long rest. The DC resets to 10 when you finish a long rest."
 					]
 				}
 			]
@@ -12747,7 +12747,7 @@
 				"Instead of gaining a number of spell slots to cast your spells from the Spellcasting feature, you gain a pool of spell points instead. You expend a number of spell points to create a spell slot of a given level, and then use that slot to cast a spell. You can't reduce your spell points total to less than 0, and you regain all spent spell points when you finish a long rest.",
 				"Spells of 6th level and higher are particularly taxing to cast. You can use spell points to create one slot of each level of 6th or higher. You can't create another slot of the same level until you finish a long rest.",
 				"The number of spell points you have to spend is based on your level as a spellcaster, as shown in the Spell Points by Level table. Your level also determines the maximum-level spell slot you can create. Even though you might have enough points to create a slot above this maximum, you can't do so.",
-				"The Spell Points by Level table applies to {@class bard||bards}, {@class cleric||clerics}, {@class druid||druids}, {@class sorcerer||sorcerers}, and {@class wizard||wizards}. For a {@class paladin} or {@class ranger}, halve the character's level in that class and then consult the table. For a {@class fighter|phb|fighter (Eldritch Knight)|Eldritch Knight} or {@class rogue|phb|rogue (Arcane Trickster)|Arcane Trickster}, divide the character's level in that class by three.",
+				"The Spell Points by Level table applies to {@class bard||bards}, {@class cleric||clerics}, {@class druid||druids}, {@class hechicero||hechiceros}, and {@class wizard||wizards}. For a {@class paladin} or {@class ranger}, halve the character's level in that class and then consult the table. For a {@class fighter|phb|fighter (Eldritch Knight)|Eldritch Knight} or {@class rogue|phb|rogue (Arcane Trickster)|Arcane Trickster}, divide the character's level in that class by three.",
 				"This system can be applied to monsters that cast spells using spell slots, but it isn't recommended that you do so. Tracking spell point expenditures for a monster can be a hassle.",
 				{
 					"type": "table",
@@ -12931,7 +12931,7 @@
 					"entries": [
 						"Many spells create obvious effects: explosions of fire, walls of ice, teleportation, and the like. Other spells, such as charm person, display no visible, audible, or otherwise perceptible sign of their effects, and could easily go unnoticed by someone unaffected by them. As noted in the {@book Player's Handbook|PHB}, you normally don't know that a spell has been cast unless the spell produces a noticeable effect.",
 						"But what about the act of casting a spell? Is it possible for someone to perceive that a spell is being cast in their presence? To be perceptible, the casting of a spell must involve a verbal, somatic, or material component. The form of a material component doesn't matter for the purposes of perception, whether it's an object specified in the spell's description, a component pouch, or a spellcasting focus.",
-						"If the need for a spell's components has been removed by a special ability, such as the sorcerer's Subtle Spell feature or the Innate Spellcasting trait possessed by many creatures, the casting of the spell is imperceptible. If an imperceptible casting produces a perceptible effect, it's normally impossible to determine who cast the spell in the absence of other evidence."
+						"If the need for a spell's components has been removed by a special ability, such as the hechicero's Conjuro sutil feature or the Innate Spellcasting trait possessed by many creatures, the casting of the spell is imperceptible. If an imperceptible casting produces a perceptible effect, it's normally impossible to determine who cast the spell in the absence of other evidence."
 					]
 				},
 				{
@@ -13450,7 +13450,7 @@
 							"name": "Hit Points",
 							"entries": [
 								"Whenever a survivor gains a level, it gains one Hit Die and its hit point maximum increases. To determine the amount of the increase, roll the Hit Die (the type that appears in the survivor's stat block), and add the survivor's Constitution modifier. It gains a minimum of 1 hit point per level.",
-								"If a survivor drops to 0 hit points, it falls {@condition unconscious} and subsequently makes death saving throws just like a normal player character."
+								"If a survivor drops to 0 hit points, it falls {@condition inconsciente} and subsequently makes death saving throws just like a normal player character."
 							]
 						}
 					]
@@ -13464,7 +13464,7 @@
 							"type": "entries",
 							"name": "Adrenaline Surge",
 							"entries": [
-								"At the start of your turn, you can choose one creature you can see within 30 feet of you. Until the start of your next turn, you are {@condition frightened} of that creature and your walking speed is doubled."
+								"At the start of your turn, you can choose one creature you can see within 30 feet of you. Until the start of your next turn, you are {@condition asustado} of that creature and your walking speed is doubled."
 							]
 						},
 						{
@@ -14083,7 +14083,7 @@
 									"type": "entries",
 									"name": "Maintain Shoes",
 									"entries": [
-										"As part of a long rest, you can repair your companions' shoes. For the next 24 hours, up to six creatures of your choice who wear shoes you worked on can travel up to 10 hours a day without making saving throws to avoid {@condition exhaustion}."
+										"As part of a long rest, you can repair your companions' shoes. For the next 24 hours, up to six creatures of your choice who wear shoes you worked on can travel up to 10 hours a day without making saving throws to avoid {@condition cansancio}."
 									]
 								},
 								{
@@ -16059,7 +16059,7 @@
 							"type": "entries",
 							"name": "Grapple",
 							"entries": [
-								"The target must succeed on a Strength or Dexterity {@variantrule Saving Throw|XPHB|saving throw} (it chooses which), or it has the {@condition Grappled|XPHB} condition. The DC for the {@variantrule Saving Throw|XPHB|saving throw} and any escape attempts equals 8 plus your Strength modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus}. This grapple is possible only if the target is no more than one size larger than you and if you have a hand free to grab it."
+								"The target must succeed on a Strength or Dexterity {@variantrule Saving Throw|XPHB|saving throw} (it chooses which), or it has the {@condition Agarrado|XPHB} condition. The DC for the {@variantrule Saving Throw|XPHB|saving throw} and any escape attempts equals 8 plus your Strength modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus}. This grapple is possible only if the target is no more than one size larger than you and if you have a hand free to grab it."
 							]
 						},
 						{

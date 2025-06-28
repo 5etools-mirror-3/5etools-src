@@ -46,107 +46,107 @@ class NavBar {
 		this._addElement_li(null, "index.html", "Home", {isRoot: true});
 
 		this._addElement_dropdown(null, NavBar._CAT_RULES);
-		this._addElement_li(NavBar._CAT_RULES, "variantrules.html", "Rules Glossary");
-		this._addElement_li(NavBar._CAT_RULES, "tables.html", "Tables");
+		this._addElement_li(NavBar._CAT_RULES, "variantrules.html", "Glosario de reglas");
+		this._addElement_li(NavBar._CAT_RULES, "tables.html", "Tablas");
 		this._addElement_divider(NavBar._CAT_RULES);
 		this._addElement_dropdown(NavBar._CAT_RULES, NavBar._CAT_BOOKS, {isSide: true, page: "books.html"});
 		this._addElement_li(NavBar._CAT_BOOKS, "books.html", "View All/Homebrew");
-		this._addElement_divider(NavBar._CAT_RULES);
-		this._addElement_li(NavBar._CAT_RULES, "quickreference.html", "Quick Reference (2014)");
+		// this._addElement_divider(NavBar._CAT_RULES);
+		// this._addElement_li(NavBar._CAT_RULES, "quickreference.html", "Quick Reference (2014)");
 
 		this._addElement_dropdown(null, NavBar._CAT_PLAYER);
-		this._addElement_li(NavBar._CAT_PLAYER, "classes.html", "Classes");
-		this._addElement_li(NavBar._CAT_PLAYER, "backgrounds.html", "Backgrounds");
-		this._addElement_li(NavBar._CAT_PLAYER, "feats.html", "Feats");
-		this._addElement_li(NavBar._CAT_PLAYER, "races.html", "Species");
-		this._addElement_li(NavBar._CAT_PLAYER, "charcreationoptions.html", "Other Character Creation Options");
-		this._addElement_li(NavBar._CAT_PLAYER, "optionalfeatures.html", "Other Options & Features");
+		this._addElement_li(NavBar._CAT_PLAYER, "classes.html", "Clases");
+		this._addElement_li(NavBar._CAT_PLAYER, "backgrounds.html", "Trasfondos");
+		this._addElement_li(NavBar._CAT_PLAYER, "feats.html", "Dotes");
+		this._addElement_li(NavBar._CAT_PLAYER, "races.html", "Especies");
+		// this._addElement_li(NavBar._CAT_PLAYER, "charcreationoptions.html", "Otras opciones de creación de personaje");
+		this._addElement_li(NavBar._CAT_PLAYER, "optionalfeatures.html", "Rasgos de clase & opciones");
 		this._addElement_divider(NavBar._CAT_PLAYER);
-		this._addElement_li(NavBar._CAT_PLAYER, "statgen.html", "Stat Generator");
+		this._addElement_li(NavBar._CAT_PLAYER, "statgen.html", "Generador de características");
 		this._addElement_divider(NavBar._CAT_PLAYER);
-		this._addElement_li(NavBar._CAT_PLAYER, "lifegen.html", "This Is Your Life");
-		this._addElement_li(NavBar._CAT_PLAYER, "names.html", "Names");
+		this._addElement_li(NavBar._CAT_PLAYER, "lifegen.html", "Esta es tu vida");
+		this._addElement_li(NavBar._CAT_PLAYER, "names.html", "Nombres");
 
-		this._addElement_dropdown(null, NavBar._CAT_DUNGEON_MASTER);
-		this._addElement_li(NavBar._CAT_DUNGEON_MASTER, "dmscreen.html", "DM Screen");
-		this._addElement_divider(NavBar._CAT_DUNGEON_MASTER);
-		this._addElement_dropdown(NavBar._CAT_DUNGEON_MASTER, NavBar._CAT_ADVENTURES, {isSide: true, page: "adventures.html"});
-		this._addElement_li(NavBar._CAT_ADVENTURES, "adventures.html", "View All/Homebrew");
-		this._addElement_li(NavBar._CAT_DUNGEON_MASTER, "cultsboons.html", "Cults & Supernatural Boons");
-		this._addElement_li(NavBar._CAT_DUNGEON_MASTER, "objects.html", "Objects");
-		this._addElement_li(NavBar._CAT_DUNGEON_MASTER, "trapshazards.html", "Traps & Hazards");
-		this._addElement_divider(NavBar._CAT_DUNGEON_MASTER);
-		this._addElement_li(NavBar._CAT_DUNGEON_MASTER, "crcalculator.html", "CR Calculator (2014)");
-		this._addElement_li(NavBar._CAT_DUNGEON_MASTER, "encountergen.html", "Encounter Generator");
-		this._addElement_li(NavBar._CAT_DUNGEON_MASTER, "lootgen.html", "Loot Generator");
-		this._addElement_divider(NavBar._CAT_DUNGEON_MASTER);
-		this._addElement_li(NavBar._CAT_DUNGEON_MASTER, "maps.html", "Maps");
+		// this._addElement_dropdown(null, NavBar._CAT_DUNGEON_MASTER);
+		// this._addElement_li(NavBar._CAT_DUNGEON_MASTER, "dmscreen.html", "Pantalla del DM");
+		// this._addElement_divider(NavBar._CAT_DUNGEON_MASTER);
+		// this._addElement_dropdown(NavBar._CAT_DUNGEON_MASTER, NavBar._CAT_ADVENTURES, {isSide: true, page: "adventures.html"});
+		// this._addElement_li(NavBar._CAT_ADVENTURES, "adventures.html", "View All/Homebrew");
+		// this._addElement_li(NavBar._CAT_DUNGEON_MASTER, "cultsboons.html", "Cults & Supernatural Boons");
+		// this._addElement_li(NavBar._CAT_DUNGEON_MASTER, "objects.html", "Objects");
+		// this._addElement_li(NavBar._CAT_DUNGEON_MASTER, "trapshazards.html", "Traps & Hazards");
+		// this._addElement_divider(NavBar._CAT_DUNGEON_MASTER);
+		// this._addElement_li(NavBar._CAT_DUNGEON_MASTER, "crcalculator.html", "CR Calculator (2014)");
+		// this._addElement_li(NavBar._CAT_DUNGEON_MASTER, "encountergen.html", "Encounter Generator");
+		// this._addElement_li(NavBar._CAT_DUNGEON_MASTER, "lootgen.html", "Loot Generator");
+		// this._addElement_divider(NavBar._CAT_DUNGEON_MASTER);
+		// this._addElement_li(NavBar._CAT_DUNGEON_MASTER, "maps.html", "Maps");
 
 		this._addElement_dropdown(null, NavBar._CAT_REFERENCES);
-		this._addElement_li(NavBar._CAT_REFERENCES, "actions.html", "Actions");
-		this._addElement_li(NavBar._CAT_REFERENCES, "bastions.html", "Bastions");
-		this._addElement_li(NavBar._CAT_REFERENCES, "bestiary.html", "Bestiary");
-		this._addElement_li(NavBar._CAT_REFERENCES, "conditionsdiseases.html", "Conditions & Diseases");
-		this._addElement_li(NavBar._CAT_REFERENCES, "decks.html", "Decks");
-		this._addElement_li(NavBar._CAT_REFERENCES, "deities.html", "Deities");
-		this._addElement_li(NavBar._CAT_REFERENCES, "items.html", "Items");
-		this._addElement_li(NavBar._CAT_REFERENCES, "languages.html", "Languages");
-		this._addElement_li(NavBar._CAT_REFERENCES, "rewards.html", "Supernatural Gifts & Rewards");
-		this._addElement_li(NavBar._CAT_REFERENCES, "psionics.html", "Psionics");
-		this._addElement_li(NavBar._CAT_REFERENCES, "spells.html", "Spells");
-		this._addElement_li(NavBar._CAT_REFERENCES, "vehicles.html", "Vehicles");
+		this._addElement_li(NavBar._CAT_REFERENCES, "actions.html", "Acciones");
+		this._addElement_li(NavBar._CAT_REFERENCES, "bastions.html", "Bastiones");
+		this._addElement_li(NavBar._CAT_REFERENCES, "bestiary.html", "Bestiario");
+		this._addElement_li(NavBar._CAT_REFERENCES, "conditionsdiseases.html", "Estados y enfermedades");
+		// this._addElement_li(NavBar._CAT_REFERENCES, "decks.html", "Decks");
+		this._addElement_li(NavBar._CAT_REFERENCES, "deities.html", "Deidades");
+		this._addElement_li(NavBar._CAT_REFERENCES, "items.html", "Equipo");
+		this._addElement_li(NavBar._CAT_REFERENCES, "languages.html", "Idiomas");
+		// this._addElement_li(NavBar._CAT_REFERENCES, "rewards.html", "Supernatural Gifts & Rewards");
+		// this._addElement_li(NavBar._CAT_REFERENCES, "psionics.html", "Psionics");
+		this._addElement_li(NavBar._CAT_REFERENCES, "spells.html", "Conjuros");
+		this._addElement_li(NavBar._CAT_REFERENCES, "vehicles.html", "Vehículos");
 		this._addElement_divider(NavBar._CAT_REFERENCES);
-		this._addElement_li(NavBar._CAT_REFERENCES, "recipes.html", "Recipes");
+		this._addElement_li(NavBar._CAT_REFERENCES, "recipes.html", "Recetas");
 
-		this._addElement_dropdown(null, NavBar._CAT_UTILITIES);
-		this._addElement_li(NavBar._CAT_UTILITIES, "search.html", "Search");
-		this._addElement_divider(NavBar._CAT_UTILITIES);
-		this._addElement_li(NavBar._CAT_UTILITIES, "blocklist.html", "Content Blocklist");
-		this._addElement_li(NavBar._CAT_UTILITIES, "manageprerelease.html", "Prerelease Content Manager");
-		this._addElement_li(NavBar._CAT_UTILITIES, "managebrew.html", "Homebrew Manager");
-		this._addElement_buttonSplit(
-			NavBar._CAT_UTILITIES,
-			{
-				metas: [
-					{
-						html: "Load All Partnered Content",
-						click: async evt => {
-							evt.stopPropagation();
-							evt.preventDefault();
-							const {ManageBrewUi} = await import("./utils-brew/utils-brew-ui-manage.js");
-							await ManageBrewUi.pOnClickBtnLoadAllPartnered();
-						},
-					},
-					{
-						html: `<span class="glyphicon glyphicon-link"></span>`,
-						title: `Export Prerelease Content/Homebrew List as URL`,
-						click: async evt => {
-							evt.stopPropagation();
-							evt.preventDefault();
-							const ele = evt.currentTarget;
-							const {ManageBrewUi} = await import("./utils-brew/utils-brew-ui-manage.js");
-							await ManageBrewUi.pOnClickBtnExportListAsUrl({ele});
-						},
-					},
-				],
-			},
-		);
-		this._addElement_divider(NavBar._CAT_UTILITIES);
-		this._addElement_li(NavBar._CAT_UTILITIES, "inittrackerplayerview.html", "Initiative Tracker Player View");
-		this._addElement_divider(NavBar._CAT_UTILITIES);
-		this._addElement_li(NavBar._CAT_UTILITIES, "renderdemo.html", "Renderer Demo");
-		this._addElement_li(NavBar._CAT_UTILITIES, "makebrew.html", "Homebrew Builder");
-		this._addElement_li(NavBar._CAT_UTILITIES, "makecards.html", "RPG Cards JSON Builder");
-		this._addElement_li(NavBar._CAT_UTILITIES, "converter.html", "Text Converter");
-		this._addElement_divider(NavBar._CAT_UTILITIES);
-		this._addElement_li(NavBar._CAT_UTILITIES, "plutonium.html", "Plutonium (Foundry Module) Features");
-		this._addElement_divider(NavBar._CAT_UTILITIES);
-		this._addElement_li(NavBar._CAT_UTILITIES, "https://wiki.tercept.net/en/betteR20", "Roll20 Script Help", {isExternal: true});
-		this._addElement_divider(NavBar._CAT_UTILITIES);
-		this._addElement_li(NavBar._CAT_UTILITIES, "changelog.html", "Changelog");
-		this._addElement_li(NavBar._CAT_UTILITIES, NavBar._getCurrentWikiHelpPage(), "Help", {isExternal: true});
-		this._addElement_divider(NavBar._CAT_UTILITIES);
-		this._addElement_li(NavBar._CAT_UTILITIES, "privacy-policy.html", "Privacy Policy");
+		// this._addElement_dropdown(null, NavBar._CAT_UTILITIES);
+		// this._addElement_li(NavBar._CAT_UTILITIES, "search.html", "Buscar");
+		// this._addElement_divider(NavBar._CAT_UTILITIES);
+		// this._addElement_li(NavBar._CAT_UTILITIES, "blocklist.html", "Content Blocklist");
+		// this._addElement_li(NavBar._CAT_UTILITIES, "manageprerelease.html", "Prerelease Content Manager");
+		// this._addElement_li(NavBar._CAT_UTILITIES, "managebrew.html", "Homebrew Manager");
+		// this._addElement_buttonSplit(
+		// 	NavBar._CAT_UTILITIES,
+		// 	{
+		// 		metas: [
+		// 			{
+		// 				html: "Load All Partnered Content",
+		// 				click: async evt => {
+		// 					evt.stopPropagation();
+		// 					evt.preventDefault();
+		// 					const {ManageBrewUi} = await import("./utils-brew/utils-brew-ui-manage.js");
+		// 					await ManageBrewUi.pOnClickBtnLoadAllPartnered();
+		// 				},
+		// 			},
+		// 			{
+		// 				html: `<span class="glyphicon glyphicon-link"></span>`,
+		// 				title: `Export Prerelease Content/Homebrew List as URL`,
+		// 				click: async evt => {
+		// 					evt.stopPropagation();
+		// 					evt.preventDefault();
+		// 					const ele = evt.currentTarget;
+		// 					const {ManageBrewUi} = await import("./utils-brew/utils-brew-ui-manage.js");
+		// 					await ManageBrewUi.pOnClickBtnExportListAsUrl({ele});
+		// 				},
+		// 			},
+		// 		],
+		// 	},
+		// );
+		// this._addElement_divider(NavBar._CAT_UTILITIES);
+		// this._addElement_li(NavBar._CAT_UTILITIES, "inittrackerplayerview.html", "Initiative Tracker Player View");
+		// this._addElement_divider(NavBar._CAT_UTILITIES);
+		// this._addElement_li(NavBar._CAT_UTILITIES, "renderdemo.html", "Renderer Demo");
+		// this._addElement_li(NavBar._CAT_UTILITIES, "makebrew.html", "Homebrew Builder");
+		// this._addElement_li(NavBar._CAT_UTILITIES, "makecards.html", "RPG Cards JSON Builder");
+		// this._addElement_li(NavBar._CAT_UTILITIES, "converter.html", "Text Converter");
+		// this._addElement_divider(NavBar._CAT_UTILITIES);
+		// this._addElement_li(NavBar._CAT_UTILITIES, "plutonium.html", "Plutonium (Foundry Module) Features");
+		// this._addElement_divider(NavBar._CAT_UTILITIES);
+		// this._addElement_li(NavBar._CAT_UTILITIES, "https://wiki.tercept.net/en/betteR20", "Roll20 Script Help", {isExternal: true});
+		// this._addElement_divider(NavBar._CAT_UTILITIES);
+		// this._addElement_li(NavBar._CAT_UTILITIES, "changelog.html", "Changelog");
+		// this._addElement_li(NavBar._CAT_UTILITIES, NavBar._getCurrentWikiHelpPage(), "Help", {isExternal: true});
+		// this._addElement_divider(NavBar._CAT_UTILITIES);
+		// this._addElement_li(NavBar._CAT_UTILITIES, "privacy-policy.html", "Privacy Policy");
 
 		this._addElement_dropdown(null, NavBar._CAT_SETTINGS);
 		this._addElement_button(
@@ -842,14 +842,14 @@ NavBar._ALT_CHILD_PAGES = {
 	"book.html": "books.html",
 	"adventure.html": "adventures.html",
 };
-NavBar._CAT_RULES = "Rules";
-NavBar._CAT_BOOKS = "Books";
-NavBar._CAT_PLAYER = "Player";
+NavBar._CAT_RULES = "Reglas";
+NavBar._CAT_BOOKS = "Libros";
+NavBar._CAT_PLAYER = "Jugador";
 NavBar._CAT_DUNGEON_MASTER = "Dungeon Master";
-NavBar._CAT_ADVENTURES = "Adventures";
-NavBar._CAT_REFERENCES = "References";
-NavBar._CAT_UTILITIES = "Utilities";
-NavBar._CAT_SETTINGS = "Settings";
+NavBar._CAT_ADVENTURES = "Aventuras";
+NavBar._CAT_REFERENCES = "Referencias";
+NavBar._CAT_UTILITIES = "Herramietnas";
+NavBar._CAT_SETTINGS = "Config.";
 NavBar._CAT_CACHE = "Preload Data";
 
 NavBar._navbar = null;

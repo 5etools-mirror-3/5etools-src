@@ -17,7 +17,7 @@ export class HtmlGeneratorListButtons extends _HtmlGenerator {
 	}
 
 	static getBtnSource () {
-		return `<button type="button" class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">Source</button>`;
+		return `<button type="button" class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">Fuente</button>`;
 	}
 
 	/**

@@ -37,7 +37,7 @@
 					"type": "entries",
 					"name": "Magnetic Walls",
 					"entries": [
-						"When the balance beam's weight is on the pressure plate, the metal walls emit a magnetic field. Any creature wearing metal armor or holding metal equipment who isn't on the beam is pulled to the nearest metal wall and sticks to it, taking 11 ({@damage 2d10}) bludgeoning damage. Any creature stuck to the wall has the {@condition restrained} condition until the magnetic field deactivates. Removing pressure from the plate\u2014such as by putting more weight on the opposite end of the beam\u2014deactivates the magnetic field. If the whole party has access to flight, you can make the trap suitably challenging by removing the pressure plate and having the magnetic field toggle on or off in 1-minute intervals or whenever a creature ends its turn on a different side of the pit from where it started. A character wearing metal armor or holding metal equipment who flies across the hall while the walls are magnetized is pulled to the wall and stuck to it."
+						"When the balance beam's weight is on the pressure plate, the metal walls emit a magnetic field. Any creature wearing metal armor or holding metal equipment who isn't on the beam is pulled to the nearest metal wall and sticks to it, taking 11 ({@damage 2d10}) bludgeoning damage. Any creature stuck to the wall has the {@condition apresado} condition until the magnetic field deactivates. Removing pressure from the plate\u2014such as by putting more weight on the opposite end of the beam\u2014deactivates the magnetic field. If the whole party has access to flight, you can make the trap suitably challenging by removing the pressure plate and having the magnetic field toggle on or off in 1-minute intervals or whenever a creature ends its turn on a different side of the pit from where it started. A character wearing metal armor or holding metal equipment who flies across the hall while the walls are magnetized is pulled to the wall and stuck to it."
 					]
 				},
 				{
@@ -226,7 +226,7 @@
 			"trapHazType": "HAUNT",
 			"hauntBonus": "+2",
 			"entries": [
-				"This {@variantrule haunted traps|VRGR|haunted trap} affects a 15-foot-cube in front of an ornate mirror hanging on a wall. When a visible creature enters the area, the trap's emanation manifests as the creature's distorted reflection in the mirror. If that creature is still in the area at the start of its next turn, it must succeed on a {@dc 12} Wisdom saving throw or be {@condition blinded}, {@condition deafened}, and rendered unable to speak for 1 minute. Additionally, an illusion makes it appear that the creature has had its face erased. The {@spell remove curse} spell ends this effect, as does destroying the mirror. The mirror has AC 12, 10 hit points, vulnerability to bludgeoning damage, and immunity to poison and psychic damage. After a creature fails its saving throw against the trap, the trap won't activate again for 24 hours."
+				"This {@variantrule haunted traps|VRGR|haunted trap} affects a 15-foot-cube in front of an ornate mirror hanging on a wall. When a visible creature enters the area, the trap's emanation manifests as the creature's distorted reflection in the mirror. If that creature is still in the area at the start of its next turn, it must succeed on a {@dc 12} Wisdom saving throw or be {@condition blinded}, {@condition ensordecido}, and rendered unable to speak for 1 minute. Additionally, an illusion makes it appear that the creature has had its face erased. The {@spell remove curse} spell ends this effect, as does destroying the mirror. The mirror has AC 12, 10 hit points, vulnerability to bludgeoning damage, and immunity to poison and psychic damage. After a creature fails its saving throw against the trap, the trap won't activate again for 24 hours."
 			],
 			"hasFluffImages": true
 		},
@@ -242,7 +242,7 @@
 			"entries": [
 				"This trap uses a trip wire to release a net suspended from the ceiling.",
 				"The trip wire is 3 inches off the ground and stretches between two columns or trees. The net is hidden by cobwebs or foliage. The DC to spot the trip wire and net is 10. A successful {@dc 15} Dexterity check using thieves' tools breaks the trip wire harmlessly. A character without thieves' tools can attempt this check with disadvantage using any edged weapon or edged tool. On a failed check, the trap triggers.",
-				"When the trap is triggered, the net is released, covering a 10-foot-square area. Those in the area are trapped under the net and {@condition restrained}, and those that fail a {@dc 10} Strength saving throw are also knocked {@condition prone}.",
+				"When the trap is triggered, the net is released, covering a 10-foot-square area. Those in the area are trapped under the net and {@condition apresado}, and those that fail a {@dc 10} Strength saving throw are also knocked {@condition prone}.",
 				"A creature can use its action to make a {@dc 10} Strength check, freeing itself or another creature within its reach on a success. The net has AC 10 and 20 hit points.",
 				"Dealing 5 slashing damage to the net (AC 10) destroys a 5-foot-square section of it, freeing any creature trapped in that section."
 			]
@@ -269,7 +269,7 @@
 			],
 			"entries": [
 				"A falling net trap uses a trip wire to release a weighted, 10-foot-square {@item Net|XPHB} suspended from the ceiling. The trip wire is 3 inches off the ground and stretches between two columns or trees.",
-				"The first creature that crosses the trip wire causes the Net to fall on it. The target must succeed on a {@dc 10} Dexterity saving throw or have the {@condition Restrained|XPHB} condition until it escapes. The target succeeds automatically if it's Huge or larger. A creature can take an action to make a {@dc 10} Strength ({@skill Athletics|XPHB}) check, freeing itself or another creature within its reach from the Net on a successful check.",
+				"The first creature that crosses the trip wire causes the Net to fall on it. The target must succeed on a {@dc 10} Dexterity saving throw or have the {@condition Apresado|XPHB} condition until it escapes. The target succeeds automatically if it's Huge or larger. A creature can take an action to make a {@dc 10} Strength ({@skill Athletics|XPHB}) check, freeing itself or another creature within its reach from the Net on a successful check.",
 				{
 					"type": "entries",
 					"name": "Detect and Disarm",
@@ -544,7 +544,7 @@
 						{
 							"type": "item",
 							"name": "Phase Beam (Initiative 20)",
-							"entry": "The phase beam shoots at a random creature within the room. The beam has a {@hit +5} bonus to the attack roll. On a hit, the target and all its gear become both {@condition invisible} and incorporeal for one minute. The target's only method of movement is a fly speed of 10 feet. The target has resistance to nonmagical damage, and it has advantage on Strength, Dexterity, and Constitution saving throws. The target can pass through solid surfaces and liquids. The target can't fall and remains hovering in the air even when {@condition stunned} or otherwise {@condition incapacitated}. While affected by the phase beam, the target can't manipulate, physically attack, or interact with objects and creatures not affected by the phase beam. The target can still talk and cast spells."
+							"entry": "The phase beam shoots at a random creature within the room. The beam has a {@hit +5} bonus to the attack roll. On a hit, the target and all its gear become both {@condition invisible} and incorporeal for one minute. The target's only method of movement is a fly speed of 10 feet. The target has resistance to nonmagical damage, and it has advantage on Strength, Dexterity, and Constitution saving throws. The target can pass through solid surfaces and liquids. The target can't fall and remains hovering in the air even when {@condition aturdido} or otherwise {@condition incapacitated}. While affected by the phase beam, the target can't manipulate, physically attack, or interact with objects and creatures not affected by the phase beam. The target can still talk and cast spells."
 						},
 						{
 							"type": "item",
@@ -568,7 +568,7 @@
 						{
 							"type": "item",
 							"name": "Room Heats Up",
-							"entry": "The heat from the emitter brings the room to unbearable temperatures. At the beginning of the trap's third turn, the room's temperature is noticeably hotter. At the beginning of the trap's sixth turn on initiative 20, all creatures must succeed on a {@dc 10} Constitution saving throw or gain one level of {@condition exhaustion}. Creatures wearing medium or heavy armor have disadvantage on the saving throw, and creatures with fire immunity or resistance do not need to make this saving throw. This saving throw is repeated at {@dc 13} at the beginning of the trap's ninth turn on initiative 20."
+							"entry": "The heat from the emitter brings the room to unbearable temperatures. At the beginning of the trap's third turn, the room's temperature is noticeably hotter. At the beginning of the trap's sixth turn on initiative 20, all creatures must succeed on a {@dc 10} Constitution saving throw or gain one level of {@condition cansancio}. Creatures wearing medium or heavy armor have disadvantage on the saving throw, and creatures with fire immunity or resistance do not need to make this saving throw. This saving throw is repeated at {@dc 13} at the beginning of the trap's ninth turn on initiative 20."
 						},
 						{
 							"type": "item",
@@ -652,7 +652,7 @@
 			"trapHazType": "HAUNT",
 			"hauntBonus": "+0",
 			"entries": [
-				"A morbid memory trap presents little danger, but it proves useful in revealing important and unsettling glimpses into an area's past. This {@variantrule haunted traps|VRGR|haunted trap} affects a single room or 30-foot-square area. When a creature enters the area, the trap's emanation manifests as faint, disembodied whispers. If that creature is still in the area at the start of its next turn, an illusory scene plays out, repeating some terrible event that happened in the area. This vision typically lasts 1 minute. When the vision ends, all creatures in the area that saw the illusion must succeed on a {@dc 10} Wisdom saving throw or become {@condition frightened} of the area for the next {@dice 1d4} rounds. {@condition Frightened} creatures must take the {@action Dash} action and move away from the haunted area by the safest available route on each of their turns, unless there is nowhere else to move. After the haunted trap is activated, it won't activate again for 24 hours."
+				"A morbid memory trap presents little danger, but it proves useful in revealing important and unsettling glimpses into an area's past. This {@variantrule haunted traps|VRGR|haunted trap} affects a single room or 30-foot-square area. When a creature enters the area, the trap's emanation manifests as faint, disembodied whispers. If that creature is still in the area at the start of its next turn, an illusory scene plays out, repeating some terrible event that happened in the area. This vision typically lasts 1 minute. When the vision ends, all creatures in the area that saw the illusion must succeed on a {@dc 10} Wisdom saving throw or become {@condition asustado} of the area for the next {@dice 1d4} rounds. {@condition Asustado} creatures must take the {@action Dash} action and move away from the haunted area by the safest available route on each of their turns, unless there is nowhere else to move. After the haunted trap is activated, it won't activate again for 24 hours."
 			]
 		},
 		{
@@ -667,7 +667,7 @@
 				}
 			],
 			"effect": [
-				"A net covering a 10-foot-by-10-foot area centered on the trip wire falls to the floor as a bell rings. Any creature fully within this area must succeed on a {@dc 15} Dexterity saving throw or be {@condition restrained}. A creature can use its action to make a {@dc 10} Strength check to try to free itself or another creature in the net. Dealing 5 slashing damage to the net (AC 10, 20hp) also frees a creature without harming the creature."
+				"A net covering a 10-foot-by-10-foot area centered on the trip wire falls to the floor as a bell rings. Any creature fully within this area must succeed on a {@dc 15} Dexterity saving throw or be {@condition apresado}. A creature can use its action to make a {@dc 10} Strength check to try to free itself or another creature in the net. Dealing 5 slashing damage to the net (AC 10, 20hp) also frees a creature without harming the creature."
 			],
 			"trigger": [
 				"A trip wire strung across a hallway is rigged to a large net. If the trip wire is broken, the net falls on intruders. An iron bell is also rigged to the trip wire. It rings when the trap activates, alerting nearby guards."
@@ -713,7 +713,7 @@
 						{
 							"type": "item",
 							"name": "Rune of Fear (Initiative 10)",
-							"entry": "Each creature in the 30-foot-long area beyond the Crushing Pillars must make a {@dc 15} Wisdom saving throw. On a failed saving throw, the creature becomes {@condition frightened} by the rune, and it must immediately use its reaction to move its speed in the direction of the pillars. The {@condition frightened} creature can't move closer to the far end of the hallway until it uses its action to make a {@dc 15} Wisdom saving throw, which ends the {@condition frightened} condition on itself on a success."
+							"entry": "Each creature in the 30-foot-long area beyond the Crushing Pillars must make a {@dc 15} Wisdom saving throw. On a failed saving throw, the creature becomes {@condition asustado} by the rune, and it must immediately use its reaction to move its speed in the direction of the pillars. The {@condition asustado} creature can't move closer to the far end of the hallway until it uses its action to make a {@dc 15} Wisdom saving throw, which ends the {@condition asustado} condition on itself on a success."
 						}
 					]
 				}
@@ -912,7 +912,7 @@
 				}
 			],
 			"effect": [
-				"The triggering creature must make a {@dc 20} Constitution saving throw. On a failed save, the creature takes 14 ({@damage 4d6}) poison damage and is {@condition poisoned} for 10 minutes. While {@condition poisoned} in this way, the creature is {@condition paralyzed}. On a successful save, the creature takes half as much damage and isn't {@condition poisoned}."
+				"The triggering creature must make a {@dc 20} Constitution saving throw. On a failed save, the creature takes 14 ({@damage 4d6}) poison damage and is {@condition poisoned} for 10 minutes. While {@condition poisoned} in this way, the creature is {@condition paralizado}. On a successful save, the creature takes half as much damage and isn't {@condition poisoned}."
 			],
 			"trigger": [
 				"Anyone attempting to pick or open the lock triggers the trap."
@@ -1466,8 +1466,8 @@
 					"type": "entries",
 					"name": "Talons Pedestal",
 					"entries": [
-						"The silver orb, which is 1 foot in diameter, can't be removed while the talons clutch it. The pedestal is trapped. Touching the silver orb causes the talons to snap closed. A creature that tries to take the orb takes 11 ({@damage 2d10}) slashing damage and has the {@condition grappled} condition (escape {@dc 15}) as the talons grab hold of it, releasing the orb. The talons have an AC of 19, 10 hit points, and immunity to poison and psychic damage.",
-						"With a successful {@dc 12} Wisdom ({@skill Perception}) check, a character can spot the pressure plate that activates the talons through a narrow slit on the east side of the pedestal. A character can disable the pressure plate with a successful {@dc 13} Dexterity check using thieves' tools, which causes the talons to open. A Medium or Small creature {@condition grappled} by the talons can't reach this pressure plate.",
+						"The silver orb, which is 1 foot in diameter, can't be removed while the talons clutch it. The pedestal is trapped. Touching the silver orb causes the talons to snap closed. A creature that tries to take the orb takes 11 ({@damage 2d10}) slashing damage and has the {@condition agarrado} condition (escape {@dc 15}) as the talons grab hold of it, releasing the orb. The talons have an AC of 19, 10 hit points, and immunity to poison and psychic damage.",
+						"With a successful {@dc 12} Wisdom ({@skill Perception}) check, a character can spot the pressure plate that activates the talons through a narrow slit on the east side of the pedestal. A character can disable the pressure plate with a successful {@dc 13} Dexterity check using thieves' tools, which causes the talons to open. A Medium or Small creature {@condition agarrado} by the talons can't reach this pressure plate.",
 						"Undamaged, the silver orb is a valuable art object worth 500 gp."
 					]
 				},
@@ -1565,7 +1565,7 @@
 				"The following rules can be used for rockslides as well as avalanches.",
 				"An avalanche is a mass of snow and debris falling rapidly down a mountainside. A typical avalanche is 300 feet wide, 150 feet long, and 30 feet thick. Creatures in the path of an avalanche can avoid it or escape it if they're close to its edge, but outrunning one is almost impossible.",
 				"When an avalanche occurs, all nearby creatures must roll initiative. Twice each round, on initiative counts 10 and 0, the avalanche travels 300 feet until it can travel no more. When an avalanche moves, any creature in its space moves along with it and falls {@condition prone}, and the creature must make a {@dc 15} Strength saving throw, taking {@damage 1d10} bludgeoning damage on a failed save, or half as much damage on a successful one.",
-				"When an avalanche stops, the snow settles and buries creatures in it. A creature buried in this way is {@condition blinded} and {@condition restrained} and has {@quickref Cover||3||total cover}. The creature gains one level of {@condition exhaustion} for every 5 minutes it spends buried in the snow. It can try to dig itself free as an action, breaking the surface and ending the blinded and restrained conditions on itself with a successful {@dc 15} Strength ({@skill Athletics}) check. A creature that fails this check three times can't attempt to dig itself out again.",
+				"When an avalanche stops, the snow settles and buries creatures in it. A creature buried in this way is {@condition blinded} and {@condition apresado} and has {@quickref Cover||3||total cover}. The creature gains one level of {@condition cansancio} for every 5 minutes it spends buried in the snow. It can try to dig itself free as an action, breaking the surface and ending the blinded and restrained conditions on itself with a successful {@dc 15} Strength ({@skill Athletics}) check. A creature that fails this check three times can't attempt to dig itself out again.",
 				"A creature that is not restrained or {@condition incapacitated} can spend 1 minute freeing another creature buried in the snow. Once free, that creature is no longer blinded or restrained by the avalanche."
 			]
 		},
@@ -1577,8 +1577,8 @@
 			"entries": [
 				"A typical avalanche (or rockslide) is 300 feet wide, 150 feet long, and 30 feet thick. Creatures in the path of an avalanche can avoid it or escape it if they're close to its edge, but outrunning one is almost impossible.",
 				"When an avalanche occurs, all nearby creatures must roll initiative. Twice each round, on initiative counts 10 and 0, the avalanche travels 300 feet until it can travel no more. When an avalanche moves, any creature in its space moves along with it and falls {@condition prone}, and the creature must make a {@dc 15} Strength saving throw, taking {@damage 1d10} bludgeoning damage on a failed save, or half as much damage on a successful one.",
-				"When an avalanche stops, the snow and other debris settle and bury creatures. A creature buried in this way is {@condition blinded} and {@condition restrained}, and it has {@quickref Cover||3||total cover}. The creature gains 1 level of {@condition exhaustion} for every 5 minutes it spends buried. It can try to dig itself free as an action, breaking the surface and ending the {@condition blinded} and {@condition restrained} conditions on itself with a successful {@dc 15} Strength ({@skill Athletics}) check. A creature that fails this check three times can't attempt to dig itself out again.",
-				"A creature that is not {@condition restrained} or {@condition incapacitated} can spend 1 minute freeing a buried creature. Once free, that creature is no longer {@condition blinded} or {@condition restrained} by the avalanche."
+				"When an avalanche stops, the snow and other debris settle and bury creatures. A creature buried in this way is {@condition blinded} and {@condition apresado}, and it has {@quickref Cover||3||total cover}. The creature gains 1 level of {@condition cansancio} for every 5 minutes it spends buried. It can try to dig itself free as an action, breaking the surface and ending the {@condition blinded} and {@condition apresado} conditions on itself with a successful {@dc 15} Strength ({@skill Athletics}) check. A creature that fails this check three times can't attempt to dig itself out again.",
+				"A creature that is not {@condition apresado} or {@condition incapacitated} can spend 1 minute freeing a buried creature. Once free, that creature is no longer {@condition blinded} or {@condition apresado} by the avalanche."
 			]
 		},
 		{
@@ -1657,7 +1657,7 @@
 			"page": 68,
 			"trapHazType": "ENV",
 			"entries": [
-				"Swimming through deep water (more than 100 feet deep) presents additional challenges because of the water's pressure and cold temperature. After each hour of swimming in deep water, a creature that lacks a Swim Speed must succeed on a {@dc 10} Constitution saving throw or gain 1 {@condition Exhaustion|XPHB} level."
+				"Swimming through deep water (more than 100 feet deep) presents additional challenges because of the water's pressure and cold temperature. After each hour of swimming in deep water, a creature that lacks a Swim Speed must succeed on a {@dc 10} Constitution saving throw or gain 1 {@condition Cansancio|XPHB} level."
 			]
 		},
 		{
@@ -1665,7 +1665,7 @@
 			"source": "XPHB",
 			"page": 365,
 			"entries": [
-				"A creature requires an amount of water per day based on its size, as shown in the Water Needs per Day table. A creature that drinks less than half the required water for a day gains 1 {@condition Exhaustion|XPHB} level at the day's end. {@condition Exhaustion|XPHB} caused by dehydration can't be removed until the creature drinks the full amount of water required for a day.",
+				"A creature requires an amount of water per day based on its size, as shown in the Water Needs per Day table. A creature that drinks less than half the required water for a day gains 1 {@condition Cansancio|XPHB} level at the day's end. {@condition Cansancio|XPHB} caused by dehydration can't be removed until the creature drinks the full amount of water required for a day.",
 				{
 					"type": "table",
 					"caption": "Water Needs per Day",
@@ -1759,7 +1759,7 @@
 						],
 						[
 							"31\u201335",
-							"The target's ears tear free from its head and scurry away; the target is {@condition deafened}."
+							"The target's ears tear free from its head and scurry away; the target is {@condition ensordecido}."
 						],
 						[
 							"36\u201340",
@@ -1811,7 +1811,7 @@
 						],
 						[
 							"96\u201300",
-							"The target grows another head, causing it to have advantage on saving throws against being {@condition charmed}, {@condition frightened}, or {@condition stunned}."
+							"The target grows another head, causing it to have advantage on saving throws against being {@condition charmed}, {@condition asustado}, or {@condition aturdido}."
 						]
 					]
 				}
@@ -1837,7 +1837,7 @@
 			],
 			"trapHazType": "WTH",
 			"entries": [
-				"Whenever the temperature is at or below 0 degrees Fahrenheit, a creature exposed to the cold must succeed on a {@dc 10} Constitution saving throw at the end of each hour or gain one level of {@condition exhaustion}. Creatures with resistance or immunity to cold damage automatically succeed on the saving throw, as do creatures wearing cold weather gear (thick coats, gloves, and the like) and creatures naturally adapted to cold climates."
+				"Whenever the temperature is at or below 0 degrees Fahrenheit, a creature exposed to the cold must succeed on a {@dc 10} Constitution saving throw at the end of each hour or gain one level of {@condition cansancio}. Creatures with resistance or immunity to cold damage automatically succeed on the saving throw, as do creatures wearing cold weather gear (thick coats, gloves, and the like) and creatures naturally adapted to cold climates."
 			]
 		},
 		{
@@ -1846,7 +1846,7 @@
 			"page": 68,
 			"trapHazType": "ENV",
 			"entries": [
-				"When the temperature is 0 degrees Fahrenheit or lower, a creature exposed to the extreme cold must succeed on a {@dc 10} Constitution saving throw at the end of each hour or gain 1 {@condition Exhaustion|XPHB} level. Creatures that have {@variantrule Resistance|XPHB} or {@variantrule Immunity|XPHB} to Cold damage automatically succeed on the save."
+				"When the temperature is 0 degrees Fahrenheit or lower, a creature exposed to the extreme cold must succeed on a {@dc 10} Constitution saving throw at the end of each hour or gain 1 {@condition Cansancio|XPHB} level. Creatures that have {@variantrule Resistance|XPHB} or {@variantrule Immunity|XPHB} to Cold damage automatically succeed on the save."
 			]
 		},
 		{
@@ -1858,7 +1858,7 @@
 			],
 			"trapHazType": "WTH",
 			"entries": [
-				"When the temperature is at or above 100 degrees Fahrenheit, a creature exposed to the heat and without access to drinkable water must succeed on a Constitution saving throw at the end of each hour or gain one level of {@condition exhaustion}. The DC is 5 for the first hour and increases by 1 for each additional hour.",
+				"When the temperature is at or above 100 degrees Fahrenheit, a creature exposed to the heat and without access to drinkable water must succeed on a Constitution saving throw at the end of each hour or gain one level of {@condition cansancio}. The DC is 5 for the first hour and increases by 1 for each additional hour.",
 				"Creatures wearing medium or heavy armor, or who are clad in heavy clothing, have disadvantage on the saving throw. Creatures with resistance or immunity to fire damage automatically succeed on the saving throw, as do creatures naturally adapted to hot climates."
 			]
 		},
@@ -1868,7 +1868,7 @@
 			"page": 68,
 			"trapHazType": "ENV",
 			"entries": [
-				"When the temperature is 100 degrees Fahrenheit or higher, a creature exposed to the extreme heat and without access to drinkable water must succeed on a Constitution saving throw at the end of each hour or gain 1 {@condition Exhaustion|XPHB} level. The DC is 5 for the first hour and increases by 1 for each additional hour. Creatures wearing Medium or Heavy armor have {@variantrule Disadvantage|XPHB} on the save. Creatures that have {@variantrule Resistance|XPHB} or {@variantrule Immunity|XPHB} to Fire damage automatically succeed on the save."
+				"When the temperature is 100 degrees Fahrenheit or higher, a creature exposed to the extreme heat and without access to drinkable water must succeed on a Constitution saving throw at the end of each hour or gain 1 {@condition Cansancio|XPHB} level. The DC is 5 for the first hour and increases by 1 for each additional hour. Creatures wearing Medium or Heavy armor have {@variantrule Disadvantage|XPHB} on the save. Creatures that have {@variantrule Resistance|XPHB} or {@variantrule Immunity|XPHB} to Fire damage automatically succeed on the save."
 			]
 		},
 		{
@@ -1949,7 +1949,7 @@
 			],
 			"trapHazType": "WLD",
 			"entries": [
-				"A creature can be immersed in frigid water for a number of minutes equal to its Constitution score before suffering any ill effects. Each additional minute spent in frigid water requires the creature to succeed on a {@dc 10} Constitution saving throw or gain one level of {@condition exhaustion}. Creatures with resistance or immunity to cold damage automatically succeed on the saving throw, as do creatures that are naturally adapted to living in ice-cold water."
+				"A creature can be immersed in frigid water for a number of minutes equal to its Constitution score before suffering any ill effects. Each additional minute spent in frigid water requires the creature to succeed on a {@dc 10} Constitution saving throw or gain one level of {@condition cansancio}. Creatures with resistance or immunity to cold damage automatically succeed on the saving throw, as do creatures that are naturally adapted to living in ice-cold water."
 			]
 		},
 		{
@@ -1958,7 +1958,7 @@
 			"page": 68,
 			"trapHazType": "ENV",
 			"entries": [
-				"A creature can be immersed in frigid water for a number of minutes equal to its Constitution score before suffering any ill effects. Each additional minute spent in frigid water requires the creature to succeed on a {@dc 10} Constitution saving throw or gain 1 {@condition Exhaustion|XPHB} level. Creatures with {@variantrule Resistance|XPHB} or {@variantrule Immunity|XPHB} to Cold damage automatically succeed on the save, as do creatures that are naturally adapted to living in ice-cold water."
+				"A creature can be immersed in frigid water for a number of minutes equal to its Constitution score before suffering any ill effects. Each additional minute spent in frigid water requires the creature to succeed on a {@dc 10} Constitution saving throw or gain 1 {@condition Cansancio|XPHB} level. Creatures with {@variantrule Resistance|XPHB} or {@variantrule Immunity|XPHB} to Cold damage automatically succeed on the save, as do creatures that are naturally adapted to living in ice-cold water."
 			]
 		},
 		{
@@ -2244,8 +2244,8 @@
 			"source": "XPHB",
 			"page": 371,
 			"entries": [
-				"A creature needs an amount of food per day based on its size, as shown in the Food Needs per Day table. A creature that eats but consumes less than half the required food for a day must succeed on a {@dc 10} Constitution {@variantrule Saving Throw|XPHB|saving throw} or gain 1 {@condition Exhaustion|XPHB} level at the day's end. A creature that eats nothing for 5 days automatically gains 1 {@condition Exhaustion|XPHB} level at the end of the fifth day as well as an additional level at the end of each subsequent day without food.",
-				"{@condition Exhaustion|XPHB} caused by malnutrition can't be removed until the creature eats the full amount of food required for a day.",
+				"A creature needs an amount of food per day based on its size, as shown in the Food Needs per Day table. A creature that eats but consumes less than half the required food for a day must succeed on a {@dc 10} Constitution {@variantrule Saving Throw|XPHB|saving throw} or gain 1 {@condition Cansancio|XPHB} level at the day's end. A creature that eats nothing for 5 days automatically gains 1 {@condition Cansancio|XPHB} level at the end of the fifth day as well as an additional level at the end of each subsequent day without food.",
+				"{@condition Cansancio|XPHB} caused by malnutrition can't be removed until the creature eats the full amount of food required for a day.",
 				{
 					"type": "table",
 					"caption": "Food Needs per Day",
@@ -2315,7 +2315,7 @@
 					"type": "entries",
 					"name": "Arcadian Vitality",
 					"entries": [
-						"On the plane of {@book Arcadia|XDMG|5|Arcadia} and in regions where its influence is felt, creatures benefit from supernatural vitality, which grants them {@variantrule Immunity|XPHB} the {@condition Frightened|XPHB} and {@condition Envenenado|XPHB} conditions."
+						"On the plane of {@book Arcadia|XDMG|5|Arcadia} and in regions where its influence is felt, creatures benefit from supernatural vitality, which grants them {@variantrule Immunity|XPHB} the {@condition Asustado|XPHB} and {@condition Envenenado|XPHB} conditions."
 					]
 				},
 				{
@@ -2336,7 +2336,7 @@
 					"type": "entries",
 					"name": "Winds of Pandemonium",
 					"entries": [
-						"The winds of {@book Pandemonium|XDMG|5|Pandemonium} are common in Pandemonium and regions where its influence is felt, including parts of the Underdark. A creature makes a {@dc 10} Wisdom saving throw after each hour spent among the howling winds. On a failed save, the creature gains 1 {@condition Exhaustion|XPHB} level. The winds can't increase a creature's {@condition Exhaustion|XPHB} level above 3. Finishing a Long Rest doesn't reduce a creature's Exhaustion level unless the creature can somehow escape the winds."
+						"The winds of {@book Pandemonium|XDMG|5|Pandemonium} are common in Pandemonium and regions where its influence is felt, including parts of the Underdark. A creature makes a {@dc 10} Wisdom saving throw after each hour spent among the howling winds. On a failed save, the creature gains 1 {@condition Cansancio|XPHB} level. The winds can't increase a creature's {@condition Cansancio|XPHB} level above 3. Finishing a Long Rest doesn't reduce a creature's Exhaustion level unless the creature can somehow escape the winds."
 					]
 				}
 			]
@@ -2402,7 +2402,7 @@
 			],
 			"trapHazType": "WLD",
 			"entries": [
-				"A quicksand pit covers the ground in roughly a 10-foot square area and is usually 10 feet deep. When a creature enters the area, it sinks {@dice 1d4+1} feet into the quicksand and becomes {@condition restrained}. At the start of each of the creature's turns, it sinks another {@dice 1d4} feet. As long as the creature isn't completely submerged in quicksand, it can escape by using its action and succeeding on a Strength check. The DC is 10 plus the number of feet the creature has sunk into the quicksand. A creature that is completely submerged in quicksand can't breathe (see the {@book suffocation|phb|8|suffocating} rules in the {@i Player's Handbook}).",
+				"A quicksand pit covers the ground in roughly a 10-foot square area and is usually 10 feet deep. When a creature enters the area, it sinks {@dice 1d4+1} feet into the quicksand and becomes {@condition apresado}. At the start of each of the creature's turns, it sinks another {@dice 1d4} feet. As long as the creature isn't completely submerged in quicksand, it can escape by using its action and succeeding on a Strength check. The DC is 10 plus the number of feet the creature has sunk into the quicksand. A creature that is completely submerged in quicksand can't breathe (see the {@book suffocation|phb|8|suffocating} rules in the {@i Player's Handbook}).",
 				"A creature can pull another creature within its reach out of a quicksand pit by using its action and succeeding on a Strength check. The DC is 5 plus the number of feet the target creature has sunk into the quicksand."
 			]
 		},
@@ -2417,7 +2417,7 @@
 				}
 			],
 			"entries": [
-				"A quicksand pit is 10 feet deep and covers the ground in a 10-foot square. A creature that enters the area sinks {@dice 1d4 + 1} feet into the quicksand and has the {@condition Restrained|XPHB} condition. At the start of each of the creature's turns, it sinks another {@dice 1d4} feet. As long as the creature isn't completely submerged in quicksand, it can take an action to try to escape, doing so with a successful Strength ({@skill Athletics|XPHB}) check ({@dc 10} plus the number of feet the creature has sunk into the quicksand). A creature that is completely submerged in quicksand has {@table Cover|XPHB|Total Cover} and the {@condition Blinded|XPHB} condition and risks suffocation.",
+				"A quicksand pit is 10 feet deep and covers the ground in a 10-foot square. A creature that enters the area sinks {@dice 1d4 + 1} feet into the quicksand and has the {@condition Apresado|XPHB} condition. At the start of each of the creature's turns, it sinks another {@dice 1d4} feet. As long as the creature isn't completely submerged in quicksand, it can take an action to try to escape, doing so with a successful Strength ({@skill Athletics|XPHB}) check ({@dc 10} plus the number of feet the creature has sunk into the quicksand). A creature that is completely submerged in quicksand has {@table Cover|XPHB|Total Cover} and the {@condition Blinded|XPHB} condition and risks suffocation.",
 				"A creature can pull another creature within its reach out of a quicksand pit by taking an action and succeeding on a Strength ({@skill Athletics|XPHB}) check ({@dc 5} plus the number of feet the creature has sunk into the quicksand).",
 				{
 					"type": "entries",
@@ -2515,7 +2515,7 @@
 			],
 			"entries": [
 				"When a rockslide occurs, every creature in its path makes a {@dc 15} Dexterity saving throw. On a failed save, a creature takes 11 ({@damage 2d10}) Bludgeoning damage, has the {@condition Prone|XPHB} condition, and moves with the rockslide. On a successful save, a creature takes half as much damage only.",
-				"When the rockslide stops, its space becomes {@variantrule Difficult Terrain|XPHB}, and all Prone creatures in its space are buried under rocks and debris. A creature buried in this way has the {@condition Restrained|XPHB} condition and has {@table Cover|XPHB|Total Cover}. As an action, a creature can try to crawl out from under the rock pile. If the creature succeeds on a {@dc 15} Strength ({@skill Athletics|XPHB}) check, it is no longer Restrained; instead, it has the {@condition Prone|XPHB} condition and is atop the rock pile. If the check fails, the creature remains buried and gains 1 {@condition Exhaustion|XPHB} level.",
+				"When the rockslide stops, its space becomes {@variantrule Difficult Terrain|XPHB}, and all Prone creatures in its space are buried under rocks and debris. A creature buried in this way has the {@condition Apresado|XPHB} condition and has {@table Cover|XPHB|Total Cover}. As an action, a creature can try to crawl out from under the rock pile. If the creature succeeds on a {@dc 15} Strength ({@skill Athletics|XPHB}) check, it is no longer Restrained; instead, it has the {@condition Prone|XPHB} condition and is atop the rock pile. If the check fails, the creature remains buried and gains 1 {@condition Cansancio|XPHB} level.",
 				"A creature that has neither the Incapacitated nor the Restrained condition can spend 1 minute freeing another creature buried by the rockslide.",
 				{
 					"type": "entries",
@@ -2628,7 +2628,7 @@
 			"source": "XPHB",
 			"page": 376,
 			"entries": [
-				"A creature can hold its breath for a number of minutes equal to 1 plus its Constitution modifier (minimum of 30 seconds) before suffocation begins. When a creature runs out of breath or is choking, it gains 1 {@condition Exhaustion|XPHB} level at the end of each of its turns. When a creature can breathe again, it removes all levels of {@condition Exhaustion|XPHB} it gained from suffocating."
+				"A creature can hold its breath for a number of minutes equal to 1 plus its Constitution modifier (minimum of 30 seconds) before suffocation begins. When a creature runs out of breath or is choking, it gains 1 {@condition Cansancio|XPHB} level at the end of each of its turns. When a creature can breathe again, it removes all levels of {@condition Cansancio|XPHB} it gained from suffocating."
 			]
 		},
 		{
@@ -2675,7 +2675,7 @@
 			],
 			"entries": [
 				"Vicious vines are animated by magic. They often cling to doorways, archways, walls, and statuary. Until a vicious vine moves, there's nothing to distinguish it from an inanimate vine.",
-				"Each vicious vine has AC 11; HP 16; and Immunity to Bludgeoning, Piercing, and Psychic damage. When a creature enters a space within 5 feet of the vine for the first time on a turn or starts its turn there, the vine tries to coil around that creature. The target must succeed on a {@dc 12} Dexterity saving throw or have the {@condition Grappled|XPHB} condition (escape {@dc 12}). While Grappled in this way, the target takes 5 ({@damage 1d10}) Necrotic damage from the vine's life-draining thorns at the start of each of the target's turns. The vine can grapple only one creature at a time.",
+				"Each vicious vine has AC 11; HP 16; and Immunity to Bludgeoning, Piercing, and Psychic damage. When a creature enters a space within 5 feet of the vine for the first time on a turn or starts its turn there, the vine tries to coil around that creature. The target must succeed on a {@dc 12} Dexterity saving throw or have the {@condition Agarrado|XPHB} condition (escape {@dc 12}). While Grappled in this way, the target takes 5 ({@damage 1d10}) Necrotic damage from the vine's life-draining thorns at the start of each of the target's turns. The vine can grapple only one creature at a time.",
 				"As an {@action Influence|XPHB} action, a character under the effect of a {@spell Speak with Plants|XPHB} spell or similar magic can try to persuade the vine to release its victim, doing so with a successful {@dc 10} Charisma ({@skill Persuasion|XPHB}) check. A creature released by the vine in this way won't be attacked by that vine again for the next 24 hours.",
 				{
 					"type": "entries",
@@ -2724,7 +2724,7 @@
 				"Webs|XDMG"
 			],
 			"entries": [
-				"Giant spiders weave thick, sticky webs across passages and at the bottom of pits to snare prey. These web-filled areas are {@quickref difficult terrain||3}. Moreover, a creature entering a webbed area for the first time on a turn or starting its turn there must succeed on a {@dc 12} Dexterity saving throw or become {@condition restrained} by the webs. A {@condition restrained} creature can use its action to try to escape, doing so with a successful {@dc 12} Strength ({@skill Athletics}) or Dexterity ({@skill Acrobatics}) check.",
+				"Giant spiders weave thick, sticky webs across passages and at the bottom of pits to snare prey. These web-filled areas are {@quickref difficult terrain||3}. Moreover, a creature entering a webbed area for the first time on a turn or starting its turn there must succeed on a {@dc 12} Dexterity saving throw or become {@condition apresado} by the webs. A {@condition apresado} creature can use its action to try to escape, doing so with a successful {@dc 12} Strength ({@skill Athletics}) or Dexterity ({@skill Acrobatics}) check.",
 				"Each 10-foot cube of giant webs has AC 10, 15 hit points, vulnerability to fire, and immunity to bludgeoning, piercing, and psychic damage."
 			]
 		},
@@ -2740,7 +2740,7 @@
 			],
 			"entries": [
 				"Giant spiders weave thick, sticky webs across passages and at the bottom of pits to snare prey. These web-filled areas are {@variantrule Difficult Terrain|XPHB}.",
-				"A creature that enters a web-filled area for the first time on a turn or starts its turn there must succeed on a {@dc 12} Dexterity saving throw or have the {@condition Restrained|XPHB} condition. As an action, a creature Restrained by the webs can try to escape from them, doing so with a successful {@dc 12} Strength ({@skill Athletics|XPHB}) or Dexterity ({@skill Acrobatics|XPHB}) check.",
+				"A creature that enters a web-filled area for the first time on a turn or starts its turn there must succeed on a {@dc 12} Dexterity saving throw or have the {@condition Apresado|XPHB} condition. As an action, a creature Restrained by the webs can try to escape from them, doing so with a successful {@dc 12} Strength ({@skill Athletics|XPHB}) or Dexterity ({@skill Acrobatics|XPHB}) check.",
 				"Each 10-foot {@variantrule Cube [Area of Effect]|XPHB|Cube} of webs has AC 10; HP 15; Vulnerability to Fire damage; and Immunity to Piercing, Poison, and Psychic damage."
 			],
 			"hasFluffImages": true
@@ -2752,7 +2752,7 @@
 			"trapHazType": "ENV",
 			"entries": [
 				"A past magical disaster or uncontrolled surge of power in a particular place can cause the fabric of magic to unravel, creating a wild magic zone. In such an area, which is typically no more than 300 feet in diameter, magic behaves unpredictably.",
-				"Whenever a creature expends a spell slot to cast a spell in a wild magic zone, roll {@dice 1d20}. If you roll a 20 on the die, roll on the {@table Wild Magic Surge|XPHB} table in the {@book Player's Handbook|XPHB} to create a magical effect."
+				"Whenever a creature expends a spell slot to cast a spell in a wild magic zone, roll {@dice 1d20}. If you roll a 20 on the die, roll on the {@table Sobrecarga de magia salvaje|XPHB} table in the {@book Player's Handbook|XPHB} to create a magical effect."
 			]
 		},
 		{

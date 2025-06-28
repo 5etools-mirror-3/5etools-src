@@ -403,7 +403,7 @@ class _RenderClassesSidebarImplOne extends _RenderClassesSidebarImplBase {
 		const ele = e_({
 			tag: "tr",
 			html: `<td colspan="6" class="cls-side__section">
-				<h5 class="cls-side__section-head">Core Traits</h5>
+				<h5 class="cls-side__section-head">Atributos básicos</h5>
 				${pts}
 			</td>`,
 		});

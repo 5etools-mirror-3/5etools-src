@@ -200,7 +200,7 @@ class GenericDataCheck extends DataTesterBase {
 	static _testAdditionalSpells_testSpellExists (file, spellOrObj) {
 		if (typeof spellOrObj === "object") {
 			if (spellOrObj.choose != null || spellOrObj.all != null) {
-				// e.g. "level=0|class=Sorcerer"
+				// e.g. "level=0|class=Hechicero"
 				return;
 			}
 

@@ -401,7 +401,7 @@ export class ConverterSpell extends ConverterBase {
 			case "month":
 			case "year":
 			case "hour":
-			case "minute":
+			case "minuto":
 			case "action":
 			case "round":
 			case "reaction": return unit;
@@ -514,7 +514,7 @@ export class ConverterSpell extends ConverterBase {
 	static _setCleanDuration (stats, line, options) {
 		const {durStr, condition} = this._setCleanDuration_getInput({line, options});
 
-		if (durStr.toLowerCase() === "instantaneous") return stats.duration = this._setCleanDurationn_getOutput({duration: [{type: "instant"}], condition});
+		if (durStr.toLowerCase() === "instantáneo") return stats.duration = this._setCleanDurationn_getOutput({duration: [{type: "instant"}], condition});
 		if (durStr.toLowerCase() === "special") return stats.duration = this._setCleanDurationn_getOutput({duration: [{type: "special"}], condition});
 		if (durStr.toLowerCase() === "permanent") return stats.duration = this._setCleanDurationn_getOutput({duration: [{type: "permanent"}], condition});
 
@@ -594,8 +594,8 @@ export class ConverterSpell extends ConverterBase {
 					case "paladins": tgt.push({"name": "Paladin", "source": "PHB"}); break;
 					case "ranger":
 					case "rangers": tgt.push({"name": "Ranger", "source": "PHB"}); break;
-					case "sorcerer":
-					case "sorcerers": tgt.push({"name": "Sorcerer", "source": "PHB"}); break;
+					case "hechicero":
+					case "hechiceros": tgt.push({"name": "Hechicero", "source": "PHB"}); break;
 					case "warlock":
 					case "warlocks": tgt.push({"name": "Warlock", "source": "PHB"}); break;
 					case "wizard":

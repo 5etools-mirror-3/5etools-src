@@ -726,7 +726,7 @@ export class TableTag {
 
 	static _fnTag (strMod) {
 		return strMod
-			.replace(/Wild Magic Surge table/g, `{@table Wild Magic Surge|PHB} table`)
+			.replace(/Sobrecarga de magia salvaje table/g, `{@table Sobrecarga de magia salvaje|PHB} table`)
 		;
 	}
 }

@@ -1915,7 +1915,7 @@
 				"amount": 1
 			},
 			"entries": [
-				"Starting at 5th level, you can interfere with the flow of ki in an opponent's body. When you hit another creature with a melee weapon attack, you can spend 1 ki point to attempt a stunning strike. The target must succeed on a Constitution saving throw or be {@condition stunned} until the end of your next turn."
+				"Starting at 5th level, you can interfere with the flow of ki in an opponent's body. When you hit another creature with a melee weapon attack, you can spend 1 ki point to attempt a stunning strike. The target must succeed on a Constitution saving throw or be {@condition aturdido} until the end of your next turn."
 			]
 		},
 		{
@@ -1963,7 +1963,7 @@
 			"classSource": "PHB",
 			"level": 7,
 			"entries": [
-				"Starting at 7th level, you can use your action to end one effect on yourself that is causing you to be {@condition charmed} or {@condition frightened}."
+				"Starting at 7th level, you can use your action to end one effect on yourself that is causing you to be {@condition charmed} or {@condition asustado}."
 			]
 		},
 		{
@@ -2422,7 +2422,7 @@
 				"name": "Focus Point"
 			},
 			"entries": [
-				"Once per turn when you hit a creature with a Monk weapon or an {@variantrule Unarmed Strike|XPHB}, you can expend 1 Focus Point to attempt a stunning strike. The target must make a Constitution saving throw. On a failed save, the target has the {@condition Stunned|XPHB} condition until the start of your next turn. On a successful save, the target's {@variantrule Speed|XPHB} is halved until the start of your next turn, and the next attack roll made against the target before then has {@variantrule Advantage|XPHB}."
+				"Once per turn when you hit a creature with a Monk weapon or an {@variantrule Unarmed Strike|XPHB}, you can expend 1 Focus Point to attempt a stunning strike. The target must make a Constitution saving throw. On a failed save, the target has the {@condition Aturdido|XPHB} condition until the start of your next turn. On a successful save, the target's {@variantrule Speed|XPHB} is halved until the start of your next turn, and the next attack roll made against the target before then has {@variantrule Advantage|XPHB}."
 			]
 		},
 		{
@@ -2541,8 +2541,8 @@
 			"classSource": "XPHB",
 			"level": 10,
 			"entries": [
-				"Through sheer force of will, you can remove one of the following conditions from yourself at the end of each of your turns: {@condition Charmed|XPHB}, {@condition Frightened|XPHB}, or {@condition Envenenado|XPHB}.",
-				"In addition, forgoing food and drink doesn't give you levels of {@condition Exhaustion|XPHB}."
+				"Through sheer force of will, you can remove one of the following conditions from yourself at the end of each of your turns: {@condition Hechizado|XPHB}, {@condition Asustado|XPHB}, or {@condition Envenenado|XPHB}.",
+				"In addition, forgoing food and drink doesn't give you levels of {@condition Cansancio|XPHB}."
 			]
 		},
 		{
@@ -2834,7 +2834,7 @@
 						{
 							"type": "item",
 							"name": "Frightful Presence",
-							"entry": "When you create this aura, and as a bonus action on subsequent turns, you can choose a creature within the aura. The target must succeed on a Wisdom saving throw against your ki save DC or become {@condition frightened} of you for 1 minute. The target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a successful save."
+							"entry": "When you create this aura, and as a bonus action on subsequent turns, you can choose a creature within the aura. The target must succeed on a Wisdom saving throw against your ki save DC or become {@condition asustado} of you for 1 minute. The target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a successful save."
 						},
 						{
 							"type": "item",
@@ -3314,7 +3314,7 @@
 			"level": 6,
 			"header": 2,
 			"entries": [
-				"At 6th level, you gain the ability to unsettle or terrify those around you as an action, for your soul has been touched by the shadow of death. When you take this action, each creature within 30 feet of you that can see you must succeed on a Wisdom saving throw or be {@condition frightened} of you until the end of your next turn."
+				"At 6th level, you gain the ability to unsettle or terrify those around you as an action, for your soul has been touched by the shadow of death. When you take this action, each creature within 30 feet of you that can see you must succeed on a Wisdom saving throw or be {@condition asustado} of you until the end of your next turn."
 			]
 		},
 		{
@@ -3653,7 +3653,7 @@
 			"entries": [
 				"{@i 6th-level Way of Mercy feature}",
 				"You can administer even greater cures with a touch, and if you feel it's necessary, you can use your knowledge to cause harm.",
-				"When you use Hand of Healing on a creature, you can also end one disease or one of the following conditions affecting the creature: {@condition blinded}, {@condition deafened}, {@condition paralyzed}, {@condition poisoned}, or {@condition stunned}.",
+				"When you use Hand of Healing on a creature, you can also end one disease or one of the following conditions affecting the creature: {@condition blinded}, {@condition ensordecido}, {@condition paralizado}, {@condition poisoned}, or {@condition aturdido}.",
 				"When you use Hand of Harm on a creature, you can subject that creature to the {@condition poisoned} condition until the end of your next turn."
 			]
 		},
@@ -3689,7 +3689,7 @@
 			},
 			"entries": [
 				"{@i 17th-level Way of Mercy feature}",
-				"Your mastery of life energy opens the door to the ultimate mercy. As an action, you can touch the corpse of a creature that died within the past 24 hours and expend 5 ki points. The creature then returns to life, regaining a number of hit points equal to {@dice 4d10} + your Wisdom modifier. If the creature died while subject to any of the following conditions, it revives with them removed: {@condition blinded}, {@condition deafened}, {@condition paralyzed}, {@condition poisoned}, and {@condition stunned}.",
+				"Your mastery of life energy opens the door to the ultimate mercy. As an action, you can touch the corpse of a creature that died within the past 24 hours and expend 5 ki points. The creature then returns to life, regaining a number of hit points equal to {@dice 4d10} + your Wisdom modifier. If the creature died while subject to any of the following conditions, it revives with them removed: {@condition blinded}, {@condition ensordecido}, {@condition paralizado}, {@condition poisoned}, and {@condition aturdido}.",
 				"Once you use this feature, you can't use it again until you finish a long rest."
 			]
 		},
@@ -4235,7 +4235,7 @@
 			"subclassSource": "XPHB",
 			"level": 3,
 			"entries": [
-				"You know the {@spell Elementalism|XPHB} spell. Wisdom is your spellcasting ability for it."
+				"You know the {@spell Elementalismo|XPHB} spell. Wisdom is your spellcasting ability for it."
 			]
 		},
 		{
@@ -4428,7 +4428,7 @@
 							"type": "entries",
 							"name": "Hand of Healing",
 							"entries": [
-								"When you use Hand of Healing, you can also end one of the following conditions on the creature you heal: {@condition Blinded|XPHB}, {@condition Deafened|XPHB}, {@condition Paralyzed|XPHB}, {@condition Envenenado|XPHB}, or {@condition Stunned|XPHB}."
+								"When you use Hand of Healing, you can also end one of the following conditions on the creature you heal: {@condition Blinded|XPHB}, {@condition Ensordecido|XPHB}, {@condition Paralizado|XPHB}, {@condition Envenenado|XPHB}, or {@condition Aturdido|XPHB}."
 							]
 						}
 					]
@@ -4466,7 +4466,7 @@
 				"amount": 5
 			},
 			"entries": [
-				"Your mastery of life energy opens the door to the ultimate mercy. As a {@action Magic|XPHB} action, you can touch the corpse of a creature that died within the past 24 hours and expend 5 Focus Points. The creature then returns to life with a number of {@variantrule Hit Points|XPHB} equal to {@dice 4d10} plus your Wisdom modifier. If the creature died with any of the following conditions, the creature revives with the conditions removed: {@condition Blinded|XPHB}, {@condition Deafened|XPHB}, {@condition Paralyzed|XPHB}, {@condition Envenenado|XPHB}, and {@condition Stunned|XPHB}.",
+				"Your mastery of life energy opens the door to the ultimate mercy. As a {@action Magic|XPHB} action, you can touch the corpse of a creature that died within the past 24 hours and expend 5 Focus Points. The creature then returns to life with a number of {@variantrule Hit Points|XPHB} equal to {@dice 4d10} plus your Wisdom modifier. If the creature died with any of the following conditions, the creature revives with the conditions removed: {@condition Blinded|XPHB}, {@condition Ensordecido|XPHB}, {@condition Paralizado|XPHB}, {@condition Envenenado|XPHB}, and {@condition Aturdido|XPHB}.",
 				"Once you use this feature, you can't use it again until you finish a {@variantrule Long Rest|XPHB}."
 			]
 		},
@@ -4665,7 +4665,7 @@
 			"level": 3,
 			"header": 2,
 			"entries": [
-				"You know the {@spell Minor Illusion|XPHB} spell. Wisdom is your spellcasting ability for it."
+				"You know the {@spell Ilusión menor|XPHB} spell. Wisdom is your spellcasting ability for it."
 			]
 		},
 		{

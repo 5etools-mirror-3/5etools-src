@@ -39,7 +39,7 @@ class SpellsSublistManager extends SublistManager {
 	pGetSublistItem (spell, hash) {
 		const school = Parser.spSchoolAndSubschoolsAbvsShort(spell.school, spell.subschools);
 		const time = PageFilterSpells.getTblTimeStr(spell.time[0]);
-		const concentration = spell._isConc ? "×" : "";
+		const concentration = spell._isConc ? "C" : "";
 		const range = Parser.spRangeToFull(spell.range, {isDisplaySelfArea: true});
 
 		const cellsText = [
@@ -311,7 +311,7 @@ class SpellsPage extends ListPageMultiSource {
 		const source = Parser.sourceJsonToAbv(spell.source);
 		const time = PageFilterSpells.getTblTimeStr(spell.time[0]);
 		const school = Parser.spSchoolAndSubschoolsAbvsShort(spell.school, spell.subschools);
-		const concentration = spell._isConc ? "×" : "";
+		const concentration = `${spell._isConc ? "C" : ""} ${spell.meta && spell.meta.ritual ? "R" : ""} ${spell.components.m && spell.components.m.cost > 0 ? "M" : ""}`;
 		const range = Parser.spRangeToFull(spell.range, {isDisplaySelfArea: true});
 
 		const eleLi = e_({

@@ -1554,7 +1554,7 @@ class ListPage {
 		// endregion
 
 		if (dispPageTagline) {
-			dispPageTagline.innerHTML += ` Press J/K to navigate${isPreviewable ? `, M to expand` : ""}.`;
+			// dispPageTagline.innerHTML += ` Press J/K to navigate${isPreviewable ? `, M to expand` : ""}.`;
 			this._initList_bindWindowHandlers();
 		}
 

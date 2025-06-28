@@ -276,7 +276,7 @@ export class TagCondition extends ConverterTaggerInitializable {
 
 				if (styleHint === SITE_STYLE__CLASSIC) return `{@status ${name}}`;
 
-				if (name === "surprised") return `{@status ${name}|${Parser.SRC_XPHB}}`; // Surprised is never capitalized
+				if (name === "sorpresa") return `{@status ${name}|${Parser.SRC_XPHB}}`; // Surprised is never capitalized
 				return `{@status ${name.toTitleCase()}|${Parser.SRC_XPHB}}`;
 			})
 			.replace(this._STATUS_MATCHER_ALT, (...m) => {

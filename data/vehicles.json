@@ -68,7 +68,7 @@
 						[
 							"5",
 							"Each extended claw makes the following melee weapon attack: {@hit 8} to hit, reach 5 ft., one target. {@h} 7 ({@damage 2d6}) bludgeoning damage.",
-							"Each extended claw makes the following melee weapon attack: {@hit 8} to hit, reach 5 ft., one target. {@h} The target is {@condition grappled} (escape {@dc 15})."
+							"Each extended claw makes the following melee weapon attack: {@hit 8} to hit, reach 5 ft., one target. {@h} The target is {@condition agarrado} (escape {@dc 15})."
 						],
 						[
 							"6",
@@ -166,7 +166,7 @@
 						[
 							"5",
 							"Each extended claw makes the following melee attack: {@hit 8} to hit, reach 5 ft. {@h}7 ({@damage 2d6}) Bludgeoning damage.",
-							"Each extended claw makes the following melee attack: {@hit 8} to hit, reach 5 ft. {@h}The target has the {@condition Grappled|XPHB} condition (escape {@dc 15})."
+							"Each extended claw makes the following melee attack: {@hit 8} to hit, reach 5 ft. {@h}The target has the {@condition Agarrado|XPHB} condition (escape {@dc 15})."
 						],
 						[
 							"6",
@@ -276,16 +276,16 @@
 			"conditionImmune": [
 				"blinded",
 				"charmed",
-				"deafened",
-				"exhaustion",
-				"frightened",
+				"ensordecido",
+				"cansancio",
+				"asustado",
 				"incapacitated",
-				"paralyzed",
-				"petrified",
+				"paralizado",
+				"petrificado",
 				"poisoned",
 				"prone",
-				"stunned",
-				"unconscious"
+				"aturdido",
+				"inconsciente"
 			],
 			"hull": {
 				"ac": 15,
@@ -341,7 +341,7 @@
 					"ac": 15,
 					"hp": 50,
 					"entries": [
-						"{@atk rw} {@hit 8} to hit, range 120/480 ft., one target. {@h}11 ({@damage 2d10}) piercing damage, and the target is {@condition grappled} (escape {@dc 16}). Until the grapple ends, the target's speed is halved, and it can't move farther away from the battle balloon. Each of the battle balloon's harpoon guns can grapple one target. While it has one or more targets {@condition grappled} with its harpoon gun attack, the battle balloon's speed is not halved."
+						"{@atk rw} {@hit 8} to hit, range 120/480 ft., one target. {@h}11 ({@damage 2d10}) piercing damage, and the target is {@condition agarrado} (escape {@dc 16}). Until the grapple ends, the target's speed is halved, and it can't move farther away from the battle balloon. Each of the battle balloon's harpoon guns can grapple one target. While it has one or more targets {@condition agarrado} with its harpoon gun attack, the battle balloon's speed is not halved."
 					]
 				}
 			],
@@ -375,7 +375,7 @@
 						{
 							"type": "item",
 							"name": "Harpoon Haul",
-							"entry": "The battle balloon can pull each target {@condition grappled} by it up to 30 feet toward the battle balloon."
+							"entry": "The battle balloon can pull each target {@condition agarrado} by it up to 30 feet toward the battle balloon."
 						}
 					]
 				}
@@ -594,13 +594,13 @@
 			"conditionImmune": [
 				"blinded",
 				"charmed",
-				"deafened",
-				"frightened",
-				"paralyzed",
-				"petrified",
+				"ensordecido",
+				"asustado",
+				"paralizado",
+				"petrificado",
 				"poisoned",
-				"stunned",
-				"unconscious"
+				"aturdido",
+				"inconsciente"
 			],
 			"trait": [
 				{
@@ -684,17 +684,17 @@
 			"conditionImmune": [
 				"blinded",
 				"charmed",
-				"deafened",
-				"frightened",
-				"paralyzed",
-				"petrified",
+				"ensordecido",
+				"asustado",
+				"paralizado",
+				"petrificado",
 				"poisoned",
-				"stunned",
-				"unconscious"
+				"aturdido",
+				"inconsciente"
 			],
 			"trait": [
 				{
-					"name": "Jump",
+					"name": "Salto",
 					"entries": [
 						"If the Devil's Ride moves at least 30 feet in a straight line, it can clear a distance of up to 60 feet when jumping over a chasm, ravine, or other gap. Each foot it clears on the jump costs a foot of movement."
 					]
@@ -852,16 +852,16 @@
 			"conditionImmune": [
 				"blinded",
 				"charmed",
-				"deafened",
-				"exhaustion",
-				"frightened",
+				"ensordecido",
+				"cansancio",
+				"asustado",
 				"incapacitated",
-				"paralyzed",
-				"petrified",
+				"paralizado",
+				"petrificado",
 				"poisoned",
 				"prone",
-				"stunned",
-				"unconscious"
+				"aturdido",
+				"inconsciente"
 			],
 			"hull": {
 				"ac": 15,
@@ -1116,16 +1116,16 @@
 			"conditionImmune": [
 				"blinded",
 				"charmed",
-				"deafened",
-				"exhaustion",
-				"frightened",
+				"ensordecido",
+				"cansancio",
+				"asustado",
 				"incapacitated",
-				"paralyzed",
-				"petrified",
+				"paralizado",
+				"petrificado",
 				"poisoned",
 				"prone",
-				"stunned",
-				"unconscious"
+				"aturdido",
+				"inconsciente"
 			],
 			"hull": {
 				"ac": 15,
@@ -1390,16 +1390,16 @@
 			"conditionImmune": [
 				"blinded",
 				"charmed",
-				"deafened",
-				"exhaustion",
-				"frightened",
+				"ensordecido",
+				"cansancio",
+				"asustado",
 				"incapacitated",
-				"paralyzed",
-				"petrified",
+				"paralizado",
+				"petrificado",
 				"poisoned",
 				"prone",
-				"stunned",
-				"unconscious"
+				"aturdido",
+				"inconsciente"
 			],
 			"hull": {
 				"ac": 15,
@@ -1501,16 +1501,16 @@
 			"conditionImmune": [
 				"blinded",
 				"charmed",
-				"deafened",
-				"exhaustion",
-				"frightened",
+				"ensordecido",
+				"cansancio",
+				"asustado",
 				"incapacitated",
-				"paralyzed",
-				"petrified",
+				"paralizado",
+				"petrificado",
 				"poisoned",
 				"prone",
-				"stunned",
-				"unconscious"
+				"aturdido",
+				"inconsciente"
 			],
 			"hull": {
 				"ac": 18,
@@ -1568,7 +1568,7 @@
 								{
 									"type": "item",
 									"name": "Paralyzing Ray",
-									"entry": "The targeted creature must succeed on a {@dc 15} Constitution saving throw or be {@condition paralyzed} for 1 minute. The target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+									"entry": "The targeted creature must succeed on a {@dc 15} Constitution saving throw or be {@condition paralizado} for 1 minute. The target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
 								}
 							]
 						}
@@ -1700,7 +1700,7 @@
 						{
 							"name": "Grappling Tentacles",
 							"entries": [
-								"{@atk mw} {@hit 8} to hit, reach 30 ft., one Huge or Gargantuan target. {@h}22 ({@damage 4d10}) bludgeoning damage, and the nautiloid's speed becomes 0 until its spelljammer uses an action to release the target. If the target is a creature, it is {@condition grappled} (escape {@dc 16}). If the target is another ship, the target's speed becomes 0 until the nautiloid releases it, or until the target or the nautiloid drops to 0 hit points."
+								"{@atk mw} {@hit 8} to hit, reach 30 ft., one Huge or Gargantuan target. {@h}22 ({@damage 4d10}) bludgeoning damage, and the nautiloid's speed becomes 0 until its spelljammer uses an action to release the target. If the target is a creature, it is {@condition agarrado} (escape {@dc 16}). If the target is another ship, the target's speed becomes 0 until the nautiloid releases it, or until the target or the nautiloid drops to 0 hit points."
 							]
 						},
 						{
@@ -1869,16 +1869,16 @@
 			"conditionImmune": [
 				"blinded",
 				"charmed",
-				"deafened",
-				"exhaustion",
-				"frightened",
+				"ensordecido",
+				"cansancio",
+				"asustado",
 				"incapacitated",
-				"paralyzed",
-				"petrified",
+				"paralizado",
+				"petrificado",
 				"poisoned",
 				"prone",
-				"stunned",
-				"unconscious"
+				"aturdido",
+				"inconsciente"
 			],
 			"hull": {
 				"ac": 11,
@@ -1952,16 +1952,16 @@
 			"conditionImmune": [
 				"blinded",
 				"charmed",
-				"deafened",
-				"exhaustion",
-				"frightened",
+				"ensordecido",
+				"cansancio",
+				"asustado",
 				"incapacitated",
-				"paralyzed",
-				"petrified",
+				"paralizado",
+				"petrificado",
 				"poisoned",
 				"prone",
-				"stunned",
-				"unconscious"
+				"aturdido",
+				"inconsciente"
 			],
 			"hull": {
 				"ac": 15,
@@ -2079,13 +2079,13 @@
 			"conditionImmune": [
 				"blinded",
 				"charmed",
-				"deafened",
-				"frightened",
-				"paralyzed",
-				"petrified",
+				"ensordecido",
+				"asustado",
+				"paralizado",
+				"petrificado",
 				"poisoned",
-				"stunned",
-				"unconscious"
+				"aturdido",
+				"inconsciente"
 			],
 			"trait": [
 				{
@@ -2117,7 +2117,7 @@
 				{
 					"name": "Grappling Claw (Requires 1 Crew and Grants Half Cover)",
 					"entries": [
-						"{@atk mw} {@hit 10} to hit, reach 15 ft., one target. {@h}The target is {@condition grappled} (escape {@dc 12}). If the target is a creature, it is {@condition restrained} until the grapple ends. The grappling claw can grapple only one target at a time, and the claw's operator can use a bonus action to make the claw release whatever it's holding."
+						"{@atk mw} {@hit 10} to hit, reach 15 ft., one target. {@h}The target is {@condition agarrado} (escape {@dc 12}). If the target is a creature, it is {@condition apresado} until the grapple ends. The grappling claw can grapple only one target at a time, and the claw's operator can use a bonus action to make the claw release whatever it's holding."
 					]
 				},
 				{
@@ -2207,7 +2207,7 @@
 						{
 							"name": "Claw",
 							"entries": [
-								"{@atk mw} {@hit 3} to hit, reach 20 ft., one target. {@h}11 ({@damage 2d10}) bludgeoning damage. If the target is a Huge or smaller creature, it is also {@condition grappled} (escape {@dc 13}). Until this grapple ends, the creature takes 11 ({@damage 2d10}) bludgeoning damage at the start of each of its turns."
+								"{@atk mw} {@hit 3} to hit, reach 20 ft., one target. {@h}11 ({@damage 2d10}) bludgeoning damage. If the target is a Huge or smaller creature, it is also {@condition agarrado} (escape {@dc 13}). Until this grapple ends, the creature takes 11 ({@damage 2d10}) bludgeoning damage at the start of each of its turns."
 							]
 						}
 					]
@@ -2570,13 +2570,13 @@
 			"conditionImmune": [
 				"blinded",
 				"charmed",
-				"deafened",
-				"exhaustion",
-				"frightened",
-				"paralyzed",
-				"petrified",
+				"ensordecido",
+				"cansancio",
+				"asustado",
+				"paralizado",
+				"petrificado",
 				"poisoned",
-				"unconscious"
+				"inconsciente"
 			],
 			"trait": [
 				{
@@ -2755,13 +2755,13 @@
 			"conditionImmune": [
 				"blinded",
 				"charmed",
-				"deafened",
-				"frightened",
-				"paralyzed",
-				"petrified",
+				"ensordecido",
+				"asustado",
+				"paralizado",
+				"petrificado",
 				"poisoned",
-				"stunned",
-				"unconscious"
+				"aturdido",
+				"inconsciente"
 			],
 			"trait": [
 				{
@@ -2995,13 +2995,13 @@
 			"conditionImmune": [
 				"blinded",
 				"charmed",
-				"deafened",
-				"frightened",
-				"paralyzed",
-				"petrified",
+				"ensordecido",
+				"asustado",
+				"paralizado",
+				"petrificado",
 				"poisoned",
-				"stunned",
-				"unconscious"
+				"aturdido",
+				"inconsciente"
 			],
 			"actionStation": [
 				{
@@ -3055,16 +3055,16 @@
 			"conditionImmune": [
 				"blinded",
 				"charmed",
-				"deafened",
-				"exhaustion",
-				"frightened",
+				"ensordecido",
+				"cansancio",
+				"asustado",
 				"incapacitated",
-				"paralyzed",
-				"petrified",
+				"paralizado",
+				"petrificado",
 				"poisoned",
 				"prone",
-				"stunned",
-				"unconscious"
+				"aturdido",
+				"inconsciente"
 			],
 			"hull": {
 				"ac": 15,
@@ -3332,7 +3332,7 @@
 				"SHP:H"
 			],
 			"entries": [
-				"Crafted with materials harvested from the Shadowfell, this upgrade grants a ship an aura of dread. As an action, the ship can create a pulse of horrific energy. Every creature that is an enemy of the ship who is on board or within 210 feet of it must make {@dc 14} Wisdom saving throw. On a failed save, a creature is {@condition frightened} of the ship for 1 minute. On a successful save, the creature is immune to this ability for 24 hours. Once this ability is used, it can't be used again until {@dice 1d4} hours have passed."
+				"Crafted with materials harvested from the Shadowfell, this upgrade grants a ship an aura of dread. As an action, the ship can create a pulse of horrific energy. Every creature that is an enemy of the ship who is on board or within 210 feet of it must make {@dc 14} Wisdom saving throw. On a failed save, a creature is {@condition asustado} of the ship for 1 minute. On a successful save, the creature is immune to this ability for 24 hours. Once this ability is used, it can't be used again until {@dice 1d4} hours have passed."
 			]
 		},
 		{
@@ -3565,7 +3565,7 @@
 				"SHP:M"
 			],
 			"entries": [
-				"Woven from the energy of captured wraiths and bound with the spirit of a banshee, these sails groan mournfully when they catch the wind. As an action, while within 5 feet of the sails, the ship's captain can cause the sails to unleash a howl. Every creature hostile to the ship who is on board or within 300 feet of it must succeed on a {@dc 14} Wisdom saving throw, or the creature takes {@damage 4d6} psychic damage and is then {@condition frightened} for 1 minute. Once this ability has been used, it can't be used again until {@dice 2d6} hours have passed."
+				"Woven from the energy of captured wraiths and bound with the spirit of a banshee, these sails groan mournfully when they catch the wind. As an action, while within 5 feet of the sails, the ship's captain can cause the sails to unleash a howl. Every creature hostile to the ship who is on board or within 300 feet of it must succeed on a {@dc 14} Wisdom saving throw, or the creature takes {@damage 4d6} psychic damage and is then {@condition asustado} for 1 minute. Once this ability has been used, it can't be used again until {@dice 2d6} hours have passed."
 			]
 		},
 		{

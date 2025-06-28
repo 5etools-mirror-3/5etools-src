@@ -987,6 +987,68 @@
 			]
 		},
 		{
+			"name": "Guerrero bendito",
+			"originalname": "Blessed Warrior",
+			"source": "XPHB",
+			"page": 158,
+			"category": "EC:P",
+			"prerequisite": [
+				{
+					"otherSummary": {
+						"entry": "obtener el rasgo de Paladin nivel 2: \"Estilo de combate\".",
+						"entrySummary": "Paladin nv.2"
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"ability": "car",
+					"known": {
+						"_": [
+							{
+								"choose": "level=0|class=cleric",
+								"count": 2
+							}
+						]
+					}
+				}
+			],
+			"entries": [
+				"Aprendes dos trucos de clérigo de tu elección (consulta la sección de la clase clérigo para ver la lista de conjuros de clérigo). Se recomiendan guía y llama sagrada. Los trucos elegidos cuentan como conjuros de paladín para ti y el Carisma es tu aptitud mágica para lanzarlos. Cada vez que subas un nivel de paladín, puedes sustituir uno de estos trucos por otro truco de clérigo."
+			]
+		},
+		{
+			"name": "Guerrero druídico",
+			"originalname": "Druidic Warrior",
+			"source": "XPHB",
+			"page": 104,
+			"category": "EC:E",
+			"prerequisite": [
+				{
+					"otherSummary": {
+						"entry": "obtener el rasgo de Explorador nivel 2: \"Estilo de combate\".",
+						"entrySummary": "Explorador nv. 2"
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"ability": "sab",
+					"known": {
+						"_": [
+							{
+								"choose": "level=0|class=druid",
+								"count": 2
+							}
+						]
+					}
+				}
+			],
+			"entries": [
+				"Aprendes dos trucos de druida de tu elección (consulta la sección de la clase druida para ver la lista de conjuros de druida). Se recomiendan @{spell Guía|XPHB} y @{spell voluta estelar|XPHB}, Los trucos elegidos cuentan como conjuros de explorador para ti y la Sabiduría es tu aptitud mágica para lanzarlos. Cada vez que subas un nivel de explorador, puedes sustituir uno de estos trucos por otro truco de druida."
+			]
+		},
+		{
 			"name": "Habilidoso",
 			"originalname": "Skilled",
 			"source": "XPHB",
@@ -1410,7 +1472,7 @@
 			"armorProficiencies": [
 				{
 					"light": true,
-					"shield": true
+					"escudo": true
 				}
 			],
 			"entries": [
@@ -2283,7 +2345,7 @@
 					"ability": "inherit",
 					"known": {
 						"_": [
-							"mage hand|xphb#c"
+							"mano de mago|xphb#c"
 						]
 					}
 				}

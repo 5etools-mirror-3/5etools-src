@@ -39,7 +39,7 @@ export class SpellConverterUi extends ConverterUiBase {
 	}
 }
 // region sample
-SpellConverterUi._SAMPLE_TEXT = `Chromatic Orb
+SpellConverterUi._SAMPLE_TEXT = `Orbe cromático
 1st-level evocation
 Casting Time: 1 action
 Range: 90 feet

@@ -6704,17 +6704,17 @@ Renderer.class = class {
 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
 		const [profsArmor, profsOther] = armorProfs
-			.segregate(it => ["light", "medium", "heavy"].includes(it));
+			.segregate(it => ["ligera", "media", "pesada"].includes(it));
 
 		const ptsArmor = profsArmor
-			.map((a, i, arr) => Renderer.get().render(`{@filter ${styleHint === "classic" ? a : a.toTitleCase()}${styleHint === "classic" || i === arr.length - 1 ? " armor" : ""}|items|type=${a} armor}`));
+			.map((a, i, arr) => Renderer.get().render(`{@filter ${i === 0 ? "Armaduras" : ""} ${a}s|items|type=${a} armor}`));
 
 		const ptsOther = profsOther
 			.map(a => {
 				if (a.full) return Renderer.get().render(a.full);
-				if (a === "shield") {
-					if (styleHint === "classic") Renderer.get().render(`{@item shield|PHB|shields}`);
-					return Renderer.get().render(`{@item shield|XPHB|Shields}`);
+				if (a === "escudo") {
+					if (styleHint === "classic") Renderer.get().render(`{@item shield|PHB|escudos}`);
+					return Renderer.get().render(`{@item shield|XPHB|escudos}`);
 				}
 				return Renderer.get().render(a);
 			});
@@ -6728,11 +6728,11 @@ Renderer.class = class {
 		}
 
 		return [
-			ptsArmor.joinConjunct(", ", " and "),
+			ptsArmor.joinConjunct(", ", " y "),
 			...ptsOther,
 		]
 			.filter(Boolean)
-			.joinConjunct(", ", " and ");
+			.joinConjunct(", ", " y ");
 	}
 
 	/**
@@ -6743,10 +6743,10 @@ Renderer.class = class {
 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
 		const [profsSimpleMartial, profsOther] = weaponProfs
-			.segregate(it => ["simple", "martial"].includes(it));
+			.segregate(it => ["sencillas", "marciales"].includes(it));
 
 		const ptsSimpleMartial = profsSimpleMartial
-			.map((w, i, arr) => Renderer.get().render(`{@filter ${styleHint === "classic" ? w : w.toTitleCase()}${styleHint === "classic" || i === arr.length - 1 ? " weapons" : ""}|items|type=${w} weapon}`));
+			.map((w, i, arr) => Renderer.get().render(`{@filter ${styleHint === "classic" ? w : w.toTitleCase()}|items|type=${w} weapon}`));
 
 		const ptsOther = profsOther
 			.map(w => {
@@ -6759,7 +6759,7 @@ Renderer.class = class {
 			...ptsOther,
 		];
 
-		return styleHint === "classic" ? pts.join(", ") : pts.joinConjunct(", ", " and ");
+		return styleHint === "classic" ? pts.join(", ") : pts.joinConjunct(", ", " y ");
 	}
 
 	/**
@@ -6795,7 +6795,7 @@ Renderer.class = class {
 			})
 			.joinConjunct(", ", " o ");
 
-		return `<div><b>Primary Ability:</b> <span>${pts}</span></div>`;
+		return `<div><b>Característica principal:</b> <span>${pts}</span></div>`;
 	}
 
 	static getHtmlPtHitPoints (cls, {renderer = null, styleHint = null}) {
@@ -6804,15 +6804,13 @@ Renderer.class = class {
 		renderer ||= Renderer.get();
 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
-		return `<div><strong>Hit Point Die:</strong> ${renderer.render(Renderer.class.getHitDiceEntry(cls.hd, {styleHint}))} per ${cls.name} level</div>
-		<div><strong>Hit Points at Level 1:</strong> ${Renderer.class.getHitPointsAtFirstLevel(cls.hd, {styleHint})}</div>
-		<div><strong>Hit Points per additional ${cls.name} Level:</strong> ${Renderer.class.getHitPointsAtHigherLevels(cls.name, cls.hd, {styleHint})}</div>`;
+		return `<div><strong>Dado de puntos de golpe:</strong> ${renderer.render(Renderer.class.getHitDiceEntry(cls.hd, {styleHint}))} por nivel de ${cls.name}</div>`;
 	}
 
 	static getHtmlPtSavingThrows (cls) {
 		if (!cls.proficiency) return "";
 
-		return `<div><b>Saving Throw Proficiencies:</b> <span>${cls.proficiency.map(p => Parser.attAbvToFull(p)).join(", ")}</span></div>`;
+		return `<div><b>Competencias en tiradas de salvación:</b> <span>${cls.proficiency.map(p => Parser.attAbvToFull(p)).join(", ")}</span></div>`;
 	}
 
 	static getHtmlPtSkills (cls, {styleHint = null}) {
@@ -6820,7 +6818,7 @@ Renderer.class = class {
 
 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
-		return `<div><b>Skill Proficiencies:</b> <span>${Renderer.class.getRenderedSkillProfs(cls.startingProficiencies.skills, {styleHint})}</span></div>`;
+		return `<div><b>Competencias en habilidades:</b> <span>${Renderer.class.getRenderedSkillProfs(cls.startingProficiencies.skills, {styleHint})}</span></div>`;
 	}
 
 	static getHtmlPtWeaponProficiencies (cls, {styleHint = null}) {
@@ -6828,7 +6826,7 @@ Renderer.class = class {
 
 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
-		return `<div><b>Weapon Proficiencies:</b> <span>${Renderer.class.getRenderedWeaponProfs(cls.startingProficiencies.weapons, {styleHint})}</span></div>`;
+		return `<div><b>Competencias con armas:</b> <span>${Renderer.class.getRenderedWeaponProfs(cls.startingProficiencies.weapons, {styleHint})}</span></div>`;
 	}
 
 	static getHtmlPtToolProficiencies (cls, {styleHint = null}) {
@@ -6844,7 +6842,7 @@ Renderer.class = class {
 
 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
-		return `<div><b>Armor Training:</b> <span>${Renderer.class.getRenderedArmorProfs(cls.startingProficiencies.armor, {styleHint})}</span></div>`;
+		return `<div><b>Entrenamiento con armaduras:</b> <span>${Renderer.class.getRenderedArmorProfs(cls.startingProficiencies.armor, {styleHint})}</span></div>`;
 	}
 
 	static getHtmlPtStartingEquipment (cls, {renderer = null, styleHint = null}) {
@@ -6882,7 +6880,7 @@ Renderer.class = class {
 		return renderer.render({
 			type: "entries",
 			entries: [
-				`{@b Starting Equipment:} ${firstEntry}`,
+				`{@b Equipo inicial:} ${firstEntry}`,
 				...otherEntries,
 			],
 		});
@@ -7170,6 +7168,7 @@ class _RenderCompactSpellsImplBase extends _RenderCompactImplBase {
 		const {
 			htmlPtIsExcluded,
 			htmlPtName,
+			htmlPtOriginalName,
 
 			htmlPtLevelSchoolRitual,
 
@@ -7301,6 +7300,10 @@ Renderer.spell = class {
 	}
 
 	/* -------------------------------------------- */
+		static getHtmlPtOriginalName (spell, {styleHint = null} = {}) {
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+		return `${spell.originalname ? spell.originalname : ""}`;
+	}
 
 	static getHtmlPtLevelSchoolRitual (spell, {styleHint = null} = {}) {
 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
@@ -8008,13 +8011,13 @@ Renderer.optionalfeature = class {
 	static getCostEntry (ent) {
 		if (!ent.consumes?.name) return null;
 
-		const ptPrefix = "Cost: ";
+		const ptPrefix = "Coste: ";
 		const tksUnit = ent.consumes.name
 			.split(" ")
 			.map(it => it.trim())
 			.filter(Boolean);
 		const amtMax = ent.consumes.amountMax ?? ent.consumes.amount;
-		tksUnit.last(tksUnit.last()[amtMax != null && amtMax !== 1 ? "toPlural" : "toString"]());
+		// tksUnit.last(tksUnit.last()[amtMax != null && amtMax !== 1 ? "toPlural" : "toString"]());
 		const ptUnit = ` ${tksUnit.join(" ")}`;
 
 		if (ent.consumes?.amountMin != null && ent.consumes?.amountMax != null) return `{@i ${ptPrefix}${ent.consumes.amountMin}\u2013${ent.consumes.amountMax}${ptUnit}}`;
@@ -9968,17 +9971,17 @@ Renderer.monster = class {
 		// Community-created (legacy)
 		static _LVL_TO_COLOR_TO_SPELLS__UNOFFICIAL = {
 			2: {
-				black: ["darkness", "Melf's acid arrow", "fog cloud", "scorching ray"],
-				green: ["ray of sickness", "charm person", "detect thoughts", "invisibility", "suggestion"],
+				black: ["darkness", "Melf's acid arrow", "Nube de oscurecimiento", "scorching ray"],
+				green: ["Rayo nauseabundo", "charm person", "detect thoughts", "invisibility", "suggestion"],
 				white: ["ice knife|XGE", "Snilloc's snowball swarm|XGE"],
-				brass: ["see invisibility", "magic mouth", "blindness/deafness", "sleep", "detect thoughts"],
-				bronze: ["gust of wind", "misty step", "locate object", "blur", "witch bolt", "thunderwave", "shield"],
-				copper: ["knock", "sleep", "detect thoughts", "blindness/deafness", "tasha's hideous laughter"],
+				brass: ["see invisibility", "magic mouth", "blindness/deafness", "Dormir", "detect thoughts"],
+				bronze: ["gust of wind", "misty step", "locate object", "blur", "witch bolt", "thunderwave", "escudo"],
+				copper: ["knock", "Dormir", "detect thoughts", "blindness/deafness", "tasha's hideous laughter"],
 			},
 			3: {
-				blue: ["wall of sand|XGE", "thunder step|XGE", "lightning bolt", "blink", "magic missile", "slow"],
+				blue: ["wall of sand|XGE", "thunder step|XGE", "lightning bolt", "blink", "Proyectil mágico", "slow"],
 				red: ["fireball", "scorching ray", "haste", "erupting earth|XGE", "Aganazzar's scorcher|XGE"],
-				gold: ["slow", "fireball", "dispel magic", "counterspell", "Aganazzar's scorcher|XGE", "shield"],
+				gold: ["slow", "fireball", "dispel magic", "counterspell", "Aganazzar's scorcher|XGE", "escudo"],
 				silver: ["sleet storm", "protection from energy", "catnap|XGE", "locate object", "identify", "Leomund's tiny hut"],
 			},
 			4: {
@@ -11738,7 +11741,11 @@ Renderer.item = class {
 	}
 
 	static getPropertyOriginalname (ent) {
-		return ent.originalname || (ent.entries || ent.entriesTemplate)[0]?.originalname || "Unknown";
+		return (ent.originalname ||
+			(Array.isArray(ent.entries) && ent.entries[0]?.originalname) ||
+			(Array.isArray(ent.entriesTemplate) && ent.entriesTemplate[0]?.originalname) ||
+			"Unknown"
+		);
 	}
 
 	static _propertyMap = {};
@@ -12417,8 +12424,8 @@ Renderer.item = class {
 				if (item.scfType === "arcane" && item.source !== Parser.SRC_ERLW) {
 					Renderer.item._initFullEntries(item);
 					const wrapped = styleHint === "classic"
-						? "An arcane focus is a special item\u2014an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item\u2014designed to channel the power of arcane spells. A {@class sorcerer}, {@class warlock}, or {@class wizard} can use such an item as a spellcasting focus."
-						: "An Arcane Focus takes a specific form and is bejeweled or carved to channel arcane magic. A {@class Sorcerer|XPHB}, {@class Warlock|XPHB}, or {@class Wizard|XPHB} can use such an item as a {@variantrule Spellcasting Focus|XPHB}.";
+						? "An arcane focus is a special item\u2014an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item\u2014designed to channel the power of arcane spells. A {@class hechicero}, {@class warlock}, or {@class wizard} can use such an item as a spellcasting focus."
+						: "An Arcane Focus takes a specific form and is bejeweled or carved to channel arcane magic. A {@class Hechicero|XPHB}, {@class Warlock|XPHB}, or {@class Wizard|XPHB} can use such an item as a {@variantrule Spellcasting Focus|XPHB}.";
 					item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
 				}
 				if (item.scfType === "druid") {
@@ -12439,8 +12446,8 @@ Renderer.item = class {
 				if (item.scfType === "arcane") {
 					Renderer.item._initFullEntries(item);
 					const wrapped = styleHint === "classic"
-						? "An arcane focus is a special item designed to channel the power of arcane spells. A {@class sorcerer}, {@class warlock}, or {@class wizard} can use such an item as a spellcasting focus."
-						: "An Arcane Focus takes a specific form and is bejeweled or carved to channel arcane magic. A {@class Sorcerer|XPHB}, {@class Warlock|XPHB}, or {@class Wizard|XPHB} can use such an item as a {@variantrule Spellcasting Focus|XPHB}.";
+						? "An arcane focus is a special item designed to channel the power of arcane spells. A {@class hechicero}, {@class warlock}, or {@class wizard} can use such an item as a spellcasting focus."
+						: "An Arcane Focus takes a specific form and is bejeweled or carved to channel arcane magic. A {@class Hechicero|XPHB}, {@class Warlock|XPHB}, or {@class Wizard|XPHB} can use such an item as a {@variantrule Spellcasting Focus|XPHB}.";
 					item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
 				}
 				if (item.scfType === "druid") {
@@ -14765,14 +14772,14 @@ Renderer.generic = class {
 
 				switch (duration.type) {
 					case "special":
-						if (duration.concentration) return `{@status Concentration${ptSrcStatus}}`;
+						if (duration.concentration) return `{@status Concentración${ptSrcStatus}}`;
 						return `Special${ptCondition}`;
 					case "instant":
-						return `Instantaneous${ptCondition}`;
+						return `Instantáneo${ptCondition}`;
 					case "timed":
-						return `${duration.concentration ? `{@status Concentration${ptSrcStatus}}, ` : ""}${duration.concentration ? "u" : duration.duration.upTo ? "U" : ""}${duration.concentration || duration.duration.upTo ? "p to " : ""}${duration.duration.amount} ${duration.duration.amount === 1 ? duration.duration.type : `${duration.duration.type}s`}${ptCondition}`;
+						return `${duration.concentration ? `{@status Concentración${ptSrcStatus}}, ` : ""}${duration.concentration ? "h" : duration.duration.upTo ? "H" : ""}${duration.concentration || duration.duration.upTo ? "asta " : ""}${duration.duration.amount} ${duration.duration.amount === 1 ? duration.duration.type : `${duration.duration.type}s`}${ptCondition}`;
 					case "permanent": {
-						if (!duration.ends) return `Permanent${ptCondition}`;
+						if (!duration.ends) return `Permanente${ptCondition}`;
 
 						const endsToJoin = duration.ends.map(m => Parser.spEndTypeToFull(m));
 						hasSubOr = hasSubOr || endsToJoin.length > 1;

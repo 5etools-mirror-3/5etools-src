@@ -146,7 +146,7 @@ class PageFilterEquipment extends PageFilterBase {
 			if (itemTypeAbv === Parser.ITM_TYP_ABV__SPELLCASTING_FOCUS) {
 				switch (item.scfType) {
 					case "arcane": {
-						if (!item._fFocus.includes("Sorcerer")) item._fFocus.push("Sorcerer");
+						if (!item._fFocus.includes("Hechicero")) item._fFocus.push("Hechicero");
 						if (!item._fFocus.includes("Warlock")) item._fFocus.push("Warlock");
 						if (!item._fFocus.includes("Wizard")) item._fFocus.push("Wizard");
 						break;
