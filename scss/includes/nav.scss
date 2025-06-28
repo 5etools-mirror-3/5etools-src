@@ -12,7 +12,7 @@
 		}
 	}
 
-	@media screen and (width <= #{vars.$width-screen-sm}) {
+	@media screen and (width <= #{vars.$width-screen-md}) {
 		.nav > li > a {
 			border: 1px solid vars.$rgb-border-grey;
 		}
@@ -27,7 +27,11 @@
 			color: vars-night.$rgb-font--night;
 			background-color: vars-night.$rgb-bg--night;
 			border: 1px solid vars-night.$rgb-border-grey--trans-night;
-			border-top: 0;
+			border-top-width: 0;
+
+			@media screen and (width <= #{vars.$width-screen-md}) {
+				border-top-width: 1px;
+			}
 
 			&:focus,
 			&:hover {

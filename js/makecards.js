@@ -630,8 +630,7 @@ class MakeCards extends BaseComponent {
 					// prevent double-binding the return key if we have autocomplete enabled
 					await MiscUtil.pDelay(17); // arbitrary delay to allow dropdown to render (~1000/60, i.e. 1 60 FPS frame)
 					if (eleModalInner.find(`.typeahead.ve-dropdown-menu:is(:visible)`)) return;
-					// return key
-					if (evt.which === 13) doClose(true);
+					if (evt.key === "Enter") doClose(true);
 					evt.stopPropagation();
 				});
 

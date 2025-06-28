@@ -195,7 +195,7 @@ class SublistManager {
 	async _pBindSublistResizeHandlers () {
 		const STORAGE_KEY = "SUBLIST_RESIZE";
 
-		const $handle = $(`<div class="sublist__ele-resize mobile__hidden">...</div>`).appendTo(this._$wrpContainer);
+		const eleHandle = ee`<div class="sublist__ele-resize mobile__hidden">...</div>`.appendTo(this._$wrpContainer[0]);
 
 		let mousePos;
 		const resize = (evt) => {
@@ -206,9 +206,9 @@ class SublistManager {
 			this._$wrpContainer.css("height", parseInt(this._$wrpContainer.css("height")) + dx);
 		};
 
-		$handle
-			.on("mousedown", (evt) => {
-				if (evt.which !== 1) return;
+		eleHandle
+			.onn("mousedown", (evt) => {
+				if (evt.button !== 0) return;
 
 				evt.preventDefault();
 				mousePos = evt.clientY;
@@ -217,7 +217,7 @@ class SublistManager {
 			});
 
 		document.addEventListener("mouseup", evt => {
-			if (evt.which !== 1) return;
+			if (evt.button !== 0) return;
 
 			document.removeEventListener("mousemove", resize);
 			StorageUtil.pSetForPage(STORAGE_KEY, this._$wrpContainer.css("height"));
