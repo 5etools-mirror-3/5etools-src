@@ -47,7 +47,7 @@ class DamageResVulnImmuneTagger extends DamageTagger {
 }
 
 export class DamageResTagger extends DamageResVulnImmuneTagger {
-	static _TYPE = "resistance";
+	static _TYPE = "resistencia";
 	static _PROP = "damageResist";
 }
 

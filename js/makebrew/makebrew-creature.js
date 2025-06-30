@@ -1801,7 +1801,7 @@ export class CreatureBuilder extends BuilderBase {
 	}
 
 	__$getResistInput (cb) {
-		return this.__$getDefensesInput(cb, "Damage Resistances", "Resistance", "resist");
+		return this.__$getDefensesInput(cb, "Damage Resistances", "Resistencia", "resist");
 	}
 
 	__$getImmuneInput (cb) {
