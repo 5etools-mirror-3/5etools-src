@@ -395,7 +395,7 @@ export class AffectedCreatureTypeTagger {
 							.replace(/You attempt to .* a (.+) you can see/g, (...m) => {
 								m[1].replace(AffectedCreatureTypeTagger._RE_TYPES, (...n) => this._doAddType({set: setAffected, type: n[1]}));
 							})
-							// Detect Evil and Good :: PHB
+							// Detectar el bien y el mal :: PHB
 							.replace(/you know if there is an? (.*)/g, (...m) => {
 								m[1].replace(AffectedCreatureTypeTagger._RE_TYPES, (...n) => this._doAddType({set: setAffected, type: n[1]}));
 							})
@@ -419,7 +419,7 @@ export class AffectedCreatureTypeTagger {
 							.replace(/you attempt to bind a (.*)/g, (...m) => {
 								m[1].replace(AffectedCreatureTypeTagger._RE_TYPES, (...n) => this._doAddType({set: setAffected, type: n[1]}));
 							})
-							// Protection from Evil and Good :: PHB
+							// Protección contra el bien y el mal :: PHB
 							.replace(/types of creatures: (.*)/g, (...m) => {
 								m[1].replace(AffectedCreatureTypeTagger._RE_TYPES, (...n) => this._doAddType({set: setAffected, type: n[1]}));
 							})
