@@ -444,7 +444,7 @@ Parser.SKILL_TO_ATB_ABV = {
 	"investigación": "int",
 	"naturaleza": "int",
 	"religión": "int",
-	"trato animal": "sab",
+	"trato con animales": "sab",
 	"perspicacia": "sab",
 	"medicina": "sab",
 	"percepción": "sab",
@@ -469,7 +469,7 @@ Parser.SKILL_TO_SHORT = {
 	"investigación": "invn",
 	"naturaleza": "natr",
 	"religión": "reli",
-	"trato animal": "hndl",
+	"trato con animales": "hndl",
 	"perspicacia": "ins",
 	"medicina": "med",
 	"percepción": "perp",
@@ -2651,7 +2651,7 @@ Parser.spClassesToCurrentAndLegacy = function (fromClassList) {
  * Build a pair of strings; one with all current subclasses, one with all legacy subclasses
  *
  * @param sp a spell
- * @param subclassLookup Data loaded from `generated/gendata-subclass-lookup.json`. Of the form: `{PHB: {Barbarian: {PHB: {Berserker: "Path of the Berserker"}}}}`
+ * @param subclassLookup Data loaded from `generated/gendata-subclass-lookup.json`. Of the form: `{PHB: {Barbarian: {PHB: {Berserker: "Senda del berserker"}}}}`
  * @returns {*[]} A two-element array. First item is a string of all the current subclasses, second item a string of
  * all the legacy/superseded subclasses
  */

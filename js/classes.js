@@ -2241,7 +2241,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 		// Add a placeholder feature to display when no subclasses are active
 		const $trSubclassFeature = $(`<tr class="cls-main__sc-feature" data-subclass-none-message="true"><td colspan="6"></td></tr>`)
-			.fastSetHtml(Renderer.get().withDepthTracker([], ({renderer}) => renderer.render({type: "entries", entries: [{name: `{@note No Subclass Selected}`, type: "entries", entries: [`{@note <span class="clickable roller" data-jump-select-a-subclass="true">Select a subclass</span> to view its feature(s) here.}`]}]})))
+			.fastSetHtml(Renderer.get().withDepthTracker([], ({renderer}) => renderer.render({type: "entries", entries: [{name: `{@note Subclase no seleccionada}`, type: "entries", entries: [`{@note <span class="clickable roller" data-jump-select-a-subclass="true">Selecciona una subclase</span> para ver sus rasgos aquí.}`]}]})))
 			.appendTo($content);
 
 		await cls.subclasses.pSerialAwaitMap(async sc => {
@@ -2533,7 +2533,7 @@ ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
 
 			if (isAnyFeature) {
 				renderStack.push(`<div class="ve-flex-vh-center sticky cls-bkmv__wrp-level br-1p bt-1p bb-1p btr-5p bbr-5p mr-2 ml-n2">
-					<span class="cls-bkmv__disp-level no-shrink small-caps">Level ${lvl}</span>
+					<span class="cls-bkmv__disp-level no-shrink small-caps">Nivel ${lvl}</span>
 				</div>`);
 			}
 

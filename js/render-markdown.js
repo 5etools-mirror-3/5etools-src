@@ -733,7 +733,7 @@ class RendererMarkdown {
 			// DCs /////////////////////////////////////////////////////////////////////////////////////////////
 			case "@dc": {
 				const [dcText, displayText] = Renderer.splitTagByPipe(text);
-				textStack[0] += `DC ${displayText || dcText}`;
+				textStack[0] += `CD ${displayText || dcText}`;
 				break;
 			}
 

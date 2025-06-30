@@ -425,7 +425,7 @@ class RendererCard {
 		switch (tag) {
 			case "@dc": {
 				const [dcText, displayText] = Renderer.splitTagByPipe(text);
-				textStack[0] += `DC ${displayText || dcText}`;
+				textStack[0] += `CD ${displayText || dcText}`;
 				return true;
 			}
 			default: return false;
