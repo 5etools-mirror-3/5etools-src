@@ -63,7 +63,7 @@ export class TagJsons {
 							obj = HazardTag.tryRun(obj, {styleHint});
 							obj = ChanceTag.tryRun(obj, {styleHint});
 							obj = QuickrefTag.tryRun(obj, {styleHint});
-							// rules > dice, as "D20 Test" can be mis-tagged as a rollable dice
+							// rules > dice, as "Prueba con d20" can be mis-tagged as a rollable dice
 							obj = CoreRuleTag.tryRun(obj, {styleHint});
 							obj = DiceConvert.getTaggedEntry(obj, {styleHint});
 							obj = FeatTag.tryRun(obj, {styleHint});
@@ -1060,7 +1060,7 @@ export class CoreRuleTag extends ConverterTaggerInitializable {
 						},
 					);
 					return ptrStack._
-						.replace(/(?:{@dice )?D20(?:})? Test(?<plural>s?)/g, (...m) => `{@variantrule D20 Test|XPHB${m.at(-1).plural ? `|D20 Tests` : ""}}`)
+						.replace(/(?:{@dice )?D20(?:})? Test(?<plural>s?)/g, (...m) => `{@variantrule Prueba con d20|XPHB${m.at(-1).plural ? `|Prueba con d20s` : ""}}`)
 					;
 				},
 			},
