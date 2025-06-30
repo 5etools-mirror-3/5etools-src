@@ -1499,7 +1499,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		const cls = this.activeClass;
 
 		// region features/fluff
-		const $btnToggleFeatures = ComponentUiUtil.$getBtnBool(this, "isHideFeatures", {text: "Features", activeClass: "cls__btn-cf--active", isInverted: true}).title("Toggle Class Features");
+		const $btnToggleFeatures = ComponentUiUtil.$getBtnBool(this, "isHideFeatures", {text: "Rasgos", activeClass: "cls__btn-cf--active", isInverted: true}).title("Muestra rasgos de clase");
 
 		const $btnToggleFeatureVariants = $(`<button class="ve-btn ve-btn-xs ve-btn-default" title="Toggle Class Feature Options/Variants">Variants</button>`)
 			.click(() => {
@@ -1516,7 +1516,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		this.filterBox.on(FILTER_BOX_EVNT_VALCHANGE, () => hkUpdateBtnFeatureVariants());
 		hkUpdateBtnFeatureVariants();
 
-		const $btnToggleFluff = ComponentUiUtil.$getBtnBool(this, "isShowFluff", {text: "Info"}).title("Toggle Class Info");
+		const $btnToggleFluff = ComponentUiUtil.$getBtnBool(this, "isShowFluff", {text: "Info"}).title("Muestra información de clase");
 
 		$$`<div class="ve-flex-v-center m-1 ve-btn-group mr-3 no-shrink">${$btnToggleFeatures}${$btnToggleFeatureVariants}${$btnToggleFluff}</div>`.appendTo($wrp);
 		// endregion
@@ -2050,7 +2050,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 	static _getFauxGainSubclassFeatureFeature (cls, level) {
 		return {
-			name: "Subclass Feature",
+			name: "Rasgo de subclase",
 			source: cls.source,
 			className: cls.name,
 			classSource: cls.source,
