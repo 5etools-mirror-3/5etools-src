@@ -2826,7 +2826,7 @@ Renderer.getEntryDiceDisplayText = function (entry) {
 };
 
 Renderer._getEntryDiceDisplayText_getDiceAsStr = function (entry) {
-	if (entry.successThresh != null) return `${entry.successThresh} percent`;
+	if (entry.successThresh != null) return `${entry.successThresh}%`;
 	if (typeof entry.toRoll === "string") return entry.toRoll;
 	// handle legacy format
 	return Renderer.legacyDiceToString(entry.toRoll);
@@ -5321,7 +5321,7 @@ Renderer.tag = class {
 					return `(Recharge ${asNum}${asNum < 6 ? `\u20136` : ""})`;
 				}
 				case "@chance": {
-					return displayText || `${rollText} percent`;
+					return displayText || `${rollText}%`;
 				}
 				case "@ability": {
 					const [, rawScore] = rollText.split(" ").map(it => it.trim().toLowerCase()).filter(Boolean);
