@@ -21,9 +21,9 @@
 			},
 			"proficiency": [
 				"int",
-				"wis"
+				"sab"
 			],
-			"spellcastingAbility": "wis",
+			"spellcastingAbility": "sab",
 			"casterProgression": "full",
 			"preparedSpells": "<$level$> + <$wis_mod$>",
 			"preparedSpellsChange": "restLong",
@@ -138,7 +138,7 @@
 			},
 			"multiclassing": {
 				"requirements": {
-					"wis": 13
+					"sab": 13
 				},
 				"proficienciesGained": {
 					"armor": [
@@ -502,7 +502,7 @@
 			"edition": "one",
 			"primaryAbility": [
 				{
-					"wis": true
+					"sab": true
 				}
 			],
 			"hd": {
@@ -511,9 +511,9 @@
 			},
 			"proficiency": [
 				"int",
-				"wis"
+				"sab"
 			],
-			"spellcastingAbility": "wis",
+			"spellcastingAbility": "sab",
 			"casterProgression": "full",
 			"preparedSpellsProgression": [
 				4,
@@ -2037,14 +2037,14 @@
 							"type": "abilityDc",
 							"name": "Spell",
 							"attributes": [
-								"wis"
+								"sab"
 							]
 						},
 						{
 							"type": "abilityAttackMod",
 							"name": "Spell",
 							"attributes": [
-								"wis"
+								"sab"
 							]
 						}
 					]
@@ -2418,7 +2418,7 @@
 							"type": "entries",
 							"name": "Prepared Spells of Level 1+",
 							"entries": [
-								"You prepare the list of level 1+ spells that are available for you to cast with this feature. To start, choose four level 1 spells from the {@filter Druid spell list|spells|class=Druid}. {@spell Animal Friendship|XPHB}, {@spell Cure Wounds|XPHB}, {@spell Faerie Fire|XPHB}, and {@spell Thunderwave|XPHB} are recommended.",
+								"You prepare the list of level 1+ spells that are available for you to cast with this feature. To start, choose four level 1 spells from the {@filter Druid spell list|spells|class=Druid}. {@spell Animal Friendship|XPHB}, {@spell Curar heridas|XPHB}, {@spell Fuego feérico|XPHB}, and {@spell Thunderwave|XPHB} are recommended.",
 								"The number of spells on your list increases as you gain Druid levels, as shown in the Prepared Spells column of the Druid Features table. Whenever that number increases, choose additional spells from the {@filter Druid spell list|spells|class=Druid} until the number of spells on your list matches the number on the table. The chosen spells must be of a level for which you have spell slots. For example, if you're a level 3 Druid, your list of prepared spells can include six spells of levels 1 and 2 in any combination.",
 								"If another Druid feature gives you spells that you always have prepared, those spells don't count against the number of spells you can prepare with this feature, but those spells otherwise count as Druid spells for you."
 							]
@@ -4543,7 +4543,7 @@
 						],
 						[
 							"5th",
-							"{@spell Fireball|XPHB}"
+							"{@spell Bola de fuego|XPHB}"
 						],
 						[
 							"7th",
@@ -4607,7 +4607,7 @@
 						],
 						[
 							"7th",
-							"{@spell Freedom of Movement|XPHB}"
+							"{@spell Libertad de movimiento|XPHB}"
 						],
 						[
 							"9th",
@@ -4702,7 +4702,7 @@
 							"caption": "Nature's Ward",
 							"colLabels": [
 								"Land Type",
-								"Resistance"
+								"Resistencia"
 							],
 							"colStyles": [
 								"col-6",
@@ -4836,7 +4836,7 @@
 					"rows": [
 						[
 							"3",
-							"{@spell Cure Wounds|XPHB}, {@spell Moonbeam|XPHB}, {@spell Starry Wisp|XPHB}"
+							"{@spell Curar heridas|XPHB}, {@spell Moonbeam|XPHB}, {@spell Starry Wisp|XPHB}"
 						],
 						[
 							"5",
@@ -4848,7 +4848,7 @@
 						],
 						[
 							"9",
-							"{@spell Mass Cure Wounds|XPHB}"
+							"{@spell Curar heridas en masa|XPHB}"
 						]
 					]
 				}
@@ -4994,7 +4994,7 @@
 						],
 						[
 							"9th",
-							"{@spell Conjure Elemental|XPHB}, {@spell Hold Monster|XPHB}"
+							"{@spell Conjure Elemental|XPHB}, {@spell Inmovilizar monstruo|XPHB}"
 						]
 					]
 				}
@@ -5050,7 +5050,7 @@
 				},
 				{
 					"type": "entries",
-					"name": "Resistance",
+					"name": "Resistencia",
 					"entries": [
 						"You have {@variantrule Resistance|XPHB} to Cold, Lightning, and Thunder damage."
 					]
@@ -5106,7 +5106,7 @@
 			"header": 1,
 			"entries": [
 				"You've created a star chart as part of your heavenly studies. It is a Tiny object, and you can use it as a {@variantrule Spellcasting Focus|XPHB} for your Druid spells. You determine its form by rolling on the Star Map table or by choosing one.",
-				"While holding the map, you have the {@spell Guidance|XPHB} and {@spell Guiding Bolt|XPHB} spells prepared, and you can cast {@spell Guiding Bolt|XPHB} without expending a spell slot. You can cast it in that way a number of times equal to your Wisdom modifier (minimum of once), and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}.",
+				"While holding the map, you have the {@spell Guía|XPHB} and {@spell Saeta guía|XPHB} spells prepared, and you can cast {@spell Saeta guía|XPHB} without expending a spell slot. You can cast it in that way a number of times equal to your Wisdom modifier (minimum of once), and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}.",
 				"If you lose the map, you can perform a 1-hour ceremony to magically create a replacement. This ceremony can be performed during a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}, and it destroys the previous map.",
 				{
 					"type": "table",
@@ -5241,14 +5241,14 @@
 							"type": "item",
 							"name": "Weal (even)",
 							"entries": [
-								"Whenever a creature you can see within 30 feet of you is about to make a {@variantrule D20 Test|XPHB}, you can take a {@variantrule Reaction|XPHB} to roll {@dice 1d6} and add the number rolled to the total."
+								"Whenever a creature you can see within 30 feet of you is about to make a {@variantrule Prueba con d20|XPHB}, you can take a {@variantrule Reaction|XPHB} to roll {@dice 1d6} and add the number rolled to the total."
 							]
 						},
 						{
 							"type": "item",
 							"name": "Woe (odd)",
 							"entries": [
-								"Whenever a creature you can see within 30 feet of you is about to make a {@variantrule D20 Test|XPHB}, you can take a {@variantrule Reaction|XPHB} to roll {@dice 1d6} and subtract the number rolled from the total."
+								"Whenever a creature you can see within 30 feet of you is about to make a {@variantrule Prueba con d20|XPHB}, you can take a {@variantrule Reaction|XPHB} to roll {@dice 1d6} and subtract the number rolled from the total."
 							]
 						}
 					]

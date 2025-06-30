@@ -4221,7 +4221,7 @@
 				"rarity": "legendary",
 				"reqAttune": true,
 				"ability": {
-					"str": 4
+					"fue": 4
 				},
 				"bonusWeapon": "+1",
 				"recharge": "dawn",
@@ -4722,7 +4722,7 @@
 				},
 				{
 					"type": "entries",
-					"name": "Wish",
+					"name": "Deseo",
 					"entries": [
 						"The sword has {@dice 1d4 - 1} charges. While holding it, you can use an action to expend 1 charge and cast the {@spell wish} spell from it. This property can't be used again until the next dawn. The sword loses this property if it has no charges."
 					]
@@ -4753,7 +4753,7 @@
 					},
 					{
 						"type": "entries",
-						"name": "Wish",
+						"name": "Deseo",
 						"entries": [
 							"The sword has {@dice 1d4 - 1} charges. While holding it, you can use an action to expend 1 charge and cast the {@spell wish} spell from it. This property can't be used again until the next dawn. The sword loses this property if it has no charges."
 						]
@@ -4762,7 +4762,7 @@
 				"attachedSpells": {
 					"charges": {
 						"1": [
-							"wish"
+							"deseo"
 						]
 					}
 				},
@@ -4822,14 +4822,14 @@
 						"type": "entries",
 						"name": "Luck",
 						"entries": [
-							"If the weapon is on your person, you can call on its luck (no action required) to reroll one failed {@variantrule D20 Test|XPHB} if you don't have the {@condition Incapacitado|XPHB} condition. You must use the second roll. Once used, this property can't be used again until the next dawn."
+							"If the weapon is on your person, you can call on its luck (no action required) to reroll one failed {@variantrule Prueba con d20|XPHB} if you don't have the {@condition Incapacitado|XPHB} condition. You must use the second roll. Once used, this property can't be used again until the next dawn."
 						]
 					},
 					{
 						"type": "entries",
-						"name": "Wish",
+						"name": "Deseo",
 						"entries": [
-							"The weapon has {@dice 1d3} charges. While holding it, you can expend 1 charge and cast {@spell Wish|XPHB} from it. Once used, this property can't be used again until the next dawn. The weapon loses this property if it has no charges."
+							"The weapon has {@dice 1d3} charges. While holding it, you can expend 1 charge and cast {@spell Deseo|XPHB} from it. Once used, this property can't be used again until the next dawn. The weapon loses this property if it has no charges."
 						]
 					}
 				],
@@ -5230,7 +5230,7 @@
 				"bonusWeapon": "+1",
 				"entries": [
 					"Of all the magic items created by elves, one of the most prized and jealously guarded is a Moonblade. In ancient times, nearly all elven noble houses claimed one such weapon. Over the centuries, some of these weapons have faded from the world, their magic lost as family lines have become extinct. Others have vanished with their bearers during great quests. Thus, only a few of these weapons remain.",
-					"Every Moonblade longs for a bearer whose disposition and goals are compatible with its own. If you try to attune to a Moonblade that doesn't want you as its bearer, the weapon not only rejects you but also places a curse on you, causing you to make {@variantrule D20 Test|XPHB|D20 Tests} with {@variantrule Disadvantage|XPHB} for 24 hours or until the curse is ended by a {@spell Remove Curse|XPHB} spell or similar magic. If you're accepted by the weapon and try to attune to it, you become attuned to it instantly, and a new rune appears on it. You remain attuned to the weapon until you die or the weapon is destroyed. A Moonblade functions like a nonmagical weapon of its kind for anyone other than its chosen bearer.",
+					"Every Moonblade longs for a bearer whose disposition and goals are compatible with its own. If you try to attune to a Moonblade that doesn't want you as its bearer, the weapon not only rejects you but also places a curse on you, causing you to make {@variantrule Prueba con d20|XPHB|Prueba con d20s} with {@variantrule Disadvantage|XPHB} for 24 hours or until the curse is ended by a {@spell Remove Curse|XPHB} spell or similar magic. If you're accepted by the weapon and try to attune to it, you become attuned to it instantly, and a new rune appears on it. You remain attuned to the weapon until you die or the weapon is destroyed. A Moonblade functions like a nonmagical weapon of its kind for anyone other than its chosen bearer.",
 					"A Moonblade has one rune on it for each bearer it has willingly served (typically {@dice 1d6 + 1}). The first rune grants a +1 bonus to attack rolls and damage rolls made with this magic weapon. Each rune beyond the first grants the Moonblade an additional property. The DM chooses each property or determines it randomly by rolling on the Moonblade Properties table.",
 					{
 						"type": "entries",
@@ -6993,7 +6993,7 @@
 				"reqAttune": true,
 				"bonusWeapon": "+3",
 				"entries": [
-					"You have a {=bonusWeapon} bonus to attack and damage rolls made with this magic weapon. When this weapon reduces a creature to 0 hit points, the creature doesn't die. Instead, infernal runes appear as if carved into their flesh and they're healed to 1 hit point. They now have the {@condition paralizado} condition until the condition is removed by a {@spell Lesser Restoration} spell or similar magic. When the condition is removed, the runes disappear. At the start of each of their turns while they're {@condition paralizado}, the creature suffers immense pain and gains a level of {@condition cansancio}."
+					"You have a {=bonusWeapon} bonus to attack and damage rolls made with this magic weapon. When this weapon reduces a creature to 0 hit points, the creature doesn't die. Instead, infernal runes appear as if carved into their flesh and they're healed to 1 hit point. They now have the {@condition paralizado} condition until the condition is removed by a {@spell Restablecimiento menor} spell or similar magic. When the condition is removed, the runes disappear. At the start of each of their turns while they're {@condition paralizado}, the creature suffers immense pain and gains a level of {@condition cansancio}."
 				]
 			}
 		},
@@ -7043,7 +7043,7 @@
 						"type": "entries",
 						"name": "Spellcasting",
 						"entries": [
-							"The weapon has 5 charges. You can use a bonus action and expend 1 or more of its charges to cast one of the following spells (save {@dc 16}): {@spell Command} (1 charge), {@spell Zone of Truth} (2 charges), {@spell Compulsion} (4 charges), {@spell Banishment} (4 charges), or {@spell Dominate Person} (5 charges).",
+							"The weapon has 5 charges. You can use a bonus action and expend 1 or more of its charges to cast one of the following spells (save {@dc 16}): {@spell Orden imperiosa} (1 charge), {@spell Zone of Truth} (2 charges), {@spell Compulsion} (4 charges), {@spell Banishment} (4 charges), or {@spell Dominate Person} (5 charges).",
 							"The weapon regains {@dice 1d4} expended charges daily at dawn."
 						]
 					}

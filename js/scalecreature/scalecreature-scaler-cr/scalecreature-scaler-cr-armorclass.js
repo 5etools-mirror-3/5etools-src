@@ -156,10 +156,10 @@ export class CrScalerArmorClass extends CrScalerBase {
 
 	/** Update an existing AC to use our new DEX score, if we have one. */
 	_doPreAdjustAcs ({acItem}) {
-		if (!this._state.getHasModifiedAbilityScore("dex") || this._mon.dex === this._state.getOriginalScore("dex")) return;
+		if (!this._state.getHasModifiedAbilityScore("des") || this._mon.dex === this._state.getOriginalScore("des")) return;
 		if (!acItem.from) return;
 
-		const originalDexMod = Parser.getAbilityModNumber(this._state.getOriginalScore("dex"));
+		const originalDexMod = Parser.getAbilityModNumber(this._state.getOriginalScore("des"));
 		const currentDexMod = Parser.getAbilityModNumber(this._mon.dex);
 
 		if (originalDexMod === currentDexMod) return;
@@ -330,12 +330,12 @@ export class CrScalerArmorClass extends CrScalerBase {
 		}
 
 		// for armored creatures, try to calculate the expected AC, and use this as a starting point for scaling
-		const expectedBaseScore = this._state.getHasModifiedAbilityScore("dex")
-			? (getBaseGearBonus() + Math.min(Parser.getAbilityModNumber(this._state.getOriginalScore("dex")), getDexCap()) + (this._isMageArmor(acItem) ? 13 : 10))
+		const expectedBaseScore = this._state.getHasModifiedAbilityScore("des")
+			? (getBaseGearBonus() + Math.min(Parser.getAbilityModNumber(this._state.getOriginalScore("des")), getDexCap()) + (this._isMageArmor(acItem) ? 13 : 10))
 			: null;
 
-		let canAdjustDex = !this._state.getHasModifiedAbilityScore("dex");
-		const dexGain = Parser.getAbilityModNumber(this._mon.dex) - Parser.getAbilityModNumber(this._state.getOriginalScore("dex") || this._mon.dex);
+		let canAdjustDex = !this._state.getHasModifiedAbilityScore("des");
+		const dexGain = Parser.getAbilityModNumber(this._mon.dex) - Parser.getAbilityModNumber(this._state.getOriginalScore("des") || this._mon.dex);
 
 		const curr = acItem._acBeforePreAdjustment != null
 			? acItem._acBeforePreAdjustment
@@ -359,8 +359,8 @@ export class CrScalerArmorClass extends CrScalerBase {
 		const dexMismatch = acGain - dexGain;
 
 		const adjustDex = ({dexMismatch}) => {
-			this._state.setHasModifiedAbilityScore("dex");
-			this._mon.dex = CrScalerUtils.calcNewAbility(this._mon, "dex", Parser.getAbilityModNumber(this._mon.dex) + dexMismatch);
+			this._state.setHasModifiedAbilityScore("des");
+			this._mon.dex = CrScalerUtils.calcNewAbility(this._mon, "des", Parser.getAbilityModNumber(this._mon.dex) + dexMismatch);
 			canAdjustDex = false;
 			return true;
 		};
@@ -616,7 +616,7 @@ export class CrScalerArmorClass extends CrScalerBase {
 
 						if (withinDexRange()) {
 							canAdjustDex = false;
-							this._state.setHasModifiedAbilityScore("dex");
+							this._state.setHasModifiedAbilityScore("des");
 
 							if (ac > getTotalAc()) this._mon.dex += 2;
 							else this._mon.dex -= 2;
@@ -719,7 +719,7 @@ export class CrScalerArmorClass extends CrScalerBase {
 
 						if (withinDexRange()) {
 							canAdjustDex = false;
-							this._state.setHasModifiedAbilityScore("dex");
+							this._state.setHasModifiedAbilityScore("des");
 
 							if (ac > getTotalAc()) this._mon.dex += 2;
 							else this._mon.dex -= 2;

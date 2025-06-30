@@ -10,7 +10,7 @@ class FilterCommon {
 
 	static getDamageResistFilter () {
 		return this._getDamageResistVulnImmuneFilter({
-			header: "Resistance",
+			header: "Resistencia",
 			headerShort: "Res.",
 		});
 	}

@@ -500,7 +500,7 @@ class InitiativeTrackerStatColumn_AbilityBonus extends _InitiativeTrackerStatCol
 	/* -------------------------------------------- */
 
 	getInitiativeInfo ({state}) {
-		if (this.constructor._ATT !== "dex") return super.getInitiativeInfo({state});
+		if (this.constructor._ATT !== "des") return super.getInitiativeInfo({state});
 		return {
 			applicability: _INITIATIVE_APPLICABILITY_APPLICABLE,
 			initiative: isNaN(state.entity?.value) ? 0 : Number(state.entity.value),
@@ -526,7 +526,7 @@ class InitiativeTrackerStatColumn_AbilityScore extends _InitiativeTrackerStatCol
 	/* -------------------------------------------- */
 
 	getInitiativeInfo ({state}) {
-		if (this.constructor._ATT !== "dex") return super.getInitiativeInfo({state});
+		if (this.constructor._ATT !== "des") return super.getInitiativeInfo({state});
 		return {
 			applicability: _INITIATIVE_APPLICABILITY_APPLICABLE,
 			initiative: isNaN(state.entity?.value) ? 0 : Parser.getAbilityModifier(Number(state.entity.value)),

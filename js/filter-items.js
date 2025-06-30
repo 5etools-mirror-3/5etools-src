@@ -156,7 +156,7 @@ class PageFilterEquipment extends PageFilterBase {
 						break;
 					}
 					case "holy":
-						if (!item._fFocus.includes("Cleric")) item._fFocus.push("Cleric");
+						if (!item._fFocus.includes("Clérigo")) item._fFocus.push("Clérigo");
 						if (!item._fFocus.includes("Paladin")) item._fFocus.push("Paladin");
 						break;
 				}
@@ -311,12 +311,12 @@ class PageFilterItems extends PageFilterEquipment {
 						case "class": out.push(`Class: ${val.split("|")[0].toTitleCase()}`); break;
 						case "alignment": out.push(`Alignment: ${Parser.alignmentListToFull(val).toTitleCase()}`); break;
 
-						case "str":
-						case "dex":
+						case "fue":
+						case "des":
 						case "con":
 						case "int":
-						case "wis":
-						case "cha": out.push(`${Parser.attAbvToFull(prop)}: ${val} or Higher`); break;
+						case "sab":
+						case "car": out.push(`${Parser.attAbvToFull(prop)}: ${val} or Higher`); break;
 
 						case "spellcasting": out.push("Spellcaster"); break;
 						case "psionics": out.push("Psionics"); break;

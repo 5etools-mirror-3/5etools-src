@@ -288,12 +288,12 @@ export class ConverterCreature extends ConverterBase {
 				// skip forward a line and grab the ability score
 				++meta.ixToConvert;
 				switch (meta.curLine.toLowerCase()) {
-					case "str": stats.str = this._tryGetStat(meta.toConvert[meta.ixToConvert]); continue;
-					case "dex": stats.dex = this._tryGetStat(meta.toConvert[meta.ixToConvert]); continue;
+					case "fue": stats.str = this._tryGetStat(meta.toConvert[meta.ixToConvert]); continue;
+					case "des": stats.dex = this._tryGetStat(meta.toConvert[meta.ixToConvert]); continue;
 					case "con": stats.con = this._tryGetStat(meta.toConvert[meta.ixToConvert]); continue;
 					case "int": stats.int = this._tryGetStat(meta.toConvert[meta.ixToConvert]); continue;
-					case "wis": stats.wis = this._tryGetStat(meta.toConvert[meta.ixToConvert]); continue;
-					case "cha": stats.cha = this._tryGetStat(meta.toConvert[meta.ixToConvert]); continue;
+					case "sab": stats.wis = this._tryGetStat(meta.toConvert[meta.ixToConvert]); continue;
+					case "car": stats.cha = this._tryGetStat(meta.toConvert[meta.ixToConvert]); continue;
 				}
 			}
 

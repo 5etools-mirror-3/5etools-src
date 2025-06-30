@@ -225,7 +225,7 @@ export class CreatureBuilder extends BuilderBase {
 					if (!mDice) return null;
 
 					const itemTypeAbv = DataUtil.itemType.unpackUid(item.type).abbreviation;
-					const abil = itemTypeAbv === Parser.ITM_TYP_ABV__MELEE_WEAPON ? "str" : "dex";
+					const abil = itemTypeAbv === Parser.ITM_TYP_ABV__MELEE_WEAPON ? "fue" : "des";
 					const ptAtk = `${itemTypeAbv === Parser.ITM_TYP_ABV__MELEE_WEAPON ? "m" : "r"}w${itemTypeAbv === Parser.ITM_TYP_ABV__MELEE_WEAPON && item.range ? `,rw` : ""}`;
 					const ptRange = item.range
 						? `${itemTypeAbv === Parser.ITM_TYP_ABV__MELEE_WEAPON ? `reach 5 ft. or ` : ""}range ${item.range} ft.`
@@ -1749,7 +1749,7 @@ export class CreatureBuilder extends BuilderBase {
 				return Math.round(Number(this._state.skill.perception) + 10);
 			}
 
-			const wisScore = Renderer.monster.getSafeAbilityScore(this._state, "wis", {defaultScore: null});
+			const wisScore = Renderer.monster.getSafeAbilityScore(this._state, "sab", {defaultScore: null});
 			if (wisScore == null) return null;
 
 			return Parser.getAbilityModNumber(wisScore) + 10;
@@ -1763,7 +1763,7 @@ export class CreatureBuilder extends BuilderBase {
 			this._state.passive = pp;
 			cb();
 		};
-		this._addHook("state", "wis", hook);
+		this._addHook("state", "sab", hook);
 		this._addHook("state", "skill", hook);
 
 		const $iptPerception = $(`<input class="form-control form-control--minimal input-xs mr-2">`)
@@ -1801,7 +1801,7 @@ export class CreatureBuilder extends BuilderBase {
 	}
 
 	__$getResistInput (cb) {
-		return this.__$getDefensesInput(cb, "Damage Resistances", "Resistance", "resist");
+		return this.__$getDefensesInput(cb, "Damage Resistances", "Resistencia", "resist");
 	}
 
 	__$getImmuneInput (cb) {
@@ -2883,7 +2883,7 @@ export class CreatureBuilder extends BuilderBase {
 								const getFormData = () => {
 									const pb = this._getProfBonus();
 									const isDex = $cbFinesse.prop("checked") || ($cbRanged.prop("checked") && !$cbMelee.prop("checked"));
-									const abilMod = Parser.getAbilityModNumber(Renderer.monster.getSafeAbilityScore(this._state, isDex ? "dex" : "str", {defaultScore: 10}));
+									const abilMod = Parser.getAbilityModNumber(Renderer.monster.getSafeAbilityScore(this._state, isDex ? "des" : "fue", {defaultScore: 10}));
 									const [melee, ranged] = [$cbMelee.prop("checked") ? "mw" : false, $cbRanged.prop("checked") ? "rw" : false];
 
 									const ptAtk = `{@atk ${[melee ? "mw" : null, ranged ? "rw" : null].filter(Boolean).join(",")}}`;

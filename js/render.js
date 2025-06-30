@@ -2826,7 +2826,7 @@ Renderer.getEntryDiceDisplayText = function (entry) {
 };
 
 Renderer._getEntryDiceDisplayText_getDiceAsStr = function (entry) {
-	if (entry.successThresh != null) return `${entry.successThresh} percent`;
+	if (entry.successThresh != null) return `${entry.successThresh}%`;
 	if (typeof entry.toRoll === "string") return entry.toRoll;
 	// handle legacy format
 	return Renderer.legacyDiceToString(entry.toRoll);
@@ -5321,7 +5321,7 @@ Renderer.tag = class {
 					return `(Recharge ${asNum}${asNum < 6 ? `\u20136` : ""})`;
 				}
 				case "@chance": {
-					return displayText || `${rollText} percent`;
+					return displayText || `${rollText}%`;
 				}
 				case "@ability": {
 					const [, rawScore] = rollText.split(" ").map(it => it.trim().toLowerCase()).filter(Boolean);
@@ -13391,12 +13391,12 @@ Renderer.vehicle = class {
 					<th class="ve-col-2 ve-text-center">CHA</th>
 				</tr>
 				<tr>
-					<td class="ve-text-center">${Renderer.utils.getAbilityRoller(veh, "str")}</td>
-					<td class="ve-text-center">${Renderer.utils.getAbilityRoller(veh, "dex")}</td>
+					<td class="ve-text-center">${Renderer.utils.getAbilityRoller(veh, "fue")}</td>
+					<td class="ve-text-center">${Renderer.utils.getAbilityRoller(veh, "des")}</td>
 					<td class="ve-text-center">${Renderer.utils.getAbilityRoller(veh, "con")}</td>
 					<td class="ve-text-center">${Renderer.utils.getAbilityRoller(veh, "int")}</td>
-					<td class="ve-text-center">${Renderer.utils.getAbilityRoller(veh, "wis")}</td>
-					<td class="ve-text-center">${Renderer.utils.getAbilityRoller(veh, "cha")}</td>
+					<td class="ve-text-center">${Renderer.utils.getAbilityRoller(veh, "sab")}</td>
+					<td class="ve-text-center">${Renderer.utils.getAbilityRoller(veh, "car")}</td>
 				</tr>
 			</table>
 		</td></tr>` : "";

@@ -20,12 +20,12 @@ class PageFilterFeats extends PageFilterBase {
 		this._asiFilter = new Filter({
 			header: "Ability Bonus",
 			items: [
-				"str",
-				"dex",
+				"fue",
+				"des",
 				"con",
 				"int",
-				"wis",
-				"cha",
+				"sab",
+				"car",
 			],
 			displayFn: Parser.attAbvToFull,
 			itemSortFn: null,

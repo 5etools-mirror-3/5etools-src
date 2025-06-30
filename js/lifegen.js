@@ -496,7 +496,7 @@ const SUPP_DEATH = [
 const SUPP_CLASS = [
 	{min: 1, max: 7, result: "Bárbaro"},
 	{min: 8, max: 14, result: "Bard"},
-	{min: 15, max: 29, result: "Cleric"},
+	{min: 15, max: 29, result: "Clérigo"},
 	{min: 30, max: 36, result: "Druid"},
 	{min: 37, max: 52, result: "Fighter"},
 	{min: 53, max: 58, result: "Monje"},

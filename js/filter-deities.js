@@ -24,7 +24,7 @@ class PageFilterDeities extends PageFilterBase {
 		});
 		this._domainFilter = new Filter({
 			header: "Domain",
-			items: ["Death", "Knowledge", "Life", "Light", "Nature", VeCt.STR_NONE, "Tempest", "Trickery", "War"],
+			items: ["Death", "Knowledge", "Vida", "Light", "Nature", VeCt.STR_NONE, "Tempest", "Engaño", "War"],
 		});
 		this._miscFilter = new Filter({
 			header: "Miscellaneous",
