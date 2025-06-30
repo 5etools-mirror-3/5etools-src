@@ -123,12 +123,12 @@ const PROPORDER_MONSTER = [
 
 	"resource",
 
-	"str",
-	"dex",
+	"fue",
+	"des",
 	"con",
 	"int",
-	"wis",
-	"cha",
+	"sab",
+	"car",
 
 	"save",
 	"skill",
@@ -1313,12 +1313,12 @@ const PROPORDER_VEHICLE = [
 	"pace",
 	"speed",
 
-	"str",
-	"dex",
+	"fue",
+	"des",
 	"con",
 	"int",
-	"wis",
-	"cha",
+	"sab",
+	"car",
 
 	"hp",
 
@@ -1748,12 +1748,12 @@ const PROPORDER_OBJECT = [
 	"hp",
 	"speed",
 
-	"str",
-	"dex",
+	"fue",
+	"des",
 	"con",
 	"int",
-	"wis",
-	"cha",
+	"sab",
+	"car",
 
 	"senses",
 

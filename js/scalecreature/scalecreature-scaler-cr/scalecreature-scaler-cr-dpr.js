@@ -47,7 +47,7 @@ export class CrScalerDpr extends CrScalerBase {
 
 		if (abilBeingScaled == null) return true;
 
-		const originalAbilMod = abilBeingScaled === "str" ? strMod : abilBeingScaled === "dex" ? dexMod : null;
+		const originalAbilMod = abilBeingScaled === "fue" ? strMod : abilBeingScaled === "des" ? dexMod : null;
 
 		if (originalAbilMod != null) {
 			if (this._state.getTempAbilityMod(abilBeingScaled) != null && this._state.getTempAbilityMod(abilBeingScaled) !== modOutScaled) {
@@ -142,8 +142,8 @@ export class CrScalerDpr extends CrScalerBase {
 					crOutNumber: this._crOutNumber,
 
 					abilBeingScaled,
-					strTmpMod: this._state.getTempAbilityMod("str"),
-					dexTmpMod: this._state.getTempAbilityMod("dex"),
+					strTmpMod: this._state.getTempAbilityMod("fue"),
+					dexTmpMod: this._state.getTempAbilityMod("des"),
 
 					modFromAbil,
 
@@ -206,8 +206,8 @@ export class CrScalerDpr extends CrScalerBase {
 		const argsShared = {
 			stateDpr,
 			scaledEntries,
-			strMod: this._state.getTempAbilityMod("str") || this._originalStrMod,
-			dexMod: this._state.getTempAbilityMod("dex") || this._originalDexMod,
+			strMod: this._state.getTempAbilityMod("fue") || this._originalStrMod,
+			dexMod: this._state.getTempAbilityMod("des") || this._originalDexMod,
 		};
 
 		if (!this._getCandidateScaledEntries_doProp({...argsShared, prop: "trait"})) return null;
@@ -244,8 +244,8 @@ export class CrScalerDpr extends CrScalerBase {
 	}
 
 	_doFinalize () {
-		this._doFinalize_updateAbility({prop: "str"});
-		this._doFinalize_updateAbility({prop: "dex"});
+		this._doFinalize_updateAbility({prop: "fue"});
+		this._doFinalize_updateAbility({prop: "des"});
 	}
 
 	/* -------------------------------------------- */

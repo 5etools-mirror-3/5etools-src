@@ -3515,7 +3515,7 @@ globalThis.UrlUtil = {
 
 	/**
 	 * @param opts Options object.
-	 * @param [opts.subclass] Subclass (or object of the form `{shortName: "str", source: "str"}`)
+	 * @param [opts.subclass] Subclass (or object of the form `{shortName: "fue", source: "fue"}`)
 	 * @param [opts.feature] Object of the form `{ixLevel: 0, ixFeature: 0}`
 	 */
 	getClassesPageStatePart (opts) {

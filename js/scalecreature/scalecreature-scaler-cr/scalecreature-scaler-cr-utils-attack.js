@@ -46,31 +46,31 @@ export class CrScalerUtilsAttack {
 
 			if (isMeleeOrRangedWeapon) {
 				const wtf = this._WEP_THROWN_FINESSE.find(it => content.includes(it));
-				if (wtf) return "dex";
+				if (wtf) return "des";
 
 				const wf = this._WEP_FINESSE.find(it => content.includes(it));
-				if (wf) return "dex";
+				if (wf) return "des";
 
 				const wt = this._WEP_THROWN.find(it => content.includes(it));
-				if (wt) return "str";
+				if (wt) return "fue";
 
 				return null;
 			}
 
 			if (isMeleeWeapon) {
 				const wf = this._WEP_FINESSE.find(it => content.includes(it));
-				if (wf) return "dex";
-				return "str";
+				if (wf) return "des";
+				return "fue";
 			}
 
 			if (isRangedWeapon) {
 				const wt = this._WEP_THROWN.find(it => content.includes(it));
-				if (wt) return "str"; // this should realistically only catch Nets
-				return "dex";
+				if (wt) return "fue"; // this should realistically only catch Nets
+				return "des";
 			}
 		};
 
 		if (strMod === dexMod && strMod === modFromAbil) return guessMod();
-		return strMod === modFromAbil ? "str" : dexMod === modFromAbil ? "dex" : null;
+		return strMod === modFromAbil ? "fue" : dexMod === modFromAbil ? "des" : null;
 	}
 }

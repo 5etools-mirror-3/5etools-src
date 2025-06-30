@@ -13391,12 +13391,12 @@ Renderer.vehicle = class {
 					<th class="ve-col-2 ve-text-center">CHA</th>
 				</tr>
 				<tr>
-					<td class="ve-text-center">${Renderer.utils.getAbilityRoller(veh, "str")}</td>
-					<td class="ve-text-center">${Renderer.utils.getAbilityRoller(veh, "dex")}</td>
+					<td class="ve-text-center">${Renderer.utils.getAbilityRoller(veh, "fue")}</td>
+					<td class="ve-text-center">${Renderer.utils.getAbilityRoller(veh, "des")}</td>
 					<td class="ve-text-center">${Renderer.utils.getAbilityRoller(veh, "con")}</td>
 					<td class="ve-text-center">${Renderer.utils.getAbilityRoller(veh, "int")}</td>
-					<td class="ve-text-center">${Renderer.utils.getAbilityRoller(veh, "wis")}</td>
-					<td class="ve-text-center">${Renderer.utils.getAbilityRoller(veh, "cha")}</td>
+					<td class="ve-text-center">${Renderer.utils.getAbilityRoller(veh, "sab")}</td>
+					<td class="ve-text-center">${Renderer.utils.getAbilityRoller(veh, "car")}</td>
 				</tr>
 			</table>
 		</td></tr>` : "";
