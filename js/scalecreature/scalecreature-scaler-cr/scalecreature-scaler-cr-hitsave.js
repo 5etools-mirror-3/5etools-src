@@ -157,7 +157,7 @@ export class CrScalerHitSave extends CrScalerBase {
 
 				if (
 					castingAbility
-					&& ["int", "wis", "cha"].includes(castingAbility)
+					&& ["int", "sab", "car"].includes(castingAbility)
 				) {
 					if (!this._state.getHasModifiedAbilityScore(castingAbility)) {
 						const dcDiff = outDc - origDc;
@@ -243,8 +243,8 @@ export class CrScalerHitSave extends CrScalerBase {
 
 	// Apply any changes required by the to-hit adjustment to our ability scores
 	_doFinalize () {
-		this._doFinalize_checkSetTempMod({abil: "str"});
-		this._doFinalize_checkSetTempMod({abil: "dex"});
+		this._doFinalize_checkSetTempMod({abil: "fue"});
+		this._doFinalize_checkSetTempMod({abil: "des"});
 	}
 
 	/* -------------------------------------------- */

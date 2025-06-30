@@ -7,12 +7,12 @@ class PageFilterClassesBase extends PageFilterBase {
 		this._primaryAbilityFilter = new Filter({
 			header: "Primary Ability",
 			items: [
-				"str",
-				"dex",
+				"fue",
+				"des",
 				"con",
 				"int",
-				"wis",
-				"cha",
+				"sab",
+				"car",
 			],
 			displayFn: Parser.attAbvToFull,
 			itemSortFn: null,

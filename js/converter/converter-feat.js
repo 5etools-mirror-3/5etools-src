@@ -232,12 +232,12 @@ export class ConverterFeat extends ConverterFeatureBase {
 				{
 					"choose": {
 						"from": [
-							"str",
-							"dex",
+							"fue",
+							"des",
 							"con",
 							"int",
-							"wis",
-							"cha",
+							"sab",
+							"car",
 						],
 						"amount": 2,
 					},
@@ -246,12 +246,12 @@ export class ConverterFeat extends ConverterFeatureBase {
 				{
 					"choose": {
 						"from": [
-							"str",
-							"dex",
+							"fue",
+							"des",
 							"con",
 							"int",
-							"wis",
-							"cha",
+							"sab",
+							"car",
 						],
 						"count": 2,
 					},

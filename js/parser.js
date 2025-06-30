@@ -718,7 +718,7 @@ Parser.stringToCasedSlug = function (str) {
 	return str.toAscii().replace(/[^\w ]+/g, "").replace(/ +/g, "-");
 };
 
-Parser.ITEM_SPELLCASTING_FOCUS_CLASSES = ["Artificer", "Bard", "Cleric", "Druid", "Paladin", "Ranger", "Hechicero", "Warlock", "Wizard"];
+Parser.ITEM_SPELLCASTING_FOCUS_CLASSES = ["Artificer", "Bard", "Clérigo", "Druid", "Paladin", "Ranger", "Hechicero", "Warlock", "Wizard"];
 
 Parser.itemValueToFull = function (item, opts = {isShortForm: false, isSmallUnits: false}) {
 	return Parser._moneyToFull(item, "value", "valueMult", opts);

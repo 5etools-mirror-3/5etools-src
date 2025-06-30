@@ -320,8 +320,8 @@ export class ScaleCreatureDamageExpression {
 			offsetEnchant = 0,
 		},
 	) {
-		if (abilBeingScaled === "str" && strTmpMod != null) return strTmpMod;
-		if (abilBeingScaled === "dex" && dexTmpMod != null) return dexTmpMod;
+		if (abilBeingScaled === "fue" && strTmpMod != null) return strTmpMod;
+		if (abilBeingScaled === "des" && dexTmpMod != null) return dexTmpMod;
 
 		if (modFromAbil == null) return 0 - offsetEnchant; // ensure enchanted equipment is ignored even with +0 base damage mod
 

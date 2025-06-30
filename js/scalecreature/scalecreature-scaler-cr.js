@@ -29,7 +29,7 @@ export class ScaleCreature {
 	};
 
 	static _casterLevelAndClassToCantrips (level, clazz) {
-		clazz = (clazz || "cleric").toLowerCase(); // Cleric/Wizard have middle-ground scaling
+		clazz = (clazz || "clérigo").toLowerCase(); // Cleric/Wizard have middle-ground scaling
 		return this._CASTER_LEVEL_AND_CLASS_CANTRIPS[clazz][level];
 	}
 
@@ -210,7 +210,7 @@ export class ScaleCreature {
 	}
 
 	static _handleUpdateAbilityScoresSkillsSaves ({mon, state}) {
-		const TO_HANDLE = ["str", "dex", "int", "wis", "cha"];
+		const TO_HANDLE = ["fue", "des", "int", "sab", "car"];
 
 		TO_HANDLE.forEach(abil => {
 			if (!state.getHasModifiedAbilityScore(abil)) return;
@@ -224,7 +224,7 @@ export class ScaleCreature {
 
 			this._handleUpdateAbilityScoresSkillsSaves_handleSkills(mon.skill, abil, diff);
 
-			if (abil === "wis" && mon.passive != null) {
+			if (abil === "sab" && mon.passive != null) {
 				if (typeof mon.passive === "number") {
 					mon.passive = mon.passive + diff;
 				} else {
