@@ -290,7 +290,7 @@ export class SpellTag extends ConverterTaggerInitializable {
 
 		// Split title-case runs on lowercase conjunctions/etc., as we may have e.g.:
 		//   - "Fireball or Counterspell"
-		//   - "replace one Fireball with Hold Monster" (Pit Fiend; XMM)
+		//   - "replace one Fireball with Inmovilizar monstruo" (Pit Fiend; XMM)
 		const pts = this._getCapsWordConjunctionTokens(strMod);
 		if (pts.length === 1) return strMod;
 
