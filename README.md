@@ -1,17 +1,14 @@
-# 5e.tools
+# 5e.tools.es
 
-Visit the [main site](https://5e.tools/index.html) or go to the unofficial GitHub [mirror](index.html).
+URL: https://rogmed.github.io/5etools-src-es/
 
-[Join the 5etools Discord here!](https://discord.gg/5etools)
+Traducción al español de una pequeña parte de https://5e.tools/index.html
 
-## Help and Support
+## Progreso
 
-Please see [our wiki](https://wiki.tercept.net/) for FAQs, installation guides, supported integrations, and more.
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md).
-
-## License
-
-This project is licensed under the terms of the MIT license.
+### Clases - 42%
+### Trasfondos - 0%
+### Especies - 0%
+### Dotes - 87%
+### Equipo - ~50%
+### Conjuros - 23%
