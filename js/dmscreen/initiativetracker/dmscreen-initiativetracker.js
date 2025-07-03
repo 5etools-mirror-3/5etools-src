@@ -216,11 +216,11 @@ export class InitiativeTracker extends BaseComponent {
 		const $btnSetNextActive = $(`<button class="ve-btn ve-btn-default ve-btn-xs mr-2" title="Next Turn"><span class="glyphicon glyphicon-step-forward"></span></button>`)
 			.click(() => this._viewRowsActive.pDoShiftActiveRow({direction: InitiativeTrackerConst.DIR_FORWARDS}));
 
-		const $iptRound = ComponentUiUtil.$getIptInt(this, "round", 1, {min: 1})
+		const $iptRound = ComponentUiUtil.$getIptInt(this, "ronda", 1, {min: 1})
 			.addClass("dm-init__rounds")
 			.removeClass("ve-text-right")
 			.addClass("ve-text-center")
-			.title("Round");
+			.title("ronda");
 
 		const menuPlayerWindow = ContextUtil.getMenu([
 			new ContextUtil.Action(
@@ -311,7 +311,7 @@ export class InitiativeTracker extends BaseComponent {
 					rows: await this._compDefaultParty.pGetConvertedDefaultPartyActiveRows(),
 				};
 				const defaultState = this._getDefaultState();
-				["round", "sort", "dir"]
+				["ronda", "sort", "dir"]
 					.forEach(prop => stateNxt[prop] = defaultState[prop]);
 
 				this._proxyAssignSimple("state", stateNxt);
@@ -513,7 +513,7 @@ export class InitiativeTracker extends BaseComponent {
 
 		if (!this._state.importIsAppend) {
 			const defaultState = this._getDefaultState();
-			["round", "sort", "dir"]
+			["ronda", "sort", "dir"]
 				.forEach(prop => stateNxt[prop] = defaultState[prop]);
 		}
 

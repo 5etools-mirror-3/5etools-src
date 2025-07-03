@@ -529,15 +529,15 @@ export class ConverterItem extends ConverterBase {
 		"melee": ({styleHint}) => [{"type": styleHint === SITE_STYLE__ONE ? Parser.ITM_TYP__ODND_MELEE_WEAPON : Parser.ITM_TYP__MELEE_WEAPON}],
 		"melee weapon": ({styleHint}) => [{"type": styleHint === SITE_STYLE__ONE ? Parser.ITM_TYP__ODND_MELEE_WEAPON : Parser.ITM_TYP__MELEE_WEAPON}],
 
-		"simple": [{"weaponCategory": "simple"}],
-		"simple weapon": [{"weaponCategory": "simple"}],
-		"martial": [{"weaponCategory": "martial"}],
-		"martial weapon": [{"weaponCategory": "martial"}],
+		"sencilla": [{"weaponCategory": "sencilla"}],
+		"arma sencilla": [{"weaponCategory": "sencilla"}],
+		"marcial": [{"weaponCategory": "marcial"}],
+		"arma marcial": [{"weaponCategory": "marcial"}],
 
-		"bludgeoning": [{"dmgType": "B"}],
+		"contundente": [{"dmgType": "B"}],
 		"weapon that deals bludgeoning damage": [{"dmgType": "B"}],
-		"piercing": [{"dmgType": "P"}],
-		"slashing": [{"dmgType": "S"}],
+		"perforante": [{"dmgType": "P"}],
+		"cortante": [{"dmgType": "S"}],
 
 		"melee bludgeoning weapon": ({styleHint}) => [{"type": styleHint === SITE_STYLE__ONE ? Parser.ITM_TYP__ODND_MELEE_WEAPON : Parser.ITM_TYP__MELEE_WEAPON, "dmgType": "B"}],
 	};
@@ -556,7 +556,7 @@ export class ConverterItem extends ConverterBase {
 		"greatsword, longsword, rapier, scimitar, or shortsword": [{"sword": true}],
 		"glaive, greatsword, longsword, or scimitar": [{"sword": true, "dmgType": "S"}, {"sword": true, "dmgType": "S"}],
 		"glaive, greatsword, longsword, rapier, scimitar, or shortsword": [{"sword": true}, {"glaive": true}],
-		"glaive, greatsword, longsword, rapier, scimitar, sickle, or shortsword": [{"sword": true}, {"glaive": true}, {"name": "Sickle"}],
+		"glaive, greatsword, longsword, rapier, scimitar, sickle, or shortsword": [{"sword": true}, {"glaive": true}, {"name": "Hoz"}],
 
 		"maul or warhammer": ({styleHint}) => [{"hammer": true, "property": styleHint === SITE_STYLE__ONE ? Parser.ITM_PROP__ODND_TWO_HANDED : Parser.ITM_PROP__TWO_HANDED}, {"hammer": true, "property": styleHint === SITE_STYLE__ONE ? Parser.ITM_PROP__ODND_VERSATILE : Parser.ITM_PROP__VERSATILE}],
 		// endregion
@@ -567,15 +567,15 @@ export class ConverterItem extends ConverterBase {
 		"medium": ({styleHint}) => [{"type": styleHint === SITE_STYLE__ONE ? Parser.ITM_TYP__ODND_MEDIUM_ARMOR : Parser.ITM_TYP__MEDIUM_ARMOR}],
 		"heavy": ({styleHint}) => [{"type": styleHint === SITE_STYLE__ONE ? Parser.ITM_TYP__ODND_HEAVY_ARMOR : Parser.ITM_TYP__HEAVY_ARMOR}],
 
-		"hide": ({styleHint}) => [{"name": "Hide Armor", "source": styleHint === SITE_STYLE__ONE ? Parser.SRC_XPHB : Parser.SRC_PHB}],
-		"half plate": ({styleHint}) => [{"name": "Half Plate Armor", "source": styleHint === SITE_STYLE__ONE ? Parser.SRC_XPHB : Parser.SRC_PHB}],
-		"plate": ({styleHint}) => [{"name": "Plate Armor", "source": styleHint === SITE_STYLE__ONE ? Parser.SRC_XPHB : Parser.SRC_PHB}],
-		"chain mail": ({styleHint}) => [{"name": "Chain Mail", "source": styleHint === SITE_STYLE__ONE ? Parser.SRC_XPHB : Parser.SRC_PHB}],
-		"chain shirt": ({styleHint}) => [{"name": "Chain Shirt", "source": styleHint === SITE_STYLE__ONE ? Parser.SRC_XPHB : Parser.SRC_PHB}],
+		"hide": ({styleHint}) => [{"name": "Armadura de pieles", "source": styleHint === SITE_STYLE__ONE ? Parser.SRC_XPHB : Parser.SRC_PHB}],
+		"half plate": ({styleHint}) => [{"name": "Media armadura", "source": styleHint === SITE_STYLE__ONE ? Parser.SRC_XPHB : Parser.SRC_PHB}],
+		"plate": ({styleHint}) => [{"name": "Armadura de placas", "source": styleHint === SITE_STYLE__ONE ? Parser.SRC_XPHB : Parser.SRC_PHB}],
+		"chain mail": ({styleHint}) => [{"name": "Cota de malla", "source": styleHint === SITE_STYLE__ONE ? Parser.SRC_XPHB : Parser.SRC_PHB}],
+		"chain shirt": ({styleHint}) => [{"name": "Camisa de malla", "source": styleHint === SITE_STYLE__ONE ? Parser.SRC_XPHB : Parser.SRC_PHB}],
 	};
 
 	static _GENERIC_EXCLUDES_LOOKUP_ARMOR = {
-		"hide": {"name": "Hide Armor"},
+		"hide": {"name": "Armadura de pieles"},
 	};
 
 	static _setCleanTaglineInfo_getGenericRequires ({stats, str, options}) {
@@ -635,7 +635,7 @@ export class ConverterItem extends ConverterBase {
 	}
 
 	static _setQuarterstaffStats (stats, options) {
-		const cpyStatsQuarterstaff = MiscUtil.copy(ConverterItem._ALL_ITEMS.find(it => it.name === "Quarterstaff" && it.source === (options.styleHint === SITE_STYLE__CLASSIC ? Parser.SRC_PHB : Parser.SRC_XPHB)));
+		const cpyStatsQuarterstaff = MiscUtil.copy(ConverterItem._ALL_ITEMS.find(it => it.name === "Bastón" && it.source === (options.styleHint === SITE_STYLE__CLASSIC ? Parser.SRC_PHB : Parser.SRC_XPHB)));
 
 		// remove unwanted properties
 		delete cpyStatsQuarterstaff.name;

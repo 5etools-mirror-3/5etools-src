@@ -396,14 +396,14 @@ export class ConverterSpell extends ConverterBase {
 			case "actions":
 			case "rounds": return unit.slice(0, -1);
 
-			case "day":
+			case "día":
 			case "week":
 			case "month":
 			case "year":
-			case "hour":
+			case "hora":
 			case "minuto":
 			case "action":
-			case "round":
+			case "ronda":
 			case "reaction": return unit;
 
 			case "bonus action": return "bonus";

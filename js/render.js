@@ -6707,14 +6707,14 @@ Renderer.class = class {
 			.segregate(it => ["ligera", "media", "pesada"].includes(it));
 
 		const ptsArmor = profsArmor
-			.map((a, i, arr) => Renderer.get().render(`{@filter ${i === 0 ? "Armaduras" : ""} ${a}s|items|type=${a} armor}`));
+			.map((a, i, arr) => Renderer.get().render(`{@filter ${i === 0 ? "Armaduras" : ""} ${a}s|items|type=armadura ${a}}`));
 
 		const ptsOther = profsOther
 			.map(a => {
 				if (a.full) return Renderer.get().render(a.full);
 				if (a === "escudo") {
 					if (styleHint === "classic") Renderer.get().render(`{@item shield|PHB|escudos}`);
-					return Renderer.get().render(`{@item shield|XPHB|escudos}`);
+					return Renderer.get().render(`{@item escudo|XPHB|escudos}`);
 				}
 				return Renderer.get().render(a);
 			});
@@ -6743,10 +6743,10 @@ Renderer.class = class {
 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
 		const [profsSimpleMartial, profsOther] = weaponProfs
-			.segregate(it => ["sencillas", "marciales"].includes(it));
+			.segregate(it => ["sencilla", "marcial"].includes(it));
 
 		const ptsSimpleMartial = profsSimpleMartial
-			.map((w, i, arr) => Renderer.get().render(`{@filter ${styleHint === "classic" ? w : w.toTitleCase()}|items|type=${w} weapon}`));
+			.map((w, i, arr) => Renderer.get().render(`{@filter ${styleHint === "classic" ? w : w.toTitleCase()}|items|type=${w}}`));
 
 		const ptsOther = profsOther
 			.map(w => {
@@ -11396,11 +11396,11 @@ Renderer.item = class {
 			const isAddDex = item.dexterityMax !== undefined || ![Parser.ITM_TYP_ABV__HEAVY_ARMOR, Parser.ITM_TYP_ABV__SHIELD].includes(itemTypeAbv);
 
 			const prefix = itemTypeAbv === Parser.ITM_TYP_ABV__SHIELD ? "+" : "";
-			const suffix = isAddDex ? ` + Dex${dexterityMax ? ` (max ${dexterityMax})` : ""}` : "";
+			const suffix = isAddDex ? ` + Des${dexterityMax ? ` (max ${dexterityMax})` : ""}` : "";
 
-			damageParts.push(`AC ${prefix}${item.ac}${suffix}`);
+			damageParts.push(`CA ${prefix}${item.ac}${suffix}`);
 		}
-		if (item.acSpecial != null) damageParts.push(item.ac != null ? item.acSpecial : `AC ${item.acSpecial}`);
+		if (item.acSpecial != null) damageParts.push(item.ac != null ? item.acSpecial : `CA ${item.acSpecial}`);
 
 		// damage
 		if (item.dmg1) {
@@ -11472,7 +11472,7 @@ Renderer.item = class {
 		if (!item.mastery) return "";
 
 		return [
-			isSkipPrefix ? "" : "Mastery: ",
+			isSkipPrefix ? "" : "Maestría: ",
 			item.mastery
 				.map(info => {
 					if (!info.uid) return renderer.render(`{@itemMastery ${info}}`);
@@ -11537,8 +11537,8 @@ Renderer.item = class {
 			typeListText.push("tattoo");
 		}
 		if (item.staff) {
-			typeHtml.push("staff");
-			typeListText.push("staff");
+			typeHtml.push("Bastón");
+			typeListText.push("Bastón");
 		}
 		if (item.ammo) {
 			typeHtml.push(`ammunition`);
@@ -11549,14 +11549,14 @@ Renderer.item = class {
 			typeListText.push(item.age);
 		}
 		if (item.weaponCategory) {
-			typeHtml.push(`weapon${item.baseItem ? ` (${Renderer.get().render(`{@item ${styleHint === "classic" ? item.baseItem : item.baseItem.toTitleCase()}}`)})` : ""}`);
-			subTypeHtml.push(`${item.weaponCategory} weapon`);
-			typeListText.push(`${item.weaponCategory} weapon`);
+			// typeHtml.push(`arma${item.baseItem ? ` (${Renderer.get().render(`{@item ${styleHint === "classic" ? item.baseItem : item.baseItem.toTitleCase()}}`)})` : ""}`);
+			subTypeHtml.push(`${item.weaponCategory}`);
+			typeListText.push(`${item.weaponCategory}`);
 			showingBase = true;
 		}
 		if (item.staff && (itemTypeAbv !== Parser.ITM_TYP_ABV__MELEE_WEAPON && itemTypeAltAbv !== Parser.ITM_TYP_ABV__MELEE_WEAPON)) { // DMG p140: "Unless a staff's description says otherwise, a staff can be used as a quarterstaff."
-			subTypeHtml.push("melee weapon");
-			typeListText.push("melee weapon");
+			subTypeHtml.push("arma cuerpo a cuerpo");
+			typeListText.push("arma cuerpo a cuerpo");
 		}
 		if (item.type) Renderer.item._getHtmlAndTextTypes_type({type: item.type, typeAbv: itemTypeAbv, typeHtml, typeListText, subTypeHtml, showingBase, item});
 		if (item.typeAlt) Renderer.item._getHtmlAndTextTypes_type({type: item.typeAlt, typeAbv: itemTypeAltAbv, typeHtml, typeListText, subTypeHtml, showingBase, item});
@@ -11983,7 +11983,7 @@ Renderer.item = class {
 			curBaseItem._category = "Basic";
 			if (curBaseItem.entries == null) curBaseItem.entries = [];
 
-			if (curBaseItem.packContents) return; // e.g. "Arrows (20)"
+			if (curBaseItem.packContents) return; // e.g. "Flechas (20)"
 
 			genericVariants.forEach((curGenericVariant) => {
 				if (!Renderer.item._createSpecificVariants_isEditionMatch({curBaseItem, curGenericVariant, styleHint})) return;
@@ -12410,13 +12410,13 @@ Renderer.item = class {
 			if (item.stealth) {
 				Renderer.item._initFullEntries(item);
 				const wrapped = styleHint === "classic"
-					? "The wearer has disadvantage on Dexterity ({@skill Stealth}) checks."
-					: "The wearer has {@variantrule Disadvantage|XPHB} on Dexterity ({@skill Stealth|XPHB}) checks.";
+					? "Quien la lleve tendrá desventaja en las pruebas de Destreza (Sigilo)"
+					: "Quien la lleve tendrá desventaja en las pruebas de Destreza ({@skill Sigilo|XPHB}).";
 				item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type"}});
 			}
 			if (itemTypeAbv === Parser.ITM_TYP_ABV__HEAVY_ARMOR && item.strength) {
 				Renderer.item._initFullEntries(item);
-				item._fullEntries.push({type: "wrapper", wrapped: `If the wearer has a Strength score lower than ${item.strength}, their speed is reduced by 10 feet.`, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type"}});
+				item._fullEntries.push({type: "wrapper", wrapped: `Reducirá 10 pies (3 m) la velocidad de quien la lleve, salvo que tenga una puntuación de Fuerza igual o superior a ${item.strength}.`, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type"}});
 			}
 		}
 		if (itemTypeAbv === Parser.ITM_TYP_ABV__SPELLCASTING_FOCUS) {
@@ -12424,44 +12424,44 @@ Renderer.item = class {
 				if (item.scfType === "arcane" && item.source !== Parser.SRC_ERLW) {
 					Renderer.item._initFullEntries(item);
 					const wrapped = styleHint === "classic"
-						? "An arcane focus is a special item\u2014an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item\u2014designed to channel the power of arcane spells. A {@class hechicero}, {@class warlock}, or {@class wizard} can use such an item as a spellcasting focus."
-						: "An Arcane Focus takes a specific form and is bejeweled or carved to channel arcane magic. A {@class Hechicero|XPHB}, {@class Warlock|XPHB}, or {@class Wizard|XPHB} can use such an item as a {@variantrule Spellcasting Focus|XPHB}.";
+						? "Un canalizador arcano está ornamentado o tallado para canalizar la magia arcana. Los brujos, hechiceros o magos pueden utilizar estos objetos como canalizadores mágicos."
+						: "Un canalizador arcano está ornamentado o tallado para canalizar la magia arcana. Los {@class Warlock|XPHB|brujos}, {@class Hechicero|XPHB|hechiceros} y {@class Wizard|XPHB|magos} pueden utilizar estos objetos como canalizadores mágicos.";
 					item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
 				}
 				if (item.scfType === "druid") {
 					Renderer.item._initFullEntries(item);
 					const wrapped = styleHint === "classic"
 						? "A druidic focus might be a sprig of mistletoe or holly, a wand or scepter made of yew or another special wood, a staff drawn whole out of a living tree, or a totem object incorporating feathers, fur, bones, and teeth from sacred animals. A {@class druid} can use such an object as a spellcasting focus."
-						: "A Druidic Focus takes a specific form and is carved, tied with ribbon, or painted to channel primal magic. A {@class Druid|XPHB} or {@class Ranger|XPHB} can use such an object as a {@variantrule Spellcasting Focus|XPHB}.";
+						: "Un canalizador druídico está tallado, atado con un lazo o pintado para canalizar la magia primigenia. Los {@class Druid|XPHB|druidas} o {@class Ranger|XPHB|exploradores} pueden utilizar estos objetos como canalizadores mágicos.";
 					item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
 				}
 				if (item.scfType === "holy") {
 					Renderer.item._initFullEntries(item);
 					const wrapped = styleHint === "classic"
 						? "A holy symbol is a representation of a god or pantheon. It might be an amulet depicting a symbol representing a deity, the same symbol carefully engraved or inlaid as an emblem on a shield, or a tiny box holding a fragment of a sacred relic. A cleric or paladin can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield."
-						: "A Holy Symbol takes a specific form and is bejeweled or painted to channel divine magic. A {@class Cleric|XPHB} or {@class Paladin|XPHB} can use a Holy Symbol as a {@variantrule Spellcasting Focus|XPHB}.";
+						: "Un símbolo sagrado puede ser uno de los objetos de la tabla “Símbolos sagrados” y está ornamentado o pintado para canalizar la magia divina. Los {@class Clérigos|XPHB|clérigos} o {@class Paladin|XPHB|paladines} pueden utilizar un símbolo sagrado como canalizador mágico.";
 					item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
 				}
 			} else {
 				if (item.scfType === "arcane") {
 					Renderer.item._initFullEntries(item);
 					const wrapped = styleHint === "classic"
-						? "An arcane focus is a special item designed to channel the power of arcane spells. A {@class hechicero}, {@class warlock}, or {@class wizard} can use such an item as a spellcasting focus."
-						: "An Arcane Focus takes a specific form and is bejeweled or carved to channel arcane magic. A {@class Hechicero|XPHB}, {@class Warlock|XPHB}, or {@class Wizard|XPHB} can use such an item as a {@variantrule Spellcasting Focus|XPHB}.";
+						? "Un canalizador arcano está ornamentado o tallado para canalizar la magia arcana. Los brujos, hechiceros o magos pueden utilizar estos objetos como canalizadores mágicos."
+						: "Un canalizador arcano está ornamentado o tallado para canalizar la magia arcana. Los {@class Warlock|XPHB|brujos}, {@class Hechicero|XPHB|hechiceros} y {@class Wizard|XPHB|magos} pueden utilizar estos objetos como canalizadores mágicos.";
 					item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
 				}
 				if (item.scfType === "druid") {
 					Renderer.item._initFullEntries(item);
 					const wrapped = styleHint === "classic"
 						? "A {@class druid} can use this object as a spellcasting focus."
-						: "A Druidic Focus takes a specific form and is carved, tied with ribbon, or painted to channel primal magic. A {@class Druid|XPHB} or {@class Ranger|XPHB} can use such an object as a {@variantrule Spellcasting Focus|XPHB}.";
+						: "Un canalizador druídico está tallado, atado con un lazo o pintado para canalizar la magia primigenia. Los {@class Druid|XPHB|druidas} o {@class Ranger|XPHB|exploradores} pueden utilizar estos objetos como canalizadores mágicos.";
 					item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
 				}
 				if (item.scfType === "holy") {
 					Renderer.item._initFullEntries(item);
 					const wrapped = styleHint === "classic"
 						? "A holy symbol is a representation of a god or pantheon. A {@class cleric} or {@class paladin} can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield."
-						: "A Holy Symbol takes a specific form and is bejeweled or painted to channel divine magic. A {@class Cleric|XPHB} or {@class Paladin|XPHB} can use a Holy Symbol as a {@variantrule Spellcasting Focus|XPHB}.";
+						: "Un símbolo sagrado puede ser uno de los objetos de la tabla “Símbolos sagrados” y está ornamentado o pintado para canalizar la magia divina. Los {@class Clérigos|XPHB|clérigos} o {@class Paladin|XPHB|paladines} pueden utilizar un símbolo sagrado como canalizador mágico.";
 					item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
 				}
 			}
@@ -12479,7 +12479,7 @@ Renderer.item = class {
 					type: "wrapper",
 					wrapped: {
 						type: "entries",
-						name: `Mastery: ${mastery.name}`,
+						name: `Maestría: ${mastery.name}`,
 						source: mastery.source,
 						page: mastery.page,
 						entries: Renderer.item._enhanceItem_getItemPropertyTypeEntries({item, ent: mastery}),
@@ -12533,7 +12533,7 @@ Renderer.item = class {
 		// handle item groups
 		if (item._isItemGroup && item.items?.length && !item.itemsHidden) {
 			Renderer.item._initFullEntries(item);
-			item._fullEntries.push({type: "wrapper", wrapped: "Multiple variations of this item exist, as listed below:", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "magicvariant"}});
+			item._fullEntries.push({type: "wrapper", wrapped: "Existen varias variantes, como se lista a continuación:", data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "magicvariant"}});
 			item._fullEntries.push({
 				type: "wrapper",
 				wrapped: {

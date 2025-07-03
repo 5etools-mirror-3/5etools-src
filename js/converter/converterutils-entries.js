@@ -54,7 +54,7 @@ export class TagJsons {
 							obj = SkillTag.tryRunStrictCapsWords(obj, {styleHint});
 							obj = SenseTag.tryRun(obj, {styleHint});
 							obj = SpellTag.tryRun(obj, {styleHint});
-							// items > actions, as "Hide Armor" can be mis-tagged as "Hide"
+							// items > actions, as "Armadura de pieles" can be mis-tagged as "Hide"
 							obj = ItemTag.tryRun(obj, {styleHint});
 							obj = ActionTag.tryRunStrictCapsWords(obj, {styleHint});
 							obj = TableTag.tryRun(obj, {styleHint});

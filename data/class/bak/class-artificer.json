@@ -82,7 +82,7 @@
 					"escudo"
 				],
 				"weapons": [
-					"simple",
+					"sencilla",
 					{
 						"proficiency": "firearms",
 						"optional": true
@@ -120,10 +120,10 @@
 			"startingEquipment": {
 				"additionalFromBackground": true,
 				"default": [
-					"any two {@filter simple weapons|items|source=phb|category=basic|type=simple weapon} of your choice",
+					"any two {@filter arma sencillas|items|source=phb|category=basic|type=arma sencilla} of your choice",
 					"a {@item light crossbow|phb} and {@item crossbow bolts (20)|phb|20 bolts}",
 					"(a) {@item studded leather armor|phb} or (b) {@item scale mail|phb}",
-					"{@item thieves' tools|phb} and a {@item dungeoneer's pack|phb}"
+					"{@item thieves' tools|phb} and a {@item paquete de explorador de mazmorras|phb}"
 				],
 				"goldAlternative": "{@dice 5d4 × 10|5d4 × 10|Starting Gold}",
 				"defaultData": [
@@ -152,7 +152,7 @@
 					{
 						"_": [
 							"thieves' tools|phb",
-							"dungeoneer's pack|phb"
+							"paquete de explorador de mazmorras|phb"
 						]
 					}
 				]
@@ -1046,7 +1046,7 @@
 			"level": 11,
 			"entries": [
 				"{@i 11th-level artificer feature}",
-				"You can now store a spell in an object. Whenever you finish a long rest, you can touch one {@filter simple or martial weapon|items|source=phb|category=basic|type=martial weapon;simple weapon} or one item that you can use as a spellcasting focus, and you store a spell in it, choosing a 1st- or 2nd-level spell from the {@filter artificer spell list|spells|class=Artificer|cast time=action|level=1;2} that requires 1 action to cast (you needn't have it prepared).",
+				"You can now store a spell in an object. Whenever you finish a long rest, you can touch one {@filter simple or arma marcial|items|source=phb|category=basic|type=arma marcial;arma sencilla} or one item that you can use as a spellcasting focus, and you store a spell in it, choosing a 1st- or 2nd-level spell from the {@filter artificer spell list|spells|class=Artificer|cast time=action|level=1;2} that requires 1 action to cast (you needn't have it prepared).",
 				"While holding the object, a creature can take an action to produce the spell's effect from it, using your spellcasting ability modifier. If the spell requires {@status concentration}, the creature must concentrate. The spell stays in the object until it's been used a number of times equal to twice your Intelligence modifier (minimum of twice) or until you use this feature again to store a spell in an object."
 			]
 		},
@@ -2060,7 +2060,7 @@
 				{
 					"type": "list",
 					"items": [
-						"You gain proficiency with {@filter martial weapons|items|type=martial weapon}.",
+						"You gain proficiency with {@filter arma marcials|items|type=arma marcial}.",
 						"When you attack with a magic weapon, you can use your Intelligence modifier, instead of Strength or Dexterity modifier, for the attack and damage rolls."
 					]
 				}

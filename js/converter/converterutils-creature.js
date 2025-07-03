@@ -1970,7 +1970,7 @@ export class SpellcastingTraitConvert {
 
 			const [numCharges, rechargeDuration] = spellRecharge.toLowerCase().split("/").map(it => it.trim()).filter(Boolean);
 			switch (rechargeDuration) {
-				case "day": {
+				case "día": {
 					const chargeKey = `${numCharges}e`;
 					const tgt = MiscUtil.getOrSet(spellcastingEntry, "daily", chargeKey, []);
 					if (this._isExistingSpell(tgt, uids)) return;

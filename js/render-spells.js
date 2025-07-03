@@ -215,7 +215,7 @@ class _RenderSpellsImplBase extends RenderPageImplBase {
 			&& fromClassList?.some(it => it.name === "Wizard" && it?.source === Parser.SRC_PHB)
 		) {
 			stackFroms.push(`<section class="ve-muted mt-2">`);
-			renderer.recursiveRender(`{@italic Note: Both the {@class fighter||Fighter (Eldritch Knight)|eldritch knight} and the {@class rogue||Rogue (Arcane Trickster)|arcane trickster} spell lists include all {@class Wizard} spells. Spells of 5th level or higher may be cast with the aid of a spell scroll or similar.}`, stackFroms, {depth: 2});
+			renderer.recursiveRender(`{@italic Note: Both the {@class fighter||Fighter (Caballero arcano)|caballero arcano} and the {@class rogue||Rogue (Arcane Trickster)|arcane trickster} spell lists include all {@class Wizard} spells. Spells of 5th level or higher may be cast with the aid of a spell scroll or similar.}`, stackFroms, {depth: 2});
 			stackFroms.push(`</section>`);
 		}
 

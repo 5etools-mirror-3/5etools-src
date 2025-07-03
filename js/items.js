@@ -169,7 +169,7 @@ class ItemsSublistManager extends SublistManager {
 			}
 
 			default: {
-				const CURRENCIES = ["gp", "sp", "cp"];
+				const CURRENCIES = ["po", "pp", "pc"];
 				const coins = {cp: value};
 				CurrencyUtil.doSimplifyCoins(coins);
 				return CURRENCIES.filter(it => coins[it]).map(it => `${coins[it].toLocaleString(undefined, {maximumFractionDigits: 5})} ${it}`).join(", ");

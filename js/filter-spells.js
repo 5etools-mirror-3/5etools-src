@@ -167,10 +167,10 @@ class PageFilterSpells extends PageFilterBase {
 			case "timed": {
 				if (!fDur.duration) return "Special";
 				switch (fDur.duration.type) {
-					case "turn":
-					case "round": return "1 Round";
+					case "turno":
+					case "ronda": return "1 Round";
 
-					case "minute": {
+					case "minuto": {
 						const amt = fDur.duration.amount || 0;
 						if (amt <= 1) return "1 Minute";
 						if (amt <= 10) return "10 Minutes";
@@ -179,14 +179,14 @@ class PageFilterSpells extends PageFilterBase {
 						return "24+ Hours";
 					}
 
-					case "hour": {
+					case "hora": {
 						const amt = fDur.duration.amount || 0;
 						if (amt <= 1) return "1 Hour";
 						if (amt <= 8) return "8 Hours";
 						return "24+ Hours";
 					}
 
-					case "day":
+					case "día":
 					case "week":
 					case "month":
 					case "year": return "24+ Hours";

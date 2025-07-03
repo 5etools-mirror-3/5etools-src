@@ -1177,7 +1177,7 @@ Renderer.dice.lang = {
 			case "summonclasslevel": self.tokenStack.push(Renderer.dice.tk.SUMMON_CLASS_LEVEL); self.hasSummonClassLevel = true; break;
 			case "floor": self.tokenStack.push(Renderer.dice.tk.FLOOR); break;
 			case "ceil": self.tokenStack.push(Renderer.dice.tk.CEIL); break;
-			case "round": self.tokenStack.push(Renderer.dice.tk.ROUND); break;
+			case "ronda": self.tokenStack.push(Renderer.dice.tk.ROUND); break;
 			case "avg": self.tokenStack.push(Renderer.dice.tk.AVERAGE); break;
 			case "dmax": self.tokenStack.push(Renderer.dice.tk.DMAX); break;
 			case "dmin": self.tokenStack.push(Renderer.dice.tk.DMIN); break;
@@ -1549,7 +1549,7 @@ Renderer.dice.tk.SUMMON_SPELL_LEVEL = Renderer.dice.tk._new("SUMMON_SPELL_LEVEL"
 Renderer.dice.tk.SUMMON_CLASS_LEVEL = Renderer.dice.tk._new("SUMMON_CLASS_LEVEL", "summonclasslevel");
 Renderer.dice.tk.FLOOR = Renderer.dice.tk._new("FLOOR", "floor");
 Renderer.dice.tk.CEIL = Renderer.dice.tk._new("CEIL", "ceil");
-Renderer.dice.tk.ROUND = Renderer.dice.tk._new("ROUND", "round");
+Renderer.dice.tk.ROUND = Renderer.dice.tk._new("ronda", "ronda");
 Renderer.dice.tk.AVERAGE = Renderer.dice.tk._new("AVERAGE", "avg");
 Renderer.dice.tk.DMAX = Renderer.dice.tk._new("DMAX", "avg");
 Renderer.dice.tk.DMIN = Renderer.dice.tk._new("DMIN", "avg");

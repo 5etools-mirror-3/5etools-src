@@ -5,7 +5,7 @@ class StyleSwitcher {
 	static _STORAGE_IS_MANUAL_MODE = "StyleSwitcher_style-is-manual-mode";
 	static _STORAGE_WIDE = "StyleSwitcher_style-wide";
 
-	static _STYLE_DAY = "day";
+	static _STYLE_DAY = "día";
 	static _STYLE_NIGHT = "night";
 	static _STYLE_NIGHT_ALT = "nightAlt";
 	static _STYLE_NIGHT_CLEAN = "nightClean";

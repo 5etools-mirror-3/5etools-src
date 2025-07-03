@@ -153,15 +153,15 @@ export class ConverterFeatureBase extends ConverterBase {
 			if (/^spellcasting feature$/i.test(pt)) return pre.spellcastingFeature = true;
 			if (/^spellcasting feature from a class that prepares spells$/i.test(pt)) return pre.spellcastingPrepared = true;
 
-			if (/proficiency with a martial weapon/i.test(pt)) {
+			if (/proficiency with a arma marcial/i.test(pt)) {
 				pre.proficiency ||= [{}];
-				pre.proficiency[0].weapon = "martial";
+				pre.proficiency[0].weapon = "marcial";
 				return;
 			}
 
 			if (/Martial Weapon Proficiency/i.test(pt)) {
 				pre.proficiency ||= [{}];
-				pre.proficiency[0].weaponGroup = "martial";
+				pre.proficiency[0].weaponGroup = "marcial";
 				return;
 			}
 

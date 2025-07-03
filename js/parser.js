@@ -1310,22 +1310,22 @@ Parser.spLevelSchoolMetaToFull = function (level, school, meta, subschools, {sty
 	return ptLevelSchool;
 };
 
-Parser.SP_TM_ACTION = "action";
+Parser.SP_TM_ACTION = "acción";
 Parser.SP_TM_B_ACTION = "adicional";
 Parser.SP_TM_REACTION = "reacción";
-Parser.SP_TM_ROUND = "round";
+Parser.SP_TM_ROUND = "ronda";
 Parser.SP_TM_MINS = "minuto";
-Parser.SP_TM_HRS = "hour";
-Parser.SP_TM_SPECIAL = "special";
+Parser.SP_TM_HRS = "hora";
+Parser.SP_TM_SPECIAL = "especial";
 Parser.SP_TIME_SINGLETONS = [Parser.SP_TM_ACTION, Parser.SP_TM_B_ACTION, Parser.SP_TM_REACTION, Parser.SP_TM_ROUND];
 Parser.SP_TIME_TO_FULL = {
-	[Parser.SP_TM_ACTION]: "Action",
+	[Parser.SP_TM_ACTION]: "Acción",
 	[Parser.SP_TM_B_ACTION]: "Acción adicional",
 	[Parser.SP_TM_REACTION]: "Reacción",
-	[Parser.SP_TM_ROUND]: "Rounds",
-	[Parser.SP_TM_MINS]: "Minutes",
-	[Parser.SP_TM_HRS]: "Hours",
-	[Parser.SP_TM_SPECIAL]: "Special",
+	[Parser.SP_TM_ROUND]: "Rondas",
+	[Parser.SP_TM_MINS]: "Minutos",
+	[Parser.SP_TM_HRS]: "Horas",
+	[Parser.SP_TM_SPECIAL]: "Especial",
 };
 Parser.spTimeUnitToFull = function (timeUnit) {
 	return Parser._parse_aToB(Parser.SP_TIME_TO_FULL, timeUnit);
@@ -1687,11 +1687,11 @@ Parser.DURATION_TYPES = [
 ];
 
 Parser.DURATION_AMOUNT_TYPES = [
-	"turn",
-	"round",
+	"turno",
+	"ronda",
 	"minuto",
-	"hour",
-	"day",
+	"hora",
+	"día",
 	"week",
 	"month",
 	"year",
@@ -3019,8 +3019,8 @@ Parser.ARMOR_ABV_TO_FULL = {
 };
 
 Parser.WEAPON_ABV_TO_FULL = {
-	"s.": "simple",
-	"m.": "martial",
+	"s.": "sencilla",
+	"m.": "marcial",
 };
 
 Parser.CONDITION_TO_COLOR = {
@@ -4254,23 +4254,23 @@ Parser.getPropDisplayName = function (prop, {suffix = ""} = {}) {
 };
 
 Parser.DMGTYPE_JSON_TO_FULL = {
-	"A": "acid",
-	"B": "bludgeoning",
-	"C": "cold",
-	"F": "fire",
-	"O": "force",
-	"L": "lightning",
-	"N": "necrotic",
-	"P": "piercing",
-	"I": "poison",
-	"Y": "psychic",
-	"R": "radiant",
-	"S": "slashing",
-	"T": "thunder",
+	"A": "ácido",
+	"B": "contundente",
+	"C": "frío",
+	"F": "fuego",
+	"O": "fuerza",
+	"L": "relámpago",
+	"N": "necrótico",
+	"P": "perforante",
+	"I": "veneno",
+	"Y": "psíquico",
+	"R": "radiante",
+	"S": "cortante",
+	"T": "trueno",
 };
 
-Parser.DMG_TYPES = ["acid", "bludgeoning", "cold", "fire", "force", "lightning", "necrotic", "piercing", "poison", "psychic", "radiant", "slashing", "thunder"];
-Parser.CONDITIONS = ["blinded", "charmed", "ensordecido", "cansancio", "asustado", "agarrado", "incapacitated", "invisible", "paralizado", "petrificado", "poisoned", "derribado", "apresado", "aturdido", "inconsciente"];
+Parser.DMG_TYPES = ["ácido", "contundente", "frío", "fuego", "fuerza", "relámpago", "necrótico", "perforante", "veneno", "psíquico", "radiante", "cortante", "trueno"];
+Parser.CONDITIONS = ["cegado", "hechizado", "ensordecido", "cansancio", "asustado", "agarrado", "incapacitado", "invisible", "paralizado", "petrificado", "envenenado", "derribado", "apresado", "aturdido", "inconsciente"];
 
 Parser._SENSES_LEGACY = [
 	{"name": "blindsight", "source": Parser.SRC_PHB},

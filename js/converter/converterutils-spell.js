@@ -383,7 +383,7 @@ export class AffectedCreatureTypeTagger {
 							.replace(/you touch a [^ ]+ or (?:smaller|larger) (.+)/g, (...m) => {
 								m[1].replace(AffectedCreatureTypeTagger._RE_TYPES, (...n) => this._doAddType({set: setAffected, type: n[1]}));
 							})
-							// Calm Emotions :: PHB
+							// Calmar emociones :: PHB
 							.replace(/Each (.+) in a \d+-foot/g, (...m) => {
 								m[1].replace(AffectedCreatureTypeTagger._RE_TYPES, (...n) => this._doAddType({set: setAffected, type: n[1]}));
 							})

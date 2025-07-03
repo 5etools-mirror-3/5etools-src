@@ -44,9 +44,9 @@
 				],
 				"weaponProficiencies": [
 					{
-						"simple": true,
+						"sencilla": true,
 						"all": {
-							"fromFilter": "type=martial weapon|property=light"
+							"fromFilter": "type=arma marcial|property=light"
 						}
 					}
 				],
@@ -524,7 +524,7 @@
 			"subclassFeatures": [
 				"Guerrero de la misericordia|Monje|XPHB|Misericordia|XPHB|3",
 				"Toque galeno|Monje|XPHB|Misericordia|XPHB|6",
-				"Flurry of Healing and Harm|Monje|XPHB|Misericordia|XPHB|11",
+				"Ráfaga de curación y aflicción|Monje|XPHB|Misericordia|XPHB|11",
 				"Mano de misericordia suprema|Monje|XPHB|Misericordia|XPHB|17"
 			],
 			"hasFluffImages": true
@@ -653,8 +653,8 @@
 				{
 					"type": "list",
 					"items": [
-						"{@filter armas cuerpo a cuerpo sencillas;|items|type=simple weapon;melee weapon=sand}",
-						"{@filter armas cuerpo a cuerpo marciales que tengan la propiedad “ligera”.|items|type=martial weapon;melee weapon=sand|property=light}"
+						"{@filter armas cuerpo a cuerpo sencillas;|items|type=sencilla;arma cuerpo a cuerpo=sand}",
+						"{@filter armas cuerpo a cuerpo marciales que tengan la propiedad “ligera”.|items|type=marcial;arma cuerpo a cuerpo=sand|property=ligera}"
 					]
 				},
 				"Obtienes los siguientes beneficios mientras no lleves armadura ni portes un escudo y estés desarmado o empuñes únicamente armas de monje:",
@@ -1407,7 +1407,7 @@
 			]
 		},
 		{
-			"name": "Flurry of Healing and Harm",
+			"name": "Ráfaga de curación y aflicción",
 			"source": "XPHB",
 			"page": 153,
 			"className": "Monje",
@@ -1425,7 +1425,7 @@
 		{
 			"name": "Mano de misericordia suprema",
 			"source": "XPHB",
-			"page": 154,
+			"page": 153,
 			"className": "Monje",
 			"classSource": "XPHB",
 			"subclassShortName": "Misericordia",

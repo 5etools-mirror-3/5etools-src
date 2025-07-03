@@ -16,8 +16,8 @@ export class UtilsWeaponProficiencies {
 		await Object.entries(cpy)
 			.pSerialAwaitMap(async ([key, value]) => {
 				switch (key) {
-					case "simple":
-					case "martial":
+					case "sencilla":
+					case "marcial":
 					case "firearms":
 					case "improvised":
 					case "choose":

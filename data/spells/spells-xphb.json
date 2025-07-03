@@ -688,7 +688,7 @@
 				{
 					"type": "timed",
 					"duration": {
-						"type": "day",
+						"type": "día",
 						"amount": 10
 					}
 				}
@@ -971,10 +971,10 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Arms of Hadar",
-			"originalname": "",
+			"name": "Brazos de Hadar",
+			"originalname": "Arms of Hadar",
 			"source": "XPHB",
-			"page": 243,
+			"page": 249,
 			"level": 1,
 			"school": "C",
 			"time": [
@@ -1000,14 +1000,14 @@
 				}
 			],
 			"entries": [
-				"Invoking Hadar, you cause tendrils to erupt from yourself. Each creature in a 10-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from you makes a Strength saving throw. On a failed save, a target takes {@damage 2d6} Necrotic damage and can't take Reactions until the start of its next turn. On a successful save, a target takes half as much damage only."
+				"Invocas a Hadar y unas extremidades surgen de ti. Todas las criaturas en una emanación de 10 pies (3 m) que se origina en ti deben hacer una tirada de salvación de Fuerza. Si la fallan, sufrirán {@damage 2d6} de daño necrótico y no podrán llevar a cabo reacciones hasta el principio de su siguiente turno. Si la superan, solamente recibirán la mitad de ese daño."
 			],
 			"entriesHigherLevel": [
 				{
 					"type": "entries",
 					"name": "Con un espacio de conjuro de nivel superior.",
 					"entries": [
-						"The damage increases by {@scaledamage 2d6|1-9|1d6} for each spell slot level above 1."
+						"El daño aumenta en {@scaledamage 2d6|1-9|1d6} por cada nivel por encima de 1 que tenga el espacio."
 					]
 				}
 			],
@@ -2400,10 +2400,10 @@
 			]
 		},
 		{
-			"name": "Calm Emotions",
-			"originalname": "",
+			"name": "Calmar emociones",
+			"originalname": "Calm Emotions",
 			"source": "XPHB",
-			"page": 249,
+			"page": 251,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 2,
@@ -2436,12 +2436,13 @@
 				}
 			],
 			"entries": [
+				"Cada humanoide en una esfera de 20 pies (6 m) de radio centrada en un punto que elijas dentro del alcance deberá superar una tirada de salvación de Carisma o se verá afectado por uno de los siguientes efectos (elige uno por cada criatura):",
 				"Each Humanoid in a 20-foot-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on a point you choose within range must succeed on a Charisma saving throw or be affected by one of the following effects (choose for each creature):",
 				{
 					"type": "list",
 					"items": [
-						"The creature has {@variantrule Immunity|XPHB} to the {@condition Hechizado|XPHB} and {@condition Asustado|XPHB} conditions until the spell ends. If the creature was already {@condition Hechizado|XPHB} or {@condition Asustado|XPHB}, those conditions are suppressed for the duration.",
-						"The creature becomes {@variantrule Indifferent [Attitude]|XPHB|Indifferent} about creatures of your choice that it's {@variantrule Hostile [Attitude]|XPHB|Hostile} toward. This indifference ends if the target takes damage or witnesses its allies taking damage. When the spell ends, the creature's attitude returns to normal."
+						"La criatura tiene inmunidad a los estados de {@condition Asustado|XPHB} y {@condition Hechizado|XPHB} hasta que el conjuro termine. Si la criatura ya estaba asustada o hechizada, se suprimen esos estados hasta que el conjuro termine.",
+						"La criatura se vuelve {@variantrule Indifferent [Attitude]|XPHB|Indiferente} hacia las criaturas de tu elección hacia las que sea {@variantrule Hostile [Attitude]|XPHB|Hostil}. Esta indiferencia termina si el objetivo recibe daño o si observa cómo alguno de sus aliados resulta dañado. Cuando el conjuro termine, la actitud de la criatura volverá a la normalidad."
 					]
 				}
 			],
@@ -4187,7 +4188,7 @@
 				{
 					"type": "timed",
 					"duration": {
-						"type": "day",
+						"type": "día",
 						"amount": 7
 					}
 				}
@@ -4243,7 +4244,7 @@
 				{
 					"type": "timed",
 					"duration": {
-						"type": "day",
+						"type": "día",
 						"amount": 10
 					}
 				}
@@ -4826,7 +4827,7 @@
 			},
 			"duration": [
 				{
-					"type": "special"
+					"type": "especial"
 				}
 			],
 			"entries": [
@@ -5551,71 +5552,6 @@
 			]
 		},
 		{
-			"name": "Detect Thoughts",
-			"originalname": "",
-			"source": "XPHB",
-			"page": 262,
-			"srd52": true,
-			"basicRules2024": true,
-			"level": 2,
-			"school": "D",
-			"time": [
-				{
-					"number": 1,
-					"unit": "acción"
-				}
-			],
-			"range": {
-				"type": "punto",
-				"distance": {
-					"type": "lanzador"
-				}
-			},
-			"components": {
-				"v": true,
-				"s": true,
-				"m": "1 Copper Piece"
-			},
-			"duration": [
-				{
-					"type": "timed",
-					"duration": {
-						"type": "minuto",
-						"amount": 1
-					},
-					"concentration": true
-				}
-			],
-			"entries": [
-				"You activate one of the effects below. Until the spell ends, you can activate either effect as a {@action Magic|XPHB} action on your later turns.",
-				{
-					"type": "entries",
-					"name": "Sense Thoughts",
-					"entries": [
-						"You sense the presence of thoughts within 30 feet of yourself that belong to creatures that know languages or are telepathic. You don't read the thoughts, but you know that a thinking creature is present.",
-						"The spell is blocked by 1 foot of stone, dirt, or wood; 1 inch of metal; or a thin sheet of lead."
-					]
-				},
-				{
-					"type": "entries",
-					"name": "Read Thoughts",
-					"entries": [
-						"Target one creature you can see within 30 feet of yourself or one creature within 30 feet of yourself that you detected with the Sense Thoughts option. You learn what is most on the target's mind right now. If the target doesn't know any languages and isn't telepathic, you learn nothing.",
-						"As a {@action Magic|XPHB} action on your next turn, you can try to probe deeper into the target's mind. If you probe deeper, the target makes a Wisdom saving throw. On a failed save, you discern the target's reasoning, emotions, and something that looms large in its mind (such as a worry, love, or hate). On a successful save, the spell ends. Either way, the target knows that you are probing into its mind, and until you shift your attention away from the target's mind, the target can take an action on its turn to make an Intelligence ({@skill Arcana|XPHB}) check against your spell save DC, ending the spell on a success."
-					]
-				}
-			],
-			"savingThrow": [
-				"wisdom"
-			],
-			"abilityCheck": [
-				"intelligence"
-			],
-			"miscTags": [
-				"SGT"
-			]
-		},
-		{
 			"name": "Detectar pensamientos",
 			"originalname": "Detect thoughts",
 			"source": "XPHB",
@@ -5950,10 +5886,10 @@
 			]
 		},
 		{
-			"name": "Dissonant Whispers",
-			"originalname": "",
+			"name": "Susurros discordantes",
+			"originalname": "Dissonant Whispers",
 			"source": "XPHB",
-			"page": 264,
+			"page": 334,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 1,
@@ -5980,14 +5916,14 @@
 				}
 			],
 			"entries": [
-				"One creature of your choice that you can see within range hears a discordant melody in its mind. The target makes a Wisdom saving throw. On a failed save, it takes {@damage 3d6} Psychic damage and must immediately use its {@variantrule Reaction|XPHB}, if available, to move as far away from you as it can, using the safest route. On a successful save, the target takes half as much damage only."
+				"Una criatura de tu elección que puedas ver dentro del alcance oye una melodía discordante en su mente. El objetivo hace una tirada de salvación de Sabiduría. Si la falla, recibirá {@damage 3d6} de daño psíquico y deberá utilizar su reacción inmediatamente, si es posible, para alejarse de ti tanto como pueda por la ruta más segura. Si supera la tirada, solo sufrirá la mitad de ese daño."
 			],
 			"entriesHigherLevel": [
 				{
 					"type": "entries",
 					"name": "Con un espacio de conjuro de nivel superior.",
 					"entries": [
-						"The damage increases by {@scaledamage 3d6|1-9|1d6} for each spell slot level above 1."
+						"El daño aumenta en {@scaledamage 3d6|1-9|1d6} por cada nivel por encima de 1 que tenga el espacio."
 					]
 				}
 			],
@@ -7903,7 +7839,7 @@
 				{
 					"type": "timed",
 					"duration": {
-						"type": "day",
+						"type": "día",
 						"amount": 1
 					},
 					"concentration": true
@@ -8616,7 +8552,7 @@
 				{
 					"type": "timed",
 					"duration": {
-						"type": "day",
+						"type": "día",
 						"amount": 1
 					}
 				}
@@ -9057,7 +8993,7 @@
 				{
 					"type": "timed",
 					"duration": {
-						"type": "day",
+						"type": "día",
 						"amount": 30
 					}
 				}
@@ -9127,7 +9063,7 @@
 				{
 					"type": "timed",
 					"duration": {
-						"type": "day",
+						"type": "día",
 						"amount": 10
 					}
 				}
@@ -9846,7 +9782,7 @@
 				{
 					"type": "timed",
 					"duration": {
-						"type": "round",
+						"type": "ronda",
 						"amount": 1
 					}
 				}
@@ -11254,7 +11190,7 @@
 				{
 					"type": "timed",
 					"duration": {
-						"type": "day",
+						"type": "día",
 						"amount": 10
 					}
 				}
@@ -13518,7 +13454,7 @@
 				{
 					"type": "timed",
 					"duration": {
-						"type": "day",
+						"type": "día",
 						"amount": 10
 					}
 				}
@@ -15607,7 +15543,7 @@
 				{
 					"type": "timed",
 					"duration": {
-						"type": "day",
+						"type": "día",
 						"amount": 1
 					},
 					"concentration": true
@@ -17164,7 +17100,7 @@
 				{
 					"type": "timed",
 					"duration": {
-						"type": "round",
+						"type": "ronda",
 						"amount": 1
 					}
 				}
@@ -19624,10 +19560,10 @@
 			]
 		},
 		{
-			"name": "Telekinesis",
+			"name": "Telequinesis",
 			"originalname": "",
 			"source": "XPHB",
-			"page": 331,
+			"page": 335,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 5,
@@ -19660,21 +19596,21 @@
 				}
 			],
 			"entries": [
-				"You gain the ability to move or manipulate creatures or objects by thought. When you cast the spell and as a {@action Magic|XPHB} action on your later turns before the spell ends, you can exert your will on one creature or object that you can see within range, causing the appropriate effect below. You can affect the same target round after round or choose a new one at any time. If you switch targets, the prior target is no longer affected by the spell.",
+				"Obtienes la capacidad de mover o manipular criaturas u objetos con la mente. Cuando lanzas este conjuro y como acción de magia en tus siguientes hasta que termine el conjuro, puedes imponer tu voluntad sobre una criatura o un objeto que puedas ver dentro del alcance y provocar el efecto correspondiente de los indicados debajo. Puedes afectar al mismo objetivo cada asalto o elegir uno nuevo cada vez. Si cambias de objetivo, el anterior dejará de estar afectado por el conjuro.",
 				{
 					"type": "entries",
-					"name": "Creature",
+					"name": "Criatura",
 					"entries": [
-						"You can try to move a Huge or smaller creature. The target must succeed on a Strength saving throw, or you move it up to 30 feet in any direction within the spell's range. Until the end of your next turn, the creature has the {@condition Apresado|XPHB} condition, and if you lift it into the air, it is suspended there. It falls at the end of your next turn unless you use this option on it again and it fails the save."
+						"Puedes intentar mover a una criatura Enorme o más pequeña. El objetivo deberá superar una tirada de salvación de Fuerza o lo moverás hasta 30 pies (9 m) en cualquier dirección dentro del alcance del conjuro. Hasta el final de tu siguiente turno, la criatura tendrá el estado de {@condition Apresado|XPHB} y, si la elevas en el aire, quedará suspendida. Caerá al final de tu siguiente turno a menos que vuelvas a usar esta opción y falle la tirada de salvación."
 					]
 				},
 				{
 					"type": "entries",
-					"name": "Object",
+					"name": "Objeto",
 					"entries": [
-						"You can try to move a Huge or smaller object. If the object isn't being worn or carried, you automatically move it up to 30 feet in any direction within the spell's range.",
-						"If the object is worn or carried by a creature, that creature must succeed on a Strength saving throw, or you pull the object away and move it up to 30 feet in any direction within the spell's range.",
-						"You can exert fine control on objects with your telekinetic grip, such as manipulating a simple tool, opening a door or a container, stowing or retrieving an item from an open container, or pouring the contents from a vial."
+						"Puedes intentar mover un objeto Enorme o más pequeño. Si el objeto no lo lleva ni viste nadie, lo mueves automáticamente hasta 30 pies (9 m) en cualquier dirección dentro del alcance del conjuro.",
+						"Si una criatura lleva o viste el objeto, deberá superar una tirada de salvación de Fuerza o tirarás del objeto y lo moverás hasta 30 pies (9 m) en cualquier dirección dentro del alcance del conjuro.",
+						"Puedes ejercer un control más preciso de los objetos con tu agarre telequinético, como, por ejemplo, manipular una herramienta sencilla o abrir una puerta o un contenedor, guardar o sacar un objeto de un contenedor abierto o verter el contenido de un vial."
 					]
 				}
 			],
@@ -19923,7 +19859,7 @@
 				{
 					"type": "timed",
 					"duration": {
-						"type": "round",
+						"type": "ronda",
 						"amount": 1
 					}
 				}
@@ -20491,7 +20427,7 @@
 				{
 					"type": "timed",
 					"duration": {
-						"type": "round",
+						"type": "ronda",
 						"amount": 1
 					}
 				}
@@ -20813,7 +20749,7 @@
 				{
 					"type": "timed",
 					"duration": {
-						"type": "round",
+						"type": "ronda",
 						"amount": 6
 					},
 					"concentration": true

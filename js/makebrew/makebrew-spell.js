@@ -1196,7 +1196,7 @@ export class SpellBuilder extends BuilderBase {
 		const [$row, $rowInner] = BuilderUi.getLabelledRowTuple("Generated", {isMarked: true});
 
 		const getBtnAdd = () => {
-			const $btn = $(`<button class="ve-btn ve-btn-xs ve-btn-default" title="Generate additional spell sources based on the spell's current sources (for example, Eldritch Knight Fighter for a Wizard spell).">Generate Additional</button>`)
+			const $btn = $(`<button class="ve-btn ve-btn-xs ve-btn-default" title="Generate additional spell sources based on the spell's current sources (for example, Caballero arcano Fighter for a Wizard spell).">Generate Additional</button>`)
 				.click(async () => {
 					try {
 						$btn.prop("disabled", true);

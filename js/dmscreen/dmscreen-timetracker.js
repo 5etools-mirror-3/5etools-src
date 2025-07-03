@@ -541,7 +541,7 @@ class TimeTrackerBase extends TimeTrackerComponent {
 	}
 }
 TimeTrackerBase._DEFAULT_STATE__DAY = {
-	name: "Day",
+	name: "día",
 };
 TimeTrackerBase._DEFAULT_STATE__MONTH = {
 	name: "Month",
@@ -995,7 +995,7 @@ class TimeTrackerRoot_Clock extends TimeTrackerComponent {
 					const isDay = numHours >= it.sunriseHour && numHours < it.sunsetHour;
 					const hoursToDayNight = isDay ? it.sunsetHour - numHours
 						: numHours < it.sunriseHour ? it.sunriseHour - numHours : (this._parent.get("hoursPerDay") + it.sunriseHour) - numHours;
-					return `<b class="mr-2">${isDay ? "Day" : "Night"}</b> <span class="small ve-muted">(${hoursToDayNight === 1 ? `Less than 1 hour` : `More than ${hoursToDayNight - 1} hour${hoursToDayNight === 2 ? "" : "s"}`} to sun${isDay ? "set" : "rise"})</span>`;
+					return `<b class="mr-2">${isDay ? "día" : "Night"}</b> <span class="small ve-muted">(${hoursToDayNight === 1 ? `Less than 1 hour` : `More than ${hoursToDayNight - 1} hour${hoursToDayNight === 2 ? "" : "s"}`} to sun${isDay ? "set" : "rise"})</span>`;
 				}).join("/");
 
 				if (dayNightHtml !== lastDayNightHtml) {
@@ -1963,7 +1963,7 @@ class TimeTrackerRoot_Calendar extends TimeTrackerComponent {
 				const diffMonths = nxt - month;
 				doModMonths(diffMonths);
 			});
-		const $iptDay = opts.isHideDays ? null : $(`<input class="form-control form-control--minimal ve-text-center input-xs dm-time__calendar-ipt-date dm-time__calendar-ipt-date--slashed-left" title="Day">`)
+		const $iptDay = opts.isHideDays ? null : $(`<input class="form-control form-control--minimal ve-text-center input-xs dm-time__calendar-ipt-date dm-time__calendar-ipt-date--slashed-left" title="día">`)
 			.change(() => {
 				const {
 					secsPerDay,
@@ -2791,7 +2791,7 @@ class TimeTrackerRoot_Settings extends TimeTrackerComponent {
 		const metaDays = this._render_getChildMeta_2({
 			prop: "days",
 			Cls: TimeTrackerRoot_Settings_Day,
-			name: "Day",
+			name: "día",
 			fnGetGeneric: TimeTrackerRoot.getGenericDay,
 		});
 
