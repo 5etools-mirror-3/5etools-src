@@ -6713,7 +6713,7 @@ Renderer.class = class {
 			.map(a => {
 				if (a.full) return Renderer.get().render(a.full);
 				if (a === "escudo") {
-					if (styleHint === "classic") Renderer.get().render(`{@item shield|PHB|escudos}`);
+					if (styleHint === "classic") Renderer.get().render(`{@item escudo|PHB|escudos}`);
 					return Renderer.get().render(`{@item escudo|XPHB|escudos}`);
 				}
 				return Renderer.get().render(a);
@@ -11578,7 +11578,7 @@ Renderer.item = class {
 			|| (typeListText.some(it => it.includes("armor")) && fullType.includes("armor"));
 
 		if (!showingBase && !!item.baseItem) (isSub ? subTypeHtml : typeHtml).push(`${fullType} (${Renderer.get().render(`{@item ${item.baseItem}}`)})`);
-		else if (typeAbv === Parser.ITM_TYP_ABV__SHIELD) (isSub ? subTypeHtml : typeHtml).push(Renderer.get().render(`armor ({@item shield|phb})`));
+		else if (typeAbv === Parser.ITM_TYP_ABV__SHIELD) (isSub ? subTypeHtml : typeHtml).push(Renderer.get().render(`armadura ({@item escudo|phb})`));
 		else (isSub ? subTypeHtml : typeHtml).push(fullType);
 
 		typeListText.push(fullType);

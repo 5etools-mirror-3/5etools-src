@@ -165,7 +165,7 @@ export class ConverterFeatureBase extends ConverterBase {
 				return;
 			}
 
-			const mArmor = /^(?<armorType>Light|Medium|Heavy) Armor (?:Training|Proficiency)$/i.exec(pt)
+			const mArmor = /^(?<armorType>Ligera|Media|Pesada) Armadura (?:Training|Proficiency)$/i.exec(pt)
 				|| /^(?<armorType>Shield) (?:Training|Proficiency)$/i.exec(pt);
 			if (mArmor) {
 				pre.proficiency ||= [{}];
