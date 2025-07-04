@@ -450,7 +450,7 @@ class _PageGeneratorListPsionics extends PageGeneratorListBase {
 
 class _PageGeneratorListRaces extends PageGeneratorListBase {
 	_page = UrlUtil.PG_RACES;
-	_pageTitle = "Species";
+	_pageTitle = "Especies";
 	_scriptIdentList = "races";
 	_isHasRenderer = false;
 

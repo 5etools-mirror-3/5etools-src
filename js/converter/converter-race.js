@@ -448,7 +448,7 @@ export class ConverterRace extends ConverterFeatureBase {
 		if (mSimpleShort) {
 			const type = mSimpleShort.groups.type.toLowerCase();
 
-			// Filter out "redundant" creature type info, as we assume "undefined" = "humanoid"
+			// Filter out "redundant" creature type info, as we assume "undefined" = "humanoide"
 			if (isInRoot && type === Parser.TP_HUMANOID) {
 				race.entries = race.entries.filter(it => it !== entry);
 			} else {
@@ -477,7 +477,7 @@ export class ConverterRace extends ConverterFeatureBase {
 			})
 		;
 
-		// Filter out "redundant" creature type info, as we assume "undefined" = "humanoid"
+		// Filter out "redundant" creature type info, as we assume "undefined" = "humanoide"
 		if (types.length === 1 && types[0] === Parser.TP_HUMANOID && !race.creatureTypeTags?.length) {
 			race.entries = race.entries.filter(it => it !== entry);
 		} else {

@@ -491,8 +491,8 @@ Parser.LANGUAGES_STANDARD = [
 	"Giant",
 	"Gnomish",
 	"Goblin",
-	"Halfling",
-	"Orc",
+	"Mediano",
+	"Orco",
 ];
 
 Parser.LANGUAGES_EXOTIC = [
@@ -2061,11 +2061,11 @@ Parser.MON_LANGUAGE_TAG_TO_FULL = {
 	"GI": "Giant",
 	"GO": "Goblin",
 	"GTH": "Gith",
-	"H": "Halfling",
+	"H": "Mediano",
 	"I": "Infernal",
 	"IG": "Ignan",
 	"LF": "Languages Known in Life",
-	"O": "Orc",
+	"O": "Orco",
 	"OTH": "Other",
 	"P": "Primordial",
 	"S": "Sylvan",
@@ -2929,7 +2929,7 @@ Parser.TP_ELEMENTAL = "elemental";
 Parser.TP_FEY = "fey";
 Parser.TP_FIEND = "fiend";
 Parser.TP_GIANT = "giant";
-Parser.TP_HUMANOID = "humanoid";
+Parser.TP_HUMANOID = "humanoide";
 Parser.TP_MONSTROSITY = "monstrosity";
 Parser.TP_OOZE = "ooze";
 Parser.TP_PLANT = "plant";
@@ -2945,7 +2945,7 @@ Parser.MON_TYPE_TO_PLURAL[Parser.TP_ELEMENTAL] = "elementals";
 Parser.MON_TYPE_TO_PLURAL[Parser.TP_FEY] = "fey";
 Parser.MON_TYPE_TO_PLURAL[Parser.TP_FIEND] = "fiends";
 Parser.MON_TYPE_TO_PLURAL[Parser.TP_GIANT] = "giants";
-Parser.MON_TYPE_TO_PLURAL[Parser.TP_HUMANOID] = "humanoids";
+Parser.MON_TYPE_TO_PLURAL[Parser.TP_HUMANOID] = "humanoides";
 Parser.MON_TYPE_TO_PLURAL[Parser.TP_MONSTROSITY] = "monstrosities";
 Parser.MON_TYPE_TO_PLURAL[Parser.TP_OOZE] = "oozes";
 Parser.MON_TYPE_TO_PLURAL[Parser.TP_PLANT] = "plants";

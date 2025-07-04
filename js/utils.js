@@ -355,7 +355,7 @@ globalThis.StrUtil = class {
 		"efreeti": "efreet",
 		"el'tael": "el'tael",
 		"eladrin": "eladrin",
-		"elf": "elves",
+		"elfo": "elves",
 		"erinyes": "erinyes",
 		"fey": "fey",
 		"foot": "feet",

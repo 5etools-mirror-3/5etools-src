@@ -312,7 +312,7 @@ export class RaceImmResVulnTag {
 		});
 
 		// region Special cases
-		if (race.name === "Dragonborn" && race.source === Parser.SRC_PHB) {
+		if (race.name === "Dracónido" && race.source === Parser.SRC_PHB) {
 			out.add({"choose": {"from": ["acid", "cold", "fire", "lightning", "poison"]}});
 		} else if (race.name === "Revenant" && race.source === "UAGothicHeroes") {
 			out.add("necrotic");

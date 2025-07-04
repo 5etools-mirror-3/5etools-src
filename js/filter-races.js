@@ -96,9 +96,9 @@ class PageFilterRaces extends PageFilterBase {
 				"Giant",
 				"Gnomish",
 				"Goblin",
-				"Halfling",
+				"Mediano",
 				"Infernal",
-				"Orc",
+				"Orco",
 				"Other",
 				"Primordial",
 				"Sylvan",
@@ -146,7 +146,7 @@ class PageFilterRaces extends PageFilterBase {
 		].filter(it => it);
 		r._fTraits.push(...(r.traitTags || []));
 		r._fLangs = PageFilterRaces.getLanguageProficiencyTags(r.languageProficiencies);
-		r._fCreatureTypes = r.creatureTypes ? r.creatureTypes.map(it => it.choose || it).flat() : ["humanoid"];
+		r._fCreatureTypes = r.creatureTypes ? r.creatureTypes.map(it => it.choose || it).flat() : ["humanoide"];
 		this._mutateForFilters_commonMisc(r);
 		if (r._isBaseRace) r._fMisc.push("Base Species");
 		if (r._isBaseRace || !r._isSubRace) r._fMisc.push("Key Species");

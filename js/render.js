@@ -8125,8 +8125,8 @@ Renderer.race = class {
 		const entsAttributes = [
 			ent.abilityEntry || (ent.ability ? {type: "item", name: "Ability Scores:", entry: Renderer.getAbilityData(ent.ability).asText} : null),
 			ent.creatureTypesEntry || (this._getRaceRenderableEntriesMeta_creatureType({ent, styleHint})),
-			ent.sizeEntry || (ent.size ? {type: "item", name: "Size:", entry: Renderer.utils.getRenderedSize(ent.size || [Parser.SZ_VARIES])} : null),
-			ent.speedEntry || (ent.speed != null ? {type: "item", name: "Speed:", entry: Parser.getSpeedString(ent, {isLongForm: true})} : null),
+			ent.sizeEntry || (ent.size ? {type: "item", name: "Tamaño:", entry: Renderer.utils.getRenderedSize(ent.size || [Parser.SZ_VARIES])} : null),
+			ent.speedEntry || (ent.speed != null ? {type: "item", name: "Velocidad:", entry: Parser.getSpeedString(ent, {isLongForm: true})} : null),
 		]
 			.filter(Boolean);
 
@@ -8143,11 +8143,11 @@ Renderer.race = class {
 	static _getRaceRenderableEntriesMeta_creatureType ({ent, styleHint}) {
 		const types = ent.creatureTypes || [Parser.TP_HUMANOID];
 
-		if (styleHint !== "classic") return {type: "item", name: "Creature Type:", entry: Parser.raceCreatureTypesToFull(types)};
+		if (styleHint !== "classic") return {type: "item", name: "Tipo de criatura:", entry: Parser.raceCreatureTypesToFull(types)};
 
 		const typesFilt = (ent.creatureTypes || []).filter(it => `${it}`.toLowerCase() !== Parser.TP_HUMANOID);
 		if (!typesFilt.length) return null;
-		return {type: "item", name: "Creature Type:", entry: Parser.raceCreatureTypesToFull(typesFilt)};
+		return {type: "item", name: "Tipo de criatura:", entry: Parser.raceCreatureTypesToFull(typesFilt)};
 	}
 
 	/* -------------------------------------------- */
