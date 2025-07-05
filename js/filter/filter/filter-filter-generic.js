@@ -1126,7 +1126,7 @@ export class Filter extends FilterBase {
 			ptrCacheIsUmbrella = null,
 		},
 	) {
-		// Avoid counting duplicates, as we may have e.g. "Ranger" from 2014 and "Ranger" from 2024 on a single spell
+		// Avoid counting duplicates, as we may have e.g. "Explorador" from 2014 and "Explorador" from 2024 on a single spell
 		// See e.g.: "Absorb Elements" (XGE)
 		const seenItems = {};
 

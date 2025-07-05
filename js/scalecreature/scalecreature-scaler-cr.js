@@ -325,10 +325,10 @@ export class ScaleCreature {
 					} else return m[0];
 				});
 
-				const mClasses = /(artificer|bard|cleric|druid|paladin|ranger|hechicero|warlock|wizard) spells?/i.exec(outStr);
+				const mClasses = /(artificer|bard|cleric|druid|paladin|explorador|hechicero|warlock|wizard) spells?/i.exec(outStr);
 				if (mClasses) spellsFromClass = mClasses[1];
 				else {
-					const mClasses2 = /(artificer|bard|cleric|druid|paladin|ranger|hechicero|warlock|wizard)(?:'s)? spell list/i.exec(outStr);
+					const mClasses2 = /(artificer|bard|cleric|druid|paladin|explorador|hechicero|warlock|wizard)(?:'s)? spell list/i.exec(outStr);
 					if (mClasses2) spellsFromClass = mClasses2[1];
 				}
 
@@ -341,7 +341,7 @@ export class ScaleCreature {
 				maxSpellLevel = Math.min(9, Math.ceil(primaryOutLevel / 2));
 
 				// cap half-caster slots at 5
-				if (/paladin|ranger|warlock/i.exec(spellsFromClass)) {
+				if (/paladin|explorador|warlock/i.exec(spellsFromClass)) {
 					maxSpellLevel = Math.min(5, primaryOutLevel);
 				}
 			}

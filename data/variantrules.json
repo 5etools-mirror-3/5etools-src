@@ -410,7 +410,7 @@
 						"{@variantrule Sphere [Area of Effect]|XPHB|Sphere}"
 					]
 				},
-				"An area of effect has a point of origin, a location from which the effect's energy erupts. The rules for each shape specify how to position its point of origin. If all straight lines extending from the point of origin to a location in the area of effect are blocked, that location isn't included in the area of effect. To block a line, an obstruction must provide {@variantrule Cover|XPHB|Total Cover}.",
+				"An area of effect has a point of origin, a location from which the effect's energy erupts. The rules for each shape specify how to position its point of origin. If all straight lines extending from the point of origin to a location in the area of effect are blocked, that location isn't included in the area of effect. To block a line, an obstruction must provide {@variantrule Cobertura|XPHB|Total Cover}.",
 				"If the creator of an area of effect places it at an unseen point and an obstruction\u2014such as a wall\u2014is between the creator and that point, the point of origin comes into being on the near side of the obstruction."
 			]
 		},
@@ -841,14 +841,46 @@
 			]
 		},
 		{
-			"name": "Cover",
+			"name": "Cobertura",
 			"source": "XPHB",
 			"page": 364,
 			"srd52": true,
 			"basicRules2024": true,
 			"ruleType": "C",
 			"entries": [
-				"Cover provides a degree of protection to a target behind it. There are three degrees of cover, each of which provides a different benefit to a target: Half Cover (+2 bonus to AC and Dexterity saving throws), Three-Quarters Cover (+5 bonus to AC and Dexterity {@variantrule Tirada de salvación|XPHB|saving throws}), and Total Cover (can't be targeted directly). If behind more than one degree of cover, a target benefits only from the most protective degree."
+				"La cobertura proporciona un grado de protección a un objetivo situado tras ella. Hay tres niveles de cobertura, cada uno de los cuales otorga un beneficio diferente al objetivo:",
+				{
+					"type": "table",
+					"caption": "Cobertura",
+					"colLabels": [
+						"Nivel de cobertura",
+						"Beneficio al objetivo"
+					],
+					"colStyles": [
+						"col-3",
+						"col-9"
+					],
+					"rows": [
+						[
+							"Cobertura media",
+							"+2 a la CA y las tiradas de salvación de Destreza"
+						],
+						[
+							"Cobertura tres cuartos",
+							"+5 a la CA y las tiradas de salvación de Destreza"
+						],
+						[
+							"Cobertura completa",
+							"No puede ser el objetivo directo"
+						]
+					],
+					"data": {
+						"genTables": {
+							"tableChapterIgnore": true
+						}
+					}
+				},
+				"Si un objetivo está detrás de más de un grado de cobertura, solo se beneficia del que le proporciona más protección."
 			]
 		},
 		{
@@ -1093,7 +1125,7 @@
 							"type": "table",
 							"caption": "Proficiency Swaps",
 							"colLabels": [
-								"Proficiency",
+								"Competencia",
 								"Replacement Proficiency"
 							],
 							"colStyles": [
@@ -2055,7 +2087,7 @@
 						{
 							"type": "table",
 							"colLabels": [
-								"Proficiency",
+								"Competencia",
 								"Items"
 							],
 							"colStyles": [
@@ -5481,15 +5513,15 @@
 			]
 		},
 		{
-			"name": "Expertise",
+			"name": "Pericia",
 			"source": "XPHB",
-			"page": 367,
+			"page": 372,
 			"srd52": true,
 			"basicRules2024": true,
 			"ruleType": "C",
 			"entries": [
-				"Expertise is a feature that enhances your use of a skill proficiency. When you make an ability check with a skill proficiency in which you have Expertise, your {@variantrule Proficiency|XPHB|Proficiency Bonus} is doubled for that check unless the bonus is doubled by another feature.",
-				"If you gain Expertise, you gain it in one {@variantrule skill|XPHB} in which you have proficiency. You can't have Expertise in the same skill proficiency more than once."
+				"La pericia es un rasgo que mejora el uso de tu {@variantrule competencia|XPHB} en una {@variantrule skill|XPHB|habilidad}. Cuando hagas una prueba de característica con una competencia en una habilidad en la que tengas pericia, tu bonificador por {@variantrule competencia|XPHB} se duplica en esa prueba salvo que otro rasgo lo duplique.",
+				"Si ganas pericia, la ganas en una {@variantrule skill|XPHB|habilidad} en la que tengas competencia. No puedes tener pericia más de una vez en la misma habilidad"
 			]
 		},
 		{
@@ -5609,7 +5641,7 @@
 			"entries": [
 				"The rules for fear and horror can help you sustain an atmosphere of dread in a dark fantasy campaign.",
 				{
-					"name": "Fear",
+					"name": "Terror",
 					"type": "entries",
 					"entries": [
 						"When adventurers confront threats they have no hope of overcoming, you can call for them to make a Wisdom saving throw. Set the DC according to the circumstances. A character who fails the save becomes {@condition asustado} for 1 minute. The character can repeat the saving throw at the end of each of his or her turns, ending the effect on the character on a successful save."
@@ -5712,7 +5744,7 @@
 				},
 				{
 					"type": "entries",
-					"name": "Fear",
+					"name": "Terror",
 					"entries": [
 						"An overwhelming foe or horrid monster doesn't need magic or some supernatural ability to strike fear into the most stalwart adventurers. During any frightful encounter, you can call on a character to make a saving throw to resist being scared. The character must succeed on a {@dc 15} Wisdom saving throw or become {@condition asustado} until the end of their next turn.",
 						"Any of the following circumstances might be reasons to have one or more characters make saving throws to resist being {@condition asustado}:",
@@ -5780,7 +5812,7 @@
 				"If you want to model the swashbuckling style of The Three Musketeers and similar tales, you can introduce gunpowder weapon to your campaign that are associated with the Renaissance. Similarly, in a campaign where a spaceship has crashed or elements of modern-day Earth are present, futuristic or modern firearms might appear. The Firearms table provides examples of firearms from all three of those periods. The modern and futuristic items are priceless.",
 				{
 					"type": "entries",
-					"name": "Proficiency",
+					"name": "Competencia",
 					"entries": [
 						"It's up to you to decide whether a character has proficiency with a firearm. Characters in most D&D worlds wouldn't have such proficiency. During their downtime, characters can use the {@variantrule Downtime Activity: Training|PHB|training} rules in the {@book Player's Handbook|PHB} to acquire proficiency, assuming that they have enough ammunition to keep the weapons working while mastering their use."
 					]
@@ -6344,9 +6376,9 @@
 					"entries": [
 						{
 							"type": "entries",
-							"name": "Proficiency",
+							"name": "Competencia",
 							"entries": [
-								"Don't add your {@variantrule Proficiency|XPHB|Proficiency Bonus} to attack rolls with an improvised weapon."
+								"Don't add your {@variantrule Competencia|XPHB|Proficiency Bonus} to attack rolls with an improvised weapon."
 							]
 						},
 						{
@@ -10189,14 +10221,14 @@
 			]
 		},
 		{
-			"name": "Proficiency",
+			"name": "Competencia",
 			"source": "XPHB",
-			"page": 372,
+			"page": 364,
 			"srd52": true,
 			"basicRules2024": true,
 			"ruleType": "C",
 			"entries": [
-				"If you have proficiency with something, you can add your Proficiency Bonus to any {@variantrule Prueba con d20|XPHB} you make using that thing. A creature might have proficiency in a skill or {@variantrule Tirada de salvación|XPHB|saving throw} or with a weapon or tool."
+				"Si tienes competencia en algo o con algo, puedes sumar tu bonificador por competencia a cualquier {@variantrule Prueba con d20|XPHB} que hagas con ese elemento. Una criatura puede tener competencia en una habilidad o {@variantrule Tirada de salvación|XPHB} o con un arma o herramienta."
 			]
 		},
 		{
@@ -12199,7 +12231,7 @@
 									"22 ({@dice 4d8 + 4})",
 									{
 										"type": "entries",
-										"name": "Expertise",
+										"name": "Pericia",
 										"entries": [
 											"Choose two of the expert's skill proficiencies. The proficiency bonus is doubled for any ability check the expert makes that uses either of the chosen proficiencies."
 										]
@@ -12516,7 +12548,7 @@
 			"basicRules2024": true,
 			"ruleType": "C",
 			"entries": [
-				"A skill is an {@book area of specialization|XPHB|1|Skill List} associated with an ability check. If you have proficiency in a skill, you can add your {@variantrule Proficiency|XPHB|Proficiency Bonus} when you make an ability check associated with that skill."
+				"A skill is an {@book area of specialization|XPHB|1|Skill List} associated with an ability check. If you have proficiency in a skill, you can add your {@variantrule Competencia|XPHB|Proficiency Bonus} when you make an ability check associated with that skill."
 			]
 		},
 		{
@@ -13180,7 +13212,7 @@
 							"type": "entries",
 							"name": "CR",
 							"entries": [
-								"Challenge Rating summarizes the threat a {@variantrule Monster|XPHB|monster} poses and is detailed in the {@book Monster Manual|XMM}. The Experience Points characters receive for defeating a {@variantrule Monster|XPHB|monster} and its {@variantrule Proficiency|XPHB|Proficiency Bonus} follow. Some creatures that are created by magic have no CR."
+								"Challenge Rating summarizes the threat a {@variantrule Monster|XPHB|monster} poses and is detailed in the {@book Monster Manual|XMM}. The Experience Points characters receive for defeating a {@variantrule Monster|XPHB|monster} and its {@variantrule Competencia|XPHB|Proficiency Bonus} follow. Some creatures that are created by magic have no CR."
 							]
 						},
 						{
@@ -16053,21 +16085,21 @@
 							"type": "entries",
 							"name": "Damage",
 							"entries": [
-								"You make an attack roll against the target. Your bonus to the roll equals your Strength modifier plus your {@variantrule Proficiency|XPHB|Proficiency Bonus}. On a hit, the target takes Bludgeoning damage equal to 1 plus your Strength modifier."
+								"You make an attack roll against the target. Your bonus to the roll equals your Strength modifier plus your {@variantrule Competencia|XPHB|Proficiency Bonus}. On a hit, the target takes Bludgeoning damage equal to 1 plus your Strength modifier."
 							]
 						},
 						{
 							"type": "entries",
 							"name": "Grapple",
 							"entries": [
-								"The target must succeed on a Strength or Dexterity {@variantrule Tirada de salvación|XPHB|saving throw} (it chooses which), or it has the {@condition Agarrado|XPHB} condition. The DC for the {@variantrule Tirada de salvación|XPHB|saving throw} and any escape attempts equals 8 plus your Strength modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus}. This grapple is possible only if the target is no more than one size larger than you and if you have a hand free to grab it."
+								"The target must succeed on a Strength or Dexterity {@variantrule Tirada de salvación|XPHB|saving throw} (it chooses which), or it has the {@condition Agarrado|XPHB} condition. The DC for the {@variantrule Tirada de salvación|XPHB|saving throw} and any escape attempts equals 8 plus your Strength modifier and {@variantrule Competencia|XPHB|Proficiency Bonus}. This grapple is possible only if the target is no more than one size larger than you and if you have a hand free to grab it."
 							]
 						},
 						{
 							"type": "entries",
 							"name": "Shove",
 							"entries": [
-								"The target must succeed on a Strength or Dexterity {@variantrule Tirada de salvación|XPHB|saving throw} (it chooses which), or you either push it 5 feet away or cause it to have the {@condition Prone|XPHB} condition. The DC for the {@variantrule Tirada de salvación|XPHB|saving throw} equals 8 plus your Strength modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus}. This shove is possible only if the target is no more than one size larger than you."
+								"The target must succeed on a Strength or Dexterity {@variantrule Tirada de salvación|XPHB|saving throw} (it chooses which), or you either push it 5 feet away or cause it to have the {@condition Prone|XPHB} condition. The DC for the {@variantrule Tirada de salvación|XPHB|saving throw} equals 8 plus your Strength modifier and {@variantrule Competencia|XPHB|Proficiency Bonus}. This shove is possible only if the target is no more than one size larger than you."
 							]
 						}
 					]

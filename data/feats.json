@@ -363,7 +363,7 @@
 					"type": "entries",
 					"name": "Anticoncentración",
 					"entries": [
-						"Cuando dañes a una criatura que se esté concentrando, tendrá desventaja en la tirada de salvación que haga para mantener la concentración."
+						"Cuando dañes a una criatura que se esté concentrando, tendrá desventaja en la tirada de salvación que haga para mantener la {@condition concentración|XPHB}."
 					]
 				},
 				{
@@ -419,7 +419,7 @@
 					"type": "entries",
 					"name": "Detener",
 					"entries": [
-						"Cuando aciertes a una criatura con un ataque de oportunidad, su velocidad pasará a ser O para el resto del turno actual."
+						"Cuando aciertes a una criatura con un ataque de oportunidad, su velocidad pasará a ser 0 para el resto del turno actual."
 					]
 				}
 			]
@@ -491,7 +491,7 @@
 				}
 			],
 			"entries": [
-				"Cuando tires el daño para un ataque hecho con un arma cuerpo a cuerpo que empuñas con ambas manos, puedes tratar cualquier 1 o 2 en los dados de daño como un 3. Para obtener este beneficio, el arma debe poseer la propiedad “a dos manos” o “versátil”."
+				"Cuando tires el daño para un ataque hecho con un {@filter arma cuerpo a cuerpo que empuñas con ambas manos|items|type=arma cuerpo a cuerpo=sand|property=versátil;a dos manos}, puedes tratar cualquier 1 o 2 en los dados de daño como un 3. Para obtener este beneficio, el arma debe poseer la propiedad “a dos manos” o “versátil”."
 			]
 		},
 		{
@@ -508,7 +508,7 @@
 				}
 			],
 			"entries": [
-				"Cuando aciertas con una tirada de ataque a distancia con un arma que tenga la propiedad “arrojadiza”, obtienes un bonificador de +2 a la tirada de daño."
+				"Cuando aciertas con una tirada de ataque a distancia con un arma que tenga la propiedad “{@filter arrojadiza|items|property=arrojadiza}”, obtienes un bonificador de +2 a la tirada de daño."
 			]
 		},
 		{
@@ -527,7 +527,7 @@
 				}
 			],
 			"entries": [
-				"Cuando haces un ataque extra como resultado de utilizar un arma con la propiedad “ligera”, puedes sumar tu modificador por característica al daño de ese ataque si no lo estás sumando ya al daño."
+				"Cuando haces un ataque extra como resultado de utilizar un arma con la propiedad “{@filter ligera|items|property=ligera}”, puedes sumar tu modificador por característica al daño de ese ataque si no lo estás sumando ya al daño."
 			]
 		},
 		{
@@ -583,7 +583,7 @@
 					"type": "entries",
 					"name": "Manejo doble mejorado.",
 					"entries": [
-						"Cuando lleves a cabo la acción de atacar en tu turno y ataques con un arma que tenga la propiedad “ligera”, podrás realizar un ataque extra como acción adicional más adelante en el mismo turno con un arma distinta, que deberá ser un arma cuerpo a cuerpo sin la propiedad “a dos manos”. No sumarás tu modificador por característica al daño del ataque extra salvo que el modificador sea negativo."
+						"Cuando lleves a cabo la acción de atacar en tu turno y ataques con un arma que tenga la propiedad “{@filter ligera|items|property=ligera}”, podrás realizar un ataque extra como acción adicional más adelante en el mismo turno con un arma distinta, que deberá ser un arma cuerpo a cuerpo {@filter sin la propiedad “a dos manos”|items|type=sencilla;marcial|property=!a dos manos}. No sumarás tu modificador por característica al daño del ataque extra salvo que el modificador sea negativo."
 					]
 				},
 				{
@@ -688,7 +688,7 @@
 					"type": "entries",
 					"name": "Parada",
 					"entries": [
-						"Si empuñas un arma sutil y otra criatura te acierta con un ataque cuerpo a cuerpo, puedes llevar a cabo una reacción para sumar tu bonificador por competencia a tu clase de armadura, lo que podría hacer que el ataque falle. Ganas este bonificador a tu CA contra los ataques cuerpo a cuerpo hasta el principio de tu siguiente turno."
+						"Si empuñas un {@filter arma sutil|items|property=sutil} y otra criatura te acierta con un ataque cuerpo a cuerpo, puedes llevar a cabo una reacción para sumar tu bonificador por competencia a tu clase de armadura, lo que podría hacer que el ataque falle. Ganas este bonificador a tu CA contra los ataques cuerpo a cuerpo hasta el principio de tu siguiente turno."
 					]
 				}
 			]
@@ -743,7 +743,7 @@
 					"type": "entries",
 					"name": "Competencia con armas",
 					"entries": [
-						"Obtienes competencia con armas marciales."
+						"Obtienes competencia con {@filter armas marciales|items|type=marcial}."
 					]
 				}
 			]
@@ -820,7 +820,7 @@
 					"type": "entries",
 					"name": "Ignorar la recarga",
 					"entries": [
-						"Ignoras la propiedad de recarga de las ballestas de mano, ballestas ligeras y ballestas pesadas (englobadas como “ballestas” en esta dote). Si empuñas una de ellas, puedes cargar una unidad de munición aunque no tengas ninguna mano libre."
+						"Ignoras la propiedad de recarga de las {@item Ballesta de mano|XPHB|ballestas de mano}, {@item Ballesta ligera|XPHB|ballestas ligeras} y {@item Ballesta pesada|XPHB|ballestas pesadas} (englobadas como “ballestas” en esta dote). Si empuñas una de ellas, puedes cargar una unidad de munición aunque no tengas ninguna mano libre."
 					]
 				},
 				{
@@ -887,7 +887,7 @@
 					"type": "entries",
 					"name": "Pericia",
 					"entries": [
-						"Elige una habilidad en la que tengas competencia pero te falte pericia. Ganas pericia en dicha habilidad."
+						"Elige una habilidad en la que tengas competencia pero te falte {@variantrule pericia|XPHB}. Ganas {@variantrule pericia|XPHB} en dicha habilidad."
 					]
 				}
 			]
@@ -1014,7 +1014,7 @@
 				}
 			],
 			"entries": [
-				"Aprendes dos trucos de clérigo de tu elección (consulta la sección de la clase clérigo para ver la lista de conjuros de clérigo). Se recomiendan guía y llama sagrada. Los trucos elegidos cuentan como conjuros de paladín para ti y el Carisma es tu aptitud mágica para lanzarlos. Cada vez que subas un nivel de paladín, puedes sustituir uno de estos trucos por otro truco de clérigo."
+				"Aprendes dos {@filter trucos de clérigo|spells|class=clérigo|level=0} de tu elección (consulta la sección de la clase clérigo para ver la lista de conjuros de clérigo). Se recomiendan {@spell guía|XPHB} y {@spell llama sagrada|XPHB}. Los trucos elegidos cuentan como conjuros de paladín para ti y el Carisma es tu aptitud mágica para lanzarlos. Cada vez que subas un nivel de paladín, puedes sustituir uno de estos trucos por otro truco de clérigo."
 			]
 		},
 		{
@@ -1045,7 +1045,7 @@
 				}
 			],
 			"entries": [
-				"Aprendes dos trucos de druida de tu elección (consulta la sección de la clase druida para ver la lista de conjuros de druida). Se recomiendan @{spell Guía|XPHB} y @{spell voluta estelar|XPHB}, Los trucos elegidos cuentan como conjuros de explorador para ti y la Sabiduría es tu aptitud mágica para lanzarlos. Cada vez que subas un nivel de explorador, puedes sustituir uno de estos trucos por otro truco de druida."
+				"Aprendes dos {@filter trucos de druida|spells|class=druid|level=0} de tu elección (consulta la sección de la clase druida para ver la lista de conjuros de druida). Se recomiendan {@spell Guía|XPHB} y {@spell Voluta estelar|XPHB}, Los trucos elegidos cuentan como conjuros de explorador para ti y la Sabiduría es tu aptitud mágica para lanzarlos. Cada vez que subas un nivel de explorador, puedes sustituir uno de estos trucos por otro {@filter trucos de druida|spells|class=druid|level=0}."
 			]
 		},
 		{
@@ -1112,7 +1112,7 @@
 					"type": "entries",
 					"name": "Magia feérica",
 					"entries": [
-						"Elige un conjuro de nivel 1 de las escuelas mágicas de adivinación o encantamiento. Siempre tendrás ese conjuro y el conjuro paso brumoso preparados. Puedes lanzar cada uno de estos conjuros sin gastar un espacio de conjuro. Cuando lances cualquiera de esos conjuros de esta forma, no podrás volver a lanzar ese conjuro de este modo hasta que finalices un descanso largo. También puedes lanzar estos conjuros usando espacios de conjuro que tengas del nivel apropiado. La aptitud mágica de los conjuros es la característica aumentada por esta dote."
+						"Elige un {@filter conjuro de nivel 1 de las escuelas mágicas de adivinación o encantamiento|spells|level=1|school=D;E}. Siempre tendrás ese conjuro y el conjuro {@spell paso brumoso|XPHB} preparados. Puedes lanzar cada uno de estos conjuros sin gastar un espacio de conjuro. Cuando lances cualquiera de esos conjuros de esta forma, no podrás volver a lanzar ese conjuro de este modo hasta que finalices un descanso largo. También puedes lanzar estos conjuros usando espacios de conjuro que tengas del nivel apropiado. La aptitud mágica de los conjuros es la característica aumentada por esta dote."
 					]
 				}
 			]
@@ -1162,7 +1162,7 @@
 					"type": "entries",
 					"name": "Magia de las sombras",
 					"entries": [
-						"Elige un conjuro de nivel 1 de las escuelas mágicas de ilusionismo o nigromancia. Siempre tendrás ese conjuro y el conjuro invisibilidad preparados. Puedes lanzar cada uno de estos conjuros sin gastar un espacio de conjuro. Cuando lances cualquiera de esos conjuros de esta forma, no podrás volver a lanzar ese conjuro de este modo hasta que finalices un descanso largo. También puedes lanzar estos conjuros usando espacios de conjuro que tengas del nivel apropiado, La aptitud mágica de los conjuros es la característica aumentada por esta dote."
+						"Elige un {@filter conjuro de nivel 1 de las escuelas mágicas de ilusionismo o nigromancia|spells|level=1|school=I;N}. Siempre tendrás ese conjuro y el conjuro {@spell Invisibility|XPHB|Invisibilidad} preparados. Puedes lanzar cada uno de estos conjuros sin gastar un espacio de conjuro. Cuando lances cualquiera de esos conjuros de esta forma, no podrás volver a lanzar ese conjuro de este modo hasta que finalices un descanso largo. También puedes lanzar estos conjuros usando espacios de conjuro que tengas del nivel apropiado, La aptitud mágica de los conjuros es la característica aumentada por esta dote."
 					]
 				}
 			]
@@ -1181,7 +1181,7 @@
 					"type": "entries",
 					"name": "Dos trucos",
 					"entries": [
-						"Aprendes dos trucos de tu elección escogidos de entre los de la lista de conjuros de clérigo, druida o mago. Tu aptitud mágica para los conjuros de esta dote es la Inteligencia, la Sabiduría o el Carisma (elígela cuando selecciones esta dote)."
+						"Aprendes dos trucos de tu elección escogidos de entre los de la lista de conjuros de {@filter clérigo|spells|class=clérigo}, {@filter druida|spells|class=druid} o {@filter mago|spells|class=wizard}. Tu aptitud mágica para los conjuros de esta dote es la Inteligencia, la Sabiduría o el Carisma (elígela cuando selecciones esta dote)."
 					]
 				},
 				{
@@ -1395,7 +1395,7 @@
 					"type": "entries",
 					"name": "Conjuros rituales",
 					"entries": [
-						"Elige una cantidad de conjuros igual a tu bonificador por competencia; deben ser de nivel 1 y estar marcados como “ritual”. Siempre tendrás esos conjuros preparados y podrás lanzarlos con cualquier espacio de conjuro que tengas. La aptitud mágica de los conjuros es la característica aumentada por esta dote. Siempre que tu bonificador por competencia aumente, puedes añadir otro conjuro de nivel 1 marcado como “ritual” a los conjuros que siempre tienes preparados con este rasgo."
+						"Elige una cantidad de conjuros igual a tu bonificador por competencia; deben ser de nivel 1 y estar marcados como “{@filter ritual|spells|level=1|components & miscellaneous=ritual}”. Siempre tendrás esos conjuros preparados y podrás lanzarlos con cualquier espacio de conjuro que tengas. La aptitud mágica de los conjuros es la característica aumentada por esta dote. Siempre que tu bonificador por competencia aumente, puedes añadir otro conjuro de nivel 1 marcado como “ritual” a los conjuros que siempre tienes preparados con este rasgo."
 					]
 				},
 				{
@@ -1481,7 +1481,7 @@
 					"type": "entries",
 					"name": "Entrenamiento con armaduras",
 					"entries": [
-						"Obtienes entrenamiento con armaduras ligeras y escudos."
+						"Obtienes entrenamiento con {@filter armaduras ligeras|items|type=armadura ligera} y escudos."
 					]
 				}
 			]
@@ -1535,7 +1535,7 @@
 					"type": "entries",
 					"name": "Propiedad de maestría",
 					"entries": [
-						"Tu entrenamiento con armas te permite utilizar la propiedad de maestría con un tipo de arma sencilla o marcial de tu elección, siempre que tengas competencia con ella. Tras finalizar un descanso largo, puedes cambiar el tipo de arma elegida por otra que cumpla el requisito."
+						"Tu entrenamiento con armas te permite utilizar la {@variantrule propiedades de maestría con armas|XPHB|propiedad de maestría} con un tipo de arma sencilla o marcial de tu elección, siempre que tengas competencia con ella. Tras finalizar un descanso largo, puedes cambiar el tipo de arma elegida por otra que cumpla el requisito."
 					]
 				}
 			],
@@ -1573,7 +1573,7 @@
 					"type": "entries",
 					"name": "Portador diestro",
 					"entries": [
-						"Mientras lleves puesta una armadura media, puedes sumar 3 en lugar de 2 atu CA si tu puntuación de Destreza es de 16 o más."
+						"Mientras lleves puesta una {@filter armadura media|items|type=armadura media}, puedes sumar 3 en lugar de 2 atu CA si tu puntuación de Destreza es de 16 o más."
 					]
 				}
 			]
@@ -1610,7 +1610,7 @@
 					"type": "entries",
 					"name": "Reducción de daño",
 					"entries": [
-						"Cuando te acierte un ataque mientras lleves puesta una armadura pesada, cualquier daño contundente, cortante y perforante que recibas se reducirá en una cantidad igual a tu bonificador por competencia."
+						"Cuando te acierte un ataque mientras lleves puesta una {@filter armadura pesada|items|type=armadura pesada}, cualquier daño contundente, cortante y perforante que recibas se reducirá en una cantidad igual a tu bonificador por competencia."
 					]
 				}
 			]
@@ -1657,7 +1657,7 @@
 					"type": "entries",
 					"name": "Golpe reactivo",
 					"entries": [
-						"Mientras empuñes un bastón, una lanza o un arma que tenga las propiedades “gran alcance” y “pesada”, podrás llevar a cabo una reacción para hacer un ataque cuerpo a cuerpo contra una criatura que entre dentro del alcance que tengas con esa arma."
+						"Mientras empuñes un {@item bastón|XPHB}, una {@item lanza|XPHB} o un arma que tenga las propiedades {@filter “gran alcance” y “pesada”|items|property=gran alcance;pesada=sand}, podrás llevar a cabo una reacción para hacer un ataque cuerpo a cuerpo contra una criatura que entre dentro del alcance que tengas con esa arma."
 					]
 				}
 			]
@@ -1689,7 +1689,7 @@
 					"type": "entries",
 					"name": "Maestría con armas pesadas",
 					"entries": [
-						"Cuando golpeas a una criatura con un arma que tenga la propiedad “pesada” como parte de la acción de atacar en tu turno, puedes hacer que el arma cause daño adicional al objetivo. Este daño adicional es igual a tu bonificador por competencia."
+						"Cuando golpeas a una criatura con un arma que tenga la propiedad “{@filter pesada|items|property=pesada}” como parte de la acción de atacar en tu turno, puedes hacer que el arma cause daño adicional al objetivo. Este daño adicional es igual a tu bonificador por competencia."
 					]
 				},
 				{
@@ -1883,7 +1883,7 @@
 					"type": "entries",
 					"name": "Estudio rápido",
 					"entries": [
-						"Puedes llevar a cabo la acción de {@action Estudiar|XPHB} como acción adicional."
+						"Puedes llevar a cabo la acción de {@action Study|XPHB|Estudiar} como acción adicional."
 					]
 				}
 			]
@@ -1925,7 +1925,7 @@
 					"type": "entries",
 					"name": "Entrenamiento con armaduras",
 					"entries": [
-						"Obtienes entrenamiento con armaduras medias."
+						"Obtienes entrenamiento con {@filter armaduras medias|items|type=armadura media}."
 					]
 				}
 			]
@@ -1967,7 +1967,7 @@
 					"type": "entries",
 					"name": "Entrenamiento con armaduras",
 					"entries": [
-						"Obtienes entrenamiento con armaduras pesadas."
+						"Obtienes entrenamiento con {@filter armaduras pesadas|items|type=armadura pesada}."
 					]
 				}
 			]
@@ -2044,7 +2044,7 @@
 					"type": "entries",
 					"name": "Observador perspicaz",
 					"entries": [
-						"Elige una de las siguientes habilidades: {@skill Investigación|XPHB}, {@skill Percepción|XPHB} o {@skill Perspicacia|XPHB}. Si no tienes competencia en la habilidad elegida, la consigues, y si ya la tienes, ganas pericia en ella."
+						"Elige una de las siguientes habilidades: {@skill Investigación|XPHB}, {@skill Percepción|XPHB} o {@skill Perspicacia|XPHB}. Si no tienes {@variantrule competencia|XPHB} en la habilidad elegida, la consigues, y si ya la tienes, ganas {@variantrule pericia|XPHB} en ella."
 					]
 				},
 				{
@@ -2395,21 +2395,21 @@
 					"type": "entries",
 					"name": "Sortear la cobertura",
 					"entries": [
-						"Tus ataques a distancia con armas ignoran las coberturas media y tres cuartos."
+						"Tus ataques a distancia con armas ignoran las {@variantrule Cobertura|XPHB|coberturas} media y tres cuartos."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Disparar cuerpo a cuerpo",
 					"entries": [
-						"Estar a 5 pies o menos de un enemigo no impone desventaja en tus tiradas de ataque con armas a distancia."
+						"Estar a 5 pies o menos de un enemigo no impone desventaja en tus tiradas de ataque con {@filter armas a distancia|items|type=arma a distancia}."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Tiros lejanos",
 					"entries": [
-						"Al atacar con alcance largo, tus tiradas de ataque no tendrán desventaja con las armas a distancia."
+						"Al atacar con alcance largo, tus tiradas de ataque no tendrán desventaja con las {@filter armas a distancia|items|type=arma a distancia}."
 					]
 				}
 			]
@@ -2430,7 +2430,7 @@
 				}
 			],
 			"entries": [
-				"Recibes un bonificador de +2 a las tiradas de ataque con armas a distancia."
+				"Recibes un bonificador de +2 a las tiradas de ataque con {@filter armas a distancia|items|type=arma a distancia}."
 			]
 		},
 		{
@@ -2609,10 +2609,10 @@
 			]
 		},
 		{
-			"name": "Boon of Dimensional Travel",
-			"originalname": "",
+			"name": "Don del viaje dimensional",
+			"originalname": "Boon of Dimensional Travel",
 			"source": "XPHB",
-			"page": 210,
+			"page": 211,
 			"srd52": true,
 			"basicRules2024": true,
 			"category": "DE",
@@ -2637,12 +2637,12 @@
 				}
 			],
 			"entries": [
-				"You gain the following benefits.",
+				"Obtienes los siguientes beneficios:",
 				{
 					"type": "entries",
-					"name": "Blink Steps",
+					"name": "Pasos desplazadores",
 					"entries": [
-						"Immediately after you take the {@action Attack|XPHB} action or the {@action Magic|XPHB} action, you can teleport up to 30 feet to an unoccupied space you can see."
+						"Inmediatamente después de que realices la acción de atacar o la de magia, puedes teletransportarte hasta 30 pies (9 m) a un espacio sin ocupar que puedas ver."
 					]
 				}
 			]
@@ -2936,7 +2936,7 @@
 				},
 				{
 					"type": "entries",
-					"name": "Expertise",
+					"name": "Pericia",
 					"entries": [
 						"Choose one skill in which you lack Expertise. You gain Expertise in that skill."
 					]

@@ -549,7 +549,7 @@ TagCondition._CONDITION_INFLICTED_MATCHERS = [
 	`magically (?:become|turn)s? {@condition (invisible)}`, // MM :: Will-o'-Wisp :: Invisibility
 	{re: `The (?!(?:[^.]+) can sense)(?:[^.]+) is {@condition (invisible)}`, flags: "g"}, // MM :: Invisible Stalker :: Invisibility
 	`succeed\\b[^.!?]+\\bsaving throw\\b[^.!?]+\\. (?:It|The (?:creature|target)) is {@condition ([^}]+)}`, // MM :: Beholder :: 6. Telekinetic Ray
-	{re: `\\bhave the {@condition ([^}]+)}\\b`, flags: "g"}, // XPHB :: Animal Friendship
+	{re: `\\bhave the {@condition ([^}]+)}\\b`, flags: "g"}, // XPHB :: Encantar animal
 	{re: `\\bhas the {@condition ([^}]+)} condition\\b`, flags: "g"}, // XPHB :: Constrictor Snake
 ]
 	.map(it => typeof it === "object" ? it : ({re: it, flags: "gi"}))

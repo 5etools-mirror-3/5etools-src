@@ -122,10 +122,10 @@
 			]
 		},
 		{
-			"name": "Alarm",
-			"originalname": "",
+			"name": "Alarma",
+			"originalname": "Alarm",
 			"source": "XPHB",
-			"page": 239,
+			"page": 240,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 1,
@@ -146,7 +146,7 @@
 			"components": {
 				"v": true,
 				"s": true,
-				"m": "a bell and silver wire"
+				"m": "una campanae hilo de plata"
 			},
 			"duration": [
 				{
@@ -161,23 +161,23 @@
 				"ritual": true
 			},
 			"entries": [
-				"You set an alarm against intrusion. Choose a door, a window, or an area within range that is no larger than a 20-foot {@variantrule Cube [Area of Effect]|XPHB|Cube}. Until the spell ends, an alarm alerts you whenever a creature touches or enters the warded area. When you cast the spell, you can designate creatures that won't set off the alarm. You also choose whether the alarm is audible or mental:",
+				"Preparas una alarma contra los intrusos. Elige una puerta, una ventana o una zona dentro del alcance que no sea mayor que un cubo de 10 pies (6 m) de lado. Hasta que el conjuro termine, una alarma te alertará siempre que una criatura toque la zona vigilada o entre en ella. Al lanzar el conjuro, puedes designar qué criaturas no activarán la alarma, que puede ser mental o sonora:",
 				{
 					"type": "list",
 					"style": "list-hang-notitle",
 					"items": [
 						{
 							"type": "item",
-							"name": "Audible Alarm",
+							"name": "Alarma mental",
 							"entries": [
-								"The alarm produces the sound of a handbell for 10 seconds within 60 feet of the warded area."
+								"La alarma te avisará con un sonido dentro de tu mente si estás a 1,5 km o menos de la zona vigilada. Si estás durmiendo, te despertará."
 							]
 						},
 						{
 							"type": "item",
-							"name": "Mental Alarm",
+							"name": "Alarma sonora",
 							"entries": [
-								"You are alerted by a mental ping if you are within 1 mile of the warded area. This ping awakens you if you're asleep."
+								"La alarma producirá el sonido de una campanilla durante 10 segundos, que será audible a 60 pies (18 m) o menos de la zona vigilada."
 							]
 						}
 					]
@@ -253,10 +253,10 @@
 			]
 		},
 		{
-			"name": "Animal Friendship",
-			"originalname": "",
+			"name": "Encantar animal",
+			"originalname": "Animal Friendship",
 			"source": "XPHB",
-			"page": 239,
+			"page": 275,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 1,
@@ -277,7 +277,7 @@
 			"components": {
 				"v": true,
 				"s": true,
-				"m": "a morsel of food"
+				"m": "unas migajas de comida"
 			},
 			"duration": [
 				{
@@ -289,14 +289,14 @@
 				}
 			],
 			"entries": [
-				"Target a Beast that you can see within range. The target must succeed on a Wisdom saving throw or have the {@condition Hechizado|XPHB} condition for the duration. If you or one of your allies deals damage to the target, the spells ends."
+				"Haces objetivo a una bestia que puedas ver dentro del alcance. El objetivo deberá superar una tirada de salvación de Sabiduría o tendrá el estado de {@condition Hechizado|XPHB} hasta que termine el conjuro. Si alguno de tus aliados o tú dañáis al objetivo, el conjuro termina."
 			],
 			"entriesHigherLevel": [
 				{
 					"type": "entries",
 					"name": "Con un espacio de conjuro de nivel superior.",
 					"entries": [
-						"You can target one additional Beast for each spell slot level above 1."
+						"Puedes hacer objetivo a una bestia adicional por cada nivel por encima de 1 que tenga el espacio."
 					]
 				}
 			],
@@ -304,7 +304,7 @@
 				"charmed"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"affectsCreatureType": [
 				"beast"
@@ -728,7 +728,7 @@
 				"charmed"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"miscTags": [
 				"OBJ"
@@ -1756,7 +1756,7 @@
 				"necrotic"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"miscTags": [
 				"PRM"
@@ -1835,7 +1835,7 @@
 							"type": "item",
 							"name": "Interposing Hand",
 							"entries": [
-								"The hand grants you Half {@variantrule Cover|XPHB} against attacks and other effects that originate from its space or that pass through it. In addition, its space counts as {@variantrule Difficult Terrain|XPHB} for your enemies."
+								"The hand grants you Half {@variantrule Cobertura|XPHB} against attacks and other effects that originate from its space or that pass through it. In addition, its space counts as {@variantrule Difficult Terrain|XPHB} for your enemies."
 							]
 						}
 					]
@@ -1910,7 +1910,7 @@
 				}
 			],
 			"entries": [
-				"You create a wall of whirling blades made of magical energy. The wall appears within range and lasts for the duration. You make a straight wall up to 100 feet long, 20 feet high, and 5 feet thick, or a ringed wall up to 60 feet in diameter, 20 feet high, and 5 feet thick. The wall provides Three-Quarters {@variantrule Cover|XPHB}, and its space is {@variantrule Difficult Terrain|XPHB}.",
+				"You create a wall of whirling blades made of magical energy. The wall appears within range and lasts for the duration. You make a straight wall up to 100 feet long, 20 feet high, and 5 feet thick, or a ringed wall up to 60 feet in diameter, 20 feet high, and 5 feet thick. The wall provides Three-Quarters {@variantrule Cobertura|XPHB}, and its space is {@variantrule Difficult Terrain|XPHB}.",
 				"Any creature in the wall's space makes a Dexterity saving throw, taking {@damage 6d10} Force damage on a failed save or half as much damage on a successful one. A creature also makes that save if it enters the wall's space or ends it turn there. A creature makes that save only once per turn."
 			],
 			"damageInflict": [
@@ -2568,7 +2568,7 @@
 				"charmed"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"miscTags": [
 				"SCT",
@@ -2629,7 +2629,7 @@
 				"charmed"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"affectsCreatureType": [
 				"humanoide"
@@ -3215,7 +3215,7 @@
 				"prone"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"miscTags": [
 				"SCT",
@@ -3360,7 +3360,7 @@
 				"The spell ends if you make an attack roll against a creature other than the target, if you cast a spell on an enemy other than the target, if an ally of yours damages the target, or if you end your turn more than 30 feet away from the target."
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"miscTags": [
 				"SGT"
@@ -3455,7 +3455,7 @@
 				"charmed"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"miscTags": [
 				"SGT",
@@ -3600,7 +3600,7 @@
 				}
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"miscTags": [
 				"RO"
@@ -4105,7 +4105,7 @@
 				"force"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"miscTags": [
 				"SGT",
@@ -4921,7 +4921,7 @@
 				"charmed"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"affectsCreatureType": [
 				"humanoide"
@@ -5607,7 +5607,7 @@
 				}
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"abilityCheck": [
 				"intelligence"
@@ -5617,10 +5617,10 @@
 			]
 		},
 		{
-			"name": "Dimension Door",
-			"originalname": "",
+			"name": "Puerta dimensional",
+			"originalname": "Dimension Door",
 			"source": "XPHB",
-			"page": 262,
+			"page": 324,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 4,
@@ -5647,9 +5647,9 @@
 				}
 			],
 			"entries": [
-				"You teleport to a location within range. You arrive at exactly the spot desired. It can be a place you can see, one you can visualize, or one you can describe by stating distance and direction, such as \"200 feet straight downward\" or \"300 feet upward to the northwest at a 45-degree angle.\"",
-				"You can also teleport one willing creature. The creature must be within 5 feet of you when you teleport, and it teleports to a space within 5 feet of your destination space.",
-				"If you, the other creature, or both would arrive in a space occupied by a creature or completely filled by one or more objects, you and any creature traveling with you each take {@damage 4d6} Force damage, and the teleportation fails."
+				"Te teletransportas a una ubicación dentro del alcance y llegas exactamente al sitio deseado. Puede ser un lugar que tengas a la vista, uno que logres visualizar o uno que puedas describir indicando la distancia y la dirección, como “60 m en línea recta hacia abajo” o “90 m hacia arriba y hacia el noroeste en un ángulo de 45 grados”.",
+				"También puedes teletransportar contigo a una criatura voluntaria. La criatura deberá estar a 5 pies (1,5 m) o menos de ti cuando te teletransportes y aparecerá en un espacio a 5 pies (1,5 m) o menos de tu espacio de destino.",
+				"Si la otra criatura, tú o las dos fuerais a llegar a un espacio ya ocupado por una criatura o totalmente ocupado por uno o más objetos, la criatura que viaje contigo y tú sufriréis {@damage 4d6} de daño de fuerza y la teletransportación fallará."
 			],
 			"damageInflict": [
 				"force"
@@ -5931,7 +5931,7 @@
 				"psychic"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"miscTags": [
 				"SGT"
@@ -6206,7 +6206,7 @@
 				"charmed"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"affectsCreatureType": [
 				"beast"
@@ -6272,7 +6272,7 @@
 				"charmed"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"miscTags": [
 				"SGT"
@@ -6335,7 +6335,7 @@
 				"charmed"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"affectsCreatureType": [
 				"humanoide"
@@ -6504,7 +6504,7 @@
 				"psychic"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"areaTags": [
 				"ST"
@@ -6966,10 +6966,10 @@
 			]
 		},
 		{
-			"name": "Ensnaring Strike",
-			"originalname": "",
+			"name": "Golpe apresador",
+			"originalname": "Ensnaring Strike",
 			"source": "XPHB",
-			"page": 268,
+			"page": 287,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 1,
@@ -6978,7 +6978,7 @@
 				{
 					"number": 1,
 					"unit": "adicional",
-					"condition": "which you take immediately after hitting a creature with a weapon"
+					"condition": "que realizas de inmediato tras acertar a una criatura con un arma"
 				}
 			],
 			"range": {
@@ -7001,15 +7001,15 @@
 				}
 			],
 			"entries": [
-				"As you hit the target, grasping vines appear on it, and it makes a Strength saving throw. A Large or larger creature has {@variantrule Advantage|XPHB} on this save. On a failed save, the target has the {@condition Apresado|XPHB} condition until the spell ends. On a successful save, the vines shrivel away, and the spell ends.",
-				"While {@condition Apresado|XPHB}, the target takes {@damage 1d6} Piercing damage at the start of each of its turns. The target or a creature within reach of it can take an action to make a Strength ({@skill Athletics|XPHB}) check against your spell save DC. On a success, the spell ends."
+				"Al acertar al objetivo, unas enredaderas aparecerán sobre él y deberá hacer una tirada de salvación de Fuerza. Las criaturas Grandes o de mayor tamaño tienen ventaja en esta tirada. Si la falla, tendrá el estado de {@condition Apresado|XPHB} hasta que el conjuro termine. Si la supera, las enredaderas se marchitan y el conjuro termina.",
+				"Mientras esté {@condition Apresado|XPHB}, el objetivo sufrirá {@damage 1d6} de daño perforante al principio de cada uno de sus turnos. El objetivo o una criatura a su alcance puede emplear una acción para hacer una prueba de Fuerza ({@skill Atletismo|XPHB}) contra tu CD de salvación de conjuros. Si la supera, el conjuro termina."
 			],
 			"entriesHigherLevel": [
 				{
 					"type": "entries",
 					"name": "Con un espacio de conjuro de nivel superior.",
 					"entries": [
-						"The damage increases by {@scaledamage 1d6|1-9|1d6} for each spell slot level above 1."
+						"El daño aumenta en {@scaledamage 1d6|1-9|1d6} por cada nivel por encima de 1 que tenga el espacio."
 					]
 				}
 			],
@@ -7027,10 +7027,10 @@
 			]
 		},
 		{
-			"name": "Entangle",
-			"originalname": "",
+			"name": "Enmarañar",
+			"originalname": "Entangle",
 			"source": "XPHB",
-			"page": 268,
+			"page": 277,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 1,
@@ -7063,8 +7063,8 @@
 				}
 			],
 			"entries": [
-				"Grasping plants sprout from the ground in a 20-foot square within range. For the duration, these plants turn the ground in the area into {@variantrule Difficult Terrain|XPHB}. They disappear when the spell ends.",
-				"Each creature (other than you) in the area when you cast the spell must succeed on a Strength saving throw or have the {@condition Apresado|XPHB} condition until the spell ends. A {@condition Apresado|XPHB} creature can take an action to make a Strength ({@skill Athletics|XPHB}) check against your spell save DC. On a success, it frees itself from the grasping plants and is no longer {@condition Apresado|XPHB} by them."
+				"Unas plantas apresadoras surgen del suelo en un cuadrado de 20 pies (6 m) de lado dentro del alcance. Hasta que termine el conjuro, estas plantas convertirán la zona en terreno difícil y desaparecerán cuando el conjuro termine.",
+				"Cada criatura (excepto tú) que esté en la zona cuando lances el conjuro deberá superar una tirada de salvación de Fuerza o tendrá el estado de {@condition Apresado|XPHB} hasta que el conjuro termine. Una criatura {@condition Apresado|XPHB|apresada} puede emplear una acción para hacer una prueba de Fuerza ({@skill Atletismo|XPHB}) contra tu CD de salvación de conjuros. Si la supera, se liberará de las plantas y dejará de estar apresada por ellas."
 			],
 			"conditionInflict": [
 				"apresado"
@@ -7122,7 +7122,7 @@
 				"You weave a distracting string of words, causing creatures of your choice that you can see within range to make a Wisdom saving throw. Any creature you or your companions are fighting automatically succeeds on this save. On a failed save, a target has a -10 penalty to Wisdom ({@skill Perception|XPHB}) checks and Passive {@skill Perception|XPHB} until the spell ends."
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"miscTags": [
 				"SGT"
@@ -7358,7 +7358,7 @@
 				"inconsciente"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"miscTags": [
 				"SGT"
@@ -7507,10 +7507,10 @@
 			]
 		},
 		{
-			"name": "Fear",
-			"originalname": "",
+			"name": "Terror",
+			"originalname": "Fear",
 			"source": "XPHB",
-			"page": 271,
+			"page": 338,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 3,
@@ -7531,7 +7531,7 @@
 			"components": {
 				"v": true,
 				"s": true,
-				"m": "a white feather"
+				"m": "una pluma blanca"
 			},
 			"duration": [
 				{
@@ -7544,14 +7544,14 @@
 				}
 			],
 			"entries": [
-				"Each creature in a 30-foot {@variantrule Cone [Area of Effect]|XPHB|Cone} must succeed on a Wisdom saving throw or drop whatever it is holding and have the {@condition Asustado|XPHB} condition for the duration.",
-				"A {@condition Asustado|XPHB} creature takes the {@action Dash|XPHB} action and moves away from you by the safest route on each of its turns unless there is nowhere to move. If the creature ends its turn in a space where it doesn't have line of sight to you, the creature makes a Wisdom saving throw. On a successful save, the spell ends on that creature."
+				"Todas las criaturas situadas en un {@variantrule Cone [Area of Effect]|XPHB|cono} de 30 pies (9 m) deberán superar una tirada de salvación de Sabiduría o soltarán cualquier cosa que tengan agarrada y tendrán el estado de {@condition Asustado|XPHB|asustadas} hasta que termine el conjuro.",
+				"Una criatura {@condition Asustado|XPHB|asustada} realizará la acción de correr en todos sus turnos para alejarse de ti por la ruta más segura, a menos que no haya por dónde huir. Si la criatura acaba su turno en un espacio desde el que no tenga línea de visión directa de ti, hará una tirada de salvación de Sabiduría. Si la supera, el conjuro terminará para ella."
 			],
 			"conditionInflict": [
 				"asustado"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"areaTags": [
 				"N"
@@ -7797,7 +7797,7 @@
 					"type": "entries",
 					"name": "Con un espacio de conjuro de nivel superior.",
 					"entries": [
-						"Use the spell slot's level for the spell's level in the stat block."
+						"Usa el nivel del espacio de conjuro para determinar el nivel del conjuro en el perfil."
 					]
 				}
 			],
@@ -7882,7 +7882,7 @@
 				}
 			],
 			"entries": [
-				"You sense any trap within range that is within line of sight. A trap, for the purpose of this spell, includes any object or mechanism that was created to cause damage or other danger. Thus, the spell would sense the {@spell Alarm|XPHB} or {@spell Glyph of Warding|XPHB} spell or a mechanical pit trap, but it wouldn't reveal a natural weakness in the floor, an unstable ceiling, or a hidden sinkhole.",
+				"You sense any trap within range that is within line of sight. A trap, for the purpose of this spell, includes any object or mechanism that was created to cause damage or other danger. Thus, the spell would sense the {@spell Alarma|XPHB} or {@spell Glyph of Warding|XPHB} spell or a mechanical pit trap, but it wouldn't reveal a natural weakness in the floor, an unstable ceiling, or a hidden sinkhole.",
 				"This spell reveals that a trap is present but not its location. You do learn the general nature of the danger posed by a trap you sense."
 			],
 			"miscTags": [
@@ -8841,7 +8841,7 @@
 				"charmed"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"affectsCreatureType": [
 				"humanoide"
@@ -9020,7 +9020,7 @@
 				"charmed"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"miscTags": [
 				"PRM",
@@ -9121,7 +9121,7 @@
 					"type": "entries",
 					"name": "Con un espacio de conjuro de nivel superior.",
 					"entries": [
-						"Use the spell slot's level for the spell's level in the stat block."
+						"Usa el nivel del espacio de conjuro para determinar el nivel del conjuro en el perfil."
 					]
 				}
 			],
@@ -9307,17 +9307,17 @@
 				"dexterity"
 			],
 			"abilityCheck": [
-				"wisdom"
+				"sabiduría"
 			],
 			"areaTags": [
 				"S"
 			]
 		},
 		{
-			"name": "Goodberry",
-			"originalname": "",
+			"name": "Buenas bayas",
+			"originalname": "Goodberry",
 			"source": "XPHB",
-			"page": 280,
+			"page": 249,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 1,
@@ -9337,7 +9337,7 @@
 			"components": {
 				"v": true,
 				"s": true,
-				"m": "a sprig of mistletoe"
+				"m": "una rama de muérdago"
 			},
 			"duration": [
 				{
@@ -9349,8 +9349,8 @@
 				}
 			],
 			"entries": [
-				"Ten berries appear in your hand and are infused with magic for the duration. A creature can take a {@variantrule Bonus Action|XPHB} to eat one berry. Eating a berry restores 1 {@variantrule Hit Points|XPHB|Hit Point}, and the berry provides enough nourishment to sustain a creature for one day.",
-				"Uneaten berries disappear when the spell ends."
+				"En tu mano aparecen diez bayas, que están impregnadas de magia hasta que termine el conjuro. Una criatura puede usar una acción adicional para comerse una, lo que le permite recuperar 1 punto de golpe. Además, la baya proporciona alimento suficiente como para mantener a una criatura durante 1 día.",
+				"Las bayas que no se consuman desaparecen cuando el conjuro termine."
 			],
 			"miscTags": [
 				"HL"
@@ -9476,10 +9476,10 @@
 			]
 		},
 		{
-			"name": "Greater Invisibility",
-			"originalname": "",
+			"name": "Invisibilidad mejorada",
+			"originalname": "Greater Invisibility",
 			"source": "XPHB",
-			"page": 281,
+			"page": 296,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 4,
@@ -9511,7 +9511,7 @@
 				}
 			],
 			"entries": [
-				"A creature you touch has the {@condition Invisible|XPHB} condition until the spell ends."
+				"Una criatura a la que tocas tiene el estado de {@condition Invisible|XPHB} hasta que el conjuro termine."
 			],
 			"conditionInflict": [
 				"invisible"
@@ -9866,17 +9866,17 @@
 			]
 		},
 		{
-			"name": "Hail of Thorns",
-			"originalname": "",
+			"name": "Tormenta de espinas",
+			"originalname": "Hail of Thorns",
 			"source": "XPHB",
-			"page": 283,
+			"page": 339,
 			"level": 1,
 			"school": "C",
 			"time": [
 				{
 					"number": 1,
 					"unit": "adicional",
-					"condition": "which you take immediately after hitting a creature with a Ranged weapon"
+					"condition": "que realizas de inmediato tras acertar a una criatura con un arma a distancia"
 				}
 			],
 			"range": {
@@ -9894,14 +9894,14 @@
 				}
 			],
 			"entries": [
-				"As you hit the creature, this spell creates a rain of thorns that sprouts from your Ranged weapon or ammunition. The target of the attack and each creature within 5 feet of it make a Dexterity saving throw, taking {@damage 1d10} Piercing damage on a failed save or half as much damage on a successful one."
+				"Al golpear a la criatura, el conjuro crea una lluvia de espinas que saldrá disparada de tu arma a distancia o munición. El objetivo del ataque y todas las criaturas a 5 pies (1,5) m o menos de él hacen una tirada de salvación de Destreza; sufrirán {@damage 1d10} de daño perforante si la fallan o la mitad del daño si la superan."
 			],
 			"entriesHigherLevel": [
 				{
 					"type": "entries",
 					"name": "Con un espacio de conjuro de nivel superior.",
 					"entries": [
-						"The damage increases by {@scaledamage 1d10|1-9|1d10} for each spell slot level above 1."
+						"El daño aumenta en {@scaledamage 1d10|1-9|1d10} por cada nivel por encima de 1 que tenga el espacio."
 					]
 				}
 			],
@@ -10008,7 +10008,7 @@
 								},
 								{
 									"type": "item",
-									"name": "Fear",
+									"name": "Terror",
 									"entries": [
 										"Creatures of any types you choose have the {@condition Asustado|XPHB} condition while in the area."
 									]
@@ -10682,7 +10682,7 @@
 				"paralizado"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"miscTags": [
 				"SCT",
@@ -10745,7 +10745,7 @@
 				"paralizado"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"affectsCreatureType": [
 				"humanoide"
@@ -10881,10 +10881,10 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Hunter's Mark",
-			"originalname": "",
+			"name": "Marca del cazador",
+			"originalname": "Hunter's mark",
 			"source": "XPHB",
-			"page": 287,
+			"page": 310,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 1,
@@ -10916,15 +10916,15 @@
 				}
 			],
 			"entries": [
-				"You magically mark one creature you can see within range as your quarry. Until the spell ends, you deal an extra {@damage 1d6} Force damage to the target whenever you hit it with an attack roll. You also have {@variantrule Advantage|XPHB} on any Wisdom ({@skill Perception|XPHB} or {@skill Survival|XPHB}) check you make to find it.",
-				"If the target drops to 0 {@variantrule Hit Points|XPHB} before this spell ends, you can take a {@variantrule Bonus Action|XPHB} to move the mark to a new creature you can see within range."
+				"Marcas mágicamente a una criatura que puedas ver dentro del alcance como tu presa. Hasta que el conjuro termine, infliges 1d6 de daño de fuerza adicional al objetivo siempre que le aciertes con una tirada de ataque. También tendrás ventaja en cualquier prueba de Sabiduría ({@skill Percepción|XPHB} o {@skill Supervivencia|XPHB}) que realices para buscarlo.",
+				"Si los puntos de golpe del objetivo se reducen a O antes de que el conjuro termine, puedes emplear una acción adicional para transferir la marca a una nueva criatura que puedas ver dentro del alcance."
 			],
 			"entriesHigherLevel": [
 				{
 					"type": "entries",
 					"name": "Con un espacio de conjuro de nivel superior.",
 					"entries": [
-						"Your {@status Concentration|XPHB} can last longer with a spell slot of level 3-4 (up to 8 hours) or 5+ (up to 24 hours)."
+						"Tu {@status Concentración|XPHB} puede durar más si usas un espacio de conjuro de nivel 3 o 4 (hasta 8 horas) o 5 o más (hasta 24 horas)."
 					]
 				}
 			],
@@ -10986,7 +10986,7 @@
 				"incapacitated"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"areaTags": [
 				"C"
@@ -11300,7 +11300,7 @@
 				"inconsciente"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"miscTags": [
 				"SGT"
@@ -12215,10 +12215,10 @@
 			]
 		},
 		{
-			"name": "Longstrider",
-			"originalname": "",
+			"name": "Zancada prodigiosa",
+			"originalname": "Longstrider",
 			"source": "XPHB",
-			"page": 293,
+			"page": 343,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 1,
@@ -12238,7 +12238,7 @@
 			"components": {
 				"v": true,
 				"s": true,
-				"m": "a pinch of dirt"
+				"m": "una pizca de tierra"
 			},
 			"duration": [
 				{
@@ -12250,7 +12250,7 @@
 				}
 			],
 			"entries": [
-				"You touch a creature. The target's {@variantrule Speed|XPHB} increases by 10 feet until the spell ends."
+				"Tocas a una criatura y su velocidad aumenta en 10 pies (3 m) hasta que el conjuro termine."
 			],
 			"entriesHigherLevel": [
 				{
@@ -12902,7 +12902,7 @@
 				"charmed"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"miscTags": [
 				"SGT"
@@ -13359,7 +13359,7 @@
 				"psychic"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"miscTags": [
 				"SGT"
@@ -13510,10 +13510,10 @@
 			]
 		},
 		{
-			"name": "Mislead",
-			"originalname": "",
+			"name": "Engañar",
+			"originalname": "Mislead",
 			"source": "XPHB",
-			"page": 299,
+			"page": 276,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 5,
@@ -13544,9 +13544,9 @@
 				}
 			],
 			"entries": [
-				"You gain the {@condition Invisible|XPHB} condition at the same time that an illusory double of you appears where you are standing. The double lasts for the duration, but the invisibility ends immediately after you make an attack roll, deal damage, or cast a spell.",
-				"As a {@action Magic|XPHB} action, you can move the illusory double up to twice your {@variantrule Speed|XPHB} and make it gesture, speak, and behave in whatever way you choose. It is intangible and invulnerable.",
-				"You can see through its eyes and hear through its ears as if you were located where it is."
+				"Obtienes el estado de {@condition Invisible|XPHB} al mismo tiempo que un doble ilusorio de ti aparece en tu sitio. El doble permanece hasta que termine el conjuro, pero la invisibilidad acaba de inmediato después de que hagas una tirada de ataque, causes daño o lances un conjuro.",
+				"Como acción de magia, puedes hacer que tu doble ilusorio se mueva hasta el doble de tu velocidad y hacer que realice gestos, hable y se comporte del modo que quieras. El doble es intangible e invulnerable.",
+				"Puedes ver a través de sus ojos y oír con sus oídos como si estuvieras en su ubicación."
 			],
 			"conditionInflict": [
 				"invisible"
@@ -13556,10 +13556,10 @@
 			]
 		},
 		{
-			"name": "Misty Step",
-			"originalname": "",
+			"name": "Paso brumoso",
+			"originalname": "Misty Step",
 			"source": "XPHB",
-			"page": 299,
+			"page": 318,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 2,
@@ -13585,7 +13585,7 @@
 				}
 			],
 			"entries": [
-				"Briefly surrounded by silvery mist, you teleport up to 30 feet to an unoccupied space you can see."
+				"Una niebla plateada te rodea brevemente y te teletransportas hasta 30 pies (9 m) a un espacio sin ocupar que puedas ver."
 			],
 			"miscTags": [
 				"SGT",
@@ -13649,7 +13649,7 @@
 				"incapacitated"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"miscTags": [
 				"PRM",
@@ -14280,7 +14280,7 @@
 				"charmed"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"miscTags": [
 				"SGT"
@@ -14487,7 +14487,7 @@
 				"psychic"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"miscTags": [
 				"SGT"
@@ -14864,7 +14864,7 @@
 				"The target's gear melds into the new form. The creature can't use or otherwise benefit from any of that equipment."
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"miscTags": [
 				"SGT"
@@ -15271,7 +15271,7 @@
 			"savingThrow": [
 				"dexterity",
 				"constitution",
-				"wisdom"
+				"sabiduría"
 			],
 			"miscTags": [
 				"PRM"
@@ -15379,7 +15379,7 @@
 			"savingThrow": [
 				"constitution",
 				"dexterity",
-				"wisdom"
+				"sabiduría"
 			],
 			"miscTags": [
 				"LGT",
@@ -16416,10 +16416,10 @@
 			]
 		},
 		{
-			"name": "Rope Trick",
-			"originalname": "",
+			"name": "Truco de la cuerda",
+			"originalname": "Rope Trick",
 			"source": "XPHB",
-			"page": 312,
+			"page": 341,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 2,
@@ -16439,7 +16439,7 @@
 			"components": {
 				"v": true,
 				"s": true,
-				"m": "a segment of rope"
+				"m": "un trozo de cuerda"
 			},
 			"duration": [
 				{
@@ -16451,8 +16451,8 @@
 				}
 			],
 			"entries": [
-				"You touch a rope. One end of it hovers upward until the rope hangs perpendicular to the ground or the rope reaches a ceiling. At the rope's upper end, an {@condition Invisible|XPHB} 3-foot-by-5-foot portal opens to an extradimensional space that lasts until the spell ends. That space can be reached by climbing the rope, which can be pulled into or dropped out of it.",
-				"The space can hold up to eight Medium or smaller creatures. Attacks, spells, and other effects can't pass into or out of the space, but creatures inside it can see through the portal. Anything inside the space drops out when the spell ends."
+				"Tocas una cuerda, lo que hace que uno de sus extremos flote hacia arriba hasta que la cuerda se ponga perpendicular al suelo o toque un techo. En el extremo superior de la cuerda se abre un portal invisible de 0,9 m por 1,5 m, el cual conduce a un espacio extradimensional que dura hasta que el conjuro termine. Este espacio puede alcanzarse trepando por la cuerda, que puede recogerse o soltarse desde el interior.",
+				"En el espacio caben hasta ocho criaturas Medianas o más pequeñas. Los ataques, conjuros y otros efectos no pueden cruzar el espacio en ningún sentido, pero las criaturas que están dentro pueden ver a través del portal. Todo lo que esté dentro del espacio caerá fuera cuando el conjuro termine."
 			]
 		},
 		{
@@ -16562,7 +16562,7 @@
 				"El conjuro termina si la criatura protegida hace una tirada de ataque, lanza un conjuro o inflige daño."
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"areaTags": [
 				"ST"
@@ -16718,7 +16718,7 @@
 				"En vez de hacer objetivo a una criatura, puedes elegir una ubicación que hayas visto antes. Cuando lo hagas, el sensor aparecerá en ese lugar y no se moverá."
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"hasFluffImages": true
 		},
@@ -16818,10 +16818,10 @@
 			]
 		},
 		{
-			"name": "Seeming",
-			"originalname": "",
+			"name": "Apariencia",
+			"originalname": "Seeming",
 			"source": "XPHB",
-			"page": 314,
+			"page": 243,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 5,
@@ -16853,10 +16853,10 @@
 				}
 			],
 			"entries": [
-				"You give an illusory appearance to each creature of your choice that you can see within range. An unwilling target can make a Charisma saving throw, and if it succeeds, it is unaffected by this spell.",
-				"You can give the same appearance or different ones to the targets. The spell can change the appearance of the targets' bodies and equipment. You can make each creature seem 1 foot shorter or taller and appear heavier or lighter. A target's new appearance must have the same basic arrangement of limbs as the target, but the extent of the illusion is otherwise up to you. The spell lasts for the duration.",
-				"The changes wrought by this spell fail to hold up to physical inspection. For example, if you use this spell to add a hat to a creature's outfit, objects pass through the hat.",
-				"A creature that takes the {@action Study|XPHB} action to examine a target can make an Intelligence ({@skill Investigation|XPHB}) check against your spell save DC. If it succeeds, it becomes aware that the target is disguised."
+				"Le das una apariencia ilusoria a cada criatura de tu elección que puedas ver dentro del alcance. Un objetivo no voluntario puede hacer una tirada de salvación de Carisma y, si la supera, el conjuro no le afectará.",
+				"Puedes dar la misma apariencia o una distinta a cada objetivo, así como cambiar el aspecto de sus cuerpos y equipo. Puedes hacer que cada criatura parezca 30 cm más alta o más baja y de complexión más pesada o ligera. Un nuevo aspecto debe tener la misma configuración básica de miembros que el objetivo, aunque en el resto de aspectos, la ilusión queda a tu elección y permanecerá hasta que el conjuro termine.",
+				"Los cambios realizados por este conjuro pueden descubrirse mediante una inspección física. Por ejemplo, si usas este conjuro para añadir un sombrero a la vestimenta de una criatura, los objetos atravesarán el sombrero.",
+				"Si una criatura emplea la acción de {@action Study|XPHB|estudiar} para examinar a un objetivo, podrá hacer una prueba de Inteligencia ({@skill Investigación|XPHB}) contra tu CD de salvación de conjuros. Si la supera, sabrá que el objetivo está disfrazado."
 			],
 			"savingThrow": [
 				"charisma"
@@ -17544,7 +17544,7 @@
 				"inconsciente"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"areaTags": [
 				"S"
@@ -17648,7 +17648,7 @@
 				"An affected target repeats the save at the end of each of its turns, ending the spell on itself on a success."
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"miscTags": [
 				"MAC"
@@ -17782,10 +17782,10 @@
 			]
 		},
 		{
-			"name": "Speak with Animals",
-			"originalname": "",
+			"name": "Hablar con los animales",
+			"originalname": "Speak with Animals",
 			"source": "XPHB",
-			"page": 318,
+			"page": 289,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 1,
@@ -17819,8 +17819,8 @@
 				"ritual": true
 			},
 			"entries": [
-				"For the duration, you can comprehend and verbally communicate with Beasts, and you can use any of the {@action Influence|XPHB} action's skill options with them.",
-				"Most Beasts have little to say about topics that don't pertain to survival or companionship, but at minimum, a Beast can give you information about nearby locations and monsters, including whatever it has perceived within the past day."
+				"Hasta que termine el conjuro, puedes comprender y comunicarte verbalmente con bestias y usar con ellas cualquiera de las opciones de la acción de influir.",
+				"La mayoría de bestias tienen poco que decir en cuestiones que no tengan que ver con la supervivencia o la compañía, pero como mínimo podrán proporcionarte información sobre los lugares y monstruos cercanos, incluyendo lo que hayan percibido en el último día."
 			],
 			"affectsCreatureType": [
 				"beast"
@@ -18028,7 +18028,7 @@
 				"piercing"
 			],
 			"abilityCheck": [
-				"wisdom"
+				"sabiduría"
 			],
 			"miscTags": [
 				"DFT"
@@ -18092,7 +18092,7 @@
 				"radiant"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"areaTags": [
 				"S"
@@ -18208,7 +18208,7 @@
 				"aturdido"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"miscTags": [
 				"AAD"
@@ -18607,7 +18607,7 @@
 				"charmed"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"miscTags": [
 				"SGT"
@@ -18663,7 +18663,7 @@
 					"type": "entries",
 					"name": "Con un espacio de conjuro de nivel superior.",
 					"entries": [
-						"Use the spell slot's level for the spell's level in the stat block."
+						"Usa el nivel del espacio de conjuro para determinar el nivel del conjuro en el perfil."
 					]
 				}
 			],
@@ -18720,7 +18720,7 @@
 					"type": "entries",
 					"name": "Con un espacio de conjuro de nivel superior.",
 					"entries": [
-						"Use the spell slot's level for the spell's level in the stat block."
+						"Usa el nivel del espacio de conjuro para determinar el nivel del conjuro en el perfil."
 					]
 				}
 			],
@@ -18776,7 +18776,7 @@
 					"type": "entries",
 					"name": "Con un espacio de conjuro de nivel superior.",
 					"entries": [
-						"Use the spell slot's level for the spell's level in the stat block."
+						"Usa el nivel del espacio de conjuro para determinar el nivel del conjuro en el perfil."
 					]
 				}
 			],
@@ -18833,7 +18833,7 @@
 					"type": "entries",
 					"name": "Con un espacio de conjuro de nivel superior.",
 					"entries": [
-						"Use the spell slot's level for the spell's level in the stat block."
+						"Usa el nivel del espacio de conjuro para determinar el nivel del conjuro en el perfil."
 					]
 				}
 			],
@@ -18892,7 +18892,7 @@
 					"type": "entries",
 					"name": "Con un espacio de conjuro de nivel superior.",
 					"entries": [
-						"Use the spell slot's level for the spell's level in the stat block."
+						"Usa el nivel del espacio de conjuro para determinar el nivel del conjuro en el perfil."
 					]
 				}
 			],
@@ -18949,7 +18949,7 @@
 					"type": "entries",
 					"name": "Con un espacio de conjuro de nivel superior.",
 					"entries": [
-						"Use the spell slot's level for the spell's level in the stat block."
+						"Usa el nivel del espacio de conjuro para determinar el nivel del conjuro en el perfil."
 					]
 				}
 			],
@@ -18959,10 +18959,10 @@
 			]
 		},
 		{
-			"name": "Summon Fey",
-			"originalname": "",
+			"name": "Invocar feérico",
+			"originalname": "Summon Fey",
 			"source": "XPHB",
-			"page": 326,
+			"page": 301,
 			"level": 3,
 			"school": "C",
 			"time": [
@@ -18982,7 +18982,7 @@
 				"v": true,
 				"s": true,
 				"m": {
-					"text": "a gilded flower worth 300+ GP",
+					"text": "una flor bañada.en oro que valga al menos 300 po",
 					"cost": 30000
 				}
 			},
@@ -18997,15 +18997,15 @@
 				}
 			],
 			"entries": [
-				"You call forth a Fey spirit. It manifests in an unoccupied space that you can see within range and uses the {@creature Fey Spirit|XPHB} stat block. When you cast the spell, choose a mood: Fuming, Mirthful, or Tricksy. The creature resembles a Fey creature of your choice marked by the chosen mood, which determines certain details in its stat block. The creature disappears when it drops to 0 {@variantrule Hit Points|XPHB} or when the spell ends.",
-				"The creature is an ally to you and your allies. In combat, the creature shares your {@variantrule Initiative|XPHB} count, but it takes its turn immediately after yours. It obeys your verbal commands (no action required by you). If you don't issue any, it takes the {@action Dodge|XPHB} action and uses its movement to avoid danger."
+				"Invocas un espíritu feérico que se manifiesta en un espacio sin ocupar que puedas ver dentro del alcance y usa el perfil del {@creature Fey Spirit|XPHB|espíritu feérico}. Cuando lances el conjuro, elige un estado de ánimo: alegre, burlón o enfurecido. La criatura se parecerá a un ser feérico de tu elección con ese estado de ánimo, lo que determinará ciertos detalles de su perfil. La criatura desaparecerá si sus puntos de golpe se reducen a 0 o si el conjuro termina.",
+				"La criatura se considera un aliado para tus aliados y para ti. En combate, la criatura comparte tu orden de iniciativa, pero su turno va justo después del tuyo, obedece tus órdenes verbales (no requiere acción) y, si no le das ninguna, realiza la acción de esquivar y usa su movimiento para evitar el peligro."
 			],
 			"entriesHigherLevel": [
 				{
 					"type": "entries",
 					"name": "Con un espacio de conjuro de nivel superior.",
 					"entries": [
-						"Use the spell slot's level for the spell's level in the stat block."
+						"Usa el nivel del espacio de conjuro para determinar el nivel del conjuro en el perfil."
 					]
 				}
 			],
@@ -19062,7 +19062,7 @@
 					"type": "entries",
 					"name": "Con un espacio de conjuro de nivel superior.",
 					"entries": [
-						"Use the spell slot's level for the spell's level in the stat block."
+						"Usa el nivel del espacio de conjuro para determinar el nivel del conjuro en el perfil."
 					]
 				}
 			],
@@ -19119,7 +19119,7 @@
 					"type": "entries",
 					"name": "Con un espacio de conjuro de nivel superior.",
 					"entries": [
-						"Use the spell slot's level for the spell's level in the stat block."
+						"Usa el nivel del espacio de conjuro para determinar el nivel del conjuro en el perfil."
 					]
 				}
 			],
@@ -19353,7 +19353,7 @@
 				},
 				{
 					"type": "entries",
-					"name": "Fear",
+					"name": "Terror",
 					"entries": [
 						"Each target must succeed on a Wisdom saving throw or have the {@condition Asustado|XPHB} condition for 1 minute. While {@condition Asustado|XPHB}, the target must move at least 30 feet away from the glyph on each of its turns, if able."
 					]
@@ -19391,11 +19391,11 @@
 			],
 			"savingThrow": [
 				"constitution",
-				"wisdom",
+				"sabiduría",
 				"intelligence"
 			],
 			"abilityCheck": [
-				"wisdom"
+				"sabiduría"
 			],
 			"miscTags": [
 				"LGT",
@@ -19549,7 +19549,7 @@
 				"prone"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"miscTags": [
 				"SCT",
@@ -20346,7 +20346,7 @@
 				"necrotic"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"miscTags": [
 				"SCL",
@@ -20551,7 +20551,7 @@
 				}
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"miscTags": [
 				"OBJ",
@@ -20939,7 +20939,7 @@
 				"psychic"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"miscTags": [
 				"SCL",
@@ -21547,7 +21547,7 @@
 				"asustado"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"areaTags": [
 				"S"
@@ -21983,7 +21983,7 @@
 				"asustado"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"miscTags": [
 				"AAD"
@@ -22034,7 +22034,7 @@
 				"prone"
 			],
 			"savingThrow": [
-				"wisdom"
+				"sabiduría"
 			],
 			"miscTags": [
 				"FMV",

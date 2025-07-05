@@ -1076,13 +1076,13 @@ export class CoreRuleTag extends ConverterTaggerInitializable {
 				return `{@variantrule ${rule.name}|${Parser.SRC_XPHB}|${ruleName}}`;
 			})
 			.replace(/{@variantrule Proficiency\|XPHB} Bonus/g, (...m) => {
-				return `{@variantrule Proficiency|XPHB|Proficiency Bonus}`;
+				return `{@variantrule Competencia|XPHB|Proficiency Bonus}`;
 			})
 			.replace(/Short or {@variantrule Long Rest\|XPHB}/g, (...m) => {
 				return `{@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}`;
 			})
 			.replace(/(Half|Three-Quarters|Total) {@variantrule Cover\|XPHB}/g, (...m) => {
-				return `{@variantrule Cover|XPHB|${m[1]} Cover}`;
+				return `{@variantrule Cobertura|XPHB|${m[1]} Cover}`;
 			})
 			.replace(/\b(Cone|Cube|Cylinder|Emanation|Line|Sphere)\b/g, (...m) => {
 				return `{@variantrule ${m[1]} [Area of Effect]|XPHB|${m[1]}}`;

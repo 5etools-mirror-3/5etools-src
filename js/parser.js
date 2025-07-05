@@ -718,7 +718,7 @@ Parser.stringToCasedSlug = function (str) {
 	return str.toAscii().replace(/[^\w ]+/g, "").replace(/ +/g, "-");
 };
 
-Parser.ITEM_SPELLCASTING_FOCUS_CLASSES = ["Artificer", "Bard", "Clérigo", "Druid", "Paladin", "Ranger", "Hechicero", "Warlock", "Wizard"];
+Parser.ITEM_SPELLCASTING_FOCUS_CLASSES = ["Artificer", "Bard", "Clérigo", "Druid", "Paladin", "Explorador", "Hechicero", "Warlock", "Wizard"];
 
 Parser.itemValueToFull = function (item, opts = {isShortForm: false, isSmallUnits: false}) {
 	return Parser._moneyToFull(item, "value", "valueMult", opts);
@@ -2745,7 +2745,7 @@ Parser._spSubclassesToCurrentAndLegacyFull.mapClassShortNameToMostRecent = (shor
 	switch (shortName) {
 		case "Favored Soul": return "Divine Soul";
 		case "Undying Light": return "Celestial";
-		case "Deep Stalker": return "Gloom Stalker";
+		case "Deep Stalker": return "Acechador en la penumbra";
 	}
 	return shortName;
 };
@@ -2965,12 +2965,12 @@ Parser.SIZE_ABVS = [Parser.SZ_TINY, Parser.SZ_SMALL, Parser.SZ_MEDIUM, Parser.SZ
 Parser.SIZE_ABV_TO_FULL = {};
 Parser.SIZE_ABV_TO_FULL[Parser.SZ_FINE] = "Fine";
 Parser.SIZE_ABV_TO_FULL[Parser.SZ_DIMINUTIVE] = "Diminutive";
-Parser.SIZE_ABV_TO_FULL[Parser.SZ_TINY] = "Tiny";
-Parser.SIZE_ABV_TO_FULL[Parser.SZ_SMALL] = "Small";
-Parser.SIZE_ABV_TO_FULL[Parser.SZ_MEDIUM] = "Medium";
-Parser.SIZE_ABV_TO_FULL[Parser.SZ_LARGE] = "Large";
-Parser.SIZE_ABV_TO_FULL[Parser.SZ_HUGE] = "Huge";
-Parser.SIZE_ABV_TO_FULL[Parser.SZ_GARGANTUAN] = "Gargantuan";
+Parser.SIZE_ABV_TO_FULL[Parser.SZ_TINY] = "Diminut@";
+Parser.SIZE_ABV_TO_FULL[Parser.SZ_SMALL] = "Pequeñ@";
+Parser.SIZE_ABV_TO_FULL[Parser.SZ_MEDIUM] = "Median@";
+Parser.SIZE_ABV_TO_FULL[Parser.SZ_LARGE] = "Grande";
+Parser.SIZE_ABV_TO_FULL[Parser.SZ_HUGE] = "Enorme";
+Parser.SIZE_ABV_TO_FULL[Parser.SZ_GARGANTUAN] = "Gargantuesc@";
 Parser.SIZE_ABV_TO_FULL[Parser.SZ_COLOSSAL] = "Colossal";
 Parser.SIZE_ABV_TO_FULL[Parser.SZ_VARIES] = "Varies";
 

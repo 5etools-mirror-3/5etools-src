@@ -1227,11 +1227,11 @@ ProfUiUtil.PROF_TO_FULL = {
 		mult: 0,
 	},
 	"1": {
-		name: "Proficiency",
+		name: "Competencia",
 		mult: 1,
 	},
 	"2": {
-		name: "Expertise",
+		name: "Pericia",
 		mult: 2,
 	},
 	"3": {

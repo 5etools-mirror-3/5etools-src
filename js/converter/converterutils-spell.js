@@ -431,7 +431,7 @@ export class AffectedCreatureTypeTagger {
 							.replace(/You shape an illusory duplicate of one (.*)/g, (...m) => {
 								m[1].replace(AffectedCreatureTypeTagger._RE_TYPES, (...n) => this._doAddType({set: setAffected, type: n[1]}));
 							})
-							// Speak with Animals :: PHB
+							// Hablar con los animales :: PHB
 							.replace(/communicate with (.*?) for the duration/g, (...m) => {
 								m[1].replace(AffectedCreatureTypeTagger._RE_TYPES, (...n) => this._doAddType({set: setAffected, type: n[1]}));
 							})

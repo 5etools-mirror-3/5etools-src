@@ -10350,7 +10350,7 @@ Renderer.monster = class {
 	static getTypeAlignmentPart (mon) {
 		const typeObj = Parser.monTypeToFullObj(mon.type);
 
-		return `${mon.level ? `${Parser.getOrdinalForm(mon.level)}-level ` : ""}${typeObj.asTextSidekick ? `${typeObj.asTextSidekick}; ` : ""}${Renderer.utils.getRenderedSize(mon.size)}${mon.sizeNote ? ` ${mon.sizeNote}` : ""} ${typeObj.asText}${mon.alignment ? `, ${mon.alignmentPrefix ? Renderer.get().render(mon.alignmentPrefix) : ""}${Parser.alignmentListToFull(mon.alignment).toTitleCase()}` : ""}`;
+		return `${mon.level ? `${Parser.getOrdinalForm(mon.level)}-level ` : ""}${typeObj.asTextSidekick ? `${typeObj.asTextSidekick}; ` : ""}${typeObj.asText} ${Renderer.utils.getRenderedSize(mon.size)}${mon.sizeNote ? ` ${mon.sizeNote}` : ""}${mon.alignment ? `, ${mon.alignmentPrefix ? Renderer.get().render(mon.alignmentPrefix) : ""}${Parser.alignmentListToFull(mon.alignment).toTitleCase()}` : ""}`;
 	}
 
 	static _getInitiativePart_passive ({mon, initPassive}) {
@@ -10395,7 +10395,7 @@ Renderer.monster = class {
 		const pts = [
 			mon.senses ? Renderer.utils.getRenderedSenses(mon.senses, {isTitleCase}) : "",
 			passive != null
-				? `${isTitleCase ? "Passive" : "passive"} Perception ${passive}`
+				? `Percepción pasiva ${passive}`
 				: (isForcePassive || mon.senses) ? "\u2014" : "",
 		]
 			.filter(Boolean);
@@ -12432,7 +12432,7 @@ Renderer.item = class {
 					Renderer.item._initFullEntries(item);
 					const wrapped = styleHint === "classic"
 						? "A druidic focus might be a sprig of mistletoe or holly, a wand or scepter made of yew or another special wood, a staff drawn whole out of a living tree, or a totem object incorporating feathers, fur, bones, and teeth from sacred animals. A {@class druid} can use such an object as a spellcasting focus."
-						: "Un canalizador druídico está tallado, atado con un lazo o pintado para canalizar la magia primigenia. Los {@class Druid|XPHB|druidas} o {@class Ranger|XPHB|exploradores} pueden utilizar estos objetos como canalizadores mágicos.";
+						: "Un canalizador druídico está tallado, atado con un lazo o pintado para canalizar la magia primigenia. Los {@class Druid|XPHB|druidas} o {@class Explorador|XPHB|exploradores} pueden utilizar estos objetos como canalizadores mágicos.";
 					item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
 				}
 				if (item.scfType === "holy") {
@@ -12454,7 +12454,7 @@ Renderer.item = class {
 					Renderer.item._initFullEntries(item);
 					const wrapped = styleHint === "classic"
 						? "A {@class druid} can use this object as a spellcasting focus."
-						: "Un canalizador druídico está tallado, atado con un lazo o pintado para canalizar la magia primigenia. Los {@class Druid|XPHB|druidas} o {@class Ranger|XPHB|exploradores} pueden utilizar estos objetos como canalizadores mágicos.";
+						: "Un canalizador druídico está tallado, atado con un lazo o pintado para canalizar la magia primigenia. Los {@class Druid|XPHB|druidas} o {@class Explorador|XPHB|exploradores} pueden utilizar estos objetos como canalizadores mágicos.";
 					item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
 				}
 				if (item.scfType === "holy") {
