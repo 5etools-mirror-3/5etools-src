@@ -19,7 +19,6 @@ class _RenderFeatsImplBase extends RenderPageImplBase {
 	) {
 		return {
 			...super._getCommonHtmlParts({ent, renderer, opts}),
-
 			htmlPtRepeatable: this._getCommonHtmlParts_repeatable({ent}),
 
 			htmlPtEntries: this._getCommonHtmlParts_entries({ent, renderer}),

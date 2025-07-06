@@ -3228,6 +3228,7 @@ Renderer.utils = class {
 						${ptBrewSourceLink}
 					</div>
 				</div>
+				<div style="font-size:75%; color:grey;">${ent.originalname}</div>
 			</th>
 		</tr>`;
 
@@ -7300,7 +7301,7 @@ Renderer.spell = class {
 	}
 
 	/* -------------------------------------------- */
-		static getHtmlPtOriginalName (spell, {styleHint = null} = {}) {
+	static getHtmlPtOriginalName (spell, {styleHint = null} = {}) {
 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 		return `${spell.originalname ? spell.originalname : ""}`;
 	}
@@ -12425,7 +12426,7 @@ Renderer.item = class {
 					Renderer.item._initFullEntries(item);
 					const wrapped = styleHint === "classic"
 						? "Un canalizador arcano está ornamentado o tallado para canalizar la magia arcana. Los brujos, hechiceros o magos pueden utilizar estos objetos como canalizadores mágicos."
-						: "Un canalizador arcano está ornamentado o tallado para canalizar la magia arcana. Los {@class Warlock|XPHB|brujos}, {@class Hechicero|XPHB|hechiceros} y {@class Wizard|XPHB|magos} pueden utilizar estos objetos como canalizadores mágicos.";
+						: "Un canalizador arcano está ornamentado o tallado para canalizar la magia arcana. Los {@class Warlock|XPHB|brujos}, {@class Hechicero|XPHB|hechiceros} y {@class Mago|XPHB|magos} pueden utilizar estos objetos como canalizadores mágicos.";
 					item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
 				}
 				if (item.scfType === "druid") {
@@ -12447,7 +12448,7 @@ Renderer.item = class {
 					Renderer.item._initFullEntries(item);
 					const wrapped = styleHint === "classic"
 						? "Un canalizador arcano está ornamentado o tallado para canalizar la magia arcana. Los brujos, hechiceros o magos pueden utilizar estos objetos como canalizadores mágicos."
-						: "Un canalizador arcano está ornamentado o tallado para canalizar la magia arcana. Los {@class Warlock|XPHB|brujos}, {@class Hechicero|XPHB|hechiceros} y {@class Wizard|XPHB|magos} pueden utilizar estos objetos como canalizadores mágicos.";
+						: "Un canalizador arcano está ornamentado o tallado para canalizar la magia arcana. Los {@class Warlock|XPHB|brujos}, {@class Hechicero|XPHB|hechiceros} y {@class Mago|XPHB|magos} pueden utilizar estos objetos como canalizadores mágicos.";
 					item._fullEntries.push({type: "wrapper", wrapped, data: {[VeCt.ENTDATA_ITEM_MERGED_ENTRY_TAG]: "type.SCF"}});
 				}
 				if (item.scfType === "druid") {

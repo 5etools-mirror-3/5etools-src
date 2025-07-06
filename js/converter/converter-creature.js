@@ -1960,7 +1960,7 @@ export class ConverterCreature extends ConverterBase {
 
 		if (mParens) {
 			// If there are multiple sizes, assume bracketed text is a note referring to this
-			//   if it is more than a single word (e.g. "Wizard").
+			//   if it is more than a single word (e.g. "Mago").
 			// See e.g.:
 			// - Archmage (MM'24)
 			const isParensSizeNote = stats.size.length > 1

@@ -6,9 +6,9 @@ Traducción al español de una pequeña parte de https://5e.tools/index.html
 
 ## Progreso
 
-### Clases - 42%
+### Clases - 58%
 ### Trasfondos - 0%
-### Especies - 0%
-### Dotes - 87%
+### Especies - 100%
+### Dotes - 100%
 ### Equipo - ~50%
-### Conjuros - 23%
+### Conjuros - 29.5%

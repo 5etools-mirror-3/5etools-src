@@ -148,7 +148,7 @@ class PageFilterEquipment extends PageFilterBase {
 					case "arcane": {
 						if (!item._fFocus.includes("Hechicero")) item._fFocus.push("Hechicero");
 						if (!item._fFocus.includes("Warlock")) item._fFocus.push("Warlock");
-						if (!item._fFocus.includes("Wizard")) item._fFocus.push("Wizard");
+						if (!item._fFocus.includes("Mago")) item._fFocus.push("Mago");
 						break;
 					}
 					case "druid": {

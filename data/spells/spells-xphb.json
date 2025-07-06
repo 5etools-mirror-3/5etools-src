@@ -648,7 +648,7 @@
 				"An aura of antimagic surrounds you in 10-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation}. No one can cast spells, take {@action Magic|XPHB} actions, or create other magical effects inside the aura, and those things can't target or otherwise affect anything inside it. Magical properties of magic items don't work inside the aura or on anything inside it.",
 				"Areas of effect created by spells or other magic can't extend into the aura, and no one can teleport into or out of it or use planar travel there. Portals close temporarily while in the aura.",
 				"Ongoing spells, except those cast by an Artifact or a deity, are suppressed in the area. While an effect is suppressed, it doesn't function, but the time it spends suppressed counts against its duration.",
-				"{@spell Dispel Magic|XPHB} has no effect on the aura, and the auras created by different {@spell Antimagic Field|XPHB} spells don't nullify each other."
+				"{@spell Disipar magia|XPHB} has no effect on the aura, and the auras created by different {@spell Antimagic Field|XPHB} spells don't nullify each other."
 			],
 			"miscTags": [
 				"OBJ"
@@ -4594,10 +4594,10 @@
 			]
 		},
 		{
-			"name": "Counterspell",
-			"originalname": "",
+			"name": "Contrahechizo",
+			"originalname": "Counterspell",
 			"source": "XPHB",
-			"page": 258,
+			"page": 263,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 3,
@@ -4606,7 +4606,7 @@
 				{
 					"number": 1,
 					"unit": "reacción",
-					"condition": "which you take when you see a creature within 60 feet of yourself casting a spell with Verbal, Somatic, or Material components"
+					"condition": "que llevas a cabo cuando una criatura que puedas ver a 60 pies (18 m) o menos de ti lance un conjuro usando componentes verbales, somáticos o materiales"
 				}
 			],
 			"range": {
@@ -4625,7 +4625,7 @@
 				}
 			],
 			"entries": [
-				"You attempt to interrupt a creature in the process of casting a spell. The creature makes a Constitution saving throw. On a failed save, the spell dissipates with no effect, and the action, {@variantrule Bonus Action|XPHB}, or {@variantrule Reaction|XPHB} used to cast it is wasted. If that spell was cast with a spell slot, the slot isn't expended."
+				"Intentas interrumpir a una criatura que esté lanzando un conjuro. La criatura hace una tirada de salvación de Constitución. Si la falla, el conjuro se disipa sin causar efecto alguno y la acción, acción adicional o reacción empleada para lanzarlo se desperdiciará. Si ese conjuro se lanzó con un espacio de conjuro, dicho espacio no se gastará."
 			],
 			"savingThrow": [
 				"constitution"
@@ -5836,10 +5836,10 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Dispel Magic",
-			"originalname": "",
+			"name": "Disipar magia",
+			"originalname": "Dispel Magic",
 			"source": "XPHB",
-			"page": 264,
+			"page": 273,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 3,
@@ -5867,14 +5867,14 @@
 				}
 			],
 			"entries": [
-				"Choose one creature, object, or magical effect within range. Any ongoing spell of level 3 or lower on the target ends. For each ongoing spell of level 4 or higher on the target, make an ability check using your spellcasting ability ({@dc 10} plus that spell's level). On a successful check, the spell ends."
+				"Elige una criatura, un objeto o un efecto mágico dentro del alcance. Cualquier conjuro activo de nivel 3 o inferior presente en el objetivo termina. Para cada conjuro activo de nivel 4 o superior, haz una prueba de característica usando tu aptitud mágica (CD 10 más el nivel de ese conjuro). Si superas la tirada, el conjuro termina."
 			],
 			"entriesHigherLevel": [
 				{
 					"type": "entries",
 					"name": "Con un espacio de conjuro de nivel superior.",
 					"entries": [
-						"You automatically end a spell on the target if the spell's level is equal to or less than the level of the spell slot you use."
+						"Disipas automáticamente un conjuro sobre el objetivo cuyo nivel sea menor o igual al nivel del espacio de conjuro que hayas utilizado."
 					]
 				}
 			],
@@ -7667,10 +7667,10 @@
 			]
 		},
 		{
-			"name": "Find Familiar",
-			"originalname": "",
+			"name": "Encontrar familiar",
+			"originalname": "Find Familiar",
 			"source": "XPHB",
-			"page": 272,
+			"page": 276,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 1,
@@ -7692,7 +7692,7 @@
 				"v": true,
 				"s": true,
 				"m": {
-					"text": "burning incense worth 10+ GP, which the spell consumes",
+					"text": "incienso para quemar que valga al menos 10 po, que se consume como parte del conjuro",
 					"cost": 1000,
 					"consume": true
 				}
@@ -7706,34 +7706,34 @@
 				"ritual": true
 			},
 			"entries": [
-				"You gain the service of a familiar, a spirit that takes an animal form you choose: {@creature Bat|XMM}, {@creature Cat|XMM}, {@creature Frog|XMM}, {@creature Hawk|XMM}, {@creature Lizard|XMM}, {@creature Octopus|XMM}, {@creature Owl|XMM}, {@creature Rat|XMM}, {@creature Raven|XMM}, {@creature Spider|XMM}, {@creature Weasel|XMM}, or another Beast that has a {@filter Challenge Rating of 0|bestiary|challenge rating=[&0]|type=beast|miscellaneous=!swarm}. Appearing in an unoccupied space within range, the familiar has the statistics of the chosen form, though it is a Celestial, Fey, or Fiend (your choice) instead of a Beast. Your familiar acts independently of you, but it obeys your commands.",
+				"Obtienes los servicios de un familiar, un espíritu que adopta una forma animal de tu elección: araña, búho, comadreja, cuervo, gato, halcón, lagarto, murciélago, pulpo, rana, rata u otra bestia con un valor de {@filter desafío de 0|bestiary|challenge rating=[&0]|type=beast|miscellaneous=!swarm}. El familiar, que aparecerá en un espacio sin ocupar dentro del alcance, tiene el perfil de la forma elegida (consulta el apéndice B), aunque es un celestial, un feérico o un infernal (a tu elección) en vez de una bestia. Tu familiar actúa con independencia de ti, pero obedece tus órdenes.",
 				{
 					"type": "entries",
-					"name": "Telepathic Connection",
+					"name": "Conexión telepática",
 					"entries": [
-						"While your familiar is within 100 feet of you, you can communicate with it telepathically. Additionally, as a {@variantrule Bonus Action|XPHB}, you can see through the familiar's eyes and hear what it hears until the start of your next turn, gaining the benefits of any special senses it has.",
-						"Finally, when you cast a spell with a range of touch, your familiar can deliver the touch. Your familiar must be within 100 feet of you, and it must take a {@variantrule Reaction|XPHB} to deliver the touch when you cast the spell."
+						"Mientras tu familiar esté a 100 pies (30 m) o menos de ti, puedes comunicarte con él telepáticamente. Además, como acción adicional, puedes ver a través de sus ojos y escuchar lo que oiga hasta el principio de tu siguiente turno, y también obtienes los beneficios de cualquier sentido especial que tenga.",
+						"Por último, cuando lances un conjuro con un alcance de toque, puedes hacer que tu familiar sea quien toque al objetivo. Tu familiar debe estar a 100 pies (30 m) o menos de ti y debe usar una reacción para tocar al objetivo cuando lances el conjuro."
 					]
 				},
 				{
 					"type": "entries",
-					"name": "Combat",
+					"name": "Combate",
 					"entries": [
-						"The familiar is an ally to you and your allies. It rolls its own {@variantrule Initiative|XPHB} and acts on its own turn. A familiar can't attack, but it can take other actions as normal."
+						"El familiar se considera un aliado para tus aliados y para ti, tira su propia iniciativa y actúa en su propio turno. Un familiar no puede atacar, pero puede realizar otras acciones de manera normal."
 					]
 				},
 				{
 					"type": "entries",
-					"name": "Disappearance of the Familiar",
+					"name": "Desaparición del familiar",
 					"entries": [
-						"When the familiar drops to 0 {@variantrule Hit Points|XPHB}, it disappears. It reappears after you cast this spell again. As a {@action Magic|XPHB} action, you can temporarily dismiss the familiar to a pocket dimension. Alternatively, you can dismiss it forever. As a {@action Magic|XPHB} action while it is temporarily dismissed, you can cause it to reappear in an unoccupied space within 30 feet of you. Whenever the familiar drops to 0 {@variantrule Hit Points|XPHB} or disappears into the pocket dimension, it leaves behind in its space anything it was wearing or carrying."
+						"Si los puntos de golpe del amiliar se reducen a 0, desaparecerá y reaparecerá después de que vuelvas a lanzar este conjuro. Como acción de magia, puedes hacer que el familiar se retire temporalmente a una dimensión de bolsillo. Como alternativa, puedes hacer que se desvanezca para siempre. Como acción de magia mientras esté desaparecido temporalmente, puedes hacer que reaparezca en un espacio sin ocupar a 30 pies (9 m) o menos de ti. Siempre que sus puntos de golpe se reduzcan a 0 o que el familiar se retire a la dimensión de bolsillo, dejará en el espacio que ocupaba cualquier cosa que vistiera o llevase."
 					]
 				},
 				{
 					"type": "entries",
-					"name": "One Familiar Only",
+					"name": "Un solo familiar",
 					"entries": [
-						"You can't have more than one familiar at a time. If you cast this spell while you have a familiar, you instead cause it to adopt a new eligible form."
+						"No puedes tener más de un familiar al mismo tiempo. Si lanzas este conjuro mientras tengas un familiar, harás que adopte una nueva forma que cumpla los requisitos."
 					]
 				}
 			],
@@ -8629,7 +8629,7 @@
 				"A prison in the shape of a cage can be up to 20 feet on a side and is made from 1/2-inch diameter bars spaced 1/2 inch apart. A prison in the shape of a box can be up to 10 feet on a side, creating a solid barrier that prevents any matter from passing through it and blocking any spells cast into or out from the area.",
 				"When you cast the spell, any creature that is completely inside the cage's area is trapped. Creatures only partially within the area, or those too large to fit inside it, are pushed away from the center of the area until they are completely outside it.",
 				"A creature inside the cage can't leave it by nonmagical means. If the creature tries to use teleportation or interplanar travel to leave, it must first make a Charisma saving throw. On a successful save, the creature can use that magic to exit the cage. On a failed save, the creature doesn't exit the cage and wastes the spell or effect. The cage also extends into the Ethereal Plane, blocking ethereal travel.",
-				"This spell can't be dispelled by {@spell Dispel Magic|XPHB}."
+				"This spell can't be dispelled by {@spell Disipar magia|XPHB}."
 			],
 			"savingThrow": [
 				"charisma"
@@ -9662,7 +9662,7 @@
 			"entries": [
 				"You create a ward that protects up to 2,500 square feet of floor space. The warded area can be up to 20 feet tall, and you shape it as one 50-foot square, one hundred 5-foot squares that are contiguous, or twenty-five 10-foot squares that are contiguous.",
 				"When you cast this spell, you can specify individuals that are unaffected by the spell's effects. You can also specify a password that, when spoken aloud within 5 feet of the warded area, makes the speaker immune to its effects.",
-				"The spell creates the effects below within the warded area. {@spell Dispel Magic|XPHB} has no effect on Guards and Wards itself, but each of the following effects can be dispelled. If all four are dispelled, Guards and Wards ends. If you cast the spell every day for 365 days on the same area, the spell thereafter lasts until all its effects are dispelled.",
+				"The spell creates the effects below within the warded area. {@spell Disipar magia|XPHB} has no effect on Guards and Wards itself, but each of the following effects can be dispelled. If all four are dispelled, Guards and Wards ends. If you cast the spell every day for 365 days on the same area, the spell thereafter lasts until all its effects are dispelled.",
 				{
 					"type": "entries",
 					"name": "Corridors",
@@ -11110,10 +11110,10 @@
 			]
 		},
 		{
-			"name": "Identify",
-			"originalname": "",
+			"name": "Identificar",
+			"originalname": "Identify",
 			"source": "XPHB",
-			"page": 287,
+			"page": 292,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 1,
@@ -11134,7 +11134,7 @@
 				"v": true,
 				"s": true,
 				"m": {
-					"text": "a pearl worth 100+ GP",
+					"text": "una perla que valga al menos 100 po",
 					"cost": 10000
 				}
 			},
@@ -11147,8 +11147,8 @@
 				"ritual": true
 			},
 			"entries": [
-				"You touch an object throughout the spell's casting. If the object is a magic item or some other magical object, you learn its properties and how to use them, whether it requires {@variantrule Attunement|XPHB}, and how many charges it has, if any. You learn whether any ongoing spells are affecting the item and what they are. If the item was created by a spell, you learn that spell's name.",
-				"If you instead touch a creature throughout the casting, you learn which ongoing spells, if any, are currently affecting it."
+				"Tocas un objeto durante el lanzamiento del conjuro. Si se trata de un objeto mágico de un objeto imbuido de magia, averiguarás sus propiedades y cómo usarlas, si hace falta sintonizarse con él y cuántas cargas tiene, si corresponde. Si hay conjuros activos que afecten al objeto, sabrás cuáles son. Si el objeto se creó mediante un conjuro, averiguarás su nombre.",
+				"Si tocas a una criatura en lugar de un objeto, averiguarás qué conjuros activos le afectan en ese momento, si hay alguno."
 			],
 			"miscTags": [
 				"OBJ"
@@ -11158,10 +11158,10 @@
 			]
 		},
 		{
-			"name": "Illusory Script",
-			"originalname": "",
+			"name": "Texto ilusorio",
+			"originalname": "Illusory Script",
 			"source": "XPHB",
-			"page": 288,
+			"page": 338,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 1,
@@ -11181,7 +11181,7 @@
 			"components": {
 				"s": true,
 				"m": {
-					"text": "ink worth 10+ GP, which the spell consumes",
+					"text": "tinta que valga al menos 10 po, que se consume como parte del conjuro",
 					"cost": 1000,
 					"consume": true
 				}
@@ -11199,9 +11199,9 @@
 				"ritual": true
 			},
 			"entries": [
-				"You write on parchment, paper, or another suitable material and imbue it with an illusion that lasts for the duration. To you and any creatures you designate when you cast the spell, the writing appears normal, seems to be written in your hand, and conveys whatever meaning you intended when you wrote the text. To all others, the writing appears as if it were written in an unknown or magical script that is unintelligible. Alternatively, the illusion can alter the meaning, handwriting, and language of the text, though the language must be one you know.",
-				"If the spell is dispelled, the original script and the illusion both disappear.",
-				"A creature that has {@sense Truesight|XPHB} can read the hidden message."
+				"Escribes en pergamino, papel u otro material adecuado y lo impregnas con una ilusión hasta que termine el conjuro. Para ti y las demás criaturas que designes cuando lanzas el conjuro, el texto parece normal, escrito con tu letra, y transmite el significado que pretendieras al escribirlo. Para los demás, el texto parece escrito en letra mágica o desconocida y es ininteligible. Como alternativa, la ilusión puede modificar el significado, la caligrafía y el idioma de un texto, aunque el idioma debe ser uno que conozcas.",
+				"Si el conjuro se disipa, desaparecerán tanto el escrito original como la ilusión.",
+				"Una criatura con visión verdadera puede leer el mensaje oculto."
 			]
 		},
 		{
@@ -11291,7 +11291,7 @@
 					"name": "Ending the Spell",
 					"entries": [
 						"When you cast the spell, specify a trigger that will end it. The trigger can be as simple or as elaborate as you choose, but the DM must agree that it has a high likelihood of happening within the next decade. The trigger must be an observable action, such as someone making a particular offering at the temple of your god, saving your true love, or defeating a specific monster.",
-						"A {@spell Dispel Magic|XPHB} spell can end the spell only if it is cast with a level 9 spell slot, targeting either the prison or the component used to create it."
+						"A {@spell Disipar magia|XPHB} spell can end the spell only if it is cast with a level 9 spell slot, targeting either the prison or the component used to create it."
 					]
 				}
 			],
@@ -15319,7 +15319,7 @@
 				"A shimmering, multicolored plane of light forms a vertical opaque wall\u2014up to 90 feet long, 30 feet high, and 1 inch thick\u2014centered on a point within range. Alternatively, you shape the wall into a globe up to 30 feet in diameter centered on a point within range. The wall lasts for the duration. If you position the wall in a space occupied by a creature, the spell ends instantly without effect.",
 				"The wall sheds {@variantrule Bright Light|XPHB} within 100 feet and {@variantrule Dim Light|XPHB} for an additional 100 feet. You and creatures you designate when you cast the spell can pass through and be near the wall without harm. If another creature that can see the wall moves within 20 feet of it or starts its turn there, the creature must succeed on a Constitution saving throw or have the {@condition Cegado|XPHB} condition for 1 minute.",
 				"The wall consists of seven layers, each with a different color. When a creature reaches into or passes through the wall, it does so one layer at a time through all the layers. Each layer forces the creature to make a Dexterity saving throw or be affected by that layer's properties as described in the Prismatic Layers table.",
-				"The wall, which has AC 10, can be destroyed one layer at a time, in order from red to violet, by means specific to each layer. If a layer is destroyed, it is gone for the duration. {@spell Antimagic Field|XPHB} has no effect on the wall, and {@spell Dispel Magic|XPHB} can affect only the violet layer.",
+				"The wall, which has AC 10, can be destroyed one layer at a time, in order from red to violet, by means specific to each layer. If a layer is destroyed, it is gone for the duration. {@spell Antimagic Field|XPHB} has no effect on the wall, and {@spell Disipar magia|XPHB} can affect only the violet layer.",
 				{
 					"type": "table",
 					"caption": "Prismatic Layers",
@@ -15358,7 +15358,7 @@
 						],
 						[
 							"7",
-							"{@b Violet.} {@i Failed Save:} The target has the {@condition Cegado|XPHB} condition and makes a Wisdom saving throw at the start of your next turn. On a successful save, the condition ends. On a failed save, the condition ends, and the creature teleports to another plane of existence (DM's choice). {@i Additional Effects:} This layer is destroyed by {@spell Dispel Magic|XPHB}."
+							"{@b Violet.} {@i Failed Save:} The target has the {@condition Cegado|XPHB} condition and makes a Wisdom saving throw at the start of your next turn. On a successful save, the condition ends. On a failed save, the condition ends, and the creature teleports to another plane of existence (DM's choice). {@i Additional Effects:} This layer is destroyed by {@spell Disipar magia|XPHB}."
 						]
 					]
 				}
@@ -18674,10 +18674,10 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Summon Beast",
-			"originalname": "",
+			"name": "Invocar bestia",
+			"originalname": "Summon Beast",
 			"source": "XPHB",
-			"page": 322,
+			"page": 298,
 			"level": 2,
 			"school": "C",
 			"time": [
@@ -18697,7 +18697,7 @@
 				"v": true,
 				"s": true,
 				"m": {
-					"text": "a feather, tuft of fur, and fish tail inside a gilded acorn worth 200+ GP",
+					"text": "una pluma, un poco de pelaje y cola de pez dentro de una bellota bañada en oro que valga al menos 200 po",
 					"cost": 20000
 				}
 			},
@@ -18712,7 +18712,7 @@
 				}
 			],
 			"entries": [
-				"You call forth a bestial spirit. It manifests in an unoccupied space that you can see within range and uses the {@creature Bestial Spirit|XPHB} stat block. When you cast the spell, choose an environment: Air, Land, or Water. The creature resembles an animal of your choice that is native to the chosen environment, which determines certain details in its stat block. The creature disappears when it drops to 0 {@variantrule Hit Points|XPHB} or when the spell ends.",
+				"Invocas un espíritu bestial que se manifiesta en un espacio sin ocupar que puedas ver dentro del alcance y usa el perfil del {@creature Espíritu bestial|XPHB}. Cuando lances el conjuro, elige un hábitat: tierra, mar o aire. La criatura se parecerá a un animal de tu elección de ese hábitat, lo que determinará ciertos detalles de su perfil. La criatura desaparecerá si sus puntos de golpe se reducen a O o si el conjuro termina.",
 				"The creature is an ally to you and your allies. In combat, the creature shares your {@variantrule Initiative|XPHB} count, but it takes its turn immediately after yours. It obeys your verbal commands (no action required by you). If you don't issue any, it takes the {@action Dodge|XPHB} action and uses its movement to avoid danger."
 			],
 			"entriesHigherLevel": [
@@ -19495,10 +19495,10 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Tasha's Hideous Laughter",
-			"originalname": "",
+			"name": "Risa horrible de Tasha",
+			"originalname": "Tasha's Hideous Laughter",
 			"source": "XPHB",
-			"page": 331,
+			"page": 329,
 			"srd52": "Hideous Laughter",
 			"basicRules2024": true,
 			"level": 1,
@@ -19519,7 +19519,7 @@
 			"components": {
 				"v": true,
 				"s": true,
-				"m": "a tart and a feather"
+				"m": "una tarta y una pluma"
 			},
 			"duration": [
 				{
@@ -19532,15 +19532,15 @@
 				}
 			],
 			"entries": [
-				"One creature of your choice that you can see within range makes a Wisdom saving throw. On a failed save, it has the {@condition Prone|XPHB} and {@condition Incapacitado|XPHB} conditions for the duration. During that time, it laughs uncontrollably if it's capable of laughter, and it can't end the {@condition Prone|XPHB} condition on itself.",
-				"At the end of each of its turns and each time it takes damage, it makes another Wisdom saving throw. The target has {@variantrule Advantage|XPHB} on the save if the save is triggered by damage. On a successful save, the spell ends."
+				"Una criatura de tu elección que puedas ver dentro del alcance realiza una tirada de salvación de Sabiduría. Si la falla, tendrá los estados de {@condition Derribado|XPHB} e {@condition Incapacitado|XPHB} hasta que el conjuro termine. Durante ese tiempo, se reirá de forma incontrolable si tiene la capacidad de reírse y no podrá poner fin a su estado de {@condition Derribado|XPHB}.",
+				"Al final de cada uno de sus turnos y cada vez que reciba daño, realizará otra tirada de salvación de Sabiduría. Tendrá ventaja en ella si la realiza por sufrir daño. Si la supera, el conjuro terminará."
 			],
 			"entriesHigherLevel": [
 				{
 					"type": "entries",
 					"name": "Con un espacio de conjuro de nivel superior.",
 					"entries": [
-						"You can target one additional creature for each spell slot level about 1."
+						"Puedes hacer objetivo a una criatura adicional por cada nivel por encima de 1 que tenga el espacio."
 					]
 				}
 			],
@@ -19877,10 +19877,10 @@
 			]
 		},
 		{
-			"name": "Tenser's Floating Disk",
-			"originalname": "",
+			"name": "Disco flotante de Tenser",
+			"originalname": "Tenser's Floating Disk",
 			"source": "XPHB",
-			"page": 332,
+			"page": 271,
 			"srd52": "Floating Disk",
 			"basicRules2024": true,
 			"level": 1,
@@ -19901,7 +19901,7 @@
 			"components": {
 				"v": true,
 				"s": true,
-				"m": "a drop of mercury"
+				"m": "una gota de mercurio"
 			},
 			"duration": [
 				{
@@ -19916,9 +19916,9 @@
 				"ritual": true
 			},
 			"entries": [
-				"This spell creates a circular, horizontal plane of force, 3 feet in diameter and 1 inch thick, that floats 3 feet above the ground in an unoccupied space of your choice that you can see within range. The disk remains for the duration and can hold up to 500 pounds. If more weight is placed on it, the spell ends, and everything on the disk falls to the ground.",
-				"The disk is immobile while you are within 20 feet of it. If you move more than 20 feet away from it, the disk follows you so that it remains within 20 feet of you. It can move across uneven terrain, up or down stairs, slopes and the like, but it can't cross an elevation change of 10 feet or more. For example, the disk can't move across a 10-foot-deep pit, nor could it leave such a pit if it was created at the bottom.",
-				"If you move more than 100 feet from the disk (typically because it can't move around an obstacle to follow you), the spell ends."
+				"Este conjuro crea un plano de fuerza horizontal de 3 pies (90 cm) de diámetro y 2,5 cm de grosor que flota 90 cm por encima del suelo en un espacio sin ocupar de tu elección que puedas ver dentro del alcance. El disco dura hasta que termina el conjuro y puede soportar un peso de hasta 250 kg (500 libras). Si se pone más peso sobre él, el conjuro termina y todo lo que hay en el disco cae al suelo.",
+				"El disco permanecerá inmóvil mientras estés a 20 pies (6 m) o menos de él. Si te alejas a más de 6 m de él, te seguirá para mantenerse a 6 m de ti. Se puede mover por terreno irregular y subir y bajar escaleras, pendientes y similares, pero no puede superar un cambio de elevación de 10 pies (3 m) o más. Por ejemplo, el disco no puede cruzar un pozo de 3 m de profundidad ni salir de él si se crea en el fondo de este.",
+				"Si te alejas más de 100 pies (30 m) del disco (normalmente, porque no pueda superar un obstáculo para seguirte), el conjuro termina."
 			],
 			"miscTags": [
 				"SGT"
@@ -20775,10 +20775,10 @@
 			]
 		},
 		{
-			"name": "Unseen Servant",
-			"originalname": "",
+			"name": "Sirviente invisible",
+			"originalname": "Unseen Servant",
 			"source": "XPHB",
-			"page": 336,
+			"page": 333,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 1,
@@ -20799,7 +20799,7 @@
 			"components": {
 				"v": true,
 				"s": true,
-				"m": "a bit of string and of wood"
+				"m": "un trozo de cuerda y uno de madera"
 			},
 			"duration": [
 				{
@@ -20814,9 +20814,9 @@
 				"ritual": true
 			},
 			"entries": [
-				"This spell creates an {@condition Invisible|XPHB}, mindless, shapeless, Medium force that performs simple tasks at your command until the spell ends. The servant springs into existence in an unoccupied space on the ground within range. It has AC 10, 1 {@variantrule Hit Points|XPHB|Hit Point}, and a Strength of 2, and it can't attack. If it drops to 0 {@variantrule Hit Points|XPHB}, the spell ends.",
-				"Once on each of your turns as a {@variantrule Bonus Action|XPHB}, you can mentally command the servant to move up to 15 feet and interact with an object. The servant can perform simple tasks that a human could do, such as fetching things, cleaning, mending, folding clothes, lighting fires, serving food, and pouring drinks. Once you give the command, the servant performs the task to the best of its ability until it completes the task, then waits for your next command.",
-				"If you command the servant to perform a task that would move it more than 60 feet away from you, the spell ends."
+				"Este conjuro crea una fuerza {@condition Invisible|XPHB} de tamaño Mediano, sin mente y sin forma, que realiza las tareas sencillas que le ordenes hasta que el conjuro termine. El sirviente surge en un espacio sin ocupar en el suelo dentro del alcance. Tiene una CA de 10, 1 punto de golpe, una Fuerza de 2 y no puede atacar. Si sus puntos de golpe se reducen a O, el conjuro termina.",
+				"Una vez en cada uno de tus turnos como acción adicional, puedes ordenar mentalmente al sirviente que se mueva hasta 15 pies (4,5 m) y que interactúe con un objeto. El sirviente puede realizar tareas sencillas que también podría llevar a cabo un humano, como traer y llevar cosas, limpiar, remendar, plegar ropa, encender un fuego y servir comida o bebida. En cuanto das la orden, el sirviente realiza la tarea lo mejor que puede hasta que la completa y luego espera tu siguiente orden.",
+				"Si ordenas al sirviente que lleve a cabo una tarea que lo alejaría más de 18 m de ti, el conjuro termina."
 			],
 			"miscTags": [
 				"SMN",
@@ -21105,7 +21105,7 @@
 			],
 			"entries": [
 				"An {@condition Invisible|XPHB} wall of force springs into existence at a point you choose within range. The wall appears in any orientation you choose, as a horizontal or vertical barrier or at an angle. It can be free floating or resting on a solid surface. You can form it into a hemispherical dome or a globe with a radius of up to 10 feet, or you can shape a flat surface made up of ten 10-foot-by-10-foot panels. Each panel must be contiguous with another panel. In any form, the wall is 1/4 inch thick and lasts for the duration. If the wall cuts through a creature's space when it appears, the creature is pushed to one side of the wall (you choose which side).",
-				"Nothing can physically pass through the wall. It is immune to all damage and can't be dispelled by {@spell Dispel Magic|XPHB}. A {@spell Disintegrate|XPHB} spell destroys the wall instantly, however. The wall also extends into the Ethereal Plane and blocks ethereal travel through the wall."
+				"Nothing can physically pass through the wall. It is immune to all damage and can't be dispelled by {@spell Disipar magia|XPHB}. A {@spell Disintegrate|XPHB} spell destroys the wall instantly, however. The wall also extends into the Ethereal Plane and blocks ethereal travel through the wall."
 			],
 			"areaTags": [
 				"W"

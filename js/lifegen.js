@@ -505,7 +505,7 @@ const SUPP_CLASS = [
 	{min: 71, max: 84, result: "Rogue"},
 	{min: 85, max: 89, result: "Hechicero"},
 	{min: 90, max: 94, result: "Warlock"},
-	{min: 95, max: 100, result: "Wizard"},
+	{min: 95, max: 100, result: "Mago"},
 ];
 
 const SUPP_OCCUPATION = [

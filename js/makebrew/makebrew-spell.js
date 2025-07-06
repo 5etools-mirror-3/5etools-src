@@ -115,7 +115,7 @@ export class SpellBuilder extends BuilderBase {
 			classes: {
 				fromClassList: [
 					{
-						name: "Wizard",
+						name: "Mago",
 						source: VetoolsConfig.get("styleSwitcher", "style") === SITE_STYLE__CLASSIC ? Parser.SRC_PHB : Parser.SRC_XPHB,
 					},
 				],
@@ -817,8 +817,8 @@ export class SpellBuilder extends BuilderBase {
 
 	__$getClassesInputs (cb) {
 		const DEFAULT_CLASS = this._meta.styleHint === SITE_STYLE__CLASSIC
-			? {name: "Wizard", source: Parser.SRC_PHB}
-			: {name: "Wizard", source: Parser.SRC_XPHB};
+			? {name: "Mago", source: Parser.SRC_PHB}
+			: {name: "Mago", source: Parser.SRC_XPHB};
 		const DEFAULT_SUBCLASS = this._meta.styleHint === SITE_STYLE__CLASSIC
 			? {name: "Evocation", source: Parser.SRC_PHB}
 			: {name: "Evoker", source: Parser.SRC_XPHB};

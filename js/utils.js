@@ -3430,7 +3430,7 @@ globalThis.UrlUtil = {
 				lvlFeatureList
 					// don't add "you gain a subclass feature" or ASI's
 					.filter(feature => (!feature.gainSubclassFeature || feature.gainSubclassFeatureHasContent)
-						&& feature.name !== "Ability Score Improvement"
+						&& feature.name !== "Mejora de característica"
 						&& feature.name !== "Proficiency Versatility")
 					.forEach((feature, ixFeature) => {
 						const name = Renderer.findName(feature);

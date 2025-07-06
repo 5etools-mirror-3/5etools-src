@@ -2,6 +2,7 @@
 	"monster": [
 		{
 			"name": "Aberrant Spirit",
+			"originalname": "",
 			"source": "XPHB",
 			"page": 322,
 			"summonedBySpell": "Summon Aberration|XPHB",
@@ -253,6 +254,7 @@
 		},
 		{
 			"name": "Animated Object",
+			"originalname": "",
 			"source": "XPHB",
 			"page": 240,
 			"summonedBySpell": "Animate Objects|XPHB",
@@ -357,6 +359,7 @@
 		},
 		{
 			"name": "Bestia de tierra firme",
+			"originalname": "",
 			"source": "XPHB",
 			"page": 111,
 			"summonedByClass": "Explorador|XPHB",
@@ -421,6 +424,7 @@
 		},
 		{
 			"name": "Bestia de los mares",
+			"originalname": "",
 			"source": "XPHB",
 			"page": 111,
 			"summonedByClass": "Explorador|XPHB",
@@ -493,6 +497,7 @@
 		},
 		{
 			"name": "Bestia del cielo",
+			"originalname": "",
 			"source": "XPHB",
 			"page": 111,
 			"summonedByClass": "Explorador|XPHB",
@@ -561,10 +566,11 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Bestial Spirit",
+			"name": "Espíritu bestial",
+			"originalname": "Bestial Spirit",
 			"source": "XPHB",
-			"page": 323,
-			"summonedBySpell": "Summon Beast|XPHB",
+			"page": 298,
+			"summonedBySpell": "Invocar bestia|XPHB",
 			"summonedBySpellLevel": 2,
 			"size": [
 				"S"
@@ -575,25 +581,25 @@
 			],
 			"ac": [
 				{
-					"special": "11 + the spell's level"
+					"special": "11 + el nivel del conjuro"
 				}
 			],
 			"hp": {
-				"special": "20 (Air only) or 30 (Land and Water only) + 5 for each spell level above 2"
+				"special": "20 (solo aire) o 30 (solo mary tierra) + 5 por cada nivel del conjuro superior al 2"
 			},
 			"speed": {
 				"walk": 30,
 				"climb": {
 					"number": 30,
-					"condition": "(Land only)"
+					"condition": "(solo tierra)"
 				},
 				"fly": {
 					"number": 60,
-					"condition": "(Air only)"
+					"condition": "(solo aire)"
 				},
 				"swim": {
 					"number": 30,
-					"condition": "(Water only)"
+					"condition": "(solo mar)"
 				}
 			},
 			"fue": 18,
@@ -603,7 +609,7 @@
 			"sab": 14,
 			"car": 5,
 			"senses": [
-				"darkvision 60 ft."
+				"visión en la oscuridad 60 pies"
 			],
 			"passive": 12,
 			"languages": [
@@ -612,35 +618,35 @@
 			"pbNote": "igual a tu bonificador por competencia",
 			"trait": [
 				{
-					"name": "Flyby (Air Only)",
+					"name": "Atacar en manada (solo mar y tierra)",
 					"entries": [
-						"The spirit doesn't provoke Opportunity Attacks when it flies out of an enemy's reach."
+						"El espíritu tiene ventaja en una tirada de ataque contra una criatura si al menos uno de los aliados del espíritu se encuentra a 5 pies (1,5 m) o menos de la criatura y no tiene el estado de {@condition incapacitado|XPHB}."
 					]
 				},
 				{
-					"name": "Pack Tactics (Land and Water Only)",
+					"name": "Pasar volando (solo aire)",
 					"entries": [
-						"The spirit has Advantage on an attack roll against a creature if at least one of the spirit's allies is within 5 feet of the creature and the ally doesn't have the {@condition Incapacitated|XPHB} condition."
+						"El espíritu no provoca ataques de oportunidad cuando vuela para ponerse fuera del alcance de un enemigo."
 					]
 				},
 				{
-					"name": "Water Breathing (Water Only)",
+					"name": "Respirar en el agua (solo mar)",
 					"entries": [
-						"The spirit can breathe only underwater."
+						"El espíritu solo puede respirar bajo el agua."
 					]
 				}
 			],
 			"action": [
 				{
-					"name": "Multiattack",
+					"name": "Ataque múltiple",
 					"entries": [
-						"The spirit makes a number of Rend attacks equal to half this spell's level (round down)."
+						"El espíritu realiza una cantidad de ataques de desgarro igual a la mitad del nivel de este conjuro (redondeado hacia abajo)."
 					]
 				},
 				{
-					"name": "Rend",
+					"name": "Desgarro",
 					"entries": [
-						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. {@h}{@damage 1d8 + 4 + summonSpellLevel} Piercing damage."
+						"{@atkr m} {@hitYourSpellAttack bonificador igual a tu modificador de ataque de conjuros}, alcance 5 pies. {@h}{@damage 1d8 + 4 + summonSpellLevel} daño perforante."
 					]
 				}
 			],
@@ -662,21 +668,21 @@
 			"hasFluffImages": true,
 			"_versions": [
 				{
-					"name": "Bestial Spirit (Air)",
+					"name": "Espíritu bestial (aire)",
 					"source": "XPHB",
 					"_mod": {
 						"trait": [
 							{
 								"mode": "removeArr",
 								"names": [
-									"Water Breathing (Water Only)",
-									"Pack Tactics (Land and Water Only)"
+									"Respirar en el agua (solo mar)",
+									"Atacar en manada (solo mar y tierra)"
 								]
 							},
 							{
 								"mode": "renameArr",
 								"renames": {
-									"rename": "Flyby (Air Only)",
+									"rename": "Pasar volando (solo aire)",
 									"with": "Flyby"
 								}
 							}
@@ -694,21 +700,21 @@
 					]
 				},
 				{
-					"name": "Bestial Spirit (Land)",
+					"name": "Espíritu bestial (tierra)",
 					"source": "XPHB",
 					"_mod": {
 						"trait": [
 							{
 								"mode": "removeArr",
 								"names": [
-									"Water Breathing (Water Only)",
-									"Flyby (Air Only)"
+									"Respirar en el agua (solo mar)",
+									"Pasar volando (solo aire)"
 								]
 							},
 							{
 								"mode": "renameArr",
 								"renames": {
-									"rename": "Pack Tactics (Land and Water Only)",
+									"rename": "Atacar en manada (solo mar y tierra)",
 									"with": "Pack Tactics"
 								}
 							}
@@ -726,20 +732,20 @@
 					]
 				},
 				{
-					"name": "Bestial Spirit (Water)",
+					"name": "Espíritu bestial (mar)",
 					"source": "XPHB",
 					"_mod": {
 						"trait": [
 							{
 								"mode": "removeArr",
 								"names": [
-									"Flyby (Air Only)"
+									"Pasar volando (solo aire)"
 								]
 							},
 							{
 								"mode": "renameArr",
 								"renames": {
-									"rename": "Pack Tactics (Land and Water Only)",
+									"rename": "Atacar en manada (solo mar y tierra)",
 									"with": "Pack Tactics"
 								}
 							}
@@ -761,6 +767,7 @@
 		},
 		{
 			"name": "Celestial Spirit",
+			"originalname": "",
 			"source": "XPHB",
 			"page": 323,
 			"summonedBySpell": "Summon Celestial|XPHB",
@@ -906,6 +913,7 @@
 		},
 		{
 			"name": "Construct Spirit",
+			"originalname": "",
 			"source": "XPHB",
 			"page": 324,
 			"summonedBySpell": "Summon Construct|XPHB",
@@ -1070,6 +1078,7 @@
 		},
 		{
 			"name": "Draconic Spirit",
+			"originalname": "",
 			"source": "XPHB",
 			"page": 325,
 			"summonedBySpell": "Summon Dragon|XPHB",
@@ -1168,6 +1177,7 @@
 		},
 		{
 			"name": "Elemental Spirit",
+			"originalname": "",
 			"source": "XPHB",
 			"page": 325,
 			"summonedBySpell": "Summon Elemental|XPHB",
@@ -1403,7 +1413,7 @@
 					]
 				},
 				{
-					"name": "Elemental Spirit (Water)",
+					"name": "Elemental Spirit (mar)",
 					"source": "XPHB",
 					"_mod": {
 						"trait": [
@@ -1444,6 +1454,7 @@
 		},
 		{
 			"name": "Fey Spirit",
+			"originalname": "",
 			"source": "XPHB",
 			"page": 326,
 			"summonedBySpell": "Invocar feérico|XPHB",
@@ -1598,6 +1609,7 @@
 		},
 		{
 			"name": "Fiendish Spirit",
+			"originalname": "",
 			"source": "XPHB",
 			"page": 327,
 			"summonedBySpell": "Summon Fiend|XPHB",
@@ -1867,6 +1879,7 @@
 		},
 		{
 			"name": "Giant Insect",
+			"originalname": "",
 			"source": "XPHB",
 			"page": 279,
 			"srd52": true,
@@ -2031,6 +2044,7 @@
 		},
 		{
 			"name": "Otherworldly Steed",
+			"originalname": "",
 			"source": "XPHB",
 			"page": 273,
 			"summonedBySpell": "Find Steed|XPHB",
@@ -2237,6 +2251,7 @@
 		},
 		{
 			"name": "Undead Spirit",
+			"originalname": "",
 			"source": "XPHB",
 			"page": 328,
 			"summonedBySpell": "Summon Undead|XPHB",

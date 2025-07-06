@@ -133,7 +133,7 @@ export class SpellTag extends ConverterTaggerInitializable {
 		"Divination",
 		// Skip spells we specifically handle
 		"Antimagic Field",
-		"Dispel Magic",
+		"Disipar magia",
 	].map(it => it.toLowerCase()));
 
 	static async _pInit (spells) {
@@ -289,7 +289,7 @@ export class SpellTag extends ConverterTaggerInitializable {
 		}
 
 		// Split title-case runs on lowercase conjunctions/etc., as we may have e.g.:
-		//   - "Fireball or Counterspell"
+		//   - "Fireball or Contrahechizo"
 		//   - "replace one Fireball with Inmovilizar monstruo" (Pit Fiend; XMM)
 		const pts = this._getCapsWordConjunctionTokens(strMod);
 		if (pts.length === 1) return strMod;

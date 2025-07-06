@@ -599,7 +599,7 @@ export class ConverterSpell extends ConverterBase {
 					case "warlock":
 					case "warlocks": tgt.push({"name": "Warlock", "source": "PHB"}); break;
 					case "wizard":
-					case "wizards": tgt.push({"name": "Wizard", "source": "PHB"}); break;
+					case "wizards": tgt.push({"name": "Mago", "source": "PHB"}); break;
 					default: options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Class "${lowerPt}" requires manual conversion`); break;
 				}
 			});

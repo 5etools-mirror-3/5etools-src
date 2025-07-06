@@ -1181,7 +1181,7 @@
 					"type": "entries",
 					"name": "Dos trucos",
 					"entries": [
-						"Aprendes dos trucos de tu elección escogidos de entre los de la lista de conjuros de {@filter clérigo|spells|class=clérigo}, {@filter druida|spells|class=druid} o {@filter mago|spells|class=wizard}. Tu aptitud mágica para los conjuros de esta dote es la Inteligencia, la Sabiduría o el Carisma (elígela cuando selecciones esta dote)."
+						"Aprendes dos trucos de tu elección escogidos de entre los de la lista de conjuros de {@filter clérigo|spells|class=clérigo}, {@filter druida|spells|class=druid} o {@filter mago|spells|class=mago}. Tu aptitud mágica para los conjuros de esta dote es la Inteligencia, la Sabiduría o el Carisma (elígela cuando selecciones esta dote)."
 					]
 				},
 				{
@@ -1861,11 +1861,11 @@
 				{
 					"choose": {
 						"from": [
-							"arcana",
-							"history",
-							"investigation",
+							"conocimiento arcano",
+							"historia",
+							"investigación",
 							"nature",
-							"religion"
+							"religión"
 						]
 					}
 				}
@@ -2031,8 +2031,8 @@
 				{
 					"choose": {
 						"from": [
-							"insight",
-							"investigation",
+							"perspicacia",
+							"investigación",
 							"perception"
 						]
 					}
@@ -2571,7 +2571,7 @@
 		},
 		{
 			"name": "Don de la pericia en combate",
-			"originalname": "",
+			"originalname": "Boon of Combat Prowess",
 			"source": "XPHB",
 			"page": 210,
 			"srd52": true,
@@ -2648,8 +2648,8 @@
 			]
 		},
 		{
-			"name": "Boon of Energy Resistance",
-			"originalname": "",
+			"name": "Don de la resistencia a energías",
+			"originalname": "Boon of Energy Resistance",
 			"source": "XPHB",
 			"page": 210,
 			"category": "DE",
@@ -2677,34 +2677,34 @@
 				{
 					"choose": {
 						"from": [
-							"acid",
-							"cold",
-							"fire",
-							"lightning",
-							"necrotic",
-							"poison",
-							"psychic",
-							"radiant",
-							"thunder"
+							"ácido",
+							"frío",
+							"fuego",
+							"relámpago",
+							"necrótico",
+							"veneno",
+							"psíquico",
+							"radiante",
+							"trueno"
 						],
 						"count": 2
 					}
 				}
 			],
 			"entries": [
-				"You gain the following benefits.",
+				"Obtienes los siguientes beneficios:",
 				{
 					"type": "entries",
-					"name": "Energy Resistances",
+					"name": "Resistencias a energías",
 					"entries": [
-						"You gain Resistance to two of the following damage types of your choice: Acid, Cold, Fire, Lightning, Necrotic, Poison, Psychic, Radiant, or Thunder. Whenever you finish a Long Rest, you can change your choices."
+						"Ganas resistencia a dos de los siguientes tipos de daño, a tu elección: ácido, frío, fuego, necrótico, psíquico, radiante, relámpago, trueno o veneno. Tras finalizar un descanso largo, puedes cambiar de opciones."
 					]
 				},
 				{
 					"type": "entries",
-					"name": "Energy Redirection",
+					"name": "Redirigir la energía",
 					"entries": [
-						"When you take damage of one of the types chosen for the Energy Resistances benefit, you can take a Reaction to direct damage of the same type toward another creature you can see within 60 feet of yourself that isn't behind Total Cover. If you do so, that creature must succeed on a Dexterity saving throw ({@dc 8} plus your Constitution modifier and Proficiency Bonus) or take damage equal to {@dice 2d12} plus your Constitution modifier."
+						"Cuando recibas daño de uno de los tipos elegidos con el beneficio de resistencias a energías, puedes llevar a cabo una reacción para dirigir un daño del mismo tipo hacia otra criatura que puedas ver a 60 pies (18 m) o menos de ti que no esté tras cobertura completa. Si lo haces, esa criatura deberá superar una tirada de salvación de Destreza (CD 8 más tu modificador por Constitución y tu bonificador por competencia) o recibirá una cantidad de daño igual a {@dice 2d12} más tu modificador por Constitución."
 					]
 				}
 			]
@@ -2750,8 +2750,8 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Boon of Fortitude",
-			"originalname": "",
+			"name": "Don de la fortaleza",
+			"originalname": "Boon of Fortitude",
 			"source": "XPHB",
 			"page": 210,
 			"category": "DE",
@@ -2776,19 +2776,19 @@
 				}
 			],
 			"entries": [
-				"You gain the following benefits.",
+				"Obtienes los siguientes beneficios:",
 				{
 					"type": "entries",
-					"name": "Fortified Health",
+					"name": "Salud fortalecida",
 					"entries": [
-						"Your Hit Point maximum increases by 40. In addition, whenever you regain Hit Points, you can regain additional Hit Points equal to your Constitution modifier. Once you've regained these additional Hit Points, you can't do so again until the start of your next turn."
+						"Tus puntos de golpe máximos aumentan en 40. Además, cada vez que recuperes puntos de golpe, podrás recuperar una cantidad de puntos de golpe adicionales igual a tu modificador por Constitución. Cuando hayas recuperado esos puntos de golpe adicionales, no podrás volver a hacerlo hasta el principio de tu siguiente turno."
 					]
 				}
 			]
 		},
 		{
-			"name": "Boon of Irresistible Offense",
-			"originalname": "",
+			"name": "Don del ataque imparable",
+			"originalname": "Boon of Irresistible Offense",
 			"source": "XPHB",
 			"page": 211,
 			"srd52": true,
@@ -2811,28 +2811,28 @@
 				}
 			],
 			"entries": [
-				"You gain the following benefits.",
+				"Obtienes los siguientes beneficios:",
 				{
 					"type": "entries",
-					"name": "Overcome Defenses",
+					"name": "Superar las defensas",
 					"entries": [
-						"The Bludgeoning, Piercing, and Slashing damage you deal always ignores Resistance."
+						"El daño contundente, cortante y perforante que causas siempre ignora la resistencia."
 					]
 				},
 				{
 					"type": "entries",
-					"name": "Overwhelming Strike",
+					"name": "Golpe arrollador",
 					"entries": [
-						"When you roll a 20 on the {@dice d20} for an attack roll, you can deal extra damage to the target equal to the ability score increased by this feat. The extra damage's type is the same as the attack's type."
+						"Cuando saques un 20 en el {@dice d20} en una tirada de ataque, puedes infligir una cantidad de daño adicional al objetivo igual a la puntuación de característica aumentada con esta dote. El daño adicional es del mismo tipo que el del ataque."
 					]
 				}
 			]
 		},
 		{
-			"name": "Boon of Recovery",
-			"originalname": "",
+			"name": "Don de la recuperación",
+			"originalname": "Boon of Recovery",
 			"source": "XPHB",
-			"page": 211,
+			"page": 210,
 			"category": "DE",
 			"prerequisite": [
 				{
@@ -2855,28 +2855,28 @@
 				}
 			],
 			"entries": [
-				"You gain the following benefits.",
+				"Obtienes los siguientes beneficios:",
 				{
 					"type": "entries",
-					"name": "Last Stand",
+					"name": "Última defensa",
 					"entries": [
-						"When you would be reduced to 0 Hit Points, you can drop to 1 Hit Point instead and regain a number of Hit Points equal to half your Hit Point maximum. Once you use this benefit, you can't use it again until you finish a Long Rest."
+						"Cuando tus puntos de golpe fueran a reducirse a 0, puedes quedarte con 1 punto de golpe y recuperar una cantidad de puntos de golpe igual a la mitad de tus puntos de golpe máximos. Cuando uses este beneficio, no podrás volver a hacerlo hasta que finalices un descanso largo."
 					]
 				},
 				{
 					"type": "entries",
-					"name": "Recover Vitality",
+					"name": "Recuperar vitalidad",
 					"entries": [
-						"You have a pool of ten d10s. As a Bonus Action, you can expend dice from the pool, roll those dice, and regain a number of Hit Points equal to the roll's total. You regain all the expended dice when you finish a Long Rest."
+						"Tienes una reserva de 10d10. Como acción adicional, puedes gastar dados de la reserva, tirarlos y recuperar una cantidad de puntos de golpe igual al resultado total de la tirada. Recuperas todos los dados gastados tras finalizar un descanso largo."
 					]
 				}
 			]
 		},
 		{
-			"name": "Boon of Skill",
-			"originalname": "",
+			"name": "Don de la habilidad",
+			"originalname": "Boon of Skill",
 			"source": "XPHB",
-			"page": 211,
+			"page": 210,
 			"category": "DE",
 			"prerequisite": [
 				{
@@ -2904,14 +2904,14 @@
 					"acrobatics": true,
 					"sleight of hand": true,
 					"stealth": true,
-					"arcana": true,
-					"history": true,
-					"investigation": true,
+					"conocimiento arcano": true,
+					"historia": true,
+					"investigación": true,
 					"nature": true,
-					"religion": true,
+					"religión": true,
 					"animal handling": true,
-					"insight": true,
-					"medicine": true,
+					"perspicacia": true,
+					"medicina": true,
 					"perception": true,
 					"survival": true,
 					"deception": true,
@@ -2926,27 +2926,27 @@
 				}
 			],
 			"entries": [
-				"You gain the following benefits.",
+				"Obtienes los siguientes beneficios:",
 				{
 					"type": "entries",
-					"name": "All-Around Adept",
+					"name": "Experto polifacético",
 					"entries": [
-						"You gain proficiency in all skills."
+						"Ganas competencia en todas las habilidades."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Pericia",
 					"entries": [
-						"Choose one skill in which you lack Expertise. You gain Expertise in that skill."
+						"Elige una habilidad en la que no tengas {@variantrule pericia|XPHB}. Ganas {@variantrule pericia|XPHB} en esa habilidad."
 					]
 				}
 			],
 			"hasFluffImages": true
 		},
 		{
-			"name": "Boon of Speed",
-			"originalname": "",
+			"name": "Don de la velocidad",
+			"originalname": "Boon of Speed",
 			"source": "XPHB",
 			"page": 211,
 			"category": "DE",
@@ -2971,12 +2971,12 @@
 				}
 			],
 			"entries": [
-				"You gain the following benefits.",
+				"Obtienes los siguientes beneficios:",
 				{
 					"type": "entries",
-					"name": "Escape Artist",
+					"name": "Artista escapista",
 					"entries": [
-						"As a Bonus Action, you can take the {@action Disengage|XPHB} action, which also ends the {@condition Grappled|XPHB} condition on you."
+						"Como acción adicional, puedes llevar a cabo la acción de {@action Disengage|XPHB|destrabarse}, lo que también pone fin al estado de {@condition agarrado|XPHB} sobre ti."
 					]
 				},
 				{
@@ -2989,8 +2989,8 @@
 			]
 		},
 		{
-			"name": "Boon of Spell Recall",
-			"originalname": "",
+			"name": "Don del recuerdo de conjuros",
+			"originalname": "Boon of Spell Recall",
 			"source": "XPHB",
 			"page": 211,
 			"srd52": true,
@@ -3015,19 +3015,19 @@
 				}
 			],
 			"entries": [
-				"You gain the following benefits.",
+				"Obtienes los siguientes beneficios:",
 				{
 					"type": "entries",
-					"name": "Free Casting",
+					"name": "Lanzamiento gratuito",
 					"entries": [
-						"Whenever you cast a spell with a level 1-4 spell slot, roll {@dice 1d4}. If the number you roll is the same as the slot's level, the slot isn't expended."
+						"Cada vez que lances un conjuro con un espacio de conjuro de nivel 1 a 4, tira {@dice 1d4}. Si el número que sacas es el mismo que el nivel del espacio, este no se gasta."
 					]
 				}
 			]
 		},
 		{
-			"name": "Boon of the Night Spirit",
-			"originalname": "",
+			"name": "Don del espíritu de la noche",
+			"originalname": "Boon of the Night Spirit",
 			"source": "XPHB",
 			"page": 211,
 			"srd52": true,
@@ -3054,26 +3054,26 @@
 				}
 			],
 			"entries": [
-				"You gain the following benefits.",
+				"Obtienes los siguientes beneficios:",
 				{
 					"type": "entries",
-					"name": "Merge with Shadows",
+					"name": "Fusionarse con las sombras",
 					"entries": [
-						"While within Dim Light or Darkness, you can give yourself the {@condition Invisible|XPHB} condition as a Bonus Action. The condition ends on you immediately after you take an action, a Bonus Action, or a Reaction."
+						"Cuando estés en una zona de luz tenue u oscuridad, puedes otorgarte el estado de {@condition Invisible|XPHB} como acción adicional. El estado finaliza inmediatamente después de que realices una acción, una acción adicional o una reacción."
 					]
 				},
 				{
 					"type": "entries",
-					"name": "Shadowy Form",
+					"name": "Forma sombría",
 					"entries": [
-						"While within Dim Light or Darkness, you have Resistance to all damage except Psychic and Radiant."
+						"Cuando estés en una zona de luz tenue u oscuridad, tienes resistencia a todo el daño excepto al psíquico y al radiante."
 					]
 				}
 			]
 		},
 		{
-			"name": "Boon of Truesight",
-			"originalname": "",
+			"name": "Don de la visión verdadera",
+			"originalname": "Boon of Truesight",
 			"source": "XPHB",
 			"page": 211,
 			"srd52": true,
@@ -3105,12 +3105,12 @@
 				}
 			],
 			"entries": [
-				"You gain the following benefits.",
+				"Obtienes los siguientes beneficios:",
 				{
 					"type": "entries",
-					"name": "Truesight",
+					"name": "Visión verdadera",
 					"entries": [
-						"You have {@sense Truesight|XPHB} with a range of 60 feet."
+						"Tienes {@sense Truesight|XPHB|visión verdadera} hasta 60 pies (18 m)."
 					]
 				}
 			]
