@@ -1152,7 +1152,7 @@ class TimeTrackerRoot_Clock extends TimeTrackerComponent {
 
 		const $btnAddLongRest = $(`<button class="ve-btn ve-btn-xs ve-btn-default" title="Add Long Rest (SHIFT for Subtract)">Long Rest</button>`)
 			.click(evt => doModTime((evt.shiftKey ? -1 : 1) * this._parent.get("hoursPerLongRest") * this._parent.get("minutesPerHour") * this._parent.get("secondsPerMinute"), {isBase: true}));
-		const $btnAddShortRest = $(`<button class="ve-btn ve-btn-xs ve-btn-default mr-2" title="Add Short Rest (SHIFT for Subtract)">Short Rest</button>`)
+		const $btnAddShortRest = $(`<button class="ve-btn ve-btn-xs ve-btn-default mr-2" title="Add Descanso corto (SHIFT for Subtract)">Descanso corto</button>`)
 			.click(evt => doModTime((evt.shiftKey ? -1 : 1) * this._parent.get("minutesPerShortRest") * this._parent.get("secondsPerMinute"), {isBase: true}));
 		const $btnAddTurn = $(`<button class="ve-btn ve-btn-xs ve-btn-default" title="Add Round (6 seconds) (SHIFT for Subtract)">Add Round</button>`)
 			.click(evt => doModTime((evt.shiftKey ? -1 : 1) * this._parent.get("secondsPerRound"), {isBase: true}));
@@ -2853,7 +2853,7 @@ class TimeTrackerRoot_Settings extends TimeTrackerComponent {
 
 		const $sectMechanics = $$`<div class="no-shrink w-100 mb-2">
 			<div class="split-v-center mb-2"><div class="w-100">Hours per Long rest</div>${$getIptTime("hoursPerLongRest")}</div>
-			<div class="split-v-center mb-2"><div class="w-100">Minutes per Short Rest</div>${$getIptTime("minutesPerShortRest")}</div>
+			<div class="split-v-center mb-2"><div class="w-100">Minutes per Descanso corto</div>${$getIptTime("minutesPerShortRest")}</div>
 			<div class="split-v-center"><div class="w-100">Seconds per Round</div>${$getIptTime("secondsPerRound")}</div>
 		</div>`;
 		const $btnResetMechanics = $getBtnReset("hoursPerLongRest", "minutesPerShortRest", "secondsPerRound");

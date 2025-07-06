@@ -898,8 +898,8 @@ Parser.itemWeightToFull = function (item, isShortForm) {
 
 Parser.ITEM_RECHARGE_TO_FULL = {
 	round: "Every Round",
-	restShort: "Short Rest",
-	restLong: "Long Rest",
+	restShort: "Descanso corto",
+	restLong: "Descanso largo",
 	dawn: "Dawn",
 	dusk: "Dusk",
 	midnight: "Midnight",

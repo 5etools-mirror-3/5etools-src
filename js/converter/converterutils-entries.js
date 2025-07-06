@@ -1079,7 +1079,7 @@ export class CoreRuleTag extends ConverterTaggerInitializable {
 				return `{@variantrule Competencia|XPHB|Proficiency Bonus}`;
 			})
 			.replace(/Short or {@variantrule Long Rest\|XPHB}/g, (...m) => {
-				return `{@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}`;
+				return `{@variantrule Descanso corto|XPHB|Short} or {@variantrule Descanso largo|XPHB}`;
 			})
 			.replace(/(Half|Three-Quarters|Total) {@variantrule Cover\|XPHB}/g, (...m) => {
 				return `{@variantrule Cobertura|XPHB|${m[1]} Cover}`;

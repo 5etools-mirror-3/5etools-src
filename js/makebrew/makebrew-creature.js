@@ -3052,7 +3052,7 @@ export class CreatureBuilder extends BuilderBase {
 	}
 
 	__$getBonusActionInput (cb) {
-		return this.__$getGenericEntryInput(cb, {name: "Bonus Actions", shortName: "Bonus Action", prop: "bonus"});
+		return this.__$getGenericEntryInput(cb, {name: "Bonus Actions", shortName: "Acción adicional", prop: "bonus"});
 	}
 
 	__$getLegendaryActionInput (cb) {
