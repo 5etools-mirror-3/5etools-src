@@ -9973,7 +9973,7 @@ Renderer.monster = class {
 		static _LVL_TO_COLOR_TO_SPELLS__UNOFFICIAL = {
 			2: {
 				black: ["darkness", "Melf's acid arrow", "Nube de oscurecimiento", "scorching ray"],
-				green: ["Rayo nauseabundo", "charm person", "detect thoughts", "invisibility", "suggestion"],
+				green: ["Rayo nauseabundo", "charm person", "detect thoughts", "invisibilidad", "suggestion"],
 				white: ["ice knife|XGE", "Snilloc's snowball swarm|XGE"],
 				brass: ["see invisibility", "magic mouth", "blindness/deafness", "Dormir", "detect thoughts"],
 				bronze: ["gust of wind", "misty step", "locate object", "blur", "witch bolt", "thunderwave", "escudo"],
@@ -10021,7 +10021,7 @@ Renderer.monster = class {
 			},
 			2: {
 				black: ["blindness/deafness", "create or destroy water"],
-				green: ["invisibility", "speak with animals"],
+				green: ["invisibilidad", "speak with animals"],
 				white: ["gust of wind"],
 				brass: ["create or destroy water", "speak with animals"],
 				bronze: ["beast sense", "detect thoughts", "speak with animals"],
@@ -10043,7 +10043,7 @@ Renderer.monster = class {
 			5: {
 				blue: ["arcane eye", "create or destroy water", "major image"],
 				red: ["bane", "dominate person", "heat metal", "hypnotic pattern", "suggestion"],
-				green: ["invisibility", "plant growth", "speak with animals"],
+				green: ["invisibilidad", "plant growth", "speak with animals"],
 				bronze: ["beast sense", "control water", "detect thoughts", "speak with animals"],
 				gold: ["bless", "commune", "cure wounds", "geas", "slow", "suggestion", "zone of truth"],
 				silver: ["beacon of hope", "calm emotions", "hold person", "polymorph", "zone of truth"],
@@ -10057,7 +10057,7 @@ Renderer.monster = class {
 				black: ["blindness/deafness", "create or destroy water", "insect plague", "plant growth"],
 				blue: ["arcane eye", "create or destroy water", "major image", "project image"],
 				red: ["bane", "dominate person", "heat metal", "hypnotic pattern", "power word stun", "suggestion"],
-				green: ["invisibility", "mass suggestion", "plant growth", "speak with animals"],
+				green: ["invisibilidad", "mass suggestion", "plant growth", "speak with animals"],
 				bronze: ["beast sense", "control water", "detect thoughts", "heroes' feast", "speak with animals"],
 				copper: ["lesser restoration", "move earth", "phantasmal force", "stone shape"],
 				silver: ["beacon of hope", "calm emotions", "hold person", "polymorph", "teleport", "zone of truth"],
@@ -14784,7 +14784,7 @@ Renderer.generic = class {
 
 						const endsToJoin = duration.ends.map(m => Parser.spEndTypeToFull(m));
 						hasSubOr = hasSubOr || endsToJoin.length > 1;
-						return `Until ${endsToJoin.joinConjunct(", ", " o ")}${ptCondition}`;
+						return `Hasta que sea ${endsToJoin.joinConjunct(", ", " o ")}${ptCondition}`;
 					}
 				}
 			});

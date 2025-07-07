@@ -391,7 +391,7 @@ export class AffectedCreatureTypeTagger {
 							.replace(/One (.*?) of your choice/g, (...m) => {
 								m[1].replace(AffectedCreatureTypeTagger._RE_TYPES, (...n) => this._doAddType({set: setAffected, type: n[1]}));
 							})
-							// Crown of Madness :: PHB
+							// Corona de la locura :: PHB
 							.replace(/You attempt to .* a (.+) you can see/g, (...m) => {
 								m[1].replace(AffectedCreatureTypeTagger._RE_TYPES, (...n) => this._doAddType({set: setAffected, type: n[1]}));
 							})
@@ -403,11 +403,11 @@ export class AffectedCreatureTypeTagger {
 							.replace(/For the duration, (.*?) have disadvantage/g, (...m) => {
 								m[1].replace(AffectedCreatureTypeTagger._RE_TYPES, (...n) => this._doAddType({set: setAffected, type: n[1]}));
 							})
-							// Hold Person :: PHB
+							// Inmovilizar persona :: PHB
 							.replace(/Choose (.+)/g, (...m) => {
 								m[1].replace(AffectedCreatureTypeTagger._RE_TYPES, (...n) => this._doAddType({set: setAffected, type: n[1]}));
 							})
-							// Locate Animals or Plants :: PHB
+							// Localizar animales o plantas :: PHB
 							.replace(/name a specific kind of (.*)/g, (...m) => {
 								m[1].replace(AffectedCreatureTypeTagger._RE_TYPES, (...n) => this._doAddType({set: setAffected, type: n[1]}));
 							})

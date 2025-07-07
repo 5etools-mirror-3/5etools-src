@@ -318,10 +318,10 @@
 			]
 		},
 		{
-			"name": "Animal Messenger",
-			"originalname": "",
+			"name": "Mensajero animal",
+			"originalname": "Animal Messenger",
 			"source": "XPHB",
-			"page": 240,
+			"page": 310,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 2,
@@ -342,7 +342,7 @@
 			"components": {
 				"v": true,
 				"s": true,
-				"m": "a morsel of food"
+				"m": "unas migajas de comida"
 			},
 			"duration": [
 				{
@@ -357,20 +357,20 @@
 				"ritual": true
 			},
 			"entries": [
-				"A {@filter Tiny Beast|bestiary|size=T|type=beast|miscellaneous=!swarm} of your choice that you can see within range must succeed on a Charisma saving throw, or it attempts to deliver a message for you (if the target's {@variantrule Challenge Rating|XPHB} isn't 0, it automatically succeeds). You specify a location you have visited and a recipient who matches a general description, such as \"a person dressed in the uniform of the town guard\" or \"a red-haired dwarf wearing a pointed hat.\" You also communicate a message of up to twenty-five words. The Beast travels for the duration toward the specified location, covering about 25 miles per 24 hours or 50 miles if the Beast can fly.",
-				"When the Beast arrives, it delivers your message to the creature that you described, mimicking your communication. If the Beast doesn't reach its destination before the spell ends, the message is lost, and the Beast returns to where you cast the spell."
+				"Una {@filter bestia diminuta|bestiary|size=T|type=beast|miscellaneous=!swarm} de tu elección que puedas ver dentro del alcance deberá superar una tirada de salvación de Carisma o intentará enviar un mensaje por ti (si el valor de desafío del objetivo no es 0, la supera automáticamente). Indica un lugar que hayas visitado y da una descripción general del destinatario, como “una persona que lleva un uniforme de guardia de la ciudad” o “una enana pelirroja con un gorro puntiagudo”. Además, le transmites al animal un mensaje de hasta 25 palabras. Hasta que termine el conjuro, la bestia viajará hacia el lugar elegido y recorrerá aproximadamente 37,5 km cada 24 horas o 75 km si puede volar.",
+				"Cuando llegue, la bestia entregará tu mensaje a la criatura que le hayas descrito e imitará tu forma de comunicarte. Si la bestia no llega a su destino antes de que el conjuro termine, el mensaje se pierde y la bestia regresa al lugar donde lanzaste el conjuro."
 			],
 			"entriesHigherLevel": [
 				{
 					"type": "entries",
 					"name": "Con un espacio de conjuro de nivel superior.",
 					"entries": [
-						"The spell's duration increases by 48 hours for each spell slot level above 2."
+						"La duración del conjuro aumenta en 48 horas por cada nivel por encima de 2 que tenga el espacio."
 					]
 				}
 			],
 			"savingThrow": [
-				"charisma"
+				"carisma"
 			],
 			"affectsCreatureType": [
 				"beast"
@@ -829,10 +829,10 @@
 			]
 		},
 		{
-			"name": "Arcane Lock",
-			"originalname": "",
+			"name": "Cerradura arcana",
+			"originalname": "Arcane Lock",
 			"source": "XPHB",
-			"page": 242,
+			"page": 256,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 2,
@@ -853,7 +853,7 @@
 				"v": true,
 				"s": true,
 				"m": {
-					"text": "gold dust worth 25+ GP, which the spell consumes",
+					"text": "polvo de oro que valga al menos 25 po, que se consume como parte del conjuro",
 					"cost": 2500,
 					"consume": true
 				}
@@ -867,7 +867,7 @@
 				}
 			],
 			"entries": [
-				"You touch a closed door, window, gate, container, or hatch and magically lock it for the duration. This lock can't be unlocked by any nonmagical means. You and any creatures you designate when you cast the spell can open and close the object despite the lock. You can also set a password that, when spoken within 5 feet of the object, unlocks it for 1 minute."
+				"Tocas una puerta, ventana, portón, recipiente o trampilla cerrados y se cierra mágicamente como con llave hasta que el conjuro termine. Esta cerradura no puede abrirse por medios no mágicos, pero tú y las criaturas que designes cuando lanzas el conjuro podéis abrir y cerrar el objeto a pesar de esta cerradura. También puedes elegir una contraseña que, dicha en voz alta a 5 pies (1,5 m) o menos del objeto, lo desbloquea durante 1 minuto."
 			],
 			"miscTags": [
 				"OBJ"
@@ -1392,7 +1392,7 @@
 				}
 			],
 			"savingThrow": [
-				"charisma"
+				"carisma"
 			],
 			"miscTags": [
 				"SCT",
@@ -1502,7 +1502,7 @@
 				"incapacitated"
 			],
 			"savingThrow": [
-				"charisma"
+				"carisma"
 			],
 			"miscTags": [
 				"SCT",
@@ -2137,10 +2137,10 @@
 			]
 		},
 		{
-			"name": "Blindness/Deafness",
-			"originalname": "",
+			"name": "Sordera/ceguera",
+			"originalname": "Blindness/Deafness",
 			"source": "XPHB",
-			"page": 248,
+			"page": 334,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 2,
@@ -2171,14 +2171,14 @@
 				}
 			],
 			"entries": [
-				"One creature that you can see within range must succeed on a Constitution saving throw, or it has the {@condition Cegado|XPHB} or {@condition Ensordecido|XPHB} condition (your choice) for the duration. At the end of each of its turns, the target repeats the save, ending the spell on itself on a success."
+				"Una criatura que puedas ver dentro del alcance deberá superar una tirada de salvación de Constitución o tendrá el estado de {@condition Cegado|XPHB|cegada} o {@condition Ensordecido|XPHB|ensordecida} (a tu elección) hasta que el conjuro termine. Al final de cada uno de sus turnos, el objetivo repite la tirada de salvación y, si tiene éxito, se librará del conjuro."
 			],
 			"entriesHigherLevel": [
 				{
 					"type": "entries",
 					"name": "Con un espacio de conjuro de nivel superior.",
 					"entries": [
-						"You can target one additional creature for each spell slot level above 2."
+						"Puedes hacer objetivo a una criatura adicional por cada nivel por encima de 2 que tenga el espacio."
 					]
 				}
 			],
@@ -2447,7 +2447,7 @@
 				}
 			],
 			"savingThrow": [
-				"charisma"
+				"carisma"
 			],
 			"affectsCreatureType": [
 				"humanoide"
@@ -2966,10 +2966,10 @@
 			]
 		},
 		{
-			"name": "Cloud of Daggers",
-			"originalname": "",
+			"name": "Nube de dagas",
+			"originalname": "Cloud of Daggers",
 			"source": "XPHB",
-			"page": 251,
+			"page": 314,
 			"level": 2,
 			"school": "C",
 			"time": [
@@ -2988,7 +2988,7 @@
 			"components": {
 				"v": true,
 				"s": true,
-				"m": "a sliver of glass"
+				"m": "un fragmento de cristal"
 			},
 			"duration": [
 				{
@@ -3001,15 +3001,15 @@
 				}
 			],
 			"entries": [
-				"You conjure spinning daggers in a 5-foot {@variantrule Cube [Area of Effect]|XPHB|Cube} centered on a point within range. Each creature in that area takes {@damage 4d4} Slashing damage. A creature also takes this damage if it enters the {@variantrule Cube [Area of Effect]|XPHB|Cube} or ends its turn there or if the {@variantrule Cube [Area of Effect]|XPHB|Cube} moves into its space. A creature takes this damage only once per turn.",
-				"On your later turns, you can take a {@action Magic|XPHB} action to teleport the {@variantrule Cube [Area of Effect]|XPHB|Cube} up to 30 feet."
+				"Conjuras dagas giratorias en un cubo de 5 pies (1,5 m) centrado en un punto dentro del alcance. Todas las criaturas situadas en esa zona sufren {@damage 4d4} de daño cortante. Una criatura también recibe daño si entra en el cubo, si termina su turno en él o si el cubo entra en su espacio. Una criatura solo sufre este daño una vez por turno.",
+				"En tus siguientes turnos, puedes usar una acción de magia para teletransportar el cubo hasta 30 pies (9 m)."
 			],
 			"entriesHigherLevel": [
 				{
 					"type": "entries",
 					"name": "Con un espacio de conjuro de nivel superior.",
 					"entries": [
-						"The damage increases by {@scaledamage 4d4|2-9|2d4} for each spell slot level above 2."
+						"El daño aumenta en {@scaledamage 4d4|2-9|2d4} por cada nivel por encima de 2 que tenga el espacio."
 					]
 				}
 			],
@@ -4879,10 +4879,10 @@
 			]
 		},
 		{
-			"name": "Crown of Madness",
-			"originalname": "",
+			"name": "Corona de la locura",
+			"originalname": "Crown of Madness",
 			"source": "XPHB",
-			"page": 259,
+			"page": 265,
 			"level": 2,
 			"school": "E",
 			"time": [
@@ -4913,9 +4913,9 @@
 				}
 			],
 			"entries": [
-				"One creature that you can see within range must succeed on a Wisdom saving throw or have the {@condition Hechizado|XPHB} condition for the duration. The creature succeeds automatically if it isn't Humanoid.",
-				"A spectral crown appears on the {@condition Hechizado|XPHB} target's head, and it must use its action before moving on each of its turns to make a melee attack against a creature other than itself that you mentally choose. The target can act normally on its turn if you choose no creature or if no creature is within its reach. The target repeats the save at the end of each of its turns, ending the spell on itself on a success.",
-				"On your later turns, you must take the {@action Magic|XPHB} action to maintain control of the target, or the spell ends."
+				"Una criatura que puedas ver dentro del alcance deberá superar una tirada de salvación de Sabiduría o tendrá el estado de {@condition Hechizado|XPHB|hechizada} hasta que termine el conjuro. Si no es humanoide, la criatura tiene éxito automáticamente.",
+				"Una corona espectral aparece sobre la cabeza del objetivo {@condition hechizado|XPHB}, que debe usar su acción antes de moverse cada turno para realizar un ataque cuerpo a cuerpo contra una criatura que elijas mentalmente y que no sea él mismo. El objetivo puede actuar con normalidad en su turno si no eliges ninguna criatura o no tiene ninguna a su alcance. El objetivo repetirá la tirada de salvación al final de cada uno de sus turnos y, si tiene éxito, se librará del conjuro.",
+				"En tus siguientes turnos, debes realizar la acción de magia para mantener el control sobre el objetivo o el conjuro terminará."
 			],
 			"conditionInflict": [
 				"charmed"
@@ -5818,7 +5818,7 @@
 				}
 			],
 			"savingThrow": [
-				"charisma"
+				"carisma"
 			],
 			"affectsCreatureType": [
 				"celestial",
@@ -6146,7 +6146,7 @@
 				"aturdido"
 			],
 			"savingThrow": [
-				"charisma"
+				"carisma"
 			],
 			"areaTags": [
 				"MT"
@@ -6843,10 +6843,10 @@
 			]
 		},
 		{
-			"name": "Enhance Ability",
-			"originalname": "",
+			"name": "Potenciar característica",
+			"originalname": "Enhance Ability",
 			"source": "XPHB",
-			"page": 268,
+			"page": 321,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 2,
@@ -6866,7 +6866,7 @@
 			"components": {
 				"v": true,
 				"s": true,
-				"m": "fur or a feather"
+				"m": "pelo de animal o una pluma"
 			},
 			"duration": [
 				{
@@ -6879,14 +6879,14 @@
 				}
 			],
 			"entries": [
-				"You touch a creature and choose Strength, Dexterity, Intelligence, Wisdom, or Charisma. For the duration, the target has {@variantrule Advantage|XPHB} on ability checks using the chosen ability."
+				"Tocas a una criatura y eliges Fuerza, Destreza, Inteligencia, Sabiduría o Carisma. Hasta que termine el conjuro, el objetivo tiene ventaja en las {@variantrule prueba de característica|XPHB|pruebas con la característica} elegida."
 			],
 			"entriesHigherLevel": [
 				{
 					"type": "entries",
 					"name": "Con un espacio de conjuro de nivel superior.",
 					"entries": [
-						"You can target one additional creature for each spell slot level above 2. You can choose a different ability for each target."
+						"Puedes hacer objetivo a una criatura adicional por cada nivel por encima de 2 que tenga el espacio. Puedes elegir una característica distinta para cada objetivo."
 					]
 				}
 			],
@@ -6899,10 +6899,10 @@
 			]
 		},
 		{
-			"name": "Enlarge/Reduce",
-			"originalname": "",
+			"name": "Agrandar/reducir",
+			"originalname": "Enlarge/Reduce",
 			"source": "XPHB",
-			"page": 268,
+			"page": 239,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 2,
@@ -6923,7 +6923,7 @@
 			"components": {
 				"v": true,
 				"s": true,
-				"m": "a pinch of powdered iron"
+				"m": "una pizca hierro en polvo"
 			},
 			"duration": [
 				{
@@ -6936,20 +6936,20 @@
 				}
 			],
 			"entries": [
-				"For the duration, the spell enlarges or reduces a creature or an object you can see within range (see the chosen effect below). A targeted object must be neither worn nor carried. If the target is an unwilling creature, it can make a Constitution saving throw. On a successful save, the spell has no effect.",
-				"Everything that a targeted creature is wearing and carrying changes size with it. Any item it drops returns to normal size at once. A thrown weapon or piece of ammunition returns to normal size immediately after it hits or misses a target.",
+				"Hasta que el conjuro termine, aumenta o reduce el tamaño de una criatura u objeto que puedas ver dentro del alcance (consulta el efecto elegido a continuación). Si el objetivo es un objeto, no puede estar llevándolo ni vistiéndolo nadie. Si es una criatura no voluntaria, puede hacer una tirada de salvación de Constitución y, si la supera, el conjuro no tiene efecto.",
+				"Todo lo que vista y lleve una criatura objetivo cambiará de tamaño con ella y cualquier objeto que suelte volverá a su tamaño normal de inmediato. Un arma arrojadiza o un proyectil recuperará su tamaño normal justo después de acertar a un objetivo o fallar.",
 				{
 					"type": "entries",
-					"name": "Enlarge",
+					"name": "Agrandar",
 					"entries": [
-						"The target's size increases by one category\u2014from Medium to Large, for example. The target also has {@variantrule Advantage|XPHB} on Strength checks and Strength saving throws. The target's attacks with its enlarged weapons or Unarmed Strikes deal an extra {@damage 1d4} damage on a hit."
+						"El tamaño del objetivo aumenta en una categoría; por ejemplo, de Mediano a Grande. El objetivo también tendrá ventaja en las pruebas de Fuerza y en las tiradas de salvación de Fuerza. Además, sus ataques con armas agrandadas o sin armas causan {@damage 1d4} de daño adicional al acertar."
 					]
 				},
 				{
 					"type": "entries",
-					"name": "Reduce",
+					"name": "Reducir",
 					"entries": [
-						"The target's size decreases by one category\u2014from Medium to Small, for example. The target also has {@variantrule Disadvantage|XPHB} on Strength checks and Strength saving throws. The target's attacks with its reduced weapons or Unarmed Strikes deal {@damage 1d4} less damage on a hit (this can't reduce the damage below 1)."
+						"El tamaño del objetivo se reduce en una categoría; por ejemplo, de Mediano a Pequeño. El objetivo también tendrá desventaja en las pruebas de Fuerza y en las tiradas de salvación de Fuerza. Los ataques que haga con armas reducidas o sin armas causan {@damage 1d4} menos de daño al acertar (esto no puede reducir el daño a menos de 1)."
 					]
 				}
 			],
@@ -7084,10 +7084,10 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Enthrall",
-			"originalname": "",
+			"name": "Embelesar",
+			"originalname": "Enthrall",
 			"source": "XPHB",
-			"page": 269,
+			"page": 274,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 2,
@@ -7119,7 +7119,7 @@
 				}
 			],
 			"entries": [
-				"You weave a distracting string of words, causing creatures of your choice that you can see within range to make a Wisdom saving throw. Any creature you or your companions are fighting automatically succeeds on this save. On a failed save, a target has a -10 penalty to Wisdom ({@skill Perception|XPHB}) checks and Passive {@skill Perception|XPHB} until the spell ends."
+				"Creas una serie de palabras encantadoras que provocan que una o más criaturas de tu elección a las que puedas que termine el conjuro, el objetivo está protegido de laver dentro del alcance deban hacer una tirada de salvación de Sabiduría. Cualquier criatura contra la que luchéis tus aliados o tú superará automáticamente esta tirada. Si la falla, el objetivo sufrirá un penalizador de -10 a las pruebas de Sabiduría ({@skill Percepción|XPHB}) y a la Percepción pasiva hasta que el conjuro termine."
 			],
 			"savingThrow": [
 				"sabiduría"
@@ -8632,7 +8632,7 @@
 				"This spell can't be dispelled by {@spell Disipar magia|XPHB}."
 			],
 			"savingThrow": [
-				"charisma"
+				"carisma"
 			],
 			"areaTags": [
 				"C"
@@ -9674,7 +9674,7 @@
 					"type": "entries",
 					"name": "Doors",
 					"entries": [
-						"All doors in the warded area are magically locked, as if sealed by the {@spell Arcane Lock|XPHB} spell. In addition, you can cover up to ten doors with an illusion to make them appear as plain sections of wall."
+						"All doors in the warded area are magically locked, as if sealed by the {@spell Cerradura arcana|XPHB} spell. In addition, you can cover up to ten doors with an illusion to make them appear as plain sections of wall."
 					]
 				},
 				{
@@ -9693,10 +9693,10 @@
 							"type": "list",
 							"items": [
 								"{@spell Luces danzantes|XPHB} in four corridors, with a simple program that the lights repeat as long as Guards and Wards lasts",
-								"{@spell Magic Mouth|XPHB} in two locations",
+								"{@spell Boca mágica|XPHB} in two locations",
 								"{@spell Stinking Cloud|XPHB} in two locations (the vapors return within 10 minutes if dispersed while Guards and Wards lasts)",
 								"{@spell Gust of Wind|XPHB} in one corridor or room (the wind blows continuously while the spell lasts)",
-								"{@spell Suggestion|XPHB} in one 5-foot square; any creature that enters that square receives the suggestion mentally"
+								"{@spell Sugestión|XPHB} in one 5-foot square; any creature that enters that square receives the suggestion mentally"
 							]
 						}
 					]
@@ -10022,7 +10022,7 @@
 								},
 								{
 									"type": "item",
-									"name": "Silence",
+									"name": "Silencio",
 									"entries": [
 										"No sound can emanate from within the area, and no sound can reach into it."
 									]
@@ -10331,10 +10331,10 @@
 			]
 		},
 		{
-			"name": "Heat Metal",
-			"originalname": "",
+			"name": "Calentar metal",
+			"originalname": "Heat Metal",
 			"source": "XPHB",
-			"page": 284,
+			"page": 250,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 2,
@@ -10355,7 +10355,7 @@
 			"components": {
 				"v": true,
 				"s": true,
-				"m": "a piece of iron and a flame"
+				"m": "un trozo de hierro y una llama"
 			},
 			"duration": [
 				{
@@ -10368,15 +10368,15 @@
 				}
 			],
 			"entries": [
-				"Choose a manufactured metal object, such as a metal weapon or a suit of Heavy or Medium metal armor, that you can see within range. You cause the object to glow red-hot. Any creature in physical contact with the object takes {@damage 2d8} Fire damage when you cast the spell. Until the spell ends, you can take a {@variantrule Acción adicional|XPHB} on each of your later turns to deal this damage again if the object is within range.",
-				"If a creature is holding or wearing the object and takes the damage from it, the creature must succeed on a Constitution saving throw or drop the object if it can. If it doesn't drop the object, it has {@variantrule Disadvantage|XPHB} on attack rolls and ability checks until the start of your next turn."
+				"Elige un objeto metálico fabricado que puedas ver dentro del alcance, como un arma de metal o una armadura metálica media o pesada. Haces que el objeto se ponga al rojo vivo. Cualquier criatura que esté en contacto físico con el objeto recibirá {@damage 2d8} de daño de fuego cuando lances el conjuro. Hasta que el conjuro termine, puedes usar una acción adicional en cada uno de tus turnos posteriores para volver a causar este daño si el objeto está dentro del alcance.",
+				"Si una criatura sostiene o lleva puesto el objeto y recibe el daño de este, deberá superar una tirada de salvación de Constitución o dejará caer el objeto si puede. Si no lo deja caer, tendrá desventaja en las tiradas de ataque y las pruebas de característica hasta el principio de tu siguiente turno."
 			],
 			"entriesHigherLevel": [
 				{
 					"type": "entries",
 					"name": "Con un espacio de conjuro de nivel superior.",
 					"entries": [
-						"The damage increases by {@scaledamage 2d8|2-9|1d8} for each spell slot level above 2."
+						"El daño aumenta en {@scaledamage 2d8|2-9|1d8} por cada nivel por encima de 2 que tenga el espacio."
 					]
 				}
 			],
@@ -10510,10 +10510,10 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Heroism",
-			"originalname": "",
+			"name": "Heroísmo",
+			"originalname": "Heroism",
 			"source": "XPHB",
-			"page": 285,
+			"page": 291,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 1,
@@ -10545,7 +10545,7 @@
 				}
 			],
 			"entries": [
-				"A willing creature you touch is imbued with bravery. Until the spell ends, the creature is immune to the {@condition Asustado|XPHB} condition and gains {@variantrule Temporary Hit Points|XPHB} equal to your spellcasting ability modifier at the start of each of its turns."
+				"Insuflas valor a una criatura voluntaria a la que toques. Hasta que el conjuro termine, la criatura es inmune al estado de {@condition Asustado|XPHB|asustada} y obtiene una cantidad de puntos de golpe temporales igual a tu modificador por aptitud mágica al principio de cada uno de sus turnos."
 			],
 			"entriesHigherLevel": [
 				{
@@ -10693,10 +10693,10 @@
 			]
 		},
 		{
-			"name": "Hold Person",
+			"name": "Inmovilizar persona",
 			"originalname": "",
 			"source": "XPHB",
-			"page": 286,
+			"page": 294,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 2,
@@ -10717,7 +10717,7 @@
 			"components": {
 				"v": true,
 				"s": true,
-				"m": "a straight piece of iron"
+				"m": "un trozo de hierro recto"
 			},
 			"duration": [
 				{
@@ -10730,14 +10730,14 @@
 				}
 			],
 			"entries": [
-				"Choose a Humanoid that you can see within range. The target must succeed on a Wisdom saving throw or have the {@condition Paralizado|XPHB} condition for the duration. At the end of each of its turns, the target repeats the save, ending the spell on itself on a success."
+				"Elige a un humanoide que puedas ver dentro del alcance. El objetivo deberá superar una tirada de salvación de Sabiduría o tendrá el estado de {@condition paralizado|XPHB} hasta que termine el conjuro. Al final de cada uno de sus turnos, el objetivo repite la tirada de salvación y, si tiene éxito, se librará del conjuro."
 			],
 			"entriesHigherLevel": [
 				{
 					"type": "entries",
 					"name": "Con un espacio de conjuro de nivel superior.",
 					"entries": [
-						"You can target one additional Humanoid for each spell slot level above 2."
+						"Puedes hacer objetivo a un humanoide adicional por cada nivel por encima de 2 que tenga el espacio."
 					]
 				}
 			],
@@ -11480,10 +11480,10 @@
 			]
 		},
 		{
-			"name": "Invisibility",
-			"originalname": "",
+			"name": "Invisibilidad",
+			"originalname": "Invisibility",
 			"source": "XPHB",
-			"page": 289,
+			"page": 295,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 2,
@@ -11503,7 +11503,7 @@
 			"components": {
 				"v": true,
 				"s": true,
-				"m": "an eyelash in gum arabic"
+				"m": "una pestaña envuelta en goma arábiga"
 			},
 			"duration": [
 				{
@@ -11516,14 +11516,14 @@
 				}
 			],
 			"entries": [
-				"A creature you touch has the {@condition Invisible|XPHB} condition until the spell ends. The spell ends early immediately after the target makes an attack roll, deals damage, or casts a spell."
+				"Una criatura a la que tocas tiene el estado de {@condition invisible|XPHB} hasta que el conjuro termine. El conjuro terminará inmediatamente después de que el objetivo haga una tirada de ataque, cause daño o lance un conjuro."
 			],
 			"entriesHigherLevel": [
 				{
 					"type": "entries",
 					"name": "Con un espacio de conjuro de nivel superior.",
 					"entries": [
-						"You can target one additional creature for each spell slot level above 2."
+						"Puedes hacer objetivo a una criatura adicional por cada nivel por encima de 2 que tenga el espacio."
 					]
 				}
 			],
@@ -11659,8 +11659,8 @@
 			]
 		},
 		{
-			"name": "Knock",
-			"originalname": "",
+			"name": "Abrir",
+			"originalname": "Knock",
 			"source": "XPHB",
 			"page": 290,
 			"srd52": true,
@@ -11689,10 +11689,10 @@
 				}
 			],
 			"entries": [
-				"Choose an object that you can see within range. The object can be a door, a box, a chest, a set of manacles, a padlock, or another object that contains a mundane or magical means that prevents access.",
-				"A target that is held shut by a mundane lock or that is stuck or barred becomes unlocked, unstuck, or unbarred. If the object has multiple locks, only one of them is unlocked.",
-				"If the target is held shut by {@spell Arcane Lock|XPHB}, that spell is suppressed for 10 minutes, during which time the target can be opened and closed.",
-				"When you cast the spell, a loud knock, audible up to 300 feet away, emanates from the target."
+				"Elige un objeto que puedas ver dentro del alcance. Puede ser una puerta, una caja, un cofre, unas esposas, un candado o cualquier otro objeto que posea alguna manera mágica o mundana de impedir el acceso.",
+				"Un objetivo que esté cerrado mediante una cerradura normal o que esté atascado o atrancado se abre, desatasca o desatranca. Si el objeto tiene varios cerrojos, solo se desbloquea uno de ellos.",
+				"Si el objetivo está cerrado mediante {@spell cerradura arcana|XPHB}, ese conjuro quedará anulado durante 10 minutos y, durante ese tiempo, el objeto se podrá abrir y cerrar.",
+				"Cuando lanzas el conjuro, se escucha un fuerte golpe surgir del objetivo, que es audible a una distancia de 300 pies (90 m)."
 			],
 			"miscTags": [
 				"OBJ",
@@ -12086,10 +12086,10 @@
 			]
 		},
 		{
-			"name": "Locate Animals or Plants",
-			"originalname": "",
+			"name": "Localizar animales o plantas",
+			"originalname": "Locate Animals or Plants",
 			"source": "XPHB",
-			"page": 292,
+			"page": 305,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 2,
@@ -12109,7 +12109,7 @@
 			"components": {
 				"v": true,
 				"s": true,
-				"m": "fur from a bloodhound"
+				"m": "pelaje de un sabueso"
 			},
 			"duration": [
 				{
@@ -12120,7 +12120,7 @@
 				"ritual": true
 			},
 			"entries": [
-				"Describe or name a specific kind of Beast, Plant creature, or nonmagical plant. You learn the direction and distance to the closest creature or plant of that kind within 5 miles, if any are present."
+				"Describe o nombra un tipo concreto de bestia, criatura de tipo “planta” o planta no mágica. Descubres la dirección y la distancia hasta la criatura o la planta de ese tipo más cercana que esté a 5 millas (7,5 km) o menos, siempre y cuando haya alguna."
 			],
 			"affectsCreatureType": [
 				"beast",
@@ -12170,10 +12170,10 @@
 			]
 		},
 		{
-			"name": "Locate Object",
-			"originalname": "",
+			"name": "Localizar objeto",
+			"originalname": "Locate Object",
 			"source": "XPHB",
-			"page": 293,
+			"page": 306,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 2,
@@ -12193,7 +12193,7 @@
 			"components": {
 				"v": true,
 				"s": true,
-				"m": "a forked twig"
+				"m": "una ramita con forma de horquilla"
 			},
 			"duration": [
 				{
@@ -12206,9 +12206,9 @@
 				}
 			],
 			"entries": [
-				"Describe or name an object that is familiar to you. You sense the direction to the object's location if that object is within 1,000 feet of you. If the object is in motion, you know the direction of its movement.",
-				"The spell can locate a specific object known to you if you have seen it up close\u2014within 30 feet\u2014at least once. Alternatively, the spell can locate the nearest object of a particular kind, such as a certain kind of apparel, jewelry, furniture, tool, or weapon.",
-				"This spell can't locate an object if any thickness of lead blocks a direct path between you and the object."
+				"Describe o nombra un objeto que conozcas. Presientes la dirección en la que se encuentra dicho objeto si está a 1.000 pies (300 m) o menos de ti. Si el objeto se está moviendo, conoces la dirección de su movimiento.",
+				"El conjuro puede localizar un objeto específico que conozcas si lo has visto de cerca (a 30 pies [9 m] o menos) al menos una vez. Como alternativa, el conjuro puede localizar el objeto más cercano de un tipo particular, como un cierto tipo de ropa, joyas, muebles, herramientas o armas.",
+				"El conjuro no puede localizar un objeto si hay cualquier grosor de plomo que bloquee una ruta directa entre dicho objeto y tú."
 			],
 			"miscTags": [
 				"OBJ"
@@ -12422,7 +12422,7 @@
 				}
 			],
 			"savingThrow": [
-				"charisma"
+				"carisma"
 			],
 			"affectsCreatureType": [
 				"celestial",
@@ -12485,7 +12485,7 @@
 				"When the spell ends, the container is destroyed."
 			],
 			"savingThrow": [
-				"charisma"
+				"carisma"
 			],
 			"affectsCreatureType": [
 				"humanoide"
@@ -12550,10 +12550,10 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Magic Mouth",
-			"originalname": "",
+			"name": "Boca mágica",
+			"originalname": "Magic Mouth",
 			"source": "XPHB",
-			"page": 295,
+			"page": 248,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 2,
@@ -12575,7 +12575,7 @@
 				"v": true,
 				"s": true,
 				"m": {
-					"text": "jade dust worth 10+ GP, which the spell consumes",
+					"text": "polvo de jade que valga al menos 10 po, que se consume como parte del conjuro",
 					"cost": 1000,
 					"consume": true
 				}
@@ -12592,9 +12592,9 @@
 				"ritual": true
 			},
 			"entries": [
-				"You implant a message within an object in range\u2014a message that is uttered when a trigger condition is met. Choose an object that you can see and that isn't being worn or carried by another creature. Then speak the message, which must be 25 words or fewer, though it can be delivered over as long as 10 minutes. Finally, determine the circumstance that will trigger the spell to deliver your message.",
-				"When that trigger occurs, a magical mouth appears on the object and recites the message in your voice and at the same volume you spoke. If the object you chose has a mouth or something that looks like a mouth (for example, the mouth of a statue), the magical mouth appears there, so the words appear to come from the object's mouth. When you cast this spell, you can have the spell end after it delivers its message, or it can remain and repeat its message whenever the trigger occurs.",
-				"The trigger can be as general or as detailed as you like, though it must be based on visual or audible conditions that occur within 30 feet of the object. For example, you could instruct the mouth to speak when any creature moves within 30 feet of the object or when a silver bell rings within 30 feet of it."
+				"Implantas un mensaje en un objeto dentro del alcance que se pronunciará en voz alta cuando se cumpla la condición de activación. Elige un objeto que puedas ver y que no lleve ni vista nadie. Luego, di el mensaje, que debe tener 25 palabras o menos, aunque puede transmitirse en un intervalo de hasta 10 minutos. Por último, determina la circunstancia que activará el conjuro para que transmita tu mensaje.",
+				"Cuando se produzca esa circunstancia, en el objeto aparecerá una boca mágica que recitará el mensaje con tu voz y al mismo volumen en el que lo dijiste tú. Si el objeto elegido tiene boca o algo que se le parezca (por ejemplo, la boca de una estatua), la boca mágica se formará allí, de modo que las palabras parecerán salir de ella. Cuando lanzas este conjuro, puedes hacer que el efecto termine después de que transmita el mensaje o que permanezca y repita dicho mensaje siempre que se produzca la condición de activación.",
+				"La condición puede ser tan genérica o detallada como quieras, aunque debe basarse en fenómenos visuales o audibles que se produzcan a 30 pies (9 m) o menos del objeto. Por ejemplo, podrías indicar que la boca hable cuando cualquier criatura se acerque a 9 m o menos del objeto o cuando una campana de plata suene a 30 pies (9 m) o menos de él."
 			],
 			"miscTags": [
 				"OBJ",
@@ -14379,10 +14379,10 @@
 			]
 		},
 		{
-			"name": "Phantasmal Force",
-			"originalname": "",
+			"name": "Fuerza fantasmal",
+			"originalname": "Phantasmal Force",
 			"source": "XPHB",
-			"page": 304,
+			"page": 285,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 2,
@@ -14403,7 +14403,7 @@
 			"components": {
 				"v": true,
 				"s": true,
-				"m": "a bit of fleece"
+				"m": "un poco de vellón"
 			},
 			"duration": [
 				{
@@ -14416,10 +14416,10 @@
 				}
 			],
 			"entries": [
-				"You attempt to craft an illusion in the mind of a creature you can see within range. The target makes an Intelligence saving throw. On a failed save, you create a phantasmal object, creature, or other phenomenon that is no larger than a 10-foot {@variantrule Cube [Area of Effect]|XPHB|Cube} and that is perceivable only to the target for the duration. The phantasm includes sound, temperature, and other stimuli.",
-				"The target can take a {@action Study|XPHB} action to examine the phantasm with an Intelligence ({@skill Investigation|XPHB}) check against your spell save DC. If the check succeeds, the target realizes that the phantasm is an illusion, and the spell ends.",
-				"While affected by the spell, the target treats the phantasm as if it were real and rationalizes any illogical outcomes from interacting with it. For example, if the target steps through a phantasmal bridge and survives the fall, it believes the bridge exists and something else caused it to fall.",
-				"An affected target can even take damage from the illusion if the phantasm represents a dangerous creature or hazard. On each of your turns, such a phantasm can deal {@damage 2d8} Psychic damage to the target if it is in the phantasm's area or within 5 feet of the phantasm. The target perceives the damage as a type appropriate to the illusion."
+				"Intentas crear una ilusión en la mente de una criatura que puedas ver dentro del alcance. El objetivo hace una tirada de salvación de Inteligencia. Si la falla, creas un objeto o una criatura fantasmal u otro fenómeno cuyas dimensiones no excedan las de un cubo de 10 pies (3 m) de lado y que solo puede percibir el objetivo hasta que el conjuro termine. El fantasma puede emitir sonidos, alterar la temperatura y producir otros estímulos.",
+				"El objetivo puede usar una acción de estudiar para examinar la imagen con una prueba de Inteligencia ({@skill Investigación|XPHB}) contra tu CD de salvación de conjuros. Si la supera, se da cuenta de que el fantasma es una ilusión y el conjuro termina.",
+				"Mientras esté afectado por este conjuro, el objetivo tratará al fantasma como si fuera real y racionalizará cualquier resultado ilógico derivado de interactuar con él. Por ejemplo, si el objetivo intenta caminar por un puente ilusorio y sobrevive a la caída, creerá que el puente existe y que otra cosa ha provocado su caída.",
+				"Un objetivo afectado incluso puede recibir daño de la ilusión si el fantasma se muestra como una amenaza o una criatura peligrosa. En cada uno de tus turnos, la forma fantasmal puede causar {@damage 2d8} de daño psíquico al objetivo si está en el área que ocupa el fantasma o a 5 pies (1,5 m) de él. El objetivo percibe el daño como de un tipo apropiado para la ilusión."
 			],
 			"damageInflict": [
 				"psychic"
@@ -14639,7 +14639,7 @@
 				}
 			],
 			"savingThrow": [
-				"charisma"
+				"carisma"
 			],
 			"affectsCreatureType": [
 				"celestial",
@@ -16859,7 +16859,7 @@
 				"Si una criatura emplea la acción de {@action Study|XPHB|estudiar} para examinar a un objetivo, podrá hacer una prueba de Inteligencia ({@skill Investigación|XPHB}) contra tu CD de salvación de conjuros. Si la supera, sabrá que el objetivo está disfrazado."
 			],
 			"savingThrow": [
-				"charisma"
+				"carisma"
 			],
 			"abilityCheck": [
 				"intelligence"
@@ -17013,10 +17013,10 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Shatter",
-			"originalname": "",
+			"name": "Hacer añicos",
+			"originalname": "Shatter",
 			"source": "XPHB",
-			"page": 316,
+			"page": 290,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 2,
@@ -17037,7 +17037,7 @@
 			"components": {
 				"v": true,
 				"s": true,
-				"m": "a chip of mica"
+				"m": "una lasca de mica"
 			},
 			"duration": [
 				{
@@ -17045,15 +17045,15 @@
 				}
 			],
 			"entries": [
-				"A loud noise erupts from a point of your choice within range. Each creature in a 10-foot-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered there makes a Constitution saving throw, taking {@damage 3d8} Thunder damage on a failed save or half as much damage on a successful one. A Construct has {@variantrule Disadvantage|XPHB} on the save.",
-				"A nonmagical object that isn't being worn or carried also takes the damage if it's in the spell's area."
+				"Un fuerte ruido surge de un punto de tu elección dentro del alcance. Todas las criaturas situadas en una esfera de 10 pies (3 m) de radio centrada en ese punto hacen una tirada de salvación de Constitución; sufrirán {@damage 3d8} de daño de trueno si la fallan o la mitad del daño si la superan. Los autómatas tienen desventaja en esta tirada.",
+				"Los objetos no mágicos que se encuentren dentro del área del conjuro también recibirán el daño, salvo si los lleva o viste una criatura."
 			],
 			"entriesHigherLevel": [
 				{
 					"type": "entries",
 					"name": "Con un espacio de conjuro de nivel superior.",
 					"entries": [
-						"The damage increases by {@scaledamage 3d8|2-9|1d8} for each spell slot level above 2."
+						"El daño aumenta en {@scaledamage 3d8|2-9|1d8} por cada nivel por encima de 2 que tenga el espacio."
 					]
 				}
 			],
@@ -17345,10 +17345,10 @@
 			]
 		},
 		{
-			"name": "Silence",
-			"originalname": "",
+			"name": "Silencio",
+			"originalname": "Silence",
 			"source": "XPHB",
-			"page": 316,
+			"page": 332,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 2,
@@ -17384,7 +17384,7 @@
 				"ritual": true
 			},
 			"entries": [
-				"For the duration, no sound can be created within or pass through a 20-foot-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on a point you choose within range. Any creature or object entirely inside the {@variantrule Sphere [Area of Effect]|XPHB|Sphere} has {@variantrule Immunity|XPHB} to Thunder damage, and creatures have the {@condition Ensordecido|XPHB} condition while entirely inside it. Casting a spell that includes a Verbal component is impossible there."
+				"Hasta que termine el conjuro, creas una esfera de 20 pies (6 m) de radio centrada en un punto de tu elección dentro del alcance. Ningún sonido podrá atravesarla ni originarse en su interior. Toda criatura u objeto tiene inmunidad al daño de trueno si se halla completamente dentro de la esfera, y las criaturas tienen el estado de {@condition Ensordecido|XPHB|ensordecidas} en su interior. Dentro de ella es imposible lanzar conjuros que tengan un componente verbal."
 			],
 			"damageImmune": [
 				"thunder"
@@ -18564,10 +18564,10 @@
 			]
 		},
 		{
-			"name": "Suggestion",
-			"originalname": "",
+			"name": "Sugestión",
+			"originalname": "Suggestion",
 			"source": "XPHB",
-			"page": 321,
+			"page": 334,
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 2,
@@ -18587,7 +18587,7 @@
 			},
 			"components": {
 				"v": true,
-				"m": "a drop of honey"
+				"m": "una gota de miel"
 			},
 			"duration": [
 				{
@@ -18600,8 +18600,8 @@
 				}
 			],
 			"entries": [
-				"You suggest a course of activity\u2014described in no more than 25 words\u2014to one creature you can see within range that can hear and understand you. The suggestion must sound achievable and not involve anything that would obviously deal damage to the target or its allies. For example, you could say, \"Fetch the key to the cult's treasure vault, and give the key to me.\" Or you could say, \"Stop fighting, leave this library peacefully, and don't return.\"",
-				"The target must succeed on a Wisdom saving throw or have the {@condition Hechizado|XPHB} condition for the duration or until you or your allies deal damage to the target. The {@condition Hechizado|XPHB} target pursues the suggestion to the best of its ability. The suggested activity can continue for the entire duration, but if the suggested activity can be completed in a shorter time, the spell ends for the target upon completing it."
+				"Sugieres un curso de acción (de no más de 25 palabras) a una criatura que puedas ver dentro del alcance y que te pueda oír y entender. La sugerencia tiene que parecer factible y no ser claramente dañina para el objetivo o sus aliados. Por ejemplo, podrías decir: “Ve a por la llave de la cámara del tesoro de la secta y tráemela”, o quizá “deja de luchar, vete pacíficamente de la biblioteca y no vuelvas”.",
+				"El objetivo deberá superar una tirada de salvación de Sabiduría o tendrá el estado de {@condition hechizado|XPHB} hasta que termine el conjuro o hasta que tus aliados o tú le hagáis daño. El objetivo {@condition hechizado|XPHB} llevará a cabo la sugerencia lo mejor que pueda. La actividad sugerida puede seguir hasta que termine el conjuro, pero si se puede completar en menos tiempo, el conjuro terminará sobre el objetivo cuando la complete."
 			],
 			"conditionInflict": [
 				"charmed"
@@ -22046,8 +22046,8 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Zone of Truth",
-			"originalname": "",
+			"name": "Zona de la verdad",
+			"originalname": "Zone of Truth",
 			"source": "XPHB",
 			"page": 343,
 			"srd52": true,
@@ -22081,11 +22081,11 @@
 				}
 			],
 			"entries": [
-				"You create a magical zone that guards against deception in a 15-foot-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on a point within range. Until the spell ends, a creature that enters the spell's area for the first time on a turn or starts its turn there makes a Charisma saving throw. On a failed save, a creature can't speak a deliberate lie while in the radius. You know whether a creature succeeds or fails on this save.",
-				"An affected creature is aware of the spell and can avoid answering questions to which it would normally respond with a lie. Such a creature can be evasive yet must be truthful."
+				"Creas una zona mágica que protege contra el engaño en una esfera de 15 pies (4,5 m) de radio centrada en un punto dentro del alcance. Hasta que el conjuro termine, una criatura que entre en la zona del conjuro por primera vez en un turno o comience su turno allí realizará una tirada de salvación de Carisma. Si la falla, no podrá decir una mentira voluntariamente mientras esté en el radio del conjuro. Sabrás si una criatura supera o falla esta tirada.",
+				"Una criatura afectada es consciente del conjuro y puede evitar responder a preguntas a las que normalmente respondería con una mentira. Dicha criatura puede dar respuestas evasivas, pero deberá ser sincera."
 			],
 			"savingThrow": [
-				"charisma"
+				"carisma"
 			],
 			"areaTags": [
 				"S"

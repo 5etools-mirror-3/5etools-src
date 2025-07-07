@@ -1662,8 +1662,8 @@ Parser.spComponentsToFull = function (comp, level, {isPlainText = false} = {}) {
 };
 
 Parser.SP_END_TYPE_TO_FULL = {
-	"dispel": "dispelled",
-	"trigger": "triggered",
+	"dispel": "disipado",
+	"trigger": "activado",
 	"discharge": "discharged",
 };
 Parser.spEndTypeToFull = function (type) {
