@@ -290,8 +290,8 @@ class _AdditionalSpellSource extends _SpellSource {
 class _AdditionalSpellSourceClassesSubclasses extends _AdditionalSpellSource {
 	static _HASHES_SKIPPED = new Set([
 		UrlUtil.URL_TO_HASH_BUILDER["subclass"]({
-			name: "College of Lore",
-			shortName: "Lore",
+			name: "Colegio del conocimiento",
+			shortName: "Conocimiento",
 			source: "PHB",
 			className: "Bardo",
 			classSource: "PHB",

@@ -116,7 +116,7 @@ CreatureConverterUi._SAMPLE_MARKDOWN =
 >
 >• Cantrips (at will): mano de mago, prestidigitación, ray of frost
 >• 1st level (4 slots): detect magic, magic missile, shield, thunderwave
->• 2nd level (3 slots): detect thoughts, invisibility, Melf's acid arrow, mirror image
+>• 2nd level (3 slots): detect thoughts, invisibility, Melf's acid arrow, Imagen múltiple
 >• 3rd level (3 slots): animate dead, counterspell, dispel magic, fireball
 >• 4th level (3 slots): blight, dimension door
 >• 5th level (3 slots): cloudkill, scrying
