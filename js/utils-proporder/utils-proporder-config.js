@@ -1526,7 +1526,7 @@ const PROPORDER_ITEM = [
 	"rapier",
 	"spear",
 	"staff",
-	"stealth",
+	"sigilo",
 	"sword",
 	"weapon",
 

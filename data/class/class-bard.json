@@ -6,7 +6,7 @@
 	},
 	"class": [
 		{
-			"name": "Bard",
+			"name": "Bardo",
 			"source": "XPHB",
 			"page": 58,
 			"srd52": true,
@@ -25,7 +25,7 @@
 				"des",
 				"car"
 			],
-			"spellcastingAbility": "car",
+			"Lanzamiento de conjurosAbility": "car",
 			"casterProgression": "full",
 			"preparedSpellsProgression": [
 				4,
@@ -104,7 +104,7 @@
 					"prepared": {
 						"20": [
 							"power word heal|xphb",
-							"power word kill|xphb"
+							"Palabra de poder: Matar|xphb"
 						]
 					}
 				}
@@ -122,13 +122,13 @@
 			],
 			"startingProficiencies": {
 				"armor": [
-					"light"
+					"ligera"
 				],
 				"weapons": [
 					"sencilla"
 				],
 				"tools": [
-					"Choose three {@item Musical Instrument|XPHB|Musical Instruments}"
+					"Elige tres {@item Musical Instrument|XPHB|instrumentos musicales}"
 				],
 				"toolProficiencies": [
 					{
@@ -171,16 +171,16 @@
 					}
 				],
 				"entries": [
-					"{@i Choose A or B:} (A) {@item Armadura de cuero|XPHB}, 2 {@item Daga|XPHB}, {@item Musical Instrument|XPHB} of your choice, {@item Entertainer's Pack|XPHB}, 19 GP; or (B) 90 GP"
+					"{@i Elige A o B:} (A) {@item Armadura de cuero|XPHB}, 2 {@item Daga|XPHB|dagas}, {@item Musical Instrument|XPHB|instrumento musical} de tu elección, {@item Entertainer's Pack|XPHB|paquete de artista} y 19 po, o (B) 90 po"
 				]
 			},
 			"multiclassing": {
 				"proficienciesGained": {
 					"armor": [
-						"light"
+						"ligera"
 					],
 					"tools": [
-						"Choose one {@item Musical Instrument|XPHB}"
+						"Elige un {@item Musical Instrument|XPHB|instrumento musical}"
 					],
 					"toolProficiencies": [
 						{
@@ -192,9 +192,9 @@
 							"choose": {
 								"from": [
 									"atletismo",
-									"acrobatics",
-									"sleight of hand",
-									"stealth",
+									"acrobacias",
+									"juego de manos",
+									"sigilo",
 									"conocimiento arcano",
 									"historia",
 									"investigación",
@@ -205,10 +205,10 @@
 									"medicina",
 									"percepción",
 									"supervivencia",
-									"deception",
+									"engaño",
 									"intimidación",
-									"performance",
-									"persuasion"
+									"interpretación",
+									"persuasión"
 								],
 								"count": 1
 							}
@@ -219,9 +219,9 @@
 			"classTableGroups": [
 				{
 					"colLabels": [
-						"Bardic Die",
-						"{@filter Cantrips|spells|level=0|class=bard}",
-						"{@filter Prepared Spells|spells|level=!0|class=bard}"
+						"Dado bárdico",
+						"{@filter Trucos|spells|level=0|class=bardo}",
+						"{@filter Conjuros preparados|spells|level=!0|class=bardo}"
 					],
 					"rows": [
 						[
@@ -507,17 +507,17 @@
 					]
 				},
 				{
-					"title": "Spell Slots per Spell Level",
+					"title": "Espacios de conjuro por cada nivel de conjuro",
 					"colLabels": [
-						"{@filter 1st|spells|level=1|class=bard}",
-						"{@filter 2nd|spells|level=2|class=bard}",
-						"{@filter 3rd|spells|level=3|class=bard}",
-						"{@filter 4th|spells|level=4|class=bard}",
-						"{@filter 5th|spells|level=5|class=bard}",
-						"{@filter 6th|spells|level=6|class=bard}",
-						"{@filter 7th|spells|level=7|class=bard}",
-						"{@filter 8th|spells|level=8|class=bard}",
-						"{@filter 9th|spells|level=9|class=bard}"
+						"{@filter 1|spells|level=1|class=bardo}",
+						"{@filter 2|spells|level=2|class=bardo}",
+						"{@filter 3|spells|level=3|class=bardo}",
+						"{@filter 4|spells|level=4|class=bardo}",
+						"{@filter 5|spells|level=5|class=bardo}",
+						"{@filter 6|spells|level=6|class=bardo}",
+						"{@filter 7|spells|level=7|class=bardo}",
+						"{@filter 8|spells|level=8|class=bardo}",
+						"{@filter 9|spells|level=9|class=bardo}"
 					],
 					"rowsSpellProgression": [
 						[
@@ -744,35 +744,35 @@
 				}
 			],
 			"classFeatures": [
-				"Bardic Inspiration|Bard|XPHB|1",
-				"Spellcasting|Bard|XPHB|1",
-				"Pericia|Bard|XPHB|2",
-				"Jack of All Trades|Bard|XPHB|2",
+				"Inspiración bárdica|Bardo|XPHB|1",
+				"Lanzamiento de conjuros|Bardo|XPHB|1",
+				"Pericia|Bardo|XPHB|2",
+				"Aprendiz de mucho|Bardo|XPHB|2",
 				{
-					"classFeature": "Bard Subclass|Bard|XPHB|3",
+					"classFeature": "Subclase de bardo|Bardo|XPHB|3",
 					"gainSubclassFeature": true
 				},
-				"Mejora de característica|Bard|XPHB|4",
-				"Font of Inspiration|Bard|XPHB|5",
+				"Mejora de característica|Bardo|XPHB|4",
+				"Fuente de inspiración|Bardo|XPHB|5",
 				{
-					"classFeature": "Rasgo de subclase|Bard|XPHB|6",
+					"classFeature": "Rasgo de subclase|Bardo|XPHB|6",
 					"gainSubclassFeature": true
 				},
-				"Countercharm|Bard|XPHB|7",
-				"Mejora de característica|Bard|XPHB|8",
-				"Pericia|Bard|XPHB|9",
-				"Magical Secrets|Bard|XPHB|10",
-				"Mejora de característica|Bard|XPHB|12",
+				"Contraencantamiento|Bardo|XPHB|7",
+				"Mejora de característica|Bardo|XPHB|8",
+				"Pericia|Bardo|XPHB|9",
+				"Secretos mágicos|Bardo|XPHB|10",
+				"Mejora de característica|Bardo|XPHB|12",
 				{
-					"classFeature": "Rasgo de subclase|Bard|XPHB|14",
+					"classFeature": "Rasgo de subclase|Bardo|XPHB|14",
 					"gainSubclassFeature": true
 				},
-				"Mejora de característica|Bard|XPHB|16",
-				"Superior Inspiration|Bard|XPHB|18",
-				"Don épico|Bard|XPHB|19",
-				"Words of Creation|Bard|XPHB|20"
+				"Mejora de característica|Bardo|XPHB|16",
+				"Inspiración superior|Bardo|XPHB|18",
+				"Don épico|Bardo|XPHB|19",
+				"Palabras de creación|Bardo|XPHB|20"
 			],
-			"subclassTitle": "Bard Subclass",
+			"subclassTitle": "Subclase de bardo",
 			"hasFluff": true,
 			"hasFluffImages": true
 		}
@@ -782,15 +782,15 @@
 			"name": "College of Dance",
 			"shortName": "Dance",
 			"source": "XPHB",
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"page": 64,
 			"edition": "one",
 			"subclassFeatures": [
-				"College of Dance|Bard|XPHB|Dance|XPHB|3",
-				"Inspiring Movement|Bard|XPHB|Dance|XPHB|6",
-				"Tandem Footwork|Bard|XPHB|Dance|XPHB|6",
-				"Leading Evasion|Bard|XPHB|Dance|XPHB|14"
+				"College of Dance|Bardo|XPHB|Dance|XPHB|3",
+				"Inspiring Movement|Bardo|XPHB|Dance|XPHB|6",
+				"Tandem Footwork|Bardo|XPHB|Dance|XPHB|6",
+				"Leading Evasion|Bardo|XPHB|Dance|XPHB|14"
 			],
 			"hasFluffImages": true
 		},
@@ -798,7 +798,7 @@
 			"name": "College of Glamour",
 			"shortName": "Glamour",
 			"source": "XPHB",
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"page": 65,
 			"edition": "one",
@@ -821,9 +821,9 @@
 				}
 			],
 			"subclassFeatures": [
-				"College of Glamour|Bard|XPHB|Glamour|XPHB|3",
-				"Mantle of Majesty|Bard|XPHB|Glamour|XPHB|6",
-				"Unbreakable Majesty|Bard|XPHB|Glamour|XPHB|14"
+				"College of Glamour|Bardo|XPHB|Glamour|XPHB|3",
+				"Mantle of Majesty|Bardo|XPHB|Glamour|XPHB|6",
+				"Unbreakable Majesty|Bardo|XPHB|Glamour|XPHB|14"
 			],
 			"hasFluffImages": true
 		},
@@ -831,7 +831,7 @@
 			"name": "College of Lore",
 			"shortName": "Lore",
 			"source": "XPHB",
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"page": 66,
 			"srd52": true,
@@ -852,9 +852,9 @@
 				}
 			],
 			"subclassFeatures": [
-				"College of Lore|Bard|XPHB|Lore|XPHB|3",
-				"Magical Discoveries|Bard|XPHB|Lore|XPHB|6",
-				"Peerless Skill|Bard|XPHB|Lore|XPHB|14"
+				"College of Lore|Bardo|XPHB|Lore|XPHB|3",
+				"Magical Discoveries|Bardo|XPHB|Lore|XPHB|6",
+				"Peerless Skill|Bardo|XPHB|Lore|XPHB|14"
 			],
 			"hasFluffImages": true
 		},
@@ -862,53 +862,53 @@
 			"name": "College of Valor",
 			"shortName": "Valor",
 			"source": "XPHB",
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"page": 67,
 			"edition": "one",
 			"subclassFeatures": [
-				"College of Valor|Bard|XPHB|Valor|XPHB|3",
-				"Extra Attack|Bard|XPHB|Valor|XPHB|6",
-				"Battle Magic|Bard|XPHB|Valor|XPHB|14"
+				"College of Valor|Bardo|XPHB|Valor|XPHB|3",
+				"Extra Attack|Bardo|XPHB|Valor|XPHB|6",
+				"Battle Magic|Bardo|XPHB|Valor|XPHB|14"
 			],
 			"hasFluffImages": true
 		}
 	],
 	"classFeature": [
 		{
-			"name": "Bardic Inspiration",
+			"name": "Inspiración bárdica",
 			"source": "XPHB",
 			"page": 59,
 			"srd52": true,
 			"basicRules2024": true,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"level": 1,
 			"entries": [
-				"You can supernaturally inspire others through words, music, or dance. This inspiration is represented by your Bardic Inspiration die, which is a {@dice d6}.",
+				"Puedes recurrir a tus palabras, música o danza para inspirar de forma sobrenatural a los demás. Esta inspiración se representa con tu dado de Inspiración bárdica, que es un {@dice d6}.",
 				{
 					"type": "entries",
 					"entries": [
 						{
 							"type": "entries",
-							"name": "Using Bardic Inspiration",
+							"name": "Utilizar la Inspiración bárdica",
 							"entries": [
-								"As a {@variantrule Acción adicional|XPHB}, you can inspire another creature within 60 feet of yourself who can see or hear you. That creature gains one of your Bardic Inspiration dice. A creature can have only one Bardic Inspiration die at a time.",
-								"Once within the next hour when the creature fails a {@variantrule Prueba con d20|XPHB}, the creature can roll the Bardic Inspiration die and add the number rolled to the {@dice d20}, potentially turning the failure into a success. A Bardic Inspiration die is expended when it's rolled."
+								"Como {@variantrule acción adicional|XPHB}, puedes inspirar a otra criatura que esté a 60 pies (18 m) o menos de ti y que te pueda ver u oír. Esa criatura obtiene uno de tus dados de Inspiración bárdica. Cada criatura no puede tener más de un dado de Inspiración bárdica.",
+								"Una sola vez durante la siguiente hora, cuando la criatura falle una {@variantrule Prueba con d20|XPHB}, podrá tirar el dado de Inspiración bárdica y sumar el resultado al {@dice d20}, lo que podría hacerle superar la prueba. Un dado de Inspiración bárdica se gasta al tirarlo."
 							]
 						},
 						{
 							"type": "entries",
-							"name": "Number of Uses",
+							"name": "Número de usos",
 							"entries": [
-								"You can confer a Bardic Inspiration die a number of times equal to your Charisma modifier (minimum of once), and you regain all expended uses when you finish a {@variantrule Descanso largo|XPHB}."
+								"Puedes conceder un dado de Inspiración bárdica una cantidad de veces igual a tu modificador por Carisma (mínimo una vez) y recuperas todos sus usos tras finalizar un {@variantrule descanso largo|XPHB}."
 							]
 						},
 						{
 							"type": "entries",
-							"name": "At Higher Levels",
+							"name": "A niveles superiores",
 							"entries": [
-								"Your Bardic Inspiration die changes when you reach certain Bard levels, as shown in the Bardic Die column of the Bard Features table. The die becomes a {@dice d8} at level 5, a {@dice d10} at level 10, and a {@dice d12} at level 15."
+								"Tu dado de Inspiración bárdica cambia cuando alcanzas ciertos niveles de bardo, como se muestra en la columna “Dado bárdico” de la tabla “Rasgos de bardo”. El dado se convierte en un {@dice d8} en el nivel 5, un {@dice d10} en el nivel 10 y un {@dice d12} en el nivel 15."
 							]
 						}
 					]
@@ -916,63 +916,64 @@
 			]
 		},
 		{
-			"name": "Spellcasting",
+			"name": "Lanzamiento de conjuros",
 			"source": "XPHB",
 			"page": 59,
 			"srd52": true,
 			"basicRules2024": true,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"level": 1,
 			"entries": [
-				"You have learned to cast spells through your bardic arts. See {@book chapter 7|XPHB|7} for the rules on spellcasting. The information below details how you use those rules with Bard spells, which appear in the {@filter Bard spell list|spells|class=Bard} later in the class's description.",
+				"Has aprendido a lanzar conjuros mediante tus artes bárdicas. Consulta el capítulo 7 para ver las reglas sobre el lanzamiento de conjuros. La información presentada a continuación detalla cómo usar esas reglas con los {@filter conjuros de bardo|spells|class=Bardo}, que encontrarás más adelante en la lista de {@filter conjuros de bardo|spells|class=Bardo} de la descripción de la clase.",
 				{
 					"type": "entries",
 					"entries": [
 						{
 							"type": "entries",
-							"name": "Cantrips",
+							"name": "Trucos",
 							"entries": [
-								"You know two cantrips of your choice from the {@filter Bard spell list|spells|class=Bard}. {@spell Luces danzantes|XPHB} and {@spell Vicious Mockery|XPHB} are recommended.",
-								"Whenever you gain a Bard level, you can replace one of your cantrips with another cantrip of your choice from the {@filter Bard spell list|spells|class=Bard}.",
-								"When you reach Bard levels 4 and 10, you learn another cantrip of your choice from the {@filter Bard spell list|spells|class=Bard}, as shown in the Cantrips column of the Bard Features table."
+								"Conoces dos {@filter trucos|spells|class=Bardo|level=0} de tu elección escogidos de entre los de la lista de conjuros de bardo. Se recomiendan {@spell Burla dañina|XPHB} y {@spell Luces danzantes|XPHB}.",
+								"Cada vez que subas un nivel de bardo, puedes sustituir uno de tus trucos por otro truco de tu elección de la lista de conjuros de bardo.",
+								"Cuando alcances los niveles 4 y 10 de bardo, aprenderás otro truco de tu elección de la lista de conjuros de bardo, como se muestra en la columna “Trucos” de la tabla “Rasgos de bardo”."
 							]
 						},
 						{
 							"type": "entries",
-							"name": "Spell Slots",
+							"name": "Espacios de conjuro",
 							"entries": [
-								"The Bard Features table shows how many spell slots you have to cast your level 1+ spells. You regain all expended slots when you finish a {@variantrule Descanso largo|XPHB}."
+								"La tabla “Rasgos de bardo” muestra cuántos espacios de conjuro tienes para lanzar tus conjuros de {@filter nivel 1 y superiores|spells|level=!0|class=bardo}. Recuperas todos los espacios utilizados tras finalizar un descanso largo."
 							]
 						},
 						{
 							"type": "entries",
-							"name": "Prepared Spells of Level 1+",
+							"name": "Conjuros preparados de nivel 1 y superiores",
 							"entries": [
-								"You prepare the list of level 1+ spells that are available for you to cast with this feature. To start, choose four level 1 spells from the {@filter Bard spell list|spells|class=Bard}. {@spell Charm Person|XPHB}, {@spell Color Spray|XPHB}, {@spell Susurros discordantes|XPHB}, and {@spell Palabra de curación|XPHB} are recommended.",
-								"The number of spells on your list increases as you gain Bard levels, as shown in the Prepared Spells column of the Bard Features table. Whenever that number increases, choose additional spells from the {@filter Bard spell list|spells|class=Bard} until the number of spells on your list matches the number on the table. The chosen spells must be of a level for which you have spell slots. For example, if you're a level 3 Bard, your list of prepared spells can include six spells of levels 1 and 2 in any combination.",
-								"If another Bard feature gives you spells that you always have prepared, those spells don't count against the number of spells you can prepare with this feature, but those spells otherwise count as Bard spells for you."
+								"Preparas una serie de {@filter conjuros de nivel 1 y superiores|spells|level=!0|class=bardo}, que son los que podrás lanzar con este rasgo. Para empezar, elige cuatro conjuros de nivel 1 de la lista de conjuros de bardo. Se recomiendan {@spell hechizar persona|XPHB}, {@spell palabra de curación|XPHB}, {@spell rociada de color|XPHB} y {@spell susurros discordantes|XPHB}.",
+								"El número de conjuros de tu lista aumenta conforme subes de nivel de bardo, como se muestra en la columna “Conjuros preparados” de la tabla “Rasgos de bardo”.",
+								"Cuando ese número aumente, elige conjuros adicionales de la lista de conjuros de bardo hasta que el número de conjuros de tu lista coincida con el número de la tabla. Estos conjuros deben ser de un nivel para el que tengas espacios de conjuro. Por ejemplo, si eres un bardo de nivel 3, podrías preparar cualquier combinación de seis conjuros de nivel 1o 2.",
+								"Si otro rasgo de bardo te proporciona conjuros que siempre tienes preparados, esos conjuros no cuentan para el total que puedes preparar con este rasgo, pero sí que cuentan como conjuros de bardo para ti."
 							]
 						},
 						{
 							"type": "entries",
-							"name": "Changing Your Prepared Spells",
+							"name": "Cambiar los conjuros preparados",
 							"entries": [
-								"Whenever you gain a Bard level, you can replace one spell on your list with another Bard spell for which you have spell slots."
+								"Cada vez que subas un nivel de bardo, puedes sustituir un conjuro de tu lista por otro conjuro de bardo para el que tengas espacios de conjuro."
 							]
 						},
 						{
 							"type": "entries",
-							"name": "Spellcasting Ability",
+							"name": "Aptitud mágica",
 							"entries": [
-								"Charisma is your spellcasting ability for your Bard spells."
+								"El Carisma es tu aptitud mágica en lo que respecta a tus conjuros de bardo."
 							]
 						},
 						{
 							"type": "entries",
 							"name": "Canalizador mágico",
 							"entries": [
-								"You can use a {@item Musical Instrument|XPHB} as a {@variantrule Spellcasting Focus|XPHB} for your Bard spells."
+								"Puedes utilizar un {@item Musical Instrument|XPHB|instrumento musical} como canalizador mágico para tus conjuros de bardo."
 							]
 						}
 					]
@@ -985,47 +986,47 @@
 			"page": 60,
 			"srd52": true,
 			"basicRules2024": true,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"level": 2,
 			"entries": [
-				"You gain {@variantrule Pericia|XPHB} in two of your skill proficiencies of your choice. {@skill Performance|XPHB} and {@skill Persuasion|XPHB} are recommended if you have proficiency in them.",
-				"At Bard level 9, you gain {@variantrule Pericia|XPHB} in two more of your skill proficiencies of your choice."
+				"Ganas {@variantrule Pericia|XPHB} en dos de tus competencias en habilidades de tu elección. Se recomiendan {@skill Interpretación|XPHB} y {@skill Persuasión|XPHB} si eres competente en ellas.",
+				"En el nivel 9 de bardo ganas pericia en otras dos competencias de tu elección."
 			]
 		},
 		{
-			"name": "Jack of All Trades",
+			"name": "Aprendiz de mucho",
 			"source": "XPHB",
 			"page": 60,
 			"srd52": true,
 			"basicRules2024": true,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"level": 2,
 			"entries": [
-				"You can add half your {@variantrule Competencia|XPHB|Proficiency Bonus} (round down) to any ability check you make that uses a skill proficiency you lack and that doesn't otherwise use your {@variantrule Competencia|XPHB|Proficiency Bonus}.",
-				"For example, if you make a Strength ({@skill Athletics|XPHB}) check and lack {@skill Athletics|XPHB} proficiency, you can add half your {@variantrule Competencia|XPHB|Proficiency Bonus} to the check.",
+				"Puedes sumar la mitad de tu bonificador por competencia (redondeando hacia abajo) a cualquier prueba de característica que hagas que utilice una habilidad en la que no seas competente y que no use de otro modo tu bonificador por competencia.",
+				"Por ejemplo, si haces una prueba de Fuerza ({@skill Atletismo|XPHB}) y no eres competente en Atletismo, puedes sumar la mitad de tu bonificador por competencia a la prueba.",
 				{
 					"type": "inset",
-					"name": "A Bard's Repertoire",
+					"name": "El repertorio de un bardo",
 					"entries": [
-						"Does your Bard beat a {@item drum|XPHB} while chanting the deeds of ancient heroes? Strum a {@item lute|XPHB} while crooning romantic tunes? Perform arias of stirring power? Recite dramatic monologues from classic tragedies? Use the rhythm of a folk dance to coordinate the movement of allies in battle? Compose naughty limericks?",
-						"When you play a Bard, consider the style of artistic performance you favor, the moods you might invoke, and the themes that inspire your own creations. Are your poems inspired by moments of natural beauty, or are they brooding reflections on loss? Do you prefer lofty hymns or rowdy tavern songs? Are you drawn to laments for the fallen or celebrations of joy? Do you dance merry jigs or perform elaborate interpretive choreography? Do you focus on one style of performance or strive to master them all?"
+						"¿Tu bardo toca el tambor mientras canta las hazañas de los héroes de antaño? ¿Puntea un laúd mientras tararea una romántica melodía? ¿Entona arias de una fuerza conmovedora? ¿Recita monólogos dramáticos de tragedias clásicas? ¿Usa el ritmo de danzas folclóricas para coordinar los movimientos de sus aliados en combate? ¿Compone quintillas jocosas y subidas de tono?",
+						"Cuando interpretes a un bardo, plantéate el estilo de actuaciones artísticas que prefieres, el estado de ánimo que aspiras provocar y los temas que inspiran tus creaciones. ¿Se basan tus poemas en momentos de belleza natural o son reflexiones inquietantes sobre la pérdida de un ser querido? ¿Prefieres himnos idealistas o los animados cánticos de las tabernas? ¿Te atraen las lamentaciones por los caídos o las celebraciones de alegría? ¿Bailas gigas alegres o realizas coreografías complicadas? ¿Te centras en un único estilo en tus actuaciones o aspiras a dominarlos todos?"
 					]
 				}
 			]
 		},
 		{
-			"name": "Bard Subclass",
+			"name": "Subclase de bardo",
 			"source": "XPHB",
 			"page": 60,
 			"srd52": true,
 			"basicRules2024": true,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"level": 3,
 			"entries": [
-				"You gain a Bard subclass of your choice. A subclass is a specialization that grants you features at certain Bard levels. For the rest of your career, you gain each of your subclass's features that are of your Bard level or lower."
+				"Consigues una subclase de bardo de tu elección. Una subclase es una especialización que te proporciona rasgos cuando alcanzas ciertos niveles de bardo. De aquí en adelante, obtienes todos los rasgos de tu subclase que sean de tu nivel de bardoe inferiores."
 			]
 		},
 		{
@@ -1034,25 +1035,25 @@
 			"page": 61,
 			"srd52": true,
 			"basicRules2024": true,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"level": 4,
 			"entries": [
-				"Obtienes la dote {@feat Mejora de característica|XPHB} u otra {@5etools dote|feats.html} de tu elección para la que cumplas las condiciones. You gain this feature again at Bard levels 8, 12, and 16."
+				"Obtienes la dote {@feat Mejora de característica|XPHB} u otra {@5etools dote|feats.html} de tu elección para la que cumplas las condiciones. Vuelves a obtener este rasgo en los niveles 8, 12 y 16 de bardo."
 			]
 		},
 		{
-			"name": "Font of Inspiration",
+			"name": "Fuente de inspiración",
 			"source": "XPHB",
 			"page": 61,
 			"srd52": true,
 			"basicRules2024": true,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"level": 5,
 			"entries": [
-				"You now regain all your expended uses of Bardic Inspiration when you finish a {@variantrule Descanso corto|XPHB|Short} or {@variantrule Descanso largo|XPHB}.",
-				"In addition, you can expend a spell slot (no action required) to regain one expended use of Bardic Inspiration."
+				"Ahora recuperas todos los usos de Inspiración bárdica tras finalizar un {@variantrule Descanso corto|XPHB} o {@variantrule Descanso largo|XPHB|largo}.",
+				"Además, puedes gastar un espacio de conjuro (no requiere acción) para recuperar un uso gastado de Inspiración bárdica."
 			]
 		},
 		{
@@ -1061,24 +1062,24 @@
 			"page": 61,
 			"srd52": true,
 			"basicRules2024": true,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"level": 6,
 			"entries": [
-				"You gain a feature from your Bard Subclass."
+				"Obtienes un rasgo de tu subclase de bardo."
 			]
 		},
 		{
-			"name": "Countercharm",
+			"name": "Contraencantamiento",
 			"source": "XPHB",
 			"page": 61,
 			"srd52": true,
 			"basicRules2024": true,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"level": 7,
 			"entries": [
-				"You can use musical notes or words of power to disrupt mind-influencing effects. If you or a creature within 30 feet of you fails a saving throw against an effect that applies the {@condition Hechizado|XPHB} or {@condition Asustado|XPHB} condition, you can take a {@variantrule Reaction|XPHB} to cause the save to be rerolled, and the new roll has {@variantrule Advantage|XPHB}."
+				"Puedes emplear notas musicales o palabras de poder para interrumpir los efectos que afectan a la mente. Si tú o una criatura que esté a 30 pies (9 m) o menos de ti falláis una tirada de salvación contra un efecto que aplique el estado de {@condition Asustado|XPHB} o {@condition Hechizado|XPHB}, puedes llevar a cabo una reacción para que se repita la tirada de salvación, y la nueva tirada tendrá ventaja."
 			]
 		},
 		{
@@ -1087,7 +1088,7 @@
 			"page": 61,
 			"srd52": true,
 			"basicRules2024": true,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"level": 8,
 			"entries": [
@@ -1100,24 +1101,24 @@
 			"page": 61,
 			"srd52": true,
 			"basicRules2024": true,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"level": 9,
 			"entries": [
-				"You gain {@variantrule Pericia|XPHB} in two of your Skill Proficiencies of your choice."
+				"Ganas {@variantrule Pericia|XPHB} en dos de tus competencias en habilidades de tu elección."
 			]
 		},
 		{
-			"name": "Magical Secrets",
+			"name": "Secretos mágicos",
 			"source": "XPHB",
 			"page": 61,
 			"srd52": true,
 			"basicRules2024": true,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"level": 10,
 			"entries": [
-				"You've learned secrets from various magical traditions. Whenever you reach a Bard level (including this level) and the Prepared Spells number in the Bard Features table increases, you can choose any of your new prepared spells from the {@filter Bard|spells|class=Bard}, {@filter Cleric|spells|class=Cleric}, {@filter Druid|spells|class=Druid}, and {@filter Wizard spell list|spells|class=Mago}s, and the chosen spells count as Bard spells for you (see a class's section for its spell list). In addition, whenever you replace a spell prepared for this class, you can replace it with a spell from those lists."
+				"Has aprendido secretos de diversas tradiciones mágicas. Cada vez que alcances un nivel de bardo (incluido este) y aumente la cantidad de conjuros preparados de la tabla “Rasgos de bardo”, podrás elegir cualquiera de los nuevos conjuros preparados de entre las listas de conjuros de {@filter bardo|spells|class=bardo}, {@filter clérigo|spells|class=clérigo}, {@filter druida|spells|class=Druid} y {@filter mago|spells|class=mago}. Los conjuros elegidos contarán como conjuros de bardo para ti (consulta las listas de conjuros en la sección de la clase correspondiente). Además, cuando sustituyas un conjuro preparado para esta clase, podrás hacerlo con un conjuro de esas listas."
 			]
 		},
 		{
@@ -1126,7 +1127,7 @@
 			"page": 61,
 			"srd52": true,
 			"basicRules2024": true,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"level": 12,
 			"entries": [
@@ -1139,11 +1140,11 @@
 			"page": 61,
 			"srd52": true,
 			"basicRules2024": true,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"level": 14,
 			"entries": [
-				"You gain a feature from your Bard Subclass."
+				"Obtienes un rasgo de tu subclase de bardo."
 			]
 		},
 		{
@@ -1152,7 +1153,7 @@
 			"page": 61,
 			"srd52": true,
 			"basicRules2024": true,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"level": 16,
 			"entries": [
@@ -1160,16 +1161,16 @@
 			]
 		},
 		{
-			"name": "Superior Inspiration",
+			"name": "Inspiración superior",
 			"source": "XPHB",
 			"page": 61,
 			"srd52": true,
 			"basicRules2024": true,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"level": 18,
 			"entries": [
-				"When you roll {@variantrule Initiative|XPHB}, you regain expended uses of Bardic Inspiration until you have two if you have fewer than that."
+				"Cuando tires iniciativa, recuperarás usos gastados de Inspiración bárdica hasta que tengas dos, si tuvieras menos de esta cifra."
 			]
 		},
 		{
@@ -1178,24 +1179,24 @@
 			"page": 61,
 			"srd52": true,
 			"basicRules2024": true,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"level": 19,
 			"entries": [
-				"You gain an {@filter Epic Boon feat|feats|category=EB} or another {@5etools feat|feats.html} of your choice for which you qualify. {@feat Don del recuerdo de conjuros|XPHB} is recommended."
+				"Obtienes una dote de {@filter don épico|feats|category=DE} u otra {@5etools dote|feats.html} de tu elección para la que cumplas las condiciones. Se recomienda {@feat Don del recuerdo de conjuros|XPHB}."
 			]
 		},
 		{
-			"name": "Words of Creation",
+			"name": "Palabras de creación",
 			"source": "XPHB",
 			"page": 61,
 			"srd52": true,
 			"basicRules2024": true,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"level": 20,
 			"entries": [
-				"You have mastered two of the Words of Creation: the words of life and death. You therefore always have the {@spell Power Word Heal|XPHB} and {@spell Power Word Kill|XPHB} spells prepared. When you cast either spell, you can target a second creature with it if that creature is within 10 feet of the first target."
+				"Ahora dominas dos de las palabras de creación: las palabras de la vida y de la muerte. Por tanto, siempre tienes preparados los conjuros {@spell palabra de poder: sanar|XPHB} y {@spell palabra de poder: matar|XPHB}. Cuando lances uno de estos conjuros, podrás hacer objetivo a una segunda criatura si esta se encuentra a 10 pies (3 m) o menos del primer objetivo."
 			]
 		}
 	],
@@ -1204,17 +1205,17 @@
 			"name": "College of Dance",
 			"source": "XPHB",
 			"page": 64,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"subclassShortName": "Dance",
 			"subclassSource": "XPHB",
 			"level": 3,
 			"entries": [
 				"{@i Move in Harmony with the Cosmos}",
-				"Bards of the College of Dance know that the Words of Creation can't be contained within speech or song; the words are uttered by the movements of celestial bodies and flow through the motions of the smallest creatures. These Bards practice a way of being in harmony with the whirling cosmos that emphasizes agility, speed, and grace.",
+				"Bards of the College of Dance know that the Palabras de creación can't be contained within speech or song; the words are uttered by the movements of celestial bodies and flow through the motions of the smallest creatures. These Bards practice a way of being in harmony with the whirling cosmos that emphasizes agility, speed, and grace.",
 				{
 					"type": "refSubclassFeature",
-					"subclassFeature": "Dazzling Footwork|Bard|XPHB|Dance|XPHB|3"
+					"subclassFeature": "Dazzling Footwork|Bardo|XPHB|Dance|XPHB|3"
 				}
 			]
 		},
@@ -1222,35 +1223,35 @@
 			"name": "Agile Strikes",
 			"source": "XPHB",
 			"page": 64,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"subclassShortName": "Dance",
 			"subclassSource": "XPHB",
 			"level": 3,
 			"header": 2,
 			"entries": [
-				"When you expend a use of your Bardic Inspiration as part of an action, a {@variantrule Acción adicional|XPHB}, or a {@variantrule Reaction|XPHB}, you can make one {@variantrule Unarmed Strike|XPHB} as part of that action, {@variantrule Acción adicional|XPHB}, or {@variantrule Reaction|XPHB}."
+				"When you expend a use of your Inspiración bárdica as part of an action, a {@variantrule Acción adicional|XPHB}, or a {@variantrule Reaction|XPHB}, you can make one {@variantrule Unarmed Strike|XPHB} as part of that action, {@variantrule Acción adicional|XPHB}, or {@variantrule Reaction|XPHB}."
 			]
 		},
 		{
 			"name": "Bardic Damage",
 			"source": "XPHB",
 			"page": 64,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"subclassShortName": "Dance",
 			"subclassSource": "XPHB",
 			"level": 3,
 			"header": 2,
 			"entries": [
-				"You can use Dexterity instead of Strength for the attack rolls of your Unarmed Strikes. When you deal damage with an {@variantrule Unarmed Strike|XPHB}, you can deal Bludgeoning damage equal to a roll of your Bardic Inspiration die plus your Dexterity modifier, instead of the strike's normal damage. This roll doesn't expend the die."
+				"You can use Dexterity instead of Strength for the attack rolls of your Unarmed Strikes. When you deal damage with an {@variantrule Unarmed Strike|XPHB}, you can deal Bludgeoning damage equal to a roll of your Inspiración bárdica die plus your Dexterity modifier, instead of the strike's normal damage. This roll doesn't expend the die."
 			]
 		},
 		{
 			"name": "Dance Virtuoso",
 			"source": "XPHB",
 			"page": 64,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"subclassShortName": "Dance",
 			"subclassSource": "XPHB",
@@ -1264,7 +1265,7 @@
 			"name": "Dazzling Footwork",
 			"source": "XPHB",
 			"page": 64,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"subclassShortName": "Dance",
 			"subclassSource": "XPHB",
@@ -1274,19 +1275,19 @@
 				"While you aren't wearing armor or wielding a {@item Shield|XPHB}, you gain the following benefits.",
 				{
 					"type": "refSubclassFeature",
-					"subclassFeature": "Dance Virtuoso|Bard|XPHB|Dance|XPHB|3"
+					"subclassFeature": "Dance Virtuoso|Bardo|XPHB|Dance|XPHB|3"
 				},
 				{
 					"type": "refSubclassFeature",
-					"subclassFeature": "Unarmored Defense|Bard|XPHB|Dance|XPHB|3"
+					"subclassFeature": "Unarmored Defense|Bardo|XPHB|Dance|XPHB|3"
 				},
 				{
 					"type": "refSubclassFeature",
-					"subclassFeature": "Agile Strikes|Bard|XPHB|Dance|XPHB|3"
+					"subclassFeature": "Agile Strikes|Bardo|XPHB|Dance|XPHB|3"
 				},
 				{
 					"type": "refSubclassFeature",
-					"subclassFeature": "Bardic Damage|Bard|XPHB|Dance|XPHB|3"
+					"subclassFeature": "Bardic Damage|Bardo|XPHB|Dance|XPHB|3"
 				}
 			]
 		},
@@ -1294,7 +1295,7 @@
 			"name": "Unarmored Defense",
 			"source": "XPHB",
 			"page": 64,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"subclassShortName": "Dance",
 			"subclassSource": "XPHB",
@@ -1308,14 +1309,14 @@
 			"name": "Inspiring Movement",
 			"source": "XPHB",
 			"page": 64,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"subclassShortName": "Dance",
 			"subclassSource": "XPHB",
 			"level": 6,
 			"header": 2,
 			"entries": [
-				"When an enemy you can see ends its turn within 5 feet of you, you can take a {@variantrule Reaction|XPHB} and expend one use of your Bardic Inspiration to move up to half your {@variantrule Speed|XPHB}. Then one ally of your choice within 30 feet of you can also move up to half their {@variantrule Speed|XPHB} using their {@variantrule Reaction|XPHB}.",
+				"When an enemy you can see ends its turn within 5 feet of you, you can take a {@variantrule Reaction|XPHB} and expend one use of your Inspiración bárdica to move up to half your {@variantrule Speed|XPHB}. Then one ally of your choice within 30 feet of you can also move up to half their {@variantrule Speed|XPHB} using their {@variantrule Reaction|XPHB}.",
 				"None of this feature's movement provokes {@action Opportunity Attack|XPHB|Opportunity Attacks}."
 			]
 		},
@@ -1323,21 +1324,21 @@
 			"name": "Tandem Footwork",
 			"source": "XPHB",
 			"page": 64,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"subclassShortName": "Dance",
 			"subclassSource": "XPHB",
 			"level": 6,
 			"header": 2,
 			"entries": [
-				"When you roll {@variantrule Initiative|XPHB}, you can expend one use of your Bardic Inspiration if you don't have the {@condition Incapacitado|XPHB} condition. When you do so, roll your Bardic Inspiration die; you and each ally within 30 feet of you who can see or hear you gains a bonus to {@variantrule Initiative|XPHB} equal to the number rolled."
+				"When you roll {@variantrule Initiative|XPHB}, you can expend one use of your Inspiración bárdica if you don't have the {@condition Incapacitado|XPHB} condition. When you do so, roll your Inspiración bárdica die; you and each ally within 30 feet of you who can see or hear you gains a bonus to {@variantrule Initiative|XPHB} equal to the number rolled."
 			]
 		},
 		{
 			"name": "Leading Evasion",
 			"source": "XPHB",
 			"page": 65,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"subclassShortName": "Dance",
 			"subclassSource": "XPHB",
@@ -1352,7 +1353,7 @@
 			"name": "College of Glamour",
 			"source": "XPHB",
 			"page": 65,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"subclassShortName": "Glamour",
 			"subclassSource": "XPHB",
@@ -1362,11 +1363,11 @@
 				"The College of Glamour traces its origins to the beguiling magic of the Feywild. Bards who study this magic weave threads of beauty and terror into their songs and stories, and the mightiest among them can cloak themselves in otherworldly majesty. Their performances stir up wistful longing for forgotten innocence, evoke unconscious memories of long-held fears, and tug at the emotions of even the most hard-hearted listeners.",
 				{
 					"type": "refSubclassFeature",
-					"subclassFeature": "Beguiling Magic|Bard|XPHB|Glamour|XPHB|3"
+					"subclassFeature": "Beguiling Magic|Bardo|XPHB|Glamour|XPHB|3"
 				},
 				{
 					"type": "refSubclassFeature",
-					"subclassFeature": "Mantle of Inspiration|Bard|XPHB|Glamour|XPHB|3"
+					"subclassFeature": "Mantle of Inspiration|Bardo|XPHB|Glamour|XPHB|3"
 				}
 			]
 		},
@@ -1374,7 +1375,7 @@
 			"name": "Beguiling Magic",
 			"source": "XPHB",
 			"page": 65,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"subclassShortName": "Glamour",
 			"subclassSource": "XPHB",
@@ -1383,28 +1384,28 @@
 			"entries": [
 				"You always have the {@spell Charm Person|XPHB} and {@spell Mirror Image|XPHB} spells prepared.",
 				"In addition, immediately after you cast an Enchantment or Illusion spell using a spell slot, you can cause a creature you can see within 60 feet of yourself to make a Wisdom saving throw against your spell save DC. On a failed save, the target has the {@condition Hechizado|XPHB} or {@condition Asustado|XPHB} condition (your choice) for 1 minute. The target repeats the save at the end of each of its turns, ending the effect on itself on a success.",
-				"Once you use this benefit, you can't use it again until you finish a {@variantrule Descanso largo|XPHB}. You can also restore your use of it by expending one use of your Bardic Inspiration (no action required)."
+				"Once you use this benefit, you can't use it again until you finish a {@variantrule Descanso largo|XPHB}. You can also restore your use of it by expending one use of your Inspiración bárdica (no action required)."
 			]
 		},
 		{
 			"name": "Mantle of Inspiration",
 			"source": "XPHB",
 			"page": 65,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"subclassShortName": "Glamour",
 			"subclassSource": "XPHB",
 			"level": 3,
 			"header": 2,
 			"entries": [
-				"You can weave fey magic into a song or dance to fill others with vigor. As a {@variantrule Acción adicional|XPHB}, you can expend a use of Bardic Inspiration, rolling a Bardic Inspiration die. When you do so, choose a number of other creatures within 60 feet of yourself, up to a number equal to your Charisma modifier (minimum of one creature). Each of those creatures gains a number of {@variantrule Temporary Hit Points|XPHB} equal to two times the number rolled on the Bardic Inspiration die, and then each can use its {@variantrule Reaction|XPHB} to move up to its {@variantrule Speed|XPHB} without provoking {@action Opportunity Attack|XPHB|Opportunity Attacks}."
+				"You can weave fey magic into a song or dance to fill others with vigor. As a {@variantrule Acción adicional|XPHB}, you can expend a use of Inspiración bárdica, rolling a Inspiración bárdica die. When you do so, choose a number of other creatures within 60 feet of yourself, up to a number equal to your Charisma modifier (minimum of one creature). Each of those creatures gains a number of {@variantrule Temporary Hit Points|XPHB} equal to two times the number rolled on the Inspiración bárdica die, and then each can use its {@variantrule Reaction|XPHB} to move up to its {@variantrule Speed|XPHB} without provoking {@action Opportunity Attack|XPHB|Opportunity Attacks}."
 			]
 		},
 		{
 			"name": "Mantle of Majesty",
 			"source": "XPHB",
 			"page": 65,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"subclassShortName": "Glamour",
 			"subclassSource": "XPHB",
@@ -1421,7 +1422,7 @@
 			"name": "Unbreakable Majesty",
 			"source": "XPHB",
 			"page": 66,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"subclassShortName": "Glamour",
 			"subclassSource": "XPHB",
@@ -1438,7 +1439,7 @@
 			"page": 66,
 			"srd52": true,
 			"basicRules2024": true,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"subclassShortName": "Lore",
 			"subclassSource": "XPHB",
@@ -1448,11 +1449,11 @@
 				"Bards of the College of Lore collect spells and secrets from diverse sources, such as scholarly tomes, mystical rites, and peasant tales. The college's members gather in libraries and universities to share their lore with one another. They also meet at festivals or affairs of state, where they can expose corruption, unravel lies, and poke fun at self-important figures of authority.",
 				{
 					"type": "refSubclassFeature",
-					"subclassFeature": "Bonus Proficiencies|Bard|XPHB|Lore|XPHB|3"
+					"subclassFeature": "Bonus Proficiencies|Bardo|XPHB|Lore|XPHB|3"
 				},
 				{
 					"type": "refSubclassFeature",
-					"subclassFeature": "Cutting Words|Bard|XPHB|Lore|XPHB|3"
+					"subclassFeature": "Cutting Words|Bardo|XPHB|Lore|XPHB|3"
 				}
 			]
 		},
@@ -1462,7 +1463,7 @@
 			"page": 66,
 			"srd52": true,
 			"basicRules2024": true,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"subclassShortName": "Lore",
 			"subclassSource": "XPHB",
@@ -1478,14 +1479,14 @@
 			"page": 66,
 			"srd52": true,
 			"basicRules2024": true,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"subclassShortName": "Lore",
 			"subclassSource": "XPHB",
 			"level": 3,
 			"header": 2,
 			"entries": [
-				"You learn to use your wit to supernaturally distract, confuse, and otherwise sap the confidence and competence of others. When a creature that you can see within 60 feet of yourself makes a damage roll or succeeds on an ability check or attack roll, you can take a {@variantrule Reaction|XPHB} to expend one use of your Bardic Inspiration; roll your Bardic Inspiration die, and subtract the number rolled from the creature's roll, reducing the damage or potentially turning the success into a failure."
+				"You learn to use your wit to supernaturally distract, confuse, and otherwise sap the confidence and competence of others. When a creature that you can see within 60 feet of yourself makes a damage roll or succeeds on an ability check or attack roll, you can take a {@variantrule Reaction|XPHB} to expend one use of your Inspiración bárdica; roll your Inspiración bárdica die, and subtract the number rolled from the creature's roll, reducing the damage or potentially turning the success into a failure."
 			]
 		},
 		{
@@ -1494,7 +1495,7 @@
 			"page": 66,
 			"srd52": true,
 			"basicRules2024": true,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"subclassShortName": "Lore",
 			"subclassSource": "XPHB",
@@ -1511,21 +1512,21 @@
 			"page": 67,
 			"srd52": true,
 			"basicRules2024": true,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"subclassShortName": "Lore",
 			"subclassSource": "XPHB",
 			"level": 14,
 			"header": 2,
 			"entries": [
-				"When you make an ability check or attack roll and fail, you can expend one use of Bardic Inspiration; roll the Bardic Inspiration die, and add the number rolled to the {@dice d20}, potentially turning a failure into a success. On a failure, the Bardic Inspiration isn't expended."
+				"When you make an ability check or attack roll and fail, you can expend one use of Inspiración bárdica; roll the Inspiración bárdica die, and add the number rolled to the {@dice d20}, potentially turning a failure into a success. On a failure, the Inspiración bárdica isn't expended."
 			]
 		},
 		{
 			"name": "College of Valor",
 			"source": "XPHB",
 			"page": 67,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"subclassShortName": "Valor",
 			"subclassSource": "XPHB",
@@ -1535,11 +1536,11 @@
 				"Bards of the College of Valor are daring storytellers whose tales preserve the memory of the great heroes of the past. These Bards sing the deeds of the mighty in vaulted halls or to crowds gathered around great bonfires. They travel to witness great events firsthand and to ensure that the memory of these events doesn't pass away. With their songs, they inspire new generations to reach the same heights of accomplishment as the heroes of old.",
 				{
 					"type": "refSubclassFeature",
-					"subclassFeature": "Combat Inspiration|Bard|XPHB|Valor|XPHB|3"
+					"subclassFeature": "Combat Inspiration|Bardo|XPHB|Valor|XPHB|3"
 				},
 				{
 					"type": "refSubclassFeature",
-					"subclassFeature": "Martial Training|Bard|XPHB|Valor|XPHB|3"
+					"subclassFeature": "Martial Training|Bardo|XPHB|Valor|XPHB|3"
 				}
 			]
 		},
@@ -1547,26 +1548,26 @@
 			"name": "Combat Inspiration",
 			"source": "XPHB",
 			"page": 67,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"subclassShortName": "Valor",
 			"subclassSource": "XPHB",
 			"level": 3,
 			"header": 2,
 			"entries": [
-				"You can use your wit to turn the tide of battle. A creature that has a Bardic Inspiration die from you can use it for one of the following effects.",
+				"You can use your wit to turn the tide of battle. A creature that has a Inspiración bárdica die from you can use it for one of the following effects.",
 				{
 					"type": "entries",
 					"name": "Defense",
 					"entries": [
-						"When the creature is hit by an attack roll, that creature can use its {@variantrule Reaction|XPHB} to roll the Bardic Inspiration die and add the number rolled to its AC against that attack, potentially causing the attack to miss."
+						"When the creature is hit by an attack roll, that creature can use its {@variantrule Reaction|XPHB} to roll the Inspiración bárdica die and add the number rolled to its AC against that attack, potentially causing the attack to miss."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Offense",
 					"entries": [
-						"Immediately after the creature hits a target with an attack roll, the creature can roll the Bardic Inspiration die and add the number rolled to the attack's damage against the target."
+						"Immediately after the creature hits a target with an attack roll, the creature can roll the Inspiración bárdica die and add the number rolled to the attack's damage against the target."
 					]
 				}
 			]
@@ -1575,7 +1576,7 @@
 			"name": "Martial Training",
 			"source": "XPHB",
 			"page": 67,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"subclassShortName": "Valor",
 			"subclassSource": "XPHB",
@@ -1583,14 +1584,14 @@
 			"header": 2,
 			"entries": [
 				"You gain proficiency with {@filter Martial weapons|items|type=arma marcial} and training with {@filter Medium armor|items|type=Medium Armor} and {@item Shield|XPHB|Shields}.",
-				"In addition, you can use a Simple or Martial weapon as a {@variantrule Spellcasting Focus|XPHB} to cast spells from your {@filter Bard spell list|spells|class=Bard}."
+				"In addition, you can use a Simple or Martial weapon as a {@variantrule Lanzamiento de conjuros Focus|XPHB} to cast spells from your {@filter Bard spell list|spells|class=Bardo}."
 			]
 		},
 		{
 			"name": "Extra Attack",
 			"source": "XPHB",
 			"page": 67,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"subclassShortName": "Valor",
 			"subclassSource": "XPHB",
@@ -1605,7 +1606,7 @@
 			"name": "Battle Magic",
 			"source": "XPHB",
 			"page": 67,
-			"className": "Bard",
+			"className": "Bardo",
 			"classSource": "XPHB",
 			"subclassShortName": "Valor",
 			"subclassSource": "XPHB",

@@ -144,7 +144,7 @@ class _RenderClassesSidebarImplBase {
 			: "";
 
 		const ptMcPrereq = cls.primaryAbility
-			? `To qualify for a new class, you must have a score of at least 13 in the primary ability of the new class and your current classes.`
+			? `Para optar a una clase nueva, debes tener una puntuación de 13 o más en la característica principal de la nueva clase y en las de tus clases actuales.`
 			: this._getPtRequirements({renderer, requirements: mc.requirements});
 
 		const ptMcPrereqSpecial = mc.requirementsSpecial
@@ -159,19 +159,19 @@ class _RenderClassesSidebarImplBase {
 			: "";
 
 		const ptMcProfsArmor = mc.proficienciesGained?.armor
-			? `<div><b>${this._style === SITE_STYLE__CLASSIC ? "Armor" : "Armor Training"}:</b> ${Renderer.class.getRenderedArmorProfs(mc.proficienciesGained.armor, {styleHint: this._style})}</div>`
+			? `<div><b>${this._style === SITE_STYLE__CLASSIC ? "Armadura" : "Entrenamiento con armaduras"}:</b> ${Renderer.class.getRenderedArmorProfs(mc.proficienciesGained.armor, {styleHint: this._style})}</div>`
 			: "";
 
 		const ptMcProfsWeapons = mc.proficienciesGained?.weapons
-			? `<div><b>${this._style === SITE_STYLE__CLASSIC ? "Weapons" : "Weapon Proficiencies"}:</b> ${Renderer.class.getRenderedWeaponProfs(mc.proficienciesGained.weapons, {styleHint: this._style})}</div>`
+			? `<div><b>${this._style === SITE_STYLE__CLASSIC ? "Armas" : "Competencias con armas"}:</b> ${Renderer.class.getRenderedWeaponProfs(mc.proficienciesGained.weapons, {styleHint: this._style})}</div>`
 			: "";
 
 		const ptMcProfsTools = mc.proficienciesGained?.tools
-			? `<div><b>${this._style === SITE_STYLE__CLASSIC ? "Tools" : "Tool Proficiencies"}:</b> ${Renderer.class.getRenderedToolProfs(mc.proficienciesGained.tools, {styleHint: this._style})}</div>`
+			? `<div><b>${this._style === SITE_STYLE__CLASSIC ? "Herramientas" : "Competencias con armas"}:</b> ${Renderer.class.getRenderedToolProfs(mc.proficienciesGained.tools, {styleHint: this._style})}</div>`
 			: "";
 
 		const ptMcProfsSkills = mc.proficienciesGained?.skills
-			? `<div><b>${this._style === SITE_STYLE__CLASSIC ? "Skills" : "Skill Proficiencies"}:</b> ${Renderer.class.getRenderedSkillProfs(mc.proficienciesGained.skills, {styleHint: this._style})}</div>`
+			? `<div><b>${this._style === SITE_STYLE__CLASSIC ? "Habilidades" : "Competencias en habilidades"}:</b> ${Renderer.class.getRenderedSkillProfs(mc.proficienciesGained.skills, {styleHint: this._style})}</div>`
 			: "";
 
 		const ptsProfs = this._style === SITE_STYLE__CLASSIC
@@ -195,7 +195,7 @@ class _RenderClassesSidebarImplBase {
 		const ele = e_({
 			tag: "tr",
 			html: `<td class="cls-side__section" colspan="6">
-				<h5 class="cls-side__section-head">Multiclassing</h5>
+				<h5 class="cls-side__section-head">Multiclase</h5>
 				${ptMcPrereq}
 				${ptMcPrereqSpecial}
 				${ptMcEntries}

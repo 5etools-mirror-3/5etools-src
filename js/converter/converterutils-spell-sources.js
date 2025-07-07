@@ -293,7 +293,7 @@ class _AdditionalSpellSourceClassesSubclasses extends _AdditionalSpellSource {
 			name: "College of Lore",
 			shortName: "Lore",
 			source: "PHB",
-			className: "Bard",
+			className: "Bardo",
 			classSource: "PHB",
 		}),
 	]);

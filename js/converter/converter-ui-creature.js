@@ -123,7 +123,7 @@ CreatureConverterUi._SAMPLE_MARKDOWN =
 >• 6th level (1 slot): disintegrate, globe of invulnerability
 >• 7th level (1 slot): finger of death, plane shift
 >• 8th level (1 slot): dominate monster, power word stun
->• 9th level (1 slot): power word kill
+>• 9th level (1 slot): Palabra de poder: Matar
 >
 >***Turn Resistance.*** The lich has advantage on saving throws against any effect that turns undead.
 >
