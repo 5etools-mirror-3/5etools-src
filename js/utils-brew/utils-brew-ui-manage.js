@@ -466,6 +466,7 @@ export class ManageBrewUi {
 	get _LBL_LIST_UPDATE () { return "Update"; }
 	get _LBL_LIST_MANAGE_CONTENTS () { return "Manage Contents"; }
 	get _LBL_LIST_EXPORT () { return "Export"; }
+	get _LBL_LIST_VIEW_CONTENTS () { return "View Contents"; }
 	get _LBL_LIST_VIEW_JSON () { return "View JSON"; }
 	get _LBL_LIST_DELETE () { return "Delete"; }
 	get _LBL_LIST_MOVE_TO_EDITABLE () { return `Move to Editable ${this._brewUtil.DISPLAY_NAME.toTitleCase()} Document`; }
@@ -621,9 +622,22 @@ export class ManageBrewUi {
 
 		// region These are mutually exclusive
 		const btnPull = this._pRender_getBtnPull({rdState, brew});
-		const btnEdit = this._pRender_getBtnEdit({rdState, brew});
+		const btnEdit = this._pRender_getBtnEdit({rdState, brew, brewName});
 		const btnPullEditPlaceholder = (btnPull || btnEdit) ? null : this.constructor._pRender_getBtnPlaceholder();
 		// endregion
+
+		const btnViewContents = e_({
+			tag: "button",
+			clazz: `ve-btn ve-btn-default ve-btn-xs mobile-lg__hidden w-24p`,
+			title: `${this._LBL_LIST_VIEW_CONTENTS}: ${this.constructor._getBrewJsonTitle({brew, brewName})}`,
+			children: [
+				e_({
+					tag: "span",
+					clazz: "glyphicon glyphicon-list-alt manbrew-row__icn-btn",
+				}),
+			],
+			click: evt => this._pRender_pDoViewBrewContents({evt, brew}),
+		});
 
 		const btnDownload = e_({
 			tag: "button",
@@ -722,10 +736,11 @@ export class ManageBrewUi {
 						btnEdit,
 						btnPullEditPlaceholder,
 						btnDownload,
-						btnViewJson,
+						brew.head.isEditable ? btnViewJson : btnViewContents,
 						btnOpenMenu,
 						btnDelete,
-					],
+					]
+						.filter(Boolean),
 				}),
 			],
 		});
@@ -780,13 +795,13 @@ export class ManageBrewUi {
 		return btnPull;
 	}
 
-	_pRender_getBtnEdit ({rdState, brew}) {
+	_pRender_getBtnEdit ({rdState, brew, brewName}) {
 		if (!brew.head.isEditable) return null;
 
 		return e_({
 			tag: "button",
 			clazz: `ve-btn ve-btn-default ve-btn-xs mobile__hidden w-24p`,
-			title: this._LBL_LIST_MANAGE_CONTENTS,
+			title: `${this._LBL_LIST_MANAGE_CONTENTS}: ${this.constructor._getBrewJsonTitle({brew, brewName})}`,
 			children: [
 				e_({
 					tag: "span",
@@ -888,6 +903,11 @@ export class ManageBrewUi {
 	static _getBrewJsonTitle ({brew, brewName}) {
 		brewName = brewName || this._getBrewName(brew);
 		return brew.head.filename || brewName;
+	}
+
+	async _pRender_pDoViewBrewContents ({evt, brew}) {
+		evt.stopPropagation();
+		await ManageEditableBrewContentsUi.pDoOpen({brewUtil: this._brewUtil, brew, isModal: true, isReadOnly: true});
 	}
 
 	_pRender_doViewBrew ({evt, brew, brewName}) {

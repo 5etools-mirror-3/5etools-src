@@ -129,7 +129,7 @@ export class LootGenUi extends BaseComponent {
 
 		this._pl_xgeTableLookup = null;
 
-		this._$wrpOutputRows = null;
+		this._wrpOutputRows = null;
 		this._lootOutputs = [];
 	}
 
@@ -318,10 +318,10 @@ export class LootGenUi extends BaseComponent {
 			.flat();
 	}
 
-	render ({$stg, $stgLhs, $stgRhs}) {
-		if ($stg && ($stgLhs || $stgRhs)) throw new Error(`Only one of "parent stage" and "LHS/RHS stages" may be specified!`);
+	render ({stg, stgLhs, stgRhs}) {
+		if (stg && (stgLhs || stgRhs)) throw new Error(`Only one of "parent stage" and "LHS/RHS stages" may be specified!`);
 
-		const {$stgLhs: $stgLhs_, $stgRhs: $stgRhs_} = this._render_$getStages({$stg, $stgLhs, $stgRhs});
+		const {stgLhs: stgLhs_, stgRhs: stgRhs_} = this._render_getStages({stg, stgLhs, stgRhs});
 
 		const iptTabMetas = [
 			new TabUiUtil.TabMeta({name: "Random Treasure by CR", hasBorder: true, hasBackground: true}),
@@ -343,7 +343,7 @@ export class LootGenUi extends BaseComponent {
 			}),
 		];
 
-		const tabMetas = this._renderTabs(iptTabMetas, {$parent: $stgLhs_});
+		const tabMetas = this._renderTabs(iptTabMetas, {eleParent: stgLhs_});
 		const [tabMetaFindTreasure, tabMetaLootTables, tabMetaPartyLoot, tabMetaDragonHoard, tabMetaGemsArtObjects, tabMetaOptions] = tabMetas;
 
 		this._render_tabFindTreasure({tabMeta: tabMetaFindTreasure});
@@ -353,7 +353,7 @@ export class LootGenUi extends BaseComponent {
 		this._render_tabGemsArtObjects({tabMeta: tabMetaGemsArtObjects});
 		this._render_tabOptions({tabMeta: tabMetaOptions, tabMetaGemsArtObjects});
 
-		this._render_output({$wrp: $stgRhs_});
+		this._render_output({wrp: stgRhs_});
 	}
 
 	/**
@@ -362,23 +362,23 @@ export class LootGenUi extends BaseComponent {
 	 * This allows us to cater for both the pre-baked layout of the Lootgen page, and other, more general,
 	 *   components.
 	 */
-	_render_$getStages ({$stg, $stgLhs, $stgRhs}) {
-		if (!$stg) return {$stgLhs, $stgRhs};
+	_render_getStages ({stg, stgLhs, stgRhs}) {
+		if (!stg) return {stgLhs, stgRhs};
 
-		$stgLhs = $(`<div class="ve-flex w-50 h-100"></div>`);
-		$stgRhs = $(`<div class="ve-flex-col w-50 h-100"></div>`);
+		stgLhs = ee`<div class="ve-flex w-50 h-100"></div>`;
+		stgRhs = ee`<div class="ve-flex-col w-50 h-100"></div>`;
 
-		$$`<div class="ve-flex w-100 h-100">
-			${$stgLhs}
+		ee`<div class="ve-flex w-100 h-100">
+			${stgLhs}
 			<div class="vr-2 h-100"></div>
-			${$stgRhs}
-		</div>`.appendTo($stg.empty());
+			${stgRhs}
+		</div>`.appendTo(stg.empty());
 
-		return {$stgLhs, $stgRhs};
+		return {stgLhs, stgRhs};
 	}
 
 	_render_tabFindTreasure ({tabMeta}) {
-		const $selChallenge = ComponentUiUtil.$getSelEnum(
+		const selChallenge = ComponentUiUtil.getSelEnum(
 			this,
 			"ft_challenge",
 			{
@@ -387,34 +387,34 @@ export class LootGenUi extends BaseComponent {
 			},
 		);
 
-		const $cbIsHoard = ComponentUiUtil.$getCbBool(this, "ft_isHoard");
+		const cbIsHoard = ComponentUiUtil.getCbBool(this, "ft_isHoard");
 
-		const $btnRoll = $(`<button class="ve-btn ve-btn-default ve-btn-xs mr-2">Roll Loot</button>`)
-			.click(() => this._ft_pDoHandleClickRollLoot());
+		const btnRoll = ee`<button class="ve-btn ve-btn-default ve-btn-xs mr-2">Roll Loot</button>`
+			.onn("click", () => this._ft_pDoHandleClickRollLoot());
 
-		const $btnClear = $(`<button class="ve-btn ve-btn-danger ve-btn-xs">Clear Output</button>`)
-			.click(() => this._doClearOutput());
+		const btnClear = ee`<button class="ve-btn ve-btn-danger ve-btn-xs">Clear Output</button>`
+			.onn("click", () => this._doClearOutput());
 
-		$$`<div class="ve-flex-col py-2 px-3">
+		ee`<div class="ve-flex-col py-2 px-3">
 			<label class="split-v-center mb-2">
 				<div class="mr-2 w-66 no-shrink">Challenge Rating</div>
-				${$selChallenge}
+				${selChallenge}
 			</label>
 
 			<label class="split-v-center mb-3">
 				<div class="mr-2 w-66 no-shrink">Is Treasure Hoard?</div>
-				${$cbIsHoard}
+				${cbIsHoard}
 			</label>
 
 			<div class="ve-flex-v-center mb-2">
-				${$btnRoll}
-				${$btnClear}
+				${btnRoll}
+				${btnClear}
 			</div>
 
 			<hr class="hr-3">
 
 			<div class="ve-small italic">${this.constructor._er(`Based on the tables and rules in the {@book ${Parser.sourceJsonToFull(Parser.SRC_DMG)}|DMG|7|Treasure Tables}`)}, pages 133-149.</div>
-		</div>`.appendTo(tabMeta.$wrpTab);
+		</div>`.appendTo(tabMeta.wrpTab);
 	}
 
 	_ft_pDoHandleClickRollLoot () {
@@ -660,7 +660,7 @@ export class LootGenUi extends BaseComponent {
 
 		const getSelTableValues = () => this._lt_tableMetas.map((_, i) => i);
 
-		const {$sel: $selTable, setValues: setSelTableValues} = ComponentUiUtil.$getSelEnum(
+		const {sel: selTable, setValues: setSelTableValues} = ComponentUiUtil.getSelEnum(
 			this,
 			"lt_ixTable",
 			{
@@ -690,49 +690,49 @@ export class LootGenUi extends BaseComponent {
 		};
 		this._addHookBase("pulseItemsFiltered", hkPulseItem);
 
-		const $btnRoll = $(`<button class="ve-btn ve-btn-default ve-btn-xs mr-2">Roll Loot</button>`)
-			.on("click", () => this._lt_pDoHandleClickRollLoot());
+		const btnRoll = ee`<button class="ve-btn ve-btn-default ve-btn-xs mr-2">Roll Loot</button>`
+			.onn("click", () => this._lt_pDoHandleClickRollLoot());
 
-		const $btnClear = $(`<button class="ve-btn ve-btn-danger ve-btn-xs">Clear Output</button>`)
-			.on("click", () => this._doClearOutput());
+		const btnClear = ee`<button class="ve-btn ve-btn-danger ve-btn-xs">Clear Output</button>`
+			.onn("click", () => this._doClearOutput());
 
-		const $hrHelp = $(`<hr class="hr-3">`);
-		const $dispHelp = $(`<div class="ve-small italic"></div>`);
-		const $hrTable = $(`<hr class="hr-3">`);
-		const $dispTable = $(`<div class="ve-flex-col w-100"></div>`);
+		const hrHelp = ee`<hr class="hr-3">`;
+		const dispHelp = ee`<div class="ve-small italic"></div>`;
+		const hrTable = ee`<hr class="hr-3">`;
+		const dispTable = ee`<div class="ve-flex-col w-100"></div>`;
 
 		const hkTable = () => {
 			const tableMeta = this._lt_tableMetas[this._state.lt_ixTable];
 
-			$dispHelp.toggleVe(tableMeta != null);
-			$dispTable.toggleVe(tableMeta != null);
-			$hrHelp.toggleVe(tableMeta != null);
-			$hrTable.toggleVe(tableMeta != null);
+			dispHelp.toggleVe(tableMeta != null);
+			dispTable.toggleVe(tableMeta != null);
+			hrHelp.toggleVe(tableMeta != null);
+			hrTable.toggleVe(tableMeta != null);
 
 			if (tableMeta == null) return;
 
-			$dispHelp.html(this._lt_getRenderedHelp({tableMeta}));
-			$dispTable.html(this.constructor._er(tableMeta.tableEntry));
+			dispHelp.html(this._lt_getRenderedHelp({tableMeta}));
+			dispTable.html(this.constructor._er(tableMeta.tableEntry));
 		};
 		this._addHookBase("lt_ixTable", hkTable);
 		hkTable();
 
-		$$`<div class="ve-flex-col py-2 px-3">
+		ee`<div class="ve-flex-col py-2 px-3">
 			<label class="split-v-center mb-3">
 				<div class="mr-2 w-66 no-shrink">Table</div>
-				${$selTable}
+				${selTable}
 			</label>
 
 			<div class="ve-flex-v-center mb-2">
-				${$btnRoll}
-				${$btnClear}
+				${btnRoll}
+				${btnClear}
 			</div>
 
-			${$hrHelp}
-			${$dispHelp}
-			${$hrTable}
-			${$dispTable}
-		</div>`.appendTo(tabMeta.$wrpTab);
+			${hrHelp}
+			${dispHelp}
+			${hrTable}
+			${dispTable}
+		</div>`.appendTo(tabMeta.wrpTab);
 	}
 
 	_lt_getSelTableDisplay ({ix}) {
@@ -818,12 +818,12 @@ export class LootGenUi extends BaseComponent {
 	}
 
 	_render_tabPartyLoot ({tabMeta}) {
-		const $cbIsExactLevel = ComponentUiUtil.$getCbBool(this, "pl_isExactLevel");
+		const cbIsExactLevel = ComponentUiUtil.getCbBool(this, "pl_isExactLevel");
 
-		const $cbIsCumulative = ComponentUiUtil.$getCbBool(this, "pl_isCumulative");
+		const cbIsCumulative = ComponentUiUtil.getCbBool(this, "pl_isCumulative");
 
 		// region Default
-		const $selCharLevel = ComponentUiUtil.$getSelEnum(
+		const selCharLevel = ComponentUiUtil.getSelEnum(
 			this,
 			"pl_charLevel",
 			{
@@ -832,16 +832,16 @@ export class LootGenUi extends BaseComponent {
 			},
 		);
 
-		const $stgDefault = $$`<div class="ve-flex-col w-100">
+		const stgDefault = ee`<div class="ve-flex-col w-100">
 			<label class="split-v-center mb-2">
 				<div class="mr-2 w-66 no-shrink">Character Level</div>
-				${$selCharLevel}
+				${selCharLevel}
 			</label>
 		</div>`;
 		// endregion
 
 		// region Exact level
-		const $sliderLevel = ComponentUiUtil.$getSliderRange(
+		const sliderLevel = ComponentUiUtil.getSliderRange(
 			this,
 			{
 				propMin: "pl_exactLevelMin",
@@ -850,30 +850,30 @@ export class LootGenUi extends BaseComponent {
 			},
 		);
 
-		const $stgExactLevel = $$`<div class="ve-flex-col w-100">
+		const stgExactLevel = ee`<div class="ve-flex-col w-100">
 			<div class="ve-flex-col mb-2">
 				<div class="mb-2">Character Level</div>
-				${$sliderLevel}
+				${sliderLevel}
 			</div>
 		</div>`;
 		// endregion
 
 		// region Buttons
-		const $btnRoll = $(`<button class="ve-btn ve-btn-default ve-btn-xs mr-2">Roll Loot</button>`)
-			.click(() => this._pl_pDoHandleClickRollLoot());
+		const btnRoll = ee`<button class="ve-btn ve-btn-default ve-btn-xs mr-2">Roll Loot</button>`
+			.onn("click", () => this._pl_pDoHandleClickRollLoot());
 
-		const $btnClear = $(`<button class="ve-btn ve-btn-danger ve-btn-xs">Clear Output</button>`)
-			.click(() => this._doClearOutput());
+		const btnClear = ee`<button class="ve-btn ve-btn-danger ve-btn-xs">Clear Output</button>`
+			.onn("click", () => this._doClearOutput());
 		// endregion
 
 		const hkIsExactLevel = () => {
-			$stgDefault.toggleVe(!this._state.pl_isExactLevel);
-			$stgExactLevel.toggleVe(this._state.pl_isExactLevel);
+			stgDefault.toggleVe(!this._state.pl_isExactLevel);
+			stgExactLevel.toggleVe(this._state.pl_isExactLevel);
 		};
 		this._addHookBase("pl_isExactLevel", hkIsExactLevel);
 		hkIsExactLevel();
 
-		$$`<div class="ve-flex-col py-2 px-3">
+		ee`<div class="ve-flex-col py-2 px-3">
 			<p>
 				Generates a set of magical items for a party, based on the tables and rules in ${this.constructor._er(`{@book Xanathar's Guide to Everything|XGE|2|awarding magic items}`)}, pages 135-136.
 			</p>
@@ -881,24 +881,24 @@ export class LootGenUi extends BaseComponent {
 
 			<hr class="hr-3">
 
-			${$stgDefault}
-			${$stgExactLevel}
+			${stgDefault}
+			${stgExactLevel}
 
 			<label class="split-v-center mb-2">
 				<div class="mr-2 w-66 no-shrink">Cumulative with Previous Tiers</div>
-				${$cbIsCumulative}
+				${cbIsCumulative}
 			</label>
 
 			<label class="split-v-center mb-3">
 				<div class="mr-2 w-66 no-shrink">Is Exact Level</div>
-				${$cbIsExactLevel}
+				${cbIsExactLevel}
 			</label>
 
 			<div class="ve-flex-v-center mb-2">
-				${$btnRoll}
-				${$btnClear}
+				${btnRoll}
+				${btnClear}
 			</div>
-		</div>`.appendTo(tabMeta.$wrpTab);
+		</div>`.appendTo(tabMeta.wrpTab);
 	}
 
 	async _pl_pDoHandleClickRollLoot () {
@@ -1011,7 +1011,7 @@ export class LootGenUi extends BaseComponent {
 	}
 
 	_render_tabDragonHoard ({tabMeta}) {
-		const $selDragonAge = ComponentUiUtil.$getSelEnum(
+		const selDragonAge = ComponentUiUtil.getSelEnum(
 			this,
 			"dh_dragonAge",
 			{
@@ -1019,34 +1019,34 @@ export class LootGenUi extends BaseComponent {
 			},
 		);
 
-		const $cbIsPreferRandomMagicItems = ComponentUiUtil.$getCbBool(this, "dh_isPreferRandomMagicItems");
+		const cbIsPreferRandomMagicItems = ComponentUiUtil.getCbBool(this, "dh_isPreferRandomMagicItems");
 
-		const $btnRoll = $(`<button class="ve-btn ve-btn-default ve-btn-xs mr-2">Roll Loot</button>`)
-			.click(() => this._dh_pDoHandleClickRollLoot());
+		const btnRoll = ee`<button class="ve-btn ve-btn-default ve-btn-xs mr-2">Roll Loot</button>`
+			.onn("click", () => this._dh_pDoHandleClickRollLoot());
 
-		const $btnClear = $(`<button class="ve-btn ve-btn-danger ve-btn-xs">Clear Output</button>`)
-			.click(() => this._doClearOutput());
+		const btnClear = ee`<button class="ve-btn ve-btn-danger ve-btn-xs">Clear Output</button>`
+			.onn("click", () => this._doClearOutput());
 
-		$$`<div class="ve-flex-col py-2 px-3">
+		ee`<div class="ve-flex-col py-2 px-3">
 			<label class="split-v-center mb-2">
 				<div class="mr-2 w-66 no-shrink">Dragon Age</div>
-				${$selDragonAge}
+				${selDragonAge}
 			</label>
 
 			<label class="split-v-center mb-3">
 				<div class="mr-2 w-66 no-shrink" title="If selected, random magic items will be preferred over rolling on the standard ${Parser.sourceJsonToAbv(Parser.SRC_DMG).qq()} &quot;Magic Items Table [A-I]&quot; when generating magic items.">Prefer Random Magic Items</div>
-				${$cbIsPreferRandomMagicItems}
+				${cbIsPreferRandomMagicItems}
 			</label>
 
 			<div class="ve-flex-v-center mb-2">
-				${$btnRoll}
-				${$btnClear}
+				${btnRoll}
+				${btnClear}
 			</div>
 
 			<hr class="hr-3">
 
 			<div class="ve-small italic">${this.constructor._er(`Based on the tables and rules in {@book Fizban's Treasury of Dragons|FTD|4|Creating a Hoard}`)}, pages 72.</div>
-		</div>`.appendTo(tabMeta.$wrpTab);
+		</div>`.appendTo(tabMeta.wrpTab);
 	}
 
 	async _dh_pDoHandleClickRollLoot () {
@@ -1099,49 +1099,49 @@ export class LootGenUi extends BaseComponent {
 	}
 
 	_render_tabGemsArtObjects ({tabMeta}) {
-		const $cbIsUseGems = ComponentUiUtil.$getCbBool(this, "gao_isUseGems");
-		const $cbIsUseArtObjects = ComponentUiUtil.$getCbBool(this, "gao_isUseArtObjects");
+		const cbIsUseGems = ComponentUiUtil.getCbBool(this, "gao_isUseGems");
+		const cbIsUseArtObjects = ComponentUiUtil.getCbBool(this, "gao_isUseArtObjects");
 
-		const $iptTargetGoldAmount = ComponentUiUtil.$getIptInt(this, "gao_targetGoldAmount", 0, {min: 0})
-			.keydown(evt => {
+		const iptTargetGoldAmount = ComponentUiUtil.getIptInt(this, "gao_targetGoldAmount", 0, {min: 0})
+			.onn("keydown", evt => {
 				if (evt.key !== "Enter") return;
-				$iptTargetGoldAmount.change();
-				$btnRoll.click();
+				iptTargetGoldAmount.change();
+				btnRoll.click();
 			});
 
-		const $btnRoll = $(`<button class="ve-btn ve-btn-default ve-btn-xs mr-2">Roll Loot</button>`)
-			.click(() => this._goa_pDoHandleClickRollLoot());
+		const btnRoll = ee`<button class="ve-btn ve-btn-default ve-btn-xs mr-2">Roll Loot</button>`
+			.onn("click", () => this._goa_pDoHandleClickRollLoot());
 
-		const $btnClear = $(`<button class="ve-btn ve-btn-danger ve-btn-xs">Clear Output</button>`)
-			.click(() => this._doClearOutput());
+		const btnClear = ee`<button class="ve-btn ve-btn-danger ve-btn-xs">Clear Output</button>`
+			.onn("click", () => this._doClearOutput());
 
-		$$`<div class="ve-flex-col py-2 px-3">
+		ee`<div class="ve-flex-col py-2 px-3">
 			<h4 class="mt-1 mb-3">Gem/Art Object Generator</h4>
 
 			<label class="split-v-center mb-3">
 				<div class="mr-2 w-66 no-shrink">Include Gems</div>
-				${$cbIsUseGems}
+				${cbIsUseGems}
 			</label>
 
 			<label class="split-v-center mb-3">
 				<div class="mr-2 w-66 no-shrink">Include Art Objects</div>
-				${$cbIsUseArtObjects}
+				${cbIsUseArtObjects}
 			</label>
 
 			<label class="split-v-center mb-3">
 				<div class="mr-2 w-66 no-shrink">Target Gold Amount</div>
-				${$iptTargetGoldAmount}
+				${iptTargetGoldAmount}
 			</label>
 
 			<div class="ve-flex-v-center mb-2">
-				${$btnRoll}
-				${$btnClear}
+				${btnRoll}
+				${btnClear}
 			</div>
 
 			<hr class="hr-3">
 
 			<div class="ve-small italic">${this.constructor._er(`This custom generator randomly selects gems/art objects up to the target gold amount.`)}</div>
-		</div>`.appendTo(tabMeta.$wrpTab);
+		</div>`.appendTo(tabMeta.wrpTab);
 	}
 
 	async _goa_pDoHandleClickRollLoot () {
@@ -1260,43 +1260,43 @@ export class LootGenUi extends BaseComponent {
 
 		const hkIsActive = () => {
 			const tab = this._getActiveTab();
-			tabMeta.$btns[0].toggleClass("active", !!tab.isHeadHidden);
+			tabMeta.btns[0].toggleClass("active", !!tab.isHeadHidden);
 		};
 		this._addHookActiveTab(hkIsActive);
 		hkIsActive();
 	}
 
 	async _opts_pDoOpenSettings () {
-		const {$modalInner} = await UiUtil.pGetShowModal({title: "Settings"});
+		const {eleModalInner} = await UiUtil.pGetShowModal({title: "Settings"});
 
-		const $rowsCurrency = Parser.COIN_ABVS
+		const rowsCurrency = Parser.COIN_ABVS
 			.map(it => {
 				const {propIsAllowed} = this._getPropsCoins(it);
 
-				const $cb = ComponentUiUtil.$getCbBool(this, propIsAllowed);
+				const cb = ComponentUiUtil.getCbBool(this, propIsAllowed);
 
-				return $$`<label class="split-v-center stripe-odd--faint">
+				return ee`<label class="split-v-center stripe-odd--faint">
 					<div class="no-wrap mr-2">${Parser.coinAbvToFull(it).toTitleCase()}</div>
-					${$cb}
+					${cb}
 				</label>`;
 			});
 
-		$$($modalInner)`
+		ee(eleModalInner)`
 			<div class="mb-1" title="Disabled currencies will be converted to equivalent amounts of another currency.">Allowed Currencies:</div>
 			<div class="pl-4 ve-flex-col">
-				${$rowsCurrency}
+				${rowsCurrency}
 			</div>
 		`;
 	}
 
-	_render_output ({$wrp}) {
-		this._$wrpOutputRows = $(`<div class="w-100 h-100 ve-flex-col ve-overflow-y-auto smooth-scroll"></div>`);
+	_render_output ({wrp}) {
+		this._wrpOutputRows = ee`<div class="w-100 h-100 ve-flex-col ve-overflow-y-auto smooth-scroll"></div>`;
 
-		$$`<div class="ve-flex-col w-100 h-100">
+		ee`<div class="ve-flex-col w-100 h-100">
 			<h4 class="my-0"><i>Output</i></h4>
-			${this._$wrpOutputRows}
+			${this._wrpOutputRows}
 		</div>`
-			.appendTo($wrp);
+			.appendTo(wrp);
 	}
 
 	_getPropsCoins (coin) {
@@ -1354,7 +1354,7 @@ export class LootGenUi extends BaseComponent {
 
 	_doAddOutput ({lootOutput}) {
 		this._lootOutputs.push(lootOutput);
-		lootOutput.render(this._$wrpOutputRows);
+		lootOutput.render(this._wrpOutputRows);
 	}
 
 	_doClearOutput () {

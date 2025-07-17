@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.10.1"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.10.2"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -3394,7 +3394,14 @@ globalThis.UrlUtil = {
 
 	pageToDisplayPage (page) { return UrlUtil.PG_TO_NAME[page] || (page || "").replace(/\.html$/, ""); },
 
-	getFilename (url) { return url.slice(url.lastIndexOf("/") + 1); },
+	getFilename (url) {
+		const out = url.slice(url.lastIndexOf("/") + 1);
+		try {
+			return decodeURIComponent(out);
+		} catch (e) {
+			return out;
+		}
+	},
 
 	isFullUrl (url) { return url && /^.*?:\/\//.test(url); },
 

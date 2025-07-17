@@ -9,7 +9,7 @@ class UtilsTableview {
 		}
 	};
 
-	static show ({title, entities, colTransforms, sorter}) {
+	static show ({title, entities, colTransforms, additionalData, sorter}) {
 		const {$modal} = UiUtil.getShowModal({
 			isWidth100: true,
 			isHeight100: true,
@@ -84,7 +84,7 @@ class UtilsTableview {
 		${$wrpRows}
 		`;
 
-		const tableHtml = this._getTableHtml({rdState, entities, colTransforms, sorter});
+		const tableHtml = this._getTableHtml({rdState, entities, colTransforms, additionalData, sorter});
 		$wrpRows.fastSetHtml(tableHtml);
 	}
 
@@ -111,7 +111,7 @@ class UtilsTableview {
 		return DataUtil.getCsv(headersActive.map(({name}) => name), rows);
 	}
 
-	static _getTableHtml ({rdState, entities, colTransforms, sorter}) {
+	static _getTableHtml ({rdState, entities, colTransforms, additionalData, sorter}) {
 		let stack = `<table class="w-100 table-striped stats stats--book stats--book-large min-w-100 w-initial">
 			<thead>
 				<tr>${Object.values(colTransforms).map((c, i) => `<th data-col="${i}" class="ve-text-left px-2" colspan="${c.flex || 1}">${c.name}</th>`).join("")}</tr>
@@ -125,7 +125,7 @@ class UtilsTableview {
 			const row = [];
 			stack += Object.keys(colTransforms).map((k, i) => {
 				const c = colTransforms[k];
-				const val = c.transform == null ? it[k] : c.transform(k[0] === "_" ? it : it[k]);
+				const val = c.transform == null ? it[k] : c.transform(k[0] === "_" ? it : it[k], additionalData);
 				row.push(val);
 				return `<td data-col="${i}" class="px-2" colspan="${c.flex || 1}">${val || ""}</td>`;
 			}).join("");
@@ -140,7 +140,7 @@ class UtilsTableview {
 
 	// region Default/generic transforms
 	static COL_TRANSFORM_NAME = {name: "Name"};
-	static COL_TRANSFORM_SOURCE = {name: "Source", transform: (it) => `<span class="${Parser.sourceJsonToSourceClassname(it)}" title="${Parser.sourceJsonToFull(it)}" ${Parser.sourceJsonToStyle(it)}>${Parser.sourceJsonToAbv(it)}</span>`};
+	static COL_TRANSFORM_SOURCE = {name: "Source", transform: (it) => `<span class="${Parser.sourceJsonToSourceClassname(it)}" title="${Parser.sourceJsonToFull(it)}">${Parser.sourceJsonToAbv(it)}</span>`};
 	static COL_TRANSFORM_PAGE = {name: "Page"};
 	// endregion
 }

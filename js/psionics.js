@@ -74,7 +74,7 @@ class PsionicsPage extends ListPage {
 					name: UtilsTableview.COL_TRANSFORM_NAME,
 					source: UtilsTableview.COL_TRANSFORM_SOURCE,
 					page: UtilsTableview.COL_TRANSFORM_PAGE,
-					_text: {name: "Text", transform: (it) => Renderer.psionic.getBodyText(it), flex: 3},
+					_text: {name: "Text", transform: (it) => Renderer.psionic.getBodyHtml(it), flex: 3},
 				},
 			},
 
@@ -109,7 +109,7 @@ class PsionicsPage extends ListPage {
 			<span class="bold ve-col-6 pl-0 pr-1">${p.name}</span>
 			<span class="ve-col-2 px-1 ve-text-center">${typeMeta.short}</span>
 			<span class="ve-col-2 px-1 ve-text-center ${p._fOrder === VeCt.STR_NONE ? "italic" : ""}">${p._fOrder}</span>
-			<span class="ve-col-2 ve-text-center pl-1 pr-0" title="${Parser.sourceJsonToFull(p.source)}" ${Parser.sourceJsonToStyle(p.source)}>${source}</span>
+			<span class="ve-col-2 ve-text-center pl-1 pr-0" title="${Parser.sourceJsonToFull(p.source)}">${source}</span>
 		</a>`;
 
 		const listItem = new ListItem(
@@ -143,3 +143,5 @@ class PsionicsPage extends ListPage {
 const psionicsPage = new PsionicsPage();
 psionicsPage.sublistManager = new PsionicsSublistManager();
 window.addEventListener("load", () => psionicsPage.pOnLoad());
+
+globalThis.dbg_page = psionicsPage;

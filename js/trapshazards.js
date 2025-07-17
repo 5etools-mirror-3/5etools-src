@@ -76,7 +76,7 @@ class TrapsHazardsPage extends ListPage {
 		eleLi.innerHTML = `<a href="#${hash}" class="lst__row-border lst__row-inner">
 			<span class="ve-col-3 pl-0 pr-1 ve-text-center">${trapType}</span>
 			<span class="bold ve-col-7 px-1">${it.name}</span>
-			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(it.source)} pl-1 pr-0" title="${Parser.sourceJsonToFull(it.source)}" ${Parser.sourceJsonToStyle(it.source)}>${source}</span>
+			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(it.source)} pl-1 pr-0" title="${Parser.sourceJsonToFull(it.source)}">${source}</span>
 		</a>`;
 
 		const listItem = new ListItem(
@@ -108,3 +108,5 @@ class TrapsHazardsPage extends ListPage {
 const trapsHazardsPage = new TrapsHazardsPage();
 trapsHazardsPage.sublistManager = new TrapsHazardsSublistManager();
 window.addEventListener("load", () => trapsHazardsPage.pOnLoad());
+
+globalThis.dbg_page = trapsHazardsPage;

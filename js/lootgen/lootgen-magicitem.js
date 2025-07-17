@@ -312,7 +312,7 @@ export class LootGenMagicItem extends BaseComponent {
 		this._state.roll = roll;
 		this._state.isItemsAltChooseRoll = isItemsAltChooseRoll;
 
-		this._$render = null;
+		this._render = null;
 	}
 
 	get item () { return this._state.item; }
@@ -337,56 +337,56 @@ export class LootGenMagicItem extends BaseComponent {
 
 		this._lootGenMagicItems.splice(this._lootGenMagicItems.indexOf(this), 1, nxt);
 
-		if (!this._$render) return;
-		this._$render.replaceWith(nxt.$getRender());
+		if (!this._render) return;
+		this._render.replaceWith(nxt.getRender());
 	}
 
-	_$getBtnReroll () {
+	_getBtnReroll () {
 		if (!this._magicItemTable && !this._itemsAltChoose) return null;
 
 		const isAltModeDefault = this._fnGetIsPreferAltChoose && this._fnGetIsPreferAltChoose();
 		const title = this._itemsAltChoose
 			? isAltModeDefault ? `SHIFT to roll on Magic Item Table ${this._magicItemTable.type}` : `SHIFT to roll ${Parser.getArticle(this._itemsAltChooseDisplayText)} ${this._itemsAltChooseDisplayText} item`
 			: null;
-		return $(`<span class="roller render-roller" ${title ? `title="${title}"` : ""}>[reroll]</span>`)
-			.mousedown(evt => evt.preventDefault())
-			.click(evt => this._pDoReroll({isAltRoll: isAltModeDefault ? !evt.shiftKey : evt.shiftKey}));
+		return ee`<span class="roller render-roller" ${title ? `title="${title}"` : ""}>[reroll]</span>`
+			.onn("mousedown", evt => evt.preventDefault())
+			.onn("click", evt => this._pDoReroll({isAltRoll: isAltModeDefault ? !evt.shiftKey : evt.shiftKey}));
 	}
 
-	$getRender () {
-		if (this._$render) return this._$render;
-		return this._$render = this._$getRender();
+	getRender () {
+		if (this._render) return this._render;
+		return this._render = this._getRender();
 	}
 
-	_$getRender () {
-		const $dispBaseEntry = this._$getRender_$getDispBaseEntry();
-		const $dispRoll = this._$getRender_$getDispRoll();
+	_getRender () {
+		const dispBaseEntry = this._getRender_getDispBaseEntry();
+		const dispRoll = this._getRender_getDispRoll();
 
-		const $btnReroll = this._$getBtnReroll();
+		const btnReroll = this._getBtnReroll();
 
-		return $$`<li class="split-v-center">
+		return ee`<li class="split-v-center">
 			<div class="ve-flex-v-center ve-flex-wrap pr-3 min-w-0">
-				${$dispBaseEntry}
-				${$dispRoll}
+				${dispBaseEntry}
+				${dispRoll}
 			</div>
-			${$btnReroll}
+			${btnReroll}
 		</li>`;
 	}
 
-	_$getRender_$getDispBaseEntry ({prop = "baseEntry"} = {}) {
-		const $dispBaseEntry = $(`<div class="mr-2"></div>`);
-		const hkBaseEntry = () => $dispBaseEntry.html(Renderer.get().render(this._state.isItemsAltChooseRoll ? `{@i ${this._state[prop]}}` : this._state[prop]));
+	_getRender_getDispBaseEntry ({prop = "baseEntry"} = {}) {
+		const dispBaseEntry = ee`<div class="mr-2"></div>`;
+		const hkBaseEntry = () => dispBaseEntry.html(Renderer.get().render(this._state.isItemsAltChooseRoll ? `{@i ${this._state[prop]}}` : this._state[prop]));
 		this._addHookBase(prop, hkBaseEntry);
 		hkBaseEntry();
-		return $dispBaseEntry;
+		return dispBaseEntry;
 	}
 
-	_$getRender_$getDispRoll ({prop = "roll"} = {}) {
-		const $dispRoll = $(`<div class="ve-muted"></div>`);
-		const hkRoll = () => $dispRoll.text(this._state.isItemsAltChooseRoll ? `(${this._itemsAltChooseDisplayText} item)` : `(Rolled ${this._state[prop]})`);
+	_getRender_getDispRoll ({prop = "roll"} = {}) {
+		const dispRoll = ee`<div class="ve-muted"></div>`;
+		const hkRoll = () => dispRoll.txt(this._state.isItemsAltChooseRoll ? `(${this._itemsAltChooseDisplayText} item)` : `(Rolled ${this._state[prop]})`);
 		this._addHookBase(prop, hkRoll);
 		hkRoll();
-		return $dispRoll;
+		return dispRoll;
 	}
 
 	_getDefaultState () {
@@ -403,8 +403,8 @@ export class LootGenMagicItem extends BaseComponent {
 class LootGenMagicItemNull extends LootGenMagicItem {
 	getExtensionExportMeta () { return null; }
 
-	_$getRender () {
-		return $$`<li class="split-v-center">
+	_getRender () {
+		return ee`<li class="split-v-center">
 			<div class="ve-flex-v-center ve-flex-wrap ve-muted help-subtle" title="${TOOLTIP_NOTHING.qq()}">&mdash;</div>
 		</li>`;
 	}
@@ -436,40 +436,40 @@ class LootGenMagicItemSpellScroll extends LootGenMagicItem {
 		};
 	}
 
-	_$getRender () {
-		const $dispBaseEntry = this._$getRender_$getDispBaseEntry();
-		const $dispRoll = this._$getRender_$getDispRoll();
+	_getRender () {
+		const dispBaseEntry = this._getRender_getDispBaseEntry();
+		const dispRoll = this._getRender_getDispRoll();
 
-		const $btnRerollSpell = $(`<span class="roller render-roller mr-2">[reroll]</span>`)
-			.mousedown(evt => evt.preventDefault())
-			.click(() => {
+		const btnRerollSpell = ee`<span class="roller render-roller mr-2">[reroll]</span>`
+			.onn("click", evt => evt.preventDefault())
+			.onn("click", () => {
 				this._state.spell = RollerUtil.rollOnArray(this._spells.filter(it => it.level === this._state.spellLevel));
 			});
 
-		const $dispSpell = $(`<div class="no-wrap"></div>`);
+		const dispSpell = ee`<div class="no-wrap"></div>`;
 		const hkSpell = () => {
-			if (!this._state.spell) return $dispSpell.html(`<span class="help-subtle" title="${TOOLTIP_NOTHING.qq()}">(no spell)</span>`);
-			$dispSpell.html(Renderer.get().render(`{@spell ${this._state.spell.name}|${this._state.spell.source}}`));
+			if (!this._state.spell) return dispSpell.html(`<span class="help-subtle" title="${TOOLTIP_NOTHING.qq()}">(no spell)</span>`);
+			dispSpell.html(Renderer.get().render(`{@spell ${this._state.spell.name}|${this._state.spell.source}}`));
 		};
 		this._addHookBase("spell", hkSpell);
 		hkSpell();
 
-		const $btnReroll = this._$getBtnReroll();
+		const btnReroll = this._getBtnReroll();
 
-		return $$`<li class="split-v-center">
+		return ee`<li class="split-v-center">
 			<div class="ve-flex-v-center ve-flex-wrap pr-3 min-w-0">
-				${$dispBaseEntry}
+				${dispBaseEntry}
 				<div class="ve-flex-v-center italic mr-2">
 					<span>(</span>
-					${$btnRerollSpell}
-					${$dispSpell}
+					${btnRerollSpell}
+					${dispSpell}
 					<span class="ve-muted mx-2 no-wrap">-or-</span>
 					<div class="no-wrap">${Renderer.get().render(`{@filter see all ${Parser.spLevelToFullLevelText(this._state.spellLevel, {isDash: true})} spells|spells|level=${this._state.spellLevel}}`)}</div>
 					<span>)</span>
 				</div>
-				${$dispRoll}
+				${dispRoll}
 			</div>
-			${$btnReroll}
+			${btnReroll}
 		</li>`;
 	}
 
@@ -493,35 +493,35 @@ class LootGenMagicItemSubItems extends LootGenMagicItem {
 		this._subItems = subItems;
 	}
 
-	_$getRender () {
-		const $dispBaseEntry = this._$getRender_$getDispBaseEntry();
-		const $dispRoll = this._$getRender_$getDispRoll();
+	_getRender () {
+		const dispBaseEntry = this._getRender_getDispBaseEntry();
+		const dispRoll = this._getRender_getDispRoll();
 
-		const $btnRerollSubItem = $(`<span class="roller render-roller mr-2">[reroll]</span>`)
-			.mousedown(evt => evt.preventDefault())
-			.click(() => {
+		const btnRerollSubItem = ee`<span class="roller render-roller mr-2">[reroll]</span>`
+			.onn("mousedown", evt => evt.preventDefault())
+			.onn("click", () => {
 				this._state.item = RollerUtil.rollOnArray(this._subItems);
 			});
 
-		const $dispSubItem = $(`<div></div>`);
-		const hkItem = () => $dispSubItem.html(Renderer.get().render(`{@item ${this._state.item.name}|${this._state.item.source}}`));
+		const dispSubItem = ee`<div></div>`;
+		const hkItem = () => dispSubItem.html(Renderer.get().render(`{@item ${this._state.item.name}|${this._state.item.source}}`));
 		this._addHookBase("item", hkItem);
 		hkItem();
 
-		const $btnReroll = this._$getBtnReroll();
+		const btnReroll = this._getBtnReroll();
 
-		return $$`<li class="split-v-center">
+		return ee`<li class="split-v-center">
 			<div class="ve-flex-v-center ve-flex-wrap pr-3 min-w-0">
-				${$dispBaseEntry}
+				${dispBaseEntry}
 				<div class="ve-flex-v-center italic mr-2">
 					<span>(</span>
-					${$btnRerollSubItem}
-					${$dispSubItem}
+					${btnRerollSubItem}
+					${dispSubItem}
 					<span>)</span>
 				</div>
-				${$dispRoll}
+				${dispRoll}
 			</div>
-			${$btnReroll}
+			${btnReroll}
 		</li>`;
 	}
 }
@@ -556,18 +556,18 @@ export class LootGenMagicItemTable extends LootGenMagicItem {
 		this._state.tableRoll = tableRoll;
 	}
 
-	_$getRender () {
-		const $dispBaseEntry = this._$getRender_$getDispBaseEntry();
-		const $dispRoll = this._$getRender_$getDispRoll();
+	_getRender () {
+		const dispBaseEntry = this._getRender_getDispBaseEntry();
+		const dispRoll = this._getRender_getDispRoll();
 
-		const $dispTableEntry = this._$getRender_$getDispBaseEntry({prop: "tableEntry"});
-		const $dispTableRoll = this._$getRender_$getDispRoll({prop: "tableRoll"});
+		const dispTableEntry = this._getRender_getDispBaseEntry({prop: "tableEntry"});
+		const dispTableRoll = this._getRender_getDispRoll({prop: "tableRoll"});
 
-		const $btnReroll = this._$getBtnReroll();
+		const btnReroll = this._getBtnReroll();
 
-		const $btnRerollSub = $(`<span class="roller render-roller ve-small ve-self-flex-end">[reroll]</span>`)
-			.mousedown(evt => evt.preventDefault())
-			.click(async () => {
+		const btnRerollSub = ee`<span class="roller render-roller ve-small ve-self-flex-end">[reroll]</span>`
+			.onn("mousedown", evt => evt.preventDefault())
+			.onn("click", async () => {
 				const {subRowRoll, subRow, subItem} = await LootGenMagicItemTable.pGetSubRollMeta({
 					min: this._tableMinRoll,
 					max: this._tableMaxRoll,
@@ -579,21 +579,21 @@ export class LootGenMagicItemTable extends LootGenMagicItem {
 				this._state.tableRoll = subRowRoll;
 			});
 
-		return $$`<li class="ve-flex-col">
+		return ee`<li class="ve-flex-col">
 			<div class="split-v-center">
 				<div class="ve-flex-v-center ve-flex-wrap pr-3 min-w-0">
-					${$dispBaseEntry}
-					${$dispRoll}
+					${dispBaseEntry}
+					${dispRoll}
 				</div>
-				${$btnReroll}
+				${btnReroll}
 			</div>
 			<div class="split-v-center pl-2">
 				<div class="ve-flex-v-center ve-flex-wrap pr-3 min-w-0">
 					<span class="ml-1 mr-2">&rarr;</span>
-					${$dispTableEntry}
-					${$dispTableRoll}
+					${dispTableEntry}
+					${dispTableRoll}
 				</div>
-				${$btnRerollSub}
+				${btnRerollSub}
 			</div>
 		</li>`;
 	}

@@ -1130,9 +1130,10 @@ globalThis.Renderer = function () {
 	this._renderList = function (entry, textStack, meta, options) {
 		if (!entry.items) return;
 
-		const tag = entry.start != null ? "ol" : "ul";
+		const start = (entry.start ?? 1) + (entry.name ? -1 : 0);
+		const tag = start !== 1 ? "ol" : "ul";
 		const cssClasses = this._renderList_getListCssClasses(entry, textStack, meta, options);
-		textStack[0] += `<${tag} ${cssClasses ? `class="${cssClasses}"` : ""} ${entry.start != null ? `start="${entry.start}"` : ""}>`;
+		textStack[0] += `<${tag} ${cssClasses ? `class="${cssClasses}"` : ""} ${start !== 1 ? `start="${start}"` : ""}>`;
 		if (entry.name) textStack[0] += `<li class="rd__list-name">${this.render({type: "inline", entries: [entry.name]})}</li>`;
 		const isListHang = entry.style && entry.style.split(" ").includes("list-hang");
 		const len = entry.items.length;
@@ -3223,7 +3224,9 @@ Renderer.utils = class {
 						${!globalThis.IS_VTT && ExtensionUtil.ACTIVE && opts.page ? Renderer.utils.getBtnSendToFoundryHtml() : ""}
 					</div>
 					<div class="stats__wrp-h-source ${opts.isInlinedToken ? `stats__wrp-h-source--token` : ""} ve-flex-v-baseline">
-						${tagPartSourceStart} class="help-subtle stats__h-source-abbreviation ${ent.source ? `${Parser.sourceJsonToSourceClassname(ent.source)}" title="${Parser.sourceJsonToFull(ent.source)}${Renderer.utils.getSourceSubText(ent)}` : ""}" ${Parser.sourceJsonToStyle(ent.source)}>${ent.source ? Parser.sourceJsonToAbv(ent.source) : ""}${tagPartSourceEnd}
+						${tagPartSourceStart} class="help-subtle stats__h-source-abbreviation ${ent.source ? `${Parser.sourceJsonToSourceClassname(ent.source)}" title="${Parser.sourceJsonToFull(ent.source)}${Renderer.utils.getSourceSubText(ent)}` : ""}">${ent.source ? Parser.sourceJsonToAbv(ent.source) : ""}${tagPartSourceEnd}
+						
+						${ent.source ? Parser.sourceJsonToMarkerHtml(ent.source, {isStatsName: true}) : ""}
 
 						${Renderer.utils.isDisplayPage(ent.page) ? ` ${tagPartSourceStart} class="rd__stats-name-page ml-1 lst-is-exporting-image__no-wrap" title="Page ${ent.page}">p${ent.page}${tagPartSourceEnd}` : ""}
 
@@ -3744,7 +3747,8 @@ Renderer.utils = class {
 		/**
 		 * @param prerequisites
 		 * @param isListMode
-		 * @param blocklistKeys
+		 * @param {?Set} blocklistKeys
+		 * @param {?object} keyOptions
 		 * @param isTextOnly
 		 * @param isSkipPrefix
 		 * @param {"classic" | null} styleHint
@@ -3754,7 +3758,8 @@ Renderer.utils = class {
 			prerequisites,
 			{
 				isListMode = false,
-				blocklistKeys = new Set(),
+				blocklistKeys = null,
+				keyOptions = null,
 				isTextOnly = false,
 				isSkipPrefix = false,
 				styleHint = null,
@@ -3792,38 +3797,38 @@ Renderer.utils = class {
 						.filter(([k]) => !prereqsShared[k])
 						.sort(([kA], [kB]) => this._WEIGHTS[kA] - this._WEIGHTS[kB])
 						.map(([k, v]) => {
-							if (k === "note" || blocklistKeys.has(k)) return false;
+							if (k === "note" || blocklistKeys?.has(k)) return false;
 
 							cntPrerequisites += 1;
 
 							switch (k) {
-								case "level": return this._getHtml_level({v, isListMode, isTextOnly, styleHint});
-								case "pact": return this._getHtml_pact({v, isListMode, isTextOnly, styleHint});
-								case "patron": return this._getHtml_patron({v, isListMode, isTextOnly, styleHint});
-								case "spell": return this._getHtml_spell({v, isListMode, isTextOnly, styleHint});
-								case "feat": return this._getHtml_feat({v, isListMode, isTextOnly, styleHint});
-								case "optionalfeature": return this._getHtml_optionalfeature({v, isListMode, isTextOnly, styleHint});
-								case "feature": return this._getHtml_feature({v, isListMode, isTextOnly, styleHint});
-								case "item": return this._getHtml_item({v, isListMode, isTextOnly, styleHint});
-								case "itemType": return this._getHtml_itemType({v, isListMode, isTextOnly, styleHint});
-								case "itemProperty": return this._getHtml_itemProperty({v, isListMode, isTextOnly, styleHint});
-								case "otherSummary": return this._getHtml_otherSummary({v, isListMode, isTextOnly, styleHint});
-								case "other": return this._getHtml_other({v, isListMode, isTextOnly, styleHint});
-								case "race": return this._getHtml_race({v, isListMode, isTextOnly, styleHint});
-								case "background": return this._getHtml_background({v, isListMode, isTextOnly, styleHint});
-								case "ability": return this._getHtml_ability({v, isListMode, isTextOnly, styleHint});
-								case "proficiency": return this._getHtml_proficiency({v, isListMode, isTextOnly, styleHint});
-								case "expertise": return this._getHtml_expertise({v, isListMode, isTextOnly, styleHint});
-								case "spellcasting": return this._getHtml_spellcasting({v, isListMode, isTextOnly, styleHint});
-								case "spellcasting2020": return this._getHtml_spellcasting2020({v, isListMode, isTextOnly, styleHint});
-								case "spellcastingFeature": return this._getHtml_spellcastingFeature({v, isListMode, isTextOnly, styleHint});
-								case "spellcastingPrepared": return this._getHtml_spellcastingPrepared({v, isListMode, isTextOnly, styleHint});
-								case "spellcastingFocus": return this._getHtml_spellcastingFocus({v, isListMode, isTextOnly, styleHint});
-								case "psionics": return this._getHtml_psionics({v, isListMode, isTextOnly, styleHint});
-								case "alignment": return this._getHtml_alignment({v, isListMode, isTextOnly, styleHint});
-								case "campaign": return this._getHtml_campaign({v, isListMode, isTextOnly, styleHint});
-								case "culture": return this._getHtml_culture({v, isListMode, isTextOnly, styleHint});
-								case "group": return this._getHtml_group({v, isListMode, isTextOnly, styleHint});
+								case "level": return this._getHtml_level({v, isListMode, keyOptions, isTextOnly, styleHint});
+								case "pact": return this._getHtml_pact({v, isListMode, keyOptions, isTextOnly, styleHint});
+								case "patron": return this._getHtml_patron({v, isListMode, keyOptions, isTextOnly, styleHint});
+								case "spell": return this._getHtml_spell({v, isListMode, keyOptions, isTextOnly, styleHint});
+								case "feat": return this._getHtml_feat({v, isListMode, keyOptions, isTextOnly, styleHint});
+								case "optionalfeature": return this._getHtml_optionalfeature({v, isListMode, keyOptions, isTextOnly, styleHint});
+								case "feature": return this._getHtml_feature({v, isListMode, keyOptions, isTextOnly, styleHint});
+								case "item": return this._getHtml_item({v, isListMode, keyOptions, isTextOnly, styleHint});
+								case "itemType": return this._getHtml_itemType({v, isListMode, keyOptions, isTextOnly, styleHint});
+								case "itemProperty": return this._getHtml_itemProperty({v, isListMode, keyOptions, isTextOnly, styleHint});
+								case "otherSummary": return this._getHtml_otherSummary({v, isListMode, keyOptions, isTextOnly, styleHint});
+								case "other": return this._getHtml_other({v, isListMode, keyOptions, isTextOnly, styleHint});
+								case "race": return this._getHtml_race({v, isListMode, keyOptions, isTextOnly, styleHint});
+								case "background": return this._getHtml_background({v, isListMode, keyOptions, isTextOnly, styleHint});
+								case "ability": return this._getHtml_ability({v, isListMode, keyOptions, isTextOnly, styleHint});
+								case "proficiency": return this._getHtml_proficiency({v, isListMode, keyOptions, isTextOnly, styleHint});
+								case "expertise": return this._getHtml_expertise({v, isListMode, keyOptions, isTextOnly, styleHint});
+								case "spellcasting": return this._getHtml_spellcasting({v, isListMode, keyOptions, isTextOnly, styleHint});
+								case "spellcasting2020": return this._getHtml_spellcasting2020({v, isListMode, keyOptions, isTextOnly, styleHint});
+								case "spellcastingFeature": return this._getHtml_spellcastingFeature({v, isListMode, keyOptions, isTextOnly, styleHint});
+								case "spellcastingPrepared": return this._getHtml_spellcastingPrepared({v, isListMode, keyOptions, isTextOnly, styleHint});
+								case "spellcastingFocus": return this._getHtml_spellcastingFocus({v, isListMode, keyOptions, isTextOnly, styleHint});
+								case "psionics": return this._getHtml_psionics({v, isListMode, keyOptions, isTextOnly, styleHint});
+								case "alignment": return this._getHtml_alignment({v, isListMode, keyOptions, isTextOnly, styleHint});
+								case "campaign": return this._getHtml_campaign({v, isListMode, keyOptions, isTextOnly, styleHint});
+								case "culture": return this._getHtml_culture({v, isListMode, keyOptions, isTextOnly, styleHint});
+								case "group": return this._getHtml_group({v, isListMode, keyOptions, isTextOnly, styleHint});
 								default: throw new Error(`Unhandled key: ${k}`);
 							}
 						})
@@ -3862,9 +3867,11 @@ Renderer.utils = class {
 			return `${ptPrefix}${[shared, joinedChoices].filter(Boolean).join(ptsSharedOtherJoiner)}`;
 		}
 
-		static _getHtml_level ({v, isListMode, styleHint}) {
+		static _getHtml_level ({v, isListMode, keyOptions, isTextOnly, styleHint}) {
 			// a generic level requirement
 			if (typeof v === "number") {
+				if (keyOptions?.level?.isNameOnly) return "";
+
 				if (isListMode) return `Lvl ${v}`;
 
 				if (styleHint === "classic") return `${Parser.getOrdinalForm(v)} level`;
@@ -3872,14 +3879,17 @@ Renderer.utils = class {
 			}
 
 			if (!v.class && !v.subclass) {
+				if (keyOptions?.level?.isNameOnly) return "";
+
 				if (isListMode) return `Lvl ${v.level}`;
 
 				if (styleHint === "classic") return `${Parser.getOrdinalForm(v.level)} level`;
 				return `Level ${v.level}+`;
 			}
 
-			const isLevelVisible = v.level !== 1; // Hide the "implicit" 1st level.
-			const isSubclassVisible = v.subclass && v.subclass.visible;
+			const isLevelVisible = v.level !== 1 // Hide the "implicit" 1st level.
+				&& !keyOptions?.level?.isNameOnly;
+			const isSubclassVisible = v.subclass?.visible;
 			const isClassVisible = v.class && (v.class.visible || isSubclassVisible); // force the class name to be displayed if there's a subclass being displayed
 			if (isListMode) {
 				const shortNameRaw = isClassVisible ? this._getShortClassName(v.class.name) : null;
@@ -3908,7 +3918,7 @@ Renderer.utils = class {
 			return isListMode ? `${Parser.prereqPatronToShort(v)} patron` : `${v} patron`;
 		}
 
-		static _getHtml_spell ({v, isListMode, isTextOnly}) {
+		static _getHtml_spell ({v, isListMode, keyOptions, isTextOnly}) {
 			return isListMode
 				? v.map(sp => {
 					if (typeof sp === "string") return sp.split("#")[0].split("|")[0].toTitleCase();
@@ -3922,15 +3932,15 @@ Renderer.utils = class {
 					.joinConjunct(", ", " or ");
 		}
 
-		static _getHtml_feat ({v, isListMode, isTextOnly, styleHint}) {
-			return this._getHtml_uidTag({v, isListMode, isTextOnly, styleHint, tag: "feat"});
+		static _getHtml_feat ({v, isListMode, keyOptions, isTextOnly, styleHint}) {
+			return this._getHtml_uidTag({v, isListMode, keyOptions, isTextOnly, styleHint, tag: "feat"});
 		}
 
-		static _getHtml_optionalfeature ({v, isListMode, isTextOnly, styleHint}) {
-			return this._getHtml_uidTag({v, isListMode, isTextOnly, styleHint, tag: "optfeature"});
+		static _getHtml_optionalfeature ({v, isListMode, keyOptions, isTextOnly, styleHint}) {
+			return this._getHtml_uidTag({v, isListMode, keyOptions, isTextOnly, styleHint, tag: "optfeature"});
 		}
 
-		static _getHtml_uidTag ({v, isListMode, isTextOnly, styleHint, tag}) {
+		static _getHtml_uidTag ({v, isListMode, keyOptions, isTextOnly, styleHint, tag}) {
 			if (isListMode) return v.map(x => x.split("|")[0].toTitleCase()).join("/");
 
 			return v
@@ -3942,7 +3952,7 @@ Renderer.utils = class {
 				.joinConjunct(", ", " or ");
 		}
 
-		static _getHtml_feature ({v, isListMode, isTextOnly, styleHint}) {
+		static _getHtml_feature ({v, isListMode, keyOptions, isTextOnly, styleHint}) {
 			if (isListMode) return v.map(x => Renderer.stripTags(x).toTitleCase()).join("/");
 
 			const ptNames = v.map(it => isTextOnly ? Renderer.stripTags(it) : Renderer.get().render(it)).joinConjunct(", ", " or ");
@@ -3988,17 +3998,17 @@ Renderer.utils = class {
 				);
 		}
 
-		static _getHtml_otherSummary ({v, isListMode, isTextOnly}) {
+		static _getHtml_otherSummary ({v, isListMode, keyOptions, isTextOnly}) {
 			return isListMode
 				? (v.entrySummary || Renderer.stripTags(v.entry))
 				: (isTextOnly ? Renderer.stripTags(v.entry) : Renderer.get().render(v.entry));
 		}
 
-		static _getHtml_other ({v, isListMode, isTextOnly}) {
+		static _getHtml_other ({v, isListMode, keyOptions, isTextOnly}) {
 			return isListMode ? "Special" : (isTextOnly ? Renderer.stripTags(v) : Renderer.get().render(v));
 		}
 
-		static _getHtml_race ({v, isListMode, isTextOnly, styleHint}) {
+		static _getHtml_race ({v, isListMode, keyOptions, isTextOnly, styleHint}) {
 			const parts = v.map((it, i) => {
 				if (isListMode) {
 					return `${it.name.toTitleCase()}${it.subrace != null ? ` (${it.subrace})` : ""}`;
@@ -4010,7 +4020,7 @@ Renderer.utils = class {
 			return isListMode ? parts.join("/") : parts.joinConjunct(", ", " or ");
 		}
 
-		static _getHtml_background ({v, isListMode, isTextOnly}) {
+		static _getHtml_background ({v, isListMode, keyOptions, isTextOnly}) {
 			const parts = v.map((it, i) => {
 				if (isListMode) {
 					return `${it.name.toTitleCase()}`;
@@ -4021,7 +4031,7 @@ Renderer.utils = class {
 			return isListMode ? parts.join("/") : parts.joinConjunct(", ", " or ");
 		}
 
-		static _getHtml_ability ({v, isListMode, isTextOnly, styleHint}) {
+		static _getHtml_ability ({v, isListMode, keyOptions, isTextOnly, styleHint}) {
 			// `v` is an array or objects with str/dex/... properties; array is "OR"'d together, object is "AND"'d together
 
 			let hadMultipleInner = false;
@@ -4087,7 +4097,7 @@ Renderer.utils = class {
 			return `${joined}${allValuesEqual != null ? ` ${allValuesEqual}${ptHigher}` : ""}`;
 		}
 
-		static _getHtml_proficiency ({v, isListMode, styleHint}) {
+		static _getHtml_proficiency ({v, isListMode, keyOptions, isTextOnly, styleHint}) {
 			const parts = v.map(obj => {
 				return Object.entries(obj).map(([profType, prof]) => {
 					switch (profType) {
@@ -4113,7 +4123,7 @@ Renderer.utils = class {
 			return isListMode ? parts.join("/") : parts.joinConjunct(", ", " or ");
 		}
 
-		static _getHtml_expertise ({v, isListMode, styleHint}) {
+		static _getHtml_expertise ({v, isListMode, keyOptions, isTextOnly, styleHint}) {
 			const parts = v.map(obj => {
 				return Object.entries(obj).map(([profType, prof]) => {
 					switch (profType) {
@@ -4133,7 +4143,7 @@ Renderer.utils = class {
 			return isListMode ? "Spellcasting" : "The ability to cast at least one spell";
 		}
 
-		static _getHtml_spellcasting2020 ({v, isListMode, styleHint}) {
+		static _getHtml_spellcasting2020 ({v, isListMode, keyOptions, isTextOnly, styleHint}) {
 			if (isListMode) return "Spellcasting";
 			return styleHint === "classic" ? "Spellcasting or Pact Magic feature" : "Spellcasting or Pact Magic Feature";
 		}
@@ -4151,7 +4161,7 @@ Renderer.utils = class {
 			"druid": "Druidic Focus",
 			"holy": "Holy Symbol",
 		};
-		static _getHtml_spellcastingFocus ({v, isListMode, isTextOnly, styleHint}) {
+		static _getHtml_spellcastingFocus ({v, isListMode, keyOptions, isTextOnly, styleHint}) {
 			if (isListMode) {
 				if (v === true) return `Spellcasting Focus`;
 				return v.map(n => this._SCF_TYPE_TO_NAME[n] || `Spellcasting ${n.toTitleCase()}`).join("/");
@@ -4181,7 +4191,7 @@ Renderer.utils = class {
 			return (isTextOnly ? Renderer.stripTags : Renderer.get().render.bind(Renderer.get()))(ent);
 		}
 
-		static _getHtml_psionics ({v, isListMode, isTextOnly}) {
+		static _getHtml_psionics ({v, isListMode, keyOptions, isTextOnly}) {
 			return isListMode
 				? "Psionics"
 				: (isTextOnly ? Renderer.stripTags : Renderer.get().render.bind(Renderer.get()))("Psionic Talent feature or Wild Talent feat");
@@ -10374,7 +10384,7 @@ Renderer.monster = class {
 	static getTypeAlignmentPart (mon) {
 		const typeObj = Parser.monTypeToFullObj(mon.type);
 
-		return `${mon.level ? `${Parser.getOrdinalForm(mon.level)}-level ` : ""}${typeObj.asTextSidekick ? `${typeObj.asTextSidekick}; ` : ""}${Renderer.utils.getRenderedSize(mon.size)}${mon.sizeNote ? ` ${mon.sizeNote}` : ""} ${typeObj.asText}${mon.alignment ? `, ${mon.alignmentPrefix ? Renderer.get().render(mon.alignmentPrefix) : ""}${Parser.alignmentListToFull(mon.alignment).toTitleCase()}` : ""}`;
+		return `${mon.level != null ? `${Parser.getOrdinalForm(mon.level)}-level ` : ""}${typeObj.asTextSidekick ? `${typeObj.asTextSidekick}; ` : ""}${Renderer.utils.getRenderedSize(mon.size)}${mon.sizeNote ? ` ${mon.sizeNote}` : ""} ${typeObj.asText}${mon.alignment ? `, ${mon.alignmentPrefix ? Renderer.get().render(mon.alignmentPrefix) : ""}${Parser.alignmentListToFull(mon.alignment).toTitleCase()}` : ""}`;
 	}
 
 	static _getInitiativePart_passive ({mon, initPassive}) {
@@ -14237,6 +14247,36 @@ Renderer.deck = class {
 };
 
 Renderer.facility = class {
+	static _getFacilityRenderableEntriesMeta_space ({ent}) {
+		if (!ent.space) return null;
+		return ent.space.map(spc => Renderer.facility._getSpaceEntry(spc, {isIncludeCostTime: ent.facilityType === "basic"})).joinConjunct(", ", " or ");
+	}
+
+	static _getFacilityRenderableEntriesMeta_hirelings ({ent}) {
+		if (!ent.hirelings) return null;
+
+		const out = ent.hirelings
+			.map(hire => {
+				const ptSpace = hire.space ? ` {@style (${hire.space.toTitleCase()})|muted}` : "";
+
+				if (hire.exact != null) return `${hire.exact}${ptSpace}`;
+				if (hire.min != null && hire.max != null) return `${hire.min}\u2013${hire.max}${ptSpace}`;
+				if (hire.min != null) return `${hire.min}+ (see below${ptSpace ? ";" : ""}${ptSpace})`;
+
+				return null;
+			})
+			.filter(Boolean)
+			.joinConjunct(", ", " or ");
+
+		if (out) return out;
+		return null;
+	}
+
+	static _getFacilityRenderableEntriesMeta_orders ({ent}) {
+		if (!ent.orders) return null;
+		return ent.orders.map(it => it.toTitleCase()).joinConjunct(", ", " or ");
+	}
+
 	static getFacilityRenderableEntriesMeta (ent) {
 		const entsList = [];
 
@@ -14251,26 +14291,14 @@ Renderer.facility = class {
 			entsList.push({type: "item", name: `Prerequisite:`, entry: "None"});
 		}
 
-		if (ent.space) entsList.push({type: "item", name: `Space:`, entry: ent.space.map(spc => Renderer.facility._getSpaceEntry(spc, {isIncludeCostTime: ent.facilityType === "basic"})).joinConjunct(", ", " or ")});
+		const entrySpace = this._getFacilityRenderableEntriesMeta_space({ent});
+		if (entrySpace) entsList.push({type: "item", name: `Space:`, entry: entrySpace});
 
-		if (ent.hirelings) {
-			const ptHirelings = ent.hirelings
-				.map(hire => {
-					const ptSpace = hire.space ? ` {@style (${hire.space.toTitleCase()})|muted}` : "";
+		const entryHirelings = this._getFacilityRenderableEntriesMeta_hirelings({ent});
+		if (entryHirelings) entsList.push({type: "item", name: `Hirelings:`, entry: entryHirelings});
 
-					if (hire.exact != null) return `${hire.exact}${ptSpace}`;
-					if (hire.min != null && hire.max != null) return `${hire.min}\u2013${hire.max}${ptSpace}`;
-					if (hire.min != null) return `${hire.min}+ (see below${ptSpace ? ";" : ""}${ptSpace})`;
-
-					return null;
-				})
-				.filter(Boolean)
-				.joinConjunct(", ", " or ");
-
-			if (ptHirelings) entsList.push({type: "item", name: `Hirelings:`, entry: ptHirelings});
-		}
-
-		if (ent.orders) entsList.push({type: "item", name: `Order${ent.orders.length !== 1 ? "s" : ""}:`, entry: ent.orders.map(it => it.toTitleCase()).joinConjunct(", ", " or ")});
+		const entryOrders = this._getFacilityRenderableEntriesMeta_orders({ent});
+		if (entryOrders) entsList.push({type: "item", name: `Order${ent.orders.length !== 1 ? "s" : ""}:`, entry: entryOrders});
 
 		return {
 			entriesDescription: [
@@ -14284,6 +14312,9 @@ Renderer.facility = class {
 				...(ent.entries || []),
 			]
 				.filter(Boolean),
+			entrySpace,
+			entryHirelings,
+			entryOrders,
 		};
 	}
 
@@ -14500,6 +14531,7 @@ Renderer.generic = class {
 	static FEATURE__TOOLS_GAMING_SETS = [
 		"dragonchess set",
 		"dice set",
+		"playing card set",
 		"three-dragon ante set",
 	];
 	static _FEATURE__TOOL_GROUPS = new Set([
@@ -15451,7 +15483,7 @@ Renderer.hover = class {
 				<html lang="en" class="ve-popwindow ${typeof styleSwitcher !== "undefined" ? styleSwitcher.getDayNightClassNames() : ""}"><head>
 					<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 					<title>${opts.title}</title>
-					${$(`link[rel="stylesheet"][href]`).map((i, e) => e.outerHTML).get().join("\n")}
+					${[...document.querySelectorAll(`link[rel="stylesheet"][href]`)].map(ele => ele.outerHTML).join("\n")}
 					<!-- Favicons -->
 					<link rel="icon" type="image/svg+xml" href="favicon.svg">
 					<link rel="icon" type="image/png" sizes="256x256" href="favicon-256x256.png">
@@ -15481,6 +15513,9 @@ Renderer.hover = class {
 
 					<!-- macOS Safari Pinned Tab and Touch Bar -->
 					<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
+					
+					${PrereleaseUtil.getPopoutStyleElementHtml()}
+					${BrewUtil2.getPopoutStyleElementHtml()}
 
 					<style>
 						html, body { width: 100%; height: 100%; }

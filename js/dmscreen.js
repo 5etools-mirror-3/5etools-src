@@ -2266,7 +2266,7 @@ class Panel {
 				if (!it.isDeleted && it.$tabButton) {
 					// regenerate tab buttons to refer to the correct tab
 					it.$tabButton.remove();
-					it.$tabButton = this._get$BtnSelTab(ix, it.title, it.tabCanRename);
+					it.$tabButton = this._get$BtnSelTab(ix, it.title);
 					this.$pnlTabs.children().last().before(it.$tabButton);
 				}
 			});
@@ -2287,7 +2287,7 @@ class Panel {
 		);
 	}
 
-	_get$BtnSelTab (ix, title, tabCanRename) {
+	_get$BtnSelTab (ix, title) {
 		title = title || "[Untitled]";
 
 		const doCloseTabWithConfirmation = async () => {
@@ -2305,7 +2305,7 @@ class Panel {
 				}
 			});
 
-		const btnSelTab = ee`<span class="ve-btn ve-btn-default content-tab ve-flex ${tabCanRename ? "content-tab-can-rename" : ""}"><span class="content-tab-title ve-overflow-ellipsis" title="${title}">${title}</span>${btnCloseTab}</span>`
+		const btnSelTab = ee`<span class="ve-btn ve-btn-default content-tab ve-flex"><span class="content-tab-title ve-overflow-ellipsis" title="${title}">${title}</span>${btnCloseTab}</span>`
 			.onn("mousedown", (evt) => {
 				if (evt.button === 0) {
 					this.setActiveTab(ix);
@@ -2316,12 +2316,13 @@ class Panel {
 			.onn("contextmenu", async (evt) => {
 				evt.stopPropagation();
 				evt.preventDefault();
-				if (btnSelTab.hasClass("content-tab-can-rename")) {
-					const existingTitle = this.getTabTitle(ix) || "";
-					const nuTitle = await InputUiUtil.pGetUserString({default: existingTitle, title: "Rename Tab"});
-					if (nuTitle && nuTitle.trim()) {
-						this.setTabTitle(ix, nuTitle);
-					}
+
+				if (!this.tabDatas[ix].tabCanRename) return;
+
+				const existingTitle = this.getTabTitle(ix) || "";
+				const nuTitle = await InputUiUtil.pGetUserString({default: existingTitle, title: "Rename Tab"});
+				if (nuTitle && nuTitle.trim()) {
+					this.setTabTitle(ix, nuTitle);
 				}
 			});
 
@@ -2382,8 +2383,6 @@ class Panel {
 
 			if (!this.tabDatas[ix].$tabButton) this.tabDatas[ix].$tabButton = doAdd$BtnSelTab(ix, title);
 			else this.tabDatas[ix].$tabButton.find(`.content-tab-title`).text(title).title(title);
-
-			this.tabDatas[ix].$tabButton.toggleClass("content-tab-can-rename", tabCanRename);
 		}
 
 		this.setActiveTab(ix);
