@@ -381,7 +381,7 @@ class MakeCards extends BaseComponent {
 		const ele = ee`<label class="ve-flex-v-center my-1 w-100 lst__row lst__row-border lst__row-inner">
 			<div class="ve-col-1 mr-2 ve-flex-vh-center">${cbSel}</div>
 			<div class="ve-col-3 mr-2 ve-flex-v-center">${Renderer.get().render(`{@${Parser.getPropTag(cardMeta.entityType)} ${DataUtil.proxy.getUid(loaded.__prop, loaded, {isMaintainCase: true})}}`)}</div>
-			<div class="ve-col-1-5 mr-2 ve-flex-vh-center ${Parser.sourceJsonToSourceClassname(loaded.source)}" title="${Parser.sourceJsonToFull(loaded.source)}" ${Parser.sourceJsonToStyle(loaded.source)}>${Parser.sourceJsonToAbv(loaded.source)}</div>
+			<div class="ve-col-1-5 mr-2 ve-flex-vh-center ${Parser.sourceJsonToSourceClassname(loaded.source)}" title="${Parser.sourceJsonToFull(loaded.source)}">${Parser.sourceJsonToAbv(loaded.source)}</div>
 			<div class="ve-col-1-5 mr-2 ve-flex-vh-center">${Parser.getPropDisplayName(cardMeta.entityType)}</div>
 			<div class="ve-col-1-1 mr-2 ve-flex-vh-center">${iptRgb}</div>
 			<div class="ve-col-1-1 mr-2 ve-flex-vh-center">${btnIcon}</div>

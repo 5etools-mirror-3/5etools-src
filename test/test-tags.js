@@ -1774,12 +1774,12 @@ class AdventureBookTagCheck extends DataTesterBase {
 				const [tag, text] = Renderer.splitFirstSpace(s.slice(1, -1));
 				if (!["@adventure", "@book"].includes(tag)) continue;
 
-				const [, id] = text.toLowerCase().split("|");
+				const [, id, chap] = text.toLowerCase().split("|");
 				if (!id) throw new Error(`${tag} tag had ${s} no source!`); // Should never occur
 
-				if (this._ADV_BOOK_LOOKUP[tag.slice(1)][id]) continue;
+				if (!this._ADV_BOOK_LOOKUP[tag.slice(1)][id]) this._addMessage(`Missing link: ${s} in file ${filePath} had unknown "${tag}" ID "${id}"\n`);
 
-				this._addMessage(`Missing link: ${s} in file ${filePath} had unknown "${tag}" ID "${id}"\n`);
+				if (chap && Number(chap) < 0) this._addMessage(`Missing link: ${s} in file ${filePath} had unknown "${tag}" chapter "${chap}"\n`);
 			}
 		}
 	}

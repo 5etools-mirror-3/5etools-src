@@ -25,7 +25,7 @@ const getJsonString = (data) => {
 	return JSON.stringify(data, null, "\t");
 };
 
-async function main () {
+async function pMain () {
 	const t = Timer.start();
 
 	console.log("##### Creating primary index... #####");
@@ -50,4 +50,4 @@ async function main () {
 	console.log(`Created indexes in ${Timer.stop(t)}`);
 }
 
-export default main();
+export default pMain();

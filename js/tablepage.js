@@ -10,7 +10,7 @@ class _GroupHeaderManager {
 		this._$btnHeader = $$`<div class="lst__item-group-header mt-3 split-v-center py-1 no-select clickable" title="SHIFT to Toggle All">
 			<div class="split-v-center w-100 min-w-0 mr-2">
 				<div class="bold">${ent.name}</div>
-				<div class="${Parser.sourceJsonToSourceClassname(ent.source)}" title="${Parser.sourceJsonToFull(ent.source).qq()}" ${Parser.sourceJsonToStyle(ent.source)}>${Parser.sourceJsonToAbv(ent.source)}</div>
+				<div class="${Parser.sourceJsonToSourceClassname(ent.source)}" title="${Parser.sourceJsonToFull(ent.source).qq()}">${Parser.sourceJsonToAbv(ent.source)}</div>
 			</div>
 			${this._$dispShowHide}
 		</div>`

@@ -1076,14 +1076,14 @@ class ListUiUtil {
 		build () {
 			return {
 				stats: {
-					help: `"stats:<text>" ("/text/" for regex; "!text" and "!/text/" to invert) to search within stat blocks.`,
+					help: `"stats:<query>" ("/query/" for regex; "!query" and "!/query/" to invert) to search within stat blocks.`,
 					fn: (listItem, searchTerm) => {
 						if (listItem.data._textCacheStats == null) listItem.data._textCacheStats = this._getSearchCacheStats(this._dataList[listItem.ix]);
 						return this._listSyntax_isTextMatch(listItem.data._textCacheStats, searchTerm);
 					},
 				},
 				info: {
-					help: `"info:<text>" ("/text/" for regex; "!text" and "!/text/" to invert) to search within info.`,
+					help: `"info:<query>" ("/query/" for regex; "!query" and "!/query/" to invert) to search within info.`,
 					fn: async (listItem, searchTerm) => {
 						if (listItem.data._textCacheFluff == null) listItem.data._textCacheFluff = await this._pGetSearchCacheFluff(this._dataList[listItem.ix]);
 						return this._listSyntax_isTextMatch(listItem.data._textCacheFluff, searchTerm);
@@ -1091,7 +1091,7 @@ class ListUiUtil {
 					isAsync: true,
 				},
 				text: {
-					help: `"text:<text>" ("/text/" for regex; "!text" and "!/text/" to invert) to search within stat blocks plus info.`,
+					help: `"text:<query>" ("/query/" for regex; "!query" and "!/query/" to invert) to search within stat blocks plus info.`,
 					fn: async (listItem, searchTerm) => {
 						if (listItem.data._textCacheAll == null) {
 							const {textCacheStats, textCacheFluff, textCacheAll} = await this._pGetSearchCacheAll(this._dataList[listItem.ix], {textCacheStats: listItem.data._textCacheStats, textCacheFluff: listItem.data._textCacheFluff});
@@ -1115,7 +1115,11 @@ class ListUiUtil {
 		// TODO(Future) the ideal solution to this is to render every entity to plain text (or failing that, Markdown) and
 		//   indexing that text with e.g. elasticlunr.
 		_getSearchCacheStats (entity) {
-			return this._getSearchCache_entries(entity);
+			return `${this._getSearchCache_name(entity)} -- ${this._getSearchCache_entries(entity)}`;
+		}
+
+		_getSearchCache_name (entity) {
+			return Renderer.stripTags(entity.name).toLowerCase();
 		}
 
 		static _INDEXABLE_PROPS_ENTRIES = [
@@ -1155,7 +1159,9 @@ class ListUiUtil {
 
 		async _pGetSearchCacheFluff (entity) {
 			const fluff = this._pFnGetFluff ? await this._pFnGetFluff(entity) : null;
-			return fluff ? this._getSearchCache_entries(fluff, {indexableProps: ["entries"]}) : "";
+			return fluff
+				? `${this._getSearchCache_name(entity)} -- ${this._getSearchCache_entries(fluff, {indexableProps: ["entries"]})}`
+				: this._getSearchCache_name(entity);
 		}
 
 		async _pGetSearchCacheAll (entity, {textCacheStats = null, textCacheFluff = null}) {
@@ -1300,9 +1306,9 @@ class TabUiUtilBase {
 					...it,
 					ix: i,
 					$btnTab,
-					btnTab: $btnTab?.[0], // No button if `isSingleTab`
+					btnTab: $btnTab?.[0] ? e_($btnTab?.[0]) : null, // No button if `isSingleTab`
 					$wrpTab,
-					wrpTab: $wrpTab[0],
+					wrpTab: e_($wrpTab[0]),
 				};
 			};
 
@@ -1461,6 +1467,8 @@ class TabUiUtil extends TabUiUtilBase {
 				ix: ixTab,
 				$btns,
 				$btnTab,
+				btns: $btns.map($btn => e_($btn[0])),
+				btnTab: e_($btnTab[0]),
 			};
 		};
 
@@ -3674,11 +3682,19 @@ class SourceUiUtil {
 		const $iptVersion = $(`<input class="form-control ui-source__ipt-named">`)
 			.keydown(evt => { if (evt.key === "Escape") $iptUrl.blur(); });
 		if (options.source) $iptVersion.val(options.source.version);
+
 		let hasColor = false;
 		const $iptColor = $(`<input type="color" class="w-100 b-0">`)
 			.keydown(evt => { if (evt.key === "Escape") $iptColor.blur(); })
 			.change(() => hasColor = true);
 		if (options.source?.color != null) { hasColor = true; $iptColor.val(`#${options.source.color}`); }
+
+		let hasColorNight = false;
+		const $iptColorNight = $(`<input type="color" class="w-100 b-0">`)
+			.keydown(evt => { if (evt.key === "Escape") $iptColorNight.blur(); })
+			.change(() => hasColorNight = true);
+		if (options.source?.colorNight != null) { hasColorNight = true; $iptColorNight.val(`#${options.source.colorNight}`); }
+
 		const $iptUrl = $(`<input class="form-control ui-source__ipt-named">`)
 			.keydown(evt => { if (evt.key === "Escape") $iptUrl.blur(); });
 		if (options.source) $iptUrl.val(options.source.url);
@@ -3722,6 +3738,7 @@ class SourceUiUtil {
 				if (convertedBy.length) source.convertedBy = convertedBy;
 
 				if (hasColor) source.color = $iptColor.val().trim().replace(/^#/, "");
+				if (hasColorNight) source.colorNight = $iptColorNight.val().trim().replace(/^#/, "");
 
 				await options.cbConfirm(source, options.mode !== "edit");
 			});
@@ -3760,6 +3777,10 @@ class SourceUiUtil {
 			<div class="ui-source__row mb-2"><div class="ve-col-12 ve-flex-v-center">
 				<span class="mr-2 ui-source__name help" title="A color which should be used when displaying the source abbreviation">Color</span>
 				${$iptColor}
+			</div></div>
+			<div class="ui-source__row mb-2"><div class="ve-col-12 ve-flex-v-center">
+				<span class="mr-2 ui-source__name help" title="A color which should be used when displaying the source abbreviation, when using a &quot;Night&quot; theme. If unspecified, &quot;Color&quot; will be used for both &quot;Day&quot; and &quot;Night&quot; themes.">Color (Night)</span>
+				${$iptColorNight}
 			</div></div>
 			<div class="ui-source__row mb-2"><div class="ve-col-12 ve-flex-v-center">
 				<span class="mr-2 ui-source__name help" title="A link to the original homebrew, e.g. a GM Binder page">Source URL</span>
@@ -6637,6 +6658,23 @@ class ComponentUiUtil {
 		opts = opts || {};
 		const slider = new ComponentUiUtil.RangeSlider({comp, ...opts});
 		return slider.$get();
+	}
+
+	/**
+	 * @param comp An instance of a class which extends BaseComponent.
+	 * @param opts Options Object.
+	 * @param opts.propMin
+	 * @param opts.propMax
+	 * @param opts.propCurMin
+	 * @param [opts.propCurMax]
+	 * @param [opts.fnDisplay] Value display function.
+	 * @param [opts.fnDisplayTooltip]
+	 * @param [opts.sparseValues]
+	 */
+	static getSliderRange (comp, opts) {
+		opts = opts || {};
+		const slider = new ComponentUiUtil.RangeSlider({comp, ...opts});
+		return slider.get();
 	}
 
 	static $getSliderNumber (

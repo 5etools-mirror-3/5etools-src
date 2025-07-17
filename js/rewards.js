@@ -74,7 +74,7 @@ class RewardsPage extends ListPage {
 			<span class="ve-col-0-3 px-0 ve-flex-vh-center lst__btn-toggle-expand ve-self-flex-stretch no-select">[+]</span>
 			<span class="ve-col-2 ve-text-center px-1">${reward.type}</span>
 			<span class="bold ve-col-7-7 px-1">${reward.name}</span>
-			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(reward.source)} pl-1 pr-0" title="${Parser.sourceJsonToFull(reward.source)}" ${Parser.sourceJsonToStyle(reward.source)}>${source}</span>
+			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(reward.source)} pl-1 pr-0" title="${Parser.sourceJsonToFull(reward.source)}">${source}</span>
 		</a>
 		<div class="ve-flex ve-hidden relative accordion__wrp-preview">
 			<div class="vr-0 absolute accordion__vr-preview"></div>
@@ -110,3 +110,5 @@ class RewardsPage extends ListPage {
 const rewardsPage = new RewardsPage();
 rewardsPage.sublistManager = new RewardsSublistManager();
 window.addEventListener("load", () => rewardsPage.pOnLoad());
+
+globalThis.dbg_page = rewardsPage;

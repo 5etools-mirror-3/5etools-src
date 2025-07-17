@@ -32,6 +32,7 @@ export const PROPORDER_FOUNDRY_ACTIVITIES = new ArrayKey("activities", {
 
 		"img",
 		"description",
+		"descriptionEntries",
 
 		"activation",
 		"duration",

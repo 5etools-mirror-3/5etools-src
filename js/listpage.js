@@ -1241,11 +1241,13 @@ class ListPage {
 		});
 	}
 
+	async _pGetTableViewAdditionalData () { return null; }
+
 	_pOnLoad_tableView () {
 		if (!this._tableViewOptions) return;
 
-		$(`#btn-show-table`)
-			.click(() => {
+		es(`#btn-show-table`)
+			.onn("click", async () => {
 				const sublisted = this._sublistManager.getSublistedEntities();
 				UtilsTableview.show({
 					entities: sublisted.length
@@ -1254,6 +1256,7 @@ class ListPage {
 							.map(list => list.visibleItems.map(({ix}) => this._dataList[ix]))
 							.flat(),
 					sorter: (a, b) => SortUtil.ascSort(a.name, b.name) || SortUtil.ascSort(a.source, b.source),
+					additionalData: await this._pGetTableViewAdditionalData(),
 					...this._tableViewOptions,
 				});
 			});

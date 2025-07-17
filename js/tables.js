@@ -120,7 +120,7 @@ class TablesPage extends ListPage {
 
 		eleLi.innerHTML = `<a href="#${hash}" class="lst__row-border lst__row-inner">
 			<span class="bold ve-col-10 pl-0 pr-1">${it.name}</span>
-			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(it.source)} pl-1 pr-0" title="${Parser.sourceJsonToFull(it.source)}" ${Parser.sourceJsonToStyle(it.source)}>${source}</span>
+			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(it.source)} pl-1 pr-0" title="${Parser.sourceJsonToFull(it.source)}">${source}</span>
 		</a>`;
 
 		const listItem = new ListItem(
@@ -152,3 +152,5 @@ class TablesPage extends ListPage {
 const tablesPage = new TablesPage();
 tablesPage.sublistManager = new TablesSublistManager();
 window.addEventListener("load", () => tablesPage.pOnLoad());
+
+globalThis.dbg_page = tablesPage;
