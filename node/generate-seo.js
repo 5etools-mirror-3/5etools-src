@@ -35,7 +35,7 @@ const baseSitemapData = (() => {
 	return out;
 })();
 
-const getTemplate = ({page, name, source, hash, img, textStyle, isFluff}) => `<!DOCTYPE html><html lang="en"><head>
+const getTemplate = ({page, name, source, hash, img, description, textStyle, isFluff}) => `<!DOCTYPE html><html lang="en"><head>
 <!--5ETOOLS_CMP-->
 <!--5ETOOLS_ANALYTICS-->
 <!--5ETOOLS_ADCODE-->
@@ -69,7 +69,8 @@ const getTemplate = ({page, name, source, hash, img, textStyle, isFluff}) => `<!
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#006bc4">
 <meta property="og:title" content="${name}">
 <meta property="og:url" content="${BASE_SITE_URL}${page}.html#${hash}">
-${img ? `<meta property="og:image" content="${BASE_SITE_URL}${img}">` : ""}
+${img ? `<meta property="og:image" content="${BASE_SITE_URL}${img.qq()}">` : ""}
+${description ? `<meta  name="og:description" content="${description.qq()}">` : ""}
 <script type="module" defer src="/js/styleswitch.js"></script>
 <script type="text/javascript" defer src="/js/navigation.js"></script>
 <script type="module" defer src="/js/browsercheck.js"></script>
@@ -103,14 +104,42 @@ ${img ? `<meta property="og:image" content="${BASE_SITE_URL}${img}">` : ""}
 <script type="text/javascript" defer src="/js/hist.js"></script>
 <script type="module" defer src="/js/seo-loader.js"></script></body></html>`;
 
+const filterSkipUaEtc = (ent) => !isSkipUaEtc || !SourceUtil.isNonstandardSourceWotc(SourceUtil.getEntitySource(ent));
+
+const filterOnlyVanilla = (ent) => !isOnlyVanilla || Parser.SOURCES_VANILLA.has(SourceUtil.getEntitySource(ent));
+
+const _DESCRIPTION_WALKER = MiscUtil.getWalker({isNoModification: true, isBreakOnReturn: true, keyBlocklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST});
+
+const getGenericDescription = ({fluff, entries}) => {
+	// Prefer fluff, where provided
+	const entriesAvailable = fluff?.entries || entries;
+	if (!entriesAvailable?.length) return null;
+
+	if (typeof entriesAvailable[0] === "string") return Renderer.stripTags(entriesAvailable[0]);
+
+	let strPrime;
+	_DESCRIPTION_WALKER.walk(entriesAvailable, {string: str => {
+		strPrime = str;
+		return true;
+	}});
+	if (!strPrime) return null;
+
+	return Renderer.stripTags(strPrime);
+};
+
 const toGenerate = [
 	{
 		page: "spells",
 		pGetEntityMetas: async () => {
 			const entities = (await DataUtil.spell.pLoadAll())
-				.filter(({source}) => !isSkipUaEtc || !SourceUtil.isNonstandardSourceWotc(source))
-				.filter(({source}) => !isOnlyVanilla || Parser.SOURCES_VANILLA.has(source));
-			return entities.pSerialAwaitMap(async ent => ({entity: ent, fluff: await Renderer.spell.pGetFluff(ent)}));
+				.filter(filterSkipUaEtc)
+				.filter(filterOnlyVanilla);
+			return entities.pSerialAwaitMap(async ent => ({
+				entity: ent,
+				fluff: await Renderer.spell.pGetFluff(ent),
+				// Avoid fluff for description, as generally not useful
+				description: getGenericDescription({entries: ent.entries}),
+			}));
 		},
 		style: 1,
 		isFluff: 1,
@@ -119,13 +148,17 @@ const toGenerate = [
 		page: "bestiary",
 		pGetEntityMetas: async () => {
 			const entities = (await DataUtil.monster.pLoadAll())
-				.filter(({source}) => !isSkipUaEtc || !SourceUtil.isNonstandardSourceWotc(source))
-				.filter(({source}) => !isOnlyVanilla || Parser.SOURCES_VANILLA.has(source));
-			return entities.pSerialAwaitMap(async ent => ({
-				entity: ent,
-				fluff: await Renderer.monster.pGetFluff(ent),
-				img: Renderer.monster.hasToken(ent) ? Renderer.monster.getTokenUrl(ent) : null,
-			}));
+				.filter(filterSkipUaEtc)
+				.filter(filterOnlyVanilla);
+			return entities.pSerialAwaitMap(async ent => {
+				const fluff = await Renderer.monster.pGetFluff(ent);
+				return {
+					entity: ent,
+					fluff,
+					img: Renderer.monster.hasToken(ent) ? Renderer.monster.getTokenUrl(ent) : null,
+					description: getGenericDescription({fluff, entries: ent.entries}),
+				};
+			});
 		},
 		style: 2,
 		isFluff: 1,
@@ -134,9 +167,14 @@ const toGenerate = [
 		page: "items",
 		pGetEntityMetas: async () => {
 			const entities = (await Renderer.item.pBuildList()).filter(it => !it._isItemGroup)
-				.filter(it => !isSkipUaEtc || !SourceUtil.isNonstandardSourceWotc(it.source))
-				.filter(it => !isOnlyVanilla || Parser.SOURCES_VANILLA.has(it.source));
-			return entities.pSerialAwaitMap(async ent => ({entity: ent, fluff: await Renderer.item.pGetFluff(ent)}));
+				.filter(filterSkipUaEtc)
+				.filter(filterOnlyVanilla);
+			return entities.pSerialAwaitMap(async ent => ({
+				entity: ent,
+				fluff: await Renderer.item.pGetFluff(ent),
+				// Avoid fluff for description, as generally not useful
+				description: getGenericDescription({entries: ent._fullEntries || ent.entries}),
+			}));
 		},
 		style: 1,
 		isFluff: 1,
@@ -161,7 +199,7 @@ async function main () {
 
 		const entityMetas = await meta.pGetEntityMetas();
 		const builder = UrlUtil.URL_TO_HASH_BUILDER[`${meta.page}.html`];
-		entityMetas.forEach(({entity, fluff, img}) => {
+		entityMetas.forEach(({entity, fluff, img, description}) => {
 			let offset = 0;
 			let html;
 			let path;
@@ -184,6 +222,7 @@ async function main () {
 					source: entity.source,
 					hash,
 					img,
+					description,
 					textStyle: meta.style,
 					isFluff: meta.isFluff,
 				});

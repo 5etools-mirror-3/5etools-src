@@ -24,9 +24,10 @@ export class ConverterUiBase extends BaseComponent {
 	 * @param [opts.hasSource] If the output entities can have a source field.
 	 * @param opts.prop The data prop for the output entity.
 	 */
-	constructor (ui, opts) {
+	constructor ({ui, converterData, ...opts}) {
 		super();
 		this._ui = ui;
+		this._converterData = converterData;
 
 		this._name = opts.name;
 		this._converterId = opts.converterId;
@@ -62,7 +63,15 @@ export class ConverterUiBase extends BaseComponent {
 
 	_renderSidebar () { throw new Error("Unimplemented!"); }
 	handleParse () { throw new Error("Unimplemented!"); }
-	_getSample () { throw new Error("Unimplemented!"); }
+
+	/* -------------------------------------------- */
+
+	_getSample (format) {
+		const ents = this._converterData.converterSample
+			.filter(ent => ent.converterId === this._converterId && ent.format === format);
+		if (ents.length <= 1) return ents[0].text;
+		return ents.find(ent => ent.edition === this._state.styleHint)?.text || ents[0]?.text;
+	}
 
 	/* -------------------------------------------- */
 
@@ -121,7 +130,12 @@ export class ConverterUiBase extends BaseComponent {
 		const $btnsSamples = this._modes.map(mode => {
 			return $(`<button class="ve-btn ve-btn-xs ve-btn-default">Sample ${ConverterUiBase._getDisplayMode(mode)}</button>`)
 				.click(() => {
-					this._ui.inText = this._getSample(mode);
+					const sample = this._getSample(mode);
+					if (!sample) {
+						JqueryUtil.doToast({type: "warning", content: `No ${ConverterUiBase._getDisplayMode(mode)} sample available!`});
+						return;
+					}
+					this._ui.inText = sample;
 					this._state.mode = mode;
 				});
 		});

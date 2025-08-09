@@ -7,7 +7,7 @@ import {ManageExternalUtils} from "../manageexternal/manageexternal-utils.js";
 export class ManageBrewUi {
 	static _RenderState = class {
 		constructor () {
-			this.$stgBrewList = null;
+			this.stgBrewList = null;
 			this.list = null;
 			this.listSelectClickHandler = null;
 			this.brews = [];
@@ -39,10 +39,10 @@ export class ManageBrewUi {
 			.onn("click", evt => this._onClickBtnManagePrereleaseBrew({brewUtil: BrewUtil2, isGoToPage: evt.shiftKey}));
 	}
 
-	static bindBtnOpen ($btn, {brewUtil = null} = {}) {
+	static bindBtnOpen (btn, {brewUtil = null} = {}) {
 		brewUtil = brewUtil || BrewUtil2;
 
-		$btn.click(evt => this._onClickBtnManagePrereleaseBrew({brewUtil, isGoToPage: evt.shiftKey}));
+		btn.onn("click", evt => this._onClickBtnManagePrereleaseBrew({brewUtil, isGoToPage: evt.shiftKey}));
 	}
 
 	static _pOnClickBtnManageContent ({evt}) {
@@ -172,14 +172,14 @@ export class ManageBrewUi {
 
 		const ui = new this({isModal: true, brewUtil});
 		const rdState = new this._RenderState();
-		const {$modalInner} = UiUtil.getShowModal({
+		const {eleModalInner} = UiUtil.getShowModal({
 			isHeight100: true,
 			isWidth100: true,
 			title: `Manage ${brewUtil.DISPLAY_NAME.toTitleCase()}`,
 			isUncappedHeight: true,
-			$titleSplit: $$`<div class="ve-flex-v-center ve-btn-group">
-				${ui._$getBtnPullAll(rdState)}
-				${ui._$getBtnDeleteAll(rdState)}
+			titleSplit: ee`<div class="ve-flex-v-center ve-btn-group">
+				${ui._getBtnPullAll(rdState)}
+				${ui._getBtnDeleteAll(rdState)}
 			</div>`,
 			isHeaderBorder: true,
 			cbClose: () => {
@@ -187,15 +187,15 @@ export class ManageBrewUi {
 				brewUtil.doLocationReload();
 			},
 		});
-		await ui.pRender($modalInner, {rdState});
+		await ui.pRender(eleModalInner, {rdState});
 	}
 
-	_$getBtnDeleteAll (rdState) {
+	_getBtnDeleteAll (rdState) {
 		const brewUtilOther = this._brewUtil === PrereleaseUtil ? BrewUtil2 : PrereleaseUtil;
 
-		return $(`<button class="ve-btn ve-btn-danger" title="SHIFT to also delete all ${brewUtilOther.DISPLAY_NAME.toTitleCase()}">Delete All</button>`)
+		return ee`<button class="ve-btn ve-btn-danger" title="SHIFT to also delete all ${brewUtilOther.DISPLAY_NAME.toTitleCase()}">Delete All</button>`
 			.addClass(this._isModal ? "ve-btn-xs" : "ve-btn-sm")
-			.click(async evt => {
+			.onn("click", async evt => {
 				if (!evt.shiftKey) {
 					if (!await InputUiUtil.pGetUserBoolean({title: `Delete All ${this._brewUtil.DISPLAY_NAME.toTitleCase()}`, htmlDescription: "Are you sure?", textYes: "Yes", textNo: "Cancel"})) return;
 
@@ -218,25 +218,26 @@ export class ManageBrewUi {
 			});
 	}
 
-	_$getBtnPullAll (rdState) {
-		const $btn = $(`<button class="ve-btn ve-btn-default">Update All</button>`)
-			.addClass(this._isModal ? "ve-btn-xs w-70p" : "ve-btn-sm w-80p")
-			.click(async () => {
-				const cachedHtml = $btn.html();
+	_getBtnPullAll (rdState) {
+		const btn = ee`<button class="ve-btn ve-btn-default">Update All</button>`
+			.addClass(this._isModal ? "ve-btn-xs" : "ve-btn-sm")
+			.addClass(this._isModal ? "w-80p" : "w-70p")
+			.onn("click", async () => {
+				const cachedHtml = btn.html();
 
 				try {
-					$btn.text(`Updating...`).prop("disabled", true);
+					btn.txt(`Updating...`).prop("disabled", true);
 					await this._pDoPullAll({rdState});
 				} catch (e) {
-					$btn.text(`Failed!`);
-					setTimeout(() => $btn.html(cachedHtml).prop("disabled", false), VeCt.DUR_INLINE_NOTIFY);
+					btn.txt(`Failed!`);
+					setTimeout(() => btn.html(cachedHtml).prop("disabled", false), VeCt.DUR_INLINE_NOTIFY);
 					throw e;
 				}
 
-				$btn.text(`Done!`);
-				setTimeout(() => $btn.html(cachedHtml).prop("disabled", false), VeCt.DUR_INLINE_NOTIFY);
+				btn.txt(`Done!`);
+				setTimeout(() => btn.html(cachedHtml).prop("disabled", false), VeCt.DUR_INLINE_NOTIFY);
 			});
-		return $btn;
+		return btn;
 	}
 
 	async _pDoDeleteAll (rdState) {
@@ -262,76 +263,76 @@ export class ManageBrewUi {
 		JqueryUtil.doToast(`Update complete! ${cntPulls} ${cntPulls === 1 ? `${this._brewUtil.DISPLAY_NAME} was` : `${this._brewUtil.DISPLAY_NAME_PLURAL} were`} updated.`);
 	}
 
-	async pRender ($wrp, {rdState = null} = {}) {
+	async pRender (wrp, {rdState = null} = {}) {
 		rdState = rdState || new this.constructor._RenderState();
 
-		rdState.$stgBrewList = $(`<div class="manbrew__current_brew ve-flex-col h-100 mt-1 min-h-0"></div>`);
+		rdState.stgBrewList = ee`<div class="manbrew__current_brew ve-flex-col h-100 mt-1 min-h-0"></div>`;
 
 		await this._pRender_pBrewList(rdState);
 
 		const btnLoadPartnered = ee`<button class="ve-btn ve-btn-default ve-btn-sm">Load All Partnered</button>`
 			.onn("click", () => this._pHandleClick_btnLoadPartnered(rdState));
 
-		const $btnLoadFromFile = $(`<button class="ve-btn ve-btn-default ve-btn-sm">Load from File</button>`)
-			.click(() => this._pHandleClick_btnLoadFromFile(rdState));
+		const btnLoadFromFile = ee`<button class="ve-btn ve-btn-default ve-btn-sm">Load from File</button>`
+			.onn("click", () => this._pHandleClick_btnLoadFromFile(rdState));
 
-		const $btnLoadFromUrl = $(`<button class="ve-btn ve-btn-default ve-btn-sm">Load from URL</button>`)
-			.click(() => this._pHandleClick_btnLoadFromUrl(rdState));
+		const btnLoadFromUrl = ee`<button class="ve-btn ve-btn-default ve-btn-sm">Load from URL</button>`
+			.onn("click", () => this._pHandleClick_btnLoadFromUrl(rdState));
 
-		const $btnGet = $(`<button class="ve-btn ${this._brewUtil.STYLE_BTN} ve-btn-sm">Get ${this._brewUtil.DISPLAY_NAME.toTitleCase()}</button>`)
-			.click(() => this._pHandleClick_btnGetBrew(rdState));
+		const btnGet = ee`<button class="ve-btn ${this._brewUtil.STYLE_BTN} ve-btn-sm">Get ${this._brewUtil.DISPLAY_NAME.toTitleCase()}</button>`
+			.onn("click", () => this._pHandleClick_btnGetBrew(rdState));
 
-		const $btnCustomUrl = $(`<button class="ve-btn ${this._brewUtil.STYLE_BTN} ve-btn-sm px-2" title="Set Custom Repository URL"><span class="glyphicon glyphicon-cog"></span></button>`)
-			.click(() => this._pHandleClick_btnSetCustomRepo());
+		const btnCustomUrl = ee`<button class="ve-btn ${this._brewUtil.STYLE_BTN} ve-btn-sm px-2" title="Set Custom Repository URL"><span class="glyphicon glyphicon-cog"></span></button>`
+			.onn("click", () => this._pHandleClick_btnSetCustomRepo());
 
-		const $btnPullAll = this._isModal ? null : this._$getBtnPullAll(rdState);
-		const $btnDeleteAll = this._isModal ? null : this._$getBtnDeleteAll(rdState);
+		const btnPullAll = this._isModal ? null : this._getBtnPullAll(rdState);
+		const btnDeleteAll = this._isModal ? null : this._getBtnDeleteAll(rdState);
 
-		const $btnSaveToUrl = $(`<button class="ve-btn ve-btn-default ve-btn-sm" title="Note that this does not include &quot;Editable&quot; or &quot;Local&quot; content.">Export List as URL</button>`)
-			.click(async evt => {
+		const btnSaveToUrl = ee`<button class="ve-btn ve-btn-default ve-btn-sm" title="Note that this does not include &quot;Editable&quot; or &quot;Local&quot; content.">Export List as URL</button>`
+			.onn("click", async evt => {
 				await this.constructor.pOnClickBtnExportListAsUrl({ele: evt.originalEvent.currentTarget});
 			});
 
-		const $wrpBtnLoadAll = this._brewUtil.IS_ADD_BTN_ALL_PARTNERED
-			? $$`<div class="ve-flex-v-center ve-btn-group mr-2">
+		const wrpBtnLoadAll = this._brewUtil.IS_ADD_BTN_ALL_PARTNERED
+			? ee`<div class="ve-flex-v-center ve-btn-group mr-2">
 				${btnLoadPartnered}
 			</div>`
 			: null;
 
-		const $wrpBtns = $$`<div class="ve-flex-v-center no-shrink mobile__ve-flex-col">
+		const wrpBtns = ee`<div class="ve-flex-v-center no-shrink mobile__ve-flex-col">
 			<div class="ve-flex-v-center mobile__mb-2">
 				<div class="ve-flex-v-center ve-btn-group mr-2">
-					${$btnGet}
-					${$btnCustomUrl}
+					${btnGet}
+					${btnCustomUrl}
 				</div>
-				${$wrpBtnLoadAll}
+				${wrpBtnLoadAll}
 				<div class="ve-flex-v-center ve-btn-group mr-2">
-					${$btnLoadFromFile}
-					${$btnLoadFromUrl}
+					${btnLoadFromFile}
+					${btnLoadFromUrl}
 				</div>
 			</div>
 			<div class="ve-flex-v-center">
 				<a href="${this._brewUtil.URL_REPO_DEFAULT}" class="ve-flex-v-center" target="_blank" rel="noopener noreferrer"><button class="ve-btn ve-btn-default ve-btn-sm mr-2">Browse Source Repository</button></a>
 
 				<div class="ve-flex-v-center ve-btn-group mr-2">
-					${$btnSaveToUrl}
+					${btnSaveToUrl}
 				</div>
 
 				<div class="ve-flex-v-center ve-btn-group">
-					${$btnPullAll}
-					${$btnDeleteAll}
+					${btnPullAll}
+					${btnDeleteAll}
 				</div>
 			</div>
 		</div>`;
 
 		if (this._isModal) {
-			$$($wrp)`
-			${rdState.$stgBrewList}
-			${$wrpBtns.addClass("mb-2")}`;
+			ee(wrp)`
+			${rdState.stgBrewList}
+			${wrpBtns.addClass("mb-2")}`;
 		} else {
-			$$($wrp)`
-			${$wrpBtns.addClass("mb-3")}
-			${rdState.$stgBrewList}`;
+			ee(wrp)`
+			${wrpBtns.addClass("mb-3")}
+			${rdState.stgBrewList}`;
 		}
 	}
 
@@ -397,11 +398,11 @@ export class ManageBrewUi {
 
 		const nxtUrl = await InputUiUtil.pGetUserString({
 			title: `${this._brewUtil.DISPLAY_NAME.toTitleCase()} Repository URL`,
-			$elePre: $(`<div>
+			elePre: ee`<div>
 				<p>Leave blank to use the <a href="${this._brewUtil.URL_REPO_DEFAULT}" rel="noopener noreferrer" target="_blank">default ${this._brewUtil.DISPLAY_NAME} repo</a>.</p>
 				<div>Note that for GitHub URLs, the <code>raw.</code> URL must be used. For example, <code>${this._brewUtil.URL_REPO_ROOT_DEFAULT.replace(/TheGiddyLimit/g, "YourUsernameHere")}</code></div>
 				<hr class="hr-3">
-			</div>`),
+			</div>`,
 			default: customBrewUtl,
 		});
 		if (nxtUrl == null) return;
@@ -410,26 +411,26 @@ export class ManageBrewUi {
 	}
 
 	async _pRender_pBrewList (rdState) {
-		rdState.$stgBrewList.empty();
+		rdState.stgBrewList.empty();
 		rdState.rowMetas.splice(0, rdState.rowMetas.length)
 			.forEach(({menu}) => ContextUtil.deleteMenu(menu));
 
-		const $btnMass = $(`<button class="ve-btn ve-btn-default bbl-0 ve-self-flex-stretch">Mass...</button>`)
-			.click(evt => this._pHandleClick_btnListMass({evt, rdState}));
-		const $iptSearch = $(`<input type="search" class="search manbrew__search form-control bbr-0" placeholder="Search ${this._brewUtil.DISPLAY_NAME}...">`);
-		const $cbAll = $(`<input type="checkbox">`);
-		const $wrpList = $(`<div class="list-display-only max-h-unset smooth-scroll ve-overflow-y-auto h-100 min-h-0 brew-list brew-list--target manbrew__list relative ve-flex-col w-100 mb-3"></div>`);
+		const btnMass = ee`<button class="ve-btn ve-btn-default bbl-0 ve-self-flex-stretch">Mass...</button>`
+			.onn("click", evt => this._pHandleClick_btnListMass({evt, rdState}));
+		const iptSearch = ee`<input type="search" class="search manbrew__search form-control bbr-0" placeholder="Search ${this._brewUtil.DISPLAY_NAME}...">`;
+		const cbAll = ee`<input type="checkbox">`;
+		const wrpList = ee`<div class="list-display-only max-h-unset smooth-scroll ve-overflow-y-auto h-100 min-h-0 brew-list brew-list--target manbrew__list relative ve-flex-col w-100 mb-3"></div>`;
 
 		rdState.list = new List({
-			$iptSearch,
-			$wrpList,
+			iptSearch,
+			wrpList,
 			isFuzzy: true,
 			sortByInitial: rdState.list ? rdState.list.sortBy : undefined,
 			sortDirInitial: rdState.list ? rdState.list.sortDir : undefined,
 		});
 
-		const $wrpBtnsSort = $$`<div class="filtertools manbrew__filtertools ve-btn-group input-group input-group--bottom ve-flex no-shrink">
-			<label class="ve-col-0-5 pr-0 ve-btn ve-btn-default ve-btn-xs ve-flex-vh-center">${$cbAll}</label>
+		const wrpBtnsSort = ee`<div class="filtertools manbrew__filtertools ve-btn-group input-group input-group--bottom ve-flex no-shrink">
+			<label class="ve-col-0-5 pr-0 ve-btn ve-btn-default ve-btn-xs ve-flex-vh-center">${cbAll}</label>
 			<button class="ve-col-1 ve-btn ve-btn-default ve-btn-xs" disabled>Type</button>
 			<button class="ve-col-3 ve-btn ve-btn-default ve-btn-xs" data-sort="source">Source</button>
 			<button class="ve-col-3 ve-btn ve-btn-default ve-btn-xs" data-sort="authors">Authors</button>
@@ -437,19 +438,19 @@ export class ManageBrewUi {
 			<button class="ve-col-1-5 ve-btn ve-btn-default ve-btn-xs ve-grow" disabled>&nbsp;</button>
 		</div>`;
 
-		$$(rdState.$stgBrewList)`
+		ee(rdState.stgBrewList)`
 		<div class="ve-flex-col h-100">
 			<div class="input-group ve-flex-vh-center">
-				${$btnMass}
-				${$iptSearch}
+				${btnMass}
+				${iptSearch}
 			</div>
-			${$wrpBtnsSort}
-			<div class="ve-flex w-100 h-100 min-h-0 relative">${$wrpList}</div>
+			${wrpBtnsSort}
+			<div class="ve-flex w-100 h-100 min-h-0 relative">${wrpList}</div>
 		</div>`;
 
 		rdState.listSelectClickHandler = new ListSelectClickHandler({list: rdState.list});
-		rdState.listSelectClickHandler.bindSelectAllCheckbox($cbAll);
-		SortUtil.initBtnSortHandlers($wrpBtnsSort, rdState.list);
+		rdState.listSelectClickHandler.bindSelectAllCheckbox(cbAll);
+		SortUtil.initBtnSortHandlers(wrpBtnsSort, rdState.list);
 
 		rdState.brews = (await this._brewUtil.pGetBrew()).map(brew => this._pRender_getProcBrew(brew));
 
@@ -460,7 +461,7 @@ export class ManageBrewUi {
 		});
 
 		rdState.list.init();
-		$iptSearch.focus();
+		iptSearch.focuse();
 	}
 
 	get _LBL_LIST_UPDATE () { return "Update"; }
@@ -556,13 +557,13 @@ export class ManageBrewUi {
 					],
 					click: () => {
 						if (!hasConverters) return;
-						const {$modalInner} = UiUtil.getShowModal({
+						const {eleModalInner} = UiUtil.getShowModal({
 							title: `Converted By:${brewSource.convertedBy.length === 1 ? ` ${brewSource.convertedBy.join("")}` : ""}`,
 							isMinHeight0: true,
 						});
 
 						if (brewSource.convertedBy.length === 1) return;
-						$modalInner.append(`<ul>${brewSource.convertedBy.map(it => `<li>${it.qq()}</li>`).join("")}</ul>`);
+						eleModalInner.appends(`<ul>${brewSource.convertedBy.map(it => `<li>${it.qq()}</li>`).join("")}</ul>`);
 					},
 				});
 
@@ -912,8 +913,10 @@ export class ManageBrewUi {
 
 	_pRender_doViewBrew ({evt, brew, brewName}) {
 		const title = this.constructor._getBrewJsonTitle({brew, brewName});
+		// eslint-disable-next-line vet-jquery/jquery
 		const $content = Renderer.hover.$getHoverContent_statsCode(brew.body, {isSkipClean: true, title});
 		Renderer.hover.getShowWindow(
+			// eslint-disable-next-line vet-jquery/jquery
 			$content,
 			Renderer.hover.getWindowPositionFromEvent(evt),
 			{

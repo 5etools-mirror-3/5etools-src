@@ -385,8 +385,8 @@ class ItemsPage extends ListPage {
 			},
 		});
 
-		SortUtil.initBtnSortHandlers($("#filtertools-mundane"), this._mundaneList);
-		SortUtil.initBtnSortHandlers($("#filtertools-magic"), this._magicList);
+		SortUtil.initBtnSortHandlers(es("#filtertools-mundane"), this._mundaneList);
+		SortUtil.initBtnSortHandlers(es("#filtertools-magic"), this._magicList);
 
 		this._mundaneList.nextList = this._magicList;
 		this._magicList.prevList = this._mundaneList;

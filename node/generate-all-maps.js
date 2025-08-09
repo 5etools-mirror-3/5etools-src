@@ -3,7 +3,7 @@ import * as ut from "./util.js";
 
 import "../js/parser.js";
 import "../js/utils.js";
-import "../js/maps-util.js";
+import {MapsUtil} from "../js/maps-util.js";
 
 const out = {};
 

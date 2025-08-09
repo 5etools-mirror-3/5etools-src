@@ -150,7 +150,6 @@ class PageFilterRaces extends PageFilterBase {
 		this._mutateForFilters_commonMisc(r);
 		if (r._isBaseRace) r._fMisc.push("Base Species");
 		if (r._isBaseRace || !r._isSubRace) r._fMisc.push("Key Species");
-		if (r._isCopy) r._fMisc.push("Modified Copy");
 		if (r.lineage) r._fMisc.push("Lineage");
 
 		const ability = r.ability ? Renderer.getAbilityData(r.ability, {isOnlyShort: true, isCurrentLineage: r.lineage === "VRGR"}) : {asTextShort: "None"};
@@ -268,7 +267,7 @@ class ModalFilterRaces extends ModalFilterBase {
 
 	async _pLoadAllData () {
 		return [
-			...((await DataUtil.race.loadJSON()).race || []),
+			...(await DataLoader.pCacheAndGetAllSite(UrlUtil.PG_RACES)),
 			...((await DataUtil.race.loadPrerelease({isAddBaseRaces: false})).race || []),
 			...((await DataUtil.race.loadBrew({isAddBaseRaces: false})).race || []),
 		];

@@ -322,7 +322,6 @@ class PageFilterBestiary extends PageFilterBase {
 			if (legGroup.regionalEffects) mon._fMisc.push("Regional Effects");
 		}
 		if (mon.variant) mon._fMisc.push("Has Variants");
-		if (mon._isCopy) mon._fMisc.push("Modified Copy");
 		if (mon.altArt) mon._fMisc.push("Has Alternate Token");
 		if (Renderer.monster.hasToken(mon)) mon._fMisc.push("Has Token");
 		if (this._hasFluff(mon)) mon._fMisc.push("Has Info");
@@ -660,7 +659,7 @@ class ModalFilterBestiary extends ModalFilterBase {
 
 	async _pLoadAllData () {
 		return [
-			...(await DataUtil.monster.pLoadAll()),
+			...(await DataLoader.pCacheAndGetAllSite(UrlUtil.PG_BESTIARY)),
 			...((await PrereleaseUtil.pGetBrewProcessed()).monster || []),
 			...((await BrewUtil2.pGetBrewProcessed()).monster || []),
 		];

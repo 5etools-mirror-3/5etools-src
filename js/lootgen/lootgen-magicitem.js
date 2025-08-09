@@ -5,6 +5,7 @@ import {SITE_STYLE__ONE} from "../consts.js";
 export class LootGenMagicItem extends BaseComponent {
 	static async pGetMagicItemRoll (
 		{
+			dataManager,
 			lootGenMagicItems,
 			spells,
 			magicItemTable,
@@ -20,6 +21,7 @@ export class LootGenMagicItem extends BaseComponent {
 			const item = RollerUtil.rollOnArray(itemsAltChoose);
 
 			return this._pGetMagicItemRoll_singleItem({
+				dataManager,
 				item,
 				lootGenMagicItems,
 				spells,
@@ -33,6 +35,7 @@ export class LootGenMagicItem extends BaseComponent {
 
 		if (!magicItemTable?.table) {
 			return new LootGenMagicItemNull({
+				dataManager,
 				lootGenMagicItems,
 				spells,
 				magicItemTable,
@@ -48,6 +51,7 @@ export class LootGenMagicItem extends BaseComponent {
 
 		if (row.spellLevel != null) {
 			return new LootGenMagicItemSpellScroll({
+				dataManager,
 				lootGenMagicItems,
 				spells,
 				magicItemTable,
@@ -69,6 +73,7 @@ export class LootGenMagicItem extends BaseComponent {
 			});
 
 			return new LootGenMagicItemSubItems({
+				dataManager,
 				lootGenMagicItems,
 				spells,
 				magicItemTable,
@@ -89,6 +94,7 @@ export class LootGenMagicItem extends BaseComponent {
 			});
 
 			return new LootGenMagicItemSubItems({
+				dataManager,
 				lootGenMagicItems,
 				spells,
 				magicItemTable,
@@ -109,6 +115,7 @@ export class LootGenMagicItem extends BaseComponent {
 			});
 
 			return new LootGenMagicItemSubItems({
+				dataManager,
 				lootGenMagicItems,
 				spells,
 				magicItemTable,
@@ -119,6 +126,30 @@ export class LootGenMagicItem extends BaseComponent {
 				baseEntry: row.item,
 				item: RollerUtil.rollOnArray(subItems),
 				roll: rowRoll,
+				subItems,
+			});
+		}
+
+		if (row.choose?.fromMatching) {
+			const subItems = dataManager.getDataItemsFilteredMatching(row.choose.fromMatching);
+			const ptAdditionalText = Object.entries(row.choose.fromMatching)
+				.sort(([kA], [kB]) => SortUtil.ascSortLower(kA, kB))
+				.map(([k, v]) => `${k.toTitleCase()}: ${v.toTitleCase()}`)
+				.join(", ");
+
+			return new LootGenMagicItemSubItems({
+				dataManager,
+				lootGenMagicItems,
+				spells,
+				magicItemTable,
+				itemsAltChoose,
+				itemsAltChooseDisplayText,
+				isItemsAltChooseRoll,
+				fnGetIsPreferAltChoose,
+				baseEntry: row.item,
+				item: RollerUtil.rollOnArray(subItems),
+				roll: rowRoll,
+				rollAdditionalText: ptAdditionalText ? `; ${ptAdditionalText}` : "",
 				subItems,
 			});
 		}
@@ -134,6 +165,7 @@ export class LootGenMagicItem extends BaseComponent {
 			});
 
 			return new LootGenMagicItemTable({
+				dataManager,
 				lootGenMagicItems,
 				spells,
 				magicItemTable,
@@ -156,6 +188,7 @@ export class LootGenMagicItem extends BaseComponent {
 		if (!item) throw new Error(`Could not load item for "${row.item}"`);
 
 		return this._pGetMagicItemRoll_singleItem({
+			dataManager,
 			item,
 			lootGenMagicItems,
 			spells,
@@ -171,6 +204,7 @@ export class LootGenMagicItem extends BaseComponent {
 
 	static async _pGetMagicItemRoll_singleItem (
 		{
+			dataManager,
 			item,
 			lootGenMagicItems,
 			spells,
@@ -184,11 +218,12 @@ export class LootGenMagicItem extends BaseComponent {
 		},
 	) {
 		baseEntry = baseEntry || item
-			? `{@item ${item.name}|${item.source}}`
+			? `{@item ${DataUtil.proxy.getUidPacked("item", item, "item", {isMaintainCase: true})}}`
 			: `<span class="help-subtle" title="${TOOLTIP_NOTHING.qq()}">(no item)</span>`;
 
 		if (item?.spellScrollLevel != null) {
 			return new LootGenMagicItemSpellScroll({
+				dataManager,
 				lootGenMagicItems,
 				spells,
 				magicItemTable,
@@ -208,6 +243,7 @@ export class LootGenMagicItem extends BaseComponent {
 			const subItems = item.variants.map(({specificVariant}) => specificVariant);
 
 			return new LootGenMagicItemSubItems({
+				dataManager,
 				lootGenMagicItems,
 				spells,
 				magicItemTable,
@@ -223,6 +259,7 @@ export class LootGenMagicItem extends BaseComponent {
 		}
 
 		return new LootGenMagicItem({
+			dataManager,
 			lootGenMagicItems,
 			spells,
 			magicItemTable,
@@ -274,6 +311,7 @@ export class LootGenMagicItem extends BaseComponent {
 	}
 
 	/**
+	 * @param dataManager The data manager.
 	 * @param lootGenMagicItems The parent array in which this item is stored.
 	 * @param spells Spell data list.
 	 * @param magicItemTable The table this result was rolled form.
@@ -284,9 +322,11 @@ export class LootGenMagicItem extends BaseComponent {
 	 * @param baseEntry The text, which may be an item itself, supplied by the `"item"` property in the row.
 	 * @param item The rolled item.
 	 * @param roll The roll result used to get this row.
+	 * @param rollAdditionalText Additional text to accompany the roll used to get this row.
 	 */
 	constructor (
 		{
+			dataManager,
 			lootGenMagicItems,
 			spells,
 			magicItemTable,
@@ -297,9 +337,13 @@ export class LootGenMagicItem extends BaseComponent {
 			baseEntry,
 			item,
 			roll,
+			rollAdditionalText,
 		},
 	) {
 		super();
+
+		this._dataManager = dataManager;
+
 		this._lootGenMagicItems = lootGenMagicItems;
 		this._spells = spells;
 		this._magicItemTable = magicItemTable;
@@ -310,6 +354,7 @@ export class LootGenMagicItem extends BaseComponent {
 		this._state.baseEntry = baseEntry;
 		this._state.item = item;
 		this._state.roll = roll;
+		this._state.rollAdditionalText = rollAdditionalText;
 		this._state.isItemsAltChooseRoll = isItemsAltChooseRoll;
 
 		this._render = null;
@@ -326,6 +371,7 @@ export class LootGenMagicItem extends BaseComponent {
 
 	async _pDoReroll ({isAltRoll = false} = {}) {
 		const nxt = await this.constructor.pGetMagicItemRoll({
+			dataManager: this._dataManager,
 			lootGenMagicItems: this._lootGenMagicItems,
 			spells: this._spells,
 			magicItemTable: this._magicItemTable,
@@ -344,7 +390,7 @@ export class LootGenMagicItem extends BaseComponent {
 	_getBtnReroll () {
 		if (!this._magicItemTable && !this._itemsAltChoose) return null;
 
-		const isAltModeDefault = this._fnGetIsPreferAltChoose && this._fnGetIsPreferAltChoose();
+		const isAltModeDefault = this._fnGetIsPreferAltChoose?.();
 		const title = this._itemsAltChoose
 			? isAltModeDefault ? `SHIFT to roll on Magic Item Table ${this._magicItemTable.type}` : `SHIFT to roll ${Parser.getArticle(this._itemsAltChooseDisplayText)} ${this._itemsAltChooseDisplayText} item`
 			: null;
@@ -381,9 +427,9 @@ export class LootGenMagicItem extends BaseComponent {
 		return dispBaseEntry;
 	}
 
-	_getRender_getDispRoll ({prop = "roll"} = {}) {
+	_getRender_getDispRoll ({prop = "roll", propAdditionalText = "rollAdditionalText"} = {}) {
 		const dispRoll = ee`<div class="ve-muted"></div>`;
-		const hkRoll = () => dispRoll.txt(this._state.isItemsAltChooseRoll ? `(${this._itemsAltChooseDisplayText} item)` : `(Rolled ${this._state[prop]})`);
+		const hkRoll = () => dispRoll.txt(this._state.isItemsAltChooseRoll ? `(${this._itemsAltChooseDisplayText} item)` : `(Rolled ${this._state[prop]}${this._state[propAdditionalText] || ""})`);
 		this._addHookBase(prop, hkRoll);
 		hkRoll();
 		return dispRoll;
@@ -395,6 +441,7 @@ export class LootGenMagicItem extends BaseComponent {
 			baseEntry: null,
 			item: null,
 			roll: null,
+			rollAdditionalText: null,
 			isItemsAltChooseRoll: false,
 		};
 	}
@@ -504,7 +551,7 @@ class LootGenMagicItemSubItems extends LootGenMagicItem {
 			});
 
 		const dispSubItem = ee`<div></div>`;
-		const hkItem = () => dispSubItem.html(Renderer.get().render(`{@item ${this._state.item.name}|${this._state.item.source}}`));
+		const hkItem = () => dispSubItem.html(Renderer.get().render(`{@item ${DataUtil.proxy.getUidPacked("item", this._state.item, "item", {isMaintainCase: true})}}`));
 		this._addHookBase("item", hkItem);
 		hkItem();
 

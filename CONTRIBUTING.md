@@ -78,6 +78,28 @@ Any language feature which is available in both main-line Chrome and main-line F
     - In a similar vein, never tag anything within a `quote`-type block. Even if the quote directly refers to a specific creature, we can assume the quote is from a universe/perspective in which (for example) stat blocks don't exist, and therefore the tag should be omitted to maintain the flavor of the quote.
     - Within data from a source, avoid referencing content from a source printed after the publication of that source. For example, MTF content might reference SCAG deities, but SCAG deities should refrain from referencing MTF content.
 
+### Inclusion of `_copy` Entities
+
+Only entities which are meaningfully different in crunch, or have unique art, should be included as `_copy`s.
+
+For example, for creatures (`"monster"`):
+
+Insufficient in isolation (though should be applied if the `_copy` is to be created):
+
+- Size
+- Creature type
+- Alignment
+- Hit points
+
+Sufficient in isolation:
+
+- Gaining/losing traits; actions
+- Gaining/losing spellcasting
+- Changes to damage types
+- Immunities, resistances, etc.
+- Unique, official, art/token
+- etc.
+
 ### JSON Cleaning
 
 #### Trailing commas
@@ -153,7 +175,6 @@ Both versions handle caching for the same files, which is an index of your local
 Note that building the service worker is optional.
 
 Note that while using the service worker, some files are served cache-first (see the comments in the service worker files for more information). Care should be taken to either disable or work around the service worker when developing locally, as local changes may not otherwise be visible when refreshing a page.
-
 
 ### Images
 

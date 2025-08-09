@@ -702,15 +702,15 @@ class BestiaryPage extends ListPageMultiSource {
 	) {
 		Renderer.get().setFirstSection(true);
 
-		const $btnScaleCr = !ScaleCreature.isCrInScaleRange(mon) ? null : $(`<button id="btn-scale-cr" title="Scale Creature By CR (Highly Experimental)" class="mon__btn-scale-cr ve-btn ve-btn-xs ve-btn-default ve-popwindow__hidden no-print lst-is-exporting-image__hidden"><span class="glyphicon glyphicon-signal"></span></button>`)
-			.click((evt) => {
+		const btnScaleCr = !ScaleCreature.isCrInScaleRange(mon) ? null : ee`<button id="btn-scale-cr" title="Scale Creature By CR (Highly Experimental)" class="mon__btn-scale-cr ve-btn ve-btn-xs ve-btn-default ve-popwindow__hidden no-print lst-is-exporting-image__hidden"><span class="glyphicon glyphicon-signal"></span></button>`
+			.onn("click", (evt) => {
 				evt.stopPropagation();
 				const win = (evt.view || {}).window;
 				const mon = this._dataList[Hist.lastLoadedId];
 				const lastCr = this._lastRender.entity ? this._lastRender.entity.cr.cr || this._lastRender.entity.cr : mon.cr.cr || mon.cr;
 				Renderer.monster.getCrScaleTarget({
 					win,
-					$btnScale: $btnScaleCr,
+					btnScale: btnScaleCr,
 					initialCr: lastCr,
 					cbRender: (targetCr) => {
 						if (targetCr === Parser.crToNumber(mon.cr)) this._renderStatblock(mon);
@@ -719,9 +719,9 @@ class BestiaryPage extends ListPageMultiSource {
 				});
 			});
 
-		const $btnResetScaleCr = !ScaleCreature.isCrInScaleRange(mon) ? null : $(`<button id="btn-reset-cr" title="Reset CR Scaling" class="mon__btn-reset-cr ve-btn ve-btn-xs ve-btn-default ve-popwindow__hidden no-print lst-is-exporting-image__hidden ml-2"><span class="glyphicon glyphicon-refresh"></span></button>`)
-			.click(() => Hist.setSubhash(VeCt.HASH_SCALED, null))
-			.toggle(isScaledCr);
+		const btnResetScaleCr = !ScaleCreature.isCrInScaleRange(mon) ? null : ee`<button id="btn-reset-cr" title="Reset CR Scaling" class="mon__btn-reset-cr ve-btn ve-btn-xs ve-btn-default ve-popwindow__hidden no-print lst-is-exporting-image__hidden ml-2"><span class="glyphicon glyphicon-refresh"></span></button>`
+			.onn("click", () => Hist.setSubhash(VeCt.HASH_SCALED, null))
+			.toggleVe(isScaledCr);
 
 		const selSummonSpellLevel = Renderer.monster.getSelSummonSpellLevel(mon);
 		if (selSummonSpellLevel) {
@@ -813,7 +813,7 @@ class BestiaryPage extends ListPageMultiSource {
 			Renderer.get().addPlugin("string_@dc", pluginDc);
 			Renderer.get().addPlugin("dice", pluginDice);
 
-			this._$pgContent.empty().append(RenderBestiary.$getRenderedCreature(mon, {$btnScaleCr, $btnResetScaleCr, selSummonSpellLevel, selSummonClassLevel, classLevelScalerClass: mon.summonedByClass}));
+			this._$pgContent.empty().append(RenderBestiary.$getRenderedCreature(mon, {btnScaleCr, btnResetScaleCr, selSummonSpellLevel, selSummonClassLevel, classLevelScalerClass: mon.summonedByClass}));
 		} finally {
 			Renderer.get().removePlugin("dice", pluginDice);
 			Renderer.get().removePlugin("string_@dc", pluginDc);

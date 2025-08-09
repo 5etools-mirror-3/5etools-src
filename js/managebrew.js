@@ -7,7 +7,7 @@ class ManageBrew {
 
 	static async pRender () {
 		const manager = new ManageBrewUi({brewUtil: BrewUtil2});
-		return manager.pRender($(`#manager`).empty());
+		return manager.pRender(es(`#manager`).empty());
 	}
 }
 

@@ -1075,6 +1075,13 @@ class ListUiUtil {
 
 		build () {
 			return {
+				name: {
+					help: `"name:<query>" ("/query/" for regex; "!query" and "!/query/" to invert) to search by name.`,
+					fn: (listItem, searchTerm) => {
+						if (listItem.data._textCacheName == null) listItem.data._textCacheName = listItem.name.toLowerCase().trim();
+						return this._listSyntax_isTextMatch(listItem.data._textCacheName, searchTerm);
+					},
+				},
 				stats: {
 					help: `"stats:<query>" ("/query/" for regex; "!query" and "!/query/" to invert) to search within stat blocks.`,
 					fn: (listItem, searchTerm) => {
@@ -1274,6 +1281,7 @@ class TabUiUtilBase {
 				tabGroup = TabUiUtilBase._DEFAULT_TAB_GROUP,
 				cbTabChange,
 				additionalClassesWrpHeads,
+				isStacked = false,
 			} = {},
 		) {
 			if (!tabMetas.length) throw new Error(`One or more tab meta must be specified!`);
@@ -1298,6 +1306,7 @@ class TabUiUtilBase {
 					_propProxy,
 					propActive,
 					ixTab: i,
+					isStacked,
 				});
 
 				const $wrpTab = obj.__$getWrpTab({tabMeta: it, ixTab: i});
@@ -1313,11 +1322,11 @@ class TabUiUtilBase {
 			};
 
 			const tabMetasOut = tabMetas.map((it, i) => {
-				if (it.type) return obj.__renderTypedTabMeta({tabMeta: it, ixTab: i});
+				if (it.type) return obj.__renderTypedTabMeta({tabMeta: it, ixTab: i, isStacked});
 				return renderTabMetas_standard(it, i);
 			}).filter(Boolean);
 
-			if ($parent) obj.__renderTabs_addToParent({$dispTabTitle, $parent, tabMetasOut, additionalClassesWrpHeads});
+			if ($parent) obj.__renderTabs_addToParent({$dispTabTitle, $parent, tabMetasOut, additionalClassesWrpHeads, isStacked});
 
 			const hkActiveTab = () => {
 				tabMetasOut.forEach(it => {
@@ -1344,12 +1353,41 @@ class TabUiUtilBase {
 			return tabMetasOut;
 		};
 
-		obj.__renderTabs_addToParent = function ({$dispTabTitle, $parent, tabMetasOut, additionalClassesWrpHeads}) {
+		obj._renderTabsDict = function (
+			tabMetasDict,
+			{
+				eleParent = null,
+				propProxy = TabUiUtilBase._DEFAULT_PROP_PROXY,
+				tabGroup = TabUiUtilBase._DEFAULT_TAB_GROUP,
+				cbTabChange,
+				additionalClassesWrpHeads,
+				isStacked = false,
+			} = {},
+		) {
+			const entries = Object.entries(tabMetasDict);
+			const byValue = obj._renderTabs(
+				entries.map(([, v]) => v),
+				{
+					eleParent,
+					propProxy,
+					tabGroup,
+					cbTabChange,
+					additionalClassesWrpHeads,
+					isStacked,
+				},
+			);
+			return Object.fromEntries(
+				entries
+					.map(([k], ix) => [k, byValue[ix]]),
+			);
+		};
+
+		obj.__renderTabs_addToParent = function ({$dispTabTitle, $parent, tabMetasOut, additionalClassesWrpHeads, isStacked}) {
 			const hasBorder = tabMetasOut.some(it => it.hasBorder);
 			$$`<div class="ve-flex-col w-100 h-100">
 				${$dispTabTitle}
 				<div class="ve-flex-col w-100 h-100 min-h-0">
-					<div class="ve-flex ${hasBorder ? `ui-tab__wrp-tab-heads--border` : ""} ${additionalClassesWrpHeads || ""}">${tabMetasOut.map(it => it.$btnTab)}</div>
+					<div class="ve-flex ${isStacked ? `ve-flex-wrap ui-tab__wrp-tab-heads--stacked` : ""} ${hasBorder ? `ui-tab__wrp-tab-heads--border` : ""} ${additionalClassesWrpHeads || ""}">${tabMetasOut.map(it => it.$btnTab)}</div>
 					<div class="ve-flex w-100 h-100 min-h-0">${tabMetasOut.map(it => it.$wrpTab).filter(Boolean)}</div>
 				</div>
 			</div>`.appendTo($parent);
@@ -1437,8 +1475,8 @@ class TabUiUtil extends TabUiUtilBase {
 	static decorate (obj, {isInitMeta = false} = {}) {
 		super.decorate(obj, {isInitMeta});
 
-		obj.__$getBtnTab = function ({tabMeta, _propProxy, propActive, ixTab}) {
-			return $(`<button class="ve-btn ve-btn-default ui-tab__btn-tab-head pt-2p px-4p pb-0 ${tabMeta.isHeadHidden ? "ve-hidden" : ""}">${tabMeta.name.qq()}</button>`)
+		obj.__$getBtnTab = function ({tabMeta, _propProxy, propActive, ixTab, isStacked = false}) {
+			return $(`<button class="ve-btn ve-btn-default ui-tab__btn-tab-head ${isStacked ? `ui-tab__btn-tab-head--stacked` : ""} pt-2p px-4p pb-0 ${tabMeta.isHeadHidden ? "ve-hidden" : ""}" ${tabMeta.title ? `title="${tabMeta.title.qq()}"` : ""}>${tabMeta.name.qq()}</button>`)
 				.click(() => obj[_propProxy][propActive] = ixTab);
 		};
 
@@ -1446,16 +1484,16 @@ class TabUiUtil extends TabUiUtilBase {
 			return $(`<div class="ui-tab__wrp-tab-body ve-flex-col ve-hidden ${tabMeta.hasBorder ? "ui-tab__wrp-tab-body--border" : ""} ${tabMeta.hasBackground ? "ui-tab__wrp-tab-body--background" : ""}"></div>`);
 		};
 
-		obj.__renderTypedTabMeta = function ({tabMeta, ixTab}) {
+		obj.__renderTypedTabMeta = function ({tabMeta, ixTab, isStacked = false}) {
 			switch (tabMeta.type) {
-				case "buttons": return obj.__renderTypedTabMeta_buttons({tabMeta, ixTab});
+				case "buttons": return obj.__renderTypedTabMeta_buttons({tabMeta, ixTab, isStacked});
 				default: throw new Error(`Unhandled tab type "${tabMeta.type}"`);
 			}
 		};
 
-		obj.__renderTypedTabMeta_buttons = function ({tabMeta, ixTab}) {
+		obj.__renderTypedTabMeta_buttons = function ({tabMeta, ixTab, isStacked = false}) {
 			const $btns = tabMeta.buttons.map((meta, j) => {
-				const $btn = $(`<button class="ve-btn ui-tab__btn-tab-head pt-2p px-4p pb-0 bbr-0 bbl-0 ${meta.type ? `ve-btn-${meta.type}` : "ve-btn-primary"}" ${meta.title ? `title="${meta.title.qq()}"` : ""}>${meta.html}</button>`)
+				const $btn = $(`<button class="ve-btn ui-tab__btn-tab-head ${isStacked ? `ui-tab__btn-tab-head--stacked` : ""} pt-2p px-4p pb-0 bbr-0 bbl-0 ${meta.type ? `ve-btn-${meta.type}` : "ve-btn-primary"}" ${meta.title ? `title="${meta.title.qq()}"` : ""}>${meta.html}</button>`)
 					.click(evt => meta.pFnClick(evt, $btn));
 				return $btn;
 			});
@@ -1481,6 +1519,7 @@ globalThis.TabUiUtil = TabUiUtil;
 TabUiUtil.TabMeta = class extends TabUiUtilBase.TabMeta {
 	constructor (opts) {
 		super(opts);
+		this.title = opts.title;
 		this.hasBorder = !!opts.hasBorder;
 		this.hasBackground = !!opts.hasBackground;
 		this.isHeadHidden = !!opts.isHeadHidden;
@@ -1493,7 +1532,7 @@ class TabUiUtilSide extends TabUiUtilBase {
 		super.decorate(obj, {isInitMeta});
 
 		obj.__$getBtnTab = function ({isSingleTab, tabMeta, _propProxy, propActive, ixTab}) {
-			return isSingleTab ? null : $(`<button class="ve-btn ve-btn-default ve-btn-sm ui-tab-side__btn-tab mb-2 br-0 btr-0 bbr-0 ve-text-left ve-flex-v-center" title="${tabMeta.name.qq()}"><div class="${tabMeta.icon} ui-tab-side__icon-tab mr-2 mobile-lg__mr-0 ve-text-center"></div><div class="mobile-lg__hidden">${tabMeta.name.qq()}</div></button>`)
+			return isSingleTab ? null : $(`<button class="ve-btn ve-btn-default ve-btn-sm ui-tab-side__btn-tab mb-2 br-0 btr-0 bbr-0 ve-text-left ve-flex-v-center" title="${tabMeta.title ? tabMeta.title.qq() : tabMeta.name.qq()}"><div class="${tabMeta.icon} ui-tab-side__icon-tab mr-2 mobile-lg__mr-0 ve-text-center"></div><div class="mobile-lg__hidden">${tabMeta.name.qq()}</div></button>`)
 				.click(() => this[_propProxy][propActive] = ixTab);
 		};
 
@@ -5335,10 +5374,10 @@ class ComponentUiUtil {
 
 	static _SearchableDropdownComponent = class extends BaseComponent {
 		static _RenderState = class {
-			$iptDisplay;
-			$iptSearch;
-			$wrpChoices;
-			$wrp;
+			iptDisplay;
+			iptSearch;
+			wrpChoices;
+			wrp;
 
 			constructor (
 				{
@@ -5371,7 +5410,7 @@ class ComponentUiUtil {
 				this.optionMetas
 					.forEach((optionMeta, ix) => {
 						optionMeta.isVisible = optionMeta.searchTerm.includes(searchTerm);
-						optionMeta.$ele.toggleVe(optionMeta.isVisible && (this._fnFilter == null || this._fnFilter(optionMeta.value, ix)));
+						optionMeta.ele.toggleVe(optionMeta.isVisible && (this._fnFilter == null || this._fnFilter(optionMeta.value, ix)));
 					});
 			}
 		};
@@ -5473,53 +5512,54 @@ class ComponentUiUtil {
 			// TODO(Future) implement as required
 		}
 
-		_render_$iptDisplay () {
-			const $iptDisplay = $(`<input class="form-control input-xs form-control--minimal">`)
+		_render_iptDisplay () {
+			const iptDisplay = ee`<input class="form-control input-xs form-control--minimal">`
 				.addClass("ui-sel2__ipt-display")
 				.attr("tabindex", "-1")
-				.click(() => {
+				.onn("click", () => {
 					if (this._state.isDisabled) return;
 
-					this._rdState.$iptSearch.focus().select();
+					this._rdState.iptSearch.focuse().selecte();
 				})
 				.disableSpellcheck();
 
 			this._addHookBase("selected", () => {
 				if (!this._isMultiSelect) {
-					$iptDisplay
+					iptDisplay
 						.toggleClass("italic", this._state.selected == null)
 						.toggleClass("ve-muted", this._state.selected == null);
 
 					if (this._state.selected == null) {
-						$iptDisplay.val(this._displayNullAs || "\u2014");
+						iptDisplay.val(this._displayNullAs || "\u2014");
 						return;
 					}
 
-					$iptDisplay.val(this._fnDisplay ? this._fnDisplay(this._state.selected) : this._state.selected);
+					iptDisplay.val(this._fnDisplay ? this._fnDisplay(this._state.selected) : this._state.selected);
 				}
 
 				// TODO(Future) implement as required
 			})();
 
 			this._addHookBase("isDisabled", () => {
-				$iptDisplay.prop("disabled", !!this._state.isDisabled);
+				iptDisplay.prop("disabled", !!this._state.isDisabled);
 			})();
 
-			return $iptDisplay;
+			return iptDisplay;
 		}
 
 		_handleSearchChange () {
-			this._state.searchTerm = this.constructor._getSearchString(this._rdState.$iptSearch.val());
+			this._state.searchTerm = this.constructor._getSearchString(this._rdState.iptSearch.val());
 		}
 
-		_render_$iptSearch () {
-			const $iptSearch = $(`<input class="form-control input-xs form-control--minimal">`)
-				.addClass("absolute ui-sel2__ipt-search")
-				.keydown(evt => {
+		_render_iptSearch () {
+			const iptSearch = ee`<input class="form-control input-xs form-control--minimal">`
+				.addClass("absolute")
+				.addClass("ui-sel2__ipt-search")
+				.onn("keydown", evt => {
 					if (this._state.isDisabled) return;
 
 					switch (evt.key) {
-						case "Escape": evt.stopPropagation(); return $iptSearch.blur();
+						case "Escape": evt.stopPropagation(); return iptSearch.blure();
 
 						case "ArrowDown": {
 							evt.preventDefault();
@@ -5528,7 +5568,7 @@ class ComponentUiUtil {
 
 							const [visibleMetaOptionFirst] = visibleMetaOptions;
 
-							visibleMetaOptionFirst.$ele.focus();
+							visibleMetaOptionFirst.ele.focuse();
 							break;
 						}
 
@@ -5541,41 +5581,41 @@ class ComponentUiUtil {
 
 							this._addToSelection(visibleMetaOptionFirst.value);
 
-							$iptSearch.blur();
+							iptSearch.blure();
 							break;
 						}
 
 						default: this._handleSearchChangeDebounced();
 					}
 				})
-				.change(() => this._handleSearchChangeDebounced())
-				.click(() => {
+				.onn("change", () => this._handleSearchChangeDebounced())
+				.onn("click", () => {
 					if (this._state.isDisabled) return;
 
-					$iptSearch.focus().select();
+					iptSearch.focuse().selecte();
 				})
 				.disableSpellcheck();
 
 			this._addHookBase("isDisabled", () => {
-				$iptSearch.prop("disabled", !!this._state.isDisabled);
+				iptSearch.prop("disabled", !!this._state.isDisabled);
 			})();
 
-			return $iptSearch;
+			return iptSearch;
 		}
 
-		_render_$wrp ({$iptDisplay, $iptSearch}) {
-			const $wrpChoices = $(`<div class="absolute ui-sel2__wrp-options ve-overflow-y-scroll"></div>`);
+		_render_wrp ({iptDisplay, iptSearch}) {
+			const wrpChoices = ee`<div class="absolute ui-sel2__wrp-options ve-overflow-y-scroll"></div>`;
 
-			const $wrp = $$`<div class="ve-flex relative ui-sel2__wrp w-100">
-				${$iptDisplay}
-				${$iptSearch}
-				${$wrpChoices}
+			const wrp = ee`<div class="ve-flex relative ui-sel2__wrp w-100">
+				${iptDisplay}
+				${iptSearch}
+				${wrpChoices}
 				<div class="ui-sel2__disp-arrow absolute no-events bold"><span class="glyphicon glyphicon-menu-down"></span></div>
 			</div>`;
 
 			return {
-				$wrpChoices,
-				$wrp,
+				wrpChoices,
+				wrp,
 			};
 		}
 
@@ -5585,7 +5625,7 @@ class ComponentUiUtil {
 
 				this._rdState.optionMetas
 					.forEach(metaOption => {
-						metaOption.$ele.remove();
+						metaOption.ele.remove();
 					});
 
 				const procValues = this._isAllowNull
@@ -5597,23 +5637,23 @@ class ComponentUiUtil {
 						const display = v == null ? (this._displayNullAs || "\u2014") : this._fnDisplay ? this._fnDisplay(v) : v;
 						const additionalStyleClasses = this._fnGetAdditionalStyleClasses ? this._fnGetAdditionalStyleClasses(v) : null;
 
-						const $ele = $(`<div class="ve-flex-v-center py-1 px-1 clickable ui-sel2__disp-option ${v == null ? `italic` : ""} ${additionalStyleClasses ? additionalStyleClasses.join(" ") : ""}" tabindex="0">${display}</div>`)
-							.on("click", () => {
+						const ele = ee`<div class="ve-flex-v-center py-1 px-1 clickable ui-sel2__disp-option ${v == null ? `italic` : ""} ${additionalStyleClasses ? additionalStyleClasses.join(" ") : ""}" tabindex="0">${display}</div>`
+							.onn("click", () => {
 								if (this._state.isDisabled) return;
 
 								this._addToSelection(v);
 
-								$(document.activeElement).blur();
+								document.activeElement.blur();
 
 								// Temporarily remove pointer events from the dropdown, so it collapses thanks to its :hover CSS
-								this._rdState.$wrp.addClass("no-events");
-								setTimeout(() => this._rdState.$wrp.removeClass("no-events"), 50);
+								this._rdState.wrp.addClass("no-events");
+								setTimeout(() => this._rdState.wrp.removeClass("no-events"), 50);
 							})
-							.on("keydown", evt => {
+							.onn("keydown", evt => {
 								if (this._state.isDisabled) return;
 
 								switch (evt.key) {
-									case "Escape": evt.stopPropagation(); return $ele.blur();
+									case "Escape": evt.stopPropagation(); return ele.blur();
 
 									case "ArrowDown": {
 										evt.preventDefault();
@@ -5623,7 +5663,7 @@ class ComponentUiUtil {
 
 										const ixCur = visibleMetaOptions.indexOf(out);
 										const nxt = visibleMetaOptions[ixCur + 1];
-										if (nxt) nxt.$ele.focus();
+										if (nxt) nxt.ele.focuse();
 										break;
 									}
 
@@ -5635,26 +5675,27 @@ class ComponentUiUtil {
 
 										const ixCur = visibleMetaOptions.indexOf(out);
 										const prev = visibleMetaOptions[ixCur - 1];
-										if (prev) return prev.$ele.focus();
-										this._rdState.$iptSearch.focus();
+										if (prev) return prev.ele.focuse();
+										this._rdState.iptSearch.focuse();
 										break;
 									}
 
-									case "Enter": {
+									case "Enter":
+									case "Tab": {
 										this._addToSelection(v);
 
-										$ele.blur();
+										ele.blur();
 										break;
 									}
 								}
 							})
-							.appendTo(this._rdState.$wrpChoices);
+							.appendTo(this._rdState.wrpChoices);
 
 						const out = {
 							value: v,
 							isVisible: true,
 							searchTerm: this.constructor._getSearchString(display),
-							$ele,
+							ele,
 						};
 						return out;
 					});
@@ -5665,11 +5706,11 @@ class ComponentUiUtil {
 			this._addHookBase("selected", () => {
 				if (!this._isMultiSelect) {
 					this._rdState.optionMetas
-						.forEach(it => it.$ele.removeClass("active"));
+						.forEach(it => it.ele.removeClass("active"));
 
 					const optionMetaActive = this._rdState.optionMetas
 						.find(optionMeta => MiscUtil.isNearStrictlyEqual(optionMeta.value, this._state.selected));
-					if (optionMetaActive) optionMetaActive.$ele.addClass("active");
+					if (optionMetaActive) optionMetaActive.ele.addClass("active");
 				}
 
 				// TODO(Future) implement as required
@@ -5693,28 +5734,87 @@ class ComponentUiUtil {
 		}
 
 		render () {
-			this._rdState.$iptDisplay = this._render_$iptDisplay();
-			this._rdState.$iptSearch = this._render_$iptSearch();
+			this._rdState.iptDisplay = this._render_iptDisplay();
+			this._rdState.iptSearch = this._render_iptSearch();
 
 			(
 				{
-					$wrpChoices: this._rdState.$wrpChoices,
-					$wrp: this._rdState.$wrp,
-				} = this._render_$wrp({
-					$iptDisplay: this._rdState.$iptDisplay,
-					$iptSearch: this._rdState.$iptSearch,
+					wrpChoices: this._rdState.wrpChoices,
+					wrp: this._rdState.wrp,
+				} = this._render_wrp({
+					iptDisplay: this._rdState.iptDisplay,
+					iptSearch: this._rdState.iptSearch,
 				})
 			);
 
 			this._render_values();
 
 			return {
-				$wrp: this._rdState.$wrp,
-				$iptDisplay: this._rdState.$iptDisplay,
-				$iptSearch: this._rdState.$iptSearch,
+				wrp: this._rdState.wrp,
+				iptDisplay: this._rdState.iptDisplay,
+				iptSearch: this._rdState.iptSearch,
 			};
 		}
 	};
+
+	/**
+	 * A select2-style dropdown.
+	 * @param comp An instance of a class which extends BaseComponent.
+	 * @param prop Component to hook on.
+	 * @param opts Options Object.
+	 * @param opts.values Values to display.
+	 * @param [opts.fnFilter]
+	 * @param [opts.isAllowNull] If null is allowed.
+	 * @param [opts.fnDisplay] Value display function.
+	 * @param [opts.displayNullAs] If null values are allowed, display them as this string.
+	 * @param [opts.fnGetAdditionalStyleClasses] Function which converts an item into CSS classes.
+	 * @param [opts.asMeta] If a meta-object should be returned containing the hook and the select.
+	 * @param [opts.isDisabled] If the selector should be display-only
+	 * @return {HTMLElementExtended}
+	 */
+	static getSelSearchable (
+		comp,
+		prop,
+		{
+			values,
+			fnFilter,
+			isAllowNull,
+			fnDisplay,
+			displayNullAs,
+			fnGetAdditionalStyleClasses,
+			asMeta,
+			isDisabled,
+		} = {},
+	) {
+		const selComp = new this._SearchableDropdownComponent({
+			values,
+			isDisabled,
+			fnFilter,
+
+			isAllowNull,
+			fnDisplay,
+			displayNullAs,
+			fnGetAdditionalStyleClasses,
+		});
+
+		const hk = () => selComp.setSelected(comp._state[prop]);
+		comp._addHookBase(prop, hk)();
+
+		selComp.addHookSelected(() => comp._state[prop] = selComp.getSelected());
+
+		const {wrp, iptDisplay, iptSearch} = selComp.render();
+
+		return asMeta
+			? ({
+				wrp,
+				unhook: () => comp._removeHookBase(prop, hk),
+				iptDisplay,
+				iptSearch,
+				setFnFilter: selComp.setFnFilter.bind(selComp),
+				setValues: selComp.setValues.bind(selComp),
+			})
+			: wrp;
+	}
 
 	/**
 	 * A select2-style dropdown.
@@ -5745,34 +5845,27 @@ class ComponentUiUtil {
 			isDisabled,
 		} = {},
 	) {
-		const selComp = new this._SearchableDropdownComponent({
-			values,
-			isDisabled,
-			fnFilter,
-
-			isAllowNull,
-			fnDisplay,
-			displayNullAs,
-			fnGetAdditionalStyleClasses,
-		});
-
-		const hk = () => selComp.setSelected(comp._state[prop]);
-		comp._addHookBase(prop, hk)();
-
-		selComp.addHookSelected(() => comp._state[prop] = selComp.getSelected());
-
-		const {$wrp, $iptDisplay, $iptSearch} = selComp.render();
-
-		return asMeta
-			? ({
-				$wrp,
-				unhook: () => comp._removeHookBase(prop, hk),
-				$iptDisplay,
-				$iptSearch,
-				setFnFilter: selComp.setFnFilter.bind(selComp),
-				setValues: selComp.setValues.bind(selComp),
-			})
-			: $wrp;
+		const out = ComponentUiUtil.getSelSearchable(
+			comp,
+			prop,
+			{
+				values,
+				fnFilter,
+				isAllowNull,
+				fnDisplay,
+				displayNullAs,
+				fnGetAdditionalStyleClasses,
+				asMeta,
+				isDisabled,
+			},
+		);
+		if (!asMeta) return $(out);
+		return {
+			...out,
+			$wrp: $(out.wrp),
+			$iptDisplay: $(out.iptDisplay),
+			$iptSearch: $(out.iptSearch),
+		};
 	}
 
 	/* -------------------------------------------- */
@@ -6677,6 +6770,30 @@ class ComponentUiUtil {
 		return slider.get();
 	}
 
+	static getSliderNumber (
+		comp,
+		prop,
+		{
+			min,
+			max,
+			step,
+			ele,
+			asMeta,
+		} = {},
+	) {
+		const slider = (ele || ee`<input type="range">`)
+			.onn("change", () => comp._state[prop] = Number(slider.val()));
+
+		if (min != null) slider.attr("min", min);
+		if (max != null) slider.attr("max", max);
+		if (step != null) slider.attr("step", step);
+
+		const hk = comp._addHookBase(prop, () => slider.val(comp._state[prop]));
+		hk();
+
+		return asMeta ? ({slider, unhook: () => comp._removeHookBase(prop, hk)}) : slider;
+	}
+
 	static $getSliderNumber (
 		comp,
 		prop,
@@ -6688,18 +6805,26 @@ class ComponentUiUtil {
 			asMeta,
 		} = {},
 	) {
-		const $slider = ($ele || $(`<input type="range">`))
-			.change(() => comp._state[prop] = Number($slider.val()));
+		const ele = $ele?.length ? $ele[0] : undefined;
 
-		if (min != null) $slider.attr("min", min);
-		if (max != null) $slider.attr("max", max);
-		if (step != null) $slider.attr("step", step);
+		const out = this.getSliderNumber(
+			comp,
+			prop,
+			{
+				min,
+				max,
+				step,
+				ele,
+				asMeta,
+			},
+		);
 
-		const hk = () => $slider.val(comp._state[prop]);
-		comp._addHookBase(prop, hk);
-		hk();
+		if (!asMeta) return $(out);
 
-		return asMeta ? ({$slider, unhook: () => comp._removeHookBase(prop, hk)}) : $slider;
+		return {
+			...out,
+			$slider: $(out.slider),
+		};
 	}
 }
 ComponentUiUtil.RangeSlider = class {

@@ -362,6 +362,11 @@ Shared UI components
 				background-color: #e6e6e6;
 				border-color: #adadad;
 			}
+
+			&--stacked {
+				border-bottom: 1px solid vars.$rgb-border-grey;
+				margin-bottom: -2px;
+			}
 		}
 
 		&wrp-tab-body {
@@ -381,8 +386,14 @@ Shared UI components
 			}
 		}
 
-		&wrp-tab-heads--border {
-			border-bottom: 1px solid vars.$rgb-border-grey;
+		&wrp-tab-heads {
+			&--border {
+				border-bottom: 1px solid vars.$rgb-border-grey;
+			}
+
+			&--stacked {
+				padding-bottom: 1px;
+			}
 		}
 	}
 

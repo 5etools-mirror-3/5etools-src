@@ -16,6 +16,7 @@ const BLOCKLIST_FILE_PREFIXES = [
 	"makebrew-creature.json",
 	"makecards.json",
 	"characters.json",
+	"converter.json",
 ];
 
 const BLOCKLIST_KEYS = new Set([

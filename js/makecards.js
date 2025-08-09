@@ -354,10 +354,12 @@ class MakeCards extends BaseComponent {
 				};
 
 				if (evt.shiftKey) {
+					// eslint-disable-next-line vet-jquery/jquery
 					const content = Renderer.hover.$getHoverContent_statsCode(toCopy)[0];
 
 					Renderer.hover.getShowWindow(
 
+						// eslint-disable-next-line vet-jquery/jquery
 						$(content),
 						Renderer.hover.getWindowPositionFromEvent(evt),
 						{
@@ -636,6 +638,7 @@ class MakeCards extends BaseComponent {
 
 			if (initialVal) iptStr.val(initialVal);
 
+			// eslint-disable-next-line vet-jquery/jquery
 			$(iptStr).typeahead({
 				source: icon_names,
 				items: "16",

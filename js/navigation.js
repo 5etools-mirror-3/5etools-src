@@ -38,8 +38,8 @@ class NavBar {
 		btnShowHide.className = "ve-btn ve-btn-default page__btn-toggle-nav";
 		btnShowHide.innerHTML = "Menu";
 		btnShowHide.onclick = () => {
-			$(btnShowHide).toggleClass("active");
-			$(`.page__nav-hidden-mobile`).toggleClass("block", $(btnShowHide).hasClass("active"));
+			btnShowHide.classList.toggle("active");
+			em(`.page__nav-hidden-mobile`).forEach(ele => ele.toggleClass("block", btnShowHide.classList.contains("active")));
 		};
 		document.getElementById("navigation").prepend(btnShowHide);
 
@@ -768,15 +768,15 @@ class NavBar {
 	/* -------------------------------------------- */
 
 	static _handleItemMouseEnter (ele) {
-		const $ele = $(ele);
-		const timerIds = $ele.siblings("[data-timer-id]").map((i, e) => ({$ele: $(e), timerId: $(e).data("timer-id")})).get();
-		timerIds.forEach(({$ele, timerId}) => {
+		ele = e_(ele);
+		const timerIds = ele.siblings("[data-timer-id]").map(eleSib => ({ele: e_(eleSib), timerId: e_(eleSib).attr("data-timer-id")}));
+		timerIds.forEach(({ele, timerId}) => {
 			if (NavBar._timersOpen[timerId]) {
 				clearTimeout(NavBar._timersOpen[timerId]);
 				delete NavBar._timersOpen[timerId];
 			}
 
-			if (!NavBar._timersClose[timerId] && $ele.hasClass("open")) {
+			if (!NavBar._timersClose[timerId] && ele.hasClass("open")) {
 				const getTimeoutFn = () => {
 					if (NavBar._timerMousePos[timerId]) {
 						const [xStart, yStart] = NavBar._timerMousePos[timerId];
@@ -787,11 +787,11 @@ class NavBar {
 							NavBar._timerMousePos[timerId] = [EventUtil._mouseX, EventUtil._mouseY];
 							NavBar._timersClose[timerId] = setTimeout(() => getTimeoutFn(), NavBar._DROP_TIME / 2);
 						} else {
-							NavBar._closeDropdownElement($ele[0]);
+							NavBar._closeDropdownElement(ele);
 							delete NavBar._timersClose[timerId];
 						}
 					} else {
-						NavBar._closeDropdownElement($ele[0]);
+						NavBar._closeDropdownElement(ele);
 						delete NavBar._timersClose[timerId];
 					}
 				};
@@ -802,7 +802,7 @@ class NavBar {
 	}
 
 	static _handleSideItemMouseEnter (ele) {
-		const timerId = $(ele).closest(`li.dropdown`).data("timer-id");
+		const timerId = e_(ele).closest(`li.dropdown`).attr("data-timer-id");
 		if (NavBar._timersClose[timerId]) {
 			clearTimeout(NavBar._timersClose[timerId]);
 			delete NavBar._timersClose[timerId];
@@ -811,9 +811,9 @@ class NavBar {
 	}
 
 	static _handleSideDropdownMouseEnter (ele) {
-		const $ele = $(ele);
-		const timerId = $ele.parent().data("timer-id") || NavBar._timerId++;
-		$ele.parent().attr("data-timer-id", timerId);
+		ele = e_(ele);
+		const timerId = ele.parente().attr("data-timer-id") || NavBar._timerId++;
+		ele.parente().attr("data-timer-id", timerId);
 
 		if (NavBar._timersClose[timerId]) {
 			clearTimeout(NavBar._timersClose[timerId]);
@@ -830,9 +830,9 @@ class NavBar {
 	}
 
 	static _handleSideDropdownMouseLeave (ele) {
-		const $ele = $(ele);
-		if (!$ele.parent().data("timer-id")) return;
-		const timerId = $ele.parent().data("timer-id");
+		ele = e_(ele);
+		if (!ele.parente().attr("data-timer-id")) return;
+		const timerId = ele.parente().attr("data-timer-id");
 		clearTimeout(NavBar._timersOpen[timerId]);
 		delete NavBar._timersOpen[timerId];
 	}

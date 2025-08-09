@@ -645,7 +645,7 @@ class ModalFilterSpells extends ModalFilterBase {
 
 	async _pLoadAllData () {
 		return [
-			...(await DataUtil.spell.pLoadAll()),
+			...(await DataLoader.pCacheAndGetAllSite(UrlUtil.PG_SPELLS)),
 			...((await PrereleaseUtil.pGetBrewProcessed()).spell || []),
 			...((await BrewUtil2.pGetBrewProcessed()).spell || []),
 		];

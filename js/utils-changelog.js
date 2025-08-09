@@ -3,7 +3,7 @@
 class UtilsChangelog {
 	static _RELEASE_URL = "https://github.com/5etools-mirror-3/5etools-src/releases";
 
-	static renderChangelog (changelog, $wrp) {
+	static renderChangelog (changelog, wrp) {
 		let lastMajorVersion = 0;
 		let lastMinorVersion = 0;
 		changelog.forEach((it, i) => {
@@ -58,12 +58,10 @@ class UtilsChangelog {
 				htmlStack += `</div>`;
 			});
 
-			htmlStack += `</div>`;
-
 			const isLast = i === changelog.length - 1;
 
 			const titlePart = it.title ? `, &quot;<span ${it.titleAlt ? `class="help" title="AKA &quot;${it.titleAlt.escapeQuotes()}&quot; Edition"` : ""}>${it.title.escapeQuotes()}</span>&quot; Edition` : "";
-			$wrp.prepend(`<div class="ve-flex-col" id="v${it.ver}">
+			wrp.prepend(ee`<div class="ve-flex-col" id="v${it.ver}">
 				<div class="split-v-center">
 					<h${hLevel} class="bold">v${isLast ? `<a href="${UtilsChangelog._RELEASE_URL}" rel="noopener noreferrer">` : ""}${it.ver}${isLast ? `</a>` : ""}${titlePart}</h${hLevel}>
 					<span class="ve-muted">${it.date}</span>

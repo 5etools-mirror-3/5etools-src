@@ -546,6 +546,7 @@ export class BackgroundSkillToolLanguageTag {
 		} = {},
 	) {
 		const list = bg.entries.find(ent => ent.type === "list");
+		if (!list) return;
 
 		this._doSkillTag({bg, list, cbWarning});
 		this._doToolTag({bg, list, cbWarning});
@@ -606,15 +607,15 @@ export class BackgroundSkillToolLanguageTag {
 			return;
 		}
 
-		if (!/^({@skill [^}]+}(?:, )?)+$/.test(skillProf.entry)) return cbWarning(`(${bg.name}) Skills require manual tagging`);
+		if (!/^({@skill [^}]+}(?:, | and )?)+$/.test(skillProf.entry)) return cbWarning(`(${bg.name}) Skills require manual tagging`);
 
 		bg.skillProficiencies = [
 			skillProf.entry
-				.split(",")
+				.split(/, | and /)
 				.map(ent => ent.trim())
 				.mergeMap(str => {
 					const reTag = /^{@skill (?<skill>[^}]+)}$/.exec(str);
-					if (reTag) return {[reTag.groups.skill.toLowerCase().trim()]: true};
+					if (reTag) return {[reTag.groups.skill.toLowerCase().trim().replace(/\|xphb$/, "")]: true};
 					throw new Error(`Couldn't find tag in ${str}`);
 				}),
 		];
@@ -625,10 +626,11 @@ export class BackgroundSkillToolLanguageTag {
 		if (!toolProf) return;
 
 		const entry = Renderer.stripTags(toolProf.entry.toLowerCase())
-			.replace(/one type of gaming set/g, "gaming set")
-			.replace(/one type of artisan's tools/g, "artisan's tools")
-			.replace(/one type of gaming set/g, "gaming set")
-			.replace(/one type of musical instrument/g, "musical instrument")
+			.replace(/\(see [^)]+\)/g, "").trim()
+			.replace(/one (?:type|kind) of gaming set/g, "gaming set")
+			.replace(/one (?:type|kind) of artisan's tools/g, "artisan's tools")
+			.replace(/one (?:type|kind) of gaming set/g, "gaming set")
+			.replace(/one (?:type|kind) of musical instrument/g, "musical instrument")
 			.replace(/one other set of artisan's tools/g, "artisan's tools")
 			.replace(/s' supplies/g, "'s supplies")
 		;
@@ -659,35 +661,38 @@ export class BackgroundSkillToolLanguageTag {
 					break;
 				case "disguise kit, and artisan's tools or gaming set":
 					out["disguise kit"] = true;
-					out.choose = {from: ["artisan's tools", "gaming set"]};
+					out.choose = {from: ["anyArtisansTool", "anyGamingSet"]};
 					break;
 				case "any one musical instrument or gaming set of your choice, likely something native to your homeland":
-					out.choose = {from: ["musical instrument", "gaming set"]};
+					out.choose = {from: ["anyMusicalInstrument", "anyGamingSet"]};
 					break;
 				case "your choice of a gaming set or a musical instrument":
-					out.choose = {from: ["musical instrument", "gaming set"]};
+					out.choose = {from: ["anyMusicalInstrument", "anyGamingSet"]};
 					break;
 				case "musical instrument or artisan's tools":
-					out.choose = {from: ["musical instrument", "artisan's tools"]};
+					out.choose = {from: ["anyMusicalInstrument", "anyArtisansTool"]};
 					break;
 				case "one type of artistic artisan's tools and one musical instrument":
-					out["artisan's tools"] = true;
-					out["musical instrument"] = true;
+					out["anyArtisansTool"] = true;
+					out["anyMusicalInstrument"] = true;
 					break;
 				case "choose two from among gaming set, one musical instrument, and thieves' tools":
 					out.choose = {
-						from: ["gaming set", "musical instrument", "thieves' tools"],
+						from: ["anyGamingSet", "anyMusicalInstrument", "thieves' tools"],
 						count: 2,
 					};
 					break;
 				case "artisan's tools, or navigator's tools, or an additional language":
-					out.choose = {from: ["artisan's tools", "navigator's tools"]};
+					out.choose = {from: ["anyArtisansTool", "navigator's tools"]};
 					break;
 				case "gaming set or musical instrument":
-					out.choose = {from: ["gaming set", "musical instrument"]};
+					out.choose = {from: ["anyGamingSet", "anyMusicalInstrument"]};
 					break;
 				case "calligrapher's supplies or alchemist's supplies":
 					out.choose = {from: ["calligrapher's supplies", "alchemist's supplies"]};
+					break;
+				case "choose musical instrument":
+					out["anyMusicalInstrument"] = true;
 					break;
 				default:
 					cbWarning(`(${bg.name}) Tool proficiencies require manual tagging in "${entry}"`);

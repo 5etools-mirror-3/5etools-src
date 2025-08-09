@@ -182,7 +182,7 @@ class OmnisearchUi {
 		let typeTimer;
 		rdState.iptSearch
 			.onKeyup((evt) => {
-				rdState.clickFirst = false;
+				if (evt.key !== "Enter") rdState.clickFirst = false;
 				if (this._IPT_SEARCH_SPECIAL_KEYS.has(evt.key)) return;
 				clearTimeout(typeTimer);
 				typeTimer = setTimeout(() => this._handleClick_pSubmit({rdState}), this._TYPE_TIMEOUT_MS);

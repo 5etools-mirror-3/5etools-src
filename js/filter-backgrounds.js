@@ -169,7 +169,7 @@ class ModalFilterBackgrounds extends ModalFilterBase {
 
 	async _pLoadAllData () {
 		return [
-			...(await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/backgrounds.json`)).background,
+			...(await DataLoader.pCacheAndGetAllSite(UrlUtil.PG_BACKGROUNDS)),
 			...((await PrereleaseUtil.pGetBrewProcessed()).background || []),
 			...((await BrewUtil2.pGetBrewProcessed()).background || []),
 		];
