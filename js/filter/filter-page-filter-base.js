@@ -4,11 +4,18 @@ import {MISC_FILTER_VALUE__BASIC_RULES_2014, MISC_FILTER_VALUE__BASIC_RULES_2024
 /** @abstract */
 export class PageFilterBase {
 	static defaultSourceSelFn (val) {
-		// Assume the user wants to select their loaded homebrew by default
-		// Overridden by the "Deselect Homebrew Sources by Default" option
-		return SourceUtil.getFilterGroup(val) === SourceUtil.FILTER_GROUP_STANDARD
-			|| (SourceUtil.getFilterGroup(val) === SourceUtil.FILTER_GROUP_PARTNERED && (typeof BrewUtil2 === "undefined" || BrewUtil2.hasSourceJson(val)))
+		// Assume the user wants to select their loaded homebrew/prerelease content by default
+		// Overridden by the options:
+		//   - "Deselect Prerelease Content Sources by Default"
+		//   - "Deselect Homebrew Sources by Default"
+		return PageFilterBase.defaultSourceSelFnStandardPartnered(val)
+			|| SourceUtil.getFilterGroup(val) === SourceUtil.FILTER_GROUP_PRERELEASE
 			|| SourceUtil.getFilterGroup(val) === SourceUtil.FILTER_GROUP_HOMEBREW;
+	}
+
+	static defaultSourceSelFnStandardPartnered (val) {
+		return SourceUtil.getFilterGroup(val) === SourceUtil.FILTER_GROUP_STANDARD
+			|| (SourceUtil.getFilterGroup(val) === SourceUtil.FILTER_GROUP_PARTNERED && (typeof BrewUtil2 === "undefined" || BrewUtil2.hasSourceJson(val)));
 	}
 
 	static defaultMiscellaneousDeselFn (val) {
@@ -107,7 +114,7 @@ export class PageFilterBase {
 			.some(it => {
 				if (!UrlUtil.URL_TO_HASH_BUILDER[ent.__prop]) {
 					if (fnMissingBuilder) fnMissingBuilder(ent);
-					return false;
+					return true;
 				}
 
 				const unpacked = DataUtil.proxy.unpackUid(ent.__prop, it?.uid ?? it, Parser.getPropTag(ent.__prop));
@@ -120,8 +127,10 @@ export class PageFilterBase {
 		return (ent.alias || []).map(it => `"${it}"`).join(",");
 	}
 
-	static _hasFluff (ent) { return ent.hasFluff || ent.fluff?.entries; }
-	static _hasFluffImages (ent) { return ent.hasFluffImages || ent.fluff?.images; }
+	static _hasFluff (ent) { return !!(ent.hasFluff || ent.fluff?.entries); }
+	static _hasFluffImages (ent) { return !!(ent.hasFluffImages || ent.fluff?.images); }
+
+	static _hasSoundClip (ent) { return !!ent.soundClip; }
 
 	static _mutateForFilters_commonSources (ent) {
 		ent._fSources = SourceFilter.getCompleteFilterSources(ent);
@@ -139,9 +148,12 @@ export class PageFilterBase {
 		if (SourceUtil.isLegacySourceWotc(ent.source)) ent._fMisc.push("Legacy");
 
 		if (ent.isReprinted) ent._fMisc.push("Reprinted");
+		if (ent._isCopy) ent._fMisc.push("Modified Copy");
 
 		if (this._hasFluff(ent)) ent._fMisc.push("Has Info");
 		if (this._hasFluffImages(ent)) ent._fMisc.push("Has Images");
+
+		if (this._hasSoundClip(ent)) ent._fMisc.push("Has Pronunciation Audio");
 
 		if (this.isReprinted(ent)) ent._fMisc.push("Reprinted");
 	}

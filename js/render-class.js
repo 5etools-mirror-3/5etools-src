@@ -39,7 +39,7 @@ class _RenderClassesSidebarImplBase {
 
 			eleMulticlassing: this._getCommonElements_multiclassing({comp, cls, renderer}),
 
-			eleReprinted: this._getCommonElements_reprinted({comp, cls, renderer}),
+			elePage: this._getCommonElements_page({comp, cls, renderer}),
 		};
 	}
 
@@ -213,13 +213,11 @@ class _RenderClassesSidebarImplBase {
 
 	/* ----- */
 
-	_getCommonElements_reprinted ({comp, cls, renderer}) {
-		if (!cls.reprintedAs) return null;
-
+	_getCommonElements_page ({comp, cls, renderer}) {
 		const ele = e_({
 			tag: "tr",
 			html: `<td class="cls-side__section pt-3" colspan="6">
-				<i>${Renderer.utils.getReprintedAsHtml(cls)}.</i>
+				${Renderer.utils.getSourceAndPageTrHtml(cls)}
 			</td>`,
 		});
 
@@ -332,7 +330,7 @@ class _RenderClassesSidebarImplClassic extends _RenderClassesSidebarImplBase {
 			eleGroup,
 			eleRequirements,
 			eleMulticlassing,
-			eleReprinted,
+			elePage,
 		} = this._getCommonElements({
 			comp,
 			cls,
@@ -360,7 +358,7 @@ class _RenderClassesSidebarImplClassic extends _RenderClassesSidebarImplBase {
 			${eleProficiencies}
 			${eleStartingEquipment}
 			${eleMulticlassing}
-			${eleReprinted}
+			${elePage}
 
 			<tr><th class="ve-tbl-border" colspan="6"></th></tr>
 		</table>`;
@@ -424,7 +422,7 @@ class _RenderClassesSidebarImplOne extends _RenderClassesSidebarImplBase {
 			eleGroup,
 			eleRequirements,
 			eleMulticlassing,
-			eleReprinted,
+			elePage,
 		} = this._getCommonElements({
 			comp,
 			cls,
@@ -448,7 +446,7 @@ class _RenderClassesSidebarImplOne extends _RenderClassesSidebarImplBase {
 			${eleRequirements}
 			${eleCoreTraits}
 			${eleMulticlassing}
-			${eleReprinted}
+			${elePage}
 
 			<tr><th class="ve-tbl-border" colspan="6"></th></tr>
 		</table>`;

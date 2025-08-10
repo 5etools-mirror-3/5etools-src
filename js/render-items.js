@@ -11,7 +11,7 @@ export class RenderItems {
 		return `<div>${Renderer.get().render(`{@note See also: ${item[prop].map(it => `{@${tag} ${it}}`).join(", ")}.}`)}</div>`;
 	}
 
-	static $getRenderedItem (item) {
+	static getRenderedItem (item) {
 		const [ptDamage, ptProperties] = Renderer.item.getRenderedDamageAndProperties(item);
 		const ptMastery = Renderer.item.getRenderedMastery(item);
 		const [typeRarityText, subTypeText, tierText] = Renderer.item.getTypeRarityAndAttunementText(item);
@@ -39,7 +39,7 @@ export class RenderItems {
 				<td colspan="6">${textLeft || textRight}</td>
 			</tr>`;
 
-		return $$`
+		return ee`
 			${Renderer.utils.getBorderTr()}
 			${Renderer.utils.getExcludedTr({isExcluded: Renderer.item.isExcluded(item)})}
 			${Renderer.utils.getNameTr(item, {page: UrlUtil.PG_ITEMS})}
@@ -53,5 +53,9 @@ export class RenderItems {
 			${Renderer.utils.getPageTr(item)}
 			${Renderer.utils.getBorderTr()}
 		`;
+	}
+
+	static $getRenderedItem (ent, opts) {
+		return $(this.getRenderedItem(ent, opts));
 	}
 }

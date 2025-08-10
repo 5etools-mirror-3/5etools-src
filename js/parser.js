@@ -846,12 +846,14 @@ Parser.coinAbvToFull = function (coin) {
 /**
  * @param currency Object of the form `{pp: <n>, gp: <m>, ... }`.
  * @param isDisplayEmpty If "empty" values (i.e., those which are 0) should be displayed.
+ * @param styleHint
  */
-Parser.getDisplayCurrency = function (currency, {isDisplayEmpty = false} = {}) {
+Parser.getDisplayCurrency = function (currency, {isDisplayEmpty = false, styleHint = null} = {}) {
+	styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 	return [...Parser.COIN_ABVS]
 		.reverse()
 		.filter(abv => isDisplayEmpty ? currency[abv] != null : currency[abv])
-		.map(abv => `${currency[abv].toLocaleString()} ${abv}`)
+		.map(abv => `${currency[abv].toLocaleString()} ${styleHint === "classic" ? abv : abv.toUpperCase()}`)
 		.join(", ");
 };
 
@@ -1142,7 +1144,7 @@ Parser.skillProficienciesToFull = function (skillProficiencies, {styleHint = nul
 				if (chObj.from.length === 18) {
 					ptChoose = styleHint === "classic"
 						? `choose any ${count === 1 ? "skill" : chObj.count}`
-						: `Choose ${chObj.count}`;
+						: Renderer.get().render(`{@i Choose any ${chObj.count} ${count === 1 ? "skill" : "skills"}} (see {@book chapter 1|XPHB|1|Skill List})`);
 				} else {
 					ptChoose = styleHint === "classic"
 						? `choose ${count} from ${chObj.from.map(it => getRenderedSkill(it)).joinConjunct(", ", " and ")}`

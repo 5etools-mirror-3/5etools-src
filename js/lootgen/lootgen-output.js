@@ -1,4 +1,5 @@
 import {TOOLTIP_NOTHING} from "./lootgen-const.js";
+import {LootGenUtils} from "./lootgen-utils.js";
 
 export class LootGenOutput {
 	static _TIERS = ["other", "minor", "major"];
@@ -27,7 +28,7 @@ export class LootGenOutput {
 
 	_getEleTitleSplit () {
 		const btnRivet = !globalThis.IS_VTT && ExtensionUtil.ACTIVE
-			? ee`<button title="Send to Foundry (SHIFT for Temporary Import)" class="ve-btn ve-btn-xs ve-btn-default"><span class="glyphicon glyphicon-send"></span></button>`
+			? ee`<button title="Send to Foundry (SHIFT for Temporary Import)" class="no-print ve-btn ve-btn-xs ve-btn-default"><span class="glyphicon glyphicon-send"></span></button>`
 				.onn("click", evt => this._pDoSendToFoundry({isTemp: !!evt.shiftKey}))
 			: null;
 
@@ -207,7 +208,7 @@ export class LootGenOutput {
 			this._artObjects?.length ? this._artObjects.map(it => it.type * it.count * 100).sum() : 0,
 		].sum();
 
-		return ee`<li class="italic ve-muted">A total of ${(totalValue / 100).toLocaleString()} gp worth of coins, art objects, and/or gems, as follows:</li>`;
+		return ee`<li class="italic ve-muted">A total of ${(totalValue / 100).toLocaleString()} ${LootGenUtils.getCoinageLabel("gp")} worth of coins, art objects, and/or gems, as follows:</li>`;
 	}
 
 	_render_getPtCoins () {
@@ -217,10 +218,10 @@ export class LootGenOutput {
 		const breakdown = [...Parser.COIN_ABVS]
 			.reverse()
 			.filter(it => this._coins[it])
-			.map(it => `${this._coins[it].toLocaleString()} ${it}`);
+			.map(it => `${this._coins[it].toLocaleString()} ${LootGenUtils.getCoinageLabel(it)}`);
 
 		return ee`
-			<li>${(total / 100).toLocaleString()} gp in coinage:</li>
+			<li>${(total / 100).toLocaleString()} ${LootGenUtils.getCoinageLabel("gp")} in coinage:</li>
 			<ul>
 				${breakdown.map(it => `<li>${it}</li>`).join("")}
 			</ul>
@@ -243,7 +244,7 @@ export class LootGenOutput {
 
 		return loot.map(lt => {
 			return ee`
-			<li>${(lt.type).toLocaleString()} gp ${name} (×${lt.count}; worth ${((lt.type * lt.count)).toLocaleString()} gp total):</li>
+			<li>${(lt.type).toLocaleString()} ${LootGenUtils.getCoinageLabel("gp")} ${name} (×${lt.count}; worth ${((lt.type * lt.count)).toLocaleString()} ${LootGenUtils.getCoinageLabel("gp")} total):</li>
 			<ul>
 				${Object.entries(lt.breakdown).map(([result, count]) => `<li>${Renderer.get().render(result)}${count > 1 ? `, ×${count}` : ""}</li>`).join("")}
 			</ul>

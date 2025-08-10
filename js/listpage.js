@@ -162,8 +162,8 @@ class SublistManager {
 			isUseJquery: true,
 		});
 
-		const $wrpBtnsSortSublist = $("#sublistsort");
-		if ($wrpBtnsSortSublist.length) SortUtil.initBtnSortHandlers($wrpBtnsSortSublist, this._listSub);
+		const wrpBtnsSortSublist = es("#sublistsort");
+		if (wrpBtnsSortSublist) SortUtil.initBtnSortHandlers(wrpBtnsSortSublist, this._listSub);
 
 		if (this._$wrpContainer.hasClass(`sublist--resizable`)) this._pBindSublistResizeHandlers();
 
@@ -1181,9 +1181,9 @@ class ListPage {
 			isBindFindHotkey: true,
 			optsList: this._listOptions,
 		});
-		const $wrpBtnsSort = $("#filtertools");
-		SortUtil.initBtnSortHandlers($wrpBtnsSort, this._list);
-		if (this._isPreviewable) this._doBindPreviewAllButton($wrpBtnsSort.find(`[name="list-toggle-all-previews"]`));
+		const wrpBtnsSort = es("#filtertools");
+		SortUtil.initBtnSortHandlers(wrpBtnsSort, this._list);
+		if (this._isPreviewable) this._doBindPreviewAllButton($(wrpBtnsSort).find(`[name="list-toggle-all-previews"]`));
 
 		this._filterBox = await this._pageFilter.pInitFilterBox({
 			$iptSearch,
@@ -1309,7 +1309,7 @@ class ListPage {
 	get _bindOtherButtonsOptions () { return null; }
 
 	_bindOtherButtonsOptions_openAsSinglePage ({slugPage, fnGetHash}) {
-		if (!IS_DEPLOYED) return null;
+		// We expect these pages when `Boolean(IS_DEPLOYED)`, but, enable for local testing
 		return {
 			name: "Open Page",
 			type: "link",

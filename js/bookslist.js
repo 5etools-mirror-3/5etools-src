@@ -69,35 +69,34 @@ export class AdventuresBooksList {
 			await ExcludeUtil.pInitialise(),
 		]);
 
-		const $iptSearch = $(`#search`);
+		const iptSearch = es(`#search`);
 
 		const fnSort = (a, b, o) => this._fnSort(this._dataList, a, b, o);
 		this._list = new List({
-			$wrpList: $(".books"),
-			$iptSearch,
+			wrpList: es(".books"),
+			iptSearch,
 			fnSort,
 			sortByInitial: this._sortByInitial,
 			sortDirInitial: this._sortDirInitial,
-			isUseJquery: true,
 		});
-		SortUtil.initBtnSortHandlers($(`#filtertools`), this._list);
+		SortUtil.initBtnSortHandlers(es(`#filtertools`), this._list);
 
-		const $wrpBookshelf = $(".books--alt");
+		const wrpBookshelf = es(".books--alt");
 		this._listAlt = new List({
-			$wrpList: $wrpBookshelf,
-			$iptSearch,
+			wrpList: wrpBookshelf,
+			iptSearch,
 			fnSort,
 			sortByInitial: this._sortByInitial,
 			sortDirInitial: this._sortDirInitial,
 		});
 
-		$("#reset").click(() => {
+		es("#reset").onn("click", () => {
 			this._list.reset();
 			this._listAlt.reset();
-			$iptSearch.val("");
+			iptSearch.val("");
 
 			this._list.items.forEach(li => {
-				if (li.data.$btnToggleExpand.text() === "[\u2212]") li.data.$btnToggleExpand.click();
+				if (li.data.btnToggleExpand.txt() === "[\u2212]") li.data.btnToggleExpand.trigger("click");
 			});
 		});
 
@@ -112,7 +111,7 @@ export class AdventuresBooksList {
 		this._list.init();
 		this._listAlt.init();
 
-		if (ExcludeUtil.isAllContentExcluded(this._dataList)) $wrpBookshelf.append(ExcludeUtil.getAllContentBlocklistedHtml());
+		if (ExcludeUtil.isAllContentExcluded(this._dataList)) wrpBookshelf.appends(ExcludeUtil.getAllContentBlocklistedHtml());
 
 		window.dispatchEvent(new Event("toolsLoaded"));
 	}
@@ -128,12 +127,12 @@ export class AdventuresBooksList {
 
 			const isExcluded = ExcludeUtil.isExcluded(UrlUtil.URL_TO_HASH_BUILDER[this._rootPage](it), this._dataProp, it.source);
 
-			const $elesContents = [];
+			const elesContents = [];
 			it.contents.map((chapter, ixChapter) => {
-				const $lnkChapter = $$`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)},${ixChapter}" class="ve-flex w-100 bklist__row-chapter lst__row-border lst__row-inner lst__row lst__wrp-cells bold">
+				const lnkChapter = ee`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)},${ixChapter}" class="ve-flex w-100 bklist__row-chapter lst__row-border lst__row-inner lst__row lst__wrp-cells bold">
 					${Parser.bookOrdinalToAbv(chapter.ordinal)}${chapter.name}
 				</a>`;
-				$elesContents.push($lnkChapter);
+				elesContents.push(lnkChapter);
 
 				if (!chapter.headers) return;
 
@@ -145,37 +144,37 @@ export class AdventuresBooksList {
 					const headerTextClean = headerText.toLowerCase().trim();
 					const headerPos = headerCounts[headerTextClean] || 0;
 					headerCounts[headerTextClean] = (headerCounts[headerTextClean] || 0) + 1;
-					const $lnk = $$`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)},${ixChapter},${UrlUtil.encodeForHash(headerText)}${header.index ? `,${header.index}` : ""}${headerPos > 0 ? `,${headerPos}` : ""}" class="lst__row lst__row-border lst__row-inner lst__wrp-cells bklist__row-section ve-flex w-100">
+					const lnk = ee`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)},${ixChapter},${UrlUtil.encodeForHash(headerText)}${header.index ? `,${header.index}` : ""}${headerPos > 0 ? `,${headerPos}` : ""}" class="lst__row lst__row-border lst__row-inner lst__wrp-cells bklist__row-section ve-flex w-100">
 						${BookUtil.getContentsSectionHeader(header)}
 					</a>`;
-					$elesContents.push($lnk);
+					elesContents.push(lnk);
 				});
 			});
 
-			const $wrpContents = $$`<div class="ve-flex w-100 relative">
+			const wrpContents = ee`<div class="ve-flex w-100 relative">
 				<div class="vr-0 absolute bklist__vr-contents"></div>
-				<div class="ve-flex-col w-100 bklist__wrp-rows-inner">${$elesContents}</div>
+				<div class="ve-flex-col w-100 bklist__wrp-rows-inner">${elesContents}</div>
 			</div>`.hideVe();
 
-			const $btnToggleExpand = $(`<span class="px-2 py-1p bold mobile__hidden no-select">[+]</span>`)
-				.click(evt => {
+			const btnToggleExpand = ee`<span class="px-2 py-1p bold mobile__hidden no-select">[+]</span>`
+				.onn("click", evt => {
 					evt.stopPropagation();
 					evt.preventDefault();
-					$btnToggleExpand.text($btnToggleExpand.text() === "[+]" ? "[\u2212]" : "[+]");
-					$wrpContents.toggleVe();
+					btnToggleExpand.txt(btnToggleExpand.txt() === "[+]" ? "[\u2212]" : "[+]");
+					wrpContents.toggleVe();
 				});
 
-			const $eleLi = $$`<div class="ve-flex-col w-100">
+			const eleLi = ee`<div class="ve-flex-col w-100">
 				<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)}" class="split-v-center lst__row-border lst__row-inner lst__row ${isExcluded ? `lst__row--blocklisted` : ""}">
 					<span class="w-100 ve-flex">${this._rowBuilderFn(it)}</span>
-					${$btnToggleExpand}
+					${btnToggleExpand}
 				</a>
-				${$wrpContents}
+				${wrpContents}
 			</div>`;
 
 			const listItem = new ListItem(
 				this._dataIx,
-				$eleLi,
+				eleLi,
 				it.name,
 				{
 					source: Parser.sourceJsonToAbv(it.source),
@@ -183,7 +182,7 @@ export class AdventuresBooksList {
 					storyline: it.storyline || "",
 				},
 				{
-					$btnToggleExpand,
+					btnToggleExpand,
 				},
 			);
 
@@ -192,10 +191,10 @@ export class AdventuresBooksList {
 			const isLegacySource = SourceUtil.isLegacySourceWotc(it.source);
 
 			// region Alt list (covers/thumbnails)
-			const eleLiAlt = $(`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)}" class="ve-flex-col ve-flex-v-center m-3 bks__wrp-bookshelf-item ${isExcluded ? `bks__wrp-bookshelf-item--blocklisted` : ""} ${isLegacySource ? `bks__wrp-bookshelf-item--legacy` : ""} py-3 px-2 ${Parser.sourceJsonToSourceClassname(it.source)}" ${isLegacySource ? `title="(Legacy Source)"` : ""}>
+			const eleLiAlt = ee`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)}" class="ve-flex-col ve-flex-v-center m-3 bks__wrp-bookshelf-item ${isExcluded ? `bks__wrp-bookshelf-item--blocklisted` : ""} ${isLegacySource ? `bks__wrp-bookshelf-item--legacy` : ""} py-3 px-2 ${Parser.sourceJsonToSourceClassname(it.source)}" ${isLegacySource ? `title="(Legacy Source)"` : ""}>
 				<img src="${Renderer.adventureBook.getCoverUrl(it)}" class="mb-2 bks__bookshelf-image" loading="lazy" alt="Cover Image: ${(it.name || "").qq()}">
 				<div class="bks__bookshelf-item-name ve-flex-vh-center ve-text-center">${it.name}</div>
-			</a>`)[0];
+			</a>`;
 			const listItemAlt = new ListItem(
 				this._dataIx,
 				eleLiAlt,

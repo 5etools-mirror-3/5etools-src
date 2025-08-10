@@ -236,12 +236,20 @@ export class FilterBox extends ProxyBase {
 
 		const sourceFilter = this._filters.find(it => it.header === SOURCE_HEADER);
 		if (sourceFilter) {
-			const selFnAlt = (val) => !SourceUtil.isNonstandardSource(val) && !PrereleaseUtil.hasSourceJson(val) && !BrewUtil2.hasSourceJson(val);
 			const hkSelFn = () => {
-				if (this._meta.isBrewDefaultHidden) sourceFilter.setTempFnSel(selFnAlt);
-				else sourceFilter.setTempFnSel(null);
+				const {isPrereleaseDefaultHidden, isBrewDefaultHidden} = this._meta;
+				if (isPrereleaseDefaultHidden || isBrewDefaultHidden) {
+					const selFnAlt = (val) => {
+						return PageFilterBase.defaultSourceSelFnStandardPartnered(val)
+							|| (SourceUtil.getFilterGroup(val) === SourceUtil.FILTER_GROUP_PRERELEASE && !isPrereleaseDefaultHidden)
+							|| (SourceUtil.getFilterGroup(val) === SourceUtil.FILTER_GROUP_HOMEBREW && !isBrewDefaultHidden);
+					};
+					sourceFilter.setTempFnSel(selFnAlt);
+				} else sourceFilter.setTempFnSel(null);
+
 				sourceFilter.updateMiniPillClasses();
 			};
+			this._addHook("meta", "isPrereleaseDefaultHidden", hkSelFn);
 			this._addHook("meta", "isBrewDefaultHidden", hkSelFn);
 			hkSelFn();
 		}
@@ -352,6 +360,7 @@ export class FilterBox extends ProxyBase {
 	async _pOpenSettingsModal () {
 		const {$modalInner} = await UiUtil.pGetShowModal({title: "Settings"});
 
+		UiUtil.$getAddModalRowCb($modalInner, "Deselect Prerelease Content Sources by Default", this._meta, "isPrereleaseDefaultHidden");
 		UiUtil.$getAddModalRowCb($modalInner, "Deselect Homebrew Sources by Default", this._meta, "isBrewDefaultHidden");
 
 		UiUtil.addModalSep($modalInner);
@@ -858,6 +867,7 @@ FilterBox._STORAGE_KEY = "filterBoxState";
 FilterBox._DEFAULT_META = {
 	modeCombineFilters: "and",
 	isSummaryHidden: false,
+	isPrereleaseDefaultHidden: false,
 	isBrewDefaultHidden: false,
 };
 FilterBox._STORAGE_KEY_ALWAYS_SAVE_UNCHANGED = "filterAlwaysSaveUnchanged";

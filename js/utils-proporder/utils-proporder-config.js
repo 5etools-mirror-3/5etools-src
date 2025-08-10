@@ -1555,6 +1555,9 @@ const PROPORDER_ITEM = [
 
 				ObjectKey.getAttachedSpellFrequencyKey("charges"),
 
+				ObjectKey.getAttachedSpellFrequencyKey("resource"),
+				"resourceName",
+
 				ObjectKey.getAttachedSpellFrequencyKey("rest"),
 				ObjectKey.getAttachedSpellFrequencyKey("daily"),
 				ObjectKey.getAttachedSpellFrequencyKey("limited"),
@@ -2355,6 +2358,13 @@ const PROPORDER_FACILITY = [
 	"fluff",
 ];
 
+const PROPORDER_CONVERTER_SAMPLE = [
+	"converterId",
+	"format",
+	"edition",
+	"text",
+];
+
 export const PROPORDER_PROP_TO_LIST = {
 	"_meta": PROPORDER_META,
 	"_test": PROPORDER_TEST,
@@ -2456,6 +2466,7 @@ export const PROPORDER_PROP_TO_LIST = {
 	"foundryMap": PROPORDER_FOUNDRY_MAP,
 	"facility": PROPORDER_FACILITY,
 	"facilityFluff": PROPORDER_GENERIC_FLUFF,
+	"converterSample": PROPORDER_CONVERTER_SAMPLE,
 };
 
 export const PROPORDER_ROOT = [
@@ -2610,6 +2621,7 @@ export const PROPORDER_ROOT = [
 	// region Tooling
 	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "makebrewCreatureTrait"),
 	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "makebrewCreatureAction"),
+	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "converterSample"),
 	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "monsterfeatures"),
 	// endregion
 

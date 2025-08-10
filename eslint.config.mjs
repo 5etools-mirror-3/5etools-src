@@ -21,6 +21,10 @@ export default [
 				...globals.browser,
 			},
 		},
+		linterOptions: {
+			// TODO(jquery) remove
+			reportUnusedDisableDirectives: "off",
+		},
 		"rules": {
 			"vet-jquery/jquery": "warn",
 

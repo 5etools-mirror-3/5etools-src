@@ -165,6 +165,70 @@
 					}
 				}
 			]
+		},
+		{
+			"name": "Challenge 0-4",
+			"source": "XDMG",
+			"page": 120,
+			"crMin": 0,
+			"crMax": 4,
+			"table": [
+				{
+					"min": 1,
+					"max": 100,
+					"coins": {
+						"gp": "3d6"
+					}
+				}
+			]
+		},
+		{
+			"name": "Challenge 5-10",
+			"source": "XDMG",
+			"page": 120,
+			"crMin": 5,
+			"crMax": 10,
+			"table": [
+				{
+					"min": 1,
+					"max": 100,
+					"coins": {
+						"gp": "2d8*10"
+					}
+				}
+			]
+		},
+		{
+			"name": "Challenge 11-16",
+			"source": "XDMG",
+			"page": 120,
+			"crMin": 11,
+			"crMax": 16,
+			"table": [
+				{
+					"min": 1,
+					"max": 100,
+					"coins": {
+						"pp": "2d10*10"
+					}
+				}
+			]
+		},
+		{
+			"name": "Challenge 17+",
+			"source": "XDMG",
+			"page": 120,
+			"crMin": 17,
+			"crMax": 30,
+			"table": [
+				{
+					"min": 1,
+					"max": 100,
+					"coins": {
+						"pp": "2d8*100"
+					}
+				}
+			]
 		}
 	],
 	"hoard": [
@@ -1604,6 +1668,94 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Challenge 0-4",
+			"source": "XDMG",
+			"page": 120,
+			"crMin": 0,
+			"crMax": 4,
+			"coins": {
+				"gp": "2d4*100"
+			},
+			"table": [
+				{
+					"min": 1,
+					"max": 100,
+					"magicItems": [
+						{
+							"type": "randomByLevel",
+							"amount": "1d4-1"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Challenge 5-10",
+			"source": "XDMG",
+			"page": 120,
+			"crMin": 5,
+			"crMax": 10,
+			"coins": {
+				"gp": "8d10*100"
+			},
+			"table": [
+				{
+					"min": 1,
+					"max": 100,
+					"magicItems": [
+						{
+							"type": "randomByLevel",
+							"amount": "1d3"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Challenge 11-16",
+			"source": "XDMG",
+			"page": 138,
+			"crMin": 11,
+			"crMax": 16,
+			"coins": {
+				"gp": "8d8*1000"
+			},
+			"table": [
+				{
+					"min": 1,
+					"max": 100,
+					"magicItems": [
+						{
+							"type": "randomByLevel",
+							"amount": "1d4"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Challenge 17+",
+			"source": "XDMG",
+			"page": 120,
+			"crMin": 17,
+			"crMax": 30,
+			"coins": {
+				"gp": "6d10*10000"
+			},
+			"table": [
+				{
+					"min": 1,
+					"max": 100,
+					"magicItems": [
+						{
+							"type": "randomByLevel",
+							"amount": "1d6"
+						}
+					]
+				}
+			]
 		}
 	],
 	"dragon": [
@@ -2158,6 +2310,9 @@
 				"{@item Rhodochrosite} (opaque light pink)",
 				"{@item Tiger eye} (translucent brown with golden center)",
 				"{@item Turquoise} (opaque light blue-green)"
+			],
+			"reprintedAs": [
+				"10 GP Gemstones|XDMG"
 			]
 		},
 		{
@@ -2178,6 +2333,9 @@
 				"{@item Sardonyx} (opaque bands of red and white)",
 				"{@item Star rose quartz} (translucent rosy stone with white star-shaped center)",
 				"{@item Zircon} (transparent pale blue-green)"
+			],
+			"reprintedAs": [
+				"50 GP Gemstones|XDMG"
 			]
 		},
 		{
@@ -2196,6 +2354,9 @@
 				"{@item Pearl} (opaque lustrous white, yellow, or pink)",
 				"{@item Spinel} (transparent red, red-brown, or deep green)",
 				"{@item Tourmaline} (transparent pale green, blue, brown, or red)"
+			],
+			"reprintedAs": [
+				"100 GP Gemstones|XDMG"
 			]
 		},
 		{
@@ -2210,6 +2371,9 @@
 				"{@item Blue spinel} (transparent deep blue)",
 				"{@item Peridot} (transparent rich olive green)",
 				"{@item Topaz} (transparent golden yellow)"
+			],
+			"reprintedAs": [
+				"500 GP Gemstones|XDMG"
 			]
 		},
 		{
@@ -2226,6 +2390,9 @@
 				"{@item Star ruby} (translucent ruby with white star-shaped center)",
 				"{@item Star sapphire} (translucent blue sapphire with white star-shaped center)",
 				"{@item Yellow sapphire} (transparent fiery yellow or yellow-green)"
+			],
+			"reprintedAs": [
+				"1,000 GP Gemstones|XDMG"
 			]
 		},
 		{
@@ -2238,6 +2405,109 @@
 				"{@item Diamond} (transparent blue-white, canary, pink, brown, or blue)",
 				"{@item Jacinth} (transparent fiery orange)",
 				"{@item Ruby} (transparent clear red to deep crimson)"
+			],
+			"reprintedAs": [
+				"5,000 GP Gemstones|XDMG"
+			]
+		},
+		{
+			"name": "10 GP Gemstones",
+			"source": "XDMG",
+			"page": 214,
+			"type": 10,
+			"table": [
+				"{@item Azurite|XDMG} (mottled deep blue)",
+				"{@item Banded agate|XDMG} (striped brown, blue, white, or red)",
+				"{@item Blue quartz|XDMG} (pale blue)",
+				"{@item Eye agate|XDMG} (circles of gray, white, brown, blue, or green)",
+				"{@item Hematite|XDMG} (gray black)",
+				"{@item Lapis lazuli|XDMG} (light and dark blue with yellow flecks)",
+				"{@item Malachite|XDMG} (striated light and dark green)",
+				"{@item Moss agate|XDMG} (pink or yellow white with mossy gray or green markings)",
+				"{@item Obsidian|XDMG} (black)",
+				"{@item Rhodochrosite|XDMG} (light pink)",
+				"{@item Tiger eye|XDMG} (brown with golden center)",
+				"{@item Turquoise|XDMG} (light blue green)"
+			]
+		},
+		{
+			"name": "50 GP Gemstones",
+			"source": "XDMG",
+			"page": 214,
+			"type": 50,
+			"table": [
+				"{@item Bloodstone|XDMG} (dark gray with red flecks)",
+				"{@item Carnelian|XDMG} (orange to red brown)",
+				"{@item Chalcedony|XDMG} (white)",
+				"{@item Chrysoprase|XDMG} (green)",
+				"{@item Citrine|XDMG} (pale yellow brown)",
+				"{@item Jasper|XDMG} (blue, black, or brown)",
+				"{@item Moonstone|XDMG} (white with pale-blue glow)",
+				"{@item Onyx|XDMG} (bands of black and white, or pure black or white)",
+				"{@item Quartz|XDMG} (white, smoky gray, or yellow)",
+				"{@item Sardonyx|XDMG} (bands of red and white)",
+				"{@item Star rose quartz|XDMG} (rosy stone with white star-shaped center)",
+				"{@item Zircon|XDMG} (pale blue green)"
+			]
+		},
+		{
+			"name": "100 GP Gemstones",
+			"source": "XDMG",
+			"page": 214,
+			"type": 100,
+			"table": [
+				"{@item Amber|XDMG} (watery gold to rich gold)",
+				"{@item Amethyst|XDMG} (deep purple)",
+				"{@item Chrysoberyl|XDMG} (yellow green to pale green)",
+				"{@item Coral|XDMG} (crimson)",
+				"{@item Garnet|XDMG} (red, brown green, or violet)",
+				"{@item Jade|XDMG} (light green, deep green, or white)",
+				"{@item Jet|XDMG} (deep black)",
+				"{@item Pearl|XDMG} (lustrous white, yellow, or pink)",
+				"{@item Spinel|XDMG} (red, red brown, or deep green)",
+				"{@item Tourmaline|XDMG} (pale green, blue, brown, or red)"
+			]
+		},
+		{
+			"name": "500 GP Gemstones",
+			"source": "XDMG",
+			"page": 214,
+			"type": 500,
+			"table": [
+				"{@item Alexandrite|XDMG} (dark green)",
+				"{@item Aquamarine|XDMG} (pale blue green)",
+				"{@item Black pearl|XDMG} (pure black)",
+				"{@item Blue spinel|XDMG} (deep blue)",
+				"{@item Peridot|XDMG} (rich olive green)",
+				"{@item Topaz|XDMG} (golden yellow)"
+			]
+		},
+		{
+			"name": "1,000 GP Gemstones",
+			"source": "XDMG",
+			"page": 214,
+			"type": 1000,
+			"table": [
+				"{@item Black opal|XDMG} (dark green with black mottling and golden flecks)",
+				"{@item Blue sapphire|XDMG} (medium blue)",
+				"{@item Emerald|XDMG} (deep bright green)",
+				"{@item Fire opal|XDMG} (fiery red)",
+				"{@item Opal|XDMG} (pale blue with green and golden mottling)",
+				"{@item Star ruby|XDMG} (ruby with white star-shaped center)",
+				"{@item Star sapphire|XDMG} (blue sapphire with white star-shaped center)",
+				"{@item Yellow sapphire|XDMG} (fiery yellow or yellow green)"
+			]
+		},
+		{
+			"name": "5,000 GP Gemstones",
+			"source": "XDMG",
+			"page": 214,
+			"type": 5000,
+			"table": [
+				"{@item Black sapphire|XDMG} (lustrous black with glowing highlights)",
+				"{@item Diamond|XDMG} (blue white, canary, pink, brown, or blue)",
+				"{@item Jacinth|XDMG} (fiery orange)",
+				"{@item Ruby|XDMG} (clear red to deep crimson)"
 			]
 		}
 	],
@@ -2258,6 +2528,9 @@
 				"{@item Small mirror set in a painted wooden frame}",
 				"{@item Embroidered silk handkerchief}",
 				"{@item Gold locket with a painted portrait inside}"
+			],
+			"reprintedAs": [
+				"25 GP Art Objects|XDMG"
 			]
 		},
 		{
@@ -2276,6 +2549,9 @@
 				"{@item Brass mug with jade inlay}",
 				"{@item Box of turquoise animal figurines}",
 				"{@item Gold bird cage with electrum filigree}"
+			],
+			"reprintedAs": [
+				"250 GP Art Objects|XDMG"
 			]
 		},
 		{
@@ -2294,6 +2570,9 @@
 				"{@item Silver and gold brooch}",
 				"{@item Obsidian statuette with gold fittings and inlay}",
 				"{@item Painted gold war mask}"
+			],
+			"reprintedAs": [
+				"750 GP Art Objects|XDMG"
 			]
 		},
 		{
@@ -2312,6 +2591,9 @@
 				"{@item Gold circlet set with four aquamarines}",
 				"{@item Eye patch with a mock eye set in blue sapphire and moonstone}",
 				"A {@item necklace string of small pink pearls}"
+			],
+			"reprintedAs": [
+				"2,500 GP Art Objects|XDMG"
 			]
 		},
 		{
@@ -2328,6 +2610,99 @@
 				"{@item Painted gold child's sarcophagus}",
 				"{@item Jade game board with solid gold playing pieces}",
 				"{@item Bejeweled ivory drinking horn with gold filigree}"
+			],
+			"reprintedAs": [
+				"7,500 GP Art Objects|XDMG"
+			]
+		},
+		{
+			"name": "25 GP Art Objects",
+			"source": "XDMG",
+			"page": 215,
+			"type": 25,
+			"table": [
+				"{@item Silver ewer|XDMG}",
+				"{@item Carved bone statuette|XDMG}",
+				"{@item Gold bracelet|XDMG}",
+				"{@item Cloth-of-gold vestments|XDMG}",
+				"{@item Black velvet mask stitched with silver thread|XDMG}",
+				"{@item Copper chalice with silver filigree|XDMG}",
+				"{@item Pair of engraved bone dice|XDMG}",
+				"{@item Handheld mirror set in a painted wooden frame|XDMG}",
+				"{@item Embroidered silk handkerchief|XDMG}",
+				"{@item Gold locket with a painted portrait inside|XDMG}"
+			]
+		},
+		{
+			"name": "250 GP Art Objects",
+			"source": "XDMG",
+			"page": 215,
+			"type": 250,
+			"table": [
+				"{@item Gold ring set with bloodstones|XDMG}",
+				"{@item Carved ivory statuette|XDMG}",
+				"{@item Bejeweled gold bracelet|XDMG}",
+				"{@item Silver necklace with a gemstone pendant|XDMG}",
+				"{@item Bronze crown|XDMG}",
+				"{@item Silk vestments with gold embroidery|XDMG}",
+				"{@item Well-made tapestry that is 10 feet by 10 feet|XDMG}",
+				"{@item Brass mug with jade inlay|XDMG}",
+				"{@item Box of turquoise animal figurines|XDMG}",
+				"{@item Gold birdcage with electrum filigree|XDMG}"
+			]
+		},
+		{
+			"name": "750 GP Art Objects",
+			"source": "XDMG",
+			"page": 215,
+			"type": 750,
+			"table": [
+				"{@item Silver chalice set with moonstones|XDMG}",
+				"{@item Bundle of sheet music representing the lost dirges of a famous composer|XDMG}",
+				"{@item Carved wooden harp with ivory inlay and zircon gems|XDMG}",
+				"{@item Gold idol|XDMG}",
+				"{@item Gold comb shaped like a dragon with red garnets as eyes|XDMG}",
+				"{@item Bottle stopper cork embossed with gold leaf and set with amethysts|XDMG}",
+				"{@item Detailed, life-sized dragonborn skull cast in electrum|XDMG}",
+				"{@item Silver and gold brooch|XDMG}",
+				"{@item Obsidian statuette with gold fittings and inlay|XDMG}",
+				"{@item Painted gold war mask|XDMG}"
+			]
+		},
+		{
+			"name": "2,500 GP Art Objects",
+			"source": "XDMG",
+			"page": 215,
+			"type": 2500,
+			"table": [
+				"{@item Fine gold chain set with a fire opal|XDMG}",
+				"{@item Old masterpiece painting|XDMG}",
+				"{@item Embroidered silk and velvet mantle set with numerous moonstones|XDMG}",
+				"{@item Platinum bracelet set with an emerald|XDMG}",
+				"{@item Embroidered glove set with jewel chips|XDMG}",
+				"{@item Jeweled anklet|XDMG}",
+				"{@item Gold music box|XDMG}",
+				"{@item Gold circlet set with four aquamarines|XDMG}",
+				"{@item Eye patch decorated with tiny blue sapphires and moonstones|XDMG}",
+				"A {@item necklace string of small pink pearls|XDMG}"
+			]
+		},
+		{
+			"name": "7,500 GP Art Objects",
+			"source": "XDMG",
+			"page": 215,
+			"type": 7500,
+			"table": [
+				"{@item Jeweled gold crown|XDMG}",
+				"{@item Jeweled platinum ring|XDMG}",
+				"{@item Gold statuette set with rubies|XDMG}",
+				"{@item Gold cup set with emeralds|XDMG}",
+				"{@item Gold jewelry box with platinum filigree|XDMG}",
+				"{@item Set of gold nesting dolls|XDMG}",
+				"{@item Jade game board with gold playing pieces|XDMG}",
+				"{@item Bejeweled ivory drinking horn with gold filigree|XDMG}",
+				"{@item Gilded royal coach or funeral barge|XDMG}",
+				"{@item Ceremonial gold armor with black pearls|XDMG}"
 			]
 		}
 	],
@@ -8020,6 +8395,174 @@
 					"min": 91,
 					"max": 100,
 					"item": "{@item Talisman of Ultimate Evil|XDMG}"
+				}
+			]
+		},
+
+		{
+			"name": "By Level - Levels 1-4",
+			"source": "XDMG",
+			"page": 218,
+			"type": "byLevel.1-4",
+			"table": [
+				{
+					"min": 1,
+					"max": 54,
+					"choose": {
+						"fromMatching": {
+							"rarity": "common"
+						}
+					}
+				},
+				{
+					"min": 55,
+					"max": 91,
+					"choose": {
+						"fromMatching": {
+							"rarity": "uncommon"
+						}
+					}
+				},
+				{
+					"min": 92,
+					"max": 100,
+					"choose": {
+						"fromMatching": {
+							"rarity": "rare"
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "By Level - Levels 5-10",
+			"source": "XDMG",
+			"page": 218,
+			"type": "byLevel.5-10",
+			"table": [
+				{
+					"min": 1,
+					"max": 30,
+					"choose": {
+						"fromMatching": {
+							"rarity": "common"
+						}
+					}
+				},
+				{
+					"min": 31,
+					"max": 81,
+					"choose": {
+						"fromMatching": {
+							"rarity": "uncommon"
+						}
+					}
+				},
+				{
+					"min": 82,
+					"max": 98,
+					"choose": {
+						"fromMatching": {
+							"rarity": "rare"
+						}
+					}
+				},
+				{
+					"min": 99,
+					"max": 100,
+					"choose": {
+						"fromMatching": {
+							"rarity": "very rare"
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "By Level - Levels 11-16",
+			"source": "XDMG",
+			"page": 218,
+			"type": "byLevel.11-16",
+			"table": [
+				{
+					"min": 1,
+					"max": 11,
+					"choose": {
+						"fromMatching": {
+							"rarity": "common"
+						}
+					}
+				},
+				{
+					"min": 12,
+					"max": 34,
+					"choose": {
+						"fromMatching": {
+							"rarity": "uncommon"
+						}
+					}
+				},
+				{
+					"min": 35,
+					"max": 70,
+					"choose": {
+						"fromMatching": {
+							"rarity": "rare"
+						}
+					}
+				},
+				{
+					"min": 71,
+					"max": 93,
+					"choose": {
+						"fromMatching": {
+							"rarity": "very rare"
+						}
+					}
+				},
+				{
+					"min": 94,
+					"max": 100,
+					"choose": {
+						"fromMatching": {
+							"rarity": "legendary"
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "By Level - Levels 17-20",
+			"source": "XDMG",
+			"page": 218,
+			"type": "byLevel.17-20",
+			"table": [
+				{
+					"min": 1,
+					"max": 20,
+					"choose": {
+						"fromMatching": {
+							"rarity": "rare"
+						}
+					}
+				},
+				{
+					"min": 21,
+					"max": 64,
+					"choose": {
+						"fromMatching": {
+							"rarity": "very rare"
+						}
+					}
+				},
+				{
+					"min": 65,
+					"max": 100,
+					"choose": {
+						"fromMatching": {
+							"rarity": "legendary"
+						}
+					}
 				}
 			]
 		}

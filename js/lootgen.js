@@ -32,8 +32,7 @@ class LootGenPage {
 		if (savedState != null) this._lootGenUi.setStateFrom(savedState);
 
 		const savedStateDebounced = MiscUtil.throttle(this._pDoSaveState.bind(this), 100);
-		this._lootGenUi.addHookAll("state", () => savedStateDebounced());
-		this._lootGenUi.addHookAll("meta", () => savedStateDebounced());
+		this._lootGenUi.addHookOnSave(() => savedStateDebounced());
 
 		es(`#wrp-loading`).remove();
 		es(`#wrp-content`).showVe();

@@ -374,7 +374,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				isUseJquery: true,
 			},
 		});
-		SortUtil.initBtnSortHandlers($("#filtertools"), this._list);
+		SortUtil.initBtnSortHandlers(es("#filtertools"), this._list);
 
 		this._filterBox = await this._pageFilter.pInitFilterBox({
 			$iptSearch: $(`#lst__search`),

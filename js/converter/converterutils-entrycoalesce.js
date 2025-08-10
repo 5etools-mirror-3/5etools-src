@@ -73,6 +73,22 @@ export class EntryCoalesceEntryLists {
 	static _mutCoalesce_listsHanging ({stats, prop, styleHint}) {
 		if (styleHint === SITE_STYLE__CLASSIC) return;
 
+		let tmpList = null;
+
+		const getNewList = () => ({type: "list", style: "list-hang-notitle", items: []});
+		const checkFinalizeList = ({out}) => {
+			if (!tmpList?.items?.length) return;
+			out.push(tmpList);
+			tmpList = null;
+		};
+
+		const isIntroString = ({str, entNxt}) => {
+			return str.trim().endsWith(":")
+				&& /\b(choose|choice|one of the following|following benefits|options)\b/i.exec(str)
+				&& entNxt?.type === "entries";
+		};
+
+		// Walk for "string into entries"
 		stats[prop] = this._WALKER.walk(
 			stats[prop],
 			{
@@ -80,28 +96,16 @@ export class EntryCoalesceEntryLists {
 					if (objProp !== "entries") return arr;
 
 					const out = [];
-					let tmpList = null;
-
-					const getNewList = () => ({type: "list", style: "list-hang-notitle", items: []});
-					const checkFinalizeList = () => {
-						if (!tmpList?.items?.length) return;
-						out.push(tmpList);
-						tmpList = null;
-					};
 
 					for (let i = 0; i < arr.length; ++i) {
 						const ent = arr[i];
 						const entNxt = arr[i + 1];
 
 						if (typeof ent === "string") {
-							checkFinalizeList();
+							checkFinalizeList({out});
 							out.push(ent);
 
-							if (
-								ent.trim().endsWith(":")
-								&& /\b(choose|choice|one of the following|following benefits)\b/i.exec(ent)
-								&& entNxt?.type === "entries"
-							) {
+							if (isIntroString({str: ent, entNxt})) {
 								tmpList = getNewList();
 							}
 
@@ -118,7 +122,57 @@ export class EntryCoalesceEntryLists {
 						);
 					}
 
-					checkFinalizeList();
+					checkFinalizeList({out});
+
+					return out;
+				},
+			},
+			"entries",
+		);
+
+		// Walk for "trailing entry into entries"
+		stats[prop] = this._WALKER.walk(
+			stats[prop],
+			{
+				array: (arr, objProp) => {
+					if (objProp !== "entries") return arr;
+
+					const out = [];
+					let entryParent = null;
+
+					for (let i = 0; i < arr.length; ++i) {
+						const ent = arr[i];
+						const entNxt = arr[i + 1];
+
+						if (typeof ent === "string") {
+							checkFinalizeList({out: entryParent?.entries || out});
+							entryParent = null;
+							out.push(ent);
+							continue;
+						}
+
+						const trailingEnt = ent?.entries?.at(-1);
+
+						if (typeof trailingEnt === "string" && isIntroString({str: trailingEnt, entNxt})) {
+							checkFinalizeList({out: entryParent?.entries || out});
+							entryParent = ent;
+							out.push(ent);
+							tmpList = getNewList();
+							continue;
+						}
+
+						if (!tmpList) {
+							entryParent = null;
+							out.push(ent);
+							continue;
+						}
+
+						tmpList.items.push(
+							ConverterUtils.mutSetEntryTypePretty({obj: ent, type: "item"}),
+						);
+					}
+
+					checkFinalizeList({out: entryParent?.entries || out});
 
 					return out;
 				},

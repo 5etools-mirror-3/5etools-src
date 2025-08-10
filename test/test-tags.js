@@ -1834,7 +1834,9 @@ async function main () {
 			"./data",
 			ClazzDataTesters,
 			{
-				fnIsIgnoredFile: filePath => filePath.endsWith("changelog.json") || filePath.includes("/generated/"),
+				fnIsIgnoredFile: filePath => filePath.endsWith("changelog.json")
+					|| filePath.includes("/generated/")
+					|| filePath.endsWith("converter.json"),
 			},
 		);
 	}
