@@ -1191,8 +1191,8 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 		$$`<table class="cls-tbl shadow-big w-100 mb-2">
 			<tbody>
-			<tr><th class="ve-tbl-border" colspan="15"></th></tr>
-			<tr><th class="ve-text-left cls-tbl__disp-name" colspan="15">${cls.name}</th></tr>
+			<tr><th class="ve-tbl-border" colspan="999"></th></tr>
+			<tr><th class="ve-text-left cls-tbl__disp-name" colspan="999">${cls.name}</th></tr>
 			<tr>
 				<th colspan="3"></th> <!-- spacer to match the 3 default cols (level, prof, features) -->
 				${$tblGroupHeaders}
@@ -1204,7 +1204,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				${$tblHeaders}
 			</tr>
 			${metasTblRows.map(it => it.$row)}
-			<tr><th class="ve-tbl-border" colspan="15"></th></tr>
+			<tr><th class="ve-tbl-border" colspan="999"></th></tr>
 			</tbody>
 		</table>`.appendTo($wrpTblClass);
 		$wrpTblClass.showVe();

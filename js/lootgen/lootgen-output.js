@@ -74,7 +74,7 @@ export class LootGenOutput {
 					type: VeCt.DRAG_TYPE_LOOT,
 					data: dropData,
 				};
-				evt.originalEvent.dataTransfer.setData("application/json", JSON.stringify(meta));
+				evt.dataTransfer.setData("application/json", JSON.stringify(meta));
 			});
 
 		// Preload the drop data in the background, to lessen the chance that the user drops the card before it has time
