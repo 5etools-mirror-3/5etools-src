@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.11.0"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.11.1"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -2805,6 +2805,29 @@ globalThis.EventUtil = class {
 
 	static isMiddleMouse (evt) { return evt.button === 1; }
 
+	static getDeltaPixels (evt, {lineHeight = null} = {}) {
+		const {deltaX, deltaY, deltaMode} = evt;
+		return {
+			deltaPixelsX: deltaX ? this._getDeltaPixels({delta: deltaX, deltaMode, lineHeight}) : 0,
+			deltaPixelsY: deltaY ? this._getDeltaPixels({delta: deltaY, deltaMode, lineHeight}) : 0,
+		};
+	}
+
+	static _getDeltaPixels ({delta, deltaMode, lineHeight = null}) {
+		switch (deltaMode) {
+			case WheelEvent.DOM_DELTA_PIXEL: return delta;
+			case WheelEvent.DOM_DELTA_LINE: return delta * (lineHeight ?? this._getInitDeltaPixelsLineHeight());
+			case WheelEvent.DOM_DELTA_PAGE: return delta * window.innerHeight;
+			default: throw new Error(`Unimplemented!`);
+		}
+	}
+
+	static _DELTA_PIXELS_LINE_HEIGHT_DEFAULT = null;
+
+	static _getInitDeltaPixelsLineHeight () {
+		return (this._DELTA_PIXELS_LINE_HEIGHT_DEFAULT ??= Number(window.getComputedStyle(document.body).lineHeight.replace(/px$/, "")));
+	}
+
 	/* -------------------------------------------- */
 
 	// In order of preference/priority.
@@ -5157,11 +5180,9 @@ globalThis.DataUtil = class {
 			if (entParent._copy) await DataUtil.generic._pMergeCopy(impl, page, entryList, entParent, options);
 
 			// Preload templates, if required
-			// TODO(Template) allow templates for other entity types
-			const templateData = entry._copy?._templates
-				? (await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/bestiary/template.json`))
-				: null;
-			return DataUtil.generic.copyApplier.getCopy(impl, MiscUtil.copyFast(entParent), entry, templateData, options);
+			const templates = await this._pMergeCopy_pGetTemplates(entry);
+
+			return DataUtil.generic.copyApplier.getCopy(impl, MiscUtil.copyFast(entParent), entry, templates, options);
 		}
 
 		static _pMergeCopy_search (impl, page, entryList, entry, options) {
@@ -5172,6 +5193,19 @@ globalThis.DataUtil = class {
 				impl._mergeCache[hash] ||= ent;
 				return hash === entryHash;
 			});
+		}
+
+		static async _pMergeCopy_pGetTemplates (entry) {
+			if (!entry._copy?._templates) return null;
+
+			// TODO(Template) allow templates for other entity types
+			switch (entry.__prop) {
+				case "monster": {
+					const templateData = await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/bestiary/template.json`);
+					return templateData.monsterTemplate;
+				}
+				default: throw new Error(`Unsupported!`);
+			}
 		}
 
 		static COPY_ENTRY_PROPS = [
@@ -5750,7 +5784,7 @@ globalThis.DataUtil = class {
 				else this._doMod_handleProp({copyTo, copyFrom, modInfos, msgPtFailed});
 			}
 
-			static getCopy (impl, copyFrom, copyTo, templateData, {isExternalApplicationKeepCopy = false, isExternalApplicationIdentityOnly = false} = {}) {
+			static getCopy (impl, copyFrom, copyTo, templates, {isExternalApplicationKeepCopy = false, isExternalApplicationIdentityOnly = false} = {}) {
 				this._WALKER ||= MiscUtil.getWalker();
 
 				if (isExternalApplicationKeepCopy) copyTo.__copy = MiscUtil.copyFast(copyFrom);
@@ -5762,16 +5796,15 @@ globalThis.DataUtil = class {
 				if (copyMeta._mod) this._normaliseMods(copyMeta);
 
 				// fetch and apply any external template -- append them to existing copy mods where available
-				let templates = null;
+				let templatesToApply = null;
 				let templateErrors = [];
 				if (copyMeta._templates?.length) {
-					templates = copyMeta._templates
+					templatesToApply = copyMeta._templates
 						.map(({name: templateName, source: templateSource}) => {
 							templateName = templateName.toLowerCase().trim();
 							templateSource = templateSource.toLowerCase().trim();
 
-							// TODO(Template) allow templates for other entity types
-							const template = templateData.monsterTemplate
+							const template = templates
 								.find(({name, source}) => name.toLowerCase().trim() === templateName && source.toLowerCase().trim() === templateSource);
 
 							if (!template) {
@@ -5783,7 +5816,7 @@ globalThis.DataUtil = class {
 						})
 						.filter(Boolean);
 
-					templates
+					templatesToApply
 						.forEach(template => {
 							if (!template.apply._mod) return;
 
@@ -5821,8 +5854,8 @@ globalThis.DataUtil = class {
 				});
 
 				// apply any root template properties after doing base copy
-				if (templates?.length) {
-					templates
+				if (templatesToApply?.length) {
+					templatesToApply
 						.forEach(template => {
 							if (!template.apply?._root) return;
 

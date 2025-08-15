@@ -290,7 +290,7 @@ export class ManageBrewUi {
 
 		const btnSaveToUrl = ee`<button class="ve-btn ve-btn-default ve-btn-sm" title="Note that this does not include &quot;Editable&quot; or &quot;Local&quot; content.">Export List as URL</button>`
 			.onn("click", async evt => {
-				await this.constructor.pOnClickBtnExportListAsUrl({ele: evt.originalEvent.currentTarget});
+				await this.constructor.pOnClickBtnExportListAsUrl({ele: evt.currentTarget});
 			});
 
 		const wrpBtnLoadAll = this._brewUtil.IS_ADD_BTN_ALL_PARTNERED
