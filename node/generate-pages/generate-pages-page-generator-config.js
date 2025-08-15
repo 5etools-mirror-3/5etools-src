@@ -351,6 +351,8 @@ class _PageGeneratorRenderdemo extends PageGeneratorGeneric {
 
 	_scriptsLibAdditional = [
 		"ace.js",
+		"ext-language_tools.js",
+		"ace-linters.js",
 	];
 
 	_scripts = [
