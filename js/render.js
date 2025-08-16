@@ -15046,6 +15046,7 @@ Renderer.hover = class {
 			`onmouseleave="Renderer.hover.handleLinkMouseLeave(event, this)"`,
 			`onmousemove="Renderer.hover.handleLinkMouseMove(event, this)"`,
 			`onclick="Renderer.hover.handleLinkClick(event, this)"`,
+			`onwheel="Renderer.hover.handleLinkWheel(event, this)"`,
 			`ondragstart="Renderer.hover.handleLinkDragStart(event, this)"`,
 			`data-vet-page="${page.qq()}"`,
 			`data-vet-source="${source.qq()}"`,
@@ -15328,6 +15329,22 @@ Renderer.hover = class {
 		// Close the window (if not permanent)
 		// Note that this prevents orphan windows when e.g. clicking a specific variant on an Items page magicvariant
 		Renderer.hover.handleLinkMouseLeave(evt, ele);
+	}
+
+	static handleLinkWheel (evt, ele) {
+		if (!evt.altKey) return;
+
+		const meta = Renderer.hover._eleCache.get(ele);
+		if (!meta || meta.isPermanent) return;
+
+		if (!meta.windowMeta) return;
+
+		evt.stopPropagation();
+		evt.preventDefault();
+
+		const {deltaPixelsX, deltaPixelsY} = EventUtil.getDeltaPixels(evt);
+
+		meta.windowMeta.mutScroll({deltaPixelsX, deltaPixelsY});
 	}
 
 	// (Baked into render strings)
@@ -15798,6 +15815,7 @@ Renderer.hover = class {
 		hoverWindow.setZIndex = Renderer.hover._getNextZIndex.bind(this, {$hov, hoverWindow});
 
 		hoverWindow.setPosition = Renderer.hover._getShowWindow_setPosition.bind(this, {$hov, $wrpContent, position});
+		hoverWindow.mutScroll = Renderer.hover._getShowWindow_mutScroll.bind(this, {$hov, $wrpContent, position});
 		hoverWindow.setIsPermanent = Renderer.hover._getShowWindow_setIsPermanent.bind(this, {opts, $brdrTop: brdrTop});
 		hoverWindow.doClose = Renderer.hover._getShowWindow_doClose.bind(this, {$hov, position, mouseUpId, mouseMoveId, resizeId, hoverId, opts, hoverWindow});
 		hoverWindow.doMaximize = Renderer.hover._getShowWindow_doMaximize.bind(this, {$brdrTop: brdrTop, $hov});
@@ -15958,6 +15976,11 @@ Renderer.hover = class {
 		}
 
 		Renderer.hover._getShowWindow_adjustPosition({$hov, $wrpContent, position});
+	}
+
+	static _getShowWindow_mutScroll ({$hov, $wrpContent, position}, {deltaPixelsX, deltaPixelsY}) {
+		if (!deltaPixelsX && !deltaPixelsY) return;
+		$wrpContent[0].scrollBy(deltaPixelsX, deltaPixelsY);
 	}
 
 	static _getShowWindow_adjustPosition ({$hov, $wrpContent, position}) {
