@@ -1,0 +1,2139 @@
+{
+	"$schema": "https://raw.githubusercontent.com/TheGiddyLimit/5etools-utils/master/schema/brew-fast/homebrew.json",
+	"_meta": {
+		"sources": [
+			{
+				"json": "GAaCH",
+				"abbreviation": "GAaCH",
+				"full": "Gnome Alone - A Christmas Heist!",
+				"url": "https://5e.orcnog.com/homebrew/dnd/adventure/adventure_gaach.json",
+				"convertedBy": [
+					"orcnog"
+				],
+				"version": "1.0",
+				"color": "#158521",
+				"targetSchema": "1.2"
+			}
+		],
+		"dateAdded": 1613648837,
+		"dateLastModified": 1613648837,
+		"_dateLastModifiedHash": "e5f748a123",
+		"internalCopies": [
+			"monster"
+		],
+		"dependencies": {
+			"monster": [
+				"MPMM"
+			]
+		}
+	},
+	"item": [
+		{
+			"name": "Silver Bell Dust",
+			"source": "GAaCH",
+			"page": 212,
+			"rarity": "uncommon",
+			"wondrous": true,
+			"entries": [
+				"A silver sleigh bell straight from Santa's sleigh (probably). When shaken it rings with a beautiful joyful sound announcing \"it's Christmas time in the city\" but also silver dust comes out of it. As an action, you can sprinkle this dust on yourself or another creature you can see within 5 feet of you. The recipient gains a flying speed of 30 feet and the ability to hover for 1 minute. If the creature is airborne when this effect ends, it falls safely to the ground, taking no damage and landing on its feet.",
+				"A silver bell holds enough dust for one use."
+			]
+		},
+		{
+			"name": "Double Shot White Chocolate Peppermint Mocha Orcnog, Extra Whip",
+			"source": "GAaCH",
+			"page": 212,
+			"type": "P",
+			"rarity": "uncommon",
+			"entries": [
+				"When you drink this potion, you gain advantage on one ability check, attack roll, or saving throw of your choice that you make within the next hour.",
+				"This potion takes the form of a sparkling, golden mist that moves and pours like water."
+			]
+		}
+	],
+	"monster": [
+		{
+			"name": "Nevin McCallister",
+			"isNamedCreature": true,
+			"source": "GAaCH",
+			"size": [
+				"S"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"gnome"
+				]
+			},
+			"alignment": [
+				"C",
+				"G"
+			],
+			"ac": [
+				14
+			],
+			"hp": {
+				"average": 35,
+				"formula": "8d6 + 8"
+			},
+			"speed": {
+				"walk": 35
+			},
+			"str": 8,
+			"dex": 18,
+			"con": 12,
+			"int": 8,
+			"wis": 7,
+			"cha": 8,
+			"save": {
+				"dex": "+6",
+				"wis": "+0",
+				"int": "+1",
+				"cha": "+1"
+			},
+			"skill": {
+				"acrobatics": "+6",
+				"perception": "+0",
+				"stealth": "+6"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 10,
+			"languages": [
+				"Common",
+				"Gnomish"
+			],
+			"cr": "2",
+			"trait": [
+				{
+					"name": "Rascal Action",
+					"entries": [
+						"On each of its turns, Nevin can use a bonus action to take the Dash, Disengage, or Hide action."
+					]
+				},
+				{
+					"name": "Sugar Buzz",
+					"entries": [
+						"Due to an insane sugar high from his recent all-junk-food diet, Nevin's reflexes are, at present, otherworldly. When Nevin is makes a Dexterity saving throw to take only half damage, he instead takes no damage if he succeeds, and only half damage if he fails."
+					]
+				},
+				{
+					"name": "Little Twerp Resistance (3/Day)",
+					"entries": [
+						"If Nevin fails a saving throw, he can choose to succeed instead."
+					]
+				},
+				{
+					"name": "Pack Tactics",
+					"entries": [
+						"Nevin has advantage on an attack roll against a creature if at least one of the Nevin's allies is within 5 feet of the creature and the ally isn't {@condition incapacitated}."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Pencil Stab",
+					"entries": [
+						"{@atk mw} {@hit 1} to hit, reach 5 ft., one target. {@h}1 piercing damage."
+					]
+				},
+				{
+					"name": "Pellet Gun",
+					"entries": [
+						"{@atk rw} {@hit 6} to hit, range 30/90 ft., one target. {@h}1 piercing damage."
+					]
+				}
+			],
+			"legendary": [
+				{
+					"name": "",
+					"entries": [
+						"Little Twerp Actions."
+					]
+				},
+				{
+					"name": "Move",
+					"entries": [
+						"Nevin moves up to its speed without provoking opportunity attacks."
+					]
+				},
+				{
+					"name": "Attack",
+					"entries": [
+						"Nevin makes one weapon attack."
+					]
+				}
+			],
+			"traitTags": [
+				"Pack Tactics"
+			],
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"C",
+				"E"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"RW"
+			]
+		},
+		{
+			"name": "Mama McCallister",
+			"group": [
+				"Gem Dragon"
+			],
+			"source": "GAaCH",
+			"page": 172,
+			"size": [
+				"L"
+			],
+			"type": {
+				"type": "dragon",
+				"tags": [
+					"gem"
+				]
+			},
+			"alignment": [
+				"C",
+				"N"
+			],
+			"alignmentPrefix": "typically ",
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 95,
+				"formula": "10d10 + 40"
+			},
+			"speed": {
+				"walk": 40,
+				"burrow": 20,
+				"climb": 40,
+				"fly": 80
+			},
+			"str": 17,
+			"dex": 12,
+			"con": 18,
+			"int": 16,
+			"wis": 14,
+			"cha": 17,
+			"save": {
+				"dex": "+4",
+				"con": "+7",
+				"wis": "+5",
+				"cha": "+6"
+			},
+			"skill": {
+				"perception": "+8",
+				"stealth": "+7",
+				"survival": "+5"
+			},
+			"senses": [
+				"blindsight 30 ft.",
+				"darkvision 120 ft."
+			],
+			"passive": 18,
+			"resist": [
+				"cold",
+				"radiant"
+			],
+			"languages": [
+				"Common",
+				"Draconic",
+				"telepathy 120 ft."
+			],
+			"cr": "5",
+			"spellcasting": [
+				{
+					"name": "Spellcasting (Psionics)",
+					"headerEntries": [
+						"Mama McCallister casts one of the following spells, requiring no spell components and using Intelligence as the spellcasting ability (spell save {@dc 16}):"
+					],
+					"will": [
+						"{@spell dancing lights}",
+						"{@spell guidance}"
+					],
+					"daily": {
+						"1e": [
+							"{@spell hypnotic pattern}",
+							"{@spell lesser restoration}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Mama McCallister makes one Bite attack and two Claw attacks."
+					]
+				},
+				{
+					"name": "Purse",
+					"entries": [
+						"{@atk mw} {@hit 6} to hit, reach 10 ft., one target. {@h}14 ({@damage 2d10 + 3}) piercing damage plus 4 ({@damage 1d8}) radiant damage."
+					]
+				},
+				{
+					"name": "Manicured Nails",
+					"entries": [
+						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) slashing damage."
+					]
+				},
+				{
+					"name": "Psychotic High Pitched Rage Scream {@recharge 5}",
+					"entries": [
+						"Mama McCallister exhales a burst of brilliant radiance in a 30-foot cone. Each creature in that area must make a {@dc 15} Constitution saving throw, taking 27 ({@damage 6d8}) radiant damage on a failed save, or half as much damage on a successful one. Mama McCallister then gains 10 temporary hit points by absorbing a portion of the radiant energy."
+					]
+				}
+			],
+			"dragonAge": "young",
+			"senseTags": [
+				"B",
+				"SD"
+			],
+			"actionTags": [
+				"Breath Weapon",
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"TP"
+			],
+			"damageTags": [
+				"P",
+				"R",
+				"S"
+			],
+			"spellcastingTags": [
+				"P"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RCH"
+			],
+			"conditionInflictSpell": [
+				"charmed",
+				"incapacitated"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Old Man Marley",
+			"source": "GAaCH",
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"alignment": [
+				"N",
+				"N"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"heavy peacoat",
+						"trash can lid shield"
+					]
+				}
+			],
+			"hp": {
+				"average": 60,
+				"formula": "8d8 + 24"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 15,
+			"dex": 13,
+			"con": 14,
+			"int": 8,
+			"wis": 11,
+			"cha": 13,
+			"skill": {
+				"intimidation": "+3",
+				"perception": "+2"
+			},
+			"passive": 12,
+			"resist": [
+				"cold"
+			],
+			"languages": [
+				"Common"
+			],
+			"cr": "4",
+			"trait": [
+				{
+					"name": "Wintry Weapon (Recharges after a Short or Long Rest)",
+					"entries": [
+						"As a bonus action, Marley can wreath his snow shovel in a wintry swirl of cold. Marley is unharmed by this cold, which lasts until the end of the guard's next turn. While wreathed in cold, the weapon deals an extra 3 ({@damage 1d6}) cold damage on a hit."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Marley makes two melee attacks."
+					]
+				},
+				{
+					"name": "Snow Shovel",
+					"entries": [
+						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}8 ({@damage 1d8 + 4}) slashing damage."
+					]
+				},
+				{
+					"name": "Icicle Throw",
+					"entries": [
+						"{@atk rw} {@hit 5} to hit, range 100/400 ft., one target. {@h}8 ({@damage 1d10 + 3}) piercing damage."
+					]
+				}
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"F",
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MW",
+				"RNG",
+				"RW"
+			],
+			"hasToken": true,
+			"hasFluff": true
+		},
+		{
+			"name": "Crazy Bird Lady",
+			"isNpc": true,
+			"source": "GAaCH",
+			"page": 206,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"human"
+				]
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				12,
+				{
+					"ac": 15,
+					"condition": "with {@spell mage armor}",
+					"braces": true
+				}
+			],
+			"hp": {
+				"average": 27,
+				"formula": "5d8 + 5"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 14,
+			"con": 12,
+			"int": 17,
+			"wis": 10,
+			"cha": 11,
+			"skill": {
+				"arcana": "+5",
+				"investigation": "+5",
+				"performance": "+2"
+			},
+			"passive": 10,
+			"languages": [
+				"Common",
+				"Draconic",
+				"Elvish",
+				"Halfling"
+			],
+			"cr": "2",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"headerEntries": [
+						"Crazy Bird Lady is a 4th-level spellcaster. Her spellcasting ability is Intelligence (spell save {@dc 13}, {@hit 5} to hit with spell attacks). She has the following wizard spells prepared:"
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell acid splash|PHB|homeless stank}",
+								"{@spell light|PHB|glowing birdseed}",
+								"{@spell mage hand|PHB|helper pigeon}",
+								"{@spell poison spray|PHB|spit on you}",
+								"{@spell shocking grasp|PHB|freezing hands}"
+							]
+						},
+						"1": {
+							"slots": 4,
+							"spells": [
+								"{@spell detect magic|PHB|the birds can hear}",
+								"{@spell mage armor|PHB|cardboard box armor}",
+								"{@spell magic missile|PHB|turtle dove ninja stars}",
+								"{@spell sleep}"
+							]
+						},
+						"2": {
+							"slots": 3,
+							"spells": [
+								"{@spell blindness/deafness|PHB|birdseed in the face!}",
+								"{@spell cloud of daggers|PHB|swarm of pigeons}",
+								"{@spell scorching ray|PHB|homeless breath}"
+							]
+						}
+					},
+					"ability": "int"
+				}
+			],
+			"trait": [
+				{
+					"name": "Echo Spell (1/Day)",
+					"entries": [
+						"Crazy Bird Lady can cast the spell she cast on her last turn, whose casting time becomes 1 bonus action. This bonus casting uses a spell slot as normal."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Shortsword",
+					"entries": [
+						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
+					]
+				}
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"E",
+				"H"
+			],
+			"damageTags": [
+				"P"
+			],
+			"damageTagsSpell": [
+				"A",
+				"F",
+				"I",
+				"L",
+				"O",
+				"S"
+			],
+			"spellcastingTags": [
+				"CW"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Security Guard",
+			"source": "GAaCH",
+			"_copy": {
+				"name": "Goblin",
+				"source": "MM",
+				"_mod": {
+					"trait": {
+						"mode": "removeArr",
+						"names": "Nimble Escape"
+					},
+					"action": [
+						{
+							"mode": "replaceArr",
+							"replace": "Scimitar",
+							"items": {
+								"name": "Shortsword",
+								"entries": [
+									"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) slashing damage."
+								]
+							}
+						},
+						{
+							"mode": "appendArr",
+							"items": {
+								"name": "Taser {@recharge 5}",
+								"entries": [
+									"{@atk mw} {@hit 4} to hit, reach 5 ft., one creature. {@h}2 ({@damage 1d2}) lightning damage, and the target must succeed on a {@dc 13} Constitution saving throw or be {@condition stunned} for 1 round."
+								]
+							}
+						}
+					]
+				}
+			},
+			"hasToken": true,
+			"hasFluff": true
+		},
+		{
+			"name": "Scary Furnace",
+			"source": "GAaCH",
+			"size": [
+				"L"
+			],
+			"type": "construct",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				17
+			],
+			"hp": {
+				"average": 50,
+				"formula": "50d1"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 14,
+			"dex": 10,
+			"con": 10,
+			"int": 3,
+			"wis": 3,
+			"cha": 1,
+			"senses": [
+				"blindsight 30 ft. (blind beyond this radius)"
+			],
+			"passive": 6,
+			"cr": "3",
+			"action": [
+				{
+					"name": "Slam",
+					"entries": [
+						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}11 ({@damage 2d8 + 2}) bludgeoning damage."
+					]
+				},
+				{
+					"name": "Belch Fire {@recharge 4}",
+					"entries": [
+						"The stove belches fire in a 15-foot cone. Each creature in the area must make a {@dc 10} Dexterity saving throw, taking 22 ({@damage 4d10}) fire damage on a failed save, or half as much damage on a successful one."
+					]
+				}
+			],
+			"senseTags": [
+				"B"
+			],
+			"damageTags": [
+				"B",
+				"F"
+			],
+			"miscTags": [
+				"AOE",
+				"MW"
+			],
+			"hasToken": true,
+			"hasFluff": true
+		},
+		{
+			"name": "Caroler",
+			"source": "GAaCH",
+			"_copy": {
+				"name": "Commoner",
+				"source": "MM",
+				"_mod": {
+					"action": [
+						{
+							"mode": "appendArr",
+							"items": {
+								"name": "Mug of Cocoa to the Face! (1/Day)",
+								"entries": [
+									"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}2 ({@damage 1d4}) fire damage and the target is temporarily {@condition blind} until the end of the target's next turn."
+								]
+							}
+						},
+						{
+							"mode": "replaceArr",
+							"replace": "Club",
+							"items": {
+								"name": "Unarmed Strike",
+								"entries": [
+									"{@atk mw} {@hit 2} to hit, reach 5 ft., one target. {@h}1 ({@damage 1}) bludgeoning damage."
+								]
+							}
+						}
+					]
+				}
+			},
+			"hasToken": true,
+			"hasFluff": true
+		}
+	],
+	"adventure": [
+		{
+			"name": "Gnome Alone: A Christmas Heist!",
+			"id": "GAaCH",
+			"source": "GAaCH",
+			"group": "homebrew",
+			"contents": [
+				{
+					"name": "Running the Adventure",
+					"headers": [
+						"Player Planning",
+						"Winning",
+						"TPK / Player Death",
+						"Tension Pool",
+						"Stealing from Other Players",
+						"Detecting Traps",
+						"Disarming Traps"
+					]
+				},
+				{
+					"name": "The McCallister House",
+					"headers": [
+						"General Features"
+					]
+				},
+				{
+					"name": "Room Descriptions",
+					"headers": [
+						"1 - Main Entrance",
+						"2 - Foyer",
+						"3 - Main Entryway",
+						"4 - Living Room",
+						"5 - Den",
+						"6 - Privy",
+						"7 - Breakfast Room",
+						"8 - Kitchen",
+						"9 - Sunroom",
+						"10 - Formal Dining Room",
+						"11 - Upstairs Hall",
+						"12 - Old Servant's Stairs",
+						"13 - Master Bedroom",
+						"14 - Master Bathroom",
+						"15 - Bedroom",
+						"16 - Shared Bathroom",
+						"17 - Bedroom",
+						"18 - Recreation Room",
+						"19 - Bedroom",
+						"20 - Attic Room",
+						"21 - Attic Storage",
+						"22 - Tree House",
+						"23 - Basement"
+					]
+				},
+				{
+					"name": "Traps",
+					"headers": [
+						"Ball Bearings",
+						"Caltrops",
+						"Crushing Cart",
+						"Dropped Heated Iron",
+						"Electrified Doorhandle",
+						"Flame Trap",
+						"Glue and Feathers",
+						"Grease",
+						"Heated Doorhandle",
+						"Heavy Object Drop Trap",
+						"Hunting Trap",
+						"Staple Gun",
+						"Sticky Tar",
+						"Trip Wire"
+					]
+				},
+				{
+					"name": "Encounters",
+					"headers": [
+						"The Scary Furnace",
+						"Creepy Homeless Bird Lady",
+						"Old Man Marley",
+						"Carolers",
+						"Keep the Change, Ya Filthy Animal!",
+						"Pizza delivery",
+						"5-0 swings by to check on the house",
+						"Tarantula",
+						"Cheese it!! It's the fuzz!!",
+						"Mama Bear"
+					]
+				},
+				{
+					"name": "Credits"
+				},
+				{
+					"name": "Player Handout",
+					"headers": [
+						"Player Build",
+						"Death & TPKs",
+						"Heist Mechanics"
+					]
+				}
+			],
+			"level": {
+				"start": 2,
+				"end": 2
+			},
+			"published": "2022-11-29"
+		}
+	],
+	"adventureData": [
+		{
+			"id": "GAaCH",
+			"source": "GAaCH",
+			"data": [
+				{
+					"type": "section",
+					"name": "Gnome Alone: A Christmas Heist!",
+					"entries": [
+						"Here's the hook: through the grapevine, the characters learn that there's a fairly loaded house on the southern part of a major city that's ripe for the picking. Some believe that the people who own the house--who've just taken a lavish, winter holiday trip to a foreign land--are people of disreputable value. In fact, rumor has it that the lord of the manor has ties to the criminal underworld; how else can he afford such a nice house with so many kids? The lord's name is Peter McCallister.",
+						"However, there's one catch: supposedly, a crafty little McCallister kid gnome stowed away while the rest of the McCallister family left, and now he has the run of the place. And everyone knows just how much trouble crafty little gnomes can be!",
+						{
+							"type": "entries",
+							"name": "Running the Adventure",
+							"entries": [
+								"Taking notes from the popular holiday film, Home Alone, Gnome Alone pits the characters against Nevin McCallister, a tricky gnome kid that's taken over the McCallister home. He will use his wile to lead characters through traps, hazards, and other \"goodies\" he has set up to ensure that they don't rob the place of all its valuable art objects. To play this adventure, use the adventure hook above. Make sure you understand where all the rooms in the house are and be sure to plot out Nevin's escape routes. Plus, don't forget to load it up with traps (see the Traps section below).",
+								"{@i Gnome Alone is a one-shot Fifth Edition adventure for 4-5 characters of 2nd level.}",
+								{
+									"type": "entries",
+									"name": "Player Planning",
+									"entries": [
+										"The adventure is built for a party of 4-5 characters at 2nd level.  To increase the challenge dramatically, you can suggest level 1, or to dial down the challenge grant characters automatic maximum-rollable HP at level 2. But unles your party is smaller than 4 or you want to tinker with every preplanned encounter, I wouldn't suggest bumping them up past level 2.",
+										{
+											"type": "entries",
+											"name": "Player Builds & Backgrounds",
+											"entries": [
+												"Your players need not {@i all} be rogues, but should be {@b evil-aligned} and very comfortable with undertaking seedy criminal jobs, and it is advisable that at least one of your PCs have proficiency in {@item thieves' tools|PHB}. But do tell them this is a heist before they create characters, in case they do want to flex their rogue muscles."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Main Objective",
+											"entries": [
+												"The main objective of the heist is of course to STEAL SHIT. There's no singular crown jewel, but rather a house full of valuables, and the players' goal is to swipe as much as possible.  Most rooms have treasures that can be found with {@skill Perception} or {@skill Investigation} checks. And each treasure found is worth 1 pt.",
+												"Additionally, each player will each be given a personal secret objective.  If a player completes their objective, they'll score an additional 3 points at the end of the night.  Player objectives are as follows (assign at random):"
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Secret Objectives",
+											"entries": [
+												{
+													"type": "list",
+													"items": [
+														"{@b Objective #1}. Your secret objective is to obtain a specific treasure: the McCallister family Cloak of Protection. Intel suggests it can be found in the basement.  If another player obtains it, you can barter for it, fight for it, steal it... whatever. If you finish the night in possession of the cloak, you are awarded 3 bonus points.",
+														"{@b Objective #2}. Your secret objective is to steal at least 3 valuables from {@i other players}.  Keep track of your valuables in 2 columns: Looted and Stolen.  At the end of the night, you can count up to 3 valuables you have stolen from other players as double (2 pts). Any more than 3 count as normal (1 pt).",
+														"{@b Objective #3}. Your secret objective is to set off at least 3 traps!  If you can manage to trigger 3 traps so that they deal at least 1 point of damage to any PC (doesn't have to be {@i you}), then at the end of the night, you'll receive 3 bonus points. Why would your character want to intenionally set off traps?? Because, your favorite childhood movie was \"Gnome Alone\" and now you're realizing that this was the EXACT HOUSE THEY FILMED IT IN and you're hard-core nerding out about it. Each time a trap goes off, you geek out (either to your self or out loud) about how \"IT'S JUST LIKE IN THE MOVIE!!!!\".",
+														"{@b Objective #4}. Your secret objective is to \"kill that friggin' kid\". If you or your party manage to deal damage to Nevin McCallister, at the end of the night, you'll receive 1 bonus point. If you or your party manage to knock Nevin down to 0 HP, you'll receive an additional point (2 pts total). And if you deal the final blow to Nevin yourself, you receive an additional point (3 pts total).",
+														"{@b Objective #5}. Your secret objective is to obtain a specific treasure: the McCallister family Cloak of Protection. Intel suggests it can be found in the basement.  If another player obtains it, you can barter for it, fight for it, steal it... whatever. If you finish the night in possession of the cloak, you are awarded 3 bonus points."
+													]
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Winning",
+									"entries": [
+										"At the end of the night, the player who has the most points wins.  You score points by looting items from the house (or your buddies), and by completing your objective. The heist ends when the End Game condition(s) of your choice is met. Pick one or more of the following:",
+										{
+											"type": "list",
+											"name": "End Game Conditions",
+											"items": [
+												"If a player reaches 7 points",
+												"If Nevin McCallister is knocked out",
+												"If the party TPKs",
+												"If the party defeats the {@footnote BBGG|\"Big Bad Good Guy\": {@creature Old Man Marley|GA}}",
+												"If the Tension Pool is cleared a 5th time, soldiers bust in and arrest anyone still in the house"
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "TPK / Player Death",
+									"entries": [
+										"No player death in this one-shot!",
+										"Should a player fall to 0 HP, they are {@condition unconscious} but stable.  An unconscious player can still make Death Saving Throws on their turn.  On a roll of 20, or after 3 successful Death Saves (10 or higher), they regain 1 HP at the start of their turn.  There's no penalty for failed Death Saves.",
+										"{@color {@b IMPORTANT}: As a bonus, each player has smelling salts, which can be used as an action to revive a downed player to 1 HP.|CC5555}",
+										"However, if the entire party falls unconscious at the same time, this is a TPK and the heist fails!  Nevin McCallister finds their unconscious bodies, completely strips them of weapons and equipment, binds their hands, and simply waits for the town guards to come and arrest them.  Game, set, and match."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Tension Pool",
+									"entries": [
+										"This type of crawl is the perfect environment to use a mechanic called a Tension Pool, {@link created by The Angry GM|https://theangrygm.com/definitive-tension-pool/}.  The premise is simple: track your PCs' carelessness, recklessness, and time-wasting in a tangible way that directly adds up to real complications. The rules have been summarized below:",
+										{
+											"type": "entries",
+											"name": "Tension Pool Mechanics",
+											"id": "tp",
+											"entries": [
+												{
+													"type": "list",
+													"items": [
+														"Each time one or more characters perform a {@i Time Consuming Action}, like investigating something, searching for traps or loot, disarming traps, etc., add 1d6 to the Tension Pool. If one player decides to take a {@i {@area Time Consuming Action|tp|x}}, other players can take that opportunity to simultaneously perform a single time consuming action of their own without it adding to the Tension Pool total.",
+														"Each time one or more characters perform a {@i Reckless Action}, like destroying something, shouting and giving away their position, kicking in a door, etc., {@i Clear} and roll all dice in the Tension Pool.",
+														"If a sixth d6 is added to the Tension Pool, immediately {@i Clear} and roll all dice in the Tension Pool.",
+														"When {@i Clearing} the Tension Pool, if any d6 shows a 1, roll a d20 on the {@table Tension Pool Complications Table|GA|Tension Pool Complications Table}.",
+														"Custom Rule: Track how many times the Tension Pool has been cleared, and subtract that number from the next d20 roll on the {@table Tension Pool Complications Table|GA|Tension Pool Complications Table}."
+													]
+												}
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Tension Pool Complications Table",
+											"entries": [
+												{
+													"type": "table",
+													"id": "tpc",
+													"colLabels": [
+														"d20",
+														"Complication"
+													],
+													"colStyles": [
+														"col-2 text-center",
+														"col-10"
+													],
+													"rows": [
+														[
+															"01",
+															"{@area Mama Bear|mamabear|x}"
+														],
+														[
+															"02 - 04",
+															"{@area Cheese it!! It's the fuzz!!|cops|x}"
+														],
+														[
+															"05 - 07",
+															"{@area Tarantula|spider|x}"
+														],
+														[
+															"08 - 10",
+															"{@area 5-0 swings by to check on the house|checkup|x}"
+														],
+														[
+															"11 - 13",
+															"{@area Pizza delivery|pizza|x}"
+														],
+														[
+															"14 - 16",
+															"{@area Keep the Change, Ya Filthy Animal!|filthyanimal|x}"
+														],
+														[
+															"17 - 19",
+															"{@area Carolers|carolers|x}"
+														],
+														[
+															"20",
+															"{@link Each player answers a random trivia question for 1 bonus point!|https://www.beano.com/posts/ultimate-home-alone-quiz}"
+														]
+													]
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Stealing from Other Players",
+									"entries": [
+										"I mean, you're all thieving crooks. Yes you can steal from players. The mechanics are just like normal--the pickpocket's Dexterity ({@skill Sleight of Hand}) roll contested by the target's Wisdom ({@skill Perception}) roll--with the following additional considerations:",
+										{
+											"type": "list",
+											"items": [
+												"Contesting a pickpocket attempt costs a Reaction.",
+												"The DC is 10 for an uncontested pickpocket attempt.",
+												"If the pickpocket loses the contest by 10 or less, the pickpocket's attempt fails but the target doesn't notice the attempt.",
+												"If the pickpocket loses the contest by more than 10, the attempt fails AND the target catches the pickpocket in the act. Punishment: any future attempts against this target will be made at disadvantage.",
+												"Stealing from an unconcious character is automatically successful. It costs one action per item stolen.",
+												"Stealing from a conscious character: If an item is worn or stowed, {@i it can be stolen}. If an item is carried (i.e. the target is devoting at least one hand to holding it), it cannot be pickpocketed, but it can be lifted from an unconscious body."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Detecting Traps",
+									"entries": [
+										"{@color {@b IMPORTANT}: Record the Passive Perception scores of {@footnote each of your players|Really, you probably just need to remember the highest one.} and {@i always allow them to work!} Check the highest passive score against all perceivable traps every time the characters enter a new area.|CC5555}  Ignore Passive Investigation because what is that even?",
+										"Any player can attempt to detect traps at any time using a Wisdom ({@skill Perception}) check or an Intelligence ({@skill Investigation}) check. But keep the following rules in mind:",
+										{
+											"type": "list",
+											"items": [
+												"Passive Perception checks are automatic, and free.",
+												"{@skill Perception} skill checks are 1 action.",
+												"{@skill Investigation} skill checks are considered a {@i {@area Time Consuming Action|tp|x}}, and will incur 1 die added to the {@i {@area Tension Pool|tp|x}}.",
+												"If a {@skill Perception} or {@skill Investigation} skill check is made in dim or no light, it's made at disadvantage.",
+												"Passive perception checks incur a penalty of -5 when made in situations that would impose disadvantage on Perception checks."
+											]
+										},
+										"{@color {@b IMPORTANT}: When a player makes a {@skill Perception} check, the DM should roll for the player behind the screen, narrating the result of the check but not the number rolled.|CC5555} This heightens the suspense while minimizing unintentional meta-gaming (e.g. a player knowing that a fellow player made a bad roll and simply opting to re-make the same check themselves, repeating the process until someone in the group rolls well).  When a player makes a {@skill Perception} check, all other players can opt to go ahead and make one as well (essentially giving the group quadruple-advantage, or more), HOWEVER, if one of those checks fails miserably enough, you should consider feeding that player bad information rather than simply {@i no} information. Example: All 4 players in the party make perception checks to perceive a traps when there actually are none to find, and the results are 21, 15, 9, 3... you should tell them that the one player that rolled a 3 does in fact detect a odd glint coming from the ceiling just by the door. They can choose what to do with that info, possibly deciding it's worth burning a time-consuming Investigation of the ceiling",
+										"If a character decides to make a time-consuming {@skill Investigation} check, the players can roll their own and know how well they executed it (after all, they are fairly costly in this one-shot)."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Disarming Traps",
+									"entries": [
+										"Once a trap is detected...",
+										{
+											"type": "list",
+											"items": [
+												"Any player can attempt to disarm the trap with {@item thieves' tools|PHB}.",
+												"A player can {@i attempt} to disarm a trap without {@item thieves' tools|PHB}, but that player must describe exactly how they are attempting to disarm the trap, and, only if the DM deems it plausible, they would make a Dexterity check to disarm at disadvange (same DC as with {@item thieves' tools|PHB}).",
+												"If a check is made to disarm a trap in dim or no light, must be made with {@item thieves' tools|PHB}, and it is made at disadvantage.",
+												"A check made to disarm a trap in dim or no light cannot be made without {@item thieves' tools|PHB}."
+											]
+										}
+									]
+								},
+								"Optionally: Keep in mind that skill checks can also be made with other abilities.  Consider allowing a Wisdom-based character (who may have a terrible Intelligence score) make Wisdom ({@skill Investigation}) checks, or allowing an Intelligence-based character (who may have a terrible Wisdom score) make Intelligence ({@skill Perception}) checks. To encourage role play, you can ask them to describe how exactly they are attempting to accomplish this.  They could say, for example: \"I want to analyze the floorboards and compare them to the other normal floorboards I've observed throughout the rest of the house.\" You may just want to narrow the scope of what a character can detect in this way by asking them specifically what they are examining rather than just allowing them to perceive anything and everything in the room with a single 1-action check.  Anything more in-depth than a quick examining glance needs to be treated not as a {@skill Perception} check, but as a time-consuming {@skill Investigation}.",
+								{
+									"type": "entries",
+									"name": "Catching Nevin",
+									"entries": [
+										"{@creature Nevin McCallister|GA} is one slippery little gnome. Not only does his stat sheet come equipped with a pellet gun, a respectable Dex score, and Little Twerp Actions, but he also knows the house intimately.  If you manage to find yourself in the same room as Nevin, don't let him out of your sight! Because if he escapes into te next room and you lose line of sight on him, he will have successfully evaded you, and his position resets to another random room in the house.  There is no \"chasing\" Nevin through the house.",
+										{
+											"type": "statblock",
+											"tag": "creature",
+											"name": "Nevin McCallister",
+											"source": "GAaCH",
+											"page": 1,
+											"style": "inset"
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "entries",
+							"name": "The McCallister House",
+							"entries": [
+								"The McCallister Household is a massive two-story brick manor in a nice part of the city. It has two fully furnished levels, a basement, and an attic. Plus, it's got a spacious backyard complete with large oak and a treehouse for the kids.",
+								{
+									"type": "image",
+									"href": {
+										"type": "external",
+										"url": "https://i0.wp.com/dmdave.com/wp-content/uploads/2018/12/McCallister-House-Numbered.jpg"
+									},
+									"title": "The McCallister Household",
+									"width": 2048,
+									"height": 1777
+								},
+								{
+									"type": "entries",
+									"name": "General Features",
+									"entries": [
+										{
+											"type": "entries",
+											"entries": [
+												"Unless otherwise detailed in the description, the McCallister house has the following features:",
+												{
+													"type": "entries",
+													"name": "Ceilings",
+													"entries": [
+														"The ceilings on the main floor of the McCallister home are 12-feet high. And the ceilings in the basement, second floor, and attic are 9 feet high."
+													]
+												},
+												{
+													"type": "entries",
+													"name": "Floors",
+													"entries": [
+														"The floors in the McCallister household are made out of hardwood. Some of the floors have large rugs placed over top."
+													]
+												},
+												{
+													"type": "entries",
+													"name": "Walls",
+													"entries": [
+														"The interior walls in the McCallister household are mostly plasterwork and wood. The exterior walls are made of laid brick."
+													]
+												},
+												{
+													"type": "entries",
+													"name": "Doors",
+													"entries": [
+														"The interior doors of the McCallister household are thin, hollow wooden doors (AC 13, 10 hp). Typically, they are unlocked. If locked, they can be picked open with a DC 12 Dexterity using {@item thieves' tools|PHB} check. The outside doors are much sturdier, thick wooden doors with strong deadbolts (AC 16, 18hp). Those require DC 15 Dexterity using {@item thieves' tools|PHB} check to pick. The doors are DC 13 and 16 using a Strength check to break down respectively."
+													]
+												},
+												{
+													"type": "entries",
+													"name": "Light",
+													"entries": [
+														"Unless otherwise specified, every room in the house is well-lit, using gas lanterns in sconces throughout the entire home except for the basement, which is dimly lit."
+													]
+												},
+												{
+													"type": "entries",
+													"name": "Time",
+													"entries": [
+														"Because of the small size of the home and the close proximity of the traps and Nevin McCallister, it's best to run the adventure in 6-second increments once the characters enter the home."
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Room Descriptions",
+							"entries": [
+								"Here are the basic descriptions for each of the areas as keyed to the McCallister Household map.",
+								{
+									"type": "entries",
+									"name": "1 - Main Entrance",
+									"id": "1",
+									"entries": [
+										"The main entrance to the McCallister home is a sturdy door that's usually kept locked. There is a short flight of steps that rises to that door. Often, it is slippery and requires a DC 10 Dexterity ({@skill Acrobatics}) check to avoid falling {@condition prone} (and taking 1 bludgeoning damage) when climbing it. Adding a couple of gallons of water increases this DC to 13.",
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"entries": [
+												"There is a 3-foot tall cast-iron statuette (that frequently gets knocked over by carriages parking in front of the home) at the foot of the stairs worth 10gp."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "2 - Foyer",
+									"id": "2",
+									"entries": [
+										"This is a small entryway into the home.",
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"entries": [
+												"There is a 10% chance of finding one art object worth 25gp here with a successful DC 12 Wisdom ({@skill Perception}) or Intelligence ({@skill Investigation}) check."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "3 - Main Entryway",
+									"id": "3",
+									"entries": [
+										"This is the main entryway into the house. The stairs lead up to area {@area #11|11|x}.",
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"entries": [
+												"There is a 20% chance of finding one art object worth 25gp here with a successful DC 12 Wisdom ({@skill Perception}) or Intelligence ({@skill Investigation}) check."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "4 - Living Room",
+									"id": "4",
+									"entries": [
+										"This is the living room. The fireplace is usually lit offering warmth and plenty of light. There is a decorated holiday tree in the northwestern corner and a grand piano dominates the southwestern corner.",
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"entries": [
+												"There are {@dice 1d4} art objects worth 25gp in this room. The characters can find these with a successful DC 12 Wisdom ({@skill Perception}) or Intelligence ({@skill Investigation}) check."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "5 - Den",
+									"id": "5",
+									"entries": [
+										"The den is where the McCallister family entertains.",
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"entries": [
+												"There are {@dice 1d4} art objects worth 25gp in this room. The characters can find these with a successful DC 12 Wisdom ({@skill Perception}) or Intelligence ({@skill Investigation}) check."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "6 - Privy",
+									"id": "6",
+									"entries": [
+										"This is a small privy for guests.",
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"entries": [
+												"There is a 10% chance of finding one art object worth 25gp here with a successful DC 12 Wisdom ({@skill Perception}) or Intelligence ({@skill Investigation}) check."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "7 - Breakfast Room",
+									"id": "7",
+									"entries": [
+										"Connected to the kitchen, this is the informal dining area.",
+										"There are two flight of stairs here, one leading up to the second floor (area {@area #12|12|x}) and one leading down into the basement's laundry area (area {@area #23d|23d|x}).",
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"entries": [
+												"There is one art object worth 25gp here. The characters can discover it with a successful DC 12 Wisdom ({@skill Perception}) or Intelligence ({@skill Investigation}) check."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "8 - Kitchen",
+									"id": "8",
+									"entries": [
+										"The kitchen is where all the food of the home is stored. The pantry and cabinets hold all the McCallister food supplies.",
+										"The sturdy door leading to the outside is on level ground, therefore there are no slippery stairs. It has a small door at the base of the door that a Small or smaller creature can climb through with ease. A Medium creature must make a successful DC 13 Strength ({@skill Athletics}) check to fit through it.",
+										"There is a laundry chute in the south wall. A Small or smaller creature can slide down the chute and land in area {@area #23c|23c|x}. Climbing back up the chute requires a successful DC 16 Strength ({@skill Athletics}) check. It is a 10-foot drop.",
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"entries": [
+												"There is one art object worth 25gp here. The characters can discover it with a successful DC 12 Wisdom ({@skill Perception}) or Intelligence ({@skill Investigation}) check. In addition, there is enough food to create 42 days worth of rations."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "9 - Sunroom",
+									"id": "9",
+									"entries": [
+										"The sunroom is sparsely decorated.",
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"entries": [
+												"There is one art object worth 25gp here. The characters can discover it with a successful DC 12 Wisdom ({@skill Perception}) or Intelligence ({@skill Investigation}) check."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "10 - Formal Dining Room",
+									"id": "10",
+									"entries": [
+										"Important meals are hosted here.",
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"entries": [
+												"There are {@dice 1d4} art objects worth 25gp here. The characters can discover it with a successful DC 12 Wisdom ({@skill Perception}) or Intelligence ({@skill Investigation}) check."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "11 - Upstairs Hall",
+									"id": "11",
+									"entries": [
+										"The upstairs hall connects all the bedrooms. The large flight of steps with the landing leads down to area {@area #3|3|x}. The stairs at the west end of the hall lead up to area {@area #20|20|x}.",
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"entries": [
+												"There is a 20% chance of finding one art object worth 25gp here with a successful DC 12 Wisdom ({@skill Perception}) or Intelligence ({@skill Investigation}) check."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "12 - Old Servant's Stairs",
+									"id": "12",
+									"entries": [
+										"This old staircase is hidden away with its own hallway. The stairways lead down to area {@area #7|7|x}.",
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"entries": [
+												"There is a 10% chance of finding one art object worth 25gp here with a successful DC 12 Wisdom ({@skill Perception}) or Intelligence ({@skill Investigation}) check."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "13 - Master Bedroom",
+									"id": "13",
+									"entries": [
+										"The lord and lady McCallister bed here. The room has its own fireplace which is only lit when they are in attendance.",
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"entries": [
+												"There are {@dice 1d6 + 1} art objects worth 25gp here. In addition, the McCallisters have hidden {@dice 1d6 x 10} gold pieces in the room. Characters can find them with a successful DC 14 Wisdom ({@skill Perception}) or Intelligence ({@skill Investigation}) check."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "14 - Master Bathroom",
+									"id": "14",
+									"entries": [
+										"This room has a large tub as well as a separate, well-kept privy.",
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"entries": [
+												"There is one art object worth 25gp here. The characters can discover it with a successful DC 12 Wisdom ({@skill Perception}) or Intelligence ({@skill Investigation}) check."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "15 - Bedroom",
+									"id": "15",
+									"entries": [
+										"This is the bedroom of one of the McCallister's teenage children.",
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"entries": [
+												"There is one art object worth 25gp here. The characters can discover it with a successful DC 12 Wisdom ({@skill Perception}) or Intelligence ({@skill Investigation}) check."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "16 - Shared Bathroom",
+									"id": "16",
+									"entries": [
+										"The McCallister's teenage children share this bathroom which has a tub and a well-kept privy.",
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"entries": [
+												"There is a 10% chance of finding one art object worth 25gp here with a successful DC 12 Wisdom ({@skill Perception}) or Intelligence ({@skill Investigation}) check."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "17 - Bedroom",
+									"id": "17",
+									"entries": [
+										"This is the bedroom of one of the McCallister's teenage children.",
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"entries": [
+												"There is one art object worth 25gp here. The characters can discover it with a successful DC 12 Wisdom ({@skill Perception}) or Intelligence ({@skill Investigation}) check."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "18 - Recreation Room",
+									"id": "18",
+									"entries": [
+										"The McCallister children share this recreation room.",
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"entries": [
+												"There is a 20% chance of finding one art object worth 25gp here with a successful DC 12 Wisdom ({@skill Perception}) or Intelligence ({@skill Investigation}) check."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "19 - Bedroom",
+									"id": "19",
+									"entries": [
+										"This is the bedroom of one of the McCallister's teenage children.",
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"entries": [
+												"There is one art object worth 25gp here. The characters can discover it with a successful DC 12 Wisdom ({@skill Perception}) or Intelligence ({@skill Investigation}) check."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "20 - Attic Room",
+									"id": "20",
+									"entries": [
+										"This semi-finished attic room has an extra bed and is used as a guest room. A steel zip line connects the window over the bed to the treehouse in the McCallister's backyard. The stairs here lead down to area {@area #11|11|x}.",
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"entries": [
+												"There is a 10% chance of finding one art object worth 25gp here with a successful DC 12 Wisdom ({@skill Perception}) or Intelligence ({@skill Investigation}) check."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "21 - Attic Storage",
+									"id": "21",
+									"entries": [
+										"This portion of the attic is completely unfinished and used for storage.",
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"entries": [
+												"Should the characters search through all the storage, on a successful DC 16 Intelligence ({@skill Investigation}) check they can find {@dice 1d4} magic items (roll on Magic Item",
+												"Table A of the DMG p144)."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "22 - Tree House",
+									"id": "22",
+									"entries": [
+										"The small treehouse in the McCallister's backyard is 20 feet off the ground and accessible from a hatch in its center.",
+										"Boards hammered into the tree act as a ladder.",
+										"A pair of large hedge trimmers is kept inside (treat it as a shortsword). A creature can use its action to cut the zip line with the hedge trimmers. Any creature that is currently hanging from the zip line or using it when the zip line is cut must make a successful DC 15 Dexterity ({@skill Acrobatics}) or take",
+										"{@damage 1d6} damage for every 10 feet that they fall (it's 30 feet down).",
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"entries": [
+												"There is no treasure found here."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "23 - Basement",
+									"id": "23",
+									"entries": [
+										"The basement is large and broken up into five areas.",
+										{
+											"type": "entries",
+											"name": "23a - Basement Entrance",
+											"id": "23a",
+											"entries": [
+												"A short flight of steps leads down into the freezing basement. The basement door is kept locked with a sturdy outside door. The flight of steps leading down is slippery and requires a DC 10 Dexterity ({@skill Acrobatics}) check to avoid falling {@condition prone} (and taking 1 bludgeoning damage from the fall) when climbing it. Adding a couple of gallons of water to the steps can increase the DC to 13."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "23b - Under the Kitchen",
+											"id": "23b",
+											"entries": [
+												"The first part of the basement is here. It's relatively empty."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "23c - Laundry Chute Deposit",
+											"id": "23c",
+											"entries": [
+												"The laundry chute deposits clothing (and whatever else is put through the chute) here. A large pile of soiled clothes is found here, breaking the fall of anyone that slides down the laundry chute (area {@area #8|8|x})."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "23d - Laundry Area",
+											"id": "23d",
+											"entries": [
+												"The McCallister's clothing is washed by hand here. The stairs at the north wall lead up to area {@area #7|7|x}."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "23e - Furnace",
+											"id": "23e",
+											"entries": [
+												"The house's old furnace is here. It can be quite intimidating at times. Nevin McCallister tries to avoid going near it whenever possible (he thinks it's haunted)."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Treasure",
+											"entries": [
+												"Amongs the piles of dirty clothes in the Laundry Area can be found a {@item Cloak of Protection}."
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Traps",
+							"entries": [
+								"Before you run this adventure, you will need to place traps throughout the house. It is recommended that you place a minimum of 6 traps throughout the house, but no more than 10. This does not include the zip line being cut nor the slippery steps at either side of the house. You may place any trap more than once.",
+								"Each trap that you can use in the house is detailed below:",
+								{
+									"type": "entries",
+									"entries": [
+										{
+											"type": "entries",
+											"name": "Ball Bearings",
+											"entries": [
+												"These cover a square area that is ten feet on a side. A creature moving across the covered area must succeed on a DC 10 Dexterity saving throw or fall {@condition prone} and take 1 bludgeoning damage from the fall. A creature moving through the area at half speed doesn't need to make the save. Noticing the bearings requires a DC 12 Wisdom ({@skill Perception}) check."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Caltrops",
+											"entries": [
+												"These sharp objects cover a square that is 5 feet on a side. Any creature that enters the area must succeed on a DC 15 Dexterity saving throw or stop moving that turn and takes 1 piercing damage. Taking this damage reduces the creature's walking speed by 10 feet until the creature regains at least 1 hit point. A creature moving through the area at half speed doesn't need to make the save. Noticing the caltrops requires a DC 12 Wisdom ({@skill Perception}) check."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Crushing Cart",
+											"entries": [
+												"This trap only works on doorways at the bottom of staircases (such as the door between area {@area #11|11|x} and {@area #20|20|x}). The trap is triggered when a creature pulls a doorknob. The doorknob is attached to a rope that pulls a heavy cart down the stairs. The cart falls down the stairs and pushes past the door. Any creature within 5 feet of the door that triggered the trap must succeed on a DC 13 Dexterity saving throw or take {@damage 1d4} bludgeoning damage and become {@condition restrained} by the crushing cart (escape DC 13). Discovering the crushing cart trap requires a DC 13 Intelligence ({@skill Investigation}) check. Disarming the trap requires a DC 13 Dexterity check using {@item thieves' tools|PHB}."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Dropped Heated Iron",
+											"entries": [
+												"This trap sets up a heated laundry iron and has it drop onto an unsuspecting creature below it. It can be dropped manually, or attached to a false cord, or done with a trip wire. If manually dropped, the creature that dropped it must make an attack roll versus the creature's AC (with advantage if the creature doesn't notice the iron first). If set up as a trap, the creature must make a DC 13 Dexterity saving throw. On a failed save or a hit, the iron deals {@damage 1d4} bludgeoning damage plus 1 fire damage. Discovering the trap requires a DC 12 Intelligence ({@skill Investigation}) check."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Electrified Doorhandle",
+											"entries": [
+												"This trap can only be placed on door handles. Any creature that touches the door handle takes 1 lightning damage and must make a DC 13 Constitution saving throw or be {@condition stunned} until the end of its next turn. Discovering the electrified door handle requires a DC 13 Intelligence ({@skill Investigation}) check. Disarming the trap requires a DC 13 Dexterity check using {@item thieves' tools|PHB}."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Flame Trap",
+											"entries": [
+												"This trap can only be placed on doors. Any creature that opens the door without first disarming the trap first must make a DC 13 Dexterity saving throw or take {@damage 1d6} fire damage on a failed save or half as much damage on a successful one. Discovering the fire trap requires a DC 13 Intelligence ({@skill Investigation}) check. Disarming the trap requires a DC 13 Dexterity check using {@item thieves' tools|PHB}."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Glue and Feathers",
+											"entries": [
+												"This trap can only be placed on doors. Any creature that opens the door without first disarming the trap walks is covered in sticky glue. Then, the creature is immediately hit with feathers. It deals no damage. It's just embarrassing. Discovering the glue and feather trap requires a DC 13 Intelligence ({@skill Investigation}) check. Disarming the trap requires a DC 13 Dexterity check using {@item thieves' tools|PHB}."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Grease",
+											"entries": [
+												"Slick grease covers the ground in a square that's 10 feet on a side or on the rungs of a ladder. Each creature that attempts to walk through the area must succeed on a DC 13 Dexterity saving throw or fall {@condition prone}, taking 1 bludgeoning damage from the fall. A creature that fails its save by 5 or more also takes 1 bludgeoning damage or {@damage 1d4} bludgeoning damage if placed on stairs or a ladder. Noticing the grease requires a DC 13 Wisdom ({@skill Perception}) check if on the floor or a DC 13 Intelligence ({@skill Investigation}) check if on stairs or a ladder."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Heated Doorhandle",
+											"entries": [
+												"This trap can only be placed on door handles. Any creature that touches the door handle takes 1 fire damage. Noticing the heated doorhandle requires a DC 13 Wisdom ({@skill Perception}) check. Disarming the trap requires a DC 13 Dexterity check using {@item thieves' tools|PHB}."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Heavy Object Drop Trap",
+											"entries": [
+												"This trap can only be placed on doors. Any creature that opens the door without first disarming the trap has heavy, metal tools dropped on them. The creature must make a DC 12 Dexterity saving throw, taking 1 bludgeoning damage on a failed saving throw. Discovering the heavy object drop trap requires a DC 12 Wisdom ({@skill Investigation}) check. Disarming the trap requires a DC 12 Dexterity check using {@item thieves' tools|PHB}."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Hunting Trap",
+											"entries": [
+												"This trap forms a saw-toothed steel ring that snaps shut when a creature steps on a pressure plate in the center and is affixed by a heavy chain to an immobile object, such as a tree or a spike driven into the ground. A creature that steps on the plate must succeed on a DC 13 Dexterity saving throw or take {@damage 1d4} piercing damage and stop moving. Thereafter, until the creature breaks free of the trap, its movement is limited by the length of the chain (typically 3 feet long). A creature can use its action to make a DC 13 Strength check, freeing itself or another creature within its reach on a success. Each failed check deals 1 piercing damage to the trapped creature. Noticing the hunting trap requires a DC 12 Wisdom ({@skill Perception}) check."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Staple Gun",
+											"entries": [
+												"This trap can only be placed on doors. Any creature that opens the door without first disarming the trap becomes the target of an automated staple gun. The staple gun makes a +4 ranged weapon attack against the creature's AC. If the attack hits, the staple deals 1 piercing damage. Discovering the staple gun trap requires a DC 13 Intelligence ({@skill Investigation}) check. Disarming the trap requires a DC 13 Dexterity check using {@item thieves' tools|PHB}."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Sticky Tar",
+											"entries": [
+												"This substance covers a square that is 10 feet on one side. Any creature that walks through the area must make a make a DC 15 Strength saving throw or stop moving that turn. Noticing the tar requires a DC 13 Wisdom ({@skill Perception}) check."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Trip Wire",
+											"entries": [
+												"Any creature that passes through an area with a tripwire without first noticing it falls {@condition prone}, taking 1 bludgeoning damage from the fall. Noticing a tripwire requires a DC 15 Wisdom ({@skill Perception}) check. A creature can use its action to disable the trip wire."
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Encounters",
+							"entries": [
+								"Several combat and social encounters may be possible throughout this adventure.  Below are a list of balanced encounters which can be applied to most rooms in the house as the DM sees fit, or applied to the {@area Tension Pool Complications Table|tpc|x} as needed.",
+								"The suggested use of these encounters, however, is as follows:",
+								{
+									"type": "list",
+									"items": [
+										"{@b {@i Basement.}} If 3 or more players venture together into the basement of the house, run the {@area The Scary Furnace|furnace|x} encounter.",
+										"{@b {@i Outside.}} If 3 or more players venture together outside the house, run the {@area Creepy homeless bird lady|pigeonlady|x} encounter.",
+										"{@b {@i Final Battle.}} The {@footnote BBGG|\"Big Bad Good Guy\"} encounter is {@area Old Man Marley|marley|x} who, as in the movie Home Alone, is ultimately the one who subdues the crooks in the house. But in this adventure, the players are given an opportunity to defeat Marley and escape having pulled off a successful heist!"
+									]
+								},
+								"While {@area Old Man Marley|marley|x} is intended to be the final boss fight, you don't have to end the session there. You could make the end game conditions something else, like first player to 7 points, or you keep going until the cops show up after [some number of] rounds.",
+								{
+									"type": "entries",
+									"name": "The Scary Furnace",
+									"id": "furnace",
+									"entries": [
+										"The Furnace should be an automatic encounter if the characters venture into the basement. (And two of the proposed secret objectives strongly encourage characters to seek it out!)  Once the characters come down the stairs and begin to take in their surroundings, read the following aloud, or summarize.",
+										{
+											"type": "insetReadaloud",
+											"entries": [
+												"As your eyes start to adjust to the dim light of the room, you begin to be able to discern the outlines of common equipment you would find in any household basement: a tub for washing clothes, disgarded exercise equipment, probably used once, a creepy evil furnace whose hellish grin widens as it begins to chuckle...  wait a second...  a creepy evil furnace whose hellish grin widens as it begins to chuckle?!  Roll for initiative.  Because yes that's right, it's the scary furnace from Home Alone that Kevin McCallister was afraid of! MWA HA HA HA HA!!"
+											]
+										},
+										{
+											"type": "entries",
+											"entries": [
+												"The {@creature Scary Furnace|GA} uses the statistics of an Animated Stove (CR3). It can be heard clamouring up the basement stairs (if the party is not already in the basement). When it enters the room with the party, it laughs evily. Roll for initiative.",
+												"{@footnote Medium Fight for 5 x Level 2 PCs|1 x {@creature Scary Furnace|GA}, CR 3 (renamed {@creature Animated Stove|WDMM})<br/>Adjusted XP: 700<br/>Difficulty: Medium}",
+												"{@footnote Hard Fight for 4 x Level 2 PCs|1 x {@creature Scary Furnace|GA}, CR 3 (renamed {@creature Animated Stove|WDMM})<br/>maybe knock off a few HP<br/>Adjusted XP: 700<br/>Difficulty: Hard}"
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Creepy homeless bird lady",
+									"id": "pigeonlady",
+									"entries": [
+										"Read the following aloud, or summarize.",
+										{
+											"type": "insetReadaloud",
+											"entries": [
+												"Yeah okay, it was Home Alone 2, but she still shows up. And she's got a bunch of psychotic birds with her and a handful of what can only be described as fantasy bird cat-nip. Watch out."
+											]
+										},
+										{
+											"type": "entries",
+											"entries": [
+												"{@creature Crazy Bird Lady|GA} enters the room saying \"Listen! The birds can hear it!\" before throwing a fistful of bird seed into the room causing a flock of crazy-ass birds to fly in and wreak havoc. The flock of birds acts like a {@spell Cloud of Daggers} spell ({@footnote reduced damage for 4 or fewer PCs|If there are 4 or fewer PCs the repeating Cloud of Daggers damage is reduced from 4d4 to {@dice 2d4}}), except the flock can be attacked--use the defensive stats of a {@creature swarm of bats|MM} (AC 12, HP 22). Roll for initiative.",
+												"{@footnote Easy Fight for 5 x Level 2 PCs|1 x {@creature Crazy Bird Lady|GA}, CR 2 (reskinned {@creature pendragon beestinger|AI}, homeless themed spells)<br/>Adjusted XP: 450<br/>Difficulty: Easy}",
+												"{@footnote Medium Fight for 4 x Level 2 PCs|1 x {@creature Crazy Bird Lady|GA}, CR 2 (reskinned {@creature pendragon beestinger|AI}, homeless themed spells)<br/>Reduce Cloud of Daggers damage to {@dice 2d4} per round<br/>Adjusted XP: 450<br/>Difficulty: Medium}"
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Old Man Marley",
+									"id": "marley",
+									"entries": [
+										"The final fight of the adventure is intended to be Old Man Marley.  When you are ready to wrap up the evening, have {@creature Old Man Marley|GA|Marley} surprise the characters while they are engaged in combat with {@creature Nevin McCallister|GA}. Read the following aloud, or summarize.",
+										{
+											"type": "insetReadaloud",
+											"entries": [
+												"Remember that scary neightbor with the white beard and the snow shovel who eventually learns that life is too short to stay mad at his son and reunites with his granddaughter at the end of the film?  Wel, he shows up with said snow shovel ready to thwart the party's heist.  And he's a lot more jacked in person. Roll for initiative."
+											]
+										},
+										{
+											"type": "entries",
+											"entries": [
+												"{@creature Old Man Marley|GA} surprise attacks one of the PCs at random. Roll for initiative.",
+												"Once the encounter is over, the characters hear sirens in the distance and are strongly encouraged to skedaddle with what they can carry. Game over! Talley up those points!",
+												"{@footnote Deadly Fight for 5 x Level 2 PCs|1 x {@creature Old Man Marley|GA}, CR 4 (reskinned {@creature Eternal Flame Guardian|PotA}, cold instead of fire themed)<br/>Adjusted XP: 1100<br/>Difficulty: Deadly}",
+												"{@footnote Hard Fight for 4 x Level 2 PCs|1 x {@creature Old Man Marley|GA}, CR 4 (reskinned {@creature Eternal Flame Guardian|PotA}, cold instead of fire themed)<br/>Reduce to CR 3: AC: 15, HP: 45, Shovel attack bonus: +5<br/>Adjusted XP: 700<br/>Difficulty: Hard}"
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Carolers",
+									"id": "carolers",
+									"entries": [
+										"Read the following aloud, or summarize.",
+										{
+											"type": "insetReadaloud",
+											"entries": [
+												"The sweet sound of carolers gradually swells just outside the front door of the McCallister house. A group of 8 carolers come to the door--2 elders, 2 adults, and 4 children--each holding a mug of cocoa and singing gayly."
+											]
+										},
+										{
+											"type": "entries",
+											"entries": [
+												"The following conditions apply:",
+												{
+													"type": "list",
+													"items": [
+														"If the characters quickly shoo the carolers away, the carolers will simply move on to the next house. The carolers do not know the McCallisters, and will easily believe a PC who acts as if they live there (DC 10 Charisma check).",
+														"If the characters do not dismiss the carolers, however, then after a few minutes as their performance is coming to an end, Nevin's head pops out from an upstairs door. He says, \"Carolers! Maybe they can run and get help!\" as he runs toward a window. Unless the characters act quickly, the carolers will be alerted when Nevin shouts for help from a window.",
+														"If the PCs do anything to scare or bully the carolers, or if they allow Nevin to cry for help without convincing them that their little twerp kid is being a troublemaker and is not to be believed, then an elder caroler will chastize the characters while two of the children will run to alert the nearest patrolling neighborhood {@creature security guard|GA|security guard} (1), who will come to investigate solo. If a fight ensues, the two (2) {@creature caroler|GA|Carolers} will join in to try to help the guard, while the elders shuffle the children away from harm."
+													]
+												},
+												"Listening politely to the carolers' full performance grants all who hear it Inspiration, but is considered a {@i {@area Time Consuming Action|tp|x}}",
+												"Drinking a full mug of cocoa grants the drinker 1 temporary HP, but is considered a {@i {@area Time Consuming Action|tp|x}}",
+												"{@footnote Trivial Fight for 5 x Level 2 PCs|1 x {@creature security guard|GA|Security Guard}, CR 1/4 (reskinned {@creature goblin|MM})<br/>2 x {@creature caroler|GA|Carolers}, CR 0 (reskinned {@creature commoner|MM|commoners})<br/>Adjusted XP: 140<br/>Difficulty: Trivial}",
+												"{@footnote Trivial Fight for 4 x Level 2 PCs|1 x {@creature security guard|GA|Security Guard}, CR 1/4 (reskinned {@creature goblin|MM})<br/>2 x {@creature caroler|GA|Carolers}, CR 0 (reskinned {@creature commoner|MM|commoners})<br/>Adjusted XP: 140<br/>Difficulty: Trivial}"
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Keep the Change, Ya Filthy Animal!",
+									"id": "filthyanimal",
+									"entries": [
+										"Choose an adjacent room with a booby-trapped escape route for this encounter to occur in, then read the following aloud, or summarize.",
+										{
+											"type": "insetReadaloud",
+											"entries": [
+												"You hear men's voices coming from the next room...",
+												"Snakes: \"Acey said you had some dough for me.\"<br/>Johnny: \"That a fact? How much do I owe ya?\"<br/>Snakes: \"Acey said 10%\"<br/>Johnny: [smirks] \"Too bad Acey ain't in charge no more.\"<br/>Snakes: \"What do you mean?\"<br/>Johnny: \"Hey, I tell ya what I'm gonna give you, Snakes. I'm gonna give you to the count of 10, to get your ugly, yella, no-good keister off my property, before I pump your guts full of lead!\"<br/>Snakes: [wide eyed and calm] \"All right, Johnny, I'm sorry!, I'm going!\"<br/>Johnny: \"1, 2, 10!\" [tv bullets start flying, fire crackers start popping]<br/>\"Keep the change, ya filthy animal!\""
+											]
+										},
+										{
+											"type": "entries",
+											"entries": [
+												"Any characters who hear this conversation must make a DC 15 Wisdom saving throw...",
+												"On a failed save, a creature takes 1 point of psychic damage and becomes {@condition frightened} and is compelled to immediately flee the house through the closest window or door. Once outside, they can attempt to repeat the saving throw at the start of each of their turns, ending the effect on a successful save, or a another non-frightened PC can, as an action, slap some sense into them to break the condition.",
+												"On a successful save, a character can act with normal agency. If a character charges into the next room immediately, they find the black and white mafia movie \"Angels with Filthy Souls\" playing on a tv, and a large pot on the ground full of exploded fire crackers. It doesn't take an Insight roll to realize what happened. The door at the opposite end of the room is swinging and you hear the pitter-patter of twerpy kid feet fleeing through the house.",
+												"{@i If one or more characters give chase, be sure to subtract 5 from their passive perception and/or apply disadvantage to any perception checks made to notice traps if they are hurrying to catch Nevin. If they take their time and do not hurry, Nevin is long gone by the time they poke their head out the swinging door.}"
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Pizza delivery",
+									"id": "pizza",
+									"entries": [
+										"Read the following aloud, or summarize.",
+										{
+											"type": "insetReadaloud",
+											"entries": [
+												"The doorbell rings. The lazily uninstrested voice of a teenage boy mumbles something about a delivery from Little Nero's."
+											]
+										},
+										{
+											"type": "entries",
+											"entries": [
+												"If the characters do not answer the door, after a few minutes, they hear the merry whistling of a patrolling neighborhood security guard from the street, and hear the pizza guy say \"This is bullshit. I'm telling the guard I just got jipped.\" The characters then have 10 seconds to answer the door and get the boy's attention before he alerts the guard that something's not right. Two (2) security guards investigate.",
+												"If the characters answer the door in a way that allows the delivery boy to see their faces or hear their voices, the boy, who has delivered to this address before, will recognize that these characters are NOT the McCallisters who live here, unless the characters are extremely convincing, passing a DC 20 Charisma check. But just as this skill check is being made, a patrolling neighborhood security guard walks by the McCallister house whistling merrily, waving at the delivery boy from the street.",
+												{
+													"type": "list",
+													"items": [
+														"If the CHA check is successfull with {@i Deception, Perssuasion, or Performance}: the boy will buy their story and sell them the pizza, demanding 2 gp (or he'll alert the guard, and two (2) {@creature security guard|GA|security guards} will come to investigate).",
+														"If successful with {@i Intimidation}: the boy will literally piss his pants and run away without alerting the guard, leaving the pizza.",
+														"If the CHA check is 10 thru 19 (unsuccessful), the pizza guy will try to feign compliance with the characters but noticeably forget to ask for money. If the characters let him go, he'll run right to the security guard, and two (2) {@creature security guard|GA|security guards} will come to investigate.",
+														"If the CHA check is less than 10, the boy immediately screams for the {@creature security guard|GA|security guards} (2) to come quick."
+													]
+												},
+												"There are [# of PCs] slices of pizza, and each one restores {@dice 1d4 - 1} HP when eaten, but is considered a {@i {@area Time Consuming Action|tp|x}}",
+												"{@footnote Trivial Fight for 5 x Level 2 PCs|2 x {@creature security guard|GA|Security Guards}, CR 1/4 (reskinned {@creature goblin|MM|Goblins})<br/>Adjusted XP: 150<br/>Difficulty: Trivial}",
+												"{@footnote Trivial Fight for 4 x Level 2 PCs|2 x {@creature security guard|GA|Security Guards}, CR 1/4 (reskinned {@creature goblin|MM|Goblins})<br/>Adjusted XP: 150<br/>Difficulty: Trivial}"
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "5-0 swings by to check on the house",
+									"id": "checkup",
+									"entries": [
+										"Read the following aloud, or summarize.",
+										{
+											"type": "insetReadaloud",
+											"entries": [
+												"There's a forceful knock at the door. \"Town Guard. Merry Midwinter, Happy Christmas, etc. Please open up, we've been sent to check on the safety of the noble family within.\" These men sound a bit more legit than the mall cops you saw patrolling the neighborhood streets."
+											]
+										},
+										{
+											"type": "entries",
+											"entries": [
+												"Two (2) {@creature soldier|GGR|soldiers} are at the door. If the characters answer the door in a way that allows the soldiers to see their faces or hear their voices, the soldiers recognize that these characters are NOT the McCallisters who live here, unless the characters are extremely convincing, passing a DC 22 Charisma (Deception or Performance) check, or a DC 25 Charisma (Perssuasion or Intimidation) check. On a successful check, the soldiers leave. On a failure, they barge into the house, weapons drawn. Roll for initiative.",
+												"If the characters do not answer the door after 30 seconds, they hear Nevin McCallister say \"Soldiers! FINALLY!\" and run toward a window. Unless the characters act extremely quickly and quitely, the soldiers will be alerted when Nevin shouts for help from a window.",
+												"{@footnote Easy Fight for 5 x Level 2 PCs|2 x {@creature soldier|GGR|Soldiers}, CR 1/2<br/>Adjusted XP: 300<br/>Difficulty: Easy}",
+												"{@footnote Easy Fight for 4 x Level 2 PCs|2 x {@creature soldier|GGR|Soldiers}, CR 1/2<br/>maybe knock AC down to 16<br/>Adjusted XP: 300<br/>Difficulty: Easy}"
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Tarantula",
+									"id": "spider",
+									"entries": [
+										"Read the following aloud, or summarize.",
+										{
+											"type": "insetReadaloud",
+											"entries": [
+												"Oh hey, look! It's Buzz's pet tarantula!  I hope it doesn't make Marv smash Harry in the face with a crowbar!"
+											]
+										},
+										{
+											"type": "entries",
+											"entries": [
+												"The tarantula has an AC of 20 and 1 HP.  It appears silently crawling upon the head of one PC at random. All other characters who can see the afflicted PC must make a DC 20 Wisdom saving throw. On a failed save, they are compelled to assault the tarantula with their strongest attack. Attackers, acting one at a time in order of lowest roll to highest, are obligated to use their full force, but not obliged to burn any percious resources like spell slots, sorcery points, rages, etc. On a hit, the tarantuala dies while hissing loudly (...too loudly). But on a miss, the attack also hits the afflicted PC. Well, okay, if the attacker scores a critical hit, they strike so precisely that they spare the player. 1 round later, the approaching thuds of heavy aracnid footsteps are heard as 2 {@creature Ice Spider|SKT|Ice Spiders} approach from the nearest window, exterior door, or staircase.",
+												{
+													"type": "insetReadaloud",
+													"entries": [
+														"The tarantula dies with an ear-splitting hiss! Loudly... too loudly.  Suddenly, you hear a distant, more guteral hiss in response.  \"What was that?!\" one of you whispers to the group.  Just then, the nearest window explodes inward in a shower of broken glass, as two Winter Blue Spiders crawl into the room!  Roll for initiative!"
+													]
+												},
+												"{@footnote Medium Fight for 5 x Level 2 PCs|2 x {@creature Ice Spider|SKT|Ice Spiders}, CR 1<br/>Adjusted XP: 600<br/>Difficulty: Medium}",
+												"{@footnote Hard Fight for 4 x Level 2 PCs|2 x {@creature Ice Spider|SKT|Ice Spiders}, CR 1<br/>maybe knock off a few HP<br/>Adjusted XP: 600<br/>Difficulty: Hard}",
+												{
+													"type": "encounter",
+													"name": "Encounter: Winter Spiders!",
+													"varyBy": "Party Size",
+													"variations": [
+														{
+															"variantName": "4",
+															"default": true,
+															"combatants": [
+																{
+																	"creature": "{@creature Ice Spider|SKT|Winter Spider}",
+																	"quantity": 2,
+																	"note": "Maybe knock off a few HP"
+																}
+															],
+															"notes": [
+																"Hard Fight for 4 x Level 2 PCs"
+															]
+														},
+														{
+															"variantName": "5",
+															"combatants": [
+																{
+																	"creature": "{@creature Ice Spider|SKT|Winter Spider}",
+																	"quantity": 2
+																}
+															],
+															"notes": [
+																"Medium Fight for 5 x Level 2 PCs"
+															]
+														}
+													]
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Cheese it!! It's the fuzz!!",
+									"id": "cops",
+									"entries": [
+										"Read the following aloud, or summarize.",
+										{
+											"type": "insetReadaloud",
+											"entries": [
+												"Your reckless snooping and utter disregard for stealth must have alerted a neighbor or something, because the cops have been called!  Roll for initiative!"
+											]
+										},
+										{
+											"type": "entries",
+											"entries": [
+												"A tactical team of {@creature soldier|GGR|soldiers} equaling the number of players, bursts into the house, swords drawn! They enter through the front, back, and side door simultaneously and converge on the players from all sides.",
+												"{@footnote Deadly Fight for 5 x Level 2 PCs|5 x {@creature soldier|GGR|Soldiers}, CR 1/2<br/>Adjusted XP: 1200<br/>Difficulty: Deadly}",
+												"{@footnote Hard Fight for 4 x Level 2 PCs|4 x {@creature soldier|GGR|Soldiers}, CR 1/2<br/>Adjusted XP: 800<br/>Difficulty: Hard}",
+												{
+													"type": "encounter",
+													"name": "Encounter: Soldiers!",
+													"varyBy": "Party Size",
+													"variations": [
+														{
+															"variantName": "4",
+															"default": true,
+															"combatants": [
+																{
+																	"creature": "{@creature soldier|GGR|Soldier}",
+																	"quantity": 4
+																}
+															],
+															"notes": [
+																"Hard Fight for 4 x Level 2 PCs"
+															]
+														},
+														{
+															"variantName": "5",
+															"combatants": [
+																{
+																	"creature": "{@creature soldier|GGR|Soldier}",
+																	"quantity": 5
+																}
+															],
+															"notes": [
+																"Deadly Fight for 5 x Level 2 PCs"
+															]
+														}
+													]
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Mama Bear",
+									"id": "mamabear",
+									"entries": [
+										"Read the following aloud, or summarize.",
+										{
+											"type": "insetReadaloud",
+											"entries": [
+												"MAMA BEAR. That's right. Mama McCallister came home early. Hell hath no fury like a mother protecting its young. I hope you brought your A-game. Roll for initiative, you poor poor bastards.",
+												"The foreboding silhouette of {@creature Mama McCallister|GA} looms in the doorway of (whatever room you're in right now).  \"You come into MY HOUSE and threaten MY SON!!  AHHHHH!!  I'LL KILL YOU!!!\"."
+											]
+										},
+										{
+											"type": "entries",
+											"entries": [
+												"{@footnote Absurd Fight for 5 x Level 2 PCs|1 x {@creature Mama McCallister|GA}, CR 5 (reskinned {@creature Young Crystal Dragon|FTD})<br/>Adjusted XP: 1800<br/>Difficulty: Absurd}",
+												"{@footnote Absurd Fight for 4 x Level 2 PCs|1 x {@creature Mama McCallister|GA}, CR 5 (reskinned {@creature Young Crystal Dragon|FTD})<br/>Reduce to CR 4: AC: 14, HP: 85, Purse attack bonus: +5<br/>Adjusted XP: 1100<br/>Difficulty: Absurd}",
+												{
+													"type": "encounter",
+													"name": "Encounter: Soldiers!",
+													"varyBy": "Party Size",
+													"variations": [
+														{
+															"variantName": "4",
+															"default": true,
+															"combatants": [
+																{
+																	"creature": "{@creature Mama McCallister|GA}",
+																	"quantity": 1,
+																	"note": "(a reskinned {@creature Young Crystal Dragon|FTD})"
+																}
+															],
+															"notes": [
+																"Absurd Fight for 4 x Level 2 PCs"
+															]
+														},
+														{
+															"variantName": "5",
+															"combatants": [
+																{
+																	"creature": "{@creature Mama McCallister|GA}",
+																	"quantity": 1,
+																	"note": "(a reskinned {@creature Young Crystal Dragon|FTD})"
+																}
+															],
+															"notes": [
+																"Absurd Fight for 5 x Level 2 PCs"
+															]
+														}
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "entries",
+							"name": "credits",
+							"entries": [
+								"Original one-shot: {@link DMDave: Kobold Alone|https://dmdave.com/kobold-alone-1st-level-holiday-adventure-for-dungeons-dragons-fifth-edition-pdf-included}",
+								"Original one-shot PDF: {@link Kobold Alone PDF|https://dmdave.com/wp-content/uploads/2018/12/kobold-alone-4.pdf}",
+								"Tension Pool mechanics: {@link The Angry GM: Tension Pool|https://theangrygm.com/definitive-tension-pool}"
+							]
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Player Handout",
+					"entries": [
+						"There are a lot of mechanics and other info in this adventure that the players don't really need to know (unless it comes up during play).  But the DM should be forthcoming about some of the unique mechanics that could have a major impact on how the players decide to approach this adventure.  Below is a proposed list of mechanics to hand out to your players before the session starts; maybe even before they build their characters.",
+						{
+							"type": "entries",
+							"name": "Player Build",
+							"entries": [
+								{
+									"type": "list",
+									"items": [
+										"Please build an {@i evil-aligned} level 2 criminal character.",
+										"This is a heist, so rogues are encouraged, but not mandatory.",
+										"At least one player in your party should {@i be proficient in} and {@i equipped with} {@item Thieve's Tools|PHB}."
+									]
+								}
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Death & TPKs",
+							"entries": [
+								{
+									"type": "list",
+									"items": [
+										"There is no death in this one-shot!",
+										"If you fall unconscious, you still make death saving throws but there is no penalty for a failed save.",
+										"On 3 successes (or a nat 20), you regain consciousness with 1 HP.",
+										"Each player has smelling salts which can be used as an action to revive any fallen ally to 1 HP.",
+										"The party can still TPK if all characters are unconscious at the same time."
+									]
+								}
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Heist Mechanics",
+							"entries": [
+								{
+									"type": "entries",
+									"entries": [
+										{
+											"type": "list",
+											"items": [
+												{
+													"type": "entries",
+													"name": "Score the most points to win!",
+													"entries": [
+														{
+															"type": "list",
+															"items": [
+																"Each looted item is worth 1 point.",
+																"You'll each receive a secret objective worth up to 3 points",
+																"First player to 7 wins! Or, the player with the most points if one of the other end game scenarios (see below) occurs..."
+															]
+														}
+													]
+												},
+												{
+													"type": "entries",
+													"name": "End Game: The heist ends when one of the following things happen.",
+													"entries": [
+														{
+															"type": "list",
+															"items": [
+																"If the party TPKs",
+																"If a player scores 7 points",
+																"If the party defeats the BBGG",
+																"If the {@i Tension Pool} is rolled a 5th time, soldiers bust in and arrest anyone still in the building"
+															]
+														}
+													]
+												},
+												{
+													"type": "entries",
+													"name": "Tension Pool??",
+													"entries": [
+														"<br/>The Tension Pool is a mechanic {@link created by The Angry GM|https://theangrygm.com/definitive-tension-pool/}.  The premise is simple: track your party's carelessness, recklessness, and time-wasting in a tangible way with actual consequences. Rules are summarized below:",
+														{
+															"type": "list",
+															"items": [
+																"{@b Time Consuming Actions}. When a character performs a time consuming action (ex: searching for or loot, disarming a trap, etc.), add a d6 to the Tension Pool.",
+																"If a sixth d6 is added to the Tension Pool, immediately roll the pool (resetting it to zero).",
+																"When a character performs a {@i Reckless Action}, like destroying something, kicking in a door, creating a loud commotion etc., roll the pool immediately.",
+																"When the pool is rolled, if any d6 shows a 1, a complication occurs."
+															]
+														}
+													]
+												},
+												{
+													"type": "entries",
+													"name": "You can (and probably will) steal from your \"allies\". You are evil, thieving crooks after all!",
+													"entries": [
+														{
+															"type": "list",
+															"items": [
+																"A pickpocketing attempt follows the normal rules: it's your Dexterity (Sleight of Hand) contested by the target's Wisdom (Perception)",
+																"BUT in this one-shot, contesting a pickpocket attempt costs a Reaction!",
+																"Stealing from an unconscious character is free >:D  One action per item."
+															]
+														},
+														"One last thing:<br/>If an item is worn or stowed, {@i it can be stolen}. If an item is carried, i.e. the target is devoting at least one hand to holding it, the item cannot be stolen while the target is conscious."
+													]
+												},
+												{
+													"type": "entries",
+													"name": "Detecting & Disarming Traps",
+													"entries": [
+														{
+															"type": "list",
+															"items": [
+																"Observable traps are detected with Perception.",
+																"Well-concealed traps are detected with Investigation.",
+																"Traps are disarmed with Thieve's Tools."
+															]
+														},
+														"Any player can attempt to detect traps at any time, but keep the following rules in mind:",
+														{
+															"type": "list",
+															"items": [
+																"Perception and Investigation checks will be made by your DM, behind the screen, using your stats. You'll be told the result, but not the number rolled.",
+																"A {@skill Perception} skill check is 1 action.",
+																"A {@skill Investigation} skill check will have a much lower DC, but is considered a {@i Time Consuming Action}, (see: {@i Tension Pool} mechanics)."
+															]
+														},
+														"Once a trap is detected...",
+														{
+															"type": "list",
+															"items": [
+																"Any player can attempt to disarm the trap with {@item thieves' tools|PHB}.",
+																"{@i You can attempt} to disarm without thieves' tools, using whatever equipment you have on hand, but you must describe exactly how you are attempting to do it, and then, only if the DM deems it plausible, you would make a Dexterity check to disarm at disadvange (same DC as with {@item thieves' tools|PHB})."
+															]
+														}
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width">
+	<title>Voice Initiative Peer-to-Peer Cue System --- Controller</title>
+
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/fontawesome.css">
+	<link rel="stylesheet" href="css/main.css">
+
+	<link rel="stylesheet" type="text/css" href="css/controller.css" />
+
+	<!--5ETOOLS_CMP-->
+	<!--5ETOOLS_ANALYTICS-->
+	<!--5ETOOLS_ADCODE-->
+	<meta charset="utf-8">
+	<meta name="description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+	<meta name="mobile-web-app-capable" content="yes">
+
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/main.css">
+
+	<!-- Favicons -->
+	<link rel="icon" type="image/svg+xml" href="favicon.svg">
+	<link rel="icon" type="image/png" sizes="256x256" href="favicon-256x256.png">
+	<link rel="icon" type="image/png" sizes="144x144" href="favicon-144x144.png">
+	<link rel="icon" type="image/png" sizes="128x128" href="favicon-128x128.png">
+	<link rel="icon" type="image/png" sizes="64x64" href="favicon-64x64.png">
+	<link rel="icon" type="image/png" sizes="48x48" href="favicon-48x48.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+
+	<!-- Chrome Web App Icons -->
+	<link rel="manifest" href="manifest.webmanifest">
+	<meta name="application-name" content="5etools">
+	<meta name="theme-color" content="#006bc4">
+
+	<!-- Windows Start Menu tiles -->
+	<meta name="msapplication-config" content="browserconfig.xml" />
+	<meta name="msapplication-TileColor" content="#006bc4">
+
+	<!-- Apple Touch Icons -->
+	<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180x180.png">
+	<link rel="apple-touch-icon" sizes="360x360" href="apple-touch-icon-360x360.png">
+	<link rel="apple-touch-icon" sizes="167x167" href="apple-touch-icon-167x167.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="apple-touch-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="apple-touch-icon-120x120.png">
+	<meta name="apple-mobile-web-app-title" content="5etools">
+
+	<!-- macOS Safari Pinned Tab and Touch Bar -->
+	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
+
+	<!-- OpenSearch -->
+	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
+
+	<script type="text/javascript" src="sw-injector.js"></script>
+
+	<script type="text/javascript" src="js/styleswitch.js"></script>
+	<script type="text/javascript" src="js/navigation.js"></script>
+	<script type="text/javascript" src="js/browsercheck.js"></script>
+</head>
+
+<body>
+	<div class="overlay-noise no-print"></div>
+
+	<header class="hidden-xs hidden-sm page__header">
+		<div class="container ve-flex-v-baseline">
+			<h1 class="page__title no-wrap my-0" id="page__title">Voice Initiative Controller</h1>
+			<p class="page__subtitle no-wrap my-0" id="page__subtitle">Control an initiative board running on
+				d20.orcnog.com by connecting with p2p.</p>
+		</div>
+	</header>
+
+	<nav class="container page__nav" id="navigation">
+		<ul class="nav nav-pills page__nav-inner" id="navbar"></ul>
+	</nav>
+
+	<div class="container view-col-wrapper">
+		<div class="view-col" id="listcontainer">
+
+			<div class="control-container">
+				<div class="control">
+					<div class="title">Status:</div>
+					<div class="control-section">
+						<span style="font-weight: bold">ID: </span>
+						<input type="text" id="receiver-id" title="Input the ID from receive.html">
+						<button id="connect-button">Connect</button>
+						<div id="status" class="status"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="control-panel player closed">
+				<form id="new_player">
+					<label for="new_player_name">Name</label>
+					<input type="text" id="new_player_name" />
+					<label for="new_player_roll">Initiative Roll</label>
+					<input type="text" id="new_player_roll" />
+					<button id="submit_new_player" type="submit">Submit</button>
+				</form>
+			</div>
+
+			<div class="control-panel master closed">
+
+				<div>
+					<div class="toggle" data-target=".settings-menu">Settings <svg xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 512 512">
+							<path fill="white"
+								d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
+							</svg></div>
+					<div class="settings-menu menu-expandable closed">
+						<div class="sender-btns-wrapper column">
+							<div class="sender-btns-row">
+								<label for="updateTheme">Theme</label>
+								<select id="updateTheme" class="control-dropdown update-theme"></select>
+							</div>
+							<div class="sender-btns-row">
+								<label for="update_combat_playlist">Combat Playlist</label>
+								<select id="update_combat_playlist" class="control-dropdown update-combat-playlist"></select>
+							</div>
+							<div class="sender-btns-row">
+								<label for="updateSlideshowContext">Slideshow</label>
+								<select id="updateSlideshowContext" class="control-dropdown update-slideshow-context"></select>
+							</div>
+							<div class="sender-btns-row">
+								<label for="update_app_scale">App Scale</label>
+								<input id="update_app_scale" class="control-dropdown update-app-scale" type="number" min="0.25"
+									max="4" step="0.25" value="2"></select>
+							</div>
+							<div class="sender-btns-row">
+								<label for="update_font_size">Font Size</label>
+								<input id="update_font_size" class="control-dropdown update-font-size" type="number" min="0.5"
+									max="4" step="0.25" value="2"></select>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div id="slideshow_slide_buttons" class="sender-btns-wrapper">
+					<label for="go_to_slide">Go to Slide...</label>
+					<div id="go_to_slide" class="radio-group"></div>
+				</div>
+
+				<div class="sender-btns-wrapper row">
+					<button id="back_to_initiative" type="button" class="control-button return-to-initiative-btn">Initiative Tracker</button>
+					<div id="mic_status" class="light">
+						<span class="light-on"></span>
+					</div>
+				</div>
+
+				<div class="sender-btns-wrapper">
+					<div>
+						<div id="initiative_order">
+							<div class="initiative-header">
+								<div class="round-tracker">Round: <span id="round_tracker"></span></div>
+								<div class="clear-all-btn"><button id="clear_initiative"
+										class="control-button clear-initiative-btn"></button></div>
+							</div>
+							<button id="prev_turn"><svg xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 320 512">
+									<path fill="var(--subtle-icon-color)"
+										d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
+								</svg></button>
+							<table class="initiative-tracker">
+								<thead style="text-transform: uppercase; font-size: 0.85rem;">
+									<tr>
+										<td>Init</td>
+										<td>Name</td>
+										<td></td>
+										<td style="text-align: center;">HP / </td>
+										<td style="text-align: center;"><span style="display: block;margin-left: -4ch;min-width: 2.75rem;">Max</span></td>
+										<td style="text-align: center;">Status</td>
+									</tr>
+								</thead>
+								<tbody></tbody>
+							</table>
+							<button id="next_turn"><svg xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 320 512">
+									<path fill="var(--subtle-icon-color)"
+										d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
+								</svg>
+							</button>
+						</div>
+
+						<div class="table-footer">
+							<div class="toggle" data-target=".addplayer-menu">Add a Player <svg
+									xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+									<path fill="white"
+										d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
+								</svg>
+							</div>
+							<button class="assign-a-monster" title="Assign a creature..."><span class="monster-icon"></span>Assign a creature...</button>
+						</div>
+						<div class="addplayer-menu menu-expandable closed">
+							<form id="new_player_master">
+								<label for="new_player_name_master">Name</label>
+								<input type="text" id="new_player_name_master" />
+								<label for="new_player_roll_master">Initiative Roll</label>
+								<input type="text" id="new_player_roll_master" />
+								<button id="submit_new_player_master" type="submit">Submit</button>
+							</form>
+						</div>
+					</div>
+				</div>
+
+				<div id="initiative-statblock-display"></div>
+
+				<div class="audio">
+					<div class="audio-player music-player">
+						<div class="audio-player-controls-container">
+							<label>Music</label>
+							<div class="audio-player-controls">
+								<button id="repeat_music" class="audio-ui-btn"><svg
+										xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+										<path fill="var(--music-icon-color)"
+											d="M142.9 142.9c-17.5 17.5-30.1 38-37.8 59.8c-5.9 16.7-24.2 25.4-40.8 19.5s-25.4-24.2-19.5-40.8C55.6 150.7 73.2 122 97.6 97.6c87.2-87.2 228.3-87.5 315.8-1L455 55c6.9-6.9 17.2-8.9 26.2-5.2s14.8 12.5 14.8 22.2l0 128c0 13.3-10.7 24-24 24l-8.4 0c0 0 0 0 0 0L344 224c-9.7 0-18.5-5.8-22.2-14.8s-1.7-19.3 5.2-26.2l41.1-41.1c-62.6-61.5-163.1-61.2-225.3 1zM16 312c0-13.3 10.7-24 24-24l7.6 0 .7 0L168 288c9.7 0 18.5 5.8 22.2 14.8s1.7 19.3-5.2 26.2l-41.1 41.1c62.6 61.5 163.1 61.2 225.3-1c17.5-17.5 30.1-38 37.8-59.8c5.9-16.7 24.2-25.4 40.8-19.5s25.4 24.2 19.5 40.8c-10.8 30.6-28.4 59.3-52.9 83.8c-87.2 87.2-228.3 87.5-315.8 1L57 457c-6.9 6.9-17.2 8.9-26.2 5.2S16 449.7 16 440l0-119.6 0-.7 0-7.6z" />
+									</svg></button>
+								<button id="prev_track_music" class="audio-ui-btn"><svg
+										xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+										<path fill="var(--music-icon-color)"
+											d="M267.5 440.6c9.5 7.9 22.8 9.7 34.1 4.4s18.4-16.6 18.4-29l0-320c0-12.4-7.2-23.7-18.4-29s-24.5-3.6-34.1 4.4l-192 160L64 241 64 96c0-17.7-14.3-32-32-32S0 78.3 0 96L0 416c0 17.7 14.3 32 32 32s32-14.3 32-32l0-145 11.5 9.6 192 160z" />
+									</svg></button>
+								<button id="play_music" class="audio-ui-btn bigger"><svg
+										xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+										<path fill="var(--music-icon-color)"
+											d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c-7.6 4.2-12.3 12.3-12.3 20.9l0 176c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88c-7.4-4.5-16.7-4.7-24.3-.5z" />
+									</svg></button>
+								<button id="pause_music" class="audio-ui-btn bigger"><svg
+										xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+										<path fill="var(--music-icon-color)"
+											d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM224 192l0 128c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-128c0-17.7 14.3-32 32-32s32 14.3 32 32zm128 0l0 128c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-128c0-17.7 14.3-32 32-32s32 14.3 32 32z" />
+									</svg></button>
+								<button id="next_track_music" class="audio-ui-btn"><svg
+										xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+										<path fill="var(--music-icon-color)"
+											d="M52.5 440.6c-9.5 7.9-22.8 9.7-34.1 4.4S0 428.4 0 416L0 96C0 83.6 7.2 72.3 18.4 67s24.5-3.6 34.1 4.4l192 160L256 241l0-145c0-17.7 14.3-32 32-32s32 14.3 32 32l0 320c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-145-11.5 9.6-192 160z" />
+									</svg></button>
+								<button id="shuffle_music" class="audio-ui-btn"><svg
+										xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+										<path fill="var(--music-icon-color)"
+											d="M403.8 34.4c12-5 25.7-2.2 34.9 6.9l64 64c6 6 9.4 14.1 9.4 22.6s-3.4 16.6-9.4 22.6l-64 64c-9.2 9.2-22.9 11.9-34.9 6.9s-19.8-16.6-19.8-29.6l0-32-32 0c-10.1 0-19.6 4.7-25.6 12.8L284 229.3 244 176l31.2-41.6C293.3 110.2 321.8 96 352 96l32 0 0-32c0-12.9 7.8-24.6 19.8-29.6zM164 282.7L204 336l-31.2 41.6C154.7 401.8 126.2 416 96 416l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c10.1 0 19.6-4.7 25.6-12.8L164 282.7zm274.6 188c-9.2 9.2-22.9 11.9-34.9 6.9s-19.8-16.6-19.8-29.6l0-32-32 0c-30.2 0-58.7-14.2-76.8-38.4L121.6 172.8c-6-8.1-15.5-12.8-25.6-12.8l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c30.2 0 58.7 14.2 76.8 38.4L326.4 339.2c6 8.1 15.5 12.8 25.6 12.8l32 0 0-32c0-12.9 7.8-24.6 19.8-29.6s25.7-2.2 34.9 6.9l64 64c6 6 9.4 14.1 9.4 22.6s-3.4 16.6-9.4 22.6l-64 64z" />
+									</svg></button>
+							</div>
+							<input id="volume_music" type="range" min="0" max="100" value="40" step="1" />
+						</div>
+						<div class="audio-selection">
+							<small>Playlist:</small>
+							<select id="update_music_playlist"></select>
+						</div>
+						<div class="audio-selection">
+							<small>Track:</small>
+							<select id="update_music_track"></select>
+						</div>
+					</div>
+
+					<button id="audio_kill_switch" class="audio-ui-btn audio-kill-switch">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+							<path fill="#777"
+								d="M301.1 34.8C312.6 40 320 51.4 320 64l0 384c0 12.6-7.4 24-18.9 29.2s-25 3.1-34.4-5.3L131.8 352 64 352c-35.3 0-64-28.7-64-64l0-64c0-35.3 28.7-64 64-64l67.8 0L266.7 40.1c9.4-8.4 22.9-10.4 34.4-5.3z">
+							</path>
+							<path fill="#DDD"
+								d="M425 167l55 55 55-55c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-55 55 55 55c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-55-55-55 55c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l55-55-55-55c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0z">
+							</path>
+						</svg></button>
+
+					<div class="audio-player ambience-player">
+						<div class="audio-player-controls-container">
+							<label>Ambience</label>
+							<div class="audio-player-controls">
+								<button id="prev_track_ambience" class="audio-ui-btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+										viewBox="0 0 320 512">
+										<path fill="var(--ambience-icon-color)"
+											d="M267.5 440.6c9.5 7.9 22.8 9.7 34.1 4.4s18.4-16.6 18.4-29l0-320c0-12.4-7.2-23.7-18.4-29s-24.5-3.6-34.1 4.4l-192 160L64 241 64 96c0-17.7-14.3-32-32-32S0 78.3 0 96L0 416c0 17.7 14.3 32 32 32s32-14.3 32-32l0-145 11.5 9.6 192 160z" />
+									</svg></button>
+								<button id="play_ambience" class="audio-ui-btn bigger"><svg
+										xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+										<path fill="var(--ambience-icon-color)"
+											d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c7.6-4.2 16.8-4.1 24.3 .5l144 88c7.1 4.4 11.5 12.1 11.5 20.5s-4.4 16.1-11.5 20.5l-144 88c-7.4 4.5-16.7 4.7-24.3 .5s-12.3-12.2-12.3-20.9l0-176c0-8.7 4.7-16.7 12.3-20.9z" />
+									</svg></button>
+								<button id="pause_ambience" class="audio-ui-btn bigger"><svg
+										xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+										<path fill="var(--ambience-icon-color)"
+											d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm224-72l0 144c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-144c0-13.3 10.7-24 24-24s24 10.7 24 24zm112 0l0 144c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-144c0-13.3 10.7-24 24-24s24 10.7 24 24z" />
+									</svg></button>
+								<button id="next_track_ambience" class="audio-ui-btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+										viewBox="0 0 320 512">
+										<path fill="var(--ambience-icon-color)"
+											d="M52.5 440.6c-9.5 7.9-22.8 9.7-34.1 4.4S0 428.4 0 416L0 96C0 83.6 7.2 72.3 18.4 67s24.5-3.6 34.1 4.4l192 160L256 241l0-145c0-17.7 14.3-32 32-32s32 14.3 32 32l0 320c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-145-11.5 9.6-192 160z" />
+									</svg></button>
+							</div>
+							<input id="volume_ambience" type="range" min="0" max="100" value="40" step="1" />
+						</div>
+						<div class="audio-selection">
+							<small>Playlist:</small>
+							<select id="update_ambience_playlist"></select>
+						</div>
+						<div class="audio-selection">
+							<small>Track:</small>
+							<select id="update_ambience_track"></select>
+						</div>
+					</div>
+				</div>
+
+				<div class="control">
+					<div class="title">Log:</div>
+					<div class="control-section">
+						<div class="message" id="message"></div>
+						<input type="text" id="sendMessageBox" placeholder="Enter a message..." autofocus="true" />
+						<button type="button" id="sendButton">Send</button>
+						<button type="button" id="clearMsgsButton">Clear Msgs (Local)</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <!-- standard 5etools scripts -->
+	<script type="text/javascript" defer src="lib/jquery.js"></script>
+	<script type="text/javascript" defer src="lib/peerjs.js"></script>
+	<script type="text/javascript" defer src="lib/jquery.panzoom.js"></script>
+	<script type="text/javascript" defer src="lib/lzma.js"></script>
+	<script type="text/javascript" defer src="js/parser.js"></script>
+	<script type="text/javascript" defer src="js/utils.js"></script>
+	<script type="text/javascript" defer src="js/utils-ui.js"></script>
+	<script type="text/javascript" defer src="lib/localforage.js"></script>
+	<script type="module" defer src="js/omnidexer.js"></script>
+	<script type="module" src="js/omnisearch.js"></script>
+	<script type="module" src="js/filter.js"></script>
+	<script type="text/javascript" defer src="js/utils-dataloader.js"></script>
+	<script type="module" src="js/utils-brew.js"></script>
+	<script type="module" src="js/utils-config.js"></script>
+	<script type="text/javascript" defer src="js/utils-list.js"></script>
+	<script type="text/javascript" defer src="js/utils-p2p.js"></script>
+	<script type="text/javascript" defer src="js/render.js"></script>
+	<script type="text/javascript" defer src="js/render-dice.js"></script>
+	<script type="text/javascript" defer src="js/render-map.js"></script>
+	<script type="text/javascript" defer src="js/scalecreature.js"></script>
+	<script type="text/javascript" defer src="js/hist.js"></script>
+	<script type="module" src="js/dmscreen.js"></script>
+	<script type="text/javascript" defer src="js/list2.js"></script>
+	<script type="text/javascript" defer src="lib/elasticlunr.js"></script>
+
+	<script src="https://unpkg.com/peerjs@1.5.0/dist/peerjs.min.js"></script>
+    <script type="module" src="js/controller.js"></script>
+</body>
+
+</html>

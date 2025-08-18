@@ -1,0 +1,1571 @@
+{
+	"_meta": {
+		"sources": [
+			{
+				"json": "orcnogLostTemple",
+				"abbreviation": "LostTemple",
+				"full": "SW5e: The Lost Jedi Temple - A SW5e D&D One-Shot",
+				"url": "https://raw.githubusercontent.com/orcnog/5etools-brew/main/sw5e/adventures/LostTemple/creatures.json",
+				"color": "008866",
+				"authors": [
+					"orcnog"
+				],
+				"convertedBy": [
+					"orcnog"
+				]
+			}
+		],
+		"dateAdded": 1613648837,
+		"dateLastModified": 1613648837,
+		"_dateLastModifiedHash": "e5f748a123",
+		"internalCopies": [
+			"monster"
+		]
+	},
+	"monster": [
+		{
+			"name": "KX-Series Security Droid v1",
+			"source": "orcnogLostTemple",
+			"page": 0,
+			"tokenUrl": "https://vignette.wikia.nocookie.net/starwars/images/f/fd/K-2SO_Sideshow.png/revision/latest?cb=20170302003128",
+			"size": [
+				"M"
+			],
+			"type": "droid",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"armor plating"
+					]
+				}
+			],
+			"hp": {
+				"average": 34,
+				"formula": "4d8 + 16"
+			},
+			"speed": {
+				"walk": 25
+			},
+			"str": 21,
+			"dex": 16,
+			"con": 19,
+			"int": 13,
+			"wis": 15,
+			"cha": 7,
+			"skill": {
+				"athletics": "+7",
+				"perception": "+4",
+				"intimidation": "+2"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 14,
+			"resist": [
+				"necrotic",
+				"poison",
+				"psychic"
+			],
+			"vulnerable": [
+				{
+					"vulnerable": [
+						"lightning"
+					],
+					"preNote": "ion"
+				}
+			],
+			"conditionImmune": [
+				"diseased",
+				"poisoned"
+			],
+			"languages": [
+				"Galactic basic",
+				"binary"
+			],
+			"cr": "1",
+			"trait": [
+				{
+					"name": "Circuitry",
+					"entries": [
+						"The construct has disadvantage on saving throws against effects that would deal ion or lightning damage."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Strike",
+					"entries": [
+						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}8 ({@damage 1d6 + 5}) kinetic damage."
+					]
+				}
+			],
+			"senseTags": [
+				"D"
+			],
+			"miscTags": [
+				"MW"
+			]
+		},
+		{
+			"name": "KX-Series Security Droid",
+			"source": "orcnogLostTemple",
+			"page": 0,
+			"size": [
+				"M"
+			],
+			"type": "construct",
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 39,
+				"formula": "6d6 + 18"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 15,
+			"dex": 6,
+			"con": 16,
+			"int": 11,
+			"wis": 4,
+			"cha": 6,
+			"save": {
+				"str": "+4",
+				"dex": "+0",
+				"int": "+2"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 10,
+			"resist": [
+				"ranged attacks"
+			],
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"paralyzed",
+				"petrified",
+				"poisoned"
+			],
+			"languages": [
+				"Common"
+			],
+			"cr": "3",
+			"trait": [
+				{
+					"name": "Malfunction",
+					"entries": [
+						"Whenever the security droid takes 15 damage or more from a single source and isn't reduced to 0 hit points by that damage, roll a {@dice d20} to determine if it suffers a malfunction:",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "1-10: \"All Fine Here!\"",
+									"entries": [
+										"No malfunction occurs."
+									]
+								},
+								{
+									"type": "item",
+									"name": "11-12: \"Logic error. System reboot.\"",
+									"entries": [
+										"The security droid is {@condition incapacitated} for 1 minute."
+									]
+								},
+								{
+									"type": "item",
+									"name": "13-14: \"I've been disarmed!\"",
+									"entries": [
+										"One of the security droid's arms falls off, reducing the number of Shock attacks it can make by 1 until a creature uses an action to reattach the arm."
+									]
+								},
+								{
+									"type": "item",
+									"name": "15-16: \"Not a time to lose one's head.\"",
+									"entries": [
+										"The security droid's head falls off and deactivates, causing the autognome to be {@condition blinded} and {@condition deafened}. The security droid continues to attack indiscriminately."
+									]
+								},
+								{
+									"type": "item",
+									"name": "17-20: \"WARNING! EXPLOSION IMMINATE!\"",
+									"entries": [
+										"The security droid explodes and is destroyed. Each creature within 20 feet of the explosion must make a {@dc 11} Dexterity saving throw, taking 22 ({@damage 4d10}) slashing damage on a failed save, or half as much damage on a successful one."
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Unusual Nature",
+					"entries": [
+						"The security droid doesn't require air, food, drink, or sleep."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The security droid makes two blaster attacks."
+					]
+				},
+				{
+					"name": "Blaster",
+					"entries": [
+						"{@atk mw,rw} {@hit 4} to hit, reach 5 ft. or range 60/120 ft., one target. {@h}7 ({@damage 3d6}) lightning damage."
+					]
+				}
+			],
+			"traitTags": [
+				"Unusual Nature"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"fluff": {
+				"entries": [
+					"KX-series security droids, also referred to as enforcer droids, are a model of security droid manufactured by Arakyd Industries that was in service to the Galactic Empire during the Galactic Civil War.",
+					"Enforcer droids come equipped with a built-in comm package, recharge port, and a computer interface arm that allows them to connect with standard communication frequencies for areas they are assigned to. The droids were designed with exaggerated human proportions but with the mobility of a human athlete. They were able to operate a variety or tools and equipment and can carry gear without becoming exhausted.",
+					"While the Imperial Senate had prohibited the creation of battle droids, Arakyd was able to use a loophole in the law by marketing the KX-series as \"security droids.\" They were programmed without the standard restriction against harming organic sentient lifeforms.",
+					"The KX-series droids were programmed to speak and interact with people, but were not as proficient at it as protocol droids were. They could handle a wide range of tasks, including escorting dignitaries, protecting important people and defending Imperial installations. The droids were also programmed to recognize and defer to Imperial Military officers ranked Lieutenant or higher."
+				],
+				"images": [
+					{
+						"type": "image",
+						"href": {
+							"type": "external",
+							"url": "https://www.sideshow.com/cdn-cgi/image/width=850,quality=90,f=auto/https://www.sideshow.com/storage/product-images/910740/kx-enforcer-droid_star-wars_gallery_623b8d7455e1c.jpg"
+						}
+					}
+				]
+			},
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"L",
+				"S"
+			],
+			"miscTags": [
+				"RW",
+				"MW",
+				"AOE",
+				"SW5e"
+			],
+			"tokenUrl": "https://preview.redd.it/kx-droids-hd-and-ld-versions-v0-nzx1hvyun0ea1.png?width=722&format=png&auto=webp&s=5282bac9e0e9bb80546a043e6858397fee6556c2"
+		},
+		{
+			"name": "Repair Droid",
+			"source": "orcnogLostTemple",
+			"page": 0,
+			"size": [
+				"M"
+			],
+			"type": "droid",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 13,
+					"from": [
+						"armor scraps"
+					]
+				}
+			],
+			"hp": {
+				"average": 13,
+				"formula": "2d8 + 4"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 14,
+			"con": 15,
+			"int": 6,
+			"wis": 8,
+			"cha": 5,
+			"resist": [
+				"necrotic",
+				"poison",
+				"psychic"
+			],
+			"vulnerable": [
+				{
+					"special": "ion"
+				}
+			],
+			"conditionImmune": [
+				"poison",
+				"disease"
+			],
+			"languages": [
+				"Binary",
+				"Galactic Basic"
+			],
+			"cr": "1/4",
+			"trait": [
+				{
+					"name": "Circuitry",
+					"entries": [
+						"The droid has disadvantage on saving throws against effects that would deal ion or lightning damage."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The repair droid makes two electro cable attacks."
+					]
+				},
+				{
+					"name": "Electro Cable",
+					"entries": [
+						"{@atk mw} {@hit 4} to hit, reach 15 ft., one target. {@h}5 ({@damage 1d6 + 2}) energy damage and the target is {@condition grappled} ({@dc 10} escape). While the target is {@condition grappled} in this way, the droid can reinflict the damage at the beginning of each of its turns as a bonus action."
+					]
+				},
+				{
+					"name": "Repair (1/Day)",
+					"entries": [
+						"As an action, the droid can restore {@dice 2d4 + 2} hit points to a droid or construct within 5 feet."
+					]
+				}
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"miscTags": [
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"grappled"
+			],
+			"tokenUrl": "https://i.imgur.com/LWrp8eD.png"
+		},
+		{
+			"name": "Knobby White Spider",
+			"source": "orcnogLostTemple",
+			"page": 0,
+			"size": [
+				"L"
+			],
+			"type": "plant",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 112,
+				"formula": "15d10 + 30"
+			},
+			"speed": {
+				"walk": 20
+			},
+			"str": 18,
+			"dex": 8,
+			"con": 15,
+			"int": 2,
+			"wis": 10,
+			"cha": 5,
+			"skill": {
+				"stealth": "+2"
+			},
+			"senses": [
+				"blindsight 60 ft. (blind beyond this radius)"
+			],
+			"passive": 10,
+			"vulnerable": [
+				"fire"
+			],
+			"conditionImmune": [
+				"blinded",
+				"deafened",
+				"exhaustion"
+			],
+			"cr": "5",
+			"trait": [
+				{
+					"name": "Distress Spores",
+					"entries": [
+						"When the spider takes damage, all other spiders within 240 feet of it can sense its pain.",
+						"False Appearance, While the spider remains motionless, it is indistinguishable from a normal gnarltree."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The spider makes two slam attacks."
+					]
+				},
+				{
+					"name": "Slam",
+					"entries": [
+						"{@atk mw} {@hit 7} to hit, reach 10 ft., one target. {@h}13 ({@damage 2d8 + 4}) kinetic damage."
+					]
+				},
+				{
+					"name": "Pacifying Spores (3/Day)",
+					"entries": [
+						"The spider ejects spores in 15-foot cone. All creatures in the area must succeed on a {@dc 14} Constitution saving throw or be {@condition stunned} for 1 minute. The target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+					]
+				},
+				{
+					"name": "Stinger",
+					"entries": [
+						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}15 ({@damage 2d10 + 4}) kinetic damage, and the target must make a {@dc 15} Constitution saving throw, taking 18 ({@damage 4d8}) poison damage on a failed save, or half as much damage on a successful one. If the poison damage reduces the target to 0 hit points, the target is stable but {@condition poisoned} for 1 hour, even after regaining hit points, and is {@condition paralyzed} while {@condition poisoned} in this way."
+					]
+				}
+			],
+			"senseTags": [
+				"B"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"fluff": {
+				"images": [
+					{
+						"type": "image",
+						"href": {
+							"type": "external",
+							"url": "https://i.pinimg.com/736x/cf/44/be/cf44be0f2c14f6dbe6730cc6c38344e7.jpg"
+						}
+					}
+				]
+			},
+			"damageTags": [
+				"I"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"paralyzed",
+				"poisoned",
+				"stunned"
+			],
+			"savingThrowForced": [
+				"constitution"
+			]
+		},
+		{
+			"name": "Jedi Knight, Temple Guard",
+			"source": "orcnogLostTemple",
+			"page": 0,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"any"
+				]
+			},
+			"alignment": [
+				"L",
+				"G"
+			],
+			"ac": [
+				{
+					"ac": 14,
+					"from": [
+						"17 with battle precognition"
+					]
+				}
+			],
+			"hp": {
+				"average": 70,
+				"formula": "10d8 + 20"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 14,
+			"dex": 18,
+			"con": 14,
+			"int": 10,
+			"wis": 16,
+			"cha": 8,
+			"skill": {
+				"athletics": "+5",
+				"perception": "+6",
+				"acrobatics": "+7",
+				"insight": "+6"
+			},
+			"passive": 16,
+			"languages": [
+				"Galactic Basic"
+			],
+			"cr": "5",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The Jedi Temple Guard is a 6th level forcecaster it's forcecasting ability is Wisdom (force save {@dc 14}, {@hit 6} to hit with force attacks, 18 force points). The Jedi Healer knows the following force powers:"
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell saber reflect|sw5ephb}",
+								"{@spell turbulance|sw5ephb}",
+								"{@spell force push/pull|sw5ephb}",
+								"{@spell force disarm|sw5ephb}",
+								"{@spell sonic charge|sw5ephb}",
+								"{@spell burst|sw5ephb}"
+							]
+						},
+						"1": {
+							"spells": [
+								"{@spell slow descent|sw5ephb}",
+								"{@spell battle precognition|sw5ephb}",
+								"{@spell phase strike|sw5ephb}",
+								"{@spell force throw|sw5ephb}"
+							]
+						},
+						"2": {
+							"spells": [
+								"{@spell stun|sw5ephb}",
+								"{@spell phase walk|sw5ephb}"
+							]
+						},
+						"3": {
+							"spells": [
+								"{@spell telekinetic storm|sw5ephb}",
+								"{@spell knight speed|sw5ephb}",
+								"{@spell sever force|sw5ephb}",
+								"{@spell force repulse|sw5ephb}"
+							]
+						}
+					},
+					"ability": "wis"
+				}
+			],
+			"trait": [
+				{
+					"name": "Two Weapon Fighting",
+					"entries": [
+						"The Jedi can add it's ability modifier to the damage of it's two-weapon fighting attack.",
+						"Force Enhanced attacks. The Jedi's attacks are enhanced by it's precision and the force adding an extra {@dice 1d8} to melee strikes (included)."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"When the Jedi makes three doublesaber attacks."
+					]
+				},
+				{
+					"name": "Doublesaber",
+					"entries": [
+						"{@atk mw} {@hit 7} to hit, reach 5ft., one target. Hit 12 ({@dice 2d8 + 4})"
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Double Bladed Strike",
+					"entries": [
+						"The Jedi can attack with both blades when making an opportunity attack"
+					]
+				}
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MW"
+			]
+		},
+		{
+			"name": "Jedi Padawan",
+			"source": "orcnogLostTemple",
+			"page": 0,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"any"
+				]
+			},
+			"alignment": [
+				"L",
+				"NX",
+				"C",
+				"G"
+			],
+			"ac": [
+				{
+					"ac": 11,
+					"from": [
+						"14 with battle precognition"
+					]
+				}
+			],
+			"hp": {
+				"average": 27,
+				"formula": "5d8 + 5"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 12,
+			"con": 13,
+			"int": 12,
+			"wis": 15,
+			"cha": 11,
+			"skill": {
+				"lore": "+3",
+				"medicine": "+3",
+				"perception": "+4"
+			},
+			"passive": 14,
+			"languages": [
+				"Galactic Basic and two others"
+			],
+			"cr": "2",
+			"trait": [
+				{
+					"name": "Spellcasting",
+					"entries": [
+						"The padawan is a 4th-level forcecaster. Its forcecasting ability is Wisdom (power save {@dc 12}, {@hit 4} to hit with force attacks) and it has 18 force points. The padawan knows the following force powers:",
+						"At-will: give life, guidance, spare the dying, turbulence",
+						"1st-level: cloud mind, heal, project, valor",
+						"2nd-level: calm emotions, force barrier"
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Shotosaber",
+					"entries": [
+						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d6 + 1}) energy damage."
+					]
+				}
+			],
+			"miscTags": [
+				"MW"
+			]
+		},
+		{
+			"name": "Dark Novice",
+			"source": "orcnogLostTemple",
+			"page": 0,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"any"
+				]
+			},
+			"alignment": [
+				"L",
+				"NX",
+				"C",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 13,
+					"from": [
+						"combat suit"
+					]
+				}
+			],
+			"hp": {
+				"average": 33,
+				"formula": "6d8 + 6"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 11,
+			"dex": 14,
+			"con": 12,
+			"int": 10,
+			"wis": 13,
+			"cha": 14,
+			"skill": {
+				"deception": "+4",
+				"persuasion": "+4",
+				"lore": "+2"
+			},
+			"passive": 11,
+			"languages": [
+				"Galactic Basic and one other"
+			],
+			"cr": "2",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The apprentice is a 4th-level forcecaster. Its forcecasting ability is Wisdom (power save {@dc 11}, {@hit 3} to hit with force attacks) and it has 14 force points. The apprentice knows the following force powers:"
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell denounce|sw5ephb}",
+								"{@spell lightning charge|sw5ephb}",
+								"{@spell saber reflect|sw5ephb}",
+								"{@spell saber ward|sw5ephb}"
+							]
+						},
+						"1": {
+							"spells": [
+								"{@spell curse|sw5ephb}",
+								"{@spell sap vitality|sw5ephb}"
+							]
+						},
+						"2": {
+							"spells": [
+								"{@spell drain vitality|sw5ephb}",
+								"{@spell force camouflage|sw5ephb}"
+							]
+						}
+					},
+					"ability": "wis"
+				}
+			],
+			"trait": [
+				{
+					"name": "Devotion",
+					"entries": [
+						"The apprentice has advantage on saving throws against being {@condition charmed} or {@condition frightened}."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The apprentice makes two melee weapon attacks."
+					]
+				},
+				{
+					"name": "Doublesaber",
+					"entries": [
+						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d8 + 2}) energy damage."
+					]
+				}
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MW"
+			]
+		},
+		{
+			"name": "Dark Aspirant",
+			"source": "orcnogLostTemple",
+			"page": 0,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"any"
+				]
+			},
+			"alignment": [
+				"L",
+				"NX",
+				"C",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 12,
+					"from": [
+						"15 with battle precognition"
+					]
+				}
+			],
+			"hp": {
+				"average": 44,
+				"formula": "8d6 + 16"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 12,
+			"dex": 12,
+			"con": 14,
+			"int": 10,
+			"wis": 10,
+			"cha": 18,
+			"save": {
+				"wis": "+3",
+				"cha": "+7"
+			},
+			"skill": {
+				"lore": "+3",
+				"insight": "+3"
+			},
+			"passive": 10,
+			"languages": [
+				"Galactic Basic and one other"
+			],
+			"cr": "6",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The dark aspirant is a 5th-level forcecaster. Its forcecasting ability is Charisma (Power save {@dc 15}, {@hit 4} to hit with force attacks) and it has 24 force points.",
+						"The Sith High Apprentice Can use Twinned Power and Heightened Power The dark aspirant knows the following force powers:"
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell denounce|sw5ephb}",
+								"{@spell lightning charge|sw5ephb}",
+								"{@spell saber reflect|sw5ephb}",
+								"{@spell saber ward|sw5ephb}",
+								"{@spell shock|sw5ephb}"
+							]
+						},
+						"1": {
+							"spells": [
+								"{@spell battle meditation|sw5ephb}",
+								"{@spell curse|sw5ephb}",
+								"{@spell sap vitality|sw5ephb}",
+								"{@spell hex|sw5ephb}",
+								"{@spell improved feedback|sw5ephb}"
+							]
+						},
+						"2": {
+							"spells": [
+								"{@spell drain vitality|sw5ephb}",
+								"{@spell force camouflage|sw5ephb}"
+							]
+						},
+						"3": {
+							"spells": [
+								"{@spell force lightning|sw5ephb}",
+								"{@spell choke|sw5ephb}",
+								"{@spell horror|sw5ephb}"
+							]
+						}
+					},
+					"ability": "cha"
+				}
+			],
+			"trait": [
+				{
+					"name": "Devotion",
+					"entries": [
+						"The dark aspirant has advantage on saving throws against being {@condition charmed} or {@condition frightened}."
+					]
+				},
+				{
+					"name": "Force Shield",
+					"entries": [
+						"3/day: When the dark aspirant is hit by an attack, it can use its reaction to shroud itself in Force energy. Until the start of its next turn, it has a +4 bonus to AC."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Lightfoil",
+					"entries": [
+						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d8 + 1}) energy damage."
+					]
+				}
+			],
+			"damageTagsSpell": [
+				"N"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MW"
+			]
+		},
+		{
+			"name": "Sith Sorcerer",
+			"source": "orcnogLostTemple",
+			"page": 0,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"any"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 13,
+					"from": [
+						"16 with battle precognition"
+					]
+				}
+			],
+			"hp": {
+				"average": 50,
+				"formula": "9d8 + 9"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 8,
+			"dex": 16,
+			"con": 12,
+			"int": 14,
+			"wis": 14,
+			"cha": 20,
+			"skill": {
+				"intimidation": "+8",
+				"deception": "+ 8",
+				"perception": "+ 5",
+				"acrobatics": "+6"
+			},
+			"passive": 15,
+			"languages": [
+				"Galactic Basic"
+			],
+			"cr": "7",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The Sith Sorcerer is a 11th level forcecaster it's forcecasting ability is Charisma (force save {@dc 16}, {@hit 8} to hit with force attacks, 44 force points). The Sith Sorcerer knows the following force powers:"
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell saber reflect|sw5ephb}",
+								"{@spell shock|sw5ephb}",
+								"{@spell slow|sw5ephb}",
+								"{@spell force push/pull|sw5ephb}"
+							]
+						},
+						"1": {
+							"spells": [
+								"{@spell sap vitality|sw5ephb}",
+								"{@spell battle precognition|sw5ephb}"
+							]
+						},
+						"2": {
+							"spells": [
+								"{@spell drain vitalit|sw5ephb}",
+								"{@spell hallucination|sw5ephb}",
+								"{@spell affliction|sw5ephb}",
+								"{@spell phase walk|sw5ephb}"
+							]
+						},
+						"3": {
+							"spells": [
+								"{@spell dark aura|sw5ephb}",
+								"{@spell plague|sw5ephb}",
+								"{@spell force lightning|sw5ephb}"
+							]
+						},
+						"4": {
+							"spells": [
+								"{@spell shocking shield|sw5ephb}",
+								"{@spell dominate beast|sw5ephb}"
+							]
+						},
+						"5": {
+							"spells": [
+								"{@spell siphon life|sw5ephb}",
+								"{@spell insanity|sw5ephb}",
+								"{@spell dominate mind|sw5ephb}",
+								"{@spell improved force scream|sw5ephb}",
+								"{@spell improved phase walk|sw5ephb}"
+							]
+						},
+						"6": {
+							"spells": [
+								"{@spell force chain lightning|sw5ephb}",
+								"{@spell wrack|sw5ephb}"
+							]
+						}
+					},
+					"ability": "cha"
+				}
+			],
+			"trait": [
+				{
+					"name": "Quickened Power (3/Day)",
+					"entries": [
+						"When the Sith Sorcerer casts a power that has a casting time of 1 action, it can change the casting time to 1 bonus action for this casting."
+					]
+				},
+				{
+					"name": "War Caster",
+					"entries": [
+						"The Sith Sorcerer has advantage on Constitution saving throws that it makes to maintain it's {@status concentration} on a power when it takes damage."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Lightsaber",
+					"entries": [
+						"{@atk mw} {@hit 6} to hit, reach 5ft., one target. Hit 6 ({@dice 1d6 + 3})"
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "War Caster",
+					"entries": [
+						"When a hostile creature's movement provokes an opportunity attack from the Sith Sorcerer, it can use it's reaction to cast a power at the creature, rather than making an opportunity attack. The power must have a casting time of 1 action and must target only that creature."
+					]
+				}
+			],
+			"spellcastingTags": [
+				"CS"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"conditionInflictSpell": [
+				"charmed"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"wisdom"
+			]
+		},
+		{
+			"name": "Master Sifo-Dyas",
+			"source": "orcnogLostTemple",
+			"page": 0,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"any"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 13,
+					"from": [
+						"16 with battle precognition"
+					]
+				}
+			],
+			"hp": {
+				"average": 50,
+				"formula": "9d8 + 9"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 8,
+			"dex": 16,
+			"con": 12,
+			"int": 14,
+			"wis": 14,
+			"cha": 20,
+			"skill": {
+				"intimidation": "+8",
+				"deception": "+ 8",
+				"perception": "+ 5",
+				"lore": "+5"
+			},
+			"passive": 15,
+			"languages": [
+				"Galactic Basic"
+			],
+			"cr": "7",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"headerEntries": [
+						"Sifo-Dyas is a 11th level forcecaster it's forcecasting ability is Charisma (force save {@dc 16}, {@hit 8} to hit with force attacks). Sifo-Dyas knows the following force powers:"
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell force push/pull|sw5ephb}",
+								"{@spell saber reflect|sw5ephb}",
+								"{@spell shock|sw5ephb}",
+								"{@spell slow|sw5ephb}"
+							]
+						},
+						"1": {
+							"spells": [
+								"{@spell battle precognition|sw5ephb}",
+								"{@spell sap vitality|sw5ephb}"
+							],
+							"slots": 4
+						},
+						"2": {
+							"spells": [
+								"{@spell affliction|sw5ephb}",
+								"{@spell drain vitality|sw5ephb}",
+								"{@spell hallucination|sw5ephb}",
+								"{@spell phasewalk|sw5ephb}"
+							],
+							"slots": 3
+						},
+						"3": {
+							"spells": [
+								"{@spell choke|sw5ephb}",
+								"{@spell dark aura|sw5ephb}",
+								"{@spell force lightning|sw5ephb}"
+							],
+							"slots": 3
+						},
+						"4": {
+							"spells": [
+								"{@spell dominate beast|sw5ephb}",
+								"{@spell shocking shield|sw5ephb}"
+							],
+							"slots": 3
+						},
+						"5": {
+							"spells": [
+								"{@spell dominate mind|sw5ephb}",
+								"{@spell improved force scream|sw5ephb}",
+								"{@spell improved phasewalk|sw5ephb}",
+								"{@spell insanity|sw5ephb}",
+								"{@spell siphon life|sw5ephb}"
+							],
+							"slots": 2
+						},
+						"6": {
+							"spells": [
+								"{@spell force chain lightning|sw5ephb}",
+								"{@spell wrack|sw5ephb}"
+							],
+							"slots": 1
+						}
+					},
+					"ability": "cha",
+					"type": "spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "Quickened Power (2/Day)",
+					"entries": [
+						"When Sifo-Dyas casts a power that has a casting time of 1 action, he can change the casting time to 1 bonus action for this casting."
+					]
+				},
+				{
+					"name": "War Caster",
+					"entries": [
+						"Sifo-Dyas has advantage on Constitution saving throws that he makes to maintain it's {@status concentration} on a power when he takes damage."
+					]
+				},
+				{
+					"name": "Legendary Resistance (2/Day)",
+					"entries": [
+						"If Sifo-Dyas fails a saving throw, he can choose to succeed instead."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Lightsaber",
+					"entries": [
+						"{@atk mw} {@hit 6} to hit, reach 5ft., one target. Hit 6 ({@dice 1d6 + 3})"
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "War Caster",
+					"entries": [
+						"When a hostile creature's movement provokes an opportunity attack from Sifo-Dyas, he can use it's reaction to cast a power at the creature, rather than making an opportunity attack. The power must have a casting time of 1 action and must target only that creature."
+					]
+				}
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"conditionInflictSpell": [
+				"charmed"
+			],
+			"isNamedCreature": true,
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"legendary": [
+				{
+					"name": "Force Push",
+					"entries": [
+						"Sifo-Dyas casts the {@spell force push/pull|sw5ephb| force push} power."
+					]
+				},
+				{
+					"name": "Force Choke",
+					"entries": [
+						"Sifo-Dyas casts the {@spell choke|sw5ephb|force choke} power."
+					]
+				},
+				{
+					"name": "Force Speed",
+					"entries": [
+						"Sifo-Dyas can move up to his maximum speed without incurring attacks of opportunity. Sifo-Dyas imbues himself with a burst of speed through his knowledge of the Force."
+					]
+				},
+				{
+					"name": "Topple (Costs 2 Actions)",
+					"entries": [
+						"Sifo-Dyas uses the Force to pull down a huge object or piece of terrain (ex: a support column). The affected area is one of the following: a line 10 ft. wide and 40 ft. long extending from the base of the object, or a 15 ft. radius from a point of Sifo-Dyas' choosing. Each creature in the area of effect must succeed on a {@dc 16} Dexterity Saving Throw or take {@damage 5d6} bludgeoning damage and be knocked {@condition prone}. The affected area becomes difficult terrain until cleared."
+					]
+				}
+			],
+			"legendaryActions": 2,
+			"shortName": "Sifo-Dyas",
+			"conditionInflict": [
+				"prone"
+			],
+			"damageTagsSpell": [
+				"L",
+				"N",
+				"O",
+				"Y",
+				null
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity",
+				"strength",
+				"wisdom"
+			]
+		},
+		{
+			"name": "Seryan Brim",
+			"source": "orcnogLostTemple",
+			"page": 0,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"any"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 12,
+					"from": [
+						"15 battle precog"
+					]
+				}
+			],
+			"hp": {
+				"average": 44,
+				"formula": "8d6 + 16"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 12,
+			"dex": 12,
+			"con": 14,
+			"int": 10,
+			"wis": 10,
+			"cha": 18,
+			"save": {
+				"wis": "+3",
+				"cha": "+7"
+			},
+			"skill": {
+				"lore": "+3",
+				"insight": "+3"
+			},
+			"passive": 10,
+			"languages": [
+				"Galactic Basic and one other"
+			],
+			"cr": "6",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"headerEntries": [
+						"Seryan Brim is a 5th-level forcecaster. Its forcecasting ability is Charisma (Power save {@dc 15}, {@hit 4} to hit with force attacks) and it has 24 force points.",
+						"Seryan can use Twinned Power and Heightened Power The dark aspirant knows the following force powers:"
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell denounce|sw5ephb}",
+								"{@spell lightning charge|sw5ephb}",
+								"{@spell saber reflect|sw5ephb}",
+								"{@spell saber ward|sw5ephb}",
+								"{@spell shock|sw5ephb}"
+							]
+						},
+						"1": {
+							"spells": [
+								"{@spell battle meditation|sw5ephb}",
+								"{@spell curse|sw5ephb}",
+								"{@spell hex|sw5ephb}",
+								"{@spell improved feedback|sw5ephb}",
+								"{@spell sap vitality|sw5ephb}"
+							],
+							"slots": 0
+						},
+						"2": {
+							"spells": [
+								"{@spell drain vitality|sw5ephb}",
+								"{@spell force camouflage|sw5ephb}"
+							],
+							"slots": 0
+						},
+						"3": {
+							"spells": [
+								"{@spell choke|sw5ephb}",
+								"{@spell force lightning|sw5ephb}",
+								"{@spell horror|sw5ephb}"
+							],
+							"slots": 0
+						}
+					},
+					"ability": "cha",
+					"type": "spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "Devotion",
+					"entries": [
+						"Seryan Brim has advantage on saving throws against being {@condition charmed} or {@condition frightened}."
+					]
+				},
+				{
+					"name": "Force Shield",
+					"entries": [
+						"2/day: When the Seryan Brim is hit by an attack, he can use his reaction to shroud himself in Force energy. Until the start of his next turn, it has a +4 bonus to AC."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Lightfoil",
+					"entries": [
+						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d8 + 1}) energy damage."
+					]
+				}
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"shortName": "Seryan",
+			"damageTagsSpell": [
+				"L",
+				"N",
+				"O",
+				"Y"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"constitution",
+				"dexterity",
+				"intelligence",
+				"wisdom"
+			]
+		},
+		{
+			"name": "Jedi Temple Guard",
+			"source": "orcnogLostTemple",
+			"page": 0,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"any"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 13,
+					"from": [
+						"combat suit"
+					]
+				}
+			],
+			"hp": {
+				"average": 33,
+				"formula": "6d8 + 6"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 11,
+			"dex": 14,
+			"con": 12,
+			"int": 10,
+			"wis": 13,
+			"cha": 14,
+			"skill": {
+				"deception": "+4",
+				"persuasion": "+4",
+				"lore": "+2"
+			},
+			"passive": 11,
+			"languages": [
+				"Galactic Basic and one other"
+			],
+			"cr": "2",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"headerEntries": [
+						"The Jedi Temple Guard is a 4th-level forcecaster. Its forcecasting ability is Wisdom (power save {@dc 11}, {@hit 3} to hit with force attacks) and it has 14 force points. The Temple Guard knows the following force powers:"
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell denounce|sw5ephb}",
+								"{@spell lightning charge|sw5ephb}",
+								"{@spell saber reflect|sw5ephb}",
+								"{@spell saber ward|sw5ephb}"
+							]
+						},
+						"1": {
+							"spells": [
+								"{@spell curse|sw5ephb}",
+								"{@spell sap vitality|sw5ephb}"
+							],
+							"slots": 0
+						},
+						"2": {
+							"spells": [
+								"{@spell drain vitality|sw5ephb}",
+								"{@spell force camouflage|sw5ephb}"
+							],
+							"slots": 0
+						}
+					},
+					"ability": "wis",
+					"type": "spellcasting"
+				}
+			],
+			"trait": [
+				{
+					"name": "Devotion",
+					"entries": [
+						"The Jedi Temple Guard has advantage on saving throws against being {@condition charmed} or {@condition frightened}."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The Jedi Temple Guard makes two melee weapon attacks."
+					]
+				},
+				{
+					"name": "Doublesaber",
+					"entries": [
+						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d8 + 2}) energy damage."
+					]
+				}
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"shortName": true,
+			"damageTagsSpell": [
+				"L",
+				"N"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"constitution"
+			]
+		}
+	]
+}

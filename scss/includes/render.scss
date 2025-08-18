@@ -98,7 +98,7 @@ Renderer
 			}
 
 			&li {
-				margin-bottom: var(--h-mb-p);
+				margin-bottom: var(--h-mb-li);
 			}
 
 			&title-link {
@@ -465,19 +465,48 @@ Renderer
 				border: 1px solid $rgb-inset-border;
 				border-top: 2px solid $rgb-inset-border;
 				border-bottom: 2px solid $rgb-inset-border;
-				background-color: #e9ecda;
+				background-color: #edf2d3;
 				text-indent: initial;
 
 				> *:last-child {
 					margin-bottom: 0;
 				}
 
-				&--readaloud {
+				&--readaloud,
+				&--dmaction {
 					box-shadow: 0 0 4px 0 rgb(152 142 124);
 					border: 1px solid $rgb-inset-border;
 					border-left: 2px solid $rgb-inset-border;
 					border-right: 2px solid $rgb-inset-border;
-					background-color: #eef0f3;
+					background-color: #e5e5df;
+				}
+
+				&--dmaction {
+					background-color: #e2f2f3;
+				}
+
+				&--encounter {
+					.encounter-title {
+						display: flex;
+						align-items: center;
+						justify-content: space-between;
+						column-gap: 2em;
+					}
+					.encounter-variation-select {
+						display: flex;
+						align-items: center;
+						column-gap: 1em;
+						margin-left: auto;
+					}
+					.encounter-variation-select-input {
+						width: auto;
+					}
+					.encounter-adj-xp {
+						margin-bottom: var(--h-mb-p);
+						margin-top: var(--h-mb-p);
+						font-style: italic;
+						color: vars.$rgb-font--muted;
+					}
 				}
 
 				&--comic-speaker {

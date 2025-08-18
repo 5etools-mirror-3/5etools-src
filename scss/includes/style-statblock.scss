@@ -323,7 +323,8 @@
 		@include vars.mix-shadow-1;
 
 		font-family: Roboto, Helvetica, sans-serif;
-		background: #fff;
+		background: vars.$rgb-stats-book;
+		// background: #fff;
 
 		::selection {
 			background: #242527;
@@ -337,6 +338,8 @@
 	}
 
 	.ve-night-mode .stats--book {
+		background: vars-night.$rgb-stats-book--night;
+
 		::selection {
 			color: #242527;
 			background: #fff;

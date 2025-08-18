@@ -1,0 +1,1231 @@
+{
+	"_meta": {
+		"sources": [
+			{
+				"json": "orcnogRugosa",
+				"abbreviation": "Rugosa",
+				"full": "SW5e: Disruption on Rugosa - A SW5e D&D One-Shot",
+				"url": "https://raw.githubusercontent.com/orcnog/5etools-brew/main/sw5e/adventures/Rugosa/adventure.json",
+				"color": "#BB5522",
+				"authors": [
+					"orcnog"
+				],
+				"convertedBy": [
+					"orcnog"
+				]
+			}
+		],
+		"dateAdded": 1613648837,
+		"dateLastModified": 1613648837,
+		"_dateLastModifiedHash": "e5f748a123",
+		"internalCopies": [
+			"monster"
+		]
+	},
+	"monster": [
+		{
+			"name": "Stormtrooper",
+			"source": "orcnogRugosa",
+			"page": 0,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"any race"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"light battle armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 13,
+				"formula": "2d8 + 4"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 13,
+			"dex": 16,
+			"con": 15,
+			"int": 9,
+			"wis": 11,
+			"cha": 10,
+			"skill": {
+				"intimidation": "+2"
+			},
+			"passive": 10,
+			"languages": [
+				"Galactic Basic",
+				"one other"
+			],
+			"cr": "1/2",
+			"trait": [
+				{
+					"name": "Terrible Shot",
+					"entries": [
+						"The storm trooper has permanent disadvantage when making a blaster attack."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The elite storm trooper makes two blaster attacks."
+					]
+				},
+				{
+					"name": "E-11 Blaster Rifle",
+					"entries": [
+						"{@atk rw} {@hit 5} to hit, range 100/400 ft., one target. {@h}6 ({@damage 1d10 + 3}) energy damage. Storm troopers make blaster attacks at disadvantage (obviously)."
+					]
+				},
+				{
+					"name": "Stock Strike",
+					"entries": [
+						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d4 + 1}) kinetic damage."
+					]
+				}
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"fluff": {
+				"entries": [
+					"Storm troopers are ruthless enforcers skilled at intimidation and following commands, but have very poor aim. They serve the Galactic Empire."
+				],
+				"images": [
+					{
+						"type": "image",
+						"href": {
+							"type": "external",
+							"url": "https://i.imgur.com/nGE3Ec3.png"
+						}
+					}
+				]
+			},
+			"miscTags": [
+				"RW",
+				"MW",
+				"SW5e"
+			],
+			"tokenUrl": "https://i.imgur.com/150cArl.png"
+		},
+		{
+			"name": "Rebel Soldier",
+			"source": "orcnogRugosa",
+			"page": 0,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"any race"
+				]
+			},
+			"alignment": [
+				"L",
+				"NX",
+				"C",
+				"G"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"battle armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 26,
+				"formula": "4d8 + 8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 13,
+			"dex": 16,
+			"con": 14,
+			"int": 11,
+			"wis": 12,
+			"cha": 11,
+			"skill": {
+				"perception": "+3",
+				"survival": "+3"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 13,
+			"languages": [
+				"Galactic Basic",
+				"two others"
+			],
+			"cr": "1",
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The rebel soldier makes two blaster rifle or stock strike attacks."
+					]
+				},
+				{
+					"name": "Blaster Rifle",
+					"entries": [
+						"{@atk rw} {@hit 5} to hit, range 60/240 ft., one target. {@h}7 ({@damage 1d6 + 3}) energy damage."
+					]
+				},
+				{
+					"name": "Stock Strike",
+					"entries": [
+						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d4 + 1}) kinetic damage."
+					]
+				},
+				{
+					"name": "Thermal Grenade (1/Day)",
+					"entries": [
+						"The rebel soldier throws a grenade, choosing a point within 40 feet. Each creature within 10 feet must make a {@dc 14} Dexterity saving throw. A creature takes {@dice 2d6} fire and {@damage 2d6} kinetic damage on a failed save, or half as much as on a successful one. Additionally, on a failed save, the creature is knocked {@condition prone}."
+					]
+				}
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"fluff": {
+				"entries": [
+					"Soldiers of the Rebel Alliance are scrappy and battle-hardened. Cunning and gritty, they are dedicated to fighting the Empire to the bitter end."
+				],
+				"images": [
+					{
+						"type": "image",
+						"href": {
+							"type": "external",
+							"url": "https://i.imgur.com/rs07Mzz.jpg"
+						}
+					}
+				]
+			},
+			"miscTags": [
+				"RW",
+				"MW",
+				"AOE",
+				"SW5e"
+			],
+			"conditionInflict": [
+				"prone"
+			],
+			"tokenUrl": "https://i.imgur.com/PlAs4xx.png"
+		},
+		{
+			"name": "Capt. Ash Ryker",
+			"source": "orcnogRugosa",
+			"_copy": {
+				"name": "Rebel Soldier",
+				"source": "orcnogRugosa",
+				"_preserve": {
+					"page": true,
+					"hasFluff": true,
+					"hasFluffImages": true
+				}
+			},
+			"cha": 14,
+			"hp": {
+				"average": 36,
+				"formula": "4d8 + 18"
+			},
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The rebel soldier makes three blaster rifle or stock strike attacks."
+					]
+				},
+				{
+					"name": "Blaster Rifle",
+					"entries": [
+						"{@atk rw} {@hit 5} to hit, range 60/240 ft., one target. {@h}7 ({@damage 1d6 + 3}) energy damage."
+					]
+				},
+				{
+					"name": "Stock Strike",
+					"entries": [
+						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d4 + 1}) kinetic damage."
+					]
+				},
+				{
+					"name": "Thermal Grenade (2/Day)",
+					"entries": [
+						"The rebel soldier throws a grenade, choosing a point within 40 feet. Each creature within 10 feet must make a {@dc 14} Dexterity saving throw. A creature takes {@dice 2d6} fire and {@damage 2d6} kinetic damage on a failed save, or half as much as on a successful one. Additionally, on a failed save, the creature is knocked {@condition prone}."
+					]
+				}
+			],
+			"tokenUrl": "https://i.imgur.com/WW3gOTc.png"
+		},
+		{
+			"name": "Lt. Thaddeus Brick",
+			"source": "orcnogRugosa",
+			"_copy": {
+				"name": "Rebel Soldier",
+				"source": "orcnogRugosa",
+				"_preserve": {
+					"page": true,
+					"hasFluff": true,
+					"hasFluffImages": true
+				}
+			},
+			"hp": {
+				"average": 30,
+				"formula": "4d8 + 12"
+			},
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The rebel soldier makes two slugthrower or stock strike attacks."
+					]
+				},
+				{
+					"name": "G-22 Slugthrower",
+					"entries": [
+						"{@atk rw} {@hit 5} to hit, range 60/240 ft., one target. {@h}8 ({@damage 1d8 + 3}) energy damage."
+					]
+				},
+				{
+					"name": "Stock Strike",
+					"entries": [
+						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d4 + 1}) kinetic damage."
+					]
+				},
+				{
+					"name": "Thermal Grenade (1/Day)",
+					"entries": [
+						"The rebel soldier throws a grenade, choosing a point within 40 feet. Each creature within 10 feet must make a {@dc 14} Dexterity saving throw. A creature takes {@dice 2d6} fire and {@damage 2d6} kinetic damage on a failed save, or half as much as on a successful one. Additionally, on a failed save, the creature is knocked {@condition prone}."
+					]
+				}
+			],
+			"tokenUrl": "https://i.imgur.com/JhGw9vZ.png"
+		},
+		{
+			"name": "Sgt. Saban Sulleen",
+			"source": "orcnogRugosa",
+			"_copy": {
+				"name": "Rebel Soldier",
+				"source": "orcnogRugosa",
+				"_preserve": {
+					"page": true,
+					"hasFluff": true,
+					"hasFluffImages": true
+				}
+			},
+			"ac": [
+				{
+					"ac": 17,
+					"from": [
+						"battle armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 24,
+				"formula": "4d8 + 6"
+			},
+			"tokenUrl": "https://i.imgur.com/UPj5nyV.png"
+		},
+		{
+			"name": "Cpl. Renzo Locke",
+			"source": "orcnogRugosa",
+			"_copy": {
+				"name": "Rebel Soldier",
+				"source": "orcnogRugosa",
+				"_preserve": {
+					"page": true,
+					"hasFluff": true,
+					"hasFluffImages": true
+				}
+			},
+			"hp": {
+				"average": 32,
+				"formula": "4d8 + 14"
+			},
+			"tokenUrl": "https://i.imgur.com/KmJdTW4.png"
+		},
+		{
+			"name": "Pvt. Landon Drake",
+			"source": "orcnogRugosa",
+			"_copy": {
+				"name": "Rebel Soldier",
+				"source": "orcnogRugosa",
+				"_preserve": {
+					"page": true,
+					"hasFluff": true,
+					"hasFluffImages": true
+				}
+			},
+			"tokenUrl": "https://i.imgur.com/rs07Mzz.jpg"
+		},
+		{
+			"name": "Pvt. Jek Caldo",
+			"source": "orcnogRugosa",
+			"_copy": {
+				"name": "Rebel Soldier",
+				"source": "orcnogRugosa",
+				"_preserve": {
+					"page": true,
+					"hasFluff": true,
+					"hasFluffImages": true
+				}
+			},
+			"tokenUrl": "https://i.imgur.com/oi2GF1i.png"
+		},
+		{
+			"name": "Pvt. Crom Gorban",
+			"source": "orcnogRugosa",
+			"_copy": {
+				"name": "Rebel Soldier",
+				"source": "orcnogRugosa",
+				"_preserve": {
+					"page": true,
+					"hasFluff": true,
+					"hasFluffImages": true
+				}
+			},
+			"tokenUrl": "https://i.imgur.com/kShduK9.png"
+		},
+		{
+			"name": "Stormtrooper Captain",
+			"source": "orcnogRugosa",
+			"page": 0,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"any race"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"light battle armor"
+					]
+				}
+			],
+			"hp": {
+				"formula": "5d8 + 10",
+				"average": 32
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 15,
+			"dex": 16,
+			"con": 14,
+			"int": 11,
+			"wis": 11,
+			"cha": 12,
+			"skill": {
+				"intimidation": "+3",
+				"athletics": "+4"
+			},
+			"passive": 10,
+			"languages": [
+				"Galactic Basic",
+				"one other"
+			],
+			"cr": "1",
+			"trait": [
+				{
+					"name": "Terrible Shot",
+					"entries": [
+						"The stormtrooper captain has permanent disadvantage when making a blaster attack."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The stormtrooper captain makes three blaster attacks."
+					]
+				},
+				{
+					"name": "E-11 Blaster Rifle",
+					"entries": [
+						"{@atk rw} {@hit 5} to hit, range 100/400 ft., one target. {@h}14 ({@damage 1d10 + 3}) energy damage. Stormtroopers make blaster attacks at disadvantage (obviously)."
+					]
+				},
+				{
+					"name": "Stock Strike",
+					"entries": [
+						"{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d4 + 1}) kinetic damage."
+					]
+				}
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"fluff": {
+				"entries": [
+					"Stormtroopers are ruthless enforcers skilled at intimidation and following commands, but have very poor aim. They serve the Galactic Empire."
+				],
+				"images": [
+					{
+						"type": "image",
+						"href": {
+							"type": "external",
+							"url": "https://i.imgur.com/JQZh8kg.jpg"
+						}
+					}
+				]
+			},
+			"miscTags": [
+				"RW",
+				"MW",
+				"SW5e"
+			],
+			"tokenUrl": "https://i.imgur.com/VMSIrJA.png"
+		},
+		{
+			"name": "B2 Super Battle Droid",
+			"source": "orcnogRugosa",
+			"page": 0,
+			"size": [
+				"M"
+			],
+			"type": "construct",
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"heavy carbide armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 76,
+				"formula": "9d8 + 36"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 17,
+			"dex": 8,
+			"con": 18,
+			"int": 11,
+			"wis": 4,
+			"cha": 6,
+			"save": {
+				"str": "+5",
+				"con": "+6",
+				"int": "+2"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 10,
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"paralyzed",
+				"petrified",
+				"poisoned"
+			],
+			"languages": [
+				"Common"
+			],
+			"cr": "4",
+			"trait": [
+				{
+					"name": "Malfunction",
+					"entries": [
+						"Whenever the super battle droid takes 15 damage or more from a single source and isn't reduced to 0 hit points by that damage, roll a {@dice d20} to determine if it suffers a malfunction:",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "1-10: \"All Fine Here!\"",
+									"entries": [
+										"No malfunction occurs."
+									]
+								},
+								{
+									"type": "item",
+									"name": "11-12: \"Logic error. System reboot.\"",
+									"entries": [
+										"The super battle droid is {@condition incapacitated} for 1 minute."
+									]
+								},
+								{
+									"type": "item",
+									"name": "13-14: \"I've been disarmed!\"",
+									"entries": [
+										"One of the super battle droid's arms falls off, reducing the number of Shock attacks it can make by 1 until a creature uses an action to reattach the arm."
+									]
+								},
+								{
+									"type": "item",
+									"name": "15-16: \"Not a time to lose one's head.\"",
+									"entries": [
+										"The super battle droid's head falls off and deactivates, causing the autognome to be {@condition blinded} and {@condition deafened}. The super battle droid continues to attack indiscriminately."
+									]
+								},
+								{
+									"type": "item",
+									"name": "17-20: \"WARNING! EXPLOSION IMMINATE!\"",
+									"entries": [
+										"The super battle droid explodes and is destroyed. Each creature within 20 feet of the explosion must make a {@dc 11} Dexterity saving throw, taking 22 ({@damage 4d10}) slashing damage on a failed save, or half as much damage on a successful one."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Unusual Nature",
+									"entries": [
+										"The super battle droid doesn't require air, food, drink, or sleep."
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Unusual Nature",
+					"entries": [
+						"The super battle droid doesn't require air, food, drink, or sleep."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The super battle droid makes three blaster attacks, or two blaster attacks and one shock attack."
+					]
+				},
+				{
+					"name": "Blaster",
+					"entries": [
+						"{@atk mw,rw} {@hit 5} to hit, reach 5 ft. or range 60 ft., one target. {@h}14 ({@damage 4d8}) lightning damage."
+					]
+				},
+				{
+					"name": "Shock {@recharge 5}",
+					"entries": [
+						"The super battle droid emits a dangerous electrostatic discharge. Each creature within 10 feet of the shock must make a {@dc 13} Dexterity saving throw, taking 22 ({@damage 4d10}) lightning damage on a failed save, or half as much damage on a successful one."
+					]
+				}
+			],
+			"traitTags": [
+				"Unusual Nature"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"fluff": {
+				"entries": [
+					"B2 Super Battle Droids are the hulking, brutal cousins of the wiry B1-series battle droids of the Separatist army. Heavily armored and devastatingly powerful with their integrated wrist blasters, the sight of a squad of these droids on the battlefield can chill even the most seasoned of clone troopers."
+				],
+				"images": [
+					{
+						"type": "image",
+						"href": {
+							"type": "external",
+							"url": "https://i.imgur.com/mxOgXDw.png"
+						}
+					}
+				]
+			},
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"L",
+				"S"
+			],
+			"miscTags": [
+				"AOE",
+				"MW",
+				"RW",
+				"SW5e"
+			],
+			"tokenUrl": "https://i.imgur.com/Cw3rmRh.png"
+		},
+		{
+			"name": "Droideka",
+			"source": "orcnogRugosa",
+			"page": 0,
+			"size": [
+				"M"
+			],
+			"type": "construct",
+			"alignment": [
+				"A"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 39,
+				"formula": "6d6 + 18"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 15,
+			"dex": 6,
+			"con": 16,
+			"int": 11,
+			"wis": 4,
+			"cha": 6,
+			"save": {
+				"str": "+4",
+				"dex": "+0",
+				"int": "+2"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 10,
+			"resist": [
+				"ranged attacks"
+			],
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"paralyzed",
+				"petrified",
+				"poisoned"
+			],
+			"languages": [
+				"Common"
+			],
+			"cr": "3",
+			"trait": [
+				{
+					"name": "Malfunction",
+					"entries": [
+						"Whenever the droideka takes 15 damage or more from a single source and isn't reduced to 0 hit points by that damage, roll a {@dice d20} to determine if it suffers a malfunction:",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "1-10: \"All Fine Here!\"",
+									"entries": [
+										"No malfunction occurs."
+									]
+								},
+								{
+									"type": "item",
+									"name": "11-12: \"Logic error. System reboot.\"",
+									"entries": [
+										"The droideka is {@condition incapacitated} for 1 minute."
+									]
+								},
+								{
+									"type": "item",
+									"name": "13-14: \"I've been disarmed!\"",
+									"entries": [
+										"One of the droideka's arms falls off, reducing the number of Shock attacks it can make by 1 until a creature uses an action to reattach the arm."
+									]
+								},
+								{
+									"type": "item",
+									"name": "15-16: \"Not a time to lose one's head.\"",
+									"entries": [
+										"The droideka's head falls off and deactivates, causing the autognome to be {@condition blinded} and {@condition deafened}. The droideka continues to attack indiscriminately."
+									]
+								},
+								{
+									"type": "item",
+									"name": "17-20: \"WARNING! EXPLOSION IMMINATE!\"",
+									"entries": [
+										"The droideka explodes and is destroyed. Each creature within 20 feet of the explosion must make a {@dc 11} Dexterity saving throw, taking 22 ({@damage 4d10}) slashing damage on a failed save, or half as much damage on a successful one."
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Shield Generator",
+					"entries": [
+						"The droideka has resistance to all blaster and slug attacks."
+					]
+				},
+				{
+					"name": "Unusual Nature",
+					"entries": [
+						"The droideka doesn't require air, food, drink, or sleep."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The droideka makes two blaster attacks."
+					]
+				},
+				{
+					"name": "Blaster",
+					"entries": [
+						"{@atk mw,rw} {@hit 4} to hit, reach 5 ft. or range 60/120 ft., one target. {@h}7 ({@damage 3d6}) lightning damage."
+					]
+				}
+			],
+			"traitTags": [
+				"Unusual Nature"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"fluff": {
+				"entries": [
+					"Droidekas (a.k.a. destroyers) are quick, pack twin blasters, and come with their own shield generators. Nothing short of a cannon will pierce it, but they do have two weaknesses, and you will need to work together to exploit them. The shields deflect high velocity attacks. What the shields don't stop are slow or stationary objects. They're designed to absorb them so nothing hinders their movement."
+				],
+				"images": [
+					{
+						"type": "image",
+						"href": {
+							"type": "external",
+							"url": "https://i.imgur.com/wCDrIrp.png"
+						}
+					}
+				]
+			},
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"L",
+				"S"
+			],
+			"miscTags": [
+				"RW",
+				"MW",
+				"AOE",
+				"SW5e"
+			],
+			"tokenUrl": "https://i.imgur.com/4QZ45Ef.png"
+		},
+		{
+			"name": "Darth Ensis",
+			"isNamedCreature": true,
+			"source": "orcnogRugosa",
+			"page": 0,
+			"size": [
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 17,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 136,
+				"formula": "16d8 + 64"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 15,
+			"dex": 20,
+			"con": 18,
+			"int": 19,
+			"wis": 20,
+			"cha": 20,
+			"save": {
+				"con": "+7",
+				"int": "+7",
+				"wis": "+8",
+				"cha": "+8"
+			},
+			"skill": {
+				"deception": "+8",
+				"insight": "+8",
+				"perception": "+8"
+			},
+			"senses": [
+				"blindsight 120 ft."
+			],
+			"passive": 13,
+			"resist": [
+				"lightning",
+				{
+					"resist": [
+						"bludgeoning",
+						"piercing",
+						"slashing"
+					],
+					"note": "from nonmagical attacks",
+					"cond": true
+				}
+			],
+			"conditionImmune": [
+				"blinded"
+			],
+			"languages": [
+				"Abyssal",
+				"telepathy 120 ft."
+			],
+			"cr": "7",
+			"spellcasting": [
+				{
+					"name": "Innate Spellcasting",
+					"headerEntries": [
+						"Darth Ensis' spellcasting ability is Intelligence (spell save {@dc 16}). Darth Ensis can innately cast the following spells, requiring no material components:"
+					],
+					"will": [
+						"{@spell chromatic orb} (lightning)",
+						"{@spell dispel magic}"
+					],
+					"daily": {
+						"1e": [
+							"{@spell confusion}",
+							"{@spell major image}",
+							"{@spell power word stun}"
+						]
+					},
+					"ability": "int"
+				}
+			],
+			"trait": [
+				{
+					"name": "Legendary Resistance (2/Day)",
+					"entries": [
+						"If Darth Ensis fails a saving throw, he can choose to succeed instead."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Darth Ensis makes three attacks with his lightsaber."
+					]
+				},
+				{
+					"name": "Lightsaber",
+					"entries": [
+						"{@atk mw} {@hit 9} to hit, reach 5ft., one target. {@h}12 ({@damage 2d6 + 6}) slashing damage."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Deflect Blaster",
+					"entries": [
+						"As a reaction, Darth Ensis can use his lightsaber to deflect any blaster or projectile attack that hits. Select a target within range to redirect the blast toward, using the original roll to hit."
+					]
+				}
+			],
+			"legendaryActions": 3,
+			"legendary": [
+				{
+					"name": "Force Speed",
+					"entries": [
+						"Darth Ensis can imbue himself with a burst of speed through his knowledge of the Force.  Darth Ensis can move up to his maximum speed once on another creature's turn.  (This movement does invoke attacks of opportunity.)"
+					]
+				},
+				{
+					"name": "Force Choke",
+					"entries": [
+						"Range 60 feet.  Darth Ensis makes a constricting gesture at a creature within range. The target must make a {@dc 16} Constitution saving throw. On a failed save target takes 12 ({@damage 4d6}) force damage and is {@condition restrained} until the end of your next turn. On a successful save, the target takes half as much damage and is not {@condition restrained}."
+					]
+				},
+				{
+					"name": "Force Push",
+					"entries": [
+						"Range 60 feet. Darth Ensis uses the Force to move a Medium or smaller creature or object not being worn or carried within range. The target must make a {@dc 16} Strength saving throw. On a failed save, it moves a number of feet in a direction of Ensis' choice based on its size. Tiny: up to 30 ft., Small: up to 20 ft., Medium: up to 10 ft. If at the end of this movement the creature or object strikes another creature or object, it must make a Dexterity saving throw. On a failed save, they both take {@damage 2d4} kinetic damage."
+					]
+				},
+				{
+					"name": "Bring Down the Walls",
+					"entries": [
+						"Darth Ensis uses the Force to pull a massive pillar, section of wall, or other huge object or piece of terrain down in an attempt to crush and obstruct his opponents. The affected area is a line up to 40 ft. long, extending from the base of the object pulled down in any direction of the Sith's choosing. Every creature within 10 ft. of that line must succeed on a {@dc 16} Dexterity Saving Throw or take {@damage 5d6} bludgeoning damage."
+					]
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances",
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"fluff": {
+				"entries": [
+					"Darth Ensis, originally Chirrut Imbwe from Jedha, was recruited by Darth Vader after Chirrut was left for dead following the Battle of Scarif.  He is Vader's evil new apprentice, and he will stop at nothing to win his master's favor."
+				],
+				"images": [
+					{
+						"type": "image",
+						"href": {
+							"type": "external",
+							"url": "https://i.imgur.com/brQa4qb.png"
+						}
+					}
+				]
+			},
+			"languageTags": [
+				"AB",
+				"TP"
+			],
+			"damageTags": [
+				"O",
+				"S"
+			],
+			"damageTagsSpell": [
+				"A",
+				"C",
+				"F",
+				"I",
+				"L",
+				"T"
+			],
+			"spellcastingTags": [
+				"I"
+			],
+			"miscTags": [
+				"MW",
+				"SW5e"
+			],
+			"conditionInflict": [
+				"restrained"
+			],
+			"conditionInflictSpell": [
+				"stunned"
+			],
+			"tokenUrl": "https://i.imgur.com/4qJAcwX.png"
+		},
+		{
+			"name": "AT-RT Walker",
+			"source": "orcnogRugosa",
+			"page": 0,
+			"size": [
+				"H"
+			],
+			"type": "construct",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"heavy armor plating"
+					]
+				}
+			],
+			"hp": {
+				"average": 437,
+				"formula": "35d12 + 210",
+				"special": "DT 10"
+			},
+			"speed": {
+				"walk": 15
+			},
+			"str": 22,
+			"dex": 8,
+			"con": 22,
+			"int": 1,
+			"wis": 1,
+			"cha": 1,
+			"save": {
+				"con": "+9"
+			},
+			"passive": 1,
+			"vulnerable": [
+				"ion",
+				"lightning"
+			],
+			"conditionImmune": [
+				"poison",
+				"disease"
+			],
+			"immune": [
+				"poison",
+				"psychic"
+			],
+			"cr": "6",
+			"trait": [
+				{
+					"name": "Vehicle",
+					"entries": [
+						"The AT-RT Walker is a manned vehicle and can only be driven; it cannot take actions or reactions on its own.  Mounted combatants can use their action to direct the construct where to move and what to target. Characters who take the controls may make a {@dc 10} Intelligence Arcana check at the beginning of their turn to determine whether they are able operate the machine themselves.  They may repeat this check at the beginning of each turn when they are at the controls."
+					]
+				},
+				{
+					"name": "Hydraulics Line",
+					"entries": [
+						"In addition to defeating the construct in combat, characters render it useless by severing its hydraulic line. With a successful {@dc 15} Intelligence (Arcana) check (as an action), any character fighting the AT-RT notes that a number of metal-sheathed hoses protrudes slightly from its back. A character within melee range of the construct can target one of these hydraulic lines with a slashing or piercing attack to sever it by succeeding on an attack roll vs. a 23 AC."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Repeating Blaster Canon",
+					"entries": [
+						"The AT-RT fires a cannon blast at a point within 400 ft. Each creature in that area must make a {@dc 15} Dexterity saving throw, taking 31 ({@damage 7d8}) energy damage on a failed save, or half as much damage on a successful one. Any stormtrooper that is targeted with this attack automatically fails and is killed."
+					]
+				}
+			],
+			"fluff": {
+				"entries": [
+					"One of several precursors to the AT-ST walker, the AT-RT was 3.2 meters tall and 2.9 meters long, with a saddle-like seat for a single clone trooper driver. Its open cockpit design made the driver especially vulnerable to sniper fire, a notable flaw, but low costs and good visibility of the battlefield made up for this shortcoming. While other walkers like the AT-PT eliminated the flaw of the exposed driver position, the AT-PT was slower, and this made the AT-RT competitive with the former as it was capable of tremendous speeds and could also leap quite a distance thanks to its light construction.",
+					"The recon walker was equipped with a nose-mounted repeating blaster cannon and mortar launcher, both of which made the walker a formidable anti-infantry unit, although a group of five walkers could easily overpower a single AAT. The AT-RT was fitted with a motion detection scanner and sensor equipment capable of providing Forward Command Centers with updated situation reports from the battlefield.",
+					"AT-RTs could be deployed to the battle field in various ways. They were usually deployed from landed Acclamator-class assault ship, but this wasn't always practical for size reasons. When this occurred, they could be deployed by LAAT/is, 1 per gunship stored on the speeder bike ramp, 2 could be carried if the crew bay was empty.",
+					"The walkers could also be deployed from modified AT-TEs with special cargo lifts in their back section. They could transport 2 Walkers and their riders. ARF Troopers were known to pilot these walkers."
+				],
+				"images": [
+					{
+						"type": "image",
+						"href": {
+							"type": "external",
+							"url": "https://i.imgur.com/B90rYXL.png"
+						}
+					}
+				]
+			},
+			"miscTags": [
+				"SW5e"
+			],
+			"tokenUrl": "https://i.imgur.com/eOTtnNf.png"
+		},
+		{
+			"name": "Dewback",
+			"source": "orcnogRugosa",
+			"page": 0,
+			"size": [
+				"H"
+			],
+			"type": {
+				"type": "beast",
+				"tags": [
+					"dinosaur"
+				]
+			},
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 121,
+				"formula": "9d20 + 27"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 21,
+			"dex": 9,
+			"con": 17,
+			"int": 2,
+			"wis": 10,
+			"cha": 7,
+			"save": {
+				"con": "+6"
+			},
+			"passive": 10,
+			"cr": "5",
+			"action": [
+				{
+					"name": "Stomp",
+					"entries": [
+						"{@atk mw} {@hit 8} to hit, reach 20 ft., one target. {@h}27 ({@damage 5d8 + 5}) bludgeoning damage, and the target must succeed on a {@dc 14} Strength saving throw or be knocked {@condition prone}."
+					]
+				},
+				{
+					"name": "Tail",
+					"entries": [
+						"{@atk mw} {@hit 8} to hit, reach 20 ft., one target. {@h}32 ({@damage 6d8 + 5}) bludgeoning damage."
+					]
+				}
+			],
+			"damageTags": [
+				"B"
+			],
+			"miscTags": [
+				"MW",
+				"RCH",
+				"SW5e"
+			],
+			"fluff": {
+				"entries": [
+					"Dewbacks were used as beasts of burden, and as battle mounts during the Galactic Empire.  This massive four-legged dinosaur is large enough that most predators leave it alone. Its deadly tail can drive away or kill smaller threats."
+				],
+				"images": [
+					{
+						"type": "image",
+						"href": {
+							"type": "external",
+							"url": "https://i.imgur.com/GkBzQPY.jpg"
+						}
+					}
+				]
+			},
+			"conditionInflict": [
+				"prone"
+			],
+			"tokenUrl": "https://i.imgur.com/palyhio.png"
+		}
+	]
+}

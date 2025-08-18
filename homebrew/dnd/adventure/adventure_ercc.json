@@ -1,0 +1,1125 @@
+{
+	"$schema": "https://raw.githubusercontent.com/TheGiddyLimit/5etools-utils/master/schema/brew-fast/homebrew.json",
+	"_meta": {
+		"sources": [
+			{
+				"json": "ERCC",
+				"abbreviation": "ERCC",
+				"full": "Elf Recon: Christmas Crash!",
+				"url": "https://5e.orcnog.com/homebrew/dnd/adventure/adventure_ercc.json",
+				"convertedBy": [
+					"orcnog"
+				],
+				"version": "1.0",
+				"color": "ee3131"
+			}
+		],
+		"dateAdded": 1613648837,
+		"dateLastModified": 1613648837,
+		"_dateLastModifiedHash": "e5f748a123",
+		"dependencies": {
+			"monster": [
+				"MPMM"
+			]
+		},
+		"internalCopies": [
+			"monster"
+		],
+		"edition": "classic"
+	},
+	"item": [
+		{
+			"name": "Lump of Coal",
+			"source": "ERCC",
+			"rarity": "uncommon",
+			"wondrous": true,
+			"entries": [
+				"This ugly, dirty lump of coal has absorbed generations of naughty energy. When thrown, it unleashes a surge of shadowy mischief upon its target. Make a ranged attack against a target. On a hit, the lump of coal deals {@damage 2d8} necrotic damage."
+			]
+		},
+		{
+			"name": "Silver Sleigh Bell",
+			"source": "ERCC",
+			"rarity": "uncommon",
+			"wondrous": true,
+			"entries": [
+				"A silver sleigh bell straight from Santa's sleigh (probably). When shaken it rings with a beautiful joyful sound announcing \"it's Christmas time in the city\"! When you ring this bell as an action, only those who truly embody the Christmas spirit, i.e. good-aligned creatures, can hear it's beautiful sound. When a creature within 30 feet of the bell hear it ring, they gain the effects of the {@spell bless} spell.",
+				"The silver sleigh bell can be used once per day."
+			]
+		},
+		{
+			"name": "Double Shot White Chocolate Peppermint Mocha Orcnog with Extra Whip and a Cinnamon Bacon Stir Stick",
+			"source": "ERCC",
+			"type": "P",
+			"rarity": "uncommon",
+			"entries": [
+				"When you drink this potion, you gain advantage on one ability check, attack roll, or saving throw of your choice that you make within the next hour.",
+				"This potion takes the form of a sparkling, golden mist that moves and pours like water."
+			]
+		}
+	],
+	"monster": [
+		{
+			"name": "The Easter Bunny",
+			"size": [
+				"L"
+			],
+			"type": {
+				"type": {
+					"choose": [
+						"fey",
+						"beast"
+					]
+				}
+			},
+			"source": "ERCC",
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 17,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"formula": "8d8 + 24",
+				"average": 60
+			},
+			"speed": {
+				"walk": 30,
+				"burrow": 15
+			},
+			"str": 16,
+			"dex": 14,
+			"con": 17,
+			"int": 14,
+			"wis": 11,
+			"cha": 19,
+			"passive": 14,
+			"cr": "3",
+			"shortName": true,
+			"save": {
+				"dex": "+4",
+				"con": "+5",
+				"wis": "+2",
+				"cha": "+6"
+			},
+			"skill": {
+				"perception": "+4",
+				"stealth": "+4",
+				"acrobatics": "+4"
+			},
+			"vulnerable": [
+				"necrotic"
+			],
+			"resist": [
+				"cold"
+			],
+			"languages": [
+				"All"
+			],
+			"isNamedCreature": true,
+			"action": [
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 5 feet, one target. {@h}8 ({@damage 1d10 + 3}) piercing damage."
+					]
+				},
+				{
+					"name": "Carrot Pike",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 10 feet, one target. {@h}8 ({@damage 1d10 + 3}) piercing damage."
+					]
+				},
+				{
+					"name": "Cotton Tail",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 5 feet, one target. {@h}0 bludgeoning damage."
+					]
+				},
+				{
+					"name": "Egg Throw",
+					"entries": [
+						"{@atk rw} {@hit 4} to hit, range 30/60 feet, one target. {@h}6 ({@damage 1d8 + 2}) bludgeoning damage and make a Charisma saving throw (which they ideally want to {@i fail!}). On a successful save, the creature must spend its reaction to wipe the splatters off it's face."
+					]
+				},
+				{
+					"name": "Breath Weapon {@recharge 5}",
+					"entries": [
+						"The Easter Bunny exhales radiant pastel gas in a 15-foot cone. Each creature in that area must make a {@dc 13} Constitution saving throw, taking 14 ({@damage 4d6}) poison damage on a failed save, or half as much damage on a successful one."
+					]
+				}
+			],
+			"miscTags": [
+				"MW",
+				"RCH",
+				"MLW",
+				"RW",
+				"AOE"
+			],
+			"actionTags": [
+				"Breath Weapon"
+			],
+			"legendaryActions": 2,
+			"conditionInflict": [
+				"restrained"
+			],
+			"legendary": [
+				{
+					"name": "Wind-Up Bombs (Costs 2 Actions)",
+					"entries": [
+						"The Easter Bunny tosses out 3 cheap plastic wind-up toy chicks, which just happen to be proximity bombs that seek out the nearest target. They move at a speed of 15 feet and once they are within 10 feet of a target or take any damage, they explode, dealing {@damage 2d6} fire damage to any creatures within a 10 foot radius."
+					]
+				},
+				{
+					"name": "Cadbury Cream Egg",
+					"entries": [
+						"{@atk rw} {@hit 4} to hit, range 30/60 feet, one target. {@h}6 ({@damage 1d8 + 2}) bludgeoning damage. The target must succeed on a {@dc 13} Strength saving throw or be {@condition restrained} by delicious Cadbury cream. A creature can repeat the saving throw at the end of its turn."
+					]
+				},
+				{
+					"name": "Mad Hops",
+					"entries": [
+						"The Easter Bunny disengages by jumping 45 feet away. each creature within 15 feet of where it lands must make a {@dc 13} Dexterity saving throw or take {@damage 2d12} thunder damage, half damage on a success."
+					]
+				}
+			],
+			"legendaryGroup": {
+				"name": "Easter Bunny",
+				"source": "ERCC"
+			},
+			"damageTags": [
+				"B",
+				"I",
+				"P"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity",
+				"strength"
+			]
+		},
+		{
+			"name": "Kobold Sorcerer",
+			"source": "ERCC",
+			"_copy": {
+				"name": "Kobold Scale Sorcerer",
+				"source": "MPMM",
+				"_mod": {
+					"action": [
+						{
+							"mode": "replaceArr",
+							"replace": "Dagger",
+							"items": {
+								"name": "Carrot Dagger",
+								"entries": [
+									"{@atk mw,rw} {@hit 4} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}4 ({@damage 1d4 + 2}) piercing damage."
+								]
+							}
+						}
+					],
+					"spellcasting": [
+						{
+							"mode": "removeSpells",
+							"daily": {
+								"2e": [
+									"{@spell levitate}"
+								]
+							}
+						},
+						{
+							"mode": "addSpells",
+							"daily": {
+								"1e": [
+									"{@spell invisibility}",
+									"{@spell polymorph}"
+								]
+							}
+						}
+					]
+				}
+			},
+			"speed": {
+				"walk": 30,
+				"fly": 30
+			}
+		},
+		{
+			"name": "Kobold Minion",
+			"source": "ERCC",
+			"_copy": {
+				"name": "Kobold",
+				"source": "MM",
+				"_mod": {
+					"action": [
+						{
+							"mode": "replaceArr",
+							"replace": "Dagger",
+							"items": {
+								"name": "Carrot Dagger",
+								"entries": [
+									"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}4 ({@damage 1d4 + 2}) piercing damage."
+								]
+							}
+						}
+					]
+				}
+			}
+		}
+	],
+	"legendaryGroup": [
+		{
+			"name": "Easter Bunny",
+			"source": "ERCC",
+			"lairActions": [
+				"On initiative count 20 (losing initiative ties), the Easter Bunny can take one of the following lair actions; the Easter Bunny can't take the same lair action two rounds in a row:",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "Rabbit Hole (Vanish)",
+							"entry": "The Easter Bunny disengages and chooses a point within 30 feet to burrow into the ground, creating a 10 foot wide by 20 foot deep burrow hole and vanishing. The Easter Bunny momentarily {@spell blink||blinks} into a pocket dimension for no more than one round.  After envoking this ability, the East Bunny {@i must} envoke the {@b {@i Rabbit Hole (Reappear)}} lair action in the following round to reemerge from a new burrow hole."
+						},
+						{
+							"type": "item",
+							"name": "Rabbit Hole (Reappear)",
+							"entry": "After envoking the {@b {@i Rabbit Hole (Vanish)}} lair action, The Easter Bunny creates a new burrow hole 10 feet wide by 20 feet deep within 30 feet of the burrow hole it vanished into and emerges from it, taking up an unoccupied space of its choice adjacent to the new burrow hole."
+						},
+						{
+							"type": "item",
+							"name": "Carrot Cave-In",
+							"entry": "A thunderous roar that can be heard up to 300 feet away shakes the cavenous lair, loosing stones and stalactites that crash down from the ceiling within a 30 ft radius circle of the Easter Bunny's choosing. Creatures in the effected area must succeed on a DC 15 Dexterity saving throw or take 7 ({@damage 2d8}) piercing damage."
+						}
+					]
+				}
+			]
+		}
+	],
+	"adventure": [
+		{
+			"name": "Elf Recon: Christmas Crash!",
+			"id": "ERCC",
+			"source": "ERCC",
+			"group": "homebrew",
+			"storyline": "",
+			"contents": [
+				{
+					"name": "Elf Recon: Christmas Crash!",
+					"headers": [
+						"Running the Adventure",
+						"Player Builds",
+						"Before The Session"
+					]
+				},
+				{
+					"name": "Cold Open"
+				},
+				{
+					"name": "Crash Site"
+				},
+				{
+					"name": "Frozen Waterfall"
+				},
+				{
+					"name": "Ice Cavern Entry"
+				},
+				{
+					"name": "Yeti Encounter"
+				},
+				{
+					"name": "Stocking Puzzle"
+				},
+				{
+					"name": "Kobolds & Sorcerer"
+				},
+				{
+					"name": "The Evil Easter Bunny",
+					"headers": [
+						"Victory"
+					]
+				},
+				{
+					"name": "Santa",
+					"headers": [
+						"Figuring Out the Real Santa",
+						"Deciding Santa's Fate"
+					]
+				},
+				{
+					"name": "A Hoppy Ending"
+				},
+				{
+					"name": "Alternate Shortened Ending"
+				},
+				{
+					"name": "And To All a Good Night!"
+				},
+				{
+					"name": "Magic Items",
+					"ordinal": {
+						"type": "appendix",
+						"identifier": "A"
+					}
+				},
+				{
+					"name": "Monsters and NPCs",
+					"ordinal": {
+						"type": "appendix",
+						"identifier": "B"
+					}
+				}
+			],
+			"level": {
+				"start": 3,
+				"end": 3
+			},
+			"published": "2022-12-09"
+		}
+	],
+	"adventureData": [
+		{
+			"id": "ERCC",
+			"source": "ERCC",
+			"data": [
+				{
+					"type": "section",
+					"name": "Elf Recon: Christmas Crash!",
+					"id": "christmas_crash",
+					"entries": [
+						"The Evil Easter Bunny has kidnapped Santa Claus! After crashing his sleigh, the Easter Bunny and her Kobold minions dragged Santa to their ice cavern, where the Easter Bunny has trapped Santa and demanded that he use his Christmas magic to make the perfect baby bunny gift for her soon-to-be Cadburry egg hatchling.  But nothing he makes is good enough!  Doesn't the Easter Bunny know that Santa is an expert in making toys for children, not bunnies!  As Christmas Eve rapidly approaches, Santa toils in a cage, alone and scared, struggling to appease the persnickety white rabbit.",
+						{
+							"type": "entries",
+							"name": "Running the Adventure",
+							"id": "running_the_adventure",
+							"entries": [
+								"Inspired (at least thematically) by Disney's short film, {@i Prep & Landing}, this adventure is a light, silly take on a North Pole spec-ops team sent in to find and rescue Santa after his sleigh crashes on a Christmas training run.",
+								"{@i Elf Recon: Christmas Crash!} is a one-shot 5th Edition adventure for 3-5 characters of 3rd level.",
+								"Run this one-shot online or in person. Using this 5eTools version, I suggest leveraging the Voice Initiative DM's Display tool when running this adventure.  After initializing a session in https://d20.orcnog.com and selecting the \"Holiday\" theme, you can click the \"Initiative Tracker\" links throughout this adventure to update the initiative board per encounter."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Player Builds",
+							"id": "player_builds",
+							"entries": [
+								"Each player should make a new level 3 character, flavored as a North Pole elf, part of a special ops team ready to take on dangerous missions.  (Any 5e race is actually fine, as long as the flavor is there.)  In addition to their real name, ask your players to also choose a \"call sign\"."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Before The Session",
+							"id": "before_the_session",
+							"entries": [
+								"Ahead of time, ask each player what one item their character wanted most for Christmas!  They can pick any magic item within reason: nothing more rare than \"Uncommon\", and nothing more valuable than 500 gp."
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Cold Open",
+					"id": "cold_open",
+					"entries": [
+						"{@cue [Show the Control Room image.]|media}",
+						"{@cue [Alarms going off]|media}",
+						"Read the following aloud, except the text in [brackets]:",
+						{
+							"type": "insetReadaloud",
+							"page": 1,
+							"id": "cold_open_readaloud",
+							"entries": [
+								"\"Alert!  Alert!  We've lost Santa's sleigh on radar!  Repeat, we've lost Santa's sleigh on radar!\"",
+								"{@cue [Image #2: Red Alert 1]|media}",
+								"Reports of a crash are coming in from a small northern village!",
+								"{@cue [Image #3: Red Alert 2]|media}",
+								"Admiral, what do we do?\"",
+								"{@cue [Image #4: Red Alert 3]|media}",
+								"\"THERE'S ONLY ONE CREW I WANT ON THIS MISSION. SCRAMBLE THE SPECIAL-OPS TEAM... {@i ELF RECON}.\"",
+								"\"Elf Recon, you have a go!  Prep for immediate extraction operation!\"",
+								"You and your spec ops team scramble to the rocket sled, geared up and ready to rescue the boss. In a flash, you're airborne, {@cue [Image #5: Drop Zone 1]|media} piercing the cold thick northern air at blinding speed. As Maverick, Santa's ace covert-op reindeer, navigates over the tiny village near Santa's sleigh fell off radar, his gruff voice comes over the intercom communicating that you'll reach the drop zone in T-minus 10 seconds. 9... 8... You tighten your parachute straps one last time, position yourself at the edge of the loading bay and... {@cue [Image #6: Drop Zone 2 image]|media}",
+								"One by one in rapid succession, 4 brave Christmas heroes jump from the flying sled and begin plummeting toward the ground below. {@cue [Image #7: Drop Zone 3]|media}"
+							]
+						},
+						"Ask each player to introduce their PC now. Ask them to describe their character and tell us their call sign, then describe what they say when they touch down."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Crash Site",
+					"id": "crash_site",
+					"entries": [
+						{
+							"type": "insetReadaloud",
+							"page": 1,
+							"id": "crash_site_readaloud",
+							"entries": [
+								"{@cue [Image #8: Crash Site]|media}",
+								"Stowing your chutes and dusting the snow off your heroic shoulders, you take in the crash scene.  Splinters of bright-red painted wood litter the road of this tiny village. Broken toys, smashed gifts, and other sleigh debris mottle up the otherwise pure white snow covering the ground.",
+								"Your eyes follow the trail of wreckage all the up the oblong trench of the impact crater... and there it is, Big Red, the Spruce Christmas Goose, Noel One, Die Klausvagen... Santa's Sleigh itself: brought down to the humble ground like a meteor from the heavens.",
+								"Thankfully, the village is small, and the crash is in an open area between buildings, so hopefully no one in the village was seriously hurt.  Actually... speaking of... where is everyone? And what is this myriad of footprints leading away from the crash site?  Lots and lots of tiny tracks, a few huge tracks, but nothing matching Santa's boots...  What could it mean??...",
+								"You glance around again.  Well, they couldn't have picked a nicer village to crash in, at least!"
+							]
+						},
+						"Time-permitting, let the players dick around in the village if they like.  Eventually, they need to follow the trail.",
+						"{@cue DC 10 Survival} - The tiny footprints are kobold tracks.  The huge footprints were made by a single large bipedal beast.",
+						"{@cue DC 10 Survival} - The tiny footprints are kobold tracks.  The huge footprints were made by a single large bipedal beast.",
+						"{@cue DC 10 Insight} - There's no obvious reason the village should be empty at this time of day (approaching dusk).}",
+						"{@cue DC 10 Investigation of the surrounding village} - Read the following:",
+						{
+							"type": "insetReadaloud",
+							"entries": [
+								"Searching the surrounding village, you just see simple homes and shops\u2014nothing out of the ordinary. Until one thing catches your eye... sitting on a patio table outside quaint-looking coffee shop, you see a forgoten coffee drink. You gasp.  It's the most famous, most delicious Christmas drink ever, a {@item Double Shot White Chocolate Peppermint Mocha Orcnog with Extra Whip and a Cinnamon Bacon Stir Stick|ERCC}! [GASP] You know exactly where you are! The is the village of New Gromchester!  You've always wanted to visit. They make Santa's favorite drink here!"
+							]
+						},
+						"{@cue DC 10 Investigation of the even more of the village??} - Read the following:",
+						{
+							"type": "insetReadaloud",
+							"entries": [
+								"Searching the rest of the quaint village, you find more modest homes and shops lining the solitary main street. At the far end, a small cemetery comes into view, its humble assortment of gravestones overshadowed by one truly ostentatious monument. This towering headstone is a masterpiece of excessive grandeur, adorned with intricate carvings of cherubs, vines, and mythical creatures. Flourishes of ornate stonework spiral skyward, and gilded lettering set in gold filigree proudly proclaims the name of the interred...",
+								"{@cue [Wait for them to ask for the name!]}",
+								"\"Here lies Bishop of the Nine, High Paladin of the 12th Realm of Ephysiyies, Master of Light and Shadow, Devourer of Chaos, Executor of Justice, Champion of the Great Halls of Terr'akkas, Known to the Elves as Fi'ang Yalok, Known to the Dwarves as Zoenen Hoogststandjes', and Known Throughout the Northeast as Gaismuēnas Meistar, Sr."
+							]
+						},
+						"{@cue DC 10 Investigation of the wreckage} - They find a {@item Silver Sleigh Bell|ERCC}, a sack full of 4 {@item lump of coal|ERCC|Lumps of Coal}, along with... GIFTS! Each player gets what they wanted for Christmas (see Player Builds)! Run the following (optional) skill challenge:",
+						{
+							"type": "inset",
+							"name": "Optional: Gift Skill Challenge!",
+							"id": "gifts_skill_challenge",
+							"entries": [
+								"Read the following:",
+								{
+									"type": "insetReadaloud",
+									"page": 1,
+									"id": "gifts_readaloud",
+									"entries": [
+										"Searching the wreckage, you see scattered gifts, splintered pieces of sleigh, a bag containing 4 {@item lump of coal|ERCC|Lumps of Coal}, and the glint of something solver in the snow... bending down you see it's a {@item Silver Sleigh Bell|ERCC}. You also find that there are several unopened gifts with names on the labels. Oooo! You are delighted to find one addressed to \"[your name]\"!"
+									]
+								},
+								"Further investigation is free to find one gift addressed to each character's name.",
+								{
+									"type": "list",
+									"items": [
+										"{@cue DEX challenge} - One of the gifts is in a tree, hanging from a branch by a ribbon.",
+										"{@cue STR challenge} - One of the gifts is stuck under the heavy end of the sleigh.",
+										"{@cue CON challenge} - One of the gifts is submerged in a trough of near-freezing water.",
+										"{@cue INT challenge} - There are 3 gifts with names smudged... one of them belongs to one of the characters.",
+										"{@cue WIS challenge} - One gift has no label on it... shake it to perceive that it's EXACTLY what [one character] asked for!",
+										"{@cue CHA challenge} - An arctic albino squirrel darts out of a pile of gifts holding one tiny giftbox in his grubby paws."
+									]
+								}
+							]
+						},
+						"Once the players are done in the village... FOLLOW THE TRAIL!!"
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Frozen Waterfall",
+					"id": "frozen_waterfall",
+					"entries": [
+						"As the players set out across a frozen tundra, read the following...",
+						{
+							"type": "insetReadaloud",
+							"entries": [
+								"As you make your way through the icy tundra, the pleasantly light falling snow begins to thicken as the wind picks up.  The air temperature drops quickly as your tactical cold-weather gear begins to fail to keep your body temperature nominal.  Within moments, you find yourself fighting through a full-on blizzard.",
+								"{@cue [Load the Frozen Waterfall image.]|media}",
+								"You've been trekking through the blizzard for over an hour. Gusts of freezing biting wind threaten to blow you over, and the flying specs of snow now feel like tiny daggers as they hit your face.  I need everyone to make a Constitution saving throw to withstand the extreme conditions.",
+								"{@cue [DC 10 save to avoid gaining 1 level of exhaustion]}",
+								"Despite the extreme cold and the nearly-blinding snow, [player with the highest Survival score] manages to track the largest of the footprints all the way to their termination at the base of what appears to be a frozen waterfall, cascading down from atop a cliff.  The tracks appear to disappear right at the base of the waterfall... hmm, the captors couldn't have climbed up the ice, could they?"
+							]
+						},
+						"Allow the players agency to survey their surroundings at the frozen waterfall...",
+						{
+							"type": "list",
+							"items": [
+								"{@cue DC 10 Survival} - The tracks do not indicate a shifting of weight or changing of direction at the waterfall. In fact, they appear to walk straight into it.",
+								"{@cue DC 10 Insight} - It doesn't seem to add up that the Santa-nabbers would have climbed the frozen-solid waterfall when the cliff is not sheer or dangerous-looking and seems much more easily traversable by foot.",
+								"{@cue DC 10 Investigation} - The waterfall appears to have almost been flash-frozen.  You see tiny frozen droplets on the ground around the base of the waterfall, indicating that they frozen in mid-air and fell, rather than slowly hardening over time into ice.",
+								"{@cue DC 10 Arcana} - You've heard of spells that can instantly freeze water.",
+								"{@cue DC 10 Perception} - The tracks seem to walk themselves straight toward the waterfall... in fact, at the base of the frozen cascade you see what looks like the back half of a footprint... the front half, the toes covered up by the ice from the waterfall."
+							]
+						},
+						"After a while, the players should realize they need to go through the waterfall, either by melting it or busting through it."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Ice Cavern Entry",
+					"id": "ice_cavern_entry",
+					"entries": [
+						"Players can get past the frozen waterfall barrier by doing any of the following:",
+						{
+							"type": "list",
+							"items": [
+								"Melting the ice - with magic or other clever means.",
+								{
+									"type": "entries",
+									"entries": [
+										"Break through the ice - by making Athletics checks or attacks.",
+										{
+											"type": "list",
+											"items": [
+												"Strength check {@cue [DC 20 Athletics]} to bust some of the ice. 3 total successes are required. Any single character who fails 3 attempts or more suffers 1 level of exhaustion.",
+												"The Frozen Wall has an AC of 100, and a DT of 10. Any single character who missed 3 attacks or more suffers 1 level of exhaustion."
+											]
+										}
+									]
+								},
+								"The first room of the cave is dimly lit by a campfire in the southwest corner. A natural frozen pool guards the west wall. The meandering cave winds to the north from here.",
+								"But more pressing is the ominous presense of... a yeti and 2 winter wolf guard dogs!",
+								{
+									"type": "insetReadaloud",
+									"entries": [
+										"Finally [melting/breaking through] the ice reveals an icy cavern! Even in the dim light, you can definitely see that the huge yeti footprints continue into this cave. They must have entered before the waterfall froze. Intriguing!"
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Yeti Encounter",
+					"id": "yeti_encounter",
+					"entries": [
+						"After the players enter the icy cavern, read the following to kick off the Yeti encounter...",
+						{
+							"type": "insetReadaloud",
+							"entries": [
+								"As your eyes adjust to the darkness, your heart leaps into your throat as you realize... the Yeti is right in front of you, cracking its knuckles! Roll for initiative!"
+							]
+						},
+						"Start the Yeti & Wolves encounter:",
+						{
+							"type": "encounter",
+							"name": "Yeti and Winter Wolves!",
+							"id": "yeti_and_winter_wolves_encounter",
+							"varyBy": "Party Size",
+							"variations": [
+								{
+									"variantName": "3",
+									"combatants": [
+										{
+											"creature": "{@creature yeti}",
+											"quantity": 1
+										},
+										{
+											"creature": "{@creature wolf|||scaled=1/8}",
+											"quantity": 2
+										}
+									]
+								},
+								{
+									"variantName": "4",
+									"combatants": [
+										{
+											"creature": "{@creature yeti}",
+											"quantity": 1
+										},
+										{
+											"creature": "{@creature wolf}",
+											"quantity": 3
+										}
+									]
+								},
+								{
+									"variantName": "5",
+									"combatants": [
+										{
+											"creature": "{@creature yeti}",
+											"quantity": 1
+										},
+										{
+											"creature": "{@creature young winter wolf|TftYP}",
+											"quantity": 2
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Stocking Puzzle",
+					"id": "stocking_puzzle",
+					"entries": [
+						{
+							"type": "insetReadaloud",
+							"entries": [
+								"Coming to a dead end in this cave corridor, you see what appears to be a boulder blocking the passage. On the cave wall to the left are some toys: a teddy bear, a doll, a jack-in-the-box, and a tin soldier. You grin to yourself\u2014tin soldiers were always Santa's favorite toy\u2014you hope the big guy is alright. Next to the solid boulder are 4 stockings hung by a fire, each with a name written on it. The names on the stockings are as follows, from left to right: \"Paul, Betty Claire, Ben Bolder, Kraken Seahawks\". The stockings look peaceful, lit by the crackling fire."
+							]
+						},
+						"The solution is to put the correct toy in the correct stocking to unlock the door.",
+						{
+							"type": "inset",
+							"entries": [
+								"{@b Solution: The toy rhymes with the name written on the stocking.}",
+								{
+									"type": "list",
+									"items": [
+										"Put the doll in the stocking with the name Paul.",
+										"Put the teddy bear in the stocking with the name Betty Claire.",
+										"Put the tin soldier in the stocking with the name Ben Bolder.",
+										"Put the jack-in-the-box in the stocking with the name Kraken Seahawks."
+									]
+								},
+								"{@i If they need a hint, scratched into the wall is a crudely handwritten sentence: \"Ben wants a tin soldier for Christmas.\"}"
+							]
+						},
+						"Once they put all the toys in the right stockings, the boulder rolls away (get it? a reference to Easter, am I right?). Proceed to the next section."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Kobolds & Sorcerer",
+					"id": "kobolds_and_sorcerer",
+					"entries": [
+						{
+							"type": "insetReadaloud",
+							"entries": [
+								"The boulder rumbles as it rolls itself out of the way. On the other side of the secret door, bewildered, stand several kobolds wearing festive red hats, and one winged kobold with a wily scowl. They seem to be gathered around the winged kobold as he interacts with a glowing orb. But all of the kobolds in the room stop when you come in. \"Intruders!\" shouts the winged kobold. \"They've come to take away our guest and foil our master's plan! Stop them!\" Roll for initiative!"
+							]
+						},
+						"Run the Kobolds & Sorcerer encounter:",
+						{
+							"type": "encounter",
+							"name": "Kobolds & Sorcerer",
+							"id": "kobolds_and_sorcerer_encounter",
+							"varyBy": "Party Size",
+							"variations": [
+								{
+									"variantName": "3",
+									"combatants": [
+										{
+											"creature": "{@creature kobold minion|ERCC}",
+											"quantity": 4
+										},
+										{
+											"creature": "{@creature kobold sorcerer|ERCC}",
+											"quantity": 1,
+											"note": "After the kobold sorcerer gets off a fog spell, he will cast invisibility on himself and retreat southward to the back room."
+										}
+									]
+								},
+								{
+									"variantName": "4",
+									"combatants": [
+										{
+											"creature": "{@creature kobold minion|ERCC}",
+											"quantity": 6
+										},
+										{
+											"creature": "{@creature kobold sorcerer|ERCC}",
+											"quantity": 1,
+											"note": "After the kobold sorcerer gets off a fog spell, he will cast invisibility on himself and retreat southward to the back room."
+										}
+									]
+								},
+								{
+									"variantName": "5",
+									"combatants": [
+										{
+											"creature": "{@creature kobold minion|ERCC}",
+											"quantity": 7
+										},
+										{
+											"creature": "{@creature kobold sorcerer|ERCC}",
+											"quantity": 1,
+											"note": "After the kobold sorcerer gets off a fog spell, he will cast invisibility on himself and retreat southward to the back room."
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "entries",
+							"entries": [
+								{
+									"type": "entries",
+									"name": "Room description",
+									"entries": [
+										"If asked for a description of the room, read the following:",
+										{
+											"type": "insetReadaloud",
+											"entries": [
+												"Icy cave pillars stretch from floor to ceiling randomly throughout this large space. Amongst a couple of unlit campfires, there is one lit campfire which provides a bit of dim light along with a glowing orb illuminating an alcove at the northeast end. The cave continues to wind south along the east wall of this room."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Santa Hats",
+									"entries": [
+										"The sorcerer kobold controls the other kobolds (who are otherwise good-aligned) via the festive red hats they wear. One by one, these good kobolds were tricked into wearing the hats, at which point they immediately fell under the {@spell geas} spell and began serving the sorcerer.",
+										"Any time a kobold is hit, {@dice 1d6|roll a 1d6}, and on a roll of 4 or higher, the kobold's hat is knocked off. Alternatively, if a kobold takes fire or radiant damage, their hat is burnt to ash. Once a hat is destroyed or dislodged, you immediately notice the kobold's beady eyes wide with remorse. It pleads something such as {@i \"I just wanna make kids smile, not... this!\"} and likely runs out of the room."
+									]
+								}
+							]
+						},
+						"Continuing down the cave..."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "The Evil Easter Bunny",
+					"id": "the_evil_easter_bunny",
+					"entries": [
+						"Read the following as the party continues through the cave...",
+						{
+							"type": "insetReadaloud",
+							"entries": [
+								"The air grows colder as you descend the southward tunnel, its twisting, narrowing walls pressing in like the confines of a burrow. The fading torchlight gives way to darkness, and the low, jagged ceiling forces you to stoop. Suddenly, the passage opens into a cramped cavern, dimly lit by an orange glow from carrot-colored stalactites hanging low like fangs above your heads. \"Aww\", you think to yourself, \"they look like little carrots... [Sigh] Santa's favorite vegetable was always carrot cake.\" You do hope Mr. Claus is alright.",
+								"But before you can take in more of your surroundings, a sound slices through the oppressive silence\u2014a piercing, ear-splitting shriek that reverberates through the close confines. It's cunning, malicious, and... undeniably coming from a... uh... {@i bunny}?",
+								"{@cue Reveal the Easter Bunny minifigure!}",
+								"Bounding into view from behind a jagged orange stalagmite, a towering white rabbit glares at you with eyes full of cold contempt. Her pristine fur bristles, and her voice drips with venom as she sneers, \"So, you've come to meddle in my plans, have you? Fools! You'll never take my prize!\"",
+								"She gestures grandly, her sinister grin growing wider. \"The fat man? Oh, he serves ME now\u2014ME, the EASTER BUNNY! Here, in my domain, he and his clumsy, sausage-like fingers will toil endlessly, crafting delightful little trinkets for my eggs. Toys, baubles, and treasures that will make every child forget Christmas ever existed!\"",
+								"Her laughter echoes chillingly through the cavern. \"That's right! EASTER shall reign supreme! EASTER will be the new Christmas! FOREVER!\"",
+								"Her voice drops to a menacing growl as her gaze hardens. \"And as for you lot? Hah! You'll make fine decorations for my lair. Frozen and forgotten\u2014an eternal testament to my victory!\"",
+								"The ground seems to tremble beneath her imposing form. \"Prepare yourselves, for you won't leave here alive. Roll for initiative!\""
+							]
+						},
+						"When the bunny makes her final threat, the two kobold guards emerge from the shadows and attack the party along with the Easter Bunny.",
+						{
+							"type": "encounter",
+							"name": "Easter Bunny Encounter",
+							"id": "easter_bunny_encounter",
+							"varyBy": "Party Size",
+							"variations": [
+								{
+									"variantName": "3",
+									"combatants": [
+										{
+											"creature": "{@creature kobold minion|ERCC}",
+											"quantity": 2
+										},
+										{
+											"creature": "{@creature the easter bunny|ERCC}",
+											"quantity": 1
+										}
+									]
+								},
+								{
+									"variantName": "4",
+									"combatants": [
+										{
+											"creature": "{@creature kobold minion|ERCC}",
+											"quantity": 2
+										},
+										{
+											"creature": "{@creature the easter bunny|ERCC}",
+											"quantity": 1
+										}
+									]
+								},
+								{
+									"variantName": "5",
+									"combatants": [
+										{
+											"creature": "{@creature kobold minion|ERCC}",
+											"quantity": 2
+										},
+										{
+											"creature": "{@creature the easter bunny|ERCC}",
+											"quantity": 1
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "entries",
+							"entries": [
+								{
+									"type": "entries",
+									"name": "Room Description",
+									"entries": [
+										"If asked for a description of the room, read the following:",
+										{
+											"type": "insetReadaloud",
+											"entries": [
+												"The space is cramped with a low ceiling, and dimly lit by the glowing orange stalacmites. Upon a natural plateau in the west corner is another exit from this room."
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Victory",
+							"id": "victory",
+							"entries": [
+								"When the players vanquish the Easter Bunny, read the following aloud:",
+								{
+									"type": "insetReadaloud",
+									"entries": [
+										"The Easter Bunny staggers back, clutching her chest dramatically. \"No! My reign of pastel perfection... undone by {@i elves} and their insufferable {@i Christmas cheer}! Curse you!\""
+									]
+								},
+								"{@cue If time is {@i extremely} short, consider skipping to the final narration: {@area And To All a Good Night!|and_to_all_a_good_night|x}|critical} <br/>{@cue If time is kinda short, proceed to the {@area Alternate Shortened Ending|alternate_shortened_ending|x}|media} <br/>{@cue Or preferably, time permitting, continue from here...|info}",
+								{
+									"type": "insetReadaloud",
+									"entries": [
+										"With a final gasp, her fluffy exterior melts away and her form shrinks, revealing a small gnarled goblin, sprawled on the ground. A golden crown with oversized bunny ears tumbles from her head, landing with a soft clink beside a {@i treasure chest}, emblazoned with a colorful Easter egg lock. The room grows still, save for the faint shimmer of magical light around the crown."
+									]
+								},
+								"The treasure chest requires a {@cue DC 10 Thieves' Tools check} to open, or clever use of a weapon, spell, or item. When the players open the chest, read the following aloud:",
+								{
+									"type": "insetReadaloud",
+									"entries": [
+										"Inside the chest, you find piles of glittering treasures\u2014golden eggs, jeweled carrots, and sparkling pastel baubles. But beneath the glimmering hoard lies a worn red Santa cap, embroidered on the inside with the name \"St. Nick.\""
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Santa",
+					"id": "santa",
+					"entries": [
+						"Santa's fingers bleed as he works them to the bone, crafting tiny trinkets and tiny toys for Easter eggs. Read the following \"flash back cut scene\":",
+						{
+							"type": "insetReadaloud",
+							"entries": [
+								"Meanwhile somewhere at the back of the cave...",
+								"A not-so-jolly man in a velvet-red suit pushes on a tiny piece of a toy, trying desperately to snap it into place, but his grip slips, and the jagged toy part catches on his already raw, bleeding fingers. \"Chestnuts!\" he curses as he finches in pain. Clumbsily, he drops the tiny toy part, which clatters to the floor of his iron cage.",
+								"\"Egh.  These tiny Easter egg toys... my big plump fingers just weren't meant for this kind of crafting... [Sigh]... All this work, for Easter... How did it come to this?\" he says somberly, his belly not shaking like a bowl full of anything.",
+								"Suddenly, a small figures enter the chamber at the far end...  The white-bearded man squints in the dim light. \"Who's that?  Easter Bunny, is that you?\"",
+								"[Kobold voice:] \"Not quite, Santa.\" A tiny kobold scurries up to the fat man. \"Oh ho, the boss isn't taking any chances! Let's make things a little more... confusing.\" He cackles and chants a spell from a scroll. A swirl of magic illuminates the kobold, and before he knows it, Santa is looking at... himself.  A perfect copy.",
+								"The fake Santa grins wickedly. \"Ho ho ho! Let's see them figure this out, shall we?\""
+							]
+						},
+						"Now, cut {@i back} to the players' perspective. Read the following as the players come down the final tunnel:",
+						{
+							"type": "insetReadaloud",
+							"entries": [
+								"At the far end of the cavern, you see an alcove along the north wall. A crude cage stands with its door ajar, and beside it are two identical figures\u2014two Santa Clauses! Crap! Which one is the real one?"
+							]
+						},
+						"Both Santas react when they see you enter the chamber.",
+						{
+							"type": "insetReadaloud",
+							"entries": [
+								"[Santa 1:] \"Ho ho ho! Christmas will be saved after all!\"",
+								"[Santa 2:] \"What?? N... No, you can't believe him.  I just watched him transform into this figure!  He's not me, I'M ME!\"",
+								"[Santa 1:] \"Oh, the jig is up now, you naughty little trickster!  That's my spec-ops team! You're in for it now!\"",
+								"[Santa 2:] \"No!  I don't know how he knows exactly what to say, but he's not the real Santa!\"",
+								"[Santa 1:] \"No, YOU'RE not the real Santa!\""
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Figuring Out the Real Santa",
+							"entries": [
+								"A few clues may factor into the players' deliberation over which Santa is the {@i real Santa}...",
+								{
+									"type": "entries",
+									"name": "Santa's Favorite Things:",
+									"entries": [
+										"If the players were paying close attention, they could have noticed that a few of Santa's favorite things were mentioned during this adventure.",
+										{
+											"type": "list",
+											"items": [
+												"Santa's favorite vegetable is carrot cake.",
+												"Santa's favorite toy is a tin soldier.",
+												"Santa's favorite drink is a {@item Double Shot White Chocolate Peppermint Mocha Orcnog with Extra Whip and a Cinnamon Bacon Stir Stick|ERCC}"
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Santa's bleeding fingers:",
+									"entries": [
+										"The real Santa's fingers are raw and bleeding from the endless crafting he's been forced to do for the Easter Bunny."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Knowledge of the team:",
+									"entries": [
+										"The real Santa knows your special ops team by name and greets you with genuine familiarity."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Any other clever ideas:",
+									"entries": [
+										"Let the players surprise you! Basically any half-decent idea should be successful. Bonus points for allowing a character to tie it in with their backstory or something!"
+									]
+								}
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Deciding Santa's Fate",
+							"entries": [
+								"The players may decide to attack the bad Santa, return the hat to the good Santa, or accuse the bad Santa in a social interaction. Choose the corresponding resolution below based on their approach.",
+								{
+									"type": "entries",
+									"name": "If the Players Attack the Bad Santa",
+									"entries": [
+										"If the players attack, any amount of damage or a controlling spell instantly subdues him\u2014this is not meant to be a combat encounter."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "If the Players Return the Hat",
+									"entries": [
+										"If the players give the hat to the good Santa, a golden glow envelops him as he regains his full strength and joyful demeanor. The bad Santa scowls, his disguise breaking as he transforms into a kobold with a final huff, fleeing in a puff of smoke."
+									]
+								},
+								{
+									"type": "entries",
+									"name": "If the Players Accuse the Bad Santa",
+									"entries": [
+										"If the players accuse the bad Santa, he pouts and tries to argue, but his weak excuses and unconvincing tone betray him. Eventually, he snarls, then with a puff of smoke transforms back into a kobold and attempts to flee, never to be seen again."
+									]
+								},
+								"Once the players make their decision, read the following:",
+								{
+									"type": "insetReadaloud",
+									"entries": [
+										"Relief washes over the true Santa's face as he realizes you've chosen correctly. His eyes twinkle with gratitude, and his voice booms with warmth, \"Ho ho ho! You've done it, my friends!\" The cavern seems to brighten with joy. As you hold the embroidered red cap in your hands, you feel it quiver with anticipation, almost as if eager to return to its rightful owner.",
+										"{@cue [Pause for player interaction with the hat/Santa]}",
+										"The moment the hat touches Santa's head, a golden light bursts forth, enveloping him in a soft glow. His cheeks regain their rosy hue, and his belly shakes with renewed laughter. \"Ho ho ho! Christmas is saved!\" The sound of jingling sleigh bells echoes faintly, and the air fills with the faint scent of peppermint and pine."
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "A Hoppy Ending",
+					"id": "a_hoppy_ending",
+					"entries": [
+						"If the Easter crown still doesn't have a proper owner, read the following:",
+						{
+							"type": "insetReadaloud",
+							"entries": [
+								"Just then, a familiar figure timidly steps forward from the other room\u2014it's the kobold who showed a glimmer of kindness during the fight. \"I... I don't think Easter should try to outshine Christmas,\" he mutters, voice trembling but sincere. \"It should be about spreading joy in its own way.\" Suddenly, you feel the bunny ear crown wiggle in delight. Glancing at the crown, you see its oversized ears seeming to nod in agreement."
+							]
+						},
+						"{@cue [Pause for player agency with the crown]}",
+						"If the players do not realize they should crown the kobold, Santa interjects...",
+						{
+							"type": "insetReadaloud",
+							"entries": [
+								"\"I think our heroes have another decision to make\", Santa says with a wink. \"This one seems pretty easy to me, my friends.\""
+							]
+						},
+						"If the players crown the good kobold...",
+						{
+							"type": "insetReadaloud",
+							"entries": [
+								"When the crown is placed on the kobold's head, magic swirls around him, transforming his scales into soft white fur and reshaping him into a proud, upright rabbit. Puffing out his chest, he declares, \"I vow to honor Easter and stay in my lane! Easter will stay Easter\u2014and never again will it try to overthrow Christmas!\" The cavern resonates with harmony."
+							]
+						},
+						"After a new Easter Bunny is crowned, continue with the final narration: \"{@area And To All a Good Night!|and_to_all_a_good_night|x}\"."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Alternate Shortened Ending",
+					"id": "alternate_shortened_ending",
+					"entries": [
+						{
+							"type": "inset",
+							"entries": [
+								"If you're short on time, read this shortened ending:",
+								{
+									"type": "insetReadaloud",
+									"entries": [
+										"With the Easter Bunny defeated, the cavern grows quiet, save for the faint shimmer of magical light around the golden crown with its oversized bunny ears. Santa steps forward from the shadows, his fingers raw and bleeding, but his face alight with gratitude. \"You've done it, my friends! You've saved me\u2014and Christmas! Ho ho ho!\" He winces, glancing at the crown. \"But Easter still needs a protector, one who can keep it joyful without greed or spite.\""
+									]
+								},
+								"{@cue If a player volunteers to wear the crown, read the following:}",
+								{
+									"type": "insetReadaloud",
+									"entries": [
+										"When the crown is placed on your head, a swirl of magic surrounds you, transforming your form into a regal, upright rabbit with shimmering white fur.",
+										"Santa steps forward and asks, \"Do you vow to honor Easter and keep it in its rightful place, bringing joy to all? And never to try to overthrow Christmas?\" {@cue [Pause for player response. If yes, read:]} The cavern resonates with harmony as the magic settles."
+									]
+								},
+								"{@cue If the players do not volunteer or quickly come up with a solution, read the following:}",
+								{
+									"type": "insetReadaloud",
+									"entries": [
+										"From the other room, a familiar kobold cautiously steps into view, his eyes wide with hope and humility. \"I... I think I can do it,\" he says, voice trembling. \"Easter should be about spreading joy, not stealing it.\" The bunny-ear crown wiggles, almost as if it agrees. Santa gives you a knowing nod.",
+										"When the crown is placed on the kobold's head, a swirl of magic surrounds him, transforming his scaly form into a regal, upright rabbit with shimmering white fur. Puffing out his chest, he declares, \"I vow to honor Easter and keep it in its rightful place, bringing joy to all!\" The cavern resonates with harmony as the magic settles."
+									]
+								},
+								"After a new Easter Bunny is crowned, continue with the final narration: \"{@area And To All a Good Night!|and_to_all_a_good_night|x}\"."
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "And To All a Good Night!",
+					"id": "and_to_all_a_good_night",
+					"entries": [
+						"Victory in hand, the north pole elves must now return Santa to his duties.  Read the following:",
+						{
+							"type": "insetReadaloud",
+							"entries": [
+								"Leading Santa out of the cave, you step into the snowy night. The sleigh awaits, fully repaired and gleaming, surrounded by industrious North Pole elves who are repacking the scattered gifts with cheerful efficiency. Santa turns to you, his face glowing with pride. \"You've not only saved Christmas,\" he says, his voice booming with joy, \"but you've saved Easter too! The world owes you a great debt.\"",
+								"As Santa steps into his sleigh, you radio headquarters with the words they've been waiting for: \"The Big Guy is safe.\" The room erupts. Elves cheer, hats fly, and bells jingle in celebration!",
+								"Santa's reindeer stamp eagerly in the snow as Santa takes the reins. Moments later, as the sleigh soars into the starry night, you hear Santa's booming voice call \"Ho ho ho! Merry Christmas to all!\" ...as you watch the sleigh disappear into the distance with a twinkle."
+							]
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Appendix A: Magic Items",
+					"id": "199",
+					"entries": [
+						"A magic item is a wondrous treasure that adventurers find in a monster's hoard, in a trap-riddled dungeon, or in the possession of a slain foe. Every adventure holds the promise\u2014but not a guarantee\u2014of finding one or more magic items.",
+						{
+							"type": "list",
+							"name": "Item Descriptions",
+							"items": [
+								"{@item Silver Sleigh Bell|ERCC}",
+								"{@item Lump of Coal|ERCC|Lumps of Coal}",
+								"{@item Double Shot White Chocolate Peppermint Mocha Orcnog with Extra Whip and a Cinnamon Bacon Stir Stick|ERCC}"
+							]
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Appendix B: Monsters and NPCs",
+					"entries": [
+						"The monsters and NPCs appearing in the adventure are presented in this section in alphabetical order.",
+						{
+							"type": "list",
+							"columns": 2,
+							"items": [
+								"{@creature The Easter Bunny|ERCC}",
+								"{@creature Kobold Minion|ERCC}",
+								"{@creature Kobold Scale Sorcerer|MPMM}",
+								"{@creature Wolf|||scaled=1/8}",
+								"{@creature Wolf}",
+								"{@creature Yeti}",
+								"{@creature Young Winter Wolf|TftYP}"
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

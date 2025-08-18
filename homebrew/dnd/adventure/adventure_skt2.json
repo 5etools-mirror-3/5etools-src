@@ -1,0 +1,228 @@
+{
+	"$schema": "https://raw.githubusercontent.com/TheGiddyLimit/5etools-utils/master/schema/brew-fast/homebrew.json",
+	"_meta": {
+		"sources": [
+			{
+				"json": "SKT2",
+				"abbreviation": "SKT+",
+				"full": "Storm King's Thunder Customizations",
+				"url": "https://5e.orcnog.com/homebrew/dnd/adventure/adventure_skt2.json",
+				"convertedBy": [
+					"orcnog"
+				],
+				"version": "1.0",
+				"color": "008b8b"
+			}
+		],
+		"dateAdded": 1613648837,
+		"dateLastModified": 1613648837,
+		"_dateLastModifiedHash": "e5f748a123",
+		"dependencies": {
+			"monster": [
+				"MM",
+				"SKT"
+			]
+		},
+		"internalCopies": [
+			"monster"
+		],
+		"edition": "classic"
+	},
+	"feat": [
+		{
+			"name": "Soul of the Storm Giant",
+			"source": "SKT2",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						],
+						"amount": 1
+					}
+				}
+			],
+			"entries": [
+				"You've manifested the tempest magic emblematic of storm giants, granting you the following benefits:",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "Maelstrom Aura",
+							"entries": [
+								"Once per short rest as a bonus action, you surround yourself with an aura of magical wind and lightning that extends 10 feet from you in every direction but not through total cover. The aura lasts until the start of your next turn or until you are incapacitated. While the aura is active, you have resistance to lightning and thunder damage, and your AC increases by 1. In addition, attack rolls against you have disadvantage."
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"monster": [
+		{
+			"name": "Iymrith",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "SKT2",
+			"page": 241,
+			"_copy": {
+				"name": "Iymrith",
+				"source": "SKT",
+				"_mod": {
+					"spellcasting": [
+						{
+							"mode": "replaceSpells",
+							"daily": {
+								"1e": [
+									{
+										"replace": "{@spell stone shape}",
+										"with": "{@spell mislead}"
+									}
+								]
+							}
+						},
+						{
+							"mode": "removeSpells",
+							"daily": {
+								"1e": [
+									"{@spell detect magic}"
+								]
+							}
+						},
+						{
+							"mode": "addSpells",
+							"will": [
+								"{@spell stone shape}"
+							]
+						}
+					],
+					"action": [
+						{
+							"mode": "replaceArr",
+							"replace": "Change Shape",
+							"items": {
+								"name": "Change Shape",
+								"entries": [
+									"Iymrith magically polymorphs into a female {@creature Mythiri|SKT2|storm giant} or back into her true form. She reverts to her true form if she dies. Any equipment she is wearing or carrying is absorbed or borne by the new form (Iymrith's choice).",
+									"In storm giant form, Iymrith retains her alignment, hit points, Hit Dice, ability to speak, proficiencies, Legendary Resistance, lair actions, and Intelligence, Wisdom, and Charisma scores, as well as this action. Her statistics are otherwise replaced by those of the new form."
+								]
+							}
+						},
+						{
+							"mode": "replaceArr",
+							"replace": "Frightful Presence",
+							"items": {
+								"name": "Frightful Presence",
+								"entries": [
+									"Each creature of Iymrith's choice that is within 120 feet of Iymrith and aware of it must succeed on a {@dc 20} Wisdom saving throw or become {@condition frightened} for 1 minute. A creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success. The DC decreases by 5 each time the saving throw is re-attempted. If a creature's saving throw is successful or the effect ends for it, the creature is immune to Iymrith's Frightful Presence for the next 24 hours."
+								]
+							}
+						}
+					]
+				}
+			},
+			"hp": {
+				"average": 604,
+				"formula": "26d20 + 208"
+			},
+			"legendaryGroup": {
+				"name": "Blue Dragon",
+				"source": "MM"
+			},
+			"token": {
+				"name": "Iymrith",
+				"source": "SKT"
+			}
+		},
+		{
+			"name": "Mythiri",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "SKT2",
+			"page": 241,
+			"_copy": {
+				"name": "Storm Giant",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the giant",
+						"with": "Mythiri",
+						"flags": "i"
+					},
+					"trait": {
+						"mode": "appendArr",
+						"items": {
+							"name": "Legendary Resistance (3/Day)",
+							"entries": [
+								"If Mythiri fails a saving throw, she can choose to succeed instead."
+							]
+						}
+					},
+					"action": {
+						"mode": "appendArr",
+						"items": {
+							"name": "Change Shape",
+							"entries": [
+								"Mythiri magically polymorphs back into her true form: {@creature Iymrith|skt}, the ancient blue dragon."
+							]
+						}
+					},
+					"spellcasting": {
+						"mode": "appendArr",
+						"items": {
+							"name": "Spellcasting",
+							"headerEntries": [
+								"Mythiri casts one of the following spells, requiring no spell components and using Charisma as the spellcasting ability (spell save {@dc 20}):"
+							],
+							"will": [
+								"{@spell stone shape}"
+							],
+							"daily": {
+								"1e": [
+									"{@spell dispel magic}",
+									"{@spell ice storm}",
+									"{@spell mislead}",
+									"{@spell teleport}"
+								]
+							},
+							"ability": "cha",
+							"displayAs": "action"
+						}
+					}
+				}
+			},
+			"hp": {
+				"average": 604,
+				"formula": "26d20 + 208"
+			},
+			"int": 18,
+			"wis": 17,
+			"cha": 21,
+			"alignment": [
+				"L",
+				"E"
+			],
+			"traitTags": [
+				"Amphibious",
+				"Legendary Resistances"
+			],
+			"tokenHref": {
+				"type": "external",
+				"url": "https://5e.orcnog.com/homebrew/dnd/bestiary/tokens/skt/Mythiri.webp"
+			}
+		}
+	]
+}

@@ -1,0 +1,806 @@
+{
+	"_meta": {
+		"sources": [
+			{
+				"json": "orcnogHalcyon",
+				"abbreviation": "Halcyon",
+				"full": "SW5e: The Halcyon Remnant - A SW5e One-Shot",
+				"url": "https://raw.githubusercontent.com/orcnog/5etools-brew/main/sw5e/adventures/Halcyon/creatures.json",
+				"version": "3",
+				"color": "4466ff",
+				"authors": [
+					"orcnog"
+				],
+				"convertedBy": [
+					"orcnog"
+				]
+			}
+		]
+	},
+	"monster": [
+		{
+			"name": "Rancor, Adolescent",
+			"source": "orcnogHalcyon",
+			"page": 0,
+			"size": [
+				"L"
+			],
+			"type": "beast",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 14,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 157,
+				"formula": "15d10 + 75"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 20,
+			"dex": 11,
+			"con": 21,
+			"int": 4,
+			"wis": 9,
+			"cha": 6,
+			"senses": [
+				"darkvision 120 ft."
+			],
+			"passive": 9,
+			"cr": "8",
+			"trait": [
+				{
+					"name": "Traits Siege Monster The rancor deals double damage to objects and structures",
+					"entries": []
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The rancor makes three attacks: two with its claws, and one with its bite."
+					]
+				},
+				{
+					"name": "Claw",
+					"entries": [
+						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. Hit 12 ({@damage 2d6 + 5}) kinetic damage."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 8} to hit, reach 5 ft., one target. Hit 16 ({@damage 2d10 + 5}) kinetic damage."
+					]
+				},
+				{
+					"name": "Throw Boulder",
+					"entries": [
+						"{@atk rw} {@hit 8} to hit, reach 60/240 ft., one target. Hit 21 ({@damage 3d10 + 5}) kinetic damage."
+					]
+				}
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"miscTags": [
+				"MW",
+				"RW"
+			]
+		},
+		{
+			"name": "Mandalorian Initiate",
+			"source": "orcnogHalcyon",
+			"page": 0,
+			"size": [
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"L",
+				"N"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"weave armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 33,
+				"formula": "6d8 + 6"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 12,
+			"dex": 16,
+			"con": 12,
+			"int": 12,
+			"wis": 14,
+			"cha": 11,
+			"save": {
+				"dex": "+5"
+			},
+			"skill": {
+				"perception": "+4",
+				"survival": "+4"
+			},
+			"senses": [
+				"darkvision 60 ft",
+				"(adv, sight and hearing)"
+			],
+			"passive": 14,
+			"languages": [
+				"Galactic Basic",
+				"Mando'a Challenge 2 (450 XP)                    Proficiency Bonus +2"
+			],
+			"trait": [
+				{
+					"name": "Mandalorian Tech",
+					"entries": [
+						"Weapons deal 2x dice of damage."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The mandalorian makes two weapon attacks."
+					]
+				},
+				{
+					"name": "Blaster Carbine",
+					"entries": [
+						"{@atk rw} (105/420 ft.), +5, {@dice 2d6 + 3} (10) energy."
+					]
+				},
+				{
+					"name": "Techblade",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}{@dice 2d6 + 3} (10) kinetic damage."
+					]
+				},
+				{
+					"name": "Flash Grenade (once per day)",
+					"entries": [
+						"{@dc 14} Con save: {@condition blinded} [fail] (1min; repeat start of turn). The mandalorian throws a grenade at a point it can see within 35ft of it. It explodes, affecting each creature within 10 feet."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Aggressive",
+					"entries": [
+						"The mandalorian moves up to its speed toward a hostile creature that it can see."
+					]
+				}
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"miscTags": [
+				"RW",
+				"MW",
+				"AOE"
+			],
+			"uniqueId": "962c5cd7-8daa-4de6-9c91-b36c3b7bcac6",
+			"cr": "2"
+		},
+		{
+			"name": "Mandalorian Trooper",
+			"source": "orcnogHalcyon",
+			"page": 0,
+			"size": [
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"L",
+				"N"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"mesh armor",
+						"light shield generator"
+					]
+				}
+			],
+			"hp": {
+				"average": 39,
+				"formula": "7d8 + 6"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 12,
+			"dex": 16,
+			"con": 12,
+			"int": 14,
+			"wis": 16,
+			"cha": 11,
+			"save": {
+				"dex": "+5"
+			},
+			"skill": {
+				"acrobatics": "+5",
+				"nature": "+5",
+				"perception": "+5",
+				"stealth": "+5",
+				"survival": "+5"
+			},
+			"senses": [
+				"darkvision 60 ft",
+				"(adv, sight and hearing)"
+			],
+			"passive": 15,
+			"languages": [
+				"Galactic Basic and Mando'a Challenge 2 (450 XP)                    Proficiency Bonus +2"
+			],
+			"trait": [
+				{
+					"name": "Mandalorian Tech",
+					"entries": [
+						"Weapons deal 2x dice of damage.",
+						"Special equipment. The mandalorian has an assortment of equipment, consisting of:",
+						"1x flash grenades"
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The mandalorian makes two weapon attacks and throws an electrostun grenade, if available."
+					]
+				},
+				{
+					"name": "Blaster Rifle",
+					"entries": [
+						"Ranged: (105/420 ft.), To hit +5, {@dice 2d8 + 3} (12) energy."
+					]
+				},
+				{
+					"name": "Hidden Blade",
+					"entries": [
+						"Melee: (5 ft.) To hit +5, {@dice 2d4 + 3} (8) kinetic."
+					]
+				},
+				{
+					"name": "Flash Grenade (once per day)",
+					"entries": [
+						"{@dc 14} Con save: {@condition blinded} [fail] (1min; repeat start of turn). The mandalorian throws a grenade at a point it can see within 35ft of it. It explodes, affecting each creature within 10 feet."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Aggressive",
+					"entries": [
+						"The mandalorian moves up to its speed toward a hostile creature that it can see."
+					]
+				}
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"miscTags": [
+				"AOE"
+			],
+			"uniqueId": "5f473563-ea01-4d34-8529-8cc9a278988a",
+			"cr": "2"
+		},
+		{
+			"name": "Mandalorian Commando",
+			"source": "orcnogHalcyon",
+			"page": 0,
+			"size": [
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"L",
+				"N"
+			],
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"weave armor",
+						"light shield generator"
+					]
+				}
+			],
+			"hp": {
+				"average": 72,
+				"formula": "11d8 + 22"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": 30
+			},
+			"str": 13,
+			"dex": 18,
+			"con": 14,
+			"int": 14,
+			"wis": 16,
+			"cha": 11,
+			"save": {
+				"dex": "+7",
+				"wis": "+6"
+			},
+			"skill": {
+				"acrobatics": "+7",
+				"perception": "+9",
+				"stealth": "+10",
+				"survival": "+9"
+			},
+			"senses": [
+				"darkvision 60 ft",
+				"(adv, sight and hearing)"
+			],
+			"passive": 19,
+			"languages": [
+				"Galactic Basic and Mando'a Challenge 5 (1,800 Xp)                 Proficiency Bonus +2"
+			],
+			"trait": [
+				{
+					"name": "Mandalorian Mettle",
+					"entries": [
+						"The mandalorian has advantage on saving throws against being {@condition frightened} and {@condition charmed}."
+					]
+				},
+				{
+					"name": "Mandalorian Tech",
+					"entries": [
+						"Weapons deal 2x dice of damage.",
+						"Special equipment. The mandalorian has an assortment of equipment, consisting of:",
+						"3x fragmentation grenades.",
+						"Wrist flameer."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The mandalorian makes two weapon attacks and uses a special equipment, if available."
+					]
+				},
+				{
+					"name": "Blaster Pistol",
+					"entries": [
+						"{@atk rw} {@hit 6} to hit, range 40/160 ft., one target. {@h}11 ({@dice 2d6 + 4}) energy.",
+						"Hidden blade. Melee Weapon Attack: {@hit 6} to hit, reach 5 ft., one target. {@h}9 ({@dice 2d4 + 4}) kinetic."
+					]
+				},
+				{
+					"name": "Frag Grenade (once per day)",
+					"entries": [
+						"{@dc 14} Dex save: {@dice 2d10} (11) [fail] or half [success] kinetic. The mandalorian throws a grenade at a point it can see within 35ft of it. It explodes, affecting each creature within 10 feet."
+					]
+				},
+				{
+					"name": "Wrist Flamer",
+					"entries": [
+						"Each creature in a 15-foot cone or 5-foot wide line from the mandalorian must make a {@dc 13} Dexterity saving throw, taking 4 ({@damage 1d8}) fire damage or half as much on a successful one. The fire spreads around corners and ignites flammable objects in the area that aren't being worn or carried."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Aggressive",
+					"entries": [
+						"The mandalorian moves up to its speed toward a hostile creature that it can see."
+					]
+				},
+				{
+					"name": "Jetpack",
+					"entries": [
+						"While active, the Mandalorian has a flying speed of 30 feet. The jetpack lasts for a maximum of 10 minutes."
+					]
+				}
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"miscTags": [
+				"RW",
+				"AOE"
+			],
+			"uniqueId": "a59b8e56-b954-44e0-8631-78cec7245617",
+			"cr": "5",
+			"damageTags": [
+				"F"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			]
+		},
+		{
+			"name": "Mynock",
+			"source": "orcnogHalcyon",
+			"page": 0,
+			"size": [
+				"S"
+			],
+			"type": "beast",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 14,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 7,
+				"formula": "2d6"
+			},
+			"speed": {
+				"walk": 5,
+				"fly": 40
+			},
+			"str": 4,
+			"dex": 16,
+			"con": 11,
+			"int": 2,
+			"wis": 8,
+			"cha": 6,
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 9,
+			"cr": "1/8",
+			"trait": [
+				{
+					"name": "Atmosphere Agnostic",
+					"entries": [
+						"The mynock can survive in any type of atmosphere or vacuum."
+					]
+				},
+				{
+					"name": "Battery Drainer",
+					"entries": [
+						"If the mynock attaches itself to a piece of equipment that needs energy to function, that piece will stop working until the Mynock is removed."
+					]
+				},
+				{
+					"name": "Pack Tactics",
+					"entries": [
+						"The mynock has advantage on an attack roll against a creature if at least one ally of the mynock is within 5 feet of the creature and the ally isn't {@condition incapacitated}."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Energy Drain",
+					"entries": [
+						"{@atk mw} {@hit 5} to hit, reach 5 ft., one creature. {@h}5 ({@damage 1d4 + 3}) kinetic damage, and the mynock attaches to the target. A creature, including the target, can use its action to detach the Mynock. If attached to a target, at the start of each of the mynock's turns, the target loses 5 ({@dice 1d4 + 3}) hit points due to energy being drained, and the Mynock gains those hit points."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Detatch",
+					"entries": [
+						"The mynock can detach itself from a target as a bonus action."
+					]
+				}
+			],
+			"traitTags": [
+				"Pack Tactics"
+			],
+			"senseTags": [
+				"D"
+			],
+			"miscTags": [
+				"MW"
+			]
+		},
+		{
+			"name": "Rathtar",
+			"source": "orcnogHalcyon",
+			"page": 0,
+			"size": [
+				"L"
+			],
+			"type": "beast",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 15,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 114,
+				"formula": "12d10 + 48"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 18,
+			"dex": 10,
+			"con": 19,
+			"int": 6,
+			"wis": 12,
+			"cha": 6,
+			"save": {
+				"con": "+7"
+			},
+			"skill": {
+				"stealth": "+6"
+			},
+			"senses": [
+				"blindsight 60 ft."
+			],
+			"passive": 11,
+			"resist": [
+				"poison"
+			],
+			"conditionImmune": [
+				"poisoned",
+				"prone"
+			],
+			"cr": "5",
+			"trait": [
+				{
+					"name": "Spider Climb",
+					"entries": [
+						"The rathtar can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check."
+					]
+				},
+				{
+					"name": "Grasping Arms",
+					"entries": [
+						"The rathtar can have up to eight arms at a time. Each arm can be attacked (AC 20; 10 hit points; immunity to poison and psychic damage). Destroying an arm deals no damage to the rathtar, which can extrude a replacement arm on its next turn. An arm can also be broken if a creature takes an action and succeeds on a {@dc 15} Strength check against it."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The rathtar makes four flailing arm attacks, uses Reel, and makes one attack with its bite."
+					]
+				},
+				{
+					"name": "Flailing Arms",
+					"entries": [
+						"{@atk mw} {@hit 7} to hit, reach 15 ft., one target. {@h}6 ({@damage 1d4 + 4}) kinetic damage, and the target is {@condition grappled} (escape {@dc 15}) if it is Medium or smaller. Until the grapple ends, the rathar can't use this arm on another target. The rathtar has eight arms and can have up to four creatures {@condition grappled} at a time."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}11 ({@damage 2d6 + 4}) kinetic damage."
+					]
+				},
+				{
+					"name": "Reel",
+					"entries": [
+						"The rathtar pulls each creature grapples by it up to 15 feet straight toward it."
+					]
+				}
+			],
+			"traitTags": [
+				"Spider Climb"
+			],
+			"senseTags": [
+				"B"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"miscTags": [
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"grappled"
+			]
+		},
+		{
+			"name": "Savenger Womp Rat",
+			"source": "orcnogHalcyon",
+			"page": 0,
+			"size": [
+				"M"
+			],
+			"type": "beast",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 13,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 11,
+				"formula": "2d8 + 2"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 12,
+			"dex": 15,
+			"con": 12,
+			"int": 3,
+			"wis": 12,
+			"cha": 6,
+			"skill": {
+				"perception": "+3",
+				"stealth": "+4"
+			},
+			"passive": 13,
+			"languages": [
+				"None"
+			],
+			"cr": "1/4",
+			"trait": [
+				{
+					"name": "Keen Hearing and Smell",
+					"entries": [
+						"The rat has advantage on on Wisdom ({@skill Perception}) checks that rely on hearing and smell."
+					]
+				},
+				{
+					"name": "Pack Tactics",
+					"entries": [
+						"The rat has advantage on an attack roll against a creature if it is {@condition grappled} by at least one of the rat's allies."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}{@dice 2d4 + 2}) kinetic damage. If the target is a creature, it must succeed on a {@dc 11} Strength saving throw or be {@condition grappled}."
+					]
+				}
+			],
+			"traitTags": [
+				"Keen Senses",
+				"Pack Tactics"
+			],
+			"miscTags": [
+				"MW"
+			],
+			"conditionInflict": [
+				"grappled"
+			],
+			"savingThrowForced": [
+				"strength"
+			]
+		},
+		{
+			"name": "Dianoga",
+			"source": "orcnogHalcyon",
+			"page": 0,
+			"size": [
+				"L"
+			],
+			"type": "beast",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 13,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 51,
+				"formula": "6d10 + 18"
+			},
+			"speed": {
+				"walk": 15,
+				"swim": 30
+			},
+			"str": 14,
+			"dex": 13,
+			"con": 16,
+			"int": 4,
+			"wis": 12,
+			"cha": 5,
+			"skill": {
+				"stealth": "+3"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 11,
+			"languages": [
+				"Dianoga"
+			],
+			"cr": "2",
+			"trait": [
+				{
+					"name": "Limited Amphibiousness",
+					"entries": [
+						"The dianoga can breathe air and water, but it needs to be submerged at least once every 4 hours to avoid suffocating."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The dianoga can make two attacks: one with its tentacles and one with its bite."
+					]
+				},
+				{
+					"name": "Tentacles",
+					"entries": [
+						"{@atk mw} {@hit 8} to hit, reach 10 ft., one target. {@h}4 ({@damage 1d4 + 2}) kinetic damage, and the target is {@condition grappled} (escape {@dc 11}). Until this grapple ends, the target is {@condition restrained}."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}7 ({@damage 2d4 + 2}) kinetic damage. If the target is a creature, it must succeed on a {@dc 13} Constitution saving throw or be {@condition poisoned} for 1 minute. Until the poison ends, the target is {@condition paralyzed}. The target can repeat the saving throw at the end of each of its turns, ending the poison on itself on a success."
+					]
+				}
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Tentacles"
+			],
+			"miscTags": [
+				"MW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"grappled",
+				"paralyzed",
+				"poisoned",
+				"restrained"
+			],
+			"savingThrowForced": [
+				"constitution"
+			]
+		}
+	]
+}

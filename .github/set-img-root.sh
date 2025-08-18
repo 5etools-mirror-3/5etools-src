@@ -9,4 +9,4 @@ fi
 
 repo_owner=$1
 
-sed -i 's#DEPLOYED_IMG_ROOT\s*=\s*undefined#DEPLOYED_IMG_ROOT='"\"https://raw.githubusercontent.com/${repo_owner}/5etools-img/main/\""'#g' js/utils.js
+sed -i 's#DEPLOYED_IMG_ROOT\s*=\s*undefined#DEPLOYED_IMG_ROOT='"\"https://raw.githubusercontent.com/5etools-mirror-3/5etools-img/main/\""'#g' js/utils.js

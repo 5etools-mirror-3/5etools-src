@@ -468,6 +468,8 @@ globalThis.Renderer = function () {
 				case "tableGroup": this._renderTableGroup(entry, textStack, meta, options); break;
 				case "inset": this._renderInset(entry, textStack, meta, options); break;
 				case "insetReadaloud": this._renderInsetReadaloud(entry, textStack, meta, options); break;
+				case "insetDMAction": this._renderInsetDMAction(entry, textStack, meta, options); break;
+				case "encounter": this._renderEncounterBlock(entry, textStack, meta, options); break;
 				case "variant": this._renderVariant(entry, textStack, meta, options); break;
 				case "variantInner": this._renderVariantInner(entry, textStack, meta, options); break;
 				case "variantSub": this._renderVariantSub(entry, textStack, meta, options); break;
@@ -1275,6 +1277,328 @@ globalThis.Renderer = function () {
 
 		this._lastDepthTrackerInheritedProps = cachedLastDepthTrackerProps;
 	};
+    
+	this._renderInsetDMAction = function (entry, textStack, meta, options) {
+		const dataString = this._renderEntriesSubtypes_getDataString(entry);
+		textStack[0] += `<${this.wrapperTag} class="rd__b-special rd__b-inset rd__b-inset--dmaction ${this._getMutatedStyleString(entry.style || "")}" ${dataString}>`;
+
+		const cachedLastDepthTrackerProps = MiscUtil.copyFast(this._lastDepthTrackerInheritedProps);
+		this._handleTrackDepth(entry, 1);
+
+		const pagePart = this._getPagePart(entry, true);
+		const partExpandCollapse = !this._isPartPageExpandCollapseDisabled ? this._getPtExpandCollapseSpecial() : "";
+		const partPageExpandCollapse = `<span class="ve-flex-vh-center">${[pagePart, partExpandCollapse].filter(Boolean).join("")}</span>`;
+
+		if (entry.name != null) {
+			if (Renderer.ENTRIES_WITH_ENUMERATED_TITLES_LOOKUP[entry.type]) this._handleTrackTitles(entry.name);
+			textStack[0] += `<span class="rd__h rd__h--2-inset" data-title-index="${this._headerIndex++}" ${this._getEnumeratedTitleRel(entry.name)}><h4 class="entry-title-inner">${entry.name}</h4>${this._getPagePart(entry, true)}</span>`;
+		} else {
+			textStack[0] += `<span class="rd__h rd__h--2-inset rd__h--2-inset-no-name">${partPageExpandCollapse}</span>`;
+		}
+
+		const len = entry.entries.length;
+		for (let i = 0; i < len; ++i) {
+			const cacheDepth = meta.depth;
+			meta.depth = 2;
+			this._recursiveRender(entry.entries[i], textStack, meta, {prefix: "<p>", suffix: "</p>"});
+			meta.depth = cacheDepth;
+		}
+		textStack[0] += `<div class="float-clear"></div>`;
+		textStack[0] += `</${this.wrapperTag}>`;
+
+		this._lastDepthTrackerInheritedProps = cachedLastDepthTrackerProps;
+	};
+
+	this._renderEncounterBlock = async function (entry, textStack, meta, options) {
+		// If we have no combatant data anywhere, exit
+		if (!entry?.combatants?.length && (!entry?.variations?.length || entry.variations.every((v) => v?.combatants?.length <= 0))) return;
+
+		const id = CryptUtil.uid();
+		let adjXp = entry.adjxp || 0;
+
+		const dataString = this._renderEntriesSubtypes_getDataString(entry);
+
+		textStack[0] += `<${this.wrapperTag} id="${id}" class="rd__b-special rd__b-inset rd__b-inset--encounter ${this._getMutatedStyleString(entry.style || "")}" ${dataString}>`;
+
+		const cachedLastDepthTrackerProps = MiscUtil.copyFast(this._lastDepthTrackerInheritedProps);
+		this._handleTrackDepth(entry, 1);
+
+		const pagePart = this._getPagePart(entry, true);
+		const partExpandCollapse = !this._isPartPageExpandCollapseDisabled ? this._getPtExpandCollapseSpecial() : "";
+		const partPageExpandCollapse = `<span class="ve-flex-vh-center">${[pagePart, partExpandCollapse].filter(Boolean).join("")}</span>`;
+
+		// const defaultVariant = entry.variations?.find(v => v.default) || entry.variations[0] || {} // Default to the first found
+		const defaultVariant = entry.variations ? entry.variations.find((v) => v.default === true) || entry.variations[0] : {}; // Default to the first found
+		const DEFAULT_VARIANT_INDEX = entry.variations ? entry.variations.findIndex((v) => v.variantName === defaultVariant.variantName) || 0 : 0;
+
+		textStack[0] += `<${this.wrapperTag} class="encounter-title">`;
+		if (entry.name != null) {
+			if (Renderer.ENTRIES_WITH_ENUMERATED_TITLES_LOOKUP[entry.type]) this._handleTrackTitles(entry.name);
+			textStack[0] += `<span class="rd__h rd__h--2-inset" data-title-index="${this._headerIndex++}" ${this._getEnumeratedTitleRel(entry.name)}><h4 class="entry-title-inner">${entry.name}</h4>${this._getPagePart(entry, true)}</span>`;
+
+			// Add variation selector if variations exist
+			if (entry.variations?.length) {
+				textStack[0] += `
+				<div class="encounter-variation-select">
+					<label for="${id}-variation-select" class="encounter-variation-select-label">${entry.varyBy || "Variation"}</label>
+					<select id="${id}-variation-select" class="form-control input-sm encounter-variation-select-input">
+					${entry.variations.map((v, i) => `<option value="${v.variantName || i}" ${i === DEFAULT_VARIANT_INDEX ? "selected" : ""}>${v.variantName || `Variant ${i + 1}`}</option>`).join("")}
+					</select>
+				</div>`;
+			}
+		} else {
+			textStack[0] += `<span class="rd__h rd__h--2-inset rd__h--2-inset-no-name">${partPageExpandCollapse}</span>`;
+		}
+
+		textStack[0] += `<div id="${id}-adj-xp" class="encounter-adj-xp">`;
+		textStack[0] += `<span class="difficulty-value">"Calculating..."</span>`;
+		textStack[0] += `</div>`;
+
+		textStack[0] += `</${this.wrapperTag}>`;
+
+		const encounterData = entry.combatants ? {combatants: entry.combatants, notes: entry.notes} : entry.variations ? entry.variations.find((v) => v.default === true) || entry.variations[0] : {};
+
+		textStack[0] += `<${this.wrapperTag} id="${id}-creatures">`;
+		textStack[0] += this._renderEncounterCreatures(encounterData, [""], meta, options);
+		textStack[0] += this._renderEncounterNotes(encounterData, [""], meta, options);
+		textStack[0] += `</${this.wrapperTag}>`;
+
+		this._lastDepthTrackerInheritedProps = cachedLastDepthTrackerProps;
+
+		// Register the async work in the cache
+		Renderer._cache.encounter = Renderer?._cache?.encounter || {};
+
+		Renderer._cache.encounter[id] = {
+			pFn: async () => {
+				// Render the adjusted XP. Must be done after the textStack has been output to the DOM.
+				await this._renderEncounterAdjXp(id, encounterData, defaultVariant.variantName, entry, meta, options);
+				// Set up variation selector handlers. Must be done after the textStack has been output to the DOM.
+				if (entry.variations?.length) {
+					this._setupEncounterVariationHandlers(id, entry, meta, options);
+				}
+			},
+		};
+
+		// Add the trigger element
+		textStack[0] += `<style data-rd-cache-id="${id}" data-rd-cache="encounter" onload="Renderer._cache.pRunFromEle(this)"></style>`;
+	};
+
+	this._renderEncounterCreatures = function (encounterData, textStack, meta, options) {
+		const combatants = encounterData.combatants;
+		const fauxEntry = {
+			type: "list",
+			style: "list-no-bullets",
+			items: combatants.map((ent) => {
+				if (typeof ent === "string") return ent;
+				if (ent.type === "item") return ent;
+
+				const out = {...ent, type: "item"};
+
+				if (ent.creature) {
+					const creature = ent.creature;
+					const qty = Number(ent.quantity) > -1 ? Number(ent.quantity) : 1;
+					const npcNote = ent.npc === true ? `{@note (NPC)}` : "";
+					const creatureNote = ent.note ? `{@note ${ent.note}}` : "";
+					out.entry = `${qty} x ${creature} ${npcNote} ${creatureNote}`;
+				}
+				return out;
+			}),
+		};
+		this._renderList(fauxEntry, textStack, meta, options);
+
+		return textStack[0];
+	};
+
+	this._renderEncounterNotes = function (encounterData, textStack, meta, options) {
+		const notes = encounterData.notes;
+		const len = notes?.length || 0;
+		if (len > 0) {
+			textStack[0] += `<i class="ve-muted"><b>Notes: </b>${notes[0]}`;
+			for (let i = 1; i < len; ++i) {
+				const cacheDepth = meta.depth;
+				meta.depth = 2;
+				this._recursiveRender(notes[i], textStack, meta, {prefix: "<p>", suffix: "</p>"});
+				meta.depth = cacheDepth;
+			}
+			textStack[0] += `</i>`;
+		}
+		textStack[0] += `<hr/>`;
+		textStack[0] += `<${this.wrapperTag}>Run: <a class="initiative-tracker-link" data-encounter="" href="javascript:void(0)">Initiative Tracker</a></${this.wrapperTag}>`;
+		textStack[0] += `<div class="float-clear"></div>`;
+		textStack[0] += `</${this.wrapperTag}>`;
+
+		return textStack[0];
+	};
+
+	this._renderEncounterAdjXp = async function (id, encounterData, variant, entry, meta, options) {
+		// Regex matcher for party size labels
+		const partySizeLabels = [
+			"[#|num|number|no.|qty|quantity|count] of [PC|player|character|hero|team|ally|party|participant|adventurer]s?", // ex: "Number of Players"
+			"[PCs|players|characters|heroes|adventurers]", // ex: "PCs"
+			"total [PCs|players|characters|heroes|adventurers]", // ex: "Total Players"
+			"[#|num|number|no.|qty|quantity] in party", // ex: "# in Party"
+			"[PC|player|character|hero|team|ally|party|participant|adventurer] count", // ex: "Player Count"
+			"party size",
+			"party members",
+			"group size",
+			"size of [party|team|adventuring party]", // ex: Size of Party
+			"team size",
+			"group members",
+			"adventuring party",
+			"player group",
+		];
+		const playerCountRegex = new RegExp(partySizeLabels.join("|"), "i");
+		const isVaryingByPlayerCount = entry.varyBy ? playerCountRegex.test(entry.varyBy) : false;
+		const combatants = encounterData.combatants;
+		if (!combatants.length) return;
+
+		const $ele = $(`#${id}`);
+		if (!$ele.length) return;
+
+		try {
+			let totalXp = 0;
+			let totalNumOfMonsters = 0;
+			const processedCreatures = [];
+			const page = UrlUtil.PG_BESTIARY;
+
+			await Promise.all(
+				combatants.map(async function (c) {
+					if (!c.hasOwnProperty("creature")) return null;
+					const qty = Number(c.quantity) > -1 ? Number(c.quantity) : 1;
+					const taggedNpc = c.npc === true;
+
+					// Get custom hash for this creature
+					const [tagName, textArgs] = Renderer.splitFirstSpace(c.creature.slice(1, -1));
+					const {name, source, hash, subhashes} = Renderer.utils.getTagMeta(tagName, textArgs);
+					const baseMon = await DataLoader.pCacheAndGetHash(page, hash);
+					if (!baseMon || !baseMon.name) throw Error(`Error retrieving monster ${hash} (${name}) from source ${source}.`);
+					const scaledCr = subhashes?.find((item) => item.key === "scaled")?.value;
+					const mon = typeof scaledCr !== "undefined" ? await ScaleCreature.scale(baseMon, scaledCr) : baseMon;
+
+					// Only add to XP totals if not an NPC
+					if (!taggedNpc) {
+						const baseCr = mon.cr.cr || mon.cr;
+						totalXp += Parser.crToXpNumber(baseCr) * qty;
+						totalNumOfMonsters += qty;
+					}
+
+					// Return the creature data
+					// Add multiple entries for creatures with qty > 1
+					for (let i = 0; i < qty; i++) {
+						mon.hash = hash;
+						processedCreatures.push(mon);
+					}
+				}),
+			).then((combatants) => combatants.filter(Boolean));
+
+			// Calculate final XP
+			const multiplier = Parser.numMonstersToXpMult(totalNumOfMonsters);
+			const adjXp = (multiplier || 1) * totalXp;
+
+			// Create encounter data object
+			const encounterData = {
+				name: entry.name || null,
+				adjxp: adjXp,
+				creatures: processedCreatures,
+			};
+
+			// Define the party size and average level
+			const partySize = Number(variant) || 4;
+			const avgPartyLevel = 3; // Replace with actual average party level
+
+			// Calculate XP thresholds based on average player level
+			const xpThresholds = {
+				easy: Parser.LEVEL_TO_XP_EASY[avgPartyLevel] * partySize,
+				medium: Parser.LEVEL_TO_XP_MEDIUM[avgPartyLevel] * partySize,
+				hard: Parser.LEVEL_TO_XP_HARD[avgPartyLevel] * partySize,
+				deadly: Parser.LEVEL_TO_XP_DEADLY[avgPartyLevel] * partySize,
+				absurd: Parser.LEVEL_TO_XP_DEADLY[avgPartyLevel] * partySize + (Parser.LEVEL_TO_XP_DEADLY[avgPartyLevel] * partySize - Parser.LEVEL_TO_XP_HARD[avgPartyLevel] * partySize),
+			};
+
+			const _TITLE_DIFFICULTIES = {
+				easy: "An easy encounter doesn't tax the characters' resources or put them in serious peril. They might lose a few hit points, but victory is pretty much guaranteed.",
+				medium: "A medium encounter usually has one or two scary moments for the players, but the characters should emerge victorious with no casualties. One or more of them might need to use healing resources.",
+				hard: "A hard encounter could go badly for the adventurers. Weaker characters might get taken out of the fight, and there's a slim chance that one or more characters might die.",
+				deadly: "A deadly encounter could be lethal for one or more player characters. Survival often requires good tactics and quick thinking, and the party risks defeat",
+				absurd: "An &quot;absurd&quot; encounter is a deadly encounter as per the rules, but is differentiated here to provide an additional tool for judging just how deadly a &quot;deadly&quot; encounter will be. It is calculated as: &quot;deadly + (deadly - hard)&quot;.",
+			};
+
+			// Calculate the daily budget
+			const dailyBudget = Parser.LEVEL_TO_XP_DAILY[avgPartyLevel] * partySize;
+			// Determine the difficulty based on adjusted XP and party size
+			let difficultyKey;
+			let difficultyText;
+			xpThresholds.trivial = 0;
+			if (adjXp < xpThresholds.easy) {
+				difficultyKey = "trivial";
+				difficultyText = "Trivial";
+			} else if (adjXp < xpThresholds.medium) {
+				difficultyKey = "easy";
+				difficultyText = "Easy";
+			} else if (adjXp < xpThresholds.hard) {
+				difficultyKey = "medium";
+				difficultyText = "Medium";
+			} else if (adjXp < xpThresholds.deadly) {
+				difficultyKey = "hard";
+				difficultyText = "Hard";
+			} else if (adjXp < xpThresholds.absurd) {
+				difficultyKey = "deadly";
+				difficultyText = "Deadly";
+			} else {
+				difficultyKey = "absurd";
+				difficultyText = "Absurd";
+			}
+			let overThreshold = difficultyKey === "absurd" ? adjXp - xpThresholds.absurd : adjXp - xpThresholds[difficultyKey];
+			let extraDifficulty = "";
+			if (difficultyKey === "absurd") {
+				const nextThreshold = xpThresholds.absurd + (xpThresholds.absurd - xpThresholds.deadly);
+				const percentage = Math.round((overThreshold / (nextThreshold - xpThresholds.absurd)) * 100);
+				extraDifficulty = `${percentage}%`;
+			} else {
+				const nextThreshold = xpThresholds[difficultyKey + 1] || xpThresholds.absurd;
+				const percentage = Math.round((overThreshold / (nextThreshold - xpThresholds[difficultyKey])) * 100);
+				extraDifficulty = `${percentage}%`;
+			}
+			let difficultyTempStack = [""];
+			this._recursiveRender(
+				`{@footnote ${difficultyText} ${extraDifficulty ? `+${extraDifficulty}` : ``}|
+				Based on a party size of {@color ${partySize}|--rgb-warning} player characters at level {@color ${avgPartyLevel}|--rgb-warning} fighting {@color ${totalNumOfMonsters}|--rgb-warning} hostile creatures:<br/><br/>
+				{@b Difficulty}: {@color {@footnote ${difficultyText}|${_TITLE_DIFFICULTIES[difficultyKey]}|${difficultyText} Encounter} ${overThreshold > 0 ? `+{@footnote ${extraDifficulty}|This encounter's Adjusted XP is {@color ${overThreshold} xp|--rgb-warning} above, or {@color ${extraDifficulty} past|--rgb-warning}, the {@color ${difficultyText}|--rgb-warning} threshold of {@color ${xpThresholds[difficultyKey]}|--rgb-warning} for a party of {@color ${partySize}|--rgb-warning} players at level {@color ${avgPartyLevel}|--rgb-warning}.|${extraDifficulty} beyond ${difficultyText}}` : ``}|--rgb-warning}<br/>
+				{@color {@b ${difficultyText} Threshold}: ${xpThresholds[difficultyKey]}|--rgb-font--muted}<br/>
+				{@color {@b Creature XP Sum}: ${totalXp}|--rgb-font--muted}<br/>
+				{@color {@b Multiplier}: ×${multiplier}|--rgb-font--muted}<br/>
+				{@footnote {@b Adjusted XP}|Adjusted by a multiplier of {@color ×${multiplier}|--rgb-warning}, based on a party size of {@color ${partySize}|--rgb-warning} encountering {@color ${totalNumOfMonsters}|--rgb-warning} hostile creatures.<br/><br/>{@note Based on the {@table Encounter Multipliers; Encounter Multipliers|DMG|Encounter Multipliers} table in the {@book DMG}.}<br/><br/>|Adjusted XP}: {@color ${adjXp}|--rgb-warning}<br/>
+				{@footnote {@b Daily Budget}|A rough estimate of the adjusted XP value for encounters the party can handle before the characters will need to take a long rest, based on the {@table The Adventuring Day; Adventuring Day XP|DMG|Adventuring Day XP} table in the {@book DMG}.|Daily Budget}: ${dailyBudget}<br/>
+				|Encounter Difficulty}`,
+				difficultyTempStack,
+				meta,
+			);
+
+			// UPDATE THE DOM
+			$ele.find(".adj-xp-value").text(adjXp);
+			$ele.find(".difficulty-value").html(difficultyTempStack.join(""));
+			$ele.find(".daily-budget-value").text(dailyBudget);
+			$ele.find(".initiative-tracker-link").attr("data-encounter", JSON.stringify(encounterData));
+		} catch (e) {
+			$ele.find(".adj-xp-value").html(`<span class="text-danger">Error</span>`);
+			$ele.find(".initiative-tracker-link").html(`<span class="text-danger">${e.message}</span>`);
+		}
+	};
+
+	this._setupEncounterVariationHandlers = function (id, entry, meta, options) {
+		const _this = this;
+		const $ele = $(`#${id}`);
+		$ele.find(`#${id}-variation-select`).on("change", function () {
+			const variant = $(this).val();
+			const encounterData = entry.variations?.find((v) => v.variantName === variant);
+			if (encounterData) {
+				const newCreatureList = _this._renderEncounterCreatures(encounterData, [""], meta, options);
+				const newEncounterNotes = _this._renderEncounterNotes(encounterData, [""], meta, options);
+				$ele.find(`#${id}-creatures`).html(newCreatureList + newEncounterNotes);
+				_this._renderEncounterAdjXp(id, encounterData, variant, entry, meta, options);
+			}
+		});
+	};
 
 	this._renderVariant = function (entry, textStack, meta, options) {
 		const dataString = this._renderEntriesSubtypes_getDataString(entry);
@@ -2034,6 +2358,13 @@ globalThis.Renderer = function () {
 				this._recursiveRender(text, textStack, meta);
 				textStack[0] += `</i>`;
 				break;
+			case "@cue":
+				let [toDisplay, color] = Renderer.splitTagByPipe(text);
+				let ptColor = this._renderString_renderTag_getCueColorPart(color);
+				textStack[0] += `<i class="ve-dm-action" style="color: ${ptColor}">`;
+				this._recursiveRender(toDisplay, textStack, meta);
+				textStack[0] += `</i>`;
+				break;
 			case "@tip": {
 				const [displayText, titielText] = Renderer.splitTagByPipe(text);
 				textStack[0] += `<span title="${titielText.qq()}">`;
@@ -2389,6 +2720,30 @@ globalThis.Renderer = function () {
 		if (!color) return "";
 		const scrubbedColor = BrewUtilShared.getValidColor(color, {isExtended: true});
 		return scrubbedColor.startsWith("--") ? `var(${scrubbedColor})` : `#${scrubbedColor}`;
+	};
+
+	this._renderString_renderTag_getCueColorPart = function (color) {
+		if (!color) return "";
+		switch (color) {
+			case `dm`:
+			case `dm-action`:
+				color = `--rgb-dm-action`;
+				break;
+			case `media`:
+			case `media-action`:
+				color = `--rgb-media-action`;
+				break;
+			case `critical`:
+			case `critical-action`:
+				color = `--rgb-critical-action`;
+				break;
+			case `success`:
+			case `info`:
+			case `warning`:
+			case `danger`:
+				color = `--rgb-${color}`;
+		}
+		return this._renderString_renderTag_getBrewColorPart(color);
 	};
 
 	this._renderString_renderTag_hitYourSpellAttack = function (textStack, meta, options, tag, text) {
@@ -11163,6 +11518,7 @@ Renderer.monster = class {
 							: await ScaleCreature.scale(original, targetCr);
 
 						$content.empty().append(fnRender(toRender));
+						$content.trigger("cr_update", [toRender]);
 
 						Renderer.monster._bindListenersScale(toRender, ele);
 					},
@@ -11174,6 +11530,7 @@ Renderer.monster = class {
 			.click(async () => {
 				const toRender = await DataLoader.pCacheAndGet(page, source, hash);
 				$content.empty().append(fnRender(toRender));
+				$content.trigger("cr_reset", [toRender]);
 
 				Renderer.monster._bindListenersScale(toRender, ele);
 			});

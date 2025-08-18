@@ -1,0 +1,333 @@
+{
+	"$schema": "https://raw.githubusercontent.com/TheGiddyLimit/5etools-utils/master/schema/brew-fast/homebrew.json",
+	"_meta": {
+		"sources": [
+			{
+				"json": "ODMG",
+				"abbreviation": "ODMG",
+				"full": "Orcnog's DMG",
+				"authors": [
+					"orcnog"
+				],
+				"version": "1.0",
+				"targetSchema": "1.2"
+			}
+		],
+		"dateAdded": 1729028448,
+		"dateLastModified": 1729028448,
+		"edition": "classic"
+	},
+	"book": [
+		{
+			"name": "Orcnog's DMG",
+			"id": "ODMG",
+			"source": "ODMG",
+			"group": "homebrew",
+			"published": "2024-10-23",
+			"author": "orcnog",
+			"contents": [
+				{
+					"name": "Introduction",
+					"headers": [
+						"Navigating the 5eTools Interface",
+						"Orcnog's Customizations"
+					]
+				},
+				{
+					"name": "Enhancments and Conventions",
+					"headers": [
+						"Encounter Blocks",
+						"DM Actions (Cues)",
+						"DM Action Blocks"
+					]
+				},
+				{
+					"name": "Running an Adventure",
+					"headers": [
+						"Prep",
+						"In-Game"
+					]
+				}
+			]
+		}
+	],
+	"bookData": [
+		{
+			"id": "ODMG",
+			"source": "ODMG",
+			"data": [
+				{
+					"type": "section",
+					"name": "Introduction",
+					"page": 4,
+					"entries": [
+						"If you're reading this, you may be a seasoned 5th Edition Dungeons & Dragons player, you may be a seasoned Dungeon Master [fist-bump], you may have used 5eTools before, or you may be a total noob to all of these things!  Not a problem.  This guide will try to meet you where you are.  I hope this helps you navigate my own customized version of the truly magnificent 5eTools toolset, and sets you up for success running one of my lovingly hand-crafted (or lovingly hand-converted) adventures!",
+						"What follows are guides on how to use general 5eTools features as well as how to leverage the custom tools I've added.",
+						{
+							"type": "entries",
+							"name": "Navigating the 5eTools Interface",
+							"page": 1,
+							"id": "navigating the 5etools interface",
+							"entries": [
+								"{@b 5eTools} is a website providing a suite of tools for 5th Edition Dungeons & Dragons players and Dungeon Masters. It offers a variety of content reference pages, like creatures, classes, feats or items. It also offers a robust set of utility pages like \"this is your life\" from Xanathar's Guide to Everything, a Stat Generation page and DM Screen view. It also has a complete system for adding third party homebrew materials featuring a builder and a repository of already converted content.",
+								"I suggest you start {@link here|https://wiki.tercept.net/en/5eTools} to get you basic quetsions answered."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Orcnog's Customizations",
+							"page": 1,
+							"id": "orcnog customizations",
+							"entries": [
+								"This site is a duplicate of the original {@link https://2014.5e.tools}, forked from Giddy's repo, and with my own small customizations added. While I have tried to keep the site as clean and close to the original as I can, there's no guarantee that all of the latest 5eTools features have made it into this forked site just yet.",
+								"That said, I will try to always ensure that this site is in a working state (even if it's not as up to date as humaly possible).  &lt;/Disclaimer&gt;"
+							]
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Enhancments and Conventions",
+					"page": 4,
+					"entries": [
+						"Below are the enhancements I've added to this site...",
+						{
+							"type": "entries",
+							"name": "Encounter Blocks",
+							"page": 1,
+							"id": "encounter blocks",
+							"entries": [
+								"Throughout adventure text, you may come across what I'm calling Encounter Blocks.  This is not a convention of D&D adventure texts, but rather my own method of streamlining combat encounters for DMs using 5eTools. Each encounter block will list out the enemies, the total Adjusted XP, and link to an initiative tracker (leveraging my own Voice Initiative Controller) to run during the combat itself. Do not read the encounter block information out loud to your players -- they for the DM's eyes only.",
+								"This is a big custom feature I've developed into my own version of 5eTools, here. It's in beta (or alpha) and prone to many errors, I'm sure.",
+								"Hover over each line in the example Encounter Block below to see tips on how to read or use that information.",
+								{
+									"type": "encounter",
+									"name": "Encounter: TEST!",
+									"id": "encounter block test",
+									"combatants": [
+										{
+											"creature": "{@creature Hamelia|THoE}",
+											"quantity": 1,
+											"npc": true
+										},
+										{
+											"creature": "{@creature Giant Bat|||scaled=2}",
+											"quantity": 2
+										},
+										{
+											"creature": "{@creature Swarm of Bats}",
+											"quantity": 1
+										}
+									],
+									"notes": [
+										"Click the link below to launch the Voice Initiative controller screen for this encounter!"
+									]
+								},
+								"The following is an example of an encounter block that has multiple rosters for varying difficulty levels.  This encounter has been designed to accomodate a party of either 3, 4, or 5 players. Adjust the \"Number of Players\" dropdown to see the different encounter rosters.",
+								{
+									"type": "encounter",
+									"name": "Encounter for different player sizes!",
+									"id": "encounter for different player sizes",
+									"varyBy": "Party Size",
+									"variations": [
+										{
+											"variantName": "3",
+											"combatants": [
+												{
+													"creature": "{@creature Hamelia|THoE}",
+													"quantity": 1,
+													"npc": true
+												},
+												{
+													"creature": "{@creature Giant Bat|||scaled=3}",
+													"quantity": 1
+												},
+												{
+													"creature": "{@creature Swarm of Bats}",
+													"quantity": 1,
+													"note": "This is an additional note about the swarm of bats."
+												}
+											],
+											"notes": [
+												"V3 Click the link below to launch the Voice Initiative controller screen for this encounter!"
+											]
+										},
+										{
+											"variantName": "4",
+											"default": true,
+											"combatants": [
+												{
+													"creature": "{@creature Hamelia|THoE}",
+													"quantity": 1,
+													"npc": true
+												},
+												{
+													"creature": "{@creature Giant Bat|||scaled=2}",
+													"quantity": 2
+												},
+												{
+													"creature": "{@creature Swarm of Bats}",
+													"quantity": 1,
+													"note": "This is an additional note about the swarm of bats."
+												}
+											],
+											"notes": [
+												"V4 Click the link below to launch the Voice Initiative controller screen for this encounter!"
+											]
+										},
+										{
+											"variantName": "5",
+											"combatants": [
+												{
+													"creature": "{@creature Hamelia|THoE}",
+													"quantity": 1,
+													"npc": true
+												},
+												{
+													"creature": "{@creature Giant Bat|||scaled=2}",
+													"quantity": 2
+												},
+												{
+													"creature": "{@creature Swarm of Bats}",
+													"quantity": 2,
+													"note": "This is an additional note about the swarm of bats."
+												},
+												{
+													"creature": "{@creature Animated Broom|cm|Animated Rake}",
+													"quantity": 1
+												}
+											],
+											"notes": [
+												"V5 Click the link below to launch the Voice Initiative controller screen for this encounter!"
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "entries",
+							"name": "DM Actions (Cues)",
+							"page": 1,
+							"id": "dm actions cues",
+							"entries": [
+								"Throughout the adventure text, you will see cues intended to instruct the DM on what actions to take. These cues are not a convention of D&D adventure texts either, but rather my own method of meant of suggesting to the DM when to execute certain in-game actions to enhance the emmersion and story-telling.",
+								"Media actions, which represent presentation actions, such as playing a sound track or sound effect, showing an image to your players, or starting a combat initiative tracker, will be in yellow. They are completely optional, and will never be crucial to the adventure experience.  Furthermore, they will largely depend on what your \"presentation\" setup and capabilities are, for ex: you may not have a way to display an image to your players or play a sound effect in-person. Use at your own discretion, as always. Example media cue:",
+								"{@cue Show the spooky library image.|media}",
+								"Other DM Action cues will be in green. These will cue things like asking a player for an Investigation check, or describing a potential trap that the players might trigger.  Example DM cue:",
+								"{@cue Call for a group perception check (DC 12).}",
+								"In some rare cases, a DM action will be shown in red. This is just to emphasize its importance, or to just make double-sure that you don't somehow miss it, for instance if it instructs the DM to do something during a combat encounter on a specific trigger (this kind of thing is particularly easy to miss when you're focusing on what monster actions to take next, or responding to a player's question about whether their attack hit, helping to calculate damage, etc.). Example critical cue:",
+								"{@cue Round 2: The roof caves in!|critical}",
+								"Whatever their use case, cues are intended to function as the writer nudging you, the DM, directly about something you should be doing at that point in the adventure."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "DM Action Blocks",
+							"page": 1,
+							"id": "dm action blocks",
+							"entries": [
+								"Sometimes the DM Actions need to be lengthier, contain multiple possible actions based on an initial condition, or even contain nested readalouds. In these cases, a DM Action Block may be used.",
+								{
+									"type": "insetDMAction",
+									"name": "DM Action",
+									"page": 1,
+									"id": "dm action",
+									"entries": [
+										"This is an example of a DM Action block. It can contain much more information that may just be much longer than a single {@cue cue}, or may indeed need to be visually organized into unique logical structure.",
+										{
+											"type": "entries",
+											"name": "Option 1",
+											"entries": [
+												"Do thing one."
+											]
+										},
+										{
+											"type": "entries",
+											"name": "Option 2",
+											"entries": [
+												"Do thing two."
+											]
+										}
+									]
+								},
+								"Mechanically, this is just a normal \"inset\" block with a different background color applied (which varies by Day/Night theme)."
+							]
+						}
+					]
+				},
+				{
+					"type": "section",
+					"name": "Running an Adventure",
+					"page": 1,
+					"id": "running the adventure",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Prep",
+							"page": 1,
+							"id": "prep",
+							"entries": [
+								"Basic DM stuff for running {@i any} session: you'll need to decide if you'll be playing in-person vs. online, and with how many players.  This will inform whether you need to draw (or print) the maps for an in-person session, or if you'll need to load this adventure into an online VTT (Virtual Table Table) application or service, and whether or not to re-balance the encounters.  Once you've got a solid grasp on the play-through logistics, instruct your players (with several days' notice) to build a character at a level appropriate to your adventure.",
+								"Example: \"{@i Please build a level 3 character for this Friday's one-shot!  Any official class, race, or build is fine.  If you want to homebrew something, please run it by me first. Use the standard array for stats, and average HP!}\"",
+								"Next, you'll need to actually prep the adventure.  There are tomes and tomes of instructions and pages and pages of advice on Reddit (and other forums) on how best to streamline this. But my advice is that you should have a goto method of prepping an in-person game (battlemap? printed adventure text? all from memory?), and a goto method of prepping an online game, whether that's running it on Foundry VTT, Roll 20, or theater of the mind in Discord or another chat service. This guide doesn't aim to instruct you in how to prep an adventure/campgain; just how to use these tools, if you want to leverage them."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "In-Game",
+							"page": 1,
+							"id": "in-game",
+							"entries": [
+								"During game-play, you'll need to be familiar with the various elements you'll see in the adventure text.  Such as \"boxed text\" and \"readalouds\":",
+								{
+									"type": "entries",
+									"name": "Boxed Text",
+									"page": 1,
+									"id": "boxed text",
+									"entries": [
+										"When you see boxed text (sometimes referred to as an inset block) like the following, it is meant to highlight important information, be it backstory, a note about a trap, or something else. Occassionally, the text is intended to be read aloud to the players, but if that's the case, it will be clearly noted. (see \"Readalouds\" below). This {@i is} a convention of D&D adventure texts.",
+										{
+											"type": "inset",
+											"page": 1,
+											"entries": [
+												"This is an example inset (boxed) text block."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Readalouds",
+									"page": 1,
+									"id": "readalouds",
+									"entries": [
+										"When you see an inset block like the following throughout this adventure, this text is always meant to be read aloud to your players in-game.  This {@i is} a convention of D&D adventure texts.",
+										{
+											"type": "insetReadaloud",
+											"page": 1,
+											"entries": [
+												"This is an example readaloud text block."
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "DM Tutorials",
+									"page": 1,
+									"id": "dm tutorials",
+									"entries": [
+										"For more detailed instructions on how to run adventures from adventure text, please see the excellent \"{@adventure Running the Adventure|lmop|0|Running the Adventure}\" DM tutorial in the Lost Mines of Phandelver adventure. It was written for the physical hardback book, but the instructions are still relevant for this digital version as well.",
+										"For more in-depth examples of how to author 5eTools content for adventures/books leveraging the suite of 5eTools conventions, features, and tricks, please see the very clutch \"{@5etools Render Demo|renderdemo.html}\".",
+										"Other excellent tools for content creators include the {@5etools Homebrew Builder|makebrew.html} to assist in creating your own homebrew \"source\", the {@5etools Text Converter|converter.html} to assist in {@i beginning to} {@footnote convert your work|One could spend hours trying to write a proper tutorial for this tool, but suffice it to say to a newcomer, start by tinkering with the \"Mode\" and \"Parse as...\" options after hovering over the hamburger menu icon: <span style=\"display: inline-flex; position: static;\" class=\"sidemenu__toggle\"><span class=\"sidemenu__hotzone\"></span><span class=\"sidemenu__burger\"></span><span class=\"sidemenu__burger\"></span><span class=\"sidemenu__burger\"></span></span>} into a format compatible with 5eTools ({@i it's a good starting point, but you'll still need to do some manual work}), and the {@5etools Encounter Builder|bestiary.html#goblin_mm,encounterbuilder:true} tool within the Bestiary page to help {@footnote build and balance combat encounters|Add/remove creatures to/from the bestiary by clicking the (<span class=\"best-ecgen__visible ve-col-1 no-wrap pl-0 ve-btn-group\"><button class=\"ve-btn ve-btn-success ve-btn-xs best-ecgen__btn-list\" title=\"Add (SHIFT for 5)\"><span class=\"glyphicon glyphicon-plus\"></span></button><button class=\"ve-btn ve-btn-danger ve-btn-xs best-ecgen__btn-list\" title=\"Subtract (SHIFT for 5)\"><span class=\"glyphicon glyphicon-minus\"></span></button></span> buttons, or exit out of the Encounter Builder mode by clicking the <button class=\"ve-btn ve-btn-success ve-btn-xs\">Back to Stat Blocks</button> button. Re-enter encounter builder mode by clicking the <button class=\"ve-btn ve-btn-success ve-btn-xs mr-2\">Encounter Builder</button> button.}."
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

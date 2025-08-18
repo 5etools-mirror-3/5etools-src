@@ -1,0 +1,150 @@
+{
+	"_meta": {
+		"sources": [
+			{
+				"json": "orcnogDecryptor",
+				"abbreviation": "Decryptor",
+				"full": "SW5e: The Imperial Decryptor - A SW5e One-Shot",
+				"url": "https://raw.githubusercontent.com/orcnog/5etools-brew/main/sw5e/adventures/ImperialDecryptor/creatures.json",
+				"version": "3",
+				"color": "4488dd",
+				"authors": [
+					"orcnog"
+				],
+				"convertedBy": [
+					"orcnog"
+				]
+			}
+		]
+	},
+	"monster": [
+		{
+			"name": "MagnaGuard Sentinel",
+			"source": "orcnogDecryptor",
+			"page": 0,
+			"size": [
+				"M"
+			],
+			"type": "droid",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"armor plating"
+					]
+				}
+			],
+			"hp": {
+				"average": 58,
+				"formula": "9d8 + 18"
+			},
+			"speed": {
+				"walk": 30,
+				"climb": 30
+			},
+			"str": 13,
+			"dex": 19,
+			"con": 14,
+			"int": 15,
+			"wis": 13,
+			"cha": 9,
+			"save": {
+				"dex": "+6"
+			},
+			"skill": {
+				"perception": "+3",
+				"stealth": "+6",
+				"intimidation": "+1"
+			},
+			"senses": [
+				"darkvision 60 ft."
+			],
+			"passive": 13,
+			"resist": [
+				"necrotic",
+				"poison",
+				"psychic",
+				{
+					"special": "energy from melee weapon attacks"
+				}
+			],
+			"vulnerable": [
+				{
+					"special": "ion"
+				}
+			],
+			"conditionImmune": [
+				"poisoned",
+				"disease"
+			],
+			"languages": [
+				"Binary",
+				"Galactic Basic"
+			],
+			"cr": "4",
+			"trait": [
+				{
+					"name": "Circuitry",
+					"entries": [
+						"The MagnaGuard has disadvantage on saving throws against effects that would deal ion or lightning damage."
+					]
+				},
+				{
+					"name": "Droid Synergy",
+					"entries": [
+						"Once per turn, the MagnaGuard can deal an extra 3 ({@damage 1d6}) damage to a creature it hits with a weapon attack if that creature is within 5 feet of a MagnaGuard ally that isn't {@condition incapacitated}."
+					]
+				},
+				{
+					"name": "Leap",
+					"entries": [
+						"The MagnaGuard can expend all its movement on its turn to jump up to its current movement speed in any direction.",
+						"Mag-lock Limbs. The MagnaGuard can climb metal surfaces, including upside down on ceilings, without needing to make an ability check."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The MagnaGuard makes two electrostaff attacks."
+					]
+				},
+				{
+					"name": "Electrostaff",
+					"entries": [
+						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}9 ({@damage 2d4 + 4}) kinetic damage."
+					]
+				},
+				{
+					"name": "Blaster Pistol",
+					"entries": [
+						"{@atk rw} {@hit 6} to hit, range 40/160 ft., one target. {@h}7 ({@damage 1d6 + 4}) energy damage."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Parry",
+					"entries": [
+						"The droid adds 3 to its AC against one melee attack that would hit it. To do so, the droid must see the attacker and be wielding a melee weapon."
+					]
+				}
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Parry"
+			],
+			"miscTags": [
+				"MW",
+				"RW"
+			]
+		}
+	]
+}
