@@ -215,6 +215,7 @@ export class PageGeneratorAdventureBookBase extends PageGeneratorGeneric {
 
 	_scriptsModules = [
 		"render-map.js",
+        "initiativelink.js",
 	];
 
 	_getData () {
