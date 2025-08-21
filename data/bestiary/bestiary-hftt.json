@@ -44,7 +44,7 @@
 				"stealth": "+5"
 			},
 			"senses": [
-				"blindsight 60 ft."
+				"blindsight {@quantity 60|ft.}"
 			],
 			"passive": 13,
 			"cr": "4",
@@ -78,13 +78,13 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d8 + 3}) piercing damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 1d8 + 3}) piercing damage."
 					]
 				},
 				{
 					"name": "Claw",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}12 ({@damage 2d8 + 3}) slashing damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}12 ({@damage 2d8 + 3}) slashing damage."
 					]
 				}
 			],
@@ -195,7 +195,7 @@
 				{
 					"name": "Quarterstaff",
 					"entries": [
-						"{@atk mw} {@hit 1} to hit, reach 5 ft., one target. {@h}3 ({@damage 1d8 -1}) bludgeoning damage."
+						"{@atk mw} {@hit 1} to hit, reach {@quantity 5|ft.}, one target. {@h}3 ({@damage 1d8 -1}) bludgeoning damage."
 					]
 				}
 			],
@@ -270,7 +270,7 @@
 				"perception": "+4"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 14,
 			"immune": [
@@ -294,25 +294,25 @@
 				{
 					"name": "Flurry of Bites",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 10 ft., one target. {@h}7 ({@damage 1d6 + 4}) piercing damage plus 10 ({@damage 4d4}) poison damage."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 10|ft.}, one target. {@h}7 ({@damage 1d6 + 4}) piercing damage plus 10 ({@damage 4d4}) poison damage."
 					]
 				},
 				{
 					"name": "Maw",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 5 ft., one target. {@h}9 ({@damage 1d10 + 4}) piercing damage plus 5 ({@damage 1d10}) acid damage."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 5|ft.}, one target. {@h}9 ({@damage 1d10 + 4}) piercing damage plus 5 ({@damage 1d10}) acid damage."
 					]
 				},
 				{
 					"name": "Tail Pincer",
 					"entries": [
-						"{@atk mw} {@hit 7} to hit, reach 10 ft., one target. {@h}10 ({@damage 1d12 + 4}) slashing damage, and the target is {@condition grappled}. As an action, the target can escape the grapple by succeeding on a {@dc 14} Strength ({@skill Athletics}) or Dexterity ({@skill Acrobatics}) check (its choice). Until this grapple ends, the thessalhydra can't use its tail pincer."
+						"{@atk mw} {@hit 7} to hit, reach {@quantity 10|ft.}, one target. {@h}10 ({@damage 1d12 + 4}) slashing damage, and the target is {@condition grappled}. As an action, the target can escape the grapple by succeeding on a {@dc 14} Strength ({@skill Athletics}) or Dexterity ({@skill Acrobatics}) check (its choice). Until this grapple ends, the thessalhydra can't use its tail pincer."
 					]
 				},
 				{
 					"name": "Acid Saliva {@recharge 5}",
 					"entries": [
-						"The thessalhydra spits a glob of acid at a point it can see within 30 feet of it. Each creature within 10 feet of that point must make a {@dc 15} Dexterity saving throw, taking 18 ({@damage 4d8}) acid damage on a failed save, or half as much damage on a successful one."
+						"The thessalhydra spits a glob of acid at a point it can see within {@quantity 30|feet} of it. Each creature within {@quantity 10|feet} of that point must make a {@dc 15} Dexterity saving throw, taking 18 ({@damage 4d8}) acid damage on a failed save, or half as much damage on a successful one."
 					]
 				}
 			],

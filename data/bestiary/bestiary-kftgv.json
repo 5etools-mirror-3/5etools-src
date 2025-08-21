@@ -428,13 +428,13 @@
 				{
 					"name": "Ashen Burst",
 					"entries": [
-						"{@atk ms,rs} {@hit 9} to hit, reach 5 ft. or range 60 ft., one target. {@h}17 ({@damage 5d6}) fire damage."
+						"{@atk ms,rs} {@hit 9} to hit, reach {@quantity 5|ft.} or range {@quantity 60|ft.}, one target. {@h}17 ({@damage 5d6}) fire damage."
 					]
 				},
 				{
 					"name": "Cinder Spite {@recharge 5}",
 					"entries": [
-						"Charmayne creates a magical explosion of fire centered on a point she can see within 120 feet of herself. Each creature in a 20-foot-radius sphere centered on that point must make a {@dc 17} Dexterity saving throw, taking 35 ({@damage 10d6}) fire damage on a failed save, or half as much damage on a successful one. A Humanoid reduced to 0 hit points by this damage dies and is transformed into a Tiny charcoal figurine."
+						"Charmayne creates a magical explosion of fire centered on a point she can see within {@quantity 120|feet} of herself. Each creature in a {@quantity 20|-foot}-radius sphere centered on that point must make a {@dc 17} Dexterity saving throw, taking 35 ({@damage 10d6}) fire damage on a failed save, or half as much damage on a successful one. A Humanoid reduced to 0 hit points by this damage dies and is transformed into a Tiny charcoal figurine."
 					]
 				}
 			],
@@ -446,13 +446,13 @@
 				{
 					"name": "Elemental Rebuke",
 					"entries": [
-						"In response to being hit by an attack, Charmayne utters a word in Ignan, dealing 10 ({@damage 3d6}) fire damage to the attacker. Charmayne then teleports, along with any equipment she is wearing or carrying, up to 30 feet to an unoccupied space she can see, leaving a harmless cloud of ash and embers in the space she just left."
+						"In response to being hit by an attack, Charmayne utters a word in Ignan, dealing 10 ({@damage 3d6}) fire damage to the attacker. Charmayne then teleports, along with any equipment she is wearing or carrying, up to {@quantity 30|feet} to an unoccupied space she can see, leaving a harmless cloud of ash and embers in the space she just left."
 					]
 				},
 				{
 					"name": "Fiery Counterspell",
 					"entries": [
-						"Charmayne interrupts a creature she can see within 60 feet of herself that is casting a spell. If the spell is 4th level or lower, it fails and has no effect. If the spell is 5th level or higher, Charmayne makes an Intelligence check ({@dc 10} + the spell's level). On a success, the spell fails and has no effect. Whatever the spell's level, the caster takes 10 ({@damage 3d6}) fire damage if the spell fails."
+						"Charmayne interrupts a creature she can see within {@quantity 60|feet} of herself that is casting a spell. If the spell is 4th level or lower, it fails and has no effect. If the spell is 5th level or higher, Charmayne makes an Intelligence check ({@dc 10} + the spell's level). On a success, the spell fails and has no effect. Whatever the spell's level, the caster takes 10 ({@damage 3d6}) fire damage if the spell fails."
 					]
 				}
 			],
@@ -553,7 +553,7 @@
 				{
 					"name": "Electrified Bite",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d8 + 3}) piercing damage plus 7 ({@damage 2d6}) lightning damage. If the target is a creature, it must succeed on a {@dc 13} Strength saving throw or be {@condition grappled} (escape {@dc 13}). A creature {@condition grappled} by the defender takes the damage again at the start of each of the defender's turns. The defender can have only one creature {@condition grappled} in this way at a time, and the defender can't make Electrified Bite attacks while grappling."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 1d8 + 3}) piercing damage plus 7 ({@damage 2d6}) lightning damage. If the target is a creature, it must succeed on a {@dc 13} Strength saving throw or be {@condition grappled} (escape {@dc 13}). A creature {@condition grappled} by the defender takes the damage again at the start of each of the defender's turns. The defender can have only one creature {@condition grappled} in this way at a time, and the defender can't make Electrified Bite attacks while grappling."
 					]
 				}
 			],
@@ -561,7 +561,7 @@
 				{
 					"name": "Light Beam",
 					"entries": [
-						"The defender emits bright light from its eyes in a 60-foot cone, or it shuts off this light."
+						"The defender emits bright light from its eyes in a {@quantity 60|-foot} cone, or it shuts off this light."
 					]
 				}
 			],
@@ -629,7 +629,7 @@
 				"perception": "+6"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 16,
 			"immune": [
@@ -657,7 +657,7 @@
 				{
 					"name": "Telepathic Bond",
 					"entries": [
-						"While the observer is within 1 mile of its creator, it can magically convey what it sees to its creator, and the two can communicate telepathically."
+						"While the observer is within {@quantity 1|mile} of its creator, it can magically convey what it sees to its creator, and the two can communicate telepathically."
 					]
 				},
 				{
@@ -671,7 +671,7 @@
 				{
 					"name": "Shriek",
 					"entries": [
-						"The observer emits a mechanical shriek until the start of its next turn or until it drops to 0 hit points. This shriek can be heard within a range of 300 feet."
+						"The observer emits a mechanical shriek until the start of its next turn or until it drops to 0 hit points. This shriek can be heard within a range of {@quantity 300|feet}."
 					]
 				}
 			],
@@ -739,7 +739,7 @@
 							"items": {
 								"name": "Flaming Longsword",
 								"entries": [
-									"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}8 ({@damage 1d8 + 4}) fire damage, or 9 ({@damage 1d10 + 4}) fire damage if used with two hands."
+									"{@atk mw} {@hit 6} to hit, reach {@quantity 5|ft.}, one target. {@h}8 ({@damage 1d8 + 4}) fire damage, or 9 ({@damage 1d10 + 4}) fire damage if used with two hands."
 								]
 							}
 						}
@@ -786,7 +786,7 @@
 							"items": {
 								"name": "Bite",
 								"entries": [
-									"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}10 ({@damage 2d6 + 3}) slashing damage plus 3 ({@damage 1d6}) poison damage. If the target is a Large or smaller creature, it is {@condition grappled} (escape {@dc 13}). Until this grapple ends, the eldritch horror hatchling can bite only the {@condition grappled} creature and has advantage on attack rolls to do so."
+									"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}10 ({@damage 2d6 + 3}) slashing damage plus 3 ({@damage 1d6}) poison damage. If the target is a Large or smaller creature, it is {@condition grappled} (escape {@dc 13}). Until this grapple ends, the eldritch horror hatchling can bite only the {@condition grappled} creature and has advantage on attack rolls to do so."
 								]
 							}
 						},
@@ -796,7 +796,7 @@
 							"items": {
 								"name": "Acid Spray {@recharge}",
 								"entries": [
-									"The eldritch horror hatchling spits acid in a line that is 30 feet long and 5 feet wide, provided that it has no creature {@condition grappled}. Each creature in that line must make a {@dc 13} Dexterity saving throw, taking 10 ({@damage 3d6}) acid damage on a failed save, or half as much damage on a successful one."
+									"The eldritch horror hatchling spits acid in a line that is {@quantity 30|feet} long and {@quantity 5|feet} wide, provided that it has no creature {@condition grappled}. Each creature in that line must make a {@dc 13} Dexterity saving throw, taking 10 ({@damage 3d6}) acid damage on a failed save, or half as much damage on a successful one."
 								]
 							}
 						}
@@ -984,7 +984,7 @@
 				"stealth": "+7"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 13,
 			"immune": [
@@ -992,14 +992,14 @@
 			],
 			"languages": [
 				"Deep Speech",
-				"telepathy 60 ft."
+				"telepathy {@quantity 60|ft.}"
 			],
 			"cr": "0",
 			"action": [
 				{
 					"name": "Psionic Revitalization",
 					"entries": [
-						"The fragment touches one creature that has 0 hit points in the fragment's space. The target regains 10 hit points, and each creature within 10 feet of the healed creature takes 3 ({@damage 1d6}) psychic damage."
+						"The fragment touches one creature that has 0 hit points in the fragment's space. The target regains 10 hit points, and each creature within {@quantity 10|feet} of the healed creature takes 3 ({@damage 1d6}) psychic damage."
 					]
 				},
 				{
@@ -1161,7 +1161,7 @@
 				}
 			},
 			"senses": [
-				"blindsight 30 ft. (blind beyond this radius)"
+				"blindsight {@quantity 30|ft.} (blind beyond this radius)"
 			],
 			"hasToken": true
 		},
@@ -1456,7 +1456,7 @@
 				"perception": "+3"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 13,
 			"immune": [
@@ -1496,13 +1496,13 @@
 				{
 					"name": "Ceremonial Blade",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage plus 3 ({@damage 1d6}) poison damage. If the target is a creature, it must succeed on a {@dc 13} Constitution saving throw or become {@condition poisoned} for 1 minute. The creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d6 + 2}) piercing damage plus 3 ({@damage 1d6}) poison damage. If the target is a creature, it must succeed on a {@dc 13} Constitution saving throw or become {@condition poisoned} for 1 minute. The creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
 					]
 				},
 				{
 					"name": "Psychic Orb",
 					"entries": [
-						"{@atk rs} {@hit 5} to hit, range 60 ft., one creature. {@h}10 ({@damage 2d6 + 3}) psychic damage."
+						"{@atk rs} {@hit 5} to hit, range {@quantity 60|ft.}, one creature. {@h}10 ({@damage 2d6 + 3}) psychic damage."
 					]
 				}
 			],
@@ -1510,7 +1510,7 @@
 				{
 					"name": "Swap Space",
 					"entries": [
-						"Markos targets one Medium or Small creature he can see within 30 feet of himself. The target must succeed on a {@dc 13} Constitution saving throw or it teleports, along with any equipment it is wearing or carrying, exchanging positions with Markos."
+						"Markos targets one Medium or Small creature he can see within {@quantity 30|feet} of himself. The target must succeed on a {@dc 13} Constitution saving throw or it teleports, along with any equipment it is wearing or carrying, exchanging positions with Markos."
 					]
 				}
 			],
@@ -1601,7 +1601,7 @@
 						"items": {
 							"name": "Flame Tongue Longsword",
 							"entries": [
-								"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d8 + 2}) slashing damage, or 7 ({@damage 1d10 + 2}) slashing damage if used with two hands. The knight can use a bonus action to speak this magic sword's command word, causing flames to erupt from the blade. These flames shed bright light in a 40-foot radius and dim light for an additional 40 feet. While the sword is ablaze, it deals an extra 2d6 fire damage to any target it hits. The flames last until she uses a bonus action to speak the command word again or until she drops or sheathes the sword."
+								"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}6 ({@damage 1d8 + 2}) slashing damage, or 7 ({@damage 1d10 + 2}) slashing damage if used with two hands. The knight can use a bonus action to speak this magic sword's command word, causing flames to erupt from the blade. These flames shed bright light in a {@quantity 40|-foot} radius and dim light for an additional {@quantity 40|feet}. While the sword is ablaze, it deals an extra 2d6 fire damage to any target it hits. The flames last until she uses a bonus action to speak the command word again or until she drops or sheathes the sword."
 							]
 						}
 					}
@@ -1703,7 +1703,7 @@
 				"stealth": "+6"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 15,
 			"resist": [
@@ -1759,13 +1759,13 @@
 				{
 					"name": "Tattooed Strike",
 					"entries": [
-						"{@atk mw,rw} {@hit 6} to hit, reach 5 ft. or range 60 ft., one target. {@h}12 ({@damage 2d8 + 3}) force damage."
+						"{@atk mw,rw} {@hit 6} to hit, reach {@quantity 5|ft.} or range {@quantity 60|ft.}, one target. {@h}12 ({@damage 2d8 + 3}) force damage."
 					]
 				},
 				{
 					"name": "Firestorm Tattoo {@recharge 5}",
 					"entries": [
-						"Prisoner 13 magically unleashes flame from the tattoo across her back, filling a 20-foot-radius sphere centered on her. Each other creature in that area must make a {@dc 15} Dexterity saving throw. On a failed save, the creature takes 13 ({@damage 3d8}) fire damage and is knocked {@condition prone}. On a successful save, it takes half as much damage and isn't knocked {@condition prone}."
+						"Prisoner 13 magically unleashes flame from the tattoo across her back, filling a {@quantity 20|-foot}-radius sphere centered on her. Each other creature in that area must make a {@dc 15} Dexterity saving throw. On a failed save, the creature takes 13 ({@damage 3d8}) fire damage and is knocked {@condition prone}. On a successful save, it takes half as much damage and isn't knocked {@condition prone}."
 					]
 				},
 				{
@@ -1779,7 +1779,7 @@
 				{
 					"name": "Readiness",
 					"entries": [
-						"When a creature Prisoner 13 can see within 60 feet of herself ends its turn, Prisoner 13 makes one Tattooed Strike attack or uses River Tattoo. She can then move up to her speed without provoking opportunity attacks."
+						"When a creature Prisoner 13 can see within {@quantity 60|feet} of herself ends its turn, Prisoner 13 makes one Tattooed Strike attack or uses River Tattoo. She can then move up to her speed without provoking opportunity attacks."
 					]
 				}
 			],
@@ -1981,7 +1981,7 @@
 				"performance": "+6"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 10,
 			"resist": [
@@ -2018,7 +2018,7 @@
 				{
 					"name": "Fear of Frogs and Toads",
 					"entries": [
-						"Sythian is {@condition frightened} while he is within 20 feet of a frog or a toad (of any size) that he can see."
+						"Sythian is {@condition frightened} while he is within {@quantity 20|feet} of a frog or a toad (of any size) that he can see."
 					]
 				},
 				{
@@ -2038,19 +2038,19 @@
 				{
 					"name": "Poisoned Shortsword",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage plus 5 ({@damage 1d10}) poison damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target. {@h}5 ({@damage 1d6 + 2}) piercing damage plus 5 ({@damage 1d10}) poison damage."
 					]
 				},
 				{
 					"name": "Poisoned Dart",
 					"entries": [
-						"{@atk rw} {@hit 5} to hit, range 20/60 ft., one target. {@h}4 ({@damage 1d4 + 2}) piercing damage plus 5 ({@damage 1d10}) poison damage."
+						"{@atk rw} {@hit 5} to hit, range {@quantity 20/60|ft.}, one target. {@h}4 ({@damage 1d4 + 2}) piercing damage plus 5 ({@damage 1d10}) poison damage."
 					]
 				},
 				{
 					"name": "Whispers of Azzagrat",
 					"entries": [
-						"Each creature in a 15-foot cube originating from Sythian must make a {@dc 14} Wisdom saving throw. On a failed save, a creature takes 18 ({@damage 4d8}) psychic damage and is {@condition incapacitated} until the end of its next turn. On a successful save, the creature takes half as much damage and isn't {@condition incapacitated}."
+						"Each creature in a {@quantity 15|-foot} cube originating from Sythian must make a {@dc 14} Wisdom saving throw. On a failed save, a creature takes 18 ({@damage 4d8}) psychic damage and is {@condition incapacitated} until the end of its next turn. On a successful save, the creature takes half as much damage and isn't {@condition incapacitated}."
 					]
 				}
 			],
@@ -2058,7 +2058,7 @@
 				{
 					"name": "Fiendish Rebuke (3/Day)",
 					"entries": [
-						"Immediately after a creature within 5 feet of Sythian hits him with an attack roll, Sythian forces that creature to make a {@dc 14} Constitution saving throw. The creature takes 14 ({@damage 4d6}) fire damage on a failed saving throw, or half as much damage on a successful one."
+						"Immediately after a creature within {@quantity 5|feet} of Sythian hits him with an attack roll, Sythian forces that creature to make a {@dc 14} Constitution saving throw. The creature takes 14 ({@damage 4d6}) fire damage on a failed saving throw, or half as much damage on a successful one."
 					]
 				}
 			],
@@ -2205,7 +2205,7 @@
 				"perception": "+2"
 			},
 			"senses": [
-				"truesight 60 ft."
+				"truesight {@quantity 60|ft.}"
 			],
 			"passive": 12,
 			"languages": [
@@ -2256,13 +2256,13 @@
 				{
 					"name": "Shortsword",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) piercing damage plus 10 ({@damage 3d6}) force damage."
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 5|ft.}, one target. {@h}6 ({@damage 1d6 + 3}) piercing damage plus 10 ({@damage 3d6}) force damage."
 					]
 				},
 				{
 					"name": "Lightning Discharge",
 					"entries": [
-						"{@atk rs} {@hit 6} to hit, range 60 ft., one creature. {@h}16 ({@damage 3d10}) lightning damage."
+						"{@atk rs} {@hit 6} to hit, range {@quantity 60|ft.}, one creature. {@h}16 ({@damage 3d10}) lightning damage."
 					]
 				}
 			],
@@ -2270,7 +2270,7 @@
 				{
 					"name": "Scalding Steam {@recharge 5}",
 					"entries": [
-						"Tockworth emits a jet of piping-hot steam in a 15-foot cone. Each creature in that cone must make a {@dc 15} Dexterity saving throw, taking 10 ({@damage 3d6}) fire damage on a failed save, or half as much damage on a successful one."
+						"Tockworth emits a jet of piping-hot steam in a {@quantity 15|-foot} cone. Each creature in that cone must make a {@dc 15} Dexterity saving throw, taking 10 ({@damage 3d6}) fire damage on a failed save, or half as much damage on a successful one."
 					]
 				}
 			],

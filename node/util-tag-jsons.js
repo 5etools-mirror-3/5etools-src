@@ -40,6 +40,7 @@ function run (args) {
 
 		const keySet = null; // new Set(["classFeature", "subclassFeature"]); // TODO(Future)
 		if (args.strict) TagJsons.mutTagObjectStrictCapsWords(json, {styleHint, keySet});
+		else if (args.quantity) TagJsons.mutTagObjectQuantity(json, {styleHint});
 		else TagJsons.mutTagObject(json, {creaturesToTag: creatureList, styleHint});
 
 		const outPath = args.inplace ? file : file.replace("./data/", "./trash/");

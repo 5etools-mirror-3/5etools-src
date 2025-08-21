@@ -28,7 +28,7 @@
 						"items": {
 							"name": "Moonsilver Spear",
 							"entries": [
-								"An angel of the Flight of Moonsilver wields a spear made from a shard of the Helvault. Hit points lost to this weapon's damage can be regained only through a short or long rest, rather than by regeneration, magic, or any other means. Once per turn, when the angel hits a creature with an attack using this weapon, it can wound the target. At the start of each of the wounded creature's turns, it takes {@damage 1d4} necrotic damage for each time the angel has wounded it, and it can then make a {@dc 15} Constitution saving throw, ending the effect of all such wounds on itself on a success. Alternatively, the wounded creature, or a creature within 5 feet of it, can use an action to make a {@dc 15} Wisdom ({@skill Medicine}) check, ending the effect of such wounds on it on a success."
+								"An angel of the Flight of Moonsilver wields a spear made from a shard of the Helvault. Hit points lost to this weapon's damage can be regained only through a short or long rest, rather than by regeneration, magic, or any other means. Once per turn, when the angel hits a creature with an attack using this weapon, it can wound the target. At the start of each of the wounded creature's turns, it takes {@damage 1d4} necrotic damage for each time the angel has wounded it, and it can then make a {@dc 15} Constitution saving throw, ending the effect of all such wounds on itself on a success. Alternatively, the wounded creature, or a creature within {@quantity 5|feet} of it, can use an action to make a {@dc 15} Wisdom ({@skill Medicine}) check, ending the effect of such wounds on it on a success."
 							]
 						}
 					}
@@ -105,7 +105,7 @@
 				"stealth": "+4"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 10,
 			"resist": [
@@ -150,20 +150,20 @@
 				{
 					"name": "Scissors",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}7 ({@damage 2d4 + 2}) slashing damage."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 2d4 + 2}) slashing damage."
 					]
 				},
 				{
 					"name": "Psychic Assault",
 					"entries": [
-						"The creepy doll targets one creature it can see within 10 feet of it that has a brain. The target must succeed on a {@dc 12} Intelligence saving throw or take 11 ({@damage 2d10}) psychic damage. Also on a failure, roll {@dice 3d6}. If the total equals or exceeds the target's Intelligence score, that score is reduced to 0. The target is {@condition stunned} until it regains at least one point of Intelligence, as from the {@spell greater restoration} spell or similar magic."
+						"The creepy doll targets one creature it can see within {@quantity 10|feet} of it that has a brain. The target must succeed on a {@dc 12} Intelligence saving throw or take 11 ({@damage 2d10}) psychic damage. Also on a failure, roll {@dice 3d6}. If the total equals or exceeds the target's Intelligence score, that score is reduced to 0. The target is {@condition stunned} until it regains at least one point of Intelligence, as from the {@spell greater restoration} spell or similar magic."
 					]
 				},
 				{
 					"name": "Body Exchange",
 					"entries": [
-						"The creepy doll initiates an Intelligence contest with an {@condition incapacitated} humanoid within 5 feet of it. If it wins the contest, the creepy doll's spirit inhabits the target's body while the target's spirit is placed into the creepy doll's body. The creepy doll controls the target's body completely. It retains its alignment, Intelligence, Wisdom, Charisma, and immunity to being {@condition charmed} and {@condition frightened}. It otherwise uses the possessed target's statistics, but doesn't gain access to the target's knowledge, class features, or proficiencies. The target retains its alignment, Intelligence, Wisdom, and Charisma while inhabiting the creepy doll's body.",
-						"The body exchange lasts until the doll's spirit is forced out by magic. (The {@spell dispel evil and good} spell will accomplish this, though the doll is not one of the creature types whose possession that spell normally ends.) The body and the doll must be within 5 feet of each other for such an effect to work. The target is immune to this doll's Body Exchange for 24 hours after winning the Intelligence contest or after the exchange ends."
+						"The creepy doll initiates an Intelligence contest with an {@condition incapacitated} humanoid within {@quantity 5|feet} of it. If it wins the contest, the creepy doll's spirit inhabits the target's body while the target's spirit is placed into the creepy doll's body. The creepy doll controls the target's body completely. It retains its alignment, Intelligence, Wisdom, Charisma, and immunity to being {@condition charmed} and {@condition frightened}. It otherwise uses the possessed target's statistics, but doesn't gain access to the target's knowledge, class features, or proficiencies. The target retains its alignment, Intelligence, Wisdom, and Charisma while inhabiting the creepy doll's body.",
+						"The body exchange lasts until the doll's spirit is forced out by magic. (The {@spell dispel evil and good} spell will accomplish this, though the doll is not one of the creature types whose possession that spell normally ends.) The body and the doll must be within {@quantity 5|feet} of each other for such an effect to work. The target is immune to this doll's Body Exchange for 24 hours after winning the Intelligence contest or after the exchange ends."
 					]
 				}
 			],
@@ -223,7 +223,7 @@
 							"items": {
 								"name": "Battleaxe",
 								"entries": [
-									"{@atk mw} {@hit 10} to hit, reach 10 ft., one target. {@h}15 ({@damage 2d8 + 6}) slashing damage, or 17 ({@damage 2d10 + 6}) slashing damage if used with two hands."
+									"{@atk mw} {@hit 10} to hit, reach {@quantity 10|ft.}, one target. {@h}15 ({@damage 2d8 + 6}) slashing damage, or 17 ({@damage 2d10 + 6}) slashing damage if used with two hands."
 								]
 							}
 						}
@@ -285,7 +285,7 @@
 						"items": {
 							"name": "Goldnight Menace",
 							"entries": [
-								"As an action, an angel of Flight Goldnight can strike fear into the hearts of its enemies. Each creature of the angel's choice that is within 120 feet of it and is aware of it must succeed on a Wisdom saving throw or become {@condition frightened} for 1 minute. The DC for this saving throw is the same as for the angel's Innate Spellcasting trait. A creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success. If a creature's saving throw is successful or the effect ends for it, the creature is immune to that angel's Goldnight Menace for the next 24 hours."
+								"As an action, an angel of Flight Goldnight can strike fear into the hearts of its enemies. Each creature of the angel's choice that is within {@quantity 120|feet} of it and is aware of it must succeed on a Wisdom saving throw or become {@condition frightened} for 1 minute. The DC for this saving throw is the same as for the angel's Innate Spellcasting trait. A creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success. If a creature's saving throw is successful or the effect ends for it, the creature is immune to that angel's Goldnight Menace for the next 24 hours."
 							]
 						}
 					}
@@ -314,7 +314,7 @@
 						"items": {
 							"name": "Moonsilver Spear",
 							"entries": [
-								"An angel of the Flight of Moonsilver wields a spear made from a shard of the Helvault. Hit points lost to this weapon's damage can be regained only through a short or long rest, rather than by regeneration, magic, or any other means. Once per turn, when the angel hits a creature with an attack using this weapon, it can wound the target. At the start of each of the wounded creature's turns, it takes {@damage 1d4} necrotic damage for each time the angel has wounded it, and it can then make a {@dc 15} Constitution saving throw, ending the effect of all such wounds on itself on a success. Alternatively, the wounded creature, or a creature within 5 feet of it, can use an action to make a {@dc 15} Wisdom ({@skill Medicine}) check, ending the effect of such wounds on it on a success."
+								"An angel of the Flight of Moonsilver wields a spear made from a shard of the Helvault. Hit points lost to this weapon's damage can be regained only through a short or long rest, rather than by regeneration, magic, or any other means. Once per turn, when the angel hits a creature with an attack using this weapon, it can wound the target. At the start of each of the wounded creature's turns, it takes {@damage 1d4} necrotic damage for each time the angel has wounded it, and it can then make a {@dc 15} Constitution saving throw, ending the effect of all such wounds on itself on a success. Alternatively, the wounded creature, or a creature within {@quantity 5|feet} of it, can use an action to make a {@dc 15} Wisdom ({@skill Medicine}) check, ending the effect of such wounds on it on a success."
 							]
 						}
 					}
@@ -358,7 +358,7 @@
 			"wis": 12,
 			"cha": 17,
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 11,
 			"resist": [
@@ -387,7 +387,7 @@
 				{
 					"name": "Ethereal Sight",
 					"entries": [
-						"The geist can see 60 feet into the Ethereal Plane when it is on the Material Plane, and vice versa."
+						"The geist can see {@quantity 60|feet} into the Ethereal Plane when it is on the Material Plane, and vice versa."
 					]
 				},
 				{
@@ -401,7 +401,7 @@
 				{
 					"name": "Withering Touch",
 					"entries": [
-						"{@atk mw} {@hit 5} to hit, reach 5 ft., one target {@h}17 ({@damage 4d6 + 3}) necrotic damage."
+						"{@atk mw} {@hit 5} to hit, reach {@quantity 5|ft.}, one target {@h}17 ({@damage 4d6 + 3}) necrotic damage."
 					]
 				},
 				{
@@ -413,7 +413,7 @@
 				{
 					"name": "Possession {@recharge}",
 					"entries": [
-						"One creature that the geist can see within 5 feet of it must succeed on a {@dc 13} Charisma saving throw or be possessed by the geist; the geist then disappears, and the target is {@condition incapacitated} and loses control of its body. The geist now controls the body but doesn't deprive the target of awareness. The geist can't be targeted by any attack, spell, or other effect, except ones that turn undead, and it retains its alignment, Intelligence, Wisdom, Charisma, and immunity to being {@condition charmed} and {@condition frightened}. It otherwise uses the possessed target's statistics, but doesn't gain access to the target's knowledge, class features, or proficiencies. The possession lasts until the body drops to 0 hit points, the geist ends it as a bonus action, or the geist is turned or forced out by an effect like the {@spell dispel evil and good} spell. When the possession ends, the geist reappears in an unoccupied space within 5 feet of the body. The target is immune to this geist's Possession for 24 hours after succeeding on the saving throw or after the possession ends. The geist can instead target the corpse of a creature, effectively using its own life force to animate the corpse as a zombie. The animated corpse uses zombie statistics and returns to death if the geist ends the possession."
+						"One creature that the geist can see within {@quantity 5|feet} of it must succeed on a {@dc 13} Charisma saving throw or be possessed by the geist; the geist then disappears, and the target is {@condition incapacitated} and loses control of its body. The geist now controls the body but doesn't deprive the target of awareness. The geist can't be targeted by any attack, spell, or other effect, except ones that turn undead, and it retains its alignment, Intelligence, Wisdom, Charisma, and immunity to being {@condition charmed} and {@condition frightened}. It otherwise uses the possessed target's statistics, but doesn't gain access to the target's knowledge, class features, or proficiencies. The possession lasts until the body drops to 0 hit points, the geist ends it as a bonus action, or the geist is turned or forced out by an effect like the {@spell dispel evil and good} spell. When the possession ends, the geist reappears in an unoccupied space within {@quantity 5|feet} of the body. The target is immune to this geist's Possession for 24 hours after succeeding on the saving throw or after the possession ends. The geist can instead target the corpse of a creature, effectively using its own life force to animate the corpse as a zombie. The animated corpse uses zombie statistics and returns to death if the geist ends the possession."
 					]
 				}
 			],
@@ -434,7 +434,7 @@
 							"name": "Horrifying Visage",
 							"type": "entries",
 							"entries": [
-								"Black-aligned geists can make themselves terrible to behold, even when they are possessing the living. Each non-undead creature within 60 feet of the geist that can see it must succeed on a {@dc 13} Wisdom saving throw or be {@condition frightened} for 1 minute. If the save fails by 5 or more, the target also ages {@dice 1d4 × 10} years. A {@condition frightened} target can repeat the saving throw at the end of each of its turns, ending the {@condition frightened} condition on itself on a success. If a target's saving throw is successful or the effect ends for it, the target is immune to this geist's Horrifying Visage for the next 24 hours. The aging effect can be reversed with a {@spell greater restoration} spell, but only within 24 hours of it occurring."
+								"Black-aligned geists can make themselves terrible to behold, even when they are possessing the living. Each non-undead creature within {@quantity 60|feet} of the geist that can see it must succeed on a {@dc 13} Wisdom saving throw or be {@condition frightened} for 1 minute. If the save fails by 5 or more, the target also ages {@dice 1d4 × 10} years. A {@condition frightened} target can repeat the saving throw at the end of each of its turns, ending the {@condition frightened} condition on itself on a success. If a target's saving throw is successful or the effect ends for it, the target is immune to this geist's Horrifying Visage for the next 24 hours. The aging effect can be reversed with a {@spell greater restoration} spell, but only within 24 hours of it occurring."
 							]
 						}
 					]
@@ -475,7 +475,7 @@
 							"items": {
 								"name": "Horrifying Visage",
 								"entries": [
-									"Black-aligned geists can make themselves terrible to behold, even when they are possessing the living. Each non-undead creature within 60 feet of the geist that can see it must succeed on a {@dc 13} Wisdom saving throw or be {@condition frightened} for 1 minute. If the save fails by 5 or more, the target also ages {@dice 1d4 × 10} years. A {@condition frightened} target can repeat the saving throw at the end of each of its turns, ending the {@condition frightened} condition on itself on a success. If a target's saving throw is successful or the effect ends for it, the target is immune to this geist's Horrifying Visage for the next 24 hours. The aging effect can be reversed with a {@spell greater restoration} spell, but only within 24 hours of it occurring."
+									"Black-aligned geists can make themselves terrible to behold, even when they are possessing the living. Each non-undead creature within {@quantity 60|feet} of the geist that can see it must succeed on a {@dc 13} Wisdom saving throw or be {@condition frightened} for 1 minute. If the save fails by 5 or more, the target also ages {@dice 1d4 × 10} years. A {@condition frightened} target can repeat the saving throw at the end of each of its turns, ending the {@condition frightened} condition on itself on a success. If a target's saving throw is successful or the effect ends for it, the target is immune to this geist's Horrifying Visage for the next 24 hours. The aging effect can be reversed with a {@spell greater restoration} spell, but only within 24 hours of it occurring."
 								]
 							}
 						}
@@ -528,7 +528,7 @@
 						"items": {
 							"name": "Goldnight Menace",
 							"entries": [
-								"As an action, an angel of Flight Goldnight can strike fear into the hearts of its enemies. Each creature of the angel's choice that is within 120 feet of it and is aware of it must succeed on a Wisdom saving throw or become {@condition frightened} for 1 minute. The DC for this saving throw is the same as for the angel's Innate Spellcasting trait. A creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success. If a creature's saving throw is successful or the effect ends for it, the creature is immune to that angel's Goldnight Menace for the next 24 hours."
+								"As an action, an angel of Flight Goldnight can strike fear into the hearts of its enemies. Each creature of the angel's choice that is within {@quantity 120|feet} of it and is aware of it must succeed on a Wisdom saving throw or become {@condition frightened} for 1 minute. The DC for this saving throw is the same as for the angel's Innate Spellcasting trait. A creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success. If a creature's saving throw is successful or the effect ends for it, the creature is immune to that angel's Goldnight Menace for the next 24 hours."
 							]
 						}
 					}
@@ -556,7 +556,7 @@
 						"items": {
 							"name": "Heron Protection",
 							"entries": [
-								"Whenever an angel of the Host of Herons or a friendly creature within 10 feet of it makes a saving throw, the creature gains a bonus to the saving throw equal to the angel's Charisma modifier. The angel must be conscious to receive or grant this bonus."
+								"Whenever an angel of the Host of Herons or a friendly creature within {@quantity 10|feet} of it makes a saving throw, the creature gains a bonus to the saving throw equal to the angel's Charisma modifier. The angel must be conscious to receive or grant this bonus."
 							]
 						}
 					}
@@ -587,7 +587,7 @@
 							"items": {
 								"name": "Beak (Raven or Hybrid Form Only)",
 								"entries": [
-									"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}1 piercing damage in raven form, or 4 ({@damage 1d4 + 2}) piercing damage in hybrid form."
+									"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}1 piercing damage in raven form, or 4 ({@damage 1d4 + 2}) piercing damage in hybrid form."
 								]
 							}
 						}
@@ -685,7 +685,7 @@
 						"items": {
 							"name": "Heron Protection",
 							"entries": [
-								"Whenever an angel of the Host of Herons or a friendly creature within 10 feet of it makes a saving throw, the creature gains a bonus to the saving throw equal to the angel's Charisma modifier. The angel must be conscious to receive or grant this bonus."
+								"Whenever an angel of the Host of Herons or a friendly creature within {@quantity 10|feet} of it makes a saving throw, the creature gains a bonus to the saving throw equal to the angel's Charisma modifier. The angel must be conscious to receive or grant this bonus."
 							]
 						}
 					}
@@ -750,7 +750,7 @@
 							"name": "Winged Skaab",
 							"type": "entries",
 							"entries": [
-								"The skaab has a flying speed of 30 feet."
+								"The skaab has a flying speed of {@quantity 30|feet}."
 							]
 						}
 					]
@@ -929,7 +929,7 @@
 				"stealth": "+6"
 			},
 			"senses": [
-				"darkvision 60 ft."
+				"darkvision {@quantity 60|ft.}"
 			],
 			"passive": 13,
 			"resist": [
@@ -966,13 +966,13 @@
 				{
 					"name": "Claws",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one creature. {@h}8 ({@damage 2d4 + 3}) slashing damage. Instead of dealing damage, the vampire can grapple the target (escape {@dc 13})."
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 5|ft.}, one creature. {@h}8 ({@damage 2d4 + 3}) slashing damage. Instead of dealing damage, the vampire can grapple the target (escape {@dc 13})."
 					]
 				},
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one willing creature, or a creature that is {@condition grappled} by the vampire, {@condition incapacitated}, or {@condition restrained}. {@h}6 ({@damage 1d6 + 3}) piercing damage plus 7 ({@damage 2d6}) necrotic damage. The target's hit point maximum is reduced by an amount equal to the necrotic damage taken, and the vampire regains hit points equal to that amount. The reduction lasts until the target finishes a long rest. The target dies if this effect reduces its hit point maximum to 0."
+						"{@atk mw} {@hit 6} to hit, reach {@quantity 5|ft.}, one willing creature, or a creature that is {@condition grappled} by the vampire, {@condition incapacitated}, or {@condition restrained}. {@h}6 ({@damage 1d6 + 3}) piercing damage plus 7 ({@damage 2d6}) necrotic damage. The target's hit point maximum is reduced by an amount equal to the necrotic damage taken, and the vampire regains hit points equal to that amount. The reduction lasts until the target finishes a long rest. The target dies if this effect reduces its hit point maximum to 0."
 					]
 				},
 				{
@@ -984,7 +984,7 @@
 				{
 					"name": "Aura of Silence",
 					"entries": [
-						"The vampire shrouds itself in a cloak of silence to a radius of 2 feet. Within that radius, the effect is the same as the {@spell silence} spell."
+						"The vampire shrouds itself in a cloak of silence to a radius of {@quantity 2|feet}. Within that radius, the effect is the same as the {@spell silence} spell."
 					]
 				}
 			],
@@ -1012,7 +1012,7 @@
 							"type": "entries",
 							"name": "Flight",
 							"entries": [
-								"The vampire has a flying speed of 30 feet."
+								"The vampire has a flying speed of {@quantity 30|feet}."
 							]
 						},
 						{
@@ -1068,8 +1068,8 @@
 									"name": "Shapechanger",
 									"entries": [
 										"If the vampire isn't in sunlight or running water, it can use its action to polymorph into a Tiny bat or a Medium cloud of mist, or back into its true form.",
-										"While in bat form, the vampire can't speak, its walking speed is 5 feet, and it has a flying speed of 30 feet. Its statistics, other than its size and speed, are unchanged. Anything it is wearing transforms with it, but nothing it is carrying does. It reverts to its true form if it dies.",
-										"While in mist form, the vampire can't take any actions, speak, or manipulate objects. It is weightless, has a flying speed of 20 feet, can hover, and can enter a hostile creature's space and stop there. In addition, if air can pass through a space, the mist can do so without squeezing, and it can't pass through water. It has advantage on Strength, Dexterity, and Constitution saving throws, and it is immune to all nonmagical damage, except the damage it takes from sunlight."
+										"While in bat form, the vampire can't speak, its walking speed is {@quantity 5|feet}, and it has a flying speed of {@quantity 30|feet}. Its statistics, other than its size and speed, are unchanged. Anything it is wearing transforms with it, but nothing it is carrying does. It reverts to its true form if it dies.",
+										"While in mist form, the vampire can't take any actions, speak, or manipulate objects. It is weightless, has a flying speed of {@quantity 20|feet}, can hover, and can enter a hostile creature's space and stop there. In addition, if air can pass through a space, the mist can do so without squeezing, and it can't pass through water. It has advantage on Strength, Dexterity, and Constitution saving throws, and it is immune to all nonmagical damage, except the damage it takes from sunlight."
 									]
 								},
 								{
@@ -1085,7 +1085,7 @@
 							"items": {
 								"name": "Charm",
 								"entries": [
-									"The vampire targets one humanoid it can see within 30 feet of it. If the target can see the vampire, the target must succeed on a {@dc 17} Wisdom saving throw against this magic or be {@condition charmed} by the vampire. The {@condition charmed} target regards the vampire as a trusted friend to be heeded and protected. Although the target isn't under the vampire's control, it takes the vampire's requests or actions in the most favorable way it can, and it is a willing target for the vampire's bite attack.",
+									"The vampire targets one humanoid it can see within {@quantity 30|feet} of it. If the target can see the vampire, the target must succeed on a {@dc 17} Wisdom saving throw against this magic or be {@condition charmed} by the vampire. The {@condition charmed} target regards the vampire as a trusted friend to be heeded and protected. Although the target isn't under the vampire's control, it takes the vampire's requests or actions in the most favorable way it can, and it is a willing target for the vampire's bite attack.",
 									"Each time the vampire or the vampire's companions do anything harmful to the target, it can repeat the saving throw, ending the effect on itself on a success. Otherwise, the effect lasts 24 hours or until the vampire is destroyed, is on a different plane of existence than the target, or takes a bonus action to end the effect."
 								]
 							}
@@ -1208,7 +1208,7 @@
 							"items": {
 								"name": "Charm",
 								"entries": [
-									"The vampire targets one humanoid it can see within 30 feet of it. If the target can see the vampire, the target must succeed on a {@dc 17} Wisdom saving throw against this magic or be {@condition charmed} by the vampire. The {@condition charmed} target regards the vampire as a trusted friend to be heeded and protected. Although the target isn't under the vampire's control, it takes the vampire's requests or actions in the most favorable way it can, and it is a willing target for the vampire's bite attack.",
+									"The vampire targets one humanoid it can see within {@quantity 30|feet} of it. If the target can see the vampire, the target must succeed on a {@dc 17} Wisdom saving throw against this magic or be {@condition charmed} by the vampire. The {@condition charmed} target regards the vampire as a trusted friend to be heeded and protected. Although the target isn't under the vampire's control, it takes the vampire's requests or actions in the most favorable way it can, and it is a willing target for the vampire's bite attack.",
 									"Each time the vampire or the vampire's companions do anything harmful to the target, it can repeat the saving throw, ending the effect on itself on a success. Otherwise, the effect lasts 24 hours or until the vampire is destroyed, is on a different plane of existence than the target, or takes a bonus action to end the effect."
 								]
 							}
@@ -1251,8 +1251,8 @@
 								"name": "Shapechanger",
 								"entries": [
 									"If the vampire isn't in sunlight or running water, it can use its action to polymorph into a Tiny bat or a Medium cloud of mist, or back into its true form.",
-									"While in bat form, the vampire can't speak, its walking speed is 5 feet, and it has a flying speed of 30 feet. Its statistics, other than its size and speed, are unchanged. Anything it is wearing transforms with it, but nothing it is carrying does. It reverts to its true form if it dies.",
-									"While in mist form, the vampire can't take any actions, speak, or manipulate objects. It is weightless, has a flying speed of 20 feet, can hover, and can enter a hostile creature's space and stop there. In addition, if air can pass through a space, the mist can do so without squeezing, and it can't pass through water. It has advantage on Strength, Dexterity, and Constitution saving throws, and it is immune to all nonmagical damage, except the damage it takes from sunlight."
+									"While in bat form, the vampire can't speak, its walking speed is {@quantity 5|feet}, and it has a flying speed of {@quantity 30|feet}. Its statistics, other than its size and speed, are unchanged. Anything it is wearing transforms with it, but nothing it is carrying does. It reverts to its true form if it dies.",
+									"While in mist form, the vampire can't take any actions, speak, or manipulate objects. It is weightless, has a flying speed of {@quantity 20|feet}, can hover, and can enter a hostile creature's space and stop there. In addition, if air can pass through a space, the mist can do so without squeezing, and it can't pass through water. It has advantage on Strength, Dexterity, and Constitution saving throws, and it is immune to all nonmagical damage, except the damage it takes from sunlight."
 								]
 							}
 						}
@@ -1413,7 +1413,7 @@
 			"speed": {
 				"walk": {
 					"number": 30,
-					"condition": "(40 ft. in canid form)"
+					"condition": "({@quantity 40|ft.} in canid form)"
 				}
 			},
 			"str": 15,
@@ -1472,19 +1472,19 @@
 				{
 					"name": "Bite (Canid Form Only)",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d8 + 2}) piercing damage."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}6 ({@damage 1d8 + 2}) piercing damage."
 					]
 				},
 				{
 					"name": "Claws (Canid Form Only)",
 					"entries": [
-						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}7 ({@damage 2d4 + 2}) slashing damage."
+						"{@atk mw} {@hit 4} to hit, reach {@quantity 5|ft.}, one target. {@h}7 ({@damage 2d4 + 2}) slashing damage."
 					]
 				},
 				{
 					"name": "Spear (Human Form Only)",
 					"entries": [
-						"{@atk mw,rw} {@hit 4} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage, or 6 ({@damage 1d8 + 2}) piercing damage if used with two hands to make a melee attack."
+						"{@atk mw,rw} {@hit 4} to hit, reach {@quantity 5|ft.} or range {@quantity 20/60|ft.}, one target. {@h}5 ({@damage 1d6 + 2}) piercing damage, or 6 ({@damage 1d8 + 2}) piercing damage if used with two hands to make a melee attack."
 					]
 				}
 			],
