@@ -79,7 +79,7 @@ class CultsBoonsPage extends ListPage {
 			<span class="ve-col-2 ve-text-center pl-0">${it._lType}</span>
 			<span class="ve-col-2 px-1 ve-text-center">${it._lSubType}</span>
 			<span class="bold ve-col-6 px-1">${it.name}</span>
-			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(it.source)} pl-1 pr-0" title="${Parser.sourceJsonToFull(it.source)}" ${Parser.sourceJsonToStyle(it.source)}>${source}</span>
+			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(it.source)} pl-1 pr-0" title="${Parser.sourceJsonToFull(it.source)}">${source}</span>
 		</a>`;
 
 		const listItem = new ListItem(
@@ -112,3 +112,5 @@ class CultsBoonsPage extends ListPage {
 const cultsBoonsPage = new CultsBoonsPage();
 cultsBoonsPage.sublistManager = new CultsBoonsSublistManager();
 window.addEventListener("load", () => cultsBoonsPage.pOnLoad());
+
+globalThis.dbg_page = cultsBoonsPage;

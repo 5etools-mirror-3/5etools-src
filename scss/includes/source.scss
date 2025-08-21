@@ -90,15 +90,13 @@
 		$rgb-source-BMT: #694165;
 		$rgb-source-QftIS: #6191ae;
 		$rgb-source-VEoR: #b74c62;
-		$rgb-source-GHLoE: #c07e4e;
-		$rgb-source-DoDk: #825494;
-		$rgb-source-ToB1-2023: #917792;
 		$rgb-source-TD: #bb9528;
 		$rgb-source-PaF: #5d7993;
 		$rgb-source-XPHB: #ed7c00;
 		$rgb-source-XDMG: #c43c4c;
 		$rgb-source-XMM: #5686b6;
 		$rgb-source-HFDoMM: #00817f;
+		$rgb-source-DrDe: #e46910;
 
 		// region Categories
 
@@ -491,18 +489,6 @@
 				@include mix-source-color($rgb-source-VEoR);
 			}
 
-			&GHLoE {
-				@include mix-source-color($rgb-source-GHLoE);
-			}
-
-			&DoDk {
-				@include mix-source-color($rgb-source-DoDk);
-			}
-
-			&ToB1-2023 {
-				@include mix-source-color($rgb-source-ToB1-2023);
-			}
-
 			&TD {
 				@include mix-source-color($rgb-source-TD);
 			}
@@ -525,6 +511,20 @@
 
 			&HFDoMM {
 				@include mix-source-color($rgb-source-HFDoMM);
+			}
+
+			&DrDe,
+			&DrDe-DaS,
+			&DrDe-BD,
+			&DrDe-TWoO,
+			&DrDe-FWtVC,
+			&DrDe-TDoN,
+			&DrDe-TFV,
+			&DrDe-BtS,
+			&DrDe-SD,
+			&DrDe-ACfaS,
+			&DrDe-DotSC {
+				@include mix-source-color($rgb-source-DrDe);
 			}
 		}
 		// endregion
@@ -640,6 +640,11 @@
 			line-height: 8px;
 			height: 8px;
 			width: 8px;
+		}
+
+		&--stats-name {
+			font-size: 14px;
+			margin-right: -1px;
 		}
 
 		&--partnered {

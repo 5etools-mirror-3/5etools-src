@@ -35,7 +35,7 @@ class OptionalFeaturesSublistManager extends SublistManager {
 	}
 
 	pGetSublistItem (it, hash) {
-		const prerequisite = Renderer.utils.prerequisite.getHtml(it.prerequisite, {isListMode: true, blocklistKeys: new Set(["level"])});
+		const prerequisite = Renderer.utils.prerequisite.getHtml(it.prerequisite, {isListMode: true, keyOptions: {level: {isNameOnly: true}}});
 		const level = Renderer.optionalfeature.getListPrerequisiteLevelText(it.prerequisite);
 		const cellsText = [
 			it.name,
@@ -106,7 +106,7 @@ class OptionalFeaturesPage extends ListPage {
 
 		const source = Parser.sourceJsonToAbv(it.source);
 		const hash = UrlUtil.autoEncodeHash(it);
-		const prerequisite = Renderer.utils.prerequisite.getHtml(it.prerequisite, {isListMode: true, blocklistKeys: new Set(["level"])});
+		const prerequisite = Renderer.utils.prerequisite.getHtml(it.prerequisite, {isListMode: true, keyOptions: {level: {isNameOnly: true}}});
 		const level = Renderer.optionalfeature.getListPrerequisiteLevelText(it.prerequisite);
 
 		eleLi.innerHTML = `<a href="#${hash}" class="lst__row-border lst__row-inner">
@@ -115,7 +115,7 @@ class OptionalFeaturesPage extends ListPage {
 			<span class="ve-col-1-5 px-1 ve-text-center" title="${it._dFeatureType.join(", ").qq()}">${it._lFeatureType}</span>
 			<span class="ve-col-4-7 px-1">${prerequisite}</span>
 			<span class="ve-col-1 px-1 ve-text-center">${level}</span>
-			<span class="ve-col-1-5 ${Parser.sourceJsonToSourceClassname(it.source)} ve-text-center pl-1 pr-0" title="${Parser.sourceJsonToFull(it.source)}" ${Parser.sourceJsonToStyle(it.source)}>${source}</span>
+			<span class="ve-col-1-5 ${Parser.sourceJsonToSourceClassname(it.source)} ve-text-center pl-1 pr-0" title="${Parser.sourceJsonToFull(it.source)}">${source}</span>
 		</a>
 		<div class="ve-flex ve-hidden relative accordion__wrp-preview">
 			<div class="vr-0 absolute accordion__vr-preview"></div>

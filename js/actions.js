@@ -74,7 +74,7 @@ class ActionsPage extends ListPage {
 			<span class="ve-col-0-3 px-0 ve-flex-vh-center lst__btn-toggle-expand ve-self-flex-stretch no-select">[+]</span>
 			<span class="ve-col-5-7 px-1 bold">${it.name}</span>
 			<span class="ve-col-4 px-1 ve-text-center">${time}</span>
-			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(it.source)} pl-1 pr-0" title="${Parser.sourceJsonToFull(it.source)}" ${Parser.sourceJsonToStyle(it.source)}>${source}</span>
+			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(it.source)} pl-1 pr-0" title="${Parser.sourceJsonToFull(it.source)}">${source}</span>
 		</a>
 		<div class="ve-flex ve-hidden relative accordion__wrp-preview">
 			<div class="vr-0 absolute accordion__vr-preview"></div>
@@ -110,3 +110,5 @@ class ActionsPage extends ListPage {
 const actionsPage = new ActionsPage();
 actionsPage.sublistManager = new ActionsSublistManager();
 window.addEventListener("load", () => actionsPage.pOnLoad());
+
+globalThis.dbg_page = actionsPage;

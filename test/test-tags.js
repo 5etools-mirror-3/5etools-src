@@ -318,6 +318,16 @@ class GenericDataCheck extends DataTesterBase {
 			});
 	}
 
+	static _testSrd (file, obj) {
+		["srd", "srd52"]
+			.forEach(prop => {
+				if (typeof obj[prop] !== "string") return;
+				if (Renderer.stripTags(obj[prop]) === obj[prop]) return;
+
+				this._addMessage(`SRD value contained tags: "${prop}" in file ${file} was "${obj[prop]}"`);
+			});
+	}
+
 	static _testFoundryActivities (file, obj, {propDotPath = "activities"} = {}) {
 		const propPath = propDotPath.split(".");
 		const activities = MiscUtil.get(obj, ...propPath);
@@ -519,6 +529,8 @@ class ItemDataCheck extends GenericDataCheck {
 	static _checkRoot (file, root, name, source) {
 		if (!root) return;
 
+		this._testSrd(file, root);
+
 		if (root.attachedSpells) {
 			ItemDataCheck._checkArrayItemsExist(file, name, source, Renderer.item.getFlatAttachedSpells(root), "attachedSpells", "spell");
 		}
@@ -601,6 +613,7 @@ class ActionDataCheck extends GenericDataCheck {
 			this._doCheckSeeAlso({entity: it, prop: "seeAlsoAction", tag: "action", file});
 
 			this._testReprintedAs(file, it, "action");
+			this._testSrd(file, it);
 		});
 	}
 }
@@ -610,6 +623,8 @@ class DeityDataCheck extends GenericDataCheck {
 		const file = `data/deities.json`;
 		const deities = ut.readJson(`./${file}`);
 		deities.deity.forEach(it => {
+			this._testSrd(file, it);
+
 			if (!it.customExtensionOf) return;
 
 			const url = getEncodedDeity(it.customExtensionOf, "deity");
@@ -713,6 +728,38 @@ class StripTagTest extends DataTesterBase {
 				StripTagTest._seenErrors.add(e.message);
 				this._addMessage(`Tag stripper error: ${e.message} (${filePath})\n`);
 			}
+		}
+	}
+}
+
+class StandaloneTagTest extends DataTesterBase {
+	static registerParsedPrimitiveHandlers (parsedJsonChecker) {
+		parsedJsonChecker.addPrimitiveHandler("string", this._checkString.bind(this));
+	}
+
+	static _checkString (str, {filePath}) {
+		const tagSplit = Renderer.splitByTags(str);
+		const len = tagSplit.length;
+		for (let i = 0; i < len; ++i) {
+			const s = tagSplit[i];
+			if (!s) continue;
+
+			if (!s.startsWith("{@")) {
+				continue;
+			}
+
+			const [tag, text] = Renderer.splitFirstSpace(s.slice(1, -1));
+
+			const tagInfo = Renderer.tag.TAG_LOOKUP[tag];
+			if (!tagInfo) continue;
+
+			if (!tagInfo.isStandalone && !text) {
+				this._addMessage(`Empty non-standalone tag "${tag}" in "${str}" (${filePath})\n`);
+			}
+
+			const stripped = tagInfo.getStripped(tag, text);
+
+			this._checkString(stripped, {filePath});
 		}
 	}
 }
@@ -991,6 +1038,7 @@ class ClassDataCheck extends GenericDataCheck {
 
 		this._testAdditionalSpells(file, cls);
 		this._testReprintedAs(file, cls, "class");
+		this._testSrd(file, cls);
 		this._testStartingEquipment(file, cls, {propDotPath: "startingEquipment.defaultData"});
 	}
 
@@ -1008,6 +1056,7 @@ class ClassDataCheck extends GenericDataCheck {
 		this._testAdditionalSpells(file, sc);
 
 		this._testReprintedAs(file, sc, "subclass");
+		this._testSrd(file, sc);
 	}
 
 	static pRun () {
@@ -1079,6 +1128,7 @@ class RaceDataCheck extends GenericDataCheck {
 		this._testAdditionalSpells(file, rsr);
 		this._testAdditionalFeats(file, rsr);
 		this._testReprintedAs(file, rsr, "race");
+		this._testSrd(file, rsr);
 		this._testStartingEquipment(file, rsr);
 	}
 
@@ -1094,6 +1144,7 @@ class FeatDataCheck extends GenericDataCheck {
 	static _handleFeat (file, feat) {
 		this._testAdditionalSpells(file, feat);
 		this._testReprintedAs(file, feat, "feat");
+		this._testSrd(file, feat);
 	}
 
 	static pRun () {
@@ -1108,6 +1159,7 @@ class BackgroundDataCheck extends GenericDataCheck {
 		this._testAdditionalSpells(file, bg);
 		this._testAdditionalFeats(file, bg);
 		this._testReprintedAs(file, bg, "background");
+		this._testSrd(file, bg);
 		this._testStartingEquipment(file, bg);
 	}
 
@@ -1121,6 +1173,7 @@ class BackgroundDataCheck extends GenericDataCheck {
 class BestiaryDataCheck extends GenericDataCheck {
 	static _handleCreature (file, mon) {
 		this._testReprintedAs(file, mon, "creature");
+		this._testSrd(file, mon);
 
 		if (mon.legendaryGroup) {
 			const url = getEncoded(`${mon.legendaryGroup.name}|${mon.legendaryGroup.source}`, "legendaryGroup", {prop: "legendaryGroup"});
@@ -1166,6 +1219,8 @@ class BestiaryDataCheck extends GenericDataCheck {
 
 class DeckDataCheck extends GenericDataCheck {
 	static _handleDeck (file, deck) {
+		this._testSrd(file, deck);
+
 		(deck.cards || [])
 			.forEach(cardMeta => {
 				const uid = typeof cardMeta === "string" ? cardMeta : cardMeta.uid;
@@ -1186,6 +1241,7 @@ class DeckDataCheck extends GenericDataCheck {
 class CultsBoonsDataCheck extends GenericDataCheck {
 	static _handleEntity (file, cb, prop) {
 		this._testReprintedAs(file, cb, prop);
+		this._testSrd(file, cb);
 	}
 
 	static pRun () {
@@ -1220,6 +1276,7 @@ class OptionalfeatureDataCheck extends GenericDataCheck {
 			.forEach(ent => {
 				this._doPrerequisite(ent);
 				this._testReprintedAs(this._FILE, ent, "optfeature");
+				this._testSrd(this._FILE, ent);
 			});
 	}
 }
@@ -1231,7 +1288,10 @@ class SpellDataCheck extends GenericDataCheck {
 			.map(filename => ({filename: filename, data: ut.readJson(`./data/spells/${filename}`)}))
 			.forEach(({filename, data}) => {
 				data.spell
-					.forEach(ent => this._testReprintedAs(filename, ent, "spell"));
+					.forEach(ent => {
+						this._testReprintedAs(filename, ent, "spell");
+						this._testSrd(filename, ent);
+					});
 			});
 	}
 }
@@ -1239,20 +1299,19 @@ class SpellDataCheck extends GenericDataCheck {
 class ConditionDiseaseDataCheck extends GenericDataCheck {
 	static _FILE = "data/conditionsdiseases.json";
 
+	static _testEnt (ent, prop) {
+		this._testReprintedAs(this._FILE, ent, prop);
+		this._testSrd(this._FILE, ent);
+	}
+
 	static pRun () {
 		const json = ut.readJson(this._FILE);
 		json.condition
-			.forEach(ent => {
-				this._testReprintedAs(this._FILE, ent, "condition");
-			});
+			.forEach(ent => this._testEnt(ent, "condition"));
 		json.disease
-			.forEach(ent => {
-				this._testReprintedAs(this._FILE, ent, "disease");
-			});
+			.forEach(ent => this._testEnt(ent, "disease"));
 		json.status
-			.forEach(ent => {
-				this._testReprintedAs(this._FILE, ent, "status");
-			});
+			.forEach(ent => this._testEnt(ent, "status"));
 	}
 }
 
@@ -1264,6 +1323,7 @@ class RewardsDataCheck extends GenericDataCheck {
 		json.reward
 			.forEach(ent => {
 				this._testReprintedAs(this._FILE, ent, "reward");
+				this._testSrd(this._FILE, ent);
 				this._testAdditionalSpells(this._FILE, ent);
 			});
 	}
@@ -1277,6 +1337,7 @@ class VariantRuleDataCheck extends GenericDataCheck {
 		json.variantrule
 			.forEach(ent => {
 				this._testReprintedAs(this._FILE, ent, "variantrule");
+				this._testSrd(this._FILE, ent);
 			});
 	}
 }
@@ -1289,6 +1350,7 @@ class SkillsRuleDataCheck extends GenericDataCheck {
 		json.skill
 			.forEach(ent => {
 				this._testReprintedAs(this._FILE, ent, "skill");
+				this._testSrd(this._FILE, ent);
 			});
 	}
 }
@@ -1301,6 +1363,7 @@ class SensesDataCheck extends GenericDataCheck {
 		json.sense
 			.forEach(ent => {
 				this._testReprintedAs(this._FILE, ent, "sense");
+				this._testSrd(this._FILE, ent);
 			});
 	}
 }
@@ -1711,12 +1774,12 @@ class AdventureBookTagCheck extends DataTesterBase {
 				const [tag, text] = Renderer.splitFirstSpace(s.slice(1, -1));
 				if (!["@adventure", "@book"].includes(tag)) continue;
 
-				const [, id] = text.toLowerCase().split("|");
+				const [, id, chap] = text.toLowerCase().split("|");
 				if (!id) throw new Error(`${tag} tag had ${s} no source!`); // Should never occur
 
-				if (this._ADV_BOOK_LOOKUP[tag.slice(1)][id]) continue;
+				if (!this._ADV_BOOK_LOOKUP[tag.slice(1)][id]) this._addMessage(`Missing link: ${s} in file ${filePath} had unknown "${tag}" ID "${id}"\n`);
 
-				this._addMessage(`Missing link: ${s} in file ${filePath} had unknown "${tag}" ID "${id}"\n`);
+				if (chap && Number(chap) < 0) this._addMessage(`Missing link: ${s} in file ${filePath} had unknown "${tag}" chapter "${chap}"\n`);
 			}
 		}
 	}
@@ -1734,6 +1797,7 @@ async function main () {
 		FilterCheck,
 		ScaleDiceCheck,
 		StripTagTest,
+		StandaloneTagTest,
 		TableDiceTest,
 		AdventureBookTagCheck,
 		AreaCheck,
@@ -1742,10 +1806,10 @@ async function main () {
 		RefTagCheck,
 		TestCopyCheck,
 		HasFluffCheck,
+		LootDataCheck,
 		ItemDataCheck,
 		ActionDataCheck,
 		DeityDataCheck,
-		LootDataCheck,
 		ClassDataCheck,
 		RaceDataCheck,
 		FeatDataCheck,
@@ -1770,7 +1834,9 @@ async function main () {
 			"./data",
 			ClazzDataTesters,
 			{
-				fnIsIgnoredFile: filePath => filePath.endsWith("changelog.json") || filePath.includes("/generated/"),
+				fnIsIgnoredFile: filePath => filePath.endsWith("changelog.json")
+					|| filePath.includes("/generated/")
+					|| filePath.endsWith("converter.json"),
 			},
 		);
 	}

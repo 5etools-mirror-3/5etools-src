@@ -7,7 +7,7 @@ class ManagePrerelease {
 
 	static async pRender () {
 		const manager = new ManageBrewUi({brewUtil: PrereleaseUtil});
-		return manager.pRender($(`#manager`).empty());
+		return manager.pRender(es(`#manager`).empty());
 	}
 }
 

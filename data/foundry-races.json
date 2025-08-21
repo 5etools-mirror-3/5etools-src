@@ -20,6 +20,53 @@
 	],
 	"raceFeature": [
 		{
+			"name": "Adrenaline Rush",
+			"source": "XPHB",
+			"raceName": "Orc",
+			"raceSource": "XPHB",
+			"system": {
+				"uses.max": "@prof",
+				"uses.recovery": [
+					{
+						"period": "sr",
+						"type": "recoverAll"
+					}
+				]
+			},
+			"activities": [
+				{
+					"name": "Adrenaline Rush: Dash",
+					"type": "heal",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"types": [
+							"temphp"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"bonus": "@prof"
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Animal Enhancement",
 			"source": "GGR",
 			"raceName": "Simic Hybrid",
@@ -1761,6 +1808,331 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Breath Weapon",
+			"source": "XPHB",
+			"raceName": "Dragonborn",
+			"raceSource": "XPHB",
+			"system": {
+				"uses.max": "@prof"
+			},
+			"activities": [
+				{
+					"name": "Breath Weapon (Cone)",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"template": {
+							"units": "ft",
+							"type": "cone",
+							"size": "15"
+						},
+						"affects": {
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@scale.dragonborn.breath"
+								},
+								"types": [
+									"acid",
+									"cold",
+									"fire",
+									"poison",
+									"lightning"
+								]
+							}
+						],
+						"onSave": "half"
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "con"
+						}
+					}
+				},
+				{
+					"name": "Breath Weapon (Line)",
+					"type": "save",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"template": {
+							"units": "ft",
+							"type": "line",
+							"size": "30",
+							"width": "5"
+						},
+						"affects": {
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@scale.dragonborn.breath"
+								},
+								"types": [
+									"acid",
+									"cold",
+									"fire",
+									"poison",
+									"lightning"
+								]
+							}
+						],
+						"onSave": "half"
+					},
+					"save": {
+						"ability": [
+							"dex"
+						],
+						"dc": {
+							"calculation": "con"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Celestial Revelation",
+			"source": "XPHB",
+			"raceName": "Aasimar",
+			"raceSource": "XPHB",
+			"activities": [
+				{
+					"name": "Heavenly Wings",
+					"type": "utility",
+					"img": "systems/dnd5e/icons/svg/trait-damage-immunities.svg",
+					"activation": {
+						"type": "bonus"
+					},
+					"duration": {
+						"units": "minute",
+						"value": "1"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "celestialRevelat"
+						}
+					]
+				},
+				{
+					"name": "Inner Radiance",
+					"type": "damage",
+					"activation": {
+						"type": "bonus"
+					},
+					"duration": {
+						"units": "minute",
+						"value": "1"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"template": {
+							"units": "ft",
+							"type": "radius",
+							"size": "10"
+						},
+						"affects": {
+							"type": "creature"
+						}
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "@prof"
+								},
+								"types": [
+									"radiant"
+								]
+							}
+						]
+					},
+					"effects": [
+						{
+							"foundryId": "celestialRevela1"
+						}
+					]
+				},
+				{
+					"name": "Necrotic Shroud",
+					"type": "save",
+					"activation": {
+						"type": "bonus"
+					},
+					"duration": {
+						"units": "minute",
+						"value": "1"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"template": {
+							"units": "ft",
+							"type": "radius",
+							"size": "10"
+						},
+						"affects": {
+							"type": "enemy"
+						}
+					},
+					"damage": {
+						"onSave": "half"
+					},
+					"save": {
+						"ability": [
+							"cha"
+						],
+						"dc": {
+							"calculation": "cha"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "celestialRevela2"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "celestialRevelat",
+					"name": "Heavenly Wings",
+					"duration": {
+						"seconds": 60
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.fly",
+							"mode": "UPGRADE",
+							"value": 1
+						}
+					]
+				},
+				{
+					"foundryId": "celestialRevela1",
+					"name": "Searing Radiance",
+					"duration": {
+						"seconds": 60
+					}
+				},
+				{
+					"foundryId": "celestialRevela2",
+					"name": "Necrotic Shroud",
+					"duration": {
+						"seconds": 60
+					},
+					"statuses": [
+						"frightened"
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Draconic Flight",
+			"source": "XPHB",
+			"raceName": "Dragonborn",
+			"raceSource": "XPHB",
+			"activities": [
+				{
+					"name": "Draconic Flight",
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					},
+					"duration": {
+						"units": "minute",
+						"value": "10"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "draconicFlight"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "draconicFlight",
+					"duration": {
+						"seconds": 600
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Dwarven Toughness",
 			"source": "PHB",
 			"raceName": "Dwarf (Hill)",
@@ -1774,6 +2146,25 @@
 							"key": "system.attributes.hp.bonuses.level",
 							"mode": "ADD",
 							"value": "+ 1"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Dwarven Toughness",
+			"source": "XPHB",
+			"raceName": "Dwarf",
+			"raceSource": "XPHB",
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.attributes.hp.bonuses.level",
+							"mode": "ADD",
+							"value": 1
 						}
 					]
 				}
@@ -1902,6 +2293,50 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Healing Hands",
+			"source": "XPHB",
+			"raceName": "Aasimar",
+			"raceSource": "XPHB",
+			"activities": [
+				{
+					"type": "heal",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "creature"
+						}
+					},
+					"range": {
+						"units": "touch"
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"custom": {
+							"enabled": true,
+							"formula": "(@prof)d4"
+						},
+						"scaling": {
+							"number": 1
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Hooves",
 			"source": "GGR",
 			"raceName": "Centaur",
@@ -1931,6 +2366,78 @@
 							"key": "system.attributes.ac.bonus",
 							"mode": "ADD",
 							"value": "+ 1"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Large Form",
+			"source": "XPHB",
+			"raceName": "Goliath",
+			"raceSource": "XPHB",
+			"activities": [
+				{
+					"name": "Enlarge",
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					},
+					"duration": {
+						"units": "minute",
+						"value": "10"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "largeForm"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "largeForm",
+					"duration": {
+						"seconds": 600
+					},
+					"changes": [
+						{
+							"key": "system.attributes.movement.walk",
+							"mode": "ADD",
+							"value": 10
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Luck",
+			"source": "XPHB",
+			"raceName": "Halfling",
+			"raceSource": "XPHB",
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "flags.dnd5e.halflingLucky",
+							"mode": "OVERRIDE",
+							"value": true
 						}
 					]
 				}
@@ -2078,6 +2585,25 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Powerful Build",
+			"source": "XPHB",
+			"raceName": "Goliath",
+			"raceSource": "XPHB",
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "flags.dnd5e.powerfulBuild",
+							"mode": "OVERRIDE",
+							"value": true
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Radiant Soul",
 			"source": "VGM",
 			"raceName": "Aasimar (Protector)",
@@ -2088,6 +2614,45 @@
 					"activation": {
 						"type": "action",
 						"value": 1
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Relentless Endurance",
+			"source": "XPHB",
+			"raceName": "Orc",
+			"raceSource": "XPHB",
+			"activities": [
+				{
+					"name": "Relentlessly Endure",
+					"type": "heal",
+					"activation": {
+						"type": "",
+						"condition": "When you are reduced to 0 Hit Points but not killed outright"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"bonus": "1"
 					}
 				}
 			],
@@ -2129,6 +2694,68 @@
 							"key": "system.attributes.ac.bonus",
 							"mode": "ADD",
 							"value": "+ 1"
+						}
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Stonecunning",
+			"source": "XPHB",
+			"raceName": "Dwarf",
+			"raceSource": "XPHB",
+			"system": {
+				"uses.max": "@prof",
+				"uses.recovery": [
+					{
+						"period": "lr",
+						"type": "recoverAll"
+					}
+				]
+			},
+			"activities": [
+				{
+					"name": "Stonecunning",
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					},
+					"duration": {
+						"units": "minute",
+						"value": "10"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1"
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "stonecunning"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "stonecunning",
+					"duration": {
+						"seconds": 600
+					},
+					"changes": [
+						{
+							"key": "system.attributes.senses.tremorsense",
+							"mode": "ADD",
+							"value": 60
 						}
 					]
 				}

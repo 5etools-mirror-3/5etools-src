@@ -51,11 +51,14 @@ export class BuilderBase extends ProxyBase {
 		this._$sideMenuStageSaved = null;
 		this._$sideMenuWrpList = null;
 		this._$eles = {}; // Generic internal element storage
+		this._compsSource = {};
 	}
 
 	_doResetProxies () {
 		this._resetHooks("state");
 		this._resetHooks("meta");
+		this._$eles = {};
+		this._compsSource = {};
 	}
 
 	doCreateProxies () {

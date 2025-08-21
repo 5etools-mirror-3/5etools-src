@@ -1,7 +1,7 @@
 {
 	"name": "5etools",
 	"author": "TheGiddyLimit",
-	"version": "2.8.3",
+	"version": "2.11.1",
 	"license": "MIT",
 	"description": "A site dedicated to making playing games with your friends as easy as possible.",
 	"type": "module",
@@ -41,6 +41,8 @@
 		"spellcheck:check-data": "echo \"This can take a few minutes.\" && npx cspell --no-progress --show-context --show-suggestions \"data/**/*.json\"",
 		"spellcheck:check-data-quick": "git diff --name-only | grep -P \"^data/[^.]+.json\" | npx cspell --no-progress --show-context --show-suggestions --file-list stdin",
 		"spellcheck:trust-data": "echo \"This can take a few minutes.\" && echo \"# new words on $(date)\" >> spellcheck/dnd-words.txt && npx cspell --words-only --unique \"./data/**/*.json\" | sort --ignore-case >> spellcheck/dnd-words.txt",
+		"spellcheck2:check-data": "node node/spellcheck.js",
+		"spellcheck2:check-data:fast": "node node/spellcheck.js --fast",
 		"prettier:css": "prettier scss/**/*.scss --log-level warn",
 		"tag:quantity": "node node/tag-jsons.js --quantity --inplace"
 
@@ -50,10 +52,11 @@
 		"url": "git+https://github.com/5etools-mirror-3/5etools-src"
 	},
 	"devDependencies": {
-		"5etools-utils": "^0.13.16",
+		"5etools-utils": "^0.13.39",
 		"ajv": "^8.12.0",
 		"ajv-formats": "^2.1.1",
 		"commander": "^12.0.0",
+		"cspell-lib": "^9.0.1",
 		"esbuild": "^0.20.1",
 		"eslint": "^9.19.0",
 		"handlebars": "^4.7.8",

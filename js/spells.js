@@ -253,14 +253,23 @@ class SpellsPage extends ListPageMultiSource {
 						name: "Classes",
 						transform: (sp) => {
 							const [current] = Parser.spClassesToCurrentAndLegacy(Renderer.spell.getCombinedClasses(sp, "fromClassList"));
-							return Parser.spMainClassesToFull(current);
+							return Parser.spMainClassesToFull(current, {isIncludeSource: true});
 						},
 					},
 					_classesVariant: {
 						name: "Optional/Variant Classes",
 						transform: (sp) => {
 							const [current] = Parser.spVariantClassesToCurrentAndLegacy(Renderer.spell.getCombinedClasses(sp, "fromClassListVariant"));
-							return Parser.spMainClassesToFull(current);
+							return Parser.spMainClassesToFull(current, {isIncludeSource: true});
+						},
+					},
+					_subclasses: {
+						name: "Subclasses",
+						transform: (sp, additionalData) => {
+							const fromSubclass = Renderer.spell.getCombinedClasses(sp, "fromSubclass");
+							if (!fromSubclass.length) return "";
+							const [current] = Parser.spSubclassesToCurrentAndLegacyFull(sp, additionalData.subclassLookup, {isIncludeSource: true});
+							return current;
 						},
 					},
 					entries: {name: "Text", transform: (it) => Renderer.get().render({type: "entries", entries: it}, 1), flex: 3},
@@ -278,6 +287,12 @@ class SpellsPage extends ListPageMultiSource {
 		this._lastFilterValues = null;
 		this._subclassLookup = {};
 		this._bookViewLastOrder = null;
+	}
+
+	async _pGetTableViewAdditionalData () {
+		return {
+			subclassLookup: await DataUtil.class.pGetSubclassLookup(),
+		};
 	}
 
 	get _bindOtherButtonsOptions () {
@@ -340,7 +355,6 @@ class SpellsPage extends ListPageMultiSource {
 						e_({
 							tag: "span",
 							clazz: `ve-col-1-7 ve-text-center ${Parser.sourceJsonToSourceClassname(spell.source)} pl-1 pr-0`,
-							style: Parser.sourceJsonToStylePart(spell.source),
 							title: `${Parser.sourceJsonToFull(spell.source)}${Renderer.utils.getSourceSubText(spell)}`,
 							text: source,
 						}),
@@ -375,7 +389,7 @@ class SpellsPage extends ListPageMultiSource {
 	_tabTitleStats = "Spell";
 
 	_renderStats_doBuildStatsTab ({ent}) {
-		this._$pgContent.empty().append(RenderSpells.$getRenderedSpell(ent, {subclassLookup: this._subclassLookup, settings: this._compSettings.getValues()}));
+		this._$pgContent.empty().append(RenderSpells.getRenderedSpell(ent, {subclassLookup: this._subclassLookup, settings: this._compSettings.getValues()}));
 	}
 
 	async _pOnLoad_pPreDataLoad () {

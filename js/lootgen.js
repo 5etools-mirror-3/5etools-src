@@ -14,25 +14,28 @@ class LootGenPage {
 		]);
 		await ExcludeUtil.pInitialise();
 
-		const $stgLhs = $(`#lootgen-lhs`);
-		const $stgRhs = $(`#lootgen-rhs`);
+		const stgLhs = es(`#lootgen-lhs`);
+		const stgRhs = es(`#lootgen-rhs`);
 
+		const [spells, items] = await Promise.all([
+			this._pLoadSpells(),
+			this._pLoadItems(),
+		]);
 		this._lootGenUi = new LootGenUi({
-			spells: await this._pLoadSpells(),
-			items: await this._pLoadItems(),
+			spells,
+			items,
 		});
 		await this._lootGenUi.pInit();
-		this._lootGenUi.render({$stgLhs, $stgRhs});
+		this._lootGenUi.render({stgLhs, stgRhs});
 
 		const savedState = await StorageUtil.pGetForPage(LootGenPage._STORAGE_KEY_STATE);
 		if (savedState != null) this._lootGenUi.setStateFrom(savedState);
 
 		const savedStateDebounced = MiscUtil.throttle(this._pDoSaveState.bind(this), 100);
-		this._lootGenUi.addHookAll("state", () => savedStateDebounced());
-		this._lootGenUi.addHookAll("meta", () => savedStateDebounced());
+		this._lootGenUi.addHookOnSave(() => savedStateDebounced());
 
-		$(`#wrp-loading`).remove();
-		$(`#wrp-content`).showVe();
+		es(`#wrp-loading`).remove();
+		es(`#wrp-content`).showVe();
 
 		window.dispatchEvent(new Event("toolsLoaded"));
 	}

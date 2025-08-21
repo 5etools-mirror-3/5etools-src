@@ -1,6 +1,7 @@
 import {OmnisearchState} from "./omnisearch-state.js";
 import {VetoolsConfig} from "../utils-config/utils-config-config.js";
 import {SITE_STYLE__CLASSIC} from "../consts.js";
+import {SyntaxMetaCategories, SyntaxMetaGroup, SyntaxMetaPageRange, SyntaxMetaSource} from "./omnisearch-models.js";
 
 export class OmnisearchBacking {
 	static _CATEGORY_COUNTS = {};
@@ -135,7 +136,7 @@ export class OmnisearchBacking {
 		]
 			.join("|");
 
-		this._RE_SYNTAX__IN_CATEGORY = new RegExp(`\\bin:(?<category>${ptCategory})s?\\b`, "i");
+		this._RE_SYNTAX__IN_CATEGORY = new RegExp(`\\bin:\\s*(?<isNegate>!)?(?<category>${ptCategory})s?\\b`, "i");
 	}
 
 	/* -------------------------------------------- */
@@ -192,8 +193,8 @@ export class OmnisearchBacking {
 
 	/* -------------------------------------------- */
 
-	static _RE_SYNTAX__SOURCE = /\bsource:(?<source>.*)\b/i;
-	static _RE_SYNTAX__PAGE = /\bpage:\s*(?<pageStart>\d+)\s*(?:-\s*(?<pageEnd>\d+)\s*)?\b/i;
+	static _RE_SYNTAX__SOURCE = /\bsource:\s*(?<isNegate>!)?(?<source>.*)\b/i;
+	static _RE_SYNTAX__PAGE = /\bpage:\s*(?<isNegate>!)?(?<pageStart>\d+)\s*(?:-\s*(?<pageEnd>\d+)\s*)?\b/i;
 
 	static async pGetResults (searchTerm) {
 		await this._pInit();
@@ -206,24 +207,26 @@ export class OmnisearchBacking {
 
 		searchTerm = searchTerm
 			.replace(this._RE_SYNTAX__SOURCE, (...m) => {
-				const {source} = m.at(-1);
-				syntaxMetasSource.push({
+				const {isNegate, source} = m.at(-1);
+				syntaxMetasSource.push(new SyntaxMetaSource({
+					isNegate: !!isNegate,
 					source: source.trim().toLowerCase(),
-				});
+				}));
 				return "";
 			})
 			.replace(this._RE_SYNTAX__PAGE, (...m) => {
-				const {pageStart, pageEnd} = m.at(-1);
-				syntaxMetasPageRange.push({
+				const {isNegate, pageStart, pageEnd} = m.at(-1);
+				syntaxMetasPageRange.push(new SyntaxMetaPageRange({
+					isNegate: !!isNegate,
 					pageRange: [
 						Number(pageStart),
 						pageEnd ? Number(pageEnd) : Number(pageStart),
 					],
-				});
+				}));
 				return "";
 			})
 			.replace(this._RE_SYNTAX__IN_CATEGORY, (...m) => {
-				let {category} = m.at(-1);
+				let {isNegate, category} = m.at(-1);
 				category = category.toLowerCase().trim();
 
 				const categories = (
@@ -233,7 +236,10 @@ export class OmnisearchBacking {
 				)
 					.map(it => it.toLowerCase());
 
-				syntaxMetasCategory.push({categories});
+				syntaxMetasCategory.push(new SyntaxMetaCategories({
+					isNegate: !!isNegate,
+					categories,
+				}));
 				return "";
 			})
 			.replace(/\s+/g, " ")
@@ -241,9 +247,18 @@ export class OmnisearchBacking {
 
 		const results = await this._pGetResults_pGetBaseResults({
 			searchTerm,
-			syntaxMetasCategory,
-			syntaxMetasSource,
-			syntaxMetasPageRange,
+			syntaxMetas: [
+				syntaxMetasCategory.length
+					? new SyntaxMetaGroup({syntaxMetas: syntaxMetasCategory})
+					: null,
+				syntaxMetasSource.length
+					? new SyntaxMetaGroup({syntaxMetas: syntaxMetasSource})
+					: null,
+				syntaxMetasPageRange.length
+					? new SyntaxMetaGroup({syntaxMetas: syntaxMetasPageRange})
+					: null,
+			]
+				.filter(Boolean),
 		});
 
 		return this.pGetFilteredResults(results, {isApplySrdFilter: true, isApplyPartneredFilter: true});
@@ -252,16 +267,10 @@ export class OmnisearchBacking {
 	static _pGetResults_pGetBaseResults (
 		{
 			searchTerm,
-			syntaxMetasCategory,
-			syntaxMetasSource,
-			syntaxMetasPageRange,
+			syntaxMetas,
 		},
 	) {
-		if (
-			!syntaxMetasCategory.length
-			&& !syntaxMetasSource.length
-			&& !syntaxMetasPageRange.length
-		) {
+		if (!syntaxMetas.length) {
 			return this._searchIndex.search(
 				searchTerm,
 				{
@@ -274,10 +283,6 @@ export class OmnisearchBacking {
 				},
 			);
 		}
-
-		const categoryTerms = syntaxMetasCategory.flatMap(it => it.categories);
-		const sourceTerms = syntaxMetasSource.map(it => it.source);
-		const pageRanges = syntaxMetasPageRange.map(it => it.pageRange);
 
 		const resultsUnfiltered = searchTerm
 			? this._searchIndex
@@ -295,9 +300,13 @@ export class OmnisearchBacking {
 			: Object.values(this._searchIndex.documentStore.docs).map(it => ({doc: it}));
 
 		return resultsUnfiltered
-			.filter(res => !categoryTerms.length || (categoryTerms.includes(res.doc.cf.toLowerCase())))
-			.filter(res => !sourceTerms.length || (res.doc.s && sourceTerms.includes(Parser.sourceJsonToAbv(res.doc.s).toLowerCase())))
-			.filter(res => !pageRanges.length || (res.doc.p && pageRanges.some(range => res.doc.p >= range[0] && res.doc.p <= range[1])));
+			.filter(res => {
+				const resCache = {
+					source: res.doc.s ? Parser.sourceJsonToAbv(res.doc.s).toLowerCase() : null,
+					category: res.doc.cf.toLowerCase(),
+				};
+				return syntaxMetas.every(syntaxMeta => syntaxMeta.isMatch(res, resCache));
+			});
 	}
 
 	/* -------------------------------------------- */

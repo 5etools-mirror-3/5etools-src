@@ -37,6 +37,7 @@ class TablesSublistManager extends SublistManager {
 			{
 				hash,
 				page: it.page,
+				sortName: PageFilterTables.getSortName(it.name),
 			},
 			{
 				entity: it,
@@ -110,8 +111,6 @@ class TablesPage extends ListPage {
 	getListItem (it, tbI, isExcluded) {
 		this._pageFilter.mutateAndAddToFilters(it, isExcluded);
 
-		const sortName = it.name.replace(/^\s*([\d,.]+)\s*gp/, (...m) => m[1].replace(Parser._numberCleanRegexp, "").padStart(9, "0"));
-
 		const eleLi = document.createElement("div");
 		eleLi.className = `lst__row ve-flex-col ${isExcluded ? "lst__row--blocklisted" : ""}`;
 
@@ -120,7 +119,7 @@ class TablesPage extends ListPage {
 
 		eleLi.innerHTML = `<a href="#${hash}" class="lst__row-border lst__row-inner">
 			<span class="bold ve-col-10 pl-0 pr-1">${it.name}</span>
-			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(it.source)} pl-1 pr-0" title="${Parser.sourceJsonToFull(it.source)}" ${Parser.sourceJsonToStyle(it.source)}>${source}</span>
+			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(it.source)} pl-1 pr-0" title="${Parser.sourceJsonToFull(it.source)}">${source}</span>
 		</a>`;
 
 		const listItem = new ListItem(
@@ -131,7 +130,7 @@ class TablesPage extends ListPage {
 				hash,
 				source,
 				page: it.page,
-				sortName,
+				sortName: PageFilterTables.getSortName(it.name),
 			},
 			{
 				isExcluded,
@@ -152,3 +151,5 @@ class TablesPage extends ListPage {
 const tablesPage = new TablesPage();
 tablesPage.sublistManager = new TablesSublistManager();
 window.addEventListener("load", () => tablesPage.pOnLoad());
+
+globalThis.dbg_page = tablesPage;

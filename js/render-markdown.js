@@ -504,7 +504,7 @@ class RendererMarkdown {
 	// region list items
 	_renderItem (entry, textStack, meta, options) {
 		this._renderPrefix(entry, textStack, meta, options);
-		textStack[0] += `**${this.render(entry.name)}${this._renderItem_isAddPeriod(entry) ? "." : ""}** `;
+		textStack[0] += `**${this.render(entry.name)}${this._renderItemSubtypes_isAddPeriod(entry) ? "." : ""}** `;
 		let addedNewline = false;
 		if (entry.entry) this._recursiveRender(entry.entry, textStack, meta);
 		else if (entry.entries) {

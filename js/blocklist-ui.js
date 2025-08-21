@@ -106,13 +106,13 @@ globalThis.BlocklistUtil = BlocklistUtil;
 class BlocklistUi {
 	constructor (
 		{
-			$wrpContent,
+			wrpContent,
 			data,
 			isCompactUi = false,
 			isAutoSave = true,
 		},
 	) {
-		this._$wrpContent = $wrpContent;
+		this._wrpContent = wrpContent;
 		this._data = data;
 		this._isCompactUi = !!isCompactUi;
 		this._isAutoSave = !!isAutoSave;
@@ -125,11 +125,11 @@ class BlocklistUi {
 		this._allSources = null;
 		this._allCategories = null;
 
-		this._$wrpControls = null;
+		this._wrpControls = null;
 
 		this._comp = null;
 
-		this._$wrpSelName = null;
+		this._wrpSelName = null;
 		this._metaSelName = null;
 	}
 
@@ -256,27 +256,27 @@ class BlocklistUi {
 	}
 
 	_pInit_initUi () {
-		this._$wrpControls = $(`<div ${this._isCompactUi ? "" : `class="bg-solid py-5 px-3 shadow-big b-1p"`}></div>`);
+		this._wrpControls = ee`<div ${this._isCompactUi ? "" : `class="bg-solid py-5 px-3 shadow-big b-1p"`}></div>`;
 
-		const $iptSearch = $(`<input type="search" class="search form-control lst__search lst__search--no-border-h h-100">`).disableSpellcheck();
+		const iptSearch = ee`<input type="search" class="search form-control lst__search lst__search--no-border-h h-100">`.disableSpellcheck();
 
-		const $btnReset = $(`<button class="ve-btn ve-btn-default">Reset Search</button>`)
-			.click(() => {
-				$iptSearch.val("");
+		const btnReset = ee`<button class="ve-btn ve-btn-default">Reset Search</button>`
+			.onn("click", () => {
+				iptSearch.val("");
 				this._list.reset();
 			});
 
-		const $wrpFilterTools = $$`<div class="input-group input-group--bottom ve-flex no-shrink">
+		const wrpFilterTools = ee`<div class="input-group input-group--bottom ve-flex no-shrink">
 			<button class="ve-col-4 sort ve-btn ve-btn-default ve-btn-xs ve-grow" data-sort="source">Source</button>
 			<button class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="category">Category</button>
 			<button class="ve-col-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
 			<button class="ve-col-1 sort ve-btn ve-btn-default ve-btn-xs" disabled>&nbsp;</button>
 		</div>`;
 
-		const $wrpList = $(`<div class="list-display-only smooth-scroll ve-overflow-y-auto h-100 min-h-0"></div>`);
+		const wrpList = ee`<div class="list-display-only smooth-scroll ve-overflow-y-auto h-100 min-h-0"></div>`;
 
-		$$(this._$wrpContent.empty())`
-			${this._$wrpControls}
+		ee(this._wrpContent.empty())`
+			${this._wrpControls}
 
 			<hr class="${this._isCompactUi ? "hr-2" : "hr-5"}">
 
@@ -286,26 +286,25 @@ class BlocklistUi {
 			<div class="ve-flex-col min-h-0">
 				<div class="ve-flex-v-stretch input-group input-group--top no-shrink">
 					<div class="w-100 relative">
-						${$iptSearch}
+						${iptSearch}
 						<div class="lst__wrp-search-glass no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
 						<div class="lst__wrp-search-visible no-events ve-flex-vh-center"></div>
 					</div>
-					${$btnReset}
+					${btnReset}
 				</div>
 
-				${$wrpFilterTools}
+				${wrpFilterTools}
 
-				${$wrpList}
+				${wrpList}
 			</div>`;
 
 		this._list = new List({
-			$iptSearch,
-			$wrpList,
-			isUseJquery: true,
+			iptSearch,
+			wrpList,
 		});
 		this._listId = 1;
 
-		SortUtil.initBtnSortHandlers($wrpFilterTools, this._list);
+		SortUtil.initBtnSortHandlers(wrpFilterTools, this._list);
 	}
 
 	_pInit_render () {
@@ -354,7 +353,7 @@ class BlocklistUi {
 
 		this._comp = new BlocklistUi.Component();
 
-		const $selSource = ComponentUiUtil.$getSelSearchable(
+		const selSource = ComponentUiUtil.getSelSearchable(
 			this._comp,
 			"source",
 			{
@@ -364,7 +363,7 @@ class BlocklistUi {
 		);
 		this._comp.addHook("source", () => this._doHandleSourceCategorySelChange());
 
-		const $selCategory = ComponentUiUtil.$getSelSearchable(
+		const selCategory = ComponentUiUtil.getSelSearchable(
 			this._comp,
 			"category",
 			{
@@ -374,30 +373,30 @@ class BlocklistUi {
 		);
 		this._comp.addHook("category", () => this._doHandleSourceCategorySelChange());
 
-		this._$wrpSelName = $(`<div class="w-100 ve-flex"></div>`);
+		this._wrpSelName = ee`<div class="w-100 ve-flex"></div>`;
 		this._doHandleSourceCategorySelChange();
 
-		const $btnAddExclusion = $(`<button class="ve-btn ve-btn-default ve-btn-xs">Add to Blocklist</button>`)
-			.click(() => this._pAdd());
+		const btnAddExclusion = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Add to Blocklist</button>`
+			.onn("click", () => this._pAdd());
 		// endregion
 
 		// Utility controls
-		const $btnSendToFoundry = !globalThis.IS_VTT && ExtensionUtil.ACTIVE
-			? $(`<button title="Send to Foundry" class="ve-btn ve-btn-xs ve-btn-default mr-2"><span class="glyphicon glyphicon-send"></span></button>`)
-				.click(evt => this._pDoSendToFoundry({isTemp: !!evt.shiftKey}))
+		const btnSendToFoundry = !globalThis.IS_VTT && ExtensionUtil.ACTIVE
+			? ee`<button title="Send to Foundry" class="ve-btn ve-btn-xs ve-btn-default mr-2"><span class="glyphicon glyphicon-send"></span></button>`
+				.onn("click", evt => this._pDoSendToFoundry({isTemp: !!evt.shiftKey}))
 			: null;
-		const $btnExport = $(`<button class="ve-btn ve-btn-default ve-btn-xs">Export List</button>`)
-			.click(() => this._export());
-		const $btnImport = $(`<button class="ve-btn ve-btn-default ve-btn-xs" title="SHIFT for Add Only">Import List</button>`)
-			.click(evt => this._pImport(evt));
-		const $btnReset = $(`<button class="ve-btn ve-btn-danger ve-btn-xs">Reset List</button>`)
-			.click(async () => {
+		const btnExport = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Export List</button>`
+			.onn("click", () => this._export());
+		const btnImport = ee`<button class="ve-btn ve-btn-default ve-btn-xs" title="SHIFT for Add Only">Import List</button>`
+			.onn("click", evt => this._pImport(evt));
+		const btnReset = ee`<button class="ve-btn ve-btn-danger ve-btn-xs">Reset List</button>`
+			.onn("click", async () => {
 				if (!await InputUiUtil.pGetUserBoolean({title: "Reset Blocklist", htmlDescription: "Are you sure?", textYes: "Yes", textNo: "Cancel"})) return;
 				this._reset();
 			});
 		// endregion
 
-		$$`<div class="${this._isCompactUi ? "mb-2" : "mb-5"} ve-flex-v-center mobile__ve-flex-col mobile__ve-flex-ai-start">
+		ee(this._wrpControls.empty())`<div class="${this._isCompactUi ? "mb-2" : "mb-5"} ve-flex-v-center mobile__ve-flex-col mobile__ve-flex-ai-start">
 			<div class="ve-flex-vh-center mr-4 mobile__mr-0 mobile__mb-2">
 				<div class="mr-2">UA/Etc. Sources</div>
 				<div class="ve-flex-v-center ve-btn-group">
@@ -442,34 +441,34 @@ class BlocklistUi {
 		<div class="ve-flex-v-end ${this._isCompactUi ? "mb-2" : "mb-5"} mobile__ve-flex-col mobile__ve-flex-ai-start">
 			<div class="ve-flex-col w-25 pr-2 mobile__w-100 mobile__mb-2 mobile__p-0">
 				<label class="mb-1">Source</label>
-				${$selSource}
+				${selSource}
 			</div>
 
 			<div class="ve-flex-col w-25 px-2 mobile__w-100 mobile__mb-2 mobile__p-0">
 				<label class="mb-1">Category</label>
-				${$selCategory}
+				${selCategory}
 			</div>
 
 			<div class="ve-flex-col w-25 px-2 mobile__w-100 mobile__mb-2 mobile__p-0">
 				<label class="mb-1">Name</label>
-				${this._$wrpSelName}
+				${this._wrpSelName}
 			</div>
 
 			<div class="ve-flex-col w-25 pl-2 mobile__w-100 mobile__mb-2 mobile__p-0">
 				<div class="mt-auto">
-					${$btnAddExclusion}
+					${btnAddExclusion}
 				</div>
 			</div>
 		</div>
 
 		<div class="w-100 ve-flex-v-center">
-			${$btnSendToFoundry}
+			${btnSendToFoundry}
 			<div class="ve-flex-v-center ve-btn-group mr-2">
-				${$btnExport}
-				${$btnImport}
+				${btnExport}
+				${btnImport}
 			</div>
-			${$btnReset}
-		</div>`.appendTo(this._$wrpControls.empty());
+			${btnReset}
+		</div>`;
 	}
 
 	_getBtn_addToBlocklist () {
@@ -482,11 +481,11 @@ class BlocklistUi {
 
 	_doHandleSourceCategorySelChange () {
 		if (this._metaSelName) this._metaSelName.unhook();
-		this._$wrpSelName.empty();
+		this._wrpSelName.empty();
 
 		const filteredData = this._doHandleSourceCategorySelChange_getFilteredData();
 
-		const $selName = ComponentUiUtil.$getSelSearchable(
+		const selName = ComponentUiUtil.getSelSearchable(
 			this._comp,
 			"name",
 			{
@@ -498,7 +497,7 @@ class BlocklistUi {
 			},
 		);
 
-		this._$wrpSelName.append($selName);
+		this._wrpSelName.append(selName);
 	}
 
 	_doHandleSourceCategorySelChange_getFilteredData () {
@@ -595,21 +594,21 @@ class BlocklistUi {
 		const id = this._listId++;
 		const sourceFull = Parser.sourceJsonToFull(source);
 
-		const $btnRemove = $(`<button class="ve-btn ve-btn-xxs ve-btn-danger">Remove</button>`)
-			.click(() => {
+		const btnRemove = ee`<button class="ve-btn ve-btn-xxs ve-btn-danger">Remove</button>`
+			.onn("click", () => {
 				this._remove(id, hash, category, source);
 			});
 
-		const $ele = $$`<div class="${this._addListItem_getItemStyles()}">
+		const ele = ee`<div class="${this._addListItem_getItemStyles()}">
 			<span class="ve-col-4 ve-text-center">${sourceFull}</span>
 			<span class="ve-col-2 ve-text-center">${display.displayCategory}</span>
 			<span class="ve-col-5 ve-text-center">${displayName}</span>
-			<span class="ve-col-1 ve-text-center">${$btnRemove}</span>
+			<span class="ve-col-1 ve-text-center">${btnRemove}</span>
 		</div>`;
 
 		const listItem = new ListItem(
 			id,
-			$ele,
+			ele,
 			displayName,
 			{
 				category: display.displayCategory,
@@ -756,6 +755,16 @@ class BlocklistUi {
 globalThis.BlocklistUi = BlocklistUi;
 
 BlocklistUi.Component = class extends BaseComponent {
+	constructor () {
+		super();
+
+		const hkNonNameChange = () => {
+			this._state.name = {hash: "*", name: "*", category: this._state.category};
+		};
+		this._addHookBase("source", hkNonNameChange);
+		this._addHookBase("category", hkNonNameChange);
+	}
+
 	get source () { return this._state.source; }
 	get category () { return this._state.category; }
 	get name () { return this._state.name; }

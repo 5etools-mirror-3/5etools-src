@@ -1,6 +1,4 @@
-"use strict";
-
-class PageFilterClassesRaw extends PageFilterClassesBase {
+export class PageFilterClassesRaw extends PageFilterClassesBase {
 	async _pPopulateBoxOptions (opts) {
 		await super._pPopulateBoxOptions(opts);
 		opts.isCompact = false;
@@ -30,9 +28,7 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 	}
 }
 
-globalThis.PageFilterClassesRaw = PageFilterClassesRaw;
-
-class ModalFilterClasses extends ModalFilterBase {
+export class ModalFilterClasses extends ModalFilterBase {
 	/**
 	 * @param opts
 	 * @param opts.namespace
@@ -71,7 +67,7 @@ class ModalFilterClasses extends ModalFilterBase {
 	async pGetSelection (classSubclassMeta) {
 		const {className, classSource, subclassName, subclassSource} = classSubclassMeta;
 
-		const allData = this._allData || await this._pLoadAllData();
+		const allData = this._allData || await this._pGetBlocklistedAllData();
 
 		const cls = allData.find(it => it.name === className && it.source === classSource);
 		if (!cls) throw new Error(`Could not find class with name "${className}" and source "${classSource}"`);
@@ -205,7 +201,7 @@ class ModalFilterClasses extends ModalFilterBase {
 
 		SortUtil.initBtnSortHandlers($wrpFormHeaders, this._list);
 
-		this._allData ||= await this._pLoadAllData();
+		this._allData ||= await this._pGetBlocklistedAllData();
 
 		await this._pageFilter.pInitFilterBox({
 			$wrpFormTop,
@@ -458,8 +454,6 @@ class ModalFilterClasses extends ModalFilterBase {
 
 				(cls.subclasses = cls.subclasses || []).push(sc);
 			}
-
-			delete data.subclass;
 		}
 
 		// Clean and initialise fields; sort arrays
@@ -481,7 +475,7 @@ class ModalFilterClasses extends ModalFilterBase {
 				.map(it => it.choose ? (it.choose.count || 1) : 0)
 				.reduce((a, b) => a + b, 0);
 
-			cls._cntStartingSkillChoicesMutliclass = (MiscUtil.get(cls, "multiclassing", "proficienciesGained", "skills") || [])
+			cls._cntStartingSkillChoicesMulticlass = (MiscUtil.get(cls, "multiclassing", "proficienciesGained", "skills") || [])
 				.map(it => it.choose ? (it.choose.count || 1) : 0)
 				.reduce((a, b) => a + b, 0);
 		});
@@ -516,7 +510,7 @@ class ModalFilterClasses extends ModalFilterBase {
 
 		eleLabel.innerHTML = `<div class="ve-col-1 pl-0 ve-flex-vh-center"><div class="fltr-cls__tgl"></div></div>
 		<div class="bold ve-col-9 ${cls._versionBase_isVersion ? "italic" : ""}">${cls._versionBase_isVersion ? `<span class="px-3"></span>` : ""}${cls.name}</div>
-		<div class="ve-col-2 pr-0 ve-flex-h-center ${Parser.sourceJsonToSourceClassname(cls.source)}" title="${Parser.sourceJsonToFull(cls.source)}" ${Parser.sourceJsonToStyle(cls.source)}>${source}${Parser.sourceJsonToMarkerHtml(cls.source)}</div>`;
+		<div class="ve-col-2 pr-0 ve-flex-h-center ${Parser.sourceJsonToSourceClassname(cls.source)}" title="${Parser.sourceJsonToFull(cls.source)}">${source}${Parser.sourceJsonToMarkerHtml(cls.source, {isList: true})}</div>`;
 
 		return new ListItem(
 			clsI,
@@ -524,7 +518,7 @@ class ModalFilterClasses extends ModalFilterBase {
 			`${cls.name} -- ${cls.source}`,
 			{
 				source: `${source} -- ${cls.name}`,
-				page: cls.page,
+				...ListItem.getCommonValues(cls),
 			},
 			{
 				ixClass: clsI,
@@ -541,7 +535,7 @@ class ModalFilterClasses extends ModalFilterBase {
 
 		eleLabel.innerHTML = `<div class="ve-col-1 pl-0 ve-flex-vh-center"><div class="fltr-cls__tgl"></div></div>
 		<div class="ve-col-9 pl-1 ve-flex-v-center ${sc._versionBase_isVersion ? "italic" : ""}">${sc._versionBase_isVersion ? `<span class="px-3"></span>` : ""}<span class="mx-3">\u2014</span> ${sc.name}</div>
-		<div class="ve-col-2 pr-0 ve-flex-h-center ${Parser.sourceJsonToSourceClassname(sc.source)}" title="${Parser.sourceJsonToFull(sc.source)}" ${Parser.sourceJsonToStyle(sc.source)}>${source}${Parser.sourceJsonToMarkerHtml(sc.source)}</div>`;
+		<div class="ve-col-2 pr-0 ve-flex-h-center ${Parser.sourceJsonToSourceClassname(sc.source)}" title="${Parser.sourceJsonToFull(sc.source)}">${source}${Parser.sourceJsonToMarkerHtml(sc.source, {isList: true})}</div>`;
 
 		return new ListItem(
 			`${clsI}--${scI}`,
@@ -549,7 +543,7 @@ class ModalFilterClasses extends ModalFilterBase {
 			`${cls.name} -- ${cls.source} -- ${sc.name} -- ${sc.source}`,
 			{
 				source: `${cls.source} -- ${cls.name} -- ${source} -- ${sc.name}`,
-				page: sc.page,
+				...ListItem.getCommonValues(sc),
 			},
 			{
 				ixClass: clsI,
@@ -559,5 +553,3 @@ class ModalFilterClasses extends ModalFilterBase {
 		);
 	}
 }
-
-globalThis.ModalFilterClasses = ModalFilterClasses;

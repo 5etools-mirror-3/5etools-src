@@ -58,7 +58,6 @@ const PROPORDER_FOUNDRY_GENERIC_FEATURE = [
 	"type",
 	"system",
 	PROPORDER_FOUNDRY_ACTIVITIES,
-	"actorDataMod",
 	PROPORDER_FOUNDRY_EFFECTS,
 	"flags",
 	"img",
@@ -627,6 +626,8 @@ const PROPORDER_CLASS = [
 	"isSidekick",
 	"classGroup",
 
+	ObjectKey.getCopyKey({fnGetModOrder: () => PROPORDER_CLASS__COPY_MOD}),
+
 	"requirements",
 	"primaryAbility",
 	"hd",
@@ -676,6 +677,11 @@ const PROPORDER_CLASS = [
 
 	...PROPS_FOUNDRY_DATA_INLINE,
 ];
+const PROPORDER_CLASS__COPY_MOD = [
+	"*",
+	"_",
+	...PROPORDER_CLASS,
+];
 const PROPORDER_FOUNDRY_CLASS = [
 	"name",
 
@@ -694,7 +700,6 @@ const PROPORDER_FOUNDRY_CLASS = [
 	"isIgnored",
 	"ignoreSrdActivities",
 	"ignoreSrdEffects",
-	"actorDataMod",
 	"actorTokenMod",
 
 	"migrationVersion",
@@ -799,7 +804,6 @@ const PROPORDER_FOUNDRY_SUBCLASS = [
 	"isIgnored",
 	"ignoreSrdActivities",
 	"ignoreSrdEffects",
-	"actorDataMod",
 	"actorTokenMod",
 
 	"migrationVersion",
@@ -932,7 +936,6 @@ const PROPORDER_FOUNDRY_CLASS_FEATURE = [
 	"isIgnored",
 	"ignoreSrdActivities",
 	"ignoreSrdEffects",
-	"actorDataMod",
 	"actorTokenMod",
 
 	new ObjectKey("subEntities", {
@@ -969,7 +972,6 @@ const PROPORDER_FOUNDRY_SUBCLASS_FEATURE = [
 	"isIgnored",
 	"ignoreSrdActivities",
 	"ignoreSrdEffects",
-	"actorDataMod",
 	"actorTokenMod",
 
 	new ObjectKey("subEntities", {
@@ -1044,6 +1046,8 @@ const PROPORDER_CONDITION = [
 	"hasFluffImages",
 
 	"fluff",
+
+	...PROPS_FOUNDRY_DATA_INLINE,
 ];
 const PROPORDER_DISEASE = [
 	"name",
@@ -1111,7 +1115,7 @@ const PROPORDER_CULT = [
 
 	"goal",
 	"cultists",
-	"signaturespells",
+	"signatureSpells",
 
 	"entries",
 ];
@@ -1135,7 +1139,7 @@ const PROPORDER_BOON = [
 
 	"goal",
 	"cultists",
-	"signaturespells",
+	"signatureSpells",
 
 	"entries",
 ];
@@ -1380,6 +1384,7 @@ const PROPORDER_RACE_FLUFF = [
 const PROPORDER_ITEM = [
 	"name",
 	"alias",
+	"group",
 	"namePrefix",
 	"nameSuffix",
 	"nameRemove",
@@ -1550,6 +1555,9 @@ const PROPORDER_ITEM = [
 
 				ObjectKey.getAttachedSpellFrequencyKey("charges"),
 
+				ObjectKey.getAttachedSpellFrequencyKey("resource"),
+				"resourceName",
+
 				ObjectKey.getAttachedSpellFrequencyKey("rest"),
 				ObjectKey.getAttachedSpellFrequencyKey("daily"),
 				ObjectKey.getAttachedSpellFrequencyKey("limited"),
@@ -1591,6 +1599,7 @@ const PROPORDER_ITEM__COPY_MOD = [
 const PROPORDER_MAGICVARIANT = [
 	"name",
 	"alias",
+	"group",
 	"source",
 
 	ObjectKey.getCopyKey({fnGetModOrder: () => PROPORDER_MAGICVARIANT__COPY_MOD}),
@@ -1854,6 +1863,11 @@ const PROPORDER_REWARD = [
 
 	"source",
 	"page",
+	"srd",
+	"srd52",
+	"basicRules",
+	"basicRules2024",
+	"otherSources",
 	"reprintedAs",
 
 	"type",
@@ -2071,6 +2085,8 @@ const PROPORDER_TABLE = [
 
 	"isNameGenerator",
 	"isStriped",
+
+	"parentEntity",
 ];
 const PROPORDER_TRAP = [
 	"name",
@@ -2342,6 +2358,13 @@ const PROPORDER_FACILITY = [
 	"fluff",
 ];
 
+const PROPORDER_CONVERTER_SAMPLE = [
+	"converterId",
+	"format",
+	"edition",
+	"text",
+];
+
 export const PROPORDER_PROP_TO_LIST = {
 	"_meta": PROPORDER_META,
 	"_test": PROPORDER_TEST,
@@ -2443,6 +2466,7 @@ export const PROPORDER_PROP_TO_LIST = {
 	"foundryMap": PROPORDER_FOUNDRY_MAP,
 	"facility": PROPORDER_FACILITY,
 	"facilityFluff": PROPORDER_GENERIC_FLUFF,
+	"converterSample": PROPORDER_CONVERTER_SAMPLE,
 };
 
 export const PROPORDER_ROOT = [
@@ -2597,6 +2621,7 @@ export const PROPORDER_ROOT = [
 	// region Tooling
 	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "makebrewCreatureTrait"),
 	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "makebrewCreatureAction"),
+	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "converterSample"),
 	ArrayKey.getRootKey(PROPORDER_PROP_TO_LIST, "monsterfeatures"),
 	// endregion
 

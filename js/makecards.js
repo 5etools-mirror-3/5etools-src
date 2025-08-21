@@ -47,10 +47,10 @@ class MakeCards extends BaseComponent {
 	}
 
 	_render_configSection () {
-		const $wrpConfig = $(`#wrp_config`).empty();
+		const wrpConfig = es(`#wrp_config`).empty();
 
-		const $btnResetDefaults = $(`<button class="ve-btn ve-btn-default ve-btn-xs">Reset</button>`)
-			.click(() => {
+		const btnResetDefaults = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Reset</button>`
+			.onn("click", () => {
 				Object.entries(MakeCards._AVAILABLE_TYPES)
 					.forEach(([entityType, typeMeta]) => {
 						const kColor = `color_${entityType}`;
@@ -61,57 +61,57 @@ class MakeCards extends BaseComponent {
 					});
 			});
 
-		$$($wrpConfig)`<h5 class="split-v-center"><div>New Card Defaults</div>${$btnResetDefaults}</h5>
+		ee(wrpConfig)`<h5 class="split-v-center"><div>New Card Defaults</div>${btnResetDefaults}</h5>
 		<div class="ve-flex-v-center bold">
 			<div class="ve-col-4 ve-text-center pr-2">Type</div>
 			<div class="ve-col-4 ve-text-center p-2">Color</div>
 			<div class="ve-col-4 ve-text-center pl-2">Icon</div>
 		</div>`;
 
-		const $getColorIconConfigRow = (entityType) => {
+		const getColorIconConfigRow = (entityType) => {
 			const entityMeta = MakeCards._AVAILABLE_TYPES[entityType];
 
 			const kColor = `color_${entityType}`;
 			const kIcon = `icon_${entityType}`;
-			const $iptColor = ComponentUiUtil.$getIptColor(this, kColor).addClass("cards-cfg__ipt-color");
-			const $dispIcon = $(`<div class="cards__disp-btn-icon"></div>`);
-			const $btnChooseIcon = $$`<button class="ve-btn ve-btn-xs ve-btn-default cards__btn-choose-icon">${$dispIcon}</button>`
-				.click(async () => {
+			const iptColor = ComponentUiUtil.getIptColor(this, kColor).addClass("cards-cfg__ipt-color");
+			const dispIcon = ee`<div class="cards__disp-btn-icon"></div>`;
+			const btnChooseIcon = ee`<button class="ve-btn ve-btn-xs ve-btn-default cards__btn-choose-icon">${dispIcon}</button>`
+				.onn("click", async () => {
 					const icon = await MakeCards._pGetUserIcon(this._state[kIcon]);
 					if (icon) this._state[kIcon] = icon;
 				});
-			const hkIcon = () => $dispIcon.css("background-image", `url('${MakeCards._getIconPath(this._state[kIcon])}')`);
+			const hkIcon = () => dispIcon.css({backgroundImage: `url('${MakeCards._getIconPath(this._state[kIcon])}')`});
 			this._addHookBase(kIcon, hkIcon);
 			hkIcon();
 
-			return $$`<div class="ve-flex-v-center stripe-even m-1">
+			return ee`<div class="ve-flex-v-center stripe-even m-1">
 				<div class="ve-col-4 ve-flex-vh-center pr-2">${entityMeta.searchTitle}</div>
-				<div class="ve-col-4 ve-flex-vh-center p-2">${$iptColor}</div>
-				<div class="ve-col-4 ve-flex-vh-center pl-2">${$btnChooseIcon}</div>
+				<div class="ve-col-4 ve-flex-vh-center p-2">${iptColor}</div>
+				<div class="ve-col-4 ve-flex-vh-center pl-2">${btnChooseIcon}</div>
 			</div>`;
 		};
 
-		Object.keys(MakeCards._AVAILABLE_TYPES).forEach(it => $getColorIconConfigRow(it).appendTo($wrpConfig));
+		Object.keys(MakeCards._AVAILABLE_TYPES).forEach(it => getColorIconConfigRow(it).appendTo(wrpConfig));
 	}
 
 	_render_cardList () {
-		const $wrpContainer = $(`#wrp_main`).empty();
+		const wrpContainer = es(`#wrp_main`).empty();
 
 		// region Search bar/add button
 		const menuSearch = ContextUtil.getMenu(this._render_getContextMenuOptions());
 
-		const $iptSearch = $(`<input type="search" class="form-control mr-2" placeholder="Search cards...">`);
-		const $btnAdd = $(`<button class="ve-btn ve-btn-primary mr-2"><span class="glyphicon glyphicon-plus"></span> Add</button>`)
-			.click(evt => ContextUtil.pOpenMenu(evt, menuSearch));
-		const $btnReset = $(`<button class="ve-btn ve-btn-danger mr-2"><span class="glyphicon glyphicon-trash"></span> Reset</button>`)
-			.click(async () => {
+		const iptSearch = ee`<input type="search" class="form-control mr-2" placeholder="Search cards...">`;
+		const btnAdd = ee`<button class="ve-btn ve-btn-primary mr-2"><span class="glyphicon glyphicon-plus"></span> Add</button>`
+			.onn("click", evt => ContextUtil.pOpenMenu(evt, menuSearch));
+		const btnReset = ee`<button class="ve-btn ve-btn-danger mr-2"><span class="glyphicon glyphicon-trash"></span> Reset</button>`
+			.onn("click", async () => {
 				if (!await InputUiUtil.pGetUserBoolean({title: "Reset", htmlDescription: "Are you sure?", textYes: "Yes", textNo: "Cancel"})) return;
 				this._list.removeAllItems();
 				this._list.update();
 				this._doSaveStateDebounced();
 			});
-		const $btnExport = $(`<button class="ve-btn ve-btn-default"><span class="glyphicon glyphicon-download"></span> Export JSON</button>`)
-			.click(() => {
+		const btnExport = ee`<button class="ve-btn ve-btn-default"><span class="glyphicon glyphicon-download"></span> Export JSON</button>`
+			.onn("click", () => {
 				const toDownload = this._list.items.map(it => {
 					const entityMeta = MakeCards._AVAILABLE_TYPES[it.values.entityType];
 					return {
@@ -126,12 +126,12 @@ class MakeCards extends BaseComponent {
 				});
 				DataUtil.userDownload("rpg-cards", toDownload, {isSkipAdditionalMetadata: true});
 			});
-		$$`<div class="w-100 no-shrink ve-flex-v-center mb-3">${$iptSearch}${$btnAdd}${$btnReset}${$btnExport}</div>`.appendTo($wrpContainer);
+		ee`<div class="w-100 no-shrink ve-flex-v-center mb-3">${iptSearch}${btnAdd}${btnReset}${btnExport}</div>`.appendTo(wrpContainer);
 		// endregion
 
 		// region Mass operations bar
 		const getSelCards = () => {
-			const out = this._list.visibleItems.filter(it => it.data.$cbSel.prop("checked"));
+			const out = this._list.visibleItems.filter(it => it.data.cbSel.prop("checked"));
 			if (!out.length) {
 				JqueryUtil.doToast({content: "Please select some cards first!", type: "warning"});
 				return null;
@@ -170,20 +170,20 @@ class MakeCards extends BaseComponent {
 			),
 		]);
 
-		const $btnMass = $(`<button class="ve-btn ve-btn-xs ve-btn-default" title="Carry out actions on selected cards">Mass...</button>`)
-			.click(evt => ContextUtil.pOpenMenu(evt, menuMass));
-		$$`<div class="w-100 no-shrink ve-flex-v-center mb-2">${$btnMass}</div>`.appendTo($wrpContainer);
+		const btnMass = ee`<button class="ve-btn ve-btn-xs ve-btn-default" title="Carry out actions on selected cards">Mass...</button>`
+			.onn("click", evt => ContextUtil.pOpenMenu(evt, menuMass));
+		ee`<div class="w-100 no-shrink ve-flex-v-center mb-2">${btnMass}</div>`.appendTo(wrpContainer);
 		// endregion
 
 		// region Main content
 		// Headers
-		const $cbSelAll = $(`<input type="checkbox" title="Select All">`)
-			.click(() => {
-				const isSel = $cbSelAll.prop("checked");
-				this._list.visibleItems.forEach(it => it.data.$cbSel.prop("checked", isSel));
+		const cbSelAll = ee`<input type="checkbox" title="Select All">`
+			.onn("click", () => {
+				const isSel = cbSelAll.prop("checked");
+				this._list.visibleItems.forEach(it => it.data.cbSel.prop("checked", isSel));
 			});
-		$$`<div class="w-100 no-shrink ve-flex-v-center bold">
-			<div class="ve-col-1 mr-2 ve-flex-vh-center">${$cbSelAll}</div>
+		ee`<div class="w-100 no-shrink ve-flex-v-center bold">
+			<div class="ve-col-1 mr-2 ve-flex-vh-center">${cbSelAll}</div>
 			<div class="ve-col-3 mr-2 ve-flex-vh-center">Name</div>
 			<div class="ve-col-1-5 mr-2 ve-flex-vh-center">Source</div>
 			<div class="ve-col-1-5 mr-2 ve-flex-vh-center">Type</div>
@@ -191,12 +191,11 @@ class MakeCards extends BaseComponent {
 			<div class="ve-col-1-1 mr-2 ve-flex-vh-center">Icon</div>
 			<div class="ve-col-1 mr-2 ve-flex-vh-center">Count</div>
 			<div class="ve-col-1-1 ve-flex-v-center ve-flex-h-right"></div>
-		</div>`.appendTo($wrpContainer);
+		</div>`.appendTo(wrpContainer);
 
-		const $wrpList = $(`<div class="w-100 h-100"></div>`);
-		$$`<div class="ve-flex-col h-100 w-100 ve-overflow-y-auto mt-2 ve-overflow-x-hidden">${$wrpList}</div>`.appendTo($wrpContainer);
-
-		this._list = new List({$iptSearch, $wrpList, isUseJquery: true});
+		const wrpList = ee`<div class="w-100 h-100"></div>`;
+		ee`<div class="ve-flex-col h-100 w-100 ve-overflow-y-auto mt-2 ve-overflow-x-hidden">${wrpList}</div>`.appendTo(wrpContainer);
+		this._list = new List({iptSearch, wrpList});
 		this._list.init();
 		// endregion
 	}
@@ -221,7 +220,7 @@ class MakeCards extends BaseComponent {
 				const existing = this._list.items.find(it => it.values.page === fromSearch.page && it.values.source === fromSearch.source && it.values.hash === fromSearch.hash);
 				if (existing) {
 					existing.values.count++;
-					existing.data.$iptCount.val(existing.values.count);
+					existing.data.iptCount.val(existing.values.count);
 					return this._doSaveStateDebounced();
 				}
 
@@ -308,41 +307,41 @@ class MakeCards extends BaseComponent {
 
 		const loaded = await DataLoader.pCacheAndGet(cardMeta.page, cardMeta.source, cardMeta.hash);
 
-		const $cbSel = $(`<input type="checkbox">`);
+		const cbSel = ee`<input type="checkbox">`;
 
-		const $iptRgb = $(`<input type="color" class="form-control input-xs form-control--minimal">`)
+		const iptRgb = ee`<input type="color" class="form-control input-xs form-control--minimal">`
 			.val(cardMeta.color)
-			.change(() => setColor($iptRgb.val()));
+			.onn("change", () => setColor(iptRgb.val()));
 		const setColor = (rgb) => {
-			$iptRgb.val(rgb);
+			iptRgb.val(rgb);
 			listItem.values.color = rgb;
 			this._doSaveStateDebounced();
 		};
 
-		const $dispIcon = $(`<div class="cards__disp-btn-icon"></div>`)
-			.css("background-image", `url('${MakeCards._getIconPath(cardMeta.icon)}')`);
-		const $btnIcon = $$`<button class="ve-btn ve-btn-default ve-btn-xs cards__btn-choose-icon">${$dispIcon}</button>`
-			.click(async () => {
+		const dispIcon = ee`<div class="cards__disp-btn-icon"></div>`
+			.css({backgroundImage: `url('${MakeCards._getIconPath(cardMeta.icon)}')`});
+		const btnIcon = ee`<button class="ve-btn ve-btn-default ve-btn-xs cards__btn-choose-icon">${dispIcon}</button>`
+			.onn("click", async () => {
 				const icon = await MakeCards._pGetUserIcon();
 				if (icon) setIcon(icon);
 			});
 		const setIcon = (icon) => {
 			listItem.values.icon = icon;
-			$dispIcon.css("background-image", `url('${MakeCards._getIconPath(icon)}')`);
+			dispIcon.css({backgroundImage: `url('${MakeCards._getIconPath(icon)}')`});
 			this._doSaveStateDebounced();
 		};
 
-		const $iptCount = $(`<input class="form-control form-control--minimal input-xs ve-text-center">`)
-			.change(() => {
-				const asNum = UiUtil.strToInt($iptCount.val(), 1, {min: 1, fallbackOnNaN: 1});
+		const iptCount = ee`<input class="form-control form-control--minimal input-xs ve-text-center">`
+			.onn("change", () => {
+				const asNum = UiUtil.strToInt(iptCount.val(), 1, {min: 1, fallbackOnNaN: 1});
 				listItem.values.count = asNum;
-				$iptCount.val(asNum);
+				iptCount.val(asNum);
 				this._doSaveStateDebounced();
 			})
 			.val(cardMeta.count);
 
-		const $btnCopy = $(`<button class="ve-btn ve-btn-default ve-btn-xs mr-2" title="Copy JSON (SHIFT to view JSON)"><span class="glyphicon glyphicon-copy"></span></button>`)
-			.click(async evt => {
+		const btnCopy = ee`<button class="ve-btn ve-btn-default ve-btn-xs mr-2" title="Copy JSON (SHIFT to view JSON)"><span class="glyphicon glyphicon-copy"></span></button>`
+			.onn("click", async evt => {
 				const entityMeta = MakeCards._AVAILABLE_TYPES[listItem.values.entityType];
 				const toCopy = {
 					count: listItem.values.count,
@@ -355,10 +354,13 @@ class MakeCards extends BaseComponent {
 				};
 
 				if (evt.shiftKey) {
-					const $content = Renderer.hover.$getHoverContent_statsCode(toCopy);
+					// eslint-disable-next-line vet-jquery/jquery
+					const content = Renderer.hover.$getHoverContent_statsCode(toCopy)[0];
 
 					Renderer.hover.getShowWindow(
-						$content,
+
+						// eslint-disable-next-line vet-jquery/jquery
+						$(content),
 						Renderer.hover.getWindowPositionFromEvent(evt),
 						{
 							title: `Card Data \u2014 ${listItem.name}`,
@@ -368,30 +370,30 @@ class MakeCards extends BaseComponent {
 					);
 				} else {
 					await MiscUtil.pCopyTextToClipboard(JSON.stringify(toCopy, null, 2));
-					JqueryUtil.showCopiedEffect($btnCopy, "Copied JSON!");
+					JqueryUtil.showCopiedEffect(btnCopy, "Copied JSON!");
 				}
 			});
-		const $btnDelete = $(`<button class="ve-btn ve-btn-danger ve-btn-xs" title="Remove"><span class="glyphicon glyphicon-trash"></span></button>`)
-			.click(() => {
+		const btnDelete = ee`<button class="ve-btn ve-btn-danger ve-btn-xs" title="Remove"><span class="glyphicon glyphicon-trash"></span></button>`
+			.onn("click", () => {
 				this._list.removeItemByIndex(uid);
 				this._list.update();
 				this._doSaveStateDebounced();
 			});
 
-		const $ele = $$`<label class="ve-flex-v-center my-1 w-100 lst__row lst__row-border lst__row-inner">
-			<div class="ve-col-1 mr-2 ve-flex-vh-center">${$cbSel}</div>
+		const ele = ee`<label class="ve-flex-v-center my-1 w-100 lst__row lst__row-border lst__row-inner">
+			<div class="ve-col-1 mr-2 ve-flex-vh-center">${cbSel}</div>
 			<div class="ve-col-3 mr-2 ve-flex-v-center">${Renderer.get().render(`{@${Parser.getPropTag(cardMeta.entityType)} ${DataUtil.proxy.getUid(loaded.__prop, loaded, {isMaintainCase: true})}}`)}</div>
-			<div class="ve-col-1-5 mr-2 ve-flex-vh-center ${Parser.sourceJsonToSourceClassname(loaded.source)}" title="${Parser.sourceJsonToFull(loaded.source)}" ${Parser.sourceJsonToStyle(loaded.source)}>${Parser.sourceJsonToAbv(loaded.source)}</div>
+			<div class="ve-col-1-5 mr-2 ve-flex-vh-center ${Parser.sourceJsonToSourceClassname(loaded.source)}" title="${Parser.sourceJsonToFull(loaded.source)}">${Parser.sourceJsonToAbv(loaded.source)}</div>
 			<div class="ve-col-1-5 mr-2 ve-flex-vh-center">${Parser.getPropDisplayName(cardMeta.entityType)}</div>
-			<div class="ve-col-1-1 mr-2 ve-flex-vh-center">${$iptRgb}</div>
-			<div class="ve-col-1-1 mr-2 ve-flex-vh-center">${$btnIcon}</div>
-			<div class="ve-col-1 mr-2 ve-flex-vh-center">${$iptCount}</div>
-			<div class="ve-col-1-1 ve-flex-v-center ve-flex-h-right">${$btnCopy}${$btnDelete}</div>
+			<div class="ve-col-1-1 mr-2 ve-flex-vh-center">${iptRgb}</div>
+			<div class="ve-col-1-1 mr-2 ve-flex-vh-center">${btnIcon}</div>
+			<div class="ve-col-1 mr-2 ve-flex-vh-center">${iptCount}</div>
+			<div class="ve-col-1-1 ve-flex-v-center ve-flex-h-right">${btnCopy}${btnDelete}</div>
 		</label>`;
 
 		const listItem = new ListItem(
 			uid,
-			$ele,
+			ele,
 			loaded.name,
 			{
 				page: cardMeta.page,
@@ -405,8 +407,8 @@ class MakeCards extends BaseComponent {
 				entity: loaded,
 			},
 			{
-				$cbSel,
-				$iptCount,
+				cbSel,
+				iptCount,
 				setColor,
 				setIcon,
 			},
@@ -427,7 +429,7 @@ class MakeCards extends BaseComponent {
 	static _ct_dndstats (...attrs) { return `dndstats | ${attrs.join(" | ")}`; }
 
 	static _ct_htmlToText (html) {
-		return $(`<div>${html}</div>`).text().trim();
+		return ee`<div>${html}</div>`.txt().trim();
 	}
 	static _ct_renderEntries (entries, depth = 0) {
 		if (!entries || !entries.length) return [];
@@ -625,19 +627,19 @@ class MakeCards extends BaseComponent {
 
 	static _pGetUserIcon (initialVal) {
 		return new Promise(resolve => {
-			const $iptStr = $(`<input class="form-control mb-2">`)
-				.keydown(async evt => {
+			const iptStr = ee`<input class="form-control mb-2">`
+				.onn("keydown", async evt => {
 					// prevent double-binding the return key if we have autocomplete enabled
 					await MiscUtil.pDelay(17); // arbitrary delay to allow dropdown to render (~1000/60, i.e. 1 60 FPS frame)
-					if ($modalInner.find(`.typeahead.ve-dropdown-menu`).is(":visible")) return;
-					// return key
-					if (evt.which === 13) doClose(true);
+					if (eleModalInner.find(`.typeahead.ve-dropdown-menu:is(:visible)`)) return;
+					if (evt.key === "Enter") doClose(true);
 					evt.stopPropagation();
 				});
 
-			if (initialVal) $iptStr.val(initialVal);
+			if (initialVal) iptStr.val(initialVal);
 
-			$iptStr.typeahead({
+			// eslint-disable-next-line vet-jquery/jquery
+			$(iptStr).typeahead({
 				source: icon_names,
 				items: "16",
 				fnGetItemPrefix: (iconName) => {
@@ -645,22 +647,22 @@ class MakeCards extends BaseComponent {
 				},
 			});
 
-			const $btnOk = $(`<button class="ve-btn ve-btn-default">Confirm</button>`)
-				.click(() => doClose(true));
-			const {$modalInner, doClose} = UiUtil.getShowModal({
+			const btnOk = ee`<button class="ve-btn ve-btn-default">Confirm</button>`
+				.onn("click", () => doClose(true));
+			const {eleModalInner, doClose} = UiUtil.getShowModal({
 				title: "Enter Icon",
 				isMinHeight0: true,
 				cbClose: (isDataEntered) => {
 					if (!isDataEntered) return resolve(null);
-					const raw = $iptStr.val();
+					const raw = iptStr.val();
 					if (!raw.trim()) return resolve(null);
 					else return resolve(raw);
 				},
 			});
-			$iptStr.appendTo($modalInner);
-			$$`<div class="ve-flex-vh-center">${$btnOk}</div>`.appendTo($modalInner);
-			$iptStr.focus();
-			$iptStr.select();
+			iptStr.appendTo(eleModalInner);
+			ee`<div class="ve-flex-vh-center">${btnOk}</div>`.appendTo(eleModalInner);
+			iptStr.focus();
+			iptStr.select();
 		});
 	}
 

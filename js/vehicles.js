@@ -84,7 +84,7 @@ class VehiclesPage extends ListPage {
 		eleLi.innerHTML = `<a href="#${UrlUtil.autoEncodeHash(it)}" class="lst__row-border lst__row-inner">
 			<span class="ve-col-6 pl-0 pr-1 ve-text-center">${displayType}</span>
 			<span class="bold ve-col-4 px-1">${it.name}</span>
-			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(it.source)} pl-1 pr-0" title="${Parser.sourceJsonToFull(it.source)}" ${Parser.sourceJsonToStyle(it.source)}>${source}</span>
+			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(it.source)} pl-1 pr-0" title="${Parser.sourceJsonToFull(it.source)}">${source}</span>
 		</a>`;
 
 		const listItem = new ListItem(
@@ -128,3 +128,5 @@ class VehiclesPage extends ListPage {
 const vehiclesPage = new VehiclesPage();
 vehiclesPage.sublistManager = new VehiclesSublistManager();
 window.addEventListener("load", () => vehiclesPage.pOnLoad());
+
+globalThis.dbg_page = vehiclesPage;

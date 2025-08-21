@@ -1083,7 +1083,7 @@ export class CoreRuleTag extends ConverterTaggerInitializable {
 						},
 					);
 					return ptrStack._
-						.replace(/{@dice D20} Test(?<plural>s?)/g, (...m) => `{@variantrule D20 Test|XPHB${m.at(-1).plural ? `|D20 Tests` : ""}}`)
+						.replace(/(?<!{@variantrule )(?:{@dice )?D20(?:})? Test(?<plural>s?)/g, (...m) => `{@variantrule D20 Test|XPHB${m.at(-1).plural ? `|D20 Tests` : ""}}`)
 					;
 				},
 			},

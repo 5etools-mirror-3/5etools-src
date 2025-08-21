@@ -86,11 +86,11 @@ class _RenderSpellsImplBase extends RenderPageImplBase {
 	_page = UrlUtil.PG_SPELLS;
 	_dataProp = "spell";
 
-	$getRendered (ent, opts) {
+	getRendered (ent, opts) {
 		opts = {...opts || {}};
 		opts.subclassLookup ||= {};
 		opts.settings ||= SettingsUtil.getDefaultSettings(RenderSpellsSettings.SETTINGS);
-		return super.$getRendered(ent, opts);
+		return super.getRendered(ent, opts);
 	}
 
 	/* -------------------------------------------- */
@@ -130,7 +130,7 @@ class _RenderSpellsImplBase extends RenderPageImplBase {
 	}
 
 	_getCommonHtmlParts_range ({ent}) {
-		return `<tr><td colspan="6">${Renderer.spell.getHtmlPtRange(ent)}</td></tr>`;
+		return `<tr><td colspan="6">${Renderer.spell.getHtmlPtRange(ent, {styleHint: this._style, isDisplaySelfArea: SourceUtil.isClassicSource(ent.source)})}</td></tr>`;
 	}
 
 	_getCommonHtmlParts_components ({ent}) {
@@ -189,10 +189,10 @@ class _RenderSpellsImplBase extends RenderPageImplBase {
 		if (fromClassListVariant.length) {
 			const [current, legacy] = Parser.spVariantClassesToCurrentAndLegacy(fromClassListVariant);
 			if (settings.isDisplayVariantClasses && current.length) {
-				stackFroms.push(`<div><span class="bold">Optional/Variant Classes: </span>${Parser.spMainClassesToFull(current)}</div>`);
+				stackFroms.push(`<div><span class="bold" title="&quot;Optional&quot; spells may be added to a campaign by the DM. &quot;Variant&quot; spells are generally available, but may be made available to a class by the DM.">Optional/Variant Classes: </span>${Parser.spMainClassesToFull(current)}</div>`);
 			}
 			if (settings.isDisplayVariantClassesLegacy && legacy.length) {
-				stackFroms.push(`<div class="ve-muted"><span class="bold">Optional/Variant Classes (legacy): </span>${Parser.spMainClassesToFull(legacy)}</div>`);
+				stackFroms.push(`<div class="ve-muted"><span class="bold" title="&quot;Optional&quot; spells may be added to a campaign by the DM. &quot;Variant&quot; spells are generally available, but may be made available to a class by the DM.">Optional/Variant Classes (legacy): </span>${Parser.spMainClassesToFull(legacy)}</div>`);
 			}
 		}
 
@@ -343,12 +343,23 @@ export class RenderSpells {
 	 * @param [opts.isSkipExcludesRender]
 	 * @param [opts.settings]
 	 */
-	static $getRenderedSpell (ent, opts) {
+	static getRenderedSpell (ent, opts) {
 		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
 		switch (styleHint) {
-			case SITE_STYLE__CLASSIC: return this._RENDER_CLASSIC.$getRendered(ent, opts);
-			case SITE_STYLE__ONE: return this._RENDER_ONE.$getRendered(ent, opts);
+			case SITE_STYLE__CLASSIC: return this._RENDER_CLASSIC.getRendered(ent, opts);
+			case SITE_STYLE__ONE: return this._RENDER_ONE.getRendered(ent, opts);
 			default: throw new Error(`Unhandled style "${styleHint}"!`);
 		}
+	}
+
+	/**
+	 * @param {object} ent
+	 * @param [opts]
+	 * @param [opts.subclassLookup]
+	 * @param [opts.isSkipExcludesRender]
+	 * @param [opts.settings]
+	 */
+	static $getRenderedSpell (ent, opts) {
+		return $(this.getRenderedSpell(ent, opts));
 	}
 }

@@ -2,6 +2,10 @@
 
 class PageFilterTables extends PageFilterBase {
 	// region static
+	static getSortName (name) {
+		return name.replace(/^\s*([\d,.]+)\s*gp/i, (...m) => m[1].replace(Parser._numberCleanRegexp, "").padStart(9, "0"));
+	}
+
 	static _sourceSelFn (val) {
 		return !SourceUtil.isNonstandardSource(val) && !SourceUtil.isAdventure(val);
 	}

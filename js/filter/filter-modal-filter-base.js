@@ -1,4 +1,5 @@
 import {EVNT_VALCHANGE} from "./filter-constants.js";
+import {UtilsBlocklist} from "../utils-blocklist/utils-blocklist.js";
 
 /** @abstract */
 export class ModalFilterBase {
@@ -106,7 +107,7 @@ export class ModalFilterBase {
 		SortUtil.initBtnSortHandlers($wrpFormHeaders, this._list);
 		this._list.on("updated", () => $dispNumVisible.html(`${this._list.visibleItems.length}/${this._list.items.length}`));
 
-		this._allData = this._allData || await this._pLoadAllData();
+		this._allData ||= await this._pGetBlocklistedAllData();
 
 		await this._pageFilter.pInitFilterBox({
 			$wrpFormTop,
@@ -164,7 +165,7 @@ export class ModalFilterBase {
 
 		await this._pageFilter.pInitFilterBox({namespace: this._namespace});
 
-		const allData = this._allData || await this._pLoadAllData();
+		const allData = this._allData || await this._pGetBlocklistedAllData();
 
 		this.setHiddenWrapperAllData(allData);
 
@@ -324,6 +325,11 @@ export class ModalFilterBase {
 
 			this._filterCache = {$iptSearch, $wrpModalInner, $btnConfirm, pageFilter, list, $cbSelAll};
 		}
+	}
+
+	async _pGetBlocklistedAllData () {
+		const allData = await this._pLoadAllData();
+		return UtilsBlocklist.getBlocklistFilteredArray(allData);
 	}
 
 	/**

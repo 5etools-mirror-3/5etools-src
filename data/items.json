@@ -2227,6 +2227,9 @@
 		},
 		{
 			"name": "Amulet",
+			"group": [
+				"Holy Symbol"
+			],
 			"source": "PHB",
 			"page": 151,
 			"srd": true,
@@ -2242,6 +2245,9 @@
 		},
 		{
 			"name": "Amulet",
+			"group": [
+				"Holy Symbol"
+			],
 			"source": "XPHB",
 			"page": 226,
 			"srd52": true,
@@ -2963,40 +2969,6 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Aqua Delerium",
-			"source": "DoDk",
-			"page": 230,
-			"type": "P",
-			"rarity": "rare",
-			"entries": [
-				"This purple potion glows dimly with octarine light. It swirls and sparkles in its small stoppered bottle.",
-				"When you drink this potion, you regain expended spell slots. Roll {@dice 1d6} - you choose spell slots to regain that have a combined level that is equal to or less than the result. None of the slots can be higher than 5th level.",
-				"For one hour after drinking aqua delerium, roll {@dice 1d20} each time you cast a spell of 1st level or higher. On a 1, you trigger a random arcane anomaly (see Dungeons of Drakkenheim).",
-				"If you consume more than one dose of aqua delerium before finishing your next long rest, you take ({@damage 1d12}) necrotic damage for each spell level regained, and your hit point maximum is reduced by an amount equal to the damage taken until you finish a long rest. This damage can't be reduced or prevented in any way.",
-				"When a creature who cannot cast spells using spell slots drinks aqua delerium, it takes 10 ({@damage 3d6}) necrotic damage and gains one {@adventure level of contamination|DoDk|12}."
-			],
-			"miscTags": [
-				"CNS"
-			],
-			"hasFluffImages": true
-		},
-		{
-			"name": "Aqua Expurgo",
-			"source": "DoDk",
-			"page": 230,
-			"type": "P",
-			"rarity": "rare",
-			"entries": [
-				"This bright orange fluid is stored in a syringe and charged with arcane magic. You can use an action to administer the shot directly to the heart of yourself or another willing creature.",
-				"You are protected against {@adventure contamination|DoDk|12} for six hours after receiving a dose of aqua expurgo. During this time, whenever you fail a saving throw against an effect that would cause you to gain one or more {@adventure contamination levels|DoDk|12}, you can choose to succeed instead. You can use this ability three times, after which the effects of aqua expurgo expire.",
-				"If the effects of aqua expurgo expire in this manner, you immediately take 10 ({@damage 3d6}) necrotic damage and become incapacitated for 1 minute while you violently retch corrupt bile. Your hit point maximum is reduced by an amount equal to the damage taken. This reduction lasts until you finish a long rest. You die if this effect reduces your hit point maximum to 0. The necrotic damage can't be reduced or prevented by any means."
-			],
-			"miscTags": [
-				"CNS"
-			],
-			"hasFluffImages": true
-		},
-		{
 			"name": "Aquamarine",
 			"source": "DMG",
 			"page": 134,
@@ -3076,22 +3048,6 @@
 						"The cannon expels poison gas in a {@quantity 60|-foot} cone. Each creature in that area must make a {@dc 15} Constitution saving throw. On a failed save, the creature takes 22 ({@damage 4d10}) poison damage and is {@condition poisoned} for 1 minute. On a successful save, the creature takes half as much damage and isn't {@condition poisoned}. A creature {@condition poisoned} in this way can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
 					]
 				}
-			]
-		},
-		{
-			"name": "Arcane Oil",
-			"source": "GHLoE",
-			"page": 111,
-			"type": "P",
-			"rarity": "rare",
-			"bonusWeapon": "+2",
-			"entries": [
-				"This substance is created by distilling the jelly that encases the brain of a {@creature xakalonus|GHLoE}. As an action, you can coat one weapon or 20 pieces of ammunition with the substance.",
-				"If the coated objects are not magical, for the next minute, your attacks with the coated weapon or ammunition gain a +2 bonus to attack and damage rolls.",
-				"If the coated objects are magical, the oil does not affect attack or damage rolls with them. However, your attacks against the {@creature hraptnon|GHLoE} can fully damage that creature for one minute."
-			],
-			"miscTags": [
-				"CNS"
 			]
 		},
 		{
@@ -4077,7 +4033,7 @@
 			"reqAttune": "by a member of the Azorius guild",
 			"reqAttuneTags": [
 				{
-					"background": "azorius functionary|ggr"
+					"background": "Azorius Functionary|GGR"
 				}
 			],
 			"wondrous": true,
@@ -6967,7 +6923,7 @@
 			"source": "WDH",
 			"page": 190,
 			"rarity": "legendary",
-			"reqAttune": "by the blackstaff heir, who must be a wizard",
+			"reqAttune": "by the Blackstaff heir, who must be a wizard",
 			"reqAttuneTags": [
 				{
 					"class": "wizard"
@@ -8890,18 +8846,6 @@
 			]
 		},
 		{
-			"name": "Bottled Comet",
-			"source": "DoDk",
-			"page": 230,
-			"rarity": "rare",
-			"wondrous": true,
-			"entries": [
-				"This spherical glass orb contains an ignited delerium shard hovering gently within. Electrical currents of yellow, green, and purple energy streak from the crystal and cascade along the glass, rendering it warm to the touch.",
-				"As an action you can throw the orb up to {@quantity 30|feet}. It shatters on impact, releasing a {@quantity 20|-foot}-radius burst of contaminated energy. Creatures in the area must succeed on a {@dc 15} Constitution save or take ({@damage 8d6}) necrotic damage, and take one {@adventure level of contamination|DoDk|12}. In addition, an arcane anomaly (see Dungeons of Drakkenheim) occurs, centred on the point of impact."
-			],
-			"hasFluffImages": true
-		},
-		{
 			"name": "Bowl of Commanding Water Elementals",
 			"source": "DMG",
 			"page": 156,
@@ -8912,7 +8856,7 @@
 			"tier": "major",
 			"rarity": "rare",
 			"wondrous": true,
-			"weight": 24,
+			"weight": 3,
 			"entries": [
 				"While this bowl is filled with water, you can use an action to speak the bowl's command word and summon a {@creature water elemental}, as if you had cast the {@spell conjure elemental} spell. The bowl can't be used this way again until the next dawn.",
 				"The bowl is about {@quantity 1|foot} in diameter and half as deep. It weighs {@quantity 3|pounds} and holds about {@quantity 3|gallons}."
@@ -8937,7 +8881,6 @@
 			"basicRules2024": true,
 			"rarity": "rare",
 			"wondrous": true,
-			"weight": 24,
 			"entries": [
 				"While this bowl is filled with water and you are within {@quantity 5|feet} of it, you can take a {@action Magic|XPHB} action to summon a {@creature Water Elemental|XMM}. The elemental appears in an unoccupied space as close to the bowl as possible, understands your languages, obeys your commands, and takes its turn immediately after you on your {@variantrule Initiative|XPHB} count. The elemental disappears after 1 hour, when it dies, or when you dismiss it as a {@variantrule Bonus Action|XPHB}. The bowl can't be used this way again until the next dawn.",
 				"The bowl is about {@quantity 1|foot} in diameter and half as deep. It holds about {@quantity 3|gallons}."
@@ -9205,28 +9148,6 @@
 			"type": "$A|XDMG",
 			"rarity": "none",
 			"value": 25000
-		},
-		{
-			"name": "Brazen Armor",
-			"source": "GHLoE",
-			"page": 111,
-			"baseItem": "plate armor|PHB",
-			"type": "HA",
-			"resist": [
-				"fire",
-				"radiant"
-			],
-			"rarity": "very rare",
-			"reqAttune": true,
-			"weight": 65,
-			"ac": 18,
-			"strength": "15",
-			"bonusAc": "+1",
-			"stealth": true,
-			"entries": [
-				"This armor, fashioned from the body of an {@creature Empyrean brazen bull|GHLoE}, gleams brightly in direct sunlight. While wearing this armor, you gain a +1 bonus to AC. In addition, you have resistance to fire and radiant damage.",
-				"Plate consists of shaped, interlocking metal plates to cover the entire body. A suit of plate includes gauntlets, heavy leather boots, a visored helmet, and thick layers of padding underneath the armor. Buckles and straps distribute the weight over the body."
-			]
 		},
 		{
 			"name": "Brazier of Commanding Fire Elementals",
@@ -11664,42 +11585,6 @@
 			"value": 1
 		},
 		{
-			"name": "Chancellor's Crest",
-			"source": "DoDk",
-			"page": 232,
-			"rarity": "rare",
-			"reqAttune": true,
-			"wondrous": true,
-			"entries": [
-				"While wearing this amulet, you can read all writing, and speak and understand any language.",
-				"You can use an action to cast one of the following spells: {@spell detect thoughts}, {@spell sending}, or {@spell Rary's telepathic bond}. Once the amulet has been used to cast one of these spells, it can't be used to cast that spell again until the next dawn. You can choose your Intelligence, Wisdom, or Charisma score as the spellcasting ability for casting these spells, and use your proficiency bonus to determine their attack bonus and saving throw DC.",
-				{
-					"type": "entries",
-					"name": "Crown Authority",
-					"entries": [
-						"A character cannot attune to more than one Seal of Drakkenheim. Guardian constructs in Drakkenheim such as {@creature wall gargoyle|DoDk|wall gargoyles} and {@creature tower dragon|DoDk|tower dragons} do not attack you while you are attuned to one of the Seals of Drakkenheim. An individual guardian ignores this effect for 24 hours if you attack it or cast a spell upon it.",
-						"As an action, you may present a Seal of Drakkenheim to rebuke the guardians. You make an opposed Charisma ability check against each {@creature wall gargoyle|DoDk} or {@creature tower dragon|DoDk} that can see or hear you within {@quantity 30|feet} of you. If you win the contest, the creature is rebuked for 1 minute or until it takes any damage. A rebuked creature doesn't move, and can't take actions or reactions. A creature who wins the contest is immune to your rebuke for 24 hours."
-					]
-				}
-			],
-			"attachedSpells": {
-				"daily": {
-					"1e": [
-						"detect thoughts",
-						"rary's telepathic bond",
-						"sending"
-					]
-				},
-				"ability": {
-					"choose": [
-						"int",
-						"wis",
-						"cha"
-					]
-				}
-			}
-		},
-		{
 			"name": "Chariot",
 			"source": "PHB",
 			"page": 157,
@@ -13031,24 +12916,6 @@
 			"value": 300
 		},
 		{
-			"name": "Coat of Lies",
-			"source": "GHLoE",
-			"page": 111,
-			"rarity": "rare",
-			"reqAttune": "by a spellcaster",
-			"reqAttuneTags": [
-				{
-					"spellcasting": true
-				}
-			],
-			"wondrous": true,
-			"bonusAc": "+1",
-			"entries": [
-				"This coat made of the severed tongues of a {@creature Harvester of Lies|GHLoE|harvester}'s victims provides a +1 bonus to your AC, and you have advantage on Charisma ({@skill Deception}) checks.",
-				"Additionally, as a bonus action three times per day, you can activate the magic of the cloak. If you do, the next spell you cast before the start of your next turn can be cast without any somatic or verbal components."
-			]
-		},
-		{
 			"name": "Coat of the Crest",
 			"source": "TDCSR",
 			"page": 194,
@@ -13614,7 +13481,7 @@
 			"rarity": "uncommon",
 			"wondrous": true,
 			"entries": [
-				"Condensed Order is a silvery powder that can be extracted from those of a lawful persuasion. Devils bound for the warfronts of Avernus take flasks and snuff boxes of the stuff to fortify themselves against exposure to the raw chaos of demons. Taking the substance requires an action and makes you immune to the flesh warping feature of demonic ichor. It also gives you advantage on saving throws against any effect from a demonic source. These benefits last for 8 hours."
+				"Condensed Order is a silvery powder that can be extracted from those of a lawful persuasion. Devils bound for the war fronts of Avernus take flasks and snuff boxes of the stuff to fortify themselves against exposure to the raw chaos of demons. Taking the substance requires an action and makes you immune to the flesh warping feature of demonic ichor. It also gives you advantage on saving throws against any effect from a demonic source. These benefits last for 8 hours."
 			]
 		},
 		{
@@ -14375,34 +14242,6 @@
 			}
 		},
 		{
-			"name": "Crown of Westemär",
-			"source": "DoDk",
-			"page": 233,
-			"rarity": "legendary",
-			"reqAttune": true,
-			"wondrous": true,
-			"recharge": "decade",
-			"rechargeAmount": 1,
-			"charges": 3,
-			"entries": [
-				"A character may only attune to the Crown of Westemär by performing a special one hour ceremony with six other characters who are each attuned to a different Seal of Drakkenheim. See the \"Developments\" section in Chapter 9: Castle Drakken for details on this ritual.",
-				"The crown has 3 charges. While wearing it, you can use an action to expend 1 charge to cast the {@spell wish} spell from it. The crown regains one expended charge every ten years.",
-				"The {@creature ancient bronze dragon} Minazorond, the {@creature tower dragon|DoDk|tower dragons}, and the {@creature wall gargoyle|DoDk|wall gargoyles} are under your control and obey your spoken commands while you wear the crown.",
-				"While wearing the crown and seated on the Throne of Drakkenheim in Castle Drakken, you may use an action to communicate telepathically with one dragon or twelve gargoyles so long as they are within {@quantity 100|miles} of Castle Drakken. When you do, you can issue commands to those creatures, see through one of the creature's eyes, and hear what it hears until the start of your next turn, gaining the benefits of any special senses that the creature has. During this time, you are deaf and blind with regard to your own senses.",
-				{
-					"type": "entries",
-					"name": "Crown Authority",
-					"entries": [
-						"A character cannot attune to more than one Seal of Drakkenheim. Guardian constructs in Drakkenheim such as {@creature wall gargoyle|DoDk|wall gargoyles} and {@creature tower dragon|DoDk|tower dragons} do not attack you while you are attuned to one of the Seals of Drakkenheim. An individual guardian ignores this effect for 24 hours if you attack it or cast a spell upon it.",
-						"As an action, you may present a Seal of Drakkenheim to rebuke the guardians. You make an opposed Charisma ability check against each {@creature wall gargoyle|DoDk} or {@creature tower dragon|DoDk} that can see or hear you within {@quantity 30|feet} of you. If you win the contest, the creature is rebuked for 1 minute or until it takes any damage. A rebuked creature doesn't move, and can't take actions or reactions. A creature who wins the contest is immune to your rebuke for 24 hours."
-					]
-				}
-			],
-			"attachedSpells": [
-				"wish"
-			]
-		},
-		{
 			"name": "Crown of Whirling Comets",
 			"source": "BMT",
 			"page": 35,
@@ -14851,7 +14690,7 @@
 			"rechargeAmount": "{@dice 1d6}",
 			"charges": 10,
 			"entries": [
-				"This cube is about an inch across. Each face has a distinct marking on it. You can press one of those faces, expend the number of charges required for it, and thereby cast the spell associated with it (save {@dc 17}), as shown in the Cube of Force Faces table.",
+				"This cube is about {@quantity an|inch} across. Each face has a distinct marking on it. You can press one of those faces, expend the number of charges required for it, and thereby cast the spell associated with it (save {@dc 17}), as shown in the Cube of Force Faces table.",
 				"The cube starts with 10 charges, and it regains {@dice 1d6} expended charges daily at dawn.",
 				{
 					"type": "table",
@@ -19251,25 +19090,6 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Delerium Crystal Focus",
-			"source": "DoDk",
-			"page": 230,
-			"rarity": "rare",
-			"reqAttune": "by a spellcaster",
-			"reqAttuneTags": [
-				{
-					"spellcasting": true
-				}
-			],
-			"wondrous": true,
-			"bonusSpellAttack": "+2",
-			"bonusSpellSaveDc": "+2",
-			"entries": [
-				"This focus is made from a refined delerium crystal encased in a glass orb. While holding it, you gain a +2 bonus to spell attack rolls and the saving throw DCs of your spells. In addition, you can use the crystal as a spellcasting focus.",
-				"Once per day when you cast a spell of 5th level or lower, you may draw on the energy stored within the crystal to do so without expending a spell slot. If you do, you trigger a random arcane anomaly (see Dungeons of Drakkenheim)."
-			]
-		},
-		{
 			"name": "Delver's Claws",
 			"source": "BGG",
 			"page": 112,
@@ -19536,7 +19356,7 @@
 					"type": "entries",
 					"name": "Destroying the Demonomicon",
 					"entries": [
-						"To destroy the book, six different demon lords must each tear out a sixth of the book's pages. If this occurs, the pages reappear after 24 hours. Before all those hours pass, anyone who opens the book's remaining binding is transported to a nascent layer of the Abyss that lies hidden within the book. At the heart of this deadly, semisentient domain lies a long-lost Artifact, Fraz-Urb'luu's Staff. If the staff is dragged from the pocket plane, the tome is reduced to a mundane and out-of-date copy of the Tome of Zyx, the work that served as the foundation of the Demonomicon of Iggwilv. The Tome of Zyx can be destroyed like any ordinary book. Once the staff emerges, the demon lord Fraz-Urb'luu knows instantly."
+						"To destroy the book, six different demon lords must each tear out a sixth of the book's pages. If this occurs, the pages reappear after 24 hours. Before all those hours pass, anyone who opens the book's remaining binding is transported to a nascent layer of the Abyss that lies hidden within the book. At the heart of this deadly, semi-sentient domain lies a long-lost Artifact, Fraz-Urb'luu's Staff. If the staff is dragged from the pocket plane, the tome is reduced to a mundane and out-of-date copy of the Tome of Zyx, the work that served as the foundation of the Demonomicon of Iggwilv. The Tome of Zyx can be destroyed like any ordinary book. Once the staff emerges, the demon lord Fraz-Urb'luu knows instantly."
 					]
 				}
 			],
@@ -20131,16 +19951,6 @@
 			"wondrous": true,
 			"entries": [
 				"This smooth, rainbow-colored, egg-shaped stone can be thrown up to {@quantity 30|feet} and explodes in a {@quantity 10|-foot}-radius sphere of magical energy on impact, destroying the stone. Any active spell of 5th level or lower in the sphere ends."
-			]
-		},
-		{
-			"name": "Dissimortuum's Cursed Mask",
-			"source": "ToB1-2023",
-			"page": 106,
-			"rarity": "rare",
-			"wondrous": true,
-			"entries": [
-				"The dissimortuum's mask is nigh indestructible. When the creature is destroyed, its mask usually survives and breaks free. On its own, the object emits a faint magical aura with mixed enchantment and necromantic properties. It is a tempting souvenir, but any humanoid or giant foolish enough to don the mask is immediately wracked by pain and takes 7 ({@damage 2d6}) necrotic damage. The creature must succeed on a {@dc 15} Wisdom saving throw or become dominated by the mask. The domination arrives slowly. The creature acts normally for a day or two, but then the creature notices periods of time that cannot be accounted for. During these unremembered times, the creature gathers the grisly components needed to build a new body for the dissimortuum. This process takes a week, after which the creature is freed from domination as the dissimortuum arises anew and dons its mask once more."
 			]
 		},
 		{
@@ -20833,7 +20643,7 @@
 			"grantsLanguage": true,
 			"bonusWeapon": "+1",
 			"entries": [
-				"A steel trident decorated with bronze barnacles along the upper part of its haft, Drown has a sea-green jewel just below the tines and a silver shell at the end of its haft. It floats on the surface if dropped onto water, and it floats in place if it is released underwater. The trident is always cool to the touch, and it is immune to any damage due to exposure to water. Drown contains a spark of {@creature Olhydra|pota}, the Princess of Evil Water.",
+				"A steel trident decorated with bronze barnacles along the upper part of its haft, Drown has a sea-green jewel just below the tines and a silver shell at the end of its haft. It floats on the surface if dropped onto water, and it floats in place if it is released underwater. The trident is always cool to the touch, and it is immune to any damage due to exposure to water. Drown contains a spark of {@creature Olhydra|PotA}, the Princess of Evil Water.",
 				"You gain a +1 bonus to attack and damage rolls made with this magic weapon. When you hit with it, the targets take an extra {@damage 1d8} cold damage.",
 				{
 					"name": "Water Mastery",
@@ -21679,7 +21489,7 @@
 			"tattoo": true,
 			"bonusWeapon": "+1",
 			"entries": [
-				"Produced by a special needle, this magic tattoo depicts clawlike forms and other jagged shapes.",
+				"Produced by a special needle, this magic tattoo depicts claw-like forms and other jagged shapes.",
 				{
 					"type": "entries",
 					"name": "Tattoo Attunement",
@@ -22255,6 +22065,9 @@
 		},
 		{
 			"name": "Emblem",
+			"group": [
+				"Holy Symbol"
+			],
 			"source": "PHB",
 			"page": 151,
 			"srd": true,
@@ -22269,6 +22082,9 @@
 		},
 		{
 			"name": "Emblem",
+			"group": [
+				"Holy Symbol"
+			],
 			"source": "XPHB",
 			"page": 226,
 			"srd52": true,
@@ -22866,28 +22682,28 @@
 									"type": "item",
 									"name": "Spring",
 									"entries": [
-										"As an action, you can fire this arrow, targeting a beast or a plant creature you can see within 320 feet of you. On a hit, the arrow deals no damage, and the target gains the benefits of the {@spell awaken} spell for 8 hours."
+										"As an action, you can fire this arrow, targeting a beast or a plant creature you can see within {@quantity 320|feet} of you. On a hit, the arrow deals no damage, and the target gains the benefits of the {@spell awaken} spell for 8 hours."
 									]
 								},
 								{
 									"type": "item",
 									"name": "Summer",
 									"entries": [
-										"As an action, you can fire this arrow at an unoccupied space on the ground that you can see within 320 feet of you, no attack roll required. A Nyxborn lynx is summoned in that space (use the stat block for a {@creature tiger} with the {@book Nyxborn traits|MOT|6|Nyxborn Creatures} from chapter 6). The lynx understands your verbal commands and obeys them as best it can, and it takes its turns immediately after yours. The emissary remains for 1 hour before fading away."
+										"As an action, you can fire this arrow at an unoccupied space on the ground that you can see within {@quantity 320|feet} of you, no attack roll required. A Nyxborn lynx is summoned in that space (use the stat block for a {@creature tiger} with the {@book Nyxborn traits|MOT|6|Nyxborn Creatures} from chapter 6). The lynx understands your verbal commands and obeys them as best it can, and it takes its turns immediately after yours. The emissary remains for 1 hour before fading away."
 									]
 								},
 								{
 									"type": "item",
 									"name": "Autumn",
 									"entries": [
-										"As an action, you can fire this arrow at a space on the ground that you can see within 320 feet of you, no attack roll required, casting the {@spell wall of thorns} spell there."
+										"As an action, you can fire this arrow at a space on the ground that you can see within {@quantity 320|feet} of you, no attack roll required, casting the {@spell wall of thorns} spell there."
 									]
 								},
 								{
 									"type": "item",
 									"name": "Winter",
 									"entries": [
-										"As an action, you can fire this arrow at a space that you can see within 320 feet of you, no attack roll required, casting the {@spell ice storm} spell there."
+										"As an action, you can fire this arrow at a space that you can see within {@quantity 320|feet} of you, no attack roll required, casting the {@spell ice storm} spell there."
 									]
 								}
 							]
@@ -23651,6 +23467,23 @@
 				"Implements - Uncommon|XDMG"
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Eyescratch",
+			"source": "WDH",
+			"page": 211,
+			"type": "G",
+			"rarity": "none",
+			"poison": true,
+			"entries": [
+				"A creature that comes into contact with this poison must succeed on a {@dc 14} Constitution saving throw or be {@condition poisoned} for 1 hour and {@condition blinded} while {@condition poisoned} in this way. A {@spell lesser restoration} spell or similar magic ends the effect."
+			],
+			"poisonTypes": [
+				"contact"
+			],
+			"miscTags": [
+				"CNS"
+			]
 		},
 		{
 			"name": "Fabulist Gem",
@@ -25284,39 +25117,6 @@
 			]
 		},
 		{
-			"name": "Flame Lance",
-			"source": "DoDk",
-			"page": 231,
-			"baseItem": "lance|PHB",
-			"type": "M",
-			"rarity": "uncommon",
-			"weight": 6,
-			"weaponCategory": "martial",
-			"property": [
-				"R",
-				"S"
-			],
-			"dmg1": "1d12",
-			"dmgType": "P",
-			"bonusWeapon": "+1",
-			"recharge": "special",
-			"charges": 5,
-			"entries": [
-				"This weapon is a long metal lance with a small flame that burns at its end. It has a hose coming from the hilt that connects to a metal tank that you wear on your back.",
-				"You gain a +1 bonus to attack and damage rolls made with this weapon.",
-				"The tank has 5 charges. You can use an action and expend one or more charges from the tank to cast {@spell burning hands} (Save {@dc 15}). For 1 charge, you cast the 1st-level version of the spell. You can increase the spell slot level by one for each additional charge you expend.",
-				"Once per day, you can pour a vial of alchemist's fire into the tank. When you do, it regains all expended charges. It otherwise does not regain charges on its own.",
-				"You have disadvantage when you use a lance to attack a target within {@quantity 5|feet} of you. Also, a lance requires two hands to wield when you aren't mounted."
-			],
-			"attachedSpells": {
-				"charges": {
-					"1": [
-						"burning hands"
-					]
-				}
-			}
-		},
-		{
 			"name": "Flame Tongue Shortsword of Greed",
 			"source": "TftYP",
 			"page": 179,
@@ -25638,7 +25438,7 @@
 			"entries": [
 				"Aside from space galleons, flying fish ships are the most common vessels in Wildspace, favorites among merchants and adventurers alike.",
 				"A flying fish ship can float and sail on water, but it isn't built to land on the ground (the ventral fins would snap under the weight of the ship during landing, and the keel would cause the ship to roll to one side).",
-				"Typical weapons on a flying fish ship include a forward-mounted mangonel and an aftmounted ballista."
+				"Typical weapons on a flying fish ship include a forward-mounted mangonel and an aft-mounted ballista."
 			],
 			"seeAlsoVehicle": [
 				"Flying Fish Ship|AAG"
@@ -26660,23 +26460,6 @@
 					0.03
 				]
 			}
-		},
-		{
-			"name": "Glass-Studded Armor",
-			"source": "GHLoE",
-			"page": 111,
-			"baseItem": "studded leather armor|PHB",
-			"type": "LA",
-			"resist": [
-				"radiant"
-			],
-			"rarity": "rare",
-			"reqAttune": true,
-			"weight": 13,
-			"ac": 12,
-			"entries": [
-				"While wearing this armor, you have resistance to radiant damage. Each time a creature makes a melee attack against you, it takes 3 piercing damage. A creature can choose to make an attack with disadvantage to avoid this damage."
-			]
 		},
 		{
 			"name": "Glassblower's Tools",
@@ -29135,37 +28918,6 @@
 			]
 		},
 		{
-			"name": "Hazewalker Plate",
-			"source": "DoDk",
-			"page": 230,
-			"baseItem": "plate armor|PHB",
-			"type": "HA",
-			"resist": [
-				"necrotic",
-				"poison"
-			],
-			"conditionImmune": [
-				"disease"
-			],
-			"rarity": "very rare",
-			"weight": 65,
-			"ac": 18,
-			"strength": "15",
-			"stealth": true,
-			"entries": [
-				"This plate armour includes a helmet and is hermetically sealed when worn. You gain the following benefits when its worn and the helmet visor is closed:",
-				{
-					"type": "list",
-					"items": [
-						"You are immune to diseases and the poisoned condition, and gain advantage on saving throws against any effect that causes {@adventure contamination|DoDk|12}.",
-						"You have resistance to necrotic and poison damage.",
-						"You don't need to breathe."
-					]
-				},
-				"Plate consists of shaped, interlocking metal plates to cover the entire body. A suit of plate includes gauntlets, heavy leather boots, a visored helmet, and thick layers of padding underneath the armor. Buckles and straps distribute the weight over the body."
-			]
-		},
-		{
 			"name": "Hazirawn",
 			"source": "HotDQ",
 			"page": 94,
@@ -29475,7 +29227,7 @@
 					"type": "entries",
 					"name": "Fire Opal Flames",
 					"entries": [
-						"As long as the helm has at least one fire opal, you can take a {@action Magic|XPHB} action to cause one weapon you are holding to burst into flames. The flames emit {@variantrule Bright Light|XPHB} in a 10-foot radius and {@variantrule Dim Light|XPHB} for an additional 10 feet. The flames are harmless to you and the weapon. When you hit with an attack using the blazing weapon, the target takes an extra {@damage 1d6} Fire damage. The flames last until you take a {@variantrule Bonus Action|XPHB} to extinguish them or until you drop or stow the weapon."
+						"As long as the helm has at least one fire opal, you can take a {@action Magic|XPHB} action to cause one weapon you are holding to burst into flames. The flames emit {@variantrule Bright Light|XPHB} in a {@quantity 10|-foot} radius and {@variantrule Dim Light|XPHB} for an additional {@quantity 10|feet}. The flames are harmless to you and the weapon. When you hit with an attack using the blazing weapon, the target takes an extra {@damage 1d6} Fire damage. The flames last until you take a {@variantrule Bonus Action|XPHB} to extinguish them or until you drop or stow the weapon."
 					]
 				},
 				{
@@ -29640,39 +29392,6 @@
 				}
 			],
 			"hasFluffImages": true
-		},
-		{
-			"name": "Helm of Patron Saints",
-			"source": "DoDk",
-			"page": 234,
-			"rarity": "rare",
-			"reqAttune": "by a spellcaster",
-			"reqAttuneTags": [
-				{
-					"spellcasting": true
-				}
-			],
-			"wondrous": true,
-			"bonusSpellAttack": "+2",
-			"bonusSpellSaveDc": "+2",
-			"entries": [
-				"While wearing this helm, you can see invisible creatures and objects within {@quantity 60|feet} of you. In addition, you gain a +2 bonus to spell attack rolls, and increase your spell saving throw DC by 2.",
-				{
-					"type": "entries",
-					"name": "Relics of Saint Vitruvio",
-					"entries": [
-						"These holy relics of the Sacred Flame were wielded by Saint Vitruvio and are kept in several religious sites throughout Drakkenheim. The Knights of the Silver Order and the Followers of the Falling Fire now seek these relics. Not only do both factions revere Saint Vitruvio, both wish to use these relics to help advance their goals in Drakkenheim.",
-						"A character attuned to three Relics of Saint Vitruvio may cast the {@spell heal} spell three times per day, after which they must finish a long rest before they may do so again. In addition, that character gains the ability to attune to two additional magic items so long as those magic items are both Relics of Saint Vitruvio."
-					]
-				}
-			],
-			"attachedSpells": {
-				"daily": {
-					"3": [
-						"heal"
-					]
-				}
-			}
 		},
 		{
 			"name": "Helm of Perfect Potential",
@@ -32082,66 +31801,6 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Ignacious, the Sword of Burning Truth",
-			"source": "DoDk",
-			"page": 234,
-			"baseItem": "longsword|PHB",
-			"type": "M",
-			"rarity": "legendary",
-			"reqAttune": true,
-			"sentient": true,
-			"weight": 3,
-			"weaponCategory": "martial",
-			"property": [
-				"V"
-			],
-			"dmg1": "1d8",
-			"dmgType": "S",
-			"dmg2": "1d10",
-			"bonusWeapon": "+3",
-			"entries": [
-				"This sacred weapon was forged to burn away deception and darkness. Blazing embers gently fall from the silver blade, first ignited by the brazier in the Temple of Lumen.",
-				"You gain a +3 bonus to attack and damage rolls made with this magic weapon. It has the following additional properties:",
-				"You can use a bonus action to speak the sword's name, causing radiant flames to erupt from the blade. These flames shed {@quickref Vision and Light||2||bright light} in a {@quantity 40|-foot} radius and {@quickref Vision and Light||2||dim light} for an additional {@quantity 40|feet}. While the sword is ablaze, it deals an extra {@damage 4d6} radiant damage to any target it hits. The flames last until you use a bonus action to douse the blade, or until you drop or sheathe the sword.",
-				{
-					"type": "entries",
-					"name": "Sentience",
-					"entries": [
-						"Ignacious is a sentient lawful good weapon with an Intelligence of 11, a Wisdom of 19, and a Charisma of 23. It has hearing and {@sense darkvision} out to a range of {@quantity 120|feet}. The weapon can speak, read, and understand Common, Celestial, and Draconic, and can communicate with its wielder telepathically. It always knows its wielder's thoughts. Its voice is commanding, righteous, and booming. When drawn, Ignacious casts the {@spell zone of truth} spell (save {@dc 20}), and maintains {@status concentration} on it so that you don't have to. The {@spell zone of truth} moves with the blade and remains centred on it."
-					]
-				},
-				{
-					"type": "entries",
-					"name": "Personality",
-					"entries": [
-						"Ignacious is zealously devoted to the Sacred Flame, and has memorized every word of its holy texts. The blade wishes to be wielded by a faithful devotee of any sort; Ignacious does not care about the religious divide between the Falling Fire and the Sacred Flame so long as its wielder keeps the core tenets shared by both sects.",
-						"The sword's purpose is to expose all deception and reveal the truth. It does not tolerate any falsehood, duplicitousness, or lies. The sword always knows when it hears a lie, and responds with wrathful fury. If a wielder speaks a lie, it immediately triggers a conflict."
-					]
-				},
-				{
-					"type": "entries",
-					"name": "Relics of Saint Vitruvio",
-					"entries": [
-						"These holy relics of the Sacred Flame were wielded by Saint Vitruvio and are kept in several religious sites throughout Drakkenheim. The Knights of the Silver Order and the Followers of the Falling Fire now seek these relics. Not only do both factions revere Saint Vitruvio, both wish to use these relics to help advance their goals in Drakkenheim.",
-						"A character attuned to three Relics of Saint Vitruvio may cast the {@spell heal} spell three times per day, after which they must finish a long rest before they may do so again. In addition, that character gains the ability to attune to two additional magic items so long as those magic items are both Relics of Saint Vitruvio."
-					]
-				}
-			],
-			"light": [
-				{
-					"bright": 40,
-					"dim": 80
-				}
-			],
-			"attachedSpells": {
-				"daily": {
-					"3": [
-						"heal"
-					]
-				}
-			}
-		},
-		{
 			"name": "Illuminator's Tattoo",
 			"source": "TCE",
 			"page": 129,
@@ -32532,6 +32191,9 @@
 			"value": 1000,
 			"entries": [
 				"Ink comes in a {@quantity 1|-ounce} bottle, which provides enough ink to write about 500 pages."
+			],
+			"miscTags": [
+				"CNS"
 			]
 		},
 		{
@@ -32546,8 +32208,8 @@
 			"type": "G",
 			"rarity": "none",
 			"value": 1000,
-			"entries": [
-				"Ink ({@quantity 1|-ounce} bottle)"
+			"miscTags": [
+				"CNS"
 			]
 		},
 		{
@@ -32577,87 +32239,6 @@
 			]
 		},
 		{
-			"name": "Inscrutable Staff",
-			"source": "DoDk",
-			"page": 233,
-			"type": "M",
-			"rarity": "legendary",
-			"reqAttune": "by a sorcerer, warlock, or wizard",
-			"reqAttuneTags": [
-				{
-					"class": "sorcerer"
-				},
-				{
-					"class": "warlock"
-				},
-				{
-					"class": "wizard"
-				}
-			],
-			"weight": 4,
-			"weaponCategory": "simple",
-			"property": [
-				"V"
-			],
-			"dmg1": "1d6",
-			"dmgType": "B",
-			"dmg2": "1d8",
-			"bonusWeapon": "+2",
-			"bonusSpellAttack": "+2",
-			"recharge": "dawn",
-			"rechargeAmount": "{@dice 2d10}",
-			"charges": 20,
-			"staff": true,
-			"entries": [
-				"This staff can be wielded as a magic quarterstaff that grants a +2 bonus to attack and damage rolls made with it. While holding it, you gain a +2 bonus to spell attack rolls and your spell save DC.",
-				"The staff has 20 charges, and regains {@dice 2d10} expended charges daily at dawn. If you expend the last charge, roll a {@dice d20}. On a 1, the staff triggers a random arcane anomaly (see Dungeons of Drakkenheim). On a 20, the staff regains {@dice 1d10} charges.",
-				"While holding the staff, you can use an action to expend some of its charges to cast one of the following spells from it, using your spell save DC and spellcasting ability: {@spell haste} (3 charges), {@spell slow} (3 charges), {@spell arcane eye} (4 charges), {@spell dimension door} (4 charges), {@spell Bigby's hand} (5 charges), {@spell wall of force} (5 charges), {@spell disintegrate} (6 charges), {@spell reverse gravity} (7 charges), or {@spell maze} (8 charges).",
-				"You can also use an action to cast one of the following spells from the staff without using any charges: {@spell detect magic}, {@spell Tenser's Floating Disk}, {@spell mage armor}, {@spell mending}, {@spell message}, or {@spell misty step}.",
-				{
-					"type": "entries",
-					"name": "Crown Authority",
-					"entries": [
-						"A character cannot attune to more than one Seal of Drakkenheim. Guardian constructs in Drakkenheim such as {@creature wall gargoyle|DoDk|wall gargoyles} and {@creature tower dragon|DoDk|tower dragons} do not attack you while you are attuned to one of the Seals of Drakkenheim. An individual guardian ignores this effect for 24 hours if you attack it or cast a spell upon it.",
-						"As an action, you may present a Seal of Drakkenheim to rebuke the guardians. You make an opposed Charisma ability check against each {@creature wall gargoyle|DoDk} or {@creature tower dragon|DoDk} that can see or hear you within {@quantity 30|feet} of you. If you win the contest, the creature is rebuked for 1 minute or until it takes any damage. A rebuked creature doesn't move, and can't take actions or reactions. A creature who wins the contest is immune to your rebuke for 24 hours."
-					]
-				}
-			],
-			"attachedSpells": {
-				"will": [
-					"detect magic",
-					"mage armor",
-					"mending",
-					"message",
-					"misty step",
-					"tenser's floating disk"
-				],
-				"charges": {
-					"3": [
-						"haste",
-						"slow"
-					],
-					"4": [
-						"arcane eye",
-						"dimension door"
-					],
-					"5": [
-						"bigby's hand",
-						"wall of force"
-					],
-					"6": [
-						"disintegrate"
-					],
-					"7": [
-						"reverse gravity"
-					],
-					"8": [
-						"maze"
-					]
-				}
-			},
-			"hasFluffImages": true
-		},
-		{
 			"name": "Insect Repellent (block of incense)",
 			"source": "ToA",
 			"page": 32,
@@ -32666,7 +32247,7 @@
 			"value": 10,
 			"charges": 1,
 			"entries": [
-				"Insect repellent can be purchased in Port Nyanzaru in two forms: blocks of incense or a greasy salve. The merchant prince Kwayothe controls the sale of both. Neither kind of repellent protects against giant insects or the vile swarms of insects described in appendix A of the Monster Manual.",
+				"Insect repellent can be purchased in Port Nyanzaru in two forms: blocks of incense or a greasy salve. The merchant prince Kwayothé controls the sale of both. Neither kind of repellent protects against giant insects or the vile swarms of insects described in appendix A of the Monster Manual.",
 				"When lit, it burns for 8 hours and repels normal insects within a {@quantity 20|-foot}-radius centered on it."
 			]
 		},
@@ -32679,7 +32260,7 @@
 			"value": 100,
 			"charges": 20,
 			"entries": [
-				"Insect repellent can be purchased in Port Nyanzaru in two forms: blocks of incense or a greasy salve. The merchant prince Kwayothe controls the sale of both. Neither kind of repellent protects against giant insects or the vile swarms of insects described in appendix A of the Monster Manual.",
+				"Insect repellent can be purchased in Port Nyanzaru in two forms: blocks of incense or a greasy salve. The merchant prince Kwayothé controls the sale of both. Neither kind of repellent protects against giant insects or the vile swarms of insects described in appendix A of the Monster Manual.",
 				"A gourd or vial of salve contains 20 applications of odorless grease. One application protects its wearer against normal insects for 24 hours. The salve is waterproof so it doesn't wash off in rain."
 			]
 		},
@@ -34549,7 +34130,7 @@
 			"rechargeAmount": "{@dice 1d3}",
 			"charges": 3,
 			"entries": [
-				"A {@item war pick|phb} forged from a single piece of iron, Ironfang has a fang-like head inscribed with ancient runes. The pick is heavy in the hand, but when the wielder swings the pick in anger, the weapon seems almost weightless. This weapon is immune to any form of rust, acid, or corrosion\u2014nothing seems to mark it. Ironfang contains a spark of {@creature Ogrémoch|pota}, the Prince of Evil Earth.",
+				"A {@item war pick|phb} forged from a single piece of iron, Ironfang has a fang-like head inscribed with ancient runes. The pick is heavy in the hand, but when the wielder swings the pick in anger, the weapon seems almost weightless. This weapon is immune to any form of rust, acid, or corrosion\u2014nothing seems to mark it. Ironfang contains a spark of {@creature Ogrémoch|PotA}, the Prince of Evil Earth.",
 				"You gain a +2 bonus to attack and damage rolls made with this magic weapon. When you hit with it, the target takes an extra {@damage 1d8} thunder damage.",
 				{
 					"type": "entries",
@@ -36000,18 +35581,6 @@
 			]
 		},
 		{
-			"name": "Knifewing Cape",
-			"source": "GHLoE",
-			"page": 111,
-			"rarity": "rare",
-			"reqAttune": true,
-			"wondrous": true,
-			"bonusAc": "+1",
-			"entries": [
-				"While wearing this cloak made from the skin of 20 {@creature Knifewing|GHLoE|knifewings}, you gain a +1 bonus to AC. In addition, when you fall while wearing this cloak, you descend {@quantity 60|feet} per round and take no damage from falling."
-			]
-		},
-		{
 			"name": "Knight Card",
 			"source": "BMT",
 			"page": 14,
@@ -36912,19 +36481,6 @@
 			]
 		},
 		{
-			"name": "Lindwyrm Venom",
-			"source": "GHLoE",
-			"page": 111,
-			"type": "P",
-			"rarity": "very rare",
-			"entries": [
-				"This terrible venom is extracted and distilled from the deadly {@creature lindwyrm|GHLoE}. It can be delivered via ingestion or a wound. A creature exposed to the venom must succeed on a {@dc 18} Constitution saving throw or take 36 ({@damage 8d8}) poison damage and be poisoned for 1 minute. While poisoned, the creature has disadvantage on Strength and Dexterity skill checks and saving throws."
-			],
-			"miscTags": [
-				"CNS"
-			]
-		},
-		{
 			"name": "Linen (1 sq. yd.)",
 			"source": "PHB",
 			"page": 157,
@@ -37311,25 +36867,6 @@
 			"capCargo": 10,
 			"seeAlsoVehicle": [
 				"Longship"
-			]
-		},
-		{
-			"name": "Lord Commander's Badge",
-			"source": "DoDk",
-			"page": 233,
-			"rarity": "rare",
-			"reqAttune": true,
-			"wondrous": true,
-			"entries": [
-				"As an action while wearing this seal, you can invoke its power to issue a bellowing command clearly audible to all creatures within {@quantity 300|feet} of you. When you do, you may choose up to 12 allies you can see who can hear the command. Those allies each gain 20 temporary hit points. While these temporary hit points remain, those allies gain advantage on attack rolls and saving throws. Once you use this power, it can't be used again until the next dawn.",
-				{
-					"type": "entries",
-					"name": "Crown Authority",
-					"entries": [
-						"A character cannot attune to more than one Seal of Drakkenheim. Guardian constructs in Drakkenheim such as {@creature wall gargoyle|DoDk|wall gargoyles} and {@creature tower dragon|DoDk|tower dragons} do not attack you while you are attuned to one of the Seals of Drakkenheim. An individual guardian ignores this effect for 24 hours if you attack it or cast a spell upon it.",
-						"As an action, you may present a Seal of Drakkenheim to rebuke the guardians. You make an opposed Charisma ability check against each {@creature wall gargoyle|DoDk} or {@creature tower dragon|DoDk} that can see or hear you within {@quantity 30|feet} of you. If you win the contest, the creature is rebuked for 1 minute or until it takes any damage. A rebuked creature doesn't move, and can't take actions or reactions. A creature who wins the contest is immune to your rebuke for 24 hours."
-					]
-				}
 			]
 		},
 		{
@@ -37802,19 +37339,6 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Lycanthropy Antidote",
-			"source": "GHLoE",
-			"page": 111,
-			"type": "P",
-			"rarity": "rare",
-			"entries": [
-				"This silvery potion, made with {@creature fzeg|GHLoE} blood, is dotted with flecks of red. Drinking this liquid removes the curse of werewolf lycanthropy."
-			],
-			"miscTags": [
-				"CNS"
-			]
-		},
-		{
 			"name": "Lyre of Building",
 			"source": "TCE",
 			"page": 131,
@@ -38020,7 +37544,7 @@
 			"rechargeAmount": "{@dice 1d3}",
 			"charges": 3,
 			"entries": [
-				"This magic weapon has 3 charges and regains {@dice 1d3} expended charges daily at dawn. While holding the weapon, you can take a {@action Magic|XPHB} action and expend 1 charge to release a wave of terror from it. Each creature of your choice within {@quantity 30|feet} of you must succeed on a {@dc 15} Wisdom saving throw or have the {@condition Frightened|XPHB} condition for 1 minute. While {@condition Frightened|XPHB} in this way, a creature must spend its turns trying to move as far away from you as it can, and it can't make Opportunity Attacks. For its action, it can use only the {@action Dash|XPHB} action or try to escape from an effect that prevents it from moving. If it has nowhere it can move, the creature can take the {@action Dodge|XPHB} action. At the end of each of its turns, a creature repeats the save, ending the effect on itself on a success."
+				"This magic weapon has 3 charges and regains {@dice 1d3} expended charges daily at dawn. While holding the weapon, you can take a {@action Magic|XPHB} action and expend 1 charge to release a wave of terror from it. Each creature of your choice within {@quantity 30|feet} of you must succeed on a {@dc 15} Wisdom saving throw or have the {@condition Frightened|XPHB} condition for 1 minute. While {@condition Frightened|XPHB} in this way, a creature must spend its turns trying to move as far away from you as it can, and it can't make {@action Opportunity Attack|XPHB|Opportunity Attacks}. For its action, it can use only the {@action Dash|XPHB} action or try to escape from an effect that prevents it from moving. If it has nowhere it can move, the creature can take the {@action Dodge|XPHB} action. At the end of each of its turns, a creature repeats the save, ending the effect on itself on a success."
 			],
 			"lootTables": [
 				"Armaments - Rare|XDMG",
@@ -39705,7 +39229,7 @@
 					"colLabels": [
 						"d8",
 						"Location",
-						"Possesor"
+						"Possessor"
 					],
 					"colStyles": [
 						"col-1 text-center",
@@ -40988,7 +40512,7 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Necklace of electrum medallions with red and blue tournalines (Brazen Coalition)",
+			"name": "Necklace of electrum medallions with red and blue tourmalines (Brazen Coalition)",
 			"source": "PSX",
 			"page": 24,
 			"type": "$A|DMG",
@@ -43840,7 +43364,7 @@
 					"type": "entries",
 					"name": "Natural Healing Boost",
 					"entries": [
-						"Whenever you roll a {@variantrule Hit Points|XPHB|Hit Point} Die to regain {@variantrule Hit Points|XPHB}, double the number of {@variantrule Hit Points|XPHB} it restores."
+						"Whenever you roll a {@variantrule Hit Point Dice|XPHB|Hit Point Die} to regain {@variantrule Hit Points|XPHB}, double the number of {@variantrule Hit Points|XPHB} it restores."
 					]
 				}
 			],
@@ -44177,7 +43701,7 @@
 			"reqAttune": true,
 			"wondrous": true,
 			"entries": [
-				"This dark spider-silk cloak is made by {@creature drow}. It is a {@item cloak of elvenkind}. It loses its magic if exposed to sunlight for 1 hour without interruption.",
+				"This dark spider silk cloak is made by {@creature drow}. It is a {@item cloak of elvenkind}. It loses its magic if exposed to sunlight for 1 hour without interruption.",
 				"While you wear this cloak with its hood up, Wisdom ({@skill Perception}) checks made to see you have disadvantage. and you have advantage on Dexterity ({@skill Stealth}) checks made to hide, as the cloak's color shifts to camouflage you. Pulling the hood up or down requires an action."
 			],
 			"hasFluffImages": true
@@ -44190,7 +43714,7 @@
 			"reqAttune": true,
 			"wondrous": true,
 			"entries": [
-				"This dark spider-silk cloak is made by {@creature drow}. It is a {@item cloak of elvenkind}. It also grants resistance to fire damage while you wear it. It loses its magic if exposed to sunlight for 1 hour without interruption.",
+				"This dark spider silk cloak is made by {@creature drow}. It is a {@item cloak of elvenkind}. It also grants resistance to fire damage while you wear it. It loses its magic if exposed to sunlight for 1 hour without interruption.",
 				"While you wear this cloak with its hood up, Wisdom ({@skill Perception}) checks made to see you have disadvantage. and you have advantage on Dexterity ({@skill Stealth}) checks made to hide, as the cloak's color shifts to camouflage you. Pulling the hood up or down requires an action."
 			]
 		},
@@ -47041,7 +46565,7 @@
 			"rarity": "very rare",
 			"weight": 0.5,
 			"entries": [
-				"When you drink this potion, it removes any {@condition Exhaustion|XPHB} levels you have and ends the {@condition Poisoned|XPHB} condition on you. For the next 24 hours, you regain the maximum number of {@variantrule Hit Points|XPHB} for any {@variantrule Hit Points|XPHB|Hit Point} Die you spend.",
+				"When you drink this potion, it removes any {@condition Exhaustion|XPHB} levels you have and ends the {@condition Poisoned|XPHB} condition on you. For the next 24 hours, you regain the maximum number of {@variantrule Hit Points|XPHB} for any {@variantrule Hit Point Dice|XPHB|Hit Point Die} you spend.",
 				"This potion's crimson liquid regularly pulses with dull light, calling to mind a heartbeat."
 			],
 			"lootTables": [
@@ -47975,23 +47499,6 @@
 			"range": "60/120",
 			"dmg1": "1d6",
 			"dmgType": "Y"
-		},
-		{
-			"name": "Purging Rod",
-			"source": "DoDk",
-			"page": 230,
-			"type": "RD|DMG",
-			"rarity": "uncommon",
-			"entries": [
-				"Once per day while holding this rod, you can use an action to cast {@spell purge contamination|DoDk}. After casting the spell, roll {@dice 1d20}. On a 1, the rod melts into sludge."
-			],
-			"attachedSpells": {
-				"daily": {
-					"1e": [
-						"purge contamination|dodk"
-					]
-				}
-			}
 		},
 		{
 			"name": "Purple Worm Poison",
@@ -49054,16 +48561,6 @@
 			]
 		},
 		{
-			"name": "Ready Gunk",
-			"source": "GHLoE",
-			"page": 111,
-			"rarity": "rare",
-			"wondrous": true,
-			"entries": [
-				"This sticky paste is fashioned from the powdered bone armor of a {@creature bone trader|GHLoE}. When you treat a weapon, shield, or other item that can be wielded in one or two hands, you can use a bonus action to summon and equip it, as long as the item is within {@quantity 30|feet} of you. After using the magic of the paste three times, it loses its potency."
-			]
-		},
-		{
 			"name": "Reaper's Scream",
 			"source": "BGG",
 			"page": 115,
@@ -49240,21 +48737,6 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Refined Delerium Dust",
-			"source": "DoDk",
-			"page": 231,
-			"rarity": "rare",
-			"wondrous": true,
-			"entries": [
-				"This pouch contains {@quantity an|ounce} of purified and magically charged delerium dust. It may be ingested as an action. When you consume a full pouch, you gain advantage on spell attack rolls and saving throws against spells for one minute.",
-				"You gain one {@adventure level of contamination|DoDk|12} when you consume refined delerium dust."
-			],
-			"miscTags": [
-				"CNS"
-			],
-			"hasFluffImages": true
-		},
-		{
 			"name": "Reincarnation Dust",
 			"source": "EGW",
 			"page": 268,
@@ -49272,6 +48754,9 @@
 		},
 		{
 			"name": "Reliquary",
+			"group": [
+				"Holy Symbol"
+			],
 			"source": "PHB",
 			"page": 151,
 			"srd": true,
@@ -49287,6 +48772,9 @@
 		},
 		{
 			"name": "Reliquary",
+			"group": [
+				"Holy Symbol"
+			],
 			"source": "XPHB",
 			"page": 226,
 			"srd52": true,
@@ -52859,7 +52347,7 @@
 			"weight": 2,
 			"entries": [
 				"While holding this rod, you can take a {@action Magic|XPHB} action to activate it. The rod then instantly transports you and up to 199 other willing creatures you can see to a demiplane. You choose the form the demiplane takes. It could be a tranquil garden, a cheery tavern, an immense palace, a tropical island, a fantastic carnival, or whatever else you can imagine. Regardless of its nature, the demiplane contains enough water and food to sustain its visitors, and the demiplane's environment can't harm its occupants. Everything else that can be interacted with there can exist only there. For example, a flower picked from a garden there disappears if it is taken outside the demiplane.",
-				"For each hour spent in the demiplane, a visitor regains {@variantrule Hit Points|XPHB} as if it had spent 1 {@variantrule Hit Points|XPHB|Hit Point} Die. Also, creatures don't age while there, although time passes normally. Visitors can remain there for up to 200 days divided by the number of creatures present (round down).",
+				"For each hour spent in the demiplane, a visitor regains {@variantrule Hit Points|XPHB} as if it had spent 1 {@variantrule Hit Point Dice|XPHB|Hit Point Die}. Also, creatures don't age while there, although time passes normally. Visitors can remain there for up to 200 days divided by the number of creatures present (round down).",
 				"When the time runs out or you take a {@action Magic|XPHB} action to end the effect, all visitors reappear in the location they occupied when you activated the rod or an unoccupied space nearest that location. Once used, this property can't be used again until 10 days have passed."
 			],
 			"lootTables": [
@@ -54165,61 +53653,6 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Saint Vitruvio's Phylactery",
-			"source": "DoDk",
-			"page": 233,
-			"rarity": "rare",
-			"reqAttune": "by a bard, cleric, druid, or paladin",
-			"reqAttuneTags": [
-				{
-					"class": "bard"
-				},
-				{
-					"class": "cleric"
-				},
-				{
-					"class": "druid"
-				},
-				{
-					"class": "paladin"
-				}
-			],
-			"wondrous": true,
-			"entries": [
-				"You can use an action to cast one of the following spells from the phylactery: {@spell bless}, {@spell death ward}, {@spell greater restoration}, {@spell prayer of healing}, or {@spell revivify}. The spells use your spellcasting ability and spell save DC. Once the phylactery has been used to cast a spell, it can't be used to cast that spell again until the next dawn.",
-				{
-					"type": "entries",
-					"name": "Crown Authority",
-					"entries": [
-						"A character cannot attune to more than one Seal of Drakkenheim. Guardian constructs in Drakkenheim such as {@creature wall gargoyle|DoDk|wall gargoyles} and {@creature tower dragon|DoDk|tower dragons} do not attack you while you are attuned to one of the Seals of Drakkenheim. An individual guardian ignores this effect for 24 hours if you attack it or cast a spell upon it.",
-						"As an action, you may present a Seal of Drakkenheim to rebuke the guardians. You make an opposed Charisma ability check against each {@creature wall gargoyle|DoDk} or {@creature tower dragon|DoDk} that can see or hear you within {@quantity 30|feet} of you. If you win the contest, the creature is rebuked for 1 minute or until it takes any damage. A rebuked creature doesn't move, and can't take actions or reactions. A creature who wins the contest is immune to your rebuke for 24 hours."
-					]
-				},
-				{
-					"type": "entries",
-					"name": "Relics of Saint Vitruvio",
-					"entries": [
-						"These holy relics of the Sacred Flame were wielded by Saint Vitruvio and are kept in several religious sites throughout Drakkenheim. The Knights of the Silver Order and the Followers of the Falling Fire now seek these relics. Not only do both factions revere Saint Vitruvio, both wish to use these relics to help advance their goals in Drakkenheim.",
-						"A character attuned to three Relics of Saint Vitruvio may cast the {@spell heal} spell three times per day, after which they must finish a long rest before they may do so again. In addition, that character gains the ability to attune to two additional magic items so long as those magic items are both Relics of Saint Vitruvio."
-					]
-				}
-			],
-			"attachedSpells": {
-				"daily": {
-					"3": [
-						"heal"
-					],
-					"1e": [
-						"bless",
-						"death ward",
-						"greater restoration",
-						"prayer of healing",
-						"revivify"
-					]
-				}
-			}
-		},
-		{
 			"name": "Salt",
 			"source": "PHB",
 			"page": 157,
@@ -54446,62 +53879,6 @@
 			"miscTags": [
 				"CNS"
 			],
-			"hasFluffImages": true
-		},
-		{
-			"name": "Sceptre of Saint Vitruvio",
-			"source": "DoDk",
-			"page": 234,
-			"type": "M",
-			"rarity": "rare",
-			"reqAttune": "by a spellcaster",
-			"reqAttuneTags": [
-				{
-					"spellcasting": true
-				}
-			],
-			"weight": 4,
-			"weaponCategory": "simple",
-			"property": [
-				"V"
-			],
-			"dmg1": "1d6",
-			"dmgType": "B",
-			"dmg2": "1d8",
-			"bonusWeapon": "+2",
-			"recharge": "dawn",
-			"rechargeAmount": "{@dice 1d6 + 4}",
-			"charges": 10,
-			"staff": true,
-			"entries": [
-				"This staff can be wielded as a magic quarterstaff that grants a +2 bonus to attack and damage rolls made with it. The staff has 10 charges. While holding it, you can use an action to expend 1 or more of its charges to cast one of the following spells from it, using your spell save DC: {@spell guiding bolt} (1 charge), {@spell flaming sphere} (2 charges), or {@spell flame strike} (5 charges). The staff regains {@dice 1d6 + 4} expended charges daily at dawn.",
-				{
-					"type": "entries",
-					"name": "Relics of Saint Vitruvio",
-					"entries": [
-						"These holy relics of the Sacred Flame were wielded by Saint Vitruvio and are kept in several religious sites throughout Drakkenheim. The Knights of the Silver Order and the Followers of the Falling Fire now seek these relics. Not only do both factions revere Saint Vitruvio, both wish to use these relics to help advance their goals in Drakkenheim.",
-						"A character attuned to three Relics of Saint Vitruvio may cast the {@spell heal} spell three times per day, after which they must finish a long rest before they may do so again. In addition, that character gains the ability to attune to two additional magic items so long as those magic items are both Relics of Saint Vitruvio."
-					]
-				}
-			],
-			"attachedSpells": {
-				"charges": {
-					"1": [
-						"guiding bolt"
-					],
-					"2": [
-						"flaming sphere"
-					],
-					"5": [
-						"flame strike"
-					]
-				},
-				"daily": {
-					"3": [
-						"heal"
-					]
-				}
-			},
 			"hasFluffImages": true
 		},
 		{
@@ -57419,43 +56796,6 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Skymetal Shield",
-			"source": "DoDk",
-			"page": 232,
-			"baseItem": "shield|PHB",
-			"type": "S",
-			"rarity": "uncommon",
-			"reqAttune": true,
-			"weight": 6,
-			"ac": 2,
-			"entries": [
-				"This shield is constructed from hammered meteoric iron and embossed with a delerium crystal. When you are hit with a melee or ranged attack while wielding this shield, you can use your reaction to absorb residual energy from the attack. You suffer damage and effects from the attack as normal, and the shield gains 1 charge. The shield can have a maximum of 5 charges. Unexpended charges are lost each day at dawn.",
-				"As an action while wielding the shield, you can expend all its charges to release a forceful blast. Creatures within {@quantity 10|feet} of you must succeed on a {@dc 15} Constitution saving throw. On a failed saving throw, creatures in the area take {@damage 1d6} force damage for each expended charge, and are flung back {@quantity 10|feet} and knocked prone."
-			]
-		},
-		{
-			"name": "Skymetal Staff",
-			"source": "DoDk",
-			"page": 232,
-			"baseItem": "quarterstaff|PHB",
-			"type": "M",
-			"rarity": "rare",
-			"reqAttune": true,
-			"weight": 4,
-			"weaponCategory": "simple",
-			"property": [
-				"V"
-			],
-			"dmg1": "1d6",
-			"dmgType": "B",
-			"dmg2": "1d8",
-			"staff": true,
-			"entries": [
-				"This quarterstaff was built from refined meteoric iron and has a liquid delerium core.",
-				"Once on your turn, when you hit a creature with a melee attack using this weapon, you can force the target to make a {@dc 13} Intelligence saving throw. On a failed save, it takes an extra {@damage 3d6} psychic damage and can't take reactions until the start of your next turn. In addition, on its next turn, the creature must choose to take an action, bonus action, or move: it may only do one of the three."
-			]
-		},
-		{
 			"name": "Skysail",
 			"source": "TDCSR",
 			"page": 199,
@@ -58109,7 +57449,7 @@
 					"name": "Freeing a Soul",
 					"entries": [
 						"Casting a spell that removes a curse on a soul coin frees the soul trapped within it, as does expending all of the coin's charges. The coin itself rusts from within and is destroyed once the soul is released. A freed soul travels to the realm of the god it served or the outer plane most closely tied to its alignment (DM's choice). The souls of lawful evil creatures released from soul coins typically emerge from the River Styx as {@creature lemure} devils.",
-						"A soul can also be freed by destroying the coin that contains it. A soul coin has AC 19, 1 hit point for each charge it has remaining, and immunity to all damage except that which is dealt by a {@item hellfire weapon|bgdia} or an infernal war machine's furnace (see \"{@adventure Soul Fuel|bgdia|11|Soul Fuel}\").",
+						"A soul can also be freed by destroying the coin that contains it. A soul coin has AC 19, 1 hit point for each charge it has remaining, and immunity to all damage except that which is dealt by a {@item hellfire weapon|BGDIA} or an infernal war machine's furnace (see \"{@adventure Soul Fuel|BGDIA|11|Soul Fuel}\").",
 						"Freeing a soul from a soul coin is considered a good act, even if the soul belongs to an evil creature."
 					]
 				},
@@ -58217,7 +57557,7 @@
 			"wondrous": true,
 			"entries": [
 				"This viscous, milky-white substance can form a permanent adhesive bond between any two objects. It must be stored in a jar or flask that has been coated inside with {@item Oil of Slipperiness|XDMG}. When found, a container contains {@dice 1d6 + 1} ounces.",
-				"{@quantity One|ounce} of the glue can cover a {@quantity 1|-foot} square surface. Applying {@quantity an|ounce} of Sovereign Glue takes a {@action Utilize|XPHB} action, and the applied glue takes 1 minute to set. Once it has done so, the bond it creates can be broken only by the application of Universal Solvent or {@item Oil of Etherealness|XDMG}, or with a {@spell Wish|XPHB} spell."
+				"{@quantity One|ounce} of the glue can cover a {@quantity 1|-foot} square surface. Applying {@quantity an|ounce} of Sovereign Glue takes a {@action Utilize|XPHB} action, and the applied glue takes 1 minute to set. Once it has done so, the bond it creates can be broken only by the application of {@item Universal Solvent|XDMG} or {@item Oil of Etherealness|XDMG}, or with a {@spell Wish|XPHB} spell."
 			],
 			"lootTables": [
 				"Arcana - Legendary|XDMG",
@@ -59049,14 +58389,7 @@
 			"entries": [
 				"A Spell Scroll bears the words of a single spell, written in a mystical cipher. If the spell is on your spell list, you can read the scroll and cast its spell without Material components. Otherwise, the scroll is unintelligible. Casting the spell by reading the scroll requires the spell's normal casting time. Once the spell is cast, the scroll crumbles to dust. If the casting is interrupted, the scroll isn't lost.",
 				"If the spell is on your spell list but of a higher level than you can normally cast, you make a {@dc 10} ability check using your spellcasting ability to determine whether you cast the spell. On a failed check, the spell disappears from the scroll with no other effect.",
-				"If the spell requires a saving throw or an attack roll, the spell save DC is 13, and the attack bonus is {@hit 5}.",
-				{
-					"type": "entries",
-					"name": "Copying a Scroll into a Spellbook",
-					"entries": [
-						"A Wizard spell on a Spell Scroll can be copied into a spellbook. When a cantrip is copied in this way, the copier must succeed on a {@dc 10} Intelligence ({@skill Arcana|XPHB}). On a successful check, the spell is copied. Whether the check succeeds or fails, the Spell Scroll is destroyed."
-					]
-				}
+				"If the spell requires a saving throw or an attack roll, the spell save DC is 13, and the attack bonus is {@hit 5}."
 			],
 			"spellScrollLevel": 0,
 			"lootTables": [
@@ -59444,22 +58777,6 @@
 			"hasFluffImages": true
 		},
 		{
-			"name": "Spellpiercing Wand",
-			"source": "DoDk",
-			"page": 232,
-			"type": "WD|DMG",
-			"rarity": "uncommon",
-			"reqAttune": "by a spellcaster",
-			"reqAttuneTags": [
-				{
-					"spellcasting": true
-				}
-			],
-			"entries": [
-				"You can use this wand as a spellcasting focus. Creatures making a saving throw against a spell cast using this wand can't gain benefit from advantage on their saving throws."
-			]
-		},
-		{
 			"name": "Spellshard",
 			"source": "ERLW",
 			"page": 279,
@@ -59844,18 +59161,6 @@
 			]
 		},
 		{
-			"name": "Spinosaurus",
-			"source": "ToB1-2023",
-			"page": 103,
-			"type": "MNT",
-			"rarity": "none",
-			"value": 200000,
-			"entries": [
-				"Before it can be ridden in combat, a {@creature spinosaurus dinosaur|ToB1-2023} must practice bearing the weight of its trainer and passengers. They rarely master more than a handful of tricks, but they are extremely comfortable in the water and can be trained to be are aware that some of their riders may not breathe water.",
-				"An adult spinosaurus can carry up to six tons as cargo. Riding a spinosaurus requires an exotic saddle, riding platform, or howdah."
-			]
-		},
-		{
 			"name": "Spire of Conflux (Awakened)",
 			"source": "TDCSR",
 			"_copy": {
@@ -60042,7 +59347,7 @@
 			"rechargeAmount": 3,
 			"charges": 3,
 			"entries": [
-				"This ornate wooden board has the letters of the Common alphabet printed on one side, alongside the words \"Yes\" and \"No\" and symbols representing \"Weal\" and \"Woe.\" The board comes with a heartshaped, wooden planchette. This planchette must be resting on the lettered side of the board for the board's magic to function.",
+				"This ornate wooden board has the letters of the Common alphabet printed on one side, alongside the words \"Yes\" and \"No\" and symbols representing \"Weal\" and \"Woe.\" The board comes with a heart-shaped, wooden planchette. This planchette must be resting on the lettered side of the board for the board's magic to function.",
 				"This board has 3 charges and regains 1 expended charge daily at dawn. While touching the planchette, you can take 1 minute to cast one of the spells on the table below. The table indicates how many charges you must expend to cast the spell. As you cast the spell, you call on the spirits of the dead to help guide the planchette across the board's surface, answering your questions by pointing to the letters or words on the board.",
 				{
 					"type": "table",
@@ -60083,6 +59388,9 @@
 		},
 		{
 			"name": "Sprig of Mistletoe",
+			"group": [
+				"Druidic Focus"
+			],
 			"source": "PHB",
 			"page": 151,
 			"srd": true,
@@ -60097,6 +59405,9 @@
 		},
 		{
 			"name": "Sprig of Mistletoe",
+			"group": [
+				"Druidic Focus"
+			],
 			"source": "XPHB",
 			"page": 225,
 			"srd52": true,
@@ -60146,32 +59457,6 @@
 			"entries": [
 				"At rank 2, your Head Office-supplied spyglass becomes a common magic item. As an action, you can look through the spyglass of clairvoyance at a location within {@quantity 1|mile} of you that is obstructing your view, such as a mountain, castle, or forest. You must then succeed on a {@dc 15} Wisdom check using {@item cartographer's tools|phb} to map the natural terrain found within {@quantity three|miles} of that chosen point. You do not gain any knowledge of creatures, structures, or anything other than natural terrain. This property of the spyglass cannot be used again until the next dawn."
 			]
-		},
-		{
-			"name": "Spymaster's Signet",
-			"source": "DoDk",
-			"page": 233,
-			"type": "RG|DMG",
-			"rarity": "legendary",
-			"reqAttune": true,
-			"entries": [
-				"While wearing this ring, you can cast {@spell disguise self} at-will. In addition, you can turn invisible as an action. Anything you are wearing or carrying is invisible with you. You remain invisible for one minute, or until you use a bonus action to become visible again. Once you use this power, it can't be used again until the next dawn.",
-				{
-					"type": "entries",
-					"name": "Crown Authority",
-					"entries": [
-						"A character cannot attune to more than one Seal of Drakkenheim. Guardian constructs in Drakkenheim such as {@creature wall gargoyle|DoDk|wall gargoyles} and {@creature tower dragon|DoDk|tower dragons} do not attack you while you are attuned to one of the Seals of Drakkenheim. An individual guardian ignores this effect for 24 hours if you attack it or cast a spell upon it.",
-						"As an action, you may present a Seal of Drakkenheim to rebuke the guardians. You make an opposed Charisma ability check against each {@creature wall gargoyle|DoDk} or {@creature tower dragon|DoDk} that can see or hear you within {@quantity 30|feet} of you. If you win the contest, the creature is rebuked for 1 minute or until it takes any damage. A rebuked creature doesn't move, and can't take actions or reactions. A creature who wins the contest is immune to your rebuke for 24 hours."
-					]
-				}
-			],
-			"attachedSpells": {
-				"daily": {
-					"1e": [
-						"disguise self"
-					]
-				}
-			}
 		},
 		{
 			"name": "Squid Ship",
@@ -60486,70 +59771,6 @@
 				"Relics - Rare|XDMG"
 			],
 			"hasFluffImages": true
-		},
-		{
-			"name": "Staff of Contaminated Power",
-			"source": "DoDk",
-			"page": 232,
-			"type": "M",
-			"rarity": "legendary",
-			"reqAttune": "by a sorcerer, warlock, or wizard",
-			"reqAttuneTags": [
-				{
-					"class": "sorcerer"
-				},
-				{
-					"class": "warlock"
-				},
-				{
-					"class": "wizard"
-				}
-			],
-			"weight": 4,
-			"weaponCategory": "simple",
-			"property": [
-				"V"
-			],
-			"dmg1": "1d6",
-			"dmgType": "B",
-			"dmg2": "1d8",
-			"bonusWeapon": "+2",
-			"recharge": "special",
-			"charges": 20,
-			"staff": true,
-			"entries": [
-				"This staff can be wielded as a magic quarterstaff that grants a +2 bonus to attack and damage rolls made with it.",
-				"The staff has 20 charges for the following properties. The staff regains 1 charge each hour it rests in the Deep Haze. You can also touch a delerium crystal to the staff, which causes it to regain {@dice 2d8 + 4} charges, then the crystal crumbles to dust. If you expend the last charge, you immediately gain {@dice 1d6} {@adventure levels of contamination|DoDk|12}.",
-				{
-					"type": "entries",
-					"name": "Spells",
-					"entries": [
-						"While holding the staff, you can use an action to expend some of its charges to cast one of the following spells from it, using your spell save DC and spellcasting ability: {@spell delerium orb|DoDk} (1 charge), {@spell warp bolt|DoDk} (2 charges), {@spell ride the rifts|DoDk} (3 charges), {@spell delerium blast|DoDk} (4 charges), {@spell conjure the deep haze|DoDk} (5 charges), and {@spell ray of contamination|DoDk} (6 charges). You don't gain any {@adventure contamination levels|DoDk|12} when you cast these spells using charges from this staff."
-					]
-				}
-			],
-			"attachedSpells": {
-				"charges": {
-					"1": [
-						"delerium orb|dodk"
-					],
-					"2": [
-						"warp bolt|dodk"
-					],
-					"3": [
-						"ride the rifts|dodk"
-					],
-					"4": [
-						"delerium blast|dodk"
-					],
-					"5": [
-						"conjure the deep haze|dodk"
-					],
-					"6": [
-						"ray of contamination|dodk"
-					]
-				}
-			}
 		},
 		{
 			"name": "Staff of Defense",
@@ -60950,7 +60171,7 @@
 			"charges": 10,
 			"staff": true,
 			"entries": [
-				"This wooden staff has 10 charges. While holding it, you can use an action to expend 1 charge from the staff and cause a flower to sprout from a patch of earth or soil within {@quantity 5|feet} of you, or from the staff itself. Unless you choose a specific kind of flower, the staff creates a mildscented daisy. The flower is harmless and nonmagical, and it grows or withers as a normal flower would. The staff regains {@dice 1d6 + 4} expended charges daily at dawn. If you expend the last charge, roll a {@dice d20}. On a 1, the staff turns into flower petals and is lost forever."
+				"This wooden staff has 10 charges. While holding it, you can use an action to expend 1 charge from the staff and cause a flower to sprout from a patch of earth or soil within {@quantity 5|feet} of you, or from the staff itself. Unless you choose a specific kind of flower, the staff creates a mild-scented daisy. The flower is harmless and nonmagical, and it grows or withers as a normal flower would. The staff regains {@dice 1d6 + 4} expended charges daily at dawn. If you expend the last charge, roll a {@dice d20}. On a 1, the staff turns into flower petals and is lost forever."
 			]
 		},
 		{
@@ -61538,7 +60759,7 @@
 			"dmg2": "1d8",
 			"staff": true,
 			"entries": [
-				"An ornate carving of a serpent adorned with a coursing river spirals down the length of this redand-gold staff. While you're holding it, you can use an action to produce one of the following effects. Once the staff has produced an effect, it can't produce that effect again until the next dawn.",
+				"An ornate carving of a serpent adorned with a coursing river spirals down the length of this red-and-gold staff. While you're holding it, you can use an action to produce one of the following effects. Once the staff has produced an effect, it can't produce that effect again until the next dawn.",
 				{
 					"type": "entries",
 					"name": "Orb of Lightning",
@@ -63200,49 +62421,6 @@
 			"value": 500
 		},
 		{
-			"name": "Steward's Seal",
-			"source": "DoDk",
-			"page": 233,
-			"rarity": "rare",
-			"reqAttune": true,
-			"wondrous": true,
-			"entries": [
-				"While wearing this badge, you can cast {@spell mage hand}, {@spell prestidigitation}, {@spell purify food and drink}, and {@spell unseen servant} at-will.",
-				"You can use an action to cast one of the following spells: {@spell animate objects}, {@spell create food and water}, {@spell dispel magic}, or {@spell telekinesis}. Once the badge has been used to cast one of these spells, it can't be used to cast that spell again until the next dawn. You can choose your Intelligence, Wisdom, or Charisma score as the spellcasting ability for casting these spells, and use your proficiency bonus to determine their attack bonus and saving throw DC.",
-				{
-					"type": "entries",
-					"name": "Crown Authority",
-					"entries": [
-						"A character cannot attune to more than one Seal of Drakkenheim. Guardian constructs in Drakkenheim such as {@creature wall gargoyle|DoDk|wall gargoyles} and {@creature tower dragon|DoDk|tower dragons} do not attack you while you are attuned to one of the Seals of Drakkenheim. An individual guardian ignores this effect for 24 hours if you attack it or cast a spell upon it.",
-						"As an action, you may present a Seal of Drakkenheim to rebuke the guardians. You make an opposed Charisma ability check against each {@creature wall gargoyle|DoDk} or {@creature tower dragon|DoDk} that can see or hear you within {@quantity 30|feet} of you. If you win the contest, the creature is rebuked for 1 minute or until it takes any damage. A rebuked creature doesn't move, and can't take actions or reactions. A creature who wins the contest is immune to your rebuke for 24 hours."
-					]
-				}
-			],
-			"attachedSpells": {
-				"will": [
-					"mage hand",
-					"prestidigitation",
-					"purify food and drink",
-					"unseen servant"
-				],
-				"daily": {
-					"1e": [
-						"animate objects",
-						"create food and water",
-						"dispel magic",
-						"telekinesis"
-					]
-				},
-				"ability": {
-					"choose": [
-						"int",
-						"wis",
-						"cha"
-					]
-				}
-			}
-		},
-		{
 			"name": "Stink Bomb",
 			"source": "TDCSR",
 			"page": 100,
@@ -64295,6 +63473,9 @@
 			"name": "Sword of Answering (Answerer)",
 			"source": "DMG",
 			"page": 206,
+			"reprintedAs": [
+				"Sword of Answering|XDMG"
+			],
 			"baseItem": "longsword|phb",
 			"type": "M",
 			"tier": "major",
@@ -64327,6 +63508,9 @@
 			"name": "Sword of Answering (Back Talker)",
 			"source": "DMG",
 			"page": 206,
+			"reprintedAs": [
+				"Sword of Answering|XDMG"
+			],
 			"baseItem": "longsword|phb",
 			"type": "M",
 			"tier": "major",
@@ -64359,6 +63543,9 @@
 			"name": "Sword of Answering (Concluder)",
 			"source": "DMG",
 			"page": 206,
+			"reprintedAs": [
+				"Sword of Answering|XDMG"
+			],
 			"baseItem": "longsword|phb",
 			"type": "M",
 			"tier": "major",
@@ -64391,6 +63578,9 @@
 			"name": "Sword of Answering (Last Quip)",
 			"source": "DMG",
 			"page": 206,
+			"reprintedAs": [
+				"Sword of Answering|XDMG"
+			],
 			"baseItem": "longsword|phb",
 			"type": "M",
 			"tier": "major",
@@ -64423,6 +63613,9 @@
 			"name": "Sword of Answering (Rebutter)",
 			"source": "DMG",
 			"page": 206,
+			"reprintedAs": [
+				"Sword of Answering|XDMG"
+			],
 			"baseItem": "longsword|phb",
 			"type": "M",
 			"tier": "major",
@@ -64455,6 +63648,9 @@
 			"name": "Sword of Answering (Replier)",
 			"source": "DMG",
 			"page": 206,
+			"reprintedAs": [
+				"Sword of Answering|XDMG"
+			],
 			"baseItem": "longsword|phb",
 			"type": "M",
 			"tier": "major",
@@ -64486,6 +63682,9 @@
 			"name": "Sword of Answering (Retorter)",
 			"source": "DMG",
 			"page": 206,
+			"reprintedAs": [
+				"Sword of Answering|XDMG"
+			],
 			"baseItem": "longsword|phb",
 			"type": "M",
 			"tier": "major",
@@ -64518,6 +63717,9 @@
 			"name": "Sword of Answering (Scather)",
 			"source": "DMG",
 			"page": 206,
+			"reprintedAs": [
+				"Sword of Answering|XDMG"
+			],
 			"baseItem": "longsword|phb",
 			"type": "M",
 			"tier": "major",
@@ -64550,6 +63752,9 @@
 			"name": "Sword of Answering (Squelcher)",
 			"source": "DMG",
 			"page": 206,
+			"reprintedAs": [
+				"Sword of Answering|XDMG"
+			],
 			"baseItem": "longsword|phb",
 			"type": "M",
 			"tier": "major",
@@ -65112,7 +64317,7 @@
 					"type": "entries",
 					"name": "Destroying the Sword",
 					"entries": [
-						"Zariel can destroy the sword simply by grasping it. She couldn't bring herself to do so when she was an angel, but as an archdevil she has no compunction about ridding the multiverse of the weapon. The sword is also destroyed if it's used to shatter the Companion (see \"{@adventure Shattering the Companion|bgdia|8|shattering the companion}\"), unless the blade is wielded by an angel of challenge rating 15 or higher, or a good-aligned cleric or paladin of at least 10th level.",
+						"Zariel can destroy the sword simply by grasping it. She couldn't bring herself to do so when she was an angel, but as an archdevil she has no compunction about ridding the multiverse of the weapon. The sword is also destroyed if it's used to shatter the Companion (see \"{@adventure Shattering the Companion|BGDIA|8|shattering the companion}\"), unless the blade is wielded by an angel of challenge rating 15 or higher, or a good-aligned cleric or paladin of at least 10th level.",
 						"If Zariel is killed for good (that is, if she dies in the Nine Hells), the sword becomes no harder to destroy than a normal longsword."
 					]
 				}
@@ -66203,7 +65408,7 @@
 						],
 						[
 							"09",
-							"You summon a {@creature unicorn} that obeys your commands. If you give a command that violates the unicorn's allignment, the unicorn immediately vanishes.",
+							"You summon a {@creature unicorn} that obeys your commands. If you give a command that violates the unicorn's alignment, the unicorn immediately vanishes.",
 							"You grow a unicorn horn."
 						],
 						[
@@ -66704,43 +65909,6 @@
 					"unseen servant",
 					"zone of truth"
 				]
-			}
-		},
-		{
-			"name": "The Shield of Sacred Flame",
-			"source": "DoDk",
-			"page": 234,
-			"baseItem": "shield|PHB",
-			"type": "S",
-			"rarity": "rare",
-			"reqAttune": true,
-			"weight": 6,
-			"ac": 2,
-			"recharge": "dawn",
-			"rechargeAmount": 3,
-			"charges": 3,
-			"entries": [
-				"This shield has 3 charges, which you regain each day at dawn. When a spellcaster within {@quantity 60|feet} of you targets you with a spell or includes you in the area of a spell, you may expend a charge from the shield to cast {@spell counterspell} as a reaction.",
-				{
-					"type": "entries",
-					"name": "Relics of Saint Vitruvio",
-					"entries": [
-						"These holy relics of the Sacred Flame were wielded by Saint Vitruvio and are kept in several religious sites throughout Drakkenheim. The Knights of the Silver Order and the Followers of the Falling Fire now seek these relics. Not only do both factions revere Saint Vitruvio, both wish to use these relics to help advance their goals in Drakkenheim.",
-						"A character attuned to three Relics of Saint Vitruvio may cast the {@spell heal} spell three times per day, after which they must finish a long rest before they may do so again. In addition, that character gains the ability to attune to two additional magic items so long as those magic items are both Relics of Saint Vitruvio."
-					]
-				}
-			],
-			"attachedSpells": {
-				"charges": {
-					"1": [
-						"counterspell"
-					]
-				},
-				"daily": {
-					"3e": [
-						"heal"
-					]
-				}
 			}
 		},
 		{
@@ -67890,6 +67058,9 @@
 		},
 		{
 			"name": "Totem",
+			"group": [
+				"Druidic Focus"
+			],
 			"source": "PHB",
 			"page": 151,
 			"srd": true,
@@ -68369,7 +67540,7 @@
 						],
 						[
 							"74",
-							"A signed headshot of famous bard Spice Caraway"
+							"A signed head shot of famous bard Spice Caraway"
 						],
 						[
 							"75",
@@ -68585,7 +67756,7 @@
 						],
 						[
 							"41-42",
-							"A lepidopterist's box filled dead moths with skulllike patterns on their wings"
+							"A lepidopterist's box filled dead moths with skull-like patterns on their wings"
 						],
 						[
 							"43-44",
@@ -68776,7 +67947,7 @@
 						],
 						[
 							"12",
-							"A small handmirror which only reflects inanimate objects"
+							"A small hand mirror which only reflects inanimate objects"
 						],
 						[
 							"13",
@@ -68924,7 +68095,7 @@
 						],
 						[
 							"49",
-							"A small crystal snowglobe that, when shaken, seems to form silhouettes of dancing forms"
+							"A small crystal snow globe that, when shaken, seems to form silhouettes of dancing forms"
 						],
 						[
 							"50",
@@ -69096,7 +68267,7 @@
 						],
 						[
 							"92",
-							"An arrowhead carved from seasalt"
+							"An arrowhead carved from sea salt"
 						],
 						[
 							"93",
@@ -69367,7 +68538,7 @@
 						],
 						[
 							"52",
-							"Two toy soldiers, one with a missing head "
+							"Two toy soldiers, one with a missing head"
 						],
 						[
 							"53",
@@ -70379,17 +69550,6 @@
 				"Implements - Legendary|XDMG"
 			],
 			"hasFluffImages": true
-		},
-		{
-			"name": "Vanisher Hat",
-			"source": "ToB1-2023",
-			"page": 319,
-			"rarity": "uncommon",
-			"reqAttune": true,
-			"wondrous": true,
-			"entries": [
-				"This plain hat appears to be a rough burlap tam. A creature that can see through illusions sees the hat as a golden, bejeweled coronet. While wearing this hat, you can use an action to speak its command word to become invisible and gain a flying speed of {@quantity 40|feet} for up to 1 minute. Anything you are wearing or carrying is invisible with you. You remain invisible and capable of flying until you repeat the command word as an action or until you attack or cast a spell. Once used, the hat can't be used again until the next dawn."
-			]
 		},
 		{
 			"name": "Vanquisher's Banner",
@@ -72093,32 +71253,6 @@
 				"Implements - Uncommon|XDMG"
 			],
 			"hasFluffImages": true
-		},
-		{
-			"name": "Wand of Silence",
-			"source": "GHLoE",
-			"page": 111,
-			"type": "WD|DMG",
-			"rarity": "uncommon",
-			"reqAttune": "by a spellcaster",
-			"reqAttuneTags": [
-				{
-					"spellcasting": true
-				}
-			],
-			"recharge": "dawn",
-			"rechargeAmount": "{@dice 1d6 + 1}",
-			"charges": 7,
-			"entries": [
-				"This wand has 7 charges. While holding it, you can use an action to expend 1 charge to cast the {@spell silence} spell (save {@dc 15}). The wand regains {@dice 1d6 + 1} expended charges daily at dawn. If you expend the wand's last charge, roll a {@dice d20}. On a 1, the wand crumbles into ashes and is destroyed."
-			],
-			"attachedSpells": {
-				"charges": {
-					"1": [
-						"silence"
-					]
-				}
-			}
 		},
 		{
 			"name": "Wand of Smiles",
@@ -74254,7 +73388,7 @@
 			"bonusWeapon": "+1",
 			"entries": [
 				"You have a +1 bonus to attack and damage rolls made with this magic weapon.",
-				"This greatsword is made of an unknown black metal. In most cases, it works as a {@item +1 greatsword}. But when used against a {@creature thessalhydra|hftt}, it works as a {@item +3 greatsword}. While in the Upside Down, it works as a +4 greatsword."
+				"This greatsword is made of an unknown black metal. In most cases, it works as a {@item +1 greatsword}. But when used against a {@creature thessalhydra|HftT}, it works as a {@item +3 greatsword}. While in the Upside Down, it works as a +4 greatsword."
 			]
 		},
 		{
@@ -75152,6 +74286,9 @@
 		},
 		{
 			"name": "Yew Wand",
+			"group": [
+				"Druidic Focus"
+			],
 			"source": "PHB",
 			"page": 151,
 			"srd": true,
@@ -75167,6 +74304,9 @@
 		},
 		{
 			"name": "Yew Wand",
+			"group": [
+				"Druidic Focus"
+			],
 			"source": "XPHB",
 			"page": 225,
 			"srd52": true,
@@ -78013,7 +77153,7 @@
 							"Radiant"
 						],
 						[
-							"{@item Orb of Shielding (Kythrian Skarn)|ERLW|Kythrian skarn}",
+							"{@item Orb of Shielding (Kythrian Skarn)|ERLW|Kythrian Skarn}",
 							"Acid and poison"
 						],
 						[

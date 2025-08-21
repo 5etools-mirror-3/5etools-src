@@ -1,4 +1,5 @@
 import {TOOLTIP_NOTHING} from "./lootgen-const.js";
+import {LootGenUtils} from "./lootgen-utils.js";
 
 export class LootGenOutput {
 	static _TIERS = ["other", "minor", "major"];
@@ -25,53 +26,55 @@ export class LootGenOutput {
 		this._datetimeGenerated = Date.now();
 	}
 
-	_$getEleTitleSplit () {
-		const $btnRivet = !globalThis.IS_VTT && ExtensionUtil.ACTIVE
-			? $(`<button title="Send to Foundry (SHIFT for Temporary Import)" class="ve-btn ve-btn-xs ve-btn-default"><span class="glyphicon glyphicon-send"></span></button>`)
-				.click(evt => this._pDoSendToFoundry({isTemp: !!evt.shiftKey}))
+	_getEleTitleSplit () {
+		const btnRivet = !globalThis.IS_VTT && ExtensionUtil.ACTIVE
+			? ee`<button title="Send to Foundry (SHIFT for Temporary Import)" class="no-print ve-btn ve-btn-xs ve-btn-default"><span class="glyphicon glyphicon-send"></span></button>`
+				.onn("click", evt => this._pDoSendToFoundry({isTemp: !!evt.shiftKey}))
 			: null;
 
-		const $btnDownload = $(`<button title="Download JSON" class="ve-btn ve-btn-xs ve-btn-default"><span class="glyphicon glyphicon-download glyphicon--top-2p"></span></button>`)
-			.click(() => this._pDoSaveAsJson());
+		const btnDownload = ee`<button title="Download JSON" class="ve-btn ve-btn-xs ve-btn-default"><span class="glyphicon glyphicon-download glyphicon--top-2p"></span></button>`
+			.onn("click", () => this._pDoSaveAsJson());
 
-		return $$`<div class="ve-btn-group">
-			${$btnRivet}
-			${$btnDownload}
+		return ee`<div class="ve-btn-group">
+			${btnRivet}
+			${btnDownload}
 		</div>`;
 	}
 
-	render ($parent) {
-		const $eleTitleSplit = this._$getEleTitleSplit();
+	render (eleParent) {
+		const eleTitleSplit = this._getEleTitleSplit();
 
-		const $dispTitle = $$`<h4 class="mt-1 mb-2 split-v-center ve-draggable">
+		const dispTitle = ee`<h4 class="mt-1 mb-2 split-v-center ve-draggable">
 			<div>${Renderer.get().render(this._name)}</div>
-			${$eleTitleSplit}
+			${eleTitleSplit}
 		</h4>`;
 
-		const $parts = [
-			this._render_$getPtValueSummary(),
-			this._render_$getPtCoins(),
-			...this._render_$getPtGemsArtObjects({loot: this._gems, name: "gemstones"}),
-			...this._render_$getPtGemsArtObjects({loot: this._artObjects, name: "art objects"}),
-			this._render_$getPtDragonMundaneItems(),
-			...this._render_$getPtMagicItems(),
-		].filter(Boolean);
+		const elesParts = [
+			this._render_getPtValueSummary(),
+			this._render_getPtCoins(),
+			...this._render_getPtGemsArtObjects({loot: this._gems, name: "gemstones"}),
+			...this._render_getPtGemsArtObjects({loot: this._artObjects, name: "art objects"}),
+			this._render_getPtDragonMundaneItems(),
+			...this._render_getPtMagicItems(),
+		]
+			.filter(Boolean)
+			.flat();
 
-		this._$wrp = $$`<div class="ve-flex-col lootg__wrp-output py-3 px-2 my-2 mr-1">
-			${$dispTitle}
-			${$parts.length ? $$`<ul>${$parts}</ul>` : null}
-			${!$parts.length ? `<div class="ve-muted help-subtle italic" title="${TOOLTIP_NOTHING.qq()}">(No loot!)</div>` : null}
+		this._wrp = ee`<div class="ve-flex-col lootg__wrp-output py-3 px-2 my-2 mr-1">
+			${dispTitle}
+			${elesParts.length ? ee`<ul>${elesParts}</ul>` : null}
+			${!elesParts.length ? `<div class="ve-muted help-subtle italic" title="${TOOLTIP_NOTHING.qq()}">(No loot!)</div>` : null}
 		</div>`
-			.prependTo($parent);
+			.prependTo(eleParent);
 
-		(globalThis.IS_VTT ? this._$wrp : $dispTitle)
+		(globalThis.IS_VTT ? this._wrp : dispTitle)
 			.attr("draggable", true)
-			.on("dragstart", evt => {
+			.onn("dragstart", evt => {
 				const meta = {
 					type: VeCt.DRAG_TYPE_LOOT,
 					data: dropData,
 				};
-				evt.originalEvent.dataTransfer.setData("application/json", JSON.stringify(meta));
+				evt.dataTransfer.setData("application/json", JSON.stringify(meta));
 			});
 
 		// Preload the drop data in the background, to lessen the chance that the user drops the card before it has time
@@ -196,7 +199,7 @@ export class LootGenOutput {
 		return out;
 	}
 
-	_render_$getPtValueSummary () {
+	_render_getPtValueSummary () {
 		if ([this._coins, this._gems, this._artObjects].filter(Boolean).length <= 1) return null;
 
 		const totalValue = [
@@ -205,30 +208,30 @@ export class LootGenOutput {
 			this._artObjects?.length ? this._artObjects.map(it => it.type * it.count * 100).sum() : 0,
 		].sum();
 
-		return $(`<li class="italic ve-muted">A total of ${(totalValue / 100).toLocaleString()} gp worth of coins, art objects, and/or gems, as follows:</li>`);
+		return ee`<li class="italic ve-muted">A total of ${(totalValue / 100).toLocaleString()} ${LootGenUtils.getCoinageLabel("gp")} worth of coins, art objects, and/or gems, as follows:</li>`;
 	}
 
-	_render_$getPtCoins () {
+	_render_getPtCoins () {
 		if (!this._coins) return null;
 
 		const total = CurrencyUtil.getAsCopper(this._coins);
 		const breakdown = [...Parser.COIN_ABVS]
 			.reverse()
 			.filter(it => this._coins[it])
-			.map(it => `${this._coins[it].toLocaleString()} ${it}`);
+			.map(it => `${this._coins[it].toLocaleString()} ${LootGenUtils.getCoinageLabel(it)}`);
 
-		return $$`
-			<li>${(total / 100).toLocaleString()} gp in coinage:</li>
+		return ee`
+			<li>${(total / 100).toLocaleString()} ${LootGenUtils.getCoinageLabel("gp")} in coinage:</li>
 			<ul>
 				${breakdown.map(it => `<li>${it}</li>`).join("")}
 			</ul>
 		`;
 	}
 
-	_render_$getPtDragonMundaneItems () {
+	_render_getPtDragonMundaneItems () {
 		if (!this._dragonMundaneItems) return null;
 
-		return $$`
+		return ee`
 			<li>${this._dragonMundaneItems.count} mundane item${this._dragonMundaneItems.count !== 1 ? "s" : ""}:</li>
 			<ul>
 				${this._dragonMundaneItems.breakdown.map(it => `<li>${it}</li>`).join("")}
@@ -236,12 +239,12 @@ export class LootGenOutput {
 		`;
 	}
 
-	_render_$getPtGemsArtObjects ({loot, name}) {
+	_render_getPtGemsArtObjects ({loot, name}) {
 		if (!loot?.length) return [];
 
 		return loot.map(lt => {
-			return $$`
-			<li>${(lt.type).toLocaleString()} gp ${name} (×${lt.count}; worth ${((lt.type * lt.count)).toLocaleString()} gp total):</li>
+			return ee`
+			<li>${(lt.type).toLocaleString()} ${LootGenUtils.getCoinageLabel("gp")} ${name} (×${lt.count}; worth ${((lt.type * lt.count)).toLocaleString()} ${LootGenUtils.getCoinageLabel("gp")} total):</li>
 			<ul>
 				${Object.entries(lt.breakdown).map(([result, count]) => `<li>${Renderer.get().render(result)}${count > 1 ? `, ×${count}` : ""}</li>`).join("")}
 			</ul>
@@ -249,7 +252,7 @@ export class LootGenOutput {
 		});
 	}
 
-	_render_$getPtMagicItems () {
+	_render_getPtMagicItems () {
 		if (!this._magicItemsByTable?.length) return [];
 
 		return [...this._magicItemsByTable]
@@ -267,34 +270,35 @@ export class LootGenOutput {
 							tgt.push(lootItem);
 						});
 
-					const $ulsByRarity = Object.entries(byRarity)
+					const ulsByRarity = Object.entries(byRarity)
 						.sort(([rarityA], [rarityB]) => SortUtil.ascSortItemRarity(rarityB, rarityA))
 						.map(([rarity, lootItems]) => {
-							return $$`
+							return ee`
 								<li>${rarity.toTitleCase()} items (×${lootItems.length}):</li>
-								<ul>${lootItems.map(it => it.$getRender())}</ul>
+								<ul>${lootItems.map(it => it.getRender())}</ul>
 							`;
-						});
+						})
+						.flat();
 
-					if (!$ulsByRarity.length) return null;
+					if (!ulsByRarity.length) return null;
 
-					return $$`
+					return ee`
 						<li>${magicItems.tier.toTitleCase()} items:</li>
 						<ul>
-							${$ulsByRarity}
+							${ulsByRarity}
 						</ul>
 					`;
 				}
 
-				return $$`
+				return ee`
 					<li>Magic Items${magicItems.tag ? ` (${Renderer.get().render(magicItems.tag)})` : ""}${(magicItems.count || 0) > 1 ? ` (×${magicItems.count})` : ""}</li>
-					<ul>${magicItems.breakdown.map(it => it.$getRender())}</ul>
+					<ul>${magicItems.breakdown.map(it => it.getRender())}</ul>
 				`;
 			});
 	}
 
 	doRemove () {
-		if (this._$wrp) this._$wrp.remove();
+		if (this._wrp) this._wrp.remove();
 	}
 
 	static _ascSortTier (a, b) { return LootGenOutput._TIERS.indexOf(a) - LootGenOutput._TIERS.indexOf(b); }

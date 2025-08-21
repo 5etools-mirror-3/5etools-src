@@ -31,7 +31,7 @@
 				}
 			],
 			"entries": [
-				"You create an acidic bubble at a point within range, where it explodes in a {@quantity 5|-foot}-radius Sphere. Each creature in that Sphere must succeed on a Dexterity saving throw or take {@damage 1d6} Acid damage."
+				"You create an acidic bubble at a point within range, where it explodes in a {@quantity 5|-foot}-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere}. Each creature in that {@variantrule Sphere [Area of Effect]|XPHB|Sphere} must succeed on a Dexterity saving throw or take {@damage 1d6} Acid damage."
 			],
 			"entriesHigherLevel": [
 				{
@@ -58,8 +58,7 @@
 				"dexterity"
 			],
 			"miscTags": [
-				"SCL",
-				"SGT"
+				"SCL"
 			],
 			"areaTags": [
 				"MT"
@@ -158,7 +157,7 @@
 				"ritual": true
 			},
 			"entries": [
-				"You set an alarm against intrusion. Choose a door, a window, or an area within range that is no larger than a {@quantity 20|-foot} Cube. Until the spell ends, an alarm alerts you whenever a creature touches or enters the warded area. When you cast the spell, you can designate creatures that won't set off the alarm. You also choose whether the alarm is audible or mental:",
+				"You set an alarm against intrusion. Choose a door, a window, or an area within range that is no larger than a {@quantity 20|-foot} {@variantrule Cube [Area of Effect]|XPHB|Cube}. Until the spell ends, an alarm alerts you whenever a creature touches or enters the warded area. When you cast the spell, you can designate creatures that won't set off the alarm. You also choose whether the alarm is audible or mental:",
 				{
 					"type": "list",
 					"style": "list-hang-notitle",
@@ -413,7 +412,7 @@
 			"entries": [
 				"Choose any number of willing creatures that you can see within range. Each target shape-shifts into a Large or smaller Beast of your choice that has a {@variantrule Challenge Rating|XPHB} of 4 or lower. You can choose a different form for each target. On later turns, you can take a {@action Magic|XPHB} action to transform the targets again.",
 				"A target's game statistics are replaced by the chosen Beast's statistics, but the target retains its creature type; {@variantrule Hit Points|XPHB}; {@variantrule Hit Point Dice|XPHB}; alignment; ability to communicate; and Intelligence, Wisdom, and Charisma scores. The target's actions are limited by the Beast form's anatomy, and it can't cast spells. The target's equipment melds into the new form, and the target can't use any of that equipment while in that form.",
-				"The target gains a number of {@variantrule Temporary Hit Points|XPHB} equal to the Hit Points of the first form into which it shape-shifts. These {@variantrule Temporary Hit Points|XPHB} vanish if any remain when the spell ends. The transformation lasts for the duration or until the target ends it as a {@variantrule Bonus Action|XPHB}."
+				"The target gains a number of {@variantrule Temporary Hit Points|XPHB} equal to the {@variantrule Hit Points|XPHB} of the first form into which it shape-shifts. These {@variantrule Temporary Hit Points|XPHB} vanish if any remain when the spell ends. The transformation lasts for the duration or until the target ends it as a {@variantrule Bonus Action|XPHB}."
 			],
 			"miscTags": [
 				"SGT"
@@ -576,7 +575,7 @@
 				}
 			],
 			"entries": [
-				"An aura extends from you in a {@quantity 10|-foot} Emanation for the duration. The aura prevents creatures other than Constructs and Undead from passing or reaching through it. An affected creature can cast spells or make attacks with Ranged or Reach weapons through the barrier.",
+				"An aura extends from you in a {@quantity 10|-foot} {@variantrule Emanation [Area of Effect]|XPHB|Emanation} for the duration. The aura prevents creatures other than Constructs and Undead from passing or reaching through it. An affected creature can cast spells or make attacks with Ranged or Reach weapons through the barrier.",
 				"If you move so that an affected creature is forced to pass through the barrier, the spell ends."
 			],
 			"affectsCreatureType": [
@@ -634,7 +633,7 @@
 				}
 			],
 			"entries": [
-				"An aura of antimagic surrounds you in {@quantity 10|-foot} Emanation. No one can cast spells, take {@action Magic|XPHB} actions, or create other magical effects inside the aura, and those things can't target or otherwise affect anything inside it. Magical properties of magic items don't work inside the aura or on anything inside it.",
+				"An aura of antimagic surrounds you in {@quantity 10|-foot} {@variantrule Emanation [Area of Effect]|XPHB|Emanation}. No one can cast spells, take {@action Magic|XPHB} actions, or create other magical effects inside the aura, and those things can't target or otherwise affect anything inside it. Magical properties of magic items don't work inside the aura or on anything inside it.",
 				"Areas of effect created by spells or other magic can't extend into the aura, and no one can teleport into or out of it or use planar travel there. Portals close temporarily while in the aura.",
 				"Ongoing spells, except those cast by an Artifact or a deity, are suppressed in the area. While an effect is suppressed, it doesn't function, but the time it spends suppressed counts against its duration.",
 				"{@spell Dispel Magic|XPHB} has no effect on the aura, and the auras created by different {@spell Antimagic Field|XPHB} spells don't nullify each other."
@@ -982,7 +981,7 @@
 				}
 			],
 			"entries": [
-				"Invoking Hadar, you cause tendrils to erupt from yourself. Each creature in a {@quantity 10|-foot} Emanation originating from you makes a Strength saving throw. On a failed save, a target takes {@damage 2d6} Necrotic damage and can't take Reactions until the start of its next turn. On a successful save, a target takes half as much damage only."
+				"Invoking Hadar, you cause tendrils to erupt from yourself. Each creature in a {@quantity 10|-foot} {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from you makes a Strength saving throw. On a failed save, a target takes {@damage 2d6} Necrotic damage and can't take Reactions until the start of its next turn. On a successful save, a target takes half as much damage only."
 			],
 			"entriesHigherLevel": [
 				{
@@ -1136,6 +1135,7 @@
 			"name": "Aura of Life",
 			"source": "XPHB",
 			"page": 244,
+			"srd52": true,
 			"basicRules2024": true,
 			"level": 4,
 			"school": "A",
@@ -1166,7 +1166,7 @@
 				}
 			],
 			"entries": [
-				"An aura radiates from you in a {@quantity 30|-foot} Emanation for the duration. While in the aura, you and your allies have {@variantrule Resistance|XPHB} to Necrotic damage, and your {@variantrule Hit Points|XPHB|Hit Point} maximums can't be reduced. If an ally with 0 {@variantrule Hit Points|XPHB} starts its turn in the aura, that ally regains 1 {@variantrule Hit Points|XPHB|Hit Point}."
+				"An aura radiates from you in a {@quantity 30|-foot} {@variantrule Emanation [Area of Effect]|XPHB|Emanation} for the duration. While in the aura, you and your allies have {@variantrule Resistance|XPHB} to Necrotic damage, and your {@variantrule Hit Points|XPHB|Hit Point} maximums can't be reduced. If an ally with 0 {@variantrule Hit Points|XPHB} starts its turn in the aura, that ally regains 1 {@variantrule Hit Points|XPHB|Hit Point}."
 			],
 			"damageResist": [
 				"necrotic"
@@ -1211,7 +1211,7 @@
 				}
 			],
 			"entries": [
-				"An aura radiates from you in a {@quantity 30|-foot} Emanation for the duration. While in the aura, you and your allies have {@variantrule Resistance|XPHB} to Poison damage and {@variantrule Advantage|XPHB} on saving throws to avoid or end effects that include the {@condition Blinded|XPHB}, {@condition Charmed|XPHB}, {@condition Deafened|XPHB}, {@condition Frightened|XPHB}, {@condition Paralyzed|XPHB}, {@condition Poisoned|XPHB}, or {@condition Stunned|XPHB} condition."
+				"An aura radiates from you in a {@quantity 30|-foot} {@variantrule Emanation [Area of Effect]|XPHB|Emanation} for the duration. While in the aura, you and your allies have {@variantrule Resistance|XPHB} to Poison damage and {@variantrule Advantage|XPHB} on saving throws to avoid or end effects that include the {@condition Blinded|XPHB}, {@condition Charmed|XPHB}, {@condition Deafened|XPHB}, {@condition Frightened|XPHB}, {@condition Paralyzed|XPHB}, {@condition Poisoned|XPHB}, or {@condition Stunned|XPHB} condition."
 			],
 			"damageResist": [
 				"poison"
@@ -1256,7 +1256,7 @@
 				}
 			],
 			"entries": [
-				"An aura radiates from you in a {@quantity 30|-foot} Emanation for the duration. When you create the aura and at the start of each of your turns while it persists, you can restore {@dice 2d6} {@variantrule Hit Points|XPHB} to one creature in it."
+				"An aura radiates from you in a {@quantity 30|-foot} {@variantrule Emanation [Area of Effect]|XPHB|Emanation} for the duration. When you create the aura and at the start of each of your turns while it persists, you can restore {@dice 2d6} {@variantrule Hit Points|XPHB} to one creature in it."
 			],
 			"miscTags": [
 				"HL"
@@ -1386,7 +1386,7 @@
 				{
 					"number": 1,
 					"unit": "bonus",
-					"condition": "which you take immediately after hitting a creature with a Melee weapon or an Unarmed Strike"
+					"condition": "which you take immediately after hitting a creature with a Melee weapon or an {@variantrule Unarmed Strike|XPHB}"
 				}
 			],
 			"range": {
@@ -2051,7 +2051,7 @@
 				{
 					"number": 1,
 					"unit": "bonus",
-					"condition": "which you take immediately after hitting a creature with a Melee weapon or an Unarmed Strike"
+					"condition": "which you take immediately after hitting a creature with a Melee weapon or an {@variantrule Unarmed Strike|XPHB}"
 				}
 			],
 			"range": {
@@ -2266,8 +2266,8 @@
 				}
 			],
 			"entries": [
-				"A thin sheet of flames shoots forth from you. Each creature in a {@quantity 15|-foot} Cone makes a Dexterity saving throw, taking {@damage 3d6} Fire damage on a failed save or half as much damage on a successful one.",
-				"Flammable objects in the Cone that aren't being worn or carried start {@hazard burning|XPHB}."
+				"A thin sheet of flames shoots forth from you. Each creature in a {@quantity 15|-foot} {@variantrule Cone [Area of Effect]|XPHB|Cone} makes a Dexterity saving throw, taking {@damage 3d6} Fire damage on a failed save or half as much damage on a successful one.",
+				"Flammable objects in the {@variantrule Cone [Area of Effect]|XPHB|Cone} that aren't being worn or carried start {@hazard burning|XPHB}."
 			],
 			"entriesHigherLevel": [
 				{
@@ -2327,7 +2327,7 @@
 				}
 			],
 			"entries": [
-				"A storm cloud appears at a point within range that you can see above yourself. It takes the shape of a Cylinder that is {@quantity 10|feet} tall with a {@quantity 60|-foot} radius.",
+				"A storm cloud appears at a point within range that you can see above yourself. It takes the shape of a {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder} that is {@quantity 10|feet} tall with a {@quantity 60|-foot} radius.",
 				"When you cast the spell, choose a point you can see under the cloud. A lightning bolt shoots from the cloud to that point. Each creature within {@quantity 5|feet} of that point makes a Dexterity saving throw, taking {@damage 3d10} Lightning damage on a failed save or half as much damage on a successful one.",
 				"Until the spell ends, you can take a {@action Magic|XPHB} action to call down lightning in that way again, targeting the same point or a different one.",
 				"If you're outdoors in a storm when you cast this spell, the spell gives you control over that storm instead of creating a new one. Under such conditions, the spell's damage increases by {@damage 1d10}."
@@ -2391,12 +2391,12 @@
 				}
 			],
 			"entries": [
-				"Each Humanoid in a {@quantity 20|-foot}-radius Sphere centered on a point you choose within range must succeed on a Charisma saving throw or be affected by one of the following effects (choose for each creature):",
+				"Each Humanoid in a {@quantity 20|-foot}-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on a point you choose within range must succeed on a Charisma saving throw or be affected by one of the following effects (choose for each creature):",
 				{
 					"type": "list",
 					"items": [
 						"The creature has {@variantrule Immunity|XPHB} to the {@condition Charmed|XPHB} and {@condition Frightened|XPHB} conditions until the spell ends. If the creature was already {@condition Charmed|XPHB} or {@condition Frightened|XPHB}, those conditions are suppressed for the duration.",
-						"The creature becomes Indifferent about creatures of your choice that it's Hostile toward. This indifference ends if the target takes damage or witnesses its allies taking damage. When the spell ends, the creature's attitude returns to normal."
+						"The creature becomes {@variantrule Indifferent [Attitude]|XPHB|Indifferent} about creatures of your choice that it's {@variantrule Hostile [Attitude]|XPHB|Hostile} toward. This indifference ends if the target takes damage or witnesses its allies taking damage. When the spell ends, the creature's attitude returns to normal."
 					]
 				}
 			],
@@ -2505,7 +2505,7 @@
 				}
 			],
 			"entries": [
-				"One creature you can see within range makes a Wisdom saving throw. It does so with {@variantrule Advantage|XPHB} if you or your allies are fighting it. On a failed save, the target has the {@condition Charmed|XPHB} condition until the spell ends or until you or your allies damage it. The {@condition Charmed|XPHB} creature is Friendly to you. When the spell ends, the target knows it was {@condition Charmed|XPHB} by you."
+				"One creature you can see within range makes a Wisdom saving throw. It does so with {@variantrule Advantage|XPHB} if you or your allies are fighting it. On a failed save, the target has the {@condition Charmed|XPHB} condition until the spell ends or until you or your allies damage it. The {@condition Charmed|XPHB} creature is {@variantrule Friendly [Attitude]|XPHB|Friendly} to you. When the spell ends, the target knows it was {@condition Charmed|XPHB} by you."
 			],
 			"entriesHigherLevel": [
 				{
@@ -2565,7 +2565,7 @@
 				}
 			],
 			"entries": [
-				"One Humanoid you can see within range makes a Wisdom saving throw. It does so with {@variantrule Advantage|XPHB} if you or your allies are fighting it. On a failed save, the target has the {@condition Charmed|XPHB} condition until the spell ends or until you or your allies damage it. The {@condition Charmed|XPHB} creature is Friendly to you. When the spell ends, the target knows it was {@condition Charmed|XPHB} by you."
+				"One Humanoid you can see within range makes a Wisdom saving throw. It does so with {@variantrule Advantage|XPHB} if you or your allies are fighting it. On a failed save, the target has the {@condition Charmed|XPHB} condition until the spell ends or until you or your allies damage it. The {@condition Charmed|XPHB} creature is {@variantrule Friendly [Attitude]|XPHB|Friendly} to you. When the spell ends, the target knows it was {@condition Charmed|XPHB} by you."
 			],
 			"entriesHigherLevel": [
 				{
@@ -2757,7 +2757,7 @@
 				}
 			],
 			"entries": [
-				"Negative energy ripples out in a {@quantity 60|-foot}-radius Sphere from a point you choose within range. Each creature in that area makes a Constitution saving throw, taking {@damage 8d8} Necrotic damage on a failed save or half as much damage on a successful one."
+				"Negative energy ripples out in a {@quantity 60|-foot}-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} from a point you choose within range. Each creature in that area makes a Constitution saving throw, taking {@damage 8d8} Necrotic damage on a failed save or half as much damage on a successful one."
 			],
 			"entriesHigherLevel": [
 				{
@@ -2811,7 +2811,7 @@
 				}
 			],
 			"entries": [
-				"An aura radiates from you in a {@quantity 30|-foot} Emanation for the duration. While in the aura, you and your allies have {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects. When an affected creature makes a saving throw against a spell or magical effect that allows a save to take only half damage, it takes no damage if it succeeds on the save."
+				"An aura radiates from you in a {@quantity 30|-foot} {@variantrule Emanation [Area of Effect]|XPHB|Emanation} for the duration. While in the aura, you and your allies have {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects. When an affected creature makes a saving throw against a spell or magical effect that allows a save to take only half damage, it takes no damage if it succeeds on the save."
 			],
 			"miscTags": [
 				"ADV"
@@ -2945,8 +2945,8 @@
 				}
 			],
 			"entries": [
-				"You conjure spinning daggers in a {@quantity 5|-foot} Cube centered on a point within range. Each creature in that area takes {@damage 4d4} Slashing damage. A creature also takes this damage if it enters the Cube or ends its turn there or if the Cube moves into its space. A creature takes this damage only once per turn.",
-				"On your later turns, you can take a {@action Magic|XPHB} action to teleport the Cube up to {@quantity 30|feet}."
+				"You conjure spinning daggers in a {@quantity 5|-foot} {@variantrule Cube [Area of Effect]|XPHB|Cube} centered on a point within range. Each creature in that area takes {@damage 4d4} Slashing damage. A creature also takes this damage if it enters the {@variantrule Cube [Area of Effect]|XPHB|Cube} or ends its turn there or if the {@variantrule Cube [Area of Effect]|XPHB|Cube} moves into its space. A creature takes this damage only once per turn.",
+				"On your later turns, you can take a {@action Magic|XPHB} action to teleport the {@variantrule Cube [Area of Effect]|XPHB|Cube} up to {@quantity 30|feet}."
 			],
 			"entriesHigherLevel": [
 				{
@@ -3000,9 +3000,9 @@
 				}
 			],
 			"entries": [
-				"You create a {@quantity 20|-foot}-radius Sphere of yellow-green fog centered on a point within range. The fog lasts for the duration or until strong wind (such as the one created by {@spell Gust of Wind|XPHB}) disperses it, ending the spell. Its area is {@variantrule Heavily Obscured|XPHB}.",
-				"Each creature in the Sphere makes a Constitution saving throw, taking {@damage 5d8} Poison damage on a failed save or half as much damage on a successful one. A creature must also make this save when the Sphere moves into its space and when it enters the Sphere or ends its turn there. A creature makes this save only once per turn.",
-				"The Sphere moves {@quantity 10|feet} away from you at the start of each of your turns."
+				"You create a {@quantity 20|-foot}-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} of yellow-green fog centered on a point within range. The fog lasts for the duration or until strong wind (such as the one created by {@spell Gust of Wind|XPHB}) disperses it, ending the spell. Its area is {@variantrule Heavily Obscured|XPHB}.",
+				"Each creature in the {@variantrule Sphere [Area of Effect]|XPHB|Sphere} makes a Constitution saving throw, taking {@damage 5d8} Poison damage on a failed save or half as much damage on a successful one. A creature must also make this save when the {@variantrule Sphere [Area of Effect]|XPHB|Sphere} moves into its space and when it enters the {@variantrule Sphere [Area of Effect]|XPHB|Sphere} or ends its turn there. A creature makes this save only once per turn.",
+				"The {@variantrule Sphere [Area of Effect]|XPHB|Sphere} moves {@quantity 10|feet} away from you at the start of each of your turns."
 			],
 			"entriesHigherLevel": [
 				{
@@ -3058,7 +3058,7 @@
 				}
 			],
 			"entries": [
-				"You launch a dazzling array of flashing, colorful light. Each creature in a {@quantity 15|-foot} Cone originating from you must succeed on a Constitution saving throw or have the {@condition Blinded|XPHB} condition until the end of your next turn."
+				"You launch a dazzling array of flashing, colorful light. Each creature in a {@quantity 15|-foot} {@variantrule Cone [Area of Effect]|XPHB|Cone} originating from you must succeed on a Constitution saving throw or have the {@condition Blinded|XPHB} condition until the end of your next turn."
 			],
 			"conditionInflict": [
 				"blinded"
@@ -3433,7 +3433,7 @@
 				}
 			],
 			"entries": [
-				"You unleash a blast of cold air. Each creature in a {@quantity 60|-foot} Cone originating from you makes a Constitution saving throw, taking {@damage 8d8} Cold damage on a failed save or half as much damage on a successful one. A creature killed by this spell becomes a frozen statue until it thaws."
+				"You unleash a blast of cold air. Each creature in a {@quantity 60|-foot} {@variantrule Cone [Area of Effect]|XPHB|Cone} originating from you makes a Constitution saving throw, taking {@damage 8d8} Cold damage on a failed save or half as much damage on a successful one. A creature killed by this spell becomes a frozen statue until it thaws."
 			],
 			"entriesHigherLevel": [
 				{
@@ -3492,7 +3492,7 @@
 				}
 			],
 			"entries": [
-				"Each creature in a {@quantity 10|-foot}-radius Sphere centered on a point you choose within range must succeed on a Wisdom saving throw, or that target can't take Bonus Actions or Reactions and must roll {@dice 1d10} at the start of each of its turns to determine its behavior for that turn, consulting the table below.",
+				"Each creature in a {@quantity 10|-foot}-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on a point you choose within range must succeed on a Wisdom saving throw, or that target can't take Bonus Actions or Reactions and must roll {@dice 1d10} at the start of each of its turns to determine its behavior for that turn, consulting the table below.",
 				{
 					"type": "table",
 					"colStyles": [
@@ -3529,7 +3529,7 @@
 					"type": "entries",
 					"name": "Using a Higher-Level Spell Slot",
 					"entries": [
-						"The Sphere's radius increases by {@quantity 5|feet} for each spell slot level above 4."
+						"The {@variantrule Sphere [Area of Effect]|XPHB|Sphere}'s radius increases by {@quantity 5|feet} for each spell slot level above 4."
 					]
 				}
 			],
@@ -3639,7 +3639,7 @@
 				}
 			],
 			"entries": [
-				"You brandish the weapon used to cast the spell and conjure similar spectral weapons (or ammunition appropriate to the weapon) that launch forward and then disappear. Each creature of your choice that you can see in a {@quantity 60|-foot} Cone makes a Dexterity saving throw, taking {@damage 5d8} Force damage on a failed save or half as much damage on a successful one."
+				"You brandish the weapon used to cast the spell and conjure similar spectral weapons (or ammunition appropriate to the weapon) that launch forward and then disappear. Each creature of your choice that you can see in a {@quantity 60|-foot} {@variantrule Cone [Area of Effect]|XPHB|Cone} makes a Dexterity saving throw, taking {@damage 5d8} Force damage on a failed save or half as much damage on a successful one."
 			],
 			"entriesHigherLevel": [
 				{
@@ -3699,7 +3699,7 @@
 				}
 			],
 			"entries": [
-				"You conjure a spirit from the Upper Planes, which manifests as a pillar of light in a {@quantity 10|-foot}-radius, {@quantity 40|-foot}-high Cylinder centered on a point within range. For each creature you can see in the Cylinder, choose which of these lights shines on it:",
+				"You conjure a spirit from the Upper Planes, which manifests as a pillar of light in a {@quantity 10|-foot}-radius, {@quantity 40|-foot}-high {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder} centered on a point within range. For each creature you can see in the {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder}, choose which of these lights shines on it:",
 				{
 					"type": "list",
 					"style": "list-hang-notitle",
@@ -3720,8 +3720,8 @@
 						}
 					]
 				},
-				"Until the spell ends, {@variantrule Bright Light|XPHB} fills the Cylinder, and when you move on your turn, you can also move the Cylinder up to {@quantity 30|feet}.",
-				"Whenever the Cylinder moves into the space of a creature you can see and whenever a creature you can see enters the Cylinder or ends its turn there, you can bathe it in one of the lights. A creature can be affected by this spell only once per turn."
+				"Until the spell ends, {@variantrule Bright Light|XPHB} fills the {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder}, and when you move on your turn, you can also move the {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder} up to {@quantity 30|feet}.",
+				"Whenever the {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder} moves into the space of a creature you can see and whenever a creature you can see enters the {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder} or ends its turn there, you can bathe it in one of the lights. A creature can be affected by this spell only once per turn."
 			],
 			"entriesHigherLevel": [
 				{
@@ -3905,8 +3905,8 @@
 				}
 			],
 			"entries": [
-				"You conjure spirits from the Elemental Planes that flit around you in a {@quantity 15|-foot} Emanation for the duration. Until the spell ends, any attack you make deals an extra {@damage 2d8} damage when you hit a creature in the Emanation. This damage is Acid, Cold, Fire, or Lightning (your choice when you make the attack).",
-				"In addition, the ground in the Emanation is {@variantrule Difficult Terrain|XPHB} for your enemies."
+				"You conjure spirits from the Elemental Planes that flit around you in a {@quantity 15|-foot} {@variantrule Emanation [Area of Effect]|XPHB|Emanation} for the duration. Until the spell ends, any attack you make deals an extra {@damage 2d8} damage when you hit a creature in the {@variantrule Emanation [Area of Effect]|XPHB|Emanation}. This damage is Acid, Cold, Fire, or Lightning (your choice when you make the attack).",
+				"In addition, the ground in the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} is {@variantrule Difficult Terrain|XPHB} for your enemies."
 			],
 			"entriesHigherLevel": [
 				{
@@ -3964,7 +3964,7 @@
 				}
 			],
 			"entries": [
-				"You brandish the weapon used to cast the spell and choose a point within range. Hundreds of similar spectral weapons (or ammunition appropriate to the weapon) fall in a volley and then disappear. Each creature of your choice that you can see in a {@quantity 40|-foot}-radius, {@quantity 20|-foot}-high Cylinder centered on that point makes a Dexterity saving throw. A creature takes {@damage 8d8} Force damage on a failed save or half as much damage on a successful one."
+				"You brandish the weapon used to cast the spell and choose a point within range. Hundreds of similar spectral weapons (or ammunition appropriate to the weapon) fall in a volley and then disappear. Each creature of your choice that you can see in a {@quantity 40|-foot}-radius, {@quantity 20|-foot}-high {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder} centered on that point makes a Dexterity saving throw. A creature takes {@damage 8d8} Force damage on a failed save or half as much damage on a successful one."
 			],
 			"damageInflict": [
 				"force"
@@ -4015,7 +4015,7 @@
 				}
 			],
 			"entries": [
-				"You conjure nature spirits that flit around you in a {@quantity 10|-foot} Emanation for the duration. Whenever the Emanation enters the space of a creature you can see and whenever a creature you can see enters the Emanation or ends its turn there, you can force that creature to make a Wisdom saving throw. The creature takes {@damage 5d8} Force damage on a failed save or half as much damage on a successful one. A creature makes this save only once per turn.",
+				"You conjure nature spirits that flit around you in a {@quantity 10|-foot} {@variantrule Emanation [Area of Effect]|XPHB|Emanation} for the duration. Whenever the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} enters the space of a creature you can see and whenever a creature you can see enters the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} or ends its turn there, you can force that creature to make a Wisdom saving throw. The creature takes {@damage 5d8} Force damage on a failed save or half as much damage on a successful one. A creature makes this save only once per turn.",
 				"In addition, you can take the {@action Disengage|XPHB} action as a {@variantrule Bonus Action|XPHB} for the spell's duration."
 			],
 			"entriesHigherLevel": [
@@ -4260,7 +4260,7 @@
 				}
 			],
 			"entries": [
-				"Until the spell ends, you control any water inside an area you choose that is a Cube up to {@quantity 100|feet} on a side, using one of the following effects. As a {@action Magic|XPHB} action on your later turns, you can repeat the same effect or choose a different one.",
+				"Until the spell ends, you control any water inside an area you choose that is a {@variantrule Cube [Area of Effect]|XPHB|Cube} up to {@quantity 100|feet} on a side, using one of the following effects. As a {@action Magic|XPHB} action on your later turns, you can repeat the same effect or choose a different one.",
 				{
 					"type": "entries",
 					"name": "Flood",
@@ -4627,14 +4627,14 @@
 							"type": "item",
 							"name": "Create Water",
 							"entries": [
-								"You create up to {@quantity 10|gallons} of clean water within range in an open container. Alternatively, the water falls as rain in a {@quantity 30|-foot} Cube within range, extinguishing exposed flames there."
+								"You create up to {@quantity 10|gallons} of clean water within range in an open container. Alternatively, the water falls as rain in a {@quantity 30|-foot} {@variantrule Cube [Area of Effect]|XPHB|Cube} within range, extinguishing exposed flames there."
 							]
 						},
 						{
 							"type": "item",
 							"name": "Destroy Water",
 							"entries": [
-								"You destroy up to {@quantity 10|gallons} of water in an open container within range. Alternatively, you destroy fog in a {@quantity 30|-foot} Cube within range."
+								"You destroy up to {@quantity 10|gallons} of water in an open container within range. Alternatively, you destroy fog in a {@quantity 30|-foot} {@variantrule Cube [Area of Effect]|XPHB|Cube} within range."
 							]
 						}
 					]
@@ -4645,7 +4645,7 @@
 					"type": "entries",
 					"name": "Using a Higher-Level Spell Slot",
 					"entries": [
-						"You create or destroy 10 additional gallons of water, or the size of the Cube increases by {@quantity 5|feet}, for each spell slot level above 1."
+						"You create or destroy 10 additional gallons of water, or the size of the {@variantrule Cube [Area of Effect]|XPHB|Cube} increases by {@quantity 5|feet}, for each spell slot level above 1."
 					]
 				}
 			],
@@ -4745,7 +4745,7 @@
 				}
 			],
 			"entries": [
-				"You pull wisps of shadow material from the Shadowfell to create an object within range. It is either an object of vegetable matter (soft goods, rope, wood, and the like) or mineral matter (stone, crystal, metal, and the like). The object must be no larger than a {@quantity 5|-foot} Cube, and the object must be of a form and material that you have seen.",
+				"You pull wisps of shadow material from the Shadowfell to create an object within range. It is either an object of vegetable matter (soft goods, rope, wood, and the like) or mineral matter (stone, crystal, metal, and the like). The object must be no larger than a {@quantity 5|-foot} {@variantrule Cube [Area of Effect]|XPHB|Cube}, and the object must be of a form and material that you have seen.",
 				"The spell's duration depends on the object's material, as shown in the Materials table. If the object is composed of multiple materials, use the shortest duration. Using any object created by this spell as another spell's Material component causes the other spell to fail.",
 				{
 					"type": "table",
@@ -4787,7 +4787,7 @@
 					"type": "entries",
 					"name": "Using a Higher-Level Spell Slot",
 					"entries": [
-						"The Cube increases by {@quantity 5|feet} for each spell slot level above 5."
+						"The {@variantrule Cube [Area of Effect]|XPHB|Cube} increases by {@quantity 5|feet} for each spell slot level above 5."
 					]
 				}
 			]
@@ -4879,7 +4879,7 @@
 				}
 			],
 			"entries": [
-				"You radiate a magical aura in a {@quantity 30|-foot} Emanation. While in the aura, you and your allies each deal an extra {@damage 1d4} Radiant damage when hitting with a weapon or an {@variantrule Unarmed Strike|XPHB}."
+				"You radiate a magical aura in a {@quantity 30|-foot} {@variantrule Emanation [Area of Effect]|XPHB|Emanation}. While in the aura, you and your allies each deal an extra {@damage 1d4} Radiant damage when hitting with a weapon or an {@variantrule Unarmed Strike|XPHB}."
 			],
 			"damageInflict": [
 				"radiant"
@@ -5020,8 +5020,8 @@
 				}
 			],
 			"entries": [
-				"For the duration, magical {@variantrule Darkness|XPHB} spreads from a point within range and fills a {@quantity 15|-foot}-radius Sphere. {@sense Darkvision|XPHB} can't see through it, and nonmagical light can't illuminate it.",
-				"Alternatively, you cast the spell on an object that isn't being worn or carried, causing the {@variantrule Darkness|XPHB} to fill a {@quantity 15|-foot} Emanation originating from that object. Covering that object with something opaque, such as a bowl or helm, blocks the {@variantrule Darkness|XPHB}.",
+				"For the duration, magical {@variantrule Darkness|XPHB} spreads from a point within range and fills a {@quantity 15|-foot}-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere}. {@sense Darkvision|XPHB} can't see through it, and nonmagical light can't illuminate it.",
+				"Alternatively, you cast the spell on an object that isn't being worn or carried, causing the {@variantrule Darkness|XPHB} to fill a {@quantity 15|-foot} {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from that object. Covering that object with something opaque, such as a bowl or helm, blocks the {@variantrule Darkness|XPHB}.",
 				"If any of this spell's area overlaps with an area of {@variantrule Bright Light|XPHB} or {@variantrule Dim Light|XPHB} created by a spell of level 2 or lower, that other spell is dispelled."
 			],
 			"miscTags": [
@@ -5035,6 +5035,7 @@
 			"name": "Darkvision",
 			"source": "XPHB",
 			"page": 260,
+			"srd52": true,
 			"basicRules2024": true,
 			"level": 2,
 			"school": "T",
@@ -5106,8 +5107,8 @@
 				}
 			],
 			"entries": [
-				"For the duration, sunlight spreads from a point within range and fills a {@quantity 60|-foot}-radius Sphere. The sunlight's area is {@variantrule Bright Light|XPHB} and sheds {@variantrule Dim Light|XPHB} for an additional {@quantity 60|feet}.",
-				"Alternatively, you cast the spell on an object that isn't being worn or carried, causing the sunlight to fill a {@quantity 60|-foot} Emanation originating from that object. Covering that object with something opaque, such as a bowl or helm, blocks the sunlight.",
+				"For the duration, sunlight spreads from a point within range and fills a {@quantity 60|-foot}-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere}. The sunlight's area is {@variantrule Bright Light|XPHB} and sheds {@variantrule Dim Light|XPHB} for an additional {@quantity 60|feet}.",
+				"Alternatively, you cast the spell on an object that isn't being worn or carried, causing the sunlight to fill a {@quantity 60|-foot} {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from that object. Covering that object with something opaque, such as a bowl or helm, blocks the sunlight.",
 				"If any of this spell's area overlaps with an area of {@variantrule Darkness|XPHB} created by a spell of level 3 or lower, that other spell is dispelled."
 			],
 			"miscTags": [
@@ -5198,7 +5199,7 @@
 				}
 			],
 			"entries": [
-				"A beam of yellow light flashes from you, then condenses at a chosen point within range as a glowing bead for the duration. When the spell ends, the bead explodes, and each creature in a {@quantity 20|-foot}-radius Sphere centered on that point makes a Dexterity saving throw. A creature takes Fire damage equal to the total accumulated damage on a failed save or half as much damage on a successful one.",
+				"A beam of yellow light flashes from you, then condenses at a chosen point within range as a glowing bead for the duration. When the spell ends, the bead explodes, and each creature in a {@quantity 20|-foot}-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on that point makes a Dexterity saving throw. A creature takes Fire damage equal to the total accumulated damage on a failed save or half as much damage on a successful one.",
 				"The spell's base damage is {@damage 12d6}, and the damage increases by {@damage 1d6} whenever your turn ends and the spell hasn't ended.",
 				"If a creature touches the glowing bead before the spell ends, that creature makes a Dexterity saving throw. On a failed save, the spell ends, causing the bead to explode. On a successful save, the creature can throw the bead up to {@quantity 40|feet}. If the thrown bead enters a creature's space or collides with a solid object, the spell ends, and the bead explodes.",
 				"When the bead explodes, flammable objects in the explosion that aren't being worn or carried start {@hazard burning|XPHB}."
@@ -5297,7 +5298,7 @@
 				}
 			],
 			"entries": [
-				"Destructive energy ripples outward from you in a {@quantity 30|-foot} Emanation. Each creature you choose in the Emanation makes a Constitution saving throw. On a failed save, a target takes {@damage 5d6} Thunder damage and {@damage 5d6} Radiant or Necrotic damage (your choice) and has the {@condition Prone|XPHB} condition. On a successful save, a target takes half as much damage only."
+				"Destructive energy ripples outward from you in a {@quantity 30|-foot} {@variantrule Emanation [Area of Effect]|XPHB|Emanation}. Each creature you choose in the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} makes a Constitution saving throw. On a failed save, a target takes {@damage 5d6} Thunder damage and {@damage 5d6} Radiant or Necrotic damage (your choice) and has the {@condition Prone|XPHB} condition. On a successful save, a target takes half as much damage only."
 			],
 			"damageInflict": [
 				"necrotic",
@@ -5634,7 +5635,7 @@
 			"entries": [
 				"You launch a green ray at a target you can see within range. The target can be a creature, a nonmagical object, or a creation of magical force, such as the wall created by {@spell Wall of Force|XPHB}.",
 				"A creature targeted by this spell makes a Dexterity saving throw. On a failed save, the target takes {@damage 10d6 + 40} Force damage. If this damage reduces it to 0 {@variantrule Hit Points|XPHB}, it and everything nonmagical it is wearing and carrying are disintegrated into gray dust. The target can be revived only by a {@spell True Resurrection|XPHB} or a {@spell Wish|XPHB} spell.",
-				"This spell automatically disintegrates a Large or smaller nonmagical object or a creation of magical force. If such a target is Huge or larger, this spell disintegrates a {@quantity 10|-foot}-Cube portion of it."
+				"This spell automatically disintegrates a Large or smaller nonmagical object or a creation of magical force. If such a target is Huge or larger, this spell disintegrates a {@quantity 10|-foot}-{@variantrule Cube [Area of Effect]|XPHB|Cube} portion of it."
 			],
 			"entriesHigherLevel": [
 				{
@@ -5929,7 +5930,7 @@
 				{
 					"number": 1,
 					"unit": "bonus",
-					"condition": "Which you take immediately after hitting a target with a Melee weapon or an Unarmed Strike"
+					"condition": "which you take immediately after hitting a target with a Melee weapon or an {@variantrule Unarmed Strike|XPHB}"
 				}
 			],
 			"range": {
@@ -6268,7 +6269,7 @@
 				}
 			],
 			"entries": [
-				"You touch one willing creature, and choose Acid, Cold, Fire, Lightning, or Poison. Until the spell ends, the target can take a {@action Magic|XPHB} action to exhale a {@quantity 15|-foot} Cone. Each creature in that area makes a Dexterity saving throw, taking {@damage 3d6} damage of the chosen type on a failed save or half as much damage on a successful one."
+				"You touch one willing creature, and choose Acid, Cold, Fire, Lightning, or Poison. Until the spell ends, the target can take a {@action Magic|XPHB} action to exhale a {@quantity 15|-foot} {@variantrule Cone [Area of Effect]|XPHB|Cone}. Each creature in that area makes a Dexterity saving throw, taking {@damage 3d6} damage of the chosen type on a failed save or half as much damage on a successful one."
 			],
 			"entriesHigherLevel": [
 				{
@@ -6442,7 +6443,7 @@
 					"type": "entries",
 					"name": "Sensory Effect",
 					"entries": [
-						"You create a harmless sensory effect, such as falling leaves, spectral dancing fairies, a gentle breeze, the sound of an animal, or the faint odor of skunk. The effect must fit in a {@quantity 5|-foot} Cube."
+						"You create a harmless sensory effect, such as falling leaves, spectral dancing fairies, a gentle breeze, the sound of an animal, or the faint odor of skunk. The effect must fit in a {@quantity 5|-foot} {@variantrule Cube [Area of Effect]|XPHB|Cube}."
 					]
 				},
 				{
@@ -6679,7 +6680,7 @@
 					"type": "entries",
 					"name": "Beckon Air",
 					"entries": [
-						"You create a breeze strong enough to ripple cloth, stir dust, rustle leaves, and close open doors and shutters, all in a {@quantity 5|-foot} Cube. Doors and shutters being held open by someone or something aren't affected."
+						"You create a breeze strong enough to ripple cloth, stir dust, rustle leaves, and close open doors and shutters, all in a {@quantity 5|-foot} {@variantrule Cube [Area of Effect]|XPHB|Cube}. Doors and shutters being held open by someone or something aren't affected."
 					]
 				},
 				{
@@ -6693,21 +6694,21 @@
 					"type": "entries",
 					"name": "Beckon Fire",
 					"entries": [
-						"You create a thin cloud of harmless embers and colored, scented smoke in a {@quantity 5|-foot} Cube. You choose the color and scent, and the embers can light candles, torches, or lamps in that area. The smoke's scent lingers for 1 minute."
+						"You create a thin cloud of harmless embers and colored, scented smoke in a {@quantity 5|-foot} {@variantrule Cube [Area of Effect]|XPHB|Cube}. You choose the color and scent, and the embers can light candles, torches, or lamps in that area. The smoke's scent lingers for 1 minute."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Beckon Water",
 					"entries": [
-						"You create a spray of cool mist that lightly dampens creatures and objects in a {@quantity 5|-foot} Cube. Alternatively, you create 1 cup of clean water either in an open container or on a surface, and the water evaporates in 1 minute."
+						"You create a spray of cool mist that lightly dampens creatures and objects in a {@quantity 5|-foot} {@variantrule Cube [Area of Effect]|XPHB|Cube}. Alternatively, you create 1 cup of clean water either in an open container or on a surface, and the water evaporates in 1 minute."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Sculpt Element",
 					"entries": [
-						"You cause dirt, sand, fire, smoke, mist, or water that can fit in a {@quantity 1|-foot} Cube to assume a crude shape (such as that of a creature) for 1 hour."
+						"You cause dirt, sand, fire, smoke, mist, or water that can fit in a {@quantity 1|-foot} {@variantrule Cube [Area of Effect]|XPHB|Cube} to assume a crude shape (such as that of a creature) for 1 hour."
 					]
 				}
 			],
@@ -7267,7 +7268,7 @@
 			],
 			"entries": [
 				"You convert raw materials into products of the same material. For example, you can fabricate a wooden bridge from a clump of trees, a rope from a patch of hemp, or clothes from flax or wool.",
-				"Choose raw materials that you can see within range. You can fabricate a Large or smaller object (contained within a {@quantity 10|-foot} Cube or eight connected {@quantity 5|-foot} Cubes) given a sufficient quantity of material. If you're working with metal, stone, or another mineral substance, however, the fabricated object can be no larger than Medium (contained within a {@quantity 5|-foot} Cube). The quality of any fabricated objects is based on the quality of the raw materials.",
+				"Choose raw materials that you can see within range. You can fabricate a Large or smaller object (contained within a {@quantity 10|-foot} {@variantrule Cube [Area of Effect]|XPHB|Cube} or eight connected {@quantity 5|-foot} Cubes) given a sufficient quantity of material. If you're working with metal, stone, or another mineral substance, however, the fabricated object can be no larger than Medium (contained within a {@quantity 5|-foot} {@variantrule Cube [Area of Effect]|XPHB|Cube}). The quality of any fabricated objects is based on the quality of the raw materials.",
 				"Creatures and magic items can't be created by this spell. You also can't use it to create items that require a high degree of skill\u2014such as weapons and armor\u2014unless you have proficiency with the type of {@item Artisan's Tools|XPHB} used to craft such objects."
 			],
 			"miscTags": [
@@ -7311,7 +7312,7 @@
 				}
 			],
 			"entries": [
-				"Objects in a {@quantity 20|-foot} Cube within range are outlined in blue, green, or violet light (your choice). Each creature in the Cube is also outlined if it fails a Dexterity saving throw. For the duration, objects and affected creatures shed {@variantrule Dim Light|XPHB} in a {@quantity 10|-foot} radius and can't benefit from the {@condition Invisible|XPHB} condition.",
+				"Objects in a {@quantity 20|-foot} {@variantrule Cube [Area of Effect]|XPHB|Cube} within range are outlined in blue, green, or violet light (your choice). Each creature in the {@variantrule Cube [Area of Effect]|XPHB|Cube} is also outlined if it fails a Dexterity saving throw. For the duration, objects and affected creatures shed {@variantrule Dim Light|XPHB} in a {@quantity 10|-foot} radius and can't benefit from the {@condition Invisible|XPHB} condition.",
 				"{@action Attack|XPHB} rolls against an affected creature or object have {@variantrule Advantage|XPHB} if the attacker can see it."
 			],
 			"savingThrow": [
@@ -7408,7 +7409,7 @@
 				}
 			],
 			"entries": [
-				"Each creature in a {@quantity 30|-foot} Cone must succeed on a Wisdom saving throw or drop whatever it is holding and have the {@condition Frightened|XPHB} condition for the duration.",
+				"Each creature in a {@quantity 30|-foot} {@variantrule Cone [Area of Effect]|XPHB|Cone} must succeed on a Wisdom saving throw or drop whatever it is holding and have the {@condition Frightened|XPHB} condition for the duration.",
 				"A {@condition Frightened|XPHB} creature takes the {@action Dash|XPHB} action and moves away from you by the safest route on each of its turns unless there is nowhere to move. If the creature ends its turn in a space where it doesn't have line of sight to you, the creature makes a Wisdom saving throw. On a successful save, the spell ends on that creature."
 			],
 			"conditionInflict": [
@@ -7946,7 +7947,7 @@
 				}
 			],
 			"entries": [
-				"A storm of fire appears within range. The area of the storm consists of up to ten {@quantity 10|-foot} Cubes, which you arrange as you like. Each Cube must be contiguous with at least one other Cube. Each creature in the area makes a Dexterity saving throw, taking {@damage 7d10} Fire damage on a failed save or half as much damage on a successful one.",
+				"A storm of fire appears within range. The area of the storm consists of up to ten {@quantity 10|-foot} Cubes, which you arrange as you like. Each {@variantrule Cube [Area of Effect]|XPHB|Cube} must be contiguous with at least one other {@variantrule Cube [Area of Effect]|XPHB|Cube}. Each creature in the area makes a Dexterity saving throw, taking {@damage 7d10} Fire damage on a failed save or half as much damage on a successful one.",
 				"Flammable objects in the area that aren't being worn or carried start {@hazard burning|XPHB}."
 			],
 			"damageInflict": [
@@ -7994,7 +7995,7 @@
 				}
 			],
 			"entries": [
-				"A bright streak flashes from you to a point you choose within range and then blossoms with a low roar into a fiery explosion. Each creature in a {@quantity 20|-foot}-radius Sphere centered on that point makes a Dexterity saving throw, taking {@damage 8d6} Fire damage on a failed save or half as much damage on a successful one.",
+				"A bright streak flashes from you to a point you choose within range and then blossoms with a low roar into a fiery explosion. Each creature in a {@quantity 20|-foot}-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on that point makes a Dexterity saving throw, taking {@damage 8d6} Fire damage on a failed save or half as much damage on a successful one.",
 				"Flammable objects in the area that aren't being worn or carried start {@hazard burning|XPHB}."
 			],
 			"entriesHigherLevel": [
@@ -8115,7 +8116,7 @@
 				}
 			],
 			"entries": [
-				"A vertical column of brilliant fire roars down from above. Each creature in a {@quantity 10|-foot}-radius, {@quantity 40|-foot}-high Cylinder centered on a point within range makes a Dexterity saving throw, taking {@damage 5d6} Fire damage and {@damage 5d6} Radiant damage on a failed save or half as much damage on a successful one."
+				"A vertical column of brilliant fire roars down from above. Each creature in a {@quantity 10|-foot}-radius, {@quantity 40|-foot}-high {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder} centered on a point within range makes a Dexterity saving throw, taking {@damage 5d6} Fire damage and {@damage 5d6} Radiant damage on a failed save or half as much damage on a successful one."
 			],
 			"entriesHigherLevel": [
 				{
@@ -8348,7 +8349,7 @@
 				}
 			],
 			"entries": [
-				"You create a {@quantity 20|-foot}-radius Sphere of fog centered on a point within range. The Sphere is {@variantrule Heavily Obscured|XPHB}. It lasts for the duration or until a strong wind (such as one created by {@spell Gust of Wind|XPHB}) disperses it."
+				"You create a {@quantity 20|-foot}-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} of fog centered on a point within range. The {@variantrule Sphere [Area of Effect]|XPHB|Sphere} is {@variantrule Heavily Obscured|XPHB}. It lasts for the duration or until a strong wind (such as one created by {@spell Gust of Wind|XPHB}) disperses it."
 			],
 			"entriesHigherLevel": [
 				{
@@ -8470,7 +8471,7 @@
 				}
 			],
 			"entries": [
-				"An immobile, {@condition Invisible|XPHB}, Cube-shaped prison composed of magical force springs into existence around an area you choose within range. The prison can be a cage or a solid box, as you choose.",
+				"An immobile, {@condition Invisible|XPHB}, {@variantrule Cube [Area of Effect]|XPHB|Cube}-shaped prison composed of magical force springs into existence around an area you choose within range. The prison can be a cage or a solid box, as you choose.",
 				"A prison in the shape of a cage can be up to {@quantity 20|feet} on a side and is made from {@quantity 1/2|-inch} diameter bars spaced {@quantity 1/2|inch} apart. A prison in the shape of a box can be up to {@quantity 10|feet} on a side, creating a solid barrier that prevents any matter from passing through it and blocking any spells cast into or out from the area.",
 				"When you cast the spell, any creature that is completely inside the cage's area is trapped. Creatures only partially within the area, or those too large to fit inside it, are pushed away from the center of the area until they are completely outside it.",
 				"A creature inside the cage can't leave it by nonmagical means. If the creature tries to use teleportation or interplanar travel to leave, it must first make a Charisma saving throw. On a successful save, the creature can use that magic to exit the cage. On a failed save, the creature doesn't exit the cage and wastes the spell or effect. The cage also extends into the Ethereal Plane, blocking ethereal travel.",
@@ -8916,6 +8917,7 @@
 			"name": "Giant Insect",
 			"source": "XPHB",
 			"page": 279,
+			"srd52": true,
 			"basicRules2024": true,
 			"level": 4,
 			"school": "C",
@@ -8970,7 +8972,7 @@
 			"srd52": true,
 			"basicRules2024": true,
 			"level": 8,
-			"school": "T",
+			"school": "E",
 			"time": [
 				{
 					"number": 1,
@@ -9036,7 +9038,7 @@
 				}
 			],
 			"entries": [
-				"An immobile, shimmering barrier appears in a {@quantity 10|-foot} Emanation around you and remains for the duration.",
+				"An immobile, shimmering barrier appears in a {@quantity 10|-foot} {@variantrule Emanation [Area of Effect]|XPHB|Emanation} around you and remains for the duration.",
 				"Any spell of level 5 or lower cast from outside the barrier can't affect anything within it. Such a spell can target creatures and objects within the barrier, but the spell has no effect on them. Similarly, the area within the barrier is excluded from areas of effect created by such spells."
 			],
 			"entriesHigherLevel": [
@@ -9106,7 +9108,7 @@
 					"type": "entries",
 					"name": "Explosive Rune",
 					"entries": [
-						"When triggered, the glyph erupts with magical energy in a {@quantity 20|-foot}-radius Sphere centered on the glyph. Each creature in the area makes a Dexterity saving throw. A creature takes {@damage 5d8} Acid, Cold, Fire, Lightning, or Thunder damage (your choice when you create the glyph) on a failed save or half as much damage on a successful one."
+						"When triggered, the glyph erupts with magical energy in a {@quantity 20|-foot}-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on the glyph. Each creature in the area makes a Dexterity saving throw. A creature takes {@damage 5d8} Acid, Cold, Fire, Lightning, or Thunder damage (your choice when you create the glyph) on a failed save or half as much damage on a successful one."
 					]
 				},
 				{
@@ -9114,7 +9116,7 @@
 					"name": "Spell Glyph",
 					"entries": [
 						"You can store a prepared spell of level 3 or lower in the glyph by casting it as part of creating the glyph. The spell must target a single creature or an area. The spell being stored has no immediate effect when cast in this way.",
-						"When the glyph is triggered, the stored spell takes effect. If the spell has a target, it targets the creature that triggered the glyph. If the spell affects an area, the area is centered on that creature. If the spell summons Hostile creatures or creates harmful objects or traps, they appear as close as possible to the intruder and attack it. If the spell requires {@status Concentration|XPHB}, it lasts until the end of its full duration."
+						"When the glyph is triggered, the stored spell takes effect. If the spell has a target, it targets the creature that triggered the glyph. If the spell affects an area, the area is centered on that creature. If the spell summons {@variantrule Hostile [Attitude]|XPHB|Hostile} creatures or creates harmful objects or traps, they appear as close as possible to the intruder and attack it. If the spell requires {@status Concentration|XPHB}, it lasts until the end of its full duration."
 					]
 				}
 			],
@@ -9670,10 +9672,10 @@
 				}
 			],
 			"entries": [
-				"A Line of strong wind {@quantity 60|feet} long and {@quantity 10|feet} wide blasts from you in a direction you choose for the duration. Each creature in the Line must succeed on a Strength saving throw or be pushed {@quantity 15|feet} away from you in a direction following the Line. A creature that ends its turn in the Line must make the same save.",
-				"Any creature in the Line must spend {@quantity 2|feet} of movement for every {@quantity 1|foot} it moves when moving closer to you.",
+				"A {@variantrule Line [Area of Effect]|XPHB|Line} of strong wind {@quantity 60|feet} long and {@quantity 10|feet} wide blasts from you in a direction you choose for the duration. Each creature in the {@variantrule Line [Area of Effect]|XPHB|Line} must succeed on a Strength saving throw or be pushed {@quantity 15|feet} away from you in a direction following the {@variantrule Line [Area of Effect]|XPHB|Line}. A creature that ends its turn in the {@variantrule Line [Area of Effect]|XPHB|Line} must make the same save.",
+				"Any creature in the {@variantrule Line [Area of Effect]|XPHB|Line} must spend {@quantity 2|feet} of movement for every {@quantity 1|foot} it moves when moving closer to you.",
 				"The gust disperses gas or vapor, and it extinguishes candles and similar unprotected flames in the area. It causes protected flames, such as those of lanterns, to dance wildly and has a {@chance 50|||Extinguished!|No effect} chance to extinguish them.",
-				"As a {@variantrule Bonus Action|XPHB} on your later turns, you can change the direction in which the Line blasts from you."
+				"As a {@variantrule Bonus Action|XPHB} on your later turns, you can change the direction in which the {@variantrule Line [Area of Effect]|XPHB|Line} blasts from you."
 			],
 			"savingThrow": [
 				"strength"
@@ -9937,7 +9939,7 @@
 				}
 			],
 			"entries": [
-				"You make natural terrain in a {@quantity 150|-foot} Cube in range look, sound, and smell like another sort of natural terrain. Thus, open fields or a road can be made to resemble a swamp, hill, crevasse, or some other difficult or impassable terrain. A pond can be made to seem like a grassy meadow, a precipice like a gentle slope, or a rock-strewn gully like a wide and smooth road. Manufactured structures, equipment, and creatures within the area aren't changed.",
+				"You make natural terrain in a {@quantity 150|-foot} {@variantrule Cube [Area of Effect]|XPHB|Cube} in range look, sound, and smell like another sort of natural terrain. Thus, open fields or a road can be made to resemble a swamp, hill, crevasse, or some other difficult or impassable terrain. A pond can be made to seem like a grassy meadow, a precipice like a gentle slope, or a rock-strewn gully like a wide and smooth road. Manufactured structures, equipment, and creatures within the area aren't changed.",
 				"The tactile characteristics of the terrain are unchanged, so creatures entering the area are likely to notice the illusion. If the difference isn't obvious by touch, a creature examining the illusion can take the {@action Study|XPHB} action to make an Intelligence ({@skill Investigation|XPHB}) check against your spell save DC to disbelieve it. If a creature discerns that the terrain is illusory, the creature sees a vague image superimposed on the real terrain."
 			],
 			"abilityCheck": [
@@ -10300,7 +10302,7 @@
 				}
 			],
 			"entries": [
-				"You conjure a feast that appears on a surface in an unoccupied {@quantity 10|-foot} Cube next to you. The feast takes 1 hour to consume and disappears at the end of that time, and the beneficial effects don't set in until this hour is over. Up to twelve creatures can partake of the feast.",
+				"You conjure a feast that appears on a surface in an unoccupied {@quantity 10|-foot} {@variantrule Cube [Area of Effect]|XPHB|Cube} next to you. The feast takes 1 hour to consume and disappears at the end of that time, and the beneficial effects don't set in until this hour is over. Up to twelve creatures can partake of the feast.",
 				"A creature that partakes gains several benefits, which last for 24 hours. The creature has {@variantrule Resistance|XPHB} to Poison damage, and it has {@variantrule Immunity|XPHB} to the {@condition Frightened|XPHB} and {@condition Poisoned|XPHB} conditions. Its {@variantrule Hit Points|XPHB|Hit Point} maximum also increases by {@dice 2d10}, and it gains the same number of {@variantrule Hit Points|XPHB}."
 			],
 			"damageImmune": [
@@ -10311,7 +10313,6 @@
 				"poisoned"
 			],
 			"miscTags": [
-				"ADV",
 				"HL"
 			],
 			"areaTags": [
@@ -10605,7 +10606,7 @@
 				}
 			],
 			"entries": [
-				"For the duration, you emit an aura in a {@quantity 30|-foot} Emanation. While in the aura, creatures of your choice have {@variantrule Advantage|XPHB} on all saving throws, and other creatures have {@variantrule Disadvantage|XPHB} on attack rolls against them. In addition, when a Fiend or an Undead hits an affected creature with a melee attack roll, the attacker must succeed on a Constitution saving throw or have the {@condition Blinded|XPHB} condition until the end of its next turn."
+				"For the duration, you emit an aura in a {@quantity 30|-foot} {@variantrule Emanation [Area of Effect]|XPHB|Emanation}. While in the aura, creatures of your choice have {@variantrule Advantage|XPHB} on all saving throws, and other creatures have {@variantrule Disadvantage|XPHB} on attack rolls against them. In addition, when a Fiend or an Undead hits an affected creature with a melee attack roll, the attacker must succeed on a Constitution saving throw or have the {@condition Blinded|XPHB} condition until the end of its next turn."
 			],
 			"conditionInflict": [
 				"blinded"
@@ -10655,7 +10656,7 @@
 				}
 			],
 			"entries": [
-				"You open a gateway to the Far Realm, a region infested with unspeakable horrors. A {@quantity 20|-foot}-radius Sphere of {@variantrule Darkness|XPHB} appears, centered on a point with range and lasting for the duration. The Sphere is {@variantrule Difficult Terrain|XPHB}, and it is filled with strange whispers and slurping noises, which can be heard up to {@quantity 30|feet} away. No light, magical or otherwise, can illuminate the area, and creatures fully within it have the {@condition Blinded|XPHB} condition.",
+				"You open a gateway to the Far Realm, a region infested with unspeakable horrors. A {@quantity 20|-foot}-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} of {@variantrule Darkness|XPHB} appears, centered on a point with range and lasting for the duration. The {@variantrule Sphere [Area of Effect]|XPHB|Sphere} is {@variantrule Difficult Terrain|XPHB}, and it is filled with strange whispers and slurping noises, which can be heard up to {@quantity 30|feet} away. No light, magical or otherwise, can illuminate the area, and creatures fully within it have the {@condition Blinded|XPHB} condition.",
 				"Any creature that starts its turn in the area takes {@damage 2d6} Cold damage. Any creature that ends its turn there must succeed on a Dexterity saving throw or take {@damage 2d6} Acid damage from otherworldly tentacles."
 			],
 			"entriesHigherLevel": [
@@ -10781,7 +10782,7 @@
 				}
 			],
 			"entries": [
-				"You create a twisting pattern of colors in a {@quantity 30|-foot} Cube within range. The pattern appears for a moment and vanishes. Each creature in the area who can see the pattern must succeed on a Wisdom saving throw or have the {@condition Charmed|XPHB} condition for the duration. While {@condition Charmed|XPHB}, the creature has the {@condition Incapacitated|XPHB} condition and a {@variantrule Speed|XPHB} of 0.",
+				"You create a twisting pattern of colors in a {@quantity 30|-foot} {@variantrule Cube [Area of Effect]|XPHB|Cube} within range. The pattern appears for a moment and vanishes. Each creature in the area who can see the pattern must succeed on a Wisdom saving throw or have the {@condition Charmed|XPHB} condition for the duration. While {@condition Charmed|XPHB}, the creature has the {@condition Incapacitated|XPHB} condition and a {@variantrule Speed|XPHB} of 0.",
 				"The spell ends for an affected creature if it takes any damage or if someone else uses an action to shake the creature out of its stupor."
 			],
 			"conditionInflict": [
@@ -10884,8 +10885,8 @@
 				}
 			],
 			"entries": [
-				"Hail falls in a {@quantity 20|-foot}-radius, {@quantity 40|-foot}-high Cylinder centered on a point within range. Each creature in the Cylinder makes a Dexterity saving throw. A creature takes {@damage 2d10} Bludgeoning damage and {@damage 4d6} Cold damage on a failed save or half as much damage on a successful one.",
-				"Hailstones turn ground in the Cylinder into {@variantrule Difficult Terrain|XPHB} until the end of your next turn."
+				"Hail falls in a {@quantity 20|-foot}-radius, {@quantity 40|-foot}-high {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder} centered on a point within range. Each creature in the {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder} makes a Dexterity saving throw. A creature takes {@damage 2d10} Bludgeoning damage and {@damage 4d6} Cold damage on a failed save or half as much damage on a successful one.",
+				"Hailstones turn ground in the {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder} into {@variantrule Difficult Terrain|XPHB} until the end of your next turn."
 			],
 			"entriesHigherLevel": [
 				{
@@ -11143,8 +11144,8 @@
 				}
 			],
 			"entries": [
-				"A swirling cloud of embers and smoke fills a {@quantity 20|-foot}-radius Sphere centered on a point within range. The cloud's area is {@variantrule Heavily Obscured|XPHB}. It lasts for the duration or until a strong wind (like that created by {@spell Gust of Wind|XPHB}) disperses it.",
-				"When the cloud appears, each creature in it makes a Dexterity saving throw, taking {@damage 10d8} Fire damage on a failed save or half as much damage on a successful one. A creature must also make this save when the Sphere moves into its space and when it enters the Sphere or ends its turn there. A creature makes this save only once per turn.",
+				"A swirling cloud of embers and smoke fills a {@quantity 20|-foot}-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on a point within range. The cloud's area is {@variantrule Heavily Obscured|XPHB}. It lasts for the duration or until a strong wind (like that created by {@spell Gust of Wind|XPHB}) disperses it.",
+				"When the cloud appears, each creature in it makes a Dexterity saving throw, taking {@damage 10d8} Fire damage on a failed save or half as much damage on a successful one. A creature must also make this save when the {@variantrule Sphere [Area of Effect]|XPHB|Sphere} moves into its space and when it enters the {@variantrule Sphere [Area of Effect]|XPHB|Sphere} or ends its turn there. A creature makes this save only once per turn.",
 				"The cloud moves {@quantity 10|feet} away from you in a direction you choose at the start of each of your turns."
 			],
 			"damageInflict": [
@@ -11248,7 +11249,7 @@
 				}
 			],
 			"entries": [
-				"Swarming locusts fill a {@quantity 20|-foot}-radius Sphere centered on a point you choose within range. The Sphere remains for the duration, and its area is {@variantrule Lightly Obscured|XPHB} and {@variantrule Difficult Terrain|XPHB}.",
+				"Swarming locusts fill a {@quantity 20|-foot}-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on a point you choose within range. The {@variantrule Sphere [Area of Effect]|XPHB|Sphere} remains for the duration, and its area is {@variantrule Lightly Obscured|XPHB} and {@variantrule Difficult Terrain|XPHB}.",
 				"When the swarm appears, each creature in it makes a Constitution saving throw, taking {@damage 4d10} Piercing damage on a failed save or half as much damage on a successful one. A creature also makes this save when it enters the spell's area for the first time on a turn or ends its turn there. A creature makes this save only once per turn."
 			],
 			"entriesHigherLevel": [
@@ -11366,7 +11367,7 @@
 				}
 			],
 			"entries": [
-				"You unleash a storm of flashing light and raging thunder in a {@quantity 10|-foot}-radius, {@quantity 40|-foot}-high Cylinder centered on a point you can see within range. While in this area, creatures have the {@condition Blinded|XPHB} and {@condition Deafened|XPHB} conditions, and they can't cast spells with a Verbal component.",
+				"You unleash a storm of flashing light and raging thunder in a {@quantity 10|-foot}-radius, {@quantity 40|-foot}-high {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder} centered on a point you can see within range. While in this area, creatures have the {@condition Blinded|XPHB} and {@condition Deafened|XPHB} conditions, and they can't cast spells with a Verbal component.",
 				"When the storm appears, each creature in it makes a Constitution saving throw, taking {@damage 2d10} Radiant damage and {@damage 2d10} Thunder damage on a failed save or half as much damage on a successful one. A creature also makes this save when it enters the spell's area for the first time on a turn or ends its turn there. A creature makes this save only once per turn."
 			],
 			"entriesHigherLevel": [
@@ -11618,10 +11619,10 @@
 				"ritual": true
 			},
 			"entries": [
-				"A {@quantity 10|-foot} Emanation springs into existence around you and remains stationary for the duration. The spell fails when you cast it if the Emanation isn't big enough to fully encapsulate all creatures in its area.",
-				"Creatures and objects within the Emanation when you cast the spell can move through it freely. All other creatures and objects are barred from passing through it. Spells of level 3 or lower can't be cast through it, and the effects of such spells can't extend into it.",
-				"The atmosphere inside the Emanation is comfortable and dry, regardless of the weather outside. Until the spell ends, you can command the interior to have {@variantrule Dim Light|XPHB} or {@variantrule Darkness|XPHB} (no action required). The Emanation is opaque from the outside and of any color you choose, but it's transparent from the inside.",
-				"The spell ends early if you leave the Emanation or if you cast it again."
+				"A {@quantity 10|-foot} {@variantrule Emanation [Area of Effect]|XPHB|Emanation} springs into existence around you and remains stationary for the duration. The spell fails when you cast it if the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} isn't big enough to fully encapsulate all creatures in its area.",
+				"Creatures and objects within the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} when you cast the spell can move through it freely. All other creatures and objects are barred from passing through it. Spells of level 3 or lower can't be cast through it, and the effects of such spells can't extend into it.",
+				"The atmosphere inside the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} is comfortable and dry, regardless of the weather outside. Until the spell ends, you can command the interior to have {@variantrule Dim Light|XPHB} or {@variantrule Darkness|XPHB} (no action required). The {@variantrule Emanation [Area of Effect]|XPHB|Emanation} is opaque from the outside and of any color you choose, but it's transparent from the inside.",
+				"The spell ends early if you leave the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} or if you cast it again."
 			],
 			"miscTags": [
 				"LGT"
@@ -11844,7 +11845,7 @@
 				}
 			],
 			"entries": [
-				"A stroke of lightning forming a {@quantity 100|-foot}-long, {@quantity 5|-foot}-wide Line blasts out from you in a direction you choose. Each creature in the Line makes a Dexterity saving throw, taking {@damage 8d6} Lightning damage on a failed save or half as much damage on a successful one."
+				"A stroke of lightning forming a {@quantity 100|-foot}-long, {@quantity 5|-foot}-wide {@variantrule Line [Area of Effect]|XPHB|Line} blasts out from you in a direction you choose. Each creature in the {@variantrule Line [Area of Effect]|XPHB|Line} makes a Dexterity saving throw, taking {@damage 8d6} Lightning damage on a failed save or half as much damage on a successful one."
 			],
 			"entriesHigherLevel": [
 				{
@@ -12176,17 +12177,17 @@
 				}
 			],
 			"entries": [
-				"You create a {@quantity 10|-foot}-radius, {@quantity 20|-foot}-tall Cylinder of magical energy centered on a point on the ground that you can see within range. Glowing runes appear wherever the Cylinder intersects with the floor or other surface.",
+				"You create a {@quantity 10|-foot}-radius, {@quantity 20|-foot}-tall {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder} of magical energy centered on a point on the ground that you can see within range. Glowing runes appear wherever the {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder} intersects with the floor or other surface.",
 				"Choose one or more of the following types of creatures: Celestials, Elementals, Fey, Fiends, or Undead. The circle affects a creature of the chosen type in the following ways:",
 				{
 					"type": "list",
 					"items": [
-						"The creature can't willingly enter the Cylinder by nonmagical means. If the creature tries to use teleportation or interplanar travel to do so, it must first succeed on a Charisma saving throw.",
-						"The creature has {@variantrule Disadvantage|XPHB} on attack rolls against targets within the Cylinder.",
-						"Targets within the Cylinder can't be possessed by or gain the {@condition Charmed|XPHB} or {@condition Frightened|XPHB} condition from the creature."
+						"The creature can't willingly enter the {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder} by nonmagical means. If the creature tries to use teleportation or interplanar travel to do so, it must first succeed on a Charisma saving throw.",
+						"The creature has {@variantrule Disadvantage|XPHB} on attack rolls against targets within the {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder}.",
+						"Targets within the {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder} can't be possessed by or gain the {@condition Charmed|XPHB} or {@condition Frightened|XPHB} condition from the creature."
 					]
 				},
-				"Each time you cast this spell, you can cause its magic to operate in the reverse direction, preventing a creature of the specified type from leaving the Cylinder and protecting targets outside it."
+				"Each time you cast this spell, you can cause its magic to operate in the reverse direction, preventing a creature of the specified type from leaving the {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder} and protecting targets outside it."
 			],
 			"entriesHigherLevel": [
 				{
@@ -12457,7 +12458,7 @@
 				}
 			],
 			"entries": [
-				"You create the image of an object, a creature, or some other visible phenomenon that is no larger than a {@quantity 20|-foot} Cube. The image appears at a spot that you can see within range and lasts for the duration. It seems real, including sounds, smells, and temperature appropriate to the thing depicted, but it can't deal damage or cause conditions.",
+				"You create the image of an object, a creature, or some other visible phenomenon that is no larger than a {@quantity 20|-foot} {@variantrule Cube [Area of Effect]|XPHB|Cube}. The image appears at a spot that you can see within range and lasts for the duration. It seems real, including sounds, smells, and temperature appropriate to the thing depicted, but it can't deal damage or cause conditions.",
 				"If you are within range of the illusion, you can take a {@action Magic|XPHB} action to cause the image to move to any other spot within range. As the image changes location, you can alter its appearance so that its movements appear natural for the image. For example, if you create an image of a creature and move it, you can alter the image so that it appears to be walking. Similarly, you can cause the illusion to make different sounds at different times, even making it carry on a conversation, for example.",
 				"Physical interaction with the image reveals it to be an illusion, for things can pass through it. A creature that takes a {@action Study|XPHB} action to examine the image can determine that it is an illusion with a successful Intelligence ({@skill Investigation|XPHB}) check against your spell save DC. If a creature discerns the illusion for what it is, the creature can see through the image, and its other sensory qualities become faint to the creature."
 			],
@@ -12509,7 +12510,7 @@
 				}
 			],
 			"entries": [
-				"A wave of healing energy washes out from a point you can see within range. Choose up to six creatures in a {@quantity 30|-foot}-radius Sphere centered on that point. Each target regains {@variantrule Hit Points|XPHB} equal to {@dice 5d8} plus your spellcasting ability modifier."
+				"A wave of healing energy washes out from a point you can see within range. Choose up to six creatures in a {@quantity 30|-foot}-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on that point. Each target regains {@variantrule Hit Points|XPHB} equal to {@dice 5d8} plus your spellcasting ability modifier."
 			],
 			"entriesHigherLevel": [
 				{
@@ -12941,7 +12942,7 @@
 				}
 			],
 			"entries": [
-				"Blazing orbs of fire plummet to the ground at four different points you can see within range. Each creature in a {@quantity 40|-foot}-radius Sphere centered on each of those points makes a Dexterity saving throw. A creature takes {@damage 20d6} Fire damage and {@damage 20d6} Bludgeoning damage on a failed save or half as much damage on a successful one. A creature in the area of more than one fiery Sphere is affected only once.",
+				"Blazing orbs of fire plummet to the ground at four different points you can see within range. Each creature in a {@quantity 40|-foot}-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on each of those points makes a Dexterity saving throw. A creature takes {@damage 20d6} Fire damage and {@damage 20d6} Bludgeoning damage on a failed save or half as much damage on a successful one. A creature in the area of more than one fiery {@variantrule Sphere [Area of Effect]|XPHB|Sphere} is affected only once.",
 				"A nonmagical object that isn't being worn or carried also takes the damage if it's in the spell's area, and the object starts {@hazard burning|XPHB} if it's flammable."
 			],
 			"damageInflict": [
@@ -13174,7 +13175,7 @@
 					"type": "entries",
 					"name": "Image",
 					"entries": [
-						"If you create an image of an object\u2014such as a chair, muddy footprints, or a small chest\u2014it must be no larger than a {@quantity 5|-foot} Cube. The image can't create sound, light, smell, or any other sensory effect. Physical interaction with the image reveals it to be an illusion, since things can pass through it."
+						"If you create an image of an object\u2014such as a chair, muddy footprints, or a small chest\u2014it must be no larger than a {@quantity 5|-foot} {@variantrule Cube [Area of Effect]|XPHB|Cube}. The image can't create sound, light, smell, or any other sensory effect. Physical interaction with the image reveals it to be an illusion, since things can pass through it."
 					]
 				}
 			],
@@ -13448,8 +13449,8 @@
 				}
 			],
 			"entries": [
-				"A silvery beam of pale light shines down in a {@quantity 5|-foot}-radius, {@quantity 40|-foot}-high Cylinder centered on a point within range. Until the spell ends, {@variantrule Dim Light|XPHB} fills the Cylinder, and you can take a {@action Magic|XPHB} action on later turns to move the Cylinder up to {@quantity 60|feet}.",
-				"When the Cylinder appears, each creature in it makes a Constitution saving throw. On a failed save, a creature takes {@damage 2d10} Radiant damage, and if the creature is shape-shifted (as a result of the {@spell Polymorph|XPHB} spell, for example), it reverts to its true form and can't shape-shift until it leaves the Cylinder. On a successful save, a creature takes half as much damage only. A creature also makes this save when the spell's area moves into its space and when it enters the spell's area or ends its turn there. A creature makes this save only once per turn."
+				"A silvery beam of pale light shines down in a {@quantity 5|-foot}-radius, {@quantity 40|-foot}-high {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder} centered on a point within range. Until the spell ends, {@variantrule Dim Light|XPHB} fills the {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder}, and you can take a {@action Magic|XPHB} action on later turns to move the {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder} up to {@quantity 60|feet}.",
+				"When the {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder} appears, each creature in it makes a Constitution saving throw. On a failed save, a creature takes {@damage 2d10} Radiant damage, and if the creature is shape-shifted (as a result of the {@spell Polymorph|XPHB} spell, for example), it reverts to its true form and can't shape-shift until it leaves the {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder}. On a successful save, a creature takes half as much damage only. A creature also makes this save when the spell's area moves into its space and when it enters the spell's area or ends its turn there. A creature makes this save only once per turn."
 			],
 			"entriesHigherLevel": [
 				{
@@ -13610,7 +13611,7 @@
 				}
 			],
 			"entries": [
-				"You make an area within range magically secure. The area is a Cube that can be as small as {@quantity 5|feet} to as large as {@quantity 100|feet} on each side. The spell lasts for the duration.",
+				"You make an area within range magically secure. The area is a {@variantrule Cube [Area of Effect]|XPHB|Cube} that can be as small as {@quantity 5|feet} to as large as {@quantity 100|feet} on each side. The spell lasts for the duration.",
 				"When you cast the spell, you decide what sort of security the spell provides, choosing any of the following properties:",
 				{
 					"type": "list",
@@ -13630,7 +13631,7 @@
 					"type": "entries",
 					"name": "Using a Higher-Level Spell Slot",
 					"entries": [
-						"You can increase the size of the Cube by {@quantity 100|feet} for each spell slot level above 4."
+						"You can increase the size of the {@variantrule Cube [Area of Effect]|XPHB|Cube} by {@quantity 100|feet} for each spell slot level above 4."
 					]
 				}
 			],
@@ -13886,7 +13887,7 @@
 				}
 			],
 			"entries": [
-				"A frigid globe streaks from you to a point of your choice within range, where it explodes in a {@quantity 60|-foot}-radius Sphere. Each creature in that area makes a Constitution saving throw, taking {@damage 10d6} Cold damage on failed save or half as much damage on a successful one.",
+				"A frigid globe streaks from you to a point of your choice within range, where it explodes in a {@quantity 60|-foot}-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere}. Each creature in that area makes a Constitution saving throw, taking {@damage 10d6} Cold damage on failed save or half as much damage on a successful one.",
 				"If the globe strikes a body of water, it freezes the water to a depth of {@quantity 6|inches} over an area {@quantity 30|feet} square. This ice lasts for 1 minute. Creatures that were swimming on the surface of frozen water are trapped in the ice and have the {@condition Restrained|XPHB} condition. A trapped creature can take an action to make a Strength ({@skill Athletics|XPHB}) check against your spell save DC to break free.",
 				"You can refrain from firing the globe after completing the spell's casting. If you do so, a globe about the size of a sling bullet, cool to the touch, appears in your hand. At any time, you or a creature you give the globe to can throw the globe (to a range of {@quantity 40|feet}) or hurl it with a sling (to the sling's normal range). It shatters on impact, with the same effect as a normal casting of the spell. You can also set the globe down without shattering it. After 1 minute, if the globe hasn't already shattered, it explodes."
 			],
@@ -14067,7 +14068,7 @@
 				}
 			],
 			"entries": [
-				"You radiate a concealing aura in a {@quantity 30|-foot} Emanation for the duration. While in the aura, you and each creature you choose have a +10 bonus to Dexterity ({@skill Stealth|XPHB}) checks and leave no tracks."
+				"You radiate a concealing aura in a {@quantity 30|-foot} {@variantrule Emanation [Area of Effect]|XPHB|Emanation} for the duration. While in the aura, you and each creature you choose have a +10 bonus to Dexterity ({@skill Stealth|XPHB}) checks and leave no tracks."
 			],
 			"areaTags": [
 				"MT"
@@ -14154,7 +14155,7 @@
 				}
 			],
 			"entries": [
-				"You attempt to craft an illusion in the mind of a creature you can see within range. The target makes an Intelligence saving throw. On a failed save, you create a phantasmal object, creature, or other phenomenon that is no larger than a {@quantity 10|-foot} Cube and that is perceivable only to the target for the duration. The phantasm includes sound, temperature, and other stimuli.",
+				"You attempt to craft an illusion in the mind of a creature you can see within range. The target makes an Intelligence saving throw. On a failed save, you create a phantasmal object, creature, or other phenomenon that is no larger than a {@quantity 10|-foot} {@variantrule Cube [Area of Effect]|XPHB|Cube} and that is perceivable only to the target for the duration. The phantasm includes sound, temperature, and other stimuli.",
 				"The target can take a {@action Study|XPHB} action to examine the phantasm with an Intelligence ({@skill Investigation|XPHB}) check against your spell save DC. If the check succeeds, the target realizes that the phantasm is an illusion, and the spell ends.",
 				"While affected by the spell, the target treats the phantasm as if it were real and rationalizes any illogical outcomes from interacting with it. For example, if the target steps through a phantasmal bridge and survives the fall, it believes the bridge exists and something else caused it to fall.",
 				"An affected target can even take damage from the illusion if the phantasm represents a dangerous creature or hazard. On each of your turns, such a phantasm can deal {@damage 2d8} Psychic damage to the target if it is in the phantasm's area or within {@quantity 5|feet} of the phantasm. The target perceives the damage as a type appropriate to the illusion."
@@ -14361,7 +14362,7 @@
 			],
 			"entries": [
 				"You attempt to bind a Celestial, an Elemental, a Fey, or a Fiend to your service. The creature must be within range for the entire casting of the spell. (Typically, the creature is first summoned into the center of the inverted version of the {@spell Magic Circle|XPHB} spell to trap it while this spell is cast.) At the completion of the casting, the target must succeed on a Charisma saving throw or be bound to serve you for the duration. If the creature was summoned or created by another spell, that spell's duration is extended to match the duration of this spell.",
-				"A bound creature must follow your commands to the best of its ability. You might command the creature to accompany you on an adventure, to guard a location, or to deliver a message. If the creature is Hostile, it strives to twist your commands to achieve its own objectives. If the creature carries out your commands completely before the spell ends, it travels to you to report this fact if you are on the same plane of existence. If you are on a different plane, it returns to the place where you bound it and remains there until the spell ends."
+				"A bound creature must follow your commands to the best of its ability. You might command the creature to accompany you on an adventure, to guard a location, or to deliver a message. If the creature is {@variantrule Hostile [Attitude]|XPHB|Hostile}, it strives to twist your commands to achieve its own objectives. If the creature carries out your commands completely before the spell ends, it travels to you to report this fact if you are on the same plane of existence. If you are on a different plane, it returns to the place where you bound it and remains there until the spell ends."
 			],
 			"entriesHigherLevel": [
 				{
@@ -14472,7 +14473,7 @@
 					"type": "entries",
 					"name": "Overgrowth",
 					"entries": [
-						"Choose a point within range. All normal plants in a {@quantity 100|-foot}-radius Sphere centered on that point become thick and overgrown. A creature moving through that area must spend {@quantity 4|feet} of movement for every {@quantity 1|foot} it moves. You can exclude one or more areas of any size within the spell's area from being affected."
+						"Choose a point within range. All normal plants in a {@quantity 100|-foot}-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on that point become thick and overgrown. A creature moving through that area must spend {@quantity 4|feet} of movement for every {@quantity 1|foot} it moves. You can exclude one or more areas of any size within the spell's area from being affected."
 					]
 				},
 				{
@@ -14589,7 +14590,7 @@
 			],
 			"entries": [
 				"You attempt to transform a creature that you can see within range into a Beast. The target must succeed on a Wisdom saving throw or shape-shift into Beast form for the duration. That form can be any {@filter Beast|bestiary|type=beast|miscellaneous=!swarm} you choose that has a {@variantrule Challenge Rating|XPHB} equal to or less than the target's (or the target's level if it doesn't have a {@variantrule Challenge Rating|XPHB}). The target's game statistics are replaced by the stat block of the chosen Beast, but the target retains its alignment, personality, creature type, {@variantrule Hit Points|XPHB}, and {@variantrule Hit Point Dice|XPHB}.",
-				"The target gains a number of {@variantrule Temporary Hit Points|XPHB} equal to the {@variantrule Hit Points|XPHB} of the Beast form. These {@variantrule Temporary Hit Points|XPHB} vanish if any remain when the spell ends. The spell ends early on the target if it has no {@variantrule Temporary Hit Points|XPHB} left. ",
+				"The target gains a number of {@variantrule Temporary Hit Points|XPHB} equal to the {@variantrule Hit Points|XPHB} of the Beast form. These {@variantrule Temporary Hit Points|XPHB} vanish if any remain when the spell ends. The spell ends early on the target if it has no {@variantrule Temporary Hit Points|XPHB} left.",
 				"The target is limited in the actions it can perform by the anatomy of its new form, and it can't speak or cast spells.",
 				"The target's gear melds into the new form. The creature can't use or otherwise benefit from any of that equipment."
 			],
@@ -14931,7 +14932,7 @@
 				}
 			],
 			"entries": [
-				"Eight rays of light flash from you in a {@quantity 60|-foot} Cone. Each creature in the Cone makes a Dexterity saving throw. For each target, roll {@dice 1d8} to determine which color ray affects it, consulting the Prismatic Rays table.",
+				"Eight rays of light flash from you in a {@quantity 60|-foot} {@variantrule Cone [Area of Effect]|XPHB|Cone}. Each creature in the {@variantrule Cone [Area of Effect]|XPHB|Cone} makes a Dexterity saving throw. For each target, roll {@dice 1d8} to determine which color ray affects it, consulting the Prismatic Rays table.",
 				{
 					"type": "table",
 					"caption": "Prismatic Rays",
@@ -15219,7 +15220,7 @@
 				}
 			],
 			"entries": [
-				"You create an illusion of an object, a creature, or some other visible phenomenon within range that activates when a specific trigger occurs. The illusion is imperceptible until then. It must be no larger than a {@quantity 30|-foot} Cube, and you decide when you cast the spell how the illusion behaves and what sounds it makes. This scripted performance can last up to 5 minutes.",
+				"You create an illusion of an object, a creature, or some other visible phenomenon within range that activates when a specific trigger occurs. The illusion is imperceptible until then. It must be no larger than a {@quantity 30|-foot} {@variantrule Cube [Area of Effect]|XPHB|Cube}, and you decide when you cast the spell how the illusion behaves and what sounds it makes. This scripted performance can last up to 5 minutes.",
 				"When the trigger you specify occurs, the illusion springs into existence and performs in the manner you described. Once the illusion finishes performing, it disappears and remains dormant for 10 minutes, after which the illusion can be activated again.",
 				"The trigger can be as general or as detailed as you like, though it must be based on visual or audible phenomena that occur within {@quantity 30|feet} of the area. For example, you could create an illusion of yourself to appear and warn off others who attempt to open a trapped door.",
 				"Physical interaction with the image reveals it to be illusory, since things can pass through it. A creature that takes the {@action Study|XPHB} action to examine the image can determine that it is an illusion with a successful Intelligence ({@skill Investigation|XPHB}) check against your spell save DC. If a creature discerns the illusion for what it is, the creature can see through the image, and any noise it makes sounds hollow to the creature."
@@ -15465,7 +15466,7 @@
 				"ritual": true
 			},
 			"entries": [
-				"You remove poison and rot from nonmagical food and drink in a {@quantity 5|-foot}-radius Sphere centered on a point within range."
+				"You remove poison and rot from nonmagical food and drink in a {@quantity 5|-foot}-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on a point within range."
 			],
 			"areaTags": [
 				"S"
@@ -16061,8 +16062,8 @@
 				}
 			],
 			"entries": [
-				"This spell reverses gravity in a {@quantity 50|-foot}-radius, {@quantity 100|-foot} high Cylinder centered on a point within range. All creatures and objects in that area that aren't anchored to the ground fall upward and reach the top of the Cylinder. A creature can make a Dexterity saving throw to grab a fixed object it can reach, thus avoiding the fall upward.",
-				"If a ceiling or an anchored object is encountered in this upward fall, creatures and objects strike it just as they would during a downward fall. If an affected creature or object reaches the Cylinder's top without striking anything, it hovers there for the duration. When the spell ends, affected objects and creatures fall downward."
+				"This spell reverses gravity in a {@quantity 50|-foot}-radius, {@quantity 100|-foot} high {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder} centered on a point within range. All creatures and objects in that area that aren't anchored to the ground fall upward and reach the top of the {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder}. A creature can make a Dexterity saving throw to grab a fixed object it can reach, thus avoiding the fall upward.",
+				"If a ceiling or an anchored object is encountered in this upward fall, creatures and objects strike it just as they would during a downward fall. If an affected creature or object reaches the {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder}'s top without striking anything, it hovers there for the duration. When the spell ends, affected objects and creatures fall downward."
 			],
 			"savingThrow": [
 				"dexterity"
@@ -16432,7 +16433,7 @@
 				{
 					"number": 1,
 					"unit": "bonus",
-					"condition": "which you take immediately after hitting a target with a Melee weapon or an Unarmed Strike"
+					"condition": "which you take immediately after hitting a target with a Melee weapon or an {@variantrule Unarmed Strike|XPHB}"
 				}
 			],
 			"range": {
@@ -16695,7 +16696,7 @@
 			],
 			"entries": [
 				"You shape-shift into another creature for the duration or until you take a {@action Magic|XPHB} action to shape-shift into a different eligible form. The new form must be of a creature that has a {@variantrule Challenge Rating|XPHB} no higher than your level or {@variantrule Challenge Rating|XPHB}. You must have seen the sort of creature before, and it can't be a Construct or an Undead.",
-				"When you cast the spell, you gain a number of {@variantrule Temporary Hit Points|XPHB} equal to the Hit Points of the first form into which you shape-shift. These {@variantrule Temporary Hit Points|XPHB} vanish if any remain when the spell ends.",
+				"When you cast the spell, you gain a number of {@variantrule Temporary Hit Points|XPHB} equal to the {@variantrule Hit Points|XPHB} of the first form into which you shape-shift. These {@variantrule Temporary Hit Points|XPHB} vanish if any remain when the spell ends.",
 				"Your game statistics are replaced by the stat block of the chosen form, but you retain your creature type; alignment; personality; Intelligence, Wisdom, and Charisma scores; {@variantrule Hit Points|XPHB}; {@variantrule Hit Point Dice|XPHB}; proficiencies; and ability to communicate. If you have the Spellcasting feature, you retain it too.",
 				"Upon shape-shifting, you determine whether your equipment drops to the ground or changes in size and shape to fit the new form while you're in it."
 			],
@@ -16736,7 +16737,7 @@
 				}
 			],
 			"entries": [
-				"A loud noise erupts from a point of your choice within range. Each creature in a {@quantity 10|-foot}-radius Sphere centered there makes a Constitution saving throw, taking {@damage 3d8} Thunder damage on a failed save or half as much damage on a successful one. A Construct has {@variantrule Disadvantage|XPHB} on the save.",
+				"A loud noise erupts from a point of your choice within range. Each creature in a {@quantity 10|-foot}-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered there makes a Constitution saving throw, taking {@damage 3d8} Thunder damage on a failed save or half as much damage on a successful one. A Construct has {@variantrule Disadvantage|XPHB} on the save.",
 				"A nonmagical object that isn't being worn or carried also takes the damage if it's in the spell's area."
 			],
 			"entriesHigherLevel": [
@@ -16765,6 +16766,7 @@
 			"name": "Shield",
 			"source": "XPHB",
 			"page": 316,
+			"srd52": true,
 			"basicRules2024": true,
 			"level": 1,
 			"school": "A",
@@ -16920,7 +16922,7 @@
 				{
 					"number": 1,
 					"unit": "bonus",
-					"condition": "which you take immediately after hitting a creature with a Melee weapon or an Unarmed Strike"
+					"condition": "which you take immediately after hitting a creature with a Melee weapon or an {@variantrule Unarmed Strike|XPHB}"
 				}
 			],
 			"range": {
@@ -16996,7 +16998,7 @@
 				}
 			],
 			"entries": [
-				"Lightning springs from you to a creature that you try to touch. Make a melee spell attack against the target. On a hit, the target takes {@damage 1d8} Lightning damage, and it can't make Opportunity Attacks until the start of its next turn."
+				"Lightning springs from you to a creature that you try to touch. Make a melee spell attack against the target. On a hit, the target takes {@damage 1d8} Lightning damage, and it can't make {@action Opportunity Attack|XPHB|Opportunity Attacks} until the start of its next turn."
 			],
 			"entriesHigherLevel": [
 				{
@@ -17068,7 +17070,7 @@
 				"ritual": true
 			},
 			"entries": [
-				"For the duration, no sound can be created within or pass through a {@quantity 20|-foot}-radius Sphere centered on a point you choose within range. Any creature or object entirely inside the Sphere has {@variantrule Immunity|XPHB} to Thunder damage, and creatures have the {@condition Deafened|XPHB} condition while entirely inside it. Casting a spell that includes a Verbal component is impossible there."
+				"For the duration, no sound can be created within or pass through a {@quantity 20|-foot}-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on a point you choose within range. Any creature or object entirely inside the {@variantrule Sphere [Area of Effect]|XPHB|Sphere} has {@variantrule Immunity|XPHB} to Thunder damage, and creatures have the {@condition Deafened|XPHB} condition while entirely inside it. Casting a spell that includes a Verbal component is impossible there."
 			],
 			"damageImmune": [
 				"thunder"
@@ -17120,7 +17122,7 @@
 				}
 			],
 			"entries": [
-				"You create the image of an object, a creature, or some other visible phenomenon that is no larger than a {@quantity 15|-foot} Cube. The image appears at a spot within range and lasts for the duration. The image is purely visual; it isn't accompanied by sound, smell, or other sensory effects.",
+				"You create the image of an object, a creature, or some other visible phenomenon that is no larger than a {@quantity 15|-foot} {@variantrule Cube [Area of Effect]|XPHB|Cube}. The image appears at a spot within range and lasts for the duration. The image is purely visual; it isn't accompanied by sound, smell, or other sensory effects.",
 				"As a {@action Magic|XPHB} action, you can cause the image to move to any spot within range. As the image changes location, you can alter its appearance so that its movements appear natural for the image. For example, if you create an image of a creature and move it, you can alter the image so that it appears to be walking.",
 				"Physical interaction with the image reveals it to be an illusion, since things can pass through it. A creature that takes a {@action Study|XPHB} action to examine the image can determine that it is an illusion with a successful Intelligence ({@skill Investigation|XPHB}) check against your spell save DC. If a creature discerns the illusion for what it is, the creature can see through the image."
 			],
@@ -17168,7 +17170,7 @@
 			],
 			"entries": [
 				"You create a simulacrum of one Beast or Humanoid that is within {@quantity 10|feet} of you for the entire casting of the spell. You finish the casting by touching both the creature and a pile of ice or snow that is the same size as that creature, and the pile turns into the simulacrum, which is a creature. It uses the game statistics of the original creature at the time of casting, except it is a Construct, its {@variantrule Hit Points|XPHB|Hit Point} maximum is half as much, and it can't cast this spell.",
-				"The simulacrum is Friendly to you and creatures you designate. It obeys your commands and acts on your turn in combat. The simulacrum can't gain levels, and it can't take Short or Long Rests.",
+				"The simulacrum is {@variantrule Friendly [Attitude]|XPHB|Friendly} to you and creatures you designate. It obeys your commands and acts on your turn in combat. The simulacrum can't gain levels, and it can't take Short or Long Rests.",
 				"If the simulacrum takes damage, the only way to restore its {@variantrule Hit Points|XPHB} is to repair it as you take a {@variantrule Long Rest|XPHB}, during which you expend components worth 100 GP per {@variantrule Hit Points|XPHB|Hit Point} restored. The simulacrum must stay within {@quantity 5|feet} of you for the repair.",
 				"The simulacrum lasts until it drops to 0 {@variantrule Hit Points|XPHB}, at which point it reverts to snow and melts away. If you cast this spell again, any simulacrum you created with this spell is instantly destroyed."
 			],
@@ -17217,7 +17219,7 @@
 				}
 			],
 			"entries": [
-				"Each creature of your choice in a {@quantity 5|-foot}-radius Sphere centered on a point within range must succeed on a Wisdom saving throw or have the {@condition Incapacitated|XPHB} condition until the end of its next turn, at which point it must repeat the save. If the target fails the second save, the target has the {@condition Unconscious|XPHB} condition for the duration. The spell ends on a target if it takes damage or someone within {@quantity 5|feet} of it takes an action to shake it out of the spell's effect.",
+				"Each creature of your choice in a {@quantity 5|-foot}-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on a point within range must succeed on a Wisdom saving throw or have the {@condition Incapacitated|XPHB} condition until the end of its next turn, at which point it must repeat the save. If the target fails the second save, the target has the {@condition Unconscious|XPHB} condition for the duration. The spell ends on a target if it takes damage or someone within {@quantity 5|feet} of it takes an action to shake it out of the spell's effect.",
 				"Creatures that don't sleep, such as elves, or that have {@variantrule Immunity|XPHB} to the {@condition Exhaustion|XPHB} condition automatically succeed on saves against this spell."
 			],
 			"conditionInflict": [
@@ -17268,8 +17270,8 @@
 				}
 			],
 			"entries": [
-				"Until the spell ends, sleet falls in a {@quantity 40|-foot}-tall, {@quantity 20|-foot}-radius Cylinder centered on a point you choose within range. The area is {@variantrule Heavily Obscured|XPHB}, and exposed flames in the area are doused.",
-				"Ground in the Cylinder is {@variantrule Difficult Terrain|XPHB}. When a creature enters the Cylinder for the first time on a turn or starts its turn there, it must succeed on a Dexterity saving throw or have the {@condition Prone|XPHB} condition and lose {@status Concentration|XPHB}."
+				"Until the spell ends, sleet falls in a {@quantity 40|-foot}-tall, {@quantity 20|-foot}-radius {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder} centered on a point you choose within range. The area is {@variantrule Heavily Obscured|XPHB}, and exposed flames in the area are doused.",
+				"Ground in the {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder} is {@variantrule Difficult Terrain|XPHB}. When a creature enters the {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder} for the first time on a turn or starts its turn there, it must succeed on a Dexterity saving throw or have the {@condition Prone|XPHB} condition and lose {@status Concentration|XPHB}."
 			],
 			"conditionInflict": [
 				"prone"
@@ -17289,6 +17291,7 @@
 			"name": "Slow",
 			"source": "XPHB",
 			"page": 318,
+			"srd52": true,
 			"basicRules2024": true,
 			"level": 3,
 			"school": "T",
@@ -17321,7 +17324,7 @@
 				}
 			],
 			"entries": [
-				"You alter time around up to six creatures of your choice in a {@quantity 40|-foot} Cube within range. Each target must succeed on a Wisdom saving throw or be affected by this spell for the duration.",
+				"You alter time around up to six creatures of your choice in a {@quantity 40|-foot} {@variantrule Cube [Area of Effect]|XPHB|Cube} within range. Each target must succeed on a Wisdom saving throw or be affected by this spell for the duration.",
 				"An affected target's {@variantrule Speed|XPHB} is halved, it takes a -2 penalty to AC and Dexterity saving throws, and it can't take Reactions. On its turns, it can take either an action or a {@variantrule Bonus Action|XPHB}, not both, and it can make only one attack if it takes the {@action Attack|XPHB} action. If it casts a spell with a Somatic component, there is a {@chance 25|||The spell fails!|The spell does not fail.} chance the spell fails as a result of the target making the spell's gestures too slowly.",
 				"An affected target repeats the save at the end of each of its turns, ending the spell on itself on a success."
 			],
@@ -17592,7 +17595,7 @@
 				}
 			],
 			"entries": [
-				"You imbue plants in an immobile {@quantity 30|-foot} Emanation with limited sentience and animation, giving them the ability to communicate with you and follow your simple commands. You can question plants about events in the spell's area within the past day, gaining information about creatures that have passed, weather, and other circumstances.",
+				"You imbue plants in an immobile {@quantity 30|-foot} {@variantrule Emanation [Area of Effect]|XPHB|Emanation} with limited sentience and animation, giving them the ability to communicate with you and follow your simple commands. You can question plants about events in the spell's area within the past day, gaining information about creatures that have passed, weather, and other circumstances.",
 				"You can also turn {@variantrule Difficult Terrain|XPHB} caused by plant growth (such as thickets and undergrowth) into ordinary terrain that lasts for the duration. Or you can turn ordinary terrain where plants are present into {@variantrule Difficult Terrain|XPHB} that lasts for the duration.",
 				"The spell doesn't enable plants to uproot themselves and move about, but they can move their branches, tendrils, and stalks for you.",
 				"If a Plant creature is in the area, you can communicate with it as if you shared a common language."
@@ -17647,7 +17650,7 @@
 					"type": "entries",
 					"name": "Using a Higher-Level Spell Slot",
 					"entries": [
-						"You can target one additional creature for each spell slot level about 2."
+						"You can target one additional creature for each spell slot level above 2."
 					]
 				}
 			],
@@ -17692,7 +17695,7 @@
 				}
 			],
 			"entries": [
-				"The ground in a {@quantity 20|-foot}-radius Sphere centered on a point within range sprouts hard spikes and thorns. The area becomes {@variantrule Difficult Terrain|XPHB} for the duration. When a creature moves into or within the area, it takes {@damage 2d4} Piercing damage for every {@quantity 5|feet} it travels.",
+				"The ground in a {@quantity 20|-foot}-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on a point within range sprouts hard spikes and thorns. The area becomes {@variantrule Difficult Terrain|XPHB} for the duration. When a creature moves into or within the area, it takes {@damage 2d4} Piercing damage for every {@quantity 5|feet} it travels.",
 				"The transformation of the ground is camouflaged to look natural. Any creature that can't see the area when the spell is cast must take a {@action Search|XPHB} action and succeed on a Wisdom ({@skill Perception|XPHB} or {@skill Survival|XPHB}) check against your spell save DC to recognize the terrain as hazardous before entering it."
 			],
 			"damageInflict": [
@@ -17745,8 +17748,8 @@
 				}
 			],
 			"entries": [
-				"Protective spirits flit around you in a {@quantity 15|-foot} Emanation for the duration. If you are good or neutral, their spectral form appears angelic or fey (your choice). If you are evil, they appear fiendish.",
-				"When you cast this spell, you can designate creatures to be unaffected by it. Any other creature's {@variantrule Speed|XPHB} is halved in the Emanation, and whenever the Emanation enters a creature's space and whenever a creature enters the Emanation or ends its turn there, the creature must make a Wisdom saving throw. On a failed save, the creature takes {@damage 3d8} Radiant damage (if you are good or neutral) or {@damage 3d8} Necrotic damage (if you are evil). On a successful save, the creature takes half as much damage. A creature makes this save only once per turn."
+				"Protective spirits flit around you in a {@quantity 15|-foot} {@variantrule Emanation [Area of Effect]|XPHB|Emanation} for the duration. If you are good or neutral, their spectral form appears angelic or fey (your choice). If you are evil, they appear fiendish.",
+				"When you cast this spell, you can designate creatures to be unaffected by it. Any other creature's {@variantrule Speed|XPHB} is halved in the {@variantrule Emanation [Area of Effect]|XPHB|Emanation}, and whenever the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} enters a creature's space and whenever a creature enters the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} or ends its turn there, the creature must make a Wisdom saving throw. On a failed save, the creature takes {@damage 3d8} Radiant damage (if you are good or neutral) or {@damage 3d8} Necrotic damage (if you are evil). On a successful save, the creature takes half as much damage. A creature makes this save only once per turn."
 			],
 			"entriesHigherLevel": [
 				{
@@ -17840,7 +17843,7 @@
 				{
 					"number": 1,
 					"unit": "bonus",
-					"condition": "which you take immediately after hitting a creature with a Melee weapon or an Unarmed Strike"
+					"condition": "which you take immediately after hitting a creature with a Melee weapon or an {@variantrule Unarmed Strike|XPHB}"
 				}
 			],
 			"range": {
@@ -18034,8 +18037,8 @@
 				}
 			],
 			"entries": [
-				"You create a {@quantity 20|-foot}-radius Sphere of yellow, nauseating gas centered on a point within range. The cloud is {@variantrule Heavily Obscured|XPHB}. The cloud lingers in the air for the duration or until a strong wind (such as the one created by {@spell Gust of Wind|XPHB}) disperses it.",
-				"Each creature that starts its turn in the Sphere must succeed on a Constitution saving throw or have the {@condition Poisoned|XPHB} condition until the end of the current turn. While {@condition Poisoned|XPHB} in this way, the creature can't take an action or a {@variantrule Bonus Action|XPHB}."
+				"You create a {@quantity 20|-foot}-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} of yellow, nauseating gas centered on a point within range. The cloud is {@variantrule Heavily Obscured|XPHB}. The cloud lingers in the air for the duration or until a strong wind (such as the one created by {@spell Gust of Wind|XPHB}) disperses it.",
+				"Each creature that starts its turn in the {@variantrule Sphere [Area of Effect]|XPHB|Sphere} must succeed on a Constitution saving throw or have the {@condition Poisoned|XPHB} condition until the end of the current turn. While {@condition Poisoned|XPHB} in this way, the creature can't take an action or a {@variantrule Bonus Action|XPHB}."
 			],
 			"savingThrow": [
 				"constitution"
@@ -18818,8 +18821,8 @@
 				}
 			],
 			"entries": [
-				"You launch a sunbeam in a {@quantity 5|-foot}-wide, {@quantity 60|-foot}-long Line. Each creature in the Line makes a Constitution saving throw. On a failed save, a creature takes {@damage 6d8} Radiant damage and has the {@condition Blinded|XPHB} condition until the start of your next turn. On a successful save, it takes half as much damage only.",
-				"Until the spell ends, you can take a {@action Magic|XPHB} action to create a new Line of radiance.",
+				"You launch a sunbeam in a {@quantity 5|-foot}-wide, {@quantity 60|-foot}-long {@variantrule Line [Area of Effect]|XPHB|Line}. Each creature in the {@variantrule Line [Area of Effect]|XPHB|Line} makes a Constitution saving throw. On a failed save, a creature takes {@damage 6d8} Radiant damage and has the {@condition Blinded|XPHB} condition until the start of your next turn. On a successful save, it takes half as much damage only.",
+				"Until the spell ends, you can take a {@action Magic|XPHB} action to create a new {@variantrule Line [Area of Effect]|XPHB|Line} of radiance.",
 				"For the duration, a mote of brilliant radiance shines above you. It sheds {@variantrule Bright Light|XPHB} in a {@quantity 30|-foot} radius and {@variantrule Dim Light|XPHB} for an additional {@quantity 30|feet}. This light is sunlight."
 			],
 			"damageInflict": [
@@ -18870,7 +18873,7 @@
 				}
 			],
 			"entries": [
-				"Brilliant sunlight flashes in a {@quantity 60|-foot}-radius Sphere centered on a point you choose within range. Each creature in the Sphere makes a Constitution saving throw. On a failed save, a creature takes {@damage 12d6} Radiant damage and has the {@condition Blinded|XPHB} condition for 1 minute. On a successful save, it takes half as much damage only.",
+				"Brilliant sunlight flashes in a {@quantity 60|-foot}-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on a point you choose within range. Each creature in the {@variantrule Sphere [Area of Effect]|XPHB|Sphere} makes a Constitution saving throw. On a failed save, a creature takes {@damage 12d6} Radiant damage and has the {@condition Blinded|XPHB} condition for 1 minute. On a successful save, it takes half as much damage only.",
 				"A creature {@condition Blinded|XPHB} by this spell makes another Constitution saving throw at the end of each of its turns, ending the effect on itself on a success.",
 				"This spell dispels {@variantrule Darkness|XPHB} in its area that was created by any spell."
 			],
@@ -18982,7 +18985,7 @@
 					"entries": [
 						"You decide what triggers the glyph when you cast the spell. For glyphs inscribed on a surface, common triggers include touching or stepping on the glyph, removing another object covering it, or approaching within a certain distance of it. For glyphs inscribed within an object, common triggers include opening that object or seeing the glyph.",
 						"You can refine the trigger so that only creatures of certain types activate it (for example, the glyph could be set to affect Aberrations). You can also set conditions for creatures that don't trigger the glyph, such as those who say a certain password.",
-						"Once triggered, the glyph glows, filling a {@quantity 60|-foot}-radius Sphere with {@variantrule Dim Light|XPHB} for 10 minutes, after which time the spell ends. Each creature in the Sphere when the glyph activates is targeted by its effect, as is a creature that enters the Sphere for the first time on a turn or ends its turn there. A creature is targeted only once per turn."
+						"Once triggered, the glyph glows, filling a {@quantity 60|-foot}-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} with {@variantrule Dim Light|XPHB} for 10 minutes, after which time the spell ends. Each creature in the {@variantrule Sphere [Area of Effect]|XPHB|Sphere} when the glyph activates is targeted by its effect, as is a creature that enters the {@variantrule Sphere [Area of Effect]|XPHB|Sphere} for the first time on a turn or ends its turn there. A creature is targeted only once per turn."
 					]
 				},
 				{
@@ -19082,7 +19085,7 @@
 				}
 			],
 			"entries": [
-				"You cause psychic energy to erupt at a point within range. Each creature in a {@quantity 20|-foot}-radius Sphere centered on that point makes an Intelligence saving throw, taking {@damage 8d6} Psychic damage on a failed save or half as much damage on a successful one.",
+				"You cause psychic energy to erupt at a point within range. Each creature in a {@quantity 20|-foot}-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on that point makes an Intelligence saving throw, taking {@damage 8d6} Psychic damage on a failed save or half as much damage on a successful one.",
 				"On a failed save, a target also has muddled thoughts for 1 minute. During that time, it subtracts {@dice 1d6} from all its attack rolls and ability checks, as well as any Constitution saving throws to maintain {@status Concentration|XPHB}. The target makes an Intelligence saving throw at the end of each of its turns, ending the effect on itself on a success."
 			],
 			"damageInflict": [
@@ -19185,7 +19188,7 @@
 					"type": "entries",
 					"name": "Using a Higher-Level Spell Slot",
 					"entries": [
-						"You can target one additional creature for each spell slot level about 1."
+						"You can target one additional creature for each spell slot level above 1."
 					]
 				}
 			],
@@ -19739,7 +19742,7 @@
 				}
 			],
 			"entries": [
-				"Each creature in a {@quantity 5|-foot} Emanation originating from you must succeed on a Constitution saving throw or take {@damage 1d6} Thunder damage. The spell's thunderous sound can be heard up to {@quantity 100|feet} away."
+				"Each creature in a {@quantity 5|-foot} {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from you must succeed on a Constitution saving throw or take {@damage 1d6} Thunder damage. The spell's thunderous sound can be heard up to {@quantity 100|feet} away."
 			],
 			"entriesHigherLevel": [
 				{
@@ -19782,7 +19785,7 @@
 				{
 					"number": 1,
 					"unit": "bonus",
-					"condition": "which you take immediately after hitting a target with a Melee weapon or an Unarmed Strike"
+					"condition": "which you take immediately after hitting a target with a Melee weapon or an {@variantrule Unarmed Strike|XPHB}"
 				}
 			],
 			"range": {
@@ -19856,8 +19859,8 @@
 				}
 			],
 			"entries": [
-				"You unleash a wave of thunderous energy. Each creature in a {@quantity 15|-foot} Cube originating from you makes a Constitution saving throw. On a failed save, a creature takes {@damage 2d8} Thunder damage and is pushed {@quantity 10|feet} away from you. On a successful save, a creature takes half as much damage only.",
-				"In addition, unsecured objects that are entirely within the Cube are pushed {@quantity 10|feet} away from you, and a thunderous boom is audible within {@quantity 300|feet}."
+				"You unleash a wave of thunderous energy. Each creature in a {@quantity 15|-foot} {@variantrule Cube [Area of Effect]|XPHB|Cube} originating from you makes a Constitution saving throw. On a failed save, a creature takes {@damage 2d8} Thunder damage and is pushed {@quantity 10|feet} away from you. On a successful save, a creature takes half as much damage only.",
+				"In addition, unsecured objects that are entirely within the {@variantrule Cube [Area of Effect]|XPHB|Cube} are pushed {@quantity 10|feet} away from you, and a thunderous boom is audible within {@quantity 300|feet}."
 			],
 			"entriesHigherLevel": [
 				{
@@ -20058,8 +20061,8 @@
 				{
 					"type": "timed",
 					"duration": {
-						"type": "round",
-						"amount": 1
+						"type": "minute",
+						"amount": 10
 					}
 				}
 			],
@@ -20167,8 +20170,8 @@
 					"type": "entries",
 					"name": "Object into Creature",
 					"entries": [
-						"You can turn an object into any kind of creature, as long as the creature's size is no larger than the object's size and the creature has a {@variantrule Challenge Rating|XPHB} of 9 or lower. The creature is Friendly to you and your allies. In combat, it takes its turns immediately after yours, and it obeys your commands.",
-						"If the spell lasts more than an hour, you no longer control the creature. It might remain Friendly to you, depending on how you have treated it."
+						"You can turn an object into any kind of creature, as long as the creature's size is no larger than the object's size and the creature has a {@variantrule Challenge Rating|XPHB} of 9 or lower. The creature is {@variantrule Friendly [Attitude]|XPHB|Friendly} to you and your allies. In combat, it takes its turns immediately after yours, and it obeys your commands.",
+						"If the spell lasts more than an hour, you no longer control the creature. It might remain {@variantrule Friendly [Attitude]|XPHB|Friendly} to you, depending on how you have treated it."
 					]
 				},
 				{
@@ -20604,7 +20607,7 @@
 				}
 			],
 			"entries": [
-				"You point at a location within range, and a glowing, {@quantity 1|-foot}-diameter ball of acid streaks there and explodes in a {@quantity 20|-foot}-radius Sphere. Each creature in that area makes a Dexterity saving throw. On a failed save, a creature takes {@damage 10d4} Acid damage and another {@damage 5d4} Acid damage at the end of its next turn. On a successful save, a creature takes half the initial damage only."
+				"You point at a location within range, and a glowing, {@quantity 1|-foot}-diameter ball of acid streaks there and explodes in a {@quantity 20|-foot}-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere}. Each creature in that area makes a Dexterity saving throw. On a failed save, a creature takes {@damage 10d4} Acid damage and another {@damage 5d4} Acid damage at the end of its next turn. On a successful save, a creature takes half the initial damage only."
 			],
 			"entriesHigherLevel": [
 				{
@@ -21086,11 +21089,11 @@
 				}
 			],
 			"entries": [
-				"You conjure a mass of sticky webbing at a point within range. The webs fill a {@quantity 20|-foot} Cube there for the duration. The webs are {@variantrule Difficult Terrain|XPHB}, and the area within them is {@variantrule Lightly Obscured|XPHB}.",
+				"You conjure a mass of sticky webbing at a point within range. The webs fill a {@quantity 20|-foot} {@variantrule Cube [Area of Effect]|XPHB|Cube} there for the duration. The webs are {@variantrule Difficult Terrain|XPHB}, and the area within them is {@variantrule Lightly Obscured|XPHB}.",
 				"If the webs aren't anchored between two solid masses (such as walls or trees) or layered across a floor, wall, or ceiling, the web collapses on itself, and the spell ends at the start of your next turn. Webs layered over a flat surface have a depth of {@quantity 5|feet}.",
 				"The first time a creature enters the webs on a turn or starts its turn there, it must succeed on a Dexterity saving throw or have the {@condition Restrained|XPHB} condition while in the webs or until it breaks free.",
 				"A creature {@condition Restrained|XPHB} by the webs can take an action to make a Strength ({@skill Athletics|XPHB}) check against your spell save DC. If it succeeds, it is no longer {@condition Restrained|XPHB}.",
-				"The webs are flammable. Any {@quantity 5|-foot} Cube of webs exposed to fire burns away in 1 round, dealing {@damage 2d4} Fire damage to any creature that starts its turn in the fire."
+				"The webs are flammable. Any {@quantity 5|-foot} {@variantrule Cube [Area of Effect]|XPHB|Cube} of webs exposed to fire burns away in 1 round, dealing {@damage 2d4} Fire damage to any creature that starts its turn in the fire."
 			],
 			"damageInflict": [
 				"fire"
@@ -21148,7 +21151,7 @@
 				}
 			],
 			"entries": [
-				"You try to create illusory terrors in others' minds. Each creature of your choice in a {@quantity 30|-foot}-radius Sphere centered on a point within range makes a Wisdom saving throw. On a failed save, a target takes {@damage 10d10} Psychic damage and has the {@condition Frightened|XPHB} condition for the duration. On a successful save, a target takes half as much damage only.",
+				"You try to create illusory terrors in others' minds. Each creature of your choice in a {@quantity 30|-foot}-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on a point within range makes a Wisdom saving throw. On a failed save, a target takes {@damage 10d10} Psychic damage and has the {@condition Frightened|XPHB} condition for the duration. On a successful save, a target takes half as much damage only.",
 				"A {@condition Frightened|XPHB} target makes a Wisdom saving throw at the end of each of its turns. On a failed save, it takes {@damage 5d10} Psychic damage. On a successful save, the spell ends on that target."
 			],
 			"damageInflict": [
@@ -21465,7 +21468,7 @@
 				}
 			],
 			"entries": [
-				"Burning radiance erupts from you in a {@quantity 5|-foot} Emanation. Each creature of your choice that you can see in it must succeed on a Constitution saving throw or take {@damage 1d6} Radiant damage."
+				"Burning radiance erupts from you in a {@quantity 5|-foot} {@variantrule Emanation [Area of Effect]|XPHB|Emanation}. Each creature of your choice that you can see in it must succeed on a Constitution saving throw or take {@damage 1d6} Radiant damage."
 			],
 			"entriesHigherLevel": [
 				{
@@ -21547,7 +21550,7 @@
 				{
 					"number": 1,
 					"unit": "bonus",
-					"condition": "which you take immediately after hitting a creature with a Melee weapon or an Unarmed Strike"
+					"condition": "which you take immediately after hitting a creature with a Melee weapon or an {@variantrule Unarmed Strike|XPHB}"
 				}
 			],
 			"range": {
@@ -21628,7 +21631,7 @@
 				}
 			],
 			"entries": [
-				"You surround yourself with unearthly majesty in a {@quantity 10|-foot} Emanation. Whenever the Emanation enters the space of a creature you can see and whenever a creature you can see enters the Emanation or ends its turn there, you can force that creature to make a Wisdom saving throw. On a failed save, the target takes {@damage 4d6} Psychic damage and has the {@condition Prone|XPHB} condition, and you can push it up to {@quantity 10|feet} away. On a successful save, the target takes half as much damage only. A creature makes this save only once per turn."
+				"You surround yourself with unearthly majesty in a {@quantity 10|-foot} {@variantrule Emanation [Area of Effect]|XPHB|Emanation}. Whenever the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} enters the space of a creature you can see and whenever a creature you can see enters the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} or ends its turn there, you can force that creature to make a Wisdom saving throw. On a failed save, the target takes {@damage 4d6} Psychic damage and has the {@condition Prone|XPHB} condition, and you can push it up to {@quantity 10|feet} away. On a successful save, the target takes half as much damage only. A creature makes this save only once per turn."
 			],
 			"damageInflict": [
 				"psychic"
@@ -21683,7 +21686,7 @@
 				}
 			],
 			"entries": [
-				"You create a magical zone that guards against deception in a {@quantity 15|-foot}-radius Sphere centered on a point within range. Until the spell ends, a creature that enters the spell's area for the first time on a turn or starts its turn there makes a Charisma saving throw. On a failed save, a creature can't speak a deliberate lie while in the radius. You know whether a creature succeeds or fails on this save.",
+				"You create a magical zone that guards against deception in a {@quantity 15|-foot}-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on a point within range. Until the spell ends, a creature that enters the spell's area for the first time on a turn or starts its turn there makes a Charisma saving throw. On a failed save, a creature can't speak a deliberate lie while in the radius. You know whether a creature succeeds or fails on this save.",
 				"An affected creature is aware of the spell and can avoid answering questions to which it would normally respond with a lie. Such a creature can be evasive yet must be truthful."
 			],
 			"savingThrow": [

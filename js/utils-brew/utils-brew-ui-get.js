@@ -166,7 +166,12 @@ export class GetBrewUi {
 	}
 
 	async pInit () {
-		this._dataList = (await this._brewUtil.pGetCombinedIndexes()) || [];
+		this._dataList = ((await this._brewUtil.pGetCombinedIndexes()) || [])
+			.filter(info => this._isMatchingIndexInfo(info));
+	}
+
+	_isMatchingIndexInfo (info) {
+		return true;
 	}
 
 	async pHandlePreCloseModal ({rdState}) {
@@ -249,7 +254,6 @@ export class GetBrewUi {
 			$iptSearch,
 			$wrpList: $wrpRows,
 			fnSort: this._sortUrlList.bind(this),
-			isUseJquery: true,
 			isFuzzy: true,
 			isSkipSearchKeybindingEnter: true,
 		});

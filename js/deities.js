@@ -89,7 +89,7 @@ class DeitiesPage extends ListPage {
 			<span class="ve-col-2 px-1 ve-text-center">${ent.pantheon}</span>
 			<span class="ve-col-2 px-1 ve-text-center">${alignment}</span>
 			<span class="ve-col-3 px-1 ${ent.domains[0] === VeCt.STR_NONE ? `italic` : ""}">${domains}</span>
-			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(ent.source)} pl-1 pr-0" title="${Parser.sourceJsonToFull(ent.source)}" ${Parser.sourceJsonToStyle(ent.source)}>${source}</span>
+			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(ent.source)} pl-1 pr-0" title="${Parser.sourceJsonToFull(ent.source)}">${source}</span>
 		</a>`;
 
 		const listItem = new ListItem(
@@ -124,3 +124,5 @@ class DeitiesPage extends ListPage {
 const deitiesPage = new DeitiesPage();
 deitiesPage.sublistManager = new DeitiesSublistManager();
 window.addEventListener("load", () => deitiesPage.pOnLoad());
+
+globalThis.dbg_page = deitiesPage;

@@ -16,6 +16,7 @@ import {
 	DamageTypeTag,
 	DetectNamedCreature,
 	DragonAgeTag,
+	FamiliarTag,
 	LanguageTag,
 	MiscTag,
 	RechargeConvert,
@@ -1308,6 +1309,22 @@ export class ConverterCreature extends ConverterBase {
 					cur,
 					ptrList,
 					isMultiple,
+					fnIsMatchCurEntry: cur => /\bVampire Weakness/i.test(cur.name || ""),
+					// Assume that this is the last trait, and that everything following should be part of the list
+					fnIsMatchNxtStr: ({entryNxt, entryNxtStr}) => true,
+					listStyle: "list-hang-subtrait",
+					listItemType: "itemSub",
+				})
+			) continue;
+
+			if (
+				this._doMergeHangingLists_generic({
+					stats,
+					prop,
+					ix: i,
+					cur,
+					ptrList,
+					isMultiple,
 					fnIsMatchCurEntry: cur => /\bhas these weaknesses:/.test(cur.entries.last().trim()),
 					// Assume that this is the last trait, and that everything following should be part of the list
 					fnIsMatchNxtStr: ({entryNxt, entryNxtStr}) => true,
@@ -1329,18 +1346,31 @@ export class ConverterCreature extends ConverterBase {
 		}
 	}
 
-	static _doMergeHangingLists_generic ({stats, prop, ix, cur, ptrList, isMultiple, fnIsMatchCurEntry, fnIsMatchNxtStr}) {
+	static _doMergeHangingLists_generic (
+		{
+			stats,
+			prop,
+			ix,
+			cur,
+			ptrList,
+			isMultiple,
+			fnIsMatchCurEntry,
+			fnIsMatchNxtStr,
+			listStyle = "list-hang-notitle",
+			listItemType = "item",
+		},
+	) {
 		if (!fnIsMatchCurEntry(cur)) return false;
 
 		let cnt = 0;
 
 		const doAdd = ({entryNxt}) => {
 			if (!ptrList._) {
-				ptrList._ = {type: "list", style: "list-hang-notitle", items: []};
+				ptrList._ = {type: "list", style: listStyle, items: []};
 				cur.entries.push(ptrList._);
 			}
 
-			ConverterUtils.mutSetEntryTypePretty({obj: entryNxt, type: "item"});
+			ConverterUtils.mutSetEntryTypePretty({obj: entryNxt, type: listItemType});
 			ptrList._.items.push(entryNxt);
 			stats[prop].splice(ix + 1, 1);
 			cnt++;
@@ -1361,7 +1391,7 @@ export class ConverterCreature extends ConverterBase {
 			doAdd({entryNxt});
 		}
 
-		return true;
+		return !!cnt;
 	}
 
 	/* -------------------------------------------- */
@@ -1829,6 +1859,7 @@ export class ConverterCreature extends ConverterBase {
 		DetectNamedCreature.tryRun(stats);
 		TagImmResVulnConditional.tryRun(stats);
 		DragonAgeTag.tryRun(stats);
+		FamiliarTag.tryRun(stats);
 		if (!stats.gear) AttachedItemTag.tryRun(stats);
 		HazardTag.tryRunPropsStrictCapsWords(stats, Renderer.monster.CHILD_PROPS_EXTENDED, {styleHint: options.styleHint});
 		CoreRuleTag.tryRunProps(stats, Renderer.monster.CHILD_PROPS_EXTENDED, {styleHint: options.styleHint});
@@ -1911,10 +1942,11 @@ export class ConverterCreature extends ConverterBase {
 	}
 
 	static _tryParseType ({stats, strType}) {
-		strType = strType.trim().toLowerCase();
+		strType = strType.trim();
+
 		const mSwarm = /^(?<prefix>.*)swarm of (?<size>\w+) (?<type>\w+)(?: \((?<tags>[^)]+)\))?$/i.exec(strType);
 		if (mSwarm) {
-			const swarmTypeSingular = Parser.monTypeFromPlural(mSwarm[3]);
+			const swarmTypeSingular = Parser.monTypeFromPlural(mSwarm.groups.type.toLowerCase());
 
 			const out = { // retain any leading junk, as we'll parse it out in a later step
 				type: `${mSwarm.groups.prefix}${swarmTypeSingular}`,
@@ -1926,17 +1958,26 @@ export class ConverterCreature extends ConverterBase {
 			return out;
 		}
 
-		const mParens = /^(.*?) (\(.*?\))\s*$/.exec(strType);
+		const mParens = /^(?<ptOutside>.*?) (?<ptInside>\(.*?\))\s*$/.exec(strType);
 		let type, tags, note;
 
 		if (mParens) {
 			// If there are multiple sizes, assume bracketed text is a note referring to this
-			if (stats.size.length > 1) {
-				note = mParens[2];
+			//   if it is more than a single word (e.g. "Wizard").
+			// See e.g.:
+			// - Archmage (MM'24)
+			const isParensSizeNote = stats.size.length > 1
+				&& mParens.groups.ptInside
+					.split(",")
+					.map(it => it.trim())
+					.some(it => it.split(" ").length > 1);
+
+			if (isParensSizeNote) {
+				note = mParens.groups.ptInside;
 			} else {
-				tags = this._tryParseType_getTags({str: mParens[2]});
+				tags = this._tryParseType_getTags({str: mParens.groups.ptInside});
 			}
-			strType = mParens[1];
+			strType = mParens.groups.ptOutside.toLowerCase();
 		}
 
 		if (/ or /.test(strType)) {
@@ -2079,21 +2120,34 @@ export class ConverterCreature extends ConverterBase {
 
 	static _setCleanSizeTypeAlignment_postProcess (stats, meta, options) {
 		const validTypes = new Set(Parser.MON_TYPES);
-		if (!stats.type.type?.choose && (!validTypes.has(stats.type.type || stats.type))) {
-			// check if the last word is a creature type
-			const curType = stats.type.type || stats.type;
-			let parts = curType.split(/(\W+)/g);
-			parts = parts.filter(Boolean);
-			if (validTypes.has(parts.last())) {
-				const note = parts.slice(0, -1);
-				if (stats.type.type) {
-					stats.type.type = parts.last();
-				} else {
-					stats.type = parts.last();
-				}
-				stats.sizeNote = note.join("").trim();
-			}
+
+		if (stats.type.type?.choose) {
+			stats.type.type.choose = stats.type.type
+				.choose.map(typ => typ.toLowerCase());
+			return;
 		}
+
+		const curType = stats.type.type || stats.type;
+		if (validTypes.has(curType)) return;
+
+		if (validTypes.has(curType.toLowerCase())) {
+			if (stats.type.type) stats.type.type = curType.toLowerCase();
+			else stats.type = curType.toLowerCase();
+			return;
+		}
+
+		// check if the last word is a creature type
+		let parts = curType.split(/(\W+)/g);
+		parts = parts.filter(Boolean);
+		if (!validTypes.has(parts.last())) return;
+
+		const note = parts.slice(0, -1);
+		if (stats.type.type) {
+			stats.type.type = parts.last();
+		} else {
+			stats.type = parts.last();
+		}
+		stats.sizeNote = note.join("").trim();
 	}
 
 	static _addExtraTypeTags (stats, meta) {

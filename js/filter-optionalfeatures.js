@@ -225,7 +225,7 @@ class ModalFilterOptionalFeatures extends ModalFilterBase {
 
 	async _pLoadAllData () {
 		return [
-			...(await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/optionalfeatures.json`)).optionalfeature,
+			...(await DataLoader.pCacheAndGetAllSite(UrlUtil.PG_OPT_FEATURES)),
 			...((await PrereleaseUtil.pGetBrewProcessed()).optionalfeature || []),
 			...((await BrewUtil2.pGetBrewProcessed()).optionalfeature || []),
 		];
@@ -237,7 +237,7 @@ class ModalFilterOptionalFeatures extends ModalFilterBase {
 
 		const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_OPT_FEATURES](optfeat);
 		const source = Parser.sourceJsonToAbv(optfeat.source);
-		const prerequisite = Renderer.utils.prerequisite.getHtml(optfeat.prerequisite, {isListMode: true, blocklistKeys: new Set(["level"])});
+		const prerequisite = Renderer.utils.prerequisite.getHtml(optfeat.prerequisite, {isListMode: true, keyOptions: {level: {isNameOnly: true}}});
 		const level = Renderer.optionalfeature.getListPrerequisiteLevelText(optfeat.prerequisite);
 
 		eleRow.innerHTML = `<div class="w-100 ve-flex-vh-center lst__row-border veapp__list-row no-select lst__wrp-cells">
@@ -251,7 +251,7 @@ class ModalFilterOptionalFeatures extends ModalFilterBase {
 			<span class="ve-col-2 px-1 ve-text-center" title="${optfeat._dFeatureType.join(", ").qq()}">${optfeat._lFeatureType}</span>
 			<span class="ve-col-4 px-1 ve-text-center">${prerequisite}</span>
 			<span class="ve-col-1 px-1 ve-text-center">${level}</span>
-			<div class="ve-col-1 pl-1 pr-0 ve-flex-h-center ${Parser.sourceJsonToSourceClassname(optfeat.source)}" title="${Parser.sourceJsonToFull(optfeat.source)}" ${Parser.sourceJsonToStyle(optfeat.source)}>${source}${Parser.sourceJsonToMarkerHtml(optfeat.source)}</div>
+			<div class="ve-col-1 pl-1 pr-0 ve-flex-h-center ${Parser.sourceJsonToSourceClassname(optfeat.source)}" title="${Parser.sourceJsonToFull(optfeat.source)}">${source}${Parser.sourceJsonToMarkerHtml(optfeat.source, {isList: true})}</div>
 		</div>`;
 
 		const btnShowHidePreview = eleRow.firstElementChild.children[1].firstElementChild;
@@ -264,7 +264,7 @@ class ModalFilterOptionalFeatures extends ModalFilterBase {
 				hash,
 				source,
 				sourceJson: optfeat.source,
-				page: optfeat.page,
+				...ListItem.getCommonValues(optfeat),
 				prerequisite,
 				level,
 				type: optfeat._lFeatureType,

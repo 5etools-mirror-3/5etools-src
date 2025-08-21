@@ -292,6 +292,35 @@ class InitiativeTrackerStatColumn_Initiative extends _InitiativeTrackerStatColum
 	}
 }
 
+class InitiativeTrackerStatColumn_CR extends _InitiativeTrackerStatColumnBase {
+	static get POPULATE_WITH () { return "cr"; }
+	static GROUP = GROUP_BASE_STATS;
+	static NAME = "Challenge Rating (CR)";
+	static ABV_DEFAULT = "CR";
+
+	_getInitialCellObj ({mon, fluff}) {
+		if (!mon) return {value: null};
+		const crNum = Parser.crToNumber(mon.cr);
+		return {
+			value: crNum >= VeCt.CR_CUSTOM ? null : crNum,
+		};
+	}
+}
+
+class InitiativeTrackerStatColumn_XP extends _InitiativeTrackerStatColumnBase {
+	static get POPULATE_WITH () { return "xp"; }
+	static GROUP = GROUP_BASE_STATS;
+	static NAME = "Experience Points (XP)";
+	static ABV_DEFAULT = "XP";
+
+	_getInitialCellObj ({mon, fluff}) {
+		if (!mon) return {value: null};
+		return {
+			value: Parser.crToXpNumber(mon.cr),
+		};
+	}
+}
+
 class InitiativeTrackerStatColumn_LegendaryActions extends _InitiativeTrackerStatColumnBase {
 	static _SERIALIZER_MAPPINGS = {
 		"entity.current": "cur",
@@ -608,6 +637,8 @@ export class InitiativeTrackerStatColumnFactory {
 			InitiativeTrackerStatColumn_Speed,
 			InitiativeTrackerStatColumn_SpellDc,
 			InitiativeTrackerStatColumn_Initiative,
+			InitiativeTrackerStatColumn_CR,
+			InitiativeTrackerStatColumn_XP,
 			InitiativeTrackerStatColumn_LegendaryActions,
 			InitiativeTrackerStatColumn_Image,
 		].forEach(Cls => this._initLookup_addCls(Cls));

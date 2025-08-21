@@ -84,7 +84,7 @@ class RecipesPage extends ListPage {
 		eleLi.innerHTML = `<a href="#${hash}" class="lst__row-border lst__row-inner">
 			<span class="ve-col-6 bold pl-0 pr-1">${ent.name}</span>
 			<span class="ve-col-4 px-1 ve-text-center">${ent.type || "\u2014"}</span>
-			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(ent.source)} pl-1 pr-0" title="${Parser.sourceJsonToFull(ent.source)}" ${Parser.sourceJsonToStyle(ent.source)}>${source}</span>
+			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(ent.source)} pl-1 pr-0" title="${Parser.sourceJsonToFull(ent.source)}">${source}</span>
 		</a>`;
 
 		const listItem = new ListItem(
@@ -148,5 +148,6 @@ RecipesPage._HASH_START_SCALED = `${VeCt.HASH_SCALED}${HASH_SUB_KV_SEP}`;
 
 const recipesPage = new RecipesPage();
 recipesPage.sublistManager = new RecipesSublistManager();
-
 window.addEventListener("load", () => recipesPage.pOnLoad());
+
+globalThis.dbg_page = recipesPage;

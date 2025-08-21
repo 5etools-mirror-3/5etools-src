@@ -1043,6 +1043,15 @@ class _DataTypeLoaderRaceFluff extends _DataTypeLoaderPredefined {
 	_loader = "raceFluff";
 }
 
+class _DataTypeLoaderRaceFeature extends _DataTypeLoaderPredefined {
+	static PROPS = ["raceFeature"];
+
+	_loader = "raceFeature";
+	_loadJsonArgs = {isAddBaseRaces: true};
+	_loadPrereleaseArgs = {isAddBaseRaces: true};
+	_loadBrewArgs = {isAddBaseRaces: true};
+}
+
 class _DataTypeLoaderDeity extends _DataTypeLoaderPredefined {
 	static PROPS = ["deity"];
 	static PAGE = UrlUtil.PG_DEITIES;
@@ -1851,6 +1860,7 @@ class DataLoader {
 
 		// region Predefined
 		_DataTypeLoaderRace.register({fnRegister});
+		_DataTypeLoaderRaceFeature.register({fnRegister});
 		_DataTypeLoaderDeity.register({fnRegister});
 		_DataTypeLoaderVariantrule.register({fnRegister});
 		_DataTypeLoaderTable.register({fnRegister});

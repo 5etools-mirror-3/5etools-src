@@ -1,4 +1,5 @@
 import {ConverterConst} from "./converterutils-const.js";
+import {SITE_STYLE__CLASSIC} from "../consts.js";
 
 class DamageTagger {
 	static _addDamageTypeToSet (set, str, options) {
@@ -233,14 +234,16 @@ export class ScalingLevelDiceTagger {
 		return {rollsFirstLine, rollsSecondLine};
 	}
 
-	static _RE_DAMAGE_TYPE = new RegExp(`\\b${ConverterConst.STR_RE_DAMAGE_TYPE}\\b`, "i");
-
 	static _getLabel ({sp, options}) {
 		let label;
 
+		const reDamageType = options.styleHint === SITE_STYLE__CLASSIC
+			? new RegExp(`\\b${ConverterConst.STR_RE_DAMAGE_TYPE}\\b`, "i")
+			: new RegExp(`\\b${ConverterConst.STR_RE_DAMAGE_TYPE}\\b`);
+
 		const handlers = {
 			string: str => {
-				const mDamageType = this._RE_DAMAGE_TYPE.exec(str);
+				const mDamageType = reDamageType.exec(str);
 				if (mDamageType) {
 					label = `${mDamageType[1]} damage`;
 					return true;

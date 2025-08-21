@@ -329,7 +329,6 @@ class PageFilterBestiary extends PageFilterBase {
 			if (legGroup.regionalEffects) mon._fMisc.push("Regional Effects");
 		}
 		if (mon.variant) mon._fMisc.push("Has Variants");
-		if (mon._isCopy) mon._fMisc.push("Modified Copy");
 		if (mon.altArt) mon._fMisc.push("Has Alternate Token");
 		if (Renderer.monster.hasToken(mon)) mon._fMisc.push("Has Token");
 		if (this._hasFluff(mon)) mon._fMisc.push("Has Info");
@@ -667,7 +666,7 @@ class ModalFilterBestiary extends ModalFilterBase {
 
 	async _pLoadAllData () {
 		return [
-			...(await DataUtil.monster.pLoadAll()),
+			...(await DataLoader.pCacheAndGetAllSite(UrlUtil.PG_BESTIARY)),
 			...((await PrereleaseUtil.pGetBrewProcessed()).monster || []),
 			...((await BrewUtil2.pGetBrewProcessed()).monster || []),
 		];
@@ -695,7 +694,7 @@ class ModalFilterBestiary extends ModalFilterBase {
 			<div class="ve-col-4 px-1 ${mon._versionBase_isVersion ? "italic" : ""} ${this._getNameStyle()}">${mon._versionBase_isVersion ? `<span class="px-3"></span>` : ""}${mon.name}</div>
 			<div class="ve-col-4 px-1">${type}</div>
 			<div class="ve-col-2 px-1 ve-text-center">${cr}</div>
-			<div class="ve-col-1 ve-flex-h-center ${Parser.sourceJsonToSourceClassname(mon.source)} pl-1 pr-0" title="${Parser.sourceJsonToFull(mon.source)}" ${Parser.sourceJsonToStyle(mon.source)}>${source}${Parser.sourceJsonToMarkerHtml(mon.source)}</div>
+			<div class="ve-col-1 ve-flex-h-center ${Parser.sourceJsonToSourceClassname(mon.source)} pl-1 pr-0" title="${Parser.sourceJsonToFull(mon.source)}">${source}${Parser.sourceJsonToMarkerHtml(mon.source, {isList: true})}</div>
 		</div>`;
 
 		const btnShowHidePreview = eleRow.firstElementChild.children[1].firstElementChild;
@@ -708,7 +707,7 @@ class ModalFilterBestiary extends ModalFilterBase {
 				hash,
 				source,
 				sourceJson: mon.source,
-				page: mon.page,
+				...ListItem.getCommonValues(mon),
 				type,
 				cr,
 			},

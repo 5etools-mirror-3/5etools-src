@@ -38,7 +38,7 @@ class UtilClassesPage {
 	/* -------------------------------------------- */
 
 	static setRenderFnGetStyleClasses (cls) {
-		// Add extra classses to our features as we render them
+		// Add extra classes to our features as we render them
 		Renderer.get()
 			.setFnGetStyleClasses(UrlUtil.PG_CLASSES, (entry) => {
 				if (typeof entry === "string") return null;
@@ -374,7 +374,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				isUseJquery: true,
 			},
 		});
-		SortUtil.initBtnSortHandlers($("#filtertools"), this._list);
+		SortUtil.initBtnSortHandlers(es("#filtertools"), this._list);
 
 		this._filterBox = await this._pageFilter.pInitFilterBox({
 			$iptSearch: $(`#lst__search`),
@@ -515,6 +515,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			isBlankSourceFilter = !this._pageFilter.sourceFilter.getValues()._isActive;
 		}
 
+		const clsesUpdated = new Set();
 		data.subclass.forEach(sc => {
 			if (sc.className === VeCt.STR_GENERIC || sc.classSource === VeCt.STR_GENERIC) return;
 
@@ -527,13 +528,19 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				return;
 			}
 
-			const isExcludedClass = ExcludeUtil.isExcluded(UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CLASSES](cls), "class", cls.source);
+			clsesUpdated.add(cls);
 
 			(cls.subclasses = cls.subclasses || []).push(sc);
-			// Don't bother checking subclass exclusion for individually-added subclasses, as they should be from homebrew
-			this._pageFilter.mutateAndAddToFilters(cls, isExcludedClass);
-			cls.subclasses.sort(ClassesPage._ascSortSubclasses);
 		});
+
+		[...clsesUpdated]
+			.forEach(cls => {
+				const isExcludedClass = ExcludeUtil.isExcluded(UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CLASSES](cls), "class", cls.source);
+
+				// Don't bother checking subclass exclusion for individually-added subclasses, as they should be from homebrew
+				this._pageFilter.mutateAndAddToFilters(cls, isExcludedClass);
+				cls.subclasses.sort(ClassesPage._ascSortSubclasses);
+			});
 
 		// If we load a homebrew source when we have no source filters active, the homebrew source will set itself high
 		//   and force itself as the only visible source. Fix it in post.
@@ -874,7 +881,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 		const $lnk = $(`<a href="#${hash}" class="lst__row-border lst__row-inner">
 			<span class="bold ve-col-8 pl-0 pr-1">${cls.name}</span>
-			<span class="ve-col-4 pl-0 pr-1 ve-text-center ${Parser.sourceJsonToSourceClassname(cls.source)} pr-0" title="${Parser.sourceJsonToFull(cls.source)}" ${Parser.sourceJsonToStyle(cls.source)}>${source}</span>
+			<span class="ve-col-4 pl-0 pr-1 ve-text-center ${Parser.sourceJsonToSourceClassname(cls.source)} pr-0" title="${Parser.sourceJsonToFull(cls.source)}">${source}</span>
 		</a>`);
 
 		const $ele = $$`<li class="lst__row ve-flex-col ${isExcluded ? "row--blocklisted" : ""}">${$lnk}</li>`;
@@ -922,6 +929,9 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			});
 		});
 
+		// Ensure the correct filter values are used, and reset badly-copied `FilterItem`s
+		this._pageFilter.constructor.mutateForFilters(cpyCls);
+
 		this._activeClassDataFiltered = cpyCls;
 	}
 
@@ -930,7 +940,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		//   re-render.
 		if (isFilterValueChange) {
 			this._doGenerateFilteredActiveClassData();
-			this._pDoSyncrinizedRender();
+			this._pDoSynchronisedRender();
 			return;
 		}
 
@@ -959,14 +969,14 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		// Use hookAll to allow us to reset temp hooks on the property itself
 		this._addHookAll("classId", async () => {
 			this._doGenerateFilteredActiveClassData();
-			await this._pDoSyncrinizedRender();
+			await this._pDoSynchronisedRender();
 		});
 
 		this._doGenerateFilteredActiveClassData();
 		await this._pDoRender();
 	}
 
-	async _pDoSyncrinizedRender () {
+	async _pDoSynchronisedRender () {
 		await this._pLock("render");
 		try {
 			await this._pDoRender();
@@ -1181,8 +1191,8 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 		$$`<table class="cls-tbl shadow-big w-100 mb-2">
 			<tbody>
-			<tr><th class="ve-tbl-border" colspan="15"></th></tr>
-			<tr><th class="ve-text-left cls-tbl__disp-name" colspan="15">${cls.name}</th></tr>
+			<tr><th class="ve-tbl-border" colspan="999"></th></tr>
+			<tr><th class="ve-text-left cls-tbl__disp-name" colspan="999">${cls.name}</th></tr>
 			<tr>
 				<th colspan="3"></th> <!-- spacer to match the 3 default cols (level, prof, features) -->
 				${$tblGroupHeaders}
@@ -1194,7 +1204,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				${$tblHeaders}
 			</tr>
 			${metasTblRows.map(it => it.$row)}
-			<tr><th class="ve-tbl-border" colspan="15"></th></tr>
+			<tr><th class="ve-tbl-border" colspan="999"></th></tr>
 			</tbody>
 		</table>`.appendTo($wrpTblClass);
 		$wrpTblClass.showVe();
@@ -1846,7 +1856,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 					});
 				});
 
-				// If there are out-of-sync subclass features (e.g. Stryxhaven subclasses), add a "fake" feature to compensate
+				// If there are out-of-sync subclass features (e.g. Strixhaven subclasses), add a "fake" feature to compensate
 				if (!ptrHasHandledSubclassFeatures._ && this.constructor._hasSubclassFeaturesAtLevel(this.activeClassRaw, ixLvl + 1)) {
 					this._render_renderOutline_renderFeature({
 						ixLvl,
@@ -2148,7 +2158,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				});
 			});
 
-			// If there are out-of-sync subclass features (e.g. Stryxhaven subclasses), add a "fake" feature to compensate
+			// If there are out-of-sync subclass features (e.g. Strixhaven subclasses), add a "fake" feature to compensate
 			if (!ptrHasHandledSubclassFeatures._ && this.constructor._hasSubclassFeaturesAtLevel(cls, ixLvl + 1)) {
 				this.constructor._hasSubclassFeaturesAtLevel(cls, ixLvl + 1);
 				await this._render_renderClassContent_pRenderFeature({

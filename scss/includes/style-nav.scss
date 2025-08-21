@@ -43,7 +43,7 @@
 			line-height: 1;
 			margin-right: 2px;
 
-			@media screen and (width > #{vars.$width-screen-sm}) {
+			@media screen and (width > #{vars.$width-screen-md}) {
 				display: none;
 			}
 		}
@@ -53,6 +53,11 @@
 			min-height: 33px;
 			flex-shrink: 0;
 
+			@media screen and (width <= #{vars.$width-screen-md}) {
+				width: 750px;
+				display: flex;
+			}
+
 			@media screen and (width <= #{vars.$width-screen-sm}) {
 				width: 100%;
 				display: flex;
@@ -60,7 +65,7 @@
 		}
 
 		&nav-inner {
-			@media screen and (width <= #{vars.$width-screen-sm}) {
+			@media screen and (width <= #{vars.$width-screen-md}) {
 				display: flex;
 				margin-top: 3px;
 				flex-direction: column;
@@ -183,7 +188,7 @@
 	}
 
 	#navigation .page__nav-hidden-mobile {
-		@media screen and (width <= #{vars.$width-screen-sm}) {
+		@media screen and (width <= #{vars.$width-screen-md}) {
 			display: none;
 			margin-left: 0;
 		}

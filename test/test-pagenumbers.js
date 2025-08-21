@@ -16,6 +16,7 @@ const BLOCKLIST_FILE_PREFIXES = [
 	"makebrew-creature.json",
 	"makecards.json",
 	"characters.json",
+	"converter.json",
 ];
 
 const BLOCKLIST_KEYS = new Set([
@@ -42,14 +43,6 @@ const BLOCKLIST_ENTITIES = {
 		[Parser.SRC_DoSI]: new Set([
 			"Merrow Extortionist",
 		]),
-	},
-	"feat": {
-		// Feats not in original PDF
-		[Parser.SRC_GHLoE]: new Set(["*"]),
-	},
-	"spell": {
-		// Feats not in original PDF
-		[Parser.SRC_GHLoE]: new Set(["*"]),
 	},
 };
 

@@ -52,18 +52,20 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
 		}
 	};
 
-	static async pDoOpen ({brewUtil, brew, isModal: isParentModal = false}) {
+	static async pDoOpen ({brewUtil, brew, isModal: isParentModal = false, isReadOnly = false}) {
 		return new Promise((resolve, reject) => {
-			const ui = new this({brewUtil, brew, isModal: true});
+			const ui = new this({brewUtil, brew, isModal: true, isReadOnly});
 			const rdState = new this._RenderState();
 			const {$modalInner} = UiUtil.getShowModal({
 				isHeight100: true,
-				title: `Manage Document Contents`,
+				title: isReadOnly ? `View Document Contents` : `Manage Document Contents`,
 				isUncappedHeight: true,
 				isWidth100: true,
-				$titleSplit: $$`<div class="ve-flex-v-center ve-btn-group">
-					${ui._$getBtnDeleteSelected({rdState})}
-				</div>`,
+				$titleSplit: isReadOnly
+					? null
+					: $$`<div class="ve-flex-v-center ve-btn-group">
+						${ui._$getBtnDeleteSelected({rdState})}
+					</div>`,
 				overlayColor: isParentModal ? "transparent" : undefined,
 				cbClose: () => {
 					resolve(ui._getFormData());
@@ -75,7 +77,7 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
 		});
 	}
 
-	constructor ({brewUtil, brew, isModal}) {
+	constructor ({brewUtil, brew, isModal, isReadOnly}) {
 		super();
 
 		TabUiUtil.decorate(this, {isInitMeta: true});
@@ -83,6 +85,7 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
 		this._brewUtil = brewUtil;
 		this._brew = MiscUtil.copyFast(brew);
 		this._isModal = isModal;
+		this._isReadOnly = isReadOnly;
 
 		this._isDirty = false;
 	}
@@ -94,12 +97,16 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
 		};
 	}
 
+	/* -------------------------------------------- */
+
 	_$getBtnDeleteSelected ({rdState}) {
 		return $(`<button class="ve-btn ve-btn-danger ve-btn-xs">Delete Selected</button>`)
 			.click(() => this._handleClick_pButtonDeleteSelected({rdState}));
 	}
 
 	async _handleClick_pButtonDeleteSelected ({rdState}) {
+		if (this._isReadOnly) throw new Error(`Cannot delete in read-only mode! This is a bug!`);
+
 		if (this._getActiveTab() === rdState.tabMetaEntities) return this._handleClick_pButtonDeleteSelected_entities({rdState});
 		if (this._getActiveTab() === rdState.tabMetaSources) return this._handleClick_pButtonDeleteSelected_sources({rdState});
 		// (The metadata tab does not have any selectable elements, so, no-op)
@@ -168,6 +175,8 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
 		rdState.listEntities.update();
 	}
 
+	/* -------------------------------------------- */
+
 	async pRender ($wrp, {rdState = null} = {}) {
 		rdState = rdState || new this.constructor._RenderState();
 
@@ -197,13 +206,13 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
 
 		const $wrpMiniPills = $(`<div class="fltr__mini-view ve-btn-group"></div>`);
 
-		const $cbAll = $(`<input type="checkbox">`);
+		const $cbAll = this._isReadOnly ? null : $(`<input type="checkbox">`);
 		const $wrpRows = $$`<div class="list ve-flex-col w-100 max-h-unset"></div>`;
 		const $iptSearch = $(`<input type="search" class="search manbrew__search form-control w-100 lst__search lst__search--no-border-h" placeholder="Search entries...">`);
 		const $dispCntVisible = $(`<div class="lst__wrp-search-visible no-events ve-flex-vh-center"></div>`);
 		const $wrpBtnsSort = $$`<div class="filtertools manbrew__filtertools input-group input-group--bottom ve-flex no-shrink">
-			<label class="ve-btn ve-btn-default ve-btn-xs ve-col-1 pr-0 ve-flex-vh-center">${$cbAll}</label>
-			<button class="ve-col-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
+			${this._isReadOnly ? "" : $$`<label class="ve-btn ve-btn-default ve-btn-xs ve-col-1 pr-0 ve-flex-vh-center">${$cbAll}</label>`}
+			<button class="${this._isReadOnly ? `ve-col-6` : `ve-col-5`} sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
 			<button class="ve-col-1 sort ve-btn ve-btn-default ve-btn-xs" data-sort="source">Source</button>
 			<button class="ve-col-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="category">Category</button>
 		</div>`;
@@ -233,8 +242,10 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
 
 		rdState.listEntities.on("updated", () => $dispCntVisible.html(`${rdState.listEntities.visibleItems.length}/${rdState.listEntities.items.length}`));
 
-		rdState.listEntitiesSelectClickHandler = new ListSelectClickHandler({list: rdState.listEntities});
-		rdState.listEntitiesSelectClickHandler.bindSelectAllCheckbox($cbAll);
+		if (!this._isReadOnly) {
+			rdState.listEntitiesSelectClickHandler = new ListSelectClickHandler({list: rdState.listEntities});
+			rdState.listEntitiesSelectClickHandler.bindSelectAllCheckbox($cbAll);
+		}
 		SortUtil.initBtnSortHandlers($wrpBtnsSort, rdState.listEntities);
 
 		let ixParent = 0;
@@ -288,9 +299,9 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
 		const dispProp = this.constructor._getDisplayProp({ent, prop});
 
 		eleLi.innerHTML = `<label class="lst__row-border lst__row-inner no-select mb-0 ve-flex-v-center">
-			<div class="pl-0 ve-col-1 ve-flex-vh-center"><input type="checkbox" class="no-events"></div>
-			<div class="ve-col-5 bold">${dispName}</div>
-			<div class="ve-col-1 ve-text-center" title="${(sourceMeta.full || "").qq()}" ${this._brewUtil.sourceToStyle(sourceMeta)}>${sourceMeta.abbreviation}</div>
+			${this._isReadOnly ? "" : `<div class="pl-0 ve-col-1 ve-flex-vh-center"><input type="checkbox" class="no-events"></div>`}
+			<div class="${this._isReadOnly ? `ve-col-6` : `ve-col-5`} bold">${dispName}</div>
+			<div class="ve-col-1 ve-text-center ${Parser.sourceJsonToSourceClassname(sourceMeta.json)}" title="${(sourceMeta.full || "").qq()}">${sourceMeta.abbreviation}</div>
 			<div class="ve-col-5 ve-flex-vh-center pr-0">${dispProp}</div>
 		</label>`;
 
@@ -303,13 +314,13 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
 				category: dispProp,
 			},
 			{
-				cbSel: eleLi.firstElementChild.firstElementChild.firstElementChild,
+				cbSel: this._isReadOnly ? null : eleLi.firstElementChild.firstElementChild.firstElementChild,
 				prop,
 				ent,
 			},
 		);
 
-		eleLi.addEventListener("click", evt => rdState.listEntitiesSelectClickHandler.handleSelectClick(listItem, evt));
+		if (!this._isReadOnly) eleLi.addEventListener("click", evt => rdState.listEntitiesSelectClickHandler.handleSelectClick(listItem, evt));
 
 		return {
 			listItem,
@@ -343,24 +354,24 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
 
 		const $rows = Object.keys(this._brew.body._meta[prop])
 			.map(k => {
-				const $btnDelete = $(`<button class="ve-btn ve-btn-danger ve-btn-xs" title="Delete"><span class="glyphicon glyphicon-trash"></span></button>`)
-					.click(() => {
-						this._isDirty = true;
-						MiscUtil.deleteObjectPath(this._brew.body._meta, prop, k);
-						$row.remove();
+				const $btnDelete = this._isReadOnly
+					? null
+					: $(`<button class="ve-btn ve-btn-danger ve-btn-xs" title="Delete"><span class="glyphicon glyphicon-trash"></span></button>`)
+						.click(() => {
+							this._isDirty = true;
+							MiscUtil.deleteObjectPath(this._brew.body._meta, prop, k);
+							$row.remove();
 
-						// If we deleted the last key and the whole prop has therefore been cleaned up, delete the section
-						if (this._brew.body._meta[prop]) return;
+							// If we deleted the last key and the whole prop has therefore been cleaned up, delete the section
+							if (this._brew.body._meta[prop]) return;
 
-						$wrp.remove();
-					});
+							$wrp.remove();
+						});
 
 				const $row = $$`<div class="lst__row ve-flex-col px-0">
 					<div class="split-v-center lst__row-border lst__row-inner no-select mb-0 ve-flex-v-center">
-						<div class="ve-col-10">${displayFn(this._brew, prop, k)}</div>
-						<div class="ve-col-2 ve-btn-group ve-flex-v-center ve-flex-h-right">
-							${$btnDelete}
-						</div>
+						<div class="${this._isReadOnly ? `ve-col-12` : `ve-col-10`}">${displayFn(this._brew, prop, k)}</div>
+						${this._isReadOnly ? "" : $$`<div class="ve-col-2 ve-btn-group ve-flex-v-center ve-flex-h-right">${$btnDelete}</div>`}
 					</div>
 				</div>`;
 
@@ -378,12 +389,12 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
 	}
 
 	_pRender_tabSources ({tabMeta, rdState}) {
-		const $cbAll = $(`<input type="checkbox">`);
+		const $cbAll = this._isReadOnly ? null : $(`<input type="checkbox">`);
 		const $wrpRows = $$`<div class="list ve-flex-col w-100 max-h-unset"></div>`;
 		const $iptSearch = $(`<input type="search" class="search manbrew__search form-control w-100 mt-1" placeholder="Search source...">`);
 		const $wrpBtnsSort = $$`<div class="filtertools manbrew__filtertools input-group input-group--bottom ve-flex no-shrink">
-			<label class="ve-btn ve-btn-default ve-btn-xs ve-col-1 pr-0 ve-flex-vh-center">${$cbAll}</label>
-			<button class="ve-col-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
+			${this._isReadOnly ? "" : $$`<label class="ve-btn ve-btn-default ve-btn-xs ve-col-1 pr-0 ve-flex-vh-center">${$cbAll}</label>`}
+			<button class="${this._isReadOnly ? `ve-col-6` : `ve-col-5`} sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
 			<button class="ve-col-2 sort ve-btn ve-btn-default ve-btn-xs" data-sort="abbreviation">Abbreviation</button>
 			<button class="ve-col-4 sort ve-btn ve-btn-default ve-btn-xs" data-sort="json">JSON</button>
 		</div>`;
@@ -399,8 +410,10 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
 			fnSort: SortUtil.listSort,
 		});
 
-		rdState.listSourcesSelectClickHandler = new ListSelectClickHandler({list: rdState.listSources});
-		rdState.listSourcesSelectClickHandler.bindSelectAllCheckbox($cbAll);
+		if (!this._isReadOnly) {
+			rdState.listSourcesSelectClickHandler = new ListSelectClickHandler({list: rdState.listSources});
+			rdState.listSourcesSelectClickHandler.bindSelectAllCheckbox($cbAll);
+		}
 		SortUtil.initBtnSortHandlers($wrpBtnsSort, rdState.listSources);
 
 		(this._brew.body?._meta?.sources || [])
@@ -421,8 +434,8 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
 		const abv = source.abbreviation || SOURCE_UNKNOWN_ABBREVIATION;
 
 		eleLi.innerHTML = `<label class="lst__row-border lst__row-inner no-select mb-0 ve-flex-v-center">
-			<div class="pl-0 ve-col-1 ve-flex-vh-center"><input type="checkbox" class="no-events"></div>
-			<div class="ve-col-5 bold">${name}</div>
+			${this._isReadOnly ? `` : `<div class="pl-0 ve-col-1 ve-flex-vh-center"><input type="checkbox" class="no-events"></div>`}
+			<div class="${this._isReadOnly ? `ve-col-6` : `ve-col-5`} bold">${name}</div>
 			<div class="ve-col-2 ve-text-center">${abv}</div>
 			<div class="ve-col-4 ve-flex-vh-center pr-0">${source.json}</div>
 		</label>`;
@@ -436,12 +449,12 @@ export class ManageEditableBrewContentsUi extends BaseComponent {
 				json: source.json,
 			},
 			{
-				cbSel: eleLi.firstElementChild.firstElementChild.firstElementChild,
+				cbSel: this._isReadOnly ? null : eleLi.firstElementChild.firstElementChild.firstElementChild,
 				source,
 			},
 		);
 
-		eleLi.addEventListener("click", evt => rdState.listSourcesSelectClickHandler.handleSelectClick(listItem, evt));
+		if (!this._isReadOnly) eleLi.addEventListener("click", evt => rdState.listSourcesSelectClickHandler.handleSelectClick(listItem, evt));
 
 		return {
 			listItem,

@@ -182,7 +182,7 @@ class OmnisearchUi {
 		let typeTimer;
 		rdState.iptSearch
 			.onKeyup((evt) => {
-				rdState.clickFirst = false;
+				if (evt.key !== "Enter") rdState.clickFirst = false;
 				if (this._IPT_SEARCH_SPECIAL_KEYS.has(evt.key)) return;
 				clearTimeout(typeTimer);
 				typeTimer = setTimeout(() => this._handleClick_pSubmit({rdState}), this._TYPE_TIMEOUT_MS);
@@ -193,7 +193,7 @@ class OmnisearchUi {
 			.onClick(evt => {
 				evt.stopPropagation();
 				Renderer.hover.cleanTempWindows();
-				if (rdState.iptSearch.val() && rdState.iptSearch.val().trim().length) this._handleClick_pSubmit({rdState}).then(null);
+				if (rdState.iptSearch.val()?.trim().length) this._handleClick_pSubmit({rdState}).then(null);
 			});
 	}
 
@@ -329,8 +329,12 @@ class OmnisearchUi {
 	/* -------------------------------------------- */
 
 	// region Search
+	static _P_GETTING_RESULTS = null;
+
 	static async _pDoSearch ({rdState}) {
-		const results = await OmnisearchBacking.pGetResults(CleanUtil.getCleanString(rdState.iptSearch.val()));
+		const pGettingResults = this._P_GETTING_RESULTS = OmnisearchBacking.pGetResults(CleanUtil.getCleanString(rdState.iptSearch.val()));
+		const results = await this._P_GETTING_RESULTS;
+		if (this._P_GETTING_RESULTS !== pGettingResults) return; // A later search has occurred
 		this._pDoSearch_renderLinks({rdState, results});
 	}
 
@@ -389,7 +393,7 @@ class OmnisearchUi {
 		</div>`;
 
 		if (!results.length) {
-			$(rdState.dispSearchOutput).append(`<div class="ve-muted"><i>No results found.</i></div>`);
+			rdState.dispSearchOutput.appends(`<div class="ve-muted"><i>No results found.</i></div>`);
 			rdState.wrpSearchOutput.showVe();
 			return {rowMetas: [], results, ixPage};
 		}
@@ -411,8 +415,8 @@ class OmnisearchUi {
 					page,
 					isSrd,
 					isSrd52,
+					category,
 
-					ptStyle,
 					sourceAbv,
 					sourceFull,
 				} = UtilsOmnisearch.getUnpackedSearchResult(resultDoc);
@@ -424,19 +428,19 @@ class OmnisearchUi {
 					: ptPageInner;
 
 				const ptSourceInner = source
-					? `<span class="${Parser.sourceJsonToSourceClassname(source)}" ${ptStyle} title="${sourceFull.qq()}">${sourceAbv.qq()}</span>`
+					? `<span class="${Parser.sourceJsonToSourceClassname(source)}" title="${sourceFull.qq()}">${sourceAbv.qq()}</span>`
 					: `<span></span>`;
 				const ptSource = ptPage || !adventureBookSourceHref
 					? ptSourceInner
 					: `<a href="${adventureBookSourceHref}">${ptSourceInner}</a>`;
 
-				$$`<div class="omni__row-result split-v-center stripe-odd">
+				ee`<div class="omni__row-result split-v-center stripe-odd">
 					${lnk}
 					<div class="ve-flex-v-center">
 						${ptSource}
-						${isSrd ? `<span class="ve-muted omni__disp-srd help-subtle relative" title="Available in the Systems Reference Document (5.1)">[SRD]</span>` : ""}
-						${isSrd52 ? `<span class="ve-muted omni__disp-srd help-subtle relative" title="Available in the Systems Reference Document (5.2)">[SRD]</span>` : ""}
-						${Parser.sourceJsonToMarkerHtml(source, {isList: false, additionalStyles: "omni__disp-source-marker"})}
+						${isSrd && category !== Parser.CAT_ID_PAGE ? `<span class="ve-muted omni__disp-srd help-subtle relative" title="Available in the Systems Reference Document (5.1)">[SRD]</span>` : ""}
+						${isSrd52 && category !== Parser.CAT_ID_PAGE ? `<span class="ve-muted omni__disp-srd help-subtle relative" title="Available in the Systems Reference Document (5.2)">[SRD]</span>` : ""}
+						${Parser.sourceJsonToMarkerHtml(source, {isAddBrackets: true, additionalStyles: "omni__disp-source-marker"})}
 						${ptPage ? `<span class="omni__wrp-page small-caps">${ptPage}</span>` : ""}
 					</div>
 				</div>`.appendTo(rdState.dispSearchOutput);

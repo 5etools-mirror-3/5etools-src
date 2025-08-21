@@ -78,6 +78,33 @@ class BastionsPage extends ListPage {
 				namePlural: "facilities",
 				pageTitle: "Facilities Book View",
 			},
+
+			tableViewOptions: {
+				title: "Facilities",
+				colTransforms: {
+					name: UtilsTableview.COL_TRANSFORM_NAME,
+					source: UtilsTableview.COL_TRANSFORM_SOURCE,
+					page: UtilsTableview.COL_TRANSFORM_PAGE,
+					_level: {name: "Level", transform: ent => ent.level || ""},
+					_prerequisite: {name: "Prerequisite", transform: ent => ent._slPrereq},
+					_space: {name: "Space",
+						transform: ent => {
+							const {entrySpace} = Renderer.facility.getFacilityRenderableEntriesMeta(ent);
+							return Renderer.get().render(entrySpace);
+						}},
+					_hirelings: {name: "Hirelings",
+						transform: ent => {
+							const {entryHirelings} = Renderer.facility.getFacilityRenderableEntriesMeta(ent);
+							return Renderer.get().render(entryHirelings);
+						}},
+					_orders: {name: "Orders",
+						transform: ent => {
+							const {entryOrders} = Renderer.facility.getFacilityRenderableEntriesMeta(ent);
+							return Renderer.get().render(entryOrders);
+						}},
+					entries: {name: "Text", transform: ent => Renderer.get().render({type: "entries", entries: ent}, 2), flex: 3},
+				},
+			},
 		});
 	}
 
@@ -96,7 +123,7 @@ class BastionsPage extends ListPage {
 			<span class="bold ve-col-3 px-1">${ent.name}</span>
 			<span class="ve-col-1 ve-text-center px-1 ${ent.level == null ? "italic" : ""}">${ent.level || "\u2014"}</span>
 			<span class="ve-col-4 px-1 ${ent._slPrereq === VeCt.STR_NONE ? "italic " : ""}">${ent._slPrereq}</span>
-			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(ent.source)}  pl-1 pr-0" title="${Parser.sourceJsonToFull(ent.source)}" ${Parser.sourceJsonToStyle(ent.source)}>${source}</span>
+			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(ent.source)}  pl-1 pr-0" title="${Parser.sourceJsonToFull(ent.source)}">${source}</span>
 		</a>`;
 
 		const listItem = new ListItem(

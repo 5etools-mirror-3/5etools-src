@@ -81,11 +81,11 @@ class PageFilterBackgrounds extends PageFilterBase {
 		bg._fLangs = languages;
 
 		this._mutateForFilters_commonMisc(bg);
-		bg._fOtherBenifits = [];
-		if (bg.feats) bg._fOtherBenifits.push("Feat");
-		if (bg.additionalSpells) bg._fOtherBenifits.push("Additional Spells");
-		if (bg.armorProficiencies) bg._fOtherBenifits.push("Armor Proficiencies");
-		if (bg.weaponProficiencies) bg._fOtherBenifits.push("Weapon Proficiencies");
+		bg._fOtherBenefits = [];
+		if (bg.feats) bg._fOtherBenefits.push("Feat");
+		if (bg.additionalSpells) bg._fOtherBenefits.push("Additional Spells");
+		if (bg.armorProficiencies) bg._fOtherBenefits.push("Armor Proficiencies");
+		if (bg.weaponProficiencies) bg._fOtherBenefits.push("Weapon Proficiencies");
 		bg._skillDisplay = skillDisplay;
 
 		bg._slAbility = bg.ability
@@ -104,7 +104,7 @@ class PageFilterBackgrounds extends PageFilterBase {
 		this._skillFilter.addItem(bg._fSkills);
 		this._toolFilter.addItem(bg._fTools);
 		this._languageFilter.addItem(bg._fLangs);
-		this._otherBenefitsFilter.addItem(bg._fOtherBenifits);
+		this._otherBenefitsFilter.addItem(bg._fOtherBenefits);
 		this._miscFilter.addItem(bg._fMisc);
 		this._featsFilter.addItem(bg._fFeats);
 	}
@@ -132,7 +132,7 @@ class PageFilterBackgrounds extends PageFilterBase {
 			bg._fSkills,
 			bg._fTools,
 			bg._fLangs,
-			bg._fOtherBenifits,
+			bg._fOtherBenefits,
 			bg._fMisc,
 			bg._fFeats,
 		);
@@ -169,7 +169,7 @@ class ModalFilterBackgrounds extends ModalFilterBase {
 
 	async _pLoadAllData () {
 		return [
-			...(await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/backgrounds.json`)).background,
+			...(await DataLoader.pCacheAndGetAllSite(UrlUtil.PG_BACKGROUNDS)),
 			...((await PrereleaseUtil.pGetBrewProcessed()).background || []),
 			...((await BrewUtil2.pGetBrewProcessed()).background || []),
 		];
@@ -192,7 +192,7 @@ class ModalFilterBackgrounds extends ModalFilterBase {
 			<div class="ve-col-3 px-1 ${bg._versionBase_isVersion ? "italic" : ""} ${this._getNameStyle()}">${bg._versionBase_isVersion ? `<span class="px-3"></span>` : ""}${bg.name}</div>
 			<span class="ve-col-4 px-1 ${bg._slAbility === VeCt.STR_NONE ? "italic" : ""}">${bg._slAbility}</span>
 			<div class="ve-col-4 px-1">${bg._skillDisplay}</div>
-			<div class="ve-col-1 pl-1 pr-0 ve-flex-h-center ${Parser.sourceJsonToSourceClassname(bg.source)}" title="${Parser.sourceJsonToFull(bg.source)}" ${Parser.sourceJsonToStyle(bg.source)}>${source}${Parser.sourceJsonToMarkerHtml(bg.source)}</div>
+			<div class="ve-col-1 pl-1 pr-0 ve-flex-h-center ${Parser.sourceJsonToSourceClassname(bg.source)}" title="${Parser.sourceJsonToFull(bg.source)}">${source}${Parser.sourceJsonToMarkerHtml(bg.source, {isList: true})}</div>
 		</div>`;
 
 		const btnShowHidePreview = eleRow.firstElementChild.children[1].firstElementChild;
@@ -205,7 +205,7 @@ class ModalFilterBackgrounds extends ModalFilterBase {
 				hash,
 				source,
 				sourceJson: bg.source,
-				page: bg.page,
+				...ListItem.getCommonValues(bg),
 				ability: bg._slAbility,
 				skills: bg._skillDisplay,
 			},

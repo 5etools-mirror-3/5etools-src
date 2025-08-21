@@ -295,7 +295,7 @@
 				{
 					"name": "Slam",
 					"entries": [
-						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach 5 ft. {@h}Force damage equal to {@damage 1d4 + 3}, {@damage 2d6 + 3} + your spellcasting ability modifier (Large), or {@damage 2d12 + 3} + your spellcasting ability modifier (Huge)."
+						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}. {@h}Force damage equal to {@damage (summonSpellLevel - 4)d4 + 3|1d4 + 3}, {@damage (summonSpellLevel - 3)d6 + 3|2d6 + 3} + your spellcasting ability modifier (Large), or {@damage (summonSpellLevel - 3)d12 + 3|2d12 + 3} + your spellcasting ability modifier (Huge)."
 					]
 				}
 			],
@@ -318,7 +318,7 @@
 						{
 							"name": "Slam",
 							"entries": [
-								"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}. {@h}Force damage equal to {@damage 2d12 + 3} + your spellcasting ability modifier."
+								"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}. {@h}Force damage equal to {@damage (summonSpellLevel - 3)d12 + 3|2d12 + 3} + your spellcasting ability modifier."
 							]
 						}
 					]
@@ -333,7 +333,7 @@
 						{
 							"name": "Slam",
 							"entries": [
-								"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}. {@h}Force damage equal to {@damage 2d6 + 3} + your spellcasting ability modifier."
+								"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}. {@h}Force damage equal to {@damage (summonSpellLevel - 3)d6 + 3|2d6 + 3} + your spellcasting ability modifier."
 							]
 						}
 					]
@@ -348,7 +348,7 @@
 						{
 							"name": "Slam",
 							"entries": [
-								"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}. {@h}Force damage equal to {@damage 1d4 + 3} + your spellcasting ability modifier."
+								"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}. {@h}Force damage equal to {@damage (summonSpellLevel - 4)d4 + 3|1d4 + 3} + your spellcasting ability modifier."
 							]
 						}
 					]
@@ -405,7 +405,7 @@
 				{
 					"name": "Beast's Strike",
 					"entries": [
-						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}. {@h}{@dice 1d8 + 2} plus your Wisdom modifier Bludgeoning, Piercing, or Slashing damage (your choice when you summon the beast). If the beast moved at least {@quantity 20|feet} straight toward the target before the hit, the target takes an extra {@damage 1d6} damage of the same type, and the target has the {@condition Prone|XPHB} condition if it is a Large or smaller creature."
+						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}. {@h}{@damage 1d8 + 2} plus your Wisdom modifier Bludgeoning, Piercing, or Slashing damage (your choice when you summon the beast). If the beast moved at least {@quantity 20|feet} straight toward the target before the hit, the target takes an extra {@damage 1d6} damage of the same type, and the target has the {@condition Prone|XPHB} condition if it is a Large or smaller creature."
 					]
 				}
 			],
@@ -474,7 +474,7 @@
 				{
 					"name": "Beast's Strike",
 					"entries": [
-						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}. {@h}{@dice 1d6 + 2} plus your Wisdom modifier Bludgeoning or Piercing damage (your choice when you summon the beast), and the target has the {@condition Grappled|XPHB} condition (escape DC equals your spell save DC)."
+						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}. {@h}{@damage 1d6 + 2} plus your Wisdom modifier Bludgeoning or Piercing damage (your choice when you summon the beast), and the target has the {@condition Grappled|XPHB} condition (escape DC equals your spell save DC)."
 					]
 				}
 			],
@@ -532,7 +532,7 @@
 				{
 					"name": "Flyby",
 					"entries": [
-						"The beast doesn't provoke Opportunity Attacks when it flies out of an enemy's reach."
+						"The beast doesn't provoke {@action Opportunity Attack|XPHB|Opportunity Attacks} when it flies out of an enemy's reach."
 					]
 				},
 				{
@@ -546,7 +546,7 @@
 				{
 					"name": "Beast's Strike",
 					"entries": [
-						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}. {@h}{@dice 1d4 + 3} plus your Wisdom modifier Slashing damage."
+						"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}. {@h}{@damage 1d4 + 3} plus your Wisdom modifier Slashing damage."
 					]
 				}
 			],
@@ -613,7 +613,7 @@
 				{
 					"name": "Flyby (Air Only)",
 					"entries": [
-						"The spirit doesn't provoke Opportunity Attacks when it flies out of an enemy's reach."
+						"The spirit doesn't provoke {@action Opportunity Attack|XPHB|Opportunity Attacks} when it flies out of an enemy's reach."
 					]
 				},
 				{
@@ -961,7 +961,7 @@
 				{
 					"name": "Stony Lethargy (Stone Only)",
 					"entries": [
-						"When a creature starts its turn within {@quantity 10|feet} of the spirit, the spirit can target it with magical energy if the spirit can see it. {@actSave wis} DC equals your spell save DC, the target. {@actSaveFail} Until the start of its next turn, the target can't make Opportunity Attacks, and its Speed is halved."
+						"When a creature starts its turn within {@quantity 10|feet} of the spirit, the spirit can target it with magical energy if the spirit can see it. {@actSave wis} DC equals your spell save DC, the target. {@actSaveFail} Until the start of its next turn, the target can't make {@action Opportunity Attack|XPHB|Opportunity Attacks}, and its Speed is halved."
 					]
 				}
 			],
@@ -983,7 +983,7 @@
 				{
 					"name": "Berserk Lashing (Clay Only)",
 					"entries": [
-						"{@actTrigger} The spirit takes damage from a creature. {@actResponse} The spirit makes a Slam attack against that creature if possible, or the spirit moves up to half its Speed toward that creature without provoking Opportunity Attacks."
+						"{@actTrigger} The spirit takes damage from a creature. {@actResponse} The spirit makes a Slam attack against that creature if possible, or the spirit moves up to half its Speed toward that creature without provoking {@action Opportunity Attack|XPHB|Opportunity Attacks}."
 					]
 				}
 			],
@@ -2124,7 +2124,115 @@
 				"wisdom"
 			],
 			"hasToken": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"_versions": [
+				{
+					"name": "Otherworldly Steed (Celestial)",
+					"source": "XPHB",
+					"_mod": {
+						"bonus": [
+							{
+								"mode": "removeArr",
+								"names": [
+									"Fell Glare (Fiend Only; Recharges after a Long Rest)",
+									"Fey Step (Fey Only; Recharges after a Long Rest)"
+								]
+							},
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Healing Touch (Celestial Only; Recharges after a Long Rest)",
+									"with": "Healing Touch (Recharges after a Long Rest)"
+								}
+							}
+						]
+					},
+					"type": "celestial",
+					"action": [
+						{
+							"name": "Otherworldly Slam",
+							"entries": [
+								"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}. {@h}{@damage 1d8 + summonSpellLevel} Radiant damage."
+							]
+						}
+					],
+					"damageTags": [
+						"R"
+					],
+					"conditionInflict": null,
+					"savingThrowForced": null
+				},
+				{
+					"name": "Otherworldly Steed (Fey)",
+					"source": "XPHB",
+					"_mod": {
+						"bonus": [
+							{
+								"mode": "removeArr",
+								"names": [
+									"Fell Glare (Fiend Only; Recharges after a Long Rest)",
+									"Healing Touch (Celestial Only; Recharges after a Long Rest)"
+								]
+							},
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Fey Step (Fey Only; Recharges after a Long Rest)",
+									"with": "Fey Step (Recharges after a Long Rest)"
+								}
+							}
+						]
+					},
+					"type": "fey",
+					"action": [
+						{
+							"name": "Otherworldly Slam",
+							"entries": [
+								"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}. {@h}{@damage 1d8 + summonSpellLevel} Psychic damage."
+							]
+						}
+					],
+					"damageTags": [
+						"Y"
+					],
+					"conditionInflict": null,
+					"savingThrowForced": null
+				},
+				{
+					"name": "Otherworldly Steed (Fiend)",
+					"source": "XPHB",
+					"_mod": {
+						"bonus": [
+							{
+								"mode": "removeArr",
+								"names": [
+									"Fey Step (Fey Only; Recharges after a Long Rest)",
+									"Healing Touch (Celestial Only; Recharges after a Long Rest)"
+								]
+							},
+							{
+								"mode": "renameArr",
+								"renames": {
+									"rename": "Fell Glare (Fiend Only; Recharges after a Long Rest)",
+									"with": "Fell Glare (Recharges after a Long Rest)"
+								}
+							}
+						]
+					},
+					"type": "fiend",
+					"action": [
+						{
+							"name": "Otherworldly Slam",
+							"entries": [
+								"{@atkr m} {@hitYourSpellAttack Bonus equals your spell attack modifier}, reach {@quantity 5|ft}. {@h}{@damage 1d8 + summonSpellLevel} Necrotic damage."
+							]
+						}
+					],
+					"damageTags": [
+						"N"
+					]
+				}
+			]
 		},
 		{
 			"name": "Undead Spirit",

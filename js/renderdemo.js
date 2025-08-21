@@ -22,29 +22,28 @@ async function initDemo (data, rendererType) {
 
 	let renderer;
 
-	const $msg = $(`#message`);
-	const $in = $(`#jsoninput`);
-	const $out = $(`#pagecontent`);
+	const msg = es(`#message`);
+	const out = es(`#pagecontent`);
 
-	const $selRenderer = $(`#demoSelectRenderer`);
-	const $btnRender = $(`#demoRender`);
-	const $btnReset = $(`#demoReset`);
+	const selRenderer = es(`#demoSelectRenderer`);
+	const btnRender = es(`#demoRender`);
+	const btnReset = es(`#demoReset`);
 
 	function setRenderer (rendererType) {
 		switch (rendererType) {
 			case "html": {
 				renderer = Renderer.get();
-				$out.removeClass("whitespace-pre").removeClass("code");
+				out.removeClass("whitespace-pre").removeClass("code");
 				break;
 			}
 			case "md": {
 				renderer = RendererMarkdown.get();
-				$out.addClass("whitespace-pre").addClass("code");
+				out.addClass("whitespace-pre").addClass("code");
 				break;
 			}
 			case "cards": {
 				renderer = RendererCard.get();
-				$out.addClass("whitespace-pre").addClass("code");
+				out.addClass("whitespace-pre").addClass("code");
 				break;
 			}
 			default: throw new Error(`Unhandled renderer!`);
@@ -52,19 +51,19 @@ async function initDemo (data, rendererType) {
 	}
 
 	setRenderer(rendererType || "html");
-	$selRenderer.val(rendererType || "html");
+	selRenderer.val(rendererType || "html");
 
 	// init editor
 	const editor = EditorUtil.initEditor("jsoninput", {mode: "ace/mode/json"});
 
 	function demoRender () {
-		$msg.html("");
+		msg.html("");
 		const renderStack = [];
 		let json;
 		try {
 			json = JSON.parse(editor.getValue());
 		} catch (e) {
-			$msg.html(`Invalid JSON! We recommend using <a href="https://jsonlint.com/" target="_blank" rel="noopener noreferrer">JSONLint</a>.`);
+			msg.html(`Invalid JSON! We recommend using <a href="https://jsonlint.com/" target="_blank" rel="noopener noreferrer">JSONLint</a>.`);
 			setTimeout(() => {
 				throw e;
 			});
@@ -73,7 +72,7 @@ async function initDemo (data, rendererType) {
 		renderer.setFirstSection(true);
 		renderer.resetHeaderIndex();
 		renderer.recursiveRender(json, renderStack);
-		$out.html(`
+		out.html(`
 			<tr><th class="ve-tbl-border" colspan="6"></th></tr>
 			<tr><td colspan="6">${renderStack.join("")}</td></tr>
 			<tr><th class="ve-tbl-border" colspan="6"></th></tr>
@@ -103,14 +102,14 @@ async function initDemo (data, rendererType) {
 		StorageUtil.pSetForPage(STORAGE_LOCATION, editor.getValue());
 	}, 150);
 
-	$selRenderer.change(() => {
-		const val = $selRenderer.val();
+	selRenderer.onn("change", () => {
+		const val = selRenderer.val();
 		setRenderer(val);
 		demoRender();
 		StorageUtil.pSetForPage("renderer", val);
 	});
-	$btnReset.click(() => demoReset());
-	$btnRender.click(() => demoRender());
+	btnReset.onn("click", () => demoReset());
+	btnRender.onn("click", () => demoRender());
 	editor.on("change", () => renderAndSaveDebounced()); // N.B. specific "change" format required by Ace.js
 
 	window.dispatchEvent(new Event("toolsLoaded"));

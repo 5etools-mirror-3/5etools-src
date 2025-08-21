@@ -105,11 +105,11 @@ class _InitiativeTrackerMonsterAddCustomizer extends BaseComponent {
 			</label>`;
 		}
 
-		const $dispScaledCr = $(`<span class="inline-block"></span>`);
-		this._addHookBase("scaledCr", () => $dispScaledCr.text(this._state.scaledCr ? Parser.numberToCr(this._state.scaledCr) : `${(this._mon.cr.cr || this._mon.cr)} (default)`))();
+		const dispScaledCr = ee`<span class="inline-block"></span>`;
+		this._addHookBase("scaledCr", () => dispScaledCr.txt(this._state.scaledCr ? Parser.numberToCr(this._state.scaledCr) : `${(this._mon.cr.cr || this._mon.cr)} (default)`))();
 
-		const $btnScaleCr = $(`<button class="ve-btn ve-btn-default ve-btn-xs mr-2"><span class="glyphicon glyphicon-signal"></span></button>`)
-			.on("click", async () => {
+		const btnScaleCr = ee`<button class="ve-btn ve-btn-default ve-btn-xs mr-2"><span class="glyphicon glyphicon-signal"></span></button>`
+			.onn("click", async () => {
 				const crBase = this._mon.cr.cr || this._mon.cr;
 
 				const cr = await InputUiUtil.pGetUserScaleCr({default: crBase});
@@ -127,8 +127,8 @@ class _InitiativeTrackerMonsterAddCustomizer extends BaseComponent {
 		return $$`<label class="split-v-center mb-2">
 			<span class="w-200p ve-text-right no-shrink mr-2 bold">CR:</span>
 			<span class="ve-flex-v-center mr-auto">
-				${$btnScaleCr}
-				${$dispScaledCr}
+				${btnScaleCr}
+				${dispScaledCr}
 			</span>
 		</label>`;
 	}

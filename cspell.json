@@ -1,6 +1,7 @@
 {
 	"$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
 	"version": "0.2",
+	"language": "en,en-GB",
 	"dictionaryDefinitions": [
 		{
 			"name": "dnd-words",
@@ -16,17 +17,42 @@
 			"name": "artist-names",
 			"path": "./spellcheck/artist-names.txt",
 			"addWords": true
+		},
+		{
+			"name": "credits-names",
+			"path": "./spellcheck/credits-names.txt",
+			"addWords": true
 		}
 	],
 	"dictionaries": [
 		"dnd-words",
 		"javascript-words",
-		"artist-names"
+		"artist-names",
+		"credits-names"
 	],
 	"ignorePaths": [
 		"./spellcheck/*.txt",
-		"node_modules",
+		"css/",
+		"data/generated/",
+		"js/sw-files.js",
 		"lib/",
-		"js/sw-files.js"
+		"node_modules",
+		"search/"
+	],
+	"languageSettings": [
+		{
+			"languageId": "json",
+			"ignoreRegExpList": [
+				"/\"path\": \".+\"/",
+				"/\"url\": \".+\"/",
+				"/\"replace\": \".+\"/",
+				"/\"foundryId\": \".+\"/",
+				"/\"race\": \".+\"/",
+				"/\"background\": \".+\"/",
+				"/\"enchantmentRiderParent\": \".+\"/",
+				"/\"source\": \".+\"/",
+				"/\"condition\": \".+\"/"
+			]
+		}
 	]
 }

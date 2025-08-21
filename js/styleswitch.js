@@ -1,10 +1,8 @@
-"use strict";
-
-class StyleSwitcher {
+export class StyleSwitcher {
 	static _STORAGE_DAY_NIGHT = "StyleSwitcher_style";
-	static _STORAGE_IS_MANUAL_MODE = "StyleSwitcher_style-is-manual-mode";
 	static _STORAGE_WIDE = "StyleSwitcher_style-wide";
 
+	static _STYLE_AUTOMATIC = "auto";
 	static _STYLE_DAY = "day";
 	static _STYLE_NIGHT = "night";
 	static _STYLE_NIGHT_ALT = "nightAlt";
@@ -17,14 +15,8 @@ class StyleSwitcher {
 
 	static _WIDE_ID = "style-switch__wide";
 
-	static _STYLES = [
-		this._STYLE_DAY,
-		this._STYLE_NIGHT,
-		this._STYLE_NIGHT_ALT,
-		this._STYLE_NIGHT_CLEAN,
-	];
-
 	static _STYLE_TO_DISPLAY_NAME = {
+		[this._STYLE_AUTOMATIC]: "Browser Default",
 		[this._STYLE_DAY]: "Day Mode",
 		[this._STYLE_NIGHT]: "Night Mode",
 		[this._STYLE_NIGHT_ALT]: "Night Mode (Classic)",
@@ -48,10 +40,9 @@ class StyleSwitcher {
 				.map(([id, name]) => ee`<option value="${id}">${name}</option>`),
 			change: () => {
 				styleSwitcher._setActiveDayNight(selStyle.val());
-				StyleSwitcher.storage.setItem(StyleSwitcher._STORAGE_IS_MANUAL_MODE, true);
 			},
 		})
-			.val(styleSwitcher.currentStylesheet);
+			.val(styleSwitcher._style);
 
 		return selStyle;
 	}
@@ -75,38 +66,37 @@ class StyleSwitcher {
 	/* -------------------------------------------- */
 
 	constructor () {
-		this.currentStylesheet = StyleSwitcher._STYLE_DAY;
-
-		// If the user has never manually specified a style, always load the default from their OS
-		const isManualMode = StyleSwitcher.storage.getItem(StyleSwitcher._STORAGE_IS_MANUAL_MODE);
-		if (isManualMode) {
-			this._setActiveDayNight(StyleSwitcher.storage.getItem(StyleSwitcher._STORAGE_DAY_NIGHT) || StyleSwitcher._getDefaultStyleDayNight());
-		} else {
-			this._setActiveDayNight(StyleSwitcher._getDefaultStyleDayNight());
-		}
-
+		if (typeof window === "undefined") return;
+		this._setActiveDayNight(StyleSwitcher.storage.getItem(StyleSwitcher._STORAGE_DAY_NIGHT) || StyleSwitcher._STYLE_AUTOMATIC);
 		this._setActiveWide(StyleSwitcher.storage.getItem(StyleSwitcher._STORAGE_WIDE) === "true");
 	}
 
-	static _setButtonText (btnClassName, text) {
-		[...document.getElementsByClassName(btnClassName)].forEach(ele => ele.innerHTML = text);
-	}
-
 	getSummary () {
-		return {isNight: this.currentStylesheet !== StyleSwitcher._STYLE_DAY};
+		return {isNight: this._getResolvedStyle() !== StyleSwitcher._STYLE_DAY};
 	}
 
 	_fnsOnChange = [];
 	addFnOnChange (fn) { this._fnsOnChange.push(fn); }
 
 	// region Night Mode
+	_getResolvedStyle () {
+		if (this._style === StyleSwitcher._STYLE_AUTOMATIC) return this.constructor._getDefaultStyleDayNight();
+		return this._style;
+	}
+
+	static _getDefaultStyleDayNight () {
+		if (window.matchMedia("(prefers-color-scheme: dark)").matches) return StyleSwitcher._STYLE_NIGHT;
+		return StyleSwitcher._STYLE_DAY;
+	}
+
 	_setActiveDayNight (style) {
-		this.currentStylesheet = style;
+		this._style = style;
+		const styleResolved = this._getResolvedStyle();
 
 		this.constructor._STYLE_CLASSES
 			.forEach(clazzName => document.documentElement.classList.remove(clazzName));
 
-		switch (style) {
+		switch (styleResolved) {
 			case StyleSwitcher._STYLE_DAY: {
 				break;
 			}
@@ -127,36 +117,18 @@ class StyleSwitcher {
 			}
 		}
 
-		StyleSwitcher.storage.setItem(StyleSwitcher._STORAGE_DAY_NIGHT, this.currentStylesheet);
+		StyleSwitcher.storage.setItem(StyleSwitcher._STORAGE_DAY_NIGHT, this._style);
 
 		this._fnsOnChange.forEach(fn => fn());
 	}
 
 	getDayNightClassNames () {
-		switch (this.currentStylesheet) {
+		switch (this._getResolvedStyle()) {
 			case StyleSwitcher._STYLE_DAY: return "";
 			case StyleSwitcher._STYLE_NIGHT: return [StyleSwitcher._NIGHT_CLASS, StyleSwitcher._NIGHT_CLASS_STANDARD].join(" ");
 			case StyleSwitcher._STYLE_NIGHT_ALT: return [StyleSwitcher._NIGHT_CLASS, StyleSwitcher._NIGHT_CLASS_ALT].join(" ");
 			case StyleSwitcher._STYLE_NIGHT_CLEAN: return [StyleSwitcher._NIGHT_CLASS, StyleSwitcher._NIGHT_CLASS_CLEAN].join(" ");
 		}
-	}
-
-	static _getDefaultStyleDayNight () {
-		if (window.matchMedia("(prefers-color-scheme: dark)").matches) return StyleSwitcher._STYLE_NIGHT;
-		return StyleSwitcher._STYLE_DAY;
-	}
-
-	cycleDayNightMode (direction) {
-		const ixCur = this.constructor._STYLES.indexOf(this.currentStylesheet);
-		const ixNxt = ixCur === 0
-			? this.constructor._STYLES.length - 1
-			: ixCur === this.constructor._STYLES.length - 1
-				? 0
-				: ixCur + direction;
-		const newStyle = this.constructor._STYLES[ixNxt];
-
-		this._setActiveDayNight(newStyle);
-		StyleSwitcher.storage.setItem(StyleSwitcher._STORAGE_IS_MANUAL_MODE, true);
 	}
 	// endregion
 
@@ -206,16 +178,8 @@ class StyleSwitcher {
 				document.documentElement.appendChild(eleScript);
 			}
 		}
-		StyleSwitcher._setButtonText("wideModeToggle", isActive ? "Disable Wide Mode" : "Enable Wide Mode (Experimental)");
 		StyleSwitcher.storage.setItem(StyleSwitcher._STORAGE_WIDE, isActive);
 	}
-
-	toggleWide () {
-		if (this.getActiveWide()) this._setActiveWide(false);
-		else this._setActiveWide(true);
-	}
-
-	getActiveWide () { return document.getElementById(StyleSwitcher._WIDE_ID) != null; }
 	// endregion
 }
 
@@ -225,7 +189,7 @@ try {
 	StyleSwitcher.storage = {
 		getItem (k) {
 			switch (k) {
-				case StyleSwitcher._STORAGE_DAY_NIGHT: return StyleSwitcher._getDefaultStyleDayNight();
+				case StyleSwitcher._STORAGE_DAY_NIGHT: return StyleSwitcher._STYLE_AUTOMATIC;
 				case StyleSwitcher._STORAGE_WIDE: return false;
 			}
 			return null;
@@ -236,3 +200,4 @@ try {
 }
 
 const styleSwitcher = new StyleSwitcher();
+globalThis.styleSwitcher = styleSwitcher;

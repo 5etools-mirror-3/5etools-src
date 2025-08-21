@@ -4,44 +4,44 @@ import {Ro_Lexer, Ro_Parser, Ro_Lang} from "./rolang.js";
 
 class LangDemoUi {
 	static init () {
-		$(`#btn__run`).click(() => LangDemoUi.pRun());
-		$(`#btn__validate`).click(async () => {
-			const msg = await Ro_Lang.pValidate(LangDemoUi._$ipt.val(), LangDemoUi.RESOLVER);
+		es(`#btn__run`).onn("click", () => LangDemoUi.pRun());
+		es(`#btn__validate`).onn("click", async () => {
+			const msg = await Ro_Lang.pValidate(LangDemoUi._ipt.val(), LangDemoUi.RESOLVER);
 			LangDemoUi._handleInvalidMessage(msg);
 		});
-		$(`#btn__resolve_dynamics`).click(async () => {
-			const val = await Ro_Lang.pResolveDynamics(LangDemoUi._$ipt.val(), LangDemoUi.RESOLVER);
-			LangDemoUi._$ipt.val(val);
+		es(`#btn__resolve_dynamics`).onn("click", async () => {
+			const val = await Ro_Lang.pResolveDynamics(LangDemoUi._ipt.val(), LangDemoUi.RESOLVER);
+			LangDemoUi._ipt.val(val);
 		});
-		$(`#btn__validate_dynamics`).click(async () => {
-			const msg = await Ro_Lang.pValidateDynamics(LangDemoUi._$ipt.val(), LangDemoUi.RESOLVER);
+		es(`#btn__validate_dynamics`).onn("click", async () => {
+			const msg = await Ro_Lang.pValidateDynamics(LangDemoUi._ipt.val(), LangDemoUi.RESOLVER);
 			LangDemoUi._handleInvalidMessage(msg);
 		});
 
 		// region select sample
-		const $selSample = $(`#sel__sample`);
+		const selSample = es(`#sel__sample`);
 		LangDemoUi._SAMPLES.forEach((it, i) => {
-			$selSample.append(`<option value="${i}">${it.name}</option>`);
+			selSample.appends(`<option value="${i}">${it.name}</option>`);
 		});
-		$selSample.change(() => {
-			const sample = LangDemoUi._SAMPLES[$selSample.val()];
-			LangDemoUi._$ipt.val(sample.code).change();
+		selSample.onn("change", () => {
+			const sample = LangDemoUi._SAMPLES[selSample.val()];
+			LangDemoUi._ipt.val(sample.code).trigger("change");
 		});
-		$selSample.val("-1");
+		selSample.val("-1");
 		// endregion
 
 		// region input
-		LangDemoUi._$ipt = $(`#ipt`);
-		LangDemoUi._$ipt.change(() => {
-			StorageUtil.syncSetForPage("input", LangDemoUi._$ipt.val());
+		LangDemoUi._ipt = es(`#ipt`);
+		LangDemoUi._ipt.onn("change", () => {
+			StorageUtil.syncSetForPage("input", LangDemoUi._ipt.val());
 		});
 		const prevInput = StorageUtil.syncGetForPage("input");
-		if (prevInput && prevInput.trim()) LangDemoUi._$ipt.val(prevInput.trim());
+		if (prevInput && prevInput.trim()) LangDemoUi._ipt.val(prevInput.trim());
 		// endregion
 
 		// region context
 		const saveContext = () => {
-			const toSave = LangDemoUi._metasContext.map(it => ({name: it.$iptName.val(), val: it.$iptVal.val()}));
+			const toSave = LangDemoUi._metasContext.map(it => ({name: it.iptName.val(), val: it.iptVal.val()}));
 			StorageUtil.syncSetForPage("context", toSave);
 		};
 
@@ -53,33 +53,33 @@ class LangDemoUi {
 		};
 
 		const addContextRow = (name, value) => {
-			const $iptName = $(`<input class="form-control form-control--minimal input-xs mr-2 code" placeholder="Identifier">`)
-				.change(() => saveContext())
+			const iptName = ee`<input class="form-control form-control--minimal input-xs mr-2 code" placeholder="Identifier">`
+				.onn("change", () => saveContext())
 				.val(name);
 
-			const $iptVal = $(`<input class="form-control form-control--minimal input-xs mr-2 code" type="number" placeholder="Value">`)
-				.change(() => saveContext())
+			const iptVal = ee`<input class="form-control form-control--minimal input-xs mr-2 code" type="number" placeholder="Value">`
+				.onn("change", () => saveContext())
 				.val(value);
 
-			const $btnDel = $(`<button class="ve-btn ve-btn-xs ve-btn-danger" tabindex="-1"><span class="glyphicon glyphicon-trash"></span></button>`)
-				.click(() => {
+			const btnDel = ee`<button class="ve-btn ve-btn-xs ve-btn-danger" tabindex="-1"><span class="glyphicon glyphicon-trash"></span></button>`
+				.onn("click", () => {
 					const ix = LangDemoUi._metasContext.indexOf(out);
 					if (~ix) {
 						LangDemoUi._metasContext.splice(ix, 1);
-						$row.remove();
+						row.remove();
 						saveContext();
 					}
 				});
 
-			const out = {$iptName, $iptVal};
+			const out = {iptName, iptVal};
 			LangDemoUi._metasContext.push(out);
-			const $row = $$`<div class="mb-2 ve-flex-v-center">${$iptName}<span class="mr-2">=</span>${$iptVal}${$btnDel}</div>`.appendTo(LangDemoUi._$wrpContext);
+			const row = ee`<div class="mb-2 ve-flex-v-center">${iptName}<span class="mr-2">=</span>${iptVal}${btnDel}</div>`.appendTo(LangDemoUi._wrpContext);
 		};
 
-		LangDemoUi._$wrpContext = $(`#wrp_context`);
-		const $btnAdd = $(`<button class="ve-btn ve-btn-xs ve-btn-default">Add Context</button>`)
-			.click(() => addContextRow());
-		$$`<div class="mb-2 ve-flex-v-center">${$btnAdd}</div>`.appendTo(LangDemoUi._$wrpContext);
+		LangDemoUi._wrpContext = es(`#wrp_context`);
+		const btnAdd = ee`<button class="ve-btn ve-btn-xs ve-btn-default">Add Context</button>`
+			.onn("click", () => addContextRow());
+		ee`<div class="mb-2 ve-flex-v-center">${btnAdd}</div>`.appendTo(LangDemoUi._wrpContext);
 
 		loadContext();
 		// endregion
@@ -93,35 +93,35 @@ class LangDemoUi {
 	}
 
 	static async pRun () {
-		const ipt = LangDemoUi._$ipt.val().trim();
+		const ipt = LangDemoUi._ipt.val().trim();
 
 		// Check if valid, but continue execution regardless to ease debugging
 		const invalidMsg = await Ro_Lang.pValidate(ipt, LangDemoUi.RESOLVER);
 		if (invalidMsg) LangDemoUi._handleInvalidMessage(invalidMsg);
 
-		const $dispOutLexed = $(`#out_lexed`).html("");
-		const $dispOutParsed = $(`#out_parsed`).html("");
-		const $dispOutResult = $(`#out_result`).html("");
+		const dispOutLexed = es(`#out_lexed`).html("");
+		const dispOutParsed = es(`#out_parsed`).html("");
+		const dispOutResult = es(`#out_result`).html("");
 
 		const lexer = new Ro_Lexer();
 		const lexed = lexer.lex(ipt);
 
-		$dispOutLexed.html(lexed.map(it => it ? it.toDebugString() : "").join("\n"));
+		dispOutLexed.html(lexed.map(it => it ? it.toDebugString() : "").join("\n"));
 
 		const parser = new Ro_Parser(lexed);
 		const parsed = parser.parse();
 
-		$dispOutParsed.html(`${parsed}`);
+		dispOutParsed.html(`${parsed}`);
 
 		const ctx = LangDemoUi._metasContext
-			.mergeMap(it => ({[it.$iptName.val().trim()]: Number(it.$iptVal.val()) || 0}));
+			.mergeMap(it => ({[it.iptName.val().trim()]: Number(it.iptVal.val()) || 0}));
 		const result = await parsed.pEvl(ctx, LangDemoUi.RESOLVER);
-		if (result.isCancelled) $dispOutResult.text("Cancelled!");
-		else $dispOutResult.text(result.val == null ? `(null)` : result.val);
+		if (result.isCancelled) dispOutResult.txt("Cancelled!");
+		else dispOutResult.txt(result.val == null ? `(null)` : result.val);
 	}
 }
-LangDemoUi._$ipt = null;
-LangDemoUi._$wrpContext = null;
+LangDemoUi._ipt = null;
+LangDemoUi._wrpContext = null;
 LangDemoUi._metasContext = [];
 LangDemoUi._SAMPLES = [
 	{

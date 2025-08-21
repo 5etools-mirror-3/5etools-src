@@ -105,7 +105,7 @@ class RacesPage extends ListPage {
 			<span class="bold ve-col-4 pl-0 pr-1">${race.name}</span>
 			<span class="ve-col-4 px-1 ${race._slAbility === VeCt.STR_NONE || race._slAbility === "Lineage" ? "italic" : ""}">${race._slAbility}</span>
 			<span class="ve-col-2 px-1 ve-text-center">${size}</span>
-			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(race.source)} pl-1 pr-0" title="${Parser.sourceJsonToFull(race.source)}" ${Parser.sourceJsonToStyle(race.source)}>${source}</span>
+			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(race.source)} pl-1 pr-0" title="${Parser.sourceJsonToFull(race.source)}">${source}</span>
 		</a>`;
 
 		const listItem = new ListItem(

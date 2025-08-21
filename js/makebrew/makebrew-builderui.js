@@ -35,7 +35,7 @@ export class BuilderUi {
 		const eleType = options.eleType || "div";
 
 		const $rowInner = $(`<div class="${options.isRow ? "ve-flex" : "ve-flex-col"} w-100"></div>`);
-		const $row = $$`<div class="mb-2 mkbru__row stripe-even"><${eleType} class="mkbru__wrp-row ve-flex-v-center"><span class="mr-2 mkbru__row-name ve-shrink-10 ${options.isMarked ? `mkbru__row-name--marked` : ""} ${options.title ? "help" : ""}" ${options.title ? `title="${options.title.qq()}"` : ""}>${name}</span>${options.isMarked ? `<div class="mkbru__row-mark mr-2"></div>` : ""}${$rowInner}</${eleType}></div>`;
+		const $row = $$`<div class="mb-2 mkbru__row stripe-even"><${eleType} class="mkbru__wrp-row ve-flex-v-center"><span class="mr-2 mkbru__row-name ${options.isMarked ? `mkbru__row-name--marked` : ""} ${options.title ? "help" : ""}" ${options.title ? `title="${options.title.qq()}"` : ""}>${name}</span>${options.isMarked ? `<div class="mkbru__row-mark mr-2"></div>` : ""}${$rowInner}</${eleType}></div>`;
 		return [$row, $rowInner];
 	}
 
@@ -73,41 +73,59 @@ export class BuilderUi {
 	 * @param [options.nullable]
 	 * @param [options.placeholder]
 	 * @param [options.withHeader]
+	 * @param [options.fnGetHeader]
 	 * @param [options.fnPostProcess]
+	 * @param [options.asMeta]
 	 * @param path
 	 * @return {*}
 	 */
 	static $getStateIptEntries (name, fnRender, state, options, ...path) {
+		if (options.withHeader && options.fnGetHeader) throw new Error(`"withHeader" and "fnGetHeader" are mutually exclusive!`);
+
 		if (options.nullable == null) options.nullable = true;
 
 		let initialState = MiscUtil.get(state, ...path);
-		if (options.withHeader && initialState) initialState = initialState[0].entries;
+		if ((options.withHeader || options.fnGetHeader) && initialState) initialState = initialState[0].entries;
+
+		const onChange = () => {
+			const raw = $ipt.val();
+			let out = raw || !options.nullable ? UiUtil.getTextAsEntries(raw) : null;
+
+			if (out && options.fnPostProcess) {
+				out = options.fnPostProcess(out);
+				$ipt.val(UiUtil.getEntriesAsText(out));
+			}
+
+			if (
+				(options.withHeader || options.fnGetHeader)
+				&& out
+			) {
+				const name = options.withHeader || options.fnGetHeader(state);
+				out = [
+					{
+						type: "entries",
+						name,
+						entries: out,
+					},
+				];
+			}
+
+			BuilderUi.__setProp(out, options, state, ...path);
+			fnRender();
+		};
 
 		const $ipt = $(`<textarea class="form-control form-control--minimal resize-vertical" ${options.placeholder ? `placeholder="${options.placeholder}"` : ""}/>`)
 			.val(UiUtil.getEntriesAsText(initialState))
-			.change(() => {
-				const raw = $ipt.val();
-				let out = raw || !options.nullable ? UiUtil.getTextAsEntries(raw) : null;
+			.change(() => onChange());
 
-				if (out && options.fnPostProcess) {
-					out = options.fnPostProcess(out);
-					$ipt.val(UiUtil.getEntriesAsText(out));
-				}
-
-				if (options.withHeader && out) {
-					out = [
-						{
-							type: "entries",
-							name: options.withHeader,
-							entries: out,
-						},
-					];
-				}
-
-				BuilderUi.__setProp(out, options, state, ...path);
-				fnRender();
-			});
-		return BuilderUi.__$getRow(name, $ipt, options);
+		const $row = BuilderUi.__$getRow(name, $ipt, options);
+		if (options.asMeta) {
+			return {
+				$row,
+				onChange,
+			};
+		}
+		return $row;
 	}
 
 	static $getStateIptStringArray (name, fnRender, state, options, ...path) {

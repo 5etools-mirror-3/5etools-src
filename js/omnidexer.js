@@ -42,7 +42,6 @@ class Omnidexer {
 		 *   s: "PHB", // source
 		 *   [sA: "PHB"], // source abbreviation
 		 *   [sF: "Player's Handbook"], // source full
-		 *   [sC: "ff00ff"], // source color
 		 *   u: "spell name_phb, // hash
 		 *   uh: "spell name_phb, // Optional; hash for href if the link should be different from the hover lookup hash.
 		 *   p: 110, // page number
@@ -225,9 +224,6 @@ class Omnidexer {
 				indexDoc.sA = this.getMetaId("sA", Parser.sourceJsonToAbv(src));
 
 				indexDoc.sF = this.getMetaId("sF", Parser.sourceJsonToFull(src));
-
-				const color = Parser.sourceJsonToColor(src);
-				if (color) indexDoc.sC = this.getMetaId("sC", color);
 			}
 
 			if (options.isIncludeFoundryExtras) {
@@ -702,10 +698,10 @@ class IndexableFileOptFeatures_Metamagic extends IndexableFile {
 	}
 }
 
-class IndexableFileOptFeatures_ManeuverBattlemaster extends IndexableFile {
+class IndexableFileOptFeatures_ManeuverBattleMaster extends IndexableFile {
 	constructor () {
 		super({
-			category: Parser.CAT_ID_MANEUVER_BATTLEMASTER,
+			category: Parser.CAT_ID_MANEUVER_BATTLE_MASTER,
 			file: "optionalfeatures.json",
 			listProp: "optionalfeature",
 			baseUrl: "optionalfeatures.html",
@@ -1335,7 +1331,7 @@ Omnidexer.TO_INDEX = [
 
 	new IndexableFileOptFeatures_EldritchInvocations(),
 	new IndexableFileOptFeatures_Metamagic(),
-	new IndexableFileOptFeatures_ManeuverBattlemaster(),
+	new IndexableFileOptFeatures_ManeuverBattleMaster(),
 	new IndexableFileOptFeatures_ManeuverCavalier(),
 	new IndexableFileOptFeatures_ArcaneShot(),
 	new IndexableFileOptFeatures_Other(),

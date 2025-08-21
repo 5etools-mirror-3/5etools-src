@@ -2495,6 +2495,7 @@
 					]
 				}
 			],
+			"familiar": true,
 			"traitTags": [
 				"Spider Climb"
 			],
@@ -5859,10 +5860,32 @@
 					"name": "Vampire Weaknesses",
 					"entries": [
 						"Zorak has the following flaws:",
-						"{@i Forbiddance.} Zorak can't enter a residence without an invitation from one of the occupants.",
-						"{@i Harmed by Running Water.} Zorak takes 20 acid damage if he ends his turn in running water.",
-						"{@i Stake to the Heart.} If a piercing weapon made of wood is driven into Zorak's heart while Zorak is {@condition incapacitated} in his resting place, Zorak is {@condition paralyzed} until the stake is removed.",
-						"{@i Sunlight Hypersensitivity.} Zorak takes 20 radiant damage when he starts his turn in sunlight. While in sunlight, he has disadvantage on attack rolls and ability checks."
+						{
+							"type": "list",
+							"style": "list-hang-subtrait",
+							"items": [
+								{
+									"type": "itemSub",
+									"name": "Forbiddance",
+									"entry": "Zorak can't enter a residence without an invitation from one of the occupants."
+								},
+								{
+									"type": "itemSub",
+									"name": "Harmed by Running Water",
+									"entry": "Zorak takes 20 acid damage if he ends his turn in running water."
+								},
+								{
+									"type": "itemSub",
+									"name": "Stake to the Heart",
+									"entry": "If a piercing weapon made of wood is driven into Zorak's heart while Zorak is {@condition incapacitated} in his resting place, Zorak is {@condition paralyzed} until the stake is removed."
+								},
+								{
+									"type": "itemSub",
+									"name": "Sunlight Hypersensitivity",
+									"entry": "Zorak takes 20 radiant damage when he starts his turn in sunlight. While in sunlight, he has disadvantage on attack rolls and ability checks"
+								}
+							]
+						}
 					]
 				}
 			],

@@ -38,8 +38,8 @@ class NavBar {
 		btnShowHide.className = "ve-btn ve-btn-default page__btn-toggle-nav";
 		btnShowHide.innerHTML = "Menu";
 		btnShowHide.onclick = () => {
-			$(btnShowHide).toggleClass("active");
-			$(`.page__nav-hidden-mobile`).toggleClass("block", $(btnShowHide).hasClass("active"));
+			btnShowHide.classList.toggle("active");
+			em(`.page__nav-hidden-mobile`).forEach(ele => ele.toggleClass("block", btnShowHide.classList.contains("active")));
 		};
 		document.getElementById("navigation").prepend(btnShowHide);
 
@@ -141,10 +141,10 @@ class NavBar {
 		this._addElement_divider(NavBar._CAT_UTILITIES);
 		this._addElement_li(NavBar._CAT_UTILITIES, "plutonium.html", "Plutonium (Foundry Module) Features");
 		this._addElement_divider(NavBar._CAT_UTILITIES);
-		this._addElement_li(NavBar._CAT_UTILITIES, "https://wiki.tercept.net/en/betteR20", "Roll20 Script Help", {isExternal: true});
+		this._addElement_li(NavBar._CAT_UTILITIES, "https://wiki.tercept.net/en/betteR20", "Roll20 Script Help", {isExternal: true, isExternalMark: true});
 		this._addElement_divider(NavBar._CAT_UTILITIES);
 		this._addElement_li(NavBar._CAT_UTILITIES, "changelog.html", "Changelog");
-		this._addElement_li(NavBar._CAT_UTILITIES, NavBar._getCurrentWikiHelpPage(), "Help", {isExternal: true});
+		this._addElement_li(NavBar._CAT_UTILITIES, NavBar._getCurrentWikiHelpPage(), "Page Help", {isExternal: true, isExternalMark: true});
 		this._addElement_divider(NavBar._CAT_UTILITIES);
 		this._addElement_li(NavBar._CAT_UTILITIES, "privacy-policy.html", "Privacy Policy");
 
@@ -236,6 +236,8 @@ class NavBar {
 				title: "Remove all preloaded data, and clear away any caches.",
 			},
 		);
+
+		this._addElement_li(null, "https://wiki.tercept.net/en/5eTools", "Help", {isRoot: true, isExternal: true});
 	}
 
 	static _getNode (category) {
@@ -378,7 +380,9 @@ class NavBar {
 	 * @param [opts.aHash] - Optional hash to be appended to the base href
 	 * @param [opts.isRoot] - If the item is a root navbar element.
 	 * @param [opts.isExternal] - If the item is an external link.
+	 * @param [opts.isExternalMark] - If an "external link" icon should be shown.
 	 * @param [opts.date] - A date to prefix the list item with.
+	 * @param [opts.title] - Title for this nav item.
 	 * @param [opts.isAddDateSpacer] - True if this item has no date, but is in a list of items with dates.
 	 * @param [opts.source] - A source associated with this item, which should be displayed as a colored marker.
 	 * @param [opts.isInAccordion] - True if this item is inside an accordion.
@@ -405,6 +409,7 @@ class NavBar {
 			li.onmouseenter = function () { NavBar._handleItemMouseEnter(this); };
 			li.onclick = function () { NavBar._dropdowns.forEach(ele => NavBar._closeDropdownElement(ele)); };
 		}
+		if (opts.title) li.setAttribute("title", opts.title);
 
 		const a = document.createElement("a");
 		a.href = href;
@@ -414,6 +419,9 @@ class NavBar {
 
 		if (opts.isExternal) {
 			a.setAttribute("target", "_blank");
+			a.setAttribute("rel", "noopener noreferrer");
+		}
+		if (opts.isExternalMark) {
 			a.classList.add("inline-split-v-center");
 			a.classList.add("w-100");
 			a.innerHTML = `<span>${aText}</span><span class="glyphicon glyphicon-new-window"></span>`;
@@ -484,11 +492,11 @@ class NavBar {
 	}
 
 	static _addElement_getDatePrefix ({date, isAddDateSpacer}) { return `${(date != null || isAddDateSpacer) ? `<div class="ve-small mr-2 page__nav-date inline-block ve-text-right inline-block" aria-hidden="true">${date || ""}</div>` : ""}`; }
-	static _addElement_getSourcePrefix ({source}) { return `${source != null ? `<div class="nav2-list__disp-source ${Parser.sourceJsonToSourceClassname(source)}" ${Parser.sourceJsonToStyle(source)}></div>` : ""}`; }
+	static _addElement_getSourcePrefix ({source}) { return `${source != null ? `<div class="nav2-list__disp-source ${Parser.sourceJsonToSourceClassname(source)}"></div>` : ""}`; }
 
 	static _addElement_getSourceSuffix ({source}) {
 		if (source == null) return "";
-		return Parser.sourceJsonToMarkerHtml(source, {isList: false, additionalStyles: "ml-1 nav2-list__disp-legacy-marker"});
+		return Parser.sourceJsonToMarkerHtml(source, {isAddBrackets: true, additionalStyles: "ml-1 nav2-list__disp-legacy-marker"});
 	}
 
 	static _addElement_divider (parentCategory) {
@@ -760,15 +768,15 @@ class NavBar {
 	/* -------------------------------------------- */
 
 	static _handleItemMouseEnter (ele) {
-		const $ele = $(ele);
-		const timerIds = $ele.siblings("[data-timer-id]").map((i, e) => ({$ele: $(e), timerId: $(e).data("timer-id")})).get();
-		timerIds.forEach(({$ele, timerId}) => {
+		ele = e_(ele);
+		const timerIds = ele.siblings("[data-timer-id]").map(eleSib => ({ele: e_(eleSib), timerId: e_(eleSib).attr("data-timer-id")}));
+		timerIds.forEach(({ele, timerId}) => {
 			if (NavBar._timersOpen[timerId]) {
 				clearTimeout(NavBar._timersOpen[timerId]);
 				delete NavBar._timersOpen[timerId];
 			}
 
-			if (!NavBar._timersClose[timerId] && $ele.hasClass("open")) {
+			if (!NavBar._timersClose[timerId] && ele.hasClass("open")) {
 				const getTimeoutFn = () => {
 					if (NavBar._timerMousePos[timerId]) {
 						const [xStart, yStart] = NavBar._timerMousePos[timerId];
@@ -779,11 +787,11 @@ class NavBar {
 							NavBar._timerMousePos[timerId] = [EventUtil._mouseX, EventUtil._mouseY];
 							NavBar._timersClose[timerId] = setTimeout(() => getTimeoutFn(), NavBar._DROP_TIME / 2);
 						} else {
-							NavBar._closeDropdownElement($ele[0]);
+							NavBar._closeDropdownElement(ele);
 							delete NavBar._timersClose[timerId];
 						}
 					} else {
-						NavBar._closeDropdownElement($ele[0]);
+						NavBar._closeDropdownElement(ele);
 						delete NavBar._timersClose[timerId];
 					}
 				};
@@ -794,7 +802,7 @@ class NavBar {
 	}
 
 	static _handleSideItemMouseEnter (ele) {
-		const timerId = $(ele).closest(`li.dropdown`).data("timer-id");
+		const timerId = e_(ele).closest(`li.dropdown`).attr("data-timer-id");
 		if (NavBar._timersClose[timerId]) {
 			clearTimeout(NavBar._timersClose[timerId]);
 			delete NavBar._timersClose[timerId];
@@ -803,9 +811,9 @@ class NavBar {
 	}
 
 	static _handleSideDropdownMouseEnter (ele) {
-		const $ele = $(ele);
-		const timerId = $ele.parent().data("timer-id") || NavBar._timerId++;
-		$ele.parent().attr("data-timer-id", timerId);
+		ele = e_(ele);
+		const timerId = ele.parente().attr("data-timer-id") || NavBar._timerId++;
+		ele.parente().attr("data-timer-id", timerId);
 
 		if (NavBar._timersClose[timerId]) {
 			clearTimeout(NavBar._timersClose[timerId]);
@@ -822,9 +830,9 @@ class NavBar {
 	}
 
 	static _handleSideDropdownMouseLeave (ele) {
-		const $ele = $(ele);
-		if (!$ele.parent().data("timer-id")) return;
-		const timerId = $ele.parent().data("timer-id");
+		ele = e_(ele);
+		if (!ele.parente().attr("data-timer-id")) return;
+		const timerId = ele.parente().attr("data-timer-id");
 		clearTimeout(NavBar._timersOpen[timerId]);
 		delete NavBar._timersOpen[timerId];
 	}
@@ -863,21 +871,6 @@ NavBar._timerMousePos = {};
 NavBar._cachedInstallEvent = null;
 
 NavBar.InteractionManager = class {
-	static _onClick_button_dayNight (evt) {
-		evt.preventDefault();
-		styleSwitcher.cycleDayNightMode();
-	}
-
-	static _onContext_button_dayNight (evt) {
-		evt.preventDefault();
-		styleSwitcher.cycleDayNightMode(-1);
-	}
-
-	static _onClick_button_wideMode (evt) {
-		evt.preventDefault();
-		styleSwitcher.toggleWide();
-	}
-
 	static async _pOnClick_button_saveStateFile (evt) {
 		evt.preventDefault();
 		const sync = StorageUtil.syncGetDump();
@@ -907,6 +900,16 @@ NavBar.InteractionManager = class {
 
 	static async _pOnClick_button_addApp (evt) {
 		evt.preventDefault();
+
+		// Unavailable on Firefox
+		// See:
+		//  - https://developer.mozilla.org/en-US/docs/Web/API/BeforeInstallPromptEvent
+		//  - https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeinstallprompt_event
+		if (!NavBar._cachedInstallEvent) {
+			JqueryUtil.doToast({type: "warning", content: `Could not install app! Your browser may not support this feature.`});
+			return;
+		}
+
 		try {
 			NavBar._cachedInstallEvent.prompt();
 		} catch (e) {
