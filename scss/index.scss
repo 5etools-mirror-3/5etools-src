@@ -32,11 +32,39 @@
 		flex-direction: column;
 		align-items: center;
 		border-radius: 0;
-        height: 130px;
-        padding-top: 20px;
+		position: relative;
+		border-radius: 15px;
+		height: 130px;
+		padding-top: 20px;
+		border-style: inset;
+
+		&::before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			mask-image: url(../image/bnw-texture1.png);
+			opacity: 0.6;
+			mask-size: 64px;
+			mask-repeat: repeat;
+			mask-position: 0;
+			mask-mode: luminance;
+		}
+
+		&:nth-of-type(4n+1)::before {
+			mask-position: -25% 75%;
+		}
+		&:nth-of-type(4n+2)::before {
+			mask-position: -40% 60%;
+		}
+		&:nth-of-type(4n+3)::before {
+			mask-position: -75% 15%;
+		}
 	}
 
-	@media screen and (width <= #{vars.$width-screen-lg}) {
+	@media screen and (width <=#{vars.$width-screen-lg}) {
 		.home__btn-page {
 			width: 113px;
 		}
@@ -76,9 +104,10 @@
 	}
 
 	h4.home__lbl-page {
-        color: inherit;
-        font-weight: bold;
-    }
+		color: inherit;
+		font-weight: bold;
+		text-shadow: 0px 0px 10px #0009;
+	}
 
 	.home__h-player {
 		text-decoration: underline;
@@ -105,10 +134,13 @@
 	.ve-night-mode .home__btn-player:focus {
 		border-color: #1e90ff;
 		color: #1e90ff;
-        border-color: #0e609977;
-        color: #3ea0ff;
-        border-radius: 15px;
-        background: radial-gradient(circle at 35% 35%, #4c627d 0%, #243565 60%, #121212 100%);
+		border-color: #0e609977;
+		color: #3ea0ff;
+		background: #1b2a38;
+	}
+
+	.home__btn-player::before {
+		background: radial-gradient(circle at 70% 20%, #4c627d 0%, #243565 60%, #121212 100%);
 	}
 
 	.home__btn-rule,
@@ -121,9 +153,12 @@
 	.ve-night-mode .home__btn-rule:focus {
 		border-color: #33a5a5;
 		color: #33a5a5;
-        border-color: #33a5a577;
-        border-radius: 15px;
-        background: radial-gradient(circle at 35% 35%, #465f65 0%, #244b65 60%, #121212 100%);
+		border-color: #33a5a577;
+		background: #192d2d;
+	}
+
+	.home__btn-rule::before {
+		background: radial-gradient(circle at 70% 20%, #465f65 0%, #244b65 60%, #121212 100%);
 	}
 
 	.home__btn-dm,
@@ -136,10 +171,13 @@
 	.ve-night-mode .home__btn-dm:focus {
 		border-color: #9400d3;
 		color: #9400d3;
-        border-color: #9400d377;
-        color: #ab52d1;
-        border-radius: 15px;
-        background: radial-gradient(circle at 35% 35%, #63437d 0%, #491e55 60%, #121212 100%);
+		border-color: #9400d377;
+		color: #ab52d1;
+		background: #2b2031;
+	}
+
+	.home__btn-dm::before {
+		background: radial-gradient(circle at 70% 20%, #63437d 0%, #491e55 60%, #121212 100%);
 	}
 
 	.home__stripe {
@@ -183,12 +221,12 @@
 		display: none;
 	}
 
-	@media screen and (width <= #{vars.$width-screen-md}) {
+	@media screen and (width <=#{vars.$width-screen-md}) {
 		.home__split {
 			flex-direction: column;
 		}
 
-		.home__split > * {
+		.home__split>* {
 			margin-bottom: 45px;
 		}
 
@@ -226,7 +264,7 @@
 		}
 	}
 
-	@media screen and (width <= 507px) {
+	@media screen and (width <=507px) {
 		.home__narrow-visible {
 			display: block !important;
 		}
