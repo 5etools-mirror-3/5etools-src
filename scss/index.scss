@@ -37,11 +37,16 @@
 			text-decoration: none;
 
 			.home__icn-page {
-				box-shadow: -1px -1px 1px 1px;
-				text-shadow: -1px -1px 2px #000, 0 0 30px #fff;
+				filter: saturate(.9) brightness(1.2);
 
-				&::before {
-					z-index: 1;
+				.ve-night-mode & {
+					filter: none;
+					box-shadow: -1px -1px 1px 1px;
+					text-shadow: -1px -1px 2px #000, 0 0 30px #fff;
+
+					&::before {
+						z-index: 1;
+					}
 				}
 			}
 		}
@@ -58,9 +63,12 @@
 			border-style: none;
 			box-shadow: -1px -1px 0px 0px;
 			font-size: 1.5em;
-			color: white;
-			text-shadow: -1px -2px 2px #000;
-			transition: text-shadow 300ms ease;
+			color: #fff;
+			transition: filter 100ms ease;
+
+			&::before {
+				z-index: 1;
+			}
 
 			&::after {
 				content: "";
@@ -77,6 +85,12 @@
 				mask-mode: luminance;
 			}
 			.ve-night-mode & {
+				text-shadow: -1px -2px 2px #000;
+				transition: text-shadow 300ms ease;
+
+				&::before  {
+					z-index: 0;
+				}
 				&::after {
 					opacity: 0.65;
 				}
