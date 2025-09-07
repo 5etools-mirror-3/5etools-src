@@ -1190,19 +1190,27 @@ Parser.spSchoolAbvToShort = function (school) {
 };
 
 Parser.spSchoolAbvToStyle = function (school) { // For prerelease/homebrew
-	const stylePart = Parser.spSchoolAbvToStylePart(school);
+	return Parser._colorableMetaAbvToStyle({key: school, prop: "spellSchools"});
+};
+
+Parser.spSchoolAbvToStylePart = function (school) { // For prerelease/homebrew
+	return Parser._colorableMetaAbvToStylePart({key: school, prop: "spellSchools"});
+};
+
+Parser._colorableMetaAbvToStyle = function ({key, prop}) {
+	const stylePart = Parser._colorableMetaAbvToStylePart({key, prop});
 	if (!stylePart) return stylePart;
 	return `style="${stylePart}"`;
 };
 
-Parser.spSchoolAbvToStylePart = function (school) { // For prerelease/homebrew
-	return Parser._spSchoolAbvToStylePart_prereleaseBrew({school, brewUtil: PrereleaseUtil})
-		|| Parser._spSchoolAbvToStylePart_prereleaseBrew({school, brewUtil: BrewUtil2})
+Parser._colorableMetaAbvToStylePart = function ({key, prop}) {
+	return Parser._colorableMetaAbvToStylePart_prereleaseBrew({key, prop, brewUtil: PrereleaseUtil})
+		|| Parser._colorableMetaAbvToStylePart_prereleaseBrew({key, prop, brewUtil: BrewUtil2})
 		|| "";
 };
 
-Parser._spSchoolAbvToStylePart_prereleaseBrew = function ({school, brewUtil}) {
-	const rawColor = brewUtil.getMetaLookup("spellSchools")?.[school]?.color;
+Parser._colorableMetaAbvToStylePart_prereleaseBrew = function ({key, prop, brewUtil}) {
+	const rawColor = brewUtil.getMetaLookup(prop)?.[key]?.color;
 	if (!rawColor || !rawColor.trim()) return "";
 	const validColor = BrewUtilShared.getValidColor(rawColor);
 	if (validColor.length) return MiscUtil.getColorStylePart(validColor);
@@ -2249,6 +2257,14 @@ Parser.psiTypeToMeta = type => {
 	out.full = out.full || "Unknown";
 	out.short = out.short || out.full;
 	return out;
+};
+
+Parser.psiTypeAbvToStyle = function (type) { // For prerelease/homebrew
+	return Parser._colorableMetaAbvToStyle({key: type, prop: "psionicTypes"});
+};
+
+Parser.psiTypeAbvToStylePart = function (type) { // For prerelease/homebrew
+	return Parser._colorableMetaAbvToStylePart({key: type, prop: "psionicTypes"});
 };
 
 Parser.psiOrderToFull = (order) => {

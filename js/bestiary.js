@@ -192,47 +192,48 @@ class BestiarySublistManager extends SublistManager {
 class BestiaryPageBookView extends ListPageBookView {
 	constructor (opts) {
 		super({
+			nameSingular: "creature",
 			namePlural: "creatures",
 			pageTitle: "Bestiary Printer View",
 			...opts,
 		});
 	}
 
-	async _$pGetWrpControls ({$wrpContent}) {
-		const out = await super._$pGetWrpControls({$wrpContent});
-		const {$wrpPrint} = out;
+	async _pGetWrpControls ({wrpContent}) {
+		const out = await super._pGetWrpControls({wrpContent});
+		const {wrpPrint} = out;
 
 		// region Markdown
 		// TODO refactor this and spell markdown section
 		const pGetAsMarkdown = async () => {
-			const toRender = this._bookViewToShow.length ? this._bookViewToShow : [this._fnGetEntLastLoaded()];
+			const toRender = this._bookViewToShow.length ? this._bookViewToShow.map(({entity}) => entity) : [this._fnGetEntLastLoaded()];
 			return RendererMarkdown.monster.pGetMarkdownDoc(toRender);
 		};
 
-		const $btnDownloadMarkdown = $(`<button class="ve-btn ve-btn-default ve-btn-sm">Download as Markdown</button>`)
-			.click(async () => DataUtil.userDownloadText("bestiary.md", await pGetAsMarkdown()));
+		const btnDownloadMarkdown = ee`<button class="ve-btn ve-btn-default ve-btn-sm">Download as Markdown</button>`
+			.onn("click", async () => DataUtil.userDownloadText("bestiary.md", await pGetAsMarkdown()));
 
-		const $btnCopyMarkdown = $(`<button class="ve-btn ve-btn-default ve-btn-sm px-2" title="Copy Markdown to Clipboard"><span class="glyphicon glyphicon-copy"></span></button>`)
-			.click(async () => {
+		const btnCopyMarkdown = ee`<button class="ve-btn ve-btn-default ve-btn-sm px-2" title="Copy Markdown to Clipboard"><span class="glyphicon glyphicon-copy"></span></button>`
+			.onn("click", async () => {
 				await MiscUtil.pCopyTextToClipboard(await pGetAsMarkdown());
-				JqueryUtil.showCopiedEffect($btnCopyMarkdown);
+				JqueryUtil.showCopiedEffect(btnCopyMarkdown);
 			});
 
-		const $btnDownloadMarkdownSettings = $(`<button class="ve-btn ve-btn-default ve-btn-sm px-2" title="Markdown Settings"><span class="glyphicon glyphicon-cog"></span></button>`)
-			.click(async () => RendererMarkdown.pShowSettingsModal());
+		const btnDownloadMarkdownSettings = ee`<button class="ve-btn ve-btn-default ve-btn-sm px-2" title="Markdown Settings"><span class="glyphicon glyphicon-cog"></span></button>`
+			.onn("click", async () => RendererMarkdown.pShowSettingsModal());
 
-		$$`<div class="ve-flex-v-center ve-btn-group ml-2">
-			${$btnDownloadMarkdown}
-			${$btnCopyMarkdown}
-			${$btnDownloadMarkdownSettings}
-		</div>`.appendTo($wrpPrint);
+		ee`<div class="ve-flex-v-center ve-btn-group ml-2">
+			${btnDownloadMarkdown}
+			${btnCopyMarkdown}
+			${btnDownloadMarkdownSettings}
+		</div>`.appendTo(wrpPrint);
 		// endregion
 
 		return out;
 	}
 
-	async _pGetRenderContentMeta ({$wrpContent}) {
-		this._bookViewToShow = this._sublistManager.getPinnedEntities()
+	async _pGetRenderContentMeta ({wrpContent}) {
+		this._bookViewToShow = this._sublistManager.getSublistedEntityMetas()
 			.sort(this._getSorted.bind(this));
 
 		let cntSelectedEnts = 0;
@@ -247,18 +248,23 @@ class BestiaryPageBookView extends ListPageBookView {
 			stack.push(`</tbody></table></div>`);
 		};
 
-		this._bookViewToShow.forEach(mon => renderCreature(mon));
+		this._bookViewToShow
+			.filter(Boolean)
+			.forEach(({entity, count}) => Array.from({length: this._comp._state.isRenderCopies ? count : 1}, () => renderCreature(entity)));
+
 		if (!this._bookViewToShow.length && Hist.lastLoadedId != null) {
 			renderCreature(this._fnGetEntLastLoaded());
 		}
 
 		cntSelectedEnts += this._bookViewToShow.length;
-		$wrpContent.append(stack.join(""));
+		wrpContent.appends(stack.join(""));
 
 		return {cntSelectedEnts, isAnyEntityRendered};
 	}
 
 	_getSorted (a, b) {
+		a = a.entity;
+		b = b.entity;
 		return SortUtil.ascSort(a._displayName || a.name, b._displayName || b.name);
 	}
 }
@@ -300,6 +306,7 @@ class BestiaryPage extends ListPageMultiSource {
 
 			bookViewOptions: {
 				ClsBookView: BestiaryPageBookView,
+				isSublistItemsCountable: true,
 			},
 
 			tableViewOptions: {

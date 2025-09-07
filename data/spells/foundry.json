@@ -2102,6 +2102,8 @@
 				{
 					"foundryId": "blink",
 					"name": "Ethereal",
+					"disabled": true,
+					"transfer": true,
 					"duration": {
 						"rounds": 1
 					},
@@ -2149,6 +2151,7 @@
 			"source": "XPHB",
 			"activities": [
 				{
+					"name": "Cast and Save",
 					"type": "save",
 					"activation": {
 						"type": "action"
@@ -2176,24 +2179,6 @@
 						"dc": {
 							"calculation": "spellcasting"
 						}
-					}
-				},
-				{
-					"type": "damage",
-					"activation": {
-						"type": "action"
-					},
-					"damage": {
-						"parts": [
-							{
-								"number": 4,
-								"denomination": 10,
-								"scaling": {
-									"mode": "whole",
-									"number": 1
-								}
-							}
-						]
 					}
 				}
 			],
@@ -2620,6 +2605,8 @@
 				{
 					"foundryId": "comprehendLangua",
 					"name": "Comprehension",
+					"disabled": true,
+					"transfer": true,
 					"duration": {
 						"rounds": 1,
 						"seconds": 3600
@@ -4183,6 +4170,25 @@
 							"foundryId": "disguiseSelf"
 						}
 					]
+				},
+				{
+					"name": "Study",
+					"type": "check",
+					"activation": {
+						"type": "",
+						"condition": "Study Action taken by other creature"
+					},
+					"range": {
+						"units": "any"
+					},
+					"check": {
+						"associated": [
+							"inv"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						}
+					}
 				}
 			],
 			"effects": [
@@ -4294,6 +4300,8 @@
 			"effects": [
 				{
 					"foundryId": "divineFavor",
+					"disabled": true,
+					"transfer": true,
 					"duration": {
 						"seconds": 60
 					},
@@ -6517,6 +6525,8 @@
 				{
 					"foundryId": "fireShield",
 					"name": "Warm Shield",
+					"disabled": true,
+					"transfer": true,
 					"duration": {
 						"seconds": 600
 					},
@@ -6532,6 +6542,8 @@
 				{
 					"foundryId": "fireShield1",
 					"name": "Chill Shield",
+					"disabled": true,
+					"transfer": true,
 					"duration": {
 						"seconds": 600
 					},
@@ -7058,6 +7070,8 @@
 				{
 					"foundryId": "fountOfMoonligh1",
 					"name": "Wreathed in Light",
+					"disabled": true,
+					"transfer": true,
 					"duration": {
 						"seconds": 600
 					},
@@ -8131,6 +8145,38 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Hallucinatory Terrain",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					}
+				},
+				{
+					"name": "Study",
+					"type": "check",
+					"activation": {
+						"type": "",
+						"condition": "Study Action taken by other creature"
+					},
+					"range": {
+						"units": "any"
+					},
+					"check": {
+						"associated": [
+							"inv"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Haste",
 			"source": "XPHB",
 			"activities": [
@@ -8526,6 +8572,9 @@
 						"units": "any"
 					},
 					"damage": {
+						"critical": {
+							"allow": true
+						},
 						"parts": [
 							{
 								"number": 1,
@@ -8569,6 +8618,39 @@
 							"foundryId": "hex5"
 						}
 					]
+				},
+				{
+					"name": "Curse New Creature",
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"range": {
+						"units": "any"
+					},
+					"roll": {
+						"visible": true
+					},
+					"effects": [
+						{
+							"foundryId": "hex"
+						},
+						{
+							"foundryId": "hex1"
+						},
+						{
+							"foundryId": "hex2"
+						},
+						{
+							"foundryId": "hex3"
+						},
+						{
+							"foundryId": "hex4"
+						},
+						{
+							"foundryId": "hex5"
+						}
+					]
 				}
 			],
 			"effects": [
@@ -8576,11 +8658,17 @@
 					"foundryId": "hex",
 					"name": "Hexed Strength",
 					"duration": {
-						"rounds": 1,
 						"seconds": 3600
 					},
 					"statuses": [
 						"cursed"
+					],
+					"changes": [
+						{
+							"key": "system.abilities.str.check.roll.mode",
+							"mode": "ADD",
+							"value": -1
+						}
 					],
 					"description": "The target has Disadvantage on ability checks made with the chosen ability."
 				},
@@ -8594,17 +8682,30 @@
 					"statuses": [
 						"cursed"
 					],
+					"changes": [
+						{
+							"key": "system.abilities.dex.check.roll.mode",
+							"mode": "ADD",
+							"value": -1
+						}
+					],
 					"description": "The target has Disadvantage on ability checks made with the chosen ability."
 				},
 				{
 					"foundryId": "hex2",
 					"name": "Hexed Constitution",
 					"duration": {
-						"rounds": 1,
 						"seconds": 3600
 					},
 					"statuses": [
 						"cursed"
+					],
+					"changes": [
+						{
+							"key": "system.abilities.con.check.roll.mode",
+							"mode": "ADD",
+							"value": -1
+						}
 					],
 					"description": "The target has Disadvantage on ability checks made with the chosen ability."
 				},
@@ -8612,11 +8713,17 @@
 					"foundryId": "hex3",
 					"name": "Hexed Intelligence",
 					"duration": {
-						"rounds": 1,
 						"seconds": 3600
 					},
 					"statuses": [
 						"cursed"
+					],
+					"changes": [
+						{
+							"key": "system.abilities.int.check.roll.mode",
+							"mode": "ADD",
+							"value": -1
+						}
 					],
 					"description": "The target has Disadvantage on ability checks made with the chosen ability."
 				},
@@ -8624,11 +8731,17 @@
 					"foundryId": "hex4",
 					"name": "Hexed Wisdom",
 					"duration": {
-						"rounds": 1,
 						"seconds": 3600
 					},
 					"statuses": [
 						"cursed"
+					],
+					"changes": [
+						{
+							"key": "system.abilities.wis.check.roll.mode",
+							"mode": "ADD",
+							"value": -1
+						}
 					],
 					"description": "The target has Disadvantage on ability checks made with the chosen ability."
 				},
@@ -8636,11 +8749,17 @@
 					"foundryId": "hex5",
 					"name": "Hexed Charisma",
 					"duration": {
-						"rounds": 1,
 						"seconds": 3600
 					},
 					"statuses": [
 						"cursed"
+					],
+					"changes": [
+						{
+							"key": "system.abilities.cha.check.roll.mode",
+							"mode": "ADD",
+							"value": -1
+						}
 					],
 					"description": "The target has Disadvantage on ability checks made with the chosen ability."
 				}
@@ -8938,6 +9057,34 @@
 							"foundryId": "huntersMark"
 						}
 					]
+				},
+				{
+					"name": "Move Mark",
+					"type": "utility",
+					"activation": {
+						"type": "bonus",
+						"condition": "when the currently marked target drops to 0 Hit Points"
+					},
+					"range": {
+						"units": "any"
+					},
+					"effects": [
+						{
+							"foundryId": "huntersMark"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "huntersMark",
+					"duration": {
+						"seconds": 3600
+					},
+					"statuses": [
+						"marked"
+					],
+					"description": "Until the spell ends, the caster deals an extra [[/damage 1d6 force]] damage to the target whenever they hit it with an attack roll."
 				}
 			],
 			"migrationVersion": 3
@@ -9213,49 +9360,10 @@
 			"source": "XPHB",
 			"activities": [
 				{
-					"name": "Create Cloud",
+					"name": "Cast and Save",
 					"type": "save",
 					"activation": {
 						"type": "action"
-					},
-					"damage": {
-						"parts": [
-							{
-								"number": 10,
-								"denomination": 8,
-								"types": [
-									"fire"
-								],
-								"scaling": {
-									"number": 1
-								}
-							}
-						],
-						"onSave": "half"
-					},
-					"save": {
-						"ability": [
-							"dex"
-						],
-						"dc": {
-							"calculation": "spellcasting"
-						}
-					}
-				},
-				{
-					"name": "Per Turn Save",
-					"type": "save",
-					"activation": {
-						"type": ""
-					},
-					"target": {
-						"affects": {
-							"count": "1",
-							"type": "creature"
-						}
-					},
-					"range": {
-						"units": "any"
 					},
 					"damage": {
 						"parts": [
@@ -9520,6 +9628,9 @@
 							{
 								"number": 2,
 								"denomination": 8,
+								"types": [
+									"lightning"
+								],
 								"scaling": {
 									"mode": "whole",
 									"number": 1
@@ -9644,7 +9755,7 @@
 			"source": "XPHB",
 			"activities": [
 				{
-					"name": "Transfer Soul",
+					"name": "Cast and Transfer Soul",
 					"type": "utility",
 					"img": "systems/dnd5e/icons/svg/ink-pot.svg",
 					"activation": {
@@ -9708,6 +9819,8 @@
 				{
 					"foundryId": "magicJar",
 					"name": "Catatonic",
+					"disabled": true,
+					"transfer": true,
 					"statuses": [
 						"silenced"
 					],
@@ -9977,6 +10090,38 @@
 						}
 					},
 					"description": "Until the spell ends, that weapon becomes a magic weapon with a +3 bonus to attack rolls and damage rolls."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Major Image",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					}
+				},
+				{
+					"name": "Study",
+					"type": "check",
+					"activation": {
+						"type": "",
+						"condition": "Study Action taken by other creature"
+					},
+					"range": {
+						"units": "any"
+					},
+					"check": {
+						"associated": [
+							"inv"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						}
+					}
 				}
 			],
 			"migrationVersion": 3
@@ -10377,6 +10522,38 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Minor Illusion",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					}
+				},
+				{
+					"name": "Study",
+					"type": "check",
+					"activation": {
+						"type": "",
+						"condition": "Study Action taken by other creature"
+					},
+					"range": {
+						"units": "any"
+					},
+					"check": {
+						"associated": [
+							"inv"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Mirage Arcane",
 			"source": "XPHB",
 			"activities": [
@@ -10419,6 +10596,8 @@
 				{
 					"foundryId": "mirrorImage",
 					"name": "Duplicate A",
+					"disabled": true,
+					"transfer": true,
 					"duration": {
 						"seconds": 60
 					},
@@ -10433,6 +10612,8 @@
 				{
 					"foundryId": "mirrorImage1",
 					"name": "Duplicate B",
+					"disabled": true,
+					"transfer": true,
 					"duration": {
 						"seconds": 60
 					},
@@ -10447,6 +10628,8 @@
 				{
 					"foundryId": "mirrorImage2",
 					"name": "Duplicate C",
+					"disabled": true,
+					"transfer": true,
 					"duration": {
 						"seconds": 60
 					},
@@ -10973,6 +11156,25 @@
 							}
 						]
 					}
+				},
+				{
+					"name": "Study",
+					"type": "check",
+					"activation": {
+						"type": "",
+						"condition": "Study Action taken by other creature"
+					},
+					"range": {
+						"units": "any"
+					},
+					"check": {
+						"associated": [
+							"inv"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						}
+					}
 				}
 			],
 			"effects": [
@@ -11013,6 +11215,9 @@
 						]
 					},
 					"save": {
+						"ability": [
+							"wis"
+						],
 						"dc": {
 							"calculation": "spellcasting"
 						}
@@ -11031,6 +11236,38 @@
 					"duration": {
 						"seconds": 60
 					},
+					"changes": [
+						{
+							"key": "system.abilities.str.check.roll.mode",
+							"mode": "ADD",
+							"value": -1
+						},
+						{
+							"key": "system.abilities.dex.check.roll.mode",
+							"mode": "ADD",
+							"value": -1
+						},
+						{
+							"key": "system.abilities.con.check.roll.mode",
+							"mode": "ADD",
+							"value": -1
+						},
+						{
+							"key": "system.abilities.int.check.roll.mode",
+							"mode": "ADD",
+							"value": -1
+						},
+						{
+							"key": "system.abilities.wis.check.roll.mode",
+							"mode": "ADD",
+							"value": -1
+						},
+						{
+							"key": "system.abilities.cha.check.roll.mode",
+							"mode": "ADD",
+							"value": -1
+						}
+					],
 					"description": "The target has Disadvantage on ability checks and attack rolls for the duration. For the duration, the target makes a [[/save ability=wis]] saving throw at the end of each of its turns. On a failed save, it takes the Psychic damage again. On a successful save, the spell ends."
 				}
 			],
@@ -11689,6 +11926,70 @@
 								}
 							}
 						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Programmed Illusion",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					}
+				},
+				{
+					"name": "Study",
+					"type": "check",
+					"activation": {
+						"type": "",
+						"condition": "Study Action taken by other creature"
+					},
+					"range": {
+						"units": "any"
+					},
+					"check": {
+						"associated": [
+							"inv"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						}
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Project Image",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					}
+				},
+				{
+					"name": "Study",
+					"type": "check",
+					"activation": {
+						"type": "",
+						"condition": "Study Action taken by other creature"
+					},
+					"range": {
+						"units": "any"
+					},
+					"check": {
+						"associated": [
+							"inv"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						}
 					}
 				}
 			],
@@ -13161,6 +13462,25 @@
 							"foundryId": "seeming"
 						}
 					]
+				},
+				{
+					"name": "Study",
+					"type": "check",
+					"activation": {
+						"type": "",
+						"condition": "Study Action taken by other creature"
+					},
+					"range": {
+						"units": "any"
+					},
+					"check": {
+						"associated": [
+							"inv"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						}
+					}
 				}
 			],
 			"effects": [
@@ -13374,6 +13694,21 @@
 							"key": "system.damage.base.bonus",
 							"mode": "ADD",
 							"value": "max(@abilities.str.mod, @attributes.spell.mod)"
+						},
+						{
+							"key": "system.damage.versatile.denomination",
+							"mode": "OVERRIDE",
+							"value": 8
+						},
+						{
+							"key": "system.damage.versatile.number",
+							"mode": "OVERRIDE",
+							"value": 1
+						},
+						{
+							"key": "system.damage.versatile.bonus",
+							"mode": "ADD",
+							"value": "max(@abilities.str.mod, @attributes.spell.mod)"
 						}
 					]
 				},
@@ -13422,6 +13757,21 @@
 						},
 						{
 							"key": "system.damage.base.bonus",
+							"mode": "ADD",
+							"value": "max(@abilities.str.mod, @attributes.spell.mod)"
+						},
+						{
+							"key": "system.damage.versatile.denomination",
+							"mode": "OVERRIDE",
+							"value": 10
+						},
+						{
+							"key": "system.damage.versatile.number",
+							"mode": "OVERRIDE",
+							"value": 1
+						},
+						{
+							"key": "system.damage.versatile.bonus",
 							"mode": "ADD",
 							"value": "max(@abilities.str.mod, @attributes.spell.mod)"
 						}
@@ -13474,6 +13824,21 @@
 							"key": "system.damage.base.bonus",
 							"mode": "ADD",
 							"value": "max(@abilities.str.mod, @attributes.spell.mod)"
+						},
+						{
+							"key": "system.damage.versatile.denomination",
+							"mode": "OVERRIDE",
+							"value": 12
+						},
+						{
+							"key": "system.damage.versatile.number",
+							"mode": "OVERRIDE",
+							"value": 1
+						},
+						{
+							"key": "system.damage.versatile.bonus",
+							"mode": "ADD",
+							"value": "max(@abilities.str.mod, @attributes.spell.mod)"
 						}
 					]
 				},
@@ -13522,6 +13887,21 @@
 						},
 						{
 							"key": "system.damage.base.bonus",
+							"mode": "ADD",
+							"value": "max(@abilities.str.mod, @attributes.spell.mod)"
+						},
+						{
+							"key": "system.damage.versatile.denomination",
+							"mode": "OVERRIDE",
+							"value": 6
+						},
+						{
+							"key": "system.damage.versatile.number",
+							"mode": "OVERRIDE",
+							"value": 2
+						},
+						{
+							"key": "system.damage.versatile.bonus",
 							"mode": "ADD",
 							"value": "max(@abilities.str.mod, @attributes.spell.mod)"
 						}
@@ -13667,6 +14047,38 @@
 						}
 					],
 					"description": "Any creature or object entirely inside the Sphere has Immunity to Thunder damage, and creatures have the Deafened condition while entirely inside it. Casting a spell that includes a Verbal component is impossible there."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Silent Image",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					}
+				},
+				{
+					"name": "Study",
+					"type": "check",
+					"activation": {
+						"type": "",
+						"condition": "Study Action taken by other creature"
+					},
+					"range": {
+						"units": "any"
+					},
+					"check": {
+						"associated": [
+							"inv"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						}
+					}
 				}
 			],
 			"migrationVersion": 3
@@ -13921,6 +14333,8 @@
 				{
 					"foundryId": "speakWithAnimals",
 					"name": "Bestial Communication",
+					"disabled": true,
+					"transfer": true,
 					"duration": {
 						"rounds": 1,
 						"seconds": 600
@@ -14031,10 +14445,10 @@
 			"source": "XPHB",
 			"activities": [
 				{
-					"name": "Emanation Save",
+					"name": "Cast and Save",
 					"type": "save",
 					"activation": {
-						"type": ""
+						"type": "action"
 					},
 					"target": {
 						"affects": {
@@ -14076,13 +14490,6 @@
 							"foundryId": "spiritGuardians"
 						}
 					]
-				},
-				{
-					"name": "Cast",
-					"type": "utility",
-					"activation": {
-						"type": "action"
-					}
 				}
 			],
 			"effects": [
@@ -14270,10 +14677,10 @@
 			"source": "XPHB",
 			"activities": [
 				{
-					"name": "Start of Turn Save",
+					"name": "Cast and Save",
 					"type": "save",
 					"activation": {
-						"type": ""
+						"type": "action"
 					},
 					"target": {
 						"affects": {
@@ -14300,13 +14707,6 @@
 							"foundryId": "stinkingCloud"
 						}
 					]
-				},
-				{
-					"name": "Create Cloud",
-					"type": "utility",
-					"activation": {
-						"type": "action"
-					}
 				}
 			],
 			"effects": [
@@ -15755,7 +16155,7 @@
 						"parts": [
 							{
 								"number": 8,
-								"denomination": 8,
+								"denomination": 6,
 								"types": [
 									"psychic"
 								],
@@ -16714,38 +17114,6 @@
 						"dc": {
 							"calculation": "spellcasting"
 						}
-					}
-				},
-				{
-					"type": "damage",
-					"img": "icons/magic/fire/flame-burning-skeleton-explosion.webp",
-					"activation": {
-						"type": ""
-					},
-					"target": {
-						"affects": {
-							"count": "1",
-							"type": "creature"
-						}
-					},
-					"range": {
-						"units": "ft",
-						"value": "10"
-					},
-					"damage": {
-						"parts": [
-							{
-								"number": 5,
-								"denomination": 8,
-								"types": [
-									"fire"
-								],
-								"scaling": {
-									"mode": "whole",
-									"number": 1
-								}
-							}
-						]
 					}
 				}
 			],

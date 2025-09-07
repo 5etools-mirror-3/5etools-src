@@ -90,6 +90,7 @@ class OptionalFeaturesPage extends ListPage {
 			dataProps: ["optionalfeature"],
 
 			bookViewOptions: {
+				nameSingular: "optional feature",
 				namePlural: "optional features",
 				pageTitle: "Optional Features Book View",
 			},

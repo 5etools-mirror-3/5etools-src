@@ -1140,7 +1140,7 @@
 					"name": "Inspire with Wisdom",
 					"type": "heal",
 					"activation": {
-						"type": "special",
+						"type": "shortRest",
 						"condition": "When you finish a Short or Long Rest"
 					},
 					"target": {
@@ -1157,6 +1157,9 @@
 						"types": [
 							"temphp"
 						],
+						"custom": {
+							"formula": "@details.level + @abilities.wis.mod"
+						},
 						"scaling": {
 							"number": 1
 						},
@@ -1167,7 +1170,7 @@
 					"name": "Inspire with Charisma",
 					"type": "heal",
 					"activation": {
-						"type": "special",
+						"type": "shortRest",
 						"condition": "When you finish a Short or Long Rest"
 					},
 					"target": {
@@ -1670,7 +1673,6 @@
 				{
 					"foundryId": "protection",
 					"name": "Protected",
-					"transfer": true,
 					"duration": {
 						"turns": 1
 					}

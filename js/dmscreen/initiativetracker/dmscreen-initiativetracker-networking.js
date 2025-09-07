@@ -47,7 +47,7 @@ export class InitiativeTrackerNetworking {
 			if (!this._p2pMetaV1.serverPeer.hasConnections()) return;
 
 			toSend ||= fnGetToSend();
-			this._p2pMetaV1.serverPeer.sendMessage(toSend);
+			this._p2pMetaV1.serverPeer.pSendMessage(toSend);
 		}
 		// endregion
 

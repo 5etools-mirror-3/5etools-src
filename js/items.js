@@ -194,9 +194,11 @@ class ItemsPage extends ListPage {
 			dataProps: ["item"],
 
 			bookViewOptions: {
+				nameSingular: "item",
 				namePlural: "items",
 				pageTitle: "Items Book View",
 				propMarkdown: "item",
+				isSublistItemsCountable: true,
 			},
 
 			tableViewOptions: {

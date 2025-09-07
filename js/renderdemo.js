@@ -54,7 +54,7 @@ async function initDemo (data, rendererType) {
 	selRenderer.val(rendererType || "html");
 
 	// init editor
-	const editor = EditorUtil.initEditor("jsoninput", {mode: "ace/mode/json"});
+	const editor = await EditorUtil.pInitEditor("jsoninput", {mode: "ace/mode/json"});
 
 	function demoRender () {
 		msg.html("");

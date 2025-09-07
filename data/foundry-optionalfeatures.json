@@ -19,6 +19,49 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Agonizing Blast",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Make Agonizing",
+					"type": "enchant",
+					"activation": {
+						"type": ""
+					},
+					"restrictions": {
+						"allowMagical": true
+					},
+					"effects": [
+						{
+							"foundryId": "agonizingBlast"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "agonizingBlast",
+					"type": "enchantment",
+					"disabled": true,
+					"transfer": true,
+					"changes": [
+						{
+							"key": "name",
+							"mode": "ADD",
+							"value": ", Agonizing"
+						},
+						{
+							"key": "system.damage.bonus",
+							"mode": "ADD",
+							"value": "@abilities.cha.mod"
+						}
+					],
+					"description": "Choose one of your known Warlock cantrips that deals damage. You can add your Charisma modifier to that spell's damage rolls."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Ambush",
 			"source": "XPHB",
 			"activities": [
@@ -3457,15 +3500,6 @@
 						"type": "action",
 						"value": 1
 					},
-					"consumption": {
-						"targets": [
-							{
-								"type": "attribute",
-								"value": "1",
-								"target": "spells.pact.value"
-							}
-						]
-					},
 					"target": {
 						"affects": {
 							"count": "1",
@@ -3500,15 +3534,6 @@
 					"activation": {
 						"type": "action",
 						"value": 1
-					},
-					"consumption": {
-						"targets": [
-							{
-								"type": "attribute",
-								"value": "1",
-								"target": "spells.pact.value"
-							}
-						]
 					},
 					"target": {
 						"affects": {
@@ -3589,7 +3614,7 @@
 						],
 						"custom": {
 							"enabled": true,
-							"formula": "@scale.battle-master.superiority.die"
+							"formula": "@scale.battle-master.superiority.die + max(@abilities.str.mod, @abilities.dex.mod)"
 						},
 						"scaling": {
 							"number": 1

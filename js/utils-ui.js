@@ -2508,29 +2508,41 @@ class InputUiUtil {
 		return UiUtil.getShowModal(getShowModalOpts);
 	}
 
-	static _$getBtnOk ({comp = null, opts, doClose}) {
-		return $(`<button class="ve-btn ve-btn-primary mr-2">${opts.buttonText || "OK"}</button>`)
-			.click(evt => {
+	static _getBtnOk ({comp = null, opts, doClose}) {
+		return ee`<button class="ve-btn ve-btn-primary mr-2">${opts.buttonText || "OK"}</button>`
+			.onn("click", evt => {
 				evt.stopPropagation();
 				if (comp && !comp._state.isValid) return JqueryUtil.doToast({content: `Please enter valid input!`, type: "warning"});
 				doClose(true);
 			});
 	}
 
-	static _$getBtnCancel ({comp = null, opts, doClose}) {
-		return $(`<button class="ve-btn ve-btn-default">Cancel</button>`)
-			.click(evt => {
+	static _getBtnCancel ({comp = null, opts, doClose}) {
+		return ee`<button class="ve-btn ve-btn-default">Cancel</button>`
+			.onn("click", evt => {
 				evt.stopPropagation();
 				doClose(false);
 			});
 	}
 
-	static _$getBtnSkip ({comp = null, opts, doClose}) {
-		return !opts.isSkippable ? null : $(`<button class="ve-btn ve-btn-default ml-3">Skip</button>`)
-			.click(evt => {
+	static _getBtnSkip ({comp = null, opts, doClose}) {
+		return !opts.isSkippable ? null : ee`<button class="ve-btn ve-btn-default ml-3">Skip</button>`
+			.onn("click", evt => {
 				evt.stopPropagation();
 				doClose(VeCt.SYM_UI_SKIP);
 			});
+	}
+
+	static _$getBtnOk ({comp = null, opts, doClose}) {
+		return $(this._getBtnOk({comp, opts, doClose}));
+	}
+
+	static _$getBtnCancel ({comp = null, opts, doClose}) {
+		return $(this._getBtnCancel({comp, opts, doClose}));
+	}
+
+	static _$getBtnSkip ({comp = null, opts, doClose}) {
+		return $(this._getBtnSkip({comp, opts, doClose}));
 	}
 
 	/* -------------------------------------------- */
@@ -2725,6 +2737,8 @@ class InputUiUtil {
 	 * @param opts.int If the value returned should be an integer.
 	 * @param opts.title Prompt title.
 	 * @param opts.default Default value.
+	 * @param [opts.elePre] Element to add before the number input.
+	 * @param [opts.elePost] Element to add after the number input.
 	 * @param [opts.$elePre] Element to add before the number input.
 	 * @param [opts.$elePost] Element to add after the number input.
 	 * @param [opts.isPermanent] If the prompt can only be closed by entering a number.
@@ -2736,15 +2750,20 @@ class InputUiUtil {
 	static async pGetUserNumber (opts) {
 		opts = opts || {};
 
+		if (opts.elePre && opts.$elePre) throw new Error(`Only one of "elePre" and "$elePre" may be specified!`);
+		if (opts.elePost && opts.$elePost) throw new Error(`Only one of "elePost" and "$elePost" may be specified!`);
+		opts.elePre ??= opts.$elePre?.[0];
+		opts.elePost ??= opts.$elePost?.[0];
+
 		let defaultVal = opts.default !== undefined ? opts.default : null;
 		if (opts.storageKey_default) {
 			const prev = await (opts.isGlobal_default ? StorageUtil.pGet(opts.storageKey_default) : StorageUtil.pGetForPage(opts.storageKey_default));
 			if (prev != null) defaultVal = prev;
 		}
 
-		const $iptNumber = $(`<input class="form-control mb-2 ve-text-right" ${opts.min ? `min="${opts.min}"` : ""} ${opts.max ? `max="${opts.max}"` : ""}>`)
-			.keydown(evt => {
-				if (evt.key === "Escape") { $iptNumber.blur(); return; }
+		const iptNumber = ee`<input class="form-control mb-2 ve-text-right" ${opts.min ? `min="${opts.min}"` : ""} ${opts.max ? `max="${opts.max}"` : ""}>`
+			.onn("keydown", evt => {
+				if (evt.key === "Escape") { iptNumber.blure(); return; }
 
 				evt.stopPropagation();
 				if (evt.key === "Enter") {
@@ -2752,26 +2771,26 @@ class InputUiUtil {
 					doClose(true);
 				}
 			});
-		if (defaultVal !== undefined) $iptNumber.val(defaultVal);
+		if (defaultVal !== undefined) iptNumber.val(defaultVal);
 
-		const {$modalInner, doClose, pGetResolved, doAutoResize: doAutoResizeModal} = await InputUiUtil._pGetShowModal({
+		const {eleModalInner, doClose, pGetResolved, doAutoResize: doAutoResizeModal} = await InputUiUtil._pGetShowModal({
 			title: opts.title || "Enter a Number",
 			isMinHeight0: true,
 		});
 
-		const $btnOk = this._$getBtnOk({opts, doClose});
-		const $btnCancel = this._$getBtnCancel({opts, doClose});
-		const $btnSkip = this._$getBtnSkip({opts, doClose});
+		const btnOk = this._getBtnOk({opts, doClose});
+		const btnCancel = this._getBtnCancel({opts, doClose});
+		const btnSkip = this._getBtnSkip({opts, doClose});
 
-		if (opts.$elePre) opts.$elePre.appendTo($modalInner);
-		$iptNumber.appendTo($modalInner);
-		if (opts.$elePost) opts.$elePost.appendTo($modalInner);
-		$$`<div class="ve-flex-v-center ve-flex-h-right pb-1 px-1">${$btnOk}${$btnCancel}${$btnSkip}</div>`.appendTo($modalInner);
+		if (opts.elePre) eleModalInner.appends(opts.elePre);
+		eleModalInner.appends(iptNumber);
+		if (opts.elePost) eleModalInner.appends(opts.elePost);
+		ee`<div class="ve-flex-v-center ve-flex-h-right pb-1 px-1">${btnOk}${btnCancel}${btnSkip}</div>`.appendTo(eleModalInner);
 
 		if (doAutoResizeModal) doAutoResizeModal();
 
-		$iptNumber.focus();
-		$iptNumber.select();
+		iptNumber.focuse();
+		iptNumber.selecte();
 
 		// region Output
 		const [isDataEntered] = await pGetResolved();
@@ -2779,7 +2798,7 @@ class InputUiUtil {
 		if (typeof isDataEntered === "symbol") return isDataEntered;
 
 		if (!isDataEntered) return null;
-		const outRaw = $iptNumber.val();
+		const outRaw = iptNumber.val();
 		if (!outRaw.trim()) return null;
 		let out = UiUtil.strToNumber(outRaw);
 		if (opts.min) out = Math.max(opts.min, out);
@@ -6910,17 +6929,19 @@ ComponentUiUtil.RangeSlider = class {
 			].filter(Boolean),
 		});
 
+		const onDownWrpTrack = evt => {
+			const thumb = this._getClosestThumb(evt);
+			this._handleMouseDown(evt, thumb);
+		};
 		const wrpTrack = e_({
 			tag: "div",
 			clazz: `ve-flex-v-center w-100 h-100 ui-slidr__wrp-track clickable`,
-			mousedown: evt => {
-				const thumb = this._getClosestThumb(evt);
-				this._handleMouseDown(evt, thumb);
-			},
 			children: [
 				this._dispTrackOuter,
 			],
-		});
+		})
+			.onn("mousedown", evt => onDownWrpTrack(evt))
+			.onn("touchstart", evt => onDownWrpTrack(evt));
 
 		const wrpTop = e_({
 			tag: "div",
@@ -6934,14 +6955,16 @@ ComponentUiUtil.RangeSlider = class {
 		// endregion
 
 		// region Bottom part
+		const onDownWrpPips = evt => {
+			const thumb = this._getClosestThumb(evt);
+			this._handleMouseDown(evt, thumb);
+		};
 		const wrpPips = e_({
 			tag: "div",
 			clazz: `w-100 ve-flex relative clickable h-100 ui-slidr__wrp-pips`,
-			mousedown: evt => {
-				const thumb = this._getClosestThumb(evt);
-				this._handleMouseDown(evt, thumb);
-			},
-		});
+		})
+			.onn("mousedown", evt => onDownWrpPips(evt))
+			.onn("touchstart", evt => onDownWrpPips(evt));
 
 		const wrpBottom = e_({
 			tag: "div",
@@ -7036,7 +7059,7 @@ ComponentUiUtil.RangeSlider = class {
 
 		const wrp = e_({
 			tag: "div",
-			clazz: "ve-flex-col w-100 ui-slidr__wrp",
+			clazz: "ve-flex-col w-100 ui-slidr__wrp ve-touch-action-none",
 			children: [
 				wrpTop,
 				wrpBottom,
@@ -7054,7 +7077,7 @@ ComponentUiUtil.RangeSlider = class {
 	_getDispValue ({isVisible, side}) {
 		return e_({
 			tag: "div",
-			clazz: `ve-overflow-hidden ui-slidr__disp-value no-shrink no-grow ve-flex-vh-center bold no-select ${isVisible ? `ui-slidr__disp-value--visible` : ""} ui-slidr__disp-value--${side}`,
+			clazz: `ve-overflow-hidden ui-slidr__disp-value no-shrink no-grow no-wrap ve-flex-vh-center bold no-select ${isVisible ? `ui-slidr__disp-value--visible` : ""} ui-slidr__disp-value--${side}`,
 		});
 	}
 
@@ -7068,7 +7091,7 @@ ComponentUiUtil.RangeSlider = class {
 	_getThumb () {
 		const thumb = e_({
 			tag: "div",
-			clazz: "ui-slidr__thumb absolute clickable",
+			clazz: "ui-slidr__thumb absolute clickable ve-touch-action-none",
 			mousedown: evt => this._handleMouseDown(evt, thumb),
 		}).attr("draggable", true);
 
@@ -7247,17 +7270,24 @@ ComponentUiUtil.RangeSlider = class {
 
 	static _init () {
 		if (this._isInit) return;
-		document.addEventListener("mousemove", evt => {
+
+		const onMove = evt => {
 			for (const slider of this._ALL_SLIDERS) {
 				slider._handleMouseMove(evt);
 			}
-		});
+		};
 
-		document.addEventListener("mouseup", evt => {
+		const onUp = evt => {
 			for (const slider of this._ALL_SLIDERS) {
 				slider._handleMouseUp(evt);
 			}
-		});
+		};
+
+		document.addEventListener("mousemove", onMove);
+		document.addEventListener("touchmove", onMove);
+
+		document.addEventListener("mouseup", onUp);
+		document.addEventListener("touchend", onUp);
 	}
 };
 ComponentUiUtil.RangeSlider._isInit = false;

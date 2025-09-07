@@ -7,14 +7,14 @@ Renderer.dice = {
 	POS_INFINITE: 100000000000000000000, // larger than this, and we start to see "e" numbers appear
 	_SYMBOL_PARSE_FAILED: Symbol("parseFailed"),
 
-	_$wrpRoll: null,
-	_$minRoll: null,
-	_$iptRoll: null,
-	_$outRoll: null,
-	_$head: null,
+	_wrpRoll: null,
+	_eleRollboxMinimized: null,
+	_iptRoll: null,
+	_eleOutRoll: null,
+	_eleHead: null,
 	_hist: [],
 	_histIndex: null,
-	_$lastRolledBy: null,
+	_eleLastRolledBy: null,
 	_storage: null,
 
 	_isManualMode: false,
@@ -51,16 +51,16 @@ Renderer.dice = {
 
 	unbindDmScreenPanel () {
 		if (Renderer.dice._panel) {
-			$(`body`).append(Renderer.dice._$wrpRoll);
+			document.body.appendChild(Renderer.dice._wrpRoll);
 			Renderer.dice._panel.close$TabContent();
 			Renderer.dice._panel = null;
 			Renderer.dice._hideBox();
-			Renderer.dice._$wrpRoll.removeClass("rollbox-panel");
+			Renderer.dice._wrpRoll.removeClass("rollbox-panel");
 		}
 	},
 
-	get$Roller () {
-		return Renderer.dice._$wrpRoll;
+	getRoller () {
+		return Renderer.dice._wrpRoll;
 	},
 	// endregion
 
@@ -109,14 +109,14 @@ Renderer.dice = {
 
 	// region Roll box UI
 	_showBox () {
-		Renderer.dice._$minRoll.hideVe();
-		Renderer.dice._$wrpRoll.showVe();
-		Renderer.dice._$iptRoll.prop("placeholder", `${Renderer.dice._getRandomPlaceholder()} or "/help"`);
+		Renderer.dice._eleRollboxMinimized.hideVe();
+		Renderer.dice._wrpRoll.showVe();
+		Renderer.dice._iptRoll.prop("placeholder", `${Renderer.dice._getRandomPlaceholder()} or "/help"`);
 	},
 
 	_hideBox () {
-		Renderer.dice._$minRoll.showVe();
-		Renderer.dice._$wrpRoll.hideVe();
+		Renderer.dice._eleRollboxMinimized.showVe();
+		Renderer.dice._wrpRoll.hideVe();
 	},
 
 	_getRandomPlaceholder () {
@@ -131,22 +131,22 @@ Renderer.dice = {
 
 	/** Initialise the roll box UI. */
 	async _pInit () {
-		const $wrpRoll = $(`<div class="rollbox ve-flex-col min-h-0"></div>`).hideVe();
-		const $minRoll = $(`<button class="rollbox-min"><span class="glyphicon glyphicon-chevron-up"></span></button>`).on("click", () => {
-			Renderer.dice._showBox();
-			Renderer.dice._$iptRoll.focus();
-		});
-		const $head = $(`<div class="head-roll"><span class="hdr-roll">Dice Roller</span><span class="p-2 glyphicon glyphicon-remove"></span></div>`)
-			.on("click", () => {
+		const minRoll = ee`<button class="rollbox-min"><span class="glyphicon glyphicon-chevron-up"></span></button>`
+			.onn("click", () => {
+				Renderer.dice._showBox();
+				Renderer.dice._iptRoll.focuse();
+			});
+		const eleHead = ee`<div class="head-roll"><span class="hdr-roll">Dice Roller</span><span class="p-2 glyphicon glyphicon-remove"></span></div>`
+			.onn("click", () => {
 				if (!Renderer.dice._panel) Renderer.dice._hideBox();
 			});
-		const $outRoll = $(`<div class="out-roll">`);
-		const $iptRoll = $(`<input class="ipt-roll form-control" autocomplete="off" spellcheck="false">`)
-			.on("keypress", async evt => {
+		const outRoll = ee`<div class="out-roll"></div>`;
+		const iptRoll = ee`<input class="ipt-roll form-control" autocomplete="off" spellcheck="false">`
+			.onn("keypress", async evt => {
 				evt.stopPropagation();
 				if (evt.key !== "Enter") return;
 
-				const strDice = $iptRoll.val();
+				const strDice = iptRoll.val();
 				const result = await Renderer.dice.pRoll2(
 					strDice,
 					{
@@ -154,14 +154,15 @@ Renderer.dice = {
 						name: "Anon",
 					},
 				);
-				$iptRoll.val("");
+				iptRoll.val("");
 
 				if (result === Renderer.dice._SYMBOL_PARSE_FAILED) {
 					Renderer.dice._showInvalid();
-					$iptRoll.addClass("form-control--error");
+					iptRoll.addClass("form-control--error");
 				}
-			}).on("keydown", (evt) => {
-				$iptRoll.removeClass("form-control--error");
+			})
+			.onn("keydown", (evt) => {
+				iptRoll.removeClass("form-control--error");
 
 				// arrow keys only work on keydown
 				if (evt.key === "ArrowUp") {
@@ -175,18 +176,26 @@ Renderer.dice = {
 					Renderer.dice._nextHistory();
 				}
 			});
-		$wrpRoll.append($head).append($outRoll).append($iptRoll);
+		const wrpRoll = ee`<div class="rollbox ve-flex-col min-h-0">
+			${eleHead}
+			${outRoll}
+			${iptRoll}
+		</div>`.hideVe();
 
-		Renderer.dice._$wrpRoll = $wrpRoll;
-		Renderer.dice._$minRoll = $minRoll;
-		Renderer.dice._$head = $head;
-		Renderer.dice._$outRoll = $outRoll;
-		Renderer.dice._$iptRoll = $iptRoll;
+		Renderer.dice._wrpRoll = wrpRoll;
+		Renderer.dice._eleRollboxMinimized = minRoll;
+		Renderer.dice._eleHead = eleHead;
+		Renderer.dice._eleOutRoll = outRoll;
+		Renderer.dice._iptRoll = iptRoll;
 
-		$(`body`).append($minRoll).append($wrpRoll);
+		e_({ele: document.body}).appends(minRoll).appends(wrpRoll);
 
-		$wrpRoll.on("click", ".out-roll-item-code", (evt) => Renderer.dice._$iptRoll.val($(evt.target).text()).focus());
-
+		wrpRoll
+			.onn("click", (evt) => {
+				const tgt = e_({ele: evt.target});
+				if (!tgt.hasClass("out-roll-item-code")) return;
+				Renderer.dice._iptRoll.val(tgt.txt()).focuse();
+			});
 		Renderer.dice.storage = await StorageUtil.pGet(VeCt.STORAGE_ROLLER_MACRO) || {};
 	},
 
@@ -196,8 +205,8 @@ Renderer.dice = {
 	_prevNextHistory_load () {
 		Renderer.dice._cleanHistoryIndex();
 		const nxtVal = Renderer.dice._hist[Renderer.dice._histIndex];
-		Renderer.dice._$iptRoll.val(nxtVal);
-		if (nxtVal) Renderer.dice._$iptRoll[0].selectionStart = Renderer.dice._$iptRoll[0].selectionEnd = nxtVal.length;
+		Renderer.dice._iptRoll.val(nxtVal);
+		if (nxtVal) Renderer.dice._iptRoll[0].selectionStart = Renderer.dice._iptRoll[0].selectionEnd = nxtVal.length;
 	},
 
 	_cleanHistoryIndex: () => {
@@ -215,7 +224,7 @@ Renderer.dice = {
 	},
 
 	_scrollBottom: () => {
-		Renderer.dice._$outRoll.scrollTop(1e10);
+		Renderer.dice._eleOutRoll.scrollTope(1e10);
 	},
 	// endregion
 
@@ -226,9 +235,9 @@ Renderer.dice = {
 		evt.stopPropagation();
 		evt.preventDefault();
 
-		const $ele = $(ele);
-		const rollData = $ele.data("packed-dice");
-		let name = $ele.data("roll-name");
+		ele = e_({ele});
+		const rollData = JSON.parse(ele.attr("data-packed-dice"));
+		let name = ele.attr("data-roll-name");
 		let shiftKey = evt.shiftKey;
 		let ctrlKey = EventUtil.isCtrlMetaKey(evt);
 
@@ -333,38 +342,38 @@ Renderer.dice = {
 	},
 
 	__rerollNextInlineResult (ele) {
-		const $ele = $(ele);
-		const $result = $ele.next(`.result`);
-		const r = Renderer.dice.__rollPackedData($ele);
-		$result.text(r);
+		ele = e_({ele});
+		const result = ele.next(`.result`);
+		const r = Renderer.dice.__rollPackedData(ele);
+		result.txt(r);
 	},
 
-	__rollPackedData ($ele) {
+	__rollPackedData (ele) {
 		// Note that this does not support dynamic variables (e.g. user proficiency bonus)
-		const wrpTree = Renderer.dice.lang.getTree3($ele.data("packed-dice").toRoll);
+		const wrpTree = Renderer.dice.lang.getTree3(ele.attr("data-packed-dice").toRoll);
 		return wrpTree.tree.evl({});
 	},
 
-	$getEleUnknownTableRoll (total) { return $(Renderer.dice._pRollerClick_getMsgBug(total)); },
+	getEleUnknownTableRoll (total) { return e_({outer: Renderer.dice._pRollerClick_getMsgBug(total)}); },
 
 	_pRollerClick_getMsgBug (total) { return `<span class="message">No result found matching roll ${total}?! <span class="help-subtle" title="Bug!">🐛</span></span>`; },
 
 	async pRollerClick (evtMock, ele, packed, name) {
-		const $ele = $(ele);
+		ele = e_({ele});
 		const entry = JSON.parse(packed);
 		const additionalData = {...ele.dataset};
 
 		const rolledBy = {
-			name: Renderer.dice._pRollerClick_attemptToGetNameOfRoller({$ele}),
-			label: name != null ? name : Renderer.dice._pRollerClick_attemptToGetNameOfRoll({entry, $ele}),
+			name: Renderer.dice._pRollerClick_attemptToGetNameOfRoller({ele}),
+			label: name != null ? name : Renderer.dice._pRollerClick_attemptToGetNameOfRoll({entry, ele}),
 		};
 
 		const modRollMeta = Renderer.dice.getEventModifiedRollMeta(evtMock, entry);
-		const $parent = $ele.closest("th, p, table");
+		const parent = ele.closeste("th, p, table");
 
 		const rollResult = await this._pRollerClick_pGetResult({
-			$parent,
-			$ele,
+			parent,
+			ele,
 			entry,
 			modRollMeta,
 			rolledBy,
@@ -373,24 +382,24 @@ Renderer.dice = {
 
 		if (!entry.autoRoll) return;
 
-		const $tgt = $ele.next(`[data-rd-is-autodice-result="true"]`);
-		const curTxt = $tgt.text();
-		$tgt.text(rollResult);
-		JqueryUtil.showCopiedEffect($tgt, curTxt, true);
+		const tgt = ele.next(`[data-rd-is-autodice-result="true"]`);
+		const curTxt = tgt.txt();
+		tgt.txt(rollResult);
+		JqueryUtil.showCopiedEffect(tgt, curTxt, true);
 	},
 
-	async _pRollerClick_pGetResult ({$parent, $ele, entry, modRollMeta, rolledBy, additionalData}) {
+	async _pRollerClick_pGetResult ({parent = null, ele, entry, modRollMeta, rolledBy, additionalData}) {
 		const sharedRollOpts = {
 			rollCount: modRollMeta.rollCount,
 			additionalData,
 			isHidden: !!entry.autoRoll,
 		};
 
-		if ($parent.is("th") && $parent.attr("data-rd-isroller") === "true") {
-			if ($parent.attr("data-rd-namegeneratorrolls")) {
+		if (parent?.is("th") && parent.attr("data-rd-isroller") === "true") {
+			if (parent.attr("data-rd-namegeneratorrolls")) {
 				return Renderer.dice._pRollerClick_pRollGeneratorTable({
-					$parent,
-					$ele,
+					parent,
+					ele,
 					rolledBy,
 					modRollMeta,
 					rollOpts: sharedRollOpts,
@@ -402,7 +411,7 @@ Renderer.dice = {
 				rolledBy,
 				{
 					...sharedRollOpts,
-					fnGetMessage: Renderer.dice._pRollerClick_fnGetMessageTable.bind(Renderer.dice, $ele),
+					fnGetMessage: Renderer.dice._pRollerClick_fnGetMessageTable.bind(Renderer.dice, ele),
 				},
 			);
 		}
@@ -416,98 +425,98 @@ Renderer.dice = {
 		);
 	},
 
-	_pRollerClick_fnGetMessageTable ($ele, total) {
-		const elesTd = Renderer.dice._pRollerClick_$getTdsFromTotal($ele, total);
+	_pRollerClick_fnGetMessageTable (ele, total) {
+		const elesTd = Renderer.dice._pRollerClick_getTdsFromTotal(ele, total);
 		if (elesTd) {
-			const tableRow = elesTd.map(ele => ele.innerHTML.trim()).filter(it => it).join(" | ");
-			const $row = $(`<span class="message">${tableRow}</span>`);
-			Renderer.dice._pRollerClick_rollInlineRollers($ele);
-			return $row.html();
+			const tableRow = elesTd.map(ele => ele.innerHTML.trim()).filter(Boolean).join(" | ");
+			const row = ee`<span class="message">${tableRow}</span>`;
+			Renderer.dice._pRollerClick_rollInlineRollers(ele);
+			return row.html();
 		}
 		return Renderer.dice._pRollerClick_getMsgBug(total);
 	},
 
 	// Aka "getTableName", probably
-	_pRollerClick_attemptToGetNameOfRoll ({entry, $ele}) {
+	_pRollerClick_attemptToGetNameOfRoll ({entry, ele}) {
 		// Try to use the entry's built-in name
 		if (entry.name) return entry.name;
 
-		const $eleNameAncestor = $ele.closest(`[data-roll-name-ancestor]`);
-		if (!$eleNameAncestor.length) return "";
+		const eleNameAncestor = ele.closeste(`[data-roll-name-ancestor]`);
+		if (!eleNameAncestor) return "";
 
-		const dataName = $eleNameAncestor.attr("data-roll-name-ancestor");
+		const dataName = eleNameAncestor.attr("data-roll-name-ancestor");
 		if (dataName) return dataName;
 
-		return $eleNameAncestor.text().trim().replace(/[.,:]$/, "");
+		return eleNameAncestor.txt().trim().replace(/[.,:]$/, "");
 	},
 
-	_pRollerClick_attemptToGetNameOfRoller ({$ele}) {
-		const $eleNameAncestor = $ele.closest(`[data-roll-name-ancestor-roller]`);
-		if ($eleNameAncestor.length) return $eleNameAncestor.attr("data-roll-name-ancestor-roller");
+	_pRollerClick_attemptToGetNameOfRoller ({ele}) {
+		const eleNameAncestor = ele.closeste(`[data-roll-name-ancestor-roller]`);
+		if (eleNameAncestor) return eleNameAncestor.attr("data-roll-name-ancestor-roller");
 
-		const $roll = $ele.closest(`[data-rollbox-last-rolled-by-name]`);
-		if ($roll.length) return $roll.attr("data-rollbox-last-rolled-by-name");
+		const roll = ele.closeste(`[data-rollbox-last-rolled-by-name]`);
+		if (roll) return roll.attr("data-rollbox-last-rolled-by-name");
 
 		const name = document.title.replace("- 5etools", "").trim();
 		return name === "DM Screen" ? "Dungeon Master" : name;
 	},
 
-	_pRollerClick_$getTdsFromTotal ($ele, total) {
-		const $table = $ele.closest(`table`);
-		const $tdRoll = $table.find(`td`).filter((i, e) => {
-			const $e = $(e);
-			if (!$e.closest(`table`).is($table)) return false;
-			return total >= Number($e.data("roll-min")) && total <= Number($e.data("roll-max"));
-		});
-		if ($tdRoll.length && $tdRoll.nextAll().length) {
-			return $tdRoll.nextAll().get();
-		}
+	_pRollerClick_getTdsFromTotal (ele, total) {
+		const table = ele.closeste(`table`);
+		const tdRolls = table.findAll("td")
+			.filter(eleSub => {
+				if (!eleSub.closeste(`table`).is(table)) return false;
+				return total >= Number(eleSub.attr("data-roll-min")) && total <= Number(eleSub.attr("data-roll-max"));
+			});
+		if (!tdRolls.length) return null;
+		const [tdRoll] = tdRolls;
+		const nxtAll = tdRoll.nextAll();
+		if (nxtAll.length) return nxtAll;
 		return null;
 	},
 
-	// TODO erm
-	_pRollerClick_rollInlineRollers ($ele) {
-		$ele.find(`.render-roller`).each((i, e) => {
-			const $e = $(e);
-			const r = Renderer.dice.__rollPackedData($e);
-			$e.attr("onclick", `Renderer.dice.__rerollNextInlineResult(this)`);
-			$e.after(` (<span class="result">${r}</span>)`);
-		});
+	_pRollerClick_rollInlineRollers (ele) {
+		ele.findAll(`.render-roller`)
+			.forEach(eleSub => {
+				const r = Renderer.dice.__rollPackedData(eleSub);
+				eleSub.attr("onclick", `Renderer.dice.__rerollNextInlineResult(this)`);
+				eleSub.aftere(` (<span class="result">${r}</span>)`);
+			});
 	},
 
-	_pRollerClick_fnGetMessageGeneratorTable ($ele, ix, total) {
-		const elesTd = Renderer.dice._pRollerClick_$getTdsFromTotal($ele, total);
+	_pRollerClick_fnGetMessageGeneratorTable (ele, ix, total) {
+		const elesTd = Renderer.dice._pRollerClick_getTdsFromTotal(ele, total);
 		if (elesTd) {
-			const $row = $(`<span class="message">${elesTd[ix].innerHTML.trim()}</span>`);
-			Renderer.dice._pRollerClick_rollInlineRollers($ele);
-			return $row.html();
+			const row = ee`<span class="message">${elesTd[ix].innerHTML.trim()}</span>`;
+			Renderer.dice._pRollerClick_rollInlineRollers(ele);
+			return row.html();
 		}
 		return Renderer.dice._pRollerClick_getMsgBug(total);
 	},
 
-	async _pRollerClick_pRollGeneratorTable ({$parent, $ele, rolledBy, modRollMeta, rollOpts}) {
+	async _pRollerClick_pRollGeneratorTable ({parent, ele, rolledBy, modRollMeta, rollOpts}) {
 		Renderer.dice.addElement({rolledBy, html: `<i>${rolledBy.label}:</i>`, isMessage: true});
 
 		// Track a total of all rolls--this is a bit meaningless, but this method is expected to return a result value
 		let total = 0;
 
 		const out = [];
-		const numRolls = Number($parent.attr("data-rd-namegeneratorrolls"));
-		const $ths = $ele.closest(`table`).find(`th`);
+		const numRolls = Number(parent.attr("data-rd-namegeneratorrolls"));
+		const ths = ele.closeste("table").findAll("th");
 		for (let i = 0; i < numRolls; ++i) {
 			const cpyRolledBy = MiscUtil.copyFast(rolledBy);
-			cpyRolledBy.label = $($ths.get(i + 1)).text().trim();
+			cpyRolledBy.label = ths[i + 1].txt().trim();
 
 			const result = await Renderer.dice.pRollEntry(
 				modRollMeta.entry,
 				cpyRolledBy,
 				{
 					...rollOpts,
-					fnGetMessage: Renderer.dice._pRollerClick_fnGetMessageGeneratorTable.bind(Renderer.dice, $ele, i),
+					fnGetMessage: Renderer.dice._pRollerClick_fnGetMessageGeneratorTable.bind(Renderer.dice, ele, i),
 				},
 			);
 			total += result;
-			const elesTd = Renderer.dice._pRollerClick_$getTdsFromTotal($ele, result);
+			const elesTd = Renderer.dice._pRollerClick_getTdsFromTotal(ele, result);
 
 			if (!elesTd) {
 				out.push(`(no result)`);
@@ -698,7 +707,7 @@ Renderer.dice = {
 
 		if (!opts.isHidden) Renderer.dice._showBox();
 		Renderer.dice._checkHandleName(rolledBy.name);
-		const $out = Renderer.dice._$lastRolledBy;
+		const eleOut = Renderer.dice._eleLastRolledBy;
 
 		if (tree) {
 			const meta = {};
@@ -735,19 +744,24 @@ Renderer.dice = {
 			});
 
 			if (!opts.isHidden) {
-				$out.append(`
-					<div class="out-roll-item" title="${title}">
-						<div>
-							${lbl ? `<span class="roll-label">${lbl}: </span>` : ""}
-							${totalPart}
-							${ptTarget}
-							<span class="all-rolls ve-muted">${fullHtml}</span>
-							${message ? `<span class="message">${message}</span>` : ""}
-						</div>
-						<div class="out-roll-item-button-wrp">
-							<button title="Copy to input" class="ve-btn ve-btn-default ve-btn-xs ve-btn-copy-roll" onclick="Renderer.dice._$iptRoll.val('${tree.toString().replace(/\s+/g, "")}'); Renderer.dice._$iptRoll.focus()"><span class="glyphicon glyphicon-pencil"></span></button>
-						</div>
-					</div>`);
+				const btnCopyToInput = ee`<button title="Copy to Input" class="ve-btn ve-btn-default ve-btn-xs ve-btn-copy-roll"><span class="glyphicon glyphicon-pencil"></span></button>`
+					.onn("click", () => {
+						Renderer.dice._iptRoll
+							.val(tree.toString().replace(/s+/g, ""))
+							.focuse();
+					});
+
+				ee`<div class="out-roll-item" title="${title}">
+					<div>
+						${lbl ? `<span class="roll-label">${lbl}: </span>` : ""}
+						${totalPart}
+						${ptTarget}
+						<span class="all-rolls ve-muted">${fullHtml}</span>
+						${message ? `<span class="message">${message}</span>` : ""}
+					</div>
+					<div class="out-roll-item-button-wrp">${btnCopyToInput}</div>
+				</div>`
+					.appendTo(eleOut);
 
 				Renderer.dice._scrollBottom();
 			}
@@ -755,7 +769,7 @@ Renderer.dice = {
 			return result;
 		} else {
 			if (!opts.isHidden) {
-				$out.append(`<div class="out-roll-item">Invalid input! Try &quot;/help&quot;</div>`);
+				eleOut.appends(`<div class="out-roll-item">Invalid input! Try &quot;/help&quot;</div>`);
 				Renderer.dice._scrollBottom();
 			}
 			return null;
@@ -768,18 +782,18 @@ Renderer.dice = {
 		if (!tree) return JqueryUtil.doToast({type: "danger", content: `Invalid roll input!`});
 
 		const title = (rolledBy.label || "").toTitleCase() || "Roll Dice";
-		const $dispDice = $(`<div class="p-2 bold ve-flex-vh-center rll__prompt-header">${tree.toString()}</div>`);
+		const dispDice = ee`<div class="p-2 bold ve-flex-vh-center rll__prompt-header">${tree.toString()}</div>`;
 		if (opts.isResultUsed) {
 			return InputUiUtil.pGetUserNumber({
 				title,
-				$elePre: $dispDice,
+				elePre: dispDice,
 			});
 		} else {
-			const {$modalInner} = UiUtil.getShowModal({
+			const {eleModalInner} = UiUtil.getShowModal({
 				title,
 				isMinHeight0: true,
 			});
-			$dispDice.appendTo($modalInner);
+			dispDice.appendTo(eleModalInner);
 			return null;
 		}
 	},
@@ -787,8 +801,8 @@ Renderer.dice = {
 	_showMessage (message, rolledBy) {
 		Renderer.dice._showBox();
 		Renderer.dice._checkHandleName(rolledBy.name);
-		const $out = Renderer.dice._$lastRolledBy;
-		$out.append(`<div class="out-roll-item out-roll-item--message">${message}</div>`);
+		const eleOut = Renderer.dice._eleLastRolledBy;
+		eleOut.appends(`<div class="out-roll-item out-roll-item--message">${message}</div>`);
 		Renderer.dice._scrollBottom();
 	},
 
@@ -907,9 +921,9 @@ Use <span class="out-roll-item-code">/macro list</span> to list saved macros.<br
 				case "/c":
 				case "/cls":
 				case "/clear":
-					Renderer.dice._$outRoll.empty();
-					Renderer.dice._$lastRolledBy.empty();
-					Renderer.dice._$lastRolledBy = null;
+					Renderer.dice._eleOutRoll.empty();
+					Renderer.dice._eleLastRolledBy.empty();
+					Renderer.dice._eleLastRolledBy = null;
 					return;
 
 				case "/iterroll": {
@@ -960,8 +974,8 @@ Use <span class="out-roll-item-code">/macro list</span> to list saved macros.<br
 		} else Renderer.dice._showMessage(`Macro <span class="out-roll-item-code">#${id}</span> not found`, Renderer.dice.SYSTEM_USER);
 	},
 
-	addRoll ({rolledBy, html, $ele}) {
-		if (html && $ele) throw new Error(`Must specify one of html or $ele!`);
+	addRoll ({rolledBy, html, ele}) {
+		if ([html, ele].filter(Boolean).length !== 1) throw new Error(`Must specify one of html or ele!`);
 
 		if (html != null && !html.trim()) return;
 
@@ -969,17 +983,17 @@ Use <span class="out-roll-item-code">/macro list</span> to list saved macros.<br
 		Renderer.dice._checkHandleName(rolledBy.name);
 
 		if (html) {
-			Renderer.dice._$lastRolledBy.append(`<div class="out-roll-item" title="${(rolledBy.name || "").qq()}">${html}</div>`);
+			Renderer.dice._eleLastRolledBy.appends(`<div class="out-roll-item" title="${(rolledBy.name || "").qq()}">${html}</div>`);
 		} else {
-			$$`<div class="out-roll-item" title="${(rolledBy.name || "").qq()}">${$ele}</div>`
-				.appendTo(Renderer.dice._$lastRolledBy);
+			ee`<div class="out-roll-item" title="${(rolledBy.name || "").qq()}">${ele}</div>`
+				.appendTo(Renderer.dice._eleLastRolledBy);
 		}
 
 		Renderer.dice._scrollBottom();
 	},
 
-	addElement ({rolledBy, html, $ele}) {
-		if (html && $ele) throw new Error(`Must specify one of html or $ele!`);
+	addElement ({rolledBy, html, ele}) {
+		if (html && ele) throw new Error(`Must specify one of html or ele!`);
 
 		if (html != null && !html.trim()) return;
 
@@ -987,20 +1001,20 @@ Use <span class="out-roll-item-code">/macro list</span> to list saved macros.<br
 		Renderer.dice._checkHandleName(rolledBy.name);
 
 		if (html) {
-			Renderer.dice._$lastRolledBy.append(`<div class="out-roll-item out-roll-item--message" title="${(rolledBy.name || "").qq()}">${html}</div>`);
+			Renderer.dice._eleLastRolledBy.appends(`<div class="out-roll-item out-roll-item--message" title="${(rolledBy.name || "").qq()}">${html}</div>`);
 		} else {
-			$$`<div class="out-roll-item out-roll-item--message" title="${(rolledBy.name || "").qq()}">${$ele}</div>`
-				.appendTo(Renderer.dice._$lastRolledBy);
+			ee`<div class="out-roll-item out-roll-item--message" title="${(rolledBy.name || "").qq()}">${ele}</div>`
+				.appendTo(Renderer.dice._eleLastRolledBy);
 		}
 
 		Renderer.dice._scrollBottom();
 	},
 
 	_checkHandleName (name) {
-		if (!Renderer.dice._$lastRolledBy || Renderer.dice._$lastRolledBy.attr("data-rollbox-last-rolled-by-name") !== name) {
-			Renderer.dice._$outRoll.prepend(`<div class="ve-muted out-roll-id">${name}</div>`);
-			Renderer.dice._$lastRolledBy = $(`<div class="out-roll-wrp" data-rollbox-last-rolled-by-name="${name.qq()}"></div>`);
-			Renderer.dice._$outRoll.prepend(Renderer.dice._$lastRolledBy);
+		if (!Renderer.dice._eleLastRolledBy || Renderer.dice._eleLastRolledBy.attr("data-rollbox-last-rolled-by-name") !== name) {
+			Renderer.dice._eleOutRoll.prepends(`<div class="ve-muted out-roll-id">${name}</div>`);
+			Renderer.dice._eleLastRolledBy = ee`<div class="out-roll-wrp" data-rollbox-last-rolled-by-name="${name.qq()}"></div>`;
+			Renderer.dice._eleOutRoll.prepends(Renderer.dice._eleLastRolledBy);
 		}
 	},
 };

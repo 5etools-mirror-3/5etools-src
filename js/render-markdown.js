@@ -1249,14 +1249,14 @@ RendererMarkdown.table = class {
 		const meta = opts.meta || {};
 
 		const subStack = [""];
-		RendererMarkdown.get().recursiveRender(tbl, subStack, meta, {suffix: "\n"});
+		RendererMarkdown.get().recursiveRender({type: "table", ...tbl}, subStack, meta, {suffix: "\n"});
 		return `\n${subStack.join("").trim()}\n\n`;
 	}
 };
 
 RendererMarkdown.tableGroup = class {
 	static getCompactRenderedString (tbl, opts = {}) {
-		return RendererMarkdown.table.getCompactRenderedString(tbl, opts);
+		return RendererMarkdown.table.getCompactRenderedString({type: "table", ...tbl}, opts);
 	}
 };
 

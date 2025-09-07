@@ -75,6 +75,7 @@ class BastionsPage extends ListPage {
 			dataProps: ["facility"],
 
 			bookViewOptions: {
+				nameSingular: "facility",
 				namePlural: "facilities",
 				pageTitle: "Facilities Book View",
 			},

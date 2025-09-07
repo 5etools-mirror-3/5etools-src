@@ -70,6 +70,7 @@ class RacesPage extends ListPage {
 			dataProps: ["race"],
 
 			bookViewOptions: {
+				nameSingular: "species",
 				namePlural: "species",
 				pageTitle: "Species Book View",
 			},

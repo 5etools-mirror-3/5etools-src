@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.11.1"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.11.2"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -1192,8 +1192,10 @@ class ElementUtil {
 	 *
 	 * @property {function(string): ?HTMLElementExtended} find
 	 * @property {function(string): Array<HTMLElementExtended>} findAll
+	 * @property {function(string): ?HTMLElementExtended} next
 	 *
 	 * @property {function(HTMLElement|string): HTMLElementExtended} appends
+	 * @property {function(HTMLElement|string): HTMLElementExtended} prepends
 	 * @property {function(HTMLElement): HTMLElementExtended} appendTo
 	 * @property {function(HTMLElement): HTMLElementExtended} prependTo
 	 * @property {function(HTMLElement|string): HTMLElementExtended} aftere
@@ -1202,7 +1204,7 @@ class ElementUtil {
 	 * @property {function(string): HTMLElementExtended} addClass
 	 * @property {function(string): HTMLElementExtended} removeClass
 	 * @property {function(string, ?boolean): HTMLElementExtended} toggleClass
-	 * @property {function(string): HTMLElementExtended} hasClass
+	 * @property {function(string): boolean} hasClass
 	 *
 	 * @property {function(): HTMLElementExtended} showVe
 	 * @property {function(): HTMLElementExtended} hideVe
@@ -1246,6 +1248,10 @@ class ElementUtil {
 	 * @property {function(): HTMLElementExtended} focuse
 	 * @property {function(): HTMLElementExtended} selecte
 	 * @property {function(): HTMLElementExtended} blure
+	 *
+	 * @property {function(?number): HTMLElementExtended} scrollTope
+	 *
+	 * @property {function(string): boolean} is
 	 *
 	 * @return {HTMLElementExtended}
 	 */
@@ -1332,7 +1338,10 @@ class ElementUtil {
 
 		ele.find = ele.find || ElementUtil._find.bind(ele);
 		ele.findAll = ele.findAll || ElementUtil._findAll.bind(ele);
+		ele.next = ele.next || ElementUtil._next.bind(ele);
+		ele.nextAll = ele.nextAll || ElementUtil._nextAll.bind(ele);
 		ele.appends = ele.appends || ElementUtil._appends.bind(ele);
+		ele.prepends = ele.prepends || ElementUtil._prepends.bind(ele);
 		ele.appendTo = ele.appendTo || ElementUtil._appendTo.bind(ele);
 		ele.prependTo = ele.prependTo || ElementUtil._prependTo.bind(ele);
 		ele.aftere = ele.aftere || ElementUtil._aftere.bind(ele);
@@ -1372,6 +1381,8 @@ class ElementUtil {
 		ele.focuse = ele.focuse || ElementUtil._focuse.bind(ele);
 		ele.selecte = ele.selecte || ElementUtil._selecte.bind(ele);
 		ele.blure = ele.blure || ElementUtil._blure.bind(ele);
+		ele.scrollTope = ele.scrollTope || ElementUtil._scrollTope.bind(ele);
+		ele.is = ele.is || ElementUtil._is.bind(ele);
 
 		return ele;
 	}
@@ -1409,6 +1420,24 @@ class ElementUtil {
 	}
 
 	/** @this {HTMLElementExtended} */
+	static _next (selector) {
+		let nxt = this.nextElementSibling;
+		while (nxt && !nxt.matches(selector)) nxt = nxt.nextElementSibling;
+		return nxt ? e_({ele: nxt}) : null;
+	}
+
+	/** @this {HTMLElementExtended} */
+	static _nextAll () {
+		const out = [];
+		let tmp = this;
+		while (tmp.nextElementSibling) {
+			out.push(e_({ele: tmp.nextElementSibling}));
+			tmp = tmp.nextElementSibling;
+		}
+		return out;
+	}
+
+	/** @this {HTMLElementExtended} */
 	static _appends (child) {
 		if (typeof child === "string") child = ee`${child}`;
 
@@ -1416,6 +1445,17 @@ class ElementUtil {
 		if (child instanceof $) throw new Error(`Unhandled jQuery instance!`); // TODO(jquery) migrate
 
 		this.appendChild(child);
+		return this;
+	}
+
+	/** @this {HTMLElementExtended} */
+	static _prepends (child) {
+		if (typeof child === "string") child = ee`${child}`;
+
+		// eslint-disable-next-line vet-jquery/jquery
+		if (child instanceof $) throw new Error(`Unhandled jQuery instance!`); // TODO(jquery) migrate
+
+		this.prepend(child);
 		return this;
 	}
 
@@ -1478,8 +1518,7 @@ class ElementUtil {
 
 	/** @this {HTMLElementExtended} */
 	static _hasClass (clazz) {
-		this.classList.contains(clazz);
-		return this;
+		return this.classList.contains(clazz);
 	}
 
 	/** @this {HTMLElementExtended} */
@@ -1677,6 +1716,26 @@ class ElementUtil {
 	static _blure () {
 		this.blur();
 		return this;
+	}
+
+	/* -------------------------------------------- */
+
+	/** @this {HTMLElementExtended} */
+	static _scrollTope (val) {
+		this.scrollTop = val;
+		return this;
+	}
+
+	/* -------------------------------------------- */
+
+	/** @this {HTMLElementExtended} */
+	static _is (nodeTypeOrEle) {
+		// eslint-disable-next-line vet-jquery/jquery
+		if (nodeTypeOrEle instanceof $) throw new Error(`Unhandled jQuery instance!`); // TODO(jquery) migrate
+
+		if (typeof nodeTypeOrEle === "string") return this.nodeName.toLowerCase() === nodeTypeOrEle.toLowerCase();
+
+		return nodeTypeOrEle === this;
 	}
 
 	/* -------------------------------------------- */
@@ -8574,8 +8633,8 @@ Map.prototype.getOrSet || Object.defineProperty(Map.prototype, "getOrSet", {
  *
  * @param opts Options object.
  * @param opts.hashKey to use in the URL so that forward/back can open/close the view
- * @param opts.$btnOpen jQuery-selected button to bind click open/close
- * @param [opts.$eleNoneVisible] "error" message to display if user has not selected any viewable content
+ * @param opts.btnOpen jQuery-selected button to bind click open/close
+ * @param [opts.eleNoneVisible] "error" message to display if user has not selected any viewable content
  * @param opts.pageTitle Title.
  * @param opts.state State to modify when opening/closing.
  * @param opts.stateKey Key in state to set true/false when opening/closing.
@@ -8597,17 +8656,17 @@ class BookModeViewBase {
 
 	constructor (opts) {
 		opts = opts || {};
-		const {$btnOpen, state} = opts;
+		const {btnOpen, state} = opts;
 
 		if (this._hashKey && this._stateKey) throw new Error(`Only one of "hashKey" and "stateKey" may be specified!`);
 
 		this._state = state;
-		this._$btnOpen = $btnOpen;
+		this._btnOpen = e_({ele: btnOpen});
 
 		this._isActive = false;
-		this._$wrpBook = null;
+		this._wrpBook = null;
 
-		this._$btnOpen.off("click").on("click", () => this.setStateOpen());
+		this._btnOpen.onn("click", () => this.setStateOpen());
 	}
 
 	/* -------------------------------------------- */
@@ -8624,67 +8683,75 @@ class BookModeViewBase {
 
 	/* -------------------------------------------- */
 
-	_$getWindowHeaderLhs () {
-		return $(`<div class="ve-flex-v-center"></div>`);
+	_getWindowHeaderLhs () {
+		return ee`<div class="ve-flex-v-center"></div>`;
 	}
 
-	_$getBtnWindowClose () {
-		return $(`<button class="ve-btn ve-btn-xs ve-btn-danger br-0 bt-0 btl-0 btr-0 bbr-0 bbl-0 h-20p" title="Close"><span class="glyphicon glyphicon-remove"></span></button>`)
-			.click(() => this.setStateClosed());
+	_getBtnWindowClose () {
+		return ee`<button class="ve-btn ve-btn-xs ve-btn-danger br-0 bt-0 btl-0 btr-0 bbr-0 bbl-0 h-20p" title="Close"><span class="glyphicon glyphicon-remove"></span></button>`
+			.onn("click", () => this.setStateClosed());
 	}
 
 	/* -------------------------------------------- */
 
-	async _$pGetWrpControls ({$wrpContent}) {
-		const $wrp = $(`<div class="w-100 ve-flex-col no-shrink no-print"></div>`);
+	async _pGetWrpControls ({wrpContent}) {
+		const wrp = ee`<div class="w-100 ve-flex-col no-shrink no-print"></div>`;
 
-		if (!this._hasPrintColumns) return $wrp;
+		if (!this._hasPrintColumns) return {wrp};
 
-		$wrp.addClass("px-2 mt-2 bb-1p pb-1");
+		["px-2", "mt-2", "bb-1p", "pb-1"].forEach(clz => wrp.addClass(clz));
 
 		const onChangeColumnCount = (cols) => {
-			$wrpContent.toggleClass(`bkmv__wrp--columns-1`, cols === 1);
-			$wrpContent.toggleClass(`bkmv__wrp--columns-2`, cols === 2);
+			wrpContent.toggleClass(`bkmv__wrp--columns-1`, cols === 1);
+			wrpContent.toggleClass(`bkmv__wrp--columns-2`, cols === 2);
 		};
 
 		const lastColumns = StorageUtil.syncGetForPage(BookModeViewBase._BOOK_VIEW_COLUMNS_K);
 
-		const $selColumns = $(`<select class="form-control input-sm">
+		const onChangeSelColumns = () => {
+			const val = Number(selColumns.val());
+			if (val === 0) onChangeColumnCount(2);
+			else onChangeColumnCount(1);
+
+			StorageUtil.syncSetForPage(BookModeViewBase._BOOK_VIEW_COLUMNS_K, val);
+		};
+
+		const selColumns = ee`<select class="form-control input-sm">
 			<option value="0">Two (book style)</option>
 			<option value="1">One</option>
-		</select>`)
-			.change(() => {
-				const val = Number($selColumns.val());
-				if (val === 0) onChangeColumnCount(2);
-				else onChangeColumnCount(1);
+		</select>`
+			.onn("change", () => onChangeSelColumns());
+		selColumns.val(`${lastColumns ?? 0}`);
+		onChangeSelColumns();
 
-				StorageUtil.syncSetForPage(BookModeViewBase._BOOK_VIEW_COLUMNS_K, val);
-			});
-		if (lastColumns != null) $selColumns.val(lastColumns);
-		$selColumns.change();
+		const wrpPrint = ee`<div class="w-100 ve-flex">
+			<div class="ve-flex-vh-center"><div class="mr-2 no-wrap help-subtle" title="Applied when printing the page.">Print columns:</div>${selColumns}</div>
+		</div>`.appendTo(wrp);
 
-		const $wrpPrint = $$`<div class="w-100 ve-flex">
-			<div class="ve-flex-vh-center"><div class="mr-2 no-wrap help-subtle" title="Applied when printing the page.">Print columns:</div>${$selColumns}</div>
-		</div>`.appendTo($wrp);
-
-		return {$wrp, $wrpPrint};
+		return {wrp, wrpPrint};
 	}
 
 	/* -------------------------------------------- */
 
-	_$getEleNoneVisible () { return null; }
+	_getEleNoneVisible () { return null; }
 
-	_$getBtnNoneVisibleClose () {
-		return $(`<button class="ve-btn ve-btn-default">Close</button>`)
-			.click(() => this.setStateClosed());
+	_getBtnNoneVisibleClose () {
+		return ee`<button class="ve-btn ve-btn-default">Close</button>`
+			.onn("click", () => this.setStateClosed());
 	}
 
 	/** @abstract */
-	async _pGetRenderContentMeta ({$wrpContent, $wrpContentOuter}) {
+	async _pGetRenderContentMeta ({wrpContent, wrpContentOuter}) {
 		return {cntSelectedEnts: 0, isAnyEntityRendered: false};
 	}
 
 	/* -------------------------------------------- */
+
+	async pInit () {
+		await this._pInit();
+	}
+
+	async _pInit () { /* Implement as required */ }
 
 	async pOpen () {
 		if (this._isActive) return;
@@ -8694,33 +8761,43 @@ class BookModeViewBase {
 		document.body.style.overflow = "hidden";
 		document.body.classList.add("bkmv-active");
 
-		const {$wrpContentOuter, $wrpContent} = await this._pGetContentElementMetas();
+		await this._pRender();
+	}
 
-		this._$wrpBook = $$`<div class="bkmv print__h-initial ve-flex-col print__ve-block">
-			<div class="bkmv__spacer-name no-print split-v-center no-shrink no-print">${this._$getWindowHeaderLhs()}${this._$getBtnWindowClose()}</div>
-			${(await this._$pGetWrpControls({$wrpContent})).$wrp}
-			${$wrpContentOuter}
+	_preRender () { /* Implement as required */ }
+
+	async _pRender () {
+		this._preRender();
+
+		const {wrpContentOuter, wrpContent} = await this._pGetContentElementMetas();
+
+		if (this._wrpBook) this._wrpBook.remove();
+
+		this._wrpBook = ee`<div class="bkmv print__h-initial ve-flex-col print__ve-block">
+			<div class="bkmv__spacer-name no-print split-v-center no-shrink no-print">${this._getWindowHeaderLhs()}${this._getBtnWindowClose()}</div>
+			${(await this._pGetWrpControls({wrpContent})).wrp}
+			${wrpContentOuter}
 		</div>`
 			.appendTo(document.body);
 	}
 
 	async _pGetContentElementMetas () {
-		const $wrpContent = $(`<div class="bkmv__scroller smooth-scroll ve-overflow-y-auto print__overflow-visible ${this._isColumns ? "bkmv__wrp" : "ve-flex-col"} w-100 min-h-0"></div>`);
+		const wrpContent = ee`<div class="bkmv__scroller smooth-scroll ve-overflow-y-auto print__overflow-visible ${this._isColumns ? "bkmv__wrp" : "ve-flex-col"} w-100 min-h-0"></div>`;
 
-		const $wrpContentOuter = $$`<div class="h-100 print__h-initial w-100 min-h-0 ve-flex-col print__ve-block">${$wrpContent}</div>`;
+		const wrpContentOuter = ee`<div class="h-100 print__h-initial w-100 min-h-0 ve-flex-col print__ve-block">${wrpContent}</div>`;
 
 		const out = {
-			$wrpContentOuter,
-			$wrpContent,
+			wrpContentOuter,
+			wrpContent,
 		};
 
-		const {cntSelectedEnts, isAnyEntityRendered} = await this._pGetRenderContentMeta({$wrpContent, $wrpContentOuter});
+		const {cntSelectedEnts, isAnyEntityRendered} = await this._pGetRenderContentMeta({wrpContent, wrpContentOuter});
 
-		if (isAnyEntityRendered) $wrpContentOuter.append($wrpContent);
+		if (isAnyEntityRendered) wrpContentOuter.appends(wrpContent);
 
 		if (cntSelectedEnts) return out;
 
-		$wrpContentOuter.append(this._$getEleNoneVisible());
+		wrpContentOuter.appends(this._getEleNoneVisible());
 
 		return out;
 	}
@@ -8731,7 +8808,7 @@ class BookModeViewBase {
 		document.body.style.overflow = "";
 		document.body.classList.remove("bkmv-active");
 
-		this._$wrpBook.remove();
+		this._wrpBook.remove();
 		this._isActive = false;
 	}
 
@@ -9108,16 +9185,29 @@ DatetimeUtil._SECS_PER_DAY = 86400;
 DatetimeUtil._SECS_PER_HOUR = 3600;
 DatetimeUtil._SECS_PER_MINUTE = 60;
 
-globalThis.EditorUtil = {
-	getTheme () {
+globalThis.EditorUtil = class {
+	static getTheme () {
 		const {isNight} = styleSwitcher.getSummary();
 		return isNight ? "ace/theme/tomorrow_night" : "ace/theme/textmate";
-	},
+	}
 
-	initEditor (id, additionalOpts = null) {
+	static _P_LOADING_ACE = null;
+
+	static async _pLoadAce () {
+		if (typeof ace !== "undefined") return;
+
+		return this._P_LOADING_ACE ||= (async () => {
+			await import("../lib/ace.js");
+			ace.config.set("basePath", "../lib");
+		})();
+	}
+
+	static async pInitEditor (eleOrId, additionalOpts = null) {
+		await this._pLoadAce();
+
 		additionalOpts = additionalOpts || {};
 
-		const editor = ace.edit(id);
+		const editor = ace.edit(eleOrId);
 		editor.setOptions({
 			theme: EditorUtil.getTheme(),
 			wrap: true,
@@ -9143,7 +9233,7 @@ globalThis.EditorUtil = {
 		styleSwitcher.addFnOnChange(() => editor.setOptions({theme: EditorUtil.getTheme()}));
 
 		return editor;
-	},
+	}
 };
 
 globalThis.BrowserUtil = class {

@@ -1436,6 +1436,16 @@
 	],
 	"status": [
 		{
+			"name": "Bloodied",
+			"source": "XPHB",
+			"page": 362,
+			"srd52": true,
+			"basicRules2024": true,
+			"entries": [
+				"A creature is Bloodied while it has half its {@variantrule Hit Points|XPHB} or fewer remaining."
+			]
+		},
+		{
 			"name": "Concentration",
 			"source": "PHB",
 			"page": 203,
@@ -1451,9 +1461,27 @@
 				{
 					"type": "list",
 					"items": [
-						"{@b Casting another spell that requires concentration.} You lose {@status concentration} on a spell if you cast another spell that requires {@status concentration}. You can't concentrate on two spells at once.",
-						"{@b Taking damage.} Whenever you take damage while you are {@status concentration||concentrating} on a spell, you must make a Constitution saving throw to maintain your {@status concentration}. The DC equals 10 or half the damage you take, whichever number is higher. If you take damage from multiple sources, such as an arrow and a dragon's breath, you make a separate saving throw for each source of damage.",
-						"{@b Being incapacitated or killed.} You lose {@status concentration} on a spell if you are {@condition incapacitated} or if you die."
+						{
+							"type": "entries",
+							"name": "Casting another spell that requires concentration",
+							"entries": [
+								"You lose {@status concentration} on a spell if you cast another spell that requires {@status concentration}. You can't concentrate on two spells at once."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Taking damage",
+							"entries": [
+								"Whenever you take damage while you are {@status concentration||concentrating} on a spell, you must make a Constitution saving throw to maintain your {@status concentration}. The DC equals 10 or half the damage you take, whichever number is higher. If you take damage from multiple sources, such as an arrow and a dragon's breath, you make a separate saving throw for each source of damage."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Being incapacitated or killed",
+							"entries": [
+								"You lose {@status concentration} on a spell if you are {@condition incapacitated} or if you die."
+							]
+						}
 					]
 				},
 				"The DM might also decide that certain environmental phenomena, such as a wave crashing over you while you're on a storm-tossed ship, require you to succeed on a {@dc 10} Constitution saving throw to maintain {@status concentration} on a spell."

@@ -1265,42 +1265,6 @@
 			"migrationVersion": 3
 		},
 		{
-			"name": "Path of the Zealot",
-			"shortName": "Zealot",
-			"source": "XPHB",
-			"className": "Barbarian",
-			"classSource": "XPHB",
-			"advancement": [
-				{
-					"type": "ScaleValue",
-					"configuration": {
-						"identifier": "pool",
-						"type": "dice",
-						"scale": {
-							"3": {
-								"number": 4,
-								"faces": 12
-							},
-							"6": {
-								"number": 5,
-								"faces": 12
-							},
-							"12": {
-								"number": 6,
-								"faces": 12
-							},
-							"17": {
-								"number": 7,
-								"faces": 12
-							}
-						}
-					},
-					"title": "Warrior of the Gods: Pool Size"
-				}
-			],
-			"migrationVersion": 3
-		},
-		{
 			"name": "Psi Warrior",
 			"shortName": "Psi Warrior",
 			"source": "XPHB",
@@ -3021,11 +2985,14 @@
 						"value": "30"
 					},
 					"healing": {
-						"number": 1,
 						"denomination": 8,
 						"types": [
 							"healing"
 						],
+						"custom": {
+							"enabled": true,
+							"formula": "(@scale.divine-spark.spark)d8 + @abilities.wis.mod"
+						},
 						"scaling": {
 							"number": 1
 						},
@@ -3064,6 +3031,10 @@
 					"damage": {
 						"parts": [
 							{
+								"custom": {
+									"enabled": true,
+									"formula": "(@scale.divine-spark.spark)d8 + @abilities.wis.mod"
+								},
 								"number": 1,
 								"denomination": 8,
 								"bonus": "@abilities.wis.mod",
@@ -3085,6 +3056,30 @@
 					}
 				}
 			],
+			"advancement": [
+				{
+					"type": "ScaleValue",
+					"title": "Divine Spark Die Count",
+					"configuration": {
+						"identifier": "spark",
+						"type": "number",
+						"scale": {
+							"2": {
+								"value": 1
+							},
+							"7": {
+								"value": 2
+							},
+							"13": {
+								"value": 3
+							},
+							"18": {
+								"value": 4
+							}
+						}
+					}
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -3096,7 +3091,7 @@
 			"activities": [
 				{
 					"name": "Turn Undead",
-					"type": "utility",
+					"type": "save",
 					"activation": {
 						"type": "action"
 					},
@@ -3123,6 +3118,17 @@
 						"units": "ft",
 						"value": "30"
 					},
+					"damage": {
+						"onSave": "none"
+					},
+					"save": {
+						"ability": [
+							"wis"
+						],
+						"dc": {
+							"calculation": "spellcasting"
+						}
+					},
 					"effects": [
 						{
 							"foundryId": "turnUndead"
@@ -3140,7 +3146,8 @@
 					"statuses": [
 						"frightened",
 						"incapacitated"
-					]
+					],
+					"description": "For that duration, it tries to move as far from you as it can on its turns. This effect ends early on the creature if it takes any damage, if you have the Incapacitated condition, or if you die."
 				}
 			],
 			"migrationVersion": 3
@@ -4048,6 +4055,7 @@
 					},
 					"target": {
 						"affects": {
+							"count": "1",
 							"type": "object"
 						}
 					},
@@ -4073,119 +4081,55 @@
 							}
 						}
 					]
-				},
-				{
-					"foundryId": "martialArts",
-					"name": "Monk Attack",
-					"type": "attack",
-					"activation": {
-						"type": "action",
-						"value": 1
-					},
-					"target": {
-						"affects": {
-							"count": "1",
-							"type": "creature"
-						}
-					},
-					"range": {
-						"value": "5",
-						"units": "ft"
-					},
-					"attack": {
-						"ability": "dex",
-						"type": {
-							"value": "melee",
-							"classification": "weapon"
-						}
-					},
-					"damage": {
-						"parts": [
-							{
-								"custom": {
-									"enabled": true,
-									"formula": "@scale.monk.die + @mod"
-								}
-							}
-						]
-					}
 				}
 			],
 			"effects": [
 				{
 					"foundryId": "martialArts",
+					"name": "Dexterous Attacks & Martial Arts Damage",
 					"type": "enchantment",
 					"disabled": true,
-					"transfer": true
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.properties",
+							"mode": "ADD",
+							"value": "fin"
+						},
+						{
+							"key": "system.damage.base.custom.enabled",
+							"mode": "OVERRIDE",
+							"value": true
+						},
+						{
+							"key": "system.damage.base.custom.formula",
+							"mode": "OVERRIDE",
+							"value": "@scale.monk.die + @mod"
+						},
+						{
+							"key": "name",
+							"mode": "OVERRIDE",
+							"value": "{} (Martial Arts)"
+						}
+					],
+					"descriptionEntries": [
+						{
+							"type": "entries",
+							"name": "Martial Arts Die",
+							"entries": [
+								"You can roll [[lookup @scale.monk.die]] in place of the normal damage of your Unarmed Strike or Monk weapons. This die changes as you gain Monk levels, as shown in the Martial Arts column of the Monk Features table."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Dexterous Attacks",
+							"entries": [
+								"You can use your Dexterity modifier instead of your Strength modifier for the attack and damage rolls of your Unarmed Strikes and Monk weapons. In addition, when you use the Grapple or Shove option of your Unarmed Strike, you can use your Dexterity modifier instead of your Strength modifier to determine the save DC."
+							]
+						}
+					]
 				}
 			],
-			"subEntities": {
-				"item": [
-					{
-						"name": "Unarmed Strike (Monk)",
-						"source": "XPHB",
-						"page": 100,
-						"srd52": true,
-						"type": "M",
-						"rarity": "none",
-						"weaponCategory": "simple",
-						"entries": [
-							{
-								"type": "quote",
-								"entries": [
-									"Tether even a roasted chicken."
-								],
-								"by": "Yamamoto Tsunetomo",
-								"from": "Hagakure Kikigaki"
-							}
-						],
-						"foundrySystem": {
-							"equipped": true
-						},
-						"foundryActivities": [
-							{
-								"foundryId": "martialArts",
-								"name": "Monk Attack",
-								"type": "attack",
-								"activation": {
-									"type": "action",
-									"value": 1
-								},
-								"target": {
-									"affects": {
-										"count": "1",
-										"type": "creature"
-									}
-								},
-								"range": {
-									"value": "5",
-									"units": "ft"
-								},
-								"attack": {
-									"ability": "dex",
-									"type": {
-										"value": "melee",
-										"classification": "weapon"
-									}
-								},
-								"damage": {
-									"parts": [
-										{
-											"custom": {
-												"enabled": true,
-												"formula": "@scale.monk.die + @mod"
-											},
-											"types": [
-												"bludgeoning"
-											]
-										}
-									]
-								}
-							}
-						]
-					}
-				]
-			},
 			"migrationVersion": 3
 		},
 		{
@@ -6856,31 +6800,6 @@
 					}
 				}
 			],
-			"chooseSystem": [
-				{
-					"name": "Necrotic Damage",
-					"system": {
-						"damage.parts": [
-							[
-								"1d6 + floor(@classes.barbarian.levels / 2)",
-								"necrotic"
-							]
-						]
-					}
-				},
-				{
-					"name": "Radiant Damage",
-					"system": {
-						"damage.parts": [
-							[
-								"1d6 + floor(@classes.barbarian.levels / 2)",
-								"radiant"
-							]
-						]
-					}
-				}
-			],
-			"isChooseSystemRenderEntries": true,
 			"migrationVersion": 3
 		},
 		{
@@ -7665,7 +7584,7 @@
 							{
 								"custom": {
 									"enabled": true,
-									"formula": "@scale.order-domain.divine-strike"
+									"formula": "@scale.trickery-domain.divine-strike"
 								},
 								"types": [
 									"poison"
@@ -11691,6 +11610,8 @@
 				{
 					"foundryId": "rageOfTheWilds",
 					"name": "Rage of the Bear",
+					"disabled": true,
+					"transfer": true,
 					"duration": {
 						"rounds": 1
 					},
@@ -12179,7 +12100,7 @@
 			"subclassSource": "XPHB",
 			"level": 3,
 			"system": {
-				"uses.max": "@scale.zealot.pool.number",
+				"uses.max": "@scale.warrior-of-the-gods.pool",
 				"uses.recovery": [
 					{
 						"period": "lr",
@@ -12206,7 +12127,7 @@
 						],
 						"scaling": {
 							"allowed": true,
-							"max": "@scale.zealot.pool.number"
+							"max": "@item.uses.value"
 						}
 					},
 					"target": {
@@ -12224,6 +12145,30 @@
 						},
 						"scaling": {
 							"mode": "whole"
+						}
+					}
+				}
+			],
+			"advancement": [
+				{
+					"type": "ScaleValue",
+					"title": "Pool Size",
+					"configuration": {
+						"identifier": "pool",
+						"type": "number",
+						"scale": {
+							"3": {
+								"value": 4
+							},
+							"6": {
+								"value": 5
+							},
+							"12": {
+								"value": 6
+							},
+							"17": {
+								"value": 7
+							}
 						}
 					}
 				}
@@ -13812,7 +13757,7 @@
 							{
 								"custom": {
 									"enabled": true,
-									"formula": "@scale.land.lands-aid"
+									"formula": "@scale.circle-of-the-land.lands-aid"
 								},
 								"types": [
 									"necrotic"
@@ -13856,7 +13801,7 @@
 						],
 						"custom": {
 							"enabled": true,
-							"formula": "@scale.land.lands-aid"
+							"formula": "@scale.circle-of-the-land.lands-aid"
 						},
 						"scaling": {
 							"number": 1
@@ -14335,6 +14280,7 @@
 			"level": 3,
 			"activities": [
 				{
+					"name": "Manifest Ocean Spray",
 					"type": "save",
 					"activation": {
 						"type": "bonus"
@@ -14359,7 +14305,7 @@
 						"template": {
 							"units": "ft",
 							"type": "radius",
-							"size": "@scale.sea.wrath-range"
+							"size": "@scale.circle-of-the-sea.wrath-range"
 						},
 						"affects": {
 							"choice": true,
@@ -14388,7 +14334,12 @@
 						"dc": {
 							"calculation": "spellcasting"
 						}
-					}
+					},
+					"effects": [
+						{
+							"foundryId": "wrathOfTheSea"
+						}
+					]
 				},
 				{
 					"name": "Bonus Action Save",
@@ -14404,7 +14355,7 @@
 						"template": {
 							"units": "ft",
 							"type": "radius",
-							"size": "@scale.sea.wrath-range"
+							"size": "@scale.circle-of-the-sea.wrath-range"
 						},
 						"affects": {
 							"choice": true,
@@ -14434,6 +14385,18 @@
 							"calculation": "spellcasting"
 						}
 					}
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "wrathOfTheSea",
+					"name": "Manifesting Ocean Spray",
+					"disabled": true,
+					"transfer": true,
+					"duration": {
+						"seconds": 600
+					},
+					"description": "A [[lookup @scale.circle-of-the-sea.wrath-range]]-ft.  Emanation of ocean spray surrounds you for 10 minutes. It ends early if you dismiss it (no action required), manifest it again, or have the Incapacitated condition."
 				}
 			],
 			"migrationVersion": 3
@@ -14472,7 +14435,7 @@
 						"template": {
 							"units": "ft",
 							"type": "radius",
-							"size": "@scale.sea.wrath-range"
+							"size": "@scale.circle-of-the-sea.wrath-range"
 						},
 						"affects": {
 							"choice": true,
@@ -14573,7 +14536,7 @@
 						"template": {
 							"units": "ft",
 							"type": "radius",
-							"size": "@scale.sea.wrath-range"
+							"size": "@scale.circle-of-the-sea.wrath-range"
 						},
 						"affects": {
 							"choice": true,
@@ -14641,7 +14604,7 @@
 							"units": "ft",
 							"count": "2",
 							"type": "radius",
-							"size": "@scale.sea.wrath-range"
+							"size": "@scale.circle-of-the-sea.wrath-range"
 						},
 						"affects": {
 							"choice": true,
@@ -14748,7 +14711,7 @@
 							{
 								"custom": {
 									"enabled": true,
-									"formula": "@scale.stars.die + @abilities.wis.mod"
+									"formula": "@scale.circle-of-the-stars.die + @abilities.wis.mod"
 								},
 								"types": [
 									"radiant"
@@ -14792,7 +14755,7 @@
 						],
 						"custom": {
 							"enabled": true,
-							"formula": "@scale.stars.die + @abilities.wis.mod"
+							"formula": "@scale.circle-of-the-stars.die + @abilities.wis.mod"
 						},
 						"scaling": {
 							"number": 1
@@ -15235,10 +15198,11 @@
 			"level": 18,
 			"activities": [
 				{
+					"name": "Heroic Rally",
 					"type": "heal",
 					"activation": {
-						"type": "",
-						"condition": "At the start of each of your turns"
+						"type": "turnStart",
+						"condition": "if Bloodied"
 					},
 					"target": {
 						"affects": {
@@ -15251,12 +15215,34 @@
 						],
 						"custom": {
 							"enabled": true,
-							"formula": "5"
+							"formula": "5 + @abilities.con.mod"
 						},
 						"scaling": {
 							"number": 1
 						}
 					}
+				}
+			],
+			"effects": [
+				{
+					"name": "Defy Death",
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.attributes.death.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						}
+					],
+					"descriptionEntries": [
+						{
+							"type": "entries",
+							"name": "Note:",
+							"entries": [
+								"This effect does not modify the behavior of rolling an 18 or 19 on a Death Saving Throw."
+							]
+						}
+					]
 				}
 			],
 			"migrationVersion": 3
@@ -15275,14 +15261,29 @@
 					"type": "utility",
 					"activation": {
 						"type": "bonus"
+					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "object",
+							"special": "bonded weapon"
+						}
+					},
+					"range": {
+						"units": "any",
+						"special": "same plane of existence"
 					}
 				},
 				{
 					"name": "Bond with Weapon",
 					"type": "enchant",
 					"activation": {
-						"type": "hour",
-						"value": 1
+						"type": "shortRest",
+						"value": 1,
+						"condition": "or 1 Hour"
+					},
+					"duration": {
+						"units": "disp"
 					},
 					"consumption": {
 						"targets": [
@@ -15292,7 +15293,18 @@
 							}
 						]
 					},
+					"target": {
+						"affects": {
+							"count": "1",
+							"type": "object",
+							"special": "currently unbound weapon"
+						}
+					},
+					"range": {
+						"units": "touch"
+					},
 					"restrictions": {
+						"allowMagical": true,
 						"type": "weapon"
 					},
 					"effects": [
@@ -15314,7 +15326,8 @@
 							"mode": "ADD",
 							"value": ", War Bonded"
 						}
-					]
+					],
+					"description": "Once you have bonded a weapon to yourself, you can't be disarmed of that weapon unless you have the Incapacitated condition. If it is on the same plane of existence, you can summon that weapon as a Bonus Action, causing it to teleport instantly to your hand."
 				}
 			],
 			"migrationVersion": 3
@@ -16526,7 +16539,7 @@
 			"subclassSource": "XPHB",
 			"level": 6,
 			"system": {
-				"uses.max": "(max(1,@abilities.wis.mod))",
+				"uses.max": "max(1,@abilities.wis.mod)",
 				"uses.recovery": [
 					{
 						"period": "lr",
@@ -16559,7 +16572,7 @@
 						],
 						"custom": {
 							"enabled": true,
-							"formula": "@scale.monk.die"
+							"formula": "@scale.monk.die + @abilities.wis.mod"
 						},
 						"scaling": {
 							"number": 1
@@ -17410,6 +17423,8 @@
 			"effects": [
 				{
 					"foundryId": "livingLegend",
+					"disabled": true,
+					"transfer": true,
 					"duration": {
 						"seconds": 600
 					},
@@ -19760,6 +19775,8 @@
 				{
 					"foundryId": "bastionOfLaw",
 					"name": "Warded by Law",
+					"disabled": true,
+					"transfer": true,
 					"description": "When the warded creature takes damage, it can expend a number of those dice, roll them, and reduce the damage taken by the total rolled on those dice. The ward lasts until you finish a Long Rest or until you use this feature again."
 				}
 			],
@@ -21267,7 +21284,13 @@
 			"subclassSource": "XPHB",
 			"level": 3,
 			"system": {
-				"uses.max": "(2 * @classes.wizard.levels) + @abilities.int.mod"
+				"uses.max": "(2 * @classes.wizard.levels) + @abilities.int.mod",
+				"uses.recovery": [
+					{
+						"period": "lr",
+						"type": "loseAll"
+					}
+				]
 			},
 			"activities": [
 				{
@@ -21286,7 +21309,7 @@
 							},
 							{
 								"type": "itemUses",
-								"value": "-((@classes.wizard.levels * 2) + @abilities.int.mod)"
+								"value": "-@item.uses.max"
 							}
 						]
 					},
@@ -21298,6 +21321,11 @@
 							}
 						],
 						"max": "1"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
 					}
 				},
 				{
@@ -21310,7 +21338,7 @@
 					"consumption": {
 						"scaling": {
 							"allowed": true,
-							"max": "@classes.wizard.levels + @abilities.cha.mod"
+							"max": "@item.uses.value"
 						},
 						"targets": [
 							{
@@ -21339,9 +21367,10 @@
 						"targets": [
 							{
 								"type": "itemUses",
-								"value": "-(@scaling * 2)",
+								"value": "-2",
 								"scaling": {
-									"mode": "amount"
+									"mode": "amount",
+									"formula": "-2"
 								}
 							}
 						]
@@ -21370,9 +21399,10 @@
 							},
 							{
 								"type": "itemUses",
-								"value": "-(@scaling * 2)",
+								"value": "-2",
 								"scaling": {
-									"mode": "amount"
+									"mode": "amount",
+									"formula": "-2"
 								}
 							}
 						]
@@ -21400,7 +21430,7 @@
 					"consumption": {
 						"scaling": {
 							"allowed": true,
-							"max": "@classes.wizard.levels + @abilities.cha.mod"
+							"max": "(2 * @classes.wizard.levels) + @abilities.int.mod"
 						},
 						"targets": [
 							{

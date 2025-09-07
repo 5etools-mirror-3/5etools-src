@@ -69,14 +69,14 @@ export class ConverterUi extends BaseComponent {
 		this._state.hasAppended = false;
 		// endregion
 
-		this._editorIn = EditorUtil.initEditor("converter_input");
+		this._editorIn = await EditorUtil.pInitEditor("converter_input");
 		try {
 			const prevInput = await StorageUtil.pGetForPage(ConverterUi.STORAGE_INPUT);
 			if (prevInput) this._editorIn.setValue(prevInput, -1);
 		} catch (ignored) { setTimeout(() => { throw ignored; }); }
 		this._editorIn.on("change", () => this._saveInputDebounced());
 
-		this._editorOut = EditorUtil.initEditor("converter_output", {readOnly: true, mode: "ace/mode/json"});
+		this._editorOut = await EditorUtil.pInitEditor("converter_output", {readOnly: true, mode: "ace/mode/json"});
 
 		$(`#editable`).click(() => {
 			this._outReadOnly = false;
