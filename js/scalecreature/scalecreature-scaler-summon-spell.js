@@ -4,7 +4,7 @@ export class ScaleSpellSummonedCreature extends ScaleSummonedCreature {
 	static async scale (mon, toSpellLevel) {
 		mon = MiscUtil.copyFast(mon);
 
-		if (!mon.summonedBySpell || mon.summonedBySpellLevel == null) return mon;
+		if (mon.summonedBySpellLevel == null) return mon;
 
 		ScaleSpellSummonedCreature._WALKER = ScaleSpellSummonedCreature._WALKER || MiscUtil.getWalker({keyBlocklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST});
 
