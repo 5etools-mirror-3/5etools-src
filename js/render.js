@@ -2351,7 +2351,7 @@ globalThis.Renderer = function () {
 			}
 
 			default: {
-				const {name, source, displayText, others, page, hash, hashPreEncoded, pageHover, hashHover, hashPreEncodedHover, preloadId, linkText, subhashes, subhashesHover, isFauxPage, isAllowRedirect} = Renderer.utils.getTagMeta(tag, text);
+				const {name, source, displayText, others, page, hash, hashPreEncoded, pageHover, sourceHover, hashHover, hashPreEncodedHover, preloadId, linkText, subhashes, subhashesHover, isFauxPage, isAllowRedirect} = Renderer.utils.getTagMeta(tag, text);
 
 				const fauxEntry = {
 					type: "link",
@@ -2370,6 +2370,7 @@ globalThis.Renderer = function () {
 
 				if (hashPreEncoded != null) fauxEntry.href.hashPreEncoded = hashPreEncoded;
 				if (pageHover != null) fauxEntry.href.hover.page = pageHover;
+				if (sourceHover != null) fauxEntry.href.hover.source = sourceHover;
 				if (hashHover != null) fauxEntry.href.hover.hash = hashHover;
 				if (hashPreEncodedHover != null) fauxEntry.href.hover.hashPreEncoded = hashPreEncodedHover;
 				if (preloadId != null) fauxEntry.href.hover.preloadId = preloadId;
@@ -4724,16 +4725,16 @@ Renderer.utils = class {
 				if (others.length) {
 					const [subclassShortName, subclassSource, featurePart] = others;
 
-					if (subclassSource) out.source = subclassSource;
-
 					const classStateOpts = {
 						subclass: {
 							shortName: subclassShortName.trim(),
 							source: subclassSource
 								? subclassSource.trim()
-								: Parser.SRC_PHB,
+								: out.source,
 						},
 					};
+
+					out.sourceHover = classStateOpts.subclass.source;
 
 					// Don't include the feature part for hovers, as it is unsupported
 					const hoverSubhashObj = UrlUtil.unpackSubHash(UrlUtil.getClassesPageStatePart(classStateOpts));
@@ -10280,7 +10281,7 @@ Renderer.monster = class {
 
 		return e_({
 			tag: "select",
-			clazz: "input-xs form-control form-control--minimal w-initial inline-block ve-popwindow__hidden no-print",
+			clazz: "input-xs form-control form-control--minimal w-initial ve-inline-block ve-popwindow__hidden no-print",
 			name: "mon__sel-summon-spell-level",
 			children: [
 				e_({tag: "option", val: "-1", text: "\u2014"}),
@@ -10298,7 +10299,7 @@ Renderer.monster = class {
 
 		return e_({
 			tag: "select",
-			clazz: "input-xs form-control form-control--minimal w-initial inline-block ve-popwindow__hidden no-print",
+			clazz: "input-xs form-control form-control--minimal w-initial ve-inline-block ve-popwindow__hidden no-print",
 			name: "mon__sel-summon-class-level",
 			children: [
 				e_({tag: "option", val: "-1", text: "\u2014"}),
@@ -10809,33 +10810,32 @@ Renderer.monster = class {
 
 	/* -------------------------------------------- */
 
-	static getSpellcastingRenderedTraits (renderer, mon, displayAsProp = "trait") {
-		const out = [];
-		(mon.spellcasting || [])
-			.filter(it => (it.displayAs || "trait") === displayAsProp)
-			.forEach(entry => {
+	static getSpellcastingRenderedTraits (renderer, mon, {displayAsProp = "trait"} = {}) {
+		return (mon.spellcasting || [])
+			.filter(entry => (entry.displayAs || "trait") === displayAsProp)
+			.map(entry => {
 				const isLegendaryMythic = ["legendary", "mythic"].includes(displayAsProp);
 
 				// For legendary/mythic, assume list-item format
 				if (isLegendaryMythic) {
-					if (!entry.headerEntries?.length) return;
-					out.push({type: "item", name: entry.name, entries: entry.headerEntries});
-					return;
+					if (!entry.headerEntries?.length) return null;
+					return {type: "item", name: entry.name, entries: entry.headerEntries};
 				}
 
-				entry.type = entry.type || "spellcasting";
+				entry.type ||= "spellcasting";
 				const rendered = renderer.render(entry, 2);
-				if (!rendered.length) return;
-				out.push({name: entry.name, rendered});
-			});
-		return out;
+				if (!rendered.length) return null;
+
+				return {name: entry.name, rendered};
+			})
+			.filter(Boolean);
 	}
 
 	static getOrderedTraits (mon, {fnGetSpellTraits} = {}) {
 		let traits = mon.trait ? MiscUtil.copyFast(mon.trait) : null;
 
 		if (fnGetSpellTraits) {
-			const spellTraits = fnGetSpellTraits(mon, "trait");
+			const spellTraits = fnGetSpellTraits(mon, {displayAsProp: "trait"});
 			if (spellTraits.length) traits = traits ? traits.concat(spellTraits) : spellTraits;
 		}
 
@@ -10854,7 +10854,7 @@ Renderer.monster = class {
 
 		let spellActions;
 		if (fnGetSpellTraits) {
-			spellActions = fnGetSpellTraits(mon, prop);
+			spellActions = fnGetSpellTraits(mon, {displayAsProp: prop});
 		}
 
 		if (!spellActions?.length && !actions?.length) return null;

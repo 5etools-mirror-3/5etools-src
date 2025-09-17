@@ -250,17 +250,48 @@ export class ManageBrewUi {
 	async _pDoPullAll ({rdState, brews = null}) {
 		if (brews && !brews.length) return;
 
-		let cntPulls;
+		let brewDocsUpdated;
 		try {
-			cntPulls = await this._brewUtil.pPullAllBrews({brews});
+			brewDocsUpdated = await this._brewUtil.pPullAllBrews({brews});
 		} catch (e) {
 			JqueryUtil.doToast({content: `Update failed! ${VeCt.STR_SEE_CONSOLE}`, type: "danger"});
 			throw e;
 		}
-		if (!cntPulls) return JqueryUtil.doToast(`Update complete! No ${this._brewUtil.DISPLAY_NAME} was updated.`);
+		if (!brewDocsUpdated?.length) return JqueryUtil.doToast(`Update complete! No ${this._brewUtil.DISPLAY_NAME} was updated.`);
 
 		await this._pRender_pBrewList(rdState);
-		JqueryUtil.doToast(`Update complete! ${cntPulls} ${cntPulls === 1 ? `${this._brewUtil.DISPLAY_NAME} was` : `${this._brewUtil.DISPLAY_NAME_PLURAL} were`} updated.`);
+
+		const brewDocsUpdatedMetas = brewDocsUpdated
+			.map(brewDoc => {
+				return {
+					brewName: this.constructor._getBrewName(brewDoc),
+					sources: MiscUtil.copyFast(brewDoc.body._meta?.sources || []),
+				};
+			});
+
+		const htmlListRows = brewDocsUpdatedMetas
+			.sort((a, b) => SortUtil.ascSortLower(a.brewName, b.brewName))
+			.map(({sources}) => {
+				if (!sources.length) return "";
+
+				const htmlListItems = sources
+					.sort((a, b) => SortUtil.ascSortLower(a.full || SOURCE_UNKNOWN_FULL, b.full || SOURCE_UNKNOWN_FULL))
+					.map(brewSource => `<li>${brewSource.full || SOURCE_UNKNOWN_FULL}</li>`);
+
+				if (htmlListItems.length === 1) return htmlListItems[0];
+
+				return `<ul>${htmlListItems.join("")}</ul>`;
+			})
+			.filter(Boolean)
+			.join("");
+
+		JqueryUtil.doToast({
+			isAutoHide: false,
+			content: ee`<div>
+				<div>Update complete! ${brewDocsUpdated.length} ${brewDocsUpdated.length === 1 ? `${this._brewUtil.DISPLAY_NAME} was` : `${this._brewUtil.DISPLAY_NAME_PLURAL} were`} updated.</div>
+				${htmlListRows ? `<ul class="mt-2 mb-0">${htmlListRows}</ul>` : ""}
+			</div>`,
+		});
 	}
 
 	async pRender (wrp, {rdState = null} = {}) {

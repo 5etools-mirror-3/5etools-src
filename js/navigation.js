@@ -415,7 +415,7 @@ class NavBar {
 		a.href = href;
 		a.innerHTML = `${this._addElement_getDatePrefix({date: opts.date, isAddDateSpacer: opts.isAddDateSpacer})}${this._addElement_getSourcePrefix({source: opts.source})}${aText}${this._addElement_getSourceSuffix({source: opts.source})}`;
 		a.classList.add("nav__link");
-		if (opts.isInAccordion) a.classList.add(`nav2-accord__lnk-item`, `inline-block`, `w-100`);
+		if (opts.isInAccordion) a.classList.add(`nav2-accord__lnk-item`, `ve-inline-block`, `w-100`);
 
 		if (opts.isExternal) {
 			a.setAttribute("target", "_blank");
@@ -491,7 +491,7 @@ class NavBar {
 		parentNode.children[category] = node;
 	}
 
-	static _addElement_getDatePrefix ({date, isAddDateSpacer}) { return `${(date != null || isAddDateSpacer) ? `<div class="ve-small mr-2 page__nav-date inline-block ve-text-right inline-block" aria-hidden="true">${date || ""}</div>` : ""}`; }
+	static _addElement_getDatePrefix ({date, isAddDateSpacer}) { return `${(date != null || isAddDateSpacer) ? `<div class="ve-small mr-2 page__nav-date ve-inline-block ve-text-right inline-block" aria-hidden="true">${date || ""}</div>` : ""}`; }
 	static _addElement_getSourcePrefix ({source}) { return `${source != null ? `<div class="nav2-list__disp-source ${Parser.sourceJsonToSourceClassname(source)}"></div>` : ""}`; }
 
 	static _addElement_getSourceSuffix ({source}) {
@@ -625,7 +625,7 @@ class NavBar {
 
 				eleSpan.className = [
 					className,
-					"inline-block",
+					"ve-inline-block",
 					i ? null : "w-100 min-w-0",
 				]
 					.filter(Boolean)

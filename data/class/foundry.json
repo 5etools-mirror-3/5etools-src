@@ -1729,6 +1729,82 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Deflect Missiles",
+			"source": "PHB",
+			"className": "Monk",
+			"classSource": "PHB",
+			"level": 3,
+			"activities": [
+				{
+					"name": "Reduce",
+					"type": "heal",
+					"activation": {
+						"type": "reaction",
+						"condition": "When you are hit by a ranged weapon attack"
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"healing": {
+						"number": 1,
+						"denomination": 10,
+						"types": [
+							"healing"
+						],
+						"scaling": {
+							"number": 1
+						},
+						"bonus": "@abilities.dex.mod + @classes.monk.levels"
+					}
+				},
+				{
+					"name": "Redirect",
+					"type": "attack",
+					"activation": {
+						"type": "",
+						"condition": "If you reduce the damage to 0"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Ki"
+									}
+								}
+							}
+						]
+					},
+					"range": {
+						"value": "20",
+						"units": "ft"
+					},
+					"attack": {
+						"ability": "dex",
+						"type": {
+							"value": "ranged",
+							"classification": "weapon"
+						}
+					},
+					"damage": {
+						"parts": [
+							{
+								"custom": {
+									"enabled": true,
+									"formula": "1@scale.monk.die + @mod"
+								}
+							}
+						]
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Diamond Soul",
 			"source": "PHB",
 			"className": "Monk",

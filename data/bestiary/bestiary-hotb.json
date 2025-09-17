@@ -1,0 +1,1054 @@
+{
+	"_meta": {
+		"otherSources": {
+			"monster": {
+				"XMM": "HotB"
+			}
+		}
+	},
+	"monster": [
+		{
+			"name": "Curate",
+			"source": "HotB",
+			"size": [
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"L",
+				"G"
+			],
+			"ac": [
+				12
+			],
+			"hp": {
+				"average": 97,
+				"formula": "15d8 + 30"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 8,
+			"dex": 14,
+			"con": 14,
+			"int": 14,
+			"wis": 18,
+			"cha": 14,
+			"save": {
+				"int": "+5",
+				"wis": "+7",
+				"cha": "+5"
+			},
+			"skill": {
+				"persuasion": "+5",
+				"religion": "+5"
+			},
+			"passive": 14,
+			"conditionImmune": [
+				"charmed",
+				"frightened"
+			],
+			"languages": [
+				"Celestial",
+				"Common"
+			],
+			"cr": "6",
+			"trait": [
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The curate has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				},
+				{
+					"name": "Raise the Dead (1/Day)",
+					"entries": [
+						"In a ritual that takes 8 hours, the curate touches a creature that has died within the past 7 days. That creature returns to life with 1 {@variantrule Hit Points|XPHB|Hit Point}. The curate canʼt revive a creature that died of old age."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The curate makes three Celestial Radiance attacks."
+					]
+				},
+				{
+					"name": "Celestial Radiance",
+					"entries": [
+						"{@atkr m,r} {@hit 7}, reach 5 ft. or range 60 ft. {@h}18 ({@damage 4d8}) Radiant damage."
+					]
+				},
+				{
+					"name": "Healer's Touch (2/Day)",
+					"entries": [
+						"The curate touches another creature. That creature regains 13 ({@dice 2d8 + 4}) {@variantrule Hit Points|XPHB}."
+					]
+				}
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"CE"
+			],
+			"damageTags": [
+				"R"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Gray Ooze Glob",
+			"source": "HotB",
+			"size": [
+				"S"
+			],
+			"type": "ooze",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				9
+			],
+			"hp": {
+				"average": 19,
+				"formula": "3d6 + 9"
+			},
+			"speed": {
+				"walk": 10,
+				"climb": 10
+			},
+			"str": 12,
+			"dex": 6,
+			"con": 16,
+			"int": 1,
+			"wis": 6,
+			"cha": 2,
+			"skill": {
+				"stealth": "+2"
+			},
+			"senses": [
+				"Blindsight 60 ft."
+			],
+			"passive": 8,
+			"resist": [
+				"acid",
+				"cold",
+				"fire"
+			],
+			"conditionImmune": [
+				"blinded",
+				"charmed",
+				"deafened",
+				"exhaustion",
+				"frightened",
+				"grappled",
+				"prone",
+				"restrained"
+			],
+			"cr": "1/2",
+			"trait": [
+				{
+					"name": "Amorphous",
+					"entries": [
+						"The ooze can move through a space as narrow as 1 inch without expending extra movement to do so."
+					]
+				},
+				{
+					"name": "Corrosive Form",
+					"entries": [
+						"Whenever a creature hits the ooze with a melee attack, that creature takes 2 Acid damage."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Pseudopod",
+					"entries": [
+						"{@atkr m} {@hit 3}, reach 5 ft. {@h}10 ({@damage 2d8 + 1}) Acid damage."
+					]
+				}
+			],
+			"traitTags": [
+				"Amorphous"
+			],
+			"senseTags": [
+				"B"
+			],
+			"damageTags": [
+				"A"
+			],
+			"miscTags": [
+				"MA"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Ivlis",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HotB",
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"Human"
+				]
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 49,
+				"formula": "10d8 + 10"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 11,
+			"dex": 14,
+			"con": 12,
+			"int": 10,
+			"wis": 14,
+			"cha": 14,
+			"skill": {
+				"deception": "+4",
+				"persuasion": "+4"
+			},
+			"passive": 12,
+			"languages": [
+				"Common"
+			],
+			"cr": "2",
+			"gear": [
+				"leather armor|xphb"
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Ivlis makes three Chaos Blast attacks. She can replace one attack with a use of Sinister Command if available."
+					]
+				},
+				{
+					"name": "Chaos Blast",
+					"entries": [
+						"{@atkr m,r} {@hit 4}, reach 5 ft. or range 60 ft. {@h}7 ({@damage 2d6}) damage. Roll {@dice 1d4} to determine the damage type: 1, Acid; 2, Cold; 3, Fire; 4, Lightning."
+					]
+				},
+				{
+					"name": "Sinister Command {@recharge 5}",
+					"entries": [
+						"{@actSave wis} {@dc 12}, one creature Ivlis can see within 60 feet. {@actSaveFail} The target has the {@condition Charmed|XPHB} condition until the end of its next turn. While {@condition Charmed|XPHB}, the target has the {@condition Incapacitated|XPHB} condition."
+					]
+				}
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"conditionInflict": [
+				"charmed",
+				"incapacitated"
+			],
+			"savingThrowForced": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Jacko",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HotB",
+			"size": [
+				"S"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"Halfling"
+				]
+			},
+			"alignment": [
+				"C",
+				"N"
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 22,
+				"formula": "5d8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 16,
+			"con": 10,
+			"int": 12,
+			"wis": 14,
+			"cha": 16,
+			"skill": {
+				"perception": "+6",
+				"stealth": "+5"
+			},
+			"passive": 16,
+			"languages": [
+				"Common",
+				"Halfling"
+			],
+			"cr": "1",
+			"gear": [
+				{
+					"item": "dagger|xphb",
+					"quantity": 6
+				},
+				"disguise kit|xphb"
+			],
+			"trait": [
+				{
+					"name": "Quick Disguise",
+					"entries": [
+						"Jacko spends 1 minute to disguise himself as a different Humanoid of approximately his height and weight. While Jacko is disguised, a creature that takes the Study action to inspect Jacko's appearance can make a {@dc 13} Intelligence ({@skill Investigation|XPHB}) check, discerning his disguise on a successful check."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Jacko makes two Poison Dagger attacks."
+					]
+				},
+				{
+					"name": "Poison Dagger",
+					"entries": [
+						"{@atkr m,r} {@hit 5}, reach 5 ft. or range 20/60 ft. {@h}5 ({@damage 1d4 + 3}) Piercing damage plus 3 ({@damage 1d6}) Poison damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Cunning Action",
+					"entries": [
+						"Jacko takes the Dash, Disengage, or Hide action."
+					]
+				}
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"H"
+			],
+			"damageTags": [
+				"I",
+				"P"
+			],
+			"miscTags": [
+				"MA",
+				"MLW",
+				"RA",
+				"THW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Kuo-toa Marauder",
+			"source": "HotB",
+			"size": [
+				"M"
+			],
+			"type": "aberration",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				12
+			],
+			"hp": {
+				"average": 22,
+				"formula": "4d8 + 4"
+			},
+			"speed": {
+				"walk": 30,
+				"swim": 30
+			},
+			"str": 14,
+			"dex": 10,
+			"con": 12,
+			"int": 10,
+			"wis": 11,
+			"cha": 10,
+			"skill": {
+				"perception": "+4"
+			},
+			"senses": [
+				"Darkvision 120 ft.",
+				"Truesight 30 ft."
+			],
+			"passive": 14,
+			"languages": [
+				"Common",
+				"Undercommon"
+			],
+			"cr": "1/2",
+			"trait": [
+				{
+					"name": "Amphibious",
+					"entries": [
+						"The kuo-toa can breathe air and water."
+					]
+				},
+				{
+					"name": "Sunlight Sensitivity",
+					"entries": [
+						"While in sunlight, the kuo-toa has {@variantrule Disadvantage|XPHB} on ability checks and attack rolls."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Brine Slicer",
+					"entries": [
+						"{@atkr m} {@hit 4}, reach 5 ft. {@h}9 ({@damage 2d6 + 2}) Slashing damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Slippery",
+					"entries": [
+						"The kuo-toa takes the Disengage action."
+					]
+				}
+			],
+			"traitTags": [
+				"Amphibious",
+				"Sunlight Sensitivity"
+			],
+			"senseTags": [
+				"SD",
+				"U"
+			],
+			"languageTags": [
+				"C",
+				"U"
+			],
+			"damageTags": [
+				"S"
+			],
+			"miscTags": [
+				"MA"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Lizardfolk Warden",
+			"source": "HotB",
+			"size": [
+				"M"
+			],
+			"type": "elemental",
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				15
+			],
+			"hp": {
+				"average": 32,
+				"formula": "5d8 + 10"
+			},
+			"speed": {
+				"walk": 30,
+				"swim": 30
+			},
+			"str": 15,
+			"dex": 12,
+			"con": 14,
+			"int": 10,
+			"wis": 12,
+			"cha": 8,
+			"skill": {
+				"stealth": "+5",
+				"survival": "+5"
+			},
+			"passive": 11,
+			"languages": [
+				"Common",
+				"Draconic"
+			],
+			"cr": "1",
+			"gear": [
+				"shield|xphb"
+			],
+			"trait": [
+				{
+					"name": "Hold Breath",
+					"entries": [
+						"The lizardfolk can hold its breath for 15 minutes."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The lizardfolk makes one Bite attack and one Bone Pike attack."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atkr m} {@hit 4}, reach 5 ft. {@h}5 ({@damage 1d6 + 2}) Piercing damage plus 3 ({@damage 1d6}) Poison damage."
+					]
+				},
+				{
+					"name": "Bone Pike",
+					"entries": [
+						"{@atkr m} {@hit 4}, reach 10 ft. {@h}7 ({@damage 1d10 + 2}) Piercing damage."
+					]
+				},
+				{
+					"name": "Poison Spit",
+					"entries": [
+						"{@atkr r} {@hit 4}, range 60 ft. {@h}12 ({@damage 3d6 + 2}) Poison damage."
+					]
+				}
+			],
+			"traitTags": [
+				"Hold Breath"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DR"
+			],
+			"damageTags": [
+				"I",
+				"P"
+			],
+			"miscTags": [
+				"MA",
+				"MLW",
+				"RA",
+				"RCH"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Narthus",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HotB",
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"Human"
+				]
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 22,
+				"formula": "4d8 + 4"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 14,
+			"dex": 11,
+			"con": 12,
+			"int": 10,
+			"wis": 14,
+			"cha": 10,
+			"skill": {
+				"medicine": "+4",
+				"religion": "+2"
+			},
+			"passive": 12,
+			"languages": [
+				"Common"
+			],
+			"cr": "1",
+			"gear": [
+				"chain shirt|xphb",
+				"mace|xphb"
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Narthus makes two attacks using Vile Mace or Fateful Bolt in any combination."
+					]
+				},
+				{
+					"name": "Vile Mace",
+					"entries": [
+						"{@atkr m} {@hit 4}, reach 5 ft. {@h}5 ({@damage 1d6 + 2}) Bludgeoning damage plus 3 ({@damage 1d6}) Necrotic damage."
+					]
+				},
+				{
+					"name": "Fateful Bolt",
+					"entries": [
+						"{@atkr r} {@hit 4}, range 120 ft. {@h}8 ({@damage 1d12 + 2}) Necrotic damage, and the next attack roll made against the target before the end of Narthus's next turn has {@variantrule Advantage|XPHB}."
+					]
+				}
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"B",
+				"N"
+			],
+			"miscTags": [
+				"MA",
+				"MLW",
+				"RA"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Pral",
+			"source": "HotB",
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"Human"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				14
+			],
+			"hp": {
+				"average": 52,
+				"formula": "8d8 + 16"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 15,
+			"dex": 16,
+			"con": 14,
+			"int": 14,
+			"wis": 11,
+			"cha": 14,
+			"save": {
+				"dex": "+5"
+			},
+			"skill": {
+				"athletics": "+4",
+				"deception": "+4"
+			},
+			"passive": 10,
+			"languages": [
+				"Common"
+			],
+			"cr": "1",
+			"gear": [
+				"leather armor|xphb",
+				"light crossbow|xphb",
+				"rapier|xphb"
+			],
+			"action": [
+				{
+					"name": "Rapier",
+					"entries": [
+						"{@atkr m} {@hit 5}, reach 5 ft. {@h}7 ({@damage 1d8 + 3}) Piercing damage."
+					]
+				},
+				{
+					"name": "Light Crossbow",
+					"entries": [
+						"{@atkr r} {@hit 5}, range 80/320 ft. {@h}7 ({@damage 1d8 + 3}) Piercing damage."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Parry",
+					"entries": [
+						"{@actTrigger} Pral is hit with a melee attack roll while holding a weapon. {@actResponse} Pral adds 2 to his AC against that attack, potentially causing the attack to miss."
+					]
+				}
+			],
+			"actionTags": [
+				"Parry"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MA",
+				"MLW",
+				"RA",
+				"RNG"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Sprite Skirmisher",
+			"source": "HotB",
+			"size": [
+				"T"
+			],
+			"type": "fey",
+			"alignment": [
+				"N",
+				"G"
+			],
+			"ac": [
+				15
+			],
+			"hp": {
+				"average": 10,
+				"formula": "4d4"
+			},
+			"speed": {
+				"walk": 10,
+				"fly": 40
+			},
+			"str": 3,
+			"dex": 18,
+			"con": 10,
+			"int": 14,
+			"wis": 13,
+			"cha": 11,
+			"skill": {
+				"perception": "+3",
+				"stealth": "+8"
+			},
+			"passive": 13,
+			"languages": [
+				"Common",
+				"Elvish",
+				"Sylvan"
+			],
+			"cr": "1/4",
+			"action": [
+				{
+					"name": "Needle Sword",
+					"entries": [
+						"{@atkr m} {@hit 6}, reach 5 ft. {@h}6 ({@damage 1d4 + 4}) Piercing damage."
+					]
+				},
+				{
+					"name": "Enchanting Bow",
+					"entries": [
+						"{@atkr r} {@hit 6}, range 40/160 ft. {@h}1 Piercing damage, and the target has the {@condition Charmed|XPHB} condition until the start of the sprite's next turn."
+					]
+				},
+				{
+					"name": "Heart Sight",
+					"entries": [
+						"{@actSave cha} {@dc 10}, one creature within 5 feet the sprite can see (Celestials, Fiends, Undead automatically fail the save). {@actSaveFail} The sprite knows the target's emotions."
+					]
+				},
+				{
+					"name": "Invisibility",
+					"entries": [
+						"The sprite has the {@condition Invisible|XPHB} condition for 1 minute. This effect ends early immediately after the sprite makes an attack roll or deals damage, or if the sprite has the {@condition Incapacitated|XPHB} condition."
+					]
+				}
+			],
+			"languageTags": [
+				"C",
+				"E",
+				"S"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"conditionInflict": [
+				"charmed",
+				"incapacitated",
+				"invisible"
+			],
+			"savingThrowForced": [
+				"charisma"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Vinx",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "HotB",
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"Dwarf"
+				]
+			},
+			"alignment": [
+				"C",
+				"G"
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 11,
+				"formula": "2d8 + 2"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 11,
+			"dex": 14,
+			"con": 12,
+			"int": 11,
+			"wis": 13,
+			"cha": 11,
+			"skill": {
+				"perception": "+5",
+				"stealth": "+6",
+				"survival": "+5"
+			},
+			"passive": 15,
+			"languages": [
+				"Common",
+				"Dwarvish"
+			],
+			"cr": "1/4",
+			"gear": [
+				"leather armor|xphb",
+				"shortsword|xphb",
+				"sling|xphb"
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Vinx makes two attacks, using Shortsword and Sling in any combination."
+					]
+				},
+				{
+					"name": "Shortsword",
+					"entries": [
+						"{@atkr m} {@hit 4}, reach 5 ft. {@h}5 ({@damage 1d6 + 2}) Piercing damage."
+					]
+				},
+				{
+					"name": "Sling",
+					"entries": [
+						"{@atkr r} {@hit 4}, range 30/120 ft. {@h}4 ({@damage 1d4 + 2}) Bludgeoning damage."
+					]
+				}
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"D"
+			],
+			"damageTags": [
+				"B",
+				"P"
+			],
+			"miscTags": [
+				"MA",
+				"MLW",
+				"RA",
+				"RNG"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Wight Lifedrinker",
+			"source": "HotB",
+			"size": [
+				"M"
+			],
+			"type": "undead",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				14
+			],
+			"hp": {
+				"average": 82,
+				"formula": "11d8 + 33"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 15,
+			"dex": 14,
+			"con": 16,
+			"int": 10,
+			"wis": 13,
+			"cha": 15,
+			"skill": {
+				"perception": "+3",
+				"stealth": "+4"
+			},
+			"senses": [
+				"Darkvision 60 ft."
+			],
+			"passive": 13,
+			"resist": [
+				"necrotic"
+			],
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"poisoned"
+			],
+			"languages": [
+				"Common plus one other language"
+			],
+			"cr": "3",
+			"gear": [
+				"studded leather armor|xphb"
+			],
+			"trait": [
+				{
+					"name": "Sunlight Sensitivity",
+					"entries": [
+						"While in sunlight, the wight has {@variantrule Disadvantage|XPHB} on ability checks and attack rolls."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The wight makes two attacks, using Necrotic Sword or Necrotic Bow in any combination. It can replace one attack with a use of Drink Life."
+					]
+				},
+				{
+					"name": "Necrotic Sword",
+					"entries": [
+						"{@atkr m} {@hit 4}, reach 5 ft. {@h}6 ({@damage 1d8 + 2}) Slashing damage plus 4 ({@damage 1d8}) Necrotic damage."
+					]
+				},
+				{
+					"name": "Necrotic Bow",
+					"entries": [
+						"{@atkr r} {@hit 4}, range 150/600 ft. {@h}6 ({@damage 1d8 + 2}) Piercing damage plus 4 ({@damage 1d8}) Necrotic damage."
+					]
+				},
+				{
+					"name": "Drink Life {@recharge 5}",
+					"entries": [
+						"{@actSave con} {@dc 13}, one creature within 5 feet. {@actSaveFail} 6 ({@damage 1d8 + 2}) Necrotic damage, and the wight regains a number of {@variantrule Hit Points|XPHB} equal to the Necrotic damage taken."
+					]
+				}
+			],
+			"traitTags": [
+				"Sunlight Sensitivity"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"X"
+			],
+			"damageTags": [
+				"N",
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		}
+	]
+}

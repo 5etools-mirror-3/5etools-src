@@ -821,7 +821,7 @@ export class BrewUtil2Base {
 	}
 
 	async _pPullAllBrews_ ({lockToken, brews}) {
-		let cntPulls = 0;
+		const brewDocsUpdated = [];
 
 		brews = brews || MiscUtil.copyFast(await this._pGetBrewRaw({lockToken}));
 		const brewsNxt = await brews.pMap(async brew => {
@@ -834,14 +834,15 @@ export class BrewUtil2Base {
 
 			if (sourceLastModified <= localLastModified) return brew;
 
-			cntPulls++;
-			return BrewDoc.fromObject(brew).mutUpdate({json}).toObject();
+			const brewDoc = BrewDoc.fromObject(brew).mutUpdate({json});
+			brewDocsUpdated.push(brewDoc);
+			return brewDoc.toObject();
 		});
 
-		if (!cntPulls) return cntPulls;
+		if (!brewDocsUpdated.length) return brewDocsUpdated;
 
 		await this.pSetBrew(brewsNxt, {lockToken});
-		return cntPulls;
+		return brewDocsUpdated;
 	}
 
 	isPullable (brew) { return !brew.head.isEditable && !!brew.head.url; }

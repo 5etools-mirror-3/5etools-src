@@ -123,25 +123,9 @@ export class ScaleClassSummonedCreature extends ScaleSummonedCreature {
 	static _scale_hp (mon, toClassLevel, state) {
 		if (!mon.hp?.special) return;
 
-		let basePart = mon.hp.special; let hdPart = ""; let yourAbilModPart = "";
-		if (mon.hp.special.includes("(")) {
-			let [start, ...rest] = mon.hp.special.split("(");
-			rest = rest.join("(");
-			if (rest.toLowerCase().includes("hit dice")) {
-				basePart = start.trim();
-				hdPart = rest.trimAnyChar("() ");
-			}
-		}
+		let {ptBase, ptHd, ptYourAbilMod} = this._getHpParts(mon.hp.special);
 
-		basePart = basePart
-			.replace(/\+\s*your (?:Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma) modifier/i, (...m) => {
-				yourAbilModPart = m[0];
-				return "";
-			})
-			.replace(/ +/g, " ")
-			.trim();
-
-		basePart = basePart
+		ptBase = ptBase
 			// "5 + five times your ranger level"
 			// "5 plus five times your Ranger level"
 			.replace(/(?<base>\d+)\s*(?:\+|plus)\s*(?<perLevel>\d+|[a-z]+) times your (?:(?<className>[^(]*) )?level/g, (...m) => {
@@ -163,16 +147,16 @@ export class ScaleClassSummonedCreature extends ScaleSummonedCreature {
 			.replace(/\bcaregiver's level\b/gi, toClassLevel)
 		;
 
-		basePart = this._scale_getConvertedPbString(state, basePart);
+		ptBase = this._scale_getConvertedPbString(state, ptBase);
 
-		if (hdPart) {
-			hdPart = hdPart
+		if (ptHd) {
+			ptHd = ptHd
 				// "the beast has a number of Hit Dice [d8s] equal to your ranger level"
 				.replace(/(?<intro>.*) a number of hit dice \[d(?<hdSides>\d+)s?] equal to (?:your (?:(?<className>[^(]*) )?|their caregiver's |their )level/i, (...m) => {
 					const {intro, hdSides, className} = m.at(-1);
 
 					const hdFormula = `${toClassLevel}d${hdSides}`;
-					if (!yourAbilModPart) return hdFormula;
+					if (!ptYourAbilMod) return hdFormula;
 
 					return `${intro} {@dice ${hdFormula}} Hit Dice`;
 				})
@@ -181,19 +165,14 @@ export class ScaleClassSummonedCreature extends ScaleSummonedCreature {
 					const {hdSides, className} = m.at(-1);
 
 					const hdFormula = `${toClassLevel}d${hdSides}`;
-					if (!yourAbilModPart) return hdFormula;
+					if (!ptYourAbilMod) return hdFormula;
 
 					return `{@dice ${hdFormula}} Hit Dice`;
 				})
 			;
 		}
 
-		// If there is an ability modifier part, we cannot scale purely by level--display an expression instead.
-		if (yourAbilModPart) {
-			mon.hp.special = `${basePart} ${yourAbilModPart}${hdPart ? ` (${hdPart})` : ""}`.trim();
-		} else {
-			mon.hp.special = `${basePart}${hdPart ? ` (${hdPart})` : ""}`.trim();
-		}
+		mon.hp.special = this._getAssembledHpParts({ptBase, ptHd, ptYourAbilMod});
 
 		this._mutSimpleSpecialHp(mon);
 	}

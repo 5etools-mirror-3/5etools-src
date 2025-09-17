@@ -118,7 +118,8 @@ class RendererMarkdown {
 				textStack[0] += `${RendererMarkdown._getNextPrefix(options)}${indentSpaces}${item.type === "list" ? "" : `- `}`;
 
 				const cacheDepth = this._adjustDepth(meta, 1);
-				this._recursiveRender(entry.items[i], textStack, meta, {suffix: "\n"});
+				if (item?.rendered?.length) textStack[0] += item.rendered;
+				else this._recursiveRender(item, textStack, meta, {suffix: "\n"});
 				if (textStack[0].slice(-2) === "\n\n") textStack[0] = textStack[0].slice(0, -1);
 				meta.depth = cacheDepth;
 			}
@@ -1050,6 +1051,10 @@ ${pbPart ? `>- **Proficiency Bonus** ${pbPart}` : ""}
 				it.name = `${it.name}.`;
 				it.type = it.type || "item";
 			}
+
+			// Tweak spellcasting entries
+			if (it.rendered) it.rendered = it.rendered.replace(/^\*(\*\*[^*]+\*\*)\*/, "$1");
+
 			return it;
 		});
 
@@ -1062,19 +1067,23 @@ ${pbPart ? `>- **Proficiency Bonus** ${pbPart}` : ""}
 		return renderStack.join("");
 	}
 
-	static getSpellcastingRenderedTraits (meta, mon, displayAsProp = "trait") {
+	static getSpellcastingRenderedTraits (meta, mon, {displayAsProp = "trait"} = {}) {
 		const renderer = RendererMarkdown.get();
 		const out = [];
 		const cacheDepth = meta.depth;
 		meta.depth = 2;
-		(mon.spellcasting || []).filter(it => (it.displayAs || "trait") === displayAsProp).forEach(entry => {
-			entry.type = entry.type || "spellcasting";
-			const renderStack = [""];
-			renderer._recursiveRender(entry, renderStack, meta, {prefix: ">"});
-			const rendered = renderStack.join("");
-			if (!rendered.length) return;
-			out.push({name: entry.name, rendered});
-		});
+		(mon.spellcasting || [])
+			.filter(it => (it.displayAs || "trait") === displayAsProp)
+			.forEach(entry => {
+				const isLegendaryMythic = ["legendary", "mythic"].includes(displayAsProp);
+				entry.type = entry.type || "spellcasting";
+				const renderStack = [""];
+				const prefix = isLegendaryMythic ? undefined : ">";
+				renderer._recursiveRender(entry, renderStack, meta, {prefix});
+				const rendered = renderStack.join("");
+				if (!rendered.length) return;
+				out.push({name: entry.name, rendered});
+			});
 		meta.depth = cacheDepth;
 		return out;
 	}

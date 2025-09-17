@@ -49,7 +49,9 @@ export class ScaleSpellSummonedCreature extends ScaleSummonedCreature {
 	static _scale_hp (mon, toSpellLevel, state) {
 		if (!mon.hp?.special) return;
 
-		mon.hp.special = mon.hp.special
+		let {ptBase, ptHd, ptYourAbilMod} = this._getHpParts(mon.hp.special);
+
+		ptBase = ptBase
 			// "40 + 10 for each spell level above 4th"
 			// "40 + 10 for each spell level above 4"
 			.replace(/(\d+)\s*\+\s*(\d+) for each spell level above (\d+)(?:st|nd|rd|th)?/g, (...m) => {
@@ -69,7 +71,7 @@ export class ScaleSpellSummonedCreature extends ScaleSummonedCreature {
 		;
 
 		// "20 (Air only) or 30 (Land and Water only) + 5 for each spell level above 2"
-		mon.hp.special = mon.hp.special
+		ptBase = ptBase
 			// Simplify bonus
 			.replace(/\+\s*(\d+) for each spell level above (\d+)(?:st|nd|rd|th)?/g, (...m) => {
 				const [, hpPlus, spLevelMin] = m;
@@ -86,6 +88,22 @@ export class ScaleSpellSummonedCreature extends ScaleSummonedCreature {
 					.replace(/(\d+)(?= \([^)]+\))/g, (...m) => Number(m[0]) + bonusNum);
 			})
 		;
+
+		if (ptHd) {
+			ptHd = ptHd
+				// "the swarm has a number of Hit Dice [d8s] equal to the spell's level"
+				.replace(/(?<intro>.*) a number of hit dice \[d(?<hdSides>\d+)s?] equal to the spell's level/i, (...m) => {
+					const {intro, hdSides} = m.at(-1);
+
+					const hdFormula = `${toSpellLevel}d${hdSides}`;
+					if (!ptYourAbilMod) return hdFormula;
+
+					return `${intro} {@dice ${hdFormula}} Hit Dice`;
+				})
+			;
+		}
+
+		mon.hp.special = this._getAssembledHpParts({ptBase, ptHd, ptYourAbilMod});
 
 		this._mutSimpleSpecialHp(mon);
 	}

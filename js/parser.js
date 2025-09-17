@@ -3209,6 +3209,7 @@ Parser.SRC_DrDe_BtS = "DrDe-BtS";
 Parser.SRC_DrDe_SD = "DrDe-SD";
 Parser.SRC_DrDe_ACfaS = "DrDe-ACfaS";
 Parser.SRC_DrDe_DotS = "DrDe-DotSC";
+Parser.SRC_HotB = "HotB";
 Parser.SRC_TD = "TD";
 Parser.SRC_SCREEN = "Screen";
 Parser.SRC_SCREEN_WILDERNESS_KIT = "ScreenWildernessKit";
@@ -3407,6 +3408,7 @@ Parser.SOURCE_JSON_TO_FULL[Parser.SRC_DrDe_BtS] = "Before the Storm";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_DrDe_SD] = "Shivering Death";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_DrDe_ACfaS] = "A Copper for a Song";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_DrDe_DotS] = "Dragons of the Sandstone City";
+Parser.SOURCE_JSON_TO_FULL[Parser.SRC_HotB] = "Heroes of the Borderlands";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_TD] = "Tarot Deck";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_SCREEN] = "Dungeon Master's Screen";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_SCREEN_WILDERNESS_KIT] = "Dungeon Master's Screen: Wilderness Kit";
@@ -3580,6 +3582,7 @@ Parser.SOURCE_JSON_TO_ABV[Parser.SRC_DrDe_BtS] = "DrDe-BtS";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_DrDe_SD] = "DrDe-SD";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_DrDe_ACfaS] = "DrDe-ACfaS";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_DrDe_DotS] = "DrDe-DotSC";
+Parser.SOURCE_JSON_TO_ABV[Parser.SRC_HotB] = "HotB";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_TD] = "TD";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_SCREEN] = "Scr'14";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_SCREEN_WILDERNESS_KIT] = "ScrWild";
@@ -3752,6 +3755,7 @@ Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe_BtS] = Parser.SOURCE_JSON_TO_DATE[Par
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe_SD] = Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe];
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe_ACfaS] = Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe];
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe_DotS] = Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe];
+Parser.SOURCE_JSON_TO_DATE[Parser.SRC_HotB] = "2025-09-16";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_TD] = "2022-05-24";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_SCREEN] = "2015-01-20";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_SCREEN_WILDERNESS_KIT] = "2020-11-17";
@@ -3904,6 +3908,7 @@ Parser.SOURCES_ADVENTURES = new Set([
 	Parser.SRC_DrDe_SD,
 	Parser.SRC_DrDe_ACfaS,
 	Parser.SRC_DrDe_DotS,
+	Parser.SRC_HotB,
 
 	Parser.SRC_AWM,
 ]);
@@ -4229,6 +4234,7 @@ Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE = {};
 	Parser.SRC_DrDe_SD,
 	Parser.SRC_DrDe_ACfaS,
 	Parser.SRC_DrDe_DotS,
+	Parser.SRC_HotB,
 ].forEach(src => {
 	Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE[src] = src;
 	Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE[src.toLowerCase()] = src;

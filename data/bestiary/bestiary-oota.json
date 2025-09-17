@@ -3873,6 +3873,57 @@
 			"hasToken": true
 		},
 		{
+			"name": "Rihuud",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "OotA",
+			"page": 59,
+			"_copy": {
+				"name": "Stone Giant",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the giant",
+						"with": "Rihuud",
+						"flags": "i"
+					},
+					"trait": {
+						"mode": "appendArr",
+						"items": {
+							"name": "Two Heads",
+							"entries": [
+								"Rihuud has advantage on Wisdom ({@skill Perception}) checks and on saving throws against being {@condition blinded}, {@condition charmed}, {@condition deafened}, {@condition frightened}, {@condition stunned}, or knocked {@condition unconscious}."
+							]
+						}
+					},
+					"action": [
+						{
+							"mode": "replaceArr",
+							"replace": "Multiattack",
+							"items": {
+								"name": "Multiattack",
+								"entries": [
+									"Rihuud makes two unarmed strikes."
+								]
+							}
+						},
+						{
+							"mode": "replaceArr",
+							"replace": "Greatclub",
+							"items": {
+								"name": "Unarmed Strike",
+								"entries": [
+									"{@atk mw} {@hit 9} to hit, reach 10 ft., one target. {@h}13 ({@damage 2d6 + 6}) bludgeoning damage."
+								]
+							}
+						}
+					]
+				}
+			},
+			"hasToken": true
+		},
+		{
 			"name": "Ront",
 			"isNpc": true,
 			"isNamedCreature": true,

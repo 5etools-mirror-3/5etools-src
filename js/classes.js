@@ -1328,7 +1328,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 					// Make a dummy for the last item
 					const $dispComma = ixFeature === lvlFeaturesFilt.length - 1 ? $(`<span></span>`) : $(`<span class="mr-1">,</span>`);
 					return {
-						$wrpLink: $$`<div class="inline-block">${$lnk}${$dispComma}</div>`,
+						$wrpLink: $$`<div class="ve-inline-block">${$lnk}${$dispComma}</div>`,
 						$dispComma,
 						source: it.source,
 						otherSources: it.otherSources,
