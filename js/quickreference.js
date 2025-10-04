@@ -6,14 +6,14 @@ const JSON_URL = "data/generated/bookref-quick.json";
 let reference;
 
 window.addEventListener("load", async () => {
-	BookUtil.$dispBook = $(`#pagecontent`);
+	BookUtil.dispBook = es(`#pagecontent`);
 
 	if (!window.location.hash.length) {
-		BookUtil.$dispBook
+		BookUtil.dispBook
 			.empty()
-			.append(Renderer.utils.getBorderTr())
-			.append(`<tr><td colspan="6" class="initial-message initial-message--med">Select a section to begin</td></tr>`)
-			.append(Renderer.utils.getBorderTr());
+			.html(`${Renderer.utils.getBorderTr()}
+			<tr><td colspan="6" class="initial-message initial-message--med">Select a section to begin</td></tr>
+			${Renderer.utils.getBorderTr()}`);
 	}
 
 	await Promise.all([
@@ -33,8 +33,7 @@ function onJsonLoad (data) {
 	BookUtil.bookIndex = reference;
 	BookUtil.referenceId = "bookref-quick";
 	BookUtil.typeTitle = "Quick Reference (2014)";
-	BookUtil.initLinkGrabbers();
-	BookUtil.initScrollTopFloat();
+	BookUtil.init();
 
 	window.onhashchange = BookUtil.booksHashChange.bind(BookUtil);
 	if (window.location.hash.length) {

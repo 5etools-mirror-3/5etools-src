@@ -298,3 +298,14 @@ export class PageGeneratorManagerBase extends PageGeneratorGeneric {
 		"utils-list.js",
 	];
 }
+
+export class PageGeneratorSeoIndexBase extends PageGeneratorGeneric {
+	_filename = "seo/template-seo-index.hbs";
+
+	_registerPartials () {
+		super._registerPartials();
+
+		this._registerPartial({ident: "seoHeadInner", filename: "seo/template-seo-index-head-inner.hbs"});
+		this._registerPartial({ident: "seoBody", filename: "seo/template-seo-index-body.hbs"});
+	}
+}

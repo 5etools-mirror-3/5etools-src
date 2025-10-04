@@ -863,11 +863,20 @@ ${prefix}|${Parser.ABIL_ABVS.map(ab => ent[ab] == null ? `\u2014|` : `${ent[ab]}
 	}
 };
 
-RendererMarkdown.monster = class {
-	static getCompactRenderedString (mon, opts = {}) {
-		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
+/** @abstract */
+class _RenderCompactMarkdownBestiaryImplBase {
+	_style;
 
-		const legendaryGroup = opts.legendaryGroup;
+	/**
+	 * @param {object} mon
+	 * @param [opts]
+	 * @param [opts.meta]
+	 * @param [opts.isHideSenses]
+	 * @param [opts.isHideLanguages]
+	 *
+	 * @return {string}
+	 */
+	getCompactRenderedString (mon, opts) {
 		const meta = opts.meta || {};
 
 		let addedStatblockInline;
@@ -876,28 +885,155 @@ RendererMarkdown.monster = class {
 			addedStatblockInline = true;
 		}
 
+		let {ptUnbreakable, ptBreakable} = this._getCompactRenderedString({mon, opts, meta, renderer: RendererMarkdown.get()});
+
+		ptBreakable = ptBreakable
+			.replace(/\n>\n/g, "\n\n")
+			.replace(/\n\n+/g, "\n\n");
+
+		if (VetoolsConfig.get("markdown", "isAddColumnBreaks")) {
+			let charAllowanceFirstCol = 2200 - ptUnbreakable.length;
+
+			const breakableLines = ptBreakable.split("\n");
+			for (let i = 0; i < breakableLines.length; ++i) {
+				const l = breakableLines[i];
+				if ((charAllowanceFirstCol -= l.length) < 0) {
+					breakableLines.splice(i, 0, ">", "> \\columnbreak", ">");
+					break;
+				}
+			}
+			ptBreakable = breakableLines.join("\n");
+		}
+
+		const monRender = `${ptUnbreakable}${ptBreakable}`
+			.trim()
+			.split("\n")
+			.map(it => it.trim() ? it : `>`)
+			.join("\n");
+		const out = `\n${monRender}\n\n`;
+
+		if (addedStatblockInline) delete meta.isStatblockInlineMonster;
+
+		return out;
+	}
+
+	/**
+	 * @return {{ptBreakable: string, ptUnbreakable: string}}
+	 */
+	_getCompactRenderedString ({mon, renderer, opts}) {
+		throw new Error("Unimplemented!");
+	}
+
+	/* -------------------------------------------- */
+
+	_getCommonMdParts (
+		{
+			mon,
+			renderer,
+			opts,
+		},
+	) {
+		return {
+			mdPtName: this._getCommonMdParts_name({mon, renderer, opts}),
+
+			mdPtSizeTypeAlignment: this._getCommonMdParts_sizeTypeAlignment({mon, renderer, opts}),
+
+			mdPtAc: this._getCommonMdParts_ac({mon, renderer, opts}),
+
+			mdPtHpResource: this._getCommonMdParts_hpResource({mon, renderer, opts}),
+
+			mdPtSpeedInitiative: this._getCommonMdParts_speedInitiative({mon, renderer, opts}),
+
+			mdPtAbilityScores: this._getCommonMdParts_abilityScores({mon, renderer, opts}),
+
+			mdPtSave: this._getCommonMdParts_save({mon, renderer, opts}),
+			mdPtSkill: this._getCommonMdParts_skill({mon, renderer, opts}),
+			mdPtTool: this._getCommonMdParts_tool({mon, renderer, opts}),
+			mdPtDamVuln: this._getCommonMdParts_damVuln({mon, renderer, opts}),
+			mdPtDamRes: this._getCommonMdParts_damRes({mon, renderer, opts}),
+			mdPtSense: this._getCommonMdParts_sense({mon, renderer, opts}),
+			mdPtLanguage: this._getCommonMdParts_language({mon, renderer, opts}),
+
+			mdPtCr: this._getCommonMdParts_cr({mon, renderer, opts}),
+			mdPtPb: this._getCommonMdParts_pb({mon, renderer, opts}),
+
+			mdPtBreakable: this._getCommonMdParts_breakable({mon, renderer, opts}),
+		};
+	}
+
+	/* ----- */
+
+	_getCommonMdParts_name ({mon}) { return `>## ${mon._displayName || mon.name}`; }
+
+	_getCommonMdParts_sizeTypeAlignment ({mon, renderer, opts}) {
 		const monTypes = Parser.monTypeToFullObj(mon.type);
+		return `>*${mon.level ? `${Parser.getOrdinalForm(mon.level)}-level ` : ""}${Renderer.utils.getRenderedSize(mon.size)} ${monTypes.asText}${mon.alignment ? `, ${mon.alignmentPrefix ? RendererMarkdown.get().render(mon.alignmentPrefix) : ""}${Parser.alignmentListToFull(mon.alignment).toTitleCase()}` : ""}*`;
+	}
+
+	_getCommonMdParts_ac ({mon, renderer, opts}) {
 		RendererMarkdown.get().isSkipStylingItemLinks = true;
-		const acPart = mon.ac == null ? "\u2014" : Parser.acToFull(mon.ac, {renderer: RendererMarkdown.get()});
+		const acPart = mon.ac == null ? "\u2014" : Parser.acToFull(mon.ac, {renderer});
 		RendererMarkdown.get().isSkipStylingItemLinks = false;
+		return `>- **Armor Class** ${acPart}`;
+	}
+
+	_getCommonMdParts_hpResource ({mon, renderer, opts}) {
 		const resourcePart = mon.resource?.length
 			? mon.resource
 				.map(res => `\n>- **${res.name}** ${Renderer.monster.getRenderedResource(res, true)}`)
 				.join("")
 			: "";
-		const initiativePart = styleHint === "classic" ? "" : `\n>- **Initiative** ${Renderer.monster.getInitiativePart(mon, {isPlainText: true})}`;
-		const abilityScorePart = RendererMarkdown.utils.compact.getRenderedAbilityScores(mon, {prefix: ">"});
-		const savePart = mon.save ? `\n>- **Saving Throws** ${Object.keys(mon.save).sort(SortUtil.ascSortAtts).map(it => RendererMarkdown.monster.getSave(it, mon.save[it])).join(", ")}` : "";
-		const skillPart = mon.skill ? `\n>- **Skills** ${RendererMarkdown.monster.getSkillsString(mon)}` : "";
-		const toolPart = mon.tool ? `\n>- **Tools** ${RendererMarkdown.monster.getToolsString(mon)}` : "";
-		const damVulnPart = mon.vulnerable ? `\n>- **Damage Vulnerabilities** ${Parser.getFullImmRes(mon.vulnerable, {isPlainText: true})}` : "";
-		const damResPart = mon.resist ? `\n>- **Damage Resistances** ${Parser.getFullImmRes(mon.resist, {isPlainText: true})}` : "";
-		const damImmPart = mon.immune ? `\n>- **Damage Immunities** ${Parser.getFullImmRes(mon.immune, {isPlainText: true})}` : "";
-		const condImmPart = mon.conditionImmune ? `\n>- **Condition Immunities** ${Parser.getFullCondImm(mon.conditionImmune, {isPlainText: true})}` : "";
-		const sensePart = !opts.isHideSenses ? `\n>- **Senses** ${mon.senses ? `${Renderer.utils.getRenderedSenses(mon.senses, {isPlainText: true})}, ` : ""}passive Perception ${mon.passive || "\u2014"}` : "";
-		const languagePart = !opts.isHideLanguages ? `\n>- **Languages** ${Renderer.monster.getRenderedLanguages(mon.languages)}` : "";
+		return `>- **Hit Points** ${mon.hp == null ? "\u2014" : Renderer.monster.getRenderedHp(mon.hp, {isPlainText: true})}${resourcePart}`;
+	}
 
+	_getCommonMdParts_speedInitiative ({mon, renderer, opts}) {
+		const initiativePart = this._style === "classic" ? "" : `\n>- **Initiative** ${Renderer.monster.getInitiativePart(mon, {isPlainText: true})}`;
+		return `>- **Speed** ${Parser.getSpeedString(mon)}${initiativePart}`;
+	}
+
+	_getCommonMdParts_abilityScores ({mon, renderer, opts}) {
+		return RendererMarkdown.utils.compact.getRenderedAbilityScores(mon, {prefix: ">"});
+	}
+
+	_getCommonMdParts_save ({mon, renderer, opts}) {
+		return mon.save ? `\n>- **Saving Throws** ${Object.keys(mon.save).sort(SortUtil.ascSortAtts).map(it => RendererMarkdown.monster.getSave(it, mon.save[it])).join(", ")}` : "";
+	}
+
+	_getCommonMdParts_skill ({mon, renderer, opts}) {
+		return mon.skill ? `\n>- **Skills** ${RendererMarkdown.monster.getSkillsString(mon)}` : "";
+	}
+
+	_getCommonMdParts_tool ({mon, renderer, opts}) {
+		return mon.tool ? `\n>- **Tools** ${RendererMarkdown.monster.getToolsString(mon)}` : "";
+	}
+
+	_getCommonMdParts_damVuln ({mon, renderer, opts}) {
+		return mon.vulnerable ? `\n>- **Damage Vulnerabilities** ${Parser.getFullImmRes(mon.vulnerable, {isPlainText: true, isTitleCase: this._style !== "classic"})}` : "";
+	}
+
+	_getCommonMdParts_damRes ({mon, renderer, opts}) {
+		return mon.resist ? `\n>- **Damage Resistances** ${Parser.getFullImmRes(mon.resist, {isPlainText: true, isTitleCase: this._style !== "classic"})}` : "";
+	}
+
+	_getCommonMdParts_sense ({mon, renderer, opts}) {
+		return !opts.isHideSenses ? `\n>- **Senses** ${mon.senses ? `${Renderer.utils.getRenderedSenses(mon.senses, {isPlainText: true, isTitleCase: this._style !== "classic"})}, ` : ""}passive Perception ${mon.passive || "\u2014"}` : "";
+	}
+
+	_getCommonMdParts_language ({mon, renderer, opts}) {
+		return !opts.isHideLanguages ? `\n>- **Languages** ${Renderer.monster.getRenderedLanguages(mon.languages, {styleHint: this._style})}` : "";
+	}
+
+	_getCommonMdParts_cr ({mon, renderer, opts}) {
+		return `>- **Challenge** ${Renderer.monster.getChallengeRatingPart(mon, {styleHint: this._style, isPlainText: true})}`;
+	}
+
+	_getCommonMdParts_pb ({mon, renderer, opts}) {
 		const pbPart = Renderer.monster.getPbPart(mon, {isPlainText: true});
+		return pbPart ? `>- **Proficiency Bonus** ${pbPart}` : "";
+	}
+
+	_getCommonMdParts_breakable ({mon, renderer, opts}) {
+		const {meta} = opts;
 
 		const fnGetSpellTraits = RendererMarkdown.monster.getSpellcastingRenderedTraits.bind(RendererMarkdown.monster, meta);
 
@@ -919,56 +1055,205 @@ RendererMarkdown.monster = class {
 		const reactionsPart = RendererMarkdown.monster.getRenderedSection({arr: entsReaction, ent: mon, prop: "reaction", title: "Reactions", meta, prefix: ">"});
 
 		const legendaryActionsPart = entsLegendaryAction?.length
-			? `${RendererMarkdown.monster._getRenderedSectionHeader({mon, title: "Legendary Actions", prop: "legendary", prefix: ">"})}>${Renderer.monster.getLegendaryActionIntro(mon, {renderer: RendererMarkdown.get(), styleHint})}\n>\n${RendererMarkdown.monster._getRenderedLegendarySection(entsLegendaryAction, 1, meta)}`
+			? `${RendererMarkdown.monster._getRenderedSectionHeader({mon, title: "Legendary Actions", prop: "legendary", prefix: ">"})}>${Renderer.monster.getLegendaryActionIntro(mon, {renderer: RendererMarkdown.get(), styleHint: this._style})}\n>\n${RendererMarkdown.monster._getRenderedLegendarySection(entsLegendaryAction, 1, meta)}`
 			: "";
 		const mythicActionsPart = entsMythicAction?.length
 			? `${RendererMarkdown.monster._getRenderedSectionHeader({mon, title: "Mythic Actions", prop: "mythic", prefix: ">"})}>${Renderer.monster.getSectionIntro(mon, {renderer: RendererMarkdown.get(), prop: "mythic"})}\n>\n${RendererMarkdown.monster._getRenderedLegendarySection(entsMythicAction, 1, meta)}`
 			: "";
 
+		const legendaryGroup = DataUtil.monster.getLegendaryGroup(mon);
 		const legendaryGroupLairPart = legendaryGroup?.lairActions ? `\n>### Lair Actions\n${RendererMarkdown.monster._getRenderedSection({prop: "lairaction", entries: legendaryGroup.lairActions, depth: -1, meta, prefix: ">"})}` : "";
 		const legendaryGroupRegionalPart = legendaryGroup?.regionalEffects ? `\n>### Regional Effects\n${RendererMarkdown.monster._getRenderedSection({prop: "regionaleffect", entries: legendaryGroup.regionalEffects, depth: -1, meta, prefix: ">"})}` : "";
 		const variantsPart = Renderer.monster.getRenderedVariants(mon, {renderer: RendererMarkdown.get()});
 
 		const footerPart = mon.footer ? `\n${RendererMarkdown.monster._getRenderedSectionEntries({sectionEntries: mon.footer, sectionDepth: 0, meta, prefix: ">"})}` : "";
 
-		const unbreakablePart = `___
->## ${mon._displayName || mon.name}
->*${mon.level ? `${Parser.getOrdinalForm(mon.level)}-level ` : ""}${Renderer.utils.getRenderedSize(mon.size)} ${monTypes.asText}${mon.alignment ? `, ${mon.alignmentPrefix ? RendererMarkdown.get().render(mon.alignmentPrefix) : ""}${Parser.alignmentListToFull(mon.alignment)}` : ""}*
+		return `${traitsPart}${actionsPart}${bonusActionsPart}${reactionsPart}${legendaryActionsPart}${mythicActionsPart}${legendaryGroupLairPart}${legendaryGroupRegionalPart}${variantsPart}${footerPart}`;
+	}
+}
+
+class _RenderCompactMarkdownBestiaryImplClassic extends _RenderCompactMarkdownBestiaryImplBase {
+	_style = "classic";
+
+	/* -------------------------------------------- */
+
+	_getMdParts (
+		{
+			mon,
+			renderer,
+			opts,
+		},
+	) {
+		return {
+			mdPtDamageImmunities: this._getMdParts_damageImmunities({mon, renderer, opts}),
+			mdPtConditionImmunities: this._getMdParts_ConditionImmunities({mon, renderer, opts}),
+		};
+	}
+
+	/* ----- */
+	_getMdParts_damageImmunities ({mon, renderer, opts}) {
+		return mon.immune ? `\n>- **Damage Immunities** ${Parser.getFullImmRes(mon.immune, {isPlainText: true})}` : "";
+	}
+
+	_getMdParts_ConditionImmunities ({mon, renderer, opts}) {
+		return mon.conditionImmune ? `\n>- **Condition Immunities** ${Parser.getFullCondImm(mon.conditionImmune, {isPlainText: true})}` : "";
+	}
+
+	/* -------------------------------------------- */
+
+	_getCompactRenderedString ({mon, renderer, opts}) {
+		const {
+			mdPtName,
+			mdPtSizeTypeAlignment,
+			mdPtAc,
+			mdPtHpResource,
+			mdPtSpeedInitiative,
+			mdPtAbilityScores,
+			mdPtSave,
+			mdPtSkill,
+			mdPtTool,
+			mdPtDamVuln,
+			mdPtDamRes,
+			mdPtSense,
+			mdPtLanguage,
+			mdPtCr,
+			mdPtPb,
+			mdPtBreakable,
+		} = this._getCommonMdParts({
+			mon,
+			renderer,
+			opts,
+		});
+
+		const {
+			mdPtDamageImmunities,
+			mdPtConditionImmunities,
+		} = this._getMdParts({
+			mon,
+			renderer,
+			opts,
+		});
+		const ptUnbreakable = `___
+${mdPtName}
+${mdPtSizeTypeAlignment}
 >___
->- **Armor Class** ${acPart}
->- **Hit Points** ${mon.hp == null ? "\u2014" : Renderer.monster.getRenderedHp(mon.hp, {isPlainText: true})}${resourcePart}
->- **Speed** ${Parser.getSpeedString(mon)}${initiativePart}
+${mdPtAc}
+${mdPtHpResource}
+${mdPtHpResource}
+${mdPtSpeedInitiative}
 >___
-${abilityScorePart}
->___${savePart}${skillPart}${toolPart}${damVulnPart}${damResPart}${damImmPart}${condImmPart}${sensePart}${languagePart}
->- **Challenge** ${Renderer.monster.getChallengeRatingPart(mon, {style: "classic", isPlainText: true})}
-${pbPart ? `>- **Proficiency Bonus** ${pbPart}` : ""}
+${mdPtAbilityScores}
+>___${mdPtSave}${mdPtSkill}${mdPtTool}${mdPtDamVuln}${mdPtDamRes}${mdPtDamageImmunities}${mdPtConditionImmunities}${mdPtSense}${mdPtLanguage}
+${mdPtCr}
+${mdPtPb}
 >___`;
 
-		let breakablePart = `${traitsPart}${actionsPart}${bonusActionsPart}${reactionsPart}${legendaryActionsPart}${mythicActionsPart}${legendaryGroupLairPart}${legendaryGroupRegionalPart}${variantsPart}${footerPart}`;
+		return {
+			ptUnbreakable,
+			ptBreakable: mdPtBreakable,
+		};
+	}
+}
 
-		if (VetoolsConfig.get("markdown", "isAddColumnBreaks")) {
-			let charAllowanceFirstCol = 2200 - unbreakablePart.length;
+class _RenderCompactMarkdownBestiaryImplOne extends _RenderCompactMarkdownBestiaryImplBase {
+	_style = "one";
 
-			const breakableLines = breakablePart.split("\n");
-			for (let i = 0; i < breakableLines.length; ++i) {
-				const l = breakableLines[i];
-				if ((charAllowanceFirstCol -= l.length) < 0) {
-					breakableLines.splice(i, 0, ">", "> \\columnbreak", ">");
-					break;
-				}
-			}
-			breakablePart = breakableLines.join("\n");
+	/* -------------------------------------------- */
+
+	_getMdParts (
+		{
+			mon,
+			renderer,
+			opts,
+		},
+	) {
+		return {
+			mdPtImmunities: this._getMdParts_immunities({mon, renderer, opts}),
+			mdPtGear: this._getMdParts_gear({mon, renderer, opts}),
+		};
+	}
+
+	/* ----- */
+
+	_getMdParts_immunities ({mon, renderer, opts}) {
+		const pt = Renderer.monster.getImmunitiesCombinedPart(mon, {isPlainText: true});
+		if (!pt) return "";
+		return `\n>- **Immunities** ${pt}`;
+	}
+
+	_getMdParts_gear ({mon, renderer, opts}) {
+		const pt = Renderer.monster.getGearPart(mon, {renderer});
+		if (!pt) return "";
+		return `\n>- **Gear** ${pt}`;
+	}
+
+	/* -------------------------------------------- */
+
+	_getCompactRenderedString ({mon, renderer, opts}) {
+		const {
+			mdPtName,
+			mdPtSizeTypeAlignment,
+			mdPtAc,
+			mdPtHpResource,
+			mdPtSpeedInitiative,
+			mdPtAbilityScores,
+			mdPtSave,
+			mdPtSkill,
+			mdPtTool,
+			mdPtDamVuln,
+			mdPtDamRes,
+			mdPtSense,
+			mdPtLanguage,
+			mdPtCr,
+			mdPtPb,
+			mdPtBreakable,
+		} = this._getCommonMdParts({
+			mon,
+			renderer,
+			opts,
+		});
+
+		const {
+			mdPtImmunities,
+			mdPtGear,
+		} = this._getMdParts({
+			mon,
+			renderer,
+			opts,
+		});
+		const ptUnbreakable = `___
+${mdPtName}
+${mdPtSizeTypeAlignment}
+>___
+${mdPtAc}
+${mdPtHpResource}
+${mdPtHpResource}
+${mdPtSpeedInitiative}
+>___
+${mdPtAbilityScores}
+>___${mdPtSave}${mdPtSkill}${mdPtTool}${mdPtDamVuln}${mdPtDamRes}${mdPtImmunities}${mdPtGear}${mdPtSense}${mdPtLanguage}
+${mdPtCr}
+${mdPtPb}
+>___`;
+
+		return {
+			ptUnbreakable,
+			ptBreakable: mdPtBreakable,
+		};
+	}
+}
+
+RendererMarkdown.monster = class {
+	static _RENDER_CLASSIC = new _RenderCompactMarkdownBestiaryImplClassic();
+	static _RENDER_ONE = new _RenderCompactMarkdownBestiaryImplOne();
+
+	static getCompactRenderedString (mon, opts = {}) {
+		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
+		switch (styleHint) {
+			case "classic": return this._RENDER_CLASSIC.getCompactRenderedString(mon, opts);
+			case "one": return this._RENDER_ONE.getCompactRenderedString(mon, opts);
+			default: throw new Error(`Unhandled style "${styleHint}"!`);
 		}
-
-		const str = `${unbreakablePart}${breakablePart}`;
-
-		const monRender = str.trim().split("\n").map(it => it.trim() ? it : `>`).join("\n");
-		const out = `\n${monRender}\n\n`;
-
-		if (addedStatblockInline) delete meta.isStatblockInlineMonster;
-
-		return out;
 	}
 
 	static getSave (attr, mod) {

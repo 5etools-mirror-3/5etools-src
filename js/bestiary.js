@@ -417,7 +417,7 @@ class BestiaryPage extends ListPageMultiSource {
 				}),
 			},
 			other: [
-				this._bindOtherButtonsOptions_openAsSinglePage({slugPage: "bestiary", fnGetHash: () => UrlUtil.autoEncodeHash(this._lastRender.entity)}),
+				this._bindOtherButtonsOptions_openAsSinglePage({slugPage: "bestiary"}),
 			].filter(Boolean),
 		};
 	}

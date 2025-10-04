@@ -1307,12 +1307,33 @@ class ListPage {
 	/* Implement as required */
 	get _bindOtherButtonsOptions () { return null; }
 
-	_bindOtherButtonsOptions_openAsSinglePage ({slugPage, fnGetHash}) {
+	_bindOtherButtonsOptions_openAsSinglePage (
+		{
+			slugPage,
+			fnGetPageSourceHash = null,
+			fnIsNonSiteLink = null,
+		},
+	) {
+		fnGetPageSourceHash ||= () => ({page: UrlUtil.getCurrentPage(), source: SourceUtil.getEntitySource(this._lastRender.entity), hash: UrlUtil.autoEncodeHash(this._lastRender.entity)});
+		fnIsNonSiteLink ||= () => !SourceUtil.isSiteSource(SourceUtil.getEntitySource(this._lastRender.entity));
+
 		// We expect these pages when `Boolean(IS_DEPLOYED)`, but, enable for local testing
 		return {
 			name: "Open Page",
 			type: "link",
-			fn: () => `${location.origin}/${slugPage}/${UrlUtil.getSluggedHash(fnGetHash())}.html`,
+			fn: () => {
+				const {page, source, hash} = fnGetPageSourceHash();
+				if (fnIsNonSiteLink()) {
+					const params = new URLSearchParams({
+						page: page.replace(/\.html$/, ""),
+						source,
+						hash,
+						fluff: 1,
+					});
+					return `${location.origin}/${slugPage}/index.html?${params}`;
+				}
+				return `${location.origin}/${slugPage}/${UrlUtil.getSluggedHash(hash)}.html`;
+			},
 		};
 	}
 

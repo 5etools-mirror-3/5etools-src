@@ -133,7 +133,12 @@ export class MiscTagsTagger {
 
 					if (/\bbonus action\b/i.test(stripped)) this._addTag({tags, tag: "UBA", options});
 
-					if (/\b(?:lightly|heavily) obscured\b/i.test(stripped)) this._addTag({tags, tag: "OBS", options});
+					if (
+						/\b(?:lightly|heavily) obscured\b/i.test(stripped)
+						|| /\bmagical darkness spreads\b/i.test(stripped)
+						|| /\bdarkness fills the area\b/i.test(stripped)
+						|| /\bno light(?:[^.]+)can illuminate the area\b/i.test(stripped)
+					) this._addTag({tags, tag: "OBS", options});
 
 					if (/\b(?:is|creates an area of|becomes?|into) difficult terrain\b/i.test(Renderer.stripTags(stripped)) || /spends? \d+ (?:feet|foot) of movement for every 1 foot/.test(stripped)) this._addTag({tags, tag: "DFT", options});
 

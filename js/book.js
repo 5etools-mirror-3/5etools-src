@@ -3,7 +3,7 @@ import {BookUtil} from "./bookutils.js";
 const JSON_URL = "data/books.json";
 
 window.addEventListener("load", async () => {
-	BookUtil.$dispBook = $(`#pagecontent`);
+	BookUtil.dispBook = es(`#pagecontent`);
 	await Promise.all([
 		PrereleaseUtil.pInit(),
 		BrewUtil2.pInit(),
@@ -17,15 +17,14 @@ async function onJsonLoad (data) {
 	BookUtil.allPageUrl = "books.html";
 	BookUtil.propHomebrewData = "bookData";
 	BookUtil.typeTitle = "Book";
-	BookUtil.initLinkGrabbers();
-	BookUtil.initScrollTopFloat();
+	BookUtil.init();
 
 	BookUtil.contentType = "book";
 
 	BookUtil.bookIndex = data?.book || [];
 
-	$(`#page__subtitle`).text(`Select a book from the list on the left`);
-	$(`.book-loading-message`).text(`Select a book to begin`);
+	es(`#page__subtitle`).txt(`Select a book from the list on the left`);
+	es(`.book-loading-message`).txt(`Select a book to begin`);
 
 	BookUtil.bookIndexPrerelease = (await PrereleaseUtil.pGetBrewProcessed())?.book || [];
 	BookUtil.bookIndexBrew = (await BrewUtil2.pGetBrewProcessed())?.book || [];

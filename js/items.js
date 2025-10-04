@@ -230,7 +230,7 @@ class ItemsPage extends ListPage {
 	get _bindOtherButtonsOptions () {
 		return {
 			other: [
-				this._bindOtherButtonsOptions_openAsSinglePage({slugPage: "items", fnGetHash: () => Hist.getHashParts()[0]}),
+				this._bindOtherButtonsOptions_openAsSinglePage({slugPage: "items"}),
 			].filter(Boolean),
 		};
 	}

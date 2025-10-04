@@ -17,6 +17,8 @@ export const PROPS_FOUNDRY_DATA_INLINE = [
 	"foundryTokenSubjectHref",
 	"foundryTokenSubjectScale",
 
+	"foundryAdvice",
+
 	"_foundryMerge",
 
 	"foundryMigrationVersion",

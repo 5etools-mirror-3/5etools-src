@@ -145,7 +145,7 @@ export class AdventuresBooksList {
 					const headerPos = headerCounts[headerTextClean] || 0;
 					headerCounts[headerTextClean] = (headerCounts[headerTextClean] || 0) + 1;
 					const lnk = ee`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)},${ixChapter},${UrlUtil.encodeForHash(headerText)}${header.index ? `,${header.index}` : ""}${headerPos > 0 ? `,${headerPos}` : ""}" class="lst__row lst__row-border lst__row-inner lst__wrp-cells bklist__row-section ve-flex w-100">
-						${BookUtil.getContentsSectionHeader(header)}
+						${BookUtil._getContentsSectionHeader(header)}
 					</a>`;
 					elesContents.push(lnk);
 				});

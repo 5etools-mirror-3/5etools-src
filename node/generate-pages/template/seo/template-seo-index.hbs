@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{{> "seoHeadInner" }}
+<script>
+	const params = new URLSearchParams(window.location.search);
+
+	globalThis._SEO_PAGE = params.get("page");
+	globalThis._SEO_SOURCE = params.get("source");
+	globalThis._SEO_HASH = params.get("hash");
+	globalThis._SEO_FLUFF = params.get("fluff");
+</script>
+</head>
+{{> "seoBody" }}
+</html>

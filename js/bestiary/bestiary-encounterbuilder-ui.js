@@ -196,6 +196,7 @@ export class EncounterBuilderUiBestiary extends EncounterBuilderUi {
 			evt,
 			ele,
 			{
+				isSpecifiedLinkData: true,
 				page: UrlUtil.PG_BESTIARY,
 				source,
 				hash,

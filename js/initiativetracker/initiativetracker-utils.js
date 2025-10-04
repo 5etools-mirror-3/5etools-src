@@ -106,7 +106,7 @@ export class RenderableCollectionConditions extends RenderableCollectionGenericR
 
 				evt.shiftKey = false;
 				const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CONDITIONS_DISEASES]({name: cond.condName || cond.name, source: Parser.SRC_PHB});
-				Renderer.hover.pHandleLinkMouseOver(evt, ele, {page: UrlUtil.PG_CONDITIONS_DISEASES, source: Parser.SRC_PHB, hash}).then(null);
+				Renderer.hover.pHandleLinkMouseOver(evt, ele, {isSpecifiedLinkData: true, page: UrlUtil.PG_CONDITIONS_DISEASES, source: Parser.SRC_PHB, hash}).then(null);
 			});
 			$wrpRow.on("mousemove", (evt) => Renderer.hover.handleLinkMouseMove(evt, ele));
 			$wrpRow.on("mouseleave", (evt) => Renderer.hover.handleLinkMouseLeave(evt, ele));

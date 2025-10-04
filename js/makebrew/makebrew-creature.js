@@ -2270,7 +2270,7 @@ export class CreatureBuilder extends BuilderBase {
 		};
 
 		const doAddTrait = trait => {
-			const row = CreatureBuilder.__$getSpellcastingInput__getTraitRow(traitRows, doUpdateState, trait);
+			const row = this.__$getSpellcastingInput__getTraitRow(traitRows, doUpdateState, trait);
 			traitRows.push(row);
 			row.$ele.appendTo($wrpRows);
 		};
@@ -2280,7 +2280,7 @@ export class CreatureBuilder extends BuilderBase {
 		return $row;
 	}
 
-	static __$getSpellcastingInput__getTraitRow (traitRows, doUpdateState, trait) {
+	__$getSpellcastingInput__getTraitRow (traitRows, doUpdateState, trait) {
 		const getState = () => {
 			const out = {
 				name: $iptName.val().trim(),
@@ -2290,6 +2290,13 @@ export class CreatureBuilder extends BuilderBase {
 			if (out.headerEntries && !out.headerEntries.length) delete out.headerEntries;
 			if ($btnToggleFooter.hasClass("active")) out.footerEntries = UiUtil.getTextAsEntries($iptFooter.val());
 			if (out.footerEntries && !out.footerEntries.length) delete out.footerEntries;
+
+			const displayAs = $selDisplayAs.val();
+			if (displayAs !== "trait") out.displayAs = displayAs;
+
+			if ($btnToggleHide.hasClass("active")) {
+				if (compHidden._state.hidden?.length) out.hidden = [...compHidden._state.hidden];
+			}
 
 			const deepMerge = (target, k, v) => {
 				const curr = target[k];
@@ -2311,13 +2318,6 @@ export class CreatureBuilder extends BuilderBase {
 
 			SpellcastingTraitConvert.mutSpellcastingAbility(out);
 
-			// auto-hide innately cast spells embedded in the header
-			if (out.headerEntries) {
-				const strHeader = JSON.stringify(out.headerEntries);
-				if (/can innately cast {@spell /i.test(strHeader)) out.hidden = [/per day/i.test(strHeader) ? "daily" : "will"];
-				else delete out.hidden;
-			} else delete out.hidden;
-
 			if (!Object.keys(out).some(it => it !== "name")) return null;
 
 			return out;
@@ -2325,7 +2325,7 @@ export class CreatureBuilder extends BuilderBase {
 
 		const spellRows = [];
 		const doAddSpellRow = (meta, data) => {
-			const row = CreatureBuilder.__$getSpellcastingInput__getSpellGenericRow(spellRows, doUpdateState, meta, data);
+			const row = this.__$getSpellcastingInput__getSpellGenericRow(spellRows, doUpdateState, meta, data);
 			spellRows.push(row);
 			row.$ele.appendTo($wrpSubRows);
 		};
@@ -2353,11 +2353,12 @@ export class CreatureBuilder extends BuilderBase {
 		const _CONTEXT_ENTRIES = [
 			{
 				display: "Cantrips",
-				type: "0",
+				type: "spells",
 				mode: "cantrip",
 			},
 			{
 				display: "\uD835\uDC65th level spells",
+				type: "spells",
 				mode: "level",
 			},
 			null,
@@ -2409,6 +2410,12 @@ export class CreatureBuilder extends BuilderBase {
 				mode: "frequency",
 			},
 		];
+		const _SPELL_PROP_LOOKUP = Object.fromEntries(
+			_CONTEXT_ENTRIES
+				.filter(Boolean)
+				.map(({type, display}) => [type, display]),
+		);
+		_SPELL_PROP_LOOKUP["spells"] = "Cantrips and \uD835\uDC65th level spells";
 
 		const menu = ContextUtil.getMenu(_CONTEXT_ENTRIES.map(contextMeta => {
 			if (contextMeta == null) return;
@@ -2458,6 +2465,42 @@ export class CreatureBuilder extends BuilderBase {
 			.change(() => doUpdateState());
 		if (trait && trait.footerEntries) $iptFooter.val(UiUtil.getEntriesAsText(trait.footerEntries));
 
+		const $selDisplayAs = $(`<select class="form-control input-xs mr-2">${Renderer.monster.CHILD_PROPS__SPELLCASTING_DISPLAY_AS.map(prop => `<option value="${prop}">${prop.uppercaseFirst()}</option>`).join("")}</select>`)
+			.change(() => doUpdateState());
+		if (trait) $selDisplayAs.val(trait.displayAs || "trait");
+
+		const compHidden = new class extends BaseComponent {
+			renderInputHidden () {
+				return ComponentUiUtil.$getPickEnum(
+					this,
+					"hidden",
+					{
+						values: Object.keys(_SPELL_PROP_LOOKUP),
+						fnGet$ElePill: v => _SPELL_PROP_LOOKUP[v],
+						fnGetTextContextAction: v => _SPELL_PROP_LOOKUP[v],
+					},
+				);
+			}
+
+			_getDefaultState () { return { hidden: [] }; }
+		}();
+		const $stgHidden = $$`<div class="ve-flex-col mb-2">
+			<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Hidden</span>${compHidden.renderInputHidden()}</div>
+		</div>`
+			.toggleVe(!!trait?.hidden?.length);
+		if (trait?.hidden?.length) {
+			compHidden._state.hidden = [...trait.hidden];
+		}
+		compHidden._addHookAll("state", () => doUpdateState());
+
+		const $btnToggleHide = $(`<button class="ve-btn ve-btn-xs ve-btn-default" title="Hide spells of a given type. This is often used when spells are presented as part of the header text.">Hide...</button>`)
+			.click(() => {
+				$btnToggleHide.toggleClass("active");
+				$stgHidden.toggleVe($btnToggleHide.hasClass("active"));
+				doUpdateState();
+			})
+			.toggleClass("active", !!(trait && trait.hidden?.length));
+
 		const $wrpControls = $$`<div class="ve-flex-v-center mb-2">${$iptName}${$btnToggleHeader}${$btnToggleFooter}${$btnAddSpell}</div>`;
 		const $wrpSubRows = $$`<div class="ve-flex-col"></div>`;
 		const $wrpSubRowsOuter = $$`<div class="ve-flex-col">${$iptHeader}${$wrpSubRows}${$iptFooter}</div>`;
@@ -2479,6 +2522,8 @@ export class CreatureBuilder extends BuilderBase {
 
 		const $ele = $$`<div class="ve-flex-col mkbru__wrp-rows">
 		${$wrpControls}
+		<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Display As</span>${$selDisplayAs}${$btnToggleHide}</div>
+		${$stgHidden}
 		${$wrpSubRowsOuter}
 		<div class="ve-text-right mb-2">${$btnRemove}</div>
 		</div>`;
@@ -2509,7 +2554,7 @@ export class CreatureBuilder extends BuilderBase {
 		return out;
 	}
 
-	static __$getSpellcastingInput__getSpellGenericRow (spellRows, doUpdateState, meta, data) {
+	__$getSpellcastingInput__getSpellGenericRow (spellRows, doUpdateState, meta, data) {
 		const setValueByPath = (root, keyPath, value) => {
 			for (let i = 0; i < keyPath.length - 1; ++i) root = (root[keyPath[i]] = root[keyPath[i]] || {});
 			root[keyPath.last()] = value;
@@ -2536,7 +2581,7 @@ export class CreatureBuilder extends BuilderBase {
 
 		const $btnAdd = $(`<button class="ve-btn ve-btn-xxs ve-btn-default mr-2" title="Add Spell"><span class="glyphicon glyphicon-plus"></span></button>`)
 			.click(async () => {
-				const options = {};
+				const options = {styleHint: this._meta.styleHint};
 
 				if (meta.level) options.level = meta.level;
 				if (meta.mode === "cantrip") options.level = 0;

@@ -315,7 +315,7 @@ class SpellsPage extends ListPageMultiSource {
 				}),
 			},
 			other: [
-				this._bindOtherButtonsOptions_openAsSinglePage({slugPage: "spells", fnGetHash: () => Hist.getHashParts()[0]}),
+				this._bindOtherButtonsOptions_openAsSinglePage({slugPage: "spells"}),
 			].filter(Boolean),
 		};
 	}

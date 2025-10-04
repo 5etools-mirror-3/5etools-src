@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.12.0"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.12.1"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -955,8 +955,6 @@ globalThis.JqueryUtil = {
 		if (JqueryUtil._isEnhancementsInit) return;
 		JqueryUtil._isEnhancementsInit = true;
 
-		JqueryUtil.addSelectors();
-
 		TemplateUtil.initVanilla();
 		TemplateUtil.initJquery();
 
@@ -994,21 +992,6 @@ globalThis.JqueryUtil = {
 			remove: function (o) {
 				if (o.handler) o.handler();
 			},
-		};
-	},
-
-	addSelectors () {
-		// Add a selector to match exact text (case insensitive) to jQuery's arsenal
-		//   Note that the search text should be `trim().toLowerCase()`'d before being passed in
-		$.expr[":"].textEquals = (el, i, m) => $(el).text().toLowerCase().trim() === m[3].unescapeQuotes();
-
-		// Add a selector to match contained text (case insensitive)
-		$.expr[":"].containsInsensitive = (el, i, m) => {
-			const searchText = m[3];
-			const textNode = $(el).contents().filter((i, e) => e.nodeType === 3)[0];
-			if (!textNode) return false;
-			const match = textNode.nodeValue.toLowerCase().trim().match(`${searchText.toLowerCase().trim().escapeRegexp()}`);
-			return match && match.length > 0;
 		};
 	},
 
@@ -1272,6 +1255,7 @@ class ElementUtil {
 			pointerup,
 			keydown,
 			html,
+			/** @deprecated */
 			text,
 			txt,
 			children,
@@ -1301,6 +1285,9 @@ class ElementUtil {
 		});
 		ele = metaEle.ele;
 
+		// TODO(Future) remove `text` option
+		const _txt = txt ?? text;
+
 		if (clazz) ele.className = clazz;
 		if (style) ele.setAttribute("style", style);
 		if (click) ele.addEventListener("click", click);
@@ -1313,7 +1300,10 @@ class ElementUtil {
 		if (pointerup) ele.addEventListener("pointerup", pointerup);
 		if (keydown) ele.addEventListener("keydown", keydown);
 		if (html != null) ele.innerHTML = html;
-		if (text != null || txt != null) ele.textContent = text;
+		if (_txt != null) {
+			if (ele instanceof HTMLOptionElement) ele.text = _txt;
+			else ele.textContent = _txt;
+		}
 		if (id != null && metaEle.isSetId) ele.setAttribute("id", id);
 		if (name != null) ele.setAttribute("name", name);
 		if (title != null) ele.setAttribute("title", title);
@@ -8570,23 +8560,6 @@ Array.prototype.prevWrap || Object.defineProperty(Array.prototype, "prevWrap", {
 	},
 });
 
-Array.prototype.findLast || Object.defineProperty(Array.prototype, "findLast", {
-	enumerable: false,
-	writable: true,
-	value: function (fn) {
-		for (let i = this.length - 1; i >= 0; --i) if (fn(this[i])) return this[i];
-	},
-});
-
-Array.prototype.findLastIndex || Object.defineProperty(Array.prototype, "findLastIndex", {
-	enumerable: false,
-	writable: true,
-	value: function (fn) {
-		for (let i = this.length - 1; i >= 0; --i) if (fn(this[i])) return i;
-		return -1;
-	},
-});
-
 Array.prototype.sum || Object.defineProperty(Array.prototype, "sum", {
 	enumerable: false,
 	writable: true,
@@ -9230,7 +9203,7 @@ globalThis.EditorUtil = class {
 			});
 		}
 
-		styleSwitcher.addFnOnChange(() => editor.setOptions({theme: EditorUtil.getTheme()}));
+		styleSwitcher.addFnOnChangeTheme(() => editor.setOptions({theme: EditorUtil.getTheme()}));
 
 		return editor;
 	}

@@ -11,7 +11,8 @@
 		],
 		"otherSources": {
 			"monster": {
-				"MTF": "OotA"
+				"MTF": "OotA",
+				"MM": "OotA"
 			}
 		}
 	},
@@ -4313,6 +4314,15 @@
 						"replace": "the goblin",
 						"with": "Spiderbait",
 						"flags": "i"
+					},
+					"trait": {
+						"mode": "appendArr",
+						"items": {
+							"name": "Thrill-Seeker",
+							"entries": [
+								"Spiderbait has advantage on checks made to avoid being {@status surprised}."
+							]
+						}
 					}
 				}
 			},
@@ -4362,6 +4372,9 @@
 					}
 				]
 			},
+			"senseTags": [
+				"SD"
+			],
 			"spellcastingTags": [
 				"I"
 			],
@@ -4650,6 +4663,9 @@
 				"Terran",
 				"Undercommon"
 			],
+			"senseTags": [
+				"SD"
+			],
 			"hasToken": true,
 			"hasFluffImages": true
 		},
@@ -4820,8 +4836,28 @@
 				"Terran",
 				"Undercommon"
 			],
+			"senseTags": [
+				"SD"
+			],
 			"hasToken": true,
 			"hasFluffImages": true
+		},
+		{
+			"name": "Two-Headed Troll",
+			"source": "OotA",
+			"page": 211,
+			"_copy": {
+				"name": "Troll",
+				"source": "MM"
+			},
+			"bonus": [
+				{
+					"name": "Extra Bite",
+					"entries": [
+						"As part of its Multiattack routine, the troll can make a Bite attack."
+					]
+				}
+			]
 		},
 		{
 			"name": "Vampiric Ixitxachitl",
@@ -5574,6 +5610,15 @@
 						"replace": "the goblin",
 						"with": "Yuk Yuk",
 						"flags": "i"
+					},
+					"trait": {
+						"mode": "appendArr",
+						"items": {
+							"name": "Thrill-Seeker",
+							"entries": [
+								"Yuk Yuk has advantage on checks made to avoid being {@status surprised}."
+							]
+						}
 					}
 				}
 			},
