@@ -103,6 +103,7 @@ const PROPORDER_MONSTER = [
 	"basicRules2024",
 	"additionalSources",
 	"otherSources",
+	"isReprinted",
 	"reprintedAs",
 
 	"summonedBySpell",

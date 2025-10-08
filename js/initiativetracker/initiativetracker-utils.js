@@ -15,19 +15,19 @@ export class RenderableCollectionConditions extends RenderableCollectionGenericR
 	constructor (
 		{
 			comp,
-			$wrpRows,
+			wrpRows,
 			isReadOnly = false,
 			barWidth = null,
 			barHeight = null,
 		},
 	) {
-		super(comp, "conditions", $wrpRows);
+		super(comp, "conditions", wrpRows);
 		this._isReadOnly = isReadOnly;
 		this._barWidth = barWidth;
 		this._barHeight = barHeight;
 	}
 
-	_$getWrpRow () {
+	_getWrpRow () {
 		const ptStyle = [
 			this._barWidth != null ? `width: ${this._barWidth}px;` : null,
 			this._barHeight != null ? `height: ${this._barHeight}px;` : null,
@@ -35,33 +35,33 @@ export class RenderableCollectionConditions extends RenderableCollectionGenericR
 			.filter(Boolean)
 			.join(" ");
 
-		return $$`<div class="init__cond relative" ${ptStyle ? `style="${ptStyle}"` : ""}></div>`;
+		return ee`<div class="init__cond relative" ${ptStyle ? `style="${ptStyle}"` : ""}></div>`;
 	}
 
 	/* -------------------------------------------- */
 
-	_populateRow ({comp, $wrpRow, entity}) {
-		this._populateRow_bindHookTooltip({comp, $wrpRow, entity});
-		this._populateRow_bindHookBars({comp, $wrpRow, entity});
-		this._populateRow_bindHookConditionHover({comp, $wrpRow, entity});
+	_populateRow ({comp, wrpRow, entity}) {
+		this._populateRow_bindHookTooltip({comp, wrpRow, entity});
+		this._populateRow_bindHookBars({comp, wrpRow, entity});
+		this._populateRow_bindHookConditionHover({comp, wrpRow, entity});
 
-		$wrpRow
-			.on("contextmenu", evt => {
+		wrpRow
+			.onn("contextmenu", evt => {
 				if (this._isReadOnly) return;
 				evt.preventDefault();
 				this._doTickDown({comp, entity, isFromClick: true});
 			})
-			.on("click", evt => {
+			.onn("click", evt => {
 				if (this._isReadOnly) return;
 				if (EventUtil.isCtrlMetaKey(evt)) return this._utils.doDelete({entity});
 				this._doTickUp({comp, entity, isFromClick: true});
 			});
 	}
 
-	_populateRow_bindHookTooltip ({comp, $wrpRow, entity}) {
+	_populateRow_bindHookTooltip ({comp, wrpRow, entity}) {
 		const hkTooltip = () => {
-			const turnsText = `${comp._state.turns} turn${comp._state.turns > 1 ? "s" : ""} remaining; CTRL-click to Clear`;
-			$wrpRow.title(
+			const turnsText = `${comp._state.turns} turn${comp._state.turns > 1 ? "s" : ""} remaining${this._isReadOnly ? "" : `; CTRL-click to Clear`}`;
+			wrpRow.tooltip(
 				comp._state.name && comp._state.turns
 					? `${comp._state.name.escapeQuotes()} (${turnsText})`
 					: comp._state.name
@@ -76,23 +76,23 @@ export class RenderableCollectionConditions extends RenderableCollectionGenericR
 		hkTooltip();
 	}
 
-	_populateRow_bindHookBars ({comp, $wrpRow, entity}) {
+	_populateRow_bindHookBars ({comp, wrpRow, entity}) {
 		comp._addHookBase("turns", () => {
 			const htmlBars = comp._state.turns
 				? [...new Array(Math.min(comp._state.turns, 3))]
-					.map(() => this._populateRow_getHtmlBar({comp, $wrpRow, entity}))
+					.map(() => this._populateRow_getHtmlBar({comp, wrpRow, entity}))
 					.join("")
-				: this._populateRow_getHtmlBar({comp, $wrpRow, entity});
+				: this._populateRow_getHtmlBar({comp, wrpRow, entity});
 
-			$wrpRow
+			wrpRow
 				.empty()
 				.html(htmlBars);
 		})();
 	}
 
-	_populateRow_bindHookConditionHover ({comp, $wrpRow, entity}) {
+	_populateRow_bindHookConditionHover ({comp, wrpRow, entity}) {
 		comp._addHookBase("name", () => {
-			$wrpRow
+			wrpRow
 				.off("mouseover")
 				.off("mousemove")
 				.off("mouseleave");
@@ -100,20 +100,19 @@ export class RenderableCollectionConditions extends RenderableCollectionGenericR
 			const cond = InitiativeTrackerUtil.CONDITIONS.find(it => it.condName !== null && it.name.toLowerCase() === comp._state.name.toLowerCase().trim());
 			if (!cond) return;
 
-			const ele = $wrpRow[0];
-			$wrpRow.on("mouseover", (evt) => {
+			wrpRow.onn("mouseover", (evt) => {
 				if (!evt.shiftKey) return;
 
 				evt.shiftKey = false;
 				const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CONDITIONS_DISEASES]({name: cond.condName || cond.name, source: Parser.SRC_PHB});
-				Renderer.hover.pHandleLinkMouseOver(evt, ele, {isSpecifiedLinkData: true, page: UrlUtil.PG_CONDITIONS_DISEASES, source: Parser.SRC_PHB, hash}).then(null);
+				Renderer.hover.pHandleLinkMouseOver(evt, wrpRow, {isSpecifiedLinkData: true, page: UrlUtil.PG_CONDITIONS_DISEASES, source: Parser.SRC_PHB, hash}).then(null);
 			});
-			$wrpRow.on("mousemove", (evt) => Renderer.hover.handleLinkMouseMove(evt, ele));
-			$wrpRow.on("mouseleave", (evt) => Renderer.hover.handleLinkMouseLeave(evt, ele));
+			wrpRow.onn("mousemove", (evt) => Renderer.hover.handleLinkMouseMove(evt, wrpRow));
+			wrpRow.onn("mouseleave", (evt) => Renderer.hover.handleLinkMouseLeave(evt, wrpRow));
 		})();
 	}
 
-	_populateRow_getHtmlBar ({comp, $wrpRow, entity}) {
+	_populateRow_getHtmlBar ({comp, wrpRow, entity}) {
 		const styleStack = [
 			comp._state.turns == null || comp._state.turns > 3
 				? `background-image: linear-gradient(135deg, ${comp._state.color} 41.67%, transparent 41.67%, transparent 50%, ${comp._state.color} 50%, ${comp._state.color} 91.67%, transparent 91.67%, transparent 100%); background-size: 8.49px 8.49px;`

@@ -236,6 +236,8 @@ export class ManageBrewUi {
 
 				btn.txt(`Done!`);
 				setTimeout(() => btn.html(cachedHtml).prop("disabled", false), VeCt.DUR_INLINE_NOTIFY);
+
+				if (this._brewUtil.isReloadRequired()) this._brewUtil.doLocationReload();
 			});
 		return btn;
 	}
@@ -245,6 +247,8 @@ export class ManageBrewUi {
 
 		rdState.list.removeAllItems();
 		rdState.list.update();
+
+		if (this._brewUtil.isReloadRequired()) this._brewUtil.doLocationReload();
 	}
 
 	async _pDoPullAll ({rdState, brews = null}) {
@@ -301,6 +305,12 @@ export class ManageBrewUi {
 
 		await this._pRender_pBrewList(rdState);
 
+		const btnGet = ee`<button class="ve-btn ${this._brewUtil.STYLE_BTN} ve-btn-sm">Get ${this._brewUtil.DISPLAY_NAME.toTitleCase()}</button>`
+			.onn("click", () => this._pHandleClick_btnGetBrew(rdState));
+
+		const btnCustomUrl = ee`<button class="ve-btn ${this._brewUtil.STYLE_BTN} ve-btn-sm px-2" title="Set Custom Repository URL"><span class="glyphicon glyphicon-cog"></span></button>`
+			.onn("click", () => this._pHandleClick_btnSetCustomRepo());
+
 		const btnLoadPartnered = ee`<button class="ve-btn ve-btn-default ve-btn-sm">Load All Partnered</button>`
 			.onn("click", () => this._pHandleClick_btnLoadPartnered(rdState));
 
@@ -309,12 +319,6 @@ export class ManageBrewUi {
 
 		const btnLoadFromUrl = ee`<button class="ve-btn ve-btn-default ve-btn-sm">Load from URL</button>`
 			.onn("click", () => this._pHandleClick_btnLoadFromUrl(rdState));
-
-		const btnGet = ee`<button class="ve-btn ${this._brewUtil.STYLE_BTN} ve-btn-sm">Get ${this._brewUtil.DISPLAY_NAME.toTitleCase()}</button>`
-			.onn("click", () => this._pHandleClick_btnGetBrew(rdState));
-
-		const btnCustomUrl = ee`<button class="ve-btn ${this._brewUtil.STYLE_BTN} ve-btn-sm px-2" title="Set Custom Repository URL"><span class="glyphicon glyphicon-cog"></span></button>`
-			.onn("click", () => this._pHandleClick_btnSetCustomRepo());
 
 		const btnPullAll = this._isModal ? null : this._getBtnPullAll(rdState);
 		const btnDeleteAll = this._isModal ? null : this._getBtnDeleteAll(rdState);
@@ -369,6 +373,7 @@ export class ManageBrewUi {
 
 	async _pHandleClick_btnLoadPartnered (rdState) {
 		await this._brewUtil.pAddBrewsPartnered();
+		if (this._brewUtil.isReloadRequired()) this._brewUtil.doLocationReload();
 		await this._pRender_pBrewList(rdState);
 	}
 
@@ -378,6 +383,7 @@ export class ManageBrewUi {
 		DataUtil.doHandleFileLoadErrorsGeneric(errors);
 
 		await this._brewUtil.pAddBrewsFromFiles(files);
+		if (this._brewUtil.isReloadRequired()) this._brewUtil.doLocationReload();
 		await this._pRender_pBrewList(rdState);
 	}
 
@@ -408,6 +414,7 @@ export class ManageBrewUi {
 		}
 
 		await this._brewUtil.pAddBrewFromUrl(parsedUrl.href);
+		if (this._brewUtil.isReloadRequired()) this._brewUtil.doLocationReload();
 		await this._pRender_pBrewList(rdState);
 	}
 
@@ -421,6 +428,7 @@ export class ManageBrewUi {
 
 	async _pHandleClick_btnGetBrew (rdState) {
 		await GetBrewUi.pDoGetBrew({brewUtil: this._brewUtil, isModal: this._isModal});
+		if (this._brewUtil.isReloadRequired()) this._brewUtil.doLocationReload();
 		await this._pRender_pBrewList(rdState);
 	}
 

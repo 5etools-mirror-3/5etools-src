@@ -17,7 +17,7 @@ async function onJsonLoad (data) {
 	BookUtil.allPageUrl = "adventures.html";
 	BookUtil.propHomebrewData = "adventureData";
 	BookUtil.typeTitle = "Adventure";
-	BookUtil.init();
+	await BookUtil.pInit();
 
 	BookUtil.contentType = "adventure";
 

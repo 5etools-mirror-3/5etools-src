@@ -325,6 +325,7 @@ export class InitiativeTrackerNetworking {
 		});
 
 		const $wrpHelp = UiUtil.$getAddModalRow($modalInner, "div");
+		const $btnAltAddPlayer = $(`<button class="ve-btn ve-btn-primary ve-btn-text-insert">Add Player</button>`).click(() => $btnAddClient.click());
 		const $btnAltGenAll = $(`<button class="ve-btn ve-btn-primary ve-btn-text-insert">Generate All</button>`).click(() => $btnGenServerTokens.click());
 		const $btnAltCopyAll = $(`<button class="ve-btn ve-btn-primary ve-btn-text-insert">Copy Server Tokens</button>`).click(() => $btnCopyServers.click());
 		$$`<div class="ve-flex w-100">
@@ -332,7 +333,7 @@ export class InitiativeTrackerNetworking {
 				<p>
 				The Player View is part of a peer-to-peer (i.e., serverless) system to allow players to connect to a DM's initiative tracker. Players should use the <a href="inittrackerplayerview.html">Initiative Tracker Player View</a> page to connect to the DM's instance. As a DM, the usage is as follows:
 				<ol>
-						<li>Add the required number of players, and input (preferably unique) player names.</li>
+						<li>Add the required number of players ("${$btnAltAddPlayer}"), and input (preferably unique) player names.</li>
 						<li>Click "${$btnAltGenAll}," which will generate a "server token" per player. You can click "${$btnAltCopyAll}" to copy them all as a single block of text, or click on the "Server Token" values to copy them individually. Distribute these tokens to your players (via a messaging service of your choice; we recommend <a href="https://discordapp.com/">Discord</a>). Each player should paste their token into the <a href="inittrackerplayerview.html">Initiative Tracker Player View</a>, following the instructions provided therein.</li>
 						<li>
 							Get a resulting "client token" from each player via a messaging service of your choice. Then, either:

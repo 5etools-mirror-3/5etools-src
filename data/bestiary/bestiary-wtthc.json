@@ -1,0 +1,1524 @@
+{
+	"_meta": {
+		"dependencies": {
+			"monster": [
+				"XMM"
+			]
+		},
+		"otherSources": {
+			"monster": {
+				"XMM": "HotB"
+			}
+		}
+	},
+	"monster": [
+		{
+			"name": "Ankheg",
+			"source": "WttHC",
+			"isReprinted": true,
+			"_copy": {
+				"name": "Ankheg",
+				"source": "XMM"
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Barbed Devil",
+			"source": "WttHC",
+			"isReprinted": true,
+			"_copy": {
+				"name": "Barbed Devil",
+				"source": "XMM"
+			},
+			"hasToken": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Bearded Devil",
+			"source": "WttHC",
+			"isReprinted": true,
+			"_copy": {
+				"name": "Bearded Devil",
+				"source": "XMM"
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Commoner",
+			"source": "WttHC",
+			"isReprinted": true,
+			"_copy": {
+				"name": "Commoner",
+				"source": "XMM"
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Corrupted Rat",
+			"source": "WttHC",
+			"size": [
+				"T"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				10
+			],
+			"hp": {
+				"average": 1,
+				"formula": "1d4 - 1"
+			},
+			"speed": {
+				"walk": 20,
+				"climb": 20
+			},
+			"str": 2,
+			"dex": 11,
+			"con": 9,
+			"int": 2,
+			"wis": 11,
+			"cha": 4,
+			"skill": {
+				"perception": "+2",
+				"stealth": "+2"
+			},
+			"senses": [
+				"Darkvision 30 ft."
+			],
+			"passive": 11,
+			"cr": "0",
+			"trait": [
+				{
+					"name": "Agile",
+					"entries": [
+						"The rat doesn't provoke Opportunity Attacks when it moves out of an enemy's reach."
+					]
+				},
+				{
+					"name": "Death Burst",
+					"entries": [
+						"The rat explodes when it dies. {@actSave con} {@dc 9}, each creature in a 5-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the rat. {@actSaveFail} 1 Acid damage."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atkr m} {@hit 2}, reach 5 ft. {@h}1 Piercing damage."
+					]
+				}
+			],
+			"traitTags": [
+				"Death Burst"
+			],
+			"senseTags": [
+				"D"
+			],
+			"damageTags": [
+				"A",
+				"P"
+			],
+			"miscTags": [
+				"MA"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Cultist of Demogorgon",
+			"source": "WttHC",
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				12
+			],
+			"hp": {
+				"average": 9,
+				"formula": "2d8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 11,
+			"dex": 14,
+			"con": 10,
+			"int": 10,
+			"wis": 11,
+			"cha": 10,
+			"save": {
+				"wis": "+2"
+			},
+			"skill": {
+				"deception": "+2",
+				"religion": "+2"
+			},
+			"passive": 10,
+			"languages": [
+				"Common"
+			],
+			"cr": "1/8",
+			"action": [
+				{
+					"name": "Ritual Sickle",
+					"entries": [
+						"{@atkr m} {@hit 4}, reach 5 ft.  {@h}{@damage 1d4 + 2} Slashing damage plus 1 Necrotic damage."
+					]
+				}
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"N"
+			],
+			"miscTags": [
+				"MA",
+				"MLW"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Dardew",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "WttHC",
+			"size": [
+				"M"
+			],
+			"type": "fiend",
+			"alignment": [
+				"C",
+				"N"
+			],
+			"ac": [
+				19
+			],
+			"hp": {
+				"average": 105,
+				"formula": "14d8 + 42"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": 60
+			},
+			"str": 18,
+			"dex": 18,
+			"con": 16,
+			"int": 14,
+			"wis": 12,
+			"cha": 16,
+			"save": {
+				"int": "+5",
+				"cha": "+6"
+			},
+			"skill": {
+				"deception": "+6",
+				"perception": "+4",
+				"performance": "+9"
+			},
+			"senses": [
+				"Darkvision 120 ft."
+			],
+			"passive": 14,
+			"resist": [
+				"cold",
+				"fire",
+				"lightning",
+				"poison"
+			],
+			"conditionImmune": [
+				"poisoned"
+			],
+			"languages": [
+				"Abyssal",
+				"Common",
+				"Infernal"
+			],
+			"cr": "5",
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Dardew makes two attacks, using Fiery Claw or Power Chord in any combination."
+					]
+				},
+				{
+					"name": "Fiery Claw",
+					"entries": [
+						"{@atkr m} {@hit 7}, reach 5 ft.  {@h}8 ({@damage 1d8 + 4}) Slashing damage plus 7 ({@damage 2d6}) Fire damage."
+					]
+				},
+				{
+					"name": "Power Chord",
+					"entries": [
+						"{@actSave con} {@dc 14}, one creature Dardew can see within 120 ft. {@actSaveFail} 13 ({@damage 3d6 + 3}) Thunder damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Silver Tongue",
+					"entries": [
+						"{@actSave cha} {@dc 14}, one creature Dardew can see within 60 feet. {@actSaveFail} The creature has the {@condition Charmed|XPHB} condition until the start of Dardew's next turn."
+					]
+				}
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AB",
+				"C",
+				"I"
+			],
+			"damageTags": [
+				"F",
+				"S",
+				"T"
+			],
+			"miscTags": [
+				"MA"
+			],
+			"conditionInflict": [
+				"charmed"
+			],
+			"savingThrowForced": [
+				"charisma",
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Demobat",
+			"source": "WttHC",
+			"size": [
+				"T"
+			],
+			"type": {
+				"type": "fiend",
+				"tags": [
+					"Demon"
+				]
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 21,
+				"formula": "6d4 + 6"
+			},
+			"speed": {
+				"walk": 10,
+				"fly": 40
+			},
+			"str": 4,
+			"dex": 16,
+			"con": 12,
+			"int": 2,
+			"wis": 10,
+			"cha": 6,
+			"senses": [
+				"Blindsight 60 ft."
+			],
+			"passive": 10,
+			"resist": [
+				"cold",
+				"lightning"
+			],
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"poisoned"
+			],
+			"cr": "1/2",
+			"action": [
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atkr m} {@hit 5} (with {@variantrule Advantage|XPHB} if the target is {@condition Grappled|XPHB} by a Demobat), reach 5 ft.  {@h}10 ({@damage 2d6 + 3}) Piercing damage."
+					]
+				},
+				{
+					"name": "Tentacles",
+					"entries": [
+						"{@atkr m} {@hit 5}, reach 5 ft. {@h}7 ({@damage 1d8 + 3}) Slashing damage. If the target is a Medium or smaller creature, the target has the {@condition Grappled|XPHB} condition (escape {@dc 13}) from all four tentacles."
+					]
+				}
+			],
+			"senseTags": [
+				"B"
+			],
+			"actionTags": [
+				"Tentacles"
+			],
+			"damageTags": [
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MA"
+			],
+			"conditionInflict": [
+				"grappled"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Demodog",
+			"source": "WttHC",
+			"size": [
+				"S"
+			],
+			"type": {
+				"type": "fiend",
+				"tags": [
+					"Demon"
+				]
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				14
+			],
+			"hp": {
+				"average": 27,
+				"formula": "6d6 + 6"
+			},
+			"speed": {
+				"walk": 50
+			},
+			"str": 16,
+			"dex": 15,
+			"con": 12,
+			"int": 6,
+			"wis": 12,
+			"cha": 6,
+			"skill": {
+				"stealth": "+4"
+			},
+			"senses": [
+				"Blindsight 60 ft."
+			],
+			"passive": 11,
+			"resist": [
+				"cold",
+				"lightning"
+			],
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"poisoned"
+			],
+			"cr": "1",
+			"trait": [
+				{
+					"name": "Pack Tactics",
+					"entries": [
+						"The demodog has {@variantrule Advantage|XPHB} on an attack roll against a creature if at least one of the demodog's allies is within 5 feet of the creature and the ally doesn't have the {@condition Incapacitated|XPHB} condition."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atkr m} {@hit 5}, reach 5 ft. {@h}8 ({@damage 1d10 + 3}) Piercing damage. If the target is a Medium or smaller creature, it has the {@condition Prone|XPHB} condition."
+					]
+				}
+			],
+			"traitTags": [
+				"Pack Tactics"
+			],
+			"senseTags": [
+				"B"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MA"
+			],
+			"conditionInflict": [
+				"prone"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Demodragon",
+			"source": "WttHC",
+			"size": [
+				"H"
+			],
+			"type": {
+				"type": "fiend",
+				"tags": [
+					"Demon"
+				]
+			},
+			"ac": [
+				16
+			],
+			"hp": {
+				"average": 102,
+				"formula": "12d12 + 24"
+			},
+			"speed": {
+				"walk": 40,
+				"fly": 60
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 19,
+			"dex": 10,
+			"con": 15,
+			"int": 8,
+			"wis": 12,
+			"cha": 10,
+			"save": {
+				"con": "+5",
+				"wis": "+4"
+			},
+			"senses": [
+				"Blindsight 120 ft."
+			],
+			"passive": 11,
+			"resist": [
+				"acid",
+				"cold",
+				"lightning"
+			],
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"frightened",
+				"poisoned"
+			],
+			"cr": "5",
+			"trait": [
+				{
+					"name": "Baleful Presence",
+					"entries": [
+						"Sources of light in a 120-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the demodragon flicker wildly. Nonmagical sources of {@variantrule Bright Light|XPHB} in that area instead shed {@variantrule Dim Light|XPHB}."
+					]
+				},
+				{
+					"name": "Regeneration",
+					"entries": [
+						"The demodragon regains 10 {@variantrule Hit Points|XPHB} at the start of each of its turns if it has at least 1 {@variantrule Hit Points|XPHB|Hit Point}"
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The demodragon makes two Bite attacks."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atkr m} {@hit 7}, reach 10 ft.  {@h}11 ({@damage 2d6 + 4}) Piercing damage plus 4 ({@damage 1d8}) Acid damage."
+					]
+				},
+				{
+					"name": "Acid Breath {@recharge 5}",
+					"entries": [
+						"{@actSave dex} {@dc 13}, each creature in a 30-foot-long, 5-foot-wide {@variantrule Line [Area of Effect]|XPHB|Line}. {@actSaveFail} 22 ({@damage 4d10}) Acid damage. {@actSaveSuccess} Half damage."
+					]
+				}
+			],
+			"traitTags": [
+				"Regeneration"
+			],
+			"senseTags": [
+				"B"
+			],
+			"actionTags": [
+				"Breath Weapon",
+				"Multiattack"
+			],
+			"damageTags": [
+				"A",
+				"P"
+			],
+			"miscTags": [
+				"MA",
+				"RCH"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Demogorgon Spawn",
+			"source": "WttHC",
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "fiend",
+				"tags": [
+					"Demon"
+				]
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				15
+			],
+			"hp": {
+				"average": 44,
+				"formula": "8d8 + 8"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 17,
+			"dex": 15,
+			"con": 13,
+			"int": 8,
+			"wis": 12,
+			"cha": 7,
+			"skill": {
+				"perception": "+3",
+				"stealth": "+4"
+			},
+			"senses": [
+				"Blindsight 60 ft."
+			],
+			"passive": 13,
+			"resist": [
+				"cold",
+				"lightning"
+			],
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"frightened",
+				"poisoned"
+			],
+			"cr": "2",
+			"trait": [
+				{
+					"name": "Baleful Presence",
+					"entries": [
+						"Sources of light in a 60-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the spawn flicker wildly. Nonmagical sources of {@variantrule Bright Light|XPHB} in that area instead shed {@variantrule Dim Light|XPHB}."
+					]
+				},
+				{
+					"name": "Regeneration",
+					"entries": [
+						"The spawn regains 5 {@variantrule Hit Points|XPHB} at the start of each of its turns if it has at least 1 {@variantrule Hit Points|XPHB|Hit Point}."
+					]
+				},
+				{
+					"name": "Running Leap",
+					"entries": [
+						"With a 10-foot running start, the spawn can {@variantrule Long Jump|XPHB} up to 30 feet."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The spawn makes two Claw attacks."
+					]
+				},
+				{
+					"name": "Claw",
+					"entries": [
+						"{@atkr m} {@hit 5}, reach 10 ft. {@h}6 ({@damage 1d6 + 3}) Slashing damage."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atkr m} {@hit 5}, reach 5 ft. {@h}5 ({@damage 1d4 + 3}) Piercing damage. If the target is a Medium or smaller creature, it has the {@condition Grappled|XPHB} condition (escape {@dc 13}). While {@condition Grappled|XPHB}, the target has the {@condition Blinded|XPHB} condition."
+					]
+				}
+			],
+			"traitTags": [
+				"Regeneration"
+			],
+			"senseTags": [
+				"B"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"damageTags": [
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MA",
+				"RCH"
+			],
+			"conditionInflict": [
+				"blinded",
+				"grappled"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Dretch",
+			"source": "WttHC",
+			"isReprinted": true,
+			"_copy": {
+				"name": "Dretch",
+				"source": "XMM"
+			},
+			"hasToken": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Flizzlebin",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "WttHC",
+			"size": [
+				"S"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"Gnome"
+				]
+			},
+			"alignment": [
+				"C",
+				"G"
+			],
+			"ac": [
+				12
+			],
+			"hp": {
+				"average": 38,
+				"formula": "7d6 + 14"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 8,
+			"dex": 14,
+			"con": 15,
+			"int": 16,
+			"wis": 10,
+			"cha": 12,
+			"skill": {
+				"arcana": "+5",
+				"stealth": "+4"
+			},
+			"senses": [
+				"Darkvision 60 ft."
+			],
+			"passive": 10,
+			"languages": [
+				"Common",
+				"Dwarvish",
+				"Gnomish"
+			],
+			"cr": "1",
+			"trait": [
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"Flizzlebin has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				},
+				{
+					"name": "Ventriloquist",
+					"entries": [
+						"Flizzlebin can project his voice from anywhere within 1 mile of himself."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Dazzling Confetti",
+					"entries": [
+						"{@atkr m,r} {@hit 5}, reach 5 ft. or range 60 ft. {@h}10 ({@damage 2d6 + 3}) Radiant damage."
+					]
+				},
+				{
+					"name": "Vanishing Trick (3/Day)",
+					"entries": [
+						"Flizzlebin has the {@condition Invisible|XPHB} condition for 10 minutes. This effect ends early immediately after Flizzlebin makes an attack roll, deals damage, or has the {@condition Incapacitated|XPHB} condition, or if his hat is removed."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Distracting Glitter",
+					"entries": [
+						"{@actTrigger} Flizzlebin is hit by an attack roll. {@actResponse} Flizzlebin adds 2 to his AC against that attack, possibly causing it to miss."
+					]
+				}
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"C",
+				"D",
+				"G"
+			],
+			"damageTags": [
+				"R"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"conditionInflict": [
+				"incapacitated",
+				"invisible"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Giant Corrupted Rat",
+			"source": "WttHC",
+			"size": [
+				"S"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 18,
+				"formula": "4d6"
+			},
+			"speed": {
+				"walk": 30,
+				"climb": 30
+			},
+			"str": 7,
+			"dex": 16,
+			"con": 12,
+			"int": 2,
+			"wis": 10,
+			"cha": 4,
+			"skill": {
+				"perception": "+12",
+				"stealth": "+5"
+			},
+			"senses": [
+				"Darkvision 60 ft."
+			],
+			"passive": 12,
+			"cr": "1/2",
+			"trait": [
+				{
+					"name": "Death Burst",
+					"entries": [
+						"The rat explodes when it dies. Constitution {@variantrule Saving Throw|XPHB} {@dc 11}, each creature in a 5-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the rat. {@actSaveFail} 5 ({@damage 2d4}) Acid damage. {@actSaveSuccess} Half damage."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atkr m} {@hit 5}, Reach 5 ft. {@h}6 ({@damage 1d6 + 3}) Piercing damage plus 5 ({@damage 2d4}) Acid damage."
+					]
+				}
+			],
+			"traitTags": [
+				"Death Burst"
+			],
+			"senseTags": [
+				"D"
+			],
+			"damageTags": [
+				"A",
+				"P"
+			],
+			"miscTags": [
+				"MA"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Giant Spider",
+			"source": "WttHC",
+			"isReprinted": true,
+			"_copy": {
+				"name": "Giant Spider",
+				"source": "XMM"
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Gnoll Warrior",
+			"source": "WttHC",
+			"isReprinted": true,
+			"_copy": {
+				"name": "Gnoll Warrior",
+				"source": "XMM"
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Goblin Warrior",
+			"source": "WttHC",
+			"isReprinted": true,
+			"_copy": {
+				"name": "Goblin Warrior",
+				"source": "XMM"
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Guard",
+			"source": "WttHC",
+			"isReprinted": true,
+			"_copy": {
+				"name": "Guard",
+				"source": "XMM"
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Hell Hound",
+			"source": "WttHC",
+			"isReprinted": true,
+			"_copy": {
+				"name": "Hell Hound",
+				"source": "XMM"
+			},
+			"hasToken": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Imp Trickster",
+			"source": "WttHC",
+			"size": [
+				"T"
+			],
+			"type": {
+				"type": "fiend",
+				"tags": [
+					"Devil"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 21,
+				"formula": "6d4"
+			},
+			"speed": {
+				"walk": 20,
+				"fly": 40,
+				"climb": 20
+			},
+			"str": 6,
+			"dex": 17,
+			"con": 13,
+			"int": 11,
+			"wis": 12,
+			"cha": 14,
+			"skill": {
+				"deception": "+4",
+				"insight": "+3",
+				"stealth": "+5"
+			},
+			"senses": [
+				"Darkvision 120 ft."
+			],
+			"passive": 11,
+			"resist": [
+				"cold"
+			],
+			"immune": [
+				"fire",
+				"poison"
+			],
+			"conditionImmune": [
+				"poisoned"
+			],
+			"languages": [
+				"Common",
+				"Infernal"
+			],
+			"cr": "1",
+			"trait": [
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The imp has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Sting",
+					"entries": [
+						"{@atkr m} {@hit 5}, reach 5 ft. {@h}{@damage 1d6 + 3} Piercing damage plus {@damage 2d6} Poison damage."
+					]
+				},
+				{
+					"name": "Invisibility",
+					"entries": [
+						"The imp has the {@condition Invisible|XPHB} condition for 1 minute. This effect ends early immediately after the imp makes an attack roll or deals damage, or if the imp has the {@condition Incapacitated|XPHB} condition."
+					]
+				},
+				{
+					"name": "Shape-Shift",
+					"entries": [
+						"The imp shape-shifts to resemble a rat ({@variantrule Speed|XPHB} 20 ft.), a raven (20 ft., Fly 60 ft.), or a spider (20 ft., Climb 20 ft.), or it returns to its true form. Its game statistics are the same in each form, except for its {@variantrule Speed|XPHB}. Any equipment it is wearing or carrying isn't transformed."
+					]
+				}
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"languageTags": [
+				"C",
+				"I"
+			],
+			"miscTags": [
+				"MA"
+			],
+			"conditionInflict": [
+				"incapacitated",
+				"invisible"
+			],
+			"hasToken": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Korex",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "WttHC",
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"Elf"
+				]
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 52,
+				"formula": "8d8"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 13,
+			"dex": 16,
+			"con": 14,
+			"int": 8,
+			"wis": 12,
+			"cha": 15,
+			"skill": {
+				"perception": "+3",
+				"performance": "+4",
+				"stealth": "+5"
+			},
+			"senses": [
+				"Darkvision 120 ft."
+			],
+			"passive": 13,
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"poisoned"
+			],
+			"languages": [
+				"Common",
+				"Elvish"
+			],
+			"cr": "2",
+			"gear": [
+				"pipes of pestilence|wtthc"
+			],
+			"trait": [
+				{
+					"name": "Sewer Speech",
+					"entries": [
+						"Korex can comprehend and verbally communicate with Monstrosities."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Rancid Knife",
+					"entries": [
+						"{@atkr m} {@hit 5}, reach 5 ft. {@h}8 ({@damage 2d4 + 3}) Piercing damage plus 7 ({@damage 2d6}) Poison damage, and the target has the {@condition Poisoned|XPHB} condition until the start of Korex's next turn."
+					]
+				},
+				{
+					"name": "Entrancing Pipes",
+					"entries": [
+						"{@actSave wis} {@dc 12}, one creature Korex can see within 120 feet. {@actSaveFail} 14 ({@damage 4d6}) Psychic damage, and the target has the {@condition Charmed|XPHB} condition until the start of Korex's next turn. {@actSaveSuccess} Half damage only."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Skitter",
+					"entries": [
+						"Korex takes the Dash or Disengage action."
+					]
+				}
+			],
+			"senseTags": [
+				"SD"
+			],
+			"languageTags": [
+				"C",
+				"E"
+			],
+			"damageTags": [
+				"I",
+				"P",
+				"Y"
+			],
+			"miscTags": [
+				"MA"
+			],
+			"conditionInflict": [
+				"charmed",
+				"poisoned"
+			],
+			"savingThrowForced": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Medusa",
+			"source": "WttHC",
+			"isReprinted": true,
+			"_copy": {
+				"name": "Medusa",
+				"source": "XMM"
+			},
+			"hasFluffImages": true
+		},
+		{
+			"name": "Myconid Adult",
+			"source": "WttHC",
+			"isReprinted": true,
+			"_copy": {
+				"name": "Myconid Adult",
+				"source": "XMM"
+			},
+			"hasToken": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Needle Blight",
+			"source": "WttHC",
+			"isReprinted": true,
+			"_copy": {
+				"name": "Needle Blight",
+				"source": "XMM"
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Rilly June",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "WttHC",
+			"size": [
+				"S"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"Halfling"
+				]
+			},
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				12
+			],
+			"hp": {
+				"average": 13,
+				"formula": "3d6"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 14,
+			"dex": 14,
+			"con": 13,
+			"int": 10,
+			"wis": 13,
+			"cha": 10,
+			"save": {
+				"wis": "+3"
+			},
+			"skill": {
+				"nature": "+2",
+				"perception": "+3",
+				"survival": "+3"
+			},
+			"passive": 13,
+			"languages": [
+				"Common",
+				"Halfling"
+			],
+			"cr": "1/2",
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Rilly June makes two Hayfork attacks."
+					]
+				},
+				{
+					"name": "Hayfork",
+					"entries": [
+						"{@atkr m} {@hit 4}, reach 5 ft. {@h}6 ({@damage 1d8 + 2}) Piercing damage."
+					]
+				},
+				{
+					"name": "G'wan, Git! (1/Day)",
+					"entries": [
+						"{@actSave wis} {@dc 11}, one creature Rilly June can see within 60 feet. {@actSaveFail} 10 ({@damage 3d6}) Psychic damage, and the target has the {@condition Frightened|XPHB} condition until the end of its next turn. {@actSaveSuccess} Half damage only."
+					]
+				}
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"H"
+			],
+			"damageTags": [
+				"P",
+				"Y"
+			],
+			"miscTags": [
+				"MA"
+			],
+			"conditionInflict": [
+				"frightened"
+			],
+			"savingThrowForced": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Scarecrow",
+			"source": "WttHC",
+			"isReprinted": true,
+			"_copy": {
+				"name": "Scarecrow",
+				"source": "XMM"
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Shadow",
+			"source": "WttHC",
+			"isReprinted": true,
+			"_copy": {
+				"name": "Shadow",
+				"source": "XMM"
+			},
+			"hasToken": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Shrieker Fungus",
+			"source": "WttHC",
+			"isReprinted": true,
+			"_copy": {
+				"name": "Shrieker Fungus",
+				"source": "XMM"
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Swarm of Corrupted Rats",
+			"source": "WttHC",
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "monstrosity",
+				"swarmSize": "T"
+			},
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				12
+			],
+			"hp": {
+				"average": 27,
+				"formula": "6d8"
+			},
+			"speed": {
+				"walk": 30,
+				"climb": 30
+			},
+			"str": 9,
+			"dex": 14,
+			"con": 10,
+			"int": 2,
+			"wis": 11,
+			"cha": 4,
+			"save": {
+				"dex": "+4"
+			},
+			"senses": [
+				"Darkvision 30 ft."
+			],
+			"passive": 10,
+			"resist": [
+				"bludgeoning",
+				"piercing",
+				"slashing"
+			],
+			"conditionImmune": [
+				"charmed",
+				"frightened",
+				"grappled",
+				"paralyzed",
+				"petrified",
+				"prone",
+				"restrained",
+				"stunned"
+			],
+			"cr": "1",
+			"trait": [
+				{
+					"name": "Death Burst",
+					"entries": [
+						"The rat explodes when it dies. {@actSave con} {@dc 10}, each creature in a 10-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the rat. {@actSaveFail} {@damage 2d4} Acid {@variantrule Damage|XPHB}. {@actSaveSuccess} Half damage."
+					]
+				},
+				{
+					"name": "Swarm",
+					"entries": [
+						"The swarm can occupy another creature's space and vice versa, and the swarm can move through any opening large enough for a Tiny rat. The swarm can't regain {@variantrule Hit Points|XPHB}."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atkr m} {@hit 4}, Reach 5 ft. {@h}6 ({@damage 2d4 + 2}) Piercing damage or {@damage 1d4 + 2} Piercing damage if the swarm is Bloodied."
+					]
+				}
+			],
+			"traitTags": [
+				"Death Burst"
+			],
+			"senseTags": [
+				"D"
+			],
+			"damageTags": [
+				"P"
+			],
+			"miscTags": [
+				"MA"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Vine Blight Tangler",
+			"source": "WttHC",
+			"size": [
+				"M"
+			],
+			"type": "plant",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				12
+			],
+			"hp": {
+				"average": 19,
+				"formula": "3d8"
+			},
+			"speed": {
+				"walk": 20
+			},
+			"str": 15,
+			"dex": 8,
+			"con": 14,
+			"int": 5,
+			"wis": 10,
+			"cha": 3,
+			"skill": {
+				"stealth": "+1"
+			},
+			"senses": [
+				"Blindsight 60 ft."
+			],
+			"passive": 10,
+			"conditionImmune": [
+				"deafened"
+			],
+			"languages": [
+				"Common"
+			],
+			"cr": "1/2",
+			"action": [
+				{
+					"name": "Constricting Vine",
+					"entries": [
+						"{@atkr m} {@hit 4}, reach 10 ft. {@h}{@damage 1d10 + 2} Bludgeoning damage. If the target is a Large or smaller creature, it has the {@condition Grappled|XPHB} condition (escape {@dc 12}) from one of three vines."
+					]
+				},
+				{
+					"name": "Entangling Vines {@recharge 5}",
+					"entries": [
+						"Grasping vines momentarily appear on each enemy in a 10-foot-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on a point of the blight's choice within 60 feet of it. Each target must succeed on a {@dc 12} Strength saving throw or have the {@condition Restrained|XPHB} condition until the start of the blight's next turn."
+					]
+				}
+			],
+			"senseTags": [
+				"B"
+			],
+			"languageTags": [
+				"C"
+			],
+			"miscTags": [
+				"AOE",
+				"MA",
+				"RCH"
+			],
+			"conditionInflict": [
+				"grappled",
+				"restrained"
+			],
+			"savingThrowForced": [
+				"strength"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Violet Fungus",
+			"source": "WttHC",
+			"isReprinted": true,
+			"_copy": {
+				"name": "Violet Fungus",
+				"source": "XMM"
+			},
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		}
+	]
+}

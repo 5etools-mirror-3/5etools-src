@@ -882,14 +882,14 @@ export class BrewUtil2Base {
 	}
 
 	async pAddBrewFromLoaderTag (ele) {
-		const $ele = $(ele);
-		if (!$ele.hasClass("rd__wrp-loadbrew--ready")) return; // an existing click is being handled
+		ele = e_(ele);
+		if (!ele.hasClass("rd__wrp-loadbrew--ready")) return; // an existing click is being handled
 		let jsonPath = ele.dataset.rdLoaderPath;
 		const name = ele.dataset.rdLoaderName;
-		const cached = $ele.html();
-		const cachedTitle = $ele.title();
-		$ele.title("");
-		$ele.removeClass("rd__wrp-loadbrew--ready").html(`${name.qq()}<span class="glyphicon glyphicon-refresh rd__loadbrew-icon rd__loadbrew-icon--active"></span>`);
+		const cached = ele.html();
+		const cachedTitle = ele.tooltip();
+		ele.tooltip("");
+		ele.removeClass("rd__wrp-loadbrew--ready").html(`${name.qq()}<span class="glyphicon glyphicon-refresh rd__loadbrew-icon rd__loadbrew-icon--active"></span>`);
 
 		jsonPath = jsonPath.unescapeQuotes();
 		if (!UrlUtil.isFullUrl(jsonPath)) {
@@ -898,8 +898,8 @@ export class BrewUtil2Base {
 		}
 
 		await this.pAddBrewFromUrl(jsonPath);
-		$ele.html(`${name.qq()}<span class="glyphicon glyphicon-saved rd__loadbrew-icon"></span>`);
-		setTimeout(() => $ele.html(cached).addClass("rd__wrp-loadbrew--ready").title(cachedTitle), 500);
+		ele.html(`${name.qq()}<span class="glyphicon glyphicon-saved rd__loadbrew-icon"></span>`);
+		setTimeout(() => ele.html(cached).addClass("rd__wrp-loadbrew--ready").tooltip(cachedTitle), 500);
 	}
 
 	_isMatchingCombinedIndexInfo (info) {

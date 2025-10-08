@@ -69,6 +69,12 @@ export class PageGeneratorBase {
 			.split("\n")
 			.map(l => l.trimEnd())
 			.join("\n");
+
+		if (this._page.includes("/")) {
+			const parentDir = this._page.split("/").slice(0, -1).join("/");
+			fs.mkdirSync(parentDir, {recursive: true});
+		}
+
 		fs.writeFileSync(this._page, rendered, "utf-8");
 	}
 

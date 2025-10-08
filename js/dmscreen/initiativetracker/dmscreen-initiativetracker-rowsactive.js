@@ -169,7 +169,7 @@ class _RenderableCollectionRowDataActive extends RenderableCollectionRowDataBase
 
 		const collectionConditions = new RenderableCollectionConditions({
 			comp: comp,
-			$wrpRows: $wrpConds,
+			wrpRows: e_($wrpConds[0]),
 		});
 		comp._addHookBase("conditions", () => collectionConditions.render())();
 	}
