@@ -24,7 +24,7 @@ window.addEventListener("load", async () => {
 	DataUtil.loadJSON(JSON_URL).then(onJsonLoad);
 });
 
-function onJsonLoad (data) {
+async function onJsonLoad (data) {
 	reference = [data.reference["bookref-quick"]];
 	BookUtil.contentType = "document";
 
@@ -33,11 +33,11 @@ function onJsonLoad (data) {
 	BookUtil.bookIndex = reference;
 	BookUtil.referenceId = "bookref-quick";
 	BookUtil.typeTitle = "Quick Reference (2014)";
-	BookUtil.init();
+	await BookUtil.pInit();
 
 	window.onhashchange = BookUtil.booksHashChange.bind(BookUtil);
 	if (window.location.hash.length) {
-		BookUtil.booksHashChange();
+		await BookUtil.booksHashChange();
 	} else {
 		window.location.hash = "#bookref-quick";
 	}

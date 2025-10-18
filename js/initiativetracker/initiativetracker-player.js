@@ -29,27 +29,27 @@ export class InitiativeTrackerPlayerUiV1 {
 }
 
 export class InitiativeTrackerPlayerUiV0 {
-	constructor (view, $iptServerToken, $btnGenClientToken, $iptClientToken) {
+	constructor (view, iptServerToken, btnGenClientToken, iptClientToken) {
 		this._view = view;
-		this._$iptServerToken = $iptServerToken;
-		this._$btnGenClientToken = $btnGenClientToken;
-		this._$iptClientToken = $iptClientToken;
+		this._iptServerToken = iptServerToken;
+		this._btnGenClientToken = btnGenClientToken;
+		this._iptClientToken = iptClientToken;
 	}
 
 	init () {
-		this._$iptServerToken.keydown(evt => {
-			this._$iptServerToken.removeClass("error-background");
-			if (evt.key === "Enter") this._$btnGenClientToken.click();
+		this._iptServerToken.onn("keydown", evt => {
+			this._iptServerToken.removeClass("error-background");
+			if (evt.key === "Enter") this._btnGenClientToken.trigger("click");
 		});
 
-		this._$btnGenClientToken.click(async () => {
-			this._$iptServerToken.removeClass("error-background");
-			const serverToken = this._$iptServerToken.val();
+		this._btnGenClientToken.onn("click", async () => {
+			this._iptServerToken.removeClass("error-background");
+			const serverToken = this._iptServerToken.val();
 
 			if (PeerUtilV0.isValidToken(serverToken)) {
 				try {
-					this._$iptServerToken.attr("disabled", true);
-					this._$btnGenClientToken.attr("disabled", true);
+					this._iptServerToken.attr("disabled", true);
+					this._btnGenClientToken.attr("disabled", true);
 					const clientData = await PeerUtilV0.pInitialiseClient(
 						serverToken,
 						msg => this._view.handleMessage(msg),
@@ -64,8 +64,8 @@ export class InitiativeTrackerPlayerUiV0 {
 					);
 
 					if (!clientData) {
-						this._$iptServerToken.attr("disabled", false);
-						this._$btnGenClientToken.attr("disabled", false);
+						this._iptServerToken.attr("disabled", false);
+						this._btnGenClientToken.attr("disabled", false);
 						JqueryUtil.doToast({
 							content: `Failed to create client. Are you sure the token was valid?`,
 							type: "warning",
@@ -86,7 +86,7 @@ export class InitiativeTrackerPlayerUiV0 {
 						// 	}
 						// }, 5000);
 
-						this._$iptClientToken.val(clientData.textifiedSdp).attr("disabled", false);
+						this._iptClientToken.val(clientData.textifiedSdp).attr("disabled", false);
 					}
 				} catch (e) {
 					JqueryUtil.doToast({
@@ -95,12 +95,12 @@ export class InitiativeTrackerPlayerUiV0 {
 					});
 					setTimeout(() => { throw e; });
 				}
-			} else this._$iptServerToken.addClass("error-background");
+			} else this._iptServerToken.addClass("error-background");
 		});
 
-		this._$iptClientToken.click(async () => {
-			await MiscUtil.pCopyTextToClipboard(this._$iptClientToken.val());
-			JqueryUtil.showCopiedEffect(this._$iptClientToken);
+		this._iptClientToken.onn("click", async () => {
+			await MiscUtil.pCopyTextToClipboard(this._iptClientToken.val());
+			JqueryUtil.showCopiedEffect(this._iptClientToken);
 		});
 	}
 }
@@ -110,17 +110,17 @@ export class InitiativeTrackerPlayerMessageHandlerV1 {
 		this._isCompact = isCompact;
 		this._isUiInit = false;
 
-		this._$meta = null;
-		this._$head = null;
-		this._$rows = null;
+		this._eleMeta = null;
+		this._eleHead = null;
+		this._eleRows = null;
 	}
 
 	get isActive () { return this._isUiInit; }
 
-	setElements ($meta, $head, $rows) {
-		this._$meta = $meta;
-		this._$head = $head;
-		this._$rows = $rows;
+	setElements (eleMeta, eleHead, eleRows) {
+		this._eleMeta = eleMeta;
+		this._eleHead = eleHead;
+		this._eleRows = eleRows;
 	}
 
 	initUi () {} // to be overridden as required
@@ -143,12 +143,12 @@ export class InitiativeTrackerPlayerMessageHandlerV1 {
 
 		const data = payload || {};
 
-		this._$meta.empty();
-		this._$head.empty();
-		this._$rows.empty();
+		this._eleMeta.empty();
+		this._eleHead.empty();
+		this._eleRows.empty();
 
 		if (data.round) {
-			this._$meta.append(`
+			this._eleMeta.appends(`
 				<div class="${this._isCompact ? "ve-flex-vh-center" : "ve-flex-v-center"}${this._isCompact ? " mb-3" : ""}">
 					<div class="mr-2">Round: </div>
 					<div class="bold">${data.round}</div>
@@ -156,7 +156,7 @@ export class InitiativeTrackerPlayerMessageHandlerV1 {
 			`);
 		}
 
-		this._$head.append(`
+		this._eleHead.appends(`
 			<div class="w-100 split-v-center min-w-100p ${this._isCompact ? "ve-text-center" : ""}">Creature/Status</div>
 			<div class="min-w-100p ${this._isCompact ? "ve-text-center" : ""}">Health</div>
 			${(data.statsCols || []).map(statCol => `<div class="initp__h_stat">${statCol.abbreviation || ""}</div>`).join("")}
@@ -164,11 +164,11 @@ export class InitiativeTrackerPlayerMessageHandlerV1 {
 		`);
 
 		(data.rows || []).forEach(rowData => {
-			this._$rows.append(this._$getRow(rowData));
+			this._eleRows.appends(this._getRow(rowData));
 		});
 	}
 
-	_$getRow (rowData) {
+	_getRow (rowData) {
 		const comp = BaseComponent.fromObject(
 			{
 				conditions: rowData.conditions || [],
@@ -176,14 +176,14 @@ export class InitiativeTrackerPlayerMessageHandlerV1 {
 			"*",
 		);
 
-		const $wrpConds = $$`<div class="init__wrp_conds h-100"></div>`;
+		const wrpConds = ee`<div class="init__wrp_conds h-100"></div>`;
 
 		const collectionConditions = new RenderableCollectionConditions({
 			comp: comp,
 			isReadOnly: true,
 			barWidth: !this._isCompact ? 24 : null,
 			barHeight: !this._isCompact ? 24 : null,
-			$wrpRows: $wrpConds,
+			wrpRows: wrpConds,
 		});
 		collectionConditions.render();
 
@@ -198,40 +198,43 @@ export class InitiativeTrackerPlayerMessageHandlerV1 {
 		};
 		const {hpText, hpColor} = getHpContent();
 
-		const $dispName = $(`<div></div>`).text(`${(rowData.customName || rowData.name || "")}${rowData.ordinal != null ? ` (${rowData.ordinal})` : ""}`);
+		const dispName = e_({
+			tag: "div",
+			txt: `${(rowData.customName || rowData.name || "")}${rowData.ordinal != null ? ` (${rowData.ordinal})` : ""}`,
+		});
 
-		return $$`
+		return ee`
 			<div class="initp__r${rowData.isActive ? ` initp__r--active` : ""}">
 				<div class="w-100 split-v-center min-w-100p">
-					${$dispName}
-					${$wrpConds}
+					${dispName}
+					${wrpConds}
 				</div>
 				<div class="min-w-100p">
 					<div class="initp__r_hp_pill" style="background: ${hpColor};">${hpText}</div>
 				</div>
-				${this._$getRenderedStatsCells({rowData})}
+				${this._getRenderedStatsCells({rowData})}
 				<div class="initp__r_score${this._isCompact ? " initp__r_score--compact" : ""}">${rowData.initiative}</div>
 			</div>
 		`;
 	}
 
-	_$getRenderedStatsCells ({rowData}) {
+	_getRenderedStatsCells ({rowData}) {
 		return (rowData.rowStatColData || [])
 			.map(cell => {
-				return $$`<div class="initp__r_stat ve-flex-vh-center">
-				 	${this._$getRenderedStatsCellInner({cell})}
+				return ee`<div class="initp__r_stat ve-flex-vh-center">
+				 	${this._getRenderedStatsCellInner({cell})}
 			 	</div>`;
 			});
 	}
 
-	_$getRenderedStatsCellInner ({cell}) {
+	_getRenderedStatsCellInner ({cell}) {
 		const {isUnknown, value, type} = cell.entity;
 
 		if (isUnknown) return `<span class="ve-muted italic" title="This value is hidden!">?</span>`;
 
 		if (type) {
 			switch (type) {
-				case "image": return this._$getRenderedStatsCellInner_image({cell});
+				case "image": return this._getRenderedStatsCellInner_image({cell});
 
 				default: {
 					setTimeout(() => { throw new Error(`Unknown type "${type}"!`); });
@@ -254,19 +257,19 @@ export class InitiativeTrackerPlayerMessageHandlerV1 {
 		}
 	}
 
-	_$getRenderedStatsCellInner_image ({cell}) {
+	_getRenderedStatsCellInner_image ({cell}) {
 		const {tokenUrl, imageHref} = cell.entity;
 
 		const hoverMeta = Renderer.monster.hover.getMakePredefinedFluffImageHoverHasImage({
 			imageHref: InitiativeTrackerUtil.getImageOrTokenHref({imageHref, tokenUrl}),
 		});
 
-		const $ele = $(`<img src="${tokenUrl}" class="w-24p w-24p" alt="Token Image">`)
-			.on("mouseover", evt => hoverMeta.mouseOver(evt, $ele[0]))
-			.on("mousemove", evt => hoverMeta.mouseMove(evt, $ele[0]))
-			.on("mouseleave", evt => hoverMeta.mouseLeave(evt, $ele[0]));
+		const ele = ee`<img src="${tokenUrl}" class="w-24p w-24p" alt="Token Image">`
+			.onn("mouseover", evt => hoverMeta.mouseOver(evt, ele[0]))
+			.onn("mousemove", evt => hoverMeta.mouseMove(evt, ele[0]))
+			.onn("mouseleave", evt => hoverMeta.mouseLeave(evt, ele[0]));
 
-		return $ele;
+		return ele;
 	}
 
 	/* -------------------------------------------- */

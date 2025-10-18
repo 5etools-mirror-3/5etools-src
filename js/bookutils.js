@@ -145,10 +145,8 @@ export class BookUtil {
 				let handled = false;
 				if (BookUtil.referenceId) handled = this._showBookContent_handleQuickReferenceShow({sectionHeader: scrollToHeaderText});
 				if (!handled) {
-					setTimeout(() => {
-						BookUtil._scrollClick(ixChapter, scrollToHeaderText, scrollToHeaderNumber);
-					}, BookUtil.isHashReload ? 15 : 75);
-					BookUtil.isHashReload = false;
+					AnimationUtil.pRecomputeStyles()
+						.then(() => BookUtil._scrollClick(ixChapter, scrollToHeaderText, scrollToHeaderNumber));
 				}
 			}
 		} else {
@@ -172,14 +170,11 @@ export class BookUtil {
 					}
 				}
 			} else if (isForceScroll) {
-				setTimeout(() => {
-					BookUtil._scrollClick(ixChapter, scrollToHeaderText, scrollToHeaderNumber);
-				}, BookUtil.isHashReload ? 15 : 75);
+				AnimationUtil.pRecomputeStyles()
+					.then(() => BookUtil._scrollClick(ixChapter, scrollToHeaderText, scrollToHeaderNumber));
 			} else if (scrollToHeaderText) {
-				setTimeout(() => {
-					BookUtil._scrollClick(ixChapter, scrollToHeaderText, scrollToHeaderNumber);
-				}, BookUtil.isHashReload ? 15 : 75);
-				BookUtil.isHashReload = false;
+				AnimationUtil.pRecomputeStyles()
+					.then(() => BookUtil._scrollClick(ixChapter, scrollToHeaderText, scrollToHeaderNumber));
 			}
 		}
 
@@ -491,10 +486,11 @@ export class BookUtil {
 
 	/* -------------------------------------------- */
 
-	static init () {
+	static async pInit () {
 		this._initLinkGrabbers();
 		this._initScrollTopFloat();
 		this._initLinkReNav();
+		await this._pInitLibraries();
 	}
 
 	static _initLinkGrabbers () {
@@ -536,6 +532,11 @@ export class BookUtil {
 				if (evt.target.tagName !== "A") return;
 				BookUtil._handleCheckReNav(e_({ele: evt.target}));
 			});
+	}
+
+	static async _pInitLibraries () {
+		const {polylabel} = await import("../lib/polylabel.js");
+		globalThis.polylabel = polylabel;
 	}
 
 	/* -------------------------------------------- */
@@ -743,7 +744,6 @@ export class BookUtil {
 		const hash = window.location.hash.slice(1).toLowerCase();
 		const linkHash = (lnk.attr("href").split("#")[1] || "").toLowerCase();
 		if (hash !== linkHash) return;
-		BookUtil.isHashReload = true;
 		BookUtil.booksHashChange().then(null);
 	}
 
@@ -781,6 +781,8 @@ export class BookUtil {
 				BookUtil._showSearchBox(indexData, bookId, true);
 			});
 
+		em(`.bk__wrp-btns-open-find`)
+			.forEach(ele => ele.remove());
 		ee`<div class="mobile__visible bk__wrp-btns-open-find ve-btn-group">
 			${btnToTop}${btnOpenFind}${btnOpenGoto}
 		</div>`.appendTo(document.body);
@@ -1040,7 +1042,6 @@ BookUtil.propHomebrewData = null;
 BookUtil.typeTitle = null;
 BookUtil.dispBook = null;
 BookUtil.referenceId = false;
-BookUtil.isHashReload = false;
 BookUtil.contentType = null; // one of "book" "adventure" or "document"
 BookUtil.wrpFloatControls = null;
 BookUtil.isDefaultExpandedContents = false;

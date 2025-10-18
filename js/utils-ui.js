@@ -76,8 +76,21 @@ function MixinProxyBase (Cls) {
 			});
 		}
 
+		_isEqualSimple (a, b) {
+			if (Object.is(a, b)) return true;
+
+			if (!a || !b) return false;
+
+			const isArrayA = Array.isArray(a);
+			const isArrayB = Array.isArray(b);
+			if (isArrayA !== isArrayB) return false;
+			if (isArrayA) return a.length === 0 && b.length === 0;
+
+			return false;
+		}
+
 		_doProxySet (hookProp, object, prop, value) {
-			if (object[prop] === value) return true;
+			if (this._isEqualSimple(object[prop], value)) return true;
 			const prevValue = object[prop];
 			Reflect.set(object, prop, value);
 			this._doFireHooksAll(hookProp, prop, value, prevValue);
@@ -87,7 +100,7 @@ function MixinProxyBase (Cls) {
 
 		/** As per `_doProxySet`, but the hooks are run strictly in serial. */
 		async _pDoProxySet (hookProp, object, prop, value) {
-			if (object[prop] === value) return true;
+			if (this._isEqualSimple(object[prop], value)) return true;
 			const prevValue = object[prop];
 			Reflect.set(object, prop, value);
 			if (this.__hooksAll[hookProp]) for (const hook of this.__hooksAll[hookProp]) await hook(prop, value, prevValue);
@@ -347,6 +360,7 @@ class UiUtil {
 	 *
 	 * @param {function} [opts.cbClose] Callback run when the modal is closed.
 	 * @param {jQuery} [opts.$titleSplit] Element to have split alongside the title.
+	 * @param {HTMLElement} [opts.eleTitleSplit] Element to have split alongside the title.
 	 * @param {int} [opts.zIndex] Z-index of the modal.
 	 * @param {number} [opts.overlayColor] Overlay color.
 	 * @param {boolean} [opts.isPermanent] If the modal should be impossible to close.
@@ -361,6 +375,9 @@ class UiUtil {
 		opts = opts || {};
 
 		const doc = (opts.window || window).document;
+
+		if (opts.$titleSplit && opts.eleTitleSplit) throw new Error(`Only one of "$titleSplit" and "eleTitleSplit" may be specified!`);
+		const eleTitleSplit = opts.eleTitleSplit || opts.$titleSplit?.[0];
 
 		UiUtil._initModalEscapeHandler({doc});
 		UiUtil._initModalMouseupHandlers({doc});
@@ -452,7 +469,7 @@ class UiUtil {
 								})
 								: null,
 
-							opts.$titleSplit ? opts.$titleSplit[0] : null,
+							eleTitleSplit,
 
 							btnCloseModal,
 						].filter(Boolean),
@@ -4450,7 +4467,7 @@ class RenderableCollectionGenericRows extends RenderableCollectionBase {
 
 		const $wrpRow = this._$getWrpRow()
 			.appendTo(this._$wrpRows);
-		const wrpRow = $wrpRow[0];
+		const wrpRow = e_($wrpRow[0]);
 
 		const renderAdditional = this._populateRow({comp, $wrpRow, wrpRow, entity});
 
@@ -4475,7 +4492,7 @@ class RenderableCollectionGenericRows extends RenderableCollectionBase {
 	 * @abstract
 	 * @return {?object}
 	 */
-	_populateRow ({comp, $wrpRow, entity}) {
+	_populateRow ({comp, $wrpRow, wrpRow, entity}) {
 		throw new Error(`Unimplemented!`);
 	}
 }

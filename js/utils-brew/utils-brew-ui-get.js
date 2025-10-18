@@ -120,7 +120,7 @@ export class GetBrewUi {
 		return new Promise((resolve, reject) => {
 			const ui = new this({brewUtil, isModal: true});
 			const rdState = new this._RenderState();
-			const {$modalInner} = UiUtil.getShowModal({
+			const {eleModalInner} = UiUtil.getShowModal({
 				isHeight100: true,
 				title: `Get ${brewUtil.DISPLAY_NAME.toTitleCase()}`,
 				isUncappedHeight: true,
@@ -133,7 +133,7 @@ export class GetBrewUi {
 				},
 			});
 			ui.pInit()
-				.then(() => ui.pRender($modalInner, {rdState}))
+				.then(() => ui.pRender(eleModalInner, {rdState}))
 				.catch(e => reject(e));
 		});
 	}
@@ -191,37 +191,37 @@ export class GetBrewUi {
 		// endregion
 	}
 
-	async pRender ($wrp, {rdState} = {}) {
+	async pRender (wrp, {rdState} = {}) {
 		rdState = rdState || new this.constructor._RenderState();
 
 		rdState.pageFilter = new this.constructor._PageFilterGetBrew({brewUtil: this._brewUtil});
 
-		const $btnAddSelected = $(`<button class="ve-btn ${this._brewUtil.STYLE_BTN} ve-btn-sm ve-col-0-5 ve-text-center" disabled title="Add Selected"><span class="glyphicon glyphicon-save"></button>`);
+		const btnAddSelected = ee`<button class="ve-btn ${this._brewUtil.STYLE_BTN} ve-btn-sm ve-col-0-5 ve-text-center" disabled title="Add Selected"><span class="glyphicon glyphicon-save"></button>`;
 
-		const $wrpRows = $$`<div class="list smooth-scroll max-h-unset"><div class="lst__row ve-flex-col"><div class="lst__wrp-cells lst__row-border lst__row-inner ve-flex w-100"><i>Loading...</i></div></div></div>`;
+		const wrpRows = ee`<div class="list smooth-scroll max-h-unset"><div class="lst__row ve-flex-col"><div class="lst__wrp-cells lst__row-border lst__row-inner ve-flex w-100"><i>Loading...</i></div></div></div>`;
 
-		const $btnFilter = $(`<button class="ve-btn ve-btn-default ve-btn-sm">Filter</button>`);
+		const btnFilter = ee`<button class="ve-btn ve-btn-default ve-btn-sm">Filter</button>`;
 
-		const $btnToggleSummaryHidden = $(`<button class="ve-btn ve-btn-default" title="Toggle Filter Summary Display"><span class="glyphicon glyphicon-resize-small"></span></button>`);
+		const btnToggleSummaryHidden = ee`<button class="ve-btn ve-btn-default" title="Toggle Filter Summary Display"><span class="glyphicon glyphicon-resize-small"></span></button>`;
 
-		const $iptSearch = $(`<input type="search" class="search manbrew__search form-control w-100 lst__search lst__search--no-border-h" placeholder="Find ${this._brewUtil.DISPLAY_NAME}...">`)
-			.keydown(evt => this._pHandleKeydown_iptSearch(evt, rdState));
-		const $dispCntVisible = $(`<div class="lst__wrp-search-visible no-events ve-flex-vh-center"></div>`);
+		const iptSearch = ee`<input type="search" class="search manbrew__search form-control w-100 lst__search lst__search--no-border-h" placeholder="Find ${this._brewUtil.DISPLAY_NAME}...">`
+			.onn("keydown", evt => this._pHandleKeydown_iptSearch(evt, rdState));
+		const dispCntVisible = ee`<div class="lst__wrp-search-visible no-events ve-flex-vh-center"></div>`;
 
 		rdState.cbAll = e_({
 			tag: "input",
 			type: "checkbox",
 		});
 
-		const $btnReset = $(`<button class="ve-btn ve-btn-default ve-btn-sm">Reset</button>`);
+		const btnReset = ee`<button class="ve-btn ve-btn-default ve-btn-sm">Reset</button>`;
 
-		const $wrpMiniPills = $(`<div class="fltr__mini-view ve-btn-group"></div>`);
+		const wrpMiniPills = ee`<div class="fltr__mini-view ve-btn-group"></div>`;
 
 		const btnSortAddedPublished = this._brewUtil.IS_PREFER_DATE_ADDED
 			? `<button class="ve-col-1-4 sort ve-btn ve-btn-default ve-btn-xs" data-sort="added">Added</button>`
 			: `<button class="ve-col-1-4 sort ve-btn ve-btn-default ve-btn-xs" data-sort="published">Published</button>`;
 
-		const $wrpSort = $$`<div class="filtertools manbrew__filtertools ve-btn-group input-group input-group--bottom ve-flex no-shrink">
+		const wrpSort = ee`<div class="filtertools manbrew__filtertools ve-btn-group input-group input-group--bottom ve-flex no-shrink">
 			<label class="ve-col-0-5 pr-0 ve-btn ve-btn-default ve-btn-xs ve-flex-vh-center">${rdState.cbAll}</label>
 			<button class="ve-col-3-5 sort ve-btn ve-btn-default ve-btn-xs" data-sort="name">Name</button>
 			<button class="ve-col-3 sort ve-btn ve-btn-default ve-btn-xs" data-sort="author">Author</button>
@@ -231,38 +231,38 @@ export class GetBrewUi {
 			<button class="sort ve-btn ve-btn-default ve-btn-xs ve-grow" disabled>Source</button>
 		</div>`;
 
-		$$($wrp)`
+		ee(wrp)`
 		<div class="mt-1"><i>A list of ${this._brewUtil.DISPLAY_NAME} available in the public repository. Click a name to load the ${this._brewUtil.DISPLAY_NAME}, or view the source directly.${this._brewUtil.IS_EDITABLE ? `<br>
 		Contributions are welcome; see the <a href="${this._brewUtil.URL_REPO_DEFAULT}/blob/master/README.md" target="_blank" rel="noopener noreferrer">README</a>, or stop by our <a href="https://discord.gg/5etools" target="_blank" rel="noopener noreferrer">Discord</a>.` : ""}</i></div>
 		<hr class="hr-3">
 		<div class="lst__form-top">
-			${$btnAddSelected}
-			${$btnFilter}
-			${$btnToggleSummaryHidden}
+			${btnAddSelected}
+			${btnFilter}
+			${btnToggleSummaryHidden}
 			<div class="w-100 relative">
-				${$iptSearch}
+				${iptSearch}
 				<div id="lst__search-glass" class="lst__wrp-search-glass no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
-				${$dispCntVisible}
+				${dispCntVisible}
 			</div>
-			${$btnReset}
+			${btnReset}
 		</div>
-		${$wrpMiniPills}
-		${$wrpSort}
-		${$wrpRows}`;
+		${wrpMiniPills}
+		${wrpSort}
+		${wrpRows}`;
 
 		rdState.list = new List({
-			$iptSearch,
-			$wrpList: $wrpRows,
+			iptSearch,
+			wrpList: wrpRows,
 			fnSort: this._sortUrlList.bind(this),
 			isFuzzy: true,
 			isSkipSearchKeybindingEnter: true,
 		});
 
-		rdState.list.on("updated", () => $dispCntVisible.html(`${rdState.list.visibleItems.length}/${rdState.list.items.length}`));
+		rdState.list.on("updated", () => dispCntVisible.html(`${rdState.list.visibleItems.length}/${rdState.list.items.length}`));
 
 		rdState.listSelectClickHandler = new ListSelectClickHandler({list: rdState.list});
-		rdState.listSelectClickHandler.bindSelectAllCheckbox($(rdState.cbAll));
-		SortUtil.initBtnSortHandlers($wrpSort, rdState.list);
+		rdState.listSelectClickHandler.bindSelectAllCheckbox(rdState.cbAll);
+		SortUtil.initBtnSortHandlers(wrpSort, rdState.list);
 
 		this._dataList.forEach((brewInfo, ix) => {
 			const {listItem} = this._pRender_getUrlRowMeta(rdState, brewInfo, ix);
@@ -270,11 +270,11 @@ export class GetBrewUi {
 		});
 
 		await rdState.pageFilter.pInitFilterBox({
-			$iptSearch: $iptSearch,
-			$btnReset: $btnReset,
-			$btnOpen: $btnFilter,
-			$btnToggleSummaryHidden,
-			$wrpMiniPills,
+			iptSearch: iptSearch,
+			btnReset: btnReset,
+			btnOpen: btnFilter,
+			btnToggleSummaryHidden,
+			wrpMiniPills,
 			namespace: `get-homebrew-${UrlUtil.getCurrentPage()}`,
 		});
 
@@ -292,11 +292,11 @@ export class GetBrewUi {
 
 		this._handleFilterChange(rdState);
 
-		$btnAddSelected
+		btnAddSelected
 			.prop("disabled", false)
-			.click(() => this._pHandleClick_btnAddSelected({rdState}));
+			.onn("click", () => this._pHandleClick_btnAddSelected({rdState}));
 
-		$iptSearch.focus();
+		iptSearch.focuse();
 	}
 
 	_handleFilterChange (rdState) {

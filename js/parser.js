@@ -3211,6 +3211,7 @@ Parser.SRC_DrDe_SD = "DrDe-SD";
 Parser.SRC_DrDe_ACfaS = "DrDe-ACfaS";
 Parser.SRC_DrDe_DotS = "DrDe-DotSC";
 Parser.SRC_HotB = "HotB";
+Parser.SRC_WttHC = "WttHC";
 Parser.SRC_TD = "TD";
 Parser.SRC_SCREEN = "Screen";
 Parser.SRC_SCREEN_WILDERNESS_KIT = "ScreenWildernessKit";
@@ -3410,6 +3411,7 @@ Parser.SOURCE_JSON_TO_FULL[Parser.SRC_DrDe_SD] = "Shivering Death";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_DrDe_ACfaS] = "A Copper for a Song";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_DrDe_DotS] = "Dragons of the Sandstone City";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_HotB] = "Heroes of the Borderlands";
+Parser.SOURCE_JSON_TO_FULL[Parser.SRC_WttHC] = "Stranger Things: Welcome to the Hellfire Club";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_TD] = "Tarot Deck";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_SCREEN] = "Dungeon Master's Screen";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_SCREEN_WILDERNESS_KIT] = "Dungeon Master's Screen: Wilderness Kit";
@@ -3584,6 +3586,7 @@ Parser.SOURCE_JSON_TO_ABV[Parser.SRC_DrDe_SD] = "DrDe-SD";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_DrDe_ACfaS] = "DrDe-ACfaS";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_DrDe_DotS] = "DrDe-DotSC";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_HotB] = "HotB";
+Parser.SOURCE_JSON_TO_ABV[Parser.SRC_WttHC] = "WttHC";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_TD] = "TD";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_SCREEN] = "Scr'14";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_SCREEN_WILDERNESS_KIT] = "ScrWild";
@@ -3757,6 +3760,7 @@ Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe_SD] = Parser.SOURCE_JSON_TO_DATE[Pars
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe_ACfaS] = Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe];
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe_DotS] = Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe];
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_HotB] = "2025-09-16";
+Parser.SOURCE_JSON_TO_DATE[Parser.SRC_WttHC] = "2025-10-07";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_TD] = "2022-05-24";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_SCREEN] = "2015-01-20";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_SCREEN_WILDERNESS_KIT] = "2020-11-17";
@@ -3910,6 +3914,7 @@ Parser.SOURCES_ADVENTURES = new Set([
 	Parser.SRC_DrDe_ACfaS,
 	Parser.SRC_DrDe_DotS,
 	Parser.SRC_HotB,
+	Parser.SRC_WttHC,
 
 	Parser.SRC_AWM,
 ]);
@@ -4038,6 +4043,7 @@ Parser.SOURCES_COMEDY = new Set([
 	Parser.SRC_ScoEE,
 	Parser.SRC_HBTD,
 	Parser.SRC_BQGT,
+	Parser.SRC_WttHC,
 ]);
 
 // Any opinionated set of sources that are "other settings"
@@ -4078,6 +4084,7 @@ Parser.SOURCES_NON_FR = new Set([
 	Parser.SRC_ScoEE,
 	Parser.SRC_HBTD,
 	Parser.SRC_BQGT,
+	Parser.SRC_WttHC,
 ]);
 
 // endregion
@@ -4236,6 +4243,7 @@ Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE = {};
 	Parser.SRC_DrDe_ACfaS,
 	Parser.SRC_DrDe_DotS,
 	Parser.SRC_HotB,
+	Parser.SRC_WttHC,
 ].forEach(src => {
 	Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE[src] = src;
 	Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE[src.toLowerCase()] = src;

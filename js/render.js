@@ -579,10 +579,15 @@ globalThis.Renderer = function () {
 		const ptTitle = ptTitleCreditTooltip ? `title="${ptTitleCreditTooltip}"` : "";
 		const pluginDataIsNoLink = this._applyPlugins_useFirst("image_isNoLink", {textStack, meta, options}, {input: entry});
 
+		const ptLabels = this._renderImage_geLabels(entry);
+
 		textStack[0] += `<div class="${this._renderImage_getWrapperClasses(entry, meta)}" ${entry.title && this._isHeaderIndexIncludeImageTitles ? `data-title-index="${this._headerIndex++}"` : ""}>
-			${pluginDataIsNoLink ? "" : `<a href="${href}" target="_blank" rel="noopener noreferrer" ${ptTitle}>`}
-				${this._renderImage_getImg({entry, meta, href, pluginDataIsNoLink, ptTitle})}
-			${pluginDataIsNoLink ? "" : `</a>`}
+			<div class="w-100 h-100 relative">
+				${pluginDataIsNoLink ? "" : `<a class="relative" href="${href}" target="_blank" rel="noopener noreferrer" ${ptTitle}>`}
+					${this._renderImage_getImg({entry, meta, href, pluginDataIsNoLink, ptTitle})}
+				${pluginDataIsNoLink ? "" : `</a>`}
+				${ptLabels}
+			</div>
 		</div>`;
 
 		if (!this._renderImage_isComicStyling(entry) && (entry.title || entry.credit || entry.mapRegions)) {
@@ -665,6 +670,44 @@ globalThis.Renderer = function () {
 				.filter(Boolean)
 				.join(". "),
 		).qq();
+	};
+
+	this._renderImage_geLabels = function (entry) {
+		if (
+			!entry.labelMapRegions
+			|| !globalThis.BookUtil?.curRender?.headerMap
+			|| !globalThis.polylabel
+			|| !entry.width
+			|| !entry.height
+			|| !entry.mapRegions?.length
+		) return "";
+
+		const tagInfo = Renderer.tag.TAG_LOOKUP.area;
+
+		return entry.mapRegions
+			.map(region => {
+				const area = globalThis.BookUtil.curRender.headerMap[region.area];
+				if (!area) return "";
+
+				// TODO(Future) refine
+				// TODO(Future) allow area to define name
+				const areaName = area.name.split(/[.:; ]/)[0].slice(0, 4);
+
+				const mapRegionPointsGeoJson = [region.points];
+				const [xNote, yNote] = polylabel(mapRegionPointsGeoJson);
+
+				const [xLabel, yLabel] = polylabel(mapRegionPointsGeoJson);
+
+				const pctLeft = ((xLabel / entry.width) * 100).toFixed(3);
+				const pctTop = ((yLabel / entry.height) * 100).toFixed(3);
+
+				const hoverMeta = Renderer.hover.getInlineHover(area.entry, {isLargeBookContent: true, depth: area.depth});
+
+				return `<a class="rd__image-label-map-region absolute small-caps dnd-font bold ve-block ve-text-center ve-overflow-hidden" style="left: ${pctLeft}%; top: ${pctTop}%;" href="${tagInfo.getHref(globalThis.BookUtil.curRender, area)}" ${hoverMeta.html}>
+					${areaName}
+				</a>`;
+			})
+			.join("");
 	};
 
 	this._renderImage_getStylePart = function (entry) {
@@ -2299,15 +2342,23 @@ globalThis.Renderer = function () {
 				break;
 			}
 			case "@area": {
-				const {areaId, displayText} = Renderer.tag.TAG_LOOKUP.area.getMeta(tag, text);
+				const tagInfo = Renderer.tag.TAG_LOOKUP.area;
+
+				const {areaId, displayText} = tagInfo.getMeta(tag, text);
 
 				if (!globalThis.BookUtil) { // for the roll20 script
 					textStack[0] += displayText;
-				} else {
-					const area = globalThis.BookUtil.curRender.headerMap[areaId] || {entry: {name: ""}}; // default to prevent rendering crash on bad tag
-					const hoverMeta = Renderer.hover.getInlineHover(area.entry, {isLargeBookContent: true, depth: area.depth});
-					textStack[0] += `<a href="#${globalThis.BookUtil.curRender.curBookId},${area.chapter},${UrlUtil.encodeForHash(area.entry.name)},0" ${hoverMeta.html}>${displayText}</a>`;
+					break;
 				}
+
+				const area = globalThis.BookUtil.curRender.headerMap[areaId];
+				if (!area) {
+					textStack[0] += displayText;
+					break;
+				}
+
+				const hoverMeta = Renderer.hover.getInlineHover(area.entry, {isLargeBookContent: true, depth: area.depth});
+				textStack[0] += `<a href="${tagInfo.getHref(globalThis.BookUtil.curRender, area)}" ${hoverMeta.html}>${displayText}</a>`;
 
 				break;
 			}
@@ -2336,7 +2387,7 @@ globalThis.Renderer = function () {
 				const page = tag === "@book" ? "book.html" : "adventure.html";
 				const [displayText, book, chapter, section, rawNumber] = Renderer.splitTagByPipe(text);
 				const number = rawNumber || 0;
-				const hash = `${book}${chapter ? `${HASH_PART_SEP}${chapter}${section ? `${HASH_PART_SEP}${UrlUtil.encodeForHash(section)}${number != null ? `${HASH_PART_SEP}${UrlUtil.encodeForHash(number)}` : ""}` : ""}` : ""}`;
+				const hash = `${book?.toLowerCase()}${chapter ? `${HASH_PART_SEP}${chapter}${section ? `${HASH_PART_SEP}${UrlUtil.encodeForHash(section)}${number != null ? `${HASH_PART_SEP}${UrlUtil.encodeForHash(number)}` : ""}` : ""}` : ""}`;
 				const fauxEntry = {
 					type: "link",
 					href: {
@@ -5805,6 +5856,11 @@ Renderer.tag = class {
 				areaId,
 				displayText,
 			};
+		}
+
+		getHref (bookRender, area) {
+			if (!area) return `javascript:void(0)`;
+			return `#${bookRender.curBookId},${area.chapter},${UrlUtil.encodeForHash(area.entry.name)},0`;
 		}
 	};
 
@@ -14932,40 +14988,41 @@ Renderer.hover = class {
 	static _getNextId () { return ++Renderer.hover._lastId; }
 
 	static _doInit () {
-		if (!Renderer.hover._isInit) {
-			Renderer.hover._isInit = true;
+		if (Renderer.hover._isInit) return;
+		Renderer.hover._isInit = true;
 
-			$(document.body).on("click", () => Renderer.hover.cleanTempWindows());
+		document.body.addEventListener("click", () => {
+			Renderer.hover.cleanTempWindows();
+		});
 
-			Renderer.hover._contextMenu = ContextUtil.getMenu([
-				new ContextUtil.Action(
-					"Maximize All",
-					() => {
-						const $permWindows = $(`.hoverborder[data-perm="true"]`);
-						$permWindows.attr("data-display-title", "false");
-					},
-				),
-				new ContextUtil.Action(
-					"Minimize All",
-					() => {
-						const $permWindows = $(`.hoverborder[data-perm="true"]`);
-						$permWindows.attr("data-display-title", "true");
-					},
-				),
-				null,
-				new ContextUtil.Action(
-					"Close Others",
-					() => {
-						const hoverId = Renderer.hover._contextMenuLastClicked?.hoverId;
-						Renderer.hover._doCloseAllWindows({hoverIdBlocklist: new Set([hoverId])});
-					},
-				),
-				new ContextUtil.Action(
-					"Close All",
-					() => Renderer.hover._doCloseAllWindows(),
-				),
-			]);
-		}
+		Renderer.hover._contextMenu = ContextUtil.getMenu([
+			new ContextUtil.Action(
+				"Maximize All",
+				() => {
+					const $permWindows = $(`.hoverborder[data-perm="true"]`);
+					$permWindows.attr("data-display-title", "false");
+				},
+			),
+			new ContextUtil.Action(
+				"Minimize All",
+				() => {
+					const $permWindows = $(`.hoverborder[data-perm="true"]`);
+					$permWindows.attr("data-display-title", "true");
+				},
+			),
+			null,
+			new ContextUtil.Action(
+				"Close Others",
+				() => {
+					const hoverId = Renderer.hover._contextMenuLastClicked?.hoverId;
+					Renderer.hover._doCloseAllWindows({hoverIdBlocklist: new Set([hoverId])});
+				},
+			),
+			new ContextUtil.Action(
+				"Close All",
+				() => Renderer.hover._doCloseAllWindows(),
+			),
+		]);
 	}
 
 	static cleanTempWindows () {
@@ -16109,7 +16166,18 @@ Renderer.hover = class {
 	static getInlineHover (entry, opts) {
 		return {
 			// Re-use link handlers, as the inline version is a simplified version
-			html: `onmouseover="Renderer.hover.handleInlineMouseOver(event, this)" onmouseleave="Renderer.hover.handleLinkMouseLeave(event, this)" onmousemove="Renderer.hover.handleLinkMouseMove(event, this)" data-vet-entry="${JSON.stringify(entry).qq()}" ${opts ? `data-vet-opts="${JSON.stringify(opts).qq()}"` : ""} ${Renderer.hover.getPreventTouchString()}`,
+			html: [
+				`onmouseover="Renderer.hover.handleInlineMouseOver(event, this)"`,
+				`onmouseleave="Renderer.hover.handleLinkMouseLeave(event, this)"`,
+				`onmousemove="Renderer.hover.handleLinkMouseMove(event, this)"`,
+				`onclick="Renderer.hover.handleLinkClick(event, this)"`,
+				`onwheel="Renderer.hover.handleLinkWheel(event, this)"`,
+				`data-vet-entry="${JSON.stringify(entry).qq()}"`,
+				`${opts ? `data-vet-opts="${JSON.stringify(opts).qq()}"` : ""}`,
+				`${Renderer.hover.getPreventTouchString()}`,
+			]
+				.filter(Boolean)
+				.join(" "),
 		};
 	}
 

@@ -10530,6 +10530,20 @@
 			"value": 10
 		},
 		{
+			"name": "Cap of Vanishing",
+			"source": "WttHC",
+			"rarity": "uncommon",
+			"reqAttune": true,
+			"wondrous": true,
+			"recharge": "dawn",
+			"rechargeAmount": 3,
+			"charges": 3,
+			"entries": [
+				"This cap has 3 charges and regains all expended charges daily at dawn. While wearing the cap, you can take a {@action Magic|XPHB} action and expend 1 charge to give yourself the {@condition Invisible|XPHB} condition for 10 minutes. The effect ends early if the hat is removed, or immediately after you make an attack roll, deal damage, or cast a spell."
+			],
+			"hasFluffImages": true
+		},
+		{
 			"name": "Cap of Water Breathing",
 			"source": "DMG",
 			"page": 157,
@@ -12447,6 +12461,27 @@
 			"lootTables": [
 				"Arcana - Very Rare|XDMG"
 			]
+		},
+		{
+			"name": "Cloak of Billowing",
+			"source": "WttHC",
+			"_copy": {
+				"name": "Cloak of Billowing",
+				"source": "XDMG",
+				"_mod": {
+					"entries": {
+						"mode": "appendArr",
+						"items": {
+							"type": "entries",
+							"name": "Special Use:",
+							"entries": [
+								"You have advantage on Charisma ({@skill Performance|XPHB}) checks you make to amuse Humanoid onlookers while the cloak is billowing."
+							]
+						}
+					}
+				}
+			},
+			"hasFluffImages": true
 		},
 		{
 			"name": "Cloak of Billowing",
@@ -20513,6 +20548,27 @@
 					]
 				}
 			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Dread Helm",
+			"source": "WttHC",
+			"_copy": {
+				"name": "Dread Helm",
+				"source": "XDMG",
+				"_mod": {
+					"entries": {
+						"mode": "appendArr",
+						"items": {
+							"type": "entries",
+							"name": "Special Use:",
+							"entries": [
+								"You have {@variantrule Advantage|XPHB} on Charisma ({@skill Intimidation|XPHB}) checks you make to intimidate a Humanoid who sees you wearing this helm."
+							]
+						}
+					}
+				}
+			},
 			"hasFluffImages": true
 		},
 		{
@@ -30312,6 +30368,21 @@
 				"This walking stick has a brilliant gemstone fitted at the top. This staff has 4 charges and regains {@dice 1d4} expended charges daily at dawn.",
 				"As an action, you can expend 1 charge from the staff to create two linked teleportation portals, each one appearing on a flat surface of your choice that you can see within 1,500 feet of yourself. Alternatively, you can expend 1 charge as an action to relocate one or both portals, subject to the same limitation. The surface on which a portal appears must be big enough to accommodate it. Each portal is a two-dimensional, glowing oval ring, and together they create an open doorway up to 6 feet high and 4 feet wide. Any creature or object entering one portal exits from the other as if the two portals were a single opening that connects their locations.",
 				"A portal can appear on a moving surface, but the effect ends when the two portals move more than 1 mile apart. As a bonus action while holding the staff, you can close both portals (ending the effect) or suppress one portal, causing it to disappear until you relocate it (see above), during which time the remaining portal can't be used. The portals otherwise last for 24 hours."
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Holly's Handy Haversack",
+			"source": "WttHC",
+			"rarity": "rare",
+			"wondrous": true,
+			"weight": 5,
+			"entries": [
+				"This backpack has a central pouch and two side pouches, each of which is an extradimensional space. Each side pouch can hold up to 200 pounds of material, not exceeding a volume of 25 cubic feet. The central pouch can hold up to 500 pounds of material, not exceeding a volume of 64 cubic feet. The haversack always weighs 5 pounds, regardless of its contents.",
+				"Retrieving an item from the haversack requires a {@action Utilize|XPHB} action or a {@variantrule Bonus Action|XPHB} (your choice). When you reach into the haversack for a specific item, the item is always magically on top.",
+				"If any of its pouches is overloaded, pierced, or torn, the haversack ruptures and is destroyed. If the haversack is destroyed, its contents are lost forever, although an Artifact always turns up again somewhere. If the haversack is turned inside out, its contents spill forth unharmed, and the haversack must be put right before it can be used again.",
+				"Each pouch of the haversack holds enough air for 10 minutes of breathing, divided by the number of breathing creatures inside.",
+				"Placing the haversack inside an extradimensional space created by a {@item Bag of Holding|XDMG}, {@item Portable Hole|XDMG}, or similar item instantly destroys both items and opens a gate to the Astral Plane. The gate originates where the one item was placed inside the other. Any creature within 10 feet of the gate and not behind {@variantrule Cover|XPHB|Total Cover} is sucked through it and deposited in a random location on the Astral Plane. The gate then closes. The gate is one-way only and can't be reopened."
 			],
 			"hasFluffImages": true
 		},
@@ -43623,6 +43694,17 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Pipes of Pestilence",
+			"source": "WttHC",
+			"rarity": "uncommon",
+			"reqAttune": true,
+			"wondrous": true,
+			"entries": [
+				"If you play these pipes as a {@action Magic|XPHB} action, you summon one {@creature Swarm of Corrupted Rats|WttHC} in an unoccupied space within 60 feet of yourself. The swarm is {@variantrule Friendly [Attitude]|XPHB|Friendly} to you and your allies for as long as you continue to play the pipes each round as a {@action Magic|XPHB} action. While {@variantrule Friendly [Attitude]|XPHB|Friendly}, the swarm is under your control, obeys your commands, and takes no action other than to defend itself if you issue it no commands. Once your control ends, the swarm vanishes, and the pipes can't be used again until the next dawn."
+			],
+			"hasFluffImages": true
+		},
+		{
 			"name": "Pipes of the Sewers",
 			"source": "DMG",
 			"page": 185,
@@ -44253,6 +44335,29 @@
 			"entries": [
 				"{#itemEntry Absorbing Tattoo|TCE}"
 			]
+		},
+		{
+			"name": "Poison Soaked Kukri",
+			"source": "WttHC",
+			"type": "M|XPHB",
+			"rarity": "uncommon",
+			"reqAttune": true,
+			"weaponCategory": "simple",
+			"property": [
+				"F|XPHB",
+				"L|XPHB",
+				"T|XPHB"
+			],
+			"mastery": [
+				"Nick|XPHB"
+			],
+			"range": "20/60",
+			"dmg1": "1d4",
+			"dmgType": "P",
+			"entries": [
+				"You can take a {@variantrule Bonus Action|XPHB} to magically coat the blade of this Dagger with poison. The poison remains for 1 minute or until an attack using this weapon hits a creature. That creature must succeed on a DC 13 Constitution saving throw or take {@damage 2d8} Poison damage and have the {@condition Poisoned|XPHB} condition for 1 minute. This {@variantrule Bonus Action|XPHB} can't be used again this way until the next dawn."
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Poisoner's Kit",
@@ -57852,6 +57957,19 @@
 			]
 		},
 		{
+			"name": "Speaking Stones",
+			"source": "WttHC",
+			"rarity": "rare",
+			"wondrous": true,
+			"entries": [
+				"Speaking Stones come in pairs, with each stone carved to match the other.",
+				"While you touch one stone, you can take a {@action Magic|XPHB} action to send a short message of 25 words or fewer to the bearer of the other stone. That creature hears the message in its mind, recognizes you as the sender if it knows you, and can answer in a like manner immediately. The stones enable creatures to understand the meaning of your message.",
+				"You can send the message across any distance. If no creature bears the other stone, you know that fact as soon as you use the stone, and you don't send the message.",
+				"Once either stone is used to send a message in this way, the stones can't be used again until the next dawn. If one of the stones in a pair is destroyed, the other one becomes nonmagical."
+			],
+			"hasFluffImages": true
+		},
+		{
 			"name": "Spear of Backbiting",
 			"source": "TftYP",
 			"page": 229,
@@ -59109,6 +59227,34 @@
 			"entries": [
 				"This headpiece, crafted from dark metal, is worn curved around the ear. If you know a creature wearing another Spies' Murmur and that creature is within 1 mile of you, you can communicate telepathically with each other. As a bonus action, you can allow that creature to hear everything you hear for 1 hour. You can end this effect as a bonus action, and it ends if you're {@condition incapacitated}."
 			]
+		},
+		{
+			"name": "Spiked Shield",
+			"source": "WttHC",
+			"baseItem": "shield|xphb",
+			"type": "S|XPHB",
+			"rarity": "uncommon",
+			"reqAttune": true,
+			"weight": 6,
+			"ac": 2,
+			"entries": [
+				"Crude metal spikes adorn this magic Shield. It has the following properties that you can use while holding it.",
+				{
+					"type": "entries",
+					"name": "Shield Bash",
+					"entries": [
+						"When you take the {@action Attack|XPHB} action, you can make one of the attack rolls using the Shield against a target within 5 feet of yourself. Apply your {@variantrule Proficiency|XPHB|Proficiency Bonus} and Strength modifier to the attack roll. On a hit, the Shield deals Piercing damage equal to {@dice 2d6} plus your Strength modifier."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spike Salvo",
+					"entries": [
+						"As a Magic action, you can cause spikes to erupt from the Shield in a 30-foot {@variantrule Cone [Area of Effect]|XPHB|Cone}. Each creature in the {@variantrule Cone [Area of Effect]|XPHB|Cone} makes a DC 13 Dexterity saving throw, taking {@damage 3d6} Piercing damage on a failed save or half as much damage on a successful one. Once this property is used, it can't be used again until the next dawn."
+					]
+				}
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Spindle of Fate",
