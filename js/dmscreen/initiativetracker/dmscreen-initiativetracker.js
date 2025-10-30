@@ -401,10 +401,15 @@ export class InitiativeTracker extends BaseComponent {
 				if (isMon ? !!this._state.playerInitShowExactMonsterHp : !!this._state.playerInitShowExactPlayerHp) {
 					out.hpCurrent = entity.hpCurrent;
 					out.hpMax = entity.hpMax;
+				}
+
+				if (isNaN(entity.hpCurrent) || isNaN(entity.hpMax)) {
+					out.hpWoundLevel = -1;
 				} else {
-					out.hpWoundLevel = isNaN(entity.hpCurrent) || isNaN(entity.hpMax)
-						? -1
-						: InitiativeTrackerUtil.getWoundLevel(100 * entity.hpCurrent / entity.hpMax);
+					const pctWounded = this._state.isInvertWoundDirection
+						? 100 * (entity.hpMax - entity.hpCurrent) / entity.hpMax
+						: 100 * entity.hpCurrent / entity.hpMax;
+					out.hpWoundLevel = InitiativeTrackerUtil.getWoundLevel(pctWounded);
 				}
 
 				if (this._state.playerInitShowOrdinals && entity.isShowOrdinal) out.ordinal = entity.ordinal;
@@ -438,6 +443,7 @@ export class InitiativeTracker extends BaseComponent {
 			roller: this._roller,
 			rowStateBuilderActive: this._rowStateBuilderActive,
 
+			isInvertWoundDirection: this._state.isInvertWoundDirection,
 			importIsAddPlayers: isAddPlayers,
 			importIsRollGroups: this._state.importIsRollGroups,
 			isRollInit: this._state.isRollInit,
@@ -627,6 +633,7 @@ export class InitiativeTracker extends BaseComponent {
 		if (this._savedState.m != null) stateNxt.isRollHp = this._savedState.m;
 		if (this._savedState.rg != null) stateNxt.isRollGroups = this._savedState.rg;
 		if (this._savedState.rri != null) stateNxt.isRerollInitiativeEachRound = this._savedState.rri;
+		if (this._savedState.wId != null) stateNxt.isInvertWoundDirection = this._savedState.wId;
 		if (this._savedState.g != null) stateNxt.importIsRollGroups = this._savedState.g;
 		if (this._savedState.p != null) stateNxt.importIsAddPlayers = this._savedState.p;
 		if (this._savedState.a != null) stateNxt.importIsAppend = this._savedState.a;
@@ -655,6 +662,7 @@ export class InitiativeTracker extends BaseComponent {
 			m: this._state.isRollHp,
 			rg: this._state.isRollGroups,
 			rri: this._state.isRerollInitiativeEachRound,
+			wId: this._state.isInvertWoundDirection,
 			g: this._state.importIsRollGroups,
 			p: this._state.importIsAddPlayers,
 			a: this._state.importIsAppend,
@@ -694,6 +702,7 @@ export class InitiativeTracker extends BaseComponent {
 			isRollHp: false,
 			isRollGroups: false,
 			isRerollInitiativeEachRound: false,
+			isInvertWoundDirection: false,
 			importIsRollGroups: true,
 			importIsAddPlayers: true,
 			importIsAppend: false,

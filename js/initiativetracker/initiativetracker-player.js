@@ -188,13 +188,13 @@ export class InitiativeTrackerPlayerMessageHandlerV1 {
 		collectionConditions.render();
 
 		const getHpContent = () => {
-			if (rowData.hpWoundLevel != null) {
-				const {text, color} = InitiativeTrackerUtil.getWoundMeta(rowData.hpWoundLevel);
-				return {hpText: text, hpColor: color};
-			} else {
-				const woundLevel = InitiativeTrackerUtil.getWoundLevel(100 * Number(rowData.hpCurrent) / Number(rowData.hpMax));
-				return {hpText: `${rowData.hpCurrent == null ? "?" : rowData.hpCurrent}/${rowData.hpMax == null ? "?" : rowData.hpMax}`, hpColor: InitiativeTrackerUtil.getWoundMeta(woundLevel).color};
-			}
+			const {text: hpTextWoundLevel, color: hpColor} = InitiativeTrackerUtil.getWoundMeta(rowData.hpWoundLevel);
+			return {
+				hpText: rowData.hpCurrent == null && rowData.hpCurrent == null
+					? hpTextWoundLevel
+					: `${rowData.hpCurrent == null ? "?" : rowData.hpCurrent}/${rowData.hpMax == null ? "?" : rowData.hpMax}`,
+				hpColor,
+			};
 		};
 		const {hpText, hpColor} = getHpContent();
 

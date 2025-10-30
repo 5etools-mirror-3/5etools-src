@@ -703,7 +703,9 @@ globalThis.Renderer = function () {
 
 				const hoverMeta = Renderer.hover.getInlineHover(area.entry, {isLargeBookContent: true, depth: area.depth});
 
-				return `<a class="rd__image-label-map-region absolute small-caps dnd-font bold ve-block ve-text-center ve-overflow-hidden" style="left: ${pctLeft}%; top: ${pctTop}%;" href="${tagInfo.getHref(globalThis.BookUtil.curRender, area)}" ${hoverMeta.html}>
+				const variantClass = areaName.length === 3 ? "rd__image-label-map-region--chars-3" : areaName.length >= 4 ? "rd__image-label-map-region--chars-4" : "";
+
+				return `<a class="rd__image-label-map-region ${variantClass} absolute small-caps dnd-font bold ve-block ve-text-center ve-overflow-hidden" style="left: ${pctLeft}%; top: ${pctTop}%;" href="${tagInfo.getHref(globalThis.BookUtil.curRender, area)}" ${hoverMeta.html}>
 					${areaName}
 				</a>`;
 			})
@@ -2775,12 +2777,13 @@ Renderer.splitByTags = function (string) {
 Renderer._splitByPipeBase = function (leadingCharacter) {
 	return function (string) {
 		let tagDepth = 0;
-		let char, char2;
+		let char0, char, char2;
 		const out = [];
 		let curStr = "";
 
 		const len = string.length;
 		for (let i = 0; i < len; ++i) {
+			char0 = string[i - 1];
 			char = string[i];
 			char2 = string[i + 1];
 
@@ -2798,6 +2801,10 @@ Renderer._splitByPipeBase = function (leadingCharacter) {
 					break;
 
 				case "|": {
+					if (char0 === "\\") {
+						curStr += char;
+						break;
+					}
 					if (tagDepth) curStr += "|";
 					else {
 						out.push(curStr);
@@ -3882,6 +3889,7 @@ Renderer.utils = class {
 								case "alignment": return this._getHtml_alignment({v, isListMode, keyOptions, isTextOnly, styleHint});
 								case "campaign": return this._getHtml_campaign({v, isListMode, keyOptions, isTextOnly, styleHint});
 								case "culture": return this._getHtml_culture({v, isListMode, keyOptions, isTextOnly, styleHint});
+								case "membership": return this._getHtml_membership({v, isListMode, keyOptions, isTextOnly, styleHint});
 								case "group": return this._getHtml_group({v, isListMode, keyOptions, isTextOnly, styleHint});
 								default: throw new Error(`Unhandled key: ${k}`);
 							}
@@ -3943,8 +3951,16 @@ Renderer.utils = class {
 
 			const isLevelVisible = v.level !== 1 // Hide the "implicit" 1st level.
 				&& !keyOptions?.level?.isNameOnly;
-			const isSubclassVisible = v.subclass?.visible;
-			const isClassVisible = v.class && (v.class.visible || isSubclassVisible); // force the class name to be displayed if there's a subclass being displayed
+			const isSubclassVisible = v.subclass?.visible
+				|| (!isListMode && v.subclass?.visibleStats)
+				|| (isListMode && v.subclass?.visibleList);
+			const isClassVisible = v.class
+				&& (
+					v.class.visible
+					|| isSubclassVisible // force the class name to be displayed if there's a subclass being displayed
+					|| (!isListMode && v.class?.visibleStats)
+					|| (isListMode && v.class?.visibleList)
+				);
 			if (isListMode) {
 				const shortNameRaw = isClassVisible ? this._getShortClassName(v.class.name) : null;
 				return `${isClassVisible ? `${shortNameRaw.slice(0, 4)}${isSubclassVisible ? "*" : "."}` : ""}${isLevelVisible ? ` Lvl ${v.level}` : ""}`;
@@ -4270,6 +4286,12 @@ Renderer.utils = class {
 			return isListMode
 				? v.join("/")
 				: `${v.joinConjunct(", ", " or ")} Culture`;
+		}
+
+		static _getHtml_membership ({v, isListMode}) {
+			return isListMode
+				? v.join("/")
+				: `Membeership in the ${v.joinConjunct(", ", " or ")}`;
 		}
 
 		static _getHtml_group ({v, isListMode}) {
@@ -11783,6 +11805,8 @@ Renderer.item = class {
 	static getCompactRenderedString (item, opts) {
 		opts = opts || {};
 
+		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
+
 		const [ptDamage, ptProperties] = Renderer.item.getRenderedDamageAndProperties(item);
 		const ptMastery = Renderer.item.getRenderedMastery(item);
 		const [typeRarityText, subTypeText, tierText] = Renderer.item.getTypeRarityAndAttunementText(item);
@@ -11801,7 +11825,7 @@ Renderer.item = class {
 		${Renderer.utils.getNameTr(item, {page: UrlUtil.PG_ITEMS, isEmbeddedEntity: opts.isEmbeddedEntity})}
 		<tr><td class="rd-item__type-rarity-attunement" colspan="6">${Renderer.item.getTypeRarityAndAttunementHtml(typeRarityText, subTypeText, tierText)}</td></tr>
 		<tr>
-			<td colspan="2">${[Parser.itemValueToFullMultiCurrency(item), Parser.itemWeightToFull(item)].filter(Boolean).join(", ").uppercaseFirst()}</td>
+			<td colspan="2">${[Parser.itemValueToFullMultiCurrency(item, {styleHint}), Parser.itemWeightToFull(item)].filter(Boolean).join(", ").uppercaseFirst()}</td>
 			<td colspan="4">
 				${textRight}
 			</td>
@@ -13704,7 +13728,7 @@ Renderer.action = class {
 
 Renderer.language = class {
 	static getLanguageRenderableEntriesMeta (ent) {
-		const hasMeta = ent.typicalSpeakers || ent.script;
+		const hasMeta = ent.typicalSpeakers || ent.script || ent.origin;
 
 		const entriesContent = [];
 
@@ -13718,6 +13742,7 @@ Renderer.language = class {
 		return {
 			entryType: ent.type ? `{@i ${ent.type.toTitleCase()} language}` : null,
 			entryTypicalSpeakers: ent.typicalSpeakers ? `{@b Typical Speakers:} ${ent.typicalSpeakers.join(", ")}` : null,
+			entryOrigin: ent.origin ? `{@b Origin:} ${ent.origin}` : null,
 			entryScript: ent.script ? `{@b Script:} ${ent.script}` : null,
 			entriesContent: entriesContent.length ? entriesContent : null,
 		};
@@ -13732,7 +13757,7 @@ Renderer.language = class {
 
 		const ptText = [
 			entriesMeta.entryType ? Renderer.get().render(entriesMeta.entryType) : "",
-			[entriesMeta.entryTypicalSpeakers, entriesMeta.entryScript]
+			[entriesMeta.entryTypicalSpeakers, entriesMeta.entryOrigin, entriesMeta.entryScript]
 				.filter(Boolean)
 				.map(it => `<div>${Renderer.get().render(it)}</div>`)
 				.join(""),
@@ -15896,6 +15921,7 @@ Renderer.hover = class {
 		hoverWindow.getPosition = Renderer.hover._getShowWindow_getPosition.bind(this, {$hov, hoverWindow, $wrpContent, position});
 
 		hoverWindow.$setContent = ($contentNxt) => $wrpContent.empty().append($contentNxt);
+		hoverWindow.setContent = (contentNxt) => $wrpContent.empty().append(contentNxt);
 
 		hoverWindow.eventChannel = eventChannel;
 

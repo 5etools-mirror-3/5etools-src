@@ -21,14 +21,14 @@ export class CreatureConverterUi extends ConverterUiBase {
 		);
 	}
 
-	_renderSidebar (parent, $wrpSidebar) {
-		$wrpSidebar.empty();
+	_renderSidebar (parent, wrpSidebar) {
+		wrpSidebar.empty();
 
-		$(`<div class="w-100 split-v-center">
+		ee`<div class="w-100 split-v-center">
 			<small>This parser is <span class="help" title="It is notably poor at handling text split across multiple lines, as Carriage Return is used to separate blocks of text.">very particular</span> about its input. Use at your own risk.</small>
-		</div>`).appendTo($wrpSidebar);
+		</div>`.appendTo(wrpSidebar);
 
-		ConverterUiUtil.renderSideMenuDivider($wrpSidebar);
+		ConverterUiUtil.renderSideMenuDivider(wrpSidebar);
 	}
 
 	handleParse (input, cbOutput, cbWarning, isAppend) {

@@ -1,7 +1,13 @@
 export class StyleSwitcher {
-	static _STORAGE_THEME = "StyleSwitcher_style";
-	static _STORAGE_ROLLBOX = "StyleSwitcher_style-rollbox";
-	static _STORAGE_WIDE = "StyleSwitcher_style-wide";
+	static _STORAGE_KEY_THEME = "StyleSwitcher_style";
+	static _STORAGE_KEY_ROLLBOX = "StyleSwitcher_style-rollbox";
+	static _STORAGE_KEY_WIDE = "StyleSwitcher_style-wide";
+
+	static _STORAGE_KEYS = [
+		this._STORAGE_KEY_THEME,
+		this._STORAGE_KEY_ROLLBOX,
+		this._STORAGE_KEY_WIDE,
+	];
 
 	static _STYLE_THEME_AUTOMATIC = "auto";
 	static _STYLE_THEME_DAY = "day";
@@ -96,7 +102,7 @@ export class StyleSwitcher {
 			},
 		});
 
-		if (StyleSwitcher.storage.getItem(StyleSwitcher._STORAGE_WIDE) === "true") cbWide.checked = true;
+		if (StyleSwitcher.storage.getItem(StyleSwitcher._STORAGE_KEY_WIDE) === "true") cbWide.checked = true;
 
 		return cbWide;
 	}
@@ -108,9 +114,9 @@ export class StyleSwitcher {
 
 	constructor () {
 		if (typeof window === "undefined") return;
-		this._setActiveStyleTheme(StyleSwitcher.storage.getItem(StyleSwitcher._STORAGE_THEME) || StyleSwitcher._STYLE_THEME_AUTOMATIC);
-		this._setActiveStyleRollbox(StyleSwitcher.storage.getItem(StyleSwitcher._STORAGE_ROLLBOX) || StyleSwitcher._STYLE_ROLLBOX_DEFAULT);
-		this._setActiveWide(StyleSwitcher.storage.getItem(StyleSwitcher._STORAGE_WIDE) === "true");
+		this._setActiveStyleTheme(StyleSwitcher.storage.getItem(StyleSwitcher._STORAGE_KEY_THEME) || StyleSwitcher._STYLE_THEME_AUTOMATIC);
+		this._setActiveStyleRollbox(StyleSwitcher.storage.getItem(StyleSwitcher._STORAGE_KEY_ROLLBOX) || StyleSwitcher._STYLE_ROLLBOX_DEFAULT);
+		this._setActiveWide(StyleSwitcher.storage.getItem(StyleSwitcher._STORAGE_KEY_WIDE) === "true");
 	}
 
 	getSummary () {
@@ -159,7 +165,7 @@ export class StyleSwitcher {
 			}
 		}
 
-		StyleSwitcher.storage.setItem(StyleSwitcher._STORAGE_THEME, this._styleTheme);
+		StyleSwitcher.storage.setItem(StyleSwitcher._STORAGE_KEY_THEME, this._styleTheme);
 
 		this._fnsOnChangeTheme.forEach(fn => fn());
 	}
@@ -196,7 +202,7 @@ export class StyleSwitcher {
 			}
 		}
 
-		StyleSwitcher.storage.setItem(StyleSwitcher._STORAGE_ROLLBOX, this._styleRollbox);
+		StyleSwitcher.storage.setItem(StyleSwitcher._STORAGE_KEY_ROLLBOX, this._styleRollbox);
 	}
 	// endregion
 
@@ -246,9 +252,25 @@ export class StyleSwitcher {
 				document.documentElement.appendChild(eleScript);
 			}
 		}
-		StyleSwitcher.storage.setItem(StyleSwitcher._STORAGE_WIDE, isActive);
+		StyleSwitcher.storage.setItem(StyleSwitcher._STORAGE_KEY_WIDE, isActive);
 	}
 	// endregion
+
+	/* -------------------------------------------- */
+
+	static syncGetStorageDump () {
+		return Object.fromEntries(
+			this._STORAGE_KEYS
+				.map(storageKey => [storageKey, this.storage.getItem(storageKey)]),
+		);
+	}
+
+	static syncSetFromStorageDump (dump) {
+		if (!dump) return;
+		this._STORAGE_KEYS
+			.filter(storageKey => storageKey in dump)
+			.forEach(storageKey => this.storage.setItem(storageKey, dump[storageKey]));
+	}
 }
 
 try {
@@ -257,9 +279,9 @@ try {
 	StyleSwitcher.storage = {
 		getItem (k) {
 			switch (k) {
-				case StyleSwitcher._STORAGE_THEME: return StyleSwitcher._STYLE_THEME_AUTOMATIC;
-				case StyleSwitcher._STORAGE_ROLLBOX: return StyleSwitcher._STYLE_ROLLBOX_DEFAULT;
-				case StyleSwitcher._STORAGE_WIDE: return false;
+				case StyleSwitcher._STORAGE_KEY_THEME: return StyleSwitcher._STYLE_THEME_AUTOMATIC;
+				case StyleSwitcher._STORAGE_KEY_ROLLBOX: return StyleSwitcher._STYLE_ROLLBOX_DEFAULT;
+				case StyleSwitcher._STORAGE_KEY_WIDE: return false;
 			}
 			return null;
 		},

@@ -35,6 +35,7 @@ export class UtilsFoundryItem {
 		"robe",
 		"slippers?",
 		"signet",
+		"manacles",
 
 		"bell",
 		"kit",

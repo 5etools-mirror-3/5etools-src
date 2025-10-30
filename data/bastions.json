@@ -1,6 +1,48 @@
 {
 	"facility": [
 		{
+			"name": "Amethyst Dragon Den",
+			"source": "FRHoF",
+			"facilityType": "special",
+			"level": 5,
+			"prerequisite": [
+				{
+					"membership": [
+						"Purple Dragon Knights"
+					]
+				}
+			],
+			"space": [
+				"vast"
+			],
+			"hirelings": [
+				{
+					"exact": 1
+				}
+			],
+			"orders": [
+				"empower"
+			],
+			"entries": [
+				"This den for an amethyst dragon is an enclosed open chamber with a pool, and one of its entrances is underwater. The facility's hireling maintains the den and helps any visiting amethyst dragons feel comfortable.",
+				{
+					"type": "entries",
+					"name": "Empower: Psionic Defenses",
+					"entries": [
+						"When you issue the Empower order to this facility, latent draconic power fills the facility, allowing you to train in psionic combat. This training takes 8 hours per day for 7 days, after which you gain Resistance to Psychic damage. This benefit lasts for 7 days."
+					]
+				},
+				{
+					"type": "inset",
+					"name": "Amethyst Dragons",
+					"entries": [
+						"Amethyst dragons are detailed in {@book Fizban's Treasury of Dragons|FTD|6}, and you can find their stat blocks there along with more information on Eldenser. They are the most powerful kind of gem dragon. Whereas chromatic dragons are typically evil, and metallic dragons typically good, gem dragons are typically neutral. They have the same age categories as other dragons (wyrmling, young, adult, ancient) but their spellcasting powers are psionic in nature. The breath weapon of an amethyst dragon is a bead of exploding gravitational force. Amethyst dragons can breathe underwater and swim at great speed."
+					]
+				}
+			],
+			"hasFluffImages": true
+		},
+		{
 			"name": "Arcane Study",
 			"source": "XDMG",
 			"page": 336,
@@ -233,6 +275,55 @@
 			]
 		},
 		{
+			"name": "Cult of the Dragon Archive",
+			"source": "FRHoF",
+			"facilityType": "special",
+			"level": 13,
+			"prerequisite": [
+				{
+					"membership": [
+						"Cult of the Dragon"
+					]
+				}
+			],
+			"space": [
+				"roomy"
+			],
+			"hirelings": [
+				{
+					"exact": 1
+				}
+			],
+			"orders": [
+				"research"
+			],
+			"entries": [
+				"A Cult of the Dragon Archive contains extensive records on specific topics, including dragons.",
+				{
+					"type": "entries",
+					"name": "Research: Helpful Lore",
+					"entries": [
+						"When you issue the Research order to this facility, you commission the facility's hireling to search the archive for lore. The work takes 7 days. The hireling gains knowledge as if they had cast the {@spell Legend Lore|XPHB} spell, then shares this knowledge with you the next time you speak with them."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Reference Books",
+					"entries": [
+						"Your Cult of the Dragon Archive contains a collection of draconic lore. You have Advantage on Intelligence ({@skill Nature|XPHB} or {@skill Religion|XPHB}) checks you make in your Bastion when you take the {@action Study|XPHB} action to recall lore about Dragons, Tiamat, or the Cult of the Dragon."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Enlarging the Facility",
+					"entries": [
+						"You can enlarge your Cult of the Dragon Archive to a Vast facility by spending 2,000 GP. If you do so, you gain two reference books chosen from those listed in the Archive entry in {@book chapter 8|XDMG|10} of the {@book Dungeon Master's Guide|XDMG}."
+					]
+				}
+			],
+			"hasFluffImages": true
+		},
+		{
 			"name": "Demiplane",
 			"source": "XDMG",
 			"page": 340,
@@ -289,6 +380,104 @@
 			"entries": [
 				"A basic facility comes with nonmagical furnishings and decor appropriate for that facility."
 			]
+		},
+		{
+			"name": "Emerald Enclave Grove",
+			"source": "FRHoF",
+			"facilityType": "special",
+			"level": 9,
+			"prerequisite": [
+				{
+					"membership": [
+						"Emerald Enclave"
+					]
+				}
+			],
+			"space": [
+				"vast"
+			],
+			"hirelings": [
+				{
+					"exact": 2
+				}
+			],
+			"orders": [
+				"recruit"
+			],
+			"entries": [
+				"Veteran agents of the Emerald Enclave create safe havens with trees, grass, and flowing water, where magical creatures that embody the power of nature live in peace and safety. The Emerald Enclave Grove can house one Huge creature or two Large creatures; four Small or Medium creatures or eight Tiny creatures can occupy the same space as one Large creature there.",
+				{
+					"type": "entries",
+					"name": "Recruit: Creature of Nature",
+					"entries": [
+						"When you issue the Recruit order to this facility, you invite a creature from the Emerald Enclave Grove Creatures table to your Emerald Enclave Grove. Roll any die. If the number rolled is odd, the creature doesn't accept your invitation and you gain no benefit from having issued the order. If the number rolled is even, a creature accepts your invitation and moves into your Emerald Enclave Grove after 7 days. Your hirelings care for the creature and perform upkeep in the facility.",
+						"Creatures in your Emerald Enclave Grove count as Bastion Defenders. Deduct any you lose from your Bastion Defenders roster. You can choose not to count one or more of these creatures as Bastion Defenders, in which case they can't be called on to defend the Bastion. Instead, they act in accordance with their nature and use their stat blocks in the {@book Monster Manual|XMM}.",
+						{
+							"type": "table",
+							"caption": "Emerald Enclave Grove Creatures",
+							"colLabels": [
+								"Creature",
+								"Size"
+							],
+							"colStyles": [
+								"col-6",
+								"col-6"
+							],
+							"rows": [
+								[
+									"{@creature Awakened Shrub|XMM}",
+									"Small"
+								],
+								[
+									"{@creature Awakened Tree|XMM}",
+									"Huge"
+								],
+								[
+									"{@creature Blink Dog|XMM}",
+									"Medium"
+								],
+								[
+									"{@creature Centaur Trooper|XMM}",
+									"Large"
+								],
+								[
+									"{@creature Dryad|XMM}",
+									"Medium"
+								],
+								[
+									"{@creature Myconid Adult|XMM}",
+									"Medium"
+								],
+								[
+									"{@creature Myconid Sprout|XMM}",
+									"Small"
+								],
+								[
+									"{@creature Pixie|XMM}",
+									"Tiny"
+								],
+								[
+									"{@creature Satyr|XMM}",
+									"Medium"
+								],
+								[
+									"{@creature Sprite|XMM}",
+									"Tiny"
+								],
+								[
+									"{@creature Treant|XMM}",
+									"Large"
+								],
+								[
+									"{@creature Unicorn|XMM}",
+									"Large"
+								]
+							]
+						}
+					]
+				}
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Gaming Hall",
@@ -561,6 +750,50 @@
 			]
 		},
 		{
+			"name": "Harper Hideout",
+			"source": "FRHoF",
+			"facilityType": "special",
+			"level": 5,
+			"prerequisite": [
+				{
+					"membership": [
+						"Harpers"
+					]
+				}
+			],
+			"space": [
+				"roomy"
+			],
+			"hirelings": [
+				{
+					"exact": 1
+				}
+			],
+			"orders": [
+				"empower"
+			],
+			"entries": [
+				"You have a safe house hidden near your Bastion and connected to it by a tunnel no more than a quarter mile in length. Your hireling maintains the hideout, using a cover identity that doesn't link them to your Bastion. You can change the location of your Harper Hideout each time you gain a level.",
+				{
+					"type": "entries",
+					"name": "Hideout Defenses",
+					"entries": [
+						"Your Harper Hideout is constantly protected by the {@spell Alarm|XPHB} spell. At level 9, your Harper Hideout can be connected to your Bastion by a magic doorway instead of a tunnel; anyone passing through the door from the Harper Hideout emerges from a specific door in your Bastion or vice versa, and your Harper Hideout can be located anywhere within 100 miles of your Bastion. At level 13, the facility can be located anywhere in Faerûn. At level 17, the magic doorway works across planes, and the facility can be anywhere in the multiverse."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Empower: Harper Training",
+					"entries": [
+						"When you issue the Empower order to this facility, the facility's hireling extends an invitation to another Harper agent nearby. Roll any die. If the number is odd, no Harper needs your facility and you gain no benefit from having issued the order. If the number rolled is even, a {@variantrule Friendly [Attitude]|XPHB|Friendly} Harper takes up temporary residence in your hideout.",
+						"The Harper stays for 7 days. While at your Bastion, the Harper can share their knowledge. Any character who trains with the Harper here for at least 8 hours on each of those days gains proficiency in one of the following skills of their choice: {@skill Deception|XPHB}, {@skill Investigation|XPHB}, or {@skill Performance|XPHB}. This benefit lasts for 7 days.",
+						"The Harper won't defend your Bastion and departs immediately if the Bastion is attacked."
+					]
+				}
+			],
+			"hasFluffImages": true
+		},
+		{
 			"name": "Kitchen",
 			"source": "XDMG",
 			"page": 335,
@@ -643,6 +876,44 @@
 					"name": "Research: Topical Lore",
 					"entries": [
 						"When you issue the {@book Research|XDMG|7|Research} order to this facility, you commission the facility's hireling to research a topic. The topic can be a legend, a known event or location, a person of significance, a type of creature, or a famous object. The work takes 7 days. When the research concludes, the hireling obtains up to three accurate pieces of information about the topic that were previously unknown to you and shares this knowledge with you the next time you speak with them. The DM determines what information you learn."
+					]
+				}
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Lords' Alliance Noble Residence",
+			"source": "FRHoF",
+			"facilityType": "special",
+			"level": 9,
+			"prerequisite": [
+				{
+					"membership": [
+						"Lords' Alliance"
+					]
+				}
+			],
+			"space": [
+				"vast"
+			],
+			"hirelings": [
+				{
+					"exact": 1
+				}
+			],
+			"orders": [
+				"recruit"
+			],
+			"entries": [
+				"You maintain a luxurious apartment fit for the ruler of a city such as Neverwinter, Waterdeep, or Baldur's Gate. Your hireling is a butler who tends to the resident's needs.",
+				"After spending a Long Rest in your Noble Residence, you gain {@variantrule Heroic Inspiration|XPHB}.",
+				{
+					"type": "entries",
+					"name": "Recruit: Visiting Noble",
+					"entries": [
+						"When you issue the Recruit order to your Lords' Alliance Noble Residence, you forgo sleeping in it for 14 days and instead make it available to a noble from a settlement that is a member of the Lords' Alliance. Roll any die. If the number rolled is odd, no one accepts your invitation and you gain no benefit from having issued the order. If the number rolled is even, a noble from the settlement you chose accepts your invitation, arriving within 7 days and staying for another 7 days.",
+						"The visiting noble gossips about events and inhabitants in their home settlement, revealing to you the location of any creature familiar to you if that creature is within 50 miles of the settlement from which the noble has come, if that creature isn't hidden by magic, and if that creature isn't confined to a location that the DM deems beyond the noble's ability to know. If the noble knows the location of the individual, they also tell you where that creature was for the 7 days prior to the noble's departure for your Bastion.",
+						"The visiting noble won't defend your Bastion and departs immediately if the Bastion is attacked."
 					]
 				}
 			],
@@ -911,6 +1182,42 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Order of the Gauntlet Tournament Field",
+			"source": "FRHoF",
+			"facilityType": "special",
+			"level": 9,
+			"prerequisite": [
+				{
+					"membership": [
+						"Order of the Gauntlet"
+					]
+				}
+			],
+			"space": [
+				"vast"
+			],
+			"hirelings": [
+				{
+					"exact": 1
+				}
+			],
+			"orders": [
+				"empower"
+			],
+			"entries": [
+				"The Order of the Gauntlet Tournament Field is a marked-off area for combat between two armed individuals. It includes room for spectators.",
+				"Your hireling is a {@creature Knight|XMM} whose alignment matches your own. If your Bastion lacks facilities to house this knight, the knight secures accommodations in the inn or settlement closest to the Bastion. This knight isn't a Bastion Defender, but if your Bastion is attacked, the knight reduces by 1 the number of dice you roll to determine how many Bastion Defenders are lost in the attack.",
+				{
+					"type": "entries",
+					"name": "Empower: Hold Tournament",
+					"entries": [
+						"When you issue the Empower order to this facility, you host a tournament at your Bastion. It takes 7 days for word of the tournament to spread to nearby settlements, and another 7 days for contestants to travel to your Bastion and participate in the tournament. You must spend 2,000 GP for prizes. At the conclusion of the tournament, your Renown Score with the Order of the Gauntlet increases by 1."
+					]
+				}
+			],
+			"hasFluffImages": true
+		},
+		{
 			"name": "Parlor",
 			"source": "XDMG",
 			"page": 335,
@@ -1003,6 +1310,43 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Red Wizard Necropolis",
+			"source": "FRHoF",
+			"facilityType": "special",
+			"level": 5,
+			"prerequisite": [
+				{
+					"membership": [
+						"Red Wizards"
+					],
+					"spellcastingFocus": true
+				}
+			],
+			"space": [
+				"roomy"
+			],
+			"hirelings": [
+				{
+					"exact": 1
+				}
+			],
+			"orders": [
+				"recruit"
+			],
+			"entries": [
+				"Red Wizards defend their strongholds with Undead minions. A Red Wizard Necropolis can accommodate up to eight Bastion Defenders.",
+				{
+					"type": "entries",
+					"name": "Recruit: Undead Defenders",
+					"entries": [
+						"Each time you issue the Recruit action to this facility, up to four Undead Bastion Defenders are created and take shelter in the crypts and burial chambers of your Red Wizard Necropolis. You can't issue the Recruit order to this facility if it's fully occupied.",
+						"Keep track of Undead Bastion Defenders you lose and deduct them from your Bastion Defenders roster. An Undead Bastion Defender returns to your Red Wizard Necropolis 14 days after being destroyed. Undead Bastion Defenders can't return from being killed if the facility is shut down or fully occupied."
+					]
+				}
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Reliquary",
@@ -1702,6 +2046,48 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Zhentarim Travel Station",
+			"source": "FRHoF",
+			"facilityType": "special",
+			"level": 5,
+			"prerequisite": [
+				{
+					"membership": [
+						"Zhentarim"
+					]
+				}
+			],
+			"space": [
+				"vast"
+			],
+			"hirelings": [
+				{
+					"exact": 2
+				}
+			],
+			"orders": [
+				"research"
+			],
+			"entries": [
+				"The Zhentarim maintain stations to facilitate safe and swift long-distance travel on journeys (see {@book chapter 2|XDMG|1|Travel} of the {@book Dungeon Master's Guide|XDMG}). Your travel station includes temporary stabling facilities for four Large creatures; two Medium creatures occupy the same space as one Large creature there. The facility's hirelings look after these creatures.",
+				{
+					"type": "entries",
+					"name": "Long-Distance Travel Speed",
+					"entries": [
+						"Finishing a Long Rest in your Bastion better prepares you for travel; your group's maximum travel pace increases by one step (from Slow to Normal or from Normal to Fast)."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Research: Reconnaissance",
+					"entries": [
+						"When you issue the Research order to this facility, you commission the Zhentarim Travel Station's hirelings to gather information that facilitates an upcoming journey. This work takes 7 days. For the duration of the journey, you have Advantage on Wisdom ({@skill Survival|XPHB}) checks to forage or navigate."
+					]
+				}
+			],
+			"hasFluffImages": true
 		}
 	]
 }

@@ -16,6 +16,7 @@ export class InitiativeTrackerEncounterConverter {
 		{
 			roller,
 			rowStateBuilderActive,
+			isInvertWoundDirection,
 			importIsAddPlayers,
 			importIsRollGroups,
 			isRollInit,
@@ -25,6 +26,7 @@ export class InitiativeTrackerEncounterConverter {
 		this._roller = roller;
 		this._rowStateBuilderActive = rowStateBuilderActive;
 
+		this._isInvertWoundDirection = isInvertWoundDirection;
 		this._importIsAddPlayers = importIsAddPlayers;
 		this._importIsRollGroups = importIsRollGroups;
 		this._isRollInit = isRollInit;
@@ -201,7 +203,7 @@ export class InitiativeTrackerEncounterConverter {
 									isActive: false,
 									source: entityInfo.entity.source,
 									conditions: [],
-									hpCurrent: hpVal,
+									hpCurrent: this._isInvertWoundDirection ? 0 : hpVal,
 									hpMax: hpVal,
 								}),
 						);

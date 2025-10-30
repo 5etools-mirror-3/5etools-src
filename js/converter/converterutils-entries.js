@@ -422,7 +422,7 @@ export class ItemTag extends ConverterTaggerInitializable {
 				// Disallow specific items
 				if (it.name === "Wave" && [Parser.SRC_DMG, Parser.SRC_XDMG].includes(it.source)) return false;
 				// Allow all non-specific-variant DMG items
-				if (it.source === Parser.SRC_DMG && it.source === Parser.SRC_XDMG && !Renderer.item.isMundane(it) && it._category !== "Specific Variant") return true;
+				if ([Parser.SRC_DMG, Parser.SRC_XDMG].includes(it.source) && !Renderer.item.isMundane(it) && it._category !== "Specific Variant") return true;
 				// Allow "sufficiently complex name" items
 				return it.name.split(" ").length > 2;
 			})
@@ -457,7 +457,7 @@ export class ItemTag extends ConverterTaggerInitializable {
 			lookupItemPropertyNames[name.toLowerCase()] = {abbreviation: ent.abbreviation, source: ent.source};
 		});
 
-		if (standardProperties.length) this[propItemPropertyNamesRegex] = new RegExp(`the (${standardProperties.map(ent => Renderer.item.getPropertyName(ent).escapeRegexp()).join("|")}) property`, "gi");
+		if (standardProperties.length) this[propItemPropertyNamesRegex] = new RegExp(`(?<=the )(?<propertyName>${standardProperties.map(ent => Renderer.item.getPropertyName(ent).escapeRegexp()).join("|")})(?= property)`, "gi");
 		// endregion
 	}
 
@@ -596,7 +596,7 @@ export class ItemTag extends ConverterTaggerInitializable {
 			strMod = strMod
 				.replace(this._ITEM_PROPERTY_REGEX__CLASSIC, (...m) => {
 					const meta = this._ITEM_PROPERTY_NAMES__CLASSIC[m[1].toLowerCase()];
-					return `{@itemProperty ${meta.abbreviation}${meta.source !== Parser.SRC_PHB ? `|${meta.source}` : ""}|${m[1]}}`;
+					return `{@itemProperty ${meta.abbreviation}|${meta.source !== Parser.SRC_PHB ? `${meta.source}` : ""}|${m[1]}}`;
 				});
 		}
 

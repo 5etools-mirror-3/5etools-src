@@ -3715,7 +3715,8 @@ class DragReorderUiUtil {
 class SourceUiUtil {
 	static _getValidOptions (options) {
 		if (!options) throw new Error(`No options were specified!`);
-		if (!options.$parent || !options.cbConfirm || !options.cbConfirmExisting || !options.cbCancel) throw new Error(`Missing options!`);
+		if (!(options.$parent || options.eleParent) || !options.cbConfirm || !options.cbConfirmExisting || !options.cbCancel) throw new Error(`Missing options!`);
+		if (options.$parent && options.eleParent) throw new Error(`Only one of "$parent" and "eleParent" may be specified!`);
 		options.mode = options.mode || "add";
 		return options;
 	}
@@ -3723,6 +3724,7 @@ class SourceUiUtil {
 	/**
 	 * @param options Options object.
 	 * @param options.$parent Parent element.
+	 * @param options.eleParent Parent element.
 	 * @param options.cbConfirm Confirmation callback for inputting new sources.
 	 * @param options.cbConfirmExisting Confirmation callback for selecting existing sources.
 	 * @param options.cbCancel Cancellation callback.
@@ -3732,7 +3734,8 @@ class SourceUiUtil {
 	 */
 	static render (options) {
 		options = SourceUiUtil._getValidOptions(options);
-		options.$parent.empty();
+		const $parent = options.$parent || $(options.eleParent);
+		$parent.empty();
 		options.mode = options.mode || "select";
 
 		const isEditMode = options.mode === "edit";
@@ -3877,7 +3880,7 @@ class SourceUiUtil {
 
 			${!isEditMode && BrewUtil2.getMetaLookup("sources")?.length ? $$`<div class="ve-flex-vh-center mb-3 mt-3"><span class="ui-source__divider"></span>or<span class="ui-source__divider"></span></div>
 			<div class="ve-flex-vh-center">${$btnUseExisting}</div>` : ""}
-		</div></div>`.appendTo(options.$parent);
+		</div></div>`.appendTo($parent);
 
 		const $selExisting = $$`<select class="form-control input-sm">
 			<option disabled>Select</option>
@@ -3913,7 +3916,7 @@ class SourceUiUtil {
 			<h3 class="ve-text-center">Select a Homebrew Source</h3>
 			<div class="mb-2"><div class="ve-col-12 ve-flex-vh-center">${$selExisting}</div></div>
 			<div class="ve-col-12 ve-flex-vh-center">${$btnBackExisting}${$btnConfirmExisting}</div>
-		</div></div>`.appendTo(options.$parent);
+		</div></div>`.appendTo($parent);
 	}
 }
 
@@ -5046,7 +5049,7 @@ class ComponentUiUtil {
 						let proc = raw;
 						proc = proc.slice(1).trim();
 						const mod = fnConvert(proc, fallbackEmpty, opts);
-						const full = `${cur}${mUnary[0]}${mod}`;
+						const full = `${cur ?? 0}${mUnary[0]}${mod}`;
 						component._state[prop] = fnConvert(full, fallbackEmpty, opts) - opts.offset;
 					} else {
 						component._state[prop] = fnConvert(raw, fallbackEmpty, opts) - opts.offset;

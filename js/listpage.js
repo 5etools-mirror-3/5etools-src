@@ -114,6 +114,8 @@ class SublistManager {
 	constructor (opts) {
 		opts = opts || {};
 
+		this._styleHint = VetoolsConfig.get("styleSwitcher", "style");
+
 		this._sublistListOptions = opts.sublistListOptions || {};
 		this._isSublistItemsCountable = !!opts.isSublistItemsCountable;
 		this._shiftCountAddSubtract = opts.shiftCountAddSubtract ?? 20;
@@ -534,7 +536,21 @@ class SublistManager {
 		return true;
 	}
 
-	async pHandleClick_download ({isUrl = false, $eleCopyEffect = null} = {}) {
+	/**
+	 * @param isUrl
+	 * @param {?jQUery} $eleCopyEffect
+	 * @param {?HTMLElementExtended} eleCopyEffect
+	 * @return {Promise<void>}
+	 */
+	async pHandleClick_download (
+		{
+			isUrl = false,
+			$eleCopyEffect = null,
+			eleCopyEffect = null,
+		} = {},
+	) {
+		if ($eleCopyEffect && eleCopyEffect) throw new Error(`Only one of "$eleCopyEffect" and "eleCopyEffect" may be specified!`);
+
 		const exportableSublist = await this.pGetExportableSublist();
 
 		if (isUrl) {
@@ -1032,6 +1048,8 @@ class ListPage {
 	 * @param [opts.compSettings]
 	 */
 	constructor (opts) {
+		this._styleHint = VetoolsConfig.get("styleSwitcher", "style");
+
 		this._dataSource = opts.dataSource;
 		this._prereleaseDataSource = opts.prereleaseDataSource;
 		this._brewDataSource = opts.brewDataSource;
@@ -1436,20 +1454,21 @@ class ListPage {
 	}
 
 	_renderListFeelingLucky ({isCompact, $btnReset}) {
-		const $btnRoll = $(`<button class="ve-btn ve-btn-default ${isCompact ? "px-2" : ""}" title="Feeling Lucky?"><span class="glyphicon glyphicon-random"></span></button>`);
+		const btnRoll = ee`<button class="ve-btn ve-btn-default ${isCompact ? "px-2" : ""}" title="Feeling Lucky?"><span class="glyphicon glyphicon-random"></span></button>`;
 
-		$btnRoll.on("click", () => {
-			const allLists = this.primaryLists.filter(l => l.visibleItems.length);
-			if (allLists.length) {
-				const rollX = RollerUtil.roll(allLists.length);
-				const list = allLists[rollX];
-				const rollY = RollerUtil.roll(list.visibleItems.length);
-				window.location.hash = $(list.visibleItems[rollY].ele).find(`a`).prop("hash");
-				list.visibleItems[rollY].ele.scrollIntoView();
-			}
-		});
+		btnRoll
+			.onn("click", () => {
+				const allLists = this.primaryLists.filter(l => l.visibleItems.length);
+				if (allLists.length) {
+					const rollX = RollerUtil.roll(allLists.length);
+					const list = allLists[rollX];
+					const rollY = RollerUtil.roll(list.visibleItems.length);
+					window.location.hash = e_(list.visibleItems[rollY].ele).find(`a`).attr("href");
+					list.visibleItems[rollY].ele.scrollIntoView();
+				}
+			});
 
-		$btnReset.before($btnRoll);
+		$btnReset.before(btnRoll);
 	}
 
 	_bindLinkExportButton ({$btn} = {}) {

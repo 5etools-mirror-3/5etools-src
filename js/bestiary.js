@@ -38,7 +38,7 @@ class BestiarySublistManager extends SublistManager {
 			isSublistItemsCountable: true,
 		});
 
-		this._$dispCrTotal = null;
+		this._dispCrTotal = null;
 		this._encounterBuilder = null;
 	}
 
@@ -57,8 +57,8 @@ class BestiarySublistManager extends SublistManager {
 	}
 
 	_onSublistChange () {
-		this._$dispCrTotal = this._$dispCrTotal || $(`#totalcr`);
-		this._encounterBuilder.onSublistChange({$dispCrTotal: this._$dispCrTotal});
+		this._dispCrTotal = this._dispCrTotal || es(`#totalcr`);
+		this._encounterBuilder.onSublistChange({dispCrTotal: this._dispCrTotal});
 	}
 
 	_getSublistFullHash ({entity}) {
@@ -122,11 +122,11 @@ class BestiarySublistManager extends SublistManager {
 		const $ptCr = (() => {
 			if (!ScaleCreature.isCrInScaleRange(mon)) return $(`<span class="ve-col-1-2 ve-text-center">${cr}</span>`);
 
-			const $iptCr = $(`<input value="${cr}" class="w-100 ve-text-center form-control form-control--minimal input-xs">`)
-				.click(() => $iptCr.select())
-				.change(() => this._encounterBuilder.pDoCrChange($iptCr, mon, mon._scaledCr));
+			const iptCr = ee`<input value="${cr}" class="w-100 ve-text-center form-control form-control--minimal input-xs">`
+				.onn("click", () => iptCr.select())
+				.onn("change", () => this._encounterBuilder.pDoCrChange(iptCr, mon, mon._scaledCr));
 
-			return $$`<span class="ve-col-1-2 ve-text-center">${$iptCr}</span>`;
+			return $$`<span class="ve-col-1-2 ve-text-center">${iptCr}</span>`;
 		})();
 
 		const $eleCount1 = $(`<span class="ve-col-2 ve-text-center">${count}</span>`);
@@ -168,7 +168,7 @@ class BestiarySublistManager extends SublistManager {
 			</a>
 
 			<div class="lst__wrp-cells best-ecgen__visible--flex lst__row-border lst__row-inner">
-				${sublistButtonsMeta.$wrp}
+				${sublistButtonsMeta.wrp}
 				<span class="best-ecgen__name--sub ve-col-3-5">${name}</span>
 				${$hovStatblock}
 				${$hovToken}

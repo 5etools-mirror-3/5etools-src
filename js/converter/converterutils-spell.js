@@ -15,10 +15,14 @@ export class DamageInflictTagger extends DamageTagger {
 	static tryRun (sp, options) {
 		const tags = new Set();
 
-		JSON.stringify([sp.entries, sp.entriesHigherLevel]).replace(/(?:{@damage [^}]+}|\d+) (\w+)((?:, \w+)*)(,? or \w+)? damage/ig, (...m) => {
-			if (m[1]) this._addDamageTypeToSet(tags, m[1], options);
-			if (m[2]) m[2].split(",").map(it => it.trim()).filter(Boolean).forEach(str => this._addDamageTypeToSet(tags, str, options));
-			if (m[3]) this._addDamageTypeToSet(tags, m[3].split(" ").last(), options);
+		MiscUtil.getWalker({isNoModification: true, keyBlocklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST}).walk([sp.entries, sp.entriesHigherLevel], {
+			string: str => {
+				str.replace(/(?:{@damage [^}]+}|\d+) (\w+)((?:, \w+)*)(,? or \w+)? damage/ig, (...m) => {
+					if (m[1]) this._addDamageTypeToSet(tags, m[1], options);
+					if (m[2]) m[2].split(",").map(it => it.trim()).filter(Boolean).forEach(str => this._addDamageTypeToSet(tags, str, options));
+					if (m[3]) this._addDamageTypeToSet(tags, m[3].split(" ").last(), options);
+				});
+			},
 		});
 
 		if (!tags.size) return;
@@ -28,17 +32,21 @@ export class DamageInflictTagger extends DamageTagger {
 
 class DamageResVulnImmuneTagger extends DamageTagger {
 	static get _RE () {
-		return (this.__RE ||= new RegExp(`${this._TYPE} to (?<ptBase>\\w+)(?<ptList>(?:, \\w+)*)(?<ptConj>,? or \\w+)? damage`, "gi"));
+		return (this.__RE ||= new RegExp(`${this._TYPE} to (?<ptBase>\\w+)(?<ptList>(?:, \\w+)*)(?<ptConj>,? (?:or|and) \\w+)? damage`, "gi"));
 	}
 
 	static tryRun (sp, options) {
 		const tags = new Set();
 
-		JSON.stringify([sp.entries, sp.entriesHigherLevel]).replace(this._RE, (...m) => {
-			const {ptBase, ptList, ptConj} = m.last();
-			if (ptBase) this._addDamageTypeToSet(tags, ptBase, options);
-			if (ptList) ptList.split(",").map(it => it.trim()).filter(Boolean).forEach(str => this._addDamageTypeToSet(tags, str, options));
-			if (ptConj) this._addDamageTypeToSet(tags, ptConj.split(" ").last(), options);
+		MiscUtil.getWalker({isNoModification: true, keyBlocklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST}).walk([sp.entries, sp.entriesHigherLevel], {
+			string: str => {
+				Renderer.stripTags(str).replace(this._RE, (...m) => {
+					const {ptBase, ptList, ptConj} = m.last();
+					if (ptBase) this._addDamageTypeToSet(tags, ptBase, options);
+					if (ptList) ptList.split(",").map(it => it.trim()).filter(Boolean).forEach(str => this._addDamageTypeToSet(tags, str, options));
+					if (ptConj) this._addDamageTypeToSet(tags, ptConj.split(" ").last(), options);
+				});
+			},
 		});
 
 		if (!tags.size) return;
@@ -126,7 +134,7 @@ export class MiscTagsTagger {
 
 					if (/rolls? (?:a )?{@dice [^}]+} and consults? the table/.test(str)) this._addTag({tags, tag: "RO", options});
 
-					if ((/\bbright light\b/i.test(stripped) || /\bdim light\b/i.test(stripped)) && /\b\d+[- ]foot[- ]radius\b/i.test(stripped)) {
+					if ((/\bbright light\b/i.test(stripped) || /\bdim light\b/i.test(stripped)) && /\b\d+[- ]foot(?:[- ]radius| emanation)\b/i.test(stripped)) {
 						if (/\bsunlight\b/.test(stripped)) this._addTag({tags, tag: "LGTS", options});
 						else this._addTag({tags, tag: "LGT", options});
 					}

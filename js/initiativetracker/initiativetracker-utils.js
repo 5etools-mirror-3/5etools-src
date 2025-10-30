@@ -11,6 +11,12 @@ export class UtilConditions {
 	}
 }
 
+const WOUND_LEVEL_HEALTHY = 0;
+const WOUND_LEVEL_INJURED = 1;
+const WOUND_LEVEL_BLOODY = 2;
+const WOUND_LEVEL_DEFEATED = 3;
+const WOUND_LEVEL_UNKNOWN = -1;
+
 export class RenderableCollectionConditions extends RenderableCollectionGenericRows {
 	constructor (
 		{
@@ -140,33 +146,33 @@ export class RenderableCollectionConditions extends RenderableCollectionGenericR
 export class InitiativeTrackerUtil {
 	static getWoundLevel (pctHp) {
 		pctHp = Math.round(Math.max(Math.min(pctHp, 100), 0));
-		if (pctHp === 100) return 0; // healthy
-		if (pctHp > 50) return 1; // injured
-		if (pctHp > 0) return 2; // bloody
-		if (pctHp === 0) return 3; // defeated
-		return -1; // unknown
+		if (pctHp === 100) return WOUND_LEVEL_HEALTHY;
+		if (pctHp > 50) return WOUND_LEVEL_INJURED;
+		if (pctHp > 0) return WOUND_LEVEL_BLOODY;
+		if (pctHp === 0) return WOUND_LEVEL_DEFEATED;
+		return WOUND_LEVEL_UNKNOWN;
 	}
 
-	static getWoundMeta (woundLevel) { return InitiativeTrackerUtil._WOUND_META[woundLevel] || InitiativeTrackerUtil._WOUND_META[-1]; }
+	static getWoundMeta (woundLevel) { return InitiativeTrackerUtil._WOUND_META[woundLevel] || InitiativeTrackerUtil._WOUND_META[WOUND_LEVEL_UNKNOWN]; }
 
 	static _WOUND_META = {
-		[-1]: {
+		[WOUND_LEVEL_UNKNOWN]: {
 			text: "Unknown",
 			color: "#a5a5a5",
 		},
-		0: {
+		[WOUND_LEVEL_HEALTHY]: {
 			text: "Healthy",
 			color: MiscUtil.COLOR_HEALTHY,
 		},
-		1: {
+		[WOUND_LEVEL_INJURED]: {
 			text: "Hurt",
 			color: MiscUtil.COLOR_HURT,
 		},
-		2: {
+		[WOUND_LEVEL_BLOODY]: {
 			text: "Bloodied",
 			color: MiscUtil.COLOR_BLOODIED,
 		},
-		3: {
+		[WOUND_LEVEL_DEFEATED]: {
 			text: "Defeated",
 			color: MiscUtil.COLOR_DEFEATED,
 		},

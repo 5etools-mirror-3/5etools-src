@@ -915,6 +915,19 @@
 					}
 				}
 			],
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.attributes.death.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						}
+					],
+					"description": "You have Advantage on Death Saving Throws."
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -1763,6 +1776,33 @@
 					"name": "Shield Bashed",
 					"statuses": [
 						"prone"
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Skulker",
+			"source": "XPHB",
+			"effects": [
+				{
+					"name": "Fog of War",
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.skills.ste.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						}
+					],
+					"descriptionEntries": [
+						{
+							"type": "entries",
+							"name": "Fog of War",
+							"entries": [
+								"You exploit the distractions of battle, gaining Advantage on any Dexterity (Stealth) check you make as part of the Hide action during combat."
+							]
+						}
 					]
 				}
 			],

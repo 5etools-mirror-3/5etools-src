@@ -227,7 +227,7 @@ export class ManageBrewUi {
 
 				try {
 					btn.txt(`Updating...`).prop("disabled", true);
-					await this._pDoPullAll({rdState});
+					await this._pDoPullAll({rdState, isReload: true});
 				} catch (e) {
 					btn.txt(`Failed!`);
 					setTimeout(() => btn.html(cachedHtml).prop("disabled", false), VeCt.DUR_INLINE_NOTIFY);
@@ -236,8 +236,6 @@ export class ManageBrewUi {
 
 				btn.txt(`Done!`);
 				setTimeout(() => btn.html(cachedHtml).prop("disabled", false), VeCt.DUR_INLINE_NOTIFY);
-
-				if (this._brewUtil.isReloadRequired()) this._brewUtil.doLocationReload();
 			});
 		return btn;
 	}
@@ -251,7 +249,7 @@ export class ManageBrewUi {
 		if (this._brewUtil.isReloadRequired()) this._brewUtil.doLocationReload();
 	}
 
-	async _pDoPullAll ({rdState, brews = null}) {
+	async _pDoPullAll ({rdState, brews = null, isReload = false}) {
 		if (brews && !brews.length) return;
 
 		let brewDocsUpdated;
@@ -289,12 +287,23 @@ export class ManageBrewUi {
 			.filter(Boolean)
 			.join("");
 
-		JqueryUtil.doToast({
+		const messageInfo = {
 			isAutoHide: false,
-			content: ee`<div>
+			contentHtml: `<div>
 				<div>Update complete! ${brewDocsUpdated.length} ${brewDocsUpdated.length === 1 ? `${this._brewUtil.DISPLAY_NAME} was` : `${this._brewUtil.DISPLAY_NAME_PLURAL} were`} updated.</div>
 				${htmlListRows ? `<ul class="mt-2 mb-0">${htmlListRows}</ul>` : ""}
 			</div>`,
+		};
+
+		if (isReload) {
+			await this._brewUtil.pSetReloadMessage(messageInfo);
+			if (this._brewUtil.isReloadRequired()) this._brewUtil.doLocationReload();
+			return;
+		}
+
+		JqueryUtil.doToast({
+			...messageInfo,
+			content: e_({outer: messageInfo.contentHtml}),
 		});
 	}
 
@@ -531,6 +540,7 @@ export class ManageBrewUi {
 				async () => this._pDoPullAll({
 					rdState,
 					brews: getSelBrews(),
+					isReload: true,
 				}),
 			),
 			new ContextUtil.Action(

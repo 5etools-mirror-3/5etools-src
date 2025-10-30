@@ -19,7 +19,7 @@ export class StatGenUtilAdditionalFeats {
 	}
 
 	static getSelIxSetMeta ({comp, prop, available}) {
-		return ComponentUiUtil.$getSelEnum(
+		return ComponentUiUtil.getSelEnum(
 			comp,
 			prop,
 			{

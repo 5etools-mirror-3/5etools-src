@@ -62,6 +62,11 @@ export const PROPORDER_FOUNDRY_ACTIVITIES = new ArrayKey("activities", {
 
 		// "enchant"-type
 		"restrictions",
+		"enchant",
+
+		// "transform"-type
+		"transform",
+		"settings",
 
 		"effects",
 	],

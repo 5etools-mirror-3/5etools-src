@@ -1,5 +1,5 @@
 import {EncounterBuilderRandomizer} from "./encounterbuilder-randomizer.js";
-import {EncounterBuilderCreatureMeta, EncounterBuilderXpInfo, EncounterPartyMeta, EncounterPartyPlayerMeta} from "./encounterbuilder-models.js";
+import {EncounterBuilderCreatureMeta, EncounterBuilderXpInfo, EncounterPartyMeta} from "./encounterbuilder-models.js";
 import {EncounterBuilderUiTtk} from "./encounterbuilder-ui-ttk.js";
 import {EncounterBuilderUiHelp} from "./encounterbuilder-ui-help.js";
 import {EncounterBuilderRenderableCollectionPlayersSimple} from "./encounterbuilder-playerssimple.js";
@@ -14,10 +14,10 @@ import {EncounterBuilderAdjuster} from "./encounterbuilder-adjuster.js";
 export class EncounterBuilderUi extends BaseComponent {
 	static _RenderState = class {
 		constructor () {
-			this.$wrpRowsSimple = null;
-			this.$wrpRowsAdvanced = null;
-			this.$wrpHeadersAdvanced = null;
-			this.$wrpFootersAdvanced = null;
+			this.wrpRowsSimple = null;
+			this.wrpRowsAdvanced = null;
+			this.wrpHeadersAdvanced = null;
+			this.wrpFootersAdvanced = null;
 
 			this.infoHoverId = null;
 
@@ -40,69 +40,69 @@ export class EncounterBuilderUi extends BaseComponent {
 	}
 
 	/**
-	 * @param {?jQuery} $parentRandomAndAdjust
-	 * @param {?jQuery} $parentViewer
-	 * @param {?jQuery} $parentGroupAndDifficulty
+	 * @param {?HTMLElementExtended} parentRandomAndAdjust
+	 * @param {?HTMLElementExtended} parentViewer
+	 * @param {?HTMLElementExtended} parentGroupAndDifficulty
 	 */
 	render (
 		{
-			$parentRandomAndAdjust = null,
-			$parentViewer = null,
-			$parentGroupAndDifficulty = null,
+			parentRandomAndAdjust = null,
+			parentViewer = null,
+			parentGroupAndDifficulty = null,
 		},
 	) {
 		const rdState = new this.constructor._RenderState();
 
-		this._render_randomAndAdjust({rdState, $parentRandomAndAdjust});
-		this._render_viewer({rdState, $parentViewer});
-		this._render_groupAndDifficulty({rdState, $parentGroupAndDifficulty});
+		this._render_randomAndAdjust({rdState, parentRandomAndAdjust});
+		this._render_viewer({rdState, parentViewer});
+		this._render_groupAndDifficulty({rdState, parentGroupAndDifficulty});
 		this._render_addHooks({rdState});
 	}
 
 	/* -------------------------------------------- */
 
-	_render_randomAndAdjust ({$parentRandomAndAdjust}) {
+	_render_randomAndAdjust ({parentRandomAndAdjust}) {
 		const {
-			$btnRandom,
-			$btnRandomMode,
-			$liRandomEasy,
-			$liRandomMedium,
-			$liRandomHard,
-			$liRandomDeadly,
+			btnRandom,
+			btnRandomMode,
+			liRandomEasy,
+			liRandomMedium,
+			liRandomHard,
+			liRandomDeadly,
 		} = this._render_randomAndAdjust_getRandomMeta();
 
 		const {
-			$btnAdjust,
-			$btnAdjustMode,
-			$liAdjustEasy,
-			$liAdjustMedium,
-			$liAdjustHard,
-			$liAdjustDeadly,
+			btnAdjust,
+			btnAdjustMode,
+			liAdjustEasy,
+			liAdjustMedium,
+			liAdjustHard,
+			liAdjustDeadly,
 		} = this._render_randomAndAdjust_getAdjustMeta();
 
-		$$($parentRandomAndAdjust)`<div class="ve-flex-col">
+		ee(parentRandomAndAdjust)`<div class="ve-flex-col">
 			<div class="ve-flex-h-right mb-3">${Renderer.get().render(`{@note Based on the encounter building rules in the {@book ${Parser.sourceJsonToFull(Parser.SRC_DMG)}|DMG|3|Creating a Combat Encounter}}`)}</div>
 
 			<div class="ve-flex-h-right">
 				<div class="ve-btn-group mr-3">
-					${$btnRandom}
-					${$btnRandomMode}
+					${btnRandom}
+					${btnRandomMode}
 					<ul class="ve-dropdown-menu">
-						${$liRandomEasy}
-						${$liRandomMedium}
-						${$liRandomHard}
-						${$liRandomDeadly}
+						${liRandomEasy}
+						${liRandomMedium}
+						${liRandomHard}
+						${liRandomDeadly}
 					</ul>
 				</div>
 
 				<div class="ve-btn-group">
-					${$btnAdjust}
-					${$btnAdjustMode}
+					${btnAdjust}
+					${btnAdjustMode}
 					<ul class="ve-dropdown-menu">
-						${$liAdjustEasy}
-						${$liAdjustMedium}
-						${$liAdjustHard}
-						${$liAdjustDeadly}
+						${liAdjustEasy}
+						${liAdjustMedium}
+						${liAdjustHard}
+						${liAdjustDeadly}
 					</ul>
 				</div>
 			</div>
@@ -125,35 +125,35 @@ export class EncounterBuilderUi extends BaseComponent {
 			if (randomCreatureMetas != null) this._comp.creatureMetas = randomCreatureMetas;
 
 			modeRandom = mode;
-			$btnRandom
-				.text(`Random ${mode.toTitleCase()}`)
-				.title(`Randomly generate ${Parser.getArticle(mode)} ${mode.toTitleCase()} encounter`);
+			btnRandom
+				.txt(`Random ${mode.toTitleCase()}`)
+				.tooltip(`Randomly generate ${Parser.getArticle(mode)} ${mode.toTitleCase()} encounter`);
 		};
 
-		const $getLiRandom = (mode) => {
-			return $(`<li title="Randomly generate ${Parser.getArticle(mode)} ${mode.toTitleCase()} encounter"><a href="#">Random ${mode.toTitleCase()}</a></li>`)
-				.click(async (evt) => {
+		const getLiRandom = (mode) => {
+			return ee`<li title="Randomly generate ${Parser.getArticle(mode)} ${mode.toTitleCase()} encounter"><a href="#">Random ${mode.toTitleCase()}</a></li>`
+				.onn("click", async (evt) => {
 					evt.preventDefault();
 					await pSetRandomMode(mode);
 				});
 		};
 
-		const $btnRandom = $(`<button class="ve-btn ve-btn-primary ecgen__btn-random-adjust" title="Randomly generate a Medium encounter">Random Medium</button>`)
-			.click(async evt => {
+		const btnRandom = ee`<button class="ve-btn ve-btn-primary ecgen__btn-random-adjust" title="Randomly generate a Medium encounter">Random Medium</button>`
+			.onn("click", async evt => {
 				evt.preventDefault();
 				await pSetRandomMode(modeRandom);
 			});
 
-		const $btnRandomMode = $(`<button class="ve-btn ve-btn-primary ve-dropdown-toggle"><span class="caret"></span></button>`);
-		JqueryUtil.bindDropdownButton($btnRandomMode);
+		const btnRandomMode = ee`<button class="ve-btn ve-btn-primary ve-dropdown-toggle"><span class="caret"></span></button>`;
+		JqueryUtil.bindDropdownButton(btnRandomMode);
 
 		return {
-			$btnRandom,
-			$btnRandomMode,
-			$liRandomEasy: $getLiRandom("easy"),
-			$liRandomMedium: $getLiRandom("medium"),
-			$liRandomHard: $getLiRandom("hard"),
-			$liRandomDeadly: $getLiRandom("deadly"),
+			btnRandom,
+			btnRandomMode,
+			liRandomEasy: getLiRandom("easy"),
+			liRandomMedium: getLiRandom("medium"),
+			liRandomHard: getLiRandom("hard"),
+			liRandomDeadly: getLiRandom("deadly"),
 		};
 	}
 
@@ -172,107 +172,110 @@ export class EncounterBuilderUi extends BaseComponent {
 			if (adjustedCreatureMetas != null) this._comp.creatureMetas = adjustedCreatureMetas;
 
 			modeAdjust = mode;
-			$btnAdjust
-				.text(`Adjust to ${mode.toTitleCase()}`)
-				.title(`Adjust the current encounter difficulty to ${mode.toTitleCase()}`);
+			btnAdjust
+				.txt(`Adjust to ${mode.toTitleCase()}`)
+				.tooltip(`Adjust the current encounter difficulty to ${mode.toTitleCase()}`);
 		};
 
-		const $getLiAdjust = (mode) => {
-			return $(`<li title="Adjust the current encounter difficulty to ${mode.toTitleCase()}"><a href="#">Adjust to ${mode.toTitleCase()}</a></li>`)
-				.click(async (evt) => {
+		const getLiAdjust = (mode) => {
+			return ee`<li title="Adjust the current encounter difficulty to ${mode.toTitleCase()}"><a href="#">Adjust to ${mode.toTitleCase()}</a></li>`
+				.onn("click", async (evt) => {
 					evt.preventDefault();
 					await pSetAdjustMode(mode);
 				});
 		};
 
-		const $btnAdjust = $(`<button class="ve-btn ve-btn-primary ecgen__btn-random-adjust" title="Adjust the current encounter difficulty to Medium">Adjust to Medium</button>`)
-			.click(async evt => {
+		const btnAdjust = ee`<button class="ve-btn ve-btn-primary ecgen__btn-random-adjust" title="Adjust the current encounter difficulty to Medium">Adjust to Medium</button>`
+			.onn("click", async evt => {
 				evt.preventDefault();
 				await pSetAdjustMode(modeAdjust);
 			});
 
-		const $btnAdjustMode = $(`<button class="ve-btn ve-btn-primary ve-dropdown-toggle"><span class="caret"></span></button>`);
-		JqueryUtil.bindDropdownButton($btnAdjustMode);
+		const btnAdjustMode = ee`<button class="ve-btn ve-btn-primary ve-dropdown-toggle"><span class="caret"></span></button>`;
+		JqueryUtil.bindDropdownButton(btnAdjustMode);
 
 		return {
-			$btnAdjust,
-			$btnAdjustMode,
-			$liAdjustEasy: $getLiAdjust("easy"),
-			$liAdjustMedium: $getLiAdjust("medium"),
-			$liAdjustHard: $getLiAdjust("hard"),
-			$liAdjustDeadly: $getLiAdjust("deadly"),
+			btnAdjust,
+			btnAdjustMode,
+			liAdjustEasy: getLiAdjust("easy"),
+			liAdjustMedium: getLiAdjust("medium"),
+			liAdjustHard: getLiAdjust("hard"),
+			liAdjustDeadly: getLiAdjust("deadly"),
 		};
 	}
 
 	/* -------------------------------------------- */
 
-	_render_viewer ({$parentViewer}) {
-		if (!$parentViewer) return;
+	_render_viewer ({parentViewer}) {
+		if (!parentViewer) return;
 
-		const $wrpOutput = $(`<div class="py-2 mt-5" style="background: #333"></div>`);
+		const wrpOutput = ee`<div class="py-2 mt-5 ecgen-viewer__wrp-output"></div>`
+			.hideVe();
 
-		$$($parentViewer)`${$wrpOutput}`;
+		ee(parentViewer)`${wrpOutput}`;
 
 		this._comp.addHookCreatureMetas(() => {
-			const $lis = this._comp.creatureMetas
+			const lis = this._comp.creatureMetas
 				.map(creatureMeta => {
-					const $btnShuffle = $(`<button class="ve-btn ve-btn-default ve-btn-xs"><span class="glyphicon glyphicon-random"></span></button>`)
-						.click(() => {
+					const btnShuffle = ee`<button class="ve-btn ve-btn-default ve-btn-xs"><span class="glyphicon glyphicon-random"></span></button>`
+						.onn("click", () => {
 							this._doShuffle({creatureMeta});
 						});
 
-					return $$`<li>${$btnShuffle} <span>${Renderer.get().render(`${creatureMeta.count}× {@creature ${creatureMeta.creature.name}|${creatureMeta.creature.source}}`)}</span></li>`;
+					return ee`<li>${btnShuffle} <span>${Renderer.get().render(`${creatureMeta.count}× {@creature ${creatureMeta.creature.name}|${creatureMeta.creature.source}}`)}</span></li>`;
 				});
 
-			$$($wrpOutput.empty())`<ul>
-				${$lis}
+			if (lis.length) wrpOutput.showVe();
+
+			ee(wrpOutput.empty())`<ul class="mb-0">
+				${lis}
 			</ul>`;
 		})();
 	}
 
 	/* -------------------------------------------- */
 
-	_render_groupAndDifficulty ({rdState, $parentGroupAndDifficulty}) {
+	_render_groupAndDifficulty ({rdState, parentGroupAndDifficulty}) {
 		const {
-			$stg: $stgSimple,
-			$wrpRows: $wrpRowsSimple,
+			stg: stgSimple,
+			wrpRows: wrpRowsSimple,
 		} = this._renderGroupAndDifficulty_getGroupEles_simple();
-		rdState.$wrpRowsSimple = $wrpRowsSimple;
+		rdState.wrpRowsSimple = wrpRowsSimple;
 
 		const {
-			$stg: $stgAdvanced,
-			$wrpRows: $wrpRowsAdvanced,
-			$wrpHeaders: $wrpHeadersAdvanced,
-			$wrpFooters: $wrpFootersAdvanced,
+			stg: stgAdvanced,
+			wrpRows: wrpRowsAdvanced,
+			wrpHeaders: wrpHeadersAdvanced,
+			wrpFooters: wrpFootersAdvanced,
 		} = this._renderGroupAndDifficulty_getGroupEles_advanced();
-		rdState.$wrpRowsAdvanced = $wrpRowsAdvanced;
-		rdState.$wrpHeadersAdvanced = $wrpHeadersAdvanced;
-		rdState.$wrpFootersAdvanced = $wrpFootersAdvanced;
+		rdState.wrpRowsAdvanced = wrpRowsAdvanced;
+		rdState.wrpHeadersAdvanced = wrpHeadersAdvanced;
+		rdState.wrpFootersAdvanced = wrpFootersAdvanced;
 
-		const $hrHasCreatures = $(`<hr class="hr-1">`);
-		const $wrpDifficulty = $$`<div class="ve-flex">
-			${this._renderGroupAndDifficulty_$getDifficultyLhs()}
-			${this._renderGroupAndDifficulty_$getDifficultyRhs({rdState})}
+		const hrHasCreatures = ee`<hr class="hr-1">`;
+		const wrpDifficulty = ee`<div class="ve-flex">
+			${this._renderGroupAndDifficulty_getDifficultyLhs()}
+			${this._renderGroupAndDifficulty_getDifficultyRhs({rdState})}
 		</div>`;
 
 		this._addHookBase("derivedGroupAndDifficulty", () => {
 			const {
 				encounterXpInfo = EncounterBuilderXpInfo.getDefault(),
 			} = this._state.derivedGroupAndDifficulty;
-			$hrHasCreatures.toggleVe(encounterXpInfo.relevantCount);
-			$wrpDifficulty.toggleVe(encounterXpInfo.relevantCount);
+			hrHasCreatures.toggleVe(encounterXpInfo.relevantCount);
+			wrpDifficulty.toggleVe(encounterXpInfo.relevantCount);
 		})();
 
-		$$($parentGroupAndDifficulty)`
+		ee(parentGroupAndDifficulty)`
 		<h3 class="mt-1 m-2">Group Info</h3>
 		<div class="ve-flex">
-			${$stgSimple}
-			${$stgAdvanced}
-			${this._renderGroupAndDifficulty_$getGroupInfoRhs()}
+			${stgSimple}
+			${stgAdvanced}
+			${this._renderGroupAndDifficulty_getGroupInfoRhs()}
 		</div>
 
-		${$hrHasCreatures}
-		${$wrpDifficulty}`;
+		${hrHasCreatures}
+		${wrpDifficulty}`;
 
 		rdState.collectionPlayersSimple = new EncounterBuilderRenderableCollectionPlayersSimple({
 			comp: this._comp,
@@ -291,69 +294,69 @@ export class EncounterBuilderUi extends BaseComponent {
 	}
 
 	_renderGroupAndDifficulty_getGroupEles_simple () {
-		const $btnAddPlayers = $(`<button class="ve-btn ve-btn-primary ve-btn-xs"><span class="glyphicon glyphicon-plus"></span> Add Another Level</button>`)
-			.click(() => this._comp.doAddPlayer());
+		const btnAddPlayers = ee`<button class="ve-btn ve-btn-primary ve-btn-xs"><span class="glyphicon glyphicon-plus"></span> Add Another Level</button>`
+			.onn("click", () => this._comp.doAddPlayer());
 
-		const $wrpRows = $(`<div class="ve-flex-col w-100"></div>`);
+		const wrpRows = ee`<div class="ve-flex-col w-100"></div>`;
 
-		const $stg = $$`<div class="w-70 ve-flex-col">
+		const stg = ee`<div class="w-70 ve-flex-col">
 			<div class="ve-flex">
 				<div class="w-20">Players:</div>
 				<div class="w-20">Level:</div>
 			</div>
 
-			${$wrpRows}
+			${wrpRows}
 
 			<div class="mb-1 ve-flex">
 				<div class="ecgen__wrp_add_players_btn_wrp">
-					${$btnAddPlayers}
+					${btnAddPlayers}
 				</div>
 			</div>
 
-			${this._renderGroupAndDifficulty_$getPtAdvancedMode()}
+			${this._renderGroupAndDifficulty_getPtAdvancedMode()}
 
 		</div>`;
 
 		this._comp.addHookIsAdvanced(() => {
-			$stg.toggleVe(!this._comp.isAdvanced);
+			stg.toggleVe(!this._comp.isAdvanced);
 		})();
 
 		return {
-			$wrpRows,
-			$stg,
+			wrpRows,
+			stg,
 		};
 	}
 
 	_renderGroupAndDifficulty_getGroupEles_advanced () {
-		const $btnAddPlayers = $(`<button class="ve-btn ve-btn-primary ve-btn-xs"><span class="glyphicon glyphicon-plus"></span> Add Another Player</button>`)
-			.click(() => this._comp.doAddPlayer());
+		const btnAddPlayers = ee`<button class="ve-btn ve-btn-primary ve-btn-xs"><span class="glyphicon glyphicon-plus"></span> Add Another Player</button>`
+			.onn("click", () => this._comp.doAddPlayer());
 
-		const $btnAddAdvancedCol = $(`<button class="ve-btn ve-btn-primary ve-btn-xxs ecgen-player__btn-inline h-ipt-xs bl-0 bb-0 bbl-0 bbr-0 btl-0 ml-n1" title="Add Column" tabindex="-1"><span class="glyphicon glyphicon-list-alt"></span></button>`)
-			.click(() => this._comp.doAddColExtraAdvanced());
+		const btnAddAdvancedCol = ee`<button class="ve-btn ve-btn-primary ve-btn-xxs ecgen-player__btn-inline h-ipt-xs bl-0 bb-0 bbl-0 bbr-0 btl-0 ml-n1" title="Add Column" tabindex="-1"><span class="glyphicon glyphicon-list-alt"></span></button>`
+			.onn("click", () => this._comp.doAddColExtraAdvanced());
 
-		const $wrpHeaders = $(`<div class="ve-flex"></div>`);
-		const $wrpFooters = $(`<div class="ve-flex"></div>`);
+		const wrpHeaders = ee`<div class="ve-flex"></div>`;
+		const wrpFooters = ee`<div class="ve-flex"></div>`;
 
-		const $wrpRows = $(`<div class="ve-flex-col"></div>`);
+		const wrpRows = ee`<div class="ve-flex-col"></div>`;
 
-		const $stg = $$`<div class="w-70 ve-overflow-x-auto ve-flex-col">
+		const stg = ee`<div class="w-70 ve-overflow-x-auto ve-flex-col">
 			<div class="ve-flex-h-center mb-2 bb-1p small-caps ve-self-flex-start">
 				<div class="w-100p mr-1 h-ipt-xs no-shrink">Name</div>
 				<div class="w-40p ve-text-center mr-1 h-ipt-xs no-shrink">Level</div>
-				${$wrpHeaders}
-				${$btnAddAdvancedCol}
+				${wrpHeaders}
+				${btnAddAdvancedCol}
 			</div>
 
-			${$wrpRows}
+			${wrpRows}
 
 			<div class="mb-1 ve-flex">
 				<div class="ecgen__wrp_add_players_btn_wrp no-shrink no-grow">
-					${$btnAddPlayers}
+					${btnAddPlayers}
 				</div>
-				${$wrpFooters}
+				${wrpFooters}
 			</div>
 
-			${this._renderGroupAndDifficulty_$getPtAdvancedMode()}
+			${this._renderGroupAndDifficulty_getPtAdvancedMode()}
 
 			<div class="row">
 				<div class="w-100">
@@ -363,24 +366,24 @@ export class EncounterBuilderUi extends BaseComponent {
 		</div>`;
 
 		this._comp.addHookIsAdvanced(() => {
-			$stg.toggleVe(this._comp.isAdvanced);
+			stg.toggleVe(this._comp.isAdvanced);
 		})();
 
 		return {
-			$stg,
-			$wrpRows,
-			$wrpHeaders,
-			$wrpFooters,
+			stg,
+			wrpRows,
+			wrpHeaders,
+			wrpFooters,
 		};
 	}
 
-	_renderGroupAndDifficulty_$getPtAdvancedMode () {
-		const $cbAdvanced = ComponentUiUtil.$getCbBool(this._comp, "isAdvanced");
+	_renderGroupAndDifficulty_getPtAdvancedMode () {
+		const cbAdvanced = ComponentUiUtil.getCbBool(this._comp, "isAdvanced");
 
-		return $$`<div class="ve-flex-v-center">
+		return ee`<div class="ve-flex-v-center">
 			<label class="ve-flex-v-center">
 				<div class="mr-2">Advanced Mode</div>
-				${$cbAdvanced}
+				${cbAdvanced}
 			</label>
 		</div>`;
 	}
@@ -409,25 +412,25 @@ export class EncounterBuilderUi extends BaseComponent {
 		return `<span class="help-subtle" title="${this._TITLE_DIFFICULTIES[difficulty]}">${difficulty.toTitleCase()}:</span> ${partyMeta[difficulty].toLocaleString()} XP`;
 	}
 
-	_renderGroupAndDifficulty_$getGroupInfoRhs () {
-		const $dispXpEasy = $(`<div></div>`);
-		const $dispXpMedium = $(`<div></div>`);
-		const $dispXpHard = $(`<div></div>`);
-		const $dispXpDeadly = $(`<div></div>`);
-		const $dispXpAbsurd = $(`<div></div>`);
+	_renderGroupAndDifficulty_getGroupInfoRhs () {
+		const dispXpEasy = ee`<div></div>`;
+		const dispXpMedium = ee`<div></div>`;
+		const dispXpHard = ee`<div></div>`;
+		const dispXpDeadly = ee`<div></div>`;
+		const dispXpAbsurd = ee`<div></div>`;
 
-		const $dispsXpDifficulty = {
-			"easy": $dispXpEasy,
-			"medium": $dispXpMedium,
-			"hard": $dispXpHard,
-			"deadly": $dispXpDeadly,
-			"absurd": $dispXpAbsurd,
+		const dispsXpDifficulty = {
+			"easy": dispXpEasy,
+			"medium": dispXpMedium,
+			"hard": dispXpHard,
+			"deadly": dispXpDeadly,
+			"absurd": dispXpAbsurd,
 		};
 
-		const $dispTtk = $(`<div></div>`);
+		const dispTtk = ee`<div></div>`;
 
-		const $dispBudgetDaily = $(`<div></div>`);
-		const $dispExpToLevel = $(`<div class="ve-muted"></div>`);
+		const dispBudgetDaily = ee`<div></div>`;
+		const dispExpToLevel = ee`<div class="ve-muted"></div>`;
 
 		this._addHookBase("derivedGroupAndDifficulty", () => {
 			const {
@@ -437,39 +440,39 @@ export class EncounterBuilderUi extends BaseComponent {
 
 			const difficulty = this.constructor._getDifficultyKey({partyMeta, encounterXpInfo});
 
-			Object.entries($dispsXpDifficulty)
-				.forEach(([difficulty_, $disp]) => {
-					$disp
+			Object.entries(dispsXpDifficulty)
+				.forEach(([difficulty_, disp]) => {
+					disp
 						.toggleClass("bold", difficulty === difficulty_)
 						.html(this.constructor._getDifficultyHtml({partyMeta, difficulty: difficulty_}));
 				});
 
-			$dispTtk
+			dispTtk
 				.html(`<span class="help" title="${this.constructor._TITLE_TTK}">TTK:</span> ${EncounterBuilderUiTtk.getApproxTurnsToKill({partyMeta, creatureMetas: this._comp.creatureMetas}).toFixed(2)}`);
 
-			$dispBudgetDaily
+			dispBudgetDaily
 				.html(`<span class="help-subtle" title="${this.constructor._TITLE_BUDGET_DAILY}">Daily Budget:</span> ${partyMeta.dailyBudget.toLocaleString()} XP`);
 
-			$dispExpToLevel
+			dispExpToLevel
 				.html(`<span class="help-subtle" title="${this.constructor._TITLE_XP_TO_NEXT_LEVEL}">XP to Next Level:</span> ${partyMeta.xpToNextLevel.toLocaleString()} XP`);
 		})();
 
-		return $$`<div class="w-30 ve-text-right">
-			${$dispXpEasy}
-			${$dispXpMedium}
-			${$dispXpHard}
-			${$dispXpDeadly}
-			${$dispXpAbsurd}
+		return ee`<div class="w-30 ve-text-right">
+			${dispXpEasy}
+			${dispXpMedium}
+			${dispXpHard}
+			${dispXpDeadly}
+			${dispXpAbsurd}
 			<br>
-			${$dispTtk}
+			${dispTtk}
 			<br>
-			${$dispBudgetDaily}
-			${$dispExpToLevel}
+			${dispBudgetDaily}
+			${dispExpToLevel}
 		</div>`;
 	}
 
-	_renderGroupAndDifficulty_$getDifficultyLhs () {
-		const $dispDifficulty = $(`<h3 class="mt-2"></h3>`);
+	_renderGroupAndDifficulty_getDifficultyLhs () {
+		const dispDifficulty = ee`<h3 class="mt-2"></h3>`;
 
 		this._addHookBase("derivedGroupAndDifficulty", () => {
 			const {
@@ -479,22 +482,22 @@ export class EncounterBuilderUi extends BaseComponent {
 
 			const difficulty = this.constructor._getDifficultyKey({partyMeta, encounterXpInfo});
 
-			$dispDifficulty.text(`Difficulty: ${difficulty.toTitleCase()}`);
+			dispDifficulty.txt(`Difficulty: ${difficulty.toTitleCase()}`);
 		})();
 
-		return $$`<div class="w-50">
-			${$dispDifficulty}
+		return ee`<div class="w-50">
+			${dispDifficulty}
 		</div>`;
 	}
 
-	_renderGroupAndDifficulty_$getDifficultyRhs ({rdState}) {
-		const $dispXpRawTotal = $(`<h4></h4>`);
-		const $dispXpRawPerPlayer = $(`<i></i>`);
+	_renderGroupAndDifficulty_getDifficultyRhs ({rdState}) {
+		const dispXpRawTotal = ee`<h4></h4>`;
+		const dispXpRawPerPlayer = ee`<i></i>`;
 
-		const $hovXpAdjustedInfo = $(`<span class="glyphicon glyphicon-info-sign mr-2"></span>`);
+		const hovXpAdjustedInfo = ee`<span class="glyphicon glyphicon-info-sign mr-2"></span>`;
 
-		const $dispXpAdjustedTotal = $(`<h4 class="ve-flex-v-center"></h4>`);
-		const $dispXpAdjustedPerPlayer = $(`<i></i>`);
+		const dispXpAdjustedTotal = ee`<h4 class="ve-flex-v-center"></h4>`;
+		const dispXpAdjustedPerPlayer = ee`<i></i>`;
 
 		this._addHookBase("derivedGroupAndDifficulty", () => {
 			const {
@@ -502,8 +505,8 @@ export class EncounterBuilderUi extends BaseComponent {
 				encounterXpInfo = EncounterBuilderXpInfo.getDefault(),
 			} = this._state.derivedGroupAndDifficulty;
 
-			$dispXpRawTotal.text(`Total XP: ${encounterXpInfo.baseXp.toLocaleString()}`);
-			$dispXpRawPerPlayer.text(`(${Math.floor(encounterXpInfo.baseXp / partyMeta.cntPlayers).toLocaleString()} per player)`);
+			dispXpRawTotal.txt(`Total XP: ${encounterXpInfo.baseXp.toLocaleString()}`);
+			dispXpRawPerPlayer.txt(`(${Math.floor(encounterXpInfo.baseXp / partyMeta.cntPlayers).toLocaleString()} per player)`);
 
 			const infoEntry = EncounterBuilderUiHelp.getHelpEntry({partyMeta, encounterXpInfo});
 
@@ -511,26 +514,26 @@ export class EncounterBuilderUi extends BaseComponent {
 				const hoverMeta = Renderer.hover.getMakePredefinedHover(infoEntry, {isBookContent: true});
 				rdState.infoHoverId = hoverMeta.id;
 
-				$hovXpAdjustedInfo
+				hovXpAdjustedInfo
 					.off("mouseover")
 					.off("mousemove")
 					.off("mouseleave")
-					.on("mouseover", function (event) { hoverMeta.mouseOver(event, this); })
-					.on("mousemove", function (event) { hoverMeta.mouseMove(event, this); })
-					.on("mouseleave", function (event) { hoverMeta.mouseLeave(event, this); });
+					.onn("mouseover", function (event) { hoverMeta.mouseOver(event, this); })
+					.onn("mousemove", function (event) { hoverMeta.mouseMove(event, this); })
+					.onn("mouseleave", function (event) { hoverMeta.mouseLeave(event, this); });
 			} else {
 				Renderer.hover.updatePredefinedHover(rdState.infoHoverId, infoEntry);
 			}
 
-			$dispXpAdjustedTotal.html(`Adjusted XP <span class="ve-small ve-muted ml-2" title="XP Multiplier">(×${encounterXpInfo.playerAdjustedXpMult})</span>: <b class="ml-2">${encounterXpInfo.adjustedXp.toLocaleString()}</b>`);
-			$dispXpAdjustedPerPlayer.text(`(${Math.floor(encounterXpInfo.adjustedXp / partyMeta.cntPlayers).toLocaleString()} per player)`);
+			dispXpAdjustedTotal.html(`Adjusted XP <span class="ve-small ve-muted ml-2" title="XP Multiplier">(×${encounterXpInfo.playerAdjustedXpMult})</span>: <b class="ml-2">${encounterXpInfo.adjustedXp.toLocaleString()}</b>`);
+			dispXpAdjustedPerPlayer.txt(`(${Math.floor(encounterXpInfo.adjustedXp / partyMeta.cntPlayers).toLocaleString()} per player)`);
 		})();
 
-		return $$`<div class="w-50 ve-text-right">
-			${$dispXpRawTotal}
-			<div>${$dispXpRawPerPlayer}</div>
-			<div class="ve-flex-v-center ve-flex-h-right">${$hovXpAdjustedInfo}${$dispXpAdjustedTotal}</div>
-			<div>${$dispXpAdjustedPerPlayer}</div>
+		return ee`<div class="w-50 ve-text-right">
+			${dispXpRawTotal}
+			<div>${dispXpRawPerPlayer}</div>
+			<div class="ve-flex-v-center ve-flex-h-right">${hovXpAdjustedInfo}${dispXpAdjustedTotal}</div>
+			<div>${dispXpAdjustedPerPlayer}</div>
 		</div>`;
 	}
 

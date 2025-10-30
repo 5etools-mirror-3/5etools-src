@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.13.0"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.14.0"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -1037,12 +1037,12 @@ globalThis.JqueryUtil = {
 	},
 
 	_dropdownInit: false,
-	bindDropdownButton ($ele) {
+	bindDropdownButton (ele) {
 		if (!JqueryUtil._dropdownInit) {
 			JqueryUtil._dropdownInit = true;
 			document.addEventListener("click", () => [...document.querySelectorAll(`.open`)].filter(ele => !(ele.className || "").split(" ").includes(`dropdown--navbar`)).forEach(ele => ele.classList.remove("open")));
 		}
-		$ele.click(() => setTimeout(() => $ele.parent().addClass("open"), 1)); // defer to allow the above to complete
+		ele.onn("click", () => setTimeout(() => ele.parente().addClass("open"), 1)); // defer to allow the above to complete
 	},
 
 	_WRP_TOAST: null,
@@ -1167,6 +1167,7 @@ class ElementUtil {
 	static _ATTRS_NO_FALSY = new Set([
 		"checked",
 		"disabled",
+		"readonly",
 	]);
 
 	/**
@@ -1175,7 +1176,10 @@ class ElementUtil {
 	 *
 	 * @property {function(string): ?HTMLElementExtended} find
 	 * @property {function(string): Array<HTMLElementExtended>} findAll
-	 * @property {function(string): ?HTMLElementExtended} next
+	 * @property {function(string=): ?HTMLElementExtended} prev
+	 * @property {function(): Array<HTMLElementExtended>} prevAll
+	 * @property {function(string=): ?HTMLElementExtended} next
+	 * @property {function(): Array<HTMLElementExtended>} nextAll
 	 *
 	 * @property {function(HTMLElement|string): HTMLElementExtended} appends
 	 * @property {function(HTMLElement|string): HTMLElementExtended} prepends
@@ -1217,7 +1221,7 @@ class ElementUtil {
 	 *
 	 * @property {function(string): HTMLElementExtended} trigger
 	 *
-	 * @property {function(string): HTMLElementExtended} first
+	 * @property {function(string=): HTMLElementExtended} first
 	 * @property {function(string): HTMLElementExtended} closeste
 	 * @property {function(string): Array<HTMLElementExtended>} childrene
 	 * @property {function(string): Array<HTMLElementExtended>} siblings
@@ -1328,6 +1332,8 @@ class ElementUtil {
 
 		ele.find = ele.find || ElementUtil._find.bind(ele);
 		ele.findAll = ele.findAll || ElementUtil._findAll.bind(ele);
+		ele.prev = ele.prev || ElementUtil._prev.bind(ele);
+		ele.prevAll = ele.prevAll || ElementUtil._prevAll.bind(ele);
 		ele.next = ele.next || ElementUtil._next.bind(ele);
 		ele.nextAll = ele.nextAll || ElementUtil._nextAll.bind(ele);
 		ele.appends = ele.appends || ElementUtil._appends.bind(ele);
@@ -1410,9 +1416,27 @@ class ElementUtil {
 	}
 
 	/** @this {HTMLElementExtended} */
+	static _prev (selector) {
+		let prv = this.previousElementSibling;
+		if (selector != null) while (prv && !prv.matches(selector)) prv = prv.previousElementSibling;
+		return prv ? e_({ele: prv}) : null;
+	}
+
+	/** @this {HTMLElementExtended} */
+	static _prevAll () {
+		const out = [];
+		let tmp = this;
+		while (tmp.previousElementSibling) {
+			out.push(e_({ele: tmp.previousElementSibling}));
+			tmp = tmp.previousElementSibling;
+		}
+		return out;
+	}
+
+	/** @this {HTMLElementExtended} */
 	static _next (selector) {
 		let nxt = this.nextElementSibling;
-		while (nxt && !nxt.matches(selector)) nxt = nxt.nextElementSibling;
+		if (selector != null) while (nxt && !nxt.matches(selector)) nxt = nxt.nextElementSibling;
 		return nxt ? e_({ele: nxt}) : null;
 	}
 
@@ -1648,6 +1672,9 @@ class ElementUtil {
 
 	/** @this {HTMLElementExtended} */
 	static _first (selector) {
+		if (selector == null) {
+			return this.firstElementChild ? e_({ele: this.firstElementChild}) : this.firstElementChild;
+		}
 		const child = this.querySelector(selector);
 		if (!child) return child;
 		return e_({ele: child});
@@ -8801,22 +8828,22 @@ class BookModeViewBase {
 }
 
 // CONTENT EXCLUSION ===================================================================================================
-globalThis.ExcludeUtil = {
-	isInitialised: false,
-	_excludes: null,
-	_cache_excludesLookup: null,
-	_lock: null,
+globalThis.ExcludeUtil = class {
+	static isInitialised = false;
+	static _excludes = null;
+	static _cache_excludesLookup = null;
+	static _lock = null;
 
-	async pInitialise ({lockToken = null} = {}) {
+	static async pInitialise ({lockToken = null} = {}) {
 		try {
 			await ExcludeUtil._lock.pLock({token: lockToken});
 			await ExcludeUtil._pInitialise();
 		} finally {
 			ExcludeUtil._lock.unlock();
 		}
-	},
+	}
 
-	async _pInitialise () {
+	static async _pInitialise () {
 		if (ExcludeUtil.isInitialised) return;
 
 		ExcludeUtil.pSave = MiscUtil.throttle(ExcludeUtil._pSave, 50);
@@ -8839,61 +8866,73 @@ globalThis.ExcludeUtil = {
 			setTimeout(() => { throw e; });
 		}
 		ExcludeUtil.isInitialised = true;
-	},
+	}
 
-	_getValidExcludes (excludes) {
+	static _getValidExcludes (excludes) {
 		return excludes
 			.filter(it => it.hash) // remove legacy rows
-			.filter(it => it.hash != null && it.category != null && it.source != null); // remove invalid rows
-	},
+			.filter(it => it.hash != null && it.category != null && it.source != null) // remove invalid rows
+			// update legacy rows
+			.map(it => {
+				it.isAuto ??= false;
+				return it;
+			})
+		;
+	}
 
-	getList () {
+	static getList () {
 		return MiscUtil.copyFast(ExcludeUtil._excludes || []);
-	},
+	}
 
-	async pSetList (toSet) {
+	static async pSetList (toSet) {
 		ExcludeUtil._excludes = toSet;
 		ExcludeUtil._cache_excludesLookup = null;
 		await ExcludeUtil.pSave();
-	},
+	}
 
-	async pExtendList (toAdd) {
+	/**
+	 * @param {{displayName, hash, category, source, isAuto}[]} toAdd
+	 */
+	static async pExtendList (toAdd) {
 		try {
 			const lockToken = await ExcludeUtil._lock.pLock();
 			await ExcludeUtil._pExtendList({toAdd, lockToken});
 		} finally {
 			ExcludeUtil._lock.unlock();
 		}
-	},
+	}
 
-	async _pExtendList ({toAdd, lockToken}) {
+	static async _pExtendList ({toAdd, lockToken}) {
 		await ExcludeUtil.pInitialise({lockToken});
-		this._doBuildCache();
 
 		const out = MiscUtil.copyFast(ExcludeUtil._excludes || []);
 		MiscUtil.copyFast(toAdd || [])
 			.filter(({hash, category, source}) => {
 				if (!hash || !category || !source) return false;
-				const cacheUid = ExcludeUtil._getCacheUids(hash, category, source, true);
+				const [cacheUid] = ExcludeUtil._getCacheUids(hash, category, source, {isExact: true});
 				return !ExcludeUtil._cache_excludesLookup[cacheUid];
 			})
-			.forEach(it => out.push(it));
+			.forEach(it => {
+				it.isAuto ??= false;
+				out.push(it);
+			});
 
 		await ExcludeUtil.pSetList(out);
-	},
+	}
 
-	_doBuildCache () {
+	static _doBuildCache () {
 		if (ExcludeUtil._cache_excludesLookup) return;
 		if (!ExcludeUtil._excludes) return;
 
 		ExcludeUtil._cache_excludesLookup = {};
-		ExcludeUtil._excludes.forEach(({source, category, hash}) => {
-			const cacheUid = ExcludeUtil._getCacheUids(hash, category, source, true);
-			ExcludeUtil._cache_excludesLookup[cacheUid] = true;
-		});
-	},
+		ExcludeUtil._excludes
+			.forEach(({source, category, hash}) => {
+				const [cacheUid] = ExcludeUtil._getCacheUids(hash, category, source, {isExact: true});
+				ExcludeUtil._cache_excludesLookup[cacheUid] = true;
+			});
+	}
 
-	_getCacheUids (hash, category, source, isExact) {
+	static _getCacheUids (hash, category, source, {isExact = false} = {}) {
 		hash = (hash || "").toLowerCase();
 		category = (category || "").toLowerCase();
 		source = (source?.source || source || "").toLowerCase();
@@ -8902,7 +8941,7 @@ globalThis.ExcludeUtil = {
 		if (isExact) return [exact];
 
 		return [
-			`${hash}__${category}__${source}`,
+			exact,
 			`*__${category}__${source}`,
 			`${hash}__*__${source}`,
 			`${hash}__${category}__*`,
@@ -8911,9 +8950,9 @@ globalThis.ExcludeUtil = {
 			`${hash}__*__*`,
 			`*__*__*`,
 		];
-	},
+	}
 
-	_excludeCount: 0,
+	static _excludeCount = 0;
 	/**
 	 * @param hash
 	 * @param category
@@ -8921,7 +8960,7 @@ globalThis.ExcludeUtil = {
 	 * @param [opts]
 	 * @param [opts.isNoCount]
 	 */
-	isExcluded (hash, category, source, opts) {
+	static isExcluded (hash, category, source, opts) {
 		if (!ExcludeUtil._excludes || !ExcludeUtil._excludes.length) return false;
 		if (!source) throw new Error(`Entity had no source!`);
 		opts = opts || {};
@@ -8938,24 +8977,24 @@ globalThis.ExcludeUtil = {
 		if (!opts.isNoCount) ++ExcludeUtil._excludeCount;
 
 		return isExcluded;
-	},
+	}
 
-	_isExcluded (hash, category, source) {
+	static _isExcluded (hash, category, source) {
 		for (const cacheUid of ExcludeUtil._getCacheUids(hash, category, source)) {
 			if (ExcludeUtil._cache_excludesLookup[cacheUid]) return true;
 		}
 		return false;
-	},
+	}
 
-	isAllContentExcluded (list) { return (!list.length && ExcludeUtil._excludeCount) || (list.length > 0 && list.length === ExcludeUtil._excludeCount); },
-	getAllContentBlocklistedHtml () { return `<div class="initial-message initial-message--med">(All content <a href="blocklist.html">blocklisted</a>)</div>`; },
+	static isAllContentExcluded (list) { return (!list.length && ExcludeUtil._excludeCount) || (list.length > 0 && list.length === ExcludeUtil._excludeCount); }
+	static getAllContentBlocklistedHtml () { return `<div class="initial-message initial-message--med">(All content <a href="blocklist.html">blocklisted</a>)</div>`; }
 
-	async _pSave () {
+	static async _pSave () {
 		return StorageUtil.pSet(VeCt.STORAGE_EXCLUDES, ExcludeUtil._excludes);
-	},
+	}
 
 	// The throttled version, available post-initialisation
-	async pSave () { /* no-op */ },
+	static async pSave () { /* no-op */ }
 };
 
 // EXTENSIONS ==========================================================================================================

@@ -1175,6 +1175,24 @@
 			]
 		},
 		{
+			"name": "Adventurer's Ring",
+			"source": "FRHoF",
+			"page": 132,
+			"type": "RG|XDMG",
+			"rarity": "common",
+			"entries": [
+				"While the cover on this ring is open, the ring produces a flame that creates no heat and consumes no fuel. It sheds {@variantrule Bright Light|XPHB} in a 20-foot radius and {@variantrule Dim Light|XPHB} for an additional 20 feet. As a {@variantrule Bonus Action|XPHB}, you can close the cover, smothering the flame, or open it again."
+			],
+			"light": [
+				{
+					"bright": 20,
+					"dim": 40
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Adze of Annam",
 			"source": "BGG",
 			"page": 110,
@@ -3748,8 +3766,24 @@
 		},
 		{
 			"name": "Axe Beak",
+			"source": "FRHoF",
+			"page": 132,
+			"type": "MNT|XPHB",
+			"rarity": "none",
+			"value": 5000,
+			"entries": [
+				"Use the {@creature Axe Beak|XMM} stat block."
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Axe Beak",
 			"source": "IDRotF",
 			"page": 20,
+			"reprintedAs": [
+				"Axe Beak|FRHoF"
+			],
 			"type": "MNT",
 			"rarity": "none",
 			"value": 5000,
@@ -9423,6 +9457,27 @@
 			}
 		},
 		{
+			"name": "Bright Fungal Cloak",
+			"source": "FRHoF",
+			"page": 132,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 4,
+			"value": 2500,
+			"entries": [
+				"While wearing a Bright Fungal Cloak, you can take a {@variantrule Bonus Action|XPHB} to furl or unfurl it. When the cloak is unfurled, it sheds {@variantrule Bright Light|XPHB} in a 5-foot radius and {@variantrule Dim Light|XPHB} for an additional 5 feet.",
+				"One pound of fungus is sewn into a Bright Fungal Cloak. This fungus can be eaten as food. Once all the fungus is consumed, the cloak becomes a mundane set of Traveler's Clothes."
+			],
+			"light": [
+				{
+					"bright": 5,
+					"dim": 10
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Bronze crown",
 			"source": "DMG",
 			"page": 135,
@@ -9954,6 +10009,118 @@
 			},
 			"rechargeAmount": "{@dice 1d6 + 2}",
 			"charges": 10,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Calimemnon Crystal",
+			"source": "FRAiF",
+			"page": 243,
+			"scfType": "arcane",
+			"rarity": "artifact",
+			"reqAttune": true,
+			"wondrous": true,
+			"entries": [
+				"This immaculately cut sixty-sided diamond fits in one hand, yet it contains an entire genie empire. The Calimemnon Crystal was made by high elf magic to imprison the notorious genie lords Calim and Memnon, who once ruled and warred over what is now Calimshan.",
+				"When viewed by a creature with {@sense Truesight|XPHB}, the normally beautiful diamond is a grotesque sight: trapped within the gemstone are more than a hundred genies, including the physical forms of Calim and Memnon. The genies scream and strain in agonized fury, pressing their belligerent faces against the walls of their crystal line prison.",
+				{
+					"type": "entries",
+					"name": "Properties of the Crystal",
+					"entries": [
+						"While attuned to the crystal, you gain the following benefits:",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "Arcane Focus",
+									"entries": [
+										"You can use the Calimemnon Crystal as an Arcane Focus."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Flight",
+									"entries": [
+										"You have a {@variantrule Fly Speed|XPHB} of 30 feet and can hover."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Spells",
+									"entries": [
+										"You can cast these spells with the crystal (spell save DC 18): {@spell Create or Destroy Water|XPHB}, {@spell Enlarge/Reduce|XPHB}, {@spell Invisibility|XPHB} (targeting yourself only), and {@spell Major Image|XPHB}."
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Aura of Cold",
+					"entries": [
+						"The temperature drops precipitously in a 20-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the crystal. Whenever the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} enters a creature's space and whenever a creature enters the {@variantrule Emanation [Area of Effect]|XPHB|Emanation} or ends its turn there, the creature takes ({@dice 2d6}) Cold damage. A creature takes this damage only once per turn. While attuned to the crystal, you are unaffected by the aura, and you can take a {@action Magic|XPHB} action to disable or enable the aura."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Healing/Damage Rays",
+					"entries": [
+						"While holding the crystal, you can take a {@action Magic|XPHB} action to fire six rays of volatile energy from the crystal at one or more creatures within 60 feet. You can aim the rays at one target or at several. For each ray, choose one of the following effects:",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "Damage Ray",
+									"entries": [
+										"The target makes a DC 18 Dexterity saving throw, taking ({@dice 6d6 + 6}) Radiant damage on a failed save or half as much damage on a successful one."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Healing Ray",
+									"entries": [
+										"The target regains {@dice 2d6 + 2} {@variantrule Hit Points|XPHB}.",
+										"This property can't be used again until the next dawn."
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Random Properties",
+					"entries": [
+						"The Artifact has the following random properties (see chapter 7 of the Dungeon Master's Guide):",
+						{
+							"type": "list",
+							"items": [
+								"1 {@table Artifact Properties; Minor Beneficial Properties|XDMG|minor beneficial} property",
+								"1 {@table Artifact Properties; Major Beneficial Properties|XDMG|major beneficial} property",
+								"1 {@table Artifact Properties; Minor Detrimental Properties|XDMG|minor detrimental} property",
+								"1 {@table Artifact Properties; Major Detrimental Properties|XDMG|major detrimental} property"
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Destroying the Crystal",
+					"entries": [
+						"The Calimemnon Crystal is destroyed if the creature attuned to it casts the {@spell Wish|XPHB} spell and wishes the crystal destroyed. Nothing else can harm it. When the crystal is destroyed, all the genies in the crystal are released."
+					]
+				}
+			],
+			"attachedSpells": [
+				"create or destroy water|xphb",
+				"enlarge/reduce|xphb",
+				"invisibility|xphb",
+				"major image|xphb"
+			],
 			"hasFluffImages": true
 		},
 		{
@@ -13948,6 +14115,20 @@
 			"value": 50
 		},
 		{
+			"name": "Covered Wagon",
+			"source": "FRHoF",
+			"page": 132,
+			"type": "VEH|XPHB",
+			"rarity": "none",
+			"weight": 1300,
+			"value": 25000,
+			"entries": [
+				"This vehicle is a {@item Wagon|XPHB} covered by durable canvas. A creature has {@variantrule Cover|XPHB|Three-Quarters Cover} while riding inside this vehicle."
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Cow",
 			"source": "PHB",
 			"page": 157,
@@ -14201,6 +14382,139 @@
 			"entries": [
 				"Using a Crowbar gives you {@variantrule Advantage|XPHB} on Strength checks where the Crowbar's leverage can be applied."
 			]
+		},
+		{
+			"name": "Crown of Horns",
+			"source": "FRAiF",
+			"page": 243,
+			"rarity": "artifact",
+			"reqAttune": true,
+			"wondrous": true,
+			"curse": true,
+			"sentient": true,
+			"entries": [
+				"The Crown of Horns contains the essence and intelligence of Myrkul, one of the {@variantrule Dead|XPHB} Three. This ghastly crown is a pale silver circlet with four curved bones set around its rim. On the crown's brow is set a black diamond whose depths swirl with weird, malignant energy.",
+				"Myrkul created the Crown of Horns at the height of his power. When Myrkul was slain by Mystra, he imbued the crown with his dying essence. Myrkul has since returned to become one of the {@variantrule Dead|XPHB} Three, and the Crown of Horns continues to further his gruesome will by seeking out mortal agents and gradually transforming them into powerful Undead scions. Should a wearer prove unworthy of this honor, the crown teleports away to find a new mortal to corrupt for its master.",
+				{
+					"type": "entries",
+					"name": "Cursed",
+					"entries": [
+						"The crown is cursed. Attuning to the crown extends the curse to you. Only a {@spell Wish|XPHB} spell or the will of Myrkul can remove this curse. As long as you remain cursed, the following properties apply to you:",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "Bound",
+									"entries": [
+										"You are unwilling to part with the crown, wearing it at all times, and you can't voluntarily end your {@variantrule Attunement|XPHB} to the crown."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Cruel",
+									"entries": [
+										"Your alignment becomes Neutral Evil."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Doomed",
+									"entries": [
+										"You slowly transform into a monstrous servant of Myrkul over the course of 365 days. During that time, the transformation is purely cosmetic; these cosmetic changes slowly fade if you end {@variantrule Attunement|XPHB} to the crown before completing the transformation. When the transformation is complete, you become a {@creature Lich|XMM} under the DM's control. Each time you use this Artifact's {@variantrule Cone [Area of Effect]|XPHB|Cone} of Undeath or Myrkul's Hand benefit, there is a 10 percent cumulative chance that you instantly complete this transformation."
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Cone of Undeath",
+					"entries": [
+						"You can take a {@action Magic|XPHB} action to unleash a wave of unholy light in a 60-foot {@variantrule Cone [Area of Effect]|XPHB|Cone}. Each creature in the {@variantrule Cone [Area of Effect]|XPHB|Cone} makes a DC 18 Constitution saving throw, taking ({@dice 4d8}) Necrotic damage on a failed save or half as much damage on a successful one. A Humanoid killed by {@variantrule Cone [Area of Effect]|XPHB|Cone} of Undeath rises at the start of your next turn as a {@creature Specter|XMM} that follows your verbal orders."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Damage Immunity",
+					"entries": [
+						"You have {@variantrule Immunity|XPHB} to Necrotic damage."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Fear Aura",
+					"entries": [
+						"While wearing the crown, you emit an aura of terrifying energy in a 60-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation}. A creature that enters this area for the first time on a turn or starts its turn there must succeed on a DC 16 Wisdom saving throw or have the {@condition Frightened|XPHB} condition. A {@condition Frightened|XPHB} target must use its movement on its turns to get as far away as possible from you, moving by the safest route.",
+						"If you damage a {@condition Frightened|XPHB} target or if a {@condition Frightened|XPHB} target ends its turn more than 120 feet away from you, the target can repeat the Wisdom save, ending the condition on itself on a success. A creature that succeeds on the save against this effect is immune to it for 1 minute, after which it can be affected again.",
+						"The aura is inactive while you have the {@condition Incapacitated|XPHB} condition. You can activate or deactivate the aura as a {@variantrule Bonus Action|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Myrkul's Hand",
+					"entries": [
+						"While wearing the crown, you can cast the {@spell Power Word Kill|XPHB} spell (save DC 18) from it. A Humanoid killed by this spell rises at the start of your next turn as a {@creature Wraith|XMM} that follows your verbal orders. Once you use the crown to cast this spell, you can't cast it again from the crown until the next dawn."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Teleportation",
+					"entries": [
+						"While wearing the crown, you can cast the {@spell Teleport|XPHB} spell. The crown can also cast this spell of its own free will. Once the spell has been cast using the crown, it can't be cast again until 7 days have passed."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Random Properties",
+					"entries": [
+						"The Artifact has the following random properties (see chapter 7 of the Dungeon Master's Guide):",
+						{
+							"type": "list",
+							"items": [
+								"1 {@table Artifact Properties; Minor Beneficial Properties|XDMG|minor beneficial} property",
+								"1 {@table Artifact Properties; Minor Detrimental Properties|XDMG|minor detrimental} property",
+								"1 {@table Artifact Properties; Major Detrimental Properties|XDMG|major detrimental} property"
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Sentience",
+					"entries": [
+						"The Crown of Horns is a sentient Neutral Evil Artifact with an Intelligence of 10, a Wisdom of 16, and a Charisma of 19. It has hearing and {@sense Darkvision|XPHB} out to 120 feet.",
+						"The crown communicates telepathically with its wearer and knows Common."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Personality",
+					"entries": [
+						"The crown contains the essence of Myrkul and exists to spread that god's will, which is to slay the living, raise the dead, and sow fear across the Material Plane. The crown urges its wearer to spread dread and destruction wherever possible."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Destroying the Crown",
+					"entries": [
+						"The crown is destroyed if it is worn by Myrkul's successor, Kelemvor, while he sits on the throne of Myrkul's former realm, the Bone Castle."
+					]
+				}
+			],
+			"attachedSpells": {
+				"daily": {
+					"1e": [
+						"power word kill|xphb"
+					]
+				},
+				"other": [
+					"teleport|xphb"
+				]
+			},
+			"hasFluffImages": true
 		},
 		{
 			"name": "Crown of Lies",
@@ -14935,6 +15249,55 @@
 			"entries": [
 				"Representing one of the mascots of Strixhaven, this soft, Tiny, magic toy is perfect for cuddling. If you press it to your arm, shoulder, or leg as an action, the toy stays attached there for 1 hour or until you use an action to remove it.",
 				"The toy can also be used to fight off fear. When you make a saving throw to avoid or end the {@condition frightened} condition on yourself, you can give yourself advantage on the roll if the toy is on your person. You must decide to do so before rolling the {@dice d20}. If the save succeeds, you can't use the toy in this way until you finish a long rest."
+			]
+		},
+		{
+			"name": "Cult of the Dragon Trinket",
+			"source": "FRHoF",
+			"type": "G|XPHB",
+			"rarity": "none",
+			"entries": [
+				{
+					"type": "table",
+					"caption": "Cult of the Dragon Trinkets",
+					"colLabels": [
+						"1d6",
+						"Trinket"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"1",
+							"A dragon claw pendant on a leather cord"
+						],
+						[
+							"2",
+							"Ashes of a dracolich in a small brass canister"
+						],
+						[
+							"3",
+							"A map of an unknown dragon's lair"
+						],
+						[
+							"4",
+							"A black pearl etched with a Draconic rune"
+						],
+						[
+							"5",
+							"A drop of dragon's blood preserved in amber"
+						],
+						[
+							"6",
+							"A scrap of purple silk"
+						]
+					]
+				}
+			],
+			"miscTags": [
+				"TT"
 			]
 		},
 		{
@@ -19434,6 +19797,20 @@
 			}
 		},
 		{
+			"name": "Desert Clothing",
+			"source": "FRHoF",
+			"page": 132,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 4,
+			"value": 1000,
+			"entries": [
+				"When you are wearing Desert Clothing and not wearing Medium or Heavy armor, you automatically succeed on saving throws against the effects of {@hazard extreme heat|XDMG}."
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Detailed, life-sized dragonborn skull cast in electrum",
 			"source": "XDMG",
 			"page": 215,
@@ -19532,6 +19909,19 @@
 			"miscTags": [
 				"CNS"
 			]
+		},
+		{
+			"name": "Devil Mask",
+			"source": "FRHoF",
+			"page": 132,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"value": 2500,
+			"entries": [
+				"While you are wearing a Devil Mask, other creatures have {@variantrule Disadvantage|XPHB} on Intelligence ({@skill Investigation|XPHB}) and Wisdom ({@skill Insight|XPHB}) checks made to discern your true identity or intentions."
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Devlin's Staff of Striking",
@@ -22251,6 +22641,55 @@
 			"value": 100000,
 			"entries": [
 				"A deep bright green gemstone."
+			]
+		},
+		{
+			"name": "Emerald Enclave Trinket",
+			"source": "FRHoF",
+			"type": "G|XPHB",
+			"rarity": "none",
+			"entries": [
+				{
+					"type": "table",
+					"caption": "Emerald Enclave Trinkets",
+					"colLabels": [
+						"1d6",
+						"Trinket"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"1",
+							"A pair of earrings made from oak leaves that never wilt"
+						],
+						[
+							"2",
+							"A miniature model cottage made of twigs"
+						],
+						[
+							"3",
+							"A green-glowing firefly in a bottle"
+						],
+						[
+							"4",
+							"A gourd that sounds like rustling leaves when held to one's ear"
+						],
+						[
+							"5",
+							"A preserved rabbit's foot on a leather strap"
+						],
+						[
+							"6",
+							"An antler shaped like an Elvish rune"
+						]
+					]
+				}
+			],
+			"miscTags": [
+				"TT"
 			]
 		},
 		{
@@ -25519,6 +25958,19 @@
 			]
 		},
 		{
+			"name": "Flying Snake",
+			"source": "FRHoF",
+			"page": 132,
+			"type": "MNT|XPHB",
+			"rarity": "none",
+			"value": 2500,
+			"entries": [
+				"Pet flying snakes use the {@creature Flying Snake|XMM} stat block."
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Folding Boat",
 			"source": "DMG",
 			"page": 170,
@@ -25960,6 +26412,20 @@
 			]
 		},
 		{
+			"name": "Garb of Light and Shadow",
+			"source": "FRHoF",
+			"page": 132,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 6,
+			"value": 5000,
+			"entries": [
+				"This garb appeals to Fey from one Domain of Delight, such as the Gloaming Court or the Summer Court. While wearing the garb, you have {@variantrule Advantage|XPHB} on ability checks to influence Fey associated with that Domain of Delight."
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Garnet",
 			"source": "DMG",
 			"page": 134,
@@ -26310,6 +26776,20 @@
 			"lootTables": [
 				"Arcana - Rare|XDMG"
 			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Genie Robe",
+			"source": "FRHoF",
+			"page": 132,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 6,
+			"value": 5000,
+			"entries": [
+				"This robe appeals to Elementals associated with a particular Elemental Plane (Air, Earth, Fire, Water). While wearing a Genie Robe, you have {@variantrule Advantage|XPHB} on ability checks made to influence Elementals associated with that plane."
+			],
+			"hasFluff": true,
 			"hasFluffImages": true
 		},
 		{
@@ -28722,6 +29202,85 @@
 					"heroes' feast"
 				]
 			}
+		},
+		{
+			"name": "Harper Pin",
+			"source": "FRAiF",
+			"page": 244,
+			"rarity": "uncommon",
+			"reqAttune": true,
+			"wondrous": true,
+			"entries": [
+				"When you attune to this pin, choose a Harper persona (see the {@book Forgotten Realms: Heroes of Faerûn|FRHoF|6|Harper Personas} for examples), including an alignment and a creature type. While wearing this pin, you register as that persona when targeted by magic to determine your creature type, alignment, or location.",
+				"The type of pin determines its rarity and effects.",
+				{
+					"type": "entries",
+					"name": "Silver Harper Pin",
+					"entries": [
+						"When you attune to this pin, you can devise a general line of thought of 25 words or fewer. While you wear this pin, a creature that reads your thoughts detects your preprogrammed line of thought instead. A creature that takes the {@action Study|XPHB} action while reading your thoughts makes a DC 13 Intelligence ({@skill Investigation|XPHB}) check. On a successful check, it becomes aware that the detected thoughts are preprogrammed."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Golden Harper Pin",
+					"entries": [
+						"While wearing this pin, you can cast the {@spell Nondetection|XPHB} spell on yourself. The duration of this spell is permanent until you disable the effect (no action required), you remove the pin, or you are no longer attuned to the pin."
+					]
+				}
+			],
+			"attachedSpells": [
+				"nondetection|xphb"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Harper Trinket",
+			"source": "FRHoF",
+			"type": "G|XPHB",
+			"rarity": "none",
+			"entries": [
+				{
+					"type": "table",
+					"caption": "Harper Trinkets",
+					"colLabels": [
+						"1d6",
+						"Trinket"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"1",
+							"A broken harmonica"
+						],
+						[
+							"2",
+							"A powder compact with a hidden compartment"
+						],
+						[
+							"3",
+							"A 2-foot-long peacock feather"
+						],
+						[
+							"4",
+							"A trick coin that's heads on both sides"
+						],
+						[
+							"5",
+							"A pair of red-tinted spectacles"
+						],
+						[
+							"6",
+							"A scroll of sheet music for an unknown instrument"
+						]
+					]
+				}
+			],
+			"miscTags": [
+				"TT"
+			]
 		},
 		{
 			"name": "Hat of Disguise",
@@ -36840,6 +37399,20 @@
 			]
 		},
 		{
+			"name": "Locking Spellbook",
+			"source": "FRHoF",
+			"page": 132,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 3,
+			"value": 3500,
+			"entries": [
+				"This 100-page leather-bound tome can be used as a Spellbook. It is closed with a lock that comes with a key. As a Utilize action, a creature can try to pick the lock using {@item Thieves' Tools|XPHB}, doing so with a successful DC 15 Dexterity ({@skill Sleight of Hand|XPHB}) check."
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Lolth's Sting",
 			"source": "XDMG",
 			"page": 91,
@@ -36995,6 +37568,55 @@
 				}
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Lords' Alliance Trinket",
+			"source": "FRHoF",
+			"type": "G|XPHB",
+			"rarity": "none",
+			"entries": [
+				{
+					"type": "table",
+					"caption": "Lords' Alliance Trinkets",
+					"colLabels": [
+						"1d6",
+						"Trinket"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"1",
+							"A scrap from a defeated army's banner"
+						],
+						[
+							"2",
+							"A bit and bridle engraved with the name of a famous steed"
+						],
+						[
+							"3",
+							"The broken blade of a sword used in a famous battle"
+						],
+						[
+							"4",
+							"The left glove of a lord who went mysteriously missing"
+						],
+						[
+							"5",
+							"An articulated toy horse and knight"
+						],
+						[
+							"6",
+							"A spaulder emblazoned with the insignia of an unidentified lord"
+						]
+					]
+				}
+			],
+			"miscTags": [
+				"TT"
+			]
 		},
 		{
 			"name": "Lorehold Primer",
@@ -38732,6 +39354,68 @@
 			]
 		},
 		{
+			"name": "Mechanical Wonder (Domestic)",
+			"source": "FRAiF",
+			"page": 245,
+			"rarity": "uncommon",
+			"wondrous": true,
+			"value": 40000,
+			"entries": [
+				"A Mechanical Wonder is a semi-autonomous object imbued with magical power. Mechanical Wonders vary greatly in size and form depending on their function.",
+				"A Mechanical Wonder is a dormant object until activated. To activate a Mechanical Wonder, you must wind the wonder with a handheld key unique to that wonder. It takes 1 minute to wind a Mechanical Wonder. While you wind it, you must take the {@action Utilize|XPHB} action each turn.",
+				"Once wound, a Mechanical Wonder remains activated for the duration specified in the wonder's description.",
+				"This bipedal wonder is designed to assist with household duties. It vaguely resembles whatever species its creator used as inspiration. An activated domestic wonder uses the {@creature Domestic Wonder|FRAiF} stat block. The wonder is an ally to you and your allies. In combat, the wonder shares your {@variantrule Initiative|XPHB} count, but it takes its turn immediately after yours. It obeys your verbal commands (no action required by you). If you don't issue any, it takes the {@action Dodge|XPHB} action and uses its movement to avoid danger. The domestic wonder is destroyed if it drops to 0 {@variantrule Hit Points|XPHB}."
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Mechanical Wonder (Flying)",
+			"source": "FRAiF",
+			"page": 245,
+			"rarity": "common",
+			"wondrous": true,
+			"entries": [
+				"A Mechanical Wonder is a semi-autonomous object imbued with magical power. Mechanical Wonders vary greatly in size and form depending on their function.",
+				"A Mechanical Wonder is a dormant object until activated. To activate a Mechanical Wonder, you must wind the wonder with a handheld key unique to that wonder. It takes 1 minute to wind a Mechanical Wonder. While you wind it, you must take the {@action Utilize|XPHB} action each turn.",
+				"Once wound, a Mechanical Wonder remains activated for the duration specified in the wonder's description.",
+				"An activated flying wonder uses the {@creature Flying Wonder|FRAiF} stat block. The wonder is an ally to you and your allies. In combat, the wonder shares your {@variantrule Initiative|XPHB} count, but it takes its turn immediately after yours. It obeys your verbal commands (no action required by you). If you don't issue any, it takes the {@action Dodge|XPHB} action and uses its movement to avoid danger. The flying wonder is destroyed if it drops to 0 {@variantrule Hit Points|XPHB}."
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Mechanical Wonder (Gyrocopter)",
+			"source": "FRAiF",
+			"page": 245,
+			"rarity": "rare",
+			"wondrous": true,
+			"weight": 500,
+			"entries": [
+				"A Mechanical Wonder is a semi-autonomous object imbued with magical power. Mechanical Wonders vary greatly in size and form depending on their function.",
+				"A Mechanical Wonder is a dormant object until activated. To activate a Mechanical Wonder, you must wind the wonder with a handheld key unique to that wonder. It takes 1 minute to wind a Mechanical Wonder. While you wind it, you must take the {@action Utilize|XPHB} action each turn.",
+				"This wagon-sized vehicle is made of brassy metal and has a spiral-shaped propeller atop it. Its midsection is open on two sides. Once wound, the gyrocopter wonder remains active for 8 hours. While active, the gyrocopter can be used as a vehicle; it requires one pilot.",
+				"The gyrocopter wonder is a Huge object that weighs 500 pounds and has the following statistics: AC 14, HP 50, {@variantrule Speed|XPHB} 5 ft., and {@variantrule Fly Speed|XPHB} 20 ft. The gyrocopter can bear up to 2,000 pounds of cargo; if it bears any more than this, it deactivates.",
+				"Eight spectral cords are mounted to the inside of the cargo bay. A creature riding in the gyrocopter wonder can take a {@action Utilize|XPHB} action to attach itself to or detach itself from one of these cords. A creature attached to a cord can leap from the gyrocopter wonder and glide, moving up to 5 feet horizontally for every 1 foot it descends in the air. If a creature attached to a cord is ever more than 500 feet away from the gyrocopter, the cord immediately disappears and returns to the wonder."
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Mechanical Wonder (Mobility)",
+			"source": "FRAiF",
+			"page": 246,
+			"rarity": "common",
+			"wondrous": true,
+			"entries": [
+				"A Mechanical Wonder is a semi-autonomous object imbued with magical power. Mechanical Wonders vary greatly in size and form depending on their function.",
+				"A Mechanical Wonder is a dormant object until activated. To activate a Mechanical Wonder, you must wind the wonder with a handheld key unique to that wonder. It takes 1 minute to wind a Mechanical Wonder. While you wind it, you must take the {@action Utilize|XPHB} action each turn.",
+				"While inactive, the mobility wonder resembles a metal turtle shell with straps. It is designed to be worn on your back or flank, depending on your anatomy. Once wound, the mobility wonder transforms into a personal transport device and remains active for 24 hours. While active, the mobility wonder increases your {@variantrule Speed|XPHB} to 30 feet. Other creatures can't remove your mobility wonder from you unless you allow it."
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Medal of Muscle",
 			"source": "CRCotN",
 			"page": 214,
@@ -39711,6 +40395,20 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Monster Camouflage",
+			"source": "FRHoF",
+			"page": 132,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 6,
+			"value": 5000,
+			"entries": [
+				"A suit of Monster Camouflage looks like a Beast or Monstrosity, such as an {@creature owlbear|XMM}. To discern that you're disguised, a creature must take the {@action Study|XPHB} action to inspect your appearance and succeed on a DC 10 Intelligence ({@skill Investigation|XPHB} or {@skill Nature|XPHB}) check. The creature has {@variantrule Advantage|XPHB} on this check if it is within 30 feet of you and automatically succeeds on this check if you do anything the monster you're disguised as couldn't do."
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Monster Hunter's Pack",
@@ -41863,6 +42561,140 @@
 			]
 		},
 		{
+			"name": "Orb of Damara",
+			"source": "FRAiF",
+			"page": 246,
+			"rarity": "artifact",
+			"reqAttune": true,
+			"wondrous": true,
+			"recharge": "dawn",
+			"rechargeAmount": "{@dice 1d4 + 2}",
+			"charges": 6,
+			"entries": [
+				"A wizard named Damara created this orb while devising a way to become a dragon. Aided by a mysterious magician (actually an aspect of Tiamat in disguise), Damara eventually created an Artifact that would enable him to achieve his dream. Yet the potential power of his creation terrified Damara so much that he dared not use the orb. Instead, the wizard entombed himself with the Artifact to seal it away.",
+				"The Orb of Damara is about 6 inches in diameter and is made of a glassy, iridescent material that's like obsidian but incredibly hard. If held to one's own lips with the intention of consuming it, the orb shrinks to the size of a grape.",
+				{
+					"type": "entries",
+					"name": "Properties of the Orb",
+					"entries": [
+						"While attuned to the orb, you gain the following benefits:",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "Dragon's Breath",
+									"entries": [
+										"You can take a {@action Magic|XPHB} action to exhale a 15-foot {@variantrule Cone [Area of Effect]|XPHB|Cone}. When you do, choose Acid, Cold, Fire, Lightning, or Poison. Each creature in the {@variantrule Cone [Area of Effect]|XPHB|Cone} makes a DC 18 Dexterity saving throw, taking {@damage 6d6} damage of the chosen type on a failed save or half as much damage on a successful one."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Fear Aura",
+									"entries": [
+										"You exude a terrifying aura in a 20-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} while you don't have the {@condition Incapacitated|XPHB} condition. You can take a {@action Magic|XPHB} action to disable or enable this aura. Any enemy that starts its turn in the aura must succeed on a DC 18 Wisdom saving throw or have the {@condition Frightened|XPHB} condition until the start of its next turn. A creature that succeeds on this save is immune to the aura's effects for 24 hours."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Flight",
+									"entries": [
+										"You have a {@variantrule Fly Speed|XPHB} of 60 feet and can hover."
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Random Properties",
+					"entries": [
+						"The Artifact has the following random properties (see chapter 7 of the Dungeon Master's Guide):",
+						{
+							"type": "list",
+							"items": [
+								"2 {@table Artifact Properties; Minor Beneficial Properties|XDMG|minor beneficial} properties",
+								"2 {@table Artifact Properties; Minor Detrimental Properties|XDMG|minor detrimental} properties"
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spellcasting",
+					"entries": [
+						"The orb has 6 charges and regains {@dice 1d4 + 2} expended charges daily at dawn. While attuned to the orb, you can cast one of the spells on the following table from it (+10 spell attack modifier, spell save DC 18). The table indicates how many charges you must expend to cast the spell.",
+						{
+							"type": "table",
+							"colStyles": [
+								"col-6",
+								"col-6 text-center"
+							],
+							"colLabels": [
+								"Spell",
+								"Charge Cost"
+							],
+							"rows": [
+								[
+									"{@spell Disguise Self|XPHB}",
+									"0"
+								],
+								[
+									"{@spell Fire Shield|XPHB}",
+									"2"
+								],
+								[
+									"{@spell Hold Person|XPHB}",
+									"1"
+								],
+								[
+									"{@spell See Invisibility|XPHB}",
+									"1"
+								],
+								[
+									"{@spell Summon Dragon|XPHB} (level 9 version)",
+									"4"
+								]
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Dragon Transformation",
+					"entries": [
+						"If you swallow the orb, you transform into an adult chromatic dragon under the DM's control. The type of chromatic dragon depends on your alignment and personality and is left to the DM to decide. The transformation is permanent, but if the dragon is slain, its body reverts to its original form and the orb reappears outside its body."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Destroying the Orb",
+					"entries": [
+						"If an {@creature Ancient Gold Dragon|XMM} willingly swallows the orb, the orb and the dragon are both destroyed."
+					]
+				}
+			],
+			"attachedSpells": {
+				"will": [
+					"disguise self|xphb"
+				],
+				"charges": {
+					"1": [
+						"hold person|xphb",
+						"see invisibility|xphb"
+					],
+					"2": [
+						"fire shield|xphb"
+					],
+					"4": [
+						"summon dragon|xphb#9"
+					]
+				}
+			}
+		},
+		{
 			"name": "Orb of Direction",
 			"source": "XDMG",
 			"page": 283,
@@ -42357,6 +43189,55 @@
 				}
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Order of the Gauntlet Trinket",
+			"source": "FRHoF",
+			"type": "G|XPHB",
+			"rarity": "none",
+			"entries": [
+				{
+					"type": "table",
+					"caption": "Order of the Gauntlet Trinkets",
+					"colLabels": [
+						"1d6",
+						"Trinket"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"1",
+							"A white feather as heavy as lead"
+						],
+						[
+							"2",
+							"An empty vial made from stained glass"
+						],
+						[
+							"3",
+							"A single cone of gold-flecked incense"
+						],
+						[
+							"4",
+							"A silken blindfold"
+						],
+						[
+							"5",
+							"One half of a pair of manacles"
+						],
+						[
+							"6",
+							"A tarnished aspergillum"
+						]
+					]
+				}
+			],
+			"miscTags": [
+				"TT"
+			]
 		},
 		{
 			"name": "Ornithopter of Flying",
@@ -44992,7 +45873,8 @@
 			],
 			"miscTags": [
 				"CNS"
-			]
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Potion of Cloud Giant Strength",
@@ -45224,7 +46106,8 @@
 			],
 			"miscTags": [
 				"CNS"
-			]
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Potion of Fire Giant Strength",
@@ -45694,7 +46577,8 @@
 			],
 			"miscTags": [
 				"CNS"
-			]
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Potion of Heroism",
@@ -46530,7 +47414,8 @@
 			],
 			"miscTags": [
 				"CNS"
-			]
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Potion of Superior Healing",
@@ -46697,7 +47582,8 @@
 			],
 			"miscTags": [
 				"CNS"
-			]
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Potion of Watchful Rest",
@@ -47428,6 +48314,18 @@
 		},
 		{
 			"name": "Prosthetic Limb",
+			"source": "FRHoF",
+			"page": 132,
+			"_copy": {
+				"name": "Prosthetic Limb",
+				"source": "XDMG"
+			},
+			"value": 0,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Prosthetic Limb",
 			"source": "TCE",
 			"page": 134,
 			"otherSources": [
@@ -47453,6 +48351,11 @@
 			"name": "Prosthetic Limb",
 			"source": "XDMG",
 			"page": 290,
+			"otherSources": [
+				{
+					"source": "FRHoF"
+				}
+			],
 			"rarity": "common",
 			"wondrous": true,
 			"entries": [
@@ -47461,7 +48364,8 @@
 			"lootTables": [
 				"Arcana - Common|XDMG",
 				"Implements - Common|XDMG"
-			]
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Protective Verses",
@@ -47622,6 +48526,55 @@
 			"range": "60/120",
 			"dmg1": "1d6",
 			"dmgType": "Y"
+		},
+		{
+			"name": "Purple Dragon Knight Trinket",
+			"source": "FRHoF",
+			"type": "G|XPHB",
+			"rarity": "none",
+			"entries": [
+				{
+					"type": "table",
+					"caption": "Purple Dragon Knight Trinkets",
+					"colLabels": [
+						"1d6",
+						"Trinket"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"1",
+							"An amethyst dragon wyrmling's claw"
+						],
+						[
+							"2",
+							"A common purple quartz cut to resemble a dragon's eye"
+						],
+						[
+							"3",
+							"A signal whistle audible only to amethyst dragons"
+						],
+						[
+							"4",
+							"A robin's egg encased in amber"
+						],
+						[
+							"5",
+							"A whetstone that leaves any blade it hones faintly glittery"
+						],
+						[
+							"6",
+							"A vamplate taken from a slain rival jouster"
+						]
+					]
+				}
+			],
+			"miscTags": [
+				"TT"
+			]
 		},
 		{
 			"name": "Purple Worm Poison",
@@ -48858,6 +49811,55 @@
 				"A creature reduced to 0 hit points by this weapon dies and can't be raised from the dead except by a deity or by a creature using a {@item tablet of reawakening|HAT-LMI} to cast the {@spell true resurrection} spell."
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Red Wizard Trinket",
+			"source": "FRHoF",
+			"type": "G|XPHB",
+			"rarity": "none",
+			"entries": [
+				{
+					"type": "table",
+					"caption": "Red Wizard Trinkets",
+					"colLabels": [
+						"1d6",
+						"Trinket"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"1",
+							"A gnarled wand made from petrified yew"
+						],
+						[
+							"2",
+							"A glass jar containing the preserved heart of an unknown animal"
+						],
+						[
+							"3",
+							"A unicorn figurine carved from obsidian"
+						],
+						[
+							"4",
+							"A tattoo needle made from one of your own bones"
+						],
+						[
+							"5",
+							"A bronze amulet in the shape of a scorpion"
+						],
+						[
+							"6",
+							"A razor made of crimson steel"
+						]
+					]
+				}
+			],
+			"miscTags": [
+				"TT"
+			]
 		},
 		{
 			"name": "Reincarnation Dust",
@@ -57018,8 +58020,23 @@
 		},
 		{
 			"name": "Sled Dog",
+			"source": "FRHoF",
+			"page": 132,
+			"type": "MNT|XPHB",
+			"rarity": "none",
+			"value": 5000,
+			"entries": [
+				"A sled dog uses the {@creature Wolf|XMM} stat block (see the Monster Manual). A sled dog pulling a sled alone must take a {@variantrule Short Rest|XPHB} after pulling a sled for 1 hour; otherwise, it gains 1 {@condition Exhaustion|XPHB} level."
+			],
+			"hasFluff": true
+		},
+		{
+			"name": "Sled Dog",
 			"source": "IDRotF",
 			"page": 20,
+			"reprintedAs": [
+				"Sled Dog|FRHoF"
+			],
 			"type": "MNT",
 			"rarity": "none",
 			"value": 5000,
@@ -65273,6 +66290,26 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Thayan Spell Tattoo",
+			"source": "FRHoF",
+			"page": 176,
+			"rarity": "uncommon",
+			"reqAttune": true,
+			"wondrous": true,
+			"entries": [
+				"This magical tattoo contains the essence of a level 1-3 spell chosen by the tattoo's creator. While the tattoo is on your body, you always have the associated spell prepared, and you can cast the spell using any spell slots you have of the appropriate level. If you have the Spellcasting or Pact Magic feature, the spell uses your spellcasting ability; otherwise, if the spell requires a saving throw or an attack roll, the spell save DC is 13 and the attack bonus is +5. If your {@variantrule Attunement|XPHB} to the tattoo ends, the tattoo vanishes.",
+				"You can also cast the spell once without a spell slot and spell components. Once the spell is cast in this way, the tattoo vanishes.",
+				{
+					"type": "inset",
+					"name": "Inking Thayan Spell Tattoos",
+					"entries": [
+						"The Thayan art of magical tattooing is highly guarded by its practitioners, and thus, Thayan Spell Tattoos can't be crafted like other magic items. To learn how to ink Thayan Spell Tattoos, you must have a Renown Score of 50+ with the Red Wizards.",
+						"To ink a Thayan Spell Tattoo, you must have proficiency in the {@skill Arcana|XPHB} skill and with {@item Calligrapher's Supplies|XPHB} and have the spell prepared each day of the inking. You must also have at hand any Material components required by the spell; if the spell consumes its Material components, they are consumed when you complete the tattoo. Inking a Thayan Spell Tattoo takes the same amount of {@book time and money|XDMG|6|Time and Cost} as scribing a {@item Spell Scroll|XDMG} of an equivalent level."
+					]
+				}
+			]
+		},
+		{
 			"name": "The Bloody End (Awakened)",
 			"source": "EGW",
 			"_copy": {
@@ -66975,6 +68012,21 @@
 			"weight": 5,
 			"entries": [
 				"The Tome of Strahd is an ancient work penned by Strahd, a tragic tale of how he came to his fallen state. The book is bound in a thick leather cover with steel hinges and fastenings. The pages are of parchment and very brittle. Most of the book is written in the curious shorthand that only Strahd employs. Stains and age have made most of the work illegible, but several paragraphs remain intact."
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Tome of the Dragon",
+			"source": "FRAiF",
+			"page": 247,
+			"rarity": "legendary",
+			"wondrous": true,
+			"entries": [
+				"This heavy tome is bound in dragonhide and reinforced with thick bands of cold iron. The original copies were made by wyrmspeakers of the {@book Cult of the Dragon|FRHoF|6|Cult of the Dragon} and bear that cult's symbol on their cover. The Tome of the Dragon contains the secret ritual to transform a dragon or a dead dragon's body into a dracolich.",
+				"To decipher and use the Tome of the Dragon, you must be either a spellcaster with at least two level 5 spell slots or a Dragon. A single assistant (or more, at the DM's discretion) can help you conduct the ritual, so long as that assistant also meets the requirements to use the tome.",
+				"To create a dracolich using a Tome of the Dragon, you must have continuous access to the body of an adult or ancient dragon (either living or dead), as well as 80,000 GP worth of supplies (which includes a gem that will serve as the anchor for the dracolich's spirit). While you have the necessary materials, you must conduct a ritual that lasts 180 days divided by the number of creatures conducting the ritual. During the ritual, you and any assistants must work without interruption, resting no more than 8 hours per day. If you are a Dragon, the cost of supplies and the ritual's duration are halved.",
+				"When the ritual is complete, the tome explodes with violet light, dealing ({@dice 12d6}) Necrotic damage to you and each assistant. If this damage reduces a creature to 0 {@variantrule Hit Points|XPHB}, the creature is killed and immediately reanimates as a {@creature Zombie|XMM} under the DM's control.",
+				"At the end of the ritual, the target transforms into a {@creature Dracolich|XMM}. If the ritual's target was a living dragon, that dragon dies instantly, and its spirit is transferred to the gem supplied for the ritual. If the target was a dead dragon's body, the body reanimates, and the gem is inhabited by an evil dragon spirit from the Outer Planes. The dracolich is under no obligation toward its creators and acts according to its nature."
 			],
 			"hasFluffImages": true
 		},
@@ -71918,6 +72970,20 @@
 			"speed": 60
 		},
 		{
+			"name": "Warm Fungal Clothing",
+			"source": "FRHoF",
+			"page": 132,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 4,
+			"value": 1500,
+			"entries": [
+				"When you're wearing Warm Fungal Clothing, you automatically succeed on saving throws against the effects of extreme cold. See chapter 3 of the Dungeon Master's Guide for rules on extreme cold. One pound of fungus is sewn into Fungal Clothing. This fungus can be eaten as food. Once all the fungus is consumed, this becomes a mundane set of Traveler's Clothes."
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Warrior's Passkey",
 			"source": "BMT",
 			"page": 39,
@@ -73347,6 +74413,29 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Windskiff",
+			"source": "FRAiF",
+			"page": 247,
+			"otherSources": [
+				{
+					"source": "FRHoF",
+					"page": 134
+				}
+			],
+			"rarity": "rare",
+			"wondrous": true,
+			"value": 400000,
+			"recharge": "dawn",
+			"rechargeAmount": 3,
+			"charges": 3,
+			"entries": [
+				"This small piece of jewelry has 3 charges and regains all expended charges daily at dawn. While you are holding it, you can take a {@action Magic|XPHB} action to expend 1 charge, which causes the jewelry to transform into a sail-powered personal vehicle. The vehicle is roughly the size and shape of a household door with a 10-foot-tall sail extending from one side. After 1 hour or until you use the item's command word (no action required), the transformation ends and the Windskiff reverts to its jewelry form.",
+				"In vehicle form, a Windskiff is a Medium object with the following statistics: AC 12, HP 30, and {@variantrule Speed|XPHB} 40 ft. The Windskiff hovers a few inches above whatever surface it's on and can glide; it moves 5 feet horizontally for every 1 foot it descends in the air. A Windskiff and its riders take no damage from falling."
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Windvane",
 			"source": "PotA",
 			"page": 224,
@@ -73533,6 +74622,20 @@
 				"This snug uniform has symbols of air stitched into it and leathery flaps that stretch along the arms, waist, and legs to create wings for gliding. A suit of wingwear has 3 charges. While you wear the suit, you can use a bonus action and expend 1 charge to gain a flying speed of 30 feet until you land. At the end of each of your turns, your altitude drops by 5 feet. Your altitude drops instantly to 0 feet at the end of your turn if you didn't fly at least 30 feet horizontally on that turn. When your altitude drops to 0 feet, you land (or fall), and you must expend another charge to use the suit again.",
 				"The suit regains all of its expended charges after spending at least 1 hour in an elemental air node."
 			]
+		},
+		{
+			"name": "Winter Camouflage",
+			"source": "FRHoF",
+			"page": 132,
+			"type": "G|XPHB",
+			"rarity": "none",
+			"weight": 4,
+			"value": 5000,
+			"entries": [
+				"While you wear Winter Camouflage in an appropriate environment, you have {@variantrule Advantage|XPHB} on Dexterity ({@skill Stealth|XPHB}) checks."
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Winter's Dark Bite",
@@ -74549,6 +75652,55 @@
 			],
 			"miscTags": [
 				"CNS"
+			]
+		},
+		{
+			"name": "Zhentarim Trinket",
+			"source": "FRHoF",
+			"type": "G|XPHB",
+			"rarity": "none",
+			"entries": [
+				{
+					"type": "table",
+					"caption": "Zhentarim Trinkets",
+					"colLabels": [
+						"1d6",
+						"Trinket"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"1",
+							"A broken dagger etched with your name"
+						],
+						[
+							"2",
+							"A glass eye that always turns to face you"
+						],
+						[
+							"3",
+							"A gold-colored serpent's tooth"
+						],
+						[
+							"4",
+							"A counterfeit gold coin"
+						],
+						[
+							"5",
+							"A crystal tattoo needle"
+						],
+						[
+							"6",
+							"A contract on a slip of parchment that's impervious to creases, tears, and fire"
+						]
+					]
+				}
+			],
+			"miscTags": [
+				"TT"
 			]
 		},
 		{
@@ -77160,6 +78312,27 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Mechanical Wonder",
+			"source": "FRAiF",
+			"page": 245,
+			"rarity": "varies",
+			"wondrous": true,
+			"weight": 500,
+			"entries": [
+				"A Mechanical Wonder is a semi-autonomous object imbued with magical power. Mechanical Wonders vary greatly in size and form depending on their function.",
+				"A Mechanical Wonder is a dormant object until activated. To activate a Mechanical Wonder, you must wind the wonder with a handheld key unique to that wonder. It takes 1 minute to wind a Mechanical Wonder. While you wind it, you must take the {@action Utilize|XPHB} action each turn.",
+				"Once wound, a Mechanical Wonder remains activated for the duration specified in the wonder's description."
+			],
+			"items": [
+				"Mechanical Wonder (Domestic)|FRAiF",
+				"Mechanical Wonder (Flying)|FRAiF",
+				"Mechanical Wonder (Gyrocopter)|FRAiF",
+				"Mechanical Wonder (Mobility)|FRAiF"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Mind Crystal",
 			"source": "PaBTSO",
 			"page": 218,
@@ -77178,6 +78351,20 @@
 				"Mind Crystal (Quickened)|PaBTSO",
 				"Mind Crystal (Subtle)|PaBTSO"
 			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Musical Instrument",
+			"source": "FRHoF",
+			"page": 132,
+			"type": "INS|XPHB",
+			"rarity": "none",
+			"items": [
+				"Bandore|FRHoF",
+				"Cittern|FRHoF",
+				"Yarting|FRHoF"
+			],
+			"hasFluff": true,
 			"hasFluffImages": true
 		},
 		{

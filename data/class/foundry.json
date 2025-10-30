@@ -174,22 +174,22 @@
 				{
 					"type": "ScaleValue",
 					"configuration": {
-						"type": "string",
+						"type": "number",
 						"scale": {
 							"1": {
-								"value": "2"
+								"value": 2
 							},
 							"3": {
-								"value": "3"
+								"value": 3
 							},
 							"6": {
-								"value": "4"
+								"value": 4
 							},
 							"12": {
-								"value": "5"
+								"value": 5
 							},
 							"16": {
-								"value": "6"
+								"value": 6
 							}
 						}
 					},
@@ -753,6 +753,46 @@
 		}
 	],
 	"subclass": [
+		{
+			"name": "Battle Master",
+			"shortName": "Battle Master",
+			"source": "PHB",
+			"className": "Fighter",
+			"classSource": "PHB",
+			"advancement": [
+				{
+					"type": "ScaleValue",
+					"configuration": {
+						"identifier": "superiority",
+						"type": "dice",
+						"scale": {
+							"3": {
+								"number": 4,
+								"faces": 8
+							},
+							"7": {
+								"number": 5,
+								"faces": 8
+							},
+							"10": {
+								"number": 5,
+								"faces": 10
+							},
+							"15": {
+								"number": 6,
+								"faces": 10
+							},
+							"18": {
+								"number": 6,
+								"faces": 12
+							}
+						}
+					},
+					"title": "Superiority Dice"
+				}
+			],
+			"migrationVersion": 3
+		},
 		{
 			"name": "Nature Domain",
 			"shortName": "Nature",
@@ -1599,7 +1639,9 @@
 			"className": "Fighter",
 			"classSource": "PHB",
 			"level": 1,
-			"isIgnored": true,
+			"entries": [
+				"You adopt a particular style of fighting as your specialty. You can't take the same Fighting Style option more than once, even if you get to choose again."
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -1829,7 +1871,9 @@
 			"className": "Paladin",
 			"classSource": "PHB",
 			"level": 2,
-			"isIgnored": true,
+			"entries": [
+				"You adopt a particular style of fighting as your specialty. You can't take the same Fighting Style option more than once, even if you get to choose again."
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -1894,7 +1938,9 @@
 			"className": "Ranger",
 			"classSource": "PHB",
 			"level": 2,
-			"isIgnored": true,
+			"entries": [
+				"You adopt a particular style of fighting as your specialty. You can't take the same Fighting Style option more than once, even if you get to choose again."
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -2380,8 +2426,39 @@
 							"key": "system.traits.dr.value",
 							"mode": "ADD",
 							"value": "bludgeoning"
+						},
+						{
+							"key": "system.abilities.str.check.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						},
+						{
+							"key": "system.abilities.str.save.roll.mode",
+							"mode": "ADD",
+							"value": 1
 						}
 					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Danger Sense",
+			"source": "XPHB",
+			"className": "Barbarian",
+			"classSource": "XPHB",
+			"level": 2,
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.abilities.dex.save.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						}
+					],
+					"description": "You have Advantage on Dexterity saving throws unless you have the &Reference[Incapacitated] condition."
 				}
 			],
 			"migrationVersion": 3
@@ -3639,19 +3716,28 @@
 			"classSource": "XPHB",
 			"level": 2,
 			"system": {
-				"uses.max": "@scale.druid.wild-shape-uses"
+				"uses.max": "@scale.druid.wild-shape-uses",
+				"uses.recovery": [
+					{
+						"period": "lr",
+						"type": "recoverAll"
+					},
+					{
+						"period": "sr",
+						"type": "formula",
+						"formula": "1"
+					}
+				]
 			},
 			"activities": [
 				{
-					"name": "Wild Shape",
-					"type": "utility",
+					"type": "transform",
 					"activation": {
-						"type": "bonus",
-						"value": 1
+						"type": "bonus"
 					},
 					"duration": {
-						"value": "(floor(@classes.druid.levels / 2))",
-						"units": "hour"
+						"units": "hour",
+						"value": "(floor(@classes.druid.levels / 2))"
 					},
 					"consumption": {
 						"targets": [
@@ -3665,6 +3751,50 @@
 						"affects": {
 							"type": "self"
 						}
+					},
+					"profiles": [
+						{
+							"cr": "0.25",
+							"name": "CR ¼",
+							"types": [
+								"beast"
+							],
+							"movement": [
+								"fly"
+							],
+							"level": {
+								"max": 5
+							}
+						},
+						{
+							"cr": "0.5",
+							"name": "CR ½",
+							"types": [
+								"beast"
+							],
+							"movement": [
+								"fly"
+							],
+							"level": {
+								"min": 6,
+								"max": 7
+							}
+						},
+						{
+							"cr": "1",
+							"name": "CR 1",
+							"types": [
+								"beast"
+							],
+							"level": {
+								"min": 8
+							}
+						}
+					],
+					"transform": {
+						"mode": "cr",
+						"identifier": "druid",
+						"preset": "wildshape"
 					}
 				}
 			],
@@ -4271,6 +4401,9 @@
 			"className": "Monk",
 			"classSource": "XPHB",
 			"level": 2,
+			"system": {
+				"uses.max": null
+			},
 			"entryData": {
 				"resources": [
 					{
@@ -4280,7 +4413,8 @@
 						"count": "@scale.monk.focus"
 					}
 				]
-			}
+			},
+			"migrationVersion": 3
 		},
 		{
 			"name": "Patient Defense",
@@ -5098,7 +5232,45 @@
 			"className": "Paladin",
 			"classSource": "XPHB",
 			"level": 2,
-			"isIgnored": true,
+			"entries": [
+				"You gain a {@filter Fighting Style feat|feats|category=FS} of your choice. Instead of choosing one of those feats, you can choose the {@feat Blessed Warrior|XPHB} Fighting Style."
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Paladin's Smite",
+			"source": "XPHB",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"level": 2,
+			"activities": [
+				{
+					"type": "cast",
+					"activation": {
+						"type": "action"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "activityUses",
+								"value": "1"
+							}
+						]
+					},
+					"uses": {
+						"recovery": [
+							{
+								"period": "lr",
+								"type": "recoverAll"
+							}
+						],
+						"max": "1"
+					},
+					"spell": {
+						"uuid": "@spell[divine smite|xphb]"
+					}
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -5414,7 +5586,9 @@
 			"className": "Ranger",
 			"classSource": "XPHB",
 			"level": 2,
-			"isIgnored": true,
+			"entries": [
+				"You gain a {@filter Fighting Style feat|feats|category=FS} of your choice. Instead of choosing one of those feats, you can choose the {@feat Druidic Warrior|XPHB} Fighting Style."
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -7123,6 +7297,9 @@
 			"subclassShortName": "Swords",
 			"subclassSource": "XGE",
 			"level": 3,
+			"entries": [
+				"At 3rd level, you adopt a style of fighting as your specialty. You can't take a Fighting Style option more than once, even if something in the game lets you choose again."
+			],
 			"isIgnored": true,
 			"migrationVersion": 3
 		},
@@ -8566,24 +8743,18 @@
 					"transfer": true,
 					"changes": [
 						{
-							"key": "flags.dnd5e.remarkableAthlete",
-							"mode": "OVERRIDE",
-							"value": true
+							"key": "system.skills.ath.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						},
+						{
+							"key": "system.attributes.init.roll.mode",
+							"mode": "ADD",
+							"value": 1
 						}
 					]
 				}
 			],
-			"migrationVersion": 3
-		},
-		{
-			"name": "Additional Fighting Style",
-			"source": "PHB",
-			"className": "Fighter",
-			"classSource": "PHB",
-			"subclassShortName": "Champion",
-			"subclassSource": "PHB",
-			"level": 10,
-			"isIgnored": true,
 			"migrationVersion": 3
 		},
 		{
@@ -12323,6 +12494,43 @@
 					"duration": {
 						"turns": 1
 					},
+					"changes": [
+						{
+							"key": "system.abilities.str.save.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						},
+						{
+							"key": "system.abilities.dex.save.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						},
+						{
+							"key": "system.abilities.con.save.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						},
+						{
+							"key": "system.abilities.int.save.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						},
+						{
+							"key": "system.abilities.wis.save.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						},
+						{
+							"key": "system.abilities.cha.save.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						},
+						{
+							"key": "system.attributes.death.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						}
+					],
 					"description": "You gain Advantage on attack rolls and saving throws until the start of Zealots next turn."
 				}
 			],
@@ -14182,17 +14390,63 @@
 			"subclassShortName": "Moon",
 			"subclassSource": "XPHB",
 			"level": 3,
-			"effects": [
+			"activities": [
 				{
-					"disabled": true,
-					"transfer": true,
-					"changes": [
-						{
-							"key": "system.attributes.ac.min",
-							"mode": "UPGRADE",
-							"value": "13 + @abilities.wis.mod"
+					"type": "transform",
+					"activation": {
+						"type": "bonus"
+					},
+					"duration": {
+						"units": "hour",
+						"value": "(floor(@classes.druid.levels / 2))"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"prop": "classFeature",
+									"uid": "Wild Shape|Druid|XPHB|2"
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
 						}
-					]
+					},
+					"profiles": [
+						{
+							"cr": "floor(@classes.druid.levels / 3)",
+							"name": "Circle Form Options",
+							"types": [
+								"beast"
+							],
+							"level": {
+								"min": 8
+							}
+						},
+						{
+							"cr": "floor(@classes.druid.levels / 3)",
+							"name": "Circle Form Options",
+							"types": [
+								"beast"
+							],
+							"movement": [
+								"fly"
+							],
+							"level": {
+								"max": 7
+							}
+						}
+					],
+					"transform": {
+						"mode": "cr",
+						"identifier": "druid",
+						"preset": "wildshape"
+					}
 				}
 			],
 			"migrationVersion": 3
@@ -14872,9 +15126,28 @@
 				{
 					"foundryId": "dragon",
 					"name": "Dragon Form",
+					"disabled": true,
+					"transfer": true,
 					"duration": {
 						"seconds": 600
 					},
+					"changes": [
+						{
+							"key": "system.abilities.int.check.roll.min",
+							"mode": "UPGRADE",
+							"value": 10
+						},
+						{
+							"key": "system.abilities.wis.check.roll.min",
+							"mode": "UPGRADE",
+							"value": 10
+						},
+						{
+							"key": "system.attributes.concentration.roll.min",
+							"mode": "UPGRADE",
+							"value": 10
+						}
+					],
 					"description": "A constellation of a wise dragon appears on you. When you make an Intelligence or a Wisdom check or a Constitution saving throw to maintain Concentration, you can treat a roll of 9 or lower on the d20 as a 10."
 				}
 			],
@@ -14942,6 +15215,8 @@
 			"effects": [
 				{
 					"foundryId": "starryForm",
+					"disabled": true,
+					"transfer": true,
 					"duration": {
 						"seconds": 600
 					},
@@ -15858,41 +16133,7 @@
 			"level": 3,
 			"activities": [
 				{
-					"name": "Elemental Attunement",
-					"type": "utility",
-					"activation": {
-						"type": "",
-						"condition": "At the start of your turn"
-					},
-					"duration": {
-						"units": "minute",
-						"value": "10"
-					},
-					"consumption": {
-						"targets": [
-							{
-								"type": "itemUses",
-								"value": "1",
-								"target": {
-									"consumes": {
-										"name": "Focus Point"
-									}
-								}
-							}
-						]
-					},
-					"target": {
-						"affects": {
-							"type": "self"
-						}
-					},
-					"effects": [
-						{
-							"foundryId": "elementalAttunem"
-						}
-					]
-				},
-				{
+					"foundryId": "elementalAttunem",
 					"name": "Elemental Strike",
 					"type": "attack",
 					"activation": {
@@ -15900,8 +16141,7 @@
 					},
 					"target": {
 						"affects": {
-							"count": "1",
-							"type": "creature"
+							"count": "1"
 						}
 					},
 					"range": {
@@ -15925,16 +16165,19 @@
 								},
 								"types": [
 									"acid",
+									"bludgeoning",
 									"cold",
 									"fire",
 									"lightning",
-									"thunder"
+									"thunder",
+									"force"
 								]
 							}
 						]
 					}
 				},
 				{
+					"foundryId": "elementalAttune1",
 					"name": "Elemental Save",
 					"type": "save",
 					"activation": {
@@ -15944,11 +16187,13 @@
 					"target": {
 						"affects": {
 							"count": "1",
-							"type": "creature"
+							"type": "creatureOrObject",
+							"special": "hit by elemental damage from imbued strike"
 						}
 					},
 					"range": {
-						"units": "ft",
+						"units": "spec",
+						"special": "pushed or pulled up to 10 feet",
 						"value": "15"
 					},
 					"damage": {
@@ -15962,16 +16207,95 @@
 							"calculation": "wis"
 						}
 					}
+				},
+				{
+					"name": "Activate Attunement",
+					"type": "enchant",
+					"activation": {
+						"type": "turnStart"
+					},
+					"duration": {
+						"units": "minute",
+						"value": "10"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Focus Point"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"restrictions": {
+						"allowMagical": true
+					},
+					"enchant": {
+						"self": true,
+						"identifier": "monk"
+					},
+					"effects": [
+						{
+							"foundryId": "elementalAttunem",
+							"riders": {
+								"activity": [
+									{
+										"foundryId": "elementalAttunem"
+									},
+									{
+										"foundryId": "elementalAttune1"
+									}
+								]
+							}
+						}
+					]
 				}
 			],
 			"effects": [
 				{
 					"foundryId": "elementalAttunem",
+					"name": "Active Attunement",
+					"type": "enchantment",
+					"disabled": true,
+					"transfer": true,
 					"duration": {
 						"seconds": 600
 					},
-					"descriptionEntries": [
-						"You gain the following benefits while this feature is active: {@b Reach} and {@b Elemental Strikes}."
+					"changes": [
+						{
+							"key": "name",
+							"mode": "OVERRIDE",
+							"value": "{} (Active)"
+						},
+						{
+							"key": "activities[enchant].activation.type",
+							"mode": "OVERRIDE",
+							"value": "special"
+						},
+						{
+							"key": "activities[enchant].activation.condition",
+							"mode": "OVERRIDE",
+							"value": "at end of duration"
+						},
+						{
+							"key": "activities[enchant].name",
+							"mode": "OVERRIDE",
+							"value": "End Attunement"
+						},
+						{
+							"key": "activities[enchant].consumption.targets",
+							"mode": "OVERRIDE",
+							"value": []
+						}
 					]
 				}
 			],
@@ -17364,6 +17688,68 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Peerless Athlete",
+			"source": "XPHB",
+			"className": "Paladin",
+			"classSource": "XPHB",
+			"subclassShortName": "Glory",
+			"subclassSource": "XPHB",
+			"level": 3,
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "bonus"
+					},
+					"consumption": {
+						"targets": [
+							{
+								"type": "itemUses",
+								"value": "1",
+								"target": {
+									"consumes": {
+										"name": "Channel Divinity"
+									}
+								}
+							}
+						]
+					},
+					"target": {
+						"affects": {
+							"type": "self"
+						}
+					},
+					"effects": [
+						{
+							"foundryId": "peerlessAthlete"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "peerlessAthlete",
+					"duration": {
+						"seconds": 3600
+					},
+					"changes": [
+						{
+							"key": "system.skills.ath.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						},
+						{
+							"key": "system.skills.acr.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						}
+					],
+					"description": "For 1 hour, you have Advantage on Strength (Athletics) and Dexterity (Acrobatics) checks, and the distance of your Long and High Jumps increases by 10 feet (this extra distance costs movement as normal)."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Aura of Alacrity",
 			"source": "XPHB",
 			"className": "Paladin",
@@ -17499,12 +17885,20 @@
 			"effects": [
 				{
 					"foundryId": "livingLegend",
+					"name": "Living Legend: Charismatic",
 					"disabled": true,
 					"transfer": true,
 					"duration": {
 						"seconds": 600
 					},
-					"description": "You are empowered with the legends\u2014whether true or exaggerated\u2014of your great deeds."
+					"changes": [
+						{
+							"key": "system.abilities.cha.check.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						}
+					],
+					"description": "You are blessed with an otherworldly presence and have Advantage on all Charisma checks."
 				}
 			],
 			"migrationVersion": 3

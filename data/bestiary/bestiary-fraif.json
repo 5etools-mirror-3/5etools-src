@@ -1,0 +1,6293 @@
+{
+	"monster": [
+		{
+			"name": "Adult Deep Dragon",
+			"source": "FRAiF",
+			"page": 258,
+			"size": [
+				"H"
+			],
+			"type": "dragon",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				17
+			],
+			"hp": {
+				"average": 161,
+				"formula": "17d12 + 51"
+			},
+			"speed": {
+				"walk": 40,
+				"burrow": 30,
+				"fly": 80,
+				"swim": 40
+			},
+			"initiative": {
+				"proficiency": 2
+			},
+			"str": 20,
+			"dex": 14,
+			"con": 17,
+			"int": 16,
+			"wis": 16,
+			"cha": 18,
+			"save": {
+				"dex": "+6",
+				"wis": "+7"
+			},
+			"skill": {
+				"perception": "+11",
+				"stealth": "+10"
+			},
+			"senses": [
+				"Blindsight 60 ft.",
+				"Darkvision 150 ft."
+			],
+			"passive": 21,
+			"resist": [
+				"poison",
+				"psychic"
+			],
+			"conditionImmune": [
+				"charmed",
+				"frightened",
+				"poisoned"
+			],
+			"languages": [
+				"Common",
+				"Draconic",
+				"Undercommon"
+			],
+			"cr": {
+				"cr": "11",
+				"xpLair": 8400
+			},
+			"trait": [
+				{
+					"name": "Legendary Resistance (3/Day, or 4/Day in Lair)",
+					"entries": [
+						"If the dragon fails a saving throw, it can choose to succeed instead."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The dragon makes three Rend attacks."
+					]
+				},
+				{
+					"name": "Rend",
+					"entries": [
+						"{@atkr m} {@hit 9}, reach 10 ft. {@h}14 ({@damage 2d8 + 5}) Slashing damage plus 5 ({@damage 1d10}) Poison damage."
+					]
+				},
+				{
+					"name": "Nightmare Breath {@recharge 5}",
+					"entries": [
+						"{@actSave wis} {@dc 15}, each creature in a 30-foot {@variantrule Cone [Area of Effect]|XPHB|Cone}. {@actSaveFail} 38 ({@damage 7d10}) Psychic damage, and the target has the {@condition Frightened|XPHB} condition until the end of the dragon's next turn. {@actSaveSuccess} Half damage only."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Shape-Shift",
+					"entries": [
+						"The dragon shape-shifts into a Small or Medium Humanoid or a Small or Medium Beast, or it returns to its true form. Its game statistics, other than its size, are the same in each form. Any equipment it is wearing or carrying isn't transformed."
+					]
+				}
+			],
+			"legendaryActionsLair": 4,
+			"legendary": [
+				{
+					"name": "Pounce",
+					"entries": [
+						"The dragon moves up to half its {@variantrule Speed|XPHB}, and it makes one Rend attack."
+					]
+				},
+				{
+					"name": "Spore Salvo",
+					"entries": [
+						"{@actSave con} {@dc 15}, one creature within 30 feet of the dragon that it can see. {@actSaveFail} 13 ({@damage 3d8}) Poison damage, and the target has the {@condition Poisoned|XPHB} condition. It repeats the save at the end of each of its turns, ending the effect on itself on a success. After 1 minute, it succeeds automatically. {@actSaveSuccessOrFail} The dragon can't take this action again until the start of its next turn."
+					]
+				}
+			],
+			"legendaryGroup": {
+				"name": "Deep Dragon",
+				"source": "FRAiF"
+			},
+			"environment": [
+				"underdark"
+			],
+			"treasure": [
+				"arcana"
+			],
+			"dragonCastingColor": "deep",
+			"dragonAge": "adult",
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"B",
+				"SD"
+			],
+			"actionTags": [
+				"Breath Weapon",
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"U"
+			],
+			"damageTags": [
+				"I",
+				"S",
+				"Y"
+			],
+			"miscTags": [
+				"MA",
+				"RCH"
+			],
+			"conditionInflict": [
+				"frightened",
+				"poisoned"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Adult Spirit Dragon",
+			"source": "FRAiF",
+			"page": 278,
+			"size": [
+				"H"
+			],
+			"type": "dragon",
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				18
+			],
+			"hp": {
+				"average": 207,
+				"formula": "18d12 + 90"
+			},
+			"speed": {
+				"walk": 40,
+				"burrow": 30,
+				"fly": 80
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 22,
+			"dex": 15,
+			"con": 21,
+			"int": 20,
+			"wis": 15,
+			"cha": 19,
+			"save": {
+				"dex": "+7",
+				"con": "+10"
+			},
+			"skill": {
+				"history": "+10",
+				"insight": "+7",
+				"perception": "+7",
+				"stealth": "+7"
+			},
+			"senses": [
+				"Blindsight 30 ft.",
+				"Darkvision 120 ft."
+			],
+			"passive": 17,
+			"resist": [
+				"necrotic"
+			],
+			"languages": [
+				"Common",
+				"Draconic; telepathy 120 ft."
+			],
+			"cr": {
+				"cr": "15",
+				"xpLair": 15000
+			},
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The dragon casts one of the following spells, requiring no spell components and using Intelligence as the spellcasting ability (spell save {@dc 18}):"
+					],
+					"will": [
+						"{@spell Detect Magic|XPHB}",
+						"{@spell Shapechange|XPHB} (Beast or Humanoid form only, no {@variantrule Temporary Hit Points|XPHB} gained from the spell, and no Concentration or {@variantrule Temporary Hit Points|XPHB} required to maintain the spell)",
+						"{@spell Thunderwave|XPHB}"
+					],
+					"daily": {
+						"1": [
+							"{@spell Legend Lore|XPHB} (as an action)"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Legendary Resistance (3/Day, or 4/Day in Lair)",
+					"entries": [
+						"If the dragon fails a saving throw, it can choose to succeed instead."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The dragon makes three Rend attacks. It can replace one attack with a use of (A) Time-Warping Breath or (B) Spellcasting to cast {@spell Thunderwave|XPHB}."
+					]
+				},
+				{
+					"name": "Rend",
+					"entries": [
+						"{@atkr m} {@hit 11}, reach 10 ft. {@h}15 ({@damage 2d8 + 6}) Slashing damage plus 7 ({@damage 2d6}) Necrotic damage."
+					]
+				},
+				{
+					"name": "Ruinous Breath {@recharge 5}",
+					"entries": [
+						"{@actSave con} {@dc 18}, each creature in a 60-foot {@variantrule Cone [Area of Effect]|XPHB|Cone}. {@actSaveFail} 63 ({@damage 14d8}) Necrotic damage. {@actSaveSuccess} Half damage."
+					]
+				},
+				{
+					"name": "Time-Warping Breath",
+					"entries": [
+						"{@actSave wis} {@dc 18}, each creature that isn't currently affected by this breath in a 60-foot {@variantrule Cone [Area of Effect]|XPHB|Cone}. {@actSaveFail} The target's {@variantrule Speed|XPHB} is halved, it can't take Reactions, and it can take either an action or a {@variantrule Bonus Action|XPHB} on its turn, not both. It repeats the save at the end of each of its turns, ending the effect on itself on a success. After 1 minute, it succeeds automatically."
+					]
+				}
+			],
+			"legendaryActionsLair": 4,
+			"legendary": [
+				{
+					"name": "Pounce",
+					"entries": [
+						"The dragon moves up to half its {@variantrule Speed|XPHB}, and it makes one Rend attack."
+					]
+				},
+				{
+					"name": "Shattering Wave",
+					"entries": [
+						"The dragon uses Spellcasting to cast {@spell Thunderwave|XPHB}."
+					]
+				},
+				{
+					"name": "Unearth Ruins",
+					"entries": [
+						"The dragon magically raises broken, ancient ruins in a 20-foot-radius, 60-foot-high {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder} centered on a point it can see within 120 feet. Ground in the {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder} becomes {@variantrule Difficult Terrain|XPHB}. Each creature in the {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder} when it appears is subjected to the following effect. {@actSave str} {@dc 18}. {@actSaveFail} 5 ({@damage 2d4}) Bludgeoning damage, and the target has the {@condition Prone|XPHB} condition. {@actSaveSuccessOrFail} The dragon can't take this action again until the start of its next turn."
+					]
+				}
+			],
+			"legendaryGroup": {
+				"name": "Spirit Dragon",
+				"source": "FRAiF"
+			},
+			"environment": [
+				"any"
+			],
+			"treasure": [
+				"any"
+			],
+			"dragonCastingColor": "spirit",
+			"dragonAge": "adult",
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"B",
+				"SD"
+			],
+			"actionTags": [
+				"Breath Weapon",
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"TP"
+			],
+			"damageTags": [
+				"B",
+				"N",
+				"S"
+			],
+			"damageTagsSpell": [
+				"T"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE",
+				"MA",
+				"RCH"
+			],
+			"conditionInflict": [
+				"prone"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"strength",
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"constitution"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Ancient Deep Dragon",
+			"source": "FRAiF",
+			"page": 259,
+			"size": [
+				"G"
+			],
+			"type": "dragon",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				20
+			],
+			"hp": {
+				"average": 247,
+				"formula": "15d20 + 90"
+			},
+			"speed": {
+				"walk": 40,
+				"burrow": 40,
+				"fly": 80,
+				"swim": 40
+			},
+			"initiative": {
+				"proficiency": 2
+			},
+			"str": 23,
+			"dex": 16,
+			"con": 22,
+			"int": 19,
+			"wis": 18,
+			"cha": 21,
+			"save": {
+				"dex": "+9",
+				"wis": "+10"
+			},
+			"skill": {
+				"perception": "+16",
+				"stealth": "+15"
+			},
+			"senses": [
+				"Blindsight 60 ft.",
+				"Darkvision 300 ft."
+			],
+			"passive": 26,
+			"resist": [
+				"poison",
+				"psychic"
+			],
+			"conditionImmune": [
+				"charmed",
+				"frightened",
+				"poisoned"
+			],
+			"languages": [
+				"Common",
+				"Draconic",
+				"Undercommon"
+			],
+			"cr": {
+				"cr": "18",
+				"xpLair": 22000
+			},
+			"trait": [
+				{
+					"name": "Legendary Resistance (4/Day, or 5/Day in Lair)",
+					"entries": [
+						"If the dragon fails a saving throw, it can choose to succeed instead."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The dragon makes three Rend attacks."
+					]
+				},
+				{
+					"name": "Rend",
+					"entries": [
+						"{@atkr m} {@hit 12}, reach 15 ft. {@h}17 ({@damage 2d10 + 6}) Slashing damage plus 5 ({@damage 1d10}) Poison damage."
+					]
+				},
+				{
+					"name": "Nightmare Breath {@recharge 5}",
+					"entries": [
+						"{@actSave wis} {@dc 20}, each creature in a 90-foot {@variantrule Cone [Area of Effect]|XPHB|Cone}. {@actSaveFail} 44 ({@damage 8d10}) Psychic damage, and the target has the {@condition Frightened|XPHB} condition until the end of the dragon's next turn. {@actSaveSuccess} Half damage only."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Shape-Shift",
+					"entries": [
+						"The dragon shape-shifts into a Small or Medium Humanoid or a Small or Medium Beast, or it returns to its true form. Its game statistics, other than its size, are the same in each form. Any equipment it is wearing or carrying isn't transformed."
+					]
+				}
+			],
+			"legendaryActionsLair": 4,
+			"legendary": [
+				{
+					"name": "Pounce",
+					"entries": [
+						"The dragon moves up to half its {@variantrule Speed|XPHB}, and it makes one Rend attack."
+					]
+				},
+				{
+					"name": "Spore Salvo",
+					"entries": [
+						"{@actSave con} {@dc 20}, one creature within 30 feet of the dragon that it can see. {@actSaveFail} 16 ({@damage 3d10}) Poison damage, and the target has the {@condition Poisoned|XPHB} condition. It repeats the save at the end of each of its turns, ending the effect on itself on a success. After 1 minute, it succeeds automatically. {@actSaveSuccessOrFail} The dragon can't take this action again until the start of its next turn."
+					]
+				}
+			],
+			"legendaryGroup": {
+				"name": "Deep Dragon",
+				"source": "FRAiF"
+			},
+			"environment": [
+				"underdark"
+			],
+			"treasure": [
+				"arcana"
+			],
+			"dragonCastingColor": "deep",
+			"dragonAge": "ancient",
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"B",
+				"SD"
+			],
+			"actionTags": [
+				"Breath Weapon",
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"U"
+			],
+			"damageTags": [
+				"I",
+				"S",
+				"Y"
+			],
+			"miscTags": [
+				"MA",
+				"RCH"
+			],
+			"conditionInflict": [
+				"frightened",
+				"poisoned"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Ancient Spirit Dragon",
+			"source": "FRAiF",
+			"page": 279,
+			"size": [
+				"G"
+			],
+			"type": "dragon",
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				21
+			],
+			"hp": {
+				"average": 420,
+				"formula": "24d20 + 168"
+			},
+			"speed": {
+				"walk": 40,
+				"burrow": 30,
+				"fly": 80
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 26,
+			"dex": 14,
+			"con": 25,
+			"int": 24,
+			"wis": 18,
+			"cha": 23,
+			"save": {
+				"dex": "+9",
+				"con": "+14"
+			},
+			"skill": {
+				"history": "+14",
+				"insight": "+11",
+				"perception": "+11",
+				"stealth": "+9"
+			},
+			"senses": [
+				"Blindsight 60 ft.",
+				"Darkvision 120 ft."
+			],
+			"passive": 21,
+			"resist": [
+				"necrotic"
+			],
+			"languages": [
+				"Common",
+				"Draconic; telepathy 120 ft."
+			],
+			"cr": "22",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The dragon casts one of the following spells, requiring no spell components and using Intelligence as the spellcasting ability (spell save {@dc 22}):"
+					],
+					"will": [
+						"{@spell Detect Magic|XPHB}",
+						"{@spell Shapechange|XPHB} (Beast or Humanoid form only, no {@variantrule Temporary Hit Points|XPHB} gained from the spell, and no Concentration or {@variantrule Temporary Hit Points|XPHB} required to maintain the spell)",
+						"{@spell Thunderwave|XPHB} (level 2 version)"
+					],
+					"daily": {
+						"1e": [
+							"{@spell Legend Lore|XPHB} (as an action)",
+							"{@spell Sequester|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Legendary Resistance (4/Day, or 5/Day in Lair)",
+					"entries": [
+						"If the dragon fails a saving throw, it can choose to succeed instead."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The dragon makes three Rend attacks. It can replace one attack with a use of (A) Time-Warping Breath or (B) Spellcasting to cast {@spell Thunderwave|XPHB} (level 2 version)."
+					]
+				},
+				{
+					"name": "Rend",
+					"entries": [
+						"{@atkr m} {@hit 15}, reach 15 ft. {@h}19 ({@damage 2d10 + 8}) Slashing damage plus 9 ({@damage 2d8}) Necrotic damage."
+					]
+				},
+				{
+					"name": "Ruinous Breath {@recharge 5}",
+					"entries": [
+						"{@actSave con} {@dc 22}, each creature in a 90-foot {@variantrule Cone [Area of Effect]|XPHB|Cone}. {@actSaveFail} 72 ({@damage 16d8}) Necrotic damage. {@actSaveSuccess} Half damage."
+					]
+				},
+				{
+					"name": "Time-Warping Breath",
+					"entries": [
+						"{@actSave wis} {@dc 22}, each creature that isn't currently affected by this breath in a 90-foot {@variantrule Cone [Area of Effect]|XPHB|Cone}. {@actSaveFail} The target's {@variantrule Speed|XPHB} is halved, it can't take Reactions, and it can take either an action or a {@variantrule Bonus Action|XPHB} on its turn, not both. It repeats the save at the end of each of its turns, ending the effect on itself on a success. After 1 minute, it succeeds automatically."
+					]
+				}
+			],
+			"legendaryActionsLair": 4,
+			"legendary": [
+				{
+					"name": "Pounce",
+					"entries": [
+						"The dragon moves up to half its {@variantrule Speed|XPHB}, and it makes one Rend attack."
+					]
+				},
+				{
+					"name": "Shattering Wave",
+					"entries": [
+						"The dragon uses Spellcasting to cast {@spell Thunderwave|XPHB} (level 2 version)."
+					]
+				},
+				{
+					"name": "Unearth Ruins",
+					"entries": [
+						"The dragon magically raises broken, ancient ruins in a 20-foot-radius, 60-foot-high {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder} centered on a point it can see within 120 feet. Ground in the {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder} becomes {@variantrule Difficult Terrain|XPHB}. Each creature in the {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder} when it appears is subjected to the following effect. {@actSave str} {@dc 22}. {@actSaveFail} 13 ({@damage 3d8}) Bludgeoning damage, and the target has the {@condition Prone|XPHB} condition. {@actSaveSuccessOrFail} The dragon can't take this action again until the start of its next turn."
+					]
+				}
+			],
+			"legendaryGroup": {
+				"name": "Spirit Dragon",
+				"source": "FRAiF"
+			},
+			"environment": [
+				"any"
+			],
+			"dragonCastingColor": "spirit",
+			"dragonAge": "ancient",
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"B",
+				"SD"
+			],
+			"actionTags": [
+				"Breath Weapon",
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"TP"
+			],
+			"damageTags": [
+				"B",
+				"N",
+				"S"
+			],
+			"damageTagsSpell": [
+				"T"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE",
+				"MA",
+				"RCH"
+			],
+			"conditionInflict": [
+				"prone"
+			],
+			"conditionInflictSpell": [
+				"invisible",
+				"unconscious"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"strength",
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"constitution"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Aranea",
+			"source": "FRAiF",
+			"page": 250,
+			"size": [
+				"M"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				14
+			],
+			"hp": {
+				"average": 66,
+				"formula": "12d8 + 12"
+			},
+			"speed": {
+				"walk": 30,
+				"climb": {
+					"number": 30,
+					"condition": "(spider or hybrid form only)"
+				}
+			},
+			"str": 10,
+			"dex": 17,
+			"con": 12,
+			"int": 12,
+			"wis": 10,
+			"cha": 15,
+			"skill": {
+				"perception": "+2",
+				"stealth": "+5"
+			},
+			"senses": [
+				"Darkvision 60 ft."
+			],
+			"passive": 12,
+			"languages": [
+				"Common"
+			],
+			"cr": "2",
+			"gear": [
+				"sling|xphb"
+			],
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The aranea casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save {@dc 12}):"
+					],
+					"will": [
+						"{@spell Friends|XPHB}",
+						"{@spell Silent Image|XPHB}"
+					],
+					"daily": {
+						"1": [
+							"{@spell Hold Person|XPHB}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Spider Climb (Hybrid or Spider Form Only)",
+					"entries": [
+						"The aranea can climb difficult surfaces, including along ceilings, without needing to make an ability check."
+					]
+				},
+				{
+					"name": "Web Walker",
+					"entries": [
+						"The aranea ignores movement restrictions caused by webs, and it knows the location of any other creature in contact with the same web."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The aranea makes two attacks, using Bite, Slam, or Sling in any combination."
+					]
+				},
+				{
+					"name": "Bite (Hybrid or Spider Form Only)",
+					"entries": [
+						"{@atkr m} {@hit 5}, reach 5 ft. {@h}6 ({@damage 1d6 + 3}) Piercing damage plus 2 ({@damage 1d4}) Poison damage."
+					]
+				},
+				{
+					"name": "Slam",
+					"entries": [
+						"{@atkr m} {@hit 5}, reach 5 ft. {@h}7 ({@damage 1d8 + 3}) Bludgeoning damage."
+					]
+				},
+				{
+					"name": "Sling (Humanoid or Hybrid Form Only)",
+					"entries": [
+						"{@atkr r} {@hit 5}, range 30/120 ft. {@h}8 ({@damage 2d4 + 3}) Bludgeoning damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Shape-Shift",
+					"entries": [
+						"The aranea shape-shifts into a humanoid form, into a humanoid-spider hybrid form, or back into its true spider form. Its game statistics are the same in each form, except where noted. Any equipment it is wearing or carrying isn't transformed."
+					]
+				}
+			],
+			"environment": [
+				"forest",
+				"swamp"
+			],
+			"treasure": [
+				"individual"
+			],
+			"traitTags": [
+				"Spider Climb",
+				"Web Walker"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"B",
+				"I",
+				"P"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"RA",
+				"RNG"
+			],
+			"conditionInflictSpell": [
+				"charmed",
+				"paralyzed"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Beast of Malar",
+			"source": "FRAiF",
+			"page": 251,
+			"size": [
+				"M"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				17
+			],
+			"hp": {
+				"average": 168,
+				"formula": "16d8 + 96"
+			},
+			"speed": {
+				"walk": 50,
+				"burrow": {
+					"number": 40,
+					"condition": "(land form only)"
+				},
+				"fly": {
+					"number": 60,
+					"condition": "(sky form only)"
+				},
+				"swim": {
+					"number": 40,
+					"condition": "(sea form only)"
+				}
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 21,
+			"dex": 16,
+			"con": 23,
+			"int": 10,
+			"wis": 14,
+			"cha": 12,
+			"save": {
+				"str": "+9"
+			},
+			"skill": {
+				"perception": "+10",
+				"stealth": "+7"
+			},
+			"senses": [
+				"Darkvision 60 ft."
+			],
+			"passive": 20,
+			"conditionImmune": [
+				"charmed",
+				"frightened"
+			],
+			"languages": [
+				"understands Common but can't speak"
+			],
+			"cr": "11",
+			"trait": [
+				{
+					"name": "Amphibious (Sea Form Only)",
+					"entries": [
+						"The beast breathes air and water."
+					]
+				},
+				{
+					"name": "Divine Immortality",
+					"entries": [
+						"If the beast dies, its body dissolves into black goo, and it gains a new body after {@dice 1d10} days, reviving with all its {@variantrule Hit Points|XPHB} in a place of Malar's choosing."
+					]
+				},
+				{
+					"name": "Legendary Resistance (3/Day)",
+					"entries": [
+						"If the beast fails a saving throw, it can choose to succeed instead."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The beast has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				},
+				{
+					"name": "Regeneration",
+					"entries": [
+						"The beast regains 20 {@variantrule Hit Points|XPHB} at the start of its turn. If the beast takes Radiant damage or damage from a {@variantrule Critical Hit|XPHB}, this trait doesn't function at the start of the beast's next turn. The beast dies only if it starts its turn with 0 {@variantrule Hit Points|XPHB} and doesn't regenerate."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The beast makes three attacks, using Bite or Claws in any combination."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atkr m} {@hit 9}, reach 5 ft. {@h}23 ({@damage 4d8 + 5}) Piercing damage."
+					]
+				},
+				{
+					"name": "Claws (Land or Sky Form Only)",
+					"entries": [
+						"{@atkr m} {@hit 9}, reach 5 ft. {@h}18 ({@damage 3d8 + 5}) Slashing damage. If the target is Large or smaller, it has the {@condition Prone|XPHB} condition."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Recuperative Shape-Shift",
+					"entries": [
+						"The beast shape-shifts into its land form, sea form, or sky form and regains 9 ({@dice 2d8}) {@variantrule Hit Points|XPHB}. Its game statistics are the same in each form, except where noted. Any equipment it is wearing or carrying isn't transformed."
+					]
+				}
+			],
+			"environment": [
+				"coastal",
+				"forest",
+				"hill"
+			],
+			"traitTags": [
+				"Amphibious",
+				"Legendary Resistances",
+				"Magic Resistance",
+				"Regeneration"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"CS"
+			],
+			"damageTags": [
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MA"
+			],
+			"conditionInflict": [
+				"prone"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Biha Babir",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "FRAiF",
+			"page": 253,
+			"size": [
+				"L"
+			],
+			"type": {
+				"type": "elemental",
+				"tags": [
+					"Genie"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				17
+			],
+			"hp": {
+				"average": 229,
+				"formula": "17d10 + 136"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": 60,
+				"swim": 90
+			},
+			"initiative": {
+				"proficiency": 2
+			},
+			"str": 22,
+			"dex": 12,
+			"con": 26,
+			"int": 18,
+			"wis": 17,
+			"cha": 20,
+			"save": {
+				"dex": "+5",
+				"wis": "+7",
+				"cha": "+9"
+			},
+			"skill": {
+				"deception": "+9",
+				"insight": "+7",
+				"perception": "+7",
+				"stealth": "+5"
+			},
+			"senses": [
+				"Blindsight 30 ft.",
+				"Darkvision 120 ft."
+			],
+			"passive": 17,
+			"resist": [
+				"acid",
+				"cold",
+				"lightning"
+			],
+			"languages": [
+				"Common",
+				"Primordial (Aquan)"
+			],
+			"cr": "12",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Biha Babir casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save {@dc 17}):"
+					],
+					"will": [
+						"{@spell Create or Destroy Water|XPHB}",
+						"{@spell Detect Magic|XPHB}",
+						"{@spell Major Image|XPHB}"
+					],
+					"daily": {
+						"2e": [
+							"{@spell Control Water|XPHB} (Flood, Part Water, or Redirect Flow only)",
+							"{@spell Dispel Magic|XPHB}",
+							"{@spell Invisibility|XPHB}"
+						],
+						"1e": [
+							"{@spell Control Weather|XPHB}",
+							"{@spell Plane Shift|XPHB}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Amphibious",
+					"entries": [
+						"Biha Babir can breathe air and water."
+					]
+				},
+				{
+					"name": "Elemental Restoration",
+					"entries": [
+						"If Biha Babir dies outside the Elemental Plane of Water, her body dissolves into brine, and she gains a new body in {@dice 1d4} days, reviving with all her {@variantrule Hit Points|XPHB} somewhere on the Plane of Water."
+					]
+				},
+				{
+					"name": "Legendary Resistance (3/Day)",
+					"entries": [
+						"If Biha Babir fails a saving throw, she can choose to succeed instead."
+					]
+				},
+				{
+					"name": "Wishes",
+					"entries": [
+						"Biha Babir knows the {@spell Wish|XPHB} spell but can cast it only on behalf of a non-genie creature who communicates a wish in a way Biha Babir can understand. If Biha Babir casts the spell for a creature, she suffers none of the spell's stress. Once Biha Babir has cast it three times, she can't do so again for 365 days."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Biha Babir makes two Marine Burst attacks. She can replace one of these attacks with a Tail attack."
+					]
+				},
+				{
+					"name": "Marine Burst",
+					"entries": [
+						"{@atkr m,r} {@hit 10}, reach 5 ft. or range 60 ft. {@h}17 ({@damage 2d10 + 6}) Cold damage."
+					]
+				},
+				{
+					"name": "Tail (Marid Form Only)",
+					"entries": [
+						"{@atkr m} {@hit 10}, reach 15 ft. {@h}13 ({@damage 2d6 + 6}) Bludgeoning damage, and if the target is Huge or smaller, it has the {@condition Prone|XPHB} condition."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Fluid Form",
+					"entries": [
+						"Biha Babir shape-shifts into a form resembling a Beast or Humanoid that is Medium or smaller, while retaining her game statistics (other than her size), or returns to her true marid form."
+					]
+				}
+			],
+			"legendary": [
+				{
+					"name": "Misty Burst",
+					"entries": [
+						"Biha Babir teleports to an unoccupied space she can see within 30 feet of herself and makes one Marine Burst attack."
+					]
+				},
+				{
+					"name": "Whirlpool",
+					"entries": [
+						"{@actSave str} {@dc 18}, each creature in a 30-foot Emanationoriginating from Biha Babir. {@actSaveFail} 10 ({@damage 3d6}) Force damage, and the target is pulled 15 feet straight toward Biha Babir. {@actSaveSuccess} Half damage only. {@actSaveSuccessOrFail} Biha Babir can't use this action again until the start of her next turn."
+					]
+				}
+			],
+			"traitTags": [
+				"Amphibious",
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"B",
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AQ",
+				"C",
+				"P"
+			],
+			"damageTags": [
+				"B",
+				"C",
+				"O"
+			],
+			"damageTagsSpell": [
+				"B"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"RA",
+				"RCH"
+			],
+			"conditionInflict": [
+				"prone"
+			],
+			"conditionInflictSpell": [
+				"invisible"
+			],
+			"savingThrowForced": [
+				"strength"
+			],
+			"savingThrowForcedSpell": [
+				"strength"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Cultist of Bane",
+			"source": "FRAiF",
+			"page": 254,
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				16
+			],
+			"hp": {
+				"average": 142,
+				"formula": "19d8 + 57"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 18,
+			"dex": 14,
+			"con": 16,
+			"int": 13,
+			"wis": 19,
+			"cha": 15,
+			"save": {
+				"con": "+7",
+				"wis": "+8",
+				"cha": "+6"
+			},
+			"skill": {
+				"intimidation": "+6",
+				"perception": "+8"
+			},
+			"passive": 18,
+			"languages": [
+				"Common"
+			],
+			"cr": "9",
+			"gear": [
+				"breastplate|xphb",
+				"holy symbol|xphb"
+			],
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The cultist casts one of the following spells, using Wisdom as the spellcasting ability (spell save {@dc 16}):"
+					],
+					"daily": {
+						"1": [
+							"{@spell Dominate Person|XPHB}"
+						],
+						"2e": [
+							"{@spell Calm Emotions|XPHB}",
+							"{@spell Detect Thoughts|XPHB}"
+						]
+					},
+					"ability": "wis",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Determined Survivor",
+					"entries": [
+						"The cultist regains 10 {@variantrule Hit Points|XPHB} at the start of each of its turns if it is Bloodied and has at least 1 {@variantrule Hit Points|XPHB|Hit Point}."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The cultist makes three attacks, using Gauntlet or Oppressive Burst in any combination. It can replace one attack with a use of Spellcasting to cast {@spell Dominate Person|XPHB}, if available."
+					]
+				},
+				{
+					"name": "Gauntlet",
+					"entries": [
+						"{@atkr m} {@hit 8}, reach 5 ft. {@h}17 ({@damage 3d8 + 4}) Bludgeoning damage."
+					]
+				},
+				{
+					"name": "Oppressive Burst",
+					"entries": [
+						"{@atkr r} {@hit 8}, range 120 ft. {@h}16 ({@damage 2d10 + 5}) Psychic damage, and the target can't take Reactions until the start of the cultist's next turn."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Counterattack",
+					"entries": [
+						"{@actTrigger} The cultist is hit by an attack roll. {@actResponse} The cultist makes one Gauntlet or Oppressive Burst attack against the triggering creature."
+					]
+				}
+			],
+			"environment": [
+				"urban"
+			],
+			"treasure": [
+				"individual",
+				"relics"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"B",
+				"Y"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"conditionInflictSpell": [
+				"charmed"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Cultist of Bhaal",
+			"source": "FRAiF",
+			"page": 255,
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				16
+			],
+			"hp": {
+				"average": 144,
+				"formula": "17d8 + 68"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 13,
+			"dex": 19,
+			"con": 18,
+			"int": 15,
+			"wis": 17,
+			"cha": 14,
+			"save": {
+				"dex": "+7",
+				"int": "+5"
+			},
+			"skill": {
+				"perception": "+6",
+				"stealth": "+7"
+			},
+			"senses": [
+				"Darkvision 60 ft."
+			],
+			"passive": 16,
+			"languages": [
+				"Common"
+			],
+			"cr": "7",
+			"gear": [
+				"holy symbol|xphb",
+				"studded leather armor|xphb"
+			],
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The cultist casts one of the following spells, using Wisdom as the spellcasting ability (spell save {@dc 14}):"
+					],
+					"daily": {
+						"2": [
+							"{@spell Mind Spike|XPHB}"
+						],
+						"1e": [
+							"{@spell Dimension Door|XPHB}",
+							"{@spell Mislead|XPHB}"
+						]
+					},
+					"ability": "wis",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Blood-Soaked Resolve",
+					"entries": [
+						"While Bloodied, the cultist has {@variantrule Advantage|XPHB} on saving throws."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The cultist makes three Cursed Blade attacks. It can replace one of these attacks with a use of Spellcasting."
+					]
+				},
+				{
+					"name": "Cursed Blade",
+					"entries": [
+						"{@atkr m,r} {@hit 7} (with {@variantrule Advantage|XPHB} if the target doesn't have all its {@variantrule Hit Points|XPHB}), reach 5 ft. or range 20/80 ft. {@h}14 ({@damage 3d6 + 4}) Slashing damage. {@hom}The blade magically returns to the cultist's hand immediately after a ranged attack."
+					]
+				}
+			],
+			"environment": [
+				"urban"
+			],
+			"treasure": [
+				"individual",
+				"relics"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"S"
+			],
+			"damageTagsSpell": [
+				"O",
+				"Y"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"conditionInflictSpell": [
+				"invisible"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Cultist of Myrkul",
+			"source": "FRAiF",
+			"page": 255,
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				16
+			],
+			"hp": {
+				"average": 204,
+				"formula": "24d8 + 96"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 13,
+			"dex": 14,
+			"con": 18,
+			"int": 20,
+			"wis": 18,
+			"cha": 15,
+			"save": {
+				"con": "+8",
+				"int": "+9",
+				"wis": "+8",
+				"cha": "+6"
+			},
+			"skill": {
+				"arcana": "+9",
+				"insight": "+8",
+				"religion": "+9"
+			},
+			"senses": [
+				"Darkvision 60 ft."
+			],
+			"passive": 14,
+			"resist": [
+				"necrotic"
+			],
+			"languages": [
+				"Common"
+			],
+			"cr": "11",
+			"gear": [
+				"breastplate|xphb",
+				"holy symbol|xphb"
+			],
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The cultist casts one of the following spells, using Intelligence as the spellcasting ability (spell save {@dc 17}):"
+					],
+					"will": [
+						"{@spell Speak with Dead|XPHB}",
+						"{@spell Thaumaturgy|XPHB}"
+					],
+					"daily": {
+						"1e": [
+							"{@spell Animate Dead|XPHB}",
+							"{@spell Circle of Death|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Nearer to the Dead",
+					"entries": [
+						"While Bloodied, the cultist has {@variantrule Immunity|XPHB} to the {@condition Frightened|XPHB} and {@condition Poisoned|XPHB} conditions."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The cultist makes three Necrotic Burst attacks."
+					]
+				},
+				{
+					"name": "Necrotic Burst",
+					"entries": [
+						"{@atkr m,r} {@hit 9}, reach 5 ft. or range 120 ft. {@h}27 ({@damage 5d10}) Necrotic damage and the target can't regain {@variantrule Hit Points|XPHB} until the end of the cultist's next turn."
+					]
+				}
+			],
+			"environment": [
+				"urban"
+			],
+			"treasure": [
+				"individual",
+				"relics"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"N"
+			],
+			"damageTagsSpell": [
+				"N"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"savingThrowForcedSpell": [
+				"constitution"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Dead Three Scion",
+			"source": "FRAiF",
+			"page": 256,
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				17
+			],
+			"hp": {
+				"average": 221,
+				"formula": "26d8 + 104"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 20,
+			"dex": 14,
+			"con": 19,
+			"int": 18,
+			"wis": 21,
+			"cha": 24,
+			"save": {
+				"con": "+9",
+				"wis": "+10"
+			},
+			"skill": {
+				"arcana": "+9",
+				"intimidation": "+12",
+				"stealth": "+7"
+			},
+			"senses": [
+				"Truesight 120 ft."
+			],
+			"passive": 15,
+			"immune": [
+				"necrotic"
+			],
+			"conditionImmune": [
+				"charmed",
+				"frightened"
+			],
+			"languages": [
+				"Common"
+			],
+			"cr": "16",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The scion casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save {@dc 20}):"
+					],
+					"will": [
+						"{@spell Detect Thoughts|XPHB}",
+						"{@spell Dispel Magic|XPHB}"
+					],
+					"daily": {
+						"2e": [
+							"{@spell Dimension Door|XPHB}",
+							"{@spell Invisibility|XPHB}",
+							"{@spell Scrying|XPHB}"
+						],
+						"1e": [
+							"{@spell Circle of Death|XPHB}",
+							"{@spell Create Undead|XPHB}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action"
+				},
+				{
+					"name": "Command",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The scion casts {@spell Command|XPHB} (level 2 version), using the same spellcasting ability as Spellcasting. The scion can't take this action again until the start of its next turn."
+					],
+					"legendary": {
+						"1": [
+							"{@spell Command|XPHB} (level 2 version)"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "legendary",
+					"hidden": [
+						"legendary"
+					]
+				}
+			],
+			"trait": [
+				{
+					"name": "Culling Aura",
+					"entries": [
+						"{@actSave con} {@dc 20}, each Bloodied creature in a 30-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the scion at the end of the scion's turn. {@actSaveFail} The target can't regain {@variantrule Hit Points|XPHB} until the start of the scion's next turn."
+					]
+				},
+				{
+					"name": "Legendary Resistance (3/Day)",
+					"entries": [
+						"If the scion fails a saving throw, it can choose to succeed instead."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The scion has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The scion makes two attacks, using Death Touch or Mindwrack Bolt in any combination."
+					]
+				},
+				{
+					"name": "Death Touch",
+					"entries": [
+						"{@atkr m} {@hit 12}, reach 5 ft. {@h}25 ({@damage 4d8 + 7}) Necrotic damage."
+					]
+				},
+				{
+					"name": "Mindwrack Bolt",
+					"entries": [
+						"{@atkr r} {@hit 12}, range 120 ft. {@h}21 ({@damage 6d6}) Psychic damage and the target has the {@condition Poisoned|XPHB} condition until the start of the scion's next turn."
+					]
+				}
+			],
+			"legendary": [
+				{
+					"name": "Attack",
+					"entries": [
+						"The scion makes a Death Touch or Mindwrack Bolt attack."
+					]
+				}
+			],
+			"environment": [
+				"underdark",
+				"urban"
+			],
+			"treasure": [
+				"relics"
+			],
+			"traitTags": [
+				"Legendary Resistances",
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"N",
+				"Y"
+			],
+			"damageTagsSpell": [
+				"N",
+				"O"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"conditionInflict": [
+				"poisoned"
+			],
+			"conditionInflictSpell": [
+				"invisible",
+				"prone"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Deep Dragon Wyrmling",
+			"source": "FRAiF",
+			"page": 257,
+			"size": [
+				"M"
+			],
+			"type": "dragon",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				15
+			],
+			"hp": {
+				"average": 27,
+				"formula": "5d8 + 5"
+			},
+			"speed": {
+				"walk": 30,
+				"burrow": 15,
+				"fly": 60,
+				"swim": 30
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 14,
+			"dex": 11,
+			"con": 12,
+			"int": 11,
+			"wis": 12,
+			"cha": 13,
+			"save": {
+				"dex": "+2",
+				"wis": "+3"
+			},
+			"skill": {
+				"perception": "+5",
+				"stealth": "+4"
+			},
+			"senses": [
+				"Blindsight 10 ft.",
+				"Darkvision 60 ft."
+			],
+			"passive": 15,
+			"resist": [
+				"poison",
+				"psychic"
+			],
+			"conditionImmune": [
+				"charmed",
+				"frightened",
+				"poisoned"
+			],
+			"languages": [
+				"Draconic"
+			],
+			"cr": "1",
+			"action": [
+				{
+					"name": "Rend",
+					"entries": [
+						"{@atkr m} {@hit 4}, reach 5 ft. {@h}6 ({@damage 1d8 + 2}) Slashing damage."
+					]
+				},
+				{
+					"name": "Nightmare Breath {@recharge 5}",
+					"entries": [
+						"{@actSave wis} {@dc 11}, each creature in a 15-foot {@variantrule Cone [Area of Effect]|XPHB|Cone}. {@actSaveFail} 7 ({@damage 2d6}) Psychic damage, and the target has the {@condition Frightened|XPHB} condition until the end of the dragon's next turn. {@actSaveSuccess} Half damage only."
+					]
+				}
+			],
+			"legendaryGroup": {
+				"name": "Deep Dragon",
+				"source": "FRAiF"
+			},
+			"environment": [
+				"underdark"
+			],
+			"treasure": [
+				"arcana"
+			],
+			"dragonCastingColor": "deep",
+			"dragonAge": "wyrmling",
+			"senseTags": [
+				"B",
+				"D"
+			],
+			"actionTags": [
+				"Breath Weapon"
+			],
+			"languageTags": [
+				"DR"
+			],
+			"damageTags": [
+				"S",
+				"Y"
+			],
+			"miscTags": [
+				"MA"
+			],
+			"conditionInflict": [
+				"frightened"
+			],
+			"savingThrowForced": [
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Domestic Wonder",
+			"source": "FRAiF",
+			"page": 245,
+			"otherSources": [
+				{
+					"source": "FRHoF",
+					"page": 132
+				}
+			],
+			"size": [
+				"M"
+			],
+			"type": "construct",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				9
+			],
+			"hp": {
+				"average": 5,
+				"formula": "1d8 + 1"
+			},
+			"speed": {},
+			"str": 13,
+			"dex": 8,
+			"con": 13,
+			"int": 3,
+			"wis": 8,
+			"cha": 1,
+			"passive": 9,
+			"cr": "0",
+			"trait": [
+				{
+					"name": "Mechanical Determination",
+					"entries": [
+						"If damage reduces the wonder to 0 {@variantrule Hit Points|XPHB}, it makes a Constitution saving throw with a DC of 5 plus the damage taken unless the damage is Lightning or from a {@variantrule Critical Hit|XPHB}. On a successful save, the wonder drops to 1 {@variantrule Hit Points|XPHB|Hit Point} instead."
+					]
+				},
+				{
+					"name": "Wind-Up Operation",
+					"entries": [
+						"The wonder has the {@condition Unconscious|XPHB} condition until another creature winds it with the wonder's unique key for 1 minute. Once wound, the wonder operates for 10 days or until a creature touches the wonder with its key as a Utilize action to deactivate it, after which the wonder has the {@condition Unconscious|XPHB} condition until it is wound again."
+					]
+				}
+			],
+			"conditionInflict": [
+				"unconscious"
+			]
+		},
+		{
+			"name": "Drow Elite Warrior of Lolth",
+			"source": "FRAiF",
+			"page": 260,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"Elf"
+				]
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				18
+			],
+			"hp": {
+				"average": 71,
+				"formula": "11d8 + 22"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 13,
+			"dex": 18,
+			"con": 14,
+			"int": 11,
+			"wis": 13,
+			"cha": 12,
+			"save": {
+				"dex": "+7",
+				"con": "+5",
+				"wis": "+4"
+			},
+			"skill": {
+				"perception": "+4",
+				"stealth": "+10"
+			},
+			"senses": [
+				"Darkvision 120 ft."
+			],
+			"passive": 14,
+			"languages": [
+				"Common",
+				"Elvish",
+				"Undercommon"
+			],
+			"cr": "5",
+			"gear": [
+				"shield|xphb",
+				"shortsword|xphb",
+				"studded leather armor|xphb"
+			],
+			"spellcasting": [
+				{
+					"name": "Underdark Magic (3/Day)",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The drow casts {@spell Darkness|XPHB}, {@spell Faerie Fire|XPHB}, or {@spell Levitate|XPHB} (self only), requiring no Material components and using Charisma as the spellcasting ability (spell save {@dc 12})."
+					],
+					"daily": {
+						"3": [
+							"{@spell Darkness|XPHB}",
+							"{@spell Faerie Fire|XPHB}",
+							"{@spell Levitate|XPHB}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "bonus",
+					"hidden": [
+						"daily"
+					]
+				}
+			],
+			"trait": [
+				{
+					"name": "Fey Ancestry",
+					"entries": [
+						"The drow has {@variantrule Advantage|XPHB} on saving throws it makes to avoid or end the {@condition Charmed|XPHB} condition, and magic can't put the drow to sleep."
+					]
+				},
+				{
+					"name": "Sunlight Sensitivity",
+					"entries": [
+						"While in sunlight, the drow has {@variantrule Disadvantage|XPHB} on attack rolls."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The drow makes two attacks using Shortsword or Drow Hand Crossbow in any combination"
+					]
+				},
+				{
+					"name": "Shortsword",
+					"entries": [
+						"{@atkr m} {@hit 7}, reach 5 ft. {@h}11 ({@damage 2d6 + 4}) Piercing damage plus 10 ({@damage 3d6}) Poison damage."
+					]
+				},
+				{
+					"name": "Drow Hand Crossbow",
+					"entries": [
+						"{@atkr r} {@hit 7}, range 30/120 ft. {@h}7 ({@damage 1d6 + 4}) Piercing damage, and the target makes a saving throw. {@actSave con} {@dc 15}. {@actSaveFail} The target has the {@condition Poisoned|XPHB} condition for 1 hour. While {@condition Poisoned|XPHB} in this way, the target also has the {@condition Unconscious|XPHB} condition. The target wakes up if it takes damage or if a creature within 5 feet of it takes an action to wake it."
+					]
+				}
+			],
+			"environment": [
+				"underdark",
+				"urban"
+			],
+			"treasure": [
+				"any"
+			],
+			"traitTags": [
+				"Fey Ancestry",
+				"Sunlight Sensitivity"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"E",
+				"U"
+			],
+			"damageTags": [
+				"I",
+				"P"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"MLW",
+				"RA",
+				"RNG"
+			],
+			"conditionInflict": [
+				"poisoned",
+				"unconscious"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Drow Mage of Lolth",
+			"source": "FRAiF",
+			"page": 261,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"Elf"
+				]
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				15
+			],
+			"hp": {
+				"average": 81,
+				"formula": "18d8"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": {
+					"number": 15,
+					"condition": "(hover)"
+				},
+				"canHover": true
+			},
+			"str": 9,
+			"dex": 14,
+			"con": 10,
+			"int": 17,
+			"wis": 13,
+			"cha": 12,
+			"save": {
+				"dex": "+5",
+				"wis": "+4"
+			},
+			"skill": {
+				"arcana": "+6",
+				"perception": "+4",
+				"stealth": "+5"
+			},
+			"senses": [
+				"Darkvision 120 ft."
+			],
+			"passive": 14,
+			"languages": [
+				"Abyssal",
+				"Common",
+				"Elvish",
+				"Undercommon"
+			],
+			"cr": "7",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The drow casts one of the following spells, requiring no Material components and using Intelligence as the spellcasting ability (spell save {@dc 14}, {@hit 6} to hit with spell attacks):"
+					],
+					"will": [
+						"{@spell Dancing Lights|XPHB}",
+						"{@spell Mage Armor|XPHB} (included in AC)",
+						"{@spell Mage Hand|XPHB}",
+						"{@spell Minor Illusion|XPHB}"
+					],
+					"daily": {
+						"1": [
+							"{@spell Summon Fiend|XPHB} (demon only)"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				},
+				{
+					"name": "Underdark Magic (3/Day)",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The drow casts {@spell Faerie Fire|XPHB} or {@spell Misty Step|XPHB}, requiring no Material components and using the same spellcasting ability as Spellcasting."
+					],
+					"daily": {
+						"3": [
+							"{@spell Faerie Fire|XPHB}",
+							"{@spell Misty Step|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "bonus",
+					"hidden": [
+						"daily"
+					]
+				}
+			],
+			"trait": [
+				{
+					"name": "Fey Ancestry",
+					"entries": [
+						"The drow has {@variantrule Advantage|XPHB} on saving throws it makes to avoid or end the {@condition Charmed|XPHB} condition, and magic can't put the drow to sleep."
+					]
+				},
+				{
+					"name": "Sunlight Sensitivity",
+					"entries": [
+						"While in sunlight, the drow has {@variantrule Disadvantage|XPHB} on attack rolls."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The drow makes three Abyssal Burst attacks."
+					]
+				},
+				{
+					"name": "Abyssal Burst",
+					"entries": [
+						"{@atkr m,r} {@hit 6}, reach 5 ft. or range 120 ft. {@h}21 ({@damage 4d8 + 3}) Poison damage."
+					]
+				}
+			],
+			"environment": [
+				"underdark",
+				"urban"
+			],
+			"treasure": [
+				"any"
+			],
+			"traitTags": [
+				"Fey Ancestry",
+				"Sunlight Sensitivity"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AB",
+				"C",
+				"E",
+				"U"
+			],
+			"damageTags": [
+				"I"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Drow of Lolth",
+			"source": "FRAiF",
+			"page": 260,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"Elf"
+				]
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				15
+			],
+			"hp": {
+				"average": 13,
+				"formula": "3d8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 10,
+			"dex": 14,
+			"con": 10,
+			"int": 11,
+			"wis": 11,
+			"cha": 12,
+			"skill": {
+				"perception": "+2",
+				"stealth": "+4"
+			},
+			"senses": [
+				"Darkvision 120 ft."
+			],
+			"passive": 12,
+			"languages": [
+				"Common",
+				"Elvish",
+				"Undercommon"
+			],
+			"cr": "1/4",
+			"gear": [
+				"chain shirt|xphb",
+				"rapier|xphb"
+			],
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The drow casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save {@dc 11}):"
+					],
+					"will": [
+						"{@spell Dancing Lights|XPHB}"
+					],
+					"daily": {
+						"1": [
+							"{@spell Faerie Fire|XPHB}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Fey Ancestry",
+					"entries": [
+						"The drow has {@variantrule Advantage|XPHB} on saving throws it makes to avoid or end the {@condition Charmed|XPHB} condition, and magic can't put the drow to sleep."
+					]
+				},
+				{
+					"name": "Sunlight Sensitivity",
+					"entries": [
+						"While in sunlight, the drow has {@variantrule Disadvantage|XPHB} on attack rolls."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Rapier",
+					"entries": [
+						"{@atkr m} {@hit 4}, reach 5 ft. {@h}6 ({@damage 1d8 + 2}) Piercing damage."
+					]
+				},
+				{
+					"name": "Drow Hand Crossbow",
+					"entries": [
+						"{@atkr r} {@hit 4}, range 30/120 ft. {@h}4 ({@damage 1d4 + 2}) Piercing damage, and the target makes a saving throw. {@actSave con} {@dc 12}. {@actSaveFail} The target has the {@condition Poisoned|XPHB} condition for 1 hour. If the target fails the save by 5 or more, it also has the {@condition Unconscious|XPHB} condition while {@condition Poisoned|XPHB} in this way. The target wakes up if it takes damage or if a creature within 5 feet of it takes an action to wake it."
+					]
+				}
+			],
+			"environment": [
+				"underdark",
+				"urban"
+			],
+			"treasure": [
+				"any"
+			],
+			"traitTags": [
+				"Fey Ancestry",
+				"Sunlight Sensitivity"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"languageTags": [
+				"C",
+				"E",
+				"U"
+			],
+			"damageTags": [
+				"P"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"MLW",
+				"RA",
+				"RNG"
+			],
+			"conditionInflict": [
+				"poisoned",
+				"unconscious"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Drow Priestess of Lolth",
+			"source": "FRAiF",
+			"page": 261,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"Elf"
+				]
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				16
+			],
+			"hp": {
+				"average": 99,
+				"formula": "18d8 + 18"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": {
+					"number": 15,
+					"condition": "(hover)"
+				},
+				"canHover": true
+			},
+			"str": 10,
+			"dex": 14,
+			"con": 12,
+			"int": 13,
+			"wis": 18,
+			"cha": 17,
+			"save": {
+				"con": "+4",
+				"wis": "+7",
+				"cha": "+6"
+			},
+			"skill": {
+				"insight": "+7",
+				"perception": "+7",
+				"religion": "+4",
+				"stealth": "+5"
+			},
+			"senses": [
+				"Darkvision 120 ft."
+			],
+			"passive": 17,
+			"languages": [
+				"Abyssal",
+				"Common",
+				"Elvish",
+				"Undercommon"
+			],
+			"cr": "8",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The drow casts one of the following spells, requiring no Material components and using Wisdom as the spellcasting ability:"
+					],
+					"will": [
+						"{@spell Dancing Lights|XPHB}",
+						"{@spell Guidance|XPHB}",
+						"{@spell Thaumaturgy|XPHB}"
+					],
+					"ability": "wis",
+					"displayAs": "action"
+				},
+				{
+					"name": "Lolth's Blessing (3/Day)",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The drow casts {@spell Cure Wounds|XPHB}, {@spell Darkness|XPHB}, {@spell Dispel Magic|XPHB}, or {@spell Lesser Restoration|XPHB}, using the same spellcasting ability as Spellcasting."
+					],
+					"daily": {
+						"3": [
+							"{@spell Cure Wounds|XPHB}",
+							"{@spell Darkness|XPHB}",
+							"{@spell Dispel Magic|XPHB}",
+							"{@spell Lesser Restoration|XPHB}"
+						]
+					},
+					"ability": "wis",
+					"displayAs": "bonus",
+					"hidden": [
+						"daily"
+					]
+				}
+			],
+			"trait": [
+				{
+					"name": "Fey Ancestry",
+					"entries": [
+						"The drow has {@variantrule Advantage|XPHB} on saving throws it makes to avoid or end the {@condition Charmed|XPHB} condition, and magic can't put the drow to sleep."
+					]
+				},
+				{
+					"name": "Sunlight Sensitivity",
+					"entries": [
+						"While in sunlight, the drow has {@variantrule Disadvantage|XPHB} on attack rolls."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The drow makes three Scourge attacks."
+					]
+				},
+				{
+					"name": "Scourge",
+					"entries": [
+						"{@atkr m} {@hit 5}, reach 10 ft. {@h}6 ({@damage 1d6 + 3}) Piercing damage plus 17 ({@damage 5d6}) Poison damage."
+					]
+				},
+				{
+					"name": "Spider Vortex {@recharge 5}",
+					"entries": [
+						"{@actSave con} {@dc 15}, each enemy in a 20-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the drow. {@actSaveFail} 33 ({@damage 6d10}) Piercing damage, and the target has the {@condition Restrained|XPHB} condition until the start of the drow's next turn. {@actSaveSuccess} Half damage only."
+					]
+				}
+			],
+			"environment": [
+				"underdark",
+				"urban"
+			],
+			"treasure": [
+				"any"
+			],
+			"traitTags": [
+				"Fey Ancestry",
+				"Sunlight Sensitivity"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AB",
+				"C",
+				"E",
+				"U"
+			],
+			"damageTags": [
+				"I",
+				"P"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"RCH"
+			],
+			"conditionInflict": [
+				"restrained"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Flying Wonder",
+			"source": "FRAiF",
+			"page": 246,
+			"size": [
+				"T"
+			],
+			"type": "construct",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				12
+			],
+			"hp": {
+				"average": 2,
+				"formula": "1d4"
+			},
+			"speed": {
+				"walk": 5,
+				"fly": 30
+			},
+			"str": 2,
+			"dex": 15,
+			"con": 10,
+			"int": 3,
+			"wis": 10,
+			"cha": 1,
+			"senses": [
+				"Blindsight 60 ft."
+			],
+			"passive": 10,
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"poisoned"
+			],
+			"languages": [
+				"understands Common but can't speak"
+			],
+			"cr": "0",
+			"trait": [
+				{
+					"name": "Increased Carrying Capacity",
+					"entries": [
+						"The wonder can carry up to 100 pounds."
+					]
+				},
+				{
+					"name": "Wind-Up Operation",
+					"entries": [
+						"The wonder has the {@condition Unconscious|XPHB} condition until another creature winds it with the wonder's unique key for 1 minute. Once wound, the wonder operates for 24 hours or until a creature touches the wonder with its key as a Utilize action to deactivate it, after which the wonder has the {@condition Unconscious|XPHB} condition until it is wound again."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Chime",
+					"entries": [
+						"The wonder chirps a merry, metronomic tune. The wonder chooses one ally that it can see within 60 feet. Until the start of the wonder's next turn, the target has {@variantrule Advantage|XPHB} on the next ability check it makes with a Musical Instrument or Tinker's Tools."
+					]
+				},
+				{
+					"name": "Sprint",
+					"entries": [
+						"The wonder takes the Dash action."
+					]
+				}
+			],
+			"senseTags": [
+				"B"
+			],
+			"languageTags": [
+				"C",
+				"CS"
+			],
+			"conditionInflict": [
+				"unconscious"
+			]
+		},
+		{
+			"name": "Karas Chembryl",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "FRAiF",
+			"page": 263,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"Human"
+				]
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				17
+			],
+			"hp": {
+				"average": 104,
+				"formula": "19d8 + 19"
+			},
+			"speed": {
+				"walk": 30,
+				"climb": 30
+			},
+			"initiative": {
+				"proficiency": 2
+			},
+			"str": 11,
+			"dex": 20,
+			"con": 12,
+			"int": 18,
+			"wis": 15,
+			"cha": 17,
+			"save": {
+				"dex": "+8",
+				"con": "+4",
+				"int": "+7",
+				"wis": "+5"
+			},
+			"skill": {
+				"acrobatics": "+8",
+				"perception": "+8",
+				"stealth": "+11"
+			},
+			"senses": [
+				"Blindsight 10 ft."
+			],
+			"passive": 18,
+			"resist": [
+				"poison",
+				"psychic"
+			],
+			"languages": [
+				"Common",
+				"Elvish",
+				"Infernal",
+				"Thieves' cant"
+			],
+			"cr": {
+				"cr": "8",
+				"xpLair": 5000
+			},
+			"gear": [
+				"studded leather armor|xphb"
+			],
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Karas casts one of the following spells, requiring no Material components and using Intelligence as the spellcasting ability (spell save {@dc 15}, {@hit 7} to hit with spell attacks):"
+					],
+					"will": [
+						"{@spell Friends|XPHB}",
+						"{@spell Silence|XPHB}",
+						"{@spell Thaumaturgy|XPHB}"
+					],
+					"daily": {
+						"1": [
+							"{@spell Blight|XPHB}",
+							"{@spell Mislead|XPHB}"
+						],
+						"2": [
+							"{@spell Ray of Sickness|XPHB} (level 5 version)"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Evasion",
+					"entries": [
+						"If Karas is subjected to an effect that allows her to make a Dexterity saving throw to take only half damage, Karas instead takes no damage if she succeeds on the save and only half damage if she fails. She can't use this trait if she has the {@condition Incapacitated|XPHB} condition."
+					]
+				},
+				{
+					"name": "Legendary Resistance (3/Day or 4/Day in Lair)",
+					"entries": [
+						"If Karas fails a saving throw, she can choose to succeed instead."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Karas makes two attacks using Dread Dagger or Tyrant's Blade in any combination."
+					]
+				},
+				{
+					"name": "Dread Dagger",
+					"entries": [
+						"{@atkr m,r} {@hit 8}, reach 5 ft. or range 20/60 ft. {@h}10 ({@damage 2d4 + 5}) Piercing damage plus 4 ({@damage 1d8}) Necrotic damage. {@hom}The dagger magically returns to Karas's hand immediately after a ranged attack."
+					]
+				},
+				{
+					"name": "Tyrant's Blade",
+					"entries": [
+						"{@atkr m} {@hit 8}, reach 5 ft. {@h}8 ({@damage 1d6 + 5}) Slashing damage, and the target has the {@condition Frightened|XPHB} condition until the start of Karas's next turn. If the target is already {@condition Frightened|XPHB}, it instead takes 10 ({@damage 3d6}) Psychic damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Withdraw",
+					"entries": [
+						"Karas moves up to half her {@variantrule Speed|XPHB} without provoking Opportunity Attack action and takes the Hide action."
+					]
+				}
+			],
+			"legendaryActionsLair": 4,
+			"legendary": [
+				{
+					"name": "Harrow",
+					"entries": [
+						"{@actSave wis} {@dc 15}, one creature Karas can see within 90 feet of herself. {@actSaveFail} 10 ({@damage 3d6}) Psychic damage, and the target has the {@condition Frightened|XPHB} condition for 1 minute. While {@condition Frightened|XPHB}, the target's {@variantrule Speed|XPHB} is 0 feet, and it repeats the save at the end of each of its turns, ending the effect on a success. {@actSaveSuccessOrFail} Karas can't take this action again until the start of her next turn."
+					]
+				},
+				{
+					"name": "Stealth Attack",
+					"entries": [
+						"Karas makes one Dread Dagger attack and uses Withdraw."
+					]
+				}
+			],
+			"legendaryGroup": {
+				"name": "Karas Chembryl",
+				"source": "FRAiF"
+			},
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"B"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"E",
+				"I",
+				"TC"
+			],
+			"damageTags": [
+				"N",
+				"P",
+				"S",
+				"Y"
+			],
+			"damageTagsSpell": [
+				"I",
+				"N"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"MLW",
+				"RA",
+				"THW"
+			],
+			"conditionInflict": [
+				"frightened",
+				"incapacitated"
+			],
+			"conditionInflictSpell": [
+				"charmed",
+				"deafened",
+				"invisible",
+				"poisoned"
+			],
+			"savingThrowForced": [
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Manshoon",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "FRAiF",
+			"page": 265,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "humanoid",
+				"tags": [
+					"Human",
+					"Wizard"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				15
+			],
+			"hp": {
+				"average": 214,
+				"formula": "33d8 + 66"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 10,
+			"dex": 14,
+			"con": 14,
+			"int": 23,
+			"wis": 15,
+			"cha": 16,
+			"save": {
+				"int": "+11",
+				"wis": "+7"
+			},
+			"skill": {
+				"arcana": "+11",
+				"history": "+11",
+				"insight": "+7"
+			},
+			"senses": [
+				"Darkvision 60 ft."
+			],
+			"passive": 12,
+			"immune": [
+				"psychic"
+			],
+			"conditionImmune": [
+				"charmed"
+			],
+			"languages": [
+				"Common",
+				"Draconic",
+				"Infernal",
+				"Undercommon"
+			],
+			"cr": "13",
+			"gear": [
+				"component pouch|xphb"
+			],
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Manshoon casts one of the following spells, using Intelligence as the spellcasting ability (spell save {@dc 19}):"
+					],
+					"will": [
+						"{@spell Detect Magic|XPHB}",
+						"{@spell Detect Thoughts|XPHB}",
+						"{@spell Light|XPHB}",
+						"{@spell Lightning Bolt|XPHB} (level 4 version)",
+						"{@spell Mage Armor|XPHB} (included in AC)",
+						"{@spell Mage Hand|XPHB}",
+						"{@spell Prestidigitation|XPHB}"
+					],
+					"daily": {
+						"2e": [
+							"{@spell Scrying|XPHB}",
+							"{@spell Sending|XPHB}",
+							"{@spell Wall of Force|XPHB}"
+						],
+						"1e": [
+							"{@spell Befuddlement|XPHB}",
+							"{@spell Clone|XPHB}",
+							"{@spell Finger of Death|XPHB}",
+							"{@spell Mind Blank|XPHB} (cast before combat)",
+							"{@spell Simulacrum|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				},
+				{
+					"name": "Misty Step",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Manshoon casts {@spell Misty Step|XPHB}, using the same spellcasting ability as Spellcasting."
+					],
+					"will": [
+						"{@spell Misty Step|XPHB}"
+					],
+					"ability": "int",
+					"displayAs": "bonus",
+					"hidden": [
+						"will"
+					]
+				},
+				{
+					"name": "Protective Magic",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Manshoon casts {@spell Counterspell|XPHB} or {@spell Shield|XPHB} in response to the spell's trigger, using the same spellcasting ability as Spellcasting."
+					],
+					"will": [
+						"{@spell Counterspell|XPHB}",
+						"{@spell Shield|XPHB}"
+					],
+					"ability": "int",
+					"displayAs": "reaction",
+					"hidden": [
+						"will"
+					]
+				}
+			],
+			"trait": [
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"Manshoon has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Manshoon makes three Arcane Burst attacks. He can replace two attacks with a use of Spellcasting."
+					]
+				},
+				{
+					"name": "Arcane Burst",
+					"entries": [
+						"{@atkr m,r} {@hit 11}, reach 5 ft., or range 120 ft. {@h}32 ({@damage 4d12 + 6}) Force damage."
+					]
+				}
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"I",
+				"U"
+			],
+			"damageTags": [
+				"O"
+			],
+			"damageTagsSpell": [
+				"L",
+				"N",
+				"Y"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity",
+				"intelligence",
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Nimblewright Guard",
+			"source": "FRAiF",
+			"page": 266,
+			"size": [
+				"M"
+			],
+			"type": "construct",
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				16
+			],
+			"hp": {
+				"average": 67,
+				"formula": "9d8 + 27"
+			},
+			"speed": {
+				"walk": 60
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 12,
+			"dex": 18,
+			"con": 16,
+			"int": 8,
+			"wis": 12,
+			"cha": 6,
+			"save": {
+				"dex": "+6"
+			},
+			"skill": {
+				"acrobatics": "+6",
+				"perception": "+3"
+			},
+			"senses": [
+				"Darkvision 60 ft."
+			],
+			"passive": 13,
+			"immune": [
+				"poison",
+				"psychic"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"paralyzed",
+				"petrified",
+				"poisoned"
+			],
+			"languages": [
+				"understands Common plus one other language but can't speak"
+			],
+			"cr": "3",
+			"trait": [
+				{
+					"name": "Evasion",
+					"entries": [
+						"If the nimblewright is subjected to an effect that allows it to make a Dexterity saving throw to take only half damage, it instead takes no damage if it succeeds on the save and only half damage if it fails, provided it doesn't have the {@condition Incapacitated|XPHB} condition."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The nimblewright makes three attacks, using Scimitar or Clockwork Crossbow in any combination."
+					]
+				},
+				{
+					"name": "Scimitar",
+					"entries": [
+						"{@atkr m} {@hit 6}, reach 5 ft. {@h}7 ({@damage 1d6 + 4}) Slashing damage."
+					]
+				},
+				{
+					"name": "Clockwork Crossbow",
+					"entries": [
+						"{@atkr r} {@hit 6}, range 80/320 ft. {@h}8 ({@damage 1d8 + 4}) Piercing damage."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Parry",
+					"entries": [
+						"{@actTrigger} The nimblewright is hit by a melee attack roll while holding a weapon. {@actResponse} The nimblewright adds 2 to its AC against that attack, potentially causing it to miss."
+					]
+				}
+			],
+			"environment": [
+				"urban"
+			],
+			"attachedItems": [
+				"scimitar|phb"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Parry"
+			],
+			"languageTags": [
+				"C",
+				"CS",
+				"X"
+			],
+			"damageTags": [
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MA",
+				"MLW",
+				"RA"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Nimblewright Hulk",
+			"source": "FRAiF",
+			"page": 267,
+			"size": [
+				"L"
+			],
+			"type": "construct",
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				18
+			],
+			"hp": {
+				"average": 104,
+				"formula": "11d10 + 44"
+			},
+			"speed": {
+				"walk": 50
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 19,
+			"dex": 18,
+			"con": 19,
+			"int": 10,
+			"wis": 12,
+			"cha": 6,
+			"save": {
+				"str": "+7",
+				"dex": "+7"
+			},
+			"skill": {
+				"acrobatics": "+7",
+				"perception": "+7"
+			},
+			"senses": [
+				"Darkvision 60 ft."
+			],
+			"passive": 17,
+			"immune": [
+				"poison",
+				"psychic"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"paralyzed",
+				"petrified",
+				"poisoned"
+			],
+			"languages": [
+				"understands Common plus one other language but can't speak"
+			],
+			"cr": "7",
+			"trait": [
+				{
+					"name": "Evasion",
+					"entries": [
+						"If the nimblewright is subjected to an effect that allows it to make a Dexterity saving throw to take only half damage, it instead takes no damage if it succeeds on the save and only half damage if it fails, provided it doesn't have the {@condition Incapacitated|XPHB} condition."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The nimblewright has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The nimblewright makes four attacks, using Halting Slam or Radiant Ray in any combination."
+					]
+				},
+				{
+					"name": "Halting Slam",
+					"entries": [
+						"{@atkr m} {@hit 7}, reach 10 ft. {@h}15 ({@damage 2d10 + 4}) Bludgeoning damage, and the target's {@variantrule Speed|XPHB} is reduced to 0 until the end of its next turn."
+					]
+				},
+				{
+					"name": "Radiant Ray",
+					"entries": [
+						"{@atkr r} {@hit 7}, range 60 ft. {@h}14 ({@damage 4d6}) Radiant damage."
+					]
+				}
+			],
+			"environment": [
+				"urban"
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"CS",
+				"X"
+			],
+			"damageTags": [
+				"B",
+				"R"
+			],
+			"miscTags": [
+				"MA",
+				"RA",
+				"RCH"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Nimblewright Steed",
+			"source": "FRAiF",
+			"page": 267,
+			"size": [
+				"L"
+			],
+			"type": "construct",
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				16
+			],
+			"hp": {
+				"average": 47,
+				"formula": "5d10 + 20"
+			},
+			"speed": {
+				"walk": 60
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 17,
+			"dex": 18,
+			"con": 18,
+			"int": 6,
+			"wis": 10,
+			"cha": 6,
+			"save": {
+				"dex": "+6"
+			},
+			"senses": [
+				"Darkvision 60 ft."
+			],
+			"passive": 10,
+			"immune": [
+				"poison",
+				"psychic"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"paralyzed",
+				"petrified",
+				"poisoned"
+			],
+			"languages": [
+				"understands Common plus one other language but can't speak"
+			],
+			"cr": "2",
+			"trait": [
+				{
+					"name": "Evasion",
+					"entries": [
+						"If the nimblewright is subjected to an effect that allows it to make a Dexterity saving throw to take only half damage, it instead takes no damage if it succeeds on the save and only half damage if it fails, provided it doesn't have the {@condition Incapacitated|XPHB} condition."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Hooves",
+					"entries": [
+						"{@atkr m} {@hit 6}, reach 5 ft. {@h}7 ({@damage 1d8 + 3}) Bludgeoning damage. If the nimblewright moved at least 20 feet straight toward the target immediately before the hit, the target takes an extra 4 ({@damage 1d8}) Bludgeoning damage and, if it is Huge or smaller, has the {@condition Prone|XPHB} condition."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Nimble Movement",
+					"entries": [
+						"The nimblewright takes the Disengage action."
+					]
+				}
+			],
+			"environment": [
+				"urban"
+			],
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"C",
+				"CS",
+				"X"
+			],
+			"damageTags": [
+				"B"
+			],
+			"miscTags": [
+				"MA"
+			],
+			"conditionInflict": [
+				"prone"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Phaerimm Agent",
+			"source": "FRAiF",
+			"size": [
+				"L"
+			],
+			"type": "aberration",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				15
+			],
+			"hp": {
+				"average": 123,
+				"formula": "19d10 + 19"
+			},
+			"speed": {
+				"walk": 10,
+				"fly": {
+					"number": 40,
+					"condition": "(hover)"
+				},
+				"canHover": true
+			},
+			"str": 12,
+			"dex": 18,
+			"con": 12,
+			"int": 17,
+			"wis": 16,
+			"cha": 18,
+			"save": {
+				"con": "+4",
+				"int": "+6",
+				"wis": "+6",
+				"cha": "+7"
+			},
+			"skill": {
+				"arcana": "+9",
+				"insight": "+6",
+				"perception": "+6"
+			},
+			"senses": [
+				"Truesight 120 ft."
+			],
+			"passive": 16,
+			"conditionImmune": [
+				"charmed"
+			],
+			"languages": [
+				"telepathy 120 ft. understands Common and Deep Speech but can't speak"
+			],
+			"cr": "8",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The phaerimm casts one of the following spells, requiring no spell components and using Charisma as the spellcasting ability (spell save {@dc 15}):"
+					],
+					"will": [
+						"{@spell Detect Magic|XPHB}",
+						"{@spell Detect Thoughts|XPHB}",
+						"{@spell Mage Hand|XPHB}"
+					],
+					"daily": {
+						"1e": [
+							"{@spell Clairvoyance|XPHB}",
+							"{@spell Major Image|XPHB}",
+							"{@spell Synaptic Static|XPHB}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action"
+				},
+				{
+					"name": "Protective Magic (3/Day)",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The phaerimm casts {@spell Counterspell|XPHB} or {@spell Shield|XPHB} in response to the spell's trigger, using the same spellcasting ability as Spellcasting."
+					],
+					"daily": {
+						"3": [
+							"{@spell Counterspell|XPHB}",
+							"{@spell Shield|XPHB}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "reaction",
+					"hidden": [
+						"daily"
+					]
+				}
+			],
+			"trait": [
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The phaerimm has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The phaerimm makes three attacks, using Dread Stinger or Mindwarp Ray in any combination."
+					]
+				},
+				{
+					"name": "Dread Stinger",
+					"entries": [
+						"{@atkr m} {@hit 7}, reach 5 ft. {@h}7 ({@damage 1d6 + 4}) Piercing damage plus 13 ({@damage 2d12}) Poison damage."
+					]
+				},
+				{
+					"name": "Mindwarp Ray",
+					"entries": [
+						"{@atkr r} {@hit 7}, range 120 ft. {@h}13 ({@damage 2d8 + 4}) Psychic damage, and the target has the {@condition Charmed|XPHB} condition until the start of the phaerimm's next turn."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Teleport",
+					"entries": [
+						"The phaerimm teleports up to 30 feet to an unoccupied space it can see."
+					]
+				}
+			],
+			"environment": [
+				"underdark",
+				"urban"
+			],
+			"treasure": [
+				"arcana",
+				"implements"
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Teleport"
+			],
+			"languageTags": [
+				"C",
+				"CS",
+				"DS",
+				"TP"
+			],
+			"damageTags": [
+				"I",
+				"P",
+				"Y"
+			],
+			"damageTagsSpell": [
+				"Y"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"conditionInflict": [
+				"charmed"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"intelligence",
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Phaerimm Hatchling",
+			"source": "FRAiF",
+			"size": [
+				"S"
+			],
+			"type": "aberration",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				12
+			],
+			"hp": {
+				"average": 13,
+				"formula": "3d6 + 3"
+			},
+			"speed": {
+				"walk": 10,
+				"fly": {
+					"number": 30,
+					"condition": "(hover)"
+				},
+				"canHover": true
+			},
+			"str": 11,
+			"dex": 12,
+			"con": 12,
+			"int": 14,
+			"wis": 16,
+			"cha": 14,
+			"skill": {
+				"perception": "+5"
+			},
+			"senses": [
+				"Truesight 60 ft."
+			],
+			"passive": 15,
+			"conditionImmune": [
+				"charmed"
+			],
+			"languages": [
+				"telepathy 30 ft. understands Common and Deep Speech but can't speak"
+			],
+			"cr": "1/4",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The phaerimm casts one of the following spells, requiring no spell components and using Charisma as the spellcasting ability (spell save {@dc 12}):"
+					],
+					"will": [
+						"{@spell Detect Thoughts|XPHB}",
+						"{@spell Mage Hand|XPHB}"
+					],
+					"ability": "cha",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The phaerimm has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The phaerimm makes two Stinger attacks."
+					]
+				},
+				{
+					"name": "Stinger",
+					"entries": [
+						"{@atkr m} {@hit 3}, reach 5 ft. {@h}3 ({@damage 1d4 + 1}) Piercing damage."
+					]
+				}
+			],
+			"environment": [
+				"underdark",
+				"urban"
+			],
+			"treasure": [
+				"arcana",
+				"implements"
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"CS",
+				"DS",
+				"TP"
+			],
+			"damageTags": [
+				"P"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Polar Serpent",
+			"source": "FRAiF",
+			"page": 269,
+			"size": [
+				"L"
+			],
+			"type": "elemental",
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				14
+			],
+			"hp": {
+				"average": 58,
+				"formula": "9d10 + 9"
+			},
+			"speed": {
+				"walk": 40,
+				"fly": 40
+			},
+			"str": 18,
+			"dex": 19,
+			"con": 12,
+			"int": 4,
+			"wis": 12,
+			"cha": 6,
+			"skill": {
+				"perception": "+3",
+				"stealth": "+6"
+			},
+			"senses": [
+				"Darkvision 60 ft."
+			],
+			"passive": 13,
+			"immune": [
+				"cold"
+			],
+			"vulnerable": [
+				"fire"
+			],
+			"languages": [
+				"understands Primordial but can't speak"
+			],
+			"cr": "3",
+			"trait": [
+				{
+					"name": "Misty Slithering",
+					"entries": [
+						"The serpent can move through a space as narrow as 1 inch without expending extra movement to do so."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The serpent makes one Bite attack and uses Constrict."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atkr m} {@hit 6}, reach 5 ft. {@h}8 ({@damage 1d8 + 4}) Piercing damage plus 3 ({@damage 1d6}) Cold damage."
+					]
+				},
+				{
+					"name": "Constrict",
+					"entries": [
+						"{@actSave str} {@dc 14}, one Medium or smaller creature the snake can see within 10 feet. {@actSaveFail} 3 ({@damage 1d6}) Bludgeoning damage plus 7 ({@damage 2d6}) Cold damage. The target has the {@condition Grappled|XPHB} condition (escape {@dc 14}), and it has the {@condition Restrained|XPHB} condition until the grapple ends."
+					]
+				}
+			],
+			"environment": [
+				"arctic",
+				"underdark"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"CS",
+				"P"
+			],
+			"damageTags": [
+				"B",
+				"C",
+				"P"
+			],
+			"miscTags": [
+				"MA"
+			],
+			"conditionInflict": [
+				"grappled",
+				"restrained"
+			],
+			"savingThrowForced": [
+				"strength"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Queen Forfallen",
+			"source": "FRAiF",
+			"page": 271,
+			"size": [
+				"M"
+			],
+			"type": "construct",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				16
+			],
+			"hp": {
+				"average": 153,
+				"formula": "18d8 + 72"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 20,
+			"dex": 14,
+			"con": 19,
+			"int": 15,
+			"wis": 17,
+			"cha": 18,
+			"save": {
+				"wis": "+7"
+			},
+			"skill": {
+				"athletics": "+9",
+				"insight": "+7",
+				"perception": "+7"
+			},
+			"passive": 17,
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"petrified",
+				"poisoned"
+			],
+			"languages": [
+				"Common"
+			],
+			"cr": "10",
+			"gear": [
+				"breastplate|xphb",
+				"greataxe|xphb",
+				{
+					"item": "handaxe|xphb",
+					"quantity": 6
+				}
+			],
+			"trait": [
+				{
+					"name": "Inspiring Presence",
+					"entries": [
+						"Creatures of Forfallen's choice (excluding herself) in a 30-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from her have {@variantrule Advantage|XPHB} on attack rolls. She can't use this trait if she has the {@condition Incapacitated|XPHB} condition."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"Forfallen has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Forfallen makes three attacks, using Greataxe or Handaxe in any combination."
+					]
+				},
+				{
+					"name": "Greataxe",
+					"entries": [
+						"{@atkr m} {@hit 9}, reach 5 ft. {@h}18 ({@damage 2d12 + 5}) Slashing damage, and the target has the {@condition Poisoned|XPHB} condition until the end of its next turn."
+					]
+				},
+				{
+					"name": "Handaxe",
+					"entries": [
+						"{@atkr m,r} {@hit 9}, reach 5 ft. or range 20/60 ft. {@h}22 ({@damage 5d6 + 5}) Slashing damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Rust's Grip",
+					"entries": [
+						"{@actSave con} {@dc 16}, one creature Forfallen can see within 20 feet. The target has {@variantrule Disadvantage|XPHB} on this save if it has the {@condition Poisoned|XPHB} condition. {@actSaveFail 1} The target has the {@condition Restrained|XPHB} condition and repeats the save at the end of its next turn if it's still {@condition Restrained|XPHB}, ending the effect on itself on a success. {@actSaveFail 2} The target has the {@condition Petrified|XPHB} condition instead of the {@condition Restrained|XPHB} condition, becoming a statue of rusted iron."
+					]
+				}
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"S"
+			],
+			"miscTags": [
+				"MA",
+				"MLW",
+				"RA",
+				"THW"
+			],
+			"conditionInflict": [
+				"incapacitated",
+				"petrified",
+				"poisoned",
+				"restrained"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Rusted Behemoth",
+			"source": "FRAiF",
+			"page": 272,
+			"size": [
+				"H"
+			],
+			"type": "construct",
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				18
+			],
+			"hp": {
+				"average": 157,
+				"formula": "15d12 + 60"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 22,
+			"dex": 10,
+			"con": 19,
+			"int": 6,
+			"wis": 12,
+			"cha": 6,
+			"senses": [
+				"Darkvision 120 ft."
+			],
+			"passive": 11,
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"petrified",
+				"poisoned"
+			],
+			"languages": [
+				"Common",
+				"Giant"
+			],
+			"cr": "9",
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The Rusted makes three attacks, using Slam or Rusted Shot Put in any combination."
+					]
+				},
+				{
+					"name": "Slam",
+					"entries": [
+						"{@atkr m} {@hit 10}, reach 10 ft. {@h}20 ({@damage 4d6 + 6}) Bludgeoning damage."
+					]
+				},
+				{
+					"name": "Rusted Shot Put",
+					"entries": [
+						"{@atkr r} {@hit 10}, range 60/240 ft. {@h}15 ({@damage 2d8 + 6}) Bludgeoning damage, and the target has the {@condition Poisoned|XPHB} condition until the end of its next turn."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Rust-Riddled Hide",
+					"entries": [
+						"{@actTrigger} The Rusted is hit by an attack roll that deals Bludgeoning, Piercing, or Slashing damage. {@actResponse d}{@actSave con} {@dc 16}, each creature of the Rusted's choice in a 5-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the Rusted. {@actSaveFail} the target has the {@condition Poisoned|XPHB} condition until the end of the target's next turn."
+					]
+				}
+			],
+			"environment": [
+				"coastal",
+				"forest"
+			],
+			"treasure": [
+				"individual"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"GI"
+			],
+			"damageTags": [
+				"B"
+			],
+			"miscTags": [
+				"MA",
+				"RA",
+				"RCH"
+			],
+			"conditionInflict": [
+				"poisoned"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Rusted Berserker",
+			"source": "FRAiF",
+			"size": [
+				"M"
+			],
+			"type": "construct",
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				16
+			],
+			"hp": {
+				"average": 82,
+				"formula": "11d8 + 33"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 18,
+			"dex": 14,
+			"con": 17,
+			"int": 6,
+			"wis": 10,
+			"cha": 6,
+			"passive": 10,
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"petrified",
+				"poisoned"
+			],
+			"languages": [
+				"Common"
+			],
+			"cr": "4",
+			"gear": [
+				"greatsword|xphb",
+				{
+					"item": "javelin|xphb",
+					"quantity": 6
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The Rusted makes two attacks, using Greatsword or Javelin in any combination."
+					]
+				},
+				{
+					"name": "Greatsword",
+					"entries": [
+						"{@atkr m} {@hit 6}, reach 5 ft. {@h}11 ({@damage 2d6 + 4}) Slashing damage, and the target has the {@condition Poisoned|XPHB} condition until the end of its next turn."
+					]
+				},
+				{
+					"name": "Javelin",
+					"entries": [
+						"{@atkr m,r} {@hit 6}, reach 5 ft. or range 30/120 ft. {@h}11 ({@damage 2d6 + 4}) Piercing damage, and the target has the {@condition Poisoned|XPHB} condition until the end of its next turn."
+					]
+				}
+			],
+			"environment": [
+				"coastal",
+				"forest"
+			],
+			"treasure": [
+				"individual"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MA",
+				"MLW",
+				"RA",
+				"THW"
+			],
+			"conditionInflict": [
+				"poisoned"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Rusted Wyrm",
+			"source": "FRAiF",
+			"page": 273,
+			"size": [
+				"G"
+			],
+			"type": "construct",
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				20
+			],
+			"hp": {
+				"average": 231,
+				"formula": "14d20 + 84"
+			},
+			"speed": {
+				"walk": 40,
+				"swim": 60
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 25,
+			"dex": 13,
+			"con": 22,
+			"int": 8,
+			"wis": 14,
+			"cha": 6,
+			"senses": [
+				"Darkvision 120 ft."
+			],
+			"passive": 12,
+			"immune": [
+				"fire",
+				"poison"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"frightened",
+				"petrified",
+				"poisoned"
+			],
+			"languages": [
+				"Common",
+				"Draconic"
+			],
+			"cr": "14",
+			"trait": [
+				{
+					"name": "Legendary Resistance (3/Day)",
+					"entries": [
+						"If the Rusted fails a saving throw, it can choose to succeed instead."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The Rusted makes two Bite attacks."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atkr m} {@hit 12}, reach 20 ft. {@h}29 ({@damage 4d10 + 7}) Piercing damage."
+					]
+				},
+				{
+					"name": "Steam Breath {@recharge 5}",
+					"entries": [
+						"{@actSave dex} {@dc 19}, each creature and flammable object that isn't being worn or carried in a 60-foot {@variantrule Cone [Area of Effect]|XPHB|Cone}. {@actSaveFail} 45 ({@damage 7d12}) Fire damage, and the target starts {@hazard burning|XPHB}. {@actSaveSuccess} Half damage only. {@actSaveSuccessOrFail} Being underwater doesn't grant {@variantrule Resistance|XPHB} to this Fire damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Encasing Rust",
+					"entries": [
+						"{@actSave con} {@dc 19}, one creature within 20 feet of the Rusted. {@actSaveFail} 14 ({@damage 4d6}) Poison damage, and the target has the {@condition Poisoned|XPHB} condition until the end of its next turn. While {@condition Poisoned|XPHB}, the target has the {@condition Paralyzed|XPHB} condition."
+					]
+				}
+			],
+			"environment": [
+				"coastal",
+				"forest"
+			],
+			"treasure": [
+				"individual"
+			],
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Breath Weapon",
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DR"
+			],
+			"damageTags": [
+				"F",
+				"I",
+				"P"
+			],
+			"miscTags": [
+				"MA",
+				"RCH"
+			],
+			"conditionInflict": [
+				"paralyzed",
+				"poisoned"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Sammaster (Dracolich Form)",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "FRAiF",
+			"page": 275,
+			"size": [
+				"H"
+			],
+			"type": "undead",
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				20
+			],
+			"hp": {
+				"average": 276,
+				"formula": "24d12 + 120"
+			},
+			"speed": {
+				"walk": 40,
+				"burrow": 30,
+				"fly": 80
+			},
+			"initiative": {
+				"proficiency": 2
+			},
+			"str": 25,
+			"dex": 10,
+			"con": 21,
+			"int": 23,
+			"wis": 15,
+			"cha": 21,
+			"save": {
+				"dex": "+7",
+				"con": "+12",
+				"int": "+13",
+				"wis": "+9"
+			},
+			"skill": {
+				"arcana": "+20",
+				"history": "+13",
+				"perception": "+16"
+			},
+			"senses": [
+				"Blindsight 60 ft.",
+				"Darkvision 120 ft."
+			],
+			"passive": 26,
+			"immune": [
+				"acid",
+				"necrotic",
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"poisoned"
+			],
+			"languages": [
+				"Common",
+				"Draconic",
+				"Infernal"
+			],
+			"cr": "22",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Sammaster casts one of the following spells, requiring no Material components and using Intelligence as the spellcasting ability (spell save {@dc 21}, {@hit 13} to hit with spell attacks):"
+					],
+					"will": [
+						"{@spell Blight|XPHB}",
+						"{@spell Detect Magic|XPHB}",
+						"{@spell Dispel Magic|XPHB}",
+						"{@spell Mage Hand|XPHB}",
+						"{@spell Prestidigitation|XPHB}",
+						"{@spell Ray of Sickness|XPHB} (level 6 version)"
+					],
+					"daily": {
+						"2e": [
+							"{@spell Dimension Door|XPHB}",
+							"{@spell Speak with Dead|XPHB}"
+						],
+						"1e": [
+							"{@spell Create Undead|XPHB} (level 8 version)",
+							"{@spell Power Word Kill|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Legendary Resistance (3/Day)",
+					"entries": [
+						"If Sammaster fails a saving throw, he can choose to succeed instead."
+					]
+				},
+				{
+					"name": "Life Suppression",
+					"entries": [
+						"Creatures within 60 feet of Sammaster can't regain {@variantrule Hit Points|XPHB}."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"Sammaster has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				},
+				{
+					"name": "Soul Gem",
+					"entries": [
+						"Sammaster has a magical soul gem as his dracolich heart. The gem can't be damaged or removed until he is reduced to 0 {@variantrule Hit Points|XPHB}. If Sammaster is reduced to 0 {@variantrule Hit Points|XPHB}, his dracolich form dissolves to dust. After {@dice 1d10} days, he appears in an unoccupied space within 5 feet of his soul gem (so long as the gem still exists), using the Sammaster (Lich Form) stat block. The gem is a Tiny object that has AC 20; HP 50; and {@variantrule Immunity|XPHB} to Acid, Necrotic, Poison, and Psychic damage. The gem regains all its {@variantrule Hit Points|XPHB} at the end of every turn, but it turns to dust if reduced to 0 {@variantrule Hit Points|XPHB}."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Sammaster makes three Rend attacks. He can replace one attack with a use of Spellcasting to cast {@spell Blight|XPHB} or {@spell Ray of Sickness|XPHB} (level 6 version)."
+					]
+				},
+				{
+					"name": "Rend",
+					"entries": [
+						"{@atkr m} {@hit 14}, reach 10 ft. {@h}18 ({@damage 2d10 + 7}) Slashing damage plus 18 ({@damage 4d8}) Necrotic damage."
+					]
+				},
+				{
+					"name": "Corroding Breath {@recharge 5}",
+					"entries": [
+						"{@actSave con} {@dc 20}, each creature in a 90-foot {@variantrule Cone [Area of Effect]|XPHB|Cone}. {@actSaveFail} 52 ({@damage 8d12}) Acid or Necrotic damage (Sammaster's choice). {@actSaveSuccess} Half damage."
+					]
+				}
+			],
+			"legendary": [
+				{
+					"name": "Pounce",
+					"entries": [
+						"Sammaster moves up to half his {@variantrule Speed|XPHB}, and he makes one Rend attack."
+					]
+				},
+				{
+					"name": "Sickening Ray",
+					"entries": [
+						"Sammaster uses Spellcasting to cast {@spell Ray of Sickness|XPHB} (level 6 version)."
+					]
+				},
+				{
+					"name": "Terrifying Presence",
+					"entries": [
+						"{@actSave wis} {@dc 21}, each creature in a 20-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from Sammaster. {@actSaveFail} 13 ({@damage 2d12}) Psychic damage, and the target has the {@condition Frightened|XPHB} condition until the end of its next turn. {@actSaveSuccessOrFail} Sammaster can't take this action again until the start of his next turn."
+					]
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances",
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"B",
+				"SD"
+			],
+			"actionTags": [
+				"Breath Weapon",
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"I"
+			],
+			"damageTags": [
+				"A",
+				"N",
+				"S",
+				"Y"
+			],
+			"damageTagsSpell": [
+				"I",
+				"N",
+				"O",
+				"Y"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"RCH"
+			],
+			"conditionInflict": [
+				"frightened"
+			],
+			"conditionInflictSpell": [
+				"poisoned"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"constitution"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Sammaster (Lich Form)",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "FRAiF",
+			"page": 276,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "undead",
+				"tags": [
+					"Wizard"
+				]
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				18
+			],
+			"hp": {
+				"average": 322,
+				"formula": "43d8 + 129"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"initiative": {
+				"proficiency": 2
+			},
+			"str": 12,
+			"dex": 14,
+			"con": 16,
+			"int": 23,
+			"wis": 15,
+			"cha": 21,
+			"save": {
+				"dex": "+9",
+				"con": "+10",
+				"int": "+13",
+				"wis": "+9"
+			},
+			"skill": {
+				"arcana": "+20",
+				"history": "+13",
+				"perception": "+9"
+			},
+			"senses": [
+				"Blindsight 60 ft.",
+				"Darkvision 120 ft."
+			],
+			"passive": 19,
+			"resist": [
+				"acid",
+				"cold",
+				"lightning"
+			],
+			"immune": [
+				"necrotic",
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"poisoned"
+			],
+			"languages": [
+				"Common",
+				"Draconic",
+				"Infernal"
+			],
+			"cr": "22",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Sammaster casts one of the following spells, requiring no Material components and using Intelligence as the spellcasting ability (spell save {@dc 21}):"
+					],
+					"will": [
+						"{@spell Cone of Cold|XPHB}",
+						"{@spell Detect Magic|XPHB}",
+						"{@spell Dispel Magic|XPHB}",
+						"{@spell Invisibility|XPHB}",
+						"{@spell Mage Hand|XPHB}",
+						"{@spell Prestidigitation|XPHB}"
+					],
+					"daily": {
+						"2e": [
+							"{@spell Speak with Dead|XPHB}",
+							"{@spell Wall of Force|XPHB}"
+						],
+						"1e": [
+							"{@spell Create Undead|XPHB} (level 8 version)",
+							"{@spell Disintegrate|XPHB}",
+							"{@spell Power Word Kill|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				},
+				{
+					"name": "Protective Magic",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Sammaster casts {@spell Counterspell|XPHB} or {@spell Shield|XPHB} in response to the spell's trigger, using the same spellcasting ability as Spellcasting."
+					],
+					"will": [
+						"{@spell Counterspell|XPHB}",
+						"{@spell Shield|XPHB}"
+					],
+					"ability": "int",
+					"displayAs": "reaction",
+					"hidden": [
+						"will"
+					]
+				}
+			],
+			"trait": [
+				{
+					"name": "Legendary Resistance (3/Day)",
+					"entries": [
+						"If Sammaster fails a saving throw, he can choose to succeed instead."
+					]
+				},
+				{
+					"name": "Life Suppression",
+					"entries": [
+						"Creatures within 60 feet of Sammaster can't regain {@variantrule Hit Points|XPHB}."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"Sammaster has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				},
+				{
+					"name": "Soul Gem",
+					"entries": [
+						"If Sammaster is reduced to 0 {@variantrule Hit Points|XPHB} while his magical soul gem exists, his lich form dissolves to dust. After {@dice 1d10} days, he appears in the space of his soul gem, using the Sammaster (Dracolich Form) stat block. The gem is a Tiny object that has AC 20; HP 50; and {@variantrule Immunity|XPHB} to Acid, Necrotic, Poison, and Psychic damage. The gem regains all its {@variantrule Hit Points|XPHB} at the end of every turn, but it turns to dust if reduced to 0 {@variantrule Hit Points|XPHB}. If the gem is destroyed, Sammaster can create a new one by completing an 8-hour ritual using a gem worth 1,000+ GP, which the ritual consumes, and by expending 5,000 GP."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Sammaster makes three attacks, using Corrosive Burst or Paralyzing Touch in any combination. He can replace two attacks with a use of Spellcasting."
+					]
+				},
+				{
+					"name": "Corrosive Burst",
+					"entries": [
+						"{@atkr m,r} {@hit 13}, reach 5 ft. or range 120 ft. {@h}38 ({@damage 5d12 + 6}) Acid or Necrotic damage (Sammaster's choice)."
+					]
+				},
+				{
+					"name": "Paralyzing Touch",
+					"entries": [
+						"{@atkr m} {@hit 13}, reach 5 ft. {@h}16 ({@damage 3d6 + 6}) Cold damage, and the target has the {@condition Paralyzed|XPHB} condition until the start of Sammaster's next turn."
+					]
+				}
+			],
+			"legendary": [
+				{
+					"name": "Deathly Teleport",
+					"entries": [
+						"Sammaster teleports up to 60 feet to an unoccupied space he can see, and each creature within 10 feet of the space he left takes 19 ({@damage 3d12}) Necrotic damage."
+					]
+				},
+				{
+					"name": "Dissolve",
+					"entries": [
+						"Sammaster makes one Corrosive Burst attack."
+					]
+				},
+				{
+					"name": "Terrifying Presence",
+					"entries": [
+						"{@actSave wis} {@dc 21}, each creature in a 20-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from Sammaster. {@actSaveFail} 13 ({@damage 2d12}) Psychic damage, and the target has the {@condition Frightened|XPHB} condition until the end of its next turn. {@actSaveSuccessOrFail} Sammaster can't take this action again until the start of his next turn."
+					]
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances",
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"B",
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"I"
+			],
+			"damageTags": [
+				"A",
+				"C",
+				"N",
+				"Y"
+			],
+			"damageTagsSpell": [
+				"C",
+				"O",
+				"Y"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"AOE",
+				"MA",
+				"RA"
+			],
+			"conditionInflict": [
+				"frightened",
+				"paralyzed"
+			],
+			"conditionInflictSpell": [
+				"invisible"
+			],
+			"savingThrowForced": [
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Spirit Dragon Wyrmling",
+			"source": "FRAiF",
+			"page": 277,
+			"size": [
+				"M"
+			],
+			"type": "dragon",
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				16
+			],
+			"hp": {
+				"average": 52,
+				"formula": "8d8 + 16"
+			},
+			"speed": {
+				"walk": 30,
+				"burrow": 20,
+				"fly": 60
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 15,
+			"dex": 12,
+			"con": 15,
+			"int": 14,
+			"wis": 11,
+			"cha": 14,
+			"save": {
+				"dex": "+3",
+				"con": "+4"
+			},
+			"skill": {
+				"perception": "+2",
+				"stealth": "+3"
+			},
+			"senses": [
+				"Blindsight 10 ft.",
+				"Darkvision 60 ft."
+			],
+			"passive": 12,
+			"resist": [
+				"necrotic"
+			],
+			"languages": [
+				"Common",
+				"Draconic; telepathy 120 ft."
+			],
+			"cr": "2",
+			"action": [
+				{
+					"name": "Rend",
+					"entries": [
+						"{@atkr m} {@hit 4}, reach 5 ft. {@h}9 ({@damage 2d6 + 2}) Slashing damage plus 3 ({@damage 1d6}) Necrotic damage."
+					]
+				},
+				{
+					"name": "Ruinous Breath {@recharge 5}",
+					"entries": [
+						"{@actSave con} {@dc 12}, each creature in a 15-foot {@variantrule Cone [Area of Effect]|XPHB|Cone}. {@actSaveFail} 13 ({@damage 3d8}) Necrotic damage. {@actSaveSuccess} Half damage."
+					]
+				},
+				{
+					"name": "Time-Warping Breath",
+					"entries": [
+						"{@actSave wis} {@dc 12}, each creature that isn't currently affected by this breath in a 15-foot {@variantrule Cone [Area of Effect]|XPHB|Cone}. {@actSaveFail} The target's {@variantrule Speed|XPHB} is halved, it can't take Reactions, and it can take either an action or a {@variantrule Bonus Action|XPHB} on its turn, not both. It repeats the save at the end of each of its turns, ending the effect on itself on a success. After 1 minute, it succeeds automatically."
+					]
+				}
+			],
+			"legendaryGroup": {
+				"name": "Spirit Dragon",
+				"source": "FRAiF"
+			},
+			"environment": [
+				"any"
+			],
+			"treasure": [
+				"any"
+			],
+			"dragonCastingColor": "spirit",
+			"dragonAge": "wyrmling",
+			"senseTags": [
+				"B",
+				"D"
+			],
+			"actionTags": [
+				"Breath Weapon"
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"TP"
+			],
+			"damageTags": [
+				"N",
+				"S"
+			],
+			"miscTags": [
+				"MA"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Spore of Moander",
+			"source": "FRAiF",
+			"page": 280,
+			"size": [
+				"H"
+			],
+			"type": "plant",
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				19
+			],
+			"hp": {
+				"average": 230,
+				"formula": "20d12 + 100"
+			},
+			"speed": {
+				"walk": 30,
+				"climb": 30
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 22,
+			"dex": 9,
+			"con": 20,
+			"int": 4,
+			"wis": 10,
+			"cha": 6,
+			"save": {
+				"str": "+10",
+				"con": "+9"
+			},
+			"senses": [
+				"Blindsight 120 ft."
+			],
+			"passive": 10,
+			"resist": [
+				"acid",
+				"cold",
+				"lightning"
+			],
+			"immune": [
+				"fire",
+				"poison"
+			],
+			"conditionImmune": [
+				"blinded",
+				"deafened",
+				"exhaustion",
+				"paralyzed",
+				"poisoned",
+				"prone"
+			],
+			"languages": [
+				"understands Abyssal but can't speak"
+			],
+			"cr": "12",
+			"trait": [
+				{
+					"name": "Explosive Core",
+					"entries": [
+						"When the spore is subjected to Fire damage, each creature in a 5-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the spore takes 7 ({@damage 2d6}) Fire damage."
+					]
+				},
+				{
+					"name": "Rolling Mass",
+					"entries": [
+						"The spore doesn't need to expend extra movement to move through {@variantrule Difficult Terrain|XPHB}."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The spore makes four Tendril attacks. Alternatively, it makes two Tendril attacks and uses Consume once."
+					]
+				},
+				{
+					"name": "Tendril",
+					"entries": [
+						"{@atkr m} {@hit 10}, reach 20 ft. {@h}11 ({@damage 1d10 + 6}) Piercing damage plus 10 ({@damage 3d6}) Acid damage. If the target is Large or smaller, the spore pulls the target 5 feet straight toward itself."
+					]
+				},
+				{
+					"name": "Consume",
+					"entries": [
+						"{@actSave str} {@dc 18}, one Large or smaller creature within 5 feet. {@actSaveFail} The target is pulled into the spore's space and has the {@condition Grappled|XPHB} condition (escape {@dc 16}). Until the grapple ends, the target has the {@condition Blinded|XPHB} and {@condition Restrained|XPHB} conditions, and it takes 17 ({@damage 5d6}) Acid damage at the start of each of the spore's turns. When the spore moves, the {@condition Grappled|XPHB} target moves with it, costing it no extra movement. The spore can have one Large creature or up to nine Medium or smaller creatures {@condition Grappled|XPHB} at a time."
+					]
+				}
+			],
+			"environment": [
+				"forest",
+				"swamp"
+			],
+			"senseTags": [
+				"B"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AB",
+				"CS"
+			],
+			"damageTags": [
+				"A",
+				"F",
+				"P"
+			],
+			"miscTags": [
+				"MA",
+				"RCH"
+			],
+			"conditionInflict": [
+				"grappled"
+			],
+			"savingThrowForced": [
+				"strength"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Swanmay",
+			"source": "FRAiF",
+			"page": 281,
+			"size": [
+				"M"
+			],
+			"type": "fey",
+			"alignment": [
+				"N",
+				"G"
+			],
+			"ac": [
+				14
+			],
+			"hp": {
+				"average": 71,
+				"formula": "11d8 + 22"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": {
+					"number": 40,
+					"condition": "(swan form only)"
+				}
+			},
+			"str": 10,
+			"dex": 18,
+			"con": 14,
+			"int": 10,
+			"wis": 16,
+			"cha": 15,
+			"save": {
+				"con": "+4",
+				"wis": "+5"
+			},
+			"skill": {
+				"nature": "+4",
+				"perception": "+5"
+			},
+			"passive": 15,
+			"languages": [
+				"Common",
+				"Sylvan"
+			],
+			"cr": "3",
+			"gear": [
+				"longbow|xphb",
+				"scimitar|xphb"
+			],
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The swanmay casts one of the following spells, requiring no Somatic or Material components and using Wisdom as the spellcasting ability (spell save {@dc 13}):"
+					],
+					"will": [
+						"{@spell Druidcraft|XPHB}",
+						"{@spell Speak with Animals|XPHB} (swan form only)"
+					],
+					"daily": {
+						"1e": [
+							"{@spell Animal Friendship|XPHB}",
+							"{@spell Beast Sense|XPHB}",
+							"{@spell Spike Growth|XPHB}"
+						]
+					},
+					"ability": "wis",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Flyby (Swan Form Only)",
+					"entries": [
+						"The swanmay doesn't provoke an Opportunity Attack action when it flies out of an enemy's reach."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The swanmay makes two attacks, using Beak, Longbow, or Scimitar in any combination."
+					]
+				},
+				{
+					"name": "Beak (Swan Form Only)",
+					"entries": [
+						"{@atkr m} {@hit 6}, reach 5 ft. {@h}7 ({@damage 1d6 + 4}) Piercing damage. If the target is a Large or smaller creature, it has the {@condition Prone|XPHB} condition."
+					]
+				},
+				{
+					"name": "Scimitar (Humanoid Form Only)",
+					"entries": [
+						"{@atkr m} {@hit 6}, reach 5 ft. {@h}11 ({@damage 2d6 + 4}) Slashing damage."
+					]
+				},
+				{
+					"name": "Longbow (Humanoid Form Only)",
+					"entries": [
+						"{@atkr r} {@hit 6}, range 150/600 ft. {@h}13 ({@damage 2d8 + 4}) Piercing damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Shape-Shift",
+					"entries": [
+						"The swanmay shape-shifts into a Small swan, or it returns to its true humanoid form. Its game statistics are the same in each form, except where noted. Any equipment it is wearing or carrying isn't transformed."
+					]
+				}
+			],
+			"environment": [
+				"forest"
+			],
+			"treasure": [
+				"individual"
+			],
+			"traitTags": [
+				"Flyby"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"S"
+			],
+			"damageTags": [
+				"P",
+				"S"
+			],
+			"damageTagsSpell": [
+				"P"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"MLW",
+				"RA",
+				"RNG"
+			],
+			"conditionInflict": [
+				"prone"
+			],
+			"conditionInflictSpell": [
+				"charmed"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Valindra Shadowmantle",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "FRAiF",
+			"page": 283,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "undead",
+				"tags": [
+					"Wizard"
+				]
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				20
+			],
+			"hp": {
+				"average": 315,
+				"formula": "42d8 + 126"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"initiative": {
+				"proficiency": 2
+			},
+			"str": 11,
+			"dex": 16,
+			"con": 16,
+			"int": 21,
+			"wis": 14,
+			"cha": 16,
+			"save": {
+				"dex": "+10",
+				"con": "+10",
+				"int": "+12",
+				"wis": "+9"
+			},
+			"skill": {
+				"arcana": "+19",
+				"history": "+12",
+				"insight": "+9",
+				"perception": "+9"
+			},
+			"senses": [
+				"Truesight 120 ft."
+			],
+			"passive": 19,
+			"resist": [
+				"cold",
+				"lightning"
+			],
+			"immune": [
+				"necrotic",
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"poisoned"
+			],
+			"languages": [
+				"all"
+			],
+			"cr": {
+				"cr": "21",
+				"xpLair": 41000
+			},
+			"gear": [
+				"component pouch|xphb"
+			],
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Valindra casts one of the following spells, using Intelligence as the spellcasting ability (spell save {@dc 20}):"
+					],
+					"will": [
+						"{@spell Detect Magic|XPHB}",
+						"{@spell Detect Thoughts|XPHB}",
+						"{@spell Dispel Magic|XPHB}",
+						"{@spell Fly|XPHB}",
+						"{@spell Invisibility|XPHB}",
+						"{@spell Lightning Bolt|XPHB} (level 5 version)",
+						"{@spell Mage Hand|XPHB}",
+						"{@spell Prestidigitation|XPHB}"
+					],
+					"daily": {
+						"2e": [
+							"{@spell Animate Dead|XPHB}",
+							"{@spell Plane Shift|XPHB}"
+						],
+						"1e": [
+							"{@spell Cone of Cold|XPHB} (level 8 version)",
+							"{@spell Finger of Death|XPHB}",
+							"{@spell Power Word Kill|XPHB}",
+							"{@spell Scrying|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				},
+				{
+					"name": "Illusory Disguise",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Valindra casts {@spell Disguise Self|XPHB}, using the same spellcasting ability as Spellcasting. The spell lasts until Valindra drops to 30 {@variantrule Hit Points|XPHB} or fewer or uses her Life-Rending Gaze Legendary Action. Intelligence ({@skill Investigation|XPHB}) checks made to discern her true appearance are made with {@variantrule Disadvantage|XPHB}."
+					],
+					"will": [
+						"{@spell Disguise Self|XPHB}"
+					],
+					"ability": "int",
+					"displayAs": "bonus",
+					"hidden": [
+						"will"
+					]
+				},
+				{
+					"name": "Protective Magic",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Valindra casts {@spell Counterspell|XPHB} or {@spell Shield|XPHB} in response to the spell's trigger, using the same spellcasting ability as Spellcasting."
+					],
+					"will": [
+						"{@spell Counterspell|XPHB}",
+						"{@spell Shield|XPHB}"
+					],
+					"ability": "int",
+					"displayAs": "reaction",
+					"hidden": [
+						"will"
+					]
+				}
+			],
+			"trait": [
+				{
+					"name": "Legendary Resistance (4/Day or 5/Day in Lair)",
+					"entries": [
+						"If Valindra fails a saving throw, she can choose to succeed instead."
+					]
+				},
+				{
+					"name": "Spirit Gem",
+					"entries": [
+						"If destroyed, Valindra re-forms in {@dice 1d10} days if her spirit gem is intact, reviving with all her {@variantrule Hit Points|XPHB}. The new body appears in an unoccupied space within her lair."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Valindra makes three attacks, using Eldritch Burst or Paralyzing Touch in any combination. She can replace two attacks with a use of Spellcasting to cast {@spell Lightning Bolt|XPHB} (level 5 version)."
+					]
+				},
+				{
+					"name": "Eldritch Burst",
+					"entries": [
+						"{@atkr m,r} {@hit 12}, reach 5 ft. or range 120 ft. {@h}31 ({@damage 4d12 + 5}) Force damage."
+					]
+				},
+				{
+					"name": "Paralyzing Touch",
+					"entries": [
+						"{@atkr m} {@hit 12}, reach 5 ft. {@h}14 ({@damage 2d8 + 5}) Cold damage, and the target has the {@condition Paralyzed|XPHB} condition until the start of Valindra's next turn."
+					]
+				},
+				{
+					"name": "Deathly Grasp {@recharge 5}",
+					"entries": [
+						"{@actSave dex} {@dc 20}, each creature in a 30-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from Valindra. {@actSaveFail 1} 39 ({@damage 6d12}) Force damage and the target has the {@condition Restrained|XPHB} condition and repeats the save at the end of each of its turns, ending the effect on itself on a success. After 1 minute, it succeeds automatically. Subsequent Failures: 39 ({@damage 6d12}) Necrotic damage, and Valindra gains 20 {@variantrule Temporary Hit Points|XPHB}."
+					]
+				}
+			],
+			"legendaryActionsLair": 4,
+			"legendary": [
+				{
+					"name": "Disrupt Life",
+					"entries": [
+						"{@actSave con} {@dc 20}, each creature that isn't Undead in a 20-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from Valindra. {@actSaveFail} 21 ({@damage 6d6}) Necrotic damage. {@actSaveSuccess} Half damage. {@actSaveSuccessOrFail} Valindra can't take this action again until the start of her next turn."
+					]
+				},
+				{
+					"name": "Eldritch Jaunt",
+					"entries": [
+						"Valindra makes one Eldritch Burst attack. Before or after the attack, Valindra can teleport up to 20 feet to an unoccupied space she can see."
+					]
+				},
+				{
+					"name": "Life-Rending Gaze",
+					"entries": [
+						"{@actSave wis} {@dc 20}, one creature Valindra can see within 30 feet. {@actSaveFail} 22 ({@damage 4d10}) Necrotic damage, and the target has the {@condition Frightened|XPHB} condition until the end of its next turn. {@actSaveSuccess} Half damage only."
+					]
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"XX"
+			],
+			"damageTags": [
+				"C",
+				"N",
+				"O"
+			],
+			"damageTagsSpell": [
+				"C",
+				"L",
+				"N",
+				"Y"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"conditionInflict": [
+				"frightened",
+				"paralyzed",
+				"restrained"
+			],
+			"conditionInflictSpell": [
+				"invisible"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity",
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity",
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Werewyvern",
+			"source": "FRAiF",
+			"page": 284,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "dragon",
+				"tags": [
+					"Lycanthrope"
+				]
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				16
+			],
+			"hp": {
+				"average": 152,
+				"formula": "16d8 + 80"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": {
+					"number": 40,
+					"condition": "(wyvern or hybrid form only)"
+				}
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 19,
+			"dex": 15,
+			"con": 20,
+			"int": 10,
+			"wis": 12,
+			"cha": 12,
+			"save": {
+				"dex": "+5",
+				"wis": "+4"
+			},
+			"skill": {
+				"perception": "+4",
+				"stealth": "+5"
+			},
+			"senses": [
+				"Darkvision 120 ft."
+			],
+			"passive": 14,
+			"languages": [
+				"Common",
+				"Draconic (can't speak in wyvern form)"
+			],
+			"cr": "8",
+			"gear": [
+				{
+					"item": "javelin|xphb",
+					"quantity": 6
+				}
+			],
+			"trait": [
+				{
+					"name": "Flyby (Wyvern or Hybrid Form Only)",
+					"entries": [
+						"The werewyvern doesn't provoke an Opportunity Attack action when it flies out of an enemy's reach."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The werewyvern makes three attacks, using Javelin or Rend in any combination. It can replace one of these attacks with one Stinger attack."
+					]
+				},
+				{
+					"name": "Javelin (Humanoid or Hybrid Form Only)",
+					"entries": [
+						"{@atkr m,r} {@hit 7}, reach 5 ft. or range 30/120 ft. {@h}18 ({@damage 4d6 + 4}) Piercing damage."
+					]
+				},
+				{
+					"name": "Rend",
+					"entries": [
+						"{@atkr m} {@hit 7}, reach 5 ft. {@h}18 ({@damage 4d6 + 4}) Slashing damage."
+					]
+				},
+				{
+					"name": "Stinger (Wyvern or Hybrid Form Only)",
+					"entries": [
+						"{@atkr m} {@hit 7}, reach 5 ft. {@h}7 ({@damage 1d6 + 4}) Piercing damage plus 16 ({@damage 3d10}) Poison damage, and the target has the {@condition Poisoned|XPHB} condition until the start of the werewyvern's next turn. If the target is a Humanoid, it is subjected to the following effect. {@actSave con} {@dc 16}. {@actSaveFail} The target is cursed. If the cursed target drops to 0 {@variantrule Hit Points|XPHB}, it instead becomes a Werewyvern under the DM's control and has 20 {@variantrule Hit Points|XPHB}. {@actSaveSuccess} The target is immune to this werewyvern's curse for 24 hours."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Shape-Shift",
+					"entries": [
+						"The werewyvern shape-shifts into a Medium wyvern-humanoid hybrid or a Large wyvern, or it returns to its true humanoid form. Its game statistics, other than its size, are the same in each form. Any equipment it is wearing or carrying isn't transformed."
+					]
+				}
+			],
+			"environment": [
+				"hill",
+				"mountain"
+			],
+			"treasure": [
+				"individual"
+			],
+			"traitTags": [
+				"Flyby"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"CS",
+				"DR"
+			],
+			"damageTags": [
+				"I",
+				"P",
+				"S"
+			],
+			"miscTags": [
+				"MA",
+				"MLW",
+				"RA",
+				"THW"
+			],
+			"conditionInflict": [
+				"poisoned"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Young Deep Dragon",
+			"source": "FRAiF",
+			"page": 257,
+			"size": [
+				"L"
+			],
+			"type": "dragon",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				16
+			],
+			"hp": {
+				"average": 93,
+				"formula": "11d10 + 33"
+			},
+			"speed": {
+				"walk": 40,
+				"burrow": 20,
+				"fly": 80,
+				"swim": 40
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 18,
+			"dex": 13,
+			"con": 16,
+			"int": 12,
+			"wis": 14,
+			"cha": 16,
+			"save": {
+				"dex": "+4",
+				"wis": "+5"
+			},
+			"skill": {
+				"perception": "+8",
+				"stealth": "+7"
+			},
+			"senses": [
+				"Blindsight 30 ft.",
+				"Darkvision 150 ft."
+			],
+			"passive": 18,
+			"resist": [
+				"poison",
+				"psychic"
+			],
+			"conditionImmune": [
+				"charmed",
+				"frightened",
+				"poisoned"
+			],
+			"languages": [
+				"Common",
+				"Draconic",
+				"Undercommon"
+			],
+			"cr": "5",
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The dragon makes three Rend attacks."
+					]
+				},
+				{
+					"name": "Rend",
+					"entries": [
+						"{@atkr m} {@hit 7}, reach 10 ft. {@h}11 ({@damage 2d6 + 4}) Slashing damage plus 3 ({@damage 1d6}) Poison damage."
+					]
+				},
+				{
+					"name": "Nightmare Breath {@recharge 5}",
+					"entries": [
+						"{@actSave wis} {@dc 14}, each creature in a 30-foot {@variantrule Cone [Area of Effect]|XPHB|Cone}. {@actSaveFail} 22 ({@damage 4d10}) Psychic damage, and the target has the {@condition Frightened|XPHB} condition until the end of the dragon's next turn. {@actSaveSuccess} Half damage only."
+					]
+				}
+			],
+			"legendaryGroup": {
+				"name": "Deep Dragon",
+				"source": "FRAiF"
+			},
+			"environment": [
+				"underdark"
+			],
+			"treasure": [
+				"arcana"
+			],
+			"dragonCastingColor": "deep",
+			"dragonAge": "young",
+			"senseTags": [
+				"B",
+				"SD"
+			],
+			"actionTags": [
+				"Breath Weapon",
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"U"
+			],
+			"damageTags": [
+				"I",
+				"S",
+				"Y"
+			],
+			"miscTags": [
+				"MA",
+				"RCH"
+			],
+			"conditionInflict": [
+				"frightened"
+			],
+			"savingThrowForced": [
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Young Spirit Dragon",
+			"source": "FRAiF",
+			"page": 277,
+			"size": [
+				"L"
+			],
+			"type": "dragon",
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				17
+			],
+			"hp": {
+				"average": 152,
+				"formula": "16d10 + 64"
+			},
+			"speed": {
+				"walk": 40,
+				"burrow": 30,
+				"fly": 80
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 19,
+			"dex": 13,
+			"con": 19,
+			"int": 17,
+			"wis": 14,
+			"cha": 16,
+			"save": {
+				"dex": "+4",
+				"con": "+7"
+			},
+			"skill": {
+				"insight": "+5",
+				"perception": "+5",
+				"stealth": "+4"
+			},
+			"senses": [
+				"Blindsight 30 ft.",
+				"Darkvision 120 ft."
+			],
+			"passive": 15,
+			"resist": [
+				"necrotic"
+			],
+			"languages": [
+				"Common",
+				"Draconic; telepathy 120 ft."
+			],
+			"cr": "8",
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The dragon makes three Rend attacks. It can replace one attack with a use of Time-Warping Breath."
+					]
+				},
+				{
+					"name": "Rend",
+					"entries": [
+						"{@atkr m} {@hit 7}, reach 10 ft. {@h}14 ({@damage 3d6 + 4}) Slashing damage plus 7 ({@damage 2d6}) Necrotic damage."
+					]
+				},
+				{
+					"name": "Ruinous Breath {@recharge 5}",
+					"entries": [
+						"{@actSave con} {@dc 15}, each creature in a 30-foot {@variantrule Cone [Area of Effect]|XPHB|Cone}. {@actSaveFail} 36 ({@damage 8d8}) Necrotic damage. {@actSaveSuccess} Half damage."
+					]
+				},
+				{
+					"name": "Time-Warping Breath",
+					"entries": [
+						"{@actSave wis} {@dc 15}, each creature that isn't currently affected by this breath in a 30-foot {@variantrule Cone [Area of Effect]|XPHB|Cone}. {@actSaveFail} The target's {@variantrule Speed|XPHB} is halved, it can't take Reactions, and it can take either an action or a {@variantrule Bonus Action|XPHB} on its turn, not both. It repeats the save at the end of each of its turns, ending the effect on itself on a success. After 1 minute, it succeeds automatically."
+					]
+				}
+			],
+			"legendaryGroup": {
+				"name": "Spirit Dragon",
+				"source": "FRAiF"
+			},
+			"environment": [
+				"any"
+			],
+			"treasure": [
+				"any"
+			],
+			"dragonCastingColor": "spirit",
+			"dragonAge": "young",
+			"senseTags": [
+				"B",
+				"SD"
+			],
+			"actionTags": [
+				"Breath Weapon",
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"DR",
+				"TP"
+			],
+			"damageTags": [
+				"N",
+				"S"
+			],
+			"miscTags": [
+				"MA",
+				"RCH"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Zhentilar Paladin of Bane",
+			"source": "FRAiF",
+			"page": 285,
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				18
+			],
+			"hp": {
+				"average": 58,
+				"formula": "9d8 + 18"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 16,
+			"dex": 11,
+			"con": 14,
+			"int": 12,
+			"wis": 13,
+			"cha": 17,
+			"save": {
+				"str": "+5",
+				"cha": "+5"
+			},
+			"skill": {
+				"athletics": "+5",
+				"intimidation": "+5",
+				"religion": "+3"
+			},
+			"passive": 11,
+			"languages": [
+				"Common"
+			],
+			"cr": "4",
+			"gear": [
+				"plate armor|xphb"
+			],
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The Zhentilar casts one of the following spells, using Charisma as the spellcasting ability (spell save {@dc 13}):"
+					],
+					"daily": {
+						"1e": [
+							"{@spell Command|XPHB}",
+							"{@spell Fear|XPHB}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Aura of Dread",
+					"entries": [
+						"Creatures in a 10-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the Zhentilar have their Speeds halved while in the {@variantrule Emanation [Area of Effect]|XPHB|Emanation}. The Zhentilar can designate creatures to be unaffected by the aura."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The Zhentilar makes three attacks, using Dooming Blade or Oppressive Ray in any combination. It can replace one attack with a use of Spellcasting."
+					]
+				},
+				{
+					"name": "Dooming Blade",
+					"entries": [
+						"{@atkr m} {@hit 5}, reach 5 ft. {@h}7 ({@damage 1d8 + 3}) Bludgeoning damage plus 7 ({@damage 2d6}) Necrotic damage."
+					]
+				},
+				{
+					"name": "Oppressive Ray",
+					"entries": [
+						"{@atkr r} {@hit 5}, range 90 ft. {@h}16 ({@damage 3d10}) Psychic damage."
+					]
+				}
+			],
+			"environment": [
+				"any"
+			],
+			"treasure": [
+				"armaments"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"B",
+				"N",
+				"Y"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"conditionInflictSpell": [
+				"frightened",
+				"prone"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Zhentilar Soldier",
+			"source": "FRAiF",
+			"page": 285,
+			"size": [
+				"S",
+				"M"
+			],
+			"type": "humanoid",
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 22,
+				"formula": "4d8 + 4"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 14,
+			"dex": 14,
+			"con": 13,
+			"int": 10,
+			"wis": 11,
+			"cha": 11,
+			"save": {
+				"dex": "+4",
+				"con": "+3"
+			},
+			"skill": {
+				"acrobatics": "+4",
+				"athletics": "+4"
+			},
+			"passive": 10,
+			"languages": [
+				"Common"
+			],
+			"cr": "1",
+			"gear": [
+				"leather armor|xphb",
+				"pistol|xphb",
+				"shortsword|xphb"
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The Zhentilar makes two attacks, using Shortsword or Pistol in any combination. It can replace one attack with a use of Knock Down."
+					]
+				},
+				{
+					"name": "Shortsword",
+					"entries": [
+						"{@atkr m} {@hit 4}, reach 5 ft. {@h}5 ({@damage 1d6 + 2}) Piercing damage plus 2 ({@damage 1d4}) Poison damage."
+					]
+				},
+				{
+					"name": "Pistol",
+					"entries": [
+						"{@atkr r} {@hit 4}, range 80/320 ft. {@h}7 ({@damage 1d10 + 2}) Piercing damage."
+					]
+				},
+				{
+					"name": "Knock Down",
+					"entries": [
+						"{@actSave str} {@dc 12}, one creature within 5 feet that the Zhentilar can see. {@actSaveFail} 4 ({@damage 1d4 + 2}) Bludgeoning damage. If the target is a Medium or smaller creature, it has the {@condition Prone|XPHB} condition."
+					]
+				}
+			],
+			"environment": [
+				"any"
+			],
+			"treasure": [
+				"armaments"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"B",
+				"I",
+				"P"
+			],
+			"miscTags": [
+				"MA",
+				"MLW",
+				"RA",
+				"RNG"
+			],
+			"conditionInflict": [
+				"prone"
+			],
+			"savingThrowForced": [
+				"strength"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Zlan",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "FRAiF",
+			"page": 287,
+			"size": [
+				"H"
+			],
+			"type": {
+				"type": "undead",
+				"tags": [
+					"Wizard"
+				]
+			},
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				18
+			],
+			"hp": {
+				"average": 199,
+				"formula": "19d12 + 76"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 20,
+			"dex": 12,
+			"con": 19,
+			"int": 21,
+			"wis": 18,
+			"cha": 14,
+			"save": {
+				"dex": "+7",
+				"con": "+10",
+				"int": "+11",
+				"wis": "+10"
+			},
+			"skill": {
+				"arcana": "+17",
+				"history": "+11",
+				"perception": "+10"
+			},
+			"senses": [
+				"Truesight 120 ft."
+			],
+			"passive": 20,
+			"resist": [
+				"lightning",
+				"necrotic"
+			],
+			"immune": [
+				"cold",
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"poisoned"
+			],
+			"languages": [
+				"all"
+			],
+			"cr": "18",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Zlan casts one of the following spells, requiring no Material components and using Intelligence as the spellcasting ability (spell save {@dc 19}):"
+					],
+					"will": [
+						"{@spell Detect Magic|XPHB}",
+						"{@spell Detect Thoughts|XPHB}",
+						"{@spell Dispel Magic|XPHB}",
+						"{@spell Mage Hand|XPHB}",
+						"{@spell Message|XPHB}"
+					],
+					"daily": {
+						"2e": [
+							"{@spell Dimension Door|XPHB}",
+							"{@spell Fly|XPHB}",
+							"{@spell Scrying|XPHB}"
+						],
+						"1e": [
+							"{@spell Befuddlement|XPHB}",
+							"{@spell Disintegrate|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				},
+				{
+					"name": "Counterspell",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Zlan casts {@spell Counterspell|XPHB} in response to the spell's trigger, using the same spellcasting ability as Spellcasting."
+					],
+					"will": [
+						"{@spell Counterspell|XPHB}"
+					],
+					"ability": "int",
+					"displayAs": "reaction",
+					"hidden": [
+						"will"
+					]
+				}
+			],
+			"trait": [
+				{
+					"name": "Chardalyn Sense",
+					"entries": [
+						"Zlan senses the emotions of anyone touching a piece of chardalyn within 100 miles of itself."
+					]
+				},
+				{
+					"name": "Legendary Resistance (3/Day)",
+					"entries": [
+						"If Zlan fails a saving throw, it can choose to succeed instead."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"Zlan has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				},
+				{
+					"name": "Next of the Seven (6/Year)",
+					"entries": [
+						"If Zlan dies within 100 miles of a piece of chardalyn at least 4 inches long, it re-forms from that piece of chardalyn in {@dice 1d10} days, regaining all its {@variantrule Hit Points|XPHB}. The new body appears in the unoccupied space nearest to the piece of chardalyn, and another lich's mind in the body seizes psychic control of the body."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"Zlan makes three attacks, using Slam or Bewildering Bolt in any combination. It can replace two attacks with a use of Spellcasting."
+					]
+				},
+				{
+					"name": "Slam",
+					"entries": [
+						"{@atkr m} {@hit 11}, reach 10 ft. {@h}12 ({@damage 3d4 + 5}) Bludgeoning damage plus 22 ({@damage 4d10}) Necrotic damage."
+					]
+				},
+				{
+					"name": "Bewildering Bolt",
+					"entries": [
+						"{@atkr r} {@hit 11}, range 120 ft. {@h}27 ({@damage 4d10 + 5}) Psychic damage, and the target has the {@condition Charmed|XPHB} condition until the end of its next turn."
+					]
+				}
+			],
+			"legendary": [
+				{
+					"name": "Retaliation",
+					"entries": [
+						"Zlan makes one Slam or Bewildering Bolt attack."
+					]
+				},
+				{
+					"name": "Stoke Paranoia",
+					"entries": [
+						"{@actSave wis} {@dc 19}, one creature Zlan can see within 30 feet (with {@variantrule Disadvantage|XPHB} if the target is holding or wearing chardalyn). {@actSaveFail} 27 ({@damage 6d8}) Psychic damage and the target has the {@condition Charmed|XPHB} condition for 1 minute or until Zlan dies. While {@condition Charmed|XPHB}, the target doesn't act as an ally to any creature. {@actSaveSuccess} Half damage only. {@actSaveSuccessOrFail} Zlan can't take this action again until the start of its next turn."
+					]
+				}
+			],
+			"traitTags": [
+				"Legendary Resistances",
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"XX"
+			],
+			"damageTags": [
+				"B",
+				"N",
+				"Y"
+			],
+			"damageTagsSpell": [
+				"O",
+				"Y"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"RA",
+				"RCH"
+			],
+			"conditionInflict": [
+				"charmed"
+			],
+			"savingThrowForced": [
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity",
+				"intelligence",
+				"wisdom"
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		}
+	]
+}

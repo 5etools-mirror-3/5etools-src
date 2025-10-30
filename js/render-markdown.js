@@ -1461,13 +1461,15 @@ RendererMarkdown.item = class {
 	static getCompactRenderedString (item, opts = {}) {
 		const meta = opts.meta || {};
 
+		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
+
 		const subStack = [""];
 
 		const [ptDamage, ptProperties] = Renderer.item.getRenderedDamageAndProperties(item, {renderer: RendererMarkdown.get()});
 		const ptMastery = Renderer.item.getRenderedMastery(item, {renderer: RendererMarkdown.get()});
 		const [typeRarityText, subTypeText, tierText] = RendererMarkdown.item.getTypeRarityAndAttunementText(item);
 
-		const typeRarityTierValueWeight = [typeRarityText, subTypeText, tierText, Parser.itemValueToFullMultiCurrency(item), Parser.itemWeightToFull(item)].filter(Boolean).join(", ").uppercaseFirst();
+		const typeRarityTierValueWeight = [typeRarityText, subTypeText, tierText, Parser.itemValueToFullMultiCurrency(item, {styleHint}), Parser.itemWeightToFull(item)].filter(Boolean).join(", ").uppercaseFirst();
 
 		const ptSubtitle = [typeRarityTierValueWeight, ptDamage, ptProperties, ptMastery].filter(Boolean).join("\n\n");
 

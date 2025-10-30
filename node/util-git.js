@@ -29,7 +29,7 @@ export const pGetModifiedFiles = async ({additionalRoots = null} = {}) => {
 				(additionalRoots || [])
 					.map(async altDir => {
 						return fs.existsSync(altDir)
-							? pGetDiffSummaryFiles()
+							? pGetDiffSummaryFiles({dir: altDir})
 							: [];
 					}),
 			)

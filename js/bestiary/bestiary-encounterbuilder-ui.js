@@ -23,28 +23,28 @@ export class EncounterBuilderUiBestiary extends EncounterBuilderUi {
 		document.getElementById("float-token").classList.add("best-ecgen__hidden");
 		document.getElementById("wrp-pagecontent").classList.add("best-ecgen__hidden");
 
-		$(`#btn-encounterbuild`).click(() => Hist.setSubhash(this.constructor._HASH_KEY, true));
+		es(`#btn-encounterbuild`).onn("click", () => Hist.setSubhash(this.constructor._HASH_KEY, true));
 	}
 
 	render () {
 		super.render({
-			$parentRandomAndAdjust: $("#wrp-encounterbuild-random-and-adjust"),
-			$parentGroupAndDifficulty: $("#wrp-encounterbuild-group-and-difficulty"),
+			parentRandomAndAdjust: es("#wrp-encounterbuild-random-and-adjust"),
+			parentGroupAndDifficulty: es("#wrp-encounterbuild-group-and-difficulty"),
 		});
 		this._render_saveLoad();
 	}
 
 	_render_saveLoad () {
-		const $btnSave = $(`<button class="ve-btn ve-btn-default ve-btn-xs">Save Encounter</button>`)
-			.click(evt => this._sublistManager.pHandleClick_save(evt));
+		const btnSave = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Save Encounter</button>`
+			.onn("click", evt => this._sublistManager.pHandleClick_save(evt));
 
-		const $btnLoad = $(`<button class="ve-btn ve-btn-default ve-btn-xs">Load Encounter</button>`)
-			.click(evt => this._sublistManager.pHandleClick_load(evt));
+		const btnLoad = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Load Encounter</button>`
+			.onn("click", evt => this._sublistManager.pHandleClick_load(evt));
 
-		$$(document.getElementById("best-ecgen__wrp-save-controls"))`<div class="ve-flex-col">
+		ee(document.getElementById("best-ecgen__wrp-save-controls"))`<div class="ve-flex-col">
 			<div class="ve-flex-h-right ve-btn-group">
-				${$btnSave}
-				${$btnLoad}
+				${btnSave}
+				${btnLoad}
 			</div>
 		</div>`;
 	}
@@ -71,39 +71,39 @@ export class EncounterBuilderUiBestiary extends EncounterBuilderUi {
 		Hist.setSubhash(this.constructor._HASH_KEY, null);
 	}
 
-	_render_groupAndDifficulty ({rdState, $parentGroupAndDifficulty}) {
-		super._render_groupAndDifficulty({rdState, $parentGroupAndDifficulty});
+	_render_groupAndDifficulty ({rdState, parentGroupAndDifficulty}) {
+		super._render_groupAndDifficulty({rdState, parentGroupAndDifficulty});
 
-		const $btnSaveToUrl = $(`<button class="ve-btn ve-btn-default ve-btn-xs mr-2">Save to URL</button>`)
-			.click(() => this._sublistManager.pHandleClick_download({isUrl: true, $eleCopyEffect: $btnSaveToUrl}));
-		const $btnSaveToFile = $(`<button class="ve-btn ve-btn-default ve-btn-xs">Save to File</button>`)
-			.click(() => this._sublistManager.pHandleClick_download());
-		const $btnLoadFromFile = $(`<button class="ve-btn ve-btn-default ve-btn-xs">Load from File</button>`)
-			.click(evt => this._sublistManager.pHandleClick_upload({isAdditive: evt.shiftKey}));
-		const $btnCopyAsText = $(`<button class="ve-btn ve-btn-default ve-btn-xs mr-2" title="SHIFT for Multi-Line Format">Copy as Text</button>`).click((evt) => this._handleClickCopyAsText(evt));
-		const $btnReset = $(`<button class="ve-btn ve-btn-danger ve-btn-xs" title="SHIFT to Reset Players">Reset</button>`)
-			.click((evt) => this._sublistManager.pHandleClick_new(evt));
+		const btnSaveToUrl = ee`<button class="ve-btn ve-btn-default ve-btn-xs mr-2">Save to URL</button>`
+			.onn("click", () => this._sublistManager.pHandleClick_download({isUrl: true, eleCopyEffect: btnSaveToUrl}));
+		const btnSaveToFile = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Save to File</button>`
+			.onn("click", () => this._sublistManager.pHandleClick_download());
+		const btnLoadFromFile = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Load from File</button>`
+			.onn("click", evt => this._sublistManager.pHandleClick_upload({isAdditive: evt.shiftKey}));
+		const btnCopyAsText = ee`<button class="ve-btn ve-btn-default ve-btn-xs mr-2" title="SHIFT for Multi-Line Format">Copy as Text</button>`.onn("click", (evt) => this._handleClickCopyAsText(evt));
+		const btnReset = ee`<button class="ve-btn ve-btn-danger ve-btn-xs" title="SHIFT to Reset Players">Reset</button>`
+			.onn("click", (evt) => this._sublistManager.pHandleClick_new(evt));
 
-		const $btnBackToStatblocks = $(`<button class="ve-btn ve-btn-success ve-btn-xs">Back to Stat Blocks</button>`).click((evt) => this._handleClickBackToStatblocks(evt));
+		const btnBackToStatblocks = ee`<button class="ve-btn ve-btn-success ve-btn-xs">Back to Stat Blocks</button>`.onn("click", (evt) => this._handleClickBackToStatblocks(evt));
 
-		$$`<div class="ve-flex-col w-100">
+		ee`<div class="ve-flex-col w-100">
 			<hr class="hr-1">
 
 			<div class="ve-flex-v-center mb-2">
-				${$btnSaveToUrl}
+				${btnSaveToUrl}
 				<div class="ve-btn-group ve-flex-v-center mr-2">
-					${$btnSaveToFile}
-					${$btnLoadFromFile}
+					${btnSaveToFile}
+					${btnLoadFromFile}
 				</div>
-				${$btnCopyAsText}
-				${$btnReset}
+				${btnCopyAsText}
+				${btnReset}
 			</div>
-	
+
 			<div class="ve-flex">
-				${$btnBackToStatblocks}
+				${btnBackToStatblocks}
 			</div>
 		</div>`
-			.appendTo($parentGroupAndDifficulty);
+			.appendTo(parentGroupAndDifficulty);
 	}
 
 	/* -------------------------------------------- */
@@ -142,11 +142,11 @@ export class EncounterBuilderUiBestiary extends EncounterBuilderUi {
 
 	/* -------------------------------------------- */
 
-	onSublistChange ({$dispCrTotal}) {
+	onSublistChange ({dispCrTotal}) {
 		const encounterXpInfo = EncounterBuilderCreatureMeta.getEncounterXpInfo(this._comp.creatureMetas, this._getPartyMeta());
 
 		const monCount = this._sublistManager.sublistItems.map(it => it.data.count).sum();
-		$dispCrTotal.html(`${monCount} creature${monCount === 1 ? "" : "s"}; ${encounterXpInfo.baseXp.toLocaleString()} XP (<span class="help" title="Adjusted Encounter XP">Enc</span>: ${(encounterXpInfo.adjustedXp).toLocaleString()} XP)`);
+		dispCrTotal.html(`${monCount} creature${monCount === 1 ? "" : "s"}; ${encounterXpInfo.baseXp.toLocaleString()} XP (<span class="help" title="Adjusted Encounter XP">Enc</span>: ${(encounterXpInfo.adjustedXp).toLocaleString()} XP)`);
 	}
 
 	/* -------------------------------------------- */
@@ -160,7 +160,7 @@ export class EncounterBuilderUiBestiary extends EncounterBuilderUi {
 	_showBuilder () {
 		this._cachedTitle = this._cachedTitle || document.title;
 		document.title = "Encounter Builder - 5etools";
-		$(document.body).addClass("best__ecgen-active");
+		document.body.classList.add("best__ecgen-active");
 		this._bestiaryPage.doDeselectAll();
 		this._sublistManager.doSublistDeselectAll();
 	}
@@ -170,7 +170,7 @@ export class EncounterBuilderUiBestiary extends EncounterBuilderUi {
 			document.title = this._cachedTitle;
 			this._cachedTitle = null;
 		}
-		$(document.body).removeClass("best__ecgen-active");
+		document.body.classList.remove("best__ecgen-active");
 	}
 
 	_handleClick ({evt, mode, entity}) {
@@ -227,18 +227,18 @@ export class EncounterBuilderUiBestiary extends EncounterBuilderUi {
 		return {name, source, _isScaledCr: scaledTo != null, _scaledCr: scaledTo};
 	}
 
-	async pDoCrChange ($iptCr, monScaled, scaledTo) {
-		if (!$iptCr) return; // Should never occur, but if the creature has a non-adjustable CR, this field will not exist
+	async pDoCrChange (iptCr, monScaled, scaledTo) {
+		if (!iptCr) return; // Should never occur, but if the creature has a non-adjustable CR, this field will not exist
 
 		try {
 			await this._lock.pLock();
-			await this._pDoCrChange({$iptCr, monScaled, scaledTo});
+			await this._pDoCrChange({iptCr, monScaled, scaledTo});
 		} finally {
 			this._lock.unlock();
 		}
 	}
 
-	async _pDoCrChange ({$iptCr, monScaled, scaledTo}) {
+	async _pDoCrChange ({iptCr, monScaled, scaledTo}) {
 		// Fetch original
 		const mon = await DataLoader.pCacheAndGetHash(
 			UrlUtil.PG_BESTIARY,
@@ -248,14 +248,14 @@ export class EncounterBuilderUiBestiary extends EncounterBuilderUi {
 		const baseCr = mon.cr.cr || mon.cr;
 		if (baseCr == null) return;
 		const baseCrNum = Parser.crToNumber(baseCr);
-		const targetCr = $iptCr.val();
+		const targetCr = iptCr.val();
 
 		if (!Parser.isValidCr(targetCr)) {
 			JqueryUtil.doToast({
-				content: `"${$iptCr.val()}" is not a valid Challenge Rating! Please enter a valid CR (0-30). For fractions, "1/X" should be used.`,
+				content: `"${iptCr.val()}" is not a valid Challenge Rating! Please enter a valid CR (0-30). For fractions, "1/X" should be used.`,
 				type: "danger",
 			});
-			$iptCr.val(Parser.numberToCr(scaledTo || baseCr));
+			iptCr.val(Parser.numberToCr(scaledTo || baseCr));
 			return;
 		}
 
@@ -331,33 +331,33 @@ export class EncounterBuilderUiBestiary extends EncounterBuilderUi {
 	}
 
 	getSublistButtonsMeta (sublistItem) {
-		const $btnAdd = $(`<button title="Add (SHIFT for 5)" class="ve-btn ve-btn-success ve-btn-xs best-ecgen__btn-list"><span class="glyphicon glyphicon-plus"></span></button>`)
-			.click(evt => this._handleClick({evt, entity: sublistItem.data.entity, mode: "add"}));
+		const btnAdd = ee`<button title="Add (SHIFT for 5)" class="ve-btn ve-btn-success ve-btn-xs best-ecgen__btn-list"><span class="glyphicon glyphicon-plus"></span></button>`
+			.onn("click", evt => this._handleClick({evt, entity: sublistItem.data.entity, mode: "add"}));
 
-		const $btnSub = $(`<button title="Subtract (SHIFT for 5)" class="ve-btn ve-btn-danger ve-btn-xs best-ecgen__btn-list"><span class="glyphicon glyphicon-minus"></span></button>`)
-			.click(evt => this._handleClick({evt, entity: sublistItem.data.entity, mode: "subtract"}));
+		const btnSub = ee`<button title="Subtract (SHIFT for 5)" class="ve-btn ve-btn-danger ve-btn-xs best-ecgen__btn-list"><span class="glyphicon glyphicon-minus"></span></button>`
+			.onn("click", evt => this._handleClick({evt, entity: sublistItem.data.entity, mode: "subtract"}));
 
-		const $btnRandomize = $(`<button title="Randomize Monster" class="ve-btn ve-btn-default ve-btn-xs best-ecgen__btn-list"><span class="glyphicon glyphicon-random"></span></button>`)
-			.click(evt => this._pHandleShuffleClick({evt, sublistItem}));
+		const btnRandomize = ee`<button title="Randomize Monster" class="ve-btn ve-btn-default ve-btn-xs best-ecgen__btn-list"><span class="glyphicon glyphicon-random"></span></button>`
+			.onn("click", evt => this._pHandleShuffleClick({evt, sublistItem}));
 
-		const $btnLock = $(`<button title="Lock Monster against Randomizing/Adjusting" class="ve-btn ve-btn-default ve-btn-xs best-ecgen__btn-list"><span class="glyphicon glyphicon-lock"></span></button>`)
-			.click(() => this._sublistManager.pSetDataEntry({sublistItem, key: "isLocked", value: !sublistItem.data.isLocked}))
+		const btnLock = ee`<button title="Lock Monster against Randomizing/Adjusting" class="ve-btn ve-btn-default ve-btn-xs best-ecgen__btn-list"><span class="glyphicon glyphicon-lock"></span></button>`
+			.onn("click", () => this._sublistManager.pSetDataEntry({sublistItem, key: "isLocked", value: !sublistItem.data.isLocked}))
 			.toggleClass("active", sublistItem.data.isLocked);
 
-		const $wrp = $$`<span class="best-ecgen__visible ve-col-1-5 no-wrap pl-0 ve-btn-group">
-			${$btnAdd}
-			${$btnSub}
-			${$btnRandomize}
-			${$btnLock}
+		const wrp = ee`<span class="best-ecgen__visible ve-col-1-5 no-wrap pl-0 ve-btn-group">
+			${btnAdd}
+			${btnSub}
+			${btnRandomize}
+			${btnLock}
 		</span>`
-			.click(evt => {
+			.onn("click", evt => {
 				evt.preventDefault();
 				evt.stopPropagation();
 			});
 
 		return {
-			$wrp,
-			fnUpdate: () => $btnLock.toggleClass("active", sublistItem.data.isLocked),
+			wrp,
+			fnUpdate: () => btnLock.toggleClass("active", sublistItem.data.isLocked),
 		};
 	}
 }

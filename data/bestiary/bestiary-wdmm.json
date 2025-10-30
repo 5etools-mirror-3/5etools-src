@@ -771,6 +771,30 @@
 			"hasToken": true
 		},
 		{
+			"name": "Blacktongue Bullywug",
+			"source": "WDMM",
+			"page": 110,
+			"_copy": {
+				"name": "Bullywug",
+				"source": "MM",
+				"_mod": {
+					"action": {
+						"mode": "replaceArr",
+						"replace": "Spear",
+						"items": [
+							{
+								"name": "Spear",
+								"entries": [
+									"{@atk mw,rw} {@hit 3} to hit, reach 5 ft. or range 20/60 ft., one target. {@h}4 ({@damage 1d6 + 1}) piercing damage, or 5 ({@damage 1d8 + 1}) piercing damage if used with two hands to make a melee attack. A creature hit by a bullywug's Spear attack must succeed on a {@dc 13} Constitution saving throw or be {@condition poisoned} for 1 minute. A creature {@condition poisoned} in this way is also {@condition paralyzed}. The creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+								]
+							}
+						]
+					}
+				}
+			},
+			"hasToken": true
+		},
+		{
 			"name": "Bore Worm",
 			"source": "WDMM",
 			"page": 171,
@@ -1778,6 +1802,35 @@
 			],
 			"miscTags": [
 				"MW"
+			],
+			"hasToken": true
+		},
+		{
+			"name": "Flying Wand",
+			"source": "WDMM",
+			"page": 105,
+			"_copy": {
+				"name": "Flying Sword",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "\\bsword\\b",
+						"with": "wand"
+					}
+				}
+			},
+			"action": [
+				{
+					"name": "Magic Missile",
+					"entries": [
+						"The wand shoots a dart of magical force at one creature that it can detect within 60 feet of it. The target takes 3 ({@damage 1d4 + 1}) force damage as the dart hits it unerringly."
+					]
+				}
+			],
+			"tokenCredit": "Hayden Stutz",
+			"damageTags": [
+				"O"
 			],
 			"hasToken": true
 		},
@@ -5684,6 +5737,26 @@
 			"hasFluff": true
 		},
 		{
+			"name": "Xorta",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "WDMM",
+			"page": 98,
+			"_copy": {
+				"name": "Stone Giant",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the giant",
+						"with": "Xorta",
+						"flags": "i"
+					}
+				}
+			},
+			"hasToken": true
+		},
+		{
 			"name": "Zalthar Shadowdusk",
 			"isNpc": true,
 			"isNamedCreature": true,
@@ -6068,6 +6141,14 @@
 					}
 				}
 			},
+			"ac": [
+				{
+					"ac": 18,
+					"from": [
+						"{@item mithral plate armor|dmg}"
+					]
+				}
+			],
 			"hasToken": true
 		}
 	]

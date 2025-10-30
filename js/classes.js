@@ -2382,7 +2382,7 @@ ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
 
 		const btnSelectSubclasses = ee`<button class="ve-btn ve-btn-xs ve-btn-default bl-0 bt-0 btl-0 btr-0 bbr-0 bbl-0 h-20p" title="Select Subclasses"><span class="glyphicon glyphicon-th-list"></span></button>`
 			.onn("click", async () => {
-				const {$modal, doClose} = UiUtil.getShowModal({
+				const {eleModal, doClose} = UiUtil.getShowModal({
 					isEmpty: true,
 					isMinHeight0: true,
 					isMinWidth0: true,
@@ -2392,15 +2392,15 @@ ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
 					},
 				});
 
-				const {$stg, fnCleanup} = this._getSelectSubclassesMeta({
+				const {stg, fnCleanup} = this._getSelectSubclassesMeta({
 					cbOnSave: () => {
 						doClose();
 					},
 					isCloseButton: false,
 				});
-				$modal
+				eleModal
 					.addClass("bkmv")
-					.append($stg);
+					.appends(stg);
 			})
 			.appendTo(out);
 

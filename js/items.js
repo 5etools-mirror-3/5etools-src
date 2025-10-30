@@ -113,7 +113,7 @@ class ItemsSublistManager extends SublistManager {
 
 		if (availConversions.size) {
 			this._$totalValue
-				.text(Parser.itemValueToFullMultiCurrency({value, currencyConversion: this._sublistCurrencyConversion}))
+				.text(Parser.itemValueToFullMultiCurrency({value, currencyConversion: this._sublistCurrencyConversion}, {styleHint: this._styleHint}))
 				.off("click")
 				.click(async () => {
 					const values = ["(Default)", ...[...availConversions].sort(SortUtil.ascSortLower)];
@@ -214,7 +214,7 @@ class ItemsPage extends ListPage {
 					_properties: {name: "Properties", transform: it => Renderer.item.getRenderedDamageAndProperties(it)[1]},
 					_mastery: {name: "Mastery", transform: it => Renderer.item.getRenderedMastery(it)},
 					_weight: {name: "Weight", transform: it => Parser.itemWeightToFull(it)},
-					_value: {name: "Value", transform: it => Parser.itemValueToFullMultiCurrency(it)},
+					_value: {name: "Value", transform: it => Parser.itemValueToFullMultiCurrency(it, {styleHint: this._styleHint})},
 					_entries: {name: "Text", transform: (it) => Renderer.item.getRenderedEntries(it, {isCompact: true}), flex: 3},
 				},
 			},

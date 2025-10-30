@@ -138,6 +138,12 @@ export class LootGenMagicItem extends BaseComponent {
 				.map(([k, v]) => `${k.toTitleCase()}: ${v.toTitleCase()}`)
 				.join(", ");
 
+			const item = RollerUtil.rollOnArray(subItems);
+
+			const baseEntry = item
+				? `{@item ${DataUtil.proxy.getUidPacked("item", item, "item", {isMaintainCase: true})}}`
+				: `<span class="help-subtle" title="${TOOLTIP_NOTHING.qq()}">(No item)</span>`;
+
 			return new LootGenMagicItemSubItems({
 				dataManager,
 				lootGenMagicItems,
@@ -147,7 +153,7 @@ export class LootGenMagicItem extends BaseComponent {
 				itemsAltChooseDisplayText,
 				isItemsAltChooseRoll,
 				fnGetIsPreferAltChoose,
-				baseEntry: row.item,
+				baseEntry,
 				item: RollerUtil.rollOnArray(subItems),
 				roll: rowRoll,
 				rollAdditionalText: ptAdditionalText ? `; ${ptAdditionalText}` : "",
@@ -552,21 +558,26 @@ class LootGenMagicItemSubItems extends LootGenMagicItem {
 			});
 
 		const dispSubItem = ee`<div></div>`;
-		const hkItem = () => dispSubItem.html(LootGenRender.er(`{@item ${DataUtil.proxy.getUidPacked("item", this._state.item, "item", {isMaintainCase: true})}}`));
-		this._addHookBase("item", hkItem);
-		hkItem();
+		this._addHookBase("item", () => {
+			if (!this._state.item) return;
+			dispSubItem.html(LootGenRender.er(`{@item ${DataUtil.proxy.getUidPacked("item", this._state.item, "item", {isMaintainCase: true})}}`));
+		})();
 
 		const btnReroll = this._getBtnReroll();
 
-		return ee`<li class="split-v-center">
-			<div class="ve-flex-v-center ve-flex-wrap pr-3 min-w-0">
-				${dispBaseEntry}
-				<div class="ve-flex-v-center italic mr-2">
+		const ptSubItem = this._subItems.length
+			? ee`<div class="ve-flex-v-center italic mr-2">
 					<span>(</span>
 					${btnRerollSubItem}
 					${dispSubItem}
 					<span>)</span>
-				</div>
+				</div>`
+			: null;
+
+		return ee`<li class="split-v-center">
+			<div class="ve-flex-v-center ve-flex-wrap pr-3 min-w-0">
+				${dispBaseEntry}
+				${ptSubItem}
 				${dispRoll}
 			</div>
 			${btnReroll}

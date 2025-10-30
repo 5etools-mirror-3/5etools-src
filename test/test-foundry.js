@@ -4,6 +4,7 @@ import "../js/parser.js";
 import "../js/utils.js";
 import "../js/render.js";
 import "../js/render-dice.js";
+import {pInitConsoleOut} from "../node/util-commander.js";
 
 const pLoadData = async (originalFilename, originalPath) => {
 	switch (originalFilename) {
@@ -294,8 +295,7 @@ const SPECIAL_PROPS = {
 };
 
 async function main () {
-	// Arbitrary initial delay to allow IntelliJ console to properly init(?!)
-	await MiscUtil.pDelay(200);
+	await pInitConsoleOut();
 
 	const errors = [];
 	const scaleValues = {};

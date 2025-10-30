@@ -51,6 +51,8 @@ export class ConverterBackground extends ConverterFeatureBase {
 		}
 		state.doPostLoop();
 
+		this._doParseText_one_applyListItems(state, options);
+
 		if (!background.entries?.length) delete background.entries;
 
 		const entityOut = this._getFinalEntity(state, options);
@@ -182,9 +184,13 @@ export class ConverterBackground extends ConverterFeatureBase {
 		}
 
 		state.entity.fluff = {entries};
-		if (state._one_listItems.length) {
-			state.entity.entries = [{type: "list", style: "list-hang-notitle", items: state._one_listItems}];
-		}
+	}
+
+	static _doParseText_one_applyListItems (state, options) {
+		if (options.styleHint === SITE_STYLE__CLASSIC) return;
+
+		if (!state._one_listItems?.length) return;
+		state.entity.entries = [{type: "list", style: "list-hang-notitle", items: state._one_listItems}];
 	}
 
 	// SHARED UTILITY FUNCTIONS ////////////////////////////////////////////////////////////////////////////////////////

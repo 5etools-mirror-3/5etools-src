@@ -595,6 +595,7 @@
 								"insight",
 								"investigation",
 								"medicine",
+								"nature",
 								"religion"
 							],
 							"count": 2
@@ -1980,6 +1981,21 @@
 				"Phantasmal Creatures|Wizard|XPHB|Illusionist|XPHB|6",
 				"Illusory Self|Wizard|XPHB|Illusionist|XPHB|10",
 				"Illusory Reality|Wizard|XPHB|Illusionist|XPHB|14"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Bladesinger",
+			"shortName": "Bladesinger",
+			"source": "FRHoF",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"edition": "one",
+			"subclassFeatures": [
+				"Bladesinger|Wizard|XPHB|Bladesinger|FRHoF|3|FRHoF",
+				"Extra Attack|Wizard|XPHB|Bladesinger|FRHoF|6|FRHoF",
+				"Song of Defense|Wizard|XPHB|Bladesinger|FRHoF|10|FRHoF",
+				"Song of Victory|Wizard|XPHB|Bladesinger|FRHoF|14|FRHoF"
 			],
 			"hasFluffImages": true
 		}
@@ -4181,6 +4197,115 @@
 					"page": true
 				}
 			}
+		},
+		{
+			"name": "Bladesinger",
+			"source": "FRHoF",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Bladesinger",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"{@i Wield Weapon and Wizardry in Elegant Tandem}",
+				"Bladesingers master a tradition of wizardry that incorporates swordplay and dance. In combat, a Bladesinger uses intricate, elegant maneuvers that fend off harm and allow the Bladesinger to channel magic into devastating attacks and a cunning defense. Many who have observed a Bladesinger at work remember the display as one of the more beautiful experiences in their life\u2014a glorious dance accompanied by a singing blade.",
+				"Bladesinging is associated with the ancient elven societies that first mastered the art and coined the term. Even today, most Bladesingers still hail from old elven realms, such as Myth Drannor, or from non-elven societies that share land and history with elves, such as the Silver Marches. Wherever they hail from, Bladesingers take their talents all across the Realms to help common people and perform heroic deeds. Most communities greet the arrival of a Bladesinger as a good omen.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Bladesong|Wizard|XPHB|Bladesinger|FRHoF|3|FRHoF"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Training in War and Song|Wizard|XPHB|Bladesinger|FRHoF|3|FRHoF"
+				}
+			]
+		},
+		{
+			"name": "Bladesong",
+			"source": "FRHoF",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Bladesinger",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"As a {@variantrule Bonus Action|XPHB}, you invoke an elven magic called the Bladesong, provided you aren't wearing armor or using a Shield.",
+				"The Bladesong lasts for 1 minute and ends early if you have the Incapacitated condition, if you don armor or a Shield, or if you use two hands to make an attack with a weapon. You can dismiss the Bladesong at any time (no action required).",
+				"While the Bladesong is active, you gain the following benefits. You can invoke the Bladesong a number of times equal to your Intelligence modifier (minimum of once), and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}. You regain one expended use when you use Arcane Recovery.",
+				{
+					"type": "entries",
+					"name": "Agility",
+					"entries": [
+						"You gain a bonus to your AC equal to your Intelligence modifier (minimum of +1), and your {@variantrule Speed|XPHB} increases by 10 feet. In addition, you have {@variantrule Advantage|XPHB} on Dexterity ({@skill Acrobatics|XPHB}) checks."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Bladework",
+					"entries": [
+						"Whenever you attack with a weapon with which you have proficiency, you can use your Intelligence modifier for the attack and damage rolls instead of using Strength or Dexterity."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Focus",
+					"entries": [
+						"When you make a Constitution saving throw to maintain {@status Concentration|XPHB}, you can add your Intelligence modifier to the total."
+					]
+				}
+			]
+		},
+		{
+			"name": "Training in War and Song",
+			"source": "FRHoF",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Bladesinger",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"You gain proficiency with all Melee Martial weapons that don't have the Two-Handed or Heavy property. You can use a Melee weapon with which you have proficiency as a {@variantrule Spellcasting Focus|XPHB} for your Wizard spells.",
+				"You also gain proficiency in one of the following skills of your choice: {@skill Acrobatics|XPHB}, {@skill Athletics|XPHB}, {@skill Performance|XPHB}, or {@skill Persuasion|XPHB}."
+			]
+		},
+		{
+			"name": "Extra Attack",
+			"source": "FRHoF",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Bladesinger",
+			"subclassSource": "FRHoF",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"You can attack twice, instead of once, whenever you take the {@action Attack|XPHB} action on your turn. Moreover, you can cast {@filter one of your Wizard cantrips that has a casting time of an action|spells|level=0|class=wizard|cast time=action} in place of one of those attacks."
+			]
+		},
+		{
+			"name": "Song of Defense",
+			"source": "FRHoF",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Bladesinger",
+			"subclassSource": "FRHoF",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"When you take damage while your Bladesong is active, you can take a {@variantrule Reaction|XPHB} to expend one spell slot and reduce the damage taken by an amount equal to five times the spell slot's level."
+			]
+		},
+		{
+			"name": "Song of Victory",
+			"source": "FRHoF",
+			"className": "Wizard",
+			"classSource": "XPHB",
+			"subclassShortName": "Bladesinger",
+			"subclassSource": "FRHoF",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"After you cast a spell that has a casting time of an action, you can make one attack with a weapon as a {@variantrule Bonus Action|XPHB}."
+			]
 		},
 		{
 			"name": "School of Abjuration",

@@ -2029,6 +2029,40 @@
 				"Thief's Reflexes|Rogue|XPHB|Thief|XPHB|17"
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Scion of the Three",
+			"shortName": "Scion of the Three",
+			"source": "FRHoF",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"innate": {
+						"3": [
+							{
+								"choose": {
+									"from": [
+										"minor illusion|xphb#c",
+										"blade ward|xphb#c",
+										"chill touch|xphb#c"
+									],
+									"count": 1
+								}
+							}
+						]
+					},
+					"ability": "int"
+				}
+			],
+			"subclassFeatures": [
+				"Scion of the Three|Rogue|XPHB|Scion of the Three|FRHoF|3|FRHoF",
+				"Strike Fear|Rogue|XPHB|Scion of the Three|FRHoF|9|FRHoF",
+				"Aura of Malevolence|Rogue|XPHB|Scion of the Three|FRHoF|13|FRHoF",
+				"Dread Incarnate|Rogue|XPHB|Scion of the Three|FRHoF|17|FRHoF"
+			],
+			"hasFluffImages": true
 		}
 	],
 	"classFeature": [
@@ -3869,6 +3903,147 @@
 			"header": 2,
 			"entries": [
 				"Beginning at 17th level, your mastery of the blade lets you turn failure into success in combat. If you miss with an attack roll, you can roll it again with advantage. Once you do so, you can't use this feature again until you finish a short or long rest."
+			]
+		},
+		{
+			"name": "Bloodthirst",
+			"source": "FRHoF",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Scion of the Three",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"When an enemy you can see within 30 feet of yourself takes damage and is {@status Bloodied|XPHB} after taking that damage but not killed outright, you can take a {@variantrule Reaction|XPHB} and {@variantrule Teleportation|XPHB|teleport} to an unoccupied space you can see within 5 feet of that enemy. You can then make one melee attack. You can use this feature a number of times equal to your Intelligence modifier (minimum of once), and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
+			]
+		},
+		{
+			"name": "Dread Allegiance",
+			"source": "FRHoF",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Scion of the Three",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"Choose one of the Dead Three: {@deity Bane|Faerûnian|FRHoF}, {@deity Bhaal|Faerûnian|FRHoF}, or {@deity Myrkul|Faerûnian|FRHoF}. You gain {@variantrule Resistance|XPHB} to one type of damage and the ability to cast a cantrip, as detailed in the table below; Intelligence is your spellcasting ability for this cantrip. When you finish a {@variantrule Long Rest|XPHB}, you can change your choice.",
+				{
+					"type": "table",
+					"page": 7,
+					"colLabels": [
+						"God",
+						"Damage Resistance",
+						"Cantrip"
+					],
+					"colStyles": [
+						"col-4",
+						"col-4",
+						"col-4"
+					],
+					"rows": [
+						[
+							"{@deity Bane|Faerûnian|FRHoF}",
+							"Psychic",
+							"{@spell Minor Illusion|XPHB}"
+						],
+						[
+							"{@deity Bhaal|Faerûnian|FRHoF}",
+							"Poison",
+							"{@spell Blade Ward|XPHB}"
+						],
+						[
+							"{@deity Myrkul|Faerûnian|FRHoF}",
+							"Necrotic",
+							"{@spell Chill Touch|XPHB}"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Scion of the Three",
+			"source": "FRHoF",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Scion of the Three",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"{@i Become a Gruesome Agent of Malice}",
+				"A Scion of the Three draws power from a group of malevolent gods known as the Dead Three: {@deity Bane|Faerûnian|FRHoF}, deity of tyranny; {@deity Bhaal|Faerûnian|FRHoF}, deity of violence and murder; and {@deity Myrkul|Faerûnian|FRHoF}, deity of death. While some Rogues of this subclass pledge themselves ardently to those three macabre gods, others find themselves thrust on this path by a curse. Either way, a scion's power manifests as various occult gifts, as well as an uncanny talent for striking and terrifying foes.",
+				"Scions of the Three are most common in Baldur's Gate, where the Dead Three have long competed for influence over mortal hearts. Underground cults to {@deity Bane|Faerûnian|FRHoF}, {@deity Bhaal|Faerûnian|FRHoF}, and {@deity Myrkul|Faerûnian|FRHoF} often count Scions of the Three among their most useful agents. Outside Baldur's Gate, secular thieves' guilds such as the Shadow Thieves of Amn or Xanathar's guild in Waterdeep might cautiously call on a Scion of the Three to undertake an especially violent contract.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Bloodthirst|Rogue|XPHB|Scion of the Three|FRHoF|3|FRHoF"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Dread Allegiance|Rogue|XPHB|Scion of the Three|FRHoF|3|FRHoF"
+				}
+			]
+		},
+		{
+			"name": "Strike Fear",
+			"source": "FRHoF",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Scion of the Three",
+			"subclassSource": "FRHoF",
+			"level": 9,
+			"header": 2,
+			"entries": [
+				"You gain the following {@classFeature Cunning Strike|Rogue|XPHB|5|XPHB} option.",
+				{
+					"type": "entries",
+					"name": "Terrify (Cost: {@dice 1d6})",
+					"page": 7,
+					"entries": [
+						"The target must succeed on a Wisdom saving throw, or it has the {@condition Frightened|XPHB} condition for 1 minute. While the target is Frightened in this way, you have {@variantrule Advantage|XPHB} on attack rolls against the target.",
+						"The {@condition Frightened|XPHB} target repeats the save at the end of each of its turns, ending the effect on itself on a success."
+					]
+				}
+			]
+		},
+		{
+			"name": "Aura of Malevolence",
+			"source": "FRHoF",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Scion of the Three",
+			"subclassSource": "FRHoF",
+			"level": 13,
+			"header": 2,
+			"entries": [
+				"You radiate malignant power associated with one of the Dead Three. When you use Bloodthirst|Rogue|XPHB|Scion of the Three|FRHoF|3|FRHoF and teleport, each creature of your choice within 10 feet of either the space you left or your destination space (your choice) takes damage equal to your Intelligence modifier; the damage type is the same as the damage {@variantrule Resistance|XPHB} granted by your choice in the Dread Allegiance feature. {@variantrule Damage|XPHB} dealt by this feature ignores {@variantrule Resistance|XPHB}."
+			]
+		},
+		{
+			"name": "Dread Incarnate",
+			"source": "FRHoF",
+			"className": "Rogue",
+			"classSource": "XPHB",
+			"subclassShortName": "Scion of the Three",
+			"subclassSource": "FRHoF",
+			"level": 17,
+			"header": 2,
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Cutthroat",
+					"page": 7,
+					"entries": [
+						"You regain one expended use of {@subclassFeature Bloodthirst|Rogue|XPHB|Scion of the Three|FRHoF|3|FRHoF} when you finish a {@variantrule Short Rest|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Murderous Intent",
+					"page": 7,
+					"entries": [
+						"When you roll for your {@classFeature Sneak Attack|Rogue|XPHB|1|XPHB} damage, you can treat a roll of a 1 or 2 on the die as a 3."
+					]
+				}
 			]
 		},
 		{

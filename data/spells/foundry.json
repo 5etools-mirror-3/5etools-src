@@ -588,6 +588,96 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Animal Shapes",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Initial Transformation",
+					"type": "transform",
+					"activation": {
+						"type": "action"
+					},
+					"profiles": [
+						{
+							"cr": "4",
+							"sizes": [
+								"tiny",
+								"sm",
+								"med",
+								"lg"
+							],
+							"types": [
+								"beast"
+							]
+						}
+					],
+					"transform": {
+						"customize": true,
+						"mode": "cr",
+						"preset": "polymorph"
+					},
+					"settings": {
+						"effects": [
+							"origin",
+							"otherOrigin",
+							"spell"
+						],
+						"keep": [
+							"mental",
+							"languages",
+							"type",
+							"hp"
+						],
+						"tempFormula": "@source.attributes.hp.max",
+						"preset": "polymorph",
+						"transformTokens": true
+					}
+				},
+				{
+					"name": "Follow Up Transformations",
+					"type": "transform",
+					"activation": {
+						"type": "action"
+					},
+					"profiles": [
+						{
+							"cr": "4",
+							"sizes": [
+								"tiny",
+								"sm",
+								"med",
+								"lg"
+							],
+							"types": [
+								"beast"
+							]
+						}
+					],
+					"transform": {
+						"customize": true,
+						"mode": "cr",
+						"preset": "polymorph"
+					},
+					"settings": {
+						"effects": [
+							"origin",
+							"otherOrigin",
+							"spell"
+						],
+						"keep": [
+							"mental",
+							"languages",
+							"type",
+							"hp"
+						],
+						"preset": "polymorph",
+						"transformTokens": true
+					}
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Animate Dead",
 			"source": "XPHB",
 			"system": {
@@ -1566,6 +1656,18 @@
 					"duration": {
 						"seconds": 60
 					},
+					"changes": [
+						{
+							"key": "system.abilities.wis.save.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						},
+						{
+							"key": "system.attributes.death.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						}
+					],
 					"description": "The target has Advantage on Wisdom saving throws and Death Saving Throws and regains the maximum number of Hit Points possible from any healing."
 				}
 			],
@@ -1726,6 +1828,143 @@
 				}
 			],
 			"effects": [
+				{
+					"name": "Cursed Charisma",
+					"duration": {
+						"rounds": 1,
+						"seconds": 60
+					},
+					"statuses": [
+						"cursed"
+					],
+					"changes": [
+						{
+							"key": "system.abilities.cha.check.roll.mode",
+							"mode": "ADD",
+							"value": -1
+						},
+						{
+							"key": "system.abilities.cha.save.roll.mode",
+							"mode": "ADD",
+							"value": -1
+						}
+					],
+					"description": "The target has Disadvantage on ability checks and saving throws made with the chosen ability."
+				},
+				{
+					"name": "Cursed Constitution",
+					"duration": {
+						"rounds": 1,
+						"seconds": 60
+					},
+					"statuses": [
+						"cursed"
+					],
+					"changes": [
+						{
+							"key": "system.abilities.con.check.roll.mode",
+							"mode": "ADD",
+							"value": -1
+						},
+						{
+							"key": "system.abilities.con.save.roll.mode",
+							"mode": "ADD",
+							"value": -1
+						}
+					],
+					"description": "The target has Disadvantage on ability checks and saving throws made with the chosen ability."
+				},
+				{
+					"name": "Cursed Dexterity",
+					"duration": {
+						"rounds": 1,
+						"seconds": 60
+					},
+					"statuses": [
+						"cursed"
+					],
+					"changes": [
+						{
+							"key": "system.abilities.dex.check.roll.mode",
+							"mode": "ADD",
+							"value": -1
+						},
+						{
+							"key": "system.abilities.dex.save.roll.mode",
+							"mode": "ADD",
+							"value": -1
+						}
+					],
+					"description": "The target has Disadvantage on ability checks and saving throws made with the chosen ability."
+				},
+				{
+					"name": "Cursed Intelligence",
+					"duration": {
+						"rounds": 1,
+						"seconds": 60
+					},
+					"statuses": [
+						"cursed"
+					],
+					"changes": [
+						{
+							"key": "system.abilities.int.check.roll.mode",
+							"mode": "ADD",
+							"value": -1
+						},
+						{
+							"key": "system.abilities.int.save.roll.mode",
+							"mode": "ADD",
+							"value": -1
+						}
+					],
+					"description": "The target has Disadvantage on ability checks and saving throws made with the chosen ability."
+				},
+				{
+					"name": "Cursed Strength",
+					"duration": {
+						"seconds": 60
+					},
+					"statuses": [
+						"cursed"
+					],
+					"changes": [
+						{
+							"key": "system.abilities.str.check.roll.mode",
+							"mode": "ADD",
+							"value": -1
+						},
+						{
+							"key": "system.abilities.str.save.roll.mode",
+							"mode": "ADD",
+							"value": -1
+						}
+					],
+					"description": "The target has Disadvantage on ability checks and saving throws made with the chosen ability."
+				},
+				{
+					"name": "Cursed Wisdom",
+					"duration": {
+						"rounds": 1,
+						"seconds": 60
+					},
+					"statuses": [
+						"cursed"
+					],
+					"changes": [
+						{
+							"key": "system.abilities.wis.save.roll.mode",
+							"mode": "ADD",
+							"value": -1
+						},
+						{
+							"key": "system.abilities.wis.save.roll.mode",
+							"mode": "ADD",
+							"value": -1
+						}
+					],
+					"description": "The target has Disadvantage on ability checks and saving throws made with the chosen ability."
+				},
 				{
 					"foundryId": "bestowCurse",
 					"name": "Cursed Attacks",
@@ -2884,7 +3123,7 @@
 						"type": "action"
 					},
 					"bonuses": {
-						"attackDamage": "@mod + (2 * @item.level - 12)d12"
+						"attackDamage": "@mod + (@item.level - 6)d12"
 					},
 					"match": {
 						"attacks": true,
@@ -2947,7 +3186,7 @@
 								],
 								"scaling": {
 									"mode": "whole",
-									"number": 2
+									"number": 1
 								}
 							}
 						]
@@ -5603,9 +5842,6 @@
 		{
 			"name": "Enhance Ability",
 			"source": "XPHB",
-			"system": {
-				"target.affects.count": "@item.level - 1"
-			},
 			"activities": [
 				{
 					"type": "utility",
@@ -5638,6 +5874,13 @@
 					"duration": {
 						"seconds": 3600
 					},
+					"changes": [
+						{
+							"key": "system.abilities.str.check.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						}
+					],
 					"description": "The target has Advantage on ability checks made with the chosen ability."
 				},
 				{
@@ -5646,6 +5889,13 @@
 					"duration": {
 						"seconds": 3600
 					},
+					"changes": [
+						{
+							"key": "system.abilities.dex.check.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						}
+					],
 					"description": "The target has Advantage on ability checks made with the chosen ability."
 				},
 				{
@@ -5654,6 +5904,13 @@
 					"duration": {
 						"seconds": 3600
 					},
+					"changes": [
+						{
+							"key": "system.abilities.int.check.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						}
+					],
 					"description": "The target has Advantage on ability checks made with the chosen ability."
 				},
 				{
@@ -5662,6 +5919,13 @@
 					"duration": {
 						"seconds": 3600
 					},
+					"changes": [
+						{
+							"key": "system.abilities.wis.check.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						}
+					],
 					"description": "The target has Advantage on ability checks made with the chosen ability."
 				},
 				{
@@ -5670,6 +5934,13 @@
 					"duration": {
 						"seconds": 3600
 					},
+					"changes": [
+						{
+							"key": "system.abilities.cha.check.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						}
+					],
 					"description": "The target has Advantage on ability checks made with the chosen ability."
 				}
 			],
@@ -5742,6 +6013,16 @@
 							"key": "system.bonuses.rwak.damage",
 							"mode": "ADD",
 							"value": "- 1d4"
+						},
+						{
+							"key": "system.abilities.str.check.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						},
+						{
+							"key": "system.abilities.str.save.roll.mode",
+							"mode": "ADD",
+							"value": 1
 						}
 					],
 					"description": "The target's size decreases by one category\u2014from Medium to Small, for example. The target also has Disadvantage on Strength checks and Strength saving throws. The target's attacks with its reduced weapons or Unarmed Strikes deal 1d4 less damage on a hit (this can't reduce the damage below 1)."
@@ -7010,6 +7291,68 @@
 					"duration": {
 						"seconds": 28800
 					},
+					"changes": [
+						{
+							"key": "system.abilities.str.save.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						},
+						{
+							"key": "system.abilities.dex.save.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						},
+						{
+							"key": "system.abilities.con.save.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						},
+						{
+							"key": "system.abilities.int.save.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						},
+						{
+							"key": "system.abilities.wis.save.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						},
+						{
+							"key": "system.abilities.cha.save.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						},
+						{
+							"key": "system.abilities.str.check.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						},
+						{
+							"key": "system.abilities.dex.check.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						},
+						{
+							"key": "system.abilities.con.check.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						},
+						{
+							"key": "system.abilities.int.check.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						},
+						{
+							"key": "system.abilities.wis.check.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						},
+						{
+							"key": "system.abilities.cha.check.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						}
+					],
 					"description": "For the duration, the target has Advantage on D20 Tests, and other creatures have Disadvantage on attack rolls against it."
 				}
 			],
@@ -7148,6 +7491,11 @@
 							"key": "system.attributes.movement.swim",
 							"mode": "UPGRADE",
 							"value": 1
+						},
+						{
+							"key": "system.attributes.movement.ignoredDifficultTerrain",
+							"mode": "ADD",
+							"value": "all"
 						}
 					]
 				}
@@ -7259,6 +7607,21 @@
 							"key": "img",
 							"mode": "OVERRIDE",
 							"value": "icons/magic/air/wind-vortex-swirl-blue-purple.webp"
+						},
+						{
+							"key": "system.abilities.str.save.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						},
+						{
+							"key": "system.abilities.dex.save.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						},
+						{
+							"key": "system.abilities.con.save.roll.mode",
+							"mode": "ADD",
+							"value": 1
 						}
 					],
 					"description": "The target's only method of movement is a Fly Speed of 10 feet, and it can hover. The target can enter and occupy the space of another creature. The target has Resistance to Bludgeoning, Piercing, and Slashing damage; it has Immunity to the &Reference[prone apply=false] condition; and it has Advantage on Strength, Dexterity, and Constitution saving throws. The target can pass through narrow openings, but it treats liquids as though they were solid surfaces. The target can't talk or manipulate objects, and any objects it was carrying or holding can't be dropped, used, or otherwise interacted with. Finally, the target can't attack or cast spells."
@@ -8249,6 +8612,11 @@
 							"key": "system.attributes.ac.bonus",
 							"mode": "ADD",
 							"value": 2
+						},
+						{
+							"key": "system.abilities.dex.save.roll.mode",
+							"mode": "ADD",
+							"value": 1
 						}
 					],
 					"description": "Until the spell ends, the target's Speed is doubled, it gains a +2 bonus to Armor Class, it has Advantage on Dexterity saving throws, and it gains an additional action on each of its turns. That action can be used to take only the Attack (one attack only), Dash, Disengage, Hide, or Utilize action. When the spell ends, the target is Incapacitated and has a Speed of 0 until the end of its next turn, as a wave of lethargy washes over it."
@@ -8916,7 +9284,39 @@
 					"name": "Holy Protection",
 					"duration": {
 						"seconds": 60
-					}
+					},
+					"changes": [
+						{
+							"key": "system.abilities.str.save.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						},
+						{
+							"key": "system.abilities.dex.save.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						},
+						{
+							"key": "system.abilities.con.save.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						},
+						{
+							"key": "system.abilities.int.save.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						},
+						{
+							"key": "system.abilities.wis.save.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						},
+						{
+							"key": "system.abilities.cha.save.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						}
+					]
 				},
 				{
 					"foundryId": "holyAura1",
@@ -11405,6 +11805,24 @@
 							"calculation": "spellcasting"
 						}
 					}
+				},
+				{
+					"type": "transform",
+					"activation": {
+						"type": ""
+					},
+					"profiles": [
+						{
+							"name": "Creature into Creature",
+							"types": [
+								"beast"
+							]
+						}
+					],
+					"transform": {
+						"mode": "cr",
+						"preset": "polymorph"
+					}
 				}
 			],
 			"migrationVersion": 3
@@ -12467,6 +12885,16 @@
 							"key": "system.bonuses.rsak.damage",
 							"mode": "ADD",
 							"value": "- 1d8"
+						},
+						{
+							"key": "system.abilities.str.check.roll.mode",
+							"mode": "ADD",
+							"value": -1
+						},
+						{
+							"key": "system.abilities.str.save.roll.mode",
+							"mode": "ADD",
+							"value": -1
 						}
 					],
 					"description": "The target has Disadvantage on Strength-based D20 Tests for the duration. During that time, it also subtracts 1d8 from all its damage rolls. The target repeats the [[/save ability=con]] save at the end of each of its turns, ending the spell on a success."
@@ -13536,6 +13964,112 @@
 						"unconscious"
 					],
 					"description": "If the target is a creature, it enters a state of suspended animation; it has the &Reference[Unconscious apply=false] condition, doesn't age, and doesn't need food, water, or air. This spell also ends if the target takes any damage."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Shapechange",
+			"source": "XPHB",
+			"activities": [
+				{
+					"name": "Initial Transformation",
+					"type": "transform",
+					"activation": {
+						"type": "action"
+					},
+					"profiles": [
+						{
+							"cr": "max(@details.level, @details.cr)",
+							"types": [
+								"aberration",
+								"beast",
+								"celestial",
+								"dragon",
+								"elemental",
+								"fey",
+								"fiend",
+								"giant",
+								"humanoid",
+								"monstrosity",
+								"ooze",
+								"plant"
+							]
+						}
+					],
+					"transform": {
+						"customize": true,
+						"mode": "cr",
+						"preset": "polymorph"
+					},
+					"settings": {
+						"effects": [
+							"origin",
+							"otherOrigin",
+							"spell"
+						],
+						"keep": [
+							"mental",
+							"saves",
+							"skills",
+							"languages",
+							"spells",
+							"type",
+							"hp"
+						],
+						"tempFormula": "@source.attributes.hp.max",
+						"preset": "polymorph",
+						"transformTokens": true
+					}
+				},
+				{
+					"name": "Follow Up Transformations",
+					"type": "transform",
+					"activation": {
+						"type": "action"
+					},
+					"profiles": [
+						{
+							"cr": "max(@details.level, @details.cr)",
+							"types": [
+								"aberration",
+								"beast",
+								"celestial",
+								"dragon",
+								"elemental",
+								"fey",
+								"fiend",
+								"giant",
+								"humanoid",
+								"monstrosity",
+								"ooze",
+								"plant"
+							]
+						}
+					],
+					"transform": {
+						"customize": true,
+						"mode": "cr",
+						"preset": "polymorph"
+					},
+					"settings": {
+						"effects": [
+							"origin",
+							"otherOrigin",
+							"spell"
+						],
+						"keep": [
+							"mental",
+							"saves",
+							"skills",
+							"languages",
+							"spells",
+							"type",
+							"hp"
+						],
+						"preset": "polymorph",
+						"transformTokens": true
+					}
 				}
 			],
 			"migrationVersion": 3
@@ -16376,6 +16910,41 @@
 			"migrationVersion": 3
 		},
 		{
+			"name": "Thaumaturgy",
+			"source": "XPHB",
+			"activities": [
+				{
+					"type": "utility",
+					"activation": {
+						"type": "action"
+					},
+					"effects": [
+						{
+							"foundryId": "thaumaturgy"
+						}
+					]
+				}
+			],
+			"effects": [
+				{
+					"foundryId": "thaumaturgy",
+					"name": "Booming Voice",
+					"duration": {
+						"seconds": 60
+					},
+					"changes": [
+						{
+							"key": "system.skills.itm.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						}
+					],
+					"description": "Your voice booms up to three times as loud as normal for 1 minute. For the duration, you have Advantage on [[/check ability=cha skill=itm]] checks."
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
 			"name": "Thorn Whip",
 			"source": "XPHB",
 			"activities": [
@@ -16626,6 +17195,36 @@
 						"dc": {
 							"calculation": "spellcasting"
 						}
+					}
+				},
+				{
+					"type": "transform",
+					"activation": {
+						"type": ""
+					},
+					"profiles": [
+						{
+							"name": "Creature into Creature"
+						},
+						{
+							"cr": "9",
+							"name": "Object into Creature"
+						}
+					],
+					"transform": {
+						"customize": true,
+						"mode": "cr",
+						"preset": "polymorph"
+					},
+					"settings": {
+						"effects": [
+							"origin",
+							"otherOrigin",
+							"spell"
+						],
+						"tempFormula": "@source.attributes.hp.max",
+						"preset": "polymorph",
+						"transformTokens": true
 					}
 				}
 			],

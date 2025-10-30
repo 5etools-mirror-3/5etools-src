@@ -11,6 +11,7 @@ export class BrewUtil2Base {
 	_STORAGE_KEY;
 	_STORAGE_KEY_META;
 
+	_STORAGE_KEY_RELOAD_MESSAGE;
 	_STORAGE_KEY_CUSTOM_URL;
 	_STORAGE_KEY_MIGRATION_VERSION;
 
@@ -70,6 +71,7 @@ export class BrewUtil2Base {
 
 			this._pInit_doBindDragDrop();
 			this._pInit_pDoLoadFonts().then(null);
+			await this._pInit_pDoShowReloadMessage();
 		})();
 		return this._pActiveInit;
 	}
@@ -161,6 +163,20 @@ export class BrewUtil2Base {
 		setTimeout(() => { throw new Error(errors.map(({message, reason}) => [message, reason].join("\n")).join("\n\n")); });
 	}
 
+	async _pInit_pDoShowReloadMessage () {
+		const messageInfo = await this._storage.pGet(this._STORAGE_KEY_RELOAD_MESSAGE);
+		if (!messageInfo) return;
+		await this._storage.pRemove(this._STORAGE_KEY_RELOAD_MESSAGE);
+		try {
+			JqueryUtil.doToast({
+				...messageInfo,
+				content: e_({outer: messageInfo.contentHtml}),
+			});
+		} catch (e) {
+			setTimeout(() => { throw e; });
+		}
+	}
+
 	/* -------------------------------------------- */
 
 	async pGetCustomUrl () { return this._storage.pGet(this._STORAGE_KEY_CUSTOM_URL); }
@@ -185,6 +201,12 @@ export class BrewUtil2Base {
 
 		location.reload();
 	}
+
+	async pSetReloadMessage (messageInfo) {
+		await this._storage.pSet(this._STORAGE_KEY_RELOAD_MESSAGE, messageInfo);
+	}
+
+	/* -------------------------------------------- */
 
 	_getBrewMetas () {
 		return [
@@ -752,6 +774,8 @@ export class BrewUtil2Base {
 	}
 
 	async pAddBrewsFromFiles (files) {
+		if (!files?.length) return;
+
 		let brewDocs = []; let unavailableSources = [];
 
 		try {
