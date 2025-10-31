@@ -162,7 +162,7 @@ class InitTrackerPlayerViewV1 {
 			</div>
 		</div>`;
 
-		const body = es(document.body);
+		const body = e_(document.body);
 		body.onn("keypress", (evt) => {
 			if (this._parent._getActiveTab() !== tabMeta) return;
 
@@ -266,7 +266,7 @@ class InitTrackerPlayerViewV0 {
 			</div>
 		</div>`;
 
-		const body = es(document.body);
+		const body = e_(document.body);
 		body.onn("keypress", (evt) => {
 			if (this._parent._getActiveTab() !== tabMeta) return;
 

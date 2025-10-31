@@ -175,13 +175,13 @@ export class InitiativeTrackerNetworking {
 				showConnected();
 			});
 
-		const $btnGetToken = $(`<button class="ve-btn ve-btn-default mr-2" disabled><span class="glyphicon glyphicon-copy"></span> Copy Token</button>`).appendTo($wrpHelp)
+		const $btnGetToken = $(`<button class="ve-btn ve-btn-default" disabled><span class="glyphicon glyphicon-copy"></span> Copy Token</button>`).appendTo($wrpHelp)
 			.click(async () => {
 				await MiscUtil.pCopyTextToClipboard(this._p2pMetaV1.serverPeer.token);
 				JqueryUtil.showCopiedEffect($btnGetToken);
 			});
 
-		const $btnGetLink = $(`<button class="ve-btn ve-btn-default" disabled><span class="glyphicon glyphicon-link"></span> Copy Link</button>`).appendTo($wrpHelp)
+		const $btnGetLink = $(`<button class="ve-btn ve-btn-default mr-2" disabled><span class="glyphicon glyphicon-link"></span> Copy Link</button>`).appendTo($wrpHelp)
 			.click(async () => {
 				const cleanOrigin = window.location.origin.replace(/\/+$/, "");
 				const cleanPathname = window.location.pathname.split("/").slice(0, -1).join("/");

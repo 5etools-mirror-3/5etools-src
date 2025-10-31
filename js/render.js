@@ -7388,6 +7388,12 @@ class _RenderCompactSpellsImplBase extends _RenderCompactImplBase {
 			stack.push(`<div><span class="bold">Classes: </span>${Parser.spMainClassesToFull(current)}</div>`);
 		}
 
+		const fromClassListVariant = Renderer.spell.getCombinedClasses(ent, "fromClassListVariant");
+		if (fromClassListVariant.length) {
+			const [current, legacy] = Parser.spVariantClassesToCurrentAndLegacy(fromClassListVariant);
+			stack.push(`<div><span class="bold" title="&quot;Optional&quot; spells may be added to a campaign by the DM. &quot;Variant&quot; spells are generally available, but may be made available to a class by the DM.">Optional/Variant Classes: </span>${Parser.spMainClassesToFull(current)}</div>`);
+		}
+
 		return stack.join("");
 	}
 }
