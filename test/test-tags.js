@@ -763,6 +763,11 @@ class AdventureBookTagCheck extends DataTesterBase {
 		parsedJsonChecker.addPrimitiveHandler("string", this._checkString.bind(this));
 	}
 
+	static _ALLOWED_SUB_TAGS = new Set([
+		"@i",
+		"@b",
+	]);
+
 	_checkString (str, {filePath}) {
 		const tagSplit = Renderer.splitByTags(str);
 
@@ -775,12 +780,27 @@ class AdventureBookTagCheck extends DataTesterBase {
 				const [tag, text] = Renderer.splitFirstSpace(s.slice(1, -1));
 				if (!["@adventure", "@book"].includes(tag)) continue;
 
-				const [, id, chap] = text.toLowerCase().split("|");
+				const [displayText, id, chap] = text.toLowerCase().split("|");
 				if (!id) throw new Error(`${tag} tag had ${s} no source!`); // Should never occur
 
 				if (!this._ADV_BOOK_LOOKUP[tag.slice(1)][id]) this._addMessage(`Missing link: ${s} in file ${filePath} had unknown "${tag}" ID "${id}"\n`);
 
 				if (chap && Number(chap) < 0) this._addMessage(`Missing link: ${s} in file ${filePath} had unknown "${tag}" chapter "${chap}"\n`);
+
+				if (!displayText.includes("{@")) return;
+
+				const tagSplitSub = Renderer.splitByTags(displayText);
+				for (let j = 0; j < len; ++j) {
+					const sSub = tagSplitSub[j];
+
+					if (!sSub) continue;
+					if (!sSub.startsWith("{@")) continue;
+
+					const [tagSub] = Renderer.splitFirstSpace(sSub.slice(1, -1));
+					if (this.constructor._ALLOWED_SUB_TAGS.has(tagSub)) continue;
+
+					this._addMessage(`Link contained sub-tag "${tagSub}": ${s}\n`);
+				}
 			}
 		}
 	}

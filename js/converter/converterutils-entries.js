@@ -97,8 +97,11 @@ export class TagJsons {
 						object: (obj, lastKey) => {
 							if (lastKey != null && !LAST_KEY_ALLOWLIST.has(lastKey)) return obj;
 
+							obj = SkillTag.tryRunStrictCapsWords(obj, {styleHint});
 							obj = ItemTag.tryRunStrictCapsWords(obj, {styleHint});
+							obj = ActionTag.tryRunStrictCapsWords(obj, {styleHint});
 							obj = SpellTag.tryRunStrictCapsWords(obj, {styleHint});
+							obj = HazardTag.tryRunStrictCapsWords(obj, {styleHint});
 
 							return obj;
 						},
@@ -1089,6 +1092,9 @@ export class CoreRuleTag extends ConverterTaggerInitializable {
 			})
 			.replace(/\b(Friendly|Hostile|Indifferent)\b/g, (...m) => {
 				return `{@variantrule ${m[1]} [Attitude]|XPHB|${m[1]}}`;
+			})
+			.replace(/\b(Death Saving Throws)\b/g, (...m) => {
+				return `{@variantrule Death Saving Throw|XPHB|${m[1]}}`;
 			})
 			.replace(/\b(Legendary) {@variantrule Action\|XPHB}/g, "$1 Action")
 			.replace(/{@variantrule Flying\|XPHB} (Sword)/g, "Flying $1")

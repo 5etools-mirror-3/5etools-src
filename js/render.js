@@ -4184,7 +4184,7 @@ Renderer.utils = class {
 							return isListMode ? `Prof ${Parser.weaponFullToAbv(prof)} weapon` : `Proficiency with a ${prof} weapon`;
 						}
 						case "weaponGroup": {
-							return isListMode ? `Prof ${Parser.weaponFullToAbv(prof)} weapons` : `${prof.toTitleCase()} Proficiency`;
+							return isListMode ? `Prof ${Parser.weaponFullToAbv(prof)} weapons` : `${prof.toTitleCase()} Weapon Proficiency`;
 						}
 						default: throw new Error(`Unhandled proficiency type: "${profType}"`);
 					}
@@ -5625,6 +5625,12 @@ Renderer.tag = class {
 		page = UrlUtil.PG_BESTIARY;
 	};
 
+	static TagCreatureFluff = class extends this._TagPipedDisplayTextThird {
+		tagName = "creatureFluff";
+		defaultSource = Parser.SRC_MM;
+		page = "monsterFluff";
+	};
+
 	static TagCult = class extends this._TagPipedDisplayTextThird {
 		tagName = "cult";
 		defaultSource = Parser.SRC_MTF;
@@ -6001,6 +6007,7 @@ Renderer.tag = class {
 		new this.TagClass(),
 		new this.TagCondition(),
 		new this.TagCreature(),
+		new this.TagCreatureFluff(),
 		new this.TagCult(),
 		new this.TagDeck(),
 		new this.TagDisease(),
@@ -13111,7 +13118,18 @@ Renderer.table = class {
 	}
 
 	static getConvertedEncounterTableName (group, tableRaw) {
-		return `${group.name}${tableRaw.caption ? ` ${tableRaw.caption}` : ""}${/\bencounters?\b/i.test(group.name) ? "" : " Encounters"}${tableRaw.minlvl && tableRaw.maxlvl ? ` (Levels ${tableRaw.minlvl}\u2014${tableRaw.maxlvl})` : ""}`;
+		const baseName = tableRaw.caption
+			? tableRaw.caption
+			: [
+				tableRaw.captionPrefix,
+				group.name,
+				tableRaw.captionSuffix,
+				/\bencounters?\b/i.test(group.name) ? "" : "Encounters",
+			]
+				.filter(Boolean)
+				.join(" ");
+
+		return `${baseName}${tableRaw.minlvl && tableRaw.maxlvl ? ` (Levels ${tableRaw.minlvl}\u2014${tableRaw.maxlvl})` : ""}`;
 	}
 
 	static getConvertedNameTableName (group, tableRaw) {
