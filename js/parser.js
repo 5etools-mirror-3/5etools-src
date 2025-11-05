@@ -4129,6 +4129,7 @@ Parser.SOURCES_AVAILABLE_DOCS_BOOK = {};
 	Parser.SRC_ERLW,
 	Parser.SRC_RMR,
 	Parser.SRC_AWM,
+	Parser.SRC_MGELFT,
 	Parser.SRC_EGW,
 	Parser.SRC_MOT,
 	Parser.SRC_TCE,
