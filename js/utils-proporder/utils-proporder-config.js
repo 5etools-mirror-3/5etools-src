@@ -519,6 +519,7 @@ const PROPORDER_BOOK = [
 
 	"id",
 	"source",
+	"parentSource",
 
 	"group",
 
@@ -2310,6 +2311,10 @@ const PROPORDER_ENCOUNTER = [
 	new ArrayKey("tables", {
 		order: [
 			"caption",
+
+			"captionPrefix",
+			"captionSuffix",
+
 			"minlvl",
 			"maxlvl",
 

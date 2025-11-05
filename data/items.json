@@ -9466,7 +9466,7 @@
 			"value": 2500,
 			"entries": [
 				"While wearing a Bright Fungal Cloak, you can take a {@variantrule Bonus Action|XPHB} to furl or unfurl it. When the cloak is unfurled, it sheds {@variantrule Bright Light|XPHB} in a 5-foot radius and {@variantrule Dim Light|XPHB} for an additional 5 feet.",
-				"One pound of fungus is sewn into a Bright Fungal Cloak. This fungus can be eaten as food. Once all the fungus is consumed, the cloak becomes a mundane set of Traveler's Clothes."
+				"One pound of fungus is sewn into a Bright Fungal Cloak. This fungus can be eaten as food. Once all the fungus is consumed, the cloak becomes a mundane set of {@item Traveler's Clothes|XPHB}."
 			],
 			"light": [
 				{
@@ -15899,6 +15899,23 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Deathdance",
+			"source": "FRAiF",
+			"type": "G|XPHB",
+			"rarity": "none",
+			"value": 20000,
+			"poison": true,
+			"entries": [
+				"A creature subjected to Deathdance must succeed on a {@dc 13} Constitution saving throw or have the {@condition Poisoned|XPHB} condition for 1 minute. Humanoids automatically succeed on this save. The creature also has the {@condition Incapacitated|XPHB} condition while {@condition Poisoned|XPHB} in this way, as it thrashes uncontrollably."
+			],
+			"poisonTypes": [
+				"injury"
+			],
+			"miscTags": [
+				"CNS"
+			]
+		},
+		{
 			"name": "Deathwalker's Ward (Awakened)",
 			"source": "TDCSR",
 			"_copy": {
@@ -17989,7 +18006,7 @@
 					"type": "entries",
 					"name": "Comet",
 					"entries": [
-						"The next time you enter combat against one or more {@variantrule Hostile [Attitude]|XPHB|Hostile} creatures, you can select one of them as your foe when you roll {@variantrule Initiative|XPHB}. If you reduce your foe to 0 {@variantrule Hit Points|XPHB} during that combat, you have {@variantrule Advantage|XPHB} on Death Saving Throws for 1 year. If someone else reduces your chosen foe to 0 {@variantrule Hit Points|XPHB} or you don't choose a foe, this card has no effect."
+						"The next time you enter combat against one or more {@variantrule Hostile [Attitude]|XPHB|Hostile} creatures, you can select one of them as your foe when you roll {@variantrule Initiative|XPHB}. If you reduce your foe to 0 {@variantrule Hit Points|XPHB} during that combat, you have {@variantrule Advantage|XPHB} on {@variantrule Death Saving Throw|XPHB|Death Saving Throws} for 1 year. If someone else reduces your chosen foe to 0 {@variantrule Hit Points|XPHB} or you don't choose a foe, this card has no effect."
 					]
 				},
 				{
@@ -24892,6 +24909,20 @@
 				"TT"
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Ffolk Sailing Ship",
+			"source": "FRAiF",
+			"type": "SHP|XPHB",
+			"rarity": "none",
+			"value": 2000000,
+			"crew": 20,
+			"vehAc": 15,
+			"vehHp": 400,
+			"vehDmgThresh": 20,
+			"vehSpeed": 2,
+			"capPassenger": 20,
+			"capCargo": 100
 		},
 		{
 			"name": "Figurine of Wondrous Power, Bronze Griffon",
@@ -37407,7 +37438,7 @@
 			"weight": 3,
 			"value": 3500,
 			"entries": [
-				"This 100-page leather-bound tome can be used as a Spellbook. It is closed with a lock that comes with a key. As a Utilize action, a creature can try to pick the lock using {@item Thieves' Tools|XPHB}, doing so with a successful DC 15 Dexterity ({@skill Sleight of Hand|XPHB}) check."
+				"This 100-page leather-bound tome can be used as a Spellbook. It is closed with a lock that comes with a key. As a {@action Utilize|XPHB} action, a creature can try to pick the lock using {@item Thieves' Tools|XPHB}, doing so with a successful DC 15 Dexterity ({@skill Sleight of Hand|XPHB}) check."
 			],
 			"hasFluff": true,
 			"hasFluffImages": true
@@ -41949,6 +41980,20 @@
 				"Implements - Very Rare|XDMG"
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Norlander Longship",
+			"source": "FRAiF",
+			"type": "SHP|XPHB",
+			"rarity": "none",
+			"value": 2000000,
+			"crew": 50,
+			"vehAc": 17,
+			"vehHp": 300,
+			"vehDmgThresh": 15,
+			"vehSpeed": 6,
+			"capPassenger": 100,
+			"capCargo": 10
 		},
 		{
 			"name": "Oathbow",
@@ -48036,6 +48081,23 @@
 				"water breathing"
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Prespra",
+			"source": "FRAiF",
+			"type": "G|XPHB",
+			"rarity": "none",
+			"value": 30000,
+			"poison": true,
+			"entries": [
+				"A creature subjected to Prespra must succeed on a {@dc 11} Constitution saving throw or take 3 ({@dice 1d6}) Poison damage and have the {@condition Poisoned|XPHB} condition. The creature also has the {@condition Blinded|XPHB} condition while {@condition Poisoned|XPHB} in this way. The creature repeats the save at the start of each of its turns, taking 3 ({@dice 1d6}) Poison damage on a failed save. On a successful save, the effect ends for the creature."
+			],
+			"poisonTypes": [
+				"ingested"
+			],
+			"miscTags": [
+				"CNS"
+			]
 		},
 		{
 			"name": "Pressure Capsule",
@@ -54375,6 +54437,20 @@
 				"Each use of the artifact has a terrible side effect: someone known to the wielder is also erased from reality. After the villain uses the ruinstone, roll a {@dice d20}: on a 5-20, one of their allies disintegrates, on an 1-4, one of the player characters disintegrates.",
 				"If a creature bound its soul to the ruinstone in the \"Thalivar's Beacon\" quest, the artifact explodes when used and the creature who is bound to it disintegrates, disappearing from reality and can only be brought back with a {@spell wish} spell, or similar magic."
 			]
+		},
+		{
+			"name": "Rusted Hulk",
+			"source": "FRAiF",
+			"type": "SHP|XPHB",
+			"rarity": "none",
+			"value": 5000000,
+			"crew": 60,
+			"vehAc": 18,
+			"vehHp": 500,
+			"vehDmgThresh": 25,
+			"vehSpeed": 2,
+			"capPassenger": 90,
+			"capCargo": 250
 		},
 		{
 			"name": "Ryath Root",
@@ -70708,6 +70784,23 @@
 			]
 		},
 		{
+			"name": "Ulcrun",
+			"source": "FRAiF",
+			"type": "G|XPHB",
+			"rarity": "none",
+			"value": 100000,
+			"poison": true,
+			"entries": [
+				"A creature subjected to Ulcrun must succeed on a {@dc 15} Constitution saving throw or take 21 ({@dice 6d6}) Poison damage and gain 1 {@condition Exhaustion|XPHB} level."
+			],
+			"poisonTypes": [
+				"injury"
+			],
+			"miscTags": [
+				"CNS"
+			]
+		},
+		{
 			"name": "Unbreakable Arrow",
 			"source": "XGE",
 			"page": 139,
@@ -72978,7 +73071,7 @@
 			"weight": 4,
 			"value": 1500,
 			"entries": [
-				"When you're wearing Warm Fungal Clothing, you automatically succeed on saving throws against the effects of extreme cold. See chapter 3 of the Dungeon Master's Guide for rules on extreme cold. One pound of fungus is sewn into Fungal Clothing. This fungus can be eaten as food. Once all the fungus is consumed, this becomes a mundane set of Traveler's Clothes."
+				"When you're wearing Warm Fungal Clothing, you automatically succeed on saving throws against the effects of extreme cold. See chapter 3 of the Dungeon Master's Guide for rules on extreme cold. One pound of fungus is sewn into Fungal Clothing. This fungus can be eaten as food. Once all the fungus is consumed, this becomes a mundane set of {@item Traveler's Clothes|XPHB}."
 			],
 			"hasFluff": true,
 			"hasFluffImages": true
@@ -73523,6 +73616,19 @@
 			"type": "$A|XDMG",
 			"rarity": "none",
 			"value": 25000
+		},
+		{
+			"name": "Whaleboat",
+			"source": "FRAiF",
+			"type": "SHP|XPHB",
+			"rarity": "none",
+			"value": 50000,
+			"crew": 6,
+			"vehAc": 13,
+			"vehHp": 100,
+			"vehDmgThresh": 10,
+			"vehSpeed": 3,
+			"capPassenger": 1
 		},
 		{
 			"name": "Wheat",
@@ -75502,6 +75608,23 @@
 			"value": 100,
 			"entries": [
 				"A yahcha (pronounced YAH-chah) is a harmless, meaty beetle about the size of a human hand, which feeds on worms and maggots. It moves slowly (walking speed 10 feet) and is easy to catch. A creature with blue mist fever that eats a raw or cooked yahcha can immediately make a saving throw with advantage against that disease (see \"Diseases,\" page 40),"
+			]
+		},
+		{
+			"name": "Yellow Death",
+			"source": "FRAiF",
+			"type": "G|XPHB",
+			"rarity": "none",
+			"value": 15000,
+			"poison": true,
+			"entries": [
+				"A creature subjected to Yellow Death makes a {@dc 13} Constitution saving throw. On a failed save, the creature takes 14 ({@dice 4d6}) Poison damage and has the {@condition Poisoned|XPHB} condition for 1 minute. On a successful save, the creature takes half as much damage only."
+			],
+			"poisonTypes": [
+				"ingested"
+			],
+			"miscTags": [
+				"CNS"
 			]
 		},
 		{

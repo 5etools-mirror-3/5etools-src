@@ -198,6 +198,7 @@ export class ConverterSpell extends ConverterBase {
 		]
 			.forEach(prop => {
 				EntryCoalesceEntryLists.mutCoalesce(stats, prop, {styleHint: options.styleHint});
+				TagJsons.mutTagObjectStrictCapsWords(state.entity, {keySet: new Set([prop]), styleHint: options.styleHint});
 				TagJsons.mutTagObject(stats, {keySet: new Set([prop]), isOptimistic: false, styleHint: options.styleHint});
 			});
 
