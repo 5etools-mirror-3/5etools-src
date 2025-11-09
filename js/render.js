@@ -3449,6 +3449,24 @@ Renderer.utils = class {
 		return `</tbody></table>`;
 	}
 
+	static getTokenMetadataAttributes (ent, {displayName = null} = {}) {
+		const tokenName = displayName || ent.name;
+
+		const ptTitle = [
+			ent.tokenCredit ? `Credit: ${ent.tokenCredit.qq()}` : "",
+			ent.tokenCustom ? `This is a custom/unofficial token.` : "",
+		]
+			.filter(Boolean)
+			.join(" ");
+
+		return [
+			`alt="Token Image${tokenName ? `: ${tokenName.qq()}` : ""}"`,
+			ptTitle ? `title="${ptTitle}"` : "",
+		]
+			.filter(Boolean)
+			.join(" ");
+	}
+
 	static TabButton = function ({label, fnChange, fnPopulate, isVisible}) {
 		this.label = label;
 		this.fnChange = fnChange;

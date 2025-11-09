@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.15.0"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.16.0"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -489,6 +489,7 @@ CleanUtil.SHARED_REPLACEMENTS = {
 	"’": "'",
 	"‘": "'",
 	"": "'",
+	"\u02BC": "'",
 	"…": "...",
 	"\u200B": "", // zero-width space
 	"\u2002": " ", // em space
@@ -5178,6 +5179,8 @@ globalThis.DataUtil = class {
 			hasFluff: true,
 			hasFluffImages: true,
 			hasToken: true,
+			tokenCredit: true,
+			tokenCustom: true,
 			_versions: true,
 		};
 

@@ -172,15 +172,17 @@ export class AdventuresBooksList {
 				${wrpContents}
 			</div>`;
 
+			const listItemValues = {
+				source: Parser.sourceJsonToAbv(it.source),
+				alias: (it.alias || []).map(it => `"${it}"`).join(","),
+				storyline: it.storyline || "",
+			};
+
 			const listItem = new ListItem(
 				this._dataIx,
 				eleLi,
 				it.name,
-				{
-					source: Parser.sourceJsonToAbv(it.source),
-					alias: (it.alias || []).map(it => `"${it}"`).join(","),
-					storyline: it.storyline || "",
-				},
+				listItemValues,
 				{
 					btnToggleExpand,
 				},
@@ -199,7 +201,7 @@ export class AdventuresBooksList {
 				this._dataIx,
 				eleLiAlt,
 				it.name,
-				{source: it.source},
+				listItemValues,
 			);
 			this._listAlt.addItem(listItemAlt);
 			// endregion

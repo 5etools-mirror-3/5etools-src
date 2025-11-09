@@ -12,7 +12,7 @@ const pGetDiffSummaryFiles = async ({dir = null} = {}) => {
 	return Object.keys(
 		Object.fromEntries(
 			[...filesStaged, ...filesUnstaged]
-				.map(file => [file, true]),
+				.map(file => [dir ? `${dir}/${file}` : file, true]),
 		),
 	);
 };

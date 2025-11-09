@@ -1191,7 +1191,7 @@
 				{
 					"name": "Whirlpool",
 					"entries": [
-						"{@actSave str} {@dc 18}, each creature in a 30-foot Emanationoriginating from Biha Babir. {@actSaveFail} 10 ({@damage 3d6}) Force damage, and the target is pulled 15 feet straight toward Biha Babir. {@actSaveSuccess} Half damage only. {@actSaveSuccessOrFail} Biha Babir can't use this action again until the start of her next turn."
+						"{@actSave str} {@dc 18}, each creature in a 30-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from Biha Babir. {@actSaveFail} 10 ({@damage 3d6}) Force damage, and the target is pulled 15 feet straight toward Biha Babir. {@actSaveSuccess} Half damage only. {@actSaveSuccessOrFail} Biha Babir can't use this action again until the start of her next turn."
 					]
 				}
 			],
@@ -1924,10 +1924,6 @@
 					]
 				}
 			],
-			"legendaryGroup": {
-				"name": "Deep Dragon",
-				"source": "FRAiF"
-			},
 			"environment": [
 				"underdark"
 			],
@@ -1986,7 +1982,9 @@
 				"average": 5,
 				"formula": "1d8 + 1"
 			},
-			"speed": {},
+			"speed": {
+				"walk": 30
+			},
 			"str": 13,
 			"dex": 8,
 			"con": 13,
@@ -5685,10 +5683,6 @@
 					]
 				}
 			],
-			"legendaryGroup": {
-				"name": "Deep Dragon",
-				"source": "FRAiF"
-			},
 			"environment": [
 				"underdark"
 			],

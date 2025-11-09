@@ -1452,7 +1452,7 @@ class ListPage {
 		});
 	}
 
-	_renderListFeelingLucky ({isCompact, $btnReset}) {
+	_renderListFeelingLucky ({isCompact, $btnReset, isScrollablePage = false}) {
 		const btnRoll = ee`<button class="ve-btn ve-btn-default ${isCompact ? "px-2" : ""}" title="Feeling Lucky?"><span class="glyphicon glyphicon-random"></span></button>`;
 
 		btnRoll
@@ -1463,7 +1463,7 @@ class ListPage {
 					const list = allLists[rollX];
 					const rollY = RollerUtil.roll(list.visibleItems.length);
 					window.location.hash = e_(list.visibleItems[rollY].ele).find(`a`).attr("href");
-					list.visibleItems[rollY].ele.scrollIntoView();
+					if (!isScrollablePage) list.visibleItems[rollY].ele.scrollIntoView();
 				}
 			});
 
@@ -2358,7 +2358,7 @@ class ListPageTokenDisplay {
 		const wMax = Math.max(Math.floor(bcr.height) - 6, 110);
 
 		const imgLink = this._fnGetTokenUrl(ent);
-		const $img = $(`<img src="${imgLink}" class="stats__token" alt="Token Image: ${(ent.name || "").qq()}" ${ent.tokenCredit ? `title="Credit: ${ent.tokenCredit.qq()}"` : ""} loading="lazy">`)
+		const $img = $(`<img src="${imgLink}" class="stats__token" ${Renderer.utils.getTokenMetadataAttributes(ent)} loading="lazy">`)
 			.css("max-width", wMax);
 		const $lnkToken = $$`<a href="${imgLink}" class="stats__wrp-token" target="_blank" rel="noopener noreferrer">${$img}</a>`
 			.appendTo(this._$dispToken);
@@ -2380,7 +2380,7 @@ class ListPageTokenDisplay {
 			if (!meta.$ele) {
 				const imgLink = this._fnGetTokenUrl(meta);
 				const displayName = Renderer.utils.getAltArtDisplayName(meta);
-				const $img = $(`<img src="${imgLink}" class="stats__token" alt="Token Image${displayName ? `: ${displayName.qq()}` : ""}}" ${meta.tokenCredit ? `title="Credit: ${meta.tokenCredit.qq()}"` : ""} loading="lazy">`)
+				const $img = $(`<img src="${imgLink}" class="stats__token" ${Renderer.utils.getTokenMetadataAttributes(ent, {displayName})} loading="lazy">`)
 					.css("max-width", wMax)
 					.on("error", () => {
 						$img.attr("src", this.constructor._SRC_ERROR);

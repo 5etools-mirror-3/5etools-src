@@ -1016,7 +1016,8 @@ class _RenderCompactMarkdownBestiaryImplBase {
 	}
 
 	_getCommonMdParts_sense ({mon, renderer, opts}) {
-		return !opts.isHideSenses ? `\n>- **Senses** ${mon.senses ? `${Renderer.utils.getRenderedSenses(mon.senses, {isPlainText: true, isTitleCase: this._style !== "classic"})}, ` : ""}passive Perception ${mon.passive || "\u2014"}` : "";
+		const ptLblPassive = this._style !== "classic" ? "Passive Perception" : "passive Perception";
+		return !opts.isHideSenses ? `\n>- **Senses** ${mon.senses ? `${Renderer.utils.getRenderedSenses(mon.senses, {isPlainText: true, isTitleCase: this._style !== "classic"})}, ` : ""}${ptLblPassive} ${mon.passive || "\u2014"}` : "";
 	}
 
 	_getCommonMdParts_language ({mon, renderer, opts}) {
@@ -1139,7 +1140,6 @@ ${mdPtSizeTypeAlignment}
 >___
 ${mdPtAc}
 ${mdPtHpResource}
-${mdPtHpResource}
 ${mdPtSpeedInitiative}
 >___
 ${mdPtAbilityScores}
@@ -1226,7 +1226,6 @@ ${mdPtName}
 ${mdPtSizeTypeAlignment}
 >___
 ${mdPtAc}
-${mdPtHpResource}
 ${mdPtHpResource}
 ${mdPtSpeedInitiative}
 >___

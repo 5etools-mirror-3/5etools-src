@@ -21,6 +21,7 @@ export class TagJsons {
 		await SpellTag.pInit(spells);
 		await ItemTag.pInit();
 		await ActionTag.pInit();
+		await TrapTag.pInit();
 		await HazardTag.pInit();
 		await CoreRuleTag.pInit();
 		await FeatTag.pInit();
@@ -58,6 +59,7 @@ export class TagJsons {
 							obj = ItemTag.tryRun(obj, {styleHint});
 							obj = ActionTag.tryRunStrictCapsWords(obj, {styleHint});
 							obj = TableTag.tryRun(obj, {styleHint});
+							obj = TrapTag.tryRunStrictCapsWords(obj, {styleHint});
 							obj = TrapTag.tryRun(obj, {styleHint});
 							obj = HazardTag.tryRunStrictCapsWords(obj, {styleHint});
 							obj = HazardTag.tryRun(obj, {styleHint});
@@ -101,6 +103,7 @@ export class TagJsons {
 							obj = ItemTag.tryRunStrictCapsWords(obj, {styleHint});
 							obj = ActionTag.tryRunStrictCapsWords(obj, {styleHint});
 							obj = SpellTag.tryRunStrictCapsWords(obj, {styleHint});
+							obj = TrapTag.tryRunStrictCapsWords(obj, {styleHint});
 							obj = HazardTag.tryRunStrictCapsWords(obj, {styleHint});
 
 							return obj;
@@ -734,13 +737,50 @@ export class TableTag {
 	}
 }
 
-export class TrapTag {
-	static tryRun (it) {
+export class TrapTag extends ConverterTaggerInitializable {
+	static _RE_BASIC_XDMG = null;
+	static _RE_BASIC_XDMG_LOWER = null;
+	static _RE_TRAP_SEE = /\b(?<name>Fire-Breathing Statue|Sphere of Annihilation|Collapsing Roof|Falling Net|Pits|Poison Darts|Poison Needle|Rolling Sphere)(?<suffix> \(see)/gi;
+
+	static async _pInit () {
+		const trapData = await DataLoader.pCacheAndGetAllSite("trap");
+
+		const coreTraps = [...trapData]
+			.filter(ent => ent.source === Parser.SRC_XDMG);
+
+		this._RE_BASIC_XDMG = new RegExp(`\\b(?<name>${(coreTraps.map(ent => ent.name).join("|"))})\\b`, "g");
+		this._RE_BASIC_XDMG_LOWER = new RegExp(`\\b(?<name>${(coreTraps.map(ent => ent.name.toLowerCase()).join("|"))})\\b`, "g");
+	}
+
+	/**
+	 * @param ent
+	 * @param {"classic" | "one" | null} styleHint
+	 */
+	static _tryRun (ent, {styleHint = null} = {}) {
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
 		return TagJsons.WALKER.walk(
-			it,
+			ent,
 			{
 				string: (str) => {
 					const ptrStack = {_: ""};
+
+					if (styleHint === SITE_STYLE__ONE) {
+						TaggerUtils.walkerStringHandler(
+							["@trap"],
+							ptrStack,
+							0,
+							0,
+							str,
+							{
+								fnTag: this._fnTag_one.bind(this),
+							},
+						);
+
+						str = ptrStack._;
+						ptrStack._ = "";
+					}
+
 					TaggerUtils.walkerStringHandler(
 						["@trap"],
 						ptrStack,
@@ -748,7 +788,7 @@ export class TrapTag {
 						0,
 						str,
 						{
-							fnTag: this._fnTag.bind(this),
+							fnTag: this._fnTag_classic.bind(this),
 						},
 					);
 					return ptrStack._;
@@ -757,13 +797,53 @@ export class TrapTag {
 		);
 	}
 
-	static _fnTag (strMod) {
+	static _fnTag_one (strMod) {
 		return strMod
-			.replace(TrapTag._RE_TRAP_SEE, (...m) => `{@trap ${m[1]}}${m[2]}`)
+			.replace(this._RE_BASIC_XDMG, (...m) => `{@trap ${m.at(-1).name}|${Parser.SRC_XDMG}}`)
+			.replace(this._RE_BASIC_XDMG_LOWER, (...m) => `{@trap ${m.at(-1).name}|${Parser.SRC_XDMG}}`)
+		;
+	}
+
+	static _fnTag_classic (strMod) {
+		return strMod
+			.replace(this._RE_TRAP_SEE, (...m) => {
+				const {name, suffix} = m.at(-1);
+				return `{@trap ${name}}${suffix}`;
+			})
+		;
+	}
+
+	static _tryRunStrictCapsWords (ent, {styleHint = null} = {}) {
+		if (styleHint === "classic") return ent;
+
+		const walker = MiscUtil.getWalker({keyBlocklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST});
+		return walker.walk(
+			ent,
+			{
+				string: (str) => {
+					const ptrStack = {_: ""};
+
+					TaggerUtils.walkerStringHandlerStrictCapsWords(
+						["@trap"],
+						ptrStack,
+						str,
+						{
+							fnTag: strMod => this._fnTagStrict_one(strMod),
+						},
+					);
+
+					return ptrStack._;
+				},
+			},
+		);
+	}
+
+	static _fnTagStrict_one (strMod) {
+		return strMod
+			.replace(this._RE_BASIC_XDMG, (...m) => `{@trap ${m.at(-1).name}|${Parser.SRC_XDMG}}`)
 		;
 	}
 }
-TrapTag._RE_TRAP_SEE = /\b(Fire-Breathing Statue|Sphere of Annihilation|Collapsing Roof|Falling Net|Pits|Poison Darts|Poison Needle|Rolling Sphere)( \(see)/gi;
 
 export class HazardTag extends ConverterTaggerInitializable {
 	static _RE_BASIC_XPHB = null;
@@ -832,7 +912,7 @@ export class HazardTag extends ConverterTaggerInitializable {
 
 	static _fnTag_classic (strMod) {
 		return strMod
-			.replace(HazardTag._RE_HAZARD_SEE, (...m) => {
+			.replace(this._RE_HAZARD_SEE, (...m) => {
 				const {name, suffix} = m.at(-1);
 				return `{@hazard ${name}}${suffix}`;
 			})
