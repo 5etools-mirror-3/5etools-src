@@ -3891,6 +3891,120 @@
 			"hasFluff": true
 		},
 		{
+			"name": "Carouser",
+			"source": "ABH",
+			"page": 6,
+			"edition": "one",
+			"ability": [
+				{
+					"choose": {
+						"weighted": {
+							"from": [
+								"dex",
+								"int",
+								"cha"
+							],
+							"weights": [
+								2,
+								1
+							]
+						}
+					}
+				},
+				{
+					"choose": {
+						"weighted": {
+							"from": [
+								"dex",
+								"int",
+								"cha"
+							],
+							"weights": [
+								1,
+								1,
+								1
+							]
+						}
+					}
+				}
+			],
+			"feats": [
+				{
+					"tireless reveler|abh": true
+				}
+			],
+			"skillProficiencies": [
+				{
+					"deception": true,
+					"persuasion": true
+				}
+			],
+			"toolProficiencies": [
+				{
+					"gaming set": true
+				}
+			],
+			"startingEquipment": [
+				{
+					"a": [
+						"dagger|xphb",
+						{
+							"item": "gaming set|xphb",
+							"displayName": "Gaming Set (same as chosen proficiency)"
+						},
+						"fine clothes|xphb",
+						"glass bottle|xphb",
+						"mirror|xphb",
+						"perfume|xphb",
+						"pouch|xphb",
+						"tinderbox|xphb",
+						{
+							"value": 1900
+						}
+					],
+					"b": [
+						{
+							"value": 5000
+						}
+					]
+				}
+			],
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "Ability Scores:",
+							"entry": "Dexterity, Intelligence, Charisma"
+						},
+						{
+							"type": "item",
+							"name": "Feat:",
+							"entry": "{@feat Tireless Reveler|ABH}"
+						},
+						{
+							"type": "item",
+							"name": "Skill Proficiencies:",
+							"entry": "{@skill Deception|XPHB} and {@skill Persuasion|XPHB}"
+						},
+						{
+							"type": "item",
+							"name": "Tool Proficiency:",
+							"entry": "Choose one kind of {@item Gaming Set|XPHB}"
+						},
+						{
+							"type": "item",
+							"name": "Equipment:",
+							"entry": "Choose A or B: (A) {@item Dagger|XPHB}, {@item Gaming Set|XPHB} (same as above), {@item Fine Clothes|XPHB}, {@item Glass Bottle|XPHB}, {@item Mirror|XPHB}, {@item Perfume|XPHB}, {@item Pouch|XPHB}, {@item Tinderbox|XPHB}, 19 GP; or (B) 50 GP"
+						}
+					]
+				}
+			],
+			"hasFluff": true
+		},
+		{
 			"name": "Celebrity Adventurer's Scion",
 			"source": "AI",
 			"page": 48,
@@ -27925,6 +28039,244 @@
 						"Use the tables for the {@background outlander} background in the Player's Handbook as the basis for your traits and motivations, modifying the entries when appropriate to suit your identity as a member of an Uthgardt tribe.",
 						"Even if you have left your tribe behind (at least for now), you hold to the traditions of your people. You will never cut down a still-living tree, and you may not countenance such an act being done in your presence. The Uthgardt ancestral mounds - great hills where the totem spirits were defeated by Uthgar and where the heroes of the tribes are interred - are sacred to you.",
 						"Your bond is undoubtedly associated with your tribe or some aspect of Uthgardt philosophy or culture (perhaps even Uthgar himself). Your ideal is a personal choice that probably hews closely to the ethos of your people and certainly doesn't contradict or compromise what being an Uthgardt stands for."
+					]
+				}
+			],
+			"hasFluff": true
+		},
+		{
+			"name": "Vampire Devotee",
+			"source": "ABH",
+			"page": 6,
+			"edition": "one",
+			"ability": [
+				{
+					"choose": {
+						"weighted": {
+							"from": [
+								"str",
+								"con",
+								"cha"
+							],
+							"weights": [
+								2,
+								1
+							]
+						}
+					}
+				},
+				{
+					"choose": {
+						"weighted": {
+							"from": [
+								"str",
+								"con",
+								"cha"
+							],
+							"weights": [
+								1,
+								1,
+								1
+							]
+						}
+					}
+				}
+			],
+			"feats": [
+				{
+					"vampire's plaything|abh": true
+				}
+			],
+			"skillProficiencies": [
+				{
+					"persuasion": true,
+					"stealth": true
+				}
+			],
+			"toolProficiencies": [
+				{
+					"cook's utensils": true
+				}
+			],
+			"startingEquipment": [
+				{
+					"a": [
+						"cook's utensils|xphb",
+						"fine clothes|xphb",
+						{
+							"item": "glass bottle|xphb",
+							"quantity": 2,
+							"displayName": "Glass Bottles"
+						},
+						"healer's kit|xphb",
+						"perfume|xphb",
+						"lamp|xphb",
+						{
+							"item": "oil|xphb",
+							"displayName": "Oil (3 flasks)"
+						},
+						"waterskin|xphb",
+						{
+							"value": 1900
+						}
+					],
+					"b": [
+						{
+							"value": 5000
+						}
+					]
+				}
+			],
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "Ability Scores:",
+							"entry": "Strength, Constitution, Charisma"
+						},
+						{
+							"type": "item",
+							"name": "Feat:",
+							"entry": "{@feat Vampire's Plaything|ABH}"
+						},
+						{
+							"type": "item",
+							"name": "Skill Proficiencies:",
+							"entry": "{@skill Persuasion|XPHB} and {@skill Stealth|XPHB}"
+						},
+						{
+							"type": "item",
+							"name": "Tool Proficiency:",
+							"entry": "{@item Cook's Utensils|XPHB}"
+						},
+						{
+							"type": "item",
+							"name": "Equipment:",
+							"entry": "Choose A or B: (A) {@item Cook's Utensils|XPHB}, {@item Fine Clothes|XPHB}, 2 {@item Glass Bottle|XPHB|Glass Bottles}, {@item Healer's Kit|XPHB}, {@item Perfume|XPHB}, {@item Lamp|XPHB}, {@item Oil|XPHB} (3 flasks), {@item Waterskin|XPHB}, 19 GP; or (B) 50 GP"
+						}
+					]
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Vampire Survivor",
+			"source": "ABH",
+			"page": 7,
+			"edition": "one",
+			"ability": [
+				{
+					"choose": {
+						"weighted": {
+							"from": [
+								"dex",
+								"con",
+								"wis"
+							],
+							"weights": [
+								2,
+								1
+							]
+						}
+					}
+				},
+				{
+					"choose": {
+						"weighted": {
+							"from": [
+								"dex",
+								"con",
+								"wis"
+							],
+							"weights": [
+								1,
+								1,
+								1
+							]
+						}
+					}
+				}
+			],
+			"feats": [
+				{
+					"vampire hunter|abh": true
+				}
+			],
+			"skillProficiencies": [
+				{
+					"insight": true,
+					"religion": true
+				}
+			],
+			"toolProficiencies": [
+				{
+					"woodcarver's tools": true
+				}
+			],
+			"startingEquipment": [
+				{
+					"a": [
+						"woodcarver's tools|xphb",
+						"crowbar|xphb",
+						"hooded lantern|xphb",
+						{
+							"item": "holy symbol|xphb",
+							"displayName": "Holy Symbol (reliquary)"
+						},
+						"holy water|xphb",
+						"mirror|xphb",
+						{
+							"item": "oil|xphb",
+							"displayName": "Oil (3 flasks)"
+						},
+						"tinderbox|xphb",
+						"traveler's clothes|xphb",
+						"waterskin|xphb",
+						{
+							"value": 400
+						}
+					],
+					"b": [
+						{
+							"value": 5000
+						}
+					]
+				}
+			],
+			"entries": [
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "Ability Scores:",
+							"entry": "Dexterity, Constitution, Wisdom"
+						},
+						{
+							"type": "item",
+							"name": "Feat:",
+							"entry": "{@feat Vampire Hunter|ABH}"
+						},
+						{
+							"type": "item",
+							"name": "Skill Proficiencies:",
+							"entry": "{@skill Insight|XPHB} and {@skill Religion|XPHB}"
+						},
+						{
+							"type": "item",
+							"name": "Tool Proficiency:",
+							"entry": "{@item Woodcarver's Tools|XPHB}"
+						},
+						{
+							"type": "item",
+							"name": "Equipment:",
+							"entry": "Choose A or B: (A) {@item Woodcarver's Tools|XPHB}, {@item Crowbar|XPHB}, {@item Hooded Lantern|XPHB}, {@item Holy Symbol|XPHB} ({@item reliquary|XPHB}), {@item Holy Water|XPHB}, {@item Mirror|XPHB}, {@item Oil|XPHB} (3 flasks), {@item Tinderbox|XPHB}, {@item Traveler's Clothes|XPHB}, {@item Waterskin|XPHB}, 4 GP; or (B) 50 GP"
+						}
 					]
 				}
 			],

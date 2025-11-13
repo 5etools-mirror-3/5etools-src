@@ -1,0 +1,910 @@
+{
+	"_meta": {
+		"otherSources": {
+			"monster": {
+				"FRAiF": "NF",
+				"XMM": "NF"
+			}
+		}
+	},
+	"monster": [
+		{
+			"name": "Caldron Magen",
+			"source": "NF",
+			"size": [
+				"M"
+			],
+			"type": "construct",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				20
+			],
+			"hp": {
+				"average": 67,
+				"formula": "9d8 + 27"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 18,
+			"dex": 13,
+			"con": 16,
+			"int": 10,
+			"wis": 10,
+			"cha": 10,
+			"skill": {
+				"perception": "+4"
+			},
+			"passive": 14,
+			"immune": [
+				"acid",
+				"poison"
+			],
+			"conditionImmune": [
+				"blinded",
+				"charmed",
+				"deafened",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"petrified",
+				"poisoned"
+			],
+			"languages": [
+				"understands Common plus two other languages but can't speak"
+			],
+			"cr": "4",
+			"trait": [
+				{
+					"name": "Disintegration",
+					"entries": [
+						"If the magen dies, it disintegrates into dust, leaving behind anything it was wearing or carrying."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The magen has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The magen makes two attacks, using Extended Fist or Acid Spittle in any combination."
+					]
+				},
+				{
+					"name": "Extended Fist",
+					"entries": [
+						"{@atkr m} {@hit 6}, reach 15 ft. {@h}8 ({@damage 1d8 + 4}) Bludgeoning damage plus 5 ({@damage 1d10}) Acid damage. If the target is a Medium or smaller creature, it has the {@condition Grappled|XPHB} condition (escape {@dc 14}) from one of two fists."
+					]
+				},
+				{
+					"name": "Acid Spittle",
+					"entries": [
+						"{@atkr r} {@hit 6}, range 60 ft. {@h}13 ({@damage 2d8 + 4}) Acid damage."
+					]
+				}
+			],
+			"environment": [
+				"any"
+			],
+			"treasure": [
+				"arcana"
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"CS",
+				"X"
+			],
+			"damageTags": [
+				"A",
+				"B"
+			],
+			"miscTags": [
+				"MA",
+				"RA",
+				"RCH"
+			],
+			"conditionInflict": [
+				"grappled"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Eldritch Eddy",
+			"source": "NF",
+			"size": [
+				"L"
+			],
+			"type": "construct",
+			"alignment": [
+				"C",
+				"N"
+			],
+			"ac": [
+				11
+			],
+			"hp": {
+				"average": 144,
+				"formula": "17d10 + 51"
+			},
+			"speed": {
+				"walk": 10,
+				"fly": {
+					"number": 40,
+					"condition": "(hover)"
+				},
+				"canHover": true
+			},
+			"str": 10,
+			"dex": 12,
+			"con": 16,
+			"int": 12,
+			"wis": 9,
+			"cha": 17,
+			"save": {
+				"dex": "+4",
+				"int": "+4",
+				"cha": "+6"
+			},
+			"senses": [
+				"Blindsight 60 ft."
+			],
+			"passive": 9,
+			"resist": [
+				"force"
+			],
+			"immune": [
+				"fire",
+				"lightning"
+			],
+			"conditionImmune": [
+				"charmed",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"petrified",
+				"poisoned"
+			],
+			"languages": [
+				"understands Common plus one other language but can't speak"
+			],
+			"cr": "6",
+			"trait": [
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The eddy has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The eddy makes two attacks, using Searing Swipe or Arcane Bolt in any combination."
+					]
+				},
+				{
+					"name": "Searing Swipe",
+					"entries": [
+						"{@atkr m} {@hit 6}, reach 10 ft. {@h}13 ({@damage 3d6 + 3}) Fire or Lightning damage (eddy's choice)."
+					]
+				},
+				{
+					"name": "Arcane Bolt",
+					"entries": [
+						"{@atkr r} {@hit 6}, range 120 ft. {@h}14 ({@damage 2d10 + 3}) Force damage."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Eldritch Overload",
+					"entries": [
+						"{@actTrigger} The eddy takes damage. {@actResponse d}{@actSave str} {@dc 14}, each creature of the eddy's choice in a 5-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the eddy. {@actSaveFail} 7 ({@damage 2d6}) Force damage, and the target has the {@condition Prone|XPHB} condition."
+					]
+				}
+			],
+			"environment": [
+				"urban"
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"B"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"CS",
+				"X"
+			],
+			"damageTags": [
+				"F",
+				"L",
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"RA",
+				"RCH"
+			],
+			"conditionInflict": [
+				"prone"
+			],
+			"savingThrowForced": [
+				"strength"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Phaerimm Elder",
+			"source": "NF",
+			"size": [
+				"H"
+			],
+			"type": "aberration",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				17
+			],
+			"hp": {
+				"average": 218,
+				"formula": "23d12 + 69"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": {
+					"number": 60,
+					"condition": "(hover)"
+				},
+				"canHover": true
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 18,
+			"dex": 16,
+			"con": 17,
+			"int": 17,
+			"wis": 16,
+			"cha": 18,
+			"save": {
+				"con": "+8",
+				"int": "+8",
+				"wis": "+8",
+				"cha": "+9"
+			},
+			"skill": {
+				"arcana": "+13",
+				"insight": "+8",
+				"perception": "+8"
+			},
+			"senses": [
+				"Truesight 120 ft."
+			],
+			"passive": 18,
+			"conditionImmune": [
+				"charmed",
+				"frightened"
+			],
+			"languages": [
+				"telepathy 120 ft. understands Common and Deep Speech but can't speak"
+			],
+			"cr": "14",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The phaerimm casts one of the following spells, requiring no spell components and using Charisma as the spellcasting ability (spell save {@dc 17}):"
+					],
+					"will": [
+						"{@spell Command|XPHB} (level 3 version)",
+						"{@spell Detect Magic|XPHB}",
+						"{@spell Detect Thoughts|XPHB}",
+						"{@spell Mage Hand|XPHB}"
+					],
+					"daily": {
+						"1e": [
+							"{@spell Clairvoyance|XPHB}",
+							"{@spell Geas|XPHB}",
+							"{@spell Major Image|XPHB}",
+							"{@spell Mirage Arcane|XPHB}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action"
+				},
+				{
+					"name": "Protective Magic (3/Day)",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The phaerimm casts {@spell Counterspell|XPHB} or {@spell Shield|XPHB} in response to the spell's trigger, using the same spellcasting ability as Spellcasting."
+					],
+					"daily": {
+						"3": [
+							"{@spell Counterspell|XPHB}",
+							"{@spell Shield|XPHB}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "reaction",
+					"hidden": [
+						"daily"
+					]
+				}
+			],
+			"trait": [
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The phaerimm has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The phaerimm makes three Mind Lash attacks. It can replace one attack with either (A) a Vicious Stinger attack or (B) a use of Spellcasting to cast {@spell Command|XPHB} (level 3 version)."
+					]
+				},
+				{
+					"name": "Mind Lash",
+					"entries": [
+						"{@atkr m,r} {@hit 9}, reach 10 ft. or range 120 ft. {@h}32 ({@damage 6d8 + 4}) Psychic damage."
+					]
+				},
+				{
+					"name": "Vicious Stinger",
+					"entries": [
+						"{@atkr m} {@hit 9}, reach 5 ft. {@h}11 ({@damage 2d6 + 4}) Piercing damage plus 26 ({@damage 4d12}) Poison damage, and the target's {@variantrule Speed|XPHB} is reduced to 0 feet until the start of the phaerimm's next turn."
+					]
+				},
+				{
+					"name": "Siphon Magic {@recharge 5}",
+					"entries": [
+						"The phaerimm focuses on a magic item it can see within 10 feet. When it does, the phaerimm drains the magic item of any charges. Regardless of whether charges are drained, the phaerimm can cast {@spell Clairvoyance|XPHB}, {@spell Geas|XPHB}, {@spell Major Image|XPHB}, and {@spell Mirage Arcane|XPHB} one additional time that day."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Teleport",
+					"entries": [
+						"The phaerimm teleports up to 30 feet to an unoccupied space it can see."
+					]
+				}
+			],
+			"environment": [
+				"underdark",
+				"urban"
+			],
+			"treasure": [
+				"arcana",
+				"implements"
+			],
+			"attachedItems": [
+				"mind lash|vgm"
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Teleport"
+			],
+			"languageTags": [
+				"C",
+				"CS",
+				"DS",
+				"TP"
+			],
+			"damageTags": [
+				"I",
+				"P",
+				"Y"
+			],
+			"damageTagsSpell": [
+				"Y"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"RA",
+				"RCH"
+			],
+			"conditionInflictSpell": [
+				"charmed",
+				"prone"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Phaerimm Scout",
+			"source": "NF",
+			"size": [
+				"M"
+			],
+			"type": "aberration",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 44,
+				"formula": "8d8 + 8"
+			},
+			"speed": {
+				"walk": 10,
+				"fly": 40
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 12,
+			"dex": 13,
+			"con": 12,
+			"int": 15,
+			"wis": 16,
+			"cha": 16,
+			"save": {
+				"int": "+4",
+				"cha": "+5"
+			},
+			"skill": {
+				"perception": "+5"
+			},
+			"senses": [
+				"Truesight 60 ft."
+			],
+			"passive": 15,
+			"conditionImmune": [
+				"charmed"
+			],
+			"languages": [
+				"telepathy 120 ft. understands Common and Deep Speech but can't speak"
+			],
+			"cr": "2",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The phaerimm casts one of the following spells, requiring no spell components and using Charisma as the spellcasting ability (spell save {@dc 13}):"
+					],
+					"will": [
+						"{@spell Detect Magic|XPHB}",
+						"{@spell Detect Thoughts|XPHB}",
+						"{@spell Mage Hand|XPHB}"
+					],
+					"daily": {
+						"1": [
+							"{@spell Clairvoyance|XPHB}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The phaerimm has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The phaerimm makes two attacks, using Stinger or Mindwarp Ray in any combination."
+					]
+				},
+				{
+					"name": "Stinger",
+					"entries": [
+						"{@atkr m} {@hit 3}, reach 5 ft. {@h}4 ({@damage 1d6 + 1}) Piercing damage plus 9 ({@damage 2d8}) Poison damage."
+					]
+				},
+				{
+					"name": "Mindwarp Ray",
+					"entries": [
+						"{@atkr r} {@hit 5}, range 120 ft. {@h}6 ({@damage 1d6 + 3}) Psychic damage, and the target has the {@condition Charmed|XPHB} condition until the start of the phaerimm's next turn."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Uncanny Dodge",
+					"entries": [
+						"{@actTrigger} The phaerimm is hit by an attack roll. {@actResponse} The phaerimm halves the damage (round down) it takes from that attack."
+					]
+				}
+			],
+			"environment": [
+				"underdark",
+				"urban"
+			],
+			"treasure": [
+				"arcana",
+				"implements"
+			],
+			"tokenCustom": true,
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"U"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"CS",
+				"DS",
+				"TP"
+			],
+			"damageTags": [
+				"I",
+				"P",
+				"Y"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"conditionInflict": [
+				"charmed"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true
+		},
+		{
+			"name": "Terran Magen",
+			"source": "NF",
+			"size": [
+				"M"
+			],
+			"type": "construct",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				21
+			],
+			"hp": {
+				"average": 121,
+				"formula": "22d8 + 22"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": {
+					"number": 20,
+					"condition": "(hover)"
+				},
+				"canHover": true
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 16,
+			"dex": 10,
+			"con": 12,
+			"int": 10,
+			"wis": 18,
+			"cha": 10,
+			"save": {
+				"wis": "+7"
+			},
+			"skill": {
+				"perception": "+7"
+			},
+			"passive": 17,
+			"immune": [
+				"poison",
+				"thunder"
+			],
+			"conditionImmune": [
+				"blinded",
+				"charmed",
+				"deafened",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"petrified",
+				"poisoned"
+			],
+			"languages": [
+				"understands Common plus two other languages but can't speak"
+			],
+			"cr": "8",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The magen casts one of the following spells, requiring no Material components and using Wisdom as the spellcasting ability (spell save {@dc 15}):"
+					],
+					"will": [
+						"{@spell Mage Hand|XPHB}",
+						"{@spell Mending|XPHB}",
+						"{@spell Prestidigitation|XPHB}"
+					],
+					"daily": {
+						"1e": [
+							"{@spell Disintegrate|XPHB}",
+							"{@spell Move Earth|XPHB}",
+							"{@spell Stone Shape|XPHB}"
+						]
+					},
+					"ability": "wis",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Disintegration",
+					"entries": [
+						"If the magen dies, it disintegrates into dust, leaving behind anything it was wearing or carrying."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The magen has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The magen makes two attacks, using Hammer Fist or Thunderous Boom in any combination."
+					]
+				},
+				{
+					"name": "Hammer Fist",
+					"entries": [
+						"{@atkr m} {@hit 6}, reach 5 ft. {@h}16 ({@damage 3d8 + 3}) Bludgeoning damage plus 13 ({@damage 3d8}) Force damage."
+					]
+				},
+				{
+					"name": "Thunderous Boom",
+					"entries": [
+						"{@atkr r} {@hit 7}, range 60 ft. {@h}28 ({@damage 8d6}) Thunder damage."
+					]
+				}
+			],
+			"environment": [
+				"any"
+			],
+			"treasure": [
+				"arcana"
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"CS",
+				"X"
+			],
+			"damageTags": [
+				"B",
+				"O",
+				"T"
+			],
+			"damageTagsSpell": [
+				"O"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Virvos Magen",
+			"source": "NF",
+			"size": [
+				"M"
+			],
+			"type": "construct",
+			"alignment": [
+				"U"
+			],
+			"ac": [
+				21
+			],
+			"hp": {
+				"average": 110,
+				"formula": "17d8 + 34"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": {
+					"number": 20,
+					"condition": "(hover)"
+				},
+				"canHover": true
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 12,
+			"dex": 10,
+			"con": 14,
+			"int": 10,
+			"wis": 10,
+			"cha": 16,
+			"skill": {
+				"perception": "+6"
+			},
+			"passive": 16,
+			"immune": [
+				"poison",
+				"psychic"
+			],
+			"conditionImmune": [
+				"blinded",
+				"charmed",
+				"deafened",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"petrified",
+				"poisoned"
+			],
+			"languages": [
+				"understands Common plus two other languages but can't speak"
+			],
+			"cr": "6",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The magen casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save {@dc 14}):"
+					],
+					"will": [
+						"{@spell Dancing Lights|XPHB}",
+						"{@spell Minor Illusion|XPHB}"
+					],
+					"daily": {
+						"1e": [
+							"{@spell Hypnotic Pattern|XPHB}",
+							"{@spell Major Image|XPHB}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Disintegration",
+					"entries": [
+						"If the magen dies, it disintegrates into dust, leaving behind anything it was wearing or carrying."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The magen has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The magen makes two Psychic Blast attacks."
+					]
+				},
+				{
+					"name": "Psychic Blast",
+					"entries": [
+						"{@atkr m,r} {@hit 6}, reach 5 ft. or range 60 ft. {@h}21 ({@damage 6d6}) Psychic damage."
+					]
+				}
+			],
+			"environment": [
+				"any"
+			],
+			"treasure": [
+				"arcana"
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"CS",
+				"X"
+			],
+			"damageTags": [
+				"Y"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"conditionInflictSpell": [
+				"charmed",
+				"incapacitated"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		}
+	]
+}

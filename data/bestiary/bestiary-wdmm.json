@@ -1682,7 +1682,8 @@
 				"dexterity",
 				"wisdom"
 			],
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Fazrian",
@@ -1722,7 +1723,8 @@
 				"constitution"
 			],
 			"hasToken": true,
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Fidelio",
@@ -2071,8 +2073,7 @@
 				"dexterity",
 				"wisdom"
 			],
-			"hasToken": true,
-			"hasFluffImages": true
+			"hasToken": true
 		},
 		{
 			"name": "Gorzil's Gang Troglodyte",
@@ -5772,7 +5773,54 @@
 				"E"
 			],
 			"hasToken": true,
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Xarann A'Daragon",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "WDMM",
+			"page": 145,
+			"_copy": {
+				"name": "Assassin",
+				"source": "MM",
+				"_templates": [
+					{
+						"name": "Drow",
+						"source": "PHB"
+					}
+				],
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the assassin",
+						"with": "Xarann",
+						"flags": "i"
+					},
+					"trait": {
+						"mode": "appendArr",
+						"items": {
+							"name": "Special Equipment",
+							"entries": [
+								"Xarann wears a {@i piwafwi}, a drow-made {@item cloak of elvenkind}. It loses its magic if exposed to sunlight for 1 hour without interruption."
+							]
+						}
+					}
+				}
+			},
+			"alignment": [
+				"N",
+				"E"
+			],
+			"languages": [
+				"Elvish",
+				"Undercommon"
+			],
+			"languageTags": [
+				"E",
+				"U"
+			]
 		},
 		{
 			"name": "Xorta",

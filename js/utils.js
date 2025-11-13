@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.16.0"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.17.0"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -8838,6 +8838,7 @@ globalThis.ExcludeUtil = class {
 	static _lock = null;
 
 	static async pInitialise ({lockToken = null} = {}) {
+		if (ExcludeUtil.isInitialised) return;
 		try {
 			await ExcludeUtil._lock.pLock({token: lockToken});
 			await ExcludeUtil._pInitialise();
@@ -8854,6 +8855,7 @@ globalThis.ExcludeUtil = class {
 			ExcludeUtil._excludes = ExcludeUtil._getValidExcludes(
 				await StorageUtil.pGet(VeCt.STORAGE_EXCLUDES) || [],
 			);
+			this._doBuildCache();
 		} catch (e) {
 			JqueryUtil.doToast({
 				content: "Error when loading content blocklist! Purged blocklist data. (See the log for more information.)",
@@ -8899,6 +8901,7 @@ globalThis.ExcludeUtil = class {
 	static async pExtendList (toAdd) {
 		try {
 			const lockToken = await ExcludeUtil._lock.pLock();
+			await ExcludeUtil.pInitialise({lockToken});
 			await ExcludeUtil._pExtendList({toAdd, lockToken});
 		} finally {
 			ExcludeUtil._lock.unlock();

@@ -80,6 +80,8 @@ export class TagTestUrlLookup {
 		// TODO(Future) revise/expand
 		(await DataUtil.monsterFluff.pLoadAll())
 			.forEach(ent => this._addEntityItem(ent, "monsterFluff"));
+		(await DataUtil.raceFluff.loadJSON()).raceFluff
+			.forEach(ent => this._addEntityItem(ent, "raceFluff"));
 	}
 
 	async _pInit_pPopulateClassSubclassIndex () {

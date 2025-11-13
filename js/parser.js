@@ -3229,6 +3229,8 @@ Parser.SRC_HotB = "HotB";
 Parser.SRC_WttHC = "WttHC";
 Parser.SRC_FRAiF = "FRAiF";
 Parser.SRC_FRHoF = "FRHoF";
+Parser.SRC_ABH = "ABH";
+Parser.SRC_NF = "NF";
 Parser.SRC_TD = "TD";
 Parser.SRC_SCREEN = "Screen";
 Parser.SRC_SCREEN_WILDERNESS_KIT = "ScreenWildernessKit";
@@ -3431,6 +3433,8 @@ Parser.SOURCE_JSON_TO_FULL[Parser.SRC_HotB] = "Heroes of the Borderlands";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_WttHC] = "Stranger Things: Welcome to the Hellfire Club";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_FRAiF] = "Forgotten Realms: Adventures in Faerûn";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_FRHoF] = "Forgotten Realms: Heroes of Faerûn";
+Parser.SOURCE_JSON_TO_FULL[Parser.SRC_ABH] = "Astarion's Book of Hungers";
+Parser.SOURCE_JSON_TO_FULL[Parser.SRC_NF] = "Netheril's Fall";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_TD] = "Tarot Deck";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_SCREEN] = "Dungeon Master's Screen";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_SCREEN_WILDERNESS_KIT] = "Dungeon Master's Screen: Wilderness Kit";
@@ -3608,6 +3612,8 @@ Parser.SOURCE_JSON_TO_ABV[Parser.SRC_HotB] = "HotB";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_WttHC] = "WttHC";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_FRAiF] = "FRAiF";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_FRHoF] = "FRHoF";
+Parser.SOURCE_JSON_TO_ABV[Parser.SRC_ABH] = "ABH";
+Parser.SOURCE_JSON_TO_ABV[Parser.SRC_NF] = "NF";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_TD] = "TD";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_SCREEN] = "Scr'14";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_SCREEN_WILDERNESS_KIT] = "ScrWild";
@@ -3784,6 +3790,8 @@ Parser.SOURCE_JSON_TO_DATE[Parser.SRC_HotB] = "2025-09-16";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_WttHC] = "2025-10-07";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_FRAiF] = "2025-11-11";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_FRHoF] = "2025-11-11";
+Parser.SOURCE_JSON_TO_DATE[Parser.SRC_ABH] = "2025-11-11";
+Parser.SOURCE_JSON_TO_DATE[Parser.SRC_NF] = "2025-11-11";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_TD] = "2022-05-24";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_SCREEN] = "2015-01-20";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_SCREEN_WILDERNESS_KIT] = "2020-11-17";
@@ -4046,6 +4054,8 @@ Parser.SOURCES_VANILLA = new Set([
 	Parser.SRC_DMTCRG,
 	Parser.SRC_FRAiF,
 	Parser.SRC_FRHoF,
+	Parser.SRC_ABH,
+	Parser.SRC_NF,
 ]);
 
 // Any opinionated set of sources that are """hilarious, dude"""
@@ -4161,6 +4171,8 @@ Parser.SOURCES_AVAILABLE_DOCS_BOOK = {};
 	Parser.SRC_TD,
 	Parser.SRC_FRHoF,
 	Parser.SRC_FRAiF,
+	Parser.SRC_ABH,
+	Parser.SRC_NF,
 ].forEach(src => {
 	Parser.SOURCES_AVAILABLE_DOCS_BOOK[src] = src;
 	Parser.SOURCES_AVAILABLE_DOCS_BOOK[src.toLowerCase()] = src;

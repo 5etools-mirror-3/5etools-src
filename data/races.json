@@ -2194,6 +2194,84 @@
 		},
 		{
 			"name": "Dhampir",
+			"source": "ABH",
+			"page": 7,
+			"size": [
+				"S",
+				"M"
+			],
+			"speed": {
+				"walk": 35,
+				"climb": true
+			},
+			"darkvision": 60,
+			"resist": [
+				"necrotic"
+			],
+			"sizeEntry": {
+				"type": "item",
+				"name": "Size:",
+				"entries": [
+					"Medium (about 4-7 feet tall) or Small (about 2-4 feet tall), chosen when you select this species"
+				]
+			},
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Darkvision",
+					"entries": [
+						"You have {@sense Darkvision|XPHB} with a range of 60 feet."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spider Climb",
+					"entries": [
+						"You have a {@variantrule Climb Speed|XPHB} equal to your {@variantrule Speed|XPHB}. When you reach character level 3, you can move up, down, and across vertical surfaces and along ceilings while leaving your hands free."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Trace of Undeath",
+					"entries": [
+						"You have {@variantrule Resistance|XPHB} to Necrotic damage."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Vampiric Bite",
+					"entries": [
+						"When you use your {@variantrule Unarmed Strike|XPHB} and deal damage, you can choose to bite with your fangs. You deal Piercing damage equal to {@dice 1d4} plus your Constitution modifier instead of the normal damage of an {@variantrule Unarmed Strike|XPHB}.",
+						"In addition, when you deal this damage to a creature that isn't a Construct or an Undead, you can empower yourself in one of the following ways:",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "Drain",
+									"entries": [
+										"You regain {@variantrule Hit Points|XPHB} equal to the Piercing damage dealt."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Strengthen",
+									"entries": [
+										"You gain a bonus to the next ability check or attack roll you make within the next minute; the bonus is equal to the Piercing damage dealt."
+									]
+								}
+							]
+						},
+						"You can empower yourself with this trait a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
+					]
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Dhampir",
 			"source": "VRGR",
 			"page": 16,
 			"lineage": "VRGR",

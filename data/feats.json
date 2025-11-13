@@ -740,6 +740,132 @@
 			]
 		},
 		{
+			"name": "Bloodlust",
+			"source": "ABH",
+			"page": 9,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Powerful Recovery",
+					"entries": [
+						"When you roll a {@variantrule Hit Points|XPHB|Hit Point} Die to regain {@variantrule Hit Points|XPHB}, you can treat any roll of 1 or 2 as a 3."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Sanguine Feast",
+					"entries": [
+						"Once per turn when you hit a Bloodied creature that isn't a Construct or Undead with an attack roll, you can expend a {@variantrule Hit Points|XPHB|Hit Point} Die, roll it, and regain a number of {@variantrule Hit Points|XPHB} equal to the number rolled plus your Constitution modifier.",
+						"You can use this feature a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Bomber",
+			"source": "ABH",
+			"page": 9,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"dex": 1
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Far Lobber",
+					"entries": [
+						"When you use the {@action Attack|XPHB} action to throw a vial or flask, you can target an object or creature you can see within 40 feet of yourself."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Long Shots",
+					"entries": [
+						"Attacking at long range doesn't impose {@variantrule Disadvantage|XPHB} on your attack rolls with Thrown weapons."
+					]
+				}
+			]
+		},
+		{
+			"name": "Boon of Blazing Dawn",
+			"source": "ABH",
+			"page": 11,
+			"category": "EB",
+			"prerequisite": [
+				{
+					"level": 19
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"max": 30
+				}
+			],
+			"immune": [
+				"radiant"
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Beloved of the Sun",
+					"entries": [
+						"You have {@variantrule Immunity|XPHB} to Radiant damage."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Blazing Strike",
+					"entries": [
+						"When you hit a creature with a weapon attack, the damage can be Radiant or the weapon's normal damage type (your choice)."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Burst of Sunlight",
+					"entries": [
+						"Once per turn when you hit a creature with an attack that deals Radiant damage, you can emit {@variantrule Bright Light|XPHB} in a 30-foot radius from yourself and {@variantrule Dim Light|XPHB} for an additional 30 feet until the start of your next turn. This light is sunlight."
+					]
+				}
+			]
+		},
+		{
 			"name": "Boon of Bloodshed",
 			"source": "FRHoF",
 			"page": 42,
@@ -1274,6 +1400,96 @@
 					"name": "Overwhelming Strike",
 					"entries": [
 						"When you roll a 20 on the {@dice d20} for an attack roll, you can deal extra damage to the target equal to the ability score increased by this feat. The extra damage's type is the same as the attack's type."
+					]
+				}
+			]
+		},
+		{
+			"name": "Boon of Looming Shadows",
+			"source": "ABH",
+			"page": 11,
+			"category": "EB",
+			"prerequisite": [
+				{
+					"level": 19
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"max": 30
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Shadowy Stretch",
+					"entries": [
+						"When you take the {@action Attack|XPHB} action, your reach for your Melee weapon attacks increases by 10 feet until the end of your turn."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Dancing Silhouette",
+					"entries": [
+						"You can take the {@action Dodge|XPHB} action as a {@variantrule Bonus Action|XPHB}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Boon of Misty Escape",
+			"source": "ABH",
+			"page": 11,
+			"category": "EB",
+			"prerequisite": [
+				{
+					"level": 19
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"max": 30
+				}
+			],
+			"additionalSpells": [
+				{
+					"innate": {
+						"_": {
+							"daily": {
+								"1e": [
+									"gaseous form|xphb"
+								]
+							}
+						}
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Gaseous Form",
+					"entries": [
+						"If you drop to 0 {@variantrule Hit Points|XPHB} but aren't killed outright, you can instead drop to 1 {@variantrule Hit Points|XPHB|Hit Point} and cast {@spell Gaseous Form|XPHB} without expending a spell slot (no action required). When you cast this spell this way, you can target only yourself, your {@variantrule Fly Speed|XPHB} is 20 feet, and you regain 10 {@variantrule Hit Points|XPHB} at the start of each of your turns for the spell's duration. The spell's spellcasting ability is the ability increased by this feat.",
+						"Once you use this benefit, you can't do so again until you finish a {@variantrule Long Rest|XPHB}."
 					]
 				}
 			]
@@ -2055,6 +2271,54 @@
 			]
 		},
 		{
+			"name": "Cloying Mists",
+			"source": "ABH",
+			"page": 9,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"prepared": {
+						"_": [
+							"fog cloud|xphb"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Arise, Fog",
+					"entries": [
+						"You always have the {@spell Fog Cloud|XPHB} spell prepared. You can cast it without a spell slot, and you must finish a {@variantrule Long Rest|XPHB} before you can cast it in this way again. You can also cast it using spell slots you have of the appropriate level. Your spellcasting ability for the spell is the ability increased by this feat."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Grasping Mist",
+					"entries": [
+						"Whenever you cast {@spell Fog Cloud|XPHB}, nonmagical flames in the spell's {@variantrule Sphere [Area of Effect]|XPHB|Sphere} are extinguished, and creatures other than you and your allies have their {@variantrule Speed|XPHB} reduced by 5 feet while in the spell's {@variantrule Sphere [Area of Effect]|XPHB|Sphere}."
+					]
+				}
+			]
+		},
+		{
 			"name": "Cohort of Chaos",
 			"source": "SatO",
 			"page": 10,
@@ -2544,6 +2808,41 @@
 					"name": "Parry",
 					"entries": [
 						"If you're holding a Finesse weapon and another creature hits you with a melee attack, you can take a {@variantrule Reaction|XPHB} to add your {@variantrule Proficiency|XPHB|Proficiency Bonus} to your {@variantrule Armor Class|XPHB}, potentially causing the attack to miss you. You gain this bonus to your AC against melee attacks until the start of your next turn."
+					]
+				}
+			]
+		},
+		{
+			"name": "Delicious Pain",
+			"source": "ABH",
+			"page": 9,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Toughened Flesh",
+					"entries": [
+						"Immediately after you take Bludgeoning, Piercing, or Slashing damage, you can take a {@variantrule Reaction|XPHB} to gain {@variantrule Resistance|XPHB} to Bludgeoning, Piercing, and Slashing damage until the start of your next turn. Once you use this benefit, you can't use it again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
 					]
 				}
 			]
@@ -3558,7 +3857,7 @@
 					"type": "entries",
 					"name": "Fey Magic",
 					"entries": [
-						"Choose one level 1 spell from the {@filter Divination or Enchantment|spells|level=1|school=E;D} school of magic. You always have that spell and the {@spell Misty Step|XPHB} spell prepared. You can cast each of these spells without expending a spell slot. Once you cast either spell in this way, you can't cast that spell in this way again until you finish a {@variantrule Long Rest|XPHB}. You can also cast these spells using spell slots you have of the appropriate level. The spells' spellcasting ability is the ability increased by this feat."
+						"Choose one {@filter level 1 spell from the Divination or Enchantment|spells|level=1|school=E;D} school of magic. You always have that spell and the {@spell Misty Step|XPHB} spell prepared. You can cast each of these spells without expending a spell slot. Once you cast either spell in this way, you can't cast that spell in this way again until you finish a {@variantrule Long Rest|XPHB}. You can also cast these spells using spell slots you have of the appropriate level. The spells' spellcasting ability is the ability increased by this feat."
 					]
 				}
 			],
@@ -4914,6 +5213,73 @@
 			]
 		},
 		{
+			"name": "Light Bringer",
+			"source": "ABH",
+			"page": 10,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"name": "Light",
+					"known": {
+						"_": [
+							"light|xphb#c"
+						]
+					}
+				},
+				{
+					"name": "Cleric Cantrip",
+					"known": {
+						"_": [
+							{
+								"choose": "level=0|class=Cleric",
+								"count": 1
+							}
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Sacred Magic",
+					"entries": [
+						"You learn the {@spell Light|XPHB} spell and can cast it without Material components. If you already know that cantrip, you learn a different Cleric cantrip of your choice. The spell's spellcasting ability is the ability increased by this feat."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Solar Luminance",
+					"entries": [
+						"When you cast {@spell Light|XPHB}, you can have the light from the spell be sunlight. Once you use this benefit, you can't use it again until you finish a {@variantrule Long Rest|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Sun's Healing",
+					"entries": [
+						"As a {@variantrule Bonus Action|XPHB} while within sunlight, you can expend one of your {@variantrule Hit Point Dice|XPHB}, roll the die, and regain a number of {@variantrule Hit Points|XPHB} equal to the roll. Once you use this benefit, you can't use it again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
+					]
+				}
+			]
+		},
+		{
 			"name": "Lightly Armored",
 			"source": "PHB",
 			"page": 167,
@@ -5062,6 +5428,41 @@
 					"name": "Reassert Honor",
 					"entries": [
 						"When an enemy you can see deals damage to an ally of yours that is within 5 feet of you, you have {@variantrule Advantage|XPHB} on your next attack roll against that enemy before the end of your next turn."
+					]
+				}
+			]
+		},
+		{
+			"name": "Love Bites",
+			"source": "ABH",
+			"page": 10,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Endearing Pain",
+					"entries": [
+						"Immediately after you damage a creature with a Melee weapon or an {@variantrule Unarmed Strike|XPHB}, you can take a {@variantrule Bonus Action|XPHB} to give the target the {@condition Charmed|XPHB} condition until the start of your next turn or until you or your allies damage it. Once you use this benefit, you can't use it again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
 					]
 				}
 			]
@@ -6612,6 +7013,11 @@
 					"any": 1
 				}
 			],
+			"expertise": [
+				{
+					"anyProficientSkill": 1
+				}
+			],
 			"entries": [
 				"You have a knack for learning new things. You gain the following benefits:",
 				{
@@ -6722,6 +7128,41 @@
 			]
 		},
 		{
+			"name": "Putrefy",
+			"source": "ABH",
+			"page": 10,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Necrosis",
+					"entries": [
+						"When you make a damage roll that deals Necrotic damage, you can cause one creature taking that damage to have the {@condition Poisoned|XPHB} condition until the start of your next turn. Once you use this benefit, you can't use it again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
+					]
+				}
+			]
+		},
+		{
 			"name": "Quicksmithing",
 			"source": "PSK",
 			"page": 13,
@@ -6781,6 +7222,41 @@
 					"name": "Music Box",
 					"entries": [
 						"When opened, this music box plays a single song at a moderate volume. The box stops playing when it reaches the song's end or when it is closed."
+					]
+				}
+			]
+		},
+		{
+			"name": "Rebuke",
+			"source": "ABH",
+			"page": 10,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Radiant Strike",
+					"entries": [
+						"When you make a damage roll that deals Radiant damage, you can cause one Huge or smaller creature taking the damage to have the {@condition Prone|XPHB} condition. Once you use this benefit, you can't use it again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
 					]
 				}
 			]
@@ -7730,7 +8206,7 @@
 					"type": "entries",
 					"name": "Shadow Magic",
 					"entries": [
-						"Choose one {@filter level 1 spell|spells|level=1|school=I;N} from the Illusion or Necromancy school of magic. You always have that spell and the {@spell Invisibility|XPHB} spell prepared. You can cast each of these spells without expending a spell slot. Once you cast either spell in this way, you can't cast that spell in this way again until you finish a {@variantrule Long Rest|XPHB}. You can also cast these spells using spell slots you have of the appropriate level. The spells' spellcasting ability is the ability increased by this feat."
+						"Choose one {@filter level 1 spell from the Illusion or Necromancy|spells|level=1|school=I;N} school of magic. You always have that spell and the {@spell Invisibility|XPHB} spell prepared. You can cast each of these spells without expending a spell slot. Once you cast either spell in this way, you can't cast that spell in this way again until you finish a {@variantrule Long Rest|XPHB}. You can also cast these spells using spell slots you have of the appropriate level. The spells' spellcasting ability is the ability increased by this feat."
 					]
 				}
 			]
@@ -9609,6 +10085,15 @@
 			]
 		},
 		{
+			"name": "Tireless Reveler",
+			"source": "ABH",
+			"page": 8,
+			"category": "O",
+			"entries": [
+				"When an ally you can see within 60 feet of yourself expends {@variantrule Heroic Inspiration|XPHB}, you can gain {@variantrule Heroic Inspiration|XPHB} if you lack it. You can use this benefit a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
+			]
+		},
+		{
 			"name": "Tough",
 			"source": "PHB",
 			"page": 170,
@@ -9626,6 +10111,54 @@
 			"category": "O",
 			"entries": [
 				"Your {@variantrule Hit Points|XPHB|Hit Point} maximum increases by an amount equal to twice your character level when you gain this feat. Whenever you gain a character level thereafter, your {@variantrule Hit Points|XPHB|Hit Point} maximum increases by an additional 2 {@variantrule Hit Points|XPHB}."
+			]
+		},
+		{
+			"name": "Treacherous Allure",
+			"source": "ABH",
+			"page": 10,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"prepared": {
+						"_": [
+							"charm person|xphb"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Enchanting Presence",
+					"entries": [
+						"You always have the {@spell Charm Person|XPHB} spell prepared. You can cast it without a spell slot, and you must finish a {@variantrule Long Rest|XPHB} before you can cast it in this way again. You can also cast it using spell slots you have of the appropriate level. Your spellcasting ability for the spell is the ability increased by this feat."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Inevitable Betrayal",
+					"entries": [
+						"You have {@variantrule Advantage|XPHB} on attack rolls against creatures with the {@condition Charmed|XPHB} condition."
+					]
+				}
 			]
 		},
 		{
@@ -9685,6 +10218,103 @@
 			"entries": [
 				"When you hit with your {@variantrule Unarmed Strike|XPHB} and deal damage, you can deal Bludgeoning damage equal to {@damage 1d6} plus your Strength modifier instead of the normal damage of an {@variantrule Unarmed Strike|XPHB}. If you aren't holding any weapons or a {@item Shield|XPHB} when you make the attack roll, the {@dice d6} becomes a {@dice d8}.",
 				"At the start of each of your turns, you can deal {@damage 1d4} Bludgeoning damage to one creature {@condition Grappled|XPHB} by you."
+			]
+		},
+		{
+			"name": "Vampire Hunter",
+			"source": "ABH",
+			"page": 8,
+			"category": "O",
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Adroit Escape",
+					"entries": [
+						"You have {@variantrule Advantage|XPHB} on checks to escape from nonmagical restraints or the {@condition Grappled|XPHB} condition."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Vitality Ward",
+					"entries": [
+						"When you take Necrotic damage, you can take a {@variantrule Reaction|XPHB} to mitigate the damage. Roll a number of d6s equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and add them together. Reduce the Necrotic damage you take by this total. Once you use this benefit, you can't use it again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Vampire Touched",
+			"source": "ABH",
+			"page": 10,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"prepared": {
+						"_": [
+							"spider climb|xphb",
+							{
+								"choose": "level=1|school=E;I"
+							}
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Vampire Magic",
+					"entries": [
+						"Choose one level 1 spell from the Enchantment or Illusion school of magic. You always have that spell and the {@spell Spider Climb|XPHB} spell prepared. You can cast each of these spells without expending a spell slot, but when you cast {@spell Spider Climb|XPHB} this way, you must target yourself, and you must finish a {@variantrule Long Rest|XPHB} before you can cast each spell in this way again. You can also cast either spell using spell slots you have of the appropriate level. Your spellcasting ability for the spells is the ability increased by this feat."
+					]
+				}
+			]
+		},
+		{
+			"name": "Vampire's Plaything",
+			"source": "ABH",
+			"page": 9,
+			"category": "O",
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Decanting",
+					"entries": [
+						"When you finish a {@variantrule Long Rest|XPHB}, you can create one {@item Potion of Healing|XDMG} or an Antitoxin, as long as you have an empty vial or flask. These liquids evaporate when you finish another {@variantrule Long Rest|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Timely Retreat",
+					"entries": [
+						"You can take a {@variantrule Bonus Action|XPHB} to take the {@action Dash|XPHB} action or the {@action Disengage|XPHB} action. You can use this benefit a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you recover all expended uses when you finish a {@variantrule Long Rest|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Vampiric Connection",
+					"entries": [
+						"The DM determines the fate of your former vampire master. While you and your former vampire master are on the same plane of existence, the vampire can communicate with you telepathically, and you can choose to allow the vampire to perceive through your senses."
+					]
+				}
 			]
 		},
 		{

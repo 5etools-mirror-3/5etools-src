@@ -1,7 +1,7 @@
 {
 	"name": "5etools",
 	"author": "TheGiddyLimit",
-	"version": "2.16.0",
+	"version": "2.17.0",
 	"license": "MIT",
 	"description": "A site dedicated to making playing games with your friends as easy as possible.",
 	"type": "module",
@@ -26,7 +26,7 @@
 		"lint:data": "node node/prettify-data/prettify-data.js",
 		"test:json": "node test/test-json.js",
 		"test:tags": "node test/test-tags.js",
-		"test:unit": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+		"test:unit": "node --localstorage-file test/localstorage.tmp --experimental-vm-modules node_modules/jest/bin/jest.js",
 		"test": "npm run test:js && npm run test:unit && npm run test:css && npm run test:data",
 		"lint": "npm run lint:js && npm run lint:css && npm run lint:data",
 		"build:css": "sass --style=compressed scss/:css/ && node node/rm.js css/includes/ css/vars/",
@@ -50,7 +50,7 @@
 		"url": "git+https://github.com/5etools-mirror-3/5etools-src"
 	},
 	"devDependencies": {
-		"5etools-utils": "^0.14.18",
+		"5etools-utils": "^0.14.19",
 		"ajv": "^8.12.0",
 		"ajv-formats": "^2.1.1",
 		"commander": "^12.0.0",

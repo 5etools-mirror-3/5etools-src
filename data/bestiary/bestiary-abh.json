@@ -1,0 +1,910 @@
+{
+	"_meta": {
+		"otherSources": {
+			"monster": {
+				"XMM": "ABH"
+			}
+		}
+	},
+	"monster": [
+		{
+			"name": "Fiendish Icon",
+			"source": "ABH",
+			"page": 14,
+			"size": [
+				"S"
+			],
+			"type": "construct",
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 22,
+				"formula": "5d6 + 5"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 15,
+			"dex": 12,
+			"con": 13,
+			"int": 6,
+			"wis": 11,
+			"cha": 6,
+			"skill": {
+				"stealth": "+5"
+			},
+			"senses": [
+				"Darkvision 60"
+			],
+			"passive": 10,
+			"immune": [
+				"fire",
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"deafened",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"petrified",
+				"poisoned"
+			],
+			"languages": [
+				"understands Common and Infernal but can't speak"
+			],
+			"cr": "1",
+			"trait": [
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The icon has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The icon makes two Slam attacks and uses Fiery Eruption."
+					]
+				},
+				{
+					"name": "Slam",
+					"entries": [
+						"{@atkr m} {@hit 4}, reach 5 ft. {@h}4 ({@damage 1d4 + 2}) Bludgeoning damage."
+					]
+				},
+				{
+					"name": "Fiery Eruption",
+					"entries": [
+						"{@actSave dex} {@dc 11}, each creature in a 5-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the icon. {@actSaveFail} 7 ({@damage 2d6}) Fire damage."
+					]
+				}
+			],
+			"environment": [
+				"urban"
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"CS",
+				"I"
+			],
+			"damageTags": [
+				"B",
+				"F"
+			],
+			"miscTags": [
+				"MA"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Harvester Devil",
+			"source": "ABH",
+			"page": 15,
+			"size": [
+				"M"
+			],
+			"type": {
+				"type": "fiend",
+				"tags": [
+					"Devil"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				14
+			],
+			"hp": {
+				"average": 65,
+				"formula": "10d8 + 20"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 12,
+			"dex": 17,
+			"con": 14,
+			"int": 14,
+			"wis": 13,
+			"cha": 19,
+			"save": {
+				"con": "+4",
+				"wis": "+3"
+			},
+			"skill": {
+				"perception": "+3",
+				"persuasion": "+8",
+				"stealth": "+5"
+			},
+			"senses": [
+				"Darkvision 120 ft. (unimpeded by magical {@variantrule Darkness|XPHB})"
+			],
+			"passive": 13,
+			"resist": [
+				"cold"
+			],
+			"immune": [
+				"fire",
+				"poison"
+			],
+			"conditionImmune": [
+				"charmed",
+				"poisoned"
+			],
+			"languages": [
+				"Common",
+				"Infernal; telepathy 120 ft."
+			],
+			"cr": "3",
+			"trait": [
+				{
+					"name": "Diabolic Ward",
+					"entries": [
+						"Attack rolls against the devil have {@variantrule Disadvantage|XPHB}. If the devil makes an attack roll, this trait is suppressed until the start of its next turn."
+					]
+				},
+				{
+					"name": "Diabolical Restoration",
+					"entries": [
+						"If the devil dies outside the Nine Hells, its body disappears in sulfurous smoke, and it gains a new body instantly, reviving with all its {@variantrule Hit Points|XPHB} somewhere in the Nine Hells."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The devil has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The devil makes two attacks, using Infernal Blade or Confounding Ray in any combination."
+					]
+				},
+				{
+					"name": "Infernal Blade",
+					"entries": [
+						"{@atkr m} {@hit 5}, reach 5 ft. {@h}6 ({@damage 1d6 + 3}) Slashing damage and 7 ({@damage 2d6}) Fire damage."
+					]
+				},
+				{
+					"name": "Confounding Ray",
+					"entries": [
+						"{@atkr r} {@hit 5}, range 120 ft. {@h}13 ({@damage 2d12}) Psychic damage. If the target is a creature, it can't make Opportunity Attacks until the start of the devil's next turn."
+					]
+				},
+				{
+					"name": "Compelling Contract (1/Day)",
+					"entries": [
+						"{@actSave cha} {@dc 14}, one creature within 30 feet of the devil. {@actSaveFail} The target has the {@condition Charmed|XPHB} condition. While it is {@condition Charmed|XPHB}, it has the {@condition Stunned|XPHB} condition, except the target can speak. If the target agrees to the devil's contract, the effect ends. Otherwise, the target repeats the save whenever it takes damage and at the end of each of its turns, ending the effect on itself on a success. After 1 minute, it succeeds automatically."
+					]
+				}
+			],
+			"environment": [
+				"planar, nine hells"
+			],
+			"traitTags": [
+				"Devil's Sight",
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"I",
+				"TP"
+			],
+			"damageTags": [
+				"F",
+				"S",
+				"Y"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"conditionInflict": [
+				"charmed",
+				"stunned"
+			],
+			"savingThrowForced": [
+				"charisma"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Speaker Devil",
+			"source": "ABH",
+			"page": 17,
+			"size": [
+				"L"
+			],
+			"type": {
+				"type": "fiend",
+				"tags": [
+					"Devil"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				17
+			],
+			"hp": {
+				"average": 189,
+				"formula": "18d10 + 90"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": 30
+			},
+			"str": 21,
+			"dex": 19,
+			"con": 20,
+			"int": 22,
+			"wis": 18,
+			"cha": 17,
+			"save": {
+				"con": "+9",
+				"int": "+10",
+				"wis": "+8",
+				"cha": "+7"
+			},
+			"skill": {
+				"arcana": "+10",
+				"history": "+10",
+				"perception": "+8"
+			},
+			"senses": [
+				"Darkvision 120 ft."
+			],
+			"passive": 18,
+			"resist": [
+				"cold"
+			],
+			"immune": [
+				"fire",
+				"poison"
+			],
+			"conditionImmune": [
+				"poisoned"
+			],
+			"languages": [
+				"Infernal; telepathy 120 ft."
+			],
+			"cr": "12",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The devil casts one of the following spells, requiring no Material components and using Intelligence as the spellcasting ability (spell save {@dc 18}):"
+					],
+					"will": [
+						"{@spell Detect Magic|XPHB}",
+						"{@spell Detect Thoughts|XPHB}"
+					],
+					"daily": {
+						"2e": [
+							"{@spell Dimension Door|XPHB}",
+							"{@spell Modify Memory|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Diabolical Restoration",
+					"entries": [
+						"If the devil dies outside the Nine Hells, its body disappears in sulfurous smoke, and it gains a new body instantly, reviving with all its {@variantrule Hit Points|XPHB} somewhere in the Nine Hells."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The devil has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The devil makes two Thundering Halberd attacks."
+					]
+				},
+				{
+					"name": "Thundering Halberd",
+					"entries": [
+						"{@atkr m} {@hit 9}, reach 10 ft. {@h}16 ({@damage 2d10 + 5}) Slashing damage plus 14 ({@damage 4d6}) Thunder damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Utterance of Pain",
+					"entries": [
+						"{@actSave wis} {@dc 18}, each creature in a 20-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the devil. {@actSaveFail} The target has the {@condition Stunned|XPHB} condition until the end of the devil's next turn."
+					]
+				},
+				{
+					"name": "Utterance of Unmaking",
+					"entries": [
+						"{@actSave con} {@dc 18}, each creature in a 20-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the devil. {@actSaveFail} 22 ({@damage 4d10}) Force damage. {@actSaveSuccess} Half damage."
+					]
+				}
+			],
+			"environment": [
+				"planar, nine hells"
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"I",
+				"TP"
+			],
+			"damageTags": [
+				"O",
+				"S",
+				"T"
+			],
+			"damageTagsSpell": [
+				"O"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"MLW",
+				"RCH"
+			],
+			"conditionInflict": [
+				"stunned"
+			],
+			"conditionInflictSpell": [
+				"charmed",
+				"incapacitated"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Vampire Infernalist",
+			"source": "ABH",
+			"page": 18,
+			"size": [
+				"S",
+				"M"
+			],
+			"type": {
+				"type": "undead",
+				"tags": [
+					"Wizard"
+				]
+			},
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				16
+			],
+			"hp": {
+				"average": 172,
+				"formula": "23d8 + 69"
+			},
+			"speed": {
+				"walk": 40,
+				"fly": 40
+			},
+			"initiative": {
+				"proficiency": 2
+			},
+			"str": 19,
+			"dex": 16,
+			"con": 17,
+			"int": 20,
+			"wis": 16,
+			"cha": 18,
+			"save": {
+				"con": "+8",
+				"int": "+10"
+			},
+			"skill": {
+				"arcana": "+10",
+				"perception": "+8",
+				"religion": "+10",
+				"stealth": "+8"
+			},
+			"senses": [
+				"Darkvision 120 ft. (unimpeded by magical {@variantrule Darkness|XPHB})"
+			],
+			"passive": 18,
+			"resist": [
+				"fire",
+				"necrotic",
+				"poison"
+			],
+			"conditionImmune": [
+				"poisoned"
+			],
+			"languages": [
+				"Common",
+				"Infernal"
+			],
+			"cr": {
+				"cr": "14",
+				"xpLair": 13000
+			},
+			"gear": [
+				"orb|xphb"
+			],
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The vampire casts one of the following spells, using Intelligence as the spellcasting ability (spell save {@dc 18}):"
+					],
+					"will": [
+						"{@spell Detect Magic|XPHB}",
+						"{@spell Detect Thoughts|XPHB}",
+						"{@spell Dispel Magic|XPHB}",
+						"{@spell Fireball|XPHB} (level 4 version)",
+						"{@spell Mage Hand|XPHB}",
+						"{@spell Prestidigitation|XPHB}"
+					],
+					"daily": {
+						"1": [
+							"{@spell Wall of Fire|XPHB}"
+						],
+						"2": [
+							"{@spell Scrying|XPHB}"
+						]
+					},
+					"ability": "int",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Legendary Resistance (3/Day, or 4/Day in Lair)",
+					"entries": [
+						"If the vampire fails a saving throw, it can choose to succeed instead."
+					]
+				},
+				{
+					"name": "Misty Escape",
+					"entries": [
+						"If the vampire drops to 0 {@variantrule Hit Points|XPHB} outside its resting place, the vampire uses Shape-Shift to become mist (no action required). If it can't use Shape-Shift, it is destroyed.",
+						"While it has 0 {@variantrule Hit Points|XPHB} in mist form, it can't return to its vampire form, and it must reach its resting place within 2 hours or be destroyed. Once in its resting place, it returns to its vampire form and has the {@condition Paralyzed|XPHB} condition until it regains any {@variantrule Hit Points|XPHB}, and it regains 1 {@variantrule Hit Points|XPHB|Hit Point} after spending 1 hour there."
+					]
+				},
+				{
+					"name": "Vampire Weakness",
+					"entries": [
+						"The vampire has these weaknesses:",
+						{
+							"type": "list",
+							"style": "list-hang-subtrait",
+							"items": [
+								{
+									"type": "itemSub",
+									"name": "Forbiddance",
+									"entries": [
+										"The vampire can't enter a residence without an invitation from an occupant."
+									]
+								},
+								{
+									"type": "itemSub",
+									"name": "Running Water",
+									"entries": [
+										"The vampire takes 20 Acid damage if it ends its turn in running water."
+									]
+								},
+								{
+									"type": "itemSub",
+									"name": "Stake to the Heart",
+									"entries": [
+										"If a weapon that deals Piercing damage is driven into the vampire's heart while the vampire has the {@condition Incapacitated|XPHB} condition in its resting place, the vampire has the {@condition Paralyzed|XPHB} condition until the weapon is removed."
+									]
+								},
+								{
+									"type": "itemSub",
+									"name": "Sunlight",
+									"entries": [
+										"The vampire takes 20 Radiant damage if it starts its turn in sunlight. While in sunlight, it has {@variantrule Disadvantage|XPHB} on attack rolls and ability checks."
+									]
+								}
+							]
+						}
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack (Vampire Form Only)",
+					"entries": [
+						"The vampire makes two Hellfire Claw attacks and uses Bite."
+					]
+				},
+				{
+					"name": "Hellfire Claw (Vampire Form Only)",
+					"entries": [
+						"{@atkr m} {@hit 9}, reach 5 ft. {@h}13 ({@damage 2d8 + 4}) Slashing damage plus 10 ({@damage 3d6}) Fire damage. If the target is a Medium or smaller creature, it has the {@condition Grappled|XPHB} condition (escape {@dc 17}) from one of two claws."
+					]
+				},
+				{
+					"name": "Bite (Imp or Vampire Form Only)",
+					"entries": [
+						"{@actSave con} {@dc 18}, one creature within 5 feet that is willing or that has the {@condition Grappled|XPHB}, {@condition Incapacitated|XPHB}, or {@condition Restrained|XPHB} condition. {@actSaveFail} 6 ({@damage 1d4 + 4}) Piercing damage plus 16 ({@damage 3d10}) Necrotic damage and the creature loses its highest-level available spell slot (if any). The target's {@variantrule Hit Points|XPHB|Hit Point} maximum decreases by an amount equal to the Necrotic damage taken, and the vampire regains {@variantrule Hit Points|XPHB} equal to that amount. A Humanoid reduced to 0 {@variantrule Hit Points|XPHB} by this damage and then buried rises the following sunset as a Vampire Spawn under the vampire's control."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Shape-Shift",
+					"entries": [
+						"If the vampire isn't in sunlight or running water, it shape-shifts into a Tiny imp ({@variantrule Speed|XPHB} 20 ft., {@variantrule Fly Speed|XPHB} 40 ft.), or a Medium cloud of mist ({@variantrule Speed|XPHB} 5 ft., {@variantrule Fly Speed|XPHB} 20 ft. [hover]), or it returns to its vampire form. Anything it is wearing transforms with it.",
+						"While in imp form, the vampire's game statistics, other than its size and {@variantrule Speed|XPHB}, are unchanged.",
+						"While in mist form, the vampire can't take any actions, speak, or manipulate objects. It is weightless and can enter an enemy's space and stop there. If air can pass through a space, the mist can do so, but it can't pass through liquid. It has {@variantrule Resistance|XPHB} to all damage, except the damage it takes from sunlight."
+					]
+				}
+			],
+			"legendaryActionsLair": 4,
+			"legendary": [
+				{
+					"name": "Hellfire Strike",
+					"entries": [
+						"The vampire moves up to half its {@variantrule Speed|XPHB}, and it makes one Hellfire Claw attack."
+					]
+				},
+				{
+					"name": "Infernal Majesty",
+					"entries": [
+						"{@actSave cha} {@dc 17}, each creature in a 20-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the vampire. {@actSaveFail} 9 ({@damage 2d8}) Psychic damage, and the target has the {@condition Frightened|XPHB} condition until the start of its next turn. {@actSaveSuccess} Half damage only. {@actSaveSuccessOrFail} The vampire can't take this action again until the start of its next turn."
+					]
+				},
+				{
+					"name": "Teleport",
+					"entries": [
+						"The vampire teleports up to 30 feet to an unoccupied space it can see."
+					]
+				}
+			],
+			"legendaryGroup": {
+				"name": "Vampire Infernalist",
+				"source": "ABH"
+			},
+			"environment": [
+				"planar, nine hells",
+				"underdark",
+				"urban"
+			],
+			"traitTags": [
+				"Devil's Sight",
+				"Legendary Resistances"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"I"
+			],
+			"damageTags": [
+				"A",
+				"F",
+				"N",
+				"P",
+				"R",
+				"S",
+				"Y"
+			],
+			"damageTagsSpell": [
+				"F"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA"
+			],
+			"conditionInflict": [
+				"frightened",
+				"grappled",
+				"incapacitated",
+				"paralyzed"
+			],
+			"savingThrowForced": [
+				"charisma",
+				"constitution"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity",
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Vampire Warden",
+			"source": "ABH",
+			"page": 20,
+			"size": [
+				"M"
+			],
+			"type": "undead",
+			"alignment": [
+				"N",
+				"E"
+			],
+			"ac": [
+				18
+			],
+			"hp": {
+				"average": 190,
+				"formula": "21d8 + 96"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 21,
+			"dex": 15,
+			"con": 18,
+			"int": 10,
+			"wis": 14,
+			"cha": 17,
+			"save": {
+				"con": "+8",
+				"wis": "+6"
+			},
+			"skill": {
+				"athletics": "+9",
+				"perception": "+10"
+			},
+			"senses": [
+				"Darkvision 120 ft."
+			],
+			"passive": 20,
+			"resist": [
+				"necrotic"
+			],
+			"conditionImmune": [
+				"exhaustion",
+				"frightened"
+			],
+			"languages": [
+				"Common"
+			],
+			"cr": "10",
+			"spellcasting": [
+				{
+					"name": "Guardian's Command",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The vampire casts {@spell Compulsion|XPHB}, requiring no spell components and using Charisma as the spellcasting ability (spell save {@dc 15})."
+					],
+					"will": [
+						"{@spell Compulsion|XPHB}"
+					],
+					"ability": "cha",
+					"displayAs": "action",
+					"hidden": [
+						"will"
+					]
+				}
+			],
+			"trait": [
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The vampire has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				},
+				{
+					"name": "Vampire Weakness",
+					"entries": [
+						"The vampire has these weaknesses:",
+						{
+							"type": "list",
+							"style": "list-hang-subtrait",
+							"items": [
+								{
+									"type": "itemSub",
+									"name": "Forbiddance",
+									"entries": [
+										"The vampire can't enter a residence without an invitation from an occupant."
+									]
+								},
+								{
+									"type": "itemSub",
+									"name": "Running Water",
+									"entries": [
+										"The vampire takes 20 Acid damage if it ends its turn in running water."
+									]
+								},
+								{
+									"type": "itemSub",
+									"name": "Stake to the Heart",
+									"entries": [
+										"If a weapon that deals Piercing damage is driven into the vampire's heart while the vampire has the {@condition Incapacitated|XPHB} condition, the vampire has the {@condition Paralyzed|XPHB} condition until the weapon is removed."
+									]
+								},
+								{
+									"type": "itemSub",
+									"name": "Sunlight",
+									"entries": [
+										"The vampire takes 20 Radiant damage if it starts its turn in sunlight. While in sunlight, it has {@variantrule Disadvantage|XPHB} on attack rolls and ability checks."
+									]
+								},
+								{
+									"type": "itemSub",
+									"name": "Immobile Restoration",
+									"entries": [
+										"If the vampire drops to 0 {@variantrule Hit Points|XPHB} while it doesn't have the {@condition Petrified|XPHB} condition, it turns to stone, regains 50 {@variantrule Hit Points|XPHB}, and has the {@condition Petrified|XPHB} condition for 1 hour."
+									]
+								}
+							]
+						}
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The vampire makes two Claw attacks and uses Bite or Guardian's Command."
+					]
+				},
+				{
+					"name": "Claw",
+					"entries": [
+						"{@atkr m} {@hit 9}, reach 5 ft. {@h}14 ({@damage 2d8 + 5}) Slashing damage plus 7 ({@damage 2d6}) Necrotic damage. If the target is a Large or smaller creature, it has the {@condition Grappled|XPHB} condition (escape {@dc 16}) from one of two claws."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@actSave con} {@dc 16}, one creature within 5 feet that is willing or that has the {@condition Grappled|XPHB}, {@condition Incapacitated|XPHB}, or {@condition Restrained|XPHB} condition. {@actSaveFail} 7 ({@damage 1d4 + 5}) Piercing damage plus 7 ({@damage 2d6}) Necrotic damage. The target's {@variantrule Hit Points|XPHB|Hit Point} maximum decreases by an amount equal to the Necrotic damage taken, and the vampire regains {@variantrule Hit Points|XPHB} equal to that amount."
+					]
+				}
+			],
+			"reaction": [
+				{
+					"name": "Resilient Flesh",
+					"entries": [
+						"{@actTrigger} The vampire is hit by a melee attack roll from an attacker the vampire can see. {@actResponse} The vampire reduces the damage it takes from the attack by 11 ({@dice 2d6 + 4})."
+					]
+				}
+			],
+			"environment": [
+				"underdark",
+				"urban"
+			],
+			"tokenCredit": "ThePrisoner",
+			"tokenCustom": true,
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C"
+			],
+			"damageTags": [
+				"A",
+				"N",
+				"P",
+				"R",
+				"S"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA"
+			],
+			"conditionInflict": [
+				"grappled",
+				"incapacitated",
+				"paralyzed",
+				"petrified"
+			],
+			"conditionInflictSpell": [
+				"charmed"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true
+		}
+	]
+}
