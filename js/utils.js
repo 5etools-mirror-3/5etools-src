@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.17.0"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.18.0"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -5585,8 +5585,12 @@ globalThis.DataUtil = class {
 			static _doMod_addSpells ({copyTo, copyFrom, modInfo, msgPtFailed}) {
 				if (!copyTo.spellcasting) throw new Error(`${msgPtFailed} Creature did not have a spellcasting property!`);
 
-				// TODO could accept a "position" or "name" parameter should spells need to be added to other spellcasting traits
-				const spellcasting = copyTo.spellcasting[0];
+				// TODO could accept a "position" parameter should spells need to be added to other spellcasting traits
+				const spellcasting = modInfo.name
+					? copyTo.spellcasting.find(ent => ent.name === modInfo.name)
+					: copyTo.spellcasting[0];
+
+				if (modInfo.name && !spellcasting) throw new Error(`${msgPtFailed} Creature did not have spellcasting trait named "${modInfo.name}"!`);
 
 				if (modInfo.spells) {
 					const spells = spellcasting.spells;
@@ -5864,6 +5868,15 @@ globalThis.DataUtil = class {
 				else this._doMod_handleProp({copyTo, copyFrom, modInfos, msgPtFailed});
 			}
 
+			static _PROPS_TAIL = [
+				"_",
+				"*",
+			];
+
+			static _sortProps (propA, propB) {
+				return SortUtil.ascSort(this._PROPS_TAIL.indexOf(propA), this._PROPS_TAIL.indexOf(propB));
+			}
+
 			static getCopy (impl, copyFrom, copyTo, templates, {isExternalApplicationKeepCopy = false, isExternalApplicationIdentityOnly = false} = {}) {
 				this._WALKER ||= MiscUtil.getWalker();
 
@@ -5952,11 +5965,13 @@ globalThis.DataUtil = class {
 						copyMeta._mod[k] = DataUtil.generic.variableResolver.resolve({obj: v, ent: copyTo});
 					});
 
-					Object.entries(copyMeta._mod).forEach(([prop, modInfos]) => {
-						if (prop === "*") this._doMod({copyTo, copyFrom, modInfos, props: DataUtil.generic.COPY_ENTRY_PROPS, msgPtFailed, isExternalApplicationIdentityOnly});
-						else if (prop === "_") this._doMod({copyTo, copyFrom, modInfos, msgPtFailed, isExternalApplicationIdentityOnly});
-						else this._doMod({copyTo, copyFrom, modInfos, props: [prop], msgPtFailed, isExternalApplicationIdentityOnly});
-					});
+					Object.entries(copyMeta._mod)
+						.sort(([propA], [propB]) => this._sortProps(propA, propB))
+						.forEach(([prop, modInfos]) => {
+							if (prop === "*") this._doMod({copyTo, copyFrom, modInfos, props: DataUtil.generic.COPY_ENTRY_PROPS, msgPtFailed, isExternalApplicationIdentityOnly});
+							else if (prop === "_") this._doMod({copyTo, copyFrom, modInfos, msgPtFailed, isExternalApplicationIdentityOnly});
+							else this._doMod({copyTo, copyFrom, modInfos, props: [prop], msgPtFailed, isExternalApplicationIdentityOnly});
+						});
 				}
 
 				// add filter tag

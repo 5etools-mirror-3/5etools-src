@@ -1,0 +1,931 @@
+{
+	"_meta": {
+		"otherSources": {
+			"monster": {
+				"XMM": "LFL"
+			}
+		}
+	},
+	"monster": [
+		{
+			"name": "Incarnation of Transience",
+			"group": [
+				"Incarnation of Nature"
+			],
+			"source": "LFL",
+			"size": [
+				"H"
+			],
+			"type": "fey",
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				16
+			],
+			"hp": {
+				"average": 142,
+				"formula": "15d12 + 45"
+			},
+			"speed": {
+				"walk": 40,
+				"swim": 40
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 21,
+			"dex": 20,
+			"con": 17,
+			"int": 10,
+			"wis": 14,
+			"cha": 16,
+			"save": {
+				"dex": "+8",
+				"con": "+6"
+			},
+			"senses": [
+				"Darkvision 60 ft."
+			],
+			"passive": 12,
+			"conditionImmune": [
+				"grappled",
+				"paralyzed",
+				"petrified",
+				"prone",
+				"restrained"
+			],
+			"languages": [
+				"Sylvan; telepathy 120 ft."
+			],
+			"cr": "7",
+			"trait": [
+				{
+					"name": "Ephemeral Movement",
+					"entries": [
+						"The incarnation can move through other creatures and objects as if they were {@variantrule Difficult Terrain|XPHB}, and its movement doesn't provoke Opportunity Attacks. It takes 5 ({@damage 1d10}) Force damage if it ends its turn inside an object."
+					]
+				},
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The incarnation has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The incarnation makes three attacks, using Bite or Miasmic Globule in any combination."
+					]
+				},
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atkr m} {@hit 8}, reach 5 ft. {@h}14 ({@damage 2d8 + 5}) Piercing damage."
+					]
+				},
+				{
+					"name": "Miasmic Globule",
+					"entries": [
+						"{@atkr r} {@hit 8}, range 60/120 ft. {@h}15 ({@damage 6d4}) Acid damage, and the target's {@variantrule Speed|XPHB} is reduced by 10 feet until the end of the incarnation's next turn."
+					]
+				},
+				{
+					"name": "Spectral Stampede",
+					"entries": [
+						"The incarnation moves up to 80 feet in a straight line. Each creature whose space the incarnation enters is targeted once by the following effect. {@actSave dex} {@dc 16}. {@actSaveFail} 18 ({@damage 4d8}) Force damage. If the target is the incarnation's size or smaller, it has the {@condition Prone|XPHB} condition. {@actSaveSuccess} Half damage only."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Shape-Shift",
+					"entries": [
+						"The incarnation changes its size to Medium, Large, or Huge."
+					]
+				}
+			],
+			"environment": [
+				"planar, feywild"
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"S",
+				"TP"
+			],
+			"damageTags": [
+				"A",
+				"O",
+				"P"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"conditionInflict": [
+				"prone"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Incarnation of Vibrance",
+			"group": [
+				"Incarnation of Nature"
+			],
+			"source": "LFL",
+			"size": [
+				"H"
+			],
+			"type": "fey",
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				14
+			],
+			"hp": {
+				"average": 230,
+				"formula": "20d12 + 100"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"initiative": {
+				"proficiency": 1
+			},
+			"str": 20,
+			"dex": 17,
+			"con": 20,
+			"int": 10,
+			"wis": 16,
+			"cha": 21,
+			"save": {
+				"con": "+9",
+				"cha": "+9"
+			},
+			"senses": [
+				"Darkvision 60 ft."
+			],
+			"passive": 13,
+			"resist": [
+				"radiant"
+			],
+			"conditionImmune": [
+				"blinded",
+				"charmed",
+				"deafened",
+				"frightened"
+			],
+			"languages": [
+				"Sylvan; telepathy 120 ft."
+			],
+			"cr": "10",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The incarnation casts one of the following spells, requiring no spell components and using Charisma as the spellcasting ability:"
+					],
+					"will": [
+						"{@spell Daylight|XPHB}",
+						"{@spell Druidcraft|XPHB}",
+						"{@spell Plant Growth|XPHB}"
+					],
+					"daily": {
+						"1": [
+							"{@spell Blindness/Deafness|XPHB}"
+						]
+					},
+					"ability": "cha",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The incarnation has {@variantrule Advantage|XPHB} on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The incarnation makes two Vine attacks and uses Radiant Blast. It can replace one vine attack with a use of Spellcasting to cast {@spell Blindness/Deafness|XPHB} if available."
+					]
+				},
+				{
+					"name": "Vine",
+					"entries": [
+						"{@atkr m} {@hit 9}, reach 20 ft. {@h}18 ({@damage 3d8 + 5}) Bludgeoning damage. If the target is the incarnation's size or smaller, it has the {@condition Grappled|XPHB} condition (escape {@dc 15}) from one of two vines."
+					]
+				},
+				{
+					"name": "Radiant Blast",
+					"entries": [
+						"{@actSave con} {@dc 17}, each creature of the incarnation's choice in a 20-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the incarnation. {@actSaveFail} The creature takes 14 ({@damage 2d8 + 5}) Radiant damage. {@actSaveSuccess} Half damage."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Shape-Shift",
+					"entries": [
+						"The incarnation changes its size to Medium, Large, or Huge."
+					]
+				},
+				{
+					"name": "Teleport",
+					"entries": [
+						"The incarnation teleports up to 60 feet to an unoccupied space it can see. The incarnation can't teleport while it has a creature {@condition Grappled|XPHB}."
+					]
+				}
+			],
+			"environment": [
+				"planar, feywild"
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Teleport"
+			],
+			"languageTags": [
+				"S",
+				"TP"
+			],
+			"damageTags": [
+				"B",
+				"R"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"RCH"
+			],
+			"conditionInflict": [
+				"grappled"
+			],
+			"conditionInflictSpell": [
+				"blinded",
+				"deafened"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"savingThrowForcedSpell": [
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Lorwyn Giant",
+			"source": "LFL",
+			"size": [
+				"H"
+			],
+			"type": "giant",
+			"alignment": [
+				"C",
+				"N"
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 115,
+				"formula": "11d12 + 44"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 21,
+			"dex": 13,
+			"con": 18,
+			"int": 9,
+			"wis": 16,
+			"cha": 8,
+			"save": {
+				"con": "+7",
+				"wis": "+6"
+			},
+			"passive": 13,
+			"languages": [
+				"Common",
+				"Giant"
+			],
+			"cr": "6",
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The giant makes two attacks, using Stone Sword or Boulder in any combination."
+					]
+				},
+				{
+					"name": "Stone Sword",
+					"entries": [
+						"{@atkr m} {@hit 8}, reach 15 ft. {@h}21 ({@damage 3d10 + 5}) Slashing damage."
+					]
+				},
+				{
+					"name": "Boulder",
+					"entries": [
+						"{@atkr r} {@hit 8}, range 60/240 ft. {@h}14 ({@damage 2d8 + 5}) Bludgeoning damage. If the target is a Large or smaller creature, it has the {@condition Prone|XPHB} condition."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Name Sleep {@recharge 5}",
+					"entries": [
+						"The giant falls into a deep, restorative slumber. The giant gains 20 {@variantrule Temporary Hit Points|XPHB} and has the {@condition Unconscious|XPHB} condition until it takes damage or the end of its next turn. The giant has {@variantrule Advantage|XPHB} on ability checks and saving throws for 1 minute."
+					]
+				}
+			],
+			"environment": [
+				"planar, feywild"
+			],
+			"treasure": [
+				"arcana"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"GI"
+			],
+			"damageTags": [
+				"B",
+				"S"
+			],
+			"miscTags": [
+				"MA",
+				"RA",
+				"RCH"
+			],
+			"conditionInflict": [
+				"prone",
+				"unconscious"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Merrow Doublespeaker",
+			"source": "LFL",
+			"size": [
+				"M"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"L",
+				"E"
+			],
+			"ac": [
+				14
+			],
+			"hp": {
+				"average": 67,
+				"formula": "9d8 + 27"
+			},
+			"speed": {
+				"walk": 20,
+				"swim": 40
+			},
+			"str": 18,
+			"dex": 17,
+			"con": 16,
+			"int": 12,
+			"wis": 13,
+			"cha": 16,
+			"save": {
+				"dex": "+5",
+				"cha": "+5"
+			},
+			"skill": {
+				"deception": "+5",
+				"stealth": "+5"
+			},
+			"senses": [
+				"Darkvision 120 ft."
+			],
+			"passive": 11,
+			"languages": [
+				"Common",
+				"Primordial (Aquan)"
+			],
+			"cr": "4",
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"The merrow casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save {@dc 13}):"
+					],
+					"will": [
+						"{@spell Command|XPHB}",
+						"{@spell Mage Hand|XPHB}",
+						"{@spell Minor Illusion|XPHB}"
+					],
+					"ability": "cha",
+					"displayAs": "action"
+				}
+			],
+			"trait": [
+				{
+					"name": "Amphibious",
+					"entries": [
+						"The merrow can breathe air and water."
+					]
+				},
+				{
+					"name": "Mimicry",
+					"entries": [
+						"The merrow can mimic voices and animal sounds. A creature that hears the mimicries can tell they are imitations with a successful {@dc 15} Wisdom ({@skill Insight|XPHB}) check."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The merrow makes three Spined Tail attacks. It can replace one of these attacks with a use of Spellcasting to cast {@spell Command|XPHB}."
+					]
+				},
+				{
+					"name": "Spined Tail",
+					"entries": [
+						"{@atkr m,r} {@hit 6}, reach 5 ft. or range 20/60 ft. {@h}14 ({@damage 3d6 + 4}) Piercing damage."
+					]
+				}
+			],
+			"environment": [
+				"planar, feywild"
+			],
+			"treasure": [
+				"individual"
+			],
+			"traitTags": [
+				"Amphibious",
+				"Mimicry"
+			],
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AQ",
+				"C",
+				"P"
+			],
+			"damageTags": [
+				"P"
+			],
+			"spellcastingTags": [
+				"O"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"conditionInflictSpell": [
+				"prone"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Merrow Haranguer",
+			"source": "LFL",
+			"size": [
+				"M"
+			],
+			"type": "monstrosity",
+			"alignment": [
+				"L",
+				"N"
+			],
+			"ac": [
+				14
+			],
+			"hp": {
+				"average": 90,
+				"formula": "12d8 + 36"
+			},
+			"speed": {
+				"walk": 5,
+				"swim": 40
+			},
+			"str": 18,
+			"dex": 18,
+			"con": 16,
+			"int": 14,
+			"wis": 15,
+			"cha": 19,
+			"save": {
+				"dex": "+7",
+				"cha": "+7"
+			},
+			"skill": {
+				"performance": "+7",
+				"persuasion": "+7"
+			},
+			"passive": 12,
+			"languages": [
+				"Common",
+				"Primordial (Aquan)"
+			],
+			"cr": "5",
+			"trait": [
+				{
+					"name": "Amphibious",
+					"entries": [
+						"The merrow can breathe air and water."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The merrow makes three attacks, using Coral Scepter and {@condition Poisoned|XPHB} Longbow in any combination."
+					]
+				},
+				{
+					"name": "Coral Scepter",
+					"entries": [
+						"{@atkr m} {@hit 7}, reach 5 ft. {@h}14 ({@damage 2d10 + 4}) Bludgeoning damage."
+					]
+				},
+				{
+					"name": "Poisoned Longbow",
+					"entries": [
+						"{@atkr r} {@hit 7}, range 150/600 ft. {@h}8 ({@damage 1d8 + 4}) Piercing damage plus 7 ({@damage 2d6}) Poison damage."
+					]
+				},
+				{
+					"name": "Invective",
+					"entries": [
+						"{@actSave wis} {@dc 15}, up to three creatures the merrow can see within 60 feet. {@actSaveFail} 14 ({@damage 4d6}) Psychic damage, and the creature has {@variantrule Disadvantage|XPHB} on its next attack roll before the end of the merrow's next turn. {@actSaveSuccess} Half damage only."
+					]
+				}
+			],
+			"environment": [
+				"planar, feywild"
+			],
+			"treasure": [
+				"individual"
+			],
+			"traitTags": [
+				"Amphibious"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"AQ",
+				"C",
+				"P"
+			],
+			"damageTags": [
+				"B",
+				"I",
+				"P",
+				"Y"
+			],
+			"miscTags": [
+				"MA",
+				"RA",
+				"RNG"
+			],
+			"savingThrowForced": [
+				"wisdom"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Noggle Ransacker",
+			"source": "LFL",
+			"size": [
+				"S"
+			],
+			"type": "fey",
+			"alignment": [
+				"C",
+				"N"
+			],
+			"ac": [
+				12
+			],
+			"hp": {
+				"average": 13,
+				"formula": "3d6 + 3"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 14,
+			"dex": 15,
+			"con": 13,
+			"int": 8,
+			"wis": 10,
+			"cha": 12,
+			"skill": {
+				"stealth": "+4"
+			},
+			"senses": [
+				"Darkvision 60 ft."
+			],
+			"passive": 10,
+			"languages": [
+				"Common",
+				"Sylvan"
+			],
+			"cr": "1/4",
+			"trait": [
+				{
+					"name": "Siege Monster",
+					"entries": [
+						"The noggle deals double damage to objects and structures."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Sabotaging Swipe",
+					"entries": [
+						"{@atkr m} {@hit 4}, reach 5 ft. {@h}6 ({@damage 1d8 + 2}) Slashing damage. If the target is wearing armor, it is subjected to the following effect. {@actSave dex} {@dc 12}. {@actSaveFail} The armor takes a -1 penalty to the AC it offers. The target can take an action to remove the penalty from its armor."
+					]
+				}
+			],
+			"bonus": [
+				{
+					"name": "Nimble Escape",
+					"entries": [
+						"The noggle takes the Disengage or Hide action."
+					]
+				}
+			],
+			"environment": [
+				"planar, feywild"
+			],
+			"treasure": [
+				"individual"
+			],
+			"traitTags": [
+				"Siege Monster"
+			],
+			"senseTags": [
+				"D"
+			],
+			"languageTags": [
+				"C",
+				"S"
+			],
+			"damageTags": [
+				"S"
+			],
+			"miscTags": [
+				"MA"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Noggle Wild Mage",
+			"source": "LFL",
+			"size": [
+				"S"
+			],
+			"type": "fey",
+			"alignment": [
+				"C",
+				"N"
+			],
+			"ac": [
+				13
+			],
+			"hp": {
+				"average": 22,
+				"formula": "4d6 + 8"
+			},
+			"speed": {
+				"walk": 30
+			},
+			"str": 11,
+			"dex": 16,
+			"con": 14,
+			"int": 10,
+			"wis": 12,
+			"cha": 17,
+			"save": {
+				"con": "+4",
+				"cha": "+5"
+			},
+			"senses": [
+				"Darkvision 60 ft."
+			],
+			"passive": 11,
+			"languages": [
+				"Common",
+				"Sylvan"
+			],
+			"cr": "1",
+			"trait": [
+				{
+					"name": "Bloodied Wild Magic",
+					"entries": [
+						"While {@status Bloodied|XPHB}, the noggle has a {@variantrule Fly Speed|XPHB} of 30 feet and it can choose for any damage it deals to be Force damage."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The noggle makes two attacks, using Noggling Stick or Befuddling Ray in any combination."
+					]
+				},
+				{
+					"name": "Noggling Stick",
+					"entries": [
+						"{@atkr m} {@hit 5}, reach 5 ft. {@h}5 ({@damage 1d4 + 3}) Bludgeoning damage plus 2 ({@damage 1d4}) Psychic damage."
+					]
+				},
+				{
+					"name": "Befuddling Ray",
+					"entries": [
+						"{@atkr r} {@hit 5}, range 60 ft. {@h}6 ({@damage 1d6 + 3}) Psychic damage, and the target subtracts {@dice 1d4} from the next saving throw it makes before the end of the noggle's next turn."
+					]
+				}
+			],
+			"environment": [
+				"planar, feywild"
+			],
+			"treasure": [
+				"individual"
+			],
+			"tokenCustom": true,
+			"senseTags": [
+				"D"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"C",
+				"S"
+			],
+			"damageTags": [
+				"B",
+				"Y"
+			],
+			"miscTags": [
+				"MA",
+				"RA"
+			],
+			"hasToken": true,
+			"hasFluff": true
+		},
+		{
+			"name": "Shadowmoor Giant",
+			"source": "LFL",
+			"size": [
+				"H"
+			],
+			"type": "giant",
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				14
+			],
+			"hp": {
+				"average": 172,
+				"formula": "15d12 + 75"
+			},
+			"speed": {
+				"walk": 40
+			},
+			"str": 22,
+			"dex": 14,
+			"con": 20,
+			"int": 7,
+			"wis": 19,
+			"cha": 8,
+			"save": {
+				"con": "+8",
+				"wis": "+7"
+			},
+			"senses": [
+				"Darkvision 120 ft."
+			],
+			"passive": 14,
+			"languages": [
+				"Giant"
+			],
+			"cr": "8",
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The giant makes three attacks, using Tree Club or Boulder in any combination."
+					]
+				},
+				{
+					"name": "Tree Club",
+					"entries": [
+						"{@atkr m} {@hit 9}, reach 15 ft. {@h}17 ({@damage 2d10 + 6}) Bludgeoning damage."
+					]
+				},
+				{
+					"name": "Boulder",
+					"entries": [
+						"{@atkr r} {@hit 9}, range 60/240 ft. {@h}13 ({@damage 2d6 + 6}) Bludgeoning damage. If the target is a Large or smaller creature, it has the {@condition Prone|XPHB} condition."
+					]
+				},
+				{
+					"name": "Wild Magic Cataclysm {@recharge 5}",
+					"entries": [
+						"{@actSave dex} {@dc 15}, each creature in a 20-foot-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} centered on a point within 120 feet. {@actSaveFail} 28 ({@damage 8d6}) damage (roll {@dice 1d4} to determine damage type: 1\u2014Acid; 2\u2014Fire; 3\u2014Lightning; 4\u2014Thunder). {@actSaveSuccess} Half damage."
+					]
+				}
+			],
+			"environment": [
+				"planar, feywild"
+			],
+			"treasure": [
+				"arcana"
+			],
+			"tokenCustom": true,
+			"senseTags": [
+				"SD"
+			],
+			"actionTags": [
+				"Multiattack"
+			],
+			"languageTags": [
+				"GI"
+			],
+			"damageTags": [
+				"B"
+			],
+			"miscTags": [
+				"AOE",
+				"MA",
+				"MLW",
+				"RA",
+				"RCH"
+			],
+			"conditionInflict": [
+				"prone"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluff": true
+		}
+	]
+}

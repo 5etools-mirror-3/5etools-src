@@ -221,6 +221,7 @@ export class TagCondition extends ConverterTaggerInitializable {
 	};
 
 	static _conditionMatcherCore = null;
+	static _statusMatcherCore = null;
 	static _conditionMatcher = null;
 	static _conditionSourceMapBrew = null;
 
@@ -233,8 +234,11 @@ export class TagCondition extends ConverterTaggerInitializable {
 
 		const conditionsXphb = conditionData.condition
 			.filter(cond => cond.source === Parser.SRC_XPHB);
+		const statusesXphb = conditionData.status
+			.filter(cond => cond.source === Parser.SRC_XPHB);
 
 		this._conditionMatcherCore = new RegExp(`\\b(?<name>${conditionsXphb.map(it => it.name).join("|")})\\b`, "g");
+		this._statusMatcherCore = new RegExp(`\\b(?<name>${statusesXphb.map(it => it.name).join("|")})\\b`, "g");
 
 		const conditionsPhb = conditionData.condition
 			.filter(cond => cond.source === Parser.SRC_PHB);
@@ -299,6 +303,11 @@ export class TagCondition extends ConverterTaggerInitializable {
 				const {name} = m.at(-1);
 				if (blocklistNames?.isBlocked(name)) return name;
 				return `{@condition ${name}|${Parser.SRC_XPHB}}`;
+			})
+			.replace(this._statusMatcherCore, (...m) => {
+				const {name} = m.at(-1);
+				if (blocklistNames?.isBlocked(name)) return name;
+				return `{@status ${name}|${Parser.SRC_XPHB}}`;
 			})
 		;
 	}

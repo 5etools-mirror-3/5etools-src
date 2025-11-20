@@ -1672,6 +1672,15 @@
 			]
 		},
 		{
+			"name": "Calim Sandstorm",
+			"source": "FRAiF",
+			"trapHazType": "ENV",
+			"entries": [
+				"Sandstorms arise quickly in the Calim desert, scouring the flesh of those caught inside. A Calim sandstorm is typically at least 300 feet in diameter and lasts {@b {@dice 1d6}} hours.",
+				"The area of a Calim sandstorm is {@variantrule Heavily Obscured|XPHB}, and open flames in the area are extinguished. A creature makes a {@dc 10} Constitution saving throw after each hour spent in a sandstorm's area. On a failed save, the creature gains 1 {@condition Exhaustion|XPHB} level."
+			]
+		},
+		{
 			"name": "Dead Magic Zone",
 			"source": "XDMG",
 			"page": 68,
@@ -2043,6 +2052,14 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Hailstorm",
+			"source": "FRAiF",
+			"trapHazType": "ENV",
+			"entries": [
+				"Hailstorms bombard travelers with falling ice. Creatures exposed to such conditions must succeed on a Constitution saving throw at the end of each hour or gain 1 Exhaustion level. The DC is 5 for the first hour and increases by 1 for each additional hour. Creatures wearing Medium or Heavy armor have Advantage on the save."
+			]
+		},
+		{
 			"name": "Heavy Precipitation",
 			"source": "DMG",
 			"page": 110,
@@ -2084,6 +2101,14 @@
 			"entries": [
 				"Traveling at altitudes of 10,000 feet or higher above sea level is taxing for most creatures because of the reduced amount of oxygen in the air. Each hour such a creature spends traveling at high altitude counts as 2 hours for the purpose of determining how long that creature can travel (see \"{@book Travel Pace|XDMG|1|Travel Pace}\" in {@book chapter 2|XDMG|1}).",
 				"Creatures can become acclimated to a high altitude by spending 30 days or more at this elevation. Creatures can't become acclimated to elevations above 20,000 feet unless they are native to such environments."
+			]
+		},
+		{
+			"name": "Howling Wind",
+			"source": "FRAiF",
+			"trapHazType": "ENV",
+			"entries": [
+				"Icewind Dale's winds can reach incredible pitch and volume, making it impossible to hear. Creatures outdoors in howling winds have the {@condition Deafened|XPHB} condition."
 			]
 		},
 		{
@@ -2310,6 +2335,23 @@
 			]
 		},
 		{
+			"name": "Magical Mirage",
+			"source": "FRAiF",
+			"trapHazType": "ENV",
+			"entries": [
+				"Magical mirages are created by ambient magic. Such a mirage seems real, including sounds and smells appropriate to the thing depicted, but it can't deal damage or cause conditions. Physical inspection of the mirage reveals it to be an illusion, for things can pass through it.",
+				"For example, a magical mirage might depict an oasis complete with local flora and fauna, but a creature wading into the oasis's pond would find only a sandy pit.",
+				"Examples of magical mirages include lively oases, and pristine ancient temples.",
+				{
+					"type": "entries",
+					"name": "Seeing through a Mirage",
+					"entries": [
+						"As a {@action Study|XPHB} action, a creature can inspect the image and make a {@dc 15} Intelligence ({@skill Investigation|XPHB}). If a creature discerns the mirage's nature, the mirage becomes faint to the creature."
+					]
+				}
+			]
+		},
+		{
 			"name": "Malnutrition",
 			"source": "XPHB",
 			"page": 371,
@@ -2365,6 +2407,15 @@
 				"Storms infused with the essence of death roil with dark clouds that manifest leering skulls and bone-white lightning. Any creature exposed to the storm that isn't a construct or an undead must succeed on a {@dc 13} Constitution saving throw at the end of each minute or take {@damage 3d6} necrotic damage.",
 				"A creature that dies in a necrotic tempest rises as a {@creature skeleton} or {@creature zombie} (your choice) {@dice 1d10} minutes later.",
 				"A necrotic tempest lasts for {@dice 1d4} hours and leaves crops withered and wells undrinkable for {@dice 1d4} days after its passing."
+			]
+		},
+		{
+			"name": "Nonmagical Mirage",
+			"source": "FRAiF",
+			"trapHazType": "ENV",
+			"entries": [
+				"Nonmagical mirages range from simple illusions\u2014such creating the appearance of shimmering water a few miles away\u2014to complex illusions that mimic towering monsters lumbering across the horizon. Nonmagical mirages make no sound and move out of reach if approached.",
+				"Examples of nonmagical mirages include distant shimmering water, far-off dragons, or floating lights."
 			]
 		},
 		{
@@ -2461,6 +2512,15 @@
 						}
 					]
 				}
+			]
+		},
+		{
+			"name": "Psionic Field",
+			"source": "FRAiF",
+			"trapHazType": "ENV",
+			"entries": [
+				"Resonances from the Underdark touch those who venture too deep underground. Each creature in a psionic field must succeed on an Intelligence saving throw at the end of each hour or gain 1 Exhaustion level. The DC is 5 for the first hour and increases by 1 for each additional hour.",
+				"A creature that starts and finishes a Long Rest in a psionic field experiences disturbing dreams and vivid hallucinations. The creature has the {@condition Frightened|XPHB} condition for {@dice 1d10} minutes after the Long Rest, with the source of its fear being the first creature it saw on finishing the Long Rest."
 			]
 		},
 		{

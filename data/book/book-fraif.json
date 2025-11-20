@@ -16440,28 +16440,12 @@
 							"entries": [
 								"Environmental effects in the {@book Dungeon Master's Guide|XDMG} that frequently apply in Icewind Dale include extreme cold, frigid water, heavy precipitation, high altitude, slippery ice, strong wind, and thin ice. These effects combine to create strong adverse conditions, such as blizzards, windstorms, and icy peaks. Additionally, characters in Icewind Dale can encounter the following environmental effects.",
 								{
-									"type": "entries",
-									"name": "Hailstorm",
-									"id": "1d2",
-									"entries": [
-										"Hailstorms bombard travelers with falling ice. Creatures exposed to such conditions must succeed on a Constitution saving throw at the end of each hour or gain 1 Exhaustion level. The DC is 5 for the first hour and increases by 1 for each additional hour. Creatures wearing Medium or Heavy armor have Advantage on the save."
-									]
-								},
-								{
-									"type": "entries",
-									"name": "Howling Wind",
-									"id": "1d3",
-									"entries": [
-										"Icewind Dale's winds can reach incredible pitch and volume, making it impossible to hear. Creatures outdoors in howling winds have the {@condition Deafened|XPHB} condition."
-									]
-								},
-								{
-									"type": "entries",
-									"name": "Psionic Field",
-									"id": "1d4",
-									"entries": [
-										"Resonances from the Underdark touch those who venture too deep underground. Each creature in a psionic field must succeed on an Intelligence saving throw at the end of each hour or gain 1 Exhaustion level. The DC is 5 for the first hour and increases by 1 for each additional hour.",
-										"A creature that starts and finishes a Long Rest in a psionic field experiences disturbing dreams and vivid hallucinations. The creature has the {@condition Frightened|XPHB} condition for {@dice 1d10} minutes after the Long Rest, with the source of its fear being the first creature it saw on finishing the Long Rest."
+									"type": "list",
+									"columns": 3,
+									"items": [
+										"{@hazard Hailstorm|FRAiF}",
+										"{@hazard Howling Wind|FRAiF}",
+										"{@hazard Psionic Field|FRAiF}"
 									]
 								}
 							]
@@ -16474,7 +16458,7 @@
 								"Characters in Icewind Dale might encounter the following hazards.",
 								{
 									"type": "list",
-									"columns": 2,
+									"columns": 3,
 									"items": [
 										"{@hazard Bile Lichen|FRAiF}",
 										"{@hazard Zlanic Chardalyn|FRAiF}"
@@ -20609,12 +20593,10 @@
 							"entries": [
 								"{@book Chapter 3|XDMG|2|Environmental Effects} of the {@book Dungeon Master's Guide|XDMG} details the effects of extreme heat and strong wind. But the Calim Desert poses additional dangers.",
 								{
-									"type": "entries",
-									"name": "Calim Sandstorm",
-									"id": "296",
-									"entries": [
-										"Sandstorms arise quickly in the Calim desert, scouring the flesh of those caught inside. A Calim sandstorm is typically at least 300 feet in diameter and lasts {@b {@dice 1d6}} hours.",
-										"The area of a Calim sandstorm is {@variantrule Heavily Obscured|XPHB}, and open flames in the area are extinguished. A creature makes a {@dc 10} Constitution saving throw after each hour spent in a sandstorm's area. On a failed save, the creature gains 1 {@condition Exhaustion|XPHB} level."
+									"type": "list",
+									"columns": 3,
+									"items": [
+										"{@hazard Calim Sandstorm|FRAiF}"
 									]
 								},
 								{
@@ -20624,53 +20606,11 @@
 									"entries": [
 										"A mirage is a visual illusion especially common in deserts. In the Calim Desert, both nonmagical and magical mirages appear.",
 										{
-											"type": "entries",
-											"name": "Nonmagical Mirage",
-											"id": "298",
-											"entries": [
-												"Nonmagical mirages range from simple illusions\u2014such creating the appearance of shimmering water a few miles away\u2014to complex illusions that mimic towering monsters lumbering across the horizon. Nonmagical mirages make no sound and move out of reach if approached."
-											]
-										},
-										{
-											"type": "entries",
-											"name": "Magical Mirage",
-											"id": "299",
-											"entries": [
-												"Magical mirages are created by ambient magic. Such a mirage seems real, including sounds and smells appropriate to the thing depicted, but it can't deal damage or cause conditions. Physical inspection of the mirage reveals it to be an illusion, for things can pass through it.",
-												"For example, a magical mirage might depict an oasis complete with local flora and fauna, but a creature wading into the oasis's pond would find only a sandy pit."
-											]
-										},
-										{
-											"type": "entries",
-											"name": "Seeing through a Mirage",
-											"id": "29a",
-											"entries": [
-												"As a {@action Study|XPHB} action, a creature can inspect the image and make an Intelligence ({@skill Investigation|XPHB}) check against a DC appropriate to the mirage's type, as shown in the table below. If a creature discerns the mirage's nature, the mirage becomes faint to the creature.",
-												{
-													"type": "table",
-													"colLabels": [
-														"Mirage Type",
-														"Inspection DC",
-														"Example"
-													],
-													"colStyles": [
-														"col-5",
-														"col-2 text-center",
-														"col-5"
-													],
-													"rows": [
-														[
-															"Nonmagical",
-															"10",
-															"Distant shimmering water, far-off dragons, floating lights"
-														],
-														[
-															"Magical",
-															"15",
-															"Lively oases, pristine ancient temples"
-														]
-													]
-												}
+											"type": "list",
+											"columns": 3,
+											"items": [
+												"{@hazard Nonmagical Mirage|FRAiF}",
+												"{@hazard Magical Mirage|FRAiF}"
 											]
 										}
 									]
@@ -20685,7 +20625,7 @@
 								"The {@area Calim Desert|2ac|x} poses many dangers to adventurers. For example, you can use the rules for quicksand pits in the {@book Dungeon Master's Guide|XDMG}. Additional hazards are detailed below.",
 								{
 									"type": "list",
-									"columns": 2,
+									"columns": 3,
 									"items": [
 										"{@hazard Lightning Strikes|FRAiF}",
 										"{@hazard Sinkhole|FRAiF}"
@@ -20720,574 +20660,574 @@
 					"id": "2a3",
 					"entries": [
 						{
-					"type": "gallery",
-					"images": [
-						{
-							"type": "image",
-							"href": {
-								"type": "internal",
-								"path": "book/FRAiF/116-map-04.001-calimshan.webp"
-							},
-							"imageType": "map",
-							"title": "Map: Calimshan",
-							"credit": "Mike Schley",
-							"width": 4096,
-							"height": 2650,
-							"id": "57f",
-							"mapRegions": [
+							"type": "gallery",
+							"images": [
 								{
-									"area": "27a",
-									"points": [
-										[
-											3118,
-											108
-										],
-										[
-											3118,
-											289
-										],
-										[
-											3706,
-											289
-										],
-										[
-											3706,
-											108
-										]
-									]
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "book/FRAiF/116-map-04.001-calimshan.webp"
+									},
+									"imageType": "map",
+									"title": "Map: Calimshan",
+									"credit": "Mike Schley",
+									"width": 4096,
+									"height": 2650,
+									"id": "57f",
+									"mapRegions": [
+										{
+											"area": "27a",
+											"points": [
+												[
+													3118,
+													108
+												],
+												[
+													3118,
+													289
+												],
+												[
+													3706,
+													289
+												],
+												[
+													3706,
+													108
+												]
+											]
+										},
+										{
+											"area": "2a4",
+											"points": [
+												[
+													948,
+													486
+												],
+												[
+													1160,
+													435
+												],
+												[
+													1347,
+													392
+												],
+												[
+													1630,
+													354
+												],
+												[
+													1865,
+													283
+												],
+												[
+													2045,
+													240
+												],
+												[
+													2170,
+													191
+												],
+												[
+													2483,
+													166
+												],
+												[
+													2700,
+													134
+												],
+												[
+													2784,
+													82
+												],
+												[
+													2873,
+													134
+												],
+												[
+													2857,
+													240
+												],
+												[
+													2512,
+													288
+												],
+												[
+													2367,
+													479
+												],
+												[
+													2301,
+													655
+												],
+												[
+													2209,
+													727
+												],
+												[
+													1958,
+													671
+												],
+												[
+													1703,
+													657
+												],
+												[
+													1482,
+													782
+												],
+												[
+													1297,
+													833
+												],
+												[
+													1122,
+													773
+												],
+												[
+													930,
+													753
+												],
+												[
+													866,
+													734
+												],
+												[
+													880,
+													593
+												]
+											]
+										},
+										{
+											"area": "2ac",
+											"points": [
+												[
+													244,
+													1191
+												],
+												[
+													436,
+													1054
+												],
+												[
+													661,
+													930
+												],
+												[
+													707,
+													853
+												],
+												[
+													814,
+													757
+												],
+												[
+													1150,
+													800
+												],
+												[
+													1321,
+													864
+												],
+												[
+													1621,
+													739
+												],
+												[
+													1856,
+													696
+												],
+												[
+													2000,
+													753
+												],
+												[
+													2048,
+													914
+												],
+												[
+													1859,
+													1149
+												],
+												[
+													1706,
+													1206
+												],
+												[
+													1599,
+													1366
+												],
+												[
+													1494,
+													1514
+												],
+												[
+													1047,
+													1587
+												],
+												[
+													703,
+													1510
+												],
+												[
+													509,
+													1442
+												],
+												[
+													369,
+													1334
+												],
+												[
+													292,
+													1266
+												]
+											]
+										},
+										{
+											"area": "2b0",
+											"points": [
+												[
+													1758,
+													1432
+												],
+												[
+													1882,
+													1257
+												],
+												[
+													2076,
+													1147
+												],
+												[
+													2157,
+													1054
+												],
+												[
+													2532,
+													1051
+												],
+												[
+													2712,
+													1024
+												],
+												[
+													2906,
+													1067
+												],
+												[
+													3246,
+													1040
+												],
+												[
+													3211,
+													1231
+												],
+												[
+													3159,
+													1328
+												],
+												[
+													3164,
+													1430
+												],
+												[
+													3237,
+													1505
+												],
+												[
+													3152,
+													1651
+												],
+												[
+													3220,
+													1790
+												],
+												[
+													3391,
+													1854
+												],
+												[
+													3351,
+													1978
+												],
+												[
+													3277,
+													2034
+												],
+												[
+													2807,
+													1884
+												],
+												[
+													2587,
+													1797
+												],
+												[
+													2397,
+													1733
+												],
+												[
+													2032,
+													1629
+												],
+												[
+													1779,
+													1515
+												]
+											]
+										},
+										{
+											"area": "2b6",
+											"points": [
+												[
+													214,
+													1220
+												],
+												[
+													340,
+													1366
+												],
+												[
+													548,
+													1494
+												],
+												[
+													700,
+													1526
+												],
+												[
+													979,
+													1587
+												],
+												[
+													1305,
+													1597
+												],
+												[
+													1540,
+													1542
+												],
+												[
+													1790,
+													1558
+												],
+												[
+													3309,
+													2053
+												],
+												[
+													3471,
+													2160
+												],
+												[
+													3704,
+													2285
+												],
+												[
+													3535,
+													2409
+												],
+												[
+													3011,
+													2238
+												],
+												[
+													2755,
+													2126
+												],
+												[
+													2400,
+													2023
+												],
+												[
+													2055,
+													1873
+												],
+												[
+													1822,
+													1754
+												],
+												[
+													1581,
+													1619
+												],
+												[
+													1181,
+													1761
+												],
+												[
+													1006,
+													1811
+												],
+												[
+													769,
+													1733
+												],
+												[
+													657,
+													1615
+												],
+												[
+													351,
+													1603
+												],
+												[
+													255,
+													1580
+												],
+												[
+													183,
+													1458
+												],
+												[
+													126,
+													1332
+												],
+												[
+													189,
+													1273
+												]
+											]
+										},
+										{
+											"area": "2c0",
+											"points": [
+												[
+													2061,
+													746
+												],
+												[
+													2189,
+													750
+												],
+												[
+													2353,
+													675
+												],
+												[
+													2442,
+													443
+												],
+												[
+													2551,
+													294
+												],
+												[
+													2916,
+													369
+												],
+												[
+													3341,
+													401
+												],
+												[
+													3653,
+													668
+												],
+												[
+													3881,
+													978
+												],
+												[
+													3883,
+													1362
+												],
+												[
+													3817,
+													1683
+												],
+												[
+													3774,
+													1932
+												],
+												[
+													3473,
+													1904
+												],
+												[
+													3258,
+													1777
+												],
+												[
+													3197,
+													1685
+												],
+												[
+													3265,
+													1501
+												],
+												[
+													3190,
+													1405
+												],
+												[
+													3194,
+													1337
+												],
+												[
+													3245,
+													1223
+												],
+												[
+													3256,
+													1024
+												],
+												[
+													2912,
+													1033
+												],
+												[
+													2684,
+													1003
+												],
+												[
+													2139,
+													1033
+												],
+												[
+													2022,
+													1011
+												],
+												[
+													2072,
+													928
+												]
+											]
+										}
+									],
+									"hrefThumbnail": {
+										"type": "internal",
+										"path": "book/FRAiF/thumbnail/116-map-04.001-calimshan.webp"
+									},
+									"grid": {
+										"type": "none",
+										"size": 98,
+										"scale": 3,
+										"units": "miles"
+									}
 								},
 								{
-									"area": "2a4",
-									"points": [
-										[
-											948,
-											486
-										],
-										[
-											1160,
-											435
-										],
-										[
-											1347,
-											392
-										],
-										[
-											1630,
-											354
-										],
-										[
-											1865,
-											283
-										],
-										[
-											2045,
-											240
-										],
-										[
-											2170,
-											191
-										],
-										[
-											2483,
-											166
-										],
-										[
-											2700,
-											134
-										],
-										[
-											2784,
-											82
-										],
-										[
-											2873,
-											134
-										],
-										[
-											2857,
-											240
-										],
-										[
-											2512,
-											288
-										],
-										[
-											2367,
-											479
-										],
-										[
-											2301,
-											655
-										],
-										[
-											2209,
-											727
-										],
-										[
-											1958,
-											671
-										],
-										[
-											1703,
-											657
-										],
-										[
-											1482,
-											782
-										],
-										[
-											1297,
-											833
-										],
-										[
-											1122,
-											773
-										],
-										[
-											930,
-											753
-										],
-										[
-											866,
-											734
-										],
-										[
-											880,
-											593
-										]
-									]
-								},
-								{
-									"area": "2ac",
-									"points": [
-										[
-											244,
-											1191
-										],
-										[
-											436,
-											1054
-										],
-										[
-											661,
-											930
-										],
-										[
-											707,
-											853
-										],
-										[
-											814,
-											757
-										],
-										[
-											1150,
-											800
-										],
-										[
-											1321,
-											864
-										],
-										[
-											1621,
-											739
-										],
-										[
-											1856,
-											696
-										],
-										[
-											2000,
-											753
-										],
-										[
-											2048,
-											914
-										],
-										[
-											1859,
-											1149
-										],
-										[
-											1706,
-											1206
-										],
-										[
-											1599,
-											1366
-										],
-										[
-											1494,
-											1514
-										],
-										[
-											1047,
-											1587
-										],
-										[
-											703,
-											1510
-										],
-										[
-											509,
-											1442
-										],
-										[
-											369,
-											1334
-										],
-										[
-											292,
-											1266
-										]
-									]
-								},
-								{
-									"area": "2b0",
-									"points": [
-										[
-											1758,
-											1432
-										],
-										[
-											1882,
-											1257
-										],
-										[
-											2076,
-											1147
-										],
-										[
-											2157,
-											1054
-										],
-										[
-											2532,
-											1051
-										],
-										[
-											2712,
-											1024
-										],
-										[
-											2906,
-											1067
-										],
-										[
-											3246,
-											1040
-										],
-										[
-											3211,
-											1231
-										],
-										[
-											3159,
-											1328
-										],
-										[
-											3164,
-											1430
-										],
-										[
-											3237,
-											1505
-										],
-										[
-											3152,
-											1651
-										],
-										[
-											3220,
-											1790
-										],
-										[
-											3391,
-											1854
-										],
-										[
-											3351,
-											1978
-										],
-										[
-											3277,
-											2034
-										],
-										[
-											2807,
-											1884
-										],
-										[
-											2587,
-											1797
-										],
-										[
-											2397,
-											1733
-										],
-										[
-											2032,
-											1629
-										],
-										[
-											1779,
-											1515
-										]
-									]
-								},
-								{
-									"area": "2b6",
-									"points": [
-										[
-											214,
-											1220
-										],
-										[
-											340,
-											1366
-										],
-										[
-											548,
-											1494
-										],
-										[
-											700,
-											1526
-										],
-										[
-											979,
-											1587
-										],
-										[
-											1305,
-											1597
-										],
-										[
-											1540,
-											1542
-										],
-										[
-											1790,
-											1558
-										],
-										[
-											3309,
-											2053
-										],
-										[
-											3471,
-											2160
-										],
-										[
-											3704,
-											2285
-										],
-										[
-											3535,
-											2409
-										],
-										[
-											3011,
-											2238
-										],
-										[
-											2755,
-											2126
-										],
-										[
-											2400,
-											2023
-										],
-										[
-											2055,
-											1873
-										],
-										[
-											1822,
-											1754
-										],
-										[
-											1581,
-											1619
-										],
-										[
-											1181,
-											1761
-										],
-										[
-											1006,
-											1811
-										],
-										[
-											769,
-											1733
-										],
-										[
-											657,
-											1615
-										],
-										[
-											351,
-											1603
-										],
-										[
-											255,
-											1580
-										],
-										[
-											183,
-											1458
-										],
-										[
-											126,
-											1332
-										],
-										[
-											189,
-											1273
-										]
-									]
-								},
-								{
-									"area": "2c0",
-									"points": [
-										[
-											2061,
-											746
-										],
-										[
-											2189,
-											750
-										],
-										[
-											2353,
-											675
-										],
-										[
-											2442,
-											443
-										],
-										[
-											2551,
-											294
-										],
-										[
-											2916,
-											369
-										],
-										[
-											3341,
-											401
-										],
-										[
-											3653,
-											668
-										],
-										[
-											3881,
-											978
-										],
-										[
-											3883,
-											1362
-										],
-										[
-											3817,
-											1683
-										],
-										[
-											3774,
-											1932
-										],
-										[
-											3473,
-											1904
-										],
-										[
-											3258,
-											1777
-										],
-										[
-											3197,
-											1685
-										],
-										[
-											3265,
-											1501
-										],
-										[
-											3190,
-											1405
-										],
-										[
-											3194,
-											1337
-										],
-										[
-											3245,
-											1223
-										],
-										[
-											3256,
-											1024
-										],
-										[
-											2912,
-											1033
-										],
-										[
-											2684,
-											1003
-										],
-										[
-											2139,
-											1033
-										],
-										[
-											2022,
-											1011
-										],
-										[
-											2072,
-											928
-										]
-									]
+									"type": "image",
+									"href": {
+										"type": "internal",
+										"path": "book/FRAiF/117-map-04.001-calimshan-player.webp"
+									},
+									"imageType": "mapPlayer",
+									"title": "Player Version",
+									"width": 4096,
+									"height": 2650,
+									"mapParent": {
+										"id": "57f"
+									},
+									"credit": "Mike Schley",
+									"grid": {
+										"type": "none",
+										"size": 98,
+										"scale": 3,
+										"units": "miles"
+									}
 								}
-							],
-							"hrefThumbnail": {
-								"type": "internal",
-								"path": "book/FRAiF/thumbnail/116-map-04.001-calimshan.webp"
-							},
-							"grid": {
-								"type": "none",
-								"size": 98,
-								"scale": 3,
-								"units": "miles"
-							}
+							]
 						},
-						{
-							"type": "image",
-							"href": {
-								"type": "internal",
-								"path": "book/FRAiF/117-map-04.001-calimshan-player.webp"
-							},
-							"imageType": "mapPlayer",
-							"title": "Player Version",
-							"width": 4096,
-							"height": 2650,
-							"mapParent": {
-								"id": "57f"
-							},
-							"credit": "Mike Schley",
-							"grid": {
-								"type": "none",
-								"size": 98,
-								"scale": 3,
-								"units": "miles"
-							}
-						}
-					]
-				},
 						"Calimshan is a land shaped by magical struggle. The mighty genies Calim and Memnon might be gone, but they've left behind blistering deserts, towering mountains, and impenetrable forests. Genies continue to dwell here, and many mortals rely on genies' magic and patronage to survive.",
 						"Over thousands of years, the people of Calimshan have adapted to life in this land. Brilliant cities have been built in the fertile lands along the sea, and the steppe nomads known as {@area Kochar|2b1|x} continue to live as they always have, observing strict traditions that help them survive a dangerous realm.",
 						"Calimshan can be broadly divided into five geographical regions:",

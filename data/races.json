@@ -1188,6 +1188,16 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Boggart",
+			"source": "LFL",
+			"_copy": {
+				"name": "Goblin",
+				"source": "MPMM"
+			},
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Bugbear",
 			"source": "ERLW",
 			"page": 25,
@@ -2274,6 +2284,9 @@
 			"name": "Dhampir",
 			"source": "VRGR",
 			"page": 16,
+			"reprintedAs": [
+				"Dhampir|ABH"
+			],
 			"lineage": "VRGR",
 			"size": [
 				"S",
@@ -3830,6 +3843,238 @@
 		},
 		{
 			"name": "Elf",
+			"source": "LFL",
+			"_copy": {
+				"name": "Elf",
+				"source": "XPHB",
+				"_mod": {
+					"entries": {
+						"mode": "replaceArr",
+						"replace": "Elven Lineage",
+						"items": {
+							"type": "entries",
+							"name": "Elven Lineage",
+							"entries": [
+								"You are part of a lineage that grants you supernatural abilities. Choose a lineage from the Elven Lineages table. You gain the level 1 benefit of that lineage.",
+								"When you reach character levels 3 and 5, you learn a higher-level spell, as shown on the table. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a {@variantrule Long Rest|XPHB}. You can also cast the spell using any spell slots you have of the appropriate level.",
+								"Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the lineage).",
+								{
+									"type": "table",
+									"caption": "Elven Lineages",
+									"colLabels": [
+										"Lineage",
+										"Level 1",
+										"Level 3",
+										"Level 5"
+									],
+									"colStyles": [
+										"col-2",
+										"col-6",
+										"col-2",
+										"col-2"
+									],
+									"rows": [
+										[
+											"Lorwyn",
+											"You know the {@spell Thorn Whip|XPHB} cantrip. Whenever you finish a Long Rest, you can replace that cantrip with a different cantrip from the {@filter Druid spell list|spells|class=druid}.",
+											"{@spell Command|XPHB}",
+											"{@spell Silence|XPHB}"
+										],
+										[
+											"Shadowmoor",
+											"The range of your {@sense Darkvision|XPHB} increases to 120 feet. You also know the {@spell Starry Wisp|XPHB} cantrip.",
+											"{@spell Heroism|XPHB}",
+											"{@spell Gentle Repose|XPHB}"
+										]
+									]
+								}
+							]
+						}
+					}
+				}
+			},
+			"additionalSpells": [
+				{
+					"name": "Lorwyn",
+					"innate": {
+						"3": {
+							"daily": {
+								"1": [
+									"command|xphb"
+								]
+							}
+						},
+						"5": {
+							"daily": {
+								"1": [
+									"silence|xphb"
+								]
+							}
+						}
+					},
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"known": {
+						"1": {
+							"_": [
+								{
+									"choose": "level=0|class=Druid"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Shadowmoor",
+					"innate": {
+						"3": {
+							"daily": {
+								"1": [
+									"heroism|xphb"
+								]
+							}
+						},
+						"5": {
+							"daily": {
+								"1": [
+									"gentle repose|xphb"
+								]
+							}
+						}
+					},
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"known": {
+						"1": [
+							"starry wisp|xphb#c"
+						]
+					}
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"_versions": [
+				{
+					"name": "Elf; Lorwyn Lineage",
+					"source": "LFL",
+					"_mod": {
+						"entries": {
+							"mode": "replaceArr",
+							"replace": "Elven Lineage",
+							"items": {
+								"name": "Elven Lineage (Lorwyn)",
+								"type": "entries",
+								"entries": [
+									"You are part of a lineage that grants you supernatural abilities. You know the {@spell Thorn Whip|XPHB} cantrip. Whenever you finish a Long Rest, you can replace that cantrip with a different cantrip from the {@filter Druid spell list|spells|class=druid}.",
+									"When you reach character level 3, you learn the {@spell Command|XPHB} spell. When you reach character level 5, you also learn the {@spell Silence|XPHB} spell. You always have these spells prepared, and you can cast each spell once without a spell slot. Once you cast either of these spells with this trait, you can't cast that spell with it again until you finish a {@variantrule Long Rest|XPHB}. You can also cast the spell using any spell slots you have of the appropriate level.",
+									"Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the lineage)."
+								]
+							}
+						}
+					},
+					"additionalSpells": [
+						{
+							"innate": {
+								"3": {
+									"daily": {
+										"1": [
+											"command|xphb"
+										]
+									}
+								},
+								"5": {
+									"daily": {
+										"1": [
+											"silence|xphb"
+										]
+									}
+								}
+							},
+							"ability": {
+								"choose": [
+									"int",
+									"wis",
+									"cha"
+								]
+							},
+							"known": {
+								"1": {
+									"_": [
+										{
+											"choose": "level=0|class=Druid"
+										}
+									]
+								}
+							}
+						}
+					]
+				},
+				{
+					"name": "Elf; Shadowmoor Lineage",
+					"source": "LFL",
+					"_mod": {
+						"entries": {
+							"mode": "replaceArr",
+							"replace": "Elven Lineage",
+							"items": {
+								"name": "Elven Lineage (Shadowmoor)",
+								"type": "entries",
+								"entries": [
+									"You are part of a lineage that grants you supernatural abilities. The range of your {@sense Darkvision|XPHB} increases to 120 feet. You also know the {@spell Starry Wisp|XPHB} cantrip.",
+									"When you reach character level 3, you learn the {@spell Heroism|XPHB} spell. When you reach character level 5, you also learn the {@spell Gentle Repose|XPHB} spell. You always have these spells prepared, and you can cast each spell once without a spell slot. Once you cast either of these spells with this trait, you can't cast that spell with it again until you finish a {@variantrule Long Rest|XPHB}. You can also cast the spell using any spell slots you have of the appropriate level.",
+									"Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the lineage)."
+								]
+							}
+						}
+					},
+					"darkvision": 120,
+					"additionalSpells": [
+						{
+							"innate": {
+								"3": {
+									"daily": {
+										"1": [
+											"heroism|xphb"
+										]
+									}
+								},
+								"5": {
+									"daily": {
+										"1": [
+											"gentle repose|xphb"
+										]
+									}
+								}
+							},
+							"ability": {
+								"choose": [
+									"int",
+									"wis",
+									"cha"
+								]
+							},
+							"known": {
+								"1": [
+									"starry wisp|xphb#c"
+								]
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Elf",
 			"source": "PHB",
 			"page": 21,
 			"srd": true,
@@ -4145,19 +4390,32 @@
 					"name": "Elf; Drow Lineage",
 					"source": "XPHB",
 					"_mod": {
-						"entries": {
-							"mode": "replaceArr",
-							"replace": "Elven Lineage",
-							"items": {
-								"name": "Elven Lineage (Drow)",
-								"type": "entries",
-								"entries": [
-									"You are part of a lineage that grants you supernatural abilities. The range of your Darkvision increases to 120 feet. You also know the {@spell Dancing Lights|XPHB} cantrip.",
-									"When you reach character level 3, you learn the {@spell Faerie Fire|XPHB} spell. When you reach character level 5, you also learn the {@spell Darkness|XPHB} spell. You always have these spells prepared, and you can cast each spell once without a spell slot. Once you cast either of these spells with this trait, you can't cast that spell with it again until you finish a {@variantrule Long Rest|XPHB}. You can also cast the spell using any spell slots you have of the appropriate level.",
-									"Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the lineage)."
-								]
+						"entries": [
+							{
+								"mode": "replaceArr",
+								"replace": "Elven Lineage",
+								"items": {
+									"name": "Elven Lineage (Drow)",
+									"type": "entries",
+									"entries": [
+										"You are part of a lineage that grants you supernatural abilities. The range of your Darkvision increases to 120 feet. You also know the {@spell Dancing Lights|XPHB} cantrip.",
+										"When you reach character level 3, you learn the {@spell Faerie Fire|XPHB} spell. When you reach character level 5, you also learn the {@spell Darkness|XPHB} spell. You always have these spells prepared, and you can cast each spell once without a spell slot. Once you cast either of these spells with this trait, you can't cast that spell with it again until you finish a {@variantrule Long Rest|XPHB}. You can also cast the spell using any spell slots you have of the appropriate level.",
+										"Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the lineage)."
+									]
+								}
+							},
+							{
+								"mode": "replaceArr",
+								"replace": "Darkvision",
+								"items": {
+									"name": "Darkvision",
+									"type": "entries",
+									"entries": [
+										"You have {@sense Darkvision|XPHB} with a range of 120 feet."
+									]
+								}
 							}
-						}
+						]
 					},
 					"darkvision": 120,
 					"additionalSpells": [
@@ -4511,6 +4769,85 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Faerie",
+			"source": "LFL",
+			"_copy": {
+				"name": "Fairy",
+				"source": "MPMM",
+				"_mod": {
+					"entries": {
+						"mode": "appendArr",
+						"items": {
+							"type": "entries",
+							"name": "Faerie Lineage",
+							"entries": [
+								"As a native of either Lorwyn and Shadowmoor, you may gain additional traits.",
+								{
+									"type": "list",
+									"style": "list-hang-notitle",
+									"items": [
+										{
+											"type": "item",
+											"name": "Lorwyn",
+											"entries": [
+												"You go not gain any additional traits."
+											]
+										},
+										{
+											"type": "item",
+											"name": "Shadowmoor",
+											"entries": [
+												"You have {@sense Darkvision|XPHB} with a range of 120 feet."
+											]
+										}
+									]
+								}
+							]
+						}
+					}
+				}
+			},
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"_versions": [
+				{
+					"name": "Faerie; Lorwyn",
+					"source": "LFL",
+					"_mod": {
+						"entries": [
+							{
+								"mode": "removeArr",
+								"names": "Faerie Lineage"
+							}
+						]
+					}
+				},
+				{
+					"name": "Faerie; Shadowmoor",
+					"source": "LFL",
+					"_mod": {
+						"entries": [
+							{
+								"mode": "prependArr",
+								"items": {
+									"type": "entries",
+									"name": "Darkvision",
+									"entries": [
+										"You have {@sense Darkvision|XPHB} with a range of 120 feet."
+									]
+								}
+							},
+							{
+								"mode": "removeArr",
+								"names": "Faerie Lineage"
+							}
+						]
+					},
+					"darkvision": 120
+				}
+			]
+		},
+		{
 			"name": "Fairy",
 			"source": "MPMM",
 			"page": 14,
@@ -4847,6 +5184,72 @@
 			],
 			"hasFluff": true,
 			"hasFluffImages": true
+		},
+		{
+			"name": "Flamekin",
+			"source": "LFL",
+			"_copy": {
+				"name": "Genasi",
+				"source": "MPMM",
+				"_mod": {
+					"entries": {
+						"mode": "appendArr",
+						"items": [
+							{
+								"type": "entries",
+								"name": "Fire Resistance",
+								"entries": [
+									"You have resistance to fire damage."
+								]
+							},
+							{
+								"type": "entries",
+								"name": "Reach to the Blaze",
+								"entries": [
+									"You know the {@spell produce flame} cantrip. Starting at 3rd level, you can cast the {@spell burning hands} spell with this trait. Starting at 5th level, you can also cast the {@spell flame blade} spell with this trait, without a material component. Once you cast {@spell burning hands} or {@spell flame blade} with this trait, you can't cast that spell with it again until you finish a long rest. You can also cast either of those spells using any spell slots you have of the appropriate level.",
+									"Intelligence, Wisdom, or Charisma is your spellcasting ability for these spells when you cast them with this trait (choose when you select this race)."
+								]
+							}
+						]
+					}
+				}
+			},
+			"resist": [
+				"fire"
+			],
+			"additionalSpells": [
+				{
+					"innate": {
+						"3": {
+							"daily": {
+								"1": [
+									"burning hands"
+								]
+							}
+						},
+						"5": {
+							"daily": {
+								"1": [
+									"flame blade"
+								]
+							}
+						}
+					},
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"known": {
+						"1": [
+							"produce flame#c"
+						]
+					}
+				}
+			],
+			"hasFluff": true
 		},
 		{
 			"name": "Genasi",
@@ -8430,6 +8833,86 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Kithkin",
+			"source": "LFL",
+			"_copy": {
+				"name": "Halfling",
+				"source": "XPHB",
+				"_mod": {
+					"entries": {
+						"mode": "appendArr",
+						"items": {
+							"type": "entries",
+							"name": "Kithkin Lineage",
+							"entries": [
+								"As a native of either Lorwyn and Shadowmoor, you may gain additional traits.",
+								{
+									"type": "list",
+									"style": "list-hang-notitle",
+									"items": [
+										{
+											"type": "item",
+											"name": "Lorwyn",
+											"entries": [
+												"You go not gain any additional traits."
+											]
+										},
+										{
+											"type": "item",
+											"name": "Shadowmoor",
+											"entries": [
+												"You have {@sense Darkvision|XPHB} with a range of 120 feet."
+											]
+										}
+									]
+								}
+							]
+						}
+					}
+				}
+			},
+			"darkvision": 120,
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"_versions": [
+				{
+					"name": "Kithkin; Lorwyn",
+					"source": "LFL",
+					"_mod": {
+						"entries": [
+							{
+								"mode": "removeArr",
+								"names": "Kithkin Lineage"
+							}
+						]
+					}
+				},
+				{
+					"name": "Kithkin; Shadowmoor",
+					"source": "LFL",
+					"_mod": {
+						"entries": [
+							{
+								"mode": "prependArr",
+								"items": {
+									"type": "entries",
+									"name": "Darkvision",
+									"entries": [
+										"You have {@sense Darkvision|XPHB} with a range of 120 feet."
+									]
+								}
+							},
+							{
+								"mode": "removeArr",
+								"names": "Kithkin Lineage"
+							}
+						]
+					},
+					"darkvision": 120
+				}
+			]
+		},
+		{
 			"name": "Kobold",
 			"source": "DMG",
 			"page": 282,
@@ -9367,6 +9850,63 @@
 						"You can speak, read, and write Aquan and Common."
 					],
 					"type": "entries"
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Lorwyn Changeling",
+			"source": "LFL",
+			"creatureTypes": [
+				"fey"
+			],
+			"size": [
+				"S",
+				"M"
+			],
+			"speed": 30,
+			"darkvision": 120,
+			"skillProficiencies": [
+				{
+					"performance": true
+				}
+			],
+			"sizeEntry": {
+				"type": "item",
+				"name": "Size:",
+				"entries": [
+					"Medium (about 4-7 feet tall) or Small (about 2-4 feet tall), chosen when you select this species"
+				]
+			},
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Shape Self",
+					"entries": [
+						"As an action, you can reshape your body to a two-legged Humanoid shape or to a four-legged Beast shape. While you have a Humanoid shape, you can wear clothing and armor made for a Humanoid of your size."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Darkvision",
+					"entries": [
+						"You have {@sense Darkvision|XPHB} with a range of 120 feet."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Delightful Imitator",
+					"entries": [
+						"You have proficiency in the {@skill Performance|XPHB} skill."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Unpredictable Movement",
+					"entries": [
+						"When you roll {@variantrule Initiative|XPHB} and don't have {@variantrule Disadvantage|XPHB} on that roll, you can take the {@action Dash|XPHB} action as a {@variantrule Reaction|XPHB}."
+					]
 				}
 			],
 			"hasFluff": true,
@@ -10767,6 +11307,87 @@
 					"name": "Knowledge from a Past Life",
 					"entries": [
 						"You temporarily remember glimpses of the past, perhaps faded memories from ages ago or a previous life. When you make an ability check that uses a skill, you can roll a {@dice d6} immediately after seeing the number on the {@dice d20} and add the number on the {@dice d6} to the check. You can use this feature a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
+					]
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Rimekin",
+			"source": "LFL",
+			"creatureTypes": [
+				"humanoid"
+			],
+			"size": [
+				"S",
+				"M"
+			],
+			"speed": 30,
+			"darkvision": 60,
+			"resist": [
+				"cold"
+			],
+			"additionalSpells": [
+				{
+					"known": {
+						"1": [
+							"ray of frost|xphb#c"
+						]
+					},
+					"innate": {
+						"3": {
+							"daily": {
+								"1": [
+									"ice knife|xphb"
+								]
+							}
+						},
+						"5": {
+							"daily": {
+								"1": [
+									"flame blade|xphb"
+								]
+							}
+						}
+					},
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"sizeEntry": {
+				"type": "item",
+				"name": "Size:",
+				"entries": [
+					"Medium (about 4-7 feet tall) or Small (about 2-4 feet tall), chosen when you select this species"
+				]
+			},
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Cold Fire Magic",
+					"entries": [
+						"You know the {@spell Ray of Frost|XPHB} cantrip. When you reach character levels 3 and 5, you learn the {@spell Ice Knife|XPHB} spell and the {@spell Flame Blade|XPHB} spell, respectively. You always have those spells prepared. You can cast each once without a spell slot, and you regain the ability to cast these spells in this way when you finish a {@variantrule Long Rest|XPHB}. You can also cast the spells using any spell slots you have of the appropriate level. When you cast {@spell Flame Blade|XPHB} using this trait, the spell deals Cold damage instead of Fire damage.",
+						"Intelligence, Wisdom, or Charisma is your spellcasting ability for these spells (choose the ability when you select this species)."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Cold Resistance",
+					"entries": [
+						"You have {@variantrule Resistance|XPHB} to Cold damage."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Darkvision",
+					"entries": [
+						"You have {@sense Darkvision|XPHB} with a range of 60 feet."
 					]
 				}
 			],

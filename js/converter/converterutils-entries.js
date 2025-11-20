@@ -1176,6 +1176,7 @@ export class CoreRuleTag extends ConverterTaggerInitializable {
 			.replace(/\b(Death Saving Throws)\b/g, (...m) => {
 				return `{@variantrule Death Saving Throw|XPHB|${m[1]}}`;
 			})
+			.replace(/{@variantrule Hit Points\|XPHB\|Hit Point} Die\b/g, `{@variantrule Hit Point Dice|XPHB|Hit Point Die}`)
 			.replace(/\b(Legendary) {@variantrule Action\|XPHB}/g, "$1 Action")
 			.replace(/{@variantrule Flying\|XPHB} (Sword)/g, "Flying $1")
 		;

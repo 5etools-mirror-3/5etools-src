@@ -4309,7 +4309,7 @@ Renderer.utils = class {
 		static _getHtml_membership ({v, isListMode}) {
 			return isListMode
 				? v.join("/")
-				: `Membeership in the ${v.joinConjunct(", ", " or ")}`;
+				: `Membership in the ${v.joinConjunct(", ", " or ")}`;
 		}
 
 		static _getHtml_group ({v, isListMode}) {

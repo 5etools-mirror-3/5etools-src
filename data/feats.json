@@ -766,14 +766,14 @@
 					"type": "entries",
 					"name": "Powerful Recovery",
 					"entries": [
-						"When you roll a {@variantrule Hit Points|XPHB|Hit Point} Die to regain {@variantrule Hit Points|XPHB}, you can treat any roll of 1 or 2 as a 3."
+						"When you roll a {@variantrule Hit Point Dice|XPHB|Hit Point Die} to regain {@variantrule Hit Points|XPHB}, you can treat any roll of 1 or 2 as a 3."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Sanguine Feast",
 					"entries": [
-						"Once per turn when you hit a Bloodied creature that isn't a Construct or Undead with an attack roll, you can expend a {@variantrule Hit Points|XPHB|Hit Point} Die, roll it, and regain a number of {@variantrule Hit Points|XPHB} equal to the number rolled plus your Constitution modifier.",
+						"Once per turn when you hit a {@status Bloodied|XPHB} creature that isn't a Construct or Undead with an attack roll, you can expend a {@variantrule Hit Point Dice|XPHB|Hit Point Die}, roll it, and regain a number of {@variantrule Hit Points|XPHB} equal to the number rolled plus your Constitution modifier.",
 						"You can use this feature a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
 					]
 				}
@@ -807,7 +807,7 @@
 					"type": "entries",
 					"name": "Long Shots",
 					"entries": [
-						"Attacking at long range doesn't impose {@variantrule Disadvantage|XPHB} on your attack rolls with Thrown weapons."
+						"Attacking at long range doesn't impose {@variantrule Disadvantage|XPHB} on your attack rolls with {@itemProperty T|XPHB|Thrown} weapons."
 					]
 				}
 			]
@@ -2266,6 +2266,49 @@
 					"name": "Bolstering Treats",
 					"entries": [
 						"With 1 hour of work or when you finish a {@variantrule Long Rest|XPHB}, you can cook a number of treats equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus} if you have ingredients and {@item Cook's Utensils|XPHB} on hand. These special treats last 8 hours after being made. A creature can use a {@variantrule Bonus Action|XPHB} to eat one of those treats to gain a number of {@variantrule Temporary Hit Points|XPHB} equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Child of the Sun",
+			"source": "LFL",
+			"category": "O",
+			"additionalSpells": [
+				{
+					"innate": {
+						"_": {
+							"daily": {
+								"1": [
+									"faerie fire|xphb"
+								]
+							}
+						}
+					},
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Eyes of Eirdu",
+					"entries": [
+						"You and allies within 10 feet of you have {@variantrule Advantage|XPHB} on saving throws made to avoid or end the {@condition Blinded|XPHB} condition."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Faerie Fire",
+					"entries": [
+						"You learn the {@spell Faerie Fire|XPHB} spell. Intelligence, Wisdom, or Charisma is your spellcasting ability for this spell (choose when you select this feat). You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a {@variantrule Long Rest|XPHB}. You can also cast the spell using any spell slots you have.",
+						"When you cast {@spell Faerie Fire|XPHB} without a spell slot using this benefit, taking damage can't break your {@status Concentration|XPHB} on the spell."
 					]
 				}
 			]
@@ -4248,7 +4291,7 @@
 				}
 			],
 			"entries": [
-				"When you roll damage for an attack you make with a Melee weapon that you are holding with two hands, you can treat any 1 or 2 on a damage die as a 3. The weapon must have the Two-Handed or Versatile property to gain this benefit."
+				"When you roll damage for an attack you make with a Melee weapon that you are holding with two hands, you can treat any 1 or 2 on a damage die as a 3. The weapon must have the {@itemProperty 2h|XPHB|Two-Handed} or {@itemProperty V|XPHB|Versatile} property to gain this benefit."
 			]
 		},
 		{
@@ -4368,7 +4411,7 @@
 					"type": "list",
 					"items": [
 						"You gain proficiency with firearms (see \"{@variantrule Firearms|DMG}\" in the Dungeon Master's Guide).",
-						"You ignore the loading property of firearms.",
+						"You ignore the {@itemProperty LD|PHB|loading} property of firearms.",
 						"Being within 5 feet of a hostile creature doesn't impose disadvantage on your ranged attack rolls."
 					]
 				}
@@ -7409,7 +7452,7 @@
 					"type": "list",
 					"items": [
 						"While you are holding a double-bladed scimitar with two hands, you gain a +1 bonus to Armor Class.",
-						"A double-bladed scimitar has the finesse property when you wield it."
+						"A double-bladed scimitar has the {@itemProperty F|PHB|finesse} property when you wield it."
 					]
 				}
 			]
@@ -8207,6 +8250,48 @@
 					"name": "Shadow Magic",
 					"entries": [
 						"Choose one {@filter level 1 spell from the Illusion or Necromancy|spells|level=1|school=I;N} school of magic. You always have that spell and the {@spell Invisibility|XPHB} spell prepared. You can cast each of these spells without expending a spell slot. Once you cast either spell in this way, you can't cast that spell in this way again until you finish a {@variantrule Long Rest|XPHB}. You can also cast these spells using spell slots you have of the appropriate level. The spells' spellcasting ability is the ability increased by this feat."
+					]
+				}
+			]
+		},
+		{
+			"name": "Shadowmoor Hexer",
+			"source": "LFL",
+			"category": "O",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"_": {
+							"daily": {
+								"1": [
+									"hex|xphb"
+								]
+							}
+						}
+					},
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Hex",
+					"entries": [
+						"You always have the {@spell Hex|XPHB} spell prepared. Intelligence, Wisdom, or Charisma is your spellcasting ability for this spell (choose when you select this feat). You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a {@variantrule Long Rest|XPHB}. You can also cast the spell using any spell slots you have."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Curse Magic",
+					"entries": [
+						"When a creature that you've cursed with {@spell Hex|XPHB} hits you with an attack roll, the creature takes Psychic damage equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}. A creature takes this damage only once per turn."
 					]
 				}
 			]
@@ -10061,8 +10146,8 @@
 				{
 					"type": "list",
 					"items": [
-						"Simple and martial melee weapons without the thrown property have the thrown property for you. One-handed weapons have a normal range of 20 feet and a long range of 60 feet, while two-handed weapons have a normal range of 15 feet and a long range of 30 feet.",
-						"Weapons that already have the thrown property increase their short range by 20 feet and their long range by 40 feet for you.",
+						"Simple and martial melee weapons without the thrown property have the {@itemProperty T|PHB|thrown} property for you. One-handed weapons have a normal range of 20 feet and a long range of 60 feet, while two-handed weapons have a normal range of 15 feet and a long range of 30 feet.",
+						"Weapons that already have the {@itemProperty T|PHB|thrown} property increase their short range by 20 feet and their long range by 40 feet for you.",
 						"When you miss with a thrown weapon attack using a light weapon, the weapon returns to your grasp like a boomerang at the end of your turn, unless something prevents it from returning. You can catch and stow as many weapons as you threw in this way."
 					]
 				}
@@ -10298,7 +10383,7 @@
 					"type": "entries",
 					"name": "Decanting",
 					"entries": [
-						"When you finish a {@variantrule Long Rest|XPHB}, you can create one {@item Potion of Healing|XDMG} or an Antitoxin, as long as you have an empty vial or flask. These liquids evaporate when you finish another {@variantrule Long Rest|XPHB}."
+						"When you finish a {@variantrule Long Rest|XPHB}, you can create one {@item Potion of Healing|XDMG} or an {@item Antitoxin|XPHB}, as long as you have an empty {@item vial|XPHB} or {@item flask|XPHB}. These liquids evaporate when you finish another {@variantrule Long Rest|XPHB}."
 					]
 				},
 				{
