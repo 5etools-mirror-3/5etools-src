@@ -826,10 +826,21 @@ export class BrewUtil2Base {
 	}
 
 	async _pAddBrewsLazyFinalize_ ({lockToken}) {
+		const brewsTempDeduped = this._addLazy_brewsTemp
+			.reduce(
+				(accum, brew) => {
+					if (accum.checksums[brew.head.checksum]) return accum;
+					accum.deduped.push(brew);
+					accum.checksums[brew.head.checksum] = true;
+					return accum;
+				},
+				{deduped: [], checksums: {}},
+			)
+			.deduped;
 		const brewsRaw = await this._pGetBrewRaw({lockToken});
-		const {brewDocsDependencies, unavailableSources} = await this._pGetBrewDependencies({brewDocs: this._addLazy_brewsTemp, brewsRaw, lockToken});
+		const {brewDocsDependencies, unavailableSources} = await this._pGetBrewDependencies({brewDocs: brewsTempDeduped, brewsRaw, lockToken});
 		const brewDocs = MiscUtil.copyFast(brewDocsDependencies);
-		const brewsNxt = this._getNextBrews(MiscUtil.copyFast(brewsRaw), [...this._addLazy_brewsTemp, ...brewDocsDependencies]);
+		const brewsNxt = this._getNextBrews(MiscUtil.copyFast(brewsRaw), [...brewsTempDeduped, ...brewDocsDependencies]);
 		await this.pSetBrew(brewsNxt, {lockToken});
 		this._addLazy_brewsTemp = [];
 		return {brewDocs, unavailableSources};

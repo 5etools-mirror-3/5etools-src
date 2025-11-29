@@ -1830,10 +1830,65 @@
 		},
 		{
 			"name": "Changeling",
+			"source": "EFA",
+			"page": 34,
+			"edition": "one",
+			"creatureTypes": [
+				"fey"
+			],
+			"size": [
+				"S",
+				"M"
+			],
+			"speed": 30,
+			"skillProficiencies": [
+				{
+					"choose": {
+						"from": [
+							"deception",
+							"insight",
+							"intimidation",
+							"persuasion"
+						],
+						"count": 2
+					}
+				}
+			],
+			"sizeEntry": {
+				"type": "item",
+				"name": "Size:",
+				"entries": [
+					"Medium (about 4-7 feet tall) or Small (about 2-4 feet tall), chosen when you select this species"
+				]
+			},
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Changeling Instincts",
+					"entries": [
+						"Thanks to your connection to the fey realm, you gain proficiency in two of the following skills of your choice: {@skill Deception|XPHB}, {@skill Insight|XPHB}, {@skill Intimidation|XPHB}, {@skill Performance|XPHB}, or {@skill Persuasion|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Shape-Shifter",
+					"entries": [
+						"As an action, you can shape-shift to change your appearance and your voice. You determine the specifics of the changes, including your coloration, hair length, and sex. You can also adjust your height and weight and can change your size between Medium and Small. You can make yourself appear as a member of another playable species, though none of your game statistics change. You can't duplicate the appearance of an individual you've never seen, and you must adopt a form that has the same basic arrangement of limbs that you have. This trait doesn't change your clothing and equipment.",
+						"While shape-shifted with this trait, you have {@variantrule Advantage|XPHB} on Charisma checks.",
+						"You stay in the new form until you take an action to revert to your true form."
+					]
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Changeling",
 			"source": "ERLW",
 			"page": 17,
 			"reprintedAs": [
-				"Changeling|MPMM"
+				"Changeling|MPMM",
+				"Changeling|EFA"
 			],
 			"size": [
 				"M"
@@ -1935,6 +1990,9 @@
 			"name": "Changeling",
 			"source": "MPMM",
 			"page": 10,
+			"reprintedAs": [
+				"Changeling|EFA"
+			],
 			"lineage": "VRGR",
 			"creatureTypes": [
 				"fey"
@@ -3546,7 +3604,7 @@
 				{
 					"name": "Tool Proficiency",
 					"entries": [
-						"You gain proficiency with the artisan's tools of your choice: {@item Smith's tools|phb}, {@item brewer's supplies|phb}, or {@item mason's tools|phb}."
+						"You gain proficiency with the {@item artisan's tools|PHB} of your choice: {@item Smith's tools|phb}, {@item brewer's supplies|phb}, or {@item mason's tools|phb}."
 					],
 					"type": "entries"
 				},
@@ -3876,7 +3934,7 @@
 									"rows": [
 										[
 											"Lorwyn",
-											"You know the {@spell Thorn Whip|XPHB} cantrip. Whenever you finish a Long Rest, you can replace that cantrip with a different cantrip from the {@filter Druid spell list|spells|class=druid}.",
+											"You know the {@spell Thorn Whip|XPHB} cantrip. Whenever you finish a {@variantrule Long Rest|XPHB}, you can replace that cantrip with a different cantrip from the {@filter Druid spell list|spells|class=druid}.",
 											"{@spell Command|XPHB}",
 											"{@spell Silence|XPHB}"
 										],
@@ -3975,7 +4033,7 @@
 								"name": "Elven Lineage (Lorwyn)",
 								"type": "entries",
 								"entries": [
-									"You are part of a lineage that grants you supernatural abilities. You know the {@spell Thorn Whip|XPHB} cantrip. Whenever you finish a Long Rest, you can replace that cantrip with a different cantrip from the {@filter Druid spell list|spells|class=druid}.",
+									"You are part of a lineage that grants you supernatural abilities. You know the {@spell Thorn Whip|XPHB} cantrip. Whenever you finish a {@variantrule Long Rest|XPHB}, you can replace that cantrip with a different cantrip from the {@filter Druid spell list|spells|class=druid}.",
 									"When you reach character level 3, you learn the {@spell Command|XPHB} spell. When you reach character level 5, you also learn the {@spell Silence|XPHB} spell. You always have these spells prepared, and you can cast each spell once without a spell slot. Once you cast either of these spells with this trait, you can't cast that spell with it again until you finish a {@variantrule Long Rest|XPHB}. You can also cast the spell using any spell slots you have of the appropriate level.",
 									"Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the lineage)."
 								]
@@ -4341,19 +4399,19 @@
 							"rows": [
 								[
 									"Drow",
-									"The range of your Darkvision increases to 120 feet. You also know the {@spell Dancing Lights|XPHB} cantrip.",
+									"The range of your {@sense Darkvision|XPHB} increases to 120 feet. You also know the {@spell Dancing Lights|XPHB} cantrip.",
 									"{@spell Faerie Fire|XPHB}",
 									"{@spell Darkness|XPHB}"
 								],
 								[
 									"High Elf",
-									"You know the {@spell Prestidigitation|XPHB} cantrip. Whenever you finish a Long Rest, you can replace that cantrip with a different {@filter cantrip from the Wizard spell list|spells|level=0|class=Wizard}.",
+									"You know the {@spell Prestidigitation|XPHB} cantrip. Whenever you finish a {@variantrule Long Rest|XPHB}, you can replace that cantrip with a different {@filter cantrip from the Wizard spell list|spells|level=0|class=Wizard}.",
 									"{@spell Detect Magic|XPHB}",
 									"{@spell Misty Step|XPHB}"
 								],
 								[
 									"Wood Elf",
-									"Your Speed increases to 35 feet. You also know the {@spell Druidcraft|XPHB} cantrip.",
+									"Your {@variantrule Speed|XPHB} increases to 35 feet. You also know the {@spell Druidcraft|XPHB} cantrip.",
 									"{@spell Longstrider|XPHB}",
 									"{@spell Pass without Trace|XPHB}"
 								]
@@ -4398,7 +4456,7 @@
 									"name": "Elven Lineage (Drow)",
 									"type": "entries",
 									"entries": [
-										"You are part of a lineage that grants you supernatural abilities. The range of your Darkvision increases to 120 feet. You also know the {@spell Dancing Lights|XPHB} cantrip.",
+										"You are part of a lineage that grants you supernatural abilities. The range of your {@sense Darkvision|XPHB} increases to 120 feet. You also know the {@spell Dancing Lights|XPHB} cantrip.",
 										"When you reach character level 3, you learn the {@spell Faerie Fire|XPHB} spell. When you reach character level 5, you also learn the {@spell Darkness|XPHB} spell. You always have these spells prepared, and you can cast each spell once without a spell slot. Once you cast either of these spells with this trait, you can't cast that spell with it again until you finish a {@variantrule Long Rest|XPHB}. You can also cast the spell using any spell slots you have of the appropriate level.",
 										"Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the lineage)."
 									]
@@ -4462,7 +4520,7 @@
 								"name": "Elven Lineage (High Elf)",
 								"type": "entries",
 								"entries": [
-									"You are part of a lineage that grants you supernatural abilities. You know the {@spell Prestidigitation|XPHB} cantrip. Whenever you finish a Long Rest, you can replace that cantrip with a different {@filter cantrip from the Wizard spell list|spells|level=0|class=Wizard}.",
+									"You are part of a lineage that grants you supernatural abilities. You know the {@spell Prestidigitation|XPHB} cantrip. Whenever you finish a {@variantrule Long Rest|XPHB}, you can replace that cantrip with a different {@filter cantrip from the Wizard spell list|spells|level=0|class=Wizard}.",
 									"When you reach character level 3, you learn the {@spell Detect Magic|XPHB} spell. When you reach character level 5, you also learn the {@spell Misty Step|XPHB} spell. You always have these spells prepared, and you can cast each spell once without a spell slot. Once you cast either of these spells with this trait, you can't cast that spell with it again until you finish a {@variantrule Long Rest|XPHB}. You can also cast the spell using any spell slots you have of the appropriate level.",
 									"Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the lineage)."
 								]
@@ -4517,7 +4575,7 @@
 								"name": "Elven Lineage (Wood Elf)",
 								"type": "entries",
 								"entries": [
-									"You are part of a lineage that grants you supernatural abilities. Your Speed increases to 35 feet. You also know the {@spell Druidcraft|XPHB} cantrip.",
+									"You are part of a lineage that grants you supernatural abilities. Your {@variantrule Speed|XPHB} increases to 35 feet. You also know the {@spell Druidcraft|XPHB} cantrip.",
 									"When you reach character level 3, you learn the {@spell Longstrider|XPHB} spell. When you reach character level 5, you also learn the {@spell Pass without Trace|XPHB} spell. You always have these spells prepared, and you can cast each spell once without a spell slot. Once you cast either of these spells with this trait, you can't cast that spell with it again until you finish a {@variantrule Long Rest|XPHB}. You can also cast the spell using any spell slots you have of the appropriate level.",
 									"Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait (choose the ability when you select the lineage)."
 								]
@@ -5406,7 +5464,7 @@
 					"type": "entries",
 					"name": "Firearms Mastery",
 					"entries": [
-						"You have a mystical connection to firearms that traces back to the gods of the giff, who delighted in such weapons. You have proficiency with all firearms and ignore the loading property of any firearm. In addition, attacking at long range with a firearm doesn't impose disadvantage on your attack roll."
+						"You have a mystical connection to firearms that traces back to the gods of the giff, who delighted in such weapons. You have proficiency with all firearms and ignore the {@itemProperty LD||loading} property of any firearm. In addition, attacking at long range with a firearm doesn't impose disadvantage on your attack roll."
 					]
 				},
 				{
@@ -8404,8 +8462,69 @@
 		},
 		{
 			"name": "Kalashtar",
+			"source": "EFA",
+			"page": 35,
+			"edition": "one",
+			"creatureTypes": [
+				"aberration"
+			],
+			"size": [
+				"M"
+			],
+			"speed": 30,
+			"traitTags": [
+				"Skill Proficiency"
+			],
+			"resist": [
+				"psychic"
+			],
+			"sizeEntry": {
+				"type": "item",
+				"name": "Size:",
+				"entries": [
+					"Medium (about 6\u20137 feet tall)"
+				]
+			},
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Dual Mind",
+					"entries": [
+						"You have {@variantrule Advantage|XPHB} on Wisdom and Charisma saving throws."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Mental Discipline",
+					"entries": [
+						"You have {@variantrule Resistance|XPHB} to Psychic damage."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Mind Link",
+					"entries": [
+						"You have telepathy with a range in feet equal to 10 times your level. When you're using this trait to speak telepathically to a creature, you can take a {@action Magic|XPHB} action to give that creature the ability to speak telepathically with you for 1 hour or until you take another {@action Magic|XPHB} action to end this effect."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Severed from Dreams",
+					"entries": [
+						"You can't be the target of the Dream spell. In addition, when you finish a {@variantrule Long Rest|XPHB}, you gain proficiency in one skill of your choice. This proficiency lasts until you finish another {@variantrule Long Rest|XPHB}."
+					]
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Kalashtar",
 			"source": "ERLW",
 			"page": 29,
+			"reprintedAs": [
+				"Kalashtar|EFA"
+			],
 			"size": [
 				"M"
 			],
@@ -8827,6 +8946,91 @@
 						"You can speak, read, and write Common and Khenra."
 					],
 					"type": "entries"
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Khoravar",
+			"source": "EFA",
+			"page": 36,
+			"edition": "one",
+			"creatureTypes": [
+				"humanoid"
+			],
+			"size": [
+				"S",
+				"M"
+			],
+			"speed": 30,
+			"darkvision": 60,
+			"traitTags": [
+				"Skill Proficiency",
+				"Tool Proficiency"
+			],
+			"additionalSpells": [
+				{
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"known": {
+						"1": {
+							"_": [
+								{
+									"choose": "level=0|class=Cleric;Druid;Wizard"
+								}
+							]
+						}
+					}
+				}
+			],
+			"sizeEntry": {
+				"type": "item",
+				"name": "Size:",
+				"entries": [
+					"Medium (about 4-6 feet tall) or Small (about 2-4 feet tall), chosen when you select this species"
+				]
+			},
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Darkvision",
+					"entries": [
+						"You have {@sense Darkvision|XPHB} with a range of 60 feet."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Fey Ancestry",
+					"entries": [
+						"You have {@variantrule Advantage|XPHB} on saving throws you make to avoid or end the Charmed condition."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Fey Gift",
+					"entries": [
+						"You know the Friends cantrip. Whenever you finish a {@variantrule Long Rest|XPHB}, you can replace that cantrip with a different cantrip from the Cleric, Druid, or Wizard spell list. Intelligence, Wisdom, or Charisma is your spellcasting ability for it (choose the ability when you select this species)."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Lethargy Resilience",
+					"entries": [
+						"When you fail a saving throw to avoid or end the Unconscious condition, you can succeed instead. Once you use this trait, you can't do so again until you finish {@dice 1d4} Long Rests."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Skill Versatility",
+					"entries": [
+						"You gain proficiency in one skill or with one tool of your choice. Whenever you finish a {@variantrule Long Rest|XPHB}, you can replace it with another skill or tool proficiency."
+					]
 				}
 			],
 			"hasFluff": true,
@@ -11776,10 +11980,187 @@
 		},
 		{
 			"name": "Shifter",
+			"source": "EFA",
+			"page": 37,
+			"edition": "one",
+			"creatureTypes": [
+				"humanoid"
+			],
+			"size": [
+				"S",
+				"M"
+			],
+			"speed": 30,
+			"darkvision": 60,
+			"skillProficiencies": [
+				{
+					"choose": {
+						"from": [
+							"acrobatics",
+							"athletics",
+							"intimidation",
+							"survival"
+						]
+					}
+				}
+			],
+			"sizeEntry": {
+				"type": "item",
+				"name": "Size:",
+				"entries": [
+					"Medium (about 4-7 feet tall) or Small (about 2-4 feet tall), chosen when you select this species"
+				]
+			},
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Bestial Instincts",
+					"entries": [
+						"Channeling the beast within, you gain proficiency in one of the following skills of your choice: {@skill Acrobatics|XPHB}, {@skill Athletics|XPHB}, {@skill Intimidation|XPHB}, or {@skill Survival|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Darkvision",
+					"entries": [
+						"You have {@sense Darkvision|XPHB} with a range of 60 feet."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Shifting",
+					"entries": [
+						"As a {@variantrule Bonus Action|XPHB}, you can shape-shift to assume a more bestial appearance. This transformation lasts for 1 minute or until you revert to your normal appearance as a {@variantrule Bonus Action|XPHB}. When you shift, you gain {@variantrule Temporary Hit Points|XPHB} equal to 2 times your {@variantrule Proficiency|XPHB|Proficiency Bonus}. You can shift a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}.",
+						"Whenever you shift, you gain the benefit of one of the following options (choose when you select this species)",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"type": "item",
+									"name": "Beasthide",
+									"entries": [
+										"You gain {@dice 1d6} additional {@variantrule Temporary Hit Points|XPHB}. While shifted, you have a +1 bonus to your {@variantrule Armor Class|XPHB}."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Longtooth",
+									"entries": [
+										"When you shift and as a {@variantrule Bonus Action|XPHB} on your other turns while shifted, you can use your elongated fangs to make an {@variantrule Unarmed Strike|XPHB}. If you hit with this {@variantrule Unarmed Strike|XPHB} and deal damage, you can deal Piercing damage equal to {@dice 1d6} plus your Strength modifier, instead of the normal damage of an {@variantrule Unarmed Strike|XPHB}."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Swiftstride",
+									"entries": [
+										"While you are shifted, your {@variantrule Speed|XPHB} increases by 10 feet. Additionally, you can move up to 10 feet as a {@variantrule Reaction|XPHB} when a creature ends its turn within 5 feet of you. This reactive movement doesn't provoke {@action Opportunity Attack|XPHB|Opportunity Attacks}."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Wildhunt",
+									"entries": [
+										"While shifted, you have {@variantrule Advantage|XPHB} on Wisdom checks. Additionally, no creature within 30 feet of you can have {@variantrule Advantage|XPHB} on an attack roll against you unless you have the Incapacitated condition."
+									]
+								}
+							]
+						}
+					]
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true,
+			"_versions": [
+				{
+					"name": "Shifter; Beasthide",
+					"source": "EFA",
+					"_mod": {
+						"entries": [
+							{
+								"mode": "replaceArr",
+								"replace": "Shifting",
+								"items": {
+									"name": "Shifting (Beasthide)",
+									"type": "entries",
+									"entries": [
+										"As a {@variantrule Bonus Action|XPHB}, you can shape-shift to assume a more bestial appearance. This transformation lasts for 1 minute or until you revert to your normal appearance as a {@variantrule Bonus Action|XPHB}. When you shift, you gain {@variantrule Temporary Hit Points|XPHB} equal to 2 times your {@variantrule Proficiency|XPHB|Proficiency Bonus}. You can shift a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}.",
+										"Whenever you shift, you gain {@dice 1d6} additional {@variantrule Temporary Hit Points|XPHB}. While shifted, you have a +1 bonus to your {@variantrule Armor Class|XPHB}."
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"name": "Shifter; Longtooth",
+					"source": "EFA",
+					"_mod": {
+						"entries": [
+							{
+								"mode": "replaceArr",
+								"replace": "Shifting",
+								"items": {
+									"name": "Shifting (Longtooth)",
+									"type": "entries",
+									"entries": [
+										"As a {@variantrule Bonus Action|XPHB}, you can shape-shift to assume a more bestial appearance. This transformation lasts for 1 minute or until you revert to your normal appearance as a {@variantrule Bonus Action|XPHB}. When you shift, you gain {@variantrule Temporary Hit Points|XPHB} equal to 2 times your {@variantrule Proficiency|XPHB|Proficiency Bonus}. You can shift a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}.",
+										"When you shift and as a {@variantrule Bonus Action|XPHB} on your other turns while shifted, you can use your elongated fangs to make an {@variantrule Unarmed Strike|XPHB}. If you hit with this {@variantrule Unarmed Strike|XPHB} and deal damage, you can deal Piercing damage equal to {@dice 1d6} plus your Strength modifier, instead of the normal damage of an {@variantrule Unarmed Strike|XPHB}."
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"name": "Shifter; Swiftstride",
+					"source": "EFA",
+					"_mod": {
+						"entries": [
+							{
+								"mode": "replaceArr",
+								"replace": "Shifting",
+								"items": {
+									"name": "Shifting (Swiftstride)",
+									"type": "entries",
+									"entries": [
+										"As a {@variantrule Bonus Action|XPHB}, you can shape-shift to assume a more bestial appearance. This transformation lasts for 1 minute or until you revert to your normal appearance as a {@variantrule Bonus Action|XPHB}. When you shift, you gain {@variantrule Temporary Hit Points|XPHB} equal to 2 times your {@variantrule Proficiency|XPHB|Proficiency Bonus}. You can shift a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}.",
+										"While you are shifted, your {@variantrule Speed|XPHB} increases by 10 feet. Additionally, you can move up to 10 feet as a {@variantrule Reaction|XPHB} when a creature ends its turn within 5 feet of you. This reactive movement doesn't provoke {@action Opportunity Attack|XPHB|Opportunity Attacks}."
+									]
+								}
+							}
+						]
+					}
+				},
+				{
+					"name": "Shifter; Wildhunt",
+					"source": "EFA",
+					"_mod": {
+						"entries": [
+							{
+								"mode": "replaceArr",
+								"replace": "Shifting",
+								"items": {
+									"name": "Shifting (Wildhunt)",
+									"type": "entries",
+									"entries": [
+										"As a {@variantrule Bonus Action|XPHB}, you can shape-shift to assume a more bestial appearance. This transformation lasts for 1 minute or until you revert to your normal appearance as a {@variantrule Bonus Action|XPHB}. When you shift, you gain {@variantrule Temporary Hit Points|XPHB} equal to 2 times your {@variantrule Proficiency|XPHB|Proficiency Bonus}. You can shift a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}.",
+										"While shifted, you have {@variantrule Advantage|XPHB} on Wisdom checks. Additionally, no creature within 30 feet of you can have {@variantrule Advantage|XPHB} on an attack roll against you unless you have the Incapacitated condition."
+									]
+								}
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Shifter",
 			"source": "ERLW",
 			"page": 33,
 			"reprintedAs": [
-				"Shifter|MPMM"
+				"Shifter|MPMM",
+				"Shifter|EFA"
 			],
 			"size": [
 				"M"
@@ -11860,6 +12241,9 @@
 			"name": "Shifter",
 			"source": "MPMM",
 			"page": 32,
+			"reprintedAs": [
+				"Shifter|EFA"
+			],
 			"lineage": "VRGR",
 			"size": [
 				"M"
@@ -12525,7 +12909,7 @@
 					"type": "entries",
 					"name": "Secondary Arms",
 					"entries": [
-						"You have two slightly smaller secondary arms below your primary pair of arms. The secondary arms can manipulate an object, open or close a door or container, pick up or set down a Tiny object, or wield a weapon that has the light property."
+						"You have two slightly smaller secondary arms below your primary pair of arms. The secondary arms can manipulate an object, open or close a door or container, pick up or set down a Tiny object, or wield a weapon that has the {@itemProperty L||light} property."
 					]
 				},
 				{
@@ -12739,19 +13123,19 @@
 							"rows": [
 								[
 									"Abyssal",
-									"You have Resistance to Poison damage. You also know the {@spell Poison Spray|XPHB} cantrip.",
+									"You have {@variantrule Resistance|XPHB} to Poison damage. You also know the {@spell Poison Spray|XPHB} cantrip.",
 									"{@spell Ray of Sickness|XPHB}",
 									"{@spell Hold Person|XPHB}"
 								],
 								[
 									"Chthonic",
-									"You have Resistance to Necrotic damage. You also know the {@spell Chill Touch|XPHB} cantrip.",
+									"You have {@variantrule Resistance|XPHB} to Necrotic damage. You also know the {@spell Chill Touch|XPHB} cantrip.",
 									"{@spell False Life|XPHB}",
 									"{@spell Ray of Enfeeblement|XPHB}"
 								],
 								[
 									"Infernal",
-									"You have Resistance to Fire damage. You also know the {@spell Fire Bolt|XPHB} cantrip.",
+									"You have {@variantrule Resistance|XPHB} to Fire damage. You also know the {@spell Fire Bolt|XPHB} cantrip.",
 									"{@spell Hellish Rebuke|XPHB}",
 									"{@spell Darkness|XPHB}"
 								]
@@ -13854,8 +14238,88 @@
 		},
 		{
 			"name": "Warforged",
+			"source": "EFA",
+			"page": 38,
+			"edition": "one",
+			"creatureTypes": [
+				"construct"
+			],
+			"size": [
+				"S",
+				"M"
+			],
+			"speed": 30,
+			"traitTags": [
+				"Improved Resting",
+				"Natural Armor"
+			],
+			"skillProficiencies": [
+				{
+					"any": 1
+				}
+			],
+			"toolProficiencies": [
+				{
+					"any": 1
+				}
+			],
+			"resist": [
+				"poison"
+			],
+			"sizeEntry": {
+				"type": "item",
+				"name": "Size:",
+				"entries": [
+					"Medium (about 6-8 feet tall) or Small (about 3-4 feet tall), chosen when you select this species"
+				]
+			},
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Construct Resilience",
+					"entries": [
+						"You have {@variantrule Resistance|XPHB} to Poison damage.You also have {@variantrule Advantage|XPHB} on saving throws to avoid or end the Poisoned condition."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Integrated Protection",
+					"entries": [
+						"You gain a +1 bonus to your {@variantrule Armor Class|XPHB}. In addition, armor you have donned can't be removed against your will while you're alive."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Sentry's Rest",
+					"entries": [
+						"You don't need to sleep, and magic can't put you to sleep. You can finish a {@variantrule Long Rest|XPHB} in 6 hours if you spend those hours in an inactive, motionless state. During this time, you appear inert but remain conscious."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Specialized Design",
+					"entries": [
+						"You gain one skill proficiency and one tool proficiency of your choice."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Tireless",
+					"entries": [
+						"You don't gain {@condition Exhaustion|XPHB} levels from dehydration, malnutrition, or suffocation."
+					]
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Warforged",
 			"source": "ERLW",
 			"page": 35,
+			"reprintedAs": [
+				"Warforged|EFA"
+			],
 			"size": [
 				"M"
 			],
@@ -15175,6 +15639,12 @@
 			"raceName": "Dwarf",
 			"raceSource": "PHB",
 			"page": 51,
+			"reprintedAs": [
+				{
+					"uid": "Mark of Warding|EFA",
+					"tag": "feat"
+				}
+			],
 			"ability": [
 				{
 					"int": 1
@@ -15606,6 +16076,12 @@
 			"raceName": "Elf",
 			"raceSource": "PHB",
 			"page": 49,
+			"reprintedAs": [
+				{
+					"uid": "Mark of Shadow|EFA",
+					"tag": "feat"
+				}
+			],
 			"ability": [
 				{
 					"cha": 1
@@ -17097,6 +17573,12 @@
 			"raceName": "Gnome",
 			"raceSource": "PHB",
 			"page": 47,
+			"reprintedAs": [
+				{
+					"uid": "Mark of Scribing|EFA",
+					"tag": "feat"
+				}
+			],
 			"ability": [
 				{
 					"cha": 1
@@ -17243,7 +17725,7 @@
 				{
 					"name": "Tinker",
 					"entries": [
-						"You have proficiency with artisan's tools ({@item tinker's tools|phb}). Using those tools, you can spend 1 hour and 10 gp worth of materials to construct a Tiny clockwork device (AC 5, 1 hp). The device ceases to function after 24 hours (unless you spend 1 hour repairing it to keep the device functioning), or when you use your action to dismantle it; at that time, you can reclaim the materials used to create it. You can have up to three such devices active at a time.",
+						"You have proficiency with {@item artisan's tools|PHB} ({@item tinker's tools|phb}). Using those tools, you can spend 1 hour and 10 gp worth of materials to construct a Tiny clockwork device (AC 5, 1 hp). The device ceases to function after 24 hours (unless you spend 1 hour repairing it to keep the device functioning), or when you use your action to dismantle it; at that time, you can reclaim the materials used to create it. You can have up to three such devices active at a time.",
 						"When you create a device, choose one of the following options:",
 						{
 							"type": "entries",
@@ -17621,6 +18103,12 @@
 			"raceName": "Half-Elf",
 			"raceSource": "PHB",
 			"page": 40,
+			"reprintedAs": [
+				{
+					"uid": "Mark of Detection|EFA",
+					"tag": "feat"
+				}
+			],
 			"ability": [
 				{
 					"wis": 2,
@@ -17750,6 +18238,12 @@
 			"raceName": "Half-Elf",
 			"raceSource": "PHB",
 			"page": 50,
+			"reprintedAs": [
+				{
+					"uid": "Mark of Storm|EFA",
+					"tag": "feat"
+				}
+			],
 			"ability": [
 				{
 					"cha": 2,
@@ -18149,6 +18643,12 @@
 			"raceName": "Half-Orc",
 			"raceSource": "PHB",
 			"page": 41,
+			"reprintedAs": [
+				{
+					"uid": "Mark of Finding|EFA",
+					"tag": "feat"
+				}
+			],
 			"traitTags": [
 				"Dragonmark",
 				"Skill Bonus Dice"
@@ -18402,6 +18902,12 @@
 			"raceName": "Halfling",
 			"raceSource": "PHB",
 			"page": 43,
+			"reprintedAs": [
+				{
+					"uid": "Mark of Healing|EFA",
+					"tag": "feat"
+				}
+			],
 			"ability": [
 				{
 					"wis": 1
@@ -18514,6 +19020,12 @@
 			"raceName": "Halfling",
 			"raceSource": "PHB",
 			"page": 44,
+			"reprintedAs": [
+				{
+					"uid": "Mark of Hospitality|EFA",
+					"tag": "feat"
+				}
+			],
 			"ability": [
 				{
 					"cha": 1
@@ -18770,6 +19282,12 @@
 			"raceName": "Human",
 			"raceSource": "PHB",
 			"page": 42,
+			"reprintedAs": [
+				{
+					"uid": "Mark of Handling|EFA",
+					"tag": "feat"
+				}
+			],
 			"ability": [
 				{
 					"wis": 2,
@@ -18896,6 +19414,12 @@
 			"raceName": "Human",
 			"raceSource": "PHB",
 			"page": 45,
+			"reprintedAs": [
+				{
+					"uid": "Mark of Making|EFA",
+					"tag": "feat"
+				}
+			],
 			"ability": [
 				{
 					"int": 2,
@@ -18965,7 +19489,7 @@
 					"type": "entries",
 					"name": "Maker's Gift",
 					"entries": [
-						"You gain proficiency with one type of artisan's tools of your choice."
+						"You gain proficiency with one type of {@item artisan's tools|PHB} of your choice."
 					]
 				},
 				{
@@ -19024,6 +19548,12 @@
 			"raceName": "Human",
 			"raceSource": "PHB",
 			"page": 46,
+			"reprintedAs": [
+				{
+					"uid": "Mark of Passage|EFA",
+					"tag": "feat"
+				}
+			],
 			"speed": 35,
 			"ability": [
 				{
@@ -19145,6 +19675,12 @@
 			"raceName": "Human",
 			"raceSource": "PHB",
 			"page": 48,
+			"reprintedAs": [
+				{
+					"uid": "Mark of Sentinel|EFA",
+					"tag": "feat"
+				}
+			],
 			"ability": [
 				{
 					"con": 2,
@@ -19309,6 +19845,12 @@
 			"raceName": "Human",
 			"raceSource": "PHB",
 			"page": 41,
+			"reprintedAs": [
+				{
+					"uid": "Mark of Finding|EFA",
+					"tag": "feat"
+				}
+			],
 			"ability": [
 				{
 					"con": 1,

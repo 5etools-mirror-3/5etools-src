@@ -93,17 +93,11 @@ class OmnisearchUi {
 
 		const wrpSearchInput = e_({
 			tag: "div",
-			clazz: "input-group omni__wrp-input",
+			clazz: "input-group omni__wrp-input ve-flex",
 			children: [
 				iptSearch,
 				btnClearSearch,
-				e_({
-					tag: "div",
-					clazz: "input-group-btn",
-					children: [
-						btnSearchSubmit,
-					],
-				}),
+				btnSearchSubmit,
 			],
 		})
 			.appendTo(eleNavbar);

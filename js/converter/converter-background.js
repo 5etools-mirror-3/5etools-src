@@ -125,16 +125,17 @@ export class ConverterBackground extends ConverterFeatureBase {
 			.filter(Boolean);
 		if (!tks.length) return;
 
-		// TODO(Future) attempt to @tag feats
+		let ptEntry = state.curLine.slice(state.curLine.length - lineNoHeader.length).trim();
+		tks.forEach(tk => ptEntry = ptEntry.replace(new RegExp(`\\b${tk.escapeRegexp()}\\b`, "i"), (...m) => `{@feat ${m[0]}|${state.options.source || ""}}`));
+
 		state._one_listItems.push({
 			type: "item",
 			name: state.curLine.slice(0, state.curLine.length - lineNoHeader.length).trim(),
-			entry: state.curLine.slice(state.curLine.length - lineNoHeader.length).trim(),
+			entry: ptEntry,
 		});
 
 		// TODO(Future) attempt to map feat to available feats
-		state.entity.feats = tks
-			.map(tk => `${tk.toLowerCase()}|${(state.options.source || "").toLowerCase()}`);
+		state.entity.feats = tks.map(tk => ({[`${tk.toLowerCase()}|${(state.options.source || "").toLowerCase()}`]: true}));
 	}
 
 	static _doParseText_stepSkillProficiencies (state, options) {

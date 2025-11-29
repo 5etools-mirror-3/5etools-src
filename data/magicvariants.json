@@ -2586,6 +2586,39 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Dazzling Weapon",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"weaponCategory": "simple"
+				},
+				{
+					"weaponCategory": "martial"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Dazzling ",
+				"source": "EFA",
+				"page": 112,
+				"rarity": "rare",
+				"reqAttune": true,
+				"bonusWeapon": "+1",
+				"recharge": "dawn",
+				"rechargeAmount": "{@dice 1d4}",
+				"charges": 4,
+				"entries": [
+					"This magic weapon grants a {=bonusWeapon} bonus to attack and damage rolls made with it. While holding it, you can take a {@variantrule Bonus Action|XPHB} to cause it to shed {@variantrule Bright Light|XPHB} in a 30-foot radius and {@variantrule Dim Light|XPHB} for an additional 30 feet. You can extinguish the light as a {@variantrule Bonus Action|XPHB}.",
+					"The weapon has 4 charges. You can take a {@variantrule Reaction|XPHB} immediately after being hit by an attack roll to expend 1 of the weapon's charges and force the attacker to make a DC 15 Constitution saving throw. On a failed save, the attacker has the {@condition Blinded|XPHB} condition until the end of its next turn. The weapon regains {@dice 1d4} expended charges daily at dawn."
+				],
+				"light": [
+					{
+						"bright": 30,
+						"dim": 60
+					}
+				]
+			}
+		},
+		{
 			"name": "Defender",
 			"edition": "classic",
 			"type": "GV|DMG",
@@ -5783,6 +5816,56 @@
 							"This weapon is cursed, and becoming attuned to it extends the curse to you. Until the curse is broken with a {@spell remove curse} spell or similar magic, you are unwilling to part with the weapon. Whenever you attack a creature with this weapon and roll a 1 on the attack roll, you suffer the effect of a {@spell polymorph} spell for 1 hour, rolling on the table to determine your new form."
 						]
 					}
+				]
+			}
+		},
+		{
+			"name": "Repeating Shot",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"weaponCategory": "simple",
+					"property": "A|XPHB"
+				},
+				{
+					"weaponCategory": "martial",
+					"property": "A|XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Repeating ",
+				"source": "EFA",
+				"page": 112,
+				"rarity": "uncommon",
+				"reqAttune": true,
+				"bonusWeapon": "+1",
+				"entries": [
+					"This magic weapon grants a {=bonusWeapon} bonus to attack and damage rolls made with it when it's used to make a ranged attack, and it ignores the {@itemProperty LD|XPHB|Loading} property if it has that property.",
+					"If the weapon lacks ammunition, it produces its own, automatically creating one piece of magic ammunition when the wielder makes a ranged attack roll with it. The ammunition created by the weapon vanishes the instant after it hits or misses a target."
+				]
+			}
+		},
+		{
+			"name": "Returning Weapon",
+			"type": "GV|XDMG",
+			"requires": [
+				{
+					"weaponCategory": "simple",
+					"property": "T|XPHB"
+				},
+				{
+					"weaponCategory": "martial",
+					"property": "T|XPHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Returning ",
+				"source": "EFA",
+				"page": 112,
+				"rarity": "uncommon",
+				"bonusWeapon": "+1",
+				"entries": [
+					"This magic weapon grants a {=bonusWeapon} bonus to attack and damage rolls made with it, and it returns to your hand immediately after you use it to make a ranged attack roll."
 				]
 			}
 		},

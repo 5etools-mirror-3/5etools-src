@@ -210,6 +210,54 @@
 			]
 		},
 		{
+			"name": "Artificer's Forge",
+			"source": "EFA",
+			"facilityType": "special",
+			"level": 13,
+			"prerequisite": [
+				{
+					"spellcastingFocus": [
+						"artisansTool"
+					]
+				}
+			],
+			"space": [
+				"roomy"
+			],
+			"hirelings": [
+				{
+					"exact": 2
+				}
+			],
+			"orders": [
+				"craft"
+			],
+			"entries": [
+				"An Artificer's Forge includes two magewright hirelings who are skilled in creating magic items.",
+				{
+					"type": "entries",
+					"name": "Crafting Assistants",
+					"entries": [
+						"If you {@book create a magic item|XDMG|2|Creating a Magic Item} in your Bastion using the rules in the {@book Dungeon Master's Guide|XDMG}, one or both of this facility's hirelings can assist you, reducing the time required for the crafting."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Craft: Magic Item",
+					"entries": [
+						"When you issue the Craft order to this facility, you commission the facility's hirelings to craft a {@book Common or an Uncommon magic item|XDMG|6|Magic Items} chosen by you from the {@book Dungeon Master's Guide|XDMG}. The facility has the tool required to craft the item, and the hirelings have proficiency with that tool as well as proficiency in the {@skill Arcana|XPHB} skill. The two hirelings assist each other, reducing the time required to craft the item. If the item allows its user to cast any spells from it, the hirelings have those spells prepared."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Charge Refreshment",
+					"entries": [
+						"Whenever a magic item in your Bastion regains charges, it regains 1 extra expended charge."
+					]
+				}
+			]
+		},
+		{
 			"name": "Barrack",
 			"source": "XDMG",
 			"page": 339,
@@ -258,6 +306,100 @@
 			],
 			"entries": [
 				"A basic facility comes with nonmagical furnishings and decor appropriate for that facility."
+			]
+		},
+		{
+			"name": "Construct Forge",
+			"source": "EFA",
+			"facilityType": "special",
+			"level": 17,
+			"prerequisite": [
+				{
+					"spellcastingFocus": [
+						"artisansTool"
+					]
+				}
+			],
+			"space": [
+				"vast"
+			],
+			"hirelings": [
+				{
+					"exact": 2
+				}
+			],
+			"orders": [
+				"recruit"
+			],
+			"entries": [
+				"A Construct Forge is used to create Constructs.",
+				{
+					"type": "entries",
+					"name": "Recruit: Construct",
+					"entries": [
+						"When you issue the Recruit order to this facility, you commission the facility's hirelings to craft a Construct from the Forge Constructs table. The construction takes the time and costs you the amount listed in the table.",
+						"Constructs made in this facility count as Bastion Defenders. Deduct any you lose from your Bastion Defenders roster. You can choose not to count one or more of these creatures as Bastion Defenders, in which case they can't be called on to defend the Bastion. Instead, they act in accordance with their nature and use their stat blocks in the {@book Monster Manual|XMM}.",
+						{
+							"type": "table",
+							"caption": "Forge Constructs",
+							"colLabels": [
+								"Creature",
+								"Time",
+								"Cost"
+							],
+							"colStyles": [
+								"col-8",
+								"col-2",
+								"col-2"
+							],
+							"rows": [
+								[
+									"{@creature Animated Armor|XMM}",
+									"14 days",
+									"1,000 GP"
+								],
+								[
+									"{@creature Animated Broom|XMM}",
+									"7 days",
+									"250 GP"
+								],
+								[
+									"{@creature Animated Flying Sword|XMM}",
+									"7 days",
+									"250 GP"
+								],
+								[
+									"{@creature Animated Rug of Smothering|XMM}",
+									"21 days",
+									"2,000 GP"
+								],
+								[
+									"{@creature Helmed Horror|XMM}",
+									"42 days",
+									"5,000 GP"
+								],
+								[
+									"{@creature Scarecrow|XMM}",
+									"14 days",
+									"1,000 GP"
+								],
+								[
+									"{@creature Shield Guardian|XMM}",
+									"63 days",
+									"25,000 GP"
+								],
+								[
+									"{@creature Warforged Titan|ERLW}*",
+									"250 days",
+									"200,000 GP"
+								]
+							],
+							"footnotes": [
+								"*{@creature Warforged Titan|ERLW|The Warforged Titan stat block} appears in {@book Eberron: Rising from the Last War|ERLW}. Creating new Warforged Titans is illegal under the terms of the Treaty of Korth, which ended the Last War. Violating that treaty risks reigniting open war across Khorvaire."
+							]
+						}
+					]
+				}
 			]
 		},
 		{
@@ -379,6 +521,49 @@
 			],
 			"entries": [
 				"A basic facility comes with nonmagical furnishings and decor appropriate for that facility."
+			]
+		},
+		{
+			"name": "Dragonmark Outpost",
+			"source": "EFA",
+			"facilityType": "special",
+			"level": 5,
+			"prerequisite": [
+				{
+					"otherSummary": {
+						"entry": "Renown 10+ with any {@book dragonmarked house|EFA|5|Dragonmarked House Renown}",
+						"entrySummary": "Dragonmarked House Renown 10+"
+					}
+				}
+			],
+			"space": [
+				"roomy"
+			],
+			"hirelings": [
+				{
+					"exact": 1
+				}
+			],
+			"orders": [
+				"empower"
+			],
+			"entries": [
+				"A Dragonmark Outpost is an area set aside for the use of your dragonmarked house. The hireling is a house agent and serves as a liaison between you and your superiors in the house.",
+				"When you add this facility to your Bastion, your Renown Score with your house increases by 1.",
+				{
+					"type": "entries",
+					"name": "Dragonmark Empowerment (Requires Any Dragonmark Feat)",
+					"entries": [
+						"When you finish a Long Rest in your Bastion, you gain one extra spell slot of level 2. You can use this spell slot to cast only a spell you have prepared because of a {@book Dragonmark feat|EFA|2|Dragonmark Feats}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Empower: House Favor",
+					"entries": [
+						"When you issue the Empower order to this facility, you instruct your hireling to call in a favor from your dragonmarked house. You can use any benefit of your house that your Renown Score affords you (as described in {@book chapter 5|EFA|5|Dragonmarked House Renown}), and this favor doesn't count against the total number of favors available to you. Once you use this feature, you can't use it again until your Renown Score with your house increases."
+					]
+				}
 			]
 		},
 		{
@@ -794,6 +979,43 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Inquisitive Agency",
+			"source": "EFA",
+			"facilityType": "special",
+			"level": 13,
+			"space": [
+				"roomy"
+			],
+			"hirelings": [
+				{
+					"exact": 1
+				}
+			],
+			"orders": [
+				"research"
+			],
+			"entries": [
+				"This facility is an office for an inquisitive agency\u2014either the headquarters of an agency you control or a branch office for a larger agency (such as {@book Middle Dura|EFA|4|Middle Dura} or {@book Karr'Aashta's Investigations|EFA|4|Karr'Aashta's Investigations}, both of which are discussed in chapter 4). Its one hireling is a secretary who maintains an extensive directory of useful contacts and helpful agents.",
+				{
+					"type": "entries",
+					"name": "Research: Information Gathering",
+					"entries": [
+						"When you issue the Research order to this facility, you commission the agency's secretary to gather information from contacts and agents regarding a specific individual you designate, assembling a comprehensive picture of that person's activities during the previous 7 days and over the course of the next 7 days, within 10 miles of your Bastion. Unless the DM deems that certain information is beyond these agents' ability to uncover, you learn the following information:",
+						{
+							"type": "list",
+							"items": [
+								"Where the person is and has been staying",
+								"What they've spent money on",
+								"Whom they've met with",
+								"Where they've shown identification papers to the authorities"
+							]
+						},
+						"If your Bastion is mobile, it takes time to establish this network of agents in a new place. When your Bastion is traveling, you can't issue the Research order to this facility. After it arrives at its destination, the first time you issue the Research order, this facility's hireling spends 7 days establishing a new network, after which you can use the Research order normally."
+					]
+				}
+			]
+		},
+		{
 			"name": "Kitchen",
 			"source": "XDMG",
 			"page": 335,
@@ -805,6 +1027,49 @@
 			],
 			"entries": [
 				"A basic facility comes with nonmagical furnishings and decor appropriate for that facility."
+			]
+		},
+		{
+			"name": "Kundarak Vault",
+			"source": "EFA",
+			"facilityType": "special",
+			"level": 9,
+			"prerequisite": [
+				{
+					"otherSummary": {
+						"entry": "Renown 15+ with {@book House Kundarak|EFA|5|House Kundarak}",
+						"entrySummary": "House Kundarak Renown 15+"
+					}
+				}
+			],
+			"space": [
+				"cramped"
+			],
+			"hirelings": [
+				{
+					"exact": 1
+				}
+			],
+			"orders": [
+				"trade"
+			],
+			"entries": [
+				"A Kundarak Vault occupies space in your Bastion like any other special facility, but it is an extradimensional space that can be accessed from other places. As a Kundarak facility, it provides exceptionally secure storage for your trade goods and other treasures. Only you and your Bastion's hirelings can open the vault door.",
+				{
+					"type": "entries",
+					"name": "Kundarak Access",
+					"entries": [
+						"Because the vault is an extradimensional space, you (and only you) can access its contents from any Kundarak bank facility in the world. These banks are found in cities across {@book Khorvaire|ERLW|5|Nations of Khorvaire} (and also in {@book Stormreach, in Xen'drik|ERLW|6|Notable Locations|3})."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Trade: Goods",
+					"entries": [
+						"When you issue the Trade order to this facility, its hireling spends the next 7 days procuring nonmagical items that have a total value of 2,000 GP or less and stores them in the Kundarak Vault, or the hireling uses those 7 days to sell goods in the Kundarak Vault. You bear the total cost of any purchases, and the maximum value of the items purchased increases to 5,000 GP when you reach level 13.",
+						"When you sell goods from your Kundarak Vault, the buyer pays you 20 percent more than the standard price; this profit increases to 50 percent when you reach level 13 and 100 percent when you reach level 17."
+					]
+				}
 			]
 		},
 		{
@@ -918,6 +1183,91 @@
 				}
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Lyrandar Helm",
+			"source": "EFA",
+			"facilityType": "special",
+			"level": 13,
+			"prerequisite": [
+				{
+					"otherSummary": {
+						"entry": "Renown 25+ with {@book House Lyrandar|EFA|5|House Lyrandar}",
+						"entrySummary": "House Lyrandar Renown 25+"
+					}
+				}
+			],
+			"space": [
+				"cramped"
+			],
+			"hirelings": [
+				{
+					"exact": 1
+				}
+			],
+			"orders": [
+				"empower"
+			],
+			"entries": [
+				"A Lyrandar Helm allows a mobile Bastion built within an elemental airship or an elemental galleon to travel. This facility's hireling is a {@book dragonmarked heir of House Lyrandar|EFA|5|House Lyrandar}. On an elemental airship, the airship's {@book Helm|EFA|7|Helm} crew station is part of this facility (see {@book chapter 7|EFA|7|Crew Members and Stations}).",
+				{
+					"type": "entries",
+					"name": "Empower: Travel",
+					"entries": [
+						"When you issue the Empower order to this facility, you instruct its hireling to pilot the Bastion to a destination you specify. The Bastion travels at the vehicle's speed, 8 hours per day, for the duration of the Bastion turn. The Bastion stops early when it reaches the specified destination or if something happens to stop your travel.",
+						"When you issue the Empower order to this facility, the DM rolls on the {@book Bastion Events table|XDMG|7|Bastion Events} as if you had issued the Maintain order to your Bastion."
+					]
+				}
+			]
+		},
+		{
+			"name": "Manifest Zone",
+			"source": "EFA",
+			"facilityType": "special",
+			"level": 13,
+			"prerequisite": [
+				{
+					"spellcastingFocus": true
+				}
+			],
+			"space": [
+				"vast"
+			],
+			"hirelings": [
+				{
+					"exact": 1
+				}
+			],
+			"orders": [
+				"empower"
+			],
+			"entries": [
+				"A Bastion with a Manifest Zone is infused with the planar energy of one of Eberron's planes of existence. Choose the plane when you build this facility.",
+				{
+					"type": "entries",
+					"name": "Empower: Manifest Charm",
+					"entries": [
+						"When you issue the Empower order to this facility, the facility's hireling conducts magical rites for the next 7 days. At the end of that period, you gain a special {@filter Charm|rewards|type=charm} (see \"{@book Supernatural Gifts|XDMG|2|Supernatural Gifts}\" in the {@book Dungeon Master's Guide|XDMG}) called a Manifest Charm, which lasts until you use it. You don't need to be in the Bastion while the rites are performed to gain their benefit. The effects of the Charm depend on the facility's linked plane:",
+						{
+							"type": "list",
+							"items": [
+								"{@reward Manifest Charm of Daanvi, the Perfect Order|EFA} ({@book Daanvi, the Perfect Order|ERLW|10|Daanvi, the Perfect Order})",
+								"{@reward Manifest Charm of Dolurrh, the Realm of the Dead|EFA} ({@book Dolurrh, the Realm of the Dead|ERLW|10|Dolurrh, the Realm of the Dead})",
+								"{@reward Manifest Charm of Fernia, the Sea of Fire|EFA} ({@book Fernia, the Sea of Fire|ERLW|10|Fernia, the Sea of Fire})",
+								"{@reward Manifest Charm of Irian, the Eternal Dawn|EFA} ({@book Irian, the Eternal Dawn|ERLW|10|Irian, the Eternal Dawn})",
+								"{@reward Manifest Charm of Lamannia, the Twilight Forest|EFA} ({@book Lamannia, the Twilight Forest|ERLW|10|Lamannia, the Twilight Forest})",
+								"{@reward Manifest Charm of Mabar, the Endless Night|EFA} ({@book Mabar, the Endless Night|ERLW|10|Mabar, the Endless Night})",
+								"{@reward Manifest Charm of Risia, the Plain of Ice|EFA} ({@book Risia, the Plain of Ice|ERLW|10|Risia, the Plain of Ice})",
+								"{@reward Manifest Charm of Shavarath, the Battleground|EFA} ({@book Shavarath, the Battleground|ERLW|10|Shavarath, the Battleground})",
+								"{@reward Manifest Charm of Syrania, the Azure Sky|EFA} ({@book Syrania, the Azure Sky|ERLW|10|Syrania, the Azure Sky})",
+								"{@reward Manifest Charm of Thelanis, the Faerie Court|EFA} ({@book Thelanis, the Faerie Court|ERLW|10|Thelanis, the Faerie Court})",
+								"{@reward Manifest Charm of Xoriat, the Realm of Delirium|EFA} ({@book Xoriat, the Realm of Delirium|ERLW|10|Xoriat, the Realm of Madness})"
+							]
+						},
+						"If your Bastion is mobile, its connection to the linked plane of existence is suspended while the Bastion moves, and you can't issue the Empower order to this facility while it is in transit. When the Bastion reaches a destination, you can issue the Empower order to establish a new planar connection, linking the Bastion either to the same plane of existence or to a different one you choose. Establishing the new connection takes 7 days, after which you can issue the Empower order normally."
+					]
+				}
+			]
 		},
 		{
 			"name": "Meditation Chamber",
@@ -1141,6 +1491,92 @@
 			]
 		},
 		{
+			"name": "Museum",
+			"source": "EFA",
+			"facilityType": "special",
+			"level": 13,
+			"space": [
+				"roomy",
+				"vast"
+			],
+			"hirelings": [
+				{
+					"exact": 1,
+					"space": "roomy"
+				},
+				{
+					"exact": 3,
+					"space": "vast"
+				}
+			],
+			"orders": [
+				"research"
+			],
+			"entries": [
+				"A Museum contains relics and treasures brought back from expeditions you participated in or sponsored, carefully cataloged and displayed.",
+				{
+					"type": "entries",
+					"name": "Research: Specialized Lore",
+					"entries": [
+						"When you issue the Research order to this facility, you commission the hireling to study particular treasures in the museum. The work takes 7 days. The hireling gains knowledge regarding some question of ancient history as if they had cast the {@spell Legend Lore|XPHB} spell, then shares this knowledge with you the next time you speak with them."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Secrets of the Past",
+					"entries": [
+						"Your Museum contains one treasure that gives you a magical {@filter Charm|rewards|type=charm} (see \"{@book Supernatural Gifts|XDMG|2|Supernatural Gifts}\" in the {@book Dungeon Master's Guide|XDMG}) when you spend 7 days studying it and then finish a Long Rest in your Bastion. The Charm lasts for 7 days or until you use it. You can't gain another Charm from this facility while you still have one. The effect of the Charm depends on the origin of the treasure in your Museum. You can choose one of the following options (your DM might make more options available or limit the existing options based on your past expeditions):",
+						{
+							"type": "list",
+							"items": [
+								"{@reward Charm of Argonnessen|EFA}",
+								"{@reward Charm of Ashtakala|EFA}",
+								"{@reward Charm of Dhakaan|EFA}",
+								"{@reward Charm of Khyber|EFA}",
+								"{@reward Charm of Xen'drik|EFA}"
+							]
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Enlarging the Facility",
+					"entries": [
+						"You can enlarge your Museum to a Vast facility by spending 2,000 GP. If you do so, the Museum can have two treasures with different origins. A Vast Museum gains two additional hirelings, for a total of three. Assign names and personalities to them as you see fit."
+					]
+				}
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Navigator's Helm",
+			"source": "EFA",
+			"facilityType": "special",
+			"level": 9,
+			"space": [
+				"cramped"
+			],
+			"hirelings": [
+				{
+					"exact": 1
+				}
+			],
+			"orders": [
+				"empower"
+			],
+			"entries": [
+				"A Navigator's Helm allows a mobile Bastion built within a mundane waterborne vehicle to travel.",
+				{
+					"type": "entries",
+					"name": "Empower: Travel",
+					"entries": [
+						"When you issue the Empower order to this facility, you instruct its hireling to pilot the Bastion to a destination you specify. The Bastion sails at the vehicle's speed, 8 hours per day, for the duration of the Bastion turn. The Bastion stops early when it reaches the specified destination or if something happens to stop your travel.",
+						"When you issue the Empower order to this facility, the DM rolls on the {@book Bastion Events table|XDMG|7|Bastion Events} as if you had issued the Maintain order to your Bastion."
+					]
+				}
+			]
+		},
+		{
 			"name": "Observatory",
 			"source": "XDMG",
 			"page": 343,
@@ -1216,6 +1652,42 @@
 				}
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Orien Helm",
+			"source": "EFA",
+			"facilityType": "special",
+			"level": 9,
+			"prerequisite": [
+				{
+					"otherSummary": {
+						"entry": "Renown 15+ with {@book House Orien|EFA|5|House Orien}",
+						"entrySummary": "House Orien Renown 15+"
+					}
+				}
+			],
+			"space": [
+				"cramped"
+			],
+			"hirelings": [
+				{
+					"exact": 1
+				}
+			],
+			"orders": [
+				"empower"
+			],
+			"entries": [
+				"An Orien Helm allows a mobile Bastion built within a Lightning Rail cart to travel. This facility's hireling is a {@book dragonmarked heir of House Orien|EFA|5|House Orien}.",
+				{
+					"type": "entries",
+					"name": "Empower: Travel",
+					"entries": [
+						"When you issue the Empower order to this facility, you instruct its hireling to pilot the Bastion to a destination you specify. The Bastion travels at a rate of 30 miles per hour, 8 hours per day, along an existing route of conductor stones for the duration of the Bastion turn. The Bastion stops early when it reaches the specified destination or if something happens to stop your travel.",
+						"When you issue the Empower order to this facility, the DM rolls on the {@book Bastion Events table|XDMG|7|Bastion Events} as if you had issued the Maintain order to your Bastion."
+					]
+				}
+			]
 		},
 		{
 			"name": "Parlor",

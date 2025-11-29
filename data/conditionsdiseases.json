@@ -1199,12 +1199,93 @@
 			]
 		},
 		{
+			"name": "Lichen Plague",
+			"source": "FRAiF",
+			"type": "Magical Contagion",
+			"entries": [
+				"A Beast, Giant, Humanoid, or Monstrosity that comes into contact with bile lichen spores is at risk of contracting a horrible disease as the lichen takes root on its body and grows into its brain. A creature suffers the following effects {@dice 1d4} days after infection:",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "Skinroot",
+							"entry": "The contagion first appears as a patch of green-yellow lichen no larger than 1 square inch on a random area of the body. When it finishes a Long Rest, the infected creature must succeed on a {@dc 14} Constitution saving throw or gain 1 Exhaustion level as the lichen spreads toward the creature's head. This Exhaustion level lasts until the contagion ends on the creature."
+						},
+						{
+							"type": "item",
+							"name": "Mindroot",
+							"entry": "A Humanoid that dies while infected with Lichen Plague rises immediately as a {@creature Zombie|XMM} under the DM's control."
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Fighting the Contagion",
+							"entries": [
+								"When it finishes a Long Rest, an infected creature makes a {@dc 14} Constitution saving throw. If the creature succeeds on three of these saving throws, the contagion ends on the creature and the creature is immune to Lichen Plague forever. The successful saves don't need to be consecutive."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Spreading the Contagion",
+							"entries": [
+								"Any Beast, Giant, Humanoid, or Monstrosity that makes skin contact with the lichen on an infected creature must succeed on a {@dc 14} Constitution saving throw or be infected with Lichen Plague. On a successful save, the creature can't catch Lichen Plague for the next 24 hours."
+							]
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Mindfire",
 			"source": "PHB",
 			"page": 227,
 			"entries": [
 				"The creature's mind becomes feverish. The creature has disadvantage on Intelligence checks and Intelligence saving throws, and the creature behaves as if under the effects of the {@spell confusion} spell during combat.",
 				"{@note This disease can be inflicted with the {@spell contagion} spell.}"
+			]
+		},
+		{
+			"name": "Mudpox",
+			"source": "FRAiF",
+			"type": "Magical Contagion",
+			"entries": [
+				"Contact with dead oozes from the Underdark mixed with snowmelt and mud has been making people sick. Any Beast or Humanoid that touches mud contaminated by Mudpox must succeed on a {@dc 12} Constitution saving throw or become infected, suffering the following effect:",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "Disrupted Digestion",
+							"entry": "Daily at dawn, the creature must succeed on a {@dc 12} Constitution saving throw or vomit up the food it ate the previous day, gaining 1 Exhaustion level. If the creature succeeds on this saving throw three consecutive times, the contagion ends."
+						}
+					]
+				},
+				{
+					"type": "entries",
+					"entries": [
+						{
+							"type": "entries",
+							"name": "Fighting the Contagion",
+							"entries": [
+								"A {@spell Heal|XPHB} or {@spell Lesser Restoration|XPHB} spell ends the contagion immediately."
+							]
+						},
+						{
+							"type": "entries",
+							"name": "Spreading the Contagion",
+							"entries": [
+								"Any Humanoid that makes skin contact with a creature infected with Mudpox must succeed on a {@dc 12} Constitution saving throw or also become infected with the contagion. If the creature succeeds on this save, it can't catch the contagion from that particular infected creature for the next 24 hours."
+							]
+						}
+					]
+				}
 			]
 		},
 		{

@@ -899,159 +899,89 @@
 			"isNamedCreature": true,
 			"source": "SKT",
 			"page": 192,
-			"size": [
-				"H"
-			],
-			"type": "giant",
+			"_copy": {
+				"name": "Cloud Giant",
+				"source": "MM",
+				"_mod": {
+					"spellcasting": {
+						"mode": "appendArr",
+						"items": [
+							{
+								"name": "Spellcasting",
+								"type": "spellcasting",
+								"headerEntries": [
+									"Sansuri casts one of the following spells, requiring no material components and using Intelligence as the spellcasting ability (spell save {@dc 15}; {@hit 7} to hit with spell attacks):"
+								],
+								"will": [
+									"{@spell mage hand}",
+									"{@spell message}",
+									"{@spell prestidigitation}",
+									"{@spell ray of frost}"
+								],
+								"daily": {
+									"2e": [
+										"{@spell arcane lock}",
+										"{@spell gust of wind}",
+										"{@spell invisibility}",
+										"{@spell magic missile}",
+										"{@spell unseen servant}"
+									],
+									"1e": [
+										"{@spell globe of invulnerability}",
+										"{@spell haste}",
+										"{@spell hypnotic pattern}",
+										"{@spell ice storm}",
+										"{@spell lightning bolt}",
+										"{@spell Mordenkainen's sword}",
+										"{@spell wall of force}"
+									]
+								},
+								"ability": "int",
+								"displayAs": "action"
+							}
+						]
+					},
+					"action": [
+						{
+							"mode": "replaceArr",
+							"replace": "Morningstar",
+							"items": [
+								{
+									"name": "Spear",
+									"entries": [
+										"{@atk mw} {@hit 12} to hit, reach 10 ft., one target. {@h}21 ({@damage 3d8 + 8}) piercing damage."
+									]
+								}
+							]
+						},
+						{
+							"mode": "replaceArr",
+							"replace": "Multiattack",
+							"items": [
+								{
+									"name": "Multiattack",
+									"entries": [
+										"Sansuri makes two spear attacks."
+									]
+								}
+							]
+						}
+					]
+				}
+			},
 			"alignment": [
 				"N",
 				"E"
 			],
-			"ac": [
-				{
-					"ac": 14,
-					"from": [
-						"natural armor"
-					]
-				}
-			],
-			"hp": {
-				"average": 200,
-				"formula": "16d12 + 96"
-			},
-			"speed": {
-				"walk": 40
-			},
-			"str": 27,
-			"dex": 10,
-			"con": 22,
 			"int": 16,
-			"wis": 16,
-			"cha": 16,
-			"save": {
-				"con": "+10",
-				"wis": "+7",
-				"cha": "+7"
-			},
-			"skill": {
-				"insight": "+7",
-				"perception": "+7"
-			},
-			"passive": 17,
 			"languages": [
 				"Auran",
 				"Common",
 				"Giant"
 			],
 			"cr": "11",
-			"spellcasting": [
-				{
-					"name": "Innate Spellcasting",
-					"type": "spellcasting",
-					"headerEntries": [
-						"Sansuri's innate spellcasting ability is Charisma. She can innately cast the following spells, requiring no material components:"
-					],
-					"will": [
-						"{@spell detect magic}",
-						"{@spell fog cloud}",
-						"{@spell light}"
-					],
-					"daily": {
-						"3e": [
-							"{@spell feather fall}",
-							"{@spell fly}",
-							"{@spell misty step}",
-							"{@spell telekinesis}"
-						],
-						"1e": [
-							"{@spell control weather}",
-							"{@spell gaseous form}"
-						]
-					},
-					"ability": "cha"
-				},
-				{
-					"name": "Spellcasting",
-					"type": "spellcasting",
-					"headerEntries": [
-						"Sansuri casts one of the following spells, requiring no material components and using Intelligence as the spellcasting ability (spell save {@dc 15}; {@hit 7} to hit with spell attacks):"
-					],
-					"will": [
-						"{@spell mage hand}",
-						"{@spell message}",
-						"{@spell prestidigitation}",
-						"{@spell ray of frost}"
-					],
-					"daily": {
-						"2e": [
-							"{@spell arcane lock}",
-							"{@spell gust of wind}",
-							"{@spell invisibility}",
-							"{@spell magic missile}",
-							"{@spell unseen servant}"
-						],
-						"1e": [
-							"{@spell globe of invulnerability}",
-							"{@spell haste}",
-							"{@spell hypnotic pattern}",
-							"{@spell ice storm}",
-							"{@spell lightning bolt}",
-							"{@spell Mordenkainen's sword}",
-							"{@spell wall of force}"
-						]
-					},
-					"ability": "int",
-					"displayAs": "action"
-				}
-			],
-			"trait": [
-				{
-					"name": "Keen Smell",
-					"entries": [
-						"Sansuri has advantage on Wisdom ({@skill Perception}) checks that rely on smell."
-					]
-				}
-			],
-			"action": [
-				{
-					"name": "Fling",
-					"entries": [
-						"Sansuri tries to throw a Small or Medium creature within 10 feet of her. The target must succeed on a {@dc 20} Dexterity saving throw or be hurled up to 60 feet horizontally in a direction of Sansuri's choice and land {@condition prone}, taking {@damage 1d8} bludgeoning damage for every 10 feet it was thrown."
-					]
-				},
-				{
-					"name": "Wind Aura",
-					"entries": [
-						"A magical aura of wind surrounds Sansuri. The aura is a 10-foot-radius sphere that lasts as long as Sansuri maintains {@status concentration} on it (as if {@status concentration||concentrating} on a spell). While the aura is in effect, Sansuri gains a +2 bonus to its AC against ranged weapon attacks, and all open flames within the aura are extinguished unless they are magical."
-					]
-				},
-				{
-					"name": "Multiattack",
-					"entries": [
-						"Sansuri makes two spear attacks."
-					]
-				},
-				{
-					"name": "Morningstar",
-					"entries": [
-						"{@atk mw} {@hit 12} to hit, reach 10 ft., one target. {@h}21 ({@damage 3d8 + 8}) piercing damage."
-					]
-				},
-				{
-					"name": "Rock",
-					"entries": [
-						"{@atk rw} {@hit 12} to hit, range 60/240 ft., one target. {@h}30 ({@damage 4d10 + 8}) bludgeoning damage."
-					]
-				}
-			],
 			"attachedItems": [
-				"morningstar|phb"
-			],
-			"traitTags": [
-				"Keen Senses"
-			],
-			"actionTags": [
-				"Multiattack"
+				"spear|phb"
 			],
 			"languageTags": [
 				"AU",
@@ -1079,16 +1009,10 @@
 				"RCH",
 				"RW"
 			],
-			"conditionInflict": [
-				"prone"
-			],
 			"conditionInflictSpell": [
 				"charmed",
 				"incapacitated",
 				"invisible"
-			],
-			"savingThrowForced": [
-				"dexterity"
 			],
 			"savingThrowForcedSpell": [
 				"dexterity",
@@ -3280,6 +3204,7 @@
 				"I"
 			],
 			"miscTags": [
+				"AOE",
 				"MW",
 				"RCH",
 				"RW"

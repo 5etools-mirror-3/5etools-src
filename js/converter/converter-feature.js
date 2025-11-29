@@ -4,6 +4,10 @@ import {AlignmentUtil} from "./converterutils-utils-alignment.js";
 import {ConverterUtils} from "./converterutils-utils.js";
 
 export class ConverterFeatureBase extends ConverterBase {
+	static _RE_FEAT_TYPE = /\b(?<category>General|Origin|Fighting Style|Epic Boon|Dragonmark)\b/;
+
+	/* -------------------------------------------- */
+
 	static _doParse_getInitialState (inText, options) {
 		if (!inText || !inText.trim()) {
 			options.cbWarning("No input!");
@@ -202,6 +206,13 @@ export class ConverterFeatureBase extends ConverterBase {
 					});
 
 				return;
+			}
+
+			if (/^Can't Have Another Dragonmark Feat$/i.test(pt)) return pre.exclusiveFeatCategory = ["D"];
+
+			const mFeatCategory = new RegExp(`^Any ${this._RE_FEAT_TYPE.source}(?: Feat)?`, "i").exec(pt);
+			if (mFeatCategory) {
+				return pre.featCategory = [Parser.featCategoryFromFull(mFeatCategory.groups.category)];
 			}
 
 			const mFeat = /^(?<name>.*?) feat$/i.exec(pt);

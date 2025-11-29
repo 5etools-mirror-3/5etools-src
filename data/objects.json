@@ -22,6 +22,7 @@
 				}
 			],
 			"tokenCredit": "Kim Jong Min",
+			"tokenCustom": true,
 			"altArt": [
 				{
 					"name": "Automatic Ballista (Top-Down)",
@@ -69,6 +70,7 @@
 				}
 			],
 			"tokenCredit": "warmtail",
+			"tokenCustom": true,
 			"hasToken": true
 		},
 		{
@@ -171,6 +173,7 @@
 				}
 			],
 			"tokenCredit": "Hitokiri",
+			"tokenCustom": true,
 			"hasToken": true
 		},
 		{
@@ -264,6 +267,7 @@
 				}
 			],
 			"tokenCredit": "Ostap Mocanu",
+			"tokenCustom": true,
 			"altArt": [
 				{
 					"name": "Clockwork Trebuchet (Top-Down)",
@@ -294,6 +298,7 @@
 				}
 			],
 			"tokenCredit": "Ensemble Studios",
+			"tokenCustom": true,
 			"altArt": [
 				{
 					"name": "Decrepit Mangonel (Top-Down)",
@@ -301,6 +306,63 @@
 				}
 			],
 			"hasToken": true
+		},
+		{
+			"name": "Eldritch Cannon",
+			"source": "EFA",
+			"size": [
+				"T",
+				"S"
+			],
+			"objectType": "U",
+			"ac": 18,
+			"hp": {
+				"special": "5 × your artificer level (casting {@spell Mending|XPHB} on the cannon restores {@dice 2d6} hit points to it)"
+			},
+			"immune": [
+				"poison",
+				"psychic"
+			],
+			"entries": [
+				"{@note Created by the {@subclassFeature Eldritch Cannon|Artificer|EFA|Artillerist|EFA|3} subclass feature.}"
+			],
+			"actionEntries": [
+				{
+					"type": "entries",
+					"name": "Activate Cannon (Requires You to be within 60 Feet of the Cannon)",
+					"entries": [
+						"As a {@variantrule Bonus Action|XPHB}, you order the cannon to use the Flamethrower, Force Ballista, or Protector option below; you can direct the cannon to move up to 15 feet before or after that option:",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"page": 10,
+							"items": [
+								{
+									"type": "item",
+									"name": "Flamethrower",
+									"entries": [
+										"The cannon blasts fire in a 15-foot {@variantrule Cone [Area of Effect]|XPHB|Cone}. Each creature in that area makes a Dexterity saving throw against {@dcYourSpellSave}, taking {@damage 2d8} Fire damage on a failed save or half as much damage on a successful one. Flammable objects in the {@variantrule Cone [Area of Effect]|XPHB|Cone} that aren't being worn or carried start burning."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Force Ballista",
+									"entries": [
+										"Make a ranged spell attack originating from the cannon at one creature or object within 120 feet of it. On a hit, the target takes {@damage 2d8} Force damage, and if the target is a creature, it is pushed up to 5 feet away from the cannon."
+									]
+								},
+								{
+									"type": "item",
+									"name": "Protector",
+									"entries": [
+										"The cannon emits a burst of positive energy that grants itself and each creature of your choice within 10 feet of the cannon a number of {@variantrule Temporary Hit Points|XPHB} equal to {@dice 1d8} plus your Intelligence modifier (minimum of +1)."
+									]
+								}
+							]
+						}
+					]
+				}
+			]
 		},
 		{
 			"name": "Eldritch Cannon, Flamethrower",
@@ -498,6 +560,7 @@
 				}
 			],
 			"tokenCredit": "Frank Pusateri",
+			"tokenCustom": true,
 			"altArt": [
 				{
 					"name": "Enchanted Ballista (Top-Down)",
@@ -531,6 +594,7 @@
 				}
 			],
 			"tokenCredit": "Ruane Manning",
+			"tokenCustom": true,
 			"hasToken": true
 		},
 		{
@@ -555,6 +619,7 @@
 				}
 			],
 			"tokenCredit": "Sega, Games Workshop",
+			"tokenCustom": true,
 			"altArt": [
 				{
 					"name": "Forge Launcher (Top-Down)",
@@ -723,7 +788,7 @@
 				"psychic"
 			],
 			"entries": [
-				"The gnomeflinger is a catapult designed to hurl creatures, instead of projectiles, in a high arc. The gnomeflinger was designed in conjunction with the {@item narycrash|DSotDQ} (see the {@area \"Adventuring Gear\"|498|x} section) to hasten transportation. The device can hold one Medium or smaller creature. Before it can be used, the gnomeflinger must be loaded and aimed. It takes 1 action to load the gnomeflinger, 1 action to aim it, and 1 action to fire it.",
+				"The gnomeflinger is a catapult designed to hurl creatures, instead of projectiles, in a high arc. The gnomeflinger was designed in conjunction with the {@item narycrash|DSotDQ} (see the {@adventure \"Adventuring Gear\"|DSotDQ|8|Adventuring Gear} section) to hasten transportation. The device can hold one Medium or smaller creature. Before it can be used, the gnomeflinger must be loaded and aimed. It takes 1 action to load the gnomeflinger, 1 action to aim it, and 1 action to fire it.",
 				"While taking an action to aim the gnomeflinger, you set the maximum horizontal distance of the Fling Personnel action to 60 feet, 150 feet, or 300 feet."
 			],
 			"actionEntries": [
@@ -837,6 +902,7 @@
 				}
 			],
 			"tokenCredit": "Unfor art",
+			"tokenCustom": true,
 			"hasToken": true
 		},
 		{
@@ -887,6 +953,7 @@
 				}
 			],
 			"tokenCredit": "Games Workshop",
+			"tokenCustom": true,
 			"hasToken": true
 		},
 		{
@@ -996,6 +1063,7 @@
 				}
 			],
 			"tokenCredit": "WTactics",
+			"tokenCustom": true,
 			"hasToken": true
 		},
 		{
@@ -1044,6 +1112,7 @@
 				"A siege tower is a mobile wooden structure with a beam frame and slats in its walls. Large wooden wheels or rollers allow the tower to be pushed or pulled by soldiers or beasts of burden. Medium or smaller creatures can use the siege tower to reach the top of walls up to 40 feet high. A creature in the tower has {@quickref Cover||3||total cover} from attacks outside the tower."
 			],
 			"tokenCredit": "Roman Topchiy",
+			"tokenCustom": true,
 			"hasToken": true
 		},
 		{
@@ -1108,6 +1177,7 @@
 				}
 			],
 			"tokenCredit": "Sega, Games Workshop",
+			"tokenCustom": true,
 			"altArt": [
 				{
 					"name": "Storm Cannon (Top-Down)",
@@ -1147,6 +1217,7 @@
 				}
 			],
 			"tokenCredit": "Funcom",
+			"tokenCustom": true,
 			"hasToken": true
 		},
 		{
@@ -1238,6 +1309,7 @@
 				}
 			],
 			"tokenCredit": "Roman Topchiy",
+			"tokenCustom": true,
 			"hasToken": true
 		},
 		{

@@ -680,17 +680,23 @@ export class BackgroundSkillToolLanguageTag {
 		];
 	}
 
+	static _TOOL_GROUP_MAPPINGS = {
+		"gaming set": "anyGamingSet",
+		"artisan's tools": "anyArtisansTool",
+		"musical instrument": "anyMusicalInstrument",
+	};
+
 	static _doToolTag ({bg, list, cbWarning}) {
 		const toolProf = list.items.find(ent => BackgroundConverterConst.RE_NAME_TOOLS.test(ent.name));
 		if (!toolProf) return;
 
 		const entry = Renderer.stripTags(toolProf.entry.toLowerCase())
 			.replace(/\(see [^)]+\)/g, "").trim()
-			.replace(/one (?:type|kind) of gaming set/g, "gaming set")
-			.replace(/one (?:type|kind) of artisan's tools/g, "artisan's tools")
-			.replace(/one (?:type|kind) of gaming set/g, "gaming set")
-			.replace(/one (?:type|kind) of musical instrument/g, "musical instrument")
-			.replace(/one other set of artisan's tools/g, "artisan's tools")
+			.replace(/(?:choose )?one (?:type|kind) of gaming set/g, "gaming set")
+			.replace(/(?:choose )?one (?:type|kind) of artisan's tools/g, "artisan's tools")
+			.replace(/(?:choose )?one (?:type|kind) of gaming set/g, "gaming set")
+			.replace(/(?:choose )?one (?:type|kind) of musical instrument/g, "musical instrument")
+			.replace(/(?:choose )?one other set of artisan's tools/g, "artisan's tools")
 			.replace(/s' supplies/g, "'s supplies")
 		;
 
@@ -704,7 +710,11 @@ export class BackgroundSkillToolLanguageTag {
 					.filter(Boolean)
 					.map(pt => pt.trim())
 					.filter(pt => pt)
-					.mergeMap(pt => ({[pt]: true})),
+					.mergeMap(pt => {
+						const group = this._TOOL_GROUP_MAPPINGS[pt];
+						if (group) return {[group]: 1};
+						return {[pt]: true};
+					}),
 			];
 			return;
 		}

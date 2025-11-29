@@ -968,6 +968,7 @@
 				}
 			],
 			"tokenCredit": "Castro Lorenzo",
+			"tokenCustom": true,
 			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
@@ -1208,6 +1209,7 @@
 				}
 			],
 			"tokenCredit": "Harvey W. Johnson",
+			"tokenCustom": true,
 			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
@@ -1465,9 +1467,240 @@
 				}
 			],
 			"tokenCredit": "OlgaRodinaARTS",
+			"tokenCustom": true,
 			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
+		},
+		{
+			"name": "Lyrandar Air Cruiser",
+			"source": "EFA",
+			"vehicleType": "ELEMENTAL_AIRSHIP",
+			"terrain": [
+				"air"
+			],
+			"capCrew": 10,
+			"capPassenger": 40,
+			"capCargo": 2,
+			"cost": 5000000,
+			"pace": {
+				"fly": 10
+			},
+			"speed": {
+				"fly": {
+					"number": 100,
+					"condition": "[hover]"
+				},
+				"canHover": true
+			},
+			"hull": {
+				"ac": 16,
+				"hp": 600,
+				"dt": 20
+			},
+			"weapon": [
+				{
+					"name": "Lightning Turret",
+					"size": [
+						"M"
+					],
+					"count": 6,
+					"ac": 17,
+					"hp": 50,
+					"crew": 1,
+					"entries": [
+						"This turret swivels to shoot lightning blasts and can accommodate up to one Medium creature.",
+						"A creature inside the turret has {@table Cover|XPHB|Three-Quarters Cover} against attacks and other effects that originate outside it. While inside, a creature can take the Lightning Blast action to aim and fire the turret."
+					],
+					"action": [
+						{
+							"name": "Lightning Blast (Requires Elemental Core)",
+							"entries": [
+								"{@atkr rw} {@hit 9} to hit, range 80/320 ft. {@h}22 ({@damage 4d10}) Lightning damage."
+							]
+						}
+					]
+				}
+			],
+			"station": [
+				{
+					"name": "Helm",
+					"size": [
+						"S"
+					],
+					"ac": 15,
+					"hp": 20,
+					"crew": 1,
+					"entries": [
+						"The helm of an airship consists of a specialized wheel, levers, and other controls. One creature can operate this station at a time.",
+						"The pilot (the crew member operating an airship's Helm) must have the {@feat Mark of Storm|EFA} to interface with the controls. While operating the Helm, a crew member can take the station's Drive and Shift Engine actions.",
+						{
+							"type": "entries",
+							"entries": [
+								{
+									"type": "entries",
+									"name": "Tilt and Roll",
+									"entries": [
+										"When taking the Helm's Drive action, a crew member can spend an amount of movement equal to half the ship's Fly Speed to invert the ship on its axis, either turning it upside down or righting it. All creatures and objects on the ship that aren't anchored fall when the ship moves in this way. A creature that succeeds on a {@dc 15} Dexterity saving throw can grab a fixed object within reach to avoid falling."
+									]
+								}
+							]
+						}
+					],
+					"action": [
+						{
+							"name": "Drive (Requires Mark of Storm)",
+							"entries": [
+								"The ship moves up to its Fly Speed in any direction."
+							]
+						},
+						{
+							"name": "Shift Engine (Requires Mark of Storm)",
+							"entries": [
+								"The ship's elemental core is suppressed or reengaged."
+							]
+						}
+					]
+				},
+				{
+					"name": "Shield Station",
+					"size": [
+						"L"
+					],
+					"ac": 15,
+					"hp": 25,
+					"crew": 2,
+					"entries": [
+						"This station is located on the airship's aft controls and augments the ship's wind wards. It can accommodate up to two Medium creatures.",
+						"The crew member operating this station can take the Calibrate action and then take the Activate Shields action. The ship can benefit from only one bonus to AC from a Shield Station at a time.",
+						{
+							"type": "entries",
+							"entries": [
+								{
+									"type": "entries",
+									"name": "Mark of Warding",
+									"entries": [
+										"If a creature with the {@feat Mark of Warding|EFA} occupies this crew station, that creature can take the Activate Shields action as a {@variantrule Bonus Action|XPHB}."
+									]
+								}
+							]
+						}
+					],
+					"action": [
+						{
+							"name": "Calibrate (Requires Elemental Core)",
+							"entries": [
+								"This action prepares the ship's wind wards to become shields, enabling the Activate Shields action."
+							]
+						},
+						{
+							"name": "Activate Shields (Requires Elemental Core and Calibrate)",
+							"entries": [
+								"The ship and its crew stations gain a +5 bonus to AC, and all creatures on the ship's deck have {@table Cover|XPHB|Half Cover}. These effects last for 1 minute, until this station is destroyed, or until the crew member that took this action loses Concentration or leaves this station."
+							]
+						}
+					]
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
+			"name": "Lyrandar Skyskiff",
+			"source": "EFA",
+			"vehicleType": "ELEMENTAL_AIRSHIP",
+			"terrain": [
+				"air"
+			],
+			"capCrew": 2,
+			"capPassenger": 2,
+			"capCargo": 0.5,
+			"cost": 2000000,
+			"pace": {
+				"fly": 7
+			},
+			"speed": {
+				"fly": {
+					"number": 70,
+					"condition": "[hover]"
+				},
+				"canHover": true
+			},
+			"hull": {
+				"ac": 18,
+				"hp": 150,
+				"dt": 5
+			},
+			"weapon": [
+				{
+					"name": "Tow Cable",
+					"size": [
+						"S"
+					],
+					"ac": 10,
+					"hp": 40,
+					"crew": 1,
+					"entries": [
+						"This station consists of a compact grappling hook, reinforced rope, and launcher. One creature can operate this station at a time. The crew member operating this station can take the Harpoon and Reel actions."
+					],
+					"action": [
+						{
+							"name": "Harpoon",
+							"entries": [
+								"{@atkr rw} {@hit 6}, range 50/100 ft. {@h}5 ({@damage 2d4}) Piercing damage, and the target is harpooned. While harpooned, the target and the ship can't move more than 100 feet away from each other, and if the target is a Medium or smaller creature, it has the {@condition Grappled|XPHB} condition. The crew member operating this station can release a harpooned target (no action required)."
+							]
+						},
+						{
+							"name": "Reel (Requires Elemental Core)",
+							"entries": [
+								"A target Grappled by this station's Harpoon is pulled up to 50 feet in a straight line toward the ship."
+							]
+						}
+					]
+				}
+			],
+			"station": [
+				{
+					"name": "Helm",
+					"size": [
+						"S"
+					],
+					"ac": 15,
+					"hp": 20,
+					"crew": 1,
+					"entries": [
+						"The helm of an airship consists of a specialized wheel, levers, and other controls. One creature can operate this station at a time.",
+						"The pilot (the crew member operating an airship's Helm) must have the {@feat Mark of Storm|EFA} to interface with the controls. While operating the Helm, a crew member can take the station's Drive and Shift Engine actions.",
+						{
+							"type": "entries",
+							"entries": [
+								{
+									"type": "entries",
+									"name": "Tilt and Roll",
+									"entries": [
+										"When taking the Helm's Drive action, a crew member can spend an amount of movement equal to half the ship's Fly Speed to invert the ship on its axis, either turning it upside down or righting it. All creatures and objects on the ship that aren't anchored fall when the ship moves in this way. A creature that succeeds on a {@dc 15} Dexterity saving throw can grab a fixed object within reach to avoid falling."
+									]
+								}
+							]
+						}
+					],
+					"action": [
+						{
+							"name": "Drive (Requires Mark of Storm)",
+							"entries": [
+								"The ship moves up to its Fly Speed in any direction."
+							]
+						},
+						{
+							"name": "Shift Engine (Requires Mark of Storm)",
+							"entries": [
+								"The ship's elemental core is suppressed or reengaged."
+							]
+						}
+					]
+				}
+			],
+			"hasFluff": true
 		},
 		{
 			"name": "Mechanical Beholder",
@@ -2043,6 +2276,7 @@
 				}
 			],
 			"tokenCredit": "Alan Sanders",
+			"tokenCustom": true,
 			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
@@ -2699,6 +2933,99 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Strider Airship",
+			"source": "EFA",
+			"vehicleType": "ELEMENTAL_AIRSHIP",
+			"terrain": [
+				"air"
+			],
+			"capCrew": 6,
+			"capPassenger": 20,
+			"capCargo": 1,
+			"cost": 4000000,
+			"pace": {
+				"fly": 8
+			},
+			"speed": {
+				"fly": {
+					"number": 80,
+					"condition": "[hover]"
+				},
+				"canHover": true
+			},
+			"hull": {
+				"ac": 16,
+				"hp": 350,
+				"dt": 10
+			},
+			"weapon": [
+				{
+					"name": "Arcane Launcher",
+					"size": [
+						"M"
+					],
+					"ac": 17,
+					"hp": 30,
+					"crew": 1,
+					"count": 4,
+					"entries": [
+						"This miniature cannon shoots bursts of magical force. A creature operating the Arcane Launcher can take the Energy Blast action to aim and fire the cannon."
+					],
+					"action": [
+						{
+							"name": "Energy Blast",
+							"entries": [
+								"{@atkr rw} {@hit 7}, range 100/500 ft. {@h}14 ({@damage 4d6}) Force damage."
+							]
+						}
+					]
+				}
+			],
+			"station": [
+				{
+					"name": "Helm",
+					"size": [
+						"S"
+					],
+					"ac": 15,
+					"hp": 20,
+					"crew": 1,
+					"entries": [
+						"The helm of an airship consists of a specialized wheel, levers, and other controls. One creature can operate this station at a time.",
+						"The pilot (the crew member operating an airship's Helm) must have the {@feat Mark of Storm|EFA} to interface with the controls. While operating the Helm, a crew member can take the station's Drive and Shift Engine actions.",
+						{
+							"type": "entries",
+							"entries": [
+								{
+									"type": "entries",
+									"name": "Tilt and Roll",
+									"entries": [
+										"When taking the Helm's Drive action, a crew member can spend an amount of movement equal to half the ship's Fly Speed to invert the ship on its axis, either turning it upside down or righting it. All creatures and objects on the ship that aren't anchored fall when the ship moves in this way. A creature that succeeds on a {@dc 15} Dexterity saving throw can grab a fixed object within reach to avoid falling."
+									]
+								}
+							]
+						}
+					],
+					"action": [
+						{
+							"name": "Drive (Requires Mark of Storm)",
+							"entries": [
+								"The ship moves up to its Fly Speed in any direction."
+							]
+						},
+						{
+							"name": "Shift Engine (Requires Mark of Storm)",
+							"entries": [
+								"The ship's elemental core is suppressed or reengaged."
+							]
+						}
+					]
+				}
+			],
+			"hasFluff": true,
+			"hasFluffImages": true
+		},
+		{
 			"name": "Tasha's Creeping Keelboat",
 			"source": "DitLCoT",
 			"page": 15,
@@ -3171,6 +3498,7 @@
 				}
 			],
 			"tokenCredit": "Gordon Frickers",
+			"tokenCustom": true,
 			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
@@ -3622,7 +3950,7 @@
 				"IWM:W"
 			],
 			"entries": [
-				"This flexible hose is connected to a tank that holds 30 gallons of water from the {@area River Styx|1a3|x}. Each use of the weapon depletes 10 gallons of the water. Refilling the tank requires access to the Styx.",
+				"This flexible hose is connected to a tank that holds 30 gallons of water from the {@adventure River Styx|BGDIA|3|River Styx}. Each use of the weapon depletes 10 gallons of the water. Refilling the tank requires access to the Styx.",
 				{
 					"type": "entries",
 					"name": "Styx Sprayer (Requires 1 Crew and Grants Half Cover; 3 Uses)",

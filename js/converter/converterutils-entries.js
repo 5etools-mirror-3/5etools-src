@@ -2,6 +2,7 @@ import {ActionTag, DiceConvert, SenseTag, SkillTag, TagCondition, TaggerUtils} f
 import {VetoolsConfig} from "../utils-config/utils-config-config.js";
 import {ConverterTaggerInitializable} from "./converterutils-taggerbase.js";
 import {SITE_STYLE__CLASSIC, SITE_STYLE__ONE} from "../consts.js";
+import {WALKER_CONVERTER, WALKER_CONVERTER_KEY_BLOCKLIST} from "./converterutils-walker.js";
 
 const LAST_KEY_ALLOWLIST = new Set([
 	"entries",
@@ -45,7 +46,7 @@ export class TagJsons {
 			.forEach(k => {
 				if (keySet != null && !keySet.has(k)) return;
 
-				json[k] = TagJsons.WALKER.walk(
+				json[k] = WALKER_CONVERTER.walk(
 					{_: json[k]},
 					{
 						object: (obj, lastKey) => {
@@ -93,7 +94,7 @@ export class TagJsons {
 			.forEach(k => {
 				if (keySet != null && !keySet.has(k)) return;
 
-				json[k] = TagJsons.WALKER.walk(
+				json[k] = WALKER_CONVERTER.walk(
 					{_: json[k]},
 					{
 						object: (obj, lastKey) => {
@@ -117,14 +118,6 @@ export class TagJsons {
 TagJsons.OPTIMISTIC = true;
 
 TagJsons._BLOCKLIST_FILE_PREFIXES = null;
-
-TagJsons.WALKER_KEY_BLOCKLIST = new Set([
-	...MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST,
-]);
-
-TagJsons.WALKER = MiscUtil.getWalker({
-	keyBlocklist: TagJsons.WALKER_KEY_BLOCKLIST,
-});
 
 export class SpellTag extends ConverterTaggerInitializable {
 	static _SPELL_NAMES = {};
@@ -168,7 +161,7 @@ export class SpellTag extends ConverterTaggerInitializable {
 
 		if (blocklistNames) blocklistNames = blocklistNames.getWithBlocklistIgnore([ent.name]);
 
-		return TagJsons.WALKER.walk(
+		return WALKER_CONVERTER.walk(
 			ent,
 			{
 				string: (str) => {
@@ -255,7 +248,7 @@ export class SpellTag extends ConverterTaggerInitializable {
 
 		if (blocklistNames) blocklistNames = blocklistNames.getWithBlocklistIgnore([ent.name]);
 
-		return TagJsons.WALKER.walk(
+		return WALKER_CONVERTER.walk(
 			ent,
 			{
 				string: (str) => {
@@ -317,7 +310,7 @@ export class SpellTag extends ConverterTaggerInitializable {
 export class ItemTag extends ConverterTaggerInitializable {
 	static _WALKER = MiscUtil.getWalker({
 		keyBlocklist: new Set([
-			...TagJsons.WALKER_KEY_BLOCKLIST,
+			...WALKER_CONVERTER_KEY_BLOCKLIST,
 			"packContents", // Avoid tagging item pack contents
 			"items", // Avoid tagging item group item lists
 		]),
@@ -430,10 +423,20 @@ export class ItemTag extends ConverterTaggerInitializable {
 				// Allow all non-specific-variant DMG items
 				if ([Parser.SRC_DMG, Parser.SRC_XDMG].includes(it.source) && !Renderer.item.isMundane(it) && it._category !== "Specific Variant") return true;
 				// Allow "sufficiently complex name" items
-				return it.name.split(" ").length > 2;
+				if (it.name.split(" ").length > 2) return true;
+				// Allow basic weapons
+				if (it.weaponCategory && Renderer.item.isMundane(it)) return true;
+				return false;
 			})
-			// Prefer specific variants first, as they have longer names
-			.sort((itemA, itemB) => Number(itemB._category === "Specific Variant") - Number(itemA._category === "Specific Variant") || SortUtil.ascSortLower(itemA.name, itemB.name))
+			.sort((itemA, itemB) => {
+				// Prefer specific variants first, as they have longer names
+				const compType = Number(itemB._category === "Specific Variant") - Number(itemA._category === "Specific Variant");
+				if (compType) return compType;
+				// Prefer names with more parts
+				const compTks = itemB.name.split(" ").length - itemA.name.split(" ").length;
+				if (compTks) return compTks;
+				return SortUtil.ascSortLower(itemA.name, itemB.name);
+			})
 		;
 		otherItems.forEach(it => {
 			lookupItemNames[it.name.toLowerCase()] = {name: it.name, source: it.source};
@@ -679,7 +682,7 @@ export class ItemTag extends ConverterTaggerInitializable {
 	/* -------------------------------------------- */
 
 	static _tryRunStrictCapsWords (ent) {
-		return TagJsons.WALKER.walk(
+		return WALKER_CONVERTER.walk(
 			ent,
 			{
 				string: (str) => {
@@ -709,7 +712,7 @@ export class ItemTag extends ConverterTaggerInitializable {
 
 export class TableTag {
 	static tryRun (it) {
-		return TagJsons.WALKER.walk(
+		return WALKER_CONVERTER.walk(
 			it,
 			{
 				string: (str) => {
@@ -759,7 +762,7 @@ export class TrapTag extends ConverterTaggerInitializable {
 	static _tryRun (ent, {styleHint = null} = {}) {
 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
-		return TagJsons.WALKER.walk(
+		return WALKER_CONVERTER.walk(
 			ent,
 			{
 				string: (str) => {
@@ -816,8 +819,7 @@ export class TrapTag extends ConverterTaggerInitializable {
 	static _tryRunStrictCapsWords (ent, {styleHint = null} = {}) {
 		if (styleHint === "classic") return ent;
 
-		const walker = MiscUtil.getWalker({keyBlocklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST});
-		return walker.walk(
+		return WALKER_CONVERTER.walk(
 			ent,
 			{
 				string: (str) => {
@@ -865,7 +867,7 @@ export class HazardTag extends ConverterTaggerInitializable {
 	static _tryRun (ent, {styleHint = null} = {}) {
 		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
 
-		return TagJsons.WALKER.walk(
+		return WALKER_CONVERTER.walk(
 			ent,
 			{
 				string: (str) => {
@@ -922,8 +924,7 @@ export class HazardTag extends ConverterTaggerInitializable {
 	static _tryRunStrictCapsWords (ent, {styleHint = null} = {}) {
 		if (styleHint === "classic") return ent;
 
-		const walker = MiscUtil.getWalker({keyBlocklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST});
-		return walker.walk(
+		return WALKER_CONVERTER.walk(
 			ent,
 			{
 				string: (str) => {
@@ -982,7 +983,7 @@ export class CreatureTag {
 		};
 
 		return (it) => {
-			return TagJsons.WALKER.walk(
+			return WALKER_CONVERTER.walk(
 				it,
 				{
 					string: (str) => {
@@ -1007,7 +1008,7 @@ export class CreatureTag {
 
 export class ChanceTag {
 	static tryRun (it) {
-		return TagJsons.WALKER.walk(
+		return WALKER_CONVERTER.walk(
 			it,
 			{
 				string: (str) => {
@@ -1040,7 +1041,7 @@ export class QuickrefTag {
 		// Avoid tagging; we expect these to be tagged as core rules
 		if (styleHint === SITE_STYLE__ONE) return ent;
 
-		return TagJsons.WALKER.walk(
+		return WALKER_CONVERTER.walk(
 			ent,
 			{
 				string: (str) => {
@@ -1127,7 +1128,7 @@ export class CoreRuleTag extends ConverterTaggerInitializable {
 	static _tryRun (it, {styleHint = null} = {}) {
 		if (styleHint === SITE_STYLE__CLASSIC) return it;
 
-		return TagJsons.WALKER.walk(
+		return WALKER_CONVERTER.walk(
 			it,
 			{
 				string: (str) => {
@@ -1199,7 +1200,7 @@ export class FeatTag extends ConverterTaggerInitializable {
 	}
 
 	static _tryRun (it) {
-		return TagJsons.WALKER.walk(
+		return WALKER_CONVERTER.walk(
 			it,
 			{
 				string: (str) => {
@@ -1280,7 +1281,7 @@ export class AdventureBookTag extends ConverterTaggerInitializable {
 	}
 
 	static _tryRun (it) {
-		return TagJsons.WALKER.walk(
+		return WALKER_CONVERTER.walk(
 			it,
 			{
 				string: (str) => {

@@ -365,7 +365,7 @@ class TableDiceTest extends DataTesterBase {
 class AreaCheck extends DataTesterBase {
 	_headerMap = null;
 	_errorSet = new Set();
-	_fileMatcher = /\/(adventure-|book-).*\.json/;
+	_fileMatcherValid = /\/(adventure-|book-).*\.json/;
 
 	registerParsedFileCheckers (parsedJsonChecker) {
 		parsedJsonChecker.registerFileHandler(this);
@@ -375,7 +375,24 @@ class AreaCheck extends DataTesterBase {
 		this._headerMap = Renderer.adventureBook.getEntryIdLookup(data, false);
 	}
 
-	_checkString (str) {
+	_checkStringAreaNotSupported (file, str) {
+		str.replace(/{@area ([^}]*)}/g, (...m) => {
+			this._addMessage(`Unexpected @area tag: ${m[0]} in file ${file}\n`);
+			return m[0];
+		});
+	}
+
+	_handleFile_areaNotSupported (file, contents) {
+		ObjectWalker.walk({
+			obj: contents,
+			filePath: file,
+			primitiveHandlers: {
+				string: this._checkStringAreaNotSupported.bind(this, file),
+			},
+		});
+	}
+
+	_checkStringAreaSupported (str) {
 		str.replace(/{@area ([^}]*)}/g, (m0, m1) => {
 			const [, areaId] = m1.split("|");
 			if (!this._headerMap[areaId]) {
@@ -385,16 +402,14 @@ class AreaCheck extends DataTesterBase {
 		});
 	}
 
-	handleFile (file, contents) {
-		if (!this._fileMatcher.test(file)) return;
-
+	_handleFile_areaSupported (file, contents) {
 		this._errorSet = new Set();
 		this._buildMap(file, contents.data);
 		ObjectWalker.walk({
 			obj: contents,
 			filePath: file,
 			primitiveHandlers: {
-				string: this._checkString.bind(this),
+				string: this._checkStringAreaSupported.bind(this),
 			},
 		});
 
@@ -408,6 +423,11 @@ class AreaCheck extends DataTesterBase {
 		if (this._headerMap.__BAD) {
 			this._headerMap.__BAD.forEach(dupId => this._addMessage(`Duplicate ID: "${dupId}"\n`));
 		}
+	}
+
+	handleFile (file, contents) {
+		if (!this._fileMatcherValid.test(file)) return this._handleFile_areaNotSupported(file, contents);
+		return this._handleFile_areaSupported(file, contents);
 	}
 }
 

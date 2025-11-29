@@ -219,9 +219,8 @@ export class ManageBrewUi {
 	}
 
 	_getBtnPullAll (rdState) {
-		const btn = ee`<button class="ve-btn ve-btn-default">Update All</button>`
+		const btn = ee`<button class="ve-btn ve-btn-default w-80p">Update All</button>`
 			.addClass(this._isModal ? "ve-btn-xs" : "ve-btn-sm")
-			.addClass(this._isModal ? "w-80p" : "w-70p")
 			.onn("click", async () => {
 				const cachedHtml = btn.html();
 
