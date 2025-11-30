@@ -77,13 +77,13 @@
 				{
 					"name": "Slam",
 					"entries": [
-						"{@atkr m} {@hit 4}, reach 5 ft. {@h}4 ({@damage 1d4 + 2}) Bludgeoning damage."
+						"{@atkr m} {@hit 4}, reach {@quantity 5|ft}. {@h}4 ({@damage 1d4 + 2}) Bludgeoning damage."
 					]
 				},
 				{
 					"name": "Fiery Eruption",
 					"entries": [
-						"{@actSave dex} {@dc 11}, each creature in a 5-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the icon. {@actSaveFail} 7 ({@damage 2d6}) Fire damage."
+						"{@actSave dex} {@dc 11}, each creature in a {@quantity 5|-foot} {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the icon. {@actSaveFail} 7 ({@damage 2d6}) Fire damage."
 					]
 				}
 			],
@@ -161,7 +161,7 @@
 				"stealth": "+5"
 			},
 			"senses": [
-				"Darkvision 120 ft. (unimpeded by magical {@variantrule Darkness|XPHB})"
+				"Darkvision {@quantity 120|ft.} (unimpeded by magical {@variantrule Darkness|XPHB})"
 			],
 			"passive": 13,
 			"resist": [
@@ -177,7 +177,7 @@
 			],
 			"languages": [
 				"Common",
-				"Infernal; telepathy 120 ft."
+				"Infernal; telepathy {@quantity 120|ft.}"
 			],
 			"cr": "3",
 			"trait": [
@@ -210,19 +210,19 @@
 				{
 					"name": "Infernal Blade",
 					"entries": [
-						"{@atkr m} {@hit 5}, reach 5 ft. {@h}6 ({@damage 1d6 + 3}) Slashing damage and 7 ({@damage 2d6}) Fire damage."
+						"{@atkr m} {@hit 5}, reach {@quantity 5|ft}. {@h}6 ({@damage 1d6 + 3}) Slashing damage and 7 ({@damage 2d6}) Fire damage."
 					]
 				},
 				{
 					"name": "Confounding Ray",
 					"entries": [
-						"{@atkr r} {@hit 5}, range 120 ft. {@h}13 ({@damage 2d12}) Psychic damage. If the target is a creature, it can't make Opportunity Attacks until the start of the devil's next turn."
+						"{@atkr r} {@hit 5}, range {@quantity 120|ft}. {@h}13 ({@damage 2d12}) Psychic damage. If the target is a creature, it can't make Opportunity Attacks until the start of the devil's next turn."
 					]
 				},
 				{
 					"name": "Compelling Contract (1/Day)",
 					"entries": [
-						"{@actSave cha} {@dc 14}, one creature within 30 feet of the devil. {@actSaveFail} The target has the {@condition Charmed|XPHB} condition. While it is {@condition Charmed|XPHB}, it has the {@condition Stunned|XPHB} condition, except the target can speak. If the target agrees to the devil's contract, the effect ends. Otherwise, the target repeats the save whenever it takes damage and at the end of each of its turns, ending the effect on itself on a success. After 1 minute, it succeeds automatically."
+						"{@actSave cha} {@dc 14}, one creature within {@quantity 30|feet} of the devil. {@actSaveFail} The target has the {@condition Charmed|XPHB} condition. While it is {@condition Charmed|XPHB}, it has the {@condition Stunned|XPHB} condition, except the target can speak. If the target agrees to the devil's contract, the effect ends. Otherwise, the target repeats the save whenever it takes damage and at the end of each of its turns, ending the effect on itself on a success. After 1 minute, it succeeds automatically."
 					]
 				}
 			],
@@ -310,7 +310,7 @@
 				"perception": "+8"
 			},
 			"senses": [
-				"Darkvision 120 ft."
+				"Darkvision {@quantity 120|ft.}"
 			],
 			"passive": 18,
 			"resist": [
@@ -324,7 +324,7 @@
 				"poisoned"
 			],
 			"languages": [
-				"Infernal; telepathy 120 ft."
+				"Infernal; telepathy {@quantity 120|ft.}"
 			],
 			"cr": "12",
 			"spellcasting": [
@@ -372,7 +372,7 @@
 				{
 					"name": "Thundering Halberd",
 					"entries": [
-						"{@atkr m} {@hit 9}, reach 10 ft. {@h}16 ({@damage 2d10 + 5}) Slashing damage plus 14 ({@damage 4d6}) Thunder damage."
+						"{@atkr m} {@hit 9}, reach {@quantity 10|ft}. {@h}16 ({@damage 2d10 + 5}) Slashing damage plus 14 ({@damage 4d6}) Thunder damage."
 					]
 				}
 			],
@@ -380,13 +380,13 @@
 				{
 					"name": "Utterance of Pain",
 					"entries": [
-						"{@actSave wis} {@dc 18}, each creature in a 20-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the devil. {@actSaveFail} The target has the {@condition Stunned|XPHB} condition until the end of the devil's next turn."
+						"{@actSave wis} {@dc 18}, each creature in a {@quantity 20|-foot} {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the devil. {@actSaveFail} The target has the {@condition Stunned|XPHB} condition until the end of the devil's next turn."
 					]
 				},
 				{
 					"name": "Utterance of Unmaking",
 					"entries": [
-						"{@actSave con} {@dc 18}, each creature in a 20-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the devil. {@actSaveFail} 22 ({@damage 4d10}) Force damage. {@actSaveSuccess} Half damage."
+						"{@actSave con} {@dc 18}, each creature in a {@quantity 20|-foot} {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the devil. {@actSaveFail} 22 ({@damage 4d10}) Force damage. {@actSaveSuccess} Half damage."
 					]
 				}
 			],
@@ -489,7 +489,7 @@
 				"stealth": "+8"
 			},
 			"senses": [
-				"Darkvision 120 ft. (unimpeded by magical {@variantrule Darkness|XPHB})"
+				"Darkvision {@quantity 120|ft.} (unimpeded by magical {@variantrule Darkness|XPHB})"
 			],
 			"passive": 18,
 			"resist": [
@@ -603,13 +603,13 @@
 				{
 					"name": "Hellfire Claw (Vampire Form Only)",
 					"entries": [
-						"{@atkr m} {@hit 9}, reach 5 ft. {@h}13 ({@damage 2d8 + 4}) Slashing damage plus 10 ({@damage 3d6}) Fire damage. If the target is a Medium or smaller creature, it has the {@condition Grappled|XPHB} condition (escape {@dc 17}) from one of two claws."
+						"{@atkr m} {@hit 9}, reach {@quantity 5|ft}. {@h}13 ({@damage 2d8 + 4}) Slashing damage plus 10 ({@damage 3d6}) Fire damage. If the target is a Medium or smaller creature, it has the {@condition Grappled|XPHB} condition (escape {@dc 17}) from one of two claws."
 					]
 				},
 				{
 					"name": "Bite (Imp or Vampire Form Only)",
 					"entries": [
-						"{@actSave con} {@dc 18}, one creature within 5 feet that is willing or that has the {@condition Grappled|XPHB}, {@condition Incapacitated|XPHB}, or {@condition Restrained|XPHB} condition. {@actSaveFail} 6 ({@damage 1d4 + 4}) Piercing damage plus 16 ({@damage 3d10}) Necrotic damage and the creature loses its highest-level available spell slot (if any). The target's {@variantrule Hit Points|XPHB|Hit Point} maximum decreases by an amount equal to the Necrotic damage taken, and the vampire regains {@variantrule Hit Points|XPHB} equal to that amount. A Humanoid reduced to 0 {@variantrule Hit Points|XPHB} by this damage and then buried rises the following sunset as a Vampire Spawn under the vampire's control."
+						"{@actSave con} {@dc 18}, one creature within {@quantity 5|feet} that is willing or that has the {@condition Grappled|XPHB}, {@condition Incapacitated|XPHB}, or {@condition Restrained|XPHB} condition. {@actSaveFail} 6 ({@damage 1d4 + 4}) Piercing damage plus 16 ({@damage 3d10}) Necrotic damage and the creature loses its highest-level available spell slot (if any). The target's {@variantrule Hit Points|XPHB|Hit Point} maximum decreases by an amount equal to the Necrotic damage taken, and the vampire regains {@variantrule Hit Points|XPHB} equal to that amount. A Humanoid reduced to 0 {@variantrule Hit Points|XPHB} by this damage and then buried rises the following sunset as a Vampire Spawn under the vampire's control."
 					]
 				}
 			],
@@ -617,7 +617,7 @@
 				{
 					"name": "Shape-Shift",
 					"entries": [
-						"If the vampire isn't in sunlight or running water, it shape-shifts into a Tiny imp ({@variantrule Speed|XPHB} 20 ft., {@variantrule Fly Speed|XPHB} 40 ft.), or a Medium cloud of mist ({@variantrule Speed|XPHB} 5 ft., {@variantrule Fly Speed|XPHB} 20 ft. [hover]), or it returns to its vampire form. Anything it is wearing transforms with it.",
+						"If the vampire isn't in sunlight or running water, it shape-shifts into a Tiny imp ({@variantrule Speed|XPHB} {@quantity 20|ft.}, {@variantrule Fly Speed|XPHB} {@quantity 40|ft.}), or a Medium cloud of mist ({@variantrule Speed|XPHB} {@quantity 5|ft.}, {@variantrule Fly Speed|XPHB} {@quantity 20|ft}. [hover]), or it returns to its vampire form. Anything it is wearing transforms with it.",
 						"While in imp form, the vampire's game statistics, other than its size and {@variantrule Speed|XPHB}, are unchanged.",
 						"While in mist form, the vampire can't take any actions, speak, or manipulate objects. It is weightless and can enter an enemy's space and stop there. If air can pass through a space, the mist can do so, but it can't pass through liquid. It has {@variantrule Resistance|XPHB} to all damage, except the damage it takes from sunlight."
 					]
@@ -634,13 +634,13 @@
 				{
 					"name": "Infernal Majesty",
 					"entries": [
-						"{@actSave cha} {@dc 17}, each creature in a 20-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the vampire. {@actSaveFail} 9 ({@damage 2d8}) Psychic damage, and the target has the {@condition Frightened|XPHB} condition until the start of its next turn. {@actSaveSuccess} Half damage only. {@actSaveSuccessOrFail} The vampire can't take this action again until the start of its next turn."
+						"{@actSave cha} {@dc 17}, each creature in a {@quantity 20|-foot} {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the vampire. {@actSaveFail} 9 ({@damage 2d8}) Psychic damage, and the target has the {@condition Frightened|XPHB} condition until the start of its next turn. {@actSaveSuccess} Half damage only. {@actSaveSuccessOrFail} The vampire can't take this action again until the start of its next turn."
 					]
 				},
 				{
 					"name": "Teleport",
 					"entries": [
-						"The vampire teleports up to 30 feet to an unoccupied space it can see."
+						"The vampire teleports up to {@quantity 30|feet} to an unoccupied space it can see."
 					]
 				}
 			],
@@ -744,7 +744,7 @@
 				"perception": "+10"
 			},
 			"senses": [
-				"Darkvision 120 ft."
+				"Darkvision {@quantity 120|ft.}"
 			],
 			"passive": 20,
 			"resist": [
@@ -840,13 +840,13 @@
 				{
 					"name": "Claw",
 					"entries": [
-						"{@atkr m} {@hit 9}, reach 5 ft. {@h}14 ({@damage 2d8 + 5}) Slashing damage plus 7 ({@damage 2d6}) Necrotic damage. If the target is a Large or smaller creature, it has the {@condition Grappled|XPHB} condition (escape {@dc 16}) from one of two claws."
+						"{@atkr m} {@hit 9}, reach {@quantity 5|ft}. {@h}14 ({@damage 2d8 + 5}) Slashing damage plus 7 ({@damage 2d6}) Necrotic damage. If the target is a Large or smaller creature, it has the {@condition Grappled|XPHB} condition (escape {@dc 16}) from one of two claws."
 					]
 				},
 				{
 					"name": "Bite",
 					"entries": [
-						"{@actSave con} {@dc 16}, one creature within 5 feet that is willing or that has the {@condition Grappled|XPHB}, {@condition Incapacitated|XPHB}, or {@condition Restrained|XPHB} condition. {@actSaveFail} 7 ({@damage 1d4 + 5}) Piercing damage plus 7 ({@damage 2d6}) Necrotic damage. The target's {@variantrule Hit Points|XPHB|Hit Point} maximum decreases by an amount equal to the Necrotic damage taken, and the vampire regains {@variantrule Hit Points|XPHB} equal to that amount."
+						"{@actSave con} {@dc 16}, one creature within {@quantity 5|feet} that is willing or that has the {@condition Grappled|XPHB}, {@condition Incapacitated|XPHB}, or {@condition Restrained|XPHB} condition. {@actSaveFail} 7 ({@damage 1d4 + 5}) Piercing damage plus 7 ({@damage 2d6}) Necrotic damage. The target's {@variantrule Hit Points|XPHB|Hit Point} maximum decreases by an amount equal to the Necrotic damage taken, and the vampire regains {@variantrule Hit Points|XPHB} equal to that amount."
 					]
 				}
 			],

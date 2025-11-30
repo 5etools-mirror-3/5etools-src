@@ -1598,7 +1598,11 @@ globalThis.Renderer = function () {
 	};
 
 	this._renderBonusSpeed = function (entry, textStack, meta, options) {
-		textStack[0] += entry.value === 0 ? "\u2014" : `${entry.value < 0 ? "" : "+"}${entry.value} ft.`;
+		let speed = { value: entry.value, unit: "ft." };
+		if (VetoolsConfig.get("localization", "isMetric")) {
+			speed = Parser.quantity.getMetric(speed);
+		}
+		textStack[0] += speed.value === 0 ? "\u2014" : `${speed.value < 0 ? "" : "+"}${speed.value} ${speed.unit}`;
 	};
 
 	this._renderDice = function (entry, textStack, meta, options) {
@@ -2141,6 +2145,20 @@ globalThis.Renderer = function () {
 			case "@unit": {
 				const [amount, unitSingle, unitPlural] = Renderer.splitTagByPipe(text);
 				textStack[0] += isNaN(amount) ? unitSingle : Number(amount) > 1 ? (unitPlural || unitSingle.toPlural()) : unitSingle;
+				break;
+			}
+
+			case "@quantity": {
+				const [value, unitStr] = Renderer.splitTagByPipe(text);
+				const isAdjective = unitStr.includes("-");
+				let quantity = { value, unit: unitStr.replace("-", "") };
+
+				if (VetoolsConfig.get("localization", "isMetric")) {
+					quantity = Parser.quantity.getMetric(quantity, isAdjective);
+					quantity.value = NumberUtil.toFixedNumber(quantity.value, 2);
+				}
+
+				textStack[0] += `${quantity.value}${isAdjective ? "-" : " "}${quantity.unit}`;
 				break;
 			}
 
@@ -5346,6 +5364,15 @@ Renderer.tag = class {
 		}
 	};
 
+	static TagQuantity = class extends this._TagBaseAt {
+		tagName = "quantity";
+
+		_getStripped (tag, text) {
+			const [value, unitStr] = Renderer.splitTagByPipe(text);
+			return `${value} ${unitStr}`;
+		};
+	};
+
 	static TagActSave = class extends this._TagBaseAt {
 		tagName = "actSave";
 
@@ -6000,6 +6027,7 @@ Renderer.tag = class {
 		new this.TagTip(),
 
 		new this.TagUnit(),
+		new this.TagQuantity(),
 
 		new this.TagActSave(),
 		new this.TagActSaveSuccess(),
@@ -8374,17 +8402,18 @@ Renderer.race = class {
 	static getHeightAndWeightEntries (race, {isStatic = false} = {}) {
 		const colLabels = ["Base Height", "Base Weight", "Height Modifier", "Weight Modifier"];
 		const colStyles = ["col-2-3 text-center", "col-2-3 text-center", "col-2-3 text-center", "col-2 text-center"];
+		const isMetric = VetoolsConfig.get("localization", "isMetric");
 
 		const cellHeightMod = !isStatic
 			? `+<span data-race-heightmod="true">${race.heightAndWeight.heightMod}</span>`
 			: `+${race.heightAndWeight.heightMod}`;
 		const cellWeightMod = !isStatic
-			? `× <span data-race-weightmod="true">${race.heightAndWeight.weightMod || "1"}</span> lb.`
-			: `× ${race.heightAndWeight.weightMod || "1"} lb.`;
+			? `× <span data-race-weightmod="true">${race.heightAndWeight.weightMod || "1"}</span>${isMetric ? "" : " lb."}` // intermediate unit is hidden for metric
+			: `× ${race.heightAndWeight.weightMod || "1"}${isMetric ? "" : " lb."}`;
 
 		const row = [
-			Renderer.race.getRenderedHeight(race.heightAndWeight.baseHeight),
-			`${race.heightAndWeight.baseWeight} lb.`,
+			isMetric ? `${race.heightAndWeight.baseHeight}` : Renderer.race.formatHeightInFeetAndInches(race.heightAndWeight.baseHeight),
+			`${race.heightAndWeight.baseWeight}${isMetric ? "" : " lb."}`,
 			cellHeightMod,
 			cellWeightMod,
 		];
@@ -8398,14 +8427,15 @@ Renderer.race = class {
 					<div class="race__disp-result-height"></div>
 					<div class="mr-2">; </div>
 					<div class="race__disp-result-weight mr-1"></div>
-					<div class="small">lb.</div>
 				</div>
 				<button class="ve-btn ve-btn-default ve-btn-xs my-1 race__btn-roll-height-weight">Roll</button>
 			</div>`);
 		}
 
 		return [
-			"You may roll for your character's height and weight on the Random Height and Weight table. The roll in the Height Modifier column adds a number (in inches) to the character's base height. To get a weight, multiply the number you rolled for height by the roll in the Weight Modifier column and add the result (in pounds) to the base weight.",
+			isMetric
+				? "You may roll for your character's height and weight on the Random Height and Weight table. To get a height (in centimeters), add the dice roll given in the Height Modifier column to the base height, and multiply the result by 2.5. To get a weight (in kilograms), multiply the number your rolled for height by the roll in the Weight Modifier column, add the result to the base weight, and divide the total by 2."
+				: "You may roll for your character's height and weight on the Random Height and Weight table. The roll in the Height Modifier column adds a number (in inches) to the character's base height. To get a weight, multiply the number you rolled for height by the roll in the Weight Modifier column and add the result (in pounds) to the base weight.",
 			{
 				type: "table",
 				caption: "Random Height and Weight",
@@ -8416,10 +8446,25 @@ Renderer.race = class {
 		];
 	}
 
-	static getRenderedHeight (height) {
+	static formatHeightInFeetAndInches (height) {
 		const heightFeet = Number(Math.floor(height / 12).toFixed(3));
 		const heightInches = Number((height % 12).toFixed(3));
 		return `${heightFeet ? `${heightFeet}'` : ""}${heightInches ? `${heightInches}"` : ""}`;
+	}
+
+	static getRenderedHeight (heightValue) {
+		if (VetoolsConfig.get("localization", "isMetric")) {
+			const height = Parser.quantity.getMetric({ value: heightValue, unit: "in." });
+			return `${height.value.toFixed(0)} ${height.unit}`;
+		} else {
+			return this.formatHeightInFeetAndInches(heightValue);
+		}
+	}
+
+	static getRenderedWeight (weightValue) {
+		let weight = { value: weightValue, unit: "lb." };
+		if (VetoolsConfig.get("localization", "isMetric")) weight = Parser.quantity.getMetric(weight);
+		return `${weight.value.toFixed(0)} ${weight.unit}`;
 	}
 
 	/**
@@ -8802,9 +8847,9 @@ Renderer.race = class {
 
 		const updateDisplay = () => {
 			const renderedHeight = Renderer.race.getRenderedHeight(race.heightAndWeight.baseHeight + resultHeight);
-			const totalWeight = race.heightAndWeight.baseWeight + (resultWeightMod * resultHeight);
+			const renderedWeight = Renderer.race.getRenderedWeight(race.heightAndWeight.baseWeight + (resultWeightMod * resultHeight));
 			$dispHeight.text(renderedHeight);
-			$dispWeight.text(Number(totalWeight.toFixed(3)));
+			$dispWeight.text(renderedWeight);
 		};
 
 		const pDoFullRoll = async isPreLocked => {
@@ -11600,12 +11645,25 @@ Renderer.item = class {
 		}
 
 		// mounts
-		if (item.speed != null) damageParts.push(`Speed: ${item.speed}`);
-		if (item.carryingCapacity) damageParts.push(`Carrying Capacity: ${item.carryingCapacity} lb.`);
+		if (item.speed != null) {
+			let speed = { value: item.speed, unit: "ft." };
+			if (VetoolsConfig.get("localization", "isMetric")) speed = Parser.quantity.getMetric(speed);
+			damageParts.push(`Speed: ${speed.value} ${speed.unit}`);
+		}
+		if (item.carryingCapacity) {
+			let capacity = { value: item.carryingCapacity, unit: "lb." };
+			if (VetoolsConfig.get("localization", "isMetric")) capacity = Parser.quantity.getMetric(capacity);
+			damageParts.push(`Carrying Capacity: ${(capacity.value)} ${capacity.unit}`);
+		}
 
 		// vehicles
 		if (item.vehSpeed || item.capCargo || item.capPassenger || item.crew || item.crewMin || item.crewMax || item.vehAc || item.vehHp || item.vehDmgThresh || item.travelCost || item.shippingCost) {
-			const vehPartUpper = item.vehSpeed ? `Speed: ${Parser.numberToVulgar(item.vehSpeed)} mph` : null;
+			let speed = { value: item.vehSpeed, unit: "mph" };
+			VetoolsConfig.get("localization", "isMetric")
+				? speed = Parser.quantity.getMetric(speed)
+				: speed.value = Parser.numberToVulgar(speed.value); // only use vulgar for imperial
+
+			const vehPartUpper = item.vehSpeed ? `Speed: ${speed.value} ${speed.unit}` : null;
 
 			const vehPartMiddle = item.capCargo || item.capPassenger ? `Carrying Capacity: ${[item.capCargo ? `${Parser.numberToFractional(item.capCargo)} ton${item.capCargo === 0 || item.capCargo > 1 ? "s" : ""} cargo` : null, item.capPassenger ? `${item.capPassenger} passenger${item.capPassenger === 1 ? "" : "s"}` : null].filter(Boolean).join(", ")}` : null;
 
@@ -13320,6 +13378,14 @@ Renderer.vehicle = class {
 			const entriesOtherActions = (ent.other || []).filter(it => it.name === "Actions");
 			const entriesOtherOthers = (ent.other || []).filter(it => it.name !== "Actions");
 
+			let pace = { value: ent.pace, unit: "miles" };
+			let speed = { value: ent.pace * 10, unit: "ft." };
+
+			if (VetoolsConfig.get("localization", "isMetric")) {
+				pace = Parser.quantity.getMetric(pace);
+				speed = Parser.quantity.getMetric(speed);
+			}
+
 			return {
 				entrySizeDimensions: `{@i ${Parser.sizeAbvToFull(ent.size)} vehicle${ent.dimensions ? ` (${ent.dimensions.join(" by ")})` : ""}}`,
 				entryCreatureCapacity: ent.capCrew != null || ent.capPassenger != null
@@ -13329,10 +13395,10 @@ Renderer.vehicle = class {
 					? `{@b Cargo Capacity} ${Renderer.vehicle.getShipCargoCapacity(ent)}`
 					: null,
 				entryTravelPace: ent.pace != null
-					? `{@b Travel Pace} ${ent.pace} miles per hour (${ent.pace * 24} miles per day)`
+					? `{@b Travel Pace} ${pace.value} ${pace.unit} per hour (${pace.value * 24} ${pace.unit} per day)`
 					: null,
 				entryTravelPaceNote: ent.pace != null
-					? `[{@b Speed} ${ent.pace * 10} ft.]`
+					? `[{@b Speed} ${speed.value} ${speed.unit}]`
 					: null,
 				entryTravelPaceNoteTitle: ent.pace != null
 					? VetoolsConfig.get("styleSwitcher", "style") === "classic"
@@ -13816,14 +13882,24 @@ Renderer.vehicle = class {
 
 			const ptAc = ent.ac ?? dexMod === 0 ? `19` : `${19 + dexMod} (19 while motionless)`;
 
+			let speed = { value: ent.speed, unit: "ft." };
+			let pace = { value: Math.floor(ent.speed / 10), unit: "miles" };
+			let weight = { value: ent.weight, unit: "lb." };
+
+			if (VetoolsConfig.get("localization", "isMetric")) {
+				speed = Parser.quantity.getMetric(speed);
+				pace = Parser.quantity.getMetric(pace);
+				weight = Parser.quantity.getMetric(weight);
+			}
+
 			return {
-				entrySizeWeight: `{@i ${Parser.sizeAbvToFull(ent.size)} vehicle (${ent.weight.toLocaleString()} lb.)}`,
+				entrySizeWeight: `{@i ${Parser.sizeAbvToFull(ent.size)} vehicle (${weight.value.toLocaleString()} ${weight.unit})}`,
 				entryCreatureCapacity: `{@b Creature Capacity} ${Renderer.vehicle.getInfwarCreatureCapacity(ent)}`,
 				entryCargoCapacity: `{@b Cargo Capacity} ${Parser.weightToFull(ent.capCargo)}`,
 				entryArmorClass: `{@b Armor Class} ${ptAc}`,
 				entryHitPoints: `{@b Hit Points} ${ent.hp.hp}${ptDtMt ? ` (${ptDtMt})` : ""}`,
-				entrySpeed: `{@b Speed} ${ent.speed} ft.`,
-				entrySpeedNote: `[{@b Travel Pace} ${Math.floor(ent.speed / 10)} miles per hour (${Math.floor(ent.speed * 24 / 10)} miles per day)]`,
+				entrySpeed: `{@b Speed} ${speed.value} ${speed.unit}`,
+				entrySpeedNote: `[{@b Travel Pace} ${pace.value} ${pace.unit} per hour (${pace.value * 24} ${pace.unit} per day)]`,
 				entrySpeedNoteTitle: VetoolsConfig.get("styleSwitcher", "style") === "classic"
 					? `Based on "Special Travel Pace," ${Parser.sourceJsonToAbv(Parser.SRC_DMG)} p242`
 					: `Based on "Travel Pace," ${Parser.sourceJsonToAbv(Parser.SRC_XDMG)} p39`,

@@ -71,7 +71,14 @@ class PageFilterBestiary extends PageFilterBase {
 			displayFn: Parser.sizeAbvToFull,
 			itemSortFn: null,
 		});
-		this._speedFilter = new RangeFilter({header: "Speed", min: 30, max: 30, suffix: " ft"});
+		this._speedFilter = new RangeFilter({
+			header: "Speed",
+			min: 30,
+			max: 30,
+			displayFn: (it) => VetoolsConfig.get("localization", "isMetric")
+				? `${NumberUtil.toHalfPoint(it * Parser.quantity.FEET_TO_METRES)} m`
+				: `${it} ft`,
+		});
 		this._speedTypeFilter = new Filter({header: "Speed Type", items: [...Parser.SPEED_MODES, "hover"], displayFn: StrUtil.uppercaseFirst});
 		this._speedFilterWalk = new RangeFilter({header: "Walk", min: 30, max: 30, suffix: " ft"});
 		this._speedFilterBurrow = new RangeFilter({header: "Burrow", min: 30, max: 30, suffix: " ft"});

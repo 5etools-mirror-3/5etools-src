@@ -31,7 +31,7 @@ import {
 	TagImmResVulnConditional,
 	TraitActionTag,
 } from "./converterutils-creature.js";
-import {CoreRuleTag, HazardTag, SpellTag} from "./converterutils-entries.js";
+import {CoreRuleTag, HazardTag, QuantityTag, SpellTag} from "./converterutils-entries.js";
 import {PropOrder} from "../utils-proporder.js";
 import {ConverterStringBlocklist} from "./converterutils-utils-blocklist.js";
 import {VetoolsConfig} from "../utils-config/utils-config-config.js";
@@ -1846,6 +1846,7 @@ export class ConverterCreature extends ConverterBase {
 		TraitActionTag.tryRun(stats);
 		LanguageTag.tryRun(stats);
 		SenseFilterTag.tryRun(stats);
+		QuantityTag.tryRun(stats);
 		SpellcastingTypeTag.tryRun(stats);
 		DamageTypeTag.tryRun(stats);
 		DamageTypeTag.tryRunSpells(stats);

@@ -135,38 +135,104 @@ Parser.numberToText._getOptionallyOrdinal = ({number, str, isOrdinalForm}) => {
 
 Parser.textToNumber = function (str) {
 	str = str.trim().toLowerCase();
+	if (str === "") return NaN;
 	if (!isNaN(str)) return Number(str);
-	switch (str) {
-		case "zero": return 0;
-		case "one": case "a": case "an": case "first": return 1;
-		case "two": case "double": case "second": return 2;
-		case "three": case "triple": case "third": return 3;
-		case "four": case "quadruple": case "fourth": return 4;
-		case "five": case "fifth": return 5;
-		case "six": case "sixth": return 6;
-		case "seven": case "seventh": return 7;
-		case "eight": case "eighth": return 8;
-		case "nine": case "ninth": return 9;
-		case "ten": case "tenth": return 10;
-		case "eleven": return 11;
-		case "twelve": return 12;
-		case "thirteen": return 13;
-		case "fourteen": return 14;
-		case "fifteen": return 15;
-		case "sixteen": return 16;
-		case "seventeen": return 17;
-		case "eighteen": return 18;
-		case "nineteen": return 19;
-		case "twenty": return 20;
-		case "thirty": return 30;
-		case "forty": return 40;
-		case "fifty": return 50;
-		case "sixty": return 60;
-		case "seventy": return 70;
-		case "eighty": return 80;
-		case "ninety": return 90;
-	}
-	return NaN;
+
+	const numberWords = {
+		"zero": 0,
+		"one": 1,
+		"a": 1,
+		"an": 1,
+		"first": 1,
+		"two": 2,
+		"double": 2,
+		"second": 2,
+		"three": 3,
+		"triple": 3,
+		"third": 3,
+		"four": 4,
+		"quadruple": 4,
+		"fourth": 4,
+		"five": 5,
+		"fifth": 5,
+		"six": 6,
+		"sixth": 6,
+		"seven": 7,
+		"seventh": 7,
+		"eight": 8,
+		"eighth": 8,
+		"nine": 9,
+		"ninth": 9,
+		"ten": 10,
+		"tenth": 10,
+		"eleven": 11,
+		"twelve": 12,
+		"thirteen": 13,
+		"fourteen": 14,
+		"fifteen": 15,
+		"sixteen": 16,
+		"seventeen": 17,
+		"eighteen": 18,
+		"nineteen": 19,
+		"twenty": 20,
+		"thirty": 30,
+		"forty": 40,
+		"fifty": 50,
+		"sixty": 60,
+		"seventy": 70,
+		"eighty": 80,
+		"ninety": 90,
+		"hundred": 100,
+		"thousand": 1000,
+	};
+
+	const parts = str.split(/[\s-]+/);
+	let total = 0;
+	let current = 0;
+
+	for (const part of parts) {
+		if (numberWords[part] === 1000) {
+			total += current * 1000;
+			current = 0;
+		} else if (numberWords[part] === 100) {
+			current *= 100;
+		} else if (numberWords[part] !== undefined) {
+			current += numberWords[part];
+		} else if (part === "and") {
+			continue;
+		} else {
+			return NaN;
+		}
+	};
+
+	return total + current;
+};
+
+Parser.FRACTION_WORDS_TO_NUMBER = {
+	"one-eighth": 1 / 8,
+	"one-fifth": 1 / 5,
+	"one-quarter": 1 / 4,
+	"a quarter": 1 / 4,
+	"three-eighths": 3 / 8,
+	"two-fifths": 2 / 5,
+	"two-thirds": 2 / 3,
+	"one-half": 1 / 2,
+	"a half": 1 / 2,
+	"half": 1 / 2,
+	"half a": 1 / 2,
+	"half an": 1 / 2,
+	"three-fifths": 3 / 5,
+	"five-eighths": 5 / 8,
+	"three-quarters": 3 / 4,
+	"four-fifths": 4 / 5,
+	"seven-eighths": 7 / 8,
+};
+
+Parser.fractionTextToNumber = function (str) {
+	str = str.replace(/of\san?/, "").trim().toLowerCase();
+	if (str === "") return NaN;
+
+	return this.FRACTION_WORDS_TO_NUMBER[str] !== undefined ? this.FRACTION_WORDS_TO_NUMBER[str] : NaN;
 };
 
 Parser.numberToVulgar = function (number, {isFallbackOnFractional = true} = {}) {
@@ -206,8 +272,11 @@ Parser.numberToVulgar = function (number, {isFallbackOnFractional = true} = {}) 
 	return isFallbackOnFractional ? Parser.numberToFractional(number) : null;
 };
 
+Parser.VULGAR_GLYPHS = ["⅛", "¼", "⅜", "½", "⅝", "¾", "⅞", "⅓", "⅔", "⅙", "⅚"];
+
 Parser.vulgarToNumber = function (str) {
-	const [, leading = "0", vulgar = ""] = /^(\d+)?([⅛¼⅜½⅝¾⅞⅓⅔⅙⅚])?$/.exec(str) || [];
+	const vulgarRe = new RegExp(`^(\\d+)?([${Parser.VULGAR_GLYPHS.join("")}])?$`);
+	const [, leading = "0", vulgar = ""] = vulgarRe.exec(str) || [];
 	let out = Number(leading);
 	switch (vulgar) {
 		case "⅛": out += 0.125; break;
@@ -284,9 +353,10 @@ Parser.getSpeedString = (ent, {isMetric = false, isSkipZeroWalk = false, isLongF
 	if (ent.speed == null) return "\u2014";
 
 	styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+	isMetric ||= VetoolsConfig.get("localization", "isMetric");
 
 	const unit = isMetric
-		? Parser.metric.getMetricUnit({originalUnit: "ft.", isShortForm: !isLongForm})
+		? Parser.quantity.getMetricUnit({originalUnit: "ft.", isShortForm: !isLongForm})
 		: isLongForm ? "feet" : "ft.";
 	if (typeof ent.speed === "object") {
 		const stack = [];
@@ -304,7 +374,7 @@ Parser.getSpeedString = (ent, {isMetric = false, isSkipZeroWalk = false, isLongF
 		return stack.join(joiner) + (ent.speed.note ? ` ${ent.speed.note}` : "");
 	}
 
-	return (isMetric ? Parser.metric.getMetricNumber({originalValue: ent.speed, originalUnit: Parser.UNT_FEET}) : ent.speed)
+	return (isMetric ? Parser.quantity.getMetricNumber({originalValue: ent.speed, originalUnit: Parser.UNT_FEET}) : ent.speed)
 		+ (ent.speed === "Varies" ? "" : ` ${unit} `);
 };
 Parser._getSpeedString_addSpeedMode = ({ent, prop, stack, isMetric, isSkipZeroWalk, unit, styleHint}) => {
@@ -325,7 +395,7 @@ Parser._getSpeedString_getVal = ({prop, speed, isMetric}) => {
 		? 0
 		: speed.number != null ? speed.number : speed;
 
-	return isMetric ? Parser.metric.getMetricNumber({originalValue: num, originalUnit: Parser.UNT_FEET}) : num;
+	return isMetric ? Parser.quantity.getMetricNumber({originalValue: num, originalUnit: Parser.UNT_FEET}) : num;
 };
 Parser._getSpeedString_getCondition = ({speed}) => speed.condition ? ` ${Renderer.get().render(speed.condition)}` : "";
 Parser._getSpeedString_getSpeedName = ({prop, styleHint}) => prop === "walk" ? "" : `${prop[styleHint === "classic" ? "toString" : "toTitleCase"]()} `;
@@ -874,6 +944,15 @@ Parser.getDisplayCurrency = function (currency, {isDisplayEmpty = false, styleHi
 
 Parser.itemWeightToFull = function (item, isShortForm) {
 	if (item.weight) {
+		if (VetoolsConfig.get("localization", "isMetric")) {
+			let { value, unit } = Parser.quantity.getMetric({ value: item.weight, unit: "lb." });
+			if (value < 1) { // convert to grams for readability
+				value = value * 1000;
+				unit = "g";
+			}
+			return `${NumberUtil.toFixedNumber(value, 2)} ${unit}${(item.weightNote ? ` ${item.weightNote}` : "")}`;
+		}
+
 		// Handle pure integers
 		if (Math.round(item.weight) === item.weight) return `${item.weight} lb.${(item.weightNote ? ` ${item.weightNote}` : "")}`;
 
@@ -886,7 +965,10 @@ Parser.itemWeightToFull = function (item, isShortForm) {
 		// Fall back on decimal pounds or ounces
 		return `${(item.weight < 1 ? item.weight * 16 : item.weight).toLocaleString(undefined, {maximumFractionDigits: 5})} ${item.weight < 1 ? "oz" : "lb"}.${(item.weightNote ? ` ${item.weightNote}` : "")}`;
 	}
-	if (item.weightMult) return isShortForm ? `×${item.weightMult}` : `base weight ×${item.weightMult}`;
+	if (item.weightMult) {
+		const mult = VetoolsConfig.get("localization", "isMetric") ? item.weightMult * Parser.quantity.POUNDS_TO_KILOGRAMS : item.weightMult;
+		return isShortForm ? `×${mult}` : `base weight ×${mult}`;
+	}
 	return "";
 };
 
@@ -1598,13 +1680,24 @@ Parser.spRangeToFull._renderPoint = function (range) {
 		case Parser.UNT_YARDS:
 		case Parser.UNT_MILES:
 		default:
+			if (VetoolsConfig.get("localization", "isMetric")) {
+				const { value, unit } = Parser.quantity.getMetric({ value: dist.amount, unit: dist.type });
+				return `${value} ${unit}`;
+			}
 			return `${dist.amount} ${dist.amount === 1 ? Parser.getSingletonUnit(dist.type) : dist.type}`;
 	}
 };
 Parser.spRangeToFull._renderArea = function ({range, styleHint, isDisplaySelfArea = false}) {
 	if (styleHint !== "classic" && !isDisplaySelfArea) return "Self";
-	const size = range.distance;
-	return `Self (${size.amount}-${Parser.getSingletonUnit(size.type)}${Parser.spRangeToFull._getAreaStyleString(range)}${range.type === Parser.RNG_CYLINDER ? `${size.amountSecondary != null && size.typeSecondary != null ? `, ${size.amountSecondary}-${Parser.getSingletonUnit(size.typeSecondary)}-high` : ""} cylinder` : ""})`;
+
+	let size = { value: range.distance.amount, unit: range.distance.type };
+	let secondarySize = range.type === Parser.RNG_CYLINDER ? { value: range.distance.amountSecondary, unit: range.distance.typeSecondary } : null;
+	if (VetoolsConfig.get("localization", "isMetric")) {
+		size = Parser.quantity.getMetric(size, true);
+		if (secondarySize) secondarySize = Parser.quantity.getMetric(secondarySize, true);
+	}
+
+	return `Self (${size.value}-${Parser.getSingletonUnit(size.unit)}${Parser.spRangeToFull._getAreaStyleString(range)}${range.type === Parser.RNG_CYLINDER ? `${secondarySize?.value != null && secondarySize?.unit != null ? `, ${secondarySize.value}-${Parser.getSingletonUnit(secondarySize.unit)}-high` : ""} cylinder` : ""})`;
 };
 Parser.spRangeToFull._getAreaStyleString = function (range) {
 	switch (range.type) {
@@ -4419,15 +4512,177 @@ Parser.NUMBERS_TENS = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "s
 Parser.NUMBERS_TEENS = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
 
 // region Metric conversion
-Parser.metric = {
-	// See MPMB's breakdown: https://old.reddit.com/r/dndnext/comments/6gkuec
-	MILES_TO_KILOMETRES: 1.6,
+Parser.quantity = {
+	// See MPMB's breakdown: https://old.reddit.com/r/dndnext/comments/6gkuec and https://www.aidedd.org/adj/poids-et-mesures/ (in french)
+	MILES_TO_KILOMETRES: 1.5, // 1 mi = 1.5 km
 	FEET_TO_METRES: 0.3, // 5 ft = 1.5 m
 	YARDS_TO_METRES: 0.9, // (as above)
 	POUNDS_TO_KILOGRAMS: 0.5, // 2 lb = 1 kg
-	// Other additions
 	INCHES_TO_CENTIMETERS: 2.5, // 1 in = 2.5 cm
+	OUNCES_TO_CENTILITRES: 3, // 1 oz = 3 cl
+	GALLONS_TO_LITRES: 0.25, // 1 gal = 4 l
+	PINTS_TO_LITRES: 0.5, // 1 pt = 0.5 l
+	QUART_TO_LITRES: 1, // 1 qt = 1 l
 	CUBIC_FEET_TO_LITRES: 28, // 1 ft³ = 28 L
+
+	UNIT_WORDS_MAP: {
+		"in": "cm",
+		"in.": "cm",
+		"inch": "centimeter",
+		"inches": "centimeters",
+		"ft": "m",
+		"ft.": "m",
+		"foot": "meter",
+		"feet": "meters",
+		"yd": "m",
+		"yd.": "m",
+		"yard": "meter",
+		"yards": "meters",
+		"mi": "km",
+		"mi.": "km",
+		"mile": "kilometer",
+		"miles": "kilometers",
+		"lb": "kg",
+		"lb.": "kg",
+		"lbs": "kg",
+		"lbs.": "kg",
+		"pound": "kilogram",
+		"pounds": "kilograms",
+		"ounce": "centiliter",
+		"ounces": "centiliters",
+		"oz": "cl",
+		"oz.": "cl",
+		"gallon": "liter",
+		"gallons": "liters",
+		"gal": "l",
+		"gal.": "l",
+		"pint": "liter",
+		"pints": "liters",
+		"quart": "liter",
+		"quarts": "liters",
+		"mph": "km/h",
+	},
+
+	UNIT_PLURAL_MAP: {
+		"centimeter": "centimeters",
+		"meter": "meters",
+		"kilometer": "kilometers",
+		"kilogram": "kilograms",
+		"liter": "liters",
+		"centiliter": "centiliters",
+	},
+
+	RANGE_PATTERNS: [
+		[/\d+\/\d+/, "/"],
+		[/\d+-\d+/, "-"],
+		[/\sto\s/, " to "],
+		[/\sby\s/, " by "],
+		[/-by-/, "-by-"],
+	],
+
+	QUANTIFIERS: [
+		"a few",
+		"a couple",
+		"several",
+		"many",
+		"some",
+		"a number of",
+		"a handful of",
+		"dozens of",
+		"dozens",
+		"dozen",
+		"hundreds of",
+		"hundreds",
+		"hundred",
+		"thousands of",
+		"thousands",
+		"thousand",
+	],
+
+	/**
+ * Attempts to convert a quantity to metric.
+ * @param {Object} quantity - The object representing the original quantity.
+ * @param {number|string} quantity.value - The original value to convert.
+ * @param {string} quantity.unit - The original unit word for the given value.
+ * @param {boolean} isAdjective - If the quantity is being used as an adjective (e.g. "5-foot pole").
+ * @returns {Object} The converted quantity in metric, or the original quantity if conversion fails.
+ */
+	getMetric ({value, unit}, isAdjective = false) {
+		// attempt to convert the unit
+		let metricUnit = this.UNIT_WORDS_MAP[unit];
+		if (!metricUnit) return { value, unit };
+
+		// attempt to parse the value
+		const { nums, sep } = this.getValue(value) ?? {};
+		if (!nums) {
+			return this.isQuantifier(value)
+				? { value, unit: metricUnit }
+				: { value, unit };
+		}
+
+		// attempt to convert the value
+		const metricNums = nums.map((n) => this.getMetricNumber({ originalValue: n, originalUnit: unit }));
+		if (metricNums.some(n => n === null)) return { value, unit };
+
+		// ensure the unit is in the right form
+		metricUnit = !isAdjective && metricNums.some(n => n > 1)
+			? this.UNIT_PLURAL_MAP[metricUnit] ?? metricUnit
+			: metricUnit = Object.keys(this.UNIT_PLURAL_MAP).find(key => this.UNIT_PLURAL_MAP[key] === metricUnit) ?? metricUnit;
+
+		const metricValue = sep ? metricNums.join(sep) : metricNums[0];
+		return { value: metricValue, unit: metricUnit };
+	},
+
+	getValue (val) {
+		if (typeof (val) === "number") return { nums: [val] };
+		if (typeof (val) !== "string" || !val.trim()) return null;
+
+		for (const [pattern, sep] of this.RANGE_PATTERNS) {
+			if (val.match(pattern)) {
+				const nums = val.split(sep).map(n => this.getNumber(n));
+				if (nums.some(n => isNaN(n))) return null;
+				return sep === "/" && nums[0] < 5 && nums[1] <= 10 // the value is a fraction, not a range
+					? { nums: [nums[0] / nums[1]] }
+					: { nums, sep };
+			}
+		}
+
+		const n = this.getNumber(val);
+		return isNaN(n) ? null : { nums: [n] };
+	},
+
+	getNumber (str) {
+		// clean the string
+		str = str.trim().toLowerCase();
+		str = str.replace(/of\san?/, "").trim();
+		str = str.replace(/(?<=\d)(\s|,)(?=\d{3})/g, ""); // remove thousand separators
+
+		if (str === "") return NaN;
+		if (!isNaN(str)) return Number(str);
+		if (!isNaN(Parser.fractionTextToNumber(str))) return Parser.fractionTextToNumber(str);
+		if (!isNaN(Parser.textToNumber(str))) return Parser.textToNumber(str);
+
+		if (str.match(/^\d+\/\d+$/)) {
+			const [n, d] = str.split("/").map(it => Number(it));
+			return d !== 0 ? n / d : NaN;
+		}
+
+		const glyphRe = new RegExp(`[${Parser.VULGAR_GLYPHS.join("")}]`);
+		if (str.match(glyphRe)) {
+			try { return Parser.vulgarToNumber(str); } catch (e) { return NaN; }
+		}
+
+		return NaN; // failed to convert to number
+	},
+
+	isQuantifier (val) {
+		if (typeof val !== "string") return false;
+
+		for (const quantifier of this.QUANTIFIERS) {
+			if (val.includes(quantifier)) return true;
+		}
+		return false;
+	},
 
 	/**
 	 * @param {number} originalValue
@@ -4441,13 +4696,17 @@ Parser.metric = {
 		if (!originalValue) return originalValue;
 
 		let out = null;
-		switch (Parser.getNormalizedUnit(originalUnit)) {
-			case Parser.UNT_INCHES: out = originalValue * Parser.metric.INCHES_TO_CENTIMETERS; break;
-			case Parser.UNT_FEET: out = originalValue * Parser.metric.FEET_TO_METRES; break;
-			case Parser.UNT_YARDS: out = originalValue * Parser.metric.YARDS_TO_METRES; break;
-			case Parser.UNT_MILES: out = originalValue * Parser.metric.MILES_TO_KILOMETRES; break;
-			case Parser.UNT_LBS: out = originalValue * Parser.metric.POUNDS_TO_KILOGRAMS; break;
-			case Parser.UNT_CUBIC_FEET: out = originalValue * Parser.metric.CUBIC_FEET_TO_LITRES; break;
+		switch (originalUnit) {
+			case "in.": case "in": case "inch": case "inches": case Parser.UNT_INCHES: out = originalValue * this.INCHES_TO_CENTIMETERS; break;
+			case "ft.": case "ft": case "foot": case "feet": case Parser.UNT_FEET: out = originalValue * this.FEET_TO_METRES; break;
+			case "yd.": case "yd": case "yard": case "yards": case Parser.UNT_YARDS: out = originalValue * this.YARDS_TO_METRES; break;
+			case "mi.": case "mi": case "mile": case "miles": case "mph": case Parser.UNT_MILES: out = originalValue * this.MILES_TO_KILOMETRES; break;
+			case "lb.": case "lb": case "lbs": case "lbs.": case "pound": case "pounds": case Parser.UNT_LBS: out = originalValue * this.POUNDS_TO_KILOGRAMS; break;
+			case "oz.": case "oz": case "ounce": case "ounces": out = originalValue * this.OUNCES_TO_CENTILITRES; break;
+			case "gal.": case "gal": case "gallon": case "gallons": out = originalValue * this.GALLONS_TO_LITRES; break;
+			case "pint": case "pints": out = originalValue * this.PINTS_TO_LITRES; break;
+			case "quart": case "quarts": out = originalValue * this.QUART_TO_LITRES; break;
+			case Parser.UNT_CUBIC_FEET: out = originalValue * this.CUBIC_FEET_TO_LITRES; break;
 			default: return originalValue;
 		}
 		if (toFixed != null) return NumberUtil.toFixedNumber(out, toFixed);

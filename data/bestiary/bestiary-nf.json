@@ -83,13 +83,13 @@
 				{
 					"name": "Extended Fist",
 					"entries": [
-						"{@atkr m} {@hit 6}, reach 15 ft. {@h}8 ({@damage 1d8 + 4}) Bludgeoning damage plus 5 ({@damage 1d10}) Acid damage. If the target is a Medium or smaller creature, it has the {@condition Grappled|XPHB} condition (escape {@dc 14}) from one of two fists."
+						"{@atkr m} {@hit 6}, reach {@quantity 15|ft}. {@h}8 ({@damage 1d8 + 4}) Bludgeoning damage plus 5 ({@damage 1d10}) Acid damage. If the target is a Medium or smaller creature, it has the {@condition Grappled|XPHB} condition (escape {@dc 14}) from one of two fists."
 					]
 				},
 				{
 					"name": "Acid Spittle",
 					"entries": [
-						"{@atkr r} {@hit 6}, range 60 ft. {@h}13 ({@damage 2d8 + 4}) Acid damage."
+						"{@atkr r} {@hit 6}, range {@quantity 60|ft}. {@h}13 ({@damage 2d8 + 4}) Acid damage."
 					]
 				}
 			],
@@ -164,7 +164,7 @@
 				"cha": "+6"
 			},
 			"senses": [
-				"Blindsight 60 ft."
+				"Blindsight {@quantity 60|ft.}"
 			],
 			"passive": 9,
 			"resist": [
@@ -204,13 +204,13 @@
 				{
 					"name": "Searing Swipe",
 					"entries": [
-						"{@atkr m} {@hit 6}, reach 10 ft. {@h}13 ({@damage 3d6 + 3}) Fire or Lightning damage (eddy's choice)."
+						"{@atkr m} {@hit 6}, reach {@quantity 10|ft}. {@h}13 ({@damage 3d6 + 3}) Fire or Lightning damage (eddy's choice)."
 					]
 				},
 				{
 					"name": "Arcane Bolt",
 					"entries": [
-						"{@atkr r} {@hit 6}, range 120 ft. {@h}14 ({@damage 2d10 + 3}) Force damage."
+						"{@atkr r} {@hit 6}, range {@quantity 120|ft}. {@h}14 ({@damage 2d10 + 3}) Force damage."
 					]
 				}
 			],
@@ -218,7 +218,7 @@
 				{
 					"name": "Eldritch Overload",
 					"entries": [
-						"{@actTrigger} The eddy takes damage. {@actResponse d}{@actSave str} {@dc 14}, each creature of the eddy's choice in a 5-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the eddy. {@actSaveFail} 7 ({@damage 2d6}) Force damage, and the target has the {@condition Prone|XPHB} condition."
+						"{@actTrigger} The eddy takes damage. {@actResponse d}{@actSave str} {@dc 14}, each creature of the eddy's choice in a {@quantity 5|-foot} {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from the eddy. {@actSaveFail} 7 ({@damage 2d6}) Force damage, and the target has the {@condition Prone|XPHB} condition."
 					]
 				}
 			],
@@ -306,7 +306,7 @@
 				"perception": "+8"
 			},
 			"senses": [
-				"Truesight 120 ft."
+				"Truesight {@quantity 120|ft.}"
 			],
 			"passive": 18,
 			"conditionImmune": [
@@ -314,7 +314,7 @@
 				"frightened"
 			],
 			"languages": [
-				"telepathy 120 ft. understands Common and Deep Speech but can't speak"
+				"telepathy {@quantity 120|ft.} understands Common and Deep Speech but can't speak"
 			],
 			"cr": "14",
 			"spellcasting": [
@@ -378,19 +378,19 @@
 				{
 					"name": "Mind Lash",
 					"entries": [
-						"{@atkr m,r} {@hit 9}, reach 10 ft. or range 120 ft. {@h}32 ({@damage 6d8 + 4}) Psychic damage."
+						"{@atkr m,r} {@hit 9}, reach {@quantity 10|ft.} or range {@quantity 120|ft}. {@h}32 ({@damage 6d8 + 4}) Psychic damage."
 					]
 				},
 				{
 					"name": "Vicious Stinger",
 					"entries": [
-						"{@atkr m} {@hit 9}, reach 5 ft. {@h}11 ({@damage 2d6 + 4}) Piercing damage plus 26 ({@damage 4d12}) Poison damage, and the target's {@variantrule Speed|XPHB} is reduced to 0 feet until the start of the phaerimm's next turn."
+						"{@atkr m} {@hit 9}, reach {@quantity 5|ft}. {@h}11 ({@damage 2d6 + 4}) Piercing damage plus 26 ({@damage 4d12}) Poison damage, and the target's {@variantrule Speed|XPHB} is reduced to {@quantity 0|feet} until the start of the phaerimm's next turn."
 					]
 				},
 				{
 					"name": "Siphon Magic {@recharge 5}",
 					"entries": [
-						"The phaerimm focuses on a magic item it can see within 10 feet. When it does, the phaerimm drains the magic item of any charges. Regardless of whether charges are drained, the phaerimm can cast {@spell Clairvoyance|XPHB}, {@spell Geas|XPHB}, {@spell Major Image|XPHB}, and {@spell Mirage Arcane|XPHB} one additional time that day."
+						"The phaerimm focuses on a magic item it can see within {@quantity 10|feet}. When it does, the phaerimm drains the magic item of any charges. Regardless of whether charges are drained, the phaerimm can cast {@spell Clairvoyance|XPHB}, {@spell Geas|XPHB}, {@spell Major Image|XPHB}, and {@spell Mirage Arcane|XPHB} one additional time that day."
 					]
 				}
 			],
@@ -398,7 +398,7 @@
 				{
 					"name": "Teleport",
 					"entries": [
-						"The phaerimm teleports up to 30 feet to an unoccupied space it can see."
+						"The phaerimm teleports up to {@quantity 30|feet} to an unoccupied space it can see."
 					]
 				}
 			],
@@ -496,14 +496,14 @@
 				"perception": "+5"
 			},
 			"senses": [
-				"Truesight 60 ft."
+				"Truesight {@quantity 60|ft.}"
 			],
 			"passive": 15,
 			"conditionImmune": [
 				"charmed"
 			],
 			"languages": [
-				"telepathy 120 ft. understands Common and Deep Speech but can't speak"
+				"telepathy {@quantity 120|ft.} understands Common and Deep Speech but can't speak"
 			],
 			"cr": "2",
 			"spellcasting": [
@@ -545,13 +545,13 @@
 				{
 					"name": "Stinger",
 					"entries": [
-						"{@atkr m} {@hit 3}, reach 5 ft. {@h}4 ({@damage 1d6 + 1}) Piercing damage plus 9 ({@damage 2d8}) Poison damage."
+						"{@atkr m} {@hit 3}, reach {@quantity 5|ft}. {@h}4 ({@damage 1d6 + 1}) Piercing damage plus 9 ({@damage 2d8}) Poison damage."
 					]
 				},
 				{
 					"name": "Mindwarp Ray",
 					"entries": [
-						"{@atkr r} {@hit 5}, range 120 ft. {@h}6 ({@damage 1d6 + 3}) Psychic damage, and the target has the {@condition Charmed|XPHB} condition until the start of the phaerimm's next turn."
+						"{@atkr r} {@hit 5}, range {@quantity 120|ft}. {@h}6 ({@damage 1d6 + 3}) Psychic damage, and the target has the {@condition Charmed|XPHB} condition until the start of the phaerimm's next turn."
 					]
 				}
 			],
@@ -714,13 +714,13 @@
 				{
 					"name": "Hammer Fist",
 					"entries": [
-						"{@atkr m} {@hit 6}, reach 5 ft. {@h}16 ({@damage 3d8 + 3}) Bludgeoning damage plus 13 ({@damage 3d8}) Force damage."
+						"{@atkr m} {@hit 6}, reach {@quantity 5|ft}. {@h}16 ({@damage 3d8 + 3}) Bludgeoning damage plus 13 ({@damage 3d8}) Force damage."
 					]
 				},
 				{
 					"name": "Thunderous Boom",
 					"entries": [
-						"{@atkr r} {@hit 7}, range 60 ft. {@h}28 ({@damage 8d6}) Thunder damage."
+						"{@atkr r} {@hit 7}, range {@quantity 60|ft}. {@h}28 ({@damage 8d6}) Thunder damage."
 					]
 				}
 			],
@@ -864,7 +864,7 @@
 				{
 					"name": "Psychic Blast",
 					"entries": [
-						"{@atkr m,r} {@hit 6}, reach 5 ft. or range 60 ft. {@h}21 ({@damage 6d6}) Psychic damage."
+						"{@atkr m,r} {@hit 6}, reach {@quantity 5|ft.} or range {@quantity 60|ft}. {@h}21 ({@damage 6d6}) Psychic damage."
 					]
 				}
 			],

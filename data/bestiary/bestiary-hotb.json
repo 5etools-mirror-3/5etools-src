@@ -77,7 +77,7 @@
 				{
 					"name": "Celestial Radiance",
 					"entries": [
-						"{@atkr m,r} {@hit 7}, reach 5 ft. or range 60 ft. {@h}18 ({@damage 4d8}) Radiant damage."
+						"{@atkr m,r} {@hit 7}, reach {@quantity 5|ft.} or range {@quantity 60|ft}. {@h}18 ({@damage 4d8}) Radiant damage."
 					]
 				},
 				{
@@ -139,7 +139,7 @@
 				"stealth": "+2"
 			},
 			"senses": [
-				"Blindsight 60 ft."
+				"Blindsight {@quantity 60|ft.}"
 			],
 			"passive": 8,
 			"resist": [
@@ -162,7 +162,7 @@
 				{
 					"name": "Amorphous",
 					"entries": [
-						"The ooze can move through a space as narrow as 1 inch without expending extra movement to do so."
+						"The ooze can move through a space as narrow as {@quantity 1|inch} without expending extra movement to do so."
 					]
 				},
 				{
@@ -176,7 +176,7 @@
 				{
 					"name": "Pseudopod",
 					"entries": [
-						"{@atkr m} {@hit 3}, reach 5 ft. {@h}10 ({@damage 2d8 + 1}) Acid damage."
+						"{@atkr m} {@hit 3}, reach {@quantity 5|ft}. {@h}10 ({@damage 2d8 + 1}) Acid damage."
 					]
 				}
 			],
@@ -252,13 +252,13 @@
 				{
 					"name": "Chaos Blast",
 					"entries": [
-						"{@atkr m,r} {@hit 4}, reach 5 ft. or range 60 ft. {@h}7 ({@damage 2d6}) damage. Roll {@dice 1d4} to determine the damage type: 1, Acid; 2, Cold; 3, Fire; 4, Lightning."
+						"{@atkr m,r} {@hit 4}, reach {@quantity 5|ft.} or range {@quantity 60|ft}. {@h}7 ({@damage 2d6}) damage. Roll {@dice 1d4} to determine the damage type: 1, Acid; 2, Cold; 3, Fire; 4, Lightning."
 					]
 				},
 				{
 					"name": "Sinister Command {@recharge 5}",
 					"entries": [
-						"{@actSave wis} {@dc 12}, one creature Ivlis can see within 60 feet. {@actSaveFail} The target has the {@condition Charmed|XPHB} condition until the end of its next turn. While {@condition Charmed|XPHB}, the target has the {@condition Incapacitated|XPHB} condition."
+						"{@actSave wis} {@dc 12}, one creature Ivlis can see within {@quantity 60|feet}. {@actSaveFail} The target has the {@condition Charmed|XPHB} condition until the end of its next turn. While {@condition Charmed|XPHB}, the target has the {@condition Incapacitated|XPHB} condition."
 					]
 				}
 			],
@@ -352,7 +352,7 @@
 				{
 					"name": "Poison Dagger",
 					"entries": [
-						"{@atkr m,r} {@hit 5}, reach 5 ft. or range 20/60 ft. {@h}5 ({@damage 1d4 + 3}) Piercing damage plus 3 ({@damage 1d6}) Poison damage."
+						"{@atkr m,r} {@hit 5}, reach {@quantity 5|ft.} or range {@quantity 20/60|ft}. {@h}5 ({@damage 1d4 + 3}) Piercing damage plus 3 ({@damage 1d6}) Poison damage."
 					]
 				}
 			],
@@ -417,8 +417,8 @@
 				"perception": "+4"
 			},
 			"senses": [
-				"Darkvision 120 ft.",
-				"Truesight 30 ft."
+				"Darkvision {@quantity 120|ft.}",
+				"Truesight {@quantity 30|ft.}"
 			],
 			"passive": 14,
 			"languages": [
@@ -444,7 +444,7 @@
 				{
 					"name": "Brine Slicer",
 					"entries": [
-						"{@atkr m} {@hit 4}, reach 5 ft. {@h}9 ({@damage 2d6 + 2}) Slashing damage."
+						"{@atkr m} {@hit 4}, reach {@quantity 5|ft}. {@h}9 ({@damage 2d6 + 2}) Slashing damage."
 					]
 				}
 			],
@@ -536,19 +536,19 @@
 				{
 					"name": "Bite",
 					"entries": [
-						"{@atkr m} {@hit 4}, reach 5 ft. {@h}5 ({@damage 1d6 + 2}) Piercing damage plus 3 ({@damage 1d6}) Poison damage."
+						"{@atkr m} {@hit 4}, reach {@quantity 5|ft}. {@h}5 ({@damage 1d6 + 2}) Piercing damage plus 3 ({@damage 1d6}) Poison damage."
 					]
 				},
 				{
 					"name": "Bone Pike",
 					"entries": [
-						"{@atkr m} {@hit 4}, reach 10 ft. {@h}7 ({@damage 1d10 + 2}) Piercing damage."
+						"{@atkr m} {@hit 4}, reach {@quantity 10|ft}. {@h}7 ({@damage 1d10 + 2}) Piercing damage."
 					]
 				},
 				{
 					"name": "Poison Spit",
 					"entries": [
-						"{@atkr r} {@hit 4}, range 60 ft. {@h}12 ({@damage 3d6 + 2}) Poison damage."
+						"{@atkr r} {@hit 4}, range {@quantity 60|ft}. {@h}12 ({@damage 3d6 + 2}) Poison damage."
 					]
 				}
 			],
@@ -633,13 +633,13 @@
 				{
 					"name": "Vile Mace",
 					"entries": [
-						"{@atkr m} {@hit 4}, reach 5 ft. {@h}5 ({@damage 1d6 + 2}) Bludgeoning damage plus 3 ({@damage 1d6}) Necrotic damage."
+						"{@atkr m} {@hit 4}, reach {@quantity 5|ft}. {@h}5 ({@damage 1d6 + 2}) Bludgeoning damage plus 3 ({@damage 1d6}) Necrotic damage."
 					]
 				},
 				{
 					"name": "Fateful Bolt",
 					"entries": [
-						"{@atkr r} {@hit 4}, range 120 ft. {@h}8 ({@damage 1d12 + 2}) Necrotic damage, and the next attack roll made against the target before the end of Narthus's next turn has {@variantrule Advantage|XPHB}."
+						"{@atkr r} {@hit 4}, range {@quantity 120|ft}. {@h}8 ({@damage 1d12 + 2}) Necrotic damage, and the next attack roll made against the target before the end of Narthus's next turn has {@variantrule Advantage|XPHB}."
 					]
 				}
 			],
@@ -715,13 +715,13 @@
 				{
 					"name": "Rapier",
 					"entries": [
-						"{@atkr m} {@hit 5}, reach 5 ft. {@h}7 ({@damage 1d8 + 3}) Piercing damage."
+						"{@atkr m} {@hit 5}, reach {@quantity 5|ft}. {@h}7 ({@damage 1d8 + 3}) Piercing damage."
 					]
 				},
 				{
 					"name": "Light Crossbow",
 					"entries": [
-						"{@atkr r} {@hit 5}, range 80/320 ft. {@h}7 ({@damage 1d8 + 3}) Piercing damage."
+						"{@atkr r} {@hit 5}, range {@quantity 80/320|ft}. {@h}7 ({@damage 1d8 + 3}) Piercing damage."
 					]
 				}
 			],
@@ -795,19 +795,19 @@
 				{
 					"name": "Needle Sword",
 					"entries": [
-						"{@atkr m} {@hit 6}, reach 5 ft. {@h}6 ({@damage 1d4 + 4}) Piercing damage."
+						"{@atkr m} {@hit 6}, reach {@quantity 5|ft}. {@h}6 ({@damage 1d4 + 4}) Piercing damage."
 					]
 				},
 				{
 					"name": "Enchanting Bow",
 					"entries": [
-						"{@atkr r} {@hit 6}, range 40/160 ft. {@h}1 Piercing damage, and the target has the {@condition Charmed|XPHB} condition until the start of the sprite's next turn."
+						"{@atkr r} {@hit 6}, range {@quantity 40/160|ft}. {@h}1 Piercing damage, and the target has the {@condition Charmed|XPHB} condition until the start of the sprite's next turn."
 					]
 				},
 				{
 					"name": "Heart Sight",
 					"entries": [
-						"{@actSave cha} {@dc 10}, one creature within 5 feet the sprite can see (Celestials, Fiends, Undead automatically fail the save). {@actSaveFail} The sprite knows the target's emotions."
+						"{@actSave cha} {@dc 10}, one creature within {@quantity 5|feet} the sprite can see (Celestials, Fiends, Undead automatically fail the save). {@actSaveFail} The sprite knows the target's emotions."
 					]
 				},
 				{
@@ -901,13 +901,13 @@
 				{
 					"name": "Shortsword",
 					"entries": [
-						"{@atkr m} {@hit 4}, reach 5 ft. {@h}5 ({@damage 1d6 + 2}) Piercing damage."
+						"{@atkr m} {@hit 4}, reach {@quantity 5|ft}. {@h}5 ({@damage 1d6 + 2}) Piercing damage."
 					]
 				},
 				{
 					"name": "Sling",
 					"entries": [
-						"{@atkr r} {@hit 4}, range 30/120 ft. {@h}4 ({@damage 1d4 + 2}) Bludgeoning damage."
+						"{@atkr r} {@hit 4}, range {@quantity 30/120|ft}. {@h}4 ({@damage 1d4 + 2}) Bludgeoning damage."
 					]
 				}
 			],
@@ -967,7 +967,7 @@
 				"stealth": "+4"
 			},
 			"senses": [
-				"Darkvision 60 ft."
+				"Darkvision {@quantity 60|ft.}"
 			],
 			"passive": 13,
 			"resist": [
@@ -1005,19 +1005,19 @@
 				{
 					"name": "Necrotic Sword",
 					"entries": [
-						"{@atkr m} {@hit 4}, reach 5 ft. {@h}6 ({@damage 1d8 + 2}) Slashing damage plus 4 ({@damage 1d8}) Necrotic damage."
+						"{@atkr m} {@hit 4}, reach {@quantity 5|ft}. {@h}6 ({@damage 1d8 + 2}) Slashing damage plus 4 ({@damage 1d8}) Necrotic damage."
 					]
 				},
 				{
 					"name": "Necrotic Bow",
 					"entries": [
-						"{@atkr r} {@hit 4}, range 150/600 ft. {@h}6 ({@damage 1d8 + 2}) Piercing damage plus 4 ({@damage 1d8}) Necrotic damage."
+						"{@atkr r} {@hit 4}, range {@quantity 150/600|ft}. {@h}6 ({@damage 1d8 + 2}) Piercing damage plus 4 ({@damage 1d8}) Necrotic damage."
 					]
 				},
 				{
 					"name": "Drink Life {@recharge 5}",
 					"entries": [
-						"{@actSave con} {@dc 13}, one creature within 5 feet. {@actSaveFail} 6 ({@damage 1d8 + 2}) Necrotic damage, and the wight regains a number of {@variantrule Hit Points|XPHB} equal to the Necrotic damage taken."
+						"{@actSave con} {@dc 13}, one creature within {@quantity 5|feet}. {@actSaveFail} 6 ({@damage 1d8 + 2}) Necrotic damage, and the wight regains a number of {@variantrule Hit Points|XPHB} equal to the Necrotic damage taken."
 					]
 				}
 			],

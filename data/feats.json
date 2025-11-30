@@ -58,7 +58,7 @@
 					"type": "entries",
 					"name": "Aberrant Surge",
 					"entries": [
-						"When you cast the level 1 spell from this feat, you can expend one of your {@variantrule Hit Point Dice|XPHB} and roll it. If you roll an even number, you gain a number of {@variantrule Temporary Hit Points|XPHB} equal to the number rolled. If you roll an odd number, one creature within 30 feet of you (not including you) takes Force damage equal to the number rolled. If no other creatures are in range, you take the damage."
+						"When you cast the level 1 spell from this feat, you can expend one of your {@variantrule Hit Point Dice|XPHB} and roll it. If you roll an even number, you gain a number of {@variantrule Temporary Hit Points|XPHB} equal to the number rolled. If you roll an odd number, one creature within {@quantity 30|feet} of you (not including you) takes Force damage equal to the number rolled. If no other creatures are in range, you take the damage."
 					]
 				}
 			]
@@ -109,7 +109,7 @@
 					"type": "list",
 					"items": [
 						"You learn a {@filter cantrip of your choice from the sorcerer spell list|spells|level=0|class=Sorcerer}. In addition, choose a {@filter 1st-level spell from the sorcerer spell list|spells|level=1|class=Sorcerer}. You learn that spell and can cast it through your mark. Once you cast it, you must finish a short or long rest before you can cast it again through the mark. Constitution is your spellcasting ability for these spells.",
-						"When you cast the 1st-level spell through your mark, you can expend one of your Hit Dice and roll it. If you roll an even number, you gain a number of temporary hit points equal to the number rolled. If you roll an odd number, one random creature within 30 feet of you (not including you) takes force damage equal to the number rolled. If no other creatures are in range, you take the damage."
+						"When you cast the 1st-level spell through your mark, you can expend one of your Hit Dice and roll it. If you roll an even number, you gain a number of temporary hit points equal to the number rolled. If you roll an odd number, one random creature within {@quantity 30|feet} of you (not including you) takes force damage equal to the number rolled. If no other creatures are in range, you take the damage."
 					]
 				},
 				"You also develop a random flaw from the Aberrant Dragonmark Flaws table.",
@@ -346,7 +346,7 @@
 							"type": "item",
 							"name": "Life Channel",
 							"entries": [
-								"You can channel your life force into the power of your magic. When a creature you can see within 60 feet of you fails a saving throw against a spell that deals damage that you cast, you can expend a number of Hit Dice equal to the level of the spell. Roll the expended Hit Dice and add them together. The damage that the creature takes increases by an amount equal to that total."
+								"You can channel your life force into the power of your magic. When a creature you can see within {@quantity 60|feet} of you fails a saving throw against a spell that deals damage that you cast, you can expend a number of Hit Dice equal to the level of the spell. Roll the expended Hit Dice and add them together. The damage that the creature takes increases by an amount equal to that total."
 							]
 						}
 					]
@@ -464,7 +464,7 @@
 							"type": "item",
 							"name": "Protective Ward",
 							"entries": [
-								"When you or a creature you can see within 30 feet of you takes damage, you can use your reaction to expend a spell slot and weave protective magic around the target. Roll a number of d6s equal to the level of the spell slot expended and reduce the damage the target takes by the total rolled on those dice + your spellcasting ability modifier."
+								"When you or a creature you can see within {@quantity 30|feet} of you takes damage, you can use your reaction to expend a spell slot and weave protective magic around the target. Roll a number of d6s equal to the level of the spell slot expended and reduce the damage the target takes by the total rolled on those dice + your spellcasting ability modifier."
 							]
 						}
 					]
@@ -509,7 +509,7 @@
 							"type": "item",
 							"name": "Stasis Strike",
 							"entries": [
-								"Once per turn, when you damage a creature you can see within 60 feet of yourself, you can deal an extra {@damage 1d8} force damage to the target, and it must make a Wisdom saving throw (DC equal to 8 + your proficiency bonus + the modifier of the spellcasting ability you chose for the Scion of the Outer Planes feat) as spectral bindings try to ensnare it. On a successful save, the target escapes. On a failed save, the target has the restrained condition until the start of your next turn. These bindings manifest as chains or some other symbol of stasis. You can use this benefit a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
+								"Once per turn, when you damage a creature you can see within {@quantity 60|feet} of yourself, you can deal an extra {@damage 1d8} force damage to the target, and it must make a Wisdom saving throw (DC equal to 8 + your proficiency bonus + the modifier of the spellcasting ability you chose for the Scion of the Outer Planes feat) as spectral bindings try to ensnare it. On a successful save, the target escapes. On a failed save, the target has the restrained condition until the start of your next turn. These bindings manifest as chains or some other symbol of stasis. You can use this benefit a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
 							]
 						}
 					]
@@ -645,9 +645,9 @@
 				{
 					"type": "list",
 					"items": [
-						"When you are {@condition prone}, standing up uses only 5 feet of your movement.",
+						"When you are {@condition prone}, standing up uses only {@quantity 5|feet} of your movement.",
 						"Climbing doesn't cost you extra movement.",
-						"You can make a running long jump or a running high jump after moving only 5 feet on foot, rather than 10 feet."
+						"You can make a running long jump or a running high jump after moving only {@quantity 5|feet} on foot, rather than {@quantity 10|feet}."
 					]
 				}
 			]
@@ -698,14 +698,14 @@
 					"type": "entries",
 					"name": "Hop Up",
 					"entries": [
-						"When you have the {@condition Prone|XPHB} condition, you can right yourself with only 5 feet of movement."
+						"When you have the {@condition Prone|XPHB} condition, you can right yourself with only {@quantity 5|feet} of movement."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Jumping",
 					"entries": [
-						"You can make a running Long or {@variantrule High Jump|XPHB} after moving only 5 feet."
+						"You can make a running Long or {@variantrule High Jump|XPHB} after moving only {@quantity 5|feet}."
 					]
 				}
 			]
@@ -747,7 +747,7 @@
 							"type": "item",
 							"name": "Grasp of Avarice",
 							"entries": [
-								"Once per turn, when you damage a creature you can see within 60 feet of yourself, you can also deal necrotic damage to it. The necrotic damage equals {@damage 1d6} + your proficiency bonus, and you regain a number of hit points equal to this necrotic damage dealt. You can use this benefit a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
+								"Once per turn, when you damage a creature you can see within {@quantity 60|feet} of yourself, you can also deal necrotic damage to it. The necrotic damage equals {@damage 1d6} + your proficiency bonus, and you regain a number of hit points equal to this necrotic damage dealt. You can use this benefit a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
 							]
 						}
 					]
@@ -802,7 +802,7 @@
 				}
 			],
 			"entries": [
-				"You have {@sense Blindsight|XPHB} with a range of 10 feet."
+				"You have {@sense Blindsight|XPHB} with a range of {@quantity 10|feet}."
 			]
 		},
 		{
@@ -866,7 +866,7 @@
 					"type": "entries",
 					"name": "Far Lobber",
 					"entries": [
-						"When you use the {@action Attack|XPHB} action to throw a vial or flask, you can target an object or creature you can see within 40 feet of yourself."
+						"When you use the {@action Attack|XPHB} action to throw a vial or flask, you can target an object or creature you can see within {@quantity 40|feet} of yourself."
 					]
 				},
 				{
@@ -926,7 +926,7 @@
 					"type": "entries",
 					"name": "Burst of Sunlight",
 					"entries": [
-						"Once per turn when you hit a creature with an attack that deals Radiant damage, you can emit {@variantrule Bright Light|XPHB} in a 30-foot radius from yourself and {@variantrule Dim Light|XPHB} for an additional 30 feet until the start of your next turn. This light is sunlight."
+						"Once per turn when you hit a creature with an attack that deals Radiant damage, you can emit {@variantrule Bright Light|XPHB} in a {@quantity 30|-foot} radius from yourself and {@variantrule Dim Light|XPHB} for an additional {@quantity 30|feet} until the start of your next turn. This light is sunlight."
 					]
 				}
 			]
@@ -1097,7 +1097,7 @@
 					"type": "entries",
 					"name": "Mental Communication",
 					"entries": [
-						"You gain telepathy with a range of 120 feet."
+						"You gain telepathy with a range of {@quantity 120|feet}."
 					]
 				}
 			]
@@ -1167,7 +1167,7 @@
 					"type": "entries",
 					"name": "Blink Steps",
 					"entries": [
-						"Immediately after you take the {@action Attack|XPHB} action or the {@action Magic|XPHB} action, you can teleport up to 30 feet to an unoccupied space you can see."
+						"Immediately after you take the {@action Attack|XPHB} action or the {@action Magic|XPHB} action, you can teleport up to {@quantity 30|feet} to an unoccupied space you can see."
 					]
 				}
 			]
@@ -1228,7 +1228,7 @@
 					"type": "entries",
 					"name": "Energy Redirection",
 					"entries": [
-						"When you take damage of one of the types chosen for the Energy Resistances benefit, you can take a {@variantrule Reaction|XPHB} to direct damage of the same type toward another creature you can see within 60 feet of yourself that isn't behind {@variantrule Cover|XPHB|Total Cover}. If you do so, that creature must succeed on a Dexterity saving throw ({@dc 8} plus your Constitution modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus}) or take damage equal to {@dice 2d12} plus your Constitution modifier."
+						"When you take damage of one of the types chosen for the Energy Resistances benefit, you can take a {@variantrule Reaction|XPHB} to direct damage of the same type toward another creature you can see within {@quantity 60|feet} of yourself that isn't behind {@variantrule Cover|XPHB|Total Cover}. If you do so, that creature must succeed on a Dexterity saving throw ({@dc 8} plus your Constitution modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus}) or take damage equal to {@dice 2d12} plus your Constitution modifier."
 					]
 				}
 			]
@@ -1309,7 +1309,7 @@
 					"type": "entries",
 					"name": "Improve Fate",
 					"entries": [
-						"When you or another creature within 60 feet of you succeeds on or fails a {@variantrule D20 Test|XPHB}, you can roll {@dice 2d4} and apply the total rolled as a bonus or penalty to the {@dice d20} roll. Once you use this benefit, you can't use it again until you roll {@variantrule Initiative|XPHB} or finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
+						"When you or another creature within {@quantity 60|feet} of you succeeds on or fails a {@variantrule D20 Test|XPHB}, you can roll {@dice 2d4} and apply the total rolled as a bonus or penalty to the {@dice d20} roll. Once you use this benefit, you can't use it again until you roll {@variantrule Initiative|XPHB} or finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
 					]
 				}
 			],
@@ -1501,7 +1501,7 @@
 					"type": "entries",
 					"name": "Shadowy Stretch",
 					"entries": [
-						"When you take the {@action Attack|XPHB} action, your reach for your Melee weapon attacks increases by 10 feet until the end of your turn."
+						"When you take the {@action Attack|XPHB} action, your reach for your Melee weapon attacks increases by {@quantity 10|feet} until the end of your turn."
 					]
 				},
 				{
@@ -1554,7 +1554,7 @@
 					"type": "entries",
 					"name": "Gaseous Form",
 					"entries": [
-						"If you drop to 0 {@variantrule Hit Points|XPHB} but aren't killed outright, you can instead drop to 1 {@variantrule Hit Points|XPHB|Hit Point} and cast {@spell Gaseous Form|XPHB} without expending a spell slot (no action required). When you cast this spell this way, you can target only yourself, your {@variantrule Fly Speed|XPHB} is 20 feet, and you regain 10 {@variantrule Hit Points|XPHB} at the start of each of your turns for the spell's duration. The spell's spellcasting ability is the ability increased by this feat.",
+						"If you drop to 0 {@variantrule Hit Points|XPHB} but aren't killed outright, you can instead drop to 1 {@variantrule Hit Points|XPHB|Hit Point} and cast {@spell Gaseous Form|XPHB} without expending a spell slot (no action required). When you cast this spell this way, you can target only yourself, your {@variantrule Fly Speed|XPHB} is {@quantity 20|feet}, and you regain 10 {@variantrule Hit Points|XPHB} at the start of each of your turns for the spell's duration. The spell's spellcasting ability is the ability increased by this feat.",
 						"Once you use this benefit, you can't do so again until you finish a {@variantrule Long Rest|XPHB}."
 					]
 				}
@@ -2163,7 +2163,7 @@
 					"type": "entries",
 					"name": "Quickness",
 					"entries": [
-						"Your {@variantrule Speed|XPHB} increases by 30 feet."
+						"Your {@variantrule Speed|XPHB} increases by {@quantity 30|feet}."
 					]
 				}
 			]
@@ -2246,7 +2246,7 @@
 					"type": "entries",
 					"name": "Flee, Fools!",
 					"entries": [
-						"When a creature with the {@condition Frightened|XPHB} condition starts its turn within 60 feet of you, you can take a {@variantrule Reaction|XPHB} to stoke its terror, provided you can see the creature and it isn't behind {@variantrule Cover|XPHB|Total Cover}. If you do so, the creature must succeed on a Wisdom saving throw (DC 8 plus your Charisma modifier and your {@variantrule Proficiency|XPHB|Proficiency Bonus}) or spend its turn moving away from you by the fastest available means. Once you use this benefit, you can't use it again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
+						"When a creature with the {@condition Frightened|XPHB} condition starts its turn within {@quantity 60|feet} of you, you can take a {@variantrule Reaction|XPHB} to stoke its terror, provided you can see the creature and it isn't behind {@variantrule Cover|XPHB|Total Cover}. If you do so, the creature must succeed on a Wisdom saving throw (DC 8 plus your Charisma modifier and your {@variantrule Proficiency|XPHB|Proficiency Bonus}) or spend its turn moving away from you by the fastest available means. Once you use this benefit, you can't use it again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
 					]
 				},
 				{
@@ -2286,7 +2286,7 @@
 					"type": "entries",
 					"name": "Daylight Presence",
 					"entries": [
-						"As a {@variantrule Bonus Action|XPHB}, you radiate a 30-foot {@variantrule Emanation [Area of Effect]|XPHB|Emanation} of {@variantrule Bright Light|XPHB} that is sunlight. If any of the {@variantrule Emanation [Area of Effect]|XPHB|Emanation}'s area overlaps with an area of {@spell Darkness|XPHB} created by a spell, that spell is dispelled. The {@variantrule Emanation [Area of Effect]|XPHB|Emanation} lasts until you dismiss it (no action required), die, or have the {@condition Incapacitated|XPHB} condition."
+						"As a {@variantrule Bonus Action|XPHB}, you radiate a {@quantity 30|-foot} {@variantrule Emanation [Area of Effect]|XPHB|Emanation} of {@variantrule Bright Light|XPHB} that is sunlight. If any of the {@variantrule Emanation [Area of Effect]|XPHB|Emanation}'s area overlaps with an area of {@spell Darkness|XPHB} created by a spell, that spell is dispelled. The {@variantrule Emanation [Area of Effect]|XPHB|Emanation} lasts until you dismiss it (no action required), die, or have the {@condition Incapacitated|XPHB} condition."
 					]
 				},
 				{
@@ -2430,7 +2430,7 @@
 					"type": "entries",
 					"name": "Siphon Life",
 					"entries": [
-						"When an enemy within 120 feet of you is reduced to 0 {@variantrule Hit Points|XPHB}, you can take a {@variantrule Reaction|XPHB} to regain 50 {@variantrule Hit Points|XPHB}. Once you use this benefit, you can't use it again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
+						"When an enemy within {@quantity 120|feet} of you is reduced to 0 {@variantrule Hit Points|XPHB}, you can take a {@variantrule Reaction|XPHB} to regain 50 {@variantrule Hit Points|XPHB}. Once you use this benefit, you can't use it again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
 					]
 				}
 			]
@@ -2473,7 +2473,7 @@
 					"type": "entries",
 					"name": "Truesight",
 					"entries": [
-						"You have {@sense Truesight|XPHB} with a range of 60 feet."
+						"You have {@sense Truesight|XPHB} with a range of {@quantity 60|feet}."
 					]
 				}
 			]
@@ -2493,7 +2493,7 @@
 			],
 			"entries": [
 				"Your people have extraordinary luck, which you have learned to mystically lend to your companions when you see them falter. You're not sure how you do it; you just wish it, and it happens. Surely a sign of fortune's favor!",
-				"When an ally you can see within 30 feet of you rolls a 1 on the {@dice d20} for an attack roll, an ability check, or a saving throw, you can use your reaction to let the ally reroll the die. The ally must use the new roll.",
+				"When an ally you can see within {@quantity 30|feet} of you rolls a 1 on the {@dice d20} for an attack roll, an ability check, or a saving throw, you can use your reaction to let the ally reroll the die. The ally must use the new roll.",
 				"When you use this ability, you can't use your Lucky racial trait before the end of your next turn."
 			]
 		},
@@ -2549,7 +2549,7 @@
 			],
 			"entries": [
 				"When you use your action to {@action Dash}, you can use a bonus action to make one melee weapon attack or to {@action shove} a creature.",
-				"If you move at least 10 feet in a straight line immediately before taking this bonus action, you either gain a +5 bonus to the attack's damage roll (if you chose to make a melee attack and hit) or push the target up to 10 feet away from you (if you chose to shove and you succeed)."
+				"If you move at least {@quantity 10|feet} in a straight line immediately before taking this bonus action, you either gain a +5 bonus to the attack's damage roll (if you chose to make a melee attack and hit) or push the target up to {@quantity 10|feet} away from you (if you chose to shove and you succeed)."
 			]
 		},
 		{
@@ -2591,14 +2591,14 @@
 					"type": "entries",
 					"name": "Improved Dash",
 					"entries": [
-						"When you take the {@action Dash|XPHB} action, your {@variantrule Speed|XPHB} increases by 10 feet for that action."
+						"When you take the {@action Dash|XPHB} action, your {@variantrule Speed|XPHB} increases by {@quantity 10|feet} for that action."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Charge Attack",
 					"entries": [
-						"If you move at least 10 feet in a straight line toward a target immediately before hitting it with a melee attack roll as part of the {@action Attack|XPHB} action, choose one of the following effects: gain a {@dice 1d8} bonus to the attack's damage roll, or push the target up to 10 feet away if it is no more than one size larger than you. You can use this benefit only once on each of your turns."
+						"If you move at least {@quantity 10|feet} in a straight line toward a target immediately before hitting it with a melee attack roll as part of the {@action Attack|XPHB} action, choose one of the following effects: gain a {@dice 1d8} bonus to the attack's damage roll, or push the target up to {@quantity 10|feet} away if it is no more than one size larger than you. You can use this benefit only once on each of your turns."
 					]
 				}
 			]
@@ -2718,7 +2718,7 @@
 					"type": "entries",
 					"name": "Eyes of Eirdu",
 					"entries": [
-						"You and allies within 10 feet of you have {@variantrule Advantage|XPHB} on saving throws made to avoid or end the {@condition Blinded|XPHB} condition."
+						"You and allies within {@quantity 10|feet} of you have {@variantrule Advantage|XPHB} on saving throws made to avoid or end the {@condition Blinded|XPHB} condition."
 					]
 				},
 				{
@@ -2774,7 +2774,7 @@
 					"type": "entries",
 					"name": "Grasping Mist",
 					"entries": [
-						"Whenever you cast {@spell Fog Cloud|XPHB}, nonmagical flames in the spell's {@variantrule Sphere [Area of Effect]|XPHB|Sphere} are extinguished, and creatures other than you and your allies have their {@variantrule Speed|XPHB} reduced by 5 feet while in the spell's {@variantrule Sphere [Area of Effect]|XPHB|Sphere}."
+						"Whenever you cast {@spell Fog Cloud|XPHB}, nonmagical flames in the spell's {@variantrule Sphere [Area of Effect]|XPHB|Sphere} are extinguished, and creatures other than you and your allies have their {@variantrule Speed|XPHB} reduced by {@quantity 5|feet} while in the spell's {@variantrule Sphere [Area of Effect]|XPHB|Sphere}."
 					]
 				}
 			]
@@ -2835,7 +2835,7 @@
 										],
 										[
 											"2",
-											"{@b Disruption Field.} Waves of energy ripple around you. Every creature that starts its turn within 5 feet of you, or that moves into that area for the first time on a turn, takes {@damage 1d8} force damage."
+											"{@b Disruption Field.} Waves of energy ripple around you. Every creature that starts its turn within {@quantity 5|feet} of you, or that moves into that area for the first time on a turn, takes {@damage 1d8} force damage."
 										],
 										[
 											"3",
@@ -2843,7 +2843,7 @@
 										],
 										[
 											"4",
-											"{@b Wailing Winds.} Winds swirl in a 15-foot-radius sphere centered on you. You and any other creatures in that area have disadvantage on Wisdom saving throws."
+											"{@b Wailing Winds.} Winds swirl in a {@quantity 15|-foot}-radius sphere centered on you. You and any other creatures in that area have disadvantage on Wisdom saving throws."
 										]
 									]
 								}
@@ -3030,7 +3030,7 @@
 					"type": "list",
 					"items": [
 						"You ignore the loading quality of crossbows with which you are proficient.",
-						"Being within 5 feet of a hostile creature doesn't impose disadvantage on your ranged attack rolls.",
+						"Being within {@quantity 5|feet} of a hostile creature doesn't impose disadvantage on your ranged attack rolls.",
 						"When you use the {@action Attack} action and attack with a one-handed weapon, you can use a bonus action to attack with a {@item hand crossbow|phb} you are holding."
 					]
 				}
@@ -3069,7 +3069,7 @@
 					"type": "entries",
 					"name": "Firing in Melee",
 					"entries": [
-						"Being within 5 feet of an enemy doesn't impose {@variantrule Disadvantage|XPHB} on your attack rolls with crossbows."
+						"Being within {@quantity 5|feet} of an enemy doesn't impose {@variantrule Disadvantage|XPHB} on your attack rolls with crossbows."
 					]
 				},
 				{
@@ -3122,7 +3122,7 @@
 				{
 					"type": "list",
 					"items": [
-						"Once per turn, when you hit a creature with an attack that deals bludgeoning damage, you can move it 5 feet to an unoccupied space, provided the target is no more than one size larger than you.",
+						"Once per turn, when you hit a creature with an attack that deals bludgeoning damage, you can move it {@quantity 5|feet} to an unoccupied space, provided the target is no more than one size larger than you.",
 						"When you score a critical hit that deals bludgeoning damage to a creature, attack rolls against that creature are made with advantage until the start of your next turn."
 					]
 				}
@@ -3154,7 +3154,7 @@
 					"type": "entries",
 					"name": "Push",
 					"entries": [
-						"Once per turn, when you hit a creature with an attack that deals Bludgeoning damage, you can move it 5 feet to an unoccupied space if the target is no more than one size larger than you."
+						"Once per turn, when you hit a creature with an attack that deals Bludgeoning damage, you can move it {@quantity 5|feet} to an unoccupied space if the target is no more than one size larger than you."
 					]
 				},
 				{
@@ -3192,7 +3192,7 @@
 					"type": "entries",
 					"name": "Dragon's Terror",
 					"entries": [
-						"You can take a {@action Magic|XPHB} action to instill terror in a creature you can see within 30 feet of yourself. The target must succeed on a Wisdom saving throw (DC 8 plus your Wisdom modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus}) or have the {@condition Frightened|XPHB} condition until the end of your next turn. If the target succeeds on the save or when the effect ends for a target, the target is immune to this effect for 24 hours."
+						"You can take a {@action Magic|XPHB} action to instill terror in a creature you can see within {@quantity 30|feet} of yourself. The target must succeed on a Wisdom saving throw (DC 8 plus your Wisdom modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus}) or have the {@condition Frightened|XPHB} condition until the end of your next turn. If the target succeeds on the save or when the effect ends for a target, the target is immune to this effect for 24 hours."
 					]
 				},
 				{
@@ -3476,7 +3476,7 @@
 				{
 					"type": "list",
 					"items": [
-						"Instead of exhaling destructive energy, you can expend a use of your Breath Weapon trait to roar, forcing each creature of your choice within 30 feet of you to make a Wisdom saving throw ({@dc 8} + your proficiency bonus + your Charisma modifier). A target automatically succeeds on the save if it can't hear or see you. On a failed save, a target becomes {@condition frightened} of you for 1 minute. If the {@condition frightened} target takes any damage, it can repeat the saving throw, ending the effect on itself on a success."
+						"Instead of exhaling destructive energy, you can expend a use of your Breath Weapon trait to roar, forcing each creature of your choice within {@quantity 30|feet} of you to make a Wisdom saving throw ({@dc 8} + your proficiency bonus + your Charisma modifier). A target automatically succeeds on the save if it can't hear or see you. On a failed save, a target becomes {@condition frightened} of you for 1 minute. If the {@condition frightened} target takes any damage, it can repeat the saving throw, ending the effect on itself on a success."
 					]
 				}
 			]
@@ -3992,7 +3992,7 @@
 							"type": "item",
 							"name": "Searing Ignition",
 							"entries": [
-								"When you take the {@action Attack} action on your turn, you can replace a single attack with a magical burst of flame. Each creature of your choice in a 15-foot-radius sphere centered on you must make a Dexterity saving throw (DC equals 8 + your proficiency bonus + the modifier of the ability increased by this feat). On a failed save, a creature takes fire damage equal to {@damage 1d8} + your proficiency bonus, and it has the blinded condition until the start of your next turn. On a successful save, the creature takes half as much damage only. You can use your Searing Ignition a number of times equal to your proficiency bonus (but no more than once per turn), and you regain all expended uses when you finish a long rest."
+								"When you take the {@action Attack} action on your turn, you can replace a single attack with a magical burst of flame. Each creature of your choice in a {@quantity 15|-foot}-radius sphere centered on you must make a Dexterity saving throw (DC equals 8 + your proficiency bonus + the modifier of the ability increased by this feat). On a failed save, a creature takes fire damage equal to {@damage 1d8} + your proficiency bonus, and it has the blinded condition until the start of your next turn. On a successful save, the creature takes half as much damage only. You can use your Searing Ignition a number of times equal to your proficiency bonus (but no more than once per turn), and you regain all expended uses when you finish a long rest."
 							]
 						}
 					]
@@ -4033,7 +4033,7 @@
 					"type": "entries",
 					"name": "Tag Team",
 					"entries": [
-						"When you take the {@action Help|XPHB} action, you can switch places with a willing ally within 5 feet of yourself as part of that same action. This movement doesn't provoke {@action Opportunity Attack|XPHB|Opportunity Attacks}. You can't use this benefit if the ally has the {@condition Incapacitated|XPHB} condition."
+						"When you take the {@action Help|XPHB} action, you can switch places with a willing ally within {@quantity 5|feet} of yourself as part of that same action. This movement doesn't provoke {@action Opportunity Attack|XPHB|Opportunity Attacks}. You can't use this benefit if the ally has the {@condition Incapacitated|XPHB} condition."
 					]
 				}
 			]
@@ -4383,7 +4383,7 @@
 					"type": "list",
 					"items": [
 						"When you roll fire damage for a spell you cast, you can reroll any roll of 1 on the fire damage dice, but you must use the new roll, even if it is another 1.",
-						"Whenever you cast a spell that deals fire damage, you can cause flames to wreathe you until the end of your next turn. The flames don't harm you or your possessions, and they shed bright light out to 30 feet and dim light for an additional 30 feet. While the flames are present, any creature within 5 feet of you that hits you with a melee attack takes {@damage 1d4} fire damage."
+						"Whenever you cast a spell that deals fire damage, you can cause flames to wreathe you until the end of your next turn. The flames don't harm you or your possessions, and they shed bright light out to {@quantity 30|feet} and dim light for an additional {@quantity 30|feet}. While the flames are present, any creature within {@quantity 5|feet} of you that hits you with a melee attack takes {@damage 1d4} fire damage."
 					]
 				}
 			]
@@ -4455,7 +4455,7 @@
 							"type": "item",
 							"name": "Frigid Retaliation",
 							"entries": [
-								"Immediately after a creature you can see within 30 feet of you hits you with an attack roll and deals damage, you can use your reaction to retaliate with a conjured blast of ice. The creature must make a Constitution saving throw (DC equals 8 + your proficiency bonus + the modifier of the ability increased by this feat). On a failed save, the creature takes cold damage equal to {@damage 1d8} + your proficiency bonus, and its speed is reduced to 0 until the end of its next turn. You can use this reaction a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
+								"Immediately after a creature you can see within {@quantity 30|feet} of you hits you with an attack roll and deals damage, you can use your reaction to retaliate with a conjured blast of ice. The creature must make a Constitution saving throw (DC equals 8 + your proficiency bonus + the modifier of the ability increased by this feat). On a failed save, the creature takes cold damage equal to {@damage 1d8} + your proficiency bonus, and its speed is reduced to 0 until the end of its next turn. You can use this reaction a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
 							]
 						}
 					]
@@ -4551,7 +4551,7 @@
 							"type": "item",
 							"name": "Telekinetic Reprisal",
 							"entries": [
-								"When you take damage from a creature that is within 10 feet of you, you can use your reaction to emanate telekinetic energy. The creature that dealt damage to you must make a Strength saving throw (DC equals 8 + your proficiency bonus + the ability modifier of the score increased by this feat). On a failed save, the creature takes {@damage 2d8} force damage and is pushed up to 10 feet away from you. On a successful save, the creature takes half as much damage and isn't pushed. You can use this reaction a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
+								"When you take damage from a creature that is within {@quantity 10|feet} of you, you can use your reaction to emanate telekinetic energy. The creature that dealt damage to you must make a Strength saving throw (DC equals 8 + your proficiency bonus + the ability modifier of the score increased by this feat). On a failed save, the creature takes {@damage 2d8} force damage and is pushed up to {@quantity 10|feet} away from you. On a successful save, the creature takes half as much damage and isn't pushed. You can use this reaction a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
 							]
 						}
 					]
@@ -4599,7 +4599,7 @@
 							"type": "item",
 							"name": "Protective Wings",
 							"entries": [
-								"You can manifest protective wings that can shield you or others. When you or another creature you can see within 5 feet of you is hit by an attack roll, you can use your reaction to manifest spectral wings from your back for a moment. You grant a bonus to the target's AC equal to your proficiency bonus against that attack roll, potentially causing it to miss. You can use this reaction a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
+								"You can manifest protective wings that can shield you or others. When you or another creature you can see within {@quantity 5|feet} of you is hit by an attack roll, you can use your reaction to manifest spectral wings from your back for a moment. You grant a bonus to the target's AC equal to your proficiency bonus against that attack roll, potentially causing it to miss. You can use this reaction a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
 							]
 						}
 					]
@@ -4799,7 +4799,7 @@
 					"type": "entries",
 					"name": "Mark of Inspiration",
 					"entries": [
-						"When you cast a cantrip, you can roll one or two of your unexpended {@variantrule Hit Point Dice|XPHB}. You gain a number of {@variantrule Temporary Hit Points|XPHB} equal to the number rolled plus your Constitution modifier, and one creature of your choice within 30 feet of you (not including you) takes Force damage equal to the number rolled. Those dice are then expended.",
+						"When you cast a cantrip, you can roll one or two of your unexpended {@variantrule Hit Point Dice|XPHB}. You gain a number of {@variantrule Temporary Hit Points|XPHB} equal to the number rolled plus your Constitution modifier, and one creature of your choice within {@quantity 30|feet} of you (not including you) takes Force damage equal to the number rolled. Those dice are then expended.",
 						"You can use this benefit a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
 					]
 				}
@@ -4845,7 +4845,7 @@
 					"type": "entries",
 					"name": "Shared Detection",
 					"entries": [
-						"When you use the Magical Detection benefit of your {@feat Mark of Detection|EFA} feat to cast {@spell See Invisibility|XPHB} without a spell slot, you can choose one creature you can see within 30 feet of yourself. That creature also gains the benefits of the spell for its duration."
+						"When you use the Magical Detection benefit of your {@feat Mark of Detection|EFA} feat to cast {@spell See Invisibility|XPHB} without a spell slot, you can choose one creature you can see within {@quantity 30|feet} of yourself. That creature also gains the benefits of the spell for its duration."
 					]
 				}
 			]
@@ -4936,14 +4936,14 @@
 					"type": "entries",
 					"name": "Improved Handling",
 					"entries": [
-						"While you are mounted, immediately after you hit a target within 5 feet of your mount with a melee attack roll, your mount can take a {@variantrule Reaction|XPHB} to move up to its {@variantrule Speed|XPHB} or take the {@action Attack|XPHB} action to make one attack only (your choice)."
+						"While you are mounted, immediately after you hit a target within {@quantity 5|feet} of your mount with a melee attack roll, your mount can take a {@variantrule Reaction|XPHB} to move up to its {@variantrule Speed|XPHB} or take the {@action Attack|XPHB} action to make one attack only (your choice)."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Subdue Animal",
 					"entries": [
-						"As a {@action Magic|XPHB} action, you exert command over one Beast or Monstrosity you can see within 30 feet of yourself. The target must succeed on a Wisdom saving throw (DC 8 plus your Wisdom modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus}) or have the {@condition Frightened|XPHB} condition until the start of your next turn. You can use this benefit a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
+						"As a {@action Magic|XPHB} action, you exert command over one Beast or Monstrosity you can see within {@quantity 30|feet} of yourself. The target must succeed on a Wisdom saving throw (DC 8 plus your Wisdom modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus}) or have the {@condition Frightened|XPHB} condition until the start of your next turn. You can use this benefit a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
 					]
 				}
 			]
@@ -5033,7 +5033,7 @@
 					"type": "entries",
 					"name": "Improved Hospitality",
 					"entries": [
-						"When you cast {@spell Purify Food and Drink|XPHB}, you can modify the spell so that instead of its normal effect, each creature of your choice within 30 feet of you is refreshed. Each affected creature's {@condition Exhaustion|XPHB} level is reduced by 1, and the creature gains {@variantrule Temporary Hit Points|XPHB} equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus} plus your Intelligence, Wisdom, or Charisma modifier (choose when you select this feat). Once you modify the spell with this benefit, you can't do so again until you finish a {@variantrule Long Rest|XPHB}."
+						"When you cast {@spell Purify Food and Drink|XPHB}, you can modify the spell so that instead of its normal effect, each creature of your choice within {@quantity 30|feet} of you is refreshed. Each affected creature's {@condition Exhaustion|XPHB} level is reduced by 1, and the creature gains {@variantrule Temporary Hit Points|XPHB} equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus} plus your Intelligence, Wisdom, or Charisma modifier (choose when you select this feat). Once you modify the spell with this benefit, you can't do so again until you finish a {@variantrule Long Rest|XPHB}."
 					]
 				}
 			]
@@ -5123,7 +5123,7 @@
 					"type": "entries",
 					"name": "Improved Passage",
 					"entries": [
-						"When you use the Magical Passage benefit of your {@feat Mark of Passage|EFA} feat to cast {@spell Misty Step|XPHB} without a spell slot, you can also choose up to two willing creatures you can see within 30 feet of yourself before you teleport. Each target can then take a {@variantrule Reaction|XPHB} to also teleport up to 30 feet to an unoccupied space it can see."
+						"When you use the Magical Passage benefit of your {@feat Mark of Passage|EFA} feat to cast {@spell Misty Step|XPHB} without a spell slot, you can also choose up to two willing creatures you can see within {@quantity 30|feet} of yourself before you teleport. Each target can then take a {@variantrule Reaction|XPHB} to also teleport up to {@quantity 30|feet} to an unoccupied space it can see."
 					]
 				}
 			],
@@ -5169,7 +5169,7 @@
 					"type": "entries",
 					"name": "Inspired Scribing",
 					"entries": [
-						"When you cast {@spell Comprehend Languages|XPHB}, you can modify the spell to encompass up to three willing creatures you can see within 30 feet of yourself. Each chosen creature also gains the benefits of the spell for the duration. In addition, for the duration of the spell, you and the chosen creatures can communicate telepathically with each other while within 1 mile of each other. Once you modify the spell with this benefit, you can't do so again until you finish a {@variantrule Long Rest|XPHB}."
+						"When you cast {@spell Comprehend Languages|XPHB}, you can modify the spell to encompass up to three willing creatures you can see within {@quantity 30|feet} of yourself. Each chosen creature also gains the benefits of the spell for the duration. In addition, for the duration of the spell, you and the chosen creatures can communicate telepathically with each other while within {@quantity 1|mile} of each other. Once you modify the spell with this benefit, you can't do so again until you finish a {@variantrule Long Rest|XPHB}."
 					]
 				}
 			]
@@ -5304,7 +5304,7 @@
 					"type": "entries",
 					"name": "Improved Storm",
 					"entries": [
-						"When you use the Storm Magic benefit of your {@feat Mark of Storm|EFA} feat to cast {@spell Gust of Wind|XPHB} without a spell slot, you also gain a {@variantrule Fly Speed|XPHB} of 60 feet for the duration of the spell."
+						"When you use the Storm Magic benefit of your {@feat Mark of Storm|EFA} feat to cast {@spell Gust of Wind|XPHB} without a spell slot, you also gain a {@variantrule Fly Speed|XPHB} of {@quantity 60|feet} for the duration of the spell."
 					]
 				}
 			],
@@ -5350,7 +5350,7 @@
 					"type": "entries",
 					"name": "Improved Warding",
 					"entries": [
-						"When a creature makes an attack roll against you or a creature you can see within 30 feet of yourself, you can take a {@variantrule Reaction|XPHB} to impose {@variantrule Disadvantage|XPHB} on that roll. You can use this benefit a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
+						"When a creature makes an attack roll against you or a creature you can see within {@quantity 30|feet} of yourself, you can take a {@variantrule Reaction|XPHB} to impose {@variantrule Disadvantage|XPHB} on that roll. You can use this benefit a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
 					]
 				}
 			]
@@ -5389,7 +5389,7 @@
 							"type": "item",
 							"name": "Cloudy Escape",
 							"entries": [
-								"When a creature you can see hits you with an attack roll, you can use your reaction to give yourself resistance to that attack's damage. You then teleport to an unoccupied space that you can see within 30 feet of yourself. You can use this reaction a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
+								"When a creature you can see hits you with an attack roll, you can use your reaction to give yourself resistance to that attack's damage. You then teleport to an unoccupied space that you can see within {@quantity 30|feet} of yourself. You can use this reaction a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
 							]
 						}
 					]
@@ -5417,7 +5417,7 @@
 					"items": [
 						"You gain proficiency with firearms (see \"{@variantrule Firearms|DMG}\" in the Dungeon Master's Guide).",
 						"You ignore the {@itemProperty LD|PHB|loading} property of firearms.",
-						"Being within 5 feet of a hostile creature doesn't impose disadvantage on your ranged attack rolls."
+						"Being within {@quantity 5|feet} of a hostile creature doesn't impose disadvantage on your ranged attack rolls."
 					]
 				}
 			]
@@ -5457,7 +5457,7 @@
 					"type": "entries",
 					"name": "Distracting Melody",
 					"entries": [
-						"When you take the {@action Help|XPHB} action to assist an ally's attack roll, the enemy you're distracting can be within 30 feet of you, rather than within 5 feet of you, provided the enemy can see or hear you."
+						"When you take the {@action Help|XPHB} action to assist an ally's attack roll, the enemy you're distracting can be within {@quantity 30|feet} of you, rather than within {@quantity 5|feet} of you, provided the enemy can see or hear you."
 					]
 				}
 			]
@@ -5498,7 +5498,7 @@
 					"type": "entries",
 					"name": "Inspiring Willpower",
 					"entries": [
-						"If you succeed on a saving throw to end the {@condition Frightened|XPHB} or {@condition Paralyzed|XPHB} condition on yourself, you can choose one ally you can see within 30 feet of yourself that has the same condition. That condition immediately ends for that ally."
+						"If you succeed on a saving throw to end the {@condition Frightened|XPHB} or {@condition Paralyzed|XPHB} condition on yourself, you can choose one ally you can see within {@quantity 30|feet} of yourself that has the same condition. That condition immediately ends for that ally."
 					]
 				}
 			]
@@ -5532,7 +5532,7 @@
 					"type": "entries",
 					"name": "Battle Medic",
 					"entries": [
-						"If you have a {@item Healer's Kit|XPHB}, you can expend one use of it and tend to a creature within 5 feet of yourself as a {@action Utilize|XPHB} action. That creature can expend one of its {@variantrule Hit Point Dice|XPHB}, and you then roll that die. The creature regains a number of {@variantrule Hit Points|XPHB} equal to the roll plus your {@variantrule Proficiency|XPHB|Proficiency Bonus}."
+						"If you have a {@item Healer's Kit|XPHB}, you can expend one use of it and tend to a creature within {@quantity 5|feet} of yourself as a {@action Utilize|XPHB} action. That creature can expend one of its {@variantrule Hit Point Dice|XPHB}, and you then roll that die. The creature regains a number of {@variantrule Hit Points|XPHB} equal to the roll plus your {@variantrule Proficiency|XPHB|Proficiency Bonus}."
 					]
 				},
 				{
@@ -5924,7 +5924,7 @@
 				}
 			],
 			"entries": [
-				"You can spend 10 minutes inspiring your companions, shoring up their resolve to fight. When you do so, choose up to six friendly creatures (which can include yourself) within 30 feet of you who can see or hear you and who can understand you. Each creature can gain temporary hit points equal to your level + your Charisma modifier. A creature can't gain temporary hit points from this feat again until it has finished a short or long rest."
+				"You can spend 10 minutes inspiring your companions, shoring up their resolve to fight. When you do so, choose up to six friendly creatures (which can include yourself) within {@quantity 30|feet} of you who can see or hear you and who can understand you. Each creature can gain temporary hit points equal to your level + your Charisma modifier. A creature can't gain temporary hit points from this feat again until it has finished a short or long rest."
 			],
 			"hasFluffImages": true
 		},
@@ -5967,7 +5967,7 @@
 					"type": "entries",
 					"name": "Bolstering Performance",
 					"entries": [
-						"When you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}, you can give an inspiring performance: a speech, song, or dance. When you do so, choose up to six allies (which can include yourself) within 30 feet of yourself who witness the performance. The chosen creatures each gain {@variantrule Temporary Hit Points|XPHB} equal to your character level plus the modifier of the ability you increased with this feat."
+						"When you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}, you can give an inspiring performance: a speech, song, or dance. When you do so, choose up to six allies (which can include yourself) within {@quantity 30|feet} of yourself who witness the performance. The chosen creatures each gain {@variantrule Temporary Hit Points|XPHB} equal to your character level plus the modifier of the ability you increased with this feat."
 					]
 				}
 			]
@@ -5985,7 +5985,7 @@
 				}
 			],
 			"entries": [
-				"When a creature you can see hits another creature within 5 feet of you with an attack roll, you can take a {@variantrule Reaction|XPHB} to reduce the damage dealt to the target by {@dice 1d10} plus your {@variantrule Proficiency|XPHB|Proficiency Bonus}. You must be holding a {@item Shield|XPHB} or a Simple or Martial weapon to use this {@variantrule Reaction|XPHB}."
+				"When a creature you can see hits another creature within {@quantity 5|feet} of you with an attack roll, you can take a {@variantrule Reaction|XPHB} to reduce the damage dealt to the target by {@dice 1d10} plus your {@variantrule Proficiency|XPHB|Proficiency Bonus}. You must be holding a {@item Shield|XPHB} or a Simple or Martial weapon to use this {@variantrule Reaction|XPHB}."
 			]
 		},
 		{
@@ -6102,14 +6102,14 @@
 							"type": "item",
 							"name": "Cavernous Sight",
 							"entries": [
-								"You gain {@sense darkvision} with a range of 60 feet. If you already have {@sense darkvision} from another source, its range increases by 60 feet."
+								"You gain {@sense darkvision} with a range of {@quantity 60|feet}. If you already have {@sense darkvision} from another source, its range increases by {@quantity 60|feet}."
 							]
 						},
 						{
 							"type": "item",
 							"name": "Stone Throw",
 							"entries": [
-								"As a bonus action, you can take a rock and make a magical attack with it. The attack is a ranged spell attack with a range of 60 feet that uses the ability score you increased with this feat as the spellcasting ability. On a hit, the rock deals {@damage 1d10} force damage, and the target must succeed on a Strength saving throw (DC equals 8 + your proficiency bonus + the spellcasting ability modifier) or have the prone condition. You can use this bonus action a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
+								"As a bonus action, you can take a rock and make a magical attack with it. The attack is a ranged spell attack with a range of {@quantity 60|feet} that uses the ability score you increased with this feat as the spellcasting ability. On a hit, the rock deals {@damage 1d10} force damage, and the target must succeed on a Strength saving throw (DC equals 8 + your proficiency bonus + the spellcasting ability modifier) or have the prone condition. You can use this bonus action a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
 							]
 						}
 					]
@@ -6150,7 +6150,7 @@
 							"type": "item",
 							"name": "Commanding Rally",
 							"entries": [
-								"As a bonus action, you can command one ally within 30 feet of yourself to attack. If that ally can see or hear you, they can immediately make one weapon attack as a reaction. If the attack hits, the ally can roll a {@dice d8} and add the number rolled as a bonus to the attack's damage roll. You can use this bonus action a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
+								"As a bonus action, you can command one ally within {@quantity 30|feet} of yourself to attack. If that ally can see or hear you, they can immediately make one weapon attack as a reaction. If the attack hits, the ally can roll a {@dice d8} and add the number rolled as a bonus to the attack's damage roll. You can use this bonus action a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
 							]
 						}
 					]
@@ -6198,7 +6198,7 @@
 							"type": "item",
 							"name": "Bolstering Rally",
 							"entries": [
-								"As a bonus action, you can encourage one creature you can see within 30 feet of yourself (you can choose yourself). If the target can see or hear you, the target gains temporary hit points equal to {@dice 1d8} + your proficiency bonus + the ability modifier of the ability score increased by this feat. You can use this bonus action a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
+								"As a bonus action, you can encourage one creature you can see within {@quantity 30|feet} of yourself (you can choose yourself). If the target can see or hear you, the target gains temporary hit points equal to {@dice 1d8} + your proficiency bonus + the ability modifier of the ability score increased by this feat. You can use this bonus action a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
 							]
 						}
 					]
@@ -6451,7 +6451,7 @@
 					"type": "entries",
 					"name": "Standard Bearer",
 					"entries": [
-						"As a {@variantrule Bonus Action|XPHB}, choose up to three creatures within 60 feet of yourself that can see you. Each target can immediately take a {@variantrule Reaction|XPHB} to right itself and end the {@condition Prone|XPHB} condition, provided its {@variantrule Speed|XPHB} isn't 0. Additionally, you bolster the targets' resolve, which lasts for 1 minute or until you have the {@condition Incapacitated|XPHB} condition. While bolstered, a target can't be possessed or gain the {@condition Charmed|XPHB} or {@condition Frightened|XPHB} condition; if a target is already possessed, {@condition Charmed|XPHB}, or {@condition Frightened|XPHB}, the target has {@variantrule Advantage|XPHB} on any new saving throw against the relevant effect.",
+						"As a {@variantrule Bonus Action|XPHB}, choose up to three creatures within {@quantity 60|feet} of yourself that can see you. Each target can immediately take a {@variantrule Reaction|XPHB} to right itself and end the {@condition Prone|XPHB} condition, provided its {@variantrule Speed|XPHB} isn't 0. Additionally, you bolster the targets' resolve, which lasts for 1 minute or until you have the {@condition Incapacitated|XPHB} condition. While bolstered, a target can't be possessed or gain the {@condition Charmed|XPHB} or {@condition Frightened|XPHB} condition; if a target is already possessed, {@condition Charmed|XPHB}, or {@condition Frightened|XPHB}, the target has {@variantrule Advantage|XPHB} on any new saving throw against the relevant effect.",
 						"Once you use this benefit, you can't do so again until you finish a {@variantrule Long Rest|XPHB}."
 					]
 				}
@@ -6468,14 +6468,14 @@
 					"type": "entries",
 					"name": "Inspiring Strike",
 					"entries": [
-						"Once per turn when you score a {@variantrule Critical Hit|XPHB} against a creature, you can choose an ally within 30 feet of yourself who can see or hear you and who lacks {@variantrule Heroic Inspiration|XPHB}. That ally gains {@variantrule Heroic Inspiration|XPHB}."
+						"Once per turn when you score a {@variantrule Critical Hit|XPHB} against a creature, you can choose an ally within {@quantity 30|feet} of yourself who can see or hear you and who lacks {@variantrule Heroic Inspiration|XPHB}. That ally gains {@variantrule Heroic Inspiration|XPHB}."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Reassert Honor",
 					"entries": [
-						"When an enemy you can see deals damage to an ally of yours that is within 5 feet of you, you have {@variantrule Advantage|XPHB} on your next attack roll against that enemy before the end of your next turn."
+						"When an enemy you can see deals damage to an ally of yours that is within {@quantity 5|feet} of you, you have {@variantrule Advantage|XPHB} on your next attack roll against that enemy before the end of your next turn."
 					]
 				}
 			]
@@ -6571,9 +6571,9 @@
 				{
 					"type": "list",
 					"items": [
-						"When a creature within 5 feet of you casts a spell, you can use your reaction to make a melee weapon attack against that creature.",
+						"When a creature within {@quantity 5|feet} of you casts a spell, you can use your reaction to make a melee weapon attack against that creature.",
 						"When you damage a creature that is {@status concentration||concentrating} on a spell, that creature has disadvantage on the saving throw it makes to maintain its {@status concentration}.",
-						"You have advantage on saving throws against spells cast by creatures within 5 feet of you."
+						"You have advantage on saving throws against spells cast by creatures within {@quantity 5|feet} of you."
 					]
 				}
 			]
@@ -7878,7 +7878,7 @@
 					"type": "entries",
 					"name": "Courier's Speed",
 					"entries": [
-						"Your {@variantrule Speed|XPHB} increases by 5 feet."
+						"Your {@variantrule Speed|XPHB} increases by {@quantity 5|feet}."
 					]
 				},
 				{
@@ -8142,7 +8142,7 @@
 					"type": "entries",
 					"name": "Vigilant Guardian",
 					"entries": [
-						"When a creature you can see within 5 feet of you is hit by an attack roll, you can take a {@variantrule Reaction|XPHB} to swap places with that creature, and you are hit by the attack instead. You can use this feature a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus} and regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
+						"When a creature you can see within {@quantity 5|feet} of you is hit by an attack roll, you can take a {@variantrule Reaction|XPHB} to swap places with that creature, and you are hit by the attack instead. You can use this feature a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus} and regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
 					]
 				},
 				{
@@ -8728,7 +8728,7 @@
 				{
 					"type": "list",
 					"items": [
-						"Your speed increases by 10 feet.",
+						"Your speed increases by {@quantity 10|feet}.",
 						"When you use the {@action Dash} action, {@quickref difficult terrain||3} doesn't cost you extra movement on that turn.",
 						"When you make a melee attack against a creature, you don't provoke opportunity attacks from that creature for the rest of the turn, whether you hit or not."
 					]
@@ -8865,7 +8865,7 @@
 					"type": "entries",
 					"name": "Mounted Strike",
 					"entries": [
-						"While {@book mounted|XPHB|1|Mounted Combat}, you have {@variantrule Advantage|XPHB} on attack rolls against any unmounted creature within 5 feet of your mount that is at least one size smaller than the mount."
+						"While {@book mounted|XPHB|1|Mounted Combat}, you have {@variantrule Advantage|XPHB} on attack rolls against any unmounted creature within {@quantity 5|feet} of your mount that is at least one size smaller than the mount."
 					]
 				},
 				{
@@ -8982,7 +8982,7 @@
 							"rows": [
 								[
 									"1-2",
-									"You and each creature within 15 feet of you make a Dexterity saving throw, taking Force damage equal to {@dice 1d8} times the level of the triggering spell on a failed save or half as much damage on a successful one."
+									"You and each creature within {@quantity 15|feet} of you make a Dexterity saving throw, taking Force damage equal to {@dice 1d8} times the level of the triggering spell on a failed save or half as much damage on a successful one."
 								],
 								[
 									"3-7",
@@ -8990,7 +8990,7 @@
 								],
 								[
 									"8-10",
-									"Gravity is reversed in a 15-foot-radius, 60-foot-tall {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder} centered on you for 1 minute, per the {@spell Reverse Gravity|XPHB} spell."
+									"Gravity is reversed in a {@quantity 15|-foot}-radius, {@quantity 60|-foot}-tall {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder} centered on you for 1 minute, per the {@spell Reverse Gravity|XPHB} spell."
 								],
 								[
 									"11-13",
@@ -9002,7 +9002,7 @@
 								],
 								[
 									"18-19",
-									"Any flammable, nonmagical object within 10 feet of the triggering spell's caster that isn't being worn or carried by another creature bursts into flame, takes {@damage 1d4} Fire damage, and is burning."
+									"Any flammable, nonmagical object within {@quantity 10|feet} of the triggering spell's caster that isn't being worn or carried by another creature bursts into flame, takes {@damage 1d4} Fire damage, and is burning."
 								],
 								[
 									"20",
@@ -9170,14 +9170,14 @@
 					"type": "entries",
 					"name": "Resurge",
 					"entries": [
-						"When you have the {@condition Prone|XPHB} condition, you can right yourself with only 5 feet of movement."
+						"When you have the {@condition Prone|XPHB} condition, you can right yourself with only {@quantity 5|feet} of movement."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Stronger Together",
 					"entries": [
-						"If you are within 5 feet of an ally that doesn't have the {@condition Incapacitated|XPHB} condition, you and that ally have {@variantrule Advantage|XPHB} on Strength saving throws. You can't use this benefit while you have the {@condition Incapacitated|XPHB} condition."
+						"If you are within {@quantity 5|feet} of an ally that doesn't have the {@condition Incapacitated|XPHB} condition, you and that ally have {@variantrule Advantage|XPHB} on Strength saving throws. You can't use this benefit while you have the {@condition Incapacitated|XPHB} condition."
 					]
 				}
 			]
@@ -9339,14 +9339,14 @@
 							"type": "item",
 							"name": "Portal Cracker",
 							"entries": [
-								"Your experience with portals allows you to open them without a portal key. As an action, you can concentrate on a portal you're aware of that is within 5 feet of yourself and make a {@dc 20} Intelligence ({@skill Arcana}) check. On a failed check, you take {@damage 3d8} psychic damage and can't use this benefit on that portal again until you finish a long rest. On a successful check, you can force the portal open or closed for 1 hour. For that duration, the portal doesn't respond to its portal key unless a creature employing the key succeeds on a {@dc 20} Intelligence ({@skill Arcana}) check as an action."
+								"Your experience with portals allows you to open them without a portal key. As an action, you can concentrate on a portal you're aware of that is within {@quantity 5|feet} of yourself and make a {@dc 20} Intelligence ({@skill Arcana}) check. On a failed check, you take {@damage 3d8} psychic damage and can't use this benefit on that portal again until you finish a long rest. On a successful check, you can force the portal open or closed for 1 hour. For that duration, the portal doesn't respond to its portal key unless a creature employing the key succeeds on a {@dc 20} Intelligence ({@skill Arcana}) check as an action."
 							]
 						},
 						{
 							"type": "item",
 							"name": "Portal Sense",
 							"entries": [
-								"You know the direction to the last planar portal you used while you and the portal are on the same plane of existence. Moreover, as an action, you can detect the location of any portals within 30 feet of you that aren't behind {@quickref Cover||3||total cover}. Once you detect a portal with this action, you can't use the action again until you finish a long rest."
+								"You know the direction to the last planar portal you used while you and the portal are on the same plane of existence. Moreover, as an action, you can detect the location of any portals within {@quantity 30|feet} of you that aren't behind {@quickref Cover||3||total cover}. Once you detect a portal with this action, you can't use the action again until you finish a long rest."
 							]
 						}
 					]
@@ -9622,7 +9622,7 @@
 				}
 			],
 			"entries": [
-				"When a creature you can see attacks a target other than you that is within 5 feet of you, you can take a {@variantrule Reaction|XPHB} to interpose your {@item Shield|XPHB} if you're holding one. You impose {@variantrule Disadvantage|XPHB} on the triggering attack roll and all other attack rolls against the target until the start of your next turn if you remain within 5 feet of the target."
+				"When a creature you can see attacks a target other than you that is within {@quantity 5|feet} of you, you can take a {@variantrule Reaction|XPHB} to interpose your {@item Shield|XPHB} if you're holding one. You impose {@variantrule Disadvantage|XPHB} on the triggering attack roll and all other attack rolls against the target until the start of your next turn if you remain within {@quantity 5|feet} of the target."
 			]
 		},
 		{
@@ -9660,7 +9660,7 @@
 					"type": "entries",
 					"name": "Encourage Ally",
 					"entries": [
-						"As a {@variantrule Bonus Action|XPHB}, you bolster one ally you can see within 30 feet. The ally gains {@variantrule Temporary Hit Points|XPHB} equal to {@dice 2d6} plus the modifier of the ability score increased by this feat. You can take this {@variantrule Bonus Action|XPHB} a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all uses when you finish a {@variantrule Long Rest|XPHB}."
+						"As a {@variantrule Bonus Action|XPHB}, you bolster one ally you can see within {@quantity 30|feet}. The ally gains {@variantrule Temporary Hit Points|XPHB} equal to {@dice 2d6} plus the modifier of the ability score increased by this feat. You can take this {@variantrule Bonus Action|XPHB} a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all uses when you finish a {@variantrule Long Rest|XPHB}."
 					]
 				},
 				{
@@ -9701,7 +9701,7 @@
 					"type": "entries",
 					"name": "Rallying Cry",
 					"entries": [
-						"When you roll {@variantrule Initiative|XPHB} and don't have the {@condition Incapacitated|XPHB} condition, you can choose a number of creatures equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus} that you can see within 30 feet of yourself. Those creatures gain {@variantrule Heroic Inspiration|XPHB}.",
+						"When you roll {@variantrule Initiative|XPHB} and don't have the {@condition Incapacitated|XPHB} condition, you can choose a number of creatures equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus} that you can see within {@quantity 30|feet} of yourself. Those creatures gain {@variantrule Heroic Inspiration|XPHB}.",
 						"Once you use this benefit, you can't do so again until you finish a {@variantrule Long Rest|XPHB}."
 					]
 				}
@@ -9787,7 +9787,7 @@
 					"type": "entries",
 					"name": "Clockwork Toy",
 					"entries": [
-						"This toy is a clockwork animal, monster, or person, such as a frog, mouse, bird, dragon, or soldier. When placed on the ground, the toy moves 5 feet across the ground on each of your turns in a random direction. It makes noises as appropriate to the creature it represents."
+						"This toy is a clockwork animal, monster, or person, such as a frog, mouse, bird, dragon, or soldier. When placed on the ground, the toy moves {@quantity 5|feet} across the ground on each of your turns in a random direction. It makes noises as appropriate to the creature it represents."
 					]
 				},
 				{
@@ -10031,7 +10031,7 @@
 							"type": "item",
 							"name": "Soothe Pain",
 							"entries": [
-								"When you or a creature within 30 feet of you takes damage, you can use your reaction to reduce that damage by {@dice 1d10} + your proficiency bonus. You can use this benefit a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
+								"When you or a creature within {@quantity 30|feet} of you takes damage, you can use your reaction to reduce that damage by {@dice 1d10} + your proficiency bonus. You can use this benefit a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
 							]
 						}
 					]
@@ -10609,7 +10609,7 @@
 					"items": [
 						"When you hit a creature with an opportunity attack, the creature's speed becomes 0 for the rest of the turn.",
 						"Creatures provoke opportunity attacks from you even if they take the {@action Disengage} action before leaving your reach.",
-						"When a creature within 5 feet of you makes an attack against a target other than you (and that target doesn't have this feat), you can use your reaction to make a melee weapon attack against the attacking creature."
+						"When a creature within {@quantity 5|feet} of you makes an attack against a target other than you (and that target doesn't have this feat), you can use your reaction to make a melee weapon attack against the attacking creature."
 					]
 				}
 			]
@@ -10653,7 +10653,7 @@
 					"type": "entries",
 					"name": "Guardian",
 					"entries": [
-						"Immediately after a creature within 5 feet of you takes the {@action Disengage|XPHB} action or hits a target other than you with an attack, you can make an {@action Opportunity Attack|XPHB} against that creature."
+						"Immediately after a creature within {@quantity 5|feet} of you takes the {@action Disengage|XPHB} action or hits a target other than you with an attack, you can make an {@action Opportunity Attack|XPHB} against that creature."
 					]
 				},
 				{
@@ -10885,7 +10885,7 @@
 					"type": "entries",
 					"name": "Firing in Melee",
 					"entries": [
-						"Being within 5 feet of an enemy doesn't impose {@variantrule Disadvantage|XPHB} on your attack rolls with Ranged weapons."
+						"Being within {@quantity 5|feet} of an enemy doesn't impose {@variantrule Disadvantage|XPHB} on your attack rolls with Ranged weapons."
 					]
 				},
 				{
@@ -10909,7 +10909,7 @@
 				{
 					"type": "list",
 					"items": [
-						"If you take the {@action Attack} action on your turn, you can use a bonus action to try to {@action shove} a creature within 5 feet of you with your shield.",
+						"If you take the {@action Attack} action on your turn, you can use a bonus action to try to {@action shove} a creature within {@quantity 5|feet} of you with your shield.",
 						"If you aren't {@condition incapacitated}, you can add your shield's AC bonus to any Dexterity saving throw you make against a spell or other harmful effect that targets only you.",
 						"If you are subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you can use your reaction to take no damage if you succeed on the saving throw, interposing your shield between yourself and the source of the effect."
 					]
@@ -10942,7 +10942,7 @@
 					"type": "entries",
 					"name": "Shield Bash",
 					"entries": [
-						"If you attack a creature within 5 feet of you as part of the {@action Attack|XPHB} action and hit with a Melee weapon, you can immediately bash the target with your {@item Shield|XPHB} if it's equipped, forcing the target to make a Strength saving throw ({@dc 8} plus your Strength modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus}). On a failed save, you either push the target 5 feet from you or cause it to have the {@condition Prone|XPHB} condition (your choice). You can use this benefit only once on each of your turns."
+						"If you attack a creature within {@quantity 5|feet} of you as part of the {@action Attack|XPHB} action and hit with a Melee weapon, you can immediately bash the target with your {@item Shield|XPHB} if it's equipped, forcing the target to make a Strength saving throw ({@dc 8} plus your Strength modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus}). On a failed save, you either push the target {@quantity 5|feet} from you or cause it to have the {@condition Prone|XPHB} condition (your choice). You can use this benefit only once on each of your turns."
 					]
 				},
 				{
@@ -11186,7 +11186,7 @@
 					"type": "entries",
 					"name": "Blindsight",
 					"entries": [
-						"You have {@sense Blindsight|XPHB} with a range of 10 feet."
+						"You have {@sense Blindsight|XPHB} with a range of {@quantity 10|feet}."
 					]
 				},
 				{
@@ -11228,7 +11228,7 @@
 				{
 					"type": "list",
 					"items": [
-						"Once per turn when you hit a creature with an attack that deals slashing damage, you can reduce the speed of the target by 10 feet until the start of your next turn.",
+						"Once per turn when you hit a creature with an attack that deals slashing damage, you can reduce the speed of the target by {@quantity 10|feet} until the start of your next turn.",
 						"When you score a critical hit that deals slashing damage to a creature, you grievously wound it. Until the start of your next turn, the target has disadvantage on all attack rolls."
 					]
 				}
@@ -11260,7 +11260,7 @@
 					"type": "entries",
 					"name": "Hamstring",
 					"entries": [
-						"Once per turn when you hit a creature with an attack that deals Slashing damage, you can reduce the {@variantrule Speed|XPHB} of that creature by 10 feet until the start of your next turn."
+						"Once per turn when you hit a creature with an attack that deals Slashing damage, you can reduce the {@variantrule Speed|XPHB} of that creature by {@quantity 10|feet} until the start of your next turn."
 					]
 				},
 				{
@@ -11306,7 +11306,7 @@
 							"type": "item",
 							"name": "Maelstrom Aura",
 							"entries": [
-								"As a bonus action, you surround yourself with an aura of magical wind and lightning that extends 10 feet from you in every direction but not through {@quickref Cover||3||total cover}. The aura lasts until the start of your next turn or until you are incapacitated. While the aura is active, you have resistance to lightning and thunder damage. In addition, attack rolls against you have disadvantage, and whenever another creature starts its turn within the aura, you can force the creature to make a Strength saving throw (DC equals 8 + your proficiency bonus + the modifier of the ability increased by this feat). On a failed save, the creature's speed is halved until the start of its next turn. You can use this bonus action a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
+								"As a bonus action, you surround yourself with an aura of magical wind and lightning that extends {@quantity 10|feet} from you in every direction but not through {@quickref Cover||3||total cover}. The aura lasts until the start of your next turn or until you are incapacitated. While the aura is active, you have resistance to lightning and thunder damage. In addition, attack rolls against you have disadvantage, and whenever another creature starts its turn within the aura, you can force the creature to make a Strength saving throw (DC equals 8 + your proficiency bonus + the modifier of the ability increased by this feat). On a failed save, the creature's speed is halved until the start of its next turn. You can use this bonus action a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest."
 							]
 						}
 					]
@@ -11352,7 +11352,7 @@
 					"type": "entries",
 					"name": "Speed Increase",
 					"entries": [
-						"Your {@variantrule Speed|XPHB} increases by 10 feet."
+						"Your {@variantrule Speed|XPHB} increases by {@quantity 10|feet}."
 					]
 				},
 				{
@@ -11504,14 +11504,14 @@
 					"type": "entries",
 					"name": "Casting in Melee",
 					"entries": [
-						"Being within 5 feet of an enemy doesn't impose {@variantrule Disadvantage|XPHB} on your attack rolls with spells."
+						"Being within {@quantity 5|feet} of an enemy doesn't impose {@variantrule Disadvantage|XPHB} on your attack rolls with spells."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Increased Range",
 					"entries": [
-						"When you cast a spell that has a range of at least 10 feet and requires you to make an attack roll, you can increase the spell's range by 60 feet."
+						"When you cast a spell that has a range of at least {@quantity 10|feet} and requires you to make an attack roll, you can increase the spell's range by {@quantity 60|feet}."
 					]
 				}
 			]
@@ -11669,7 +11669,7 @@
 				{
 					"type": "list",
 					"items": [
-						"Increase your walking speed by 5 feet.",
+						"Increase your walking speed by {@quantity 5|feet}.",
 						"You gain proficiency in the {@skill Acrobatics} or {@skill Athletics} skill (your choice).",
 						"You have advantage on any Strength ({@skill Athletics}) or Dexterity ({@skill Acrobatics}) check you make to escape from being {@condition grappled}."
 					]
@@ -11727,7 +11727,7 @@
 							"type": "item",
 							"name": "Mount Up",
 							"entries": [
-								"Mounting or dismounting costs you only 5 feet of movement."
+								"Mounting or dismounting costs you only {@quantity 5|feet} of movement."
 							]
 						},
 						{
@@ -11848,7 +11848,7 @@
 					"type": "entries",
 					"name": "Stone Strike",
 					"entries": [
-						"The target takes an extra {@damage 1d6} force damage. If the target is a creature, it must succeed on a Strength saving throw or be pushed 10 feet from you in a straight line."
+						"The target takes an extra {@damage 1d6} force damage. If the target is a creature, it must succeed on a Strength saving throw or be pushed {@quantity 10|feet} from you in a straight line."
 					]
 				},
 				{
@@ -12351,7 +12351,7 @@
 					"items": [
 						"You can cast the {@spell find familiar} spell as a ritual. Your familiar can take the form of the mascot associated with the college you chose for the Strixhaven Initiate feat: a {@creature spirit statue mascot|scc} (Lorehold), an {@creature art elemental mascot|scc} (Prismari), a {@creature fractal mascot|scc} (Quandrix), an {@creature inkling mascot|scc} (Silverquill), or a {@creature pest mascot|scc} (Witherbloom).",
 						"When you take the {@action Attack} action on your turn, you can forgo one attack to allow your mascot familiar to make one attack of its own with its reaction.",
-						"If your mascot familiar is within 60 feet of you, you can teleport as an action, swapping places with the familiar. If your destination space is too small for you to occupy, the teleportation fails and is wasted. Once you teleport in this way, you can't do so again until you finish a long rest, unless you expend a spell slot of 2nd level or higher to do it again."
+						"If your mascot familiar is within {@quantity 60|feet} of you, you can teleport as an action, swapping places with the familiar. If your destination space is too small for you to occupy, the teleportation fails and is wasted. Once you teleport in this way, you can't do so again until you finish a long rest, unless you expend a spell slot of 2nd level or higher to do it again."
 					]
 				}
 			]
@@ -12471,7 +12471,7 @@
 					"type": "entries",
 					"name": "Push",
 					"entries": [
-						"When you hit a creature with an {@variantrule Unarmed Strike|XPHB} as part of the {@action Attack|XPHB} action on your turn, you can deal damage to the target and also push it 5 feet away from you. You can use this benefit only once per turn."
+						"When you hit a creature with an {@variantrule Unarmed Strike|XPHB} as part of the {@action Attack|XPHB} action on your turn, you can deal damage to the target and also push it {@quantity 5|feet} away from you. You can use this benefit only once per turn."
 					]
 				}
 			]
@@ -12510,8 +12510,8 @@
 				{
 					"type": "list",
 					"items": [
-						"You learn the {@spell mage hand} cantrip. You can cast it without verbal or somatic components, and you can make the spectral hand {@condition invisible}. If you already know this spell, its range increases by 30 feet when you cast it. Its spellcasting ability is the ability increased by this feat.",
-						"As a bonus action, you can try to telekinetically shove one creature you can see within 30 feet of you. When you do so, the target must succeed on a Strength saving throw ({@dc 8} + your proficiency bonus + the ability modifier of the score increased by this feat) or be moved 5 feet toward you or away from you. A creature can willingly fail this save."
+						"You learn the {@spell mage hand} cantrip. You can cast it without verbal or somatic components, and you can make the spectral hand {@condition invisible}. If you already know this spell, its range increases by {@quantity 30|feet} when you cast it. Its spellcasting ability is the ability increased by this feat.",
+						"As a bonus action, you can try to telekinetically shove one creature you can see within {@quantity 30|feet} of you. When you do so, the target must succeed on a Strength saving throw ({@dc 8} + your proficiency bonus + the ability modifier of the score increased by this feat) or be moved {@quantity 5|feet} toward you or away from you. A creature can willingly fail this save."
 					]
 				}
 			]
@@ -12553,14 +12553,14 @@
 					"type": "entries",
 					"name": "Minor Telekinesis",
 					"entries": [
-						"You learn the {@spell Mage Hand|XPHB} spell. You can cast it without Verbal or Somatic components, you can make the spectral hand {@condition Invisible|XPHB}, and its range and the distance it can be away from you both increase by 30 feet when you cast it. The spell's spellcasting ability is the ability increased by this feat."
+						"You learn the {@spell Mage Hand|XPHB} spell. You can cast it without Verbal or Somatic components, you can make the spectral hand {@condition Invisible|XPHB}, and its range and the distance it can be away from you both increase by {@quantity 30|feet} when you cast it. The spell's spellcasting ability is the ability increased by this feat."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Telekinetic Shove",
 					"entries": [
-						"As a {@variantrule Bonus Action|XPHB}, you can telekinetically shove one creature you can see within 30 feet of yourself. When you do so, the target must succeed on a Strength saving throw ({@dc 8} plus the ability modifier of the score increased by this feat and your {@variantrule Proficiency|XPHB|Proficiency Bonus}) or be moved 5 feet toward or away from you."
+						"As a {@variantrule Bonus Action|XPHB}, you can telekinetically shove one creature you can see within {@quantity 30|feet} of yourself. When you do so, the target must succeed on a Strength saving throw ({@dc 8} plus the ability modifier of the score increased by this feat and your {@variantrule Proficiency|XPHB|Proficiency Bonus}) or be moved {@quantity 5|feet} toward or away from you."
 					]
 				}
 			]
@@ -12603,7 +12603,7 @@
 				{
 					"type": "list",
 					"items": [
-						"You can speak telepathically to any creature you can see within 60 feet of you. Your telepathic utterances are in a language you know, and the creature understands you only if it knows that language. Your communication doesn't give the creature the ability to respond to you telepathically.",
+						"You can speak telepathically to any creature you can see within {@quantity 60|feet} of you. Your telepathic utterances are in a language you know, and the creature understands you only if it knows that language. Your communication doesn't give the creature the ability to respond to you telepathically.",
 						"You can cast the {@spell detect thoughts} spell, requiring no spell slot or components, and you must finish a long rest before you can cast it this way again. Your spellcasting ability for the spell is the ability increased by this feat. If you have spell slots of 2nd level or higher, you can cast this spell with them."
 					]
 				}
@@ -12651,7 +12651,7 @@
 					"type": "entries",
 					"name": "Telepathic Utterance",
 					"entries": [
-						"You can speak telepathically to any creature you can see within 60 feet of yourself. Your telepathic utterances are in a language you know, and the creature understands you only if it knows that language. Your communication doesn't give the creature the ability to respond to you telepathically."
+						"You can speak telepathically to any creature you can see within {@quantity 60|feet} of yourself. Your telepathic utterances are in a language you know, and the creature understands you only if it knows that language. Your communication doesn't give the creature the ability to respond to you telepathically."
 					]
 				},
 				{
@@ -12683,8 +12683,8 @@
 				{
 					"type": "list",
 					"items": [
-						"Simple and martial melee weapons without the thrown property have the {@itemProperty T|PHB|thrown} property for you. One-handed weapons have a normal range of 20 feet and a long range of 60 feet, while two-handed weapons have a normal range of 15 feet and a long range of 30 feet.",
-						"Weapons that already have the {@itemProperty T|PHB|thrown} property increase their short range by 20 feet and their long range by 40 feet for you.",
+						"Simple and martial melee weapons without the thrown property have the {@itemProperty T|PHB|thrown} property for you. One-handed weapons have a normal range of {@quantity 20|feet} and a long range of {@quantity 60|feet}, while two-handed weapons have a normal range of {@quantity 15|feet} and a long range of {@quantity 30|feet}.",
+						"Weapons that already have the {@itemProperty T|PHB|thrown} property increase their short range by {@quantity 20|feet} and their long range by {@quantity 40|feet} for you.",
 						"When you miss with a thrown weapon attack using a light weapon, the weapon returns to your grasp like a boomerang at the end of your turn, unless something prevents it from returning. You can catch and stow as many weapons as you threw in this way."
 					]
 				}
@@ -12712,7 +12712,7 @@
 			"page": 8,
 			"category": "O",
 			"entries": [
-				"When an ally you can see within 60 feet of yourself expends {@variantrule Heroic Inspiration|XPHB}, you can gain {@variantrule Heroic Inspiration|XPHB} if you lack it. You can use this benefit a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
+				"When an ally you can see within {@quantity 60|feet} of yourself expends {@variantrule Heroic Inspiration|XPHB}, you can gain {@variantrule Heroic Inspiration|XPHB} if you lack it. You can use this benefit a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
 			]
 		},
 		{
@@ -12813,7 +12813,7 @@
 					"type": "entries",
 					"name": "Stand as One",
 					"entries": [
-						"When an ally within 5 feet of you is subjected to an effect that would push or pull it, you can take a {@variantrule Reaction|XPHB} to prevent that ally from being pushed or pulled. To receive this benefit, the ally can't have the {@condition Incapacitated|XPHB} condition."
+						"When an ally within {@quantity 5|feet} of you is subjected to an effect that would push or pull it, you can take a {@variantrule Reaction|XPHB} to prevent that ally from being pushed or pulled. To receive this benefit, the ally can't have the {@condition Incapacitated|XPHB} condition."
 					]
 				},
 				{
@@ -12953,7 +12953,7 @@
 				}
 			],
 			"entries": [
-				"As an action, you can transform the lower half of your body into an inky black vapor, allowing you to float through the air. While transformed, you have a flying speed of 30 feet. You can maintain this form for up to 10 minutes. Once you use this ability, you can't use it again until you finish a short or long rest."
+				"As an action, you can transform the lower half of your body into an inky black vapor, allowing you to float through the air. While transformed, you have a flying speed of {@quantity 30|feet}. You can maintain this form for up to 10 minutes. Once you use this ability, you can't use it again until you finish a short or long rest."
 			]
 		},
 		{
@@ -12990,7 +12990,7 @@
 							"type": "item",
 							"name": "Bulwark",
 							"entries": [
-								"When you are subjected to an effect that would move you at least 5 feet or give you the prone condition, you can use your reaction to steady yourself. You aren't moved and don't have the prone condition."
+								"When you are subjected to an effect that would move you at least {@quantity 5|feet} or give you the prone condition, you can use your reaction to steady yourself. You aren't moved and don't have the prone condition."
 							]
 						},
 						{
@@ -13253,7 +13253,7 @@
 					"type": "entries",
 					"name": "Retaliate",
 					"entries": [
-						"Immediately after a creature within 5 feet of you hits you with a melee attack, you can make an {@action Opportunity Attack|XPHB} against that creature."
+						"Immediately after a creature within {@quantity 5|feet} of you hits you with a melee attack, you can make an {@action Opportunity Attack|XPHB} against that creature."
 					]
 				},
 				{

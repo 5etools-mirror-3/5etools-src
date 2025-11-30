@@ -43,7 +43,9 @@
 		"spellcheck:trust-data": "echo \"This can take a few minutes.\" && echo \"# new words on $(date)\" >> spellcheck/dnd-words.txt && npx cspell --words-only --unique \"./data/**/*.json\" | sort --ignore-case >> spellcheck/dnd-words.txt",
 		"spellcheck2:check-data": "node node/spellcheck.js",
 		"spellcheck2:check-data:fast": "node node/spellcheck.js --fast",
-		"prettier:css": "prettier scss/**/*.scss --log-level warn"
+		"prettier:css": "prettier scss/**/*.scss --log-level warn",
+		"tag:quantity": "node node/tag-jsons.js --quantity --inplace"
+
 	},
 	"repository": {
 		"type": "git",
