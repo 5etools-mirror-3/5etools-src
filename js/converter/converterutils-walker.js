@@ -7,6 +7,8 @@ export const WALKER_CONVERTER_KEY_BLOCKLIST = new Set([
 	"toolProficiencies",
 	"overwrite",
 	"conditionImmune",
+	"classFeatures",
+	"subclassFeatures",
 ]);
 
 export const WALKER_CONVERTER = MiscUtil.getWalker({

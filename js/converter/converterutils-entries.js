@@ -100,12 +100,14 @@ export class TagJsons {
 						object: (obj, lastKey) => {
 							if (lastKey != null && !LAST_KEY_ALLOWLIST.has(lastKey)) return obj;
 
+							obj = TagCondition.tryRunStrictCapsWords(obj, {styleHint});
 							obj = SkillTag.tryRunStrictCapsWords(obj, {styleHint});
 							obj = ItemTag.tryRunStrictCapsWords(obj, {styleHint});
 							obj = ActionTag.tryRunStrictCapsWords(obj, {styleHint});
 							obj = SpellTag.tryRunStrictCapsWords(obj, {styleHint});
 							obj = TrapTag.tryRunStrictCapsWords(obj, {styleHint});
 							obj = HazardTag.tryRunStrictCapsWords(obj, {styleHint});
+							obj = CoreRuleTag.tryRun(obj, {styleHint});
 
 							return obj;
 						},
@@ -817,7 +819,7 @@ export class TrapTag extends ConverterTaggerInitializable {
 	}
 
 	static _tryRunStrictCapsWords (ent, {styleHint = null} = {}) {
-		if (styleHint === "classic") return ent;
+		if (styleHint === SITE_STYLE__CLASSIC) return ent;
 
 		return WALKER_CONVERTER.walk(
 			ent,
@@ -922,7 +924,7 @@ export class HazardTag extends ConverterTaggerInitializable {
 	}
 
 	static _tryRunStrictCapsWords (ent, {styleHint = null} = {}) {
-		if (styleHint === "classic") return ent;
+		if (styleHint === SITE_STYLE__CLASSIC) return ent;
 
 		return WALKER_CONVERTER.walk(
 			ent,
@@ -1143,9 +1145,7 @@ export class CoreRuleTag extends ConverterTaggerInitializable {
 							fnTag: this._fnTag.bind(this),
 						},
 					);
-					return ptrStack._
-						.replace(/(?<!{@variantrule )(?:{@dice )?D20(?:})? Test(?<plural>s?)/g, (...m) => `{@variantrule D20 Test|XPHB${m.at(-1).plural ? `|D20 Tests` : ""}}`)
-					;
+					return ptrStack._;
 				},
 			},
 		);
@@ -1180,7 +1180,34 @@ export class CoreRuleTag extends ConverterTaggerInitializable {
 			.replace(/{@variantrule Hit Points\|XPHB\|Hit Point} Die\b/g, `{@variantrule Hit Point Dice|XPHB|Hit Point Die}`)
 			.replace(/\b(Legendary) {@variantrule Action\|XPHB}/g, "$1 Action")
 			.replace(/{@variantrule Flying\|XPHB} (Sword)/g, "Flying $1")
+			.replace(/(?<!{@variantrule )(?:{@dice )?D20(?:})? Test(?<plural>s?)/g, (...m) => `{@variantrule D20 Test|XPHB${m.at(-1).plural ? `|D20 Tests` : ""}}`)
 		;
+	}
+
+	static _tryRunStrictCapsWords (ent, {styleHint = null} = {}) {
+		if (styleHint === SITE_STYLE__CLASSIC) return ent;
+
+		return WALKER_CONVERTER.walk(
+			ent,
+			{
+				string: (str) => {
+					const ptrStack = {_: ""};
+					TaggerUtils.walkerStringHandlerStrictCapsWords(
+						["@variantrule"],
+						ptrStack,
+						str,
+						{
+							fnTag: strMod => this._fnTagStrict_one(strMod),
+						},
+					);
+					return ptrStack._;
+				},
+			},
+		);
+	}
+
+	static _fnTagStrict_one (strMod) {
+		return this._fnTag(strMod);
 	}
 }
 
