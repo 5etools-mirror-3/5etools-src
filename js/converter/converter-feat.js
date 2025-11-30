@@ -65,7 +65,7 @@ export class ConverterFeat extends ConverterFeatureBase {
 	}
 
 	static _doParseText_stepCategory (state, options) {
-		const mFeatCategory = /^(?<category>General|Origin|Fighting Style|Epic Boon)(?: Feat)?/.exec(state.curLine);
+		const mFeatCategory = new RegExp(`^${this._RE_FEAT_TYPE.source}(?: Feat)?`).exec(state.curLine);
 		if (!mFeatCategory) {
 			state.ixToConvert--;
 			return;

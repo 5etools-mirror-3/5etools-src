@@ -984,7 +984,7 @@ export class AttachedSpellChargesTag {
 		if (spellsOther.size) obj.attachedSpells.other = [...spellsOther].sort(SortUtil.ascSortLower);
 	}
 
-	static tryRun (ent, opts) {
+	static tryRun (ent, opts = {}) {
 		if (ent.entries && ent.attachedSpells) this._checkAndTag(ent, opts);
 		if (ent.inherits?.entries && ent.inherits?.attachedSpells) this._checkAndTag(ent.inherits, opts);
 	}

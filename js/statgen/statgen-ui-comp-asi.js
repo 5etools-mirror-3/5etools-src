@@ -18,7 +18,7 @@ export class StatGenUiCompAsi extends BaseComponent {
 	 */
 	_doPulse_ () { this._parent.state.common_pulseAsi = !this._parent.state.common_pulseAsi; }
 
-	_render_renderAsiFeatSection (propCnt, namespace, $wrpRows) {
+	_render_renderAsiFeatSection (propCnt, namespace, wrpRows) {
 		const hk = () => {
 			let ix = 0;
 
@@ -29,29 +29,29 @@ export class StatGenUiCompAsi extends BaseComponent {
 				if (!this._metasAsi[namespace][ix_]) {
 					this._parent.state[propMode] = this._parent.state[propMode] || (namespace === "ability" ? "asi" : "feat");
 
-					const $btnAsi = namespace !== "ability" ? null : $(`<button class="ve-btn ve-btn-xs ve-btn-default w-50p">ASI</button>`)
-						.click(() => {
+					const btnAsi = namespace !== "ability" ? null : ee`<button class="ve-btn ve-btn-xs ve-btn-default w-50p">ASI</button>`
+						.onn("click", () => {
 							this._parent.state[propMode] = "asi";
 							this._doPulseThrottled();
 						});
 
-					const $btnFeat = namespace !== "ability" ? $(`<div class="w-100p ve-text-center">Feat</div>`) : $(`<button class="ve-btn ve-btn-xs ve-btn-default w-50p">Feat</button>`)
-						.click(() => {
+					const btnFeat = namespace !== "ability" ? ee`<div class="w-100p ve-text-center">Feat</div>` : ee`<button class="ve-btn ve-btn-xs ve-btn-default w-50p">Feat</button>`
+						.onn("click", () => {
 							this._parent.state[propMode] = "feat";
 							this._doPulseThrottled();
 						});
 
 					// region ASI
-					let $stgAsi;
+					let stgAsi;
 					if (namespace === "ability") {
-						const $colsAsi = Parser.ABIL_ABVS.map((it, ixAsi) => {
-							const updateDisplay = () => $ipt.val(Number(this._parent.state[propIxAsiPointOne] === ixAsi) + Number(this._parent.state[propIxAsiPointTwo] === ixAsi));
+						const colsAsi = Parser.ABIL_ABVS.map((it, ixAsi) => {
+							const updateDisplay = () => ipt.val(Number(this._parent.state[propIxAsiPointOne] === ixAsi) + Number(this._parent.state[propIxAsiPointTwo] === ixAsi));
 
-							const $ipt = $(`<input class="form-control form-control--minimal ve-text-right input-xs statgen-shared__ipt" type="number" style="width: 42px;">`)
+							const ipt = ee`<input class="form-control form-control--minimal ve-text-right input-xs statgen-shared__ipt" type="number" style="width: 42px;">`
 								.disableSpellcheck()
-								.keydown(evt => { if (evt.key === "Escape") $ipt.blur(); })
-								.change(() => {
-									const raw = $ipt.val().trim();
+								.onn("keydown", evt => { if (evt.key === "Escape") ipt.blure(); })
+								.onn("change", () => {
+									const raw = ipt.val().trim();
 									const asNum = Number(raw);
 
 									const activeProps = [propIxAsiPointOne, propIxAsiPointTwo].filter(prop => this._parent.state[prop] === ixAsi);
@@ -101,69 +101,69 @@ export class StatGenUiCompAsi extends BaseComponent {
 							this._parent.addHookBase(propIxAsiPointTwo, hkSelected);
 							hkSelected();
 
-							return $$`<div class="ve-flex-col h-100 mr-2">
+							return ee`<div class="ve-flex-col h-100 mr-2">
 								<div class="statgen-asi__cell ve-text-center pb-1" title="${Parser.attAbvToFull(it)}">${it.toUpperCase()}</div>
 								<div class="ve-flex-vh-center statgen-asi__cell relative">
 									<div class="absolute no-events statgen-asi__disp-plus">+</div>
-									${$ipt}
+									${ipt}
 								</div>
 							</div>`;
 						});
 
-						$stgAsi = $$`<div class="ve-flex-v-center">
-							${$colsAsi}
+						stgAsi = ee`<div class="ve-flex-v-center">
+							${colsAsi}
 						</div>`;
 					}
 					// endregion
 
 					// region Feat
-					const {$stgFeat, $btnChooseFeat, hkIxFeat} = this._render_getMetaFeat({propIxFeat, propIxFeatAbility, propFeatAbilityChooseFrom});
+					const {stgFeat, btnChooseFeat, hkIxFeat} = this._render_getMetaFeat({propIxFeat, propIxFeatAbility, propFeatAbilityChooseFrom});
 					// endregion
 
 					const hkMode = () => {
 						if (namespace === "ability") {
-							$btnAsi.toggleClass("active", this._parent.state[propMode] === "asi");
-							$btnFeat.toggleClass("active", this._parent.state[propMode] === "feat");
+							btnAsi.toggleClass("active", this._parent.state[propMode] === "asi");
+							btnFeat.toggleClass("active", this._parent.state[propMode] === "feat");
 						}
 
-						$btnChooseFeat.toggleVe(this._parent.state[propMode] === "feat");
+						btnChooseFeat.toggleVe(this._parent.state[propMode] === "feat");
 
-						if (namespace === "ability") $stgAsi.toggleVe(this._parent.state[propMode] === "asi");
-						$stgFeat.toggleVe(this._parent.state[propMode] === "feat");
+						if (namespace === "ability") stgAsi.toggleVe(this._parent.state[propMode] === "asi");
+						stgFeat.toggleVe(this._parent.state[propMode] === "feat");
 
 						hkIxFeat();
 					};
 					this._parent.addHookBase(propMode, hkMode);
 					hkMode();
 
-					const $row = $$`<div class="ve-flex-v-end py-3 px-1">
-						<div class="ve-btn-group">${$btnAsi}${$btnFeat}</div>
+					const row = ee`<div class="ve-flex-v-end py-3 px-1">
+						<div class="ve-btn-group">${btnAsi}${btnFeat}</div>
 						<div class="vr-4"></div>
-						${$stgAsi}
-						${$stgFeat}
-					</div>`.appendTo($wrpRows);
+						${stgAsi}
+						${stgFeat}
+					</div>`.appendTo(wrpRows);
 
 					this._metasAsi[namespace][ix_] = {
-						$row,
+						row,
 					};
 				}
 
-				this._metasAsi[namespace][ix_].$row.showVe().addClass("statgen-asi__row");
+				this._metasAsi[namespace][ix_].row.showVe().addClass("statgen-asi__row");
 			}
 
 			// Remove border styling from the last visible row
-			if (this._metasAsi[namespace][ix - 1]) this._metasAsi[namespace][ix - 1].$row.removeClass("statgen-asi__row");
+			if (this._metasAsi[namespace][ix - 1]) this._metasAsi[namespace][ix - 1].row.removeClass("statgen-asi__row");
 
 			for (; ix < this._metasAsi[namespace].length; ++ix) {
 				if (!this._metasAsi[namespace][ix]) continue;
-				this._metasAsi[namespace][ix].$row.hideVe().removeClass("statgen-asi__row");
+				this._metasAsi[namespace][ix].row.hideVe().removeClass("statgen-asi__row");
 			}
 		};
 		this._parent.addHookBase(propCnt, hk);
 		hk();
 	}
 
-	_render_renderAdditionalFeatSection ({namespace, $wrpRows, propEntity}) {
+	_render_renderAdditionalFeatSection ({namespace, wrpRows, propEntity}) {
 		const fnsCleanupEnt = [];
 		const fnsCleanupGroup = [];
 
@@ -176,88 +176,92 @@ export class StatGenUiCompAsi extends BaseComponent {
 			this._parent.proxyAssignSimple("state", nxtState);
 		};
 
-		const hkEnt = (isNotFirstRun) => {
+		const hkEnt = (prop) => {
+			const isInitialLoad = prop == null;
+
 			fnsCleanupEnt.splice(0, fnsCleanupEnt.length).forEach(fn => fn());
 			fnsCleanupGroup.splice(0, fnsCleanupGroup.length).forEach(fn => fn());
-			$wrpRows.empty();
+			wrpRows.empty();
 
-			if (isNotFirstRun) resetGroupState();
+			if (!isInitialLoad && !this._parent.isSettingStateFromOverwrite()) resetGroupState();
 
 			const ent = this._parent[namespace]; // e.g. `this._parent.race`
 
 			if ((ent?.feats?.length || 0) > 1) {
-				const {$sel: $selGroup, unhook: unhookIxGroup} = StatGenUtilAdditionalFeats.getSelIxSetMeta({comp: this._parent, prop: propIxSel, available: ent.feats});
+				const {sel: selGroup, unhook: unhookIxGroup} = StatGenUtilAdditionalFeats.getSelIxSetMeta({comp: this._parent, prop: propIxSel, available: ent.feats});
 				fnsCleanupEnt.push(unhookIxGroup);
-				$$`<div class="ve-flex-col mb-2">
+				ee`<div class="ve-flex-col mb-2">
 					<div class="ve-flex-v-center mb-2">
 						<div class="mr-2">Feat Set:</div>
-						${$selGroup.addClass("max-w-200p")}
+						${selGroup.addClass("max-w-200p")}
 					</div>
-				</div>`.appendTo($wrpRows);
+				</div>`.appendTo(wrpRows);
 			} else {
 				this._parent.state[propIxSel] = 0;
 			}
 
-			const $wrpRowsInner = $(`<div class="w-100 ve-flex-col min-h-0"></div>`).appendTo($wrpRows);
+			const wrpRowsInner = ee`<div class="w-100 ve-flex-col min-h-0"></div>`.appendTo(wrpRows);
 
-			const hkIxSel = (isNotFirstRun) => {
+			const hkIxSel = (prop) => {
+				const isInitialLoad = prop == null;
+
 				fnsCleanupGroup.splice(0, fnsCleanupGroup.length).forEach(fn => fn());
-				$wrpRowsInner.empty();
+				wrpRowsInner.empty();
 
-				if (isNotFirstRun) resetGroupState();
+				if (!isInitialLoad && !this._parent.isSettingStateFromOverwrite()) resetGroupState();
 
 				const featSet = ent?.feats?.[this._parent.state[propIxSel]];
 
 				const uidsStatic = StatGenUtilAdditionalFeats.getUidsStatic(featSet);
 
-				const $rows = [];
+				const rows = [];
 
 				uidsStatic.map((uid, ix) => {
 					const {propIxFeatAbility, propFeatAbilityChooseFrom} = this._parent.getPropsAdditionalFeatsFeatSet_(namespace, "static", ix);
 					const {name, source} = DataUtil.proxy.unpackUid("feat", uid, "feat", {isLower: true});
 					const feat = this._parent.feats.find(it => it.name.toLowerCase() === name && it.source.toLowerCase() === source);
-					const {$stgFeat, hkIxFeat, cleanup} = this._render_getMetaFeat({featStatic: feat, propIxFeatAbility, propFeatAbilityChooseFrom});
+					const {stgFeat, hkIxFeat, cleanup} = this._render_getMetaFeat({featStatic: feat, propIxFeatAbility, propFeatAbilityChooseFrom});
 					fnsCleanupGroup.push(cleanup);
 					hkIxFeat();
 
-					const $row = $$`<div class="ve-flex-v-end py-3 px-1 statgen-asi__row">
+					const row = ee`<div class="ve-flex-v-end py-3 px-1 statgen-asi__row">
 						<div class="ve-btn-group"><div class="w-100p ve-text-center">Feat</div></div>
 						<div class="vr-4"></div>
-						${$stgFeat}
-					</div>`.appendTo($wrpRowsInner);
-					$rows.push($row);
+						${stgFeat}
+					</div>`.appendTo(wrpRowsInner);
+					rows.push(row);
 				});
 
 				[...new Array(featSet?.any || 0)].map((_, ix) => {
 					const {propIxFeat, propIxFeatAbility, propFeatAbilityChooseFrom} = this._parent.getPropsAdditionalFeatsFeatSet_(namespace, "choose", ix);
-					const {$stgFeat, hkIxFeat, cleanup} = this._render_getMetaFeat({propIxFeat, propIxFeatAbility, propFeatAbilityChooseFrom});
+					const {stgFeat, hkIxFeat, cleanup} = this._render_getMetaFeat({propIxFeat, propIxFeatAbility, propFeatAbilityChooseFrom});
 					fnsCleanupGroup.push(cleanup);
 					hkIxFeat();
 
-					const $row = $$`<div class="ve-flex-v-end py-3 px-1 statgen-asi__row">
+					const row = ee`<div class="ve-flex-v-end py-3 px-1 statgen-asi__row">
 						<div class="ve-btn-group"><div class="w-100p ve-text-center">Feat</div></div>
 						<div class="vr-4"></div>
-						${$stgFeat}
-					</div>`.appendTo($wrpRowsInner);
-					$rows.push($row);
+						${stgFeat}
+					</div>`.appendTo(wrpRowsInner);
+					rows.push(row);
 				});
 
 				[...new Array(featSet?.anyFromCategory?.count || 0)].map((_, ix) => {
 					const {propIxFeat, propIxFeatAbility, propFeatAbilityChooseFrom} = this._parent.getPropsAdditionalFeatsFeatSet_(namespace, "chooseCategory", ix);
-					const {$stgFeat, hkIxFeat, cleanup} = this._render_getMetaFeat({propIxFeat, propIxFeatAbility, propFeatAbilityChooseFrom, category: featSet.anyFromCategory.category});
+					const {stgFeat, hkIxFeat, cleanup} = this._render_getMetaFeat({propIxFeat, propIxFeatAbility, propFeatAbilityChooseFrom, category: featSet.anyFromCategory.category});
 					fnsCleanupGroup.push(cleanup);
 					hkIxFeat();
 
-					const $row = $$`<div class="ve-flex-v-end py-3 px-1 statgen-asi__row">
+					const row = ee`<div class="ve-flex-v-end py-3 px-1 statgen-asi__row">
 						<div class="ve-btn-group"><div class="w-100p ve-text-center">${Parser.featCategoryToFull(featSet.anyFromCategory.category)} Feat</div></div>
 						<div class="vr-4"></div>
-						${$stgFeat}
-					</div>`.appendTo($wrpRowsInner);
-					$rows.push($row);
+						${stgFeat}
+					</div>`.appendTo(wrpRowsInner);
+					rows.push(row);
 				});
 
 				// Remove border styling from the last row
-				if ($rows.last()) $rows.last().removeClass("statgen-asi__row");
+				if (rows.last()) rows.last().removeClass("statgen-asi__row");
 
 				this._doPulseThrottled();
 			};
@@ -282,8 +286,8 @@ export class StatGenUiCompAsi extends BaseComponent {
 		if (featStatic && propIxFeat) throw new Error(`Cannot combine static feat and feat property!`);
 		if (featStatic == null && propIxFeat == null) throw new Error(`Either a static feat or a feat property must be specified!`);
 
-		const $btnChooseFeat = featStatic ? null : $(`<button class="ve-btn ve-btn-xxs ve-btn-default mr-2" title="Choose a Feat"><span class="glyphicon glyphicon-search"></span></button>`)
-			.click(async () => {
+		const btnChooseFeat = featStatic ? null : ee`<button class="ve-btn ve-btn-xxs ve-btn-default mr-2" title="Choose a Feat"><span class="glyphicon glyphicon-search"></span></button>`
+			.onn("click", async () => {
 				const selecteds = await this._parent.modalFilterFeats.pGetUserSelection({
 					filterExpression: category ? `Category=${category}` : `Category=`,
 				});
@@ -298,46 +302,52 @@ export class StatGenUiCompAsi extends BaseComponent {
 			});
 
 		// region Feat
-		const $dispFeat = $(`<div class="ve-flex-v-center mr-2"></div>`);
-		const $stgSelectAbilitySet = $$`<div class="ve-flex-v-center mr-2"></div>`;
-		const $stgFeatNoChoice = $$`<div class="ve-flex-v-center mr-2"></div>`;
-		const $stgFeatChooseAsiFrom = $$`<div class="ve-flex-v-end"></div>`;
-		const $stgFeatChooseAsiWeighted = $$`<div class="ve-flex-v-center"></div>`;
+		const dispFeat = ee`<div class="ve-flex-v-center mr-2"></div>`;
+		const stgSelectAbilitySet = ee`<div class="ve-flex-v-center mr-2"></div>`;
+		const stgFeatNoChoice = ee`<div class="ve-flex-v-center mr-2"></div>`;
+		const stgFeatChooseAsiFrom = ee`<div class="ve-flex-v-end"></div>`;
+		const stgFeatChooseAsiWeighted = ee`<div class="ve-flex-v-center"></div>`;
 
-		const $stgFeat = $$`<div class="ve-flex-v-center">
-			${$btnChooseFeat}
-			${$dispFeat}
-			${$stgSelectAbilitySet}
-			${$stgFeatNoChoice}
-			${$stgFeatChooseAsiFrom}
-			${$stgFeatChooseAsiWeighted}
+		const stgFeat = ee`<div class="ve-flex-v-center">
+			${btnChooseFeat}
+			${dispFeat}
+			${stgSelectAbilitySet}
+			${stgFeatNoChoice}
+			${stgFeatChooseAsiFrom}
+			${stgFeatChooseAsiWeighted}
 		</div>`;
 
 		const fnsCleanup = [];
 		const fnsCleanupFeat = [];
 		const fnsCleanupFeatAbility = [];
 
-		const hkIxFeat = (isNotFirstRun) => {
-			fnsCleanupFeat.splice(0, fnsCleanupFeat.length).forEach(fn => fn());
-			fnsCleanupFeatAbility.splice(0, fnsCleanupFeatAbility.length).forEach(fn => fn());
+		const hkIxFeat = (prop) => {
+			const isInitialLoad = prop == null;
 
-			if (isNotFirstRun) {
+			const isRetainState = isInitialLoad || this._parent.isSettingStateFromOverwrite();
+
+			fnsCleanupFeat.splice(0, fnsCleanupFeat.length).forEach(fn => fn());
+			fnsCleanupFeatAbility.splice(0, fnsCleanupFeatAbility.length).forEach(fn => fn({isRetainState}));
+
+			if (!isRetainState) {
 				const nxtState = Object.keys(this._parent.state).filter(it => it.startsWith(propFeatAbilityChooseFrom)).mergeMap(it => ({[it]: null}));
 				this._parent.proxyAssignSimple("state", nxtState);
 			}
 
 			const feat = featStatic || this._parent.feats[this._parent.state[propIxFeat]];
 
-			$stgFeat.removeClass("ve-flex-v-end").addClass("ve-flex-v-center");
-			$dispFeat.toggleClass("italic ve-muted", !feat);
-			$dispFeat.html(feat ? Renderer.get().render(`{@feat ${VetoolsConfig.get("styleSwitcher", "style") === SITE_STYLE__CLASSIC ? feat.name.toLowerCase() : feat.name}|${feat.source}}`) : `(Choose a feat)`);
+			stgFeat.removeClass("ve-flex-v-end").addClass("ve-flex-v-center");
+			dispFeat
+				.toggleClass("italic", !feat)
+				.toggleClass("ve-muted", !feat);
+			dispFeat.html(feat ? Renderer.get().render(`{@feat ${VetoolsConfig.get("styleSwitcher", "style") === SITE_STYLE__CLASSIC ? feat.name.toLowerCase() : feat.name}|${feat.source}}`) : `(Choose a feat)`);
 
 			this._parent.state[propIxFeatAbility] = 0;
 
-			$stgSelectAbilitySet.hideVe();
+			stgSelectAbilitySet.hideVe();
 			if (feat) {
 				if (feat.ability && feat.ability.length > 1) {
-					const metaChooseAbilitySet = ComponentUiUtil.$getSelEnum(
+					const metaChooseAbilitySet = ComponentUiUtil.getSelEnum(
 						this._parent,
 						propIxFeatAbility,
 						{
@@ -347,35 +357,40 @@ export class StatGenUiCompAsi extends BaseComponent {
 						},
 					);
 
-					$stgSelectAbilitySet.showVe().append(metaChooseAbilitySet.$sel);
-					metaChooseAbilitySet.$sel.change(() => this._doPulseThrottled());
+					stgSelectAbilitySet.showVe().appends(metaChooseAbilitySet.sel);
+					metaChooseAbilitySet.sel.onn("change", () => this._doPulseThrottled());
 					fnsCleanupFeat.push(() => {
 						metaChooseAbilitySet.unhook();
-						metaChooseAbilitySet.$sel.remove();
+						metaChooseAbilitySet.sel.remove();
 					});
 				}
 
 				const hkAbilitySet = () => {
-					fnsCleanupFeatAbility.splice(0, fnsCleanupFeatAbility.length).forEach(fn => fn());
+					fnsCleanupFeatAbility.splice(0, fnsCleanupFeatAbility.length).forEach(fn => fn({isRetainState}));
 
 					if (!feat.ability) {
-						$stgFeatNoChoice.empty().hideVe();
-						$stgFeatChooseAsiFrom.empty().hideVe();
+						stgFeatNoChoice.empty().hideVe();
+						stgFeatChooseAsiFrom.empty().hideVe();
 						return;
 					}
 
 					const abilitySet = feat.ability[this._parent.state[propIxFeatAbility]];
+					if (!abilitySet) {
+						stgFeatNoChoice.empty().hideVe();
+						stgFeatChooseAsiFrom.empty().hideVe();
+						return;
+					}
 
 					// region Static/no choices
 					const ptsNoChoose = Parser.ABIL_ABVS.filter(ab => abilitySet[ab]).map(ab => `${Parser.attAbvToFull(ab)} ${UiUtil.intToBonus(abilitySet[ab], {isPretty: true})}`);
-					$stgFeatNoChoice.empty().toggleVe(ptsNoChoose.length).html(`<div><span class="mr-2">\u2014</span>${ptsNoChoose.join(", ")}</div>`);
+					stgFeatNoChoice.empty().toggleVe(ptsNoChoose.length).html(`<div><span class="mr-2">\u2014</span>${ptsNoChoose.join(", ")}</div>`);
 					// endregion
 
 					// region Choices
 					if (abilitySet.choose && abilitySet.choose.from) {
-						$stgFeat.removeClass("ve-flex-v-center").addClass("ve-flex-v-end");
-						$stgFeatChooseAsiFrom.showVe().empty();
-						$stgFeatChooseAsiWeighted.empty().hideVe();
+						stgFeat.removeClass("ve-flex-v-center").addClass("ve-flex-v-end");
+						stgFeatChooseAsiFrom.showVe().empty();
+						stgFeatChooseAsiWeighted.empty().hideVe();
 
 						const count = abilitySet.choose.count || 1;
 						const amount = abilitySet.choose.amount || 1;
@@ -389,25 +404,25 @@ export class StatGenUiCompAsi extends BaseComponent {
 								count,
 							},
 						);
-						fnsCleanupFeatAbility.push(() => cleanupAsiPicker());
+						fnsCleanupFeatAbility.push(({isRetainState = false} = {}) => cleanupAsiPicker({isRetainState}));
 
-						$stgFeatChooseAsiFrom.append(`<div><span class="mr-2">\u2014</span>choose ${count > 1 ? `${count} ` : ""}${UiUtil.intToBonus(amount, {isPretty: true})}</div>`);
+						stgFeatChooseAsiFrom.appends(`<div><span class="mr-2">\u2014</span>choose ${count > 1 ? `${count} ` : ""}${UiUtil.intToBonus(amount, {isPretty: true})}</div>`);
 
 						rowMetas.forEach(meta => {
-							meta.$cb.change(() => this._doPulseThrottled());
+							meta.cb.onn("change", () => this._doPulseThrottled());
 
-							$$`<label class="ve-flex-col no-select">
+							ee`<label class="ve-flex-col no-select">
 								<div class="ve-flex-vh-center statgen-asi__cell-feat" title="${Parser.attAbvToFull(meta.value)}">${meta.value.toUpperCase()}</div>
-								<div class="ve-flex-vh-center statgen-asi__cell-feat">${meta.$cb}</div>
-							</label>`.appendTo($stgFeatChooseAsiFrom);
+								<div class="ve-flex-vh-center statgen-asi__cell-feat">${meta.cb}</div>
+							</label>`.appendTo(stgFeatChooseAsiFrom);
 						});
 					} else if (abilitySet.choose && abilitySet.choose.weighted) {
 						// TODO(Future) unsupported, for now
-						$stgFeatChooseAsiFrom.empty().hideVe();
-						$stgFeatChooseAsiWeighted.showVe().html(`<i class="ve-muted">The selected ability score format is currently unsupported. Please check back later!</i>`);
+						stgFeatChooseAsiFrom.empty().hideVe();
+						stgFeatChooseAsiWeighted.showVe().html(`<i class="ve-muted">The selected ability score format is currently unsupported. Please check back later!</i>`);
 					} else {
-						$stgFeatChooseAsiFrom.empty().hideVe();
-						$stgFeatChooseAsiWeighted.empty().hideVe();
+						stgFeatChooseAsiFrom.empty().hideVe();
+						stgFeatChooseAsiWeighted.empty().hideVe();
 					}
 					// endregion
 
@@ -417,9 +432,9 @@ export class StatGenUiCompAsi extends BaseComponent {
 				fnsCleanupFeat.push(() => this._parent.removeHookBase(propIxFeatAbility, hkAbilitySet));
 				hkAbilitySet();
 			} else {
-				$stgFeatNoChoice.empty().hideVe();
-				$stgFeatChooseAsiFrom.empty().hideVe();
-				$stgFeatChooseAsiWeighted.empty().hideVe();
+				stgFeatNoChoice.empty().hideVe();
+				stgFeatChooseAsiFrom.empty().hideVe();
+				stgFeatChooseAsiWeighted.empty().hideVe();
 			}
 
 			this._doPulseThrottled();
@@ -436,76 +451,76 @@ export class StatGenUiCompAsi extends BaseComponent {
 			fnsCleanupFeatAbility.splice(0, fnsCleanupFeatAbility.length).forEach(fn => fn());
 		};
 
-		return {$btnChooseFeat, $stgFeat, hkIxFeat, cleanup};
+		return {btnChooseFeat, stgFeat, hkIxFeat, cleanup};
 	}
 
-	render ($wrpAsi) {
-		const $wrpRowsAsi = $(`<div class="ve-flex-col w-100 ve-overflow-y-auto"></div>`);
-		const $wrpRowsRace = $(`<div class="ve-flex-col w-100 ve-overflow-y-auto"></div>`);
-		const $wrpRowsBackground = $(`<div class="ve-flex-col w-100 ve-overflow-y-auto"></div>`);
-		const $wrpRowsCustom = $(`<div class="ve-flex-col w-100 ve-overflow-y-auto"></div>`);
+	render (wrpAsi) {
+		const wrpRowsAsi = ee`<div class="ve-flex-col w-100 ve-overflow-y-auto"></div>`;
+		const wrpRowsRace = ee`<div class="ve-flex-col w-100 ve-overflow-y-auto"></div>`;
+		const wrpRowsBackground = ee`<div class="ve-flex-col w-100 ve-overflow-y-auto"></div>`;
+		const wrpRowsCustom = ee`<div class="ve-flex-col w-100 ve-overflow-y-auto"></div>`;
 
-		this._render_renderAsiFeatSection("common_cntAsi", "ability", $wrpRowsAsi);
-		this._render_renderAsiFeatSection("common_cntFeatsCustom", "custom", $wrpRowsCustom);
-		this._render_renderAdditionalFeatSection({propEntity: "common_ixRace", namespace: "race", $wrpRows: $wrpRowsRace});
-		this._render_renderAdditionalFeatSection({propEntity: "common_ixBackground", namespace: "background", $wrpRows: $wrpRowsBackground});
+		this._render_renderAsiFeatSection("common_cntAsi", "ability", wrpRowsAsi);
+		this._render_renderAsiFeatSection("common_cntFeatsCustom", "custom", wrpRowsCustom);
+		this._render_renderAdditionalFeatSection({propEntity: "common_ixRace", namespace: "race", wrpRows: wrpRowsRace});
+		this._render_renderAdditionalFeatSection({propEntity: "common_ixBackground", namespace: "background", wrpRows: wrpRowsBackground});
 
-		const $getStgEntity = ({title, $wrpRows, propEntity, propIxEntity}) => {
-			const $stg = $$`<div class="ve-flex-col">
+		const getStgEntity = ({title, wrpRows, propEntity, propIxEntity}) => {
+			const stg = ee`<div class="ve-flex-col">
 				<hr class="hr-3 hr--dotted">
 				<h4 class="my-2 bold">${title} Feats</h4>
-				${$wrpRows}
+				${wrpRows}
 			</div>`;
 
 			const hkIxEntity = () => {
 				const entity = this._parent[propEntity];
-				$stg.toggleVe(!this._parent.isLevelUp && !!entity?.feats);
+				stg.toggleVe(!this._parent.isLevelUp && !!entity?.feats);
 			};
 			this._parent.addHookBase(propIxEntity, hkIxEntity);
 			hkIxEntity();
 
-			return $stg;
+			return stg;
 		};
 
-		const $stgRace = $getStgEntity({title: "Species", $wrpRows: $wrpRowsRace, propEntity: "race", propIxEntity: "common_ixRace"});
+		const stgRace = getStgEntity({title: "Species", wrpRows: wrpRowsRace, propEntity: "race", propIxEntity: "common_ixRace"});
 
-		const $stgBackground = $getStgEntity({title: "Background", $wrpRows: $wrpRowsBackground, propEntity: "background", propIxEntity: "common_ixBackground"});
+		const stgBackground = getStgEntity({title: "Background", wrpRows: wrpRowsBackground, propEntity: "background", propIxEntity: "common_ixBackground"});
 
 		const {ipt: iptCountFeatsCustom, wrp: wrpCountFeatsCustom} = ComponentUiUtil.getIptInt(this._parent, "common_cntFeatsCustom", 0, {min: 0, max: MAX_CUSTOM_FEATS, asMeta: true, decorationLeft: "spacer", decorationRight: "ticker"});
 		iptCountFeatsCustom.removeClass("ve-text-right").addClass("ve-text-center");
 		wrpCountFeatsCustom.addClass("w-100p");
 
-		$$($wrpAsi)`
+		ee(wrpAsi)`
 			<h4 class="my-2 bold">Ability Score Increases</h4>
-			${this._render_$getStageCntAsi()}
-			${$wrpRowsAsi}
+			${this._render_getStageCntAsi()}
+			${wrpRowsAsi}
 
-			${$stgRace}
+			${stgRace}
 
-			${$stgBackground}
+			${stgBackground}
 
 			<hr class="hr-3 hr--dotted">
 			<h4 class="my-2 bold">Additional Feats</h4>
 			<label class="w-100 ve-flex-v-center mb-2">
 				<div class="mr-2 no-shrink">Number of additional feats:</div>${wrpCountFeatsCustom}
 			</label>
-			${$wrpRowsCustom}
+			${wrpRowsCustom}
 		`;
 	}
 
-	_render_$getStageCntAsi () {
+	_render_getStageCntAsi () {
 		if (!this._parent.isCharacterMode) {
 			const {ipt: iptCountAsi, wrp: wrpCountAsi} = ComponentUiUtil.getIptInt(this._parent, "common_cntAsi", 0, {min: 0, max: 20, asMeta: true, decorationLeft: "spacer", decorationRight: "ticker"});
 			iptCountAsi.removeClass("ve-text-right").addClass("ve-text-center");
 			wrpCountAsi.addClass("w-100p");
-			return $$`<label class="w-100 ve-flex-v-center mb-2"><div class="mr-2 no-shrink">Number of Ability Score Increases to apply:</div>${wrpCountAsi}</label>`;
+			return ee`<label class="w-100 ve-flex-v-center mb-2"><div class="mr-2 no-shrink">Number of Ability Score Increases to apply:</div>${wrpCountAsi}</label>`;
 		}
 
-		const $out = $$`<div class="w-100 ve-flex-v-center mb-2 italic ve-muted">No ability score increases available.</div>`;
-		const hkCntAsis = () => $out.toggleVe(this._parent.state.common_cntAsi === 0);
+		const out = ee`<div class="w-100 ve-flex-v-center mb-2 italic ve-muted">No ability score increases available.</div>`;
+		const hkCntAsis = () => out.toggleVe(this._parent.state.common_cntAsi === 0);
 		this._parent.addHookBase("common_cntAsi", hkCntAsis);
 		hkCntAsis();
-		return $out;
+		return out;
 	}
 
 	_getFormData_getForNamespace_basic (outs, outIsFormCompletes, outFeats, propCnt, namespace) {

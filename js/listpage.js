@@ -114,6 +114,8 @@ class SublistManager {
 	constructor (opts) {
 		opts = opts || {};
 
+		this._styleHint = VetoolsConfig.get("styleSwitcher", "style");
+
 		this._sublistListOptions = opts.sublistListOptions || {};
 		this._isSublistItemsCountable = !!opts.isSublistItemsCountable;
 		this._shiftCountAddSubtract = opts.shiftCountAddSubtract ?? 20;
@@ -457,21 +459,14 @@ class SublistManager {
 		await this._pFinaliseSublist();
 	}
 
-	getPinnedEntities () {
-		return this._listSub.items
-			.map(({data}) => data.entity);
-	}
-
 	async _pHandleJsonDownload () {
-		const entities = (await this.getPinnedEntities()).map(ent => MiscUtil.copyFast(ent));
+		const entities = this.getSublistedEntities().map(ent => MiscUtil.copyFast(ent));
 		entities.forEach(ent => DataUtil.cleanJson(ent));
 		DataUtil.userDownload(`${this._getDownloadName()}-data`, entities);
 	}
 
 	async _pHandleMarkdownDownload () {
-		const entities = await this.getPinnedEntities();
-
-		const markdown = entities
+		const markdown = this.getSublistedEntities()
 			.map(ent => {
 				return RendererMarkdown.get().render({
 					entries: [
@@ -541,7 +536,21 @@ class SublistManager {
 		return true;
 	}
 
-	async pHandleClick_download ({isUrl = false, $eleCopyEffect = null} = {}) {
+	/**
+	 * @param isUrl
+	 * @param {?jQUery} $eleCopyEffect
+	 * @param {?HTMLElementExtended} eleCopyEffect
+	 * @return {Promise<void>}
+	 */
+	async pHandleClick_download (
+		{
+			isUrl = false,
+			$eleCopyEffect = null,
+			eleCopyEffect = null,
+		} = {},
+	) {
+		if ($eleCopyEffect && eleCopyEffect) throw new Error(`Only one of "$eleCopyEffect" and "eleCopyEffect" may be specified!`);
+
 		const exportableSublist = await this.pGetExportableSublist();
 
 		if (isUrl) {
@@ -697,6 +706,11 @@ class SublistManager {
 
 	getSublistedEntities () {
 		return this._listSub.items.map(({data}) => data.entity);
+	}
+
+	getSublistedEntityMetas () {
+		return this._listSub.items
+			.map(({data}) => ({entity: data.entity, count: data.count ?? 1}));
 	}
 
 	_updateSublistItemDisplays (sublistItem) {
@@ -1034,6 +1048,8 @@ class ListPage {
 	 * @param [opts.compSettings]
 	 */
 	constructor (opts) {
+		this._styleHint = VetoolsConfig.get("styleSwitcher", "style");
+
 		this._dataSource = opts.dataSource;
 		this._prereleaseDataSource = opts.prereleaseDataSource;
 		this._brewDataSource = opts.brewDataSource;
@@ -1107,8 +1123,6 @@ class ListPage {
 
 		this._pOnLoad_initVisibleItemsDisplay();
 
-		if (this._filterBox) this._filterBox.on(FILTER_BOX_EVNT_VALCHANGE, this.handleFilterChange.bind(this));
-
 		if (this._sublistManager) {
 			if (this._sublistManager.isSublistItemsCountable) {
 				this._bindAddButton();
@@ -1131,7 +1145,7 @@ class ListPage {
 
 		this._pOnLoad_bindMiscButtons();
 
-		this._pOnLoad_bookView();
+		this._pOnLoad_pBookView().then(null);
 		this._pOnLoad_tableView();
 
 		Hist.setFnLoadHash(this.pDoLoadHash.bind(this));
@@ -1148,6 +1162,7 @@ class ListPage {
 
 		ListPage._checkShowAllExcluded(this._dataList, this._$pgContent);
 
+		if (this._filterBox) this._filterBox.on(FILTER_BOX_EVNT_VALCHANGE, this.handleFilterChange.bind(this));
 		this.handleFilterChange();
 
 		await this._pOnLoad_pPostLoad();
@@ -1156,8 +1171,8 @@ class ListPage {
 	}
 
 	_pOnLoad_findPageElements () {
-		this._$pgContent = $(`#pagecontent`);
-		this._$wrpTabs = $(`#stat-tabs`);
+		this._$pgContent = $(document.getElementById("pagecontent"));
+		this._$wrpTabs = $(document.getElementById("stat-tabs"));
 	}
 
 	async _pOnLoad_pInitSettingsManager () {
@@ -1168,14 +1183,14 @@ class ListPage {
 	}
 
 	async _pOnLoad_pInitPrimaryLists () {
-		const $iptSearch = $("#lst__search");
-		const $btnReset = $("#reset");
+		const iptSearch = e_(document.getElementById("lst__search"));
+		const btnReset = e_(document.getElementById("reset"));
 		this._list = this._initList({
-			$iptSearch,
-			$wrpList: $(`#list`),
-			$btnReset,
-			$btnClear: $(`#lst__search-glass`),
-			dispPageTagline: document.getElementById(`page__subtitle`),
+			iptSearch,
+			wrpList: e_(document.getElementById("list")),
+			btnReset,
+			btnClear: e_(document.getElementById("lst__search-glass")),
+			dispPageTagline: e_(document.getElementById(`page__subtitle`)),
 			isPreviewable: this._isPreviewable,
 			syntax: this._listSyntax.build(),
 			isBindFindHotkey: true,
@@ -1186,9 +1201,9 @@ class ListPage {
 		if (this._isPreviewable) this._doBindPreviewAllButton($(wrpBtnsSort).find(`[name="list-toggle-all-previews"]`));
 
 		this._filterBox = await this._pageFilter.pInitFilterBox({
-			$iptSearch,
-			$wrpFormTop: $(`#filter-search-group`),
-			$btnReset,
+			iptSearch,
+			wrpFormTop: e_(document.getElementById("filter-search-group")),
+			btnReset,
 		});
 	}
 
@@ -1202,7 +1217,7 @@ class ListPage {
 	}
 
 	_pOnLoad_bindMiscButtons () {
-		const $btnReset = $("#reset");
+		const $btnReset = $(document.getElementById("reset"));
 		// TODO(MODULES) refactor
 		import("./utils-brew/utils-brew-ui-manage.js")
 			.then(({ManageBrewUi}) => {
@@ -1210,8 +1225,8 @@ class ListPage {
 			});
 		this._renderListFeelingLucky({$btnReset});
 		this._renderListShowHide({
-			$wrpList: $(`#listcontainer`),
-			$wrpContent: $(`#contentwrapper`),
+			$wrpList: $(document.getElementById("listcontainer")),
+			$wrpContent: $(document.getElementById("contentwrapper")),
 			$btnReset,
 		});
 		if (this._hasAudio) Renderer.utils.bindPronounceButtons();
@@ -1230,15 +1245,16 @@ class ListPage {
 		return BrewUtil2.getMergedData(PrereleaseUtil.getMergedData(data, prerelease), homebrew);
 	}
 
-	_pOnLoad_bookView () {
+	async _pOnLoad_pBookView () {
 		if (!this._bookViewOptions) return;
 
 		this._bookView = new (this._bookViewOptions.ClsBookView || ListPageBookView)({
 			...this._bookViewOptions,
 			sublistManager: this._sublistManager,
 			fnGetEntLastLoaded: () => this._dataList[Hist.lastLoadedId],
-			$btnOpen: $(`#btn-book`),
+			btnOpen: es(`#btn-book`),
 		});
+		await this._bookView.pInit();
 	}
 
 	async _pGetTableViewAdditionalData () { return null; }
@@ -1308,12 +1324,33 @@ class ListPage {
 	/* Implement as required */
 	get _bindOtherButtonsOptions () { return null; }
 
-	_bindOtherButtonsOptions_openAsSinglePage ({slugPage, fnGetHash}) {
+	_bindOtherButtonsOptions_openAsSinglePage (
+		{
+			slugPage,
+			fnGetPageSourceHash = null,
+			fnIsNonSiteLink = null,
+		},
+	) {
+		fnGetPageSourceHash ||= () => ({page: UrlUtil.getCurrentPage(), source: SourceUtil.getEntitySource(this._lastRender.entity), hash: UrlUtil.autoEncodeHash(this._lastRender.entity)});
+		fnIsNonSiteLink ||= () => !SourceUtil.isSiteSource(SourceUtil.getEntitySource(this._lastRender.entity));
+
 		// We expect these pages when `Boolean(IS_DEPLOYED)`, but, enable for local testing
 		return {
 			name: "Open Page",
 			type: "link",
-			fn: () => `${location.origin}/${slugPage}/${UrlUtil.getSluggedHash(fnGetHash())}.html`,
+			fn: () => {
+				const {page, source, hash} = fnGetPageSourceHash();
+				if (fnIsNonSiteLink()) {
+					const params = new URLSearchParams({
+						page: page.replace(/\.html$/, ""),
+						source,
+						hash,
+						fluff: 1,
+					});
+					return `${location.origin}/${slugPage}/index.html?${params}`;
+				}
+				return `${location.origin}/${slugPage}/${UrlUtil.getSluggedHash(hash)}.html`;
+			},
 		};
 	}
 
@@ -1415,21 +1452,22 @@ class ListPage {
 		});
 	}
 
-	_renderListFeelingLucky ({isCompact, $btnReset}) {
-		const $btnRoll = $(`<button class="ve-btn ve-btn-default ${isCompact ? "px-2" : ""}" title="Feeling Lucky?"><span class="glyphicon glyphicon-random"></span></button>`);
+	_renderListFeelingLucky ({isCompact, $btnReset, isScrollablePage = false}) {
+		const btnRoll = ee`<button class="ve-btn ve-btn-default ${isCompact ? "px-2" : ""}" title="Feeling Lucky?"><span class="glyphicon glyphicon-random"></span></button>`;
 
-		$btnRoll.on("click", () => {
-			const allLists = this.primaryLists.filter(l => l.visibleItems.length);
-			if (allLists.length) {
-				const rollX = RollerUtil.roll(allLists.length);
-				const list = allLists[rollX];
-				const rollY = RollerUtil.roll(list.visibleItems.length);
-				window.location.hash = $(list.visibleItems[rollY].ele).find(`a`).prop("hash");
-				list.visibleItems[rollY].ele.scrollIntoView();
-			}
-		});
+		btnRoll
+			.onn("click", () => {
+				const allLists = this.primaryLists.filter(l => l.visibleItems.length);
+				if (allLists.length) {
+					const rollX = RollerUtil.roll(allLists.length);
+					const list = allLists[rollX];
+					const rollY = RollerUtil.roll(list.visibleItems.length);
+					window.location.hash = e_(list.visibleItems[rollY].ele).find(`a`).attr("href");
+					if (!isScrollablePage) list.visibleItems[rollY].ele.scrollIntoView();
+				}
+			});
 
-		$btnReset.before($btnRoll);
+		$btnReset.before(btnRoll);
 	}
 
 	_bindLinkExportButton ({$btn} = {}) {
@@ -1511,6 +1549,12 @@ class ListPage {
 			$wrpList,
 			$btnReset,
 			$btnClear,
+
+			iptSearch,
+			wrpList,
+			btnReset,
+			btnClear,
+
 			dispPageTagline,
 			isPreviewable,
 			isBindFindHotkey,
@@ -1518,42 +1562,54 @@ class ListPage {
 			optsList,
 		},
 	) {
+		if (iptSearch && $iptSearch) throw new Error(`Only one of "iptSearch" and "$iptSearch" may be specified!`);
+		if (wrpList && $wrpList) throw new Error(`Only one of "wrpList" and "$wrpList" may be specified!`);
+		if (btnReset && $btnReset) throw new Error(`Only one of "btnReset" and "$btnReset" may be specified!`);
+		if (btnClear && $btnClear) throw new Error(`Only one of "btnClear" and "$btnClear" may be specified!`);
+		iptSearch ??= $iptSearch?.[0] ? e_({ele: $iptSearch[0]}) : null;
+		wrpList ??= $wrpList?.[0] ? e_({ele: $wrpList[0]}) : null;
+		btnReset ??= $btnReset?.[0] ? e_({ele: $btnReset[0]}) : null;
+		btnClear ??= $btnClear?.[0] ? e_({ele: $btnClear[0]}) : null;
+
 		const helpText = [];
 		if (isBindFindHotkey) helpText.push(`Hotkey: f.`);
 
-		const list = new List({$iptSearch, $wrpList, syntax, helpText, ...optsList});
+		const list = new List({iptSearch, wrpList, syntax, helpText, ...optsList});
 
 		if (isBindFindHotkey) {
-			$(document.body).on("keypress", (evt) => {
-				if (!EventUtil.noModifierKeys(evt) || EventUtil.isInInput(evt)) return;
-				if (EventUtil.getKeyIgnoreCapsLock(evt) === "f") {
-					evt.preventDefault();
-					$iptSearch.select().focus();
-				}
-			});
+			e_({ele: document.body})
+				.onn("keypress", (evt) => {
+					if (!EventUtil.noModifierKeys(evt) || EventUtil.isInInput(evt)) return;
+					if (EventUtil.getKeyIgnoreCapsLock(evt) === "f") {
+						evt.preventDefault();
+						iptSearch.selecte().focuse();
+					}
+				});
 		}
 
-		$btnReset.click(() => {
-			$iptSearch.val("");
-			list.reset();
-		});
+		btnReset
+			.onn("click", () => {
+				iptSearch.val("");
+				list.reset();
+				_handleSearchChange();
+			});
 
 		// region Magnifying glass/clear button
-		$btnClear
-			.click(() => $iptSearch.val("").change().keydown().keyup().focus());
+		btnClear
+			.onn("click", () => iptSearch.val("").trigger("change").trigger("keydown").trigger("keyup").focuse());
 		const _handleSearchChange = () => {
 			setTimeout(() => {
-				const hasText = !!$iptSearch.val().length;
+				const hasText = !!iptSearch.val().length;
 
-				$btnClear
+				btnClear
 					.toggleClass("no-events", !hasText)
 					.toggleClass("clickable", hasText)
-					.title(hasText ? "Clear" : null)
+					.tooltip(hasText ? "Clear" : null)
 					.html(`<span class="glyphicon ${hasText ? `glyphicon-remove` : `glyphicon-search`}"></span>`);
 			});
 		};
 		const handleSearchChange = MiscUtil.throttle(_handleSearchChange, 50);
-		$iptSearch.on("keydown", handleSearchChange);
+		iptSearch.onn("keydown", handleSearchChange);
 		// endregion
 
 		if (dispPageTagline) {
@@ -2302,7 +2358,7 @@ class ListPageTokenDisplay {
 		const wMax = Math.max(Math.floor(bcr.height) - 6, 110);
 
 		const imgLink = this._fnGetTokenUrl(ent);
-		const $img = $(`<img src="${imgLink}" class="stats__token" alt="Token Image: ${(ent.name || "").qq()}" ${ent.tokenCredit ? `title="Credit: ${ent.tokenCredit.qq()}"` : ""} loading="lazy">`)
+		const $img = $(`<img src="${imgLink}" class="stats__token" ${Renderer.utils.getTokenMetadataAttributes(ent)} loading="lazy">`)
 			.css("max-width", wMax);
 		const $lnkToken = $$`<a href="${imgLink}" class="stats__wrp-token" target="_blank" rel="noopener noreferrer">${$img}</a>`
 			.appendTo(this._$dispToken);
@@ -2324,7 +2380,7 @@ class ListPageTokenDisplay {
 			if (!meta.$ele) {
 				const imgLink = this._fnGetTokenUrl(meta);
 				const displayName = Renderer.utils.getAltArtDisplayName(meta);
-				const $img = $(`<img src="${imgLink}" class="stats__token" alt="Token Image${displayName ? `: ${displayName.qq()}` : ""}}" ${meta.tokenCredit ? `title="Credit: ${meta.tokenCredit.qq()}"` : ""} loading="lazy">`)
+				const $img = $(`<img src="${imgLink}" class="stats__token" ${Renderer.utils.getTokenMetadataAttributes(ent, {displayName})} loading="lazy">`)
 					.css("max-width", wMax)
 					.on("error", () => {
 						$img.attr("src", this.constructor._SRC_ERROR);
@@ -2390,6 +2446,14 @@ class ListPageTokenDisplay {
 
 globalThis.ListPageTokenDisplay = ListPageTokenDisplay;
 
+class _ListPageBookViewComponent extends BaseComponent {
+	_getDefaultState () {
+		return {
+			isRenderCopies: false,
+		};
+	}
+}
+
 class ListPageBookView extends BookModeViewBase {
 	_hashKey = "bookview";
 	_hasPrintColumns = true;
@@ -2399,7 +2463,9 @@ class ListPageBookView extends BookModeViewBase {
 			sublistManager,
 			fnGetEntLastLoaded,
 			pageTitle,
+			nameSingular,
 			namePlural,
+			isSublistItemsCountable = false,
 			propMarkdown,
 			fnPartition = null,
 			...rest
@@ -2409,52 +2475,75 @@ class ListPageBookView extends BookModeViewBase {
 		this._sublistManager = sublistManager;
 		this._fnGetEntLastLoaded = fnGetEntLastLoaded;
 		this._pageTitle = pageTitle;
+		this._nameSingular = nameSingular;
 		this._namePlural = namePlural;
+		this._isSublistItemsCountable = isSublistItemsCountable;
 		this._propMarkdown = propMarkdown;
 		this._fnPartition = fnPartition;
 
 		this._bookViewToShow = null;
+		this._comp = new _ListPageBookViewComponent();
+		this._fnsCleanupCompRender = [];
 	}
 
-	_$getEleNoneVisible () {
-		return $$`<div class="w-100 ve-flex-col ve-flex-h-center no-shrink no-print mb-3 mt-auto">
+	_getEleNoneVisible () {
+		return ee`<div class="w-100 ve-flex-col ve-flex-h-center no-shrink no-print mb-3 mt-auto">
 			<div class="mb-2 ve-flex-vh-center min-h-0">
 				<span class="initial-message initial-message--med">If you wish to view multiple ${this._namePlural}, please first make a list</span>
 			</div>
-			<div class="ve-flex-vh-center">${this._$getBtnNoneVisibleClose()}</div>
+			<div class="ve-flex-vh-center">${this._getBtnNoneVisibleClose()}</div>
 		</div>`;
 	}
 
-	async _$pGetWrpControls ({$wrpContent}) {
-		const out = await super._$pGetWrpControls({$wrpContent});
-		const {$wrpPrint} = out;
-		if (this._propMarkdown) this._$getControlsMarkdown().appendTo($wrpPrint);
+	async _pInit () {
+		const storageKey = `${this.constructor.name}.bookViewState`;
+
+		const savedState = await StorageUtil.pGetForPage(storageKey);
+		await this._comp.setStateFrom(savedState);
+
+		this._comp._addHookAllBase(() => StorageUtil.pSetForPage(storageKey, this._comp.getSaveableState()));
+	}
+
+	_preRender () {
+		this._fnsCleanupCompRender
+			.splice(0, this._fnsCleanupCompRender.length)
+			.forEach(fn => fn());
+	}
+
+	async _pGetWrpControls ({wrpContent}) {
+		const out = await super._pGetWrpControls({wrpContent});
+		const {wrpPrint} = out;
+		if (this._propMarkdown) this._getControlsMarkdown().appendTo(wrpPrint);
+		if (this._isSublistItemsCountable) this._getControlsCount().appendTo(wrpPrint);
 		return out;
 	}
 
-	async _pGetRenderContentMeta ({$wrpContent, $wrpContentOuter}) {
-		$wrpContent.addClass("p-2");
+	async _pGetRenderContentMeta ({wrpContent, wrpContentOuter}) {
+		wrpContent.addClass("p-2");
 
-		this._bookViewToShow = this._sublistManager.getSublistedEntities()
+		this._bookViewToShow = this._sublistManager.getSublistedEntityMetas()
 			.sort(this._getSorted.bind(this));
 
 		const partitions = [];
 		if (this._fnPartition) {
-			this._bookViewToShow.forEach(it => {
-				const partition = this._fnPartition(it);
-				(partitions[partition] = partitions[partition] || []).push(it);
+			this._bookViewToShow.forEach(entityMeta => {
+				const partition = this._fnPartition(entityMeta);
+				(partitions[partition] = partitions[partition] || []).push(entityMeta);
 			});
 		} else partitions[0] = this._bookViewToShow;
 
 		const stack = partitions
 			.filter(Boolean)
-			.flatMap(arr => arr.map(ent => this._getRenderedEnt(ent)));
+			.flatMap(arr => {
+				return arr
+					.flatMap(({entity, count}) => Array.from({length: this._comp._state.isRenderCopies ? count : 1}, () => this._getRenderedEnt(entity)));
+			});
 
 		if (!this._bookViewToShow.length && Hist.lastLoadedId != null) {
 			stack.push(this._getRenderedEnt(this._fnGetEntLastLoaded()));
 		}
 
-		$wrpContent.append(stack.join(""));
+		wrpContent.appends(stack.join(""));
 
 		return {
 			cntSelectedEnts: this._bookViewToShow.length,
@@ -2474,7 +2563,8 @@ class ListPageBookView extends BookModeViewBase {
 		const toRender = this._bookViewToShow?.length ? this._bookViewToShow : [this._fnGetEntLastLoaded()];
 		const parts = [...toRender]
 			.sort(this._getSorted.bind(this))
-			.map(this._getEntMd.bind(this));
+			// Ignore count, as we presume markdown is not being printed
+			.map(({entity}) => this._getEntityMarkdown(entity));
 
 		const out = [];
 		let charLimit = RendererMarkdown.CHARS_PER_PAGE;
@@ -2493,31 +2583,47 @@ class ListPageBookView extends BookModeViewBase {
 		return out.join("\n\n");
 	}
 
-	_$getControlsMarkdown () {
-		const $btnDownloadMarkdown = $(`<button class="ve-btn ve-btn-default ve-btn-sm">Download as Markdown</button>`)
-			.click(() => DataUtil.userDownloadText(`${UrlUtil.getCurrentPage().replace(".html", "")}.md`, this._getVisibleAsMarkdown()));
+	_getControlsMarkdown () {
+		const btnDownloadMarkdown = ee`<button class="ve-btn ve-btn-default ve-btn-sm">Download as Markdown</button>`
+			.onn("click", () => DataUtil.userDownloadText(`${UrlUtil.getCurrentPage().replace(".html", "")}.md`, this._getVisibleAsMarkdown()));
 
-		const $btnCopyMarkdown = $(`<button class="ve-btn ve-btn-default ve-btn-sm px-2" title="Copy Markdown to Clipboard"><span class="glyphicon glyphicon-copy"></span></button>`)
-			.click(async () => {
+		const btnCopyMarkdown = ee`<button class="ve-btn ve-btn-default ve-btn-sm px-2" title="Copy Markdown to Clipboard"><span class="glyphicon glyphicon-copy"></span></button>`
+			.onn("click", async () => {
 				await MiscUtil.pCopyTextToClipboard(this._getVisibleAsMarkdown());
-				JqueryUtil.showCopiedEffect($btnCopyMarkdown);
+				JqueryUtil.showCopiedEffect(btnCopyMarkdown);
 			});
 
-		const $btnDownloadMarkdownSettings = $(`<button class="ve-btn ve-btn-default ve-btn-sm px-2" title="Markdown Settings"><span class="glyphicon glyphicon-cog"></span></button>`)
-			.click(async () => RendererMarkdown.pShowSettingsModal());
+		const btnDownloadMarkdownSettings = ee`<button class="ve-btn ve-btn-default ve-btn-sm px-2" title="Markdown Settings"><span class="glyphicon glyphicon-cog"></span></button>`
+			.onn("click", async () => RendererMarkdown.pShowSettingsModal());
 
-		return $$`<div class="ve-flex-v-center ve-btn-group ml-3">
-			${$btnDownloadMarkdown}
-			${$btnCopyMarkdown}
-			${$btnDownloadMarkdownSettings}
+		return ee`<div class="ve-flex-v-center ve-btn-group ml-3">
+			${btnDownloadMarkdown}
+			${btnCopyMarkdown}
+			${btnDownloadMarkdownSettings}
 		</div>`;
 	}
 
+	_getControlsCount () {
+		const {cb: cbIsRenderCopies, unhook} = ComponentUiUtil.getCbBool(this._comp, "isRenderCopies", {asMeta: true});
+		this._fnsCleanupCompRender.push(unhook);
+
+		const hkIsRenderCopies = () => this._pRender().then(null);
+		this._comp._addHookBase("isRenderCopies", hkIsRenderCopies);
+		this._fnsCleanupCompRender.push(() => this._comp._removeHookBase("isRenderCopies", hkIsRenderCopies));
+
+		return ee`<label class="ve-flex-vh-center ml-3">
+			<span class="mr-2 help" title="If enabled, each copy of a listed ${this._nameSingular} will be displayed separately. This may be preferable when printing handouts.">Show Duplicates</span> 
+			${cbIsRenderCopies}
+		</label>`;
+	}
+
 	_getSorted (a, b) {
+		a = a.entity;
+		b = b.entity;
 		return SortUtil.ascSortLower(a.name, b.name);
 	}
 
-	_getEntMd (ent) {
+	_getEntityMarkdown (ent) {
 		return RendererMarkdown.get().render({type: "statblockInline", dataType: this._propMarkdown, data: ent}).trim();
 	}
 }

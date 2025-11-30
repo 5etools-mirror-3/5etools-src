@@ -2,8 +2,74 @@
 	"feat": [
 		{
 			"name": "Aberrant Dragonmark",
+			"source": "EFA",
+			"page": 39,
+			"category": "D",
+			"prerequisite": [
+				{
+					"campaign": [
+						"Eberron"
+					],
+					"exclusiveFeatCategory": [
+						"D"
+					]
+				}
+			],
+			"additionalSpells": [
+				{
+					"ability": "con",
+					"prepared": {
+						"_": {
+							"rest": {
+								"1": [
+									{
+										"choose": "level=1|class=Sorcerer"
+									}
+								]
+							}
+						}
+					},
+					"known": {
+						"_": [
+							{
+								"choose": "level=0|class=Sorcerer"
+							}
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Aberrant Fortitude",
+					"entries": [
+						"When you fail a Constitution saving throw, you can take a {@variantrule Reaction|XPHB} to roll {@dice 1d4} and add the number rolled to the save, potentially turning the failure into a success. Once you've used this benefit, you can't use it again until you finish a {@variantrule Long Rest|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Aberrant Magic",
+					"entries": [
+						"You know one cantrip of your choice from the Sorcerer spell list. Also, choose a level 1 spell from that spell list. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}. You can also cast this spell using any spell slots you have. Constitution is your spellcasting ability for this spell."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Aberrant Surge",
+					"entries": [
+						"When you cast the level 1 spell from this feat, you can expend one of your {@variantrule Hit Point Dice|XPHB} and roll it. If you roll an even number, you gain a number of {@variantrule Temporary Hit Points|XPHB} equal to the number rolled. If you roll an odd number, one creature within {@quantity 30|feet} of you (not including you) takes Force damage equal to the number rolled. If no other creatures are in range, you take the damage."
+					]
+				}
+			]
+		},
+		{
+			"name": "Aberrant Dragonmark",
 			"source": "ERLW",
 			"page": 52,
+			"reprintedAs": [
+				"Aberrant Dragonmark|EFA"
+			],
 			"prerequisite": [
 				{
 					"other": "No other dragonmark"
@@ -217,14 +283,14 @@
 					"type": "entries",
 					"name": "Impersonation",
 					"entries": [
-						"While you're disguised as a real or fictional person, you have Advantage on Charisma ({@skill Deception|XPHB} or {@skill Performance|XPHB}) checks to convince others that you are that person."
+						"While you're disguised as a real or fictional person, you have {@variantrule Advantage|XPHB} on Charisma ({@skill Deception|XPHB} or {@skill Performance|XPHB}) checks to convince others that you are that person."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Mimicry",
 					"entries": [
-						"You can mimic the sounds of other creatures, including speech. A creature that hears the mimicry must succeed on a Wisdom ({@skill Insight|XPHB}) check to determine the effect is faked ({@dc 8} plus your Charisma modifier and Proficiency Bonus)."
+						"You can mimic the sounds of other creatures, including speech. A creature that hears the mimicry must succeed on a Wisdom ({@skill Insight|XPHB}) check to determine the effect is faked ({@dc 8} plus your Charisma modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus})."
 					]
 				}
 			]
@@ -482,14 +548,14 @@
 					"type": "entries",
 					"name": "Initiative Proficiency",
 					"entries": [
-						"When you roll Initiative, you can add your Proficiency Bonus to the roll."
+						"When you roll {@variantrule Initiative|XPHB}, you can add your {@variantrule Proficiency|XPHB|Proficiency Bonus} to the roll."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Initiative Swap",
 					"entries": [
-						"Immediately after you roll Initiative, you can swap your Initiative with the Initiative of one willing ally in the same combat. You can't make this swap if you or the ally has the {@condition Incapacitated|XPHB} condition."
+						"Immediately after you roll {@variantrule Initiative|XPHB}, you can swap your {@variantrule Initiative|XPHB} with the {@variantrule Initiative|XPHB} of one willing ally in the same combat. You can't make this swap if you or the ally has the {@condition Incapacitated|XPHB} condition."
 					]
 				}
 			]
@@ -625,7 +691,7 @@
 					"type": "entries",
 					"name": "Climb Speed",
 					"entries": [
-						"You gain a Climb Speed equal to your Speed."
+						"You gain a {@variantrule Climb Speed|XPHB} equal to your {@variantrule Speed|XPHB}."
 					]
 				},
 				{
@@ -639,7 +705,7 @@
 					"type": "entries",
 					"name": "Jumping",
 					"entries": [
-						"You can make a running Long or High Jump after moving only {@quantity 5|feet}."
+						"You can make a running Long or {@variantrule High Jump|XPHB} after moving only {@quantity 5|feet}."
 					]
 				}
 			]
@@ -740,6 +806,218 @@
 			]
 		},
 		{
+			"name": "Bloodlust",
+			"source": "ABH",
+			"page": 9,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Powerful Recovery",
+					"entries": [
+						"When you roll a {@variantrule Hit Point Dice|XPHB|Hit Point Die} to regain {@variantrule Hit Points|XPHB}, you can treat any roll of 1 or 2 as a 3."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Sanguine Feast",
+					"entries": [
+						"Once per turn when you hit a {@status Bloodied|XPHB} creature that isn't a Construct or Undead with an attack roll, you can expend a {@variantrule Hit Point Dice|XPHB|Hit Point Die}, roll it, and regain a number of {@variantrule Hit Points|XPHB} equal to the number rolled plus your Constitution modifier.",
+						"You can use this feature a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Bomber",
+			"source": "ABH",
+			"page": 9,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"dex": 1
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Far Lobber",
+					"entries": [
+						"When you use the {@action Attack|XPHB} action to throw a vial or flask, you can target an object or creature you can see within {@quantity 40|feet} of yourself."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Long Shots",
+					"entries": [
+						"Attacking at long range doesn't impose {@variantrule Disadvantage|XPHB} on your attack rolls with {@itemProperty T|XPHB|Thrown} weapons."
+					]
+				}
+			]
+		},
+		{
+			"name": "Boon of Blazing Dawn",
+			"source": "ABH",
+			"page": 11,
+			"category": "EB",
+			"prerequisite": [
+				{
+					"level": 19
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"max": 30
+				}
+			],
+			"immune": [
+				"radiant"
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Beloved of the Sun",
+					"entries": [
+						"You have {@variantrule Immunity|XPHB} to Radiant damage."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Blazing Strike",
+					"entries": [
+						"When you hit a creature with a weapon attack, the damage can be Radiant or the weapon's normal damage type (your choice)."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Burst of Sunlight",
+					"entries": [
+						"Once per turn when you hit a creature with an attack that deals Radiant damage, you can emit {@variantrule Bright Light|XPHB} in a {@quantity 30|-foot} radius from yourself and {@variantrule Dim Light|XPHB} for an additional {@quantity 30|feet} until the start of your next turn. This light is sunlight."
+					]
+				}
+			]
+		},
+		{
+			"name": "Boon of Bloodshed",
+			"source": "FRHoF",
+			"page": 42,
+			"category": "EB",
+			"prerequisite": [
+				{
+					"level": 19
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"max": 30
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Killer's Fortune",
+					"entries": [
+						"When an enemy you can see is reduced to 0 {@variantrule Hit Points|XPHB}, you gain {@variantrule Advantage|XPHB} on the next attack roll you make before the end of your next turn."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Power from Pain",
+					"entries": [
+						"Once per turn, when you make an attack roll while {@status Bloodied|XPHB}, you can deal extra damage to the target equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}. The extra damage's type is the same as the attack's type."
+					]
+				}
+			]
+		},
+		{
+			"name": "Boon of Bountiful Health",
+			"source": "FRHoF",
+			"page": 42,
+			"category": "EB",
+			"prerequisite": [
+				{
+					"level": 19
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"max": 30
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Augmented Health",
+					"entries": [
+						"When you gain {@variantrule Temporary Hit Points|XPHB}, increase the number of {@variantrule Temporary Hit Points|XPHB} you gain by 5."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Superior Recuperation",
+					"entries": [
+						"When you spend one or more {@variantrule Hit Point Dice|XPHB} to regain {@variantrule Hit Points|XPHB}, you can instead use the highest number possible for each die."
+					]
+				}
+			]
+		},
+		{
 			"name": "Boon of Combat Prowess",
 			"source": "XPHB",
 			"page": 210,
@@ -773,6 +1051,85 @@
 					"name": "Peerless Aim",
 					"entries": [
 						"When you miss with an attack roll, you can hit instead. Once you use this benefit, you can't use it again until the start of your next turn."
+					]
+				}
+			]
+		},
+		{
+			"name": "Boon of Communication",
+			"source": "FRHoF",
+			"page": 42,
+			"category": "EB",
+			"prerequisite": [
+				{
+					"level": 19
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"max": 30
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Cunning Speaker",
+					"entries": [
+						"You don't have {@variantrule Disadvantage|XPHB} on ability checks to influence {@variantrule Hostile [Attitude]|XPHB|Hostile} creatures."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Gifted Interpreter",
+					"entries": [
+						"You understand the literal meaning of any language you hear or see signed, and you can understand the literal meaning of any written language you see."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Mental Communication",
+					"entries": [
+						"You gain telepathy with a range of {@quantity 120|feet}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Boon of Desperate Resilience",
+			"source": "FRHoF",
+			"page": 42,
+			"category": "EB",
+			"prerequisite": [
+				{
+					"level": 19
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"con"
+						]
+					},
+					"max": 30
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Defense of Body and Mind",
+					"entries": [
+						"While you are {@status Bloodied|XPHB}, you have {@variantrule Resistance|XPHB} to every damage type except Force."
 					]
 				}
 			]
@@ -864,14 +1221,57 @@
 					"type": "entries",
 					"name": "Energy Resistances",
 					"entries": [
-						"You gain Resistance to two of the following damage types of your choice: Acid, Cold, Fire, Lightning, Necrotic, Poison, Psychic, Radiant, or Thunder. Whenever you finish a Long Rest, you can change your choices."
+						"You gain {@variantrule Resistance|XPHB} to two of the following damage types of your choice: Acid, Cold, Fire, Lightning, Necrotic, Poison, Psychic, Radiant, or Thunder. Whenever you finish a {@variantrule Long Rest|XPHB}, you can change your choices."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Energy Redirection",
 					"entries": [
-						"When you take damage of one of the types chosen for the Energy Resistances benefit, you can take a Reaction to direct damage of the same type toward another creature you can see within {@quantity 60|feet} of yourself that isn't behind Total Cover. If you do so, that creature must succeed on a Dexterity saving throw ({@dc 8} plus your Constitution modifier and Proficiency Bonus) or take damage equal to {@dice 2d12} plus your Constitution modifier."
+						"When you take damage of one of the types chosen for the Energy Resistances benefit, you can take a {@variantrule Reaction|XPHB} to direct damage of the same type toward another creature you can see within {@quantity 60|feet} of yourself that isn't behind {@variantrule Cover|XPHB|Total Cover}. If you do so, that creature must succeed on a Dexterity saving throw ({@dc 8} plus your Constitution modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus}) or take damage equal to {@dice 2d12} plus your Constitution modifier."
+					]
+				}
+			]
+		},
+		{
+			"name": "Boon of Exquisite Radiance",
+			"source": "FRHoF",
+			"page": 42,
+			"category": "EB",
+			"prerequisite": [
+				{
+					"level": 19
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"max": 30
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Eternal Rest",
+					"entries": [
+						"Creatures you reduce to 0 {@variantrule Hit Points|XPHB} can't become Undead."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Powerful Radiance",
+					"entries": [
+						"When you make a damage roll that deals Radiant damage, you can instead use the highest number possible for each damage die. Once you use this benefit, you can't do so again until you finish a {@variantrule Long Rest|XPHB}."
 					]
 				}
 			]
@@ -909,11 +1309,53 @@
 					"type": "entries",
 					"name": "Improve Fate",
 					"entries": [
-						"When you or another creature within {@quantity 60|feet} of you succeeds on or fails a {@variantrule D20 Test|XPHB}, you can roll {@dice 2d4} and apply the total rolled as a bonus or penalty to the {@dice d20} roll. Once you use this benefit, you can't use it again until you roll Initiative or finish a Short or Long Rest."
+						"When you or another creature within {@quantity 60|feet} of you succeeds on or fails a {@variantrule D20 Test|XPHB}, you can roll {@dice 2d4} and apply the total rolled as a bonus or penalty to the {@dice d20} roll. Once you use this benefit, you can't use it again until you roll {@variantrule Initiative|XPHB} or finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
 					]
 				}
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Boon of Fluid Forms",
+			"source": "FRHoF",
+			"page": 42,
+			"category": "EB",
+			"prerequisite": [
+				{
+					"level": 19
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"max": 30
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Shapechanger",
+					"entries": [
+						"You can take a {@action Magic|XPHB} action to shape-shift into a Beast, Humanoid, or Monstrosity with a {@variantrule Challenge Rating|XPHB} no higher than 10. When you shape-shift, you gain a number of {@variantrule Temporary Hit Points|XPHB} equal to the {@variantrule Hit Points|XPHB} of the form. The shape-shifting effect lasts for 1 hour, and it ends early if you have no {@variantrule Temporary Hit Points|XPHB} left or if you take a {@action Magic|XPHB} action to return to your true form.",
+						"Your game statistics are replaced by the stat block of the chosen form, but you retain your creature type; alignment; personality; Intelligence, Wisdom, and Charisma scores; {@variantrule Hit Points|XPHB}; {@variantrule Hit Point Dice|XPHB}; proficiencies; and ability to communicate. If you have the Spellcasting or Pact Magic feature, you retain it too. Upon shape-shifting, you determine whether your equipment drops to the ground or changes in size and shape to fit the new form while you're in it.",
+						"Once you use this benefit, you can't do so again until you finish a {@variantrule Long Rest|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Hardy Transformation",
+					"entries": [
+						"When you gain {@variantrule Temporary Hit Points|XPHB} when you shape-shift, increase that number of {@variantrule Temporary Hit Points|XPHB} by 20."
+					]
+				}
+			]
 		},
 		{
 			"name": "Boon of Fortitude",
@@ -946,7 +1388,43 @@
 					"type": "entries",
 					"name": "Fortified Health",
 					"entries": [
-						"Your Hit Point maximum increases by 40. In addition, whenever you regain Hit Points, you can regain additional Hit Points equal to your Constitution modifier. Once you've regained these additional Hit Points, you can't do so again until the start of your next turn."
+						"Your {@variantrule Hit Points|XPHB|Hit Point} maximum increases by 40. In addition, whenever you regain {@variantrule Hit Points|XPHB}, you can regain additional {@variantrule Hit Points|XPHB} equal to your Constitution modifier. Once you've regained these additional {@variantrule Hit Points|XPHB}, you can't do so again until the start of your next turn."
+					]
+				}
+			]
+		},
+		{
+			"name": "Boon of Fortune's Favor",
+			"source": "FRHoF",
+			"page": 43,
+			"category": "EB",
+			"prerequisite": [
+				{
+					"level": 19
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"max": 30
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Saving Throw Reroll",
+					"entries": [
+						"When you fail a saving throw, you can reroll it and must use the new roll. Once you use this benefit, you can't do so again until the start of your next turn."
 					]
 				}
 			]
@@ -980,7 +1458,7 @@
 					"type": "entries",
 					"name": "Overcome Defenses",
 					"entries": [
-						"The Bludgeoning, Piercing, and Slashing damage you deal always ignores Resistance."
+						"The Bludgeoning, Piercing, and Slashing damage you deal always ignores {@variantrule Resistance|XPHB}."
 					]
 				},
 				{
@@ -988,6 +1466,145 @@
 					"name": "Overwhelming Strike",
 					"entries": [
 						"When you roll a 20 on the {@dice d20} for an attack roll, you can deal extra damage to the target equal to the ability score increased by this feat. The extra damage's type is the same as the attack's type."
+					]
+				}
+			]
+		},
+		{
+			"name": "Boon of Looming Shadows",
+			"source": "ABH",
+			"page": 11,
+			"category": "EB",
+			"prerequisite": [
+				{
+					"level": 19
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"max": 30
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Shadowy Stretch",
+					"entries": [
+						"When you take the {@action Attack|XPHB} action, your reach for your Melee weapon attacks increases by {@quantity 10|feet} until the end of your turn."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Dancing Silhouette",
+					"entries": [
+						"You can take the {@action Dodge|XPHB} action as a {@variantrule Bonus Action|XPHB}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Boon of Misty Escape",
+			"source": "ABH",
+			"page": 11,
+			"category": "EB",
+			"prerequisite": [
+				{
+					"level": 19
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"max": 30
+				}
+			],
+			"additionalSpells": [
+				{
+					"innate": {
+						"_": {
+							"daily": {
+								"1e": [
+									"gaseous form|xphb"
+								]
+							}
+						}
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Gaseous Form",
+					"entries": [
+						"If you drop to 0 {@variantrule Hit Points|XPHB} but aren't killed outright, you can instead drop to 1 {@variantrule Hit Points|XPHB|Hit Point} and cast {@spell Gaseous Form|XPHB} without expending a spell slot (no action required). When you cast this spell this way, you can target only yourself, your {@variantrule Fly Speed|XPHB} is {@quantity 20|feet}, and you regain 10 {@variantrule Hit Points|XPHB} at the start of each of your turns for the spell's duration. The spell's spellcasting ability is the ability increased by this feat.",
+						"Once you use this benefit, you can't do so again until you finish a {@variantrule Long Rest|XPHB}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Boon of Poison Mastery",
+			"source": "FRHoF",
+			"page": 43,
+			"category": "EB",
+			"prerequisite": [
+				{
+					"level": 19
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"max": 30
+				}
+			],
+			"immune": [
+				"poison"
+			],
+			"conditionImmune": [
+				"poisoned"
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Antitoxic",
+					"entries": [
+						"You have {@variantrule Immunity|XPHB} to Poison damage and the {@condition Poisoned|XPHB} condition."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Perfect Poisoner",
+					"entries": [
+						"Once per turn, when you roll dice to determine Poison damage a creature takes from your attack, spell, or feature, you can instead use the highest number possible for each die."
 					]
 				}
 			]
@@ -1023,14 +1640,416 @@
 					"type": "entries",
 					"name": "Last Stand",
 					"entries": [
-						"When you would be reduced to 0 Hit Points, you can drop to 1 Hit Point instead and regain a number of Hit Points equal to half your Hit Point maximum. Once you use this benefit, you can't use it again until you finish a Long Rest."
+						"When you would be reduced to 0 {@variantrule Hit Points|XPHB}, you can drop to 1 {@variantrule Hit Points|XPHB|Hit Point} instead and regain a number of {@variantrule Hit Points|XPHB} equal to half your {@variantrule Hit Points|XPHB|Hit Point} maximum. Once you use this benefit, you can't use it again until you finish a {@variantrule Long Rest|XPHB}."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Recover Vitality",
 					"entries": [
-						"You have a pool of ten d10s. As a Bonus Action, you can expend dice from the pool, roll those dice, and regain a number of Hit Points equal to the roll's total. You regain all the expended dice when you finish a Long Rest."
+						"You have a pool of ten d10s. As a {@variantrule Bonus Action|XPHB}, you can expend dice from the pool, roll those dice, and regain a number of {@variantrule Hit Points|XPHB} equal to the roll's total. You regain all the expended dice when you finish a {@variantrule Long Rest|XPHB}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Boon of Revelry",
+			"source": "FRHoF",
+			"page": 43,
+			"category": "EB",
+			"prerequisite": [
+				{
+					"level": 19
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"max": 30
+				}
+			],
+			"additionalSpells": [
+				{
+					"prepared": {
+						"_": [
+							"otto's irresistible dance|xphb"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Inspire Dance",
+					"entries": [
+						"You always have the {@spell Otto's Irresistible Dance|XPHB} spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it that way when you finish a {@variantrule Long Rest|XPHB}. You can also cast the spell using any spell slots you have of the appropriate level.",
+						"When you cast the spell, it requires no spell components, and taking damage doesn't break your {@status Concentration|XPHB} on it."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Sing Out",
+					"entries": [
+						"While a creature that failed its saving throw against your {@spell Otto's Irresistible Dance|XPHB} has the {@condition Charmed|XPHB} condition from that spell, it can't cast spells with Verbal components, and it sings delightful nonsense if it can sing."
+					]
+				}
+			]
+		},
+		{
+			"name": "Boon of Siberys",
+			"source": "EFA",
+			"page": 45,
+			"category": "EB",
+			"prerequisite": [
+				{
+					"level": 19,
+					"campaign": [
+						"Eberron"
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"max": 30
+				}
+			],
+			"additionalSpells": [
+				{
+					"name": "Mark of Handling",
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"prepared": {
+						"_": {
+							"daily": {
+								"1": [
+									"animal shapes|xphb"
+								]
+							}
+						}
+					}
+				},
+				{
+					"name": "Mark of Storm",
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"prepared": {
+						"_": {
+							"daily": {
+								"1": [
+									"control weather|xphb"
+								]
+							}
+						}
+					}
+				},
+				{
+					"name": "Mark of Making",
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"prepared": {
+						"_": {
+							"daily": {
+								"1": [
+									"demiplane|xphb"
+								]
+							}
+						}
+					}
+				},
+				{
+					"name": "Mark of Hospitality",
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"prepared": {
+						"_": {
+							"daily": {
+								"1": [
+									"heroes' feast|xphb"
+								]
+							}
+						}
+					}
+				},
+				{
+					"name": "Mark of Warding",
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"prepared": {
+						"_": {
+							"daily": {
+								"1": [
+									"maze|xphb"
+								]
+							}
+						}
+					}
+				},
+				{
+					"name": "Mark of Sentinel",
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"prepared": {
+						"_": {
+							"daily": {
+								"1": [
+									"mind blank|xphb"
+								]
+							}
+						}
+					}
+				},
+				{
+					"name": "Mark of Passage",
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"prepared": {
+						"_": {
+							"daily": {
+								"1": [
+									"plane shift|xphb"
+								]
+							}
+						}
+					}
+				},
+				{
+					"name": "Mark of Shadow",
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"prepared": {
+						"_": {
+							"daily": {
+								"1": [
+									"project image|xphb"
+								]
+							}
+						}
+					}
+				},
+				{
+					"name": "Mark of Healing",
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"prepared": {
+						"_": {
+							"daily": {
+								"1": [
+									"regenerate|xphb"
+								]
+							}
+						}
+					}
+				},
+				{
+					"name": "Mark of Scribing",
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"prepared": {
+						"_": {
+							"daily": {
+								"1": [
+									"symbol|xphb"
+								]
+							}
+						}
+					}
+				},
+				{
+					"name": "Mark of Finding",
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"prepared": {
+						"_": {
+							"daily": {
+								"1": [
+									"teleport|xphb"
+								]
+							}
+						}
+					}
+				},
+				{
+					"name": "Mark of Detection",
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"prepared": {
+						"_": {
+							"daily": {
+								"1": [
+									"true seeing|xphb"
+								]
+							}
+						}
+					}
+				},
+				{
+					"name": "Sorcerer Spell",
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"prepared": {
+						"_": {
+							"daily": {
+								"1": [
+									{
+										"choose": "level=1;2;3;4;5;6;7;8|class=Sorcerer"
+									}
+								]
+							}
+						}
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Aberrant Magic",
+					"entries": [
+						"Choose a level 8 or lower spell from the {@filter Sorcerer spell list|spells|class=Sorcerer|level=0;1;2;3;4;5;6;7;8} or a spell from the Siberys Dragonmark Spells table (the table includes dragonmark suggestions if you'd like to associate a spell with one of the marks). You always have that spell prepared. You can cast it once without a spell slot or spell components, and you regain the ability to cast it in that way when you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}. You can also cast this spell using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for this spell (choose when you gain this feat).",
+						{
+							"type": "table",
+							"caption": "Siberys Dragonmark Seplls",
+							"colStyles": [
+								"col-6",
+								"col-6"
+							],
+							"colLabels": [
+								"Spell",
+								"Suggested Dragonmark"
+							],
+							"rows": [
+								[
+									"{@spell Animal Shapes|XPHB}",
+									"Handling"
+								],
+								[
+									"{@spell Control Weather|XPHB}",
+									"Storm"
+								],
+								[
+									"{@spell Demiplane|XPHB}",
+									"Making"
+								],
+								[
+									"{@spell Heroes' Feast|XPHB}",
+									"Hospitality"
+								],
+								[
+									"{@spell Maze|XPHB}",
+									"Warding"
+								],
+								[
+									"{@spell Mind Blank|XPHB}",
+									"Sentinel"
+								],
+								[
+									"{@spell Plane Shift|XPHB}",
+									"Passage"
+								],
+								[
+									"{@spell Project Image|XPHB}",
+									"Shadow"
+								],
+								[
+									"{@spell Regenerate|XPHB}",
+									"Healing"
+								],
+								[
+									"{@spell Symbol|XPHB}",
+									"Scribing"
+								],
+								[
+									"{@spell Teleport|XPHB}",
+									"Finding"
+								],
+								[
+									"{@spell True Seeing|XPHB}",
+									"Detection"
+								]
+							]
+						}
 					]
 				}
 			]
@@ -1100,7 +2119,7 @@
 					"type": "entries",
 					"name": "Expertise",
 					"entries": [
-						"Choose one skill in which you lack Expertise. You gain Expertise in that skill."
+						"Choose one skill in which you lack {@variantrule Expertise|XPHB}. You gain {@variantrule Expertise|XPHB} in that skill."
 					]
 				}
 			],
@@ -1137,14 +2156,14 @@
 					"type": "entries",
 					"name": "Escape Artist",
 					"entries": [
-						"As a Bonus Action, you can take the {@action Disengage|XPHB} action, which also ends the {@condition Grappled|XPHB} condition on you."
+						"As a {@variantrule Bonus Action|XPHB}, you can take the {@action Disengage|XPHB} action, which also ends the {@condition Grappled|XPHB} condition on you."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Quickness",
 					"entries": [
-						"Your Speed increases by {@quantity 30|feet}."
+						"Your {@variantrule Speed|XPHB} increases by {@quantity 30|feet}."
 					]
 				}
 			]
@@ -1186,6 +2205,145 @@
 			]
 		},
 		{
+			"name": "Boon of Terror",
+			"source": "FRHoF",
+			"page": 43,
+			"category": "EB",
+			"prerequisite": [
+				{
+					"level": 19
+				}
+			],
+			"ability": [
+				{
+					"cha": 1,
+					"max": 30
+				}
+			],
+			"skillProficiencies": [
+				{
+					"intimidation": true
+				}
+			],
+			"expertise": [
+				{
+					"intimidation": true
+				}
+			],
+			"conditionImmune": [
+				"frightened"
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Fearless",
+					"entries": [
+						"You have {@variantrule Immunity|XPHB} to the {@condition Frightened|XPHB} condition."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Flee, Fools!",
+					"entries": [
+						"When a creature with the {@condition Frightened|XPHB} condition starts its turn within {@quantity 60|feet} of you, you can take a {@variantrule Reaction|XPHB} to stoke its terror, provided you can see the creature and it isn't behind {@variantrule Cover|XPHB|Total Cover}. If you do so, the creature must succeed on a Wisdom saving throw (DC 8 plus your Charisma modifier and your {@variantrule Proficiency|XPHB|Proficiency Bonus}) or spend its turn moving away from you by the fastest available means. Once you use this benefit, you can't use it again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Intimidating",
+					"entries": [
+						"You gain {@variantrule Proficiency|XPHB} in the {@skill Intimidation|XPHB} skill if you don't already have it. You also gain {@variantrule Expertise|XPHB} in {@skill Intimidation|XPHB}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Boon of the Bright Sun",
+			"source": "FRHoF",
+			"page": 43,
+			"category": "EB",
+			"prerequisite": [
+				{
+					"level": 19
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"con",
+							"wis",
+							"cha"
+						]
+					},
+					"max": 30
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Daylight Presence",
+					"entries": [
+						"As a {@variantrule Bonus Action|XPHB}, you radiate a {@quantity 30|-foot} {@variantrule Emanation [Area of Effect]|XPHB|Emanation} of {@variantrule Bright Light|XPHB} that is sunlight. If any of the {@variantrule Emanation [Area of Effect]|XPHB|Emanation}'s area overlaps with an area of {@spell Darkness|XPHB} created by a spell, that spell is dispelled. The {@variantrule Emanation [Area of Effect]|XPHB|Emanation} lasts until you dismiss it (no action required), die, or have the {@condition Incapacitated|XPHB} condition."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Fortifying Light",
+					"entries": [
+						"When your Daylight Presence is active, at the start of each of your turns, you and allies you can see in your Daylight Presence gain 10 {@variantrule Temporary Hit Points|XPHB}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Boon of the Furious Storm",
+			"source": "FRHoF",
+			"page": 43,
+			"category": "EB",
+			"prerequisite": [
+				{
+					"level": 19,
+					"spellcasting2020": true
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"max": 30
+				}
+			],
+			"resist": [
+				"lightning",
+				"thunder"
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Eye of the Storm",
+					"entries": [
+						"You have {@variantrule Resistance|XPHB} to Lightning and Thunder damage. While you are {@status Bloodied|XPHB}, you have {@variantrule Immunity|XPHB} to Lightning and Thunder damage."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Storm's Strength",
+					"entries": [
+						"Creatures have {@variantrule Disadvantage|XPHB} on saving throws against your spells that deal Lightning or Thunder damage."
+					]
+				}
+			]
+		},
+		{
 			"name": "Boon of the Night Spirit",
 			"source": "XPHB",
 			"page": 211,
@@ -1218,14 +2376,61 @@
 					"type": "entries",
 					"name": "Merge with Shadows",
 					"entries": [
-						"While within Dim Light or Darkness, you can give yourself the {@condition Invisible|XPHB} condition as a Bonus Action. The condition ends on you immediately after you take an action, a Bonus Action, or a Reaction."
+						"While within {@variantrule Dim Light|XPHB} or {@variantrule Darkness|XPHB}, you can give yourself the {@condition Invisible|XPHB} condition as a {@variantrule Bonus Action|XPHB}. The condition ends on you immediately after you take an action, a {@variantrule Bonus Action|XPHB}, or a {@variantrule Reaction|XPHB}."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Shadowy Form",
 					"entries": [
-						"While within Dim Light or Darkness, you have Resistance to all damage except Psychic and Radiant."
+						"While within {@variantrule Dim Light|XPHB} or {@variantrule Darkness|XPHB}, you have {@variantrule Resistance|XPHB} to all damage except Psychic and Radiant."
+					]
+				}
+			]
+		},
+		{
+			"name": "Boon of the Soul Drinker",
+			"source": "FRHoF",
+			"page": 43,
+			"category": "EB",
+			"prerequisite": [
+				{
+					"level": 19
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"max": 30
+				}
+			],
+			"resist": [
+				"cold",
+				"necrotic"
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Grave Resistance",
+					"entries": [
+						"You have {@variantrule Resistance|XPHB} to Cold damage and Necrotic damage."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Siphon Life",
+					"entries": [
+						"When an enemy within {@quantity 120|feet} of you is reduced to 0 {@variantrule Hit Points|XPHB}, you can take a {@variantrule Reaction|XPHB} to regain 50 {@variantrule Hit Points|XPHB}. Once you use this benefit, you can't use it again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
 					]
 				}
 			]
@@ -1386,7 +2591,7 @@
 					"type": "entries",
 					"name": "Improved Dash",
 					"entries": [
-						"When you take the {@action Dash|XPHB} action, your Speed increases by {@quantity 10|feet} for that action."
+						"When you take the {@action Dash|XPHB} action, your {@variantrule Speed|XPHB} increases by {@quantity 10|feet} for that action."
 					]
 				},
 				{
@@ -1464,21 +2669,112 @@
 					"type": "entries",
 					"name": "Cook's Utensils",
 					"entries": [
-						"You gain proficiency with Cook's Utensils if you don't already have it."
+						"You gain proficiency with {@item Cook's Utensils|XPHB} if you don't already have it."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Replenishing Meal",
 					"entries": [
-						"As part of a Short Rest, you can cook special food if you have ingredients and Cook's Utensils on hand. You can prepare enough of this food for a number of creatures equal to 4 plus your Proficiency Bonus. At the end of the Short Rest, any creature who eats the food and spends one or more Hit Dice to regain Hit Points regains an extra {@dice 1d8} Hit Points."
+						"As part of a {@variantrule Short Rest|XPHB}, you can cook special food if you have ingredients and {@item Cook's Utensils|XPHB} on hand. You can prepare enough of this food for a number of creatures equal to 4 plus your {@variantrule Proficiency|XPHB|Proficiency Bonus}. At the end of the {@variantrule Short Rest|XPHB}, any creature who eats the food and spends one or more Hit Dice to regain {@variantrule Hit Points|XPHB} regains an extra {@dice 1d8} {@variantrule Hit Points|XPHB}."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Bolstering Treats",
 					"entries": [
-						"With 1 hour of work or when you finish a Long Rest, you can cook a number of treats equal to your Proficiency Bonus if you have ingredients and Cook's Utensils on hand. These special treats last 8 hours after being made. A creature can use a Bonus Action to eat one of those treats to gain a number of Temporary Hit Points equal to your Proficiency Bonus."
+						"With 1 hour of work or when you finish a {@variantrule Long Rest|XPHB}, you can cook a number of treats equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus} if you have ingredients and {@item Cook's Utensils|XPHB} on hand. These special treats last 8 hours after being made. A creature can use a {@variantrule Bonus Action|XPHB} to eat one of those treats to gain a number of {@variantrule Temporary Hit Points|XPHB} equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Child of the Sun",
+			"source": "LFL",
+			"category": "O",
+			"additionalSpells": [
+				{
+					"innate": {
+						"_": {
+							"daily": {
+								"1": [
+									"faerie fire|xphb"
+								]
+							}
+						}
+					},
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Eyes of Eirdu",
+					"entries": [
+						"You and allies within {@quantity 10|feet} of you have {@variantrule Advantage|XPHB} on saving throws made to avoid or end the {@condition Blinded|XPHB} condition."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Faerie Fire",
+					"entries": [
+						"You learn the {@spell Faerie Fire|XPHB} spell. Intelligence, Wisdom, or Charisma is your spellcasting ability for this spell (choose when you select this feat). You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a {@variantrule Long Rest|XPHB}. You can also cast the spell using any spell slots you have.",
+						"When you cast {@spell Faerie Fire|XPHB} without a spell slot using this benefit, taking damage can't break your {@status Concentration|XPHB} on the spell."
+					]
+				}
+			]
+		},
+		{
+			"name": "Cloying Mists",
+			"source": "ABH",
+			"page": 9,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"prepared": {
+						"_": [
+							"fog cloud|xphb"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Arise, Fog",
+					"entries": [
+						"You always have the {@spell Fog Cloud|XPHB} spell prepared. You can cast it without a spell slot, and you must finish a {@variantrule Long Rest|XPHB} before you can cast it in this way again. You can also cast it using spell slots you have of the appropriate level. Your spellcasting ability for the spell is the ability increased by this feat."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Grasping Mist",
+					"entries": [
+						"Whenever you cast {@spell Fog Cloud|XPHB}, nonmagical flames in the spell's {@variantrule Sphere [Area of Effect]|XPHB|Sphere} are extinguished, and creatures other than you and your allies have their {@variantrule Speed|XPHB} reduced by {@quantity 5|feet} while in the spell's {@variantrule Sphere [Area of Effect]|XPHB|Sphere}."
 					]
 				}
 			]
@@ -1558,6 +2854,77 @@
 			]
 		},
 		{
+			"name": "Cold Caster",
+			"source": "FRHoF",
+			"page": 39,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"known": {
+						"_": [
+							"ray of frost|xphb#c"
+						]
+					}
+				},
+				{
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"known": {
+						"_": [
+							{
+								"choose": "level=0|class=Wizard"
+							}
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Cantrip",
+					"entries": [
+						"You learn the {@spell Ray of Frost|XPHB} cantrip. If you already know it, you learn a different Wizard cantrip of your choice. The spell's spellcasting ability is the ability increased by this feat."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Frostbite",
+					"entries": [
+						"Once per turn when you hit a creature with an attack roll and deal Cold damage, you can temporarily negate the creature's defenses. The creature subtracts {@dice 1d4} from the next saving throw it makes before the end of your next turn."
+					]
+				}
+			]
+		},
+		{
 			"name": "Crafter",
 			"source": "XPHB",
 			"page": 200,
@@ -1585,7 +2952,7 @@
 					"type": "entries",
 					"name": "Tool Proficiency",
 					"entries": [
-						"You gain proficiency with three different Artisan's Tools of your choice from the Fast Crafting table."
+						"You gain proficiency with three different {@item Artisan's Tools|XPHB} of your choice from the Fast Crafting table."
 					]
 				},
 				{
@@ -1599,7 +2966,7 @@
 					"type": "entries",
 					"name": "Fast Crafting",
 					"entries": [
-						"When you finish a Long Rest, you can craft one piece of gear from the Fast Crafting table, provided you have the Artisan's Tools associated with that item and have proficiency with those tools. The item lasts until you finish another Long Rest, at which point the item falls apart.",
+						"When you finish a {@variantrule Long Rest|XPHB}, you can craft one piece of gear from the Fast Crafting table, provided you have the {@item Artisan's Tools|XPHB} associated with that item and have proficiency with those tools. The item lasts until you finish another {@variantrule Long Rest|XPHB}, at which point the item falls apart.",
 						{
 							"type": "table",
 							"caption": "Fast Crafting",
@@ -1695,21 +3062,21 @@
 					"type": "entries",
 					"name": "Ignore Loading",
 					"entries": [
-						"You ignore the Loading property of the Hand Crossbow, Heavy Crossbow, and Light Crossbow (all called crossbows elsewhere in this feat). If you're holding one of them, you can load a piece of ammunition into it even if you lack a free hand."
+						"You ignore the {@itemProperty LD|XPHB|Loading} property of the {@item Hand Crossbow|XPHB}, {@item Heavy Crossbow|XPHB}, and {@item Light Crossbow|XPHB} (all called crossbows elsewhere in this feat). If you're holding one of them, you can load a piece of ammunition into it even if you lack a free hand."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Firing in Melee",
 					"entries": [
-						"Being within {@quantity 5|feet} of an enemy doesn't impose Disadvantage on your attack rolls with crossbows."
+						"Being within {@quantity 5|feet} of an enemy doesn't impose {@variantrule Disadvantage|XPHB} on your attack rolls with crossbows."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Dual Wielding",
 					"entries": [
-						"When you make the extra attack of the Light property, you can add your ability modifier to the damage of the extra attack if that attack is with a crossbow that has the Light property and you aren't already adding that modifier to the damage."
+						"When you make the extra attack of the {@itemProperty L|XPHB|Light} property, you can add your ability modifier to the damage of the extra attack if that attack is with a crossbow that has the {@itemProperty L|XPHB|Light} property and you aren't already adding that modifier to the damage."
 					]
 				}
 			]
@@ -1794,7 +3161,45 @@
 					"type": "entries",
 					"name": "Enhanced Critical",
 					"entries": [
-						"When you score a Critical Hit that deals Bludgeoning damage to a creature, attack rolls against that creature have Advantage until the start of your next turn."
+						"When you score a {@variantrule Critical Hit|XPHB} that deals Bludgeoning damage to a creature, attack rolls against that creature have {@variantrule Advantage|XPHB} until the start of your next turn."
+					]
+				}
+			]
+		},
+		{
+			"name": "Cult of the Dragon Initiate",
+			"source": "FRHoF",
+			"page": 37,
+			"category": "O",
+			"languageProficiencies": [
+				{
+					"draconic": true
+				},
+				{
+					"any": 1
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Dragon's Tongue",
+					"entries": [
+						"You know Draconic. If you already know Draconic when you select this feat, you instead learn one language of your choice from the language tables in the Player's Handbook or Chapter 2 of this book."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Dragon's Terror",
+					"entries": [
+						"You can take a {@action Magic|XPHB} action to instill terror in a creature you can see within {@quantity 30|feet} of yourself. The target must succeed on a Wisdom saving throw (DC 8 plus your Wisdom modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus}) or have the {@condition Frightened|XPHB} condition until the end of your next turn. If the target succeeds on the save or when the effect ends for a target, the target is immune to this effect for 24 hours."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Inspired by Fear",
+					"entries": [
+						"When you cause a creature to have the {@condition Frightened|XPHB} condition and you are the source of its fear, you can gain {@variantrule Heroic Inspiration|XPHB} if you lack it. Once you use this benefit, you can't use it again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
 					]
 				}
 			]
@@ -1814,7 +3219,7 @@
 				}
 			],
 			"entries": [
-				"While you're wearing Light, Medium, or Heavy armor, you gain a +1 bonus to Armor Class."
+				"While you're wearing Light, Medium, or Heavy armor, you gain a +1 bonus to {@variantrule Armor Class|XPHB}."
 			]
 		},
 		{
@@ -1863,7 +3268,42 @@
 					"type": "entries",
 					"name": "Parry",
 					"entries": [
-						"If you're holding a Finesse weapon and another creature hits you with a melee attack, you can take a Reaction to add your Proficiency Bonus to your Armor Class, potentially causing the attack to miss you. You gain this bonus to your AC against melee attacks until the start of your next turn."
+						"If you're holding a Finesse weapon and another creature hits you with a melee attack, you can take a {@variantrule Reaction|XPHB} to add your {@variantrule Proficiency|XPHB|Proficiency Bonus} to your {@variantrule Armor Class|XPHB}, potentially causing the attack to miss you. You gain this bonus to your AC against melee attacks until the start of your next turn."
+					]
+				}
+			]
+		},
+		{
+			"name": "Delicious Pain",
+			"source": "ABH",
+			"page": 9,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Toughened Flesh",
+					"entries": [
+						"Immediately after you take Bludgeoning, Piercing, or Slashing damage, you can take a {@variantrule Reaction|XPHB} to gain {@variantrule Resistance|XPHB} to Bludgeoning, Piercing, and Slashing damage until the start of your next turn. Once you use this benefit, you can't use it again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
 					]
 				}
 			]
@@ -2078,6 +3518,60 @@
 			]
 		},
 		{
+			"name": "Dragonscarred",
+			"source": "FRHoF",
+			"page": 39,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"feat": [
+						"cult of the dragon initiate|frhof"
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"con",
+							"cha"
+						]
+					}
+				}
+			],
+			"resist": [
+				{
+					"choose": {
+						"from": [
+							"acid",
+							"cold",
+							"fire",
+							"lightning",
+							"poison"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Damage Resistance",
+					"entries": [
+						"When you gain this feat, choose Acid, Cold, Fire, Lightning, or Poison. You have {@variantrule Resistance|XPHB} to the chosen damage type."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Fearsome Power",
+					"entries": [
+						"When you deal damage to a creature as part of the Attack or Magic action on your turn, you can use the Dragon's Terror benefit of the Cult of the Dragon Initiate feat as a {@variantrule Bonus Action|XPHB} this turn."
+					]
+				}
+			]
+		},
+		{
 			"name": "Drow High Magic",
 			"source": "XGE",
 			"page": 74,
@@ -2201,14 +3695,14 @@
 					"type": "entries",
 					"name": "Enhanced Dual Wielding",
 					"entries": [
-						"When you take the {@action Attack|XPHB} action on your turn and attack with a weapon that has the Light property, you can make one extra attack as a Bonus Action later on the same turn with a different weapon, which must be a Melee weapon that lacks the Two-Handed property. You don't add your ability modifier to the extra attack's damage unless that modifier is negative."
+						"When you take the {@action Attack|XPHB} action on your turn and attack with a weapon that has the {@itemProperty L|XPHB|Light} property, you can make one extra attack as a {@variantrule Bonus Action|XPHB} later on the same turn with a different weapon, which must be a Melee weapon that lacks the {@itemProperty 2H|XPHB|Two-Handed} property. You don't add your ability modifier to the extra attack's damage unless that modifier is negative."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Quick Draw",
 					"entries": [
-						"You can draw or stow two weapons that lack the Two-Handed property when you would normally be able to draw or stow only one."
+						"You can draw or stow two weapons that lack the {@itemProperty 2H|XPHB|Two-Handed} property when you would normally be able to draw or stow only one."
 					]
 				}
 			]
@@ -2217,7 +3711,6 @@
 			"name": "Dueling",
 			"source": "XPHB",
 			"page": 209,
-			"srd52": true,
 			"category": "FS",
 			"prerequisite": [
 				{
@@ -2290,14 +3783,14 @@
 					"type": "entries",
 					"name": "Defy Death",
 					"entries": [
-						"You have Advantage on Death Saving Throws."
+						"You have {@variantrule Advantage|XPHB} on {@variantrule Death Saving Throw|XPHB|Death Saving Throws}."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Speedy Recovery",
 					"entries": [
-						"As a Bonus Action, you can expend one of your Hit Point Dice, roll the die, and regain a number of Hit Points equal to the roll."
+						"As a {@variantrule Bonus Action|XPHB}, you can expend one of your {@variantrule Hit Point Dice|XPHB}, roll the die, and regain a number of {@variantrule Hit Points|XPHB} equal to the roll."
 					]
 				}
 			]
@@ -2404,7 +3897,7 @@
 					"type": "entries",
 					"name": "Energy Mastery",
 					"entries": [
-						"Choose one of the following damage types: Acid, Cold, Fire, Lightning, or Thunder. Spells you cast ignore Resistance to damage of the chosen type. In addition, when you roll damage for a spell you cast that deals damage of that type, you can treat any 1 on a damage die as a 2."
+						"Choose one of the following damage types: Acid, Cold, Fire, Lightning, or Thunder. Spells you cast ignore {@variantrule Resistance|XPHB} to damage of the chosen type. In addition, when you roll damage for a spell you cast that deals damage of that type, you can treat any 1 on a damage die as a 2."
 					]
 				},
 				{
@@ -2507,6 +4000,107 @@
 			]
 		},
 		{
+			"name": "Emerald Enclave Fledgling",
+			"source": "FRHoF",
+			"page": 37,
+			"category": "O",
+			"additionalSpells": [
+				{
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"prepared": {
+						"_": [
+							"speak with animals|xphb"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Speak with Animals",
+					"entries": [
+						"You always have the {@spell Speak with Animals|XPHB} spell prepared and can cast it with any spell slots you have. Intelligence, Wisdom, or Charisma is your spellcasting ability for this spell (choose when you select this feat). When you cast this spell as a {@variantrule Ritual|XPHB}, its duration is 8 hours."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Tag Team",
+					"entries": [
+						"When you take the {@action Help|XPHB} action, you can switch places with a willing ally within {@quantity 5|feet} of yourself as part of that same action. This movement doesn't provoke {@action Opportunity Attack|XPHB|Opportunity Attacks}. You can't use this benefit if the ally has the {@condition Incapacitated|XPHB} condition."
+					]
+				}
+			]
+		},
+		{
+			"name": "Enclave Magic",
+			"source": "FRHoF",
+			"page": 39,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"feat": [
+						"emerald enclave fledgling|frhof"
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"prepared": {
+						"_": {
+							"daily": {
+								"1": [
+									"beast sense|xphb"
+								]
+							}
+						}
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Friend to Animals",
+					"entries": [
+						"You have {@variantrule Advantage|XPHB} on ability checks when taking the {@action Influence|XPHB} action with Beasts."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Two Hearts, One Mind",
+					"entries": [
+						"You always have the {@spell Beast Sense|XPHB} spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a {@variantrule Long Rest|XPHB}. When you cast it without a spell slot using this feature, it doesn't require {@status Concentration|XPHB}. You can also cast the spell using any spell slots you have of the appropriate level. The spell's spellcasting ability is the ability increased by this feat."
+					]
+				}
+			]
+		},
+		{
 			"name": "Fade Away",
 			"source": "XGE",
 			"page": 74,
@@ -2536,6 +4130,45 @@
 					"type": "list",
 					"items": [
 						"Immediately after you take damage, you can use a reaction to magically become {@condition invisible} until the end of your next turn or until you attack, deal damage, or force someone to make a saving throw. Once you use this ability, you can't do so again until you finish a short or long rest."
+					]
+				}
+			]
+		},
+		{
+			"name": "Fairy Trickster",
+			"source": "FRHoF",
+			"page": 39,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"dex",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Faerie Trod Trotter",
+					"entries": [
+						"When you take the {@action Disengage|XPHB} action on your turn, {@variantrule Difficult Terrain|XPHB} doesn't cost you extra movement for the rest of that turn."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Flustering Strike",
+					"entries": [
+						"When you hit a creature with an attack roll, you can attempt to fluster the target. The target must succeed on a Wisdom saving throw (DC 8 plus the ability modifier of the score increased by this feat and your {@variantrule Proficiency|XPHB|Proficiency Bonus}) or have {@variantrule Disadvantage|XPHB} on saving throws until the end of your next turn.",
+						"You can use this benefit a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
 					]
 				}
 			]
@@ -2685,7 +4318,7 @@
 					"type": "entries",
 					"name": "Fey Magic",
 					"entries": [
-						"Choose one level 1 spell from the {@filter Divination or Enchantment|spells|level=1|school=E;D} school of magic. You always have that spell and the {@spell Misty Step|XPHB} spell prepared. You can cast each of these spells without expending a spell slot. Once you cast either spell in this way, you can't cast that spell in this way again until you finish a Long Rest. You can also cast these spells using spell slots you have of the appropriate level. The spells' spellcasting ability is the ability increased by this feat."
+						"Choose one {@filter level 1 spell from the Divination or Enchantment|spells|level=1|school=E;D} school of magic. You always have that spell and the {@spell Misty Step|XPHB} spell prepared. You can cast each of these spells without expending a spell slot. Once you cast either spell in this way, you can't cast that spell in this way again until you finish a {@variantrule Long Rest|XPHB}. You can also cast these spells using spell slots you have of the appropriate level. The spells' spellcasting ability is the ability increased by this feat."
 					]
 				}
 			],
@@ -2829,6 +4462,40 @@
 				}
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Genie Magic",
+			"source": "FRHoF",
+			"page": 39,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Wish Magic",
+					"entries": [
+						"As a {@action Magic|XPHB} action, you can cast a {@filter level 1 spell of your choice from the Sorcerer spell list|spells|level=1|class=Sorcerer} that has a casting time of an action. Once you use this benefit, you can't do so again until you finish a {@variantrule Long Rest|XPHB}. The spell's spellcasting ability is the ability increased by this feat.",
+						"When you reach level 11, the spell you cast with this feat is cast as though using a level 2 spell slot.",
+						"When you reach level 17, the spell is cast as though using a level 3 spell slot."
+					]
+				}
+			]
 		},
 		{
 			"name": "Gift of the Chromatic Dragon",
@@ -3008,14 +4675,14 @@
 					"type": "entries",
 					"name": "Punch and Grab",
 					"entries": [
-						"When you hit a creature with an Unarmed Strike as part of the {@action Attack|XPHB} action on your turn, you can use both the Damage and the Grapple option. You can use this benefit only once per turn."
+						"When you hit a creature with an {@variantrule Unarmed Strike|XPHB} as part of the {@action Attack|XPHB} action on your turn, you can use both the Damage and the Grapple option. You can use this benefit only once per turn."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Attack Advantage",
 					"entries": [
-						"You have Advantage on attack rolls against a creature {@condition Grappled|XPHB} by you."
+						"You have {@variantrule Advantage|XPHB} on attack rolls against a creature {@condition Grappled|XPHB} by you."
 					]
 				},
 				{
@@ -3042,7 +4709,7 @@
 				}
 			],
 			"entries": [
-				"When you roll damage for an attack you make with a Melee weapon that you are holding with two hands, you can treat any 1 or 2 on a damage die as a 3. The weapon must have the Two-Handed or Versatile property to gain this benefit."
+				"When you roll damage for an attack you make with a Melee weapon that you are holding with two hands, you can treat any 1 or 2 on a damage die as a 3. The weapon must have the {@itemProperty 2h|XPHB|Two-Handed} or {@itemProperty V|XPHB|Versatile} property to gain this benefit."
 			]
 		},
 		{
@@ -3089,14 +4756,601 @@
 					"type": "entries",
 					"name": "Heavy Weapon Mastery",
 					"entries": [
-						"When you hit a creature with a weapon that has the Heavy property as part of the {@action Attack|XPHB} action on your turn, you can cause the weapon to deal extra damage to the target. The extra damage equals your Proficiency Bonus."
+						"When you hit a creature with a weapon that has the {@itemProperty H|XPHB|Heavy} property as part of the {@action Attack|XPHB} action on your turn, you can cause the weapon to deal extra damage to the target. The extra damage equals your {@variantrule Proficiency|XPHB|Proficiency Bonus}."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Hew",
 					"entries": [
-						"Immediately after you score a Critical Hit with a Melee weapon or reduce a creature to 0 Hit Points with one, you can make one attack with the same weapon as a Bonus Action."
+						"Immediately after you score a {@variantrule Critical Hit|XPHB} with a Melee weapon or reduce a creature to 0 {@variantrule Hit Points|XPHB} with one, you can make one attack with the same weapon as a {@variantrule Bonus Action|XPHB}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Greater Aberrant Mark",
+			"source": "EFA",
+			"page": 43,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"feat": [
+						"aberrant dragonmark|efa"
+					]
+				}
+			],
+			"ability": [
+				{
+					"con": 1
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Improved Fortitude",
+					"entries": [
+						"When you use the Aberrant Fortitude benefit of your Aberrant Dragonmark feat, you can roll {@dice 1d6} instead of {@dice 1d4}. You also now regain your use of Aberrant Fortitude whenever you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Mark of Inspiration",
+					"entries": [
+						"When you cast a cantrip, you can roll one or two of your unexpended {@variantrule Hit Point Dice|XPHB}. You gain a number of {@variantrule Temporary Hit Points|XPHB} equal to the number rolled plus your Constitution modifier, and one creature of your choice within {@quantity 30|feet} of you (not including you) takes Force damage equal to the number rolled. Those dice are then expended.",
+						"You can use this benefit a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Greater Mark of Detection",
+			"source": "EFA",
+			"page": 43,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"feat": [
+						"mark of detection|efa"
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Improved Intuition",
+					"entries": [
+						"When you use the Deductive Intuition benefit of your {@feat Mark of Detection|EFA} feat, you can roll {@dice 1d6} instead of {@dice 1d4}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Shared Detection",
+					"entries": [
+						"When you use the Magical Detection benefit of your {@feat Mark of Detection|EFA} feat to cast {@spell See Invisibility|XPHB} without a spell slot, you can choose one creature you can see within {@quantity 30|feet} of yourself. That creature also gains the benefits of the spell for its duration."
+					]
+				}
+			]
+		},
+		{
+			"name": "Greater Mark of Finding",
+			"source": "EFA",
+			"page": 43,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"feat": [
+						"mark of finding|efa"
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Improved Intuition",
+					"entries": [
+						"When you use the Hunter's Intuition benefit of your {@feat Mark of Finding|EFA} feat, you can roll {@dice 1d6} instead of {@dice 1d4}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Improved Finding",
+					"entries": [
+						"When you use the Finder's Magic benefit of your {@feat Mark of Finding|EFA} to cast {@spell Hunter's Mark|XPHB} without a spell slot, the range of the spell is doubled, and you can modify the spell so that the target can't benefit from the {@condition Invisible|XPHB} condition for the duration."
+					]
+				}
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Greater Mark of Handling",
+			"source": "EFA",
+			"page": 43,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"feat": [
+						"mark of handling|efa"
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Improved Intuition",
+					"entries": [
+						"When you use the Wild Intuition benefit of your {@feat Mark of Handling|EFA} feat, you can roll {@dice 1d6} instead of {@dice 1d4}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Improved Handling",
+					"entries": [
+						"While you are mounted, immediately after you hit a target within {@quantity 5|feet} of your mount with a melee attack roll, your mount can take a {@variantrule Reaction|XPHB} to move up to its {@variantrule Speed|XPHB} or take the {@action Attack|XPHB} action to make one attack only (your choice)."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Subdue Animal",
+					"entries": [
+						"As a {@action Magic|XPHB} action, you exert command over one Beast or Monstrosity you can see within {@quantity 30|feet} of yourself. The target must succeed on a Wisdom saving throw (DC 8 plus your Wisdom modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus}) or have the {@condition Frightened|XPHB} condition until the start of your next turn. You can use this benefit a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Greater Mark of Healing",
+			"source": "EFA",
+			"page": 44,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"feat": [
+						"mark of healing|efa"
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Improved Intuition",
+					"entries": [
+						"When you use the Medical Intuition benefit of your {@feat Mark of Healing|EFA} feat, you can roll {@dice 1d6} instead of {@dice 1d4}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Improved Healing",
+					"entries": [
+						"You can now use the Healing Touch benefit of your {@feat Mark of Healing|EFA} feat to cast {@spell Cure Wounds|XPHB} without using a spell slot a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}. Additionally, when you cast {@spell Cure Wounds|XPHB} and roll dice to determine the number of {@variantrule Hit Points|XPHB} restored, you can treat any 1 or 2 on a roll as a 3."
+					]
+				}
+			]
+		},
+		{
+			"name": "Greater Mark of Hospitality",
+			"source": "EFA",
+			"page": 44,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"feat": [
+						"mark of hospitality|efa"
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Improved Intuition",
+					"entries": [
+						"When you use the Ever Hospitable benefit of your {@feat Mark of Hospitality|EFA} feat, you can roll {@dice 1d6} instead of {@dice 1d4}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Improved Hospitality",
+					"entries": [
+						"When you cast {@spell Purify Food and Drink|XPHB}, you can modify the spell so that instead of its normal effect, each creature of your choice within {@quantity 30|feet} of you is refreshed. Each affected creature's {@condition Exhaustion|XPHB} level is reduced by 1, and the creature gains {@variantrule Temporary Hit Points|XPHB} equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus} plus your Intelligence, Wisdom, or Charisma modifier (choose when you select this feat). Once you modify the spell with this benefit, you can't do so again until you finish a {@variantrule Long Rest|XPHB}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Greater Mark of Making",
+			"source": "EFA",
+			"page": 44,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"feat": [
+						"mark of passage|efa"
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Improved Intuition",
+					"entries": [
+						"When you use the Artisan's Intuition benefit of your {@feat Mark of Making|EFA} feat, you can roll {@dice 1d6} instead of {@dice 1d4}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Improved Finding",
+					"entries": [
+						"When you use the Spellsmith benefit of your {@feat Mark of Making|EFA} feat to cast {@spell Magic Weapon|XPHB} without a spell slot, you cast the spell as its level 3 version."
+					]
+				}
+			]
+		},
+		{
+			"name": "Greater Mark of Passage",
+			"source": "EFA",
+			"page": 44,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"feat": [
+						"mark of passage|efa"
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Improved Intuition",
+					"entries": [
+						"When you use the Intuitive Motion benefit of your {@feat Mark of Passage|EFA} feat, you can roll {@dice 1d6} instead of {@dice 1d4}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Improved Passage",
+					"entries": [
+						"When you use the Magical Passage benefit of your {@feat Mark of Passage|EFA} feat to cast {@spell Misty Step|XPHB} without a spell slot, you can also choose up to two willing creatures you can see within {@quantity 30|feet} of yourself before you teleport. Each target can then take a {@variantrule Reaction|XPHB} to also teleport up to {@quantity 30|feet} to an unoccupied space it can see."
+					]
+				}
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Greater Mark of Scribing",
+			"source": "EFA",
+			"page": 44,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"feat": [
+						"mark of scribing|efa"
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Improved Intuition",
+					"entries": [
+						"When you use the Gifted Scribe benefit of your {@feat Mark of Scribing|EFA} feat, you can roll {@dice 1d6} instead of {@dice 1d4}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Inspired Scribing",
+					"entries": [
+						"When you cast {@spell Comprehend Languages|XPHB}, you can modify the spell to encompass up to three willing creatures you can see within {@quantity 30|feet} of yourself. Each chosen creature also gains the benefits of the spell for the duration. In addition, for the duration of the spell, you and the chosen creatures can communicate telepathically with each other while within {@quantity 1|mile} of each other. Once you modify the spell with this benefit, you can't do so again until you finish a {@variantrule Long Rest|XPHB}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Greater Mark of Sentinel",
+			"source": "EFA",
+			"page": 44,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"feat": [
+						"mark of sentinel|efa"
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Improved Intuition",
+					"entries": [
+						"When you use the Sentinel's Intuition benefit of your {@feat Mark of Sentinel|EFA} feat, you can roll {@dice 1d6} instead of {@dice 1d4}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Improved Sentinel",
+					"entries": [
+						"When you use the Vigilant Guardian benefit of your {@feat Mark of Sentinel|EFA} feat, you can also make one attack with a weapon or an {@variantrule Unarmed Strike|XPHB} as part of that same {@variantrule Reaction|XPHB}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Greater Mark of Shadow",
+			"source": "EFA",
+			"page": 45,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"feat": [
+						"mark of shadow|efa"
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Improved Intuition",
+					"entries": [
+						"When you use the Cunning Intuition benefit of your {@feat Mark of Shadow|EFA} feat, you can roll {@dice 1d6} instead of {@dice 1d4}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Improved Shadow",
+					"entries": [
+						"When you use the Shape Shadows benefit of your {@feat Mark of Shadow|EFA} feat to cast {@spell Invisibility|XPHB} without a spell slot, you cast the spell as its level 3 version."
+					]
+				}
+			]
+		},
+		{
+			"name": "Greater Mark of Storm",
+			"source": "EFA",
+			"page": 45,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"feat": [
+						"mark of storm|efa"
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Improved Intuition",
+					"entries": [
+						"When you use the Windwright's Intuition benefit of your {@feat Mark of Storm|EFA} feat, you can roll {@dice 1d6} instead of {@dice 1d4}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Improved Storm",
+					"entries": [
+						"When you use the Storm Magic benefit of your {@feat Mark of Storm|EFA} feat to cast {@spell Gust of Wind|XPHB} without a spell slot, you also gain a {@variantrule Fly Speed|XPHB} of {@quantity 60|feet} for the duration of the spell."
+					]
+				}
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Greater Mark of Warding",
+			"source": "EFA",
+			"page": 45,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"feat": [
+						"mark of warding|efa"
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Improved Intuition",
+					"entries": [
+						"When you use the Warder's Intuition benefit of your {@feat Mark of Warding|EFA} feat, you can roll {@dice 1d6} instead of {@dice 1d4}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Improved Warding",
+					"entries": [
+						"When a creature makes an attack roll against you or a creature you can see within {@quantity 30|feet} of yourself, you can take a {@variantrule Reaction|XPHB} to impose {@variantrule Disadvantage|XPHB} on that roll. You can use this benefit a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
 					]
 				}
 			]
@@ -3162,8 +5416,89 @@
 					"type": "list",
 					"items": [
 						"You gain proficiency with firearms (see \"{@variantrule Firearms|DMG}\" in the Dungeon Master's Guide).",
-						"You ignore the loading property of firearms.",
+						"You ignore the {@itemProperty LD|PHB|loading} property of firearms.",
 						"Being within {@quantity 5|feet} of a hostile creature doesn't impose disadvantage on your ranged attack rolls."
+					]
+				}
+			]
+		},
+		{
+			"name": "Harper Agent",
+			"source": "FRHoF",
+			"page": 37,
+			"category": "O",
+			"languageProficiencies": [
+				{
+					"thieves' cant": true
+				}
+			],
+			"toolProficiencies": [
+				{
+					"anyMusicalInstrument": 3
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Thieves' Cant",
+					"entries": [
+						"You know Thieves' Cant."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Instrument Training",
+					"entries": [
+						"You gain proficiency with a {@item Musical Instrument|XPHB} of your choice."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Distracting Melody",
+					"entries": [
+						"When you take the {@action Help|XPHB} action to assist an ally's attack roll, the enemy you're distracting can be within {@quantity 30|feet} of you, rather than within {@quantity 5|feet} of you, provided the enemy can see or hear you."
+					]
+				}
+			]
+		},
+		{
+			"name": "Harper Teamwork",
+			"source": "FRHoF",
+			"page": 39,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"feat": [
+						"harper agent|frhof"
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"dex",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Withering Wordplay",
+					"entries": [
+						"When you take the {@action Help|XPHB} action to assist an ally's attack roll against an enemy, that enemy also has {@variantrule Disadvantage|XPHB} on the first saving throw it makes before the start of your next turn."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Inspiring Willpower",
+					"entries": [
+						"If you succeed on a saving throw to end the {@condition Frightened|XPHB} or {@condition Paralyzed|XPHB} condition on yourself, you can choose one ally you can see within {@quantity 30|feet} of yourself that has the same condition. That condition immediately ends for that ally."
 					]
 				}
 			]
@@ -3197,14 +5532,14 @@
 					"type": "entries",
 					"name": "Battle Medic",
 					"entries": [
-						"If you have a Healer's Kit, you can expend one use of it and tend to a creature within {@quantity 5|feet} of yourself as a {@action Utilize|XPHB} action. That creature can expend one of its Hit Point Dice, and you then roll that die. The creature regains a number of Hit Points equal to the roll plus your Proficiency Bonus."
+						"If you have a {@item Healer's Kit|XPHB}, you can expend one use of it and tend to a creature within {@quantity 5|feet} of yourself as a {@action Utilize|XPHB} action. That creature can expend one of its {@variantrule Hit Point Dice|XPHB}, and you then roll that die. The creature regains a number of {@variantrule Hit Points|XPHB} equal to the roll plus your {@variantrule Proficiency|XPHB|Proficiency Bonus}."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Healing Rerolls",
 					"entries": [
-						"Whenever you roll a die to determine the number of Hit Points you restore with a spell or with this feat's Battle Medic benefit, you can reroll the die if it rolls a 1, and you must use the new roll."
+						"Whenever you roll a die to determine the number of {@variantrule Hit Points|XPHB} you restore with a spell or with this feat's Battle Medic benefit, you can reroll the die if it rolls a 1, and you must use the new roll."
 					]
 				}
 			],
@@ -3349,7 +5684,7 @@
 					"type": "entries",
 					"name": "Damage Reduction",
 					"entries": [
-						"When you're hit by an attack while you're wearing Heavy armor, any Bludgeoning, Piercing, and Slashing damage dealt to you by that attack is reduced by an amount equal to your Proficiency Bonus."
+						"When you're hit by an attack while you're wearing Heavy armor, any Bludgeoning, Piercing, and Slashing damage dealt to you by that attack is reduced by an amount equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}."
 					]
 				}
 			]
@@ -3632,7 +5967,7 @@
 					"type": "entries",
 					"name": "Bolstering Performance",
 					"entries": [
-						"When you finish a Short or Long Rest, you can give an inspiring performance: a speech, song, or dance. When you do so, choose up to six allies (which can include yourself) within {@quantity 30|feet} of yourself who witness the performance. The chosen creatures each gain Temporary Hit Points equal to your character level plus the modifier of the ability you increased with this feat."
+						"When you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}, you can give an inspiring performance: a speech, song, or dance. When you do so, choose up to six allies (which can include yourself) within {@quantity 30|feet} of yourself who witness the performance. The chosen creatures each gain {@variantrule Temporary Hit Points|XPHB} equal to your character level plus the modifier of the ability you increased with this feat."
 					]
 				}
 			]
@@ -3650,7 +5985,7 @@
 				}
 			],
 			"entries": [
-				"When a creature you can see hits another creature within {@quantity 5|feet} of you with an attack roll, you can take a Reaction to reduce the damage dealt to the target by {@dice 1d10} plus your Proficiency Bonus. You must be holding a Shield or a Simple or Martial weapon to use this Reaction."
+				"When a creature you can see hits another creature within {@quantity 5|feet} of you with an attack roll, you can take a {@variantrule Reaction|XPHB} to reduce the damage dealt to the target by {@dice 1d10} plus your {@variantrule Proficiency|XPHB|Proficiency Bonus}. You must be holding a {@item Shield|XPHB} or a Simple or Martial weapon to use this {@variantrule Reaction|XPHB}."
 			]
 		},
 		{
@@ -3716,14 +6051,14 @@
 					"type": "entries",
 					"name": "Lore Knowledge",
 					"entries": [
-						"Choose one of the following skills: {@skill Arcana|XPHB}, {@skill History|XPHB}, {@skill Investigation|XPHB}, {@skill Nature|XPHB}, or {@skill Religion|XPHB}. If you lack proficiency in the chosen skill, you gain proficiency in it, and if you already have proficiency in it, you gain Expertise in it."
+						"Choose one of the following skills: {@skill Arcana|XPHB}, {@skill History|XPHB}, {@skill Investigation|XPHB}, {@skill Nature|XPHB}, or {@skill Religion|XPHB}. If you lack proficiency in the chosen skill, you gain proficiency in it, and if you already have proficiency in it, you gain {@variantrule Expertise|XPHB} in it."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Quick Study",
 					"entries": [
-						"You can take the {@action Study|XPHB} action as a Bonus Action."
+						"You can take the {@action Study|XPHB} action as a {@variantrule Bonus Action|XPHB}."
 					]
 				}
 			]
@@ -3926,6 +6261,73 @@
 			]
 		},
 		{
+			"name": "Light Bringer",
+			"source": "ABH",
+			"page": 10,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"name": "Light",
+					"known": {
+						"_": [
+							"light|xphb#c"
+						]
+					}
+				},
+				{
+					"name": "Cleric Cantrip",
+					"known": {
+						"_": [
+							{
+								"choose": "level=0|class=Cleric",
+								"count": 1
+							}
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Sacred Magic",
+					"entries": [
+						"You learn the {@spell Light|XPHB} spell and can cast it without Material components. If you already know that cantrip, you learn a different Cleric cantrip of your choice. The spell's spellcasting ability is the ability increased by this feat."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Solar Luminance",
+					"entries": [
+						"When you cast {@spell Light|XPHB}, you can have the light from the spell be sunlight. Once you use this benefit, you can't use it again until you finish a {@variantrule Long Rest|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Sun's Healing",
+					"entries": [
+						"As a {@variantrule Bonus Action|XPHB} while within sunlight, you can expend one of your {@variantrule Hit Point Dice|XPHB}, roll the die, and regain a number of {@variantrule Hit Points|XPHB} equal to the roll. Once you use this benefit, you can't use it again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
+					]
+				}
+			]
+		},
+		{
 			"name": "Lightly Armored",
 			"source": "PHB",
 			"page": 167,
@@ -4021,6 +6423,99 @@
 			]
 		},
 		{
+			"name": "Lordly Resolve",
+			"source": "FRHoF",
+			"page": 40,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"feat": [
+						"lords' alliance agent|frhof"
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Standard Bearer",
+					"entries": [
+						"As a {@variantrule Bonus Action|XPHB}, choose up to three creatures within {@quantity 60|feet} of yourself that can see you. Each target can immediately take a {@variantrule Reaction|XPHB} to right itself and end the {@condition Prone|XPHB} condition, provided its {@variantrule Speed|XPHB} isn't 0. Additionally, you bolster the targets' resolve, which lasts for 1 minute or until you have the {@condition Incapacitated|XPHB} condition. While bolstered, a target can't be possessed or gain the {@condition Charmed|XPHB} or {@condition Frightened|XPHB} condition; if a target is already possessed, {@condition Charmed|XPHB}, or {@condition Frightened|XPHB}, the target has {@variantrule Advantage|XPHB} on any new saving throw against the relevant effect.",
+						"Once you use this benefit, you can't do so again until you finish a {@variantrule Long Rest|XPHB}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Lords' Alliance Agent",
+			"source": "FRHoF",
+			"page": 38,
+			"category": "O",
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Inspiring Strike",
+					"entries": [
+						"Once per turn when you score a {@variantrule Critical Hit|XPHB} against a creature, you can choose an ally within {@quantity 30|feet} of yourself who can see or hear you and who lacks {@variantrule Heroic Inspiration|XPHB}. That ally gains {@variantrule Heroic Inspiration|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Reassert Honor",
+					"entries": [
+						"When an enemy you can see deals damage to an ally of yours that is within {@quantity 5|feet} of you, you have {@variantrule Advantage|XPHB} on your next attack roll against that enemy before the end of your next turn."
+					]
+				}
+			]
+		},
+		{
+			"name": "Love Bites",
+			"source": "ABH",
+			"page": 10,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Endearing Pain",
+					"entries": [
+						"Immediately after you damage a creature with a Melee weapon or an {@variantrule Unarmed Strike|XPHB}, you can take a {@variantrule Bonus Action|XPHB} to give the target the {@condition Charmed|XPHB} condition until the start of your next turn or until you or your allies damage it. Once you use this benefit, you can't use it again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
+					]
+				}
+			]
+		},
+		{
 			"name": "Lucky",
 			"source": "PHB",
 			"page": 167,
@@ -4045,21 +6540,21 @@
 					"type": "entries",
 					"name": "Luck Points",
 					"entries": [
-						"You have a number of Luck Points equal to your Proficiency Bonus and can spend the points on the benefits below. You regain your expended Luck Points when you finish a Long Rest."
+						"You have a number of Luck Points equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus} and can spend the points on the benefits below. You regain your expended Luck Points when you finish a {@variantrule Long Rest|XPHB}."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Advantage",
 					"entries": [
-						"When you roll a {@dice d20} for a {@variantrule D20 Test|XPHB}, you can spend 1 Luck Point to give yourself Advantage on the roll."
+						"When you roll a {@dice d20} for a {@variantrule D20 Test|XPHB}, you can spend 1 Luck Point to give yourself {@variantrule Advantage|XPHB} on the roll."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Disadvantage",
 					"entries": [
-						"When a creature rolls a {@dice d20} for an attack roll against you, you can spend 1 Luck Point to impose Disadvantage on that roll."
+						"When a creature rolls a {@dice d20} for an attack roll against you, you can spend 1 Luck Point to impose {@variantrule Disadvantage|XPHB} on that roll."
 					]
 				}
 			]
@@ -4109,14 +6604,14 @@
 					"type": "entries",
 					"name": "Concentration Breaker",
 					"entries": [
-						"When you damage a creature that is {@status Concentration|XPHB|Concentrating}, it has Disadvantage on the saving throw it makes to maintain {@status Concentration|XPHB}."
+						"When you damage a creature that is {@status Concentration|XPHB|Concentrating}, it has {@variantrule Disadvantage|XPHB} on the saving throw it makes to maintain {@status Concentration|XPHB}."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Guarded Mind",
 					"entries": [
-						"If you fail an Intelligence, a Wisdom, or a Charisma saving throw, you can cause yourself to succeed instead. Once you use this benefit, you can't use it again until you finish a Short or Long Rest."
+						"If you fail an Intelligence, a Wisdom, or a Charisma saving throw, you can cause yourself to succeed instead. Once you use this benefit, you can't use it again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
 					]
 				}
 			]
@@ -4385,7 +6880,7 @@
 					"type": "entries",
 					"name": "Level 1 Spell",
 					"entries": [
-						"Choose a level 1 spell from the same list you selected for this feat's cantrips. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. You can also cast the spell using any spell slots you have."
+						"Choose a level 1 spell from the same list you selected for this feat's cantrips. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a {@variantrule Long Rest|XPHB}. You can also cast the spell using any spell slots you have."
 					]
 				},
 				{
@@ -4425,7 +6920,7 @@
 								"items": {
 									"name": "Level 1 Spell",
 									"entries": [
-										"Choose a level 1 spell from the {@filter Cleric|spells|level=0;1|class=Cleric} spell list. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. You can also cast the spell using any spell slots you have."
+										"Choose a level 1 spell from the {@filter Cleric|spells|level=0;1|class=Cleric} spell list. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a {@variantrule Long Rest|XPHB}. You can also cast the spell using any spell slots you have."
 									]
 								}
 							}
@@ -4483,7 +6978,7 @@
 								"items": {
 									"name": "Level 1 Spell",
 									"entries": [
-										"Choose a level 1 spell from the {@filter Druid|spells|level=0;1|class=Druid} spell list. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. You can also cast the spell using any spell slots you have."
+										"Choose a level 1 spell from the {@filter Druid|spells|level=0;1|class=Druid} spell list. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a {@variantrule Long Rest|XPHB}. You can also cast the spell using any spell slots you have."
 									]
 								}
 							}
@@ -4541,7 +7036,7 @@
 								"items": {
 									"name": "Level 1 Spell",
 									"entries": [
-										"Choose a level 1 spell from the {@filter Wizard|spells|level=0;1|class=Wizard} spell list. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. You can also cast the spell using any spell slots you have."
+										"Choose a level 1 spell from the {@filter Wizard|spells|level=0;1|class=Wizard} spell list. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a {@variantrule Long Rest|XPHB}. You can also cast the spell using any spell slots you have."
 									]
 								}
 							}
@@ -4575,6 +7070,1491 @@
 									}
 								]
 							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Mark of Detection",
+			"source": "EFA",
+			"page": 39,
+			"category": "D",
+			"prerequisite": [
+				{
+					"campaign": [
+						"Eberron"
+					],
+					"exclusiveFeatCategory": [
+						"D"
+					]
+				}
+			],
+			"additionalSpells": [
+				{
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"prepared": {
+						"3": {
+							"daily": {
+								"1": [
+									"see invisibility|xphb"
+								]
+							}
+						},
+						"_": {
+							"daily": {
+								"1": [
+									"detect magic|xphb"
+								]
+							}
+						}
+					},
+					"expanded": {
+						"s1": [
+							"detect evil and good|xphb",
+							"identify|xphb"
+						],
+						"s2": [
+							"detect thoughts|xphb",
+							"find traps|xphb"
+						],
+						"s3": [
+							"clairvoyance|xphb",
+							"nondetection|xphb"
+						],
+						"s4": [
+							"arcane eye|xphb",
+							"divination|xphb"
+						],
+						"s5": [
+							"legend lore|xphb"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Deductive Intuition",
+					"entries": [
+						"When you make an Intelligence ({@skill Investigation|XPHB}) or Wisdom ({@skill Insight|XPHB}) check, you can roll {@dice 1d4} and add the number rolled to the ability check."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Magical Detection",
+					"entries": [
+						"You always have the {@spell Detect Magic|XPHB} and {@spell Detect Poison and Disease|XPHB} spells prepared. You can cast each spell once without a spell slot, and you regain the ability to cast it in that way when you finish a {@variantrule Long Rest|XPHB}. You can also cast these spells using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for these spells (choose when you select this feat).",
+						"When you reach character level 3, you also always have the {@spell See Invisibility|XPHB} spell prepared and can cast it the same way."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spells of the Mark",
+					"entries": [
+						"If you have the Spellcasting or Pact Magic class feature, the spells on the Mark of Detection Spells table are added to that feature's spell list.",
+						{
+							"type": "table",
+							"caption": "Mark of Detection Spells",
+							"colStyles": [
+								"col-2 text-center",
+								"col-10"
+							],
+							"colLabels": [
+								"Spell Level",
+								"Spells"
+							],
+							"rows": [
+								[
+									"1",
+									"{@spell Detect Evil and Good|XPHB}, {@spell Identify|XPHB}"
+								],
+								[
+									"2",
+									"{@spell Detect Thoughts|XPHB}, {@spell Find Traps|XPHB}"
+								],
+								[
+									"3",
+									"{@spell Clairvoyance|XPHB}, {@spell Nondetection|XPHB}"
+								],
+								[
+									"4",
+									"{@spell Arcane Eye|XPHB}, {@spell Divination|XPHB}"
+								],
+								[
+									"5",
+									"{@spell Legend Lore|XPHB}"
+								]
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Mark of Finding",
+			"source": "EFA",
+			"page": 39,
+			"category": "D",
+			"prerequisite": [
+				{
+					"campaign": [
+						"Eberron"
+					],
+					"exclusiveFeatCategory": [
+						"D"
+					]
+				}
+			],
+			"additionalSpells": [
+				{
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"prepared": {
+						"3": {
+							"daily": {
+								"1": [
+									"locate object|xphb"
+								]
+							}
+						},
+						"_": {
+							"daily": {
+								"1": [
+									"hunter's mark|xphb"
+								]
+							}
+						}
+					},
+					"expanded": {
+						"s1": [
+							"faerie fire|xphb",
+							"longstrider|xphb"
+						],
+						"s2": [
+							"locate animals or plants|xphb",
+							"mind spike|xphb"
+						],
+						"s3": [
+							"clairvoyance|xphb",
+							"speak with plants|xphb"
+						],
+						"s4": [
+							"divination|xphb",
+							"locate creature|xphb"
+						],
+						"s5": [
+							"commune with nature|xphb"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Hunter's Intuition",
+					"entries": [
+						"When you make a Wisdom ({@skill Perception|XPHB} or {@skill Survival|XPHB}) check, you can roll {@dice 1d4} and add the number rolled to the ability check."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Finder's Magic",
+					"entries": [
+						"You always have the {@spell Hunter's Mark|XPHB} spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a {@variantrule Long Rest|XPHB}. You can also cast it using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for this spell (choose when you select this feat).",
+						"When you reach character level 3, you also always have the {@spell Locate Object|XPHB} spell prepared and can cast it the same way."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spells of the Mark",
+					"entries": [
+						"If you have the Spellcasting or Pact Magic class feature, the spells on the Mark of Finding Spells table are added to that feature's spell list.",
+						{
+							"type": "table",
+							"caption": "Mark of Finding Spells",
+							"colStyles": [
+								"col-2 text-center",
+								"col-10"
+							],
+							"colLabels": [
+								"Spell Level",
+								"Spells"
+							],
+							"rows": [
+								[
+									"1",
+									"{@spell Faerie Fire|XPHB}, {@spell Longstrider|XPHB}"
+								],
+								[
+									"2",
+									"{@spell Locate Animals or Plants|XPHB}, {@spell Mind Spike|XPHB}"
+								],
+								[
+									"3",
+									"{@spell Clairvoyance|XPHB}, {@spell Speak with Plants|XPHB}"
+								],
+								[
+									"4",
+									"{@spell Divination|XPHB}, {@spell Locate Creature|XPHB}"
+								],
+								[
+									"5",
+									"{@spell Commune with Nature|XPHB}"
+								]
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Mark of Handling",
+			"source": "EFA",
+			"page": 39,
+			"category": "D",
+			"prerequisite": [
+				{
+					"campaign": [
+						"Eberron"
+					],
+					"exclusiveFeatCategory": [
+						"D"
+					]
+				}
+			],
+			"additionalSpells": [
+				{
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"prepared": {
+						"3": {
+							"daily": {
+								"1": [
+									"speak with animals|xphb"
+								]
+							}
+						},
+						"_": {
+							"daily": {
+								"1": [
+									"animal friendship|xphb"
+								]
+							}
+						}
+					},
+					"expanded": {
+						"s1": [
+							"command|xphb",
+							"find familiar|xphb"
+						],
+						"s2": [
+							"beast sense|xphb",
+							"calm emotions|xphb"
+						],
+						"s3": [
+							"beacon of hope|xphb",
+							"conjure animals|xphb"
+						],
+						"s4": [
+							"aura of life|xphb",
+							"dominate beast|xphb"
+						],
+						"s5": [
+							"awaken|xphb"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Wild Intuition",
+					"entries": [
+						"When you make an Intelligence ({@skill Nature|XPHB}) or Wisdom ({@skill Animal Handling|XPHB}) check, you can roll {@dice 1d4} and add the number rolled to the ability check."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Primal Connection",
+					"entries": [
+						"You always have the {@spell Animal Friendship|XPHB} and {@spell Speak with Animals|XPHB} spells prepared. You can cast each spell once without a spell slot, and you regain the ability to cast it in that way when you finish a {@variantrule Long Rest|XPHB}. You can also cast these spells using any spell slots you have. Intelligence, Wisdom, or Charisma is your spellcasting ability for these spells (choose when you select this feat)."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Monstrous Connections",
+					"entries": [
+						"When you reach character level 3, you can target a Monstrosity when you cast {@spell Animal Friendship|XPHB} or {@spell Speak with Animals|XPHB} if the creature's Intelligence score is 3 or lower."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spells of the Mark",
+					"entries": [
+						"If you have the Spellcasting or Pact Magic class feature, the spells on the Mark of Handling Spells table are added to that feature's spell list.",
+						{
+							"type": "table",
+							"caption": "Mark of Handling Spells",
+							"colStyles": [
+								"col-2 text-center",
+								"col-10"
+							],
+							"colLabels": [
+								"Spell Level",
+								"Spells"
+							],
+							"rows": [
+								[
+									"1",
+									"{@spell Command|XPHB}, {@spell Find Familiar|XPHB}"
+								],
+								[
+									"2",
+									"{@spell Beast Sense|XPHB}, {@spell Calm Emotions|XPHB}"
+								],
+								[
+									"3",
+									"{@spell Beacon of Hope|XPHB}, {@spell Conjure Animals|XPHB}"
+								],
+								[
+									"4",
+									"{@spell Aura of Life|XPHB}, {@spell Dominate Beast|XPHB}"
+								],
+								[
+									"5",
+									"{@spell Awaken|XPHB}"
+								]
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Mark of Healing",
+			"source": "EFA",
+			"page": 40,
+			"category": "D",
+			"prerequisite": [
+				{
+					"campaign": [
+						"Eberron"
+					],
+					"exclusiveFeatCategory": [
+						"D"
+					]
+				}
+			],
+			"additionalSpells": [
+				{
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"prepared": {
+						"3": {
+							"daily": {
+								"1": [
+									"lesser restoration|xphb"
+								]
+							}
+						},
+						"_": {
+							"daily": {
+								"1": [
+									"cure wounds|xphb"
+								]
+							}
+						}
+					},
+					"expanded": {
+						"s1": [
+							"false life|xphb",
+							"healing word|xphb"
+						],
+						"s2": [
+							"arcane vigor|xphb",
+							"prayer of healing|xphb"
+						],
+						"s3": [
+							"aura of vitality|xphb",
+							"mass healing word|xphb"
+						],
+						"s4": [
+							"aura of life|xphb",
+							"aura of purity|xphb"
+						],
+						"s5": [
+							"greater restoration|xphb"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Medical Intuition",
+					"entries": [
+						"When you make a Wisdom ({@skill Medicine|XPHB}) check or an ability check using a {@item Herbalism Kit|XPHB}, you can roll {@dice 1d4} and add the number rolled to the ability check."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Healing Touch",
+					"entries": [
+						"You always have the {@spell Cure Wounds|XPHB} spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a {@variantrule Long Rest|XPHB}. You can also cast it using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for this spell (choose when you select this feat).",
+						"When you reach character level 3, you also always have the {@spell Lesser Restoration|XPHB} spell prepared and can cast it the same way."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spells of the Mark",
+					"entries": [
+						"If you have the Spellcasting or Pact Magic class feature, the spells on the Mark of Healing Spells table are added to that feature's spell list.",
+						{
+							"type": "table",
+							"caption": "Mark of Healing Spells",
+							"colStyles": [
+								"col-2 text-center",
+								"col-10"
+							],
+							"colLabels": [
+								"Spell Level",
+								"Spells"
+							],
+							"rows": [
+								[
+									"1",
+									"{@spell False Life|XPHB}, {@spell Healing Word|XPHB}"
+								],
+								[
+									"2",
+									"{@spell Arcane Vigor|XPHB}, {@spell Prayer of Healing|XPHB}"
+								],
+								[
+									"3",
+									"{@spell Aura of Vitality|XPHB}, {@spell Mass Healing Word|XPHB}"
+								],
+								[
+									"4",
+									"{@spell Aura of Life|XPHB}, {@spell Aura of Purity|XPHB}"
+								],
+								[
+									"5",
+									"{@spell Greater Restoration|XPHB}"
+								]
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Mark of Hospitality",
+			"source": "EFA",
+			"page": 40,
+			"category": "D",
+			"prerequisite": [
+				{
+					"campaign": [
+						"Eberron"
+					],
+					"exclusiveFeatCategory": [
+						"D"
+					]
+				}
+			],
+			"additionalSpells": [
+				{
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"prepared": {
+						"3": {
+							"daily": {
+								"1": [
+									"calm emotions|xphb"
+								]
+							}
+						},
+						"_": {
+							"daily": {
+								"1": [
+									"purify food and drink|xphb"
+								]
+							}
+						}
+					},
+					"expanded": {
+						"s1": [
+							"goodberry|xphb",
+							"sleep|xphb"
+						],
+						"s2": [
+							"aid|xphb",
+							"enhance ability|xphb"
+						],
+						"s3": [
+							"create food and water|xphb",
+							"leomund's tiny hut|xphb"
+						],
+						"s4": [
+							"aura of purity|xphb",
+							"mordenkainen's private sanctum|xphb"
+						],
+						"s5": [
+							"hallow|xphb"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Ever Hospitable",
+					"entries": [
+						"When you make a Charisma ({@skill Persuasion|XPHB}) check or an ability check using {@item Brewer's Supplies|XPHB} or {@item Cook's Utensils|XPHB}, you can roll {@dice 1d4} and add the number rolled to the ability check."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Innkeeper's Magic",
+					"entries": [
+						"You always have the {@spell Purify Food and Drink|XPHB} and {@spell Unseen Servant|XPHB} spells prepared. You can cast each spell once without a spell slot, and you regain the ability to cast it in that way when you finish a {@variantrule Long Rest|XPHB}. You can also cast these spells using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for these spells (choose when you select this feat).",
+						"When you reach character level 3, you also always have the {@spell Calm Emotions|XPHB} spell prepared and can cast it the same way"
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spells of the Mark",
+					"entries": [
+						"If you have the Spellcasting or Pact Magic class feature, the spells on the Mark of Hospitality Spells table are added to that feature's spell list.",
+						{
+							"type": "table",
+							"caption": "Mark of Hospitality Spells",
+							"colStyles": [
+								"col-2 text-center",
+								"col-10"
+							],
+							"colLabels": [
+								"Spell Level",
+								"Spells"
+							],
+							"rows": [
+								[
+									"1",
+									"{@spell Goodberry|XPHB}, {@spell Sleep|XPHB}"
+								],
+								[
+									"2",
+									"{@spell Aid|XPHB}, {@spell Enhance Ability|XPHB}"
+								],
+								[
+									"3",
+									"{@spell Create Food and Water|XPHB}, {@spell Leomund's Tiny Hut|XPHB}"
+								],
+								[
+									"4",
+									"{@spell Aura of Purity|XPHB}, {@spell Mordenkainen's Private Sanctum|XPHB}"
+								],
+								[
+									"5",
+									"{@spell Hallow|XPHB}"
+								]
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Mark of Making",
+			"source": "EFA",
+			"page": 40,
+			"category": "D",
+			"prerequisite": [
+				{
+					"campaign": [
+						"Eberron"
+					],
+					"exclusiveFeatCategory": [
+						"D"
+					]
+				}
+			],
+			"additionalSpells": [
+				{
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"known": {
+						"_": [
+							"mending|xphb#c"
+						]
+					},
+					"prepared": {
+						"_": {
+							"daily": {
+								"1": [
+									"magic weapon|xphb"
+								]
+							}
+						}
+					},
+					"expanded": {
+						"s1": [
+							"identify|xphb",
+							"tenser's floating disk|xphb"
+						],
+						"s2": [
+							"continual flame|xphb",
+							"spiritual weapon|xphb"
+						],
+						"s3": [
+							"conjure barrage|xphb",
+							"elemental weapon|xphb"
+						],
+						"s4": [
+							"fabricate|xphb",
+							"stone shape|xphb"
+						],
+						"s5": [
+							"creation|xphb"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Artisan's Intuition",
+					"entries": [
+						"When you make an Intelligence ({@skill Arcana|XPHB}) check or an ability check using {@item Artisan's Tools|XPHB}, you can roll {@dice 1d4} and add the number rolled to the ability check."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spellsmith",
+					"entries": [
+						"You know the {@spell Mending|XPHB} cantrip. You also always have the {@spell Magic Weapon|XPHB} spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a {@variantrule Long Rest|XPHB}. You can also cast it using any spell slots you have. Intelligence, Wisdom, or Charisma is your spellcasting ability for these spells (choose when you select this feat)."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spells of the Mark",
+					"entries": [
+						"If you have the Spellcasting or Pact Magic class feature, the spells on the Mark of Making Spells table are added to that feature's spell list.",
+						{
+							"type": "table",
+							"caption": "Mark of Making Spells",
+							"colStyles": [
+								"col-2 text-center",
+								"col-10"
+							],
+							"colLabels": [
+								"Spell Level",
+								"Spells"
+							],
+							"rows": [
+								[
+									"1",
+									"{@spell Identify|XPHB}, {@spell Tenser's Floating Disk|XPHB}"
+								],
+								[
+									"2",
+									"{@spell Continual Flame|XPHB}, {@spell Spiritual Weapon|XPHB}"
+								],
+								[
+									"3",
+									"{@spell Conjure Barrage|XPHB}, {@spell Elemental Weapon|XPHB}"
+								],
+								[
+									"4",
+									"{@spell Fabricate|XPHB}, {@spell Stone Shape|XPHB}"
+								],
+								[
+									"5",
+									"{@spell Creation|XPHB}"
+								]
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Mark of Passage",
+			"source": "EFA",
+			"page": 41,
+			"category": "D",
+			"prerequisite": [
+				{
+					"campaign": [
+						"Eberron"
+					],
+					"exclusiveFeatCategory": [
+						"D"
+					]
+				}
+			],
+			"additionalSpells": [
+				{
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"prepared": {
+						"_": {
+							"daily": {
+								"1": [
+									"misty step|xphb"
+								]
+							}
+						}
+					},
+					"expanded": {
+						"s1": [
+							"expeditious retreat|xphb",
+							"jump|xphb"
+						],
+						"s2": [
+							"find steed|xphb",
+							"pass without trace|xphb"
+						],
+						"s3": [
+							"blink|xphb",
+							"phantom steed|xphb"
+						],
+						"s4": [
+							"dimension door|xphb",
+							"freedom of movement|xphb"
+						],
+						"s5": [
+							"teleportation circle|xphb"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Courier's Speed",
+					"entries": [
+						"Your {@variantrule Speed|XPHB} increases by {@quantity 5|feet}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Intuitive Motion",
+					"entries": [
+						"When you make a Strength ({@skill Athletics|XPHB}) or Dexterity ({@skill Acrobatics|XPHB}) check, you can roll {@dice 1d4} and add the number rolled to the ability check."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Magical Passage",
+					"entries": [
+						"You always have the {@spell Misty Step|XPHB} spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a {@variantrule Long Rest|XPHB}. You can also cast it using any spell slots you have. Intelligence, Wisdom, or Charisma is your spellcasting ability for this spell (choose when you select this feat)."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spells of the Mark",
+					"entries": [
+						"If you have the Spellcasting or Pact Magic class feature, the spells on the Mark of Passage Spells table are added to that feature's spell list.",
+						{
+							"type": "table",
+							"caption": "Mark of Passage Spells",
+							"colStyles": [
+								"col-2 text-center",
+								"col-10"
+							],
+							"colLabels": [
+								"Spell Level",
+								"Spells"
+							],
+							"rows": [
+								[
+									"1",
+									"{@spell Expeditious Retreat|XPHB}, {@spell Jump|XPHB}"
+								],
+								[
+									"2",
+									"{@spell Find Steed|XPHB}, {@spell Pass without Trace|XPHB}"
+								],
+								[
+									"3",
+									"{@spell Blink|XPHB}, {@spell Phantom Steed|XPHB}"
+								],
+								[
+									"4",
+									"{@spell Dimension Door|XPHB}, {@spell Freedom of Movement|XPHB}"
+								],
+								[
+									"5",
+									"{@spell Teleportation Circle|XPHB}"
+								]
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Mark of Scribing",
+			"source": "EFA",
+			"page": 41,
+			"category": "D",
+			"prerequisite": [
+				{
+					"campaign": [
+						"Eberron"
+					],
+					"exclusiveFeatCategory": [
+						"D"
+					]
+				}
+			],
+			"additionalSpells": [
+				{
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"known": {
+						"_": [
+							"message|xphb#c"
+						]
+					},
+					"prepared": {
+						"3": {
+							"daily": {
+								"1": [
+									"magic mouth|xphb"
+								]
+							}
+						},
+						"_": {
+							"daily": {
+								"1": [
+									"comprehend languages|xphb"
+								]
+							}
+						}
+					},
+					"expanded": {
+						"s1": [
+							"command|xphb",
+							"illusory script|xphb"
+						],
+						"s2": [
+							"animal messenger|xphb",
+							"silence|xphb"
+						],
+						"s3": [
+							"sending|xphb",
+							"tongues|xphb"
+						],
+						"s4": [
+							"arcane eye|xphb",
+							"confusion|xphb"
+						],
+						"s5": [
+							"dream|xphb"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Gifted Scribe",
+					"entries": [
+						"When you make an Intelligence ({@skill History|XPHB}) check or an ability check using {@item Calligrapher's Supplies|XPHB}, you can roll {@dice 1d4} and add the number rolled to the ability check."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Scribe's Insight",
+					"entries": [
+						"You know the {@spell Message|XPHB} cantrip. You also always have the {@spell Comprehend Languages|XPHB} spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a {@variantrule Long Rest|XPHB}. You can also cast it using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for this spell (choose when you select this feat).",
+						"When you reach character level 3, you also always have the {@spell Magic Mouth|XPHB} spell prepared and can cast it the same way."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spells of the Mark",
+					"entries": [
+						"If you have the Spellcasting or Pact Magic class feature, the spells on the Mark of Scribing Spells table are added to that feature's spell list.",
+						{
+							"type": "table",
+							"caption": "Mark of Scribing Spells",
+							"colStyles": [
+								"col-2 text-center",
+								"col-10"
+							],
+							"colLabels": [
+								"Spell Level",
+								"Spells"
+							],
+							"rows": [
+								[
+									"1",
+									"{@spell Command|XPHB}, {@spell Illusory Script|XPHB}"
+								],
+								[
+									"2",
+									"{@spell Animal Messenger|XPHB}, {@spell Silence|XPHB}"
+								],
+								[
+									"3",
+									"{@spell Sending|XPHB}, {@spell Tongues|XPHB}"
+								],
+								[
+									"4",
+									"{@spell Arcane Eye|XPHB}, {@spell Confusion|XPHB}"
+								],
+								[
+									"5",
+									"{@spell Dream|XPHB}"
+								]
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Mark of Sentinel",
+			"source": "EFA",
+			"page": 41,
+			"category": "D",
+			"prerequisite": [
+				{
+					"campaign": [
+						"Eberron"
+					],
+					"exclusiveFeatCategory": [
+						"D"
+					]
+				}
+			],
+			"additionalSpells": [
+				{
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"prepared": {
+						"_": {
+							"daily": {
+								"1": [
+									"shield|xphb"
+								]
+							}
+						}
+					},
+					"expanded": {
+						"s1": [
+							"compelled duel|xphb",
+							"shield of faith|xphb"
+						],
+						"s2": [
+							"warding bond|xphb",
+							"zone of truth|xphb"
+						],
+						"s3": [
+							"counterspell|xphb",
+							"protection from energy|xphb"
+						],
+						"s4": [
+							"death ward|xphb",
+							"guardian of faith|xphb"
+						],
+						"s5": [
+							"bigby's hand|xphb"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Sentinel's Intuition",
+					"entries": [
+						"When you make a Wisdom ({@skill Insight|XPHB} or {@skill Perception|XPHB}) check, you can roll {@dice 1d4} and add the number rolled to the ability check."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Guardian's Shield",
+					"entries": [
+						"You always have the {@spell Shield|XPHB} spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a {@variantrule Long Rest|XPHB}. You can also cast it using any spell slots you have. Intelligence, Wisdom, or Charisma is your spellcasting ability for this spell (choose when you select this feat)."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Vigilant Guardian",
+					"entries": [
+						"When a creature you can see within {@quantity 5|feet} of you is hit by an attack roll, you can take a {@variantrule Reaction|XPHB} to swap places with that creature, and you are hit by the attack instead. You can use this feature a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus} and regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spells of the Mark",
+					"entries": [
+						"If you have the Spellcasting or Pact Magic class feature, the spells on the Mark of Sentinel Spells table are added to that feature's spell list.",
+						{
+							"type": "table",
+							"caption": "Mark of Sentinel Spells",
+							"colStyles": [
+								"col-2 text-center",
+								"col-10"
+							],
+							"colLabels": [
+								"Spell Level",
+								"Spells"
+							],
+							"rows": [
+								[
+									"1",
+									"{@spell Compelled Duel|XPHB}, {@spell Shield of Faith|XPHB}"
+								],
+								[
+									"2",
+									"{@spell Warding Bond|XPHB}, {@spell Zone of Truth|XPHB}"
+								],
+								[
+									"3",
+									"{@spell Counterspell|XPHB}, {@spell Protection from Energy|XPHB}"
+								],
+								[
+									"4",
+									"{@spell Death Ward|XPHB}, {@spell Guardian of Faith|XPHB}"
+								],
+								[
+									"5",
+									"{@spell Bigby's Hand|XPHB}"
+								]
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Mark of Shadow",
+			"source": "EFA",
+			"page": 42,
+			"category": "D",
+			"prerequisite": [
+				{
+					"campaign": [
+						"Eberron"
+					],
+					"exclusiveFeatCategory": [
+						"D"
+					]
+				}
+			],
+			"additionalSpells": [
+				{
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"known": {
+						"_": [
+							"minor illusion|xphb#c"
+						]
+					},
+					"prepared": {
+						"_": {
+							"daily": {
+								"1": [
+									"invisibility|xphb"
+								]
+							}
+						}
+					},
+					"expanded": {
+						"s1": [
+							"disguise self|xphb",
+							"silent image|xphb"
+						],
+						"s2": [
+							"darkness|xphb",
+							"pass without trace|xphb"
+						],
+						"s3": [
+							"clairvoyance|xphb",
+							"major image|xphb"
+						],
+						"s4": [
+							"greater invisibility|xphb",
+							"hallucinatory terrain|xphb"
+						],
+						"s5": [
+							"mislead|xphb"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Cunning Intuition",
+					"entries": [
+						"When you make a Dexterity ({@skill Stealth|XPHB}) or Charisma ({@skill Performance|XPHB}) check, you can roll {@dice 1d4} and add the number rolled to the ability check."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Shape Shadows",
+					"entries": [
+						"You know the {@spell Minor Illusion|XPHB} cantrip. You also always have the {@spell Invisibility|XPHB} spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a {@variantrule Long Rest|XPHB}. You can also cast it using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for these spells (choose when you select this feat)."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spells of the Mark",
+					"entries": [
+						"If you have the Spellcasting or Pact Magic class feature, the spells on the Mark of Shadow Spells table are added to that feature's spell list.",
+						{
+							"type": "table",
+							"caption": "Mark of Shadow Spells",
+							"colStyles": [
+								"col-2 text-center",
+								"col-10"
+							],
+							"colLabels": [
+								"Spell Level",
+								"Spells"
+							],
+							"rows": [
+								[
+									"1",
+									"{@spell Disguise Self|XPHB}, {@spell Silent Image|XPHB}"
+								],
+								[
+									"2",
+									"{@spell Darkness|XPHB}, {@spell Pass without Trace|XPHB}"
+								],
+								[
+									"3",
+									"{@spell Clairvoyance|XPHB}, {@spell Major Image|XPHB}"
+								],
+								[
+									"4",
+									"{@spell Greater Invisibility|XPHB}, {@spell Hallucinatory Terrain|XPHB}"
+								],
+								[
+									"5",
+									"{@spell Mislead|XPHB}"
+								]
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Mark of Storm",
+			"source": "EFA",
+			"page": 42,
+			"category": "D",
+			"prerequisite": [
+				{
+					"campaign": [
+						"Eberron"
+					],
+					"exclusiveFeatCategory": [
+						"D"
+					]
+				}
+			],
+			"additionalSpells": [
+				{
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"known": {
+						"_": [
+							"thunderclap|xphb#c"
+						]
+					},
+					"prepared": {
+						"_": {
+							"daily": {
+								"1": [
+									"gust of wind|xphb"
+								]
+							}
+						}
+					},
+					"expanded": {
+						"s1": [
+							"feather fall|xphb",
+							"fog cloud|xphb"
+						],
+						"s2": [
+							"levitate|xphb",
+							"shatter|xphb"
+						],
+						"s3": [
+							"sleet storm|xphb",
+							"wind wall|xphb"
+						],
+						"s4": [
+							"conjure minor elementals|xphb",
+							"control water|xphb"
+						],
+						"s5": [
+							"conjure elemental|xphb"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Windwright's Intuition",
+					"entries": [
+						"When you make a Dexterity ({@skill Acrobatics|XPHB}) check or an ability check using {@item Navigator's Tools|XPHB}, you can roll {@dice 1d4} and add the number rolled to the ability check."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Storm's Boon",
+					"entries": [
+						"You have {@variantrule Resistance|XPHB} to Lightning damage."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Storm Magic",
+					"entries": [
+						"You know the {@spell Thunderclap|XPHB} cantrip. When you reach character level 3, you also always have the {@spell Gust of Wind|XPHB} spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a {@variantrule Long Rest|XPHB}. You can also cast it using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for these spells (choose when you select this feat)."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spells of the Mark",
+					"entries": [
+						"If you have the Spellcasting or Pact Magic class feature, the spells on the Mark of Storm Spells table are added to that feature's spell list.",
+						{
+							"type": "table",
+							"caption": "Mark of Storm Spells",
+							"colStyles": [
+								"col-2 text-center",
+								"col-10"
+							],
+							"colLabels": [
+								"Spell Level",
+								"Spells"
+							],
+							"rows": [
+								[
+									"1",
+									"{@spell Feather Fall|XPHB}, {@spell Fog Cloud|XPHB}"
+								],
+								[
+									"2",
+									"{@spell Levitate|XPHB}, {@spell Shatter|XPHB}"
+								],
+								[
+									"3",
+									"{@spell Sleet Storm|XPHB}, {@spell Wind Wall|XPHB}"
+								],
+								[
+									"4",
+									"{@spell Conjure Minor Elementals|XPHB}, {@spell Control Water|XPHB}"
+								],
+								[
+									"5",
+									"{@spell Conjure Elemental|XPHB}"
+								]
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Mark of Warding",
+			"source": "EFA",
+			"page": 42,
+			"category": "D",
+			"prerequisite": [
+				{
+					"campaign": [
+						"Eberron"
+					],
+					"exclusiveFeatCategory": [
+						"D"
+					]
+				}
+			],
+			"additionalSpells": [
+				{
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"prepared": {
+						"3": {
+							"daily": {
+								"1": [
+									"arcane lock|xphb"
+								]
+							}
+						},
+						"_": {
+							"daily": {
+								"1": [
+									"alarm|xphb",
+									"mage armor|xphb"
+								]
+							}
+						}
+					},
+					"expanded": {
+						"s1": [
+							"armor of agathys|xphb",
+							"sanctuary|xphb"
+						],
+						"s2": [
+							"knock|xphb",
+							"nystul's magic aura|xphb"
+						],
+						"s3": [
+							"glyph of warding|xphb",
+							"magic circle|xphb"
+						],
+						"s4": [
+							"leomund's secret chest|xphb",
+							"mordenkainen's faithful hound|xphb"
+						],
+						"s5": [
+							"antilife shell|xphb"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Warder's Intuition",
+					"entries": [
+						"When you make an Intelligence ({@skill Investigation|XPHB}) check or an ability check using {@item Thieves' Tools|XPHB}, you can roll {@dice 1d4} and add the number rolled to the ability check."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Wards and Seals",
+					"entries": [
+						"You always have the {@spell Alarm|XPHB} and {@spell Mage Armor|XPHB} spells prepared. You can cast each spell once without a spell slot, and you regain the ability to cast it in that way when you finish a {@variantrule Long Rest|XPHB}.",
+						"You can also cast these spells using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for these spells (choose when you select this feat).",
+						"When you reach character level 3, you also always have the {@spell Arcane Lock|XPHB} spell prepared and can cast it the same way."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spells of the Mark",
+					"entries": [
+						"If you have the Spellcasting or Pact Magic class feature, the spells on the Mark of Warding Spells table are added to that feature's spell list.",
+						{
+							"type": "table",
+							"caption": "Mark of Warding Spells",
+							"colStyles": [
+								"col-2 text-center",
+								"col-10"
+							],
+							"colLabels": [
+								"Spell Level",
+								"Spells"
+							],
+							"rows": [
+								[
+									"1",
+									"{@spell Armor of Agathys|XPHB}, {@spell Sanctuary|XPHB}"
+								],
+								[
+									"2",
+									"{@spell Knock|XPHB}, {@spell Nystul's Magic Aura|XPHB}"
+								],
+								[
+									"3",
+									"{@spell Glyph of Warding|XPHB}, {@spell Magic Circle|XPHB}"
+								],
+								[
+									"4",
+									"{@spell Leomund's Secret Chest|XPHB}, {@spell Mordenkainen's Faithful Hound|XPHB}"
+								],
+								[
+									"5",
+									"{@spell Antilife Shell|XPHB}"
+								]
+							]
 						}
 					]
 				}
@@ -4885,7 +8865,7 @@
 					"type": "entries",
 					"name": "Mounted Strike",
 					"entries": [
-						"While {@book mounted|XPHB|1|Mounted Combat}, you have Advantage on attack rolls against any unmounted creature within {@quantity 5|feet} of your mount that is at least one size smaller than the mount."
+						"While {@book mounted|XPHB|1|Mounted Combat}, you have {@variantrule Advantage|XPHB} on attack rolls against any unmounted creature within {@quantity 5|feet} of your mount that is at least one size smaller than the mount."
 					]
 				},
 				{
@@ -4927,7 +8907,7 @@
 					"type": "entries",
 					"name": "Encouraging Song",
 					"entries": [
-						"As you finish a Short or Long Rest, you can play a song on a Musical Instrument with which you have proficiency and give {@variantrule Heroic Inspiration|XPHB} to allies who hear the song. The number of allies you can affect in this way equals your Proficiency Bonus."
+						"As you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}, you can play a song on a {@item Musical Instrument|XPHB} with which you have proficiency and give {@variantrule Heroic Inspiration|XPHB} to allies who hear the song. The number of allies you can affect in this way equals your {@variantrule Proficiency|XPHB|Proficiency Bonus}."
 					]
 				}
 			]
@@ -4956,6 +8936,80 @@
 					"items": [
 						"You can attune to up to four magic items at once.",
 						"You can cast the {@spell identify} spell without expending a spell slot or material components. You must finish a {@quickref resting|PHB|2|0|long rest} before you can do so again."
+					]
+				}
+			]
+		},
+		{
+			"name": "Mythal Touched",
+			"source": "FRHoF",
+			"page": 40,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Mythal Ward",
+					"entries": [
+						"If a spell attack hits you or you fail a saving throw against a spell, you can take a {@variantrule Reaction|XPHB} to roll on the Mythal-Touched {@action Magic|XPHB} table to create a magical effect. If an effect requires a saving throw, the DC equals 8 plus the modifier of the ability increased by this feat and your {@variantrule Proficiency|XPHB|Proficiency Bonus}.",
+						"You can use this benefit a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}.",
+						{
+							"type": "table",
+							"caption": "Mythal-Touched Magic",
+							"colStyles": [
+								"col-2 text-center",
+								"col-10"
+							],
+							"colLabels": [
+								"1d20",
+								"Effect"
+							],
+							"rows": [
+								[
+									"1-2",
+									"You and each creature within {@quantity 15|feet} of you make a Dexterity saving throw, taking Force damage equal to {@dice 1d8} times the level of the triggering spell on a failed save or half as much damage on a successful one."
+								],
+								[
+									"3-7",
+									"You and the triggering spell's caster form a telepathic link for 1 hour."
+								],
+								[
+									"8-10",
+									"Gravity is reversed in a {@quantity 15|-foot}-radius, {@quantity 60|-foot}-tall {@variantrule Cylinder [Area of Effect]|XPHB|Cylinder} centered on you for 1 minute, per the {@spell Reverse Gravity|XPHB} spell."
+								],
+								[
+									"11-13",
+									"You and the triggering spell's caster each make a Constitution saving throw. On a failed save, the creature has the {@condition Stunned|XPHB} condition until the end of its next turn."
+								],
+								[
+									"14-17",
+									"You gain a +2 bonus to AC for 1 minute, potentially turning the triggering spell into a miss if it was a spell attack."
+								],
+								[
+									"18-19",
+									"Any flammable, nonmagical object within {@quantity 10|feet} of the triggering spell's caster that isn't being worn or carried by another creature bursts into flame, takes {@damage 1d4} Fire damage, and is burning."
+								],
+								[
+									"20",
+									"The triggering spell dissipates with no effect, and the action, {@variantrule Bonus Action|XPHB}, or {@variantrule Reaction|XPHB} used to cast it is wasted. If that spell was cast with a spell slot, the slot isn't expended."
+								]
+							]
+						}
 					]
 				}
 			]
@@ -5039,14 +9093,14 @@
 					"type": "entries",
 					"name": "Keen Observer",
 					"entries": [
-						"Choose one of the following skills: {@skill Insight|XPHB}, {@skill Investigation|XPHB}, or {@skill Perception|XPHB}. If you lack proficiency with the chosen skill, you gain proficiency in it, and if you already have proficiency in it, you gain Expertise in it."
+						"Choose one of the following skills: {@skill Insight|XPHB}, {@skill Investigation|XPHB}, or {@skill Perception|XPHB}. If you lack proficiency with the chosen skill, you gain proficiency in it, and if you already have proficiency in it, you gain {@variantrule Expertise|XPHB} in it."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Quick Search",
 					"entries": [
-						"You can take the {@action Search|XPHB} action as a Bonus Action."
+						"You can take the {@action Search|XPHB} action as a {@variantrule Bonus Action|XPHB}."
 					]
 				}
 			]
@@ -5082,6 +9136,48 @@
 					"items": [
 						"When you hit with an attack using a {@filter simple or martial weapon|items|source=phb|category=basic|type=martial weapon;simple weapon}, you can roll one of the weapon's damage dice an additional time and add it as extra damage of the weapon's damage type. Once you use this ability, you can't use it again until you finish a short or long rest.",
 						"Immediately after you use your Relentless Endurance trait, you can use your reaction to make one weapon attack."
+					]
+				}
+			]
+		},
+		{
+			"name": "Order's Resilience",
+			"source": "FRHoF",
+			"page": 40,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"feat": [
+						"tyro of the gauntlet|frhof"
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Resurge",
+					"entries": [
+						"When you have the {@condition Prone|XPHB} condition, you can right yourself with only {@quantity 5|feet} of movement."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Stronger Together",
+					"entries": [
+						"If you are within {@quantity 5|feet} of an ally that doesn't have the {@condition Incapacitated|XPHB} condition, you and that ally have {@variantrule Advantage|XPHB} on Strength saving throws. You can't use this benefit while you have the {@condition Incapacitated|XPHB} condition."
 					]
 				}
 			]
@@ -5206,7 +9302,7 @@
 					"type": "entries",
 					"name": "Enhanced Critical",
 					"entries": [
-						"When you score a Critical Hit that deals Piercing damage to a creature, you can roll one additional damage die when determining the extra Piercing damage the target takes."
+						"When you score a {@variantrule Critical Hit|XPHB} that deals Piercing damage to a creature, you can roll one additional damage die when determining the extra Piercing damage the target takes."
 					]
 				}
 			]
@@ -5313,14 +9409,14 @@
 					"type": "entries",
 					"name": "Potent Poison",
 					"entries": [
-						"When you make a damage roll that deals Poison damage, it ignores Resistance to Poison damage."
+						"When you make a damage roll that deals Poison damage, it ignores {@variantrule Resistance|XPHB} to Poison damage."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Brew Poison",
 					"entries": [
-						"You gain proficiency with the Poisoner's Kit. With 1 hour of work using such a kit and expending 50 GP worth of materials, you can create a number of poison doses equal to your Proficiency Bonus. As a Bonus Action, you can apply a poison dose to a weapon or piece of ammunition. Once applied, the poison retains its potency for 1 minute or until you deal damage with the poisoned item, whichever is shorter. When a creature takes damage from the poisoned item, that creature must succeed on a Constitution saving throw ({@dc 8} plus the modifier of the ability increased by this feat and your Proficiency Bonus) or take {@damage 2d8} Poison damage and have the {@condition Poisoned|XPHB} condition until the end of your next turn."
+						"You gain proficiency with the {@item Poisoner's Kit|XPHB}. With 1 hour of work using such a kit and expending 50 GP worth of materials, you can create a number of poison doses equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}. As a {@variantrule Bonus Action|XPHB}, you can apply a poison dose to a weapon or piece of ammunition. Once applied, the poison retains its potency for 1 minute or until you deal damage with the poisoned item, whichever is shorter. When a creature takes damage from the poisoned item, that creature must succeed on a Constitution saving throw ({@dc 8} plus the modifier of the ability increased by this feat and your {@variantrule Proficiency|XPHB|Proficiency Bonus}) or take {@damage 2d8} Poison damage and have the {@condition Poisoned|XPHB} condition until the end of your next turn."
 					]
 				}
 			],
@@ -5383,14 +9479,61 @@
 					"type": "entries",
 					"name": "Pole Strike",
 					"entries": [
-						"Immediately after you take the {@action Attack|XPHB} action and attack with a {@item Quarterstaff|XPHB}, a {@item Spear|XPHB}, or a {@filter weapon that has the Heavy and Reach properties|items|type=melee weapon;ranged weapon|property=heavy;reach}, you can use a Bonus Action to make a melee attack with the opposite end of the weapon. The weapon deals Bludgeoning damage, and the weapon's damage die for this attack is a {@dice d4}."
+						"Immediately after you take the {@action Attack|XPHB} action and attack with a {@item Quarterstaff|XPHB}, a {@item Spear|XPHB}, or a {@filter weapon that has the Heavy and Reach properties|items|type=melee weapon;ranged weapon|property=heavy;reach=sand}, you can use a {@variantrule Bonus Action|XPHB} to make a melee attack with the opposite end of the weapon. The weapon deals Bludgeoning damage, and the weapon's damage die for this attack is a {@dice d4}."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Reactive Strike",
 					"entries": [
-						"While you're holding a {@item Quarterstaff|XPHB}, a {@item Spear|XPHB}, or a {@filter weapon that has the Heavy and Reach properties|items|type=melee weapon;ranged weapon|property=heavy;reach}, you can take a Reaction to make one melee attack against a creature that enters the reach you have with that weapon."
+						"While you're holding a {@item Quarterstaff|XPHB}, a {@item Spear|XPHB}, or a {@filter weapon that has the Heavy and Reach properties|items|type=melee weapon;ranged weapon|property=heavy;reach=sand}, you can take a {@variantrule Reaction|XPHB} to make one melee attack against a creature that enters the reach you have with that weapon."
+					]
+				}
+			]
+		},
+		{
+			"name": "Potent Dragonmark",
+			"source": "EFA",
+			"page": 45,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"featCategory": [
+						"D"
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						],
+						"amount": 1,
+						"entry": "Increase the spellcasting ability score used by your Dragonmark feat by 1, to a maximum of 20."
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Dragonmark Preparation",
+					"entries": [
+						"You always have the spells on your Spells of the Mark list (if any) prepared."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Dragonmark Spellcasting",
+					"entries": [
+						"You have one extra spell slot to cast the spells granted by your Dragonmark feat. The spell slot's level is half your level (round up), to a maximum of level 5. You regain the expended slot when you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}. You can use this spell slot to cast only a spell you have prepared because of your Dragonmark feat or the Dragonmark Preparation benefit of this feat."
 					]
 				}
 			]
@@ -5450,6 +9593,11 @@
 					"any": 1
 				}
 			],
+			"expertise": [
+				{
+					"anyProficientSkill": 1
+				}
+			],
 			"entries": [
 				"You have a knack for learning new things. You gain the following benefits:",
 				{
@@ -5465,7 +9613,6 @@
 			"name": "Protection",
 			"source": "XPHB",
 			"page": 209,
-			"srd52": true,
 			"category": "FS",
 			"prerequisite": [
 				{
@@ -5475,7 +9622,124 @@
 				}
 			],
 			"entries": [
-				"When a creature you can see attacks a target other than you that is within {@quantity 5|feet} of you, you can take a Reaction to interpose your Shield if you're holding one. You impose Disadvantage on the triggering attack roll and all other attack rolls against the target until the start of your next turn if you remain within {@quantity 5|feet} of the target."
+				"When a creature you can see attacks a target other than you that is within {@quantity 5|feet} of you, you can take a {@variantrule Reaction|XPHB} to interpose your {@item Shield|XPHB} if you're holding one. You impose {@variantrule Disadvantage|XPHB} on the triggering attack roll and all other attack rolls against the target until the start of your next turn if you remain within {@quantity 5|feet} of the target."
+			]
+		},
+		{
+			"name": "Purple Dragon Commandant",
+			"source": "FRHoF",
+			"page": 40,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"feat": [
+						"purple dragon rook|frhof"
+					]
+				},
+				{
+					"proficiency": [
+						{
+							"weaponGroup": "martial"
+						}
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex"
+						]
+					}
+				}
+			],
+			"entries": [
+				{
+					"type": "entries",
+					"name": "Encourage Ally",
+					"entries": [
+						"As a {@variantrule Bonus Action|XPHB}, you bolster one ally you can see within {@quantity 30|feet}. The ally gains {@variantrule Temporary Hit Points|XPHB} equal to {@dice 2d6} plus the modifier of the ability score increased by this feat. You can take this {@variantrule Bonus Action|XPHB} a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all uses when you finish a {@variantrule Long Rest|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Last Stand",
+					"entries": [
+						"You have {@variantrule Advantage|XPHB} on attack rolls while {@status Bloodied|XPHB}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Purple Dragon Rook",
+			"source": "FRHoF",
+			"page": 38,
+			"category": "O",
+			"skillProficiencies": [
+				{
+					"choose": {
+						"from": [
+							"insight",
+							"performance",
+							"persuasion"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Entreat",
+					"entries": [
+						"You gain proficiency in one of the following skills: {@skill Insight|XPHB}, {@skill Performance|XPHB}, or {@skill Persuasion|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Rallying Cry",
+					"entries": [
+						"When you roll {@variantrule Initiative|XPHB} and don't have the {@condition Incapacitated|XPHB} condition, you can choose a number of creatures equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus} that you can see within {@quantity 30|feet} of yourself. Those creatures gain {@variantrule Heroic Inspiration|XPHB}.",
+						"Once you use this benefit, you can't do so again until you finish a {@variantrule Long Rest|XPHB}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Putrefy",
+			"source": "ABH",
+			"page": 10,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Necrosis",
+					"entries": [
+						"When you make a damage roll that deals Necrotic damage, you can cause one creature taking that damage to have the {@condition Poisoned|XPHB} condition until the start of your next turn. Once you use this benefit, you can't use it again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
+					]
+				}
 			]
 		},
 		{
@@ -5538,6 +9802,41 @@
 					"name": "Music Box",
 					"entries": [
 						"When opened, this music box plays a single song at a moderate volume. The box stops playing when it reaches the song's end or when it is closed."
+					]
+				}
+			]
+		},
+		{
+			"name": "Rebuke",
+			"source": "ABH",
+			"page": 10,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Radiant Strike",
+					"entries": [
+						"When you make a damage roll that deals Radiant damage, you can cause one Huge or smaller creature taking the damage to have the {@condition Prone|XPHB} condition. Once you use this benefit, you can't use it again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
 					]
 				}
 			]
@@ -5690,7 +9989,7 @@
 					"type": "list",
 					"items": [
 						"While you are holding a double-bladed scimitar with two hands, you gain a +1 bonus to Armor Class.",
-						"A double-bladed scimitar has the finesse property when you wield it."
+						"A double-bladed scimitar has the {@itemProperty F|PHB|finesse} property when you wield it."
 					]
 				}
 			]
@@ -5947,14 +10246,14 @@
 					"type": "entries",
 					"name": "Ritual Spells",
 					"entries": [
-						"Choose a number of level 1 spells equal to your Proficiency Bonus that have the {@filter Ritual tag|spells|level=1|components & miscellaneous=ritual}. You always have those spells prepared, and you can cast them with any spell slots you have. The spells' spellcasting ability is the ability increased by this feat. Whenever your Proficiency Bonus increases thereafter, you can add an additional level 1 spell with the Ritual tag to the spells always prepared with this feature."
+						"Choose a number of level 1 spells equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus} that have the {@filter Ritual tag|spells|level=1|components & miscellaneous=ritual}. You always have those spells prepared, and you can cast them with any spell slots you have. The spells' spellcasting ability is the ability increased by this feat. Whenever your {@variantrule Proficiency|XPHB|Proficiency Bonus} increases thereafter, you can add an additional level 1 spell with the {@variantrule Ritual|XPHB} tag to the spells always prepared with this feature."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Quick Ritual",
 					"entries": [
-						"With this benefit, you can cast a Ritual spell that you have prepared using its regular casting time rather than the extended time for a Ritual. Doing so doesn't require a spell slot. Once you cast the spell in this way, you can't use this benefit again until you finish a Long Rest."
+						"With this benefit, you can cast a {@variantrule Ritual|XPHB} spell that you have prepared using its regular casting time rather than the extended time for a {@variantrule Ritual|XPHB}. Doing so doesn't require a spell slot. Once you cast the spell in this way, you can't use this benefit again until you finish a {@variantrule Long Rest|XPHB}."
 					]
 				}
 			],
@@ -6361,7 +10660,7 @@
 					"type": "entries",
 					"name": "Halt",
 					"entries": [
-						"When you hit a creature with an {@action Opportunity Attack|XPHB}, the creature's Speed becomes 0 for the rest of the current turn."
+						"When you hit a creature with an {@action Opportunity Attack|XPHB}, the creature's {@variantrule Speed|XPHB} becomes 0 for the rest of the current turn."
 					]
 				}
 			]
@@ -6487,7 +10786,49 @@
 					"type": "entries",
 					"name": "Shadow Magic",
 					"entries": [
-						"Choose one {@filter level 1 spell|spells|level=1|school=I;N} from the Illusion or Necromancy school of magic. You always have that spell and the {@spell Invisibility|XPHB} spell prepared. You can cast each of these spells without expending a spell slot. Once you cast either spell in this way, you can't cast that spell in this way again until you finish a Long Rest. You can also cast these spells using spell slots you have of the appropriate level. The spells' spellcasting ability is the ability increased by this feat."
+						"Choose one {@filter level 1 spell from the Illusion or Necromancy|spells|level=1|school=I;N} school of magic. You always have that spell and the {@spell Invisibility|XPHB} spell prepared. You can cast each of these spells without expending a spell slot. Once you cast either spell in this way, you can't cast that spell in this way again until you finish a {@variantrule Long Rest|XPHB}. You can also cast these spells using spell slots you have of the appropriate level. The spells' spellcasting ability is the ability increased by this feat."
+					]
+				}
+			]
+		},
+		{
+			"name": "Shadowmoor Hexer",
+			"source": "LFL",
+			"category": "O",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"_": {
+							"daily": {
+								"1": [
+									"hex|xphb"
+								]
+							}
+						}
+					},
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Hex",
+					"entries": [
+						"You always have the {@spell Hex|XPHB} spell prepared. Intelligence, Wisdom, or Charisma is your spellcasting ability for this spell (choose when you select this feat). You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a {@variantrule Long Rest|XPHB}. You can also cast the spell using any spell slots you have."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Curse Magic",
+					"entries": [
+						"When a creature that you've cursed with {@spell Hex|XPHB} hits you with an attack roll, the creature takes Psychic damage equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}. A creature takes this damage only once per turn."
 					]
 				}
 			]
@@ -6537,21 +10878,21 @@
 					"type": "entries",
 					"name": "Bypass Cover",
 					"entries": [
-						"Your ranged attacks with weapons ignore Half Cover and Three-Quarters Cover."
+						"Your ranged attacks with weapons ignore {@variantrule Cover|XPHB|Half Cover} and {@variantrule Cover|XPHB|Three-Quarters Cover}."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Firing in Melee",
 					"entries": [
-						"Being within {@quantity 5|feet} of an enemy doesn't impose Disadvantage on your attack rolls with Ranged weapons."
+						"Being within {@quantity 5|feet} of an enemy doesn't impose {@variantrule Disadvantage|XPHB} on your attack rolls with Ranged weapons."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Long Shots",
 					"entries": [
-						"Attacking at long range doesn't impose Disadvantage on your attack rolls with Ranged weapons."
+						"Attacking at long range doesn't impose {@variantrule Disadvantage|XPHB} on your attack rolls with Ranged weapons."
 					]
 				}
 			]
@@ -6601,14 +10942,14 @@
 					"type": "entries",
 					"name": "Shield Bash",
 					"entries": [
-						"If you attack a creature within {@quantity 5|feet} of you as part of the {@action Attack|XPHB} action and hit with a Melee weapon, you can immediately bash the target with your Shield if it's equipped, forcing the target to make a Strength saving throw ({@dc 8} plus your Strength modifier and Proficiency Bonus). On a failed save, you either push the target {@quantity 5|feet} from you or cause it to have the {@condition Prone|XPHB} condition (your choice). You can use this benefit only once on each of your turns."
+						"If you attack a creature within {@quantity 5|feet} of you as part of the {@action Attack|XPHB} action and hit with a Melee weapon, you can immediately bash the target with your {@item Shield|XPHB} if it's equipped, forcing the target to make a Strength saving throw ({@dc 8} plus your Strength modifier and {@variantrule Proficiency|XPHB|Proficiency Bonus}). On a failed save, you either push the target {@quantity 5|feet} from you or cause it to have the {@condition Prone|XPHB} condition (your choice). You can use this benefit only once on each of your turns."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Interpose Shield",
 					"entries": [
-						"If you're subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you can take a Reaction to take no damage if you succeed on the saving throw and are holding a Shield."
+						"If you're subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you can take a {@variantrule Reaction|XPHB} to take no damage if you succeed on the saving throw and are holding a {@item Shield|XPHB}."
 					]
 				}
 			]
@@ -6724,7 +11065,7 @@
 					"type": "entries",
 					"name": "Expertise",
 					"entries": [
-						"Choose one skill in which you have proficiency but lack Expertise. You gain Expertise with that skill."
+						"Choose one skill in which you have proficiency but lack {@variantrule Expertise|XPHB}. You gain {@variantrule Expertise|XPHB} with that skill."
 					]
 				}
 			]
@@ -6776,7 +11117,7 @@
 				}
 			],
 			"entries": [
-				"You gain proficiency in any combination of three {@table Skill List; Skills|XPHB|skills} or {@filter tools|items|type=tool;artisan's tools;instrument;gaming set;vehicle (land);vehicle (water)} of your choice.",
+				"You gain proficiency in any combination of three {@table Skill List; Skills|XPHB|skills} or {@filter tools|items|type=tool;artisan's tools;instrument;gaming set} of your choice.",
 				{
 					"type": "entries",
 					"name": "Repeatable",
@@ -6852,7 +11193,7 @@
 					"type": "entries",
 					"name": "Fog of War",
 					"entries": [
-						"You exploit the distractions of battle, gaining Advantage on any Dexterity ({@skill Stealth|XPHB}) check you make as part of the {@action Hide|XPHB} action during combat."
+						"You exploit the distractions of battle, gaining {@variantrule Advantage|XPHB} on any Dexterity ({@skill Stealth|XPHB}) check you make as part of the {@action Hide|XPHB} action during combat."
 					]
 				},
 				{
@@ -6919,14 +11260,14 @@
 					"type": "entries",
 					"name": "Hamstring",
 					"entries": [
-						"Once per turn when you hit a creature with an attack that deals Slashing damage, you can reduce the Speed of that creature by {@quantity 10|feet} until the start of your next turn."
+						"Once per turn when you hit a creature with an attack that deals Slashing damage, you can reduce the {@variantrule Speed|XPHB} of that creature by {@quantity 10|feet} until the start of your next turn."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Enhanced Critical",
 					"entries": [
-						"When you score a Critical Hit that deals Slashing damage to a creature, it has Disadvantage on attack rolls until the start of your next turn."
+						"When you score a {@variantrule Critical Hit|XPHB} that deals Slashing damage to a creature, it has {@variantrule Disadvantage|XPHB} on attack rolls until the start of your next turn."
 					]
 				}
 			]
@@ -7011,21 +11352,21 @@
 					"type": "entries",
 					"name": "Speed Increase",
 					"entries": [
-						"Your Speed increases by {@quantity 10|feet}."
+						"Your {@variantrule Speed|XPHB} increases by {@quantity 10|feet}."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Dash over Difficult Terrain",
 					"entries": [
-						"When you take the {@action Dash|XPHB} action on your turn, Difficult Terrain doesn't cost you extra movement for the rest of that turn."
+						"When you take the {@action Dash|XPHB} action on your turn, {@variantrule Difficult Terrain|XPHB} doesn't cost you extra movement for the rest of that turn."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Agile Movement",
 					"entries": [
-						"Opportunity Attacks have Disadvantage against you."
+						"{@action Opportunity Attack|XPHB|Opportunity Attacks} have {@variantrule Disadvantage|XPHB} against you."
 					]
 				}
 			]
@@ -7156,14 +11497,14 @@
 					"type": "entries",
 					"name": "Bypass Cover",
 					"entries": [
-						"Your attack rolls for spells ignore Half Cover and Three-Quarters Cover."
+						"Your attack rolls for spells ignore {@variantrule Cover|XPHB|Half Cover} and {@variantrule Cover|XPHB|Three-Quarters Cover}."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Casting in Melee",
 					"entries": [
-						"Being within {@quantity 5|feet} of an enemy doesn't impose Disadvantage on your attack rolls with spells."
+						"Being within {@quantity 5|feet} of an enemy doesn't impose {@variantrule Disadvantage|XPHB} on your attack rolls with spells."
 					]
 				},
 				{
@@ -7194,6 +11535,93 @@
 					"page": 190,
 					"entries": [
 						"Normally, when you cast a spell as a bonus action, you can't use your action to also cast a spell that turn unless that spell is a cantrip\u2014{@note see {@book PHB p202|PHB|10|Bonus Action}.} The Spelldriver feat removes that restriction, but the focus necessary to channel multiple spells in the same round still limits the overall power of those spells."
+					]
+				}
+			]
+		},
+		{
+			"name": "Spellfire Adept",
+			"source": "FRHoF",
+			"page": 41,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"feat": [
+						"spellfire spark|frhof"
+					]
+				},
+				{
+					"feature": [
+						"Spellcasting",
+						"Pact Magic"
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Fueled Spellfire",
+					"entries": [
+						"Once per turn, when a spell you cast deals Radiant damage, you can expend up to two {@variantrule Hit Point Dice|XPHB}, roll them, and add the total rolled to one damage roll of the spell."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Searing Spellfire",
+					"entries": [
+						"When you make a damage roll that deals Radiant damage, it ignores {@variantrule Resistance|XPHB} to Radiant damage."
+					]
+				}
+			]
+		},
+		{
+			"name": "Spellfire Spark",
+			"source": "FRHoF",
+			"page": 38,
+			"category": "O",
+			"additionalSpells": [
+				{
+					"ability": {
+						"choose": [
+							"int",
+							"wis",
+							"cha"
+						]
+					},
+					"known": {
+						"_": [
+							"sacred flame|xphb#c"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Magic Absorption",
+					"entries": [
+						"Once per turn, when you take damage from a spell or magical effect, you reduce the total damage taken by {@dice 1d4}. You can't use this benefit if you have the {@condition Incapacitated|XPHB} condition."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spellfire Flame",
+					"entries": [
+						"You learn the {@spell Sacred Flame|XPHB} cantrip. Intelligence, Wisdom, or Charisma is your spellcasting ability for this spell (choose when you select this feat). You can also cast this cantrip as a {@variantrule Bonus Action|XPHB} a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
 					]
 				}
 			]
@@ -7316,6 +11744,51 @@
 					"name": "Membership in Knightly Orders",
 					"entries": [
 						"Knights of Solamnia are only ever members of one of their organization's orders. In the course of their training, most knights begin as members of the Knights of the Crown and then move on to join other orders. Whether a character follows this path or another, they retain what they learned as a member of an order even if they join another. Characters can change what knightly order they're a part of, but they always have access to any Knight of Solamnia feats they've acquired."
+					]
+				}
+			]
+		},
+		{
+			"name": "Street Justice",
+			"source": "FRHoF",
+			"page": 41,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"str",
+							"dex"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Headlock",
+					"entries": [
+						"Your allies have {@variantrule Advantage|XPHB} on attack rolls against a creature {@condition Grappled|XPHB} by you."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Sturdy Knot",
+					"entries": [
+						"When you use {@item Chain|XPHB}, {@item Manacles|XPHB}, or {@item Rope|XPHB} to bind a creature, add your {@variantrule Proficiency|XPHB|Proficiency Bonus} to the DC to escape or burst the {@item Chain|XPHB}, {@item Manacles|XPHB}, or {@item Rope|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Tough Talk",
+					"entries": [
+						"A creature's {@variantrule Hostile [Attitude]|XPHB|Hostile} attitude doesn't impose {@variantrule Disadvantage|XPHB} on your Charisma ({@skill Intimidation|XPHB}) checks to influence that creature."
 					]
 				}
 			]
@@ -7977,14 +12450,14 @@
 					"type": "entries",
 					"name": "Enhanced Unarmed Strike",
 					"entries": [
-						"When you hit with your Unarmed Strike and deal damage, you can deal Bludgeoning damage equal to {@damage 1d4} plus your Strength modifier instead of the normal damage of an Unarmed Strike."
+						"When you hit with your {@variantrule Unarmed Strike|XPHB} and deal damage, you can deal Bludgeoning damage equal to {@damage 1d4} plus your Strength modifier instead of the normal damage of an {@variantrule Unarmed Strike|XPHB}."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Damage Rerolls",
 					"entries": [
-						"Whenever you roll a damage die for your Unarmed Strike, you can reroll the die if it rolls a 1, and you must use the new roll."
+						"Whenever you roll a damage die for your {@variantrule Unarmed Strike|XPHB}, you can reroll the die if it rolls a 1, and you must use the new roll."
 					]
 				},
 				{
@@ -7998,7 +12471,7 @@
 					"type": "entries",
 					"name": "Push",
 					"entries": [
-						"When you hit a creature with an Unarmed Strike as part of the {@action Attack|XPHB} action on your turn, you can deal damage to the target and also push it {@quantity 5|feet} away from you. You can use this benefit only once per turn."
+						"When you hit a creature with an {@variantrule Unarmed Strike|XPHB} as part of the {@action Attack|XPHB} action on your turn, you can deal damage to the target and also push it {@quantity 5|feet} away from you. You can use this benefit only once per turn."
 					]
 				}
 			]
@@ -8087,7 +12560,7 @@
 					"type": "entries",
 					"name": "Telekinetic Shove",
 					"entries": [
-						"As a Bonus Action, you can telekinetically shove one creature you can see within {@quantity 30|feet} of yourself. When you do so, the target must succeed on a Strength saving throw ({@dc 8} plus the ability modifier of the score increased by this feat and your Proficiency Bonus) or be moved {@quantity 5|feet} toward or away from you."
+						"As a {@variantrule Bonus Action|XPHB}, you can telekinetically shove one creature you can see within {@quantity 30|feet} of yourself. When you do so, the target must succeed on a Strength saving throw ({@dc 8} plus the ability modifier of the score increased by this feat and your {@variantrule Proficiency|XPHB|Proficiency Bonus}) or be moved {@quantity 5|feet} toward or away from you."
 					]
 				}
 			]
@@ -8185,7 +12658,7 @@
 					"type": "entries",
 					"name": "Detect Thoughts",
 					"entries": [
-						"You always have the {@spell Detect Thoughts|XPHB} spell prepared. You can cast it without a spell slot or spell components, and you must finish a Long Rest before you can cast it in this way again. You can also cast it using spell slots you have of the appropriate level. Your spellcasting ability for the spell is the ability increased by this feat."
+						"You always have the {@spell Detect Thoughts|XPHB} spell prepared. You can cast it without a spell slot or spell components, and you must finish a {@variantrule Long Rest|XPHB} before you can cast it in this way again. You can also cast it using spell slots you have of the appropriate level. Your spellcasting ability for the spell is the ability increased by this feat."
 					]
 				}
 			]
@@ -8210,8 +12683,8 @@
 				{
 					"type": "list",
 					"items": [
-						"Simple and martial melee weapons without the thrown property have the thrown property for you. One-handed weapons have a normal range of {@quantity 20|feet} and a long range of {@quantity 60|feet}, while two-handed weapons have a normal range of {@quantity 15|feet} and a long range of {@quantity 30|feet}.",
-						"Weapons that already have the thrown property increase their short range by {@quantity 20|feet} and their long range by {@quantity 40|feet} for you.",
+						"Simple and martial melee weapons without the thrown property have the {@itemProperty T|PHB|thrown} property for you. One-handed weapons have a normal range of {@quantity 20|feet} and a long range of {@quantity 60|feet}, while two-handed weapons have a normal range of {@quantity 15|feet} and a long range of {@quantity 30|feet}.",
+						"Weapons that already have the {@itemProperty T|PHB|thrown} property increase their short range by {@quantity 20|feet} and their long range by {@quantity 40|feet} for you.",
 						"When you miss with a thrown weapon attack using a light weapon, the weapon returns to your grasp like a boomerang at the end of your turn, unless something prevents it from returning. You can catch and stow as many weapons as you threw in this way."
 					]
 				}
@@ -8230,7 +12703,16 @@
 				}
 			],
 			"entries": [
-				"When you hit with a ranged attack roll using a weapon that has the Thrown property, you gain a +2 bonus to the damage roll."
+				"When you hit with a ranged attack roll using a weapon that has the {@itemProperty T|XPHB|Thrown} property, you gain a +2 bonus to the damage roll."
+			]
+		},
+		{
+			"name": "Tireless Reveler",
+			"source": "ABH",
+			"page": 8,
+			"category": "O",
+			"entries": [
+				"When an ally you can see within {@quantity 60|feet} of yourself expends {@variantrule Heroic Inspiration|XPHB}, you can gain {@variantrule Heroic Inspiration|XPHB} if you lack it. You can use this benefit a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you regain all expended uses when you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
 			]
 		},
 		{
@@ -8250,7 +12732,55 @@
 			"page": 202,
 			"category": "O",
 			"entries": [
-				"Your Hit Point maximum increases by an amount equal to twice your character level when you gain this feat. Whenever you gain a character level thereafter, your Hit Point maximum increases by an additional 2 Hit Points."
+				"Your {@variantrule Hit Points|XPHB|Hit Point} maximum increases by an amount equal to twice your character level when you gain this feat. Whenever you gain a character level thereafter, your {@variantrule Hit Points|XPHB|Hit Point} maximum increases by an additional 2 {@variantrule Hit Points|XPHB}."
+			]
+		},
+		{
+			"name": "Treacherous Allure",
+			"source": "ABH",
+			"page": 10,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"prepared": {
+						"_": [
+							"charm person|xphb"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Enchanting Presence",
+					"entries": [
+						"You always have the {@spell Charm Person|XPHB} spell prepared. You can cast it without a spell slot, and you must finish a {@variantrule Long Rest|XPHB} before you can cast it in this way again. You can also cast it using spell slots you have of the appropriate level. Your spellcasting ability for the spell is the ability increased by this feat."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Inevitable Betrayal",
+					"entries": [
+						"You have {@variantrule Advantage|XPHB} on attack rolls against creatures with the {@condition Charmed|XPHB} condition."
+					]
+				}
 			]
 		},
 		{
@@ -8268,9 +12798,32 @@
 				}
 			],
 			"entries": [
-				"When you make an extra attack as a result of using a weapon that has the Light property, you can add your ability modifier to the damage of that attack if you aren't already adding it to the damage."
+				"When you make an extra attack as a result of using a weapon that has the {@itemProperty L|XPHB|Light} property, you can add your ability modifier to the damage of that attack if you aren't already adding it to the damage."
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Tyro of the Gauntlet",
+			"source": "FRHoF",
+			"page": 38,
+			"category": "O",
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Stand as One",
+					"entries": [
+						"When an ally within {@quantity 5|feet} of you is subjected to an effect that would push or pull it, you can take a {@variantrule Reaction|XPHB} to prevent that ally from being pushed or pulled. To receive this benefit, the ally can't have the {@condition Incapacitated|XPHB} condition."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Vigilant",
+					"entries": [
+						"When you take the {@action Ready|XPHB} action, the next attack roll made against you has {@variantrule Disadvantage|XPHB} before the start of your next turn."
+					]
+				}
+			]
 		},
 		{
 			"name": "Unarmed Fighting",
@@ -8285,8 +12838,105 @@
 				}
 			],
 			"entries": [
-				"When you hit with your Unarmed Strike and deal damage, you can deal Bludgeoning damage equal to {@damage 1d6} plus your Strength modifier instead of the normal damage of an Unarmed Strike. If you aren't holding any weapons or a Shield when you make the attack roll, the {@dice d6} becomes a {@dice d8}.",
+				"When you hit with your {@variantrule Unarmed Strike|XPHB} and deal damage, you can deal Bludgeoning damage equal to {@damage 1d6} plus your Strength modifier instead of the normal damage of an {@variantrule Unarmed Strike|XPHB}. If you aren't holding any weapons or a {@item Shield|XPHB} when you make the attack roll, the {@dice d6} becomes a {@dice d8}.",
 				"At the start of each of your turns, you can deal {@damage 1d4} Bludgeoning damage to one creature {@condition Grappled|XPHB} by you."
+			]
+		},
+		{
+			"name": "Vampire Hunter",
+			"source": "ABH",
+			"page": 8,
+			"category": "O",
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Adroit Escape",
+					"entries": [
+						"You have {@variantrule Advantage|XPHB} on checks to escape from nonmagical restraints or the {@condition Grappled|XPHB} condition."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Vitality Ward",
+					"entries": [
+						"When you take Necrotic damage, you can take a {@variantrule Reaction|XPHB} to mitigate the damage. Roll a number of d6s equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and add them together. Reduce the Necrotic damage you take by this total. Once you use this benefit, you can't use it again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Vampire Touched",
+			"source": "ABH",
+			"page": 10,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"int",
+							"wis",
+							"cha"
+						]
+					}
+				}
+			],
+			"additionalSpells": [
+				{
+					"prepared": {
+						"_": [
+							"spider climb|xphb",
+							{
+								"choose": "level=1|school=E;I"
+							}
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Vampire Magic",
+					"entries": [
+						"Choose one level 1 spell from the Enchantment or Illusion school of magic. You always have that spell and the {@spell Spider Climb|XPHB} spell prepared. You can cast each of these spells without expending a spell slot, but when you cast {@spell Spider Climb|XPHB} this way, you must target yourself, and you must finish a {@variantrule Long Rest|XPHB} before you can cast each spell in this way again. You can also cast either spell using spell slots you have of the appropriate level. Your spellcasting ability for the spells is the ability increased by this feat."
+					]
+				}
+			]
+		},
+		{
+			"name": "Vampire's Plaything",
+			"source": "ABH",
+			"page": 9,
+			"category": "O",
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Decanting",
+					"entries": [
+						"When you finish a {@variantrule Long Rest|XPHB}, you can create one {@item Potion of Healing|XDMG} or an {@item Antitoxin|XPHB}, as long as you have an empty {@item vial|XPHB} or {@item flask|XPHB}. These liquids evaporate when you finish another {@variantrule Long Rest|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Timely Retreat",
+					"entries": [
+						"You can take a {@variantrule Bonus Action|XPHB} to take the {@action Dash|XPHB} action or the {@action Disengage|XPHB} action. You can use this benefit a number of times equal to your {@variantrule Proficiency|XPHB|Proficiency Bonus}, and you recover all expended uses when you finish a {@variantrule Long Rest|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Vampiric Connection",
+					"entries": [
+						"The DM determines the fate of your former vampire master. While you and your former vampire master are on the same plane of existence, the vampire can communicate with you telepathically, and you can choose to allow the vampire to perceive through your senses."
+					]
+				}
 			]
 		},
 		{
@@ -8424,21 +13074,21 @@
 					"type": "entries",
 					"name": "Concentration",
 					"entries": [
-						"You have Advantage on Constitution saving throws that you make to maintain {@status Concentration|XPHB}."
+						"You have {@variantrule Advantage|XPHB} on Constitution saving throws that you make to maintain {@status Concentration|XPHB}."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Reactive Spell",
 					"entries": [
-						"When a creature provokes an {@action Opportunity Attack|XPHB} from you by leaving your reach, you can take a Reaction to cast a spell at the creature rather than making an {@action Opportunity Attack|XPHB}. The spell must have a casting time of one action and must target only that creature."
+						"When a creature provokes an {@action Opportunity Attack|XPHB} from you by leaving your reach, you can take a {@variantrule Reaction|XPHB} to cast a spell at the creature rather than making an {@action Opportunity Attack|XPHB}. The spell must have a casting time of one action and must target only that creature."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Somatic Components",
 					"entries": [
-						"You can perform the Somatic components of spells even when you have weapons or a Shield in one or both hands."
+						"You can perform the Somatic components of spells even when you have weapons or a {@item Shield|XPHB} in one or both hands."
 					]
 				}
 			]
@@ -8505,7 +13155,7 @@
 					"type": "entries",
 					"name": "Mastery Property",
 					"entries": [
-						"Your training with weapons allows you to use the mastery property of one kind of Simple or Martial weapon of your choice, provided you have proficiency with it. Whenever you finish a Long Rest, you can change the kind of weapon to another eligible kind."
+						"Your training with weapons allows you to use the mastery property of one kind of Simple or Martial weapon of your choice, provided you have proficiency with it. Whenever you finish a {@variantrule Long Rest|XPHB}, you can change the kind of weapon to another eligible kind."
 					]
 				}
 			],
@@ -8549,6 +13199,70 @@
 			],
 			"entries": [
 				"You learn the magic of the primeval woods, which are revered and protected by your people. You learn one druid cantrip of your choice. You also learn the {@spell longstrider} and {@spell pass without trace} spells, each of which you can cast once without expending a spell slot. You regain the ability to cast these two spells in this way when you finish a long rest. Wisdom is your spellcasting ability for all three spells."
+			]
+		},
+		{
+			"name": "Zhentarim Ruffian",
+			"source": "FRHoF",
+			"page": 38,
+			"category": "O",
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Exploit Opening",
+					"entries": [
+						"When you roll damage for an {@action Opportunity Attack|XPHB}, you can roll the damage dice twice and use either roll against the target."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Family First",
+					"entries": [
+						"If you have {@variantrule Heroic Inspiration|XPHB} when you roll {@variantrule Initiative|XPHB}, you can expend it to give yourself and your allies {@variantrule Advantage|XPHB} on that {@variantrule Initiative|XPHB} roll."
+					]
+				}
+			]
+		},
+		{
+			"name": "Zhentarim Tactics",
+			"source": "FRHoF",
+			"page": 41,
+			"category": "G",
+			"prerequisite": [
+				{
+					"level": 4,
+					"feat": [
+						"zhentarim ruffian|frhof"
+					]
+				}
+			],
+			"ability": [
+				{
+					"choose": {
+						"from": [
+							"dex",
+							"cha"
+						]
+					}
+				}
+			],
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Retaliate",
+					"entries": [
+						"Immediately after a creature within {@quantity 5|feet} of you hits you with a melee attack, you can make an {@action Opportunity Attack|XPHB} against that creature."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Versatile Merc",
+					"entries": [
+						"When you finish a {@variantrule Long Rest|XPHB}, choose a skill in which you have proficiency. You have {@variantrule Expertise|XPHB} in that skill until you finish your next {@variantrule Long Rest|XPHB}."
+					]
+				}
 			]
 		}
 	]

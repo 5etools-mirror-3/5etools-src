@@ -1,5 +1,6 @@
 import {EVNT_VALCHANGE} from "./filter-constants.js";
 import {UtilsBlocklist} from "../utils-blocklist/utils-blocklist.js";
+import {FilterUtils} from "./filter-utils.js";
 
 /** @abstract */
 export class ModalFilterBase {
@@ -199,7 +200,7 @@ export class ModalFilterBase {
 	}
 
 	_getStateFromFilterExpression (filterExpression) {
-		const filterSubhashMeta = Renderer.getFilterSubhashes(Renderer.splitTagByPipe(filterExpression), this._namespace);
+		const filterSubhashMeta = Renderer.getFilterSubhashes(Renderer.splitTagByPipe(filterExpression).map(pt => FilterUtils.getUnescapedPipes(pt)), this._namespace);
 		const subhashes = filterSubhashMeta.subhashes.map(it => `${it.key}${HASH_SUB_KV_SEP}${it.value}`);
 		const unpackedSubhashes = this.pageFilter.filterBox.unpackSubHashes(subhashes, {force: true});
 		return this.pageFilter.filterBox.getNextStateFromSubHashes({unpackedSubhashes});

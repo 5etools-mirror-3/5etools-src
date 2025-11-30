@@ -2221,6 +2221,48 @@
 				"Tamed Surge|Sorcerer|XPHB|Wild Magic|XPHB|18"
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Spellfire Sorcery",
+			"shortName": "Spellfire",
+			"source": "FRHoF",
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"cure wounds|xphb",
+							"guiding bolt|xphb",
+							"lesser restoration|xphb",
+							"scorching ray|xphb"
+						],
+						"5": [
+							"aura of vitality|xphb",
+							"dispel magic|xphb"
+						],
+						"6": [
+							"counterspell|xphb"
+						],
+						"7": [
+							"fire shield|xphb",
+							"wall of fire|xphb"
+						],
+						"9": [
+							"greater restoration|xphb",
+							"flame strike|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Spellfire Sorcery|Sorcerer|XPHB|Spellfire|FRHoF|3|FRHoF",
+				"Absorb Spells|Sorcerer|XPHB|Spellfire|FRHoF|6|FRHoF",
+				"Honed Spellfire|Sorcerer|XPHB|Spellfire|FRHoF|14|FRHoF",
+				"Crown of Spellfire|Sorcerer|XPHB|Spellfire|FRHoF|18|FRHoF"
+			],
+			"hasFluffImages": true
 		}
 	],
 	"classFeature": [
@@ -4931,6 +4973,181 @@
 					"page": true
 				}
 			}
+		},
+		{
+			"name": "Bolstering Flames",
+			"source": "FRHoF",
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Spellfire",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"You or one creature you can see within {@quantity 30|feet} of yourself gains {@variantrule Temporary Hit Points|XPHB} equal to {@dice 1d4} plus your Charisma modifier."
+			]
+		},
+		{
+			"name": "Radiant Fire",
+			"source": "FRHoF",
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Spellfire",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"One creature you can see within {@quantity 30|feet} of yourself takes {@damage 1d4} Fire or Radiant damage (your choice)."
+			]
+		},
+		{
+			"name": "Spellfire Burst",
+			"source": "FRHoF",
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Spellfire",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"When you spend at least 1 Sorcery Point as part of the {@action Magic|XPHB} action or a {@variantrule Bonus Action|XPHB} on your turn, you can unleash one of the following magical effects of your choice. You can do so only once per turn.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Bolstering Flames|Sorcerer|XPHB|Spellfire|FRHoF|3|FRHoF"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Radiant Fire|Sorcerer|XPHB|Spellfire|FRHoF|3|FRHoF"
+				}
+			]
+		},
+		{
+			"name": "Spellfire Sorcery",
+			"source": "FRHoF",
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Spellfire",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"{@i Wield Raw Magic}",
+				"Your innate power stems from the source of magic itself: the Weave. This connection manifests as a rare ability known as spellfire, and you surge with radiant bursts of this raw magic. Your talent with spellfire allows you to heal allies, sear enemies, and absorb powerful spells.",
+				"Wielders of spellfire tend to have a penchant for wandering. Many travel between cosmopolitan settlements, such as those along the Sword Coast, and wield their magic in service of the common good. Others realize their own strange powers by roaming equally strange lands, from the magic-blasted wastes of the desert of Anauroch to the god-touched wilds of the Old Empires. Wherever they go in the Realms, spellfire Sorcerers are courted by factions with interests in the arcane arts, such as the Harpers, Cult of the Dragon, and Red Wizards.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Spellfire Burst|Sorcerer|XPHB|Spellfire|FRHoF|3|FRHoF"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Spellfire Spells|Sorcerer|XPHB|Spellfire|FRHoF|3|FRHoF"
+				}
+			]
+		},
+		{
+			"name": "Spellfire Spells",
+			"source": "FRHoF",
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Spellfire",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"When you reach a Sorcerer level specified in the Spellfire Spells table, you thereafter always have the listed spells prepared.",
+				{
+					"type": "table",
+					"colLabels": [
+						"Sorcerer Level",
+						"Spells"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Cure Wounds|XPHB}, {@spell Guiding Bolt|XPHB}, {@spell Lesser Restoration|XPHB}, {@spell Scorching Ray|XPHB}"
+						],
+						[
+							"5",
+							"{@spell Aura of Vitality|XPHB}, {@spell Dispel Magic|XPHB}"
+						],
+						[
+							"7",
+							"{@spell Fire Shield|XPHB}, {@spell Wall of Fire|XPHB}"
+						],
+						[
+							"9",
+							"{@spell Greater Restoration|XPHB}, {@spell Flame Strike|XPHB}"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Absorb Spells",
+			"source": "FRHoF",
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Spellfire",
+			"subclassSource": "FRHoF",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"You always have {@spell Counterspell|XPHB} prepared.",
+				"Additionally, whenever a target fails the saving throw against a {@spell Counterspell|XPHB} you cast, you regain {@dice 1d4} Sorcery Points."
+			]
+		},
+		{
+			"name": "Honed Spellfire",
+			"source": "FRHoF",
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Spellfire",
+			"subclassSource": "FRHoF",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"Your {@subclassFeature Spellfire Burst|Sorcerer|XPHB|Spellfire|FRHoF|3|FRHoF} improves. You add your {@class Sorcerer|XPHB} level to the {@variantrule Temporary Hit Points|XPHB} gained from {@subclassFeature Bolstering Flames|Sorcerer|XPHB|Spellfire|FRHoF|3|FRHoF}, and the damage of {@subclassFeature Radiant Fire|Sorcerer|XPHB|Spellfire|FRHoF|3|FRHoF} increases to {@dice 1d8}."
+			]
+		},
+		{
+			"name": "Crown of Spellfire",
+			"source": "FRHoF",
+			"className": "Sorcerer",
+			"classSource": "XPHB",
+			"subclassShortName": "Spellfire",
+			"subclassSource": "FRHoF",
+			"level": 18,
+			"header": 2,
+			"consumes": {
+				"name": "Sorcery Point",
+				"amount": 7
+			},
+			"entries": [
+				"When you use {@classFeature Innate Sorcery|Sorcerer|XPHB|1}, you can alter it and infuse yourself with the essence of spellfire, gaining the following benefits while this use of Innate Sorcery is active. Once you use this feature to alter Innate Sorcery, you can't use it again until you finish a {@variantrule Long Rest|XPHB} unless you spend 5 Sorcery Points (no action required) to restore your use of it.",
+				{
+					"type": "entries",
+					"name": "Burning Life Force",
+					"page": 8,
+					"entries": [
+						"Once per turn when you are hit by an attack roll, you can expend a number of {@variantrule Hit Point Dice|XPHB}, up to a maximum equal to your Charisma modifier (minimum of one). Roll the expended dice, and reduce the amount of damage from that attack equal to the total rolled."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Flight",
+					"page": 8,
+					"entries": [
+						"You gain a {@variantrule Fly Speed|XPHB} of {@quantity 60|feet} and can hover."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Spell Avoidance",
+					"page": 8,
+					"entries": [
+						"When you're subjected to a spell or magical effect that allows you to make a saving throw to take only half damage, you instead take no damage if you succeed on the saving throw and only half damage if you fail. You can't use this benefit if you have the {@condition Incapacitated|XPHB} condition."
+					]
+				}
+			]
 		},
 		{
 			"name": "Draconic Bloodline",

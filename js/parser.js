@@ -777,8 +777,17 @@ Parser.itemValueToFull = function (item, opts = {isShortForm: false, isSmallUnit
  * @param {?boolean} [opts.isShortForm]
  * @param {?boolean} [opts.isSmallUnits]
  * @param {?number} [opts.multiplier]
+ * @param {?string} [opts.styleHint]
  */
-Parser.itemValueToFullMultiCurrency = function (item, opts = {isShortForm: false, isSmallUnits: false, multiplier: null}) {
+Parser.itemValueToFullMultiCurrency = function (
+	item,
+	opts = {
+		isShortForm: false,
+		isSmallUnits: false,
+		multiplier: null,
+		styleHint: null,
+	},
+) {
 	return Parser._moneyToFullMultiCurrency(item, "value", "valueMult", opts);
 };
 
@@ -806,7 +815,9 @@ Parser._moneyToFull = function (it, prop, propMult, opts = {isShortForm: false, 
 	return "";
 };
 
-Parser._moneyToFullMultiCurrency = function (it, prop, propMult, {isShortForm, multiplier} = {}) {
+Parser._moneyToFullMultiCurrency = function (it, prop, propMult, {isShortForm, multiplier, styleHint} = {}) {
+	styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
 	if (it[prop]) {
 		const conversionTable = Parser.getCurrencyConversionTable(it.currencyConversion);
 
@@ -827,8 +838,12 @@ Parser._moneyToFullMultiCurrency = function (it, prop, propMult, {isShortForm, m
 		return [...conversionTable]
 			.reverse()
 			.filter(meta => simplified[meta.coin])
-			.map(meta => `${simplified[meta.coin].toLocaleString(undefined, {maximumFractionDigits: 5})} ${meta.coin}`)
+			.map(meta => `${simplified[meta.coin].toLocaleString(undefined, {maximumFractionDigits: 5})} ${styleHint === "classic" ? meta.coin : meta.coin.toUpperCase()}`)
 			.join(", ");
+	}
+
+	if (it[prop] === 0) {
+		return `0 ${styleHint === "classic" ? "gp" : "GP"}`;
 	}
 
 	if (it[propMult]) return isShortForm ? `×${it[propMult]}` : `base value ×${it[propMult]}`;
@@ -1272,19 +1287,27 @@ Parser.spSchoolAbvToShort = function (school) {
 };
 
 Parser.spSchoolAbvToStyle = function (school) { // For prerelease/homebrew
-	const stylePart = Parser.spSchoolAbvToStylePart(school);
+	return Parser._colorableMetaAbvToStyle({key: school, prop: "spellSchools"});
+};
+
+Parser.spSchoolAbvToStylePart = function (school) { // For prerelease/homebrew
+	return Parser._colorableMetaAbvToStylePart({key: school, prop: "spellSchools"});
+};
+
+Parser._colorableMetaAbvToStyle = function ({key, prop}) {
+	const stylePart = Parser._colorableMetaAbvToStylePart({key, prop});
 	if (!stylePart) return stylePart;
 	return `style="${stylePart}"`;
 };
 
-Parser.spSchoolAbvToStylePart = function (school) { // For prerelease/homebrew
-	return Parser._spSchoolAbvToStylePart_prereleaseBrew({school, brewUtil: PrereleaseUtil})
-		|| Parser._spSchoolAbvToStylePart_prereleaseBrew({school, brewUtil: BrewUtil2})
+Parser._colorableMetaAbvToStylePart = function ({key, prop}) {
+	return Parser._colorableMetaAbvToStylePart_prereleaseBrew({key, prop, brewUtil: PrereleaseUtil})
+		|| Parser._colorableMetaAbvToStylePart_prereleaseBrew({key, prop, brewUtil: BrewUtil2})
 		|| "";
 };
 
-Parser._spSchoolAbvToStylePart_prereleaseBrew = function ({school, brewUtil}) {
-	const rawColor = brewUtil.getMetaLookup("spellSchools")?.[school]?.color;
+Parser._colorableMetaAbvToStylePart_prereleaseBrew = function ({key, prop, brewUtil}) {
+	const rawColor = brewUtil.getMetaLookup(prop)?.[key]?.color;
 	if (!rawColor || !rawColor.trim()) return "";
 	const validColor = BrewUtilShared.getValidColor(rawColor);
 	if (validColor.length) return MiscUtil.getColorStylePart(validColor);
@@ -1686,8 +1709,7 @@ Parser.spRangeToFull._getAreaStyleString = function (range) {
 };
 
 Parser.getSingletonUnit = function (unit, isShort) {
-	if (!unit) return "";
-	
+	if (!unit) return unit;
 	switch (unit) {
 		case Parser.UNT_INCHES:
 			return isShort ? "in." : "inch";
@@ -2346,6 +2368,14 @@ Parser.psiTypeToMeta = type => {
 	return out;
 };
 
+Parser.psiTypeAbvToStyle = function (type) { // For prerelease/homebrew
+	return Parser._colorableMetaAbvToStyle({key: type, prop: "psionicTypes"});
+};
+
+Parser.psiTypeAbvToStylePart = function (type) { // For prerelease/homebrew
+	return Parser._colorableMetaAbvToStylePart({key: type, prop: "psionicTypes"});
+};
+
 Parser.psiOrderToFull = (order) => {
 	return order === undefined ? Parser.PSI_ORDER_NONE : order;
 };
@@ -2417,6 +2447,7 @@ Parser.OPT_FEATURE_TYPE_TO_FULL = {
 	"RN": "Rune Knight Rune",
 	"AF": "Alchemical Formula",
 	"TT": "Traveler's Trick",
+	"RP": "Renown Perk",
 };
 
 Parser.optFeatureTypeToFull = function (type) {
@@ -2933,10 +2964,12 @@ Parser.imageTypeToFull = function (imageType) {
 	return Parser._parse_aToB(Parser.IMAGE_TYPE_TO_FULL, imageType, "Other");
 };
 
-Parser.nameToTokenName = function (name) {
-	return name
+Parser.nameToTokenName = function (name, {isUrlEncode = false} = {}) {
+	const out = name
 		.toAscii()
 		.replace(/"/g, "");
+	if (!isUrlEncode) return out;
+	return encodeURIComponent(out);
 };
 
 Parser.bytesToHumanReadable = function (bytes, {fixedDigits = 2} = {}) {
@@ -3148,6 +3181,7 @@ Parser.ruleTypeToFull = function (ruleType) {
 Parser.VEHICLE_TYPE_TO_FULL = {
 	"SHIP": "Ship",
 	"SPELLJAMMER": "Spelljammer Ship",
+	"ELEMENTAL_AIRSHIP": "Elemental Airship",
 	"INFWAR": "Infernal War Machine",
 	"CREATURE": "Creature",
 	"OBJECT": "Object",
@@ -3288,6 +3322,14 @@ Parser.SRC_DrDe_BtS = "DrDe-BtS";
 Parser.SRC_DrDe_SD = "DrDe-SD";
 Parser.SRC_DrDe_ACfaS = "DrDe-ACfaS";
 Parser.SRC_DrDe_DotS = "DrDe-DotSC";
+Parser.SRC_HotB = "HotB";
+Parser.SRC_WttHC = "WttHC";
+Parser.SRC_FRAiF = "FRAiF";
+Parser.SRC_FRHoF = "FRHoF";
+Parser.SRC_ABH = "ABH";
+Parser.SRC_NF = "NF";
+Parser.SRC_LFL = "LFL";
+Parser.SRC_EFA = "EFA";
 Parser.SRC_TD = "TD";
 Parser.SRC_SCREEN = "Screen";
 Parser.SRC_SCREEN_WILDERNESS_KIT = "ScreenWildernessKit";
@@ -3486,6 +3528,14 @@ Parser.SOURCE_JSON_TO_FULL[Parser.SRC_DrDe_BtS] = "Before the Storm";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_DrDe_SD] = "Shivering Death";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_DrDe_ACfaS] = "A Copper for a Song";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_DrDe_DotS] = "Dragons of the Sandstone City";
+Parser.SOURCE_JSON_TO_FULL[Parser.SRC_HotB] = "Heroes of the Borderlands";
+Parser.SOURCE_JSON_TO_FULL[Parser.SRC_WttHC] = "Stranger Things: Welcome to the Hellfire Club";
+Parser.SOURCE_JSON_TO_FULL[Parser.SRC_FRAiF] = "Forgotten Realms: Adventures in Faerûn";
+Parser.SOURCE_JSON_TO_FULL[Parser.SRC_FRHoF] = "Forgotten Realms: Heroes of Faerûn";
+Parser.SOURCE_JSON_TO_FULL[Parser.SRC_ABH] = "Astarion's Book of Hungers";
+Parser.SOURCE_JSON_TO_FULL[Parser.SRC_NF] = "Netheril's Fall";
+Parser.SOURCE_JSON_TO_FULL[Parser.SRC_LFL] = "Lorwyn: First Light";
+Parser.SOURCE_JSON_TO_FULL[Parser.SRC_EFA] = "Eberron: Forge of the Artificer";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_TD] = "Tarot Deck";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_SCREEN] = "Dungeon Master's Screen";
 Parser.SOURCE_JSON_TO_FULL[Parser.SRC_SCREEN_WILDERNESS_KIT] = "Dungeon Master's Screen: Wilderness Kit";
@@ -3659,6 +3709,14 @@ Parser.SOURCE_JSON_TO_ABV[Parser.SRC_DrDe_BtS] = "DrDe-BtS";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_DrDe_SD] = "DrDe-SD";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_DrDe_ACfaS] = "DrDe-ACfaS";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_DrDe_DotS] = "DrDe-DotSC";
+Parser.SOURCE_JSON_TO_ABV[Parser.SRC_HotB] = "HotB";
+Parser.SOURCE_JSON_TO_ABV[Parser.SRC_WttHC] = "WttHC";
+Parser.SOURCE_JSON_TO_ABV[Parser.SRC_FRAiF] = "FRAiF";
+Parser.SOURCE_JSON_TO_ABV[Parser.SRC_FRHoF] = "FRHoF";
+Parser.SOURCE_JSON_TO_ABV[Parser.SRC_ABH] = "ABH";
+Parser.SOURCE_JSON_TO_ABV[Parser.SRC_NF] = "NF";
+Parser.SOURCE_JSON_TO_ABV[Parser.SRC_LFL] = "LFL";
+Parser.SOURCE_JSON_TO_ABV[Parser.SRC_EFA] = "EFA";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_TD] = "TD";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_SCREEN] = "Scr'14";
 Parser.SOURCE_JSON_TO_ABV[Parser.SRC_SCREEN_WILDERNESS_KIT] = "ScrWild";
@@ -3831,6 +3889,14 @@ Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe_BtS] = Parser.SOURCE_JSON_TO_DATE[Par
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe_SD] = Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe];
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe_ACfaS] = Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe];
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe_DotS] = Parser.SOURCE_JSON_TO_DATE[Parser.SRC_DrDe];
+Parser.SOURCE_JSON_TO_DATE[Parser.SRC_HotB] = "2025-09-16";
+Parser.SOURCE_JSON_TO_DATE[Parser.SRC_WttHC] = "2025-10-07";
+Parser.SOURCE_JSON_TO_DATE[Parser.SRC_FRAiF] = "2025-11-11";
+Parser.SOURCE_JSON_TO_DATE[Parser.SRC_FRHoF] = "2025-11-11";
+Parser.SOURCE_JSON_TO_DATE[Parser.SRC_ABH] = "2025-11-11";
+Parser.SOURCE_JSON_TO_DATE[Parser.SRC_NF] = "2025-11-11";
+Parser.SOURCE_JSON_TO_DATE[Parser.SRC_LFL] = "2025-11-18";
+Parser.SOURCE_JSON_TO_DATE[Parser.SRC_EFA] = "2025-12-09";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_TD] = "2022-05-24";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_SCREEN] = "2015-01-20";
 Parser.SOURCE_JSON_TO_DATE[Parser.SRC_SCREEN_WILDERNESS_KIT] = "2020-11-17";
@@ -3983,6 +4049,8 @@ Parser.SOURCES_ADVENTURES = new Set([
 	Parser.SRC_DrDe_SD,
 	Parser.SRC_DrDe_ACfaS,
 	Parser.SRC_DrDe_DotS,
+	Parser.SRC_HotB,
+	Parser.SRC_WttHC,
 
 	Parser.SRC_AWM,
 ]);
@@ -4089,6 +4157,10 @@ Parser.SOURCES_VANILLA = new Set([
 	Parser.SRC_CoA,
 	Parser.SRC_BMT,
 	Parser.SRC_DMTCRG,
+	Parser.SRC_FRAiF,
+	Parser.SRC_FRHoF,
+	Parser.SRC_ABH,
+	Parser.SRC_NF,
 ]);
 
 // Any opinionated set of sources that are """hilarious, dude"""
@@ -4111,6 +4183,7 @@ Parser.SOURCES_COMEDY = new Set([
 	Parser.SRC_ScoEE,
 	Parser.SRC_HBTD,
 	Parser.SRC_BQGT,
+	Parser.SRC_WttHC,
 ]);
 
 // Any opinionated set of sources that are "other settings"
@@ -4151,6 +4224,9 @@ Parser.SOURCES_NON_FR = new Set([
 	Parser.SRC_ScoEE,
 	Parser.SRC_HBTD,
 	Parser.SRC_BQGT,
+	Parser.SRC_WttHC,
+	Parser.SRC_LFL,
+	Parser.SRC_EFA,
 ]);
 
 // endregion
@@ -4168,6 +4244,8 @@ Parser.SOURCES_AVAILABLE_DOCS_BOOK = {};
 	Parser.SRC_AI,
 	Parser.SRC_ERLW,
 	Parser.SRC_RMR,
+	Parser.SRC_AWM,
+	Parser.SRC_MGELFT,
 	Parser.SRC_EGW,
 	Parser.SRC_MOT,
 	Parser.SRC_TCE,
@@ -4198,6 +4276,12 @@ Parser.SOURCES_AVAILABLE_DOCS_BOOK = {};
 	Parser.SRC_XDMG,
 	Parser.SRC_XSCREEN,
 	Parser.SRC_TD,
+	Parser.SRC_FRHoF,
+	Parser.SRC_FRAiF,
+	Parser.SRC_ABH,
+	Parser.SRC_NF,
+	Parser.SRC_LFL,
+	Parser.SRC_EFA,
 ].forEach(src => {
 	Parser.SOURCES_AVAILABLE_DOCS_BOOK[src] = src;
 	Parser.SOURCES_AVAILABLE_DOCS_BOOK[src.toLowerCase()] = src;
@@ -4308,6 +4392,8 @@ Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE = {};
 	Parser.SRC_DrDe_SD,
 	Parser.SRC_DrDe_ACfaS,
 	Parser.SRC_DrDe_DotS,
+	Parser.SRC_HotB,
+	Parser.SRC_WttHC,
 ].forEach(src => {
 	Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE[src] = src;
 	Parser.SOURCES_AVAILABLE_DOCS_ADVENTURE[src.toLowerCase()] = src;
@@ -4333,7 +4419,9 @@ Parser.PROP_TO_TAG = {
 	"itemGroup": "item",
 	"magicvariant": "item",
 };
+Parser._RE_PROP_RAW_PREFIX = /^raw_/;
 Parser.getPropTag = function (prop) {
+	prop = prop.replace(Parser._RE_PROP_RAW_PREFIX, "");
 	if (Parser.PROP_TO_TAG[prop]) return Parser.PROP_TO_TAG[prop];
 	if (prop?.endsWith("Fluff")) return null;
 	return prop;

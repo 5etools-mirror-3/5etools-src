@@ -1894,6 +1894,41 @@
 				"Battle Magic|Bard|XPHB|Valor|XPHB|14"
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "College of the Moon",
+			"shortName": "Moon",
+			"source": "FRHoF",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"innate": {
+						"3": [
+							{
+								"choose": "level=0|class=druid",
+								"count": 1
+							}
+						]
+					},
+					"prepared": {
+						"6": {
+							"daily": {
+								"1e": [
+									"moonbeam|xphb"
+								]
+							}
+						}
+					}
+				}
+			],
+			"subclassFeatures": [
+				"College of the Moon|Bard|XPHB|Moon|FRHoF|3|FRHoF",
+				"Blessing of Moonlight|Bard|XPHB|Moon|FRHoF|6|FRHoF",
+				"Eventide's Splendor|Bard|XPHB|Moon|FRHoF|14|FRHoF"
+			],
+			"hasFluffImages": true
 		}
 	],
 	"classFeature": [
@@ -3654,6 +3689,108 @@
 				"The {@condition charmed} creature obeys your commands for fear that you will reveal its secret. It won't risk its life for you or fight for you, unless it was already inclined to do so. It grants you favors and gifts it would offer to a close friend.",
 				"When the effect ends, the creature has no understanding of why it held you in such fear.",
 				"Once you use this feature, you can't use it again until you finish a long rest."
+			]
+		},
+		{
+			"name": "College of the Moon",
+			"source": "FRHoF",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Moon",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"{@i Inspire Allies with Primal Tales}",
+				"The College of the Moon traces its origins to the ancient druidic circles of the Moonshae Isles, who entrusted the first Bards of this tradition with chronicling the stories of the islands and their people. Bards of this college draw from the isles' fey magic and the primal power of the moonwells to bolster their allies, protect the natural world, and inspire their bardic works.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Moon's Inspiration|Bard|XPHB|Moon|FRHoF|3|FRHoF"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Primal Lore|Bard|XPHB|Moon|FRHoF|3|FRHoF"
+				}
+			]
+		},
+		{
+			"name": "Moon's Inspiration",
+			"source": "FRHoF",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Moon",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"The primal and ever-changing power of the moon flows through you, granting you the following benefits.",
+				{
+					"type": "entries",
+					"name": "Inspired Eclipse",
+					"entries": [
+						"When you take a {@variantrule Bonus Action|XPHB} to give a creature a Bardic Inspiration die, you can have the {@condition Invisible|XPHB} condition and teleport up to {@quantity 30|feet} to an unoccupied space you can see as part of that {@variantrule Bonus Action|XPHB}. This invisibility lasts until the start of your next turn and ends early immediately after you make an attack roll, deal damage, or cast a spell."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Lunar Vitality",
+					"entries": [
+						"Once per turn when you restore {@variantrule Hit Points|XPHB} to a creature with a spell, you can expend a Bardic Inspiration die and increase the amount of {@variantrule Hit Points|XPHB} restored by a number equal to a roll of the Bardic Inspiration die. The creature's {@variantrule Speed|XPHB} also increases by {@quantity 10|feet} until the end of its next turn."
+					]
+				}
+			]
+		},
+		{
+			"name": "Primal Lore",
+			"source": "FRHoF",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Moon",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"You learn Druidic and one cantrip from the Druid spell list. It counts as a Bard spell for you but doesn't count against the number of cantrips you know. Whenever you gain a Bard level, you can replace this cantrip with another cantrip of your choice from the Druid spell list.",
+				"Additionally, choose one of the following skills: {@skill Animal Handling|XPHB}, {@skill Insight|XPHB}, {@skill Medicine|XPHB}, {@skill Nature|XPHB}, {@skill Perception|XPHB}, or {@skill Survival|XPHB}. You have proficiency in that skill."
+			]
+		},
+		{
+			"name": "Blessing of Moonlight",
+			"source": "FRHoF",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Moon",
+			"subclassSource": "FRHoF",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"You always have the {@spell Moonbeam|XPHB} spell prepared.",
+				"When you cast {@spell Moonbeam|XPHB}, you can modify the spell so that you glow faintly while the spell is active. While glowing, you shed {@variantrule Dim Light|XPHB} out to {@quantity 5|feet}, and whenever a creature fails its saving throw against the effects of this Moonbeam, another creature of your choice that you can see within {@quantity 60|feet} of yourself regains {@dice 2d4} {@variantrule Hit Points|XPHB}.",
+				"Once you use this feature to modify a casting of Moonbeam, you can't use it again until you finish a {@variantrule Long Rest|XPHB}."
+			]
+		},
+		{
+			"name": "Eventide's Splendor",
+			"source": "FRHoF",
+			"className": "Bard",
+			"classSource": "XPHB",
+			"subclassShortName": "Moon",
+			"subclassSource": "FRHoF",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"You become suffused with the might of the moon, improving your Moon's Inspiration in the following ways.",
+				{
+					"type": "entries",
+					"name": "Shadow of the New Moon",
+					"entries": [
+						"When you use Inspired Eclipse, the creature who received the Bardic Inspiration die can also have the {@condition Invisible|XPHB} condition and immediately take a {@variantrule Reaction|XPHB} to teleport up to {@quantity 30|feet} to an unoccupied space it can see. The creature remains {@condition Invisible|XPHB} until the start of its next turn."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Vibrance of the Full Moon",
+					"entries": [
+						"When you use Lunar Vitality, you can roll {@dice 1d6} and use the number rolled in place of expending a Bardic Inspiration die."
+					]
+				}
 			]
 		},
 		{

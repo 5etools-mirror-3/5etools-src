@@ -1,6 +1,7 @@
 import {FilterItem} from "../filter-item.js";
 import {FilterBase} from "./filter-filter-base.js";
 import {MISC_FILTER_VALUE__BASIC_RULES_2014, MISC_FILTER_VALUE__BASIC_RULES_2024, MISC_FILTER_VALUE__SRD_5_1, MISC_FILTER_VALUE__SRD_5_2, PILL_STATE__IGNORE, PILL_STATE__NO, PILL_STATE__YES, PILL_STATES} from "../filter-constants.js";
+import {FilterUtils} from "../filter-utils.js";
 
 class FilterTransientOptions {
 	/**
@@ -222,7 +223,7 @@ export class Filter extends FilterBase {
 		const pt = Object.entries(this._state)
 			.filter(([k]) => !k.startsWith("_"))
 			.filter(([, v]) => v)
-			.map(([k, v]) => `${v === PILL_STATE__NO ? "!" : ""}${k}`)
+			.map(([k, v]) => `${v === PILL_STATE__NO ? "!" : ""}${FilterUtils.getEscapedPipes(k)}`)
 			.join(";")
 			.toLowerCase();
 

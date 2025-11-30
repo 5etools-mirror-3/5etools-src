@@ -85,7 +85,7 @@ export class RenderableCollectionRowDataBase extends RenderableCollectionAsyncGe
 
 		const $wrpRhs = $(`<div class="dm-init__row-rhs"></div>`).appendTo($wrpRow);
 
-		this._pPopulateRow_hp({comp, $wrpRhs});
+		this._pPopulateRow_hp({comp, $wrpRhs, fnsCleanup});
 		this._pPopulateRow_initiative({comp, $wrpRhs});
 		this._pPopulateRow_btns({comp, entity, $wrpRhs});
 
@@ -210,7 +210,7 @@ export class RenderableCollectionRowDataBase extends RenderableCollectionAsyncGe
 
 	/* ----- */
 
-	_pPopulateRow_hp ({comp, $wrpRhs}) {
+	_pPopulateRow_hp ({comp, $wrpRhs, fnsCleanup}) {
 		const $iptHpCurrent = ComponentUiUtil.$getIptNumber(
 			comp,
 			"hpCurrent",
@@ -236,7 +236,10 @@ export class RenderableCollectionRowDataBase extends RenderableCollectionAsyncGe
 			.on("click", () => $iptHpMax.select());
 
 		const hkHpColors = () => {
-			const woundLevel = InitiativeTrackerUtil.getWoundLevel(100 * comp._state.hpCurrent / comp._state.hpMax);
+			const pctWounded = this._comp._state.isInvertWoundDirection
+				? 100 * (comp._state.hpMax - comp._state.hpCurrent) / comp._state.hpMax
+				: 100 * comp._state.hpCurrent / comp._state.hpMax;
+			const woundLevel = InitiativeTrackerUtil.getWoundLevel(pctWounded);
 			if (~woundLevel) {
 				const woundMeta = InitiativeTrackerUtil.getWoundMeta(woundLevel);
 				$iptHpCurrent.css("color", woundMeta.color);
@@ -249,6 +252,9 @@ export class RenderableCollectionRowDataBase extends RenderableCollectionAsyncGe
 		comp._addHookBase("hpCurrent", hkHpColors);
 		comp._addHookBase("hpMax", hkHpColors);
 		hkHpColors();
+
+		this._comp._addHookBase("isInvertWoundDirection", hkHpColors)();
+		fnsCleanup.push(() => this._comp._removeHookBase("isInvertWoundDirection", hkHpColors));
 
 		$$`<div class="ve-flex relative mr-3p">
 			<div class="ve-text-right">${$iptHpCurrent}</div>

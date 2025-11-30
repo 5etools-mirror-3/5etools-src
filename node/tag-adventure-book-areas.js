@@ -3,8 +3,8 @@ import "../js/parser.js";
 import "../js/utils.js";
 import "../js/render.js";
 import {Command} from "commander";
-import {getAllJson} from "./util-json-files.js";
 import {writeJsonSync} from "5etools-utils/lib/UtilFs.js";
+import {getCliFiles} from "./util-commander.js";
 
 class AreaTagger {
 	constructor (json) {
@@ -70,33 +70,35 @@ const program = new Command()
 program.parse(process.argv);
 const params = program.opts();
 
-const dirs = [...(params.dir || [])];
-const files = [...(params.file || [])];
-
-// If no options specified, use default selection
-if (!dirs.length && !files.length) {
-	[
-		{
-			index: ut.readJson("./data/adventures.json"),
-			type: "adventure",
-		},
-		{
-			index: ut.readJson("./data/books.json"),
-			type: "book",
-		},
-	]
-		.forEach(({index, type}) => {
-			index[type]
-				.forEach(meta => {
-					files.push(`./data/${type}/${type}-${meta.id.toLowerCase()}.json`);
-				});
-		});
-}
-
 console.log(`Running area tagging pass...`);
 
-getAllJson({dirs, files})
+getCliFiles(
+	{
+		dirs: params.dir,
+		files: params.file,
+		fnMutDefaultSelection: ({files}) => {
+			[
+				{
+					index: ut.readJson("./data/adventures.json"),
+					type: "adventure",
+				},
+				{
+					index: ut.readJson("./data/books.json"),
+					type: "book",
+				},
+			]
+				.forEach(({index, type}) => {
+					index[type]
+						.forEach(meta => {
+							files.push(`./data/${type}/${type}-${meta.id.toLowerCase()}.json`);
+						});
+				});
+		},
+	},
+)
 	.forEach(({path, json}) => {
+		console.log(`\tTagging "${path}"...`);
+
 		if (json.data) {
 			new AreaTagger(json).run();
 		} else {
@@ -108,7 +110,7 @@ getAllJson({dirs, files})
 
 		writeJsonSync(path, json, {isClean: true});
 
-		console.log(`\tTagged "${path}"...`);
+		console.log(`\tTagged "${path}".`);
 	});
 
 console.log(`Area tagging complete.`);

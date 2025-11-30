@@ -11,7 +11,8 @@
 		],
 		"otherSources": {
 			"monster": {
-				"MTF": "OotA"
+				"MTF": "OotA",
+				"MM": "OotA"
 			}
 		}
 	},
@@ -140,6 +141,7 @@
 					}
 				}
 			},
+			"tokenCustom": true,
 			"traitTags": [
 				"Fey Ancestry",
 				"Sunlight Sensitivity"
@@ -428,6 +430,7 @@
 				"darkvision {@quantity 30|ft.}",
 				"tremorsense {@quantity 60|ft.}"
 			],
+			"tokenCustom": true,
 			"traitTags": [
 				"Keen Senses",
 				"Tunneler"
@@ -2091,6 +2094,14 @@
 			"speed": {
 				"walk": 25
 			},
+			"languages": [
+				"Gnoll",
+				"Abyssal"
+			],
+			"languageTags": [
+				"AB",
+				"OTH"
+			],
 			"hasToken": true,
 			"hasFluffImages": true
 		},
@@ -2250,6 +2261,38 @@
 			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
+		},
+		{
+			"name": "Glyphic Shroomlight",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "OotA",
+			"page": 103,
+			"_copy": {
+				"name": "Acolyte",
+				"source": "MM",
+				"_templates": [
+					{
+						"name": "Deep Gnome",
+						"source": "DMG"
+					}
+				],
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the veteran",
+						"with": "Glyphic",
+						"flags": "i"
+					}
+				}
+			},
+			"tokenCredit": "Garcia",
+			"tokenCustom": true,
+			"spellcastingTags": [
+				"CC",
+				"I"
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Grazilaxx",
@@ -2520,6 +2563,7 @@
 				"Undercommon",
 				"Common"
 			],
+			"tokenCustom": true,
 			"hasToken": true
 		},
 		{
@@ -3420,6 +3464,7 @@
 					}
 				}
 			},
+			"tokenCustom": true,
 			"spellcastingTags": [
 				"CC",
 				"I"
@@ -3837,6 +3882,7 @@
 					"ability": "wis"
 				}
 			],
+			"tokenCustom": true,
 			"savingThrowForcedSpell": [
 				"constitution",
 				"dexterity",
@@ -3870,6 +3916,57 @@
 				"Regeneration",
 				"Spider Climb"
 			],
+			"hasToken": true
+		},
+		{
+			"name": "Rihuud",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "OotA",
+			"page": 59,
+			"_copy": {
+				"name": "Stone Giant",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the giant",
+						"with": "Rihuud",
+						"flags": "i"
+					},
+					"trait": {
+						"mode": "appendArr",
+						"items": {
+							"name": "Two Heads",
+							"entries": [
+								"Rihuud has advantage on Wisdom ({@skill Perception}) checks and on saving throws against being {@condition blinded}, {@condition charmed}, {@condition deafened}, {@condition frightened}, {@condition stunned}, or knocked {@condition unconscious}."
+							]
+						}
+					},
+					"action": [
+						{
+							"mode": "replaceArr",
+							"replace": "Multiattack",
+							"items": {
+								"name": "Multiattack",
+								"entries": [
+									"Rihuud makes two unarmed strikes."
+								]
+							}
+						},
+						{
+							"mode": "replaceArr",
+							"replace": "Greatclub",
+							"items": {
+								"name": "Unarmed Strike",
+								"entries": [
+									"{@atk mw} {@hit 9} to hit, reach {@quantity 10|ft.}, one target. {@h}13 ({@damage 2d6 + 6}) bludgeoning damage."
+								]
+							}
+						}
+					]
+				}
+			},
 			"hasToken": true
 		},
 		{
@@ -4262,6 +4359,15 @@
 						"replace": "the goblin",
 						"with": "Spiderbait",
 						"flags": "i"
+					},
+					"trait": {
+						"mode": "appendArr",
+						"items": {
+							"name": "Thrill-Seeker",
+							"entries": [
+								"Spiderbait has advantage on checks made to avoid being {@status surprised}."
+							]
+						}
 					}
 				}
 			},
@@ -4311,6 +4417,10 @@
 					}
 				]
 			},
+			"tokenCustom": true,
+			"senseTags": [
+				"SD"
+			],
 			"spellcastingTags": [
 				"I"
 			],
@@ -4599,6 +4709,9 @@
 				"Terran",
 				"Undercommon"
 			],
+			"senseTags": [
+				"SD"
+			],
 			"hasToken": true,
 			"hasFluffImages": true
 		},
@@ -4705,6 +4818,7 @@
 					]
 				}
 			],
+			"tokenCustom": true,
 			"attachedItems": [
 				"greatclub|phb"
 			],
@@ -4769,8 +4883,29 @@
 				"Terran",
 				"Undercommon"
 			],
+			"senseTags": [
+				"SD"
+			],
 			"hasToken": true,
 			"hasFluffImages": true
+		},
+		{
+			"name": "Two-Headed Troll",
+			"source": "OotA",
+			"page": 211,
+			"_copy": {
+				"name": "Troll",
+				"source": "MM"
+			},
+			"bonus": [
+				{
+					"name": "Extra Bite",
+					"entries": [
+						"As part of its Multiattack routine, the troll can make a Bite attack."
+					]
+				}
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Vampiric Ixitxachitl",
@@ -5016,6 +5151,7 @@
 					}
 				}
 			],
+			"tokenCustom": true,
 			"spellcastingTags": [
 				"I"
 			],
@@ -5167,6 +5303,7 @@
 				"E"
 			],
 			"cr": "5",
+			"tokenCustom": true,
 			"traitTags": [
 				"Fey Ancestry",
 				"Sunlight Sensitivity"
@@ -5197,6 +5334,15 @@
 						"replace": "the archmage",
 						"with": "Vizeran",
 						"flags": "i"
+					},
+					"_": {
+						"mode": "addSpells",
+						"name": "Innate Spellcasting",
+						"daily": {
+							"1e": [
+								"{@spell levitate} (self only)"
+							]
+						}
 					}
 				}
 			},
@@ -5290,6 +5436,73 @@
 			"int": 18,
 			"hasToken": true,
 			"hasFluffImages": true
+		},
+		{
+			"name": "Yantha Coaxrock",
+			"isNpc": true,
+			"isNamedCreature": true,
+			"source": "OotA",
+			"page": 138,
+			"_copy": {
+				"name": "Deep Gnome (Svirfneblin)",
+				"source": "MM",
+				"_mod": {
+					"*": {
+						"mode": "replaceTxt",
+						"replace": "the gnome",
+						"with": "Yantha",
+						"flags": "i"
+					}
+				}
+			},
+			"int": 16,
+			"spellcasting": [
+				{
+					"name": "Spellcasting",
+					"type": "spellcasting",
+					"headerEntries": [
+						"Yantha is a 5th-level spellcaster. Her spellcasting ability is Intelligence (spell save {@dc 13}). She has the following wizard spells prepared:"
+					],
+					"spells": {
+						"0": {
+							"spells": [
+								"{@spell dancing lights}",
+								"{@spell friends}",
+								"{@spell mending}",
+								"{@spell prestidigitation}"
+							]
+						},
+						"1": {
+							"slots": 4,
+							"spells": [
+								"{@spell comprehend languages}",
+								"{@spell detect magic}",
+								"{@spell Tenser's floating disk}"
+							]
+						},
+						"2": {
+							"slots": 3,
+							"spells": [
+								"{@spell detect thoughts}",
+								"{@spell hold person}"
+							]
+						},
+						"3": {
+							"slots": 2,
+							"spells": [
+								"{@spell sending}"
+							]
+						}
+					},
+					"ability": "int"
+				}
+			],
+			"tokenCredit": "Paizo",
+			"tokenCustom": true,
+			"spellcastingTags": [
+				"CW"
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Yestabrod",
@@ -5523,6 +5736,15 @@
 						"replace": "the goblin",
 						"with": "Yuk Yuk",
 						"flags": "i"
+					},
+					"trait": {
+						"mode": "appendArr",
+						"items": {
+							"name": "Thrill-Seeker",
+							"entries": [
+								"Yuk Yuk has advantage on checks made to avoid being {@status surprised}."
+							]
+						}
 					}
 				}
 			},

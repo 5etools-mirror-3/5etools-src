@@ -40,7 +40,7 @@ class StatGenPage {
 			if (savedState != null) this._statGenUi.setStateFrom(savedState);
 		}
 
-		this._statGenUi.render($(`#statgen-main`));
+		this._statGenUi.render(es(`#statgen-main`));
 
 		window.dispatchEvent(new Event("toolsLoaded"));
 	}
@@ -71,7 +71,7 @@ class StatGenPage {
 							DataUtil.doHandleFileLoadErrorsGeneric(errors);
 
 							if (!jsons?.length) return;
-							this._statGenUi.setStateFrom(jsons[0]);
+							this._statGenUi.setStateFrom(jsons[0], true);
 						},
 					},
 				],
@@ -82,10 +82,10 @@ class StatGenPage {
 					{
 						html: `<span class="glyphicon glyphicon-magnet"></span>`,
 						title: "Copy Link",
-						pFnClick: async (evt, $btn) => {
+						pFnClick: async ({evt, btn}) => {
 							const encoded = `${window.location.href.split("#")[0]}#pointbuy${HASH_PART_SEP}${encodeURIComponent(JSON.stringify(this._statGenUi.getSaveableState()))}`;
 							await MiscUtil.pCopyTextToClipboard(encoded);
-							JqueryUtil.showCopiedEffect($btn);
+							JqueryUtil.showCopiedEffect(btn);
 						},
 					},
 				],
@@ -182,8 +182,10 @@ class StatGenPage {
 	_handleHashChange () {
 		if (this._isIgnoreHashChanges) return false;
 
-		const hash = (window.location.hash.slice(1) || "").trim().toLowerCase();
-		const [mode, state] = (hash.split(HASH_PART_SEP) || [""]);
+		const hash = (window.location.hash.slice(1) || "").trim();
+		const [mode, state] = (hash.split(HASH_PART_SEP) || [""])
+			// State part is case-sensitive
+			.map((it, i) => i === 0 ? it.toLowerCase() : it);
 
 		if (!this._statGenUi.MODES.includes(mode)) {
 			this._doSilentHashChange(this._statGenUi.MODES[0]);
@@ -202,7 +204,7 @@ class StatGenPage {
 
 		try {
 			const saved = JSON.parse(decodeURIComponent(state));
-			this._statGenUi.setStateFrom(saved);
+			this._statGenUi.setStateFrom(saved, true);
 			return true;
 		} catch (e) {
 			JqueryUtil.doToast({type: "danger", content: `Failed to load state from URL!`});

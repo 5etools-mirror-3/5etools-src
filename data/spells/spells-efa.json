@@ -1,0 +1,62 @@
+{
+	"spell": [
+		{
+			"name": "Homunculus Servant",
+			"source": "EFA",
+			"page": 21,
+			"level": 2,
+			"school": "C",
+			"time": [
+				{
+					"number": 1,
+					"unit": "hour"
+				}
+			],
+			"range": {
+				"type": "point",
+				"distance": {
+					"type": "feet",
+					"amount": 10
+				}
+			},
+			"components": {
+				"v": true,
+				"s": true,
+				"m": {
+					"text": "a gem worth 100+ GP",
+					"cost": 10000
+				}
+			},
+			"duration": [
+				{
+					"type": "instant"
+				}
+			],
+			"meta": {
+				"ritual": true
+			},
+			"entries": [
+				"You summon a special homunculus in an unoccupied space within range. This creature uses the {@creature Homunculus Servant|EFA} stat block. If you already have a homunculus from this spell, the homunculus is replaced by the new one. You determine the homunculus's appearance, such as a mechanical-looking bird, winged vial, or miniature animate cauldron.",
+				{
+					"type": "entries",
+					"name": "Combat",
+					"entries": [
+						"The homunculus is an ally to you and your allies. In combat, it shares your {@variantrule Initiative|XPHB} count, but it takes its turn immediately after yours. It obeys your commands (no action required by you). If you don't issue any, it takes the {@action Dodge|XPHB} action and uses its movement to avoid danger."
+					]
+				}
+			],
+			"entriesHigherLevel": [
+				{
+					"type": "entries",
+					"name": "Using a Higher-Level Spell Slot",
+					"entries": [
+						"Use the spell slot's level for the spell's level in the stat block."
+					]
+				}
+			],
+			"miscTags": [
+				"SMN"
+			]
+		}
+	]
+}

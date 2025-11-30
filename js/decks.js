@@ -180,13 +180,13 @@ class DecksPage extends ListPage {
 				if (!card._isReplacement || evt.shiftKey) await this._compCardState.pDrawCard(ent, card);
 
 				if (EventUtil.isCtrlMetaKey(evt)) {
-					const $eleChat = $$`<span>Drew card: ${Renderer.get().render(`{@card ${card.name}|${card.set}|${card.source}}`)}</span>`;
+					const eleChat = ee`<span>Drew card: ${Renderer.get().render(`{@card ${card.name}|${card.set}|${card.source}}`)}</span>`;
 
 					Renderer.dice.addRoll({
 						rolledBy: {
 							name: ent.name,
 						},
-						$ele: $eleChat,
+						ele: eleChat,
 					});
 
 					return;

@@ -17,6 +17,7 @@ async function main () {
 	if (!(await (await import("./test-misc.js")).default)) handleFail();
 	if (!(await (await import("./test-multisource.js")).default)) handleFail();
 	if (!(await (await import("./test-language-fonts.js")).default)) handleFail();
+	if (!(await (await import("./test-adventure-book-map-names.js")).default)) handleFail();
 	if (!(await (await import("./test-adventure-book-contents.js")).default)) handleFail();
 	await (await import("./test-adventure-book-map-grids-parents.js")).default; // don't fail on missing map grids
 	if (!(await (await import("./test-foundry.js")).default)) handleFail();

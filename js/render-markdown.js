@@ -118,7 +118,8 @@ class RendererMarkdown {
 				textStack[0] += `${RendererMarkdown._getNextPrefix(options)}${indentSpaces}${item.type === "list" ? "" : `- `}`;
 
 				const cacheDepth = this._adjustDepth(meta, 1);
-				this._recursiveRender(entry.items[i], textStack, meta, {suffix: "\n"});
+				if (item?.rendered?.length) textStack[0] += item.rendered;
+				else this._recursiveRender(item, textStack, meta, {suffix: "\n"});
 				if (textStack[0].slice(-2) === "\n\n") textStack[0] = textStack[0].slice(0, -1);
 				meta.depth = cacheDepth;
 			}
@@ -862,11 +863,20 @@ ${prefix}|${Parser.ABIL_ABVS.map(ab => ent[ab] == null ? `\u2014|` : `${ent[ab]}
 	}
 };
 
-RendererMarkdown.monster = class {
-	static getCompactRenderedString (mon, opts = {}) {
-		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
+/** @abstract */
+class _RenderCompactMarkdownBestiaryImplBase {
+	_style;
 
-		const legendaryGroup = opts.legendaryGroup;
+	/**
+	 * @param {object} mon
+	 * @param [opts]
+	 * @param [opts.meta]
+	 * @param [opts.isHideSenses]
+	 * @param [opts.isHideLanguages]
+	 *
+	 * @return {string}
+	 */
+	getCompactRenderedString (mon, opts) {
 		const meta = opts.meta || {};
 
 		let addedStatblockInline;
@@ -875,28 +885,156 @@ RendererMarkdown.monster = class {
 			addedStatblockInline = true;
 		}
 
+		let {ptUnbreakable, ptBreakable} = this._getCompactRenderedString({mon, opts, meta, renderer: RendererMarkdown.get()});
+
+		ptBreakable = ptBreakable
+			.replace(/\n>\n/g, "\n\n")
+			.replace(/\n\n+/g, "\n\n");
+
+		if (VetoolsConfig.get("markdown", "isAddColumnBreaks")) {
+			let charAllowanceFirstCol = 2200 - ptUnbreakable.length;
+
+			const breakableLines = ptBreakable.split("\n");
+			for (let i = 0; i < breakableLines.length; ++i) {
+				const l = breakableLines[i];
+				if ((charAllowanceFirstCol -= l.length) < 0) {
+					breakableLines.splice(i, 0, ">", "> \\columnbreak", ">");
+					break;
+				}
+			}
+			ptBreakable = breakableLines.join("\n");
+		}
+
+		const monRender = `${ptUnbreakable}${ptBreakable}`
+			.trim()
+			.split("\n")
+			.map(it => it.trim() ? it : `>`)
+			.join("\n");
+		const out = `\n${monRender}\n\n`;
+
+		if (addedStatblockInline) delete meta.isStatblockInlineMonster;
+
+		return out;
+	}
+
+	/**
+	 * @return {{ptBreakable: string, ptUnbreakable: string}}
+	 */
+	_getCompactRenderedString ({mon, renderer, opts}) {
+		throw new Error("Unimplemented!");
+	}
+
+	/* -------------------------------------------- */
+
+	_getCommonMdParts (
+		{
+			mon,
+			renderer,
+			opts,
+		},
+	) {
+		return {
+			mdPtName: this._getCommonMdParts_name({mon, renderer, opts}),
+
+			mdPtSizeTypeAlignment: this._getCommonMdParts_sizeTypeAlignment({mon, renderer, opts}),
+
+			mdPtAc: this._getCommonMdParts_ac({mon, renderer, opts}),
+
+			mdPtHpResource: this._getCommonMdParts_hpResource({mon, renderer, opts}),
+
+			mdPtSpeedInitiative: this._getCommonMdParts_speedInitiative({mon, renderer, opts}),
+
+			mdPtAbilityScores: this._getCommonMdParts_abilityScores({mon, renderer, opts}),
+
+			mdPtSave: this._getCommonMdParts_save({mon, renderer, opts}),
+			mdPtSkill: this._getCommonMdParts_skill({mon, renderer, opts}),
+			mdPtTool: this._getCommonMdParts_tool({mon, renderer, opts}),
+			mdPtDamVuln: this._getCommonMdParts_damVuln({mon, renderer, opts}),
+			mdPtDamRes: this._getCommonMdParts_damRes({mon, renderer, opts}),
+			mdPtSense: this._getCommonMdParts_sense({mon, renderer, opts}),
+			mdPtLanguage: this._getCommonMdParts_language({mon, renderer, opts}),
+
+			mdPtCr: this._getCommonMdParts_cr({mon, renderer, opts}),
+			mdPtPb: this._getCommonMdParts_pb({mon, renderer, opts}),
+
+			mdPtBreakable: this._getCommonMdParts_breakable({mon, renderer, opts}),
+		};
+	}
+
+	/* ----- */
+
+	_getCommonMdParts_name ({mon}) { return `>## ${mon._displayName || mon.name}`; }
+
+	_getCommonMdParts_sizeTypeAlignment ({mon, renderer, opts}) {
 		const monTypes = Parser.monTypeToFullObj(mon.type);
+		return `>*${mon.level ? `${Parser.getOrdinalForm(mon.level)}-level ` : ""}${Renderer.utils.getRenderedSize(mon.size)} ${monTypes.asText}${mon.alignment ? `, ${mon.alignmentPrefix ? RendererMarkdown.get().render(mon.alignmentPrefix) : ""}${Parser.alignmentListToFull(mon.alignment).toTitleCase()}` : ""}*`;
+	}
+
+	_getCommonMdParts_ac ({mon, renderer, opts}) {
 		RendererMarkdown.get().isSkipStylingItemLinks = true;
-		const acPart = mon.ac == null ? "\u2014" : Parser.acToFull(mon.ac, {renderer: RendererMarkdown.get()});
+		const acPart = mon.ac == null ? "\u2014" : Parser.acToFull(mon.ac, {renderer});
 		RendererMarkdown.get().isSkipStylingItemLinks = false;
+		return `>- **Armor Class** ${acPart}`;
+	}
+
+	_getCommonMdParts_hpResource ({mon, renderer, opts}) {
 		const resourcePart = mon.resource?.length
 			? mon.resource
 				.map(res => `\n>- **${res.name}** ${Renderer.monster.getRenderedResource(res, true)}`)
 				.join("")
 			: "";
-		const initiativePart = styleHint === "classic" ? "" : `\n>- **Initiative** ${Renderer.monster.getInitiativePart(mon, {isPlainText: true})}`;
-		const abilityScorePart = RendererMarkdown.utils.compact.getRenderedAbilityScores(mon, {prefix: ">"});
-		const savePart = mon.save ? `\n>- **Saving Throws** ${Object.keys(mon.save).sort(SortUtil.ascSortAtts).map(it => RendererMarkdown.monster.getSave(it, mon.save[it])).join(", ")}` : "";
-		const skillPart = mon.skill ? `\n>- **Skills** ${RendererMarkdown.monster.getSkillsString(mon)}` : "";
-		const toolPart = mon.tool ? `\n>- **Tools** ${RendererMarkdown.monster.getToolsString(mon)}` : "";
-		const damVulnPart = mon.vulnerable ? `\n>- **Damage Vulnerabilities** ${Parser.getFullImmRes(mon.vulnerable, {isPlainText: true})}` : "";
-		const damResPart = mon.resist ? `\n>- **Damage Resistances** ${Parser.getFullImmRes(mon.resist, {isPlainText: true})}` : "";
-		const damImmPart = mon.immune ? `\n>- **Damage Immunities** ${Parser.getFullImmRes(mon.immune, {isPlainText: true})}` : "";
-		const condImmPart = mon.conditionImmune ? `\n>- **Condition Immunities** ${Parser.getFullCondImm(mon.conditionImmune, {isPlainText: true})}` : "";
-		const sensePart = !opts.isHideSenses ? `\n>- **Senses** ${mon.senses ? `${Renderer.utils.getRenderedSenses(mon.senses, {isPlainText: true})}, ` : ""}passive Perception ${mon.passive || "\u2014"}` : "";
-		const languagePart = !opts.isHideLanguages ? `\n>- **Languages** ${Renderer.monster.getRenderedLanguages(mon.languages)}` : "";
+		return `>- **Hit Points** ${mon.hp == null ? "\u2014" : Renderer.monster.getRenderedHp(mon.hp, {isPlainText: true})}${resourcePart}`;
+	}
 
+	_getCommonMdParts_speedInitiative ({mon, renderer, opts}) {
+		const initiativePart = this._style === "classic" ? "" : `\n>- **Initiative** ${Renderer.monster.getInitiativePart(mon, {isPlainText: true})}`;
+		return `>- **Speed** ${Parser.getSpeedString(mon)}${initiativePart}`;
+	}
+
+	_getCommonMdParts_abilityScores ({mon, renderer, opts}) {
+		return RendererMarkdown.utils.compact.getRenderedAbilityScores(mon, {prefix: ">"});
+	}
+
+	_getCommonMdParts_save ({mon, renderer, opts}) {
+		return mon.save ? `\n>- **Saving Throws** ${Object.keys(mon.save).sort(SortUtil.ascSortAtts).map(it => RendererMarkdown.monster.getSave(it, mon.save[it])).join(", ")}` : "";
+	}
+
+	_getCommonMdParts_skill ({mon, renderer, opts}) {
+		return mon.skill ? `\n>- **Skills** ${RendererMarkdown.monster.getSkillsString(mon)}` : "";
+	}
+
+	_getCommonMdParts_tool ({mon, renderer, opts}) {
+		return mon.tool ? `\n>- **Tools** ${RendererMarkdown.monster.getToolsString(mon)}` : "";
+	}
+
+	_getCommonMdParts_damVuln ({mon, renderer, opts}) {
+		return mon.vulnerable ? `\n>- **Damage Vulnerabilities** ${Parser.getFullImmRes(mon.vulnerable, {isPlainText: true, isTitleCase: this._style !== "classic"})}` : "";
+	}
+
+	_getCommonMdParts_damRes ({mon, renderer, opts}) {
+		return mon.resist ? `\n>- **Damage Resistances** ${Parser.getFullImmRes(mon.resist, {isPlainText: true, isTitleCase: this._style !== "classic"})}` : "";
+	}
+
+	_getCommonMdParts_sense ({mon, renderer, opts}) {
+		const ptLblPassive = this._style !== "classic" ? "Passive Perception" : "passive Perception";
+		return !opts.isHideSenses ? `\n>- **Senses** ${mon.senses ? `${Renderer.utils.getRenderedSenses(mon.senses, {isPlainText: true, isTitleCase: this._style !== "classic"})}, ` : ""}${ptLblPassive} ${mon.passive || "\u2014"}` : "";
+	}
+
+	_getCommonMdParts_language ({mon, renderer, opts}) {
+		return !opts.isHideLanguages ? `\n>- **Languages** ${Renderer.monster.getRenderedLanguages(mon.languages, {styleHint: this._style})}` : "";
+	}
+
+	_getCommonMdParts_cr ({mon, renderer, opts}) {
+		return `>- **Challenge** ${Renderer.monster.getChallengeRatingPart(mon, {styleHint: this._style, isPlainText: true})}`;
+	}
+
+	_getCommonMdParts_pb ({mon, renderer, opts}) {
 		const pbPart = Renderer.monster.getPbPart(mon, {isPlainText: true});
+		return pbPart ? `>- **Proficiency Bonus** ${pbPart}` : "";
+	}
+
+	_getCommonMdParts_breakable ({mon, renderer, opts}) {
+		const {meta} = opts;
 
 		const fnGetSpellTraits = RendererMarkdown.monster.getSpellcastingRenderedTraits.bind(RendererMarkdown.monster, meta);
 
@@ -918,56 +1056,203 @@ RendererMarkdown.monster = class {
 		const reactionsPart = RendererMarkdown.monster.getRenderedSection({arr: entsReaction, ent: mon, prop: "reaction", title: "Reactions", meta, prefix: ">"});
 
 		const legendaryActionsPart = entsLegendaryAction?.length
-			? `${RendererMarkdown.monster._getRenderedSectionHeader({mon, title: "Legendary Actions", prop: "legendary", prefix: ">"})}>${Renderer.monster.getLegendaryActionIntro(mon, {renderer: RendererMarkdown.get(), styleHint})}\n>\n${RendererMarkdown.monster._getRenderedLegendarySection(entsLegendaryAction, 1, meta)}`
+			? `${RendererMarkdown.monster._getRenderedSectionHeader({mon, title: "Legendary Actions", prop: "legendary", prefix: ">"})}>${Renderer.monster.getLegendaryActionIntro(mon, {renderer: RendererMarkdown.get(), styleHint: this._style})}\n>\n${RendererMarkdown.monster._getRenderedLegendarySection(entsLegendaryAction, 1, meta)}`
 			: "";
 		const mythicActionsPart = entsMythicAction?.length
 			? `${RendererMarkdown.monster._getRenderedSectionHeader({mon, title: "Mythic Actions", prop: "mythic", prefix: ">"})}>${Renderer.monster.getSectionIntro(mon, {renderer: RendererMarkdown.get(), prop: "mythic"})}\n>\n${RendererMarkdown.monster._getRenderedLegendarySection(entsMythicAction, 1, meta)}`
 			: "";
 
+		const legendaryGroup = DataUtil.monster.getLegendaryGroup(mon);
 		const legendaryGroupLairPart = legendaryGroup?.lairActions ? `\n>### Lair Actions\n${RendererMarkdown.monster._getRenderedSection({prop: "lairaction", entries: legendaryGroup.lairActions, depth: -1, meta, prefix: ">"})}` : "";
 		const legendaryGroupRegionalPart = legendaryGroup?.regionalEffects ? `\n>### Regional Effects\n${RendererMarkdown.monster._getRenderedSection({prop: "regionaleffect", entries: legendaryGroup.regionalEffects, depth: -1, meta, prefix: ">"})}` : "";
 		const variantsPart = Renderer.monster.getRenderedVariants(mon, {renderer: RendererMarkdown.get()});
 
 		const footerPart = mon.footer ? `\n${RendererMarkdown.monster._getRenderedSectionEntries({sectionEntries: mon.footer, sectionDepth: 0, meta, prefix: ">"})}` : "";
 
-		const unbreakablePart = `___
->## ${mon._displayName || mon.name}
->*${mon.level ? `${Parser.getOrdinalForm(mon.level)}-level ` : ""}${Renderer.utils.getRenderedSize(mon.size)} ${monTypes.asText}${mon.alignment ? `, ${mon.alignmentPrefix ? RendererMarkdown.get().render(mon.alignmentPrefix) : ""}${Parser.alignmentListToFull(mon.alignment)}` : ""}*
+		return `${traitsPart}${actionsPart}${bonusActionsPart}${reactionsPart}${legendaryActionsPart}${mythicActionsPart}${legendaryGroupLairPart}${legendaryGroupRegionalPart}${variantsPart}${footerPart}`;
+	}
+}
+
+class _RenderCompactMarkdownBestiaryImplClassic extends _RenderCompactMarkdownBestiaryImplBase {
+	_style = "classic";
+
+	/* -------------------------------------------- */
+
+	_getMdParts (
+		{
+			mon,
+			renderer,
+			opts,
+		},
+	) {
+		return {
+			mdPtDamageImmunities: this._getMdParts_damageImmunities({mon, renderer, opts}),
+			mdPtConditionImmunities: this._getMdParts_ConditionImmunities({mon, renderer, opts}),
+		};
+	}
+
+	/* ----- */
+	_getMdParts_damageImmunities ({mon, renderer, opts}) {
+		return mon.immune ? `\n>- **Damage Immunities** ${Parser.getFullImmRes(mon.immune, {isPlainText: true})}` : "";
+	}
+
+	_getMdParts_ConditionImmunities ({mon, renderer, opts}) {
+		return mon.conditionImmune ? `\n>- **Condition Immunities** ${Parser.getFullCondImm(mon.conditionImmune, {isPlainText: true})}` : "";
+	}
+
+	/* -------------------------------------------- */
+
+	_getCompactRenderedString ({mon, renderer, opts}) {
+		const {
+			mdPtName,
+			mdPtSizeTypeAlignment,
+			mdPtAc,
+			mdPtHpResource,
+			mdPtSpeedInitiative,
+			mdPtAbilityScores,
+			mdPtSave,
+			mdPtSkill,
+			mdPtTool,
+			mdPtDamVuln,
+			mdPtDamRes,
+			mdPtSense,
+			mdPtLanguage,
+			mdPtCr,
+			mdPtPb,
+			mdPtBreakable,
+		} = this._getCommonMdParts({
+			mon,
+			renderer,
+			opts,
+		});
+
+		const {
+			mdPtDamageImmunities,
+			mdPtConditionImmunities,
+		} = this._getMdParts({
+			mon,
+			renderer,
+			opts,
+		});
+		const ptUnbreakable = `___
+${mdPtName}
+${mdPtSizeTypeAlignment}
 >___
->- **Armor Class** ${acPart}
->- **Hit Points** ${mon.hp == null ? "\u2014" : Renderer.monster.getRenderedHp(mon.hp, {isPlainText: true})}${resourcePart}
->- **Speed** ${Parser.getSpeedString(mon)}${initiativePart}
+${mdPtAc}
+${mdPtHpResource}
+${mdPtSpeedInitiative}
 >___
-${abilityScorePart}
->___${savePart}${skillPart}${toolPart}${damVulnPart}${damResPart}${damImmPart}${condImmPart}${sensePart}${languagePart}
->- **Challenge** ${Renderer.monster.getChallengeRatingPart(mon, {style: "classic", isPlainText: true})}
-${pbPart ? `>- **Proficiency Bonus** ${pbPart}` : ""}
+${mdPtAbilityScores}
+>___${mdPtSave}${mdPtSkill}${mdPtTool}${mdPtDamVuln}${mdPtDamRes}${mdPtDamageImmunities}${mdPtConditionImmunities}${mdPtSense}${mdPtLanguage}
+${mdPtCr}
+${mdPtPb}
 >___`;
 
-		let breakablePart = `${traitsPart}${actionsPart}${bonusActionsPart}${reactionsPart}${legendaryActionsPart}${mythicActionsPart}${legendaryGroupLairPart}${legendaryGroupRegionalPart}${variantsPart}${footerPart}`;
+		return {
+			ptUnbreakable,
+			ptBreakable: mdPtBreakable,
+		};
+	}
+}
 
-		if (VetoolsConfig.get("markdown", "isAddColumnBreaks")) {
-			let charAllowanceFirstCol = 2200 - unbreakablePart.length;
+class _RenderCompactMarkdownBestiaryImplOne extends _RenderCompactMarkdownBestiaryImplBase {
+	_style = "one";
 
-			const breakableLines = breakablePart.split("\n");
-			for (let i = 0; i < breakableLines.length; ++i) {
-				const l = breakableLines[i];
-				if ((charAllowanceFirstCol -= l.length) < 0) {
-					breakableLines.splice(i, 0, ">", "> \\columnbreak", ">");
-					break;
-				}
-			}
-			breakablePart = breakableLines.join("\n");
+	/* -------------------------------------------- */
+
+	_getMdParts (
+		{
+			mon,
+			renderer,
+			opts,
+		},
+	) {
+		return {
+			mdPtImmunities: this._getMdParts_immunities({mon, renderer, opts}),
+			mdPtGear: this._getMdParts_gear({mon, renderer, opts}),
+		};
+	}
+
+	/* ----- */
+
+	_getMdParts_immunities ({mon, renderer, opts}) {
+		const pt = Renderer.monster.getImmunitiesCombinedPart(mon, {isPlainText: true});
+		if (!pt) return "";
+		return `\n>- **Immunities** ${pt}`;
+	}
+
+	_getMdParts_gear ({mon, renderer, opts}) {
+		const pt = Renderer.monster.getGearPart(mon, {renderer});
+		if (!pt) return "";
+		return `\n>- **Gear** ${pt}`;
+	}
+
+	/* -------------------------------------------- */
+
+	_getCompactRenderedString ({mon, renderer, opts}) {
+		const {
+			mdPtName,
+			mdPtSizeTypeAlignment,
+			mdPtAc,
+			mdPtHpResource,
+			mdPtSpeedInitiative,
+			mdPtAbilityScores,
+			mdPtSave,
+			mdPtSkill,
+			mdPtTool,
+			mdPtDamVuln,
+			mdPtDamRes,
+			mdPtSense,
+			mdPtLanguage,
+			mdPtCr,
+			mdPtPb,
+			mdPtBreakable,
+		} = this._getCommonMdParts({
+			mon,
+			renderer,
+			opts,
+		});
+
+		const {
+			mdPtImmunities,
+			mdPtGear,
+		} = this._getMdParts({
+			mon,
+			renderer,
+			opts,
+		});
+		const ptUnbreakable = `___
+${mdPtName}
+${mdPtSizeTypeAlignment}
+>___
+${mdPtAc}
+${mdPtHpResource}
+${mdPtSpeedInitiative}
+>___
+${mdPtAbilityScores}
+>___${mdPtSave}${mdPtSkill}${mdPtTool}${mdPtDamVuln}${mdPtDamRes}${mdPtImmunities}${mdPtGear}${mdPtSense}${mdPtLanguage}
+${mdPtCr}
+${mdPtPb}
+>___`;
+
+		return {
+			ptUnbreakable,
+			ptBreakable: mdPtBreakable,
+		};
+	}
+}
+
+RendererMarkdown.monster = class {
+	static _RENDER_CLASSIC = new _RenderCompactMarkdownBestiaryImplClassic();
+	static _RENDER_ONE = new _RenderCompactMarkdownBestiaryImplOne();
+
+	static getCompactRenderedString (mon, opts = {}) {
+		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
+		switch (styleHint) {
+			case "classic": return this._RENDER_CLASSIC.getCompactRenderedString(mon, opts);
+			case "one": return this._RENDER_ONE.getCompactRenderedString(mon, opts);
+			default: throw new Error(`Unhandled style "${styleHint}"!`);
 		}
-
-		const str = `${unbreakablePart}${breakablePart}`;
-
-		const monRender = str.trim().split("\n").map(it => it.trim() ? it : `>`).join("\n");
-		const out = `\n${monRender}\n\n`;
-
-		if (addedStatblockInline) delete meta.isStatblockInlineMonster;
-
-		return out;
 	}
 
 	static getSave (attr, mod) {
@@ -1050,6 +1335,10 @@ ${pbPart ? `>- **Proficiency Bonus** ${pbPart}` : ""}
 				it.name = `${it.name}.`;
 				it.type = it.type || "item";
 			}
+
+			// Tweak spellcasting entries
+			if (it.rendered) it.rendered = it.rendered.replace(/^\*(\*\*[^*]+\*\*)\*/, "$1");
+
 			return it;
 		});
 
@@ -1062,19 +1351,23 @@ ${pbPart ? `>- **Proficiency Bonus** ${pbPart}` : ""}
 		return renderStack.join("");
 	}
 
-	static getSpellcastingRenderedTraits (meta, mon, displayAsProp = "trait") {
+	static getSpellcastingRenderedTraits (meta, mon, {displayAsProp = "trait"} = {}) {
 		const renderer = RendererMarkdown.get();
 		const out = [];
 		const cacheDepth = meta.depth;
 		meta.depth = 2;
-		(mon.spellcasting || []).filter(it => (it.displayAs || "trait") === displayAsProp).forEach(entry => {
-			entry.type = entry.type || "spellcasting";
-			const renderStack = [""];
-			renderer._recursiveRender(entry, renderStack, meta, {prefix: ">"});
-			const rendered = renderStack.join("");
-			if (!rendered.length) return;
-			out.push({name: entry.name, rendered});
-		});
+		(mon.spellcasting || [])
+			.filter(it => (it.displayAs || "trait") === displayAsProp)
+			.forEach(entry => {
+				const isLegendaryMythic = ["legendary", "mythic"].includes(displayAsProp);
+				entry.type = entry.type || "spellcasting";
+				const renderStack = [""];
+				const prefix = isLegendaryMythic ? undefined : ">";
+				renderer._recursiveRender(entry, renderStack, meta, {prefix});
+				const rendered = renderStack.join("");
+				if (!rendered.length) return;
+				out.push({name: entry.name, rendered});
+			});
 		meta.depth = cacheDepth;
 		return out;
 	}
@@ -1167,13 +1460,15 @@ RendererMarkdown.item = class {
 	static getCompactRenderedString (item, opts = {}) {
 		const meta = opts.meta || {};
 
+		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
+
 		const subStack = [""];
 
 		const [ptDamage, ptProperties] = Renderer.item.getRenderedDamageAndProperties(item, {renderer: RendererMarkdown.get()});
 		const ptMastery = Renderer.item.getRenderedMastery(item, {renderer: RendererMarkdown.get()});
 		const [typeRarityText, subTypeText, tierText] = RendererMarkdown.item.getTypeRarityAndAttunementText(item);
 
-		const typeRarityTierValueWeight = [typeRarityText, subTypeText, tierText, Parser.itemValueToFullMultiCurrency(item), Parser.itemWeightToFull(item)].filter(Boolean).join(", ").uppercaseFirst();
+		const typeRarityTierValueWeight = [typeRarityText, subTypeText, tierText, Parser.itemValueToFullMultiCurrency(item, {styleHint}), Parser.itemWeightToFull(item)].filter(Boolean).join(", ").uppercaseFirst();
 
 		const ptSubtitle = [typeRarityTierValueWeight, ptDamage, ptProperties, ptMastery].filter(Boolean).join("\n\n");
 
@@ -1249,14 +1544,14 @@ RendererMarkdown.table = class {
 		const meta = opts.meta || {};
 
 		const subStack = [""];
-		RendererMarkdown.get().recursiveRender(tbl, subStack, meta, {suffix: "\n"});
+		RendererMarkdown.get().recursiveRender({type: "table", ...tbl}, subStack, meta, {suffix: "\n"});
 		return `\n${subStack.join("").trim()}\n\n`;
 	}
 };
 
 RendererMarkdown.tableGroup = class {
 	static getCompactRenderedString (tbl, opts = {}) {
-		return RendererMarkdown.table.getCompactRenderedString(tbl, opts);
+		return RendererMarkdown.table.getCompactRenderedString({type: "table", ...tbl}, opts);
 	}
 };
 
@@ -1603,6 +1898,7 @@ RendererMarkdown.vehicle = class {
 		switch (ent.vehicleType) {
 			case "SHIP": return RendererMarkdown.vehicle._getRenderedString_ship(ent, opts);
 			case "SPELLJAMMER": return RendererMarkdown.vehicle._getRenderedString_spelljammer(ent, opts);
+			case "ELEMENTAL_AIRSHIP": return RendererMarkdown.vehicle._getRenderedString_elementalAirship(ent, opts);
 			case "INFWAR": return RendererMarkdown.vehicle._getRenderedString_infwar(ent, opts);
 			case "CREATURE": return RendererMarkdown.monster.getCompactRenderedString(ent, {...opts, isHideLanguages: true, isHideSenses: true, page: UrlUtil.PG_VEHICLES});
 			case "OBJECT": return RendererMarkdown.object.getCompactRenderedString(ent, {...opts, page: UrlUtil.PG_VEHICLES});
@@ -1734,17 +2030,16 @@ RendererMarkdown.vehicle = class {
 			.trim();
 	}
 
-	static spelljammer = class {
-		static getWeaponSection_ ({entry}) {
+	static spelljammerElementalAirship = class {
+		static getStationSection_ ({entriesMetaParent, entry, isDisplayEmptyCost = false}) {
 			const renderer = RendererMarkdown.get();
-			const entriesMetaSectionWeapon = Renderer.vehicle.spelljammer.getSectionWeaponEntriesMeta(entry);
-			const entriesMetaSectionHpCost = Renderer.vehicle.spelljammer.getSectionHpCostEntriesMeta(entry);
+			const entriesMeta = Renderer.vehicle.spelljammerElementalAirship.getStationEntriesMeta(entry);
 
 			return [
-				`### ${entriesMetaSectionWeapon.entryName}`,
-				entriesMetaSectionHpCost.entryArmorClass ? renderer.render(entriesMetaSectionHpCost.entryArmorClass) : null,
-				entriesMetaSectionHpCost.entryHitPoints ? renderer.render(entriesMetaSectionHpCost.entryHitPoints) : null,
-				entriesMetaSectionHpCost.entryCost ? renderer.render(entriesMetaSectionHpCost.entryCost) : null,
+				`### ${entriesMetaParent.entryName}`,
+				entriesMeta.entryArmorClass ? renderer.render(entriesMeta.entryArmorClass) : null,
+				entriesMeta.entryHitPoints ? renderer.render(entriesMeta.entryHitPoints) : null,
+				(isDisplayEmptyCost || entry.costs?.length) && entriesMeta.entryCost ? renderer.render(entriesMeta.entryCost) : null,
 				RendererMarkdown.get().render({entries: entry.entries}),
 				...(entry.action || []).map(act => renderer.render(act, 2)),
 			]
@@ -1754,15 +2049,49 @@ RendererMarkdown.vehicle = class {
 		}
 	};
 
+	static spelljammer = class {
+		static getStationSection_ ({entry}) {
+			const entriesMeta = Renderer.vehicle.spelljammer.getStationEntriesMeta(entry);
+			return RendererMarkdown.vehicle.spelljammerElementalAirship.getStationSection_({entriesMetaParent: entriesMeta, entry, isDisplayEmptyCost: true});
+		}
+	};
+
 	static _getRenderedString_spelljammer (ent, opts) {
 		const renderer = RendererMarkdown.get();
-		const entriesMetaSpelljammer = Renderer.vehicle.spelljammer.getVehicleSpelljammerRenderableEntriesMeta(ent);
+		const entriesMeta = Renderer.vehicle.spelljammer.getRenderableEntriesMeta(ent);
 
 		const ptsJoined = [
 			`## ${ent.name}`,
-			renderer.render(entriesMetaSpelljammer.entryTableSummary),
+			renderer.render(entriesMeta.entryTableSummary),
 			...(ent.weapon || [])
-				.map(entry => RendererMarkdown.vehicle.spelljammer.getWeaponSection_({entry})),
+				.map(entry => RendererMarkdown.vehicle.spelljammer.getStationSection_({entry})),
+		]
+			.map(it => it != null ? it.trim() : it)
+			.filter(Boolean)
+			.join("\n\n");
+
+		return ptsJoined
+			.trim();
+	}
+
+	static elementalAirship = class {
+		static getStationSection_ ({entry}) {
+			const entriesMeta = Renderer.vehicle.elementalAirship.getStationEntriesMeta(entry);
+			return RendererMarkdown.vehicle.spelljammerElementalAirship.getStationSection_({entriesMetaParent: entriesMeta, entry});
+		}
+	};
+
+	static _getRenderedString_elementalAirship (ent, opts) {
+		const renderer = RendererMarkdown.get();
+		const entriesMeta = Renderer.vehicle.elementalAirship.getRenderableEntriesMeta(ent);
+
+		const ptsJoined = [
+			`## ${ent.name}`,
+			renderer.render(entriesMeta.entryTableSummary),
+			...(ent.weapon || [])
+				.map(entry => RendererMarkdown.vehicle.elementalAirship.getStationSection_({entry})),
+			...(ent.station || [])
+				.map(entry => RendererMarkdown.vehicle.elementalAirship.getStationSection_({entry})),
 		]
 			.map(it => it != null ? it.trim() : it)
 			.filter(Boolean)
@@ -1876,6 +2205,23 @@ RendererMarkdown.recipe = class {
 RendererMarkdown.variantrule = class {
 	static getCompactRenderedString (ent, opts = {}) {
 		return RendererMarkdown.generic.getCompactRenderedString(ent, opts);
+	}
+};
+
+RendererMarkdown.facility = class {
+	static getCompactRenderedString (ent, opts = {}) {
+		const entriesMeta = Renderer.facility.getFacilityRenderableEntriesMeta(ent);
+
+		const out = [
+			`## ${ent.name}`,
+			entriesMeta.entryLevel ? RendererMarkdown.get().render(entriesMeta.entryLevel) : null,
+			...entriesMeta.entriesDescription
+				.map(entry => RendererMarkdown.get().render(entry)),
+		]
+			.filter(Boolean)
+			.join("\n\n");
+
+		return RendererMarkdown.utils.getNormalizedNewlines(out);
 	}
 };
 

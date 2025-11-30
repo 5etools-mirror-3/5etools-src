@@ -938,6 +938,9 @@
 			"className": "Fighter",
 			"classSource": "PHB",
 			"page": 128,
+			"reprintedAs": [
+				"Banneret|Fighter|XPHB|FRHoF"
+			],
 			"edition": "classic",
 			"subclassFeatures": [
 				"Purple Dragon Knight (Banneret)|Fighter||Purple Dragon Knight (Banneret)|SCAG|3",
@@ -954,6 +957,9 @@
 			"source": "SCAG",
 			"className": "Fighter",
 			"classSource": "XPHB",
+			"reprintedAs": [
+				"Banneret|Fighter|XPHB|FRHoF"
+			],
 			"_copy": {
 				"name": "Purple Dragon Knight (Banneret)",
 				"source": "SCAG",
@@ -1787,6 +1793,34 @@
 				"Guarded Mind|Fighter|XPHB|Psi Warrior|XPHB|10",
 				"Bulwark of Force|Fighter|XPHB|Psi Warrior|XPHB|15",
 				"Telekinetic Master|Fighter|XPHB|Psi Warrior|XPHB|18"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Banneret",
+			"shortName": "Banneret",
+			"source": "FRHoF",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"innate": {
+						"3": {
+							"ritual": [
+								"comprehend languages|xphb"
+							]
+						}
+					},
+					"ability": "cha"
+				}
+			],
+			"subclassFeatures": [
+				"Banneret|Fighter|XPHB|Banneret|FRHoF|3|FRHoF",
+				"Team Tactics|Fighter|XPHB|Banneret|FRHoF|7|FRHoF",
+				"Rallying Surge|Fighter|XPHB|Banneret|FRHoF|10|FRHoF",
+				"Shared Resilience|Fighter|XPHB|Banneret|FRHoF|15|FRHoF",
+				"Inspiring Commander|Fighter|XPHB|Banneret|FRHoF|18|FRHoF"
 			],
 			"hasFluffImages": true
 		}
@@ -4306,6 +4340,153 @@
 			]
 		},
 		{
+			"name": "Banneret",
+			"source": "FRHoF",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Banneret",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"{@i Rally Fellow Heroes with Inspiring Leadership}",
+				"Bannerets are paragons of valor and leadership who protect the innocent and rally fellow adventurers to the causes of justice and freedom. Many are knights serving in Cormyr, the Silver Marches, Damara, Chessenta, or other lands across Faerûn. They wander the realms as knights errant, taking the fight against evil beyond their kingdom's borders.",
+				"A Banneret relies on judgment, bravery, and fidelity to the code of chivalry to guide them in defeating evildoers. A lone Banneret is a skilled warrior, but when leading a band of allies one of these warriors can transform even a poorly equipped militia into a ferocious war band.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Knightly Envoy|Fighter|XPHB|Banneret|FRHoF|3|FRHoF"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Group Recovery|Fighter|XPHB|Banneret|FRHoF|3|FRHoF"
+				}
+			]
+		},
+		{
+			"name": "Group Recovery",
+			"source": "FRHoF",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Banneret",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"When you use your Second Wind to regain {@variantrule Hit Points|XPHB}, you can choose a number of allies within a {@quantity 30|-foot} {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from yourself, up to a number of allies equal to your Charisma modifier (minimum of one). Each of those allies regains {@variantrule Hit Points|XPHB} equal to {@dice 1d4} plus your Fighter level. Once you use this ability, you can't use it again until you finish a {@variantrule Short Rest|XPHB|Short} or {@variantrule Long Rest|XPHB}."
+			]
+		},
+		{
+			"name": "Knightly Envoy",
+			"source": "FRHoF",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Banneret",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"You know how to conduct yourself with grace as a noble ambassador. You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Comprehension",
+					"entries": [
+						"You can cast the {@spell Comprehend Languages|XPHB} spell but only as a {@variantrule Ritual|XPHB}. Charisma is your spellcasting ability for it."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Polyglot",
+					"entries": [
+						"You learn one language from the language tables in the Player's Handbook or chapter 2 of this book. When you finish a {@variantrule Long Rest|XPHB}, you can replace a language learned from this benefit with another language you have heard, seen signed, or read in the past 24 hours."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Well Spoken",
+					"entries": [
+						"You gain proficiency in one of the following skills of your choice: {@skill Insight|XPHB}, {@skill Intimidation|XPHB}, {@skill Persuasion|XPHB}, or {@skill Performance|XPHB}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Team Tactics",
+			"source": "FRHoF",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Banneret",
+			"subclassSource": "FRHoF",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"When you use Group Recovery, each chosen ally has {@variantrule Advantage|XPHB} on {@variantrule D20 Test|XPHB|D20 Tests} until the start of your next turn."
+			]
+		},
+		{
+			"name": "Rallying Surge",
+			"source": "FRHoF",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Banneret",
+			"subclassSource": "FRHoF",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"When you use your Action Surge, you can choose allies within a {@quantity 30|-foot} {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from yourself, up to a number of allies equal to your Charisma modifier (minimum of one). Each of those allies can immediately take a {@variantrule Reaction|XPHB} to use one of the following options.",
+				{
+					"type": "entries",
+					"name": "Attack",
+					"entries": [
+						"The ally makes one attack with a weapon or an {@variantrule Unarmed Strike|XPHB}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Move",
+					"entries": [
+						"The ally moves up to half its {@variantrule Speed|XPHB} without provoking an {@action Opportunity Attack|XPHB}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Shared Resilience",
+			"source": "FRHoF",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Banneret",
+			"subclassSource": "FRHoF",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"When an ally you can see within {@quantity 60|feet} of yourself fails a saving throw, you can take a {@variantrule Reaction|XPHB} to expend a use of your Indomitable feature. The ally can immediately reroll the saving throw with a bonus equal to your Fighter level; the ally must use the new roll."
+			]
+		},
+		{
+			"name": "Inspiring Commander",
+			"source": "FRHoF",
+			"className": "Fighter",
+			"classSource": "XPHB",
+			"subclassShortName": "Banneret",
+			"subclassSource": "FRHoF",
+			"level": 18,
+			"header": 2,
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Bolstered Rally",
+					"entries": [
+						"The area of effect for both Group Recovery and Rallying Surge is now a {@quantity 60|-foot} {@variantrule Emanation [Area of Effect]|XPHB|Emanation}."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Unshakable Bravery",
+					"entries": [
+						"You have {@variantrule Immunity|XPHB} to the {@condition Charmed|XPHB} and {@condition Frightened|XPHB} conditions."
+					]
+				}
+			]
+		},
+		{
 			"name": "Battle Master",
 			"source": "XPHB",
 			"page": 93,
@@ -4662,14 +4843,14 @@
 					"type": "entries",
 					"name": "Defy Death",
 					"entries": [
-						"You have {@variantrule Advantage|XPHB} on Death Saving Throws. Moreover, when you roll 18\u201320 on a {@variantrule Death Saving Throw|XPHB}, you gain the benefit of rolling a 20 on it."
+						"You have {@variantrule Advantage|XPHB} on {@variantrule Death Saving Throw|XPHB|Death Saving Throws}. Moreover, when you roll 18\u201320 on a {@variantrule Death Saving Throw|XPHB}, you gain the benefit of rolling a 20 on it."
 					]
 				},
 				{
 					"type": "entries",
 					"name": "Heroic Rally",
 					"entries": [
-						"At the start of each of your turns, you regain {@variantrule Hit Points|XPHB} equal to 5 plus your Constitution modifier if you are {@variantrule Bloodied|XPHB} and have at least 1 {@variantrule Hit Points|XPHB|Hit Point}."
+						"At the start of each of your turns, you regain {@variantrule Hit Points|XPHB} equal to 5 plus your Constitution modifier if you are {@status Bloodied|XPHB} and have at least 1 {@variantrule Hit Points|XPHB|Hit Point}."
 					]
 				}
 			]

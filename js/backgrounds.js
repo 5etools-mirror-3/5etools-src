@@ -68,6 +68,7 @@ class BackgroundPage extends ListPage {
 			pageFilter,
 
 			bookViewOptions: {
+				nameSingular: "background",
 				namePlural: "backgrounds",
 				pageTitle: "Backgrounds Book View",
 			},

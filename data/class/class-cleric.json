@@ -1036,6 +1036,9 @@
 			"className": "Cleric",
 			"classSource": "PHB",
 			"page": 59,
+			"reprintedAs": [
+				"Knowledge|Cleric|XPHB|FRHoF"
+			],
 			"edition": "classic",
 			"additionalSpells": [
 				{
@@ -1078,6 +1081,9 @@
 			"source": "PHB",
 			"className": "Cleric",
 			"classSource": "XPHB",
+			"reprintedAs": [
+				"Knowledge|Cleric|XPHB|FRHoF"
+			],
 			"_copy": {
 				"name": "Knowledge Domain",
 				"source": "PHB",
@@ -2884,6 +2890,49 @@
 				"Avatar of Battle|Cleric|XPHB|War|XPHB|17"
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Knowledge Domain",
+			"shortName": "Knowledge",
+			"source": "FRHoF",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"command|xphb",
+							"comprehend languages|xphb",
+							"detect magic|xphb",
+							"detect thoughts|xphb",
+							"identify|xphb",
+							"mind spike|xphb"
+						],
+						"5": [
+							"dispel magic|xphb",
+							"nondetection|xphb",
+							"tongues|xphb"
+						],
+						"7": [
+							"arcane eye|xphb",
+							"banishment|xphb",
+							"confusion|xphb"
+						],
+						"9": [
+							"legend lore|xphb",
+							"scrying|xphb",
+							"synaptic static|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Knowledge Domain|Cleric|XPHB|Knowledge|FRHoF|3|FRHoF",
+				"Unfettered Mind|Cleric|XPHB|Knowledge|FRHoF|6|FRHoF",
+				"Divine Foreknowledge|Cleric|XPHB|Knowledge|FRHoF|17|FRHoF"
+			],
+			"hasFluffImages": true
 		}
 	],
 	"classFeature": [
@@ -3293,16 +3342,21 @@
 			"entries": [
 				"You have dedicated yourself to one of the following sacred roles of your choice.",
 				{
-					"type": "options",
-					"count": 1,
+					"type": "entries",
 					"entries": [
 						{
-							"type": "refClassFeature",
-							"classFeature": "Protector|Cleric|XPHB|1|XPHB"
-						},
-						{
-							"type": "refClassFeature",
-							"classFeature": "Thaumaturge|Cleric|XPHB|1|XPHB"
+							"type": "options",
+							"count": 1,
+							"entries": [
+								{
+									"type": "refClassFeature",
+									"classFeature": "Protector|Cleric|XPHB|1|XPHB"
+								},
+								{
+									"type": "refClassFeature",
+									"classFeature": "Thaumaturge|Cleric|XPHB|1|XPHB"
+								}
+							]
 						}
 					]
 				}
@@ -7297,6 +7351,132 @@
 			}
 		},
 		{
+			"name": "Blessings of Knowledge",
+			"source": "FRHoF",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Knowledge",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"You gain proficiency with one type of {@item Artisan's Tools|XPHB} of your choice and in two of the following skills of your choice: {@skill Arcana|XPHB}, {@skill History|XPHB}, {@skill Nature|XPHB}, or {@skill Religion|XPHB}. You have {@variantrule Expertise|XPHB} in those two skills."
+			]
+		},
+		{
+			"name": "Knowledge Domain",
+			"source": "FRHoF",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Knowledge",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"{@i Unearth Secrets and Master the Mind}",
+				"The Knowledge Domain values learning and understanding above all. Clerics who tap into this domain study esoteric lore, collect old tomes, delve into secret places, and examine the processes of the mind. To them, knowledge is more valuable than material wealth, and learning is an act of worship. Libraries, universities, and other educational institutions also draw on the power of the Knowledge Domain.",
+				"Gods of knowledge vary from masters of arcane magic to patrons of craft and invention. In Faerûn, Clerics of the Knowledge Domain worship deities of learning and ingenuity such as {@deity Oghma|Faerûnian|FRHoF} and {@deity Gond|Faerûnian|FRHoF}, among many others.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Blessings of Knowledge|Cleric|XPHB|Knowledge|FRHoF|3|FRHoF"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Knowledge Domain Spells|Cleric|XPHB|Knowledge|FRHoF|3|FRHoF"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Mind Magic|Cleric|XPHB|Knowledge|FRHoF|3|FRHoF"
+				}
+			]
+		},
+		{
+			"name": "Knowledge Domain Spells",
+			"source": "FRHoF",
+			"page": 2,
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Knowledge",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"When you reach a Cleric level specified in the Knowledge Domain Spells table, you thereafter always have the listed spells prepared.",
+				{
+					"type": "table",
+					"colLabels": [
+						"Cleric Level",
+						"Spells"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Command|XPHB}, {@spell Comprehend Languages|XPHB}*, {@spell Detect Magic|XPHB}*, {@spell Detect Thoughts|XPHB}*, {@spell Identify|XPHB}*, {@spell Mind Spike|XPHB}*"
+						],
+						[
+							"5",
+							"{@spell Dispel Magic|XPHB}, {@spell Nondetection|XPHB}, {@spell Tongues|XPHB}*"
+						],
+						[
+							"7",
+							"{@spell Arcane Eye|XPHB}*, {@spell Banishment|XPHB}, {@spell Confusion|XPHB}"
+						],
+						[
+							"9",
+							"{@spell Legend Lore|XPHB}*, {@spell Scrying|XPHB}*, {@spell Synaptic Static|XPHB}"
+						]
+					],
+					"footnotes": [
+						"*Spell of the Divination school"
+					]
+				}
+			]
+		},
+		{
+			"name": "Mind Magic",
+			"source": "FRHoF",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Knowledge",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"consumes": {
+				"name": "Channel Divinity",
+				"amount": 1
+			},
+			"entries": [
+				"As a {@action Magic|XPHB} action, you can expend one use of your Channel Divinity to manifest your magical knowledge. Choose one spell from the Divination school on the Knowledge Domain Spells table that you have prepared. As part of that action, you cast that spell without expending a spell slot or needing Material components."
+			]
+		},
+		{
+			"name": "Unfettered Mind",
+			"source": "FRHoF",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Knowledge",
+			"subclassSource": "FRHoF",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"You gain {@variantrule telepathy|XPHB} out to {@quantity 60|feet}. When you use this {@variantrule telepathy|XPHB}, you can simultaneously contact a number of creatures equal to your Wisdom modifier (minimum of one).",
+				"Additionally, you gain proficiency in Intelligence saving throws. If you already have this proficiency, you instead gain saving throw proficiency with one ability in which you lack it."
+			]
+		},
+		{
+			"name": "Divine Foreknowledge",
+			"source": "FRHoF",
+			"className": "Cleric",
+			"classSource": "XPHB",
+			"subclassShortName": "Knowledge",
+			"subclassSource": "FRHoF",
+			"level": 17,
+			"header": 2,
+			"entries": [
+				"As a {@variantrule Bonus Action|XPHB}, you magically expand your mind to the future. For 1 hour, you have {@variantrule Advantage|XPHB} on {@variantrule D20 Test|XPHB|D20 Tests}. Once you use this feature, you can't use it again until you finish a {@variantrule Long Rest|XPHB}. You can also restore your use of this feature by expending a level 6+ spell slot (no action required)."
+			]
+		},
+		{
 			"name": "Channel Divinity: Knowledge of the Ages",
 			"source": "PHB",
 			"className": "Cleric",
@@ -8226,7 +8406,7 @@
 				"name": "Channel Divinity"
 			},
 			"entries": [
-				"As a {@action Magic|XPHB} action, you present your {@item Holy Symbol|XPHB} and expend a use of your Channel Divinity to evoke healing energy that can restore a number of {@variantrule Hit Points|XPHB} equal to five times your Cleric level. Choose {@variantrule Bloodied|XPHB} creatures within {@quantity 30|feet} of yourself (which can include you), and divide those {@variantrule Hit Points|XPHB} among them. This feature can restore a creature to no more than half its {@variantrule Hit Points|XPHB|Hit Point} maximum."
+				"As a {@action Magic|XPHB} action, you present your {@item Holy Symbol|XPHB} and expend a use of your Channel Divinity to evoke healing energy that can restore a number of {@variantrule Hit Points|XPHB} equal to five times your Cleric level. Choose {@status Bloodied|XPHB} creatures within {@quantity 30|feet} of yourself (which can include you), and divide those {@variantrule Hit Points|XPHB} among them. This feature can restore a creature to no more than half its {@variantrule Hit Points|XPHB|Hit Point} maximum."
 			]
 		},
 		{

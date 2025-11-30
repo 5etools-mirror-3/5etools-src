@@ -8,8 +8,12 @@ class PeerVe extends Peer {
 		this._connectionsArray = [];
 
 		this._pInit = new Promise((resolve, reject) => {
-			this.on("open", id => resolve(id));
-			this.on("error", e => reject(e));
+			this.on("open", id => {
+				resolve(id);
+			});
+			this.on("error", e => {
+				reject(e);
+			});
 		});
 	}
 
@@ -21,7 +25,9 @@ class PeerVe extends Peer {
 
 	pInit () { return this._pInit; }
 
-	sendMessage (toSend) {
+	async pSendMessage (toSend) {
+		await this._pInit;
+
 		if (this.disconnected || this.destroyed) throw new Error(`Connection is not active!`);
 
 		const packet = {
@@ -39,7 +45,14 @@ class PeerVe extends Peer {
 class PeerVeServer extends PeerVe {
 	constructor () {
 		super("server");
-		this.on("connection", conn => this._connectionsArray.push(conn));
+		this.on("connection", conn => {
+			this._connectionsArray.push(conn);
+
+			conn.on("open", (...args) => {
+				// Manually fire "connection" listeners when a connection has finished opening
+				(this._tempListeners["connection"] || []).forEach(it => it(...args));
+			});
+		});
 		this._tempListeners = {};
 	}
 
@@ -49,15 +62,22 @@ class PeerVeServer extends PeerVe {
 	 * Add a temporary event listener for a Peer event type.
 	 */
 	onTemp (eventName, listener) {
-		(this._tempListeners[eventName] = this._tempListeners[eventName] || []).push(listener);
-		this.on(eventName, listener);
+		if (!this._tempListeners[eventName]) {
+			this._tempListeners[eventName] = [];
+			this.on(eventName, (...args) => {
+				this._tempListeners[eventName]
+					.forEach(it => it(...args));
+			});
+		}
+
+		this._tempListeners[eventName].push(listener);
 	}
 
 	/**
 	 * Remove al temporary event listeners for a Peer event type.
 	 */
 	offTemp (eventName) {
-		(this._tempListeners[eventName] || []).forEach(it => this.off(eventName, it));
+		this._tempListeners[eventName] = [];
 	}
 }
 
@@ -67,14 +87,20 @@ class PeerVeClient extends PeerVe {
 		this._data = null;
 	}
 
-	pConnectToServer (token, dataHandler, options = null) {
+	async pConnectToServer (token, dataHandler, options = null) {
+		await this._pInit;
+
 		const connection = options ? this.connect(token, options) : this.connect(token);
 
 		connection.on("data", data => dataHandler(data));
 
-		return new Promise((resolve, reject) => {
-			this.on("open", id => resolve(id));
-			this.on("error", e => reject(e));
+		await new Promise((resolve, reject) => {
+			connection.on("open", id => {
+				resolve(id);
+			});
+			connection.on("error", e => {
+				reject(e);
+			});
 		});
 	}
 }

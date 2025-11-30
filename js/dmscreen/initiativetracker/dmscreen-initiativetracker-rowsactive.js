@@ -93,7 +93,10 @@ class _RenderableCollectionRowDataActive extends RenderableCollectionRowDataBase
 							scaledSummonClassLevel: comp._state.scaledSummonClassLevel,
 							customName: comp._state.customName,
 							source: comp._state.source,
-							hpCurrent: hpMax, // Always reset to max HP
+							// Always reset to max HP
+							hpCurrent: this._comp._state._isInvertWoundDirection
+								? 0
+								: hpMax,
 							hpMax: hpMax,
 							initiative,
 							ordinal: Math.max(...similarCreatureRows.map(row => row.entity.ordinal)) + 1,
@@ -169,7 +172,7 @@ class _RenderableCollectionRowDataActive extends RenderableCollectionRowDataBase
 
 		const collectionConditions = new RenderableCollectionConditions({
 			comp: comp,
-			$wrpRows: $wrpConds,
+			wrpRows: e_($wrpConds[0]),
 		});
 		comp._addHookBase("conditions", () => collectionConditions.render())();
 	}

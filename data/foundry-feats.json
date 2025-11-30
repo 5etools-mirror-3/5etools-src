@@ -915,6 +915,19 @@
 					}
 				}
 			],
+			"effects": [
+				{
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.attributes.death.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						}
+					],
+					"description": "You have Advantage on Death Saving Throws."
+				}
+			],
 			"migrationVersion": 3
 		},
 		{
@@ -1140,7 +1153,7 @@
 					"name": "Inspire with Wisdom",
 					"type": "heal",
 					"activation": {
-						"type": "special",
+						"type": "shortRest",
 						"condition": "When you finish a Short or Long Rest"
 					},
 					"target": {
@@ -1157,6 +1170,9 @@
 						"types": [
 							"temphp"
 						],
+						"custom": {
+							"formula": "@details.level + @abilities.wis.mod"
+						},
 						"scaling": {
 							"number": 1
 						},
@@ -1167,7 +1183,7 @@
 					"name": "Inspire with Charisma",
 					"type": "heal",
 					"activation": {
-						"type": "special",
+						"type": "shortRest",
 						"condition": "When you finish a Short or Long Rest"
 					},
 					"target": {
@@ -1670,7 +1686,6 @@
 				{
 					"foundryId": "protection",
 					"name": "Protected",
-					"transfer": true,
 					"duration": {
 						"turns": 1
 					}
@@ -1761,6 +1776,33 @@
 					"name": "Shield Bashed",
 					"statuses": [
 						"prone"
+					]
+				}
+			],
+			"migrationVersion": 3
+		},
+		{
+			"name": "Skulker",
+			"source": "XPHB",
+			"effects": [
+				{
+					"name": "Fog of War",
+					"transfer": true,
+					"changes": [
+						{
+							"key": "system.skills.ste.roll.mode",
+							"mode": "ADD",
+							"value": 1
+						}
+					],
+					"descriptionEntries": [
+						{
+							"type": "entries",
+							"name": "Fog of War",
+							"entries": [
+								"You exploit the distractions of battle, gaining Advantage on any Dexterity (Stealth) check you make as part of the Hide action during combat."
+							]
+						}
 					]
 				}
 			],

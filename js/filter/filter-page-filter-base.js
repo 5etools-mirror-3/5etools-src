@@ -156,6 +156,9 @@ export class PageFilterBase {
 		if (this._hasSoundClip(ent)) ent._fMisc.push("Has Pronunciation Audio");
 
 		if (this.isReprinted(ent)) ent._fMisc.push("Reprinted");
+
+		if (ent.tokenCustom) ent._fMisc.push("Has Custom/Unofficial Token");
+		if (ent.tokenCredit) ent._fMisc.push("Has Token Credit");
 	}
 	// endregion
 }

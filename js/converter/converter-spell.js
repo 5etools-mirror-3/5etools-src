@@ -198,6 +198,7 @@ export class ConverterSpell extends ConverterBase {
 		]
 			.forEach(prop => {
 				EntryCoalesceEntryLists.mutCoalesce(stats, prop, {styleHint: options.styleHint});
+				TagJsons.mutTagObjectStrictCapsWords(stats, {keySet: new Set([prop]), styleHint: options.styleHint});
 				TagJsons.mutTagObject(stats, {keySet: new Set([prop]), isOptimistic: false, styleHint: options.styleHint});
 			});
 
@@ -326,7 +327,7 @@ export class ConverterSpell extends ConverterBase {
 				tgt.push(
 					...classNames.map(name => ({
 						name,
-						source: Parser.SRC_XPHB,
+						source: name === "Artificer" ? Parser.SRC_EFA : Parser.SRC_XPHB,
 					})),
 				);
 				break;
@@ -580,26 +581,39 @@ export class ConverterSpell extends ConverterBase {
 			.map(it => it.trim())
 			.filter(Boolean)
 			.forEach(pt => {
-				const lowerPt = pt.toLowerCase();
+				let isLegacy = false;
+				let lowerPt = pt.toLowerCase()
+					.replace(/ \(legacy\)$/, () => {
+						isLegacy = true;
+						return "";
+					})
+					.trim();
+
+				const srcPhb = isLegacy
+					? Parser.SRC_PHB
+					: options.styleHint !== SITE_STYLE__CLASSIC
+						? Parser.SRC_XPHB
+						: Parser.SRC_PHB;
+
 				switch (lowerPt) {
 					case "artificer":
 					case "artificers": tgt.push({"name": "Artificer", "source": "TCE"}); break;
 					case "bard":
-					case "bards": tgt.push({"name": "Bard", "source": "PHB"}); break;
+					case "bards": tgt.push({"name": "Bard", "source": srcPhb}); break;
 					case "cleric":
-					case "clerics": tgt.push({"name": "Cleric", "source": "PHB"}); break;
+					case "clerics": tgt.push({"name": "Cleric", "source": srcPhb}); break;
 					case "druid":
-					case "druids": tgt.push({"name": "Druid", "source": "PHB"}); break;
+					case "druids": tgt.push({"name": "Druid", "source": srcPhb}); break;
 					case "paladin":
-					case "paladins": tgt.push({"name": "Paladin", "source": "PHB"}); break;
+					case "paladins": tgt.push({"name": "Paladin", "source": srcPhb}); break;
 					case "ranger":
-					case "rangers": tgt.push({"name": "Ranger", "source": "PHB"}); break;
+					case "rangers": tgt.push({"name": "Ranger", "source": srcPhb}); break;
 					case "sorcerer":
-					case "sorcerers": tgt.push({"name": "Sorcerer", "source": "PHB"}); break;
+					case "sorcerers": tgt.push({"name": "Sorcerer", "source": srcPhb}); break;
 					case "warlock":
-					case "warlocks": tgt.push({"name": "Warlock", "source": "PHB"}); break;
+					case "warlocks": tgt.push({"name": "Warlock", "source": srcPhb}); break;
 					case "wizard":
-					case "wizards": tgt.push({"name": "Wizard", "source": "PHB"}); break;
+					case "wizards": tgt.push({"name": "Wizard", "source": srcPhb}); break;
 					default: options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Class "${lowerPt}" requires manual conversion`); break;
 				}
 			});

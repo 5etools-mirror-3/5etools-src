@@ -69,6 +69,12 @@ export class PageGeneratorBase {
 			.split("\n")
 			.map(l => l.trimEnd())
 			.join("\n");
+
+		if (this._page.includes("/")) {
+			const parentDir = this._page.split("/").slice(0, -1).join("/");
+			fs.mkdirSync(parentDir, {recursive: true});
+		}
+
 		fs.writeFileSync(this._page, rendered, "utf-8");
 	}
 
@@ -297,4 +303,15 @@ export class PageGeneratorManagerBase extends PageGeneratorGeneric {
 	_scriptsUtilsAdditional = [
 		"utils-list.js",
 	];
+}
+
+export class PageGeneratorSeoIndexBase extends PageGeneratorGeneric {
+	_filename = "seo/template-seo-index.hbs";
+
+	_registerPartials () {
+		super._registerPartials();
+
+		this._registerPartial({ident: "seoHeadInner", filename: "seo/template-seo-index-head-inner.hbs"});
+		this._registerPartial({ident: "seoBody", filename: "seo/template-seo-index-body.hbs"});
+	}
 }

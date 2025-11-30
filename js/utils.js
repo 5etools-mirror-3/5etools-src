@@ -2,7 +2,7 @@
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 globalThis.IS_DEPLOYED = undefined;
-globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.11.1"/* 5ETOOLS_VERSION__CLOSE */;
+globalThis.VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"2.19.1"/* 5ETOOLS_VERSION__CLOSE */;
 globalThis.DEPLOYED_IMG_ROOT = undefined;
 // for the roll20 script to set
 globalThis.IS_VTT = false;
@@ -494,6 +494,7 @@ CleanUtil.SHARED_REPLACEMENTS = {
 	"’": "'",
 	"‘": "'",
 	"": "'",
+	"\u02BC": "'",
 	"…": "...",
 	"\u200B": "", // zero-width space
 	"\u2002": " ", // em space
@@ -960,8 +961,6 @@ globalThis.JqueryUtil = {
 		if (JqueryUtil._isEnhancementsInit) return;
 		JqueryUtil._isEnhancementsInit = true;
 
-		JqueryUtil.addSelectors();
-
 		TemplateUtil.initVanilla();
 		TemplateUtil.initJquery();
 
@@ -999,21 +998,6 @@ globalThis.JqueryUtil = {
 			remove: function (o) {
 				if (o.handler) o.handler();
 			},
-		};
-	},
-
-	addSelectors () {
-		// Add a selector to match exact text (case insensitive) to jQuery's arsenal
-		//   Note that the search text should be `trim().toLowerCase()`'d before being passed in
-		$.expr[":"].textEquals = (el, i, m) => $(el).text().toLowerCase().trim() === m[3].unescapeQuotes();
-
-		// Add a selector to match contained text (case insensitive)
-		$.expr[":"].containsInsensitive = (el, i, m) => {
-			const searchText = m[3];
-			const textNode = $(el).contents().filter((i, e) => e.nodeType === 3)[0];
-			if (!textNode) return false;
-			const match = textNode.nodeValue.toLowerCase().trim().match(`${searchText.toLowerCase().trim().escapeRegexp()}`);
-			return match && match.length > 0;
 		};
 	},
 
@@ -1059,12 +1043,12 @@ globalThis.JqueryUtil = {
 	},
 
 	_dropdownInit: false,
-	bindDropdownButton ($ele) {
+	bindDropdownButton (ele) {
 		if (!JqueryUtil._dropdownInit) {
 			JqueryUtil._dropdownInit = true;
 			document.addEventListener("click", () => [...document.querySelectorAll(`.open`)].filter(ele => !(ele.className || "").split(" ").includes(`dropdown--navbar`)).forEach(ele => ele.classList.remove("open")));
 		}
-		$ele.click(() => setTimeout(() => $ele.parent().addClass("open"), 1)); // defer to allow the above to complete
+		ele.onn("click", () => setTimeout(() => ele.parente().addClass("open"), 1)); // defer to allow the above to complete
 	},
 
 	_WRP_TOAST: null,
@@ -1189,6 +1173,7 @@ class ElementUtil {
 	static _ATTRS_NO_FALSY = new Set([
 		"checked",
 		"disabled",
+		"readonly",
 	]);
 
 	/**
@@ -1197,8 +1182,13 @@ class ElementUtil {
 	 *
 	 * @property {function(string): ?HTMLElementExtended} find
 	 * @property {function(string): Array<HTMLElementExtended>} findAll
+	 * @property {function(string=): ?HTMLElementExtended} prev
+	 * @property {function(): Array<HTMLElementExtended>} prevAll
+	 * @property {function(string=): ?HTMLElementExtended} next
+	 * @property {function(): Array<HTMLElementExtended>} nextAll
 	 *
 	 * @property {function(HTMLElement|string): HTMLElementExtended} appends
+	 * @property {function(HTMLElement|string): HTMLElementExtended} prepends
 	 * @property {function(HTMLElement): HTMLElementExtended} appendTo
 	 * @property {function(HTMLElement): HTMLElementExtended} prependTo
 	 * @property {function(HTMLElement|string): HTMLElementExtended} aftere
@@ -1207,7 +1197,7 @@ class ElementUtil {
 	 * @property {function(string): HTMLElementExtended} addClass
 	 * @property {function(string): HTMLElementExtended} removeClass
 	 * @property {function(string, ?boolean): HTMLElementExtended} toggleClass
-	 * @property {function(string): HTMLElementExtended} hasClass
+	 * @property {function(string): boolean} hasClass
 	 *
 	 * @property {function(): HTMLElementExtended} showVe
 	 * @property {function(): HTMLElementExtended} hideVe
@@ -1237,7 +1227,7 @@ class ElementUtil {
 	 *
 	 * @property {function(string): HTMLElementExtended} trigger
 	 *
-	 * @property {function(string): HTMLElementExtended} first
+	 * @property {function(string=): HTMLElementExtended} first
 	 * @property {function(string): HTMLElementExtended} closeste
 	 * @property {function(string): Array<HTMLElementExtended>} childrene
 	 * @property {function(string): Array<HTMLElementExtended>} siblings
@@ -1251,6 +1241,10 @@ class ElementUtil {
 	 * @property {function(): HTMLElementExtended} focuse
 	 * @property {function(): HTMLElementExtended} selecte
 	 * @property {function(): HTMLElementExtended} blure
+	 *
+	 * @property {function(?number): HTMLElementExtended} scrollTope
+	 *
+	 * @property {function(string): boolean} is
 	 *
 	 * @return {HTMLElementExtended}
 	 */
@@ -1271,6 +1265,7 @@ class ElementUtil {
 			pointerup,
 			keydown,
 			html,
+			/** @deprecated */
 			text,
 			txt,
 			children,
@@ -1300,6 +1295,9 @@ class ElementUtil {
 		});
 		ele = metaEle.ele;
 
+		// TODO(Future) remove `text` option
+		const _txt = txt ?? text;
+
 		if (clazz) ele.className = clazz;
 		if (style) ele.setAttribute("style", style);
 		if (click) ele.addEventListener("click", click);
@@ -1312,7 +1310,10 @@ class ElementUtil {
 		if (pointerup) ele.addEventListener("pointerup", pointerup);
 		if (keydown) ele.addEventListener("keydown", keydown);
 		if (html != null) ele.innerHTML = html;
-		if (text != null || txt != null) ele.textContent = text;
+		if (_txt != null) {
+			if (ele instanceof HTMLOptionElement) ele.text = _txt;
+			else ele.textContent = _txt;
+		}
 		if (id != null && metaEle.isSetId) ele.setAttribute("id", id);
 		if (name != null) ele.setAttribute("name", name);
 		if (title != null) ele.setAttribute("title", title);
@@ -1337,7 +1338,12 @@ class ElementUtil {
 
 		ele.find = ele.find || ElementUtil._find.bind(ele);
 		ele.findAll = ele.findAll || ElementUtil._findAll.bind(ele);
+		ele.prev = ele.prev || ElementUtil._prev.bind(ele);
+		ele.prevAll = ele.prevAll || ElementUtil._prevAll.bind(ele);
+		ele.next = ele.next || ElementUtil._next.bind(ele);
+		ele.nextAll = ele.nextAll || ElementUtil._nextAll.bind(ele);
 		ele.appends = ele.appends || ElementUtil._appends.bind(ele);
+		ele.prepends = ele.prepends || ElementUtil._prepends.bind(ele);
 		ele.appendTo = ele.appendTo || ElementUtil._appendTo.bind(ele);
 		ele.prependTo = ele.prependTo || ElementUtil._prependTo.bind(ele);
 		ele.aftere = ele.aftere || ElementUtil._aftere.bind(ele);
@@ -1377,6 +1383,8 @@ class ElementUtil {
 		ele.focuse = ele.focuse || ElementUtil._focuse.bind(ele);
 		ele.selecte = ele.selecte || ElementUtil._selecte.bind(ele);
 		ele.blure = ele.blure || ElementUtil._blure.bind(ele);
+		ele.scrollTope = ele.scrollTope || ElementUtil._scrollTope.bind(ele);
+		ele.is = ele.is || ElementUtil._is.bind(ele);
 
 		return ele;
 	}
@@ -1414,6 +1422,42 @@ class ElementUtil {
 	}
 
 	/** @this {HTMLElementExtended} */
+	static _prev (selector) {
+		let prv = this.previousElementSibling;
+		if (selector != null) while (prv && !prv.matches(selector)) prv = prv.previousElementSibling;
+		return prv ? e_({ele: prv}) : null;
+	}
+
+	/** @this {HTMLElementExtended} */
+	static _prevAll () {
+		const out = [];
+		let tmp = this;
+		while (tmp.previousElementSibling) {
+			out.push(e_({ele: tmp.previousElementSibling}));
+			tmp = tmp.previousElementSibling;
+		}
+		return out;
+	}
+
+	/** @this {HTMLElementExtended} */
+	static _next (selector) {
+		let nxt = this.nextElementSibling;
+		if (selector != null) while (nxt && !nxt.matches(selector)) nxt = nxt.nextElementSibling;
+		return nxt ? e_({ele: nxt}) : null;
+	}
+
+	/** @this {HTMLElementExtended} */
+	static _nextAll () {
+		const out = [];
+		let tmp = this;
+		while (tmp.nextElementSibling) {
+			out.push(e_({ele: tmp.nextElementSibling}));
+			tmp = tmp.nextElementSibling;
+		}
+		return out;
+	}
+
+	/** @this {HTMLElementExtended} */
 	static _appends (child) {
 		if (typeof child === "string") child = ee`${child}`;
 
@@ -1421,6 +1465,17 @@ class ElementUtil {
 		if (child instanceof $) throw new Error(`Unhandled jQuery instance!`); // TODO(jquery) migrate
 
 		this.appendChild(child);
+		return this;
+	}
+
+	/** @this {HTMLElementExtended} */
+	static _prepends (child) {
+		if (typeof child === "string") child = ee`${child}`;
+
+		// eslint-disable-next-line vet-jquery/jquery
+		if (child instanceof $) throw new Error(`Unhandled jQuery instance!`); // TODO(jquery) migrate
+
+		this.prepend(child);
 		return this;
 	}
 
@@ -1483,8 +1538,7 @@ class ElementUtil {
 
 	/** @this {HTMLElementExtended} */
 	static _hasClass (clazz) {
-		this.classList.contains(clazz);
-		return this;
+		return this.classList.contains(clazz);
 	}
 
 	/** @this {HTMLElementExtended} */
@@ -1548,6 +1602,7 @@ class ElementUtil {
 
 	/** @this {HTMLElementExtended} */
 	static _tooltip (title) {
+		if (title === undefined) return this.getAttribute("title");
 		return this.attr("title", title);
 	}
 
@@ -1623,6 +1678,9 @@ class ElementUtil {
 
 	/** @this {HTMLElementExtended} */
 	static _first (selector) {
+		if (selector == null) {
+			return this.firstElementChild ? e_({ele: this.firstElementChild}) : this.firstElementChild;
+		}
 		const child = this.querySelector(selector);
 		if (!child) return child;
 		return e_({ele: child});
@@ -1682,6 +1740,26 @@ class ElementUtil {
 	static _blure () {
 		this.blur();
 		return this;
+	}
+
+	/* -------------------------------------------- */
+
+	/** @this {HTMLElementExtended} */
+	static _scrollTope (val) {
+		this.scrollTop = val;
+		return this;
+	}
+
+	/* -------------------------------------------- */
+
+	/** @this {HTMLElementExtended} */
+	static _is (nodeTypeOrEle) {
+		// eslint-disable-next-line vet-jquery/jquery
+		if (nodeTypeOrEle instanceof $) throw new Error(`Unhandled jQuery instance!`); // TODO(jquery) migrate
+
+		if (typeof nodeTypeOrEle === "string") return this.nodeName.toLowerCase() === nodeTypeOrEle.toLowerCase();
+
+		return nodeTypeOrEle === this;
 	}
 
 	/* -------------------------------------------- */
@@ -5106,6 +5184,8 @@ globalThis.DataUtil = class {
 			hasFluff: true,
 			hasFluffImages: true,
 			hasToken: true,
+			tokenCredit: true,
+			tokenCustom: true,
 			_versions: true,
 		};
 
@@ -5510,8 +5590,12 @@ globalThis.DataUtil = class {
 			static _doMod_addSpells ({copyTo, copyFrom, modInfo, msgPtFailed}) {
 				if (!copyTo.spellcasting) throw new Error(`${msgPtFailed} Creature did not have a spellcasting property!`);
 
-				// TODO could accept a "position" or "name" parameter should spells need to be added to other spellcasting traits
-				const spellcasting = copyTo.spellcasting[0];
+				// TODO could accept a "position" parameter should spells need to be added to other spellcasting traits
+				const spellcasting = modInfo.name
+					? copyTo.spellcasting.find(ent => ent.name === modInfo.name)
+					: copyTo.spellcasting[0];
+
+				if (modInfo.name && !spellcasting) throw new Error(`${msgPtFailed} Creature did not have spellcasting trait named "${modInfo.name}"!`);
 
 				if (modInfo.spells) {
 					const spells = spellcasting.spells;
@@ -5789,6 +5873,15 @@ globalThis.DataUtil = class {
 				else this._doMod_handleProp({copyTo, copyFrom, modInfos, msgPtFailed});
 			}
 
+			static _PROPS_TAIL = [
+				"_",
+				"*",
+			];
+
+			static _sortProps (propA, propB) {
+				return SortUtil.ascSort(this._PROPS_TAIL.indexOf(propA), this._PROPS_TAIL.indexOf(propB));
+			}
+
 			static getCopy (impl, copyFrom, copyTo, templates, {isExternalApplicationKeepCopy = false, isExternalApplicationIdentityOnly = false} = {}) {
 				this._WALKER ||= MiscUtil.getWalker();
 
@@ -5877,11 +5970,13 @@ globalThis.DataUtil = class {
 						copyMeta._mod[k] = DataUtil.generic.variableResolver.resolve({obj: v, ent: copyTo});
 					});
 
-					Object.entries(copyMeta._mod).forEach(([prop, modInfos]) => {
-						if (prop === "*") this._doMod({copyTo, copyFrom, modInfos, props: DataUtil.generic.COPY_ENTRY_PROPS, msgPtFailed, isExternalApplicationIdentityOnly});
-						else if (prop === "_") this._doMod({copyTo, copyFrom, modInfos, msgPtFailed, isExternalApplicationIdentityOnly});
-						else this._doMod({copyTo, copyFrom, modInfos, props: [prop], msgPtFailed, isExternalApplicationIdentityOnly});
-					});
+					Object.entries(copyMeta._mod)
+						.sort(([propA], [propB]) => this._sortProps(propA, propB))
+						.forEach(([prop, modInfos]) => {
+							if (prop === "*") this._doMod({copyTo, copyFrom, modInfos, props: DataUtil.generic.COPY_ENTRY_PROPS, msgPtFailed, isExternalApplicationIdentityOnly});
+							else if (prop === "_") this._doMod({copyTo, copyFrom, modInfos, msgPtFailed, isExternalApplicationIdentityOnly});
+							else this._doMod({copyTo, copyFrom, modInfos, props: [prop], msgPtFailed, isExternalApplicationIdentityOnly});
+						});
 				}
 
 				// add filter tag
@@ -8516,23 +8611,6 @@ Array.prototype.prevWrap || Object.defineProperty(Array.prototype, "prevWrap", {
 	},
 });
 
-Array.prototype.findLast || Object.defineProperty(Array.prototype, "findLast", {
-	enumerable: false,
-	writable: true,
-	value: function (fn) {
-		for (let i = this.length - 1; i >= 0; --i) if (fn(this[i])) return this[i];
-	},
-});
-
-Array.prototype.findLastIndex || Object.defineProperty(Array.prototype, "findLastIndex", {
-	enumerable: false,
-	writable: true,
-	value: function (fn) {
-		for (let i = this.length - 1; i >= 0; --i) if (fn(this[i])) return i;
-		return -1;
-	},
-});
-
 Array.prototype.sum || Object.defineProperty(Array.prototype, "sum", {
 	enumerable: false,
 	writable: true,
@@ -8579,8 +8657,8 @@ Map.prototype.getOrSet || Object.defineProperty(Map.prototype, "getOrSet", {
  *
  * @param opts Options object.
  * @param opts.hashKey to use in the URL so that forward/back can open/close the view
- * @param opts.$btnOpen jQuery-selected button to bind click open/close
- * @param [opts.$eleNoneVisible] "error" message to display if user has not selected any viewable content
+ * @param opts.btnOpen jQuery-selected button to bind click open/close
+ * @param [opts.eleNoneVisible] "error" message to display if user has not selected any viewable content
  * @param opts.pageTitle Title.
  * @param opts.state State to modify when opening/closing.
  * @param opts.stateKey Key in state to set true/false when opening/closing.
@@ -8602,17 +8680,17 @@ class BookModeViewBase {
 
 	constructor (opts) {
 		opts = opts || {};
-		const {$btnOpen, state} = opts;
+		const {btnOpen, state} = opts;
 
 		if (this._hashKey && this._stateKey) throw new Error(`Only one of "hashKey" and "stateKey" may be specified!`);
 
 		this._state = state;
-		this._$btnOpen = $btnOpen;
+		this._btnOpen = e_({ele: btnOpen});
 
 		this._isActive = false;
-		this._$wrpBook = null;
+		this._wrpBook = null;
 
-		this._$btnOpen.off("click").on("click", () => this.setStateOpen());
+		this._btnOpen.onn("click", () => this.setStateOpen());
 	}
 
 	/* -------------------------------------------- */
@@ -8629,67 +8707,75 @@ class BookModeViewBase {
 
 	/* -------------------------------------------- */
 
-	_$getWindowHeaderLhs () {
-		return $(`<div class="ve-flex-v-center"></div>`);
+	_getWindowHeaderLhs () {
+		return ee`<div class="ve-flex-v-center"></div>`;
 	}
 
-	_$getBtnWindowClose () {
-		return $(`<button class="ve-btn ve-btn-xs ve-btn-danger br-0 bt-0 btl-0 btr-0 bbr-0 bbl-0 h-20p" title="Close"><span class="glyphicon glyphicon-remove"></span></button>`)
-			.click(() => this.setStateClosed());
+	_getBtnWindowClose () {
+		return ee`<button class="ve-btn ve-btn-xs ve-btn-danger br-0 bt-0 btl-0 btr-0 bbr-0 bbl-0 h-20p" title="Close"><span class="glyphicon glyphicon-remove"></span></button>`
+			.onn("click", () => this.setStateClosed());
 	}
 
 	/* -------------------------------------------- */
 
-	async _$pGetWrpControls ({$wrpContent}) {
-		const $wrp = $(`<div class="w-100 ve-flex-col no-shrink no-print"></div>`);
+	async _pGetWrpControls ({wrpContent}) {
+		const wrp = ee`<div class="w-100 ve-flex-col no-shrink no-print"></div>`;
 
-		if (!this._hasPrintColumns) return $wrp;
+		if (!this._hasPrintColumns) return {wrp};
 
-		$wrp.addClass("px-2 mt-2 bb-1p pb-1");
+		["px-2", "mt-2", "bb-1p", "pb-1"].forEach(clz => wrp.addClass(clz));
 
 		const onChangeColumnCount = (cols) => {
-			$wrpContent.toggleClass(`bkmv__wrp--columns-1`, cols === 1);
-			$wrpContent.toggleClass(`bkmv__wrp--columns-2`, cols === 2);
+			wrpContent.toggleClass(`bkmv__wrp--columns-1`, cols === 1);
+			wrpContent.toggleClass(`bkmv__wrp--columns-2`, cols === 2);
 		};
 
 		const lastColumns = StorageUtil.syncGetForPage(BookModeViewBase._BOOK_VIEW_COLUMNS_K);
 
-		const $selColumns = $(`<select class="form-control input-sm">
+		const onChangeSelColumns = () => {
+			const val = Number(selColumns.val());
+			if (val === 0) onChangeColumnCount(2);
+			else onChangeColumnCount(1);
+
+			StorageUtil.syncSetForPage(BookModeViewBase._BOOK_VIEW_COLUMNS_K, val);
+		};
+
+		const selColumns = ee`<select class="form-control input-sm">
 			<option value="0">Two (book style)</option>
 			<option value="1">One</option>
-		</select>`)
-			.change(() => {
-				const val = Number($selColumns.val());
-				if (val === 0) onChangeColumnCount(2);
-				else onChangeColumnCount(1);
+		</select>`
+			.onn("change", () => onChangeSelColumns());
+		selColumns.val(`${lastColumns ?? 0}`);
+		onChangeSelColumns();
 
-				StorageUtil.syncSetForPage(BookModeViewBase._BOOK_VIEW_COLUMNS_K, val);
-			});
-		if (lastColumns != null) $selColumns.val(lastColumns);
-		$selColumns.change();
+		const wrpPrint = ee`<div class="w-100 ve-flex">
+			<div class="ve-flex-vh-center"><div class="mr-2 no-wrap help-subtle" title="Applied when printing the page.">Print columns:</div>${selColumns}</div>
+		</div>`.appendTo(wrp);
 
-		const $wrpPrint = $$`<div class="w-100 ve-flex">
-			<div class="ve-flex-vh-center"><div class="mr-2 no-wrap help-subtle" title="Applied when printing the page.">Print columns:</div>${$selColumns}</div>
-		</div>`.appendTo($wrp);
-
-		return {$wrp, $wrpPrint};
+		return {wrp, wrpPrint};
 	}
 
 	/* -------------------------------------------- */
 
-	_$getEleNoneVisible () { return null; }
+	_getEleNoneVisible () { return null; }
 
-	_$getBtnNoneVisibleClose () {
-		return $(`<button class="ve-btn ve-btn-default">Close</button>`)
-			.click(() => this.setStateClosed());
+	_getBtnNoneVisibleClose () {
+		return ee`<button class="ve-btn ve-btn-default">Close</button>`
+			.onn("click", () => this.setStateClosed());
 	}
 
 	/** @abstract */
-	async _pGetRenderContentMeta ({$wrpContent, $wrpContentOuter}) {
+	async _pGetRenderContentMeta ({wrpContent, wrpContentOuter}) {
 		return {cntSelectedEnts: 0, isAnyEntityRendered: false};
 	}
 
 	/* -------------------------------------------- */
+
+	async pInit () {
+		await this._pInit();
+	}
+
+	async _pInit () { /* Implement as required */ }
 
 	async pOpen () {
 		if (this._isActive) return;
@@ -8699,33 +8785,43 @@ class BookModeViewBase {
 		document.body.style.overflow = "hidden";
 		document.body.classList.add("bkmv-active");
 
-		const {$wrpContentOuter, $wrpContent} = await this._pGetContentElementMetas();
+		await this._pRender();
+	}
 
-		this._$wrpBook = $$`<div class="bkmv print__h-initial ve-flex-col print__ve-block">
-			<div class="bkmv__spacer-name no-print split-v-center no-shrink no-print">${this._$getWindowHeaderLhs()}${this._$getBtnWindowClose()}</div>
-			${(await this._$pGetWrpControls({$wrpContent})).$wrp}
-			${$wrpContentOuter}
+	_preRender () { /* Implement as required */ }
+
+	async _pRender () {
+		this._preRender();
+
+		const {wrpContentOuter, wrpContent} = await this._pGetContentElementMetas();
+
+		if (this._wrpBook) this._wrpBook.remove();
+
+		this._wrpBook = ee`<div class="bkmv print__h-initial ve-flex-col print__ve-block">
+			<div class="bkmv__spacer-name no-print split-v-center no-shrink no-print">${this._getWindowHeaderLhs()}${this._getBtnWindowClose()}</div>
+			${(await this._pGetWrpControls({wrpContent})).wrp}
+			${wrpContentOuter}
 		</div>`
 			.appendTo(document.body);
 	}
 
 	async _pGetContentElementMetas () {
-		const $wrpContent = $(`<div class="bkmv__scroller smooth-scroll ve-overflow-y-auto print__overflow-visible ${this._isColumns ? "bkmv__wrp" : "ve-flex-col"} w-100 min-h-0"></div>`);
+		const wrpContent = ee`<div class="bkmv__scroller smooth-scroll ve-overflow-y-auto print__overflow-visible ${this._isColumns ? "bkmv__wrp" : "ve-flex-col"} w-100 min-h-0"></div>`;
 
-		const $wrpContentOuter = $$`<div class="h-100 print__h-initial w-100 min-h-0 ve-flex-col print__ve-block">${$wrpContent}</div>`;
+		const wrpContentOuter = ee`<div class="h-100 print__h-initial w-100 min-h-0 ve-flex-col print__ve-block">${wrpContent}</div>`;
 
 		const out = {
-			$wrpContentOuter,
-			$wrpContent,
+			wrpContentOuter,
+			wrpContent,
 		};
 
-		const {cntSelectedEnts, isAnyEntityRendered} = await this._pGetRenderContentMeta({$wrpContent, $wrpContentOuter});
+		const {cntSelectedEnts, isAnyEntityRendered} = await this._pGetRenderContentMeta({wrpContent, wrpContentOuter});
 
-		if (isAnyEntityRendered) $wrpContentOuter.append($wrpContent);
+		if (isAnyEntityRendered) wrpContentOuter.appends(wrpContent);
 
 		if (cntSelectedEnts) return out;
 
-		$wrpContentOuter.append(this._$getEleNoneVisible());
+		wrpContentOuter.appends(this._getEleNoneVisible());
 
 		return out;
 	}
@@ -8736,7 +8832,7 @@ class BookModeViewBase {
 		document.body.style.overflow = "";
 		document.body.classList.remove("bkmv-active");
 
-		this._$wrpBook.remove();
+		this._wrpBook.remove();
 		this._isActive = false;
 	}
 
@@ -8755,22 +8851,23 @@ class BookModeViewBase {
 }
 
 // CONTENT EXCLUSION ===================================================================================================
-globalThis.ExcludeUtil = {
-	isInitialised: false,
-	_excludes: null,
-	_cache_excludesLookup: null,
-	_lock: null,
+globalThis.ExcludeUtil = class {
+	static isInitialised = false;
+	static _excludes = null;
+	static _cache_excludesLookup = null;
+	static _lock = null;
 
-	async pInitialise ({lockToken = null} = {}) {
+	static async pInitialise ({lockToken = null} = {}) {
+		if (ExcludeUtil.isInitialised) return;
 		try {
 			await ExcludeUtil._lock.pLock({token: lockToken});
 			await ExcludeUtil._pInitialise();
 		} finally {
 			ExcludeUtil._lock.unlock();
 		}
-	},
+	}
 
-	async _pInitialise () {
+	static async _pInitialise () {
 		if (ExcludeUtil.isInitialised) return;
 
 		ExcludeUtil.pSave = MiscUtil.throttle(ExcludeUtil._pSave, 50);
@@ -8778,6 +8875,7 @@ globalThis.ExcludeUtil = {
 			ExcludeUtil._excludes = ExcludeUtil._getValidExcludes(
 				await StorageUtil.pGet(VeCt.STORAGE_EXCLUDES) || [],
 			);
+			this._doBuildCache();
 		} catch (e) {
 			JqueryUtil.doToast({
 				content: "Error when loading content blocklist! Purged blocklist data. (See the log for more information.)",
@@ -8793,61 +8891,74 @@ globalThis.ExcludeUtil = {
 			setTimeout(() => { throw e; });
 		}
 		ExcludeUtil.isInitialised = true;
-	},
+	}
 
-	_getValidExcludes (excludes) {
+	static _getValidExcludes (excludes) {
 		return excludes
 			.filter(it => it.hash) // remove legacy rows
-			.filter(it => it.hash != null && it.category != null && it.source != null); // remove invalid rows
-	},
+			.filter(it => it.hash != null && it.category != null && it.source != null) // remove invalid rows
+			// update legacy rows
+			.map(it => {
+				it.isAuto ??= false;
+				return it;
+			})
+		;
+	}
 
-	getList () {
+	static getList () {
 		return MiscUtil.copyFast(ExcludeUtil._excludes || []);
-	},
+	}
 
-	async pSetList (toSet) {
+	static async pSetList (toSet) {
 		ExcludeUtil._excludes = toSet;
 		ExcludeUtil._cache_excludesLookup = null;
 		await ExcludeUtil.pSave();
-	},
+	}
 
-	async pExtendList (toAdd) {
+	/**
+	 * @param {{displayName, hash, category, source, isAuto}[]} toAdd
+	 */
+	static async pExtendList (toAdd) {
 		try {
 			const lockToken = await ExcludeUtil._lock.pLock();
+			await ExcludeUtil.pInitialise({lockToken});
 			await ExcludeUtil._pExtendList({toAdd, lockToken});
 		} finally {
 			ExcludeUtil._lock.unlock();
 		}
-	},
+	}
 
-	async _pExtendList ({toAdd, lockToken}) {
+	static async _pExtendList ({toAdd, lockToken}) {
 		await ExcludeUtil.pInitialise({lockToken});
-		this._doBuildCache();
 
 		const out = MiscUtil.copyFast(ExcludeUtil._excludes || []);
 		MiscUtil.copyFast(toAdd || [])
 			.filter(({hash, category, source}) => {
 				if (!hash || !category || !source) return false;
-				const cacheUid = ExcludeUtil._getCacheUids(hash, category, source, true);
+				const [cacheUid] = ExcludeUtil._getCacheUids(hash, category, source, {isExact: true});
 				return !ExcludeUtil._cache_excludesLookup[cacheUid];
 			})
-			.forEach(it => out.push(it));
+			.forEach(it => {
+				it.isAuto ??= false;
+				out.push(it);
+			});
 
 		await ExcludeUtil.pSetList(out);
-	},
+	}
 
-	_doBuildCache () {
+	static _doBuildCache () {
 		if (ExcludeUtil._cache_excludesLookup) return;
 		if (!ExcludeUtil._excludes) return;
 
 		ExcludeUtil._cache_excludesLookup = {};
-		ExcludeUtil._excludes.forEach(({source, category, hash}) => {
-			const cacheUid = ExcludeUtil._getCacheUids(hash, category, source, true);
-			ExcludeUtil._cache_excludesLookup[cacheUid] = true;
-		});
-	},
+		ExcludeUtil._excludes
+			.forEach(({source, category, hash}) => {
+				const [cacheUid] = ExcludeUtil._getCacheUids(hash, category, source, {isExact: true});
+				ExcludeUtil._cache_excludesLookup[cacheUid] = true;
+			});
+	}
 
-	_getCacheUids (hash, category, source, isExact) {
+	static _getCacheUids (hash, category, source, {isExact = false} = {}) {
 		hash = (hash || "").toLowerCase();
 		category = (category || "").toLowerCase();
 		source = (source?.source || source || "").toLowerCase();
@@ -8856,7 +8967,7 @@ globalThis.ExcludeUtil = {
 		if (isExact) return [exact];
 
 		return [
-			`${hash}__${category}__${source}`,
+			exact,
 			`*__${category}__${source}`,
 			`${hash}__*__${source}`,
 			`${hash}__${category}__*`,
@@ -8865,9 +8976,9 @@ globalThis.ExcludeUtil = {
 			`${hash}__*__*`,
 			`*__*__*`,
 		];
-	},
+	}
 
-	_excludeCount: 0,
+	static _excludeCount = 0;
 	/**
 	 * @param hash
 	 * @param category
@@ -8875,7 +8986,7 @@ globalThis.ExcludeUtil = {
 	 * @param [opts]
 	 * @param [opts.isNoCount]
 	 */
-	isExcluded (hash, category, source, opts) {
+	static isExcluded (hash, category, source, opts) {
 		if (!ExcludeUtil._excludes || !ExcludeUtil._excludes.length) return false;
 		if (!source) throw new Error(`Entity had no source!`);
 		opts = opts || {};
@@ -8892,24 +9003,24 @@ globalThis.ExcludeUtil = {
 		if (!opts.isNoCount) ++ExcludeUtil._excludeCount;
 
 		return isExcluded;
-	},
+	}
 
-	_isExcluded (hash, category, source) {
+	static _isExcluded (hash, category, source) {
 		for (const cacheUid of ExcludeUtil._getCacheUids(hash, category, source)) {
 			if (ExcludeUtil._cache_excludesLookup[cacheUid]) return true;
 		}
 		return false;
-	},
+	}
 
-	isAllContentExcluded (list) { return (!list.length && ExcludeUtil._excludeCount) || (list.length > 0 && list.length === ExcludeUtil._excludeCount); },
-	getAllContentBlocklistedHtml () { return `<div class="initial-message initial-message--med">(All content <a href="blocklist.html">blocklisted</a>)</div>`; },
+	static isAllContentExcluded (list) { return (!list.length && ExcludeUtil._excludeCount) || (list.length > 0 && list.length === ExcludeUtil._excludeCount); }
+	static getAllContentBlocklistedHtml () { return `<div class="initial-message initial-message--med">(All content <a href="blocklist.html">blocklisted</a>)</div>`; }
 
-	async _pSave () {
+	static async _pSave () {
 		return StorageUtil.pSet(VeCt.STORAGE_EXCLUDES, ExcludeUtil._excludes);
-	},
+	}
 
 	// The throttled version, available post-initialisation
-	async pSave () { /* no-op */ },
+	static async pSave () { /* no-op */ }
 };
 
 // EXTENSIONS ==========================================================================================================
@@ -9113,16 +9224,29 @@ DatetimeUtil._SECS_PER_DAY = 86400;
 DatetimeUtil._SECS_PER_HOUR = 3600;
 DatetimeUtil._SECS_PER_MINUTE = 60;
 
-globalThis.EditorUtil = {
-	getTheme () {
+globalThis.EditorUtil = class {
+	static getTheme () {
 		const {isNight} = styleSwitcher.getSummary();
 		return isNight ? "ace/theme/tomorrow_night" : "ace/theme/textmate";
-	},
+	}
 
-	initEditor (id, additionalOpts = null) {
+	static _P_LOADING_ACE = null;
+
+	static async _pLoadAce () {
+		if (typeof ace !== "undefined") return;
+
+		return this._P_LOADING_ACE ||= (async () => {
+			await import("../lib/ace.js");
+			ace.config.set("basePath", "../lib");
+		})();
+	}
+
+	static async pInitEditor (eleOrId, additionalOpts = null) {
+		await this._pLoadAce();
+
 		additionalOpts = additionalOpts || {};
 
-		const editor = ace.edit(id);
+		const editor = ace.edit(eleOrId);
 		editor.setOptions({
 			theme: EditorUtil.getTheme(),
 			wrap: true,
@@ -9145,10 +9269,10 @@ globalThis.EditorUtil = {
 			});
 		}
 
-		styleSwitcher.addFnOnChange(() => editor.setOptions({theme: EditorUtil.getTheme()}));
+		styleSwitcher.addFnOnChangeTheme(() => editor.setOptions({theme: EditorUtil.getTheme()}));
 
 		return editor;
-	},
+	}
 };
 
 globalThis.BrowserUtil = class {

@@ -80,12 +80,14 @@ export class StatGenUi extends BaseComponent {
 		this._existingScores = opts.existingScores;
 
 		// region Rolled
-		this._$rollIptFormula = null;
+		this._rollIptFormula = null;
 		// endregion
 
 		// region Point buy
 		this._compAsi = new StatGenUiCompAsi({parent: this});
 		// endregion
+
+		this._isSettingStateFromOverwrite = false;
 	}
 
 	get MODES () { return this._MODES; }
@@ -156,6 +158,7 @@ export class StatGenUi extends BaseComponent {
 	get race () { return this._races[this._state.common_ixRace]; }
 	get background () { return this._backgrounds[this._state.common_ixBackground]; }
 	get isLevelUp () { return this._isLevelUp; }
+	isSettingStateFromOverwrite () { return this._isSettingStateFromOverwrite; }
 	// endregion
 
 	getTotals () {
@@ -233,7 +236,7 @@ export class StatGenUi extends BaseComponent {
 	async _roll_pGetRolledStats () {
 		const wrpTree = Renderer.dice.lang.getTree3(this._state.rolled_formula);
 		if (!wrpTree) {
-			this._$rollIptFormula.addClass("form-control--error");
+			this._rollIptFormula.addClass("form-control--error");
 			return;
 		}
 
@@ -245,11 +248,11 @@ export class StatGenUi extends BaseComponent {
 		}
 		rolls.sort((a, b) => SortUtil.ascSort(b.total, a.total));
 
-		return rolls.map(r => ({total: r.total, text: (r.text || []).join("")}));
+		return rolls.map(r => ({total: r.total, txt: (r.text || []).join("")}));
 	}
 
-	render ($parent) {
-		$parent.empty().addClass("statgen");
+	render (parent) {
+		parent.empty().addClass("statgen");
 
 		const iptTabMetas = this._isLevelUp
 			? [
@@ -265,11 +268,11 @@ export class StatGenUi extends BaseComponent {
 				...this._tabMetasAdditional || [],
 			].filter(Boolean);
 
-		const tabMetas = this._renderTabs(iptTabMetas, {$parent: this._isFvttMode ? null : $parent});
+		const tabMetas = this._renderTabs(iptTabMetas, {eleParent: this._isFvttMode ? null : parent});
 		if (this._isFvttMode) {
 			if (!this._isLevelUp) {
 				const {propActive: propActiveTab, propProxy: propProxyTabs} = this._getTabProps();
-				const $selMode = ComponentUiUtil.$getSelEnum(
+				const selMode = ComponentUiUtil.getSelEnum(
 					this,
 					propActiveTab,
 					{
@@ -279,21 +282,23 @@ export class StatGenUi extends BaseComponent {
 					},
 				)
 					.addClass("max-w-200p");
-				$$`<div class="ve-flex-v-center statgen-shared__wrp-header">
+				ee`<div class="ve-flex-v-center statgen-shared__wrp-header">
 					<div class="mr-2"><b>Mode</b></div>
-					${$selMode}
-				</div>
-				<hr class="hr-2">`.appendTo($parent);
+					${selMode}
+				</div>`
+					.appendTo(parent);
+				ee`<hr class="hr-2">`
+					.appendTo(parent);
 			}
 
-			tabMetas.forEach(it => it.$wrpTab.appendTo($parent));
+			tabMetas.forEach(it => it.wrpTab.appendTo(parent));
 		}
 
-		const $wrpAll = $(`<div class="ve-flex-col w-100 h-100"></div>`);
-		this._render_all($wrpAll);
+		const wrpAll = ee`<div class="ve-flex-col w-100 h-100"></div>`;
+		this._render_all(wrpAll);
 
 		const hkTab = () => {
-			tabMetas[this.ixActiveTab || 0].$wrpTab.append($wrpAll);
+			tabMetas[this.ixActiveTab || 0].wrpTab.appends(wrpAll);
 		};
 		this._addHookActiveTab(hkTab);
 		hkTab();
@@ -302,23 +307,24 @@ export class StatGenUi extends BaseComponent {
 		this._addHookBase("common_cntFeatsCustom", () => this._state.common_pulseAsi = !this._state.common_pulseAsi);
 	}
 
-	_render_$getStgRolledHeader () {
-		this._$rollIptFormula = ComponentUiUtil.$getIptStr(this, "rolled_formula")
-			.addClass("ve-text-center max-w-100p")
-			.keydown(evt => {
-				if (evt.key === "Enter") setTimeout(() => $btnRoll.click()); // Defer to allow `.change` to fire first
+	_render_getStgRolledHeader () {
+		this._rollIptFormula = ComponentUiUtil.getIptStr(this, "rolled_formula")
+			.addClass("ve-text-center")
+			.addClass("max-w-100p")
+			.onn("keydown", evt => {
+				if (evt.key === "Enter") setTimeout(() => btnRoll.trigger("click")); // Defer to allow `.change` to fire first
 			})
-			.change(() => this._$rollIptFormula.removeClass("form-control--error"));
+			.onn("change", () => this._rollIptFormula.removeClass("form-control--error"));
 
-		const $iptRollCount = this._isCharacterMode ? null : ComponentUiUtil.$getIptInt(this, "rolled_rollCount", 1, {min: 1, fallbackOnNaN: 1, html: `<input type="text" class="form-control input-xs form-control--minimal ve-text-center max-w-100p">`})
-			.keydown(evt => {
-				if (evt.key === "Enter") setTimeout(() => $btnRoll.click()); // Defer to allow `.change` to fire first
+		const iptRollCount = this._isCharacterMode ? null : ComponentUiUtil.getIptInt(this, "rolled_rollCount", 1, {min: 1, fallbackOnNaN: 1, html: `<input type="text" class="form-control input-xs form-control--minimal ve-text-center max-w-100p">`})
+			.onn("keydown", evt => {
+				if (evt.key === "Enter") setTimeout(() => btnRoll.trigger("click")); // Defer to allow `.change` to fire first
 			})
-			.change(() => this._$rollIptFormula.removeClass("form-control--error"));
+			.onn("change", () => this._rollIptFormula.removeClass("form-control--error"));
 
 		const lockRoll = new VeLock();
-		const $btnRoll = $(`<button class="ve-btn ve-btn-primary bold">Roll</button>`)
-			.click(async () => {
+		const btnRoll = ee`<button class="ve-btn ve-btn-primary bold">Roll</button>`
+			.onn("click", async () => {
 				try {
 					await lockRoll.pLock();
 					this._state.rolled_rolls = await this._roll_pGetRolledStats();
@@ -327,9 +333,9 @@ export class StatGenUi extends BaseComponent {
 				}
 			});
 
-		const $btnRandom = $(`<button class="ve-btn ve-btn-xs ve-btn-default mt-2">Randomly Assign</button>`)
+		const btnRandom = ee`<button class="ve-btn ve-btn-xs ve-btn-default mt-2">Randomly Assign</button>`
 			.hideVe()
-			.click(() => {
+			.onn("click", () => {
 				const abs = [...Parser.ABIL_ABVS].shuffle();
 				abs.forEach((ab, i) => {
 					const {propAbilSelectedRollIx} = this.constructor._rolled_getProps(ab);
@@ -337,45 +343,45 @@ export class StatGenUi extends BaseComponent {
 				});
 			});
 
-		const $wrpRolled = $(`<div class="ve-flex-v-center mr-auto statgen-rolled__wrp-results py-1"></div>`);
-		const $wrpTotal = $(`<div class="ve-muted ve-small italic ve-text-right pr-1 help-subtle" title="The sum total of the above rolls."></div>`);
-		const $wrpRolledOuter = $$`<div class="ve-flex-col">
-			<div class="ve-flex-v-center mb-1"><div class="mr-2">=</div>${$wrpRolled}</div>
-			${$wrpTotal}
+		const wrpRolled = ee`<div class="ve-flex-v-center mr-auto statgen-rolled__wrp-results py-1"></div>`;
+		const wrpTotal = ee`<div class="ve-muted ve-small italic ve-text-right pr-1 help-subtle" title="The sum total of the above rolls."></div>`;
+		const wrpRolledOuter = ee`<div class="ve-flex-col">
+			<div class="ve-flex-v-center mb-1"><div class="mr-2">=</div>${wrpRolled}</div>
+			${wrpTotal}
 		</div>`;
 
 		const hkRolled = () => {
-			$wrpRolledOuter.toggleVe(this._state.rolled_rolls.length);
-			$btnRandom.toggleVe(this._state.rolled_rolls.length);
+			wrpRolledOuter.toggleVe(this._state.rolled_rolls.length);
+			btnRandom.toggleVe(this._state.rolled_rolls.length);
 
-			$wrpRolled.html(this._state.rolled_rolls.map((it, i) => {
+			wrpRolled.html(this._state.rolled_rolls.map((it, i) => {
 				const cntPrevRolls = this._state.rolled_rolls.slice(0, i).filter(r => r.total === it.total).length;
 				return `<div class="px-3 py-1 help-subtle ve-flex-vh-center" title="${it.text}"><div class="ve-muted">[</div><div class="ve-flex-vh-center statgen-rolled__disp-result">${it.total}${cntPrevRolls ? Parser.numberToSubscript(cntPrevRolls) : ""}</div><div class="ve-muted">]</div></div>`;
 			}));
-			$wrpTotal.text(`Total: ${this._state.rolled_rolls.map(roll => roll.total).sum()}`);
+			wrpTotal.txt(`Total: ${this._state.rolled_rolls.map(roll => roll.total).sum()}`);
 		};
 		this._addHookBase("rolled_rolls", hkRolled);
 		hkRolled();
 
-		return $$`<div class="ve-flex-col mb-3 mr-auto">
+		return ee`<div class="ve-flex-col mb-3 mr-auto">
 			<div class="ve-flex mb-2">
 				<div class="ve-flex-col ve-flex-h-center mr-3">
-					<label class="ve-flex-v-center"><div class="mr-2 no-shrink w-100p">Formula:</div>${this._$rollIptFormula}</label>
+					<label class="ve-flex-v-center"><div class="mr-2 no-shrink w-100p">Formula:</div>${this._rollIptFormula}</label>
 
-					${this._isCharacterMode ? null : $$`<label class="ve-flex-v-center mt-2"><div class="mr-2 no-shrink w-100p">Number of rolls:</div>${$iptRollCount}</label>`}
+					${this._isCharacterMode ? null : ee`<label class="ve-flex-v-center mt-2"><div class="mr-2 no-shrink w-100p">Number of rolls:</div>${iptRollCount}</label>`}
 				</div>
-				${$btnRoll}
+				${btnRoll}
 			</div>
 
-			${$wrpRolledOuter}
+			${wrpRolledOuter}
 
-			<div class="ve-flex-v-center">${$btnRandom}</div>
+			<div class="ve-flex-v-center">${btnRandom}</div>
 		</div>`;
 	}
 
-	_render_$getStgArrayHeader () {
-		const $btnRandom = $(`<button class="ve-btn ve-btn-xs ve-btn-default">Randomly Assign</button>`)
-			.click(() => {
+	_render_getStgArrayHeader () {
+		const btnRandom = ee`<button class="ve-btn ve-btn-xs ve-btn-default">Randomly Assign</button>`
+			.onn("click", () => {
 				const abs = [...Parser.ABIL_ABVS].shuffle();
 				abs.forEach((ab, i) => {
 					const {propAbilSelectedScoreIx} = this.constructor._array_getProps(ab);
@@ -383,15 +389,15 @@ export class StatGenUi extends BaseComponent {
 				});
 			});
 
-		return $$`<div class="ve-flex-col mb-3 mr-auto">
+		return ee`<div class="ve-flex-col mb-3 mr-auto">
 			<div class="mb-2">Assign these numbers to your abilities as desired:</div>
 			<div class="bold mb-2">${StatGenUi._STANDARD_ARRAY.join(", ")}</div>
-			<div class="ve-flex">${$btnRandom}</div>
+			<div class="ve-flex">${btnRandom}</div>
 		</div>`;
 	}
 
-	_render_$getStgManualHeader () {
-		return $$`<div class="ve-flex-col mb-3 mr-auto">
+	_render_getStgManualHeader () {
+		return ee`<div class="ve-flex-col mb-3 mr-auto">
 			<div>Enter your desired ability scores in the &quot;Base&quot; column below.</div>
 		</div>`;
 	}
@@ -416,8 +422,8 @@ export class StatGenUi extends BaseComponent {
 		this._proxyAssignSimple("state", this._getDefaultState(), true);
 	}
 
-	_render_$getStgPbHeader () {
-		const $iptBudget = ComponentUiUtil.$getIptInt(
+	_render_getStgPbHeader () {
+		const iptBudget = ComponentUiUtil.getIptInt(
 			this,
 			"pb_budget",
 			0,
@@ -428,12 +434,12 @@ export class StatGenUi extends BaseComponent {
 			},
 		);
 		const hkIsCustom = () => {
-			$iptBudget.attr("readonly", !this._state.pb_isCustom);
+			iptBudget.attr("readonly", !this._state.pb_isCustom);
 		};
 		this._addHookBase("pb_isCustom", hkIsCustom);
 		hkIsCustom();
 
-		const $iptRemaining = ComponentUiUtil.$getIptInt(
+		const iptRemaining = ComponentUiUtil.getIptInt(
 			this,
 			"pb_points",
 			0,
@@ -446,16 +452,16 @@ export class StatGenUi extends BaseComponent {
 
 		const hkPoints = () => {
 			this._state.pb_points = this._pb_getPointsRemaining(this._state);
-			$iptRemaining.toggleClass(`statgen-pb__ipt-budget--error`, this._state.pb_points < 0);
+			iptRemaining.toggleClass(`statgen-pb__ipt-budget--error`, this._state.pb_points < 0);
 		};
 		this._addHookAll("state", hkPoints);
 		hkPoints();
 
-		const $btnReset = $(`<button class="ve-btn ve-btn-default">Reset</button>`)
-			.click(() => this._doReset());
+		const btnReset = ee`<button class="ve-btn ve-btn-default">Reset</button>`
+			.onn("click", () => this._doReset());
 
-		const $btnRandom = $(`<button class="ve-btn ve-btn-default">Random</button>`)
-			.click(() => {
+		const btnRandom = ee`<button class="ve-btn ve-btn-default">Random</button>`
+			.onn("click", () => {
 				this._doReset();
 
 				let canIncrease = Parser.ABIL_ABVS.map(it => `pb_${it}`);
@@ -488,54 +494,60 @@ export class StatGenUi extends BaseComponent {
 				}
 			});
 
-		return $$`<div class="ve-flex mobile__ve-flex-col mb-2">
+		return ee`<div class="ve-flex mobile__ve-flex-col mb-2">
 			<div class="ve-flex-v-center">
 				<div class="statgen-pb__cell mr-4 mobile__hidden"></div>
 
 				<label class="ve-flex-col mr-2">
 					<div class="mb-1 ve-text-center">Budget</div>
-					${$iptBudget}
+					${iptBudget}
 				</label>
 
 				<label class="ve-flex-col mr-2">
 					<div class="mb-1 ve-text-center">Remain</div>
-					${$iptRemaining}
+					${iptRemaining}
 				</label>
 			</div>
 
 			<div class="ve-flex-v-center mobile__mt-2">
 				<div class="ve-flex-col mr-2">
 					<div class="mb-1 ve-text-center mobile__hidden">&nbsp;</div>
-					${$btnReset}
+					${btnReset}
 				</div>
 
 				<div class="ve-flex-col">
 					<div class="mb-1 ve-text-center mobile__hidden">&nbsp;</div>
-					${$btnRandom}
+					${btnRandom}
 				</div>
 			</div>
 		</div>`;
 	}
 
-	_render_$getStgPbCustom () {
-		const $btnAddLower = $(`<button class="ve-btn ve-btn-default ve-btn-xs">Add Lower Score</button>`)
-			.click(() => {
+	_render_getStgPbCustom () {
+		const btnAddLower = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Add Lower Score</button>`
+			.onn("click", () => {
+				const prevSecondLowest = this._state.pb_rules[1];
 				const prevLowest = this._state.pb_rules[0];
 				const score = prevLowest.entity.score - 1;
-				const cost = prevLowest.entity.cost;
+				const deltaCostEstimate = prevSecondLowest ? prevLowest.entity.cost - prevSecondLowest.entity.cost : null;
+				const deltaCost = deltaCostEstimate != null && deltaCostEstimate <= 0 ? deltaCostEstimate : 0;
+				const cost = Math.max(prevLowest.entity.cost + deltaCost, 0);
 				this._state.pb_rules = [this._getDefaultState_pb_rule(score, cost), ...this._state.pb_rules];
 			});
 
-		const $btnAddHigher = $(`<button class="ve-btn ve-btn-default ve-btn-xs">Add Higher Score</button>`)
-			.click(() => {
-				const prevHighest = this._state.pb_rules.last();
+		const btnAddHigher = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Add Higher Score</button>`
+			.onn("click", () => {
+				const prevSecondHighest = this._state.pb_rules.at(-2);
+				const prevHighest = this._state.pb_rules.at(-1);
 				const score = prevHighest.entity.score + 1;
-				const cost = prevHighest.entity.cost;
+				const deltaCostEstimate = prevSecondHighest ? prevHighest.entity.cost - prevSecondHighest.entity.cost : null;
+				const deltaCost = deltaCostEstimate != null && deltaCostEstimate >= 0 ? deltaCostEstimate : 1;
+				const cost = prevHighest.entity.cost + deltaCost;
 				this._state.pb_rules = [...this._state.pb_rules, this._getDefaultState_pb_rule(score, cost)];
 			});
 
-		const $btnResetRules = $(`<button class="ve-btn ve-btn-danger ve-btn-xs mr-2">Reset</button>`)
-			.click(() => {
+		const btnResetRules = ee`<button class="ve-btn ve-btn-danger ve-btn-xs mr-2">Reset</button>`
+			.onn("click", () => {
 				this._state.pb_rules = this._getDefaultStatePointBuyCosts().pb_rules;
 			});
 
@@ -544,7 +556,7 @@ export class StatGenUi extends BaseComponent {
 				"Export as Code",
 				async () => {
 					await MiscUtil.pCopyTextToClipboard(this._serialize_pb_rules());
-					JqueryUtil.showCopiedEffect($btnContext);
+					JqueryUtil.showCopiedEffect(btnContext);
 				},
 			),
 			new ContextUtil.Action(
@@ -569,22 +581,22 @@ export class StatGenUi extends BaseComponent {
 			),
 		]);
 
-		const $btnContext = $(`<button class="ve-btn ve-btn-default ve-btn-xs" title="Menu"><span class="glyphicon glyphicon-option-vertical"></span></button>`)
-			.click(evt => ContextUtil.pOpenMenu(evt, menuCustom));
+		const btnContext = ee`<button class="ve-btn ve-btn-default ve-btn-xs" title="Menu"><span class="glyphicon glyphicon-option-vertical"></span></button>`
+			.onn("click", evt => ContextUtil.pOpenMenu(evt, menuCustom));
 
-		const $stgCustomCostControls = $$`<div class="ve-flex-col mb-auto ml-2 mobile__ml-0 mobile__mt-3">
-			<div class="ve-btn-group-vertical ve-flex-col mb-2">${$btnAddLower}${$btnAddHigher}</div>
+		const stgCustomCostControls = ee`<div class="ve-flex-col mb-auto ml-2 mobile__ml-0 mobile__mt-3">
+			<div class="ve-btn-group-vertical ve-flex-col mb-2">${btnAddLower}${btnAddHigher}</div>
 			<div class="ve-flex-v-center">
-				${$btnResetRules}
-				${$btnContext}
+				${btnResetRules}
+				${btnContext}
 			</div>
 		</div>`;
 
-		const $stgCostRows = $$`<div class="ve-flex-col"></div>`;
+		const stgCostRows = ee`<div class="ve-flex-col"></div>`;
 
 		const renderableCollectionRules = new StatGenUiRenderableCollectionPbRules(
 			this,
-			$stgCostRows,
+			stgCostRows,
 		);
 		const hkRules = () => {
 			renderableCollectionRules.render();
@@ -602,7 +614,7 @@ export class StatGenUi extends BaseComponent {
 
 		let lastIsCustom = this._state.pb_isCustom;
 		const hkIsCustomReset = () => {
-			$stgCustomCostControls.toggleVe(this._state.pb_isCustom);
+			stgCustomCostControls.toggleVe(this._state.pb_isCustom);
 
 			if (lastIsCustom === this._state.pb_isCustom) return;
 			lastIsCustom = this._state.pb_isCustom;
@@ -613,7 +625,7 @@ export class StatGenUi extends BaseComponent {
 		this._addHookBase("pb_isCustom", hkIsCustomReset);
 		hkIsCustomReset();
 
-		return $$`<div class="ve-flex-col">
+		return ee`<div class="ve-flex-col">
 			<h4>Ability Score Point Cost</h4>
 
 			<div class="ve-flex-col">
@@ -626,10 +638,10 @@ export class StatGenUi extends BaseComponent {
 							<div class="statgen-pb__col-cost-delete"></div>
 						</div>
 
-						${$stgCostRows}
+						${stgCostRows}
 					</div>
 
-					${$stgCustomCostControls}
+					${stgCustomCostControls}
 				</div>
 			</div>
 
@@ -637,7 +649,7 @@ export class StatGenUi extends BaseComponent {
 
 			<label class="ve-flex-v-center">
 				<div class="mr-2">Custom Rules</div>
-				${ComponentUiUtil.$getCbBool(this, "pb_isCustom")}
+				${ComponentUiUtil.getCbBool(this, "pb_isCustom")}
 			</label>
 		</div>`;
 	}
@@ -678,81 +690,81 @@ export class StatGenUi extends BaseComponent {
 		};
 	}
 
-	_render_all ($wrpTab) {
-		if (this._isLevelUp) return this._render_isLevelUp($wrpTab);
-		this._render_isLevelOne($wrpTab);
+	_render_all (wrpTab) {
+		if (this._isLevelUp) return this._render_isLevelUp(wrpTab);
+		this._render_isLevelOne(wrpTab);
 	}
 
-	_render_isLevelOne ($wrpTab) {
-		let $stgNone;
-		let $stgMain;
-		const $elesRolled = [];
-		const $elesArray = [];
-		const $elesPb = [];
-		const $elesManual = [];
+	_render_isLevelOne (wrpTab) {
+		let stgNone;
+		let stgMain;
+		const elesRolled = [];
+		const elesArray = [];
+		const elesPb = [];
+		const elesManual = [];
 
 		// region Rolled header
-		const $stgRolledHeader = this._render_$getStgRolledHeader();
-		const hkStgRolled = () => $stgRolledHeader.toggleVe(this.ixActiveTab === this._IX_TAB_ROLLED);
+		const stgRolledHeader = this._render_getStgRolledHeader();
+		const hkStgRolled = () => stgRolledHeader.toggleVe(this.ixActiveTab === this._IX_TAB_ROLLED);
 		this._addHookActiveTab(hkStgRolled);
 		hkStgRolled();
 		// endregion
 
 		// region Point Buy stages
-		const $stgPbHeader = this._render_$getStgPbHeader();
-		const $stgPbCustom = this._render_$getStgPbCustom();
-		const $vrPbCustom = $(`<div class="vr-5 mobile-lg__hidden"></div>`);
-		const $hrPbCustom = $(`<hr class="hr-5 mobile-lg__visible">`);
+		const stgPbHeader = this._render_getStgPbHeader();
+		const stgPbCustom = this._render_getStgPbCustom();
+		const vrPbCustom = ee`<div class="vr-5 mobile-lg__hidden"></div>`;
+		const hrPbCustom = ee`<hr class="hr-5 mobile-lg__visible">`;
 		const hkStgPb = () => {
-			$stgPbHeader.toggleVe(this.ixActiveTab === this._IX_TAB_PB);
-			$stgPbCustom.toggleVe(this.ixActiveTab === this._IX_TAB_PB);
-			$vrPbCustom.toggleVe(this.ixActiveTab === this._IX_TAB_PB);
-			$hrPbCustom.toggleVe(this.ixActiveTab === this._IX_TAB_PB);
+			stgPbHeader.toggleVe(this.ixActiveTab === this._IX_TAB_PB);
+			stgPbCustom.toggleVe(this.ixActiveTab === this._IX_TAB_PB);
+			vrPbCustom.toggleVe(this.ixActiveTab === this._IX_TAB_PB);
+			hrPbCustom.toggleVe(this.ixActiveTab === this._IX_TAB_PB);
 		};
 		this._addHookActiveTab(hkStgPb);
 		hkStgPb();
 		// endregion
 
 		// region Array header
-		const $stgArrayHeader = this._render_$getStgArrayHeader();
-		const hkStgArray = () => $stgArrayHeader.toggleVe(this.ixActiveTab === this._IX_TAB_ARRAY);
+		const stgArrayHeader = this._render_getStgArrayHeader();
+		const hkStgArray = () => stgArrayHeader.toggleVe(this.ixActiveTab === this._IX_TAB_ARRAY);
 		this._addHookActiveTab(hkStgArray);
 		hkStgArray();
 		// endregion
 
 		// region Manual header
-		const $stgManualHeader = this._render_$getStgManualHeader();
-		const hkStgManual = () => $stgManualHeader.toggleVe(this.ixActiveTab === this._IX_TAB_MANUAL);
+		const stgManualHeader = this._render_getStgManualHeader();
+		const hkStgManual = () => stgManualHeader.toggleVe(this.ixActiveTab === this._IX_TAB_MANUAL);
 		this._addHookActiveTab(hkStgManual);
 		hkStgManual();
 		// endregion
 
 		// region Other elements
 		const hkElesMode = () => {
-			$stgNone.toggleVe(this.ixActiveTab === this._IX_TAB_NONE);
-			$stgMain.toggleVe(this.ixActiveTab !== this._IX_TAB_NONE);
+			stgNone.toggleVe(this.ixActiveTab === this._IX_TAB_NONE);
+			stgMain.toggleVe(this.ixActiveTab !== this._IX_TAB_NONE);
 
-			$elesRolled.forEach($ele => $ele.toggleVe(this.ixActiveTab === this._IX_TAB_ROLLED));
-			$elesArray.forEach($ele => $ele.toggleVe(this.ixActiveTab === this._IX_TAB_ARRAY));
-			$elesPb.forEach($ele => $ele.toggleVe(this.ixActiveTab === this._IX_TAB_PB));
-			$elesManual.forEach($ele => $ele.toggleVe(this.ixActiveTab === this._IX_TAB_MANUAL));
+			elesRolled.forEach(ele => ele.toggleVe(this.ixActiveTab === this._IX_TAB_ROLLED));
+			elesArray.forEach(ele => ele.toggleVe(this.ixActiveTab === this._IX_TAB_ARRAY));
+			elesPb.forEach(ele => ele.toggleVe(this.ixActiveTab === this._IX_TAB_PB));
+			elesManual.forEach(ele => ele.toggleVe(this.ixActiveTab === this._IX_TAB_MANUAL));
 		};
 		this._addHookActiveTab(hkElesMode);
 		// endregion
 
-		const $btnResetRolledOrArrayOrManual = $(`<button class="ve-btn ve-btn-default ve-btn-xxs relative statgen-shared__btn-reset" title="Reset"><span class="glyphicon glyphicon-refresh"></span></button>`)
-			.click(() => this._doReset());
-		const hkRolledOrArray = () => $btnResetRolledOrArrayOrManual.toggleVe(this.ixActiveTab === this._IX_TAB_ROLLED || this.ixActiveTab === this._IX_TAB_ARRAY || this.ixActiveTab === this._IX_TAB_MANUAL);
+		const btnResetRolledOrArrayOrManual = ee`<button class="ve-btn ve-btn-default ve-btn-xxs relative statgen-shared__btn-reset" title="Reset"><span class="glyphicon glyphicon-refresh"></span></button>`
+			.onn("click", () => this._doReset());
+		const hkRolledOrArray = () => btnResetRolledOrArrayOrManual.toggleVe(this.ixActiveTab === this._IX_TAB_ROLLED || this.ixActiveTab === this._IX_TAB_ARRAY || this.ixActiveTab === this._IX_TAB_MANUAL);
 		this._addHookActiveTab(hkRolledOrArray);
 		hkRolledOrArray();
 
-		const $wrpsBase = Parser.ABIL_ABVS.map(ab => {
+		const wrpsBase = Parser.ABIL_ABVS.map(ab => {
 			// region Rolled
 			const {propAbilSelectedRollIx} = this.constructor._rolled_getProps(ab);
 
-			const $selRolled = $(`<select class="form-control input-xs form-control--minimal statgen-shared__ipt statgen-shared__ipt--sel"></select>`)
-				.change(() => {
-					const ix = Number($selRolled.val());
+			const selRolled = ee`<select class="form-control input-xs form-control--minimal statgen-shared__ipt statgen-shared__ipt--sel"></select>`
+				.onn("change", () => {
+					const ix = Number(selRolled.val());
 
 					const nxtState = {
 						...Parser.ABIL_ABVS
@@ -763,21 +775,21 @@ export class StatGenUi extends BaseComponent {
 					};
 					this._proxyAssignSimple("state", nxtState);
 				});
-			$(`<option></option>`, {value: -1, text: "\u2014"}).appendTo($selRolled);
+			e_({tag: "option", value: -1, txt: "\u2014"}).appendTo(selRolled);
 
-			let $optionsRolled = [];
+			let optionsRolled = [];
 			const hkRolls = () => {
-				$optionsRolled.forEach($opt => $opt.remove());
+				optionsRolled.forEach(opt => opt.remove());
 
 				this._state.rolled_rolls.forEach((it, i) => {
 					const cntPrevRolls = this._state.rolled_rolls.slice(0, i).filter(r => r.total === it.total).length;
-					const $opt = $(`<option></option>`, {value: i, text: `${it.total}${cntPrevRolls ? Parser.numberToSubscript(cntPrevRolls) : ""}`}).appendTo($selRolled);
-					$optionsRolled.push($opt);
+					const opt = e_({tag: "option", value: i, txt: `${it.total}${cntPrevRolls ? Parser.numberToSubscript(cntPrevRolls) : ""}`}).appendTo(selRolled);
+					optionsRolled.push(opt);
 				});
 
 				let nxtSelIx = this._state[propAbilSelectedRollIx];
 				if (nxtSelIx >= this._state.rolled_rolls.length) nxtSelIx = null;
-				$selRolled.val(`${nxtSelIx == null ? -1 : nxtSelIx}`);
+				selRolled.val(`${nxtSelIx == null ? -1 : nxtSelIx}`);
 				if ((nxtSelIx) !== this._state[propAbilSelectedRollIx]) this._state[propAbilSelectedRollIx] = nxtSelIx;
 			};
 			this._addHookBase("rolled_rolls", hkRolls);
@@ -785,20 +797,20 @@ export class StatGenUi extends BaseComponent {
 
 			const hookIxRolled = () => {
 				const ix = this._state[propAbilSelectedRollIx] == null ? -1 : this._state[propAbilSelectedRollIx];
-				$selRolled.val(`${ix}`);
+				selRolled.val(`${ix}`);
 			};
 			this._addHookBase(propAbilSelectedRollIx, hookIxRolled);
 			hookIxRolled();
 
-			$elesRolled.push($selRolled);
+			elesRolled.push(selRolled);
 			// endregion
 
 			// region Array
 			const {propAbilSelectedScoreIx} = this.constructor._array_getProps(ab);
 
-			const $selArray = $(`<select class="form-control input-xs form-control--minimal statgen-shared__ipt statgen-shared__ipt--sel"></select>`)
-				.change(() => {
-					const ix = Number($selArray.val());
+			const selArray = ee`<select class="form-control input-xs form-control--minimal statgen-shared__ipt statgen-shared__ipt--sel"></select>`
+				.onn("change", () => {
+					const ix = Number(selArray.val());
 
 					const nxtState = {
 						...Parser.ABIL_ABVS
@@ -809,23 +821,23 @@ export class StatGenUi extends BaseComponent {
 					};
 					this._proxyAssignSimple("state", nxtState);
 				});
-			$(`<option></option>`, {value: -1, text: "\u2014"}).appendTo($selArray);
+			e_({tag: "option", value: -1, txt: "\u2014"}).appendTo(selArray);
 
-			StatGenUi._STANDARD_ARRAY.forEach((it, i) => $(`<option></option>`, {value: i, text: it}).appendTo($selArray));
+			StatGenUi._STANDARD_ARRAY.forEach((it, i) => e_({tag: "option", value: i, txt: it}).appendTo(selArray));
 
 			const hookIxArray = () => {
 				const ix = this._state[propAbilSelectedScoreIx] == null ? -1 : this._state[propAbilSelectedScoreIx];
-				$selArray.val(`${ix}`);
+				selArray.val(`${ix}`);
 			};
 			this._addHookBase(propAbilSelectedScoreIx, hookIxArray);
 			hookIxArray();
 
-			$elesArray.push($selArray);
+			elesArray.push(selArray);
 			// endregion
 
 			// region Point buy
 			const propPb = `pb_${ab}`;
-			const $iptPb = ComponentUiUtil.$getIptInt(
+			const iptPb = ComponentUiUtil.getIptInt(
 				this,
 				propPb,
 				0,
@@ -843,12 +855,12 @@ export class StatGenUi extends BaseComponent {
 			this._addHookBase(propPb, hkPb);
 			hkPb();
 
-			$elesPb.push($iptPb);
+			elesPb.push(iptPb);
 			// endregion
 
 			// region Manual
 			const {propAbilValue} = this.constructor._manual_getProps(ab);
-			const $iptManual = ComponentUiUtil.$getIptInt(
+			const iptManual = ComponentUiUtil.getIptInt(
 				this,
 				propAbilValue,
 				0,
@@ -858,55 +870,55 @@ export class StatGenUi extends BaseComponent {
 				},
 			);
 
-			$elesManual.push($iptManual);
+			elesManual.push(iptManual);
 			// endregion
 
-			return $$`<label class="my-1 statgen-pb__cell">
-				${$selRolled}
-				${$selArray}
-				${$iptPb}
-				${$iptManual}
+			return ee`<label class="my-1 statgen-pb__cell">
+				${selRolled}
+				${selArray}
+				${iptPb}
+				${iptManual}
 			</label>`;
 		});
 
-		const $wrpsUser = this._render_$getWrpsUser();
+		const wrpsUser = this._render_getWrpsUser();
 
 		const metasTotalAndMod = this._render_getMetasTotalAndMod();
 
 		const {
-			$wrpOuter: $wrpRaceOuter,
-			$stgSel: $stgRaceSel,
-			$dispPreview: $dispPreviewRace,
-			$hrPreview: $hrPreviewRaceTashas,
-			$dispTashas,
+			wrpOuter: wrpRaceOuter,
+			stgSel: stgRaceSel,
+			dispPreview: dispPreviewRace,
+			hrPreview: hrPreviewRaceTashas,
+			dispTashas,
 		} = this._renderLevelOneRace.render();
 
 		const {
-			$wrpOuter: $wrpBackgroundOuter,
-			$stgSel: $stgBackgroundSel,
-			$dispPreview: $dispPreviewBackground,
-			$hrPreview: $hrPreviewBackground,
+			wrpOuter: wrpBackgroundOuter,
+			stgSel: stgBackgroundSel,
+			dispPreview: dispPreviewBackground,
+			hrPreview: hrPreviewBackground,
 		} = this._renderLevelOneBackground.render();
 
-		const $wrpAsi = this._render_$getWrpAsi();
+		const wrpAsi = this._render_getWrpAsi();
 
-		$stgNone = $$`<div class="ve-flex-col w-100 h-100">
+		stgNone = ee`<div class="ve-flex-col w-100 h-100">
 			<div class="ve-flex-v-center"><i>Please select a mode.</i></div>
 		</div>`;
 
-		$stgMain = $$`<div class="ve-flex-col w-100 h-100">
-			${$stgRolledHeader}
-			${$stgArrayHeader}
-			${$stgManualHeader}
+		stgMain = ee`<div class="ve-flex-col w-100 h-100">
+			${stgRolledHeader}
+			${stgArrayHeader}
+			${stgManualHeader}
 
 			<div class="ve-flex mobile-lg__ve-flex-col w-100 px-3">
 				<div class="ve-flex-col">
-					${$stgPbHeader}
+					${stgPbHeader}
 
 					<div class="ve-flex">
 						<div class="ve-flex-col mr-3">
 							<div class="my-1 statgen-pb__header"></div>
-							<div class="my-1 statgen-pb__header ve-flex-h-right">${$btnResetRolledOrArrayOrManual}</div>
+							<div class="my-1 statgen-pb__header ve-flex-h-right">${btnResetRolledOrArrayOrManual}</div>
 
 							${Parser.ABIL_ABVS.map(it => `<div class="my-1 bold statgen-pb__cell ve-flex-v-center ve-flex-h-right" title="${Parser.attAbvToFull(it)}">${it.toUpperCase()}</div>`)}
 						</div>
@@ -914,82 +926,82 @@ export class StatGenUi extends BaseComponent {
 						<div class="ve-flex-col mr-3">
 							<div class="my-1 statgen-pb__header"></div>
 							<div class="my-1 bold statgen-pb__header ve-flex-vh-center">Base</div>
-							${$wrpsBase}
+							${wrpsBase}
 						</div>
 
-						${$wrpBackgroundOuter}
-						${$wrpRaceOuter}
+						${wrpBackgroundOuter}
+						${wrpRaceOuter}
 
 						<div class="ve-flex-col mr-3">
 							<div class="my-1 statgen-pb__header"></div>
 							<div class="my-1 statgen-pb__header ve-flex-vh-center help ve-muted" title="Input any additional/custom bonuses here">User</div>
-							${$wrpsUser}
+							${wrpsUser}
 						</div>
 
 						<div class="ve-flex-col mr-3">
 							<div class="my-1 statgen-pb__header"></div>
 							<div class="my-1 statgen-pb__header ve-flex-vh-center">Total</div>
-							${metasTotalAndMod.map(it => it.$wrpIptTotal)}
+							${metasTotalAndMod.map(it => it.wrpIptTotal)}
 						</div>
 
 						<div class="ve-flex-col mr-3">
 							<div class="my-1 statgen-pb__header"></div>
 							<div class="my-1 statgen-pb__header ve-flex-vh-center" title="Modifier">Mod.</div>
-							${metasTotalAndMod.map(it => it.$wrpIptMod)}
+							${metasTotalAndMod.map(it => it.wrpIptMod)}
 						</div>
 					</div>
 
-					${$stgBackgroundSel}
-					${$stgRaceSel}
+					${stgBackgroundSel}
+					${stgRaceSel}
 				</div>
 
-				${$vrPbCustom}
-				${$hrPbCustom}
+				${vrPbCustom}
+				${hrPbCustom}
 
-				${$stgPbCustom}
+				${stgPbCustom}
 			</div>
 
 			<hr class="hr-3">
 
-			${$dispPreviewBackground}
-			
-			${$hrPreviewBackground}
+			${dispPreviewBackground}
 
-			${$dispPreviewRace}
-			${$hrPreviewRaceTashas}
-			${$dispTashas}
+			${hrPreviewBackground}
 
-			${$wrpAsi}
+			${dispPreviewRace}
+			${hrPreviewRaceTashas}
+			${dispTashas}
+
+			${wrpAsi}
 		</div>`;
 
 		hkElesMode();
 
-		$wrpTab
-			.append($stgMain)
-			.append($stgNone);
+		wrpTab
+			.appends(stgMain)
+			.appends(stgNone);
 	}
 
 	_renderLevelOneRace = new StatGenUiRenderLevelOneRace({parent: this});
 
 	_renderLevelOneBackground = new StatGenUiRenderLevelOneBackground({parent: this});
 
-	_render_isLevelUp ($wrpTab) {
-		const $wrpsExisting = Parser.ABIL_ABVS.map(ab => {
-			const $iptExisting = $(`<input class="form-control form-control--minimal statgen-shared__ipt ve-text-right" type="number" readonly>`)
+	_render_isLevelUp (wrpTab) {
+		const wrpsExisting = Parser.ABIL_ABVS.map(ab => {
+			const iptExisting = ee`<input class="form-control form-control--minimal statgen-shared__ipt ve-text-right" type="number" readonly>`
 				.val(this._existingScores[ab]);
 
-			return $$`<label class="my-1 statgen-pb__cell">
-				${$iptExisting}
+			return ee`<label class="my-1 statgen-pb__cell">
+				${iptExisting}
 			</label>`;
 		});
 
-		const $wrpsUser = this._render_$getWrpsUser();
+		const wrpsUser = this._render_getWrpsUser();
 
 		const metasTotalAndMod = this._render_getMetasTotalAndMod();
 
-		const $wrpAsi = this._render_$getWrpAsi();
+		const wrpAsi = this._render_getWrpAsi();
 
-		$$($wrpTab)`
+		ee(wrpTab)`
 			<div class="ve-flex mobile-lg__ve-flex-col w-100 px-3">
 				<div class="ve-flex-col">
 					<div class="ve-flex">
@@ -1001,22 +1013,22 @@ export class StatGenUi extends BaseComponent {
 
 						<div class="ve-flex-col mr-3">
 							<div class="my-1 bold statgen-pb__header ve-flex-vh-center" title="Current">Curr.</div>
-							${$wrpsExisting}
+							${wrpsExisting}
 						</div>
 
 						<div class="ve-flex-col mr-3">
 							<div class="my-1 statgen-pb__header ve-flex-vh-center help ve-muted" title="Input any additional/custom bonuses here">User</div>
-							${$wrpsUser}
+							${wrpsUser}
 						</div>
 
 						<div class="ve-flex-col mr-3">
 							<div class="my-1 statgen-pb__header ve-flex-vh-center">Total</div>
-							${metasTotalAndMod.map(it => it.$wrpIptTotal)}
+							${metasTotalAndMod.map(it => it.wrpIptTotal)}
 						</div>
 
 						<div class="ve-flex-col mr-3">
 							<div class="my-1 statgen-pb__header ve-flex-vh-center" title="Modifier">Mod.</div>
-							${metasTotalAndMod.map(it => it.$wrpIptMod)}
+							${metasTotalAndMod.map(it => it.wrpIptMod)}
 						</div>
 					</div>
 				</div>
@@ -1024,14 +1036,14 @@ export class StatGenUi extends BaseComponent {
 
 			<hr class="hr-3">
 
-			${$wrpAsi}
+			${wrpAsi}
 		`;
 	}
 
-	_render_$getWrpsUser () {
+	_render_getWrpsUser () {
 		return Parser.ABIL_ABVS.map(ab => {
 			const {propUserBonus} = this.constructor._common_getProps(ab);
-			const $ipt = ComponentUiUtil.$getIptInt(
+			const ipt = ComponentUiUtil.getIptInt(
 				this,
 				propUserBonus,
 				0,
@@ -1040,17 +1052,17 @@ export class StatGenUi extends BaseComponent {
 					html: `<input class="form-control form-control--minimal statgen-shared__ipt ve-text-right" type="number">`,
 				},
 			);
-			return $$`<label class="my-1 statgen-pb__cell">${$ipt}</label>`;
+			return ee`<label class="my-1 statgen-pb__cell">${ipt}</label>`;
 		});
 	}
 
 	_render_getMetasTotalAndMod () {
 		return Parser.ABIL_ABVS.map(ab => {
-			const $iptTotal = $(`<input class="form-control form-control--minimal statgen-shared__ipt ve-text-center" type="text" readonly>`);
-			const $iptMod = $(`<input class="form-control form-control--minimal statgen-shared__ipt ve-text-center" type="text" readonly>`);
+			const iptTotal = ee`<input class="form-control form-control--minimal statgen-shared__ipt ve-text-center" type="text" readonly>`;
+			const iptMod = ee`<input class="form-control form-control--minimal statgen-shared__ipt ve-text-center" type="text" readonly>`;
 
-			const $wrpIptTotal = $$`<label class="my-1 statgen-pb__cell">${$iptTotal}</label>`;
-			const $wrpIptMod = $$`<label class="my-1 statgen-pb__cell">${$iptMod}</label>`;
+			const wrpIptTotal = ee`<label class="my-1 statgen-pb__cell">${iptTotal}</label>`;
+			const wrpIptMod = ee`<label class="my-1 statgen-pb__cell">${iptMod}</label>`;
 
 			const exportedStateProp = `common_export_${ab}`;
 
@@ -1069,11 +1081,11 @@ export class StatGenUi extends BaseComponent {
 				const totalScore = getTotalScore();
 
 				const isOverLimit = totalScore > 20;
-				$iptTotal
+				iptTotal
 					.val(totalScore)
 					.toggleClass("form-control--error", isOverLimit)
-					.title(isOverLimit ? `In general, you can't increase an ability score above 20.` : "");
-				$iptMod.val(Parser.getAbilityModifier(totalScore));
+					.tooltip(isOverLimit ? `In general, you can't increase an ability score above 20.` : "");
+				iptMod.val(Parser.getAbilityModifier(totalScore));
 
 				this._state[exportedStateProp] = totalScore;
 			};
@@ -1082,16 +1094,16 @@ export class StatGenUi extends BaseComponent {
 			hk();
 
 			return {
-				$wrpIptTotal,
-				$wrpIptMod,
+				wrpIptTotal,
+				wrpIptMod,
 			};
 		});
 	}
 
-	_render_$getWrpAsi () {
-		const $wrpAsi = $(`<div class="ve-flex-col w-100"></div>`);
-		this._compAsi.render($wrpAsi);
-		return $wrpAsi;
+	_render_getWrpAsi () {
+		const wrpAsi = ee`<div class="ve-flex-col w-100"></div>`;
+		this._compAsi.render(wrpAsi);
+		return wrpAsi;
 	}
 
 	static _common_getProps (ab) {
@@ -1368,7 +1380,12 @@ export class StatGenUi extends BaseComponent {
 		}
 		// endregion
 
-		super.setStateFrom(saved, isOverwrite);
+		this._isSettingStateFromOverwrite = isOverwrite;
+		try {
+			super.setStateFrom(saved, isOverwrite);
+		} finally {
+			this._isSettingStateFromOverwrite = false;
+		}
 	}
 
 	_pb_getMinMaxScores () {

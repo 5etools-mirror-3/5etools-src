@@ -86,18 +86,18 @@ export class ConverterUiBase extends BaseComponent {
 
 	/* -------------------------------------------- */
 
-	renderSidebar (parent, $parent) {
-		const $wrpSidebar = $(`<div class="w-100 ve-flex-col"></div>`).appendTo($parent);
-		const hkShowSidebar = () => $wrpSidebar.toggleClass("hidden", parent.get("converter") !== this._converterId);
+	renderSidebar (parent, eleParent) {
+		const wrpSidebar = ee`<div class="w-100 ve-flex-col"></div>`.appendTo(eleParent);
+		const hkShowSidebar = () => wrpSidebar.toggleClass("hidden", parent.get("converter") !== this._converterId);
 		parent.addHook("converter", hkShowSidebar);
 		hkShowSidebar();
 
-		this._renderSidebar(parent, $wrpSidebar);
-		this._renderSidebarSamplesPart(parent, $wrpSidebar);
-		this._renderSidebarConverterOptionsPart(parent, $wrpSidebar);
-		this._renderSidebarPagePart(parent, $wrpSidebar);
-		this._renderSidebarSourcePart(parent, $wrpSidebar);
-		this._renderSidebarStyleHintPart(parent, $wrpSidebar);
+		this._renderSidebar(parent, wrpSidebar);
+		this._renderSidebarSamplesPart(parent, wrpSidebar);
+		this._renderSidebarConverterOptionsPart(parent, wrpSidebar);
+		this._renderSidebarPagePart(parent, wrpSidebar);
+		this._renderSidebarSourcePart(parent, wrpSidebar);
+		this._renderSidebarStyleHintPart(parent, wrpSidebar);
 	}
 
 	/* -------------------------------------------- */
@@ -126,10 +126,10 @@ export class ConverterUiBase extends BaseComponent {
 
 	/* -------------------------------------------- */
 
-	_renderSidebarSamplesPart (parent, $wrpSidebar) {
-		const $btnsSamples = this._modes.map(mode => {
-			return $(`<button class="ve-btn ve-btn-xs ve-btn-default">Sample ${ConverterUiBase._getDisplayMode(mode)}</button>`)
-				.click(() => {
+	_renderSidebarSamplesPart (parent, wrpSidebar) {
+		const btnsSamples = this._modes.map(mode => {
+			return ee`<button class="ve-btn ve-btn-xs ve-btn-default">Sample ${ConverterUiBase._getDisplayMode(mode)}</button>`
+				.onn("click", () => {
 					const sample = this._getSample(mode);
 					if (!sample) {
 						JqueryUtil.doToast({type: "warning", content: `No ${ConverterUiBase._getDisplayMode(mode)} sample available!`});
@@ -140,12 +140,12 @@ export class ConverterUiBase extends BaseComponent {
 				});
 		});
 
-		$$`<div class="w-100 ve-flex-vh-center-around">${$btnsSamples}</div>`.appendTo($wrpSidebar);
+		ee`<div class="w-100 ve-flex-vh-center-around">${btnsSamples}</div>`.appendTo(wrpSidebar);
 
-		ConverterUiUtil.renderSideMenuDivider($wrpSidebar);
+		ConverterUiUtil.renderSideMenuDivider(wrpSidebar);
 	}
 
-	_renderSidebarConverterOptionsPart (parent, $wrpSidebar) {
+	_renderSidebarConverterOptionsPart (parent, wrpSidebar) {
 		const hasModes = this._modes.length > 1;
 
 		if (!hasModes && !this._titleCaseFields) return;
@@ -159,53 +159,53 @@ export class ConverterUiBase extends BaseComponent {
 		hkMode();
 
 		if (hasModes) {
-			const $selMode = ComponentUiUtil.$getSelEnum(this, "mode", {values: this._modes, html: `<select class="form-control input-xs select-inline"></select>`, fnDisplay: it => `Parse as ${ConverterUiBase._getDisplayMode(it)}`});
-			$$`<div class="w-100 mt-2 ve-flex-vh-center-around">${$selMode}</div>`.appendTo($wrpSidebar);
+			const selMode = ComponentUiUtil.getSelEnum(this, "mode", {values: this._modes, html: `<select class="form-control input-xs select-inline"></select>`, fnDisplay: it => `Parse as ${ConverterUiBase._getDisplayMode(it)}`});
+			ee`<div class="w-100 mt-2 ve-flex-vh-center-around">${selMode}</div>`.appendTo(wrpSidebar);
 		}
 
 		if (this._titleCaseFields) {
-			const $cbTitleCase = ComponentUiUtil.$getCbBool(this, "isTitleCase");
-			$$`<div class="w-100 mt-2 split-v-center">
+			const cbTitleCase = ComponentUiUtil.getCbBool(this, "isTitleCase");
+			ee`<div class="w-100 mt-2 split-v-center">
 				<label class="sidemenu__row__label sidemenu__row__label--cb-label" title="Should the creature's name be converted to title-case? Useful when pasting a name which is all-caps."><span>Title-Case Name</span>
-				${$cbTitleCase}
-			</label></div>`.appendTo($wrpSidebar);
+				${cbTitleCase}
+			</label></div>`.appendTo(wrpSidebar);
 		}
-		ConverterUiUtil.renderSideMenuDivider($wrpSidebar);
+		ConverterUiUtil.renderSideMenuDivider(wrpSidebar);
 	}
 
-	_renderSidebarPagePart (parent, $wrpSidebar) {
+	_renderSidebarPagePart (parent, wrpSidebar) {
 		if (!this._hasPageNumbers) return;
 
 		const getBtnIncrementDecrement = (dir) => {
 			const verb = ~dir ? "Increment" : "Decrement";
-			return $(`<button class="ve-btn ve-btn-xs ve-btn-default h-100" title="${verb} Page Number (SHIFT to ${verb} by 5)"><span class="glyphicon glyphicon-${~dir ? "plus" : "minus"}"></span></button>`)
-				.on("click", evt => this._state.page += dir * (evt.shiftKey ? 5 : 1));
+			return ee`<button class="ve-btn ve-btn-xs ve-btn-default h-100" title="${verb} Page Number (SHIFT to ${verb} by 5)"><span class="glyphicon glyphicon-${~dir ? "plus" : "minus"}"></span></button>`
+				.onn("click", evt => this._state.page += dir * (evt.shiftKey ? 5 : 1));
 		};
 
-		const $iptPage = ComponentUiUtil.$getIptInt(this, "page", 0)
+		const iptPage = ComponentUiUtil.getIptInt(this, "page", 0)
 			.addClass("max-w-80p");
-		$$`<div class="w-100 split-v-center">
+		ee`<div class="w-100 split-v-center">
 			<div class="sidemenu__row__label mr-2 help" title="Note that a line of the form &quot;PAGE=&lt;page number&gt;&quot; in the Input will set the page in the Output, ignoring any value set here. This is especially useful when parsing multiple inputs delimited by a separator.">Page</div>
 			<div class="ve-btn-group input-group ve-flex-v-center h-100">
 				${getBtnIncrementDecrement(-1)}
-				${$iptPage}
+				${iptPage}
 				${getBtnIncrementDecrement(1)}
 			</div>
-		</div>`.appendTo($wrpSidebar);
+		</div>`.appendTo(wrpSidebar);
 
-		ConverterUiUtil.renderSideMenuDivider($wrpSidebar);
+		ConverterUiUtil.renderSideMenuDivider(wrpSidebar);
 	}
 
-	_renderSidebarSourcePart (parent, $wrpSidebar) {
+	_renderSidebarSourcePart (parent, wrpSidebar) {
 		if (!this._hasSource) return;
 
-		const $wrpSourceOverlay = $(`<div class="h-100 w-100"></div>`);
+		const wrpSourceOverlay = ee`<div class="h-100 w-100"></div>`;
 		let modalMeta = null;
 
 		const rebuildStageSource = (options) => {
 			SourceUiUtil.render({
 				...options,
-				$parent: $wrpSourceOverlay,
+				eleParent: wrpSourceOverlay,
 				cbConfirm: async (source) => {
 					const isNewSource = options.mode !== "edit";
 
@@ -228,17 +228,18 @@ export class ConverterUiBase extends BaseComponent {
 			});
 		};
 
-		const $selSource = $$`
-			<select class="form-control input-xs"><option value="">(None)</option></select>`
-			.change(() => this._state.source = $selSource.val());
+		const selSource = ee`<select class="form-control input-xs"><option value="">(None)</option></select>`
+			.onn("change", () => this._state.source = selSource.val());
 
-		$(`<option></option>`, {val: "5e_divider", text: `\u2014`, disabled: true}).appendTo($selSource);
+		const eleDivider = e_({tag: "option", val: "5e_divider", txt: `\u2014`, attrs: {disabled: true}}).appendTo(selSource);
 
-		Object.keys(Parser.SOURCE_JSON_TO_FULL)
-			.forEach(src => $(`<option></option>`, {val: src, text: Parser.sourceJsonToFull(src)}).appendTo($selSource));
+		const srcToOption = Object.fromEntries(
+			Object.keys(Parser.SOURCE_JSON_TO_FULL)
+				.map(src => [src, e_({tag: "option", val: src, txt: Parser.sourceJsonToFull(src)}).appendTo(selSource)]),
+		);
 
 		const hkAvailSources = () => {
-			const curSources = new Set($selSource.find(`option`).map((i, e) => $(e).val()));
+			const curSources = new Set(Object.keys(srcToOption));
 			curSources.add("");
 			const nxtSources = new Set(parent.get("availableSources"));
 			nxtSources.add("");
@@ -255,27 +256,32 @@ export class ConverterUiBase extends BaseComponent {
 			});
 
 			if (optionsToAdd.length) {
-				const $optBrewLast = $selSource.find(`option[disabled]`).prev();
+				const optBrewLast = eleDivider.prev();
 				optionsToAdd.forEach(source => {
 					const fullSource = BrewUtil2.sourceJsonToSource(source);
-					$(`<option></option>`, {val: fullSource.json, text: fullSource.full}).insertAfter($optBrewLast);
+					srcToOption[source] = e_({tag: "option", val: fullSource.json, txt: fullSource.full}).insertAfter(optBrewLast);
 				});
 			}
 
 			const toDelete = curSources.difference(nxtSources);
-			if (toDelete.size) $selSource.find(`option`).filter((i, e) => toDelete.has($(e).val())).remove();
+			if (toDelete.size) {
+				toDelete.forEach(src => {
+					srcToOption[src].remove();
+					delete srcToOption[src];
+				});
+			}
 		};
 		parent.addHook("availableSources", hkAvailSources);
 		hkAvailSources();
 
-		const hkSource = () => $selSource.val(this._state.source);
+		const hkSource = () => selSource.val(this._state.source);
 		this._addHookBase("source", hkSource);
 		hkSource();
 
-		$$`<div class="w-100 mb-2 split-v-center"><div class="sidemenu__row__label mr-2">Source</div>${$selSource}</div>`.appendTo($wrpSidebar);
+		ee`<div class="w-100 mb-2 split-v-center"><div class="sidemenu__row__label mr-2">Source</div>${selSource}</div>`.appendTo(wrpSidebar);
 
-		const $btnSourceEdit = $(`<button class="ve-btn ve-btn-default ve-btn-xs">Edit Selected</button>`)
-			.click(() => {
+		const btnSourceEdit = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Edit Selected</button>`
+			.onn("click", () => {
 				const curSourceJson = this._state.source;
 				if (!curSourceJson) {
 					JqueryUtil.doToast({type: "warning", content: "No source selected!"});
@@ -288,26 +294,26 @@ export class ConverterUiBase extends BaseComponent {
 				modalMeta = UiUtil.getShowModal({
 					isHeight100: true,
 					isUncappedHeight: true,
-					cbClose: () => $wrpSourceOverlay.detach(),
+					cbClose: () => wrpSourceOverlay.detach(),
 				});
-				$wrpSourceOverlay.appendTo(modalMeta.$modalInner);
+				wrpSourceOverlay.appendTo(modalMeta.eleModalInner);
 			});
 
-		const $btnSourceAdd = $(`<button class="ve-btn ve-btn-default ve-btn-xs">Add New</button>`).click(() => {
+		const btnSourceAdd = ee`<button class="ve-btn ve-btn-default ve-btn-xs">Add New</button>`.onn("click", () => {
 			rebuildStageSource({mode: "add"});
 			modalMeta = UiUtil.getShowModal({
 				isHeight100: true,
 				isUncappedHeight: true,
-				cbClose: () => $wrpSourceOverlay.detach(),
+				cbClose: () => wrpSourceOverlay.detach(),
 			});
-			$wrpSourceOverlay.appendTo(modalMeta.$modalInner);
+			wrpSourceOverlay.appendTo(modalMeta.eleModalInner);
 		});
-		$$`<div class="w-100 ve-btn-group ve-flex-v-center ve-flex-h-right">${$btnSourceEdit}${$btnSourceAdd}</div>`.appendTo($wrpSidebar);
+		ee`<div class="w-100 ve-btn-group ve-flex-v-center ve-flex-h-right">${btnSourceEdit}${btnSourceAdd}</div>`.appendTo(wrpSidebar);
 
-		ConverterUiUtil.renderSideMenuDivider($wrpSidebar);
+		ConverterUiUtil.renderSideMenuDivider(wrpSidebar);
 	}
 
-	_renderSidebarStyleHintPart (parent, $wrpSidebar) {
+	_renderSidebarStyleHintPart (parent, wrpSidebar) {
 		const selStyleHint = ComponentUiUtil.getSelEnum(
 			this,
 			"styleHint",
@@ -320,24 +326,24 @@ export class ConverterUiBase extends BaseComponent {
 			},
 		);
 
-		$$`<div class="w-100 mb-2 split-v-center"><div class="sidemenu__row__label mr-2">Style</div>${selStyleHint}</div>`.appendTo($wrpSidebar);
+		ee`<div class="w-100 mb-2 split-v-center"><div class="sidemenu__row__label mr-2">Style</div>${selStyleHint}</div>`.appendTo(wrpSidebar);
 
-		ConverterUiUtil.renderSideMenuDivider($wrpSidebar);
+		ConverterUiUtil.renderSideMenuDivider(wrpSidebar);
 	}
 
 	/* -------------------------------------------- */
 
-	renderFooterLhs (parent, {$wrpFooterLhs}) {
+	renderFooterLhs (parent, {wrpFooterLhs}) {
 		if (!this._hasPageNumbers) return;
 
-		const $dispPage = $(`<div class="ve-muted italic" title="Use &quot;+&quot; and &quot;-&quot; (when the cursor is not in a text input) to increase/decrease."></div>`)
-			.appendTo($wrpFooterLhs);
+		const dispPage = ee`<div class="ve-muted italic" title="Use &quot;+&quot; and &quot;-&quot; (when the cursor is not in a text input) to increase/decrease."></div>`
+			.appendTo(wrpFooterLhs);
 
 		this._addHookBase("page", () => {
-			$dispPage.html(this._state.page != null ? `<b class="mr-1">Page:</b> ${this._state.page}` : "");
+			dispPage.html(this._state.page != null ? `<b class="mr-1">Page:</b> ${this._state.page}` : "");
 		})();
 
-		parent.addHook("converter", () => $dispPage.toggleClass("ve-hidden", parent.get("converter") !== this._converterId))();
+		parent.addHook("converter", () => dispPage.toggleClass("ve-hidden", parent.get("converter") !== this._converterId))();
 	}
 
 	/* -------------------------------------------- */

@@ -451,7 +451,7 @@ export class LootGenUi extends BaseComponent {
 		]);
 
 		// Update the tab button on-click
-		tabMeta.buttons[0].pFnClick = evt => ContextUtil.pOpenMenu(evt, menuOthers);
+		tabMeta.buttons[0].pFnClick = ({evt}) => ContextUtil.pOpenMenu(evt, menuOthers);
 
 		const hkIsActive = () => {
 			const tab = this._getActiveTab();

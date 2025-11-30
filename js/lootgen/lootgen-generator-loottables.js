@@ -6,6 +6,7 @@ import {
 } from "./lootgen-const.js";
 import {LootGenMagicItem} from "./lootgen-magicitem.js";
 import {LootGenOutputMagicItems} from "./lootgen-output.js";
+import {LootGenRender} from "./lootgen-render.js";
 
 export class LootGenGeneratorLootTables extends LootGenGeneratorBase {
 	identifier = "lootTables";
@@ -73,7 +74,7 @@ export class LootGenGeneratorLootTables extends LootGenGeneratorBase {
 			if (tableMeta == null) return;
 
 			dispHelp.html(this._lt_getRenderedHelp({tableMeta}));
-			dispTable.html(Renderer.get().setFirstSection(true).render(tableMeta.tableEntry));
+			dispTable.html(LootGenRender.er(tableMeta.tableEntry));
 		};
 		this._addHookBase("lt_ixTable", hkTable);
 		hkTable();
@@ -108,9 +109,9 @@ export class LootGenGeneratorLootTables extends LootGenGeneratorBase {
 
 	_lt_getRenderedHelp ({tableMeta}) {
 		switch (tableMeta.metaType) {
-			case LOOT_TABLES_TYPE__DMG_MAGIC_ITEMS: return Renderer.get().setFirstSection(true).render(`Based on the tables and rules in the {@book ${Parser.sourceJsonToFull(Parser.SRC_DMG)}|DMG|7|Treasure Tables}, pages 133-149.`);
-			case LOOT_TABLES_TYPE__XGE_FAUX: return Renderer.get().setFirstSection(true).render(`Tables auto-generated based on the rules in {@book ${Parser.sourceJsonToFull(Parser.SRC_XGE)} (Choosing Items Piecemeal)|XGE|2|choosing items piecemeal}, pages 135-136.`);
-			case LOOT_TABLES_TYPE__XDMG_THEMES: return Renderer.get().setFirstSection(true).render(`Based on the tables and rules in the {@book ${Parser.sourceJsonToFull(Parser.SRC_XDMG)}|XDMG|6|Random Magic Items}, pages 326-331.`);
+			case LOOT_TABLES_TYPE__DMG_MAGIC_ITEMS: return LootGenRender.er(`Based on the tables and rules in the {@book ${Parser.sourceJsonToFull(Parser.SRC_DMG)}|DMG|7|Treasure Tables}, pages 133-149.`);
+			case LOOT_TABLES_TYPE__XGE_FAUX: return LootGenRender.er(`Tables auto-generated based on the rules in {@book ${Parser.sourceJsonToFull(Parser.SRC_XGE)} (Choosing Items Piecemeal)|XGE|2|choosing items piecemeal}, pages 135-136.`);
+			case LOOT_TABLES_TYPE__XDMG_THEMES: return LootGenRender.er(`Based on the tables and rules in the {@book ${Parser.sourceJsonToFull(Parser.SRC_XDMG)}|XDMG|6|Random Magic Items}, pages 326-331.`);
 			default: throw new Error(`Unhandled table meta-type "${tableMeta.metaType}"`);
 		}
 	}

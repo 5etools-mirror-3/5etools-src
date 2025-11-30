@@ -1,5 +1,6 @@
 import {LootGenGeneratorBase} from "./lootgen-generator-base.js";
 import {LootGenOutputDragonMundaneItems} from "./lootgen-output.js";
+import {LootGenRender} from "./lootgen-render.js";
 
 export class LootGenGeneratorDragonHoard extends LootGenGeneratorBase {
 	static _DRAGON_AGES = [
@@ -46,7 +47,7 @@ export class LootGenGeneratorDragonHoard extends LootGenGeneratorBase {
 
 			<hr class="hr-3">
 
-			<div class="ve-small italic">${Renderer.get().setFirstSection(true).render(`Based on the tables and rules in {@book Fizban's Treasury of Dragons|FTD|4|Creating a Hoard}`)}, pages 72.</div>
+			<div class="ve-small italic">${LootGenRender.er(`Based on the tables and rules in {@book Fizban's Treasury of Dragons|FTD|4|Creating a Hoard}`)}, pages 72.</div>
 		</div>`.appendTo(tabMeta.wrpTab);
 	}
 

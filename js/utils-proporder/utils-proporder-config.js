@@ -42,6 +42,7 @@ const PROPORDER_FOUNDRY_GENERIC = [
 	PROPORDER_FOUNDRY_EFFECTS,
 	"flags",
 	"img",
+	"advice",
 
 	new ObjectKey("subEntities", {
 		fnGetOrder: () => PROPORDER_ROOT,
@@ -61,6 +62,7 @@ const PROPORDER_FOUNDRY_GENERIC_FEATURE = [
 	PROPORDER_FOUNDRY_EFFECTS,
 	"flags",
 	"img",
+	"advice",
 
 	"isIgnored",
 	"ignoreSrdActivities",
@@ -71,6 +73,8 @@ const PROPORDER_FOUNDRY_GENERIC_FEATURE = [
 	new ObjectKey("entryData", {
 		fnGetOrder: () => PROPORDER_ENTRY_DATA_OBJECT,
 	}),
+
+	"advancement",
 
 	new ObjectKey("subEntities", {
 		fnGetOrder: () => PROPORDER_ROOT,
@@ -99,6 +103,7 @@ const PROPORDER_MONSTER = [
 	"basicRules2024",
 	"additionalSources",
 	"otherSources",
+	"isReprinted",
 	"reprintedAs",
 
 	"summonedBySpell",
@@ -205,6 +210,7 @@ const PROPORDER_MONSTER = [
 	"token",
 	"tokenHref",
 	"tokenCredit",
+	"tokenCustom",
 	"soundClip",
 
 	...PROPS_FOUNDRY_DATA_INLINE,
@@ -319,6 +325,7 @@ const PROPORDER_FOUNDRY_MONSTER = [
 	PROPORDER_FOUNDRY_EFFECTS,
 	"flags",
 	"img",
+	"advice",
 
 	"migrationVersion",
 ];
@@ -513,6 +520,7 @@ const PROPORDER_BOOK = [
 
 	"id",
 	"source",
+	"parentSource",
 
 	"group",
 
@@ -692,6 +700,7 @@ const PROPORDER_FOUNDRY_CLASS = [
 	PROPORDER_FOUNDRY_EFFECTS,
 	"flags",
 	"img",
+	"advice",
 
 	"advancement",
 	"chooseSystem",
@@ -796,6 +805,7 @@ const PROPORDER_FOUNDRY_SUBCLASS = [
 	PROPORDER_FOUNDRY_EFFECTS,
 	"flags",
 	"img",
+	"advice",
 
 	"advancement",
 	"chooseSystem",
@@ -923,6 +933,7 @@ const PROPORDER_FOUNDRY_CLASS_FEATURE = [
 	PROPORDER_FOUNDRY_EFFECTS,
 	"flags",
 	"img",
+	"advice",
 
 	"entries",
 
@@ -930,6 +941,7 @@ const PROPORDER_FOUNDRY_CLASS_FEATURE = [
 		fnGetOrder: () => PROPORDER_ENTRY_DATA_OBJECT,
 	}),
 
+	"advancement",
 	"chooseSystem",
 	"isChooseSystemRenderEntries",
 	"isChooseFlagsRenderEntries",
@@ -959,6 +971,7 @@ const PROPORDER_FOUNDRY_SUBCLASS_FEATURE = [
 	PROPORDER_FOUNDRY_EFFECTS,
 	"flags",
 	"img",
+	"advice",
 
 	"entries",
 
@@ -966,6 +979,7 @@ const PROPORDER_FOUNDRY_SUBCLASS_FEATURE = [
 		fnGetOrder: () => PROPORDER_ENTRY_DATA_OBJECT,
 	}),
 
+	"advancement",
 	"chooseSystem",
 	"isChooseSystemRenderEntries",
 	"isChooseFlagsRenderEntries",
@@ -998,6 +1012,7 @@ const PROPORDER_LANGUAGE = [
 
 	"type",
 	"typicalSpeakers",
+	"origin",
 	"script",
 
 	"fonts",
@@ -1331,6 +1346,7 @@ const PROPORDER_VEHICLE = [
 	"control",
 	"movement",
 	"weapon",
+	"station",
 	"other",
 
 	"entries",
@@ -1344,6 +1360,7 @@ const PROPORDER_VEHICLE = [
 	"token",
 	"tokenHref",
 	"tokenCredit",
+	"tokenCustom",
 
 	"hasToken",
 	"hasFluff",
@@ -1772,6 +1789,7 @@ const PROPORDER_OBJECT = [
 	"token",
 	"tokenHref",
 	"tokenCredit",
+	"tokenCustom",
 
 	"altArt",
 
@@ -2043,6 +2061,7 @@ const PROPORDER_FOUNDRY_RACE_FEATURE = [
 	PROPORDER_FOUNDRY_EFFECTS,
 	"flags",
 	"img",
+	"advice",
 
 	"migrationVersion",
 ];
@@ -2296,6 +2315,10 @@ const PROPORDER_ENCOUNTER = [
 	new ArrayKey("tables", {
 		order: [
 			"caption",
+
+			"captionPrefix",
+			"captionSuffix",
+
 			"minlvl",
 			"maxlvl",
 

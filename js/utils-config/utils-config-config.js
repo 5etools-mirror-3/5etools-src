@@ -24,12 +24,12 @@ export class VetoolsConfig {
 
 	static get (groupId, configId) {
 		this._init();
-		return MiscUtil.get(this._CONFIG, groupId, configId);
+		return this._CONFIG[groupId]?.[configId];
 	}
 
 	static set (groupId, configId, val) {
 		this._init();
-		MiscUtil.set(this._CONFIG, groupId, configId, val);
+		((this._CONFIG ||= {})[groupId] ||= {})[configId] = val;
 		this._save();
 	}
 

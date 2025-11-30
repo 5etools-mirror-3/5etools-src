@@ -1400,7 +1400,7 @@ class TimeTrackerRoot_Clock_Weather extends TimeTrackerComponent {
 			$hovEnvEffects.show();
 			if (hashes.length === 1) {
 				const ele = $hovEnvEffects[0];
-				$hovEnvEffects.mouseover(evt => Renderer.hover.pHandleLinkMouseOver(evt, ele, {page: UrlUtil.PG_TRAPS_HAZARDS, source: srcHazards, hash: hashes[0]}));
+				$hovEnvEffects.mouseover(evt => Renderer.hover.pHandleLinkMouseOver(evt, ele, {isSpecifiedLinkData: true, page: UrlUtil.PG_TRAPS_HAZARDS, source: srcHazards, hash: hashes[0]}));
 				$hovEnvEffects.mouseleave(evt => Renderer.hover.handleLinkMouseLeave(evt, ele));
 				$hovEnvEffects.mousemove(evt => Renderer.hover.handleLinkMouseMove(evt, ele));
 			} else if (hashes.length) {

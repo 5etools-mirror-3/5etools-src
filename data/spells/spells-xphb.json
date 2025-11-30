@@ -1564,7 +1564,7 @@
 				}
 			],
 			"entries": [
-				"Choose any number of creatures within range. For the duration, each target has {@variantrule Advantage|XPHB} on Wisdom saving throws and Death Saving Throws and regains the maximum number of {@variantrule Hit Points|XPHB} possible from any healing."
+				"Choose any number of creatures within range. For the duration, each target has {@variantrule Advantage|XPHB} on Wisdom saving throws and {@variantrule Death Saving Throw|XPHB|Death Saving Throws} and regains the maximum number of {@variantrule Hit Points|XPHB} possible from any healing."
 			],
 			"miscTags": [
 				"ADV",
@@ -1812,7 +1812,7 @@
 					"type": "entries",
 					"name": "Using a Higher-Level Spell Slot",
 					"entries": [
-						"The damage of the Clenched Fist increases by {@scaledamage 4d8|5-9|2d8} and the damage of the Grasping Hand increases by {@scaledamage 2d6|5-9|2d6} for each spell slot level above 5."
+						"The damage of the Clenched Fist increases by {@scaledamage 5d8|5-9|2d8} and the damage of the Grasping Hand increases by {@scaledamage 4d6|5-9|2d6} for each spell slot level above 5."
 					]
 				}
 			],
@@ -5025,7 +5025,8 @@
 				"If any of this spell's area overlaps with an area of {@variantrule Bright Light|XPHB} or {@variantrule Dim Light|XPHB} created by a spell of level 2 or lower, that other spell is dispelled."
 			],
 			"miscTags": [
-				"OBJ"
+				"OBJ",
+				"OBS"
 			],
 			"areaTags": [
 				"S"
@@ -9900,7 +9901,8 @@
 				"undead"
 			],
 			"miscTags": [
-				"LGT"
+				"LGT",
+				"OBS"
 			]
 		},
 		{
@@ -10679,7 +10681,8 @@
 				"dexterity"
 			],
 			"miscTags": [
-				"DFT"
+				"DFT",
+				"OBS"
 			],
 			"areaTags": [
 				"S"
@@ -16866,7 +16869,7 @@
 			"range": {
 				"type": "point",
 				"distance": {
-					"type": "touch"
+					"type": "self"
 				}
 			},
 			"components": {
@@ -18039,6 +18042,9 @@
 			"entries": [
 				"You create a {@quantity 20|-foot}-radius {@variantrule Sphere [Area of Effect]|XPHB|Sphere} of yellow, nauseating gas centered on a point within range. The cloud is {@variantrule Heavily Obscured|XPHB}. The cloud lingers in the air for the duration or until a strong wind (such as the one created by {@spell Gust of Wind|XPHB}) disperses it.",
 				"Each creature that starts its turn in the {@variantrule Sphere [Area of Effect]|XPHB|Sphere} must succeed on a Constitution saving throw or have the {@condition Poisoned|XPHB} condition until the end of the current turn. While {@condition Poisoned|XPHB} in this way, the creature can't take an action or a {@variantrule Bonus Action|XPHB}."
+			],
+			"conditionInflict": [
+				"poisoned"
 			],
 			"savingThrow": [
 				"constitution"
@@ -20161,7 +20167,7 @@
 					"name": "Creature into Creature",
 					"entries": [
 						"If you turn a creature into another kind of creature, the new form can be any kind you choose that has a {@variantrule Challenge Rating|XPHB} equal to or less than the target's {@variantrule Challenge Rating|XPHB} or level. The target's game statistics are replaced by the stat block of the new form, but it retains its {@variantrule Hit Points|XPHB}, {@variantrule Hit Point Dice|XPHB}, alignment, and personality.",
-						"The target gains a number of {@variantrule Temporary Hit Points|XPHB} equal to the {@variantrule Hit Points|XPHB} of the new form. These {@variantrule Temporary Hit Points|XPHB} vanish if any remain when the spell ends. The spell ends early on the target if it has no {@variantrule Temporary Hit Points|XPHB} left.",
+						"The target gains a number of {@variantrule Temporary Hit Points|XPHB} equal to the {@variantrule Hit Points|XPHB} of the new form. These {@variantrule Temporary Hit Points|XPHB} vanish if any remain when the spell ends.",
 						"The target is limited in the actions it can perform by the anatomy of its new form, and it can't speak or cast spells.",
 						"The target's gear melds into the new form. The creature can't use or otherwise benefit from any of that equipment."
 					]

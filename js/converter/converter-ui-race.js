@@ -20,8 +20,8 @@ export class RaceConverterUi extends ConverterUiBase {
 		);
 	}
 
-	_renderSidebar (parent, $wrpSidebar) {
-		$wrpSidebar.empty();
+	_renderSidebar (parent, wrpSidebar) {
+		wrpSidebar.empty();
 	}
 
 	handleParse (input, cbOutput, cbWarning, isAppend) {

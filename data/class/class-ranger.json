@@ -1500,6 +1500,42 @@
 				"Superior Hunter's Defense|Ranger|XPHB|Hunter|XPHB|15"
 			],
 			"hasFluffImages": true
+		},
+		{
+			"name": "Winter Walker",
+			"shortName": "Winter Walker",
+			"source": "FRHoF",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"edition": "one",
+			"additionalSpells": [
+				{
+					"prepared": {
+						"3": [
+							"ice knife|xphb"
+						],
+						"5": [
+							"hold person|xphb"
+						],
+						"9": [
+							"remove curse|xphb"
+						],
+						"13": [
+							"ice storm|xphb"
+						],
+						"17": [
+							"cone of cold|xphb"
+						]
+					}
+				}
+			],
+			"subclassFeatures": [
+				"Winter Walker|Ranger|XPHB|Winter Walker|FRHoF|3|FRHoF",
+				"Fortifying Soul|Ranger|XPHB|Winter Walker|FRHoF|7|FRHoF",
+				"Chilling Retribution|Ranger|XPHB|Winter Walker|FRHoF|11|FRHoF",
+				"Frozen Haunt|Ranger|XPHB|Winter Walker|FRHoF|15|FRHoF"
+			],
+			"hasFluffImages": true
 		}
 	],
 	"classFeature": [
@@ -3874,6 +3910,182 @@
 			"header": 2,
 			"entries": [
 				"At 15th level, you gain the ability to counterattack when your prey tries to sabotage you. If the target of your Slayer's Prey forces you to make a saving throw, you can use your reaction to make one weapon attack against the quarry. You make this attack immediately before making the saving throw. If your attack hits, your save automatically succeeds, in addition to the attack's normal effects."
+			]
+		},
+		{
+			"name": "Frigid Explorer",
+			"source": "FRHoF",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Winter Walker",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"You gain the following benefits.",
+				{
+					"type": "entries",
+					"name": "Biting Cold",
+					"page": 6,
+					"entries": [
+						"{@variantrule Damage|XPHB} from your weapon attacks, Ranger spells, and Ranger features ignores {@variantrule Resistance|XPHB} to Cold damage."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Frost Resistance",
+					"page": 6,
+					"entries": [
+						"You have {@variantrule Resistance|XPHB} to Cold damage."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Polar Strikes",
+					"page": 6,
+					"entries": [
+						"When you hit a creature with an attack roll using a weapon, you can deal an extra {@damage 1d4} Cold damage to the target, which can take this extra damage only once per turn. When you reach Ranger level 11, this extra damage increases to {@dice 1d6}."
+					]
+				}
+			]
+		},
+		{
+			"name": "Hunter's Rime",
+			"source": "FRHoF",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Winter Walker",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"Ice rimes you and your prey, protecting you and slowing them. When you cast {@spell Hunter's Mark|XPHB}, you gain {@variantrule Temporary Hit Points|XPHB} equal to {@dice 1d10} plus your {@class Ranger|XPHB} level.",
+				"Additionally, while a creature is marked by your {@spell Hunter's Mark|XPHB}, it can't take the {@action Disengage|XPHB} action."
+			]
+		},
+		{
+			"name": "Winter Walker",
+			"source": "FRHoF",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Winter Walker",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"{@i Withstand the Horrors of Frigid Wastelands}",
+				"Winter Walkers hone their craft in the bleak and frozen wilds of places like Icewind Dale. These ruthless, rimed Rangers hunt monsters that haunt arctic wastelands, eventually becoming frigid terrors themselves. Winter Walkers are well versed in the phenomena of Icewind Dale, including the latent magic of fallen Netherese cities, endemic monsters like {@creature yeti|XMM|yetis} and {@creature crag cat|SKT|crag cats}, and the rising threat of Underdark invaders. Due to their cold pragmatism, terrifying magic, and mastery of the region, Winter Walkers are regarded with equal parts respect and fear. Ten-Towns citizens say that Winter Walkers' frequent exposure to malignant entities gives them their fearsome powers. Many Reghed nomads, on the other hand, believe that nature spirits bestow on Winter Walkers a unique curse.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Frigid Explorer|Ranger|XPHB|Winter Walker|FRHoF|3|FRHoF"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Hunter's Rime|Ranger|XPHB|Winter Walker|FRHoF|3|FRHoF"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Winter Walker Spells|Ranger|XPHB|Winter Walker|FRHoF|3|FRHoF"
+				}
+			]
+		},
+		{
+			"name": "Winter Walker Spells",
+			"source": "FRHoF",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Winter Walker",
+			"subclassSource": "FRHoF",
+			"level": 3,
+			"entries": [
+				"When you reach a Ranger level specified in the Winter Walker Spells table, you thereafter always have the listed spells prepared.",
+				{
+					"type": "table",
+					"colLabels": [
+						"Ranger Level",
+						"Spells"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"3",
+							"{@spell Ice Knife|XPHB}"
+						],
+						[
+							"5",
+							"{@spell Hold Person|XPHB}"
+						],
+						[
+							"9",
+							"{@spell Remove Curse|XPHB}"
+						],
+						[
+							"13",
+							"{@spell Ice Storm|XPHB}"
+						],
+						[
+							"17",
+							"{@spell Cone of Cold|XPHB}"
+						]
+					]
+				}
+			]
+		},
+		{
+			"name": "Fortifying Soul",
+			"source": "FRHoF",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Winter Walker",
+			"subclassSource": "FRHoF",
+			"level": 7,
+			"header": 2,
+			"entries": [
+				"Your experience surviving harrowing environments allows you to bolster your allies in addition to yourself. As a {@action Magic|XPHB} action, choose a number of creatures you can see equal to your Wisdom modifier (minimum of one). Each chosen creature regains {@variantrule Hit Points|XPHB} equal to {@dice 1d10} plus your Ranger level and has {@variantrule Advantage|XPHB} on saving throws to avoid or end the {@condition Frightened|XPHB} condition for 1 hour.",
+				"Once you use this feature, you can't use it again until you finish a {@variantrule Long Rest|XPHB}."
+			]
+		},
+		{
+			"name": "Chilling Retribution",
+			"source": "FRHoF",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Winter Walker",
+			"subclassSource": "FRHoF",
+			"level": 11,
+			"header": 2,
+			"entries": [
+				"When a creature hits you with an attack roll, you can take a {@variantrule Reaction|XPHB} to force the creature to make a Wisdom saving throw against your spell save DC. On a failed save, the target has the {@condition Stunned|XPHB} condition until the end of your next turn. While the target is {@condition Stunned|XPHB}, its {@variantrule Speed|XPHB} is reduced to {@quantity 0|feet}.",
+				"You can use this feature a number of times equal to your Wisdom modifier (minimum of once), and you regain all expended uses when you finish a {@variantrule Long Rest|XPHB}."
+			]
+		},
+		{
+			"name": "Frozen Haunt",
+			"source": "FRHoF",
+			"className": "Ranger",
+			"classSource": "XPHB",
+			"subclassShortName": "Winter Walker",
+			"subclassSource": "FRHoF",
+			"level": 15,
+			"header": 2,
+			"entries": [
+				"When you cast {@spell Hunter's Mark|XPHB}, you can adopt a ghostly, snowy form. This form lasts until the spell ends, and while you are in this form, you gain the following benefits. Once you use this feature, you can't use it again until you finish a {@variantrule Long Rest|XPHB} unless you expend a level 4+ spell slot (no action required).",
+				{
+					"type": "entries",
+					"name": "Frozen Soul",
+					"page": 6,
+					"entries": [
+						"You have {@variantrule Immunity|XPHB} to Cold damage. When you first adopt this form and at the start of each of your subsequent turns, each creature of your choice in a {@quantity 15|-foot} {@variantrule Emanation [Area of Effect]|XPHB|Emanation} originating from you takes {@damage 2d4} Cold damage."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Partially Incorporeal",
+					"page": 6,
+					"entries": [
+						"You have {@variantrule Immunity|XPHB} to the {@condition Grappled|XPHB}, {@condition Prone|XPHB}, and {@condition Restrained|XPHB} conditions. You can move through creatures and objects as if they were {@variantrule Difficult Terrain|XPHB}, but you take {@damage 1d10} Force damage if you end your turn inside a creature or an object. If the form ends while you are inside a creature or an object, you are shunted to the nearest unoccupied space."
+					]
+				}
 			]
 		},
 		{

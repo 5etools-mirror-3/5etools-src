@@ -21,7 +21,7 @@ export class InitiativeTrackerPlayerV1 {
 		</div>`;
 
 		const view = new InitiativeTrackerPlayerMessageHandlerScreenV1();
-		view.setElements($meta, $head, $rows);
+		view.setElements(e_($meta[0]), e_($head[0]), e_($rows[0]));
 
 		let ui;
 		const $btnConnectRemote = $(`<button class="ve-btn ve-btn-primary mb-2 min-w-200p" title="Connect to a tracker outside of this browser tab.">Connect to Remote Tracker</button>`)
@@ -160,10 +160,10 @@ class InitiativeTrackerPlayerMessageHandlerScreenV1 extends InitiativeTrackerPla
 		if (this._isUiInit) return;
 		this._isUiInit = true;
 
-		this._$meta.show();
-		this._$head.show();
-		this._$rows.show();
-		this._$wrpInitial.addClass("hidden");
+		this._eleMeta.showVe();
+		this._eleHead.showVe();
+		this._eleRows.showVe();
+		this._$wrpInitial.hideVe();
 	}
 
 	set $wrpInitial ($wrpInitial) { this._$wrpInitial = $wrpInitial; }
@@ -195,7 +195,7 @@ export class InitiativeTrackerPlayerV0 {
 		</div>`;
 
 		const view = new InitiativeTrackerPlayerMessageHandlerScreenV0();
-		view.setElements($meta, $head, $rows);
+		view.setElements(e_($meta[0]), e_($head[0]), e_($rows[0]));
 
 		const $btnConnectRemote = $(`<button class="ve-btn ve-btn-primary mb-2 min-w-200p" title="Connect to a tracker outside of this browser tab.">Connect to Remote Tracker</button>`)
 			.click(() => {
@@ -233,7 +233,7 @@ export class InitiativeTrackerPlayerV0 {
 					</div>
 				</div>`.appendTo(view.$wrpInitial);
 
-				const ui = new InitiativeTrackerPlayerUiV0(view, $iptServerToken, $btnGenClientToken, $iptClientToken);
+				const ui = new InitiativeTrackerPlayerUiV0(view, e_($iptServerToken[0]), e_($btnGenClientToken[0]), e_($iptClientToken[0]));
 				ui.init();
 			});
 
@@ -303,10 +303,10 @@ class InitiativeTrackerPlayerMessageHandlerScreenV0 extends InitiativeTrackerPla
 		if (this._isUiInit) return;
 		this._isUiInit = true;
 
-		this._$meta.show();
-		this._$head.show();
-		this._$rows.show();
-		this._$wrpInitial.addClass("hidden");
+		this._eleMeta.showVe();
+		this._eleHead.showVe();
+		this._eleRows.showVe();
+		this._$wrpInitial.hideVe();
 
 		$(window).on("beforeunload", evt => {
 			if (this._clientData.client.isActive) {

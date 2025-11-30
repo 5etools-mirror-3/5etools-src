@@ -105,7 +105,7 @@ class _InitiativeTrackerMonsterAddCustomizer extends BaseComponent {
 			</label>`;
 		}
 
-		const dispScaledCr = ee`<span class="inline-block"></span>`;
+		const dispScaledCr = ee`<span class="ve-inline-block"></span>`;
 		this._addHookBase("scaledCr", () => dispScaledCr.txt(this._state.scaledCr ? Parser.numberToCr(this._state.scaledCr) : `${(this._mon.cr.cr || this._mon.cr)} (default)`))();
 
 		const btnScaleCr = ee`<button class="ve-btn ve-btn-default ve-btn-xs mr-2"><span class="glyphicon glyphicon-signal"></span></button>`

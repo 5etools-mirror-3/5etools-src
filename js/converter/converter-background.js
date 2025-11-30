@@ -51,6 +51,8 @@ export class ConverterBackground extends ConverterFeatureBase {
 		}
 		state.doPostLoop();
 
+		this._doParseText_one_applyListItems(state, options);
+
 		if (!background.entries?.length) delete background.entries;
 
 		const entityOut = this._getFinalEntity(state, options);
@@ -123,16 +125,17 @@ export class ConverterBackground extends ConverterFeatureBase {
 			.filter(Boolean);
 		if (!tks.length) return;
 
-		// TODO(Future) attempt to @tag feats
+		let ptEntry = state.curLine.slice(state.curLine.length - lineNoHeader.length).trim();
+		tks.forEach(tk => ptEntry = ptEntry.replace(new RegExp(`\\b${tk.escapeRegexp()}\\b`, "i"), (...m) => `{@feat ${m[0]}|${state.options.source || ""}}`));
+
 		state._one_listItems.push({
 			type: "item",
 			name: state.curLine.slice(0, state.curLine.length - lineNoHeader.length).trim(),
-			entry: state.curLine.slice(state.curLine.length - lineNoHeader.length).trim(),
+			entry: ptEntry,
 		});
 
 		// TODO(Future) attempt to map feat to available feats
-		state.entity.feats = tks
-			.map(tk => `${tk.toLowerCase()}|${(state.options.source || "").toLowerCase()}`);
+		state.entity.feats = tks.map(tk => ({[`${tk.toLowerCase()}|${(state.options.source || "").toLowerCase()}`]: true}));
 	}
 
 	static _doParseText_stepSkillProficiencies (state, options) {
@@ -182,9 +185,13 @@ export class ConverterBackground extends ConverterFeatureBase {
 		}
 
 		state.entity.fluff = {entries};
-		if (state._one_listItems.length) {
-			state.entity.entries = [{type: "list", style: "list-hang-notitle", items: state._one_listItems}];
-		}
+	}
+
+	static _doParseText_one_applyListItems (state, options) {
+		if (options.styleHint === SITE_STYLE__CLASSIC) return;
+
+		if (!state._one_listItems?.length) return;
+		state.entity.entries = [{type: "list", style: "list-hang-notitle", items: state._one_listItems}];
 	}
 
 	// SHARED UTILITY FUNCTIONS ////////////////////////////////////////////////////////////////////////////////////////

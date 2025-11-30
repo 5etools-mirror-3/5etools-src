@@ -41,6 +41,7 @@ export class EquipmentBreakdown {
 
 		this._convert({
 			bg,
+			cbWarning,
 			entry,
 			mappingsManual,
 			allowlistOrEnds,
@@ -70,6 +71,7 @@ export class EquipmentBreakdown {
 	 * ```
 	 *
 	 * @param bg
+	 * @param cbWarning
 	 * @param entry
 	 * @param mappingsManual
 	 * @param allowlistOrEnds
@@ -79,14 +81,66 @@ export class EquipmentBreakdown {
 	static _convert (
 		{
 			bg,
+			cbWarning,
 			entry,
 			mappingsManual,
 			allowlistOrEnds,
 			blocklistSplits,
 		},
 	) {
+		entry = entry.trim();
+
 		blocklistSplits.forEach((str, i) => entry = entry.replace(str, `__SPLIT_${i}__`));
-		const parts = entry
+
+		if (/^Choose A or B:/.test(entry)) {
+			entry = entry.replace(/^Choose A or B: \(A\)\s*/, "");
+			const [ptA, ptB] = entry
+				.split("; or (B) ")
+				.map(pt => pt.trim()).filter(Boolean);
+
+			const startingA = this._getConvertedPartInfo({
+				str: ptA,
+				mappingsManual,
+				allowlistOrEnds,
+				blocklistSplits,
+				keyNoChoice: "a",
+			});
+
+			const startingB = this._getConvertedPartInfo({
+				str: ptB,
+				mappingsManual,
+				allowlistOrEnds,
+				blocklistSplits,
+				keyNoChoice: "b",
+			});
+
+			if (startingA.length !== 1 || startingB.length !== 1) return cbWarning(`"${bg.name}" Starting equipment requires manual conversion`);
+
+			bg.startingEquipment = [
+				Object.assign(startingA[0], startingB[0]),
+			];
+
+			return;
+		}
+
+		bg.startingEquipment = this._getConvertedPartInfo({
+			str: entry,
+			mappingsManual,
+			allowlistOrEnds,
+			blocklistSplits,
+		});
+	}
+
+	static _getConvertedPartInfo (
+		{
+			str,
+			mappingsManual,
+			allowlistOrEnds,
+			blocklistSplits,
+			keyNoChoice = "_",
+		},
+	) {
+		const parts = str
 			.split(/\. /g)
 			.map(it => it.trim())
 			.map(it => it.split(StrUtil.COMMAS_NOT_IN_PARENTHESES_REGEX).map(it => it.trim()))
@@ -125,6 +179,11 @@ export class EquipmentBreakdown {
 								);
 								return "";
 							})
+							.replace(/\((?<amount>\d+) days' worth\)$/i, (...m) => {
+								const {amount} = m.at(-1);
+								quantity = Parser.textToNumber(amount.trim());
+								return m[0];
+							})
 							.trim();
 
 						if (isNaN(quantity)) throw new Error(`Quantity found in "${chOriginal}" was not a number!`);
@@ -135,7 +194,7 @@ export class EquipmentBreakdown {
 						let cntValueWorth = 0;
 						ch = ch
 							// Remove trailing parenthetical parts, e.g. "... (Azorius-minted 1-zino coins)"
-							.replace(/(containing|with|worth) (\d+\s*[csgep]p)(\s+\([^)]+\))?/g, (...m) => {
+							.replace(/(containing|with|worth) (\d+\s*[csgep]p)(\s+\([^)]+\))?/gi, (...m) => {
 								switch (m[1].toLowerCase().trim()) {
 									case "containing":
 									case "with": cntValueContainingWith += 1; break;
@@ -149,13 +208,13 @@ export class EquipmentBreakdown {
 							.replace(/\s+/g, " ")
 							.trim()
 							// Handle e.g. "1 sp"--the quantity will have been pulled out already
-							.replace(/^[csgep]p$/g, (...m) => {
+							.replace(/^[csgep]p$/gi, (...m) => {
 								valueCp = Parser.coinValueToNumber(`${quantity} ${m[0]}`);
 								return "";
 							})
 							.trim()
 							// Handle e.g. "(10 gp)"
-							.replace(/\((\d+\s*[csgep]p)\)/g, (...m) => {
+							.replace(/\((\d+\s*[csgep]p)\)/gi, (...m) => {
 								valueCp += Parser.coinValueToNumber(m[1]);
 								return "";
 							})
@@ -265,8 +324,8 @@ export class EquipmentBreakdown {
 
 				// Assign each choice a letter (or use underscore if it's the only choice)
 				if (outChoices.length === 1) {
-					if (outChoices[0].isList) return {"_": outChoices[0].data};
-					return {"_": [outChoices[0]]};
+					if (outChoices[0].isList) return {[keyNoChoice]: outChoices[0].data};
+					return {[keyNoChoice]: [outChoices[0]]};
 				}
 
 				const outPart = {};
@@ -281,14 +340,14 @@ export class EquipmentBreakdown {
 		const outReduced = [];
 		out
 			.forEach(info => {
-				if (!info._) return outReduced.push(info);
+				if (!info[keyNoChoice]) return outReduced.push(info);
 
-				const existing = outReduced.find(x => x._);
-				if (existing) return existing._.push(...info._);
+				const existing = outReduced.find(x => x[keyNoChoice]);
+				if (existing) return existing[keyNoChoice].push(...info[keyNoChoice]);
 				return outReduced.push(info);
 			});
 
-		bg.startingEquipment = outReduced;
+		return outReduced;
 	}
 
 	static _splitChoices ({str, allowlistOrEnds}) {
@@ -621,17 +680,23 @@ export class BackgroundSkillToolLanguageTag {
 		];
 	}
 
+	static _TOOL_GROUP_MAPPINGS = {
+		"gaming set": "anyGamingSet",
+		"artisan's tools": "anyArtisansTool",
+		"musical instrument": "anyMusicalInstrument",
+	};
+
 	static _doToolTag ({bg, list, cbWarning}) {
 		const toolProf = list.items.find(ent => BackgroundConverterConst.RE_NAME_TOOLS.test(ent.name));
 		if (!toolProf) return;
 
 		const entry = Renderer.stripTags(toolProf.entry.toLowerCase())
 			.replace(/\(see [^)]+\)/g, "").trim()
-			.replace(/one (?:type|kind) of gaming set/g, "gaming set")
-			.replace(/one (?:type|kind) of artisan's tools/g, "artisan's tools")
-			.replace(/one (?:type|kind) of gaming set/g, "gaming set")
-			.replace(/one (?:type|kind) of musical instrument/g, "musical instrument")
-			.replace(/one other set of artisan's tools/g, "artisan's tools")
+			.replace(/(?:choose )?one (?:type|kind) of gaming set/g, "gaming set")
+			.replace(/(?:choose )?one (?:type|kind) of artisan's tools/g, "artisan's tools")
+			.replace(/(?:choose )?one (?:type|kind) of gaming set/g, "gaming set")
+			.replace(/(?:choose )?one (?:type|kind) of musical instrument/g, "musical instrument")
+			.replace(/(?:choose )?one other set of artisan's tools/g, "artisan's tools")
 			.replace(/s' supplies/g, "'s supplies")
 		;
 
@@ -645,7 +710,11 @@ export class BackgroundSkillToolLanguageTag {
 					.filter(Boolean)
 					.map(pt => pt.trim())
 					.filter(pt => pt)
-					.mergeMap(pt => ({[pt]: true})),
+					.mergeMap(pt => {
+						const group = this._TOOL_GROUP_MAPPINGS[pt];
+						if (group) return {[group]: 1};
+						return {[pt]: true};
+					}),
 			];
 			return;
 		}

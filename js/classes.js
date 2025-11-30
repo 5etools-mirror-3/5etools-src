@@ -370,9 +370,6 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			$btnClear: $(`#lst__search-glass`),
 			dispPageTagline: document.getElementById(`page__subtitle`),
 			isBindFindHotkey: true,
-			optsList: {
-				isUseJquery: true,
-			},
 		});
 		SortUtil.initBtnSortHandlers(es("#filtertools"), this._list);
 
@@ -393,7 +390,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			.then(({ManageBrewUi}) => {
 				ManageBrewUi.bindBtngroupManager(e_({id: "btngroup-manager"}));
 			});
-		this._renderListFeelingLucky({isCompact: true, $btnReset});
+		this._renderListFeelingLucky({isCompact: true, $btnReset, isScrollablePage: true});
 
 		window.onhashchange = this._pHandleHashChange.bind(this);
 
@@ -879,12 +876,12 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		const hash = UrlUtil.autoEncodeHash(cls);
 		const source = Parser.sourceJsonToAbv(cls.source);
 
-		const $lnk = $(`<a href="#${hash}" class="lst__row-border lst__row-inner">
+		const lnk = ee`<a href="#${hash}" class="lst__row-border lst__row-inner">
 			<span class="bold ve-col-8 pl-0 pr-1">${cls.name}</span>
 			<span class="ve-col-4 pl-0 pr-1 ve-text-center ${Parser.sourceJsonToSourceClassname(cls.source)} pr-0" title="${Parser.sourceJsonToFull(cls.source)}">${source}</span>
-		</a>`);
+		</a>`;
 
-		const $ele = $$`<li class="lst__row ve-flex-col ${isExcluded ? "row--blocklisted" : ""}">${$lnk}</li>`;
+		const $ele = ee`<li class="lst__row ve-flex-col ${isExcluded ? "row--blocklisted" : ""}">${lnk}</li>`;
 
 		return new ListItem(
 			clsI,
@@ -896,7 +893,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 				page: cls.page,
 			},
 			{
-				$lnk,
+				lnk,
 				entity: cls,
 				isExcluded,
 			},
@@ -997,10 +994,10 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			// defer this for performance
 			setTimeout(() => {
 				this._list.items
-					.filter(it => it.data.$lnk)
+					.filter(it => it.data.lnk)
 					.forEach(it => {
 						const href = `#${this._getHashState({class: it.data.entity})}`;
-						it.data.$lnk.attr("href", href);
+						it.data.lnk.attr("href", href);
 					});
 			}, 5);
 		};
@@ -1015,7 +1012,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		await this._render_pRenderSubclassTabs();
 		await this._render_pRenderClassContent();
 		this._render_renderOutline();
-		this._render_renderAltViews();
+		await this._render_pRenderAltViews();
 		// endregion
 
 		// region state handling
@@ -1328,7 +1325,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 					// Make a dummy for the last item
 					const $dispComma = ixFeature === lvlFeaturesFilt.length - 1 ? $(`<span></span>`) : $(`<span class="mr-1">,</span>`);
 					return {
-						$wrpLink: $$`<div class="inline-block">${$lnk}${$dispComma}</div>`,
+						$wrpLink: $$`<div class="ve-inline-block">${$lnk}${$dispComma}</div>`,
 						$dispComma,
 						source: it.source,
 						otherSources: it.otherSources,
@@ -2063,7 +2060,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 		};
 	}
 
-	_render_renderAltViews () { // Donuts *are* delicious!
+	async _render_pRenderAltViews () { // Donuts *are* delicious!
 		const cls = this.activeClass;
 
 		// region subclass comparison
@@ -2074,6 +2071,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			pageFilter: this._pageFilter,
 			listSubclass: this._listSubclass,
 		});
+		await this._subclassComparisonView.pInit();
 
 		this._addHookBase("isViewActiveScComp", async () => {
 			try {
@@ -2096,6 +2094,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			classPage: this,
 			pageFilter: this._pageFilter,
 		});
+		await this._classBookView.pInit();
 
 		this._addHookBase("isViewActiveBook", async () => {
 			try {
@@ -2363,7 +2362,7 @@ ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
 
 	constructor ({classPage, pageFilter, listSubclass}) {
 		super({
-			$btnOpen: $(`#btn-comparemode`),
+			btnOpen: es(`#btn-comparemode`),
 			state: classPage._state,
 		});
 
@@ -2375,12 +2374,12 @@ ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
 		this._fnsCleanup = [];
 	}
 
-	_$getWindowHeaderLhs () {
-		const $out = super._$getWindowHeaderLhs();
+	_getWindowHeaderLhs () {
+		const out = super._getWindowHeaderLhs();
 
-		const $btnSelectSubclasses = $(`<button class="ve-btn ve-btn-xs ve-btn-default bl-0 bt-0 btl-0 btr-0 bbr-0 bbl-0 h-20p" title="Select Subclasses"><span class="glyphicon glyphicon-th-list"></span></button>`)
-			.click(async () => {
-				const {$modal, doClose} = UiUtil.getShowModal({
+		const btnSelectSubclasses = ee`<button class="ve-btn ve-btn-xs ve-btn-default bl-0 bt-0 btl-0 btr-0 bbr-0 bbl-0 h-20p" title="Select Subclasses"><span class="glyphicon glyphicon-th-list"></span></button>`
+			.onn("click", async () => {
+				const {eleModal, doClose} = UiUtil.getShowModal({
 					isEmpty: true,
 					isMinHeight0: true,
 					isMinWidth0: true,
@@ -2390,71 +2389,72 @@ ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
 					},
 				});
 
-				const {$stg, fnCleanup} = this._getSelectSubclassesMeta({
+				const {stg, fnCleanup} = this._getSelectSubclassesMeta({
 					cbOnSave: () => {
 						doClose();
 					},
 					isCloseButton: false,
 				});
-				$modal
+				eleModal
 					.addClass("bkmv")
-					.append($stg);
+					.appends(stg);
 			})
-			.appendTo($out);
+			.appendTo(out);
 
-		return $out;
+		return out;
 	}
 
 	_getSelectSubclassesMeta ({cbOnSave = null, isCloseButton = true} = {}) {
-		const $wrpRows = $(`<div class="ve-flex-col min-h-0"></div>`);
+		const wrpRows = ee`<div class="ve-flex-col min-h-0"></div>`;
 
-		const $btnAdjustFilters = $(`<span class="clickable help no-select" title="Click Here!">adjust your filters</span>`)
-			.click(() => this._classPage.filterBox.show());
-		const $dispNoneAvailable = $$`<div class="ve-small ve-muted italic">No subclasses are available. Please ${$btnAdjustFilters} first.</div>`;
+		const btnAdjustFilters = ee`<span class="clickable help no-select" title="Click Here!">adjust your filters</span>`
+			.onn("click", () => this._classPage.filterBox.show());
+		const dispNoneAvailable = ee`<div class="ve-small ve-muted italic">No subclasses are available. Please ${btnAdjustFilters} first.</div>`;
 
-		const $stg = $$`<div class="ve-flex-col">
+		const stg = ee`<div class="ve-flex-col">
 			<div class="mb-2 initial-message initial-message--med">Please select some subclasses:</div>
-			${$wrpRows}
-			${$dispNoneAvailable}
+			${wrpRows}
+			${dispNoneAvailable}
 		</div>`;
 
 		const onListUpdate = () => {
 			const subclassStateItems = this._listSubclass.visibleItems.filter(it => it.values.stateKey);
 
 			if (!subclassStateItems.length) {
-				$wrpRows.hideVe();
-				$dispNoneAvailable.showVe();
+				wrpRows.hideVe();
+				dispNoneAvailable.showVe();
 				return;
 			}
 
-			$wrpRows.showVe();
-			$dispNoneAvailable.hideVe();
+			wrpRows.showVe();
+			dispNoneAvailable.hideVe();
 
-			$wrpRows.empty();
+			wrpRows.empty();
 			const rowMetas = subclassStateItems.map(li => {
-				const $cb = $(`<input type="checkbox">`);
+				const cb = ee`<input type="checkbox">`;
 
-				$cb.prop("checked", this._parent.get(li.values.stateKey));
+				cb.prop("checked", this._parent.get(li.values.stateKey));
 
-				$$`<label class="split-v-center py-1">
+				ee`<label class="split-v-center py-1">
 					<div>${li.name}</div>
-					${$cb}
-				</label>`.appendTo($wrpRows);
-				return {$cb, stateKey: li.values.stateKey};
+					${cb}
+				</label>`.appendTo(wrpRows);
+
+				return {cb, stateKey: li.values.stateKey};
 			});
 
 			const subclassStateItemsVisiblePrev = subclassStateItems.filter(li => this._parent.get(li.values.stateKey));
-			const $btnSave = $(`<button class="ve-btn ve-btn-default mr-2">Save</button>`)
-				.click(async () => {
+			const btnSave = ee`<button class="ve-btn ve-btn-default mr-2">Save</button>`
+				.onn("click", async () => {
 					const nxtState = {isViewActiveScComp: false};
 
-					const rowMetasFilt = rowMetas.filter(it => it.$cb.prop("checked"));
+					const rowMetasFilt = rowMetas.filter(it => it.cb.prop("checked"));
 					if (!rowMetasFilt.length && !subclassStateItemsVisiblePrev.length) return JqueryUtil.doToast({type: "warning", content: `Please select some subclasses first!`});
 
 					rowMetas
 						.forEach(meta => {
-							nxtState[meta.stateKey] = meta.$cb.prop("checked");
-							meta.$cb.prop("checked", false);
+							nxtState[meta.stateKey] = meta.cb.prop("checked");
+							meta.cb.prop("checked", false);
 						});
 
 					this._classPage._proxyAssignSimple("state", nxtState);
@@ -2470,32 +2470,32 @@ ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
 					if (cbOnSave) cbOnSave();
 				});
 
-			const $btnClose = isCloseButton
-				? $(`<button class="ve-btn ve-btn-default">Close</button>`)
-					.click(() => {
+			const btnClose = isCloseButton
+				? ee`<button class="ve-btn ve-btn-default">Close</button>`
+					.onn("click", () => {
 						this.setStateClosed();
 					})
 				: null;
 
-			$$`<div class="ve-flex-h-right mt-3">${$btnSave}${$btnClose}</div>`
-				.appendTo($wrpRows);
+			ee`<div class="ve-flex-h-right mt-3">${btnSave}${btnClose}</div>`
+				.appendTo(wrpRows);
 		};
 		this._listSubclass.on("updated", onListUpdate);
 		onListUpdate();
 
-		return {$stg, fnCleanup: () => this._listSubclass.off("updated", onListUpdate)};
+		return {stg, fnCleanup: () => this._listSubclass.off("updated", onListUpdate)};
 	}
 
-	_$getEleNoneVisible () {
-		const {$stg, fnCleanup} = this._getSelectSubclassesMeta();
+	_getEleNoneVisible () {
+		const {stg, fnCleanup} = this._getSelectSubclassesMeta();
 		this._fnsCleanup.push(fnCleanup);
 
-		return $$`<div class="h-100 w-100 ve-flex-vh-center no-shrink no-print">
-			${$stg}
+		return ee`<div class="h-100 w-100 ve-flex-vh-center no-shrink no-print">
+			${stg}
 		</div>`;
 	}
 
-	async _pGetRenderContentMeta ({$wrpContent}) {
+	async _pGetRenderContentMeta ({wrpContent}) {
 		UtilClassesPage.setRenderFnGetStyleClasses(this._classPage.activeClass);
 
 		const cpyCls = MiscUtil.copyFast(this._classPage.activeClassRaw);
@@ -2586,9 +2586,10 @@ ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
 			if (!isLastRow && isAnyFeature) renderStack.push(`<hr class="hr-2 mt-3 cls-comp__hr-level"/>`);
 		});
 
-		$wrpContent
-			.addClass("stats stats--book")
-			.append(renderStack.join(""));
+		wrpContent
+			.addClass("stats")
+			.addClass("stats--book")
+			.appends(renderStack.join(""));
 
 		let cntSelectedEnts = 0;
 		let isAnyEntityRendered = false;
@@ -2598,14 +2599,14 @@ ClassesPage.SubclassComparisonBookView = class extends BookModeViewBase {
 				const key = UrlUtil.getStateKeySubclass(sc);
 
 				if (!this._state[key]) {
-					$wrpContent.find(`[data-cls-comp-sc-ix="${i}"]`).hideVe();
+					em(`[data-cls-comp-sc-ix="${i}"]`, wrpContent).forEach(ele => ele.hideVe());
 				} else {
 					cntSelectedEnts++;
 					isAnyEntityRendered = true;
 				}
 			});
 
-		if (!cntSelectedEnts) $wrpContent.find(".cls-comp__hr-level").hideVe();
+		if (!cntSelectedEnts) em(".cls-comp__hr-level", wrpContent).forEach(ele => ele.hideVe());
 
 		UtilClassesPage.unsetRenderFnGetStyleClasses();
 
@@ -2631,7 +2632,7 @@ ClassesPage.ClassBookView = class extends BookModeViewBase {
 	constructor ({classPage, pageFilter}) {
 		super({
 			state: classPage._state,
-			$btnOpen: $(`#btn-readmode`),
+			btnOpen: es(`#btn-readmode`),
 		});
 
 		this._classPage = classPage;
@@ -2651,16 +2652,16 @@ ClassesPage.ClassBookView = class extends BookModeViewBase {
 		return out;
 	}
 
-	async _pGetRenderContentMeta ({$wrpContent}) {
+	async _pGetRenderContentMeta ({wrpContent}) {
 		const cls = this._classPage.activeClass;
 		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
 
 		// Top bar
-		const $pnlMenu = $(`<div class="cls-bkmv__wrp-tabs ve-flex-h-center no-print"></div>`).appendTo($wrpContent);
+		const pnlMenu = ee`<div class="cls-bkmv__wrp-tabs ve-flex-h-center no-print"></div>`.appendTo(wrpContent);
 
 		// Main panel
-		const $tblBook = $(`<table class="w-100 stats stats--book stats--book-large stats--bkmv"></div>`);
-		$$`<div class="ve-flex-col ve-overflow-y-auto container">${$tblBook}</div>`.appendTo($wrpContent);
+		const tblBook = ee`<table class="w-100 stats stats--book stats--book-large stats--bkmv"></div>`;
+		ee`<div class="ve-flex-col ve-overflow-y-auto container">${tblBook}</div>`.appendTo(wrpContent);
 
 		const renderStack = [];
 		Renderer.get().setFirstSection(true);
@@ -2721,15 +2722,17 @@ ClassesPage.ClassBookView = class extends BookModeViewBase {
 				});
 			});
 		renderStack.push(Renderer.utils.getBorderTr());
-		$tblBook.append(renderStack.join(""));
+		tblBook.appends(renderStack.join(""));
 
 		// Menu panel
-		const $btnToggleCf = $(`<span class="cls-bkmv__btn-tab">Features</span>`).on("click", () => {
-			this._parent.set("isHideFeatures", !this._parent.get("isHideFeatures"));
-		});
-		const $btnToggleInfo = $(`<span class="cls-bkmv__btn-tab">Info</span>`).on("click", () => {
-			this._parent.set("isShowFluff", !this._parent.get("isShowFluff"));
-		});
+		const btnToggleCf = ee`<span class="cls-bkmv__btn-tab">Features</span>`
+			.onn("click", () => {
+				this._parent.set("isHideFeatures", !this._parent.get("isHideFeatures"));
+			});
+		const btnToggleInfo = ee`<span class="cls-bkmv__btn-tab">Info</span>`
+			.onn("click", () => {
+				this._parent.set("isShowFluff", !this._parent.get("isShowFluff"));
+			});
 
 		// Display class/fluff if nothing would be displayed
 		const isAnySubclassActive = cls.subclasses
@@ -2743,8 +2746,8 @@ ClassesPage.ClassBookView = class extends BookModeViewBase {
 			this._parent.set("isShowFluff", true);
 		}
 
-		$pnlMenu.append($btnToggleCf);
-		$pnlMenu.append($btnToggleInfo);
+		pnlMenu.appends(btnToggleCf);
+		pnlMenu.appends(btnToggleInfo);
 
 		const filterValues = this._classPage.filterBox.getValues();
 		cls.subclasses
@@ -2754,16 +2757,16 @@ ClassesPage.ClassBookView = class extends BookModeViewBase {
 				const mod = UtilClassesPage.getSubclassCssMod(cls, sc);
 				const stateKey = UrlUtil.getStateKeySubclass(sc);
 
-				const $btnToggleSc = $(`<span class="cls-bkmv__btn-tab ${sc.isReprinted ? "cls__btn-sc--reprinted" : ""}" title="${ClassesPage.getBtnTitleSubclass(sc)}">${name}</span>`)
-					.on("click", () => this._parent.set(stateKey, !this._parent.get(stateKey)));
+				const btnToggleSc = ee`<span class="cls-bkmv__btn-tab ${sc.isReprinted ? "cls__btn-sc--reprinted" : ""}" title="${ClassesPage.getBtnTitleSubclass(sc)}">${name}</span>`
+					.onn("click", () => this._parent.set(stateKey, !this._parent.get(stateKey)));
 				const isVisible = this._pageFilter.isSubclassVisible(filterValues, cls, sc);
-				if (!isVisible) $btnToggleSc.hideVe();
+				if (!isVisible) btnToggleSc.hideVe();
 
 				const hkShowHide = () => {
-					const $dispFeatures = $wrpContent.find(`[data-cls-book-sc-ix="${i}"]`);
+					const elesDispFeatures = em(`[data-cls-book-sc-ix="${i}"]`, wrpContent);
 					const isActive = !!this._parent.get(stateKey);
-					$btnToggleSc.toggleClass(`cls__btn-sc--active-${mod}`, isActive);
-					$dispFeatures.toggleVe(!!isActive);
+					btnToggleSc.toggleClass(`cls__btn-sc--active-${mod}`, isActive);
+					elesDispFeatures.forEach(ele => ele.toggleVe(!!isActive));
 				};
 				(this._hooks[stateKey] = this._hooks[stateKey] || []).push(hkShowHide);
 				this._parent.addHook(stateKey, hkShowHide);
@@ -2771,7 +2774,7 @@ ClassesPage.ClassBookView = class extends BookModeViewBase {
 
 				const hkShowHideFluff = () => {
 					const isActive = !!this._parent.get(stateKey) && !!this._parent.get("isShowFluff");
-					$wrpContent.find(`[data-cls-book-sc-fluff-ix="${i}"]`).toggleVe(!!isActive);
+					em(`[data-cls-book-sc-fluff-ix="${i}"]`, wrpContent).forEach(ele => ele.toggleVe(!!isActive));
 				};
 				(this._hooks[stateKey] ||= []).push(hkShowHideFluff);
 				this._parent.addHook(stateKey, hkShowHideFluff);
@@ -2779,24 +2782,24 @@ ClassesPage.ClassBookView = class extends BookModeViewBase {
 				this._parent.addHook("isShowFluff", hkShowHideFluff);
 				hkShowHideFluff();
 
-				$pnlMenu.append($btnToggleSc);
+				pnlMenu.appends(btnToggleSc);
 			});
 
 		const hkFeatures = () => {
-			const $dispFeatures = $wrpContent.find(`[data-cls-book-cf="true"]`);
+			const elesDispFeatures = em(`[data-cls-book-cf="true"]`, wrpContent);
 			const isActive = !this._parent.get("isHideFeatures");
-			$btnToggleCf.toggleClass("cls__btn-cf--active", isActive);
-			$dispFeatures.toggleVe(!!isActive);
+			btnToggleCf.toggleClass("cls__btn-cf--active", isActive);
+			elesDispFeatures.forEach(ele => ele.toggleVe(!!isActive));
 		};
 		(this._hooks["isHideFeatures"] ||= []).push(hkFeatures);
 		this._parent.addHook("isHideFeatures", hkFeatures);
 		hkFeatures();
 
 		const hkFluff = () => {
-			const $dispFluff = $wrpContent.find(`[data-cls-book-fluff="true"]`);
+			const elesDispFluff = em(`[data-cls-book-fluff="true"]`, wrpContent);
 			const isHidden = !this._parent.get("isShowFluff");
-			$btnToggleInfo.toggleClass("active", !isHidden);
-			$dispFluff.toggleVe(!isHidden);
+			btnToggleInfo.toggleClass("active", !isHidden);
+			elesDispFluff.forEach(ele => ele.toggleVe(!isHidden));
 		};
 		(this._hooks["isShowFluff"] ||= []).push(hkFluff);
 		this._parent.addHook("isShowFluff", hkFluff);

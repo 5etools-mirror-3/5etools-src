@@ -61,6 +61,7 @@ export class InitiativeTrackerSettings extends BaseComponent {
 		"isRollHp",
 		"isRollGroups",
 		"isRerollInitiativeEachRound",
+		"isInvertWoundDirection",
 		"playerInitShowExactPlayerHp",
 		"playerInitShowExactMonsterHp",
 		"playerInitHideNewMonster",
@@ -122,6 +123,8 @@ export class InitiativeTrackerSettings extends BaseComponent {
 		UiUtil.addModalSep($modalInner);
 		this._pGetShowModalResults_renderSection_isRolls({$modalInner});
 		UiUtil.addModalSep($modalInner);
+		this._pGetShowModalResults_renderSection_wounds({$modalInner});
+		UiUtil.addModalSep($modalInner);
 		this._pGetShowModalResults_renderSection_playerView({$modalInner});
 		UiUtil.addModalSep($modalInner);
 		this._pGetShowModalResults_renderSection_additionalCols({$modalInner});
@@ -138,6 +141,10 @@ export class InitiativeTrackerSettings extends BaseComponent {
 		UiUtil.$getAddModalRowCb2({$wrp: $modalInner, comp: this, prop: "isRollHp", text: "Roll hit points"});
 		UiUtil.$getAddModalRowCb2({$wrp: $modalInner, comp: this, prop: "isRollGroups", text: "Roll groups of creatures together"});
 		UiUtil.$getAddModalRowCb2({$wrp: $modalInner, comp: this, prop: "isRerollInitiativeEachRound", text: "Reroll initiative each round"});
+	}
+
+	_pGetShowModalResults_renderSection_wounds ({$modalInner}) {
+		UiUtil.$getAddModalRowCb2({$wrp: $modalInner, comp: this, prop: "isInvertWoundDirection", text: "Track Hit Points as Damage", title: `For example, by default a creature might have "100/100" hit points when at full HP. When tracking damage, this would instead be displayed as "0/100" when the creature is at full HP.`});
 	}
 
 	_pGetShowModalResults_renderSection_playerView ({$modalInner}) {

@@ -18,7 +18,13 @@ class PageFilterBackgrounds extends PageFilterBase {
 		super();
 
 		this._asiFilter = new AbilityScoreFilter({header: "Ability Scores"});
-		this._skillFilter = new Filter({header: "Skill Proficiencies", displayFn: StrUtil.toTitleCase.bind(StrUtil)});
+		this._skillFilter = new Filter({
+			header: "Skill Proficiencies",
+			displayFn: it => {
+				const [name, sourceJson] = it.split("|");
+				return `${name.toTitleCase()}${sourceJson ? ` (${Parser.sourceJsonToAbv(sourceJson)})` : ""}`;
+			},
+		});
 		this._prereqFilter = new Filter({
 			header: "Prerequisite",
 			items: [...FilterCommon.PREREQ_FILTER_ITEMS],

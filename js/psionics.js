@@ -23,7 +23,16 @@ class PsionicsSublistManager extends SublistManager {
 
 	pGetSublistItem (it, hash) {
 		const typeMeta = Parser.psiTypeToMeta(it.type);
-		const cellsText = [it.name, typeMeta.short, it._fOrder];
+		const cellsText = [
+			it.name,
+			new SublistCell({
+				text: typeMeta.short,
+				title: typeMeta.full,
+				css: `psi__type-${it.type}`,
+				style: Parser.psiTypeAbvToStylePart(it.type),
+			}),
+			it._fOrder,
+		];
 
 		const $ele = $(`<div class="lst__row lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="lst__row-border lst__row-inner">
@@ -63,6 +72,7 @@ class PsionicsPage extends ListPage {
 			dataProps: ["psionic"],
 
 			bookViewOptions: {
+				nameSingular: "psionic",
 				namePlural: "psionics",
 				pageTitle: "Psionics Book View",
 				fnPartition: ent => ent.type === "T" ? 0 : 1,
@@ -107,9 +117,9 @@ class PsionicsPage extends ListPage {
 
 		eleLi.innerHTML = `<a href="#${hash}" class="lst__row-border lst__row-inner">
 			<span class="bold ve-col-6 pl-0 pr-1">${p.name}</span>
-			<span class="ve-col-2 px-1 ve-text-center">${typeMeta.short}</span>
+			<span class="ve-col-2 px-1 psi__type-${p.type} ve-text-center" ${Parser.psiTypeAbvToStyle(p.type)} title="${typeMeta.full}">${typeMeta.short}</span>
 			<span class="ve-col-2 px-1 ve-text-center ${p._fOrder === VeCt.STR_NONE ? "italic" : ""}">${p._fOrder}</span>
-			<span class="ve-col-2 ve-text-center pl-1 pr-0" title="${Parser.sourceJsonToFull(p.source)}">${source}</span>
+			<span class="ve-col-2 ve-text-center ${Parser.sourceJsonToSourceClassname(p.source)} pl-1 pr-0" title="${Parser.sourceJsonToFull(p.source)}">${source}</span>
 		</a>`;
 
 		const listItem = new ListItem(

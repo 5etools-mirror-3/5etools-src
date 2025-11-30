@@ -1545,12 +1545,14 @@ export class MiscTag {
 			subEntry.entries,
 			{
 				string: (str) => {
+					const strStripped = Renderer.stripTags(str);
+
 					// AoE effects
-					str.replace(/\d+-foot[- ](line|cube|cone|emanation|radius|sphere|hemisphere|cylinder)/g, () => this._addTag({tagSet, allowlistTags, tag: "AOE"}));
-					str.replace(/each creature within \d+ feet/gi, () => this._addTag({tagSet, allowlistTags, tag: "AOE"}));
+					strStripped.replace(/\d+-foot[- ](line|cube|cone|emanation|radius|sphere|hemisphere|cylinder)/g, () => this._addTag({tagSet, allowlistTags, tag: "AOE"}));
+					strStripped.replace(/each creature within \d+ feet/gi, () => this._addTag({tagSet, allowlistTags, tag: "AOE"}));
 
 					// Hit point max reduction
-					str.replace(/\bhit point maximum is reduced\b/gi, () => this._addTag({tagSet, allowlistTags, tag: "HPR"}));
+					strStripped.replace(/\bhit point maximum (?:is reduced|decreases?)\b/gi, () => this._addTag({tagSet, allowlistTags, tag: "HPR"}));
 				},
 			},
 		);

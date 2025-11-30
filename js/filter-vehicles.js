@@ -16,6 +16,10 @@ class PageFilterVehicles extends PageFilterBase {
 			displayFn: Parser.vehicleTypeToFull,
 			isSortByDisplayItems: true,
 		});
+		this._typeFilter = new MultiFilter({
+			header: "Type",
+			filters: [this._vehicleTypeFilter, this._upgradeTypeFilter],
+		});
 		this._terrainFilter = new Filter({header: "Terrain", items: ["land", "sea", "air"], displayFn: StrUtil.uppercaseFirst});
 		this._speedFilter = new RangeFilter({
 			header: "Speed",
@@ -91,8 +95,7 @@ class PageFilterVehicles extends PageFilterBase {
 	async _pPopulateBoxOptions (opts) {
 		opts.filters = [
 			this._sourceFilter,
-			this._vehicleTypeFilter,
-			this._upgradeTypeFilter,
+			this._typeFilter,
 			this._terrainFilter,
 			this._speedFilter,
 			this._acFilter,
@@ -106,8 +109,10 @@ class PageFilterVehicles extends PageFilterBase {
 		return this._filterBox.toDisplay(
 			values,
 			it._fSources,
-			it.vehicleType,
-			it.upgradeType,
+			[
+				it.vehicleType,
+				it.upgradeType,
+			],
 			it.terrain,
 			it._fSpeed,
 			it._fAc,

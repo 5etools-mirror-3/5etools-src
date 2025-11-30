@@ -1,41 +1,41 @@
 "use strict";
 
 class _GroupHeaderManager {
-	constructor ({ent, $wrpList, groupHeaderManagers}) {
-		this._$wrpList = $wrpList;
+	constructor ({ent, wrpList, groupHeaderManagers}) {
+		this._wrpList = wrpList;
 		this._isVisible = true;
 
-		this._$dispShowHide = $(`<div class="lst__tgl-item-group relative top-n1p">[\u2013]</div>`);
+		this._dispShowHide = ee`<div class="lst__tgl-item-group relative top-n1p">[\u2013]</div>`;
 
-		this._$btnHeader = $$`<div class="lst__item-group-header mt-3 split-v-center py-1 no-select clickable" title="SHIFT to Toggle All">
+		this._btnHeader = ee`<div class="lst__item-group-header mt-3 split-v-center py-1 no-select clickable" title="SHIFT to Toggle All">
 			<div class="split-v-center w-100 min-w-0 mr-2">
 				<div class="bold">${ent.name}</div>
 				<div class="${Parser.sourceJsonToSourceClassname(ent.source)}" title="${Parser.sourceJsonToFull(ent.source).qq()}">${Parser.sourceJsonToAbv(ent.source)}</div>
 			</div>
-			${this._$dispShowHide}
+			${this._dispShowHide}
 		</div>`
-			.click(evt => {
-				this.toggle();
+			.onn("click", evt => {
+				this.toggleVe();
 				if (!evt.shiftKey) return;
-				groupHeaderManagers.forEach(it => it.toggle(this._isVisible));
+				groupHeaderManagers.forEach(it => it.toggleVe(this._isVisible));
 			});
 
 		groupHeaderManagers.push(this);
 	}
 
-	get $btnHeader () { return this._$btnHeader; }
+	get btnHeader () { return this._btnHeader; }
 
-	toggle (isVisible) {
+	toggleVe (isVisible) {
 		if (isVisible === undefined) isVisible = !this._isVisible;
 
-		this._$wrpList.toggleVe(isVisible);
-		this._$dispShowHide.html(isVisible ? `[\u2013]` : `[+]`);
+		this._wrpList.toggleVe(isVisible);
+		this._dispShowHide.html(isVisible ? `[\u2013]` : `[+]`);
 
 		this._isVisible = isVisible;
 	}
 
 	onListUpdate ({list}) {
-		this._$btnHeader.toggleVe(!!list.visibleItems.length);
+		this._btnHeader.toggleVe(!!list.visibleItems.length);
 	}
 }
 
@@ -76,7 +76,7 @@ class TableListPage extends ListPage {
 			.flat()
 			.sort((a, b) => this.constructor._FN_SORT(a, b, {sortBy: "source"}));
 
-		const $wrpLists = $(`[data-name="tablepage-wrp-list"]`);
+		const wrpLists = es(`[data-name="tablepage-wrp-list"]`);
 		const groupHeaderManagers = [];
 
 		for (let i = 0; i < this._dataList.length; i++) {
@@ -84,29 +84,28 @@ class TableListPage extends ListPage {
 
 			const headerId = this._getHeaderId(ent);
 			if (!this._listMetas[headerId]) {
-				const $wrpList = $(`<div class="ve-flex-col w-100 list"></div>`);
+				const wrpList = ee`<div class="ve-flex-col w-100 list"></div>`;
 
 				const isFirst = !Object.keys(this._listMetas).length;
 				const list = this._initList({
-					$iptSearch: $("#lst__search"),
-					$wrpList,
-					$btnReset: $("#reset"),
-					$btnClear: $(`#lst__search-glass`),
+					iptSearch: es("#lst__search"),
+					wrpList,
+					btnReset: es("#reset"),
+					btnClear: es(`#lst__search-glass`),
 					dispPageTagline: isFirst ? document.getElementById(`page__subtitle`) : null,
 					isBindFindHotkey: isFirst,
 					optsList: {
-						isUseJquery: true,
 						fnSort: this.constructor._FN_SORT,
 					},
 				});
 
-				const groupHeader = new _GroupHeaderManager({ent, $wrpList, groupHeaderManagers});
+				const groupHeader = new _GroupHeaderManager({ent, wrpList, groupHeaderManagers});
 				list.on("updated", () => groupHeader.onListUpdate({list}));
 
-				$$`<div class="flex-col">
-					${groupHeader.$btnHeader}
-					${$wrpList}
-				</div>`.appendTo($wrpLists);
+				ee`<div class="flex-col">
+					${groupHeader.btnHeader}
+					${wrpList}
+				</div>`.appendTo(wrpLists);
 
 				this._listMetas[headerId] = {
 					list,
@@ -116,13 +115,13 @@ class TableListPage extends ListPage {
 			const displayName = this._getDisplayName(ent);
 			const hash = this._getHash(ent);
 
-			const $ele = $$`<div class="lst__row ve-flex-col">
+			const ele = ee`<div class="lst__row ve-flex-col">
 				<a href="#${hash}" class="lst__row-border lst__row-inner">${displayName}</a>
 			</div>`;
 
 			const listItem = new ListItem(
 				i,
-				$ele,
+				ele,
 				displayName,
 				{
 					hash,
@@ -157,22 +156,23 @@ class TableListPage extends ListPage {
 
 		const htmlTable = Renderer.get().render(entTable);
 
-		const $btnRoll = $(`<span class="roller" data-name="btn-roll">${ent.diceExpression}</span>`)
-			.click(() => {
-				this._pRoll(ent);
+		const elePageContent = es("#pagecontent")
+			.empty()
+			.appends(htmlTable);
+
+		const btnRoll = ee`<span class="roller" data-name="btn-roll">${ent.diceExpression}</span>`
+			.onn("click", async () => {
+				await this._pRoll(ent);
 			})
-			.mousedown(evt => {
+			.onn("mousedown", evt => {
 				evt.preventDefault();
 			});
 
-		$("#pagecontent")
-			.empty()
-			.append(htmlTable)
-			.find(`[data-rd-isroller="true"]`)
-			.first()
+		elePageContent
+			.findAll(`[data-rd-isroller="true"]`)[0]
 			.attr(`data-rd-isroller`, null)
 			.empty()
-			.append($btnRoll);
+			.appends(btnRoll);
 	}
 
 	async _pRoll (ent) {
@@ -187,24 +187,24 @@ class TableListPage extends ListPage {
 				rolledBy: {
 					name: this._getDisplayName(ent),
 				},
-				$ele: Renderer.dice.$getEleUnknownTableRoll(roll),
+				ele: Renderer.dice.getEleUnknownTableRoll(roll),
 			});
 		}
 
 		const ptResult = Renderer.get().render(row.result.replace(/{@dice /g, "{@autodice "));
-		const $ptAttitude = this._roll_$getPtAttitude(row);
+		const ptAttitude = this._roll_getPtAttitude(row);
 
-		const $ele = $$`<span><strong>${roll}</strong> ${ptResult}${$ptAttitude}</span>`;
+		const ele = ee`<span><strong>${roll}</strong> ${ptResult}${ptAttitude}</span>`;
 
 		Renderer.dice.addRoll({
 			rolledBy: {
 				name: this._getDisplayName(ent),
 			},
-			$ele,
+			ele,
 		});
 	}
 
-	_roll_$getPtAttitude (row) {
+	_roll_getPtAttitude (row) {
 		if (!row.resultAttitude?.length) return null;
 
 		const diceTagMetas = [];
@@ -224,24 +224,27 @@ class TableListPage extends ListPage {
 			});
 		const rendered = Renderer.get().render(entry);
 
-		const $out = $(`<span> | Attitude ${rendered}</span>`);
+		const eleOut = ee`<span> | Attitude ${rendered}</span>`;
 
-		$out.find(`[data-tablepage-roller]`)
-			.each((i, e) => {
-				const $e = $(e);
+		eleOut
+			.findAll(`[data-tablepage-roller]`)
+			.forEach((ele, i) => {
 				const {rollText, displayText} = diceTagMetas[i];
 
-				const $roller = $(`<span class="roller render-roller" onmousedown="event.preventDefault()">${displayText || rollText}</span>`)
-					.click(() => {
+				const eleRoller = ee`<span class="roller render-roller">${displayText || rollText}</span>`
+					.onn("click", () => {
 						const res = doRoll(rollText);
-						$roller.next(`[data-tablepage-is-attitude-result="true"]`)
-							.text(getAttitudeDisplay(res));
+						eleRoller.next(`[data-tablepage-is-attitude-result="true"]`)
+							.txt(getAttitudeDisplay(res));
+					})
+					.onn("mousedown", evt => {
+						evt.preventDefault();
 					});
 
-				$e.replaceWith($roller);
+				ele.replaceWith(eleRoller);
 			});
 
-		return $out;
+		return eleOut;
 	}
 
 	static _roll_getAttitude (total) {

@@ -579,10 +579,15 @@ globalThis.Renderer = function () {
 		const ptTitle = ptTitleCreditTooltip ? `title="${ptTitleCreditTooltip}"` : "";
 		const pluginDataIsNoLink = this._applyPlugins_useFirst("image_isNoLink", {textStack, meta, options}, {input: entry});
 
+		const ptLabels = this._renderImage_geLabels(entry);
+
 		textStack[0] += `<div class="${this._renderImage_getWrapperClasses(entry, meta)}" ${entry.title && this._isHeaderIndexIncludeImageTitles ? `data-title-index="${this._headerIndex++}"` : ""}>
-			${pluginDataIsNoLink ? "" : `<a href="${href}" target="_blank" rel="noopener noreferrer" ${ptTitle}>`}
-				${this._renderImage_getImg({entry, meta, href, pluginDataIsNoLink, ptTitle})}
-			${pluginDataIsNoLink ? "" : `</a>`}
+			<div class="w-100 h-100 relative">
+				${pluginDataIsNoLink ? "" : `<a class="relative" href="${href}" target="_blank" rel="noopener noreferrer" ${ptTitle}>`}
+					${this._renderImage_getImg({entry, meta, href, pluginDataIsNoLink, ptTitle})}
+				${pluginDataIsNoLink ? "" : `</a>`}
+				${ptLabels}
+			</div>
 		</div>`;
 
 		if (!this._renderImage_isComicStyling(entry) && (entry.title || entry.credit || entry.mapRegions)) {
@@ -665,6 +670,46 @@ globalThis.Renderer = function () {
 				.filter(Boolean)
 				.join(". "),
 		).qq();
+	};
+
+	this._renderImage_geLabels = function (entry) {
+		if (
+			!entry.labelMapRegions
+			|| !globalThis.BookUtil?.curRender?.headerMap
+			|| !globalThis.polylabel
+			|| !entry.width
+			|| !entry.height
+			|| !entry.mapRegions?.length
+		) return "";
+
+		const tagInfo = Renderer.tag.TAG_LOOKUP.area;
+
+		return entry.mapRegions
+			.map(region => {
+				const area = globalThis.BookUtil.curRender.headerMap[region.area];
+				if (!area) return "";
+
+				// TODO(Future) refine
+				// TODO(Future) allow area to define name
+				const areaName = area.name.split(/[.:; ]/)[0].slice(0, 4);
+
+				const mapRegionPointsGeoJson = [region.points];
+				const [xNote, yNote] = polylabel(mapRegionPointsGeoJson);
+
+				const [xLabel, yLabel] = polylabel(mapRegionPointsGeoJson);
+
+				const pctLeft = ((xLabel / entry.width) * 100).toFixed(3);
+				const pctTop = ((yLabel / entry.height) * 100).toFixed(3);
+
+				const hoverMeta = Renderer.hover.getInlineHover(area.entry, {isLargeBookContent: true, depth: area.depth});
+
+				const variantClass = areaName.length === 3 ? "rd__image-label-map-region--chars-3" : areaName.length >= 4 ? "rd__image-label-map-region--chars-4" : "";
+
+				return `<a class="rd__image-label-map-region ${variantClass} absolute small-caps dnd-font bold ve-block ve-text-center ve-overflow-hidden" style="left: ${pctLeft}%; top: ${pctTop}%;" href="${tagInfo.getHref(globalThis.BookUtil.curRender, area)}" ${hoverMeta.html}>
+					${areaName}
+				</a>`;
+			})
+			.join("");
 	};
 
 	this._renderImage_getStylePart = function (entry) {
@@ -925,8 +970,10 @@ globalThis.Renderer = function () {
 	};
 
 	this._getPagePart = function (entry, isInset) {
-		if (!Renderer.utils.isDisplayPage(entry.page)) return "";
-		return ` <span class="rd__title-link ${isInset ? `rd__title-link--inset` : ""}">${entry.source ? `<span class="help-subtle" title="${Parser.sourceJsonToFull(entry.source)}">${Parser.sourceJsonToAbv(entry.source)}</span> ` : ""}<span title="Page ${entry.page}">p${entry.page}</span></span>`;
+		const isDisplaySource = !!entry.source;
+		const isDisplayPage = Renderer.utils.isDisplayPage(entry.page);
+		if (!isDisplaySource && !isDisplayPage) return "";
+		return ` <span class="rd__title-link ${isInset ? `rd__title-link--inset` : ""}">${isDisplaySource ? `<span class="help-subtle" title="${Parser.sourceJsonToFull(entry.source)}">${Parser.sourceJsonToAbv(entry.source)}</span> ` : ""}${isDisplayPage ? `<span title="Page ${entry.page}">p${entry.page}</span>` : ""}</span>`;
 	};
 
 	this._renderEntriesSubtypes = function (entry, textStack, meta, options, incDepth) {
@@ -1367,7 +1414,7 @@ globalThis.Renderer = function () {
 		"monthly",
 		"yearly",
 		"ritual",
-		"legendar",
+		"legendary",
 	];
 
 	this._renderSpellcasting_getEntries = function (entry) {
@@ -1775,7 +1822,7 @@ globalThis.Renderer = function () {
 		if (fromPlugins) return void (textStack[0] += fromPlugins);
 
 		if (!page || !source || !hash) {
-			this._renderDataHeader(textStack, displayName, entry.style, {isStats: !isFluff, htmlNameExpanded, htmlNameCollapsed});
+			this._renderDataHeader(textStack, displayName, entry.style, {isStats: !isFluff});
 			textStack[0] += `<tr>
 				<td colspan="6">
 					<i class="text-danger">Cannot load ${asTag ? `&quot;${asTag}&quot;` : displayName}! An unknown tag/prop, source, or hash was provided.</i>
@@ -2315,15 +2362,23 @@ globalThis.Renderer = function () {
 				break;
 			}
 			case "@area": {
-				const {areaId, displayText} = Renderer.tag.TAG_LOOKUP.area.getMeta(tag, text);
+				const tagInfo = Renderer.tag.TAG_LOOKUP.area;
+
+				const {areaId, displayText} = tagInfo.getMeta(tag, text);
 
 				if (!globalThis.BookUtil) { // for the roll20 script
 					textStack[0] += displayText;
-				} else {
-					const area = globalThis.BookUtil.curRender.headerMap[areaId] || {entry: {name: ""}}; // default to prevent rendering crash on bad tag
-					const hoverMeta = Renderer.hover.getInlineHover(area.entry, {isLargeBookContent: true, depth: area.depth});
-					textStack[0] += `<a href="#${globalThis.BookUtil.curRender.curBookId},${area.chapter},${UrlUtil.encodeForHash(area.entry.name)},0" ${hoverMeta.html}>${displayText}</a>`;
+					break;
 				}
+
+				const area = globalThis.BookUtil.curRender.headerMap[areaId];
+				if (!area) {
+					textStack[0] += displayText;
+					break;
+				}
+
+				const hoverMeta = Renderer.hover.getInlineHover(area.entry, {isLargeBookContent: true, depth: area.depth});
+				textStack[0] += `<a href="${tagInfo.getHref(globalThis.BookUtil.curRender, area)}" ${hoverMeta.html}>${displayText}</a>`;
 
 				break;
 			}
@@ -2352,7 +2407,7 @@ globalThis.Renderer = function () {
 				const page = tag === "@book" ? "book.html" : "adventure.html";
 				const [displayText, book, chapter, section, rawNumber] = Renderer.splitTagByPipe(text);
 				const number = rawNumber || 0;
-				const hash = `${book}${chapter ? `${HASH_PART_SEP}${chapter}${section ? `${HASH_PART_SEP}${UrlUtil.encodeForHash(section)}${number != null ? `${HASH_PART_SEP}${UrlUtil.encodeForHash(number)}` : ""}` : ""}` : ""}`;
+				const hash = `${book?.toLowerCase()}${chapter ? `${HASH_PART_SEP}${chapter}${section ? `${HASH_PART_SEP}${UrlUtil.encodeForHash(section)}${number != null ? `${HASH_PART_SEP}${UrlUtil.encodeForHash(number)}` : ""}` : ""}` : ""}`;
 				const fauxEntry = {
 					type: "link",
 					href: {
@@ -2369,7 +2424,7 @@ globalThis.Renderer = function () {
 			}
 
 			default: {
-				const {name, source, displayText, others, page, hash, hashPreEncoded, pageHover, hashHover, hashPreEncodedHover, preloadId, linkText, subhashes, subhashesHover, isFauxPage, isAllowRedirect} = Renderer.utils.getTagMeta(tag, text);
+				const {name, source, displayText, others, page, hash, hashPreEncoded, pageHover, sourceHover, hashHover, hashPreEncodedHover, preloadId, linkText, subhashes, subhashesHover, isFauxPage, isAllowRedirect} = Renderer.utils.getTagMeta(tag, text);
 
 				const fauxEntry = {
 					type: "link",
@@ -2388,6 +2443,7 @@ globalThis.Renderer = function () {
 
 				if (hashPreEncoded != null) fauxEntry.href.hashPreEncoded = hashPreEncoded;
 				if (pageHover != null) fauxEntry.href.hover.page = pageHover;
+				if (sourceHover != null) fauxEntry.href.hover.source = sourceHover;
 				if (hashHover != null) fauxEntry.href.hover.hash = hashHover;
 				if (hashPreEncodedHover != null) fauxEntry.href.hover.hashPreEncoded = hashPreEncodedHover;
 				if (preloadId != null) fauxEntry.href.hover.preloadId = preloadId;
@@ -2739,12 +2795,13 @@ Renderer.splitByTags = function (string) {
 Renderer._splitByPipeBase = function (leadingCharacter) {
 	return function (string) {
 		let tagDepth = 0;
-		let char, char2;
+		let char0, char, char2;
 		const out = [];
 		let curStr = "";
 
 		const len = string.length;
 		for (let i = 0; i < len; ++i) {
+			char0 = string[i - 1];
 			char = string[i];
 			char2 = string[i + 1];
 
@@ -2762,6 +2819,10 @@ Renderer._splitByPipeBase = function (leadingCharacter) {
 					break;
 
 				case "|": {
+					if (char0 === "\\") {
+						curStr += char;
+						break;
+					}
 					if (tagDepth) curStr += "|";
 					else {
 						out.push(curStr);
@@ -3406,6 +3467,24 @@ Renderer.utils = class {
 		return `</tbody></table>`;
 	}
 
+	static getTokenMetadataAttributes (ent, {displayName = null} = {}) {
+		const tokenName = displayName || ent.name;
+
+		const ptTitle = [
+			ent.tokenCredit ? `Credit: ${ent.tokenCredit.qq()}` : "",
+			ent.tokenCustom ? `This is a custom/unofficial token.` : "",
+		]
+			.filter(Boolean)
+			.join(". ");
+
+		return [
+			`alt="Token Image${tokenName ? `: ${tokenName.qq()}` : ""}"`,
+			ptTitle ? `title="${ptTitle}"` : "",
+		]
+			.filter(Boolean)
+			.join(" ");
+	}
+
 	static TabButton = function ({label, fnChange, fnPopulate, isVisible}) {
 		this.label = label;
 		this.fnChange = fnChange;
@@ -3740,6 +3819,8 @@ Renderer.utils = class {
 			"psionics",
 			"feature",
 			"feat",
+			"featCategory",
+			"optionalfeature",
 			"background",
 			"item",
 			"itemType",
@@ -3749,6 +3830,7 @@ Renderer.utils = class {
 			"group",
 			"other",
 			"otherSummary",
+			"exclusiveFeatCategory",
 			undefined,
 		]
 			.mergeMap((k, i) => ({[k]: i}));
@@ -3825,6 +3907,8 @@ Renderer.utils = class {
 								case "patron": return this._getHtml_patron({v, isListMode, keyOptions, isTextOnly, styleHint});
 								case "spell": return this._getHtml_spell({v, isListMode, keyOptions, isTextOnly, styleHint});
 								case "feat": return this._getHtml_feat({v, isListMode, keyOptions, isTextOnly, styleHint});
+								case "featCategory": return this._getHtml_featCategory({v, isListMode, keyOptions, isTextOnly, styleHint});
+								case "exclusiveFeatCategory": return this._getHtml_exclusiveFeatCategory({v, isListMode, keyOptions, isTextOnly, styleHint});
 								case "optionalfeature": return this._getHtml_optionalfeature({v, isListMode, keyOptions, isTextOnly, styleHint});
 								case "feature": return this._getHtml_feature({v, isListMode, keyOptions, isTextOnly, styleHint});
 								case "item": return this._getHtml_item({v, isListMode, keyOptions, isTextOnly, styleHint});
@@ -3846,6 +3930,7 @@ Renderer.utils = class {
 								case "alignment": return this._getHtml_alignment({v, isListMode, keyOptions, isTextOnly, styleHint});
 								case "campaign": return this._getHtml_campaign({v, isListMode, keyOptions, isTextOnly, styleHint});
 								case "culture": return this._getHtml_culture({v, isListMode, keyOptions, isTextOnly, styleHint});
+								case "membership": return this._getHtml_membership({v, isListMode, keyOptions, isTextOnly, styleHint});
 								case "group": return this._getHtml_group({v, isListMode, keyOptions, isTextOnly, styleHint});
 								default: throw new Error(`Unhandled key: ${k}`);
 							}
@@ -3907,8 +3992,16 @@ Renderer.utils = class {
 
 			const isLevelVisible = v.level !== 1 // Hide the "implicit" 1st level.
 				&& !keyOptions?.level?.isNameOnly;
-			const isSubclassVisible = v.subclass?.visible;
-			const isClassVisible = v.class && (v.class.visible || isSubclassVisible); // force the class name to be displayed if there's a subclass being displayed
+			const isSubclassVisible = v.subclass?.visible
+				|| (!isListMode && v.subclass?.visibleStats)
+				|| (isListMode && v.subclass?.visibleList);
+			const isClassVisible = v.class
+				&& (
+					v.class.visible
+					|| isSubclassVisible // force the class name to be displayed if there's a subclass being displayed
+					|| (!isListMode && v.class?.visibleStats)
+					|| (isListMode && v.class?.visibleList)
+				);
 			if (isListMode) {
 				const shortNameRaw = isClassVisible ? this._getShortClassName(v.class.name) : null;
 				return `${isClassVisible ? `${shortNameRaw.slice(0, 4)}${isSubclassVisible ? "*" : "."}` : ""}${isLevelVisible ? ` Lvl ${v.level}` : ""}`;
@@ -3952,6 +4045,30 @@ Renderer.utils = class {
 
 		static _getHtml_feat ({v, isListMode, keyOptions, isTextOnly, styleHint}) {
 			return this._getHtml_uidTag({v, isListMode, keyOptions, isTextOnly, styleHint, tag: "feat"});
+		}
+
+		static _getHtml_featCategory ({v, isListMode, keyOptions, isTextOnly, styleHint}) {
+			if (isListMode) {
+				const ptTypes = v.map(featCategory => Parser.featCategoryToFull(featCategory))
+					.join("/");
+				return `Any ${ptTypes}`;
+			}
+
+			const ptTypes = v.map(featCategory => Parser.featCategoryToFull(featCategory))
+				.joinConjunct(", ", " or ");
+			return `Any ${ptTypes} Feat`;
+		}
+
+		static _getHtml_exclusiveFeatCategory ({v, isListMode, keyOptions, isTextOnly, styleHint}) {
+			if (isListMode) {
+				const ptTypes = v.map(featCategory => Parser.featCategoryToFull(featCategory))
+					.join("/");
+				return `Only ${ptTypes}`;
+			}
+
+			const ptTypes = v.map(featCategory => Parser.featCategoryToFull(featCategory))
+				.joinConjunct(", ", " or ");
+			return `Can't Have Another ${ptTypes} Feat`;
 		}
 
 		static _getHtml_optionalfeature ({v, isListMode, keyOptions, isTextOnly, styleHint}) {
@@ -4132,7 +4249,7 @@ Renderer.utils = class {
 							return isListMode ? `Prof ${Parser.weaponFullToAbv(prof)} weapon` : `Proficiency with a ${prof} weapon`;
 						}
 						case "weaponGroup": {
-							return isListMode ? `Prof ${Parser.weaponFullToAbv(prof)} weapons` : `${prof.toTitleCase()} Proficiency`;
+							return isListMode ? `Prof ${Parser.weaponFullToAbv(prof)} weapons` : `${prof.toTitleCase()} Weapon Proficiency`;
 						}
 						default: throw new Error(`Unhandled proficiency type: "${profType}"`);
 					}
@@ -4178,6 +4295,7 @@ Renderer.utils = class {
 			"arcane": "Arcane Focus",
 			"druid": "Druidic Focus",
 			"holy": "Holy Symbol",
+			"artisansTool": "Artisan’s Tools",
 		};
 		static _getHtml_spellcastingFocus ({v, isListMode, keyOptions, isTextOnly, styleHint}) {
 			if (isListMode) {
@@ -4234,6 +4352,12 @@ Renderer.utils = class {
 			return isListMode
 				? v.join("/")
 				: `${v.joinConjunct(", ", " or ")} Culture`;
+		}
+
+		static _getHtml_membership ({v, isListMode}) {
+			return isListMode
+				? v.join("/")
+				: `Membership in the ${v.joinConjunct(", ", " or ")}`;
 		}
 
 		static _getHtml_group ({v, isListMode}) {
@@ -4317,14 +4441,14 @@ Renderer.utils = class {
 		return Renderer.get().render(sensesEntry);
 	}
 
-	static getEntryMediaUrl (entry, prop, mediaDir) {
+	static getEntryMediaUrl (entry, prop, mediaDir, {isUrlEncode = false} = {}) {
 		if (!entry[prop]) return "";
 
 		let href = "";
 		if (entry[prop].type === "internal") {
-			href = UrlUtil.link(Renderer.get().getMediaUrl(mediaDir, entry[prop].path));
+			href = UrlUtil.link(Renderer.get().getMediaUrl(mediaDir, isUrlEncode ? encodeURI(entry[prop].path) : entry[prop].path));
 		} else if (entry[prop].type === "external") {
-			href = entry[prop].url;
+			href = isUrlEncode ? encodeURI(entry[prop].url) : entry[prop].url;
 		}
 		return href;
 	}
@@ -4742,16 +4866,16 @@ Renderer.utils = class {
 				if (others.length) {
 					const [subclassShortName, subclassSource, featurePart] = others;
 
-					if (subclassSource) out.source = subclassSource;
-
 					const classStateOpts = {
 						subclass: {
 							shortName: subclassShortName.trim(),
 							source: subclassSource
 								? subclassSource.trim()
-								: Parser.SRC_PHB,
+								: out.source,
 						},
 					};
+
+					out.sourceHover = classStateOpts.subclass.source;
 
 					// Don't include the feature part for hovers, as it is unsupported
 					const hoverSubhashObj = UrlUtil.unpackSubHash(UrlUtil.getClassesPageStatePart(classStateOpts));
@@ -4785,6 +4909,7 @@ Renderer.utils = class {
 
 			// TODO(Future) revise/expand
 			case "@creatureFluff": { out.isFauxPage = true; out.page = "monsterFluff"; break; }
+			case "@raceFluff": { out.isFauxPage = true; out.page = "raceFluff"; break; }
 
 			default: throw new Error(`Unhandled tag "${tag}"`);
 		}
@@ -5576,6 +5701,12 @@ Renderer.tag = class {
 		page = UrlUtil.PG_BESTIARY;
 	};
 
+	static TagCreatureFluff = class extends this._TagPipedDisplayTextThird {
+		tagName = "creatureFluff";
+		defaultSource = Parser.SRC_MM;
+		page = "monsterFluff";
+	};
+
 	static TagCult = class extends this._TagPipedDisplayTextThird {
 		tagName = "cult";
 		defaultSource = Parser.SRC_MTF;
@@ -5664,6 +5795,12 @@ Renderer.tag = class {
 		tagName = "race";
 		defaultSource = Parser.SRC_PHB;
 		page = UrlUtil.PG_RACES;
+	};
+
+	static TagRaceFluff = class extends this._TagPipedDisplayTextThird {
+		tagName = "raceFluff";
+		defaultSource = Parser.SRC_PHB;
+		page = "raceFluff";
 	};
 
 	static TagRecipe = class extends this._TagPipedDisplayTextThird {
@@ -5830,6 +5967,11 @@ Renderer.tag = class {
 				displayText,
 			};
 		}
+
+		getHref (bookRender, area) {
+			if (!area) return `javascript:void(0)`;
+			return `#${bookRender.curBookId},${area.chapter},${UrlUtil.encodeForHash(area.entry.name)},0`;
+		}
 	};
 
 	static TagHomebrew = class extends this._TagBaseAt {
@@ -5948,6 +6090,7 @@ Renderer.tag = class {
 		new this.TagClass(),
 		new this.TagCondition(),
 		new this.TagCreature(),
+		new this.TagCreatureFluff(),
 		new this.TagCult(),
 		new this.TagDeck(),
 		new this.TagDisease(),
@@ -5963,6 +6106,7 @@ Renderer.tag = class {
 		new this.TagOptfeature(),
 		new this.TagPsionic(),
 		new this.TagRace(),
+		new this.TagRaceFluff(),
 		new this.TagRecipe(),
 		new this.TagReward(),
 		new this.TagVehicle(),
@@ -7333,6 +7477,12 @@ class _RenderCompactSpellsImplBase extends _RenderCompactImplBase {
 		if (fromClassList.length) {
 			const [current] = Parser.spClassesToCurrentAndLegacy(fromClassList);
 			stack.push(`<div><span class="bold">Classes: </span>${Parser.spMainClassesToFull(current)}</div>`);
+		}
+
+		const fromClassListVariant = Renderer.spell.getCombinedClasses(ent, "fromClassListVariant");
+		if (fromClassListVariant.length) {
+			const [current, legacy] = Parser.spVariantClassesToCurrentAndLegacy(fromClassListVariant);
+			stack.push(`<div><span class="bold" title="&quot;Optional&quot; spells may be added to a campaign by the DM. &quot;Variant&quot; spells are generally available, but may be made available to a class by the DM.">Optional/Variant Classes: </span>${Parser.spMainClassesToFull(current)}</div>`);
 		}
 
 		return stack.join("");
@@ -9828,7 +9978,7 @@ class _RenderCompactBestiaryImplOne extends _RenderCompactBestiaryImplBase {
 	_getHtmlParts_gear ({mon}) {
 		const pt = Renderer.monster.getGearPart(mon);
 		if (!pt) return "";
-		return `<p><b title="Immunities">Gear</b> ${pt}</p>`;
+		return `<p><b>Gear</b> ${pt}</p>`;
 	}
 
 	/* ----- */
@@ -9972,6 +10122,7 @@ class _RenderCompactBestiaryImplOne extends _RenderCompactBestiaryImplBase {
 
 Renderer.monster = class {
 	static CHILD_PROPS = ["action", "bonus", "reaction", "trait", "legendary", "mythic", "variant", "spellcasting"];
+	static CHILD_PROPS__SPELLCASTING_DISPLAY_AS = ["trait", "action", "bonus", "reaction", "legendary", "mythic"];
 
 	/* -------------------------------------------- */
 
@@ -10325,7 +10476,7 @@ Renderer.monster = class {
 
 		return e_({
 			tag: "select",
-			clazz: "input-xs form-control form-control--minimal w-initial inline-block ve-popwindow__hidden no-print",
+			clazz: "input-xs form-control form-control--minimal w-initial ve-inline-block ve-popwindow__hidden no-print",
 			name: "mon__sel-summon-spell-level",
 			children: [
 				e_({tag: "option", val: "-1", text: "\u2014"}),
@@ -10343,7 +10494,7 @@ Renderer.monster = class {
 
 		return e_({
 			tag: "select",
-			clazz: "input-xs form-control form-control--minimal w-initial inline-block ve-popwindow__hidden no-print",
+			clazz: "input-xs form-control form-control--minimal w-initial ve-inline-block ve-popwindow__hidden no-print",
 			name: "mon__sel-summon-class-level",
 			children: [
 				e_({tag: "option", val: "-1", text: "\u2014"}),
@@ -10580,15 +10731,16 @@ Renderer.monster = class {
 
 	/* -------------------------------------------- */
 
-	static getImmunitiesCombinedPart (mon) {
+	static getImmunitiesCombinedPart (mon, {isPlainText = false} = {}) {
 		if (!mon.immune && !mon.conditionImmune) return "";
 
-		const ptImmune = mon.immune ? Parser.getFullImmRes(mon.immune, {isTitleCase: true}) : "";
-		const ptConditionImmune = mon.conditionImmune ? Parser.getFullCondImm(mon.conditionImmune, {isTitleCase: true}) : "";
+		const ptImmune = mon.immune ? Parser.getFullImmRes(mon.immune, {isTitleCase: true, isPlainText}) : "";
+		const ptConditionImmune = mon.conditionImmune ? Parser.getFullCondImm(mon.conditionImmune, {isTitleCase: true, isPlainText}) : "";
 
 		const hasSemi = ptImmune && ptConditionImmune && (ptImmune.includes(";") || ptConditionImmune.includes(";"));
+		const joiner = !hasSemi || !isPlainText ? "; " : `<span class="italic">;</span> `;
 
-		return [ptImmune, ptConditionImmune].filter(Boolean).join(hasSemi ? `<span class="italic">;</span> ` : "; ");
+		return [ptImmune, ptConditionImmune].filter(Boolean).join(joiner);
 	}
 
 	/* -------------------------------------------- */
@@ -10854,33 +11006,32 @@ Renderer.monster = class {
 
 	/* -------------------------------------------- */
 
-	static getSpellcastingRenderedTraits (renderer, mon, displayAsProp = "trait") {
-		const out = [];
-		(mon.spellcasting || [])
-			.filter(it => (it.displayAs || "trait") === displayAsProp)
-			.forEach(entry => {
+	static getSpellcastingRenderedTraits (renderer, mon, {displayAsProp = "trait"} = {}) {
+		return (mon.spellcasting || [])
+			.filter(entry => (entry.displayAs || "trait") === displayAsProp)
+			.map(entry => {
 				const isLegendaryMythic = ["legendary", "mythic"].includes(displayAsProp);
 
 				// For legendary/mythic, assume list-item format
 				if (isLegendaryMythic) {
-					if (!entry.headerEntries?.length) return;
-					out.push({type: "item", name: entry.name, entries: entry.headerEntries});
-					return;
+					if (!entry.headerEntries?.length) return null;
+					return {type: "item", name: entry.name, entries: entry.headerEntries};
 				}
 
-				entry.type = entry.type || "spellcasting";
+				entry.type ||= "spellcasting";
 				const rendered = renderer.render(entry, 2);
-				if (!rendered.length) return;
-				out.push({name: entry.name, rendered});
-			});
-		return out;
+				if (!rendered.length) return null;
+
+				return {name: entry.name, rendered};
+			})
+			.filter(Boolean);
 	}
 
 	static getOrderedTraits (mon, {fnGetSpellTraits} = {}) {
 		let traits = mon.trait ? MiscUtil.copyFast(mon.trait) : null;
 
 		if (fnGetSpellTraits) {
-			const spellTraits = fnGetSpellTraits(mon, "trait");
+			const spellTraits = fnGetSpellTraits(mon, {displayAsProp: "trait"});
 			if (spellTraits.length) traits = traits ? traits.concat(spellTraits) : spellTraits;
 		}
 
@@ -10899,7 +11050,7 @@ Renderer.monster = class {
 
 		let spellActions;
 		if (fnGetSpellTraits) {
-			spellActions = fnGetSpellTraits(mon, prop);
+			spellActions = fnGetSpellTraits(mon, {displayAsProp: prop});
 		}
 
 		if (!spellActions?.length && !actions?.length) return null;
@@ -11082,7 +11233,7 @@ Renderer.monster = class {
 		renderer = renderer || Renderer.get();
 		const dragonVariant = Renderer.monster.dragonCasterVariant.getHtml(mon, {renderer});
 		const variants = mon.variant;
-		if (!variants && !dragonVariant) return null;
+		if (!variants && !dragonVariant) return "";
 
 		const rStack = [];
 		(variants || []).forEach(v => renderer.recursiveRender(v, rStack));
@@ -11781,6 +11932,8 @@ Renderer.item = class {
 	static getCompactRenderedString (item, opts) {
 		opts = opts || {};
 
+		const styleHint = VetoolsConfig.get("styleSwitcher", "style");
+
 		const [ptDamage, ptProperties] = Renderer.item.getRenderedDamageAndProperties(item);
 		const ptMastery = Renderer.item.getRenderedMastery(item);
 		const [typeRarityText, subTypeText, tierText] = Renderer.item.getTypeRarityAndAttunementText(item);
@@ -11797,9 +11950,9 @@ Renderer.item = class {
 		return `
 		${Renderer.utils.getExcludedTr({entity: item, dataProp: "item", page: UrlUtil.PG_ITEMS})}
 		${Renderer.utils.getNameTr(item, {page: UrlUtil.PG_ITEMS, isEmbeddedEntity: opts.isEmbeddedEntity})}
-		<tr><td class="rd-item__type-rarity-attunement" colspan="6">${Renderer.item.getTypeRarityAndAttunementHtml(typeRarityText, subTypeText, tierText)}</td></tr>
+		<tr><td class="rd-item__type-rarity-attunement" colspan="6">${Renderer.item.getTypeRarityAndAttunementHtml(typeRarityText, subTypeText, tierText, {styleHint})}</td></tr>
 		<tr>
-			<td colspan="2">${[Parser.itemValueToFullMultiCurrency(item), Parser.itemWeightToFull(item)].filter(Boolean).join(", ").uppercaseFirst()}</td>
+			<td colspan="2">${[Parser.itemValueToFullMultiCurrency(item, {styleHint}), Parser.itemWeightToFull(item)].filter(Boolean).join(", ").uppercaseFirst()}</td>
 			<td colspan="4">
 				${textRight}
 			</td>
@@ -11811,13 +11964,23 @@ Renderer.item = class {
 		return item._fullAdditionalEntries?.length || item._fullEntries?.length || item.entries?.length;
 	}
 
-	static getTypeRarityAndAttunementHtml (typeRarityText, subTypeText, tierText) {
+	static getTypeRarityAndAttunementHtml (typeRarityText, subTypeText, tierText, {styleHint = null} = {}) {
+		styleHint ||= VetoolsConfig.get("styleSwitcher", "style");
+
+		typeRarityText ||= "";
+		subTypeText ||= "";
+		tierText ||= "";
+
+		const ptTypeRarity = styleHint === "classic" ? typeRarityText.uppercaseFirst() : typeRarityText.toTitleCase();
+		const ptTier = styleHint === "classic" ? subTypeText.uppercaseFirst() : subTypeText.toTitleCase();
+		const ptSubtype = styleHint === "classic" ? tierText.uppercaseFirst() : tierText.toTitleCase();
+
 		return `<div class="ve-flex-col">
 			${typeRarityText || tierText ? `<div class="split ${subTypeText ? "mb-1" : ""}">
-				<div class="italic">${(typeRarityText || "").uppercaseFirst()}</div>
-				<div class="no-wrap ${tierText ? `ml-2` : ""}">${(tierText || "").uppercaseFirst()}</div>
+				<div class="italic">${ptTypeRarity}</div>
+				<div class="no-wrap ${tierText ? `ml-2` : ""}">${ptTier}</div>
 			</div>` : ""}
-			${subTypeText ? `<div class="italic">${subTypeText.uppercaseFirst()}</div>` : ""}
+			${subTypeText ? `<div class="italic">${ptSubtype}</div>` : ""}
 		</div>`;
 	}
 
@@ -13079,7 +13242,18 @@ Renderer.table = class {
 	}
 
 	static getConvertedEncounterTableName (group, tableRaw) {
-		return `${group.name}${tableRaw.caption ? ` ${tableRaw.caption}` : ""}${/\bencounters?\b/i.test(group.name) ? "" : " Encounters"}${tableRaw.minlvl && tableRaw.maxlvl ? ` (Levels ${tableRaw.minlvl}\u2014${tableRaw.maxlvl})` : ""}`;
+		const baseName = tableRaw.caption
+			? tableRaw.caption
+			: [
+				tableRaw.captionPrefix,
+				group.name,
+				tableRaw.captionSuffix,
+				/\bencounters?\b/i.test(group.name) ? "" : "Encounters",
+			]
+				.filter(Boolean)
+				.join(" ");
+
+		return `${baseName}${tableRaw.minlvl && tableRaw.maxlvl ? ` (Levels ${tableRaw.minlvl}\u2014${tableRaw.maxlvl})` : ""}`;
 	}
 
 	static getConvertedNameTableName (group, tableRaw) {
@@ -13150,7 +13324,7 @@ Renderer.table = class {
 };
 
 Renderer.vehicle = class {
-	static CHILD_PROPS = ["movement", "weapon", "other", "action", "trait", "reaction", "control", "actionStation"];
+	static CHILD_PROPS = ["movement", "weapon", "station", "other", "action", "trait", "reaction", "control", "actionStation"];
 
 	static getVehicleRenderableEntriesMeta (ent) {
 		return {
@@ -13183,6 +13357,7 @@ Renderer.vehicle = class {
 		switch (ent.vehicleType) {
 			case "SHIP": return Renderer.vehicle._getRenderedString_ship(ent, opts);
 			case "SPELLJAMMER": return Renderer.vehicle._getRenderedString_spelljammer(ent, opts);
+			case "ELEMENTAL_AIRSHIP": return Renderer.vehicle._getRenderedString_elementalAirship(ent, opts);
 			case "INFWAR": return Renderer.vehicle._getRenderedString_infwar(ent, opts);
 			case "CREATURE": return Renderer.monster.getCompactRenderedString(ent, {...opts, isHideLanguages: true, isHideSenses: true, isCompact: opts.isCompact ?? false, page: UrlUtil.PG_VEHICLES});
 			case "OBJECT": return Renderer.object.getCompactRenderedString(ent, {...opts, isCompact: opts.isCompact ?? false, page: UrlUtil.PG_VEHICLES});
@@ -13365,52 +13540,13 @@ Renderer.vehicle = class {
 		}
 	};
 
-	static spelljammer = class {
-		static getVehicleSpelljammerRenderableEntriesMeta (ent) {
-			const ptAc = ent.hull?.ac
-				? `${ent.hull.ac}${ent.hull.acFrom ? ` (${ent.hull.acFrom.join(", ")})` : ""}`
-				: "\u2014";
-
-			const ptSpeed = ent.speed != null
-				? Parser.getSpeedString(ent, {isSkipZeroWalk: true})
-				: "";
-			const ptPace = Renderer.vehicle.spelljammer._getVehicleSpelljammerRenderableEntriesMeta_getPtPace({ent});
-
-			const ptSpeedPace = [ptSpeed, ptPace].filter(Boolean).join(" ");
-
-			return {
-				entryTableSummary: {
-					type: "table",
-					style: "summary",
-					colStyles: ["col-6", "col-6"],
-					rows: [
-						[
-							`{@b Armor Class:} ${ptAc}`,
-							`{@b Cargo:} ${ent.capCargo ? `${ent.capCargo} ton${ent.capCargo === 1 ? "" : "s"}` : "\u2014"}`,
-						],
-						[
-							`{@b Hit Points:} ${ent.hull?.hp ?? "\u2014"}`,
-							`{@b Crew:} ${ent.capCrew ?? "\u2014"}${ent.capCrewNote ? ` ${ent.capCrewNote}` : ""}`,
-						],
-						[
-							`{@b Damage Threshold:} ${ent.hull?.dt ?? "\u2014"}`,
-							`{@b Keel/Beam:} ${(ent.dimensions || ["\u2014"]).join("/")}`,
-						],
-						[
-							`{@b Speed:} ${ptSpeedPace}`,
-							`{@b Cost:} ${ent.cost != null ? Parser.vehicleCostToFull(ent) : "\u2014"}`,
-						],
-					],
-				},
-			};
-		}
-
-		static _getVehicleSpelljammerRenderableEntriesMeta_getPtPace (ent) {
+	static spelljammerElementalAirship = class {
+		static _getRenderableEntriesMeta_getPtPace (ent) {
 			if (!ent.pace) return "";
 
 			const isMulti = Object.keys(ent.pace).length > 1;
 
-			const out = Parser.SPEED_MODES
+			return Parser.SPEED_MODES
 				.map(mode => {
 					const pace = ent.pace[mode];
 					if (!pace) return null;
@@ -13420,41 +13556,29 @@ Renderer.vehicle = class {
 				})
 				.filter(Boolean)
 				.join(", ");
-
-			return `(${out})`;
 		}
 
-		static getSummarySection_ (renderer, ent) {
-			const entriesMetaSpelljammer = Renderer.vehicle.spelljammer.getVehicleSpelljammerRenderableEntriesMeta(ent);
-
-			return `<tr><td colspan="6">${renderer.render(entriesMetaSpelljammer.entryTableSummary)}</td></tr>`;
-		}
-
-		static getSectionWeaponEntriesMeta (entry) {
-			const isMultiple = entry.count != null && entry.count > 1;
+		static getRenderableEntriesMeta (ent) {
+			const ptAc = ent.hull?.ac
+				? `${ent.hull.ac}${ent.hull.acFrom ? ` (${ent.hull.acFrom.join(", ")})` : ""}`
+				: "\u2014";
 
 			return {
-				entryName: `${isMultiple ? `${entry.count} ` : ""}${entry.name}${entry.crew ? ` (Crew: ${entry.crew}${isMultiple ? " each" : ""})` : ""}`,
+				entryAc: `{@b Armor Class:} ${ptAc}`,
+				entryCargo: `{@b Cargo:} ${ent.capCargo ? `${ent.capCargo} ton${ent.capCargo === 1 ? "" : "s"}` : "\u2014"}`,
+				entryHitPoints: `{@b Hit Points:} ${ent.hull?.hp ?? "\u2014"}`,
+				entryCrew: `{@b Crew:} ${ent.capCrew ?? "\u2014"}${ent.capCrewNote ? ` ${ent.capCrewNote}` : ""}`,
+				entryDamageThreshold: `{@b Damage Threshold:} ${ent.hull?.dt ?? "\u2014"}`,
+				entryCost: `{@b Cost:} ${ent.cost != null ? Parser.vehicleCostToFull(ent) : "\u2014"}`,
+				entryPacePt: this._getRenderableEntriesMeta_getPtPace(ent),
 			};
 		}
 
-		static getWeaponSection_ (renderer, entry) {
-			const entriesMetaSectionWeapon = Renderer.vehicle.spelljammer.getSectionWeaponEntriesMeta(entry);
+		/* -------------------------------------------- */
 
-			const ptAction = entry.action?.length
-				? entry.action.map(act => `<div class="mt-1">${renderer.render(act, 2)}</div>`).join("")
-				: "";
-			return `
-				<tr><td colspan="6"><h3 class="stats__sect-header-inner">${entriesMetaSectionWeapon.entryName}</h3></td></tr>
-				<tr><td colspan="6" class="stats__sect-row-inner">
-				${Renderer.vehicle.spelljammer.getSectionHpCostPart_(renderer, entry)}
-				${entry.entries?.length ? `<div>${renderer.render({entries: entry.entries})}</div>` : ""}
-				${ptAction}
-				</td></tr>
-			`;
-		}
+		static getStationEntriesMeta (entry) {
+			const ptSize = entry.size ? Renderer.utils.getRenderedSize(entry.size) : null;
 
-		static getSectionHpCostEntriesMeta (entry) {
 			const ptCosts = entry.costs?.length
 				? entry.costs.map(cost => {
 					return `${Parser.vehicleCostToFull(cost) || "\u2014"}${cost.note ? ` (${cost.note})` : ""}`;
@@ -13462,20 +13586,164 @@ Renderer.vehicle = class {
 				: "\u2014";
 
 			return {
+				entrySize: ptSize ? `{@i ${ptSize} Object}` : null,
 				entryArmorClass: `{@b Armor Class:} ${entry.ac == null ? "\u2014" : entry.ac}`,
 				entryHitPoints: `{@b Hit Points:} ${entry.hp == null ? "\u2014" : entry.hp}`,
 				entryCost: `{@b Cost:} ${ptCosts}`,
 			};
 		}
 
-		static getSectionHpCostPart_ (renderer, entry) {
-			const entriesMetaSectionHpCost = Renderer.vehicle.spelljammer.getSectionHpCostEntriesMeta(entry);
+		static getStationSection_ ({entriesMetaParent, renderer, entry, isDisplayEmptyCost = false} = {}) {
+			const entriesMeta = Renderer.vehicle.spelljammerElementalAirship.getStationEntriesMeta(entry);
 
+			const ptAction = entry.action?.length
+				? entry.action.map(act => `<div class="mt-1">${renderer.render(act, 2)}</div>`).join("")
+				: "";
 			return `
-				<div>${renderer.render(entriesMetaSectionHpCost.entryArmorClass)}</div>
-				<div>${renderer.render(entriesMetaSectionHpCost.entryHitPoints)}</div>
-				<div class="mb-2">${renderer.render(entriesMetaSectionHpCost.entryCost)}</div>
+				<tr><td colspan="6"><h3 class="stats__sect-header-inner">${entriesMetaParent.entryName}</h3></td></tr>
+				<tr><td colspan="6" class="stats__sect-row-inner">
+				${entriesMeta.entrySize ? `<div class="mb-2">${renderer.render(entriesMeta.entrySize)}</div>` : ""}
+				<div>${renderer.render(entriesMeta.entryArmorClass)}</div>
+				<div>${renderer.render(entriesMeta.entryHitPoints)}</div>
+				${isDisplayEmptyCost || entry.costs?.length ? `<div>${renderer.render(entriesMeta.entryCost)}</div>` : ""}
+				${entry.entries?.length ? `<div class="mt-2">${renderer.render({entries: entry.entries})}</div>` : ""}
+				${ptAction}
+				</td></tr>
 			`;
+		}
+	};
+
+	static spelljammer = class {
+		static getRenderableEntriesMeta (ent) {
+			const {
+				entryAc,
+				entryCargo,
+				entryHitPoints,
+				entryCrew,
+				entryDamageThreshold,
+				entryCost,
+				entryPacePt,
+			} = Renderer.vehicle.spelljammerElementalAirship.getRenderableEntriesMeta(ent);
+
+			const ptSpeed = ent.speed != null
+				? Parser.getSpeedString(ent, {isSkipZeroWalk: true})
+				: "";
+
+			const ptSpeedPace = [ptSpeed, ptSpeed ? `(${entryPacePt})` : entryPacePt].filter(Boolean).join(" ");
+
+			return {
+				entryTableSummary: {
+					type: "table",
+					style: "summary",
+					colStyles: ["col-6", "col-6"],
+					rows: [
+						[
+							entryAc,
+							entryCargo,
+						],
+						[
+							entryHitPoints,
+							entryCrew,
+						],
+						[
+							entryDamageThreshold,
+							`{@b Keel/Beam:} ${(ent.dimensions || ["\u2014"]).join("/")}`,
+						],
+						[
+							`{@b Speed:} ${ptSpeedPace}`,
+							entryCost,
+						],
+					],
+				},
+			};
+		}
+
+		static getSummarySection_ (renderer, ent) {
+			const entriesMeta = Renderer.vehicle.spelljammer.getRenderableEntriesMeta(ent);
+
+			return `<tr><td colspan="6">${renderer.render(entriesMeta.entryTableSummary)}</td></tr>`;
+		}
+
+		/* -------------------------------------------- */
+
+		static getStationEntriesMeta (entry) {
+			const isMultiple = entry.count != null && entry.count > 1;
+
+			return {
+				entryName: `${isMultiple ? `${entry.count} ` : ""}${entry.name}${entry.crew ? ` (Crew: ${entry.crew}${isMultiple ? " each" : ""})` : ""}`,
+			};
+		}
+
+		static getStationSection_ ({entry, renderer}) {
+			const entriesMeta = Renderer.vehicle.spelljammer.getStationEntriesMeta(entry);
+			return Renderer.vehicle.spelljammerElementalAirship.getStationSection_({entriesMetaParent: entriesMeta, entry, renderer, isDisplayEmptyCost: true});
+		}
+	};
+
+	static elementalAirship = class {
+		static getRenderableEntriesMeta (ent) {
+			const {
+				entryAc,
+				entryCargo,
+				entryHitPoints,
+				entryCrew,
+				entryDamageThreshold,
+				entryCost,
+				entryPacePt,
+			} = Renderer.vehicle.spelljammerElementalAirship.getRenderableEntriesMeta(ent);
+
+			const ptSpeed = ent.speed != null
+				? Parser.getSpeedString(ent, {isSkipZeroWalk: true})
+				: "";
+
+			const ptPaceSpeed = [entryPacePt, ptSpeed ? `(${ptSpeed})` : null].filter(Boolean).join(" ");
+
+			return {
+				entryTableSummary: {
+					type: "table",
+					style: "summary",
+					colStyles: ["col-6", "col-6"],
+					rows: [
+						[
+							entryAc,
+							entryCrew,
+						],
+						[
+							entryHitPoints,
+							`{@b Passengers:} ${ent.capPassenger ? ent.capPassenger : "\u2014"}`,
+						],
+						[
+							entryDamageThreshold,
+							entryCargo,
+						],
+						[
+							`{@b Speed:} ${ptPaceSpeed}`,
+							entryCost,
+						],
+					],
+				},
+			};
+		}
+
+		static getSummarySection_ (renderer, ent) {
+			const entriesMeta = Renderer.vehicle.elementalAirship.getRenderableEntriesMeta(ent);
+
+			return `<tr><td colspan="6">${renderer.render(entriesMeta.entryTableSummary)}</td></tr>`;
+		}
+
+		/* -------------------------------------------- */
+
+		static getStationEntriesMeta (entry) {
+			const isMultiple = entry.count != null && entry.count > 1;
+
+			return {
+				entryName: `${entry.name}${isMultiple ? ` (${entry.count})` : ""}`,
+			};
+		}
+
+		static getStationSection_ ({entry, renderer}) {
+			const entriesMeta = Renderer.vehicle.elementalAirship.getStationEntriesMeta(entry);
+			return Renderer.vehicle.spelljammerElementalAirship.getStationSection_({entriesMetaParent: entriesMeta, entry, renderer});
 		}
 	};
 
@@ -13575,7 +13843,21 @@ Renderer.vehicle = class {
 			${Renderer.utils.getExcludedTr({entity: veh, dataProp: "vehicle", page: UrlUtil.PG_VEHICLES})}
 			${Renderer.utils.getNameTr(veh, {isInlinedToken, page: UrlUtil.PG_VEHICLES})}
 			${Renderer.vehicle.spelljammer.getSummarySection_(renderer, veh)}
-			${(veh.weapon || []).map(Renderer.vehicle.spelljammer.getWeaponSection_.bind(this, renderer)).join("")}
+			${(veh.weapon || []).map(entry => Renderer.vehicle.spelljammer.getStationSection_({entry, renderer})).join("")}
+		`;
+	}
+
+	static _getRenderedString_elementalAirship (veh, opts) {
+		const renderer = Renderer.get();
+
+		const isInlinedToken = !opts.isCompact && Renderer.vehicle.hasToken(veh);
+
+		return `
+			${Renderer.utils.getExcludedTr({entity: veh, dataProp: "vehicle", page: UrlUtil.PG_VEHICLES})}
+			${Renderer.utils.getNameTr(veh, {isInlinedToken, page: UrlUtil.PG_VEHICLES})}
+			${Renderer.vehicle.elementalAirship.getSummarySection_(renderer, veh)}
+			${(veh.weapon || []).map(entry => Renderer.vehicle.elementalAirship.getStationSection_({entry, renderer})).join("")}
+			${(veh.station || []).map(entry => Renderer.vehicle.elementalAirship.getStationSection_({entry, renderer})).join("")}
 		`;
 	}
 
@@ -13720,7 +14002,7 @@ Renderer.action = class {
 
 Renderer.language = class {
 	static getLanguageRenderableEntriesMeta (ent) {
-		const hasMeta = ent.typicalSpeakers || ent.script;
+		const hasMeta = ent.typicalSpeakers || ent.script || ent.origin;
 
 		const entriesContent = [];
 
@@ -13734,6 +14016,7 @@ Renderer.language = class {
 		return {
 			entryType: ent.type ? `{@i ${ent.type.toTitleCase()} language}` : null,
 			entryTypicalSpeakers: ent.typicalSpeakers ? `{@b Typical Speakers:} ${ent.typicalSpeakers.join(", ")}` : null,
+			entryOrigin: ent.origin ? `{@b Origin:} ${ent.origin}` : null,
 			entryScript: ent.script ? `{@b Script:} ${ent.script}` : null,
 			entriesContent: entriesContent.length ? entriesContent : null,
 		};
@@ -13748,7 +14031,7 @@ Renderer.language = class {
 
 		const ptText = [
 			entriesMeta.entryType ? Renderer.get().render(entriesMeta.entryType) : "",
-			[entriesMeta.entryTypicalSpeakers, entriesMeta.entryScript]
+			[entriesMeta.entryTypicalSpeakers, entriesMeta.entryOrigin, entriesMeta.entryScript]
 				.filter(Boolean)
 				.map(it => `<div>${Renderer.get().render(it)}</div>`)
 				.join(""),
@@ -14379,6 +14662,7 @@ Renderer.facility = class {
 		if (entryOrders) entsList.push({type: "item", name: `Order${ent.orders.length !== 1 ? "s" : ""}:`, entry: entryOrders});
 
 		return {
+			entryLevel: ent.level ? `{@i Level ${ent.level} Bastion Facility}` : null,
 			entriesDescription: [
 				entsList.length
 					? {
@@ -14446,9 +14730,9 @@ Renderer.facility = class {
 	/* -------------------------------------------- */
 
 	static getCompactRenderedString (ent) {
-		const ptLevel = ent.level == null ? "" : `<tr><td colspan="6" class="pb-2 pt-0"><i>Level ${ent.level} Bastion Facility</i></td></tr>`;
-
 		const entriesMeta = Renderer.facility.getFacilityRenderableEntriesMeta(ent);
+
+		const ptLevel = entriesMeta.entryLevel ? `<tr><td colspan="6" class="pb-2 pt-0">${Renderer.get().render(entriesMeta.entryLevel, 2)}</td></tr>` : "";
 		const ptEntries = entriesMeta.entriesDescription.map(entry => `<div class="my-1p">${Renderer.get().render(entry, 2)}</div>`).join("");
 
 		return `
@@ -14936,12 +15220,12 @@ Renderer.generic = class {
 		return ent.hasToken; // An implicit token
 	}
 
-	static getTokenUrl (ent, mediaDir, {isIgnoreImplicit = false} = {}) {
+	static getTokenUrl (ent, mediaDir, {isIgnoreImplicit = false, isUrlEncode = false} = {}) {
 		if (ent.tokenUrl) return ent.tokenUrl; // TODO(Future) legacy; remove
-		if (ent.token) return Renderer.get().getMediaUrl("img", `${mediaDir}/${ent.token.source}/${Parser.nameToTokenName(ent.token.name)}.webp`);
-		if (ent.tokenHref) return Renderer.utils.getEntryMediaUrl(ent, "tokenHref", "img");
+		if (ent.token) return Renderer.get().getMediaUrl("img", `${mediaDir}/${ent.token.source}/${Parser.nameToTokenName(ent.token.name, {isUrlEncode})}.webp`);
+		if (ent.tokenHref) return Renderer.utils.getEntryMediaUrl(ent, "tokenHref", "img", {isUrlEncode});
 		if (isIgnoreImplicit) return null;
-		return Renderer.get().getMediaUrl("img", `${mediaDir}/${ent.source}/${Parser.nameToTokenName(ent.name)}.webp`);
+		return Renderer.get().getMediaUrl("img", `${mediaDir}/${ent.source}/${Parser.nameToTokenName(ent.name, {isUrlEncode})}.webp`);
 	}
 };
 
@@ -15004,40 +15288,41 @@ Renderer.hover = class {
 	static _getNextId () { return ++Renderer.hover._lastId; }
 
 	static _doInit () {
-		if (!Renderer.hover._isInit) {
-			Renderer.hover._isInit = true;
+		if (Renderer.hover._isInit) return;
+		Renderer.hover._isInit = true;
 
-			$(document.body).on("click", () => Renderer.hover.cleanTempWindows());
+		document.body.addEventListener("click", () => {
+			Renderer.hover.cleanTempWindows();
+		});
 
-			Renderer.hover._contextMenu = ContextUtil.getMenu([
-				new ContextUtil.Action(
-					"Maximize All",
-					() => {
-						const $permWindows = $(`.hoverborder[data-perm="true"]`);
-						$permWindows.attr("data-display-title", "false");
-					},
-				),
-				new ContextUtil.Action(
-					"Minimize All",
-					() => {
-						const $permWindows = $(`.hoverborder[data-perm="true"]`);
-						$permWindows.attr("data-display-title", "true");
-					},
-				),
-				null,
-				new ContextUtil.Action(
-					"Close Others",
-					() => {
-						const hoverId = Renderer.hover._contextMenuLastClicked?.hoverId;
-						Renderer.hover._doCloseAllWindows({hoverIdBlocklist: new Set([hoverId])});
-					},
-				),
-				new ContextUtil.Action(
-					"Close All",
-					() => Renderer.hover._doCloseAllWindows(),
-				),
-			]);
-		}
+		Renderer.hover._contextMenu = ContextUtil.getMenu([
+			new ContextUtil.Action(
+				"Maximize All",
+				() => {
+					const $permWindows = $(`.hoverborder[data-perm="true"]`);
+					$permWindows.attr("data-display-title", "false");
+				},
+			),
+			new ContextUtil.Action(
+				"Minimize All",
+				() => {
+					const $permWindows = $(`.hoverborder[data-perm="true"]`);
+					$permWindows.attr("data-display-title", "true");
+				},
+			),
+			null,
+			new ContextUtil.Action(
+				"Close Others",
+				() => {
+					const hoverId = Renderer.hover._contextMenuLastClicked?.hoverId;
+					Renderer.hover._doCloseAllWindows({hoverIdBlocklist: new Set([hoverId])});
+				},
+			),
+			new ContextUtil.Action(
+				"Close All",
+				() => Renderer.hover._doCloseAllWindows(),
+			),
+		]);
 	}
 
 	static cleanTempWindows () {
@@ -15078,9 +15363,9 @@ Renderer.hover = class {
 		return Renderer.hover._eleCache.get(key);
 	}
 
-	static _handleGenericMouseOverStart ({evt, ele}) {
+	static _handleGenericMouseOverStart ({evt, ele, opts}) {
 		// Don't open on small screens unless forced
-		if (Renderer.hover.isSmallScreen(evt) && !evt.shiftKey) return;
+		if (Renderer.hover.isSmallScreen(evt) && !evt.shiftKey && !opts?.isForceOpenPermanent) return;
 
 		Renderer.hover.cleanTempWindows();
 
@@ -15092,7 +15377,7 @@ Renderer.hover = class {
 
 		meta.isHovered = true;
 		meta.isLoading = true;
-		meta.isPermanent = evt.shiftKey;
+		meta.isPermanent = evt.shiftKey || opts?.isForceOpenPermanent || false;
 
 		return meta;
 	}
@@ -15121,7 +15406,7 @@ Renderer.hover = class {
 			`onmouseover="Renderer.hover.pHandleLinkMouseOver(event, this)"`,
 			`onmouseleave="Renderer.hover.handleLinkMouseLeave(event, this)"`,
 			`onmousemove="Renderer.hover.handleLinkMouseMove(event, this)"`,
-			`onclick="Renderer.hover.handleLinkClick(event, this)"`,
+			`onclick="Renderer.hover.handleLinkClick(event, this${isFauxPage ? `, {isForceOpenPermanent: true}` : ``})"`,
 			`onwheel="Renderer.hover.handleLinkWheel(event, this)"`,
 			`ondragstart="Renderer.hover.handleLinkDragStart(event, this)"`,
 			`data-vet-page="${page.qq()}"`,
@@ -15151,30 +15436,14 @@ Renderer.hover = class {
 	static async pHandleLinkMouseOver (evt, ele, opts) {
 		Renderer.hover._doInit();
 
-		let page, source, hash, preloadId, customHashId, isFauxPage, isAllowRedirect;
-		if (opts) {
-			page = opts.page;
-			source = opts.source;
-			hash = opts.hash;
-			preloadId = opts.preloadId;
-			customHashId = opts.customHashId;
-			isFauxPage = !!opts.isFauxPage;
-			isAllowRedirect = !!opts.isAllowRedirect;
-		} else {
-			({
-				page,
-				source,
-				hash,
-				preloadId,
-				isFauxPage,
-				isAllowRedirect,
-			} = Renderer.hover.getLinkElementData(ele));
-		}
+		const linkData = Renderer.hover._pHandleLinkMouseOver_getLinkData({ele, opts});
+		let {page, source, hash} = linkData;
+		const {preloadId, customHashId, isFauxPage, isAllowRedirect} = linkData;
 
 		const redirectMeta = await this._pHandleLinkMouseOver_pGetVersionRedirectMeta({page, source, hash, preloadId, customHashId, isAllowRedirect});
 		if (redirectMeta != null) ({page, source, hash} = redirectMeta);
 
-		let meta = Renderer.hover._handleGenericMouseOverStart({evt, ele});
+		let meta = Renderer.hover._handleGenericMouseOverStart({evt, ele, opts});
 		if (meta == null) return;
 
 		if (EventUtil.isCtrlMetaKey(evt)) meta.isFluff = true;
@@ -15264,6 +15533,22 @@ Renderer.hover = class {
 			const fnBind = Renderer.hover.getFnBindListenersCompact(page);
 			if (fnBind && toRender) fnBind(toRender, $content);
 		}
+	}
+
+	static _pHandleLinkMouseOver_getLinkData ({ele, opts}) {
+		if (opts?.isSpecifiedLinkData) {
+			return {
+				page: opts.page,
+				source: opts.source,
+				hash: opts.hash,
+				preloadId: opts.preloadId,
+				customHashId: opts.customHashId,
+				isFauxPage: !!opts.isFauxPage,
+				isAllowRedirect: !!opts.isAllowRedirect,
+			};
+		}
+
+		return Renderer.hover.getLinkElementData(ele);
 	}
 
 	static async _pHandleLinkMouseOver_pGetVersionRedirectMeta ({page, source, hash, preloadId, customHashId, isAllowRedirect}) {
@@ -15401,7 +15686,12 @@ Renderer.hover = class {
 		ele.style.cursor = "";
 	}
 
-	static handleLinkClick (evt, ele) {
+	static handleLinkClick (evt, ele, {isForceOpenPermanent = false} = {}) {
+		// Open faux pages as permanent hover windows
+		if (isForceOpenPermanent) {
+			Renderer.hover.pHandleLinkMouseOver(evt, ele, {isForceOpenPermanent});
+		}
+
 		// Close the window (if not permanent)
 		// Note that this prevents orphan windows when e.g. clicking a specific variant on an Items page magicvariant
 		Renderer.hover.handleLinkMouseLeave(evt, ele);
@@ -15575,7 +15865,7 @@ Renderer.hover = class {
 			win._IS_POPOUT = true;
 			win.document.write(`
 				<!DOCTYPE html>
-				<html lang="en" class="ve-popwindow ${typeof styleSwitcher !== "undefined" ? styleSwitcher.getDayNightClassNames() : ""}"><head>
+				<html lang="en" class="ve-popwindow ${typeof styleSwitcher !== "undefined" ? styleSwitcher.getClassNamesStyleTheme() : ""}"><head>
 					<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 					<title>${opts.title}</title>
 					${[...document.querySelectorAll(`link[rel="stylesheet"][href]`)].map(ele => ele.outerHTML).join("\n")}
@@ -15627,10 +15917,9 @@ Renderer.hover = class {
 
 			win.Renderer = Renderer;
 
-			let ticks = 50;
-			while (!win.document.body && ticks-- > 0) await MiscUtil.pDelay(5);
+			win.document.close();
 
-			win.$wrpHoverContent = $(win.document).find(`.hoverbox--popout`);
+			win._wrpHoverContent = $(win.document).find(`.hoverbox--popout`);
 		}
 
 		let $cpyContent;
@@ -15640,7 +15929,10 @@ Renderer.hover = class {
 			$cpyContent = $content.clone(true, true);
 		}
 
-		$cpyContent.appendTo(win.$wrpHoverContent.empty());
+		win._wrpHoverContent.innerHTML = "";
+		$cpyContent.appendTo(win._wrpHoverContent);
+
+		return win;
 	}
 
 	/* -------------------------------------------- */
@@ -15666,6 +15958,9 @@ Renderer.hover = class {
 	 * @param [opts.isHideBottomBorder]
 	 */
 	static getShowWindow ($content, position, opts) {
+		// eslint-disable-next-line vet-jquery/jquery
+		$content = $($content);
+
 		opts = opts || {};
 		const {isHideBottomBorder, isResizeOnlyWidth} = opts;
 
@@ -15694,49 +15989,50 @@ Renderer.hover = class {
 		const mouseMoveId = `mousemove.${hoverId} touchmove.${hoverId}`;
 		const resizeId = `resize.${hoverId}`;
 		const drag = {};
+		const eventChannel = new EventTarget();
 
-		const brdrTopRightResize = ee`<div class="hoverborder__resize-ne"></div>`
+		const brdrTopRightResize = ee`<div class="hoverborder__resize-ne ve-touch-action-none"></div>`
 			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 1, isResizeOnlyWidth}))
 			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 1, isResizeOnlyWidth}));
 		if (isResizeOnlyWidth) brdrTopRightResize.hideVe();
 
-		const brdrRightResize = ee`<div class="hoverborder__resize-e"></div>`
+		const brdrRightResize = ee`<div class="hoverborder__resize-e ve-touch-action-none"></div>`
 			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 2, isResizeOnlyWidth}))
 			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 2, isResizeOnlyWidth}));
 
-		const brdrBottomRightResize = ee`<div class="hoverborder__resize-se"></div>`
+		const brdrBottomRightResize = ee`<div class="hoverborder__resize-se ve-touch-action-none"></div>`
 			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 3, isResizeOnlyWidth}))
 			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 3, isResizeOnlyWidth}));
 		if (isResizeOnlyWidth) brdrBottomRightResize.hideVe();
 
-		const brdrBtmResize = ee`<div class="hoverborder__resize-s"></div>`
+		const brdrBtmResize = ee`<div class="hoverborder__resize-s ve-touch-action-none"></div>`
 			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 4, isResizeOnlyWidth}))
 			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 4, isResizeOnlyWidth}));
 		if (isResizeOnlyWidth) brdrBtmResize.hideVe();
 
-		const brdrBtm = ee`<div class="hoverborder hoverborder--btm ${opts.isBookContent ? "hoverborder-book" : ""}">${brdrBtmResize}</div>`;
+		const brdrBtm = ee`<div class="hoverborder hoverborder--btm ${opts.isBookContent ? "hoverborder-book" : ""} ve-touch-action-none">${brdrBtmResize}</div>`;
 		if (isHideBottomBorder) brdrBtm.hideVe();
 
-		const brdrBtmLeftResize = ee`<div class="hoverborder__resize-sw"></div>`
+		const brdrBtmLeftResize = ee`<div class="hoverborder__resize-sw ve-touch-action-none"></div>`
 			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 5, isResizeOnlyWidth}))
 			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 5, isResizeOnlyWidth}));
 		if (isResizeOnlyWidth) brdrBtmLeftResize.hideVe();
 
-		const brdrLeftResize = ee`<div class="hoverborder__resize-w"></div>`
+		const brdrLeftResize = ee`<div class="hoverborder__resize-w ve-touch-action-none"></div>`
 			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 6, isResizeOnlyWidth}))
 			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 6, isResizeOnlyWidth}));
 
-		const brdrTopLeftResize = ee`<div class="hoverborder__resize-nw"></div>`
+		const brdrTopLeftResize = ee`<div class="hoverborder__resize-nw ve-touch-action-none"></div>`
 			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 7, isResizeOnlyWidth}))
 			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 7, isResizeOnlyWidth}));
 		if (isResizeOnlyWidth) brdrTopLeftResize.hideVe();
 
-		const brdrTopResize = ee`<div class="hoverborder__resize-n"></div>`
+		const brdrTopResize = ee`<div class="hoverborder__resize-n ve-touch-action-none"></div>`
 			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 8, isResizeOnlyWidth}))
 			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 8, isResizeOnlyWidth}));
 		if (isResizeOnlyWidth) brdrTopResize.hideVe();
 
-		const brdrTop = ee`<div class="hoverborder hoverborder--top ${opts.isBookContent ? "hoverborder-book" : ""}" ${opts.isPermanent ? `data-perm="true"` : ""}></div>`
+		const brdrTop = ee`<div class="hoverborder hoverborder--top ${opts.isBookContent ? "hoverborder-book" : ""} ve-touch-action-none" ${opts.isPermanent ? `data-perm="true"` : ""}></div>`
 			.onn("mousedown", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 9, isResizeOnlyWidth}))
 			.onn("touchstart", (evt) => Renderer.hover._getShowWindow_handleDragMousedown({hoverWindow, hoverId, $hov, drag, $wrpContent}, {evt, type: 9, isResizeOnlyWidth}))
 			.onn("contextmenu", (evt) => {
@@ -15753,7 +16049,7 @@ Renderer.hover = class {
 						$wrpContent.css("max-height", "");
 						$hov.css("max-width", "");
 					}
-					Renderer.hover._getShowWindow_adjustPosition({$hov, $wrpContent, position});
+					Renderer.hover._getShowWindow_adjustPosition({$hov, $wrpContent, position, eventChannel});
 
 					if (drag.type === 9) {
 						// handle mobile button touches
@@ -15816,7 +16112,7 @@ Renderer.hover = class {
 					}
 				}
 			});
-		$(position.window).on(resizeId, () => Renderer.hover._getShowWindow_adjustPosition({$hov, $wrpContent, position}));
+		$(position.window).on(resizeId, () => Renderer.hover._getShowWindow_adjustPosition({$hov, $wrpContent, position, eventChannel}));
 
 		brdrTop.attr("data-display-title", false);
 		brdrTop.onn("dblclick", () => Renderer.hover._getShowWindow_doToggleMinimizedMaximized({$brdrTop: brdrTop, $hov}));
@@ -15885,21 +16181,24 @@ Renderer.hover = class {
 
 		$body.append($hov);
 
-		Renderer.hover._getShowWindow_setPosition({$hov, $wrpContent, position}, position);
+		Renderer.hover._getShowWindow_setPosition({$hov, $wrpContent, position, eventChannel}, position);
 
 		hoverWindow.zIndex = initialZIndex;
 		hoverWindow.setZIndex = Renderer.hover._getNextZIndex.bind(this, {$hov, hoverWindow});
 
-		hoverWindow.setPosition = Renderer.hover._getShowWindow_setPosition.bind(this, {$hov, $wrpContent, position});
+		hoverWindow.setPosition = Renderer.hover._getShowWindow_setPosition.bind(this, {$hov, $wrpContent, position, eventChannel});
 		hoverWindow.mutScroll = Renderer.hover._getShowWindow_mutScroll.bind(this, {$hov, $wrpContent, position});
 		hoverWindow.setIsPermanent = Renderer.hover._getShowWindow_setIsPermanent.bind(this, {opts, $brdrTop: brdrTop});
 		hoverWindow.doClose = Renderer.hover._getShowWindow_doClose.bind(this, {$hov, position, mouseUpId, mouseMoveId, resizeId, hoverId, opts, hoverWindow});
 		hoverWindow.doMaximize = Renderer.hover._getShowWindow_doMaximize.bind(this, {$brdrTop: brdrTop, $hov});
 		hoverWindow.doZIndexToFront = Renderer.hover._getShowWindow_doZIndexToFront.bind(this, {$hov, hoverWindow, hoverId});
 
-		hoverWindow.getPosition = Renderer.hover._getShowWindow_getPosition.bind(this, {$hov, $wrpContent, position});
+		hoverWindow.getPosition = Renderer.hover._getShowWindow_getPosition.bind(this, {$hov, hoverWindow, $wrpContent, position});
 
 		hoverWindow.$setContent = ($contentNxt) => $wrpContent.empty().append($contentNxt);
+		hoverWindow.setContent = (contentNxt) => $wrpContent.empty().append(contentNxt);
+
+		hoverWindow.eventChannel = eventChannel;
 
 		if (opts.isPopout) Renderer.hover._getShowWindow_pDoPopout({$hov, position, mouseUpId, mouseMoveId, resizeId, hoverId, opts, hoverWindow, $content});
 
@@ -15994,11 +16293,12 @@ Renderer.hover = class {
 	}
 
 	static async _getShowWindow_pDoPopout ({$hov, position, mouseUpId, mouseMoveId, resizeId, hoverId, opts, hoverWindow, $content}, {evt} = {}) {
-		await Renderer.hover.pDoShowBrowserWindow($content, opts);
+		const winPopup = await Renderer.hover.pDoShowBrowserWindow($content, opts);
 		Renderer.hover._getShowWindow_doClose({$hov, position, mouseUpId, mouseMoveId, resizeId, hoverId, opts, hoverWindow});
+		hoverWindow._winPopup = winPopup;
 	}
 
-	static _getShowWindow_setPosition ({$hov, $wrpContent, position}, positionNxt) {
+	static _getShowWindow_setPosition ({$hov, $wrpContent, position, eventChannel}, positionNxt) {
 		switch (positionNxt.mode) {
 			case "autoFromElement": {
 				const bcr = $hov[0].getBoundingClientRect();
@@ -16051,7 +16351,7 @@ Renderer.hover = class {
 			default: throw new Error(`Positioning mode unimplemented: "${positionNxt.mode}"`);
 		}
 
-		Renderer.hover._getShowWindow_adjustPosition({$hov, $wrpContent, position});
+		Renderer.hover._getShowWindow_adjustPosition({$hov, $wrpContent, position, eventChannel});
 	}
 
 	static _getShowWindow_mutScroll ({$hov, $wrpContent, position}, {deltaPixelsX, deltaPixelsY}) {
@@ -16059,7 +16359,7 @@ Renderer.hover = class {
 		$wrpContent[0].scrollBy(deltaPixelsX, deltaPixelsY);
 	}
 
-	static _getShowWindow_adjustPosition ({$hov, $wrpContent, position}) {
+	static _getShowWindow_adjustPosition ({$hov, $wrpContent, position, eventChannel}) {
 		const eleHov = $hov[0];
 		const wrpContent = $wrpContent[0];
 
@@ -16103,9 +16403,18 @@ Renderer.hover = class {
 				wrpContent.style.height = `${bcr.height}px`;
 			}
 		}
+
+		eventChannel.dispatchEvent(new Event("resize"));
 	}
 
-	static _getShowWindow_getPosition ({$hov, $wrpContent}) {
+	static _getShowWindow_getPosition ({$hov, hoverWindow, $wrpContent}) {
+		if (hoverWindow._winPopup && !hoverWindow._winPopup.closed) {
+			return {
+				wWrpContent: $(hoverWindow._winPopup.document.body).width(),
+				hWrapContent: $(hoverWindow._winPopup.document.body).height(),
+			};
+		}
+
 		return {
 			wWrpContent: $wrpContent.width(),
 			hWrapContent: $wrpContent.height(),
@@ -16158,7 +16467,18 @@ Renderer.hover = class {
 	static getInlineHover (entry, opts) {
 		return {
 			// Re-use link handlers, as the inline version is a simplified version
-			html: `onmouseover="Renderer.hover.handleInlineMouseOver(event, this)" onmouseleave="Renderer.hover.handleLinkMouseLeave(event, this)" onmousemove="Renderer.hover.handleLinkMouseMove(event, this)" data-vet-entry="${JSON.stringify(entry).qq()}" ${opts ? `data-vet-opts="${JSON.stringify(opts).qq()}"` : ""} ${Renderer.hover.getPreventTouchString()}`,
+			html: [
+				`onmouseover="Renderer.hover.handleInlineMouseOver(event, this)"`,
+				`onmouseleave="Renderer.hover.handleLinkMouseLeave(event, this)"`,
+				`onmousemove="Renderer.hover.handleLinkMouseMove(event, this)"`,
+				`onclick="Renderer.hover.handleLinkClick(event, this)"`,
+				`onwheel="Renderer.hover.handleLinkWheel(event, this)"`,
+				`data-vet-entry="${JSON.stringify(entry).qq()}"`,
+				`${opts ? `data-vet-opts="${JSON.stringify(opts).qq()}"` : ""}`,
+				`${Renderer.hover.getPreventTouchString()}`,
+			]
+				.filter(Boolean)
+				.join(" "),
 		};
 	}
 

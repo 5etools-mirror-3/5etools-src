@@ -1,6 +1,7 @@
 import {TOOLTIP_NOTHING} from "./lootgen-const.js";
 import {VetoolsConfig} from "../utils-config/utils-config-config.js";
 import {SITE_STYLE__ONE} from "../consts.js";
+import {LootGenRender} from "./lootgen-render.js";
 
 export class LootGenMagicItem extends BaseComponent {
 	static async pGetMagicItemRoll (
@@ -137,6 +138,12 @@ export class LootGenMagicItem extends BaseComponent {
 				.map(([k, v]) => `${k.toTitleCase()}: ${v.toTitleCase()}`)
 				.join(", ");
 
+			const item = RollerUtil.rollOnArray(subItems);
+
+			const baseEntry = item
+				? `{@item ${DataUtil.proxy.getUidPacked("item", item, "item", {isMaintainCase: true})}}`
+				: `<span class="help-subtle" title="${TOOLTIP_NOTHING.qq()}">(No item)</span>`;
+
 			return new LootGenMagicItemSubItems({
 				dataManager,
 				lootGenMagicItems,
@@ -146,7 +153,7 @@ export class LootGenMagicItem extends BaseComponent {
 				itemsAltChooseDisplayText,
 				isItemsAltChooseRoll,
 				fnGetIsPreferAltChoose,
-				baseEntry: row.item,
+				baseEntry,
 				item: RollerUtil.rollOnArray(subItems),
 				roll: rowRoll,
 				rollAdditionalText: ptAdditionalText ? `; ${ptAdditionalText}` : "",
@@ -421,7 +428,7 @@ export class LootGenMagicItem extends BaseComponent {
 
 	_getRender_getDispBaseEntry ({prop = "baseEntry"} = {}) {
 		const dispBaseEntry = ee`<div class="mr-2"></div>`;
-		const hkBaseEntry = () => dispBaseEntry.html(Renderer.get().render(this._state.isItemsAltChooseRoll ? `{@i ${this._state[prop]}}` : this._state[prop]));
+		const hkBaseEntry = () => dispBaseEntry.html(LootGenRender.er(this._state.isItemsAltChooseRoll ? `{@i ${this._state[prop]}}` : this._state[prop]));
 		this._addHookBase(prop, hkBaseEntry);
 		hkBaseEntry();
 		return dispBaseEntry;
@@ -496,7 +503,7 @@ class LootGenMagicItemSpellScroll extends LootGenMagicItem {
 		const dispSpell = ee`<div class="no-wrap"></div>`;
 		const hkSpell = () => {
 			if (!this._state.spell) return dispSpell.html(`<span class="help-subtle" title="${TOOLTIP_NOTHING.qq()}">(no spell)</span>`);
-			dispSpell.html(Renderer.get().render(`{@spell ${this._state.spell.name}|${this._state.spell.source}}`));
+			dispSpell.html(LootGenRender.er(`{@spell ${this._state.spell.name}|${this._state.spell.source}}`));
 		};
 		this._addHookBase("spell", hkSpell);
 		hkSpell();
@@ -511,7 +518,7 @@ class LootGenMagicItemSpellScroll extends LootGenMagicItem {
 					${btnRerollSpell}
 					${dispSpell}
 					<span class="ve-muted mx-2 no-wrap">-or-</span>
-					<div class="no-wrap">${Renderer.get().render(`{@filter see all ${Parser.spLevelToFullLevelText(this._state.spellLevel, {isDash: true})} spells|spells|level=${this._state.spellLevel}}`)}</div>
+					<div class="no-wrap">${LootGenRender.er(`{@filter see all ${Parser.spLevelToFullLevelText(this._state.spellLevel, {isDash: true})} spells|spells|level=${this._state.spellLevel}}`)}</div>
 					<span>)</span>
 				</div>
 				${dispRoll}
@@ -551,21 +558,26 @@ class LootGenMagicItemSubItems extends LootGenMagicItem {
 			});
 
 		const dispSubItem = ee`<div></div>`;
-		const hkItem = () => dispSubItem.html(Renderer.get().render(`{@item ${DataUtil.proxy.getUidPacked("item", this._state.item, "item", {isMaintainCase: true})}}`));
-		this._addHookBase("item", hkItem);
-		hkItem();
+		this._addHookBase("item", () => {
+			if (!this._state.item) return;
+			dispSubItem.html(LootGenRender.er(`{@item ${DataUtil.proxy.getUidPacked("item", this._state.item, "item", {isMaintainCase: true})}}`));
+		})();
 
 		const btnReroll = this._getBtnReroll();
 
-		return ee`<li class="split-v-center">
-			<div class="ve-flex-v-center ve-flex-wrap pr-3 min-w-0">
-				${dispBaseEntry}
-				<div class="ve-flex-v-center italic mr-2">
+		const ptSubItem = this._subItems.length
+			? ee`<div class="ve-flex-v-center italic mr-2">
 					<span>(</span>
 					${btnRerollSubItem}
 					${dispSubItem}
 					<span>)</span>
-				</div>
+				</div>`
+			: null;
+
+		return ee`<li class="split-v-center">
+			<div class="ve-flex-v-center ve-flex-wrap pr-3 min-w-0">
+				${dispBaseEntry}
+				${ptSubItem}
 				${dispRoll}
 			</div>
 			${btnReroll}

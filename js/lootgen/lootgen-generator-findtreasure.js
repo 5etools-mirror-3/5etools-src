@@ -1,4 +1,5 @@
 import {LootGenGeneratorBase} from "./lootgen-generator-base.js";
+import {LootGenRender} from "./lootgen-render.js";
 
 /** @abstract */
 class LootGenGeneratorFindTreasureBase extends LootGenGeneratorBase {
@@ -146,7 +147,7 @@ export class LootGenGeneratorFindTreasure extends LootGenGeneratorFindTreasureBa
 	_source = Parser.SRC_DMG;
 
 	_getHtmlBasedOn () {
-		return Renderer.get().render(`Based on the tables and rules in the {@book ${Parser.sourceJsonToFull(Parser.SRC_DMG)}|DMG|7|Treasure Tables}, pages 133-149.`);
+		return LootGenRender.er(`Based on the tables and rules in the {@book ${Parser.sourceJsonToFull(Parser.SRC_DMG)}|DMG|7|Treasure Tables}, pages 133-149.`);
 	}
 
 	_render_getStgHoardAdditional () { return null; }
@@ -176,7 +177,7 @@ export class LootGenGeneratorFindTreasure24 extends LootGenGeneratorFindTreasure
 	_source = Parser.SRC_XDMG;
 
 	_getHtmlBasedOn () {
-		return Renderer.get().render(`Based on the tables and rules in the {@book ${Parser.sourceJsonToFull(Parser.SRC_XDMG)}|XDMG} page 120 (&quot;{@book Adventure Rewards|XDMG|3|Adventure Rewards}&quot;) and page 218 (&quot;{@book Random Magic Item Rarity|XDMG|6|Random Magic Item Rarity}&quot;).`);
+		return LootGenRender.er(`Based on the tables and rules in the {@book ${Parser.sourceJsonToFull(Parser.SRC_XDMG)}|XDMG} page 120 (&quot;{@book Adventure Rewards|XDMG|3|Adventure Rewards}&quot;) and page 218 (&quot;{@book Random Magic Item Rarity|XDMG|6|Random Magic Item Rarity}&quot;).`);
 	}
 
 	_render_getStgHoardAdditional () {
